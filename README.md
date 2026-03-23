@@ -1,5 +1,5 @@
 # Evidora
-European fact-checking against fake news
+European fact-checking against fake news | 
 Europäischer Faktencheck-Service gegen Fake-News — powered by einem lokalen LLM (Mistral 7B via Ollama).
 
 Evidora prüft Behauptungen automatisch gegen wissenschaftliche und institutionelle Quellen wie PubMed, WHO, EMA, Copernicus, Eurostat und europäische Faktenchecker (EFCSN-Mitglieder).
