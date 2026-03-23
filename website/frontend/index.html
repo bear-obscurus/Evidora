@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidora — Faktencheck</title>
+    <meta name="description" content="Europäischer Faktencheck-Service. Überprüfe Behauptungen mit wissenschaftlichen Quellen wie PubMed, WHO, EMA, Eurostat und Copernicus.">
+    <meta name="theme-color" content="#0d9488">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Evidora — Europäischer Faktencheck">
+    <meta property="og:description" content="Überprüfe Behauptungen mit wissenschaftlichen Quellen wie PubMed, WHO, EMA, Eurostat und Copernicus.">
+    <meta property="og:site_name" content="Evidora">
+    <meta property="og:locale" content="de_AT">
+    <meta property="og:locale:alternate" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Evidora — Europäischer Faktencheck">
+    <meta name="twitter:description" content="Überprüfe Behauptungen mit wissenschaftlichen Quellen wie PubMed, WHO, EMA, Eurostat und Copernicus.">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="#claim-input" class="skip-link">Zum Inhalt springen</a>
+    <nav class="lang-toggle" aria-label="Sprachauswahl">
+        <button class="lang-btn active" data-lang="de" onclick="setLanguage('de')" aria-label="Deutsch">DE</button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')" aria-label="English">EN</button>
+    </nav>
+
+    <main id="app">
+        <div id="search-section" class="hero">
+            <div class="logo">
+                <h1>Evi<span class="highlight">dora</span></h1>
+                <p class="tagline" data-i18n="tagline">Europäischer Faktencheck gegen Fake-News</p>
+            </div>
+            <form id="search-form" role="search" aria-label="Faktencheck">
+                <div class="search-bar">
+                    <!-- Search icon: Google Material Design Icons (Apache 2.0 License) -->
+                    <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                        <path fill="#9aa0a6" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                    <input
+                        type="text"
+                        id="claim-input"
+                        data-i18n-placeholder="placeholder"
+                        placeholder="Behauptung eingeben, z.B. &quot;Impfungen verursachen Autismus&quot;"
+                        autocomplete="off"
+                        aria-label="Behauptung eingeben"
+                    >
+                    <button type="submit" id="search-btn" data-i18n="search_btn">Faktencheck</button>
+                </div>
+                <div class="hints">
+                    <span data-i18n="hint_health">Gesundheit</span>
+                    <span data-i18n="hint_climate">Klima</span>
+                    <span data-i18n="hint_medication">Medikamente</span>
+                    <span data-i18n="hint_economy">Wirtschaft</span>
+                    <span data-i18n="hint_migration">Migration</span>
+                    <span data-i18n="hint_environment">Umwelt</span>
+                </div>
+            </form>
+        </div>
+
+        <div id="loading" class="hidden" role="status" aria-live="polite">
+            <div class="loading-spinner" aria-hidden="true"></div>
+            <p id="loading-text" data-i18n="loading_analyze">Analysiere Behauptung...</p>
+            <div class="loading-steps">
+                <div id="step-analyze" class="step active" data-i18n="step_analyze">Claim-Analyse</div>
+                <div id="step-search" class="step" data-i18n="step_search">Quellen durchsuchen</div>
+                <div id="step-synthesize" class="step" data-i18n="step_synthesize">Ergebnis erstellen</div>
+            </div>
+        </div>
+
+        <div id="results" class="hidden" aria-live="polite">
+            <div id="verdict-card" role="region" aria-label="Bewertung"></div>
+            <div id="evidence-section" role="region" aria-label="Evidenz"></div>
+            <div id="sources-section" role="region" aria-label="Quellen"></div>
+            <div id="disclaimer-section" role="note"></div>
+        </div>
+
+        <div id="error" class="hidden" role="alert">
+            <div class="error-card">
+                <h3 data-i18n="error_title">Fehler</h3>
+                <p id="error-text"></p>
+                <button onclick="resetSearch()" data-i18n="error_retry">Erneut versuchen</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p data-i18n="footer_main">Evidora — Europäischer Faktencheck | Quellen: PubMed, WHO, EMA, Copernicus, EFCSN-Mitglieder</p>
+        <p class="footer-note" data-i18n="footer_note">Automatische Überprüfung — ersetzt keine professionelle Faktencheck-Redaktion</p>
+        <p class="footer-links">
+            <a href="#" onclick="openModal('privacy', event)" data-i18n="privacy_link">Datenschutz</a>
+            <span class="footer-sep">|</span>
+            <a href="#" onclick="openModal('imprint', event)" data-i18n="imprint_link">Impressum</a>
+            <span class="footer-sep">|</span>
+            <a href="#" onclick="openModal('disclaimer', event)" data-i18n="disclaimer_link">Haftungsausschluss</a>
+        </p>
+    </footer>
+
+    <!-- Legal Modal (shared for Privacy, Imprint, Disclaimer) -->
+    <div id="legal-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Rechtliche Informationen" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal(event)" aria-label="Schließen">&times;</button>
+            <div id="legal-body"></div>
+        </div>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

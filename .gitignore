@@ -1,0 +1,32 @@
+# API-Keys & Secrets
+website/.env
+*.env
+*.env.*
+!.env.example
+
+# Private Notizen & Dokumentation
+mind/
+
+# Claude Code Workspace
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store
+._*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Docker
+*.log
+
+# OS
+Thumbs.db
