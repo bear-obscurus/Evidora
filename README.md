@@ -98,7 +98,3 @@ Evidora/
 | Eurostat | EU-Statistiken (Wirtschaft, Migration, Energie, …) | ✅ Aktiv |
 | ECDC | Infektionskrankheiten | 🔜 Geplant |
 | EEA | Umweltdaten (Luft, Emissionen, Biodiversität) | ✅ Aktiv |
-
-## Lizenz
-
-Privates Projekt
