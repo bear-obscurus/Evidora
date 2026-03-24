@@ -19,6 +19,7 @@ from services.eurostat import search_eurostat
 from services.eea import search_eea
 from services.ecdc import search_ecdc
 from services.ecb import search_ecb
+from services.unhcr import search_unhcr
 from services.cochrane import search_cochrane
 from services.gadmo import search_gadmo
 from services.cache import get as cache_get, put as cache_put
@@ -117,6 +118,8 @@ async def check_claim(request: Request):
             tasks.append(cached("ECDC", search_ecdc, analysis))
         if analysis.get("ecb_relevant"):
             tasks.append(cached("ECB", search_ecb, analysis))
+        if analysis.get("unhcr_relevant"):
+            tasks.append(cached("UNHCR", search_unhcr, analysis))
 
         results = await asyncio.gather(*tasks, return_exceptions=True)
         for i, r in enumerate(results):
