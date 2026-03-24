@@ -124,7 +124,7 @@ async def synthesize_results(
         f"{labels['category']}: {analysis.get('category', 'unknown')}\n",
     ]
 
-    secondary_sources = {"Google Fact Check", "ClaimReview", "Fact Check", "Faktenchecker"}
+    secondary_sources = {"Google Fact Check", "ClaimReview", "Fact Check", "Faktenchecker", "GADMO"}
 
     for source_data in source_results:
         if not isinstance(source_data, dict):

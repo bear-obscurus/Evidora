@@ -57,7 +57,7 @@ const TRANSLATIONS = {
         disclaimer_default: "Dies ist eine automatische Überprüfung und ersetzt keine professionelle Faktencheck-Redaktion.",
 
         // Footer
-        footer_main: "Evidora — Europäischer Faktencheck | Quellen: PubMed, WHO, EMA, Copernicus, EFCSN-Mitglieder",
+        footer_main: "Evidora — Europäischer Faktencheck | Quellen: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EEA, Copernicus, GADMO, EFCSN",
         footer_note: "Automatische Überprüfung — ersetzt keine professionelle Faktencheck-Redaktion",
         privacy_link: "Datenschutz",
         imprint_link: "Impressum",
@@ -141,6 +141,9 @@ const TRANSLATIONS = {
                 <li>Copernicus CDS (ECMWF/EU) — Klimadaten</li>
                 <li>Eurostat (EU) — europäische Statistiken</li>
                 <li>EEA (EU) — Umweltdaten</li>
+                <li>ECDC (EU) — Infektionskrankheiten</li>
+                <li>Cochrane Reviews — Systematische Reviews (via PubMed)</li>
+                <li>GADMO/APA — Deutschsprachige Faktenchecks</li>
                 <li>EFCSN-Faktenchecker — bestehende Faktenchecks</li>
             </ul>
             <p>Diese Dienste unterliegen ihren eigenen Datenschutzrichtlinien. Es werden keine personenbezogenen Daten an sie übermittelt.</p>
@@ -163,6 +166,9 @@ const TRANSLATIONS = {
                 <li><strong>Copernicus CDS</strong> — Klimadaten des ECMWF/EU. <a href="https://cds.climate.copernicus.eu/datasets" target="_blank" rel="noopener">Copernicus Licence</a></li>
                 <li><strong>Eurostat</strong> — offene EU-Statistiken (CC BY 4.0). <a href="https://ec.europa.eu/eurostat/web/main/help/copyright-notice" target="_blank" rel="noopener">Eurostat Copyright</a></li>
                 <li><strong>EEA</strong> — Umweltdaten der Europäischen Umweltagentur. <a href="https://www.eea.europa.eu/en/legal-notice" target="_blank" rel="noopener">EEA Legal Notice</a></li>
+                <li><strong>ECDC</strong> — Surveillance-Daten des European Centre for Disease Prevention and Control. <a href="https://www.ecdc.europa.eu/en/copyright" target="_blank" rel="noopener">ECDC Copyright</a></li>
+                <li><strong>Cochrane Reviews</strong> — Systematische Reviews via PubMed (höchste Evidenzstufe)</li>
+                <li><strong>GADMO Faktenchecks</strong> — Deutschsprachige Faktenchecks (APA). <a href="https://gadmo.eu" target="_blank" rel="noopener">GADMO</a></li>
                 <li><strong>EFCSN-Faktenchecker</strong> — über die <a href="https://developers.google.com/fact-check/tools/api" target="_blank" rel="noopener">Google Fact Check Tools API</a> (ClaimReview-Daten von Correctiv, AFP, dpa u.a.)</li>
             </ul>
             <p>Suchicon: <a href="https://github.com/google/material-design-icons" target="_blank" rel="noopener">Google Material Design Icons</a> (Apache 2.0 Lizenz).</p>
@@ -227,7 +233,7 @@ const TRANSLATIONS = {
         disclaimer_default: "This is an automated check and does not replace professional fact-checking.",
 
         // Footer
-        footer_main: "Evidora — European Fact Check | Sources: PubMed, WHO, EMA, Copernicus, EFCSN members",
+        footer_main: "Evidora — European Fact Check | Sources: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EEA, Copernicus, GADMO, EFCSN",
         footer_note: "Automated check — does not replace professional fact-checking",
         privacy_link: "Privacy Policy",
         imprint_link: "Legal Notice",
@@ -311,6 +317,9 @@ const TRANSLATIONS = {
                 <li>Copernicus CDS (ECMWF/EU) — climate data</li>
                 <li>Eurostat (EU) — European statistics</li>
                 <li>EEA (EU) — environmental data</li>
+                <li>ECDC (EU) — infectious diseases</li>
+                <li>Cochrane Reviews — systematic reviews (via PubMed)</li>
+                <li>GADMO/APA — German-language fact-checks</li>
                 <li>EFCSN fact-checkers — existing fact checks</li>
             </ul>
             <p>These services are subject to their own privacy policies. No personal data is transmitted to them.</p>
@@ -333,6 +342,9 @@ const TRANSLATIONS = {
                 <li><strong>Copernicus CDS</strong> — climate data by ECMWF/EU. <a href="https://cds.climate.copernicus.eu/datasets" target="_blank" rel="noopener">Copernicus Licence</a></li>
                 <li><strong>Eurostat</strong> — open EU statistics (CC BY 4.0). <a href="https://ec.europa.eu/eurostat/web/main/help/copyright-notice" target="_blank" rel="noopener">Eurostat Copyright</a></li>
                 <li><strong>EEA</strong> — environmental data by the European Environment Agency. <a href="https://www.eea.europa.eu/en/legal-notice" target="_blank" rel="noopener">EEA Legal Notice</a></li>
+                <li><strong>ECDC</strong> — surveillance data by the European Centre for Disease Prevention and Control. <a href="https://www.ecdc.europa.eu/en/copyright" target="_blank" rel="noopener">ECDC Copyright</a></li>
+                <li><strong>Cochrane Reviews</strong> — systematic reviews via PubMed (highest level of medical evidence)</li>
+                <li><strong>GADMO fact-checks</strong> — German-language fact-checks (APA). <a href="https://gadmo.eu" target="_blank" rel="noopener">GADMO</a></li>
                 <li><strong>EFCSN fact-checkers</strong> — via <a href="https://developers.google.com/fact-check/tools/api" target="_blank" rel="noopener">Google Fact Check Tools API</a> (ClaimReview data from Correctiv, AFP, dpa and others)</li>
             </ul>
             <p>Search icon: <a href="https://github.com/google/material-design-icons" target="_blank" rel="noopener">Google Material Design Icons</a> (Apache 2.0 License).</p>

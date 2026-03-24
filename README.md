@@ -7,7 +7,7 @@ Evidora automatically verifies claims against scientific and institutional sourc
 ## Features
 
 - **Local LLM** — All analysis runs on your machine via Ollama (Mistral 7B), no data leaves your system
-- **9 European data sources** — Scientific databases, official EU statistics, climate data, and disease surveillance
+- **12 European data sources** — Scientific databases, systematic reviews, official EU statistics, climate data, disease surveillance, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Hallucination filtering** — Evidence URLs are verified against actual source results
 - **GDPR-compliant** — No cookies, no tracking, anonymized logs
@@ -107,6 +107,8 @@ docker compose down
 | Eurostat | EU statistics | Economy, migration, energy | ✅ Active |
 | EEA | Environmental data | Air quality, emissions, biodiversity | ✅ Active |
 | ECDC | Infectious diseases | Epidemiological surveillance | ✅ Active |
+| Cochrane Reviews | Systematic reviews (via PubMed) | Highest level of medical evidence | ✅ Active |
+| GADMO Faktenchecks | German-language fact-checks | APA, Correctiv (DACH region) | ✅ Active |
 
 ## Project Structure
 
@@ -129,6 +131,9 @@ Evidora/
 │   │       ├── eurostat.py        # Eurostat (EU statistics)
 │   │       ├── eea.py             # EEA (environment)
 │   │       ├── ecdc.py            # ECDC (infectious diseases)
+│   │       ├── cochrane.py        # Cochrane systematic reviews
+│   │       ├── gadmo.py           # GADMO fact-checks (APA, Correctiv)
+│   │       ├── cache.py           # In-memory response cache
 │   │       └── synthesizer.py     # LLM synthesis via Ollama
 │   └── frontend/
 │       ├── index.html
@@ -146,6 +151,7 @@ Evidora/
 3. **Cross-Validation** — Results from primary sources (scientific databases) are weighted higher than secondary sources (fact-checkers)
 4. **Synthesis** — The LLM evaluates all evidence and produces a verdict (true/mostly true/mixed/mostly false/false/unverifiable) with confidence score
 5. **Hallucination Filter** — All evidence URLs are verified against actual source results; fabricated references are removed
+6. **Caching** — API responses are cached in-memory (30 min TTL) to reduce load and speed up repeated queries
 
 ## Tech Stack
 

@@ -18,6 +18,9 @@ from services.copernicus import search_copernicus
 from services.eurostat import search_eurostat
 from services.eea import search_eea
 from services.ecdc import search_ecdc
+from services.cochrane import search_cochrane
+from services.gadmo import search_gadmo
+from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 
 logging.basicConfig(level=logging.INFO)
@@ -80,26 +83,37 @@ async def check_claim(request: Request):
             yield {"event": "error", "data": json.dumps({"detail": f"Fehler bei der Claim-Analyse (ist Ollama gestartet?): {e}"})}
             return
 
-        # Step 2: Query sources in parallel
+        # Step 2: Query sources in parallel (with caching)
         yield {"event": "step", "data": json.dumps({"step": "search"})}
+
+        async def cached(source_name: str, fn, analysis: dict) -> dict:
+            hit = cache_get(source_name, analysis)
+            if hit is not None:
+                return hit
+            result = await fn(analysis)
+            cache_put(source_name, analysis, result)
+            return result
+
         # PubMed only for categories where medical/scientific literature is relevant
         pubmed_categories = {"health", "climate", "medication", "demographics", "other"}
         tasks = []
         if analysis.get("category") in pubmed_categories:
-            tasks.append(search_pubmed(analysis))
-        tasks.append(search_claimreview(analysis))
+            tasks.append(cached("PubMed", search_pubmed, analysis))
+            tasks.append(cached("Cochrane", search_cochrane, analysis))
+        tasks.append(cached("ClaimReview", search_claimreview, analysis))
+        tasks.append(cached("GADMO", search_gadmo, analysis))
         if analysis.get("who_relevant"):
-            tasks.append(search_who(analysis))
+            tasks.append(cached("WHO", search_who, analysis))
         if analysis.get("ema_relevant"):
-            tasks.append(search_ema(analysis))
+            tasks.append(cached("EMA", search_ema, analysis))
         if analysis.get("climate_relevant"):
-            tasks.append(search_copernicus(analysis))
+            tasks.append(cached("Copernicus", search_copernicus, analysis))
         if analysis.get("eurostat_relevant"):
-            tasks.append(search_eurostat(analysis))
+            tasks.append(cached("Eurostat", search_eurostat, analysis))
         if analysis.get("eea_relevant"):
-            tasks.append(search_eea(analysis))
+            tasks.append(cached("EEA", search_eea, analysis))
         if analysis.get("ecdc_relevant"):
-            tasks.append(search_ecdc(analysis))
+            tasks.append(cached("ECDC", search_ecdc, analysis))
 
         results = await asyncio.gather(*tasks, return_exceptions=True)
         for i, r in enumerate(results):
