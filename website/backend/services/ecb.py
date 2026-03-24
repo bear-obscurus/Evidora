@@ -201,34 +201,27 @@ def _parse_sdmx_json(data: dict, series_info: dict, historical: bool = False) ->
                     time_val = time_dim[time_idx]["id"] if time_idx < len(time_dim) else "?"
                     all_values.append((time_val, value))
 
-            # Add historical context summary if needed
+            # Calculate historical context
+            hist_prefix = ""
             if historical and len(all_values) > 6:
                 values_only = [v for _, v in all_values]
                 min_val = min(values_only)
                 max_val = max(values_only)
                 min_period = [t for t, v in all_values if v == min_val][0]
                 max_period = [t for t, v in all_values if v == max_val][0]
-                current_val = all_values[-1][1]
-                current_period = all_values[-1][0]
                 first_period = all_values[0][0]
-
+                current_period = all_values[-1][0]
                 unit = series_info["unit"]
-                results.append({
-                    "title": f"HISTORISCH {series_info['label']}: Minimum {min_val:.2f} {unit} ({min_period}), Maximum {max_val:.2f} {unit} ({max_period}), Aktuell {current_val:.2f} {unit} ({current_period}), Zeitraum {first_period} bis {current_period}",
-                    "indicator": series_info["label"],
-                    "period": f"{first_period}–{current_period}",
-                    "value": current_val,
-                    "min_value": min_val,
-                    "min_period": min_period,
-                    "max_value": max_val,
-                    "max_period": max_period,
-                    "unit": unit,
-                    "url": f"https://data.ecb.europa.eu/data/datasets/{series_info['series'].split('/')[0]}",
-                })
+                hist_prefix = (
+                    f"WICHTIG — Historischer Kontext ({first_period} bis {current_period}): "
+                    f"Das absolute Minimum lag bei {min_val:.2f} {unit} ({min_period}), "
+                    f"das absolute Maximum bei {max_val:.2f} {unit} ({max_period}). "
+                )
+                logger.info(f"ECB historical context: min={min_val} ({min_period}), max={max_val} ({max_period})")
 
             # Add recent data points (last 6)
             recent = all_values[-6:] if len(all_values) > 6 else all_values
-            for time_val, value in recent:
+            for i, (time_val, value) in enumerate(recent):
                 if series_info["unit"] in ("%",):
                     formatted = f"{value:.2f} {series_info['unit']}"
                 elif series_info["unit"] == "EUR Mio.":
@@ -236,8 +229,13 @@ def _parse_sdmx_json(data: dict, series_info: dict, historical: bool = False) ->
                 else:
                     formatted = f"{value:.4f} {series_info['unit']}"
 
+                # Add historical context to first entry so LLM sees it prominently
+                title = f"{series_info['label']}: {time_val} — {formatted}"
+                if i == 0 and hist_prefix:
+                    title = f"{hist_prefix}{title}"
+
                 results.append({
-                    "title": f"{series_info['label']}: {time_val} — {formatted}",
+                    "title": title,
                     "indicator": series_info["label"],
                     "period": time_val,
                     "value": value,
