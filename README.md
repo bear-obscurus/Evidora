@@ -7,12 +7,16 @@ Evidora automatically verifies claims against scientific and institutional sourc
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **12 European data sources** — Scientific databases, systematic reviews, official EU statistics, climate data, disease surveillance, and fact-checkers
+- **10 European data sources** — Scientific databases, systematic reviews, official EU statistics, climate data, disease surveillance, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Hallucination filtering** — Evidence URLs are verified against actual source results
 - **GDPR-compliant** — No cookies, no tracking, anonymized logs
 - **Bilingual** — Full German/English interface (DE/EN toggle)
 - **Accessible** — ARIA labels, keyboard navigation, skip links, semantic landmarks
+- **Semantic reranking** — Sentence Transformers (MiniLM) rerank source results by relevance (optional, graceful fallback if not installed)
+- **Search history** — Last 10 checks stored locally (localStorage), no server storage
+- **PDF export** — Save fact-check results as PDF
+- **Share button** — Copy result link to clipboard
 
 ## Prerequisites
 
@@ -123,8 +127,10 @@ Evidora/
 │   ├── backend/
 │   │   ├── main.py          # FastAPI entry point
 │   │   ├── Dockerfile
+│   │   ├── requirements.txt
 │   │   └── services/        # Data source modules
 │   │       ├── claim_analyzer.py  # LLM-based claim analysis
+│   │       ├── ollama.py          # Ollama/Mistral API client
 │   │       ├── pubmed.py          # PubMed (biomedical studies)
 │   │       ├── who.py             # WHO (health indicators)
 │   │       ├── ema.py             # EMA (drug approvals)
@@ -136,13 +142,16 @@ Evidora/
 │   │       ├── cochrane.py        # Cochrane systematic reviews
 │   │       ├── gadmo.py           # GADMO fact-checks (APA, Correctiv)
 │   │       ├── cache.py           # In-memory response cache
+│   │       ├── reranker.py        # Sentence Transformers reranking
 │   │       └── synthesizer.py     # LLM synthesis via Ollama
 │   └── frontend/
+│       ├── nginx.conf       # Nginx reverse proxy config
 │       ├── index.html
 │       ├── style.css
 │       ├── app.js
 │       ├── i18n.js          # DE/EN translations
 │       └── favicon.svg
+├── .gitignore
 └── LICENSE                  # MIT License
 ```
 
@@ -150,16 +159,18 @@ Evidora/
 
 1. **Claim Analysis** — The LLM analyzes the input claim, extracts keywords, determines the category, and generates optimized search queries
 2. **Source Querying** — Relevant sources are queried in parallel based on the claim's category (e.g., health claims → PubMed + WHO + EMA)
-3. **Cross-Validation** — Results from primary sources (scientific databases) are weighted higher than secondary sources (fact-checkers)
-4. **Synthesis** — The LLM evaluates all evidence and produces a verdict (true/mostly true/mixed/mostly false/false/unverifiable) with confidence score
-5. **Hallucination Filter** — All evidence URLs are verified against actual source results; fabricated references are removed
-6. **Caching** — API responses are cached in-memory (30 min TTL) to reduce load and speed up repeated queries
+3. **Semantic Reranking** — Sentence Transformers (MiniLM) rerank results by semantic similarity to the original claim
+4. **Cross-Validation** — Results from primary sources (scientific databases) are weighted higher than secondary sources (fact-checkers)
+5. **Synthesis** — The LLM evaluates all evidence and produces a verdict (true/mostly true/mixed/mostly false/false/unverifiable) with confidence score
+6. **Hallucination Filter** — All evidence URLs are verified against actual source results; fabricated references are removed
+7. **Caching** — API responses are cached in-memory (30 min TTL) to reduce load and speed up repeated queries
 
 ## Tech Stack
 
 - **Backend:** Python, FastAPI, SSE streaming
 - **Frontend:** Vanilla JS, CSS (no frameworks)
-- **LLM:** Mistral 7B via Ollama (local inference)
+- **LLM:** Mistral 7B via Ollama (local) or Mistral API (cloud, EU servers)
+- **ML:** Sentence Transformers (MiniLM) for semantic reranking
 - **Deployment:** Docker Compose (backend + nginx)
 
 ## Troubleshooting
