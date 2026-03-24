@@ -56,6 +56,15 @@ const TRANSLATIONS = {
         // Disclaimer
         disclaimer_default: "Dies ist eine automatische Überprüfung und ersetzt keine professionelle Faktencheck-Redaktion.",
 
+        // Actions
+        btn_export_pdf: "Als PDF speichern",
+        btn_share: "Link kopieren",
+        share_copied: "Link kopiert!",
+
+        // Search history
+        history_title: "Letzte Checks",
+        history_clear: "Verlauf löschen",
+
         // Footer
         footer_main: "Evidora — Europäischer Faktencheck | Quellen: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EEA, Copernicus, GADMO, EFCSN",
         footer_note: "Automatische Überprüfung — ersetzt keine professionelle Faktencheck-Redaktion",
@@ -231,6 +240,15 @@ const TRANSLATIONS = {
 
         // Disclaimer
         disclaimer_default: "This is an automated check and does not replace professional fact-checking.",
+
+        // Actions
+        btn_export_pdf: "Save as PDF",
+        btn_share: "Copy link",
+        share_copied: "Link copied!",
+
+        // Search history
+        history_title: "Recent checks",
+        history_clear: "Clear history",
 
         // Footer
         footer_main: "Evidora — European Fact Check | Sources: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EEA, Copernicus, GADMO, EFCSN",
