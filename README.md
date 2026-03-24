@@ -7,7 +7,7 @@ Evidora automatically verifies claims against scientific and institutional sourc
 ## Features
 
 - **Local LLM** — All analysis runs on your machine via Ollama (Mistral 7B), no data leaves your system
-- **8 European data sources** — Scientific databases, official EU statistics, and climate data
+- **9 European data sources** — Scientific databases, official EU statistics, climate data, and disease surveillance
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Hallucination filtering** — Evidence URLs are verified against actual source results
 - **GDPR-compliant** — No cookies, no tracking, anonymized logs
@@ -21,8 +21,33 @@ Evidora automatically verifies claims against scientific and institutional sourc
   ```bash
   ollama pull mistral
   ```
+- **~6 GB RAM** available for Mistral 7B inference
+- Ports **3000** (frontend) and **8000** (backend) must be free
 
 ## Quickstart
+
+### 0. Configure Ollama for Docker access
+
+By default, Ollama only listens on `localhost`. Docker containers need network access, so you must configure Ollama to listen on all interfaces:
+
+**Linux (systemd):**
+```bash
+sudo systemctl edit ollama
+```
+Add the following:
+```ini
+[Service]
+Environment="OLLAMA_HOST=0.0.0.0:11434"
+```
+Then restart:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart ollama
+```
+
+**macOS:** Ollama Desktop already listens on all interfaces — no changes needed.
+
+**Windows:** Set the environment variable `OLLAMA_HOST=0.0.0.0:11434` in System Settings → Environment Variables, then restart Ollama.
 
 ### 1. Clone the repository
 
@@ -62,6 +87,8 @@ The app will be available at:
 - **Frontend:** [http://localhost:3000](http://localhost:3000)
 - **Backend API:** [http://localhost:8000](http://localhost:8000)
 
+> **Important:** The `.env` file is required. If you skip step 2, the backend will fail to connect to Ollama.
+
 ### 4. Stop
 
 ```bash
@@ -79,7 +106,7 @@ docker compose down
 | Copernicus CDS | Climate data (ERA5, CAMS) | Temperature, emissions, satellite | ✅ Active |
 | Eurostat | EU statistics | Economy, migration, energy | ✅ Active |
 | EEA | Environmental data | Air quality, emissions, biodiversity | ✅ Active |
-| ECDC | Infectious diseases | Epidemiological surveillance | 🔜 Planned |
+| ECDC | Infectious diseases | Epidemiological surveillance | ✅ Active |
 
 ## Project Structure
 
@@ -101,6 +128,7 @@ Evidora/
 │   │       ├── copernicus.py      # Copernicus CDS (climate)
 │   │       ├── eurostat.py        # Eurostat (EU statistics)
 │   │       ├── eea.py             # EEA (environment)
+│   │       ├── ecdc.py            # ECDC (infectious diseases)
 │   │       └── synthesizer.py     # LLM synthesis via Ollama
 │   └── frontend/
 │       ├── index.html
@@ -125,6 +153,17 @@ Evidora/
 - **Frontend:** Vanilla JS, CSS (no frameworks)
 - **LLM:** Mistral 7B via Ollama (local inference)
 - **Deployment:** Docker Compose (backend + nginx)
+
+## Troubleshooting
+
+| Problem | Solution |
+|---|---|
+| `Connection refused` to Ollama | Make sure Ollama is running and listening on `0.0.0.0:11434` (see step 0) |
+| `host.docker.internal` not resolving (Linux) | Requires Docker 20.10+. The `extra_hosts` entry in docker-compose.yml handles this automatically. |
+| Port 3000/8000 already in use | Stop the conflicting service, or change ports in `docker-compose.yml` (e.g., `"3001:80"`) |
+| Backend crashes on startup | Check that `website/.env` exists (`cp .env.example .env`) |
+| LLM responses are slow | Mistral 7B needs ~6 GB RAM. Close other memory-heavy applications. |
+| `Rate limit exceeded` (429) | Default: 10 requests per 60 seconds per IP. Adjust via `RATE_LIMIT` and `RATE_WINDOW` in `.env` |
 
 ## License
 

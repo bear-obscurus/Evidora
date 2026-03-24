@@ -18,6 +18,7 @@ Analysiere die folgende Behauptung und antworte AUSSCHLIESSLICH im JSON-Format:
   "ema_relevant": true/false,
   "eurostat_relevant": true/false,
   "eea_relevant": true/false,
+  "ecdc_relevant": true/false,
   "entities": ["erkannte Entitäten wie Medikamente, Krankheiten, Orte"],
   "confidence": 0.0-1.0
 }
@@ -36,7 +37,15 @@ PubMed-Query-Regeln (WICHTIG — die Qualität der Suchergebnisse hängt davon a
 - Gut: "mRNA vaccine reverse transcription DNA integration" (findet genau die relevanten Studien)
 - Bei Impf-Behauptungen: spezifische Begriffe wie "mRNA vaccine safety", "COVID-19 vaccine genome"
 - Bei Medikamenten-Behauptungen: Wirkstoffnamen verwenden (z.B. "ibuprofen hepatotoxicity" statt "Schmerzmittel Leberschäden")
-- Bei Gesundheits-Behauptungen: medizinische Fachbegriffe und MeSH-Terms verwenden"""
+- Bei Gesundheits-Behauptungen: medizinische Fachbegriffe und MeSH-Terms verwenden
+
+Quellen-Relevanz-Regeln:
+- ecdc_relevant: true bei Infektionskrankheiten (Masern, Grippe, Tuberkulose, HIV, Hepatitis, Keuchhusten, Salmonellen, Dengue, Malaria, Polio, Diphtherie, Röteln, Mumps, Cholera, Legionellen, FSME, Antibiotikaresistenz, Ebola)
+- who_relevant: true bei allgemeinen Gesundheitsthemen (Lebenserwartung, Sterblichkeit, Impfraten, Krankheitslast)
+- ema_relevant: true bei Medikamenten und Arzneimitteln
+- eurostat_relevant: true bei EU-Wirtschaft, Migration, Demografie, Arbeitsmarkt
+- eea_relevant: true bei Umwelt und Luftqualität
+- climate_relevant: true bei Klima und Temperatur"""
 
 
 def _repair_json(text: str) -> dict | None:

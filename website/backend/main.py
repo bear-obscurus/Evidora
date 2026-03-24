@@ -17,6 +17,7 @@ from services.claimreview import search_claimreview
 from services.copernicus import search_copernicus
 from services.eurostat import search_eurostat
 from services.eea import search_eea
+from services.ecdc import search_ecdc
 from services.synthesizer import synthesize_results
 
 logging.basicConfig(level=logging.INFO)
@@ -97,6 +98,8 @@ async def check_claim(request: Request):
             tasks.append(search_eurostat(analysis))
         if analysis.get("eea_relevant"):
             tasks.append(search_eea(analysis))
+        if analysis.get("ecdc_relevant"):
+            tasks.append(search_ecdc(analysis))
 
         results = await asyncio.gather(*tasks, return_exceptions=True)
         for i, r in enumerate(results):
