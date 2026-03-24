@@ -5,6 +5,7 @@ import re
 import httpx
 
 from services.ollama import chat_completion
+from services.reranker import rerank_results
 
 logger = logging.getLogger("evidora")
 
@@ -117,6 +118,9 @@ async def synthesize_results(
         lang = "de"
 
     labels = CONTEXT_LABELS[lang]
+
+    # Re-rank results by semantic similarity to the claim
+    source_results = rerank_results(original_claim, source_results)
 
     # Build compact context — only essential fields to keep token count low
     context_parts = [
