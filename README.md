@@ -2,12 +2,12 @@
 
 A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
-Evidora automatically verifies claims against scientific and institutional sources such as PubMed, Cochrane, WHO, EMA, ECDC, Copernicus, Eurostat, EEA, and European fact-checkers.
+Evidora automatically verifies claims against scientific and institutional sources such as PubMed, Cochrane, WHO, EMA, ECDC, Copernicus, Eurostat, ECB, UNHCR, EEA, and European fact-checkers.
 
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **10 European data sources** — Scientific databases, systematic reviews, official EU statistics, climate data, disease surveillance, and fact-checkers
+- **13 data sources** — Scientific databases, systematic reviews, official EU/UN statistics, climate data, disease surveillance, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Hallucination filtering** — Evidence URLs are verified against actual source results
 - **GDPR-compliant** — No cookies, no tracking, anonymized logs
@@ -114,6 +114,8 @@ docker compose down
 | EEA | Environmental data | Air quality, emissions, biodiversity | ✅ Active |
 | ECDC | Infectious diseases | Epidemiological surveillance | ✅ Active |
 | Cochrane Reviews | Systematic reviews (via PubMed) | Highest level of medical evidence | ✅ Active |
+| ECB | Central bank data | Interest rates, exchange rates, money supply | ✅ Active |
+| UNHCR | Refugee statistics | Refugee populations, asylum applications | ✅ Active |
 | GADMO Faktenchecks | German-language fact-checks | APA, Correctiv (DACH region) | ✅ Active |
 
 ## Project Structure
@@ -140,6 +142,8 @@ Evidora/
 │   │       ├── eea.py             # EEA (environment)
 │   │       ├── ecdc.py            # ECDC (infectious diseases)
 │   │       ├── cochrane.py        # Cochrane systematic reviews
+│   │       ├── ecb.py            # ECB (interest rates, exchange rates)
+│   │       ├── unhcr.py          # UNHCR (refugee statistics)
 │   │       ├── gadmo.py           # GADMO fact-checks (APA, Correctiv)
 │   │       ├── cache.py           # In-memory response cache
 │   │       ├── reranker.py        # Sentence Transformers reranking
@@ -158,7 +162,7 @@ Evidora/
 ## How It Works
 
 1. **Claim Analysis** — The LLM analyzes the input claim, extracts keywords, determines the category, and generates optimized search queries
-2. **Source Querying** — Relevant sources are queried in parallel based on the claim's category (e.g., health claims → PubMed + WHO + EMA)
+2. **Source Querying** — Relevant sources are queried in parallel based on the claim's category (e.g., health claims → PubMed + WHO + EMA + ECDC; migration → Eurostat + UNHCR; economy → Eurostat + ECB)
 3. **Semantic Reranking** — Sentence Transformers (MiniLM) rerank results by semantic similarity to the original claim
 4. **Cross-Validation** — Results from primary sources (scientific databases) are weighted higher than secondary sources (fact-checkers)
 5. **Synthesis** — The LLM evaluates all evidence and produces a verdict (true/mostly true/mixed/mostly false/false/unverifiable) with confidence score
