@@ -1,12 +1,12 @@
 # Evidora
 
-A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama).
+A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
-Evidora automatically verifies claims against scientific and institutional sources such as PubMed, WHO, EMA, Copernicus, Eurostat, and European fact-checkers (EFCSN members).
+Evidora automatically verifies claims against scientific and institutional sources such as PubMed, Cochrane, WHO, EMA, ECDC, Copernicus, Eurostat, EEA, and European fact-checkers.
 
 ## Features
 
-- **Local LLM** — All analysis runs on your machine via Ollama (Mistral 7B), no data leaves your system
+- **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
 - **12 European data sources** — Scientific databases, systematic reviews, official EU statistics, climate data, disease surveillance, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Hallucination filtering** — Evidence URLs are verified against actual source results
@@ -17,11 +17,11 @@ Evidora automatically verifies claims against scientific and institutional sourc
 ## Prerequisites
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (includes Docker Compose)
-- [Ollama](https://ollama.com/) with the `mistral` model:
+- [Ollama](https://ollama.com/) with the `mistral` model (not needed if using Mistral API):
   ```bash
   ollama pull mistral
   ```
-- **~6 GB RAM** available for Mistral 7B inference
+- **~6 GB RAM** available for Mistral 7B inference (local mode only)
 - Ports **3000** (frontend) and **8000** (backend) must be free
 
 ## Quickstart
@@ -73,8 +73,10 @@ Open `website/.env` and replace the placeholders:
 | `PUBMED_EMAIL` | Contact email for PubMed API (recommended by NCBI) | — |
 | `GOOGLE_FACTCHECK_API_KEY` | For ClaimReview search via European fact-checkers | [Google Fact Check Tools](https://console.cloud.google.com/apis/library/factchecktools.googleapis.com) |
 | `CDS_API_KEY` | For Copernicus climate data (catalogue works without) | [Copernicus CDS](https://cds.climate.copernicus.eu/how-to-api) |
+| `MISTRAL_API_KEY` | Use Mistral Cloud API instead of local Ollama (optional) | [Mistral Console](https://console.mistral.ai/api-keys) |
+| `MISTRAL_MODEL` | Cloud model to use (default: `mistral-small-latest`) | — |
 
-> **Note:** PubMed works without an API key but with lower rate limits (3 instead of 10 requests/second). Without `GOOGLE_FACTCHECK_API_KEY`, the fact-checker search is skipped.
+> **Note:** PubMed works without an API key but with lower rate limits (3 instead of 10 requests/second). Without `GOOGLE_FACTCHECK_API_KEY`, the fact-checker search is skipped. If `MISTRAL_API_KEY` is set, Evidora uses the Mistral Cloud API (EU servers, Paris) instead of a local Ollama instance — no GPU required.
 
 ### 3. Start
 
