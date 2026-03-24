@@ -66,7 +66,7 @@ const TRANSLATIONS = {
         history_clear: "Verlauf löschen",
 
         // Footer
-        footer_main: "Evidora — Europäischer Faktencheck | Quellen: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EEA, Copernicus, GADMO, EFCSN",
+        footer_main: "Evidora — Europäischer Faktencheck | Quellen: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EZB, EEA, Copernicus, GADMO, EFCSN",
         footer_note: "Automatische Überprüfung — ersetzt keine professionelle Faktencheck-Redaktion",
         privacy_link: "Datenschutz",
         imprint_link: "Impressum",
@@ -149,6 +149,7 @@ const TRANSLATIONS = {
                 <li>EMA — Medikamentendaten (EU)</li>
                 <li>Copernicus CDS (ECMWF/EU) — Klimadaten</li>
                 <li>Eurostat (EU) — europäische Statistiken</li>
+                <li>EZB (EU) — Leitzinsen, Wechselkurse, Geldmenge</li>
                 <li>EEA (EU) — Umweltdaten</li>
                 <li>ECDC (EU) — Infektionskrankheiten</li>
                 <li>Cochrane Reviews — Systematische Reviews (via PubMed)</li>
@@ -174,6 +175,7 @@ const TRANSLATIONS = {
                 <li><strong>EMA</strong> — offene Medikamentendaten der Europäischen Arzneimittel-Agentur (CC BY 4.0). <a href="https://www.ema.europa.eu/en/about-us/legal-notice" target="_blank" rel="noopener">EMA Legal Notice</a></li>
                 <li><strong>Copernicus CDS</strong> — Klimadaten des ECMWF/EU. <a href="https://cds.climate.copernicus.eu/datasets" target="_blank" rel="noopener">Copernicus Licence</a></li>
                 <li><strong>Eurostat</strong> — offene EU-Statistiken (CC BY 4.0). <a href="https://ec.europa.eu/eurostat/web/main/help/copyright-notice" target="_blank" rel="noopener">Eurostat Copyright</a></li>
+                <li><strong>EZB</strong> — Leitzinsen, Wechselkurse und Geldmengen der Europäischen Zentralbank. <a href="https://data.ecb.europa.eu/help/api/overview" target="_blank" rel="noopener">ECB Data Portal</a></li>
                 <li><strong>EEA</strong> — Umweltdaten der Europäischen Umweltagentur. <a href="https://www.eea.europa.eu/en/legal-notice" target="_blank" rel="noopener">EEA Legal Notice</a></li>
                 <li><strong>ECDC</strong> — Surveillance-Daten des European Centre for Disease Prevention and Control. <a href="https://www.ecdc.europa.eu/en/copyright" target="_blank" rel="noopener">ECDC Copyright</a></li>
                 <li><strong>Cochrane Reviews</strong> — Systematische Reviews via PubMed (höchste Evidenzstufe)</li>
@@ -251,7 +253,7 @@ const TRANSLATIONS = {
         history_clear: "Clear history",
 
         // Footer
-        footer_main: "Evidora — European Fact Check | Sources: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EEA, Copernicus, GADMO, EFCSN",
+        footer_main: "Evidora — European Fact Check | Sources: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, ECB, EEA, Copernicus, GADMO, EFCSN",
         footer_note: "Automated check — does not replace professional fact-checking",
         privacy_link: "Privacy Policy",
         imprint_link: "Legal Notice",
@@ -334,6 +336,7 @@ const TRANSLATIONS = {
                 <li>EMA — medication data (EU)</li>
                 <li>Copernicus CDS (ECMWF/EU) — climate data</li>
                 <li>Eurostat (EU) — European statistics</li>
+                <li>ECB (EU) — key interest rates, exchange rates, money supply</li>
                 <li>EEA (EU) — environmental data</li>
                 <li>ECDC (EU) — infectious diseases</li>
                 <li>Cochrane Reviews — systematic reviews (via PubMed)</li>
@@ -359,6 +362,7 @@ const TRANSLATIONS = {
                 <li><strong>EMA</strong> — open medication data by the European Medicines Agency (CC BY 4.0). <a href="https://www.ema.europa.eu/en/about-us/legal-notice" target="_blank" rel="noopener">EMA Legal Notice</a></li>
                 <li><strong>Copernicus CDS</strong> — climate data by ECMWF/EU. <a href="https://cds.climate.copernicus.eu/datasets" target="_blank" rel="noopener">Copernicus Licence</a></li>
                 <li><strong>Eurostat</strong> — open EU statistics (CC BY 4.0). <a href="https://ec.europa.eu/eurostat/web/main/help/copyright-notice" target="_blank" rel="noopener">Eurostat Copyright</a></li>
+                <li><strong>ECB</strong> — key interest rates, exchange rates and money supply by the European Central Bank. <a href="https://data.ecb.europa.eu/help/api/overview" target="_blank" rel="noopener">ECB Data Portal</a></li>
                 <li><strong>EEA</strong> — environmental data by the European Environment Agency. <a href="https://www.eea.europa.eu/en/legal-notice" target="_blank" rel="noopener">EEA Legal Notice</a></li>
                 <li><strong>ECDC</strong> — surveillance data by the European Centre for Disease Prevention and Control. <a href="https://www.ecdc.europa.eu/en/copyright" target="_blank" rel="noopener">ECDC Copyright</a></li>
                 <li><strong>Cochrane Reviews</strong> — systematic reviews via PubMed (highest level of medical evidence)</li>

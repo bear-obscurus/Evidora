@@ -19,6 +19,7 @@ Analysiere die folgende Behauptung und antworte AUSSCHLIESSLICH im JSON-Format:
   "eurostat_relevant": true/false,
   "eea_relevant": true/false,
   "ecdc_relevant": true/false,
+  "ecb_relevant": true/false,
   "entities": ["erkannte Entitäten wie Medikamente, Krankheiten, Orte"],
   "confidence": 0.0-1.0
 }
@@ -45,7 +46,8 @@ Quellen-Relevanz-Regeln:
 - ema_relevant: true bei Medikamenten und Arzneimitteln
 - eurostat_relevant: true bei EU-Wirtschaft, Migration, Demografie, Arbeitsmarkt
 - eea_relevant: true bei Umwelt und Luftqualität
-- climate_relevant: true bei Klima und Temperatur"""
+- climate_relevant: true bei Klima und Temperatur
+- ecb_relevant: true bei EZB, Leitzins, Zinsen, Wechselkursen, Geldmenge, Geldpolitik, Euro-Wert"""
 
 
 def _repair_json(text: str) -> dict | None:
