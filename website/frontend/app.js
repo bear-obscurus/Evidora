@@ -51,6 +51,9 @@ form.addEventListener("submit", async (e) => {
                     if (eventType === "step") {
                         setStep(data.step);
                     } else if (eventType === "error") {
+                        if (data.detail === "MISTRAL_CREDITS_EXHAUSTED") {
+                            throw new Error(t("error_credits_exhausted"));
+                        }
                         throw new Error(data.detail);
                     } else if (eventType === "result") {
                         showResults(data);

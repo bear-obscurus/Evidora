@@ -80,6 +80,12 @@ async def check_claim(request: Request):
             logger.info(f"Analyzing claim (category pending, {len(claim)} chars)")
             analysis = await analyze_claim(claim)
             logger.info(f"Analysis done: category={analysis.get('category')}, confidence={analysis.get('confidence')}")
+        except ValueError as e:
+            if "MISTRAL_CREDITS_EXHAUSTED" in str(e):
+                logger.error("Mistral API credits exhausted")
+                yield {"event": "error", "data": json.dumps({"detail": "MISTRAL_CREDITS_EXHAUSTED"})}
+                return
+            raise
         except Exception as e:
             logger.error(f"Claim analysis failed: {traceback.format_exc()}")
             yield {"event": "error", "data": json.dumps({"detail": f"Fehler bei der Claim-Analyse (ist Ollama gestartet?): {e}"})}
@@ -136,6 +142,12 @@ async def check_claim(request: Request):
             logger.info(f"Synthesizing {len(valid_results)} source results")
             synthesis = await synthesize_results(claim, analysis, valid_results, lang=lang)
             logger.info(f"Synthesis verdict: {synthesis.get('verdict')}")
+        except ValueError as e:
+            if "MISTRAL_CREDITS_EXHAUSTED" in str(e):
+                logger.error("Mistral API credits exhausted")
+                yield {"event": "error", "data": json.dumps({"detail": "MISTRAL_CREDITS_EXHAUSTED"})}
+                return
+            raise
         except Exception as e:
             logger.error(f"Synthesis failed: {traceback.format_exc()}")
             yield {"event": "error", "data": json.dumps({"detail": f"Fehler bei der Ergebnis-Synthese: {e}"})}

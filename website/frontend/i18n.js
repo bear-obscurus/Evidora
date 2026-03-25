@@ -54,6 +54,7 @@ const TRANSLATIONS = {
         error_server: "Server-Fehler",
         error_rate_limit: "Zu viele Anfragen. Bitte warte einen Moment.",
         error_empty: "Behauptung darf nicht leer sein.",
+        error_credits_exhausted: "Der KI-Dienst ist vorübergehend nicht verfügbar (API-Guthaben aufgebraucht). Bitte versuche es später erneut.",
 
         // Disclaimer
         disclaimer_default: "Dies ist eine automatische Überprüfung und ersetzt keine professionelle Faktencheck-Redaktion.",
@@ -81,7 +82,7 @@ const TRANSLATIONS = {
             <h3>Angaben gemäß § 5 ECG</h3>
             <p><strong>{name}</strong></p>
             <p>{location}</p>
-            <p>E-Mail: <a href="mailto:{email}">{email}</a></p>
+            <p>E-Mail: {email}</p>
             <h3>Haftung für Inhalte</h3>
             <p>Die Ergebnisse von Evidora werden automatisch generiert und stellen keine redaktionelle Bewertung dar. Für die Richtigkeit, Vollständigkeit und Aktualität der Ergebnisse wird keine Gewähr übernommen.</p>
             <h3>Haftung für Links</h3>
@@ -252,6 +253,7 @@ const TRANSLATIONS = {
         error_server: "Server error",
         error_rate_limit: "Too many requests. Please wait a moment.",
         error_empty: "Claim must not be empty.",
+        error_credits_exhausted: "The AI service is temporarily unavailable (API credits exhausted). Please try again later.",
 
         // Disclaimer
         disclaimer_default: "This is an automated check and does not replace professional fact-checking.",
@@ -279,7 +281,7 @@ const TRANSLATIONS = {
             <h3>Information pursuant to § 5 ECG (Austrian E-Commerce Act)</h3>
             <p><strong>{name}</strong></p>
             <p>{location}</p>
-            <p>Email: <a href="mailto:{email}">{email}</a></p>
+            <p>Email: {email}</p>
             <h3>Liability for content</h3>
             <p>The results of Evidora are generated automatically and do not constitute an editorial assessment. No guarantee is given for the accuracy, completeness, or timeliness of the results.</p>
             <h3>Liability for links</h3>

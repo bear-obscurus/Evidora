@@ -76,6 +76,9 @@ async def chat_completion(messages: list, timeout: float = 90.0) -> str:
             logger.error(f"LLM API error: {e.response.status_code} — {e.response.text[:200]}")
             if e.response.status_code == 401:
                 raise ValueError("Invalid MISTRAL_API_KEY") from e
+            if e.response.status_code in (402, 429):
+                # 402 = Payment Required (no credits), 429 = Rate limit / quota exceeded
+                raise ValueError("MISTRAL_CREDITS_EXHAUSTED") from e
             if attempt < MAX_RETRIES:
                 await asyncio.sleep(RETRY_DELAY)
             else:
