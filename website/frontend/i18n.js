@@ -13,6 +13,8 @@ const TRANSLATIONS = {
         hint_economy: "Wirtschaft",
         hint_migration: "Migration",
         hint_environment: "Umwelt",
+        beta_notice: "Dieses Projekt befindet sich in aktiver Entwicklung.",
+        beta_notice_online: "Dieses Projekt befindet sich in aktiver Entwicklung. Die KI-Analyse dieser Online-Version erfolgt über die Mistral Cloud API (EU-Server, Paris).",
 
         // Loading
         loading_analyze: "Analysiere Behauptung...",
@@ -68,6 +70,7 @@ const TRANSLATIONS = {
         // Footer
         footer_main: "Evidora — Europäischer Faktencheck | Quellen: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EZB, UNHCR, EEA, Copernicus, GADMO, EFCSN",
         footer_note: "Automatische Überprüfung — ersetzt keine professionelle Faktencheck-Redaktion",
+        footer_opensource: "Open Source auf GitHub",
         privacy_link: "Datenschutz",
         imprint_link: "Impressum",
         disclaimer_link: "Haftungsausschluss",
@@ -114,7 +117,8 @@ const TRANSLATIONS = {
             <p>Die Ergebnisse von Evidora sollten <strong>nicht als alleinige Grundlage</strong> für persönliche, medizinische, finanzielle oder politische Entscheidungen verwendet werden. Ziehe im Zweifelsfall professionelle Quellen oder Fachpersonen zu Rate.</p>
 
             <h3>4. Externe Datenquellen</h3>
-            <p>Evidora leitet Anfragen an externe APIs weiter (PubMed, WHO, EMA, Eurostat, Copernicus, EEA, Google Fact Check). Für deren Verfügbarkeit, Richtigkeit und Vollständigkeit übernimmt Evidora keine Verantwortung.</p>
+            <p>Evidora leitet Suchanfragen an externe APIs weiter (u.a. PubMed, WHO, EMA, Eurostat, EZB, UNHCR, EEA, ECDC, Copernicus, Google Fact Check). Für deren Verfügbarkeit, Richtigkeit und Vollständigkeit übernimmt Evidora keine Verantwortung.</p>
+            <p>Je nach Konfiguration erfolgt die KI-Analyse lokal (Ollama) oder über die <strong>Mistral Cloud API</strong> (EU-Server, Paris). Details siehe <a href="#" onclick="openModal('privacy', event)">Datenschutzerklärung</a>.</p>
 
             <h3>5. Open Source</h3>
             <p>Die Software wird unter der MIT-Lizenz bereitgestellt — <strong>"as is", ohne Garantie jeglicher Art</strong>. Details siehe <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT License</a>.</p>
@@ -139,7 +143,12 @@ const TRANSLATIONS = {
             <h3>3. Welche Daten verarbeitet werden</h3>
 
             <h4>a) Deine Behauptung</h4>
-            <p>Wenn du eine Behauptung eingibst, wird diese an unser Backend gesendet und dort verarbeitet. Die Analyse erfolgt durch ein <strong>lokales Sprachmodell (Mistral 7B via Ollama)</strong>, das auf unserem eigenen Server läuft — deine Eingabe verlässt nicht unsere Infrastruktur für die KI-Analyse.</p>
+            <p>Wenn du eine Behauptung eingibst, wird diese an unser Backend gesendet und dort verarbeitet. Die KI-Analyse erfolgt je nach Konfiguration durch:</p>
+            <ul>
+                <li><strong>Lokales Sprachmodell (Mistral 7B via Ollama)</strong> — deine Eingabe verlässt nicht unsere Infrastruktur</li>
+                <li><strong>Mistral Cloud API (EU-Server, Paris)</strong> — deine Eingabe wird an Mistral AI (Frankreich) übermittelt. Mistral verarbeitet die Daten gemäß ihrer <a href="https://mistral.ai/terms/#privacy-policy" target="_blank" rel="noopener">Datenschutzrichtlinie</a> auf EU-Servern.</li>
+            </ul>
+            <p>In beiden Fällen werden deine Eingaben <strong>nicht dauerhaft gespeichert</strong> — weder bei uns noch bei Mistral (API-Modus: keine Trainingsnutzung laut Mistral-Richtlinien).</p>
 
             <h4>b) Externe Quellenabfragen</h4>
             <p>Um Fakten zu prüfen, werden <strong>Suchanfragen</strong> (nicht deine exakte Eingabe, sondern extrahierte Suchbegriffe) an folgende öffentliche APIs gesendet:</p>
@@ -202,6 +211,8 @@ const TRANSLATIONS = {
         hint_economy: "Economy",
         hint_migration: "Migration",
         hint_environment: "Environment",
+        beta_notice: "This project is under active development.",
+        beta_notice_online: "This project is under active development. AI analysis on this online version is processed via the Mistral Cloud API (EU servers, Paris).",
 
         // Loading
         loading_analyze: "Analyzing claim...",
@@ -257,6 +268,7 @@ const TRANSLATIONS = {
         // Footer
         footer_main: "Evidora — European Fact Check | Sources: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, ECB, EEA, Copernicus, GADMO, EFCSN",
         footer_note: "Automated check — does not replace professional fact-checking",
+        footer_opensource: "Open Source on GitHub",
         privacy_link: "Privacy Policy",
         imprint_link: "Legal Notice",
         disclaimer_link: "Disclaimer",
@@ -303,7 +315,8 @@ const TRANSLATIONS = {
             <p>Evidora's results should <strong>not be used as the sole basis</strong> for personal, medical, financial, or political decisions. When in doubt, consult professional sources or experts.</p>
 
             <h3>4. External data sources</h3>
-            <p>Evidora forwards queries to external APIs (PubMed, WHO, EMA, Eurostat, Copernicus, EEA, Google Fact Check). Evidora assumes no responsibility for their availability, accuracy, or completeness.</p>
+            <p>Evidora forwards search queries to external APIs (including PubMed, WHO, EMA, Eurostat, ECB, UNHCR, EEA, ECDC, Copernicus, Google Fact Check). Evidora assumes no responsibility for their availability, accuracy, or completeness.</p>
+            <p>Depending on the configuration, AI analysis is performed locally (Ollama) or via the <strong>Mistral Cloud API</strong> (EU servers, Paris). See <a href="#" onclick="openModal('privacy', event)">Privacy Policy</a> for details.</p>
 
             <h3>5. Open Source</h3>
             <p>The software is provided under the MIT License — <strong>"as is", without warranty of any kind</strong>. See <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT License</a> for details.</p>
@@ -328,7 +341,12 @@ const TRANSLATIONS = {
             <h3>3. What data is processed</h3>
 
             <h4>a) Your claim</h4>
-            <p>When you enter a claim, it is sent to our backend for processing. The analysis is performed by a <strong>local language model (Mistral 7B via Ollama)</strong> running on our own server — your input does not leave our infrastructure for AI analysis.</p>
+            <p>When you enter a claim, it is sent to our backend for processing. Depending on the configuration, AI analysis is performed by:</p>
+            <ul>
+                <li><strong>Local language model (Mistral 7B via Ollama)</strong> — your input does not leave our infrastructure</li>
+                <li><strong>Mistral Cloud API (EU servers, Paris)</strong> — your input is transmitted to Mistral AI (France). Mistral processes data in accordance with their <a href="https://mistral.ai/terms/#privacy-policy" target="_blank" rel="noopener">Privacy Policy</a> on EU servers.</li>
+            </ul>
+            <p>In both cases, your inputs are <strong>not stored permanently</strong> — neither by us nor by Mistral (API mode: no training use per Mistral's policies).</p>
 
             <h4>b) External source queries</h4>
             <p>To verify facts, <strong>search queries</strong> (not your exact input, but extracted search terms) are sent to the following public APIs:</p>
@@ -394,8 +412,13 @@ function setLanguage(lang) {
 }
 
 function applyTranslations() {
+    const isOnline = window.location.hostname === "evidora.eu";
     document.querySelectorAll("[data-i18n]").forEach((el) => {
-        const key = el.getAttribute("data-i18n");
+        let key = el.getAttribute("data-i18n");
+        // On evidora.eu, use the extended beta notice with data processing info
+        if (key === "beta_notice" && isOnline) {
+            key = "beta_notice_online";
+        }
         el.textContent = t(key);
     });
     document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {

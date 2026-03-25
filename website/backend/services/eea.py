@@ -1,12 +1,11 @@
 import httpx
 import logging
-from urllib.parse import quote
 
 logger = logging.getLogger("evidora")
 
-BASE_URL = "https://discodata.eea.europa.eu/sql"
+# Eurostat JSON API (reliable source for EU environmental data)
+EUROSTAT_BASE = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data"
 
-# Map country names to ISO codes used by EEA
 COUNTRY_CODES = {
     "österreich": "AT", "austria": "AT",
     "deutschland": "DE", "germany": "DE",
@@ -21,7 +20,7 @@ COUNTRY_CODES = {
     "finnland": "FI", "finland": "FI",
     "irland": "IE", "ireland": "IE",
     "portugal": "PT",
-    "griechenland": "GR", "greece": "GR",
+    "griechenland": "EL", "greece": "EL",
     "tschechien": "CZ", "czechia": "CZ",
     "rumänien": "RO", "romania": "RO",
     "ungarn": "HU", "hungary": "HU",
@@ -36,203 +35,220 @@ COUNTRY_CODES = {
     "malta": "MT", "zypern": "CY", "cyprus": "CY",
     "norwegen": "NO", "norway": "NO",
     "schweiz": "CH", "switzerland": "CH",
+    "europa": "EU27_2020", "eu": "EU27_2020", "europe": "EU27_2020",
 }
 
-# Map keywords to SQL queries + metadata
-# Each entry: keyword -> {query_template, label, format_fn, eea_url}
-# {country} placeholder is replaced with the detected country code
-QUERY_MAP = {
-    # CO2-Emissionen Autos
-    "co2_cars": {
-        "keywords": ["auto", "car", "pkw", "fahrzeug", "vehicle", "kfz"],
-        "label": "CO₂-Emissionen von PKW",
-        "label_en": "CO₂ Emissions from Cars",
-        "query": """
-            SELECT TOP 10
-                Year AS year,
-                AVG(CAST(Ewltp AS FLOAT)) AS avg_co2_gkm,
-                COUNT(*) AS vehicle_count
-            FROM [CO2Emission].[latest].[co2cars]
-            WHERE Ewltp IS NOT NULL AND Ewltp > 0
-            {country_filter}
-            GROUP BY Year
-            ORDER BY Year DESC
-        """,
-        "country_field": "Ms",
-        "format": lambda r: {
-            "indicator": "Durchschnittliche CO₂-Emissionen (WLTP)",
-            "year": str(r.get("year", "")),
-            "value": f"{r.get('avg_co2_gkm', 0):.1f} g/km ({r.get('vehicle_count', 0):,} Fahrzeuge)",
-            "source": "EEA / CO2 Emission Database",
-            "url": "https://www.eea.europa.eu/en/datahub/datahubitem-view/fa8b1229-3db6-495d-b18e-9c9b3267c02b",
-        },
-    },
-    # CO2 / Treibhausgase allgemein
+# Datasets grouped by topic
+DATASETS = {
     "ghg": {
-        "keywords": ["treibhausgas", "greenhouse", "emission", "co2", "kohlendioxid", "carbon"],
-        "label": "Treibhausgasemissionen",
-        "label_en": "Greenhouse Gas Emissions",
-        "query": """
-            SELECT TOP 10
-                Year AS year,
-                CountryName AS country,
-                Gas AS gas,
-                SUM(CAST(Value AS FLOAT)) AS total_emissions
-            FROM [Greenhouse_Gas_Emissions].[latest].[v_Total_GHG_Emissions]
-            WHERE Gas = 'Total GHG'
-            {country_filter}
-            GROUP BY Year, CountryName, Gas
-            ORDER BY Year DESC
-        """,
-        "country_field": "CountryCode",
-        "format": lambda r: {
-            "indicator": "Treibhausgasemissionen (gesamt)",
-            "country": r.get("country", ""),
-            "year": str(r.get("year", "")),
-            "value": f"{r.get('total_emissions', 0):,.0f} Mt CO₂-Äquivalent",
-            "source": "EEA / Greenhouse Gas Emissions",
-            "url": "https://www.eea.europa.eu/en/datahub/datahubitem-view/d20a183e-b642-4edc-8a9c-30528c0b8e9c",
-        },
+        "keywords": ["treibhausgas", "greenhouse", "emission", "co2", "kohlendioxid",
+                      "carbon", "klimawandel", "climate change", "erwärmung", "warming"],
+        "dataset": "sdg_13_10",
+        "label": "Treibhausgasemissionen (Index 1990=100)",
+        "params": {},
+        "unit": "Index (1990=100)",
+        "url": "https://ec.europa.eu/eurostat/databrowser/view/sdg_13_10/default/table",
     },
-    # Luftqualität
-    "air": {
+    "air_emissions": {
         "keywords": ["luft", "air", "feinstaub", "pm10", "pm2.5", "stickstoff", "no2",
-                      "ozon", "ozone", "luftverschmutzung", "air_pollution", "smog"],
-        "label": "Luftqualitätsdaten",
-        "label_en": "Air Quality Data",
-        "query": """
-            SELECT TOP 10
-                ReportingYear AS year,
-                CountryOrTerritory AS country,
-                Pollutant AS pollutant,
-                AggType AS aggregation,
-                AVG(CAST(Value_numeric AS FLOAT)) AS avg_value,
-                Unit AS unit
-            FROM [AirQualityStatistics].[latest].[c_statistics]
-            WHERE Pollutant IN ('PM10', 'PM2.5', 'NO2', 'O3')
-            {country_filter}
-            GROUP BY ReportingYear, CountryOrTerritory, Pollutant, AggType, Unit
-            ORDER BY ReportingYear DESC
-        """,
-        "country_field": "CountryOrTerritory",
-        "format": lambda r: {
-            "indicator": f"Luftqualität — {r.get('pollutant', '')} ({r.get('aggregation', '')})",
-            "country": r.get("country", ""),
-            "year": str(r.get("year", "")),
-            "value": f"{r.get('avg_value', 0):.1f} {r.get('unit', 'µg/m³')}",
-            "source": "EEA / Air Quality Statistics",
-            "url": "https://www.eea.europa.eu/en/datahub/datahubitem-view/0e1d28fc-bef0-4498-891a-81570c8e4bc5",
+                      "stickoxid", "nox", "schwefeldioxid", "sox", "ammoniak",
+                      "luftverschmutzung", "air pollution", "smog", "luftqualität", "air quality"],
+        "dataset": "env_air_emis",
+        "label": "Luftschadstoff-Emissionen",
+        "params": {
+            "airpol": ["NOX", "SOX", "PM2_5", "PM10", "NH3"],
+            "src_nfr": ["NFR_TOT_NAT"],
+            "unit": ["T"],
         },
+        "unit": "Tonnen",
+        "url": "https://ec.europa.eu/eurostat/databrowser/view/env_air_emis/default/table",
     },
-    # Biodiversität / Arten
-    "biodiversity": {
-        "keywords": ["arten", "species", "biodiversität", "biodiversity", "naturschutz",
-                      "tierschutz", "fauna", "flora", "artensterben", "extinction"],
-        "label": "Biodiversität & Artenschutz",
-        "label_en": "Biodiversity & Species Protection",
-        "query": """
-            SELECT TOP 10
-                species_group_name AS species_group,
-                COUNT(*) AS species_count
-            FROM [EUNIS].[v1].[Site_Species]
-            WHERE code_site LIKE '{country_prefix}%'
-            GROUP BY species_group_name
-            ORDER BY species_count DESC
-        """,
-        "country_field": None,
-        "format": lambda r: {
-            "indicator": f"Geschützte Arten — {r.get('species_group', '')}",
-            "value": f"{r.get('species_count', 0):,} Arten in Schutzgebieten",
-            "source": "EEA / EUNIS",
-            "url": "https://eunis.eea.europa.eu/",
-        },
+    "pm25_deaths": {
+        "keywords": ["feinstaub", "pm2.5", "luftverschmutzung", "air pollution",
+                      "todesfälle", "deaths", "gesundheit", "health", "atemweg", "lunge"],
+        "dataset": "sdg_11_52",
+        "label": "Vorzeitige Todesfälle durch Feinstaub (PM2.5)",
+        "params": {},
+        "unit": "pro 100.000 Einwohner",
+        "url": "https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table",
     },
+    "renewable": {
+        "keywords": ["erneuerbar", "renewable", "solar", "wind", "photovoltaik",
+                      "wasserkraft", "hydropower", "energiewende", "green energy",
+                      "grüne energie", "ökostrom"],
+        "dataset": "nrg_ind_ren",
+        "label": "Anteil erneuerbarer Energien",
+        "params": {"nrg_bal": ["REN"], "unit": ["PC"]},
+        "unit": "%",
+        "url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_ren/default/table",
+    },
+    "waste": {
+        "keywords": ["müll", "abfall", "waste", "recycling", "plastik", "plastic",
+                      "verpackung", "packaging", "deponie", "landfill"],
+        "dataset": "env_wasgen",
+        "label": "Abfallaufkommen",
+        "params": {"waste": ["TOTAL"], "nace_r2": ["TOTAL_HH"], "unit": ["T"]},
+        "unit": "Tonnen",
+        "url": "https://ec.europa.eu/eurostat/databrowser/view/env_wasgen/default/table",
+    },
+}
+
+# Pollutant display names
+POLLUTANT_NAMES = {
+    "NOX": "Stickoxide (NOₓ)",
+    "SOX": "Schwefeldioxid (SOₓ)",
+    "PM2_5": "Feinstaub (PM2.5)",
+    "PM10": "Feinstaub (PM10)",
+    "NH3": "Ammoniak (NH₃)",
+    "CO": "Kohlenmonoxid (CO)",
 }
 
 
 def _find_country(analysis: dict) -> str | None:
     """Extract country code from entities."""
     entities = analysis.get("entities", [])
-    for entity in entities:
-        for name, code in COUNTRY_CODES.items():
-            if name in entity.lower():
-                return code
+    # Also check the original claim
+    claim = analysis.get("original_claim", "")
+    all_text = " ".join(entities) + " " + claim
+
+    for name, code in COUNTRY_CODES.items():
+        if name in all_text.lower():
+            return code
     return None
 
 
-def _find_matching_queries(analysis: dict) -> list[dict]:
-    """Find matching EEA query sets based on claim analysis."""
+def _find_matching_datasets(analysis: dict) -> list[dict]:
+    """Find matching datasets based on claim keywords."""
     entities = analysis.get("entities", [])
     subcategory = analysis.get("subcategory", "")
     category = analysis.get("category", "")
-    search_terms = [t.lower() for t in entities + [subcategory, category]]
-    search_text = " ".join(search_terms)
+    claim = analysis.get("original_claim", "")
+    search_text = " ".join([t.lower() for t in entities + [subcategory, category, claim]])
 
     matched = {}
-    for key, query_set in QUERY_MAP.items():
-        for kw in query_set["keywords"]:
+    for key, ds in DATASETS.items():
+        for kw in ds["keywords"]:
             if kw in search_text:
                 if key not in matched:
-                    matched[key] = query_set
+                    matched[key] = ds
                 break
     return list(matched.values())
 
 
+def _parse_eurostat_response(data: dict, dataset_info: dict, country: str | None) -> list[dict]:
+    """Parse Eurostat JSON-stat 2.0 response into result entries."""
+    results = []
+
+    dimensions = data.get("id", [])
+    dim_data = data.get("dimension", {})
+    sizes = data.get("size", [])
+    values = data.get("value", {})
+
+    if not values or not dimensions:
+        return results
+
+    # Build dimension label maps
+    dim_labels = {}
+    dim_indices = {}
+    for dim_name in dimensions:
+        dim = dim_data.get(dim_name, {})
+        cat = dim.get("category", {})
+        labels = cat.get("label", {})
+        index = cat.get("index", {})
+        dim_labels[dim_name] = labels
+        dim_indices[dim_name] = {v: k for k, v in index.items()} if isinstance(index, dict) else {}
+
+    # Calculate strides
+    strides = []
+    stride = 1
+    for s in reversed(sizes):
+        strides.insert(0, stride)
+        stride *= s
+
+    # Decode values
+    for flat_idx_str, value in values.items():
+        if value is None:
+            continue
+        flat_idx = int(flat_idx_str)
+
+        # Decode each dimension
+        entry = {}
+        for i, dim_name in enumerate(dimensions):
+            dim_idx = (flat_idx // strides[i]) % sizes[i]
+            code = dim_indices.get(dim_name, {}).get(dim_idx, str(dim_idx))
+            label = dim_labels.get(dim_name, {}).get(code, code)
+            entry[dim_name] = {"code": code, "label": label}
+
+        # Build display title
+        geo_label = entry.get("geo", {}).get("label", "")
+        time_label = entry.get("time", {}).get("label", "")
+        airpol_code = entry.get("airpol", {}).get("code", "")
+        airpol_label = POLLUTANT_NAMES.get(airpol_code, entry.get("airpol", {}).get("label", ""))
+
+        if airpol_label:
+            title = f"{dataset_info['label']}: {airpol_label} — {geo_label} {time_label} — {value:,.0f} {dataset_info['unit']}"
+        else:
+            title = f"{dataset_info['label']}: {geo_label} {time_label} — {value:,.1f} {dataset_info['unit']}"
+
+        results.append({
+            "title": title,
+            "indicator": dataset_info["label"],
+            "geo": geo_label,
+            "time": time_label,
+            "value": value,
+            "unit": dataset_info["unit"],
+            "source": "EEA / Eurostat",
+            "url": dataset_info["url"],
+        })
+
+    # Sort by time descending, limit to most recent
+    results.sort(key=lambda r: r.get("time", ""), reverse=True)
+    return results[:10]
+
+
 async def search_eea(analysis: dict) -> dict:
-    """Search EEA Discodata for relevant environmental data."""
-    query_sets = _find_matching_queries(analysis)
+    """Search EEA environmental data via Eurostat API."""
+    datasets = _find_matching_datasets(analysis)
     country = _find_country(analysis)
 
-    # Default to GHG if no specific match but climate-related
-    if not query_sets:
-        query_sets = [QUERY_MAP["ghg"]]
+    # Default to GHG if no match but environment-related
+    if not datasets:
+        datasets = [DATASETS["ghg"]]
 
     all_results = []
+    geo = country or "EU27_2020"
 
     async with httpx.AsyncClient(timeout=30.0) as client:
-        for qs in query_sets[:2]:  # Max 2 queries to keep it fast
+        for ds in datasets[:2]:
             try:
-                sql = qs["query"]
+                params = {"geo": geo, "sinceTimePeriod": "2015"}
 
-                # Apply country filter
-                country_field = qs.get("country_field")
-                if country and country_field:
-                    sql = sql.replace("{country_filter}", f"AND {country_field} = '{country}'")
-                else:
-                    sql = sql.replace("{country_filter}", "")
+                # Add dataset-specific params
+                for key, vals in ds.get("params", {}).items():
+                    params[key] = vals
 
-                # Handle EUNIS special case (uses code_site prefix)
-                if "{country_prefix}" in sql:
-                    sql = sql.replace("{country_prefix}", country or "AT")
+                # Also fetch EU average for comparison if country-specific
+                geos = [geo]
+                if geo != "EU27_2020":
+                    geos.append("EU27_2020")
+                params["geo"] = geos
 
-                # Clean up whitespace
-                sql = " ".join(sql.split())
-
-                resp = await client.get(
-                    BASE_URL,
-                    params={"query": sql, "p": 1, "nrOfHits": 10},
-                )
+                url = f"{EUROSTAT_BASE}/{ds['dataset']}"
+                resp = await client.get(url, params=params)
                 resp.raise_for_status()
                 data = resp.json()
 
-                records = data.get("results", [])
-                format_fn = qs["format"]
-
-                for record in records[:5]:
-                    try:
-                        formatted = format_fn(record)
-                        all_results.append(formatted)
-                    except Exception as e:
-                        logger.warning(f"EEA format error: {e}")
+                parsed = _parse_eurostat_response(data, ds, country)
+                all_results.extend(parsed)
 
             except Exception as e:
-                logger.warning(f"EEA query failed for {qs['label']}: {e}")
-                # Add reference link even on failure
+                logger.warning(f"EEA/Eurostat query failed for {ds['label']}: {e}")
                 all_results.append({
-                    "indicator": qs["label"],
-                    "value": "Daten nicht verfügbar",
-                    "source": "EEA",
-                    "url": "https://www.eea.europa.eu/en/datahub",
+                    "title": f"{ds['label']}: Daten nicht verfügbar",
+                    "indicator": ds["label"],
+                    "value": "nicht verfügbar",
+                    "source": "EEA / Eurostat",
+                    "url": ds["url"],
                 })
 
     return {
