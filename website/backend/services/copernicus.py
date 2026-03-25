@@ -1,9 +1,17 @@
+import csv
+import io
+
 import httpx
 import logging
 
 logger = logging.getLogger("evidora")
 
 CDS_CATALOGUE_URL = "https://cds.climate.copernicus.eu/api/catalogue/v1/collections"
+NASA_GISS_URL = "https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv"
+
+# Pre-industrial baseline offset: NASA GISS uses 1951-1980 baseline,
+# pre-industrial level is ~0.3°C below that baseline
+PREINDUSTRIAL_OFFSET = 0.3
 
 # Map climate keywords to relevant CDS dataset IDs + readable descriptions
 CLIMATE_DATASET_MAP = {
@@ -190,14 +198,99 @@ def _find_datasets(analysis: dict) -> list[dict]:
     return list(matched.values())
 
 
+async def _fetch_nasa_giss(client: httpx.AsyncClient) -> list[dict]:
+    """Fetch global temperature anomaly data from NASA GISS (simple CSV API)."""
+    results = []
+    try:
+        resp = await client.get(NASA_GISS_URL)
+        resp.raise_for_status()
+        lines = resp.text.strip().split("\n")
+
+        reader = csv.reader(lines[1:])  # skip description line
+        header = next(reader)  # column names
+
+        rows = list(reader)
+        # Last 10 years of data
+        recent = [r for r in rows[-12:] if len(r) > 13 and r[13] not in ("***", "")]
+
+        # Find all-time max
+        max_anomaly = -999
+        max_year = ""
+        for row in rows:
+            try:
+                val = float(row[13])  # J-D = annual mean
+                if val > max_anomaly:
+                    max_anomaly = val
+                    max_year = row[0]
+            except (ValueError, IndexError):
+                pass
+
+        for row in recent:
+            try:
+                year = row[0]
+                anomaly = float(row[13])  # J-D column = annual mean
+                vs_preindustrial = anomaly + PREINDUSTRIAL_OFFSET
+
+                title = (
+                    f"Globale Durchschnittstemperatur {year}: "
+                    f"{anomaly:+.2f}°C vs. 1951-1980 Mittel "
+                    f"(ca. {vs_preindustrial:+.2f}°C vs. vorindustriell)"
+                )
+
+                # Add historical context to most recent entry
+                if row == recent[-1] and max_year:
+                    title += (
+                        f" — Wärmstes Jahr: {max_year} "
+                        f"({max_anomaly:+.2f}°C / ca. {max_anomaly + PREINDUSTRIAL_OFFSET:+.2f}°C vs. vorindustriell)"
+                    )
+
+                results.append({
+                    "title": title,
+                    "year": year,
+                    "value": f"{vs_preindustrial:+.2f}°C vs. vorindustriell",
+                    "source": "NASA GISS / GISTEMP v4",
+                    "url": "https://data.giss.nasa.gov/gistemp/",
+                })
+            except (ValueError, IndexError):
+                continue
+
+        if results:
+            logger.info(f"NASA GISS: {len(results)} years of temperature data loaded")
+
+    except Exception as e:
+        logger.warning(f"NASA GISS fetch failed: {e}")
+
+    return results
+
+
+# Keywords that indicate temperature-related claims
+TEMPERATURE_KEYWORDS = [
+    "temperatur", "temperature", "erwärmung", "warming", "hitze", "heat",
+    "grad", "degree", "celsius", "klima", "climate", "klimawandel",
+    "climate change", "global warming", "erderwärmung",
+]
+
+
 async def search_copernicus(analysis: dict) -> dict:
-    """Search Copernicus Climate Data Store for relevant datasets."""
+    """Search Copernicus Climate Data Store + NASA GISS for climate data."""
     datasets = _find_datasets(analysis)
+
+    # Check if claim is temperature-related
+    entities = analysis.get("entities", [])
+    claim = analysis.get("original_claim", "")
+    search_text = " ".join([t.lower() for t in entities + [claim]])
+    is_temperature = any(kw in search_text for kw in TEMPERATURE_KEYWORDS)
 
     results = []
 
     async with httpx.AsyncClient(timeout=30.0) as client:
-        for ds in datasets[:3]:
+        # Fetch real temperature data from NASA GISS if claim is temperature-related
+        if is_temperature:
+            giss_data = await _fetch_nasa_giss(client)
+            results.extend(giss_data)
+
+        # Also fetch Copernicus dataset metadata as reference
+        for ds in datasets[:2]:
             try:
                 resp = await client.get(f"{CDS_CATALOGUE_URL}/{ds['id']}")
                 resp.raise_for_status()
@@ -205,7 +298,6 @@ async def search_copernicus(analysis: dict) -> dict:
 
                 title = metadata.get("title", ds["label"])
                 description = metadata.get("description", "")
-                # Extract first 200 chars of description for context
                 if description:
                     description = description[:200].rsplit(" ", 1)[0] + "…"
 
@@ -227,7 +319,6 @@ async def search_copernicus(analysis: dict) -> dict:
 
             except Exception as e:
                 logger.warning(f"Copernicus catalogue request failed for {ds['id']}: {e}")
-                # Still include the dataset as a reference even if metadata fetch fails
                 results.append({
                     "title": ds["label"],
                     "dataset_id": ds["id"],
@@ -239,12 +330,11 @@ async def search_copernicus(analysis: dict) -> dict:
                 })
 
     if not results:
-        # Fallback: general ERA5 reference
         results.append({
             "title": "ERA5 Globale Klimadaten (Reanalyse)",
             "dataset_id": "reanalysis-era5-single-levels-monthly-means",
             "variable": "multiple",
-            "description": "ERA5 ist der umfassendste globale Klimadatensatz, produziert vom ECMWF. Er deckt Atmosphäre, Ozean und Land seit 1940 ab.",
+            "description": "ERA5 ist der umfassendste globale Klimadatensatz, produziert vom ECMWF.",
             "time_range": "1940–heute",
             "source": "Copernicus Climate Data Store (ECMWF/EU)",
             "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means",
@@ -254,5 +344,5 @@ async def search_copernicus(analysis: dict) -> dict:
         "source": "Copernicus Climate Data Store",
         "type": "official_data",
         "results": results,
-        "attribution": "Contains modified Copernicus Climate Change Service information (2024). Neither the European Commission nor ECMWF is responsible for any use of this information.",
+        "attribution": "Contains modified Copernicus Climate Change Service information (2024). Neither the European Commission nor ECMWF is responsible for any use of this information. Global temperature data: NASA GISS GISTEMP v4.",
     }
