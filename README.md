@@ -4,10 +4,14 @@ A European fact-checking service against misinformation — powered by a local L
 
 Evidora automatically verifies claims against scientific and institutional sources such as PubMed, Cochrane, WHO, EMA, ECDC, Copernicus, Eurostat, ECB, UNHCR, EEA, and European fact-checkers.
 
+**Live Demo:** [https://evidora.eu](https://evidora.eu)
+
+> ⚠️ This project is under active development. The online version uses the Mistral Cloud API (EU servers, Paris) for AI analysis.
+
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **13 data sources** — Scientific databases, systematic reviews, official EU/UN statistics, climate data, disease surveillance, and fact-checkers
+- **12 data sources** — Scientific databases, systematic reviews, official EU/UN statistics, climate data, disease surveillance, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Hallucination filtering** — Evidence URLs are verified against actual source results
 - **GDPR-compliant** — No cookies, no tracking, anonymized logs
@@ -111,7 +115,7 @@ docker compose down
 | Google Fact Check API | ClaimReview markup | European fact-checkers (EFCSN) | ✅ Active |
 | Copernicus CDS | Climate data (ERA5, CAMS) | Temperature, emissions, satellite | ✅ Active |
 | Eurostat | EU statistics | Economy, migration, energy | ✅ Active |
-| EEA | Environmental data | Air quality, emissions, biodiversity | ✅ Active |
+| EEA (via Eurostat) | Environmental data | GHG emissions, air pollutants, renewables, waste | ✅ Active |
 | ECDC | Infectious diseases | Epidemiological surveillance | ✅ Active |
 | Cochrane Reviews | Systematic reviews (via PubMed) | Highest level of medical evidence | ✅ Active |
 | ECB | Central bank data | Interest rates, exchange rates, money supply | ✅ Active |
