@@ -83,6 +83,11 @@ Open `website/.env` and replace the placeholders:
 | `CDS_API_KEY` | For Copernicus climate data (catalogue works without) | [Copernicus CDS](https://cds.climate.copernicus.eu/how-to-api) |
 | `MISTRAL_API_KEY` | Use Mistral Cloud API instead of local Ollama (optional) | [Mistral Console](https://console.mistral.ai/api-keys) |
 | `MISTRAL_MODEL` | Cloud model to use (default: `mistral-small-latest`) | — |
+| `IMPRESSUM_NAME` | Your name for the legal notice | — |
+| `IMPRESSUM_EMAIL` | Contact email (displayed as text, no mailto link) | — |
+| `IMPRESSUM_LOCATION` | Your location for the legal notice | — |
+| `RATE_LIMIT` | Max requests per window per IP (default: `10`) | — |
+| `RATE_WINDOW` | Rate limit window in seconds (default: `60`) | — |
 
 > **Note:** PubMed works without an API key but with lower rate limits (3 instead of 10 requests/second). Without `GOOGLE_FACTCHECK_API_KEY`, the fact-checker search is skipped. If `MISTRAL_API_KEY` is set, Evidora uses the Mistral Cloud API (EU servers, Paris) instead of a local Ollama instance — no GPU required.
 
@@ -143,7 +148,7 @@ Evidora/
 │   │       ├── claimreview.py     # Google Fact Check API
 │   │       ├── copernicus.py      # Copernicus CDS (climate)
 │   │       ├── eurostat.py        # Eurostat (EU statistics)
-│   │       ├── eea.py             # EEA (environment)
+│   │       ├── eea.py             # EEA (environment, via Eurostat API)
 │   │       ├── ecdc.py            # ECDC (infectious diseases)
 │   │       ├── cochrane.py        # Cochrane systematic reviews
 │   │       ├── ecb.py            # ECB (interest rates, exchange rates)
@@ -191,6 +196,7 @@ Evidora/
 | Backend crashes on startup | Check that `website/.env` exists (`cp .env.example .env`) |
 | LLM responses are slow | Mistral 7B needs ~6 GB RAM. Close other memory-heavy applications. |
 | `Rate limit exceeded` (429) | Default: 10 requests per 60 seconds per IP. Adjust via `RATE_LIMIT` and `RATE_WINDOW` in `.env` |
+| `API credits exhausted` | Mistral Cloud API has no remaining credits. Top up at [Mistral Console](https://console.mistral.ai/) |
 
 ## License
 
