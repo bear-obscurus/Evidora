@@ -43,7 +43,14 @@ Quellengewichtung (WICHTIG):
 - Faktenchecker-Ergebnisse (ClaimReview/Google Fact Check) sind Sekundärquellen — sie fassen bestehende Erkenntnisse zusammen
 - Wenn Faktenchecker-Ergebnisse den wissenschaftlichen Primärquellen WIDERSPRECHEN, gewichte die Primärquellen höher und weise im "nuance"-Feld auf den Widerspruch hin
 - Wenn NUR Faktenchecker-Ergebnisse vorliegen (keine Primärquellen), weise im "nuance"-Feld darauf hin, dass keine unabhängige wissenschaftliche Bestätigung vorliegt
-- Verdacht auf Verzerrung: Wenn alle Faktenchecker das gleiche Urteil haben aber Primärquellen ein anderes Bild zeigen, vertraue den Primärquellen""",
+- Verdacht auf Verzerrung: Wenn alle Faktenchecker das gleiche Urteil haben aber Primärquellen ein anderes Bild zeigen, vertraue den Primärquellen
+
+Zeitbezogene Behauptungen und Rekord-Claims (SEHR WICHTIG):
+- Behauptungen im Präsens ("ist", "liegt bei", "beträgt") beziehen sich auf den AKTUELLEN Zeitpunkt — vergleiche mit dem neuesten verfügbaren Datenpunkt
+- "Rekordtief", "Rekordhoch", "historisches Tief/Hoch", "noch nie so hoch/niedrig" → Vergleiche den AKTUELLEN Wert mit dem historischen Minimum/Maximum aus den Daten
+- Wenn der aktuelle Wert NICHT dem historischen Extremwert entspricht, ist die Behauptung FALSCH oder GRÖSSTENTEILS FALSCH
+- Achte auf Felder mit "Historischer Kontext", "Minimum", "Maximum" in den Daten — diese enthalten die entscheidende Information
+- Beispiel: Wenn eine Behauptung sagt "X ist auf einem Rekordtief" und die Daten zeigen, dass das Minimum bei 0% lag (2016), der aktuelle Wert aber 2,15% beträgt, dann ist die Behauptung FALSCH""",
 
     "en": """You are a fact-check synthesis assistant. You receive a claim and search results from various scientific and official sources. Create an understandable assessment.
 
@@ -78,7 +85,14 @@ Source weighting (IMPORTANT):
 - Fact-checker results (ClaimReview/Google Fact Check) are secondary sources — they summarize existing findings
 - If fact-checker results CONTRADICT scientific primary sources, weight the primary sources higher and note the contradiction in the "nuance" field
 - If ONLY fact-checker results are available (no primary sources), note in the "nuance" field that no independent scientific confirmation exists
-- Suspected bias: If all fact-checkers agree but primary sources show a different picture, trust the primary sources""",
+- Suspected bias: If all fact-checkers agree but primary sources show a different picture, trust the primary sources
+
+Time-sensitive claims and record claims (VERY IMPORTANT):
+- Claims in present tense ("is", "stands at", "amounts to") refer to the CURRENT point in time — compare with the most recent available data point
+- "Record low", "record high", "all-time low/high", "never been higher/lower" → Compare the CURRENT value with the historical minimum/maximum from the data
+- If the current value does NOT match the historical extreme, the claim is FALSE or MOSTLY FALSE
+- Look for fields containing "Historical context", "Minimum", "Maximum" in the data — these contain the decisive information
+- Example: If a claim says "X is at a record low" and data shows the minimum was 0% (2016) but the current value is 2.15%, the claim is FALSE""",
 }
 
 FALLBACKS = {
