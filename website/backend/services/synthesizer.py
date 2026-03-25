@@ -50,7 +50,13 @@ Zeitbezogene Behauptungen und Rekord-Claims (SEHR WICHTIG):
 - "Rekordtief", "Rekordhoch", "historisches Tief/Hoch", "noch nie so hoch/niedrig" → Vergleiche den AKTUELLEN Wert mit dem historischen Minimum/Maximum aus den Daten
 - Wenn der aktuelle Wert NICHT dem historischen Extremwert entspricht, ist die Behauptung FALSCH oder GRÖSSTENTEILS FALSCH
 - Achte auf Felder mit "Historischer Kontext", "Minimum", "Maximum" in den Daten — diese enthalten die entscheidende Information
-- Beispiel: Wenn eine Behauptung sagt "X ist auf einem Rekordtief" und die Daten zeigen, dass das Minimum bei 0% lag (2016), der aktuelle Wert aber 2,15% beträgt, dann ist die Behauptung FALSCH""",
+- Beispiel: Wenn eine Behauptung sagt "X ist auf einem Rekordtief" und die Daten zeigen, dass das Minimum bei 0% lag (2016), der aktuelle Wert aber 2,15% beträgt, dann ist die Behauptung FALSCH
+
+Superlativ- und Vergleichs-Behauptungen (SEHR WICHTIG):
+- Bei Behauptungen mit "höchste", "niedrigste", "meiste", "größte", "beste", "schlechteste" → Es werden Vergleichsdaten aus MEHREREN Ländern benötigt
+- Wenn die Daten nur EIN Land zeigen (z.B. nur Österreich), aber die Behauptung einen EU-weiten Vergleich macht ("höchster Anteil in der EU"), dann ist die Behauptung NICHT ÜBERPRÜFBAR — du kannst nicht bestätigen, dass ein Land den höchsten Wert hat, wenn du keine Daten von anderen Ländern hast
+- Setze in diesem Fall verdict auf "unverifiable" und erkläre im nuance-Feld, dass Vergleichsdaten fehlen
+- Wenn ein EU-Durchschnitt vorliegt und der Wert eines Landes darüber/darunter liegt, erwähne das, aber bestätige NICHT einen Superlativ ohne vollständigen Vergleich""",
 
     "en": """You are a fact-check synthesis assistant. You receive a claim and search results from various scientific and official sources. Create an understandable assessment.
 
@@ -92,7 +98,13 @@ Time-sensitive claims and record claims (VERY IMPORTANT):
 - "Record low", "record high", "all-time low/high", "never been higher/lower" → Compare the CURRENT value with the historical minimum/maximum from the data
 - If the current value does NOT match the historical extreme, the claim is FALSE or MOSTLY FALSE
 - Look for fields containing "Historical context", "Minimum", "Maximum" in the data — these contain the decisive information
-- Example: If a claim says "X is at a record low" and data shows the minimum was 0% (2016) but the current value is 2.15%, the claim is FALSE""",
+- Example: If a claim says "X is at a record low" and data shows the minimum was 0% (2016) but the current value is 2.15%, the claim is FALSE
+
+Superlative and comparison claims (VERY IMPORTANT):
+- For claims with "highest", "lowest", "most", "largest", "best", "worst" → Comparison data from MULTIPLE countries is needed
+- If the data shows only ONE country (e.g. only Austria), but the claim makes an EU-wide comparison ("highest share in the EU"), then the claim is UNVERIFIABLE — you cannot confirm a country has the highest value without data from other countries
+- In this case, set verdict to "unverifiable" and explain in the nuance field that comparison data is missing
+- If an EU average is available and the country's value is above/below it, mention this, but do NOT confirm a superlative without a complete comparison""",
 }
 
 FALLBACKS = {
@@ -136,11 +148,50 @@ async def synthesize_results(
     # Re-rank results by semantic similarity to the claim
     source_results = rerank_results(original_claim, source_results)
 
+    # Detect superlative claims that need multi-country comparison
+    SUPERLATIVE_KEYWORDS = [
+        "höchste", "höchsten", "niedrigste", "niedrigsten", "meiste", "meisten",
+        "größte", "größten", "beste", "besten", "schlechteste", "schlechtesten",
+        "wenigste", "wenigsten", "stärkste", "stärksten",
+        "highest", "lowest", "most", "least", "largest", "smallest", "best", "worst",
+    ]
+    claim_lower = original_claim.lower()
+    is_superlative = any(kw in claim_lower for kw in SUPERLATIVE_KEYWORDS)
+
     # Build compact context — only essential fields to keep token count low
     context_parts = [
         f"{labels['claim']}: {original_claim}",
         f"{labels['category']}: {analysis.get('category', 'unknown')}\n",
     ]
+
+    # Add superlative warning if only one country's data is available
+    if is_superlative:
+        all_countries = set()
+        for source_data in source_results:
+            if not isinstance(source_data, dict):
+                continue
+            for r in source_data.get("results", []):
+                geo = r.get("geo", r.get("country", ""))
+                if geo:
+                    all_countries.add(geo)
+        # Remove EU aggregate labels
+        eu_labels = {"EU27_2020", "European Union", "European Union - 27 countries (from 2020)", "EU"}
+        real_countries = all_countries - eu_labels
+        if len(real_countries) <= 1:
+            if lang == "de":
+                context_parts.append(
+                    "⚠️ WARNUNG: Diese Behauptung enthält einen Superlativ (höchste/niedrigste/meiste), "
+                    "aber es liegen nur Daten für EIN Land vor. Ein Superlativ-Vergleich ist ohne Daten "
+                    "aus anderen Ländern NICHT möglich. Setze verdict auf 'unverifiable' und erkläre, "
+                    "dass Vergleichsdaten fehlen.\n"
+                )
+            else:
+                context_parts.append(
+                    "⚠️ WARNING: This claim contains a superlative (highest/lowest/most), "
+                    "but data is only available for ONE country. A superlative comparison is NOT possible "
+                    "without data from other countries. Set verdict to 'unverifiable' and explain "
+                    "that comparison data is missing.\n"
+                )
 
     secondary_sources = {"Google Fact Check", "ClaimReview", "Fact Check", "Faktenchecker", "GADMO"}
 
