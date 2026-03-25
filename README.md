@@ -175,7 +175,8 @@ Evidora/
 3. **Semantic Reranking** — Sentence Transformers (MiniLM) rerank results by semantic similarity to the original claim
 4. **Cross-Validation** — Results from primary sources (scientific databases) are weighted higher than secondary sources (fact-checkers)
 5. **Synthesis** — The LLM evaluates all evidence and produces a verdict (true/mostly true/mixed/mostly false/false/unverifiable) with confidence score
-6. **Hallucination Filter** — All evidence URLs are verified against actual source results; fabricated references are removed
+6. **Claim Guards** — Superlative claims ("highest", "most") require multi-country data; record claims ("all-time low") are checked against historical min/max; present-tense claims are compared to the latest data point
+7. **Hallucination Filter** — All evidence URLs are verified against actual source results; fabricated references are removed
 7. **Caching** — API responses are cached in-memory (30 min TTL) to reduce load and speed up repeated queries
 
 ## Tech Stack
