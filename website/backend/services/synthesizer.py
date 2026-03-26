@@ -54,6 +54,7 @@ Zeitbezogene Behauptungen und Rekord-Claims (SEHR WICHTIG):
 
 Superlativ- und Vergleichs-Behauptungen (SEHR WICHTIG):
 - Bei Behauptungen mit "höchste", "niedrigste", "meiste", "größte", "beste", "schlechteste" → Es werden Vergleichsdaten aus MEHREREN Ländern benötigt
+- Wenn die Daten ein RANKING mit mehreren Ländern zeigen (z.B. "#1 Greece: 161.9", "#2 Italy: 144.4", "#3 France: 112.3"), dann nutze dieses Ranking direkt: Wenn das behauptete Land auf Platz 1 steht und die Behauptung "höchste" sagt, dann ist die Behauptung WAHR. Wenn es NICHT auf Platz 1 steht, ist sie FALSCH. Nenne die Top-3 im Summary.
 - Wenn die Daten nur EIN Land zeigen (z.B. nur Österreich), aber die Behauptung einen EU-weiten Vergleich macht ("höchster Anteil in der EU"), dann ist die Behauptung NICHT ÜBERPRÜFBAR — du kannst nicht bestätigen, dass ein Land den höchsten Wert hat, wenn du keine Daten von anderen Ländern hast
 - Setze in diesem Fall verdict auf "unverifiable" und erkläre im nuance-Feld, dass Vergleichsdaten fehlen
 - Wenn ein EU-Durchschnitt vorliegt und der Wert eines Landes darüber/darunter liegt, erwähne das, aber bestätige NICHT einen Superlativ ohne vollständigen Vergleich""",
@@ -102,6 +103,7 @@ Time-sensitive claims and record claims (VERY IMPORTANT):
 
 Superlative and comparison claims (VERY IMPORTANT):
 - For claims with "highest", "lowest", "most", "largest", "best", "worst" → Comparison data from MULTIPLE countries is needed
+- If the data shows a RANKING with multiple countries (e.g. "#1 Greece: 161.9", "#2 Italy: 144.4", "#3 France: 112.3"), use this ranking directly: If the claimed country is ranked #1 and the claim says "highest", the claim is TRUE. If it is NOT ranked #1, it is FALSE. Include the top 3 in the summary.
 - If the data shows only ONE country (e.g. only Austria), but the claim makes an EU-wide comparison ("highest share in the EU"), then the claim is UNVERIFIABLE — you cannot confirm a country has the highest value without data from other countries
 - In this case, set verdict to "unverifiable" and explain in the nuance field that comparison data is missing
 - If an EU average is available and the country's value is above/below it, mention this, but do NOT confirm a superlative without a complete comparison""",
