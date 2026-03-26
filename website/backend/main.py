@@ -166,6 +166,7 @@ async def check_claim(request: Request):
             "names": [r.get("source", "?") for r in sources_with_results],
         }
         yield {"event": "result", "data": json.dumps(synthesis, ensure_ascii=False)}
+        yield {"event": "done", "data": "{}"}
 
     return EventSourceResponse(event_stream())
 
