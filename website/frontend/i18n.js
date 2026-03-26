@@ -9,10 +9,10 @@ const TRANSLATIONS = {
         search_btn: "Faktencheck",
         hint_health: "Gesundheit",
         hint_climate: "Klima",
-        hint_medication: "Medikamente",
         hint_economy: "Wirtschaft",
+        hint_education: "Bildung",
         hint_migration: "Migration",
-        hint_environment: "Umwelt",
+        hint_gender: "Gleichstellung",
         beta_notice: "Dieses Projekt befindet sich in aktiver Entwicklung.",
         beta_notice_online: "Dieses Projekt befindet sich in aktiver Entwicklung. Die KI-Analyse dieser Online-Version erfolgt über die Mistral Cloud API (EU-Server, Paris).",
 
@@ -69,7 +69,7 @@ const TRANSLATIONS = {
         history_clear: "Verlauf löschen",
 
         // Footer
-        footer_main: "Evidora.eu — Europäischer Faktencheck | Quellen: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EZB, UNHCR, EEA, Copernicus, GADMO, EFCSN",
+        footer_main: "Evidora.eu — Europäischer Faktencheck | Quellen: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EZB, UNHCR, EEA, Copernicus, OECD, GADMO, EFCSN",
         footer_note: "Automatische Überprüfung — ersetzt keine professionelle Faktencheck-Redaktion",
         footer_opensource: "Open Source auf GitHub",
         privacy_link: "Datenschutz",
@@ -208,10 +208,10 @@ const TRANSLATIONS = {
         search_btn: "Fact Check",
         hint_health: "Health",
         hint_climate: "Climate",
-        hint_medication: "Medication",
         hint_economy: "Economy",
+        hint_education: "Education",
         hint_migration: "Migration",
-        hint_environment: "Environment",
+        hint_gender: "Gender Equality",
         beta_notice: "This project is under active development.",
         beta_notice_online: "This project is under active development. AI analysis on this online version is processed via the Mistral Cloud API (EU servers, Paris).",
 
@@ -268,7 +268,7 @@ const TRANSLATIONS = {
         history_clear: "Clear history",
 
         // Footer
-        footer_main: "Evidora.eu — European Fact Check | Sources: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, ECB, EEA, Copernicus, GADMO, EFCSN",
+        footer_main: "Evidora.eu — European Fact Check | Sources: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, ECB, UNHCR, EEA, Copernicus, OECD, GADMO, EFCSN",
         footer_note: "Automated check — does not replace professional fact-checking",
         footer_opensource: "Open Source on GitHub",
         privacy_link: "Privacy Policy",

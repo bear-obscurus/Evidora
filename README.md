@@ -4,7 +4,7 @@
 
 A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
-Evidora automatically verifies claims against scientific and institutional sources such as PubMed, Cochrane, WHO, EMA, ECDC, Copernicus, Eurostat, ECB, UNHCR, EEA, and European fact-checkers.
+Evidora automatically verifies claims against scientific and institutional sources such as PubMed, Cochrane, WHO, EMA, ECDC, Copernicus, Eurostat, ECB, UNHCR, EEA, OECD (PISA & SDMX), and European fact-checkers.
 
 **Live Demo:** [https://evidora.eu](https://evidora.eu)
 
@@ -13,13 +13,15 @@ Evidora automatically verifies claims against scientific and institutional sourc
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **12 data sources** — Scientific databases, systematic reviews, official EU/UN statistics, climate data, disease surveillance, and fact-checkers
+- **13 data sources** — Scientific databases, systematic reviews, official EU/UN/OECD statistics, climate data, disease surveillance, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Multi-country ranking** — Superlative claims ("highest", "most") automatically query all EU-27 countries for a full ranking
 - **Hallucination filtering** — Evidence URLs are verified against actual source results
 - **GDPR-compliant** — No cookies, no tracking, anonymized logs
 - **Bilingual** — Full German/English interface (DE/EN toggle)
 - **Accessible** — ARIA labels, keyboard navigation, skip links, semantic landmarks
+- **SpaCy NER** — Named entity recognition enriches claim analysis with deterministic GPE/DATE/ORG entities (German + English)
+- **OECD PISA + SDMX** — PISA 2022 scores (static CSV, 35 countries, by gender) + live OECD API for gender wage gap, education, employment
 - **Semantic reranking** — Sentence Transformers (MiniLM) rerank source results by relevance (optional, graceful fallback if not installed)
 - **Search history** — Last 10 checks stored locally (localStorage), no server storage
 - **PDF export** — Save fact-check results as PDF
@@ -122,12 +124,13 @@ docker compose down
 | EMA | Drug approvals (EU) | Pharmaceuticals, vaccines | ✅ Active |
 | Google Fact Check API | ClaimReview markup | European fact-checkers (EFCSN) | ✅ Active |
 | Copernicus CDS | Climate data (ERA5, CAMS) | Temperature, emissions, satellite | ✅ Active |
-| Eurostat | EU statistics | Economy, migration, energy | ✅ Active |
+| Eurostat | EU statistics | Economy, migration, energy, CO₂, housing, debt, wages, inequality, tourism | ✅ Active |
 | EEA (via Eurostat) | Environmental data | GHG emissions, air pollutants, renewables, waste | ✅ Active |
-| ECDC | Infectious diseases | Epidemiological surveillance | ✅ Active |
+| ECDC (via OWID) | Infectious diseases | COVID-19 cases, deaths, vaccinations (cached CSV) | ✅ Active |
 | Cochrane Reviews | Systematic reviews (via PubMed) | Highest level of medical evidence | ✅ Active |
 | ECB | Central bank data | Interest rates, exchange rates, money supply | ✅ Active |
 | UNHCR | Refugee statistics | Refugee populations, asylum applications | ✅ Active |
+| OECD | Education & gender equality | PISA 2022 scores (35 countries, by gender), gender wage gap, employment | ✅ Active |
 | GADMO Faktenchecks | German-language fact-checks | APA, Correctiv (DACH region) | ✅ Active |
 
 ## Project Structure
@@ -144,9 +147,12 @@ Evidora/
 │   │   ├── requirements.txt
 │   │   ├── pytest.ini        # Test configuration
 │   │   ├── tests/            # Test suite (unit, source API, integration)
+│   │   ├── data/             # Static datasets
+│   │   │   └── pisa_2022.csv # OECD PISA scores by country & gender
 │   │   └── services/        # Data source modules
 │   │       ├── claim_analyzer.py  # LLM-based claim analysis
 │   │       ├── ollama.py          # Ollama/Mistral API client
+│   │       ├── ner.py             # SpaCy NER enrichment (de + en)
 │   │       ├── pubmed.py          # PubMed (biomedical studies)
 │   │       ├── who.py             # WHO (health indicators)
 │   │       ├── ema.py             # EMA (drug approvals)
@@ -154,10 +160,11 @@ Evidora/
 │   │       ├── copernicus.py      # Copernicus CDS (climate)
 │   │       ├── eurostat.py        # Eurostat (EU statistics)
 │   │       ├── eea.py             # EEA (environment, via Eurostat API)
-│   │       ├── ecdc.py            # ECDC (infectious diseases)
+│   │       ├── ecdc.py            # ECDC (COVID via OWID)
 │   │       ├── cochrane.py        # Cochrane systematic reviews
-│   │       ├── ecb.py            # ECB (interest rates, exchange rates)
-│   │       ├── unhcr.py          # UNHCR (refugee statistics)
+│   │       ├── ecb.py             # ECB (interest rates, exchange rates)
+│   │       ├── unhcr.py           # UNHCR (refugee statistics)
+│   │       ├── oecd.py            # OECD (PISA + SDMX live API)
 │   │       ├── gadmo.py           # GADMO fact-checks (APA, Correctiv)
 │   │       ├── cache.py           # In-memory response cache
 │   │       ├── reranker.py        # Sentence Transformers reranking
@@ -176,19 +183,22 @@ Evidora/
 ## How It Works
 
 1. **Claim Analysis** — The LLM analyzes the input claim, extracts keywords, determines the category, and generates optimized search queries
-2. **Source Querying** — Relevant sources are queried in parallel based on the claim's category (e.g., health claims → PubMed + WHO + EMA + ECDC; migration → Eurostat + UNHCR; economy → Eurostat + ECB)
-3. **Semantic Reranking** — Sentence Transformers (MiniLM) rerank results by semantic similarity to the original claim
-4. **Cross-Validation** — Results from primary sources (scientific databases) are weighted higher than secondary sources (fact-checkers)
-5. **Synthesis** — The LLM evaluates all evidence and produces a verdict (true/mostly true/mixed/mostly false/false/unverifiable) with confidence score
-6. **Claim Guards** — Superlative claims ("highest", "most") require multi-country data; record claims ("all-time low") are checked against historical min/max; present-tense claims are compared to the latest data point
-7. **Hallucination Filter** — All evidence URLs are verified against actual source results; fabricated references are removed
-7. **Caching** — API responses are cached in-memory (30 min TTL) to reduce load and speed up repeated queries
+2. **NER Enrichment** — SpaCy (de + en) adds deterministic GPE/DATE/ORG entities to supplement LLM extraction
+3. **Source Querying** — Relevant sources are queried in parallel based on the claim's category (e.g., health → PubMed + WHO + EMA + ECDC; migration → Eurostat + UNHCR; economy → Eurostat + ECB; education/gender → OECD PISA + SDMX)
+4. **Semantic Reranking** — Sentence Transformers (MiniLM) rerank results by semantic similarity to the original claim
+5. **Cross-Validation** — Results from primary sources (scientific databases) are weighted higher than secondary sources (fact-checkers)
+6. **Synthesis** — The LLM evaluates all evidence and produces a verdict (true/mostly true/mixed/mostly false/false/unverifiable) with confidence score
+7. **Claim Guards** — Superlative claims ("highest", "most") require multi-country data; record claims ("all-time low") are checked against historical min/max; present-tense claims are compared to the latest data point
+8. **Verdict Consistency** — Post-processor detects when the LLM summary contradicts the verdict field and auto-corrects
+9. **Hallucination Filter** — All evidence URLs are verified against actual source results; fabricated references are removed
+10. **Caching** — API responses are cached in-memory (30 min TTL) to reduce load and speed up repeated queries
 
 ## Tech Stack
 
 - **Backend:** Python, FastAPI, SSE streaming
 - **Frontend:** Vanilla JS, CSS (no frameworks)
 - **LLM:** Mistral 7B via Ollama (local) or Mistral API (cloud, EU servers)
+- **NLP:** SpaCy (de_core_news_sm + en_core_web_sm) for named entity recognition
 - **ML:** Sentence Transformers (MiniLM) for semantic reranking
 - **Deployment:** Docker Compose (backend + nginx)
 
