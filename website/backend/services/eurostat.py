@@ -604,7 +604,8 @@ def _find_datasets(analysis: dict) -> list[dict]:
     entities = analysis.get("entities", [])
     subcategory = analysis.get("subcategory", "")
     category = analysis.get("category", "")
-    search_terms = entities + [subcategory, category]
+    claim = analysis.get("claim", "")
+    search_terms = entities + [subcategory, category, claim]
 
     matched = {}
     for term in search_terms:
