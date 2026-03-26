@@ -21,6 +21,7 @@ Analysiere die folgende Behauptung und antworte AUSSCHLIESSLICH im JSON-Format:
   "ecdc_relevant": true/false,
   "ecb_relevant": true/false,
   "unhcr_relevant": true/false,
+  "oecd_relevant": true/false,
   "entities": ["erkannte Entitäten wie Medikamente, Krankheiten, Orte"],
   "confidence": 0.0-1.0
 }
@@ -49,7 +50,8 @@ Quellen-Relevanz-Regeln:
 - eea_relevant: true bei Umwelt und Luftqualität
 - climate_relevant: true bei Klima und Temperatur
 - ecb_relevant: true bei EZB, Leitzins, Zinsen, Wechselkursen, Geldmenge, Geldpolitik, Euro-Wert
-- unhcr_relevant: true bei Flüchtlingen, Asyl, Vertriebenen, Geflüchteten, Schutzsuchenden, Migration (weltweit oder länderspezifisch)"""
+- unhcr_relevant: true bei Flüchtlingen, Asyl, Vertriebenen, Geflüchteten, Schutzsuchenden, Migration (weltweit oder länderspezifisch)
+- oecd_relevant: true bei Bildungsvergleichen (PISA, Schulleistung, Bildungsniveau), Gender/Geschlechtervergleichen (Lohnunterschied, Gender Pay Gap, Frauen in MINT), Arbeitsmarkt nach Geschlecht, Bildungsabschlüssen"""
 
 
 def _repair_json(text: str) -> dict | None:

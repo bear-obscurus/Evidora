@@ -7,6 +7,7 @@ import pytest
 from services.cache import _make_key, get, put, clear, stats
 from services.eurostat import _find_datasets, _find_country, _is_superlative_claim, COUNTRY_CODES, DATASET_MAP
 from services.ner import enrich_entities, _detect_language
+from services.oecd import _load_pisa, _search_pisa, _is_pisa_claim, _is_gender_claim, _find_country_code, _detect_subject
 
 
 # ===================================================================
@@ -263,6 +264,70 @@ class TestNER:
         analysis = {"entities": ["Test"], "category": "other"}
         result = enrich_entities("Test claim", analysis)
         assert "Test" in result["entities"]
+
+
+# ===================================================================
+# OECD / PISA
+# ===================================================================
+
+class TestOECD:
+    def test_pisa_csv_loads(self):
+        data = _load_pisa()
+        assert len(data) > 100  # ~300 rows expected
+
+    def test_pisa_has_gender_data(self):
+        data = _load_pisa()
+        genders = {r["gender"] for r in data}
+        assert {"total", "boy", "girl"} == genders
+
+    def test_pisa_has_key_countries(self):
+        data = _load_pisa()
+        codes = {r["country_code"] for r in data}
+        for c in ["AUT", "DEU", "FRA", "EST", "JPN", "OECD"]:
+            assert c in codes, f"Missing {c}"
+
+    def test_pisa_claim_detection(self):
+        assert _is_pisa_claim("Frauen sind schlechter in Mathematik")
+        assert _is_pisa_claim("PISA scores in Finland")
+        assert _is_pisa_claim("Mädchen lesen besser als Jungen")
+        assert not _is_pisa_claim("Die Inflation in Österreich steigt")
+
+    def test_gender_claim_detection(self):
+        assert _is_gender_claim("Frauen sind schlechter in Mathematik")
+        assert _is_gender_claim("Gender pay gap in Germany")
+        assert not _is_gender_claim("Österreich hat hohe Inflation")
+
+    def test_subject_detection(self):
+        assert _detect_subject("Mädchen sind besser in Mathe") == "math"
+        assert _detect_subject("Girls read better than boys") == "reading"
+        assert _detect_subject("Naturwissenschaft in Finnland") == "science"
+        assert _detect_subject("Bildung in Österreich") is None
+
+    def test_country_code_detection(self):
+        assert _find_country_code({"entities": ["Österreich"], "claim": ""}) == "AUT"
+        assert _find_country_code({"entities": ["Germany"], "claim": ""}) == "DEU"
+        assert _find_country_code({"entities": [], "claim": "PISA in Finnland"}) == "FIN"
+
+    def test_pisa_gender_search(self):
+        analysis = {"claim": "Frauen sind schlechter in Mathematik", "entities": [], "category": "education"}
+        results = _search_pisa("Frauen sind schlechter in Mathematik", analysis)
+        assert len(results) > 0
+        # Should have OECD average math gender gap
+        math_result = next((r for r in results if "Math" in r["title"]), None)
+        assert math_result is not None
+        assert "Jungen" in math_result["value"]
+        assert "Mädchen" in math_result["value"]
+
+    def test_pisa_country_specific(self):
+        analysis = {"claim": "Österreich PISA Mathe", "entities": ["Österreich"], "category": "education"}
+        results = _search_pisa("Österreich PISA Mathe Geschlecht", analysis)
+        assert any("Austria" in r.get("country", "") for r in results)
+
+    def test_pisa_non_gender(self):
+        analysis = {"claim": "PISA Ergebnisse in Estland", "entities": ["Estland"], "category": "education"}
+        results = _search_pisa("PISA Ergebnisse in Estland", analysis)
+        assert len(results) > 0
+        assert any("Estonia" in r.get("country", "") for r in results)
 
 
 class TestRateLimiter:

@@ -1,0 +1,334 @@
+country,country_code,subject,gender,score,year
+Albania,ALB,math,total,368,2022
+Albania,ALB,math,boy,374,2022
+Albania,ALB,math,girl,362,2022
+Albania,ALB,reading,total,358,2022
+Albania,ALB,reading,boy,341,2022
+Albania,ALB,reading,girl,376,2022
+Albania,ALB,science,total,376,2022
+Albania,ALB,science,boy,370,2022
+Albania,ALB,science,girl,382,2022
+Austria,AUT,math,total,487,2022
+Austria,AUT,math,boy,495,2022
+Austria,AUT,math,girl,479,2022
+Austria,AUT,reading,total,480,2022
+Austria,AUT,reading,boy,466,2022
+Austria,AUT,reading,girl,496,2022
+Austria,AUT,science,total,491,2022
+Austria,AUT,science,boy,492,2022
+Austria,AUT,science,girl,490,2022
+Belgium,BEL,math,total,489,2022
+Belgium,BEL,math,boy,493,2022
+Belgium,BEL,math,girl,485,2022
+Belgium,BEL,reading,total,479,2022
+Belgium,BEL,reading,boy,466,2022
+Belgium,BEL,reading,girl,493,2022
+Belgium,BEL,science,total,491,2022
+Belgium,BEL,science,boy,490,2022
+Belgium,BEL,science,girl,492,2022
+Bulgaria,BGR,math,total,417,2022
+Bulgaria,BGR,math,boy,419,2022
+Bulgaria,BGR,math,girl,415,2022
+Bulgaria,BGR,reading,total,404,2022
+Bulgaria,BGR,reading,boy,383,2022
+Bulgaria,BGR,reading,girl,426,2022
+Bulgaria,BGR,science,total,421,2022
+Bulgaria,BGR,science,boy,418,2022
+Bulgaria,BGR,science,girl,424,2022
+Croatia,HRV,math,total,463,2022
+Croatia,HRV,math,boy,465,2022
+Croatia,HRV,math,girl,462,2022
+Croatia,HRV,reading,total,475,2022
+Croatia,HRV,reading,boy,458,2022
+Croatia,HRV,reading,girl,492,2022
+Croatia,HRV,science,total,483,2022
+Croatia,HRV,science,boy,480,2022
+Croatia,HRV,science,girl,486,2022
+Cyprus,CYP,math,total,418,2022
+Cyprus,CYP,math,boy,423,2022
+Cyprus,CYP,math,girl,414,2022
+Cyprus,CYP,reading,total,415,2022
+Cyprus,CYP,reading,boy,397,2022
+Cyprus,CYP,reading,girl,434,2022
+Cyprus,CYP,science,total,423,2022
+Cyprus,CYP,science,boy,421,2022
+Cyprus,CYP,science,girl,426,2022
+Czechia,CZE,math,total,487,2022
+Czechia,CZE,math,boy,492,2022
+Czechia,CZE,math,girl,481,2022
+Czechia,CZE,reading,total,489,2022
+Czechia,CZE,reading,boy,475,2022
+Czechia,CZE,reading,girl,504,2022
+Czechia,CZE,science,total,498,2022
+Czechia,CZE,science,boy,499,2022
+Czechia,CZE,science,girl,498,2022
+Denmark,DNK,math,total,489,2022
+Denmark,DNK,math,boy,495,2022
+Denmark,DNK,math,girl,483,2022
+Denmark,DNK,reading,total,489,2022
+Denmark,DNK,reading,boy,476,2022
+Denmark,DNK,reading,girl,502,2022
+Denmark,DNK,science,total,494,2022
+Denmark,DNK,science,boy,493,2022
+Denmark,DNK,science,girl,496,2022
+Estonia,EST,math,total,510,2022
+Estonia,EST,math,boy,511,2022
+Estonia,EST,math,girl,510,2022
+Estonia,EST,reading,total,511,2022
+Estonia,EST,reading,boy,494,2022
+Estonia,EST,reading,girl,528,2022
+Estonia,EST,science,total,526,2022
+Estonia,EST,science,boy,524,2022
+Estonia,EST,science,girl,528,2022
+Finland,FIN,math,total,484,2022
+Finland,FIN,math,boy,488,2022
+Finland,FIN,math,girl,480,2022
+Finland,FIN,reading,total,490,2022
+Finland,FIN,reading,boy,472,2022
+Finland,FIN,reading,girl,509,2022
+Finland,FIN,science,total,511,2022
+Finland,FIN,science,boy,508,2022
+Finland,FIN,science,girl,515,2022
+France,FRA,math,total,474,2022
+France,FRA,math,boy,479,2022
+France,FRA,math,girl,469,2022
+France,FRA,reading,total,474,2022
+France,FRA,reading,boy,458,2022
+France,FRA,reading,girl,490,2022
+France,FRA,science,total,487,2022
+France,FRA,science,boy,486,2022
+France,FRA,science,girl,487,2022
+Germany,DEU,math,total,475,2022
+Germany,DEU,math,boy,481,2022
+Germany,DEU,math,girl,468,2022
+Germany,DEU,reading,total,480,2022
+Germany,DEU,reading,boy,467,2022
+Germany,DEU,reading,girl,494,2022
+Germany,DEU,science,total,492,2022
+Germany,DEU,science,boy,493,2022
+Germany,DEU,science,girl,490,2022
+Greece,GRC,math,total,430,2022
+Greece,GRC,math,boy,432,2022
+Greece,GRC,math,girl,428,2022
+Greece,GRC,reading,total,438,2022
+Greece,GRC,reading,boy,418,2022
+Greece,GRC,reading,girl,459,2022
+Greece,GRC,science,total,441,2022
+Greece,GRC,science,boy,438,2022
+Greece,GRC,science,girl,444,2022
+Hungary,HUN,math,total,473,2022
+Hungary,HUN,math,boy,478,2022
+Hungary,HUN,math,girl,468,2022
+Hungary,HUN,reading,total,473,2022
+Hungary,HUN,reading,boy,457,2022
+Hungary,HUN,reading,girl,490,2022
+Hungary,HUN,science,total,486,2022
+Hungary,HUN,science,boy,485,2022
+Hungary,HUN,science,girl,486,2022
+Ireland,IRL,math,total,492,2022
+Ireland,IRL,math,boy,491,2022
+Ireland,IRL,math,girl,494,2022
+Ireland,IRL,reading,total,516,2022
+Ireland,IRL,reading,boy,502,2022
+Ireland,IRL,reading,girl,530,2022
+Ireland,IRL,science,total,504,2022
+Ireland,IRL,science,boy,500,2022
+Ireland,IRL,science,girl,509,2022
+Italy,ITA,math,total,471,2022
+Italy,ITA,math,boy,480,2022
+Italy,ITA,math,girl,462,2022
+Italy,ITA,reading,total,482,2022
+Italy,ITA,reading,boy,467,2022
+Italy,ITA,reading,girl,498,2022
+Italy,ITA,science,total,477,2022
+Italy,ITA,science,boy,477,2022
+Italy,ITA,science,girl,477,2022
+Japan,JPN,math,total,536,2022
+Japan,JPN,math,boy,541,2022
+Japan,JPN,math,girl,530,2022
+Japan,JPN,reading,total,516,2022
+Japan,JPN,reading,boy,505,2022
+Japan,JPN,reading,girl,527,2022
+Japan,JPN,science,total,547,2022
+Japan,JPN,science,boy,548,2022
+Japan,JPN,science,girl,546,2022
+Latvia,LVA,math,total,483,2022
+Latvia,LVA,math,boy,483,2022
+Latvia,LVA,math,girl,483,2022
+Latvia,LVA,reading,total,475,2022
+Latvia,LVA,reading,boy,456,2022
+Latvia,LVA,reading,girl,494,2022
+Latvia,LVA,science,total,494,2022
+Latvia,LVA,science,boy,490,2022
+Latvia,LVA,science,girl,497,2022
+Lithuania,LTU,math,total,475,2022
+Lithuania,LTU,math,boy,476,2022
+Lithuania,LTU,math,girl,474,2022
+Lithuania,LTU,reading,total,472,2022
+Lithuania,LTU,reading,boy,452,2022
+Lithuania,LTU,reading,girl,492,2022
+Lithuania,LTU,science,total,484,2022
+Lithuania,LTU,science,boy,480,2022
+Lithuania,LTU,science,girl,487,2022
+Luxembourg,LUX,math,total,472,2022
+Luxembourg,LUX,math,boy,477,2022
+Luxembourg,LUX,math,girl,466,2022
+Luxembourg,LUX,reading,total,468,2022
+Luxembourg,LUX,reading,boy,455,2022
+Luxembourg,LUX,reading,girl,481,2022
+Luxembourg,LUX,science,total,477,2022
+Luxembourg,LUX,science,boy,477,2022
+Luxembourg,LUX,science,girl,476,2022
+Malta,MLT,math,total,466,2022
+Malta,MLT,math,boy,469,2022
+Malta,MLT,math,girl,463,2022
+Malta,MLT,reading,total,448,2022
+Malta,MLT,reading,boy,429,2022
+Malta,MLT,reading,girl,468,2022
+Malta,MLT,science,total,466,2022
+Malta,MLT,science,boy,462,2022
+Malta,MLT,science,girl,471,2022
+Netherlands,NLD,math,total,493,2022
+Netherlands,NLD,math,boy,497,2022
+Netherlands,NLD,math,girl,489,2022
+Netherlands,NLD,reading,total,459,2022
+Netherlands,NLD,reading,boy,443,2022
+Netherlands,NLD,reading,girl,475,2022
+Netherlands,NLD,science,total,488,2022
+Netherlands,NLD,science,boy,488,2022
+Netherlands,NLD,science,girl,487,2022
+Norway,NOR,math,total,468,2022
+Norway,NOR,math,boy,472,2022
+Norway,NOR,math,girl,463,2022
+Norway,NOR,reading,total,477,2022
+Norway,NOR,reading,boy,459,2022
+Norway,NOR,reading,girl,496,2022
+Norway,NOR,science,total,478,2022
+Norway,NOR,science,boy,474,2022
+Norway,NOR,science,girl,483,2022
+Poland,POL,math,total,489,2022
+Poland,POL,math,boy,491,2022
+Poland,POL,math,girl,486,2022
+Poland,POL,reading,total,489,2022
+Poland,POL,reading,boy,472,2022
+Poland,POL,reading,girl,507,2022
+Poland,POL,science,total,499,2022
+Poland,POL,science,boy,498,2022
+Poland,POL,science,girl,501,2022
+Portugal,PRT,math,total,472,2022
+Portugal,PRT,math,boy,473,2022
+Portugal,PRT,math,girl,470,2022
+Portugal,PRT,reading,total,477,2022
+Portugal,PRT,reading,boy,460,2022
+Portugal,PRT,reading,girl,494,2022
+Portugal,PRT,science,total,484,2022
+Portugal,PRT,science,boy,481,2022
+Portugal,PRT,science,girl,487,2022
+Romania,ROU,math,total,428,2022
+Romania,ROU,math,boy,430,2022
+Romania,ROU,math,girl,425,2022
+Romania,ROU,reading,total,428,2022
+Romania,ROU,reading,boy,410,2022
+Romania,ROU,reading,girl,447,2022
+Romania,ROU,science,total,428,2022
+Romania,ROU,science,boy,425,2022
+Romania,ROU,science,girl,432,2022
+Singapore,SGP,math,total,575,2022
+Singapore,SGP,math,boy,576,2022
+Singapore,SGP,math,girl,574,2022
+Singapore,SGP,reading,total,543,2022
+Singapore,SGP,reading,boy,530,2022
+Singapore,SGP,reading,girl,556,2022
+Singapore,SGP,science,total,561,2022
+Singapore,SGP,science,boy,559,2022
+Singapore,SGP,science,girl,563,2022
+Slovakia,SVK,math,total,464,2022
+Slovakia,SVK,math,boy,469,2022
+Slovakia,SVK,math,girl,458,2022
+Slovakia,SVK,reading,total,447,2022
+Slovakia,SVK,reading,boy,428,2022
+Slovakia,SVK,reading,girl,466,2022
+Slovakia,SVK,science,total,462,2022
+Slovakia,SVK,science,boy,461,2022
+Slovakia,SVK,science,girl,464,2022
+Slovenia,SVN,math,total,485,2022
+Slovenia,SVN,math,boy,487,2022
+Slovenia,SVN,math,girl,483,2022
+Slovenia,SVN,reading,total,469,2022
+Slovenia,SVN,reading,boy,449,2022
+Slovenia,SVN,reading,girl,491,2022
+Slovenia,SVN,science,total,500,2022
+Slovenia,SVN,science,boy,497,2022
+Slovenia,SVN,science,girl,503,2022
+South Korea,KOR,math,total,527,2022
+South Korea,KOR,math,boy,530,2022
+South Korea,KOR,math,girl,524,2022
+South Korea,KOR,reading,total,515,2022
+South Korea,KOR,reading,boy,504,2022
+South Korea,KOR,reading,girl,526,2022
+South Korea,KOR,science,total,528,2022
+South Korea,KOR,science,boy,528,2022
+South Korea,KOR,science,girl,528,2022
+Spain,ESP,math,total,473,2022
+Spain,ESP,math,boy,478,2022
+Spain,ESP,math,girl,468,2022
+Spain,ESP,reading,total,474,2022
+Spain,ESP,reading,boy,457,2022
+Spain,ESP,reading,girl,491,2022
+Spain,ESP,science,total,485,2022
+Spain,ESP,science,boy,483,2022
+Spain,ESP,science,girl,487,2022
+Sweden,SWE,math,total,482,2022
+Sweden,SWE,math,boy,487,2022
+Sweden,SWE,math,girl,477,2022
+Sweden,SWE,reading,total,487,2022
+Sweden,SWE,reading,boy,470,2022
+Sweden,SWE,reading,girl,504,2022
+Sweden,SWE,science,total,494,2022
+Sweden,SWE,science,boy,491,2022
+Sweden,SWE,science,girl,498,2022
+Switzerland,CHE,math,total,508,2022
+Switzerland,CHE,math,boy,515,2022
+Switzerland,CHE,math,girl,501,2022
+Switzerland,CHE,reading,total,483,2022
+Switzerland,CHE,reading,boy,468,2022
+Switzerland,CHE,reading,girl,498,2022
+Switzerland,CHE,science,total,503,2022
+Switzerland,CHE,science,boy,504,2022
+Switzerland,CHE,science,girl,502,2022
+Türkiye,TUR,math,total,453,2022
+Türkiye,TUR,math,boy,457,2022
+Türkiye,TUR,math,girl,449,2022
+Türkiye,TUR,reading,total,456,2022
+Türkiye,TUR,reading,boy,440,2022
+Türkiye,TUR,reading,girl,473,2022
+Türkiye,TUR,science,total,476,2022
+Türkiye,TUR,science,boy,474,2022
+Türkiye,TUR,science,girl,478,2022
+United Kingdom,GBR,math,total,489,2022
+United Kingdom,GBR,math,boy,494,2022
+United Kingdom,GBR,math,girl,484,2022
+United Kingdom,GBR,reading,total,494,2022
+United Kingdom,GBR,reading,boy,480,2022
+United Kingdom,GBR,reading,girl,509,2022
+United Kingdom,GBR,science,total,500,2022
+United Kingdom,GBR,science,boy,500,2022
+United Kingdom,GBR,science,girl,501,2022
+United States,USA,math,total,465,2022
+United States,USA,math,boy,469,2022
+United States,USA,math,girl,461,2022
+United States,USA,reading,total,504,2022
+United States,USA,reading,boy,494,2022
+United States,USA,reading,girl,515,2022
+United States,USA,science,total,499,2022
+United States,USA,science,boy,499,2022
+United States,USA,science,girl,499,2022
+OECD average,OECD,math,total,472,2022
+OECD average,OECD,math,boy,477,2022
+OECD average,OECD,math,girl,466,2022
+OECD average,OECD,reading,total,476,2022
+OECD average,OECD,reading,boy,462,2022
+OECD average,OECD,reading,girl,491,2022
+OECD average,OECD,science,total,485,2022
+OECD average,OECD,science,boy,484,2022
+OECD average,OECD,science,girl,486,2022

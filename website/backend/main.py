@@ -22,6 +22,7 @@ from services.ecb import search_ecb
 from services.unhcr import search_unhcr
 from services.cochrane import search_cochrane
 from services.gadmo import search_gadmo
+from services.oecd import search_oecd
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -128,6 +129,8 @@ async def check_claim(request: Request):
             tasks.append(cached("ECB", search_ecb, analysis))
         if analysis.get("unhcr_relevant"):
             tasks.append(cached("UNHCR", search_unhcr, analysis))
+        if analysis.get("oecd_relevant"):
+            tasks.append(cached("OECD", search_oecd, analysis))
 
         results = await asyncio.gather(*tasks, return_exceptions=True)
         for i, r in enumerate(results):
