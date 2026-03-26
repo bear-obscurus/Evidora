@@ -134,6 +134,12 @@ body {
     color: #0d9488;
 }
 
+.logo .domain-suffix {
+    font-weight: 300;
+    color: #9ca3af;
+    font-size: 0.6em;
+}
+
 .slogan-etymology {
     color: #9ca3af;
     font-size: 0.8rem;

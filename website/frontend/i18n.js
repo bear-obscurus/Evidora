@@ -1,7 +1,7 @@
 const TRANSLATIONS = {
     de: {
         // Meta
-        page_title: "Evidora — Faktencheck",
+        page_title: "Evidora.eu — Faktencheck",
         tagline: "Europäischer Faktencheck gegen Fake-News",
 
         // Search
@@ -69,7 +69,7 @@ const TRANSLATIONS = {
         history_clear: "Verlauf löschen",
 
         // Footer
-        footer_main: "Evidora — Europäischer Faktencheck | Quellen: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EZB, UNHCR, EEA, Copernicus, GADMO, EFCSN",
+        footer_main: "Evidora.eu — Europäischer Faktencheck | Quellen: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EZB, UNHCR, EEA, Copernicus, GADMO, EFCSN",
         footer_note: "Automatische Überprüfung — ersetzt keine professionelle Faktencheck-Redaktion",
         footer_opensource: "Open Source auf GitHub",
         privacy_link: "Datenschutz",
@@ -200,7 +200,7 @@ const TRANSLATIONS = {
 
     en: {
         // Meta
-        page_title: "Evidora — Fact Check",
+        page_title: "Evidora.eu — Fact Check",
         tagline: "European fact-checking against fake news",
 
         // Search
@@ -268,7 +268,7 @@ const TRANSLATIONS = {
         history_clear: "Clear history",
 
         // Footer
-        footer_main: "Evidora — European Fact Check | Sources: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, ECB, EEA, Copernicus, GADMO, EFCSN",
+        footer_main: "Evidora.eu — European Fact Check | Sources: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, ECB, EEA, Copernicus, GADMO, EFCSN",
         footer_note: "Automated check — does not replace professional fact-checking",
         footer_opensource: "Open Source on GitHub",
         privacy_link: "Privacy Policy",
