@@ -129,7 +129,7 @@ async def check_claim(request: Request):
             tasks.append(cached("ECB", search_ecb, analysis))
         if analysis.get("unhcr_relevant"):
             tasks.append(cached("UNHCR", search_unhcr, analysis))
-        if analysis.get("oecd_relevant"):
+        if analysis.get("oecd_relevant") or analysis.get("category") == "education":
             tasks.append(cached("OECD", search_oecd, analysis))
 
         results = await asyncio.gather(*tasks, return_exceptions=True)

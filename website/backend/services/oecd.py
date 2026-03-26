@@ -96,6 +96,7 @@ OECD_DATASETS = {
     "gender_wage_gap": {
         "flow": "OECD.ELS.SAE,DSD_EARNINGS@GENDER_WAGE_GAP,",
         "label": "Gender Wage Gap",
+        "n_dims": 7,
         "keywords": ["lohnunterschied", "lohnlücke", "gehalt", "verdien", "gender pay gap",
                       "wage gap", "einkommen", "gehaltsunterschied", "equal pay",
                       "lohngleichheit", "pay gap", "gender gap gehalt"],
@@ -103,12 +104,14 @@ OECD_DATASETS = {
     "employment_gender": {
         "flow": "OECD.ELS.SAE,DSD_LFS_EMP@DF_LFS_EMPSTAT_GENDER,",
         "label": "Employment by Gender",
+        "n_dims": 8,
         "keywords": ["beschäftigung", "erwerbstätig", "employment", "arbeitsmarkt",
                       "frauenanteil", "erwerbsquote", "labor market"],
     },
     "education_gender": {
         "flow": "OECD.EDU.IMEP,DSD_EAG_UOE_NON_FIN_STUD@DF_UOE_NF_SHARE_GENDER,",
         "label": "Education by Gender",
+        "n_dims": 15,
         "keywords": ["studium", "universität", "hochschule", "studieren", "absolventen",
                       "university", "graduates", "tertiary", "higher education",
                       "mint", "stem", "bildung frauen"],
@@ -285,17 +288,13 @@ async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
 
     for ds_id, ds_info in matching_datasets[:2]:
         try:
-            # Build SDMX query — use wildcards for unknown dimensions
             flow = ds_info["flow"]
-            if ds_id == "gender_wage_gap":
-                # gender_wage_gap has 8 dimensions
-                key = f"{geo}....Median.."
-                url = f"{SDMX_BASE}/{flow}/{key}?lastNObservations=1&dimensionAtObservation=AllDimensions"
-            else:
-                # Other datasets: broad wildcard query
-                dots = "." * 14  # Most OECD education datasets have ~15 dimensions
-                key = f"{geo}{dots}"
-                url = f"{SDMX_BASE}/{flow}/{key}?lastNObservations=1&dimensionAtObservation=AllDimensions"
+            n_dims = ds_info["n_dims"]
+
+            # Build key: REF_AREA + (n_dims-1) wildcards
+            wildcards = "." * (n_dims - 1)
+            key = f"{geo}{wildcards}"
+            url = f"{SDMX_BASE}/{flow}/{key}?lastNObservations=1&dimensionAtObservation=AllDimensions"
 
             async with httpx.AsyncClient(timeout=SDMX_TIMEOUT) as client:
                 resp = await client.get(url, headers={
