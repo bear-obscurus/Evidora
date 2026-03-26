@@ -1,5 +1,7 @@
 # Evidora
 
+*Evid(ence) + ora(re) — Evidence speaks for itself*
+
 A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
 Evidora automatically verifies claims against scientific and institutional sources such as PubMed, Cochrane, WHO, EMA, ECDC, Copernicus, Eurostat, ECB, UNHCR, EEA, and European fact-checkers.
@@ -13,6 +15,7 @@ Evidora automatically verifies claims against scientific and institutional sourc
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
 - **12 data sources** — Scientific databases, systematic reviews, official EU/UN statistics, climate data, disease surveillance, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
+- **Multi-country ranking** — Superlative claims ("highest", "most") automatically query all EU-27 countries for a full ranking
 - **Hallucination filtering** — Evidence URLs are verified against actual source results
 - **GDPR-compliant** — No cookies, no tracking, anonymized logs
 - **Bilingual** — Full German/English interface (DE/EN toggle)
@@ -139,6 +142,8 @@ Evidora/
 │   │   ├── main.py          # FastAPI entry point
 │   │   ├── Dockerfile
 │   │   ├── requirements.txt
+│   │   ├── pytest.ini        # Test configuration
+│   │   ├── tests/            # Test suite (unit, source API, integration)
 │   │   └── services/        # Data source modules
 │   │       ├── claim_analyzer.py  # LLM-based claim analysis
 │   │       ├── ollama.py          # Ollama/Mistral API client
@@ -186,6 +191,24 @@ Evidora/
 - **LLM:** Mistral 7B via Ollama (local) or Mistral API (cloud, EU servers)
 - **ML:** Sentence Transformers (MiniLM) for semantic reranking
 - **Deployment:** Docker Compose (backend + nginx)
+
+## Testing
+
+```bash
+cd website/backend
+
+# Unit tests (no backend needed, instant)
+python -m pytest tests/test_unit.py -v
+
+# Source API tests (needs network, no LLM)
+python -m pytest tests/test_sources.py -v --timeout=60
+
+# Integration tests (needs running backend + LLM)
+python -m pytest tests/test_integration.py -v --timeout=180
+
+# All tests
+python -m pytest -v --timeout=180
+```
 
 ## Troubleshooting
 

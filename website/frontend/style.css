@@ -107,7 +107,9 @@ body {
     font-size: 1.5rem;
 }
 
-#search-section.compact .tagline {
+#search-section.compact .tagline,
+#search-section.compact .slogan-etymology,
+#search-section.compact .slogan {
     display: none;
 }
 
@@ -130,6 +132,22 @@ body {
 .logo .highlight {
     font-weight: 700;
     color: #0d9488;
+}
+
+.slogan-etymology {
+    color: #9ca3af;
+    font-size: 0.8rem;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.slogan {
+    color: #6b7280;
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin-bottom: 12px;
 }
 
 .tagline {

@@ -530,36 +530,204 @@ def _parse_json_stat(data: dict, dataset_info: dict, geo_code: str) -> list[dict
     return results[:5]
 
 
+# All EU-27 geo codes for multi-country queries
+EU27_GEO_CODES = [
+    "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR",
+    "DE", "EL", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
+    "PL", "PT", "RO", "SK", "SI", "ES", "SE", "EU27_2020",
+]
+
+SUPERLATIVE_KEYWORDS = [
+    "höchste", "höchsten", "niedrigste", "niedrigsten", "meiste", "meisten",
+    "größte", "größten", "beste", "besten", "schlechteste", "schlechtesten",
+    "wenigste", "wenigsten", "stärkste", "stärksten",
+    "highest", "lowest", "most", "least", "largest", "smallest", "best", "worst",
+]
+
+
+def _is_superlative_claim(analysis: dict) -> bool:
+    """Check if the claim contains superlative keywords."""
+    claim = analysis.get("claim", "").lower()
+    entities = " ".join(analysis.get("entities", [])).lower()
+    text = f"{claim} {entities}"
+    return any(kw in text for kw in SUPERLATIVE_KEYWORDS)
+
+
+def _parse_multi_country(data: dict, dataset_info: dict) -> list[dict]:
+    """Parse Eurostat JSON-stat 2.0 response with multiple countries.
+
+    Returns only the most recent value per country, sorted by value descending.
+    """
+    dimensions = data.get("id", [])
+    sizes = data.get("size", [])
+    values = data.get("value", {})
+    dim_data = data.get("dimension", {})
+
+    if not values or not dimensions:
+        return []
+
+    # Find dimension indices
+    time_dim = geo_dim = None
+    for i, dim_id in enumerate(dimensions):
+        if dim_id in ("time", "TIME_PERIOD"):
+            time_dim = i
+        if dim_id == "geo":
+            geo_dim = i
+
+    # Get labels
+    geo_labels = {}
+    time_labels = {}
+    if geo_dim is not None and "geo" in dim_data:
+        geo_labels = dim_data["geo"].get("category", {}).get("label", {})
+    if time_dim is not None:
+        time_key = dimensions[time_dim]
+        if time_key in dim_data:
+            time_labels = dim_data[time_key].get("category", {}).get("label", {})
+
+    # Calculate strides
+    strides = []
+    for i in range(len(sizes)):
+        stride = 1
+        for j in range(i + 1, len(sizes)):
+            stride *= sizes[j]
+        strides.append(stride)
+
+    # Build dimension index maps
+    dim_indices = []
+    for dim_id in dimensions:
+        if dim_id in dim_data:
+            index = dim_data[dim_id].get("category", {}).get("index", {})
+            dim_indices.append(index if isinstance(index, dict) else {})
+        else:
+            dim_indices.append({})
+
+    # Collect all observations: {geo_code: {time: value}}
+    observations: dict[str, dict[str, float]] = {}
+    for flat_idx_str, value in values.items():
+        flat_idx = int(flat_idx_str)
+        remaining = flat_idx
+        per_dim = []
+        for s in strides:
+            per_dim.append(remaining // s)
+            remaining %= s
+
+        geo_code = geo_label = ""
+        time_val = ""
+        if geo_dim is not None:
+            for code, idx in dim_indices[geo_dim].items():
+                if idx == per_dim[geo_dim]:
+                    geo_code = code
+                    geo_label = geo_labels.get(code, code)
+                    break
+        if time_dim is not None:
+            for code, idx in dim_indices[time_dim].items():
+                if idx == per_dim[time_dim]:
+                    time_val = time_labels.get(code, code)
+                    break
+
+        if geo_code and time_val:
+            if geo_code not in observations:
+                observations[geo_code] = {}
+            observations[geo_code][time_val] = (value, geo_label)
+
+    # For each country, pick the most recent year
+    latest_per_country = []
+    for geo_code, time_data in observations.items():
+        if not time_data:
+            continue
+        latest_time = max(time_data.keys())
+        value, geo_label = time_data[latest_time]
+        try:
+            num_value = float(value)
+        except (ValueError, TypeError):
+            continue
+        latest_per_country.append({
+            "geo_code": geo_code,
+            "country": geo_label,
+            "year": latest_time,
+            "value": num_value,
+        })
+
+    # Sort by value descending (highest first)
+    latest_per_country.sort(key=lambda x: x["value"], reverse=True)
+
+    # Format results with ranking
+    results = []
+    for rank, entry in enumerate(latest_per_country, 1):
+        results.append({
+            "title": f"#{rank} {entry['country']}: {entry['value']} {dataset_info['unit']} ({entry['year']})",
+            "indicator": dataset_info["label"],
+            "country": entry["country"],
+            "geo": entry["geo_code"],
+            "year": entry["year"],
+            "value": f"{entry['value']} {dataset_info['unit']}",
+            "rank": rank,
+            "source": "Eurostat",
+            "url": f"https://ec.europa.eu/eurostat/databrowser/view/{dataset_info['dataset']}/default/table",
+        })
+
+    return results
+
+
 async def search_eurostat(analysis: dict) -> dict:
     """Search Eurostat for relevant EU statistics."""
     datasets = _find_datasets(analysis)
     geo_code = _find_country(analysis)
+    superlative = _is_superlative_claim(analysis)
 
     all_results = []
 
     async with httpx.AsyncClient(timeout=30.0) as client:
         for ds in datasets[:2]:  # Max 2 datasets to keep it fast
             try:
-                params = {
-                    "format": "JSON",
-                    "lang": "EN",
-                    "geo": geo_code,
-                    **ds["params"],
-                }
+                if superlative:
+                    # Multi-country query: fetch all EU27 for ranking
+                    params = {
+                        "format": "JSON",
+                        "lang": "EN",
+                        "geo": EU27_GEO_CODES,
+                        "lastTimePeriod": "1",  # Only most recent period
+                        **{k: v for k, v in ds["params"].items() if k != "lastTimePeriod"},
+                    }
 
-                resp = await client.get(
-                    f"{BASE_URL}/{ds['dataset']}",
-                    params=params,
-                )
-                resp.raise_for_status()
-                data = resp.json()
+                    resp = await client.get(
+                        f"{BASE_URL}/{ds['dataset']}",
+                        params=params,
+                    )
+                    resp.raise_for_status()
+                    data = resp.json()
 
-                parsed = _parse_json_stat(data, ds, geo_code)
-                all_results.extend(parsed)
+                    parsed = _parse_multi_country(data, ds)
+                    # Keep top 10 + the mentioned country if outside top 10
+                    top_results = parsed[:10]
+                    mentioned_in_top = any(r["geo"] == geo_code for r in top_results)
+                    if not mentioned_in_top and geo_code != "EU27_2020":
+                        for r in parsed:
+                            if r.get("geo") == geo_code:
+                                top_results.append(r)
+                                break
+                    all_results.extend(top_results)
+                else:
+                    # Single-country query (default behavior)
+                    params = {
+                        "format": "JSON",
+                        "lang": "EN",
+                        "geo": geo_code,
+                        **ds["params"],
+                    }
+
+                    resp = await client.get(
+                        f"{BASE_URL}/{ds['dataset']}",
+                        params=params,
+                    )
+                    resp.raise_for_status()
+                    data = resp.json()
+
+                    parsed = _parse_json_stat(data, ds, geo_code)
+                    all_results.extend(parsed)
 
             except Exception as e:
                 logger.warning(f"Eurostat request failed for {ds['dataset']}: {e}")
-                # Still add a reference link
                 all_results.append({
                     "title": f"{ds['label']}: Daten nicht verfügbar",
                     "indicator": ds["label"],
