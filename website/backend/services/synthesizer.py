@@ -263,6 +263,36 @@ async def synthesize_results(
                 result["verdict"] = "unverifiable"
                 result["confidence"] = 0.0
 
+            # Consistency check: detect when summary text contradicts verdict
+            summary_lower = result.get("summary", "").lower()
+            verdict = result.get("verdict", "")
+            verdict_from_summary = None
+
+            # Check for explicit verdict statements in summary
+            true_patterns = [
+                "behauptung ist daher wahr", "behauptung ist wahr",
+                "behauptung ist korrekt", "behauptung ist richtig",
+                "claim is true", "claim is correct", "therefore true",
+            ]
+            false_patterns = [
+                "behauptung ist daher falsch", "behauptung ist falsch",
+                "behauptung ist nicht korrekt", "behauptung ist nicht richtig",
+                "claim is false", "claim is incorrect", "therefore false",
+            ]
+
+            if any(p in summary_lower for p in true_patterns):
+                verdict_from_summary = "true"
+            elif any(p in summary_lower for p in false_patterns):
+                verdict_from_summary = "false"
+
+            if verdict_from_summary and verdict_from_summary != verdict:
+                logger.warning(
+                    f"Verdict consistency fix: JSON verdict='{verdict}' "
+                    f"contradicts summary (detected '{verdict_from_summary}'). "
+                    f"Correcting to '{verdict_from_summary}'."
+                )
+                result["verdict"] = verdict_from_summary
+
             return result
 
         logger.warning("Synthesizer returned non-JSON response")
