@@ -45,7 +45,7 @@ Quellen-Relevanz-Regeln:
 - ecdc_relevant: true bei Infektionskrankheiten (Masern, Grippe, Tuberkulose, HIV, Hepatitis, Keuchhusten, Salmonellen, Dengue, Malaria, Polio, Diphtherie, Röteln, Mumps, Cholera, Legionellen, FSME, Antibiotikaresistenz, Ebola)
 - who_relevant: true bei allgemeinen Gesundheitsthemen (Lebenserwartung, Sterblichkeit, Impfraten, Krankheitslast)
 - ema_relevant: true bei Medikamenten und Arzneimitteln
-- eurostat_relevant: true bei EU-Wirtschaft, Migration, Demografie, Arbeitsmarkt
+- eurostat_relevant: true bei EU-Wirtschaft, Migration, Demografie, Arbeitsmarkt, CO2-Emissionen, Treibhausgase, Lebenserwartung, Gesundheitsausgaben, Immobilienpreise, Mindestlohn, Staatsschulden, Einkommensungleichheit, Tourismus
 - eea_relevant: true bei Umwelt und Luftqualität
 - climate_relevant: true bei Klima und Temperatur
 - ecb_relevant: true bei EZB, Leitzins, Zinsen, Wechselkursen, Geldmenge, Geldpolitik, Euro-Wert

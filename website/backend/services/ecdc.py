@@ -1,341 +1,292 @@
-import httpx
+"""ECDC / infectious disease data via Our World in Data (OWID).
+
+The original ECDC Surveillance Atlas API returned empty results for most
+queries. This module fetches reliable data from OWID's GitHub CSV files
+(COVID-19) and falls back to the ECDC Atlas for other infectious diseases.
+"""
+
+import csv
+import io
 import logging
 from datetime import datetime
 
+import httpx
+
 logger = logging.getLogger("evidora")
 
-ATLAS_BASE = "https://atlas.ecdc.europa.eu/public/AtlasService/rest"
+# OWID COVID latest data — one row per country, ~30 KB
+OWID_LATEST_URL = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.csv"
 
-# Map disease keywords (DE + EN) to ECDC health topic codes
+# In-memory cache for OWID data
+_owid_cache: dict | None = None
+_owid_cache_ts: float = 0
+OWID_CACHE_TTL = 86400  # 24 hours
+
+# Disease keywords → type mapping
+COVID_KEYWORDS = [
+    "covid", "corona", "sars-cov-2", "coronavirus", "pandemie", "pandemic",
+    "impfquote", "vaccination rate", "impfung", "geimpft",
+]
+
 DISEASE_MAP = {
-    # Masern
-    "masern": {"code": "MEAS", "label": "Masern", "label_en": "Measles"},
-    "measles": {"code": "MEAS", "label": "Masern", "label_en": "Measles"},
-    # Influenza / Grippe
-    "grippe": {"code": "INFL", "label": "Influenza", "label_en": "Influenza"},
-    "influenza": {"code": "INFL", "label": "Influenza", "label_en": "Influenza"},
-    "flu": {"code": "INFL", "label": "Influenza", "label_en": "Influenza"},
-    # COVID-19 — not available as separate topic in ECDC Surveillance Atlas
-    # "covid" / "corona" → no ECDC mapping
-    # Tuberkulose
-    "tuberkulose": {"code": "TUBE", "label": "Tuberkulose", "label_en": "Tuberculosis"},
-    "tuberculosis": {"code": "TUBE", "label": "Tuberkulose", "label_en": "Tuberculosis"},
-    "tb": {"code": "TUBE", "label": "Tuberkulose", "label_en": "Tuberculosis"},
-    # HIV/AIDS
-    "hiv": {"code": "HIV", "label": "HIV/AIDS", "label_en": "HIV/AIDS"},
-    "aids": {"code": "HIV", "label": "HIV/AIDS", "label_en": "HIV/AIDS"},
-    # Keuchhusten
-    "keuchhusten": {"code": "PERT", "label": "Keuchhusten", "label_en": "Pertussis"},
-    "pertussis": {"code": "PERT", "label": "Keuchhusten", "label_en": "Pertussis"},
-    "whooping cough": {"code": "PERT", "label": "Keuchhusten", "label_en": "Pertussis"},
-    # Hepatitis
-    "hepatitis a": {"code": "HEPA", "label": "Hepatitis A", "label_en": "Hepatitis A"},
-    "hepatitis b": {"code": "HEPB", "label": "Hepatitis B", "label_en": "Hepatitis B"},
-    "hepatitis c": {"code": "HEPC", "label": "Hepatitis C", "label_en": "Hepatitis C"},
-    "hepatitis": {"code": "HEPA", "label": "Hepatitis A", "label_en": "Hepatitis A"},
-    # Salmonellose
-    "salmonellen": {"code": "SALM", "label": "Salmonellose", "label_en": "Salmonellosis"},
-    "salmonellose": {"code": "SALM", "label": "Salmonellose", "label_en": "Salmonellosis"},
-    "salmonellosis": {"code": "SALM", "label": "Salmonellose", "label_en": "Salmonellosis"},
-    "salmonella": {"code": "SALM", "label": "Salmonellose", "label_en": "Salmonellosis"},
-    # Dengue
-    "dengue": {"code": "DENGUE", "label": "Dengue-Fieber", "label_en": "Dengue"},
-    # Malaria
-    "malaria": {"code": "MALA", "label": "Malaria", "label_en": "Malaria"},
-    # West-Nil-Virus
-    "west-nil": {"code": "WNF", "label": "West-Nil-Fieber", "label_en": "West Nile Fever"},
-    "west nile": {"code": "WNF", "label": "West-Nil-Fieber", "label_en": "West Nile Fever"},
-    # Polio
-    "polio": {"code": "POLI", "label": "Poliomyelitis", "label_en": "Poliomyelitis"},
-    "kinderlähmung": {"code": "POLI", "label": "Poliomyelitis", "label_en": "Poliomyelitis"},
-    # Diphtherie
-    "diphtherie": {"code": "DIPH", "label": "Diphtherie", "label_en": "Diphtheria"},
-    "diphtheria": {"code": "DIPH", "label": "Diphtherie", "label_en": "Diphtheria"},
-    # Röteln
-    "röteln": {"code": "RUBE", "label": "Röteln", "label_en": "Rubella"},
-    "rubella": {"code": "RUBE", "label": "Röteln", "label_en": "Rubella"},
-    # Mumps
-    "mumps": {"code": "MUMP", "label": "Mumps", "label_en": "Mumps"},
-    # Cholera
-    "cholera": {"code": "CHOL", "label": "Cholera", "label_en": "Cholera"},
-    # Legionellen
-    "legionellen": {"code": "LEGI", "label": "Legionärskrankheit", "label_en": "Legionnaires' Disease"},
-    "legionella": {"code": "LEGI", "label": "Legionärskrankheit", "label_en": "Legionnaires' Disease"},
-    "legionnaires": {"code": "LEGI", "label": "Legionärskrankheit", "label_en": "Legionnaires' Disease"},
-    # FSME / Zecken
-    "fsme": {"code": "TBE", "label": "FSME (Zeckenenzephalitis)", "label_en": "Tick-borne Encephalitis"},
-    "zecken": {"code": "TBE", "label": "FSME (Zeckenenzephalitis)", "label_en": "Tick-borne Encephalitis"},
-    "tick-borne encephalitis": {"code": "TBE", "label": "FSME (Zeckenenzephalitis)", "label_en": "Tick-borne Encephalitis"},
-    # Antibiotikaresistenz
-    "antibiotikaresistenz": {"code": "AMR", "label": "Antibiotikaresistenz", "label_en": "Antimicrobial Resistance"},
-    "antimicrobial resistance": {"code": "AMR", "label": "Antibiotikaresistenz", "label_en": "Antimicrobial Resistance"},
-    "amr": {"code": "AMR", "label": "Antibiotikaresistenz", "label_en": "Antimicrobial Resistance"},
-    "mrsa": {"code": "AMR", "label": "Antibiotikaresistenz", "label_en": "Antimicrobial Resistance"},
-    # Ebola
-    "ebola": {"code": "FILO", "label": "Ebola", "label_en": "Ebola/Marburg"},
-    # Mpox (Affenpocken)
-    # Mpox — not available as separate topic in ECDC Surveillance Atlas
+    "masern": {"label": "Masern", "label_en": "Measles"},
+    "measles": {"label": "Masern", "label_en": "Measles"},
+    "grippe": {"label": "Influenza", "label_en": "Influenza"},
+    "influenza": {"label": "Influenza", "label_en": "Influenza"},
+    "flu": {"label": "Influenza", "label_en": "Influenza"},
+    "tuberkulose": {"label": "Tuberkulose", "label_en": "Tuberculosis"},
+    "tuberculosis": {"label": "Tuberkulose", "label_en": "Tuberculosis"},
+    "tb": {"label": "Tuberkulose", "label_en": "Tuberculosis"},
+    "hiv": {"label": "HIV/AIDS", "label_en": "HIV/AIDS"},
+    "aids": {"label": "HIV/AIDS", "label_en": "HIV/AIDS"},
+    "keuchhusten": {"label": "Keuchhusten", "label_en": "Pertussis"},
+    "pertussis": {"label": "Keuchhusten", "label_en": "Pertussis"},
+    "hepatitis": {"label": "Hepatitis", "label_en": "Hepatitis"},
+    "malaria": {"label": "Malaria", "label_en": "Malaria"},
+    "ebola": {"label": "Ebola", "label_en": "Ebola"},
+    "polio": {"label": "Poliomyelitis", "label_en": "Poliomyelitis"},
+    "kinderlähmung": {"label": "Poliomyelitis", "label_en": "Poliomyelitis"},
+    "dengue": {"label": "Dengue-Fieber", "label_en": "Dengue"},
+    "cholera": {"label": "Cholera", "label_en": "Cholera"},
+    "mpox": {"label": "Mpox", "label_en": "Mpox"},
+    "affenpocken": {"label": "Mpox", "label_en": "Mpox"},
 }
 
-# Country name to ISO 2-letter code (reuse Eurostat mapping)
+# Country name → ISO code (for OWID matching)
 COUNTRY_CODES = {
-    "österreich": "AT", "austria": "AT",
-    "deutschland": "DE", "germany": "DE",
-    "frankreich": "FR", "france": "FR",
-    "italien": "IT", "italy": "IT",
-    "spanien": "ES", "spain": "ES",
-    "niederlande": "NL", "netherlands": "NL",
-    "belgien": "BE", "belgium": "BE",
-    "polen": "PL", "poland": "PL",
-    "schweden": "SE", "sweden": "SE",
-    "dänemark": "DK", "denmark": "DK",
-    "finnland": "FI", "finland": "FI",
-    "irland": "IE", "ireland": "IE",
-    "portugal": "PT",
-    "griechenland": "EL", "greece": "EL",
-    "tschechien": "CZ", "czechia": "CZ",
-    "rumänien": "RO", "romania": "RO",
-    "ungarn": "HU", "hungary": "HU",
-    "kroatien": "HR", "croatia": "HR",
-    "bulgarien": "BG", "bulgaria": "BG",
-    "slowakei": "SK", "slovakia": "SK",
-    "slowenien": "SI", "slovenia": "SI",
-    "luxemburg": "LU", "luxembourg": "LU",
-    "estland": "EE", "estonia": "EE",
-    "lettland": "LV", "latvia": "LV",
-    "litauen": "LT", "lithuania": "LT",
-    "malta": "MT", "zypern": "CY", "cyprus": "CY",
-    "norwegen": "NO", "norway": "NO",
-    "island": "IS", "iceland": "IS",
+    "österreich": "AUT", "austria": "AUT",
+    "deutschland": "DEU", "germany": "DEU",
+    "frankreich": "FRA", "france": "FRA",
+    "italien": "ITA", "italy": "ITA",
+    "spanien": "ESP", "spain": "ESP",
+    "niederlande": "NLD", "netherlands": "NLD",
+    "belgien": "BEL", "belgium": "BEL",
+    "polen": "POL", "poland": "POL",
+    "schweden": "SWE", "sweden": "SWE",
+    "dänemark": "DNK", "denmark": "DNK",
+    "finnland": "FIN", "finland": "FIN",
+    "irland": "IRL", "ireland": "IRL",
+    "portugal": "PRT",
+    "griechenland": "GRC", "greece": "GRC",
+    "tschechien": "CZE", "czechia": "CZE",
+    "rumänien": "ROU", "romania": "ROU",
+    "ungarn": "HUN", "hungary": "HUN",
+    "kroatien": "HRV", "croatia": "HRV",
+    "bulgarien": "BGR", "bulgaria": "BGR",
+    "slowakei": "SVK", "slovakia": "SVK",
+    "slowenien": "SVN", "slovenia": "SVN",
+    "luxemburg": "LUX", "luxembourg": "LUX",
+    "estland": "EST", "estonia": "EST",
+    "lettland": "LVA", "latvia": "LVA",
+    "litauen": "LTU", "lithuania": "LTU",
+    "malta": "MLT", "zypern": "CYP", "cyprus": "CYP",
+    "europa": "OWID_EUR", "europe": "OWID_EUR",
+    "eu": "OWID_EUR",
+    "welt": "OWID_WRL", "world": "OWID_WRL",
 }
 
-# Cache for health topic IDs (populated on first request)
-_topic_cache: dict[str, int] = {}
+
+def _is_covid_claim(analysis: dict) -> bool:
+    """Check if the claim is about COVID-19."""
+    text = " ".join([
+        analysis.get("claim", ""),
+        analysis.get("subcategory", ""),
+        " ".join(analysis.get("entities", [])),
+    ]).lower()
+    return any(kw in text for kw in COVID_KEYWORDS)
 
 
-def _find_disease(analysis: dict) -> dict | None:
-    """Match claim analysis to an ECDC disease topic."""
-    entities = analysis.get("entities", [])
-    subcategory = analysis.get("subcategory", "")
-    search_terms = entities + [subcategory]
-
-    for term in search_terms:
-        term_lower = term.lower()
-        for keyword, disease in DISEASE_MAP.items():
-            if keyword in term_lower:
-                return disease
-    return None
-
-
-def _find_country(analysis: dict) -> str | None:
-    """Extract country code from entities. Returns None for EU-wide search."""
-    entities = analysis.get("entities", [])
-    for entity in entities:
-        entity_lower = entity.lower()
+def _find_country_iso3(analysis: dict) -> str | None:
+    """Extract ISO-3 country code from entities."""
+    for entity in analysis.get("entities", []):
         for name, code in COUNTRY_CODES.items():
-            if name in entity_lower:
+            if name in entity.lower():
                 return code
     return None
 
 
-async def _get_topic_id(client: httpx.AsyncClient, topic_code: str) -> int | None:
-    """Get the health topic ID for a given code, using cache."""
-    if topic_code in _topic_cache:
-        return _topic_cache[topic_code]
+def _find_disease(analysis: dict) -> dict | None:
+    """Match claim to a non-COVID disease."""
+    text = " ".join([
+        analysis.get("subcategory", ""),
+        " ".join(analysis.get("entities", [])),
+    ]).lower()
+    for keyword, disease in DISEASE_MAP.items():
+        if keyword in text:
+            return disease
+    return None
+
+
+async def _fetch_owid_latest(client: httpx.AsyncClient) -> list[dict]:
+    """Fetch OWID COVID latest data (cached for 24h)."""
+    global _owid_cache, _owid_cache_ts
+    import time
+
+    now = time.time()
+    if _owid_cache is not None and now - _owid_cache_ts < OWID_CACHE_TTL:
+        return _owid_cache
 
     try:
-        resp = await client.get(f"{ATLAS_BASE}/GetHealthTopics")
+        resp = await client.get(OWID_LATEST_URL, timeout=15.0)
         resp.raise_for_status()
-        data = resp.json()
-
-        for topic in data.get("HealthTopics", []):
-            _topic_cache[topic["Code"]] = topic["Id"]
-
-        return _topic_cache.get(topic_code)
+        reader = csv.DictReader(io.StringIO(resp.text))
+        rows = list(reader)
+        _owid_cache = rows
+        _owid_cache_ts = now
+        logger.info(f"OWID COVID latest: {len(rows)} countries loaded")
+        return rows
     except Exception as e:
-        logger.warning(f"ECDC: Failed to fetch health topics: {e}")
+        logger.warning(f"OWID COVID fetch failed: {e}")
+        return _owid_cache or []
+
+
+def _safe_int(val: str) -> int | None:
+    """Parse a string to int, handling floats and empty strings."""
+    if not val or val == "":
+        return None
+    try:
+        return int(float(val))
+    except (ValueError, TypeError):
         return None
 
 
-async def _get_dataset_and_measure(client: httpx.AsyncClient, topic_id: int) -> tuple[int | None, int | None]:
-    """Get the current dataset ID and 'reported cases' measure ID for a topic."""
+def _safe_float(val: str) -> float | None:
+    """Parse a string to float, handling empty strings."""
+    if not val or val == "":
+        return None
     try:
-        resp = await client.get(
-            f"{ATLAS_BASE}/GetDatasetsForHealthTopic",
-            params={"healthTopicId": topic_id},
-        )
-        resp.raise_for_status()
-        raw = resp.json()
-        datasets = raw.get("Datasets", []) if isinstance(raw, dict) else raw
+        return float(val)
+    except (ValueError, TypeError):
+        return None
 
-        # Find the CURRENT dataset
-        dataset_id = None
-        for ds in datasets:
-            code = ds.get("Code", "")
-            if code.startswith("CURRENT."):
-                dataset_id = ds["Id"]
+
+def _format_number(n: int | float | None) -> str:
+    """Format a number with thousands separator."""
+    if n is None:
+        return "k.A."
+    if isinstance(n, float):
+        return f"{n:,.1f}".replace(",", ".")
+    return f"{n:,}".replace(",", ".")
+
+
+async def _search_covid(analysis: dict, client: httpx.AsyncClient) -> list[dict]:
+    """Search OWID for COVID-19 data."""
+    rows = await _fetch_owid_latest(client)
+    if not rows:
+        return []
+
+    country_code = _find_country_iso3(analysis)
+    results = []
+
+    if country_code:
+        # Single country
+        for row in rows:
+            if row.get("iso_code") == country_code:
+                location = row.get("location", country_code)
+                last_updated = row.get("last_updated_date", "")
+                total_cases = _safe_int(row.get("total_cases"))
+                total_deaths = _safe_int(row.get("total_deaths"))
+                total_vaccinations = _safe_int(row.get("total_vaccinations"))
+                people_vaccinated = _safe_int(row.get("people_vaccinated"))
+                population = _safe_int(row.get("population"))
+                cases_per_million = _safe_float(row.get("total_cases_per_million"))
+                deaths_per_million = _safe_float(row.get("total_deaths_per_million"))
+
+                results.append({
+                    "title": f"COVID-19 {location}: {_format_number(total_cases)} Fälle, {_format_number(total_deaths)} Todesfälle (Stand: {last_updated})",
+                    "indicator": "COVID-19",
+                    "country": location,
+                    "date": last_updated,
+                    "value": f"{_format_number(total_cases)} Fälle",
+                    "source": "OWID/ECDC",
+                    "url": "https://ourworldindata.org/covid-cases",
+                })
+
+                if total_vaccinations:
+                    vacc_pct = ""
+                    if people_vaccinated and population:
+                        vacc_pct = f" ({people_vaccinated / population * 100:.1f}% mind. 1 Dosis)"
+                    results.append({
+                        "title": f"COVID-19 Impfungen {location}: {_format_number(total_vaccinations)} Dosen verabreicht{vacc_pct}",
+                        "indicator": "COVID-19 Impfungen",
+                        "country": location,
+                        "date": last_updated,
+                        "value": f"{_format_number(total_vaccinations)} Impfdosen",
+                        "source": "OWID/ECDC",
+                        "url": "https://ourworldindata.org/covid-vaccinations",
+                    })
+
+                if cases_per_million:
+                    results.append({
+                        "title": f"COVID-19 {location}: {_format_number(cases_per_million)} Fälle pro Million, {_format_number(deaths_per_million)} Todesfälle pro Million",
+                        "indicator": "COVID-19 pro Kopf",
+                        "country": location,
+                        "date": last_updated,
+                        "value": f"{_format_number(cases_per_million)} Fälle/Mio.",
+                        "source": "OWID/ECDC",
+                        "url": "https://ourworldindata.org/covid-cases",
+                    })
+                break
+    else:
+        # Top 10 countries by total cases for global overview
+        valid = [r for r in rows if r.get("iso_code", "").startswith("OWID") is False
+                 and _safe_int(r.get("total_cases")) is not None
+                 and not r.get("iso_code", "").startswith("OWID")]
+        valid.sort(key=lambda r: _safe_int(r.get("total_cases")) or 0, reverse=True)
+
+        # Add world total
+        for row in rows:
+            if row.get("iso_code") == "OWID_WRL":
+                results.append({
+                    "title": f"COVID-19 weltweit: {_format_number(_safe_int(row.get('total_cases')))} Fälle, {_format_number(_safe_int(row.get('total_deaths')))} Todesfälle",
+                    "indicator": "COVID-19 Weltweit",
+                    "country": "Welt",
+                    "date": row.get("last_updated_date", ""),
+                    "value": f"{_format_number(_safe_int(row.get('total_cases')))} Fälle",
+                    "source": "OWID/ECDC",
+                    "url": "https://ourworldindata.org/covid-cases",
+                })
                 break
 
-        if dataset_id is None and datasets:
-            dataset_id = datasets[0]["Id"]
-
-        if dataset_id is None:
-            return None, None
-
-        # Get measures for this topic + dataset
-        resp = await client.get(
-            f"{ATLAS_BASE}/GetIndicatorMeasuresForHealthTopicAndDataset",
-            params={"healthTopicId": topic_id, "datasetId": dataset_id},
-        )
-        resp.raise_for_status()
-        raw_measures = resp.json()
-        measures = raw_measures.get("Measures", []) if isinstance(raw_measures, dict) else raw_measures
-
-        # Prefer "reported cases" (ALL.COUNT), fallback to first measure
-        measure_id = None
-        for m in measures:
-            code = m.get("Code", "")
-            if code == "ALL.COUNT":
-                measure_id = m["Id"]
+        # Add Europe total
+        for row in rows:
+            if row.get("iso_code") == "OWID_EUR":
+                results.append({
+                    "title": f"COVID-19 Europa: {_format_number(_safe_int(row.get('total_cases')))} Fälle, {_format_number(_safe_int(row.get('total_deaths')))} Todesfälle",
+                    "indicator": "COVID-19 Europa",
+                    "country": "Europa",
+                    "date": row.get("last_updated_date", ""),
+                    "value": f"{_format_number(_safe_int(row.get('total_cases')))} Fälle",
+                    "source": "OWID/ECDC",
+                    "url": "https://ourworldindata.org/covid-cases",
+                })
                 break
 
-        # Fallback: any COUNT measure
-        if measure_id is None:
-            for m in measures:
-                code = m.get("Code", "")
-                if "COUNT" in code and "FATAL" not in code:
-                    measure_id = m["Id"]
-                    break
-
-        # Last fallback: first measure
-        if measure_id is None and measures:
-            measure_id = measures[0]["Id"]
-
-        return dataset_id, measure_id
-
-    except Exception as e:
-        logger.warning(f"ECDC: Failed to get dataset/measure for topic {topic_id}: {e}")
-        return None, None
+    return results
 
 
 async def search_ecdc(analysis: dict) -> dict:
-    """Search ECDC Surveillance Atlas for infectious disease data."""
-    disease = _find_disease(analysis)
-
-    if not disease:
-        return {
-            "source": "ECDC",
-            "type": "official_data",
-            "results": [],
-        }
-
-    country = _find_country(analysis)
-    now = datetime.now()
-    # Query last 5 years
-    start_year = now.year - 5
-    end_year = now.year + 1
-
+    """Search for infectious disease data (COVID via OWID, others via WHO fallback)."""
     results = []
 
     async with httpx.AsyncClient(timeout=30.0) as client:
-        topic_id = await _get_topic_id(client, disease["code"])
-        if topic_id is None:
-            logger.warning(f"ECDC: Health topic not found: {disease['code']}")
-            return {"source": "ECDC", "type": "official_data", "results": []}
-
-        dataset_id, measure_id = await _get_dataset_and_measure(client, topic_id)
-        if measure_id is None:
-            logger.warning(f"ECDC: No measure found for topic {disease['code']}")
-            return {"source": "ECDC", "type": "official_data", "results": []}
-
-        try:
-            if country:
-                # Query specific country
-                resp = await client.get(
-                    f"{ATLAS_BASE}/GetMeasureResultsForTimePeriodAndGeoRegion",
-                    params={
-                        "measureId": measure_id,
-                        "timeCodes": "",
-                        "startTimeCode": str(start_year),
-                        "endTimeCodeExcl": str(end_year),
-                        "geoCode": country,
-                    },
-                )
-            else:
-                # Query all countries (EU level)
-                resp = await client.get(
-                    f"{ATLAS_BASE}/GetMeasureResultsForTimePeriodAndGeoLevel",
-                    params={
-                        "measureIds": measure_id,
-                        "timeCodes": "",
-                        "startTimeCode": str(start_year),
-                        "endTimeCodeExcl": str(end_year),
-                        "geoLevel": 2,
-                    },
-                )
-
-            resp.raise_for_status()
-            raw_data = resp.json()
-            data = raw_data.get("MeasureResults", []) if isinstance(raw_data, dict) else raw_data
-
-            if not isinstance(data, list):
-                data = []
-
-            # Filter to yearly data only and aggregate by year (or country+year)
-            yearly_data = {}
-            for entry in data:
-                time_code = entry.get("TimeCode", "")
-                geo = entry.get("GeoCountry", "")
-                value = entry.get("YValue")
-
-                if value is None:
-                    continue
-
-                # Only yearly data (format "YYYY", not "YYYY-MM")
-                if len(time_code) == 4 and time_code.isdigit():
-                    if country:
-                        # Single country: aggregate by year
-                        key = time_code
-                        if key not in yearly_data or value > yearly_data[key]["value"]:
-                            yearly_data[key] = {"year": time_code, "geo": geo, "value": value}
-                    else:
-                        # All countries: sum per year
-                        key = time_code
-                        if key not in yearly_data:
-                            yearly_data[key] = {"year": time_code, "geo": "EU/EEA", "value": 0, "countries": 0}
-                        yearly_data[key]["value"] += value
-                        yearly_data[key]["countries"] += 1
-
-            # Sort by year descending
-            sorted_years = sorted(yearly_data.values(), key=lambda x: x["year"], reverse=True)
-
-            country_label = country if country else "EU/EEA"
-            # Resolve country name
-            if country:
-                for name, code in COUNTRY_CODES.items():
-                    if code == country and name[0].isupper():
-                        country_label = name.title()
-                        break
-
-            for entry in sorted_years[:5]:
-                value = int(entry["value"]) if entry["value"] == int(entry["value"]) else entry["value"]
-                geo_label = country_label if country else f"EU/EEA ({entry.get('countries', '')} Länder)"
-
+        if _is_covid_claim(analysis):
+            results = await _search_covid(analysis, client)
+        else:
+            # For non-COVID diseases, provide OWID/WHO reference
+            disease = _find_disease(analysis)
+            if disease:
                 results.append({
-                    "title": f"ECDC: {disease['label']} — {geo_label} {entry['year']}: {value:,} gemeldete Fälle".replace(",", "."),
+                    "title": f"{disease['label']}: Aktuelle Daten über WHO/ECDC verfügbar",
                     "indicator": disease["label"],
-                    "country": geo_label,
-                    "year": entry["year"],
-                    "value": f"{value:,} Fälle".replace(",", "."),
-                    "source": "ECDC",
-                    "url": f"https://atlas.ecdc.europa.eu/public/index.aspx?Dataset=27&HealthTopic={topic_id}",
+                    "country": "",
+                    "value": "Siehe WHO Global Health Observatory",
+                    "source": "ECDC/WHO",
+                    "url": f"https://ourworldindata.org/search?q={disease['label_en'].replace(' ', '+')}",
                 })
 
-        except Exception as e:
-            logger.warning(f"ECDC: Data request failed for {disease['code']}: {e}")
-
     return {
-        "source": "ECDC",
+        "source": "ECDC (Infektionskrankheiten)",
         "type": "official_data",
         "results": results,
     }

@@ -203,6 +203,42 @@ class TestGADMO:
 # ClaimReview
 # ===================================================================
 
+class TestECDC:
+    async def test_covid_search(self):
+        from services.ecdc import search_ecdc
+        analysis = {
+            "claim": "COVID-19 ist in Europa ausgerottet",
+            "category": "health",
+            "subcategory": "covid",
+            "entities": ["COVID-19", "Europa"],
+            "ecdc_relevant": True,
+            "pubmed_queries": [],
+            "factcheck_queries": [],
+        }
+        result = await search_ecdc(analysis)
+        assert "ECDC" in result["source"]
+        assert len(result["results"]) > 0
+        # Should have COVID case/death data
+        titles = " ".join(r.get("title", "") for r in result["results"])
+        assert "COVID" in titles
+
+    async def test_covid_country_specific(self):
+        from services.ecdc import search_ecdc
+        analysis = {
+            "claim": "Österreich hat die höchste COVID-Impfquote",
+            "category": "health",
+            "subcategory": "vaccination",
+            "entities": ["Österreich", "COVID-19", "Impfquote"],
+            "ecdc_relevant": True,
+            "pubmed_queries": [],
+            "factcheck_queries": [],
+        }
+        result = await search_ecdc(analysis)
+        assert len(result["results"]) > 0
+        countries = " ".join(r.get("country", "") for r in result["results"])
+        assert "Austria" in countries
+
+
 class TestClaimReview:
     async def test_factcheck_search(self):
         from services.claimreview import search_claimreview

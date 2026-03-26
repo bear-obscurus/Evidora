@@ -6,6 +6,7 @@ import pytest
 
 from services.cache import _make_key, get, put, clear, stats
 from services.eurostat import _find_datasets, _find_country, _is_superlative_claim, COUNTRY_CODES, DATASET_MAP
+from services.ner import enrich_entities, _detect_language
 
 
 # ===================================================================
@@ -102,7 +103,11 @@ class TestEurostatHelpers:
 
     def test_dataset_map_has_key_categories(self):
         """Essential categories should have dataset mappings."""
-        essential = ["inflation", "arbeitslosigkeit", "erneuerbare", "bip", "bevölkerung"]
+        essential = [
+            "inflation", "arbeitslosigkeit", "erneuerbare", "bip", "bevölkerung",
+            "co2", "lebenserwartung", "gesundheitsausgaben", "immobilienpreise",
+            "mindestlohn", "staatsschulden", "ungleichheit", "tourismus",
+        ]
         for keyword in essential:
             assert keyword in DATASET_MAP, f"Missing keyword: {keyword}"
 
@@ -224,6 +229,41 @@ class TestHallucinationFilter:
 # ===================================================================
 # Rate limiter
 # ===================================================================
+
+class TestNER:
+    """Test SpaCy NER enrichment."""
+
+    def test_language_detection_german(self):
+        assert _detect_language("Die Arbeitslosigkeit in Spanien ist gestiegen") == "de"
+
+    def test_language_detection_english(self):
+        assert _detect_language("Unemployment in Spain has increased") == "en"
+
+    def test_enrich_adds_countries(self):
+        analysis = {"entities": ["Arbeitslosigkeit"], "category": "economy"}
+        result = enrich_entities("Die Arbeitslosigkeit in Österreich ist hoch", analysis)
+        # SpaCy should detect Österreich as GPE
+        entities_lower = [e.lower() for e in result["entities"]]
+        assert "österreich" in entities_lower
+
+    def test_enrich_preserves_existing(self):
+        analysis = {"entities": ["Impfungen", "Autismus"], "category": "health"}
+        result = enrich_entities("Impfungen verursachen Autismus", analysis)
+        assert "Impfungen" in result["entities"]
+        assert "Autismus" in result["entities"]
+
+    def test_enrich_no_duplicates(self):
+        analysis = {"entities": ["Deutschland"], "category": "economy"}
+        result = enrich_entities("Deutschland hat die meisten Flüchtlinge", analysis)
+        lower = [e.lower() for e in result["entities"]]
+        assert lower.count("deutschland") == 1
+
+    def test_enrich_graceful_without_spacy(self):
+        """If SpaCy fails to load, original analysis is returned unchanged."""
+        analysis = {"entities": ["Test"], "category": "other"}
+        result = enrich_entities("Test claim", analysis)
+        assert "Test" in result["entities"]
+
 
 class TestRateLimiter:
     def test_rate_limit_logic(self):

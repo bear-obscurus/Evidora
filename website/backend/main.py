@@ -24,6 +24,7 @@ from services.cochrane import search_cochrane
 from services.gadmo import search_gadmo
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
+from services.ner import enrich_entities
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("evidora")
@@ -79,7 +80,8 @@ async def check_claim(request: Request):
         try:
             logger.info(f"Analyzing claim (category pending, {len(claim)} chars)")
             analysis = await analyze_claim(claim)
-            logger.info(f"Analysis done: category={analysis.get('category')}, confidence={analysis.get('confidence')}")
+            analysis = enrich_entities(claim, analysis)
+            logger.info(f"Analysis done: category={analysis.get('category')}, confidence={analysis.get('confidence')}, entities={analysis.get('entities')}")
         except ValueError as e:
             if "MISTRAL_CREDITS_EXHAUSTED" in str(e):
                 logger.error("Mistral API credits exhausted")
