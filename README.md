@@ -231,6 +231,7 @@ python -m pytest -v --timeout=180
 | LLM responses are slow | Mistral 7B needs ~6 GB RAM. Close other memory-heavy applications. |
 | `Rate limit exceeded` (429) | Default: 10 requests per 60 seconds per IP. Adjust via `RATE_LIMIT` and `RATE_WINDOW` in `.env` |
 | `API credits exhausted` | Mistral Cloud API has no remaining credits. Top up at [Mistral Console](https://console.mistral.ai/) |
+| Browser hangs after result loads (Chromium) | Fixed in v1.1: Backend now sends explicit SSE `done` event; frontend calls `reader.cancel()` to close the stream. If you see this on an older version, update to latest. |
 
 ## License
 
