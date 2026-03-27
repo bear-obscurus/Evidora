@@ -159,11 +159,11 @@ function renderVerdict(data) {
             ${data.nuance ? `<p class="verdict-nuance">${escapeHtml(data.nuance)}</p>` : ""}
             <div class="metrics-grid">
                 <span class="metric-label">
-                    ${t("confidence")}
                     <span class="tooltip-anchor" aria-label="${t("confidence_tooltip")}">
                         <svg class="info-icon" viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><circle cx="8" cy="8" r="7.5" stroke="currentColor" stroke-width="1" fill="none"/><text x="8" y="12" text-anchor="middle" font-size="10" fill="currentColor" font-family="serif" font-style="italic">i</text></svg>
                         <span class="tooltip-text">${escapeHtml(t("confidence_tooltip"))}</span>
                     </span>
+                    ${t("confidence")}
                 </span>
                 <div class="confidence-track">
                     <div class="confidence-fill" style="width: ${confidence}%"></div>
