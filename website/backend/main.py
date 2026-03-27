@@ -74,6 +74,8 @@ async def check_claim(request: Request):
     lang = body.get("lang", "de") if body.get("lang") in ("de", "en") else "de"
     if not claim:
         raise HTTPException(status_code=400, detail="Claim must not be empty." if lang == "en" else "Behauptung darf nicht leer sein.")
+    if len(claim) < 10 or len(claim.split()) < 2:
+        raise HTTPException(status_code=400, detail="Claim too short — please enter at least 2 words." if lang == "en" else "Behauptung zu kurz — bitte mindestens 2 Wörter eingeben.")
 
     async def event_stream():
         # Step 1: Analyze claim with Mistral

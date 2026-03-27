@@ -9,6 +9,10 @@ form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const claim = input.value.trim();
     if (!claim) return;
+    if (claim.length < 10 || claim.split(/\s+/).filter(Boolean).length < 2) {
+        showError(t("error_claim_too_short"));
+        return;
+    }
 
     showLoading();
 
