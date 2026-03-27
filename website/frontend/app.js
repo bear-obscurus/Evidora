@@ -186,7 +186,12 @@ function renderVerdict(data) {
     const coverage = data.source_coverage || {};
     const queried = coverage.queried || 0;
     const withResults = coverage.with_results || 0;
-    const sourceNames = (coverage.names || []).map(n => escapeHtml(n)).join(", ");
+    const namesWithResults = new Set(coverage.names || []);
+    const allNames = coverage.all_names || [];
+    const sourceListHtml = allNames.map(n => {
+        const has = namesWithResults.has(n);
+        return `<span class="source-tag ${has ? "source-hit" : "source-miss"}">${escapeHtml(n)}</span>`;
+    }).join(" ");
 
     let coverageWarning = "";
     if (queried > 0 && withResults === 0) {
@@ -226,7 +231,7 @@ function renderVerdict(data) {
                 <span class="metric-value">${coverageDetail}</span>` : ""}
             </div>
             ${queried > 0 ? `
-            ${sourceNames ? `<div class="coverage-sources">${sourceNames}</div>` : ""}
+            ${allNames.length ? `<div class="coverage-sources">${sourceListHtml}</div>` : ""}
             ${coverageWarning}` : ""}
         </div>
     `;

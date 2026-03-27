@@ -110,38 +110,57 @@ async def check_claim(request: Request):
         # PubMed only for categories where medical/scientific literature is relevant
         pubmed_categories = {"health", "climate", "medication", "demographics", "other"}
         tasks = []
+        queried_names = []
         if analysis.get("category") in pubmed_categories:
             tasks.append(cached("PubMed", search_pubmed, analysis))
+            queried_names.append("PubMed")
             tasks.append(cached("Cochrane", search_cochrane, analysis))
+            queried_names.append("Cochrane")
         tasks.append(cached("ClaimReview", search_claimreview, analysis))
+        queried_names.append("Europäische Faktenchecker")
         tasks.append(cached("GADMO", search_gadmo, analysis))
+        queried_names.append("GADMO Faktenchecks")
         if analysis.get("who_relevant"):
             tasks.append(cached("WHO", search_who, analysis))
+            queried_names.append("WHO")
         if analysis.get("ema_relevant"):
             tasks.append(cached("EMA", search_ema, analysis))
+            queried_names.append("EMA")
         if analysis.get("climate_relevant"):
             tasks.append(cached("Copernicus", search_copernicus, analysis))
+            queried_names.append("Copernicus")
         if analysis.get("eurostat_relevant"):
             tasks.append(cached("Eurostat", search_eurostat, analysis))
+            queried_names.append("Eurostat (EU)")
         if analysis.get("eea_relevant"):
             tasks.append(cached("EEA", search_eea, analysis))
+            queried_names.append("EEA")
         if analysis.get("ecdc_relevant"):
             tasks.append(cached("ECDC", search_ecdc, analysis))
+            queried_names.append("ECDC")
         if analysis.get("ecb_relevant"):
             tasks.append(cached("ECB", search_ecb, analysis))
+            queried_names.append("EZB")
         if analysis.get("unhcr_relevant"):
             tasks.append(cached("UNHCR", search_unhcr, analysis))
+            queried_names.append("UNHCR")
         if analysis.get("oecd_relevant") or analysis.get("category") == "education":
             tasks.append(cached("OECD", search_oecd, analysis))
+            queried_names.append("OECD")
 
         results = await asyncio.gather(*tasks, return_exceptions=True)
+        valid_results = []
+        sources_with_results = []
+        hit_names = []
         for i, r in enumerate(results):
             if isinstance(r, Exception):
-                logger.warning(f"Source {i} failed: {r}")
+                logger.warning(f"Source {i} ({queried_names[i]}) failed: {r}")
             else:
-                logger.info(f"Source {i} returned {len(r.get('results', []))} results")
-        valid_results = [r for r in results if isinstance(r, dict)]
-        sources_with_results = [r for r in valid_results if r.get("results")]
+                logger.info(f"Source {i} ({queried_names[i]}) returned {len(r.get('results', []))} results")
+                valid_results.append(r)
+                if r.get("results"):
+                    sources_with_results.append(r)
+                    hit_names.append(queried_names[i])
 
         # Step 3: Synthesize results with Mistral
         yield {"event": "step", "data": json.dumps({"step": "synthesize"})}
@@ -177,7 +196,8 @@ async def check_claim(request: Request):
         synthesis["source_coverage"] = {
             "queried": len(tasks),
             "with_results": len(sources_with_results),
-            "names": [r.get("source", "?") for r in sources_with_results],
+            "names": hit_names,
+            "all_names": queried_names,
         }
         yield {"event": "result", "data": json.dumps(synthesis, ensure_ascii=False)}
         yield {"event": "done", "data": "{}"}

@@ -602,15 +602,31 @@ body {
 .coverage-fill {
     height: 100%;
     border-radius: 3px;
-    background: #10b981;
+    background: #0d9488;
     transition: width 0.5s ease;
 }
 
 .coverage-sources {
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+}
+.source-tag {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+}
+.source-hit {
+    background: #d1fae5;
+    color: #065f46;
+}
+.source-miss {
+    background: #f3f4f6;
     color: #9ca3af;
-    margin-top: 6px;
 }
 
 .coverage-warning {
