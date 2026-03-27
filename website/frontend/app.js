@@ -134,6 +134,44 @@ function resetSearch() {
     input.focus();
 }
 
+function buildConfidenceTooltip(data) {
+    const confidence = Math.round((data.confidence || 0) * 100);
+    const coverage = data.source_coverage || {};
+    const queried = coverage.queried || 0;
+    const withResults = coverage.with_results || 0;
+    const evidence = data.evidence || [];
+
+    const strong = evidence.filter(e => e.strength === "strong").length;
+    const moderate = evidence.filter(e => e.strength === "moderate").length;
+    const weak = evidence.filter(e => e.strength === "weak").length;
+
+    if (currentLang === "en") {
+        if (withResults === 0) {
+            return "No source returned relevant results — confidence 0% (unverifiable).";
+        }
+        const parts = [`${withResults} of ${queried} source${queried !== 1 ? "s" : ""} returned results.`];
+        if (strong > 0) parts.push(`${strong} strong piece${strong > 1 ? "s" : ""} of evidence.`);
+        if (moderate > 0) parts.push(`${moderate} moderate piece${moderate > 1 ? "s" : ""} of evidence.`);
+        if (weak > 0) parts.push(`${weak} weak piece${weak > 1 ? "s" : ""} of evidence.`);
+        if (confidence >= 80) parts.push("Clear evidence base → high confidence.");
+        else if (confidence >= 50) parts.push("Partially supported evidence → moderate confidence.");
+        else parts.push("Contradictory or incomplete evidence → low confidence.");
+        return parts.join(" ");
+    } else {
+        if (withResults === 0) {
+            return "Keine Quelle lieferte relevante Ergebnisse — Konfidenz 0% (nicht überprüfbar).";
+        }
+        const parts = [`${withResults} von ${queried} Quelle${queried !== 1 ? "n" : ""} lieferte${withResults !== 1 ? "n" : ""} Ergebnisse.`];
+        if (strong > 0) parts.push(`${strong} ${strong > 1 ? "starke Belege" : "starker Beleg"}.`);
+        if (moderate > 0) parts.push(`${moderate} ${moderate > 1 ? "mittlere Belege" : "mittlerer Beleg"}.`);
+        if (weak > 0) parts.push(`${weak} ${weak > 1 ? "schwache Belege" : "schwacher Beleg"}.`);
+        if (confidence >= 80) parts.push("Klare Datenlage → hohe Konfidenz.");
+        else if (confidence >= 50) parts.push("Teilweise belegte Datenlage → mittlere Konfidenz.");
+        else parts.push("Widersprüchliche oder unvollständige Evidenz → niedrige Konfidenz.");
+        return parts.join(" ");
+    }
+}
+
 function renderVerdict(data) {
     const verdict = sanitizeVerdict(data.verdict);
     const labels = getVerdictLabels();
@@ -164,9 +202,9 @@ function renderVerdict(data) {
             ${data.nuance ? `<p class="verdict-nuance">${escapeHtml(data.nuance)}</p>` : ""}
             <div class="metrics-grid">
                 <span class="metric-label">
-                    <span class="tooltip-anchor" aria-label="${t("confidence_tooltip")}">
+                    <span class="tooltip-anchor" aria-label="${buildConfidenceTooltip(data)}">
                         <svg class="info-icon" viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><circle cx="8" cy="8" r="7.5" stroke="currentColor" stroke-width="1" fill="none"/><text x="8" y="12" text-anchor="middle" font-size="10" fill="currentColor" font-family="serif" font-style="italic">i</text></svg>
-                        <span class="tooltip-text">${escapeHtml(t("confidence_tooltip"))}</span>
+                        <span class="tooltip-text">${escapeHtml(buildConfidenceTooltip(data))}</span>
                     </span>
                     ${t("confidence")}
                 </span>
