@@ -160,10 +160,17 @@ async def check_claim(request: Request):
             yield {"event": "error", "data": json.dumps({"detail": f"Fehler bei der Ergebnis-Synthese: {e}"})}
             return
 
-        # If no source returned results, override verdict to unverifiable
+        # If no source returned results, override verdict and suppress LLM opinion
         if not sources_with_results:
             synthesis["verdict"] = "unverifiable"
             synthesis["confidence"] = 0.0
+            synthesis["summary"] = (
+                "No sources returned relevant results. The claim cannot be verified based on available data."
+                if lang == "en" else
+                "Keine Quelle lieferte relevante Ergebnisse. Die Behauptung kann auf Basis der verfügbaren Daten nicht überprüft werden."
+            )
+            synthesis["nuance"] = None
+            synthesis["evidence"] = []
 
         synthesis["analysis"] = analysis
         synthesis["raw_sources"] = valid_results
