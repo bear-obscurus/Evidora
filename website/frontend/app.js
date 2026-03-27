@@ -10,6 +10,7 @@ form.addEventListener("submit", async (e) => {
     const claim = input.value.trim();
     if (!claim) return;
     if (claim.length < 10 || claim.split(/\s+/).filter(Boolean).length < 2) {
+        searchSection.className = "compact";
         showError(t("error_claim_too_short"));
         return;
     }
