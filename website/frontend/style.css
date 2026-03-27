@@ -522,7 +522,7 @@ body {
 .tooltip-text {
     display: none;
     position: absolute;
-    bottom: calc(100% + 6px);
+    top: calc(100% + 6px);
     left: 50%;
     transform: translateX(-50%);
     width: 240px;
@@ -540,11 +540,11 @@ body {
 .tooltip-text::after {
     content: "";
     position: absolute;
-    top: 100%;
+    bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
     border: 5px solid transparent;
-    border-top-color: #1f2937;
+    border-bottom-color: #1f2937;
 }
 
 .tooltip-anchor:hover .tooltip-text,
