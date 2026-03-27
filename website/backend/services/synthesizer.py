@@ -294,11 +294,11 @@ async def synthesize_results(
                     )
 
             # Cap confidence for unverifiable verdicts
-            if result.get("verdict") == "unverifiable" and result.get("confidence", 0) > 0.3:
+            if result.get("verdict") == "unverifiable" and result.get("confidence", 0) > 0.15:
                 logger.warning(
-                    f"Capping confidence from {result['confidence']} to 0.3 for unverifiable verdict"
+                    f"Capping confidence from {result['confidence']} to 0.15 for unverifiable verdict"
                 )
-                result["confidence"] = 0.3
+                result["confidence"] = 0.15
 
             # Consistency check: detect when summary text contradicts verdict
             summary_lower = result.get("summary", "").lower()
