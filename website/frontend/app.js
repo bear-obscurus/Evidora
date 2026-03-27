@@ -339,15 +339,18 @@ function renderHistory() {
 function useHistoryItem(claim) {
     input.value = claim;
     document.getElementById("search-history").classList.add("hidden");
-    form.dispatchEvent(new Event("submit"));
+    form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
 }
 
-// Show history on input focus (hero mode only)
-input.addEventListener("focus", () => {
+// Show history on input focus or click (hero mode only)
+// Note: Safari doesn't reliably fire "focus" on mouse click, so we listen to both
+function maybeShowHistory() {
     if (searchSection.classList.contains("hero") && getHistory().length) {
         renderHistory();
     }
-});
+}
+input.addEventListener("focus", maybeShowHistory);
+input.addEventListener("click", maybeShowHistory);
 
 // Hide history when clicking outside
 document.addEventListener("click", (e) => {
