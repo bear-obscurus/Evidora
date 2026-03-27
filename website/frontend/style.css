@@ -474,14 +474,79 @@ body {
     font-style: italic;
 }
 
-.confidence-bar {
+/* Metrics grid — confidence + source coverage bündig übereinander */
+.metrics-grid {
     margin-top: 16px;
-    display: flex;
+    display: grid;
+    grid-template-columns: max-content 120px max-content;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    column-gap: 10px;
+    row-gap: 8px;
     font-size: 0.85rem;
     color: #6b7280;
+}
+
+.metric-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.metric-value {
+    white-space: nowrap;
+}
+
+/* Tooltip */
+.tooltip-anchor {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: help;
+    color: #9ca3af;
+}
+
+.tooltip-anchor:hover,
+.tooltip-anchor:focus-within {
+    color: #6b7280;
+}
+
+.info-icon {
+    display: block;
+}
+
+.tooltip-text {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 240px;
+    background: #1f2937;
+    color: #f9fafb;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    padding: 8px 10px;
+    border-radius: 6px;
+    z-index: 100;
+    pointer-events: none;
+    text-align: left;
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #1f2937;
+}
+
+.tooltip-anchor:hover .tooltip-text,
+.tooltip-anchor:focus-within .tooltip-text {
+    display: block;
 }
 
 .confidence-track {
@@ -497,17 +562,6 @@ body {
     border-radius: 3px;
     background: #0d9488;
     transition: width 0.5s ease;
-}
-
-/* Source Coverage */
-.source-coverage {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-size: 0.85rem;
-    color: #6b7280;
 }
 
 .coverage-track {

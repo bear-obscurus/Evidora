@@ -157,21 +157,26 @@ function renderVerdict(data) {
             <span class="verdict-badge badge-${verdict}">${label}</span>
             <p class="verdict-summary">${escapeHtml(data.summary || "")}</p>
             ${data.nuance ? `<p class="verdict-nuance">${escapeHtml(data.nuance)}</p>` : ""}
-            <div class="confidence-bar">
-                <span>${t("confidence")}</span>
+            <div class="metrics-grid">
+                <span class="metric-label">
+                    ${t("confidence")}
+                    <span class="tooltip-anchor" aria-label="${t("confidence_tooltip")}">
+                        <svg class="info-icon" viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><circle cx="8" cy="8" r="7.5" stroke="currentColor" stroke-width="1" fill="none"/><text x="8" y="12" text-anchor="middle" font-size="10" fill="currentColor" font-family="serif" font-style="italic">i</text></svg>
+                        <span class="tooltip-text">${escapeHtml(t("confidence_tooltip"))}</span>
+                    </span>
+                </span>
                 <div class="confidence-track">
                     <div class="confidence-fill" style="width: ${confidence}%"></div>
                 </div>
-                <span>${confidence}%</span>
-            </div>
-            ${queried > 0 ? `
-            <div class="source-coverage">
-                <span>${t("source_coverage")}</span>
+                <span class="metric-value">${confidence}%</span>
+                ${queried > 0 ? `
+                <span class="metric-label">${t("source_coverage")}</span>
                 <div class="coverage-track">
                     <div class="coverage-fill" style="width: ${Math.round((withResults / queried) * 100)}%"></div>
                 </div>
-                <span>${coverageDetail}</span>
+                <span class="metric-value">${coverageDetail}</span>` : ""}
             </div>
+            ${queried > 0 ? `
             ${sourceNames ? `<div class="coverage-sources">${sourceNames}</div>` : ""}
             ${coverageWarning}` : ""}
         </div>

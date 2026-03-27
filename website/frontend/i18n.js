@@ -41,6 +41,7 @@ const TRANSLATIONS = {
 
         // Evidence
         confidence: "Konfidenz:",
+        confidence_tooltip: "Die Konfidenz gibt an, wie sicher das KI-Modell bei seiner Einschätzung ist — basierend auf der Eindeutigkeit der gefundenen Belege. Hohe Konfidenz (≥90%) bedeutet klare Datenlage; niedrige Konfidenz bedeutet widersprüchliche oder unvollständige Evidenz.",
         evidence_title: "Evidenz",
         strength_strong: "Stark",
         strength_moderate: "Mittel",
@@ -240,6 +241,7 @@ const TRANSLATIONS = {
 
         // Evidence
         confidence: "Confidence:",
+        confidence_tooltip: "Confidence indicates how certain the AI model is about its assessment — based on the clarity of the evidence found. High confidence (≥90%) means a clear evidence base; low confidence means contradictory or incomplete evidence.",
         evidence_title: "Evidence",
         strength_strong: "Strong",
         strength_moderate: "Moderate",
