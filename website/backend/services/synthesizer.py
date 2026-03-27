@@ -38,6 +38,11 @@ Regeln:
 - Bei fehlenden oder unzureichenden Ergebnissen: "unverifiable"
 - Antworte NUR mit dem JSON, kein anderer Text
 
+Logische Konsistenz (WICHTIG):
+- Deine Zusammenfassung darf sich NICHT selbst widersprechen. Sage nicht, etwas sei "nachgewiesen" oder "belegt", wenn du im selben Text schreibst, dass es "nicht messbar", "nicht definiert" oder "nicht direkt belegbar" ist.
+- Wenn die Evidenz mehrdeutig ist, verwende vorsichtige Formulierungen wie "wird diskutiert", "es gibt Hinweise", "die Datenlage ist uneinheitlich" — NICHT absolute Aussagen wie "ist belegt" oder "ist widerlegt".
+- Prüfe vor der Antwort: Widerspricht ein Satz in deinem Summary einem anderen Satz? Wenn ja, formuliere konsistent um.
+
 Quellengewichtung (WICHTIG):
 - Wissenschaftliche Primärquellen (PubMed, WHO, EMA, Eurostat, Copernicus, EEA) haben HÖHERE Glaubwürdigkeit als Sekundärquellen
 - Faktenchecker-Ergebnisse (ClaimReview/Google Fact Check) sind Sekundärquellen — sie fassen bestehende Erkenntnisse zusammen
@@ -86,6 +91,11 @@ Rules:
 - For contradictory results: "mixed" with explanation
 - For missing or insufficient results: "unverifiable"
 - Reply ONLY with the JSON, no other text
+
+Logical consistency (IMPORTANT):
+- Your summary must NOT contradict itself. Do not say something is "proven" or "established" if you also write that it is "not measurable", "not defined", or "not directly provable" in the same text.
+- If the evidence is ambiguous, use cautious language like "is debated", "there are indications", "the evidence is mixed" — NOT absolute statements like "is proven" or "is disproven".
+- Before answering: Does any sentence in your summary contradict another sentence? If so, rephrase consistently.
 
 Source weighting (IMPORTANT):
 - Scientific primary sources (PubMed, WHO, EMA, Eurostat, Copernicus, EEA) have HIGHER credibility than secondary sources
@@ -257,11 +267,31 @@ async def synthesize_results(
                         logger.warning(f"Filtered {len(result['evidence']) - len(filtered)} hallucinated evidence entries")
                     result["evidence"] = filtered
 
-            # No real sources → override verdict to unverifiable
+            # No real sources → override verdict and suppress LLM opinion
             if not real_urls:
-                logger.warning("No sources returned results — overriding verdict to unverifiable")
+                logger.warning("No sources returned results — overriding verdict and suppressing LLM opinion")
                 result["verdict"] = "unverifiable"
                 result["confidence"] = 0.0
+                if lang == "de":
+                    result["summary"] = (
+                        "Keine der angebundenen wissenschaftlichen oder offiziellen Quellen "
+                        "enthält Daten zu dieser Behauptung. Eine quellenbasierte Überprüfung "
+                        "war daher nicht möglich."
+                    )
+                    result["nuance"] = (
+                        "Evidora prüft Behauptungen anhand wissenschaftlicher Datenbanken "
+                        "und offizieller Statistiken. Themen außerhalb dieses Quellenspektrums "
+                        "können nicht bewertet werden."
+                    )
+                else:
+                    result["summary"] = (
+                        "None of the connected scientific or official sources contain data "
+                        "on this claim. A source-based verification was therefore not possible."
+                    )
+                    result["nuance"] = (
+                        "Evidora checks claims against scientific databases and official "
+                        "statistics. Topics outside this source spectrum cannot be assessed."
+                    )
 
             # Consistency check: detect when summary text contradicts verdict
             summary_lower = result.get("summary", "").lower()
