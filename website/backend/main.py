@@ -160,6 +160,11 @@ async def check_claim(request: Request):
             yield {"event": "error", "data": json.dumps({"detail": f"Fehler bei der Ergebnis-Synthese: {e}"})}
             return
 
+        # If no source returned results, override verdict to unverifiable
+        if not sources_with_results:
+            synthesis["verdict"] = "unverifiable"
+            synthesis["confidence"] = 0.0
+
         synthesis["analysis"] = analysis
         synthesis["raw_sources"] = valid_results
         synthesis["source_coverage"] = {
