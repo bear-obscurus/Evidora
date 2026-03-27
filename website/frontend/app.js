@@ -401,10 +401,10 @@ function maybeShowHistory() {
 input.addEventListener("focus", maybeShowHistory);
 input.addEventListener("click", maybeShowHistory);
 
-// Hide history when clicking outside
+// Hide history when clicking outside search area
 document.addEventListener("click", (e) => {
     const historyEl = document.getElementById("search-history");
-    if (!historyEl.contains(e.target) && e.target !== input) {
+    if (!historyEl.contains(e.target) && !form.contains(e.target)) {
         historyEl.classList.add("hidden");
     }
 });
