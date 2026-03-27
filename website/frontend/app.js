@@ -108,13 +108,19 @@ function showResults(data) {
     loading.classList.add("hidden");
     results.classList.remove("hidden");
 
+    const claim = input.value.trim();
+    const claimDisplay = document.getElementById("claim-display");
+    if (claim) {
+        claimDisplay.innerHTML = `<p class="claim-display-label">${t("claim_display_label")}</p><blockquote class="claim-display-text">${escapeHtml(claim)}</blockquote>`;
+    } else {
+        claimDisplay.innerHTML = "";
+    }
+
     renderVerdict(data);
     renderEvidence(data.evidence || []);
     renderSources(data.raw_sources || []);
     renderDisclaimer(data.disclaimer);
 
-    // Save to history
-    const claim = input.value.trim();
     if (claim) saveToHistory(claim, sanitizeVerdict(data.verdict));
 }
 

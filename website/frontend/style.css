@@ -406,6 +406,30 @@ body {
     padding-bottom: 40px;
 }
 
+/* Claim Display */
+#claim-display {
+    margin-bottom: 12px;
+}
+.claim-display-label {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 4px 0;
+}
+.claim-display-text {
+    margin: 0;
+    padding: 10px 14px;
+    border-left: 3px solid #0d9488;
+    background: #f0fdf4;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.95rem;
+    color: #1f2937;
+    text-align: left;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
 /* Verdict Card */
 #verdict-card {
     border-radius: 16px;
