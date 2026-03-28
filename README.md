@@ -4,7 +4,7 @@
 
 A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
-Evidora automatically verifies claims against scientific and institutional sources such as PubMed, Cochrane, WHO, EMA, ECDC, Copernicus, Eurostat, ECB, UNHCR, EEA, OECD (PISA & SDMX), and European fact-checkers.
+Evidora automatically verifies claims against scientific and institutional sources such as PubMed, Cochrane, WHO, WHO Europe, EMA, ECDC, Copernicus, Eurostat, ECB, UNHCR, EEA, OECD, DataCommons, EUvsDisinfo, and European fact-checkers.
 
 **Live Demo:** [https://evidora.eu](https://evidora.eu)
 
@@ -13,19 +13,23 @@ Evidora automatically verifies claims against scientific and institutional sourc
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **13 data sources** — Scientific databases, systematic reviews, official EU/UN/OECD statistics, climate data, disease surveillance, and fact-checkers
+- **16 data sources** — Scientific databases, systematic reviews, official EU/UN/OECD statistics, climate data, disease surveillance, disinformation databases, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Multi-country ranking** — Superlative claims ("highest", "most") automatically query all EU-27 countries for a full ranking
 - **Hallucination filtering** — Evidence URLs are verified against actual source results
+- **Input hardening** — Unicode normalization, control character stripping, OData injection prevention, 500-character claim limit
+- **Prompt injection defense** — User claims are wrapped in XML delimiters with explicit LLM instructions to ignore embedded commands
 - **GDPR-compliant** — No cookies, no tracking, anonymized logs
 - **Bilingual** — Full German/English interface (DE/EN toggle)
 - **Accessible** — ARIA labels, keyboard navigation, skip links, semantic landmarks
-- **SpaCy NER** — Named entity recognition enriches claim analysis with deterministic GPE/DATE/ORG entities (German + English)
+- **SpaCy NER** — Named entity recognition enriches claim analysis with deterministic GPE/DATE/ORG entities (German lg + English sm models)
 - **OECD PISA + SDMX** — PISA 2022 scores (static CSV, 35 countries, by gender) + live OECD API for gender wage gap, education, employment
-- **Semantic reranking** — Sentence Transformers (MiniLM) rerank source results by relevance (optional, graceful fallback if not installed)
+- **Semantic reranking** — Sentence Transformers (multilingual MiniLM) rerank source results by relevance
 - **Search history** — Last 10 checks stored locally (localStorage), no server storage
 - **PDF export** — Save fact-check results as PDF
-- **Share button** — Copy result link to clipboard
+- **Share button** — Copy result link to clipboard (with fallback for HTTP/older browsers)
+- **Claim writing tips** — Built-in guidance for formulating precise, checkable claims
+- **Background data updates** — Static datasets (PISA, OWID COVID) are automatically refreshed
 
 ## Prerequisites
 
@@ -108,6 +112,8 @@ The app will be available at:
 - **Backend API:** [http://localhost:8000](http://localhost:8000)
 
 > **Important:** The `.env` file is required. If you skip step 2, the backend will fail to connect to Ollama.
+>
+> **First startup:** The backend downloads SpaCy models (~500 MB), a multilingual Sentence Transformer (~120 MB), and prefetches DataCommons index data (~197 MB). The healthcheck allows up to 3 minutes for this process.
 
 ### 4. Stop
 
@@ -120,18 +126,30 @@ docker compose down
 | Source | Type | Coverage | Status |
 |---|---|---|---|
 | PubMed | Biomedical studies | Health, medicine, biology | ✅ Active |
+| Cochrane Reviews | Systematic reviews (via PubMed) | Highest level of medical evidence | ✅ Active |
 | WHO GHO | Health indicators | Global health statistics | ✅ Active |
+| WHO Europe (HFA) | Health for All Gateway | 39 indicators, 66 European countries | ✅ Active |
 | EMA | Drug approvals (EU) | Pharmaceuticals, vaccines | ✅ Active |
-| Google Fact Check API | ClaimReview markup | European fact-checkers (EFCSN) | ✅ Active |
+| ECDC (via OWID) | Infectious diseases | COVID-19 cases, deaths, vaccinations (cached CSV) | ✅ Active |
 | Copernicus CDS | Climate data (ERA5, CAMS) | Temperature, emissions, satellite | ✅ Active |
 | Eurostat | EU statistics | Economy, migration, energy, CO₂, housing, debt, wages, inequality, tourism | ✅ Active |
 | EEA (via Eurostat) | Environmental data | GHG emissions, air pollutants, renewables, waste | ✅ Active |
-| ECDC (via OWID) | Infectious diseases | COVID-19 cases, deaths, vaccinations (cached CSV) | ✅ Active |
-| Cochrane Reviews | Systematic reviews (via PubMed) | Highest level of medical evidence | ✅ Active |
 | ECB | Central bank data | Interest rates, exchange rates, money supply | ✅ Active |
 | UNHCR | Refugee statistics | Refugee populations, asylum applications | ✅ Active |
 | OECD | Education & gender equality | PISA 2022 scores (35 countries, by gender), gender wage gap, employment | ✅ Active |
 | GADMO Faktenchecks | German-language fact-checks | APA, Correctiv (DACH region) | ✅ Active |
+| DataCommons | ClaimReview aggregator | Global fact-checker results via knowledge graph | ✅ Active |
+| EUvsDisinfo | Disinformation database | Pro-Kremlin disinformation cases (EEA East StratCom) | ✅ Active |
+| Google Fact Check API | ClaimReview markup | European fact-checkers (EFCSN) | ✅ Active |
+
+## Security
+
+- **Input sanitization** — Unicode NFC normalization, control character stripping, whitespace collapsing, 500-character limit
+- **OData injection prevention** — User input is sanitized before inclusion in OData filter queries (WHO API)
+- **Prompt injection defense** — Claims are wrapped in `<claim>` XML delimiters; LLM system prompts explicitly instruct to ignore embedded instructions
+- **Rate limiting** — Configurable per-IP rate limiting (default: 10 requests/60s), respects `X-Forwarded-For` behind reverse proxy
+- **No traceback leaking** — Error responses return generic messages; full tracebacks are logged server-side only
+- **GDPR-compliant** — No cookies, no tracking, no personal data stored
 
 ## Project Structure
 
@@ -152,9 +170,10 @@ Evidora/
 │   │   └── services/        # Data source modules
 │   │       ├── claim_analyzer.py  # LLM-based claim analysis
 │   │       ├── ollama.py          # Ollama/Mistral API client
-│   │       ├── ner.py             # SpaCy NER enrichment (de + en)
+│   │       ├── ner.py             # SpaCy NER enrichment (de_lg + en_sm)
 │   │       ├── pubmed.py          # PubMed (biomedical studies)
-│   │       ├── who.py             # WHO (health indicators)
+│   │       ├── who.py             # WHO GHO (health indicators)
+│   │       ├── who_europe.py      # WHO Europe HFA Gateway (39 indicators)
 │   │       ├── ema.py             # EMA (drug approvals)
 │   │       ├── claimreview.py     # Google Fact Check API
 │   │       ├── copernicus.py      # Copernicus CDS (climate)
@@ -166,9 +185,12 @@ Evidora/
 │   │       ├── unhcr.py           # UNHCR (refugee statistics)
 │   │       ├── oecd.py            # OECD (PISA + SDMX live API)
 │   │       ├── gadmo.py           # GADMO fact-checks (APA, Correctiv)
+│   │       ├── datacommons.py     # DataCommons ClaimReview aggregator
+│   │       ├── euvsdisinfo.py     # EUvsDisinfo (disinformation DB)
+│   │       ├── data_updater.py    # Background CSV/data refresh
 │   │       ├── cache.py           # In-memory response cache
 │   │       ├── reranker.py        # Sentence Transformers reranking
-│   │       └── synthesizer.py     # LLM synthesis via Ollama
+│   │       └── synthesizer.py     # LLM synthesis via Ollama/Mistral
 │   └── frontend/
 │       ├── nginx.conf       # Nginx reverse proxy config
 │       ├── index.html
@@ -182,10 +204,10 @@ Evidora/
 
 ## How It Works
 
-1. **Claim Analysis** — The LLM analyzes the input claim, extracts keywords, determines the category, and generates optimized search queries
-2. **NER Enrichment** — SpaCy (de + en) adds deterministic GPE/DATE/ORG entities to supplement LLM extraction
-3. **Source Querying** — Relevant sources are queried in parallel based on the claim's category (e.g., health → PubMed + WHO + EMA + ECDC; migration → Eurostat + UNHCR; economy → Eurostat + ECB; education/gender → OECD PISA + SDMX)
-4. **Semantic Reranking** — Sentence Transformers (MiniLM) rerank results by semantic similarity to the original claim
+1. **Claim Analysis** — The LLM analyzes the input claim (wrapped in `<claim>` delimiters for injection safety), extracts keywords, determines the category, and generates optimized search queries
+2. **NER Enrichment** — SpaCy (de_core_news_lg + en_core_web_sm) adds deterministic GPE/DATE/ORG entities to supplement LLM extraction
+3. **Source Querying** — Relevant sources are queried in parallel based on the claim's category (e.g., health → PubMed + Cochrane + WHO + WHO Europe + EMA + ECDC; migration → Eurostat + UNHCR; economy → Eurostat + ECB; education/gender → OECD PISA + SDMX)
+4. **Semantic Reranking** — Sentence Transformers (multilingual MiniLM) rerank results by semantic similarity to the original claim
 5. **Cross-Validation** — Results from primary sources (scientific databases) are weighted higher than secondary sources (fact-checkers)
 6. **Synthesis** — The LLM evaluates all evidence and produces a verdict (true/mostly true/mixed/mostly false/false/unverifiable) with confidence score
 7. **Claim Guards** — Superlative claims ("highest", "most") require multi-country data; record claims ("all-time low") are checked against historical min/max; present-tense claims are compared to the latest data point
@@ -198,8 +220,8 @@ Evidora/
 - **Backend:** Python, FastAPI, SSE streaming
 - **Frontend:** Vanilla JS, CSS (no frameworks)
 - **LLM:** Mistral 7B via Ollama (local) or Mistral API (cloud, EU servers)
-- **NLP:** SpaCy (de_core_news_sm + en_core_web_sm) for named entity recognition
-- **ML:** Sentence Transformers (MiniLM) for semantic reranking
+- **NLP:** SpaCy (de_core_news_lg + en_core_web_sm) for named entity recognition
+- **ML:** Sentence Transformers (multilingual MiniLM) for semantic reranking
 - **Deployment:** Docker Compose (backend + nginx)
 
 ## Testing
@@ -228,10 +250,10 @@ python -m pytest -v --timeout=180
 | `host.docker.internal` not resolving (Linux) | Requires Docker 20.10+. The `extra_hosts` entry in docker-compose.yml handles this automatically. |
 | Port 3000/8000 already in use | Stop the conflicting service, or change ports in `docker-compose.yml` (e.g., `"3001:80"`) |
 | Backend crashes on startup | Check that `website/.env` exists (`cp .env.example .env`) |
+| Backend unhealthy on first start | First startup downloads models (~800 MB total). The healthcheck allows 3 minutes — wait and retry. |
 | LLM responses are slow | Mistral 7B needs ~6 GB RAM. Close other memory-heavy applications. |
 | `Rate limit exceeded` (429) | Default: 10 requests per 60 seconds per IP. Adjust via `RATE_LIMIT` and `RATE_WINDOW` in `.env` |
 | `API credits exhausted` | Mistral Cloud API has no remaining credits. Top up at [Mistral Console](https://console.mistral.ai/) |
-| Browser hangs after result loads (Chromium) | Fixed in v1.1: Backend now sends explicit SSE `done` event; frontend calls `reader.cancel()` to close the stream. If you see this on an older version, update to latest. |
 
 ## License
 
