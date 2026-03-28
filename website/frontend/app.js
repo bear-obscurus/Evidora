@@ -445,11 +445,34 @@ function exportPDF() {
 }
 
 // --- Share ---
+function copyToClipboard(text) {
+    // Modern API (requires HTTPS)
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+    }
+    // Fallback for HTTP or older browsers
+    return new Promise((resolve, reject) => {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand("copy") ? resolve() : reject();
+        } catch (e) {
+            reject(e);
+        } finally {
+            document.body.removeChild(textarea);
+        }
+    });
+}
+
 function shareResult() {
     const claim = input.value.trim();
     const url = `${window.location.origin}?claim=${encodeURIComponent(claim)}`;
 
-    navigator.clipboard.writeText(url).then(() => {
+    copyToClipboard(url).then(() => {
         const btn = document.getElementById("share-btn");
         btn.classList.add("copied");
         btn.textContent = t("share_copied");
@@ -457,6 +480,8 @@ function shareResult() {
             btn.classList.remove("copied");
             btn.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg> ${t("btn_share")}`;
         }, 2000);
+    }).catch(() => {
+        // Silent fail — button text stays unchanged
     });
 }
 
@@ -466,7 +491,7 @@ function checkUrlParams() {
     const claim = params.get("claim");
     if (claim) {
         input.value = claim;
-        form.dispatchEvent(new Event("submit"));
+        form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
     }
 }
 
