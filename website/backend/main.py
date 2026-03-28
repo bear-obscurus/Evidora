@@ -6,8 +6,9 @@ import asyncio
 import json
 import logging
 import os
+import re
 import time
-import traceback
+import unicodedata
 
 from services.claim_analyzer import analyze_claim
 from services.pubmed import search_pubmed
@@ -62,10 +63,41 @@ class ClaimRequest(BaseModel):
     claim: str
 
 
-# Rate limiting: max requests per IP per window
+# --- Input validation ---
+MAX_CLAIM_LENGTH = 2000  # characters
+
+# Control characters and dangerous Unicode categories to strip
+_UNSAFE_UNICODE_CATS = {"Cc", "Cf", "Co", "Cs"}  # control, format, private use, surrogate
+
+
+def _sanitize_claim(text: str) -> str:
+    """Sanitize user claim: strip control chars, normalize Unicode, limit length."""
+    # Normalize Unicode (NFC = canonical composition)
+    text = unicodedata.normalize("NFC", text)
+    # Strip control characters and zero-width chars (keep newlines/tabs for readability)
+    text = "".join(
+        ch for ch in text
+        if unicodedata.category(ch) not in _UNSAFE_UNICODE_CATS or ch in ("\n", "\t")
+    )
+    # Collapse whitespace
+    text = re.sub(r"\s+", " ", text).strip()
+    # Enforce length limit
+    return text[:MAX_CLAIM_LENGTH]
+
+
+# --- Rate limiting ---
 RATE_LIMIT = int(os.getenv("RATE_LIMIT", "10"))
 RATE_WINDOW = int(os.getenv("RATE_WINDOW", "60"))  # seconds
 _rate_store: dict[str, list[float]] = {}
+
+
+def _get_client_ip(request: Request) -> str:
+    """Extract real client IP, respecting X-Forwarded-For behind reverse proxy."""
+    forwarded = request.headers.get("x-forwarded-for", "")
+    if forwarded:
+        # First IP in the chain is the original client
+        return forwarded.split(",")[0].strip()
+    return request.client.host if request.client else "unknown"
 
 
 def _check_rate_limit(ip: str) -> bool:
@@ -81,13 +113,16 @@ def _check_rate_limit(ip: str) -> bool:
 
 @app.post("/api/check")
 async def check_claim(request: Request):
-    client_ip = request.client.host if request.client else "unknown"
+    client_ip = _get_client_ip(request)
     if not _check_rate_limit(client_ip):
         raise HTTPException(status_code=429, detail="Zu viele Anfragen. Bitte warte einen Moment.")
 
     body = await request.json()
-    claim = body.get("claim", "").strip()
     lang = body.get("lang", "de") if body.get("lang") in ("de", "en") else "de"
+    raw_claim = body.get("claim", "")
+    if not isinstance(raw_claim, str):
+        raise HTTPException(status_code=400, detail="Invalid claim format.")
+    claim = _sanitize_claim(raw_claim)
     if not claim:
         raise HTTPException(status_code=400, detail="Claim must not be empty." if lang == "en" else "Behauptung darf nicht leer sein.")
     if len(claim) < 10 or len(claim.split()) < 2:
@@ -107,9 +142,9 @@ async def check_claim(request: Request):
                 yield {"event": "error", "data": json.dumps({"detail": "MISTRAL_CREDITS_EXHAUSTED"})}
                 return
             raise
-        except Exception as e:
-            logger.error(f"Claim analysis failed: {traceback.format_exc()}")
-            yield {"event": "error", "data": json.dumps({"detail": f"Fehler bei der Claim-Analyse (ist Ollama gestartet?): {e}"})}
+        except Exception:
+            logger.error("Claim analysis failed", exc_info=True)
+            yield {"event": "error", "data": json.dumps({"detail": "Fehler bei der Claim-Analyse. Bitte erneut versuchen." if lang == "de" else "Claim analysis failed. Please try again."})}
             return
 
         # Step 2: Query sources in parallel (with caching)
@@ -198,9 +233,9 @@ async def check_claim(request: Request):
                 yield {"event": "error", "data": json.dumps({"detail": "MISTRAL_CREDITS_EXHAUSTED"})}
                 return
             raise
-        except Exception as e:
-            logger.error(f"Synthesis failed: {traceback.format_exc()}")
-            yield {"event": "error", "data": json.dumps({"detail": f"Fehler bei der Ergebnis-Synthese: {e}"})}
+        except Exception:
+            logger.error("Synthesis failed", exc_info=True)
+            yield {"event": "error", "data": json.dumps({"detail": "Fehler bei der Ergebnis-Synthese. Bitte erneut versuchen." if lang == "de" else "Synthesis failed. Please try again."})}
             return
 
         # If no source returned results, override verdict and suppress LLM opinion

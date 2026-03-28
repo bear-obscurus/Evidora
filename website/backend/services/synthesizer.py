@@ -172,7 +172,7 @@ async def synthesize_results(
 
     # Build compact context — only essential fields to keep token count low
     context_parts = [
-        f"{labels['claim']}: {original_claim}",
+        f"{labels['claim']}: <claim>{original_claim}</claim>",
         f"{labels['category']}: {analysis.get('category', 'unknown')}\n",
     ]
 

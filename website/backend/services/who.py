@@ -1,6 +1,18 @@
+import re
+
 import httpx
 
 BASE_URL = "https://ghoapi.azureedge.net/api"
+
+
+def _sanitize_odata(value: str) -> str:
+    """Escape user-derived values for safe OData filter injection prevention."""
+    # Remove anything that isn't alphanumeric, space, or basic punctuation
+    sanitized = re.sub(r"[^a-zA-Z0-9äöüÄÖÜß \-_]", "", value)
+    # OData single-quote escaping (double the quote)
+    sanitized = sanitized.replace("'", "''")
+    # Limit length to prevent abuse
+    return sanitized[:100]
 
 # Common health indicators relevant for fact-checking
 INDICATOR_MAP = {
@@ -115,9 +127,16 @@ async def search_who(analysis: dict) -> dict:
             }
         else:
             # Search for relevant indicators
+            safe_subcategory = _sanitize_odata(subcategory)
+            if not safe_subcategory:
+                return {
+                    "source": "WHO Global Health Observatory",
+                    "type": "official_data",
+                    "results": [],
+                }
             resp = await client.get(
                 f"{BASE_URL}/Indicator",
-                params={"$filter": f"contains(IndicatorName,'{subcategory}')"},
+                params={"$filter": f"contains(IndicatorName,'{safe_subcategory}')"},
             )
             resp.raise_for_status()
             indicators = resp.json().get("value", [])
