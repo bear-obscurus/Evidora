@@ -32,6 +32,9 @@ async def search_openalex(analysis: dict) -> dict:
 
     async with httpx.AsyncClient(timeout=30.0) as client:
         resp = await client.get(BASE_URL, params=params)
+        if resp.status_code == 429:
+            logger.warning("OpenAlex daily rate limit reached (1,000 searches/day)")
+            return {"source": "OpenAlex", "results": []}
         resp.raise_for_status()
         data = resp.json()
 
