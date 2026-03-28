@@ -51,8 +51,12 @@
                         placeholder="Behauptung eingeben, z.B. &quot;Impfungen verursachen Autismus&quot;"
                         autocomplete="off"
                         aria-label="Behauptung eingeben"
+                        maxlength="500"
                     >
                     <button type="submit" id="search-btn" data-i18n="search_btn">Faktencheck</button>
+                </div>
+                <div id="char-counter" class="char-counter" aria-live="polite">
+                    <span id="chars-remaining">500</span> <span data-i18n="chars_remaining">Zeichen verbleibend</span>
                 </div>
                 <div id="search-history" class="search-history hidden"></div>
                 <div class="hints">

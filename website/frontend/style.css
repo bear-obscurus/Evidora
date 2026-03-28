@@ -228,6 +228,29 @@ body {
     background: #0f766e;
 }
 
+/* Character counter */
+.char-counter {
+    text-align: right;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 6px;
+    padding-right: 4px;
+    transition: color 0.2s;
+}
+
+.char-counter.warn {
+    color: #d97706;
+}
+
+.char-counter.limit {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+#search-section.compact .char-counter {
+    display: none;
+}
+
 .hints {
     display: flex;
     justify-content: center;

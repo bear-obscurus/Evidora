@@ -5,6 +5,21 @@ const loading = document.getElementById("loading");
 const results = document.getElementById("results");
 const error = document.getElementById("error");
 
+// --- Character counter ---
+const MAX_CLAIM = 500;
+const charsRemainingEl = document.getElementById("chars-remaining");
+const charCounterEl = document.getElementById("char-counter");
+
+function updateCharCounter() {
+    const remaining = MAX_CLAIM - input.value.length;
+    charsRemainingEl.textContent = remaining;
+    charCounterEl.classList.toggle("warn", remaining <= 50 && remaining > 0);
+    charCounterEl.classList.toggle("limit", remaining <= 0);
+}
+
+input.addEventListener("input", updateCharCounter);
+updateCharCounter();
+
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const claim = input.value.trim();
@@ -12,6 +27,11 @@ form.addEventListener("submit", async (e) => {
     if (claim.length < 10 || claim.split(/\s+/).filter(Boolean).length < 2) {
         searchSection.className = "compact";
         showError(t("error_claim_too_short"));
+        return;
+    }
+    if (claim.length > MAX_CLAIM) {
+        searchSection.className = "compact";
+        showError(t("error_claim_too_long"));
         return;
     }
 
