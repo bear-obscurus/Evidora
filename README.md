@@ -13,7 +13,7 @@ Evidora automatically verifies claims against scientific and institutional sourc
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **18 data sources** — Scientific databases, systematic reviews, official EU/UN/OECD statistics, climate data, disease surveillance, disinformation databases, and fact-checkers
+- **19 data sources** — Scientific databases, systematic reviews, official EU/UN/OECD statistics, climate data, disease surveillance, disinformation databases, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Multi-country ranking** — Superlative claims ("highest", "most") automatically query all EU-27 countries for a full ranking
 - **Hallucination filtering** — Evidence URLs are verified against actual source results
@@ -140,6 +140,7 @@ docker compose down
 | GADMO Faktenchecks | German-language fact-checks | APA, Correctiv (DACH region) | ✅ Active |
 | DataCommons | ClaimReview aggregator | Global fact-checker results via knowledge graph | ✅ Active |
 | World Bank | Development indicators | GDP, poverty, unemployment, inflation, CO₂, education, military, Gini | ✅ Active |
+| OWID Energy Safety | Deaths per TWh | Energy source safety comparison (Markandya & Wilkinson, Sovacool et al.) | ✅ Active |
 | OpenAlex | Scholarly works (250M+) | All disciplines: physics, social science, economics, engineering, etc. | ✅ Active |
 | EUvsDisinfo | Disinformation database | Pro-Kremlin disinformation cases (EEA East StratCom) | ✅ Active |
 | Google Fact Check API | ClaimReview markup | European fact-checkers (EFCSN) | ✅ Active |
@@ -189,6 +190,7 @@ Evidora/
 │   │       ├── gadmo.py           # GADMO fact-checks (APA, Correctiv)
 │   │       ├── datacommons.py     # DataCommons ClaimReview aggregator
 │   │       ├── euvsdisinfo.py     # EUvsDisinfo (disinformation DB)
+│   │       ├── energy_safety.py    # OWID energy safety (deaths per TWh)
 │   │       ├── openalex.py        # OpenAlex (250M+ scholarly works)
 │   │       ├── worldbank.py       # World Bank (global development indicators)
 │   │       ├── data_updater.py    # Background CSV/data refresh

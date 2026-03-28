@@ -29,6 +29,7 @@ from services.datacommons import search_datacommons
 from services.who_europe import search_who_europe
 from services.openalex import search_openalex
 from services.worldbank import search_worldbank
+from services.energy_safety import search_energy_safety, _is_energy_safety_claim
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -218,6 +219,9 @@ async def check_claim(request: Request):
         if analysis.get("worldbank_relevant"):
             tasks.append(cached("WorldBank", search_worldbank, analysis))
             queried_names.append("World Bank")
+        if _is_energy_safety_claim(analysis):
+            tasks.append(cached("EnergySafety", search_energy_safety, analysis))
+            queried_names.append("OWID Energy Safety")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
