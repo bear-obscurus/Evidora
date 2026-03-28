@@ -1,15 +1,42 @@
 import httpx
 import logging
 import re
+import time
 from xml.etree import ElementTree
 
 logger = logging.getLogger("evidora")
+
+# Cached feed items + pre-computed embeddings
+_feed_cache: list[dict] | None = None
+_feed_embeddings = None  # Tensor of shape (N, 384)
+_feed_cache_ts: float = 0
+FEED_CACHE_TTL = 3600  # 1 hour
 
 # GADMO member RSS feeds (German-language fact-checks)
 FEEDS = [
     {
         "name": "APA Faktencheck",
         "url": "https://apa.at/faktencheck/feed/",
+        "lang": "de",
+    },
+    {
+        "name": "Correctiv Faktencheck",
+        "url": "https://correctiv.org/faktencheck/feed/",
+        "lang": "de",
+    },
+    {
+        "name": "dpa Faktencheck",
+        "url": "https://www.dpa.com/de/faktencheck.rss",
+        "lang": "de",
+    },
+    {
+        "name": "Mimikama",
+        "url": "https://www.mimikama.org/feed/",
+        "lang": "de",
+    },
+    {
+        "name": "AFP Faktencheck",
+        "url": "https://faktencheck.afp.com/list/all/all/all/38970/rss",
         "lang": "de",
     },
 ]
@@ -57,8 +84,52 @@ def _matches_keywords(item: dict, keywords: list[str]) -> bool:
     return any(kw.lower() in text for kw in keywords)
 
 
+async def _fetch_all_feeds() -> list[dict]:
+    """Fetch all GADMO RSS feeds and return combined items."""
+    all_items = []
+    async with httpx.AsyncClient(timeout=15.0) as client:
+        for feed in FEEDS:
+            try:
+                resp = await client.get(feed["url"])
+                resp.raise_for_status()
+                items = _extract_items(resp.text)
+                for item in items:
+                    item["feed_name"] = feed["name"]
+                all_items.extend(items)
+            except Exception as e:
+                logger.warning(f"GADMO: Failed to fetch {feed['name']}: {e}")
+    return all_items
+
+
+async def prefetch_feeds():
+    """Fetch all feeds and pre-compute embeddings (called at startup + periodically)."""
+    global _feed_cache, _feed_embeddings, _feed_cache_ts
+
+    items = await _fetch_all_feeds()
+    if not items:
+        logger.warning("GADMO prefetch: no items from any feed")
+        return
+
+    _feed_cache = items
+    _feed_cache_ts = time.time()
+
+    # Pre-compute embeddings if model is available
+    try:
+        from services.reranker import _load_model, _model
+        if _load_model() and _model is not None:
+            texts = [f"{item['title']} {re.sub(r'<[^>]+>', '', item['description'])}" for item in items]
+            _feed_embeddings = _model.encode(texts, convert_to_tensor=True)
+            logger.info(f"GADMO prefetch: {len(items)} items cached, embeddings computed")
+        else:
+            _feed_embeddings = None
+            logger.info(f"GADMO prefetch: {len(items)} items cached (no embeddings)")
+    except Exception as e:
+        _feed_embeddings = None
+        logger.warning(f"GADMO prefetch embedding failed: {e}")
+
+
 def _semantic_match(claim: str, items: list[dict], top_k: int = 5) -> list[dict]:
-    """Rank items by semantic similarity to the claim."""
+    """Rank items by semantic similarity to the claim, using cached embeddings if available."""
     try:
         from services.reranker import _load_model, _model
         if not _load_model() or _model is None:
@@ -67,8 +138,14 @@ def _semantic_match(claim: str, items: list[dict], top_k: int = 5) -> list[dict]
         from sentence_transformers import util
 
         claim_embedding = _model.encode(claim, convert_to_tensor=True)
-        texts = [f"{item['title']} {re.sub(r'<[^>]+>', '', item['description'])}" for item in items]
-        item_embeddings = _model.encode(texts, convert_to_tensor=True)
+
+        # Use pre-computed embeddings if items match the cache
+        if _feed_embeddings is not None and _feed_cache is not None and items is _feed_cache:
+            item_embeddings = _feed_embeddings
+        else:
+            texts = [f"{item['title']} {re.sub(r'<[^>]+>', '', item['description'])}" for item in items]
+            item_embeddings = _model.encode(texts, convert_to_tensor=True)
+
         scores = util.cos_sim(claim_embedding, item_embeddings)[0]
 
         scored = sorted(zip(items, scores.tolist()), key=lambda x: x[1], reverse=True)
@@ -81,6 +158,8 @@ def _semantic_match(claim: str, items: list[dict], top_k: int = 5) -> list[dict]
 
 async def search_gadmo(analysis: dict) -> dict:
     """Search GADMO member fact-check feeds for relevant articles."""
+    global _feed_cache, _feed_cache_ts
+
     claim = analysis.get("claim", "")
     entities = analysis.get("entities", [])
     factcheck_queries = analysis.get("factcheck_queries", [])
@@ -89,19 +168,15 @@ async def search_gadmo(analysis: dict) -> dict:
     if not keywords and not claim:
         return {"source": "GADMO Faktenchecks", "type": "factcheck", "results": []}
 
-    all_items = []
-
-    async with httpx.AsyncClient(timeout=15.0) as client:
-        for feed in FEEDS:
-            try:
-                resp = await client.get(feed["url"])
-                resp.raise_for_status()
-                items = _extract_items(resp.text)
-                for item in items:
-                    item["feed_name"] = feed["name"]
-                all_items.extend(items)
-            except Exception as e:
-                logger.warning(f"GADMO: Failed to fetch {feed['name']}: {e}")
+    # Use cached items if fresh, otherwise fetch
+    now = time.time()
+    if _feed_cache is not None and now - _feed_cache_ts < FEED_CACHE_TTL:
+        all_items = _feed_cache
+    else:
+        all_items = await _fetch_all_feeds()
+        if all_items:
+            _feed_cache = all_items
+            _feed_cache_ts = now
 
     if not all_items:
         return {"source": "GADMO Faktenchecks", "type": "factcheck", "results": []}

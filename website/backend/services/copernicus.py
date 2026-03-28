@@ -1,5 +1,6 @@
 import csv
 import io
+import time
 
 import httpx
 import logging
@@ -12,6 +13,11 @@ NASA_GISS_URL = "https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv
 # Pre-industrial baseline offset: NASA GISS uses 1951-1980 baseline,
 # pre-industrial level is ~0.3°C below that baseline
 PREINDUSTRIAL_OFFSET = 0.3
+
+# In-memory cache for NASA GISS data
+_giss_cache: list[dict] | None = None
+_giss_cache_ts: float = 0
+GISS_CACHE_TTL = 604800  # 7 days
 
 # Map climate keywords to relevant CDS dataset IDs + readable descriptions
 CLIMATE_DATASET_MAP = {
@@ -199,7 +205,13 @@ def _find_datasets(analysis: dict) -> list[dict]:
 
 
 async def _fetch_nasa_giss(client: httpx.AsyncClient) -> list[dict]:
-    """Fetch global temperature anomaly data from NASA GISS (simple CSV API)."""
+    """Fetch global temperature anomaly data from NASA GISS (cached for 7 days)."""
+    global _giss_cache, _giss_cache_ts
+
+    now = time.time()
+    if _giss_cache is not None and now - _giss_cache_ts < GISS_CACHE_TTL:
+        return _giss_cache
+
     results = []
     try:
         resp = await client.get(NASA_GISS_URL)
@@ -255,10 +267,14 @@ async def _fetch_nasa_giss(client: httpx.AsyncClient) -> list[dict]:
                 continue
 
         if results:
+            _giss_cache = results
+            _giss_cache_ts = now
             logger.info(f"NASA GISS: {len(results)} years of temperature data loaded")
 
     except Exception as e:
         logger.warning(f"NASA GISS fetch failed: {e}")
+        if _giss_cache is not None:
+            return _giss_cache
 
     return results
 

@@ -23,9 +23,13 @@ from services.unhcr import search_unhcr
 from services.cochrane import search_cochrane
 from services.gadmo import search_gadmo
 from services.oecd import search_oecd
+from services.euvsdisinfo import search_euvsdisinfo, _is_disinfo_claim
+from services.datacommons import search_datacommons
+from services.who_europe import search_who_europe
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
+from services.data_updater import prefetch_all, start_background_updates, stop_background_updates
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("evidora")
@@ -40,6 +44,18 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.on_event("startup")
+async def startup_prefetch():
+    """Prefetch external CSV data and start background refresh loop."""
+    await prefetch_all()
+    start_background_updates()
+
+
+@app.on_event("shutdown")
+async def shutdown_updater():
+    stop_background_updates()
 
 
 class ClaimRequest(BaseModel):
@@ -120,6 +136,8 @@ async def check_claim(request: Request):
         queried_names.append("Europäische Faktenchecker")
         tasks.append(cached("GADMO", search_gadmo, analysis))
         queried_names.append("GADMO Faktenchecks")
+        tasks.append(cached("DataCommons", search_datacommons, analysis))
+        queried_names.append("DataCommons ClaimReview")
         if analysis.get("who_relevant"):
             tasks.append(cached("WHO", search_who, analysis))
             queried_names.append("WHO")
@@ -147,6 +165,12 @@ async def check_claim(request: Request):
         if analysis.get("oecd_relevant") or analysis.get("category") == "education":
             tasks.append(cached("OECD", search_oecd, analysis))
             queried_names.append("OECD")
+        if analysis.get("who_europe_relevant"):
+            tasks.append(cached("WHO_Europe", search_who_europe, analysis))
+            queried_names.append("WHO Europe (HFA)")
+        if _is_disinfo_claim(analysis):
+            tasks.append(cached("EUvsDisinfo", search_euvsdisinfo, analysis))
+            queried_names.append("EUvsDisinfo")
 
         results = await asyncio.gather(*tasks, return_exceptions=True)
         valid_results = []

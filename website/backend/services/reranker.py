@@ -1,6 +1,7 @@
-"""Semantic re-ranking of source results using Sentence Transformers (MiniLM).
+"""Semantic re-ranking of source results using Sentence Transformers.
 
-Loads model lazily on first use (~30 MB download, ~100 MB RAM).
+Uses paraphrase-multilingual-MiniLM-L12-v2 for cross-language support (DE/EN).
+Loads model lazily on first use (~120 MB download, ~250 MB RAM).
 If sentence-transformers is not installed, falls back to no-op (results unchanged).
 """
 
@@ -21,9 +22,9 @@ def _load_model():
     try:
         from sentence_transformers import SentenceTransformer
 
-        _model = SentenceTransformer("all-MiniLM-L6-v2")
+        _model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
         _available = True
-        logger.info("Sentence Transformer model loaded (all-MiniLM-L6-v2)")
+        logger.info("Sentence Transformer model loaded (paraphrase-multilingual-MiniLM-L12-v2)")
         return True
     except ImportError:
         _available = False
