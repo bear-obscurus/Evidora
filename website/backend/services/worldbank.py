@@ -36,6 +36,7 @@ INDICATOR_MAP = {
     # Unemployment
     "arbeitslosigkeit": "SL.UEM.TOTL.ZS",
     "arbeitslosenquote": "SL.UEM.TOTL.ZS",
+    "arbeitslosenrate": "SL.UEM.TOTL.ZS",
     "unemployment": "SL.UEM.TOTL.ZS",
     "jugendarbeitslosigkeit": "SL.UEM.1524.ZS",
     "youth unemployment": "SL.UEM.1524.ZS",
@@ -145,18 +146,24 @@ EU_AGGREGATE = "EUU"
 
 
 def _find_indicator(analysis: dict) -> str | None:
-    """Find matching World Bank indicator from claim analysis."""
-    entities = analysis.get("entities", [])
-    subcategory = analysis.get("subcategory", "")
-    keywords = analysis.get("spacy_keywords", [])
-    factcheck_queries = analysis.get("factcheck_queries", [])
-    search_terms = entities + keywords + factcheck_queries + [subcategory]
+    """Find matching World Bank indicator from claim analysis.
 
+    Sorts keywords longest-first so specific matches (e.g. "jugendarbeitslosigkeit")
+    win over generic substrings (e.g. "arbeitslosigkeit").
+    """
+    keywords = analysis.get("spacy_keywords", [])
+    entities = analysis.get("entities", [])
+    claim = analysis.get("claim", "")
+    factcheck_queries = analysis.get("factcheck_queries", [])
+    subcategory = analysis.get("subcategory", "")
+    search_terms = keywords + entities + [claim] + factcheck_queries + [subcategory]
+
+    sorted_keywords = sorted(INDICATOR_MAP.keys(), key=len, reverse=True)
     for term in search_terms:
         term_lower = term.lower()
-        for keyword, code in INDICATOR_MAP.items():
+        for keyword in sorted_keywords:
             if keyword in term_lower:
-                return code
+                return INDICATOR_MAP[keyword]
 
     return None
 

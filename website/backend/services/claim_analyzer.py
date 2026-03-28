@@ -55,7 +55,7 @@ Quellen-Relevanz-Regeln:
 - unhcr_relevant: true bei Flüchtlingen, Asyl, Vertriebenen, Geflüchteten, Schutzsuchenden, Migration (weltweit oder länderspezifisch)
 - oecd_relevant: true bei Bildungsvergleichen (PISA, Schulleistung, Bildungsniveau), Gender/Geschlechtervergleichen (Lohnunterschied, Gender Pay Gap, Frauen in MINT), Arbeitsmarkt nach Geschlecht, Bildungsabschlüssen
 - who_europe_relevant: true bei europäischen Gesundheitsvergleichen (Lebenserwartung, Adipositas, Suizidrate, Alkoholkonsum, Rauchen, Krankenhausbetten, Ärztedichte, Impfquoten, Säuglingssterblichkeit, Gesundheitsausgaben) — speziell wenn europäische Länder verglichen werden
-- worldbank_relevant: true bei globalen Entwicklungsindikatoren (BIP, Armut, Arbeitslosigkeit, Inflation, CO2-Emissionen, Bevölkerung, Bildungsausgaben, Gesundheitsausgaben, Militärausgaben, Ungleichheit/Gini, Internetnutzung, Handel) — speziell bei Ländervergleichen außerhalb der EU oder bei globalen Statistiken"""
+- worldbank_relevant: true bei Entwicklungsindikatoren (BIP, Armut, Arbeitslosigkeit, Jugendarbeitslosigkeit, Inflation, CO2-Emissionen, Bevölkerung, Bildungsausgaben, Gesundheitsausgaben, Militärausgaben, Ungleichheit/Gini, Internetnutzung, Handel) — auch bei EU-Ländern als zusätzliche Datenquelle, nicht nur global"""
 
 
 def _repair_json(text: str) -> dict | None:

@@ -600,17 +600,28 @@ COUNTRY_CODES = {
 
 
 def _find_datasets(analysis: dict) -> list[dict]:
-    """Find matching Eurostat datasets based on claim analysis."""
+    """Find matching Eurostat datasets based on claim analysis.
+
+    Search order: specific terms first (keywords, claim text) before generic
+    ones (subcategory, category) so that e.g. "Jugendarbeitslosigkeit" matches
+    the youth-specific dataset before "unemployment" catches the generic one.
+    """
+    keywords = analysis.get("spacy_keywords", [])
     entities = analysis.get("entities", [])
+    claim = analysis.get("claim", "")
     subcategory = analysis.get("subcategory", "")
     category = analysis.get("category", "")
-    claim = analysis.get("claim", "")
-    search_terms = entities + [subcategory, category, claim]
+    search_terms = keywords + entities + [claim, subcategory, category]
 
     matched = {}
+    # Sort keywords longest-first so specific matches (e.g. "jugendarbeitslosigkeit")
+    # win over generic substrings (e.g. "arbeitslosigkeit") for the same dataset
+    sorted_keywords = sorted(DATASET_MAP.keys(), key=len, reverse=True)
     for term in search_terms:
-        for keyword, ds in DATASET_MAP.items():
-            if keyword in term.lower():
+        term_lower = term.lower()
+        for keyword in sorted_keywords:
+            if keyword in term_lower:
+                ds = DATASET_MAP[keyword]
                 key = ds["dataset"]
                 if key not in matched:
                     matched[key] = ds
