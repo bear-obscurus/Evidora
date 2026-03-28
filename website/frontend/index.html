@@ -55,8 +55,23 @@
                     >
                     <button type="submit" id="search-btn" data-i18n="search_btn">Faktencheck</button>
                 </div>
-                <div id="char-counter" class="char-counter" aria-live="polite">
-                    <span id="chars-remaining">500</span> <span data-i18n="chars_remaining">Zeichen verbleibend</span>
+                <div class="input-meta">
+                    <button type="button" id="tips-btn" class="tips-btn" aria-expanded="false" aria-controls="tips-panel">
+                        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9v1zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/></svg>
+                        <span data-i18n="tips_btn">Tipps</span>
+                    </button>
+                    <div id="char-counter" class="char-counter" aria-live="polite">
+                        <span id="chars-remaining">500</span> <span data-i18n="chars_remaining">Zeichen verbleibend</span>
+                    </div>
+                </div>
+                <div id="tips-panel" class="tips-panel hidden" role="tooltip">
+                    <p class="tips-motto" data-i18n="tips_motto">&bdquo;Was sich überhaupt sagen lässt, lässt sich klar sagen.&ldquo; &mdash; Wittgenstein</p>
+                    <ul>
+                        <li data-i18n="tips_1"><strong>Konkret statt vage:</strong> &bdquo;Impfungen sind gefährlich&ldquo; &#x2192; &bdquo;mRNA-Impfstoffe erhöhen das Herzinfarktrisiko&ldquo;</li>
+                        <li data-i18n="tips_2"><strong>Zahlen &amp; Zeitraum nennen:</strong> &bdquo;Die Inflation ist hoch&ldquo; &#x2192; &bdquo;Die Inflation in der EU lag 2024 über 5&thinsp;%&ldquo;</li>
+                        <li data-i18n="tips_3"><strong>Eine Behauptung pro Check:</strong> Nicht mehrere Aussagen in einem Satz kombinieren.</li>
+                        <li data-i18n="tips_4"><strong>Quelle weglassen:</strong> &bdquo;Laut Twitter sind ...&ldquo; &#x2192; einfach die Behauptung selbst eingeben.</li>
+                    </ul>
                 </div>
                 <div id="search-history" class="search-history hidden"></div>
                 <div class="hints">

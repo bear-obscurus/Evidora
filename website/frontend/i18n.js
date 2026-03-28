@@ -56,6 +56,12 @@ const TRANSLATIONS = {
         error_claim_too_short: "Behauptung zu kurz — bitte mindestens 2 Wörter eingeben.",
         error_claim_too_long: "Behauptung zu lang — maximal 500 Zeichen erlaubt.",
         chars_remaining: "Zeichen verbleibend",
+        tips_btn: "Tipps",
+        tips_motto: "\u201eWas sich überhaupt sagen lässt, lässt sich klar sagen.\u201c — Wittgenstein",
+        tips_1: "<strong>Konkret statt vage:</strong> \u201eImpfungen sind gefährlich\u201c → \u201emRNA-Impfstoffe erhöhen das Herzinfarktrisiko\u201c",
+        tips_2: "<strong>Zahlen & Zeitraum nennen:</strong> \u201eDie Inflation ist hoch\u201c → \u201eDie Inflation in der EU lag 2024 über 5\u202f%\u201c",
+        tips_3: "<strong>Eine Behauptung pro Check:</strong> Nicht mehrere Aussagen in einem Satz kombinieren.",
+        tips_4: "<strong>Quelle weglassen:</strong> \u201eLaut Twitter sind ...\u201c → einfach die Behauptung selbst eingeben.",
         claim_display_label: "Geprüfte Behauptung",
         error_rate_limit: "Zu viele Anfragen. Bitte warte einen Moment.",
         error_empty: "Behauptung darf nicht leer sein.",
@@ -260,6 +266,12 @@ const TRANSLATIONS = {
         error_claim_too_short: "Claim too short — please enter at least 2 words.",
         error_claim_too_long: "Claim too long — maximum 500 characters allowed.",
         chars_remaining: "characters remaining",
+        tips_btn: "Tips",
+        tips_motto: "\u201cWhereof one can speak, thereof one must speak clearly.\u201d — Wittgenstein",
+        tips_1: "<strong>Be specific:</strong> \u201cVaccines are dangerous\u201d → \u201cmRNA vaccines increase heart attack risk\u201d",
+        tips_2: "<strong>Include numbers & timeframe:</strong> \u201cInflation is high\u201d → \u201cEU inflation exceeded 5% in 2024\u201d",
+        tips_3: "<strong>One claim per check:</strong> Don\u2019t combine multiple statements in one sentence.",
+        tips_4: "<strong>Drop the source:</strong> \u201cAccording to Twitter ...\u201d → just enter the claim itself.",
         claim_display_label: "Claim checked",
         error_rate_limit: "Too many requests. Please wait a moment.",
         error_empty: "Claim must not be empty.",
@@ -431,7 +443,12 @@ function applyTranslations() {
         if (key === "beta_notice" && isOnline) {
             key = "beta_notice_online";
         }
-        el.textContent = t(key);
+        // Use innerHTML for tips (contain <strong> tags), textContent for everything else
+        if (key.startsWith("tips_") && key !== "tips_btn") {
+            el.innerHTML = t(key);
+        } else {
+            el.textContent = t(key);
+        }
     });
     document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
         const key = el.getAttribute("data-i18n-placeholder");

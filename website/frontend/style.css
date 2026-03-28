@@ -228,13 +228,84 @@ body {
     background: #0f766e;
 }
 
-/* Character counter */
-.char-counter {
-    text-align: right;
+/* Input meta row (tips + counter) */
+.input-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+    padding: 0 4px;
+}
+
+#search-section.compact .input-meta {
+    display: none;
+}
+
+/* Tips button */
+.tips-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
     font-size: 0.75rem;
     color: #9ca3af;
-    margin-top: 6px;
-    padding-right: 4px;
+    padding: 2px 0;
+    transition: color 0.2s;
+}
+
+.tips-btn:hover,
+.tips-btn[aria-expanded="true"] {
+    color: #0f766e;
+}
+
+/* Tips panel */
+.tips-panel {
+    background: #f8fffe;
+    border: 1px solid #ccfbf1;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #374151;
+    animation: tipsFadeIn 0.2s ease-out;
+}
+
+@keyframes tipsFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.tips-motto {
+    font-style: italic;
+    color: #6b7280;
+    margin: 0 0 10px 0;
+    font-size: 0.78rem;
+}
+
+.tips-panel ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.tips-panel li {
+    margin-bottom: 6px;
+}
+
+.tips-panel li:last-child {
+    margin-bottom: 0;
+}
+
+.tips-panel strong {
+    color: #0f766e;
+}
+
+/* Character counter */
+.char-counter {
+    font-size: 0.75rem;
+    color: #9ca3af;
     transition: color 0.2s;
 }
 
@@ -245,10 +316,6 @@ body {
 .char-counter.limit {
     color: #dc2626;
     font-weight: 600;
-}
-
-#search-section.compact .char-counter {
-    display: none;
 }
 
 .hints {

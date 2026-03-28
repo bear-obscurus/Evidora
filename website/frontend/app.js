@@ -20,6 +20,16 @@ function updateCharCounter() {
 input.addEventListener("input", updateCharCounter);
 updateCharCounter();
 
+// --- Tips toggle ---
+const tipsBtn = document.getElementById("tips-btn");
+const tipsPanel = document.getElementById("tips-panel");
+
+tipsBtn.addEventListener("click", () => {
+    const open = !tipsPanel.classList.contains("hidden");
+    tipsPanel.classList.toggle("hidden");
+    tipsBtn.setAttribute("aria-expanded", !open);
+});
+
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const claim = input.value.trim();
