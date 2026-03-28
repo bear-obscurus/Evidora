@@ -283,15 +283,18 @@ body {
     color: #6b7280;
     margin: 0 0 10px 0;
     font-size: 0.78rem;
+    text-align: center;
 }
 
 .tips-panel ul {
     margin: 0;
     padding-left: 18px;
+    text-align: left;
 }
 
 .tips-panel li {
     margin-bottom: 6px;
+    text-align: left;
 }
 
 .tips-panel li:last-child {
