@@ -64,7 +64,7 @@ class ClaimRequest(BaseModel):
 
 
 # --- Input validation ---
-MAX_CLAIM_LENGTH = 2000  # characters
+MAX_CLAIM_LENGTH = 500  # characters — claims are single statements, not essays
 
 # Control characters and dangerous Unicode categories to strip
 _UNSAFE_UNICODE_CATS = {"Cc", "Cf", "Co", "Cs"}  # control, format, private use, surrogate
@@ -122,6 +122,13 @@ async def check_claim(request: Request):
     raw_claim = body.get("claim", "")
     if not isinstance(raw_claim, str):
         raise HTTPException(status_code=400, detail="Invalid claim format.")
+    if len(raw_claim) > MAX_CLAIM_LENGTH:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Claim too long (max {MAX_CLAIM_LENGTH} characters)."
+            if lang == "en" else
+            f"Behauptung zu lang (max. {MAX_CLAIM_LENGTH} Zeichen).",
+        )
     claim = _sanitize_claim(raw_claim)
     if not claim:
         raise HTTPException(status_code=400, detail="Claim must not be empty." if lang == "en" else "Behauptung darf nicht leer sein.")
