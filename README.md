@@ -4,7 +4,7 @@
 
 A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
-Evidora automatically verifies claims against scientific and institutional sources such as PubMed, Cochrane, WHO, WHO Europe, EMA, ECDC, Copernicus, Eurostat, ECB, UNHCR, EEA, OECD, DataCommons, EUvsDisinfo, and European fact-checkers.
+Evidora automatically verifies claims against scientific and institutional sources such as PubMed, OpenAlex, Cochrane, WHO, WHO Europe, EMA, ECDC, Copernicus, Eurostat, ECB, UNHCR, EEA, OECD, DataCommons, EUvsDisinfo, and European fact-checkers.
 
 **Live Demo:** [https://evidora.eu](https://evidora.eu)
 
@@ -13,7 +13,7 @@ Evidora automatically verifies claims against scientific and institutional sourc
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **16 data sources** — Scientific databases, systematic reviews, official EU/UN/OECD statistics, climate data, disease surveillance, disinformation databases, and fact-checkers
+- **17 data sources** — Scientific databases, systematic reviews, official EU/UN/OECD statistics, climate data, disease surveillance, disinformation databases, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Multi-country ranking** — Superlative claims ("highest", "most") automatically query all EU-27 countries for a full ranking
 - **Hallucination filtering** — Evidence URLs are verified against actual source results
@@ -139,6 +139,7 @@ docker compose down
 | OECD | Education & gender equality | PISA 2022 scores (35 countries, by gender), gender wage gap, employment | ✅ Active |
 | GADMO Faktenchecks | German-language fact-checks | APA, Correctiv (DACH region) | ✅ Active |
 | DataCommons | ClaimReview aggregator | Global fact-checker results via knowledge graph | ✅ Active |
+| OpenAlex | Scholarly works (250M+) | All disciplines: physics, social science, economics, engineering, etc. | ✅ Active |
 | EUvsDisinfo | Disinformation database | Pro-Kremlin disinformation cases (EEA East StratCom) | ✅ Active |
 | Google Fact Check API | ClaimReview markup | European fact-checkers (EFCSN) | ✅ Active |
 
@@ -187,6 +188,7 @@ Evidora/
 │   │       ├── gadmo.py           # GADMO fact-checks (APA, Correctiv)
 │   │       ├── datacommons.py     # DataCommons ClaimReview aggregator
 │   │       ├── euvsdisinfo.py     # EUvsDisinfo (disinformation DB)
+│   │       ├── openalex.py        # OpenAlex (250M+ scholarly works)
 │   │       ├── data_updater.py    # Background CSV/data refresh
 │   │       ├── cache.py           # In-memory response cache
 │   │       ├── reranker.py        # Sentence Transformers reranking

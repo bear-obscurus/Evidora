@@ -27,6 +27,7 @@ from services.oecd import search_oecd
 from services.euvsdisinfo import search_euvsdisinfo, _is_disinfo_claim
 from services.datacommons import search_datacommons
 from services.who_europe import search_who_europe
+from services.openalex import search_openalex
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -213,6 +214,10 @@ async def check_claim(request: Request):
         if _is_disinfo_claim(analysis):
             tasks.append(cached("EUvsDisinfo", search_euvsdisinfo, analysis))
             queried_names.append("EUvsDisinfo")
+        # OpenAlex covers all scientific disciplines — query for any claim with search terms
+        if analysis.get("pubmed_queries"):
+            tasks.append(cached("OpenAlex", search_openalex, analysis))
+            queried_names.append("OpenAlex")
 
         results = await asyncio.gather(*tasks, return_exceptions=True)
         valid_results = []
