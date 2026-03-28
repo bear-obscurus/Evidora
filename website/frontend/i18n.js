@@ -80,7 +80,7 @@ const TRANSLATIONS = {
         history_clear: "Verlauf löschen",
 
         // Footer
-        footer_main: "Evidora.eu — Europäischer Faktencheck | Quellen: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EZB, UNHCR, EEA, Copernicus, OECD, GADMO, DataCommons, EUvsDisinfo, OpenAlex, EFCSN",
+        footer_main: "Evidora.eu — Europäischer Faktencheck | Quellen: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, EZB, UNHCR, EEA, Copernicus, OECD, GADMO, DataCommons, EUvsDisinfo, OpenAlex, World Bank, EFCSN",
         footer_note: "Automatische Überprüfung — ersetzt keine professionelle Faktencheck-Redaktion",
         footer_opensource: "Open Source auf GitHub",
         privacy_link: "Datenschutz",
@@ -290,7 +290,7 @@ const TRANSLATIONS = {
         history_clear: "Clear history",
 
         // Footer
-        footer_main: "Evidora.eu — European Fact Check | Sources: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, ECB, UNHCR, EEA, Copernicus, OECD, GADMO, DataCommons, EUvsDisinfo, OpenAlex, EFCSN",
+        footer_main: "Evidora.eu — European Fact Check | Sources: PubMed, Cochrane, WHO, EMA, ECDC, Eurostat, ECB, UNHCR, EEA, Copernicus, OECD, GADMO, DataCommons, EUvsDisinfo, OpenAlex, World Bank, EFCSN",
         footer_note: "Automated check — does not replace professional fact-checking",
         footer_opensource: "Open Source on GitHub",
         privacy_link: "Privacy Policy",

@@ -28,6 +28,7 @@ from services.euvsdisinfo import search_euvsdisinfo, _is_disinfo_claim
 from services.datacommons import search_datacommons
 from services.who_europe import search_who_europe
 from services.openalex import search_openalex
+from services.worldbank import search_worldbank
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -214,6 +215,9 @@ async def check_claim(request: Request):
         if _is_disinfo_claim(analysis):
             tasks.append(cached("EUvsDisinfo", search_euvsdisinfo, analysis))
             queried_names.append("EUvsDisinfo")
+        if analysis.get("worldbank_relevant"):
+            tasks.append(cached("WorldBank", search_worldbank, analysis))
+            queried_names.append("World Bank")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

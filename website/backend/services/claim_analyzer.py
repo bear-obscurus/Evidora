@@ -23,6 +23,7 @@ Analysiere die folgende Behauptung und antworte AUSSCHLIESSLICH im JSON-Format:
   "unhcr_relevant": true/false,
   "oecd_relevant": true/false,
   "who_europe_relevant": true/false,
+  "worldbank_relevant": true/false,
   "entities": ["erkannte Entitäten wie Medikamente, Krankheiten, Orte"],
   "confidence": 0.0-1.0
 }
@@ -53,7 +54,8 @@ Quellen-Relevanz-Regeln:
 - ecb_relevant: true bei EZB, Leitzins, Zinsen, Wechselkursen, Geldmenge, Geldpolitik, Euro-Wert
 - unhcr_relevant: true bei Flüchtlingen, Asyl, Vertriebenen, Geflüchteten, Schutzsuchenden, Migration (weltweit oder länderspezifisch)
 - oecd_relevant: true bei Bildungsvergleichen (PISA, Schulleistung, Bildungsniveau), Gender/Geschlechtervergleichen (Lohnunterschied, Gender Pay Gap, Frauen in MINT), Arbeitsmarkt nach Geschlecht, Bildungsabschlüssen
-- who_europe_relevant: true bei europäischen Gesundheitsvergleichen (Lebenserwartung, Adipositas, Suizidrate, Alkoholkonsum, Rauchen, Krankenhausbetten, Ärztedichte, Impfquoten, Säuglingssterblichkeit, Gesundheitsausgaben) — speziell wenn europäische Länder verglichen werden"""
+- who_europe_relevant: true bei europäischen Gesundheitsvergleichen (Lebenserwartung, Adipositas, Suizidrate, Alkoholkonsum, Rauchen, Krankenhausbetten, Ärztedichte, Impfquoten, Säuglingssterblichkeit, Gesundheitsausgaben) — speziell wenn europäische Länder verglichen werden
+- worldbank_relevant: true bei globalen Entwicklungsindikatoren (BIP, Armut, Arbeitslosigkeit, Inflation, CO2-Emissionen, Bevölkerung, Bildungsausgaben, Gesundheitsausgaben, Militärausgaben, Ungleichheit/Gini, Internetnutzung, Handel) — speziell bei Ländervergleichen außerhalb der EU oder bei globalen Statistiken"""
 
 
 def _repair_json(text: str) -> dict | None:
