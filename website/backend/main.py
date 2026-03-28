@@ -168,7 +168,7 @@ async def check_claim(request: Request):
             return result
 
         # PubMed only for categories where medical/scientific literature is relevant
-        pubmed_categories = {"health", "climate", "medication", "demographics", "other"}
+        pubmed_categories = {"health", "climate", "medication", "demographics", "energy", "other"}
         tasks = []
         queried_names = []
         if analysis.get("category") in pubmed_categories:

@@ -43,6 +43,8 @@ PubMed-Query-Regeln (WICHTIG — die Qualität der Suchergebnisse hängt davon a
 - Bei Impf-Behauptungen: spezifische Begriffe wie "mRNA vaccine safety", "COVID-19 vaccine genome"
 - Bei Medikamenten-Behauptungen: Wirkstoffnamen verwenden (z.B. "ibuprofen hepatotoxicity" statt "Schmerzmittel Leberschäden")
 - Bei Gesundheits-Behauptungen: medizinische Fachbegriffe und MeSH-Terms verwenden
+- Bei Vergleichs-Behauptungen ("X ist sicherer/besser/höher als Y"): IMMER beide Vergleichsobjekte UND die Vergleichsmetrik in die Query aufnehmen (z.B. "nuclear wind energy deaths per TWh mortality rate comparison" statt nur "nuclear energy safety")
+- Bei Energie-Behauptungen: Sicherheit = "deaths per TWh", "mortality rate energy source", "fatalities electricity generation"; Umwelt = "lifecycle emissions", "carbon footprint comparison"
 
 Quellen-Relevanz-Regeln:
 - ecdc_relevant: true bei Infektionskrankheiten (Masern, Grippe, Tuberkulose, HIV, Hepatitis, Keuchhusten, Salmonellen, Dengue, Malaria, Polio, Diphtherie, Röteln, Mumps, Cholera, Legionellen, FSME, Antibiotikaresistenz, Ebola)
