@@ -251,6 +251,33 @@ async def search_eea(analysis: dict) -> dict:
                     "url": ds["url"],
                 })
 
+    # Add CO₂ multi-dimensional context caveat if GHG data was returned
+    ghg_datasets = {"sdg_13_10"}
+    if any(ds["dataset"] in ghg_datasets for ds in datasets[:2]) and all_results:
+        all_results.append({
+            "title": "WICHTIGER KONTEXT: Treibhausgasemissionen sind mehrdimensional",
+            "indicator": "Methodische Einordnung",
+            "geo": "",
+            "time": "",
+            "value": "",
+            "unit": "",
+            "source": "EEA / Eurostat",
+            "url": "https://ec.europa.eu/eurostat/databrowser/view/sdg_13_10/default/table",
+            "description": (
+                "Der SDG-Indikator 13.10 zeigt Treibhausgasemissionen als Index (1990=100) — er misst "
+                "den TREND relativ zum Basisjahr, nicht das absolute Niveau. Ein niedriger Indexwert "
+                "bedeutet starke Reduktion seit 1990, sagt aber nichts über die Gesamtmenge aus. "
+                "Weitere Einschränkungen: "
+                "(1) Nur territoriale Emissionen — konsumbasierte Emissionen (importierte Güter) fehlen. "
+                "(2) Pro-Kopf-Unterschiede — Länder mit hohem Basisjahr-Niveau und starker Reduktion "
+                "können trotzdem höhere Pro-Kopf-Emissionen haben als Länder mit wenig Reduktion. "
+                "(3) Wirtschaftsstruktur — Deindustrialisierung (z.B. Osteuropa nach 1990) senkt den "
+                "Index ohne aktive Klimapolitik. "
+                "(4) Historische Verantwortung — kumulierte Emissionen seit Industrialisierung werden "
+                "nicht abgebildet."
+            ),
+        })
+
     return {
         "source": "European Environment Agency (EEA)",
         "type": "official_data",

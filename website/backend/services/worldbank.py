@@ -272,6 +272,89 @@ async def search_worldbank(analysis: dict) -> dict:
             if len(results) >= 5:
                 break
 
+        # Add GDP/economy multi-dimensional context caveat
+        gdp_indicators = {"NY.GDP.MKTP.CD", "NY.GDP.PCAP.CD", "NY.GDP.MKTP.KD.ZG"}
+        if indicator in gdp_indicators and results:
+            results.append({
+                "indicator_name": "WICHTIGER KONTEXT: BIP ist kein umfassendes Wohlstandsmaß",
+                "indicator": "context",
+                "country": "",
+                "country_name": "",
+                "year": "",
+                "value": "",
+                "display_value": "",
+                "url": "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD",
+                "description": (
+                    "Das BIP misst die Wirtschaftsleistung, nicht den Wohlstand. "
+                    "Einschränkungen: "
+                    "(1) Nominell vs. KKP — nominale US-Dollar-Werte ignorieren Preisniveauunterschiede; "
+                    "Kaufkraftparität (KKP) ist für Lebensstandard-Vergleiche aussagekräftiger. "
+                    "(2) Verteilung — hohes BIP pro Kopf bei hoher Ungleichheit (Gini) bedeutet, dass "
+                    "der Wohlstand bei wenigen konzentriert ist. "
+                    "(3) Informelle Wirtschaft — in Entwicklungsländern macht der informelle Sektor "
+                    "bis zu 60 % der Wirtschaftsleistung aus und wird im BIP nur geschätzt. "
+                    "(4) Bevölkerungsgröße — Gesamtwirtschaft (MKTP.CD) und Pro-Kopf-Leistung (PCAP.CD) "
+                    "erzählen sehr unterschiedliche Geschichten. China hat das zweitgrößte BIP, "
+                    "liegt aber pro Kopf auf Platz ~70. "
+                    "(5) Nachhaltigkeit — BIP-Wachstum auf Kosten von Umwelt oder Staatsverschuldung "
+                    "ist langfristig kein Wohlstandsgewinn."
+                ),
+            })
+
+        # Add migration multi-dimensional context caveat
+        migration_indicators = {"SM.POP.REFG"}
+        if indicator in migration_indicators and results:
+            results.append({
+                "indicator_name": "WICHTIGER KONTEXT: Flüchtlingszahlen sind mehrdimensional",
+                "indicator": "context",
+                "country": "",
+                "country_name": "",
+                "year": "",
+                "value": "",
+                "display_value": "",
+                "url": "https://data.worldbank.org/indicator/SM.POP.REFG",
+                "description": (
+                    "Der World-Bank-Indikator SM.POP.REFG zählt die Gesamtzahl der Flüchtlinge "
+                    "nach Herkunftsland. Einschränkungen: "
+                    "(1) Nur anerkannte Flüchtlinge — Asylsuchende, Binnenvertriebene (IDPs) und "
+                    "irreguläre Migration fehlen. "
+                    "(2) Absolut vs. Pro-Kopf — kleine Aufnahmeländer (Libanon, Jordanien) tragen "
+                    "relativ zur Bevölkerung eine viel höhere Last als große Länder. "
+                    "(3) Herkunft vs. Aufnahme — dieser Indikator zählt nach Herkunftsland; für "
+                    "Aufnahmezahlen ist SM.POP.REFG.OR aussagekräftiger. "
+                    "(4) Keine Integration — Beschäftigung, Bildungszugang und soziale Teilhabe "
+                    "erfordern andere Datenquellen."
+                ),
+            })
+
+        # Add CO₂ multi-dimensional context caveat
+        co2_indicators = {"EN.ATM.CO2E.PC"}
+        if indicator in co2_indicators and results:
+            results.append({
+                "indicator_name": "WICHTIGER KONTEXT: CO₂ pro Kopf ist nur eine Dimension",
+                "indicator": "context",
+                "country": "",
+                "country_name": "",
+                "year": "",
+                "value": "",
+                "display_value": "",
+                "url": "https://data.worldbank.org/indicator/EN.ATM.CO2E.PC",
+                "description": (
+                    "CO₂-Emissionen pro Kopf (World Bank EN.ATM.CO2E.PC) messen nur die "
+                    "territorialen, produktionsbasierten Emissionen geteilt durch die Bevölkerung. "
+                    "Sie erfassen NICHT: "
+                    "(1) Konsumbasierte Emissionen — in importierten Gütern enthaltenes CO₂ wird dem "
+                    "Produktionsland zugerechnet, nicht dem Konsumland. "
+                    "(2) Absolute Emissionen — bevölkerungsreiche Länder (China, Indien) haben niedrige "
+                    "Pro-Kopf-Werte, aber die weltweit höchsten Absolutemissionen. "
+                    "(3) Historische Kumulativ-Emissionen — die USA und EU tragen die größte historische "
+                    "Verantwortung, auch wenn aktuelle Pro-Kopf-Werte sinken. "
+                    "(4) Methan & andere Treibhausgase — dieser Indikator erfasst nur CO₂, nicht CH₄, "
+                    "N₂O oder F-Gase. Für Gesamtvergleiche sind CO₂-Äquivalente aussagekräftiger. "
+                    "(5) Datenverzögerung — World-Bank-Emissionsdaten haben typisch 2–3 Jahre Verzug."
+                ),
+            })
+
         logger.info(f"World Bank: {len(results)} results for {indicator} ({country_str})")
         return {"source": "World Bank", "type": "official_data", "results": results}
 

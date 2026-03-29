@@ -158,6 +158,7 @@ def _is_pisa_claim(claim: str) -> bool:
         "besser in", "schlechter in", "leistung",
         "frauen sind schlechter", "männer sind besser",
         "mädchen", "jungen", "boys", "girls",
+        "bildungssystem", "education system",
     ]
     claim_lower = claim.lower()
     return any(kw in claim_lower for kw in keywords)
@@ -169,6 +170,17 @@ def _is_gender_claim(claim: str) -> bool:
         "frauen", "männer", "geschlecht", "gender", "weiblich", "männlich",
         "mädchen", "jungen", "women", "men", "female", "male",
         "boys", "girls", "sex difference",
+    ]
+    claim_lower = claim.lower()
+    return any(kw in claim_lower for kw in keywords)
+
+
+def _is_superlative_education_claim(claim: str) -> bool:
+    """Check if claim makes a superlative/ranking statement about education systems."""
+    keywords = [
+        "beste", "bestes", "best", "schlechteste", "worst",
+        "führend", "top", "ranking", "nummer eins", "number one",
+        "weltbeste", "spitzenreiter", "vorne", "hinten",
     ]
     claim_lower = claim.lower()
     return any(kw in claim_lower for kw in keywords)
@@ -264,6 +276,57 @@ def _search_pisa(claim: str, analysis: dict) -> list[dict]:
                     "url": "https://www.oecd.org/en/about/programmes/pisa/pisa-2022-results.html",
                     "dataset_id": "pisa_2022",
                 })
+
+    # --- Add ranking for superlative claims ("bestes Bildungssystem") ---
+    if _is_superlative_education_claim(claim) and results:
+        ranking_subj = subject or "math"
+        total_rows = sorted(
+            [r for r in data if r["subject"] == ranking_subj and r["gender"] == "total"
+             and r["country_code"] != "OECD"],
+            key=lambda r: int(r["score"]),
+            reverse=True,
+        )
+        if total_rows:
+            ranking_text = " > ".join(
+                f"{r['country']} ({r['score']})"
+                for r in total_rows[:15]
+            )
+            results.append({
+                "title": f"PISA 2022 Ranking: {PISA_SUBJECT_LABELS.get(ranking_subj, ranking_subj)} (Top 15)",
+                "indicator": "PISA Score Ranking",
+                "description": ranking_text,
+                "year": "2022",
+                "source": "OECD PISA 2022",
+                "url": "https://www.oecd.org/en/about/programmes/pisa/pisa-2022-results.html",
+                "dataset_id": "pisa_2022",
+            })
+
+    # --- Multi-dimensional context caveat ---
+    if results:
+        results.append({
+            "title": "WICHTIGER KONTEXT: 'Bestes Bildungssystem' ist mehrdimensional",
+            "indicator": "Methodische Einordnung",
+            "description": (
+                "PISA misst ausschließlich die Kompetenzen 15-Jähriger in Lesen, Mathematik und "
+                "Naturwissenschaften. Ein umfassender Vergleich von Bildungssystemen erfordert "
+                "zusätzliche Dimensionen, die PISA NICHT erfasst: "
+                "(1) Berufsausbildung — duale Systeme (z.B. Österreich, Deutschland, Schweiz) "
+                "produzieren hochqualifizierte Fachkräfte, die in PISA nicht abgebildet werden. "
+                "(2) Inklusion & Chancengleichheit — Anteil sozial benachteiligter Schüler, die "
+                "Basiskompetenzen erreichen; Einfluss des sozioökonomischen Hintergrunds. "
+                "(3) Dropout-Rate — Anteil der Jugendlichen ohne Abschluss (EU-Durchschnitt: ~10 %). "
+                "(4) Lehrerqualität & Arbeitsbedingungen — Gehalt, Ausbildungsdauer, Betreuungsverhältnis. "
+                "(5) Universitäts-Rankings — Forschungsqualität (z.B. Shanghai, THE, QS). "
+                "(6) Lebenslanges Lernen — Weiterbildungsbeteiligung Erwachsener. "
+                "(7) Wohlbefinden — Schulstress, Lernfreude, Mobbing-Raten (PISA erhebt teils, "
+                "aber dies fließt nicht in die Score-Rankings ein). "
+                "Hohe PISA-Scores korrelieren nicht automatisch mit einem 'guten' Bildungssystem."
+            ),
+            "year": "2022",
+            "source": "OECD PISA 2022, Bildung auf einen Blick (EAG)",
+            "url": "https://www.oecd.org/en/about/programmes/pisa/pisa-2022-results.html",
+            "dataset_id": "pisa_context",
+        })
 
     return results
 

@@ -183,6 +183,32 @@ async def search_unhcr(analysis: dict) -> dict:
             except Exception as e:
                 logger.error(f"UNHCR asylum applications request failed: {e}")
 
+    # Add multi-dimensional context caveat for migration/refugee data
+    if results:
+        results.append({
+            "title": "WICHTIGER KONTEXT: Flüchtlings- und Migrationsdaten sind mehrdimensional",
+            "indicator": "Methodische Einordnung",
+            "year": "",
+            "url": "https://www.unhcr.org/refugee-statistics/methodology/",
+            "description": (
+                "UNHCR-Flüchtlingsstatistiken erfassen anerkannte Flüchtlinge, Asylsuchende und "
+                "Binnenvertriebene (IDPs). Sie bilden aber nur einen Ausschnitt des Migrationsgeschehens ab. "
+                "Einschränkungen: "
+                "(1) Absolute vs. Pro-Kopf-Zahlen — große Länder (Türkei, Deutschland) haben hohe "
+                "Absolutzahlen, aber gemessen an der Bevölkerung liegt z.B. Libanon (1 Flüchtling pro "
+                "4 Einwohner) weit vorne. "
+                "(2) Nur Fluchtmigration — Arbeitsmigration, Familiennachzug und EU-Binnenmobilität "
+                "(~80 % der Zuwanderung in viele EU-Länder) sind nicht enthalten. "
+                "(3) Anerkennungsquoten — hohe Antragszahlen sagen nichts über die Schutzquote aus; "
+                "diese variiert stark nach Herkunftsland und Aufnahmeland. "
+                "(4) Irreguläre Migration — nicht registrierte Personen fehlen in den Statistiken. "
+                "(5) Wirtschaftliche und soziale Integration — Beschäftigungsquoten, Bildungsteilhabe "
+                "und fiskalische Effekte erfordern andere Datenquellen (z.B. OECD, Eurostat LFS). "
+                "(6) Push- vs. Pull-Faktoren — Zahlen erklären nicht die Ursachen (Krieg, Klima, "
+                "wirtschaftliche Not) und sind ohne diesen Kontext leicht politisch instrumentalisierbar."
+            ),
+        })
+
     return {
         "source": "UNHCR (UN-Flüchtlingshilfswerk)",
         "type": "official_data",

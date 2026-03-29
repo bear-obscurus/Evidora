@@ -940,6 +940,89 @@ async def search_eurostat(analysis: dict) -> dict:
                     "url": f"https://ec.europa.eu/eurostat/databrowser/view/{ds['dataset']}/default/table",
                 })
 
+    # Add GDP/economy multi-dimensional context caveat
+    gdp_datasets = {"nama_10_gdp"}
+    if any(ds["dataset"] in gdp_datasets for ds in datasets[:2]) and all_results:
+        all_results.append({
+            "title": "WICHTIGER KONTEXT: BIP ist kein umfassendes Wohlstandsmaß",
+            "indicator": "Methodische Einordnung",
+            "country": "",
+            "year": "",
+            "value": "",
+            "source": "Eurostat / OECD",
+            "url": "https://ec.europa.eu/eurostat/databrowser/view/nama_10_gdp/default/table",
+            "description": (
+                "Das Bruttoinlandsprodukt (BIP) misst den Marktwert aller produzierten Güter und "
+                "Dienstleistungen innerhalb der Landesgrenzen. Es ist KEIN Wohlstandsmaß. "
+                "Einschränkungen: "
+                "(1) BIP absolut vs. pro Kopf vs. KKS — Luxemburg hat das höchste BIP pro Kopf in der EU, "
+                "aber nur wegen der 200.000+ Grenzpendler, die zur Produktion beitragen, aber nicht "
+                "zur Bevölkerung zählen. Kaufkraftstandards (KKS) berücksichtigen Preisniveauunterschiede. "
+                "(2) Verteilung — hohes BIP sagt nichts über Ungleichheit aus; der Gini-Koeffizient, "
+                "Median-Einkommen und Armutsgefährdungsquote sind aussagekräftiger für Lebensstandards. "
+                "(3) Unbezahlte Arbeit — Hausarbeit, Pflege und Ehrenamt fehlen im BIP. "
+                "(4) Umweltkosten — Ressourcenverbrauch und Umweltzerstörung fließen positiv ins BIP ein "
+                "(z.B. Aufräumarbeiten nach Naturkatastrophen). "
+                "(5) Gesundheit & Bildung — BIP misst weder Lebenserwartung noch Bildungsqualität "
+                "noch subjektives Wohlbefinden (vgl. HDI, Better Life Index, BIP und Wohlfahrt). "
+                "(6) Nominell vs. real — ohne Inflationsbereinigung sind Zeitvergleiche irreführend."
+            ),
+        })
+
+    # Add migration multi-dimensional context caveat if asylum/migration data was returned
+    migration_datasets = {"migr_asyappctza", "migr_imm1ctz"}
+    if any(ds["dataset"] in migration_datasets for ds in datasets[:2]) and all_results:
+        all_results.append({
+            "title": "WICHTIGER KONTEXT: Migrations- und Asylzahlen sind mehrdimensional",
+            "indicator": "Methodische Einordnung",
+            "country": "",
+            "year": "",
+            "value": "",
+            "source": "Eurostat",
+            "url": "https://ec.europa.eu/eurostat/databrowser/view/migr_asyappctza/default/table",
+            "description": (
+                "Eurostat-Asylstatistiken (migr_asyappctza) zählen Erstanträge — nicht Anerkennungen, "
+                "nicht Gesamtzuwanderung. Einschränkungen: "
+                "(1) Nur Asylanträge — Arbeitsmigration, EU-Binnenmobilität, Familiennachzug und "
+                "Studierendenmigration (~80 % der Zuwanderung in viele EU-Länder) fehlen. "
+                "(2) Absolute vs. Pro-Kopf-Zahlen — Deutschland hat die meisten Erstanträge absolut, "
+                "pro Kopf führen oft kleinere Länder (z.B. Zypern, Österreich). "
+                "(3) Anträge ≠ Anerkennungen — die Schutzquote variiert stark nach Herkunftsland "
+                "(z.B. Syrien >90 %, Serbien <5 %) und Aufnahmeland. "
+                "(4) Dublin-Verfahren — Anträge werden im Ersteinreiseland registriert, was "
+                "Grenzstaaten (Griechenland, Italien) überproportional belastet. "
+                "(5) Integration — Antragszahlen sagen nichts über Beschäftigung, Bildungsteilhabe "
+                "oder fiskalische Effekte der Migration aus."
+            ),
+        })
+
+    # Add CO₂ multi-dimensional context caveat if emission data was returned
+    co2_datasets = {"env_air_gge"}
+    if any(ds["dataset"] in co2_datasets for ds in datasets[:2]) and all_results:
+        all_results.append({
+            "title": "WICHTIGER KONTEXT: CO₂-Emissionen sind mehrdimensional",
+            "indicator": "Methodische Einordnung",
+            "country": "",
+            "year": "",
+            "value": "",
+            "source": "Eurostat / IPCC",
+            "url": "https://ec.europa.eu/eurostat/databrowser/view/env_air_gge/default/table",
+            "description": (
+                "Territoriale Treibhausgasemissionen (Eurostat env_air_gge) messen nur die Emissionen "
+                "innerhalb der Landesgrenzen. Sie erfassen NICHT: "
+                "(1) Konsumbasierte Emissionen — importierte Güter verlagern Emissionen ins Ausland; "
+                "Länder mit viel Industrie-Import (z.B. Schweiz, Luxemburg) erscheinen sauberer als sie sind. "
+                "(2) Pro-Kopf vs. absolut — kleine Länder haben niedrige Absolutwerte, aber teils hohe "
+                "Pro-Kopf-Emissionen (z.B. Luxemburg: ~15 t/Kopf vs. EU-Schnitt ~6 t/Kopf). "
+                "(3) Historische Kumulativ-Emissionen — die Klimawirkung hängt von der Gesamtmenge seit "
+                "Industrialisierung ab, nicht nur vom aktuellen Jahreswert. "
+                "(4) Methan & N₂O — 'CO₂-Äquivalente' gewichten CH₄ (GWP-100: 28×) und N₂O (265×) mit ein; "
+                "reines CO₂ allein unterschätzt den Klimaeffekt der Landwirtschaft. "
+                "(5) LULUCF — Landnutzung und Forstwirtschaft (CO₂-Senken) sind in TOTX4_MEMO ausgeschlossen. "
+                "Ein vollständiger Emissionsvergleich erfordert alle Dimensionen."
+            ),
+        })
+
     return {
         "source": "Eurostat (EU)",
         "type": "official_data",
