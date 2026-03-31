@@ -227,7 +227,15 @@ async def check_claim(request: Request):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
             queried_names.append("OpenAlex")
 
-        results = await asyncio.gather(*tasks, return_exceptions=True)
+        try:
+            results = await asyncio.wait_for(
+                asyncio.gather(*tasks, return_exceptions=True),
+                timeout=90.0,
+            )
+        except asyncio.TimeoutError:
+            logger.warning("Source queries timed out after 90s — proceeding with partial results")
+            results = []
+
         valid_results = []
         sources_with_results = []
         hit_names = []

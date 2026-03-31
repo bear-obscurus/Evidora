@@ -130,14 +130,27 @@ OECD_GEO_CODES = {
 
 
 def _find_country_code(analysis: dict) -> str | None:
-    """Find country code from analysis entities."""
+    """Find first country code from analysis entities."""
+    codes = _find_country_codes(analysis)
+    return codes[0] if codes else None
+
+
+def _find_country_codes(analysis: dict) -> list[str]:
+    """Find all country codes mentioned in the claim (for comparison claims)."""
     entities = analysis.get("entities", [])
     claim = analysis.get("claim", "")
     text = " ".join(entities + [claim]).lower()
-    for name, code in COUNTRY_ALIASES.items():
+    found = []
+    seen = set()
+    # Sort by length descending so "vereinigte staaten" matches before "vereinig"
+    sorted_names = sorted(COUNTRY_ALIASES.keys(), key=len, reverse=True)
+    for name in sorted_names:
         if name in text:
-            return code
-    return None
+            code = COUNTRY_ALIASES[name]
+            if code not in seen:
+                found.append(code)
+                seen.add(code)
+    return found
 
 
 def _detect_subject(claim: str) -> str | None:
@@ -192,54 +205,53 @@ def _search_pisa(claim: str, analysis: dict) -> list[dict]:
     if not data:
         return []
 
-    country_code = _find_country_code(analysis)
+    country_codes = _find_country_codes(analysis)
+    country_code = country_codes[0] if country_codes else None
     subject = _detect_subject(claim)
     is_gender = _is_gender_claim(claim)
     results = []
 
     if is_gender:
         # Gender comparison: show boy vs girl scores
+        # For comparison claims, check all mentioned countries
+        codes_to_check = country_codes if country_codes else ["OECD"]
         subjects_to_check = [subject] if subject else ["math", "reading", "science"]
-        for subj in subjects_to_check:
-            if country_code and country_code != "OECD":
-                # Specific country
-                rows = [r for r in data if r["country_code"] == country_code and r["subject"] == subj]
-            else:
-                # OECD average
-                rows = [r for r in data if r["country_code"] == "OECD" and r["subject"] == subj]
+        for code in codes_to_check:
+            for subj in subjects_to_check:
+                rows = [r for r in data if r["country_code"] == code and r["subject"] == subj]
 
-            boy_row = next((r for r in rows if r["gender"] == "boy"), None)
-            girl_row = next((r for r in rows if r["gender"] == "girl"), None)
-            total_row = next((r for r in rows if r["gender"] == "total"), None)
+                boy_row = next((r for r in rows if r["gender"] == "boy"), None)
+                girl_row = next((r for r in rows if r["gender"] == "girl"), None)
+                total_row = next((r for r in rows if r["gender"] == "total"), None)
 
-            if boy_row and girl_row:
-                boy_score = int(boy_row["score"])
-                girl_score = int(girl_row["score"])
-                gap = boy_score - girl_score
-                country_name = boy_row["country"]
-                subj_label = PISA_SUBJECT_LABELS.get(subj, subj)
+                if boy_row and girl_row:
+                    boy_score = int(boy_row["score"])
+                    girl_score = int(girl_row["score"])
+                    gap = boy_score - girl_score
+                    country_name = boy_row["country"]
+                    subj_label = PISA_SUBJECT_LABELS.get(subj, subj)
 
-                if gap > 0:
-                    gap_text = f"Jungen {gap} Punkte höher"
-                elif gap < 0:
-                    gap_text = f"Mädchen {abs(gap)} Punkte höher"
-                else:
-                    gap_text = "Kein Unterschied"
+                    if gap > 0:
+                        gap_text = f"Jungen {gap} Punkte höher"
+                    elif gap < 0:
+                        gap_text = f"Mädchen {abs(gap)} Punkte höher"
+                    else:
+                        gap_text = "Kein Unterschied"
 
-                results.append({
-                    "title": f"PISA 2022 {subj_label} — {country_name}",
-                    "indicator": f"Gender Gap in {subj_label}",
-                    "country": country_name,
-                    "value": f"Jungen: {boy_score}, Mädchen: {girl_score} (Differenz: {gap:+d})",
-                    "description": f"{gap_text}. Gesamtdurchschnitt: {total_row['score'] if total_row else 'N/A'}",
-                    "year": "2022",
-                    "source": "OECD PISA 2022",
-                    "url": "https://www.oecd.org/en/about/programmes/pisa/pisa-2022-results.html",
-                    "dataset_id": "pisa_2022",
-                })
+                    results.append({
+                        "title": f"PISA 2022 {subj_label} — {country_name}",
+                        "indicator": f"Gender Gap in {subj_label}",
+                        "country": country_name,
+                        "value": f"Jungen: {boy_score}, Mädchen: {girl_score} (Differenz: {gap:+d})",
+                        "description": f"{gap_text}. Gesamtdurchschnitt: {total_row['score'] if total_row else 'N/A'}",
+                        "year": "2022",
+                        "source": "OECD PISA 2022",
+                        "url": "https://www.oecd.org/en/about/programmes/pisa/pisa-2022-results.html",
+                        "dataset_id": "pisa_2022",
+                    })
 
-        # Also add OECD average for context if we showed a specific country
-        if country_code and country_code != "OECD":
+        # Also add OECD average for context if we showed specific countries
+        if country_codes and not any(c == "OECD" for c in country_codes):
             subj_for_avg = subject or "math"
             oecd_boy = next((r for r in data if r["country_code"] == "OECD" and r["subject"] == subj_for_avg and r["gender"] == "boy"), None)
             oecd_girl = next((r for r in data if r["country_code"] == "OECD" and r["subject"] == subj_for_avg and r["gender"] == "girl"), None)
@@ -258,14 +270,17 @@ def _search_pisa(claim: str, analysis: dict) -> list[dict]:
                 })
     else:
         # Non-gender: show country total scores
+        # For comparison claims, check all mentioned countries
+        codes_to_check = country_codes if country_codes else [None]
         subjects_to_check = [subject] if subject else ["math", "reading", "science"]
-        for subj in subjects_to_check:
-            if country_code:
-                rows = [r for r in data if r["country_code"] == country_code and r["subject"] == subj and r["gender"] == "total"]
-            else:
-                rows = [r for r in data if r["country_code"] == "OECD" and r["subject"] == subj and r["gender"] == "total"]
+        for code in codes_to_check:
+            for subj in subjects_to_check:
+                if code:
+                    rows = [r for r in data if r["country_code"] == code and r["subject"] == subj and r["gender"] == "total"]
+                else:
+                    rows = [r for r in data if r["country_code"] == "OECD" and r["subject"] == subj and r["gender"] == "total"]
 
-            for row in rows:
+                for row in rows:
                 results.append({
                     "title": f"PISA 2022 {PISA_SUBJECT_LABELS.get(subj, subj)} — {row['country']}",
                     "indicator": f"PISA {PISA_SUBJECT_LABELS.get(subj, subj)} Score",
