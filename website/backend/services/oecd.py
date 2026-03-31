@@ -281,16 +281,16 @@ def _search_pisa(claim: str, analysis: dict) -> list[dict]:
                     rows = [r for r in data if r["country_code"] == "OECD" and r["subject"] == subj and r["gender"] == "total"]
 
                 for row in rows:
-                results.append({
-                    "title": f"PISA 2022 {PISA_SUBJECT_LABELS.get(subj, subj)} — {row['country']}",
-                    "indicator": f"PISA {PISA_SUBJECT_LABELS.get(subj, subj)} Score",
-                    "country": row["country"],
-                    "value": row["score"],
-                    "year": "2022",
-                    "source": "OECD PISA 2022",
-                    "url": "https://www.oecd.org/en/about/programmes/pisa/pisa-2022-results.html",
-                    "dataset_id": "pisa_2022",
-                })
+                    results.append({
+                        "title": f"PISA 2022 {PISA_SUBJECT_LABELS.get(subj, subj)} — {row['country']}",
+                        "indicator": f"PISA {PISA_SUBJECT_LABELS.get(subj, subj)} Score",
+                        "country": row["country"],
+                        "value": row["score"],
+                        "year": "2022",
+                        "source": "OECD PISA 2022",
+                        "url": "https://www.oecd.org/en/about/programmes/pisa/pisa-2022-results.html",
+                        "dataset_id": "pisa_2022",
+                    })
 
     # --- Add ranking for superlative claims ("bestes Bildungssystem") ---
     if _is_superlative_education_claim(claim) and results:
