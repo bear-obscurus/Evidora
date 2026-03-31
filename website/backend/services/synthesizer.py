@@ -179,6 +179,7 @@ async def synthesize_results(
     # Add superlative warning if only one country's data is available
     if is_superlative:
         all_countries = set()
+        has_ranking = False
         for source_data in source_results:
             if not isinstance(source_data, dict):
                 continue
@@ -186,10 +187,15 @@ async def synthesize_results(
                 geo = r.get("geo", r.get("country", ""))
                 if geo:
                     all_countries.add(geo)
+                # Detect ranking results (e.g. PISA Top 15, Eurostat EU27)
+                indicator = r.get("indicator", "")
+                title = r.get("title", "")
+                if "ranking" in indicator.lower() or "ranking" in title.lower() or r.get("rank"):
+                    has_ranking = True
         # Remove EU aggregate labels
         eu_labels = {"EU27_2020", "European Union", "European Union - 27 countries (from 2020)", "EU"}
         real_countries = all_countries - eu_labels
-        if len(real_countries) <= 1:
+        if len(real_countries) <= 1 and not has_ranking:
             if lang == "de":
                 context_parts.append(
                     "⚠️ WARNUNG: Diese Behauptung enthält einen Superlativ (höchste/niedrigste/meiste), "
@@ -216,7 +222,7 @@ async def synthesize_results(
         source_type = "SECONDARY" if is_secondary else "PRIMARY"
         if results:
             context_parts.append(f"--- {source_name} [{source_type}] ---")
-            for r in results[:3]:  # Limit to top 3 per source
+            for r in results[:5]:  # Limit to top 5 per source
                 # Only include key fields
                 compact = {k: v for k, v in r.items() if v and k in (
                     "title", "name", "url", "journal", "date", "status",
