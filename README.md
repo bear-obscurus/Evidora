@@ -16,6 +16,7 @@ Evidora automatically verifies claims against scientific and institutional sourc
 - **19 data sources** — Scientific databases, systematic reviews, official EU/UN/OECD statistics, climate data, disease surveillance, disinformation databases, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Multi-country ranking** — Superlative claims ("highest", "most") automatically query all EU-27 countries for a full ranking
+- **Multi-dimensional context** — Prevents one-metric verdicts by injecting methodological caveats (energy safety: 7 dimensions; PISA: 7 education dimensions; CO₂: territorial vs. consumption-based; migration: asylum vs. total; GDP: welfare vs. output)
 - **Hallucination filtering** — Evidence URLs are verified against actual source results
 - **Input hardening** — Unicode normalization, control character stripping, OData injection prevention, 500-character claim limit
 - **Prompt injection defense** — User claims are wrapped in XML delimiters with explicit LLM instructions to ignore embedded commands
@@ -140,7 +141,7 @@ docker compose down
 | GADMO Faktenchecks | German-language fact-checks | APA, Correctiv (DACH region) | ✅ Active |
 | DataCommons | ClaimReview aggregator | Global fact-checker results via knowledge graph | ✅ Active |
 | World Bank | Development indicators | GDP, poverty, unemployment, inflation, CO₂, education, military, Gini | ✅ Active |
-| OWID Energy Safety | Deaths per TWh | Energy source safety comparison (Markandya & Wilkinson, Sovacool et al.) | ✅ Active |
+| OWID Energy Safety | Multi-dimensional energy profiles | 9 sources × 7 dimensions: deaths/TWh, CO₂, land use, waste, catastrophe risk, decommissioning, capacity factor | ✅ Active |
 | OpenAlex | Scholarly works (250M+) | All disciplines: physics, social science, economics, engineering, etc. | ✅ Active |
 | EUvsDisinfo | Disinformation database | Pro-Kremlin disinformation cases (EEA East StratCom) | ✅ Active |
 | Google Fact Check API | ClaimReview markup | European fact-checkers (EFCSN) | ✅ Active |
@@ -216,10 +217,11 @@ Evidora/
 4. **Semantic Reranking** — Sentence Transformers (multilingual MiniLM) rerank results by semantic similarity to the original claim
 5. **Cross-Validation** — Results from primary sources (scientific databases) are weighted higher than secondary sources (fact-checkers)
 6. **Synthesis** — The LLM evaluates all evidence and produces a verdict (true/mostly true/mixed/mostly false/false/unverifiable) with confidence score
-7. **Claim Guards** — Superlative claims ("highest", "most") require multi-country data; record claims ("all-time low") are checked against historical min/max; present-tense claims are compared to the latest data point
-8. **Verdict Consistency** — Post-processor detects when the LLM summary contradicts the verdict field and auto-corrects
-9. **Hallucination Filter** — All evidence URLs are verified against actual source results; fabricated references are removed
-10. **Caching** — API responses are cached in-memory (30 min TTL) to reduce load and speed up repeated queries
+7. **Multi-Dimensional Context** — Data sources with one-metric bias risk (energy safety, PISA, CO₂, migration, GDP) automatically inject methodological caveats so the LLM cannot produce a misleading single-dimension verdict
+8. **Claim Guards** — Superlative claims ("highest", "most") require multi-country data; record claims ("all-time low") are checked against historical min/max; present-tense claims are compared to the latest data point
+9. **Verdict Consistency** — Post-processor detects when the LLM summary contradicts the verdict field and auto-corrects
+10. **Hallucination Filter** — All evidence URLs are verified against actual source results; fabricated references are removed
+11. **Caching** — API responses are cached in-memory (30 min TTL) to reduce load and speed up repeated queries
 
 ## Tech Stack
 
