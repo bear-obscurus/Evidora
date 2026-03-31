@@ -299,7 +299,7 @@ async def search_copernicus(analysis: dict) -> dict:
 
     results = []
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with httpx.AsyncClient(timeout=20.0) as client:
         # Fetch real temperature data from NASA GISS if claim is temperature-related
         if is_temperature:
             giss_data = await _fetch_nasa_giss(client)

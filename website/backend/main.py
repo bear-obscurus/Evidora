@@ -227,27 +227,29 @@ async def check_claim(request: Request):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
             queried_names.append("OpenAlex")
 
-        try:
-            results = await asyncio.wait_for(
-                asyncio.gather(*tasks, return_exceptions=True),
-                timeout=90.0,
-            )
-        except asyncio.TimeoutError:
-            logger.warning("Source queries timed out after 90s — proceeding with partial results")
-            results = []
-
+        # Use asyncio.wait so completed tasks return results even if others time out
         valid_results = []
         sources_with_results = []
         hit_names = []
-        for i, r in enumerate(results):
-            if isinstance(r, Exception):
-                logger.warning(f"Source {i} ({queried_names[i]}) failed: {r}")
-            else:
-                logger.info(f"Source {i} ({queried_names[i]}) returned {len(r.get('results', []))} results")
-                valid_results.append(r)
-                if r.get("results"):
-                    sources_with_results.append(r)
-                    hit_names.append(queried_names[i])
+        if tasks:
+            task_objects = [asyncio.ensure_future(t) for t in tasks]
+            done, pending = await asyncio.wait(task_objects, timeout=45.0)
+            if pending:
+                pending_names = [queried_names[i] for i, t in enumerate(task_objects) if t in pending]
+                logger.warning(f"Source queries timed out after 45s: {pending_names}")
+                for t in pending:
+                    t.cancel()
+            for i, t in enumerate(task_objects):
+                if t in done:
+                    try:
+                        r = t.result()
+                        logger.info(f"Source {i} ({queried_names[i]}) returned {len(r.get('results', []))} results")
+                        valid_results.append(r)
+                        if r.get("results"):
+                            sources_with_results.append(r)
+                            hit_names.append(queried_names[i])
+                    except Exception as e:
+                        logger.warning(f"Source {i} ({queried_names[i]}) failed: {e}")
 
         # Step 3: Synthesize results with Mistral
         yield {"event": "step", "data": json.dumps({"step": "synthesize"})}
