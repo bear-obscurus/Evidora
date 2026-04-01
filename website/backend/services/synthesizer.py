@@ -162,14 +162,30 @@ async def synthesize_results(
 
     # Detect superlative claims that need multi-country comparison
     SUPERLATIVE_KEYWORDS = [
+        # Grundlegende Superlative
         "höchste", "höchsten", "niedrigste", "niedrigsten", "meiste", "meisten",
-        "größte", "größten", "beste", "besten", "schlechteste", "schlechtesten",
-        "wenigste", "wenigsten", "stärkste", "stärksten",
+        "größte", "größten", "kleinste", "kleinsten",
+        "beste", "besten", "schlechteste", "schlechtesten",
+        "wenigste", "wenigsten", "stärkste", "stärksten", "schwächste", "schwächsten",
+        # Wirtschaft / Wohlstand
         "reichste", "reichsten", "ärmste", "ärmsten",
+        "teuerste", "teuersten", "billigste", "billigsten", "günstigste", "günstigsten",
+        "produktivste", "produktivsten",
+        # Wachstum / Geschwindigkeit
+        "schnellste", "schnellsten", "langsamste", "langsamsten",
+        # Demografie
+        "älteste", "ältesten", "jüngste", "jüngsten",
+        # Umwelt / Sicherheit
         "sicherste", "sichersten", "gefährlichste", "gefährlichsten",
         "sauberste", "saubersten", "schmutzigste", "schmutzigsten",
+        # Informelle Ranking-Begriffe
+        "führend", "führende", "führendes", "führenden",
+        "spitzenreiter", "schlusslicht", "vorreiter",
+        "nummer eins", "number one", "platz eins", "platz 1",
+        # Englisch
         "highest", "lowest", "most", "least", "largest", "smallest", "best", "worst",
-        "richest", "poorest", "safest", "cleanest",
+        "richest", "poorest", "safest", "cleanest", "fastest", "slowest",
+        "oldest", "youngest", "cheapest", "most expensive",
     ]
     claim_lower = original_claim.lower()
     is_superlative = any(kw in claim_lower for kw in SUPERLATIVE_KEYWORDS)
