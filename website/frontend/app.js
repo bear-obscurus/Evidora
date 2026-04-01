@@ -69,38 +69,67 @@ form.addEventListener("submit", async (e) => {
         const decoder = new TextDecoder();
         let buffer = "";
         let streamDone = false;
+        let gotResult = false;
 
-        while (!streamDone) {
-            const { done, value } = await reader.read();
-            if (done) break;
+        // Timeout: abort if no result after 120s
+        const timeout = setTimeout(() => {
+            if (!gotResult) {
+                reader.cancel();
+                showError(currentLang === "de"
+                    ? "Zeitüberschreitung — bitte erneut versuchen."
+                    : "Request timed out — please try again.");
+            }
+        }, 120000);
 
-            buffer += decoder.decode(value, { stream: true });
-            const lines = buffer.split("\n");
-            buffer = lines.pop();
+        try {
+            while (!streamDone) {
+                const { done, value } = await reader.read();
+                if (done) break;
 
-            let eventType = null;
-            for (const line of lines) {
-                if (line.startsWith("event:")) {
-                    eventType = line.slice(6).trim();
-                } else if (line.startsWith("data:") && eventType) {
-                    const data = JSON.parse(line.slice(5).trim());
-                    if (eventType === "step") {
-                        setStep(data.step);
-                    } else if (eventType === "error") {
-                        if (data.detail === "MISTRAL_CREDITS_EXHAUSTED") {
-                            throw new Error(t("error_credits_exhausted"));
+                buffer += decoder.decode(value, { stream: true });
+                const lines = buffer.split("\n");
+                buffer = lines.pop();
+
+                let eventType = null;
+                for (const line of lines) {
+                    const trimmed = line.trim();
+                    if (!trimmed || trimmed.startsWith(":")) continue; // skip empty lines and SSE comments/pings
+                    if (trimmed.startsWith("event:")) {
+                        eventType = trimmed.slice(6).trim();
+                    } else if (trimmed.startsWith("data:") && eventType) {
+                        try {
+                            const data = JSON.parse(trimmed.slice(5).trim());
+                            if (eventType === "step") {
+                                setStep(data.step);
+                            } else if (eventType === "error") {
+                                if (data.detail === "MISTRAL_CREDITS_EXHAUSTED") {
+                                    throw new Error(t("error_credits_exhausted"));
+                                }
+                                throw new Error(data.detail);
+                            } else if (eventType === "result") {
+                                gotResult = true;
+                                showResults(data);
+                            } else if (eventType === "done") {
+                                streamDone = true;
+                                reader.cancel();
+                                break;
+                            }
+                        } catch (parseErr) {
+                            if (parseErr.message.includes("MISTRAL_CREDITS") || parseErr.message.includes("Zeitüberschreitung") || parseErr.message.includes("timed out")) throw parseErr;
+                            console.error("SSE parse error:", parseErr, "line:", trimmed.slice(0, 200));
                         }
-                        throw new Error(data.detail);
-                    } else if (eventType === "result") {
-                        showResults(data);
-                    } else if (eventType === "done") {
-                        streamDone = true;
-                        reader.cancel();
-                        break;
+                        eventType = null;
                     }
-                    eventType = null;
                 }
             }
+        } finally {
+            clearTimeout(timeout);
+        }
+
+        if (!gotResult && !streamDone) {
+            throw new Error(currentLang === "de"
+                ? "Verbindung unterbrochen — bitte erneut versuchen."
+                : "Connection lost — please try again.");
         }
     } catch (err) {
         showError(err.message);

@@ -291,7 +291,7 @@ async def check_claim(request: Request):
         yield {"event": "result", "data": json.dumps(synthesis, ensure_ascii=False)}
         yield {"event": "done", "data": "{}"}
 
-    return EventSourceResponse(event_stream())
+    return EventSourceResponse(event_stream(), ping=15)
 
 
 @app.get("/api/health")
