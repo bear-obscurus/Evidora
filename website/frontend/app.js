@@ -70,6 +70,7 @@ form.addEventListener("submit", async (e) => {
         let buffer = "";
         let streamDone = false;
         let gotResult = false;
+        let eventType = null;
 
         // Timeout: abort if no result after 120s
         const timeout = setTimeout(() => {
@@ -90,7 +91,6 @@ form.addEventListener("submit", async (e) => {
                 const lines = buffer.split("\n");
                 buffer = lines.pop();
 
-                let eventType = null;
                 for (const line of lines) {
                     const trimmed = line.trim();
                     if (!trimmed || trimmed.startsWith(":")) continue; // skip empty lines and SSE comments/pings
