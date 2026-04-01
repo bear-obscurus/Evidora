@@ -499,6 +499,14 @@ body {
     padding-bottom: 40px;
 }
 
+.dev-notice {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin: 0 0 12px 0;
+    font-style: italic;
+}
+
 /* Claim Display */
 #claim-display {
     margin-bottom: 12px;

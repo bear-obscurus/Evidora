@@ -74,6 +74,7 @@ const TRANSLATIONS = {
         btn_export_pdf: "Als PDF speichern",
         btn_share: "Link kopieren",
         share_copied: "Link kopiert!",
+        dev_notice: "Dieses Projekt befindet sich in aktiver Entwicklung. Die KI-Analyse dieser Online-Version erfolgt über die Mistral Cloud API (EU-Server, Paris).",
 
         // Search history
         history_title: "Letzte Checks",
@@ -284,6 +285,7 @@ const TRANSLATIONS = {
         btn_export_pdf: "Save as PDF",
         btn_share: "Copy link",
         share_copied: "Link copied!",
+        dev_notice: "This project is under active development. The AI analysis of this online version uses the Mistral Cloud API (EU servers, Paris).",
 
         // Search history
         history_title: "Recent checks",
