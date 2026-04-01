@@ -1,3 +1,5 @@
+import asyncio
+
 import httpx
 import logging
 
@@ -359,6 +361,35 @@ DATASET_MAP = {
         "label_en": "Gross Domestic Product",
         "params": {"na_item": "B1GQ", "unit": "CP_MEUR", "lastTimePeriod": "5"},
         "unit": "Mio. €",
+    },
+    # BIP pro Kopf (für "reichstes Land" etc.)
+    "reich": {
+        "dataset": "nama_10_pc",
+        "label": "BIP pro Kopf (KKS)",
+        "label_en": "GDP per Capita (PPS)",
+        "params": {"na_item": "B1GQ", "unit": "CP_PPS_HAB", "lastTimePeriod": "5"},
+        "unit": "KKS pro Kopf",
+    },
+    "wohlstand": {
+        "dataset": "nama_10_pc",
+        "label": "BIP pro Kopf (KKS)",
+        "label_en": "GDP per Capita (PPS)",
+        "params": {"na_item": "B1GQ", "unit": "CP_PPS_HAB", "lastTimePeriod": "5"},
+        "unit": "KKS pro Kopf",
+    },
+    "pro kopf": {
+        "dataset": "nama_10_pc",
+        "label": "BIP pro Kopf (KKS)",
+        "label_en": "GDP per Capita (PPS)",
+        "params": {"na_item": "B1GQ", "unit": "CP_PPS_HAB", "lastTimePeriod": "5"},
+        "unit": "KKS pro Kopf",
+    },
+    "per capita": {
+        "dataset": "nama_10_pc",
+        "label": "BIP pro Kopf (KKS)",
+        "label_en": "GDP per Capita (PPS)",
+        "params": {"na_item": "B1GQ", "unit": "CP_PPS_HAB", "lastTimePeriod": "5"},
+        "unit": "KKS pro Kopf",
     },
     # Armut
     "armut": {
@@ -879,69 +910,58 @@ async def search_eurostat(analysis: dict) -> dict:
 
     all_results = []
 
+    async def _fetch_dataset(client: httpx.AsyncClient, ds: dict) -> list[dict]:
+        """Fetch a single Eurostat dataset (single- or multi-country)."""
+        try:
+            if superlative:
+                params = {
+                    "format": "JSON",
+                    "lang": "EN",
+                    "geo": EU27_GEO_CODES,
+                    "lastTimePeriod": "1",
+                    **{k: v for k, v in ds["params"].items() if k != "lastTimePeriod"},
+                }
+                resp = await client.get(f"{BASE_URL}/{ds['dataset']}", params=params)
+                resp.raise_for_status()
+                parsed = _parse_multi_country(resp.json(), ds)
+                top_results = parsed[:10]
+                if not any(r["geo"] == geo_code for r in top_results) and geo_code != "EU27_2020":
+                    for r in parsed:
+                        if r.get("geo") == geo_code:
+                            top_results.append(r)
+                            break
+                return top_results
+            else:
+                params = {
+                    "format": "JSON",
+                    "lang": "EN",
+                    "geo": geo_code,
+                    **ds["params"],
+                }
+                resp = await client.get(f"{BASE_URL}/{ds['dataset']}", params=params)
+                resp.raise_for_status()
+                return _parse_json_stat(resp.json(), ds, geo_code)
+        except Exception as e:
+            logger.warning(f"Eurostat request failed for {ds['dataset']}: {e}")
+            return [{
+                "title": f"{ds['label']}: Daten nicht verfügbar",
+                "indicator": ds["label"],
+                "country": geo_code,
+                "year": "",
+                "value": "Daten nicht verfügbar",
+                "source": "Eurostat",
+                "url": f"https://ec.europa.eu/eurostat/databrowser/view/{ds['dataset']}/default/table",
+            }]
+
     async with httpx.AsyncClient(timeout=30.0) as client:
-        for ds in datasets[:2]:  # Max 2 datasets to keep it fast
-            try:
-                if superlative:
-                    # Multi-country query: fetch all EU27 for ranking
-                    params = {
-                        "format": "JSON",
-                        "lang": "EN",
-                        "geo": EU27_GEO_CODES,
-                        "lastTimePeriod": "1",  # Only most recent period
-                        **{k: v for k, v in ds["params"].items() if k != "lastTimePeriod"},
-                    }
-
-                    resp = await client.get(
-                        f"{BASE_URL}/{ds['dataset']}",
-                        params=params,
-                    )
-                    resp.raise_for_status()
-                    data = resp.json()
-
-                    parsed = _parse_multi_country(data, ds)
-                    # Keep top 10 + the mentioned country if outside top 10
-                    top_results = parsed[:10]
-                    mentioned_in_top = any(r["geo"] == geo_code for r in top_results)
-                    if not mentioned_in_top and geo_code != "EU27_2020":
-                        for r in parsed:
-                            if r.get("geo") == geo_code:
-                                top_results.append(r)
-                                break
-                    all_results.extend(top_results)
-                else:
-                    # Single-country query (default behavior)
-                    params = {
-                        "format": "JSON",
-                        "lang": "EN",
-                        "geo": geo_code,
-                        **ds["params"],
-                    }
-
-                    resp = await client.get(
-                        f"{BASE_URL}/{ds['dataset']}",
-                        params=params,
-                    )
-                    resp.raise_for_status()
-                    data = resp.json()
-
-                    parsed = _parse_json_stat(data, ds, geo_code)
-                    all_results.extend(parsed)
-
-            except Exception as e:
-                logger.warning(f"Eurostat request failed for {ds['dataset']}: {e}")
-                all_results.append({
-                    "title": f"{ds['label']}: Daten nicht verfügbar",
-                    "indicator": ds["label"],
-                    "country": geo_code,
-                    "year": "",
-                    "value": "Daten nicht verfügbar",
-                    "source": "Eurostat",
-                    "url": f"https://ec.europa.eu/eurostat/databrowser/view/{ds['dataset']}/default/table",
-                })
+        # Fetch datasets in parallel instead of sequentially
+        tasks = [_fetch_dataset(client, ds) for ds in datasets[:2]]
+        results_list = await asyncio.gather(*tasks)
+        for results in results_list:
+            all_results.extend(results)
 
     # Add GDP/economy multi-dimensional context caveat
-    gdp_datasets = {"nama_10_gdp"}
+    gdp_datasets = {"nama_10_gdp", "nama_10_pc"}
     if any(ds["dataset"] in gdp_datasets for ds in datasets[:2]) and all_results:
         all_results.append({
             "title": "WICHTIGER KONTEXT: BIP ist kein umfassendes Wohlstandsmaß",
