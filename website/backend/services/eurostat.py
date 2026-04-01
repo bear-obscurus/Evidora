@@ -774,7 +774,11 @@ SUPERLATIVE_KEYWORDS = [
     "höchste", "höchsten", "niedrigste", "niedrigsten", "meiste", "meisten",
     "größte", "größten", "beste", "besten", "schlechteste", "schlechtesten",
     "wenigste", "wenigsten", "stärkste", "stärksten",
+    "reichste", "reichsten", "ärmste", "ärmsten",
+    "sicherste", "sichersten", "gefährlichste", "gefährlichsten",
+    "sauberste", "saubersten", "schmutzigste", "schmutzigsten",
     "highest", "lowest", "most", "least", "largest", "smallest", "best", "worst",
+    "richest", "poorest", "safest", "cleanest",
 ]
 
 
