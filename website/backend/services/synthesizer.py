@@ -249,6 +249,9 @@ async def synthesize_results(
                     "indicator_name", "value", "year", "country", "source",
                     "description", "variable", "time_range", "dataset_id",
                     "indicator",
+                    # Energy safety specific fields
+                    "deaths_per_twh", "co2_g_per_kwh", "radioactive_waste",
+                    "catastrophe_potential", "decommission_years",
                 )}
                 context_parts.append(json.dumps(compact, ensure_ascii=False))
             context_parts.append("")
