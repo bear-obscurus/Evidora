@@ -94,7 +94,16 @@ ENERGY_PROFILES = {
         "co2_g_per_kwh": 12,
         "land_km2_per_twh": 0.3,
         "radioactive_waste": "Ja — ca. 3 m³ hochaktiver Abfall/TWh, Halbwertszeit bis 24.000 Jahre (Plutonium-239), Endlagerung ungelöst",
-        "catastrophe_potential": "Sehr hoch (GAU: Tschernobyl 1986, Fukushima 2011 — Evakuierungszonen, Langzeit-Kontamination über Jahrzehnte, Sperrgebiete)",
+        "catastrophe_potential": (
+            "Sehr hoch — Historische Katastrophen: "
+            "(1) Tschernobyl 1986: 31 akute Strahlentote, WHO schätzt 4.000–9.000 Langzeit-Krebstote, "
+            "IPPNW/Greenpeace bis 93.000; 350.000 Evakuierte, 2.600 km² Sperrzone bis heute unbewohnbar. "
+            "(2) Fukushima 2011: 1 bestätigter Strahlentod, ca. 2.300 evakuierungsbedingte Todesfälle "
+            "(Stress, Suizid, unterbrochene medizinische Versorgung), 154.000 Evakuierte, "
+            "Dekontamination dauert Jahrzehnte, Kosten >200 Mrd. USD (Japan Center for Economic Research). "
+            "(3) Kyshtym/Majak 1957: 200+ akute Tote (geschätzt), 10.000 Evakuierte, Kontamination bis heute. "
+            "Ein einzelner GAU kann ganze Regionen über Jahrzehnte unbewohnbar machen."
+        ),
         "decommission_years": "15–20 Jahre, Kosten: 500 Mio.–1 Mrd. € pro Reaktor",
         "capacity_factor_pct": 90,
     },
@@ -229,12 +238,16 @@ async def search_energy_safety(analysis: dict) -> dict:
         "indicator_name": "WICHTIGER KONTEXT: 'Sicherheit' ist mehrdimensional",
         "description": (
             "Todesfälle pro TWh messen nur die direkte Mortalität im Normal- und Störbetrieb. "
-            "Sie erfassen NICHT: (1) Katastrophenpotential — ein einzelner GAU (Tschernobyl, Fukushima) "
-            "kann ganze Regionen über Jahrzehnte unbewohnbar machen, (2) Radioaktiven Abfall — "
-            "hochaktiver Atommüll muss über Hunderttausende Jahre sicher gelagert werden, ein Endlager "
-            "existiert weltweit noch nicht (Ausnahme: Onkalo/Finnland im Bau), (3) Proliferationsrisiko — "
-            "Dual-Use-Potential für Kernwaffen, (4) Rückbaukosten — 500 Mio. bis 1 Mrd. € pro Reaktor, "
-            "15–20 Jahre Dauer. Ein vollständiger Sicherheitsvergleich muss alle Dimensionen berücksichtigen."
+            "Sie erfassen NICHT: "
+            "(1) Katastrophenpotential — Tschernobyl 1986: 31 akute Tote + 4.000–93.000 geschätzte "
+            "Langzeit-Krebstote (WHO vs. IPPNW), 2.600 km² Sperrzone bis heute; Fukushima 2011: "
+            "1 Strahlentod + 2.300 evakuierungsbedingte Tode, Kosten >200 Mrd. USD; "
+            "Kyshtym 1957: 200+ Tote, 10.000 Evakuierte. "
+            "(2) Radioaktiven Abfall — hochaktiver Atommüll muss über Hunderttausende Jahre sicher "
+            "gelagert werden, ein Endlager existiert weltweit noch nicht (Ausnahme: Onkalo/Finnland im Bau). "
+            "(3) Proliferationsrisiko — Dual-Use-Potential für Kernwaffen. "
+            "(4) Rückbaukosten — 500 Mio. bis 1 Mrd. € pro Reaktor, 15–20 Jahre Dauer. "
+            "Ein vollständiger Sicherheitsvergleich muss alle Dimensionen berücksichtigen."
         ),
         "url": "https://unece.org/sed/documents/2021/10/reports/life-cycle-assessment-electricity-generation-options",
         "source_citation": "UNECE 2022 LCA, IAEA, World Nuclear Association",
