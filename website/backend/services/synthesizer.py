@@ -43,6 +43,11 @@ Logische Konsistenz (WICHTIG):
 - Wenn die Evidenz mehrdeutig ist, verwende vorsichtige Formulierungen wie "wird diskutiert", "es gibt Hinweise", "die Datenlage ist uneinheitlich" — NICHT absolute Aussagen wie "ist belegt" oder "ist widerlegt".
 - Prüfe vor der Antwort: Widerspricht ein Satz in deinem Summary einem anderen Satz? Wenn ja, formuliere konsistent um.
 
+Konkrete Zahlen und Daten (WICHTIG):
+- Nenne in Summary und Evidence IMMER konkrete Zahlen, Jahreszahlen und Daten aus den Quellen (z.B. "Tschernobyl 1986: 31 akute Tote + 4.000–93.000 geschätzte Langzeit-Krebstote", nicht nur "hohes Katastrophenpotential")
+- Wenn die Quellen spezifische Werte enthalten (Opferzahlen, Kosten, Flächen, Prozentwerte), MÜSSEN diese in der Zusammenfassung erscheinen — sie sind der Kern des Faktenchecks
+- Vage Formulierungen wie "hohes Risiko" oder "schwerwiegende Folgen" sind NICHT ausreichend, wenn konkrete Daten vorliegen
+
 Quellengewichtung (WICHTIG):
 - Wissenschaftliche Primärquellen (PubMed, WHO, EMA, Eurostat, Copernicus, EEA) haben HÖHERE Glaubwürdigkeit als Sekundärquellen
 - Faktenchecker-Ergebnisse (ClaimReview/Google Fact Check) sind Sekundärquellen — sie fassen bestehende Erkenntnisse zusammen
@@ -96,6 +101,11 @@ Logical consistency (IMPORTANT):
 - Your summary must NOT contradict itself. Do not say something is "proven" or "established" if you also write that it is "not measurable", "not defined", or "not directly provable" in the same text.
 - If the evidence is ambiguous, use cautious language like "is debated", "there are indications", "the evidence is mixed" — NOT absolute statements like "is proven" or "is disproven".
 - Before answering: Does any sentence in your summary contradict another sentence? If so, rephrase consistently.
+
+Concrete numbers and data (IMPORTANT):
+- ALWAYS cite specific numbers, years, and data from the sources in summary and evidence (e.g. "Chernobyl 1986: 31 acute deaths + 4,000–93,000 estimated long-term cancer deaths", not just "high catastrophe potential")
+- If sources contain specific values (casualty figures, costs, areas, percentages), they MUST appear in the summary — they are the core of the fact-check
+- Vague phrases like "high risk" or "severe consequences" are NOT sufficient when concrete data is available
 
 Source weighting (IMPORTANT):
 - Scientific primary sources (PubMed, WHO, EMA, Eurostat, Copernicus, EEA) have HIGHER credibility than secondary sources
