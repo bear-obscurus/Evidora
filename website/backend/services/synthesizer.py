@@ -48,6 +48,11 @@ Konkrete Zahlen und Daten (WICHTIG):
 - Wenn die Quellen spezifische Werte enthalten (Opferzahlen, Kosten, Flächen, Prozentwerte), MÜSSEN diese in der Zusammenfassung erscheinen — sie sind der Kern des Faktenchecks
 - Vage Formulierungen wie "hohes Risiko" oder "schwerwiegende Folgen" sind NICHT ausreichend, wenn konkrete Daten vorliegen
 
+Mehrdimensionale Vergleiche (WICHTIG):
+- Wenn eine Behauptung "X ist sicherer/besser/günstiger als Y" lautet und die Daten MEHRERE Dimensionen zeigen (z.B. direkte Todesfälle UND Katastrophenpotential UND Langzeit-Folgen), dann werte ALLE Dimensionen aus
+- Eine Technologie, die in einer Metrik knapp besser abschneidet (z.B. 0,03 vs 0,035 Todesfälle/TWh) aber in anderen Dimensionen dramatisch schlechter ist (z.B. Tausende Langzeit-Tote, Hunderttausende Evakuierte, unbewohnbare Gebiete über Jahrzehnte), ist insgesamt NICHT "sicherer" — setze verdict auf "mostly_false" oder "false"
+- Die Gesamtbilanz aller Dimensionen entscheidet, nicht eine einzelne Kennzahl
+
 Quellengewichtung (WICHTIG):
 - Wissenschaftliche Primärquellen (PubMed, WHO, EMA, Eurostat, Copernicus, EEA) haben HÖHERE Glaubwürdigkeit als Sekundärquellen
 - Faktenchecker-Ergebnisse (ClaimReview/Google Fact Check) sind Sekundärquellen — sie fassen bestehende Erkenntnisse zusammen
@@ -106,6 +111,11 @@ Concrete numbers and data (IMPORTANT):
 - ALWAYS cite specific numbers, years, and data from the sources in summary and evidence (e.g. "Chernobyl 1986: 31 acute deaths + 4,000–93,000 estimated long-term cancer deaths", not just "high catastrophe potential")
 - If sources contain specific values (casualty figures, costs, areas, percentages), they MUST appear in the summary — they are the core of the fact-check
 - Vague phrases like "high risk" or "severe consequences" are NOT sufficient when concrete data is available
+
+Multi-dimensional comparisons (IMPORTANT):
+- When a claim states "X is safer/better/cheaper than Y" and the data shows MULTIPLE dimensions (e.g. direct deaths AND catastrophe potential AND long-term consequences), evaluate ALL dimensions
+- A technology that is marginally better in one metric (e.g. 0.03 vs 0.035 deaths/TWh) but dramatically worse in other dimensions (e.g. thousands of long-term deaths, hundreds of thousands evacuated, uninhabitable areas for decades) is overall NOT "safer" — set verdict to "mostly_false" or "false"
+- The overall balance of all dimensions decides, not a single metric
 
 Source weighting (IMPORTANT):
 - Scientific primary sources (PubMed, WHO, EMA, Eurostat, Copernicus, EEA) have HIGHER credibility than secondary sources
