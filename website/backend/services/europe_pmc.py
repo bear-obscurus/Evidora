@@ -27,7 +27,7 @@ async def search_europe_pmc(analysis: dict) -> dict:
         "query": search_term,
         "format": "json",
         "pageSize": 5,
-        "sort": "RELEVANCE",
+        "sort": "CITED desc",
         "resultType": "lite",
     }
 
