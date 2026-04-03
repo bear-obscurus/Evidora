@@ -20,15 +20,15 @@ async def search_europe_pmc(analysis: dict) -> dict:
     if not queries:
         return {"source": "Europe PMC", "results": []}
 
-    # Combine top queries for broader search
-    search_term = " OR ".join(f'"{q}"' for q in queries[:2])
+    # Use first query as keywords (no exact phrase — EPMC needs loose matching)
+    search_term = queries[0]
 
     params = {
         "query": search_term,
         "format": "json",
         "pageSize": 5,
         "sort": "RELEVANCE",
-        "resultType": "core",
+        "resultType": "lite",
     }
 
     async with httpx.AsyncClient(timeout=30.0) as client:
@@ -59,14 +59,14 @@ async def search_europe_pmc(analysis: dict) -> dict:
         else:
             url = f"https://europepmc.org/article/{source_type}/{epmc_id}"
 
-        # Authors
-        author_list = article.get("authorList", {}).get("author", [])
-        author_names = ", ".join(
-            a.get("fullName", a.get("lastName", ""))
-            for a in author_list[:3]
-        )
-        if len(author_list) > 3:
-            author_names += " et al."
+        # Authors (lite returns authorString, not authorList)
+        author_str = article.get("authorString", "")
+        # Truncate to first 3 authors
+        parts = [a.strip() for a in author_str.split(",") if a.strip()]
+        if len(parts) > 6:  # ~3 authors × 2 parts (last, first)
+            author_names = ", ".join(parts[:6]) + " et al."
+        else:
+            author_names = author_str.rstrip(".")
 
         journal = article.get("journalTitle", "")
         year = article.get("pubYear", "")
