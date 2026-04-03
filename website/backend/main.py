@@ -29,6 +29,8 @@ from services.datacommons import search_datacommons
 from services.who_europe import search_who_europe
 from services.openalex import search_openalex
 from services.worldbank import search_worldbank
+from services.europe_pmc import search_europe_pmc
+from services.clinicaltrials import search_clinicaltrials
 from services.energy_safety import search_energy_safety, _is_energy_safety_claim
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
@@ -226,6 +228,14 @@ async def check_claim(request: Request):
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
             queried_names.append("OpenAlex")
+        # Europe PMC: European life science literature, same categories as PubMed
+        if analysis.get("category") in pubmed_categories and analysis.get("pubmed_queries"):
+            tasks.append(cached("EuropePMC", search_europe_pmc, analysis))
+            queried_names.append("Europe PMC")
+        # ClinicalTrials.gov: clinical studies for health/medication claims
+        if analysis.get("category") in ("health", "medication") and analysis.get("pubmed_queries"):
+            tasks.append(cached("ClinicalTrials", search_clinicaltrials, analysis))
+            queried_names.append("ClinicalTrials.gov")
 
         # Use asyncio.wait so completed tasks return results even if others time out
         valid_results = []
