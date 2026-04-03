@@ -74,6 +74,12 @@ const TRANSLATIONS = {
         btn_export_pdf: "Als PDF speichern",
         btn_share: "Link kopieren",
         share_copied: "Link kopiert!",
+        btn_report: "Ergebnis melden",
+        report_subject: "Fehlerhaftes Ergebnis",
+        report_claim: "Behauptung",
+        report_verdict: "Bewertung",
+        report_summary: "Zusammenfassung",
+        report_reason: "Was ist falsch am Ergebnis? (bitte beschreiben)",
         dev_notice: "Dieses Projekt befindet sich in aktiver Entwicklung. Die KI-Analyse dieser Online-Version erfolgt über die Mistral Cloud API (EU-Server, Paris).",
 
         // Search history
@@ -285,6 +291,12 @@ const TRANSLATIONS = {
         btn_export_pdf: "Save as PDF",
         btn_share: "Copy link",
         share_copied: "Link copied!",
+        btn_report: "Report result",
+        report_subject: "Incorrect result",
+        report_claim: "Claim",
+        report_verdict: "Verdict",
+        report_summary: "Summary",
+        report_reason: "What is wrong with the result? (please describe)",
         dev_notice: "This project is under active development. The AI analysis of this online version uses the Mistral Cloud API (EU servers, Paris).",
 
         // Search history

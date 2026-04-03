@@ -514,6 +514,20 @@ function shareResult() {
     });
 }
 
+function reportResult() {
+    const claim = input.value.trim();
+    const verdictEl = document.querySelector(".verdict-badge");
+    const verdict = verdictEl ? verdictEl.textContent.trim() : "?";
+    const summaryEl = document.querySelector(".verdict-summary");
+    const summary = summaryEl ? summaryEl.textContent.trim() : "";
+    const url = `${window.location.origin}?claim=${encodeURIComponent(claim)}`;
+
+    const subject = `[Evidora] ${t("report_subject")}: ${claim.substring(0, 80)}`;
+    const body = `${t("report_claim")}: ${claim}\n${t("report_verdict")}: ${verdict}\n${t("report_summary")}: ${summary}\n\nURL: ${url}\n\n${t("report_reason")}:\n`;
+
+    window.location.href = `mailto:Evidora@proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 // --- Auto-fill from URL ---
 function checkUrlParams() {
     const params = new URLSearchParams(window.location.search);

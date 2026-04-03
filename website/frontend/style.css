@@ -441,6 +441,17 @@ body {
     border-color: #bbf7d0;
 }
 
+.action-btn-report {
+    color: #9ca3af;
+    border-color: #e5e7eb;
+}
+
+.action-btn-report:hover {
+    color: #d97706;
+    border-color: #fcd34d;
+    background: #fffbeb;
+}
+
 /* Loading */
 #loading {
     display: flex;
