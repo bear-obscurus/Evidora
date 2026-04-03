@@ -5,6 +5,9 @@ Free API (100 requests per 5 minutes without key).
 Complements OpenAlex/PubMed with unique TLDR summaries.
 """
 
+import asyncio
+import os
+
 import httpx
 import logging
 
@@ -12,6 +15,12 @@ logger = logging.getLogger("evidora")
 
 BASE_URL = "https://api.semanticscholar.org/graph/v1/paper/search"
 FIELDS = "title,authors,year,citationCount,tldr,url,externalIds,journal"
+
+# Optional API key (free tier: request at https://www.semanticscholar.org/product/api#api-key)
+S2_API_KEY = os.getenv("S2_API_KEY", "")
+
+MAX_RETRIES = 2
+RETRY_DELAY = 1.5  # seconds
 
 
 async def search_semantic_scholar(analysis: dict) -> dict:
@@ -27,11 +36,22 @@ async def search_semantic_scholar(analysis: dict) -> dict:
         "fields": FIELDS,
     }
 
+    headers = {}
+    if S2_API_KEY:
+        headers["x-api-key"] = S2_API_KEY
+
     try:
         async with httpx.AsyncClient(timeout=30.0) as client:
-            resp = await client.get(BASE_URL, params=params)
+            resp = None
+            for attempt in range(MAX_RETRIES + 1):
+                resp = await client.get(BASE_URL, params=params, headers=headers)
+                if resp.status_code == 429 and attempt < MAX_RETRIES:
+                    logger.info(f"Semantic Scholar rate limited, retry {attempt + 1}/{MAX_RETRIES} after {RETRY_DELAY}s")
+                    await asyncio.sleep(RETRY_DELAY * (attempt + 1))
+                    continue
+                break
             if resp.status_code == 429:
-                logger.warning("Semantic Scholar rate limit reached (100 req/5min)")
+                logger.warning("Semantic Scholar rate limit reached after retries")
                 return {"source": "Semantic Scholar", "results": []}
             resp.raise_for_status()
             data = resp.json()
