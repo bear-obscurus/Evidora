@@ -4,7 +4,7 @@
 
 A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
-Evidora automatically verifies claims against scientific and institutional sources such as PubMed, OpenAlex, Cochrane, WHO, WHO Europe, EMA, ECDC, Copernicus, Eurostat, ECB, UNHCR, EEA, OECD, World Bank, DataCommons, EUvsDisinfo, and European fact-checkers.
+Evidora automatically verifies claims against scientific and institutional sources such as PubMed, OpenAlex, Cochrane, Europe PMC, Semantic Scholar, ClinicalTrials.gov, WHO, WHO Europe, EMA, ECDC, Copernicus/NASA GISS, Eurostat, ECB, UNHCR, EEA, OECD, World Bank, DataCommons, EUvsDisinfo, and European fact-checkers.
 
 **Live Demo:** [https://evidora.eu](https://evidora.eu)
 
@@ -13,7 +13,7 @@ Evidora automatically verifies claims against scientific and institutional sourc
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **19 data sources** — Scientific databases, systematic reviews, official EU/UN/OECD statistics, climate data, disease surveillance, disinformation databases, and fact-checkers
+- **22 data sources** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD statistics, climate data, disease surveillance, disinformation databases, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Multi-country ranking** — Superlative claims ("highest", "most") automatically query all EU-27 countries for a full ranking
 - **Multi-dimensional context** — Prevents one-metric verdicts by injecting methodological caveats (energy safety: 7 dimensions; PISA: 7 education dimensions; CO₂: territorial vs. consumption-based; migration: asylum vs. total; GDP: welfare vs. output)
@@ -96,6 +96,7 @@ Open `website/.env` and replace the placeholders:
 | `IMPRESSUM_NAME` | Your name for the legal notice | — |
 | `IMPRESSUM_EMAIL` | Contact email (displayed as text, no mailto link) | — |
 | `IMPRESSUM_LOCATION` | Your location for the legal notice | — |
+| `S2_API_KEY` | Semantic Scholar API key (optional, higher rate limits) | [Semantic Scholar API](https://www.semanticscholar.org/product/api#api-key) |
 | `RATE_LIMIT` | Max requests per window per IP (default: `10`) | — |
 | `RATE_WINDOW` | Rate limit window in seconds (default: `60`) | — |
 
@@ -143,6 +144,9 @@ docker compose down
 | World Bank | Development indicators | GDP, poverty, unemployment, inflation, CO₂, education, military, Gini | ✅ Active |
 | OWID Energy Safety | Multi-dimensional energy profiles | 9 sources × 7 dimensions: deaths/TWh, CO₂, land use, waste, catastrophe risk, decommissioning, capacity factor | ✅ Active |
 | OpenAlex | Scholarly works (250M+) | All disciplines: physics, social science, economics, engineering, etc. | ✅ Active |
+| Europe PMC | Life science literature (40M+) | European focus, Open Access, bioRxiv/medRxiv preprints | ✅ Active |
+| Semantic Scholar | AI-powered paper search (200M+) | TLDR summaries, citation-based influence scoring | ✅ Active |
+| ClinicalTrials.gov | Clinical trial registry (500K+) | Drug efficacy, treatment comparisons, vaccine trials | ✅ Active |
 | EUvsDisinfo | Disinformation database | Pro-Kremlin disinformation cases (EEA East StratCom) | ✅ Active |
 | Google Fact Check API | ClaimReview markup | European fact-checkers (EFCSN) | ✅ Active |
 
@@ -193,6 +197,9 @@ Evidora/
 │   │       ├── euvsdisinfo.py     # EUvsDisinfo (disinformation DB)
 │   │       ├── energy_safety.py    # OWID energy safety (deaths per TWh)
 │   │       ├── openalex.py        # OpenAlex (250M+ scholarly works)
+│   │       ├── europe_pmc.py      # Europe PMC (40M+ life science articles)
+│   │       ├── semantic_scholar.py # Semantic Scholar (200M+ papers, TLDR)
+│   │       ├── clinicaltrials.py  # ClinicalTrials.gov (500K+ studies)
 │   │       ├── worldbank.py       # World Bank (global development indicators)
 │   │       ├── data_updater.py    # Background CSV/data refresh
 │   │       ├── cache.py           # In-memory response cache
@@ -213,7 +220,7 @@ Evidora/
 
 1. **Claim Analysis** — The LLM analyzes the input claim (wrapped in `<claim>` delimiters for injection safety), extracts keywords, determines the category, and generates optimized search queries
 2. **NER Enrichment** — SpaCy (de_core_news_lg + en_core_web_sm) adds deterministic GPE/DATE/ORG entities to supplement LLM extraction
-3. **Source Querying** — Relevant sources are queried in parallel based on the claim's category (e.g., health → PubMed + Cochrane + WHO + WHO Europe + EMA + ECDC; migration → Eurostat + UNHCR; economy → Eurostat + ECB; education/gender → OECD PISA + SDMX)
+3. **Source Querying** — Relevant sources are queried in parallel based on the claim's category (e.g., health → PubMed + Cochrane + Europe PMC + ClinicalTrials.gov + Semantic Scholar + WHO + WHO Europe + EMA + ECDC; migration → Eurostat + UNHCR; economy → Eurostat + ECB; education/gender → OECD PISA + SDMX)
 4. **Semantic Reranking** — Sentence Transformers (multilingual MiniLM) rerank results by semantic similarity to the original claim
 5. **Cross-Validation** — Results from primary sources (scientific databases) are weighted higher than secondary sources (fact-checkers)
 6. **Synthesis** — The LLM evaluates all evidence and produces a verdict (true/mostly true/mixed/mostly false/false/unverifiable) with confidence score
