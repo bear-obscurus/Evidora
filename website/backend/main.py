@@ -31,6 +31,7 @@ from services.openalex import search_openalex
 from services.worldbank import search_worldbank
 from services.europe_pmc import search_europe_pmc
 from services.clinicaltrials import search_clinicaltrials
+from services.semantic_scholar import search_semantic_scholar
 from services.energy_safety import search_energy_safety, _is_energy_safety_claim
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
@@ -236,6 +237,10 @@ async def check_claim(request: Request):
         if analysis.get("category") in ("health", "medication") and analysis.get("pubmed_queries"):
             tasks.append(cached("ClinicalTrials", search_clinicaltrials, analysis))
             queried_names.append("ClinicalTrials.gov")
+        # Semantic Scholar: AI-powered search with TLDR summaries
+        if analysis.get("pubmed_queries"):
+            tasks.append(cached("SemanticScholar", search_semantic_scholar, analysis))
+            queried_names.append("Semantic Scholar")
 
         # Use asyncio.wait so completed tasks return results even if others time out
         valid_results = []

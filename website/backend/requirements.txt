@@ -4,6 +4,7 @@ httpx==0.28.1
 sse-starlette==2.2.1
 sentence-transformers>=3.0.0
 spacy>=3.7.0,<4.0.0
+openpyxl>=3.1.0
 
 # Testing
 pytest>=8.0.0
