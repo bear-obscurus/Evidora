@@ -31,13 +31,18 @@ async def search_europe_pmc(analysis: dict) -> dict:
         "resultType": "lite",
     }
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        resp = await client.get(f"{BASE_URL}/search", params=params)
-        resp.raise_for_status()
-        data = resp.json()
+    try:
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            resp = await client.get(f"{BASE_URL}/search", params=params)
+            resp.raise_for_status()
+            data = resp.json()
+    except Exception as e:
+        logger.warning(f"Europe PMC request failed: {e}")
+        return {"source": "Europe PMC", "results": []}
 
     articles = data.get("resultList", {}).get("result", [])
     if not articles:
+        logger.info(f"Europe PMC: 0 results for '{search_term[:80]}'")
         return {"source": "Europe PMC", "results": []}
 
     results = []
