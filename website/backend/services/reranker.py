@@ -39,7 +39,8 @@ def _load_model():
 def _result_text(result: dict) -> str:
     """Extract searchable text from a result entry."""
     parts = []
-    for key in ("title", "name", "indicator_name", "description", "journal"):
+    for key in ("title", "name", "indicator_name", "description", "journal",
+                 "rating", "claim"):
         val = result.get(key)
         if val:
             parts.append(str(val))
@@ -47,12 +48,14 @@ def _result_text(result: dict) -> str:
 
 
 """Minimum cosine-similarity score.  Results below this threshold are
-considered off-topic and removed before the synthesizer ever sees them.
-The value is intentionally conservative — we want to drop clearly
-irrelevant results (APA article about heat-pumps for a claim about
-the EU destroying Austria) without accidentally removing tangentially
-related evidence."""
+considered off-topic and removed before the synthesizer ever sees them."""
 RELEVANCE_THRESHOLD = 0.25
+
+# Fact-checker databases return short, generic titles that inflate
+# cosine-similarity scores (e.g. "gefährlich" matches everything
+# containing "gefährlich").  A stricter threshold is needed.
+FACTCHECK_THRESHOLD = 0.45
+_FACTCHECK_SOURCES = {"GADMO", "DataCommons", "ClaimReview", "Faktenchecker", "Fact Check"}
 
 
 def rerank_results(claim: str, source_results: list) -> list:
@@ -92,20 +95,24 @@ def rerank_results(claim: str, source_results: list) -> list:
             # Sort results by similarity score (descending)
             scored = sorted(zip(results, scores.tolist()), key=lambda x: x[1], reverse=True)
 
+            # Use stricter threshold for fact-checker sources
+            source_name = source_data.get("source", "Unknown")
+            is_factcheck = any(fc in source_name for fc in _FACTCHECK_SOURCES)
+            threshold = FACTCHECK_THRESHOLD if is_factcheck else RELEVANCE_THRESHOLD
+
             # Filter out off-topic results below threshold
             before_count = len(scored)
-            scored = [(r, s) for r, s in scored if s >= RELEVANCE_THRESHOLD]
+            scored = [(r, s) for r, s in scored if s >= threshold]
             removed = before_count - len(scored)
             total_removed += removed
 
             source_data["results"] = [r for r, _ in scored]
 
-            source_name = source_data.get("source", "Unknown")
             top_score = scored[0][1] if scored else 0
             if removed:
                 logger.info(
                     f"Reranked {source_name}: kept {len(scored)}/{before_count} results "
-                    f"(removed {removed} below threshold {RELEVANCE_THRESHOLD}, top score: {top_score:.3f})"
+                    f"(removed {removed} below threshold {threshold}, top score: {top_score:.3f})"
                 )
             else:
                 logger.debug(f"Reranked {len(results)} results for {source_name} (top score: {top_score:.3f})")
