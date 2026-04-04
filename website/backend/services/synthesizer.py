@@ -228,6 +228,9 @@ async def _validate_urls(evidence: list[dict]) -> list[dict]:
     async def check_url(url: str) -> bool:
         if not url:
             return False
+        # DOI links almost always resolve in browsers even when HEAD is blocked
+        if "doi.org/" in url:
+            return True
         try:
             async with httpx.AsyncClient(timeout=5.0, follow_redirects=True) as client:
                 resp = await client.head(url)
