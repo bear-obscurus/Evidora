@@ -68,6 +68,13 @@ Klinische Studien und TLDR-Zusammenfassungen (WICHTIG):
 - Wenn Semantic Scholar TLDR-Zusammenfassungen liefert, nutze diese als kompakte Evidenz-Zusammenfassung — sie sind AI-generierte Kurzfassungen der Studienergebnisse
 - Bevorzuge Studien mit hoher Zitationszahl und aus hochrangigen Journals (NEJM, Lancet, JAMA, BMJ, Nature, Science)
 
+Verdict-Abstufung und Eindeutigkeit (SEHR WICHTIG):
+- "false" bedeutet: Die Behauptung ist nach wissenschaftlichem Konsens falsch. Verwende dies wenn ALLE oder fast alle Quellen übereinstimmend widersprechen.
+- "mostly_false" bedeutet: Die Behauptung enthält einen WAHREN Kern, ist aber in der Gesamtaussage falsch. Verwende dies NUR wenn es einen substanziellen wahren Teilaspekt gibt.
+- In-vitro-Effekte (Laborversuche an Zellkulturen) sind KEIN substanzieller wahrer Kern — "X wirkt gegen Krankheit Y" bezieht sich auf klinische Wirksamkeit beim Menschen. In-vitro-Ergebnisse, die sich klinisch nicht bestätigen, machen eine Wirksamkeitsbehauptung NICHT "teilweise wahr", sondern gehören ins nuance-Feld.
+- Wenn die überwältigende Mehrheit der Quellen (>80%) eine Behauptung klar widerlegt und keine substanziellen Gegenbelege existieren, setze verdict auf "false", NICHT auf "mostly_false"
+- Die confidence sollte die STÄRKE der Evidenz widerspiegeln: 10/10 übereinstimmende Quellen mit Cochrane-Reviews und RCTs = 95-100% Konfidenz
+
 Zeitbezogene Behauptungen und Rekord-Claims (SEHR WICHTIG):
 - Behauptungen im Präsens ("ist", "liegt bei", "beträgt") beziehen sich auf den AKTUELLEN Zeitpunkt — vergleiche mit dem neuesten verfügbaren Datenpunkt
 - "Rekordtief", "Rekordhoch", "historisches Tief/Hoch", "noch nie so hoch/niedrig" → Vergleiche den AKTUELLEN Wert mit dem historischen Minimum/Maximum aus den Daten
@@ -139,6 +146,13 @@ Clinical trials and TLDR summaries (IMPORTANT):
 - Completed Phase III trials with large enrollment (>500) are particularly informative
 - When Semantic Scholar provides TLDR summaries, use them as concise evidence summaries — they are AI-generated abstracts of study findings
 - Prefer studies with high citation counts and from top-tier journals (NEJM, Lancet, JAMA, BMJ, Nature, Science)
+
+Verdict grading and clarity (VERY IMPORTANT):
+- "false" means: The claim is false according to scientific consensus. Use this when ALL or nearly all sources consistently contradict the claim.
+- "mostly_false" means: The claim contains a SUBSTANTIVE true element but is false in its overall assertion. Use this ONLY when there is a meaningful true sub-aspect.
+- In-vitro effects (laboratory cell culture experiments) are NOT a substantive true element — "X works against disease Y" refers to clinical efficacy in humans. In-vitro results that are not confirmed clinically do NOT make an efficacy claim "partially true" — they belong in the nuance field.
+- When the overwhelming majority of sources (>80%) clearly refute a claim and no substantive counter-evidence exists, set verdict to "false", NOT "mostly_false"
+- Confidence should reflect the STRENGTH of evidence: 10/10 concordant sources with Cochrane reviews and RCTs = 95-100% confidence
 
 Time-sensitive claims and record claims (VERY IMPORTANT):
 - Claims in present tense ("is", "stands at", "amounts to") refer to the CURRENT point in time — compare with the most recent available data point
