@@ -16,6 +16,7 @@ Analysiere die folgende Behauptung und antworte AUSSCHLIESSLICH im JSON-Format:
   "who_relevant": true/false,
   "climate_relevant": true/false,
   "ema_relevant": true/false,
+  "efsa_relevant": true/false,
   "eurostat_relevant": true/false,
   "eea_relevant": true/false,
   "ecdc_relevant": true/false,
@@ -50,6 +51,7 @@ Quellen-Relevanz-Regeln:
 - ecdc_relevant: true bei Infektionskrankheiten (Masern, Grippe, Tuberkulose, HIV, Hepatitis, Keuchhusten, Salmonellen, Dengue, Malaria, Polio, Diphtherie, Röteln, Mumps, Cholera, Legionellen, FSME, Antibiotikaresistenz, Ebola)
 - who_relevant: true bei allgemeinen Gesundheitsthemen (Lebenserwartung, Sterblichkeit, Impfraten, Krankheitslast)
 - ema_relevant: true bei Medikamenten und Arzneimitteln
+- efsa_relevant: true bei Lebensmittelsicherheit, Ernährung, Pestiziden, Lebensmittelzusatzstoffen, Kontaminanten, Nahrungsergänzungsmitteln, GMO, Tierfutter, Bienenschutz, Tiergesundheit, Lebensmittelallergien, Acrylamid, Glyphosat, Aspartam, E-Nummern, BPA, Mikroplastik in Lebensmitteln, Trinkwasser
 - eurostat_relevant: true bei EU-Wirtschaft, Migration, Demografie, Arbeitsmarkt, CO2-Emissionen, Treibhausgase, Lebenserwartung, Gesundheitsausgaben, Immobilienpreise, Mindestlohn, Staatsschulden, Einkommensungleichheit, Tourismus
 - eea_relevant: true bei Umwelt und Luftqualität
 - climate_relevant: true bei Klima und Temperatur

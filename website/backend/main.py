@@ -14,6 +14,7 @@ from services.claim_analyzer import analyze_claim
 from services.pubmed import search_pubmed
 from services.who import search_who
 from services.ema import search_ema
+from services.efsa import search_efsa
 from services.claimreview import search_claimreview
 from services.copernicus import search_copernicus
 from services.eurostat import search_eurostat
@@ -192,6 +193,9 @@ async def check_claim(request: Request):
         if analysis.get("ema_relevant"):
             tasks.append(cached("EMA", search_ema, analysis))
             queried_names.append("EMA")
+        if analysis.get("efsa_relevant"):
+            tasks.append(cached("EFSA", search_efsa, analysis))
+            queried_names.append("EFSA")
         if analysis.get("climate_relevant"):
             tasks.append(cached("Copernicus", search_copernicus, analysis))
             queried_names.append("Copernicus")

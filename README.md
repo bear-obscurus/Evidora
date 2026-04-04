@@ -4,7 +4,7 @@
 
 A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
-Evidora automatically verifies claims against scientific and institutional sources such as PubMed, OpenAlex, Cochrane, Europe PMC, Semantic Scholar, ClinicalTrials.gov, WHO, WHO Europe, EMA, ECDC, Copernicus/NASA GISS, Eurostat, ECB, UNHCR, EEA, OECD, World Bank, DataCommons, EUvsDisinfo, and European fact-checkers.
+Evidora automatically verifies claims against scientific and institutional sources such as PubMed, OpenAlex, Cochrane, Europe PMC, Semantic Scholar, ClinicalTrials.gov, WHO, WHO Europe, EMA, EFSA, ECDC, Copernicus/NASA GISS, Eurostat, ECB, UNHCR, EEA, OECD, World Bank, DataCommons, EUvsDisinfo, and European fact-checkers.
 
 **Live Demo:** [https://evidora.eu](https://evidora.eu)
 
@@ -13,7 +13,7 @@ Evidora automatically verifies claims against scientific and institutional sourc
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **22 data sources** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD statistics, climate data, disease surveillance, disinformation databases, and fact-checkers
+- **23 data sources** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD statistics, climate data, disease surveillance, disinformation databases, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Multi-country ranking** — Superlative claims ("highest", "most") automatically query all EU-27 countries for a full ranking
 - **Multi-dimensional context** — Prevents one-metric verdicts by injecting methodological caveats (energy safety: 7 dimensions; PISA: 7 education dimensions; CO₂: territorial vs. consumption-based; migration: asylum vs. total; GDP: welfare vs. output)
@@ -132,6 +132,7 @@ docker compose down
 | WHO GHO | Health indicators | Global health statistics | ✅ Active |
 | WHO Europe (HFA) | Health for All Gateway | 39 indicators, 66 European countries | ✅ Active |
 | EMA | Drug approvals (EU) | Pharmaceuticals, vaccines | ✅ Active |
+| EFSA | Food safety opinions (CrossRef/EFSA Journal) | Pesticides, additives, contaminants, GMOs, nutrition | ✅ Active |
 | ECDC (via OWID) | Infectious diseases | COVID-19 cases, deaths, vaccinations (cached CSV) | ✅ Active |
 | Copernicus CDS | Climate data (ERA5, CAMS) | Temperature, emissions, satellite | ✅ Active |
 | Eurostat | EU statistics | Economy, migration, energy, CO₂, housing, debt, wages, inequality, tourism | ✅ Active |

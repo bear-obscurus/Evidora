@@ -87,7 +87,7 @@ const TRANSLATIONS = {
         history_clear: "Verlauf löschen",
 
         // Footer
-        footer_main: "Evidora.eu — Europäischer Faktencheck | Quellen: PubMed, Cochrane, Europe PMC, Semantic Scholar, ClinicalTrials.gov, WHO, EMA, ECDC, Eurostat, EZB, UNHCR, EEA, Copernicus, OECD, GADMO, DataCommons, EUvsDisinfo, OpenAlex, World Bank, OWID, EFCSN",
+        footer_main: "Evidora.eu — Europäischer Faktencheck | Quellen: PubMed, Cochrane, Europe PMC, Semantic Scholar, ClinicalTrials.gov, WHO, EMA, EFSA, ECDC, Eurostat, EZB, UNHCR, EEA, Copernicus, OECD, GADMO, DataCommons, EUvsDisinfo, OpenAlex, World Bank, OWID, EFCSN",
         footer_note: "Automatische Überprüfung — ersetzt keine professionelle Faktencheck-Redaktion",
         footer_opensource: "Open Source auf GitHub",
         privacy_link: "Datenschutz",
@@ -202,6 +202,7 @@ const TRANSLATIONS = {
                 <li><strong>PubMed / NCBI</strong> — öffentliche Datenbank der U.S. National Library of Medicine. Nutzung gemäß <a href="https://www.ncbi.nlm.nih.gov/home/about/policies/" target="_blank" rel="noopener">NCBI Policies</a></li>
                 <li><strong>WHO GHO</strong> — offene Gesundheitsdaten der Weltgesundheitsorganisation. <a href="https://www.who.int/about/policies/publishing/copyright" target="_blank" rel="noopener">WHO Copyright Policy</a></li>
                 <li><strong>EMA</strong> — offene Medikamentendaten der Europäischen Arzneimittel-Agentur (CC BY 4.0). <a href="https://www.ema.europa.eu/en/about-us/legal-notice" target="_blank" rel="noopener">EMA Legal Notice</a></li>
+                <li><strong>EFSA</strong> — wissenschaftliche Gutachten der Europäischen Behörde für Lebensmittelsicherheit via CrossRef/EFSA Journal. <a href="https://www.efsa.europa.eu/en/about/legal" target="_blank" rel="noopener">EFSA Legal Notice</a></li>
                 <li><strong>Copernicus CDS</strong> — Klimadaten des ECMWF/EU. <a href="https://cds.climate.copernicus.eu/datasets" target="_blank" rel="noopener">Copernicus Licence</a></li>
                 <li><strong>Eurostat</strong> — offene EU-Statistiken (CC BY 4.0). <a href="https://ec.europa.eu/eurostat/web/main/help/copyright-notice" target="_blank" rel="noopener">Eurostat Copyright</a></li>
                 <li><strong>EZB</strong> — Leitzinsen, Wechselkurse und Geldmengen der Europäischen Zentralbank. <a href="https://data.ecb.europa.eu/help/api/overview" target="_blank" rel="noopener">ECB Data Portal</a></li>
@@ -304,7 +305,7 @@ const TRANSLATIONS = {
         history_clear: "Clear history",
 
         // Footer
-        footer_main: "Evidora.eu — European Fact Check | Sources: PubMed, Cochrane, Europe PMC, Semantic Scholar, ClinicalTrials.gov, WHO, EMA, ECDC, Eurostat, ECB, UNHCR, EEA, Copernicus, OECD, GADMO, DataCommons, EUvsDisinfo, OpenAlex, World Bank, OWID, EFCSN",
+        footer_main: "Evidora.eu — European Fact Check | Sources: PubMed, Cochrane, Europe PMC, Semantic Scholar, ClinicalTrials.gov, WHO, EMA, EFSA, ECDC, Eurostat, ECB, UNHCR, EEA, Copernicus, OECD, GADMO, DataCommons, EUvsDisinfo, OpenAlex, World Bank, OWID, EFCSN",
         footer_note: "Automated check — does not replace professional fact-checking",
         footer_opensource: "Open Source on GitHub",
         privacy_link: "Privacy Policy",
