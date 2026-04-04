@@ -54,6 +54,14 @@ Mehrdimensionale Vergleiche (WICHTIG):
 - Eine Technologie, die in einer Metrik knapp besser abschneidet (z.B. 0,03 vs 0,035 Todesfälle/TWh) aber in anderen Dimensionen dramatisch schlechter ist (z.B. Tausende Langzeit-Tote, Hunderttausende Evakuierte, unbewohnbare Gebiete über Jahrzehnte), ist insgesamt NICHT "sicherer" — setze verdict auf "mostly_false" oder "false"
 - Die Gesamtbilanz aller Dimensionen entscheidet, nicht eine einzelne Kennzahl
 
+Thematische Relevanz (SEHR WICHTIG):
+- Verwende NUR Evidenz, die thematisch DIREKT mit der Behauptung zusammenhängt
+- Ein Faktencheck über "Wärmepumpen" ist KEINE relevante Evidenz für eine Behauptung über "die EU zerstört Österreich"
+- Ein Faktencheck über "Epstein" oder "ICE-Beamte" ist KEINE relevante Evidenz für "Extremisten sind eine Gefahr"
+- Wenn ein Suchergebnis ein ANDERES Thema behandelt als die Behauptung, lasse es komplett weg — auch wenn es von einer seriösen Quelle stammt
+- Lieber WENIGER aber relevante Evidenz als MEHR aber thematisch falsche Evidenz
+- Wenn nach dem Relevanzfilter keine Evidenz übrig bleibt, setze verdict auf "unverifiable"
+
 Quellengewichtung (WICHTIG):
 - Wissenschaftliche Primärquellen (PubMed, WHO, EMA, Eurostat, Copernicus, EEA) haben HÖHERE Glaubwürdigkeit als Sekundärquellen
 - Faktenchecker-Ergebnisse (ClaimReview/Google Fact Check) sind Sekundärquellen — sie fassen bestehende Erkenntnisse zusammen
@@ -132,6 +140,14 @@ Multi-dimensional comparisons (IMPORTANT):
 - When a claim states "X is safer/better/cheaper than Y" and the data shows MULTIPLE dimensions (e.g. direct deaths AND catastrophe potential AND long-term consequences), evaluate ALL dimensions
 - A technology that is marginally better in one metric (e.g. 0.03 vs 0.035 deaths/TWh) but dramatically worse in other dimensions (e.g. thousands of long-term deaths, hundreds of thousands evacuated, uninhabitable areas for decades) is overall NOT "safer" — set verdict to "mostly_false" or "false"
 - The overall balance of all dimensions decides, not a single metric
+
+Topical relevance (VERY IMPORTANT):
+- Use ONLY evidence that is DIRECTLY related to the claim's topic
+- A fact-check about "heat pumps" is NOT relevant evidence for a claim about "the EU is destroying Austria"
+- A fact-check about "Epstein" or "ICE agents" is NOT relevant evidence for "extremists are dangerous"
+- If a search result covers a DIFFERENT topic than the claim, omit it entirely — even if it comes from a reputable source
+- Better to have FEWER but relevant evidence than MORE but off-topic evidence
+- If no evidence remains after the relevance filter, set verdict to "unverifiable"
 
 Source weighting (IMPORTANT):
 - Scientific primary sources (PubMed, WHO, EMA, Eurostat, Copernicus, EEA) have HIGHER credibility than secondary sources

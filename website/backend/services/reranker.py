@@ -46,15 +46,28 @@ def _result_text(result: dict) -> str:
     return " ".join(parts)
 
 
+"""Minimum cosine-similarity score.  Results below this threshold are
+considered off-topic and removed before the synthesizer ever sees them.
+The value is intentionally conservative — we want to drop clearly
+irrelevant results (APA article about heat-pumps for a claim about
+the EU destroying Austria) without accidentally removing tangentially
+related evidence."""
+RELEVANCE_THRESHOLD = 0.20
+
+
 def rerank_results(claim: str, source_results: list) -> list:
     """Re-rank results within each source by semantic similarity to the claim.
+
+    Results whose similarity score falls below ``RELEVANCE_THRESHOLD`` are
+    removed entirely so the synthesizer does not present off-topic evidence.
 
     Args:
         claim: The original claim text.
         source_results: List of source dicts with "results" lists.
 
     Returns:
-        The same list with results re-ordered by relevance (most similar first).
+        The same list with results re-ordered by relevance (most similar first)
+        and off-topic entries removed.
     """
     if not _load_model():
         return source_results
@@ -63,12 +76,13 @@ def rerank_results(claim: str, source_results: list) -> list:
         from sentence_transformers import util
 
         claim_embedding = _model.encode(claim, convert_to_tensor=True)
+        total_removed = 0
 
         for source_data in source_results:
             if not isinstance(source_data, dict):
                 continue
             results = source_data.get("results", [])
-            if len(results) <= 1:
+            if not results:
                 continue
 
             texts = [_result_text(r) for r in results]
@@ -77,11 +91,27 @@ def rerank_results(claim: str, source_results: list) -> list:
 
             # Sort results by similarity score (descending)
             scored = sorted(zip(results, scores.tolist()), key=lambda x: x[1], reverse=True)
+
+            # Filter out off-topic results below threshold
+            before_count = len(scored)
+            scored = [(r, s) for r, s in scored if s >= RELEVANCE_THRESHOLD]
+            removed = before_count - len(scored)
+            total_removed += removed
+
             source_data["results"] = [r for r, _ in scored]
 
             source_name = source_data.get("source", "Unknown")
             top_score = scored[0][1] if scored else 0
-            logger.debug(f"Reranked {len(results)} results for {source_name} (top score: {top_score:.3f})")
+            if removed:
+                logger.info(
+                    f"Reranked {source_name}: kept {len(scored)}/{before_count} results "
+                    f"(removed {removed} below threshold {RELEVANCE_THRESHOLD}, top score: {top_score:.3f})"
+                )
+            else:
+                logger.debug(f"Reranked {len(results)} results for {source_name} (top score: {top_score:.3f})")
+
+        if total_removed:
+            logger.info(f"Relevance filter: removed {total_removed} off-topic results total")
 
         return source_results
 
