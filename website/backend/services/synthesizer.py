@@ -1,3 +1,4 @@
+import asyncio
 import json
 import logging
 import re
@@ -199,6 +200,43 @@ TIMEOUT_MESSAGES = {
 }
 
 
+async def _validate_urls(evidence: list[dict]) -> list[dict]:
+    """Check evidence URLs with HEAD requests; remove entries with broken links."""
+    if not evidence:
+        return evidence
+
+    urls = [e.get("url", "") for e in evidence]
+    if not any(urls):
+        return evidence
+
+    async def check_url(url: str) -> bool:
+        if not url:
+            return False
+        try:
+            async with httpx.AsyncClient(timeout=5.0, follow_redirects=True) as client:
+                resp = await client.head(url)
+                return resp.status_code < 400
+        except Exception:
+            return False
+
+    tasks = [check_url(url) for url in urls]
+    results = await asyncio.gather(*tasks)
+
+    validated = []
+    removed = 0
+    for entry, url, ok in zip(evidence, urls, results):
+        if ok or not url:
+            validated.append(entry)
+        else:
+            removed += 1
+            logger.info(f"Removed broken evidence URL: {url}")
+
+    if removed:
+        logger.warning(f"Removed {removed} evidence entries with broken URLs")
+
+    return validated
+
+
 async def synthesize_results(
     original_claim: str, analysis: dict, source_results: list, lang: str = "de"
 ) -> dict:
@@ -351,6 +389,10 @@ async def synthesize_results(
                     if len(filtered) < len(result["evidence"]):
                         logger.warning(f"Filtered {len(result['evidence']) - len(filtered)} hallucinated evidence entries")
                     result["evidence"] = filtered
+
+            # Validate evidence URLs — remove broken links (404, timeouts)
+            if result.get("evidence"):
+                result["evidence"] = await _validate_urls(result["evidence"])
 
             # No real sources → override verdict and suppress LLM opinion
             if not real_urls:
