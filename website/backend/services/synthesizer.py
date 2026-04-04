@@ -59,6 +59,14 @@ Quellengewichtung (WICHTIG):
 - Wenn Faktenchecker-Ergebnisse den wissenschaftlichen Primärquellen WIDERSPRECHEN, gewichte die Primärquellen höher und weise im "nuance"-Feld auf den Widerspruch hin
 - Wenn NUR Faktenchecker-Ergebnisse vorliegen (keine Primärquellen), weise im "nuance"-Feld darauf hin, dass keine unabhängige wissenschaftliche Bestätigung vorliegt
 - Verdacht auf Verzerrung: Wenn alle Faktenchecker das gleiche Urteil haben aber Primärquellen ein anderes Bild zeigen, vertraue den Primärquellen
+- Hochzitierte Studien (cited_by_count > 100) haben mehr Gewicht als wenig zitierte Arbeiten
+- Cochrane Systematic Reviews und Meta-Analysen sind die stärkste Form medizinischer Evidenz
+
+Klinische Studien und TLDR-Zusammenfassungen (WICHTIG):
+- Wenn ClinicalTrials.gov-Daten vorhanden sind, nenne Phase, Teilnehmerzahl (enrollment) und Status in der Evidenz
+- Abgeschlossene Phase-III-Studien mit großer Teilnehmerzahl (>500) sind besonders aussagekräftig
+- Wenn Semantic Scholar TLDR-Zusammenfassungen liefert, nutze diese als kompakte Evidenz-Zusammenfassung — sie sind AI-generierte Kurzfassungen der Studienergebnisse
+- Bevorzuge Studien mit hoher Zitationszahl und aus hochrangigen Journals (NEJM, Lancet, JAMA, BMJ, Nature, Science)
 
 Zeitbezogene Behauptungen und Rekord-Claims (SEHR WICHTIG):
 - Behauptungen im Präsens ("ist", "liegt bei", "beträgt") beziehen sich auf den AKTUELLEN Zeitpunkt — vergleiche mit dem neuesten verfügbaren Datenpunkt
@@ -123,6 +131,14 @@ Source weighting (IMPORTANT):
 - If fact-checker results CONTRADICT scientific primary sources, weight the primary sources higher and note the contradiction in the "nuance" field
 - If ONLY fact-checker results are available (no primary sources), note in the "nuance" field that no independent scientific confirmation exists
 - Suspected bias: If all fact-checkers agree but primary sources show a different picture, trust the primary sources
+- Highly cited studies (cited_by_count > 100) carry more weight than rarely cited papers
+- Cochrane Systematic Reviews and meta-analyses are the strongest form of medical evidence
+
+Clinical trials and TLDR summaries (IMPORTANT):
+- When ClinicalTrials.gov data is present, mention phase, enrollment count, and status in the evidence
+- Completed Phase III trials with large enrollment (>500) are particularly informative
+- When Semantic Scholar provides TLDR summaries, use them as concise evidence summaries — they are AI-generated abstracts of study findings
+- Prefer studies with high citation counts and from top-tier journals (NEJM, Lancet, JAMA, BMJ, Nature, Science)
 
 Time-sensitive claims and record claims (VERY IMPORTANT):
 - Claims in present tense ("is", "stands at", "amounts to") refer to the CURRENT point in time — compare with the most recent available data point
@@ -268,10 +284,16 @@ async def synthesize_results(
                     "title", "name", "url", "journal", "date", "status",
                     "indicator_name", "value", "year", "country", "source",
                     "description", "variable", "time_range", "dataset_id",
-                    "indicator",
+                    "indicator", "authors",
                     # Energy safety specific fields
                     "deaths_per_twh", "co2_g_per_kwh", "radioactive_waste",
                     "catastrophe_potential", "decommission_years",
+                    # Semantic Scholar / OpenAlex / Europe PMC
+                    "tldr", "cited_by_count",
+                    # ClinicalTrials.gov
+                    "phase", "enrollment", "interventions", "conditions", "meta",
+                    # EMA
+                    "active_substance", "therapeutic_area", "indication",
                 )}
                 context_parts.append(json.dumps(compact, ensure_ascii=False))
             context_parts.append("")
