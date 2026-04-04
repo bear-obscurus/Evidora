@@ -261,7 +261,11 @@ def _semantic_search(claim: str, entries: list[dict], top_k: int = 5) -> list[di
 
         scores = util.cos_sim(claim_embedding, entry_embeddings)[0]
         scored = sorted(zip(entries, scores.tolist()), key=lambda x: x[1], reverse=True)
-        return [e for e, score in scored[:top_k] if score > 0.20]
+        kept = [e for e, score in scored[:top_k] if score > 0.35]
+        if scored:
+            top_score = scored[0][1]
+            logger.info(f"DataCommons semantic: top score {top_score:.3f}, kept {len(kept)}/{min(top_k, len(scored))}")
+        return kept
 
     except Exception as e:
         logger.debug(f"DataCommons semantic search failed: {e}")

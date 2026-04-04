@@ -52,7 +52,7 @@ The value is intentionally conservative — we want to drop clearly
 irrelevant results (APA article about heat-pumps for a claim about
 the EU destroying Austria) without accidentally removing tangentially
 related evidence."""
-RELEVANCE_THRESHOLD = 0.20
+RELEVANCE_THRESHOLD = 0.25
 
 
 def rerank_results(claim: str, source_results: list) -> list:

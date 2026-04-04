@@ -149,8 +149,12 @@ def _semantic_match(claim: str, items: list[dict], top_k: int = 5) -> list[dict]
         scores = util.cos_sim(claim_embedding, item_embeddings)[0]
 
         scored = sorted(zip(items, scores.tolist()), key=lambda x: x[1], reverse=True)
-        # Only return items with similarity > 0.25 (threshold for relevance)
-        return [item for item, score in scored[:top_k] if score > 0.25]
+        # Only return items with sufficient semantic similarity
+        kept = [item for item, score in scored[:top_k] if score > 0.35]
+        if scored:
+            top_score = scored[0][1]
+            logger.info(f"GADMO semantic: top score {top_score:.3f}, kept {len(kept)}/{min(top_k, len(scored))}")
+        return kept
     except Exception as e:
         logger.debug(f"GADMO semantic matching failed: {e}")
         return None
