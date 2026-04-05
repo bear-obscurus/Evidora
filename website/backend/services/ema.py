@@ -6,6 +6,7 @@ indication, and approval status.
 """
 
 import io
+import re
 import time
 import logging
 
@@ -96,8 +97,35 @@ async def _load_medicines(client: httpx.AsyncClient) -> list[dict]:
     return medicines
 
 
+def _word_match(term: str, text: str) -> bool:
+    """Check if term appears as a whole word in text (case-insensitive)."""
+    return bool(re.search(r'\b' + re.escape(term) + r'\b', text, re.IGNORECASE))
+
+
+def _score_match(term: str, med: dict) -> int:
+    """Score how well a search term matches a medicine entry.
+
+    Returns 0 (no match) or a positive score.  Higher = better match.
+    - 3: name or active substance match (most specific)
+    - 2: INN match
+    - 1: indication match (broader, but still relevant)
+    - 0: therapeutic area alone is too broad — skip it
+    """
+    if _word_match(term, med["name"]) or _word_match(term, med["active_substance"]):
+        return 3
+    if _word_match(term, med["inn"]):
+        return 2
+    if _word_match(term, med["indication"]):
+        return 1
+    return 0
+
+
 async def search_ema(analysis: dict) -> dict:
-    """Search EMA medicines database by entity names."""
+    """Search EMA medicines database by entity names.
+
+    Uses word-boundary matching and scored ranking to avoid false positives
+    from substring matches or overly broad therapeutic area hits.
+    """
     entities = analysis.get("entities", [])
     if not entities:
         return {"source": "EMA (European Medicines Agency)", "type": "official_data", "results": []}
@@ -108,30 +136,33 @@ async def search_ema(analysis: dict) -> dict:
     if not medicines:
         return {"source": "EMA (European Medicines Agency)", "type": "official_data", "results": []}
 
-    results = []
-    search_terms = [e.lower() for e in entities]
+    # Filter entities: skip very short terms (< 4 chars) to avoid spurious matches
+    search_terms = [e for e in entities if len(e) >= 4]
+    if not search_terms:
+        return {"source": "EMA (European Medicines Agency)", "type": "official_data", "results": []}
+
+    scored_results = []
 
     for med in medicines:
-        med_name = med["name"].lower()
-        active = med["active_substance"].lower()
-        inn = med["inn"].lower()
-        area = med["therapeutic_area"].lower()
-
+        best_score = 0
         for term in search_terms:
-            if term in med_name or term in active or term in inn or term in area:
-                result = {
-                    "title": f"{med['name']} ({med['inn']})" if med['inn'] and med['inn'] != med['name'] else med['name'],
-                    "active_substance": med["active_substance"],
-                    "status": med["status"],
-                    "therapeutic_area": med["therapeutic_area"],
-                    "indication": med["indication"],
-                    "url": med["url"] if med["url"] else f"https://www.ema.europa.eu/en/search?search_api_fulltext={med['name']}",
-                }
-                results.append(result)
-                break
+            score = _score_match(term, med)
+            best_score = max(best_score, score)
 
-        if len(results) >= 5:
-            break
+        if best_score > 0:
+            result = {
+                "title": f"{med['name']} ({med['inn']})" if med['inn'] and med['inn'] != med['name'] else med['name'],
+                "active_substance": med["active_substance"],
+                "status": med["status"],
+                "therapeutic_area": med["therapeutic_area"],
+                "indication": med["indication"],
+                "url": med["url"] if med["url"] else f"https://www.ema.europa.eu/en/search?search_api_fulltext={med['name']}",
+            }
+            scored_results.append((best_score, result))
 
-    logger.info(f"EMA: {len(results)} matches for entities {entities}")
+    # Sort by score descending, take top 5
+    scored_results.sort(key=lambda x: x[0], reverse=True)
+    results = [r for _, r in scored_results[:5]]
+
+    logger.info(f"EMA: {len(results)} matches for entities {search_terms}")
     return {"source": "EMA (European Medicines Agency)", "type": "official_data", "results": results}

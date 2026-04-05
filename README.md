@@ -148,7 +148,7 @@ docker compose down
 | Europe PMC | Life science literature (40M+) | European focus, Open Access, bioRxiv/medRxiv preprints | ✅ Active |
 | Semantic Scholar | AI-powered paper search (200M+) | TLDR summaries, citation-based influence scoring | ✅ Active |
 | ClinicalTrials.gov | Clinical trial registry (500K+) | Drug efficacy, treatment comparisons, vaccine trials | ✅ Active |
-| EUvsDisinfo | Disinformation database | Pro-Kremlin disinformation cases (EEA East StratCom) | ✅ Active |
+| EUvsDisinfo | Disinformation database (14.5K cases + RSS) | Pro-Kremlin disinformation cases (EU East StratCom) | ✅ Active |
 | Google Fact Check API | ClaimReview markup | European fact-checkers (EFCSN) | ✅ Active |
 
 ## Security

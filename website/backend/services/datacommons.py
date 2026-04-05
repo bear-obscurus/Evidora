@@ -242,8 +242,21 @@ def _load_local_index():
             logger.warning(f"DataCommons: failed to load local index: {e}")
 
 
-def _semantic_search(claim: str, entries: list[dict], top_k: int = 5) -> list[dict]:
-    """Search entries by semantic similarity."""
+def _has_entity_overlap(entry: dict, entities: list[str]) -> bool:
+    """Check if any entity appears in the entry's claim or rating text."""
+    if not entities:
+        return True  # No entities to check — accept all
+    text = f"{entry['claim']} {entry['rating']}".lower()
+    return any(e.lower() in text for e in entities if len(e) >= 3)
+
+
+def _semantic_search(claim: str, entries: list[dict], entities: list[str] | None = None, top_k: int = 5) -> list[dict]:
+    """Search entries by semantic similarity with entity overlap requirement.
+
+    Requires that results both score above the similarity threshold AND
+    contain at least one entity from the claim analysis.  This prevents
+    generic words (e.g. "gefährlich") from pulling in unrelated fact-checks.
+    """
     try:
         from services.reranker import _load_model, _model
         if not _load_model() or _model is None:
@@ -261,10 +274,20 @@ def _semantic_search(claim: str, entries: list[dict], top_k: int = 5) -> list[di
 
         scores = util.cos_sim(claim_embedding, entry_embeddings)[0]
         scored = sorted(zip(entries, scores.tolist()), key=lambda x: x[1], reverse=True)
-        kept = [e for e, score in scored[:top_k] if score > 0.35]
+
+        # Require both semantic similarity AND entity overlap
+        kept = [
+            e for e, score in scored[:top_k * 3]
+            if score > 0.35 and _has_entity_overlap(e, entities or [])
+        ][:top_k]
+
         if scored:
             top_score = scored[0][1]
-            logger.info(f"DataCommons semantic: top score {top_score:.3f}, kept {len(kept)}/{min(top_k, len(scored))}")
+            logger.info(
+                f"DataCommons semantic: top score {top_score:.3f}, "
+                f"kept {len(kept)}/{min(top_k * 3, len(scored))} "
+                f"(entities: {entities})"
+            )
         return kept
 
     except Exception as e:
@@ -304,7 +327,7 @@ async def search_datacommons(analysis: dict) -> dict:
     # Semantic search first, keyword fallback
     matched = None
     if claim:
-        matched = _semantic_search(claim, _index)
+        matched = _semantic_search(claim, _index, entities=entities)
 
     if matched is None:
         matched = _keyword_search(_index, keywords)

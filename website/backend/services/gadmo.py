@@ -128,8 +128,20 @@ async def prefetch_feeds():
         logger.warning(f"GADMO prefetch embedding failed: {e}")
 
 
-def _semantic_match(claim: str, items: list[dict], top_k: int = 5) -> list[dict]:
-    """Rank items by semantic similarity to the claim, using cached embeddings if available."""
+def _has_entity_overlap(item: dict, entities: list[str]) -> bool:
+    """Check if any entity appears in the item's title or description."""
+    if not entities:
+        return True  # No entities to check — accept all
+    text = f"{item['title']} {item['description']}".lower()
+    return any(e.lower() in text for e in entities if len(e) >= 3)
+
+
+def _semantic_match(claim: str, items: list[dict], entities: list[str] | None = None, top_k: int = 5) -> list[dict]:
+    """Rank items by semantic similarity with entity overlap requirement.
+
+    Requires both sufficient cosine similarity AND at least one entity
+    from the claim analysis to prevent generic word matches.
+    """
     try:
         from services.reranker import _load_model, _model
         if not _load_model() or _model is None:
@@ -149,11 +161,18 @@ def _semantic_match(claim: str, items: list[dict], top_k: int = 5) -> list[dict]
         scores = util.cos_sim(claim_embedding, item_embeddings)[0]
 
         scored = sorted(zip(items, scores.tolist()), key=lambda x: x[1], reverse=True)
-        # Only return items with sufficient semantic similarity
-        kept = [item for item, score in scored[:top_k] if score > 0.35]
+        # Require both semantic similarity AND entity overlap
+        kept = [
+            item for item, score in scored[:top_k * 3]
+            if score > 0.35 and _has_entity_overlap(item, entities or [])
+        ][:top_k]
         if scored:
             top_score = scored[0][1]
-            logger.info(f"GADMO semantic: top score {top_score:.3f}, kept {len(kept)}/{min(top_k, len(scored))}")
+            logger.info(
+                f"GADMO semantic: top score {top_score:.3f}, "
+                f"kept {len(kept)}/{min(top_k * 3, len(scored))} "
+                f"(entities: {entities})"
+            )
         return kept
     except Exception as e:
         logger.debug(f"GADMO semantic matching failed: {e}")
@@ -188,7 +207,7 @@ async def search_gadmo(analysis: dict) -> dict:
     # Try semantic matching first, fall back to keywords
     matched = None
     if claim:
-        matched = _semantic_match(claim, all_items)
+        matched = _semantic_match(claim, all_items, entities=entities)
 
     if matched is None:
         # Keyword fallback

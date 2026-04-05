@@ -5,6 +5,10 @@ Managed sources:
 - NASA GISS temperature anomalies (7-day refresh)
 - GADMO fact-check feeds + embeddings (1h refresh)
 - EUvsDisinfo RSS feed + embeddings (1h refresh)
+- DataCommons ClaimReview index (24h refresh)
+
+Note: EUvsDisinfo case database (14.5K cases) is a static JSON file
+shipped with the application — no download or refresh needed.
 """
 
 import asyncio
@@ -34,7 +38,7 @@ async def prefetch_all():
             update_datacommons(),
             return_exceptions=True,
         )
-        names = ["OWID COVID", "NASA GISS", "GADMO Feeds", "EUvsDisinfo", "DataCommons"]
+        names = ["OWID COVID", "NASA GISS", "GADMO Feeds", "EUvsDisinfo RSS", "DataCommons"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")
