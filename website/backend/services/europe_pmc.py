@@ -15,8 +15,17 @@ logger = logging.getLogger("evidora")
 BASE_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest"
 
 
+def _has_entity_overlap(title: str, entities: list[str]) -> bool:
+    """Check if any entity appears in the result title."""
+    if not entities:
+        return True
+    text = title.lower()
+    return any(e.lower() in text for e in entities if len(e) >= 3)
+
+
 async def search_europe_pmc(analysis: dict) -> dict:
     queries = analysis.get("pubmed_queries", [])
+    entities = analysis.get("entities", [])
     if not queries:
         return {"source": "Europe PMC", "results": []}
 
@@ -88,5 +97,11 @@ async def search_europe_pmc(analysis: dict) -> dict:
             "open_access": is_open_access,
         })
 
-    logger.info(f"Europe PMC: {len(results)} results for '{search_term[:80]}'")
+    # Filter by entity overlap to remove off-topic results
+    if entities:
+        filtered = [r for r in results if _has_entity_overlap(r["title"], entities)]
+        logger.info(f"Europe PMC: {len(results)} raw, {len(filtered)} after entity filter for '{search_term[:80]}'")
+        results = filtered
+    else:
+        logger.info(f"Europe PMC: {len(results)} results for '{search_term[:80]}'")
     return {"source": "Europe PMC", "type": "study", "results": results}
