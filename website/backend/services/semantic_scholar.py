@@ -23,12 +23,25 @@ MAX_RETRIES = 2
 RETRY_DELAY = 1.5  # seconds
 
 
+# Generic scientific words that match too broadly when used alone as filter terms
+_STOPWORDS = {
+    "risk", "study", "health", "effect", "effects", "review", "analysis",
+    "association", "associations", "evidence", "exposure", "impact", "role",
+    "safety", "human", "clinical", "disease", "treatment", "research",
+    "data", "case", "cases", "report", "system", "systems", "model",
+    "results", "outcomes", "factors", "update", "population", "general",
+}
+
+
 def _has_entity_overlap(title: str, entities: list[str], query_terms: list[str] | None = None) -> bool:
     """Check if any entity or query keyword appears in the result title."""
     all_terms = [e for e in entities if len(e) >= 3]
     if query_terms:
         for q in query_terms:
-            all_terms.extend(w for w in q.split() if len(w) >= 3)
+            all_terms.extend(
+                w for w in q.split()
+                if len(w) >= 4 and w.lower() not in _STOPWORDS
+            )
     if not all_terms:
         return True
     text = title.lower()
