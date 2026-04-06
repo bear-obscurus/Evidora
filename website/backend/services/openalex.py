@@ -13,12 +13,16 @@ BASE_URL = "https://api.openalex.org/works"
 MAILTO = "evidora@evidora.eu"
 
 
-def _has_entity_overlap(title: str, entities: list[str]) -> bool:
-    """Check if any entity appears in the result title."""
-    if not entities:
+def _has_entity_overlap(title: str, entities: list[str], query_terms: list[str] | None = None) -> bool:
+    """Check if any entity or query keyword appears in the result title."""
+    all_terms = [e for e in entities if len(e) >= 3]
+    if query_terms:
+        for q in query_terms:
+            all_terms.extend(w for w in q.split() if len(w) >= 3)
+    if not all_terms:
         return True
     text = title.lower()
-    return any(e.lower() in text for e in entities if len(e) >= 3)
+    return any(t.lower() in text for t in all_terms)
 
 
 async def search_openalex(analysis: dict) -> dict:
@@ -86,7 +90,7 @@ async def search_openalex(analysis: dict) -> dict:
 
     # Filter by entity overlap to remove off-topic results
     if entities:
-        filtered = [r for r in results if _has_entity_overlap(r["title"], entities)]
+        filtered = [r for r in results if _has_entity_overlap(r["title"], entities, queries)]
         logger.info(f"OpenAlex: {len(results)} raw, {len(filtered)} after entity filter for '{search_term[:80]}'")
         results = filtered
     else:
