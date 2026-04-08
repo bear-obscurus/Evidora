@@ -60,46 +60,57 @@ def _has_entity_overlap(title: str, entities: list[str], query_terms: list[str] 
     return False
 
 
+async def _s2_single_query(client: httpx.AsyncClient, query: str, headers: dict) -> list[dict]:
+    """Run a single Semantic Scholar query with retry logic."""
+    params = {"query": query, "limit": 10, "fields": FIELDS}
+    try:
+        resp = None
+        for attempt in range(MAX_RETRIES + 1):
+            resp = await client.get(BASE_URL, params=params, headers=headers)
+            if resp.status_code == 429 and attempt < MAX_RETRIES:
+                logger.info(f"Semantic Scholar rate limited, retry {attempt + 1}/{MAX_RETRIES} after {RETRY_DELAY}s")
+                await asyncio.sleep(RETRY_DELAY * (attempt + 1))
+                continue
+            break
+        if resp.status_code == 429:
+            logger.warning(f"Semantic Scholar rate limit for query '{query[:60]}'")
+            return []
+        resp.raise_for_status()
+        return resp.json().get("data", [])
+    except Exception as e:
+        logger.warning(f"Semantic Scholar query failed: {e}")
+        return []
+
+
 async def search_semantic_scholar(analysis: dict) -> dict:
     queries = analysis.get("pubmed_queries", [])
     entities = analysis.get("entities", [])
     if not queries:
         return {"source": "Semantic Scholar", "results": []}
 
-    search_term = queries[0]
-
-    params = {
-        "query": search_term,
-        "limit": 10,
-        "fields": FIELDS,
-    }
-
     headers = {}
     if S2_API_KEY:
         headers["x-api-key"] = S2_API_KEY
 
-    try:
-        async with httpx.AsyncClient(timeout=30.0) as client:
-            resp = None
-            for attempt in range(MAX_RETRIES + 1):
-                resp = await client.get(BASE_URL, params=params, headers=headers)
-                if resp.status_code == 429 and attempt < MAX_RETRIES:
-                    logger.info(f"Semantic Scholar rate limited, retry {attempt + 1}/{MAX_RETRIES} after {RETRY_DELAY}s")
-                    await asyncio.sleep(RETRY_DELAY * (attempt + 1))
-                    continue
-                break
-            if resp.status_code == 429:
-                logger.warning("Semantic Scholar rate limit reached after retries")
-                return {"source": "Semantic Scholar", "results": []}
-            resp.raise_for_status()
-            data = resp.json()
-    except Exception as e:
-        logger.warning(f"Semantic Scholar request failed: {e}")
-        return {"source": "Semantic Scholar", "results": []}
+    # Run up to 3 queries in parallel, merge and deduplicate
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        tasks = [_s2_single_query(client, q, headers) for q in queries[:3]]
+        all_papers = await asyncio.gather(*tasks)
 
-    papers = data.get("data", [])
+    # Flatten and deduplicate by paperId
+    seen = set()
+    papers = []
+    for paper_list in all_papers:
+        for paper in paper_list:
+            pid = paper.get("paperId", "")
+            if pid and pid not in seen:
+                seen.add(pid)
+                papers.append(paper)
+
     if not papers:
         return {"source": "Semantic Scholar", "results": []}
+
+    logger.info(f"Semantic Scholar: {len(papers)} unique papers from {len(queries[:3])} queries")
 
     results = []
     for paper in papers:
@@ -144,8 +155,8 @@ async def search_semantic_scholar(analysis: dict) -> dict:
     # Filter by entity overlap to remove off-topic results
     if entities:
         filtered = [r for r in results if _has_entity_overlap(r["title"], entities, queries)]
-        logger.info(f"Semantic Scholar: {len(results)} raw, {len(filtered)} after entity filter for '{search_term[:80]}'")
+        logger.info(f"Semantic Scholar: {len(results)} raw, {len(filtered)} after entity filter")
         results = filtered
     else:
-        logger.info(f"Semantic Scholar: {len(results)} results for '{search_term[:80]}'")
+        logger.info(f"Semantic Scholar: {len(results)} results")
     return {"source": "Semantic Scholar", "type": "study", "results": results}

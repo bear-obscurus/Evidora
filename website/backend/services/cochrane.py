@@ -13,7 +13,7 @@ async def search_cochrane(analysis: dict) -> dict:
         return {"source": "Cochrane Reviews", "type": "systematic_review", "results": []}
 
     # Use the broadest query + Cochrane journal filter
-    query = f'({" OR ".join(queries[:2])}) AND "Cochrane Database Syst Rev"[Journal]'
+    query = f'({" OR ".join(queries[:3])}) AND "Cochrane Database Syst Rev"[Journal]'
 
     async with httpx.AsyncClient(timeout=30.0) as client:
         params = {

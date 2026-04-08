@@ -11,7 +11,7 @@ async def search_pubmed(analysis: dict) -> dict:
     if not queries:
         return {"source": "PubMed", "results": []}
 
-    query = " OR ".join(queries[:2])
+    query = " OR ".join(queries[:3])
 
     async with httpx.AsyncClient(timeout=30.0) as client:
         # Step 1: Search for article IDs

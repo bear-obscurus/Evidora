@@ -20,8 +20,8 @@ async def search_clinicaltrials(analysis: dict) -> dict:
     if not queries:
         return {"source": "ClinicalTrials.gov", "results": []}
 
-    # Use the most specific query
-    search_term = queries[0]
+    # Combine up to 3 queries with OR for broader coverage
+    search_term = " OR ".join(queries[:3])
 
     params = {
         "query.term": search_term,

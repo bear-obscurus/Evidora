@@ -60,8 +60,8 @@ async def search_europe_pmc(analysis: dict) -> dict:
     if not queries:
         return {"source": "Europe PMC", "results": []}
 
-    # Use first query as keywords (no exact phrase — EPMC needs loose matching)
-    search_term = queries[0]
+    # Combine up to 3 queries with OR for broader coverage
+    search_term = " OR ".join(f'"{q}"' for q in queries[:3])
 
     params = {
         "query": search_term,
