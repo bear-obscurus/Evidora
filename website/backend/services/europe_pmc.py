@@ -18,11 +18,20 @@ BASE_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest"
 # Generic scientific words that match too broadly when used alone as filter terms
 # Generic academic words that are too broad for single-term title matching
 _STOPWORDS = {
+    # Generic academic terms
     "study", "effect", "effects", "review", "analysis", "role",
     "human", "clinical", "report", "system", "systems", "model",
     "results", "outcomes", "factors", "update", "general", "based",
     "using", "novel", "approach", "method", "high", "long", "term",
     "data", "case", "cases",
+    # Population descriptors (too broad on their own)
+    "children", "child", "adolescent", "adolescents", "adult", "adults",
+    "young", "youth", "patients", "women", "infants",
+    # Broad domain terms (match across unrelated fields)
+    "health", "brain", "cognitive", "development", "developmental",
+    "mental", "behavioral", "behaviour", "disorder", "disorders",
+    "disease", "treatment", "risk", "social", "intervention",
+    "associated", "association", "impact", "among",
 }
 
 
@@ -61,7 +70,8 @@ async def search_europe_pmc(analysis: dict) -> dict:
         return {"source": "Europe PMC", "results": []}
 
     # Combine up to 3 queries with OR for broader coverage
-    search_term = " OR ".join(f'"{q}"' for q in queries[:3])
+    # Each query group uses AND (default), groups are ORed
+    search_term = " OR ".join(f"({q})" for q in queries[:3])
 
     params = {
         "query": search_term,

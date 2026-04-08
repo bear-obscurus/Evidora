@@ -18,11 +18,20 @@ MAILTO = "evidora@evidora.eu"
 # Generic scientific words that match too broadly when used alone as filter terms
 # Generic academic words that are too broad for single-term title matching
 _STOPWORDS = {
+    # Generic academic terms
     "study", "effect", "effects", "review", "analysis", "role",
     "human", "clinical", "report", "system", "systems", "model",
     "results", "outcomes", "factors", "update", "general", "based",
     "using", "novel", "approach", "method", "high", "long", "term",
     "data", "case", "cases",
+    # Population descriptors (too broad on their own)
+    "children", "child", "adolescent", "adolescents", "adult", "adults",
+    "young", "youth", "patients", "women", "infants",
+    # Broad domain terms (match across unrelated fields)
+    "health", "brain", "cognitive", "development", "developmental",
+    "mental", "behavioral", "behaviour", "disorder", "disorders",
+    "disease", "treatment", "risk", "social", "intervention",
+    "associated", "association", "impact", "among",
 }
 
 
