@@ -70,7 +70,7 @@ async def search_semantic_scholar(analysis: dict) -> dict:
 
     params = {
         "query": search_term,
-        "limit": 5,
+        "limit": 10,
         "fields": FIELDS,
     }
 

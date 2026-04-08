@@ -61,7 +61,7 @@ async def search_openalex(analysis: dict) -> dict:
     params = {
         "search": search_term,
         "filter": "is_retracted:false,type:article",
-        "per_page": 5,
+        "per_page": 10,
         "sort": "relevance_score:desc",
         "select": "id,doi,title,display_name,relevance_score,publication_year,"
                   "cited_by_count,language,authorships,primary_location,is_retracted",

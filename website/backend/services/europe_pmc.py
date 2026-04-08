@@ -66,7 +66,7 @@ async def search_europe_pmc(analysis: dict) -> dict:
     params = {
         "query": search_term,
         "format": "json",
-        "pageSize": 5,
+        "pageSize": 10,
         "sort": "CITED desc",
         "resultType": "lite",
     }

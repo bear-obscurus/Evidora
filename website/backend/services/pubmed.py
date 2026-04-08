@@ -19,7 +19,7 @@ async def search_pubmed(analysis: dict) -> dict:
             "db": "pubmed",
             "term": query,
             "retmode": "json",
-            "retmax": 5,
+            "retmax": 10,
             "sort": "relevance",
         }
         if PUBMED_API_KEY:

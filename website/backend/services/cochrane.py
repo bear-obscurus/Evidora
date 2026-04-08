@@ -20,7 +20,7 @@ async def search_cochrane(analysis: dict) -> dict:
             "db": "pubmed",
             "term": query,
             "retmode": "json",
-            "retmax": 3,
+            "retmax": 5,
             "sort": "relevance",
         }
         if PUBMED_API_KEY:

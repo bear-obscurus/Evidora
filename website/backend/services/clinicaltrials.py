@@ -25,7 +25,7 @@ async def search_clinicaltrials(analysis: dict) -> dict:
 
     params = {
         "query.term": search_term,
-        "pageSize": 5,
+        "pageSize": 10,
         "sort": "@relevance",
         "fields": "NCTId,BriefTitle,OverallStatus,Phase,EnrollmentCount,"
                   "StartDate,CompletionDate,Condition,InterventionName,"
