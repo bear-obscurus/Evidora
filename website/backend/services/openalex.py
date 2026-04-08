@@ -14,28 +14,40 @@ MAILTO = "evidora@evidora.eu"
 
 
 # Generic scientific words that match too broadly when used alone as filter terms
+# Generic academic words that are too broad for single-term title matching
 _STOPWORDS = {
-    "risk", "study", "health", "effect", "effects", "review", "analysis",
-    "association", "associations", "evidence", "exposure", "impact", "role",
-    "safety", "human", "clinical", "disease", "treatment", "research",
-    "data", "case", "cases", "report", "system", "systems", "model",
-    "results", "outcomes", "factors", "update", "population", "general",
+    "study", "effect", "effects", "review", "analysis", "role",
+    "human", "clinical", "report", "system", "systems", "model",
+    "results", "outcomes", "factors", "update", "general", "based",
+    "using", "novel", "approach", "method", "high", "long", "term",
+    "data", "case", "cases",
 }
 
 
 def _has_entity_overlap(title: str, entities: list[str], query_terms: list[str] | None = None) -> bool:
-    """Check if any entity or query keyword appears in the result title."""
-    all_terms = [e for e in entities if len(e) >= 3]
+    """Check if any entity or query keyword appears in the result title.
+
+    For query terms, requires at least 2 matches to prevent overly broad
+    single-word matches (e.g. 'cancer' alone matching 'prostate cancer').
+    Entity matches (from claim analysis) count as a direct hit.
+    """
+    entity_terms = [e for e in entities if len(e) >= 3]
+    query_words = []
     if query_terms:
         for q in query_terms:
-            all_terms.extend(
+            query_words.extend(
                 w for w in q.split()
                 if len(w) >= 4 and w.lower() not in _STOPWORDS
             )
-    if not all_terms:
+    if not entity_terms and not query_words:
         return True
     text = title.lower()
-    return any(t.lower() in text for t in all_terms)
+    if any(e.lower() in text for e in entity_terms):
+        return True
+    if query_words:
+        hits = sum(1 for w in query_words if w.lower() in text)
+        return hits >= 2
+    return False
 
 
 async def search_openalex(analysis: dict) -> dict:
