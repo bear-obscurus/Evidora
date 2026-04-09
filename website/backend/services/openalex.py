@@ -4,8 +4,6 @@ Uses the free API (no key required). Complements PubMed by covering
 non-biomedical fields: physics, social science, economics, engineering, etc.
 """
 
-import asyncio
-
 import httpx
 import logging
 
@@ -61,50 +59,35 @@ def _has_entity_overlap(title: str, entities: list[str], query_terms: list[str] 
     return False
 
 
-async def _oa_single_query(client: httpx.AsyncClient, query: str) -> list[dict]:
-    """Run a single OpenAlex query."""
-    params = {
-        "search": query,
-        "filter": "is_retracted:false,type:article",
-        "per_page": 10,
-        "sort": "relevance_score:desc",
-        "select": "id,doi,title,display_name,relevance_score,publication_year,"
-                  "cited_by_count,language,authorships,primary_location,is_retracted",
-        "mailto": MAILTO,
-    }
-    try:
-        resp = await client.get(BASE_URL, params=params)
-        if resp.status_code == 429:
-            logger.warning(f"OpenAlex rate limit for query '{query[:60]}'")
-            return []
-        resp.raise_for_status()
-        return resp.json().get("results", [])
-    except Exception as e:
-        logger.warning(f"OpenAlex query failed: {e}")
-        return []
-
-
 async def search_openalex(analysis: dict) -> dict:
     queries = analysis.get("pubmed_queries", [])
     entities = analysis.get("entities", [])
     if not queries:
         return {"source": "OpenAlex", "results": []}
 
-    # Run up to 3 queries in parallel, merge and deduplicate
+    # Combine all queries into one search string — OpenAlex relevance scoring
+    # works best with a single rich query rather than separate narrow ones
+    search_term = " ".join(queries[:3])
+
+    params = {
+        "search": search_term,
+        "filter": "is_retracted:false,type:article",
+        "per_page": 15,
+        "sort": "relevance_score:desc",
+        "select": "id,doi,title,display_name,relevance_score,publication_year,"
+                  "cited_by_count,language,authorships,primary_location,is_retracted",
+        "mailto": MAILTO,
+    }
+
     async with httpx.AsyncClient(timeout=30.0) as client:
-        tasks = [_oa_single_query(client, q) for q in queries[:3]]
-        all_works = await asyncio.gather(*tasks)
+        resp = await client.get(BASE_URL, params=params)
+        if resp.status_code == 429:
+            logger.warning("OpenAlex daily rate limit reached")
+            return {"source": "OpenAlex", "results": []}
+        resp.raise_for_status()
+        data = resp.json()
 
-    # Flatten and deduplicate by OpenAlex ID
-    seen = set()
-    works = []
-    for work_list in all_works:
-        for work in work_list:
-            wid = work.get("id", "")
-            if wid and wid not in seen:
-                seen.add(wid)
-                works.append(work)
-
+    works = data.get("results", [])
     if not works:
         return {"source": "OpenAlex", "results": []}
 
@@ -146,8 +129,8 @@ async def search_openalex(analysis: dict) -> dict:
     # Filter by entity overlap to remove off-topic results
     if entities:
         filtered = [r for r in results if _has_entity_overlap(r["title"], entities, queries)]
-        logger.info(f"OpenAlex: {len(results)} raw, {len(filtered)} after entity filter")
+        logger.info(f"OpenAlex: {len(results)} raw, {len(filtered)} after entity filter for '{search_term[:80]}'")
         results = filtered
     else:
-        logger.info(f"OpenAlex: {len(results)} results")
+        logger.info(f"OpenAlex: {len(results)} results for '{search_term[:80]}'")
     return {"source": "OpenAlex", "type": "study", "results": results}

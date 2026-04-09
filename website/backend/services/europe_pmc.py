@@ -7,6 +7,8 @@ Free REST API, no key required. Complements PubMed with:
 - Grant-linked research (EU funding)
 """
 
+import asyncio
+
 import httpx
 import logging
 
@@ -63,37 +65,50 @@ def _has_entity_overlap(title: str, entities: list[str], query_terms: list[str] 
     return False
 
 
+async def _epmc_single_query(client: httpx.AsyncClient, query: str) -> list[dict]:
+    """Run a single Europe PMC query."""
+    params = {
+        "query": query,
+        "format": "json",
+        "pageSize": 10,
+        "sort": "CITED desc",
+        "resultType": "lite",
+    }
+    try:
+        resp = await client.get(f"{BASE_URL}/search", params=params)
+        resp.raise_for_status()
+        return resp.json().get("resultList", {}).get("result", [])
+    except Exception as e:
+        logger.warning(f"Europe PMC query failed: {e}")
+        return []
+
+
 async def search_europe_pmc(analysis: dict) -> dict:
     queries = analysis.get("pubmed_queries", [])
     entities = analysis.get("entities", [])
     if not queries:
         return {"source": "Europe PMC", "results": []}
 
-    # Combine up to 3 queries with OR for broader coverage
-    # Each query group uses AND (default), groups are ORed
-    search_term = " OR ".join(f"({q})" for q in queries[:3])
+    # Run up to 3 queries in parallel, merge and deduplicate
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        tasks = [_epmc_single_query(client, q) for q in queries[:3]]
+        all_articles = await asyncio.gather(*tasks)
 
-    params = {
-        "query": search_term,
-        "format": "json",
-        "pageSize": 10,
-        "sort": "CITED desc",
-        "resultType": "lite",
-    }
+    # Flatten and deduplicate by DOI or pmid
+    seen = set()
+    articles = []
+    for article_list in all_articles:
+        for article in article_list:
+            key = article.get("doi") or article.get("pmid") or article.get("id", "")
+            if key and key not in seen:
+                seen.add(key)
+                articles.append(article)
 
-    try:
-        async with httpx.AsyncClient(timeout=30.0) as client:
-            resp = await client.get(f"{BASE_URL}/search", params=params)
-            resp.raise_for_status()
-            data = resp.json()
-    except Exception as e:
-        logger.warning(f"Europe PMC request failed: {e}")
-        return {"source": "Europe PMC", "results": []}
-
-    articles = data.get("resultList", {}).get("result", [])
     if not articles:
-        logger.info(f"Europe PMC: 0 results for '{search_term[:80]}'")
+        logger.info(f"Europe PMC: 0 results from {len(queries[:3])} queries")
         return {"source": "Europe PMC", "results": []}
+
+    logger.info(f"Europe PMC: {len(articles)} unique articles from {len(queries[:3])} queries")
 
     results = []
     for article in articles:
@@ -141,8 +156,8 @@ async def search_europe_pmc(analysis: dict) -> dict:
     # Filter by entity overlap to remove off-topic results
     if entities:
         filtered = [r for r in results if _has_entity_overlap(r["title"], entities, queries)]
-        logger.info(f"Europe PMC: {len(results)} raw, {len(filtered)} after entity filter for '{search_term[:80]}'")
+        logger.info(f"Europe PMC: {len(results)} raw, {len(filtered)} after entity filter")
         results = filtered
     else:
-        logger.info(f"Europe PMC: {len(results)} results for '{search_term[:80]}'")
+        logger.info(f"Europe PMC: {len(results)} results")
     return {"source": "Europe PMC", "type": "study", "results": results}
