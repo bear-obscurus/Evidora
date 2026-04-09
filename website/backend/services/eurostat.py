@@ -348,19 +348,26 @@ DATASET_MAP = {
         "params": {"na_item": "B1GQ", "unit": "CP_MEUR", "lastTimePeriod": "5"},
         "unit": "Mio. €",
     },
-    "wirtschaft": {
+    "bruttoinlandsprodukt": {
         "dataset": "nama_10_gdp",
         "label": "Bruttoinlandsprodukt",
         "label_en": "Gross Domestic Product",
         "params": {"na_item": "B1GQ", "unit": "CP_MEUR", "lastTimePeriod": "5"},
         "unit": "Mio. €",
     },
-    "economy": {
+    "wirtschaftsleistung": {
         "dataset": "nama_10_gdp",
         "label": "Bruttoinlandsprodukt",
         "label_en": "Gross Domestic Product",
         "params": {"na_item": "B1GQ", "unit": "CP_MEUR", "lastTimePeriod": "5"},
         "unit": "Mio. €",
+    },
+    "wirtschaftswachstum": {
+        "dataset": "nama_10_gdp",
+        "label": "Bruttoinlandsprodukt (Wachstum)",
+        "label_en": "GDP (Growth)",
+        "params": {"na_item": "B1GQ", "unit": "CLV_PCH_PRE", "lastTimePeriod": "5"},
+        "unit": "% Veränderung",
     },
     # BIP pro Kopf (für "reichstes Land" etc.)
     "reich": {
