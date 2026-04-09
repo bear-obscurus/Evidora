@@ -46,9 +46,15 @@ PubMed-Query-Regeln (WICHTIG — die Qualität der Suchergebnisse hängt davon a
 - Gut: "mRNA vaccine reverse transcription DNA integration" (findet genau die relevanten Studien)
 - Bei Impf-Behauptungen: spezifische Begriffe wie "mRNA vaccine safety", "COVID-19 vaccine genome"
 - Bei Medikamenten-Behauptungen: Wirkstoffnamen verwenden (z.B. "ibuprofen hepatotoxicity" statt "Schmerzmittel Leberschäden")
-- Bei Gesundheits-Behauptungen: medizinische Fachbegriffe und MeSH-Terms verwenden
 - Bei Vergleichs-Behauptungen ("X ist sicherer/besser/höher als Y"): IMMER beide Vergleichsobjekte UND die Vergleichsmetrik in die Query aufnehmen (z.B. "nuclear wind energy deaths per TWh mortality rate comparison" statt nur "nuclear energy safety")
 - Bei Energie-Behauptungen: Sicherheit = "deaths per TWh", "mortality rate energy source", "fatalities electricity generation"; Umwelt = "lifecycle emissions", "carbon footprint comparison"
+
+FORMAT-REGEL (SEHR WICHTIG — Nichtbeachtung führt zu 0 Suchergebnissen!):
+- Die pubmed_queries werden NICHT nur für PubMed verwendet, sondern auch für Semantic Scholar, OpenAlex, Europe PMC und ClinicalTrials.gov
+- Schreibe EINFACHE englische Suchbegriffe als Freitext, z.B. "screen time children neurodevelopment"
+- Verwende NIEMALS PubMed-spezifische Syntax wie [MeSH Terms], [Title/Abstract], [Publication Type] oder eckige Klammern — diese Syntax funktioniert NUR bei PubMed und liefert bei allen anderen APIs 0 Ergebnisse
+- NIEMALS Anführungszeichen um einzelne Begriffe setzen (keine "exact phrase" Syntax)
+- Maximal 8-12 Wörter pro Query
 
 Quellen-Relevanz-Regeln:
 - ecdc_relevant: true bei Infektionskrankheiten (Masern, Grippe, Tuberkulose, HIV, Hepatitis, Keuchhusten, Salmonellen, Dengue, Malaria, Polio, Diphtherie, Röteln, Mumps, Cholera, Legionellen, FSME, Antibiotikaresistenz, Ebola)
@@ -127,6 +133,24 @@ async def analyze_claim(claim_text: str) -> dict:
                 else:
                     flat.append(str(e))
             result["entities"] = flat
+
+        # Strip PubMed-specific syntax from queries — mistral-medium
+        # sometimes adds [MeSH Terms], [Title/Abstract] etc. which breaks
+        # Semantic Scholar, OpenAlex, Europe PMC, ClinicalTrials.gov
+        if "pubmed_queries" in result and isinstance(result["pubmed_queries"], list):
+            cleaned = []
+            for q in result["pubmed_queries"]:
+                if isinstance(q, str):
+                    # Remove [MeSH Terms], [Title/Abstract], [Publication Type] etc.
+                    q = re.sub(r'\[(?:MeSH\s+Terms?|Title/Abstract|Publication\s+Type|All\s+Fields|TIAB|Majr?)\]', '', q)
+                    # Remove parentheses used for PubMed grouping
+                    q = q.replace('(', '').replace(')', '')
+                    # Collapse whitespace
+                    q = re.sub(r'\s+', ' ', q).strip()
+                    if q:
+                        cleaned.append(q)
+            result["pubmed_queries"] = cleaned
+
         return result
 
     logger.error(f"Mistral unparseable response (first 500 chars): {content[:500]}")
