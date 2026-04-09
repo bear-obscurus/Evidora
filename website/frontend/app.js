@@ -268,8 +268,8 @@ function renderVerdict(data) {
     document.getElementById("verdict-card").innerHTML = `
         <div class="verdict-${verdict}">
             <span class="verdict-badge badge-${verdict}">${label}</span>
-            <p class="verdict-summary">${escapeHtml(data.summary || "")}</p>
-            ${data.nuance ? `<p class="verdict-nuance">${escapeHtml(data.nuance)}</p>` : ""}
+            <p class="verdict-summary">${renderInlineMarkdown(data.summary || "")}</p>
+            ${data.nuance ? `<p class="verdict-nuance">${renderInlineMarkdown(data.nuance)}</p>` : ""}
             <div class="metrics-grid">
                 <span class="metric-label">
                     <span class="tooltip-anchor" aria-label="${buildConfidenceTooltip(data)}">
@@ -318,7 +318,7 @@ function renderEvidence(evidence) {
                         ${getStrengthLabel(e.strength)}
                     </span>
                 </div>
-                <p class="evidence-finding">${escapeHtml(e.finding || "")}</p>
+                <p class="evidence-finding">${renderInlineMarkdown(e.finding || "")}</p>
                 ${e.url && sanitizeUrl(e.url) ? `<a class="evidence-link" href="${sanitizeUrl(e.url)}" target="_blank" rel="noopener">${escapeHtml(e.url)}</a>` : ""}
             </div>
         `
@@ -380,6 +380,15 @@ function escapeHtml(str) {
     const div = document.createElement("div");
     div.textContent = str;
     return div.innerHTML;
+}
+
+function renderInlineMarkdown(str) {
+    let safe = escapeHtml(str);
+    // **bold** → <strong>bold</strong> (must come before single *)
+    safe = safe.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    // *italic* → <em>italic</em>
+    safe = safe.replace(/\*(.+?)\*/g, "<em>$1</em>");
+    return safe;
 }
 
 function sanitizeUrl(url) {
