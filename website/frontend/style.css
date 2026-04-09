@@ -173,7 +173,19 @@ body {
     margin-bottom: 32px;
 }
 
-#search-section.compact .beta-badge {
+.llm-notice {
+    display: inline-block;
+    font-size: 0.78rem;
+    color: #991b1b;
+    background: #fee2e2;
+    border: 1px solid #fca5a5;
+    padding: 4px 14px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+}
+
+#search-section.compact .beta-badge,
+#search-section.compact .llm-notice {
     display: none;
 }
 
