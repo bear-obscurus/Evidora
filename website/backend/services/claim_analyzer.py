@@ -114,6 +114,19 @@ async def analyze_claim(claim_text: str) -> dict:
 
     result = _repair_json(content)
     if result:
+        # Normalize entities to flat list of strings — mistral-medium
+        # sometimes returns nested lists or non-string values
+        raw_entities = result.get("entities", [])
+        if isinstance(raw_entities, list):
+            flat = []
+            for e in raw_entities:
+                if isinstance(e, str):
+                    flat.append(e)
+                elif isinstance(e, list):
+                    flat.extend(str(x) for x in e)
+                else:
+                    flat.append(str(e))
+            result["entities"] = flat
         return result
 
     logger.error(f"Mistral unparseable response (first 500 chars): {content[:500]}")

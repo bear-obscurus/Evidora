@@ -93,10 +93,19 @@ def _expand_keywords(keywords: list[str]) -> list[str]:
 
 def _is_disinfo_claim(analysis: dict) -> bool:
     """Check if a claim is related to geopolitical disinformation."""
+    raw_entities = analysis.get("entities", [])
+    flat_entities = []
+    for e in raw_entities:
+        if isinstance(e, str):
+            flat_entities.append(e)
+        elif isinstance(e, list):
+            flat_entities.extend(str(x) for x in e)
+        else:
+            flat_entities.append(str(e))
     text = " ".join([
         analysis.get("claim", ""),
         analysis.get("subcategory", ""),
-        " ".join(analysis.get("entities", [])),
+        " ".join(flat_entities),
     ]).lower()
     return any(kw in text for kw in DISINFO_KEYWORDS)
 
