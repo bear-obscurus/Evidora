@@ -549,6 +549,8 @@ async function openModal(type, e) {
         body.innerHTML = t("privacy_html");
     } else if (type === "disclaimer") {
         body.innerHTML = t("disclaimer_page_html");
+    } else if (type === "sources") {
+        body.innerHTML = t("sources_html");
     } else if (type === "imprint") {
         if (!imprintData) {
             try {

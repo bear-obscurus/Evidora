@@ -87,12 +87,49 @@ const TRANSLATIONS = {
         history_clear: "Verlauf löschen",
 
         // Footer
-        footer_main: "Evidora.eu — Europäischer Faktencheck | Quellen: PubMed, Cochrane, Europe PMC, Semantic Scholar, ClinicalTrials.gov, WHO, EMA, EFSA, ECDC, Eurostat, EZB, UNHCR, EEA, Copernicus, OECD, GADMO, DataCommons, EUvsDisinfo, OpenAlex, World Bank, OWID, EFCSN",
+        footer_main: "Evidora.eu — Europäischer Faktencheck",
         footer_note: "Automatische Überprüfung — ersetzt keine professionelle Faktencheck-Redaktion",
         footer_opensource: "Open Source auf GitHub",
         privacy_link: "Datenschutz",
         imprint_link: "Impressum",
+        sources_link: "Quellen",
         disclaimer_link: "Haftungsausschluss",
+        sources_html: `
+            <h2>Quellen</h2>
+            <p>Evidora prüft Behauptungen anhand folgender wissenschaftlicher Datenbanken und offizieller Quellen:</p>
+            <h3>Wissenschaftliche Datenbanken</h3>
+            <ul>
+                <li><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a> — Biomedizinische Literatur (NIH/NLM)</li>
+                <li><a href="https://www.cochranelibrary.com/" target="_blank" rel="noopener">Cochrane Library</a> — Systematische Reviews & Meta-Analysen</li>
+                <li><a href="https://europepmc.org/" target="_blank" rel="noopener">Europe PMC</a> — Europäische biomedizinische Literatur</li>
+                <li><a href="https://www.semanticscholar.org/" target="_blank" rel="noopener">Semantic Scholar</a> — KI-gestützte Literaturdatenbank (Allen Institute)</li>
+                <li><a href="https://openalex.org/" target="_blank" rel="noopener">OpenAlex</a> — Offener Katalog wissenschaftlicher Arbeiten</li>
+                <li><a href="https://clinicaltrials.gov/" target="_blank" rel="noopener">ClinicalTrials.gov</a> — Register klinischer Studien (NIH)</li>
+            </ul>
+            <h3>Offizielle Institutionen</h3>
+            <ul>
+                <li><a href="https://www.who.int/data/gho" target="_blank" rel="noopener">WHO</a> — Weltgesundheitsorganisation</li>
+                <li><a href="https://gateway.euro.who.int/en/hfa-explorer/" target="_blank" rel="noopener">WHO Europe (HFA)</a> — Health for All Explorer</li>
+                <li><a href="https://www.ema.europa.eu/" target="_blank" rel="noopener">EMA</a> — Europäische Arzneimittel-Agentur</li>
+                <li><a href="https://www.efsa.europa.eu/" target="_blank" rel="noopener">EFSA</a> — Europäische Behörde für Lebensmittelsicherheit</li>
+                <li><a href="https://www.ecdc.europa.eu/" target="_blank" rel="noopener">ECDC</a> — Europäisches Zentrum für Krankheitsprävention</li>
+                <li><a href="https://ec.europa.eu/eurostat" target="_blank" rel="noopener">Eurostat</a> — Statistisches Amt der EU</li>
+                <li><a href="https://www.ecb.europa.eu/" target="_blank" rel="noopener">EZB</a> — Europäische Zentralbank</li>
+                <li><a href="https://www.eea.europa.eu/" target="_blank" rel="noopener">EEA</a> — Europäische Umweltagentur</li>
+                <li><a href="https://www.copernicus.eu/" target="_blank" rel="noopener">Copernicus</a> — EU-Erdbeobachtungsprogramm</li>
+                <li><a href="https://www.oecd.org/" target="_blank" rel="noopener">OECD</a> — Organisation für wirtschaftliche Zusammenarbeit</li>
+                <li><a href="https://www.unhcr.org/" target="_blank" rel="noopener">UNHCR</a> — UN-Flüchtlingshilfswerk</li>
+                <li><a href="https://data.worldbank.org/" target="_blank" rel="noopener">World Bank</a> — Weltbank Open Data</li>
+                <li><a href="https://ourworldindata.org/" target="_blank" rel="noopener">OWID</a> — Our World in Data</li>
+            </ul>
+            <h3>Faktencheck-Netzwerke</h3>
+            <ul>
+                <li><a href="https://www.google.com/factcheck/tools" target="_blank" rel="noopener">DataCommons / ClaimReview</a> — Google Fact Check Tools</li>
+                <li><a href="https://gadmo.eu/" target="_blank" rel="noopener">GADMO</a> — German-Austrian Digital Media Observatory</li>
+                <li><a href="https://euvsdisinfo.eu/" target="_blank" rel="noopener">EUvsDisinfo</a> — EU-Datenbank gegen Desinformation</li>
+                <li><a href="https://efcsn.com/" target="_blank" rel="noopener">EFCSN</a> — European Fact-Checking Standards Network</li>
+            </ul>
+        `,
 
         // Imprint
         imprint_html_configured: `
@@ -305,12 +342,49 @@ const TRANSLATIONS = {
         history_clear: "Clear history",
 
         // Footer
-        footer_main: "Evidora.eu — European Fact Check | Sources: PubMed, Cochrane, Europe PMC, Semantic Scholar, ClinicalTrials.gov, WHO, EMA, EFSA, ECDC, Eurostat, ECB, UNHCR, EEA, Copernicus, OECD, GADMO, DataCommons, EUvsDisinfo, OpenAlex, World Bank, OWID, EFCSN",
+        footer_main: "Evidora.eu — European Fact Check",
         footer_note: "Automated check — does not replace professional fact-checking",
         footer_opensource: "Open Source on GitHub",
         privacy_link: "Privacy Policy",
         imprint_link: "Legal Notice",
+        sources_link: "Sources",
         disclaimer_link: "Disclaimer",
+        sources_html: `
+            <h2>Sources</h2>
+            <p>Evidora checks claims against the following scientific databases and official sources:</p>
+            <h3>Scientific Databases</h3>
+            <ul>
+                <li><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a> — Biomedical literature (NIH/NLM)</li>
+                <li><a href="https://www.cochranelibrary.com/" target="_blank" rel="noopener">Cochrane Library</a> — Systematic reviews & meta-analyses</li>
+                <li><a href="https://europepmc.org/" target="_blank" rel="noopener">Europe PMC</a> — European biomedical literature</li>
+                <li><a href="https://www.semanticscholar.org/" target="_blank" rel="noopener">Semantic Scholar</a> — AI-powered literature database (Allen Institute)</li>
+                <li><a href="https://openalex.org/" target="_blank" rel="noopener">OpenAlex</a> — Open catalog of scholarly works</li>
+                <li><a href="https://clinicaltrials.gov/" target="_blank" rel="noopener">ClinicalTrials.gov</a> — Clinical trials registry (NIH)</li>
+            </ul>
+            <h3>Official Institutions</h3>
+            <ul>
+                <li><a href="https://www.who.int/data/gho" target="_blank" rel="noopener">WHO</a> — World Health Organization</li>
+                <li><a href="https://gateway.euro.who.int/en/hfa-explorer/" target="_blank" rel="noopener">WHO Europe (HFA)</a> — Health for All Explorer</li>
+                <li><a href="https://www.ema.europa.eu/" target="_blank" rel="noopener">EMA</a> — European Medicines Agency</li>
+                <li><a href="https://www.efsa.europa.eu/" target="_blank" rel="noopener">EFSA</a> — European Food Safety Authority</li>
+                <li><a href="https://www.ecdc.europa.eu/" target="_blank" rel="noopener">ECDC</a> — European Centre for Disease Prevention and Control</li>
+                <li><a href="https://ec.europa.eu/eurostat" target="_blank" rel="noopener">Eurostat</a> — Statistical Office of the EU</li>
+                <li><a href="https://www.ecb.europa.eu/" target="_blank" rel="noopener">ECB</a> — European Central Bank</li>
+                <li><a href="https://www.eea.europa.eu/" target="_blank" rel="noopener">EEA</a> — European Environment Agency</li>
+                <li><a href="https://www.copernicus.eu/" target="_blank" rel="noopener">Copernicus</a> — EU Earth Observation Programme</li>
+                <li><a href="https://www.oecd.org/" target="_blank" rel="noopener">OECD</a> — Organisation for Economic Co-operation and Development</li>
+                <li><a href="https://www.unhcr.org/" target="_blank" rel="noopener">UNHCR</a> — UN Refugee Agency</li>
+                <li><a href="https://data.worldbank.org/" target="_blank" rel="noopener">World Bank</a> — World Bank Open Data</li>
+                <li><a href="https://ourworldindata.org/" target="_blank" rel="noopener">OWID</a> — Our World in Data</li>
+            </ul>
+            <h3>Fact-Checking Networks</h3>
+            <ul>
+                <li><a href="https://www.google.com/factcheck/tools" target="_blank" rel="noopener">DataCommons / ClaimReview</a> — Google Fact Check Tools</li>
+                <li><a href="https://gadmo.eu/" target="_blank" rel="noopener">GADMO</a> — German-Austrian Digital Media Observatory</li>
+                <li><a href="https://euvsdisinfo.eu/" target="_blank" rel="noopener">EUvsDisinfo</a> — EU database against disinformation</li>
+                <li><a href="https://efcsn.com/" target="_blank" rel="noopener">EFCSN</a> — European Fact-Checking Standards Network</li>
+            </ul>
+        `,
 
         // Imprint
         imprint_html_configured: `
