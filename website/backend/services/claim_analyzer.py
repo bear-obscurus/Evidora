@@ -113,4 +113,5 @@ async def analyze_claim(claim_text: str) -> dict:
     if result:
         return result
 
+    logger.error(f"Mistral unparseable response (first 500 chars): {content[:500]}")
     raise ValueError("Mistral returned unparseable response")
