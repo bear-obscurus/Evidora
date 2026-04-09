@@ -1,3 +1,5 @@
+import re
+
 import httpx
 import logging
 
@@ -113,6 +115,18 @@ SERIES_MAP = {
         "unit": "EUR Mio.",
     },
     # HICP Inflation (ECB perspective)
+    "inflation": {
+        "series": "ICP/M.U2.N.000000.4.ANR",
+        "label": "HVPI-Inflationsrate (Euroraum)",
+        "label_en": "HICP Inflation Rate (Euro Area)",
+        "unit": "%",
+    },
+    "teuerung": {
+        "series": "ICP/M.U2.N.000000.4.ANR",
+        "label": "HVPI-Inflationsrate (Euroraum)",
+        "label_en": "HICP Inflation Rate (Euro Area)",
+        "unit": "%",
+    },
     "ezb inflation": {
         "series": "ICP/M.U2.N.000000.4.ANR",
         "label": "HVPI-Inflationsrate (Euroraum)",
@@ -154,11 +168,15 @@ def _needs_historical(claim: str) -> bool:
 
 
 def _find_series(claim: str) -> list[dict]:
-    """Find matching ECB series based on keywords in the claim."""
+    """Find matching ECB series based on keywords in the claim.
+
+    Uses word-boundary matching to avoid false positives like
+    "euro" matching "europäische".
+    """
     claim_lower = claim.lower()
     found = {}
     for keyword, series_info in SERIES_MAP.items():
-        if keyword in claim_lower:
+        if re.search(r'\b' + re.escape(keyword) + r'\b', claim_lower):
             series_key = series_info["series"]
             if series_key not in found:
                 found[series_key] = series_info
