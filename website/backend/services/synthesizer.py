@@ -385,7 +385,7 @@ async def synthesize_results(
 
         json_match = re.search(r"\{[\s\S]*\}", content)
         if json_match:
-            result = json.loads(json_match.group())
+            result = json.loads(json_match.group(), strict=False)
             for key, default_val in fallback.items():
                 result.setdefault(key, default_val)
 

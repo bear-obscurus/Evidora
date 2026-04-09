@@ -71,7 +71,7 @@ def _repair_json(text: str) -> dict | None:
     json_match = re.search(r"\{[\s\S]*\}", text)
     if json_match:
         try:
-            return json.loads(json_match.group())
+            return json.loads(json_match.group(), strict=False)
         except json.JSONDecodeError:
             pass
 
@@ -88,7 +88,7 @@ def _repair_json(text: str) -> dict | None:
         fragment += "]" * max(0, open_brackets)
         fragment += "}" * max(0, open_braces)
         try:
-            return json.loads(fragment)
+            return json.loads(fragment, strict=False)
         except json.JSONDecodeError:
             pass
 
