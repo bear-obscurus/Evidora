@@ -349,7 +349,10 @@ async def synthesize_results(
         source_type = "SECONDARY" if is_secondary else "PRIMARY"
         if results:
             context_parts.append(f"--- {source_name} [{source_type}] ---")
-            for r in results[:5]:  # Limit to top 5 per source
+            # Eurostat rankings need more entries; other sources stay at 5
+            is_ranking = any(r.get("rank") for r in results[:1])
+            limit = 15 if is_ranking else 5
+            for r in results[:limit]:
                 # Only include key fields
                 compact = {k: v for k, v in r.items() if v and k in (
                     "title", "name", "url", "journal", "date", "status",
