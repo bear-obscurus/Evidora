@@ -1,7 +1,10 @@
 import json
+import logging
 import re
 
 from services.ollama import chat_completion
+
+logger = logging.getLogger("evidora")
 
 SYSTEM_PROMPT = """Du bist ein Faktencheck-Analyse-Assistent. Deine Aufgabe ist es, Behauptungen zu analysieren und strukturierte Daten zu extrahieren.
 
