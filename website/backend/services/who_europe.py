@@ -125,16 +125,22 @@ def _find_indicator(analysis: dict) -> str | None:
 
 
 def _find_country(analysis: dict) -> str | None:
-    """Extract European country code from claim entities."""
-    entities = analysis.get("entities", [])
-    claim = analysis.get("claim", "")
-    search_terms = entities + [claim]
+    """Extract European country code from claim text.
 
-    for term in search_terms:
-        term_lower = term.lower()
+    Prioritizes SpaCy NER countries (from actual claim text) over
+    LLM-extracted entities to avoid hallucinated country references.
+    """
+    # 1. SpaCy NER countries — guaranteed from actual claim text
+    for country in analysis.get("ner_entities", {}).get("countries", []):
         for name, code in COUNTRY_MAP.items():
-            if name in term_lower:
+            if name in country.lower():
                 return code
+
+    # 2. Check claim text directly (catches adjective forms)
+    claim_lower = analysis.get("claim", "").lower()
+    for name, code in COUNTRY_MAP.items():
+        if name in claim_lower:
+            return code
 
     return None
 

@@ -97,11 +97,23 @@ def _is_covid_claim(analysis: dict) -> bool:
 
 
 def _find_country_iso3(analysis: dict) -> str | None:
-    """Extract ISO-3 country code from entities."""
-    for entity in analysis.get("entities", []):
+    """Extract ISO-3 country code from claim text.
+
+    Prioritizes SpaCy NER countries (from actual claim text) over
+    LLM-extracted entities to avoid hallucinated country references.
+    """
+    # 1. SpaCy NER countries — guaranteed from actual claim text
+    for country in analysis.get("ner_entities", {}).get("countries", []):
         for name, code in COUNTRY_CODES.items():
-            if name in entity.lower():
+            if name in country.lower():
                 return code
+
+    # 2. Check claim text directly (catches adjective forms)
+    claim_lower = analysis.get("claim", "").lower()
+    for name, code in COUNTRY_CODES.items():
+        if name in claim_lower:
+            return code
+
     return None
 
 

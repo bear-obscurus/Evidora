@@ -667,12 +667,28 @@ def _find_datasets(analysis: dict) -> list[dict]:
 
 
 def _find_country(analysis: dict) -> str:
-    """Extract country code from entities."""
-    entities = analysis.get("entities", [])
-    for entity in entities:
+    """Extract country code from claim text.
+
+    Prioritizes SpaCy NER entities (deterministic, from actual claim text)
+    over LLM-extracted entities to avoid hallucinated country references.
+    Falls back to checking the claim text directly for country name substrings.
+    """
+    # 1. SpaCy NER countries — guaranteed from actual claim text
+    ner_countries = analysis.get("ner_entities", {}).get("countries", [])
+    for country in ner_countries:
+        country_lower = country.lower()
         for name, code in COUNTRY_CODES.items():
-            if name in entity.lower():
+            if name in country_lower:
                 return code
+
+    # 2. Check claim text directly (catches adjective forms like "österreichische")
+    claim = analysis.get("claim", "")
+    claim_lower = claim.lower()
+    for name, code in COUNTRY_CODES.items():
+        if name in claim_lower:
+            return code
+
+    # 3. Default to EU-27 (no country hallucinated by LLM)
     return "EU27_2020"
 
 

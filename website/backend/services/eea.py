@@ -105,15 +105,23 @@ POLLUTANT_NAMES = {
 
 
 def _find_country(analysis: dict) -> str | None:
-    """Extract country code from entities."""
-    entities = analysis.get("entities", [])
-    # Also check the original claim
-    claim = analysis.get("original_claim", "")
-    all_text = " ".join(entities) + " " + claim
+    """Extract country code from claim text.
 
+    Prioritizes SpaCy NER countries (from actual claim text) over
+    LLM-extracted entities to avoid hallucinated country references.
+    """
+    # 1. SpaCy NER countries — guaranteed from actual claim text
+    for country in analysis.get("ner_entities", {}).get("countries", []):
+        for name, code in COUNTRY_CODES.items():
+            if name in country.lower():
+                return code
+
+    # 2. Check claim text directly (catches adjective forms)
+    claim_lower = analysis.get("claim", "").lower()
     for name, code in COUNTRY_CODES.items():
-        if name in all_text.lower():
+        if name in claim_lower:
             return code
+
     return None
 
 

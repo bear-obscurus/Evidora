@@ -147,10 +147,16 @@ def _find_country_code(analysis: dict) -> str | None:
 
 
 def _find_country_codes(analysis: dict) -> list[str]:
-    """Find all country codes mentioned in the claim (for comparison claims)."""
-    entities = analysis.get("entities", [])
+    """Find all country codes mentioned in the claim (for comparison claims).
+
+    Prioritizes SpaCy NER countries (from actual claim text) over
+    LLM-extracted entities to avoid hallucinated country references.
+    """
+    # Build search text from NER countries + claim text (NOT flat entities)
+    ner_countries = analysis.get("ner_entities", {}).get("countries", [])
     claim = analysis.get("claim", "")
-    text = " ".join(entities + [claim]).lower()
+    text = " ".join(ner_countries + [claim]).lower()
+
     found = []
     seen = set()
     # Sort by length descending so "vereinigte staaten" matches before "vereinig"

@@ -66,8 +66,9 @@ def _detect_countries(text: str) -> tuple[str | None, str | None]:
 async def search_unhcr(analysis: dict) -> dict:
     """Search UNHCR Refugee Data for population and asylum statistics."""
     claim = analysis.get("claim", "")
-    entities = analysis.get("entities", [])
-    search_text = f"{claim} {' '.join(entities)}".lower()
+    # Use NER countries + claim text (NOT flat entities — may contain LLM hallucinations)
+    ner_countries = analysis.get("ner_entities", {}).get("countries", [])
+    search_text = f"{claim} {' '.join(ner_countries)}".lower()
 
     coa, coo = _detect_countries(search_text)
 

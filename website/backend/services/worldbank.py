@@ -169,10 +169,15 @@ def _find_indicator(analysis: dict) -> str | None:
 
 
 def _find_countries(analysis: dict) -> list[str]:
-    """Extract country codes from claim entities. Returns up to 3."""
-    entities = analysis.get("entities", [])
+    """Extract country codes from claim text. Returns up to 3.
+
+    Prioritizes SpaCy NER countries (from actual claim text) over
+    LLM-extracted entities to avoid hallucinated country references.
+    """
+    # Build search terms from NER countries + claim text (NOT flat entities)
+    ner_countries = analysis.get("ner_entities", {}).get("countries", [])
     claim = analysis.get("claim", "")
-    search_terms = entities + [claim]
+    search_terms = ner_countries + [claim]
 
     found = []
     seen = set()
