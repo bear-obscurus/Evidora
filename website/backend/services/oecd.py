@@ -1,4 +1,4 @@
-"""OECD data service: PISA scores (static CSV) + SDMX live API (gender wage gap, education)."""
+"""OECD data service: PISA scores (static CSV) + SDMX live API (economy, labour, gender)."""
 
 import csv
 import io
@@ -96,7 +96,6 @@ OECD_DATASETS = {
     "gender_wage_gap": {
         "flow": "OECD.ELS.SAE,DSD_EARNINGS@GENDER_WAGE_GAP,",
         "label": "Gender Wage Gap",
-        "n_dims": 7,
         "keywords": ["lohnunterschied", "lohnlücke", "gehalt", "verdien", "gender pay gap",
                       "wage gap", "einkommen", "gehaltsunterschied", "equal pay",
                       "lohngleichheit", "pay gap", "gender gap gehalt"],
@@ -104,17 +103,39 @@ OECD_DATASETS = {
     "employment_gender": {
         "flow": "OECD.ELS.SAE,DSD_LFS_EMP@DF_LFS_EMPSTAT_GENDER,",
         "label": "Employment by Gender",
-        "n_dims": 8,
         "keywords": ["beschäftigung", "erwerbstätig", "employment", "arbeitsmarkt",
                       "frauenanteil", "erwerbsquote", "labor market"],
     },
     "education_gender": {
         "flow": "OECD.EDU.IMEP,DSD_EAG_UOE_NON_FIN_STUD@DF_UOE_NF_SHARE_GENDER,",
         "label": "Education by Gender",
-        "n_dims": 15,
         "keywords": ["studium", "universität", "hochschule", "studieren", "absolventen",
                       "university", "graduates", "tertiary", "higher education",
                       "mint", "stem", "bildung frauen"],
+    },
+    "unemployment": {
+        "flow": "OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,",
+        "label": "Arbeitslosenquote (OECD)",
+        "label_en": "Unemployment Rate (OECD)",
+        "keywords": ["arbeitslosigkeit", "arbeitslose", "arbeitslosenquote",
+                      "jugendarbeitslosigkeit", "unemployment", "jobless",
+                      "erwerbslosigkeit", "erwerbslose"],
+    },
+    "cpi": {
+        "flow": "OECD.SDD.TPS,DSD_PRICES@DF_PRICES_ALL,",
+        "label": "Verbraucherpreisindex (OECD)",
+        "label_en": "Consumer Price Index (OECD)",
+        "keywords": ["verbraucherpreis", "consumer price", "cpi", "teuerungsrate",
+                      "preissteigerung", "preisindex", "lebenshaltungskosten",
+                      "cost of living"],
+    },
+    "avoidable_mortality": {
+        "flow": "OECD.ELS.HD,DSD_HEALTH_STAT@DF_AM,",
+        "label": "Vermeidbare Sterblichkeit (OECD)",
+        "label_en": "Avoidable Mortality (OECD)",
+        "keywords": ["sterblichkeit", "mortality", "vermeidbare tode",
+                      "avoidable death", "lebenserwartung oecd", "gesundheitssystem vergleich",
+                      "health system comparison"],
     },
 }
 
@@ -347,7 +368,11 @@ def _search_pisa(claim: str, analysis: dict) -> list[dict]:
 
 
 async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
-    """Search OECD SDMX API for live data (gender wage gap, education stats)."""
+    """Search OECD SDMX API for live data.
+
+    Uses the 'all' key to avoid hardcoding dimension counts per dataset.
+    Filters by REF_AREA in the response instead.
+    """
     claim_lower = claim.lower()
     results = []
 
@@ -364,21 +389,24 @@ async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
     country_code = _find_country_code(analysis)
     geo = country_code or "OECD"
 
+    # Max 2 SDMX queries per request (OECD rate-limits aggressively)
     for ds_id, ds_info in matching_datasets[:2]:
         try:
             flow = ds_info["flow"]
-            n_dims = ds_info["n_dims"]
-
-            # Build key: REF_AREA + (n_dims-1) wildcards
-            wildcards = "." * (n_dims - 1)
-            key = f"{geo}{wildcards}"
-            url = f"{SDMX_BASE}/{flow}/{key}?lastNObservations=1&dimensionAtObservation=AllDimensions"
+            url = (
+                f"{SDMX_BASE}/{flow}/all"
+                f"?lastNObservations=1"
+                f"&dimensionAtObservation=AllDimensions"
+            )
 
             async with httpx.AsyncClient(timeout=SDMX_TIMEOUT) as client:
                 resp = await client.get(url, headers={
                     "Accept": "application/vnd.sdmx.data+json",
                 })
 
+            if resp.status_code == 429:
+                logger.warning(f"OECD SDMX rate limited (429) for {ds_id}")
+                continue
             if resp.status_code != 200:
                 logger.warning(f"OECD SDMX {ds_id} returned {resp.status_code}")
                 continue
@@ -389,9 +417,12 @@ async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
             struct = data.get("data", {}).get("structures", [{}])[0]
             dims = struct.get("dimensions", {}).get("observation", [])
 
-            # Parse dimension labels
+            # Parse dimension labels and find REF_AREA dimension index
             dim_vals = []
-            for d in dims:
+            ref_area_idx = None
+            for d_idx, d in enumerate(dims):
+                if d.get("id") == "REF_AREA":
+                    ref_area_idx = d_idx
                 vals = {}
                 for i, v in enumerate(d.get("values", [])):
                     name = v.get("name", "")
@@ -400,11 +431,26 @@ async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
                     vals[str(i)] = name or v.get("id", "")
                 dim_vals.append({"id": d.get("id", ""), "values": vals})
 
-            # Extract meaningful observations
-            for key_str, val in list(obs.items())[:5]:
+            # Build a reverse lookup: dim value name → index for REF_AREA
+            geo_target_indices = set()
+            if ref_area_idx is not None:
+                for idx_str, name in dim_vals[ref_area_idx]["values"].items():
+                    if name == geo or name.upper() == geo:
+                        geo_target_indices.add(idx_str)
+
+            # Filter and extract observations for requested country
+            count = 0
+            for key_str, val in obs.items():
                 if val[0] is None:
                     continue
+
                 indices = key_str.split(":")
+
+                # Filter by REF_AREA if we found the dimension
+                if ref_area_idx is not None and geo_target_indices:
+                    if indices[ref_area_idx] not in geo_target_indices:
+                        continue
+
                 labels = {}
                 for i, idx in enumerate(indices):
                     if i < len(dim_vals):
@@ -429,9 +475,13 @@ async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
                     "value": value,
                     "year": labels.get("TIME_PERIOD", "latest"),
                     "source": "OECD",
-                    "url": f"https://data-explorer.oecd.org/",
+                    "url": "https://data-explorer.oecd.org/",
                     "dataset_id": ds_id,
                 })
+
+                count += 1
+                if count >= 5:
+                    break
 
         except Exception as e:
             logger.error(f"OECD SDMX error for {ds_id}: {e}")
@@ -443,6 +493,15 @@ async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
 # Public API
 # ---------------------------------------------------------------------------
 
+def _has_sdmx_keywords(claim: str) -> bool:
+    """Check if claim matches any SDMX dataset keywords."""
+    claim_lower = claim.lower()
+    return any(
+        any(kw in claim_lower for kw in ds["keywords"])
+        for ds in OECD_DATASETS.values()
+    )
+
+
 async def search_oecd(analysis: dict) -> dict:
     """Search OECD data sources (PISA + SDMX API)."""
     claim = analysis.get("claim", "")
@@ -453,15 +512,12 @@ async def search_oecd(analysis: dict) -> dict:
         pisa_results = _search_pisa(claim, analysis)
         results.extend(pisa_results)
 
-    # 2. OECD SDMX live API (gender wage gap, education, employment)
-    if _is_gender_claim(claim) or any(
-        any(kw in claim.lower() for kw in ds["keywords"])
-        for ds in OECD_DATASETS.values()
-    ):
+    # 2. OECD SDMX live API (economy, labour, gender, health)
+    if _is_gender_claim(claim) or _has_sdmx_keywords(claim):
         sdmx_results = await _search_sdmx(claim, analysis)
         results.extend(sdmx_results)
 
     return {
-        "source": "OECD (Bildung & Gleichstellung)",
+        "source": "OECD",
         "results": results,
     }

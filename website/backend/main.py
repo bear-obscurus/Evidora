@@ -24,7 +24,7 @@ from services.ecb import search_ecb
 from services.unhcr import search_unhcr
 from services.cochrane import search_cochrane
 from services.gadmo import search_gadmo
-from services.oecd import search_oecd
+from services.oecd import search_oecd, _has_sdmx_keywords
 from services.euvsdisinfo import search_euvsdisinfo, _is_disinfo_claim
 from services.datacommons import search_datacommons
 from services.who_europe import search_who_europe
@@ -214,7 +214,7 @@ async def check_claim(request: Request):
         if analysis.get("unhcr_relevant"):
             tasks.append(cached("UNHCR", search_unhcr, analysis))
             queried_names.append("UNHCR")
-        if analysis.get("oecd_relevant") or analysis.get("category") == "education":
+        if analysis.get("oecd_relevant") or analysis.get("category") == "education" or _has_sdmx_keywords(claim):
             tasks.append(cached("OECD", search_oecd, analysis))
             queried_names.append("OECD")
         if analysis.get("who_europe_relevant"):
