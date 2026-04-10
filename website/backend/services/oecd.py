@@ -139,16 +139,6 @@ OECD_DATASETS = {
     },
 }
 
-# Geo codes for SDMX queries
-OECD_GEO_CODES = {
-    "österreich": "AUT", "austria": "AUT",
-    "deutschland": "DEU", "germany": "DEU",
-    "frankreich": "FRA", "france": "FRA",
-    "italien": "ITA", "italy": "ITA",
-    "spanien": "ESP", "spain": "ESP",
-    "eu": "OECD", "oecd": "OECD",
-}
-
 
 def _find_country_code(analysis: dict) -> str | None:
     """Find first country code from analysis entities."""
@@ -385,9 +375,9 @@ async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
     if not matching_datasets:
         return []
 
-    # Find country
-    country_code = _find_country_code(analysis)
-    geo = country_code or "OECD"
+    # Find countries (support comparison claims like "AT vs ES")
+    country_codes = _find_country_codes(analysis)
+    geo_list = country_codes if country_codes else ["OECD"]
 
     # Max 2 SDMX queries per request (OECD rate-limits aggressively)
     for ds_id, ds_info in matching_datasets[:2]:
@@ -419,23 +409,29 @@ async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
 
             # Parse dimension labels and find REF_AREA dimension index
             dim_vals = []
+            dim_ids = []  # parallel list: index → id (e.g. "AUT", "DEU")
             ref_area_idx = None
             for d_idx, d in enumerate(dims):
                 if d.get("id") == "REF_AREA":
                     ref_area_idx = d_idx
                 vals = {}
+                ids = {}
                 for i, v in enumerate(d.get("values", [])):
+                    vid = v.get("id", "")
                     name = v.get("name", "")
                     if isinstance(name, dict):
                         name = name.get("en", str(name))
-                    vals[str(i)] = name or v.get("id", "")
+                    vals[str(i)] = name or vid
+                    ids[str(i)] = vid
                 dim_vals.append({"id": d.get("id", ""), "values": vals})
+                dim_ids.append(ids)
 
-            # Build a reverse lookup: dim value name → index for REF_AREA
+            # Build a reverse lookup: find indices matching any requested country
             geo_target_indices = set()
             if ref_area_idx is not None:
-                for idx_str, name in dim_vals[ref_area_idx]["values"].items():
-                    if name == geo or name.upper() == geo:
+                geo_upper = {g.upper() for g in geo_list}
+                for idx_str, vid in dim_ids[ref_area_idx].items():
+                    if vid.upper() in geo_upper:
                         geo_target_indices.add(idx_str)
 
             # Filter and extract observations for requested country
