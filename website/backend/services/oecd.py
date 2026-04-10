@@ -380,6 +380,9 @@ async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
     geo_list = country_codes if country_codes else ["OECD"]
 
     # Max 2 SDMX queries per request (OECD rate-limits aggressively)
+    # Use c[REF_AREA] filter to get only requested countries (small response)
+    geo_filter = "+".join(geo_list)
+
     for ds_id, ds_info in matching_datasets[:2]:
         try:
             flow = ds_info["flow"]
@@ -387,6 +390,7 @@ async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
                 f"{SDMX_BASE}/{flow}/all"
                 f"?lastNObservations=1"
                 f"&dimensionAtObservation=AllDimensions"
+                f"&c[REF_AREA]={geo_filter}"
             )
 
             async with httpx.AsyncClient(timeout=SDMX_TIMEOUT) as client:
@@ -407,52 +411,30 @@ async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
             struct = data.get("data", {}).get("structures", [{}])[0]
             dims = struct.get("dimensions", {}).get("observation", [])
 
-            # Parse dimension labels and find REF_AREA dimension index
+            # Parse dimension labels
             dim_vals = []
-            dim_ids = []  # parallel list: index → id (e.g. "AUT", "DEU")
-            ref_area_idx = None
-            for d_idx, d in enumerate(dims):
-                if d.get("id") == "REF_AREA":
-                    ref_area_idx = d_idx
+            for d in dims:
                 vals = {}
-                ids = {}
                 for i, v in enumerate(d.get("values", [])):
-                    vid = v.get("id", "")
                     name = v.get("name", "")
                     if isinstance(name, dict):
                         name = name.get("en", str(name))
-                    vals[str(i)] = name or vid
-                    ids[str(i)] = vid
+                    vals[str(i)] = name or v.get("id", "")
                 dim_vals.append({"id": d.get("id", ""), "values": vals})
-                dim_ids.append(ids)
 
-            # Build a reverse lookup: find indices matching any requested country
-            geo_target_indices = set()
-            if ref_area_idx is not None:
-                geo_upper = {g.upper() for g in geo_list}
-                for idx_str, vid in dim_ids[ref_area_idx].items():
-                    if vid.upper() in geo_upper:
-                        geo_target_indices.add(idx_str)
-
-            # Filter and extract observations for requested country
+            # Extract observations (already filtered by country via API)
             count = 0
             for key_str, val in obs.items():
                 if val[0] is None:
                     continue
 
                 indices = key_str.split(":")
-
-                # Filter by REF_AREA if we found the dimension
-                if ref_area_idx is not None and geo_target_indices:
-                    if indices[ref_area_idx] not in geo_target_indices:
-                        continue
-
                 labels = {}
                 for i, idx in enumerate(indices):
                     if i < len(dim_vals):
                         labels[dim_vals[i]["id"]] = dim_vals[i]["values"].get(idx, idx)
 
-                country_label = labels.get("REF_AREA", geo)
+                country_label = labels.get("REF_AREA", geo_list[0])
                 measure_label = labels.get("MEASURE", labels.get("INDICATOR", ds_info["label"]))
                 stat_label = labels.get("STATISTICS", labels.get("STAT_METHOD", ""))
 
