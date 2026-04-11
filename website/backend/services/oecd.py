@@ -111,7 +111,8 @@ OECD_DATASETS = {
         "label": "Education by Gender",
         "keywords": ["studium", "universität", "hochschule", "studieren", "absolventen",
                       "university", "graduates", "tertiary", "higher education",
-                      "mint", "stem", "bildung frauen"],
+                      "mint fächer", "mint-fächer", "stem field", "stem subject",
+                      "bildung frauen"],
     },
     "unemployment": {
         "flow": "OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,",
@@ -195,14 +196,23 @@ def _is_pisa_claim(claim: str) -> bool:
 
 
 def _is_gender_claim(claim: str) -> bool:
-    """Check if claim involves gender comparison."""
-    keywords = [
-        "frauen", "männer", "geschlecht", "gender", "weiblich", "männlich",
-        "mädchen", "jungen", "women", "men", "female", "male",
-        "boys", "girls", "sex difference",
-    ]
+    """Check if claim involves gender comparison.
+
+    Uses word-boundary matching for short keywords (men, male, boys) to avoid
+    false positives from substrings (e.g. 'men' in 'Dokumente', 'male' in 'normale').
+    """
+    import re
     claim_lower = claim.lower()
-    return any(kw in claim_lower for kw in keywords)
+    # Long keywords: safe for substring matching
+    long_keywords = [
+        "frauen", "männer", "geschlecht", "gender", "weiblich", "männlich",
+        "mädchen", "jungen", "women", "female", "girls", "sex difference",
+    ]
+    if any(kw in claim_lower for kw in long_keywords):
+        return True
+    # Short keywords: require word boundaries to avoid false positives
+    short_keywords = ["men", "male", "boys"]
+    return any(re.search(rf"\b{kw}\b", claim_lower) for kw in short_keywords)
 
 
 def _is_superlative_education_claim(claim: str) -> bool:
