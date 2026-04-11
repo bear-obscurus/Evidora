@@ -22,7 +22,7 @@ from services.copernicus import _fetch_nasa_giss, GISS_CACHE_TTL
 from services.gadmo import prefetch_feeds, FEED_CACHE_TTL
 from services.euvsdisinfo import prefetch_feed as prefetch_euvsdisinfo
 from services.datacommons import update_index as update_datacommons
-from services.statistik_austria import fetch_vpi, fetch_health_expenditure
+from services.statistik_austria import fetch_vpi, fetch_health_expenditure, fetch_mortality
 
 logger = logging.getLogger("evidora")
 
@@ -40,10 +40,12 @@ async def prefetch_all():
             update_datacommons(),
             fetch_vpi(client),
             fetch_health_expenditure(client),
+            fetch_mortality(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "NASA GISS", "GADMO Feeds", "EUvsDisinfo RSS", "DataCommons",
-                 "Statistik Austria VPI", "Statistik Austria Gesundheitsausgaben"]
+                 "Statistik Austria VPI", "Statistik Austria Gesundheitsausgaben",
+                 "Statistik Austria Sterblichkeit"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")

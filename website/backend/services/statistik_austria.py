@@ -1,8 +1,9 @@
 """Statistik Austria Open Government Data — österreichische amtliche Statistiken.
 
-Integriert zwei Datasets:
+Integriert drei Datasets:
 1. VPI (Verbraucherpreisindex) — monatliche Inflationsdaten (Basis 2020=100)
 2. Gesundheitsausgaben — jährliche Ausgaben nach Leistungsart und Finanzierung (SHA)
+3. Sterblichkeit nach Kalenderwoche — wöchentliche Sterbefälle seit 2000 (für Übersterblichkeit)
 
 Datenquelle: https://data.statistik.gv.at
 Lizenz: CC BY 4.0
@@ -21,6 +22,7 @@ logger = logging.getLogger("evidora")
 # --- Download URLs ---
 VPI_CSV_URL = "https://data.statistik.gv.at/data/OGD_vpi20c18_VPI_2020COICOP18_1.csv"
 HEALTH_EXP_CSV_URL = "https://data.statistik.gv.at/data/OGD_gesausgaben01_HVD_HCHF_1.csv"
+MORTALITY_CSV_URL = "https://data.statistik.gv.at/data/OGD_gest_kalwo_GEST_KALWOCHE_100.csv"
 
 # --- Cache ---
 STAT_AT_CACHE_TTL = 86400  # 24h — VPI updates monthly, health expenditure annually
@@ -30,6 +32,9 @@ _vpi_cache_time: float = 0.0
 
 _health_cache: list[dict] | None = None
 _health_cache_time: float = 0.0
+
+_mortality_cache: dict | None = None  # aggregated by year
+_mortality_cache_time: float = 0.0
 
 # --- COICOP category labels (main groups only) ---
 COICOP_LABELS = {
@@ -225,6 +230,69 @@ async def fetch_health_expenditure(client: httpx.AsyncClient | None = None) -> l
             await client.aclose()
 
 
+async def fetch_mortality(client: httpx.AsyncClient | None = None) -> dict:
+    """Download and parse mortality CSV. Returns dict aggregated by year.
+
+    The raw CSV has ~1.2M rows (weekly × state × age × gender since 2000).
+    We aggregate to yearly totals (+ by age group) at download time.
+    """
+    import time
+    global _mortality_cache, _mortality_cache_time
+
+    now = time.time()
+    if _mortality_cache is not None and (now - _mortality_cache_time) < STAT_AT_CACHE_TTL:
+        return _mortality_cache
+
+    close_client = False
+    if client is None:
+        client = httpx.AsyncClient(timeout=60.0)
+        close_client = True
+
+    try:
+        resp = await client.get(MORTALITY_CSV_URL, timeout=60.0)
+        resp.raise_for_status()
+        text = resp.text
+
+        reader = csv.DictReader(io.StringIO(text), delimiter=";")
+
+        # Aggregate: {year: {total, under65, over65}}
+        yearly: dict[int, dict] = {}
+        for row in reader:
+            kw_code = row.get("C-KALWOCHE-0", "")
+            age_code = row.get("C-ALTERGR65-0", "")
+            count_str = row.get("F-ANZ-1", "")
+
+            # Extract year from KALW-YYYYWW
+            if not kw_code.startswith("KALW-") or len(kw_code) < 11:
+                continue
+            try:
+                year = int(kw_code[5:9])
+            except ValueError:
+                continue
+
+            count = int(count_str) if count_str.strip() else 0
+
+            if year not in yearly:
+                yearly[year] = {"total": 0, "under65": 0, "over65": 0}
+            yearly[year]["total"] += count
+            if age_code == "ALTERSGR65-1":
+                yearly[year]["under65"] += count
+            elif age_code == "ALTERSGR65-2":
+                yearly[year]["over65"] += count
+
+        _mortality_cache = yearly
+        _mortality_cache_time = now
+        logger.info(f"Statistik Austria Sterblichkeit: {len(yearly)} Jahre geladen ({min(yearly.keys()) if yearly else '?'}–{max(yearly.keys()) if yearly else '?'})")
+        return yearly
+
+    except Exception as e:
+        logger.warning(f"Statistik Austria mortality download failed: {e}")
+        return _mortality_cache or {}
+    finally:
+        if close_client:
+            await client.aclose()
+
+
 # --- Keyword detection ---
 
 VPI_KEYWORDS = [
@@ -243,6 +311,15 @@ HEALTH_EXP_KEYWORDS = [
     "medikamentenkosten", "pharmaceutical cost", "gesundheitsbudget",
     "health budget", "kassenbeiträge", "sozialversicherung",
     "gesundheitsfinanzierung", "health financing",
+]
+
+MORTALITY_KEYWORDS = [
+    "übersterblichkeit", "excess mortality", "excess deaths",
+    "sterblichkeit", "mortality", "sterbefälle", "todesfälle",
+    "deaths", "gestorben", "sterben", "todesrate", "death rate",
+    "lebenserwartung", "life expectancy",
+    "corona tote", "covid tote", "pandemie tote", "pandemic deaths",
+    "impftote", "impfung tod", "vaccine deaths",
 ]
 
 # Keywords that indicate Austrian context
@@ -325,6 +402,11 @@ async def search_statistik_austria(analysis: dict) -> dict:
     if _match_keywords(search_text, HEALTH_EXP_KEYWORDS):
         health_results = await _search_health_expenditure(search_text)
         results.extend(health_results)
+
+    # Mortality / excess mortality data
+    if _match_keywords(search_text, MORTALITY_KEYWORDS):
+        mortality_results = await _search_mortality(search_text)
+        results.extend(mortality_results)
 
     # Add context caveat if we have results
     if results:
@@ -433,6 +515,81 @@ async def _search_vpi(search_text: str) -> list[dict]:
                         "url": "https://www.statistik.at/statistiken/volkswirtschaft-und-oeffentliche-finanzen/preise-und-preisindizes/verbraucherpreisindex-vpi/hvpi",
                         "dataset_id": "OGD_vpi20c18_VPI_2020COICOP18_1",
                     })
+
+    return results
+
+
+async def _search_mortality(search_text: str) -> list[dict]:
+    """Search mortality data for excess mortality analysis."""
+    data = await fetch_mortality()
+    if not data:
+        return []
+
+    results = []
+
+    # Calculate baseline (2015-2019 average) for excess mortality comparison
+    baseline_years = [2015, 2016, 2017, 2018, 2019]
+    baseline_totals = [data[y]["total"] for y in baseline_years if y in data]
+    if not baseline_totals:
+        return []
+    baseline_avg = sum(baseline_totals) / len(baseline_totals)
+
+    # Show recent full years (2019–latest).
+    # Exclude current year if it has fewer than 40 weeks of data (incomplete).
+    all_years = sorted(data.keys(), reverse=True)
+    latest_year = all_years[0] if all_years else 0
+    # A full year has ~80K+ deaths; if way below baseline it's likely incomplete
+    min_threshold = baseline_avg * 0.7
+    recent_years = [
+        y for y in all_years
+        if y >= 2019 and (y != latest_year or data[y]["total"] >= min_threshold)
+    ][:7]
+
+    for year in recent_years:
+        yr = data[year]
+        total = yr["total"]
+        under65 = yr["under65"]
+        over65 = yr["over65"]
+
+        # Calculate excess mortality vs. baseline
+        excess = total - baseline_avg
+        excess_pct = (excess / baseline_avg * 100) if baseline_avg > 0 else 0
+
+        # Format
+        sign = "+" if excess > 0 else ""
+        parts = [f"Gesamt: {total:,}"]
+        if over65 > 0:
+            over65_pct = (over65 / total * 100) if total > 0 else 0
+            parts.append(f"65+: {over65:,} ({over65_pct:.0f}%)")
+        parts.append(f"vs. Baseline 2015–19: {sign}{excess:,.0f} ({sign}{excess_pct:.1f}%)")
+
+        detail = " | ".join(parts)
+
+        results.append({
+            "title": f"Sterbefälle AT {year}: {detail}",
+            "indicator": "Sterblichkeit nach Kalenderwoche",
+            "year": str(year),
+            "value": total,
+            "excess": round(excess),
+            "excess_pct": round(excess_pct, 1),
+            "unit": "Personen",
+            "source": "Statistik Austria",
+            "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/gestorbene",
+            "dataset_id": "OGD_gest_kalwo_GEST_KALWOCHE_100",
+        })
+
+    # Add baseline reference
+    if baseline_totals:
+        results.append({
+            "title": f"Baseline 2015–2019: Ø {baseline_avg:,.0f} Sterbefälle/Jahr",
+            "indicator": "Sterblichkeit — Referenzwert",
+            "year": "2015–2019",
+            "value": round(baseline_avg),
+            "unit": "Personen/Jahr (Durchschnitt)",
+            "source": "Statistik Austria",
+            "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/gestorbene",
+            "dataset_id": "OGD_gest_kalwo_GEST_KALWOCHE_100",
+        })
 
     return results
 

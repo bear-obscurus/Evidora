@@ -121,6 +121,7 @@ const TRANSLATIONS = {
                 <li><a href="https://www.unhcr.org/" target="_blank" rel="noopener">UNHCR</a> — UN-Flüchtlingshilfswerk</li>
                 <li><a href="https://data.worldbank.org/" target="_blank" rel="noopener">World Bank</a> — Weltbank Open Data</li>
                 <li><a href="https://ourworldindata.org/" target="_blank" rel="noopener">OWID</a> — Our World in Data</li>
+                <li><a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria</a> — Österreichische amtliche Statistiken (OGD)</li>
             </ul>
             <h3>Faktencheck-Netzwerke</h3>
             <ul>
@@ -246,6 +247,7 @@ const TRANSLATIONS = {
                 <li><strong>UNHCR</strong> — Flüchtlings- und Asylstatistiken des UN-Flüchtlingshilfswerks. <a href="https://www.unhcr.org/refugee-statistics/" target="_blank" rel="noopener">UNHCR Refugee Data</a></li>
                 <li><strong>EEA</strong> — Umweltdaten der Europäischen Umweltagentur. <a href="https://www.eea.europa.eu/en/legal-notice" target="_blank" rel="noopener">EEA Legal Notice</a></li>
                 <li><strong>ECDC</strong> — Surveillance-Daten des European Centre for Disease Prevention and Control. <a href="https://www.ecdc.europa.eu/en/copyright" target="_blank" rel="noopener">ECDC Copyright</a></li>
+                <li><strong>Statistik Austria</strong> — amtliche österreichische Statistiken (CC BY 4.0). <a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria OGD</a></li>
                 <li><strong>Cochrane Reviews</strong> — Systematische Reviews via PubMed (höchste Evidenzstufe)</li>
                 <li><strong>GADMO Faktenchecks</strong> — Deutschsprachige Faktenchecks (APA). <a href="https://gadmo.eu" target="_blank" rel="noopener">GADMO</a></li>
                 <li><strong>EFCSN-Faktenchecker</strong> — über die <a href="https://developers.google.com/fact-check/tools/api" target="_blank" rel="noopener">Google Fact Check Tools API</a> (ClaimReview-Daten von Correctiv, AFP, dpa u.a.)</li>
@@ -376,6 +378,7 @@ const TRANSLATIONS = {
                 <li><a href="https://www.unhcr.org/" target="_blank" rel="noopener">UNHCR</a> — UN Refugee Agency</li>
                 <li><a href="https://data.worldbank.org/" target="_blank" rel="noopener">World Bank</a> — World Bank Open Data</li>
                 <li><a href="https://ourworldindata.org/" target="_blank" rel="noopener">OWID</a> — Our World in Data</li>
+                <li><a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria</a> — Austrian official statistics (OGD)</li>
             </ul>
             <h3>Fact-Checking Networks</h3>
             <ul>
@@ -500,6 +503,7 @@ const TRANSLATIONS = {
                 <li><strong>UNHCR</strong> — refugee and asylum statistics by the UN Refugee Agency. <a href="https://www.unhcr.org/refugee-statistics/" target="_blank" rel="noopener">UNHCR Refugee Data</a></li>
                 <li><strong>EEA</strong> — environmental data by the European Environment Agency. <a href="https://www.eea.europa.eu/en/legal-notice" target="_blank" rel="noopener">EEA Legal Notice</a></li>
                 <li><strong>ECDC</strong> — surveillance data by the European Centre for Disease Prevention and Control. <a href="https://www.ecdc.europa.eu/en/copyright" target="_blank" rel="noopener">ECDC Copyright</a></li>
+                <li><strong>Statistik Austria</strong> — Austrian official statistics (CC BY 4.0). <a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria OGD</a></li>
                 <li><strong>Cochrane Reviews</strong> — systematic reviews via PubMed (highest level of medical evidence)</li>
                 <li><strong>GADMO fact-checks</strong> — German-language fact-checks (APA). <a href="https://gadmo.eu" target="_blank" rel="noopener">GADMO</a></li>
                 <li><strong>EFCSN fact-checkers</strong> — via <a href="https://developers.google.com/fact-check/tools/api" target="_blank" rel="noopener">Google Fact Check Tools API</a> (ClaimReview data from Correctiv, AFP, dpa and others)</li>

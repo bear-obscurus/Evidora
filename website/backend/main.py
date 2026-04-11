@@ -34,7 +34,7 @@ from services.europe_pmc import search_europe_pmc
 from services.clinicaltrials import search_clinicaltrials
 from services.semantic_scholar import search_semantic_scholar
 from services.energy_safety import search_energy_safety, _is_energy_safety_claim
-from services.statistik_austria import search_statistik_austria, _is_austria_context, _match_keywords, VPI_KEYWORDS, HEALTH_EXP_KEYWORDS
+from services.statistik_austria import search_statistik_austria, _is_austria_context, _match_keywords, VPI_KEYWORDS, HEALTH_EXP_KEYWORDS, MORTALITY_KEYWORDS
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -233,7 +233,9 @@ async def check_claim(request: Request):
         # Statistik Austria: Austrian VPI/inflation or health expenditure claims
         _claim_lower = claim.lower()
         if _is_austria_context(_claim_lower) and (
-            _match_keywords(_claim_lower, VPI_KEYWORDS) or _match_keywords(_claim_lower, HEALTH_EXP_KEYWORDS)
+            _match_keywords(_claim_lower, VPI_KEYWORDS)
+            or _match_keywords(_claim_lower, HEALTH_EXP_KEYWORDS)
+            or _match_keywords(_claim_lower, MORTALITY_KEYWORDS)
         ):
             tasks.append(cached("StatistikAustria", search_statistik_austria, analysis))
             queried_names.append("Statistik Austria")
