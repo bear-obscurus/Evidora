@@ -4,7 +4,7 @@
 
 A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
-Evidora automatically verifies claims against scientific and institutional sources such as PubMed, OpenAlex, Cochrane, Europe PMC, Semantic Scholar, ClinicalTrials.gov, WHO, WHO Europe, EMA, EFSA, ECDC, Copernicus/NASA GISS, Eurostat, ECB, UNHCR, EEA, OECD, World Bank, DataCommons, EUvsDisinfo, and European fact-checkers.
+Evidora automatically verifies claims against scientific and institutional sources such as PubMed, OpenAlex, Cochrane, Europe PMC, Semantic Scholar, ClinicalTrials.gov, WHO, WHO Europe, EMA, EFSA, ECDC, Copernicus/NASA GISS, Eurostat, ECB, UNHCR, EEA, OECD, World Bank, Statistik Austria, DataCommons, EUvsDisinfo, and European fact-checkers.
 
 **Live Demo:** [https://evidora.eu](https://evidora.eu)
 
@@ -13,7 +13,7 @@ Evidora automatically verifies claims against scientific and institutional sourc
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **23 data sources** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD statistics, climate data, disease surveillance, disinformation databases, and fact-checkers
+- **24 data sources** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD/Austrian statistics, climate data, disease surveillance, disinformation databases, and fact-checkers
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Multi-country ranking** — Superlative claims ("highest", "most") automatically query all EU-27 countries for a full ranking
 - **Multi-dimensional context** — Prevents one-metric verdicts by injecting methodological caveats (energy safety: 7 dimensions; PISA: 7 education dimensions; CO₂: territorial vs. consumption-based; migration: asylum vs. total; GDP: welfare vs. output)
@@ -30,7 +30,8 @@ Evidora automatically verifies claims against scientific and institutional sourc
 - **PDF export** — Save fact-check results as PDF
 - **Share button** — Copy result link to clipboard (with fallback for HTTP/older browsers)
 - **Claim writing tips** — Built-in guidance for formulating precise, checkable claims
-- **Background data updates** — Static datasets (PISA, OWID COVID) are automatically refreshed
+- **Statistik Austria OGD** — Austrian official statistics: consumer price index (VPI), health expenditure (SHA), and mortality by calendar week with excess mortality calculation
+- **Background data updates** — Static datasets (PISA, OWID COVID, Statistik Austria) are automatically refreshed
 
 ## Prerequisites
 
@@ -149,6 +150,7 @@ docker compose down
 | Semantic Scholar | AI-powered paper search (200M+) | TLDR summaries, citation-based influence scoring | ✅ Active |
 | ClinicalTrials.gov | Clinical trial registry (500K+) | Drug efficacy, treatment comparisons, vaccine trials | ✅ Active |
 | EUvsDisinfo | Disinformation database (14.5K cases + RSS) | Pro-Kremlin disinformation cases (EU East StratCom) | ✅ Active |
+| Statistik Austria | Austrian official statistics (OGD) | VPI/inflation (27K data points), health expenditure (SHA), mortality/excess mortality | ✅ Active |
 | Google Fact Check API | ClaimReview markup | European fact-checkers (EFCSN) | ✅ Active |
 
 ## Security
@@ -202,6 +204,7 @@ Evidora/
 │   │       ├── semantic_scholar.py # Semantic Scholar (200M+ papers, TLDR)
 │   │       ├── clinicaltrials.py  # ClinicalTrials.gov (500K+ studies)
 │   │       ├── worldbank.py       # World Bank (global development indicators)
+│   │       ├── statistik_austria.py # Statistik Austria OGD (VPI, health, mortality)
 │   │       ├── data_updater.py    # Background CSV/data refresh
 │   │       ├── cache.py           # In-memory response cache
 │   │       ├── reranker.py        # Sentence Transformers reranking
@@ -221,7 +224,7 @@ Evidora/
 
 1. **Claim Analysis** — The LLM analyzes the input claim (wrapped in `<claim>` delimiters for injection safety), extracts keywords, determines the category, and generates optimized search queries
 2. **NER Enrichment** — SpaCy (de_core_news_lg + en_core_web_sm) adds deterministic GPE/DATE/ORG entities to supplement LLM extraction
-3. **Source Querying** — Relevant sources are queried in parallel based on the claim's category (e.g., health → PubMed + Cochrane + Europe PMC + ClinicalTrials.gov + Semantic Scholar + WHO + WHO Europe + EMA + ECDC; migration → Eurostat + UNHCR; economy → Eurostat + ECB; education/gender → OECD PISA + SDMX)
+3. **Source Querying** — Relevant sources are queried in parallel based on the claim's category (e.g., health → PubMed + Cochrane + Europe PMC + ClinicalTrials.gov + Semantic Scholar + WHO + WHO Europe + EMA + ECDC; migration → Eurostat + UNHCR; economy → Eurostat + ECB; education/gender → OECD PISA + SDMX; Austrian claims → Statistik Austria VPI/health/mortality)
 4. **Semantic Reranking** — Sentence Transformers (multilingual MiniLM) rerank results by semantic similarity to the original claim
 5. **Cross-Validation** — Results from primary sources (scientific databases) are weighted higher than secondary sources (fact-checkers)
 6. **Synthesis** — The LLM evaluates all evidence and produces a verdict (true/mostly true/mixed/mostly false/false/unverifiable) with confidence score

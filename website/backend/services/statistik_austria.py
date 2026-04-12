@@ -1,9 +1,10 @@
 """Statistik Austria Open Government Data — österreichische amtliche Statistiken.
 
-Integriert drei Datasets:
+Integriert vier Datasets:
 1. VPI (Verbraucherpreisindex) — monatliche Inflationsdaten (Basis 2020=100)
 2. Gesundheitsausgaben — jährliche Ausgaben nach Leistungsart und Finanzierung (SHA)
 3. Sterblichkeit nach Kalenderwoche — wöchentliche Sterbefälle seit 2000 (für Übersterblichkeit)
+4. VGR (Volkswirtschaftliche Gesamtrechnung) — jährliche BIP-Daten + 47 Aggregate (ESA 2010)
 
 Datenquelle: https://data.statistik.gv.at
 Lizenz: CC BY 4.0
@@ -23,6 +24,7 @@ logger = logging.getLogger("evidora")
 VPI_CSV_URL = "https://data.statistik.gv.at/data/OGD_vpi20c18_VPI_2020COICOP18_1.csv"
 HEALTH_EXP_CSV_URL = "https://data.statistik.gv.at/data/OGD_gesausgaben01_HVD_HCHF_1.csv"
 MORTALITY_CSV_URL = "https://data.statistik.gv.at/data/OGD_gest_kalwo_GEST_KALWOCHE_100.csv"
+VGR_CSV_URL = "https://data.statistik.gv.at/data/OGD_vgr101_VGRJahresR_3.csv"
 
 # --- Cache ---
 STAT_AT_CACHE_TTL = 86400  # 24h — VPI updates monthly, health expenditure annually
@@ -35,6 +37,9 @@ _health_cache_time: float = 0.0
 
 _mortality_cache: dict | None = None  # aggregated by year
 _mortality_cache_time: float = 0.0
+
+_vgr_cache: list[dict] | None = None
+_vgr_cache_time: float = 0.0
 
 # --- COICOP category labels (main groups only) ---
 COICOP_LABELS = {
@@ -83,6 +88,89 @@ HF_LABELS = {
 }
 
 
+# --- VGR ESA 2010 indicator labels ---
+VGR_LABELS = {
+    "ESVG2010-1": "Konsumausgaben",
+    "ESVG2010-2": "Bruttoinvestitionen",
+    "ESVG2010-3": "Exporte",
+    "ESVG2010-4": "Importe",
+    "ESVG2010-5": "Statistische Differenz",
+    "ESVG2010-6": "Konsumausgaben der privaten Haushalte",
+    "ESVG2010-7": "Konsumausgaben der priv. Organisationen o. Erwerbszweck",
+    "ESVG2010-8": "Konsumausgaben des Staates",
+    "ESVG2010-9": "Konsumausgaben des Staates f. Individualverbrauch",
+    "ESVG2010-10": "Konsumausgaben des Staates f. Kollektivverbrauch",
+    "ESVG2010-11": "Individualverbrauch",
+    "ESVG2010-12": "Bruttoanlageinvestitionen Nutztiere/Nutzpflanzungen",
+    "ESVG2010-13": "Bruttoanlageinvestitionen Maschinen/Geräte (inkl. Waffen)",
+    "ESVG2010-14": "Bruttoanlageinvestitionen IKT",
+    "ESVG2010-15": "Bruttoanlageinvestitionen Fahrzeuge",
+    "ESVG2010-16": "Bruttoanlageinvestitionen Wohnbauten",
+    "ESVG2010-17": "Bruttoanlageinvestitionen Nichtwohnbauten",
+    "ESVG2010-18": "Bruttoanlageinvestitionen F&E",
+    "ESVG2010-19": "Bruttoanlageinvestitionen Geistiges Eigentum",
+    "ESVG2010-20": "Bruttoanlageinvestitionen insgesamt",
+    "ESVG2010-21": "Lagerveränderungen",
+    "ESVG2010-22": "Nettozugang an Wertsachen",
+    "ESVG2010-23": "Warenexporte",
+    "ESVG2010-24": "Dienstleistungsexporte",
+    "ESVG2010-25": "Warenimporte",
+    "ESVG2010-26": "Dienstleistungsimporte",
+    "ESVG2010-27": "Außenbeitrag",
+    "ESVG2010-28": "Primäreinkommen aus der übrigen Welt",
+    "ESVG2010-29": "Primäreinkommen an die übrige Welt",
+    "ESVG2010-30": "Bruttonationaleinkommen",
+    "ESVG2010-31": "Laufende Transfers aus der übrigen Welt",
+    "ESVG2010-32": "Laufende Transfers an die übrige Welt",
+    "ESVG2010-33": "Abschreibungen",
+    "ESVG2010-34": "Nettonationaleinkommen",
+    "ESVG2010-35": "Verfügbares Nettonationaleinkommen",
+    "ESVG2010-36": "Bruttowertschöpfung insgesamt",
+    "ESVG2010-37": "Gütersteuern minus Gütersubventionen",
+    "ESVG2010-38": "Bruttoinlandsprodukt",
+    "ESVG2010-39": "Bruttobetriebsüberschuss und Selbständigeneinkommen",
+    "ESVG2010-40": "Produktions- und Importabgaben minus Subventionen",
+    "ESVG2010-41": "Sparen, netto",
+    "ESVG2010-42": "Vermögenstransfers aus der übrigen Welt",
+    "ESVG2010-43": "Vermögenstransfers an das Ausland",
+    "ESVG2010-44": "Nettozugang an nichtproduzierten Vermögensgütern",
+    "ESVG2010-45": "Finanzierungssaldo der Gesamtwirtschaft",
+    "ESVG2010-46": "Bruttoinlandsprodukt pro Kopf",
+    "ESVG2010-47": "Bruttonationaleinkommen pro Kopf",
+}
+
+# Mapping from claim keywords → relevant VGR indicator codes
+VGR_INDICATOR_KEYWORDS: dict[str, list[str]] = {
+    # BIP / GDP
+    "ESVG2010-38": ["bip", "gdp", "bruttoinlandsprodukt", "gross domestic product",
+                     "wirtschaftsleistung", "economic output", "wirtschaftswachstum",
+                     "economic growth", "rezession", "recession", "konjunktur"],
+    "ESVG2010-46": ["bip pro kopf", "gdp per capita", "pro-kopf-einkommen",
+                     "wohlstand", "prosperity", "lebensstandard"],
+    # Konsum
+    "ESVG2010-1": ["konsum", "consumption", "verbrauch"],
+    "ESVG2010-6": ["privatkonsum", "private consumption", "haushaltskonsum",
+                    "consumer spending", "konsumausgaben privat"],
+    "ESVG2010-8": ["staatskonsum", "staatsausgaben", "government spending",
+                    "öffentliche ausgaben", "public spending"],
+    # Investitionen
+    "ESVG2010-20": ["investition", "investment", "anlageinvestition", "capex"],
+    "ESVG2010-16": ["wohnbau", "housing investment", "wohnungsbau"],
+    "ESVG2010-18": ["forschung", "research", "f&e", "r&d", "innovation"],
+    # Außenhandel
+    "ESVG2010-3": ["export", "ausfuhr"],
+    "ESVG2010-4": ["import", "einfuhr"],
+    "ESVG2010-27": ["außenbeitrag", "handelsbilanz", "trade balance",
+                     "leistungsbilanz", "current account"],
+    # Nationaleinkommen
+    "ESVG2010-30": ["nationaleinkommen", "national income", "bruttonationaleinkommen", "gni"],
+    "ESVG2010-41": ["sparquote", "sparen", "saving", "savings rate"],
+    "ESVG2010-45": ["finanzierungssaldo", "budget deficit", "budgetdefizit",
+                     "staatsdefizit", "fiscal balance", "haushaltssaldo",
+                     "staatsverschuldung", "government debt"],
+}
+
+
 def _parse_decimal(value: str) -> float | None:
     """Parse Austrian decimal format (comma as separator)."""
     if not value or value.strip() == "":
@@ -106,6 +194,16 @@ def _parse_period(code: str) -> tuple[int | None, int | None]:
     elif len(num) == 4:
         return int(num), None
     return None, None
+
+
+def _parse_vgr_year(code: str) -> int | None:
+    """Parse A10-YYYY into year."""
+    if not code.startswith("A10-"):
+        return None
+    try:
+        return int(code[4:])
+    except ValueError:
+        return None
 
 
 def _parse_health_year(code: str) -> int | None:
@@ -293,6 +391,59 @@ async def fetch_mortality(client: httpx.AsyncClient | None = None) -> dict:
             await client.aclose()
 
 
+async def fetch_vgr(client: httpx.AsyncClient | None = None) -> list[dict]:
+    """Download and parse VGR annual CSV (ESA 2010 main aggregates).
+
+    Returns list of row dicts with year, indicator code/label, nominal value (Mio. EUR),
+    and chained volume index.
+    ~1,400 rows (47 indicators × ~30 years).
+    """
+    import time
+    global _vgr_cache, _vgr_cache_time
+
+    now = time.time()
+    if _vgr_cache is not None and (now - _vgr_cache_time) < STAT_AT_CACHE_TTL:
+        return _vgr_cache
+
+    close_client = False
+    if client is None:
+        client = httpx.AsyncClient(timeout=30.0)
+        close_client = True
+
+    try:
+        resp = await client.get(VGR_CSV_URL)
+        resp.raise_for_status()
+        text = resp.text
+
+        reader = csv.DictReader(io.StringIO(text), delimiter=";")
+        rows = []
+        for row in reader:
+            year = _parse_vgr_year(row.get("C-A10-0", ""))
+            indicator = row.get("C-ESVG2010-0", "")
+            if year is None or not indicator:
+                continue
+
+            rows.append({
+                "year": year,
+                "indicator_code": indicator,
+                "indicator_label": VGR_LABELS.get(indicator, indicator),
+                "nominal_mio": _parse_decimal(row.get("F-ISIS-4575", "")),
+                "volume_index": _parse_decimal(row.get("F-ISIS-4576", "")),
+            })
+
+        _vgr_cache = rows
+        _vgr_cache_time = now
+        logger.info(f"Statistik Austria VGR: {len(rows)} Datenpunkte geladen")
+        return rows
+
+    except Exception as e:
+        logger.warning(f"Statistik Austria VGR download failed: {e}")
+        return _vgr_cache or []
+    finally:
+        if close_client:
+            await client.aclose()
+
+
 # --- Keyword detection ---
 
 VPI_KEYWORDS = [
@@ -320,6 +471,24 @@ MORTALITY_KEYWORDS = [
     "lebenserwartung", "life expectancy",
     "corona tote", "covid tote", "pandemie tote", "pandemic deaths",
     "impftote", "impfung tod", "vaccine deaths",
+]
+
+VGR_KEYWORDS = [
+    "bip", "gdp", "bruttoinlandsprodukt", "gross domestic product",
+    "wirtschaftsleistung", "economic output", "wirtschaftswachstum",
+    "economic growth", "rezession", "recession", "konjunktur",
+    "bruttonationaleinkommen", "national income", "gni",
+    "export", "import", "ausfuhr", "einfuhr", "außenhandel",
+    "handelsbilanz", "trade balance", "leistungsbilanz",
+    "investition", "investment", "bruttoanlageinvestition",
+    "staatskonsum", "staatsausgaben", "government spending",
+    "öffentliche ausgaben", "public spending",
+    "sparquote", "sparen", "saving",
+    "finanzierungssaldo", "budgetdefizit", "budget deficit",
+    "staatsdefizit", "fiscal balance", "haushaltssaldo",
+    "wertschöpfung", "value added", "volkswirtschaft",
+    "privatkonsum", "private consumption", "konsumausgaben",
+    "wohnbau", "housing investment", "forschung ausgaben",
 ]
 
 # Keywords that indicate Austrian context
@@ -385,7 +554,7 @@ MONTH_NAMES = {
 # --- Search functions ---
 
 async def search_statistik_austria(analysis: dict) -> dict:
-    """Search Statistik Austria for VPI and health expenditure data."""
+    """Search Statistik Austria for VPI, health expenditure, mortality, and VGR data."""
     claim = analysis.get("claim", "")
     entities = analysis.get("entities", [])
     subcategory = analysis.get("subcategory", "")
@@ -408,6 +577,11 @@ async def search_statistik_austria(analysis: dict) -> dict:
         mortality_results = await _search_mortality(search_text)
         results.extend(mortality_results)
 
+    # VGR / GDP / national accounts data
+    if _match_keywords(search_text, VGR_KEYWORDS):
+        vgr_results = await _search_vgr(search_text)
+        results.extend(vgr_results)
+
     # Add context caveat if we have results
     if results:
         results.append({
@@ -428,7 +602,10 @@ async def search_statistik_austria(analysis: dict) -> dict:
                 "(3) Ausgaben pro Kopf sind aussagekräftiger als absolute Zahlen — "
                 "Österreich hat ~9 Mio. Einwohner, Deutschland ~84 Mio. "
                 "(4) Keine Aufschlüsselung nach Bevölkerungsgruppen (z.B. Asylwerber) — "
-                "dafür sind spezifische Studien nötig."
+                "dafür sind spezifische Studien nötig. "
+                "(5) Das BIP misst Wirtschaftsleistung, nicht Wohlstand — es erfasst "
+                "weder Einkommensverteilung noch unbezahlte Arbeit oder Umweltkosten. "
+                "Nominelle Werte sind inflationsbereinigt (Volumenindex) vergleichbarer."
             ),
         })
 
@@ -649,6 +826,96 @@ async def _search_health_expenditure(search_text: str) -> list[dict]:
                 "source": "Statistik Austria (SHA-Methodik)",
                 "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/gesundheit/gesundheitsausgaben",
                 "dataset_id": "OGD_gesausgaben01_HVD_HCHF_1",
+            })
+
+    return results
+
+
+def _detect_vgr_indicators(text: str) -> list[str]:
+    """Detect which VGR indicators are relevant for the claim."""
+    text_lower = text.lower()
+    matched = []
+    for code, keywords in VGR_INDICATOR_KEYWORDS.items():
+        if any(kw in text_lower for kw in keywords):
+            matched.append(code)
+    return matched
+
+
+async def _search_vgr(search_text: str) -> list[dict]:
+    """Search VGR data for GDP and national accounts figures."""
+    data = await fetch_vgr()
+    if not data:
+        return []
+
+    results = []
+
+    # Detect specific indicators or default to BIP + BIP pro Kopf
+    target_codes = _detect_vgr_indicators(search_text)
+    if not target_codes:
+        target_codes = ["ESVG2010-38"]  # BIP as default
+
+    # Always include BIP for context
+    if "ESVG2010-38" not in target_codes:
+        target_codes.insert(0, "ESVG2010-38")
+
+    # Limit to max 5 indicators to keep results manageable
+    target_codes = target_codes[:5]
+
+    for code in target_codes:
+        rows = [r for r in data if r["indicator_code"] == code]
+        rows.sort(key=lambda r: r["year"], reverse=True)
+
+        # Show latest 5 years for trend analysis
+        for row in rows[:5]:
+            nominal = row["nominal_mio"]
+            vol_idx = row["volume_index"]
+            label = row["indicator_label"]
+
+            if nominal is None:
+                continue
+
+            # Calculate year-on-year growth (nominal)
+            prev = next(
+                (r for r in data
+                 if r["indicator_code"] == code and r["year"] == row["year"] - 1),
+                None,
+            )
+            growth_str = ""
+            if prev and prev["nominal_mio"] and prev["nominal_mio"] > 0:
+                growth = (nominal - prev["nominal_mio"]) / prev["nominal_mio"] * 100
+                sign = "+" if growth > 0 else ""
+                growth_str = f" | Nominelles Wachstum: {sign}{growth:.1f}%"
+
+            # Real growth from volume index
+            real_growth_str = ""
+            if vol_idx is not None and prev and prev["volume_index"] and prev["volume_index"] > 0:
+                real_growth = (vol_idx - prev["volume_index"]) / prev["volume_index"] * 100
+                sign = "+" if real_growth > 0 else ""
+                real_growth_str = f" | Reales Wachstum: {sign}{real_growth:.1f}%"
+
+            # Format value (BIP pro Kopf in EUR, rest in Mrd. EUR)
+            if code in ("ESVG2010-46", "ESVG2010-47"):
+                value_str = f"{nominal:,.0f} EUR"
+                unit = "EUR"
+            elif abs(nominal) >= 1000:
+                value_str = f"{nominal / 1000:,.1f} Mrd. €"
+                unit = "Mrd. EUR"
+            else:
+                value_str = f"{nominal:,.1f} Mio. €"
+                unit = "Mio. EUR"
+
+            title = f"{label} AT {row['year']}: {value_str}{growth_str}{real_growth_str}"
+
+            results.append({
+                "title": title,
+                "indicator": label,
+                "year": str(row["year"]),
+                "value": nominal,
+                "volume_index": vol_idx,
+                "unit": unit,
+                "source": "Statistik Austria (VGR, ESA 2010)",
+                "url": "https://www.statistik.at/statistiken/volkswirtschaft-und-oeffentliche-finanzen/volkswirtschaftliche-gesamtrechnungen",
+                "dataset_id": "OGD_vgr101_VGRJahresR_3",
             })
 
     return results

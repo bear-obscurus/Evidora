@@ -6,7 +6,7 @@ Managed sources:
 - GADMO fact-check feeds + embeddings (1h refresh)
 - EUvsDisinfo RSS feed + embeddings (1h refresh)
 - DataCommons ClaimReview index (24h refresh)
-- Statistik Austria VPI + Gesundheitsausgaben (24h refresh)
+- Statistik Austria VPI + Gesundheitsausgaben + Sterblichkeit + VGR (24h refresh)
 
 Note: EUvsDisinfo case database (14.5K cases) is a static JSON file
 shipped with the application — no download or refresh needed.
@@ -22,7 +22,7 @@ from services.copernicus import _fetch_nasa_giss, GISS_CACHE_TTL
 from services.gadmo import prefetch_feeds, FEED_CACHE_TTL
 from services.euvsdisinfo import prefetch_feed as prefetch_euvsdisinfo
 from services.datacommons import update_index as update_datacommons
-from services.statistik_austria import fetch_vpi, fetch_health_expenditure, fetch_mortality
+from services.statistik_austria import fetch_vpi, fetch_health_expenditure, fetch_mortality, fetch_vgr
 
 logger = logging.getLogger("evidora")
 
@@ -41,11 +41,12 @@ async def prefetch_all():
             fetch_vpi(client),
             fetch_health_expenditure(client),
             fetch_mortality(client),
+            fetch_vgr(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "NASA GISS", "GADMO Feeds", "EUvsDisinfo RSS", "DataCommons",
                  "Statistik Austria VPI", "Statistik Austria Gesundheitsausgaben",
-                 "Statistik Austria Sterblichkeit"]
+                 "Statistik Austria Sterblichkeit", "Statistik Austria VGR"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")
