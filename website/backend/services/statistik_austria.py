@@ -14,6 +14,7 @@ Kein API-Key erforderlich — statische CSV-Downloads, lokal gecacht.
 import csv
 import io
 import logging
+import re
 from datetime import datetime
 
 import httpx
@@ -477,6 +478,8 @@ VGR_KEYWORDS = [
     "bip", "gdp", "bruttoinlandsprodukt", "gross domestic product",
     "wirtschaftsleistung", "economic output", "wirtschaftswachstum",
     "economic growth", "rezession", "recession", "konjunktur",
+    "wirtschaft", "economy", "wachstum", "growth",
+    "gewachsen", "geschrumpft", "schrumpf", "grew", "shrunk",
     "bruttonationaleinkommen", "national income", "gni",
     "export", "import", "ausfuhr", "einfuhr", "außenhandel",
     "handelsbilanz", "trade balance", "leistungsbilanz",
@@ -841,6 +844,12 @@ def _detect_vgr_indicators(text: str) -> list[str]:
     return matched
 
 
+def _extract_years_from_text(text: str) -> list[int]:
+    """Extract 4-digit years (1995–2030) mentioned in claim text."""
+    matches = re.findall(r"\b(19[9]\d|20[0-3]\d)\b", text)
+    return sorted(set(int(y) for y in matches))
+
+
 async def _search_vgr(search_text: str) -> list[dict]:
     """Search VGR data for GDP and national accounts figures."""
     data = await fetch_vgr()
@@ -861,12 +870,22 @@ async def _search_vgr(search_text: str) -> list[dict]:
     # Limit to max 5 indicators to keep results manageable
     target_codes = target_codes[:5]
 
+    # Extract years mentioned in claim (e.g., "seit 2019")
+    mentioned_years = _extract_years_from_text(search_text)
+
     for code in target_codes:
         rows = [r for r in data if r["indicator_code"] == code]
         rows.sort(key=lambda r: r["year"], reverse=True)
 
-        # Show latest 5 years for trend analysis
-        for row in rows[:5]:
+        # Collect target years: latest 5 + any years mentioned in claim
+        latest_5 = [r["year"] for r in rows[:5]]
+        extra_years = [y for y in mentioned_years if y not in latest_5]
+        target_years = set(latest_5) | set(extra_years)
+
+        # Filter to target years, keep sorted descending
+        filtered_rows = [r for r in rows if r["year"] in target_years]
+
+        for row in filtered_rows:
             nominal = row["nominal_mio"]
             vol_idx = row["volume_index"]
             label = row["indicator_label"]
