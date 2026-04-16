@@ -218,7 +218,7 @@ ALQUO_KEY_CODES = {
     "AKEQUOT_AL-10": "ISCED 5–8 (Hochschule)",
 }
 
-# Bundesland codes within ALQUO classification
+# Bundesland codes within ALQUO classification (total unemployment)
 ALQUO_BUNDESLAND_CODES = {
     "AKEQUOT_AL-11": "Burgenland",
     "AKEQUOT_AL-12": "Niederösterreich",
@@ -229,6 +229,19 @@ ALQUO_BUNDESLAND_CODES = {
     "AKEQUOT_AL-17": "Salzburg",
     "AKEQUOT_AL-18": "Tirol",
     "AKEQUOT_AL-19": "Vorarlberg",
+}
+
+# NUTS 2 × 15–24 Jahre (youth unemployment by Bundesland) — AL-64..72
+ALQUO_BUNDESLAND_YOUTH_CODES = {
+    "AKEQUOT_AL-64": "Burgenland",
+    "AKEQUOT_AL-65": "Niederösterreich",
+    "AKEQUOT_AL-66": "Wien",
+    "AKEQUOT_AL-67": "Kärnten",
+    "AKEQUOT_AL-68": "Steiermark",
+    "AKEQUOT_AL-69": "Oberösterreich",
+    "AKEQUOT_AL-70": "Salzburg",
+    "AKEQUOT_AL-71": "Tirol",
+    "AKEQUOT_AL-72": "Vorarlberg",
 }
 
 
@@ -742,7 +755,7 @@ async def fetch_arbeitsmarkt(client: httpx.AsyncClient | None = None) -> dict:
                     "al": None, "al_m": None, "al_f": None,
                     "al_youth": None, "al_lt": None,
                     "et": None, "tz": None,
-                    "al_by_bl": {}, "al_by_isced": {},
+                    "al_by_bl": {}, "al_by_bl_youth": {}, "al_by_isced": {},
                 }
 
             yr = yearly[year]
@@ -758,10 +771,15 @@ async def fetch_arbeitsmarkt(client: httpx.AsyncClient | None = None) -> dict:
             elif al_code == "AKEQUOT_AL-4" and al_val is not None:
                 yr["al_youth"] = al_val
 
-            # By Bundesland
+            # By Bundesland (total)
             if al_code in ALQUO_BUNDESLAND_CODES and al_val is not None:
                 bl_name = ALQUO_BUNDESLAND_CODES[al_code]
                 yr["al_by_bl"][bl_name] = al_val
+
+            # By Bundesland × Jugend (15–24 Jahre)
+            if al_code in ALQUO_BUNDESLAND_YOUTH_CODES and al_val is not None:
+                bl_name = ALQUO_BUNDESLAND_YOUTH_CODES[al_code]
+                yr["al_by_bl_youth"][bl_name] = al_val
 
             # By ISCED (education level)
             isced_map = {
@@ -1571,6 +1589,23 @@ async def _search_arbeitsmarkt(search_text: str) -> list[dict]:
                 "indicator": "Jugendarbeitslosenquote (ILO)",
                 "year": str(latest_year),
                 "value": al_youth,
+                "unit": "%",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/arbeitsmarkt/arbeitslosigkeit",
+                "dataset_id": "OGD_ake100_hvd_ogdonly_HVD_ALQUO_1",
+            })
+
+        # Youth unemployment by Bundesland (always show with youth claims — key for regional comparisons)
+        al_by_bl_youth = yr_latest.get("al_by_bl_youth", {})
+        if al_by_bl_youth:
+            sorted_bl = sorted(al_by_bl_youth.items(), key=lambda x: x[1], reverse=True)
+            # Filter out entries with statistically unreliable values (small cells return None above)
+            bl_parts = [f"{name}: {rate:.1f}%" for name, rate in sorted_bl]
+            results.append({
+                "title": f"Jugendarbeitslosenquote nach Bundesland AT {latest_year} (15–24 J.): " + " | ".join(bl_parts),
+                "indicator": "Jugendarbeitslosenquote nach Bundesland (ILO)",
+                "year": str(latest_year),
+                "value": al_by_bl_youth,
                 "unit": "%",
                 "source": "Statistik Austria",
                 "url": "https://www.statistik.at/statistiken/arbeitsmarkt/arbeitslosigkeit",
