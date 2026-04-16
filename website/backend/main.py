@@ -34,7 +34,7 @@ from services.europe_pmc import search_europe_pmc
 from services.clinicaltrials import search_clinicaltrials
 from services.semantic_scholar import search_semantic_scholar
 from services.energy_safety import search_energy_safety, _is_energy_safety_claim
-from services.statistik_austria import search_statistik_austria, _is_austria_context, _match_keywords, VPI_KEYWORDS, HEALTH_EXP_KEYWORDS, MORTALITY_KEYWORDS, VGR_KEYWORDS, MIGRATION_KEYWORDS, NATURALIZATION_KEYWORDS
+from services.statistik_austria import search_statistik_austria, _is_austria_context, _match_keywords, VPI_KEYWORDS, HEALTH_EXP_KEYWORDS, MORTALITY_KEYWORDS, VGR_KEYWORDS, MIGRATION_KEYWORDS, NATURALIZATION_KEYWORDS, ARBEITSMARKT_KEYWORDS
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -239,6 +239,7 @@ async def check_claim(request: Request):
             or _match_keywords(_claim_lower, VGR_KEYWORDS)
             or _match_keywords(_claim_lower, MIGRATION_KEYWORDS)
             or _match_keywords(_claim_lower, NATURALIZATION_KEYWORDS)
+            or _match_keywords(_claim_lower, ARBEITSMARKT_KEYWORDS)
         ):
             tasks.append(cached("StatistikAustria", search_statistik_austria, analysis))
             queried_names.append("Statistik Austria")

@@ -1,12 +1,13 @@
 """Statistik Austria Open Government Data — österreichische amtliche Statistiken.
 
-Integriert sechs Datasets:
+Integriert sieben Datasets:
 1. VPI (Verbraucherpreisindex) — monatliche Inflationsdaten (Basis 2020=100)
 2. Gesundheitsausgaben — jährliche Ausgaben nach Leistungsart und Finanzierung (SHA)
 3. Sterblichkeit nach Kalenderwoche — wöchentliche Sterbefälle seit 2000 (für Übersterblichkeit)
 4. VGR (Volkswirtschaftliche Gesamtrechnung) — jährliche BIP-Daten + 47 Aggregate (ESA 2010)
 5. Bevölkerungsbewegung — int. Zu-/Abwanderung nach Bundesland (1961–2024, nur Ist-Daten)
 6. Einbürgerungen — jährliche Einbürgerungen nach Geburtsland und Alter (1981–2025)
+7. Arbeitsmarkt (Arbeitskräfteerhebung/LFS) — ILO-Arbeitslosenquote + Erwerbstätigenquote (2021–2025)
 
 Datenquelle: https://data.statistik.gv.at
 Lizenz: CC BY 4.0
@@ -30,6 +31,8 @@ MORTALITY_CSV_URL = "https://data.statistik.gv.at/data/OGD_gest_kalwo_GEST_KALWO
 VGR_CSV_URL = "https://data.statistik.gv.at/data/OGD_vgr101_VGRJahresR_3.csv"
 MIGRATION_CSV_URL = "https://data.statistik.gv.at/data/OGD_bevbewegung_BEV_BEW_3.csv"
 NATURALIZATIONS_CSV_URL = "https://data.statistik.gv.at/data/OGD_einbuergerungen_EINBJ_1.csv"
+ALQUO_CSV_URL = "https://data.statistik.gv.at/data/OGD_ake100_hvd_ogdonly_HVD_ALQUO_1.csv"
+ETQUOTE_CSV_URL = "https://data.statistik.gv.at/data/OGD_ake101_hvd_ogdonly_HVD_ETQUOTE_1.csv"
 
 # --- Cache ---
 STAT_AT_CACHE_TTL = 86400  # 24h — VPI updates monthly, health expenditure annually
@@ -51,6 +54,9 @@ _migration_cache_time: float = 0.0
 
 _naturalizations_cache: dict | None = None  # {year: total}
 _naturalizations_cache_time: float = 0.0
+
+_arbeitsmarkt_cache: dict | None = None  # {year: {al, al_m, al_f, al_youth, al_lt, et, tz, al_by_bl}}
+_arbeitsmarkt_cache_time: float = 0.0
 
 # --- COICOP category labels (main groups only) ---
 COICOP_LABELS = {
@@ -196,6 +202,33 @@ BUNDESLAND_LABELS = {
     "B00-1": "Burgenland", "B00-2": "Kärnten", "B00-3": "Niederösterreich",
     "B00-4": "Oberösterreich", "B00-5": "Salzburg", "B00-6": "Steiermark",
     "B00-7": "Tirol", "B00-8": "Vorarlberg", "B00-9": "Wien",
+}
+
+# ALQUO classification codes — key breakdowns we use for fact-checking
+ALQUO_KEY_CODES = {
+    "AKEQUOT_AL-1":  "Österreich gesamt",
+    "AKEQUOT_AL-2":  "Männlich",
+    "AKEQUOT_AL-3":  "Weiblich",
+    "AKEQUOT_AL-4":  "15–24 Jahre (Jugend)",
+    "AKEQUOT_AL-5":  "25–54 Jahre",
+    "AKEQUOT_AL-6":  "55–74 Jahre",
+    "AKEQUOT_AL-7":  "ISCED 0 (kein Abschluss)",
+    "AKEQUOT_AL-8":  "ISCED 1–2 (Pflichtschule)",
+    "AKEQUOT_AL-9":  "ISCED 3–4 (Matura/Lehre)",
+    "AKEQUOT_AL-10": "ISCED 5–8 (Hochschule)",
+}
+
+# Bundesland codes within ALQUO classification
+ALQUO_BUNDESLAND_CODES = {
+    "AKEQUOT_AL-11": "Burgenland",
+    "AKEQUOT_AL-12": "Niederösterreich",
+    "AKEQUOT_AL-13": "Wien",
+    "AKEQUOT_AL-14": "Kärnten",
+    "AKEQUOT_AL-15": "Steiermark",
+    "AKEQUOT_AL-16": "Oberösterreich",
+    "AKEQUOT_AL-17": "Salzburg",
+    "AKEQUOT_AL-18": "Tirol",
+    "AKEQUOT_AL-19": "Vorarlberg",
 }
 
 
@@ -642,6 +675,140 @@ async def fetch_naturalizations(client: httpx.AsyncClient | None = None) -> dict
             await client.aclose()
 
 
+async def fetch_arbeitsmarkt(client: httpx.AsyncClient | None = None) -> dict:
+    """Download and parse ALQUO (unemployment) + ETQUOTE (employment) CSVs.
+
+    Returns: {year: {al, al_m, al_f, al_youth, al_lt, et, tz, al_by_bl, al_by_isced}}
+    - al        : Arbeitslosenquote Österreich gesamt (ILO), %
+    - al_m/f    : nach Geschlecht, %
+    - al_youth  : 15–24-Jährige, %
+    - al_lt     : Langzeitarbeitslosenquote, %
+    - et        : Erwerbstätigenquote 20–64 J., %
+    - tz        : Teilzeitquote 20–64 J., %
+    - al_by_bl  : {Bundesland-Name: quote, %}
+    - al_by_isced: {ISCED-Label: quote, %}
+    Only annual data (no quarters). Data range: 2021–2025.
+    """
+    import time
+    global _arbeitsmarkt_cache, _arbeitsmarkt_cache_time
+
+    now = time.time()
+    if _arbeitsmarkt_cache is not None and (now - _arbeitsmarkt_cache_time) < STAT_AT_CACHE_TTL:
+        return _arbeitsmarkt_cache
+
+    close_client = False
+    if client is None:
+        client = httpx.AsyncClient(timeout=30.0)
+        close_client = True
+
+    yearly: dict[int, dict] = {}
+
+    def _get_year_annual(time_code: str) -> int | None:
+        """Parse AKEQUOT_ZEIT-YYYY → year (annual only, skip quarterly YYYYQ)."""
+        # time_code like "AKEQUOT_ZEIT-2024" (annual) or "AKEQUOT_ZEIT-20241" (quarterly)
+        suffix = time_code.rsplit("-", 1)[-1]
+        if len(suffix) == 4:  # annual
+            try:
+                return int(suffix)
+            except ValueError:
+                return None
+        return None  # quarterly → skip
+
+    try:
+        # --- ALQUO: Arbeitslosenquote ---
+        resp = await client.get(ALQUO_CSV_URL)
+        resp.raise_for_status()
+        reader = csv.DictReader(io.StringIO(resp.text), delimiter=";")
+
+        for row in reader:
+            year = _get_year_annual(row.get("C-AKEQUOT_ZEIT-0", ""))
+            if year is None:
+                continue
+
+            al_code = row.get("C-AKEQUOT_AL-0", "")
+            al_val = _parse_decimal(row.get("F-AKEQUOT_AL", ""))
+            lt_val = _parse_decimal(row.get("F-AKEQUOT_LAL", ""))
+
+            # Skip helper/category rows (codes >= AL-900)
+            try:
+                code_num = int(al_code.split("-")[-1])
+                if code_num >= 900:
+                    continue
+            except (ValueError, IndexError):
+                continue
+
+            if year not in yearly:
+                yearly[year] = {
+                    "al": None, "al_m": None, "al_f": None,
+                    "al_youth": None, "al_lt": None,
+                    "et": None, "tz": None,
+                    "al_by_bl": {}, "al_by_isced": {},
+                }
+
+            yr = yearly[year]
+
+            if al_code == "AKEQUOT_AL-1" and al_val is not None:
+                yr["al"] = al_val
+            if al_code == "AKEQUOT_AL-1" and lt_val is not None:
+                yr["al_lt"] = lt_val
+            elif al_code == "AKEQUOT_AL-2" and al_val is not None:
+                yr["al_m"] = al_val
+            elif al_code == "AKEQUOT_AL-3" and al_val is not None:
+                yr["al_f"] = al_val
+            elif al_code == "AKEQUOT_AL-4" and al_val is not None:
+                yr["al_youth"] = al_val
+
+            # By Bundesland
+            if al_code in ALQUO_BUNDESLAND_CODES and al_val is not None:
+                bl_name = ALQUO_BUNDESLAND_CODES[al_code]
+                yr["al_by_bl"][bl_name] = al_val
+
+            # By ISCED (education level)
+            isced_map = {
+                "AKEQUOT_AL-7": "ISCED 0 (kein Abschluss)",
+                "AKEQUOT_AL-8": "ISCED 1–2 (Pflichtschule)",
+                "AKEQUOT_AL-9": "ISCED 3–4 (Matura/Lehre)",
+                "AKEQUOT_AL-10": "ISCED 5–8 (Hochschule)",
+            }
+            if al_code in isced_map and al_val is not None:
+                yr["al_by_isced"][isced_map[al_code]] = al_val
+
+        # --- ETQUOTE: Erwerbstätigenquote ---
+        resp2 = await client.get(ETQUOTE_CSV_URL)
+        resp2.raise_for_status()
+        reader2 = csv.DictReader(io.StringIO(resp2.text), delimiter=";")
+
+        for row in reader2:
+            year = _get_year_annual(row.get("C-AKEQUOT_ZEIT-0", ""))
+            if year is None or year not in yearly:
+                continue
+
+            et_code = row.get("C-AKEQUOT_ET-0", "")
+            # ET-1 = Österreich gesamt (same pattern as ALQUO)
+            if et_code != "AKEQUOT_ET-1":
+                continue
+
+            et_val = _parse_decimal(row.get("F-AKEQUOT_ET", ""))
+            tz_val = _parse_decimal(row.get("F-AKEQUOT_TZ", ""))
+
+            if et_val is not None:
+                yearly[year]["et"] = et_val
+            if tz_val is not None:
+                yearly[year]["tz"] = tz_val
+
+        _arbeitsmarkt_cache = yearly
+        _arbeitsmarkt_cache_time = now
+        logger.info(f"Statistik Austria Arbeitsmarkt: {len(yearly)} Jahre geladen")
+        return yearly
+
+    except Exception as e:
+        logger.warning(f"Statistik Austria Arbeitsmarkt download failed: {e}")
+        return _arbeitsmarkt_cache or {}
+    finally:
+        if close_client:
+            await client.aclose()
+
+
 # --- Keyword detection ---
 
 VPI_KEYWORDS = [
@@ -685,6 +852,20 @@ NATURALIZATION_KEYWORDS = [
     "einbürgerung", "naturalization", "staatsbürgerschaft",
     "citizenship", "eingebürgert", "naturalized",
     "pass", "passport", "staatsangehörigkeit",
+]
+
+ARBEITSMARKT_KEYWORDS = [
+    "arbeitslosigkeit", "arbeitslos", "unemployment", "jobless",
+    "arbeitslosenquote", "unemployment rate",
+    "beschäftigung", "beschäftigte", "beschäftigungsquote",
+    "employment", "employment rate", "erwerbstätigkeit", "erwerbstätigenquote",
+    "erwerbsquote", "erwerbstätige",
+    "jugendarbeitslosigkeit", "youth unemployment",
+    "langzeitarbeitslosigkeit", "long-term unemployment", "langzeitarbeitslos",
+    "teilzeit", "part-time", "teilzeitquote",
+    "arbeitsmarkt", "labor market", "labour market",
+    "arbeitssuchende", "arbeitssuchend", "stellensuchende",
+    "ams", "jobverlust", "stellenabbau",
 ]
 
 VGR_KEYWORDS = [
@@ -808,6 +989,11 @@ async def search_statistik_austria(analysis: dict) -> dict:
         nat_results = await _search_naturalizations(search_text)
         results.extend(nat_results)
 
+    # Labor market / unemployment data
+    if _match_keywords(search_text, ARBEITSMARKT_KEYWORDS):
+        am_results = await _search_arbeitsmarkt(search_text)
+        results.extend(am_results)
+
     # Add context caveat if we have results
     if results:
         results.append({
@@ -836,7 +1022,11 @@ async def search_statistik_austria(analysis: dict) -> dict:
                 "oder Aufenthaltstitel — dafür sind BMI-Daten nötig. "
                 "Nettomigration = Zuwanderung minus Abwanderung. "
                 "(7) Einbürgerungen ≠ Zuwanderung — viele Eingebürgerte leben seit "
-                "Jahren in Österreich."
+                "Jahren in Österreich. "
+                "(8) Arbeitslosenquote nach ILO-Methodik (Arbeitskräfteerhebung/LFS): "
+                "Nur Personen, die aktiv suchen und sofort verfügbar sind. "
+                "Die AMS-Arbeitslosenquote (nationale Methodik) ist höher, da sie auch "
+                "Schulungsteilnehmende zählt. Daten nur ab 2021 verfügbar."
             ),
         })
 
@@ -1297,5 +1487,162 @@ async def _search_naturalizations(search_text: str) -> list[dict]:
             "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/einbuergerungen",
             "dataset_id": "OGD_einbuergerungen_EINBJ_1",
         })
+
+    return results
+
+
+async def _search_arbeitsmarkt(search_text: str) -> list[dict]:
+    """Search labor market data (unemployment + employment rates)."""
+    data = await fetch_arbeitsmarkt()
+    if not data:
+        return []
+
+    results = []
+    text_lower = search_text.lower()
+
+    # Detect claim focus
+    want_youth = any(kw in text_lower for kw in [
+        "jugend", "jung", "junge", "15-24", "under 25", "youngster",
+        "jugendarbeitslosigkeit", "youth unemployment",
+    ])
+    want_gender = any(kw in text_lower for kw in [
+        "frauen", "männer", "geschlecht", "gender", "weiblich", "männlich",
+        "female", "male", "woman", "man",
+    ])
+    want_lt = any(kw in text_lower for kw in [
+        "langzeit", "long-term", "langzeitarbeitslos",
+    ])
+    want_regional = any(kw in text_lower for kw in [
+        "bundesland", "wien", "graz", "steiermark", "kärnten", "salzburg",
+        "tirol", "vorarlberg", "burgenland", "niederösterreich", "oberösterreich",
+        "regional", "bundesländer",
+    ])
+    want_education = any(kw in text_lower for kw in [
+        "bildung", "akademiker", "isced", "matura", "hochschule",
+        "university", "studium", "pflichtschule", "education",
+    ])
+    want_employment = any(kw in text_lower for kw in [
+        "erwerbstätigkeit", "erwerbstätig", "beschäftigung", "beschäftigungsquote",
+        "employment rate", "erwerbstätigenquote", "teilzeit", "part-time",
+    ])
+
+    # --- Main: national unemployment rate trend ---
+    all_years = sorted(data.keys(), reverse=True)
+    mentioned_years = _extract_years_from_text(search_text)
+    extra_years = [y for y in mentioned_years if y not in all_years[:5] and y in data]
+    target_years = sorted(set(all_years[:5]) | set(extra_years), reverse=True)
+
+    for year in target_years:
+        yr = data[year]
+        al = yr.get("al")
+        if al is None:
+            continue
+
+        parts = [f"{al:.1f}%"]
+
+        al_lt = yr.get("al_lt")
+        if al_lt is not None:
+            parts.append(f"Langzeitarbeitslos: {al_lt:.1f}%")
+
+        detail = " | ".join(parts)
+        results.append({
+            "title": f"Arbeitslosenquote AT {year} (ILO): {detail}",
+            "indicator": "Arbeitslosenquote (ILO)",
+            "year": str(year),
+            "value": al,
+            "unit": "%",
+            "source": "Statistik Austria",
+            "url": "https://www.statistik.at/statistiken/arbeitsmarkt/arbeitslosigkeit",
+            "dataset_id": "OGD_ake100_hvd_ogdonly_HVD_ALQUO_1",
+        })
+
+    if not results:
+        return []
+
+    latest_year = all_years[0]
+    yr_latest = data[latest_year]
+
+    # --- Youth unemployment ---
+    if want_youth:
+        al_youth = yr_latest.get("al_youth")
+        if al_youth is not None:
+            results.append({
+                "title": f"Jugendarbeitslosenquote AT {latest_year} (15–24 J., ILO): {al_youth:.1f}%",
+                "indicator": "Jugendarbeitslosenquote (ILO)",
+                "year": str(latest_year),
+                "value": al_youth,
+                "unit": "%",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/arbeitsmarkt/arbeitslosigkeit",
+                "dataset_id": "OGD_ake100_hvd_ogdonly_HVD_ALQUO_1",
+            })
+
+    # --- Gender breakdown ---
+    if want_gender:
+        al_m = yr_latest.get("al_m")
+        al_f = yr_latest.get("al_f")
+        if al_m is not None and al_f is not None:
+            results.append({
+                "title": f"Arbeitslosenquote nach Geschlecht AT {latest_year}: Männer {al_m:.1f}% | Frauen {al_f:.1f}%",
+                "indicator": "Arbeitslosenquote nach Geschlecht (ILO)",
+                "year": str(latest_year),
+                "value": f"M: {al_m:.1f}%, F: {al_f:.1f}%",
+                "unit": "%",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/arbeitsmarkt/arbeitslosigkeit",
+                "dataset_id": "OGD_ake100_hvd_ogdonly_HVD_ALQUO_1",
+            })
+
+    # --- Regional breakdown (Bundesland) ---
+    if want_regional:
+        al_by_bl = yr_latest.get("al_by_bl", {})
+        if al_by_bl:
+            sorted_bl = sorted(al_by_bl.items(), key=lambda x: x[1], reverse=True)
+            bl_parts = [f"{name}: {rate:.1f}%" for name, rate in sorted_bl]
+            results.append({
+                "title": f"Arbeitslosenquote nach Bundesland AT {latest_year}: " + " | ".join(bl_parts),
+                "indicator": "Arbeitslosenquote nach Bundesland (ILO)",
+                "year": str(latest_year),
+                "value": al_by_bl,
+                "unit": "%",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/arbeitsmarkt/arbeitslosigkeit",
+                "dataset_id": "OGD_ake100_hvd_ogdonly_HVD_ALQUO_1",
+            })
+
+    # --- Education breakdown ---
+    if want_education:
+        al_by_isced = yr_latest.get("al_by_isced", {})
+        if al_by_isced:
+            isced_parts = [f"{label}: {rate:.1f}%" for label, rate in sorted(al_by_isced.items())]
+            results.append({
+                "title": f"Arbeitslosenquote nach Bildung AT {latest_year}: " + " | ".join(isced_parts),
+                "indicator": "Arbeitslosenquote nach Bildungsniveau (ILO)",
+                "year": str(latest_year),
+                "value": al_by_isced,
+                "unit": "%",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/arbeitsmarkt/arbeitslosigkeit",
+                "dataset_id": "OGD_ake100_hvd_ogdonly_HVD_ALQUO_1",
+            })
+
+    # --- Employment rate (always if triggered, or if explicitly asked) ---
+    if want_employment or True:  # include employment rate as standard context
+        et = yr_latest.get("et")
+        tz = yr_latest.get("tz")
+        if et is not None:
+            parts = [f"Erwerbstätigenquote: {et:.1f}%"]
+            if tz is not None:
+                parts.append(f"Teilzeitquote: {tz:.1f}%")
+            results.append({
+                "title": f"Erwerbsbeteiligung AT {latest_year} (20–64 J.): " + " | ".join(parts),
+                "indicator": "Erwerbstätigenquote + Teilzeitquote (ILO)",
+                "year": str(latest_year),
+                "value": et,
+                "unit": "%",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/arbeitsmarkt/erwerbstaetigkeit",
+                "dataset_id": "OGD_ake101_hvd_ogdonly_HVD_ETQUOTE_1",
+            })
 
     return results
