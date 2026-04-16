@@ -1,6 +1,6 @@
 """Statistik Austria Open Government Data — österreichische amtliche Statistiken.
 
-Integriert sieben Datasets:
+Integriert acht Datasets:
 1. VPI (Verbraucherpreisindex) — monatliche Inflationsdaten (Basis 2020=100)
 2. Gesundheitsausgaben — jährliche Ausgaben nach Leistungsart und Finanzierung (SHA)
 3. Sterblichkeit nach Kalenderwoche — wöchentliche Sterbefälle seit 2000 (für Übersterblichkeit)
@@ -8,6 +8,7 @@ Integriert sieben Datasets:
 5. Bevölkerungsbewegung — int. Zu-/Abwanderung nach Bundesland (1961–2024, nur Ist-Daten)
 6. Einbürgerungen — jährliche Einbürgerungen nach Geburtsland und Alter (1981–2025)
 7. Arbeitsmarkt (Arbeitskräfteerhebung/LFS) — ILO-Arbeitslosenquote + Erwerbstätigenquote (2021–2025)
+8. EU-SILC (Armut & Ungleichheit) — AROPE, Armutsgefährdungsquote, Gini, S80/S20 (2021–2024)
 
 Datenquelle: https://data.statistik.gv.at
 Lizenz: CC BY 4.0
@@ -33,6 +34,8 @@ MIGRATION_CSV_URL = "https://data.statistik.gv.at/data/OGD_bevbewegung_BEV_BEW_3
 NATURALIZATIONS_CSV_URL = "https://data.statistik.gv.at/data/OGD_einbuergerungen_EINBJ_1.csv"
 ALQUO_CSV_URL = "https://data.statistik.gv.at/data/OGD_ake100_hvd_ogdonly_HVD_ALQUO_1.csv"
 ETQUOTE_CSV_URL = "https://data.statistik.gv.at/data/OGD_ake101_hvd_ogdonly_HVD_ETQUOTE_1.csv"
+ARMUT_CSV_URL = "https://data.statistik.gv.at/data/OGD_armsilc01_hvd_ogdonly_HVD_ARM_1.csv"
+UNGLEICHHEIT_CSV_URL = "https://data.statistik.gv.at/data/OGD_unglsilc02_HVD_UNG_1.csv"
 
 # --- Cache ---
 STAT_AT_CACHE_TTL = 86400  # 24h — VPI updates monthly, health expenditure annually
@@ -57,6 +60,9 @@ _naturalizations_cache_time: float = 0.0
 
 _arbeitsmarkt_cache: dict | None = None  # {year: {al, al_m, al_f, al_youth, al_lt, et, tz, al_by_bl}}
 _arbeitsmarkt_cache_time: float = 0.0
+
+_armut_cache: dict | None = None  # {year: {arope, arop, gini, s80s20, ...}}
+_armut_cache_time: float = 0.0
 
 # --- COICOP category labels (main groups only) ---
 COICOP_LABELS = {
@@ -862,6 +868,141 @@ async def fetch_arbeitsmarkt(client: httpx.AsyncClient | None = None) -> dict:
             await client.aclose()
 
 
+async def fetch_armut(client: httpx.AsyncClient | None = None) -> dict:
+    """Download and parse EU-SILC poverty (ARMUT) + inequality (UNGLEICHHEIT) CSVs.
+
+    Returns: {year: {arope, arop, depriv, low_work, gini, s80s20,
+                     arop_m, arop_f,
+                     arop_child, arop_working_age, arop_elderly,
+                     arop_austrian, arop_non_austrian, arop_non_eu,
+                     arop_employed, arop_unemployed, arop_retired,
+                     arop_by_bl, arop_by_isced}}
+    - arope    : AROPE-Quote (Armut ODER soziale Ausgrenzung), %
+    - arop     : Armutsgefährdungsquote (Einkommens-Schwelle 60% Median), %
+    - depriv   : Erhebliche materielle und soziale Deprivation, %
+    - low_work : Haushalt mit sehr niedriger Erwerbsintensität, %
+    - gini     : Gini-Koeffizient des verfügbaren Äquivalenzeinkommens (0–100)
+    - s80s20   : S80/S20-Einkommensquintilverhältnis
+    Data range: 2021–2024 (EU-SILC jährlich, Referenzjahr t-1).
+    """
+    import time
+    global _armut_cache, _armut_cache_time
+
+    now = time.time()
+    if _armut_cache is not None and (now - _armut_cache_time) < STAT_AT_CACHE_TTL:
+        return _armut_cache
+
+    close_client = False
+    if client is None:
+        client = httpx.AsyncClient(timeout=30.0)
+        close_client = True
+
+    yearly: dict[int, dict] = {}
+
+    def _get_year(time_code: str) -> int | None:
+        """Parse ARMZEIT-YYYY or UNGZEIT-YYYY → year."""
+        suffix = time_code.rsplit("-", 1)[-1]
+        try:
+            return int(suffix) if len(suffix) == 4 else None
+        except ValueError:
+            return None
+
+    def _init_year(yr_dict: dict, year: int) -> None:
+        if year not in yr_dict:
+            yr_dict[year] = {
+                "arope": None, "arop": None, "depriv": None, "low_work": None,
+                "gini": None, "s80s20": None,
+                "arop_m": None, "arop_f": None,
+                "arop_child": None, "arop_working_age": None, "arop_elderly": None,
+                "arop_austrian": None, "arop_non_austrian": None, "arop_non_eu": None,
+                "arop_employed": None, "arop_unemployed": None, "arop_retired": None,
+                "arop_by_bl": {}, "arop_by_isced": {},
+            }
+
+    # Bundesland codes
+    arm_bl = {
+        "ARM01-2": "Burgenland", "ARM01-3": "Kärnten",
+        "ARM01-4": "Niederösterreich", "ARM01-5": "Oberösterreich",
+        "ARM01-6": "Salzburg", "ARM01-7": "Steiermark",
+        "ARM01-8": "Tirol", "ARM01-9": "Vorarlberg", "ARM01-10": "Wien",
+    }
+    arm_isced = {
+        "ARM01-22": "ISCED 0",
+        "ARM01-23": "ISCED 1–2 (Pflichtschule)",
+        "ARM01-24": "ISCED 3–4 (Matura/Lehre)",
+        "ARM01-25": "ISCED 5–8 (Hochschule)",
+    }
+
+    try:
+        # --- Armut: AROPE, AROP, Deprivation, Low Work Intensity ---
+        resp = await client.get(ARMUT_CSV_URL)
+        resp.raise_for_status()
+        reader = csv.DictReader(io.StringIO(resp.text), delimiter=";")
+
+        for row in reader:
+            year = _get_year(row.get("C-ARMZEIT-0", ""))
+            if year is None:
+                continue
+            code = row.get("C-ARM01-0", "")
+            arope = _parse_decimal(row.get("F-ARMUT_ANTE", ""))
+            arop  = _parse_decimal(row.get("F-ARMUT_QUO", ""))
+            depriv = _parse_decimal(row.get("F-DEPRIV", ""))
+            low_w  = _parse_decimal(row.get("F-PERSO", ""))
+
+            _init_year(yearly, year)
+            yr = yearly[year]
+
+            if code == "ARM01-1":
+                if arope is not None: yr["arope"] = arope
+                if arop  is not None: yr["arop"]  = arop
+                if depriv is not None: yr["depriv"] = depriv
+                if low_w  is not None: yr["low_work"] = low_w
+            elif code == "ARM01-11" and arop is not None: yr["arop_m"] = arop
+            elif code == "ARM01-12" and arop is not None: yr["arop_f"] = arop
+            elif code == "ARM01-13" and arop is not None: yr["arop_child"] = arop
+            elif code == "ARM01-16" and arop is not None: yr["arop_working_age"] = arop
+            elif code == "ARM01-19" and arop is not None: yr["arop_elderly"] = arop
+            elif code == "ARM01-26" and arop is not None: yr["arop_austrian"] = arop
+            elif code == "ARM01-27" and arop is not None: yr["arop_non_austrian"] = arop
+            elif code == "ARM01-29" and arop is not None: yr["arop_non_eu"] = arop
+            elif code == "ARM01-34" and arop is not None: yr["arop_employed"] = arop
+            elif code == "ARM01-38" and arop is not None: yr["arop_unemployed"] = arop
+            elif code == "ARM01-39" and arop is not None: yr["arop_retired"] = arop
+            elif code in arm_bl and arop is not None:
+                yr["arop_by_bl"][arm_bl[code]] = arop
+            elif code in arm_isced and arop is not None:
+                yr["arop_by_isced"][arm_isced[code]] = arop
+
+        # --- Ungleichheit: Gini + S80/S20 ---
+        resp2 = await client.get(UNGLEICHHEIT_CSV_URL)
+        resp2.raise_for_status()
+        reader2 = csv.DictReader(io.StringIO(resp2.text), delimiter=";")
+
+        for row in reader2:
+            year = _get_year(row.get("C-UNGZEIT-0", ""))
+            if year is None or year not in yearly:
+                continue
+            code = row.get("C-UNG01-0", "")
+            if code != "UNG01-1":
+                continue
+            s80s20 = _parse_decimal(row.get("F-UNG_EKQU", ""))
+            gini   = _parse_decimal(row.get("F-UNG_GINI", ""))
+            if s80s20 is not None: yearly[year]["s80s20"] = s80s20
+            if gini   is not None: yearly[year]["gini"]   = gini
+
+        _armut_cache = yearly
+        _armut_cache_time = now
+        logger.info(f"Statistik Austria EU-SILC: {len(yearly)} Jahre geladen")
+        return yearly
+
+    except Exception as e:
+        logger.warning(f"Statistik Austria EU-SILC download failed: {e}")
+        return _armut_cache or {}
+    finally:
+        if close_client:
+            await client.aclose()
+
+
 # --- Keyword detection ---
 
 VPI_KEYWORDS = [
@@ -905,6 +1046,22 @@ NATURALIZATION_KEYWORDS = [
     "einbürgerung", "naturalization", "staatsbürgerschaft",
     "citizenship", "eingebürgert", "naturalized",
     "pass", "passport", "staatsangehörigkeit",
+]
+
+ARMUT_KEYWORDS = [
+    "armut", "poverty", "armutsgefährdung", "armutsgefährdet",
+    "at risk of poverty", "arope",
+    "soziale ausgrenzung", "social exclusion",
+    "materielle deprivation", "material deprivation",
+    "einkommensungleichheit", "income inequality",
+    "gini", "einkommensverteilung", "income distribution",
+    "einkommensschere", "lohnschere",
+    "ungleichheit", "inequality",
+    "einkommensquintil", "s80/s20", "quintilverhältnis",
+    "wohlstandsverteilung", "reichtum verteilung",
+    "kinderarmut", "child poverty",
+    "altersarmut", "pensionsarmut",
+    "niedrigeinkommen", "niedriglohn", "low income",
 ]
 
 ARBEITSMARKT_KEYWORDS = [
@@ -1047,6 +1204,11 @@ async def search_statistik_austria(analysis: dict) -> dict:
         am_results = await _search_arbeitsmarkt(search_text)
         results.extend(am_results)
 
+    # Poverty and inequality data (EU-SILC)
+    if _match_keywords(search_text, ARMUT_KEYWORDS):
+        armut_results = await _search_armut(search_text)
+        results.extend(armut_results)
+
     # Add context caveat if we have results
     if results:
         results.append({
@@ -1079,7 +1241,11 @@ async def search_statistik_austria(analysis: dict) -> dict:
                 "(8) Arbeitslosenquote nach ILO-Methodik (Arbeitskräfteerhebung/LFS): "
                 "Nur Personen, die aktiv suchen und sofort verfügbar sind. "
                 "Die AMS-Arbeitslosenquote (nationale Methodik) ist höher, da sie auch "
-                "Schulungsteilnehmende zählt. Daten nur ab 2021 verfügbar."
+                "Schulungsteilnehmende zählt. Daten nur ab 2021 verfügbar. "
+                "(9) EU-SILC-Armutsdaten: AROPE = Armut ODER soziale Ausgrenzung (breiteste Definition). "
+                "Armutsgefährdungsquote = Einkommen unter 60% des Medians. "
+                "Gini-Koeffizient: 0 = völlige Gleichverteilung, 100 = maximale Ungleichheit. "
+                "Referenzjahr ist t-1 (EU-SILC 2024 misst Einkommen 2023)."
             ),
         })
 
@@ -1736,6 +1902,201 @@ async def _search_arbeitsmarkt(search_text: str) -> list[dict]:
                 "source": "Statistik Austria",
                 "url": "https://www.statistik.at/statistiken/arbeitsmarkt/erwerbstaetigkeit",
                 "dataset_id": "OGD_ake101_hvd_ogdonly_HVD_ETQUOTE_1",
+            })
+
+    return results
+
+
+async def _search_armut(search_text: str) -> list[dict]:
+    """Search EU-SILC poverty and inequality data."""
+    data = await fetch_armut()
+    if not data:
+        return []
+
+    results = []
+    text_lower = search_text.lower()
+
+    want_child     = any(kw in text_lower for kw in ["kind", "kinder", "jugend", "child", "kinderarmut", "unter 18"])
+    want_elderly   = any(kw in text_lower for kw in ["pension", "ältere", "senior", "65", "altersarmut", "rente"])
+    want_gender    = any(kw in text_lower for kw in ["frauen", "männer", "frau", "mann", "gender", "weiblich", "männlich"])
+    want_citizen   = any(kw in text_lower for kw in ["ausländer", "migrant", "staatsbürgerschaft", "citizenship",
+                                                      "nicht-österreichisch", "nichtösterreichisch", "eu-bürger",
+                                                      "geburtsland", "herkunft", "zuwanderer"])
+    want_employ    = any(kw in text_lower for kw in ["arbeitslose", "erwerbstätige", "beschäftigt", "pension",
+                                                     "employed", "unemployed", "retired"])
+    want_education = any(kw in text_lower for kw in ["bildung", "akademiker", "isced", "matura", "hochschule",
+                                                     "pflichtschule", "education"])
+    want_regional  = any(kw in text_lower for kw in ["bundesland", "wien", "tirol", "salzburg", "steiermark",
+                                                     "kärnten", "burgenland", "vorarlberg", "oberösterreich",
+                                                     "niederösterreich", "regional"])
+    want_gini      = any(kw in text_lower for kw in ["gini", "ungleichheit", "inequality", "einkommensverteilung",
+                                                     "einkommensschere", "s80", "quintil"])
+
+    all_years = sorted(data.keys(), reverse=True)
+    mentioned_years = _extract_years_from_text(search_text)
+    extra_years = [y for y in mentioned_years if y not in all_years[:4] and y in data]
+    target_years = sorted(set(all_years[:4]) | set(extra_years), reverse=True)
+
+    # --- Nationaler Trend: AROPE + Armutsgefährdungsquote ---
+    for year in target_years:
+        yr = data[year]
+        arope = yr.get("arope")
+        arop  = yr.get("arop")
+        if arope is None and arop is None:
+            continue
+
+        parts = []
+        if arope is not None: parts.append(f"AROPE: {arope:.1f}%")
+        if arop  is not None: parts.append(f"Armutsgefährdung: {arop:.1f}%")
+        depriv = yr.get("depriv")
+        if depriv is not None: parts.append(f"Materielle Deprivation: {depriv:.1f}%")
+
+        results.append({
+            "title": f"Armut & soziale Ausgrenzung AT {year}: " + " | ".join(parts),
+            "indicator": "AROPE / Armutsgefährdungsquote (EU-SILC)",
+            "year": str(year),
+            "value": arope,
+            "unit": "%",
+            "source": "Statistik Austria",
+            "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/soziales/armut-und-soziale-eingliederung",
+            "dataset_id": "OGD_armsilc01_hvd_ogdonly_HVD_ARM_1",
+        })
+
+    if not results:
+        return []
+
+    latest_year = all_years[0]
+    yr = data[latest_year]
+
+    # --- Gini + S80/S20 ---
+    if want_gini or True:  # immer als Kontext
+        gini   = yr.get("gini")
+        s80s20 = yr.get("s80s20")
+        if gini is not None or s80s20 is not None:
+            parts = []
+            if gini   is not None: parts.append(f"Gini: {gini:.1f}")
+            if s80s20 is not None: parts.append(f"S80/S20: {s80s20:.1f}")
+            results.append({
+                "title": f"Einkommensungleichheit AT {latest_year}: " + " | ".join(parts),
+                "indicator": "Gini-Koeffizient + S80/S20 (EU-SILC)",
+                "year": str(latest_year),
+                "value": gini,
+                "unit": "Gini 0–100",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/soziales/armut-und-soziale-eingliederung",
+                "dataset_id": "OGD_unglsilc02_HVD_UNG_1",
+            })
+
+    # --- Kinder vs. Ältere ---
+    if want_child or want_elderly:
+        parts = []
+        arop_child   = yr.get("arop_child")
+        arop_elderly = yr.get("arop_elderly")
+        arop_wa      = yr.get("arop_working_age")
+        if arop_child   is not None: parts.append(f"Kinder (<18 J.): {arop_child:.1f}%")
+        if arop_wa      is not None: parts.append(f"Erwerbsalter (18–64 J.): {arop_wa:.1f}%")
+        if arop_elderly is not None: parts.append(f"65+ Jahre: {arop_elderly:.1f}%")
+        if parts:
+            results.append({
+                "title": f"Armutsgefährdung nach Altersgruppe AT {latest_year}: " + " | ".join(parts),
+                "indicator": "Armutsgefährdungsquote nach Altersgruppe (EU-SILC)",
+                "year": str(latest_year),
+                "value": arop_child,
+                "unit": "%",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/soziales/armut-und-soziale-eingliederung",
+                "dataset_id": "OGD_armsilc01_hvd_ogdonly_HVD_ARM_1",
+            })
+
+    # --- Geschlecht ---
+    if want_gender:
+        arop_m = yr.get("arop_m")
+        arop_f = yr.get("arop_f")
+        if arop_m is not None and arop_f is not None:
+            results.append({
+                "title": f"Armutsgefährdung nach Geschlecht AT {latest_year}: Männer {arop_m:.1f}% | Frauen {arop_f:.1f}%",
+                "indicator": "Armutsgefährdungsquote nach Geschlecht (EU-SILC)",
+                "year": str(latest_year),
+                "value": f"M: {arop_m:.1f}%, F: {arop_f:.1f}%",
+                "unit": "%",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/soziales/armut-und-soziale-eingliederung",
+                "dataset_id": "OGD_armsilc01_hvd_ogdonly_HVD_ARM_1",
+            })
+
+    # --- Staatsbürgerschaft / Herkunft ---
+    if want_citizen:
+        arop_at     = yr.get("arop_austrian")
+        arop_non_at = yr.get("arop_non_austrian")
+        arop_non_eu = yr.get("arop_non_eu")
+        if arop_at is not None or arop_non_at is not None:
+            parts = []
+            if arop_at     is not None: parts.append(f"Österr. Staatsbürger: {arop_at:.1f}%")
+            if arop_non_at is not None: parts.append(f"Nicht-Österreicher: {arop_non_at:.1f}%")
+            if arop_non_eu is not None: parts.append(f"davon Nicht-EU: {arop_non_eu:.1f}%")
+            results.append({
+                "title": f"Armutsgefährdung nach Staatsbürgerschaft AT {latest_year}: " + " | ".join(parts),
+                "indicator": "Armutsgefährdungsquote nach Staatsbürgerschaft (EU-SILC)",
+                "year": str(latest_year),
+                "value": arop_non_at,
+                "unit": "%",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/soziales/armut-und-soziale-eingliederung",
+                "dataset_id": "OGD_armsilc01_hvd_ogdonly_HVD_ARM_1",
+            })
+
+    # --- Erwerbsstatus ---
+    if want_employ:
+        parts = []
+        a_emp  = yr.get("arop_employed")
+        a_unem = yr.get("arop_unemployed")
+        a_ret  = yr.get("arop_retired")
+        if a_emp  is not None: parts.append(f"Erwerbstätige: {a_emp:.1f}%")
+        if a_unem is not None: parts.append(f"Arbeitslose: {a_unem:.1f}%")
+        if a_ret  is not None: parts.append(f"Pensionisten: {a_ret:.1f}%")
+        if parts:
+            results.append({
+                "title": f"Armutsgefährdung nach Erwerbsstatus AT {latest_year}: " + " | ".join(parts),
+                "indicator": "Armutsgefährdungsquote nach Erwerbsstatus (EU-SILC)",
+                "year": str(latest_year),
+                "value": a_unem,
+                "unit": "%",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/soziales/armut-und-soziale-eingliederung",
+                "dataset_id": "OGD_armsilc01_hvd_ogdonly_HVD_ARM_1",
+            })
+
+    # --- Bildungsniveau ---
+    if want_education:
+        arop_by_isced = yr.get("arop_by_isced", {})
+        if arop_by_isced:
+            isced_parts = [f"{label}: {rate:.1f}%" for label, rate in sorted(arop_by_isced.items())]
+            results.append({
+                "title": f"Armutsgefährdung nach Bildungsniveau AT {latest_year}: " + " | ".join(isced_parts),
+                "indicator": "Armutsgefährdungsquote nach Bildungsniveau (EU-SILC)",
+                "year": str(latest_year),
+                "value": arop_by_isced,
+                "unit": "%",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/soziales/armut-und-soziale-eingliederung",
+                "dataset_id": "OGD_armsilc01_hvd_ogdonly_HVD_ARM_1",
+            })
+
+    # --- Regional (Bundesland) ---
+    if want_regional:
+        arop_by_bl = yr.get("arop_by_bl", {})
+        if arop_by_bl:
+            sorted_bl = sorted(arop_by_bl.items(), key=lambda x: x[1], reverse=True)
+            bl_parts = [f"{name}: {rate:.1f}%" for name, rate in sorted_bl]
+            results.append({
+                "title": f"Armutsgefährdung nach Bundesland AT {latest_year}: " + " | ".join(bl_parts),
+                "indicator": "Armutsgefährdungsquote nach Bundesland (EU-SILC)",
+                "year": str(latest_year),
+                "value": arop_by_bl,
+                "unit": "%",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/soziales/armut-und-soziale-eingliederung",
+                "dataset_id": "OGD_armsilc01_hvd_ogdonly_HVD_ARM_1",
             })
 
     return results
