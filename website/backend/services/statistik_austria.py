@@ -244,6 +244,31 @@ ALQUO_BUNDESLAND_YOUTH_CODES = {
     "AKEQUOT_AL-72": "Vorarlberg",
 }
 
+# NUTS 2 × Geschlecht — männlich (AL-46..54) und weiblich (AL-55..63)
+ALQUO_BUNDESLAND_MALE_CODES = {
+    "AKEQUOT_AL-46": "Burgenland",
+    "AKEQUOT_AL-47": "Niederösterreich",
+    "AKEQUOT_AL-48": "Wien",
+    "AKEQUOT_AL-49": "Kärnten",
+    "AKEQUOT_AL-50": "Steiermark",
+    "AKEQUOT_AL-51": "Oberösterreich",
+    "AKEQUOT_AL-52": "Salzburg",
+    "AKEQUOT_AL-53": "Tirol",
+    "AKEQUOT_AL-54": "Vorarlberg",
+}
+
+ALQUO_BUNDESLAND_FEMALE_CODES = {
+    "AKEQUOT_AL-55": "Burgenland",
+    "AKEQUOT_AL-56": "Niederösterreich",
+    "AKEQUOT_AL-57": "Wien",
+    "AKEQUOT_AL-58": "Kärnten",
+    "AKEQUOT_AL-59": "Steiermark",
+    "AKEQUOT_AL-60": "Oberösterreich",
+    "AKEQUOT_AL-61": "Salzburg",
+    "AKEQUOT_AL-62": "Tirol",
+    "AKEQUOT_AL-63": "Vorarlberg",
+}
+
 
 def _parse_decimal(value: str) -> float | None:
     """Parse Austrian decimal format (comma as separator)."""
@@ -755,7 +780,9 @@ async def fetch_arbeitsmarkt(client: httpx.AsyncClient | None = None) -> dict:
                     "al": None, "al_m": None, "al_f": None,
                     "al_youth": None, "al_lt": None,
                     "et": None, "tz": None,
-                    "al_by_bl": {}, "al_by_bl_youth": {}, "al_by_isced": {},
+                    "al_by_bl": {}, "al_by_bl_youth": {},
+                    "al_by_bl_m": {}, "al_by_bl_f": {},
+                    "al_by_isced": {},
                 }
 
             yr = yearly[year]
@@ -780,6 +807,14 @@ async def fetch_arbeitsmarkt(client: httpx.AsyncClient | None = None) -> dict:
             if al_code in ALQUO_BUNDESLAND_YOUTH_CODES and al_val is not None:
                 bl_name = ALQUO_BUNDESLAND_YOUTH_CODES[al_code]
                 yr["al_by_bl_youth"][bl_name] = al_val
+
+            # By Bundesland × Geschlecht
+            if al_code in ALQUO_BUNDESLAND_MALE_CODES and al_val is not None:
+                bl_name = ALQUO_BUNDESLAND_MALE_CODES[al_code]
+                yr["al_by_bl_m"][bl_name] = al_val
+            if al_code in ALQUO_BUNDESLAND_FEMALE_CODES and al_val is not None:
+                bl_name = ALQUO_BUNDESLAND_FEMALE_CODES[al_code]
+                yr["al_by_bl_f"][bl_name] = al_val
 
             # By ISCED (education level)
             isced_map = {
@@ -1627,6 +1662,29 @@ async def _search_arbeitsmarkt(search_text: str) -> list[dict]:
                 "url": "https://www.statistik.at/statistiken/arbeitsmarkt/arbeitslosigkeit",
                 "dataset_id": "OGD_ake100_hvd_ogdonly_HVD_ALQUO_1",
             })
+
+        # Gender × Bundesland (z.B. "Frauen in Wien öfter arbeitslos")
+        al_by_bl_m = yr_latest.get("al_by_bl_m", {})
+        al_by_bl_f = yr_latest.get("al_by_bl_f", {})
+        if al_by_bl_m and al_by_bl_f:
+            all_bl = sorted(set(al_by_bl_m) | set(al_by_bl_f))
+            bl_parts = []
+            for bl in sorted(all_bl):
+                m_val = al_by_bl_m.get(bl)
+                f_val = al_by_bl_f.get(bl)
+                if m_val is not None and f_val is not None:
+                    bl_parts.append(f"{bl}: M {m_val:.1f}% / F {f_val:.1f}%")
+            if bl_parts:
+                results.append({
+                    "title": f"Arbeitslosenquote nach Bundesland & Geschlecht AT {latest_year}: " + " | ".join(bl_parts),
+                    "indicator": "Arbeitslosenquote nach Bundesland und Geschlecht (ILO)",
+                    "year": str(latest_year),
+                    "value": {"männlich": al_by_bl_m, "weiblich": al_by_bl_f},
+                    "unit": "%",
+                    "source": "Statistik Austria",
+                    "url": "https://www.statistik.at/statistiken/arbeitsmarkt/arbeitslosigkeit",
+                    "dataset_id": "OGD_ake100_hvd_ogdonly_HVD_ALQUO_1",
+                })
 
     # --- Regional breakdown (Bundesland) ---
     if want_regional:
