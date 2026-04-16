@@ -1,10 +1,12 @@
 """Statistik Austria Open Government Data — österreichische amtliche Statistiken.
 
-Integriert vier Datasets:
+Integriert sechs Datasets:
 1. VPI (Verbraucherpreisindex) — monatliche Inflationsdaten (Basis 2020=100)
 2. Gesundheitsausgaben — jährliche Ausgaben nach Leistungsart und Finanzierung (SHA)
 3. Sterblichkeit nach Kalenderwoche — wöchentliche Sterbefälle seit 2000 (für Übersterblichkeit)
 4. VGR (Volkswirtschaftliche Gesamtrechnung) — jährliche BIP-Daten + 47 Aggregate (ESA 2010)
+5. Bevölkerungsbewegung — int. Zu-/Abwanderung nach Bundesland (1961–2024, nur Ist-Daten)
+6. Einbürgerungen — jährliche Einbürgerungen nach Geburtsland und Alter (1981–2025)
 
 Datenquelle: https://data.statistik.gv.at
 Lizenz: CC BY 4.0
@@ -26,6 +28,8 @@ VPI_CSV_URL = "https://data.statistik.gv.at/data/OGD_vpi20c18_VPI_2020COICOP18_1
 HEALTH_EXP_CSV_URL = "https://data.statistik.gv.at/data/OGD_gesausgaben01_HVD_HCHF_1.csv"
 MORTALITY_CSV_URL = "https://data.statistik.gv.at/data/OGD_gest_kalwo_GEST_KALWOCHE_100.csv"
 VGR_CSV_URL = "https://data.statistik.gv.at/data/OGD_vgr101_VGRJahresR_3.csv"
+MIGRATION_CSV_URL = "https://data.statistik.gv.at/data/OGD_bevbewegung_BEV_BEW_3.csv"
+NATURALIZATIONS_CSV_URL = "https://data.statistik.gv.at/data/OGD_einbuergerungen_EINBJ_1.csv"
 
 # --- Cache ---
 STAT_AT_CACHE_TTL = 86400  # 24h — VPI updates monthly, health expenditure annually
@@ -41,6 +45,12 @@ _mortality_cache_time: float = 0.0
 
 _vgr_cache: list[dict] | None = None
 _vgr_cache_time: float = 0.0
+
+_migration_cache: dict | None = None  # {year: {immigration, emigration, net, births, deaths}}
+_migration_cache_time: float = 0.0
+
+_naturalizations_cache: dict | None = None  # {year: total}
+_naturalizations_cache_time: float = 0.0
 
 # --- COICOP category labels (main groups only) ---
 COICOP_LABELS = {
@@ -169,6 +179,23 @@ VGR_INDICATOR_KEYWORDS: dict[str, list[str]] = {
     "ESVG2010-45": ["finanzierungssaldo", "budget deficit", "budgetdefizit",
                      "staatsdefizit", "fiscal balance", "haushaltssaldo",
                      "staatsverschuldung", "government debt"],
+}
+
+
+# --- Migration movement type codes ---
+BEWART_CODES = {
+    "BEWART-1": "births",
+    "BEWART-2": "deaths",
+    "BEWART-3": "immigration",     # Internationale Zuwanderung
+    "BEWART-4": "emigration",      # Internationale Abwanderung
+    "BEWART-5": "internal_in",     # Binnenzuwanderung
+    "BEWART-6": "internal_out",    # Binnenabwanderung
+}
+
+BUNDESLAND_LABELS = {
+    "B00-1": "Burgenland", "B00-2": "Kärnten", "B00-3": "Niederösterreich",
+    "B00-4": "Oberösterreich", "B00-5": "Salzburg", "B00-6": "Steiermark",
+    "B00-7": "Tirol", "B00-8": "Vorarlberg", "B00-9": "Wien",
 }
 
 
@@ -445,6 +472,176 @@ async def fetch_vgr(client: httpx.AsyncClient | None = None) -> list[dict]:
             await client.aclose()
 
 
+async def fetch_migration(client: httpx.AsyncClient | None = None) -> dict:
+    """Download and parse Bevölkerungsbewegung CSV.
+
+    Aggregates international migration flows to yearly Austria totals.
+    Raw CSV: ~79K rows (120 years × 10 states × 6 types × 11 scenarios).
+    We only use scenario V1 (Hauptszenario) and sum all states.
+    Returns: {year: {immigration, emigration, net, births, deaths, by_state: {state: {immigration, emigration}}}}
+    """
+    import time
+    global _migration_cache, _migration_cache_time
+
+    now = time.time()
+    if _migration_cache is not None and (now - _migration_cache_time) < STAT_AT_CACHE_TTL:
+        return _migration_cache
+
+    close_client = False
+    if client is None:
+        client = httpx.AsyncClient(timeout=60.0)
+        close_client = True
+
+    try:
+        resp = await client.get(MIGRATION_CSV_URL, timeout=60.0)
+        resp.raise_for_status()
+        text = resp.text
+
+        reader = csv.DictReader(io.StringIO(text), delimiter=";")
+        yearly: dict[int, dict] = {}
+
+        for row in reader:
+            year_code = row.get("C-A10-0", "")
+            state_code = row.get("C-B00-0", "")
+            bewart_code = row.get("C-BEWART-0", "")
+
+            # Parse year
+            if not year_code.startswith("A10-"):
+                continue
+            try:
+                year = int(year_code[4:])
+            except ValueError:
+                continue
+
+            # Skip non-classifiable state
+            if state_code == "B00-0":
+                continue
+
+            # Use only Hauptszenario (F-S25V1)
+            count_str = row.get("F-S25V1", "")
+            count = int(count_str) if count_str.strip() else 0
+
+            # Detect projection years: V1 != V2 means projection
+            v2_str = row.get("F-S25V2", "")
+            v2 = int(v2_str) if v2_str.strip() else 0
+            is_projection = (count != v2)
+
+            # Skip projection years entirely — only use actual data
+            if is_projection:
+                continue
+
+            bewart = BEWART_CODES.get(bewart_code)
+            if not bewart:
+                continue
+
+            if year not in yearly:
+                yearly[year] = {
+                    "immigration": 0, "emigration": 0, "net": 0,
+                    "births": 0, "deaths": 0,
+                    "by_state": {},
+                }
+
+            yr = yearly[year]
+
+            if bewart == "immigration":
+                yr["immigration"] += count
+                # Track by state
+                state_name = BUNDESLAND_LABELS.get(state_code, state_code)
+                if state_name not in yr["by_state"]:
+                    yr["by_state"][state_name] = {"immigration": 0, "emigration": 0}
+                yr["by_state"][state_name]["immigration"] += count
+            elif bewart == "emigration":
+                yr["emigration"] += count
+                state_name = BUNDESLAND_LABELS.get(state_code, state_code)
+                if state_name not in yr["by_state"]:
+                    yr["by_state"][state_name] = {"immigration": 0, "emigration": 0}
+                yr["by_state"][state_name]["emigration"] += count
+            elif bewart == "births":
+                yr["births"] += count
+            elif bewart == "deaths":
+                yr["deaths"] += count
+
+        # Calculate net migration for each year
+        for year, yr in yearly.items():
+            yr["net"] = yr["immigration"] - yr["emigration"]
+
+        _migration_cache = yearly
+        _migration_cache_time = now
+        years = sorted(yearly.keys())
+        logger.info(f"Statistik Austria Migration: {len(yearly)} Jahre geladen ({years[0] if years else '?'}–{years[-1] if years else '?'})")
+        return yearly
+
+    except Exception as e:
+        logger.warning(f"Statistik Austria migration download failed: {e}")
+        return _migration_cache or {}
+    finally:
+        if close_client:
+            await client.aclose()
+
+
+async def fetch_naturalizations(client: httpx.AsyncClient | None = None) -> dict:
+    """Download and parse Einbürgerungen CSV.
+
+    Aggregates to yearly totals (+ by birth country: AT/foreign).
+    Returns: {year: {total, born_austria, born_foreign}}
+    """
+    import time
+    global _naturalizations_cache, _naturalizations_cache_time
+
+    now = time.time()
+    if _naturalizations_cache is not None and (now - _naturalizations_cache_time) < STAT_AT_CACHE_TTL:
+        return _naturalizations_cache
+
+    close_client = False
+    if client is None:
+        client = httpx.AsyncClient(timeout=30.0)
+        close_client = True
+
+    try:
+        resp = await client.get(NATURALIZATIONS_CSV_URL)
+        resp.raise_for_status()
+        text = resp.text
+
+        reader = csv.DictReader(io.StringIO(text), delimiter=";")
+        yearly: dict[int, dict] = {}
+
+        for row in reader:
+            year_code = row.get("C-BERJ-0", "")
+            country_code = row.get("C-GEBLAND_DICHOTOM-0", "")
+            count_str = row.get("F-ANZAHL", "")
+
+            # Parse year from BERJ-YYYY
+            if not year_code.startswith("BERJ-"):
+                continue
+            try:
+                year = int(year_code[5:])
+            except ValueError:
+                continue
+
+            count = int(count_str) if count_str.strip() else 0
+
+            if year not in yearly:
+                yearly[year] = {"total": 0, "born_austria": 0, "born_foreign": 0}
+
+            yearly[year]["total"] += count
+            if country_code == "GEBLAND_DICHOTOM-1":
+                yearly[year]["born_austria"] += count
+            elif country_code == "GEBLAND_DICHOTOM-2":
+                yearly[year]["born_foreign"] += count
+
+        _naturalizations_cache = yearly
+        _naturalizations_cache_time = now
+        logger.info(f"Statistik Austria Einbürgerungen: {len(yearly)} Jahre geladen")
+        return yearly
+
+    except Exception as e:
+        logger.warning(f"Statistik Austria naturalizations download failed: {e}")
+        return _naturalizations_cache or {}
+    finally:
+        if close_client:
+            await client.aclose()
+
+
 # --- Keyword detection ---
 
 VPI_KEYWORDS = [
@@ -472,6 +669,22 @@ MORTALITY_KEYWORDS = [
     "lebenserwartung", "life expectancy",
     "corona tote", "covid tote", "pandemie tote", "pandemic deaths",
     "impftote", "impfung tod", "vaccine deaths",
+]
+
+MIGRATION_KEYWORDS = [
+    "zuwanderung", "abwanderung", "einwanderung", "auswanderung",
+    "migration", "immigration", "emigration", "migranten", "migrants",
+    "zuwanderer", "einwanderer", "bevölkerungsbewegung",
+    "wanderung", "wanderungssaldo", "nettozuwanderung",
+    "bevölkerungswachstum", "population growth",
+    "ausländer", "foreigners", "geburten", "births",
+    "geburtenrate", "birth rate", "fertilität",
+]
+
+NATURALIZATION_KEYWORDS = [
+    "einbürgerung", "naturalization", "staatsbürgerschaft",
+    "citizenship", "eingebürgert", "naturalized",
+    "pass", "passport", "staatsangehörigkeit",
 ]
 
 VGR_KEYWORDS = [
@@ -585,6 +798,16 @@ async def search_statistik_austria(analysis: dict) -> dict:
         vgr_results = await _search_vgr(search_text)
         results.extend(vgr_results)
 
+    # Migration / population movement data
+    if _match_keywords(search_text, MIGRATION_KEYWORDS):
+        migration_results = await _search_migration(search_text)
+        results.extend(migration_results)
+
+    # Naturalization data
+    if _match_keywords(search_text, NATURALIZATION_KEYWORDS):
+        nat_results = await _search_naturalizations(search_text)
+        results.extend(nat_results)
+
     # Add context caveat if we have results
     if results:
         results.append({
@@ -608,7 +831,12 @@ async def search_statistik_austria(analysis: dict) -> dict:
                 "dafür sind spezifische Studien nötig. "
                 "(5) Das BIP misst Wirtschaftsleistung, nicht Wohlstand — es erfasst "
                 "weder Einkommensverteilung noch unbezahlte Arbeit oder Umweltkosten. "
-                "Nominelle Werte sind inflationsbereinigt (Volumenindex) vergleichbarer."
+                "Nominelle Werte sind inflationsbereinigt (Volumenindex) vergleichbarer. "
+                "(6) Migrationsdaten zeigen internationale Zu-/Abwanderung, NICHT Asyl "
+                "oder Aufenthaltstitel — dafür sind BMI-Daten nötig. "
+                "Nettomigration = Zuwanderung minus Abwanderung. "
+                "(7) Einbürgerungen ≠ Zuwanderung — viele Eingebürgerte leben seit "
+                "Jahren in Österreich."
             ),
         })
 
@@ -936,5 +1164,138 @@ async def _search_vgr(search_text: str) -> list[dict]:
                 "url": "https://www.statistik.at/statistiken/volkswirtschaft-und-oeffentliche-finanzen/volkswirtschaftliche-gesamtrechnungen",
                 "dataset_id": "OGD_vgr101_VGRJahresR_3",
             })
+
+    return results
+
+
+async def _search_migration(search_text: str) -> list[dict]:
+    """Search migration data for immigration/emigration flows."""
+    data = await fetch_migration()
+    if not data:
+        return []
+
+    results = []
+    current_year = datetime.now().year
+
+    # Extract mentioned years and determine range
+    mentioned_years = _extract_years_from_text(search_text)
+
+    # Get recent years (up to current year, skip future projections)
+    all_years = sorted(
+        (y for y in data.keys() if y <= current_year),
+        reverse=True,
+    )
+    latest_5 = all_years[:5]
+    extra_years = [y for y in mentioned_years if y not in latest_5 and y in data]
+    target_years = sorted(set(latest_5) | set(extra_years), reverse=True)
+
+    for year in target_years:
+        yr = data[year]
+        imm = yr["immigration"]
+        emi = yr["emigration"]
+        net = yr["net"]
+
+        if imm == 0 and emi == 0:
+            continue
+
+        sign = "+" if net > 0 else ""
+        parts = [
+            f"Zuwanderung: {imm:,}",
+            f"Abwanderung: {emi:,}",
+            f"Saldo: {sign}{net:,}",
+        ]
+
+        # Top 3 states by immigration
+        by_state = yr.get("by_state", {})
+        if by_state:
+            top_states = sorted(
+                by_state.items(),
+                key=lambda x: x[1]["immigration"],
+                reverse=True,
+            )[:3]
+            state_strs = [f"{s}: {d['immigration']:,}" for s, d in top_states]
+            parts.append(f"Top: {', '.join(state_strs)}")
+
+        detail = " | ".join(parts)
+
+        results.append({
+            "title": f"Migration AT {year}: {detail}",
+            "indicator": "Internationale Migration",
+            "year": str(year),
+            "immigration": imm,
+            "emigration": emi,
+            "net_migration": net,
+            "unit": "Personen",
+            "source": "Statistik Austria",
+            "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/wanderungen",
+            "dataset_id": "OGD_bevbewegung_BEV_BEW_3",
+        })
+
+    # Add births/deaths context for recent year if available
+    if all_years:
+        latest = all_years[0]
+        yr = data[latest]
+        if yr["births"] > 0 or yr["deaths"] > 0:
+            nat_change = yr["births"] - yr["deaths"]
+            sign = "+" if nat_change > 0 else ""
+            results.append({
+                "title": f"Natürliche Bevölkerungsbewegung AT {latest}: Geburten {yr['births']:,} | Sterbefälle {yr['deaths']:,} | Saldo: {sign}{nat_change:,}",
+                "indicator": "Natürliche Bevölkerungsbewegung",
+                "year": str(latest),
+                "value": nat_change,
+                "unit": "Personen",
+                "source": "Statistik Austria",
+                "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/wanderungen",
+                "dataset_id": "OGD_bevbewegung_BEV_BEW_3",
+            })
+
+    return results
+
+
+async def _search_naturalizations(search_text: str) -> list[dict]:
+    """Search naturalization data."""
+    data = await fetch_naturalizations()
+    if not data:
+        return []
+
+    results = []
+
+    # Extract mentioned years
+    mentioned_years = _extract_years_from_text(search_text)
+
+    all_years = sorted(data.keys(), reverse=True)
+    latest_5 = all_years[:5]
+    extra_years = [y for y in mentioned_years if y not in latest_5 and y in data]
+    target_years = sorted(set(latest_5) | set(extra_years), reverse=True)
+
+    for year in target_years:
+        yr = data[year]
+        total = yr["total"]
+        born_at = yr["born_austria"]
+        born_foreign = yr["born_foreign"]
+
+        if total == 0:
+            continue
+
+        foreign_pct = (born_foreign / total * 100) if total > 0 else 0
+
+        parts = [f"Gesamt: {total:,}"]
+        if born_foreign > 0:
+            parts.append(f"im Ausland geboren: {born_foreign:,} ({foreign_pct:.0f}%)")
+        if born_at > 0:
+            parts.append(f"in AT geboren: {born_at:,}")
+
+        detail = " | ".join(parts)
+
+        results.append({
+            "title": f"Einbürgerungen AT {year}: {detail}",
+            "indicator": "Einbürgerungen",
+            "year": str(year),
+            "value": total,
+            "unit": "Personen",
+            "source": "Statistik Austria",
+            "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/einbuergerungen",
+            "dataset_id": "OGD_einbuergerungen_EINBJ_1",
+        })
 
     return results

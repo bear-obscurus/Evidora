@@ -30,7 +30,7 @@ Evidora automatically verifies claims against scientific and institutional sourc
 - **PDF export** — Save fact-check results as PDF
 - **Share button** — Copy result link to clipboard (with fallback for HTTP/older browsers)
 - **Claim writing tips** — Built-in guidance for formulating precise, checkable claims
-- **Statistik Austria OGD** — Austrian official statistics: consumer price index (VPI), health expenditure (SHA), and mortality by calendar week with excess mortality calculation
+- **Statistik Austria OGD** — Austrian official statistics: consumer price index (VPI), health expenditure (SHA), mortality with excess mortality, GDP/national accounts (47 ESA 2010 indicators), international migration by state, and naturalizations
 - **Background data updates** — Static datasets (PISA, OWID COVID, Statistik Austria) are automatically refreshed
 
 ## Prerequisites
@@ -150,7 +150,7 @@ docker compose down
 | Semantic Scholar | AI-powered paper search (200M+) | TLDR summaries, citation-based influence scoring | ✅ Active |
 | ClinicalTrials.gov | Clinical trial registry (500K+) | Drug efficacy, treatment comparisons, vaccine trials | ✅ Active |
 | EUvsDisinfo | Disinformation database (14.5K cases + RSS) | Pro-Kremlin disinformation cases (EU East StratCom) | ✅ Active |
-| Statistik Austria | Austrian official statistics (OGD) | VPI/inflation (27K data points), health expenditure (SHA), mortality/excess mortality | ✅ Active |
+| Statistik Austria | Austrian official statistics (OGD) | VPI/inflation, health expenditure (SHA), mortality, GDP (47 indicators), migration, naturalizations | ✅ Active |
 | Google Fact Check API | ClaimReview markup | European fact-checkers (EFCSN) | ✅ Active |
 
 ## Security
