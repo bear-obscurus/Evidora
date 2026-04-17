@@ -70,7 +70,7 @@ COUNTRY_ALIASES = {
     "norwegen": "NOR", "norway": "NOR",
     "schweiz": "CHE", "switzerland": "CHE",
     "türkei": "TUR", "türkiye": "TUR",
-    "vereinigtes königreich": "GBR", "united kingdom": "GBR", "uk": "GBR",
+    "vereinigtes königreich": "GBR", "united kingdom": "GBR",
     "usa": "USA", "vereinigte staaten": "USA", "united states": "USA",
     "japan": "JPN",
     "singapur": "SGP", "singapore": "SGP",

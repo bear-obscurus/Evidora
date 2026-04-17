@@ -91,7 +91,7 @@ COUNTRY_MAP = {
     "estland": "EST", "estonia": "EST",
     "lettland": "LVA", "latvia": "LVA",
     "litauen": "LTU", "lithuania": "LTU",
-    "vereinigtes königreich": "GBR", "united kingdom": "GBR", "uk": "GBR", "großbritannien": "GBR",
+    "vereinigtes königreich": "GBR", "united kingdom": "GBR", "großbritannien": "GBR",
     "türkei": "TUR", "turkey": "TUR", "türkiye": "TUR",
     "serbien": "SRB", "serbia": "SRB",
     "ukraine": "UKR",
