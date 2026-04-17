@@ -7,6 +7,9 @@ Managed sources:
 - EUvsDisinfo RSS feed + embeddings (1h refresh)
 - DataCommons ClaimReview index (24h refresh)
 - Statistik Austria VPI + Gesundheitsausgaben + Sterblichkeit + VGR + Arbeitsmarkt (24h refresh)
+- V-Dem democracy indices (24h refresh)
+- Transparency International CPI (24h refresh)
+- RSF Press Freedom Index (24h refresh)
 
 Note: EUvsDisinfo case database (14.5K cases) is a static JSON file
 shipped with the application — no download or refresh needed.
@@ -23,6 +26,9 @@ from services.gadmo import prefetch_feeds, FEED_CACHE_TTL
 from services.euvsdisinfo import prefetch_feed as prefetch_euvsdisinfo
 from services.datacommons import update_index as update_datacommons
 from services.statistik_austria import fetch_vpi, fetch_health_expenditure, fetch_mortality, fetch_vgr, fetch_migration, fetch_naturalizations, fetch_arbeitsmarkt, fetch_armut
+from services.vdem import fetch_vdem
+from services.transparency import fetch_cpi
+from services.rsf import fetch_rsf
 
 logger = logging.getLogger("evidora")
 
@@ -46,13 +52,17 @@ async def prefetch_all():
             fetch_naturalizations(client),
             fetch_arbeitsmarkt(client),
             fetch_armut(client),
+            fetch_vdem(client),
+            fetch_cpi(client),
+            fetch_rsf(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "NASA GISS", "GADMO Feeds", "EUvsDisinfo RSS", "DataCommons",
                  "Statistik Austria VPI", "Statistik Austria Gesundheitsausgaben",
                  "Statistik Austria Sterblichkeit", "Statistik Austria VGR",
                  "Statistik Austria Migration", "Statistik Austria Einbürgerungen",
-                 "Statistik Austria Arbeitsmarkt", "Statistik Austria EU-SILC"]
+                 "Statistik Austria Arbeitsmarkt", "Statistik Austria EU-SILC",
+                 "V-Dem", "Transparency International CPI", "RSF Press Freedom"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")

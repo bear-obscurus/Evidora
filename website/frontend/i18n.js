@@ -122,6 +122,9 @@ const TRANSLATIONS = {
                 <li><a href="https://data.worldbank.org/" target="_blank" rel="noopener">World Bank</a> — Weltbank Open Data</li>
                 <li><a href="https://ourworldindata.org/" target="_blank" rel="noopener">OWID</a> — Our World in Data</li>
                 <li><a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria</a> — Österreichische amtliche Statistiken (OGD)</li>
+                <li><a href="https://v-dem.net/" target="_blank" rel="noopener">V-Dem</a> — Varieties of Democracy (Universität Göteborg)</li>
+                <li><a href="https://www.transparency.org/en/cpi" target="_blank" rel="noopener">Transparency International</a> — Corruption Perceptions Index</li>
+                <li><a href="https://rsf.org/en/index" target="_blank" rel="noopener">Reporter ohne Grenzen (RSF)</a> — World Press Freedom Index</li>
             </ul>
             <h3>Faktencheck-Netzwerke</h3>
             <ul>
@@ -379,6 +382,9 @@ const TRANSLATIONS = {
                 <li><a href="https://data.worldbank.org/" target="_blank" rel="noopener">World Bank</a> — World Bank Open Data</li>
                 <li><a href="https://ourworldindata.org/" target="_blank" rel="noopener">OWID</a> — Our World in Data</li>
                 <li><a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria</a> — Austrian official statistics (OGD)</li>
+                <li><a href="https://v-dem.net/" target="_blank" rel="noopener">V-Dem</a> — Varieties of Democracy (University of Gothenburg)</li>
+                <li><a href="https://www.transparency.org/en/cpi" target="_blank" rel="noopener">Transparency International</a> — Corruption Perceptions Index</li>
+                <li><a href="https://rsf.org/en/index" target="_blank" rel="noopener">Reporters Without Borders (RSF)</a> — World Press Freedom Index</li>
             </ul>
             <h3>Fact-Checking Networks</h3>
             <ul>

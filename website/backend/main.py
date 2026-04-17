@@ -35,6 +35,9 @@ from services.clinicaltrials import search_clinicaltrials
 from services.semantic_scholar import search_semantic_scholar
 from services.energy_safety import search_energy_safety, _is_energy_safety_claim
 from services.statistik_austria import search_statistik_austria, _is_austria_context, _match_keywords, VPI_KEYWORDS, HEALTH_EXP_KEYWORDS, MORTALITY_KEYWORDS, VGR_KEYWORDS, MIGRATION_KEYWORDS, NATURALIZATION_KEYWORDS, ARBEITSMARKT_KEYWORDS, ARMUT_KEYWORDS
+from services.vdem import search_vdem, _claim_mentions_vdem
+from services.transparency import search_transparency, _claim_mentions_cpi
+from services.rsf import search_rsf, _claim_mentions_rsf
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -244,6 +247,18 @@ async def check_claim(request: Request):
         ):
             tasks.append(cached("StatistikAustria", search_statistik_austria, analysis))
             queried_names.append("Statistik Austria")
+        # V-Dem: Demokratie-Qualität (liberal, elektoral, partizipativ)
+        if _claim_mentions_vdem(claim):
+            tasks.append(cached("V-Dem", search_vdem, analysis))
+            queried_names.append("V-Dem")
+        # Transparency International: Corruption Perception Index
+        if _claim_mentions_cpi(claim):
+            tasks.append(cached("Transparency", search_transparency, analysis))
+            queried_names.append("Transparency International")
+        # RSF: Pressefreiheits-Index
+        if _claim_mentions_rsf(claim):
+            tasks.append(cached("RSF", search_rsf, analysis))
+            queried_names.append("Reporter ohne Grenzen (RSF)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
