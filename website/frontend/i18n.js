@@ -125,6 +125,7 @@ const TRANSLATIONS = {
                 <li><a href="https://v-dem.net/" target="_blank" rel="noopener">V-Dem</a> — Varieties of Democracy (Universität Göteborg)</li>
                 <li><a href="https://www.transparency.org/en/cpi" target="_blank" rel="noopener">Transparency International</a> — Corruption Perceptions Index</li>
                 <li><a href="https://rsf.org/en/index" target="_blank" rel="noopener">Reporter ohne Grenzen (RSF)</a> — World Press Freedom Index</li>
+                <li><a href="https://www.sipri.org/databases/milex" target="_blank" rel="noopener">SIPRI</a> — Military Expenditure Database</li>
             </ul>
             <h3>Faktencheck-Netzwerke</h3>
             <ul>
@@ -385,6 +386,7 @@ const TRANSLATIONS = {
                 <li><a href="https://v-dem.net/" target="_blank" rel="noopener">V-Dem</a> — Varieties of Democracy (University of Gothenburg)</li>
                 <li><a href="https://www.transparency.org/en/cpi" target="_blank" rel="noopener">Transparency International</a> — Corruption Perceptions Index</li>
                 <li><a href="https://rsf.org/en/index" target="_blank" rel="noopener">Reporters Without Borders (RSF)</a> — World Press Freedom Index</li>
+                <li><a href="https://www.sipri.org/databases/milex" target="_blank" rel="noopener">SIPRI</a> — Military Expenditure Database</li>
             </ul>
             <h3>Fact-Checking Networks</h3>
             <ul>

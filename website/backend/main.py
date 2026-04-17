@@ -38,6 +38,7 @@ from services.statistik_austria import search_statistik_austria, _is_austria_con
 from services.vdem import search_vdem, _claim_mentions_vdem
 from services.transparency import search_transparency, _claim_mentions_cpi
 from services.rsf import search_rsf, _claim_mentions_rsf
+from services.sipri import search_sipri, _claim_mentions_sipri
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -259,6 +260,10 @@ async def check_claim(request: Request):
         if _claim_mentions_rsf(claim):
             tasks.append(cached("RSF", search_rsf, analysis))
             queried_names.append("Reporter ohne Grenzen (RSF)")
+        # SIPRI: Militärausgaben (absolut, % BIP, % Staatsausgaben)
+        if _claim_mentions_sipri(claim):
+            tasks.append(cached("SIPRI", search_sipri, analysis))
+            queried_names.append("SIPRI")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
