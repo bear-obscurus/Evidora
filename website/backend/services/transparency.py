@@ -44,6 +44,27 @@ CPI_KEYWORDS = [
     "integrität", "integrity",
 ]
 
+# EU-27 Mitgliedsstaaten (ISO3) — für Durchschnitts- und Ranking-Kontext,
+# wenn der Claim auf den EU-Schnitt verweist.
+EU27_MEMBERS = frozenset({
+    "AUT", "BEL", "BGR", "HRV", "CYP", "CZE", "DNK", "EST", "FIN", "FRA",
+    "DEU", "GRC", "HUN", "IRL", "ITA", "LVA", "LTU", "LUX", "MLT", "NLD",
+    "POL", "PRT", "ROU", "SVK", "SVN", "ESP", "SWE",
+})
+
+# Trigger-Keywords für EU-Kohorten-Vergleich (löst EU-27-Durchschnitt aus)
+EU_COMPARISON_TRIGGERS = [
+    "eu-durchschnitt", "eu durchschnitt", "eu-schnitt", "eu schnitt",
+    "eu-mittel", "eu mittel", "eu-mittelwert", "eu mittelwert",
+    "europa-durchschnitt", "europa durchschnitt",
+    "europa-schnitt", "europa schnitt",
+    "eu average", "european average", "europe average",
+    "average of the eu", "eu mean",
+    "eu-länder", "eu länder", "eu-staaten", "eu staaten",
+    "mitgliedsstaaten", "mitgliedsländer",
+    "member states", "eu member",
+]
+
 # Kleinere Country-Map (wir setzen auf die gleiche ISO3-Logik wie V-Dem)
 COUNTRY_MAP = {
     "österreich": "AUT", "austria": "AUT",
@@ -156,6 +177,73 @@ def _claim_mentions_cpi(claim: str) -> bool:
     return any(kw in claim_lower for kw in CPI_KEYWORDS)
 
 
+def _claim_wants_eu_cohort(claim: str) -> bool:
+    """Detect comparative references to the EU as a whole (avg, ranking)."""
+    cl = claim.lower()
+    return any(t in cl for t in EU_COMPARISON_TRIGGERS)
+
+
+def _compute_eu_cohort(data: dict) -> dict | None:
+    """Compute EU-27 CPI mean, median and per-country ranking for the most
+    recent year with good coverage (>=25 of 27 members).
+
+    Returns ``None`` if the cache has too few EU-27 data points.
+    """
+    # Year coverage histogram across EU-27
+    year_coverage: dict[int, int] = {}
+    for code in EU27_MEMBERS:
+        for y in data.get(code, {}).keys():
+            year_coverage[y] = year_coverage.get(y, 0) + 1
+
+    if not year_coverage:
+        return None
+
+    # Prefer the latest year with >=25 of 27 members; else the year with
+    # the best coverage (fall back to latest with any data).
+    eligible = [y for y, cov in year_coverage.items() if cov >= 25]
+    if eligible:
+        eu_year = max(eligible)
+    else:
+        eu_year = max(year_coverage, key=lambda y: (year_coverage[y], y))
+
+    pairs: list[tuple[str, float]] = []
+    for code in EU27_MEMBERS:
+        cdata = data.get(code, {})
+        entry = cdata.get(eu_year)
+        if entry is None:
+            continue
+        score = entry.get("score")
+        if score is None:
+            continue
+        pairs.append((code, float(score)))
+
+    if len(pairs) < 10:
+        return None
+
+    scores = [s for _, s in pairs]
+    mean = sum(scores) / len(scores)
+    ordered = sorted(scores)
+    mid = len(ordered) // 2
+    if len(ordered) % 2 == 0:
+        median = (ordered[mid - 1] + ordered[mid]) / 2
+    else:
+        median = ordered[mid]
+
+    # Rank descending (higher CPI = better = rank 1)
+    by_rank = sorted(pairs, key=lambda p: p[1], reverse=True)
+    rank_map = {code: i + 1 for i, (code, _) in enumerate(by_rank)}
+    score_map = {code: score for code, score in pairs}
+
+    return {
+        "year": eu_year,
+        "mean": mean,
+        "median": median,
+        "n": len(pairs),
+        "rank_map": rank_map,
+        "score_map": score_map,
+    }
+
+
 async def search_transparency(analysis: dict) -> dict:
     """Search CPI cache for corruption scores."""
     if not _claim_mentions_cpi(analysis.get("claim", "")):
@@ -211,6 +299,54 @@ async def search_transparency(analysis: dict) -> dict:
             "display_value": f"{score:.0f}/100",
             "url": "https://www.transparency.org/en/cpi",
         })
+
+    # EU-27-Kohorte anhängen, wenn der Claim auf den EU-Schnitt referenziert
+    if results and _claim_wants_eu_cohort(analysis.get("claim", "")):
+        cohort = _compute_eu_cohort(data)
+        if cohort:
+            # Per-country Einordnung (Rang für EU-Mitglieder, nur Delta für Nicht-Mitglieder)
+            country_notes: list[str] = []
+            for code in countries:
+                target_score = cohort["score_map"].get(code)
+                if target_score is None:
+                    # Ziel-Land hat keine CPI-Daten für das EU-Kohortenjahr
+                    target_data = data.get(code, {}).get(cohort["year"])
+                    if target_data is not None:
+                        target_score = target_data.get("score")
+                if target_score is None:
+                    continue
+                if code in EU27_MEMBERS and code in cohort["rank_map"]:
+                    delta = target_score - cohort["mean"]
+                    if delta > 0.5:
+                        pos = "über"
+                    elif delta < -0.5:
+                        pos = "unter"
+                    else:
+                        pos = "auf"
+                    country_notes.append(
+                        f"{code}: Rang {cohort['rank_map'][code]}/{cohort['n']} "
+                        f"({target_score:.0f}/100, {pos} EU-Ø, Δ {delta:+.1f})"
+                    )
+                else:
+                    delta = target_score - cohort["mean"]
+                    country_notes.append(
+                        f"{code}: {target_score:.0f}/100 (EU-Ø {cohort['mean']:.1f}, Δ {delta:+.1f})"
+                    )
+
+            rank_part = " | " + " | ".join(country_notes) if country_notes else ""
+            results.append({
+                "indicator_name": (
+                    f"EU-27 CPI {cohort['year']}: Ø {cohort['mean']:.1f}/100 "
+                    f"(Median {cohort['median']:.0f}, n={cohort['n']}){rank_part}"
+                ),
+                "indicator": "cpi_eu_cohort",
+                "country": "EU-27",
+                "country_name": "European Union (27 members)",
+                "year": str(cohort["year"]),
+                "value": round(cohort["mean"], 1),
+                "display_value": f"Ø {cohort['mean']:.1f}/100",
+                "url": "https://www.transparency.org/en/cpi",
+            })
 
     if results:
         results.append({
