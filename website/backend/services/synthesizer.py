@@ -215,6 +215,67 @@ TIMEOUT_MESSAGES = {
     "en": "The request to the language model took too long. Please try again.",
 }
 
+# Retry-Hinweis, wenn die erste Antwort kein valides JSON war.
+RETRY_HINTS = {
+    "de": (
+        "Deine vorherige Antwort war kein valides JSON. Antworte JETZT "
+        "ausschliesslich mit einem einzigen gueltigen JSON-Objekt: keine "
+        "Kommentare (// oder /* */), keine Trailing-Commas, alle Keys und "
+        "String-Werte in doppelten Anfuehrungszeichen, nichts ausserhalb der "
+        "geschweiften Klammern."
+    ),
+    "en": (
+        "Your previous response was not valid JSON. Respond NOW with a single "
+        "valid JSON object only: no comments (// or /* */), no trailing "
+        "commas, all keys and string values in double quotes, nothing outside "
+        "the curly braces."
+    ),
+}
+
+
+def _try_parse_json(raw: str) -> dict | None:
+    """Parse a JSON string with increasing leniency.
+
+    Handles common LLM mistakes: // and /* */ comments, trailing commas,
+    single-quoted keys. Returns the parsed dict or ``None`` if unrecoverable.
+    """
+    if not raw:
+        return None
+
+    # Step 1: strict parse
+    try:
+        return json.loads(raw, strict=False)
+    except json.JSONDecodeError:
+        pass
+
+    # Step 2: remove // line comments and /* */ block comments, strip trailing
+    # commas before closing braces/brackets.
+    cleaned = re.sub(r"//[^\n]*", "", raw)
+    cleaned = re.sub(r"/\*[\s\S]*?\*/", "", cleaned)
+    cleaned = re.sub(r",(\s*[}\]])", r"\1", cleaned)
+    try:
+        return json.loads(cleaned, strict=False)
+    except json.JSONDecodeError:
+        pass
+
+    # Step 3: convert single-quoted keys ('foo':) to double-quoted ("foo":).
+    # Conservative: only touches quotes immediately before a colon.
+    cleaned2 = re.sub(r"'([^'\\]*(?:\\.[^'\\]*)*)'(\s*:)", r'"\1"\2', cleaned)
+    try:
+        return json.loads(cleaned2, strict=False)
+    except json.JSONDecodeError:
+        return None
+
+
+def _extract_json(content: str) -> dict | None:
+    """Locate the JSON object inside an LLM response and parse it leniently."""
+    if not content:
+        return None
+    match = re.search(r"\{[\s\S]*\}", content)
+    if not match:
+        return None
+    return _try_parse_json(match.group())
+
 
 async def _validate_urls(evidence: list[dict]) -> list[dict]:
     """Check evidence URLs with HEAD requests; remove entries with broken links."""
@@ -377,116 +438,136 @@ async def synthesize_results(
     fallback = dict(FALLBACKS[lang])
 
     try:
-        content = await chat_completion(
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPTS[lang]},
-                {"role": "user", "content": context},
-            ],
-            timeout=180.0,
-        )
+        base_messages = [
+            {"role": "system", "content": SYSTEM_PROMPTS[lang]},
+            {"role": "user", "content": context},
+        ]
+        content = await chat_completion(messages=base_messages, timeout=180.0)
         logger.info(f"Synthesizer responded ({len(content)} chars)")
 
-        json_match = re.search(r"\{[\s\S]*\}", content)
-        if json_match:
-            result = json.loads(json_match.group(), strict=False)
-            for key, default_val in fallback.items():
-                result.setdefault(key, default_val)
+        result = _extract_json(content)
+        last_content = content
 
-            # Filter hallucinated evidence: only keep entries whose URLs
-            # actually appear in the source results we provided
-            real_urls = set()
-            for source_data in source_results:
-                if isinstance(source_data, dict):
-                    for r in source_data.get("results", []):
-                        if r.get("url"):
-                            real_urls.add(r["url"])
+        # Retry once if the first response was unparseable even after cleanup.
+        if result is None:
+            logger.warning(
+                "Synthesizer JSON parse failed on first attempt; retrying with "
+                "stricter prompt. First 500 chars: %r",
+                content[:500] if content else "",
+            )
+            retry_messages = base_messages + [
+                {"role": "assistant", "content": content or ""},
+                {"role": "user", "content": RETRY_HINTS[lang]},
+            ]
+            retry_content = await chat_completion(
+                messages=retry_messages, timeout=180.0
+            )
+            logger.info(
+                f"Synthesizer retry responded ({len(retry_content)} chars)"
+            )
+            last_content = retry_content
+            result = _extract_json(retry_content)
 
-            if result.get("evidence"):
-                if not real_urls:
-                    # No sources returned results → all evidence is hallucinated
-                    logger.warning(f"Filtered all {len(result['evidence'])} evidence entries (no real sources)")
-                    result["evidence"] = []
-                else:
-                    filtered = [e for e in result["evidence"] if e.get("url") in real_urls]
-                    if len(filtered) < len(result["evidence"]):
-                        logger.warning(f"Filtered {len(result['evidence']) - len(filtered)} hallucinated evidence entries")
-                    result["evidence"] = filtered
+        if result is None:
+            logger.error(
+                "Synthesizer JSON parse failed after retry + cleanup. "
+                "Final content (first 500 chars): %r",
+                last_content[:500] if last_content else "",
+            )
+            return fallback
 
-            # Validate evidence URLs — remove broken links (404, timeouts)
-            if result.get("evidence"):
-                result["evidence"] = await _validate_urls(result["evidence"])
+        # Fill any missing keys with fallback defaults.
+        for key, default_val in fallback.items():
+            result.setdefault(key, default_val)
 
-            # No real sources → override verdict and suppress LLM opinion
+        # Filter hallucinated evidence: only keep entries whose URLs
+        # actually appear in the source results we provided
+        real_urls = set()
+        for source_data in source_results:
+            if isinstance(source_data, dict):
+                for r in source_data.get("results", []):
+                    if r.get("url"):
+                        real_urls.add(r["url"])
+
+        if result.get("evidence"):
             if not real_urls:
-                logger.warning("No sources returned results — overriding verdict and suppressing LLM opinion")
-                result["verdict"] = "unverifiable"
-                result["confidence"] = 0.0
-                if lang == "de":
-                    result["summary"] = (
-                        "Keine der angebundenen wissenschaftlichen oder offiziellen Quellen "
-                        "enthält Daten zu dieser Behauptung. Eine quellenbasierte Überprüfung "
-                        "war daher nicht möglich."
-                    )
-                    result["nuance"] = (
-                        "Evidora prüft Behauptungen anhand wissenschaftlicher Datenbanken "
-                        "und offizieller Statistiken. Themen außerhalb dieses Quellenspektrums "
-                        "können nicht bewertet werden."
-                    )
-                else:
-                    result["summary"] = (
-                        "None of the connected scientific or official sources contain data "
-                        "on this claim. A source-based verification was therefore not possible."
-                    )
-                    result["nuance"] = (
-                        "Evidora checks claims against scientific databases and official "
-                        "statistics. Topics outside this source spectrum cannot be assessed."
-                    )
+                # No sources returned results → all evidence is hallucinated
+                logger.warning(f"Filtered all {len(result['evidence'])} evidence entries (no real sources)")
+                result["evidence"] = []
+            else:
+                filtered = [e for e in result["evidence"] if e.get("url") in real_urls]
+                if len(filtered) < len(result["evidence"]):
+                    logger.warning(f"Filtered {len(result['evidence']) - len(filtered)} hallucinated evidence entries")
+                result["evidence"] = filtered
 
-            # Cap confidence for unverifiable verdicts
-            if result.get("verdict") == "unverifiable" and result.get("confidence", 0) > 0.15:
-                logger.warning(
-                    f"Capping confidence from {result['confidence']} to 0.15 for unverifiable verdict"
+        # Validate evidence URLs — remove broken links (404, timeouts)
+        if result.get("evidence"):
+            result["evidence"] = await _validate_urls(result["evidence"])
+
+        # No real sources → override verdict and suppress LLM opinion
+        if not real_urls:
+            logger.warning("No sources returned results — overriding verdict and suppressing LLM opinion")
+            result["verdict"] = "unverifiable"
+            result["confidence"] = 0.0
+            if lang == "de":
+                result["summary"] = (
+                    "Keine der angebundenen wissenschaftlichen oder offiziellen Quellen "
+                    "enthält Daten zu dieser Behauptung. Eine quellenbasierte Überprüfung "
+                    "war daher nicht möglich."
                 )
-                result["confidence"] = 0.15
-
-            # Consistency check: detect when summary text contradicts verdict
-            summary_lower = result.get("summary", "").lower()
-            verdict = result.get("verdict", "")
-            verdict_from_summary = None
-
-            # Check for explicit verdict statements in summary
-            true_patterns = [
-                "behauptung ist daher wahr", "behauptung ist wahr",
-                "behauptung ist korrekt", "behauptung ist richtig",
-                "claim is true", "claim is correct", "therefore true",
-            ]
-            false_patterns = [
-                "behauptung ist daher falsch", "behauptung ist falsch",
-                "behauptung ist nicht korrekt", "behauptung ist nicht richtig",
-                "claim is false", "claim is incorrect", "therefore false",
-            ]
-
-            if any(p in summary_lower for p in true_patterns):
-                verdict_from_summary = "true"
-            elif any(p in summary_lower for p in false_patterns):
-                verdict_from_summary = "false"
-
-            if verdict_from_summary and verdict_from_summary != verdict:
-                logger.warning(
-                    f"Verdict consistency fix: JSON verdict='{verdict}' "
-                    f"contradicts summary (detected '{verdict_from_summary}'). "
-                    f"Correcting to '{verdict_from_summary}'."
+                result["nuance"] = (
+                    "Evidora prüft Behauptungen anhand wissenschaftlicher Datenbanken "
+                    "und offizieller Statistiken. Themen außerhalb dieses Quellenspektrums "
+                    "können nicht bewertet werden."
                 )
-                result["verdict"] = verdict_from_summary
+            else:
+                result["summary"] = (
+                    "None of the connected scientific or official sources contain data "
+                    "on this claim. A source-based verification was therefore not possible."
+                )
+                result["nuance"] = (
+                    "Evidora checks claims against scientific databases and official "
+                    "statistics. Topics outside this source spectrum cannot be assessed."
+                )
 
-            return result
+        # Cap confidence for unverifiable verdicts
+        if result.get("verdict") == "unverifiable" and result.get("confidence", 0) > 0.15:
+            logger.warning(
+                f"Capping confidence from {result['confidence']} to 0.15 for unverifiable verdict"
+            )
+            result["confidence"] = 0.15
 
-        logger.warning("Synthesizer returned non-JSON response")
-        fallback["summary"] = content[:300] if content else fallback["summary"]
-        return fallback
-    except json.JSONDecodeError as e:
-        logger.error(f"JSON parse error in synthesizer: {e}")
-        return fallback
+        # Consistency check: detect when summary text contradicts verdict
+        summary_lower = result.get("summary", "").lower()
+        verdict = result.get("verdict", "")
+        verdict_from_summary = None
+
+        # Check for explicit verdict statements in summary
+        true_patterns = [
+            "behauptung ist daher wahr", "behauptung ist wahr",
+            "behauptung ist korrekt", "behauptung ist richtig",
+            "claim is true", "claim is correct", "therefore true",
+        ]
+        false_patterns = [
+            "behauptung ist daher falsch", "behauptung ist falsch",
+            "behauptung ist nicht korrekt", "behauptung ist nicht richtig",
+            "claim is false", "claim is incorrect", "therefore false",
+        ]
+
+        if any(p in summary_lower for p in true_patterns):
+            verdict_from_summary = "true"
+        elif any(p in summary_lower for p in false_patterns):
+            verdict_from_summary = "false"
+
+        if verdict_from_summary and verdict_from_summary != verdict:
+            logger.warning(
+                f"Verdict consistency fix: JSON verdict='{verdict}' "
+                f"contradicts summary (detected '{verdict_from_summary}'). "
+                f"Correcting to '{verdict_from_summary}'."
+            )
+            result["verdict"] = verdict_from_summary
+
+        return result
     except httpx.TimeoutException:
         logger.error("Synthesizer timed out (180s)")
         fallback["summary"] = TIMEOUT_MESSAGES[lang]
