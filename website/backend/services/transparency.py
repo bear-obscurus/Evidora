@@ -304,19 +304,29 @@ async def search_transparency(analysis: dict) -> dict:
     if results and _claim_wants_eu_cohort(analysis.get("claim", "")):
         cohort = _compute_eu_cohort(data)
         if cohort:
-            # Per-country Einordnung (Rang für EU-Mitglieder, nur Delta für Nicht-Mitglieder)
+            # Per-country Einordnung (Rang für EU-Mitglieder, nur Delta für Nicht-Mitglieder).
+            # Wir verwenden den vollen Ländernamen (statt ISO3), damit der semantische
+            # Re-Ranker die Zeile sauber mit dem Claim verknüpft.
             country_notes: list[str] = []
+            sentence_parts: list[str] = []
             for code in countries:
                 target_score = cohort["score_map"].get(code)
                 if target_score is None:
-                    # Ziel-Land hat keine CPI-Daten für das EU-Kohortenjahr
-                    target_data = data.get(code, {}).get(cohort["year"])
-                    if target_data is not None:
-                        target_score = target_data.get("score")
+                    # Ziel-Land hat keine CPI-Daten für das EU-Kohortenjahr → latest year
+                    target_entry = data.get(code, {}).get(cohort["year"])
+                    if target_entry is not None:
+                        target_score = target_entry.get("score")
                 if target_score is None:
                     continue
+                # Vollständigen Ländernamen aus dem Cache holen (sonst ISO3 als Fallback)
+                country_entry = data.get(code, {})
+                country_name = code
+                if country_entry:
+                    latest = max(country_entry.keys())
+                    country_name = country_entry[latest].get("entity", code)
+
+                delta = target_score - cohort["mean"]
                 if code in EU27_MEMBERS and code in cohort["rank_map"]:
-                    delta = target_score - cohort["mean"]
                     if delta > 0.5:
                         pos = "über"
                     elif delta < -0.5:
@@ -324,20 +334,41 @@ async def search_transparency(analysis: dict) -> dict:
                     else:
                         pos = "auf"
                     country_notes.append(
-                        f"{code}: Rang {cohort['rank_map'][code]}/{cohort['n']} "
+                        f"{country_name}: Rang {cohort['rank_map'][code]}/{cohort['n']} "
                         f"({target_score:.0f}/100, {pos} EU-Ø, Δ {delta:+.1f})"
                     )
+                    sentence_parts.append(
+                        f"{country_name} liegt mit einem CPI-Wert von {target_score:.0f}/100 "
+                        f"{pos} dem EU-Durchschnitt von {cohort['mean']:.1f}/100 "
+                        f"(Rang {cohort['rank_map'][code]} von {cohort['n']} Mitgliedstaaten)."
+                    )
                 else:
-                    delta = target_score - cohort["mean"]
                     country_notes.append(
-                        f"{code}: {target_score:.0f}/100 (EU-Ø {cohort['mean']:.1f}, Δ {delta:+.1f})"
+                        f"{country_name}: {target_score:.0f}/100 "
+                        f"(EU-Ø {cohort['mean']:.1f}, Δ {delta:+.1f})"
+                    )
+                    pos = "über" if delta > 0 else "unter"
+                    sentence_parts.append(
+                        f"{country_name} (Nicht-EU-Land) liegt mit einem CPI-Wert von "
+                        f"{target_score:.0f}/100 {pos} dem EU-Durchschnitt von "
+                        f"{cohort['mean']:.1f}/100."
                     )
 
             rank_part = " | " + " | ".join(country_notes) if country_notes else ""
+            # Natürlichsprachliche Description boosted die Cosine-Similarity im
+            # Re-Ranker (sonst fällt die Zahlenzeile unter den 0.25-Threshold).
+            description = (
+                "Korruptionswahrnehmungs-Vergleich EU-27 (Transparency International CPI). "
+                f"Durchschnittswert {cohort['year']}: {cohort['mean']:.1f} von 100 Punkten "
+                f"(Median {cohort['median']:.0f}, n={cohort['n']} Mitgliedstaaten). "
+                + " ".join(sentence_parts)
+                + " Ranking nach CPI-Score absteigend (höherer Wert = weniger wahrgenommene Korruption)."
+            )
             results.append({
                 "indicator_name": (
-                    f"EU-27 CPI {cohort['year']}: Ø {cohort['mean']:.1f}/100 "
-                    f"(Median {cohort['median']:.0f}, n={cohort['n']}){rank_part}"
+                    f"EU-27 CPI {cohort['year']} — Korruptionswahrnehmung Durchschnitt: "
+                    f"Ø {cohort['mean']:.1f}/100 (Median {cohort['median']:.0f}, "
+                    f"n={cohort['n']}){rank_part}"
                 ),
                 "indicator": "cpi_eu_cohort",
                 "country": "EU-27",
@@ -345,6 +376,7 @@ async def search_transparency(analysis: dict) -> dict:
                 "year": str(cohort["year"]),
                 "value": round(cohort["mean"], 1),
                 "display_value": f"Ø {cohort['mean']:.1f}/100",
+                "description": description,
                 "url": "https://www.transparency.org/en/cpi",
             })
 
