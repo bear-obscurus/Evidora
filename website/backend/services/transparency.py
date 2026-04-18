@@ -204,6 +204,30 @@ def _claim_wants_eu_cohort(claim: str) -> bool:
     return any(t in cl for t in EU_COMPARISON_TRIGGERS)
 
 
+# Reverse-Mapping ISO3 → erste (deutsche) Bezeichnung aus COUNTRY_MAP.
+# Wird in der EU-Kohorten-Description verwendet, damit der semantische
+# Re-Ranker bei deutschsprachigen Claims ("Rumänien schneidet …") einen
+# Wort-für-Wort-Match gegen den englischen OWID-Entity-Namen ("Romania")
+# bekommt.  Ohne diesen Boost rutschte der Kohorten-Eintrag für "Rumänien"
+# unter den Relevance-Threshold 0.25 und verschwand aus den Quellen.
+_ISO3_TO_DE_NAME: dict[str, str] = {}
+for _name, _code in COUNTRY_MAP.items():
+    if _code not in _ISO3_TO_DE_NAME:
+        # .title() capitalizes each word ("vereinigtes königreich" →
+        # "Vereinigtes Königreich"), which is correct for all DE country
+        # names in this map.  Acronyms like USA are not in EU-27 and do
+        # not reach this path in cohort output.
+        _ISO3_TO_DE_NAME[_code] = _name.title()
+
+
+def _display_country(country_name: str, code: str) -> str:
+    """Return "English (Deutsch)" if DE and EN differ, else the English name."""
+    de = _ISO3_TO_DE_NAME.get(code)
+    if not de or de.lower() == country_name.lower():
+        return country_name
+    return f"{country_name} ({de})"
+
+
 def _compute_eu_cohort(data: dict) -> dict | None:
     """Compute EU-27 CPI mean, median and per-country ranking for the most
     recent year with good coverage (>=25 of 27 members).
@@ -339,12 +363,16 @@ async def search_transparency(analysis: dict) -> dict:
                         target_score = target_entry.get("score")
                 if target_score is None:
                     continue
-                # Vollständigen Ländernamen aus dem Cache holen (sonst ISO3 als Fallback)
+                # Vollständigen Ländernamen aus dem Cache holen (sonst ISO3 als Fallback).
+                # Für DE-Claims zusätzlich den deutschen Namen anhängen
+                # ("Romania (Rumänien)"), damit der Re-Ranker topic-match
+                # verlässlicher sieht (siehe _display_country).
                 country_entry = data.get(code, {})
                 country_name = code
                 if country_entry:
                     latest = max(country_entry.keys())
                     country_name = country_entry[latest].get("entity", code)
+                display_name = _display_country(country_name, code)
 
                 delta = target_score - cohort["mean"]
                 if code in EU27_MEMBERS and code in cohort["rank_map"]:
@@ -355,22 +383,22 @@ async def search_transparency(analysis: dict) -> dict:
                     else:
                         pos = "auf"
                     country_notes.append(
-                        f"{country_name}: Rang {cohort['rank_map'][code]}/{cohort['n']} "
+                        f"{display_name}: Rang {cohort['rank_map'][code]}/{cohort['n']} "
                         f"({target_score:.0f}/100, {pos} EU-Ø, Δ {delta:+.1f})"
                     )
                     sentence_parts.append(
-                        f"{country_name} liegt mit einem CPI-Wert von {target_score:.0f}/100 "
+                        f"{display_name} liegt mit einem CPI-Wert von {target_score:.0f}/100 "
                         f"{pos} dem EU-Durchschnitt von {cohort['mean']:.1f}/100 "
                         f"(Rang {cohort['rank_map'][code]} von {cohort['n']} Mitgliedstaaten)."
                     )
                 else:
                     country_notes.append(
-                        f"{country_name}: {target_score:.0f}/100 "
+                        f"{display_name}: {target_score:.0f}/100 "
                         f"(EU-Ø {cohort['mean']:.1f}, Δ {delta:+.1f})"
                     )
                     pos = "über" if delta > 0 else "unter"
                     sentence_parts.append(
-                        f"{country_name} (Nicht-EU-Land) liegt mit einem CPI-Wert von "
+                        f"{display_name} (Nicht-EU-Land) liegt mit einem CPI-Wert von "
                         f"{target_score:.0f}/100 {pos} dem EU-Durchschnitt von "
                         f"{cohort['mean']:.1f}/100."
                     )
