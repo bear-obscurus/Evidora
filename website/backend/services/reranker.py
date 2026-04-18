@@ -40,7 +40,7 @@ def _result_text(result: dict) -> str:
     """Extract searchable text from a result entry."""
     parts = []
     for key in ("title", "name", "indicator_name", "description", "journal",
-                 "rating", "claim"):
+                 "rating", "claim", "tldr", "authors"):
         val = result.get(key)
         if val:
             parts.append(str(val))
@@ -60,6 +60,15 @@ RELEVANCE_THRESHOLD = 0.25
 # separates real hits from shared-vocabulary noise ("Italien", "EU").
 FACTCHECK_THRESHOLD = 0.55
 _FACTCHECK_SOURCES = {"GADMO", "DataCommons", "ClaimReview", "Faktenchecker", "Fact Check"}
+
+# Academic databases (OpenAlex, Semantic Scholar) return papers whose titles
+# often share keywords with the claim without being topically relevant
+# ("ESG Reporting", "Green Growth", "Food Self-Sufficiency" matched a
+# Ukraine-corruption claim at 0.27–0.38).  A stricter threshold drops these
+# off-topic papers while keeping genuinely relevant work (≥ 0.45 typically).
+# 2026-04: introduced at 0.40 after Ukraine CPI test surfaced noise.
+ACADEMIC_THRESHOLD = 0.40
+_ACADEMIC_SOURCES = {"OpenAlex", "Semantic Scholar"}
 
 
 def rerank_results(claim: str, source_results: list) -> list:
@@ -99,10 +108,19 @@ def rerank_results(claim: str, source_results: list) -> list:
             # Sort results by similarity score (descending)
             scored = sorted(zip(results, scores.tolist()), key=lambda x: x[1], reverse=True)
 
-            # Use stricter threshold for fact-checker sources
+            # Use stricter thresholds for sources prone to keyword-noise.
+            # Fact-checkers have very short headlines that inflate cosine
+            # scores; academic titles share generic keywords with off-topic
+            # papers (ESG, green growth, etc.).  See threshold constants.
             source_name = source_data.get("source", "Unknown")
             is_factcheck = any(fc in source_name for fc in _FACTCHECK_SOURCES)
-            threshold = FACTCHECK_THRESHOLD if is_factcheck else RELEVANCE_THRESHOLD
+            is_academic = any(ac in source_name for ac in _ACADEMIC_SOURCES)
+            if is_factcheck:
+                threshold = FACTCHECK_THRESHOLD
+            elif is_academic:
+                threshold = ACADEMIC_THRESHOLD
+            else:
+                threshold = RELEVANCE_THRESHOLD
 
             # Filter out off-topic results below threshold
             before_count = len(scored)
