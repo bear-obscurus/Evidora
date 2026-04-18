@@ -373,7 +373,11 @@ function renderSources(sources) {
 
 function renderDisclaimer(text) {
     const section = document.getElementById("disclaimer-section");
-    section.textContent = text || t("disclaimer_default");
+    const raw = text || t("disclaimer_default");
+    // Use the same inline-markdown rendering as summary/nuance so that
+    // **bold** and *italic* produced by the synthesizer render consistently.
+    // renderInlineMarkdown() calls escapeHtml() first → XSS-safe.
+    section.innerHTML = renderInlineMarkdown(raw);
 }
 
 function escapeHtml(str) {

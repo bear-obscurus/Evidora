@@ -54,7 +54,11 @@ RELEVANCE_THRESHOLD = 0.25
 # Fact-checker databases return short, generic titles that inflate
 # cosine-similarity scores (e.g. "gefährlich" matches everything
 # containing "gefährlich").  A stricter threshold is needed.
-FACTCHECK_THRESHOLD = 0.45
+# 2026-04: raised from 0.45 → 0.55 after observing off-topic dpa results
+# passing at 0.47–0.53 for an unrelated CPI claim. Genuine topical matches
+# typically score ≥ 0.65 on this multilingual model, so 0.55 cleanly
+# separates real hits from shared-vocabulary noise ("Italien", "EU").
+FACTCHECK_THRESHOLD = 0.55
 _FACTCHECK_SOURCES = {"GADMO", "DataCommons", "ClaimReview", "Faktenchecker", "Fact Check"}
 
 
