@@ -283,8 +283,7 @@ async def check_claim(request: Request):
 
         # Use asyncio.wait so completed tasks return results even if others time out
         valid_results = []
-        sources_with_results = []
-        hit_names = []
+        valid_names: list[str] = []  # index-aligned with valid_results
         if tasks:
             task_objects = [asyncio.ensure_future(t) for t in tasks]
             done, pending = await asyncio.wait(task_objects, timeout=45.0)
@@ -299,11 +298,15 @@ async def check_claim(request: Request):
                         r = t.result()
                         logger.info(f"Source {i} ({queried_names[i]}) returned {len(r.get('results', []))} results")
                         valid_results.append(r)
-                        if r.get("results"):
-                            sources_with_results.append(r)
-                            hit_names.append(queried_names[i])
+                        valid_names.append(queried_names[i])
                     except Exception as e:
                         logger.warning(f"Source {i} ({queried_names[i]}) failed: {e}")
+
+        # Pre-rerank counts (for logging only — the authoritative count is
+        # computed AFTER synthesize_results, because the semantic re-ranker
+        # inside the synthesizer filters off-topic entries and may empty
+        # a source's result list entirely).
+        pre_rerank_hits = sum(1 for r in valid_results if r.get("results"))
 
         # Step 3: Synthesize results with Mistral
         yield {"event": "step", "data": json.dumps({"step": "synthesize"})}
@@ -321,6 +324,20 @@ async def check_claim(request: Request):
             logger.error("Synthesis failed", exc_info=True)
             yield {"event": "error", "data": json.dumps({"detail": "Fehler bei der Ergebnis-Synthese. Bitte erneut versuchen." if lang == "de" else "Synthesis failed. Please try again."})}
             return
+
+        # Post-rerank recount: the reranker mutates each source dict's
+        # "results" list in place, so re-inspect after synthesis. A source
+        # whose results were all filtered as off-topic should no longer
+        # count as a "hit" for the frontend badge.
+        sources_with_results = [r for r in valid_results if r.get("results")]
+        hit_names = [valid_names[i] for i, r in enumerate(valid_results) if r.get("results")]
+        post_rerank_hits = len(sources_with_results)
+        if post_rerank_hits != pre_rerank_hits:
+            logger.info(
+                f"Source coverage after rerank: {post_rerank_hits}/{len(valid_results)} "
+                f"(was {pre_rerank_hits} pre-rerank — reranker dropped "
+                f"{pre_rerank_hits - post_rerank_hits} source(s) as off-topic)"
+            )
 
         # If no source returned results, override verdict and suppress LLM opinion
         if not sources_with_results:
