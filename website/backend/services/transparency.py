@@ -53,16 +53,37 @@ EU27_MEMBERS = frozenset({
 })
 
 # Trigger-Keywords für EU-Kohorten-Vergleich (löst EU-27-Durchschnitt aus)
+# 2026-04: Erweitert um komparative Formulierungen ("als in der EU", "als die
+# EU", "gegenüber der EU" …), nachdem ein Testclaim "Die Korruption in der
+# Ukraine ist höher als in der EU" die EU-Kohorte nicht ausgelöst hatte und
+# das LLM dadurch den EU-Ø halluzinierte.
 EU_COMPARISON_TRIGGERS = [
+    # Durchschnitt / Mittel / Schnitt
     "eu-durchschnitt", "eu durchschnitt", "eu-schnitt", "eu schnitt",
     "eu-mittel", "eu mittel", "eu-mittelwert", "eu mittelwert",
     "europa-durchschnitt", "europa durchschnitt",
     "europa-schnitt", "europa schnitt",
     "eu average", "european average", "europe average",
     "average of the eu", "eu mean",
+    # Mitgliedsstaaten
     "eu-länder", "eu länder", "eu-staaten", "eu staaten",
     "mitgliedsstaaten", "mitgliedsländer",
     "member states", "eu member",
+    # Komparativ DE: "als in der EU", "als die EU", "als der EU"
+    "als in der eu", "als die eu", "als der eu", "als dem eu",
+    "als in europa", "als europa",
+    # Komparativ DE: "gegenüber / verglichen mit"
+    "gegenüber der eu", "gegenüber dem eu", "gegenüber europa",
+    "verglichen mit der eu", "verglichen mit dem eu",
+    "verglichen mit europa",
+    "im vergleich zur eu", "im vergleich zum eu",
+    "im vergleich zu europa",
+    "im eu-vergleich", "im europa-vergleich",
+    # Komparativ EN
+    "compared to the eu", "compared with the eu",
+    "vs. the eu", "vs the eu", "versus the eu",
+    "than the eu", "than in the eu",
+    "compared to europe", "than europe", "than in europe",
 ]
 
 # Kleinere Country-Map (wir setzen auf die gleiche ISO3-Logik wie V-Dem)
