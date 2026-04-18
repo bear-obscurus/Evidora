@@ -345,8 +345,15 @@ async def search_transparency(analysis: dict) -> dict:
             "url": "https://www.transparency.org/en/cpi",
         })
 
-    # EU-27-Kohorte anhängen, wenn der Claim auf den EU-Schnitt referenziert
-    if results and _claim_wants_eu_cohort(analysis.get("claim", "")):
+    # EU-27-Kohorte anhängen, wenn der Claim auf den EU-Schnitt referenziert.
+    # WICHTIG: Wir prüfen den *Original-Claim* (wie vom User eingegeben) und
+    # nicht nur analysis["claim"], weil der LLM-Analyzer komparative Marker
+    # wie "als die EU" / "als in der EU" beim Normalisieren entfernen kann.
+    # Beobachtet beim Claim "Rumänien schneidet beim Korruptionsindex
+    # schlechter als die EU ab": der normalisierte Claim verlor das "als die
+    # EU" → Trigger feuerte nicht → EU-Kohorte fehlte → LLM halluzinierte.
+    trigger_claim = analysis.get("original_claim") or analysis.get("claim", "")
+    if results and _claim_wants_eu_cohort(trigger_claim):
         cohort = _compute_eu_cohort(data)
         if cohort:
             # Per-country Einordnung (Rang für EU-Mitglieder, nur Delta für Nicht-Mitglieder).

@@ -154,6 +154,12 @@ async def check_claim(request: Request):
             logger.info(f"Analyzing claim (category pending, {len(claim)} chars)")
             analysis = await analyze_claim(claim)
             analysis = enrich_entities(claim, analysis)
+            # Preserve the user's original (sanitized) input separately from
+            # the LLM-normalized claim. Services that rely on specific
+            # phrasing (e.g. the EU-cohort trigger "als die EU") must check
+            # the original text because the analyzer may paraphrase away
+            # exactly those comparative markers.
+            analysis["original_claim"] = claim
             logger.info(f"Analysis done: category={analysis.get('category')}, confidence={analysis.get('confidence')}, entities={analysis.get('entities')}")
         except ValueError as e:
             if "MISTRAL_CREDITS_EXHAUSTED" in str(e):
