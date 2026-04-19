@@ -126,6 +126,8 @@ const TRANSLATIONS = {
                 <li><a href="https://www.transparency.org/en/cpi" target="_blank" rel="noopener">Transparency International</a> — Corruption Perceptions Index</li>
                 <li><a href="https://rsf.org/en/index" target="_blank" rel="noopener">Reporter ohne Grenzen (RSF)</a> — World Press Freedom Index</li>
                 <li><a href="https://www.sipri.org/databases/milex" target="_blank" rel="noopener">SIPRI</a> — Military Expenditure Database</li>
+                <li><a href="https://www.idea.int/data-tools/data/voter-turnout-database" target="_blank" rel="noopener">International IDEA</a> — Voter Turnout Database (Wahlbeteiligung)</li>
+                <li><a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament.gv.at</a> — Österreichisches Parlament Open Data (Nationalrats-Klubstärken)</li>
             </ul>
             <h3>Faktencheck-Netzwerke</h3>
             <ul>
@@ -387,6 +389,8 @@ const TRANSLATIONS = {
                 <li><a href="https://www.transparency.org/en/cpi" target="_blank" rel="noopener">Transparency International</a> — Corruption Perceptions Index</li>
                 <li><a href="https://rsf.org/en/index" target="_blank" rel="noopener">Reporters Without Borders (RSF)</a> — World Press Freedom Index</li>
                 <li><a href="https://www.sipri.org/databases/milex" target="_blank" rel="noopener">SIPRI</a> — Military Expenditure Database</li>
+                <li><a href="https://www.idea.int/data-tools/data/voter-turnout-database" target="_blank" rel="noopener">International IDEA</a> — Voter Turnout Database</li>
+                <li><a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament.gv.at</a> — Austrian Parliament Open Data (Nationalrat seat shares)</li>
             </ul>
             <h3>Fact-Checking Networks</h3>
             <ul>

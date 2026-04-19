@@ -11,6 +11,8 @@ Managed sources:
 - Transparency International CPI (24h refresh)
 - RSF Press Freedom Index (24h refresh)
 - SIPRI Military Expenditure (24h refresh)
+- IDEA Voter Turnout (24h refresh)
+- Parlament.gv.at Nationalrat composition (24h refresh)
 
 Note: EUvsDisinfo case database (14.5K cases) is a static JSON file
 shipped with the application — no download or refresh needed.
@@ -31,6 +33,8 @@ from services.vdem import fetch_vdem
 from services.transparency import fetch_cpi
 from services.rsf import fetch_rsf
 from services.sipri import fetch_sipri
+from services.idea import fetch_idea
+from services.parlament_at import fetch_parlament_nr
 
 logger = logging.getLogger("evidora")
 
@@ -58,6 +62,8 @@ async def prefetch_all():
             fetch_cpi(client),
             fetch_rsf(client),
             fetch_sipri(client),
+            fetch_idea(client),
+            fetch_parlament_nr(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "NASA GISS", "GADMO Feeds", "EUvsDisinfo RSS", "DataCommons",
@@ -66,7 +72,8 @@ async def prefetch_all():
                  "Statistik Austria Migration", "Statistik Austria Einbürgerungen",
                  "Statistik Austria Arbeitsmarkt", "Statistik Austria EU-SILC",
                  "V-Dem", "Transparency International CPI", "RSF Press Freedom",
-                 "SIPRI Military Expenditure"]
+                 "SIPRI Military Expenditure", "IDEA Voter Turnout",
+                 "Parlament.gv.at Nationalrat"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")

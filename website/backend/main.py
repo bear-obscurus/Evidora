@@ -39,6 +39,8 @@ from services.vdem import search_vdem, _claim_mentions_vdem
 from services.transparency import search_transparency, _claim_mentions_cpi
 from services.rsf import search_rsf, _claim_mentions_rsf
 from services.sipri import search_sipri, _claim_mentions_sipri
+from services.idea import search_idea, _claim_mentions_idea
+from services.parlament_at import search_parlament_at, _claim_mentions_parlament
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -270,6 +272,14 @@ async def check_claim(request: Request):
         if _claim_mentions_sipri(claim):
             tasks.append(cached("SIPRI", search_sipri, analysis))
             queried_names.append("SIPRI")
+        # IDEA: Wahlbeteiligung bei Parlamentswahlen (registrierte + VAP)
+        if _claim_mentions_idea(claim):
+            tasks.append(cached("IDEA", search_idea, analysis))
+            queried_names.append("IDEA Voter Turnout")
+        # Parlament.gv.at: Aktuelle Nationalrat-Klubstärken (AT-spezifisch)
+        if _claim_mentions_parlament(claim):
+            tasks.append(cached("ParlamentAT", search_parlament_at, analysis))
+            queried_names.append("Parlament.gv.at")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
