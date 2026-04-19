@@ -1,13 +1,27 @@
 """ECDC / infectious disease data via Our World in Data (OWID).
 
-The original ECDC Surveillance Atlas API returned empty results for most
-queries. This module fetches reliable data from OWID's GitHub CSV files
-(COVID-19) and falls back to the ECDC Atlas for other infectious diseases.
+The ECDC Surveillance Atlas API requires authentication and doesn't
+publish bulk CSV. We therefore query OWID mirrors:
+
+- COVID-19 cases + vaccinations: OWID GitHub (permissive)
+- Reported measles cases (annual, by country): OWID grapher (WHO-sourced,
+  explicitly redistributable)
+- Global vaccination coverage (MCV1, DTP3, Polio, HepB, Rubella, Rota,
+  Pneumococcal, Hib): OWID grapher — WHO/UNICEF Estimates of National
+  Immunization Coverage (WUENIC), redistributable
+
+Notes on what's *not* available via OWID:
+- HIV / TB / Malaria incidence are WHO GHO data and flagged
+  non-redistributable (OWID returns 403). We therefore surface these as
+  reference links only (with the canonical WHO URL) — same as before.
+- Flu/RSV surveillance data (ECDC ERVISS) is not published as open CSV
+  as of 2026-04.  We surface an ECDC link instead.
 """
 
 import csv
 import io
 import logging
+import time
 from datetime import datetime
 
 import httpx
@@ -17,10 +31,42 @@ logger = logging.getLogger("evidora")
 # OWID COVID latest data — one row per country, ~30 KB
 OWID_LATEST_URL = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.csv"
 
-# In-memory cache for OWID data
+# Additional OWID grapher CSVs (redistributable, WHO/UNICEF upstream)
+OWID_MEASLES_URL = "https://ourworldindata.org/grapher/reported-cases-of-measles.csv"
+OWID_VACCINATION_URL = "https://ourworldindata.org/grapher/global-vaccination-coverage.csv"
+
+# In-memory caches
 _owid_cache: dict | None = None
 _owid_cache_ts: float = 0
 OWID_CACHE_TTL = 86400  # 24 hours
+
+# Measles cache: {iso3: {year: cases}}
+_measles_cache: dict | None = None
+_measles_cache_ts: float = 0
+
+# Vaccination coverage cache: {iso3: {year: {MCV1, DTP3, Pol3, HepB3, ...}}}
+_vacc_cache: dict | None = None
+_vacc_cache_ts: float = 0
+
+# Mapping Disease-Keyword → Vaccine column in OWID global-vaccination-coverage.csv
+DISEASE_TO_VACCINE = {
+    "masern": ("MCV1", "Masern (MCV1, 1. Dosis)"),
+    "measles": ("MCV1", "Measles (MCV1, 1st dose)"),
+    "röteln": ("RCV1", "Röteln (RCV1)"),
+    "rubella": ("RCV1", "Rubella (RCV1)"),
+    "polio": ("Pol3", "Polio (Pol3)"),
+    "kinderlähmung": ("Pol3", "Polio (Pol3)"),
+    "keuchhusten": ("DTP3", "Diphtherie/Tetanus/Pertussis (DTP3)"),
+    "pertussis": ("DTP3", "Diphtheria/Tetanus/Pertussis (DTP3)"),
+    "diphtherie": ("DTP3", "Diphtherie/Tetanus/Pertussis (DTP3)"),
+    "tetanus": ("DTP3", "Diphtherie/Tetanus/Pertussis (DTP3)"),
+    "hepatitis b": ("HepB3", "Hepatitis B (HepB3)"),
+    "hepatitis-b": ("HepB3", "Hepatitis B (HepB3)"),
+    "haemophilus": ("Hib3", "Haemophilus influenzae Typ b (Hib3)"),
+    "rotavirus": ("RotaC", "Rotavirus (RotaC)"),
+    "pneumokokken": ("PCV3", "Pneumokokken (PCV3)"),
+    "pneumococcal": ("PCV3", "Pneumococcal (PCV3)"),
+}
 
 # Disease keywords → type mapping
 COVID_KEYWORDS = [
@@ -132,7 +178,6 @@ def _find_disease(analysis: dict) -> dict | None:
 async def _fetch_owid_latest(client: httpx.AsyncClient) -> list[dict]:
     """Fetch OWID COVID latest data (cached for 24h)."""
     global _owid_cache, _owid_cache_ts
-    import time
 
     now = time.time()
     if _owid_cache is not None and now - _owid_cache_ts < OWID_CACHE_TTL:
@@ -150,6 +195,128 @@ async def _fetch_owid_latest(client: httpx.AsyncClient) -> list[dict]:
     except Exception as e:
         logger.warning(f"OWID COVID fetch failed: {e}")
         return _owid_cache or []
+
+
+async def _fetch_measles(client: httpx.AsyncClient | None = None) -> dict:
+    """Fetch reported measles cases per country/year (cached 24h).
+
+    Returns ``{iso3: {year: cases, "entity": name}}`` — annual counts from
+    WHO/UNICEF, mirrored via OWID.
+    """
+    global _measles_cache, _measles_cache_ts
+    now = time.time()
+    if _measles_cache is not None and now - _measles_cache_ts < OWID_CACHE_TTL:
+        return _measles_cache
+
+    close_client = False
+    if client is None:
+        client = httpx.AsyncClient(timeout=30.0)
+        close_client = True
+
+    merged: dict = {}
+    try:
+        resp = await client.get(OWID_MEASLES_URL)
+        resp.raise_for_status()
+        reader = csv.DictReader(io.StringIO(resp.text))
+        col = "Measles - number of reported cases"
+        for row in reader:
+            code = (row.get("Code") or "").strip()
+            entity = (row.get("Entity") or "").strip()
+            year_raw = (row.get("Year") or "").strip()
+            val_raw = (row.get(col) or "").strip()
+            if not code or not year_raw or not val_raw:
+                continue
+            try:
+                year = int(year_raw)
+                cases = int(float(val_raw))
+            except ValueError:
+                continue
+            bucket = merged.setdefault(code, {"entity": entity})
+            bucket[year] = cases
+        _measles_cache = merged
+        _measles_cache_ts = now
+        logger.info(f"OWID measles: {len(merged)} countries cached")
+        return merged
+    except Exception as e:
+        logger.warning(f"OWID measles fetch failed: {e}")
+        return _measles_cache or {}
+    finally:
+        if close_client:
+            await client.aclose()
+
+
+async def _fetch_vaccination(client: httpx.AsyncClient | None = None) -> dict:
+    """Fetch global vaccination coverage per country/year (cached 24h).
+
+    Source: WUENIC (WHO/UNICEF Estimates of National Immunization Coverage)
+    via OWID grapher.  Columns include MCV1 (Masern), DTP3
+    (Diphtherie/Tetanus/Pertussis), Pol3 (Polio), HepB3, RCV1 (Röteln),
+    Hib3, PCV3, RotaC.
+
+    Returns ``{iso3: {year: {MCV1: %, DTP3: %, ..., "entity": name}}}``.
+    """
+    global _vacc_cache, _vacc_cache_ts
+    now = time.time()
+    if _vacc_cache is not None and now - _vacc_cache_ts < OWID_CACHE_TTL:
+        return _vacc_cache
+
+    close_client = False
+    if client is None:
+        client = httpx.AsyncClient(timeout=30.0)
+        close_client = True
+
+    merged: dict = {}
+    try:
+        resp = await client.get(OWID_VACCINATION_URL)
+        resp.raise_for_status()
+        reader = csv.DictReader(io.StringIO(resp.text))
+        # Header: Entity, Code, Year, HepB3, Hib3, IPV1, MCV1, PCV3, Pol3,
+        # RCV1, RotaC, "Diptheria/tetanus/pertussis (DTP3)"
+        vacc_cols = {
+            "HepB3": "Hepatitis B (HepB3)",
+            "Hib3": "H. influenza type b (Hib3)",
+            "IPV1": "Inactivated polio vaccine (IPV1)",
+            "MCV1": "Measles, first dose (MCV1)",
+            "PCV3": "Pneumococcal vaccine (PCV3)",
+            "Pol3": "Polio (Pol3)",
+            "RCV1": "Rubella (RCV1)",
+            "RotaC": "Rotavirus (RotaC)",
+            "DTP3": "Diptheria/tetanus/pertussis (DTP3)",
+        }
+        for row in reader:
+            code = (row.get("Code") or "").strip()
+            entity = (row.get("Entity") or "").strip()
+            year_raw = (row.get("Year") or "").strip()
+            if not code or not year_raw:
+                continue
+            try:
+                year = int(year_raw)
+            except ValueError:
+                continue
+            country = merged.setdefault(code, {})
+            year_bucket = country.setdefault(year, {"entity": entity})
+            for short, full in vacc_cols.items():
+                val_raw = (row.get(full) or "").strip()
+                if not val_raw:
+                    continue
+                try:
+                    year_bucket[short] = float(val_raw)
+                except ValueError:
+                    continue
+        _vacc_cache = merged
+        _vacc_cache_ts = now
+        total_years = sum(len(v) for v in merged.values())
+        logger.info(
+            f"OWID vaccination coverage: {len(merged)} countries, "
+            f"{total_years} country-years cached"
+        )
+        return merged
+    except Exception as e:
+        logger.warning(f"OWID vaccination fetch failed: {e}")
+        return _vacc_cache or {}
+    finally:
+        if close_client:
+            await client.aclose()
 
 
 def _safe_int(val: str) -> int | None:
@@ -277,24 +444,216 @@ async def _search_covid(analysis: dict, client: httpx.AsyncClient) -> list[dict]
     return results
 
 
+def _is_vaccination_context(analysis: dict) -> bool:
+    """True when the claim is about vaccination coverage (not incidence)."""
+    text = " ".join([
+        analysis.get("claim", ""),
+        analysis.get("subcategory", ""),
+        " ".join(analysis.get("entities", [])),
+    ]).lower()
+    kws = (
+        "impfquote", "impfrate", "impfung", "geimpft", "durchimpfung",
+        "vaccination", "vaccine", "coverage", "vaccinated", "immunization",
+        "immunisierung", "immunisation",
+    )
+    return any(kw in text for kw in kws)
+
+
+def _find_vaccine_code(analysis: dict) -> tuple[str, str] | None:
+    """Map claim keywords to a (vaccine_code, display_label) pair."""
+    text = " ".join([
+        analysis.get("claim", ""),
+        analysis.get("subcategory", ""),
+        " ".join(analysis.get("entities", [])),
+    ]).lower()
+    for keyword, (code, label) in DISEASE_TO_VACCINE.items():
+        if keyword in text:
+            return code, label
+    return None
+
+
+async def _search_measles_cases(analysis: dict, client: httpx.AsyncClient) -> list[dict]:
+    """Return reported-measles-cases rows for the claim's country (or fallback)."""
+    data = await _fetch_measles(client)
+    if not data:
+        return []
+
+    results: list[dict] = []
+    country_code = _find_country_iso3(analysis)
+    codes = [country_code] if country_code else ["AUT", "DEU", "OWID_WRL"]
+
+    for code in codes:
+        country = data.get(code)
+        if not country:
+            continue
+        entity = country.get("entity", code)
+        years = sorted(k for k in country.keys() if isinstance(k, int))
+        if not years:
+            continue
+        latest_year = years[-1]
+        latest_cases = country[latest_year]
+
+        # Reference point ~5 years prior for a trend arrow
+        ref_year: int | None = None
+        for y in years:
+            if y <= latest_year - 5:
+                ref_year = y
+        if ref_year is None and len(years) >= 2:
+            ref_year = years[0]
+
+        trend = ""
+        if ref_year is not None and ref_year != latest_year:
+            ref_cases = country[ref_year]
+            if ref_cases > 0:
+                delta_pct = (latest_cases - ref_cases) / ref_cases * 100
+                arrow = "↑" if delta_pct > 10 else ("↓" if delta_pct < -10 else "→")
+                trend = f" — {arrow} seit {ref_year}: {delta_pct:+.0f}%"
+            elif latest_cases > 0:
+                trend = f" — Anstieg gegenüber 0 Fällen in {ref_year}"
+
+        results.append({
+            "title": f"Masern {entity}: {_format_number(latest_cases)} gemeldete Fälle in {latest_year}{trend}",
+            "indicator": "Masern-Fälle (jährlich gemeldet)",
+            "country": entity,
+            "date": str(latest_year),
+            "value": f"{_format_number(latest_cases)} Fälle",
+            "source": "WHO via Our World in Data",
+            "url": "https://ourworldindata.org/grapher/reported-cases-of-measles",
+        })
+
+    if results:
+        results.append({
+            "title": "Methodik: Gemeldete Masern-Fälle — Untererfassung möglich",
+            "indicator": "Hinweis",
+            "country": "",
+            "value": "WHO-Daten auf Basis nationaler Meldesysteme. Labor­bestätigungs­raten und Melde­praxis variieren zwischen Ländern.",
+            "source": "WHO/UNICEF",
+            "url": "https://immunizationdata.who.int/",
+        })
+
+    return results
+
+
+async def _search_vaccination(
+    analysis: dict,
+    client: httpx.AsyncClient,
+    vaccine_code: str,
+    vaccine_label: str,
+) -> list[dict]:
+    """Return WUENIC vaccination-coverage rows for the claim's country (or fallback)."""
+    data = await _fetch_vaccination(client)
+    if not data:
+        return []
+
+    results: list[dict] = []
+    country_code = _find_country_iso3(analysis)
+    codes = [country_code] if country_code else ["AUT", "DEU", "OWID_WRL"]
+
+    for code in codes:
+        country = data.get(code)
+        if not country:
+            continue
+        years = sorted(k for k in country.keys() if isinstance(k, int))
+
+        latest_year: int | None = None
+        latest_val: float | None = None
+        for y in reversed(years):
+            val = country[y].get(vaccine_code)
+            if val is not None:
+                latest_year = y
+                latest_val = val
+                break
+        if latest_year is None or latest_val is None:
+            continue
+
+        entity = country[latest_year].get("entity", code)
+
+        # Reference point ~5 years prior for a trend arrow
+        ref_year: int | None = None
+        ref_val: float | None = None
+        for y in years:
+            if y <= latest_year - 5:
+                v = country[y].get(vaccine_code)
+                if v is not None:
+                    ref_year = y
+                    ref_val = v
+
+        trend = ""
+        if ref_val is not None and ref_year is not None:
+            delta = latest_val - ref_val
+            arrow = "↑" if delta > 1 else ("↓" if delta < -1 else "→")
+            trend = f" — {arrow} seit {ref_year}: {delta:+.1f} pp"
+
+        results.append({
+            "title": f"Impfquote {vaccine_label} {entity}: {latest_val:.0f}% ({latest_year}){trend}",
+            "indicator": f"Impfquote {vaccine_label}",
+            "country": entity,
+            "date": str(latest_year),
+            "value": f"{latest_val:.0f}%",
+            "source": "WHO/UNICEF WUENIC via Our World in Data",
+            "url": "https://ourworldindata.org/grapher/global-vaccination-coverage",
+        })
+
+    if results:
+        results.append({
+            "title": "Methodik: WUENIC — nationale Schätzungen, jährlich revidiert",
+            "indicator": "Hinweis",
+            "country": "",
+            "value": "WHO/UNICEF Estimates of National Immunization Coverage. Basiert auf Verwaltungsdaten und Surveys; rück­wirkende Revisionen üblich.",
+            "source": "WHO/UNICEF WUENIC",
+            "url": "https://immunizationdata.who.int/",
+        })
+
+    return results
+
+
 async def search_ecdc(analysis: dict) -> dict:
-    """Search for infectious disease data (COVID via OWID, others via WHO fallback)."""
-    results = []
+    """Search for infectious disease data.
+
+    Routing:
+    - COVID-19 claim (and no other disease mentioned) → OWID COVID latest
+    - Measles claim → either MCV1 coverage (if vaccination context) or reported cases
+    - Other vaccine-preventable disease (Polio/Pertussis/Diphtherie/Tetanus/HepB/
+      Hib/Rota/Pneumokokken/Röteln) → WUENIC coverage for the matching vaccine
+    - HIV / TB / Malaria / Influenza / RSV / Ebola / Dengue / Cholera / Mpox →
+      reference link to WHO (these datasets are not redistributable via OWID)
+    """
+    results: list[dict] = []
 
     async with httpx.AsyncClient(timeout=30.0) as client:
-        if _is_covid_claim(analysis):
+        disease = _find_disease(analysis)
+        covid_kw = _is_covid_claim(analysis)
+
+        # COVID path only if the claim doesn't explicitly name a non-COVID disease.
+        # (Avoids "Impfquote Masern" getting routed to COVID.)
+        if covid_kw and disease is None:
             results = await _search_covid(analysis, client)
-        else:
-            # For non-COVID diseases, provide OWID/WHO reference
-            disease = _find_disease(analysis)
-            if disease:
+        elif disease:
+            label_en = disease["label_en"]
+            vacc = _find_vaccine_code(analysis)
+            vacc_context = _is_vaccination_context(analysis)
+
+            if label_en == "Measles":
+                # Cases by default, coverage if the claim is explicitly about vaccination
+                if vacc_context:
+                    results = await _search_vaccination(
+                        analysis, client, "MCV1", "Masern (MCV1, 1. Dosis)"
+                    )
+                else:
+                    results = await _search_measles_cases(analysis, client)
+            elif vacc:
+                # Polio / DTP / HepB / Hib / Rota / Pneumo / Rubella — coverage only
+                code, label = vacc
+                results = await _search_vaccination(analysis, client, code, label)
+            else:
+                # HIV / TB / Malaria / Influenza / RSV / Ebola / Dengue / Cholera / Mpox
                 results.append({
-                    "title": f"{disease['label']}: Aktuelle Daten über WHO/ECDC verfügbar",
+                    "title": f"{disease['label']}: Daten via WHO Global Health Observatory",
                     "indicator": disease["label"],
                     "country": "",
-                    "value": "Siehe WHO Global Health Observatory",
-                    "source": "ECDC/WHO",
-                    "url": f"https://ourworldindata.org/search?q={disease['label_en'].replace(' ', '+')}",
+                    "value": "WHO GHO ist die primäre Quelle. Die Daten dürfen von OWID nicht gespiegelt werden — bitte direkt dort abfragen.",
+                    "source": "WHO/ECDC (Referenz)",
+                    "url": "https://www.who.int/data/gho",
                 })
 
     return {

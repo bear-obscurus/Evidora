@@ -2,6 +2,7 @@
 
 Managed sources:
 - OWID COVID latest (24h refresh)
+- OWID measles cases + WUENIC vaccination coverage (24h refresh)
 - NASA GISS temperature anomalies (7-day refresh)
 - GADMO fact-check feeds + embeddings (1h refresh)
 - EUvsDisinfo RSS feed + embeddings (1h refresh)
@@ -24,7 +25,7 @@ import logging
 
 import httpx
 
-from services.ecdc import _fetch_owid_latest, OWID_CACHE_TTL
+from services.ecdc import _fetch_owid_latest, _fetch_measles, _fetch_vaccination, OWID_CACHE_TTL
 from services.copernicus import _fetch_nasa_giss, GISS_CACHE_TTL
 from services.gadmo import prefetch_feeds, FEED_CACHE_TTL
 from services.euvsdisinfo import prefetch_feed as prefetch_euvsdisinfo
@@ -48,6 +49,8 @@ async def prefetch_all():
     async with httpx.AsyncClient(timeout=30.0) as client:
         results = await asyncio.gather(
             _fetch_owid_latest(client),
+            _fetch_measles(client),
+            _fetch_vaccination(client),
             _fetch_nasa_giss(client),
             prefetch_feeds(),
             prefetch_euvsdisinfo(),
@@ -69,7 +72,8 @@ async def prefetch_all():
             prefetch_eea(client),
             return_exceptions=True,
         )
-        names = ["OWID COVID", "NASA GISS", "GADMO Feeds", "EUvsDisinfo RSS", "DataCommons",
+        names = ["OWID COVID", "OWID Measles", "OWID Vaccination (WUENIC)",
+                 "NASA GISS", "GADMO Feeds", "EUvsDisinfo RSS", "DataCommons",
                  "Statistik Austria VPI", "Statistik Austria Gesundheitsausgaben",
                  "Statistik Austria Sterblichkeit", "Statistik Austria VGR",
                  "Statistik Austria Migration", "Statistik Austria Einbürgerungen",
