@@ -4,6 +4,7 @@ Managed sources:
 - OWID COVID latest (24h refresh)
 - OWID measles cases + WUENIC vaccination coverage (24h refresh)
 - NASA GISS temperature anomalies (7-day refresh)
+- Berkeley Earth country/continent temperature anomalies via OWID (24h refresh)
 - GADMO fact-check feeds + embeddings (1h refresh)
 - EUvsDisinfo RSS feed + embeddings (1h refresh)
 - DataCommons ClaimReview index (24h refresh)
@@ -26,7 +27,7 @@ import logging
 import httpx
 
 from services.ecdc import _fetch_owid_latest, _fetch_measles, _fetch_vaccination, OWID_CACHE_TTL
-from services.copernicus import _fetch_nasa_giss, GISS_CACHE_TTL
+from services.copernicus import _fetch_nasa_giss, _fetch_berkeley, GISS_CACHE_TTL, BERKELEY_CACHE_TTL
 from services.gadmo import prefetch_feeds, FEED_CACHE_TTL
 from services.euvsdisinfo import prefetch_feed as prefetch_euvsdisinfo
 from services.datacommons import update_index as update_datacommons
@@ -52,6 +53,7 @@ async def prefetch_all():
             _fetch_measles(client),
             _fetch_vaccination(client),
             _fetch_nasa_giss(client),
+            _fetch_berkeley(client),
             prefetch_feeds(),
             prefetch_euvsdisinfo(),
             update_datacommons(),
@@ -73,7 +75,7 @@ async def prefetch_all():
             return_exceptions=True,
         )
         names = ["OWID COVID", "OWID Measles", "OWID Vaccination (WUENIC)",
-                 "NASA GISS", "GADMO Feeds", "EUvsDisinfo RSS", "DataCommons",
+                 "NASA GISS", "Berkeley Earth", "GADMO Feeds", "EUvsDisinfo RSS", "DataCommons",
                  "Statistik Austria VPI", "Statistik Austria Gesundheitsausgaben",
                  "Statistik Austria Sterblichkeit", "Statistik Austria VGR",
                  "Statistik Austria Migration", "Statistik Austria Einbürgerungen",
@@ -93,7 +95,7 @@ async def _refresh_loop():
     """Periodically refresh cached data in the background."""
     # GADMO feeds refresh every hour, CSV data less frequently.
     # Each source checks its own TTL internally, so we use the shortest interval.
-    interval = min(OWID_CACHE_TTL, GISS_CACHE_TTL, FEED_CACHE_TTL)
+    interval = min(OWID_CACHE_TTL, GISS_CACHE_TTL, BERKELEY_CACHE_TTL, FEED_CACHE_TTL)
     while True:
         await asyncio.sleep(interval)
         logger.info("Background data refresh starting")

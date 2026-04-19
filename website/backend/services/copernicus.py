@@ -19,6 +19,108 @@ _giss_cache: list[dict] | None = None
 _giss_cache_ts: float = 0
 GISS_CACHE_TTL = 604800  # 7 days
 
+# --- Berkeley Earth (via OWID mirror) ---
+# Annual land temperature anomalies (°C vs. 1951-1980 baseline).
+# Covers World, continents (as "<Name> (NIAID)" entities), ~240 countries, 1940-2024.
+# Licence: CC BY 4.0 (Berkeley Earth + OWID redistribution).
+BERKELEY_TEMP_URL = "https://ourworldindata.org/grapher/annual-temperature-anomalies.csv"
+BERKELEY_CACHE_TTL = 86400  # 24h — Berkeley updates annually, but cheap to refresh
+
+# cache shape: {key: {"entity": str, "years": {year: anomaly}}}
+#   key = ISO3 for countries, "OWID_WRL" for World, "OWID_<REGION>" for continents
+_berkeley_cache: dict | None = None
+_berkeley_cache_ts: float = 0
+
+# Country name (DE + EN) → ISO3 (mirrors vdem.py COUNTRY_MAP for consistency)
+BERKELEY_COUNTRY_MAP: dict[str, str] = {
+    "österreich": "AUT", "austria": "AUT",
+    "deutschland": "DEU", "germany": "DEU",
+    "schweiz": "CHE", "switzerland": "CHE",
+    "frankreich": "FRA", "france": "FRA",
+    "italien": "ITA", "italy": "ITA",
+    "spanien": "ESP", "spain": "ESP",
+    "niederlande": "NLD", "netherlands": "NLD",
+    "belgien": "BEL", "belgium": "BEL",
+    "polen": "POL", "poland": "POL",
+    "tschechien": "CZE", "czech republic": "CZE", "czechia": "CZE",
+    "ungarn": "HUN", "hungary": "HUN",
+    "rumänien": "ROU", "romania": "ROU",
+    "bulgarien": "BGR", "bulgaria": "BGR",
+    "kroatien": "HRV", "croatia": "HRV",
+    "slowenien": "SVN", "slovenia": "SVN",
+    "slowakei": "SVK", "slovakia": "SVK",
+    "dänemark": "DNK", "denmark": "DNK",
+    "schweden": "SWE", "sweden": "SWE",
+    "norwegen": "NOR", "norway": "NOR",
+    "finnland": "FIN", "finland": "FIN",
+    "portugal": "PRT",
+    "griechenland": "GRC", "greece": "GRC",
+    "irland": "IRL", "ireland": "IRL",
+    "luxemburg": "LUX", "luxembourg": "LUX",
+    "estland": "EST", "estonia": "EST",
+    "lettland": "LVA", "latvia": "LVA",
+    "litauen": "LTU", "lithuania": "LTU",
+    "vereinigtes königreich": "GBR", "united kingdom": "GBR", "großbritannien": "GBR",
+    "türkei": "TUR", "turkey": "TUR", "türkiye": "TUR",
+    "serbien": "SRB", "serbia": "SRB",
+    "ukraine": "UKR",
+    "russland": "RUS", "russia": "RUS",
+    "belarus": "BLR", "weißrussland": "BLR",
+    "usa": "USA", "vereinigte staaten": "USA", "united states": "USA",
+    "china": "CHN",
+    "indien": "IND", "india": "IND",
+    "brasilien": "BRA", "brazil": "BRA",
+    "japan": "JPN",
+    "südkorea": "KOR", "south korea": "KOR",
+    "nordkorea": "PRK", "north korea": "PRK",
+    "iran": "IRN",
+    "israel": "ISR",
+    "ägypten": "EGY", "egypt": "EGY",
+    "saudi-arabien": "SAU", "saudi arabia": "SAU",
+    "venezuela": "VEN",
+    "kuba": "CUB", "cuba": "CUB",
+    "australien": "AUS", "australia": "AUS",
+    "neuseeland": "NZL", "new zealand": "NZL",
+    "kanada": "CAN", "canada": "CAN",
+    "mexiko": "MEX", "mexico": "MEX",
+    "südafrika": "ZAF", "south africa": "ZAF",
+}
+
+# Continent keyword → internal cache key (DE + EN)
+BERKELEY_CONTINENT_MAP: dict[str, str] = {
+    "europa": "OWID_EUR", "europe": "OWID_EUR", "europäisch": "OWID_EUR", "european": "OWID_EUR",
+    "asien": "OWID_ASI", "asia": "OWID_ASI", "asiatisch": "OWID_ASI", "asian": "OWID_ASI",
+    "afrika": "OWID_AFR", "africa": "OWID_AFR", "african": "OWID_AFR",
+    "nordamerika": "OWID_NAM", "north america": "OWID_NAM",
+    "südamerika": "OWID_SAM", "south america": "OWID_SAM",
+    "ozeanien": "OWID_OCE", "oceania": "OWID_OCE",
+    "antarktis": "OWID_ANT", "antarctica": "OWID_ANT",
+    "weltweit": "OWID_WRL", "global": "OWID_WRL", "globus": "OWID_WRL", "world": "OWID_WRL",
+}
+
+# OWID entity name ("Europe (NIAID)") → internal cache key (map above)
+_NIAID_CONTINENT_TO_KEY: dict[str, str] = {
+    "Europe (NIAID)": "OWID_EUR",
+    "Asia (NIAID)": "OWID_ASI",
+    "Africa (NIAID)": "OWID_AFR",
+    "North America (NIAID)": "OWID_NAM",
+    "South America (NIAID)": "OWID_SAM",
+    "Oceania (NIAID)": "OWID_OCE",
+    "Antarctica (NIAID)": "OWID_ANT",
+}
+
+# Display names for internal keys (used in result titles)
+_KEY_TO_DISPLAY: dict[str, str] = {
+    "OWID_WRL": "Globus",
+    "OWID_EUR": "Europa",
+    "OWID_ASI": "Asien",
+    "OWID_AFR": "Afrika",
+    "OWID_NAM": "Nordamerika",
+    "OWID_SAM": "Südamerika",
+    "OWID_OCE": "Ozeanien",
+    "OWID_ANT": "Antarktis",
+}
+
 # Map climate keywords to relevant CDS dataset IDs + readable descriptions
 CLIMATE_DATASET_MAP = {
     # Temperatur
@@ -279,6 +381,193 @@ async def _fetch_nasa_giss(client: httpx.AsyncClient) -> list[dict]:
     return results
 
 
+async def _fetch_berkeley(client: httpx.AsyncClient | None = None) -> dict:
+    """Download Berkeley Earth annual temperature anomalies via OWID mirror.
+
+    Returns {key: {"entity": str, "years": {year: anomaly}}}
+    where key = ISO3 for countries, "OWID_WRL"/"OWID_EUR"/... for global & continents.
+    """
+    global _berkeley_cache, _berkeley_cache_ts
+
+    now = time.time()
+    if _berkeley_cache is not None and (now - _berkeley_cache_ts) < BERKELEY_CACHE_TTL:
+        return _berkeley_cache
+
+    close_client = False
+    if client is None:
+        client = httpx.AsyncClient(timeout=60.0)
+        close_client = True
+
+    merged: dict = {}
+    try:
+        resp = await client.get(BERKELEY_TEMP_URL)
+        resp.raise_for_status()
+        reader = csv.DictReader(io.StringIO(resp.text))
+        for row in reader:
+            entity = (row.get("Entity") or "").strip()
+            code = (row.get("Code") or "").strip()
+            year_raw = (row.get("Year") or "").strip()
+            val_raw = (row.get("Temperature anomaly") or "").strip()
+
+            if not entity or not year_raw or not val_raw:
+                continue
+
+            # Determine cache key:
+            # - Countries with ISO3 code → use code
+            # - "World" (code = OWID_WRL) → OWID_WRL
+            # - Continent entities ("Europe (NIAID)") → map to OWID_EUR etc.
+            # - Ocean entities → skipped (not needed for fact-checking)
+            if code:
+                key = code
+                display_entity = entity
+            elif entity in _NIAID_CONTINENT_TO_KEY:
+                key = _NIAID_CONTINENT_TO_KEY[entity]
+                display_entity = entity[:-len(" (NIAID)")]
+            else:
+                continue
+
+            try:
+                year = int(year_raw)
+                val = float(val_raw)
+            except ValueError:
+                continue
+
+            merged.setdefault(key, {"entity": display_entity, "years": {}})
+            merged[key]["years"][year] = val
+
+        _berkeley_cache = merged
+        _berkeley_cache_ts = now
+        logger.info(
+            f"Berkeley Earth: {len(merged)} entities (countries+continents+world) cached"
+        )
+        return merged
+    except Exception as e:
+        logger.warning(f"Berkeley Earth fetch failed: {e}")
+        return _berkeley_cache or {}
+    finally:
+        if close_client:
+            await client.aclose()
+
+
+def _find_berkeley_entities(analysis: dict) -> list[str]:
+    """Extract Berkeley cache keys (ISO3 or OWID_*) from the claim.
+
+    Looks at NER countries first, then raw claim + entities for continents.
+    Returns at most 3 keys. Returns [] if no specific region is mentioned
+    (global claims are handled by NASA GISS).
+    """
+    ner_countries = analysis.get("ner_entities", {}).get("countries", [])
+    claim = (analysis.get("claim") or "").lower()
+    entities = [e.lower() for e in analysis.get("entities", [])]
+    search_text = " ".join(ner_countries + entities + [claim]).lower()
+
+    found: list[str] = []
+    seen: set[str] = set()
+
+    # Countries first
+    for name, code in BERKELEY_COUNTRY_MAP.items():
+        if name in search_text and code not in seen:
+            found.append(code)
+            seen.add(code)
+            if len(found) >= 3:
+                return found
+
+    # Continents: collect candidates separately so we can filter "globe-only" out
+    continent_keys: list[str] = []
+    for name, key in BERKELEY_CONTINENT_MAP.items():
+        if name in search_text and key not in seen:
+            continent_keys.append(key)
+            seen.add(key)
+
+    # Purely global claims → leave Berkeley out (NASA GISS is the primary global source).
+    # Globus is kept only when it appears alongside a country or continent (comparison).
+    if not found and continent_keys == ["OWID_WRL"]:
+        return []
+
+    for key in continent_keys:
+        found.append(key)
+        if len(found) >= 3:
+            break
+
+    return found
+
+
+def _format_berkeley_entry(cache: dict, key: str) -> dict | None:
+    """Format a single Berkeley Earth country/continent entry into a result row."""
+    entry = cache.get(key)
+    if not entry:
+        return None
+    years_data = entry.get("years", {})
+    if not years_data:
+        return None
+
+    latest_year = max(years_data.keys())
+    latest_val = years_data[latest_year]
+    vs_preindustrial = latest_val + PREINDUSTRIAL_OFFSET
+    display_name = _KEY_TO_DISPLAY.get(key, entry.get("entity", key))
+
+    # 50-year trend (vs. same-month-50y-ago)
+    trend_part = ""
+    fifty_ago = latest_year - 50
+    if fifty_ago in years_data:
+        delta_50 = latest_val - years_data[fifty_ago]
+        arrow = "↑" if delta_50 > 0.1 else ("↓" if delta_50 < -0.1 else "→")
+        trend_part = f" | Trend 50J: {arrow} ({delta_50:+.2f}°C seit {fifty_ago})"
+
+    # All-time maximum (within available range)
+    max_year = max(years_data, key=years_data.get)
+    max_val = years_data[max_year]
+    max_part = f" | Wärmstes Jahr: {max_year} ({max_val:+.2f}°C)"
+
+    title = (
+        f"{display_name} Temperatur-Anomalie {latest_year}: "
+        f"{latest_val:+.2f}°C vs. 1951-1980 Mittel "
+        f"(ca. {vs_preindustrial:+.2f}°C vs. vorindustriell){trend_part}{max_part}"
+    )
+
+    return {
+        "title": title,
+        "indicator_name": title,
+        "indicator": "berkeley_temperature_anomaly",
+        "country": key,
+        "country_name": display_name,
+        "year": str(latest_year),
+        "value": f"{vs_preindustrial:+.2f}°C vs. vorindustriell",
+        "display_value": f"{latest_val:+.2f}°C",
+        "source": "Berkeley Earth (via Our World in Data)",
+        "url": "https://berkeleyearth.org/data/",
+    }
+
+
+def _berkeley_caveat_row() -> dict:
+    """Methodology caveat appended after Berkeley Earth results (V-Dem/RSF pattern)."""
+    return {
+        "title": "Methodik: Berkeley Earth Temperatur-Anomalien",
+        "indicator_name": "WICHTIGER KONTEXT: Berkeley Earth misst Temperatur-Anomalien",
+        "indicator": "Hinweis",
+        "country": "",
+        "country_name": "",
+        "year": "",
+        "value": "",
+        "display_value": "",
+        "source": "Berkeley Earth",
+        "url": "https://berkeleyearth.org/about/",
+        "description": (
+            "Berkeley Earth misst Landtemperatur-Anomalien ggü. der Referenzperiode 1951–1980. "
+            "Positive Werte = wärmer als die Baseline. Die Daten basieren auf ~1.6 Mio. "
+            "Wetterstationen weltweit, statistisch kombiniert (Kriging) zu flächendeckenden Feldern. "
+            "Einschränkungen: "
+            "(1) Raumauflösung — Länderwerte sind räumliche Mittel; einzelne Regionen (Alpen, "
+            "Küsten) können deutlich abweichen. "
+            "(2) Vorindustrielles Niveau — die Baseline 1951–1980 liegt bereits ca. +0.3°C über "
+            "dem vorindustriellen Mittel (1850–1900), das für IPCC-Ziele (1.5°C / 2°C) herangezogen "
+            "wird. Die im Titel genannten Werte sind entsprechend umgerechnet. "
+            "(3) Jahresvariabilität — einzelne Jahre schwanken natürlich um mehrere Zehntelgrad; "
+            "Trends sind erst über ≥10 Jahre belastbar."
+        ),
+    }
+
+
 # Keywords that indicate temperature-related claims
 TEMPERATURE_KEYWORDS = [
     "temperatur", "temperature", "erwärmung", "warming", "hitze", "heat",
@@ -304,6 +593,21 @@ async def search_copernicus(analysis: dict) -> dict:
         if is_temperature:
             giss_data = await _fetch_nasa_giss(client)
             results.extend(giss_data)
+
+            # Berkeley Earth: add regional (country/continent) anomalies if applicable.
+            # Trigger only when the claim mentions a specific country or continent —
+            # purely global claims stay with NASA GISS (the proven default).
+            berkeley_keys = _find_berkeley_entities(analysis)
+            if berkeley_keys:
+                berkeley_cache = await _fetch_berkeley(client)
+                berkeley_rows = []
+                for key in berkeley_keys:
+                    row = _format_berkeley_entry(berkeley_cache, key)
+                    if row:
+                        berkeley_rows.append(row)
+                if berkeley_rows:
+                    results.extend(berkeley_rows)
+                    results.append(_berkeley_caveat_row())
 
         # Also fetch Copernicus dataset metadata as reference
         for ds in datasets[:2]:
