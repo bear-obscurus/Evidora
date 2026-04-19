@@ -138,6 +138,48 @@ const TRANSLATIONS = {
             </ul>
         `,
 
+        // Austria Edition
+        austria_edition_link: "🇦🇹 Österreich Edition — alle AT-Quellen ansehen",
+        austria_html: `
+            <h2>🇦🇹 Österreich Edition</h2>
+            <p>Evidora legt einen besonderen Fokus auf österreichische Datenquellen. Für Behauptungen mit Österreich-Bezug werden diese Quellen bevorzugt abgefragt und ausgewiesen.</p>
+
+            <h3>Primäre österreichische Quellen</h3>
+            <ul>
+                <li><strong><a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria — Open Government Data</a></strong> (CC BY 4.0) — aktuell 7 Datasets integriert:
+                    <ul>
+                        <li>Verbraucherpreisindex (VPI, Basis 2020, monatlich, COICOP-Kategorien)</li>
+                        <li>Gesundheitsausgaben (SHA-Methodik, 1995–2024)</li>
+                        <li>Sterblichkeit nach Kalenderwoche (inkl. Übersterblichkeits-Baseline 2015–2019)</li>
+                        <li>Volkswirtschaftliche Gesamtrechnung / BIP (ESA 2010, 1995–2025)</li>
+                        <li>Wanderungsstatistik &amp; Einbürgerungen (Bundesland-Detail)</li>
+                        <li>Arbeitsmarkt / Arbeitskräfteerhebung (ILO-Arbeitslosenquote, NUTS2 × Alter/Geschlecht)</li>
+                        <li>Armut &amp; Ungleichheit (EU-SILC: AROPE, Gini, S80/S20)</li>
+                    </ul>
+                </li>
+                <li><strong><a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament.gv.at — Open Data</a></strong> — Nationalrats-Klubstärken und Parlamentsdaten</li>
+            </ul>
+
+            <h3>Faktencheck-Partner mit AT-Bezug</h3>
+            <ul>
+                <li><a href="https://faktencheck.apa.at/" target="_blank" rel="noopener">APA-Faktencheck</a> — Österreichische Presse-Agentur (via GADMO-Feed)</li>
+                <li><a href="https://www.mimikama.at/" target="_blank" rel="noopener">Mimikama</a> — österreichischer Verein zur Aufklärung über Internetmissbrauch (via GADMO-Feed)</li>
+                <li><a href="https://gadmo.eu/" target="_blank" rel="noopener">GADMO</a> — German-Austrian Digital Media Observatory</li>
+            </ul>
+
+            <h3>Internationale Quellen mit AT-Daten</h3>
+            <p>Auch folgende internationale Quellen liefern österreichspezifische Daten und werden bei AT-Claims genutzt:</p>
+            <ul>
+                <li>Eurostat — EU-Statistik inkl. AT-Daten</li>
+                <li>WHO Europe (HFA) — Gesundheitsdaten für Österreich</li>
+                <li>OECD — Wirtschafts- und Sozialdaten</li>
+                <li>EZB — Finanz- und Zinsdaten</li>
+                <li>OWID / World Bank — globale Zeitreihen mit AT-Filter</li>
+            </ul>
+
+            <p style="margin-top: 20px; font-size: 0.85rem; color: #6b7280;">Die Österreich Edition ist ein inhaltlicher Schwerpunkt, keine separate Version — alle europäischen und wissenschaftlichen Quellen bleiben unverändert verfügbar. Eine vollständige Übersicht aller Quellen findest du unter „<a href="#" onclick="closeModal(event); openModal('sources', event)">Quellen</a>".</p>
+        `,
+
         // Imprint
         imprint_html_configured: `
             <h2>Impressum</h2>
@@ -399,6 +441,48 @@ const TRANSLATIONS = {
                 <li><a href="https://euvsdisinfo.eu/" target="_blank" rel="noopener">EUvsDisinfo</a> — EU database against disinformation</li>
                 <li><a href="https://efcsn.com/" target="_blank" rel="noopener">EFCSN</a> — European Fact-Checking Standards Network</li>
             </ul>
+        `,
+
+        // Austria Edition (proper noun "Österreich Edition" kept in German; subtitle translated)
+        austria_edition_link: "🇦🇹 Österreich Edition — view all Austrian data sources",
+        austria_html: `
+            <h2>🇦🇹 Österreich Edition</h2>
+            <p>Evidora puts a special focus on Austrian data sources. For claims with an Austrian context, these sources are queried preferentially and clearly labelled.</p>
+
+            <h3>Primary Austrian sources</h3>
+            <ul>
+                <li><strong><a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria — Open Government Data</a></strong> (CC BY 4.0) — currently 7 datasets integrated:
+                    <ul>
+                        <li>Consumer Price Index (CPI/VPI, base 2020, monthly, COICOP categories)</li>
+                        <li>Health expenditure (SHA methodology, 1995–2024)</li>
+                        <li>Weekly mortality (including excess-mortality baseline 2015–2019)</li>
+                        <li>National accounts / GDP (ESA 2010, 1995–2025)</li>
+                        <li>Migration statistics &amp; naturalisations (federal-state detail)</li>
+                        <li>Labour market / Labour Force Survey (ILO unemployment rate, NUTS2 × age/sex)</li>
+                        <li>Poverty &amp; inequality (EU-SILC: AROPE, Gini, S80/S20)</li>
+                    </ul>
+                </li>
+                <li><strong><a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament.gv.at — Open Data</a></strong> — National Council seat shares and parliamentary data</li>
+            </ul>
+
+            <h3>Fact-checking partners with AT coverage</h3>
+            <ul>
+                <li><a href="https://faktencheck.apa.at/" target="_blank" rel="noopener">APA-Faktencheck</a> — Austrian Press Agency (via GADMO feed)</li>
+                <li><a href="https://www.mimikama.at/" target="_blank" rel="noopener">Mimikama</a> — Austrian association against online disinformation (via GADMO feed)</li>
+                <li><a href="https://gadmo.eu/" target="_blank" rel="noopener">GADMO</a> — German-Austrian Digital Media Observatory</li>
+            </ul>
+
+            <h3>International sources with Austrian data</h3>
+            <p>The following international sources also provide Austria-specific data and are used for AT claims:</p>
+            <ul>
+                <li>Eurostat — EU statistics including Austrian data</li>
+                <li>WHO Europe (HFA) — health data for Austria</li>
+                <li>OECD — economic and social data</li>
+                <li>ECB — financial and interest-rate data</li>
+                <li>OWID / World Bank — global time series with AT filter</li>
+            </ul>
+
+            <p style="margin-top: 20px; font-size: 0.85rem; color: #6b7280;">The Österreich Edition is a content focus, not a separate version — all European and scientific sources remain fully available. For a complete list of sources, see &bdquo;<a href="#" onclick="closeModal(event); openModal('sources', event)">Sources</a>&ldquo;.</p>
         `,
 
         // Imprint

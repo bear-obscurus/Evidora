@@ -177,6 +177,33 @@ body {
     display: none;
 }
 
+/* Austria Edition link (landing page only) */
+.austria-edition {
+    margin-bottom: 14px;
+}
+
+.austria-link {
+    display: inline-block;
+    font-size: 0.82rem;
+    color: #0d9488;
+    text-decoration: none;
+    padding: 4px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(13, 148, 136, 0.25);
+    background: rgba(13, 148, 136, 0.06);
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.austria-link:hover {
+    background: rgba(13, 148, 136, 0.12);
+    border-color: rgba(13, 148, 136, 0.5);
+    color: #0b7d72;
+}
+
+#search-section.compact .austria-edition {
+    display: none;
+}
+
 #search-form {
     width: 100%;
     max-width: 600px;
