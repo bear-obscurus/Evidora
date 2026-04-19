@@ -445,18 +445,32 @@ async def _search_covid(analysis: dict, client: httpx.AsyncClient) -> list[dict]
 
 
 def _is_vaccination_context(analysis: dict) -> bool:
-    """True when the claim is about vaccination coverage (not incidence)."""
-    text = " ".join([
-        analysis.get("claim", ""),
-        analysis.get("subcategory", ""),
-        " ".join(analysis.get("entities", [])),
-    ]).lower()
-    kws = (
+    """True when the *user's raw claim* is about vaccination coverage.
+
+    We intentionally look only at ``analysis["claim"]`` (the user's input),
+    not at LLM-derived ``subcategory``/``entities``. The LLM routinely tags
+    a Masern-"Fälle" claim with "vaccination" concepts, which previously
+    hijacked the cases path and returned MCV1 coverage instead.
+    """
+    text = (analysis.get("claim") or "").lower()
+
+    # Explicit *cases* signals override vaccination keywords. If the user asks
+    # about Fälle/outbreak/incidence, that's an incidence question even if
+    # vaccination is somehow mentioned alongside.
+    case_kws = (
+        "fälle", "fallzahl", "ausbruch", "ausbrüche",
+        "cases", "outbreak", "outbreaks",
+        "incidence", "inzidenz", "neuinfektion", "neuinfektionen",
+    )
+    if any(kw in text for kw in case_kws):
+        return False
+
+    vacc_kws = (
         "impfquote", "impfrate", "impfung", "geimpft", "durchimpfung",
         "vaccination", "vaccine", "coverage", "vaccinated", "immunization",
         "immunisierung", "immunisation",
     )
-    return any(kw in text for kw in kws)
+    return any(kw in text for kw in vacc_kws)
 
 
 def _find_vaccine_code(analysis: dict) -> tuple[str, str] | None:
