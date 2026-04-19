@@ -1,10 +1,24 @@
-import httpx
+import asyncio
 import logging
+import time
+
+import httpx
 
 logger = logging.getLogger("evidora")
 
 # Eurostat JSON API (reliable source for EU environmental data)
 EUROSTAT_BASE = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data"
+
+# Per-request response cache (keyed by (dataset_id, geo-tuple)).  Eurostat
+# queries are slow (~500–2000 ms) and rate-limited; caching parsed JSON for
+# 24h keeps response times flat and avoids burning the upstream quota on
+# repeated AT/DE/EU27 climate claims.
+EEA_CACHE_TTL = 86400  # 24h
+_response_cache: dict[tuple, tuple[dict, float]] = {}
+
+# Hot countries that get pre-fetched at startup.  Everything else is fetched
+# on-demand on first request and then cached.
+HOT_GEOS = ("AT", "DE", "EU27_2020")
 
 COUNTRY_CODES = {
     "österreich": "AT", "austria": "AT",
@@ -214,8 +228,77 @@ def _parse_eurostat_response(data: dict, dataset_info: dict, country: str | None
     return results[:10]
 
 
+async def _fetch_eurostat_dataset(
+    dataset_key: str,
+    geos: tuple[str, ...],
+    client: httpx.AsyncClient,
+) -> dict | None:
+    """Fetch raw Eurostat JSON for a single dataset+geo-set, with 24h cache.
+
+    The cache key is (dataset_key, sorted geo tuple).  Cache misses hit
+    Eurostat live; hits return instantly.  Returns the parsed JSON body
+    or ``None`` on failure (callers should treat ``None`` as "no data").
+    """
+    ds = DATASETS[dataset_key]
+    cache_key = (dataset_key, tuple(sorted(geos)))
+
+    now = time.time()
+    cached = _response_cache.get(cache_key)
+    if cached is not None:
+        data, ts = cached
+        if now - ts < EEA_CACHE_TTL:
+            return data
+
+    params: dict = {"geo": list(geos), "sinceTimePeriod": "2015"}
+    for key, vals in ds.get("params", {}).items():
+        params[key] = vals
+
+    url = f"{EUROSTAT_BASE}/{ds['dataset']}"
+    try:
+        resp = await client.get(url, params=params)
+        resp.raise_for_status()
+        data = resp.json()
+    except Exception as e:
+        logger.warning(f"EEA/Eurostat query failed for {ds['label']} ({geos}): {e}")
+        return None
+
+    _response_cache[cache_key] = (data, now)
+    return data
+
+
+async def prefetch_eea(client: httpx.AsyncClient | None = None) -> dict:
+    """Warm the Eurostat response cache for hot geographies.
+
+    Run at startup by ``data_updater.py``.  Fetches all 5 EEA datasets
+    for AT/DE/EU27_2020 in parallel, so the first claim about any of
+    these countries returns in milliseconds instead of seconds.
+
+    Returns the cache dict (for logging) or an empty dict on failure.
+    """
+    close_client = False
+    if client is None:
+        client = httpx.AsyncClient(timeout=30.0)
+        close_client = True
+
+    try:
+        hot = tuple(HOT_GEOS)
+        tasks = [
+            _fetch_eurostat_dataset(ds_key, hot, client)
+            for ds_key in DATASETS.keys()
+        ]
+        await asyncio.gather(*tasks, return_exceptions=True)
+    finally:
+        if close_client:
+            await client.aclose()
+
+    # Return a shallow view so data_updater can log meaningful counts
+    fresh = {k: v for k, (v, _) in _response_cache.items()}
+    logger.info(f"EEA prefetch: {len(fresh)} (dataset, geo-set) combos cached")
+    return fresh
+
+
 async def search_eea(analysis: dict) -> dict:
-    """Search EEA environmental data via Eurostat API."""
+    """Search EEA environmental data via Eurostat API (cached 24h)."""
     datasets = _find_matching_datasets(analysis)
     country = _find_country(analysis)
 
@@ -226,31 +309,17 @@ async def search_eea(analysis: dict) -> dict:
     all_results = []
     geo = country or "EU27_2020"
 
+    # Query the country plus EU27 average for side-by-side context.
+    geos: tuple[str, ...] = (geo,) if geo == "EU27_2020" else (geo, "EU27_2020")
+
     async with httpx.AsyncClient(timeout=30.0) as client:
         for ds in datasets[:2]:
-            try:
-                params = {"geo": geo, "sinceTimePeriod": "2015"}
-
-                # Add dataset-specific params
-                for key, vals in ds.get("params", {}).items():
-                    params[key] = vals
-
-                # Also fetch EU average for comparison if country-specific
-                geos = [geo]
-                if geo != "EU27_2020":
-                    geos.append("EU27_2020")
-                params["geo"] = geos
-
-                url = f"{EUROSTAT_BASE}/{ds['dataset']}"
-                resp = await client.get(url, params=params)
-                resp.raise_for_status()
-                data = resp.json()
-
-                parsed = _parse_eurostat_response(data, ds, country)
-                all_results.extend(parsed)
-
-            except Exception as e:
-                logger.warning(f"EEA/Eurostat query failed for {ds['label']}: {e}")
+            # Find the dataset key (DATASETS is dict; we passed values in)
+            ds_key = next((k for k, v in DATASETS.items() if v is ds), None)
+            if ds_key is None:
+                continue
+            data = await _fetch_eurostat_dataset(ds_key, geos, client)
+            if data is None:
                 all_results.append({
                     "title": f"{ds['label']}: Daten nicht verfügbar",
                     "indicator": ds["label"],
@@ -258,6 +327,9 @@ async def search_eea(analysis: dict) -> dict:
                     "source": "EEA / Eurostat",
                     "url": ds["url"],
                 })
+                continue
+            parsed = _parse_eurostat_response(data, ds, country)
+            all_results.extend(parsed)
 
     # Add CO₂ multi-dimensional context caveat if GHG data was returned
     ghg_datasets = {"sdg_13_10"}

@@ -13,6 +13,7 @@ Managed sources:
 - SIPRI Military Expenditure (24h refresh)
 - IDEA Voter Turnout (24h refresh)
 - Parlament.gv.at Nationalrat composition (24h refresh)
+- EEA / Eurostat environmental datasets (24h refresh, hot-geos prefetch)
 
 Note: EUvsDisinfo case database (14.5K cases) is a static JSON file
 shipped with the application — no download or refresh needed.
@@ -35,6 +36,7 @@ from services.rsf import fetch_rsf
 from services.sipri import fetch_sipri
 from services.idea import fetch_idea
 from services.parlament_at import fetch_parlament_nr
+from services.eea import prefetch_eea
 
 logger = logging.getLogger("evidora")
 
@@ -64,6 +66,7 @@ async def prefetch_all():
             fetch_sipri(client),
             fetch_idea(client),
             fetch_parlament_nr(client),
+            prefetch_eea(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "NASA GISS", "GADMO Feeds", "EUvsDisinfo RSS", "DataCommons",
@@ -73,7 +76,7 @@ async def prefetch_all():
                  "Statistik Austria Arbeitsmarkt", "Statistik Austria EU-SILC",
                  "V-Dem", "Transparency International CPI", "RSF Press Freedom",
                  "SIPRI Military Expenditure", "IDEA Voter Turnout",
-                 "Parlament.gv.at Nationalrat"]
+                 "Parlament.gv.at Nationalrat", "EEA / Eurostat"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")
