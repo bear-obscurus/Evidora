@@ -91,6 +91,13 @@ Zeitbezogene Behauptungen und Rekord-Claims (SEHR WICHTIG):
 - Achte auf Felder mit "Historischer Kontext", "Minimum", "Maximum" in den Daten — diese enthalten die entscheidende Information
 - Beispiel: Wenn eine Behauptung sagt "X ist auf einem Rekordtief" und die Daten zeigen, dass das Minimum bei 0% lag (2016), der aktuelle Wert aber 2,15% beträgt, dann ist die Behauptung FALSCH
 
+Rekord-Jahres-Claims und Superlativ-Falsifikation (SEHR WICHTIG):
+- Behauptungen der Form "Jahr Y war das wärmste/kälteste/Rekord-Jahr in Land Z": Wenn die Daten EXPLIZIT ein ANDERES Rekordjahr nennen als behauptet, ist die Behauptung FALSCH. Setze verdict auf "false".
+- Beispiel: Behauptung "2023 war das wärmste Jahr in Deutschland". Daten-description enthält: "Wärmstes Jahr seit Messbeginn für Germany: 2024 (+1,56°C vs. 1951–1980)". Das behauptete Jahr (2023) ≠ das tatsächliche Rekordjahr (2024) → Behauptung ist FALSCH.
+- Es ist NICHT erforderlich, den spezifischen Wert des behaupteten Jahres zu kennen — die explizite Nennung eines anderen Rekordjahres in den Quellen widerlegt die Behauptung durch einfache Logik (Modus tollens). Setze NICHT "unverifiable", nur weil der exakte Wert für das behauptete Jahr fehlt.
+- Die "description"-Felder der Quellen (besonders Berkeley Earth, NASA GISS, EEA, Copernicus) enthalten häufig das Rekordjahr, den Trend über 50 Jahre und Referenz-Zeiträume — lies sie bei Rekord-Claims IMMER mit aus.
+- Analog gilt das für "höchste X je", "niedrigste Y aller Zeiten": Wenn die Daten ein anderes Extremum dokumentieren, ist der Superlativ-Claim für einen bestimmten Zeitpunkt FALSCH, auch wenn der konkrete Wert dieses Zeitpunkts nicht einzeln gelistet ist.
+
 Superlativ- und Vergleichs-Behauptungen (SEHR WICHTIG):
 - Bei Behauptungen mit "höchste", "niedrigste", "meiste", "größte", "beste", "schlechteste" → Es werden Vergleichsdaten aus MEHREREN Ländern benötigt
 - Wenn die Daten ein RANKING mit mehreren Ländern zeigen (z.B. "#1 Greece: 161.9", "#2 Italy: 144.4", "#3 France: 112.3"), dann nutze dieses Ranking direkt: Wenn das behauptete Land auf Platz 1 steht und die Behauptung "höchste" sagt, dann ist die Behauptung WAHR. Wenn es NICHT auf Platz 1 steht, ist sie FALSCH. Nenne die Top-3 im Summary.
@@ -177,6 +184,13 @@ Time-sensitive claims and record claims (VERY IMPORTANT):
 - If the current value does NOT match the historical extreme, the claim is FALSE or MOSTLY FALSE
 - Look for fields containing "Historical context", "Minimum", "Maximum" in the data — these contain the decisive information
 - Example: If a claim says "X is at a record low" and data shows the minimum was 0% (2016) but the current value is 2.15%, the claim is FALSE
+
+Record-year claims and superlative falsification (VERY IMPORTANT):
+- Claims of the form "year Y was the warmest/coldest/record year in country Z": If the data EXPLICITLY names a DIFFERENT record year than claimed, the claim is FALSE. Set verdict to "false".
+- Example: Claim "2023 was the warmest year in Germany". Data description contains: "Warmest year on record for Germany: 2024 (+1.56°C vs. 1951–1980)". The claimed year (2023) ≠ the actual record year (2024) → the claim is FALSE.
+- It is NOT required to know the specific value of the claimed year — the explicit naming of a different record year in the sources refutes the claim through simple logic (modus tollens). Do NOT set "unverifiable" just because the exact value for the claimed year is missing.
+- Source "description" fields (especially Berkeley Earth, NASA GISS, EEA, Copernicus) often contain the record year, the 50-year trend, and reference periods — ALWAYS read them when evaluating record claims.
+- The same applies to "highest X ever", "lowest Y of all time": If the data documents a different extremum, the superlative claim for a specific point in time is FALSE, even if that point's concrete value is not separately listed.
 
 Superlative and comparison claims (VERY IMPORTANT):
 - For claims with "highest", "lowest", "most", "largest", "best", "worst" → Comparison data from MULTIPLE countries is needed
