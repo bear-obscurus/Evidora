@@ -359,6 +359,7 @@ function renderSources(sources) {
                             ${r.status ? "Status: " + escapeHtml(r.status) : ""}
                             ${r.source ? escapeHtml(r.source) : ""}
                         </div>
+                        ${r.description ? `<p class="source-description">${escapeHtml(r.description)}</p>` : ""}
                     </div>
                 `
                     )

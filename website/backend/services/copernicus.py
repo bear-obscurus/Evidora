@@ -493,7 +493,14 @@ def _find_berkeley_entities(analysis: dict) -> list[str]:
 
 
 def _format_berkeley_entry(cache: dict, key: str) -> dict | None:
-    """Format a single Berkeley Earth country/continent entry into a result row."""
+    """Format a single Berkeley Earth country/continent entry into a result row.
+
+    The title holds a single unambiguous primary fact (latest year + anomaly).
+    Auxiliary facts (warmest year, 50-year trend, data range) go into
+    ``description`` as separate sentences — both the reranker and the LLM
+    synthesizer read ``description``, so each sentence becomes an indexable
+    fact rather than noise crammed into a long title (Bug C).
+    """
     entry = cache.get(key)
     if not entry:
         return None
@@ -506,34 +513,57 @@ def _format_berkeley_entry(cache: dict, key: str) -> dict | None:
     vs_preindustrial = latest_val + PREINDUSTRIAL_OFFSET
     display_name = _KEY_TO_DISPLAY.get(key, entry.get("entity", key))
 
-    # 50-year trend (vs. same-month-50y-ago)
-    trend_part = ""
+    # Warmest year on record
+    max_year = max(years_data, key=years_data.get)
+    max_val = years_data[max_year]
+    max_preindustrial = max_val + PREINDUSTRIAL_OFFSET
+
+    # 50-year trend
+    trend_sentence = ""
     fifty_ago = latest_year - 50
     if fifty_ago in years_data:
         delta_50 = latest_val - years_data[fifty_ago]
         arrow = "↑" if delta_50 > 0.1 else ("↓" if delta_50 < -0.1 else "→")
-        trend_part = f" | Trend 50J: {arrow} ({delta_50:+.2f}°C seit {fifty_ago})"
+        trend_sentence = (
+            f"50-Jahres-Trend: {arrow} {delta_50:+.2f}°C seit {fifty_ago}."
+        )
 
-    # All-time maximum (within available range)
-    max_year = max(years_data, key=years_data.get)
-    max_val = years_data[max_year]
-    max_part = f" | Wärmstes Jahr: {max_year} ({max_val:+.2f}°C)"
+    earliest_year = min(years_data.keys())
 
+    # --- Title: one primary fact only ---
+    # Short enough that the LLM cannot miss the year or the value.
     title = (
-        f"{display_name} Temperatur-Anomalie {latest_year}: "
-        f"{latest_val:+.2f}°C vs. 1951-1980 Mittel "
-        f"(ca. {vs_preindustrial:+.2f}°C vs. vorindustriell){trend_part}{max_part}"
+        f"{display_name} Jahrestemperatur-Anomalie {latest_year}: "
+        f"{latest_val:+.2f}°C vs. 1951–1980 Mittel "
+        f"(ca. {vs_preindustrial:+.2f}°C vs. vorindustriell)"
     )
+
+    # --- Description: auxiliary facts as separate sentences ---
+    # The synthesizer compacts rows to a known field list; ``description`` is
+    # included, so putting the warmest-year fact here guarantees the LLM sees
+    # it as its own statement instead of as a suffix on the title.
+    desc_parts = [
+        f"Wärmstes Jahr seit Messbeginn für {display_name}: {max_year} "
+        f"({max_val:+.2f}°C vs. 1951–1980 / ca. {max_preindustrial:+.2f}°C vs. vorindustriell)."
+    ]
+    if trend_sentence:
+        desc_parts.append(trend_sentence)
+    desc_parts.append(
+        f"Datenbasis: Berkeley Earth jährliche Land-Temperatur-Anomalien "
+        f"{earliest_year}–{latest_year} ({len(years_data)} Jahre)."
+    )
+    description = " ".join(desc_parts)
 
     return {
         "title": title,
-        "indicator_name": title,
+        "indicator_name": f"Jahres-Temperaturanomalie {display_name}",
         "indicator": "berkeley_temperature_anomaly",
         "country": key,
         "country_name": display_name,
         "year": str(latest_year),
         "value": f"{vs_preindustrial:+.2f}°C vs. vorindustriell",
         "display_value": f"{latest_val:+.2f}°C",
+        "description": description,
         "source": "Berkeley Earth (via Our World in Data)",
         "url": "https://berkeleyearth.org/data/",
     }
