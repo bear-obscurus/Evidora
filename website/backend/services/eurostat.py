@@ -9,33 +9,35 @@ BASE_URL = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data"
 
 # Map keywords (DE + EN) to Eurostat dataset codes + query parameters
 DATASET_MAP = {
-    # Inflation / Preise
+    # Inflation / Preise — prc_hicp_aind liefert Jahreswerte (annual rate of change),
+    # passt zu Jahres-Vergleichs-Claims ("Inflation 2024 in AT vs. EU-Durchschnitt").
+    # Der frühere monatliche Datensatz prc_hicp_manr passte schlecht zu Jahres-Claims.
     "inflation": {
-        "dataset": "prc_hicp_manr",
-        "label": "Inflationsrate (HVPI)",
-        "label_en": "Inflation Rate (HICP)",
-        "params": {"coicop": "CP00", "lastTimePeriod": "12"},
+        "dataset": "prc_hicp_aind",
+        "label": "Jährliche Inflationsrate (HVPI)",
+        "label_en": "Annual Inflation Rate (HICP)",
+        "params": {"coicop": "CP00", "unit": "RCH_A_AVG", "lastTimePeriod": "5"},
         "unit": "%",
     },
     "preise": {
-        "dataset": "prc_hicp_manr",
-        "label": "Inflationsrate (HVPI)",
-        "label_en": "Inflation Rate (HICP)",
-        "params": {"coicop": "CP00", "lastTimePeriod": "12"},
+        "dataset": "prc_hicp_aind",
+        "label": "Jährliche Inflationsrate (HVPI)",
+        "label_en": "Annual Inflation Rate (HICP)",
+        "params": {"coicop": "CP00", "unit": "RCH_A_AVG", "lastTimePeriod": "5"},
         "unit": "%",
     },
     "teuerung": {
-        "dataset": "prc_hicp_manr",
-        "label": "Inflationsrate (HVPI)",
-        "label_en": "Inflation Rate (HICP)",
-        "params": {"coicop": "CP00", "lastTimePeriod": "12"},
+        "dataset": "prc_hicp_aind",
+        "label": "Jährliche Inflationsrate (HVPI)",
+        "label_en": "Annual Inflation Rate (HICP)",
+        "params": {"coicop": "CP00", "unit": "RCH_A_AVG", "lastTimePeriod": "5"},
         "unit": "%",
     },
     "prices": {
-        "dataset": "prc_hicp_manr",
-        "label": "Inflationsrate (HVPI)",
-        "label_en": "Inflation Rate (HICP)",
-        "params": {"coicop": "CP00", "lastTimePeriod": "12"},
+        "dataset": "prc_hicp_aind",
+        "label": "Jährliche Inflationsrate (HVPI)",
+        "label_en": "Annual Inflation Rate (HICP)",
+        "params": {"coicop": "CP00", "unit": "RCH_A_AVG", "lastTimePeriod": "5"},
         "unit": "%",
     },
     # Bevölkerung / Demografie
@@ -975,6 +977,7 @@ async def search_eurostat(analysis: dict) -> dict:
                             break
                 return top_results
             else:
+                # Fetch country data
                 params = {
                     "format": "JSON",
                     "lang": "EN",
@@ -983,7 +986,33 @@ async def search_eurostat(analysis: dict) -> dict:
                 }
                 resp = await client.get(f"{BASE_URL}/{ds['dataset']}", params=params)
                 resp.raise_for_status()
-                return _parse_json_stat(resp.json(), ds, geo_code)
+                # Cap country rows at 3 most recent so the LLM still sees EU comparison
+                # rows within its 5-row per-source limit (3 country + 2 EU = 5).
+                country_results = _parse_json_stat(resp.json(), ds, geo_code)[:3]
+
+                # Country-vs-EU comparison: fetch EU27_2020 aggregate alongside
+                # (Bug D). Without this, claims like "AT inflation above EU avg"
+                # can only see AT rows and fail the comparison. Silent-skip when
+                # the dataset has no EU aggregate or the claim is already EU-wide.
+                aggregate_geos = {"EU27_2020", "EA", "EA20", "EA19"}
+                if geo_code not in aggregate_geos:
+                    try:
+                        eu_params = {
+                            "format": "JSON",
+                            "lang": "EN",
+                            "geo": "EU27_2020",
+                            **ds["params"],
+                        }
+                        eu_resp = await client.get(f"{BASE_URL}/{ds['dataset']}", params=eu_params)
+                        eu_resp.raise_for_status()
+                        eu_results = _parse_json_stat(eu_resp.json(), ds, "EU27_2020")[:2]
+                        country_results.extend(eu_results)
+                    except Exception as eu_err:
+                        logger.debug(
+                            f"Eurostat EU27 aggregate fetch failed for {ds['dataset']}: {eu_err}"
+                        )
+
+                return country_results
         except Exception as e:
             logger.warning(f"Eurostat request failed for {ds['dataset']}: {e}")
             return [{
