@@ -98,6 +98,14 @@ Rekord-Jahres-Claims und Superlativ-Falsifikation (SEHR WICHTIG):
 - Die "description"-Felder der Quellen (besonders Berkeley Earth, NASA GISS, EEA, Copernicus, GeoSphere Austria) enthalten häufig das Rekordjahr, den Trend über 50 Jahre und Referenz-Zeiträume — lies sie bei Rekord-Claims IMMER mit aus.
 - Analog gilt das für "höchste X je", "niedrigste Y aller Zeiten": Wenn die Daten ein anderes Extremum dokumentieren, ist der Superlativ-Claim für einen bestimmten Zeitpunkt FALSCH, auch wenn der konkrete Wert dieses Zeitpunkts nicht einzeln gelistet ist.
 
+Österreichische Gesetzes-Daten (RIS) — Kundmachung vs. Inkrafttreten (WICHTIG):
+- BGBl-Einträge im RIS dokumentieren das KUNDMACHUNGSDATUM (Veröffentlichung im Bundesgesetzblatt), NICHT zwingend das Inkrafttretensdatum.
+- Manche Gesetze enthalten in ihrem Text eine Übergangsfrist mit einem späteren Inkrafttretens-Termin. Beispiel: Das Informationsfreiheitsgesetz wurde mit BGBl. I 5/2024 am 26.02.2024 KUNDGEMACHT, tritt aber laut § 14 IFG erst mit 1. September 2025 IN KRAFT — zwei verschiedene Daten.
+- Wenn der Claim explizit "tritt in Kraft" / "trat in Kraft" / "ist seit X gültig" sagt, sind die BGBl-Kundmachungsdaten KEIN ausreichender Beleg, sofern keine zusätzliche Quelle das tatsächliche Inkrafttreten bestätigt.
+- In dem Fall: setze verdict auf "unverifiable" und erkläre im nuance-Feld, dass das Kundmachungsdatum vorliegt, das Inkrafttretensdatum aber nicht aus den vorliegenden Daten ableitbar ist.
+- Eine Ausnahme: Wenn der Claim nur "wurde beschlossen" / "wurde verabschiedet" / "wurde kundgemacht" sagt, dann ist das BGBl-Datum eine direkte Bestätigung — das Verdict kann "true" sein, sofern Jahr/Monat passen.
+- Bei "wurde im Jahr X erstmals beschlossen": Suche im RIS-Block nach dem ältesten BGBl-Eintrag zum Stammgesetz (nicht nur Novellen). Erstes BGBl mit dem Gesetzes-Kurztitel ist meist das Stammgesetz und damit der "erste Beschluss".
+
 Superlativ- und Vergleichs-Behauptungen (SEHR WICHTIG):
 - Bei Behauptungen mit "höchste", "niedrigste", "meiste", "größte", "beste", "schlechteste" → Es werden Vergleichsdaten aus MEHREREN Ländern benötigt
 - Wenn die Daten ein RANKING mit mehreren Ländern zeigen (z.B. "#1 Greece: 161.9", "#2 Italy: 144.4", "#3 France: 112.3"), dann nutze dieses Ranking direkt: Wenn das behauptete Land auf Platz 1 steht und die Behauptung "höchste" sagt, dann ist die Behauptung WAHR. Wenn es NICHT auf Platz 1 steht, ist sie FALSCH. Nenne die Top-3 im Summary.
@@ -191,6 +199,14 @@ Record-year claims and superlative falsification (VERY IMPORTANT):
 - It is NOT required to know the specific value of the claimed year — the explicit naming of a different record year in the sources refutes the claim through simple logic (modus tollens). Do NOT set "unverifiable" just because the exact value for the claimed year is missing.
 - Source "description" fields (especially Berkeley Earth, NASA GISS, EEA, Copernicus, GeoSphere Austria) often contain the record year, the 50-year trend, and reference periods — ALWAYS read them when evaluating record claims.
 - The same applies to "highest X ever", "lowest Y of all time": If the data documents a different extremum, the superlative claim for a specific point in time is FALSE, even if that point's concrete value is not separately listed.
+
+Austrian law data (RIS) — promulgation vs. entry into force (IMPORTANT):
+- BGBl entries in RIS document the PROMULGATION DATE (publication in the Federal Law Gazette), NOT necessarily the entry-into-force date.
+- Some laws contain a transition period in their text with a later entry-into-force date. Example: The Austrian Freedom of Information Act was PROMULGATED with BGBl. I 5/2024 on 2024-02-26 but, per § 14 IFG, ENTERS INTO FORCE on 2025-09-01 — two distinct dates.
+- If the claim explicitly says "enters into force" / "entered into force" / "has been in effect since X", BGBl promulgation dates are NOT sufficient evidence unless an additional source confirms the actual entry into force.
+- In that case: set verdict to "unverifiable" and explain in the nuance field that the promulgation date is available but the entry-into-force date cannot be derived from the data.
+- Exception: If the claim only says "was passed" / "was enacted" / "was promulgated", the BGBl date is direct confirmation — verdict can be "true" if year/month match.
+- For "was first passed in year X": Look in the RIS block for the oldest BGBl entry on the original law (Stammgesetz, not amendments). The first BGBl with the law's short title is usually the original law, hence the "first passing".
 
 Superlative and comparison claims (VERY IMPORTANT):
 - For claims with "highest", "lowest", "most", "largest", "best", "worst" → Comparison data from MULTIPLE countries is needed

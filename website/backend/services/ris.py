@@ -44,10 +44,38 @@ import httpx
 logger = logging.getLogger("evidora")
 
 API_BASE = "https://data.bka.gv.at/ris/api/v2.6/Bundesrecht"
+GELTENDE_FASSUNG_BASE = (
+    "https://www.ris.bka.gv.at/GeltendeFassung.wxe"
+    "?Abfrage=Bundesnormen&Gesetzesnummer={nr}"
+)
 CACHE_TTL = 3600  # 1h für Query-Cache (RIS aktualisiert wöchentlich)
 
 # Per-Query-Cache: {query_string: (timestamp, results)}
 _query_cache: dict[str, tuple[float, list[dict]]] = {}
+
+# Häufig zitierte AT-Gesetze mit ihrer RIS-Gesetzesnummer + Anzeige-Name.
+# Verifiziert via Live-Probe gegen GeltendeFassung-URL (2026-04-26).
+# Erweiterbar — bei „Bug G"-Treffern Wertepaare ergänzen.
+LAW_REGISTRY: dict[str, tuple[str, str]] = {
+    "b-vg":   ("10000138", "Bundes-Verfassungsgesetz (B-VG)"),
+    "abgb":   ("10001622", "Allgemeines Bürgerliches Gesetzbuch (ABGB)"),
+    "stgb":   ("10002296", "Strafgesetzbuch (StGB)"),
+    "stpo":   ("10002326", "Strafprozessordnung (StPO)"),
+    "mrg":    ("10002531", "Mietrechtsgesetz (MRG)"),
+    "asvg":   ("10008147", "Allgemeines Sozialversicherungsgesetz (ASVG)"),
+    "avg":    ("10005768", "Allgemeines Verwaltungsverfahrensgesetz (AVG)"),
+    "asylg":  ("20004240", "Asylgesetz 2005 (AsylG)"),
+    "fpg":    ("20004241", "Fremdenpolizeigesetz 2005 (FPG)"),
+    "gewo":   ("10007517", "Gewerbeordnung 1994 (GewO)"),
+    "estg":   ("10004570", "Einkommensteuergesetz 1988 (EStG)"),
+    "ustg":   ("10004873", "Umsatzsteuergesetz 1994 (UStG)"),
+    "urhg":   ("10001848", "Urheberrechtsgesetz (UrhG)"),
+    "vfgg":   ("10000245", "Verfassungsgerichtshofgesetz (VfGG)"),
+}
+
+# Verfassungsgesetze nutzen Artikel-Nummerierung (Art.) statt Paragraph (§).
+# Bei §-Verweis auf B-VG/StGG fügen wir einen entsprechenden Hinweis hinzu.
+CONSTITUTIONAL_LAWS = {"b-vg", "stgg"}
 
 # Legal-Domain-Keywords — claims, die mit höherer Wahrscheinlichkeit
 # einen Gesetzesbezug haben. Englische Pendants für mehrsprachige
@@ -167,6 +195,84 @@ def _extract_search_terms(analysis: dict) -> list[str]:
                     break
 
     return terms[:5]  # cap to 5 terms — RIS-Queries sollen fokussiert bleiben
+
+
+def _extract_law_paragraph_refs(claim: str) -> list[tuple[str, str, str]]:
+    """Find (paragraph_or_article_label, law_key_lower, law_display) triples.
+
+    Bug G fix: claims that mention a specific paragraph AND a known AT law
+    abbreviation deserve a direct link to the law's consolidated current
+    version (GeltendeFassung) instead of relying on the BGBl-Suchworte
+    fallback, which produces irrelevant results for paragraph-style queries.
+
+    Pattern matches: "§ 7 B-VG", "§7 B-VG", "Art. 7 B-VG",
+    "Artikel 15a B-VG" — paragraph/article reference followed by a known
+    law abbreviation. Multiple matches are deduplicated.
+    """
+    refs: list[tuple[str, str, str]] = []
+    seen: set[tuple[str, str]] = set()
+    pattern = re.compile(
+        r"(?P<kind>§|Art\.?|Artikel)\s*(?P<num>\d+[a-zA-Z]?)\s+"
+        r"(?P<law>[A-ZÄÖÜ][\w\-\.]{1,15})",
+        re.UNICODE,
+    )
+    for m in pattern.finditer(claim):
+        law_norm = m.group("law").lower().rstrip(".").strip()
+        if law_norm not in LAW_REGISTRY:
+            continue
+        kind_raw = m.group("kind").lower()
+        kind = "Art." if kind_raw.startswith("a") else "§"
+        ref_str = f"{kind} {m.group('num')}"
+        key = (ref_str, law_norm)
+        if key in seen:
+            continue
+        seen.add(key)
+        refs.append((ref_str, law_norm, LAW_REGISTRY[law_norm][1]))
+    return refs
+
+
+def _format_law_section_entry(
+    ref_str: str, law_key: str, display: str
+) -> dict:
+    """Build a synthesizer-compatible entry that points at the consolidated
+    current law text. Pure metadata link — the actual paragraph wording is
+    on the linked RIS page (which is too large to fetch into context).
+    """
+    gnr, _ = LAW_REGISTRY[law_key]
+    url = GELTENDE_FASSUNG_BASE.format(nr=gnr)
+
+    description_parts = [
+        f"Direktlink zur konsolidierten aktuellen Fassung des Gesetzes "
+        f"in der RIS-Datenbank Bundesnormen. Der Wortlaut ist auf der "
+        f"verlinkten Seite im Abschnitt {ref_str} einsehbar."
+    ]
+    # Hinweis: bei §-Verweis auf ein Verfassungsgesetz auf die korrekte
+    # Artikel-Nummerierung hinweisen (Volkssprachgebrauch verwechselt das oft).
+    if ref_str.startswith("§") and law_key in CONSTITUTIONAL_LAWS:
+        # Extrahiere die Nummer (z.B. "7" aus "§ 7") und die kurze
+        # Gesetzes-Abkürzung (z.B. "B-VG" aus "Bundes-Verfassungsgesetz (B-VG)").
+        num = ref_str.split(" ", 1)[1] if " " in ref_str else ref_str.lstrip("§").strip()
+        short_abbr = display.split("(")[-1].rstrip(")") if "(" in display else display
+        description_parts.append(
+            f"Hinweis: {display} verwendet Artikel-Nummerierung — "
+            f"die Behauptung sollte korrekt „Art. {num} {short_abbr}\" zitieren, "
+            f"nicht „§ {num} {short_abbr}\". Inhaltlich ist Art. {num} {short_abbr} gemeint."
+        )
+
+    return {
+        "indicator_name": (
+            f"RIS GeltendeFassung: {display} — {ref_str} "
+            f"(konsolidierte aktuelle Fassung)"
+        ),
+        "indicator": "ris_geltende_fassung",
+        "country": "AUT",
+        "country_name": "Austria",
+        "year": "",
+        "value": "",
+        "display_value": "",
+        "url": url,
+        "description": " ".join(description_parts),
+    }
 
 
 async def _query_ris(client: httpx.AsyncClient, params: dict) -> list[dict]:
@@ -289,38 +395,49 @@ async def search_ris(analysis: dict) -> dict:
         return {"source": "RIS — Rechtsinformationssystem", "type": "official_data", "results": []}
 
     terms = _extract_search_terms(analysis)
-    if not terms:
+    # Bug G: Paragraph-Direktlinks haben Vorrang. Auch wenn `terms` leer ist,
+    # ein erkannter „§ N <Gesetz>"-Verweis lohnt eine Antwort (Direktlink zur
+    # konsolidierten Fassung), daher prüfen wir Section-Refs zuerst.
+    section_refs = _extract_law_paragraph_refs(claim)
+
+    if not terms and not section_refs:
         return {"source": "RIS — Rechtsinformationssystem", "type": "official_data", "results": []}
 
-    async with httpx.AsyncClient(timeout=15.0) as client:
-        all_refs_by_term: list[tuple[str, list[dict]]] = []
-        for term in terms:
-            refs = await _search_ris_for_term(client, term)
-            if refs:
-                all_refs_by_term.append((term, refs))
-
-    if not all_refs_by_term:
-        logger.info(f"RIS: no hits for terms={terms}")
-        return {"source": "RIS — Rechtsinformationssystem", "type": "official_data", "results": []}
-
-    # Aggregate + dedupe by ELI URL — same law often appears for multiple
-    # search terms (e.g., search for both "B-VG" and "Bundesverfassungsgesetz").
-    seen_urls: set[str] = set()
     results: list[dict] = []
-    for term, refs in all_refs_by_term:
-        for ref in refs:
-            entry = _format_ris_entry(ref, term)
-            if entry and entry["url"] not in seen_urls:
-                seen_urls.add(entry["url"])
-                # Strip internal field before emitting
-                entry.pop("search_term", None)
-                results.append(entry)
-                if len(results) >= MAX_RESULTS:
-                    break
-        if len(results) >= MAX_RESULTS:
-            break
+    seen_urls: set[str] = set()
+
+    # 1. Section-Refs (§ N <Gesetz> oder Art. N <Gesetz>) zuerst — die sind
+    #    die präzisesten Antworten für paragraphische Behauptungen.
+    for ref_str, law_key, display in section_refs[:3]:
+        entry = _format_law_section_entry(ref_str, law_key, display)
+        if entry["url"] not in seen_urls:
+            seen_urls.add(entry["url"])
+            results.append(entry)
+
+    # 2. BGBl-Treffer als Ergänzung (auch wenn Section-Refs schon vorhanden,
+    #    da Novellen + Stammgesetz zusätzlichen Kontext liefern).
+    if terms:
+        async with httpx.AsyncClient(timeout=15.0) as client:
+            all_refs_by_term: list[tuple[str, list[dict]]] = []
+            for term in terms:
+                refs = await _search_ris_for_term(client, term)
+                if refs:
+                    all_refs_by_term.append((term, refs))
+
+        for term, refs in all_refs_by_term:
+            for ref in refs:
+                entry = _format_ris_entry(ref, term)
+                if entry and entry["url"] not in seen_urls:
+                    seen_urls.add(entry["url"])
+                    entry.pop("search_term", None)
+                    results.append(entry)
+                    if len(results) >= MAX_RESULTS:
+                        break
+            if len(results) >= MAX_RESULTS:
+                break
 
     if not results:
+        logger.info(f"RIS: no hits for terms={terms}, section_refs={section_refs}")
         return {"source": "RIS — Rechtsinformationssystem", "type": "official_data", "results": []}
 
     # Caveat
