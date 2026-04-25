@@ -41,6 +41,8 @@ from services.rsf import search_rsf, _claim_mentions_rsf
 from services.sipri import search_sipri, _claim_mentions_sipri
 from services.idea import search_idea, _claim_mentions_idea
 from services.parlament_at import search_parlament_at, _claim_mentions_parlament
+from services.geosphere import search_geosphere, _claim_mentions_climate as _claim_mentions_geosphere_climate, _detect_cities as _geosphere_detect_cities, _claim_mentions_austria as _geosphere_mentions_austria
+from services.basg import search_basg, _claim_mentions_pharma as _claim_mentions_basg_pharma, _claim_mentions_austria as _basg_mentions_austria
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -280,6 +282,18 @@ async def check_claim(request: Request):
         if _claim_mentions_parlament(claim):
             tasks.append(cached("ParlamentAT", search_parlament_at, analysis))
             queried_names.append("Parlament.gv.at")
+        # GeoSphere Austria: Stations-Klimadaten für AT-Städte
+        # (selektives Triggering: Klima-Keyword + AT-Stadt oder Österreich-Bezug)
+        if _claim_mentions_geosphere_climate(claim) and (
+            _geosphere_detect_cities(claim) or _geosphere_mentions_austria(analysis)
+        ):
+            tasks.append(cached("GeoSphere", search_geosphere, analysis))
+            queried_names.append("GeoSphere Austria")
+        # BASG: AT-spezifische Arzneimittel-/Medizinprodukt-Sicherheitsmeldungen
+        # (selektives Triggering: Pharma-Keyword/Drug-Entity + Österreich-Bezug)
+        if _claim_mentions_basg_pharma(claim, analysis) and _basg_mentions_austria(analysis):
+            tasks.append(cached("BASG", search_basg, analysis))
+            queried_names.append("BASG")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

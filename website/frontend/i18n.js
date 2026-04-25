@@ -122,6 +122,8 @@ const TRANSLATIONS = {
                 <li><a href="https://data.worldbank.org/" target="_blank" rel="noopener">World Bank</a> — Weltbank Open Data</li>
                 <li><a href="https://ourworldindata.org/" target="_blank" rel="noopener">OWID</a> — Our World in Data</li>
                 <li><a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria</a> — Österreichische amtliche Statistiken (OGD)</li>
+                <li><a href="https://data.hub.geosphere.at/" target="_blank" rel="noopener">GeoSphere Austria</a> — Klima-Stationsdaten (klima-v2-1y)</li>
+                <li><a href="https://www.basg.gv.at/" target="_blank" rel="noopener">BASG</a> — Bundesamt für Sicherheit im Gesundheitswesen (AT-Arzneimittelwarnungen)</li>
                 <li><a href="https://v-dem.net/" target="_blank" rel="noopener">V-Dem</a> — Varieties of Democracy (Universität Göteborg)</li>
                 <li><a href="https://www.transparency.org/en/cpi" target="_blank" rel="noopener">Transparency International</a> — Corruption Perceptions Index</li>
                 <li><a href="https://rsf.org/en/index" target="_blank" rel="noopener">Reporter ohne Grenzen (RSF)</a> — World Press Freedom Index</li>
@@ -158,6 +160,8 @@ const TRANSLATIONS = {
                     </ul>
                 </li>
                 <li><strong><a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament.gv.at — Open Data</a></strong> — Nationalrats-Klubstärken und Parlamentsdaten</li>
+                <li><strong><a href="https://data.hub.geosphere.at/" target="_blank" rel="noopener">GeoSphere Austria — Data Hub</a></strong> (CC BY 4.0) — Stationsmessungen für die neun Bundesland-Hauptstädte (Wien, Salzburg, Innsbruck, Graz, Linz, Klagenfurt, Bregenz, Eisenstadt, St. Pölten), jährliche Lufttemperatur-Mittelwerte mit WMO-Referenzperiode 1991–2020 und linearem Trend</li>
+                <li><strong><a href="https://www.basg.gv.at/marktbeobachtung/amtliche-nachrichten" target="_blank" rel="noopener">BASG — Bundesamt für Sicherheit im Gesundheitswesen</a></strong> — RSS-Feed der amtlichen Nachrichten zu Arzneimittel-Rückrufen, Chargensperren, Sicherheitsinformationen (DHPC) und Medizinprodukt-Warnungen. Trigger nur bei pharmakologischen Claims mit Österreich-Bezug</li>
             </ul>
 
             <h3>Faktencheck-Partner mit AT-Bezug</h3>
@@ -296,6 +300,8 @@ const TRANSLATIONS = {
                 <li><strong>EEA</strong> — Umweltdaten der Europäischen Umweltagentur. <a href="https://www.eea.europa.eu/en/legal-notice" target="_blank" rel="noopener">EEA Legal Notice</a></li>
                 <li><strong>ECDC</strong> — Surveillance-Daten des European Centre for Disease Prevention and Control. <a href="https://www.ecdc.europa.eu/en/copyright" target="_blank" rel="noopener">ECDC Copyright</a></li>
                 <li><strong>Statistik Austria</strong> — amtliche österreichische Statistiken (CC BY 4.0). <a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria OGD</a></li>
+                <li><strong>GeoSphere Austria</strong> — Klima-Stationsdaten der Bundesanstalt für Meteorologie (CC BY 4.0). <a href="https://data.hub.geosphere.at/" target="_blank" rel="noopener">GeoSphere Data Hub</a></li>
+                <li><strong>BASG</strong> — amtliche Mitteilungen des Bundesamts für Sicherheit im Gesundheitswesen (gemeinfrei, § 7 UrhG-AT). <a href="https://www.basg.gv.at/marktbeobachtung/amtliche-nachrichten" target="_blank" rel="noopener">BASG Amtliche Nachrichten</a></li>
                 <li><strong>Cochrane Reviews</strong> — Systematische Reviews via PubMed (höchste Evidenzstufe)</li>
                 <li><strong>GADMO Faktenchecks</strong> — Deutschsprachige Faktenchecks (APA). <a href="https://gadmo.eu" target="_blank" rel="noopener">GADMO</a></li>
                 <li><strong>EFCSN-Faktenchecker</strong> — über die <a href="https://developers.google.com/fact-check/tools/api" target="_blank" rel="noopener">Google Fact Check Tools API</a> (ClaimReview-Daten von Correctiv, AFP, dpa u.a.)</li>
@@ -427,6 +433,8 @@ const TRANSLATIONS = {
                 <li><a href="https://data.worldbank.org/" target="_blank" rel="noopener">World Bank</a> — World Bank Open Data</li>
                 <li><a href="https://ourworldindata.org/" target="_blank" rel="noopener">OWID</a> — Our World in Data</li>
                 <li><a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria</a> — Austrian official statistics (OGD)</li>
+                <li><a href="https://data.hub.geosphere.at/" target="_blank" rel="noopener">GeoSphere Austria</a> — Climate station data (klima-v2-1y)</li>
+                <li><a href="https://www.basg.gv.at/" target="_blank" rel="noopener">BASG</a> — Austrian Federal Office for Safety in Health Care (medicines safety alerts)</li>
                 <li><a href="https://v-dem.net/" target="_blank" rel="noopener">V-Dem</a> — Varieties of Democracy (University of Gothenburg)</li>
                 <li><a href="https://www.transparency.org/en/cpi" target="_blank" rel="noopener">Transparency International</a> — Corruption Perceptions Index</li>
                 <li><a href="https://rsf.org/en/index" target="_blank" rel="noopener">Reporters Without Borders (RSF)</a> — World Press Freedom Index</li>
@@ -463,6 +471,8 @@ const TRANSLATIONS = {
                     </ul>
                 </li>
                 <li><strong><a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament.gv.at — Open Data</a></strong> — National Council seat shares and parliamentary data</li>
+                <li><strong><a href="https://data.hub.geosphere.at/" target="_blank" rel="noopener">GeoSphere Austria — Data Hub</a></strong> (CC BY 4.0) — station measurements for the nine federal-state capitals (Vienna, Salzburg, Innsbruck, Graz, Linz, Klagenfurt, Bregenz, Eisenstadt, St. Pölten), annual mean air-temperature values with WMO reference period 1991–2020 and linear trend</li>
+                <li><strong><a href="https://www.basg.gv.at/marktbeobachtung/amtliche-nachrichten" target="_blank" rel="noopener">BASG — Austrian Medicines and Medical Devices Agency</a></strong> — RSS feed of official notices on medicine recalls, batch withdrawals, safety information (DHPC), and medical device warnings. Triggered only for pharmacological claims with Austrian context</li>
             </ul>
 
             <h3>Fact-checking partners with AT coverage</h3>
@@ -600,6 +610,8 @@ const TRANSLATIONS = {
                 <li><strong>EEA</strong> — environmental data by the European Environment Agency. <a href="https://www.eea.europa.eu/en/legal-notice" target="_blank" rel="noopener">EEA Legal Notice</a></li>
                 <li><strong>ECDC</strong> — surveillance data by the European Centre for Disease Prevention and Control. <a href="https://www.ecdc.europa.eu/en/copyright" target="_blank" rel="noopener">ECDC Copyright</a></li>
                 <li><strong>Statistik Austria</strong> — Austrian official statistics (CC BY 4.0). <a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria OGD</a></li>
+                <li><strong>GeoSphere Austria</strong> — climate station data by the Federal Institute for Meteorology (CC BY 4.0). <a href="https://data.hub.geosphere.at/" target="_blank" rel="noopener">GeoSphere Data Hub</a></li>
+                <li><strong>BASG</strong> — official notices by the Austrian Federal Office for Safety in Health Care (public domain, § 7 UrhG-AT). <a href="https://www.basg.gv.at/marktbeobachtung/amtliche-nachrichten" target="_blank" rel="noopener">BASG Official Notices</a></li>
                 <li><strong>Cochrane Reviews</strong> — systematic reviews via PubMed (highest level of medical evidence)</li>
                 <li><strong>GADMO fact-checks</strong> — German-language fact-checks (APA). <a href="https://gadmo.eu" target="_blank" rel="noopener">GADMO</a></li>
                 <li><strong>EFCSN fact-checkers</strong> — via <a href="https://developers.google.com/fact-check/tools/api" target="_blank" rel="noopener">Google Fact Check Tools API</a> (ClaimReview data from Correctiv, AFP, dpa and others)</li>
