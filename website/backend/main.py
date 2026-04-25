@@ -171,7 +171,13 @@ async def check_claim(request: Request):
                 logger.error("Mistral API credits exhausted")
                 yield {"event": "error", "data": json.dumps({"detail": "MISTRAL_CREDITS_EXHAUSTED"})}
                 return
-            raise
+            # Any other ValueError (e.g. "Mistral returned unparseable response")
+            # MUST emit a clean error event — re-raising terminates the SSE
+            # stream uncleanly and surfaces as "Error in input stream" in
+            # Firefox, which is unhelpful for users.
+            logger.error(f"Claim analysis ValueError: {e}", exc_info=True)
+            yield {"event": "error", "data": json.dumps({"detail": "Fehler bei der Claim-Analyse. Bitte erneut versuchen." if lang == "de" else "Claim analysis failed. Please try again."})}
+            return
         except Exception:
             logger.error("Claim analysis failed", exc_info=True)
             yield {"event": "error", "data": json.dumps({"detail": "Fehler bei der Claim-Analyse. Bitte erneut versuchen." if lang == "de" else "Claim analysis failed. Please try again."})}
@@ -356,7 +362,11 @@ async def check_claim(request: Request):
                 logger.error("Mistral API credits exhausted")
                 yield {"event": "error", "data": json.dumps({"detail": "MISTRAL_CREDITS_EXHAUSTED"})}
                 return
-            raise
+            # Same defensive pattern as in analyze: emit clean error event
+            # rather than re-raising into the SSE generator.
+            logger.error(f"Synthesis ValueError: {e}", exc_info=True)
+            yield {"event": "error", "data": json.dumps({"detail": "Fehler bei der Ergebnis-Synthese. Bitte erneut versuchen." if lang == "de" else "Synthesis failed. Please try again."})}
+            return
         except Exception:
             logger.error("Synthesis failed", exc_info=True)
             yield {"event": "error", "data": json.dumps({"detail": "Fehler bei der Ergebnis-Synthese. Bitte erneut versuchen." if lang == "de" else "Synthesis failed. Please try again."})}

@@ -30,7 +30,28 @@ async def _call_mistral_api(messages: list, timeout: float) -> str:
             },
         )
         response.raise_for_status()
-        return response.json()["choices"][0]["message"]["content"]
+        # Defensive: Mistral can return 200 OK with an unexpected body shape
+        # (e.g. {"error": ...} or HTML). Surface a clear error rather than
+        # KeyError-bombing into the analyzer's "unparseable response" path.
+        try:
+            payload = response.json()
+        except Exception as e:
+            body_preview = response.text[:300]
+            logger.error(f"Mistral 200 OK but body is not JSON: {body_preview!r}")
+            raise ValueError(f"Mistral returned non-JSON 200 response: {body_preview[:120]}") from e
+        if "error" in payload:
+            err_msg = payload["error"]
+            if isinstance(err_msg, dict):
+                err_msg = err_msg.get("message", str(err_msg))
+            logger.error(f"Mistral 200 OK with error field: {err_msg}")
+            # Mistral sometimes returns 200 with payment/quota errors in body
+            if any(s in str(err_msg).lower() for s in ("credit", "quota", "payment", "billing")):
+                raise ValueError("MISTRAL_CREDITS_EXHAUSTED")
+            raise ValueError(f"Mistral API error: {err_msg}")
+        if "choices" not in payload or not payload["choices"]:
+            logger.error(f"Mistral response missing 'choices': {str(payload)[:300]}")
+            raise ValueError("Mistral returned response without 'choices' field")
+        return payload["choices"][0]["message"]["content"]
 
 
 async def _call_ollama(messages: list, timeout: float) -> str:
