@@ -92,11 +92,15 @@ Zeitbezogene Behauptungen und Rekord-Claims (SEHR WICHTIG):
 - Beispiel: Wenn eine Behauptung sagt "X ist auf einem Rekordtief" und die Daten zeigen, dass das Minimum bei 0% lag (2016), der aktuelle Wert aber 2,15% beträgt, dann ist die Behauptung FALSCH
 
 Rekord-Jahres-Claims und Superlativ-Falsifikation (SEHR WICHTIG):
-- Behauptungen der Form "Jahr Y war das wärmste/kälteste/Rekord-Jahr in Land Z": Wenn die Daten EXPLIZIT ein ANDERES Rekordjahr nennen als behauptet, ist die Behauptung FALSCH. Setze verdict auf "false".
-- Beispiel: Behauptung "2023 war das wärmste Jahr in Deutschland". Daten-description enthält: "Wärmstes Jahr seit Messbeginn für Germany: 2024 (+1,56°C vs. 1951–1980)". Das behauptete Jahr (2023) ≠ das tatsächliche Rekordjahr (2024) → Behauptung ist FALSCH.
-- Es ist NICHT erforderlich, den spezifischen Wert des behaupteten Jahres zu kennen — die explizite Nennung eines anderen Rekordjahres in den Quellen widerlegt die Behauptung durch einfache Logik (Modus tollens). Setze NICHT "unverifiable", nur weil der exakte Wert für das behauptete Jahr fehlt.
+- Identifiziere ZUERST das im Claim genannte Jahr Y. Suche dann in den Daten nach dem Feld "Wärmstes Jahr" / "Rekordjahr" / "wärmstes Jahr seit Messbeginn" / "Maximum" (oder "Kältestes Jahr" für Kälte-Claims).
+- KRITISCH: Vergleiche Y mit dem als RECORD markierten Jahr — NICHT mit dem aktuellen Jahr, NICHT mit dem letzten Datenpunkt, NICHT mit dem Jahr im "indicator_name". Beispiel-Falle: Eine GeoSphere-Zeile heißt "Wien Hohe Warte — Jahresmitteltemperatur 2025: 11.6°C" und die description enthält "Wärmstes Jahr in der Reihe: 2024 (13.0°C)". Das relevante Vergleichsjahr ist 2024 (Rekord), nicht 2025 (aktueller Datenpunkt).
+- WENN das behauptete Jahr Y == tatsächliches Rekordjahr in den Daten → Behauptung ist WAHR. Setze verdict auf "true".
+- Beispiel WAHR: Behauptung "2024 war das wärmste Jahr in Wien". Daten-description: "Wärmstes Jahr in der Reihe: 2024 (13.0°C). Kältestes Jahr: 1996 (8.9°C)." Das behauptete Jahr (2024) == tatsächliches Rekordjahr (2024) → Behauptung ist WAHR. Der aktuelle Datenpunkt 2025 (11.6°C) ist IRRELEVANT für die Bewertung — er ist nicht das Rekordjahr und auch nicht das im Claim genannte Jahr.
+- WENN das behauptete Jahr Y ≠ tatsächliches Rekordjahr in den Daten → Behauptung ist FALSCH. Setze verdict auf "false".
+- Beispiel FALSCH: Behauptung "2023 war das wärmste Jahr in Deutschland". Daten-description: "Wärmstes Jahr seit Messbeginn für Germany: 2024 (+1,56°C vs. 1951–1980)". Das behauptete Jahr (2023) ≠ das tatsächliche Rekordjahr (2024) → Behauptung ist FALSCH.
+- Es ist NICHT erforderlich, den spezifischen Wert des behaupteten Jahres zu kennen — die explizite Nennung des Rekordjahres in den Quellen reicht für WAHR/FALSCH durch einfache Logik (Modus ponens / Modus tollens). Setze NICHT "unverifiable", nur weil der exakte Wert für das behauptete Jahr fehlt.
 - Die "description"-Felder der Quellen (besonders Berkeley Earth, NASA GISS, EEA, Copernicus, GeoSphere Austria) enthalten häufig das Rekordjahr, den Trend über 50 Jahre und Referenz-Zeiträume — lies sie bei Rekord-Claims IMMER mit aus.
-- Analog gilt das für "höchste X je", "niedrigste Y aller Zeiten": Wenn die Daten ein anderes Extremum dokumentieren, ist der Superlativ-Claim für einen bestimmten Zeitpunkt FALSCH, auch wenn der konkrete Wert dieses Zeitpunkts nicht einzeln gelistet ist.
+- Analog gilt das für "höchste X je", "niedrigste Y aller Zeiten": Vergleiche immer den behaupteten Zeitpunkt mit dem in den Daten dokumentierten Extremum, nicht mit dem aktuellen Wert oder einem beliebigen anderen Datenpunkt.
 
 Österreichische Gesetzes-Daten (RIS) — Kundmachung vs. Inkrafttreten (WICHTIG):
 - BGBl-Einträge im RIS dokumentieren das KUNDMACHUNGSDATUM (Veröffentlichung im Bundesgesetzblatt), NICHT zwingend das Inkrafttretensdatum.
@@ -194,11 +198,15 @@ Time-sensitive claims and record claims (VERY IMPORTANT):
 - Example: If a claim says "X is at a record low" and data shows the minimum was 0% (2016) but the current value is 2.15%, the claim is FALSE
 
 Record-year claims and superlative falsification (VERY IMPORTANT):
-- Claims of the form "year Y was the warmest/coldest/record year in country Z": If the data EXPLICITLY names a DIFFERENT record year than claimed, the claim is FALSE. Set verdict to "false".
-- Example: Claim "2023 was the warmest year in Germany". Data description contains: "Warmest year on record for Germany: 2024 (+1.56°C vs. 1951–1980)". The claimed year (2023) ≠ the actual record year (2024) → the claim is FALSE.
-- It is NOT required to know the specific value of the claimed year — the explicit naming of a different record year in the sources refutes the claim through simple logic (modus tollens). Do NOT set "unverifiable" just because the exact value for the claimed year is missing.
+- FIRST identify the year Y named in the claim. THEN look for a field labelled "Warmest year" / "Record year" / "warmest year on record" / "Maximum" (or "Coldest year" for cold claims) in the data.
+- CRITICAL: Compare Y with the year marked as the RECORD — NOT with the current year, NOT with the latest data point, NOT with the year inside an "indicator_name". Trap example: a GeoSphere row is titled "Wien Hohe Warte — Annual mean temperature 2025: 11.6°C" and the description contains "Warmest year in series: 2024 (13.0°C)". The relevant comparison year is 2024 (record), not 2025 (current data point).
+- IF the claimed year Y == the actual record year in the data → the claim is TRUE. Set verdict to "true".
+- Example TRUE: Claim "2024 was the warmest year in Vienna". Data description: "Warmest year in series: 2024 (13.0°C). Coldest year: 1996 (8.9°C)." The claimed year (2024) == actual record year (2024) → claim is TRUE. The current data point 2025 (11.6°C) is IRRELEVANT for the assessment — it is neither the record year nor the year in the claim.
+- IF the claimed year Y ≠ the actual record year in the data → the claim is FALSE. Set verdict to "false".
+- Example FALSE: Claim "2023 was the warmest year in Germany". Data description: "Warmest year on record for Germany: 2024 (+1.56°C vs. 1951–1980)". The claimed year (2023) ≠ actual record year (2024) → the claim is FALSE.
+- It is NOT required to know the specific value of the claimed year — the explicit naming of the record year in the sources is enough to assess TRUE/FALSE through simple logic (modus ponens / modus tollens). Do NOT set "unverifiable" just because the exact value for the claimed year is missing.
 - Source "description" fields (especially Berkeley Earth, NASA GISS, EEA, Copernicus, GeoSphere Austria) often contain the record year, the 50-year trend, and reference periods — ALWAYS read them when evaluating record claims.
-- The same applies to "highest X ever", "lowest Y of all time": If the data documents a different extremum, the superlative claim for a specific point in time is FALSE, even if that point's concrete value is not separately listed.
+- The same applies to "highest X ever", "lowest Y of all time": always compare the claimed point in time with the documented extremum, not with the current value or any other data point.
 
 Austrian law data (RIS) — promulgation vs. entry into force (IMPORTANT):
 - BGBl entries in RIS document the PROMULGATION DATE (publication in the Federal Law Gazette), NOT necessarily the entry-into-force date.
