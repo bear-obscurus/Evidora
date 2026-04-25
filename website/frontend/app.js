@@ -97,26 +97,30 @@ form.addEventListener("submit", async (e) => {
                     if (trimmed.startsWith("event:")) {
                         eventType = trimmed.slice(6).trim();
                     } else if (trimmed.startsWith("data:") && eventType) {
+                        let data;
                         try {
-                            const data = JSON.parse(trimmed.slice(5).trim());
-                            if (eventType === "step") {
-                                setStep(data.step);
-                            } else if (eventType === "error") {
-                                if (data.detail === "MISTRAL_CREDITS_EXHAUSTED") {
-                                    throw new Error(t("error_credits_exhausted"));
-                                }
-                                throw new Error(data.detail);
-                            } else if (eventType === "result") {
-                                gotResult = true;
-                                showResults(data);
-                            } else if (eventType === "done") {
-                                streamDone = true;
-                                reader.cancel();
-                                break;
-                            }
+                            data = JSON.parse(trimmed.slice(5).trim());
                         } catch (parseErr) {
-                            if (parseErr.message.includes("MISTRAL_CREDITS") || parseErr.message.includes("Zeitüberschreitung") || parseErr.message.includes("timed out")) throw parseErr;
-                            console.error("SSE parse error:", parseErr, "line:", trimmed.slice(0, 200));
+                            // Only swallow real JSON parse errors (SyntaxError).
+                            // Errors we throw intentionally below must propagate.
+                            console.error("SSE JSON parse error:", parseErr, "line:", trimmed.slice(0, 200));
+                            eventType = null;
+                            continue;
+                        }
+                        if (eventType === "step") {
+                            setStep(data.step);
+                        } else if (eventType === "error") {
+                            if (data.detail === "MISTRAL_CREDITS_EXHAUSTED") {
+                                throw new Error(t("error_credits_exhausted"));
+                            }
+                            throw new Error(data.detail);
+                        } else if (eventType === "result") {
+                            gotResult = true;
+                            showResults(data);
+                        } else if (eventType === "done") {
+                            streamDone = true;
+                            reader.cancel();
+                            break;
                         }
                         eventType = null;
                     }
