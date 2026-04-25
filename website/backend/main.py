@@ -43,6 +43,7 @@ from services.idea import search_idea, _claim_mentions_idea
 from services.parlament_at import search_parlament_at, _claim_mentions_parlament
 from services.geosphere import search_geosphere, _claim_mentions_climate as _claim_mentions_geosphere_climate, _detect_cities as _geosphere_detect_cities, _claim_mentions_austria as _geosphere_mentions_austria
 from services.basg import search_basg, _claim_mentions_pharma as _claim_mentions_basg_pharma, _claim_mentions_austria as _basg_mentions_austria
+from services.ris import search_ris, _claim_mentions_legal as _ris_mentions_legal, _claim_mentions_austria as _ris_mentions_austria, _extract_search_terms as _ris_extract_terms
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -294,6 +295,12 @@ async def check_claim(request: Request):
         if _claim_mentions_basg_pharma(claim, analysis) and _basg_mentions_austria(analysis):
             tasks.append(cached("BASG", search_basg, analysis))
             queried_names.append("BASG")
+        # RIS: Bundesgesetzblatt / österreichisches Bundesrecht
+        # (selektives Triggering: Legal-Keyword + AT-Kontext + extrahierbarer Suchterm)
+        if (_ris_mentions_legal(claim) and _ris_mentions_austria(analysis)
+                and _ris_extract_terms(analysis)):
+            tasks.append(cached("RIS", search_ris, analysis))
+            queried_names.append("RIS")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
