@@ -1,4 +1,5 @@
 import asyncio
+import re
 
 import httpx
 import logging
@@ -372,7 +373,31 @@ DATASET_MAP = {
         "unit": "% Veränderung",
     },
     # BIP pro Kopf (für "reichstes Land" etc.)
-    "reich": {
+    # WICHTIG: NICHT "reich" als Keyword verwenden — substring-matched in
+    # "Österreich" / "Frankreich" / "Bereich" und triggert dann fälschlich
+    # den BIP-Caveat in unverwandten Claims (Bug F, 2026-04-25).
+    "reichste": {
+        "dataset": "nama_10_pc",
+        "label": "BIP pro Kopf (KKS)",
+        "label_en": "GDP per Capita (PPS)",
+        "params": {"na_item": "B1GQ", "unit": "CP_PPS_HAB", "lastTimePeriod": "5"},
+        "unit": "KKS pro Kopf",
+    },
+    "reichsten": {
+        "dataset": "nama_10_pc",
+        "label": "BIP pro Kopf (KKS)",
+        "label_en": "GDP per Capita (PPS)",
+        "params": {"na_item": "B1GQ", "unit": "CP_PPS_HAB", "lastTimePeriod": "5"},
+        "unit": "KKS pro Kopf",
+    },
+    "reichstes": {
+        "dataset": "nama_10_pc",
+        "label": "BIP pro Kopf (KKS)",
+        "label_en": "GDP per Capita (PPS)",
+        "params": {"na_item": "B1GQ", "unit": "CP_PPS_HAB", "lastTimePeriod": "5"},
+        "unit": "KKS pro Kopf",
+    },
+    "richest": {
         "dataset": "nama_10_pc",
         "label": "BIP pro Kopf (KKS)",
         "label_en": "GDP per Capita (PPS)",
@@ -645,6 +670,15 @@ def _find_datasets(analysis: dict) -> list[dict]:
     Search order: specific terms first (keywords, claim text) before generic
     ones (subcategory, category) so that e.g. "Jugendarbeitslosigkeit" matches
     the youth-specific dataset before "unemployment" catches the generic one.
+
+    Substring-Matching ist für deutsche Komposita erwünscht (z.B.
+    "arbeitslosigkeit" soll auch "Jugendarbeitslosigkeit" matchen, "armut"
+    soll auch "Armutsgefährdung" matchen), aber kurze Keywords ≤5 Zeichen
+    matchen sonst fälschlich in Country-Names, wenn das Keyword am ENDE eines
+    längeren Wortes sitzt (Bug F: "reich" in "österreich"/"frankreich"/
+    "bereich"). Defensive Lösung: Keywords ≤5 Zeichen müssen am Wortanfang
+    stehen (linke Word-Boundary), die rechte Seite darf weiter laufen
+    (Compound-Match bleibt funktionsfähig).
     """
     keywords = analysis.get("spacy_keywords", [])
     entities = analysis.get("entities", [])
@@ -657,14 +691,29 @@ def _find_datasets(analysis: dict) -> list[dict]:
     # Sort keywords longest-first so specific matches (e.g. "jugendarbeitslosigkeit")
     # win over generic substrings (e.g. "arbeitslosigkeit") for the same dataset
     sorted_keywords = sorted(DATASET_MAP.keys(), key=len, reverse=True)
+    # Pre-compile left-boundary regexes for short keywords (≤5 chars).
+    # Pattern \b<keyword> erlaubt Compounds (Armut → Armutsgefährdung) aber
+    # blockiert Treffer am Wortende (reich in Österreich).
+    short_keyword_patterns = {
+        kw: re.compile(r"\b" + re.escape(kw), re.IGNORECASE)
+        for kw in DATASET_MAP if len(kw) <= 5
+    }
     for term in search_terms:
         term_lower = term.lower()
         for keyword in sorted_keywords:
-            if keyword in term_lower:
-                ds = DATASET_MAP[keyword]
-                key = ds["dataset"]
-                if key not in matched:
-                    matched[key] = ds
+            if len(keyword) <= 5:
+                # Short keyword: require left word boundary to avoid country-name
+                # substring matches (Bug F).
+                if not short_keyword_patterns[keyword].search(term_lower):
+                    continue
+            else:
+                # Longer keyword: cheap substring match (works for German compounds)
+                if keyword not in term_lower:
+                    continue
+            ds = DATASET_MAP[keyword]
+            key = ds["dataset"]
+            if key not in matched:
+                matched[key] = ds
     return list(matched.values())
 
 
