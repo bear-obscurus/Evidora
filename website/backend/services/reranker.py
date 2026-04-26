@@ -91,6 +91,26 @@ _FACTCHECK_SOURCES = {"GADMO", "DataCommons", "ClaimReview", "Faktenchecker", "F
 ACADEMIC_THRESHOLD = 0.40
 _ACADEMIC_SOURCES = {"OpenAlex", "Semantic Scholar"}
 
+# Bug B (energy safety): For claims explicitly about energy-source
+# mortality / safety comparisons ("deaths per TWh", "Tote pro TWh",
+# "Mortalitätsrate Energieträger"), the dedicated OWID Energy Safety
+# source already provides authoritative, peer-reviewed numbers (Sovacool
+# et al. via OWID).  Academic databases on the same query return many
+# adjacent-but-not-relevant papers (carbon-capture optimization,
+# coal-to-hydrogen, permanent-magnet drives) that share vocabulary
+# without addressing the mortality comparison.  When the claim matches
+# the energy-safety pattern, raise the academic threshold so only the
+# tightest matches survive.
+_ENERGY_SAFETY_PATTERNS = (
+    "tote pro twh", "tote/twh", "todesfälle pro twh",
+    "mortalität pro twh", "mortalitätsrate",
+    "deaths per twh", "deaths/twh",
+    "fatalities per twh", "death rate.*energy",
+    "mortality.*energy", "energy.*mortality",
+    "pro twh", "per twh",
+)
+ACADEMIC_THRESHOLD_ENERGY_SAFETY = 0.55
+
 
 def rerank_results(claim: str, source_results: list) -> list:
     """Re-rank results within each source by semantic similarity to the claim.
@@ -111,9 +131,17 @@ def rerank_results(claim: str, source_results: list) -> list:
 
     try:
         from sentence_transformers import util
+        import re as _re
 
         claim_embedding = _model.encode(claim, convert_to_tensor=True)
         total_removed = 0
+        # Bug B: detect energy-safety / deaths-per-TWh claims once, then
+        # use a stricter academic threshold for them (OWID has the
+        # authoritative numbers, academic DBs offer adjacent noise).
+        claim_lc = (claim or "").lower()
+        is_energy_safety_claim = any(
+            _re.search(p, claim_lc) for p in _ENERGY_SAFETY_PATTERNS
+        )
 
         for source_data in source_results:
             if not isinstance(source_data, dict):
@@ -157,7 +185,11 @@ def rerank_results(claim: str, source_results: list) -> list:
             if is_factcheck:
                 threshold = FACTCHECK_THRESHOLD
             elif is_academic:
-                threshold = ACADEMIC_THRESHOLD
+                # Bug B: tighten threshold for energy-safety claims —
+                # OWID Energy Safety is authoritative, academic results
+                # are typically adjacent noise.
+                threshold = (ACADEMIC_THRESHOLD_ENERGY_SAFETY
+                             if is_energy_safety_claim else ACADEMIC_THRESHOLD)
             else:
                 threshold = RELEVANCE_THRESHOLD
 

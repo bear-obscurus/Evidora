@@ -664,6 +664,27 @@ COUNTRY_CODES = {
 }
 
 
+# Bug C (energy safety): Phrases that mark a claim as being about
+# energy-source mortality / safety comparisons rather than energy
+# *consumption*.  When any of these match the claim, we suppress
+# Eurostat's nrg_bal_c (Energiebilanz) datasets — the relevant data
+# lives in OWID Energy Safety, not in EU energy-balance statistics.
+_ENERGY_SAFETY_TRIGGERS = (
+    "tote pro twh", "tote/twh", "todesfälle pro twh",
+    "mortalität pro twh", "mortalitätsrate pro twh",
+    "deaths per twh", "deaths/twh",
+    "fatalities per twh",
+    "sicherheit von atomkraft", "sicherheit von kohle",
+    "atomkraft sicherer als", "kohle sicherer als",
+    "nuclear safer than", "coal safer than",
+)
+
+
+def _is_energy_safety_claim(claim: str) -> bool:
+    cl = claim.lower()
+    return any(p in cl for p in _ENERGY_SAFETY_TRIGGERS)
+
+
 def _find_datasets(analysis: dict) -> list[dict]:
     """Find matching Eurostat datasets based on claim analysis.
 
@@ -714,6 +735,16 @@ def _find_datasets(analysis: dict) -> list[dict]:
             key = ds["dataset"]
             if key not in matched:
                 matched[key] = ds
+
+    # Bug C: Drop Energiebilanz (nrg_bal_c) when the claim is about
+    # energy-source safety/mortality.  Energiebilanz is consumption-side
+    # data (ktoe / GWh) and not relevant for "deaths per TWh" comparisons
+    # — that data lives in OWID Energy Safety, which already triggers
+    # via its own service.  Renewable-share datasets (nrg_ind_ren) and
+    # other non-balance energy datasets stay.
+    if _is_energy_safety_claim(claim):
+        matched = {k: v for k, v in matched.items() if k != "nrg_bal_c"}
+
     return list(matched.values())
 
 

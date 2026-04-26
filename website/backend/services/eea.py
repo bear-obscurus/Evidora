@@ -82,7 +82,12 @@ DATASETS = {
                       "todesfälle", "deaths", "gesundheit", "health", "atemweg", "lunge"],
         "dataset": "sdg_11_52",
         "label": "Vorzeitige Todesfälle durch Feinstaub (PM2.5)",
-        "params": {},
+        # Bug A: ohne unit-Filter liefert Eurostat sowohl Rate (RT) als auch
+        # Absolutzahl (NR) — beide werden mit identischem display-Suffix
+        # gerendert, was zu verwirrenden Einträgen wie "238.390 pro 100.000
+        # Einwohner" führt (mathematisch unmöglich).  unit=RT + airpol=PM2_5
+        # liefert genau einen Wert pro Jahr in der korrekten Rate-Einheit.
+        "params": {"unit": ["RT"], "airpol": ["PM2_5"]},
         "unit": "pro 100.000 Einwohner",
         "url": "https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table",
     },
@@ -223,9 +228,13 @@ def _parse_eurostat_response(data: dict, dataset_info: dict, country: str | None
             "url": dataset_info["url"],
         })
 
-    # Sort by time descending, limit to most recent
+    # Sort by time descending, limit to most recent.
+    # Bug A: 10 was too many — for time-series datasets like pm25_deaths
+    # this produced a wall of near-identical entries.  4 years suffice
+    # to show the trend; the LLM can extrapolate from there and the
+    # source-detail list stays readable.
     results.sort(key=lambda r: r.get("time", ""), reverse=True)
-    return results[:10]
+    return results[:4]
 
 
 async def _fetch_eurostat_dataset(
