@@ -20,7 +20,7 @@ const TRANSLATIONS = {
             { icon: "🌡️", text: "2024 war das wärmste Jahr in Wien seit Beginn der Aufzeichnungen." },
             { icon: "🚭", text: "Das Don't-smoke-Volksbegehren 2018 hatte über eine Million Unterschriften." },
             { icon: "📈", text: "Die Inflation in Österreich liegt 2024 über dem EU-Schnitt." },
-            { icon: "⚛️", text: "Atomkraft hat weniger Tote pro TWh als Kohle." },
+            { icon: "⚛️", text: "Atomkraft ist sicherer als Windkraft." },
             { icon: "📚", text: "Bei PISA 2022 sind die Mathematik-Werte in der OECD gefallen." },
         ],
         beta_notice: "Dieses Projekt befindet sich in aktiver Entwicklung.",
@@ -358,7 +358,7 @@ const TRANSLATIONS = {
         example_claims: [
             { icon: "💉", text: "Vaccines cause autism." },
             { icon: "🌡️", text: "2024 was the warmest year on record globally." },
-            { icon: "⚛️", text: "Nuclear power has fewer deaths per TWh than coal." },
+            { icon: "⚛️", text: "Nuclear power is safer than wind power." },
             { icon: "📊", text: "The EU's CO2 emissions decreased by 30% since 1990." },
             { icon: "📚", text: "PISA 2022 showed declining math scores across OECD countries." },
             { icon: "🏥", text: "Life expectancy in Italy is higher than in Germany." },
