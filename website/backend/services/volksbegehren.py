@@ -480,6 +480,7 @@ def _significant_words(text: str) -> list[str]:
 
 def _score_entry(claim: str, entry: dict) -> int:
     """Word-overlap score between claim and entry betreff/jahr."""
+    cl = claim.lower()
     claim_words = set(_significant_words(claim))
     if not claim_words:
         return 0
@@ -487,12 +488,52 @@ def _score_entry(claim: str, entry: dict) -> int:
     overlap = len(claim_words & betreff_words)
     score = overlap * 10  # Wort-Match wiegt schwer
 
-    # Jahres-Bonus: wenn der Claim die exakte Jahreszahl nennt
+    # Jahres-Bonus: wenn der Claim die exakte Jahreszahl nennt — ABER
+    # nicht wenn die Zahl als Startpunkt einer Aggregat-Aussage gemeint
+    # ist ("seit 1964", "ab 1964", "since 1964").  Sonst werden Aggregat-
+    # Claims wie „weniger als 50 Volksbegehren seit 1964" fälschlich
+    # auf das ÖRF-Volksbegehren 1964 gemappt und der Aggregat-Pfad
+    # unterdrückt (Bug O).
     jahr = entry.get("jahr")
-    if jahr is not None and re.search(rf"\b{jahr}\b", claim):
-        score += 50  # sehr starkes Signal
+    if jahr is not None and re.search(rf"\b{jahr}\b", cl):
+        if not re.search(rf"\b(seit|ab|since|from)\s+{jahr}\b", cl):
+            score += 50  # sehr starkes Signal
 
     return score
+
+
+# Aggregat-Phrasen: Claims, die nach der Gesamtzahl bzw. einer
+# Mengen-Aussage über *alle* Volksbegehren fragen.  Bei diesen Claims
+# wollen wir den ``vbg_count_total``-Eintrag immer mitliefern, damit
+# das LLM nicht die Zahl aus dem Trainingswissen erfindet.
+_AGGREGATE_PATTERNS = [
+    r"\bwie viele\b",
+    r"\bhow many\b",
+    r"\binsgesamt\b",
+    r"\bin total\b",
+    r"\banzahl der\b",
+    r"\bweniger als\s+\d",
+    r"\bmehr als\s+\d",
+    r"\bfewer than\s+\d",
+    r"\bless than\s+\d",
+    r"\bmore than\s+\d",
+    r"\büber\s+\d+\s+(volksbegehren|popular)",
+    r"\bunter\s+\d+\s+(volksbegehren|popular)",
+    r"\bgesamt(zahl|anzahl)\b",
+    r"\bseit\s+\d{4}\b",  # "seit 1964 X Volksbegehren"
+]
+
+
+def _claim_is_aggregate(claim: str) -> bool:
+    """True wenn der Claim nach einer Gesamt-/Mengenaussage fragt.
+
+    Beispiele:
+    - "Wie viele Volksbegehren gab es in Österreich?"
+    - "In Österreich gab es seit 1964 weniger als 50 Volksbegehren."
+    - "Insgesamt mehr als 100 bundesweite Volksbegehren."
+    """
+    cl = claim.lower()
+    return any(re.search(p, cl) for p in _AGGREGATE_PATTERNS)
 
 
 def _claim_asks_for_top(claim: str) -> str | None:
@@ -560,8 +601,17 @@ async def search_volksbegehren(analysis: dict) -> dict:
     if not _claim_mentions_volksbegehren(claim, entries):
         return empty
 
+    total_entries = len(entries)
+    earliest_year = min(
+        (e["jahr"] for e in entries if e["jahr"]), default=None
+    )
+    latest_year = max(
+        (e["jahr"] for e in entries if e["jahr"]), default=None
+    )
+
     # Sind wir im "Top"-Modus? Dann nur 1-3 Top-Einträge.
     top_kind = _claim_asks_for_top(claim)
+    is_aggregate = _claim_is_aggregate(claim)
     matched: list[dict] = []
     if top_kind == "anzahl":
         matched = sorted(
@@ -590,37 +640,99 @@ async def search_volksbegehren(analysis: dict) -> dict:
         scored.sort(key=lambda kv: -kv[1])
         matched = [e for e, _s in scored[:5]]
 
-    if not matched:
-        # Kein direkter Match — liefere wenigstens die Gesamtkennzahlen
-        # zurück, damit der Synthesizer "Es gibt insgesamt N VBG" sagen
-        # kann.
-        latest_year = max((e["jahr"] for e in entries if e["jahr"]), default=None)
-        results = [{
+    # Bug O Fix: Aggregat-Eintrag (Gesamtzahl) — als autoritatives Datum
+    # für Aggregat-Claims zwingend mitliefern.  Bei spezifischen Claims
+    # nur dann, wenn gar kein Match gefunden wurde.
+    def _aggregate_entry() -> dict:
+        return {
             "indicator_name": (
-                f"Volksbegehren in Österreich (zweite Republik): "
-                f"{len(entries)} insgesamt"
+                f"Volksbegehren in Österreich seit "
+                f"{earliest_year or 1964}: {total_entries} insgesamt"
             ),
             "indicator": "vbg_count_total",
             "country": "AUT",
             "country_name": "Österreich",
             "year": str(latest_year) if latest_year else "",
-            "value": len(entries),
-            "display_value": f"{len(entries)} Volksbegehren seit 1964",
+            "value": total_entries,
+            "display_value": (
+                f"{total_entries} bundesweite Volksbegehren von "
+                f"{earliest_year or 1964} bis {latest_year or 'heute'}"
+            ),
             "description": (
-                "Vollständige Liste aller bundesweiten Volksbegehren seit "
-                "Gründung der zweiten Republik (BMI). Für eine konkrete "
-                "Antwort bitte den genauen Titel oder das Jahr nennen."
+                f"Vollständige BMI-Liste aller bundesweiten Volksbegehren der "
+                f"zweiten Republik. Stand: {total_entries} Einträge zwischen "
+                f"{earliest_year or 1964} und {latest_year or 'heute'}. Diese "
+                f"Zahl ist autoritativ — die BMI-Liste ist die offizielle "
+                f"Gesamtstatistik der Bundeswahlbehörde."
             ),
             "url": BMI_VBG_URL,
-        }]
+        }
+
+    if not matched:
+        # Kein direkter Match — liefere wenigstens die Gesamtkennzahlen
+        # zurück, damit der Synthesizer "Es gibt insgesamt N VBG" sagen
+        # kann.
         return {
             "source": "BMI Volksbegehren",
             "type": "official_data",
-            "results": results,
+            "results": [_aggregate_entry()],
         }
 
     results: list[dict] = []
-    for entry in matched:
+
+    # Bug N Fix: Bei Top-Modus prepend einen Summary-Eintrag, der dem LLM
+    # klar macht, dass die folgenden Einträge die *vollständige* Spitze
+    # sind — nicht eine isolierte Auswahl.  Sonst antwortet das LLM mit
+    # „nicht überprüfbar, weil keine Vergleichsdaten" obwohl die Daten
+    # autoritativ sind.
+    if top_kind:
+        kind_de = {
+            "anzahl": "absoluter Eintragungszahl",
+            "beteiligung": "Stimmbeteiligung in % (BMI-Rang)",
+            "neueste": "Jahr (zuletzt durchgeführt)",
+            "älteste": "Jahr (frühestes)",
+        }[top_kind]
+        top1 = matched[0]
+        top1_value = ""
+        if top_kind == "anzahl" and top1.get("anzahl"):
+            top1_value = f"{top1['anzahl']:,} Eintragungen".replace(",", ".")
+        elif top_kind == "beteiligung" and top1.get("beteiligung") is not None:
+            top1_value = (
+                f"{top1['beteiligung']:.2f} % Beteiligung"
+                .replace(".", ",")
+            )
+        elif top_kind in ("neueste", "älteste") and top1.get("jahr"):
+            top1_value = f"Jahr {top1['jahr']}"
+        results.append({
+            "indicator_name": (
+                f"Spitzenreiter nach {kind_de} (vollständige BMI-Liste, "
+                f"{total_entries} Volksbegehren {earliest_year or 1964}–"
+                f"{latest_year or 'heute'})"
+            ),
+            "indicator": f"vbg_top_{top_kind}",
+            "country": "AUT",
+            "country_name": "Österreich",
+            "year": str(top1.get("jahr") or ""),
+            "value": top1.get("anzahl") if top_kind == "anzahl"
+                     else top1.get("beteiligung") if top_kind == "beteiligung"
+                     else top1.get("jahr"),
+            "display_value": (
+                f"Rang 1: {top1.get('betreff') or ''} "
+                f"({top1.get('jahr')}) — {top1_value}"
+                if top1_value else
+                f"Rang 1: {top1.get('betreff') or ''} ({top1.get('jahr')})"
+            ),
+            "description": (
+                f"Diese Reihung ist autoritativ: sie basiert auf der "
+                f"vollständigen BMI-Liste aller {total_entries} bundesweiten "
+                f"Volksbegehren der zweiten Republik. Kein anderes "
+                f"Bundes-Volksbegehren in dieser Liste hat einen höheren "
+                f"Wert nach dem genannten Kriterium erreicht."
+            ),
+            "url": BMI_VBG_URL,
+        })
+
+    for i, entry in enumerate(matched, 1):
         jahr = entry.get("jahr")
         betreff = entry.get("betreff") or ""
         anzahl = entry.get("anzahl")
@@ -648,11 +760,25 @@ async def search_volksbegehren(analysis: dict) -> dict:
             descr_parts.append(f"Initiiert/unterstützt durch: {unterstuetzt}")
         description = ". ".join(descr_parts) if descr_parts else None
 
+        # Bug N Fix: bei Top-Modus den Rang im indicator_name vorne dran,
+        # damit das LLM nicht jede Zeile als isoliertes Faktum liest.
+        rank_prefix = ""
+        if top_kind == "anzahl":
+            rank_prefix = f"Rang {i} nach Eintragungen (von {total_entries}): "
+        elif top_kind == "beteiligung":
+            rank_prefix = f"Rang {i} nach Stimmbeteiligung (von {total_entries}): "
+        elif top_kind == "neueste":
+            rank_prefix = f"Rang {i} (jüngste, von {total_entries}): "
+        elif top_kind == "älteste":
+            rank_prefix = f"Rang {i} (älteste, von {total_entries}): "
+
+        indicator_name = (
+            f"{rank_prefix}Volksbegehren {jahr}: {betreff}" if jahr
+            else f"{rank_prefix}Volksbegehren: {betreff}"
+        )
+
         results.append({
-            "indicator_name": (
-                f"Volksbegehren {jahr}: {betreff}" if jahr
-                else f"Volksbegehren: {betreff}"
-            ),
+            "indicator_name": indicator_name,
             "indicator": "vbg_entry",
             "country": "AUT",
             "country_name": "Österreich",
@@ -662,6 +788,13 @@ async def search_volksbegehren(analysis: dict) -> dict:
             "description": description,
             "url": url,
         })
+
+    # Bug O Fix: Bei aggregaten Claims zusätzlich den Aggregat-Eintrag
+    # liefern, damit das LLM die Gesamtzahl aus den Daten zieht und sie
+    # nicht aus dem Trainingswissen erfindet ("51 weil Klimavolksbegehren
+    # 2022 = Rang 51", obwohl die Quelle 109 Einträge enthält).
+    if is_aggregate:
+        results.insert(0, _aggregate_entry())
 
     # Methodik-Caveat
     results.append({
