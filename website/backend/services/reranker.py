@@ -47,6 +47,27 @@ def _result_text(result: dict) -> str:
     return " ".join(parts)
 
 
+# Bug V: Indicator types that mark *authoritative* direct-links curated
+# by the source service itself (topic-mapping in RIS, methodology blocks
+# everywhere).  These should never be filtered by the semantic reranker
+# — their relevance is pre-validated by the trigger logic, and their
+# descriptions are deliberately generic ("Direktlink zur konsolidierten
+# Fassung") so they cannot reliably embed-match arbitrary claim wording.
+_AUTHORITATIVE_INDICATORS = (
+    "ris_geltende_fassung",       # B-VG, ABGB, … direct-links via §-ref
+    "ris_geltende_fassung_topic", # B-VG, ORF-BeitrG, … via topic mapping
+    "context",                    # methodology caveats
+    "vbg_count_total",            # VBG aggregate ("109 since 1964")
+    "vbg_top_anzahl",             # VBG ranking-summary
+    "vbg_top_beteiligung",
+    "vbg_top_neueste",
+    "vbg_top_älteste",
+    "wahl_nrw_ranking",           # Wahl ranking-summary
+    "wahl_bpw_ranking",
+    "wahl_euw_ranking",
+)
+
+
 """Minimum cosine-similarity score.  Results below this threshold are
 considered off-topic and removed before the synthesizer ever sees them."""
 RELEVANCE_THRESHOLD = 0.25
@@ -101,12 +122,30 @@ def rerank_results(claim: str, source_results: list) -> list:
             if not results:
                 continue
 
-            texts = [_result_text(r) for r in results]
+            # Bug V: Separate authoritative entries from regular ones.
+            # Authoritative entries (curated direct-links, methodology
+            # blocks, ranking summaries) bypass the reranker — they were
+            # already validated by the trigger logic and their texts are
+            # deliberately generic.
+            authoritative: list[dict] = []
+            rerankable: list[dict] = []
+            for r in results:
+                if r.get("indicator") in _AUTHORITATIVE_INDICATORS:
+                    authoritative.append(r)
+                else:
+                    rerankable.append(r)
+
+            if not rerankable:
+                # All entries were authoritative — keep them all, no rerank
+                source_data["results"] = authoritative
+                continue
+
+            texts = [_result_text(r) for r in rerankable]
             result_embeddings = _model.encode(texts, convert_to_tensor=True)
             scores = util.cos_sim(claim_embedding, result_embeddings)[0]
 
-            # Sort results by similarity score (descending)
-            scored = sorted(zip(results, scores.tolist()), key=lambda x: x[1], reverse=True)
+            # Sort rerankable results by similarity score (descending)
+            scored = sorted(zip(rerankable, scores.tolist()), key=lambda x: x[1], reverse=True)
 
             # Use stricter thresholds for sources prone to keyword-noise.
             # Fact-checkers have very short headlines that inflate cosine
@@ -128,7 +167,9 @@ def rerank_results(claim: str, source_results: list) -> list:
             removed = before_count - len(scored)
             total_removed += removed
 
-            source_data["results"] = [r for r, _ in scored]
+            # Authoritative entries always stay — prepend them so they
+            # appear first in the results list.
+            source_data["results"] = authoritative + [r for r, _ in scored]
 
             top_score = scored[0][1] if scored else 0
             if removed:
