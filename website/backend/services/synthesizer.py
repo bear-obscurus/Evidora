@@ -110,6 +110,17 @@ Rekord-Jahres-Claims und Superlativ-Falsifikation (SEHR WICHTIG):
 - Eine Ausnahme: Wenn der Claim nur "wurde beschlossen" / "wurde verabschiedet" / "wurde kundgemacht" sagt, dann ist das BGBl-Datum eine direkte Bestätigung — das Verdict kann "true" sein, sofern Jahr/Monat passen.
 - Bei "wurde im Jahr X erstmals beschlossen": Suche im RIS-Block nach dem ältesten BGBl-Eintrag zum Stammgesetz (nicht nur Novellen). Erstes BGBl mit dem Gesetzes-Kurztitel ist meist das Stammgesetz und damit der "erste Beschluss".
 
+Vergleichs-Richtung — Komparative korrekt zuordnen (SEHR WICHTIG):
+- Bei Behauptungen mit Komparativ ("niedriger als", "höher als", "größer als", "kleiner als", "mehr als", "weniger als"): Identifiziere ZUERST die behauptete Richtung aus dem Wortlaut, DANN prüfe diese Richtung in den Daten — verwechsle NIEMALS „A < B" mit „A > B".
+- Vorgehen in 4 Schritten:
+  1. Lies die Behauptung wörtlich und schreibe sie als mathematische Relation auf: „A war niedriger als B" → A < B.
+  2. Hole die konkreten Werte aus den Daten: A = …, B = …
+  3. Bestimme das tatsächliche Verhältnis: A vs. B → ist A wirklich kleiner, gleich oder größer als B?
+  4. Vergleiche behauptete Richtung mit tatsächlicher Richtung: stimmen sie überein → WAHR; stimmen sie nicht überein → FALSCH.
+- Beispiel FALSCH: Behauptung „Die Inflation in Österreich war 2023 niedriger als 2024" → behauptet 2023 < 2024. Daten: 2023 = 7,7 %, 2024 = 2,9 %. Tatsächlich: 7,7 > 2,9, also 2023 > 2024. Behauptete Richtung (<) ≠ tatsächliche Richtung (>) → Behauptung ist FALSCH. Setze verdict auf "false". Schreibe NICHT die Behauptung in „2023 war HÖHER als 2024" um — das wäre eine andere Behauptung; die geprüfte Behauptung ist „niedriger" und die ist FALSCH.
+- Beispiel WAHR: Behauptung „Die Inflation in Österreich war 2024 niedriger als 2023" → behauptet 2024 < 2023. Daten: 2024 = 2,9 %, 2023 = 7,7 %. Tatsächlich: 2,9 < 7,7. Behauptete Richtung == tatsächliche Richtung → Behauptung ist WAHR.
+- Schreibe im summary IMMER in dieser Form: „Die Behauptung sagt A war NIEDRIGER/HÖHER als B. Daten zeigen A = …, B = …, also A >/< B. Damit ist die Behauptung WAHR/FALSCH."
+
 Superlativ- und Vergleichs-Behauptungen (SEHR WICHTIG):
 - Bei Behauptungen mit "höchste", "niedrigste", "meiste", "größte", "beste", "schlechteste" → Es werden Vergleichsdaten aus MEHREREN Ländern benötigt
 - Wenn die Daten ein RANKING mit mehreren Ländern zeigen (z.B. "#1 Greece: 161.9", "#2 Italy: 144.4", "#3 France: 112.3"), dann nutze dieses Ranking direkt: Wenn das behauptete Land auf Platz 1 steht und die Behauptung "höchste" sagt, dann ist die Behauptung WAHR. Wenn es NICHT auf Platz 1 steht, ist sie FALSCH. Nenne die Top-3 im Summary.
@@ -215,6 +226,17 @@ Austrian law data (RIS) — promulgation vs. entry into force (IMPORTANT):
 - In that case: set verdict to "unverifiable" and explain in the nuance field that the promulgation date is available but the entry-into-force date cannot be derived from the data.
 - Exception: If the claim only says "was passed" / "was enacted" / "was promulgated", the BGBl date is direct confirmation — verdict can be "true" if year/month match.
 - For "was first passed in year X": Look in the RIS block for the oldest BGBl entry on the original law (Stammgesetz, not amendments). The first BGBl with the law's short title is usually the original law, hence the "first passing".
+
+Comparison direction — assign comparatives correctly (VERY IMPORTANT):
+- For claims with a comparative ("lower than", "higher than", "greater than", "smaller than", "more than", "less than"): FIRST identify the claimed direction from the wording, THEN check that direction in the data — NEVER confuse "A < B" with "A > B".
+- Four-step procedure:
+  1. Read the claim literally and write it as a mathematical relation: "A was lower than B" → A < B.
+  2. Get the concrete values from the data: A = …, B = …
+  3. Determine the actual relation: A vs. B — is A really smaller, equal, or larger than B?
+  4. Compare claimed direction with actual direction: if they match → TRUE; if they differ → FALSE.
+- Example FALSE: Claim "Inflation in Austria in 2023 was lower than in 2024" → claims 2023 < 2024. Data: 2023 = 7.7 %, 2024 = 2.9 %. Actual: 7.7 > 2.9, so 2023 > 2024. Claimed direction (<) ≠ actual direction (>) → claim is FALSE. Set verdict to "false". Do NOT silently rewrite the claim to "2023 was HIGHER than 2024" — that would be a different claim; the claim under test says "lower" and that one is FALSE.
+- Example TRUE: Claim "Inflation in Austria in 2024 was lower than in 2023" → claims 2024 < 2023. Data: 2024 = 2.9 %, 2023 = 7.7 %. Actual: 2.9 < 7.7. Claimed direction == actual direction → claim is TRUE.
+- Always phrase the summary in this form: "The claim says A was LOWER/HIGHER than B. The data show A = …, B = …, so A >/< B. The claim is therefore TRUE/FALSE."
 
 Superlative and comparison claims (VERY IMPORTANT):
 - For claims with "highest", "lowest", "most", "largest", "best", "worst" → Comparison data from MULTIPLE countries is needed

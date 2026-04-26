@@ -53,6 +53,10 @@ PHARMA_KEYWORDS = [
     "nebenwirkung", "nebenwirkungen", "unerwünschte arzneimittelwirkung",
     "recall", "withdrawn", "withdrawal", "safety alert", "safety warning",
     "side effect", "side effects", "adverse event", "adverse reaction",
+    # Sperren / Spender (Bug L: Cryos-Spender-Sperrungen sind häufig im
+    # BASG-Feed — die ursprüngliche Liste hat das Vokabular nicht abgedeckt)
+    "gesperrt", "gesperrte", "sperre", "spendersperre", "chargensperre",
+    "spender", "spendergameten", "spendergamet", "samenspender", "eizellspender",
     # Impfstoffe + Charge
     "impfstoff", "impfung", "impfdosen", "vaccine", "vaccination",
     "charge", "batch", "lot",
