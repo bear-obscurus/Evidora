@@ -18,6 +18,7 @@ Managed sources:
 - EEA / Eurostat environmental datasets (24h refresh, hot-geos prefetch)
 - GeoSphere Austria klima-v2-1y annual station temperatures (24h refresh)
 - BASG (Bundesamt für Sicherheit im Gesundheitswesen) news feed (1h refresh)
+- BMI Volksbegehren list (24h refresh)
 
 Note: EUvsDisinfo case database (14.5K cases) is a static JSON file
 shipped with the application — no download or refresh needed.
@@ -43,6 +44,7 @@ from services.parlament_at import fetch_parlament_nr
 from services.eea import prefetch_eea
 from services.geosphere import fetch_geosphere
 from services.basg import fetch_basg
+from services.volksbegehren import fetch_volksbegehren
 
 logger = logging.getLogger("evidora")
 
@@ -78,6 +80,7 @@ async def prefetch_all():
             prefetch_eea(client),
             fetch_geosphere(client),
             fetch_basg(client),
+            fetch_volksbegehren(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "OWID Measles", "OWID Vaccination (WUENIC)",
@@ -89,7 +92,7 @@ async def prefetch_all():
                  "V-Dem", "Transparency International CPI", "RSF Press Freedom",
                  "SIPRI Military Expenditure", "IDEA Voter Turnout",
                  "Parlament.gv.at Nationalrat", "EEA / Eurostat",
-                 "GeoSphere Austria", "BASG"]
+                 "GeoSphere Austria", "BASG", "BMI Volksbegehren"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")
