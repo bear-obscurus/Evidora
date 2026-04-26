@@ -45,6 +45,7 @@ from services.geosphere import search_geosphere, _claim_mentions_climate as _cla
 from services.basg import search_basg, _claim_mentions_pharma as _claim_mentions_basg_pharma, _claim_mentions_austria as _basg_mentions_austria
 from services.ris import search_ris, _claim_mentions_legal as _ris_mentions_legal, _claim_mentions_austria as _ris_mentions_austria, _extract_search_terms as _ris_extract_terms
 from services.volksbegehren import search_volksbegehren, claim_mentions_volksbegehren_cached
+from services.wahlen import search_wahlen, claim_mentions_wahlen_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -313,6 +314,11 @@ async def check_claim(request: Request):
         if claim_mentions_volksbegehren_cached(claim):
             tasks.append(cached("Volksbegehren", search_volksbegehren, analysis))
             queried_names.append("BMI Volksbegehren")
+        # BMI Wahlen: NRW + BPW + EUW Bundesergebnisse (selektives Triggering:
+        # Wahltyp/-Keyword + AT-Kontext, oder Partei/Kandidat + Jahr + AT)
+        if claim_mentions_wahlen_cached(claim):
+            tasks.append(cached("Wahlen", search_wahlen, analysis))
+            queried_names.append("BMI Wahlen")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

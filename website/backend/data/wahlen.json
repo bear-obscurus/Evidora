@@ -1,0 +1,1624 @@
+{
+  "elections": [
+    {
+      "type": "NRW",
+      "year": 1986,
+      "url": "https://www.bmi.gv.at/412/Nationalratswahlen/Nationalratswahl_1986/start.aspx",
+      "results": [
+        {
+          "short": "SPÖ",
+          "long": "Sozialistische Partei Österreichs",
+          "votes": 2092024,
+          "percent": 43.1,
+          "seats": 80
+        },
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei",
+          "votes": 2003663,
+          "percent": 41.3,
+          "seats": 77
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 472205,
+          "percent": 9.7,
+          "seats": 18
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs",
+          "votes": 35104,
+          "percent": 0.7,
+          "seats": null
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grüne Alternative - Liste Freda Meissner-Blau",
+          "votes": 234028,
+          "percent": 4.8,
+          "seats": 8
+        },
+        {
+          "short": "GAL",
+          "long": "Die Grünalternativen - Demokratische Liste",
+          "votes": 6005,
+          "percent": 0.1,
+          "seats": null
+        },
+        {
+          "short": "MIR",
+          "long": "Aktionsliste \"Mir reicht`s!\"",
+          "votes": 8100,
+          "percent": 0.2,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "NRW",
+      "year": 1990,
+      "url": "https://www.bmi.gv.at/412/Nationalratswahlen/Nationalratswahl_1990/start.aspx",
+      "results": [
+        {
+          "short": "SPÖ",
+          "long": "Sozialistische Partei Österreichs",
+          "votes": 2012787,
+          "percent": 42.8,
+          "seats": 80
+        },
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei",
+          "votes": 1508600,
+          "percent": 32.1,
+          "seats": 60
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 782648,
+          "percent": 16.6,
+          "seats": 33
+        },
+        {
+          "short": "VGÖ",
+          "long": "Vereinte Grüne Österreichs/Das Umwelt-Bürgerforum",
+          "votes": 92277,
+          "percent": 2.0,
+          "seats": null
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs",
+          "votes": 25682,
+          "percent": 0.6,
+          "seats": null
+        },
+        {
+          "short": "VDS",
+          "long": "Verband der Sozialversicherten",
+          "votes": 35833,
+          "percent": 0.8,
+          "seats": null
+        },
+        {
+          "short": "CWG",
+          "long": "Christliche-Wähler-Gemeinschaft",
+          "votes": 9263,
+          "percent": 0.2,
+          "seats": null
+        },
+        {
+          "short": "CDP",
+          "long": "Christdemokratische Partei",
+          "votes": 6194,
+          "percent": 0.1,
+          "seats": null
+        },
+        {
+          "short": "WGÖ",
+          "long": "Wahlplattform der Grauen Österreichs",
+          "votes": 3996,
+          "percent": 0.1,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "NRW",
+      "year": 1994,
+      "url": "https://www.bmi.gv.at/412/Nationalratswahlen/Nationalratswahl_1994/start.aspx",
+      "results": [
+        {
+          "short": "SPÖ",
+          "long": "Sozialistische Partei Österreichs",
+          "votes": 1617804,
+          "percent": 34.9,
+          "seats": 65
+        },
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei",
+          "votes": 1281846,
+          "percent": 27.7,
+          "seats": 52
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 1042332,
+          "percent": 22.5,
+          "seats": 42
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Die Grüne Alternative",
+          "votes": 338538,
+          "percent": 7.3,
+          "seats": 13
+        },
+        {
+          "short": "LIF",
+          "long": "Liberales Forum - Heide Schmidt",
+          "votes": 276580,
+          "percent": 6.0,
+          "seats": 11
+        },
+        {
+          "short": "VGÖ",
+          "long": "Vereinte Grüne Österreichs - Liste Adi Pinter",
+          "votes": 5776,
+          "percent": 0.1,
+          "seats": null
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs",
+          "votes": 11919,
+          "percent": 0.3,
+          "seats": null
+        },
+        {
+          "short": "BGÖ",
+          "long": "Bürgerliche Grüne Österreichs Freie Demokraten - Die Liberalen Verband der Sozialversicherten Bürgerlisten und Unabhängige",
+          "votes": 2504,
+          "percent": 0.1,
+          "seats": null
+        },
+        {
+          "short": "NEIN",
+          "long": "Nein - Bürgerinitiative gegen den Verkauf Österreichs",
+          "votes": 41492,
+          "percent": 0.9,
+          "seats": null
+        },
+        {
+          "short": "CWG",
+          "long": "Christliche - Wähler - Gemeinschaft",
+          "votes": 9051,
+          "percent": 0.2,
+          "seats": null
+        },
+        {
+          "short": "ÖNP",
+          "long": "Österreichische Naturgesetz - Partei",
+          "votes": 4209,
+          "percent": 0.1,
+          "seats": null
+        },
+        {
+          "short": "DBP",
+          "long": "Die Beste Partei",
+          "votes": 581,
+          "percent": 0.0,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "NRW",
+      "year": 1995,
+      "url": "https://www.bmi.gv.at/412/Nationalratswahlen/Nationalratswahl_1995/start.aspx",
+      "results": [
+        {
+          "short": "SPÖ",
+          "long": "Sozialistische Partei Österreichs",
+          "votes": 1843679,
+          "percent": 38.1,
+          "seats": 71
+        },
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei",
+          "votes": 1370497,
+          "percent": 28.3,
+          "seats": 53
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 1060175,
+          "percent": 21.9,
+          "seats": 40
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Die Grüne Alternative",
+          "votes": 233232,
+          "percent": 4.8,
+          "seats": 9
+        },
+        {
+          "short": "LIF",
+          "long": "Liberales Forum - Heide Schmidt",
+          "votes": 267078,
+          "percent": 5.5,
+          "seats": 10
+        },
+        {
+          "short": "NEIN",
+          "long": "Bürgerinitiative Nein zur EU - Austritt jetzt",
+          "votes": 53184,
+          "percent": 1.1,
+          "seats": null
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs",
+          "votes": 13939,
+          "percent": 0.3,
+          "seats": null
+        },
+        {
+          "short": "ÖNP",
+          "long": "Österreichische Naturgesetz - Partei",
+          "votes": 1634,
+          "percent": 0.0,
+          "seats": null
+        },
+        {
+          "short": "DBP",
+          "long": "Die Beste Partei - Reinhard Eberhart",
+          "votes": 830,
+          "percent": 0.0,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "NRW",
+      "year": 1999,
+      "url": "https://www.bmi.gv.at/412/Nationalratswahlen/Nationalratswahl_1999/start.aspx",
+      "results": [
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 1532448,
+          "percent": 33.15,
+          "seats": 65
+        },
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei",
+          "votes": 1243672,
+          "percent": 26.91,
+          "seats": 52
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 1244087,
+          "percent": 26.91,
+          "seats": 52
+        },
+        {
+          "short": "LIF",
+          "long": "Liberales Forum - Heide Schmidt",
+          "votes": 168612,
+          "percent": 3.65,
+          "seats": 0
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Die Grüne Alternative",
+          "votes": 342260,
+          "percent": 7.4,
+          "seats": 14
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs",
+          "votes": 22016,
+          "percent": 0.48,
+          "seats": 0
+        },
+        {
+          "short": "DU",
+          "long": "Die Unabhängigen - Liste Lugner",
+          "votes": 46943,
+          "percent": 1.02,
+          "seats": 0
+        },
+        {
+          "short": "NEIN",
+          "long": "Nein zu NATO und EU Neutrales Österreich Bürgerinitiative",
+          "votes": 19286,
+          "percent": 0.42,
+          "seats": 0
+        },
+        {
+          "short": "CWG",
+          "long": "Christliche Wählergemeinschaft",
+          "votes": 3030,
+          "percent": 0.07,
+          "seats": 0
+        }
+      ]
+    },
+    {
+      "type": "NRW",
+      "year": 2002,
+      "url": "https://www.bmi.gv.at/412/Nationalratswahlen/Nationalratswahl_2002/start.aspx",
+      "results": [
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 1792499,
+          "percent": 36.51,
+          "seats": 69
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 491328,
+          "percent": 10.01,
+          "seats": 18
+        },
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei",
+          "votes": 2076833,
+          "percent": 42.3,
+          "seats": 79
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Die Grüne Alternative",
+          "votes": 464980,
+          "percent": 9.47,
+          "seats": 17
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs",
+          "votes": 27568,
+          "percent": 0.56,
+          "seats": null
+        },
+        {
+          "short": "LIF",
+          "long": "Die Liberalen (Liberales Forum)",
+          "votes": 48083,
+          "percent": 0.98,
+          "seats": null
+        },
+        {
+          "short": "CWG",
+          "long": "Christliche Wählergemeinschaft",
+          "votes": 2009,
+          "percent": 0.04,
+          "seats": null
+        },
+        {
+          "short": "SLP",
+          "long": "Sozialistische Links Partei",
+          "votes": 3906,
+          "percent": 0.08,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "NRW",
+      "year": 2006,
+      "url": "https://www.bmi.gv.at/412/Nationalratswahlen/Nationalratswahl_2006/start.aspx",
+      "results": [
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei",
+          "votes": 1616493,
+          "percent": 34.33,
+          "seats": null
+        },
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 1663986,
+          "percent": 35.34,
+          "seats": null
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 519598,
+          "percent": 11.04,
+          "seats": null
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Die Grüne Alternative",
+          "votes": 520130,
+          "percent": 11.05,
+          "seats": null
+        },
+        {
+          "short": "BZÖ",
+          "long": "Die Freiheitlichen - Liste Westenthaler - BZÖ",
+          "votes": 193539,
+          "percent": 4.11,
+          "seats": null
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs",
+          "votes": 47578,
+          "percent": 1.01,
+          "seats": null
+        },
+        {
+          "short": "MATIN",
+          "long": "Liste Dr. Martin - Für Demokratie, Kontrolle, Gerechtigkeit",
+          "votes": 131688,
+          "percent": 2.8,
+          "seats": null
+        },
+        {
+          "short": "NFÖ",
+          "long": "EU-Austritt - Neutrales Freies Österreich",
+          "votes": 10594,
+          "percent": 0.23,
+          "seats": null
+        },
+        {
+          "short": "IVE",
+          "long": "IVE INITIATIVE2000",
+          "votes": 592,
+          "percent": 0.01,
+          "seats": null
+        },
+        {
+          "short": "STARK",
+          "long": "Liste Stark",
+          "votes": 312,
+          "percent": 0.01,
+          "seats": null
+        },
+        {
+          "short": "SAU",
+          "long": "Sicher-Absolut-Unabhängig, Franz Radinger",
+          "votes": 1514,
+          "percent": 0.03,
+          "seats": null
+        },
+        {
+          "short": "SLP",
+          "long": "Sozialistische LinksPartei, Liste gegen Kapitalismus und Rassismus",
+          "votes": 2257,
+          "percent": 0.05,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "NRW",
+      "year": 2008,
+      "url": "https://www.bmi.gv.at/412/Nationalratswahlen/Nationalratswahl_2008/start.aspx",
+      "results": [
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 1430206,
+          "percent": 29.26,
+          "seats": null
+        },
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei",
+          "votes": 1269656,
+          "percent": 25.98,
+          "seats": null
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Die Grüne Alternative",
+          "votes": 509936,
+          "percent": 10.43,
+          "seats": null
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 857029,
+          "percent": 17.54,
+          "seats": null
+        },
+        {
+          "short": "BZÖ",
+          "long": "BZÖ - Liste Jörg Haider",
+          "votes": 522933,
+          "percent": 10.7,
+          "seats": null
+        },
+        {
+          "short": "FRITZ",
+          "long": "Bürgerforum Österreich Liste Fritz Dinkhauser",
+          "votes": 86194,
+          "percent": 1.76,
+          "seats": null
+        },
+        {
+          "short": "DC",
+          "long": "Die Christen",
+          "votes": 31080,
+          "percent": 0.64,
+          "seats": null
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs",
+          "votes": 37362,
+          "percent": 0.76,
+          "seats": null
+        },
+        {
+          "short": "LIF",
+          "long": "Liberales Forum",
+          "votes": 102249,
+          "percent": 2.09,
+          "seats": null
+        },
+        {
+          "short": "RETTÖ",
+          "long": "Unabhängige Bürgerinitiative Rettet Österreich",
+          "votes": 35718,
+          "percent": 0.73,
+          "seats": null
+        },
+        {
+          "short": "LINKE",
+          "long": "Die Linke",
+          "votes": 349,
+          "percent": 0.01,
+          "seats": null
+        },
+        {
+          "short": "LINKE",
+          "long": "Linke",
+          "votes": 1789,
+          "percent": 0.04,
+          "seats": null
+        },
+        {
+          "short": "STARK",
+          "long": "Liste Stark",
+          "votes": 237,
+          "percent": 0.0,
+          "seats": null
+        },
+        {
+          "short": "TRP",
+          "long": "Tierrechtspartei earth-human-animals-nature",
+          "votes": 2224,
+          "percent": 0.05,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "NRW",
+      "year": 2013,
+      "url": "https://www.bmi.gv.at/412/Nationalratswahlen/Nationalratswahl_2013/start.aspx",
+      "results": [
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 1258605,
+          "percent": 26.82,
+          "seats": null
+        },
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei",
+          "votes": 1125876,
+          "percent": 23.99,
+          "seats": null
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 962313,
+          "percent": 20.51,
+          "seats": null
+        },
+        {
+          "short": "BZÖ",
+          "long": "BZÖ - Liste Josef Bucher",
+          "votes": 165746,
+          "percent": 3.53,
+          "seats": null
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Die Grüne Alternative",
+          "votes": 582657,
+          "percent": 12.42,
+          "seats": null
+        },
+        {
+          "short": "FRANK",
+          "long": "Team Frank Stronach",
+          "votes": 268679,
+          "percent": 5.73,
+          "seats": null
+        },
+        {
+          "short": "NEOS",
+          "long": "NEOS Das Neue Österreich und Liberales Forum",
+          "votes": 232946,
+          "percent": 4.96,
+          "seats": null
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs",
+          "votes": 48175,
+          "percent": 1.03,
+          "seats": null
+        },
+        {
+          "short": "PIRAT",
+          "long": "Piratenpartei Österreichs",
+          "votes": 36265,
+          "percent": 0.77,
+          "seats": null
+        },
+        {
+          "short": "CPÖ",
+          "long": "Christliche Partei Österreichs",
+          "votes": 6647,
+          "percent": 0.14,
+          "seats": null
+        },
+        {
+          "short": "WANDL",
+          "long": "Der Wandel",
+          "votes": 3051,
+          "percent": 0.07,
+          "seats": null
+        },
+        {
+          "short": "M",
+          "long": "Männerpartei",
+          "votes": 490,
+          "percent": 0.01,
+          "seats": null
+        },
+        {
+          "short": "EUAUS",
+          "long": "EU-Austrittspartei",
+          "votes": 510,
+          "percent": 0.01,
+          "seats": null
+        },
+        {
+          "short": "SLP",
+          "long": "Sozialistische LinksPartei",
+          "votes": 947,
+          "percent": 0.02,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "NRW",
+      "year": 2017,
+      "url": "https://www.bmi.gv.at/412/Nationalratswahlen/Nationalratswahl_2017/start.aspx",
+      "results": [
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 1361746,
+          "percent": 26.86,
+          "seats": null
+        },
+        {
+          "short": "ÖVP",
+          "long": "Liste Sebastian Kurz - die neue Volkspartei",
+          "votes": 1595526,
+          "percent": 31.47,
+          "seats": null
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 1316442,
+          "percent": 25.97,
+          "seats": null
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Die Grüne Alternative",
+          "votes": 192638,
+          "percent": 3.8,
+          "seats": null
+        },
+        {
+          "short": "NEOS",
+          "long": "NEOS - Das Neue Österreich gemeinsam mit Irmgard Griss, Bürgerinnen und Bürger für Freiheit und Verantwortung",
+          "votes": 268518,
+          "percent": 5.3,
+          "seats": null
+        },
+        {
+          "short": "PILZ",
+          "long": "Liste Peter Pilz",
+          "votes": 223543,
+          "percent": 4.41,
+          "seats": null
+        },
+        {
+          "short": "GILT",
+          "long": "Liste Roland Düringer - Meine Stimme GILT",
+          "votes": 48234,
+          "percent": 0.95,
+          "seats": null
+        },
+        {
+          "short": "FLÖ",
+          "long": "Freie Liste Österreich & FPS Liste Dr. Karl Schnell",
+          "votes": 8889,
+          "percent": 0.18,
+          "seats": null
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs und Plattform Plus - offene Liste",
+          "votes": 39689,
+          "percent": 0.78,
+          "seats": null
+        },
+        {
+          "short": "WEIẞE",
+          "long": "Die Weissen - Das Recht geht vom Volk aus. Wir alle entscheiden in Österreich. Die Volksbewegung",
+          "votes": 9167,
+          "percent": 0.18,
+          "seats": null
+        },
+        {
+          "short": "SLP",
+          "long": "Sozialistische LinksPartei",
+          "votes": 713,
+          "percent": 0.01,
+          "seats": null
+        },
+        {
+          "short": "EUAUS",
+          "long": "Für Österreich, Zuwanderungsstopp, Grenzschutz, Neutralität, EU-Austritt",
+          "votes": 693,
+          "percent": 0.01,
+          "seats": null
+        },
+        {
+          "short": "M",
+          "long": "Männerpartei - für ein faires Miteinander",
+          "votes": 221,
+          "percent": 0.0,
+          "seats": null
+        },
+        {
+          "short": "CPÖ",
+          "long": "Christliche Partei Österreichs",
+          "votes": 425,
+          "percent": 0.01,
+          "seats": null
+        },
+        {
+          "short": "NBZ",
+          "long": "NBZ - Neue Bewegung für die Zukunft",
+          "votes": 2724,
+          "percent": 0.05,
+          "seats": null
+        },
+        {
+          "short": "ODP",
+          "long": "Obdachlose in der Politik",
+          "votes": 761,
+          "percent": 0.02,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "NRW",
+      "year": 2019,
+      "url": "https://www.bmi.gv.at/412/Nationalratswahlen/Nationalratswahl_2019/start.aspx",
+      "results": [
+        {
+          "short": "ÖVP",
+          "long": "Liste Sebastian Kurz – die neue Volkspartei",
+          "votes": 1789417,
+          "percent": 37.5,
+          "seats": null
+        },
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 1011868,
+          "percent": 21.2,
+          "seats": null
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 772666,
+          "percent": 16.2,
+          "seats": null
+        },
+        {
+          "short": "NEOS",
+          "long": "NEOS – Das Neue Österreich",
+          "votes": 387124,
+          "percent": 8.1,
+          "seats": null
+        },
+        {
+          "short": "JETZT",
+          "long": "JETZT – Liste Pilz",
+          "votes": 89169,
+          "percent": 1.9,
+          "seats": null
+        },
+        {
+          "short": "KPÖ",
+          "long": "Alternative Listen, KPÖ Plus, Linke und Unabhängige",
+          "votes": 32736,
+          "percent": 0.7,
+          "seats": null
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen – Die Grüne Alternative",
+          "votes": 664055,
+          "percent": 13.9,
+          "seats": null
+        },
+        {
+          "short": "WANDL",
+          "long": "Wandel – Aufbruch in ein gemeinwohlorientiertes Morgen mit guter Arbeit, leistbarem Wohnen und radikaler Klimapolitik. Es gibt viel zu gewinnen.",
+          "votes": 22168,
+          "percent": 0.5,
+          "seats": null
+        },
+        {
+          "short": "CPÖ",
+          "long": "Christliche Partei Österreichs",
+          "votes": 260,
+          "percent": 0.0,
+          "seats": null
+        },
+        {
+          "short": "BZÖ",
+          "long": "Allianz der Patrioten",
+          "votes": 760,
+          "percent": 0.0,
+          "seats": null
+        },
+        {
+          "short": "SLP",
+          "long": "Sozialistische LinksPartei – SLP",
+          "votes": 310,
+          "percent": 0.0,
+          "seats": null
+        },
+        {
+          "short": "GILT",
+          "long": "Jede Stimme GILT: Bürgerparlamente & Expertenregierung",
+          "votes": 1767,
+          "percent": 0.0,
+          "seats": null
+        },
+        {
+          "short": "BIER",
+          "long": "BPÖ – Bierpartei Österreich",
+          "votes": 4946,
+          "percent": 0.1,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "NRW",
+      "year": 2024,
+      "url": "https://www.bmi.gv.at/412/Nationalratswahlen/Nationalratswahl_2024/start.aspx",
+      "results": [
+        {
+          "short": "ÖVP",
+          "long": "Karl Nehammer – Die Volkspartei",
+          "votes": 1282734,
+          "percent": 26.3,
+          "seats": 51
+        },
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 1032233,
+          "percent": 21.1,
+          "seats": 41
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 1408512,
+          "percent": 28.8,
+          "seats": 57
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen – Die Grüne Alternative",
+          "votes": 402109,
+          "percent": 8.2,
+          "seats": 16
+        },
+        {
+          "short": "NEOS",
+          "long": "NEOS – Die Reformkraft für dein neues Österreich",
+          "votes": 446379,
+          "percent": 9.1,
+          "seats": 18
+        },
+        {
+          "short": "BIER",
+          "long": "Die Bierpartei",
+          "votes": 98395,
+          "percent": 2.0,
+          "seats": 0
+        },
+        {
+          "short": "MFG",
+          "long": "MFG – Österreich Menschen – Freiheit – Grundrechte",
+          "votes": 19785,
+          "percent": 0.4,
+          "seats": 0
+        },
+        {
+          "short": "BGE",
+          "long": "Die Gelben",
+          "votes": 156,
+          "percent": 0.0,
+          "seats": 0
+        },
+        {
+          "short": "LMP",
+          "long": "Liste Madeleine Petrovic",
+          "votes": 28488,
+          "percent": 0.6,
+          "seats": 0
+        },
+        {
+          "short": "GAZA",
+          "long": "Liste GAZA – Stimmen gegen den Völkermord",
+          "votes": 19376,
+          "percent": 0.4,
+          "seats": 0
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs – KPÖ Plus",
+          "votes": 116891,
+          "percent": 2.4,
+          "seats": 0
+        },
+        {
+          "short": "KEINE",
+          "long": "Keine von denen",
+          "votes": 27830,
+          "percent": 0.6,
+          "seats": 0
+        }
+      ]
+    },
+    {
+      "type": "BPW",
+      "year": 1998,
+      "url": "https://www.bmi.gv.at/412/Bundespraesidentenwahlen/Bundespraesidentenwahl_1998/start.aspx",
+      "results": [
+        {
+          "short": "Knoll",
+          "long": "Mag. Gertraud Knoll",
+          "votes": 566551,
+          "percent": 13.59,
+          "seats": null
+        },
+        {
+          "short": "Schmidt",
+          "long": "Dr. Heide Schmidt",
+          "votes": 464625,
+          "percent": 11.14,
+          "seats": null
+        },
+        {
+          "short": "Klestil",
+          "long": "Dr. Thomas Klestil",
+          "votes": 2644034,
+          "percent": 63.42,
+          "seats": null
+        },
+        {
+          "short": "Lugner",
+          "long": "Ing. Richard Lugner",
+          "votes": 413066,
+          "percent": 9.91,
+          "seats": null
+        },
+        {
+          "short": "Nowak",
+          "long": "Karl Nowak",
+          "votes": 81043,
+          "percent": 1.94,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "BPW",
+      "year": 2004,
+      "url": "https://www.bmi.gv.at/412/Bundespraesidentenwahlen/Bundespraesidentenwahl_2004/start.aspx",
+      "results": [
+        {
+          "short": "Männer",
+          "long": "Männer",
+          "votes": 2861968,
+          "percent": 2.795,
+          "seats": null
+        },
+        {
+          "short": "Frauen",
+          "long": "Frauen",
+          "votes": 3169014,
+          "percent": 3.116,
+          "seats": null
+        },
+        {
+          "short": "insgesamt",
+          "long": "insgesamt",
+          "votes": 6030982,
+          "percent": 5.912,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "BPW",
+      "year": 2010,
+      "url": "https://www.bmi.gv.at/412/Bundespraesidentenwahlen/Bundespraesidentenwahl_2010/start.aspx",
+      "results": [
+        {
+          "short": "Fischer",
+          "long": "Dr. Heinz Fischer",
+          "votes": 2508373,
+          "percent": 79.33,
+          "seats": null
+        },
+        {
+          "short": "Gehring",
+          "long": "Dr. Rudolf Gehring",
+          "votes": 171668,
+          "percent": 5.43,
+          "seats": null
+        },
+        {
+          "short": "Rosenkranz",
+          "long": "Barbara Rosenkranz",
+          "votes": 481923,
+          "percent": 15.24,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "BPW",
+      "year": 2016,
+      "url": "https://www.bmi.gv.at/412/Bundespraesidentenwahlen/Bundespraesidentenwahl_2016/start.aspx",
+      "results": [
+        {
+          "short": "Hofer",
+          "long": "Ing. Norbert Hofer",
+          "votes": 2124661,
+          "percent": 46.2,
+          "seats": null
+        },
+        {
+          "short": "Bellen",
+          "long": "Dr. Alexander Van der Bellen",
+          "votes": 2472892,
+          "percent": 53.8,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "BPW",
+      "year": 2022,
+      "url": "https://www.bmi.gv.at/412/Bundespraesidentenwahlen/Bundespraesidentenwahl_2022/start.aspx",
+      "results": [
+        {
+          "short": "Brunner",
+          "long": "Dr. Michael Brunner",
+          "votes": 85465,
+          "percent": 2.1,
+          "seats": null
+        },
+        {
+          "short": "Grosz",
+          "long": "Gerald Grosz",
+          "votes": 225942,
+          "percent": 5.6,
+          "seats": null
+        },
+        {
+          "short": "Rosenkranz",
+          "long": "Dr. Walter Rosenkranz",
+          "votes": 717097,
+          "percent": 17.7,
+          "seats": null
+        },
+        {
+          "short": "Staudinger",
+          "long": "Heinrich Staudinger",
+          "votes": 64411,
+          "percent": 1.6,
+          "seats": null
+        },
+        {
+          "short": "Bellen",
+          "long": "Dr. Alexander Van der Bellen",
+          "votes": 2299590,
+          "percent": 56.7,
+          "seats": null
+        },
+        {
+          "short": "Wallentin",
+          "long": "Dr. Tassilo Wallentin",
+          "votes": 327214,
+          "percent": 8.1,
+          "seats": null
+        },
+        {
+          "short": "Wlazny",
+          "long": "Dr. Dominik Wlazny",
+          "votes": 337010,
+          "percent": 8.3,
+          "seats": null
+        }
+      ]
+    },
+    {
+      "type": "EUW",
+      "year": 1996,
+      "url": "https://www.bmi.gv.at/412/Europawahlen/Europawahl_1996/start.aspx",
+      "results": [
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 1105910,
+          "percent": 29.15,
+          "seats": 6
+        },
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei",
+          "votes": 1124921,
+          "percent": 29.65,
+          "seats": 7
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 1044604,
+          "percent": 27.53,
+          "seats": 6
+        },
+        {
+          "short": "LIF",
+          "long": "Liberales Forum - Heide Schmidt",
+          "votes": 161583,
+          "percent": 4.26,
+          "seats": 1
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Die Grüne Alternative",
+          "votes": 258250,
+          "percent": 6.81,
+          "seats": 1
+        },
+        {
+          "short": "N",
+          "long": "Die Neutralen - Bürgerinitiative",
+          "votes": 48600,
+          "percent": 1.28,
+          "seats": 0
+        },
+        {
+          "short": "(keine)",
+          "long": "Forum Handicap",
+          "votes": 32621,
+          "percent": 0.86,
+          "seats": 0
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs",
+          "votes": 17656,
+          "percent": 0.47,
+          "seats": 0
+        }
+      ]
+    },
+    {
+      "type": "EUW",
+      "year": 1999,
+      "url": "https://www.bmi.gv.at/412/Europawahlen/Europawahl_1999/start.aspx",
+      "results": [
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei - Ursula Stenzel",
+          "votes": 859175,
+          "percent": 30.67,
+          "seats": 7
+        },
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 888338,
+          "percent": 31.71,
+          "seats": 7
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 655519,
+          "percent": 23.4,
+          "seats": 5
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Die Grüne Alternative",
+          "votes": 260273,
+          "percent": 9.29,
+          "seats": 2
+        },
+        {
+          "short": "LIF",
+          "long": "Liberales Forum",
+          "votes": 74467,
+          "percent": 2.66,
+          "seats": 0
+        },
+        {
+          "short": "CSA",
+          "long": "Christlich Soziale Allianz (Liste Karl Habsburg)",
+          "votes": 43084,
+          "percent": 1.54,
+          "seats": 0
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs",
+          "votes": 20497,
+          "percent": 0.73,
+          "seats": 0
+        }
+      ]
+    },
+    {
+      "type": "EUW",
+      "year": 2004,
+      "url": "https://www.bmi.gv.at/412/Europawahlen/Europawahl_2004/start.aspx",
+      "results": [
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 833517,
+          "percent": 33.33,
+          "seats": 7
+        },
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei - Ursula Stenzel",
+          "votes": 817716,
+          "percent": 32.7,
+          "seats": 6
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 157722,
+          "percent": 6.31,
+          "seats": 1
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Die Grüne Alternative",
+          "votes": 322429,
+          "percent": 12.89,
+          "seats": 2
+        },
+        {
+          "short": "LINKE",
+          "long": "Opposition für ein solidarisches Europa - Europäische Linke, KPÖ, Unabhängige",
+          "votes": 19530,
+          "percent": 0.78,
+          "seats": 0
+        },
+        {
+          "short": "MARTIN",
+          "long": "Liste Dr. Hans-Peter Martin - für echte Kontrolle in Brüssel",
+          "votes": 349696,
+          "percent": 13.98,
+          "seats": 2
+        }
+      ]
+    },
+    {
+      "type": "EUW",
+      "year": 2009,
+      "url": "https://www.bmi.gv.at/412/Europawahlen/Europawahl_2009/start.aspx",
+      "results": [
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 680041,
+          "percent": 23.7,
+          "seats": 4
+        },
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei",
+          "votes": 858921,
+          "percent": 30.0,
+          "seats": 6
+        },
+        {
+          "short": "MARTIN",
+          "long": "Liste \"Dr. Martin - für Demokratie, Kontrolle, Gerechtigkeit\"",
+          "votes": 506092,
+          "percent": 17.7,
+          "seats": 3
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Die Grüne Alternative",
+          "votes": 284505,
+          "percent": 9.9,
+          "seats": 2
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs",
+          "votes": 364207,
+          "percent": 12.7,
+          "seats": 2
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs - Europäische Linke",
+          "votes": 18926,
+          "percent": 0.7,
+          "seats": 0
+        },
+        {
+          "short": "JuLis",
+          "long": "Junge Liberale Österreich",
+          "votes": 20668,
+          "percent": 0.7,
+          "seats": 0
+        },
+        {
+          "short": "BZÖ",
+          "long": "BZÖ - Mag. Ewald Stadler",
+          "votes": 131261,
+          "percent": 4.6,
+          "seats": 0
+        }
+      ]
+    },
+    {
+      "type": "EUW",
+      "year": 2014,
+      "url": "https://www.bmi.gv.at/412/Europawahlen/Europawahl_2014/start.aspx",
+      "results": [
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei - Liste Othmar Karas",
+          "votes": 761896,
+          "percent": 26.98,
+          "seats": 5
+        },
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 680180,
+          "percent": 24.09,
+          "seats": 5
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs (FPÖ) - Die Freiheitlichen",
+          "votes": 556835,
+          "percent": 19.72,
+          "seats": 4
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Die Grüne Alternative",
+          "votes": 410089,
+          "percent": 14.52,
+          "seats": 3
+        },
+        {
+          "short": "BZÖ",
+          "long": "BZÖ - Liste Mag. Werthmann",
+          "votes": 13208,
+          "percent": 0.47,
+          "seats": 0
+        },
+        {
+          "short": "NEOS",
+          "long": "NEOS Das Neue Österreich und Liberales Forum",
+          "votes": 229781,
+          "percent": 8.14,
+          "seats": 1
+        },
+        {
+          "short": "REKOS",
+          "long": "Die Reformkonservativen - Liste Ewald Stadler",
+          "votes": 33224,
+          "percent": 1.18,
+          "seats": 0
+        },
+        {
+          "short": "ANDERS",
+          "long": "Europa Anders - KPÖ, Piratenpartei, Wandel und Unabhängige",
+          "votes": 60451,
+          "percent": 2.14,
+          "seats": 0
+        },
+        {
+          "short": "EUSTOP",
+          "long": "EU-Austritt, Direkte Demokratie, Neutralität (EU-Stop)",
+          "votes": 77897,
+          "percent": 2.76,
+          "seats": 0
+        }
+      ]
+    },
+    {
+      "type": "EUW",
+      "year": 2019,
+      "url": "https://www.bmi.gv.at/412/Europawahlen/Europawahl_2019/start.aspx",
+      "results": [
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei",
+          "votes": 1305956,
+          "percent": 34.55,
+          "seats": 7
+        },
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 903151,
+          "percent": 23.89,
+          "seats": 5
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs (FPÖ) - Die Freiheitlichen",
+          "votes": 650114,
+          "percent": 17.2,
+          "seats": 3
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen - Grüne Alternative",
+          "votes": 532193,
+          "percent": 14.08,
+          "seats": 2
+        },
+        {
+          "short": "NEOS",
+          "long": "NEOS – Das Neue Europa",
+          "votes": 319024,
+          "percent": 8.44,
+          "seats": 1
+        },
+        {
+          "short": "KPÖ",
+          "long": "KPÖ Plus – European Left, offene Liste",
+          "votes": 30087,
+          "percent": 0.8,
+          "seats": 0
+        },
+        {
+          "short": "EUROPA",
+          "long": "EUROPA JETZT! – Initiative Johannes Voggenhuber",
+          "votes": 39239,
+          "percent": 1.04,
+          "seats": 0
+        }
+      ]
+    },
+    {
+      "type": "EUW",
+      "year": 2024,
+      "url": "https://www.bmi.gv.at/412/Europawahlen/Europawahl_2024/start.aspx",
+      "results": [
+        {
+          "short": "ÖVP",
+          "long": "Österreichische Volkspartei",
+          "votes": 864072,
+          "percent": 24.5,
+          "seats": 5
+        },
+        {
+          "short": "SPÖ",
+          "long": "Sozialdemokratische Partei Österreichs",
+          "votes": 818287,
+          "percent": 23.2,
+          "seats": 5
+        },
+        {
+          "short": "FPÖ",
+          "long": "Freiheitliche Partei Österreichs (FPÖ) - Die Freiheitlichen",
+          "votes": 893753,
+          "percent": 25.4,
+          "seats": 6
+        },
+        {
+          "short": "GRÜNE",
+          "long": "Die Grünen – Die Grüne Alternative",
+          "votes": 390504,
+          "percent": 11.1,
+          "seats": 2
+        },
+        {
+          "short": "NEOS",
+          "long": "NEOS – Das Neue Europa",
+          "votes": 357214,
+          "percent": 10.1,
+          "seats": 2
+        },
+        {
+          "short": "DNA",
+          "long": "DNA – Demokratisch – Neutral – Authentisch",
+          "votes": 95859,
+          "percent": 2.7,
+          "seats": 0
+        },
+        {
+          "short": "KPÖ",
+          "long": "Kommunistische Partei Österreichs – KPÖ Plus",
+          "votes": 104246,
+          "percent": 3.0,
+          "seats": 0
+        }
+      ]
+    }
+  ],
+  "fetched_at_iso": "2026-04-26T16:13:54",
+  "source_root": "https://www.bmi.gv.at/412/",
+  "note": "Generated by scripts/refresh_wahlen.py — primary source for production because BMI/Myra Cloud blocks Hetzner IPs."
+}
