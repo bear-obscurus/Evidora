@@ -19,6 +19,23 @@ Wahlangelegenheiten zuständig und führt die offizielle Statistik der
 Eintragungen — d.h. **das BMI ist für diesen Faktentyp die kanonische
 Primärquelle**, nicht das Parlament.
 
+WICHTIG — IP-Block durch Myra Cloud
+-----------------------------------
+Die BMI-Site sitzt hinter Myra Cloud (deutscher DDoS-Schutz), das
+Hetzner-VPS-IP-Bereiche routinemäßig auf der Bot-Block-Liste hat.
+Live-Test 2026-04-26 vom Hetzner-Server:
+``302 Moved Temporarily → /myracloud-blocked/...``
+
+Architektur-Konsequenz: **Static-First + optionaler Online-Refresh.**
+- Primärquelle: ``data/volksbegehren.json`` (im Repo, 109 Einträge).
+- Online-Refresh wird beim Prefetch versucht — wenn er klappt,
+  überschreibt er den Cache, ansonsten bleibt der Static-Stand aktiv.
+- Der Static-Stand kann lokal manuell refreshed werden via
+  ``scripts/refresh_volksbegehren.py`` (von einer nicht geblockten IP).
+
+Die Liste ändert sich nur bei Eintragungswochen (typ. 1–3 pro Jahr) —
+ein paar Wochen Staleness sind tolerabel.
+
 v1-Umfang:
 - Vollständige Liste aller Volksbegehren (1964-heute)
 - Pro Volksbegehren: Jahr, Betreff, Eintragungszeitraum,
@@ -41,7 +58,9 @@ GUARDRAILS (siehe project_political_guardrails.md):
 """
 
 import html as htmllib
+import json
 import logging
+import os
 import re
 import time
 
@@ -53,6 +72,27 @@ BMI_VBG_URL = (
     "https://www.bmi.gv.at/411/Alle_Volksbegehren_der_zweiten_Republik.aspx"
 )
 BMI_VBG_BASE = "https://www.bmi.gv.at/"
+
+# Static-shipped JSON, gepflegt via ``scripts/refresh_volksbegehren.py``.
+# Pfad relativ zum Backend-Root (``data/`` neben ``services/``).
+STATIC_JSON_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "data",
+    "volksbegehren.json",
+)
+
+# Realistische Browser-Header. Probieren wir trotzdem — falls Myra einmal
+# nicht aktiv ist (oder von einer freundlichen IP aus), bekommen wir
+# automatisch frische Daten.
+_BROWSER_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/605.1.15 (KHTML, like Gecko) "
+        "Version/17.0 Safari/605.1.15"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9",
+    "Accept-Language": "de-AT,de;q=0.9,en;q=0.8",
+}
 
 VBG_CACHE_TTL = 86400  # 24h — die Liste ändert sich allenfalls bei neuen VBG
 
@@ -159,14 +199,18 @@ def _claim_mentions_volksbegehren(claim: str, entries: list[dict]) -> bool:
 def claim_mentions_volksbegehren_cached(claim: str) -> bool:
     """Synchronous gate for the request hot path.
 
-    Reads the prefetch cache directly — at request time the data has
-    already been populated by ``data_updater.prefetch_all``.  Falls back
-    to ``False`` if the cache is empty (i.e. before the first refresh
-    completed) so we don't block the request.
+    Primary path: read the prefetch cache (filled by
+    ``data_updater.prefetch_all`` at startup).  Fallback path: if the
+    cache is empty (e.g. a request hits before the first prefetch
+    completes), do a sync load from the static JSON so we never miss
+    a trigger.  The static JSON is always shipped with the image, so
+    this fallback is fast (~1 ms file read).
     """
-    if not _cache:
-        return False
-    entries = _cache.get("entries") or []
+    entries: list[dict] | None = None
+    if _cache:
+        entries = _cache.get("entries") or None
+    if not entries:
+        entries = _load_static_json()
     if not entries:
         return False
     return _claim_mentions_volksbegehren(claim, entries)
@@ -285,49 +329,125 @@ def _parse_table(html: str) -> list[dict]:
 # ---------------------------------------------------------------------------
 
 
+def _load_static_json() -> list[dict] | None:
+    """Load the shipped static JSON snapshot of the BMI list.
+
+    This is the **primary** data source in production because Myra
+    Cloud blocks Hetzner IPs from reaching the BMI page directly.
+    """
+    if not os.path.exists(STATIC_JSON_PATH):
+        logger.warning(
+            f"BMI Volksbegehren: static JSON not found at {STATIC_JSON_PATH}"
+        )
+        return None
+    try:
+        with open(STATIC_JSON_PATH, encoding="utf-8") as f:
+            payload = json.load(f)
+    except (OSError, json.JSONDecodeError) as e:
+        logger.warning(f"BMI Volksbegehren: static JSON load failed: {e}")
+        return None
+    entries = payload.get("entries") or []
+    if not entries:
+        return None
+    return entries
+
+
+async def _try_online_refresh(
+    client: httpx.AsyncClient,
+) -> list[dict] | None:
+    """Best-effort online fetch from BMI.
+
+    Returns the parsed entries on success, ``None`` on any failure
+    (HTTP error, redirect to Myra block page, empty parse).  Logs at
+    INFO on failure — this is expected on production hosts where the
+    IP is blocked, not an error.
+    """
+    try:
+        resp = await client.get(
+            BMI_VBG_URL,
+            headers=_BROWSER_HEADERS,
+            follow_redirects=False,
+        )
+    except httpx.HTTPError as e:
+        logger.info(f"BMI Volksbegehren: online refresh skipped ({e})")
+        return None
+
+    # Myra-Block redirects to /myracloud-blocked/... — never follow.
+    if resp.status_code in (301, 302, 303, 307, 308):
+        loc = resp.headers.get("location", "")
+        logger.info(
+            f"BMI Volksbegehren: online refresh blocked "
+            f"(HTTP {resp.status_code} → {loc[:80]})"
+        )
+        return None
+    if resp.status_code != 200:
+        logger.info(
+            f"BMI Volksbegehren: online refresh got HTTP {resp.status_code}"
+        )
+        return None
+
+    entries = _parse_table(resp.text)
+    if not entries:
+        logger.info("BMI Volksbegehren: online refresh parser returned 0")
+        return None
+
+    logger.info(
+        f"BMI Volksbegehren: online refresh succeeded ({len(entries)} entries)"
+    )
+    return entries
+
+
 async def fetch_volksbegehren(
     client: httpx.AsyncClient | None = None,
 ) -> dict | None:
-    """Fetch and parse the BMI Volksbegehren list.
+    """Static-first loader for the BMI Volksbegehren list.
 
-    Returns ``{"entries": [...], "fetched_at": float}`` or ``None`` on
-    failure.  Cached for 24 h.
+    Strategy:
+    1. Load the shipped static JSON (always available, no network).
+    2. Best-effort attempt an online refresh — if it succeeds (typically
+       only on IPs not blocked by Myra Cloud), use the fresher data.
+    3. Cache the result for 24 h.
+
+    Returns ``{"entries": [...], "fetched_at": float, "source": str}``
+    or ``None`` if even the static JSON is missing/invalid (which would
+    indicate a deploy/build problem).
     """
     global _cache, _cache_time
     now = time.time()
     if _cache is not None and (now - _cache_time) < VBG_CACHE_TTL:
         return _cache
 
+    # 1. Always start from static snapshot — no network, never fails on
+    #    blocked hosts.
+    entries = _load_static_json()
+    source = "static"
+
+    # 2. Best-effort online refresh.
     close_client = False
     if client is None:
         client = httpx.AsyncClient(timeout=30.0)
         close_client = True
-
     try:
-        resp = await client.get(
-            BMI_VBG_URL,
-            headers={
-                "User-Agent": "Evidora-Factcheck/1.0 (evidora.eu)",
-                "Accept": "text/html",
-            },
-        )
-        resp.raise_for_status()
-        html = resp.text
-    except httpx.HTTPError as e:
-        logger.warning(f"BMI Volksbegehren: fetch failed: {e}")
-        return None
+        fresh = await _try_online_refresh(client)
+        if fresh:
+            entries = fresh
+            source = "online"
     finally:
         if close_client:
             await client.aclose()
 
-    entries = _parse_table(html)
     if not entries:
-        logger.warning("BMI Volksbegehren: parser returned 0 entries")
+        logger.warning(
+            "BMI Volksbegehren: no entries available — neither static "
+            "JSON nor online fetch produced data"
+        )
         return None
 
-    _cache = {"entries": entries, "fetched_at": now}
+    _cache = {"entries": entries, "fetched_at": now, "source": source}
     _cache_time = now
-    logger.info(f"BMI Volksbegehren: {len(entries)} entries cached")
+    logger.info(
+        f"BMI Volksbegehren: {len(entries)} entries cached (source={source})"
+    )
     return _cache
 
 
