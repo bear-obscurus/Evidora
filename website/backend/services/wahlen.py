@@ -387,6 +387,114 @@ def _make_election_summary(election: dict, top_n: int = 3) -> dict:
     }
 
 
+# Phrasen, die nach dem *Wahlsieger* / der *stärksten Partei* fragen.
+# Bei diesen Claims muss das LLM **alle** Parteien sehen, nicht nur die
+# im Claim genannte — sonst kann es den Superlativ nicht prüfen.
+_SUPERLATIVE_REGEXES = [
+    # Substantiv-Phrasen
+    r"stärkste\s+(partei|kraft|fraktion)",
+    r"größte\s+(partei|kraft|fraktion)",
+    r"stimmenstärkste",
+    r"wahlsieger(in)?",
+    r"erfolgreichste\s+(partei|kraft|kandidat)",
+    r"platz\s+(eins|1)\b",
+    r"rang\s+(eins|1)\b",
+    r"wurde\s+stärkste",
+    r"an\s+erster\s+stelle",
+    # Verb-Phrasen "gewann/gewonnen + (die) Wahl/Nationalratswahl/…"
+    # Inkl. zusammengesetztem "Nationalratswahl" als alleinstehender
+    # Treffer, weil das Suffix "-wahl" das Wahl-Wort schon implizit
+    # enthält.
+    r"\bgewann\s+(die\s+)?(wahl|nationalratswahl|europawahl|"
+    r"bundespräsidentenwahl|bpw|nrw|euw)\b",
+    r"\bgewonnen\s+(hat|hatte|haben)\b",
+    r"\b(die\s+)?wahl\s+gewonnen\b",
+    r"\b(die\s+)?nationalratswahl\s+gewonnen\b",
+    r"\b(die\s+)?europawahl\s+gewonnen\b",
+    r"\b(die\s+)?bundespräsidentenwahl\s+gewonnen\b",
+    # Englisch
+    r"strongest\s+party",
+    r"winner\s+of",
+    r"won\s+the\s+(election|vote)",
+    r"first\s+place",
+    r"most\s+votes",
+]
+
+_SUPERLATIVE_RE = re.compile(
+    "|".join(f"({p})" for p in _SUPERLATIVE_REGEXES),
+    re.IGNORECASE,
+)
+
+
+def _claim_asks_for_winner(claim_lc: str) -> bool:
+    """True wenn der Claim nach dem Wahlsieger / der stärksten Partei
+    fragt — dann müssen ALLE Parteien geliefert werden."""
+    return bool(_SUPERLATIVE_RE.search(claim_lc))
+
+
+def _make_full_ranking(election: dict) -> list[dict]:
+    """Komplette Rangliste einer Wahl als einzelne Result-Einträge,
+    autoritativ markiert.  Für Superlativ-Claims notwendig, damit
+    das LLM alle Vergleichsdaten sieht.
+    """
+    typ = election.get("type")
+    year = election.get("year")
+    label = _format_election_label(election)
+    e_results = election.get("results") or []
+    if not e_results:
+        return []
+
+    ranked = sorted(e_results, key=lambda r: -(r.get("percent") or 0))
+    total = len(ranked)
+    rank1 = ranked[0]
+    rank1_short = rank1.get("short", "")
+    rank1_pct = rank1.get("percent")
+
+    # Summary-Eintrag mit autoritativer Reihenfolge
+    summary_display = " · ".join(
+        f"{i + 1}. {r.get('short', '')} {r.get('percent', 0):.1f} %"
+        .replace(".", ",")
+        for i, r in enumerate(ranked[:5])
+    )
+    summary = {
+        "indicator_name": (
+            f"{label} — Bundes-Rangliste nach Stimmenanteil "
+            f"(autoritativ, vollständig)"
+        ),
+        "indicator": f"wahl_{typ.lower()}_ranking",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": str(year) if year else "",
+        "value": rank1_pct if rank1_pct is not None else "",
+        "display_value": (
+            f"Rang 1: {rank1_short} ({rank1_pct:.1f} %) · "
+            f"Top 5: {summary_display}"
+            .replace(".", ",")
+            if rank1_pct is not None else summary_display
+        ),
+        "description": (
+            f"Vollständige Rangliste aller {total} bei der {label} "
+            f"angetretenen Parteien/Kandidat:innen, sortiert nach "
+            f"Stimmenanteil laut offizieller BMI-Statistik. Die Spitze "
+            f"({rank1_short}) ist autoritativ — keine andere Partei in "
+            f"dieser Wahl hat einen höheren Stimmenanteil erreicht."
+        ),
+        "url": election.get("url", WAHLEN_BASE),
+    }
+
+    # Plus pro Partei eine Detailzeile mit Rang vorangestellt
+    detail_entries = []
+    for i, r in enumerate(ranked, 1):
+        entry = _make_party_entry(election, r)
+        # Rang-Präfix in indicator_name vorne dranhängen
+        entry["indicator_name"] = (
+            f"Rang {i} von {total}: {entry['indicator_name']}"
+        )
+        detail_entries.append(entry)
+
+    return [summary] + detail_entries
+
+
 _WAHLEN_METHODIK = (
     "Datenquelle: Bundesministerium für Inneres (BMI), Bundeswahlbehörde — "
     "die offiziellen Bundesergebnisse aller österreichischen Bundeswahlen "
@@ -429,6 +537,7 @@ async def search_wahlen(analysis: dict) -> dict:
     typ = _claim_mentions_wahl_type(cl)
     year = _extract_year(claim)
     party_short = _resolve_party_short(cl)
+    is_superlative = _claim_asks_for_winner(cl)
 
     # Filter elections by type/year
     matched_elections: list[dict] = []
@@ -455,7 +564,16 @@ async def search_wahlen(analysis: dict) -> dict:
         e_results = election.get("results") or []
         if not e_results:
             continue
-        # Try to find candidate (BPW) or party (NRW/EUW) match
+
+        # Bug P Fix: Superlativ-Claims ("stärkste Partei", "Wahlsieger",
+        # "gewann die Wahl" …) brauchen Vergleichsdaten ALLER Parteien,
+        # damit das LLM den Superlativ überprüfen kann.  Sonst antwortet
+        # es "nicht überprüfbar", weil es nur die genannte Partei sieht.
+        if is_superlative:
+            results.extend(_make_full_ranking(election))
+            continue
+
+        # Standard-Modus: Try to find candidate (BPW) or party (NRW/EUW) match
         cand_short = None
         if election.get("type") == "BPW":
             cand_short = _resolve_candidate_short(cl, e_results)
