@@ -241,6 +241,46 @@ function buildConfidenceTooltip(data) {
     }
 }
 
+// Verdict icon (Frontend-Polish B) — visual anchor for the verdict.
+// Inline SVGs allow CSS to control color via currentColor.
+function getVerdictIcon(verdict) {
+    const icons = {
+        true:
+            '<svg class="verdict-icon icon-positive" viewBox="0 0 48 48" aria-hidden="true">' +
+            '<circle cx="24" cy="24" r="22" fill="currentColor"/>' +
+            '<path d="M14 24 L21 31 L34 17" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>' +
+            '</svg>',
+        mostly_true:
+            '<svg class="verdict-icon icon-positive" viewBox="0 0 48 48" aria-hidden="true">' +
+            '<circle cx="24" cy="24" r="22" fill="currentColor"/>' +
+            '<path d="M14 24 L21 31 L34 17" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>' +
+            '</svg>',
+        mixed:
+            '<svg class="verdict-icon icon-warning" viewBox="0 0 48 48" aria-hidden="true">' +
+            '<path d="M24 4 L46 42 L2 42 Z" fill="currentColor"/>' +
+            '<rect x="22" y="18" width="4" height="12" fill="#fff" rx="1"/>' +
+            '<circle cx="24" cy="35" r="2" fill="#fff"/>' +
+            '</svg>',
+        mostly_false:
+            '<svg class="verdict-icon icon-negative" viewBox="0 0 48 48" aria-hidden="true">' +
+            '<circle cx="24" cy="24" r="22" fill="currentColor"/>' +
+            '<path d="M16 16 L32 32 M32 16 L16 32" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>' +
+            '</svg>',
+        false:
+            '<svg class="verdict-icon icon-negative" viewBox="0 0 48 48" aria-hidden="true">' +
+            '<circle cx="24" cy="24" r="22" fill="currentColor"/>' +
+            '<path d="M16 16 L32 32 M32 16 L16 32" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>' +
+            '</svg>',
+        unverifiable:
+            '<svg class="verdict-icon icon-neutral" viewBox="0 0 48 48" aria-hidden="true">' +
+            '<circle cx="24" cy="24" r="22" fill="currentColor"/>' +
+            '<path d="M19 18 a6 6 0 1 1 6 8 v3" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>' +
+            '<circle cx="25" cy="34" r="2" fill="#fff"/>' +
+            '</svg>',
+    };
+    return icons[verdict] || icons.unverifiable;
+}
+
 function renderVerdict(data) {
     const verdict = sanitizeVerdict(data.verdict);
     const labels = getVerdictLabels();
@@ -271,7 +311,10 @@ function renderVerdict(data) {
 
     document.getElementById("verdict-card").innerHTML = `
         <div class="verdict-${verdict}">
-            <span class="verdict-badge badge-${verdict}">${label}</span>
+            <div class="verdict-header">
+                ${getVerdictIcon(verdict)}
+                <span class="verdict-badge badge-${verdict}">${label}</span>
+            </div>
             <p class="verdict-summary">${renderInlineMarkdown(data.summary || "")}</p>
             ${data.nuance ? `<p class="verdict-nuance">${renderInlineMarkdown(data.nuance)}</p>` : ""}
             <div class="metrics-grid">
@@ -283,13 +326,13 @@ function renderVerdict(data) {
                     ${t("confidence")}
                 </span>
                 <div class="confidence-track">
-                    <div class="confidence-fill" style="width: ${confidence}%"></div>
+                    <div class="confidence-fill" style="width: 0%" data-target-width="${confidence}%"></div>
                 </div>
                 <span class="metric-value">${confidence}%</span>
                 ${queried > 0 ? `
                 <span class="metric-label">${t("source_coverage")}</span>
                 <div class="coverage-track">
-                    <div class="coverage-fill" style="width: ${Math.round((withResults / queried) * 100)}%"></div>
+                    <div class="coverage-fill" style="width: 0%" data-target-width="${Math.round((withResults / queried) * 100)}%"></div>
                 </div>
                 <span class="metric-value">${coverageDetail}</span>` : ""}
             </div>
@@ -301,6 +344,15 @@ function renderVerdict(data) {
 
     const card = document.getElementById("verdict-card");
     card.className = `verdict-${verdict}`;
+
+    // Animate confidence/coverage bars from 0 → target on next frame so
+    // the CSS transition has something to animate from. Without this the
+    // browser would just paint the final width and skip the transition.
+    requestAnimationFrame(() => {
+        card.querySelectorAll("[data-target-width]").forEach((el) => {
+            el.style.width = el.dataset.targetWidth;
+        });
+    });
 }
 
 function renderEvidence(evidence) {
@@ -487,9 +539,32 @@ document.addEventListener("click", (e) => {
     }
 });
 
+// --- Toast notifications (Frontend-Polish C) ---
+const TOAST_ICONS = {
+    success: '<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+    error: '<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+    info: '<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
+};
+
+function showToast(message, type = "info", durationMs = 3200) {
+    const container = document.getElementById("toast-container");
+    if (!container) return;
+    const toast = document.createElement("div");
+    toast.className = `toast toast-${type}`;
+    toast.setAttribute("role", type === "error" ? "alert" : "status");
+    toast.innerHTML = `${TOAST_ICONS[type] || TOAST_ICONS.info}<span class="toast-message">${escapeHtml(message)}</span>`;
+    container.appendChild(toast);
+    setTimeout(() => {
+        toast.classList.add("toast-out");
+        toast.addEventListener("animationend", () => toast.remove(), { once: true });
+    }, durationMs);
+}
+
 // --- PDF Export ---
 function exportPDF() {
-    window.print();
+    showToast(t("toast_pdf"), "info", 2000);
+    // Give the toast a moment to render before the print dialog blocks the page
+    setTimeout(() => window.print(), 150);
 }
 
 // --- Share ---
@@ -521,15 +596,9 @@ function shareResult() {
     const url = `${window.location.origin}?claim=${encodeURIComponent(claim)}`;
 
     copyToClipboard(url).then(() => {
-        const btn = document.getElementById("share-btn");
-        btn.classList.add("copied");
-        btn.textContent = t("share_copied");
-        setTimeout(() => {
-            btn.classList.remove("copied");
-            btn.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg> ${t("btn_share")}`;
-        }, 2000);
+        showToast(t("toast_link_copied"), "success");
     }).catch(() => {
-        // Silent fail — button text stays unchanged
+        showToast(t("toast_link_failed"), "error");
     });
 }
 
@@ -545,6 +614,7 @@ function reportResult() {
     const body = `${t("report_claim")}: ${claim}\n${t("report_verdict")}: ${verdict}\n${t("report_summary")}: ${summary}\n\nURL: ${url}\n\n${t("report_reason")}:\n`;
 
     window.location.href = `mailto:Evidora@proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    showToast(t("toast_mail_opened"), "info");
 }
 
 // --- Auto-fill from URL ---
@@ -610,8 +680,37 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
+// --- Example Claims (clickable suggestions on the home page) ---
+function renderExampleClaims() {
+    const container = document.getElementById("example-claims");
+    if (!container) return;
+    const examples = (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang].example_claims) || [];
+    container.innerHTML = examples.map((ex, i) => `
+        <button type="button" class="example-claim-btn"
+                onclick="useExampleClaim(${i})"
+                data-i18n-tooltip="example_tooltip">
+            <span class="example-icon" aria-hidden="true">${ex.icon || "•"}</span>
+            <span class="example-text">${escapeHtml(ex.text)}</span>
+        </button>
+    `).join("");
+}
+
+function useExampleClaim(idx) {
+    const examples = (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang].example_claims) || [];
+    const ex = examples[idx];
+    if (!ex) return;
+    input.value = ex.text;
+    updateCharCounter();
+    // Hide history if showing
+    const historyEl = document.getElementById("search-history");
+    if (historyEl) historyEl.classList.add("hidden");
+    // Submit immediately
+    form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+}
+
 // Apply saved language on load, check URL params
 document.addEventListener("DOMContentLoaded", () => {
     setLanguage(currentLang);
+    renderExampleClaims();
     checkUrlParams();
 });

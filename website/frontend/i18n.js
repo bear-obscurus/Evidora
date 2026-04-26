@@ -13,6 +13,16 @@ const TRANSLATIONS = {
         hint_education: "Bildung",
         hint_migration: "Migration",
         hint_gender: "Gleichstellung",
+        // Clickable example claims for the home page (Frontend-Polish A)
+        examples_label: "Oder gleich ausprobieren:",
+        example_claims: [
+            { icon: "💉", text: "Impfungen verursachen Autismus." },
+            { icon: "🌡️", text: "2024 war das wärmste Jahr in Wien seit Beginn der Aufzeichnungen." },
+            { icon: "🗳️", text: "Bei der Nationalratswahl 2024 wurde die FPÖ erstmals stimmenstärkste Partei." },
+            { icon: "📈", text: "Die Inflation in Österreich liegt 2024 über dem EU-Schnitt." },
+            { icon: "⚛️", text: "Atomkraft hat weniger Tote pro TWh als Kohle." },
+            { icon: "📚", text: "Bei PISA 2022 sind die Mathematik-Werte in der OECD gefallen." },
+        ],
         beta_notice: "Dieses Projekt befindet sich in aktiver Entwicklung.",
         beta_notice_online: "Dieses Projekt befindet sich in aktiver Entwicklung. Die KI-Analyse dieser Online-Version erfolgt über die Mistral Cloud API (EU-Server, Paris).",
 
@@ -74,6 +84,11 @@ const TRANSLATIONS = {
         btn_export_pdf: "Als PDF speichern",
         btn_share: "Link kopieren",
         share_copied: "Link kopiert!",
+        // Toast messages (Frontend-Polish C)
+        toast_pdf: "PDF wird vorbereitet …",
+        toast_link_copied: "Link in die Zwischenablage kopiert.",
+        toast_link_failed: "Link konnte nicht kopiert werden.",
+        toast_mail_opened: "E-Mail-Programm wird geöffnet.",
         btn_report: "Ergebnis melden",
         report_subject: "Fehlerhaftes Ergebnis",
         report_claim: "Behauptung",
@@ -336,6 +351,16 @@ const TRANSLATIONS = {
         hint_education: "Education",
         hint_migration: "Migration",
         hint_gender: "Gender Equality",
+        // Clickable example claims for the home page
+        examples_label: "Or try it directly:",
+        example_claims: [
+            { icon: "💉", text: "Vaccines cause autism." },
+            { icon: "🌡️", text: "2024 was the warmest year on record globally." },
+            { icon: "⚛️", text: "Nuclear power has fewer deaths per TWh than coal." },
+            { icon: "📊", text: "The EU's CO2 emissions decreased by 30% since 1990." },
+            { icon: "📚", text: "PISA 2022 showed declining math scores across OECD countries." },
+            { icon: "🏥", text: "Life expectancy in Italy is higher than in Germany." },
+        ],
         beta_notice: "This project is under active development.",
         beta_notice_online: "This project is under active development. AI analysis on this online version is processed via the Mistral Cloud API (EU servers, Paris).",
 
@@ -397,6 +422,11 @@ const TRANSLATIONS = {
         btn_export_pdf: "Save as PDF",
         btn_share: "Copy link",
         share_copied: "Link copied!",
+        // Toast messages
+        toast_pdf: "Preparing PDF …",
+        toast_link_copied: "Link copied to clipboard.",
+        toast_link_failed: "Could not copy link.",
+        toast_mail_opened: "Opening your email client.",
         btn_report: "Report result",
         report_subject: "Incorrect result",
         report_claim: "Claim",
@@ -658,6 +688,10 @@ function setLanguage(lang) {
     document.title = t("page_title");
     applyTranslations();
     updateLangToggle();
+    // Re-render example claims (their text is language-specific)
+    if (typeof renderExampleClaims === "function") {
+        renderExampleClaims();
+    }
 }
 
 function applyTranslations() {

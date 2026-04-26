@@ -77,13 +77,11 @@
                     </ul>
                 </div>
                 <div id="search-history" class="search-history hidden"></div>
-                <div class="hints">
-                    <span data-i18n="hint_health">Gesundheit</span>
-                    <span data-i18n="hint_climate">Klima</span>
-                    <span data-i18n="hint_economy">Wirtschaft</span>
-                    <span data-i18n="hint_education">Bildung</span>
-                    <span data-i18n="hint_migration">Migration</span>
-                    <span data-i18n="hint_gender">Gleichstellung</span>
+                <div class="example-claims-wrapper">
+                    <p class="example-claims-label" data-i18n="examples_label">Oder gleich ausprobieren:</p>
+                    <div class="example-claims" id="example-claims">
+                        <!-- Populated dynamically from i18n.example_claims -->
+                    </div>
                 </div>
             </form>
         </div>
@@ -149,6 +147,9 @@
             <a href="#" onclick="openModal('disclaimer', event)" data-i18n="disclaimer_link">Haftungsausschluss</a>
         </p>
     </footer>
+
+    <!-- Toast container (Frontend-Polish C — non-blocking action feedback) -->
+    <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
 
     <!-- Legal Modal (shared for Privacy, Imprint, Disclaimer) -->
     <div id="legal-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Rechtliche Informationen" onclick="closeModal(event)">
