@@ -145,7 +145,7 @@ CITY_ALIASES = {
 
 # Climate-relevant keywords (DE + EN)
 CLIMATE_KEYWORDS = [
-    "klima", "klimawandel", "klimaerwärmung", "erwärmung", "klimakrise",
+    "klima", "klimawandel", "klimakrise",
     "climate", "climate change", "global warming",
     "temperatur", "temperature", "temperaturen",
     "hitzerekord", "hitze", "heat record", "heatwave", "hitzewelle",
@@ -154,6 +154,10 @@ CLIMATE_KEYWORDS = [
     "jahresmittel", "jahresmitteltemperatur", "annual mean temperature",
     "wärmer", "kälter", "warmer", "colder",
     "rekordjahr", "record year",
+    # Stamm-Formen, damit Verb + Substantiv erkannt werden:
+    # „erwärm" matcht „erwärmt", „erwärmte", „erwärmung", „klimaerwärmung",
+    # „erwärmen", „erwärmend"; „abkühl" matcht analog.
+    "erwärm", "abkühl",
 ]
 
 # Reference period: 1991-2020 (WMO-Standard für Klimanormalperiode)
