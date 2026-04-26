@@ -47,6 +47,7 @@ from services.ris import search_ris, _claim_mentions_legal as _ris_mentions_lega
 from services.volksbegehren import search_volksbegehren, claim_mentions_volksbegehren_cached
 from services.wahlen import search_wahlen, claim_mentions_wahlen_cached
 from services.abstimmungen import search_abstimmungen, claim_mentions_voting_cached
+from services.at_factbook import search_at_factbook, claim_mentions_factbook_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -331,6 +332,11 @@ async def check_claim(request: Request):
         if claim_mentions_voting_cached(claim):
             tasks.append(cached("Abstimmungen", search_abstimmungen, analysis))
             queried_names.append("Parlament Abstimmungen")
+        # AT Factbook: kuratierte AT-Faktoide (Religion Wiener Pflichtschulen,
+        # Bundesförderungen-Zeitreihe). Static-curated, manuell aktualisiert.
+        if claim_mentions_factbook_cached(claim):
+            tasks.append(cached("AT Factbook", search_at_factbook, analysis))
+            queried_names.append("AT Factbook")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

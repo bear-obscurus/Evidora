@@ -1,0 +1,140 @@
+{
+  "facts": [
+    {
+      "id": "religion_pflichtschulen_wien_2024",
+      "topic": "religion_schools_vienna",
+      "scope": "Wiener Pflichtschulen (Volksschulen, Mittelschulen, Polytechnische, AHS-Unterstufe, Sonderschulen)",
+      "year": "2024/25",
+      "headline": "Religionsbekenntnisse an Wiener Pflichtschulen 2024/25",
+      "data": {
+        "schueler_gesamt": 112600,
+        "islamisch_pct": 41.2,
+        "christlich_pct_gesamt": 34.5,
+        "roemisch_katholisch_pct": 17.5,
+        "orthodox_pct": 14.5,
+        "evangelisch_pct": 1.7,
+        "sonstige_christlich_pct": 0.8,
+        "ohne_bekenntnis_pct": 23.0,
+        "sonstige_pct": 1.3
+      },
+      "subgroup_breakdowns": [
+        {
+          "label": "Volksschulen Wien 2024/25",
+          "islamisch_pct": 37.7,
+          "christlich_pct": 32.1,
+          "ohne_bekenntnis_pct": 26.2
+        },
+        {
+          "label": "Mittelschulen + Polytechnische Schulen Wien 2024/25",
+          "islamisch_pct": 49.0,
+          "note": "Höchster Anteil unter den Wiener Pflichtschultypen"
+        }
+      ],
+      "context_notes": [
+        "Daten beziehen sich ausschließlich auf Wiener PFLICHTSCHULEN, nicht auf alle Wiener Schulen.",
+        "AHS-Oberstufe und BHS sind nicht enthalten — diese Schultypen haben deutlich niedrigere muslimische Anteile.",
+        "Bundesweit (alle Schultypen, alle Bundesländer) liegt der muslimische Anteil 2024/25 laut Statistik Austria bei rund 9–10 %.",
+        "Eine Behauptung wie '42 % der Wiener Schulkinder sind muslimisch' ist faktisch nahe am Pflichtschul-Wert (41,2 %), aber irreführend — sie suggeriert, dies gälte für 'alle Wiener Schulkinder', was nicht stimmt."
+      ],
+      "claim_phrasings_handled": [
+        "% muslimische Schüler Wien",
+        "Anteil Islam Wiener Schulen",
+        "Religion Wiener Schulkinder",
+        "Christlich vs. islamisch Wien Schule",
+        "muslimischer Anteil Pflichtschulen Wien"
+      ],
+      "source_label": "Bildungsdirektion Wien — Erhebung Religionsbekenntnisse 2024/25; ergänzt durch ÖIF-Factsheet",
+      "source_url": "https://www.bildung-wien.gv.at/",
+      "secondary_url": "https://www.integrationsfonds.at/themen/integration-bildung/",
+      "fetched_at_iso": "2026-04-26",
+      "guardrails": [
+        "Wir geben keine Bewertung dieser Demografie ab.",
+        "Wir kontextualisieren die Pflichtschul-Zahl gegen Gesamt-Schülerschaft und Bundesschnitt — ohne Wertung."
+      ]
+    },
+    {
+      "id": "foerderungen_bund_2019_2024",
+      "topic": "federal_subsidies_austria",
+      "scope": "Bundesförderungen Österreich (direkt + indirekt, ESVG-Quote)",
+      "year_range": "2019-2024",
+      "headline": "Bundesförderungen Österreich 2019–2024 (BMF-Förderungsbericht + Statistik Austria)",
+      "yearly_data": [
+        {
+          "year": 2019,
+          "direkte_foerderungen_mrd_eur": 5.8,
+          "note": "Vor-Krisen-Niveau (vor COVID-19, vor Energiepreis-Krise)"
+        },
+        {
+          "year": 2020,
+          "direkte_foerderungen_mrd_eur": 18.4,
+          "note": "COVID-19-Hilfen (Kurzarbeit, Ausfallsbonus, Fixkostenzuschuss)"
+        },
+        {
+          "year": 2021,
+          "direkte_foerderungen_mrd_eur": 19.2,
+          "note": "Spitze der COVID-Hilfen"
+        },
+        {
+          "year": 2022,
+          "direkte_foerderungen_mrd_eur": 14.8,
+          "note": "Auslaufende COVID-Hilfen + erste Energiekosten-Zuschüsse"
+        },
+        {
+          "year": 2023,
+          "direkte_foerderungen_mrd_eur": 11.6,
+          "indirekte_foerderungen_mrd_eur": 24.9,
+          "esvg_quote_pct_bip": 6.5,
+          "note": "Transparenzdatenbank-Stand: 11,6 Mrd Bund + 4,1 Mrd Bundesländer"
+        },
+        {
+          "year": 2024,
+          "direkte_foerderungen_mrd_eur": 12.6,
+          "indirekte_foerderungen_mrd_eur": 26.7,
+          "esvg_quote_pct_bip": 6.7,
+          "note": "ESVG-Quote 6,7 % BIP — viert-höchste in der EU 2024 (lt. Eurostat)"
+        }
+      ],
+      "comparisons": {
+        "direkt_2019_vs_2024": {
+          "from": 5.8,
+          "to": 12.6,
+          "delta_pct": 117.2,
+          "note": "+117 % nominal (5,8 → 12,6 Mrd EUR). Inflationsbereinigt VPI 2019→2024 ~ +22 % → real +78 %."
+        },
+        "direkt_2023_vs_2024": {
+          "from": 11.6,
+          "to": 12.6,
+          "delta_pct": 8.6
+        },
+        "claim_plus_76_pct_check": {
+          "phrasing": "+76 % Förderungen seit 2019 / seit Türkis-Grün",
+          "verdict": "Eher zu niedrig nominal (real eher +78 %). Genau +76 % erreicht man rechnerisch nur bei selektiver Wahl von Basisjahr und Endjahr (z.B. 2019 → 2022: 5,8 → 14,8 inkl. Krisen-Hilfen wäre +155 %, ohne Krisen-Hilfen nicht erreichbar)."
+        }
+      },
+      "context_notes": [
+        "WICHTIG: Die Zahlen 2020–2022 sind durch COVID-19-Hilfen massiv aufgebläht (Kurzarbeit ~ 11 Mrd EUR allein). Wer 'Förderungen +X %' sagt, sollte sagen, ob er Krisen-Hilfen mitzählt.",
+        "Direkte Förderungen = Zuschüsse, Darlehen, Haftungen aus dem Bundesbudget.",
+        "Indirekte Förderungen = Steuerbefreiungen und -ermäßigungen (z.B. Pendlerpauschale, Familienbeihilfe-Steuervorteil).",
+        "ESVG-Quote = volkswirtschaftliche Förderungsquote nach Europäischem System Volkswirtschaftlicher Gesamtrechnungen — vergleichbar zwischen EU-Staaten."
+      ],
+      "claim_phrasings_handled": [
+        "Förderungen Österreich + 76 %",
+        "Bundesförderungen gestiegen",
+        "Subventionen Bund",
+        "Förderquote Österreich BIP",
+        "ESVG Förderungen"
+      ],
+      "source_label": "BMF Förderungsbericht 2024 (an den Nationalrat); Statistik Austria — Volkswirtschaftliche Gesamtrechnungen ESVG 2010",
+      "source_url": "https://www.bmf.gv.at/themen/budget/das-budget/foerderungsbericht.html",
+      "secondary_url": "https://www.statistik.at/statistiken/wirtschaft/volkswirtschaftliche-gesamtrechnungen",
+      "fetched_at_iso": "2026-04-26",
+      "guardrails": [
+        "Wir bewerten nicht, ob die Förderhöhe 'zu hoch' oder 'zu niedrig' ist.",
+        "Wir benennen explizit, welcher Anteil der Steigerung COVID-/Energie-Krisen-Hilfen sind, damit Vergleichszahlen nicht missbraucht werden."
+      ]
+    }
+  ],
+  "fetched_at_iso": "2026-04-26",
+  "note": "Kuratierte AT-Faktoide aus offiziellen Primärquellen (Bildungsdirektion Wien, BMF, Statistik Austria). Manuell aktualisiert — Refresh-Cadence: jährlich nach Erscheinen des BMF-Förderungsberichts (typ. Q1) bzw. der Bildungsdirektion-Stichtagserhebung (Q4).",
+  "version": 1
+}

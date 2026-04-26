@@ -65,6 +65,10 @@ _AUTHORITATIVE_INDICATORS = (
     "wahl_nrw_ranking",           # Wahl ranking-summary
     "wahl_bpw_ranking",
     "wahl_euw_ranking",
+    "factbook_religion_vienna",          # AT-Factbook curated entries
+    "factbook_religion_vienna_subgroup",
+    "factbook_subsidies_at",
+    "factbook_subsidies_check",
 )
 
 
