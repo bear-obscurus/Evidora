@@ -14,7 +14,18 @@ RETRY_DELAY = 2  # Sekunden
 
 
 async def _call_mistral_api(messages: list, timeout: float) -> str:
-    """Call Mistral API (EU servers, Paris)."""
+    """Call Mistral API (EU servers, Paris).
+
+    Determinism (Bug 1 fix):
+    - ``temperature=0.0`` makes Mistral fully greedy.  At 0.1 the same
+      claim could occasionally yield TRUE 100% on one run and
+      UNVERIFIABLE 15% on another (observed in the 10-Kickl-claims
+      verification round).  At 0.0 Mistral always picks the
+      highest-probability token.
+    - ``random_seed=42`` gives a stable seed when the model still
+      tie-breaks (e.g. equal-probability tokens).  Same input → same
+      output, reproducible across runs.
+    """
     async with httpx.AsyncClient(timeout=timeout) as client:
         response = await client.post(
             MISTRAL_API_URL,
@@ -25,8 +36,9 @@ async def _call_mistral_api(messages: list, timeout: float) -> str:
             json={
                 "model": MISTRAL_MODEL,
                 "messages": messages,
-                "temperature": 0.1,
+                "temperature": 0.0,
                 "max_tokens": 2048,
+                "random_seed": 42,
             },
         )
         response.raise_for_status()
@@ -62,8 +74,9 @@ async def _call_ollama(messages: list, timeout: float) -> str:
             json={
                 "model": "mistral",
                 "messages": messages,
-                "temperature": 0.1,
+                "temperature": 0.0,
                 "max_tokens": 2048,
+                "seed": 42,
             },
         )
         response.raise_for_status()

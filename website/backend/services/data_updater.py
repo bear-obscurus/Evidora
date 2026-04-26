@@ -20,6 +20,7 @@ Managed sources:
 - BASG (Bundesamt für Sicherheit im Gesundheitswesen) news feed (1h refresh)
 - BMI Volksbegehren list (24h refresh)
 - BMI Wahlen — NRW + BPW + EUW Bundesergebnisse (static, no live refresh)
+- Parlament Abstimmungen — NR-Voting-Records seit GP XXVI (static, manual refresh)
 
 Note: EUvsDisinfo case database (14.5K cases) is a static JSON file
 shipped with the application — no download or refresh needed.
@@ -47,6 +48,7 @@ from services.geosphere import fetch_geosphere
 from services.basg import fetch_basg
 from services.volksbegehren import fetch_volksbegehren
 from services.wahlen import fetch_wahlen
+from services.abstimmungen import fetch_abstimmungen
 
 logger = logging.getLogger("evidora")
 
@@ -84,6 +86,7 @@ async def prefetch_all():
             fetch_basg(client),
             fetch_volksbegehren(client),
             fetch_wahlen(client),
+            fetch_abstimmungen(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "OWID Measles", "OWID Vaccination (WUENIC)",
@@ -96,7 +99,7 @@ async def prefetch_all():
                  "SIPRI Military Expenditure", "IDEA Voter Turnout",
                  "Parlament.gv.at Nationalrat", "EEA / Eurostat",
                  "GeoSphere Austria", "BASG", "BMI Volksbegehren",
-                 "BMI Wahlen"]
+                 "BMI Wahlen", "Parlament Abstimmungen"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")

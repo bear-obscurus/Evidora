@@ -46,6 +46,7 @@ from services.basg import search_basg, _claim_mentions_pharma as _claim_mentions
 from services.ris import search_ris, _claim_mentions_legal as _ris_mentions_legal, _claim_mentions_austria as _ris_mentions_austria, _extract_search_terms as _ris_extract_terms, _extract_topic_law_refs as _ris_topic_refs, _extract_law_paragraph_refs as _ris_para_refs
 from services.volksbegehren import search_volksbegehren, claim_mentions_volksbegehren_cached
 from services.wahlen import search_wahlen, claim_mentions_wahlen_cached
+from services.abstimmungen import search_abstimmungen, claim_mentions_voting_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -325,6 +326,11 @@ async def check_claim(request: Request):
         if claim_mentions_wahlen_cached(claim):
             tasks.append(cached("Wahlen", search_wahlen, analysis))
             queried_names.append("BMI Wahlen")
+        # Parlament Abstimmungen: NR-Beschlüsse seit 2017 mit Klub-Voting
+        # (selektives Triggering: Voting-Keyword + AT-Kontext)
+        if claim_mentions_voting_cached(claim):
+            tasks.append(cached("Abstimmungen", search_abstimmungen, analysis))
+            queried_names.append("Parlament Abstimmungen")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
