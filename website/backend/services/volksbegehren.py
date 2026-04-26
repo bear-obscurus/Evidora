@@ -823,7 +823,16 @@ async def search_volksbegehren(analysis: dict) -> dict:
             "Wirkung oder rechtliche Folgen. "
             "(4) Reihung nach 'Rang' erfolgt nach Stimmbeteiligung in % "
             "(nicht nach absoluter Eintragungszahl), so wie es das BMI "
-            "publiziert."
+            "publiziert. "
+            "(5) Das Instrument 'Volksbegehren' wurde in Österreich mit dem "
+            "Volksbegehrensgesetz BGBl 344/1963 eingeführt (in Kraft seit "
+            "1. Juli 1964) — vor 1964 gab es in Österreich keine "
+            "Volksbegehren, weder in der Ersten Republik noch in der "
+            "Monarchie. Die BMI-Liste deckt damit das vollständige Korpus "
+            "dieses Instruments ab; Aussagen wie 'erfolgreichstes "
+            "Volksbegehren in der Geschichte Österreichs' sind über die "
+            "BMI-Liste vollständig verifizierbar (kein historisches Dunkelfeld "
+            "vor 1964)."
         ),
     })
 
