@@ -43,7 +43,7 @@ from services.idea import search_idea, _claim_mentions_idea
 from services.parlament_at import search_parlament_at, _claim_mentions_parlament
 from services.geosphere import search_geosphere, _claim_mentions_climate as _claim_mentions_geosphere_climate, _detect_cities as _geosphere_detect_cities, _claim_mentions_austria as _geosphere_mentions_austria
 from services.basg import search_basg, _claim_mentions_pharma as _claim_mentions_basg_pharma, _claim_mentions_austria as _basg_mentions_austria
-from services.ris import search_ris, _claim_mentions_legal as _ris_mentions_legal, _claim_mentions_austria as _ris_mentions_austria, _extract_search_terms as _ris_extract_terms
+from services.ris import search_ris, _claim_mentions_legal as _ris_mentions_legal, _claim_mentions_austria as _ris_mentions_austria, _extract_search_terms as _ris_extract_terms, _extract_topic_law_refs as _ris_topic_refs, _extract_law_paragraph_refs as _ris_para_refs
 from services.volksbegehren import search_volksbegehren, claim_mentions_volksbegehren_cached
 from services.wahlen import search_wahlen, claim_mentions_wahlen_cached
 from services.cache import get as cache_get, put as cache_put
@@ -304,9 +304,15 @@ async def check_claim(request: Request):
             tasks.append(cached("BASG", search_basg, analysis))
             queried_names.append("BASG")
         # RIS: Bundesgesetzblatt / österreichisches Bundesrecht
-        # (selektives Triggering: Legal-Keyword + AT-Kontext + extrahierbarer Suchterm)
+        # (selektives Triggering: Legal-Keyword + AT-Kontext + irgendein
+        # auswertbarer Suchpfad — Suchterm, Topic-Ref oder §-Ref).
+        # Bug T: Topic-Refs ohne Suchterm wurden vorher ignoriert; jetzt
+        # triggert RIS auch für Claims wie "Verfassung setzt auf
+        # Stärkeverhältnisse" (kein Compound, aber B-VG-Topic match).
         if (_ris_mentions_legal(claim) and _ris_mentions_austria(analysis)
-                and _ris_extract_terms(analysis)):
+                and (_ris_extract_terms(analysis)
+                     or _ris_topic_refs(claim)
+                     or _ris_para_refs(claim))):
             tasks.append(cached("RIS", search_ris, analysis))
             queried_names.append("RIS")
         # BMI Volksbegehren: AT-Bundes-Volksbegehren (selektives Triggering:

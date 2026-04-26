@@ -71,6 +71,14 @@ LAW_REGISTRY: dict[str, tuple[str, str]] = {
     "ustg":   ("10004873", "Umsatzsteuergesetz 1994 (UStG)"),
     "urhg":   ("10001848", "Urheberrechtsgesetz (UrhG)"),
     "vfgg":   ("10000245", "Verfassungsgerichtshofgesetz (VfGG)"),
+    # Bug U: ORF-Beitragsgesetz 2024 (BGBl I 112/2023, in Kraft 1.1.2024).
+    # Die Volltext-Suche im RIS findet das Stammgesetz selbst nicht
+    # zuverlässig (Suchworte "ORF-Beitragsgesetz" → 0 Hits, "ORF-Beitrag"
+    # → 6 Hits aber Novellen/Verweise statt des Stammgesetzes), daher
+    # zusätzlicher Direktlink zur konsolidierten Fassung über die
+    # GeltendeFassung-Nummer.
+    "orfbeitrg":  ("20008302", "ORF-Beitragsgesetz 2024 (ORF-BeitrG)"),
+    "orf-beitrg": ("20008302", "ORF-Beitragsgesetz 2024 (ORF-BeitrG)"),
 }
 
 # Verfassungsgesetze nutzen Artikel-Nummerierung (Art.) statt Paragraph (§).
@@ -373,6 +381,18 @@ _TOPIC_TO_LAW: list[tuple[tuple[str, ...], str, str]] = [
          "kategoriemietzins", "befristete miete"),
         "mrg",
         "Mietrechtsgesetz (MRG) — Mietzins und Mietverhältnisse",
+    ),
+    # Bug U: ORF-Beitragsgesetz — die Volltext-Suche findet das
+    # Stammgesetz nicht zuverlässig.  Direktlink zur konsolidierten
+    # Fassung als ergänzendes Hilfeangebot.
+    (
+        ("orf-haushaltsabgabe", "orf-beitrag", "orf-beitragsgesetz",
+         "orf haushaltsabgabe", "orf-zwangsgebühr", "orf zwangsgebühr",
+         "orf-zwangssteuer", "rundfunkabgabe", "rundfunkbeitrag",
+         "gis-gebühr", "gis-beitrag"),
+        "orfbeitrg",
+        "ORF-Beitragsgesetz 2024 (BGBl I 112/2023) — "
+        "Beitragshöhe, Pflichtige und Verfahren",
     ),
 ]
 
