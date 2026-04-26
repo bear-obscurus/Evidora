@@ -420,6 +420,41 @@ _SUPERLATIVE_REGEXES = [
     r"most\s+votes",
 ]
 
+# Bug X: Historische-Höchstwert-Phrasen — Claims, die nach dem *besten
+# Ergebnis einer Partei in der Geschichte* fragen.  Ohne historische
+# Vergleichsdaten halluziniert das LLM ältere Werte aus seinem
+# Trainingswissen (z.B. "FPÖ-Höchstwert 1999 = 29,3 %", echter Wert war
+# 26,9 %).  Bei diesen Claims müssen alle historischen Ergebnisse der
+# genannten Partei in den Daten erscheinen, damit das LLM faktenbasiert
+# vergleichen kann.
+_HISTORICAL_HIGH_REGEXES = [
+    r"\berstmals\b",
+    r"\bzum\s+ersten\s+mal\b",
+    r"\bnoch\s+nie\s+(zuvor|davor)\b",
+    r"\bin\s+der\s+geschichte\b",
+    r"\b(historische|historischer|historisch)\s+(höchst|rekord|bestwert|spitzenwert)",
+    r"\b(rekord|rekordwert|rekordergebnis|höchstwert|bestwert|spitzenwert)\b",
+    r"\bbest(es|er)\s+(ergebnis|wahlergebnis)\s+(aller\s+zeiten|der\s+geschichte|jemals)",
+    r"\bhöchst(es|er)\s+(ergebnis|wahlergebnis|stimmenanteil)\b",
+    # Englisch
+    r"\bfor\s+the\s+first\s+time\b",
+    r"\ball-?time\s+(high|record)\b",
+    r"\bhistorical\s+high\b",
+]
+
+_HISTORICAL_HIGH_RE = re.compile(
+    "|".join(f"({p})" for p in _HISTORICAL_HIGH_REGEXES),
+    re.IGNORECASE,
+)
+
+
+def _claim_asks_for_historical_high(claim_lc: str) -> bool:
+    """True wenn der Claim nach dem historischen Höchstwert einer Partei
+    in einer Wahltyp-Reihe fragt — dann müssen alle historischen
+    Ergebnisse dieser Partei mitgeliefert werden."""
+    return bool(_HISTORICAL_HIGH_RE.search(claim_lc))
+
+
 _SUPERLATIVE_RE = re.compile(
     "|".join(f"({p})" for p in _SUPERLATIVE_REGEXES),
     re.IGNORECASE,
@@ -495,6 +530,115 @@ def _make_full_ranking(election: dict) -> list[dict]:
     return [summary] + detail_entries
 
 
+def _build_party_history_response(elections: list[dict], typ: str,
+                                    party_short: str) -> dict:
+    """Build a results payload covering ALL elections of a given type
+    where the named party participated, sorted by percent descending.
+
+    Used for Bug-X-style historical-high claims so the LLM has the
+    *full* time series and cannot fall back to memorized (often wrong)
+    historical values.
+    """
+    label_de = {
+        "NRW": "Nationalratswahl",
+        "BPW": "Bundespräsidentenwahl",
+        "EUW": "Europawahl",
+    }.get(typ, typ)
+
+    party_results: list[tuple[dict, dict]] = []  # (election, party_entry)
+    for e in elections:
+        if e.get("type") != typ:
+            continue
+        for p in e.get("results") or []:
+            if p.get("short") == party_short:
+                party_results.append((e, p))
+
+    if not party_results:
+        return {
+            "source": "BMI Wahlen",
+            "type": "official_data",
+            "results": [],
+        }
+
+    # Sortiere nach Prozent absteigend (höchster zuerst)
+    party_results.sort(
+        key=lambda kv: -(kv[1].get("percent") or 0)
+    )
+
+    total_elections = len(party_results)
+    rank1_election, rank1_entry = party_results[0]
+    rank1_year = rank1_election.get("year")
+    rank1_pct = rank1_entry.get("percent")
+
+    # Summary-Eintrag mit autoritativer Reihenfolge
+    summary_display = " · ".join(
+        f"{(e.get('year') or '?')}: {p.get('percent', 0):.1f} %"
+        .replace(".", ",")
+        for e, p in party_results[:8]
+    )
+    if total_elections > 8:
+        summary_display += f" + {total_elections - 8} weitere"
+
+    summary = {
+        "indicator_name": (
+            f"{party_short}-{label_de}-Historie — "
+            f"alle Bundesergebnisse ({total_elections} Wahlen, autoritativ)"
+        ),
+        "indicator": f"wahl_{typ.lower()}_party_history",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": str(rank1_year) if rank1_year else "",
+        "value": rank1_pct if rank1_pct is not None else "",
+        "display_value": (
+            f"Höchstwert: {rank1_pct:.1f} % ({rank1_year}) · "
+            f"Reihe: {summary_display}"
+            .replace(".", ",")
+            if rank1_pct is not None else summary_display
+        ),
+        "description": (
+            f"Vollständige {party_short}-Ergebnis-Historie bei der {label_de} "
+            f"laut offizieller BMI-Statistik. Höchstwert dieser Partei in "
+            f"dieser Wahltyp-Reihe: {rank1_pct:.1f} % im Jahr {rank1_year}. "
+            f"Diese Reihe ist autoritativ — kein anderes Jahresergebnis "
+            f"dieser Partei in der BMI-Datenbasis liegt darüber."
+        ).replace(".", ","),
+        "url": (
+            rank1_election.get("url") or "https://www.bmi.gv.at/412/"
+        ),
+    }
+
+    # Plus pro Wahl eine Detailzeile mit Rang
+    detail_entries: list[dict] = []
+    for i, (election, party_entry) in enumerate(party_results, 1):
+        entry = _make_party_entry(election, party_entry)
+        entry["indicator_name"] = (
+            f"Rang {i} von {total_elections} ({party_short}-Historie): "
+            f"{entry['indicator_name']}"
+        )
+        detail_entries.append(entry)
+
+    results = [summary] + detail_entries
+
+    # Methodik-Caveat
+    results.append({
+        "indicator_name": "WICHTIGER KONTEXT: Wahl-Daten",
+        "indicator": "context",
+        "country": "",
+        "country_name": "",
+        "year": "",
+        "value": "",
+        "display_value": "",
+        "description": _WAHLEN_METHODIK,
+        "url": WAHLEN_BASE,
+    })
+
+    return {
+        "source": "BMI Wahlen",
+        "type": "official_data",
+        "results": results,
+    }
+
+
 _WAHLEN_METHODIK = (
     "Datenquelle: Bundesministerium für Inneres (BMI), Bundeswahlbehörde — "
     "die offiziellen Bundesergebnisse aller österreichischen Bundeswahlen "
@@ -538,6 +682,25 @@ async def search_wahlen(analysis: dict) -> dict:
     year = _extract_year(claim)
     party_short = _resolve_party_short(cl)
     is_superlative = _claim_asks_for_winner(cl)
+    is_historical_high = _claim_asks_for_historical_high(cl)
+
+    # Bug X: Historischer-Höchstwert-Modus hat ABSOLUTEN VORRANG.
+    # Claims wie "FPÖ erstmals stimmenstärkste in der Geschichte"
+    # brauchen die *vollständige Partei-Historie* — sonst halluziniert
+    # das LLM ältere Werte aus seinem Trainingswissen (z.B.
+    # "FPÖ-Höchstwert 1999 = 29,3 %", echter Wert 26,9 %).
+    # Default-Wahltyp ist NRW (häufigster Bezug bei FPÖ-Stärke-Claims),
+    # falls der Claim keinen expliziten Wahltyp nennt.
+    if is_historical_high and party_short:
+        target_typ = typ or "NRW"
+        history_response = _build_party_history_response(
+            elections, target_typ, party_short
+        )
+        # Wenn die Historie nicht leer ist → liefern.  Sonst
+        # weiter zum Standard-Pfad (z.B. wenn die Partei
+        # in dem Wahltyp gar nie angetreten ist).
+        if history_response.get("results"):
+            return history_response
 
     # Filter elections by type/year
     matched_elections: list[dict] = []

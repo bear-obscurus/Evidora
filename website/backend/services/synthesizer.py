@@ -327,14 +327,79 @@ def _try_parse_json(raw: str) -> dict | None:
         return None
 
 
+def _strip_markdown_fence(text: str) -> str:
+    """Remove ```json / ``` code-block fences if present (Bug Y).
+
+    Mistral occasionally wraps the JSON response in a markdown code
+    block.  In pathological cases it produces ``` ```json ``` followed by
+    JSON that is missing the opening ``{`` — the same shape as Bug Q in
+    claim_analyzer.
+    """
+    s = text.strip()
+    s = re.sub(r"^\s*```(?:json|JSON)?\s*\n?", "", s, count=1)
+    s = re.sub(r"\n?\s*```\s*$", "", s, count=1)
+    return s
+
+
+def _balance_brackets(fragment: str) -> str:
+    """Close any open [ / { in a JSON fragment, dropping trailing
+    incomplete key/value before doing so."""
+    fragment = fragment.rstrip()
+    fragment = re.sub(r",\s*$", "", fragment)
+    fragment = re.sub(r',\s*"[^"]*$', "", fragment)
+    fragment = re.sub(r":\s*$", ': ""', fragment)
+    open_brackets = fragment.count("[") - fragment.count("]")
+    open_braces = fragment.count("{") - fragment.count("}")
+    fragment += "]" * max(0, open_brackets)
+    fragment += "}" * max(0, open_braces)
+    return fragment
+
+
 def _extract_json(content: str) -> dict | None:
-    """Locate the JSON object inside an LLM response and parse it leniently."""
+    """Locate the JSON object inside an LLM response and parse it leniently.
+
+    Three-stage repair (Bug Y, mirrored from claim_analyzer):
+    1. Try standard ``{...}`` block.
+    2. Strip markdown code fences and, if the stripped content starts
+       with a JSON property (``"key":``), prepend ``{`` and balance
+       brackets — handles the broken-json shape Mistral occasionally
+       emits.
+    3. Try a fragment-based repair from any opening ``{``.
+    """
     if not content:
         return None
+
+    # 1. Direct {...} block
     match = re.search(r"\{[\s\S]*\}", content)
-    if not match:
-        return None
-    return _try_parse_json(match.group())
+    if match:
+        result = _try_parse_json(match.group())
+        if result is not None:
+            return result
+
+    # 2. Strip markdown fences and check for missing opening brace
+    stripped = _strip_markdown_fence(content)
+    if re.match(r'^\s*"[^"]+"\s*:', stripped):
+        candidate = _balance_brackets("{" + stripped)
+        result = _try_parse_json(candidate)
+        if result is not None:
+            return result
+
+    # 3. Fragment-based repair from any "{"
+    match = re.search(r"\{[\s\S]*", content)
+    if match:
+        fragment = _balance_brackets(match.group())
+        result = _try_parse_json(fragment)
+        if result is not None:
+            return result
+
+    # 4. Same as 3, on the markdown-stripped variant
+    if stripped and stripped[0] != "{":
+        candidate = _balance_brackets("{" + stripped)
+        result = _try_parse_json(candidate)
+        if result is not None:
+            return result
+
+    return None
 
 
 async def _validate_urls(evidence: list[dict]) -> list[dict]:
