@@ -895,6 +895,14 @@ body {
     text-decoration: underline;
 }
 
+.source-display-value {
+    font-size: 0.9rem;
+    color: #1f2937;
+    margin-top: 4px;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
 .source-meta {
     font-size: 0.8rem;
     color: #9ca3af;

@@ -356,6 +356,7 @@ function renderSources(sources) {
                         (r) => `
                     <div class="source-item">
                         ${r.url && sanitizeUrl(r.url) ? `<a class="source-title" href="${sanitizeUrl(r.url)}" target="_blank" rel="noopener">${escapeHtml(r.title || r.name || r.indicator_name || t("source_fallback"))}</a>` : `<span class="source-title">${escapeHtml(r.title || r.name || r.indicator_name || t("source_fallback"))}</span>`}
+                        ${r.display_value && r.display_value !== r.indicator_name ? `<p class="source-display-value">${escapeHtml(r.display_value)}</p>` : ""}
                         <div class="source-meta">
                             ${r.authors ? escapeHtml(r.authors) + " | " : ""}
                             ${r.journal ? escapeHtml(r.journal) + " | " : ""}
