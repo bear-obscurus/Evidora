@@ -591,12 +591,32 @@ body {
     gap: 20px;
 }
 
+/* Loading steps with spinner/check indicators (Frontend-Polish F).
+   Each step gets a 14×14 indicator slot to the left of the label:
+   - default: dim grey dot (waiting)
+   - .active: rotating teal ring (in progress)
+   - .done:   green check (completed)
+*/
 .step {
     font-size: 0.85rem;
     color: #9ca3af;
-    padding: 6px 14px;
+    padding: 6px 14px 6px 12px;
     border-radius: 16px;
     background: #f9fafb;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Indicator slot — a 14-px box rendered via ::before */
+.step::before {
+    content: "";
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #d1d5db;
     transition: all 0.3s;
 }
 
@@ -606,9 +626,46 @@ body {
     font-weight: 600;
 }
 
+.step.active::before {
+    /* Rotating ring spinner */
+    background: transparent;
+    border: 2px solid rgba(13, 148, 136, 0.25);
+    border-top-color: #0d9488;
+    animation: step-spin 0.8s linear infinite;
+}
+
 .step.done {
     color: #16a34a;
     background: #f0fdf4;
+}
+
+.step.done::before {
+    /* Filled green circle (label retains its checkmark via ::after) */
+    background: #16a34a;
+    border: none;
+}
+
+.step.done::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    /* Inline SVG of a white check, rendered via mask so it tints with
+       the green ::before circle background. Positioned over the slot. */
+    margin-left: -22px;          /* slot is 14 px + 8 px gap to text */
+    margin-top: 1px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px 10px;
+    pointer-events: none;
+}
+
+/* Position context for the .done ::after */
+.step.done { position: relative; }
+
+@keyframes step-spin {
+    to { transform: rotate(360deg); }
 }
 
 /* Results */
@@ -1330,31 +1387,173 @@ footer {
     border-color: #0d9488;
 }
 
-/* Print / PDF Export */
+/* Print / PDF Export (Frontend-Polish D) — clean output for paper or
+   browser PDF.  Hides interactive UI, keeps verdict + evidence + sources.
+   `print-color-adjust: exact` forces verdict background gradients to
+   print in colour rather than turn into blank rectangles. */
 @media print {
-    .skip-link, .lang-toggle, #search-form, #loading,
-    .result-actions, .footer-links, .modal-overlay,
-    #search-section.compact .logo { display: none !important; }
+    /* Layout decoration we never want on paper */
+    .skip-link,
+    .lang-toggle,
+    #search-form,
+    #loading,
+    #error,
+    .result-actions,
+    .footer-links,
+    .footer-opensource,
+    .modal-overlay,
+    #toast-container,
+    .austria-edition,
+    .beta-badge,
+    .tips-btn,
+    .tips-panel,
+    #search-history,
+    .example-claims-wrapper,
+    .hints,
+    .slogan,
+    .slogan-etymology,
+    #search-section.compact .logo {
+        display: none !important;
+    }
 
+    /* Compact mode trimmings */
     #search-section.compact { border: none; margin-bottom: 10px; padding: 10px 0; }
 
-    body { background: #fff; }
-    #app { max-width: 100%; }
+    body {
+        background: #fff;
+        color: #000;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    #app { max-width: 100%; padding: 0; }
     #results { padding-bottom: 0; }
+    .dev-notice { font-size: 0.7rem; color: #666; margin-bottom: 8px; }
 
-    .evidence-card { break-inside: avoid; }
-    .source-group { break-inside: avoid; }
+    /* Verdict card colours print correctly */
+    #verdict-card,
+    .verdict-true,
+    .verdict-mostly_true,
+    .verdict-mixed,
+    .verdict-mostly_false,
+    .verdict-false,
+    .verdict-unverifiable {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        break-inside: avoid;
+    }
+    /* Suppress the entrance animation in print (would freeze on first frame) */
+    .verdict-header { animation: none !important; }
+    .verdict-icon { filter: none; }
 
-    footer { border-top: 1px solid #ccc; font-size: 0.7rem; }
+    /* Keep cards together on a page */
+    .evidence-card,
+    .source-group,
+    .source-item { break-inside: avoid; page-break-inside: avoid; }
+
+    /* Sections visually separated on paper */
+    #verdict-card { margin-bottom: 14pt; }
+    #evidence-section h2,
+    #sources-section h2 { margin-top: 16pt; font-size: 1.1rem; }
+
+    /* Coverage warning stays visible but in muted colour */
+    .coverage-warning { background: #fafafa !important; color: #555 !important; border: 1px solid #ddd; }
+
+    /* Show URL behind external links (so the print is self-contained) */
+    .source-title[href]::after,
+    .evidence-card a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.75em;
+        color: #555;
+        font-weight: normal;
+        word-break: break-all;
+    }
+
+    /* Footer — keep one short line, drop the GitHub badge etc. */
+    footer { border-top: 1px solid #ccc; font-size: 0.7rem; padding-top: 8pt; }
+    .footer-note { font-size: 0.7rem; }
 
     @page { margin: 2cm; }
 }
 
-/* Responsive */
+/* Responsive — moderate phones (<= 600 px) */
 @media (max-width: 600px) {
     .logo h1 { font-size: 2rem; }
     .search-bar { flex-wrap: wrap; border-radius: 16px; }
     #search-btn { width: 100%; margin-top: 8px; border-radius: 12px; }
     .loading-steps { flex-direction: column; align-items: center; }
     #verdict-card { padding: 24px 16px; }
+
+    /* Action row (PDF / Share / Report) wraps to 2 columns on phones
+       and to a single column on very narrow screens (Frontend-Polish E). */
+    .result-actions {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .result-actions .action-btn {
+        flex: 1 1 auto;
+        min-width: 130px;
+        justify-content: center;
+    }
+
+    /* Verdict-icon slightly smaller on phones to balance the badge */
+    .verdict-icon { width: 48px; height: 48px; }
+
+    /* Verdict-card metrics-grid stacks: label and value on one row,
+       bar full-width on the next.  Avoids the cramped 3-col layout. */
+    .metrics-grid {
+        grid-template-columns: auto 1fr;
+        column-gap: 8px;
+        font-size: 0.82rem;
+    }
+    .metrics-grid .metric-label { justify-content: flex-start; }
+    .metrics-grid .confidence-track,
+    .metrics-grid .coverage-track {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+    .metrics-grid .metric-value { text-align: right; }
+
+    /* Source-tag pills look better with tighter spacing at this width */
+    .coverage-sources { gap: 4px; }
+
+    /* Modal content fills more of the viewport on mobile */
+    .modal-content {
+        margin: 16px;
+        max-width: calc(100vw - 32px);
+        max-height: calc(100vh - 32px);
+        padding: 24px 18px;
+    }
+
+    /* Tips panel and search-history wider edge-to-edge */
+    .tips-panel, .search-history {
+        max-width: 100%;
+    }
+}
+
+/* Compact phones (<= 400 px) — extra tightening for iPhone SE etc. */
+@media (max-width: 400px) {
+    body { font-size: 0.95rem; }
+    .lang-toggle { top: 14px; right: 14px; padding: 3px; }
+    .lang-btn { padding: 6px 12px; font-size: 0.85rem; }
+
+    .logo h1 { font-size: 1.7rem; }
+    #search-section.hero { min-height: 60vh; padding-top: 20px; }
+
+    /* Search input smaller padding so the placeholder fits */
+    .search-bar input { font-size: 0.95rem; padding: 12px 12px 12px 40px; }
+    .search-icon { left: 14px; }
+
+    /* Action buttons stack to a single column */
+    .result-actions .action-btn { flex-basis: 100%; }
+
+    /* Verdict-card padding tightened further */
+    #verdict-card { padding: 20px 12px; }
+    .verdict-summary { font-size: 1rem; }
+    .verdict-badge { font-size: 0.85rem; padding: 6px 16px; letter-spacing: 0.8px; }
+    .verdict-icon { width: 44px; height: 44px; }
+
+    /* Source detail rows tighter */
+    .source-item { padding: 10px 0; }
+    .source-title { font-size: 0.85rem; }
+    .source-display-value, .source-description { font-size: 0.8rem; }
 }
