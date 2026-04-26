@@ -71,34 +71,110 @@ Quellen-Relevanz-Regeln:
 - worldbank_relevant: true bei Entwicklungsindikatoren (BIP, Armut, Arbeitslosigkeit, Jugendarbeitslosigkeit, Inflation, CO2-Emissionen, Bevölkerung, Bildungsausgaben, Gesundheitsausgaben, Militärausgaben, Ungleichheit/Gini, Internetnutzung, Handel) — auch bei EU-Ländern als zusätzliche Datenquelle, nicht nur global"""
 
 
+def _strip_markdown_fence(text: str) -> str:
+    """Remove ```json / ``` code-block fences if present.
+
+    Mistral occasionally wraps the JSON in a markdown code block.  In
+    pathological cases it even produces ``` ```json `` followed by JSON
+    that is missing the opening ``{`` (Bug Q observed 2026-04-26).
+    """
+    s = text.strip()
+    # Strip leading fence with optional language tag
+    s = re.sub(r"^\s*```(?:json|JSON)?\s*\n?", "", s, count=1)
+    # Strip trailing fence
+    s = re.sub(r"\n?\s*```\s*$", "", s, count=1)
+    return s
+
+
+def _try_load(s: str) -> dict | None:
+    try:
+        return json.loads(s, strict=False)
+    except (json.JSONDecodeError, ValueError):
+        return None
+
+
 def _repair_json(text: str) -> dict | None:
-    """Try to parse JSON, repairing truncated responses if needed."""
-    # Try normal parse first
+    """Try to parse JSON, repairing truncated/wrapped responses if needed."""
+    # Try normal parse first — find any {...} block in the response
     json_match = re.search(r"\{[\s\S]*\}", text)
     if json_match:
-        try:
-            return json.loads(json_match.group(), strict=False)
-        except json.JSONDecodeError:
-            pass
+        result = _try_load(json_match.group())
+        if result is not None:
+            return result
 
-    # Try to repair truncated JSON (missing closing braces/brackets)
+    # Strip markdown fences (Bug Q: ```json without opening brace)
+    stripped = _strip_markdown_fence(text)
+
+    # If stripped content starts with a JSON property (a quoted key
+    # followed by ":"), the model omitted the opening "{" — prepend it.
+    if re.match(r'^\s*"[^"]+"\s*:', stripped):
+        candidate = "{" + stripped
+        # Close brackets/braces if needed
+        candidate = _balance_brackets(candidate)
+        result = _try_load(candidate)
+        if result is not None:
+            return result
+
+    # Try fragment-based repair starting from any "{"
     json_match = re.search(r"\{[\s\S]*", text)
     if json_match:
-        fragment = json_match.group().rstrip()
-        # Remove trailing comma or incomplete key-value
-        fragment = re.sub(r",\s*$", "", fragment)
-        fragment = re.sub(r",\s*\"[^\"]*$", "", fragment)
-        # Close open brackets and braces
-        open_brackets = fragment.count("[") - fragment.count("]")
-        open_braces = fragment.count("{") - fragment.count("}")
-        fragment += "]" * max(0, open_brackets)
-        fragment += "}" * max(0, open_braces)
-        try:
-            return json.loads(fragment, strict=False)
-        except json.JSONDecodeError:
-            pass
+        fragment = _balance_brackets(json_match.group())
+        result = _try_load(fragment)
+        if result is not None:
+            return result
+
+    # Same again, but on the markdown-stripped variant
+    if stripped and stripped[0] != "{":
+        candidate = _balance_brackets("{" + stripped)
+        result = _try_load(candidate)
+        if result is not None:
+            return result
 
     return None
+
+
+def _balance_brackets(fragment: str) -> str:
+    """Close open [ and { in a JSON-looking fragment, drop trailing
+    incomplete key/value before doing so."""
+    fragment = fragment.rstrip()
+    # Drop trailing comma or incomplete key-value pair
+    fragment = re.sub(r",\s*$", "", fragment)
+    fragment = re.sub(r',\s*"[^"]*$', "", fragment)
+    fragment = re.sub(r":\s*$", ': ""', fragment)  # dangling key
+    open_brackets = fragment.count("[") - fragment.count("]")
+    open_braces = fragment.count("{") - fragment.count("}")
+    fragment += "]" * max(0, open_brackets)
+    fragment += "}" * max(0, open_braces)
+    return fragment
+
+
+# Minimal fallback analysis used when Mistral returns unparseable JSON.
+# Without this fallback the entire /api/check request crashes (see Bug Q).
+# The fallback gives the source dispatcher *enough* to keep working —
+# downstream services use the claim text directly for their triggers.
+def _fallback_analysis(claim_text: str) -> dict:
+    return {
+        "claim": claim_text,
+        "category": "other",
+        "subcategory": "",
+        "pubmed_queries": [],
+        "factcheck_queries": [claim_text],
+        "who_relevant": False,
+        "climate_relevant": False,
+        "ema_relevant": False,
+        "efsa_relevant": False,
+        "eurostat_relevant": True,  # cheap default — many AT/EU claims
+        "eea_relevant": False,
+        "ecdc_relevant": False,
+        "ecb_relevant": False,
+        "unhcr_relevant": False,
+        "oecd_relevant": False,
+        "who_europe_relevant": False,
+        "worldbank_relevant": False,
+        "entities": [],
+        "confidence": 0.0,
+        "_fallback": True,  # marker for downstream debug
+    }
 
 
 async def analyze_claim(claim_text: str) -> dict:
@@ -153,5 +229,54 @@ async def analyze_claim(claim_text: str) -> dict:
 
         return result
 
-    logger.error(f"Mistral unparseable response (first 500 chars): {content[:500]}")
-    raise ValueError("Mistral returned unparseable response")
+    # Repair failed — try one retry with a stricter "ONLY valid JSON"
+    # nudge.  If the model produced a malformed ```json block once
+    # (Bug Q observed 2026-04-26), a second pass usually returns clean
+    # JSON.
+    logger.warning(
+        f"Mistral unparseable response on first try (first 300 chars): "
+        f"{content[:300]!r} — retrying once"
+    )
+    retry_messages = [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": wrapped},
+        {"role": "assistant", "content": content},
+        {"role": "user", "content": (
+            "Deine vorige Antwort war kein gültiges JSON. Antworte JETZT "
+            "AUSSCHLIESSLICH mit gültigem JSON, beginnend mit { und endend "
+            "mit }, ohne Markdown-Code-Block, ohne Erklärungstext."
+        )},
+    ]
+    try:
+        retry_content = await chat_completion(
+            messages=retry_messages, timeout=60.0
+        )
+        retry_result = _repair_json(retry_content)
+    except Exception as e:
+        logger.error(f"Mistral retry failed: {e}")
+        retry_result = None
+
+    if retry_result:
+        logger.info("Mistral retry produced parseable JSON — recovered")
+        # Same normalisation as above
+        raw_entities = retry_result.get("entities", [])
+        if isinstance(raw_entities, list):
+            flat = []
+            for e in raw_entities:
+                if isinstance(e, str):
+                    flat.append(e)
+                elif isinstance(e, list):
+                    flat.extend(str(x) for x in e)
+                else:
+                    flat.append(str(e))
+            retry_result["entities"] = flat
+        return retry_result
+
+    # Final fallback: log and degrade gracefully so the request does
+    # NOT crash with a 500 error in the user's face. Sources still get
+    # the raw claim text and most triggers fire on the claim alone.
+    logger.error(
+        f"Mistral unparseable response after retry (first 500 chars): "
+        f"{content[:500]}"
+    )
+    return _fallback_analysis(claim_text)
