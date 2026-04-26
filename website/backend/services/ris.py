@@ -170,7 +170,9 @@ LEGAL_KEYWORDS = [
     "llvg", "gehg",
     "schulpflicht", "schulpflichtig",
     "sitzenbleiben", "klassenwiederholung",
-    "leistungsbeurteilung", "schulnoten",
+    "leistungsbeurteilung", "schulnoten", "schulnote",
+    "nicht genügend", "nicht genuegend",
+    "sitzenzubleiben", "sitzen zu bleiben",  # LLM-Infinitiv-Variante
     "lehrplan", "lehrpläne",
     "schulferien", "autonome tage", "schulautonomer tag",
     "schulbesuch", "fernbleiben vom unterricht",
@@ -477,7 +479,10 @@ _TOPIC_TO_LAW: list[tuple[tuple[str, ...], str, str]] = [
     # SchUG: Leistungsbeurteilung, Aufsteigen, Sitzenbleiben,
     # Verhalten, Schulbesuch / Fernbleiben, Ordnungsmaßnahmen.
     (
-        ("sitzenbleiben", "sitzen bleiben", "klassenwiederholung",
+        ("sitzenbleiben", "sitzen bleiben",
+         # LLM-Analyzer paraphrasiert teilweise zu Infinitiv-mit-zu
+         "sitzenzubleiben", "sitzen zu bleiben",
+         "klassenwiederholung",
          "wiederholen einer schulstufe", "nicht aufsteigen",
          "leistungsbeurteilung", "noten", "notengebung",
          "nicht genügend", "nicht genuegend",
@@ -867,18 +872,27 @@ async def search_ris(analysis: dict) -> dict:
     we can extract at least one specific search term.
     """
     claim = analysis.get("claim", "")
-    if not (_claim_mentions_legal(claim) and _claim_mentions_austria(analysis)):
+    # Bug Z: Der LLM-Analyzer paraphrasiert manche Inflektionsformen
+    # weg (z.B. „sitzenbleiben" → „sitzenzubleiben"-Infinitiv,
+    # „häuslicher Unterricht" → „häuslichen Unterricht"-Akkusativ).
+    # Das bricht Substring-basiertes Topic-Matching.  Lösung: Topic-
+    # und Section-Refs gegen die VEREINIGUNG aus User-Original und
+    # LLM-Normalisierung matchen — wir kennen beide.
+    original_claim = analysis.get("original_claim") or claim
+    matchable = f"{original_claim} {claim}".strip()
+
+    if not (_claim_mentions_legal(matchable) and _claim_mentions_austria(analysis)):
         return {"source": "RIS — Rechtsinformationssystem", "type": "official_data", "results": []}
 
     terms = _extract_search_terms(analysis)
     # Bug G: Paragraph-Direktlinks haben Vorrang. Auch wenn `terms` leer ist,
     # ein erkannter „§ N <Gesetz>"-Verweis lohnt eine Antwort (Direktlink zur
     # konsolidierten Fassung), daher prüfen wir Section-Refs zuerst.
-    section_refs = _extract_law_paragraph_refs(claim)
+    section_refs = _extract_law_paragraph_refs(matchable)
     # Bug S: Topic-Refs als zusätzlicher Pfad — Claims wie "Kanzler-Bestellung
     # nach der Verfassung" haben keinen "§ N B-VG"-Verweis, sind aber
     # eindeutig B-VG-relevant.
-    topic_refs = _extract_topic_law_refs(claim)
+    topic_refs = _extract_topic_law_refs(matchable)
 
     if not terms and not section_refs and not topic_refs:
         return {"source": "RIS — Rechtsinformationssystem", "type": "official_data", "results": []}
