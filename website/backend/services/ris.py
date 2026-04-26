@@ -104,6 +104,17 @@ LEGAL_KEYWORDS = [
     "b-vg", "abgb", "stgb", "stpo", "avg", "egvg", "asylg", "fpg",
     "klimaschutzgesetz", "informationsfreiheitsgesetz",
     "mietrecht", "mietrechtsgesetz",
+    # Bug R: Abgaben / Beiträge — AT-Bundesabgaben sind RIS-relevant
+    # (z.B. ORF-Beitragsgesetz BGBl I 112/2023)
+    "abgabe", "abgaben",
+    "haushaltsabgabe", "rundfunkabgabe",
+    "beitrag", "beiträge", "beitragsgesetz",
+    "steuer", "steuern", "tax",
+    # Bug S: Kanzler-Bestellung & Regierungsbildung — RIS B-VG Art. 70 etc.
+    "regierungsbildung", "kanzleramt",
+    "ernennung", "angelobung",
+    # Wahlrecht (NR-WO, EU-WO etc.)
+    "wahlrecht", "wahlordnung", "wahlgesetz",
 ]
 
 # Stop-Tokens für die Such-Term-Extraktion (zu generisch für RIS-Suche)
@@ -130,14 +141,82 @@ def _claim_mentions_legal(claim: str) -> bool:
     return any(kw in claim_lower for kw in LEGAL_KEYWORDS)
 
 
+# Bug R: AT-spezifische Marker, die eindeutig Österreich kennzeichnen.
+# „ORF" ist eindeutig AT (deutsche/schweizer Rundfunkanstalten heißen
+# anders). „Volkskanzler" und „freiheitlicher Kanzler" sind FPÖ-/AT-
+# Begriffe.  „Klubobmann/Klubobfrau" ist AT-parlamentarische Sprache.
+_AT_HARD_MARKERS = (
+    "österreich", "austria", "österreichisch",
+    "ris", "bgbl", "b-vg",
+    "abgb", "stgb", "stpo", "asvg", "mrg", "asylg", "fpg",
+    "orf",  # AT-only Rundfunk
+    "volkskanzler", "freiheitlicher kanzler", "freiheitliche kanzler",
+    "nationalrat", "bundesrat",  # AT-Parlament (DE/CH-Bundesrat in
+    # diesen Claims selten, aber wenn DE-Marker auch da → unten geblockt)
+    "klubobmann", "klubobfrau", "klubobleute",
+)
+
+# Bug S: Politische System-Tokens, die in AT *und* DE auftreten —
+# nur als AT zählen, wenn KEIN DE-Marker im Claim ist.
+_AT_SOFT_TOKENS = (
+    "kanzler", "bundeskanzler", "bundespräsident", "bundespraesident",
+    "kanzleramt", "regierungsbildung", "regierungsbildner",
+)
+
+# Wenn diese DE-spezifischen Marker im Claim auftauchen, ist es eine
+# Deutschland-Aussage — kein AT-RIS-Trigger.
+_DE_MARKERS = (
+    "grundgesetz", " gg ", " gg.", "art. 63 gg", "artikel 63 gg",
+    "bundestag", "bundespräsidialamt",
+    "bundesrepublik deutschland", "deutsche bundeskanzlerin",
+    "deutscher bundeskanzler", "deutsche kanzlerin", "deutscher kanzler",
+    "berlin",
+)
+
+
 def _claim_mentions_austria(analysis: dict) -> bool:
-    """Heuristic: claim has Austria context (or RIS-specific signal)."""
+    """Heuristic: claim has Austria context (or RIS-specific signal).
+
+    Three-stage check:
+    1. Hard exclude: explicit DE-Marker → not AT.
+    2. Hard include: explicit AT-Marker (Österreich, ORF, B-VG, etc.).
+    3. Soft include: political-system tokens (Kanzler, Bundeskanzler,
+       Bundespräsident) when no DE-Marker — Evidora is AT-focused, so
+       in absence of a DE-cue we default to AT.
+    4. NER fallback: if NER detected Österreich/Austria.
+    """
     claim_lower = analysis.get("claim", "").lower()
-    if any(t in claim_lower for t in ("österreich", "austria", "ris", "bgbl",
-                                     "b-vg", "abgb", "stgb", "stpo")):
+
+    # 1. DE-Marker ⇒ nicht AT
+    if any(de in claim_lower for de in _DE_MARKERS):
+        return False
+
+    # 2. Hard AT-Marker
+    if any(at in claim_lower for at in _AT_HARD_MARKERS):
         return True
+
+    # 3. Soft AT-Marker (politisches System ohne DE-Cue)
+    if any(soft in claim_lower for soft in _AT_SOFT_TOKENS):
+        return True
+
+    # 4. NER-Fallback
     countries = analysis.get("ner_entities", {}).get("countries", [])
     return any("österreich" in c.lower() or "austria" in c.lower() for c in countries)
+
+
+# Bug R: Volkstümliche Bezeichnungen vs. offizielle RIS-Termini.
+# Wenn der Claim einen umgangssprachlichen Begriff enthält, ergänzen wir
+# automatisch den offiziellen Gesetzes-Suchterm.
+_TERM_SYNONYMS: dict[str, tuple[str, ...]] = {
+    "haushaltsabgabe": ("ORF-Beitrag", "ORF-Beitragsgesetz"),
+    "orf-haushaltsabgabe": ("ORF-Beitrag", "ORF-Beitragsgesetz"),
+    "rundfunkabgabe": ("ORF-Beitrag", "ORF-Beitragsgesetz"),
+    "rundfunkgebühr": ("ORF-Beitrag", "ORF-Beitragsgesetz"),
+    "orf-zwangsgebühr": ("ORF-Beitrag", "ORF-Beitragsgesetz"),
+    "orf-zwangssteuer": ("ORF-Beitrag", "ORF-Beitragsgesetz"),
+    "gis-gebühr": ("ORF-Beitrag", "ORF-Beitragsgesetz"),
+    "gis-beitrag": ("ORF-Beitrag", "ORF-Beitragsgesetz"),
+}
 
 
 def _extract_search_terms(analysis: dict) -> list[str]:
@@ -147,7 +226,8 @@ def _extract_search_terms(analysis: dict) -> list[str]:
     1. Capitalized compound nouns ending in -gesetz/-verordnung/-recht/-ordnung
        (z.B. „Klimaschutzgesetz", „Wahlrechtsgesetz")
     2. Acronym patterns matching AT law abbreviations (B-VG, ABGB, ...)
-    3. LLM-extracted entities + SpaCy noun chunks, filtered to non-stop tokens
+    3. Synonym expansion (z.B. „ORF-Haushaltsabgabe" → „ORF-Beitrag")
+    4. LLM-extracted entities + SpaCy noun chunks, filtered to non-stop tokens
     """
     claim = analysis.get("claim", "")
     terms: list[str] = []
@@ -167,6 +247,9 @@ def _extract_search_terms(analysis: dict) -> list[str]:
         "vertrag", "verträge",
         "abkommen",
         "novelle", "novellierung",
+        # Bug R: Abgaben/Beiträge — z.B. „ORF-Haushaltsabgabe", „Beitragsgesetz"
+        "abgabe", "abgaben",
+        "beitrag", "beiträge",
     )
     # Match capitalized German words that contain a legal-suffix substring
     pattern = re.compile(
@@ -185,6 +268,15 @@ def _extract_search_terms(analysis: dict) -> list[str]:
     para_pattern = re.compile(r"§\s*\d+[a-zA-Z]?")
     for m in para_pattern.finditer(claim):
         add(m.group(0))
+
+    # 3b. Bug R: Synonym-Expansion — volkstümliche Begriffe (z.B.
+    #     „ORF-Haushaltsabgabe") auf den offiziellen RIS-Suchbegriff
+    #     („ORF-Beitrag") mappen, damit die Volltext-Suche Treffer findet.
+    cl = claim.lower()
+    for alias, official_terms in _TERM_SYNONYMS.items():
+        if alias in cl:
+            for ot in official_terms:
+                add(ot)
 
     # 4. LLM-extracted entities filtered to non-stop tokens (kürzeres Fallback)
     if len(terms) < 3:
@@ -229,6 +321,107 @@ def _extract_law_paragraph_refs(claim: str) -> list[tuple[str, str, str]]:
         seen.add(key)
         refs.append((ref_str, law_norm, LAW_REGISTRY[law_norm][1]))
     return refs
+
+
+# Bug S: Topic-basierte Direktlinks zu konsolidierten Gesetzen.
+# Wenn der Claim kein "§ N B-VG"-Pattern enthält, aber thematisch klar
+# auf ein bestimmtes Gesetz verweist (z.B. „Kanzler-Bestellung" → B-VG,
+# „Asylverfahren" → AsylG), fügen wir einen GeltendeFassung-Direktlink
+# als zusätzliches Hilfeangebot hinzu.
+#
+# Das Mapping ist konservativ — nur für Themen, die *eindeutig* einem
+# Gesetz zuzuordnen sind. Bei Mehrdeutigkeit (z.B. „Steuer" → EStG,
+# UStG, KStG, etc.) lassen wir die Volltext-Suche das Routing machen.
+_TOPIC_TO_LAW: list[tuple[tuple[str, ...], str, str]] = [
+    # (any-of-topic-keywords, law_key, friendly description for the entry)
+    (
+        ("kanzler-bestellung", "kanzlerbestellung", "ernennung des bundeskanzlers",
+         "bundeskanzler ernennen", "regierungsbildung",
+         # weichere Politik-Topics, die B-VG-Verfahren betreffen
+         "stärkste partei", "stimmenstärkste partei",
+         "wer wird kanzler", "kanzler stellen",
+         "verfassung setzt", "verfassungs ", "verfassungsmäßig"),
+        "b-vg",
+        "Bestellung des Bundeskanzlers (Art. 70 B-VG)",
+    ),
+    (
+        ("bundespräsident wahl", "bundespräsidentenwahl",
+         "amtsantritt bundespräsident", "amtszeit bundespräsident",
+         "wahl des bundespräsidenten"),
+        "b-vg",
+        "Wahl des Bundespräsidenten (Art. 60 B-VG)",
+    ),
+    (
+        ("nationalrat zusammensetzung", "183 abgeordnete",
+         "gesetzgebungsperiode", "legislaturperiode"),
+        "b-vg",
+        "Nationalrat (Art. 24 ff. B-VG)",
+    ),
+    (
+        ("asylverfahren", "asylantrag", "asylbescheid",
+         "asylgesuch", "subsidiärer schutz"),
+        "asylg",
+        "Asylgesetz 2005 (AsylG) — Verfahren und Voraussetzungen",
+    ),
+    (
+        ("abschiebung", "schubhaft", "rückkehrentscheidung", "fremdenrecht"),
+        "fpg",
+        "Fremdenpolizeigesetz 2005 (FPG) — Aufenthaltsbeendigung",
+    ),
+    (
+        ("mietzins", "mietzinsbeschränkung", "richtwertmietzins",
+         "kategoriemietzins", "befristete miete"),
+        "mrg",
+        "Mietrechtsgesetz (MRG) — Mietzins und Mietverhältnisse",
+    ),
+]
+
+
+def _extract_topic_law_refs(claim: str) -> list[tuple[str, str]]:
+    """Match claim text against _TOPIC_TO_LAW patterns.
+
+    Returns list of (law_key, description) tuples for laws whose topics
+    are mentioned in the claim. Used as fallback when no `§ N <Gesetz>`
+    pattern is present.
+    """
+    cl = claim.lower()
+    refs: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    for keywords, law_key, description in _TOPIC_TO_LAW:
+        if any(kw in cl for kw in keywords):
+            if law_key in seen:
+                continue
+            seen.add(law_key)
+            refs.append((law_key, description))
+    return refs
+
+
+def _format_topic_law_entry(law_key: str, description: str) -> dict:
+    """Build a synthesizer-compatible entry pointing at the consolidated
+    current law text for a topic-matched claim (no § reference)."""
+    if law_key not in LAW_REGISTRY:
+        return {}
+    gnr, display = LAW_REGISTRY[law_key]
+    url = GELTENDE_FASSUNG_BASE.format(nr=gnr)
+    return {
+        "indicator_name": (
+            f"RIS GeltendeFassung: {display} — "
+            f"thematisch einschlägig"
+        ),
+        "indicator": "ris_geltende_fassung_topic",
+        "country": "AUT",
+        "country_name": "Austria",
+        "year": "",
+        "value": "",
+        "display_value": "",
+        "url": url,
+        "description": (
+            f"{description}. Direktlink zur konsolidierten aktuellen "
+            f"Fassung des Gesetzes in der RIS-Datenbank Bundesnormen — "
+            f"die Verfahrensvorschriften und Definitionen sind dort "
+            f"vollständig nachzulesen."
+        ),
+    }
 
 
 def _format_law_section_entry(
@@ -399,8 +592,12 @@ async def search_ris(analysis: dict) -> dict:
     # ein erkannter „§ N <Gesetz>"-Verweis lohnt eine Antwort (Direktlink zur
     # konsolidierten Fassung), daher prüfen wir Section-Refs zuerst.
     section_refs = _extract_law_paragraph_refs(claim)
+    # Bug S: Topic-Refs als zusätzlicher Pfad — Claims wie "Kanzler-Bestellung
+    # nach der Verfassung" haben keinen "§ N B-VG"-Verweis, sind aber
+    # eindeutig B-VG-relevant.
+    topic_refs = _extract_topic_law_refs(claim)
 
-    if not terms and not section_refs:
+    if not terms and not section_refs and not topic_refs:
         return {"source": "RIS — Rechtsinformationssystem", "type": "official_data", "results": []}
 
     results: list[dict] = []
@@ -411,6 +608,14 @@ async def search_ris(analysis: dict) -> dict:
     for ref_str, law_key, display in section_refs[:3]:
         entry = _format_law_section_entry(ref_str, law_key, display)
         if entry["url"] not in seen_urls:
+            seen_urls.add(entry["url"])
+            results.append(entry)
+
+    # 1b. Topic-Refs als zusätzliche, themenspezifische Direktlinks.
+    #     Werden NACH Section-Refs gerendert, weil weniger präzise.
+    for law_key, description in topic_refs[:2]:
+        entry = _format_topic_law_entry(law_key, description)
+        if entry and entry["url"] not in seen_urls:
             seen_urls.add(entry["url"])
             results.append(entry)
 
