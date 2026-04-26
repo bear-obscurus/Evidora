@@ -79,6 +79,47 @@ LAW_REGISTRY: dict[str, tuple[str, str]] = {
     # GeltendeFassung-Nummer.
     "orfbeitrg":  ("20008302", "ORF-Beitragsgesetz 2024 (ORF-BeitrG)"),
     "orf-beitrg": ("20008302", "ORF-Beitragsgesetz 2024 (ORF-BeitrG)"),
+    # ----------------------------------------------------------------
+    # Schulrecht (Stamm-Bundesgesetze, verifiziert 2026-04-26)
+    # ----------------------------------------------------------------
+    # SchUG ist DAS Lehrer-Dauerthema: Leistungsbeurteilung,
+    # Aufsteigen, Sitzenbleiben, Ordnungsmaßnahmen, Suspendierung,
+    # Fernbleiben/Erlaubnis, häusliche Übungen.
+    "schug":     ("10009600", "Schulunterrichtsgesetz (SchUG)"),
+    # Schultypen, Schulorganisation, Lehrpläne, Klassenschülerzahl.
+    "schog":     ("10009265", "Schulorganisationsgesetz (SchOG)"),
+    # Allgemeine Schulpflicht (9 Jahre), häuslicher Unterricht,
+    # Externistenprüfung, Schulreife.
+    "schpflg":   ("10009576", "Schulpflichtgesetz 1985 (SchPflG)"),
+    # Schuljahr-Beginn/Ende, Ferienordnung, autonome Tage,
+    # Unterrichtszeit pro Woche.
+    "schzg":     ("10009575", "Schulzeitgesetz 1985 (SchZG)"),
+    # Bildungsdirektionen seit 2019 — Nachfolger des B-SchAufsG;
+    # regelt Schulaufsicht, Direktor:innen-Bestellung,
+    # Bildungsdirektor:in.
+    "bd-eg":     ("20009982", "Bildungsdirektionen-Einrichtungsgesetz (BD-EG)"),
+    "bdeg":      ("20009982", "Bildungsdirektionen-Einrichtungsgesetz (BD-EG)"),
+    # Pädagogische Hochschulen (Lehrerausbildung).
+    "hg":        ("20011522", "Hochschulgesetz 2005 (HG)"),
+    "hochschulg": ("20011522", "Hochschulgesetz 2005 (HG)"),
+    # ----------------------------------------------------------------
+    # Lehrer-Dienstrecht in voller Breite (verifiziert 2026-04-26)
+    # ----------------------------------------------------------------
+    # Pragmatisierte Pflichtschul-Lehrkräfte (Landeslehrer:innen).
+    "ldg":       ("10008549", "Landeslehrer-Dienstrechtsgesetz 1984 (LDG)"),
+    # Pragmatisierte Bundes-Lehrkräfte (AHS, BHS) — Beamten-Dienstrecht.
+    "bdg":       ("10008470", "Beamten-Dienstrechtsgesetz 1979 (BDG)"),
+    # Vertragsbedienstete im Bundesbereich (incl. AHS/BHS-VB,
+    # ehem. „IIL"-Schema, neues pd-Schema).
+    "vbg":       ("10008115", "Vertragsbedienstetengesetz 1948 (VBG)"),
+    # Land- und forstwirtschaftliche Landesvertrags-Lehrpersonen
+    # (LFS, Berufsschulen für Land-/Forstwirtschaft).
+    "llvg":      ("10008235", "Land- und forstwirtschaftliches Landesvertragslehrpersonengesetz (LLVG)"),
+    # Besoldung (Gehaltsstufen, Vorrückungen, Zulagen).
+    "gehg":      ("10008163", "Gehaltsgesetz 1956 (GehG)"),
+    # Pension der Bundesbeamt:innen (Ruhegenuss, Versorgungsbezüge).
+    "pg":        ("10008210", "Pensionsgesetz 1965 (PG)"),
+    "pg1965":    ("10008210", "Pensionsgesetz 1965 (PG)"),
 }
 
 # Verfassungsgesetze nutzen Artikel-Nummerierung (Art.) statt Paragraph (§).
@@ -123,6 +164,30 @@ LEGAL_KEYWORDS = [
     "ernennung", "angelobung",
     # Wahlrecht (NR-WO, EU-WO etc.)
     "wahlrecht", "wahlordnung", "wahlgesetz",
+    # Schul- und Lehrer-Dienstrecht — typische Lehrer-Topics, die in
+    # Faktencheck-Anfragen ohne explizites "Gesetz" auftauchen.
+    "schug", "schog", "schpflg", "schzg", "bd-eg", "ldg", "bdg", "vbg",
+    "llvg", "gehg",
+    "schulpflicht", "schulpflichtig",
+    "sitzenbleiben", "klassenwiederholung",
+    "leistungsbeurteilung", "schulnoten",
+    "lehrplan", "lehrpläne",
+    "schulferien", "autonome tage", "schulautonomer tag",
+    "schulbesuch", "fernbleiben vom unterricht",
+    "ordnungsmaßnahme", "ordnungsmassnahme", "schulordnung",
+    "klassenvorstand", "supplierung", "mehrdienstleistung",
+    "bildungsdirektion", "bildungsdirektor", "bildungsdirektorin",
+    "schulaufsicht", "schulinspektor",
+    "vertragslehrer", "vertragslehrerin", "landeslehrer",
+    "pd-schema", "pädagogisches dienstrecht",
+    "lehrergehalt", "lehrer-gehalt", "lehrergehälter",
+    "anfangsgehalt", "gehaltsstufe", "vorrückung",
+    "gehalt eines lehrers", "gehalt einer lehrerin",
+    "verdienen lehrer", "verdienen lehrerinnen",
+    "verdient ein lehrer", "verdient eine lehrerin",
+    "lehrerausbildung", "lehrerinnenausbildung", "lehramtsstudium",
+    "pädagogische hochschule",
+    "häuslicher unterricht", "externistenprüfung",
 ]
 
 # Stop-Tokens für die Such-Term-Extraktion (zu generisch für RIS-Suche)
@@ -157,6 +222,18 @@ _AT_HARD_MARKERS = (
     "österreich", "austria", "österreichisch",
     "ris", "bgbl", "b-vg",
     "abgb", "stgb", "stpo", "asvg", "mrg", "asylg", "fpg",
+    # Schul- & Lehrer-Dienstrecht: eindeutig AT-spezifische Acronyme
+    # (DE hat keine SchUG/SchOG/SchPflG/SchZG, kein BD-EG, kein LLVG;
+    # BDG/VBG/GehG/PG mit AT-Jahreszahlen). Diese zählen als AT-Kontext,
+    # damit Claims wie „§ 14 SchOG regelt …" auch ohne explizites
+    # „Österreich" RIS triggern.
+    "schug", "schog", "schpflg", "schzg", "bd-eg", "bdeg", "llvg",
+    "schulunterrichtsgesetz", "schulorganisationsgesetz",
+    "schulpflichtgesetz", "schulzeitgesetz",
+    "bildungsdirektionen-einrichtungsgesetz",
+    "landeslehrer-dienstrechtsgesetz",
+    "bdg 1979", "vbg 1948", "gehg 1956", "pg 1965",
+    "pensionsgesetz 1965", "vertragsbedienstetengesetz 1948",
     "orf",  # AT-only Rundfunk
     "volkskanzler", "freiheitlicher kanzler", "freiheitliche kanzler",
     "nationalrat", "bundesrat",  # AT-Parlament (DE/CH-Bundesrat in
@@ -393,6 +470,192 @@ _TOPIC_TO_LAW: list[tuple[tuple[str, ...], str, str]] = [
         "orfbeitrg",
         "ORF-Beitragsgesetz 2024 (BGBl I 112/2023) — "
         "Beitragshöhe, Pflichtige und Verfahren",
+    ),
+    # ----------------------------------------------------------------
+    # Schulrecht — Topic-Mappings (Lehrer-Klassiker-Themen)
+    # ----------------------------------------------------------------
+    # SchUG: Leistungsbeurteilung, Aufsteigen, Sitzenbleiben,
+    # Verhalten, Schulbesuch / Fernbleiben, Ordnungsmaßnahmen.
+    (
+        ("sitzenbleiben", "sitzen bleiben", "klassenwiederholung",
+         "wiederholen einer schulstufe", "nicht aufsteigen",
+         "leistungsbeurteilung", "noten", "notengebung",
+         "nicht genügend", "nicht genuegend",
+         "fünfer", "fuenfer", "schulnoten",
+         "frühwarnsystem", "frühwarn",
+         "ordnungsmaßnahme", "ordnungsmassnahme",
+         "verhaltensvereinbarung", "schulordnung",
+         "suspendierung von schülern", "schüler suspendieren",
+         "schulbesuch", "fernbleiben vom unterricht",
+         "schulpflichtverletzung", "schulpflicht-verletzung",
+         "klassenforum", "schulforum", "schulgemeinschaftsausschuss",
+         "schulgemeinschaftsausschuß", "sga",
+         "mitwirkung schule", "elternverein",
+         "hausübung", "hausaufgabe", "hausaufgaben",
+         "schularbeit", "schularbeiten"),
+        "schug",
+        "Schulunterrichtsgesetz (SchUG) — Leistungsbeurteilung, "
+        "Verhalten, Schulgemeinschaft",
+    ),
+    # SchOG: Schultypen, Klassengrößen, Lehrpläne, Schulstruktur.
+    (
+        ("schultyp", "schultypen", "klassenschülerzahl",
+         "klassenschülerzahlen", "höchstzahl klasse",
+         "klassengröße", "klassengroesse",
+         "lehrplan", "lehrpläne",
+         "neue mittelschule", "mittelschule strukturreform",
+         "ahs aufnahme", "ahs-aufnahme",
+         "schulstruktur", "gesamtschule",
+         "polytechnische schule", "berufsschule struktur",
+         "sonderpädagogischer förderbedarf", "spf",
+         "inklusionsklasse", "integrationsklasse"),
+        "schog",
+        "Schulorganisationsgesetz (SchOG) — Schultypen, "
+        "Klassengrößen und Lehrpläne",
+    ),
+    # SchPflG: 9-jährige Schulpflicht, häuslicher Unterricht,
+    # Externistenprüfung.
+    (
+        ("schulpflicht", "schulpflichtig", "schulpflichtgesetz",
+         "9 jahre schule", "neun jahre schulpflicht",
+         "häuslicher unterricht", "häuslicher schulunterricht",
+         "homeschooling österreich",
+         "externistenprüfung", "externistenpruefung",
+         "schulreife", "vorzeitige einschulung",
+         "schulische rückstellung", "schulische rueckstellung"),
+        "schpflg",
+        "Schulpflichtgesetz 1985 (SchPflG) — Allgemeine Schulpflicht "
+        "und häuslicher Unterricht",
+    ),
+    # SchZG: Ferienordnung, autonome Tage, Schultage.
+    (
+        ("schulferien", "schulzeit", "schulzeitgesetz",
+         "sommerferien", "semesterferien", "weihnachtsferien",
+         "osterferien", "pfingstferien", "energieferien",
+         "autonome tage", "autonomer tag", "schulautonomer tag",
+         "schulfreie tage", "ferienordnung",
+         "unterrichtszeit pro woche", "schulwoche",
+         "5-tage-woche schule", "fünf-tage-woche schule"),
+        "schzg",
+        "Schulzeitgesetz 1985 (SchZG) — Schuljahr, Ferien "
+        "und Unterrichtszeit",
+    ),
+    # BD-EG: Schulaufsicht, Bildungsdirektion, Direktor:innen-Bestellung.
+    (
+        ("bildungsdirektion", "bildungsdirektor", "bildungsdirektorin",
+         "schulaufsicht", "schulinspektor", "schulinspektorin",
+         "schulqualitätsmanager", "schulqualitätsmanagerin",
+         "qualitätsmanager schule", "qm schule",
+         "direktor:in bestellung", "direktorinnen-bestellung",
+         "schulleiter bestellung", "schulleiterin bestellung",
+         "leitungsfunktion schule"),
+        "bd-eg",
+        "Bildungsdirektionen-Einrichtungsgesetz (BD-EG) — Schulaufsicht "
+        "und Schulleitungs-Bestellung",
+    ),
+    # Hochschulgesetz: Pädagogische Hochschulen (Lehrerausbildung).
+    (
+        ("pädagogische hochschule", "pädagogische hochschulen",
+         "paedagogische hochschule", "ph wien",
+         "lehrerausbildung", "lehrerinnenausbildung",
+         "lehramtsstudium", "primarstufe ausbildung",
+         "sekundarstufe ausbildung", "ph studium"),
+        "hg",
+        "Hochschulgesetz 2005 (HG) — Pädagogische Hochschulen "
+        "und Lehrer:innen-Ausbildung",
+    ),
+    # ----------------------------------------------------------------
+    # Lehrer-Dienstrecht — Topic-Mappings
+    # ----------------------------------------------------------------
+    # LDG: Pflichtschul-pragmatisierte Lehrkräfte (Landeslehrer).
+    (
+        ("landeslehrer", "landeslehrerin", "landeslehrkraft",
+         "pflichtschul-lehrer", "pflichtschullehrer",
+         "pflichtschullehrkraft",
+         "ldg 1984", "ldg-1984", "landeslehrer-dienstrecht",
+         "landeslehrerin-dienstrecht",
+         "pragmatisierter pflichtschullehrer",
+         "pragmatisierte pflichtschullehrerin",
+         "pragmatisiert pflichtschule"),
+        "ldg",
+        "Landeslehrer-Dienstrechtsgesetz 1984 (LDG) — "
+        "Pragmatisierte Pflichtschul-Lehrkräfte",
+    ),
+    # BDG: Pragmatisierte Bundeslehrer (AHS, BHS).
+    (
+        ("bdg 1979", "bdg-1979", "beamten-dienstrecht",
+         "beamtendienstrecht",
+         "pragmatisierter bundeslehrer", "pragmatisierte bundeslehrerin",
+         "pragmatisierte ahs", "pragmatisierte bhs",
+         "ahs-lehrer pragmatisiert", "bhs-lehrer pragmatisiert",
+         "definitivstellung lehrer",
+         "ruhestandsversetzung", "amtstitel hofrat",
+         "professor:in"),
+        "bdg",
+        "Beamten-Dienstrechtsgesetz 1979 (BDG) — Pragmatisierte "
+        "Bundeslehrer:innen (AHS/BHS)",
+    ),
+    # VBG: Vertragsbedienstete (incl. neues pd-Schema).
+    (
+        ("vertragsbedienstete", "vertragslehrer", "vertragslehrerin",
+         "vbg 1948", "vbg-1948",
+         "pd-schema", "pd schema", "pädagogisches dienstrecht",
+         "paedagogisches dienstrecht",
+         "neues lehrerdienstrecht", "neues dienstrecht 2013",
+         "vertraglich angestellte lehrerin", "vertraglich angestellter lehrer",
+         "iil-schema", "iil schema",
+         "kündigung lehrer", "befristung lehrervertrag"),
+        "vbg",
+        "Vertragsbedienstetengesetz 1948 (VBG) — Vertragslehrkräfte "
+        "und pädagogisches Dienstrecht (pd-Schema)",
+    ),
+    # LLVG: Land- und forstwirtschaftliche Berufsschulen.
+    (
+        ("land- und forstwirtschaftliche schule",
+         "landwirtschaftliche fachschule", "land- und forstwirtschaft schule",
+         "lfs lehrer", "lfs-lehrer",
+         "agrarpädagogik schule",
+         "llvg"),
+        "llvg",
+        "Land- und forstwirtschaftliches Landesvertragslehrpersonengesetz "
+        "(LLVG) — Lehrkräfte an LFS",
+    ),
+    # GehG: Lehrer-Besoldung, Vorrückungen, Zulagen.
+    (
+        ("gehaltsgesetz", "lehrergehalt", "lehrer-gehalt",
+         "lehrergehälter", "lehrer-gehälter",
+         "besoldung lehrer", "besoldung lehrerin",
+         "vorrückung lehrer", "lehrer-vorrückung",
+         "biennalsprünge", "biennalsprung",
+         "zulage lehrer", "lehrerzulage",
+         "leistungsprämie schule",
+         "mehrdienstleistung", "mdl-vergütung", "mdl vergütung",
+         "supplierung", "supplierungs-vergütung",
+         "klassenvorstand", "kv-zulage",
+         "lehrer-anfangsgehalt", "anfangsgehalt lehrer",
+         # Häufige Frage-Phrasings ("Wie hoch ist das Anfangsgehalt
+         # für Lehrer in Österreich?")
+         "anfangsgehalt für lehrer", "anfangsgehalt für lehrerin",
+         "gehalt für lehrer", "gehalt für lehrerin",
+         "gehalt eines lehrers", "gehalt einer lehrerin",
+         "verdient ein lehrer", "verdient eine lehrerin",
+         "verdienen lehrer", "verdienen lehrerinnen",
+         "lehrer verdienen", "lehrerin verdient",
+         "wie viel lehrer verdienen"),
+        "gehg",
+        "Gehaltsgesetz 1956 (GehG) — Lehrer:innen-Besoldung, "
+        "Vorrückungen, Zulagen",
+    ),
+    # PG: Beamten-Pension (für pragmatisierte Lehrer).
+    (
+        ("pensionsgesetz 1965", "pensionsgesetz1965",
+         "ruhegenuss lehrer", "lehrer-pension beamtenrecht",
+         "pension beamteter lehrer", "pension pragmatisierter lehrer",
+         "frühpensionierung lehrer", "korridor-pension lehrer",
+         "hacklerregelung lehrer", "schwerarbeitspension lehrer"),
+        "pg",
+        "Pensionsgesetz 1965 (PG) — Pension der pragmatisierten "
+        "Lehrkräfte",
     ),
 ]
 
