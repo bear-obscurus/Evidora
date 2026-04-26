@@ -18,7 +18,7 @@ const TRANSLATIONS = {
         example_claims: [
             { icon: "💉", text: "Impfungen verursachen Autismus." },
             { icon: "🌡️", text: "2024 war das wärmste Jahr in Wien seit Beginn der Aufzeichnungen." },
-            { icon: "🗳️", text: "Bei der Nationalratswahl 2024 wurde die FPÖ erstmals stimmenstärkste Partei." },
+            { icon: "🚭", text: "Das Don't-smoke-Volksbegehren 2018 hatte über eine Million Unterschriften." },
             { icon: "📈", text: "Die Inflation in Österreich liegt 2024 über dem EU-Schnitt." },
             { icon: "⚛️", text: "Atomkraft hat weniger Tote pro TWh als Kohle." },
             { icon: "📚", text: "Bei PISA 2022 sind die Mathematik-Werte in der OECD gefallen." },
