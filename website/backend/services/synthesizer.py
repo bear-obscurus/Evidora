@@ -176,6 +176,12 @@ Vermeidung von reflexhaftem "unverifiable" (KRITISCH WICHTIG):
   • Claim: "Sitzenbleiben ist in Österreich gesetzlich erlaubt." RIS liefert SchUG-Direktlink. → Korrekt = "true". Falsch wäre "unverifiable".
 - WENN du "unverifiable" wählst, MUSS im nuance-Feld konkret erklärt werden, WAS gefehlt hat — generische Aussagen wie "die Quellen liefern keine konkreten Angaben" sind unzulässig, wenn die Quellen sehr wohl relevante Werte enthalten.
 
+Conditional-Claims (Wenn-Dann-Behauptungen) — KRITISCH:
+- Bei Behauptungen der Form "Mit X droht Y" / "Wenn X, dann Y" / "X führt zu Y" wird die Wahrheit nicht an X gemessen, sondern an der Wahrscheinlichkeit von Y unter der Bedingung X.
+- ENTSCHEIDUNGSREGEL: Wenn die Quellen zeigen, dass Y faktisch ausgeschlossen oder hochgradig unwahrscheinlich ist (unabhängig vom Status von X), dann ist der gesamte Conditional-Claim "false" oder "mostly_false". NICHT "unverifiable", auch wenn X selbst mehrdeutig oder nicht zentral nachgeprüft ist.
+- Beispiel: Claim "Mit der FPÖ als stärkste Partei droht Österreich der EU-Austritt." Quelle zeigt: (a) FPÖ-Position ist explizit GEGEN EU-Austritt (Kickl-Zitat); (b) verfassungsrechtlich ist Austritt nur per Volksabstimmung möglich. → Y (EU-Austritt) ist hochgradig unwahrscheinlich → Conditional-Claim = "false". NICHT "unverifiable" wegen Superlativ "stärkste Partei". Der Superlativ ist nicht der eigentliche Behauptungs-Kern.
+- Vorgehen: Identifiziere bei Wenn-Dann-Behauptungen ZUERST die behauptete Folge Y, nicht die Bedingung X. Wenn Y in den Daten widerlegt ist → Verdict bezieht sich auf den Conditional-Claim als Ganzes.
+
 'STRUKTURELL FALSCH'-Marker als Counter-Evidenz (KRITISCH):
 - Wenn ein AT-Factbook-Eintrag den display_value mit "STRUKTURELL FALSCH:" einleitet, ist das ein expliziter Counter-Evidenz-Befund — die Behauptung ist nach geltendem österreichischem Recht oder wissenschaftlichem Konsens widerlegt.
 - ENTSCHEIDUNGSREGEL: 'STRUKTURELL FALSCH'-Eintrag in den Quellen → verdict = 'false' mit Confidence 0.85–0.95. NICHT 'unverifiable'.
@@ -341,6 +347,11 @@ Avoiding reflexive "unverifiable" (CRITICALLY IMPORTANT):
   • Claim: "Vienna had its warmest year in 2024." GeoSphere description: "Warmest year in the series: 2024." → Correct = "true". Wrong would be "unverifiable".
   • Claim: "Repeating a school year is legally allowed in Austria." RIS provides SchUG direct-link. → Correct = "true". Wrong would be "unverifiable".
 - IF you choose "unverifiable", the nuance field MUST concretely explain WHAT was missing — generic statements like "the sources provide no concrete information" are not allowed when the sources do contain relevant values.
+
+Conditional claims (if-then claims) — CRITICAL:
+- For claims of the form "With X, Y is imminent" / "If X then Y" / "X leads to Y", the truth is measured by the probability of Y given X, NOT by the status of X itself.
+- DECISION RULE: If sources show Y is factually impossible or highly unlikely (regardless of X), the entire conditional claim is "false" or "mostly_false". NOT "unverifiable" even if X is ambiguous.
+- Example: Claim "If FPÖ becomes strongest party, Austria's EU exit is imminent." Sources: (a) FPÖ position explicitly AGAINST EU exit; (b) constitutionally, exit requires referendum. → Y (EU exit) is highly unlikely → conditional claim = "false". NOT "unverifiable" because of the superlative "strongest party". The superlative is not the core of the claim.
 
 'STRUKTURELL FALSCH' marker as counter-evidence (CRITICAL):
 - If an AT-Factbook entry's display_value starts with "STRUKTURELL FALSCH:", that is explicit counter-evidence — the claim is refuted under Austrian law or scientific consensus.

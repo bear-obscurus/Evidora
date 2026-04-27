@@ -74,6 +74,7 @@ _AUTHORITATIVE_INDICATORS = (
     "factbook_social_assistance_at",
     "factbook_social_check",
     "factbook_pension_at",
+    "factbook_pension_mindestpension",
     "factbook_health_blocked",
     "factbook_asyl_quartal",
     "factbook_asyl_familienzu",

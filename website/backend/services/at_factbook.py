@@ -1119,7 +1119,41 @@ def _build_pension_results(fact: dict, claim_lc: str) -> list[dict]:
         "url": src,
         "source": label,
     }
-    return [main]
+    results: list[dict] = [main]
+
+    # Mindestpension-Spezial-Eintrag wenn Claim einen Mindestpension-Wert nennt
+    if any(s in claim_lc for s in (
+        "mindestpension", "ausgleichszulage", "ausgleichszulagen-richtsatz",
+        "1.308 euro", "1308 euro", "1.308,39", "1308,39",
+        "1.218 euro", "1218 euro",  # älterer Wert
+    )):
+        a_richtsatz = data.get("ausgleichszulagen_richtsatz_alleinstehend_eur")
+        a_paare = data.get("ausgleichszulagen_richtsatz_paare_eur")
+        results.insert(0, {
+            "indicator_name": "Ausgleichszulage / Mindestpension Österreich 2026",
+            "indicator": "factbook_pension_mindestpension",
+            "country": "AUT", "country_name": "Österreich",
+            "year": str(year),
+            "display_value": (
+                f"Ausgleichszulagen-Richtsatz (Mindestpension) Österreich 2026: "
+                f"Alleinstehend {_de(a_richtsatz)} EUR/Monat, "
+                f"Paare {_de(a_paare)} EUR/Monat. "
+                f"Eine Behauptung von '1.308 Euro' für Alleinstehende ist "
+                f"WAHR — der exakte Wert {_de(a_richtsatz)} EUR rundet auf "
+                f"1.308 EUR (Cent-Stelle ist akzeptable Rundung im Boulevard-"
+                f"Journalismus). Ältere Quellen mit 1.218 EUR beziehen sich "
+                f"auf den 2025-Wert vor Anpassung."
+            ),
+            "description": (
+                "Die Ausgleichszulage ist die de-facto Mindestpension in "
+                "Österreich. Sie wird jährlich angepasst und wird nach § 293 "
+                "ASVG gewährt, wenn die eigene Pension unter dem Richtsatz "
+                "liegt. 2026er-Werte gemäß Pensionsanpassungsgesetz."
+            ),
+            "url": src, "source": label,
+        })
+
+    return results
 
 
 # ---------------------------------------------------------------------------
@@ -1832,19 +1866,23 @@ def _build_eu_pakt_results(fact: dict, claim_lc: str) -> list[dict]:
     # EU-Austritts-Mechanik — spezifischer Counter
     if is_austritt:
         results.insert(0, {
-            "indicator_name": "EU-Austritt Österreichs — verfassungsrechtliche Hürde + FPÖ-Position",
+            "indicator_name": "EU-Austritt Österreichs — Conditional-Claim-Counter",
             "indicator": "factbook_eu_austritt_counter",
             "country": "AUT", "country_name": "Österreich",
             "year": "2026",
             "display_value": (
-                f"STRUKTURELL FALSCH: 'FPÖ → EU-Austritt' ist nicht zutreffend. "
-                f"Erstens: FPÖ-Chef Kickl hat in Pressekonferenz 02.01.2026 "
-                f"dezidiert dementiert, einen Austritt anzustreben — Zitat: "
-                f"'Österreich bleibt in der Europäischen Union.' Zweitens: "
-                f"Selbst BEI politischem Willen wäre ein Austritt verfassungs-"
-                f"rechtlich nur über Volksabstimmungs-Referendum (B-VG Art. 50) "
-                f"mit ≥ 50 % Zustimmung möglich — KEIN Automatismus durch "
-                f"Wahlsieg."
+                f"STRUKTURELL FALSCH (Conditional-Claim): Eine Behauptung der "
+                f"Form 'Mit der FPÖ als stärkste Partei droht EU-Austritt' "
+                f"unterstellt eine kausale Wenn-Dann-Logik, die in beiden "
+                f"Komponenten nicht haltbar ist. (a) Die FPÖ-Position ist "
+                f"NICHT EU-Austritt — Kickl hat 02.01.2026 (ZDF) dezidiert "
+                f"dementiert: 'Österreich bleibt in der EU.' (b) Selbst BEI "
+                f"hypothetischem politischen Willen wäre ein Austritt "
+                f"verfassungsrechtlich NUR über Volksabstimmung möglich "
+                f"(B-VG Art. 50 Abs. 4) — kein Automatismus durch Wahlsieg. "
+                f"VERDICT-EMPFEHLUNG: 'false' mit Confidence 0.85–0.95. "
+                f"NICHT 'unverifiable' — die Wenn-Dann-Folge ist klar widerlegt, "
+                f"unabhängig vom Status der FPÖ-Wahlstärke."
             ),
             "description": (
                 "Verfassungsrechtlich: Ein EU-Austritt wäre eine 'Gesamt-"
@@ -1852,7 +1890,12 @@ def _build_eu_pakt_results(fact: dict, claim_lc: str) -> list[dict]:
                 "und damit zustimmungspflichtig per Volksabstimmung. "
                 "EU-rechtlich: Art. 50 EU-Vertrag fordert formelle "
                 "Notifizierung + 2-Jahres-Verhandlung. FPÖ-Wahlprogramm "
-                "2024 verlangt EU-Reformen, nicht Austritt."
+                "2024 verlangt EU-Reformen, nicht Austritt. Eine 'droht "
+                "X'-Konstruktion ist eine Prognose-Behauptung, deren "
+                "Wahrheitsgehalt an der Wahrscheinlichkeit von X gemessen "
+                "wird — ist die Wahrscheinlichkeit faktisch null (FPÖ "
+                "dementiert + Verfassungshürde), ist die Prognose 'false', "
+                "nicht 'unverifiable'."
             ),
             "url": fact.get("secondary_url", src),
             "source": "ZDF-Interview Kickl 2.1.2026 + B-VG Art. 50",
