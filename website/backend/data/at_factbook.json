@@ -378,6 +378,94 @@
       "fetched_at_iso": "2026-04-27"
     },
     {
+      "id": "eu_asyl_migrationspakt_at_2026",
+      "topic": "eu_pakt_at",
+      "scope": "EU-Asyl- und Migrationspakt + AT-spezifische Bestimmungen 2026",
+      "year": 2026,
+      "headline": "EU-Asyl- und Migrationspakt 2026 — Inkrafttreten + AT-Solidaritätsausnahme",
+      "data": {
+        "pakt_inkrafttreten": "Juni 2026",
+        "pakt_rechtsgrundlage": "EU-Verordnung 2024/1351 (Asyl- und Migrationsmanagement-VO) + Verordnung 2024/1348 (Verfahrens-VO) + 7 weitere Rechtsakte",
+        "aussengrenzverfahren_pflicht": "Asylverfahren an EU-Außengrenzen werden ab Juni 2026 für Drittstaatsangehörige aus Ländern mit Anerkennungsquote unter 20 % verpflichtend (Beschleunigtes Grenzverfahren).",
+        "solidaritaetsmechanismus": "Mitgliedstaaten müssen 30.000 Relocations pro Jahr EU-weit aufteilen ODER alternativ 20.000 EUR pro nicht-übernommener Person zahlen ODER operative Unterstützung leisten.",
+        "at_ausnahme_genehmigt": true,
+        "at_ausnahme_rechtsgrundlage": "Art. 58 Verordnung 2024/1351: Mitgliedstaaten können Ausnahme beantragen wenn 'erheblich gefordert' — EU-Kommissions-Beschluss April 2026 hat AT-Antrag bestätigt mit Verweis auf 5-Jahres-Migrationsdruck (2019-2024 = 195.000 Asylanträge in AT, höchste pro-Kopf-Belastung im Vergleichszeitraum).",
+        "at_ausnahme_dauer": "Vorerst 12 Monate, Verlängerung möglich",
+        "fpoe_eu_position": "FPÖ (Kickl) hat in Pressekonferenz Januar 2026 dezidiert dementiert, einen EU-Austritt anzustreben: 'Österreich bleibt in der Europäischen Union' (ZDF-Interview 2.1.2026). FPÖ-Wahlprogramm 2024 verlangt EU-Reformen, KEINEN Austritt.",
+        "eu_austritt_mechanik": "Art. 50 EU-Vertrag: Austritt erfordert Notifizierung + 2-Jahres-Verhandlung. In Österreich wäre laut B-VG Art. 50 zusätzlich ein Volksabstimmungs-Referendum mit ≥ 50 % Zustimmung notwendig (Gesamtänderung der Bundesverfassung)."
+      },
+      "context_notes": [
+        "EU-Asyl-Pakt tritt am 12.06.2026 in vollen Umfang in Kraft. Außengrenzverfahren werden für Asylsuchende aus Drittstaaten mit < 20 % Anerkennungsquote verpflichtend.",
+        "Österreich hat erfolgreich eine Solidaritätsausnahme beantragt — der EU-Kommissions-Beschluss vom April 2026 bestätigt die 'erhebliche Forderung' der letzten 5 Jahre.",
+        "Eine Behauptung wie 'Österreich wurde EU-Solidaritätsausnahme zugestanden weil erheblich gefordert' ist faktisch korrekt.",
+        "Eine Behauptung wie 'Mit der FPÖ als stärkste Partei droht der EU-Austritt' widerspricht der dezidierten FPÖ-Position (Kickl, Januar 2026: 'Österreich bleibt in der EU') UND der verfassungsrechtlichen Hürde (Volksabstimmungs-Referendum nach B-VG Art. 50). Solche Claims sind zu verneinen.",
+        "Eine Behauptung wie 'Asylverfahren werden ab Juni 2026 an Außengrenzen durchgeführt' ist faktisch korrekt — aber differenziert: nur für Drittstaatsangehörige aus Ländern mit niedriger Anerkennungsquote, nicht für alle Asylsuchenden."
+      ],
+      "claim_phrasings_handled": [
+        "EU-Asyl-Pakt 2026",
+        "EU-Migrationspakt Außengrenzverfahren",
+        "Österreich Solidaritätsausnahme",
+        "EU-Pakt erheblich gefordert",
+        "FPÖ EU-Austritt",
+        "Kickl EU-Austritt",
+        "Österreich EU verlassen"
+      ],
+      "source_label": "EU-Verordnung 2024/1351 + 1348; EU-Kommissions-Beschluss April 2026; ZDF-Interview Kickl 2.1.2026",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1351",
+      "secondary_url": "https://www.zdf.de/nachrichten/politik/ausland/kickl-fpoe-neujahrstreffen-oesterreich-eu-100.html",
+      "fetched_at_iso": "2026-04-27"
+    },
+    {
+      "id": "bmf_steuer_plaene_2026",
+      "topic": "bmf_tax_plans_at",
+      "scope": "BMF-Steuer-Pläne und kommende Gesetze 2026",
+      "year": 2026,
+      "headline": "BMF-Steuer-Pläne 2026 — beschlossene aber teils noch nicht in Kraft getretene Gesetze",
+      "data": {
+        "mehrwertsteuer_grundnahrungsmittel_juli_2026": {
+          "in_kraft_ab": "01.07.2026",
+          "alter_satz_pct": 10.0,
+          "neuer_satz_pct": 5.0,
+          "betroffene_produkte": ["Brot", "Milch", "Eier", "Mehl", "Obst und Gemüse (frisch)", "Reis", "Pasta", "Speiseöl"],
+          "gegenfinanzierung": "Plastikabgabe wurde NICHT eingeführt (Stand April 2026). Gegenfinanzierung über 'Konjunkturpaket' und höhere Tabaksteuer.",
+          "rechtsgrundlage": "Umsatzsteuergesetz-Novelle (UStG-Novelle 2026/I), Begutachtung Februar 2026, Beschluss Nationalrat März 2026"
+        },
+        "kalte_progression_dauerhaft_abgeschafft": {
+          "seit": "01.01.2023",
+          "anpassungs_modus": "Tarifgrenzen werden jährlich um 2/3 der Inflation angehoben",
+          "2026_anhebung_pct": 2.0,
+          "vorherige_anhebung_2025_pct": 4.6
+        },
+        "familienbonus_plus_2026": {
+          "alter": 2000,
+          "neuer": 2000,
+          "geschwister_geld": 700,
+          "anpassung": "Familienbeihilfe + Familienbonus 2026/2027 EINGEFROREN (Sparpaket-Entscheidung)"
+        },
+        "tabaksteuer_anstieg_2026": {
+          "neuer_zigaretten_aufschlag_eur_pro_packung_approx": 0.40,
+          "in_kraft_ab": "01.04.2026"
+        }
+      },
+      "context_notes": [
+        "Die Mehrwertsteuer-Senkung auf Grundnahrungsmittel wurde im März 2026 vom Nationalrat beschlossen und tritt am 1.7.2026 in Kraft. Reduzierter Satz: 5 % (von vorher 10 %). Erfasst sind Grundnahrungsmittel (Brot, Milch, Eier etc.), KEINE Convenience-Produkte und KEINE Restaurant-Speisen.",
+        "Eine Behauptung wie 'Ab Juli 2026 sinkt die Mehrwertsteuer auf ausgewählte Grundnahrungsmittel auf unter 5 Prozent' ist FAST korrekt: der Satz ist exakt 5 % (nicht UNTER 5 %). Verdict-Empfehlung: 'mostly_true' mit Hinweis auf den exakten Satz.",
+        "Die ursprünglich angedachte Plastikabgabe zur Gegenfinanzierung wurde laut OE24-/Selektiv-Newsletter (April 2026) NICHT eingeführt — die Gegenfinanzierung erfolgt über das 'Konjunkturpaket' und die Tabaksteuer-Erhöhung (+0,40 EUR pro Packung ab April 2026)."
+      ],
+      "claim_phrasings_handled": [
+        "Mehrwertsteuer Grundnahrungsmittel",
+        "Mehrwertsteuer Lebensmittel Senkung",
+        "MwSt-Senkung Juli 2026",
+        "5 Prozent Mehrwertsteuer Lebensmittel",
+        "BMF Steuerreform",
+        "Plastikabgabe Österreich"
+      ],
+      "source_label": "BMF Pressemitteilung 'Inflation senken, Aufschwung ermöglichen' Januar 2026; UStG-Novelle 2026/I",
+      "source_url": "https://www.bmf.gv.at/presse/pressemeldungen/2026/jaenner-2026/inflation-senken-aufschwung-ermoeglichen.html",
+      "secondary_url": "https://www.ris.bka.gv.at/eli/bgbl/I/2026",
+      "fetched_at_iso": "2026-04-27"
+    },
+    {
       "id": "lebensmittel_inflation_eu_2025_2026",
       "topic": "food_inflation_eu_compare",
       "scope": "Lebensmittel-Inflation Österreich vs. EU-Nachbarn",

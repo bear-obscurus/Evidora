@@ -153,11 +153,13 @@ Superlativ- und Vergleichs-Behauptungen (SEHR WICHTIG):
 Vermeidung von reflexhaftem "unverifiable" (KRITISCH WICHTIG):
 - "unverifiable" ist die SCHWÄCHSTE Bewertung — verwende sie nur, wenn die Quellen wirklich KEINE Information zur Behauptung enthalten oder ein vollkommen ANDERES Thema behandeln.
 - Sobald mindestens EINE relevante Quelle einen Datenpunkt zur Behauptung liefert, MUSST du eine inhaltliche Bewertung abgeben — auch wenn der Wert nicht 100% identisch zur Behauptung ist.
-- ENTSCHEIDUNGSREGEL für Zahlen-Behauptungen (z.B. "20 Prozent", "1,3 Millionen", "7,5%"):
-  • Behaupteter Wert weicht maximal ±5% relativ vom Quellwert ab → "true" (Beispiel: Claim 20 %, Quelle 20,5 % → WAHR — Journalismus rundet, das ist akzeptabel)
+- ENTSCHEIDUNGSREGEL für Zahlen-Behauptungen (z.B. "20 Prozent", "1,3 Millionen", "7,5%", "1.308 Euro", "5 Milliarden"):
+  • Diese Regel gilt für ALLE Zahlentypen: Prozent, Euro-Beträge, Mengen, Anzahl-Zahlen.
+  • Behaupteter Wert weicht maximal ±5% relativ vom Quellwert ab → "true" (Beispiele: Claim 20 %, Quelle 20,5 % → WAHR; Claim 1.308 EUR, Quelle 1.308,39 EUR → WAHR; Claim 5 Mrd, Quelle 5,1 Mrd → WAHR — Journalismus rundet, das ist akzeptabel)
   • Behaupteter Wert weicht 5–15% relativ ab, aber Größenordnung + Vorzeichen passen → "mostly_true" mit Hinweis auf den exakten Wert im nuance
   • Behaupteter Wert weicht 15–30% ab → "partly_true" oder "mixed"
   • Behaupteter Wert weicht mehr als 30% relativ oder geht in die FALSCHE Richtung → "mostly_false" oder "false"
+  • SPEZIAL: Bei Euro-Beträgen mit Komma-/Cent-Stellen genügt die Übereinstimmung der EUR-Größe vor dem Komma (Claim 1.308 → Quelle 1.308,39 = WAHR). NICHT 'unverifiable', nur weil die Cent-Stelle fehlt.
 - ENTSCHEIDUNGSREGEL für Ranking-/Position-Behauptungen ("an X. Stelle", "höchste Y", "meiste Z"):
   • Wenn die Quelle das genaue Ranking liefert: vergleiche direkt — keine Ausreden
   • Wenn die Quelle den absoluten Wert + den EU-Schnitt liefert (z.B. "AT: 181, EU-Schnitt: 177"): das genügt für "mostly_true" wenn der Claim "über dem EU-Schnitt" sagt
@@ -319,7 +321,8 @@ Avoiding reflexive "unverifiable" (CRITICALLY IMPORTANT):
 - "unverifiable" is the WEAKEST verdict — use it only when sources truly contain NO information on the claim or address a completely DIFFERENT topic.
 - As soon as at least ONE relevant source provides a data point on the claim, you MUST issue a substantive verdict — even if the value isn't 100% identical to the claim.
 - DECISION RULE for numerical claims (e.g. "20 percent", "1.3 million", "7.5%"):
-  • Claimed value within +/-5% relative deviation from source value → "true" (example: Claim 20%, source 20.5% → TRUE — journalism rounds, that is acceptable)
+  • Claimed value within +/-5% relative deviation from source value → "true" (examples: Claim 20%, source 20.5% → TRUE; Claim 1,308 EUR, source 1,308.39 EUR → TRUE; Claim 5 bn, source 5.1 bn → TRUE — journalism rounds, that is acceptable across all number types: percent, EUR amounts, counts)
+  • SPECIAL for EUR amounts with comma/cent: matching the EUR magnitude before the decimal is enough — do NOT mark 'unverifiable' just because the cent position is missing.
   • Claimed value differs 5–15% relative but magnitude + sign match → "mostly_true" with the exact value in nuance
   • Claimed value differs 15–30% → "partly_true" or "mixed"
   • Claimed value differs more than 30% relative or goes in the WRONG direction → "mostly_false" or "false"

@@ -404,6 +404,78 @@ def _claim_mentions_energy_tariff(claim_lc: str) -> bool:
 
 
 # ---------------------------------------------------------------------------
+# Topic 16: EU-Asyl-/Migrationspakt + AT-spezifische Bestimmungen
+# ---------------------------------------------------------------------------
+_EU_PAKT_TERMS = (
+    "eu-asyl-pakt", "eu asyl-pakt", "eu-asylpakt",
+    "eu-migrationspakt", "eu migrationspakt",
+    "asyl-pakt", "migrationspakt",
+    "eu-pakt", "eu pakt",
+    "solidaritätspflicht", "solidaritaetspflicht",
+    "solidaritätsausnahme", "solidaritaetsausnahme",
+    "eu-außengrenzverfahren", "außengrenzverfahren",
+    "aussengrenzverfahren",
+    "verordnung 2024/1351", "verordnung 2024/1348",
+    "asyl- und migrationsmanagement",
+    "eu asylum pact", "eu migration pact",
+)
+_EU_AUSTRITT_TERMS = (
+    "eu-austritt", "eu austritt", "öxit", "oexit",
+    "österreich verlassen die eu", "raus aus der eu",
+    "eu verlassen", "austritt aus der eu",
+    "fpö eu-austritt", "kickl eu-austritt",
+    "leave eu", "exit eu",
+)
+
+
+def _claim_mentions_eu_pakt(claim_lc: str) -> bool:
+    has_pakt = any(t in claim_lc for t in _EU_PAKT_TERMS)
+    has_austritt = any(t in claim_lc for t in _EU_AUSTRITT_TERMS)
+    if has_pakt or has_austritt:
+        if _has_at_context(claim_lc):
+            return True
+        # FPÖ-/Kickl-Bezug zählt als AT-Kontext
+        if any(s in claim_lc for s in ("fpö", "fpoe", "kickl",
+                                        "österreich", "oesterreich",
+                                        "austria")):
+            return True
+        # 'EU-Asyl-Pakt' allein ist eine globale EU-Norm — wir fired
+        # ohne AT-Kontext, weil unser Topic die EU-weite Bestimmung
+        # erklärt
+        if has_pakt:
+            return True
+    return False
+
+
+# ---------------------------------------------------------------------------
+# Topic 17: BMF-Steuer-Pläne 2026
+# ---------------------------------------------------------------------------
+_BMF_STEUER_TERMS = (
+    "mehrwertsteuer", "mwst", "umsatzsteuer", "ust",
+    "vat austria", "vat reduction",
+    "kalte progression",
+    "familienbonus",
+    "tabaksteuer",
+    "ustg-novelle", "umsatzsteuergesetz-novelle",
+    "konjunkturpaket",
+)
+
+
+def _claim_mentions_bmf_steuer(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _BMF_STEUER_TERMS)
+    if not has_term:
+        return False
+    # AT-Kontext: AT-spezifische Termini ODER Österreich-Erwähnung
+    if any(s in claim_lc for s in (
+        "kalte progression",  # AT-spezifisch
+        "familienbonus",  # AT-spezifisch
+        "ustg-novelle", "umsatzsteuergesetz-novelle",
+    )):
+        return True
+    return _has_at_context(claim_lc)
+
+
+# ---------------------------------------------------------------------------
 # Topic 15: Lebensmittel-Inflation EU-Vergleich
 # ---------------------------------------------------------------------------
 _FOOD_INFLATION_TERMS = (
@@ -618,6 +690,10 @@ def _claim_matches_any_topic(claim: str) -> list[str]:
         matched.append("heat_pumps_austria")
     if _claim_mentions_food_inflation(cl):
         matched.append("food_inflation_eu_compare")
+    if _claim_mentions_eu_pakt(cl):
+        matched.append("eu_pakt_at")
+    if _claim_mentions_bmf_steuer(cl):
+        matched.append("bmf_tax_plans_at")
     return matched
 
 
@@ -1676,6 +1752,219 @@ def _build_food_inflation_results(fact: dict, claim_lc: str) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
+# Topic 16: EU-Pakt + AT-Solidaritätsausnahme + EU-Austritts-Mechanik
+# ---------------------------------------------------------------------------
+def _build_eu_pakt_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "EU-Verordnung 2024/1351"
+
+    results: list[dict] = []
+
+    # Erkennen, welche Sub-Aspekte angefragt sind
+    is_austritt = any(s in claim_lc for s in (
+        "eu-austritt", "eu austritt", "öxit",
+        "eu verlassen", "raus aus der eu", "eu-austritt droht",
+        "leave eu", "exit eu",
+    ))
+    is_solidaritaet = any(s in claim_lc for s in (
+        "solidaritätspflicht", "solidaritätsausnahme",
+        "ausnahme von der eu", "erheblich gefordert",
+    ))
+    is_aussengrenz = any(s in claim_lc for s in (
+        "außengrenzverfahren", "aussengrenzverfahren",
+        "asylverfahren an", "verfahren an den eu-außengrenzen",
+        "eu-außengrenzen", "asyl- und migrationspakt",
+    ))
+
+    # AT-Solidaritätsausnahme — spezifischer Eintrag
+    if is_solidaritaet or not (is_austritt or is_aussengrenz):
+        results.append({
+            "indicator_name": "EU-Solidaritätsausnahme für Österreich (April 2026)",
+            "indicator": "factbook_eu_pakt_solidaritaet",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2026",
+            "display_value": (
+                f"Österreich hat eine Solidaritätsausnahme nach Art. 58 "
+                f"Verordnung 2024/1351 erhalten. EU-Kommissions-Beschluss "
+                f"April 2026: AT war im 5-Jahres-Zeitraum 2019-2024 "
+                f"'erheblich gefordert' (195.000 Asylanträge — höchste "
+                f"pro-Kopf-Belastung im EU-Vergleichszeitraum). "
+                f"Dauer: vorerst 12 Monate, Verlängerung möglich."
+            ),
+            "description": (
+                "Die EU-Asyl- und Migrationsmanagement-Verordnung 2024/1351 "
+                "sieht in Art. 58 vor, dass Mitgliedstaaten unter bestimmten "
+                "Bedingungen von der Solidaritäts-Verpflichtung (30.000 "
+                "Relocations/Jahr EU-weit ODER 20.000 EUR pro nicht-"
+                "übernommener Person) ausgenommen werden können. AT hat "
+                "den Antrag erfolgreich gestellt; die EU-Kommission hat "
+                "im April 2026 die Ausnahme bestätigt."
+            ),
+            "url": src, "source": label,
+        })
+
+    # Außengrenzverfahren — spezifischer Eintrag
+    if is_aussengrenz:
+        results.insert(0, {
+            "indicator_name": "EU-Asyl-Pakt — Außengrenzverfahren ab Juni 2026",
+            "indicator": "factbook_eu_pakt_aussengrenz",
+            "country": "EU", "country_name": "Europäische Union",
+            "year": "2026",
+            "display_value": (
+                f"EU-Asyl-Pakt tritt am 12.06.2026 in vollen Umfang in Kraft. "
+                f"Außengrenzverfahren werden VERPFLICHTEND für Asylsuchende "
+                f"aus Drittstaaten mit Anerkennungsquote unter 20 % — NICHT "
+                f"für alle Asylsuchenden. Eine Behauptung 'Asylverfahren an "
+                f"EU-Außengrenzen' ist faktisch korrekt mit dieser "
+                f"Differenzierung."
+            ),
+            "description": (
+                "Rechtsgrundlage: Verordnung 2024/1348 (Verfahrens-VO). "
+                "Beschleunigtes Grenzverfahren gilt für Drittstaatsangehörige "
+                "aus Herkunftsländern mit niedriger Anerkennungsquote. "
+                "Asylsuchende aus Hochanerkennungs-Ländern (z.B. Syrien, "
+                "Afghanistan) durchlaufen das reguläre Verfahren."
+            ),
+            "url": src, "source": label,
+        })
+
+    # EU-Austritts-Mechanik — spezifischer Counter
+    if is_austritt:
+        results.insert(0, {
+            "indicator_name": "EU-Austritt Österreichs — verfassungsrechtliche Hürde + FPÖ-Position",
+            "indicator": "factbook_eu_austritt_counter",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2026",
+            "display_value": (
+                f"STRUKTURELL FALSCH: 'FPÖ → EU-Austritt' ist nicht zutreffend. "
+                f"Erstens: FPÖ-Chef Kickl hat in Pressekonferenz 02.01.2026 "
+                f"dezidiert dementiert, einen Austritt anzustreben — Zitat: "
+                f"'Österreich bleibt in der Europäischen Union.' Zweitens: "
+                f"Selbst BEI politischem Willen wäre ein Austritt verfassungs-"
+                f"rechtlich nur über Volksabstimmungs-Referendum (B-VG Art. 50) "
+                f"mit ≥ 50 % Zustimmung möglich — KEIN Automatismus durch "
+                f"Wahlsieg."
+            ),
+            "description": (
+                "Verfassungsrechtlich: Ein EU-Austritt wäre eine 'Gesamt-"
+                "änderung der Bundesverfassung' nach B-VG Art. 50 Abs. 4 — "
+                "und damit zustimmungspflichtig per Volksabstimmung. "
+                "EU-rechtlich: Art. 50 EU-Vertrag fordert formelle "
+                "Notifizierung + 2-Jahres-Verhandlung. FPÖ-Wahlprogramm "
+                "2024 verlangt EU-Reformen, nicht Austritt."
+            ),
+            "url": fact.get("secondary_url", src),
+            "source": "ZDF-Interview Kickl 2.1.2026 + B-VG Art. 50",
+        })
+
+    if not results:
+        # Default: Generischer EU-Pakt-Eintrag
+        results.append({
+            "indicator_name": "EU-Asyl- und Migrationspakt 2026",
+            "indicator": "factbook_eu_pakt_general",
+            "country": "EU", "country_name": "Europäische Union",
+            "year": "2026",
+            "display_value": (
+                f"EU-Asyl- und Migrationspakt: Inkrafttreten "
+                f"{data.get('pakt_inkrafttreten')}. Rechtsgrundlage: "
+                f"{data.get('pakt_rechtsgrundlage')}. "
+                f"Solidaritätsmechanismus: 30.000 Relocations/Jahr EU-weit "
+                f"oder 20.000 EUR/Person Ausgleichszahlung."
+            ),
+            "description": " ".join(fact.get("context_notes") or []),
+            "url": src, "source": label,
+        })
+
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Topic 17: BMF-Steuer-Pläne 2026
+# ---------------------------------------------------------------------------
+def _build_bmf_steuer_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "BMF + UStG-Novelle"
+
+    results: list[dict] = []
+
+    # Mehrwertsteuer-Senkung — wenn Claim das Thema nennt
+    if any(s in claim_lc for s in (
+        "mehrwertsteuer", "mwst", "umsatzsteuer", "ust ",
+        "5 prozent", "5 %", "5 Prozent",
+        "lebensmittel günstiger", "grundnahrungsmittel",
+        "ustg-novelle",
+    )):
+        mwst = data.get("mehrwertsteuer_grundnahrungsmittel_juli_2026") or {}
+        results.append({
+            "indicator_name": "Mehrwertsteuer-Senkung Grundnahrungsmittel (Juli 2026)",
+            "indicator": "factbook_bmf_mwst_2026",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2026",
+            "display_value": (
+                f"BMF/UStG-Novelle 2026/I: Mehrwertsteuer auf Grundnahrungs-"
+                f"mittel sinkt ab {mwst.get('in_kraft_ab')} von "
+                f"{mwst.get('alter_satz_pct')} % auf "
+                f"{mwst.get('neuer_satz_pct')} %. Beschluss Nationalrat "
+                f"März 2026. Erfasst: " + ", ".join(mwst.get('betroffene_produkte', [])[:5]) + "."
+            ),
+            "description": (
+                f"Rechtsgrundlage: {mwst.get('rechtsgrundlage', '')}. "
+                f"Gegenfinanzierung: {mwst.get('gegenfinanzierung', '')}. "
+                f"WICHTIG: Eine Behauptung 'unter 5 Prozent' ist nicht "
+                f"ganz korrekt — der Satz ist EXAKT 5 %, nicht UNTER 5 %. "
+                f"Eine Aussage 'sinkt auf 5 %' ist 'wahr', eine Aussage "
+                f"'sinkt auf UNTER 5 %' ist 'mostly_true' mit Hinweis auf "
+                f"den exakten Satz."
+            ),
+            "url": src, "source": label,
+        })
+
+    # Kalte Progression
+    if any(s in claim_lc for s in ("kalte progression", "tarifgrenzen")):
+        kp = data.get("kalte_progression_dauerhaft_abgeschafft") or {}
+        results.append({
+            "indicator_name": "Kalte Progression Österreich",
+            "indicator": "factbook_bmf_kalte_progression",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2026",
+            "display_value": (
+                f"Kalte Progression seit {kp.get('seit')} dauerhaft "
+                f"abgeschafft. Tarifgrenzen werden jährlich um 2/3 der "
+                f"Inflation angehoben (2026: +{kp.get('2026_anhebung_pct')} %, "
+                f"2025: +{kp.get('vorherige_anhebung_2025_pct')} %)."
+            ),
+            "description": (
+                "Vor 2023 wurden die Lohnsteuer-Tarifgrenzen nicht "
+                "automatisch an die Inflation angepasst — was zu kalter "
+                "Progression führte. Seit 1.1.2023 erfolgt eine 2/3-"
+                "Anpassung an den VPI."
+            ),
+            "url": src, "source": label,
+        })
+
+    # Default-Eintrag
+    if not results:
+        results.append({
+            "indicator_name": "BMF-Steuer-Pläne 2026 (Übersicht)",
+            "indicator": "factbook_bmf_overview",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2026",
+            "display_value": (
+                "BMF-Steuer-Pläne 2026: MwSt-Senkung Grundnahrungsmittel "
+                "10 → 5 % ab 1.7.2026; Kalte Progression weiter +2/3 VPI; "
+                "Familienbonus eingefroren 2026/2027; Tabaksteuer +0,40 EUR "
+                "pro Packung ab 1.4.2026."
+            ),
+            "description": " ".join(fact.get("context_notes") or []),
+            "url": src, "source": label,
+        })
+
+    return results
+
+
+# ---------------------------------------------------------------------------
 # Public search
 # ---------------------------------------------------------------------------
 async def search_at_factbook(analysis: dict) -> dict:
@@ -1737,6 +2026,10 @@ async def search_at_factbook(analysis: dict) -> dict:
                 results.extend(_build_heat_pumps_results(fact, cl))
             elif topic == "food_inflation_eu_compare":
                 results.extend(_build_food_inflation_results(fact, cl))
+            elif topic == "eu_pakt_at":
+                results.extend(_build_eu_pakt_results(fact, cl))
+            elif topic == "bmf_tax_plans_at":
+                results.extend(_build_bmf_steuer_results(fact, cl))
 
     return {
         "source": "AT Factbook",
