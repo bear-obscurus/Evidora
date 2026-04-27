@@ -194,6 +194,13 @@ _PENSION_TERMS = (
     "ausgleichszulage", "ausgleichszulagen-richtsatz",
     "mindestpension",
     "luxus-pension", "luxuspension",
+    # Pension-Spezialfall-Phrasings: Claim mit Pauschalbetrag + EUR-Schwelle
+    "pauschalbetrag pension", "pension pauschal",
+    "67,50 euro pension", "67,50 pension",
+    "2.500 euro brutto", "2500 euro brutto",
+    "über 2500 euro pension", "über 2.500 euro pension",
+    # OE24-Format mit Komma-Schreibweise
+    "1.308 euro", "1308 euro", "1308,39",
     "pension increase austria", "pension adjustment austria",
 )
 # Composite-Pattern: "pension*" UND ("erhöh*" ODER "anpass*" ODER Prozentzahl)
@@ -221,15 +228,30 @@ _HEALTH_BLOCKED_TERMS = (
 def _claim_mentions_health_blocked(claim_lc: str) -> bool:
     if any(t in claim_lc for t in _HEALTH_BLOCKED_TERMS):
         return True
-    # Composite: "behandlungen" + großer Zahlenwert (Mio) + nicht-AT-Begriff
-    has_treat = any(t in claim_lc for t in ("behandlungen", "behandlung",
-                                             "treatments"))
-    has_mio = any(t in claim_lc for t in ("million", "mio.", "mio ", "millionen"))
+    # Composite-Check: ([Behandlungen|Gesundheit|Krankenhaus] +
+    #                   [große Kosten/Anzahl] +
+    #                   [nicht-AT-Begriff])
+    has_health = any(t in claim_lc for t in (
+        "behandlungen", "behandlung", "treatments",
+        "gesundheitssystem", "gesundheits-system",
+        "krankenhaus", "krankenhäuser", "spital", "spitäler",
+        "krankenkasse", "krankenversicherung",
+        "arztbesuch", "arztbesuche",
+        "in anspruch nehm",  # "in Anspruch nehmen", verschiedene Konjugationen
+    ))
+    has_quantity = any(t in claim_lc for t in (
+        "million", "mio.", "mio ", "millionen",
+        "milliard", "billion",
+        "kosten",
+        "überproportional", "ueberproportional",
+        "viel mehr", "deutlich mehr",
+    ))
     has_non_at = any(t in claim_lc for t in (
         "nicht-österreich", "ausländer", "migrant", "drittstaat",
         "asyl", "non-austrian", "foreigner",
+        "drittstaatsangehörig", "drittstaatsangehoerig",
     ))
-    return has_treat and has_mio and has_non_at
+    return has_health and has_quantity and has_non_at
 
 
 # ---------------------------------------------------------------------------
@@ -379,6 +401,54 @@ def _claim_mentions_energy_tariff(claim_lc: str) -> bool:
     )):
         return True
     return _has_at_context(claim_lc)
+
+
+# ---------------------------------------------------------------------------
+# Topic 15: Lebensmittel-Inflation EU-Vergleich
+# ---------------------------------------------------------------------------
+_FOOD_INFLATION_TERMS = (
+    "lebensmittel-inflation", "lebensmittelinflation",
+    "lebensmittel inflation",
+    "lebensmittelpreise",
+    "food inflation",
+    "teuerung lebensmittel",
+    "preissteigerung lebensmittel",
+    "nahrungsmittel inflation", "nahrungsmittelpreise",
+)
+
+
+def _claim_mentions_food_inflation(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _FOOD_INFLATION_TERMS)
+    if has_term:
+        return _has_at_context(claim_lc) or "deutschland" in claim_lc or "frankreich" in claim_lc
+    return False
+
+
+# ---------------------------------------------------------------------------
+# Topic 14: Wärmepumpen Österreich (APA-Faktencheck-Korrektur)
+# ---------------------------------------------------------------------------
+_WP_TERMS = (
+    "wärmepumpe", "waermepumpe", "wärmepumpen", "waermepumpen",
+    "heat pump", "heat pumps",
+    "luft-wasser-wärmepumpe", "luftwärmepumpe",
+    "sole-wasser-wärmepumpe", "geothermie heizung",
+)
+
+
+def _claim_mentions_heat_pumps(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _WP_TERMS)
+    if not has_term:
+        return False
+    # AT-Kontext oder klima-/winter-/heizungsbezug ohne DE-Marker
+    if _has_at_context(claim_lc):
+        return True
+    has_winter = any(s in claim_lc for s in (
+        "winter", "frost", "kälte", "kaelte", "kalter winter",
+    ))
+    de_markers = ("deutschland", "germany", "berlin", "münchen")
+    if has_winter and not any(de in claim_lc for de in de_markers):
+        return True
+    return False
 
 
 # ---------------------------------------------------------------------------
@@ -544,6 +614,10 @@ def _claim_matches_any_topic(claim: str) -> list[str]:
         matched.append("health_misinformation_at")
     if _claim_mentions_labor_shortage(cl):
         matched.append("labor_shortage_jobs_at")
+    if _claim_mentions_heat_pumps(cl):
+        matched.append("heat_pumps_austria")
+    if _claim_mentions_food_inflation(cl):
+        matched.append("food_inflation_eu_compare")
     return matched
 
 
@@ -1529,6 +1603,79 @@ def _build_labor_shortage_results(fact: dict, claim_lc: str) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
+# Topic 14: Wärmepumpen Österreich
+# ---------------------------------------------------------------------------
+def _build_heat_pumps_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "APA-Faktencheck"
+
+    headline = (
+        f"APA-Faktencheck ({data.get('apa_faktencheck_datum')}): "
+        f"{data.get('apa_verdict')}. "
+        f"Wien Wintertief-Schnitt {data.get('wien_durchschnitts_min_temp_winter_celsius')} °C, "
+        f"Extremtief 30 J. {data.get('wien_extreme_min_temp_letzte_30j_celsius')} °C — "
+        f"weit über der WP-Funktions-Untergrenze (-25 bis -30 °C). "
+        f"Stand 2024: ~{int((data.get('wp_anzahl_at_2024_approx') or 0)/1000)}k WP installiert."
+    )
+
+    description_parts: list[str] = []
+    for note in fact.get("context_notes") or []:
+        description_parts.append(note)
+
+    return [{
+        "indicator_name": "Wärmepumpen Österreich-Klima — APA-Faktencheck Feb 2026",
+        "indicator": "factbook_heat_pumps_at",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": "2026",
+        "display_value": headline,
+        "description": " ".join(p for p in description_parts if p),
+        "url": src,
+        "source": label,
+    }]
+
+
+# ---------------------------------------------------------------------------
+# Topic 15: Lebensmittel-Inflation EU-Vergleich
+# ---------------------------------------------------------------------------
+def _build_food_inflation_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "Eurostat HICP"
+
+    def _de(v):
+        return f"{v}".replace(".", ",")
+
+    headline = (
+        f"Lebensmittel-Inflation HICP Dezember 2025: "
+        f"Österreich {_de(data.get('lebensmittel_inflation_at_dezember_2025_pct'))} %, "
+        f"Deutschland {_de(data.get('lebensmittel_inflation_de_dezember_2025_pct'))} %, "
+        f"Frankreich {_de(data.get('lebensmittel_inflation_fr_dezember_2025_pct'))} %, "
+        f"EU-Schnitt {_de(data.get('lebensmittel_inflation_eu_durchschnitt_dezember_2025_pct'))} %. "
+        f"AT-DE-Differenz: {_de(data.get('differenz_at_de_pp'))} PP. "
+        f"Österreich Rang {data.get('rang_at_in_eu27')} in EU-27."
+    )
+
+    description_parts: list[str] = []
+    for note in fact.get("context_notes") or []:
+        description_parts.append(note)
+
+    return [{
+        "indicator_name": "Lebensmittel-Inflation EU-Vergleich Dezember 2025",
+        "indicator": "factbook_food_inflation",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": "Dezember 2025",
+        "value": data.get("lebensmittel_inflation_at_dezember_2025_pct"),
+        "display_value": headline,
+        "description": " ".join(p for p in description_parts if p),
+        "url": src,
+        "source": label,
+    }]
+
+
+# ---------------------------------------------------------------------------
 # Public search
 # ---------------------------------------------------------------------------
 async def search_at_factbook(analysis: dict) -> dict:
@@ -1586,6 +1733,10 @@ async def search_at_factbook(analysis: dict) -> dict:
                 results.extend(_build_health_mis_results(fact, cl))
             elif topic == "labor_shortage_jobs_at":
                 results.extend(_build_labor_shortage_results(fact, cl))
+            elif topic == "heat_pumps_austria":
+                results.extend(_build_heat_pumps_results(fact, cl))
+            elif topic == "food_inflation_eu_compare":
+                results.extend(_build_food_inflation_results(fact, cl))
 
     return {
         "source": "AT Factbook",

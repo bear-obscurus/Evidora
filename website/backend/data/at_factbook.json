@@ -378,6 +378,89 @@
       "fetched_at_iso": "2026-04-27"
     },
     {
+      "id": "lebensmittel_inflation_eu_2025_2026",
+      "topic": "food_inflation_eu_compare",
+      "scope": "Lebensmittel-Inflation Österreich vs. EU-Nachbarn",
+      "year": "Dezember 2025",
+      "headline": "Lebensmittel-Inflation Österreich vs. EU (HICP, Stand Dez 2025)",
+      "data": {
+        "lebensmittel_inflation_at_dezember_2025_pct": 4.1,
+        "lebensmittel_inflation_de_dezember_2025_pct": 0.8,
+        "lebensmittel_inflation_fr_dezember_2025_pct": 1.7,
+        "lebensmittel_inflation_eu_durchschnitt_dezember_2025_pct": 2.4,
+        "lebensmittel_inflation_eu_max_land": "Estland",
+        "lebensmittel_inflation_eu_max_pct": 5.6,
+        "differenz_at_de_pp": 3.3,
+        "rang_at_in_eu27": 5,
+        "ursachen_at_2025": [
+          "Höhere Energiekosten in der Lebensmittel-Verarbeitung",
+          "Lohnabschlüsse 2024/2025 deutlich über DE-Niveau",
+          "Spezifische Konsumstruktur: AT-Warenkorb stärker auf verarbeitete Produkte gewichtet",
+          "Geringerer Wettbewerb im Lebensmitteleinzelhandel (REWE/Spar-Duopol)"
+        ],
+        "vpi_gesamtinflation_at_april_2026_pct": 3.1
+      },
+      "context_notes": [
+        "Methodik: HICP (Harmonisierter Verbraucherpreisindex), Eurostat-Datenbank prc_hicp_manr.",
+        "Eine Behauptung wie 'Lebensmittel-Inflation AT 4,1 % vs. DE 0,8 %' ist faktisch korrekt für Dezember 2025 (HICP-Detaildaten Eurostat).",
+        "Österreich liegt damit auf Rang 5 der EU-27 bei Lebensmittel-Inflation — nur Estland, Tschechien, Ungarn, Slowakei haben höhere Werte.",
+        "Die GESAMT-Inflation (HVPI) liegt April 2026 in Österreich bei 3,1 % — auch über DE (~ 2,1 %), aber weniger dramatisch als bei Lebensmitteln."
+      ],
+      "claim_phrasings_handled": [
+        "Lebensmittel-Inflation Österreich",
+        "Lebensmittelpreise höher als Deutschland",
+        "Inflation Lebensmittel 4,1 Prozent",
+        "Teuerung Lebensmittel EU-Vergleich",
+        "Food inflation Austria"
+      ],
+      "source_label": "Eurostat HICP prc_hicp_manr; Statistik Austria VPI; OE24/Heute-Berichte",
+      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/",
+      "secondary_url": "https://www.statistik.at/statistiken/wirtschaft/preise/verbraucherpreisindex-vpi",
+      "fetched_at_iso": "2026-04-27"
+    },
+    {
+      "id": "waermepumpen_at_klima",
+      "topic": "heat_pumps_austria",
+      "scope": "Wärmepumpen-Funktionalität in österreichischen Wintern",
+      "year": 2026,
+      "headline": "Wärmepumpen funktionieren in österreichischen Wintern (APA-Faktencheck Feb 2026)",
+      "data": {
+        "apa_faktencheck_datum": "2026-02-20",
+        "apa_faktencheck_titel": "Wärmepumpen in Wien trotzen auch strengeren Wintern",
+        "apa_verdict": "TECHNISCH BESTÄTIGT — moderne Wärmepumpen arbeiten effizient bei Außentemperaturen bis -25 °C, einige Modelle bis -30 °C.",
+        "wien_durchschnitts_min_temp_winter_celsius": -7,
+        "wien_extreme_min_temp_letzte_30j_celsius": -19.6,
+        "wien_extrem_datum": "1956-02-11 (-19,6 °C); jüngste Tieftemp 2017: -16,2 °C",
+        "wp_jat_typische_jaz": 3.5,
+        "wp_anzahl_at_2024_approx": 320000,
+        "foerderung_at_2026_eur_max": 9000,
+        "weitere_apa_faktenchecks_klima_pro_kalt": [
+          "Mythos: Wärmepumpen funktionieren bei Frost nicht (FALSCH — APA 2024)",
+          "Mythos: Stromnetze brechen bei flächendeckender WP-Nutzung zusammen (FALSCH — APA 2025, E-Control)",
+          "Mythos: Heizen mit WP ist teurer als Gas (PARTIELL FALSCH — bei Strompreis 25–35 ct/kWh und JAZ ≥ 3,0 günstiger als Gas)"
+        ]
+      },
+      "context_notes": [
+        "APA-Faktencheck vom 20.02.2026 bestätigt explizit: Wärmepumpen funktionieren in Wien bei tiefen Wintertemperaturen.",
+        "Wien hat Durchschnitts-Tiefsttemperaturen im Winter bei rund -7 °C. Selbst extreme Kältewellen (-19,6 °C 1956, -16,2 °C 2017) liegen über der Funktions-Untergrenze moderner Wärmepumpen (-25 °C bis -30 °C).",
+        "Die typische Jahresarbeitszahl (JAZ) von Luft-Wärmepumpen in Österreich liegt bei ~3,5 — d.h. aus 1 kWh Strom werden 3,5 kWh Wärme.",
+        "Stand 2024 sind in Österreich rund 320.000 Wärmepumpen installiert. Förderung 2026: bis 9.000 EUR pro Anlage (Bund + Land kombiniert).",
+        "Eine Behauptung wie 'Wärmepumpen funktionieren bei Wiener Wintern auch' ist nach APA-Faktencheck korrekt. NICHT 'unverifiable'."
+      ],
+      "claim_phrasings_handled": [
+        "Wärmepumpen Wien Winter",
+        "Wärmepumpen funktionieren Österreich",
+        "Wärmepumpe Frost",
+        "Wärmepumpen strenge Winter",
+        "Heizen Wärmepumpe Österreich",
+        "APA Faktencheck Wärmepumpe"
+      ],
+      "source_label": "APA-Faktencheck 'Wärmepumpen in Wien trotzen auch strengeren Wintern' (20.02.2026); Bundesverband Wärmepumpe Austria",
+      "source_url": "https://apa.at/faktencheck/ueberblick/",
+      "secondary_url": "https://www.waermepumpe-austria.at/",
+      "fetched_at_iso": "2026-04-27"
+    },
+    {
       "id": "naturalisierte_gleichbehandlung",
       "topic": "naturalized_equal_treatment_at",
       "scope": "Sozialleistungen Österreich — Gleichbehandlung Eingebürgerter und gebürtiger Österreicher",

@@ -91,6 +91,8 @@ _AUTHORITATIVE_INDICATORS = (
     "factbook_naturalized_equal",
     "factbook_health_mis",
     "factbook_labor_shortage_at",
+    "factbook_heat_pumps_at",
+    "factbook_food_inflation",
     "pks_overall",                       # BKA PKS-Hauptbericht
     "pks_drug_crime",                    # BKA Lagebericht Suchtmittel
     "pks_drug_crime_vienna",
