@@ -38,6 +38,28 @@
         "Kriminalität Ausländer Statistik",
         "PKS 2024"
       ],
+      "additional_kpis": {
+        "aufklaerungsquote_2024_pct": 52.9,
+        "aufklaerungsquote_2025_pct": 53.6,
+        "anzeigen_gesamt_2024": 538656,
+        "anzeigen_gesamt_2025_approx": 540000,
+        "abgeschobene_straftaeter_2024_approx": 3000,
+        "wien_bezirke_top5_straftaten_2024": [
+          {"rang": 1, "bezirk": "Favoriten", "straftaten": 26218},
+          {"rang": 2, "bezirk": "Floridsdorf", "straftaten": 15114},
+          {"rang": 3, "bezirk": "Donaustadt", "straftaten": 14979},
+          {"rang": 4, "bezirk": "Leopoldstadt", "straftaten": 13715},
+          {"rang": 5, "bezirk": "Innere Stadt", "straftaten": 10284}
+        ],
+        "wien_bezirke_safest_2024": [
+          {"rang_zuletzt": 23, "bezirk": "Josefstadt", "straftaten": 3058}
+        ],
+        "wien_aufstieg_favoriten_2023_2024": {
+          "von": 24364,
+          "auf": 26218,
+          "anstieg_pct": 7.6
+        }
+      },
       "source_label": "Bundeskriminalamt (BKA) — Polizeiliche Kriminalstatistik 2024",
       "source_url": "https://www.bundeskriminalamt.at/501/files/PKS-24-web3_bf_20250422.pdf",
       "secondary_url": "https://www.bundeskriminalamt.at/501/",

@@ -76,12 +76,24 @@ _AUTHORITATIVE_INDICATORS = (
     "factbook_asyl_quartal",
     "factbook_citizenship_at",
     "factbook_asyl_ranking",
+    "factbook_sparpaket_at",
+    "factbook_sparpaket_verteidigung",
+    "factbook_sparpaket_pendlereuro",
+    "factbook_sparpaket_korridor",
+    "factbook_sparpaket_familie",
+    "factbook_energy_tariffs_at",
+    "factbook_klimaticket",
+    "factbook_stromsozialtarif",
+    "factbook_gasnetzgebuehren",
     "pks_overall",                       # BKA PKS-Hauptbericht
     "pks_drug_crime",                    # BKA Lagebericht Suchtmittel
     "pks_drug_crime_vienna",
     "pks_youth_drug_check",
     "pks_youth_general",
     "pks_plausibility",
+    "pks_wien_bezirke",
+    "pks_aufklaerungsquote",
+    "pks_abschiebung_straftaeter",
     "Methodologie-Vergleich AMS-vs-ILO",  # Statistik Austria caveat
 )
 

@@ -274,6 +274,85 @@ def _claim_mentions_asyl_ranking(claim_lc: str) -> bool:
     return False
 
 
+# ---------------------------------------------------------------------------
+# Topic 9: Sparpaket der Bundesregierung 2025/2026
+# ---------------------------------------------------------------------------
+_SPARPAKET_TERMS = (
+    "sparpaket", "spar-paket",
+    "sparmaßnahmen", "sparmassnahmen",
+    "budgetkonsolidierung",
+    "verteidigungsbudget", "verteidigungs-budget",
+    "bundesheer-budget", "heeresbudget",
+    "korridorpension",
+    "pendlereuro", "pendler-euro", "pendlerpauschale",
+    "klimabonus",
+    "familienbeihilfe", "familien-beihilfe",
+    "krankenversicherungsbeitrag",
+    "e-card-gebühr", "ecard-gebühr", "e-card gebühr",
+    "reisepass kosten", "reisepass gebühr",
+    "führerschein kosten", "fuehrerschein kosten",
+    "budgetdefizit", "budget-defizit", "budget defizit",
+    "wirtschaftslage österreich",
+    "savings package austria", "austrian budget",
+)
+# AT-spezifische Acronyme/Termini, die selbst als AT-Kontext gelten
+_SPARPAKET_AT_SPECIFIC = (
+    "korridorpension", "pendlereuro", "klimabonus",
+    "klimaticket", "e-card", "ecard",
+    "bundesheer", "ams-quote", "ohb-pension",
+    # Wenn der Claim "sparpaket" + "familie" enthält, ist das eindeutig
+    # die AT-Bundesregierungs-Maßnahme 2025/2026 (DE benutzt eher
+    # "Sparkurs" oder "Konsolidierungspaket").
+    "sparpaket der", "sparpaket-",
+    "österreichischen sparpaket", "bundesregierungs-sparpaket",
+)
+
+
+def _claim_mentions_sparpaket(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _SPARPAKET_TERMS)
+    if not has_term:
+        return False
+    if any(s in claim_lc for s in _SPARPAKET_AT_SPECIFIC):
+        return True
+    # Heuristik: "Sparpaket" + Euro-Betrag (Mio/Mrd) ist mit hoher
+    # Wahrscheinlichkeit das AT-Bundesregierungs-Sparpaket 2025/2026 —
+    # DE hat keine vergleichbar prominente Maßnahme zum Build-Zeitpunkt.
+    if "sparpaket" in claim_lc:
+        de_markers = ("deutschland", "germany", "bundestag", "berlin",
+                       "merz", "scholz")
+        if not any(de in claim_lc for de in de_markers):
+            return True
+    return _has_at_context(claim_lc)
+
+
+# ---------------------------------------------------------------------------
+# Topic 10: Energie-Tarife Österreich 2026
+# ---------------------------------------------------------------------------
+_ENERGY_TARIFF_TERMS = (
+    "stromsozialtarif", "strom-sozialtarif", "sozialtarif strom",
+    "klimaticket",
+    "gasnetzgebühr", "gasnetzgebuehr", "gasnetz-gebühr",
+    "stromnetzgebühr", "stromnetz-gebühr",
+    "co2-preis", "co2 preis", "co₂-preis", "co₂ preis",
+    "klimabonus",
+    "energiekostenpauschale", "strompreis österreich", "gaspreis österreich",
+    "electricity price austria", "energy price austria",
+)
+
+
+def _claim_mentions_energy_tariff(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _ENERGY_TARIFF_TERMS)
+    if not has_term:
+        return False
+    # AT-spezifische Acronyme: Klimaticket, Stromsozialtarif sind AT-eigen
+    if any(s in claim_lc for s in (
+        "klimaticket", "stromsozialtarif", "klimabonus",
+        "e-control",
+    )):
+        return True
+    return _has_at_context(claim_lc)
+
+
 def _claim_mentions_pension_adjustment(claim_lc: str) -> bool:
     import re as _re
     has_pension = any(t in claim_lc for t in _PENSION_TERMS)
@@ -343,6 +422,10 @@ def _claim_matches_any_topic(claim: str) -> list[str]:
         matched.append("citizenship_population_at")
     if _claim_mentions_asyl_ranking(cl):
         matched.append("asyl_eu_ranking_at")
+    if _claim_mentions_sparpaket(cl):
+        matched.append("budget_savings_package_at")
+    if _claim_mentions_energy_tariff(cl):
+        matched.append("energy_tariffs_at")
     return matched
 
 
@@ -889,6 +972,244 @@ def _build_asyl_ranking_results(fact: dict, claim_lc: str) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
+# Topic 9: Sparpaket der Bundesregierung
+# ---------------------------------------------------------------------------
+def _build_sparpaket_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "BMF Budgetbericht 2025"
+
+    def _de(v):
+        if v is None:
+            return "?"
+        return f"{v}".replace(".", ",")
+
+    headline = (
+        f"Bundesregierungs-Sparpaket 2025-2026: "
+        f"{_de(data.get('gesamtvolumen_mrd_eur'))} Mrd EUR gesamt "
+        f"({_de(data.get('anteil_2025_mrd_eur'))} Mrd 2025 + "
+        f"{_de(data.get('anteil_2026_mrd_eur'))} Mrd 2026). "
+        f"Verteidigungsbudget +{data.get('verteidigungsbudget_2025_anstieg_pct')} % "
+        f"auf {_de(data.get('verteidigungsbudget_2025_mrd_eur_total'))} Mrd EUR; "
+        f"Korridorpension {data.get('korridorpension_alt_jahre')} → "
+        f"{data.get('korridorpension_neu_jahre')} Jahre; "
+        f"Pendlereuro {_de(data.get('pendlereuro_alt_pro_km'))} → "
+        f"{_de(data.get('pendlereuro_neu_pro_km'))} EUR/km."
+    )
+
+    description_parts: list[str] = []
+    for note in fact.get("context_notes") or []:
+        description_parts.append(note)
+
+    main = {
+        "indicator_name": "Bundesregierungs-Sparpaket Österreich 2025-2026",
+        "indicator": "factbook_sparpaket_at",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": "2025-2026",
+        "value": data.get("gesamtvolumen_mrd_eur"),
+        "display_value": headline,
+        "description": " ".join(description_parts),
+        "url": src,
+        "source": label,
+    }
+    results: list[dict] = [main]
+
+    # Spezifische Detail-Einträge je nach Claim
+    if any(s in claim_lc for s in (
+        "verteidigung", "bundesheer", "heeresbudget", "5 milliarden",
+        "verteidigungsbudget", "rüstung", "panzer", "kampfflugzeug",
+    )):
+        results.insert(0, {
+            "indicator_name": "Verteidigungsbudget Österreich 2025/2026",
+            "indicator": "factbook_sparpaket_verteidigung",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2025",
+            "display_value": (
+                f"Verteidigungsbudget Österreich: 2025 +{data.get('verteidigungsbudget_2025_anstieg_pct')} % "
+                f"({_de(data.get('verteidigungsbudget_2025_mrd_eur_anstieg'))} Mrd EUR Anstieg), "
+                f"2026 +{data.get('verteidigungsbudget_2026_anstieg_pct')} %. "
+                f"Gesamthöhe ~{_de(data.get('verteidigungsbudget_2025_mrd_eur_total'))} Mrd EUR. "
+                f"DIREKTER Beleg für '+18 % auf 5 Mrd EUR'-Behauptungen."
+            ),
+            "description": (
+                "Erhöhung des Bundesheeresbudgets ist eine der zentralen "
+                "Gewinner-Posten des Sparpakets. Beschluss im Regierungsprogramm "
+                "Stocker (ÖVP-SPÖ-NEOS), März 2025. Investitionsschwerpunkte: "
+                "Hubschrauber, Kampfflugzeuge (Eurofighter-Modernisierung), "
+                "Luftraumverteidigung."
+            ),
+            "url": src, "source": label,
+        })
+    if any(s in claim_lc for s in ("pendlereuro", "pendler-euro", "pendlerpauschale")):
+        results.insert(0, {
+            "indicator_name": "Pendlereuro Österreich 2026 (Sparpaket-Detail)",
+            "indicator": "factbook_sparpaket_pendlereuro",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2026",
+            "display_value": (
+                f"Pendlereuro: {_de(data.get('pendlereuro_alt_pro_km'))} → "
+                f"{_de(data.get('pendlereuro_neu_pro_km'))} EUR pro Kilometer "
+                f"= Faktor {data.get('pendlereuro_faktor')}× (Verdreifachung). "
+                f"Kompensation für den weggefallenen Klimabonus für Pendler:innen."
+            ),
+            "description": (
+                "Der Pendlereuro wurde im Sparpaket verdreifacht — "
+                "von bisher 2 auf 6 EUR pro Kilometer einfacher Wegstrecke. "
+                "Das gleicht den weggefallenen Klimabonus (~200 EUR/Jahr) "
+                "für regelmäßige Pendler bis weitgehend aus."
+            ),
+            "url": src, "source": label,
+        })
+    if any(s in claim_lc for s in ("korridorpension", "62 jahre", "63 jahre",
+                                     "pensionsalter", "pension früher")):
+        results.insert(0, {
+            "indicator_name": "Korridorpension Österreich (Sparpaket-Detail)",
+            "indicator": "factbook_sparpaket_korridor",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2026",
+            "display_value": (
+                f"Korridorpension Antrittsalter: "
+                f"{data.get('korridorpension_alt_jahre')} → "
+                f"{data.get('korridorpension_neu_jahre')} Jahre ab 2026. "
+                f"DIREKTER Beleg für '63-Jahre'-Behauptungen."
+            ),
+            "description": (
+                "Die Korridorpension (vorzeitige Pension mit Abschlägen) "
+                "war bisher ab 62 Jahren möglich — durch das Sparpaket steigt "
+                "das Antrittsalter ab 2026 schrittweise auf 63 Jahre."
+            ),
+            "url": src, "source": label,
+        })
+    if any(s in claim_lc for s in ("familienbeihilfe", "familien beihilfe",
+                                     "familien mit kindern", "291 euro",
+                                     "165 euro")):
+        results.insert(0, {
+            "indicator_name": "Familienbeihilfe-Cut Österreich (Sparpaket-Detail)",
+            "indicator": "factbook_sparpaket_familie",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2026-2027",
+            "display_value": (
+                f"Familienbeihilfe wird 2026 und 2027 EINGEFROREN — "
+                f"keine Inflation-Anpassung. Familien mit 2 Kindern verlieren "
+                f"{_de(data.get('familien_2_kinder_minus_eur_pa_min'))} – "
+                f"{_de(data.get('familien_2_kinder_minus_eur_pa_max'))} EUR pro Jahr."
+            ),
+            "description": (
+                "Sparpaket-Einsparung. Genauer Verlust hängt vom Alter der "
+                "Kinder ab (höhere Beträge bei älteren Kindern wegen "
+                "höherer Beihilfe-Sätze). Studierende ältere Geschwister "
+                "verstärken den Effekt."
+            ),
+            "url": src, "source": label,
+        })
+
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Topic 10: Energie-Tarife
+# ---------------------------------------------------------------------------
+def _build_energy_tariff_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "E-Control + BMK"
+
+    def _de(v):
+        if v is None:
+            return "?"
+        return f"{v}".replace(".", ",")
+
+    headline = (
+        f"Österreich-Energie-Tarife 2026: Stromsozialtarif "
+        f"{_de(data.get('stromsozialtarif_cent_pro_kwh'))} Cent/kWh für "
+        f"~{int((data.get('stromsozialtarif_haushalte_anzahl') or 0)/1000)}.000 "
+        f"einkommensschwache Haushalte; Gasnetzgebühren-Anstieg "
+        f"{_de(data.get('gasnetzgebuehren_anstieg_2026_pct'))} %; "
+        f"Klimaticket {_de(data.get('klimaticket_2026_eur_pa'))} EUR/Jahr."
+    )
+
+    description_parts: list[str] = []
+    for note in fact.get("context_notes") or []:
+        description_parts.append(note)
+
+    main = {
+        "indicator_name": "Energie-Tarife Österreich 2026",
+        "indicator": "factbook_energy_tariffs_at",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": "2026",
+        "display_value": headline,
+        "description": " ".join(description_parts),
+        "url": src,
+        "source": label,
+    }
+    results: list[dict] = [main]
+
+    # Spezifische Detail-Einträge
+    if any(s in claim_lc for s in ("klimaticket", "klima-ticket", "1400", "1.400",
+                                     "öbb-jahreskarte")):
+        results.insert(0, {
+            "indicator_name": "Klimaticket Österreich Preise 2024-2026",
+            "indicator": "factbook_klimaticket",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2026",
+            "display_value": (
+                f"Klimaticket Österreich: 2024 = {_de(data.get('klimaticket_2024_eur_pa'))} EUR, "
+                f"2025 = {_de(data.get('klimaticket_2025_eur_pa'))} EUR, "
+                f"2026 = {_de(data.get('klimaticket_2026_eur_pa'))} EUR pro Jahr "
+                f"(+28 % seit 2024). DIREKTER Beleg für '1.400 EUR'-Behauptungen."
+            ),
+            "description": (
+                "Die Preiserhöhung ist Teil des Sparpakets — "
+                "Klimaticket wurde von 1.095 EUR (2024) über 1.300 EUR (2025) "
+                "auf 1.400 EUR ab Januar 2026 erhöht."
+            ),
+            "url": src, "source": label,
+        })
+    if any(s in claim_lc for s in ("stromsozialtarif", "sozialtarif strom",
+                                     "6 cent", "290.000 haushalte", "290000")):
+        results.insert(0, {
+            "indicator_name": "Stromsozialtarif Österreich 2026",
+            "indicator": "factbook_stromsozialtarif",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2026",
+            "display_value": (
+                f"Stromsozialtarif: {_de(data.get('stromsozialtarif_cent_pro_kwh'))} Cent/kWh "
+                f"für ~{int((data.get('stromsozialtarif_haushalte_anzahl') or 0)/1000)}.000 "
+                f"einkommensschwache Haushalte. Einkommensgrenze für Alleinstehende "
+                f"~{_de(data.get('stromsozialtarif_einkommensgrenze_alleinstehend_eur_pa_approx'))} EUR/Jahr."
+            ),
+            "description": (
+                "Der Sozialtarif Strom wurde Januar 2026 eingeführt als "
+                "Ausgleich für den weggefallenen Klimabonus und den höheren "
+                "CO2-Preis. Nur einkommensschwache Haushalte mit Bedarfs-Nachweis."
+            ),
+            "url": src, "source": label,
+        })
+    if any(s in claim_lc for s in ("gasnetzgebühr", "gasnetz", "18,2", "18.2",
+                                     "gas teurer", "gas-tarif")):
+        results.insert(0, {
+            "indicator_name": "Gasnetzgebühren-Anstieg 2026",
+            "indicator": "factbook_gasnetzgebuehren",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2026",
+            "display_value": (
+                f"Gasnetzgebühren-Anstieg 2026 in Österreich: durchschnittlich "
+                f"+{_de(data.get('gasnetzgebuehren_anstieg_2026_pct'))} % "
+                f"(E-Control-Bescheid). Bundesweit unterschiedliche Tarifgebiete."
+            ),
+            "description": (
+                "Die E-Control hat die Gasnetzgebühren-Anpassung für 2026 "
+                "festgelegt. Anstieg geht zu Lasten der Haushaltskunden."
+            ),
+            "url": src, "source": label,
+        })
+
+    return results
+
+
+# ---------------------------------------------------------------------------
 # Public search
 # ---------------------------------------------------------------------------
 async def search_at_factbook(analysis: dict) -> dict:
@@ -936,6 +1257,10 @@ async def search_at_factbook(analysis: dict) -> dict:
                 results.extend(_build_citizenship_results(fact, cl))
             elif topic == "asyl_eu_ranking_at":
                 results.extend(_build_asyl_ranking_results(fact, cl))
+            elif topic == "budget_savings_package_at":
+                results.extend(_build_sparpaket_results(fact, cl))
+            elif topic == "energy_tariffs_at":
+                results.extend(_build_energy_tariff_results(fact, cl))
 
     return {
         "source": "AT Factbook",

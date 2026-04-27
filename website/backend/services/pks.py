@@ -69,6 +69,18 @@ _CRIM_GENERAL_TERMS = (
     "ausländer straftaten",
     "criminal suspects austria", "criminality austria",
     "police crime statistics", "pks",
+    # PKS-spezifische KPIs
+    "aufklärungsquote", "aufklaerungsquote",
+    "aufklärungsrate", "aufklaerungsrate",
+    "polizei aufklär", "polizei aufklaer",
+    "abgeschoben straftäter", "abgeschobene straftäter",
+    "verurteilte straftäter", "abschiebung straftäter",
+    "abschiebung verurteilte",
+    # Wien-Bezirks-Bezüge sind PKS-Hauptbericht-Daten
+    "favoriten kriminalität", "favoriten straftaten",
+    "gefährlichste bezirk", "gefaehrlichste bezirk",
+    "sicherster bezirk", "sicherste bezirk",
+    "atlas der kriminalität",
 )
 
 
@@ -235,6 +247,110 @@ def _build_general_results(fact: dict, claim_lc: str) -> list[dict]:
         "source": label,
     }
     results: list[dict] = [main]
+
+    # Wien-Bezirks-Daten wenn der Claim einen Wien-Bezirk nennt oder
+    # generelle Wien-Bezirks-Frage stellt.
+    # additional_kpis liegt auf Fact-Ebene (nicht in data) — siehe pks.json.
+    kpis = fact.get("additional_kpis") or {}
+    wien_top = kpis.get("wien_bezirke_top5_straftaten_2024") or []
+    wien_safest = kpis.get("wien_bezirke_safest_2024") or []
+    wien_bezirke = (
+        "favoriten", "floridsdorf", "donaustadt", "leopoldstadt",
+        "innere stadt", "josefstadt", "neubau", "wieden",
+        "mariahilf", "alsergrund", "rudolfsheim", "ottakring",
+        "hernals", "döbling", "brigittenau", "meidling",
+        "hietzing", "penzing", "fünfhaus", "margareten",
+        "simmering", "liesing", "landstraße", "gefährlichste bezirk",
+        "sicherster bezirk",
+    )
+    if any(b in claim_lc for b in wien_bezirke):
+        # Mention the top-5 + safest, and any specifically named district
+        named_bezirk = next(
+            (b for b in wien_bezirke if b in claim_lc and len(b) > 5),
+            None,
+        )
+        # Build entry
+        top_str = ", ".join(
+            f"#{e['rang']} {e['bezirk']} ({_de_int(e['straftaten'])})"
+            for e in wien_top
+        )
+        safest = wien_safest[0] if wien_safest else None
+        safest_str = (
+            f"sicherster: {safest['bezirk']} ({_de_int(safest['straftaten'])})"
+            if safest else "sicherster: keine Angabe"
+        )
+        results.insert(0, {
+            "indicator_name": "Wien — Kriminalstatistik nach Bezirken 2024",
+            "indicator": "pks_wien_bezirke",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2024",
+            "display_value": (
+                f"Wien Bezirks-Ranking 2024 (Top-5 nach Straftaten): "
+                f"{top_str}; {safest_str}."
+            ),
+            "description": (
+                "Wien-Kriminalitäts-Atlas (PKS-Auswertung nach Bezirken). "
+                "Favoriten ist mit 26.218 Straftaten 2024 der mit deutlichem "
+                "Abstand häufigste Bezirk (Anstieg von 24.364 in 2023 = +7,6 %). "
+                "Die Josefstadt ist mit 3.058 Straftaten der sicherste Wiener "
+                "Bezirk. Die Bezirks-Aufschlüsselung wird im PKS-Hauptbericht "
+                "und im 'Atlas der Kriminalität' der Bundespolizei publiziert."
+            ),
+            "url": src, "source": label,
+        })
+
+    # Aufklärungsquote-Trend wenn im Claim erwähnt
+    aufkl = (
+        "aufklärungsquote", "aufklaerungsquote",
+        "aufklärungsrate", "aufklaerungsrate",
+        "aufklärung", "aufklaerung",
+    )
+    if any(t in claim_lc for t in aufkl):
+        a24 = kpis.get("aufklaerungsquote_2024_pct")
+        a25 = kpis.get("aufklaerungsquote_2025_pct")
+        results.insert(0, {
+            "indicator_name": "PKS Aufklärungsquote Österreich 2024-2025",
+            "indicator": "pks_aufklaerungsquote",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2024-2025",
+            "display_value": (
+                f"Aufklärungsquote Österreich: {a24} % (2024), "
+                f"{a25} % (vorläufig 2025). Anstieg um +{round((a25 or 0)-(a24 or 0), 1)} PP."
+            ),
+            "description": (
+                "Die Aufklärungsquote beschreibt den Anteil der angezeigten "
+                "Straftaten, bei denen mindestens ein Tatverdächtiger ermittelt "
+                "wurde. Der Wert 53,6 % für 2025 wurde von Innenminister Karner "
+                "in einer Pressekonferenz April 2026 zur PKS 2025 vorgestellt — "
+                "die offizielle PKS 2025-Veröffentlichung steht noch aus."
+            ),
+            "url": src, "source": label,
+        })
+
+    # Abgeschobene Straftäter
+    if any(t in claim_lc for t in (
+        "abgeschoben", "abschiebung straftäter",
+        "verurteilte straftäter", "3000 straftäter",
+    )):
+        results.insert(0, {
+            "indicator_name": "Abgeschobene verurteilte Straftäter Österreich 2024",
+            "indicator": "pks_abschiebung_straftaeter",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "2024",
+            "display_value": (
+                f"Rund {_de_int(kpis.get('abgeschobene_straftaeter_2024_approx'))} "
+                f"verurteilte Straftäter wurden 2024 aus Österreich abgeschoben "
+                f"(Innenminister Karner, Pressekonferenz April 2026)."
+            ),
+            "description": (
+                "Die Zahl bezieht sich auf zwangsweise Außerlandesbringungen "
+                "verurteilter Straftäter (nicht zu verwechseln mit allen "
+                "freiwilligen Ausreisen). Sie ist Teil der BMI-Asyl-/Außerland-"
+                "Bilanz und wurde in der PKS-Pressekonferenz gemeinsam "
+                "kommuniziert."
+            ),
+            "url": src, "source": label,
+        })
 
     # Wenn der Claim ein NEUERES Jahr nennt als unsere Datenbasis, prepend
     # einen Plausibilitäts-Toleranz-Eintrag — sonst markiert der Synthesizer
