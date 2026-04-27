@@ -72,6 +72,10 @@ _AUTHORITATIVE_INDICATORS = (
     "factbook_social_assistance_at",
     "factbook_social_check",
     "factbook_pension_at",
+    "factbook_health_blocked",
+    "factbook_asyl_quartal",
+    "factbook_citizenship_at",
+    "factbook_asyl_ranking",
     "pks_overall",                       # BKA PKS-Hauptbericht
     "pks_drug_crime",                    # BKA Lagebericht Suchtmittel
     "pks_drug_crime_vienna",

@@ -175,6 +175,105 @@ _PENSION_VERBS = ("erhöh", "erhoeh", "anpass", "steigen", "gestiegen",
                    "angehoben", "anhebung")
 
 
+# ---------------------------------------------------------------------------
+# Topic 5: 22-Mio-Behandlungen-Claim (strukturell ungeprüfbar)
+# ---------------------------------------------------------------------------
+_HEALTH_BLOCKED_TERMS = (
+    "22 millionen behandlungen", "22 mio behandlungen", "22 mio. behandlungen",
+    "spitals-touristen", "spitals touristen", "spitalstouristen",
+    "krankenhaus-touristen", "krankenhaus touristen",
+    "krankenhauskosten ausländer", "krankenhauskosten migranten",
+    "behandlungen nicht-österreich", "behandlungen drittstaatsangehörige",
+    "drittstaatsangehörige behandlungen",
+    "ausländer gesundheitssystem milliarden",
+    "krone gesundheitssystem", "krone spitalstouristen",
+)
+
+
+def _claim_mentions_health_blocked(claim_lc: str) -> bool:
+    if any(t in claim_lc for t in _HEALTH_BLOCKED_TERMS):
+        return True
+    # Composite: "behandlungen" + großer Zahlenwert (Mio) + nicht-AT-Begriff
+    has_treat = any(t in claim_lc for t in ("behandlungen", "behandlung",
+                                             "treatments"))
+    has_mio = any(t in claim_lc for t in ("million", "mio.", "mio ", "millionen"))
+    has_non_at = any(t in claim_lc for t in (
+        "nicht-österreich", "ausländer", "migrant", "drittstaat",
+        "asyl", "non-austrian", "foreigner",
+    ))
+    return has_treat and has_mio and has_non_at
+
+
+# ---------------------------------------------------------------------------
+# Topic 6: BMI Asyl-Quartalsbilanz
+# ---------------------------------------------------------------------------
+_ASYL_QUARTAL_TERMS = (
+    "abschiebung", "abschiebungen",
+    "ausreise", "ausreisen", "ausreisepflichtig",
+    "asylantrag", "asylanträge", "asyl-antrag", "asyl-anträge",
+    "familienzusammenführung", "familienzusammenfuehrung",
+    "asyl quartal", "asyl-bilanz", "asylbilanz",
+    "asylum applications austria", "deportations austria",
+)
+
+
+def _claim_mentions_asyl_quartal(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _ASYL_QUARTAL_TERMS)
+    if not has_term:
+        return False
+    return _has_at_context(claim_lc)
+
+
+# ---------------------------------------------------------------------------
+# Topic 7: Staatsbürgerschaft / Wohnbevölkerung
+# ---------------------------------------------------------------------------
+_CITIZEN_TERMS = (
+    "staatsbürgerschaft", "staatsbuergerschaft",
+    "ohne österreichische staatsbürger", "ohne staatsbürgerschaft",
+    "nicht-österreich", "nichtoesterreich",
+    "ausländerquote", "auslaenderquote",
+    "fremdenanteil", "fremde wohnbevölkerung",
+    "anteil ausländer bevölkerung",
+    "non-austrian citizens", "share of foreigners",
+)
+
+
+def _claim_mentions_citizenship(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _CITIZEN_TERMS)
+    if not has_term:
+        return False
+    return _has_at_context(claim_lc)
+
+
+# ---------------------------------------------------------------------------
+# Topic 8: EU-Asyl-Ranking
+# ---------------------------------------------------------------------------
+_ASYL_RANKING_TERMS = (
+    "rang asyl", "stelle asyl", "platz asyl",
+    "asyl pro kopf", "asylanträge pro kopf",
+    "asyl pro 100",  # 100.000 Einwohner
+    "asyl-ranking", "asylranking",
+    "eu-vergleich asyl", "eu vergleich asyl",
+    "asyl eu durchschnitt", "asyl ueber eu",
+    "asylum ranking eu", "asylum per capita",
+)
+
+
+def _claim_mentions_asyl_ranking(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _ASYL_RANKING_TERMS)
+    if has_term:
+        return _has_at_context(claim_lc) or "österreich" in claim_lc
+    # Composite: "asyl" + ("rang" oder "stelle" oder "platz" oder "pro 100")
+    has_asyl = any(t in claim_lc for t in ("asyl", "asylum"))
+    has_rank = any(t in claim_lc for t in (
+        "rang ", " rang", "stelle", "platz", "pro 100", "an 11",
+        "an 12", "an 10", "ranking", "vergleich",
+    ))
+    if has_asyl and has_rank:
+        return _has_at_context(claim_lc)
+    return False
+
+
 def _claim_mentions_pension_adjustment(claim_lc: str) -> bool:
     import re as _re
     has_pension = any(t in claim_lc for t in _PENSION_TERMS)
@@ -236,6 +335,14 @@ def _claim_matches_any_topic(claim: str) -> list[str]:
         matched.append("social_assistance_austria")
     if _claim_mentions_pension_adjustment(cl):
         matched.append("pension_adjustment_austria")
+    if _claim_mentions_health_blocked(cl):
+        matched.append("health_treatments_by_nationality")
+    if _claim_mentions_asyl_quartal(cl):
+        matched.append("asyl_quartal_at")
+    if _claim_mentions_citizenship(cl):
+        matched.append("citizenship_population_at")
+    if _claim_mentions_asyl_ranking(cl):
+        matched.append("asyl_eu_ranking_at")
     return matched
 
 
@@ -604,6 +711,170 @@ def _build_pension_results(fact: dict, claim_lc: str) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
+# Topic 5: 22-Mio-Behandlungen (strukturell ungeprüfbar)
+# ---------------------------------------------------------------------------
+def _build_health_blocked_results(fact: dict, claim_lc: str) -> list[dict]:
+    """Result entry für strukturell ungeprüfbare Krone-Behauptung.
+
+    WICHTIG: Hier liefern wir KEINE Bestätigung der 22-Mio-Zahl, sondern
+    die explizite, autoritative Erklärung WARUM sie nicht direkt
+    überprüfbar ist + den dokumentierten Faktencheck-Hinweis.
+    """
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "Sozialversicherung Österreich"
+
+    headline = (
+        "STRUKTURELL UNGEPRÜFBAR: 'Behandlungen Drittstaatsangehöriger im AT-"
+        "Gesundheitssystem' werden nach §§ 31 ff ASVG nicht öffentlich nach "
+        "Staatsangehörigkeit ausgewiesen."
+    )
+
+    description_parts = [
+        data.get("krone_zahl_22_mio_behandlungen", ""),
+        data.get("kontrast_at_check_2026", ""),
+        data.get("profil_check_2026", ""),
+    ]
+    for note in fact.get("context_notes") or []:
+        description_parts.append(note)
+
+    return [{
+        "indicator_name": "AT-Gesundheitssystem — Behandlungen nach Staatsbürgerschaft (BLOCKIERT)",
+        "indicator": "factbook_health_blocked",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": fact.get("year", ""),
+        "display_value": headline,
+        "description": " ".join(p for p in description_parts if p),
+        "url": src,
+        "source": label,
+    }]
+
+
+# ---------------------------------------------------------------------------
+# Topic 6: BMI Asyl-Quartalsbilanz Q1 2026
+# ---------------------------------------------------------------------------
+def _build_asyl_quartal_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "BMI Österreich"
+
+    def _de(v):
+        return f"{int(v):,}".replace(",", ".") if v is not None else "?"
+
+    headline = (
+        f"Q1 2026: {_de(data.get('asylantraege_q1_2026'))} Asyl-Erstanträge "
+        f"vs. {_de(data.get('ausreisen_gesamt_q1_2026'))} Ausreisen "
+        f"(davon {_de(data.get('ausreisen_zwangsweise_q1_2026'))} zwangsweise, "
+        f"{data.get('ausreisen_zwangsweise_anteil_pct')} %). "
+        f"DIREKTER Beleg für 'mehr Abschiebungen als Asylanträge'."
+    )
+
+    description_parts = [
+        data.get("trend_text", ""),
+    ]
+    for note in fact.get("context_notes") or []:
+        description_parts.append(note)
+
+    return [{
+        "indicator_name": "BMI Asyl-Bilanz Q1 2026",
+        "indicator": "factbook_asyl_quartal",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": "Q1-2026",
+        "value": data.get("ausreisen_gesamt_q1_2026"),
+        "display_value": headline,
+        "description": " ".join(p for p in description_parts if p),
+        "url": src,
+        "source": label,
+    }]
+
+
+# ---------------------------------------------------------------------------
+# Topic 7: Wohnbevölkerung nach Staatsbürgerschaft
+# ---------------------------------------------------------------------------
+def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "Statistik Austria"
+
+    def _de(v):
+        return f"{int(v):,}".replace(",", ".") if v is not None else "?"
+
+    headline = (
+        f"Wohnbevölkerung Österreich 1.1.2026: {_de(data.get('bevoelkerung_gesamt'))} "
+        f"insgesamt, davon {_de(data.get('bevoelkerung_nicht_at_staatsbuerger'))} "
+        f"OHNE österreichische Staatsbürgerschaft = "
+        f"{data.get('anteil_nicht_at_pct')} %. "
+        f"Eine Behauptung von '20 %' rundet korrekt — wahr."
+    )
+
+    description_parts = [
+        data.get("trend_text", ""),
+    ]
+    for note in fact.get("context_notes") or []:
+        description_parts.append(note)
+
+    return [{
+        "indicator_name": "Wohnbevölkerung Österreich nach Staatsbürgerschaft (1.1.2026)",
+        "indicator": "factbook_citizenship_at",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": "2026",
+        "value": data.get("anteil_nicht_at_pct"),
+        "display_value": headline,
+        "description": " ".join(p for p in description_parts if p),
+        "url": src,
+        "source": label,
+    }]
+
+
+# ---------------------------------------------------------------------------
+# Topic 8: EU-Asyl-Ranking
+# ---------------------------------------------------------------------------
+def _build_asyl_ranking_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "BMI + Eurostat"
+
+    top3 = data.get("eu_top_3") or []
+    top3_str = " · ".join(
+        f"#{e['rang']} {e['land']} ({e['wert']})" for e in top3
+    )
+    bottom3 = data.get("eu_bottom_3") or []
+    bottom3_str = " · ".join(
+        f"#{e['rang']} {e['land']} ({e['wert']})" for e in bottom3
+    )
+
+    headline = (
+        f"EU-Vergleich Asylanträge pro 100.000 Einwohner 2025: Österreich = "
+        f"{data.get('asylantraege_pro_100k_at')}; "
+        f"EU-Schnitt = {data.get('eu_durchschnitt_pro_100k')}; "
+        f"Österreich-Rang: {data.get('rang_at_in_eu_2025')}/27."
+    )
+
+    description_parts = [
+        f"Top 3: {top3_str}.",
+        f"Bottom 3: {bottom3_str}.",
+    ]
+    for note in fact.get("context_notes") or []:
+        description_parts.append(note)
+
+    return [{
+        "indicator_name": "EU-Asyl-Ranking pro Kopf — Österreich Rang 2025",
+        "indicator": "factbook_asyl_ranking",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": "2025",
+        "value": data.get("rang_at_in_eu_2025"),
+        "display_value": headline,
+        "description": " ".join(p for p in description_parts if p),
+        "url": src,
+        "source": label,
+    }]
+
+
+# ---------------------------------------------------------------------------
 # Public search
 # ---------------------------------------------------------------------------
 async def search_at_factbook(analysis: dict) -> dict:
@@ -643,6 +914,14 @@ async def search_at_factbook(analysis: dict) -> dict:
                 results.extend(_build_social_results(fact, cl))
             elif topic == "pension_adjustment_austria":
                 results.extend(_build_pension_results(fact, cl))
+            elif topic == "health_treatments_by_nationality":
+                results.extend(_build_health_blocked_results(fact, cl))
+            elif topic == "asyl_quartal_at":
+                results.extend(_build_asyl_quartal_results(fact, cl))
+            elif topic == "citizenship_population_at":
+                results.extend(_build_citizenship_results(fact, cl))
+            elif topic == "asyl_eu_ranking_at":
+                results.extend(_build_asyl_ranking_results(fact, cl))
 
     return {
         "source": "AT Factbook",

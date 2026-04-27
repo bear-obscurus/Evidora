@@ -73,7 +73,23 @@ _CRIM_GENERAL_TERMS = (
 
 
 def _claim_mentions_crim_general(claim_lc: str) -> bool:
-    return any(t in claim_lc for t in _CRIM_GENERAL_TERMS) and _has_at_context(claim_lc)
+    if not any(t in claim_lc for t in _CRIM_GENERAL_TERMS):
+        return False
+    if _has_at_context(claim_lc):
+        return True
+    # AT-spezifische Signale, die einen AT-Kontext implizieren:
+    # - "PKS" / "BKA Österreich" sind AT-Acronyme
+    # - "Jugendkriminalität" + spezifische Altersangabe 10–14 ist
+    #   die typische AT-Debatte um Strafmündigkeit (DE ist dort
+    #   Strafmündigkeitsalter ebenfalls 14, aber die Debatte
+    #   "Anzeigen 10–14 verdoppelt" ist die AT-PKS-Kennzahl).
+    if "jugendkriminalität" in claim_lc or "jugendkriminalitaet" in claim_lc:
+        if any(age in claim_lc for age in (
+            "10 bis 14", "10-14", "10 - 14", "zehn bis 14",
+            "kinder bis 14", "kinder unter 14",
+        )):
+            return True
+    return False
 
 
 # ---------------------------------------------------------------------------

@@ -54,6 +54,17 @@ Mehrdimensionale Vergleiche (WICHTIG):
 - Eine Technologie, die in einer Metrik knapp besser abschneidet (z.B. 0,03 vs 0,035 Todesfälle/TWh) aber in anderen Dimensionen dramatisch schlechter ist (z.B. Tausende Langzeit-Tote, Hunderttausende Evakuierte, unbewohnbare Gebiete über Jahrzehnte), ist insgesamt NICHT "sicherer" — setze verdict auf "mostly_false" oder "false"
 - Die Gesamtbilanz aller Dimensionen entscheidet, nicht eine einzelne Kennzahl
 
+Energie-Sicherheits-Behauptungen (KRITISCH WICHTIG):
+- Bei Behauptungen wie "Atomkraft/Solar/Wind/Kohle/Gas ist die sicherste/gefährlichste Energieform" UND wenn OWID Energy Safety / OWID Sovacool-Daten in den Quellen vorliegen, dann MUSS ein Verdict abgegeben werden — "unverifiable" ist NICHT zulässig.
+- Die OWID-Energy-Safety-Tabelle ist autoritativ und liefert direkte Todesfälle pro TWh für ALLE wichtigen Energieformen (Solar ~0.02, Wind ~0.04, Atomkraft ~0.03, Wasserkraft ~0.02–1.3, Erdgas ~2.8, Kohle ~24.6 brown, ~32.7 lignite, Biomasse ~4.6).
+- ENTSCHEIDUNGSREGEL für "X ist die sicherste Form":
+  • Wenn X den niedrigsten Wert hat → "true" (mit Hinweis auf knappe Konkurrenten)
+  • Wenn X im engen Spitzenfeld liegt (Solar/Wind/Atomkraft alle 0.02–0.04) → "mostly_true" mit Nuance, dass Solar/Wind hauchdünn knapper sind
+  • Wenn X deutlich schlechter ist als der/die Spitzenreiter → "mostly_false" oder "false"
+- Beispiel: Claim "Atomkraft ist die sicherste Form der Energieerzeugung" — OWID zeigt Solar 0.02 < Atomkraft 0.03 ≤ Wind 0.04. Atomkraft ist NICHT die absolut sicherste, aber im engen Spitzenfeld → verdict = "partly_true" oder "mostly_true" mit nuance "Solar ist mit 0,02 Toten/TWh hauchdünn sicherer als Atomkraft (0,03), Wind etwa gleichauf (0,04)". NICHT "unverifiable".
+- Wenn die Behauptung Atomkraft mit FOSSILEN Trägern vergleicht ("Atomkraft sicherer als Kohle") und nicht mit Erneuerbaren, ist Atomkraft eindeutig sicherer (Faktor 100–800×) → verdict = "true".
+- Die Mehrdim-Regel (Katastrophenpotential, Langzeit-Folgen) bleibt gültig, aber sie senkt das Verdict allenfalls von "true" auf "mostly_true" oder "partly_true" — nicht auf "unverifiable".
+
 Thematische Relevanz (SEHR WICHTIG):
 - Verwende NUR Evidenz, die thematisch DIREKT mit der Behauptung zusammenhängt
 - Ein Faktencheck über "Wärmepumpen" ist KEINE relevante Evidenz für eine Behauptung über "die EU zerstört Österreich"

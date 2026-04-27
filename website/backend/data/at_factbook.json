@@ -217,9 +217,147 @@
       "source_url": "https://www.pv.at/web/pension/in-der-pension/pensionsanpassung-und-pensionserhoehung",
       "secondary_url": "https://www.sozialministerium.gv.at/",
       "fetched_at_iso": "2026-04-27"
+    },
+    {
+      "id": "health_treatments_by_nationality_blocked",
+      "topic": "health_treatments_by_nationality",
+      "scope": "Sozialversicherungs-Behandlungsdaten nach Staatsbürgerschaft Österreich",
+      "year": "2015-2024",
+      "headline": "Behandlungen Drittstaatsangehöriger im AT-Gesundheitssystem — STRUKTURELL UNGEPRÜFBAR",
+      "data": {
+        "blocked": true,
+        "krone_zahl_22_mio_behandlungen": "Eine Krone-/FPÖ-Behauptung von '22 Millionen Behandlungen' für Drittstaatsangehörige zwischen 2015–2024 zirkuliert seit Januar 2026, ist aber strukturell nicht öffentlich überprüfbar.",
+        "kontrast_at_check_2026": "Laut Kontrast.at-Faktencheck (1/2026): es handelt sich um medizinische EINZELLEISTUNGEN (Arztbesuche, Heilbehelfe), nicht 'Behandlungen' im engeren Sinn; Drittstaatsangehörige nehmen das Gesundheitssystem mit 2,75 % aller Einzelleistungen UNTERPROPORTIONAL in Anspruch (Bevölkerungsanteil 4,8 %).",
+        "profil_check_2026": "profil-Faktencheck-Redaktion ist bei derselben Anfrage in eine Sackgasse geraten — die SV-Daten sind nach §§ 31 ff ASVG zweckgebunden und werden nicht öffentlich nach Staatsangehörigkeit aufgeschlüsselt."
+      },
+      "context_notes": [
+        "STRUKTURELL UNGEPRÜFBAR: Sozialversicherungs-Behandlungsdaten werden in Österreich nach §§ 31 ff ASVG zweckgebunden verarbeitet und nicht öffentlich nach Staatsbürgerschaft ausgewiesen — weder vom Dachverband der SV-Träger noch von der ÖGK.",
+        "Die Krone-Zahl '22 Mio Behandlungen' wird in Pressekonferenzen ohne nachvollziehbare Quelle zitiert. Kontrast.at und profil haben Faktenchecks unternommen und konnten die Zahl weder bestätigen noch widerlegen — die Datenlage ist die Sackgasse, nicht eine fehlende Recherche.",
+        "Die Behauptung suggeriert 'Behandlungen' (Spitalsaufenthalte, OPs), bezieht sich aber auf SV-EINZELLEISTUNGEN (incl. einzelner Heilbehelfsverschreibungen, Hausarztbesuche). Bei 800+ Mio Einzelleistungen total über 9 Jahre sind 22 Mio = 2,75 % — UNTERPROPORTIONAL zum Bevölkerungsanteil der Drittstaatsangehörigen (4,8 %).",
+        "VERDICT-EMPFEHLUNG: Diese Art Claims sollte als 'mostly_false' oder 'unverifiable mit konkreter Erklärung der strukturellen Datenlücke' bewertet werden — NICHT als 'unverifiable @ 0.0' ohne Erklärung."
+      ],
+      "claim_phrasings_handled": [
+        "22 Millionen Behandlungen Ausländer",
+        "22 Mio Behandlungen Nicht-Österreicher",
+        "Spitals-Touristen Milliarden",
+        "Krankenhaus-Kosten Migranten",
+        "Behandlungen Drittstaatsangehörige"
+      ],
+      "source_label": "Sozialversicherung Österreich (Dachverband + ÖGK); Kontrast.at-Faktencheck Januar 2026; profil-Faktencheck",
+      "source_url": "https://kontrast.at/krone-auslaendische-patienten/",
+      "secondary_url": "https://www.sozialversicherung.at/",
+      "fetched_at_iso": "2026-04-27",
+      "guardrails": [
+        "Wir bewerten nicht die politische Schlussfolgerung der Behauptung.",
+        "Wir benennen die strukturelle Datenlage explizit, statt nur 'unverifiable' zu sagen — das ist ein qualitativer Unterschied."
+      ]
+    },
+    {
+      "id": "asyl_quartalsbilanz_2026",
+      "topic": "asyl_quartal_at",
+      "scope": "BMI Asyl-Quartalsbilanz Österreich",
+      "year": "Q1-2026",
+      "headline": "Asyl-Bilanz Österreich Q1 2026 (BMI/Bundesministerium für Inneres)",
+      "data": {
+        "asylantraege_q1_2026": 1074,
+        "ausreisen_gesamt_q1_2026": 3575,
+        "ausreisen_zwangsweise_q1_2026": 1882,
+        "ausreisen_zwangsweise_anteil_pct": 53.0,
+        "familienzusammenfuehrung_q1_2026": 25,
+        "familienzusammenfuehrung_q1_2025": 401,
+        "familienzusammenfuehrung_rueckgang_pct": -93.8,
+        "trend_text": "Mehr Ausreisen als Asylanträge — Trend fortgesetzt vom 4. Quartal 2025 (Q1 2025 war erstes Quartal mit dieser Konstellation seit Beginn der Asyl-Statistik)."
+      },
+      "context_notes": [
+        "Q1 2026 hatte Österreich rund 3,3-mal so viele Ausreisen (3.575) wie Asyl-Erstanträge (1.074) — das ist eine historisch neue Konstellation.",
+        "Das BMI publiziert diese Quartalsbilanz als Pressemeldung; eine offizielle API gibt es nicht. Die Zahlen werden hier kuratiert nach BMI-Bilanz April 2026 + parlamentarische Anfragebeantwortung XXVIII/AB/3361.",
+        "Familienzusammenführungen sind Q1 2026 stark gefallen (-93,8 % gegenüber Q1 2025) — das wird politisch dem 'Aussetzen der Familienzusammenführung' im Regierungsprogramm 2025 zugeschrieben.",
+        "Asyl-Antragsrückgang ist EU-weit (Greichenland, Italien, Frankreich auch deutlich gesunken)."
+      ],
+      "claim_phrasings_handled": [
+        "Q1 2026 Asyl Österreich",
+        "erstes Quartal 2026 Asylanträge",
+        "mehr Abschiebungen als Asylanträge",
+        "Asyl-Bilanz Österreich",
+        "Familienzusammenführung Asyl"
+      ],
+      "source_label": "BMI Österreich — Asyl-Quartalsbilanz Q1 2026; Parlamentarische Anfragebeantwortung XXVIII/AB/3361",
+      "source_url": "https://www.bmi.gv.at/301/Statistiken/",
+      "secondary_url": "https://www.parlament.gv.at/dokument/XXVIII/AB/3361/imfname_1732134.pdf",
+      "fetched_at_iso": "2026-04-27"
+    },
+    {
+      "id": "staatsbuergerschaft_bevoelkerung_2026",
+      "topic": "citizenship_population_at",
+      "scope": "Bevölkerungsstand nach Staatsbürgerschaft Österreich",
+      "year": "1.1.2026",
+      "headline": "Wohnbevölkerung Österreich nach Staatsbürgerschaft (Stichtag 1.1.2026)",
+      "data": {
+        "bevoelkerung_gesamt": 9220000,
+        "bevoelkerung_at_staatsbuerger": 7330000,
+        "bevoelkerung_nicht_at_staatsbuerger": 1890740,
+        "anteil_nicht_at_pct": 20.5,
+        "anteil_at_pct": 79.5,
+        "wachstum_2025_pct": 0.2,
+        "trend_text": "Anteil Nicht-AT-Staatsbürger steigt seit 2010 kontinuierlich (2010: 11,3 %; 2020: 17,1 %; 2026: 20,5 %)."
+      },
+      "context_notes": [
+        "WICHTIG: 'Anteil ohne AT-Staatsbürgerschaft' (20,5 %) ≠ 'Migrationshintergrund' (deutlich höher, ca. 27 %). Migrationshintergrund umfasst auch eingebürgerte Personen + im Inland Geborene mit ausländischen Eltern.",
+        "Größte Gruppen Nicht-AT-Staatsbürger 2026: deutsche (ca. 220.000), rumänische (ca. 145.000), serbische (ca. 125.000), syrische (ca. 110.000), türkische (ca. 105.000) Staatsbürger.",
+        "Eine Behauptung wie '20 Prozent in Österreich haben keine AT-Staatsbürgerschaft' ist faktisch korrekt (20,5 %) — Rundung ist im Boulevard-Journalismus akzeptabel."
+      ],
+      "claim_phrasings_handled": [
+        "20 Prozent ohne österreichische Staatsbürgerschaft",
+        "Anteil Ausländer Bevölkerung Österreich",
+        "Nicht-Österreicher Anzahl",
+        "ausländische Wohnbevölkerung Österreich"
+      ],
+      "source_label": "Statistik Austria — Bevölkerungsstand 1.1.2026",
+      "source_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/bevoelkerungsstand/bevoelkerung-zu-jahres-/-quartalsanfang",
+      "secondary_url": "https://www.statistik.at/fileadmin/announcement/2026/02/20260209Bevoelkerung1.1.2026.pdf",
+      "fetched_at_iso": "2026-04-27"
+    },
+    {
+      "id": "asyl_eu_ranking_2025",
+      "topic": "asyl_eu_ranking_at",
+      "scope": "EU-Vergleich Asylanträge pro Kopf — Österreichs Position",
+      "year": 2025,
+      "headline": "Asylanträge im EU-Vergleich (pro 100.000 Einwohner) — Österreich 2025",
+      "data": {
+        "anzahl_asylantraege_at_2025": 8014,
+        "asylantraege_pro_100k_at": 181,
+        "rang_at_in_eu_2025": 11,
+        "eu_durchschnitt_pro_100k": 177,
+        "eu_top_3": [
+          {"rang": 1, "land": "Griechenland", "wert": 594},
+          {"rang": 2, "land": "Zypern", "wert": 483},
+          {"rang": 3, "land": "Spanien", "wert": 268}
+        ],
+        "eu_bottom_3": [
+          {"rang": 25, "land": "Slowakei", "wert": 12},
+          {"rang": 26, "land": "Ungarn", "wert": 10},
+          {"rang": 27, "land": "Bulgarien", "wert": 8}
+        ]
+      },
+      "context_notes": [
+        "Österreich liegt 2025 mit 181 Anträgen pro 100.000 Einwohner an Rang 11 von 27 EU-Staaten — knapp ÜBER dem EU-Schnitt (177).",
+        "Pro-Kopf-Werte sind aussagekräftiger als absolute Zahlen, da sie für die Bevölkerungsgröße kontrollieren — DE, FR und IT haben absolut die meisten Anträge, aber pro-Kopf liegen sie näher am EU-Schnitt.",
+        "Das Ranking schwankt jährlich; 2023 lag AT noch auf Rang 5 (deutlich höher), Q1 2026 wird AT mit dem aktuellen Antragsrückgang voraussichtlich auf Rang 13–15 fallen."
+      ],
+      "claim_phrasings_handled": [
+        "Österreich Rang Asyl EU",
+        "Asylanträge pro Kopf EU",
+        "11. Stelle Asyl",
+        "EU-Vergleich Asyl Österreich",
+        "über EU-Schnitt Asyl"
+      ],
+      "source_label": "BMI Asylstatistik 2025 + Eurostat asyappctzm — kompiliert nach BMI-Pressemeldung April 2026",
+      "source_url": "https://www.bmi.gv.at/301/Statistiken/files/Jahresstatistiken/asylstatistik_jahr_2025.pdf",
+      "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/migr_asyappctzm/",
+      "fetched_at_iso": "2026-04-27"
     }
   ],
-  "fetched_at_iso": "2026-04-26",
-  "note": "Kuratierte AT-Faktoide aus offiziellen Primärquellen (Bildungsdirektion Wien, BMF, Statistik Austria). Manuell aktualisiert — Refresh-Cadence: jährlich nach Erscheinen des BMF-Förderungsberichts (typ. Q1) bzw. der Bildungsdirektion-Stichtagserhebung (Q4).",
-  "version": 1
+  "fetched_at_iso": "2026-04-27",
+  "note": "Kuratierte AT-Faktoide aus offiziellen Primärquellen (Bildungsdirektion Wien, BMF, Statistik Austria, BMI, Sozialministerium, PV.at). Manuell aktualisiert — Refresh-Cadence: jährlich nach Erscheinen des jeweiligen Berichts.",
+  "version": 3
 }
