@@ -82,6 +82,15 @@ _RELIGION_TERMS = (
     "orthodox", "evangelisch", "protestant",
     "jüdisch", "judentum",
     "ohne bekenntnis", "konfessionslos",
+    # Wiener Schulstatistik geht auch um Sprache + Staatsbürgerschaft —
+    # selber Datensatz (Bildungsdirektion Wien), gleicher Topic-Trigger.
+    "umgangssprache", "muttersprache",
+    "nicht-deutsch", "nicht deutsch",
+    "nicht deutschsprachig", "nicht-deutschsprachig",
+    "deutsch zuhause", "zuhause nicht deutsch",
+    "ausländische schüler", "auslaendische schueler",
+    "ausländische staatsbürger schüler",
+    "migrationshintergrund schule", "migrationshintergrund schüler",
 )
 _SCHOOL_TERMS = (
     "schule", "schul", "schüler", "schülerinnen", "schulkind",
@@ -98,7 +107,26 @@ def _claim_mentions_religion_schools_vienna(claim_lc: str) -> bool:
     has_relig = any(t in claim_lc for t in _RELIGION_TERMS)
     has_school = any(t in claim_lc for t in _SCHOOL_TERMS)
     has_wien = any(t in claim_lc for t in _WIEN_TERMS) or claim_lc.startswith("wien")
-    return has_relig and has_school and has_wien
+    if has_relig and has_school and has_wien:
+        return True
+    # Erweiterung: auch wenn Religion fehlt, aber „ausländische Staatsbürger
+    # Schüler" / „Migrationshintergrund Schüler" / „nicht-deutsch Schüler" +
+    # Wien-Bezirke explicit genannt werden, ist es derselbe Datensatz.
+    has_demographic = any(t in claim_lc for t in (
+        "ausländische staatsbürger", "auslaendische staatsbuerger",
+        "ausländische schüler", "ausländer schüler",
+        "migrationshintergrund",
+        "nicht-deutsch", "nicht deutsch",
+        "umgangssprache", "muttersprache",
+    ))
+    has_wien_bezirk = any(b in claim_lc for b in (
+        "favoriten", "ottakring", "rudolfsheim", "fünfhaus",
+        "leopoldstadt", "donaustadt", "floridsdorf", "brigittenau",
+        "wien-favoriten", "wien favoriten",
+    ))
+    if has_demographic and has_school and (has_wien or has_wien_bezirk):
+        return True
+    return False
 
 
 # ---------------------------------------------------------------------------
@@ -353,6 +381,90 @@ def _claim_mentions_energy_tariff(claim_lc: str) -> bool:
     return _has_at_context(claim_lc)
 
 
+# ---------------------------------------------------------------------------
+# Topic 11: Eingebürgerten-Gleichbehandlung (FPÖ-Gegenposition)
+# ---------------------------------------------------------------------------
+_NATURALIZED_TERMS = (
+    "eingebürgerte", "eingebuergerte",
+    "naturalisierte", "naturalisierten",
+    "neue staatsbürger", "neue staatsbuerger",
+    "frisch eingebürgert", "frisch eingebuergert",
+    "naturalized austrians", "newly naturalized",
+)
+
+
+def _claim_mentions_naturalized(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _NATURALIZED_TERMS)
+    if not has_term:
+        return False
+    # Soziallleistungs-Bezug erforderlich
+    has_social = any(s in claim_lc for s in (
+        "sozialleistung", "sozialleist", "sozialhilfe", "mindestsicherung",
+        "höhere", "hoehere", "mehr geld", "bevorzugt", "bevorzugung",
+        "benefit", "social", "welfare",
+    ))
+    if not has_social:
+        return False
+    return _has_at_context(claim_lc) or any(s in claim_lc for s in (
+        "gebürtige österreicher", "geburts-österreicher",
+        "gebürtige oesterreicher",
+    ))
+
+
+# ---------------------------------------------------------------------------
+# Topic 12: Gesundheits-Falschmeldungen (Krebs/Handy/Strahlung)
+# ---------------------------------------------------------------------------
+_HEALTH_MIS_TERMS = (
+    "krebs durch handy", "krebs durch strahlung", "krebs durch 5g",
+    "handy strahlung krebs", "handy-strahlung krebs",
+    "mobilfunk krebs", "mobilfunkstrahlung krebs",
+    "5g krebs", "wlan krebs",
+    "strahlung verursacht krebs",
+    "cell phone cancer", "5g cancer",
+)
+
+
+def _claim_mentions_health_misinformation(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _HEALTH_MIS_TERMS)
+    if has_term:
+        return True
+    # Composite: "krebs" + ("handy" oder "strahlung" oder "mobilfunk")
+    has_cancer = any(t in claim_lc for t in ("krebs", "cancer"))
+    has_radio = any(t in claim_lc for t in (
+        "handy", "mobilfunk", "5g ", "strahlung", "wlan", "smartphone-",
+    ))
+    if has_cancer and has_radio:
+        # Solche Claims sind weltweit ähnlich; AT-Kontext nicht zwingend
+        return True
+    return False
+
+
+# ---------------------------------------------------------------------------
+# Topic 13: AMS-Mangelberufsliste
+# ---------------------------------------------------------------------------
+_LABOR_SHORTAGE_TERMS = (
+    "mangelberufe", "mangelberuf",
+    "mangelberufsliste",
+    "fachkräftemangel", "fachkraeftemangel",
+    "fachkräfte mangel", "fachkraefte mangel",
+    "ams mangel",
+    "berufsmangel österreich",
+    "shortage occupations", "labor shortage austria",
+)
+
+
+def _claim_mentions_labor_shortage(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _LABOR_SHORTAGE_TERMS)
+    if not has_term:
+        return False
+    # AT-spezifische Termini
+    if any(s in claim_lc for s in (
+        "ams ", "mangelberufsliste", "auslbg", "ausländerbeschäftigungs",
+    )):
+        return True
+    return _has_at_context(claim_lc)
+
+
 def _claim_mentions_pension_adjustment(claim_lc: str) -> bool:
     import re as _re
     has_pension = any(t in claim_lc for t in _PENSION_TERMS)
@@ -426,6 +538,12 @@ def _claim_matches_any_topic(claim: str) -> list[str]:
         matched.append("budget_savings_package_at")
     if _claim_mentions_energy_tariff(cl):
         matched.append("energy_tariffs_at")
+    if _claim_mentions_naturalized(cl):
+        matched.append("naturalized_equal_treatment_at")
+    if _claim_mentions_health_misinformation(cl):
+        matched.append("health_misinformation_at")
+    if _claim_mentions_labor_shortage(cl):
+        matched.append("labor_shortage_jobs_at")
     return matched
 
 
@@ -472,7 +590,7 @@ async def fetch_at_factbook(client=None):
 # ---------------------------------------------------------------------------
 # Result builders — one per topic
 # ---------------------------------------------------------------------------
-def _build_religion_results(fact: dict) -> list[dict]:
+def _build_religion_results(fact: dict, claim_lc: str = "") -> list[dict]:
     """Build result entries for Wiener Pflichtschul-Religionsstatistik."""
     data = fact.get("data") or {}
     year = fact.get("year", "")
@@ -557,6 +675,67 @@ def _build_religion_results(fact: dict) -> list[dict]:
             "url": src,
             "source": label,
         })
+
+    # Sprach-Statistik (51,6 % nicht-deutschsprachig) wenn Claim Sprache erwähnt
+    if any(s in claim_lc for s in (
+        "umgangssprache", "muttersprache", "nicht-deutsch", "nicht deutsch",
+        "deutsch zuhause", "zuhause nicht deutsch", "51,6", "51.6",
+    )):
+        sprach_pct = data.get("umgangssprache_nicht_deutsch_pct_wien_gesamt")
+        if sprach_pct:
+            results.insert(0, {
+                "indicator_name": f"Wiener Schüler:innen — Umgangssprache nicht Deutsch ({year})",
+                "indicator": "factbook_wien_schule_sprache",
+                "country": "AUT", "country_name": "Österreich",
+                "year": year,
+                "display_value": (
+                    f"In Wien sprechen rund {sprach_pct} % der Schüler:innen "
+                    f"zuhause NICHT Deutsch (ÖIF-Factsheet 2024/25). "
+                    f"Eine Behauptung von '51,6 %' ist faktisch korrekt."
+                ),
+                "description": (
+                    "Bezieht sich auf alle Wiener Schultypen incl. AHS/BHS. "
+                    "Die Zahl unterscheidet zwischen 'Bildungssprache Deutsch' "
+                    "und 'Umgangssprache zuhause' — letztere ist deutlich "
+                    "höher, weil viele Kinder aus Migrantenhaushalten in der "
+                    "Schule fließend Deutsch sprechen, aber zuhause die "
+                    "Familiensprache verwenden. NICHT zu verwechseln mit "
+                    "'Deutschkenntnisse unzureichend'."
+                ),
+                "url": src, "source": label,
+            })
+
+    # Staatsbürgerschafts-Statistik nach Bezirken
+    if any(s in claim_lc for s in (
+        "ausländische schüler", "auslaendische schueler",
+        "ausländische staatsbürger schüler",
+        "favoriten", "ottakring", "rudolfsheim",
+        "wien-favoriten", "wien favoriten",
+        "45 prozent schüler", "45 % schüler",
+        "47 prozent schüler", "47 % schüler",
+    )):
+        bezirke_top = data.get("auslaendische_staatsbuerger_top_bezirke") or []
+        if bezirke_top:
+            top_str = ", ".join(
+                f"{b['bezirk']} {b['anteil_pct']} %" for b in bezirke_top
+            )
+            results.insert(0, {
+                "indicator_name": f"Wiener Pflichtschulen — Ausländische Staatsbürger ({year}, Top-Bezirke)",
+                "indicator": "factbook_wien_schule_staatsbuerger",
+                "country": "AUT", "country_name": "Österreich",
+                "year": year,
+                "display_value": (
+                    f"Wien-Pflichtschulen — Top-Bezirke nach Anteil ausländischer "
+                    f"Staatsbürger ({year}): {top_str}. "
+                    f"Wien gesamt: ~{data.get('auslaendische_staatsbuerger_pct_wien_pflichtschulen')} %."
+                ),
+                "description": (
+                    "Quelle: ÖIF-Factsheet 2024/25 + Bildungsdirektion Wien. "
+                    "Eine Behauptung 'Wien-Favoriten: 45 %' liegt im "
+                    "dokumentierten ÖIF-Wert (45 %)."
+                ),
+                "url": src, "source": label,
+            })
 
     return results
 
@@ -873,7 +1052,7 @@ def _build_asyl_quartal_results(fact: dict, claim_lc: str) -> list[dict]:
     for note in fact.get("context_notes") or []:
         description_parts.append(note)
 
-    return [{
+    results: list[dict] = [{
         "indicator_name": "BMI Asyl-Bilanz Q1 2026 (Gesamt + Originär)",
         "indicator": "factbook_asyl_quartal",
         "country": "AUT",
@@ -885,6 +1064,41 @@ def _build_asyl_quartal_results(fact: dict, claim_lc: str) -> list[dict]:
         "url": src,
         "source": label,
     }]
+
+    # Familienzusammenführung-Spezial-Eintrag wenn Claim das Thema nennt
+    if any(s in claim_lc for s in (
+        "familienzusammenführung", "familienzusammenfuehrung",
+        "familiennachzug", "syrische kinder", "syrer kinder",
+        "350 kinder", "350 syrer",
+    )):
+        fz_q1 = data.get("familienzusammenfuehrung_q1_2026")
+        fz_q1_2025 = data.get("familienzusammenfuehrung_q1_2025")
+        rueckgang = data.get("familienzusammenfuehrung_rueckgang_pct")
+        # 350/Monat = 1.050/Quartal — das ist 42-mal mehr als die echten 25!
+        results.insert(0, {
+            "indicator_name": "Familienzusammenführung Österreich Q1 2026 — DIREKTER COUNTER",
+            "indicator": "factbook_asyl_familienzu",
+            "country": "AUT", "country_name": "Österreich",
+            "year": "Q1-2026",
+            "display_value": (
+                f"Familienzusammenführungen Österreich Q1 2026: {fz_q1} Personen TOTAL "
+                f"(rund {round(fz_q1/3, 1)} pro Monat) — Rückgang um {rueckgang} % "
+                f"gegenüber Q1 2025 ({fz_q1_2025} Personen). "
+                f"Eine Behauptung von '350 Kindern pro Monat' wäre 1.050 pro Quartal — "
+                f"42-MAL HÖHER als die offizielle BMI-Zahl. STRUKTURELL FALSCH."
+            ),
+            "description": (
+                "Die 350-Personen-pro-Monat-Zahl stammt aus Berichten von 2024/25 "
+                "(als die Familienzusammenführung noch deutlich höher lag). "
+                "Mit der Reform des Regierungsprogramms 2025 wurde die "
+                "Familienzusammenführung de-facto eingefroren — Q1 2026 zeigt "
+                "den Effekt: 25 Personen total, also rund 8 pro Monat. "
+                "Eine Behauptung von 350/Monat ist zum aktuellen Stand widerlegt."
+            ),
+            "url": src, "source": label,
+        })
+
+    return results
 
 
 # ---------------------------------------------------------------------------
@@ -1210,6 +1424,111 @@ def _build_energy_tariff_results(fact: dict, claim_lc: str) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
+# Topic 11: Naturalisierten-Gleichbehandlung
+# ---------------------------------------------------------------------------
+def _build_naturalized_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "Sozialministerium / ASVG"
+
+    headline = (
+        "STRUKTURELL FALSCH: Sozialleistungen in Österreich werden NICHT "
+        "nach 'gebürtig' vs. 'eingebürgert' unterschieden — alle Staatsbürger "
+        "haben dieselben Anspruchsvoraussetzungen (Wohnsitz, Beiträge, Bedürftigkeit)."
+    )
+
+    description_parts: list[str] = [data.get("rechtsgrundlage", "")]
+    for note in fact.get("context_notes") or []:
+        description_parts.append(note)
+
+    return [{
+        "indicator_name": "Naturalisierten-Gleichbehandlung Österreich",
+        "indicator": "factbook_naturalized_equal",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": "fortlaufend",
+        "display_value": headline,
+        "description": " ".join(p for p in description_parts if p),
+        "url": src,
+        "source": label,
+    }]
+
+
+# ---------------------------------------------------------------------------
+# Topic 12: Gesundheits-Falschmeldungen (Krebs/Handy)
+# ---------------------------------------------------------------------------
+def _build_health_mis_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "WHO/IARC"
+
+    haupt = data.get("haupt_krebs_ursachen_at") or []
+    haupt_str = "; ".join(
+        f"{e['ursache']} ~{e['anteil_pct_approx']} %" for e in haupt[:5]
+    )
+
+    headline = (
+        f"WHO/IARC: KEINE kausale Verbindung zwischen Mobilfunkstrahlung "
+        f"und Krebs. IARC-Einstufung: {data.get('iarc_einstufung')}. "
+        f"Hauptursachen Krebs in AT: {haupt_str}."
+    )
+
+    description_parts: list[str] = [
+        data.get("who_position_2024", ""),
+    ]
+    for note in fact.get("context_notes") or []:
+        description_parts.append(note)
+
+    return [{
+        "indicator_name": "Mobilfunkstrahlung und Krebs — WHO/IARC-Faktenlage",
+        "indicator": "factbook_health_mis",
+        "country": "WLD",
+        "country_name": "Welt (WHO)",
+        "year": "2024",
+        "display_value": headline,
+        "description": " ".join(p for p in description_parts if p),
+        "url": src,
+        "source": label,
+    }]
+
+
+# ---------------------------------------------------------------------------
+# Topic 13: AMS Mangelberufsliste
+# ---------------------------------------------------------------------------
+def _build_labor_shortage_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "BMA / AMS"
+
+    headline = (
+        f"AMS-Mangelberufsliste 2025: "
+        f"{data.get('anzahl_bundesweit_mangelberufe')} bundesweite "
+        f"+ {data.get('anzahl_regional_mangelberufe')} regionale Mangelberufe. "
+        f"Schwerpunkte: " + ", ".join(data.get('schwerpunkt_bereiche') or []) + ". "
+        f"Veränderung: {data.get('veraenderung_zum_vorjahr', '')}."
+    )
+
+    description_parts: list[str] = [
+        data.get("rechtsgrundlage", ""),
+    ]
+    for note in fact.get("context_notes") or []:
+        description_parts.append(note)
+
+    return [{
+        "indicator_name": "AMS-Mangelberufsliste Österreich 2025",
+        "indicator": "factbook_labor_shortage_at",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": "2025",
+        "value": data.get("anzahl_bundesweit_mangelberufe"),
+        "display_value": headline,
+        "description": " ".join(p for p in description_parts if p),
+        "url": src,
+        "source": label,
+    }]
+
+
+# ---------------------------------------------------------------------------
 # Public search
 # ---------------------------------------------------------------------------
 async def search_at_factbook(analysis: dict) -> dict:
@@ -1242,7 +1561,7 @@ async def search_at_factbook(analysis: dict) -> dict:
             if fact.get("topic") != topic:
                 continue
             if topic == "religion_schools_vienna":
-                results.extend(_build_religion_results(fact))
+                results.extend(_build_religion_results(fact, cl))
             elif topic == "federal_subsidies_austria":
                 results.extend(_build_subsidies_results(fact, cl))
             elif topic == "social_assistance_austria":
@@ -1261,6 +1580,12 @@ async def search_at_factbook(analysis: dict) -> dict:
                 results.extend(_build_sparpaket_results(fact, cl))
             elif topic == "energy_tariffs_at":
                 results.extend(_build_energy_tariff_results(fact, cl))
+            elif topic == "naturalized_equal_treatment_at":
+                results.extend(_build_naturalized_results(fact, cl))
+            elif topic == "health_misinformation_at":
+                results.extend(_build_health_mis_results(fact, cl))
+            elif topic == "labor_shortage_jobs_at":
+                results.extend(_build_labor_shortage_results(fact, cl))
 
     return {
         "source": "AT Factbook",

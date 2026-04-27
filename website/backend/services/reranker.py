@@ -67,6 +67,8 @@ _AUTHORITATIVE_INDICATORS = (
     "wahl_euw_ranking",
     "factbook_religion_vienna",          # AT-Factbook curated entries
     "factbook_religion_vienna_subgroup",
+    "factbook_wien_schule_sprache",
+    "factbook_wien_schule_staatsbuerger",
     "factbook_subsidies_at",
     "factbook_subsidies_check",
     "factbook_social_assistance_at",
@@ -74,6 +76,7 @@ _AUTHORITATIVE_INDICATORS = (
     "factbook_pension_at",
     "factbook_health_blocked",
     "factbook_asyl_quartal",
+    "factbook_asyl_familienzu",
     "factbook_citizenship_at",
     "factbook_asyl_ranking",
     "factbook_sparpaket_at",
@@ -85,6 +88,9 @@ _AUTHORITATIVE_INDICATORS = (
     "factbook_klimaticket",
     "factbook_stromsozialtarif",
     "factbook_gasnetzgebuehren",
+    "factbook_naturalized_equal",
+    "factbook_health_mis",
+    "factbook_labor_shortage_at",
     "pks_overall",                       # BKA PKS-Hauptbericht
     "pks_drug_crime",                    # BKA Lagebericht Suchtmittel
     "pks_drug_crime_vienna",

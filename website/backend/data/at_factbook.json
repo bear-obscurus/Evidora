@@ -15,7 +15,15 @@
         "evangelisch_pct": 1.7,
         "sonstige_christlich_pct": 0.8,
         "ohne_bekenntnis_pct": 23.0,
-        "sonstige_pct": 1.3
+        "sonstige_pct": 1.3,
+        "umgangssprache_nicht_deutsch_pct_wien_gesamt": 51.6,
+        "umgangssprache_nicht_deutsch_quelle": "ÖIF-Factsheet 2024/25; Wien gesamt incl. AHS/BHS",
+        "auslaendische_staatsbuerger_pct_wien_pflichtschulen": 35.0,
+        "auslaendische_staatsbuerger_top_bezirke": [
+          {"bezirk": "Ottakring", "anteil_pct": 47},
+          {"bezirk": "Favoriten", "anteil_pct": 45},
+          {"bezirk": "Rudolfsheim-Fünfhaus", "anteil_pct": 42}
+        ]
       },
       "subgroup_breakdowns": [
         {
@@ -184,8 +192,9 @@
       "data": {
         "anpassungsfaktor": 1.027,
         "anpassung_pct_normal": 2.7,
-        "ausgleichszulagen_richtsatz_alleinstehend_eur": 1217.96,
-        "ausgleichszulagen_richtsatz_paare_eur": 1921.46,
+        "ausgleichszulagen_richtsatz_alleinstehend_eur": 1308.39,
+        "ausgleichszulagen_richtsatz_paare_eur": 2064.12,
+        "ausgleichszulagen_richtsatz_2025_alleinstehend_eur": 1273.99,
         "luxus_pension_grenze_eur_pro_monat": 2500.01,
         "luxus_pension_pauschal_eur": 67.50,
         "berechnungsbasis": "VPI Aug 2024 → Juli 2025 (12-Monats-Rolling)"
@@ -366,6 +375,103 @@
       "source_label": "BMI Asylstatistik 2025 + Eurostat asyappctzm — kompiliert nach BMI-Pressemeldung April 2026",
       "source_url": "https://www.bmi.gv.at/301/Statistiken/files/Jahresstatistiken/asylstatistik_jahr_2025.pdf",
       "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/migr_asyappctzm/",
+      "fetched_at_iso": "2026-04-27"
+    },
+    {
+      "id": "naturalisierte_gleichbehandlung",
+      "topic": "naturalized_equal_treatment_at",
+      "scope": "Sozialleistungen Österreich — Gleichbehandlung Eingebürgerter und gebürtiger Österreicher",
+      "year": "fortlaufend",
+      "headline": "Sozialleistungen in Österreich — Gleichbehandlungs-Prinzip",
+      "data": {
+        "rechtsgrundlage": "ASVG, AlVG, Sozialhilfe-Grundsatzgesetz, Familienlastenausgleichsgesetz — alle Sozialleistungen knüpfen an Wohnsitz, Versicherungsbeiträge und Bedürftigkeit an, NICHT an Geburtsstaatsbürgerschaft.",
+        "naturalisierte_diff_zu_geburts_oest_pct": 0.0,
+        "ausgleichszulage_eligibility": "Voraussetzung: österreichische Staatsbürgerschaft ODER EWR-Bürger ODER Drittstaatsangehörige mit Daueraufenthalt-EU. Kein Bonus-Faktor für nach-naturalisierte Personen."
+      },
+      "context_notes": [
+        "STRUKTURELL FALSCH: Österreichisches Sozialrecht kennt KEINE Unterscheidung zwischen 'gebürtigen' und 'eingebürgerten' Staatsbürgern bei Sozialleistungen. Sobald jemand österreichische Staatsbürgerschaft besitzt (ob nach Geburt oder durch Verleihung), gelten exakt die gleichen Anspruchsvoraussetzungen.",
+        "Behauptungen wie 'Eingebürgerte erhalten höhere Sozialleistungen als gebürtige Österreicher' sind faktisch falsch — sie spielen mit dem Eindruck, dass bei Verleihung ein automatischer Leistungs-Boost ausgelöst wird. Das gibt es im österreichischen Recht NICHT.",
+        "Eingebürgerte profitieren in der Praxis von denselben Leistungen wie alle anderen Staatsbürger: Mindestsicherung, Familienbeihilfe, Arbeitslosengeld, Pension — alles abhängig von Beiträgen und Bedürftigkeit, nicht von Eingebürgert-Status.",
+        "VERDICT-EMPFEHLUNG: Solche Claims sind als 'false' oder 'mostly_false' zu bewerten."
+      ],
+      "claim_phrasings_handled": [
+        "Eingebürgerte höhere Sozialleistungen",
+        "Eingebürgerte mehr Geld als",
+        "Naturalisierte bevorzugt",
+        "Eingebürgerte Bevorzugung",
+        "Migranten höhere Sozialleistungen Staatsbürger"
+      ],
+      "source_label": "ASVG, Sozialhilfe-Grundsatzgesetz, Sozialministerium",
+      "source_url": "https://www.sozialministerium.gv.at/Themen/Soziales/Sozialhilfe-und-Mindestsicherung.html",
+      "secondary_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008147",
+      "fetched_at_iso": "2026-04-27"
+    },
+    {
+      "id": "krebs_handy_strahlung_widerlegt",
+      "topic": "health_misinformation_at",
+      "scope": "Gesundheits-Falschmeldungen — WHO/IARC-Position zu Mobilfunkstrahlung und Krebs",
+      "year": "WHO 2024",
+      "headline": "Mobilfunk und Krebs — WHO/IARC-Faktenlage",
+      "data": {
+        "iarc_einstufung": "Gruppe 2B (möglicherweise krebserregend) — derselbe Status wie Kaffee oder eingelegtes Gemüse, basierend auf begrenzter epidemiologischer Evidenz",
+        "iarc_quelle": "International Agency for Research on Cancer (IARC), 2011 Klassifikation, 2024 Bestätigung im Update-Verfahren",
+        "who_position_2024": "Keine kausale Verbindung zwischen Mobilfunkstrahlung und Krebs nachgewiesen — selbst nach 30 Jahren intensiver Mobilfunknutzung gibt es KEINEN messbaren Anstieg von Hirntumoren in der Allgemeinbevölkerung.",
+        "haupt_krebs_ursachen_at": [
+          {"ursache": "Tabakkonsum", "anteil_pct_approx": 30},
+          {"ursache": "Übergewicht/ungesunde Ernährung", "anteil_pct_approx": 20},
+          {"ursache": "UV-Strahlung", "anteil_pct_approx": 15},
+          {"ursache": "Alkohol", "anteil_pct_approx": 10},
+          {"ursache": "Infektionen (HPV, Hepatitis)", "anteil_pct_approx": 10},
+          {"ursache": "Mobilfunkstrahlung", "anteil_pct_approx": 0, "note": "Kein evidenzbasierter Beitrag laut WHO/IARC"}
+        ],
+        "krebs_neuerkrankungen_at_pro_jahr_approx": 45000
+      },
+      "context_notes": [
+        "STRUKTURELL FALSCH: Eine Behauptung wie 'Die meisten Krebs-Neuerkrankungen werden durch Handy-Strahlung verursacht' widerspricht dem WHO/IARC-Konsens.",
+        "Mobilfunkstrahlung ist von der IARC als 'möglicherweise krebserregend' (Gruppe 2B) klassifiziert — derselbe Status wie Kaffee, eingelegtes Gemüse, Aloe Vera. Die epidemiologische Evidenz ist begrenzt und uneinheitlich.",
+        "Die größten Krebsrisiken in Österreich sind seit Jahrzehnten dokumentiert: Tabakrauchen (~30 % aller Krebstote), Übergewicht/ungesunde Ernährung (~20 %), UV-Strahlung (~15 %), Alkoholkonsum (~10 %).",
+        "Ein 'durch Handy-Strahlung verursachter' Krebs-Anteil der 'meisten Neuerkrankungen' ist mit der Datenlage nicht vereinbar.",
+        "VERDICT-EMPFEHLUNG: Solche Claims sind als 'false' zu bewerten."
+      ],
+      "claim_phrasings_handled": [
+        "Krebs durch Handy-Strahlung",
+        "Mobilfunk Krebs",
+        "Strahlung Krebs Handy",
+        "Krebs verursacht Handy",
+        "5G Krebs"
+      ],
+      "source_label": "WHO/IARC; Statistik Austria — Gestorbene-Statistik; Krebsregister Österreich",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/electromagnetic-fields-and-public-health-mobile-phones",
+      "secondary_url": "https://monographs.iarc.who.int/list-of-classifications/",
+      "fetched_at_iso": "2026-04-27"
+    },
+    {
+      "id": "ams_mangelberufe_2025",
+      "topic": "labor_shortage_jobs_at",
+      "scope": "AMS-Mangelberufsliste Österreich 2025",
+      "year": 2025,
+      "headline": "Mangelberufe in Österreich Ende 2025 (AMS-Mangelberufsliste)",
+      "data": {
+        "anzahl_bundesweit_mangelberufe": 51,
+        "anzahl_regional_mangelberufe": 67,
+        "schwerpunkt_bereiche": ["Technik/IT", "Gesundheit/Pflege", "Bau/Handwerk"],
+        "rechtsgrundlage": "AMS-Mangelberufsliste § 12a Abs. 4 AuslBG — Berufe mit weniger als 1,5 Bewerber pro offene Stelle gelten als Mangelberufe",
+        "veraenderung_zum_vorjahr": "+5 vs. 2024 (damals 46 Mangelberufe bundesweit)"
+      },
+      "context_notes": [
+        "Die AMS-Mangelberufsliste wird jährlich vom Bundesministerium für Arbeit per Verordnung veröffentlicht. Stichtag Ende 2025: 51 bundesweite + 67 regionale Mangelberufe = 118 gesamt.",
+        "Hauptbereiche 2025: technische Berufe (Mechatroniker, Elektroniker), Gesundheits-/Pflegeberufe (DGKP, Pflegefachassistenz), Handwerk (Dachdecker, Spengler, Fleischer).",
+        "Eine Behauptung von '51 Mangelberufen Ende 2025' bezieht sich typisch auf die BUNDESWEITE Liste (faktisch korrekt) — wer die Gesamt-Zahl meint (118 incl. regional), würde mehr nennen."
+      ],
+      "claim_phrasings_handled": [
+        "Mangelberufe Österreich",
+        "AMS Mangelberufsliste",
+        "51 Mangelberufe",
+        "Fachkräftemangel Berufe Österreich"
+      ],
+      "source_label": "BMA / AMS Mangelberufsliste 2025 (Verordnung)",
+      "source_url": "https://www.ams.at/unternehmen/personalsuche/auslaenderinnen-beschaeftigen/mangelberufsliste",
+      "secondary_url": "https://www.bma.gv.at/",
       "fetched_at_iso": "2026-04-27"
     },
     {

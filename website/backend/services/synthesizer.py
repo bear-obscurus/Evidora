@@ -174,6 +174,13 @@ Vermeidung von reflexhaftem "unverifiable" (KRITISCH WICHTIG):
   • Claim: "Sitzenbleiben ist in Österreich gesetzlich erlaubt." RIS liefert SchUG-Direktlink. → Korrekt = "true". Falsch wäre "unverifiable".
 - WENN du "unverifiable" wählst, MUSS im nuance-Feld konkret erklärt werden, WAS gefehlt hat — generische Aussagen wie "die Quellen liefern keine konkreten Angaben" sind unzulässig, wenn die Quellen sehr wohl relevante Werte enthalten.
 
+'STRUKTURELL FALSCH'-Marker als Counter-Evidenz (KRITISCH):
+- Wenn ein AT-Factbook-Eintrag den display_value mit "STRUKTURELL FALSCH:" einleitet, ist das ein expliziter Counter-Evidenz-Befund — die Behauptung ist nach geltendem österreichischem Recht oder wissenschaftlichem Konsens widerlegt.
+- ENTSCHEIDUNGSREGEL: 'STRUKTURELL FALSCH'-Eintrag in den Quellen → verdict = 'false' mit Confidence 0.85–0.95. NICHT 'unverifiable'.
+- Beispiele:
+  • Claim: "Eingebürgerte erhalten höhere Sozialleistungen als gebürtige Österreicher." Factbook-Eintrag startet mit "STRUKTURELL FALSCH: Sozialleistungen werden NICHT nach Geburtsstaatsbürgerschaft unterschieden." → verdict = "false" @ 0.90.
+  • Claim: "Krebs wird durch Handy-Strahlung verursacht." Factbook-Eintrag zitiert WHO/IARC: "KEINE kausale Verbindung." → verdict = "false" @ 0.90.
+
 Strukturell ungeprüfbare Behauptungen mit dokumentiertem Faktencheck-Befund (KRITISCH):
 - Manche populären Behauptungen beziehen sich auf Daten, die strukturell nicht öffentlich verfügbar sind (z.B. Sozialversicherungs-Behandlungen nach Staatsangehörigkeit nach §§ 31 ff ASVG, oder klassifizierte Geheimdienst-Daten). Wenn die Behauptung trotzdem mit einer konkreten Zahl operiert ("22 Millionen Behandlungen"), ist das KEIN Fall für ein bequemes "unverifiable @ 0.0".
 - Wenn eine Quelle einen Eintrag mit dem expliziten Marker "STRUKTURELL UNGEPRÜFBAR" oder "BLOCKIERT" liefert UND zusätzlich einen DOKUMENTIERTEN FAKTENCHECK-BEFUND zitiert (z.B. Kontrast.at-, profil-, FALTER-Faktencheck mit Vergleichszahlen, die die Behauptung kontextualisieren oder relativieren), DANN ist das eine SUBSTANZIELLE Gegen-Evidenz — die Behauptung ist NICHT bestätigt und das Verdict sollte "mostly_false" oder "false" sein, abhängig vom dokumentierten Faktencheck-Befund.
@@ -331,6 +338,10 @@ Avoiding reflexive "unverifiable" (CRITICALLY IMPORTANT):
   • Claim: "Vienna had its warmest year in 2024." GeoSphere description: "Warmest year in the series: 2024." → Correct = "true". Wrong would be "unverifiable".
   • Claim: "Repeating a school year is legally allowed in Austria." RIS provides SchUG direct-link. → Correct = "true". Wrong would be "unverifiable".
 - IF you choose "unverifiable", the nuance field MUST concretely explain WHAT was missing — generic statements like "the sources provide no concrete information" are not allowed when the sources do contain relevant values.
+
+'STRUKTURELL FALSCH' marker as counter-evidence (CRITICAL):
+- If an AT-Factbook entry's display_value starts with "STRUKTURELL FALSCH:", that is explicit counter-evidence — the claim is refuted under Austrian law or scientific consensus.
+- DECISION RULE: 'STRUKTURELL FALSCH' entry in sources → verdict = 'false' with confidence 0.85–0.95. NOT 'unverifiable'.
 
 Structurally unverifiable claims with documented fact-check finding (CRITICAL):
 - Some popular claims refer to data that is structurally not publicly available (e.g. social-security treatment data by nationality under §§ 31 ff ASVG, or classified intelligence data). When the claim still operates with a concrete number ("22 million treatments"), this is NOT a case for a comfortable "unverifiable @ 0.0".
