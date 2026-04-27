@@ -259,20 +259,32 @@
       "year": "Q1-2026",
       "headline": "Asyl-Bilanz Österreich Q1 2026 (BMI/Bundesministerium für Inneres)",
       "data": {
-        "asylantraege_q1_2026": 1074,
+        "asylantraege_gesamt_q1_2026": 2598,
+        "asylantraege_originaer_q1_2026": 1074,
+        "asylantraege_folge_q1_2026": 1524,
+        "asylantraege_q1_2025_gesamt_approx": 4760,
+        "asylantraege_rueckgang_pct_yoy": -45.4,
+        "asylantraege_q1_2024_gesamt_approx": 7000,
+        "schutztitel_zuerkannt_q1_2026": 3500,
         "ausreisen_gesamt_q1_2026": 3575,
         "ausreisen_zwangsweise_q1_2026": 1882,
         "ausreisen_zwangsweise_anteil_pct": 53.0,
         "familienzusammenfuehrung_q1_2026": 25,
         "familienzusammenfuehrung_q1_2025": 401,
         "familienzusammenfuehrung_rueckgang_pct": -93.8,
-        "trend_text": "Mehr Ausreisen als Asylanträge — Trend fortgesetzt vom 4. Quartal 2025 (Q1 2025 war erstes Quartal mit dieser Konstellation seit Beginn der Asyl-Statistik)."
+        "unbegleitete_minderjaehrige_q1_2026": 42,
+        "trend_text": "Mehr Ausreisen (3.575) als Asylanträge gesamt (2.598) — Trend fortgesetzt vom 4. Quartal 2025."
       },
       "context_notes": [
-        "Q1 2026 hatte Österreich rund 3,3-mal so viele Ausreisen (3.575) wie Asyl-Erstanträge (1.074) — das ist eine historisch neue Konstellation.",
+        "WICHTIG — zwei verschiedene Asyl-Antragszahlen werden in Medien zitiert:",
+        "(1) GESAMT-Anträge Q1 2026 = 2.598 (incl. 1.524 Folgeanträge bestehender Verfahren). Das ist die Zahl, die OE24 und andere Medien typisch zitieren ('knapp 2.600').",
+        "(2) ORIGINÄRE Anträge Q1 2026 = 1.074 (nur neu einreisende Personen). Das ist die Kennzahl für 'Erstantragsteller'.",
+        "Beide Zahlen sind korrekt — der Unterschied liegt in der Definition. Eine Krone-/OE24-Behauptung von '2.600 Anträge' meint die Gesamt-Zahl (richtig). Eine Behauptung von '1.074 Erstanträge' meint die originäre Zahl (richtig).",
+        "Rückgang -45 % bezieht sich auf die GESAMT-Zahl (Q1 2025: ~4.760 → Q1 2026: 2.598). Vergleich mit Q1 2024 (~7.000): Rückgang um -63 %.",
+        "Q1 2026 hatte Österreich rund 1,4-mal so viele Ausreisen (3.575) wie Asyl-Anträge gesamt (2.598) — bzw. 3,3-mal so viele wie originäre Erstanträge (1.074).",
         "Das BMI publiziert diese Quartalsbilanz als Pressemeldung; eine offizielle API gibt es nicht. Die Zahlen werden hier kuratiert nach BMI-Bilanz April 2026 + parlamentarische Anfragebeantwortung XXVIII/AB/3361.",
         "Familienzusammenführungen sind Q1 2026 stark gefallen (-93,8 % gegenüber Q1 2025) — das wird politisch dem 'Aussetzen der Familienzusammenführung' im Regierungsprogramm 2025 zugeschrieben.",
-        "Asyl-Antragsrückgang ist EU-weit (Greichenland, Italien, Frankreich auch deutlich gesunken)."
+        "Asyl-Antragsrückgang ist EU-weit (Griechenland, Italien, Frankreich auch deutlich gesunken)."
       ],
       "claim_phrasings_handled": [
         "Q1 2026 Asyl Österreich",

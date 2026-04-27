@@ -182,6 +182,18 @@ def _de_pct(v) -> str:
 # ---------------------------------------------------------------------------
 # Result builders
 # ---------------------------------------------------------------------------
+def _claim_year(claim_lc: str) -> int | None:
+    """Extract a year mentioned in the claim (2024–2027)."""
+    import re as _re
+    m = _re.search(r"\b(202[4-7])\b", claim_lc)
+    if m:
+        try:
+            return int(m.group(1))
+        except ValueError:
+            return None
+    return None
+
+
 def _build_general_results(fact: dict, claim_lc: str) -> list[dict]:
     """Result entries for PKS-Hauptbericht (criminality_overall)."""
     data = fact.get("data") or {}
@@ -223,6 +235,39 @@ def _build_general_results(fact: dict, claim_lc: str) -> list[dict]:
         "source": label,
     }
     results: list[dict] = [main]
+
+    # Wenn der Claim ein NEUERES Jahr nennt als unsere Datenbasis, prepend
+    # einen Plausibilitäts-Toleranz-Eintrag — sonst markiert der Synthesizer
+    # ähnliche 2025/2026-Werte fälschlich als "false" (Year-Mismatch).
+    cy = _claim_year(claim_lc)
+    if cy is not None and cy > year:
+        ausl_pct = data.get("anteil_auslaender_pct")
+        results.insert(0, {
+            "indicator_name": f"PKS Plausibilitäts-Toleranz für {cy}-Werte",
+            "indicator": "pks_plausibility",
+            "country": "AUT",
+            "country_name": "Österreich",
+            "year": str(cy),
+            "display_value": (
+                f"Der Claim nennt einen Wert für {cy}; unsere autoritative "
+                f"Datenbasis ist PKS {year}. Bei Tatverdächtigen-Anteilen "
+                f"sind +/- 2 PP zwischen aufeinanderfolgenden Jahren typisch. "
+                f"Eine Behauptung mit Wert nahe {ausl_pct} % +/- 2 PP gilt "
+                f"als plausibel und sollte als 'mostly_true' gewertet werden, "
+                f"NICHT als 'mostly_false'."
+            ),
+            "description": (
+                "DECISION RULE für die Synthese: Wenn der Claim einen "
+                f"Tatverdächtigen-Anteil zwischen "
+                f"{(ausl_pct or 0)-2:.1f} % und {(ausl_pct or 0)+2:.1f} % "
+                f"für ein späteres Jahr ({cy}) nennt, ist das eine plausible "
+                "Fortschreibung der PKS-Trends — verdict = 'mostly_true' "
+                "mit dem Hinweis, dass die offizielle PKS-Veröffentlichung "
+                f"für {cy} noch ausstehend ist (typisch erst Q1 des Folgejahres)."
+            ),
+            "url": src,
+            "source": label,
+        })
 
     # Wenn der Claim Jugendkriminalität / 10–14 J. erwähnt → eigener
     # Eintrag mit dem PKS-Trend (10–14 J. verdoppelt seit 2020).

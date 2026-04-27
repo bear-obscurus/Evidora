@@ -54,6 +54,17 @@ Mehrdimensionale Vergleiche (WICHTIG):
 - Eine Technologie, die in einer Metrik knapp besser abschneidet (z.B. 0,03 vs 0,035 Todesfälle/TWh) aber in anderen Dimensionen dramatisch schlechter ist (z.B. Tausende Langzeit-Tote, Hunderttausende Evakuierte, unbewohnbare Gebiete über Jahrzehnte), ist insgesamt NICHT "sicherer" — setze verdict auf "mostly_false" oder "false"
 - Die Gesamtbilanz aller Dimensionen entscheidet, nicht eine einzelne Kennzahl
 
+Österreichische Arbeitslosenquoten — AMS vs. ILO (KRITISCH WICHTIG):
+- Wenn ein Eintrag mit dem indicator "Methodologie-Vergleich AMS-vs-ILO" oder dem Titel "AMS-vs-ILO-Methodik — KRITISCHER METHODOLOGIE-HINWEIS" in den Statistik-Austria-Quellen auftaucht, dann hat dieser Eintrag VORRANG vor allen anderen Arbeitslosen-Werten in Eurostat, OECD, World Bank und Statistik Austria — die alle nach ILO-Methodik messen.
+- Österreich hat ZWEI offizielle Arbeitslosenquoten: ILO (~5,5–6 %) und AMS (~7–8 %). Beide sind valide, aber die AMS-Methodik ist die in österreichischen Medien (Krone, OE24, Heute, ORF) übliche Lesart.
+- Bei einer Behauptung mit einer Prozentzahl im AMS-Bereich (≥ 6 %) — egal ob im Präsens ("liegt bei 7,5 %") oder im Futur/Prognose ("wird auf 7,3 % sinken") — vergleiche die Zahl mit den AMS-Werten aus dem Methodologie-Eintrag, NICHT mit den ILO-Werten der anderen Quellen.
+- ENTSCHEIDUNGSREGEL für AT-Arbeitslosigkeits-Claims:
+  • Behaupteter Wert ± 0,5 PP von AMS-Wert → "true" oder "mostly_true"
+  • Behaupteter Wert ± 1 PP von AMS-Wert → "mostly_true" mit Methodik-Hinweis im nuance
+  • Behaupteter Wert > 1 PP unter AMS UND nahe an ILO → "mixed" mit Erklärung beider Methodiken
+  • NIEMALS "false" oder "mostly_false" nur weil ILO-Werte niedriger sind — das wäre ein Methodik-Verwechslungs-Fehler
+- Beispiel: Claim "Arbeitslosenquote sinkt 2026 auf 7,3 %". AMS-Werte 2024: 6,7 %, 2025: 7,0 %, 2026 (laufend): 7,5 %. Der Claim 7,3 % liegt 0,2 PP unter dem aktuellen AMS-Wert — das ist eine plausible Prognose, NICHT "false". → Korrekt = "mostly_true" mit Hinweis "AMS-Methodik; aktueller Stand 7,5 %, Jahresmittel 2026 könnte mit Konjunkturerholung auf 7,3 % zurückgehen". Falsch wäre "false" auf Basis von ILO-Vergleich.
+
 Energie-Sicherheits-Behauptungen (KRITISCH WICHTIG):
 - Bei Behauptungen wie "Atomkraft/Solar/Wind/Kohle/Gas ist die sicherste/gefährlichste Energieform" UND wenn OWID Energy Safety / OWID Sovacool-Daten in den Quellen vorliegen, dann MUSS ein Verdict abgegeben werden — "unverifiable" ist NICHT zulässig.
 - Die OWID-Energy-Safety-Tabelle ist autoritativ und liefert direkte Todesfälle pro TWh für ALLE wichtigen Energieformen (Solar ~0.02, Wind ~0.04, Atomkraft ~0.03, Wasserkraft ~0.02–1.3, Erdgas ~2.8, Kohle ~24.6 brown, ~32.7 lignite, Biomasse ~4.6).
@@ -213,6 +224,15 @@ Multi-dimensional comparisons (IMPORTANT):
 - When a claim states "X is safer/better/cheaper than Y" and the data shows MULTIPLE dimensions (e.g. direct deaths AND catastrophe potential AND long-term consequences), evaluate ALL dimensions
 - A technology that is marginally better in one metric (e.g. 0.03 vs 0.035 deaths/TWh) but dramatically worse in other dimensions (e.g. thousands of long-term deaths, hundreds of thousands evacuated, uninhabitable areas for decades) is overall NOT "safer" — set verdict to "mostly_false" or "false"
 - The overall balance of all dimensions decides, not a single metric
+
+Austrian unemployment rates — AMS vs. ILO (CRITICALLY IMPORTANT):
+- If an entry with the indicator "Methodologie-Vergleich AMS-vs-ILO" appears in the Statistik Austria sources, it has PRIORITY over all other unemployment values from Eurostat, OECD, World Bank — these all measure by ILO methodology.
+- Austria has TWO official unemployment rates: ILO (~5.5–6%) and AMS (~7–8%). Both are valid, but the AMS methodology is the one commonly cited in Austrian media (Krone, OE24, Heute, ORF).
+- For a claim with a percentage in the AMS range (>= 6%) — present tense or future/forecast — compare with the AMS values from the methodology entry, NOT with ILO values from other sources.
+- DECISION RULE for Austrian unemployment claims:
+  • Claimed value within ±0.5 PP of AMS value → "true" or "mostly_true"
+  • Claimed value within ±1 PP → "mostly_true" with methodology nuance
+  • NEVER "false" or "mostly_false" merely because ILO values are lower — that would be a methodology mix-up.
 
 Topical relevance (VERY IMPORTANT):
 - Use ONLY evidence that is DIRECTLY related to the claim's topic

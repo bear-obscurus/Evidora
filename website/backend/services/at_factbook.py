@@ -762,27 +762,41 @@ def _build_asyl_quartal_results(fact: dict, claim_lc: str) -> list[dict]:
     def _de(v):
         return f"{int(v):,}".replace(",", ".") if v is not None else "?"
 
+    gesamt = data.get("asylantraege_gesamt_q1_2026")
+    originaer = data.get("asylantraege_originaer_q1_2026")
+    folge = data.get("asylantraege_folge_q1_2026")
+    ausreisen = data.get("ausreisen_gesamt_q1_2026")
+    rueckgang = data.get("asylantraege_rueckgang_pct_yoy")
+
     headline = (
-        f"Q1 2026: {_de(data.get('asylantraege_q1_2026'))} Asyl-Erstanträge "
-        f"vs. {_de(data.get('ausreisen_gesamt_q1_2026'))} Ausreisen "
-        f"(davon {_de(data.get('ausreisen_zwangsweise_q1_2026'))} zwangsweise, "
+        f"Q1 2026 (BMI): {_de(gesamt)} Asylanträge GESAMT "
+        f"(davon {_de(originaer)} originär/Erstantrag und "
+        f"{_de(folge)} Folgeanträge); "
+        f"Rückgang {rueckgang} % vs. Q1 2025. "
+        f"Ausreisen: {_de(ausreisen)} "
+        f"(davon {_de(data.get('ausreisen_zwangsweise_q1_2026'))} zwangsweise = "
         f"{data.get('ausreisen_zwangsweise_anteil_pct')} %). "
-        f"DIREKTER Beleg für 'mehr Abschiebungen als Asylanträge'."
+        f"Mehr Ausreisen als Asylanträge gesamt — DIREKTER Beleg."
     )
 
     description_parts = [
         data.get("trend_text", ""),
+        f"WICHTIG: Medien zitieren oft entweder die GESAMT-Zahl ({_de(gesamt)}, "
+        f"incl. Folgeanträge) oder die ORIGINÄRE Zahl ({_de(originaer)}, nur "
+        f"neu einreisende Personen) — beide sind korrekt, aber unterschiedlich definiert. "
+        f"Eine Behauptung von '2.600 Anträge' meint die Gesamt-Zahl (✓), "
+        f"eine Behauptung von '1.074 Erstanträge' meint die originäre Zahl (✓).",
     ]
     for note in fact.get("context_notes") or []:
         description_parts.append(note)
 
     return [{
-        "indicator_name": "BMI Asyl-Bilanz Q1 2026",
+        "indicator_name": "BMI Asyl-Bilanz Q1 2026 (Gesamt + Originär)",
         "indicator": "factbook_asyl_quartal",
         "country": "AUT",
         "country_name": "Österreich",
         "year": "Q1-2026",
-        "value": data.get("ausreisen_gesamt_q1_2026"),
+        "value": gesamt,
         "display_value": headline,
         "description": " ".join(p for p in description_parts if p),
         "url": src,

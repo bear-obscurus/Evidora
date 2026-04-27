@@ -81,6 +81,7 @@ _AUTHORITATIVE_INDICATORS = (
     "pks_drug_crime_vienna",
     "pks_youth_drug_check",
     "pks_youth_general",
+    "pks_plausibility",
 )
 
 
