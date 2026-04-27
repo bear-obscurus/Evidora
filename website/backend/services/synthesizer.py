@@ -161,7 +161,15 @@ Vermeidung von reflexhaftem "unverifiable" (KRITISCH WICHTIG):
   • Claim: "Inflation in AT liegt 2026 über 3 %." Statistik Austria + EZB: 3,1 %. → Korrekt = "true". Falsch wäre "unverifiable".
   • Claim: "Wien hatte 2024 das wärmste Jahr." GeoSphere description: "Wärmstes Jahr in der Reihe: 2024." → Korrekt = "true". Falsch wäre "unverifiable".
   • Claim: "Sitzenbleiben ist in Österreich gesetzlich erlaubt." RIS liefert SchUG-Direktlink. → Korrekt = "true". Falsch wäre "unverifiable".
-- WENN du "unverifiable" wählst, MUSS im nuance-Feld konkret erklärt werden, WAS gefehlt hat — generische Aussagen wie "die Quellen liefern keine konkreten Angaben" sind unzulässig, wenn die Quellen sehr wohl relevante Werte enthalten.""",
+- WENN du "unverifiable" wählst, MUSS im nuance-Feld konkret erklärt werden, WAS gefehlt hat — generische Aussagen wie "die Quellen liefern keine konkreten Angaben" sind unzulässig, wenn die Quellen sehr wohl relevante Werte enthalten.
+
+Strukturell ungeprüfbare Behauptungen mit dokumentiertem Faktencheck-Befund (KRITISCH):
+- Manche populären Behauptungen beziehen sich auf Daten, die strukturell nicht öffentlich verfügbar sind (z.B. Sozialversicherungs-Behandlungen nach Staatsangehörigkeit nach §§ 31 ff ASVG, oder klassifizierte Geheimdienst-Daten). Wenn die Behauptung trotzdem mit einer konkreten Zahl operiert ("22 Millionen Behandlungen"), ist das KEIN Fall für ein bequemes "unverifiable @ 0.0".
+- Wenn eine Quelle einen Eintrag mit dem expliziten Marker "STRUKTURELL UNGEPRÜFBAR" oder "BLOCKIERT" liefert UND zusätzlich einen DOKUMENTIERTEN FAKTENCHECK-BEFUND zitiert (z.B. Kontrast.at-, profil-, FALTER-Faktencheck mit Vergleichszahlen, die die Behauptung kontextualisieren oder relativieren), DANN ist das eine SUBSTANZIELLE Gegen-Evidenz — die Behauptung ist NICHT bestätigt und das Verdict sollte "mostly_false" oder "false" sein, abhängig vom dokumentierten Faktencheck-Befund.
+- ENTSCHEIDUNGSREGEL:
+  • Quelle markiert "STRUKTURELL UNGEPRÜFBAR" + Faktencheck-Befund nennt UNTERPROPORTIONALE Inanspruchnahme (z.B. 2,75 % vs 4,8 % Bevölkerungsanteil) → verdict = "mostly_false" mit Confidence 0.85–0.95. Die Behauptung suggeriert Überproportionalität, die Datenlage zeigt das Gegenteil.
+  • Quelle markiert "STRUKTURELL UNGEPRÜFBAR" + Faktencheck-Befund nennt nur "die Zahl ist nicht belegbar" ohne Kontextzahlen → verdict = "unverifiable" mit Confidence 0.10–0.15, aber im nuance-Feld muss die strukturelle Datenlücke konkret erklärt sein.
+- Beispiel: Claim "22 Millionen Behandlungen Drittstaatsangehöriger 2015–2024" (Krone 25.01.2026). AT Factbook liefert Eintrag "STRUKTURELL UNGEPRÜFBAR" mit Kontrast.at-Zitation, dass die Zahl SV-Einzelleistungen meint, nicht Spitalsbehandlungen, und dass Drittstaatsangehörige mit 2,75 % Anteil UNTERPROPORTIONAL zu ihrem Bevölkerungsanteil (4,8 %) nutzen. → Korrekt = "mostly_false" @ 0.90. Die Behauptung ist im Sinne ihrer suggerierten Über-Inanspruchnahme widerlegt — auch wenn die Rohzahl 22 Mio nicht direkt prüfbar ist. Falsch wäre "unverifiable @ 0.0".""",
 
     "en": """You are a fact-check synthesis assistant. You receive a claim and search results from various scientific and official sources. Create an understandable assessment.
 
@@ -302,7 +310,14 @@ Avoiding reflexive "unverifiable" (CRITICALLY IMPORTANT):
   • Claim: "Inflation in AT in 2026 above 3%." Statistik Austria + ECB: 3.1%. → Correct = "true". Wrong would be "unverifiable".
   • Claim: "Vienna had its warmest year in 2024." GeoSphere description: "Warmest year in the series: 2024." → Correct = "true". Wrong would be "unverifiable".
   • Claim: "Repeating a school year is legally allowed in Austria." RIS provides SchUG direct-link. → Correct = "true". Wrong would be "unverifiable".
-- IF you choose "unverifiable", the nuance field MUST concretely explain WHAT was missing — generic statements like "the sources provide no concrete information" are not allowed when the sources do contain relevant values.""",
+- IF you choose "unverifiable", the nuance field MUST concretely explain WHAT was missing — generic statements like "the sources provide no concrete information" are not allowed when the sources do contain relevant values.
+
+Structurally unverifiable claims with documented fact-check finding (CRITICAL):
+- Some popular claims refer to data that is structurally not publicly available (e.g. social-security treatment data by nationality under §§ 31 ff ASVG, or classified intelligence data). When the claim still operates with a concrete number ("22 million treatments"), this is NOT a case for a comfortable "unverifiable @ 0.0".
+- If a source delivers an entry with the explicit marker "STRUKTURELL UNGEPRÜFBAR" or "BLOCKED" AND additionally cites a DOCUMENTED FACT-CHECK FINDING (e.g. Kontrast.at, profil, FALTER fact-check with comparison numbers that contextualize or relativize the claim), THEN this is SUBSTANTIVE counter-evidence — the claim is NOT confirmed and the verdict should be "mostly_false" or "false" depending on the documented fact-check finding.
+- DECISION RULE:
+  • Source marks "STRUKTURELL UNGEPRÜFBAR" + fact-check finding cites UNDERPROPORTIONAL usage (e.g. 2.75% vs 4.8% population share) → verdict = "mostly_false" with confidence 0.85–0.95. The claim suggests overproportionality, the data shows the opposite.
+  • Source marks "STRUKTURELL UNGEPRÜFBAR" + fact-check finding only states "the number is not provable" without context numbers → verdict = "unverifiable" with confidence 0.10–0.15, but the nuance field must concretely explain the structural data gap.""",
 }
 
 FALLBACKS = {
