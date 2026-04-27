@@ -82,6 +82,7 @@ _AUTHORITATIVE_INDICATORS = (
     "pks_youth_drug_check",
     "pks_youth_general",
     "pks_plausibility",
+    "Methodologie-Vergleich AMS-vs-ILO",  # Statistik Austria caveat
 )
 
 

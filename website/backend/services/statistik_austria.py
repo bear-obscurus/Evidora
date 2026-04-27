@@ -1202,7 +1202,15 @@ async def search_statistik_austria(analysis: dict) -> dict:
     # Labor market / unemployment data
     if _match_keywords(search_text, ARBEITSMARKT_KEYWORDS):
         am_results = await _search_arbeitsmarkt(search_text)
-        results.extend(am_results)
+        # Bug 16-V2: Der AMS-vs-ILO-Methodologie-Caveat MUSS an Position 0
+        # in der Gesamtliste stehen, damit der Synthesizer ihn vor den
+        # ILO-Werten liest und nicht überstimmt. Wir spalten ihn ab und
+        # prependen ihn separat.
+        ams_caveat = [r for r in am_results
+                      if r.get("indicator") == "Methodologie-Vergleich AMS-vs-ILO"]
+        am_other = [r for r in am_results
+                    if r.get("indicator") != "Methodologie-Vergleich AMS-vs-ILO"]
+        results = ams_caveat + results + am_other
 
     # Poverty and inequality data (EU-SILC)
     if _match_keywords(search_text, ARMUT_KEYWORDS):
