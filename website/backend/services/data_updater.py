@@ -50,6 +50,7 @@ from services.volksbegehren import fetch_volksbegehren
 from services.wahlen import fetch_wahlen
 from services.abstimmungen import fetch_abstimmungen
 from services.at_factbook import fetch_at_factbook
+from services.pks import fetch_pks
 
 logger = logging.getLogger("evidora")
 
@@ -89,6 +90,7 @@ async def prefetch_all():
             fetch_wahlen(client),
             fetch_abstimmungen(client),
             fetch_at_factbook(client),
+            fetch_pks(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "OWID Measles", "OWID Vaccination (WUENIC)",
@@ -102,7 +104,7 @@ async def prefetch_all():
                  "Parlament.gv.at Nationalrat", "EEA / Eurostat",
                  "GeoSphere Austria", "BASG", "BMI Volksbegehren",
                  "BMI Wahlen", "Parlament Abstimmungen",
-                 "AT Factbook"]
+                 "AT Factbook", "BKA PKS"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")

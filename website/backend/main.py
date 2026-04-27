@@ -48,6 +48,7 @@ from services.volksbegehren import search_volksbegehren, claim_mentions_volksbeg
 from services.wahlen import search_wahlen, claim_mentions_wahlen_cached
 from services.abstimmungen import search_abstimmungen, claim_mentions_voting_cached
 from services.at_factbook import search_at_factbook, claim_mentions_factbook_cached
+from services.pks import search_pks, claim_mentions_pks_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -337,6 +338,11 @@ async def check_claim(request: Request):
         if claim_mentions_factbook_cached(claim):
             tasks.append(cached("AT Factbook", search_at_factbook, analysis))
             queried_names.append("AT Factbook")
+        # BKA PKS: Polizeiliche Kriminalstatistik + Lagebericht Suchtmittel
+        # (statisch curated aus den jährlichen BKA-PDF-Berichten).
+        if claim_mentions_pks_cached(claim):
+            tasks.append(cached("BKA PKS", search_pks, analysis))
+            queried_names.append("BKA Polizeiliche Kriminalstatistik")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

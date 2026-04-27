@@ -1,0 +1,119 @@
+{
+  "facts": [
+    {
+      "id": "pks_overall_2024",
+      "topic": "criminality_overall",
+      "scope": "Polizeiliche Kriminalstatistik (PKS) Gesamt — alle Delikte, alle Bundesländer",
+      "year": 2024,
+      "headline": "Tatverdächtige Österreich gesamt 2024 (PKS-Hauptbericht)",
+      "data": {
+        "tatverdaechtige_gesamt": 335911,
+        "tatverdaechtige_inlaender": 178836,
+        "tatverdaechtige_auslaender": 157058,
+        "anteil_inlaender_pct": 53.2,
+        "anteil_auslaender_pct": 46.8,
+        "top_3_auslaender_2024": [
+          {"land": "Rumänien", "anzeigen": 18925},
+          {"land": "Deutschland", "anzeigen": 13631},
+          {"land": "Syrien", "anzeigen": 11867}
+        ],
+        "wien_drogen_delikte_approx": 9960,
+        "jugendkriminalitaet_10_14_trend": {
+          "verdopplung_seit_2020": true,
+          "auslaender_anteil_pct_2024": 48.0,
+          "note": "Bei der Jugendkriminalität (10–14 Jahre) hat sich die Anzeigenzahl seit 2020 fast verdoppelt; 48 % der Tatverdächtigen sind ausländische Staatsbürger, davon auffällig viele syrische Jugendliche (laut BKA PKS 2024 Hauptbericht)."
+        }
+      },
+      "context_notes": [
+        "Die PKS misst Tatverdächtige, nicht Verurteilungen — Tatverdächtige umfassen alle Personen, die polizeilich angezeigt wurden, unabhängig vom späteren Gerichtsverfahren.",
+        "Der Ausländer-Anteil (46,8 %) ist nicht direkt mit dem Bevölkerungsanteil (~20,5 %) vergleichbar: PKS-Tatverdächtige umfassen auch Touristen, Durchreisende und Personen ohne Wohnsitz in Österreich (z.B. grenzüberschreitende Kriminalität).",
+        "Statistik Austria empfiehlt für valide Vergleiche die Verurteilungsrate pro 100.000 Wohnbevölkerung — diese ist bei Drittstaatsangehörigen erhöht, aber der Faktor ist deutlich kleiner als der naive Anteils-Vergleich nahelegen würde.",
+        "Bei Top-Herkunftsländern dominieren EU-Nachbarn (Rumänien, Deutschland) noch vor Drittstaaten — entspricht den größten ausländischen Wohnbevölkerungs- und Pendler-Gruppen in AT."
+      ],
+      "claim_phrasings_handled": [
+        "Anteil Ausländer Tatverdächtige Österreich",
+        "Hälfte Tatverdächtige Ausländer",
+        "47 Prozent Tatverdächtige Ausländer",
+        "Top Herkunftsländer Tatverdächtige",
+        "Kriminalität Ausländer Statistik",
+        "PKS 2024"
+      ],
+      "source_label": "Bundeskriminalamt (BKA) — Polizeiliche Kriminalstatistik 2024",
+      "source_url": "https://www.bundeskriminalamt.at/501/files/PKS-24-web3_bf_20250422.pdf",
+      "secondary_url": "https://www.bundeskriminalamt.at/501/",
+      "fetched_at_iso": "2026-04-27"
+    },
+    {
+      "id": "smg_2024",
+      "topic": "drug_crime",
+      "scope": "Suchtmittelgesetz (SMG) — Drogendelikte Österreich",
+      "year": 2024,
+      "headline": "Suchtmittelkriminalität Österreich 2024 (BKA Lagebericht)",
+      "data": {
+        "anzeigen_gesamt_2024": 37310,
+        "anzeigen_2023": 35445,
+        "veraenderung_pct": 5.3,
+        "verbrechen_2024": 3212,
+        "vergehen_2024": 34098,
+        "tatverdaechtige_inlaender_2024": 20791,
+        "tatverdaechtige_fremde_2024": 13654,
+        "anteil_fremde_drogen_pct": 39.6,
+        "anteil_inlaender_drogen_pct": 60.4,
+        "anteil_maennlich_pct": 84.2,
+        "anteil_weiblich_pct": 15.8,
+        "wien_anteil_fremde_pct": 56.0,
+        "altersgruppen_2024": {
+          "unter_18": 3553,
+          "18_20": 4758,
+          "21_24": 5626,
+          "25_39": 14997,
+          "ab_40": 5511,
+          "unbekannt": 2865
+        },
+        "top_10_fremde_tatverd_2024": [
+          {"land": "Syrien", "n": 1463, "veraenderung_pct": 43.0},
+          {"land": "Deutschland", "n": 1148, "veraenderung_pct": 17.7},
+          {"land": "Serbien", "n": 1054, "veraenderung_pct": 9.8},
+          {"land": "Afghanistan", "n": 977, "veraenderung_pct": 7.4},
+          {"land": "Türkei", "n": 847, "veraenderung_pct": 21.7},
+          {"land": "Rumänien", "n": 819, "veraenderung_pct": 11.9},
+          {"land": "Ungarn", "n": 665, "veraenderung_pct": 23.4},
+          {"land": "Slowakei", "n": 513, "veraenderung_pct": 36.4},
+          {"land": "Russische Föderation", "n": 492, "veraenderung_pct": 1.9},
+          {"land": "Bosnien-Herzegowina", "n": 456, "veraenderung_pct": -5.6}
+        ],
+        "sicherstellungen_2024": {
+          "cannabis_g": 2544777,
+          "kokain_g": 258714,
+          "heroin_g": 27263,
+          "amphetamin_g": 55599,
+          "methamphetamin_g": 12032,
+          "xtc_stueck": 25286
+        },
+        "schwarzmarktwert_eur_2024": 63000059
+      },
+      "context_notes": [
+        "Wien hat österreichweit den höchsten Fremden-Anteil bei Drogen-Anzeigen (56 %), gefolgt von Tirol (43,1 %), Salzburg (42,8 %) und Vorarlberg (42,7 %) — alle über dem Bundesschnitt von 39,6 %.",
+        "Bei Tatverdächtigen unter 18 Jahren GING die Drogenkriminalität 2024 zurück (3.553, -13,4 %) — eine Verdopplung seit 2020 wäre faktisch FALSCH (2020 waren es 5.381, also ein Rückgang von 34 %).",
+        "Wenn Behauptungen 'Verdopplung Jugendkriminalität' Drogen-Delikte unter 18 ansprechen: Das ist unzutreffend. Bei der allgemeinen PKS (alle Delikte, 10–14 Jahre) gibt es separate Trends.",
+        "Die Sicherstellungen werden stark von Großaufgriffen geprägt (z.B. 130 kg Kokain im Einzelfall 2024) — Jahresvergleiche allein sind als Trend-Indikator ungeeignet.",
+        "Cannabis dominiert mit 54,9 % aller Drogen-Anzeigen, gefolgt von Kokain (17,6 %) und Amphetamin (4,2 %)."
+      ],
+      "claim_phrasings_handled": [
+        "Drogen Delikte Österreich",
+        "Suchtmittel Anzeigen",
+        "Drogen Wien meiste",
+        "Cannabis Sicherstellungen",
+        "Drogen Tatverdächtige Ausländer",
+        "Jugend Drogen Verdopplung"
+      ],
+      "source_label": "Bundeskriminalamt (BKA) — Lagebericht Suchtmittelkriminalität 2024",
+      "source_url": "https://www.bundeskriminalamt.at/302/files/243_2025_lagebericht_suchtmittelkriminalitaet_2024_v20250807_webbf.pdf",
+      "secondary_url": "https://www.bundeskriminalamt.at/302/",
+      "fetched_at_iso": "2026-04-27"
+    }
+  ],
+  "fetched_at_iso": "2026-04-27",
+  "note": "Kuratierte Auszüge aus PKS Hauptbericht 2024 + Lagebericht Suchtmittelkriminalität 2024 (BKA, BMI). Die BKA-Originale sind PDFs ohne API — manuell aktualisiert (jährliches Erscheinen typisch Q1 fürs Vorjahr).",
+  "version": 1
+}

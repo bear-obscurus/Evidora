@@ -132,6 +132,91 @@
         "Wir bewerten nicht, ob die Förderhöhe 'zu hoch' oder 'zu niedrig' ist.",
         "Wir benennen explizit, welcher Anteil der Steigerung COVID-/Energie-Krisen-Hilfen sind, damit Vergleichszahlen nicht missbraucht werden."
       ]
+    },
+    {
+      "id": "mindestsicherung_2026",
+      "topic": "social_assistance_austria",
+      "scope": "Sozialhilfe-/Mindestsicherungs-Höchstsätze nach Bundesländern (Sozialhilfe-Grundsatzgesetz + Länderausführungsgesetze)",
+      "year": 2026,
+      "headline": "Mindestsicherungs-/Sozialhilfe-Höchstsätze Österreich 2026",
+      "data": {
+        "alleinstehende_max_eur_pro_monat": 1230.00,
+        "alleinerzieher_max_eur_pro_monat": 1230.00,
+        "paar_max_eur_pro_monat": 1722.00,
+        "kinder_zuschlag_eur_pro_monat_pro_kind_erstes": 270.60,
+        "kinder_zuschlag_eur_pro_monat_pro_kind_ab_drittem": 86.00,
+        "vorjahr_alleinstehende_2025_eur": 1208.83,
+        "anpassung_pct": 1.75,
+        "regelung_seit": "2020 (Sozialhilfe-Grundsatzgesetz, BGBl I 41/2019)"
+      },
+      "comparisons": {
+        "claim_9000_eur_familie_11_kinder_check": {
+          "phrasing": "9.000 Euro Sozialhilfe für syrische Familie mit elf Kindern",
+          "rechenweg": "Paar-Satz 1.722 + 1. Kind 270,60 + 2. Kind 270,60 + 9 weitere Kinder × 86 = ca. 3.037 EUR Kinderzuschlag + 1.722 Paar = 4.760 EUR (theoretisch reine Sozialhilfe nach Bundes-Höchstsätzen).",
+          "wien_aufstockung": "Wien deckelt anders als andere Bundesländer NICHT auf 175 % des Paar-Satzes — bei sehr kinderreichen Familien können Wien-spezifische Zusatzleistungen (Mietzuschuss, Familienhärteausgleich, Kinderbetreuungsbeihilfe) den Gesamtbetrag deutlich anheben.",
+          "verdict": "Eine Familie mit 11 Kindern in Wien KANN 9.000 EUR pro Monat erhalten, wenn alle Wien-Aufstockungen ausgeschöpft werden — aber das ist ein extrem seltener Einzelfall (nur 4 Familien dieser Größenordnung in Wien laut Magistrat); ist KEIN Durchschnitts-Wert für 'Sozialhilfeempfänger'."
+        }
+      },
+      "context_notes": [
+        "Die Mindestsicherung wurde 2019/2020 durch die 'Sozialhilfe NEU' abgelöst — die Bundes-Höchstsätze gelten als Obergrenze, die Bundesländer regeln die Ausführung selbst.",
+        "Die genannten Höchstsätze sind Maximalbeträge — der tatsächlich ausbezahlte Betrag hängt vom Einkommen/Vermögen des Haushalts ab und ist meist niedriger.",
+        "Sozialhilfe ist eine Subsidiärleistung — sie greift erst, wenn keine anderen Einkommensquellen (Arbeitslosengeld, Notstandshilfe, Familienleistungen) den Bedarf decken.",
+        "Wien hat die liberalste Ausführung: Während andere Bundesländer (insb. NÖ, OÖ) die Höchstsätze für Familien deckeln (z.B. auf 175 % des Paar-Satzes), kennt Wien diesen Familien-Cap nicht — wodurch in seltenen Fällen sehr hohe Beträge zustande kommen können."
+      ],
+      "claim_phrasings_handled": [
+        "Mindestsicherung Österreich Höhe",
+        "Sozialhilfe Höchstbetrag",
+        "Sozialhilfe Familie Wien",
+        "9000 Euro Sozialhilfe",
+        "Mindestsicherung Alleinstehende"
+      ],
+      "source_label": "Sozialministerium — Sozialhilfe und Mindestsicherung; Wiener Magistratsabteilung MA 40",
+      "source_url": "https://www.sozialministerium.gv.at/Themen/Soziales/Sozialhilfe-und-Mindestsicherung.html",
+      "secondary_url": "https://www.wien.gv.at/zusammenleben/sozialhilfe-mindestsicherung",
+      "fetched_at_iso": "2026-04-27"
+    },
+    {
+      "id": "pension_anpassung_2026",
+      "topic": "pension_adjustment_austria",
+      "scope": "Jährliche Pensionsanpassung nach § 108h ASVG (Anpassungsfaktor und Sonderregelungen)",
+      "year": 2026,
+      "headline": "Pensionsanpassung Österreich 2026 (PV.at, BMSGPK)",
+      "data": {
+        "anpassungsfaktor": 1.027,
+        "anpassung_pct_normal": 2.7,
+        "ausgleichszulagen_richtsatz_alleinstehend_eur": 1217.96,
+        "ausgleichszulagen_richtsatz_paare_eur": 1921.46,
+        "luxus_pension_grenze_eur_pro_monat": 2500.01,
+        "luxus_pension_pauschal_eur": 67.50,
+        "berechnungsbasis": "VPI Aug 2024 → Juli 2025 (12-Monats-Rolling)"
+      },
+      "comparisons": {
+        "trend_anpassung_letzte_jahre": [
+          {"year": 2022, "pct": 1.8},
+          {"year": 2023, "pct": 5.8},
+          {"year": 2024, "pct": 9.7},
+          {"year": 2025, "pct": 4.6},
+          {"year": 2026, "pct": 2.7}
+        ],
+        "reale_kaufkraft_2026": "Anpassung 2,7 % bei VPI ~3,1 % → leichter realer Kaufkraftverlust ~ -0,4 PP."
+      },
+      "context_notes": [
+        "Die Pensionsanpassung ist gesetzlich an den VPI-Rolling-Mittelwert gekoppelt (§ 108h ASVG) — 12 Monate von August des Vorjahres bis Juli des Anpassungsjahres.",
+        "Pensionen über 2.500 EUR brutto monatlich erhalten 2026 nur einen Pauschalbetrag (67,50 EUR), nicht die volle prozentuale Anpassung — das ist die 'Luxus-Pensions-Bremse'.",
+        "Der Ausgleichszulagen-Richtsatz (Mindestpension) wird jährlich separat angepasst und gilt als de-facto Mindestpension für niedrige Einkommen.",
+        "Die 9,7 %-Anpassung 2024 war eine historische Ausnahme aufgrund des hohen VPI in 2022/2023 — die 2,7 % 2026 sind wieder im langjährigen Mittel (~ 2–3 %)."
+      ],
+      "claim_phrasings_handled": [
+        "Pensionserhöhung Österreich 2026",
+        "Pensionen 2,7 Prozent",
+        "Pensionsanpassung",
+        "Mindestpension Österreich",
+        "Anpassungsfaktor ASVG"
+      ],
+      "source_label": "Pensionsversicherungsanstalt (PV.at); Bundesministerium für Soziales (BMSGPK) Pensionsanpassungsgesetz 2026",
+      "source_url": "https://www.pv.at/web/pension/in-der-pension/pensionsanpassung-und-pensionserhoehung",
+      "secondary_url": "https://www.sozialministerium.gv.at/",
+      "fetched_at_iso": "2026-04-27"
     }
   ],
   "fetched_at_iso": "2026-04-26",

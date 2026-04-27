@@ -1710,8 +1710,40 @@ async def _search_naturalizations(search_text: str) -> list[dict]:
     return results
 
 
+def _extract_pct_from_text(text: str) -> float | None:
+    """Best-effort: pull the largest plausible percentage value from
+    the claim text.  Returns None if no number found."""
+    import re as _re
+    # 7,5 % or 7.5% or 7,5 Prozent or 7.5 percent
+    matches = _re.findall(
+        r"(\d{1,2}(?:[,.]\d+)?)\s*(?:%|prozent|percent)",
+        text.lower()
+    )
+    nums: list[float] = []
+    for m in matches:
+        try:
+            nums.append(float(m.replace(",", ".")))
+        except ValueError:
+            continue
+    if not nums:
+        return None
+    # Keep only plausible unemployment-quote values (1–25 %)
+    plausible = [n for n in nums if 1.0 <= n <= 25.0]
+    return max(plausible) if plausible else None
+
+
 async def _search_arbeitsmarkt(search_text: str) -> list[dict]:
-    """Search labor market data (unemployment + employment rates)."""
+    """Search labor market data (unemployment + employment rates).
+
+    Bug 16: AT-Arbeitslosigkeits-Claims zitieren oft die AMS-
+    Methodik (registrierte AL inkl. Schulungsteilnehmer) — diese
+    Quote liegt typischerweise 1.5–2 PP über der ILO-LFS-Quote
+    von Statistik Austria.  Damit der Synthesizer einen AMS-
+    konformen Wert nicht reflexhaft gegen ILO-Daten mit „false"
+    bewertet, prependen wir bei AT-Arbeitslosigkeits-Claims mit
+    einer konkreten Prozentzahl einen STRONG-WORDED Methodologie-
+    Vergleich an die Spitze der Ergebnisliste.
+    """
     data = await fetch_arbeitsmarkt()
     if not data:
         return []
@@ -1903,6 +1935,73 @@ async def _search_arbeitsmarkt(search_text: str) -> list[dict]:
                 "url": "https://www.statistik.at/statistiken/arbeitsmarkt/erwerbstaetigkeit",
                 "dataset_id": "OGD_ake101_hvd_ogdonly_HVD_ETQUOTE_1",
             })
+
+    # Bug 16: AMS-vs-ILO Methodologie-Caveat — als ERSTER Eintrag
+    # prepend, weil der Synthesizer sonst die Krone-AMS-Zahl gegen
+    # den niedrigeren ILO-Wert vergleicht und reflexhaft „false"
+    # sagt.  Wenn der Claim eine konkrete Prozentzahl enthält UND
+    # diese im AMS-Bereich liegt (≥ 6 %), liefern wir explizit den
+    # Methodologie-Vergleich + die DECISION RULE für den Synthesizer.
+    claim_pct = _extract_pct_from_text(search_text)
+    latest_ilo = data.get(latest_year, {}).get("al")
+    # AMS-Quoten 2024–2026 nach BMAW/AMS-Bilanz (jährlich aktualisierbar):
+    ams_known = {
+        2024: 6.7,   # AMS-Jahresquote 2024
+        2025: 7.0,   # vorläufige AMS-Jahresquote 2025
+        2026: 7.5,   # AMS-Schätzung März 2026 (Stand zum Build)
+    }
+    ams_latest_year = max(ams_known.keys())
+    ams_latest = ams_known[ams_latest_year]
+
+    is_ams_range = (claim_pct is not None and claim_pct >= 6.0 and claim_pct <= 12.0)
+    is_ilo_range = (claim_pct is not None and 3.0 <= claim_pct < 6.0)
+
+    if claim_pct is not None and latest_ilo is not None and (is_ams_range or is_ilo_range):
+        # Strong-worded methodology comparison entry
+        rule_hint = (
+            "DECISION RULE für die Synthese: "
+            f"Der im Claim genannte Wert ({claim_pct:.1f} %) liegt "
+        )
+        if is_ams_range:
+            rule_hint += (
+                f"deutlich über der ILO-Quote ({latest_ilo:.1f} %) und entspricht "
+                f"der AMS-Methodik ({ams_latest} % im Stand {ams_latest_year}). "
+                "Markiere die Behauptung NICHT als 'falsch', "
+                "nur weil der ILO-Wert niedriger ist — die AMS-Methodik ist die "
+                "in österreichischen Medien (incl. Krone) übliche Lesart. "
+                "Wenn die Zahl +/- 0.5 PP von der AMS-Quote abweicht: "
+                "verdict = 'true' oder 'mostly_true'. "
+                "Wenn sie +/- 1 PP abweicht: verdict = 'mostly_true' mit Hinweis "
+                "auf die Methodik. Erst bei größeren Abweichungen: 'mostly_false'."
+            )
+        else:
+            rule_hint += (
+                f"im ILO-Bereich (Statistik Austria: {latest_ilo:.1f} %). "
+                "Vergleiche direkt mit der ILO-Quote für 'true/false'-Verdict. "
+                "Die AMS-Quote (national) liegt mit "
+                f"{ams_latest} % deutlich höher und ist eine andere Methodik."
+            )
+        results.insert(0, {
+            "title": (
+                "AMS-vs-ILO-Methodik — KRITISCHER METHODOLOGIE-HINWEIS"
+            ),
+            "indicator": "Methodologie-Vergleich AMS-vs-ILO",
+            "year": str(ams_latest_year),
+            "value": "",
+            "url": "https://www.ams.at/arbeitsmarktdaten-und-medien/arbeitsmarkt-daten",
+            "source": "Statistik Austria + AMS",
+            "description": (
+                f"Österreich hat ZWEI parallele Arbeitslosenquoten:\n"
+                f"• ILO-Quote (Statistik Austria, EU-vergleichbar): "
+                f"{latest_ilo:.1f} % im Jahr {latest_year}.\n"
+                f"• AMS-Quote (nationale Methodik, registrierte AL + "
+                f"Schulungsteilnehmer): {ams_latest} % im Stand {ams_latest_year}.\n"
+                f"Die AMS-Quote ist systematisch ~1.5–2 PP höher und wird "
+                f"in österreichischen Medien (Krone, Heute, ORF) "
+                f"deutlich häufiger zitiert als die ILO-Quote.\n"
+                f"{rule_hint}"
+            ),
+        })
 
     return results
 

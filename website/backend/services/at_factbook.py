@@ -130,6 +130,96 @@ def _claim_mentions_federal_subsidies(claim_lc: str) -> bool:
 
 
 # ---------------------------------------------------------------------------
+# Topic 3: Mindestsicherung / Sozialhilfe-Höchstsätze
+# ---------------------------------------------------------------------------
+_SOCIAL_ASSIST_TERMS = (
+    "mindestsicherung", "sozialhilfe", "ms-bezug", "bezug sozialhilfe",
+    "sozialhilfeempfänger", "sozialhilfeempfaenger",
+    "bedarfsorientierte mindestsicherung", "bms",
+    "social assistance austria",
+)
+
+
+def _claim_mentions_social_assistance(claim_lc: str) -> bool:
+    has_social = any(t in claim_lc for t in _SOCIAL_ASSIST_TERMS)
+    if not has_social:
+        return False
+    # "Mindestsicherung" und "BMS" sind AT-spezifische Termini (DE hat
+    # Bürgergeld, kein "Mindestsicherung"). Wenn diese explizit genannt
+    # werden, zählt das selbst als AT-Kontext.
+    if any(at_specific in claim_lc for at_specific in (
+        "mindestsicherung", "bedarfsorientierte mindestsicherung", "bms",
+        "sozialhilfe-grundsatzgesetz",
+    )):
+        return True
+    return _has_at_context(claim_lc)
+
+
+# ---------------------------------------------------------------------------
+# Topic 4: Pensionsanpassung
+# ---------------------------------------------------------------------------
+_PENSION_TERMS = (
+    "pensionserhöhung", "pensionserhoehung",
+    "pensionsanpassung",
+    "pensionen erhöht", "pensionen erhoeht",
+    "pensionen werden", "anpassungsfaktor",
+    "ausgleichszulage", "ausgleichszulagen-richtsatz",
+    "mindestpension",
+    "luxus-pension", "luxuspension",
+    "pension increase austria", "pension adjustment austria",
+)
+# Composite-Pattern: "pension*" UND ("erhöh*" ODER "anpass*" ODER Prozentzahl)
+# fängt Phrasings wie "Die Pensionen werden 2026 um 2,7 % erhöht" ab.
+_PENSION_NOUNS = ("pension", "pensionen", "rente", "renten")
+_PENSION_VERBS = ("erhöh", "erhoeh", "anpass", "steigen", "gestiegen",
+                   "angehoben", "anhebung")
+
+
+def _claim_mentions_pension_adjustment(claim_lc: str) -> bool:
+    import re as _re
+    has_pension = any(t in claim_lc for t in _PENSION_TERMS)
+    has_noun = any(n in claim_lc for n in _PENSION_NOUNS)
+    has_verb = any(v in claim_lc for v in _PENSION_VERBS)
+    has_year = bool(_re.search(r"\b202[5-9]\b", claim_lc))
+    has_pct = bool(_re.search(r"\d+(?:[,.]\d+)?\s*(?:%|prozent)", claim_lc))
+
+    # 1. Pension-Vokabular vorhanden?
+    if not has_pension and not (has_noun and has_verb):
+        return False
+
+    # 2. AT-spezifische Acronyme/Termini → automatisch AT
+    if any(at_specific in claim_lc for at_specific in (
+        "pensionsanpassung", "anpassungsfaktor",
+        "ausgleichszulage", "ausgleichszulagen-richtsatz",
+        "luxus-pension", "luxuspension",
+    )):
+        return True
+
+    # 3. High-specificity policy claim (Pensionen/Renten + Verb + Jahr 2025+ + %)
+    #    → assume AT (Krone-Kontext / typischer Lehrer-Use-Case)
+    if has_noun and has_verb and has_year and has_pct:
+        # DE-Marker als Hard-Exclude (z.B. "renten in deutschland")
+        de_markers = ("deutschland", "germany", "deutsch", "berlin", "bundestag",
+                       "deutsche rentenversicherung", "drv")
+        if any(de in claim_lc for de in de_markers):
+            return False
+        return True
+
+    # 4. Default: explizit AT-Kontext erforderlich
+    return _has_at_context(claim_lc)
+    # AT-spezifische Begriffe gelten selbst als AT-Kontext (DE hat
+    # "Rentenanpassung" + "Eckrentner", AT hat "Pensionsanpassung" +
+    # "Anpassungsfaktor" + "Ausgleichszulage").
+    if any(at_specific in claim_lc for at_specific in (
+        "pensionsanpassung", "anpassungsfaktor",
+        "ausgleichszulage", "ausgleichszulagen-richtsatz",
+        "luxus-pension", "luxuspension",
+    )):
+        return True
+    return _has_at_context(claim_lc)
+
+
+# ---------------------------------------------------------------------------
 # Public trigger
 # ---------------------------------------------------------------------------
 def _claim_matches_any_topic(claim: str) -> list[str]:
@@ -142,6 +232,10 @@ def _claim_matches_any_topic(claim: str) -> list[str]:
         matched.append("religion_schools_vienna")
     if _claim_mentions_federal_subsidies(cl):
         matched.append("federal_subsidies_austria")
+    if _claim_mentions_social_assistance(cl):
+        matched.append("social_assistance_austria")
+    if _claim_mentions_pension_adjustment(cl):
+        matched.append("pension_adjustment_austria")
     return matched
 
 
@@ -377,6 +471,139 @@ def _build_subsidies_results(fact: dict, claim_lc: str) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
+# Topic 3: Mindestsicherung / Sozialhilfe
+# ---------------------------------------------------------------------------
+def _build_social_results(fact: dict, claim_lc: str) -> list[dict]:
+    """Result entries for Mindestsicherungs-Höchstsätze."""
+    data = fact.get("data") or {}
+    year = fact.get("year", 2026)
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "Sozialministerium"
+    comparisons = fact.get("comparisons") or {}
+
+    def _de(v) -> str:
+        if v is None:
+            return "?"
+        return f"{v}".replace(".", ",")
+
+    headline = (
+        f"Sozialhilfe-Höchstsätze {year}: Alleinstehende max. "
+        f"{_de(data.get('alleinstehende_max_eur_pro_monat'))} EUR/Monat, "
+        f"Paar max. {_de(data.get('paar_max_eur_pro_monat'))} EUR, "
+        f"Kinder-Zuschlag 1./2. Kind je {_de(data.get('kinder_zuschlag_eur_pro_monat_pro_kind_erstes'))} EUR, "
+        f"ab 3. Kind je {_de(data.get('kinder_zuschlag_eur_pro_monat_pro_kind_ab_drittem'))} EUR."
+    )
+
+    description_parts = [
+        f"Sozialhilfe-Grundsatzgesetz (BGBl I 41/2019) — Stand {year}. ",
+        f"Anpassung gegenüber Vorjahr ({year-1}: "
+        f"{_de(data.get('vorjahr_alleinstehende_2025_eur'))} EUR): "
+        f"+{_de(data.get('anpassung_pct'))} %.",
+    ]
+    for note in fact.get("context_notes") or []:
+        description_parts.append(note)
+
+    main = {
+        "indicator_name": f"Mindestsicherung/Sozialhilfe-Höchstsätze {year}",
+        "indicator": "factbook_social_assistance_at",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": str(year),
+        "value": data.get("alleinstehende_max_eur_pro_monat"),
+        "display_value": headline,
+        "description": " ".join(description_parts),
+        "url": src,
+        "source": label,
+    }
+
+    results: list[dict] = [main]
+
+    # Wenn der Claim 9000 EUR / 11 Kinder erwähnt → spezifischer Check
+    is_9000_check = (
+        any(s in claim_lc for s in ("9000", "9.000", "9 000")) or
+        any(s in claim_lc for s in ("11 kinder", "elf kinder", "syrische familie"))
+    )
+    plus_check = comparisons.get("claim_9000_eur_familie_11_kinder_check") or {}
+    if plus_check and is_9000_check:
+        results.insert(0, {
+            "indicator_name": "Plausibilitäts-Check: 9.000 EUR Sozialhilfe (11 Kinder, Wien)",
+            "indicator": "factbook_social_check",
+            "country": "AUT",
+            "country_name": "Österreich",
+            "year": str(year),
+            "display_value": (
+                "Behauptung 'Familie mit 11 Kindern erhält 9.000 EUR Sozialhilfe in Wien': " +
+                plus_check.get("verdict", "")
+            ),
+            "description": (
+                "Rechenweg: " + plus_check.get("rechenweg", "") + " " +
+                "Wien-Spezifika: " + plus_check.get("wien_aufstockung", "") + " " +
+                "Diese Konstellation existiert real (Krone-Bericht 24.05.2025), "
+                "ist aber ein extrem seltener Einzelfall — KEIN repräsentativer "
+                "Wert für 'Sozialhilfeempfänger' im Allgemeinen."
+            ),
+            "url": src,
+            "source": label,
+        })
+
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Topic 4: Pensionsanpassung
+# ---------------------------------------------------------------------------
+def _build_pension_results(fact: dict, claim_lc: str) -> list[dict]:
+    """Result entries for jährliche Pensionsanpassung."""
+    data = fact.get("data") or {}
+    year = fact.get("year", 2026)
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "PV.at + BMSGPK"
+    comparisons = fact.get("comparisons") or {}
+
+    def _de(v) -> str:
+        if v is None:
+            return "?"
+        return f"{v}".replace(".", ",")
+
+    headline = (
+        f"Pensionsanpassung {year}: +{_de(data.get('anpassung_pct_normal'))} % "
+        f"(Anpassungsfaktor {data.get('anpassungsfaktor')}). "
+        f"Ausgleichszulagen-Richtsatz Alleinstehend: "
+        f"{_de(data.get('ausgleichszulagen_richtsatz_alleinstehend_eur'))} EUR/Monat. "
+        f"Pensionen ab {_de(data.get('luxus_pension_grenze_eur_pro_monat'))} EUR: "
+        f"Pauschalbetrag {_de(data.get('luxus_pension_pauschal_eur'))} EUR statt voller Anpassung."
+    )
+
+    trend = comparisons.get("trend_anpassung_letzte_jahre") or []
+    trend_str = " · ".join(
+        f"{e['year']}: +{_de(e['pct'])} %" for e in trend
+    )
+
+    description_parts = [
+        f"Gesetzliche Pensionsanpassung nach § 108h ASVG. ",
+        f"Berechnungsbasis: {data.get('berechnungsbasis')}. ",
+        f"Trend letzte 5 Jahre: {trend_str}. ",
+        f"Reale Kaufkraft {year}: {comparisons.get('reale_kaufkraft_2026', '')}",
+    ]
+    for note in fact.get("context_notes") or []:
+        description_parts.append(note)
+
+    main = {
+        "indicator_name": f"Pensionsanpassung Österreich {year}",
+        "indicator": "factbook_pension_at",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": str(year),
+        "value": data.get("anpassung_pct_normal"),
+        "display_value": headline,
+        "description": " ".join(description_parts),
+        "url": src,
+        "source": label,
+    }
+    return [main]
+
+
+# ---------------------------------------------------------------------------
 # Public search
 # ---------------------------------------------------------------------------
 async def search_at_factbook(analysis: dict) -> dict:
@@ -412,6 +639,10 @@ async def search_at_factbook(analysis: dict) -> dict:
                 results.extend(_build_religion_results(fact))
             elif topic == "federal_subsidies_austria":
                 results.extend(_build_subsidies_results(fact, cl))
+            elif topic == "social_assistance_austria":
+                results.extend(_build_social_results(fact, cl))
+            elif topic == "pension_adjustment_austria":
+                results.extend(_build_pension_results(fact, cl))
 
     return {
         "source": "AT Factbook",

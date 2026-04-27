@@ -69,6 +69,14 @@ _AUTHORITATIVE_INDICATORS = (
     "factbook_religion_vienna_subgroup",
     "factbook_subsidies_at",
     "factbook_subsidies_check",
+    "factbook_social_assistance_at",
+    "factbook_social_check",
+    "factbook_pension_at",
+    "pks_overall",                       # BKA PKS-Hauptbericht
+    "pks_drug_crime",                    # BKA Lagebericht Suchtmittel
+    "pks_drug_crime_vienna",
+    "pks_youth_drug_check",
+    "pks_youth_general",
 )
 
 
