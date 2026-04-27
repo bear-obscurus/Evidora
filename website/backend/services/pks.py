@@ -96,10 +96,16 @@ def _claim_mentions_crim_general(claim_lc: str) -> bool:
     #   Strafmündigkeitsalter ebenfalls 14, aber die Debatte
     #   "Anzeigen 10–14 verdoppelt" ist die AT-PKS-Kennzahl).
     if "jugendkriminalität" in claim_lc or "jugendkriminalitaet" in claim_lc:
-        if any(age in claim_lc for age in (
-            "10 bis 14", "10-14", "10 - 14", "zehn bis 14",
-            "kinder bis 14", "kinder unter 14",
-        )):
+        import re as _re
+        age_match = (
+            any(age in claim_lc for age in (
+                "10 bis 14", "10-14", "10 - 14", "zehn bis 14",
+                "kinder bis 14", "kinder unter 14",
+            )) or
+            bool(_re.search(r"\b10\s*-\s*bis\s*14\b", claim_lc)) or
+            bool(_re.search(r"\b10[\s\-]*(bis|-)\s*14[\-\s]*jähr", claim_lc))
+        )
+        if age_match:
             return True
     return False
 
@@ -387,11 +393,20 @@ def _build_general_results(fact: dict, claim_lc: str) -> list[dict]:
 
     # Wenn der Claim Jugendkriminalität / 10–14 J. erwähnt → eigener
     # Eintrag mit dem PKS-Trend (10–14 J. verdoppelt seit 2020).
-    if any(kw in claim_lc for kw in (
+    import re as _re
+    youth_keywords = (
         "jugendkriminalität", "jugendkriminalitaet", "jugend",
         "10 bis 14", "10-14", "10 - 14", "zehn bis 14",
         "minderjährig", "minderjaehrig", "kinderkriminalität",
-    )):
+    )
+    # Plus regex für „10- bis 14-jährig" / „10-bis-14-Jährige"-Varianten,
+    # die der reine Substring-Match nicht fängt (Bindestrich nach 10).
+    youth_regex_match = bool(_re.search(
+        r"\b10\s*-\s*bis\s*14\b", claim_lc
+    )) or bool(_re.search(
+        r"\b10[\s\-]*(bis|-)\s*14[\-\s]*jähr", claim_lc
+    ))
+    if any(kw in claim_lc for kw in youth_keywords) or youth_regex_match:
         youth = data.get("jugendkriminalitaet_10_14_trend") or {}
         if youth:
             results.insert(0, {
