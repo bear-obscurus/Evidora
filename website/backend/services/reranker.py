@@ -111,6 +111,18 @@ _AUTHORITATIVE_INDICATORS = (
     "pks_aufklaerungsquote",
     "pks_abschiebung_straftaeter",
     "Methodologie-Vergleich AMS-vs-ILO",  # Statistik Austria caveat
+    # DACH-Factbook
+    "dach_bamf_asyl",
+    "dach_buergergeld",
+    "dach_buergergeld_counter",
+    "dach_heizungsgesetz",
+    "dach_heizung_counter",
+    "dach_ch_ahv",
+    "dach_ch_el_counter",
+    "dach_ch_migration_ahv",
+    "dach_venedig_counter",
+    "dach_klimaskepsis_counter",
+    "dach_asylbLG_counter",
 )
 
 

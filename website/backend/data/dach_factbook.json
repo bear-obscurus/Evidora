@@ -1,0 +1,274 @@
+{
+  "facts": [
+    {
+      "id": "bamf_asyl_de_2025_2026",
+      "topic": "bamf_asyl_de",
+      "scope": "BAMF Asylstatistik Deutschland 2025-2026",
+      "year": "2025-2026",
+      "headline": "Asylanträge Deutschland 2025-2026 (BAMF)",
+      "data": {
+        "asylantraege_gesamt_2025": 168543,
+        "asylantraege_gesamt_2024": 250945,
+        "asylantraege_gesamt_2023": 351915,
+        "asylantraege_q1_2026_erstantraege": 22491,
+        "asylantraege_q1_2026_folgeantraege": 10342,
+        "asylantraege_q1_2026_gesamt": 32833,
+        "rueckgang_q1_yoy_pct": -37.8,
+        "anstieg_folgeantraege_q1_yoy_pct": 107.4,
+        "top_3_herkunftslaender_q1_2026": [
+          {"land": "Afghanistan", "antraege": 5957},
+          {"land": "Syrien", "antraege": 3042},
+          {"land": "Türkei", "antraege": 1857}
+        ],
+        "anteil_unter_30_q1_2026_pct": 72.1,
+        "anteil_unter_16_q1_2026_pct": 40.5
+      },
+      "context_notes": [
+        "BAMF veröffentlicht monatlich Asyl-Geschäftsstatistiken. Q1 2026 (Januar–März): 22.491 Erstanträge + 10.342 Folgeanträge = 32.833 gesamt.",
+        "Folgeanträge sind Q1 2026 stark gestiegen (+107,4 %), weil viele afghanische Frauen und Mädchen Folgeanträge wegen geänderter Schutzlage stellen.",
+        "Im Vergleich zum Vorjahr Q1 2025 sind Erstanträge um 37,8 % gefallen — die Gesamtzahl der Anträge ist deutlich rückläufig.",
+        "Eine Behauptung von '22.491 Erstanträge in Q1 2026' ist faktisch korrekt (BAMF-Statistik März 2026).",
+        "Eine Behauptung von '168.543 Asylanträge 2025' ist faktisch korrekt (BAMF Jahresstatistik 2025).",
+        "Top-3 Herkunftsländer Q1 2026: Afghanistan, Syrien, Türkei — eine Behauptung dieser Reihenfolge ist faktisch korrekt."
+      ],
+      "claim_phrasings_handled": [
+        "Asylanträge Deutschland 2025",
+        "Asylanträge Deutschland 2026",
+        "BAMF Asylstatistik",
+        "168.543 Asylanträge Deutschland",
+        "22.491 Erstanträge",
+        "Top-Herkunftsländer Asyl Deutschland",
+        "Afghanistan Syrien Türkei Asyl Deutschland"
+      ],
+      "source_label": "BAMF — Bundesamt für Migration und Flüchtlinge, monatliche Asyl-Geschäftsstatistik",
+      "source_url": "https://www.bamf.de/SharedDocs/Meldungen/DE/2026/260407-asylzahlen-maerz-2026.html",
+      "secondary_url": "https://www.bpb.de/themen/migration-integration/zahlen-zu-asyl/",
+      "fetched_at_iso": "2026-04-28"
+    },
+    {
+      "id": "buergergeld_de_2026",
+      "topic": "buergergeld_de",
+      "scope": "Bürgergeld Deutschland 2026 — Regelsätze und Falschmeldungs-Counter",
+      "year": 2026,
+      "headline": "Bürgergeld Deutschland 2026 (DGB / ifo Institut)",
+      "data": {
+        "regelsatz_alleinstehend_eur_2026": 563,
+        "regelsatz_paar_eur_2026": 1012,
+        "kindersatz_min_eur": 357,
+        "kindersatz_max_eur": 471,
+        "geplante_umbenennung_2026": "Grundsicherungsgeld (geplant)",
+        "geplante_sanktions_verschaerfung": true,
+        "buergergeld_vs_niedriglohn_2026": {
+          "vollzeit_niedriglohn_38h_netto_eur_pro_monat": 1515,
+          "buergergeld_alleinstehend_inkl_wohngeld_eur_pro_monat": 995,
+          "differenz_eur_pro_monat": 520,
+          "verdict": "Vollzeit-Niedriglohnempfänger erhalten ~520 EUR/Monat MEHR als Bürgergeld-Empfänger.",
+          "quelle": "ifo Institut, DGB-Berechnung 2025/2026"
+        }
+      },
+      "context_notes": [
+        "STRUKTURELL FALSCH (häufiger Bild-Mythos): 'Bürgergeld-Empfänger bekommen mehr als Niedriglohnempfänger.' Der DGB hat berechnet, dass ein Vollzeit-38h-Niedriglohn-Empfänger ~1.515 EUR netto erhält, ein Bürgergeld-Empfänger inkl. Wohngeld ~995 EUR — also rund 520 EUR/Monat WENIGER. Das ifo Institut bestätigt: Die Behauptung ist 'einfach falsch'.",
+        "Bürgergeld-Regelsatz Alleinstehend 2026: 563 EUR (zzgl. Mietkosten und Heizkosten in tatsächlicher Höhe).",
+        "Bürgergeld wird 2026 voraussichtlich in 'Grundsicherungsgeld' umbenannt mit verschärften Sanktionen — Reform durch schwarz-rote Regierung in Vorbereitung.",
+        "Eine Behauptung von '563 EUR Bürgergeld-Regelsatz' ist faktisch korrekt für 2026.",
+        "Eine Behauptung 'Bürgergeld > Niedriglohn' ist FALSCH — verdict 'false' mit Confidence 0.9."
+      ],
+      "claim_phrasings_handled": [
+        "Bürgergeld Deutschland 2026",
+        "Bürgergeld Regelsatz",
+        "Bürgergeld 563 Euro",
+        "Bürgergeld mehr als Niedriglohn",
+        "Hartz IV Höhe Deutschland",
+        "Grundsicherungsgeld 2026"
+      ],
+      "source_label": "DGB Bürgergeld-Ratgeber 2026; ifo Institut Berechnung; Bundesagentur für Arbeit",
+      "source_url": "https://www.dgb.de/service/ratgeber/buergergeld/",
+      "secondary_url": "https://www.gegen-hartz.de/news/brgergeld-5-behauptungen-an-die-viele-glauben-aber-einfach-nicht-stimmen",
+      "fetched_at_iso": "2026-04-28"
+    },
+    {
+      "id": "heizungsgesetz_de_2026",
+      "topic": "heizungsgesetz_de",
+      "scope": "Deutsches Heizungsgesetz / Gebäudemodernisierungsgesetz 2026",
+      "year": 2026,
+      "headline": "Heizungsgesetz / GEG-Reform Deutschland 2026",
+      "data": {
+        "offizieller_name": "Gebäudemodernisierungsgesetz (Reform 2026); ursprünglich Gebäudeenergiegesetz GEG",
+        "reform_eckpunkte_beschluss": "Februar 2026",
+        "65_prozent_regel_abgeschafft": true,
+        "rwi_kostenschätzung_distanzierung": "Bild-Schlagzeile 'Habecks Wohn-Hammer kostet uns 1.000 Milliarden' wurde vom RWI und dem zitierten Forscher dezidiert dementiert. Die 1-Billion-Zahl ist NICHT vom RWI berechnet worden.",
+        "tatsaechliche_kostenschaetzung_de_approx_mrd_eur": 200,
+        "tatsaechliche_kostenschaetzung_quelle": "Wirtschaftsministerium Deutschland — geschätzte Investitionskosten Wärmewende 2024-2050: ca. 200 Mrd EUR (nicht 1.000 Mrd EUR / 1 Billion)"
+      },
+      "context_notes": [
+        "STRUKTURELL FALSCH (Bild-Falschmeldung): 'Habecks Heizungsgesetz kostet 1 Billion Euro.' Das RWI hat sich dezidiert von der zugeschriebenen Berechnung distanziert. Die tatsächliche Kostenschätzung der Bundesregierung liegt bei ~200 Mrd EUR über den gesamten Zeitraum bis 2050.",
+        "Die 65-Prozent-Regel (mind. 65 % erneuerbare Energie bei Neueinbau) wurde im Februar 2026 durch die schwarz-rote Regierung abgeschafft. Das Gesetz wird in 'Gebäudemodernisierungsgesetz' umbenannt.",
+        "Eine Behauptung 'Heizungsgesetz kostet 1 Billion Euro' ist FALSCH — verdict 'false' mit Confidence 0.9.",
+        "Eine Behauptung '65-Prozent-Regel wurde 2026 abgeschafft' ist faktisch korrekt — verdict 'true' oder 'mostly_true'."
+      ],
+      "claim_phrasings_handled": [
+        "Heizungsgesetz Deutschland 2026",
+        "Habeck Heizung 1 Billion",
+        "GEG Reform 65 Prozent",
+        "Gebäudeenergiegesetz",
+        "Wohn-Hammer Kosten",
+        "Gebäudemodernisierungsgesetz"
+      ],
+      "source_label": "CORRECTIV-Faktencheck Heizungsreform 02/2026; taz-Artikel 'Habeck kostet uns keine Billion'; ZDF",
+      "source_url": "https://correctiv.org/aktuelles/klimawandel/2026/02/27/heizungsreform-heizungsgesetz-2026-regierungsaussagen-im-check/",
+      "secondary_url": "https://taz.de/Falschmeldung-der-Bild-Zeitung/!5918458/",
+      "fetched_at_iso": "2026-04-28"
+    },
+    {
+      "id": "ch_ahv_2026",
+      "topic": "ahv_ch",
+      "scope": "Schweizer AHV / Altersvorsorge / Ergänzungsleistungen 2026",
+      "year": 2026,
+      "headline": "Schweizer AHV-Reform und Ergänzungsleistungen 2026",
+      "data": {
+        "dreizehnte_ahv_rente_erstauszahlung": "Dezember 2026",
+        "dreizehnte_ahv_rente_referendum": "März 2024 angenommen",
+        "frauen_rentenalter_neu": 65,
+        "frauen_rentenalter_anhebung_seit": 2025,
+        "frauen_rentenalter_anhebung_pro_jahr_monate": 3,
+        "frauen_rentenalter_voll_implementiert": 2028,
+        "ergaenzungsleistungen_ohne_iv_ahv_anspruch_ende_2024": {
+          "anzahl_personen": 1420,
+          "davon_eu_efta": 440,
+          "gesamt_summe_chf_mio": 43,
+          "quelle": "Schweizer Bundesrat 2025; Blick-Artikel"
+        },
+        "migration_entlastet_ahv_studie_2023": {
+          "befund": "Migration aus Europa entlastet die AHV langfristig — aber Effekt bleibt moderat über 30 Jahre",
+          "quelle": "Bundessozialversicherungsamt-Studie 2023"
+        }
+      },
+      "context_notes": [
+        "Die 13. AHV-Rente wurde im März 2024 per Referendum mit klarer Mehrheit angenommen. Erstauszahlung erfolgt Dezember 2026.",
+        "Frauen-Rentenalter wird ab 2025 schrittweise um 3 Monate pro Jahr angehoben — vollständig auf 65 Jahre ab 2028.",
+        "Eine Behauptung '13. AHV-Rente Dezember 2026' ist faktisch korrekt.",
+        "Eine Behauptung 'Frauen 65 Jahre ab 2028' ist faktisch korrekt.",
+        "Eine Behauptung '1.420 Ausländer EL ohne IV/AHV-Anspruch' ist faktisch korrekt (Bundesrat 2025).",
+        "Eine Behauptung 'Migration entlastet AHV langfristig' ist mostly_true mit Nuance: laut BSV-Studie 2023 entlastet Migration die AHV moderat, der Effekt ist jedoch nicht groß genug, um die strukturelle Finanzierungslücke zu schließen."
+      ],
+      "claim_phrasings_handled": [
+        "13. AHV-Rente Schweiz",
+        "Schweiz AHV Reform",
+        "Frauen Rentenalter Schweiz 65",
+        "Ergänzungsleistungen Schweiz Ausländer",
+        "Schweizer Altersvorsorge",
+        "Migration AHV Schweiz"
+      ],
+      "source_label": "Schweizer Bundesrat; AHV-Reform-Referendum 03/2024; Blick.ch politische Berichterstattung",
+      "source_url": "https://www.blick.ch/politik/darauf-musst-du-achten-was-sich-2026-bei-ahv-pk-und-krankenkasse-aendert-id21557830.html",
+      "secondary_url": "https://www.bsv.admin.ch/",
+      "fetched_at_iso": "2026-04-28"
+    },
+    {
+      "id": "venedig_meeresspiegel_counter",
+      "topic": "afd_venedig_meeresspiegel_counter",
+      "scope": "Counter zur AfD-Behauptung 'Meeresspiegel Venedig 1.500 Jahre unverändert'",
+      "year": "1901-2018",
+      "headline": "Meeresspiegel — IPCC-Daten widerlegen AfD-Behauptung (CORRECTIV)",
+      "data": {
+        "afd_behauptung": "Meeresspiegel in Venedig hat sich in 1.500 Jahren nicht verändert (Miguel Klauß, AfD)",
+        "ipcc_ar6_globaler_anstieg_1901_2018_cm": 20,
+        "ipcc_quelle": "IPCC Sechster Sachstandsbericht (AR6), 2023",
+        "venedig_relativer_anstieg_seit_1872_cm": 30,
+        "venedig_relativer_anstieg_quelle": "Istituto Superiore per la Protezione e la Ricerca Ambientale (ISPRA), Italien",
+        "venedig_acqua_alta_haeufigkeit_anstieg_seit_1900_pct": 600
+      },
+      "context_notes": [
+        "STRUKTURELL FALSCH: AfD-Behauptung von 'Meeresspiegel Venedig 1.500 Jahre unverändert' ist nach IPCC- und ISPRA-Daten widerlegt.",
+        "Globaler Meeresspiegel ist laut IPCC AR6 zwischen 1901 und 2018 um rund 20 cm gestiegen — das ist wissenschaftlich unbestritten.",
+        "Venedig-Relativ-Pegel ist seit 1872 um ca. 30 cm gestiegen (ISPRA-Daten) — Kombination aus globalem Anstieg und lokaler Bodenabsenkung.",
+        "Acqua-alta-Häufigkeit hat sich seit 1900 um etwa 600 % erhöht — direkter Indikator für relative Meeresspiegel-Veränderung.",
+        "Eine Behauptung 'Meeresspiegel Venedig 1.500 Jahre unverändert' ist FALSCH — verdict 'false' mit Confidence 0.95."
+      ],
+      "claim_phrasings_handled": [
+        "Meeresspiegel Venedig",
+        "Venedig 1500 Jahre",
+        "Klauß Meeresspiegel",
+        "AfD Meeresspiegel",
+        "Klimawandel Venedig"
+      ],
+      "source_label": "IPCC AR6 (2023); ISPRA Italien; CORRECTIV-Faktencheck",
+      "source_url": "https://correctiv.org/faktencheck/",
+      "secondary_url": "https://www.ipcc.ch/report/ar6/wg1/",
+      "fetched_at_iso": "2026-04-28"
+    },
+    {
+      "id": "klimaskepsis_frost_argument_counter",
+      "topic": "klimaskepsis_counter",
+      "scope": "Counter zu Klima-Skeptiker-Klassikern (Wetter vs. Klima)",
+      "year": "fortlaufend",
+      "headline": "Klima-Skeptizismus — 'Es ist kalt, also kein Klimawandel' ist Wetter-Klima-Verwechslung",
+      "data": {
+        "klima_definition": "Wissenschaftliche Definition Klima: Statistik der Wetterereignisse über mindestens 30 Jahre (WMO-Standard).",
+        "wmo_referenzperiode": "1991-2020 (aktuell)",
+        "kalter_winter_2025_de_befund": "Winter 2024/2025 Deutschland war ~ -0,8 °C unter dem Mittel der Periode 1991-2020 — aber +1,3 °C über dem Mittel 1961-1990 (Klimanormalperiode).",
+        "globale_temperatur_anomalie_2024_celsius": 1.55,
+        "globale_temperatur_anomalie_2024_quelle": "Copernicus / NASA GISS / Berkeley Earth (alle übereinstimmend)",
+        "letzte_10_waermste_jahre": "Alle 10 wärmsten Jahre seit Messbeginn 1880 liegen NACH 2014 (Berkeley Earth).",
+        "argumentationsfehler": "Wetter (kurzfristige Variabilität, Tage/Wochen) wird mit Klima (Statistik über 30+ Jahre) verwechselt."
+      },
+      "context_notes": [
+        "STRUKTURELL FALSCH (Klima-Skeptiker-Klassiker): 'Klimawandel ist nicht real, weil es kalten Winter gab.' Das verwechselt Wetter mit Klima — Klima ist die Statistik des Wetters über mindestens 30 Jahre (WMO-Definition).",
+        "Selbst kalte Wintermonate liegen über dem Mittel der Klimanormalperiode 1961-1990 — der Trend ist trotz Variabilität klar warming.",
+        "2024 war global +1,55 °C über dem vorindustriellen Mittel (Copernicus). Die letzten 10 wärmsten Jahre seit 1880 liegen ALLE nach 2014.",
+        "Eine Behauptung wie 'Klimawandel nicht real wegen kaltem Winter' ist FALSCH — verdict 'false' mit Confidence 0.95.",
+        "Andere Klima-Skeptiker-Klassiker (z.B. 'CO2 ist Pflanzennahrung, also gut') folgen demselben Logikfehler — sie ignorieren die Skala und Geschwindigkeit der aktuellen Veränderung."
+      ],
+      "claim_phrasings_handled": [
+        "Klimawandel nicht real",
+        "kalter Winter Klima",
+        "Frost Klimawandel",
+        "Klimawandel Schwindel",
+        "Wetter wie früher",
+        "kein Klimawandel weil"
+      ],
+      "source_label": "WMO Klimadefinition; Copernicus / NASA GISS / Berkeley Earth Temperaturdaten",
+      "source_url": "https://wmo.int/topics/climate",
+      "secondary_url": "https://climate.copernicus.eu/",
+      "fetched_at_iso": "2026-04-28"
+    },
+    {
+      "id": "asylbewerber_gesundheit_de_counter",
+      "topic": "asylbewerber_gesundheit_de_counter",
+      "scope": "Counter zur AfD-Behauptung 'Asylbewerber bekommen sofort alle Gesundheitsleistungen'",
+      "year": 2026,
+      "headline": "Asylbewerberleistungsgesetz Deutschland — KEIN Vollzugang sofort",
+      "data": {
+        "rechtsgrundlage": "Asylbewerberleistungsgesetz (AsylbLG), §§ 4, 6",
+        "umfang_erstes_jahr": "Nur Behandlung akuter Erkrankungen und Schmerzzustände, dazu Schwangerschafts-/Geburtsvorsorge und einige Vorsorgeuntersuchungen — KEIN voller GKV-Leistungsumfang.",
+        "voller_gkv_zugang_ab": "Erst nach 18 Monaten reguläre Asylverfahrens-Aufenthalts (§ 2 AsylbLG-Analogleistungen) ODER nach Anerkennung als Flüchtling/subsidiär Schutzberechtigter.",
+        "afd_falschbehauptung": "Bernd Schattner (AfD) behauptete, der Staat finanziere 'sofort alle Gesundheitsleistungen' für Asylbewerber. Dies ist faktisch unzutreffend — § 4 AsylbLG begrenzt die Leistungen explizit.",
+        "haufigste_kostenpunkte_pro_kopf_jahr_eur_approx": {
+          "akute_behandlungen": 800,
+          "vergleich_gkv_durchschnitt": 4500
+        }
+      },
+      "context_notes": [
+        "STRUKTURELL FALSCH (AfD-Behauptung Schattner, April 2026, von CORRECTIV faktengecheckt): 'Asylbewerber bekommen sofort alle Gesundheitsleistungen.' Tatsächlich gewährt § 4 AsylbLG nur eingeschränkten Leistungsumfang in den ersten 18 Monaten.",
+        "Im ersten Jahr beschränkt sich die Erstattung auf akute Erkrankungen, Schmerzbehandlung, Schwangerschafts-/Geburtsvorsorge und einzelne Vorsorgeleistungen.",
+        "Erst nach 18 Monaten regulärer Aufenthaltsdauer ODER nach Schutzanerkennung erhalten Asylbewerber den vollen GKV-Leistungsumfang (§ 2 AsylbLG-Analogleistungen).",
+        "Pro Kopf liegt die Inanspruchnahme bei ~800 EUR/Jahr — verglichen mit ~4.500 EUR GKV-Durchschnitt also deutlich niedriger.",
+        "Eine Behauptung 'Asylbewerber bekommen sofort alle Gesundheitsleistungen' ist FALSCH — verdict 'false' mit Confidence 0.9."
+      ],
+      "claim_phrasings_handled": [
+        "Asylbewerber Gesundheitsleistungen Deutschland",
+        "Asylbewerber Krankenversicherung",
+        "Migranten Gesundheitskosten Deutschland",
+        "AsylbLG Leistungen",
+        "Asylsuchende sofort versichert"
+      ],
+      "source_label": "Asylbewerberleistungsgesetz §§ 4, 6; CORRECTIV-Faktencheck Schattner 04/2026",
+      "source_url": "https://correctiv.org/faktencheck/2026/04/21/gesundheitsreform-afd-politiker-streut-falschbehauptung-zu-asylbewerbern/",
+      "secondary_url": "https://www.gesetze-im-internet.de/asylblg/",
+      "fetched_at_iso": "2026-04-28"
+    }
+  ],
+  "fetched_at_iso": "2026-04-28",
+  "note": "Kuratierte DACH-Faktoide (Deutschland + Schweiz) für Boulevardpresse-Stress-Tests. Manuell aktualisiert nach BAMF/DGB/Bundesrat/CORRECTIV-Quellen. Refresh-Cadence: vierteljährlich für Asyl-Statistiken, jährlich für Sozialleistungen.",
+  "version": 1
+}
