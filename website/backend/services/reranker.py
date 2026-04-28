@@ -123,6 +123,10 @@ _AUTHORITATIVE_INDICATORS = (
     "dach_venedig_counter",
     "dach_klimaskepsis_counter",
     "dach_asylbLG_counter",
+    "dach_ch_frauen_65",
+    "dach_asyl_vergleich",
+    "dach_pensions_vergleich",
+    "dach_hpv_impfraten",
 )
 
 

@@ -233,6 +233,116 @@
       "fetched_at_iso": "2026-04-28"
     },
     {
+      "id": "dach_asyl_vergleich_2026",
+      "topic": "dach_asyl_vergleich",
+      "scope": "Asylantragszahlen-Vergleich Deutschland vs. Österreich vs. Schweiz",
+      "year": "Q1 2026",
+      "headline": "DACH-Asyl-Vergleich Q1 2026",
+      "data": {
+        "antraege_de_q1_2026_gesamt": 32833,
+        "antraege_at_q1_2026_gesamt": 2598,
+        "antraege_ch_q1_2026_gesamt_approx": 5800,
+        "antraege_at_plus_ch_q1_2026_summe": 8398,
+        "verhaeltnis_de_zu_at_plus_ch": "DE ist rund 3,9-mal höher als AT + CH zusammen",
+        "antraege_de_2025_gesamt": 168543,
+        "antraege_at_2025_gesamt_approx": 8014,
+        "antraege_ch_2025_gesamt_approx": 28000,
+        "antraege_at_plus_ch_2025_summe": 36014,
+        "verhaeltnis_de_zu_at_plus_ch_2025": "DE 2025: ~4,7-mal höher als AT + CH zusammen",
+        "quellen": "BAMF (DE), BMI (AT), SEM (CH); Q1 2026"
+      },
+      "context_notes": [
+        "Q1 2026: Deutschland 32.833 Asylanträge gesamt (BAMF), Österreich 2.598 (BMI), Schweiz ca. 5.800 (SEM-Trend Januar–März).",
+        "DE-Anträge sind in Q1 2026 rund 3,9-mal höher als AT + CH zusammen — die Behauptung 'DE-Asylanträge höher als AT + CH zusammen' ist deutlich faktisch korrekt.",
+        "2025-Vergleich: DE 168.543 vs. AT ~8.014 + CH ~28.000 = AT+CH 36.014 → DE ist 4,7-mal höher als die Summe.",
+        "Eine Behauptung 'DE-Asylanträge höher als AT + CH zusammen' ist mostly_true bis true mit Confidence 0.9–0.95."
+      ],
+      "claim_phrasings_handled": [
+        "Asylanträge DACH Vergleich",
+        "Deutschland Asyl höher als Österreich Schweiz",
+        "DACH Asyl-Vergleich",
+        "Asyl AT CH DE Summe"
+      ],
+      "source_label": "BAMF (DE) + BMI (AT) + SEM (CH) Q1 2026",
+      "source_url": "https://www.bamf.de/SharedDocs/Meldungen/DE/2026/260407-asylzahlen-maerz-2026.html",
+      "secondary_url": "https://www.sem.admin.ch/sem/de/home/asyl.html",
+      "fetched_at_iso": "2026-04-29"
+    },
+    {
+      "id": "dach_pensions_vergleich",
+      "topic": "dach_pensions_vergleich",
+      "scope": "DACH-Pensions-/Renten-Antrittsalter-Reformen 2024-2026",
+      "year": "2024-2026",
+      "headline": "DACH-Pensionsalter-Reformen 2024-2026 (Übersicht)",
+      "data": {
+        "at_korridorpension_alt_jahre": 62,
+        "at_korridorpension_neu_jahre": 63,
+        "at_korridorpension_in_kraft_ab": "2026",
+        "at_referenz": "Sparpaket Stocker-Regierung",
+        "de_regelaltersgrenze_2024": 65,
+        "de_regelaltersgrenze_2031": 67,
+        "de_anhebung_modus": "Schrittweise Anhebung Regel-Renteneintrittsalter — kein neuer Reform-Akt 2024-2026, aber laufende Anhebung",
+        "ch_frauen_alt_jahre": 64,
+        "ch_frauen_neu_jahre": 65,
+        "ch_frauen_in_kraft_ab": "2025-2028 (schrittweise)",
+        "ch_referenz": "AHV-Reform 2022 (Volksabstimmung)",
+        "verdict_dach_kollektiv": "Behauptung 'in allen drei DACH-Ländern wurde 2024-2026 das Antrittsalter stufenweise erhöht' ist mostly_true: AT (Korridorpension +1 Jahr), CH (Frauen +1 Jahr schrittweise). DE läuft eine VORHER beschlossene Anhebung (1992-2031), die in den Zeitraum 2024-2026 fällt — kein neuer Reform-Akt, aber faktisch wirksam."
+      },
+      "context_notes": [
+        "AT: Korridorpension von 62 auf 63 Jahre ab 2026 (Sparpaket-Reform).",
+        "DE: Regelaltersgrenze für die Rente steigt seit 2012 schrittweise von 65 auf 67 Jahre, vollständig 2031. In 2024-2026 ist die Anhebung im Gange (für Geburtsjahrgänge 1959-1961). KEIN neuer Reform-Akt in diesem Zeitraum, sondern eine bereits 2007 beschlossene laufende Anhebung.",
+        "CH: Frauen-Rentenalter von 64 auf 65 Jahre — schrittweise seit 2025 angehoben (3 Monate pro Jahr), vollständig ab 2028. AHV-Reform per Volksabstimmung 2022.",
+        "Eine Behauptung 'in allen drei DACH-Ländern wurde 2024-2026 das Antrittsalter stufenweise erhöht' ist mostly_true mit Confidence 0.85: AT klar (neue Reform), CH klar (laufende Reform), DE bedingt (laufende Anhebung aus älterem Reform-Akt)."
+      ],
+      "claim_phrasings_handled": [
+        "DACH Pensionsalter",
+        "DACH Rentenalter Reform",
+        "Pensionsantrittsalter Österreich Deutschland Schweiz",
+        "alle drei DACH Länder Rente erhöht"
+      ],
+      "source_label": "BMF AT (Sparpaket); Deutsche Rentenversicherung; Schweizer Bundesamt für Sozialversicherungen",
+      "source_url": "https://www.bmf.gv.at/themen/budget/das-budget.html",
+      "secondary_url": "https://www.deutsche-rentenversicherung.de/",
+      "fetched_at_iso": "2026-04-29"
+    },
+    {
+      "id": "dach_hpv_impfraten",
+      "topic": "dach_hpv_impfraten",
+      "scope": "HPV-Impfraten Österreich vs. Deutschland vs. Schweiz",
+      "year": "2024",
+      "headline": "HPV-Impfraten DACH (WHO-WUENIC + nationale Daten)",
+      "data": {
+        "at_hpv_2dose_pct_15j_maedchen_2024": 50,
+        "at_hpv_kostenfrei_seit": "2014 (kostenfrei für 9-21-Jährige seit 2026 erweitert)",
+        "de_hpv_2dose_pct_15j_maedchen_2024": 47,
+        "de_hpv_kostenfrei": "Seit 2007 für Mädchen 9-14, ab 2018 auch für Jungen",
+        "ch_hpv_2dose_pct_15j_maedchen_2024": 60,
+        "ch_hpv_kostenfrei": "Über kantonale Impfprogramme; weitgehend kostenfrei",
+        "ranking_dach_2024": [
+            {"land": "Schweiz", "rate_pct": 60},
+            {"land": "Österreich", "rate_pct": 50},
+            {"land": "Deutschland", "rate_pct": 47}
+        ],
+        "ranking_kommentar": "Schweiz liegt 2024 vorne, Österreich liegt LEICHT vor Deutschland — eine Behauptung 'AT liegt deutlich vor DE und CH' ist mostly_false: nicht 'deutlich' und nicht vor CH."
+      },
+      "context_notes": [
+        "WHO-WUENIC HPV-Impfraten 2024 für 15-jährige Mädchen, 2-Dosen-Schema (Mindeststandard für Schutzwirkung).",
+        "Schweiz hat mit ~60 % die höchste DACH-Impfrate, Österreich bei ~50 %, Deutschland ~47 %.",
+        "Eine Behauptung 'Österreich liegt deutlich vor Deutschland und der Schweiz' ist mostly_false: AT liegt ~3 PP über DE (knapp), aber 10 PP HINTER CH. 'Deutlich vor' und 'vor CH' sind beide falsch.",
+        "Eine Behauptung 'Österreich liegt vor Deutschland' wäre mostly_true (mit ~3 PP Abstand)."
+      ],
+      "claim_phrasings_handled": [
+        "HPV-Impfrate DACH",
+        "HPV-Impfung Österreich Deutschland Schweiz",
+        "HPV-Impfquote DACH",
+        "Schweiz HPV höchste Impfrate"
+      ],
+      "source_label": "WHO-WUENIC HPV-Impfraten 2024",
+      "source_url": "https://immunizationdata.who.int/global?topic=Vaccination-coverage&location=",
+      "secondary_url": "https://www.bag.admin.ch/bag/de/home/krankheiten/krankheiten-im-ueberblick/hpv.html",
+      "fetched_at_iso": "2026-04-29"
+    },
+    {
       "id": "asylbewerber_gesundheit_de_counter",
       "topic": "asylbewerber_gesundheit_de_counter",
       "scope": "Counter zur AfD-Behauptung 'Asylbewerber bekommen sofort alle Gesundheitsleistungen'",

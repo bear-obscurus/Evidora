@@ -141,8 +141,19 @@ def _claim_mentions_ahv(claim_lc: str) -> bool:
     has_term = any(t in claim_lc for t in _AHV_TERMS)
     if has_term:
         return True
-    has_pension = any(t in claim_lc for t in ("rente", "rentenalter", "altersvorsorge"))
+    has_pension = any(t in claim_lc for t in (
+        "rente", "rentenalter", "altersvorsorge", "pensionsalter",
+        "frauen 65", "bis 65 arbeiten", "frauen bis 65",
+    ))
     if has_pension and _has_ch_context(claim_lc):
+        return True
+    # Composite: 'frauen' + 'schweiz' + ('65' oder 'rentenalter' oder 'arbeiten')
+    has_frauen = "frauen" in claim_lc
+    has_age = any(t in claim_lc for t in (
+        "65", "64", "rentenalter", "pensionsalter",
+        "arbeiten", "anhebung",
+    ))
+    if has_frauen and has_age and _has_ch_context(claim_lc):
         return True
     return False
 
@@ -189,6 +200,93 @@ def _claim_mentions_klimaskepsis_basic(claim_lc: str) -> bool:
         "war früher", "schon immer",
     ))
     return has_klima and has_skeptik
+
+
+_DACH_ASYL_VERGLEICH_TERMS = (
+    "asylanträge dach", "asyl deutschland österreich schweiz",
+    "deutschland asyl höher",
+    "asyl at + ch", "asyl at und ch",
+    "deutschland mehr asyl",
+    "asyl dach vergleich",
+)
+
+
+def _claim_mentions_dach_asyl(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _DACH_ASYL_VERGLEICH_TERMS)
+    if has_term:
+        return True
+    # Composite: 'asyl' + 2 von 3 DACH-Ländern + 'höher' / 'zusammen'
+    has_asyl = any(t in claim_lc for t in ("asyl", "asylantrag", "asylanträge"))
+    if not has_asyl:
+        return False
+    de_mentioned = any(t in claim_lc for t in ("deutschland", "germany"))
+    at_mentioned = "österreich" in claim_lc or "austria" in claim_lc
+    ch_mentioned = "schweiz" in claim_lc or "switzerland" in claim_lc
+    has_compare = any(t in claim_lc for t in (
+        "höher als", "mehr als", "zusammen", "summe", "kombiniert",
+        "im vergleich",
+    ))
+    if (de_mentioned + at_mentioned + ch_mentioned) >= 2 and has_compare:
+        return True
+    return False
+
+
+_DACH_PENSIONS_TERMS = (
+    "dach pension", "dach rente",
+    "pensionsantrittsalter dach",
+    "rentenalter dach", "pensionsalter dach",
+    "alle drei länder rente",
+    "alle drei dach", "alle dach länder",
+    "österreich deutschland schweiz pension",
+    "österreich deutschland schweiz rente",
+)
+
+
+def _claim_mentions_dach_pensions(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _DACH_PENSIONS_TERMS)
+    if has_term:
+        return True
+    has_pension = any(t in claim_lc for t in (
+        "pension", "rente", "rentenalter", "pensionsalter",
+        "antrittsalter",
+    ))
+    if not has_pension:
+        return False
+    de_mentioned = any(t in claim_lc for t in ("deutschland", "germany"))
+    at_mentioned = "österreich" in claim_lc or "austria" in claim_lc
+    ch_mentioned = "schweiz" in claim_lc or "switzerland" in claim_lc
+    has_dach = any(t in claim_lc for t in ("dach", "drei länder", "alle drei"))
+    if has_dach or (de_mentioned + at_mentioned + ch_mentioned) >= 2:
+        return True
+    return False
+
+
+_DACH_HPV_TERMS = (
+    "hpv-impfrate", "hpv impfrate",
+    "hpv-impfquote", "hpv impfquote",
+    "impfrate dach",
+    "hpv österreich deutschland",
+    "hpv schweiz österreich",
+)
+
+
+def _claim_mentions_dach_hpv(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _DACH_HPV_TERMS)
+    if has_term:
+        return True
+    has_hpv = "hpv" in claim_lc
+    if not has_hpv:
+        return False
+    de_mentioned = any(t in claim_lc for t in ("deutschland", "germany"))
+    at_mentioned = "österreich" in claim_lc or "austria" in claim_lc
+    ch_mentioned = "schweiz" in claim_lc or "switzerland" in claim_lc
+    has_compare = any(t in claim_lc for t in (
+        "deutlich vor", "vor deutschland", "vor schweiz",
+        "höher als", "vergleich",
+    ))
+    if (de_mentioned + at_mentioned + ch_mentioned) >= 2 and has_compare:
+        return True
+    return False
 
 
 _ASYLBEWERBER_GESUNDHEIT_TERMS = (
@@ -239,6 +337,12 @@ def _claim_matches_any_topic(claim: str) -> list[str]:
         matched.append("klimaskepsis_counter")
     if _claim_mentions_asylbewerber_gesundheit(cl):
         matched.append("asylbewerber_gesundheit_de_counter")
+    if _claim_mentions_dach_asyl(cl):
+        matched.append("dach_asyl_vergleich")
+    if _claim_mentions_dach_pensions(cl):
+        matched.append("dach_pensions_vergleich")
+    if _claim_mentions_dach_hpv(cl):
+        matched.append("dach_hpv_impfraten")
     return matched
 
 
@@ -501,6 +605,39 @@ def _build_ahv_results(fact: dict, claim_lc: str) -> list[dict]:
             "url": src, "source": label,
         })
 
+    # Spezial: Frauen-65-Anhebung
+    if any(s in claim_lc for s in (
+        "frauen 65", "rentenalter 65", "frauen rentenalter",
+        "frauen bis 65", "frauen pensionsalter",
+        "ahv-reform 65", "ahv reform frauen",
+        "drei monate pro jahr", "3 monate pro jahr",
+    )):
+        results.insert(0, {
+            "indicator_name": "Schweiz Frauen-Rentenalter-Anhebung 65 (Sub-Eintrag)",
+            "indicator": "dach_ch_frauen_65",
+            "country": "CHE", "country_name": "Schweiz",
+            "year": "2025-2028",
+            "display_value": (
+                f"Schweizer AHV-Reform: Frauen-Rentenalter steigt seit "
+                f"{data.get('frauen_rentenalter_anhebung_seit')} schrittweise "
+                f"um {data.get('frauen_rentenalter_anhebung_pro_jahr_monate')} "
+                f"Monate pro Jahr — vollständig auf "
+                f"{data.get('frauen_rentenalter_neu')} Jahre ab "
+                f"{data.get('frauen_rentenalter_voll_implementiert')}. "
+                f"Eine Behauptung 'Frauen müssen ab 2028 bis 65 arbeiten — "
+                f"Anhebung seit 2025, 3 Monate/Jahr' ist faktisch korrekt — "
+                f"verdict 'true' @ 0.95."
+            ),
+            "description": (
+                "AHV-Reform 2022 vom Schweizer Stimmvolk angenommen. "
+                "Übergangsregelung: 1961 = +3 Monate (= 64 + 3), 1962 = +6 "
+                "Monate, ..., 1964 ff. = volles Rentenalter 65. Damit ist "
+                "ab Jahrgang 1964 (also 2028) die Anhebung vollständig "
+                "implementiert."
+            ),
+            "url": src, "source": label,
+        })
+
     # Spezial: Migration-AHV
     if any(s in claim_lc for s in ("migration ahv", "migranten ahv",
                                      "zuwanderung ahv", "ausländer ahv")):
@@ -600,6 +737,91 @@ def _build_asylbewerber_gesundheit_counter_results(fact: dict, claim_lc: str) ->
 
 
 # ---------------------------------------------------------------------------
+# DACH-Vergleichs-Topics
+# ---------------------------------------------------------------------------
+def _build_dach_asyl_vergleich_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "BAMF + BMI + SEM"
+
+    headline = (
+        f"DACH-Asyl-Vergleich Q1 2026: DE {_de_int(data.get('antraege_de_q1_2026_gesamt'))}, "
+        f"AT {_de_int(data.get('antraege_at_q1_2026_gesamt'))}, "
+        f"CH ~{_de_int(data.get('antraege_ch_q1_2026_gesamt_approx'))}. "
+        f"AT + CH zusammen = {_de_int(data.get('antraege_at_plus_ch_q1_2026_summe'))}. "
+        f"DE ist rund 3,9-mal höher als AT + CH zusammen → Behauptung "
+        f"'DE höher als AT + CH zusammen' ist FAKTISCH KORREKT."
+    )
+
+    return [{
+        "indicator_name": "DACH-Asyl-Vergleich Q1 2026",
+        "indicator": "dach_asyl_vergleich",
+        "country": "DEU/AUT/CHE", "country_name": "DACH-Region",
+        "year": "Q1 2026",
+        "value": data.get("antraege_de_q1_2026_gesamt"),
+        "display_value": headline,
+        "description": " ".join(fact.get("context_notes") or []),
+        "url": src, "source": label,
+    }]
+
+
+def _build_dach_pensions_vergleich_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "BMF AT + DRV DE + BSV CH"
+
+    headline = (
+        f"DACH-Pensionsalter-Reformen 2024-2026: "
+        f"AT Korridorpension {data.get('at_korridorpension_alt_jahre')}→"
+        f"{data.get('at_korridorpension_neu_jahre')} Jahre ab "
+        f"{data.get('at_korridorpension_in_kraft_ab')}; "
+        f"CH Frauen {data.get('ch_frauen_alt_jahre')}→"
+        f"{data.get('ch_frauen_neu_jahre')} Jahre ab "
+        f"{data.get('ch_frauen_in_kraft_ab')}; "
+        f"DE laufende Anhebung Regelaltersgrenze "
+        f"{data.get('de_regelaltersgrenze_2024')}→"
+        f"{data.get('de_regelaltersgrenze_2031')} (bereits 2007 beschlossen, "
+        f"2024-2026 wirksam aber kein neuer Reform-Akt). "
+        f"VERDICT-EMPFEHLUNG: 'mostly_true' für DACH-Erhöhungs-Behauptungen."
+    )
+
+    return [{
+        "indicator_name": "DACH-Pensionsalter-Reformen 2024-2026",
+        "indicator": "dach_pensions_vergleich",
+        "country": "DEU/AUT/CHE", "country_name": "DACH-Region",
+        "year": "2024-2026",
+        "display_value": headline,
+        "description": " ".join(fact.get("context_notes") or []),
+        "url": src, "source": label,
+    }]
+
+
+def _build_dach_hpv_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "WHO-WUENIC"
+
+    ranking = data.get("ranking_dach_2024") or []
+    rank_str = ", ".join(f"{e['land']} {e['rate_pct']} %" for e in ranking)
+
+    headline = (
+        f"HPV-Impfraten DACH 2024 (WHO-WUENIC, 2-Dosen-Schema 15j Mädchen): "
+        f"{rank_str}. {data.get('ranking_kommentar', '')}"
+    )
+
+    return [{
+        "indicator_name": "HPV-Impfraten DACH-Region 2024",
+        "indicator": "dach_hpv_impfraten",
+        "country": "DEU/AUT/CHE", "country_name": "DACH-Region",
+        "year": "2024",
+        "value": data.get("at_hpv_2dose_pct_15j_maedchen_2024"),
+        "display_value": headline,
+        "description": " ".join(fact.get("context_notes") or []),
+        "url": src, "source": label,
+    }]
+
+
+# ---------------------------------------------------------------------------
 # Public search
 # ---------------------------------------------------------------------------
 async def search_dach_factbook(analysis: dict) -> dict:
@@ -641,6 +863,12 @@ async def search_dach_factbook(analysis: dict) -> dict:
                 results.extend(_build_klimaskepsis_counter_results(fact, matchable))
             elif topic == "asylbewerber_gesundheit_de_counter":
                 results.extend(_build_asylbewerber_gesundheit_counter_results(fact, matchable))
+            elif topic == "dach_asyl_vergleich":
+                results.extend(_build_dach_asyl_vergleich_results(fact, matchable))
+            elif topic == "dach_pensions_vergleich":
+                results.extend(_build_dach_pensions_vergleich_results(fact, matchable))
+            elif topic == "dach_hpv_impfraten":
+                results.extend(_build_dach_hpv_results(fact, matchable))
 
     return {
         "source": "DACH Factbook",
