@@ -18,7 +18,7 @@ const TRANSLATIONS = {
         example_claims: [
             { icon: "💉", text: "Impfungen verursachen Autismus." },
             { icon: "🌡️", text: "2024 war das wärmste Jahr in Wien seit Beginn der Aufzeichnungen." },
-            { icon: "🚭", text: "Das Don't-smoke-Volksbegehren 2018 hatte über eine Million Unterschriften." },
+            { icon: "🌍", text: "Klimawandel ist nicht real, weil es 2025 in Deutschland einen kalten Winter gegeben hat." },
             { icon: "📡", text: "Krebs wird hauptsächlich durch Handy-Strahlung verursacht." },
             { icon: "⚛️", text: "Atomkraft ist die sicherste Form der Energieerzeugung." },
             { icon: "❄️", text: "Wärmepumpen funktionieren in österreichischen Wintern auch bei Frost." },
@@ -143,7 +143,9 @@ const TRANSLATIONS = {
                 <li><a href="https://www.bmi.gv.at/411/start.aspx" target="_blank" rel="noopener">BMI Volksbegehren</a> — alle bundesweiten Volksbegehren der zweiten Republik</li>
                 <li><a href="https://www.bmi.gv.at/412/start.aspx" target="_blank" rel="noopener">BMI Wahlen</a> — Bundesergebnisse aller Nationalrats-, Bundespräsidenten- und Europawahlen</li>
                 <li><a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament Abstimmungen</a> — Klub-Abstimmungsverhalten zu Nationalrats-Beschlüssen seit 2017</li>
-                <li><strong>AT Factbook</strong> — kuratierte AT-Faktoide aus offiziellen Berichten (Bildungsdirektion Wien, BMF Förderungsbericht)</li>
+                <li><strong>AT Factbook</strong> — kuratierte AT-Faktoide aus offiziellen Berichten (Bildungsdirektion Wien, BMF Förderungsbericht, Statistik Austria, Sozialministerium, E-Control)</li>
+                <li><a href="https://www.bundeskriminalamt.at/" target="_blank" rel="noopener">BKA PKS</a> — Polizeiliche Kriminalstatistik + Lagebericht Suchtmittel</li>
+                <li><strong>DACH Factbook</strong> — kuratierte DE-/CH-Faktoide für Boulevard-Falschmeldungen (BAMF Asyl, Bürgergeld, Heizungsgesetz, AHV, CORRECTIV-/IPCC-Counter)</li>
                 <li><a href="https://v-dem.net/" target="_blank" rel="noopener">V-Dem</a> — Varieties of Democracy (Universität Göteborg)</li>
                 <li><a href="https://www.transparency.org/en/cpi" target="_blank" rel="noopener">Transparency International</a> — Corruption Perceptions Index</li>
                 <li><a href="https://rsf.org/en/index" target="_blank" rel="noopener">Reporter ohne Grenzen (RSF)</a> — World Press Freedom Index</li>
@@ -330,7 +332,9 @@ const TRANSLATIONS = {
                 <li><strong>BMI Volksbegehren</strong> — amtliche Liste aller bundesweiten Volksbegehren der zweiten Republik (BMI, Abt. III/6 Wahlangelegenheiten; gemeinfrei, § 7 UrhG-AT). <a href="https://www.bmi.gv.at/411/Alle_Volksbegehren_der_zweiten_Republik.aspx" target="_blank" rel="noopener">BMI Volksbegehren</a></li>
                 <li><strong>BMI Wahlen / Bundeswahlbehörde</strong> — amtliche Bundesergebnisse aller österreichischen Bundeswahlen (Nationalrats-, Bundespräsidenten-, Europawahlen; gemeinfrei, § 7 UrhG-AT). <a href="https://www.bmi.gv.at/412/start.aspx" target="_blank" rel="noopener">BMI Wahlen</a></li>
                 <li><strong>Parlament Abstimmungen</strong> — Klub-Abstimmungsverhalten zu Nationalrats-Beschlüssen aus dem Open-Data-Portal des Parlaments (CC BY 4.0). <a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament Open Data</a></li>
-                <li><strong>AT Factbook</strong> — kuratierte österreichische Faktoide aus offiziellen Primärquellen (Bildungsdirektion Wien zu Religionsbekenntnissen an Wiener Pflichtschulen; BMF-Förderungsbericht zu Bundesförderungen; Statistik Austria zu ESVG-Förderquote). Manuell aktualisiert; ergänzt API-lose AT-Statistiken.</li>
+                <li><strong>AT Factbook</strong> — kuratierte österreichische Faktoide aus offiziellen Primärquellen (Bildungsdirektion Wien zu Religionsbekenntnissen an Wiener Pflichtschulen; BMF-Förderungsbericht zu Bundesförderungen; Statistik Austria zu ESVG-Förderquote; Sozialministerium zu Mindestsicherung und Pensionsanpassung; E-Control zu Energie-Tarifen; AT-spezifische Counter-Topics zu Falschmeldungen wie 22-Mio-Behandlungen, Eingebürgerten-Sozialleistungen und Mobilfunk-Krebs). Manuell aktualisiert; ergänzt API-lose AT-Statistiken.</li>
+                <li><strong>BKA PKS</strong> — Polizeiliche Kriminalstatistik + Lagebericht Suchtmittel (statisch curated aus den jährlichen BKA-PDF-Berichten; Hauptbericht 2024 mit Tatverdächtigen-Anteilen, Wien-Bezirks-Statistik, Aufklärungsquote, Suchtmittel-Trends).</li>
+                <li><strong>DACH Factbook</strong> — kuratierte deutsche und schweizerische Faktoide für Boulevardpresse-Falschmeldungen (BAMF-Asylstatistik, deutsches Bürgergeld + ifo/DGB-Counter, GEG-Heizungsgesetz + RWI-Counter, Schweizer AHV-Reform + Ergänzungsleistungen, IPCC-/WHO-Counter zu Klima- und Krebs-Misinformation, CORRECTIV-Counter zu AfD-Behauptungen).</li>
                 <li><strong>Cochrane Reviews</strong> — Systematische Reviews via PubMed (höchste Evidenzstufe)</li>
                 <li><strong>GADMO Faktenchecks</strong> — Deutschsprachige Faktenchecks (APA). <a href="https://gadmo.eu" target="_blank" rel="noopener">GADMO</a></li>
                 <li><strong>EFCSN-Faktenchecker</strong> — über die <a href="https://developers.google.com/fact-check/tools/api" target="_blank" rel="noopener">Google Fact Check Tools API</a> (ClaimReview-Daten von Correctiv, AFP, dpa u.a.)</li>
@@ -358,9 +362,9 @@ const TRANSLATIONS = {
         example_claims: [
             { icon: "💉", text: "Vaccines cause autism." },
             { icon: "🌡️", text: "2024 was the warmest year on record globally." },
+            { icon: "🌍", text: "Climate change is not real, because Germany had a cold winter in 2025." },
             { icon: "📡", text: "Cancer is mainly caused by mobile phone radiation." },
             { icon: "⚛️", text: "Nuclear power is the safest form of energy generation." },
-            { icon: "📊", text: "The EU's CO2 emissions decreased by 30% since 1990." },
             { icon: "🏥", text: "Life expectancy in Italy is higher than in Germany." },
         ],
         beta_notice: "This project is under active development.",
@@ -483,7 +487,9 @@ const TRANSLATIONS = {
                 <li><a href="https://www.bmi.gv.at/411/start.aspx" target="_blank" rel="noopener">BMI Popular Initiatives</a> — official list of all Austrian federal popular initiatives (Volksbegehren) since 1964</li>
                 <li><a href="https://www.bmi.gv.at/412/start.aspx" target="_blank" rel="noopener">BMI Elections</a> — federal results of all Austrian National Council, Federal Presidential and European Parliament elections</li>
                 <li><a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parliamentary Voting Records</a> — club voting behaviour for National Council decisions since 2017</li>
-                <li><strong>AT Factbook</strong> — curated Austrian fact records from official primary sources (Vienna school authority, Federal Ministry of Finance subsidy report)</li>
+                <li><strong>AT Factbook</strong> — curated Austrian fact records from official primary sources (Vienna school authority, Federal Ministry of Finance subsidy report, Statistik Austria, social ministry, E-Control)</li>
+                <li><a href="https://www.bundeskriminalamt.at/" target="_blank" rel="noopener">BKA PKS</a> — Austrian Police Crime Statistics + Drug Crime Report</li>
+                <li><strong>DACH Factbook</strong> — curated German + Swiss fact records for tabloid misinformation (BAMF asylum, Bürgergeld, heating law, AHV pension, CORRECTIV/IPCC counters)</li>
                 <li><a href="https://v-dem.net/" target="_blank" rel="noopener">V-Dem</a> — Varieties of Democracy (University of Gothenburg)</li>
                 <li><a href="https://www.transparency.org/en/cpi" target="_blank" rel="noopener">Transparency International</a> — Corruption Perceptions Index</li>
                 <li><a href="https://rsf.org/en/index" target="_blank" rel="noopener">Reporters Without Borders (RSF)</a> — World Press Freedom Index</li>
@@ -669,7 +675,9 @@ const TRANSLATIONS = {
                 <li><strong>BMI Popular Initiatives</strong> — official list of all Austrian federal popular initiatives (Volksbegehren) of the Second Republic (Federal Ministry of the Interior, Department III/6 — Electoral Affairs; public domain, § 7 UrhG-AT). <a href="https://www.bmi.gv.at/411/Alle_Volksbegehren_der_zweiten_Republik.aspx" target="_blank" rel="noopener">BMI Popular Initiatives</a></li>
                 <li><strong>BMI Elections / Federal Electoral Commission</strong> — official federal results of all Austrian federal-level elections (National Council, Federal Presidential, European Parliament; public domain, § 7 UrhG-AT). <a href="https://www.bmi.gv.at/412/start.aspx" target="_blank" rel="noopener">BMI Elections</a></li>
                 <li><strong>Austrian Parliament Voting Records</strong> — club voting behaviour on National Council decisions, via the Parliament's Open Data portal (CC BY 4.0). <a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament Open Data</a></li>
-                <li><strong>AT Factbook</strong> — curated Austrian fact records from official primary sources (Vienna school authority on religious affiliations in compulsory schools; Federal Ministry of Finance subsidy report; Statistik Austria ESA-2010 subsidy ratio). Manually maintained; complements Austrian statistics for which no public API exists.</li>
+                <li><strong>AT Factbook</strong> — curated Austrian fact records from official primary sources (Vienna school authority on religious affiliations in compulsory schools; Federal Ministry of Finance subsidy report; Statistik Austria ESA-2010 subsidy ratio; Social Ministry on minimum income and pension adjustment; E-Control on energy tariffs; AT-specific counter-topics for misinformation like 22-Mio-treatments, naturalized citizens' benefits and mobile-phone-cancer). Manually maintained; complements Austrian statistics for which no public API exists.</li>
+                <li><strong>BKA PKS</strong> — Austrian Police Crime Statistics + Drug Crime Report (statically curated from annual BKA PDF reports; 2024 main report with suspect demographics, Vienna district statistics, clearance rate, drug crime trends).</li>
+                <li><strong>DACH Factbook</strong> — curated German and Swiss fact records for tabloid misinformation (BAMF asylum statistics, German Bürgergeld + ifo/DGB counter, GEG heating law + RWI counter, Swiss AHV reform + supplementary benefits, IPCC/WHO counters for climate and cancer misinformation, CORRECTIV counters for AfD statements).</li>
                 <li><strong>Cochrane Reviews</strong> — systematic reviews via PubMed (highest level of medical evidence)</li>
                 <li><strong>GADMO fact-checks</strong> — German-language fact-checks (APA). <a href="https://gadmo.eu" target="_blank" rel="noopener">GADMO</a></li>
                 <li><strong>EFCSN fact-checkers</strong> — via <a href="https://developers.google.com/fact-check/tools/api" target="_blank" rel="noopener">Google Fact Check Tools API</a> (ClaimReview data from Correctiv, AFP, dpa and others)</li>
