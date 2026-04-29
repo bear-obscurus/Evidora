@@ -29,6 +29,18 @@ logger = logging.getLogger("evidora")
 # Reload-Logs in schneller Folge.
 _caches: dict[str, tuple[float, dict, float]] = {}
 
+# Versions-Counter: wird bei jedem Hot-Reload-Event inkrementiert.
+# Der Verdict-Cache (services/cache.py) nimmt diesen Wert in den
+# Cache-Key auf — sobald irgendein Static-JSON-File neu gelesen wird,
+# laufen alle gecachten Verdicts von selbst leer und der nächste
+# Aufruf macht eine frische Pipeline.
+_data_version: int = 0
+
+
+def get_data_version() -> int:
+    """Aktueller Daten-Versions-Counter — steigt bei jedem Hot-Reload."""
+    return _data_version
+
 
 def load_json_mtime_aware(path: str) -> dict | None:
     """Load JSON from disk, hot-reloading on mtime change.
@@ -65,9 +77,12 @@ def load_json_mtime_aware(path: str) -> dict | None:
         return cached[1] if cached else None
 
     if cached is not None:
+        global _data_version
+        _data_version += 1
         logger.info(
             f"static_cache: hot-reloaded {os.path.basename(path)} "
-            f"(mtime {cached[0]} → {current_mtime})"
+            f"(mtime {cached[0]} → {current_mtime}, "
+            f"data_version → {_data_version})"
         )
 
     _caches[path] = (current_mtime, data, 0.0)

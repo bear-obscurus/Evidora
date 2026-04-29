@@ -87,55 +87,183 @@ async def search_medientransparenz(analysis: dict) -> dict:
             return str(v)
 
     results: list[dict] = []
+
+    def _emit(*, name: str, year: str, display: str, description: str,
+              url: str, source: str, topic: str = ""):
+        """Append one evidence-tauglichen Sub-Result. Jeder Eintrag ist
+        eine eigenständige Behauptung, die der Synthesizer 1:1 als
+        evidence übernehmen kann."""
+        results.append({
+            "indicator_name": name,
+            "indicator": "medientransparenz_fact",
+            "country": "AT",
+            "year": year,
+            "topic": topic,
+            "display_value": display,
+            "description": description.strip(" |").strip(),
+            "url": url,
+            "source": source,
+        })
+
     for fact in matches:
         topic = fact.get("topic", "")
         d = fact.get("data") or {}
         url = fact.get("source_url", "")
         label = fact.get("source_label", "RTR / KommAustria")
         notes = fact.get("context_notes") or []
+        notes_joined = " | ".join(notes)
+        year = str(fact.get("year", ""))
 
         if topic == "medientransparenz_overview":
+            # Sub-Result A: Gesamtvolumen + Trend (für "explodiert"-/Trend-Claims)
+            _emit(
+                topic=topic,
+                name="Inserate-Volumen öffentliche Hand AT 2024 (Gesamt + Trend)",
+                year=year,
+                display=(
+                    f"Inserate-Volumen der öffentlichen Hand in Österreich 2024: "
+                    f"{d.get('gesamtvolumen_2024_mio_eur')} Mio. € "
+                    f"(2017: {d.get('gesamtvolumen_2017_mio_eur')} Mio. €, "
+                    f"+30 % über 7 Jahre — entspricht Inflation)."
+                ),
+                description=notes_joined,
+                url=url, source=label,
+            )
+            # Sub-Result B: Top-Empfänger (Boulevard-Konzentration belegen)
             top10 = d.get("top_10_empfaenger_2024") or []
-            top10_str = " · ".join(
-                f"#{e['rang']} {e['medium']} ({e['betrag_mio_eur']} Mio.)"
-                for e in top10[:5]
-            )
-            display = (
-                f"Inserate der öffentlichen Hand in Österreich 2024: "
-                f"Gesamtvolumen {d.get('gesamtvolumen_2024_mio_eur')} Mio. € "
-                f"(2017: {d.get('gesamtvolumen_2017_mio_eur')} Mio. €). "
-                f"Top-5: {top10_str}."
-            )
-            description = " | ".join(notes)
-        elif topic == "medientransparenz_kurz_aera":
-            display = (
-                f"BKA-Inserate 2017 = "
-                f"{d.get('bundeskanzleramt_inserate_2017_mio_eur')} Mio. → "
-                f"2021 = {d.get('bundeskanzleramt_inserate_2021_mio_eur')} Mio. (+509 %); "
-                f"BMF 2019 = {d.get('bmf_inserate_2019_mio_eur')} Mio. → "
-                f"2021 = {d.get('bmf_inserate_2021_mio_eur')} Mio. (+89 %); "
-                f"BMLRT 2019 = {d.get('bmlrt_inserate_2019_mio_eur')} Mio. → "
-                f"2021 = {d.get('bmlrt_inserate_2021_mio_eur')} Mio. (+264 %). "
-                f"WKStA-Ermittlungen / Anklage gegen Kurz seit Herbst 2024 — "
-                f"Verfahren laufend, Unschuldsvermutung gilt."
-            )
-            description = (d.get("kontext_pilnacek_wkstaat_ermittlung", "")
-                           + " | " + " | ".join(notes))
-        else:
-            display = fact.get("headline", "?")
-            description = " | ".join(notes)
+            if top10:
+                top5 = top10[:5]
+                top5_str = " · ".join(
+                    f"#{e['rang']} {e['medium']} ({e['betrag_mio_eur']} Mio.)"
+                    for e in top5
+                )
+                # Boulevard-Aggregat
+                boulevard_keys = ("Krone", "Heute", "Österreich", "oe24")
+                boulevard_sum = sum(
+                    e["betrag_mio_eur"] for e in top10
+                    if any(k in e["medium"] for k in boulevard_keys)
+                )
+                seriose_keys = ("Standard", "Presse", "Salzburger Nachrichten", "OÖ Nachrichten")
+                seriose_sum = sum(
+                    e["betrag_mio_eur"] for e in top10
+                    if any(k in e["medium"] for k in seriose_keys)
+                )
+                _emit(
+                    topic=topic,
+                    name="Top-5 Inserate-Empfänger AT 2024 (Boulevard-Konzentration)",
+                    year=year,
+                    display=(
+                        f"Top-5-Empfänger 2024: {top5_str}. "
+                        f"Boulevard-Trio (Krone + Heute + Österreich/oe24) "
+                        f"erhielt zusammen {boulevard_sum:.1f} Mio. €; "
+                        f"seriöse Tageszeitungen (Standard + Presse + SN + OÖN) "
+                        f"zusammen {seriose_sum:.1f} Mio. €. "
+                        f"Boulevard ist überproportional bedacht."
+                    ),
+                    description=notes_joined,
+                    url=url, source=label,
+                )
+            # Sub-Result C: Top-Auftraggeber (z. B. Stadt Wien)
+            top5_auftrag = d.get("top_5_auftraggeber_2024") or []
+            if top5_auftrag:
+                ranking = " · ".join(
+                    f"#{e['rang']} {e['auftraggeber']} ({e['betrag_mio_eur']} Mio.)"
+                    for e in top5_auftrag
+                )
+                wien = next(
+                    (e for e in top5_auftrag if "Wien" in e.get("auftraggeber", "")),
+                    None,
+                )
+                bund = next(
+                    (e for e in top5_auftrag
+                     if "Bundesministerien" in e.get("auftraggeber", "")
+                     or "Bundesregierung" in e.get("auftraggeber", "")),
+                    None,
+                )
+                summary_parts = []
+                if wien:
+                    summary_parts.append(
+                        f"Stadt Wien: {wien['betrag_mio_eur']} Mio. € "
+                        f"(Rang #{wien['rang']}, größter Einzel-Auftraggeber)"
+                    )
+                if bund:
+                    summary_parts.append(
+                        f"Bundesministerien gesamt: {bund['betrag_mio_eur']} Mio. € "
+                        f"(Rang #{bund['rang']}) — NICHT mit dem Gesamtvolumen "
+                        f"der öffentlichen Hand verwechseln"
+                    )
+                summary = " ; ".join(summary_parts)
+                _emit(
+                    topic=topic,
+                    name="Top-5 Inserate-Auftraggeber AT 2024",
+                    year=year,
+                    display=(
+                        f"Top-5-Auftraggeber 2024: {ranking}. {summary}"
+                    ),
+                    description=(
+                        "Wichtig: Die Bundesregierung (Bundesministerien zusammen) "
+                        "ist NICHT der einzige öffentliche Auftraggeber — Stadt Wien "
+                        "und ÖBB liegen einzeln darüber bzw. ähnlich hoch. "
+                        "Aussagen über 'die Bundesregierung gibt X Millionen aus' "
+                        "beziehen sich nur auf den Bundesministerien-Anteil, nicht "
+                        "auf das gesamte Inserate-Volumen der öffentlichen Hand."
+                    ),
+                    url=url, source=label,
+                )
 
-        results.append({
-            "indicator_name": fact.get("headline", "?"),
-            "indicator": "medientransparenz_fact",
-            "country": "AT",
-            "year": str(fact.get("year", "")),
-            "topic": topic,
-            "display_value": display,
-            "description": description.strip(" |").strip(),
-            "url": url,
-            "source": label,
-        })
+        elif topic == "medientransparenz_kurz_aera":
+            # Sub-Result A: BKA-Verlauf
+            _emit(
+                topic=topic,
+                name="BKA-Inserate-Verlauf 2017–2021 (Kurz-Ära)",
+                year="2017-2021",
+                display=(
+                    f"Bundeskanzleramt-Inserate: 2017 = "
+                    f"{d.get('bundeskanzleramt_inserate_2017_mio_eur')} Mio. €, "
+                    f"2019 = {d.get('bundeskanzleramt_inserate_2019_mio_eur')} Mio. €, "
+                    f"2021 = {d.get('bundeskanzleramt_inserate_2021_mio_eur')} Mio. € "
+                    f"— Sechsfachung in vier Jahren (+509 %)."
+                ),
+                description=d.get("kontext_pilnacek_wkstaat_ermittlung", ""),
+                url=url, source=label,
+            )
+            # Sub-Result B: BMF-Verlauf
+            _emit(
+                topic=topic,
+                name="BMF-Inserate-Verlauf 2019–2021 (Kurz-Ära)",
+                year="2019-2021",
+                display=(
+                    f"Finanzministerium-Inserate: 2019 = "
+                    f"{d.get('bmf_inserate_2019_mio_eur')} Mio. €, 2021 = "
+                    f"{d.get('bmf_inserate_2021_mio_eur')} Mio. € (+89 %)."
+                ),
+                description=notes_joined,
+                url=url, source=label,
+            )
+            # Sub-Result C: BMLRT-Verlauf + WKStA-Kontext
+            _emit(
+                topic=topic,
+                name="BMLRT-Inserate-Verlauf 2019–2021 + WKStA-Anklage",
+                year="2019-2024",
+                display=(
+                    f"Landwirtschafts-/Regionen-Ministerium-Inserate: "
+                    f"2019 = {d.get('bmlrt_inserate_2019_mio_eur')} Mio. €, "
+                    f"2021 = {d.get('bmlrt_inserate_2021_mio_eur')} Mio. € (+264 %). "
+                    f"WKStA-Anklage gegen Sebastian Kurz, Thomas Schmid u. a. "
+                    f"seit Herbst 2024 — Verfahren laufend, Unschuldsvermutung gilt."
+                ),
+                description=d.get("kontext_pilnacek_wkstaat_ermittlung", ""),
+                url=url, source=label,
+            )
+        else:
+            _emit(
+                topic=topic,
+                name=fact.get("headline", "?"),
+                year=year,
+                display=fact.get("headline", "?"),
+                description=notes_joined,
+                url=url, source=label,
+            )
 
     return {
         "source": "MedienTransparenz (RTR/KommAustria)",

@@ -132,6 +132,7 @@ _AUTHORITATIVE_INDICATORS = (
     "energy_charts_fact",                # Energy-Charts/APG Stromhandel + EE-Anteil
     "medientransparenz_fact",            # RTR/KommAustria Inserate-§2-Daten
     "rki_surveillance_fact",             # RKI SurvStat Surveillance-Eckwerte
+    "biorxiv_classic",                   # bioRxiv Anti-Vax-/COVID-Klassiker
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

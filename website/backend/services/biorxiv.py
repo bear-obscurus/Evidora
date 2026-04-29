@@ -149,6 +149,177 @@ async def fetch_biorxiv(client: httpx.AsyncClient | None = None) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
+# Kuratierter Pool wiederkehrender Anti-Vax / Anti-COVID-Hoaxes
+# ---------------------------------------------------------------------------
+# bioRxiv/medRxiv hat ein 14-Tage-Sliding-Window von ~130 Preprints. Bei den
+# häufigsten Boulevard-/Telegram-Themen (mRNA verändert Erbgut, Vitamin D
+# besser als Impfung etc.) ist die Wahrscheinlichkeit gering, dass ein
+# spezifisch passender Preprint in genau dieser Lücke verfügbar ist. Diese
+# Klassiker werden als authoritativer Counter-Frame ausgespielt — der
+# Reranker (siehe reranker._AUTHORITATIVE_INDICATORS) lässt sie ungeprüft
+# durch.
+_CURATED_PREPRINT_TOPICS = (
+    {
+        "trigger": (
+            "mrna verändert erbgut", "mrna-impfung erbgut",
+            "mrna verändert dna", "mrna in dna",
+            "mrna ändert erbgut",
+            "impfung dna", "impfung erbgut",
+        ),
+        "trigger_all": [
+            (("mrna", "messenger-rna", "messenger rna"),
+             ("erbgut", "dna", "genom", "verändert", "veraender")),
+        ],
+        "title": "[ARCHIV] mRNA-Impfstoffe verändern menschliches Erbgut — widerlegt",
+        "description": (
+            "Wissenschaftlicher Konsens (mehrere hundert Studien in PubMed/"
+            "Europe PMC, 2020–2025): mRNA-Impfstoffe werden im Zytoplasma "
+            "abgebaut, gelangen NICHT in den Zellkern und können daher das "
+            "menschliche Erbgut nicht verändern. Die einzelne 2022er "
+            "Aldén-Studie an Leberzellen zeigte unter Laborbedingungen mit "
+            "extrem hohen mRNA-Konzentrationen einen Reverse-Transkription-"
+            "Effekt auf die Plasmid-DNA der Zellen — diese Studie wurde von "
+            "der Fachgemeinschaft als nicht auf den Menschen übertragbar "
+            "eingestuft (siehe Antwort von Saiful u. a. 2022)."
+        ),
+        "rating": "Falsch / klassischer Anti-Vax-Hoax",
+        "url": "https://www.medrxiv.org/search/mRNA+vaccine+DNA+integration",
+    },
+    {
+        "trigger": (
+            "vitamin d besser als impfung",
+            "vitamin d schützt vor covid besser",
+            "vitamin d wirksamer als impfung",
+        ),
+        "trigger_all": [
+            (("vitamin d", "vitamin-d"),
+             ("besser", "wirksamer", "schützt"),
+             ("impfung", "covid-impfung", "vakzin")),
+        ],
+        "title": "[ARCHIV] Vitamin D ist besser als COVID-Impfung — nicht durch RCTs gestützt",
+        "description": (
+            "Cochrane-Review 2023 + zwei große RCTs (CORONAVIT, COVIT-TRIAL): "
+            "Vitamin-D-Supplementierung zeigt KEINE klinisch bedeutsame "
+            "Wirkung auf COVID-Schwere/Hospitalisierung in der Allgemein-"
+            "bevölkerung. mRNA-Impfungen senken das Risiko schwerer "
+            "Verläufe um 80–95 % laut RCTs. Die Behauptung, Vitamin D sei "
+            "wirksamer als Impfung, hat keine Datengrundlage."
+        ),
+        "rating": "Falsch / klassischer Anti-Vax-Mythos",
+        "url": "https://www.medrxiv.org/search/vitamin+D+COVID+RCT",
+    },
+    {
+        "trigger": (
+            "ivermectin gegen covid",
+            "ivermectin heilt corona",
+            "ivermectin wirksam covid",
+        ),
+        "trigger_all": [
+            (("ivermectin",),
+             ("covid", "corona", "sars-cov-2")),
+        ],
+        "title": "[ARCHIV] Ivermectin gegen COVID — wirkungslos in großen RCTs",
+        "description": (
+            "TOGETHER-Trial (Lancet 2022, n=1.358), ACTIV-6 (NEJM 2022, "
+            "n=1.591) und PRINCIPLE-Trial (UK 2022) zeigen alle KEINE "
+            "klinisch relevante Wirkung von Ivermectin auf COVID-19-Verlauf. "
+            "Cochrane-Review 2022 bestätigt: keine Evidenz für Wirksamkeit. "
+            "Die ursprüngliche Surgisphere-Studie wurde 2020 zurückgezogen "
+            "(siehe Retraction Watch)."
+        ),
+        "rating": "Falsch / wissenschaftlich widerlegt",
+        "url": "https://www.medrxiv.org/search/ivermectin+RCT",
+    },
+    {
+        "trigger": (
+            "covid impfung tötet",
+            "impftote",
+            "impfschäden massenhaft",
+            "plötzlich und unerwartet",
+            "ploetzlich und unerwartet",
+        ),
+        "trigger_all": [
+            (("impf",),
+             ("tot", "tötung", "sterben", "schaden", "todesfall", "massensterb")),
+        ],
+        "title": "[ARCHIV] COVID-Impfungen verursachen massenhaft Todesfälle — widerlegt",
+        "description": (
+            "EMA-Surveillance + UK-Self-Controlled-Case-Series (n>30 Mio.): "
+            "Schwere Nebenwirkungen (Myokarditis, Sinusvenenthrombose) sind "
+            "in seltenen Größenordnungen real und dokumentiert (1–10 pro "
+            "100.000 Vakzinen, je nach Endpunkt), liegen aber GRÖSSEN-"
+            "ORDNUNGEN unter dem statistischen Hintergrundrauschen + COVID-"
+            "Schwere-Risiko. Nach 5,5 Mrd. weltweiten Impfungen ist das "
+            "Sicherheitsprofil eines der am besten dokumentierten. "
+            "Die 'plötzlich und unerwartet'-Erzählung in Telegram-Kanälen "
+            "wurde mehrfach widerlegt (Mimikama, Correctiv, AFP)."
+        ),
+        "rating": "Falsch / widerlegt durch große Beobachtungsstudien",
+        "url": "https://www.medrxiv.org/search/COVID+vaccine+adverse+events+SCCS",
+    },
+    {
+        "trigger": (
+            "spike-protein gefährlich", "spike-protein schädigt",
+            "spike protein toxisch", "spike-toxin",
+            "shedding mrna",
+        ),
+        "trigger_all": [
+            (("spike",),
+             ("schädig", "toxis", "gefährlich", "vergift", "gift")),
+        ],
+        "title": "[ARCHIV] Spike-Protein durch Impfung ist toxisch / wird ausgeschieden — Hoax",
+        "description": (
+            "Spike-Protein-Konzentrationen nach mRNA-Impfung sind GRÖSSEN-"
+            "ORDNUNGEN niedriger als nach echter SARS-CoV-2-Infektion und "
+            "werden binnen Tagen abgebaut (PubMed, Ogata u. a. 2022). "
+            "'Shedding' (Übertragung impfinduzierter Spike-Proteine auf "
+            "Ungeimpfte) ist biologisch unmöglich und nicht in einer "
+            "einzigen RCT-/Beobachtungsstudie nachgewiesen."
+        ),
+        "rating": "Falsch / klassischer Anti-Vax-Hoax",
+        "url": "https://www.medrxiv.org/search/spike+protein+kinetics",
+    },
+    {
+        "trigger": (
+            "long covid existiert nicht", "long-covid existiert nicht",
+            "long covid einbildung", "long-covid einbildung",
+        ),
+        "trigger_all": [
+            (("long covid", "long-covid", "post-covid"),
+             ("existiert nicht", "gibt es nicht", "einbildung",
+              "psychosomatisch", "erfunden")),
+        ],
+        "title": "[ARCHIV] Long COVID gibt es nicht / ist Einbildung — widerlegt",
+        "description": (
+            "Long COVID ist seit 2021 als ICD-10-Diagnose anerkannt. "
+            "Über 200 Studien in PubMed/Europe PMC dokumentieren biologische "
+            "Korrelate (Mikroclots, viraler Persistenz-Befall, T-Zell-"
+            "Erschöpfung, autonome Dysregulation). RKI schätzt 6–15 % "
+            "Long-COVID-Inzidenz nach symptomatischer Infektion. Die Gegen-"
+            "Behauptung, Long COVID sei psychosomatisch oder Einbildung, "
+            "wird von keiner medizinischen Fachgesellschaft gestützt."
+        ),
+        "rating": "Falsch / wissenschaftlich widerlegt",
+        "url": "https://www.medrxiv.org/search/long+COVID+biomarker",
+    },
+)
+
+
+def _match_classics(claim_lc: str) -> list[dict]:
+    """Substring-any-of OR all-of-Composite-Match."""
+    out: list[dict] = []
+    for c in _CURATED_PREPRINT_TOPICS:
+        if any(t in claim_lc for t in c.get("trigger") or ()):
+            out.append(c)
+            continue
+        for row in c.get("trigger_all") or ():
+            if all(any(tok in claim_lc for tok in alt) for alt in row):
+                out.append(c)
+                break
+    return out
+
+
+# ---------------------------------------------------------------------------
 # Public search
 # ---------------------------------------------------------------------------
 async def search_biorxiv(analysis: dict) -> dict:
@@ -158,13 +329,31 @@ async def search_biorxiv(analysis: dict) -> dict:
         "results": [],
     }
 
+    claim = (analysis or {}).get("original_claim") or (analysis or {}).get("claim", "") or ""
+    claim_lc = claim.lower()
+
+    # Authoritative classics — gehen am Reranker vorbei (whitelist:
+    # 'biorxiv_classic' im reranker._AUTHORITATIVE_INDICATORS).
+    authoritative_results: list[dict] = []
+    for c in _match_classics(claim_lc):
+        authoritative_results.append({
+            "title": c["title"],
+            "url": c["url"],
+            "authors": "",
+            "journal": "Archiv-Counter (PubMed/Cochrane/EMA-Konsens)",
+            "date": "Konsens-Stand 2025",
+            "indicator": "biorxiv_classic",
+            "rating": c["rating"],
+            "description": c["description"],
+        })
+
     items = await fetch_biorxiv()
-    if not items:
+    if not items and not authoritative_results:
         return empty
 
     # Output ähnlich zu Europe PMC. Wir markieren als 'preprint' damit
     # der Synthesizer das Caveat ausweisen kann.
-    results: list[dict] = []
+    rerankable: list[dict] = []
     for it in items:
         title = it.get("title", "")
         abstract = it.get("abstract", "")
@@ -177,7 +366,7 @@ async def search_biorxiv(analysis: dict) -> dict:
             continue
 
         url = f"https://www.{server.lower()}.org/content/10.1101/{doi}v1"
-        results.append({
+        rerankable.append({
             "title": f"[PREPRINT] {title}",
             "url": url,
             "authors": authors,
@@ -190,5 +379,5 @@ async def search_biorxiv(analysis: dict) -> dict:
     return {
         "source": "bioRxiv/medRxiv (Preprints)",
         "type": "study",
-        "results": results,
+        "results": authoritative_results + rerankable,
     }

@@ -3,6 +3,8 @@ import json
 import logging
 import time
 
+from services._static_cache import get_data_version
+
 logger = logging.getLogger("evidora")
 
 # In-memory cache: key -> (timestamp, data)
@@ -13,12 +15,18 @@ DEFAULT_TTL = 1800
 
 
 def _make_key(source: str, analysis: dict) -> str:
-    """Create a deterministic cache key from source name and analysis."""
+    """Create a deterministic cache key from source name and analysis.
+
+    Includes the static-data version (bumped on every JSON hot-reload),
+    so cached verdicts go stale automatically when curated source data
+    is edited — prevents the "altes Verdict trotz JSON-Patch"-Race.
+    """
     relevant = {
         "claim": analysis.get("claim", ""),
         "category": analysis.get("category", ""),
         "entities": sorted(analysis.get("entities", [])),
         "pubmed_queries": analysis.get("pubmed_queries", []),
+        "_data_version": get_data_version(),
     }
     raw = f"{source}:{json.dumps(relevant, sort_keys=True)}"
     return hashlib.sha256(raw.encode()).hexdigest()[:32]
