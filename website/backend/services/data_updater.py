@@ -58,6 +58,7 @@ from services.at_faktencheck_rss import fetch_at_faktencheck_rss
 from services.wifo_ihs import fetch_wifo_ihs
 from services.oenb import fetch_oenb
 from services.mimikama import fetch_mimikama
+from services.biorxiv import fetch_biorxiv
 
 logger = logging.getLogger("evidora")
 
@@ -105,6 +106,7 @@ async def prefetch_all():
             fetch_wifo_ihs(client),
             fetch_oenb(client),
             fetch_mimikama(client),
+            fetch_biorxiv(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "OWID Measles", "OWID Vaccination (WUENIC)",
@@ -121,7 +123,7 @@ async def prefetch_all():
                  "AT Factbook", "BKA PKS", "DACH Factbook",
                  "Retraction Watch", "Frontex",
                  "AT-Faktencheck-RSS", "WIFO + IHS", "OeNB",
-                 "Mimikama"]
+                 "Mimikama", "bioRxiv/medRxiv"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")

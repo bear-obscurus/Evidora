@@ -56,6 +56,7 @@ from services.at_faktencheck_rss import search_at_faktencheck_rss, claim_mention
 from services.wifo_ihs import search_wifo_ihs, claim_mentions_wifo_ihs_cached
 from services.oenb import search_oenb, claim_mentions_oenb_cached
 from services.mimikama import search_mimikama, claim_mentions_mimikama_cached
+from services.biorxiv import search_biorxiv, claim_mentions_biorxiv_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -387,6 +388,11 @@ async def check_claim(request: Request):
         if claim_mentions_mimikama_cached(claim):
             tasks.append(cached("Mimikama", search_mimikama, analysis))
             queried_names.append("Mimikama")
+        # bioRxiv/medRxiv — Preprint-Server (frische Lebenswissenschafts-
+        # Studien vor Peer-Review). Caveat im Output-Indikator.
+        if claim_mentions_biorxiv_cached(claim):
+            tasks.append(cached("bioRxiv/medRxiv", search_biorxiv, analysis))
+            queried_names.append("bioRxiv/medRxiv")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
