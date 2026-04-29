@@ -16,9 +16,18 @@
         "rueckgang_q1_yoy_pct": -37.8,
         "anstieg_folgeantraege_q1_yoy_pct": 107.4,
         "top_3_herkunftslaender_q1_2026": [
-          {"land": "Afghanistan", "antraege": 5957},
-          {"land": "Syrien", "antraege": 3042},
-          {"land": "Türkei", "antraege": 1857}
+          {
+            "land": "Afghanistan",
+            "antraege": 5957
+          },
+          {
+            "land": "Syrien",
+            "antraege": 3042
+          },
+          {
+            "land": "Türkei",
+            "antraege": 1857
+          }
         ],
         "anteil_unter_30_q1_2026_pct": 72.1,
         "anteil_unter_16_q1_2026_pct": 40.5
@@ -215,7 +224,7 @@
           "behauptung": "Globale Temperatur steigt seit 1998 nicht mehr — der Klimawandel pausiert.",
           "kern_des_arguments": "Cherry-Picking: 1998 war ein extremes El-Niño-Jahr (außergewöhnlich warm), wodurch der Trend ab 1998 künstlich abgeflacht erscheint.",
           "befund_nach_2010": "Der vermeintliche 'Hiatus' wurde durch verbesserte Ozean-Temperaturdaten widerlegt (Karl et al. 2015, Hausfather et al. 2017). Globaler Trend +0,18 °C/Dekade seit 1979 — KEINE Pause.",
-          "trend_seit_1998_celsius_pro_dekade": 0.20,
+          "trend_seit_1998_celsius_pro_dekade": 0.2,
           "rekordjahre_nach_1998": "12 der 13 wärmsten Jahre seit Messbeginn liegen nach 1998 (NASA GISS).",
           "ipcc_position_ar6": "IPCC AR6 (2023): 'Es gibt keinen Beleg für eine globale Erwärmungspause.'"
         },
@@ -397,9 +406,18 @@
         "ch_hpv_2dose_pct_15j_maedchen_2024": 60,
         "ch_hpv_kostenfrei": "Über kantonale Impfprogramme; weitgehend kostenfrei",
         "ranking_dach_2024": [
-            {"land": "Schweiz", "rate_pct": 60},
-            {"land": "Österreich", "rate_pct": 50},
-            {"land": "Deutschland", "rate_pct": 47}
+          {
+            "land": "Schweiz",
+            "rate_pct": 60
+          },
+          {
+            "land": "Österreich",
+            "rate_pct": 50
+          },
+          {
+            "land": "Deutschland",
+            "rate_pct": 47
+          }
         ],
         "ranking_kommentar": "Schweiz liegt 2024 vorne, Österreich liegt LEICHT vor Deutschland — eine Behauptung 'AT liegt deutlich vor DE und CH' ist mostly_false: nicht 'deutlich' und nicht vor CH."
       },
@@ -442,6 +460,13 @@
             "verordnung": "Delegierte Verordnung 2022/1214",
             "in_kraft": "2023-01-01",
             "kerninhalt": "Atomkraft + Erdgas unter strengen Bedingungen als 'nachhaltig' klassifiziert. AT hatte gegen die Verordnung geklagt — EuGH-Urteil C-647/22 hat Klage abgewiesen (Oktober 2024)."
+          },
+          {
+            "id": "eu_co2_flottengrenz_pkw_2023",
+            "name": "EU-CO2-Flottengrenzwerte Pkw (Verbrenner-Aus 2035)",
+            "verordnung": "VO 2023/851 (Änderung VO 2019/631)",
+            "in_kraft": "2023-04-19",
+            "kerninhalt": "Ab 2035 müssen alle in der EU neu zugelassenen Pkw und leichten Nutzfahrzeuge im realen Betrieb null Gramm CO2 pro Kilometer emittieren — faktisches Verbrenner-Aus für Neuwagen. Auf Drängen Deutschlands wurde eine Ausnahme zugesagt: Pkw, die ausschließlich mit synthetischen E-Fuels (CO2-neutral) betrieben werden, dürfen weiterhin neu zugelassen werden — die konkrete Umsetzungsverordnung wurde aber bis Ende 2026 noch nicht erlassen. Das Verbrenner-Aus 2035 als solches steht und wurde NICHT abgeschafft. Eine Überprüfungsklausel sieht 2026 einen Review-Prozess vor; eine Aufhebung ist nicht beschlossen."
           },
           {
             "id": "eu_asyl_migrations_pakt_2024",

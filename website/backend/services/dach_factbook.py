@@ -310,6 +310,21 @@ _EU_BESCHLUESSE_TERMS = (
     "eu-renaturierung", "renaturierungsverordnung",
     "nature restoration law",
     "eu-verordnung 2024", "eu-richtlinie 2024",
+    # EU-Asyl- und Migrationspakt (steht im Datenfile, fehlte im Trigger)
+    "eu-pakt", "eu pakt",
+    "asyl- und migrationspakt", "asylpakt", "asyl-pakt",
+    "migrationspakt", "migrations-pakt",
+    "asyl- und migrations-pakt",
+    # CO2-Flottengrenzwerte / Verbrenner-Aus 2035
+    "verbrenner-aus", "verbrenner aus",
+    "verbrennungsmotor-aus", "verbrennungsmotor aus",
+    "co2-flottengrenz", "co2 flottengrenz",
+    "flottengrenzwerte", "flottenemissionsgrenz",
+    "e-fuels", "efuels", "e fuels",
+    "neuwagen 2035", "verbrenner 2035",
+    # Brüssel hat / Brüsseler Beschluss (häufige Boulevard-Phrasing)
+    "brüsseler beschluss", "bruesseler beschluss",
+    "brüsseler verordnung", "bruesseler verordnung",
 )
 
 
@@ -322,6 +337,15 @@ def _claim_mentions_eu_beschluesse(claim_lc: str) -> bool:
                                           "europäische verordnung",
                                           "europäische richtlinie"))
     if has_eu:
+        return True
+    # Composite: 'Brüssel' + (hat … beschlossen / hat … abgeschafft / Verordnung)
+    has_bxl = any(t in claim_lc for t in ("brüssel", "bruessel"))
+    has_act = any(t in claim_lc for t in (
+        "beschlossen", "beschluss", "verordnung", "richtlinie",
+        "abgeschafft", "abschafft", "verbot", "verboten",
+        "zwingt", "vorschreib",
+    ))
+    if has_bxl and has_act:
         return True
     return False
 
