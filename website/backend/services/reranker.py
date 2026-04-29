@@ -125,6 +125,8 @@ _AUTHORITATIVE_INDICATORS = (
     "dach_klimaskepsis_counter",
     "skeptical_science_counter",
     "biorxiv_preprint",
+    "mimikama_classic",                  # Mimikama-Archiv-Klassiker
+    "at_faktencheck_classic",            # APA/Kontrast-Archiv-Klassiker
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",
