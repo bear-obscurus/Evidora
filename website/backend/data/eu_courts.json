@@ -35,10 +35,11 @@
       "topic": "asyl_dublin_rueckfuehrung",
       "kerninhalt": "Dublin-Rückführungen in einen anderen EU-Staat sind unzulässig, wenn dort systemische Mängel des Asylverfahrens drohen — konkret betraf es Griechenland 2011. Das Urteil setzt Dublin NICHT außer Kraft; es schafft nur eine Schranke gegen Rückführungen in nachweislich überlastete Asylsysteme.",
       "boulevard_falschmeldung": "Der EuGH hat Dublin gekippt / verbietet alle Asyl-Rückführungen.",
-      "trigger_keywords": ["c-411/10", "n.s. urteil", "dublin gekippt",
-                           "dublin außer kraft", "ns belgian state"],
+      "trigger_keywords": ["c-411/10", "n.s. urteil", "ns-urteil", "ns urteil",
+                           "dublin gekippt", "dublin außer kraft",
+                           "ns belgian state"],
       "trigger_composite": [
-        ["eugh", "europäischer gerichtshof"],
+        ["eugh", "europäischer gerichtshof", "brüssel", "bruessel", "eu", "ns-urteil"],
         ["dublin"],
         ["aufgehoben", "gekippt", "ungültig", "außer kraft", "abgeschafft"]
       ]
@@ -192,10 +193,14 @@
       "boulevard_falschmeldung": "Der EGMR hat alle Push-backs erlaubt / EU-Außengrenze ist freigegeben.",
       "trigger_keywords": ["n.d. and n.t.", "n.d. n.t. spain",
                            "egmr push-back", "egmr pushback",
-                           "egmr melilla", "push-back urteil"],
+                           "egmr melilla", "push-back urteil",
+                           "melilla urteil", "melilla-urteil"],
       "trigger_composite": [
-        ["egmr", "europäischer gerichtshof für menschenrechte", "european court of human rights"],
-        ["push-back", "pushback", "zurückweisung"]
+        ["egmr", "europäischer gerichtshof für menschenrechte",
+         "european court of human rights",
+         "eugh", "europäischer gerichtshof", "europäischer gerichtshof für menschenrechte"],
+        ["push-back", "pushback", "zurückweisung", "zurueckweisung",
+         "melilla", "ceuta"]
       ]
     },
     {

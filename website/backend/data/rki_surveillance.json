@@ -87,7 +87,10 @@
         ["tuberkulose", "tb-fall", "tb fall", "tb-fälle"],
         ["welle", "anstieg", "ausbruch", "explod", "bringt",
          "asylsuchend", "migrant", "migration", "migrat",
-         "asyl", "epidemie", "gestiegen", "stieg ", "stark"]
+         "asyl", "epidemie", "gestiegen", "stieg ", "stark",
+         "volkskrankheit", "volks-krankheit", "verbreitet",
+         "weit verbreitet", "weitverbreitet", "weitverbreite",
+         "wieder", "rückkehr", "rueckkehr"]
       ],
       "source_label": "Robert Koch-Institut — Bericht zur Epidemiologie der Tuberkulose 2024",
       "source_url": "https://www.rki.de/DE/Content/InfAZ/T/Tuberkulose/Tuberkulose_node.html"

@@ -62,13 +62,15 @@
       ],
       "trigger_composite": [
         ["inserat", "anzeigen", "werbung", "werbeausgab",
-         "öffentlichkeitsarbeit"],
+         "öffentlichkeitsarbeit",
+         "boulevard-medien", "boulevardmedien", "boulevard-presse"],
         ["öffentliche", "öffentlichen", "regierung", "ministerium",
          "stadt wien", " wien ", "wien.", "wien,", "wien kauf",
          "kanzler", "ministerin", "minister",
          "övp", "spö", "fpö", "kurz", "ludwig", "öbag",
          "korruption", "boulevard",
-         "krone", "heute", "oe24", "österreich"]
+         "krone", "heute", "oe24", "österreich",
+         "bevorzug", "bevorteil", "begünstig", "systematisch"]
       ],
       "source_label": "RTR / KommAustria — MedienTransparenz Q1–Q4/2024",
       "source_url": "https://www.rtr.at/medien/was_wir_tun/medientransparenz/veroeffentlichungen/",

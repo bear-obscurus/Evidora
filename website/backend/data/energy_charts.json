@@ -41,13 +41,16 @@
         "atomausstieg deutschland",
         "stromimport frankreich deutschland",
         "frankreich atomstrom deutschland",
-        "deutschland importiert atomstrom"
+        "deutschland importiert atomstrom",
+        "deutschland dauerhafter stromimporteur",
+        "deutschland stromimporteur"
       ],
       "trigger_composite": [
         ["deutschland", "deutsche", "brd"],
         ["atomstrom", "atomausstieg", "kernkraft", "atomenergie",
          "kernenergie", "stromimport"],
-        ["frankreich", "französisch"]
+        ["frankreich", "französisch", "industrie", "versorg",
+         "kollap", "blackout", "saldo", "bilanz", "dauerhaft"]
       ],
       "source_label": "Energy-Charts.info (Fraunhofer ISE) — Stromhandelsbilanz 2024",
       "source_url": "https://www.energy-charts.info/charts/import_export/",
@@ -92,7 +95,8 @@
       "trigger_composite": [
         ["erneuerbar", "ee-anteil", "ee anteil", "wind-anteil", "solar-anteil",
          "windkraft", "solar", "ökostrom"],
-        ["anteil", "prozent", "%"],
+        ["anteil", "prozent", "%", "deck", "decken", "versorg", "ausreich",
+         "scheiter", "funktioniert nicht"],
         ["deutschland", "deutsche", "brd", "energiewende"]
       ],
       "source_label": "Energy-Charts (Fraunhofer ISE) — Public Power 2024",
@@ -174,9 +178,11 @@
       "trigger_composite": [
         ["strom", "elektrizität", "wasserkraft", "wind", "erneuerbar",
          "energie", "elektri"],
-        ["österreich", "at "],
+        ["österreich", "österreichisch", "at "],
         ["import", "anteil", "produktion", "preis", "autark", "selbstversorg",
-         "saldo", "bilanz", "netto"]
+         "saldo", "bilanz", "netto",
+         "100 prozent", "ausschließlich", "besteht aus",
+         "100 %", "100%"]
       ],
       "source_label": "APG (Austrian Power Grid) + E-Control",
       "source_url": "https://www.apg.at/transparency"
