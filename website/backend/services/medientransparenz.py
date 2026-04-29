@@ -15,8 +15,15 @@ import logging
 import os
 
 from services._static_cache import load_json_mtime_aware
+from services._reranker_backup import best_matches as _backup_best_matches
 
 logger = logging.getLogger("evidora")
+
+
+def _fact_with_descriptor(f: dict) -> tuple[dict, str]:
+    head = f.get("headline", "")
+    notes = " ".join((f.get("context_notes") or [])[:2])
+    return (f, f"{head}. {notes}"[:300])
 
 STATIC_JSON_PATH = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -48,17 +55,24 @@ def _fact_matches(fact: dict, claim_lc: str) -> bool:
     return False
 
 
-def _claim_matches_facts(claim_lc: str) -> list[dict]:
+def _claim_matches_facts(claim_lc: str, full_claim: str | None = None) -> list[dict]:
     data = _load_static_json()
     if not data:
         return []
-    return [f for f in data.get("facts") or [] if _fact_matches(f, claim_lc)]
+    facts = data.get("facts") or []
+    matches = [f for f in facts if _fact_matches(f, claim_lc)]
+    if matches:
+        return matches
+    if not full_claim:
+        return []
+    items = [_fact_with_descriptor(f) for f in facts]
+    return _backup_best_matches(full_claim, items, threshold=0.62, top_n=3)
 
 
 def claim_mentions_medientransparenz_cached(claim: str) -> bool:
     if not claim:
         return False
-    return bool(_claim_matches_facts(claim.lower()))
+    return bool(_claim_matches_facts(claim.lower(), full_claim=claim))
 
 
 async def fetch_medientransparenz(client=None):
@@ -76,7 +90,7 @@ async def search_medientransparenz(analysis: dict) -> dict:
     }
 
     claim = (analysis or {}).get("original_claim") or (analysis or {}).get("claim", "") or ""
-    matches = _claim_matches_facts(claim.lower())
+    matches = _claim_matches_facts(claim.lower(), full_claim=claim)
     if not matches:
         return empty
 

@@ -14,8 +14,16 @@ import logging
 import os
 
 from services._static_cache import load_json_mtime_aware
+from services._reranker_backup import best_matches as _backup_best_matches
 
 logger = logging.getLogger("evidora")
+
+
+def _ruling_with_descriptor(r: dict) -> tuple[dict, str]:
+    court = r.get("court", "")
+    name = r.get("case_name", "")
+    kern = r.get("kerninhalt", "")[:240]
+    return (r, f"{court}-Erkenntnis: {name}. {kern}")
 
 STATIC_JSON_PATH = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -47,17 +55,24 @@ def _ruling_matches(ruling: dict, claim_lc: str) -> bool:
     return False
 
 
-def _claim_matches_rulings(claim_lc: str) -> list[dict]:
+def _claim_matches_rulings(claim_lc: str, full_claim: str | None = None) -> list[dict]:
     data = _load_static_json()
     if not data:
         return []
-    return [r for r in data.get("rulings") or [] if _ruling_matches(r, claim_lc)]
+    rulings = data.get("rulings") or []
+    matches = [r for r in rulings if _ruling_matches(r, claim_lc)]
+    if matches:
+        return matches
+    if not full_claim:
+        return []
+    items = [_ruling_with_descriptor(r) for r in rulings]
+    return _backup_best_matches(full_claim, items, threshold=0.62, top_n=3)
 
 
 def claim_mentions_at_courts_cached(claim: str) -> bool:
     if not claim:
         return False
-    return bool(_claim_matches_rulings(claim.lower()))
+    return bool(_claim_matches_rulings(claim.lower(), full_claim=claim))
 
 
 async def fetch_at_courts(client=None):
@@ -75,7 +90,7 @@ async def search_at_courts(analysis: dict) -> dict:
     }
 
     claim = (analysis or {}).get("original_claim") or (analysis or {}).get("claim", "") or ""
-    matches = _claim_matches_rulings(claim.lower())
+    matches = _claim_matches_rulings(claim.lower(), full_claim=claim)
     if not matches:
         return empty
 
