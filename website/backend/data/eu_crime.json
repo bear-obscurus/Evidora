@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-04-29",
+  "source_label": "Eurostat (crim_off_cat, crim_hom_*) + BKA-DE PKS + BMI-AT PKS",
+  "facts": [
+    {
+      "id": "homicide_rate_eu_2024",
+      "topic": "homicide_eu_compare",
+      "scope": "Tötungsdelikte (intentional homicide) pro 100.000 Einwohner — EU-Vergleich",
+      "year": 2024,
+      "headline": "Tötungsdelikte pro 100.000 Einwohner 2024 — Österreich, Deutschland, EU-Schnitt",
+      "data": {
+        "homicide_at_per_100k": 0.7,
+        "homicide_de_per_100k": 0.9,
+        "homicide_eu_avg_per_100k": 0.9,
+        "homicide_eu_top_3": [
+          {"land": "Lettland", "wert": 4.5},
+          {"land": "Litauen", "wert": 2.8},
+          {"land": "Estland", "wert": 2.2}
+        ],
+        "homicide_eu_bottom_3": [
+          {"land": "Italien", "wert": 0.5},
+          {"land": "Liechtenstein", "wert": 0.5},
+          {"land": "Spanien", "wert": 0.6}
+        ],
+        "trend_at": "Tötungsdelikte in Österreich seit 2010 (~1,0/100 k) tendenziell rückläufig auf 0,7/100 k 2024.",
+        "context": "EU-weit gehört Österreich gemeinsam mit Italien, Spanien und Portugal zu den Ländern mit den niedrigsten Tötungsdelikt-Raten. Die baltischen Staaten haben strukturell höhere Raten."
+      },
+      "context_notes": [
+        "Eurostat-Definition 'intentional homicide' ist EU-weit harmonisiert (Mord, Totschlag — keine fahrlässige Tötung, keine versuchten Delikte).",
+        "Österreich liegt unter dem EU-Schnitt; ein Anstieg der Tötungsdelikte ist statistisch nicht erkennbar.",
+        "AT-PKS-Zahlen entsprechen weitgehend den Eurostat-Zahlen — methodische Abweichungen sind gering."
+      ],
+      "claim_phrasings_handled": [
+        "Tötungsdelikte Österreich gestiegen",
+        "Mordrate Österreich",
+        "Mord pro 100.000 Einwohner",
+        "Österreich Kriminalitätshochburg",
+        "Mord-Statistik Europa-Vergleich"
+      ],
+      "trigger_keywords": [
+        "tötungsdelikt", "tötungsdelikte",
+        "mordrate", "mord-rate", "mord pro 100",
+        "homicide", "intentional homicide",
+        "morde österreich", "morde pro kopf",
+        "pks mord", "pks tötung"
+      ],
+      "trigger_composite": [
+        ["mord", "morde", "tötungsdelikt", "homicide"],
+        ["österreich", "at ", "europa", "eu", "deutschland"]
+      ],
+      "source_label": "Eurostat (crim_hom_soff) + BMI Österreich PKS 2024",
+      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/crim_hom_soff",
+      "secondary_url": "https://www.bmi.gv.at/Statistiken/"
+    },
+    {
+      "id": "auslander_kriminalitaet_at_2024",
+      "topic": "migrant_crime_at",
+      "scope": "Anteil nicht-österreichischer Tatverdächtiger an Gesamtaufkommen Österreich",
+      "year": 2024,
+      "headline": "Tatverdächtige in Österreich 2024 nach Staatsangehörigkeit",
+      "data": {
+        "anteil_nicht_at_tatverdaechtige_pct": 41.2,
+        "anteil_nicht_at_wohnbevoelkerung_pct": 20.5,
+        "anteil_at_tatverdaechtige_pct": 58.8,
+        "anteil_at_wohnbevoelkerung_pct": 79.5,
+        "tatverdaechtige_total_2024": 271520,
+        "tatverdaechtige_at_2024": 159654,
+        "tatverdaechtige_nicht_at_2024": 111866,
+        "context_warnings": [
+          "Tatverdächtige ≠ Verurteilte — viele Verfahren werden eingestellt; Verurteiltenrate ist deutlich niedriger und der Anteil dort näher an der Bevölkerungsverteilung.",
+          "Strukturelle Ungleichheiten: Nicht-AT-Bevölkerung ist im Schnitt jünger (15–35 Jahre — kriminologisch riskanteste Altersgruppe), männlicher und sozioökonomisch belasteter — diese Faktoren erklären einen Großteil des Roh-Anteils.",
+          "Asylsuchende sind statistisch eine eigene Kategorie (1,8 % der Bevölkerung, ca. 5,4 % der Tatverdächtigen) und werden in der Roh-Statistik mit Touristen, EU-Bürgern und Niedergelassenen vermischt.",
+          "Internationaler Vergleich: Strukturkontrollierte Kriminalitätsstudien (Wikström, Pratt, Cullen) finden konsistent KEINE oder schwache Migration-→-Kriminalität-Effekte; die hohen Roh-Anteile sind primär demographisch erklärbar."
+        ]
+      },
+      "context_notes": [
+        "Die Roh-Zahl 41 % nicht-AT-Tatverdächtige bei 20 % Nicht-AT-Wohnbevölkerung ergibt einen ROHEN Faktor 2,0 — strukturkontrolliert (Alter, Geschlecht, sozioökonomischer Status) sinkt der Effekt deutlich.",
+        "Beispiel: Bei AT-Bürgern in derselben Altersgruppe (Männer 15–35) ist die Tatverdächtigen-Rate vergleichbar mit Nicht-AT-Bürgern derselben demografischen Schicht.",
+        "Krone-/OE24-Schlagzeilen wie 'Migranten verursachen 60 % der Kriminalität' nehmen die Roh-Zahl ohne Kontextualisierung — das ist statistisch korrekt zitiert, aber kausal irreführend."
+      ],
+      "claim_phrasings_handled": [
+        "Migranten verursachen Großteil der Kriminalität",
+        "Ausländerkriminalität Österreich",
+        "Migrant Tatverdächtige Anteil",
+        "Krone Asylkriminalität",
+        "Migrationskriminalität Österreich"
+      ],
+      "trigger_keywords": [
+        "ausländerkriminalität österreich", "auslaenderkriminalitaet österreich",
+        "migrationskriminalität österreich",
+        "asylkriminalität österreich",
+        "krone asylkriminalität",
+        "pks österreich migrant", "pks österreich ausländer"
+      ],
+      "trigger_composite": [
+        ["ausländer", "auslaender", "migrant", "asyl", "fremde", "ausländerkriminalität"],
+        ["kriminalität", "kriminalitaet", "tatverdächtig", "tatverdaechtig",
+         "verbrechen", "straftat", "straftaten", "delikt"],
+        ["österreich", "wien", "burgenland", "kärnten",
+         "niederösterreich", "oberösterreich", "salzburg", "steiermark",
+         "tirol", "vorarlberg",
+         "krone", "oe24", "exxpress", "österreichischen",
+         "österreichische "]
+      ],
+      "source_label": "BMI Österreich — PKS 2024 (Sicherheitsbericht)",
+      "source_url": "https://www.bmi.gv.at/Statistiken/",
+      "secondary_url": "https://www.parlament.gv.at/dokument/XXVIII/AB/sicherheitsbericht-2024.pdf"
+    },
+    {
+      "id": "auslander_kriminalitaet_de_2024",
+      "topic": "migrant_crime_de",
+      "scope": "Anteil nicht-deutscher Tatverdächtiger Deutschland",
+      "year": 2024,
+      "headline": "Tatverdächtige in Deutschland 2024 nach Staatsangehörigkeit (BKA PKS)",
+      "data": {
+        "anteil_nicht_de_tatverdaechtige_pct": 41.8,
+        "anteil_nicht_de_wohnbevoelkerung_pct": 14.6,
+        "anteil_de_tatverdaechtige_pct": 58.2,
+        "anteil_de_wohnbevoelkerung_pct": 85.4,
+        "tatverdaechtige_total_2024": 2244000,
+        "tatverdaechtige_zuwanderer_2024": 312000,
+        "anteil_zuwanderer_im_engeren_sinne_pct": 13.9,
+        "context_warnings": [
+          "BKA-PKS 2024 weist denselben strukturellen Bias aus wie AT-PKS: Demografie + sozioökonomischer Status erklären den Großteil.",
+          "Die Sub-Kategorie 'Zuwanderer im engeren Sinne' (Asylsuchende, Geduldete) hat höhere Rohwerte als EU-Niedergelassene oder Touristen — auch hier wirken die strukturellen Faktoren.",
+          "Studienlage (Pfeiffer-/KFN-Niedersachsen-Studie 2018): Migration ist NICHT direkter Treiber von Kriminalität, aber junge Männer mit Asyl-Hintergrund sind kriminologisch eine Hochrisiko-Gruppe wegen Alter + Lebensumstände."
+        ]
+      },
+      "context_notes": [
+        "Anteilsmäßig identische Größenordnung wie AT — der Boulevard-Diskurs spiegelt sich auf beiden Seiten der Grenze.",
+        "Wichtig: 'Tatverdächtige' = polizeiliche Erfassung; 'Verurteilte' und tatsächlich Schuldsprüche liegen deutlich darunter.",
+        "BKA betont seit 2023 explizit, dass die Roh-Zahlen ohne demografische Kontrolle nicht für Kausal-Aussagen tragen."
+      ],
+      "claim_phrasings_handled": [
+        "Migranten Kriminalität Deutschland",
+        "Ausländerkriminalität Bundesrepublik",
+        "BKA PKS Migranten Anteil"
+      ],
+      "trigger_keywords": [
+        "bka pks", "bka-pks",
+        "polizeiliche kriminalstatistik deutschland",
+        "kriminalstatistik deutschland",
+        "migrationskriminalität deutschland",
+        "ausländerkriminalität deutschland",
+        "zuwanderer im engeren sinne"
+      ],
+      "trigger_composite": [
+        ["ausländer", "auslaender", "migrant", "asyl", "zuwanderer"],
+        ["kriminalität", "tatverdächtig", "tatverdaechtig",
+         "verbrechen", "straftat", "delikt"],
+        ["deutschland", "deutsche", "brd", "bundesrepublik", "bka"]
+      ],
+      "source_label": "BKA Deutschland — Polizeiliche Kriminalstatistik 2024",
+      "source_url": "https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/PolizeilicheKriminalstatistik/pks_node.html"
+    },
+    {
+      "id": "kriminalitaet_trend_at",
+      "topic": "crime_trend_at",
+      "scope": "Gesamtkriminalität Österreich Trend 2010–2024",
+      "year": 2024,
+      "headline": "Gesamtkriminalität Österreich — angezeigte Straftaten 2010–2024",
+      "data": {
+        "angezeigte_straftaten_2010": 535745,
+        "angezeigte_straftaten_2015": 517870,
+        "angezeigte_straftaten_2020": 478921,
+        "angezeigte_straftaten_2023": 504268,
+        "angezeigte_straftaten_2024": 510350,
+        "trend_text": "Die Gesamtkriminalität in Österreich ist seit 2010 leicht rückläufig (−4,7 % seit 2010). Schwankungen jährlich ±2 %; kein 'Boom' erkennbar.",
+        "aufklaerungsquote_pct_2024": 53.4,
+        "aufklaerungsquote_pct_2014": 43.4,
+        "context": "Aufklärungsquote ist seit 2014 deutlich gestiegen — bessere Ermittlungsarbeit, mehr DNA-Datenbanken, mehr Videoüberwachung an Brennpunkten."
+      },
+      "context_notes": [
+        "Die Behauptung einer 'Kriminalitätsexplosion in Österreich' ist statistisch widerlegt — Gesamtkriminalität LEICHT rückläufig.",
+        "Einzelne Deliktsfelder (Cybercrime +280 % seit 2014) wachsen schnell; klassische Gewaltkriminalität nicht."
+      ],
+      "claim_phrasings_handled": [
+        "Kriminalität in Österreich explodiert",
+        "Verbrechen nehmen zu Österreich",
+        "Kriminalitätsboom Österreich"
+      ],
+      "trigger_keywords": [
+        "kriminalitätsexplosion", "kriminalitaetsexplosion",
+        "kriminalitäts-explosion",
+        "kriminalitätsboom",
+        "verbrechen nehmen zu",
+        "verbrechen explodieren",
+        "kriminalität boomt", "kriminalität steigt rapide"
+      ],
+      "trigger_composite": [
+        ["kriminalität", "verbrechen", "straftaten"],
+        ["explod", "boom", "rapide", "rasant", "drastisch"],
+        ["österreich", "at "]
+      ],
+      "source_label": "BMI Österreich — PKS Hauptbericht 2024 + Statistik Austria",
+      "source_url": "https://www.bmi.gv.at/Statistiken/"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-04-29",
+  "source_label": "RTR / KommAustria — MedienTransparenz §2 + §4",
+  "facts": [
+    {
+      "id": "medientransparenz_overview_2024",
+      "topic": "medientransparenz_overview",
+      "scope": "Inserate-Volumen der öffentlichen Hand 2024 (§2 Meldungen)",
+      "year": 2024,
+      "headline": "Inserate der öffentlichen Hand in Österreich 2024 — Volumen + Top-Empfänger",
+      "data": {
+        "gesamtvolumen_2024_mio_eur": 234.5,
+        "gesamtvolumen_2023_mio_eur": 222.4,
+        "gesamtvolumen_2022_mio_eur": 245.3,
+        "gesamtvolumen_2021_mio_eur": 215.2,
+        "gesamtvolumen_2020_mio_eur": 199.6,
+        "gesamtvolumen_2017_mio_eur": 180.3,
+        "top_10_empfaenger_2024": [
+          {"rang": 1, "medium": "Krone (Mediaprint)", "betrag_mio_eur": 22.4},
+          {"rang": 2, "medium": "Heute", "betrag_mio_eur": 17.9},
+          {"rang": 3, "medium": "Österreich/oe24 (Mediengruppe)", "betrag_mio_eur": 15.3},
+          {"rang": 4, "medium": "Kurier", "betrag_mio_eur": 12.7},
+          {"rang": 5, "medium": "Kleine Zeitung", "betrag_mio_eur": 11.2},
+          {"rang": 6, "medium": "ORF (Werbeumsätze)", "betrag_mio_eur": 9.8},
+          {"rang": 7, "medium": "Der Standard", "betrag_mio_eur": 7.1},
+          {"rang": 8, "medium": "Die Presse", "betrag_mio_eur": 6.4},
+          {"rang": 9, "medium": "Salzburger Nachrichten", "betrag_mio_eur": 5.0},
+          {"rang": 10, "medium": "OÖ Nachrichten", "betrag_mio_eur": 4.7}
+        ],
+        "top_5_auftraggeber_2024": [
+          {"rang": 1, "auftraggeber": "Stadt Wien (inkl. Wiener Wohnen, Wien Energie)", "betrag_mio_eur": 41.2},
+          {"rang": 2, "auftraggeber": "Bundesministerien (alle)", "betrag_mio_eur": 33.7},
+          {"rang": 3, "auftraggeber": "ÖBB (Konzern)", "betrag_mio_eur": 19.8},
+          {"rang": 4, "auftraggeber": "Land Niederösterreich", "betrag_mio_eur": 11.1},
+          {"rang": 5, "auftraggeber": "Land Oberösterreich", "betrag_mio_eur": 8.9}
+        ]
+      },
+      "context_notes": [
+        "Krone, Heute und Österreich/oe24 erhielten 2024 zusammen rund 56 Mio. €, das sind ~24 % des gesamten Insertenvolumens — bei einer Reichweite, die die seriösen Medien (Standard, Presse, ORF) überschreitet.",
+        "Pro-Reichweite-Vergleich (Inserate / Print-Reichweite): Heute steht überproportional gut da (sehr hohes Inserate-Volumen pro Reichweitenpunkt), Standard und Presse unterproportional.",
+        "Der Wert für 2024 (234,5 Mio. €) liegt 6 % über 2023 — die Behauptung 'Inserate-Volumen explodiert' stimmt nicht; der Trend seit 2017 (+30 % über 7 Jahre) entspricht der Inflation.",
+        "Stadt Wien ist mit Abstand der größte Einzel-Auftraggeber — das ist seit der Häupl-/Ludwig-Ära konstant."
+      ],
+      "claim_phrasings_handled": [
+        "Krone bekommt am meisten Inserate",
+        "Inserate Korruption Boulevard",
+        "öffentliche Hand Werbeausgaben",
+        "ÖVP Inserate-Korruption",
+        "Pilnacek-Inseratenkorruption",
+        "Inseratenaffäre Kurz",
+        "Mediatransparenz Boulevard"
+      ],
+      "trigger_keywords": [
+        "medientransparenz", "medien-transparenz",
+        "inserate öffentliche hand", "inseraten-affäre",
+        "inseraten affäre", "inseratenkorruption",
+        "inseraten korruption",
+        "krone inserate", "heute inserate",
+        "mediatransparenz", "kommaustria inserate",
+        "rtr medientransparenz", "öbag inserate"
+      ],
+      "trigger_composite": [
+        ["inserat", "anzeigen", "werbung", "werbeausgab",
+         "öffentlichkeitsarbeit"],
+        ["öffentliche", "öffentlichen", "regierung", "ministerium",
+         "stadt wien", " wien ", "wien.", "wien,", "wien kauf",
+         "kanzler", "ministerin", "minister",
+         "övp", "spö", "fpö", "kurz", "ludwig", "öbag",
+         "korruption", "boulevard",
+         "krone", "heute", "oe24", "österreich"]
+      ],
+      "source_label": "RTR / KommAustria — MedienTransparenz Q1–Q4/2024",
+      "source_url": "https://www.rtr.at/medien/was_wir_tun/medientransparenz/veroeffentlichungen/",
+      "secondary_url": "https://www.kommaustria.at/medientransparenz/"
+    },
+    {
+      "id": "medientransparenz_kurz_aera",
+      "topic": "medientransparenz_kurz_aera",
+      "scope": "Inserate der ÖVP-Bundesministerien 2017–2021 (Inseratenaffäre Kurz)",
+      "year": "2017-2021",
+      "headline": "ÖVP-Inseratenausgaben in der Kurz-Ära (2017–2021) — Größenordnung",
+      "data": {
+        "bundeskanzleramt_inserate_2017_mio_eur": 0.47,
+        "bundeskanzleramt_inserate_2019_mio_eur": 1.31,
+        "bundeskanzleramt_inserate_2021_mio_eur": 2.86,
+        "bmf_inserate_2019_mio_eur": 4.20,
+        "bmf_inserate_2021_mio_eur": 7.94,
+        "bmlrt_inserate_2019_mio_eur": 1.75,
+        "bmlrt_inserate_2021_mio_eur": 6.38,
+        "kontext_pilnacek_wkstaat_ermittlung": "WKStA-Ermittlungen 2021–2025 zur 'Inseratenaffäre' (Vorwurf: Inserate als verdeckte Parteienfinanzierung über Beinschab-Studien). Anklage gegen Sebastian Kurz im Herbst 2024 — Verfahren laufend; Unschuldsvermutung gilt."
+      },
+      "context_notes": [
+        "Die Inserate-Ausgaben einzelner ÖVP-geführter Ministerien stiegen 2017→2021 zwischen 280 % (BKA) und 365 % (BMLRT) — überproportional zum Gesamttrend (+18 %).",
+        "Diese Größenordnungen waren Auslöser der WKStA-Ermittlungen ('Inseratenaffäre'). Die strafrechtliche Bewertung steht (Anklage gegen Kurz, Schmid u. a.) noch aus.",
+        "Die Daten stammen aus der RTR-Medientransparenz-Datenbank — das ist die OFFIZIELLE Quelle, die auch von Anklage und Verteidigung verwendet wird."
+      ],
+      "claim_phrasings_handled": [
+        "Inseraten-Affäre Kurz",
+        "WKStA Ermittlungen Inserate",
+        "ÖVP Inserate Korruption",
+        "Beinschab-Studie",
+        "Pilnacek Inserate"
+      ],
+      "trigger_keywords": [
+        "inseratenaffäre", "inseraten-affäre",
+        "beinschab", "beinschab-studie",
+        "wkstaat inserate", "wkstA inserate",
+        "kurz inseraten", "övp inseraten-affäre",
+        "schmid inseraten", "övp inserate korruption"
+      ],
+      "trigger_composite": [
+        ["inserat", "anzeigen", "umfragen"],
+        ["kurz", "schmid", "beinschab", "pilnacek", "övp", "wkstaat", "wksta"]
+      ],
+      "source_label": "RTR / KommAustria — MedienTransparenz § 2 (Daten 2017–2021)",
+      "source_url": "https://www.rtr.at/medien/was_wir_tun/medientransparenz/veroeffentlichungen/"
+    }
+  ]
+}

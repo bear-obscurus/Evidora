@@ -753,28 +753,20 @@ def claim_mentions_factbook_cached(claim: str) -> bool:
 
 
 # ---------------------------------------------------------------------------
-# Static load
+# Static load (mtime-aware, hot-reloads on edit)
 # ---------------------------------------------------------------------------
+from services._static_cache import load_json_mtime_aware as _hot_load
+
+
 def _load_static_json() -> dict | None:
-    """Load the curated factbook JSON from disk (with one-shot caching)."""
-    global _cache
-    if _cache is not None:
-        return _cache
-    try:
-        with open(STATIC_JSON_PATH, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        if not isinstance(data, dict) or "facts" not in data:
-            logger.warning("at_factbook.json missing 'facts' key")
-            return None
-        _cache = data
-        logger.info(f"AT-Factbook loaded: {len(data['facts'])} curated entries")
-        return _cache
-    except FileNotFoundError:
-        logger.warning(f"at_factbook.json not found at {STATIC_JSON_PATH}")
+    """Load the curated factbook JSON from disk, hot-reloading on edits."""
+    data = _hot_load(STATIC_JSON_PATH)
+    if data is None:
         return None
-    except Exception as e:
-        logger.warning(f"at_factbook.json load failed: {e}")
+    if "facts" not in data:
+        logger.warning("at_factbook.json missing 'facts' key")
         return None
+    return data
 
 
 async def fetch_at_factbook(client=None):

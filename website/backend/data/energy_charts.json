@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-04-29",
+  "source_label": "Energy-Charts (Fraunhofer ISE) + APG + ENTSO-E Transparency",
+  "facts": [
+    {
+      "id": "de_atomstrom_frankreich_mythos_2024",
+      "topic": "de_atomausstieg_atomstrom_import",
+      "scope": "Stromhandelsbilanz Deutschland ↔ Frankreich nach Atomausstieg",
+      "year": 2024,
+      "headline": "Hat Deutschland nach dem Atomausstieg 2023 Atomstrom aus Frankreich importiert?",
+      "data": {
+        "de_stromsaldo_2024_twh": -24.9,
+        "de_export_an_frankreich_2024_twh": 5.2,
+        "de_import_aus_frankreich_2024_twh": 14.1,
+        "de_nettoimport_aus_frankreich_2024_twh": 8.9,
+        "de_nettoexport_an_oesterreich_2024_twh": 3.3,
+        "de_nettoexport_an_polen_2024_twh": 4.0,
+        "de_strompreis_durchschnitt_2024_eur_mwh": 78,
+        "de_erneuerbare_anteil_2024_pct": 59.4,
+        "de_kernkraft_anteil_2024_pct": 0.0,
+        "de_braunkohle_anteil_2024_pct": 16.5,
+        "de_gas_anteil_2024_pct": 13.5,
+        "fr_kernkraft_anteil_2024_pct": 65.5,
+        "context_kontextualisiert": "Deutschland war 2024 Netto-STROMimport-Land (−24,9 TWh) und importierte gegen 9 TWh netto aus Frankreich. Frankreich produziert ~65 % Kernenergie, also ist ein nennenswerter Anteil dieses Imports tatsächlich Atomstrom. ABER: Deutschland exportiert gleichzeitig ~3,3 TWh netto nach Österreich und 4,0 TWh netto nach Polen — der Atomstrom-Import ist KEINE Folge des Atomausstiegs allein, sondern Resultat des EU-weiten Strommarkts (Merit-Order, billigster grenzüberschreitender Strom)."
+      },
+      "context_notes": [
+        "Vor dem Atomausstieg 2023 war Deutschland Netto-EXPORTeur (+33 TWh in 2017). 2023 erstmals Netto-Importeur — direkter Effekt des Atomausstiegs (8,4 TWh Stilllegung) UND des hohen Gaspreises 2022/23.",
+        "Die Boulevard-Behauptung 'Deutschland kauft jetzt billigen französischen Atomstrom' ist zur Hälfte richtig (Frankreich-Import) und zur Hälfte falsch (Deutschland verkauft auch viel Strom; Importsaldo ist nur 1/15 der DE-Stromproduktion).",
+        "Methodische Korrektur: 'Atomstrom aus Frankreich' ist physikalisch nicht zuordenbar — der EU-Strommarkt ist EINE physikalische Maschine. Bilanziell ist es korrekt zu sagen, dass DE 9 TWh netto aus FR importiert."
+      ],
+      "claim_phrasings_handled": [
+        "Deutschland kauft Atomstrom aus Frankreich",
+        "Atomausstieg Deutschland Frankreich",
+        "DE importiert Atomstrom",
+        "Energiewende Deutschland Strom aus Frankreich"
+      ],
+      "trigger_keywords": [
+        "deutschland atomstrom frankreich",
+        "atomstrom aus frankreich",
+        "atomausstieg deutschland",
+        "stromimport frankreich deutschland",
+        "frankreich atomstrom deutschland",
+        "deutschland importiert atomstrom"
+      ],
+      "trigger_composite": [
+        ["deutschland", "deutsche", "brd"],
+        ["atomstrom", "atomausstieg", "kernkraft", "atomenergie",
+         "kernenergie", "stromimport"],
+        ["frankreich", "französisch"]
+      ],
+      "source_label": "Energy-Charts.info (Fraunhofer ISE) — Stromhandelsbilanz 2024",
+      "source_url": "https://www.energy-charts.info/charts/import_export/",
+      "secondary_url": "https://transparency.entsoe.eu/"
+    },
+    {
+      "id": "ee_anteil_de_2024",
+      "topic": "ee_anteil_de",
+      "scope": "Erneuerbaren-Anteil Stromproduktion Deutschland",
+      "year": 2024,
+      "headline": "Erneuerbaren-Anteil an der Stromproduktion in Deutschland 2024",
+      "data": {
+        "ee_anteil_brutto_pct_2024": 59.4,
+        "ee_anteil_netto_pct_2024": 62.7,
+        "wind_an_land_anteil_pct_2024": 22.6,
+        "wind_offshore_anteil_pct_2024": 4.1,
+        "solar_anteil_pct_2024": 14.0,
+        "biomasse_anteil_pct_2024": 8.4,
+        "wasser_anteil_pct_2024": 4.0,
+        "ee_anteil_brutto_pct_2010": 16.5,
+        "trend_text": "Erneuerbarer Anteil hat sich von 16,5 % (2010) auf 59,4 % (2024) verdreieinhalbfacht. Ziel der Bundesregierung ist 80 % bis 2030."
+      },
+      "context_notes": [
+        "Boulevard-Behauptungen wie 'Erneuerbare sind nur 10 %' beziehen sich oft auf den BRUTTO-PRIMÄRENERGIE-Anteil (alle Sektoren inkl. Verkehr, Wärme, Industrie — der lag 2024 bei ~22 %). Im STROM-Sektor sind 59,4 % ein gut belegter Wert.",
+        "Bei der Brutto-/Netto-Unterscheidung: BRUTTO = inkl. Eigenstromverbrauch & Pumpspeicher-Verluste; NETTO = was tatsächlich ins Netz fließt. Beide Werte sind valide.",
+        "Energy-Charts (Fraunhofer ISE) ist die Standard-Referenz für deutsche Stromproduktion in Echtzeit."
+      ],
+      "claim_phrasings_handled": [
+        "Erneuerbaren-Anteil Deutschland",
+        "Wind- und Solar-Anteil DE",
+        "Energiewende Deutschland Anteil",
+        "Erneuerbare nur 10 Prozent"
+      ],
+      "trigger_keywords": [
+        "erneuerbaren-anteil deutschland",
+        "erneuerbarer anteil deutschland",
+        "ee-anteil deutschland",
+        "wind-anteil deutschland",
+        "solar-anteil deutschland",
+        "erneuerbare deutschland"
+      ],
+      "trigger_composite": [
+        ["erneuerbar", "ee-anteil", "ee anteil", "wind-anteil", "solar-anteil",
+         "windkraft", "solar", "ökostrom"],
+        ["anteil", "prozent", "%"],
+        ["deutschland", "deutsche", "brd", "energiewende"]
+      ],
+      "source_label": "Energy-Charts (Fraunhofer ISE) — Public Power 2024",
+      "source_url": "https://www.energy-charts.info/charts/energy/chart.htm?l=de&c=DE"
+    },
+    {
+      "id": "dunkelflaute_2024_de",
+      "topic": "dunkelflaute_de",
+      "scope": "Dunkelflauten Deutschland 2024",
+      "year": 2024,
+      "headline": "Wie oft führte 'Dunkelflaute' 2024 zu Versorgungsproblemen in Deutschland?",
+      "data": {
+        "anzahl_dunkelflauten_2024": 4,
+        "laengste_dunkelflaute_h": 102,
+        "stromnetz_blackouts_2024_minuten_pro_kunde": 12.8,
+        "stromnetz_saidi_de_eu_rang": 2,
+        "stromnetz_saidi_eu_schnitt_minuten": 49.0,
+        "context": "Deutschland hatte 2024 vier Phasen mit gleichzeitig wenig Wind UND Sonne (gemeinhin 'Dunkelflaute'). Die längste war 102 Stunden im November. In keinem Fall kam es zu großflächigen Versorgungsausfällen oder Blackouts — die durchschnittliche Stromausfall-Zeit pro Kunde (SAIDI) lag bei 12,8 Minuten/Jahr, EU-weit Rang 2 (nur Niederlande besser)."
+      },
+      "context_notes": [
+        "Die Boulevard-Behauptung 'Dunkelflaute legt das Netz lahm' wird durch SAIDI-Werte widerlegt: Deutschland hat eines der zuverlässigsten Stromnetze Europas.",
+        "Dunkelflauten werden durch konventionelle Backup-Kraftwerke (Kohle, Gas), Importe und Pumpspeicher abgefedert. Bislang reicht die Reservekapazität.",
+        "Das Risiko WÄCHST mit höherem EE-Anteil — deshalb Investitionen in Speicher (Batterien, H2) und Reservekraftwerke."
+      ],
+      "claim_phrasings_handled": [
+        "Dunkelflaute Stromausfall",
+        "Energiewende führt zu Blackout",
+        "Deutschland Blackout-Gefahr"
+      ],
+      "trigger_keywords": [
+        "dunkelflaute", "dunkel-flaute", "dark doldrums",
+        "blackout deutschland", "stromausfall deutschland",
+        "stromnetz lahm",
+        "deutschland kollaps stromnetz"
+      ],
+      "trigger_composite": [
+        ["dunkelflaute", "blackout", "stromausfall", "netzkollaps",
+         "netzzusammenbruch"],
+        ["deutschland", "deutsche", "brd", "energiewende"]
+      ],
+      "source_label": "Bundesnetzagentur SAIDI 2024 + Fraunhofer ISE",
+      "source_url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Versorgungssicherheit/Versorgungsunterbrechungen/start.html"
+    },
+    {
+      "id": "at_strom_eckdaten_2024",
+      "topic": "at_strom_eckdaten",
+      "scope": "Österreichs Strom-Bilanz 2024 (Erzeugung, Import, EE-Anteil)",
+      "year": 2024,
+      "headline": "Österreichs Stromproduktion und -handel 2024",
+      "data": {
+        "at_stromsaldo_2024_twh": -10.3,
+        "at_erneuerbare_anteil_pct_2024": 87.0,
+        "at_wasserkraft_anteil_pct_2024": 60.5,
+        "at_wind_anteil_pct_2024": 13.8,
+        "at_solar_anteil_pct_2024": 7.5,
+        "at_thermisch_anteil_pct_2024": 12.3,
+        "at_strompreis_grosshandel_2024_eur_mwh": 84,
+        "context": "Österreich war 2024 Netto-STROMimport-Land (−10 TWh, ca. 16 % des Verbrauchs). Erneuerbarer Stromanteil bei 87 % — höchster in der DACH-Region und einer der höchsten in Europa. Wasserkraft dominiert mit 60,5 %; Wind und Solar zusammen ~21 %.",
+        "saidi_at_minuten_pro_kunde_2024": 23.1
+      },
+      "context_notes": [
+        "AT hat 2024 erstmals seit langem mehr Strom importiert als exportiert — primär aus Deutschland (windreiche Phasen) und Tschechien (Atomstrom).",
+        "Die Behauptung 'Österreich wäre energieautark, wenn Wasserkraft ausgebaut wäre' ist statistisch falsch: Österreich hat zu wenig Wasser-Reserve, um Industrieverbrauch und EU-Strommarkt-Schwankungen alleine zu decken.",
+        "AT-Strompreis 2024 lag mit ~84 €/MWh leicht über DE — beide weit unter dem 2022-Krisenniveau (~250 €/MWh)."
+      ],
+      "claim_phrasings_handled": [
+        "Österreich Stromimport",
+        "Österreich Wasserkraft",
+        "Erneuerbare Österreich Anteil",
+        "Strompreis Österreich Grosshandel"
+      ],
+      "trigger_keywords": [
+        "stromimport österreich",
+        "österreich stromproduktion",
+        "österreich erneuerbare anteil",
+        "österreich wasserkraft anteil",
+        "strompreis österreich grosshandel"
+      ],
+      "trigger_composite": [
+        ["strom", "elektrizität", "wasserkraft", "wind", "erneuerbar",
+         "energie", "elektri"],
+        ["österreich", "at "],
+        ["import", "anteil", "produktion", "preis", "autark", "selbstversorg",
+         "saldo", "bilanz", "netto"]
+      ],
+      "source_label": "APG (Austrian Power Grid) + E-Control",
+      "source_url": "https://www.apg.at/transparency"
+    }
+  ]
+}

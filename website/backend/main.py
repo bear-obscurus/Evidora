@@ -57,6 +57,11 @@ from services.wifo_ihs import search_wifo_ihs, claim_mentions_wifo_ihs_cached
 from services.oenb import search_oenb, claim_mentions_oenb_cached
 from services.mimikama import search_mimikama, claim_mentions_mimikama_cached
 from services.biorxiv import search_biorxiv, claim_mentions_biorxiv_cached
+from services.eu_courts import search_eu_courts, claim_mentions_eu_courts_cached
+from services.eu_crime import search_eu_crime, claim_mentions_eu_crime_cached
+from services.energy_charts import search_energy_charts, claim_mentions_energy_charts_cached
+from services.medientransparenz import search_medientransparenz, claim_mentions_medientransparenz_cached
+from services.rki_surveillance import search_rki_surveillance, claim_mentions_rki_surveillance_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -118,6 +123,12 @@ def _sanitize_claim(text: str) -> str:
 # --- Rate limiting ---
 RATE_LIMIT = int(os.getenv("RATE_LIMIT", "10"))
 RATE_WINDOW = int(os.getenv("RATE_WINDOW", "60"))  # seconds
+# Optional bypass for local stress tests / batch validations.
+# Set EVIDORA_TEST_API_KEY in the environment (or compose) and pass it via
+# the X-Evidora-Test-Key header — requests with a matching header skip the
+# per-IP rate limit. The key is treated as a server-side secret; if the env
+# is unset/empty, NO bypass is possible.
+TEST_API_KEY = os.getenv("EVIDORA_TEST_API_KEY", "").strip()
 _rate_store: dict[str, list[float]] = {}
 
 
@@ -128,6 +139,20 @@ def _get_client_ip(request: Request) -> str:
         # First IP in the chain is the original client
         return forwarded.split(",")[0].strip()
     return request.client.host if request.client else "unknown"
+
+
+def _has_test_bypass(request: Request) -> bool:
+    """True if the request carries a valid test-API-key header."""
+    if not TEST_API_KEY:
+        return False
+    presented = request.headers.get("x-evidora-test-key", "").strip()
+    # Constant-time compare to avoid timing leaks
+    if not presented or len(presented) != len(TEST_API_KEY):
+        return False
+    diff = 0
+    for a, b in zip(presented, TEST_API_KEY):
+        diff |= ord(a) ^ ord(b)
+    return diff == 0
 
 
 def _check_rate_limit(ip: str) -> bool:
@@ -144,7 +169,7 @@ def _check_rate_limit(ip: str) -> bool:
 @app.post("/api/check")
 async def check_claim(request: Request):
     client_ip = _get_client_ip(request)
-    if not _check_rate_limit(client_ip):
+    if not _has_test_bypass(request) and not _check_rate_limit(client_ip):
         raise HTTPException(status_code=429, detail="Zu viele Anfragen. Bitte warte einen Moment.")
 
     body = await request.json()
@@ -393,6 +418,33 @@ async def check_claim(request: Request):
         if claim_mentions_biorxiv_cached(claim):
             tasks.append(cached("bioRxiv/medRxiv", search_biorxiv, analysis))
             queried_names.append("bioRxiv/medRxiv")
+        # EuGH (CURIA) + EGMR (HUDOC) — Schlüsselurteile, die Boulevard
+        # / FPÖ-Medien regelmäßig verfälscht zitieren.
+        if claim_mentions_eu_courts_cached(claim):
+            tasks.append(cached("EuGH+EGMR", search_eu_courts, analysis))
+            queried_names.append("EuGH+EGMR")
+        # Eurostat Crime + BKA-DE/BMI-AT PKS — Tötungsdelikte EU-Vergleich,
+        # Migrant-Tatverdächtigen-Anteile mit Strukturwarnungen,
+        # Trend-Daten gegen 'Kriminalitätsexplosion'-Mythen.
+        if claim_mentions_eu_crime_cached(claim):
+            tasks.append(cached("Eurostat Crime + DACH PKS", search_eu_crime, analysis))
+            queried_names.append("Eurostat Crime + DACH PKS")
+        # Energy-Charts (Fraunhofer ISE) + APG — Stromproduktion +
+        # Handel DACH gegen die häufigsten Energie-Boulevard-Mythen
+        # (DE-Atomstrom-Mythos, EE-Anteil "nur 10 %", Dunkelflaute).
+        if claim_mentions_energy_charts_cached(claim):
+            tasks.append(cached("Energy-Charts", search_energy_charts, analysis))
+            queried_names.append("Energy-Charts (Fraunhofer) + APG")
+        # MedienTransparenz (RTR/KommAustria) — Inseraten-Volumen der
+        # öffentlichen Hand + Top-Empfänger + Inseratenaffäre Kurz.
+        if claim_mentions_medientransparenz_cached(claim):
+            tasks.append(cached("MedienTransparenz", search_medientransparenz, analysis))
+            queried_names.append("MedienTransparenz (RTR/KommAustria)")
+        # RKI SurvStat — Surveillance-Eckwerte gegen Migration-bedingte
+        # Krankheits-Mythen (Masern, TB) + Atemwegsinfekt-Wellen.
+        if claim_mentions_rki_surveillance_cached(claim):
+            tasks.append(cached("RKI SurvStat", search_rki_surveillance, analysis))
+            queried_names.append("RKI SurvStat")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-04-29",
+  "source_label": "Kuratierte Sammlung — EuGH (CURIA) + EGMR (HUDOC) Schlüsselurteile",
+  "rulings": [
+    {
+      "id": "eugh_c_808_18_ungarn_transitzonen",
+      "court": "EuGH",
+      "case_number": "C-808/18",
+      "case_name": "Kommission ./. Ungarn (Transitzonen)",
+      "year": 2020,
+      "decided_iso": "2020-12-17",
+      "url": "https://curia.europa.eu/juris/liste.jsf?num=C-808/18",
+      "celex": "62018CJ0808",
+      "topic": "asyl_transitzonen",
+      "kerninhalt": "Ungarn hat gegen EU-Recht verstoßen, weil seine Transitzonen-Verfahren Asylsuchende rechtswidrig festhielten und der Zugang zum Asylverfahren systematisch verhindert wurde. Das Urteil zwingt Ungarn NICHT, eine bestimmte Quote an Asylsuchenden aufzunehmen — es verlangt nur faire, EU-rechtskonforme Verfahren.",
+      "boulevard_falschmeldung": "Der EuGH zwingt Ungarn (oder Österreich) zur Aufnahme tausender Migranten.",
+      "trigger_keywords": ["c-808/18", "ungarn transitzonen", "transitzonen-urteil",
+                           "eugh ungarn asyl", "eugh transitzonen"],
+      "trigger_composite": [
+        ["eugh", "europäischer gerichtshof"],
+        ["ungarn", "hungary"],
+        ["asyl", "transitzon", "migrant"]
+      ]
+    },
+    {
+      "id": "eugh_c_411_10_ns_dublin",
+      "court": "EuGH",
+      "case_number": "C-411/10 + C-493/10",
+      "case_name": "N.S. ./. Secretary of State for the Home Department",
+      "year": 2011,
+      "decided_iso": "2011-12-21",
+      "url": "https://curia.europa.eu/juris/liste.jsf?num=C-411/10",
+      "celex": "62010CJ0411",
+      "topic": "asyl_dublin_rueckfuehrung",
+      "kerninhalt": "Dublin-Rückführungen in einen anderen EU-Staat sind unzulässig, wenn dort systemische Mängel des Asylverfahrens drohen — konkret betraf es Griechenland 2011. Das Urteil setzt Dublin NICHT außer Kraft; es schafft nur eine Schranke gegen Rückführungen in nachweislich überlastete Asylsysteme.",
+      "boulevard_falschmeldung": "Der EuGH hat Dublin gekippt / verbietet alle Asyl-Rückführungen.",
+      "trigger_keywords": ["c-411/10", "n.s. urteil", "dublin gekippt",
+                           "dublin außer kraft", "ns belgian state"],
+      "trigger_composite": [
+        ["eugh", "europäischer gerichtshof"],
+        ["dublin"],
+        ["aufgehoben", "gekippt", "ungültig", "außer kraft", "abgeschafft"]
+      ]
+    },
+    {
+      "id": "eugh_c_311_18_schrems_ii",
+      "court": "EuGH",
+      "case_number": "C-311/18",
+      "case_name": "Schrems II (Data Protection Commissioner ./. Facebook Ireland & Schrems)",
+      "year": 2020,
+      "decided_iso": "2020-07-16",
+      "url": "https://curia.europa.eu/juris/liste.jsf?num=C-311/18",
+      "celex": "62018CJ0311",
+      "topic": "datenschutz_us_transfer",
+      "kerninhalt": "EU-US Privacy Shield ist ungültig — Datenexporte in die USA erfordern zusätzliche Schutzgarantien (Standard Contractual Clauses + Risikobewertung). Das Urteil verbietet US-Cloud-Dienste NICHT pauschal — Datenexporte bleiben rechtlich möglich, brauchen aber zusätzliche technische und vertragliche Schutzmaßnahmen. EU-US Data Privacy Framework (Nachfolge-Abkommen) ist seit Juli 2023 in Kraft.",
+      "boulevard_falschmeldung": "Alle US-Cloud-Services (Microsoft, Google, AWS) sind in Europa illegal.",
+      "trigger_keywords": ["schrems ii", "schrems-ii", "schrems 2",
+                           "privacy shield ungültig", "c-311/18",
+                           "us-cloud verboten", "us cloud illegal"],
+      "trigger_composite": [
+        ["eugh", "europäischer gerichtshof", "schrems"],
+        ["privacy shield", "us-cloud", "us cloud", "datentransfer", "datenexport"]
+      ]
+    },
+    {
+      "id": "eugh_c_507_17_google_cnil",
+      "court": "EuGH",
+      "case_number": "C-507/17",
+      "case_name": "Google ./. CNIL (Recht auf Vergessenwerden weltweit)",
+      "year": 2019,
+      "decided_iso": "2019-09-24",
+      "url": "https://curia.europa.eu/juris/liste.jsf?num=C-507/17",
+      "celex": "62017CJ0507",
+      "topic": "datenschutz_recht_auf_vergessen",
+      "kerninhalt": "Google muss Suchergebnis-Auslistungen NUR auf EU-Domains durchführen, NICHT global auf google.com. Das Recht auf Vergessenwerden gilt territorial in der EU.",
+      "boulevard_falschmeldung": "Google muss alle Inhalte weltweit löschen.",
+      "trigger_keywords": ["c-507/17", "recht auf vergessen weltweit",
+                           "google muss weltweit löschen", "cnil google"],
+      "trigger_composite": [
+        ["recht auf vergessen", "right to be forgotten"],
+        ["weltweit", "global", "alle länder"]
+      ]
+    },
+    {
+      "id": "eugh_c_401_19_polen_dsm",
+      "court": "EuGH",
+      "case_number": "C-401/19",
+      "case_name": "Polen ./. Parlament & Rat (Art. 17 DSM-Richtlinie / Upload-Filter)",
+      "year": 2022,
+      "decided_iso": "2022-04-26",
+      "url": "https://curia.europa.eu/juris/liste.jsf?num=C-401/19",
+      "celex": "62019CJ0401",
+      "topic": "urheberrecht_upload_filter",
+      "kerninhalt": "Art. 17 DSM-Richtlinie (verpflichtende Lizenzierung bzw. Upload-Filter für UGC-Plattformen) ist mit der Meinungsfreiheit vereinbar — vorausgesetzt, die Mitgliedstaaten setzen die Vorgaben so um, dass legaler Inhalt NICHT automatisiert blockiert wird. Das Urteil bestätigt KEINE pauschale Zensur, sondern verlangt Schutzmechanismen.",
+      "boulevard_falschmeldung": "Der EuGH hat Upload-Filter / Internet-Zensur erlaubt.",
+      "trigger_keywords": ["c-401/19", "upload-filter eugh", "upload filter eugh",
+                           "art. 17 dsm-richtlinie", "artikel 17 dsm",
+                           "internet-zensur eugh"],
+      "trigger_composite": [
+        ["upload-filter", "upload filter", "uploadfilter"],
+        ["eugh", "europäischer gerichtshof"]
+      ]
+    },
+    {
+      "id": "eugh_c_673_20_brexit_wahlrecht",
+      "court": "EuGH",
+      "case_number": "C-673/20",
+      "case_name": "Préfet du Gers (EU-Wahlrecht für Briten nach Brexit)",
+      "year": 2022,
+      "decided_iso": "2022-06-09",
+      "url": "https://curia.europa.eu/juris/liste.jsf?num=C-673/20",
+      "celex": "62020CJ0673",
+      "topic": "brexit_eu_wahlrecht",
+      "kerninhalt": "Britische Staatsangehörige verlieren mit dem Brexit ihre Unionsbürgerschaft und damit das EU-weite Kommunalwahlrecht (außer Doppelstaatsbürger). Das Urteil ist eine reine Statusfeststellung, keine politische Sanktion.",
+      "boulevard_falschmeldung": "Der EuGH bestraft die Briten / hat Briten alle Rechte aberkannt.",
+      "trigger_keywords": ["c-673/20", "préfet du gers", "brexit wahlrecht eugh",
+                           "briten kommunalwahl"],
+      "trigger_composite": [
+        ["brexit", "briten"],
+        ["wahlrecht", "kommunalwahl", "unionsbürgerschaft"]
+      ]
+    },
+    {
+      "id": "eugh_c_205_20_direktwirkung",
+      "court": "EuGH",
+      "case_number": "C-205/20",
+      "case_name": "Bezirkshauptmannschaft Hartberg-Fürstenfeld (Direktwirkung Verordnungen)",
+      "year": 2022,
+      "decided_iso": "2022-01-08",
+      "url": "https://curia.europa.eu/juris/liste.jsf?num=C-205/20",
+      "celex": "62020CJ0205",
+      "topic": "eu_direktwirkung",
+      "kerninhalt": "EU-Verordnungen gelten unmittelbar in den Mitgliedstaaten — nationale Behörden müssen entgegenstehendes nationales Recht von Amts wegen unangewendet lassen. Das ist seit 1962 (Costa/ENEL, Van Gend & Loos) ständige Rechtsprechung; das Urteil C-205/20 bestätigt sie für eine konkrete österreichische Anwendung.",
+      "boulevard_falschmeldung": "Brüssel kann Österreich beliebig überfahren / nationales Recht ist abgeschafft.",
+      "trigger_keywords": ["c-205/20", "direktwirkung eu", "eugh nationales recht",
+                           "bezirkshauptmannschaft hartberg", "vorrang eu-recht"],
+      "trigger_composite": [
+        ["eugh", "europäischer gerichtshof"],
+        ["nationales recht", "österreichisches recht"],
+        ["überfahren", "abgeschafft", "ausgehebelt"]
+      ]
+    },
+    {
+      "id": "eugh_c_621_18_wightman_brexit",
+      "court": "EuGH",
+      "case_number": "C-621/18",
+      "case_name": "Wightman u. a. (Rücknahme der Brexit-Notifikation)",
+      "year": 2018,
+      "decided_iso": "2018-12-10",
+      "url": "https://curia.europa.eu/juris/liste.jsf?num=C-621/18",
+      "celex": "62018CJ0621",
+      "topic": "brexit_rueckziehung",
+      "kerninhalt": "Ein Mitgliedstaat darf seine Austrittsmitteilung nach Art. 50 EUV einseitig zurückziehen — ohne Zustimmung der anderen 27. Das Urteil betrifft keinen Beitrittszwang, sondern bestätigt mitgliedstaatliche Souveränität.",
+      "boulevard_falschmeldung": "Brüssel hindert UK am Austritt / EuGH hat Brexit gestoppt.",
+      "trigger_keywords": ["c-621/18", "wightman", "brexit zurücknehmen",
+                           "art. 50 zurückziehen", "artikel 50 zurückziehen"],
+      "trigger_composite": [
+        ["brexit", "art. 50", "artikel 50"],
+        ["zurückzieh", "rückzieh", "rücknahme"]
+      ]
+    },
+    {
+      "id": "eugh_c_638_16_humanitaere_visa",
+      "court": "EuGH",
+      "case_number": "C-638/16 PPU",
+      "case_name": "X und X ./. État belge (humanitäre Visa)",
+      "year": 2017,
+      "decided_iso": "2017-03-07",
+      "url": "https://curia.europa.eu/juris/liste.jsf?num=C-638/16",
+      "celex": "62016CJ0638",
+      "topic": "asyl_humanitaere_visa",
+      "kerninhalt": "EU-Mitgliedstaaten sind NICHT verpflichtet, Asylsuchenden in Drittstaaten humanitäre Visa zu erteilen. Das Urteil schließt eine extraterritoriale Asyl-Pflicht ausdrücklich aus.",
+      "boulevard_falschmeldung": "Der EuGH zwingt EU-Staaten, allen Migranten in Drittstaaten Visa zu erteilen.",
+      "trigger_keywords": ["c-638/16", "humanitäre visa eugh",
+                           "humanitäres visum eu-pflicht"],
+      "trigger_composite": [
+        ["eugh", "europäischer gerichtshof"],
+        ["humanitäre visa", "humanitäres visum", "asyl-visum", "asyl visa"]
+      ]
+    },
+    {
+      "id": "egmr_n_d_n_t_spain_pushback",
+      "court": "EGMR",
+      "case_number": "N.D. and N.T. v. Spain (Nrs. 8675/15, 8697/15)",
+      "case_name": "N.D. und N.T. ./. Spanien (Push-backs Melilla)",
+      "year": 2020,
+      "decided_iso": "2020-02-13",
+      "url": "https://hudoc.echr.coe.int/eng#{%22appno%22:[%228675/15%22]}",
+      "topic": "asyl_pushback",
+      "kerninhalt": "Push-backs an der spanischen Außengrenze (Melilla) sind nicht per se konventionswidrig, WENN den Betroffenen gleichzeitig ein realer, zugänglicher und sicherer Weg zur Asylantragstellung an der Grenze offensteht. Bei fehlender Zugangsmöglichkeit bleiben Push-backs verboten (Art. 4 4. ZP EMRK + Art. 13 EMRK).",
+      "boulevard_falschmeldung": "Der EGMR hat alle Push-backs erlaubt / EU-Außengrenze ist freigegeben.",
+      "trigger_keywords": ["n.d. and n.t.", "n.d. n.t. spain",
+                           "egmr push-back", "egmr pushback",
+                           "egmr melilla", "push-back urteil"],
+      "trigger_composite": [
+        ["egmr", "europäischer gerichtshof für menschenrechte", "european court of human rights"],
+        ["push-back", "pushback", "zurückweisung"]
+      ]
+    },
+    {
+      "id": "egmr_klimaseniorinnen_2024",
+      "court": "EGMR",
+      "case_number": "Verein KlimaSeniorinnen Schweiz et al. ./. Schweiz (Nr. 53600/20)",
+      "case_name": "Verein KlimaSeniorinnen Schweiz",
+      "year": 2024,
+      "decided_iso": "2024-04-09",
+      "url": "https://hudoc.echr.coe.int/eng#{%22appno%22:[%2253600/20%22]}",
+      "topic": "klima_klagerecht",
+      "kerninhalt": "Erstes Grundsatzurteil des EGMR zur Klimapolitik: Die Schweiz verletzt Art. 8 EMRK (Privatleben), weil sie keine ausreichenden Klimaziele festgelegt und umgesetzt hat. Das Urteil verpflichtet Mitgliedstaaten zu effektiven, an wissenschaftlichen Erkenntnissen orientierten Klimaschutzplänen.",
+      "boulevard_falschmeldung": "Der EGMR mischt sich in nationale Klimapolitik ein und verbietet alles / hat keinen Effekt.",
+      "trigger_keywords": ["klimaseniorinnen", "klimaseniorinnen-urteil",
+                           "klima-klage egmr", "egmr klimaschutz", "egmr klimapolitik"],
+      "trigger_composite": [
+        ["egmr"],
+        ["klima", "climate"]
+      ]
+    },
+    {
+      "id": "egmr_lautsi_kruzifix",
+      "court": "EGMR",
+      "case_number": "Lautsi v. Italy (Nr. 30814/06)",
+      "case_name": "Lautsi ./. Italien (Kruzifix in Schulen)",
+      "year": 2011,
+      "decided_iso": "2011-03-18",
+      "url": "https://hudoc.echr.coe.int/eng#{%22appno%22:[%2230814/06%22]}",
+      "topic": "religion_kruzifix",
+      "kerninhalt": "Das Aufhängen von Kruzifixen in italienischen Schulklassen verletzt KEINE EMRK-Rechte. Der EGMR (Große Kammer) erlaubt Mitgliedstaaten ausdrücklich einen weiten Ermessensspielraum bei religiösen Symbolen im öffentlichen Raum.",
+      "boulevard_falschmeldung": "Der EGMR hat das Kreuz / Kruzifix in Schulen verboten.",
+      "trigger_keywords": ["lautsi", "kruzifix-urteil", "kruzifix verboten",
+                           "egmr kreuz", "egmr kruzifix"],
+      "trigger_composite": [
+        ["egmr"],
+        ["kruzifix", "kreuz"],
+        ["verbot", "verboten", "abgeschafft"]
+      ]
+    },
+    {
+      "id": "egmr_mss_belgium_greece",
+      "court": "EGMR",
+      "case_number": "M.S.S. v. Belgium and Greece (Nr. 30696/09)",
+      "case_name": "M.S.S. ./. Belgien und Griechenland",
+      "year": 2011,
+      "decided_iso": "2011-01-21",
+      "url": "https://hudoc.echr.coe.int/eng#{%22appno%22:[%2230696/09%22]}",
+      "topic": "asyl_dublin_rueckfuehrung",
+      "kerninhalt": "Belgien hat gegen Art. 3 EMRK verstoßen, weil es einen Asylbewerber nach Griechenland zurückführte, obwohl die dortigen Aufnahmebedingungen unmenschlich waren. Grundsatzurteil zur menschenrechtlichen Schranke der Dublin-Verordnung.",
+      "boulevard_falschmeldung": "EGMR hat Dublin gekippt.",
+      "trigger_keywords": ["m.s.s. v. belgium", "mss belgium greece",
+                           "egmr dublin urteil"],
+      "trigger_composite": [
+        ["egmr"],
+        ["dublin"],
+        ["aufgehoben", "gekippt", "ungültig", "verboten"]
+      ]
+    },
+    {
+      "id": "egmr_ilias_ahmed_ungarn",
+      "court": "EGMR",
+      "case_number": "Ilias and Ahmed v. Hungary (Nr. 47287/15)",
+      "case_name": "Ilias und Ahmed ./. Ungarn",
+      "year": 2019,
+      "decided_iso": "2019-11-21",
+      "url": "https://hudoc.echr.coe.int/eng#{%22appno%22:[%2247287/15%22]}",
+      "topic": "asyl_transitzonen",
+      "kerninhalt": "Der Aufenthalt von Asylsuchenden in den ungarischen Transitzonen an der serbischen Grenze stellte KEINE 'Haft' im Sinne von Art. 5 EMRK dar (Personen konnten theoretisch nach Serbien zurück), wohl aber lag eine Verletzung von Art. 3 EMRK vor — wegen der unzureichenden Prüfung sicherer Drittstaaten.",
+      "boulevard_falschmeldung": "EGMR hat Transitzonen pauschal verboten.",
+      "trigger_keywords": ["ilias and ahmed", "ilias ahmed hungary",
+                           "egmr ungarn transitzon"],
+      "trigger_composite": [
+        ["egmr"],
+        ["transitzon", "transit-zone"],
+        ["ungarn", "hungary"]
+      ]
+    },
+    {
+      "id": "egmr_big_brother_watch_uk",
+      "court": "EGMR",
+      "case_number": "Big Brother Watch and Others v. the United Kingdom (Nr. 58170/13 u. a.)",
+      "case_name": "Big Brother Watch ./. UK",
+      "year": 2021,
+      "decided_iso": "2021-05-25",
+      "url": "https://hudoc.echr.coe.int/eng#{%22appno%22:[%2258170/13%22]}",
+      "topic": "ueberwachung_massenscan",
+      "kerninhalt": "Das britische Überwachungsregime (RIPA-Massenscan) verletzte Art. 8 (Privatleben) und Art. 10 EMRK — wegen unzureichender unabhängiger Kontrolle und fehlender Schutzklauseln für Journalist:innen. Der EGMR verbot Massenüberwachung NICHT pauschal, sondern definierte sechs Mindestanforderungen.",
+      "boulevard_falschmeldung": "EGMR hat alle Geheimdienste verboten / Massenüberwachung pauschal erlaubt.",
+      "trigger_keywords": ["big brother watch egmr",
+                           "egmr massenüberwachung", "egmr überwachung uk"],
+      "trigger_composite": [
+        ["egmr"],
+        ["massenüberwachung", "geheimdienst", "ripa", "überwachung"]
+      ]
+    }
+  ]
+}

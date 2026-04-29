@@ -127,6 +127,11 @@ _AUTHORITATIVE_INDICATORS = (
     "biorxiv_preprint",
     "mimikama_classic",                  # Mimikama-Archiv-Klassiker
     "at_faktencheck_classic",            # APA/Kontrast-Archiv-Klassiker
+    "eu_courts_ruling",                  # EuGH/EGMR Schlüsselurteile
+    "eu_crime_fact",                     # Eurostat Crime + DACH PKS Eckwerte
+    "energy_charts_fact",                # Energy-Charts/APG Stromhandel + EE-Anteil
+    "medientransparenz_fact",            # RTR/KommAustria Inserate-§2-Daten
+    "rki_surveillance_fact",             # RKI SurvStat Surveillance-Eckwerte
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

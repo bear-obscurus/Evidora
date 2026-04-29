@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-04-29",
+  "source_label": "Robert Koch-Institut SurvStat 2.0 + RKI Wochenbericht",
+  "facts": [
+    {
+      "id": "rki_masern_2024_2025",
+      "topic": "rki_masern",
+      "scope": "Masern-Fallzahlen Deutschland 2024–2025",
+      "year": "2024-2025",
+      "headline": "Masern-Fallzahlen Deutschland 2024 + 2025 — RKI SurvStat",
+      "data": {
+        "rki_masern_faelle_2023": 79,
+        "rki_masern_faelle_2024": 637,
+        "rki_masern_faelle_2025_stand_q1": 142,
+        "impfquote_de_masern_kinder_15m_pct_2024": 96.4,
+        "impfquote_de_masern_kinder_24m_pct_2024": 92.8,
+        "impfquote_who_herdimmunitaet_pct": 95.0,
+        "context": "Masern-Fallzahlen sind in Deutschland 2024 deutlich gestiegen (637 vs. 79 in 2023), parallel zur globalen Welle (WHO meldet 1,9 Mio. Fälle weltweit 2024). Die Boulevard-Behauptung, der Anstieg sei 'durch Migration importiert', ist statistisch nicht belegt — der primäre Treiber ist die niedrige Zweitimpfquote (92,8 % vs. WHO-Ziel 95 %).",
+        "context_quelle": "RKI Wochenbericht 2/2025 + EpiBull 5/2025"
+      },
+      "context_notes": [
+        "Die Rohdaten zeigen Masern-Anstieg, NICHT seine Ursache. Genauere Untersuchungen (RKI 2024) zeigen: Importfälle und sekundäre Übertragungen kommen vor, dominant ist aber die heimische Impflücke bei Kindern.",
+        "Österreich und Schweiz hatten 2024 vergleichbare relative Anstiege (AT 67 Fälle 2023 → 542 Fälle 2024).",
+        "Die WHO-Definition für Herdimmunität bei Masern verlangt 95 % Zweitimpf-Abdeckung; DE liegt 2024 bei 92,8 % (sinkend) — strukturelle Ursache der Anfälligkeit."
+      ],
+      "claim_phrasings_handled": [
+        "Masern-Welle Deutschland",
+        "Migration bringt Masern",
+        "Asylsuchende Krankheiten Masern",
+        "RKI Masern Anstieg"
+      ],
+      "trigger_keywords": [
+        "masern-welle", "masern welle", "masernwelle",
+        "masern deutschland", "masern österreich",
+        "masern asyl", "masern migrant",
+        "rki masern", "rki masern-zahlen"
+      ],
+      "trigger_composite": [
+        ["masern", "measles"],
+        ["welle", "anstieg", "ausbruch", "explod", "bringt", "verbreit",
+         "import", "asylsuchend", "migrant", "asyl"]
+      ],
+      "source_label": "Robert Koch-Institut SurvStat 2.0",
+      "source_url": "https://survstat.rki.de/Content/Query/Create.aspx",
+      "secondary_url": "https://www.rki.de/DE/Content/Infekt/EpidBull/Archiv/2025/Ausgaben/05_25.html"
+    },
+    {
+      "id": "rki_tuberkulose_2024",
+      "topic": "rki_tuberkulose",
+      "scope": "Tuberkulose-Fallzahlen Deutschland 2024",
+      "year": 2024,
+      "headline": "Tuberkulose-Fallzahlen Deutschland 2024 — RKI",
+      "data": {
+        "rki_tb_faelle_2023": 4480,
+        "rki_tb_faelle_2024": 4870,
+        "rki_tb_inzidenz_pro_100k_2024": 5.8,
+        "rki_tb_inzidenz_pro_100k_2010": 5.8,
+        "rki_tb_inzidenz_pro_100k_1995": 14.2,
+        "rki_tb_inzidenz_pro_100k_1980": 23.0,
+        "anteil_im_ausland_geboren_pct_2024": 76.4,
+        "context": "Tuberkulose-Fallzahlen 2024 zeigen einen leichten Anstieg (+9 % gegenüber 2023). Die Inzidenz pro 100.000 Einwohner liegt bei 5,8 — identisch mit 2010 und ein Drittel des Wertes von 1995. Der Anteil der TB-Fälle bei im Ausland Geborenen liegt bei 76,4 % — das spiegelt die internationale Mobilität und die Tatsache, dass TB in vielen Herkunftsländern endemisch ist.",
+        "context_quelle": "RKI Bericht zur Epidemiologie der Tuberkulose 2024"
+      },
+      "context_notes": [
+        "Die DE-TB-Inzidenz ist seit 1980 (23,0/100 k) auf 5,8/100 k gefallen — eine 75-prozentige Reduktion über 44 Jahre.",
+        "Im internationalen Vergleich ist DE ein TB-Niedriginzidenz-Land (WHO-Schwelle <10/100 k). Boulevard-Behauptungen einer 'TB-Welle' sind statistisch widerlegt.",
+        "Der hohe Anteil im Ausland Geborener (76 %) ist KEINE Aussage zur Übertragungsdynamik in DE — der überwiegende Teil dieser Fälle wird bei der Einreiseuntersuchung oder kurz danach diagnostiziert (latent infiziert, im Heimatland erworben)."
+      ],
+      "claim_phrasings_handled": [
+        "TB Welle Deutschland",
+        "Tuberkulose Migration",
+        "Asylsuchende Tuberkulose",
+        "RKI Tuberkulose Anstieg"
+      ],
+      "trigger_keywords": [
+        "tuberkulose-welle", "tb-welle", "tuberkulose welle",
+        "tb welle deutschland",
+        "tuberkulose migration",
+        "rki tuberkulose", "rki tb"
+      ],
+      "trigger_composite": [
+        ["tuberkulose", "tb-fall", "tb fall", "tb-fälle"],
+        ["welle", "anstieg", "ausbruch", "explod", "bringt",
+         "asylsuchend", "migrant", "asyl"]
+      ],
+      "source_label": "Robert Koch-Institut — Bericht zur Epidemiologie der Tuberkulose 2024",
+      "source_url": "https://www.rki.de/DE/Content/InfAZ/T/Tuberkulose/Tuberkulose_node.html"
+    },
+    {
+      "id": "rki_grippe_covid_winter_2024_2025",
+      "topic": "rki_atemwegsinfekte",
+      "scope": "Atemwegsinfekt-Surveillance Winter 2024/25 (Influenza, COVID-19, RSV)",
+      "year": "2024-2025",
+      "headline": "Atemwegsinfekt-Welle Winter 2024/25 in Deutschland",
+      "data": {
+        "rki_ari_inzidenz_peak_woche_5_2025_pro_100k": 9870,
+        "rki_ari_inzidenz_peak_woche_2_2024_pro_100k": 7320,
+        "rki_ari_inzidenz_typischer_winterpeak_pro_100k": 7000,
+        "rki_influenza_anteil_an_ari_peak_pct": 38,
+        "rki_covid_anteil_an_ari_peak_pct": 5,
+        "rki_rsv_anteil_an_ari_peak_pct": 3,
+        "context": "Winter 2024/25 hatte eine Influenza-dominierte Atemwegsinfekt-Welle, deutlich stärker als 2023/24 — der Peak in KW 5/2025 (9.870 ARI pro 100.000) lag etwa 30 % über dem typischen Vor-Pandemie-Winterpeak. COVID spielte mit 5 % Anteil eine untergeordnete Rolle.",
+        "context_quelle": "RKI Wochenbericht 7/2025 + ARE-Wochenbericht"
+      },
+      "context_notes": [
+        "Die Behauptung 'COVID ist zurück und legt das Land lahm' ist für den Winter 2024/25 nicht haltbar — Influenza war der dominierende Erreger.",
+        "Die Krankenhausbelegung (SARI) lag im Peak bei ~7,5/100 k — vergleichbar mit den schwersten Vor-Pandemie-Wintern (2017/18, 2018/19).",
+        "Der Vergleich zu 2022/23 (Long-COVID-Plateau) hilft Boulevard-Behauptungen 'COVID-Welle macht alle krank' zu widerlegen."
+      ],
+      "claim_phrasings_handled": [
+        "COVID-Welle Winter 2024 2025",
+        "Grippewelle Deutschland",
+        "Atemwegsinfekt Krise"
+      ],
+      "trigger_keywords": [
+        "grippewelle deutschland", "grippe-welle deutschland",
+        "covid-welle 2024", "covid-welle 2025",
+        "atemwegsinfekt welle",
+        "rki atemwegsinfekt", "rki ari", "rki sari"
+      ],
+      "trigger_composite": [
+        ["grippe", "influenza", "atemwegsinfekt", "rsv", "ari", "sari", "covid"],
+        ["welle", "anstieg", "krise", "lahm", "kollap", "ausbruch", "boom",
+         "explod", "rapide"]
+      ],
+      "source_label": "Robert Koch-Institut — ARE-/SARI-Wochenbericht",
+      "source_url": "https://influenza.rki.de/Wochenberichte.aspx"
+    }
+  ]
+}

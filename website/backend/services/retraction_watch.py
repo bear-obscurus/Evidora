@@ -38,29 +38,19 @@ _cache: dict | None = None
 
 
 # ---------------------------------------------------------------------------
-# Static load
+# Static load (mtime-aware, hot-reloads on edit)
 # ---------------------------------------------------------------------------
+from services._static_cache import load_json_mtime_aware as _hot_load
+
+
 def _load_static_json() -> dict | None:
-    global _cache
-    if _cache is not None:
-        return _cache
-    try:
-        with open(STATIC_JSON_PATH, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        if not isinstance(data, dict) or "retractions" not in data:
-            logger.warning("retraction_watch.json missing 'retractions' key")
-            return None
-        _cache = data
-        logger.info(
-            f"Retraction Watch loaded: {len(data['retractions'])} curated retractions"
-        )
-        return _cache
-    except FileNotFoundError:
-        logger.warning(f"retraction_watch.json not found at {STATIC_JSON_PATH}")
+    data = _hot_load(STATIC_JSON_PATH)
+    if data is None:
         return None
-    except Exception as e:
-        logger.warning(f"retraction_watch.json load failed: {e}")
+    if "retractions" not in data:
+        logger.warning("retraction_watch.json missing 'retractions' key")
         return None
+    return data
 
 
 async def fetch_retraction_watch(client=None):

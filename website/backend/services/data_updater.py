@@ -59,6 +59,11 @@ from services.wifo_ihs import fetch_wifo_ihs
 from services.oenb import fetch_oenb
 from services.mimikama import fetch_mimikama
 from services.biorxiv import fetch_biorxiv
+from services.eu_courts import fetch_eu_courts
+from services.eu_crime import fetch_eu_crime
+from services.energy_charts import fetch_energy_charts
+from services.medientransparenz import fetch_medientransparenz
+from services.rki_surveillance import fetch_rki_surveillance
 
 logger = logging.getLogger("evidora")
 
@@ -107,6 +112,11 @@ async def prefetch_all():
             fetch_oenb(client),
             fetch_mimikama(client),
             fetch_biorxiv(client),
+            fetch_eu_courts(client),
+            fetch_eu_crime(client),
+            fetch_energy_charts(client),
+            fetch_medientransparenz(client),
+            fetch_rki_surveillance(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "OWID Measles", "OWID Vaccination (WUENIC)",
@@ -123,7 +133,12 @@ async def prefetch_all():
                  "AT Factbook", "BKA PKS", "DACH Factbook",
                  "Retraction Watch", "Frontex",
                  "AT-Faktencheck-RSS", "WIFO + IHS", "OeNB",
-                 "Mimikama", "bioRxiv/medRxiv"]
+                 "Mimikama", "bioRxiv/medRxiv",
+                 "EuGH+EGMR Schlüsselurteile",
+                 "Eurostat Crime + DACH PKS",
+                 "Energy-Charts (Fraunhofer) + APG",
+                 "MedienTransparenz (RTR/KommAustria)",
+                 "RKI SurvStat"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")
