@@ -128,6 +128,7 @@ _AUTHORITATIVE_INDICATORS = (
     "dach_asyl_vergleich",
     "dach_pensions_vergleich",
     "dach_hpv_impfraten",
+    "retraction_watch_classic",
 )
 
 

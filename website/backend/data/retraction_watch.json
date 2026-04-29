@@ -1,0 +1,77 @@
+{
+  "retractions": [
+    {
+      "id": "wakefield_1998_lancet",
+      "doi": "10.1016/S0140-6736(97)11096-0",
+      "original_title": "Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children",
+      "authors": ["Wakefield AJ", "Murch SH", "Anthony A", "et al."],
+      "journal": "The Lancet",
+      "publication_year": 1998,
+      "retraction_year": 2010,
+      "retraction_reason": "Datenfälschung, ethische Verstöße, Interessenskonflikt nicht offengelegt — Wakefield wurde die Approbation entzogen.",
+      "topic_keywords": ["mmr", "masern-mumps-röteln", "autismus", "wakefield", "lancet 1998", "impfungen autismus", "vaccines autism"],
+      "common_misinformation": "Die behauptete Verbindung zwischen MMR-Impfung und Autismus basiert auf dieser zurückgezogenen Studie. Nachfolgende Meta-Analysen mit über 25 Mio Kindern haben KEINE Verbindung gefunden.",
+      "source_url": "https://retractionwatch.com/the-retraction-watch-leaderboard/",
+      "scientific_consensus": "Es gibt keinen kausalen Zusammenhang zwischen MMR-Impfung und Autismus. WHO-Position bestätigt durch dutzende Meta-Analysen."
+    },
+    {
+      "id": "raoult_2020_hydroxychloroquin",
+      "doi": "10.1016/j.ijantimicag.2020.105949",
+      "original_title": "Hydroxychloroquine and azithromycin as a treatment of COVID-19: results of an open-label non-randomized clinical trial",
+      "authors": ["Gautret P", "Lagier JC", "Parola P", "et al. (Raoult-Gruppe)"],
+      "journal": "International Journal of Antimicrobial Agents",
+      "publication_year": 2020,
+      "retraction_year": 2024,
+      "retraction_reason": "Methodische Mängel, Cherry-Picking der Daten, ethische Bedenken (Patient:innen wurden ohne adäquate Aufklärung in Behandlungs-Gruppe eingeschlossen).",
+      "topic_keywords": ["hydroxychloroquin", "covid behandlung", "raoult", "trump hydroxychloroquin", "chloroquin"],
+      "common_misinformation": "Die Behauptung, Hydroxychloroquin sei ein wirksames COVID-Medikament, basierte primär auf dieser Studie. Cochrane-Review 2021: keine Wirksamkeit, erhöhte Mortalität in einigen Gruppen.",
+      "source_url": "https://retractionwatch.com/2024/12/13/the-much-cited-raoult-paper-on-hydroxychloroquine-for-covid-19-has-been-retracted/",
+      "scientific_consensus": "Hydroxychloroquin zeigt KEINE Wirksamkeit gegen COVID-19 in randomisierten kontrollierten Studien. RECOVERY-Studie und WHO-SOLIDARITY-Trial haben das mehrfach bestätigt."
+    },
+    {
+      "id": "schoen_physik_2002",
+      "doi": null,
+      "original_title": "Schön-Skandal: 28 Papers in Science/Nature/Phys Rev über organische Halbleiter",
+      "authors": ["Hendrik Schön (Bell Labs)"],
+      "journal": "Science / Nature / Physical Review",
+      "publication_year": 2001,
+      "retraction_year": 2002,
+      "retraction_reason": "Massive Datenfälschung — über 16 Papers identifiziert mit fabrizierten Daten. Schön wurde von Bell Labs gefeuert; Doktortitel von Universität Konstanz aberkannt.",
+      "topic_keywords": ["schön", "schoen-skandal", "bell labs", "organische halbleiter", "wissenschaftsbetrug"],
+      "common_misinformation": "Wissenschafts-Skandal-Klassiker; manchmal als Beleg für 'Wissenschaft fälscht oft' missbraucht — tatsächlich war es ein Einzelfall, der durch Peer-Review-System aufgedeckt wurde.",
+      "source_url": "https://retractionwatch.com/the-retraction-watch-leaderboard/",
+      "scientific_consensus": "Wissenschafts-Selbstkorrektur funktioniert. Der Schön-Skandal wurde durch andere Wissenschaftler aufgedeckt, nicht durch Whistleblower oder Medien."
+    },
+    {
+      "id": "surgisphere_2020_lancet",
+      "doi": "10.1016/S0140-6736(20)31180-6",
+      "original_title": "Hydroxychloroquine or chloroquine with or without a macrolide for treatment of COVID-19: a multinational registry analysis",
+      "authors": ["Mehra MR", "Desai SS", "Ruschitzka F", "Patel AN"],
+      "journal": "The Lancet",
+      "publication_year": 2020,
+      "retraction_year": 2020,
+      "retraction_reason": "Daten-Quelle (Surgisphere) konnte nicht verifiziert werden; nach 13 Tagen zurückgezogen — schnellster Lancet-Retraction der modernen Zeit.",
+      "topic_keywords": ["surgisphere", "lancet hydroxychloroquin", "mehra", "desai surgisphere"],
+      "common_misinformation": "Der Surgisphere-Skandal wird in COVID-Verschwörungs-Narrativen oft als Beleg für 'Pharma-Lügen' missbraucht — tatsächlich zeigt er, dass Peer-Review + Daten-Transparenz funktionieren.",
+      "source_url": "https://retractionwatch.com/2020/06/04/lancet-retracts-massive-study-on-hydroxychloroquine-for-covid-19/",
+      "scientific_consensus": "Wissenschafts-Selbstkorrektur funktioniert."
+    },
+    {
+      "id": "bohannon_2015_chocolate",
+      "doi": null,
+      "original_title": "Chocolate accelerates weight loss",
+      "authors": ["John Bohannon (Pseudonym 'Johannes Bohannon')"],
+      "journal": "International Archives of Medicine",
+      "publication_year": 2015,
+      "retraction_year": 2015,
+      "retraction_reason": "Bewusstes Sting-Operation, um Predatory Journals zu entlarven — Bohannon war Journalist, nicht Wissenschaftler.",
+      "topic_keywords": ["schokolade abnehmen", "chocolate weight loss", "bohannon"],
+      "common_misinformation": "Die 'Schokolade-zum-Abnehmen'-Behauptung wird in Boulevard-Medien manchmal noch zitiert, obwohl die Studie als Sting-Operation enthüllt wurde.",
+      "source_url": "https://retractionwatch.com/2015/05/27/scientific-sting-operation-spawned-fake-news/",
+      "scientific_consensus": "Es gibt KEINE wissenschaftliche Evidenz für Schokolade als Gewichtsverlust-Mittel."
+    }
+  ],
+  "fetched_at_iso": "2026-04-29",
+  "note": "Kuratierte Sammlung der wichtigsten Retraction-Watch-Klassiker für Faktencheck-Use-Cases. Vollständige Datenbank: https://api.labs.crossref.org/data/retractionwatch (50.000+ Einträge). Refresh: jährlich oder bei prominenten neuen Retractions.",
+  "version": 1
+}

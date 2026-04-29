@@ -50,6 +50,7 @@ from services.abstimmungen import search_abstimmungen, claim_mentions_voting_cac
 from services.at_factbook import search_at_factbook, claim_mentions_factbook_cached
 from services.pks import search_pks, claim_mentions_pks_cached
 from services.dach_factbook import search_dach_factbook, claim_mentions_dach_factbook_cached
+from services.retraction_watch import search_retraction_watch, claim_mentions_retraction_watch_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -350,6 +351,12 @@ async def check_claim(request: Request):
         if claim_mentions_dach_factbook_cached(claim):
             tasks.append(cached("DACH Factbook", search_dach_factbook, analysis))
             queried_names.append("DACH Factbook")
+        # Retraction Watch: Zurückgezogene wissenschaftliche Studien
+        # (Wakefield 2010 MMR/Autismus, Surgisphere 2020 Hydroxychloroquin,
+        # Schön-Skandal etc.).
+        if claim_mentions_retraction_watch_cached(claim):
+            tasks.append(cached("Retraction Watch", search_retraction_watch, analysis))
+            queried_names.append("Retraction Watch")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
