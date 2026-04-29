@@ -129,6 +129,8 @@ _AUTHORITATIVE_INDICATORS = (
     "dach_pensions_vergleich",
     "dach_hpv_impfraten",
     "retraction_watch_classic",
+    "frontex_main",
+    "frontex_route",
 )
 
 

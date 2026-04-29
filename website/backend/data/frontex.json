@@ -1,0 +1,55 @@
+{
+  "data": {
+    "year_latest": 2025,
+    "irregular_crossings_eu_2025_total_approx": 178000,
+    "rueckgang_2025_yoy_pct": -26,
+    "irregular_crossings_eu_2024_total": 240000,
+    "rueckgang_2024_yoy_pct": -38,
+    "irregular_crossings_eu_2024_lowest_since": "2021",
+    "todesfaelle_mittelmeer_2025_min": 1878,
+    "routen_2025": [
+      {
+        "name": "Zentrales Mittelmeer (Italien/Malta)",
+        "trend_2025": "vergleichbar mit 2024 — aktivste Route",
+        "wichtigster_herkunftshafen": "Libyen, Tunesien"
+      },
+      {
+        "name": "Östliches Mittelmeer (Griechenland/Zypern)",
+        "trend_2025": "Gesamtrückgang, aber Kreta-Route hat sich VERDREIFACHT (östlicher Weg von Libyen)",
+        "wichtigster_herkunftshafen": "Türkei, Libyen"
+      },
+      {
+        "name": "Westafrikanische Route (Kanaren)",
+        "trend_2025": "-66 % (von Mauretanien, Marokko, Senegal)",
+        "wichtigster_herkunftshafen": "Mauretanien, Marokko, Senegal"
+      },
+      {
+        "name": "Westbalkan",
+        "trend_2025": "deutlich rückläufig (verstärkte Sicherheitsmaßnahmen)",
+        "wichtigster_herkunftshafen": "Türkei via Bulgarien/Serbien"
+      },
+      {
+        "name": "Westliches Mittelmeer (Spanien)",
+        "trend_2025": "Anstieg, hauptsächlich von Algerien",
+        "wichtigster_herkunftshafen": "Algerien"
+      },
+      {
+        "name": "Ärmelkanal (Richtung UK)",
+        "trend_2025": "auf Niveau von 2024",
+        "wichtigster_herkunftshafen": "Frankreich (Transit)"
+      }
+    ],
+    "top_3_herkunftslaender_2025": ["Bangladesch", "Ägypten", "Afghanistan"],
+    "wichtige_caveats": [
+      "Frontex-Zahlen sind DETEKTIONEN, nicht Personen — eine Person kann mehrfach gezählt werden, wenn sie an mehreren Punkten erfasst wird.",
+      "Die EU-Asyl-Antragszahlen (BAMF, BMI etc.) sind in der Regel niedriger als die Frontex-Detektionen — viele detektierte Personen stellen keinen Asylantrag oder reisen weiter.",
+      "Routen-Verlagerung ist laufendes Pattern — wenn eine Route gesperrt wird, verlagert sich der Druck auf eine andere."
+    ]
+  },
+  "source_label": "Frontex — European Border and Coast Guard Agency, Pressemeldungen 2025/2026",
+  "source_url": "https://www.frontex.europa.eu/what-we-do/monitoring-and-risk-analysis/migratory-map/",
+  "secondary_url": "https://data.europa.eu/data/datasets/detections-of-illegal-border-crossings",
+  "fetched_at_iso": "2026-04-29",
+  "version": 1,
+  "note": "Kuratierte Frontex-Daten 2024-2025 für Faktencheck-Use-Cases. Zahlen aus Pressemeldungen Januar 2026. Refresh: vierteljährlich (Frontex publiziert Quartalsbilanz)."
+}

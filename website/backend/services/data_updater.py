@@ -53,6 +53,7 @@ from services.at_factbook import fetch_at_factbook
 from services.pks import fetch_pks
 from services.dach_factbook import fetch_dach_factbook
 from services.retraction_watch import fetch_retraction_watch
+from services.frontex import fetch_frontex
 
 logger = logging.getLogger("evidora")
 
@@ -95,6 +96,7 @@ async def prefetch_all():
             fetch_pks(client),
             fetch_dach_factbook(client),
             fetch_retraction_watch(client),
+            fetch_frontex(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "OWID Measles", "OWID Vaccination (WUENIC)",
@@ -109,7 +111,7 @@ async def prefetch_all():
                  "GeoSphere Austria", "BASG", "BMI Volksbegehren",
                  "BMI Wahlen", "Parlament Abstimmungen",
                  "AT Factbook", "BKA PKS", "DACH Factbook",
-                 "Retraction Watch"]
+                 "Retraction Watch", "Frontex"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")
