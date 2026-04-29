@@ -75,7 +75,7 @@ async def search_medientransparenz(analysis: dict) -> dict:
         "results": [],
     }
 
-    claim = (analysis or {}).get("claim", "") or ""
+    claim = (analysis or {}).get("original_claim") or (analysis or {}).get("claim", "") or ""
     matches = _claim_matches_facts(claim.lower())
     if not matches:
         return empty

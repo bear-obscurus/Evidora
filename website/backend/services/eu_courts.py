@@ -92,7 +92,7 @@ async def search_eu_courts(analysis: dict) -> dict:
         "results": [],
     }
 
-    claim = (analysis or {}).get("claim", "") or ""
+    claim = (analysis or {}).get("original_claim") or (analysis or {}).get("claim", "") or ""
     cl = claim.lower()
     matches = _claim_matches_rulings(cl)
     if not matches:

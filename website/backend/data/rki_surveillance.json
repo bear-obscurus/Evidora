@@ -33,13 +33,15 @@
       "trigger_keywords": [
         "masern-welle", "masern welle", "masernwelle",
         "masern deutschland", "masern österreich",
-        "masern asyl", "masern migrant",
-        "rki masern", "rki masern-zahlen"
+        "masern asyl", "masern migrant", "masern migration",
+        "rki masern", "rki masern-zahlen",
+        "masern-epidemie", "masern epidemie"
       ],
       "trigger_composite": [
         ["masern", "measles"],
         ["welle", "anstieg", "ausbruch", "explod", "bringt", "verbreit",
-         "import", "asylsuchend", "migrant", "asyl"]
+         "import", "asylsuchend", "migrant", "migration", "migrat",
+         "asyl", "epidemie", "gestiegen", "stieg ", "ansteck"]
       ],
       "source_label": "Robert Koch-Institut SurvStat 2.0",
       "source_url": "https://survstat.rki.de/Content/Query/Create.aspx",
@@ -77,12 +79,15 @@
         "tuberkulose-welle", "tb-welle", "tuberkulose welle",
         "tb welle deutschland",
         "tuberkulose migration",
-        "rki tuberkulose", "rki tb"
+        "rki tuberkulose", "rki tb",
+        "tuberkulose-epidemie", "tuberkulose epidemie",
+        "tb-epidemie", "tb epidemie"
       ],
       "trigger_composite": [
         ["tuberkulose", "tb-fall", "tb fall", "tb-fälle"],
         ["welle", "anstieg", "ausbruch", "explod", "bringt",
-         "asylsuchend", "migrant", "asyl"]
+         "asylsuchend", "migrant", "migration", "migrat",
+         "asyl", "epidemie", "gestiegen", "stieg ", "stark"]
       ],
       "source_label": "Robert Koch-Institut — Bericht zur Epidemiologie der Tuberkulose 2024",
       "source_url": "https://www.rki.de/DE/Content/InfAZ/T/Tuberkulose/Tuberkulose_node.html"
