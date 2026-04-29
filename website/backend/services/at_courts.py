@@ -66,7 +66,7 @@ def _claim_matches_rulings(claim_lc: str, full_claim: str | None = None) -> list
     if not full_claim:
         return []
     items = [_ruling_with_descriptor(r) for r in rulings]
-    return _backup_best_matches(full_claim, items, threshold=0.62, top_n=3)
+    return _backup_best_matches(full_claim, items, threshold=0.45, top_n=3)
 
 
 def claim_mentions_at_courts_cached(claim: str) -> bool:

@@ -58,7 +58,7 @@ def _claim_matches_facts(claim_lc: str, full_claim: str | None = None) -> list[d
     if not full_claim:
         return []
     items = [_fact_with_descriptor(f) for f in facts]
-    return _backup_best_matches(full_claim, items, threshold=0.62, top_n=3)
+    return _backup_best_matches(full_claim, items, threshold=0.45, top_n=3)
 
 
 def claim_mentions_oecd_health_cached(claim: str) -> bool:
