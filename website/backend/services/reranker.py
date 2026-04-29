@@ -123,6 +123,7 @@ _AUTHORITATIVE_INDICATORS = (
     "dach_ch_migration_ahv",
     "dach_venedig_counter",
     "dach_klimaskepsis_counter",
+    "skeptical_science_counter",
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

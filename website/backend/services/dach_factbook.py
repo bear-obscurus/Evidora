@@ -190,6 +190,16 @@ _KLIMASKEPSIS_TERMS = (
     "seit 1998 nicht mehr",
     "hiatus klima", "klima-hiatus",
     "erwärmung pausiert", "global warming hiatus",
+    # Skeptical Science Top-Argumente
+    "erwärmung kommt von der sonne", "sonne erwärmung",
+    "klima hat sich schon immer geändert",
+    "co2 ist nur ein spurengas", "spurengas co2",
+    "kein wissenschaftlicher konsens klima",
+    "hockeystick gefälscht", "hockey-stick gefälscht",
+    "klimamodelle sind falsch", "klimamodelle ungenau",
+    "antarktis eis wächst", "antarktis eis nimmt zu",
+    "mittelalterliche warmzeit", "warmzeit wärmer",
+    "co2 folgt temperatur", "wasserdampf treibhausgas",
 )
 
 
@@ -201,6 +211,7 @@ def _claim_mentions_klimaskepsis_basic(claim_lc: str) -> bool:
     has_klima = any(t in claim_lc for t in (
         "klimawandel", "klima-wandel", "global warming",
         "globale temperatur", "globale erwärmung",
+        "kein klimawandel",
     ))
     has_skeptik = any(t in claim_lc for t in (
         "nicht real", "schwindel", "erfunden", "panikmache",
@@ -209,7 +220,23 @@ def _claim_mentions_klimaskepsis_basic(claim_lc: str) -> bool:
         "pausiert", "pause", "steigt nicht mehr",
         "seit 1998", "hiatus",
     ))
-    return has_klima and has_skeptik
+    if has_klima and has_skeptik:
+        return True
+    # Skeptical-Science-Argumente: Hockeystick + Antarktis-Eis als
+    # eigenständige Klima-Skeptiker-Marker (auch ohne 'klimawandel'-Wort)
+    if "hockeystick" in claim_lc or "hockey-stick" in claim_lc:
+        return True
+    if "antarktis" in claim_lc and "eis" in claim_lc and (
+        "wächst" in claim_lc or "nimmt zu" in claim_lc or "zunimmt" in claim_lc
+    ):
+        return True
+    if "mittelalterliche warmzeit" in claim_lc:
+        return True
+    if "co2 folgt temperatur" in claim_lc or (
+        "co2" in claim_lc and "folgt" in claim_lc and "temperatur" in claim_lc
+    ):
+        return True
+    return False
 
 
 _DACH_ASYL_VERGLEICH_TERMS = (
@@ -730,6 +757,65 @@ def _build_klimaskepsis_counter_results(fact: dict, claim_lc: str) -> list[dict]
     label = fact.get("source_label") or "WMO + Copernicus"
 
     results: list[dict] = []
+
+    # Skeptical Science Top-Argumente: Trigger-Mapping
+    # Single-keyword-Trigger (Substring) ODER Composite-Trigger
+    # (mehrere Keywords müssen ALLE in claim_lc enthalten sein).
+    skeptical_args = data.get("skeptical_science_top_arguments") or []
+    arg_triggers = [
+        # (matcher_func, arg_id)
+        (lambda c: "sonne" in c and ("erwärmung" in c or "klimawandel" in c),
+         "sun_caused_warming"),
+        (lambda c: ("klima" in c or "klimawandel" in c) and ("schon immer" in c or "früher genauso" in c),
+         "climate_always_changed"),
+        (lambda c: "spurengas" in c or "0,04 prozent" in c or "0.04 prozent" in c,
+         "co2_only_trace_gas"),
+        (lambda c: "konsens" in c and ("klima" in c or "wissenschaft" in c),
+         "no_consensus"),
+        (lambda c: "hockeystick" in c or "hockey-stick" in c or "hockey stick" in c,
+         "hockey_stick_fake"),
+        (lambda c: ("klimamodell" in c) and ("falsch" in c or "ungenau" in c
+                                              or "übertreib" in c),
+         "models_wrong"),
+        (lambda c: "antarktis" in c and ("eis" in c) and ("wächst" in c
+                                                          or "nimmt zu" in c
+                                                          or "zunimmt" in c),
+         "antarctic_ice_growing"),
+        (lambda c: "mittelalterliche warmzeit" in c or "warmzeit" in c and "wärmer" in c,
+         "medieval_warm_period"),
+        (lambda c: "co2 folgt" in c or ("co2" in c and "folgt temperatur" in c),
+         "co2_lags_temperature"),
+        (lambda c: "wasserdampf" in c and ("wichtiger" in c or "treibhausgas" in c),
+         "water_vapor_more_important"),
+    ]
+    matched_args = []
+    matched_ids = set()
+    for matcher, arg_id in arg_triggers:
+        try:
+            if matcher(claim_lc) and arg_id not in matched_ids:
+                for arg in skeptical_args:
+                    if arg.get("id") == arg_id:
+                        matched_args.append(arg)
+                        matched_ids.add(arg_id)
+                        break
+        except Exception:
+            continue
+    for arg in matched_args:
+        results.append({
+            "indicator_name": f"Skeptical-Science-Counter: {arg.get('id', '')}",
+            "indicator": "skeptical_science_counter",
+            "country": "WLD", "country_name": "Welt (Klimawissenschaft)",
+            "year": "2024",
+            "display_value": (
+                f"STRUKTURELL FALSCH (Klima-Skeptiker-Argument): "
+                f"'{arg.get('behauptung', '')}'. "
+                f"Counter: {arg.get('counter', '')} "
+                f"VERDICT-EMPFEHLUNG: 'false' mit Confidence 0.9-0.95."
+            ),
+            "description": f"Quelle: {arg.get('quelle', '')}",
+            "url": "https://skepticalscience.com/argument.php",
+            "source": "Skeptical Science + IPCC AR6",
+        })
 
     # Hiatus-Special wenn Claim '1998' / 'pausiert' / 'hiatus' nennt
     hiatus = data.get("hiatus_mythos_1998") or {}

@@ -218,7 +218,69 @@
           "trend_seit_1998_celsius_pro_dekade": 0.20,
           "rekordjahre_nach_1998": "12 der 13 wärmsten Jahre seit Messbeginn liegen nach 1998 (NASA GISS).",
           "ipcc_position_ar6": "IPCC AR6 (2023): 'Es gibt keinen Beleg für eine globale Erwärmungspause.'"
-        }
+        },
+        "skeptical_science_top_arguments": [
+          {
+            "id": "sun_caused_warming",
+            "behauptung": "Die Erwärmung kommt von der Sonne, nicht von CO2.",
+            "counter": "Sonnenaktivität (Solarflux) sinkt seit ca. 1980, während globale Temperatur steigt. Wäre die Sonne Hauptursache, müsste die Stratosphäre sich erwärmen — sie kühlt jedoch ab (Treibhauseffekt-Signatur).",
+            "quelle": "Lockwood & Fröhlich 2007 (Royal Society); IPCC AR6 WG1 Kap. 3"
+          },
+          {
+            "id": "climate_always_changed",
+            "behauptung": "Das Klima hat sich schon immer geändert — Klimawandel ist normal.",
+            "counter": "Ja, aber die GESCHWINDIGKEIT der aktuellen Erwärmung (~0,2 °C/Dekade) ist 10-20 mal schneller als in den schnellsten natürlichen Klimaschwankungen der letzten 65 Mio. Jahre (PETM-Ereignis ausgenommen).",
+            "quelle": "PAGES 2k Consortium 2013, 2019; Marcott et al. 2013"
+          },
+          {
+            "id": "co2_only_trace_gas",
+            "behauptung": "CO2 ist nur ein Spurengas (0,04 %), kann das Klima nicht ändern.",
+            "counter": "Konzentration sagt nichts über Wirkung. Cyanwasserstoff ist auch ein Spurengas in der Atemluft und tödlich. CO2 absorbiert spezifische Infrarot-Wellenlängen — Treibhauseffekt physikalisch seit 1859 (Tyndall) nachgewiesen.",
+            "quelle": "Tyndall 1859; IPCC AR6 WG1; Hansen et al. 2008"
+          },
+          {
+            "id": "no_consensus",
+            "behauptung": "Es gibt keinen wissenschaftlichen Konsens zum Klimawandel.",
+            "counter": "97-99 % der publizierenden Klimawissenschaftler bestätigen menschengemachten Klimawandel. Quelle: Cook et al. 2013 (n=11.944 Papers), Lynas et al. 2021 (n=88.125 Papers, 99,9 % Konsens unter Klimaforschern).",
+            "quelle": "Cook et al. 2013; Lynas et al. 2021"
+          },
+          {
+            "id": "hockey_stick_fake",
+            "behauptung": "Die Hockeystick-Kurve von Mann 1998 ist gefälscht.",
+            "counter": "Mehrfach unabhängig repliziert: PAGES 2k Consortium 2013 + 2019 (n>700 Proxies weltweit), IPCC AR6 (2023). Hockeystick-Form ist robust — auch ohne die ursprünglichen Mann-Daten erscheint sie in jeder Rekonstruktion.",
+            "quelle": "PAGES 2k Consortium 2013, 2019; IPCC AR6 Kap. 2"
+          },
+          {
+            "id": "models_wrong",
+            "behauptung": "Klimamodelle sind ungenau und übertreiben die Erwärmung.",
+            "counter": "Hansen 1988-Modell hat die Erwärmung 1988-2017 mit hoher Genauigkeit vorhergesagt. Hausfather et al. 2020: 14 von 17 Klimamodellen aus den 1970er-2000ern haben den realen Temperatur-Trend korrekt vorhergesagt.",
+            "quelle": "Hausfather et al. 2020 (Geophysical Research Letters)"
+          },
+          {
+            "id": "antarctic_ice_growing",
+            "behauptung": "Das Eis in der Antarktis nimmt zu, also gibt es keinen Klimawandel.",
+            "counter": "Verwechslung von See-Eis (saisonale Variabilität) und Land-Eis (Massenbilanz). Antarktisches Land-Eis hat 2002-2020 ca. 2.700 Gigatonnen verloren (NASA GRACE). See-Eis-Maximum war 2014, danach ABSTURZ auf Rekord-Tiefststände 2023-2024.",
+            "quelle": "NASA GRACE-FO Mission; Slater et al. 2021 (Cryosphere)"
+          },
+          {
+            "id": "medieval_warm_period",
+            "behauptung": "Die Mittelalterliche Warmzeit war wärmer als heute.",
+            "counter": "Mittelalterliche Warmperiode (~950-1250) war LOKAL warm (Nordatlantik), aber nicht GLOBAL synchronisiert. Heutige Erwärmung ist global einheitlich. PAGES 2k 2019: aktuelle Dekade ist wärmer als jeder vergleichbare 30-Jahres-Zeitraum der letzten 2.000 Jahre.",
+            "quelle": "PAGES 2k Consortium 2019 (Nature)"
+          },
+          {
+            "id": "co2_lags_temperature",
+            "behauptung": "CO2 folgt Temperatur, nicht umgekehrt — Eisbohrkerne zeigen das.",
+            "counter": "In Eiszeiten-Zyklen war CO2 zunächst Verstärkungs-Feedback (Milankovitch-Zyklen treiben, CO2 verstärkt). HEUTE ist CO2 das Primär-Forcing, weil Mensch CO2 freisetzt — Atmosphären-CO2 ist 50 % höher als in 800.000 Jahren.",
+            "quelle": "Shakun et al. 2012 (Nature); Bereiter et al. 2015"
+          },
+          {
+            "id": "water_vapor_more_important",
+            "behauptung": "Wasserdampf ist das wichtigste Treibhausgas, nicht CO2.",
+            "counter": "Wasserdampf ist FEEDBACK (verstärkt Erwärmung), nicht FORCING (treibt Erwärmung). Atmosphärische Wasserdampf-Konzentration hängt von Temperatur ab (Clausius-Clapeyron). CO2-Erwärmung → mehr Wasserdampf → mehr Erwärmung. CO2 ist der Schalter.",
+            "quelle": "Lacis et al. 2010 (Science); IPCC AR6 WG1"
+          }
+        ]
       },
       "context_notes": [
         "STRUKTURELL FALSCH (Klima-Skeptiker-Klassiker): 'Klimawandel ist nicht real, weil es kalten Winter gab.' Das verwechselt Wetter mit Klima — Klima ist die Statistik des Wetters über mindestens 30 Jahre (WMO-Definition).",
