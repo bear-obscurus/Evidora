@@ -582,6 +582,29 @@ def _claim_mentions_health_misinformation(claim_lc: str) -> bool:
 
 
 # ---------------------------------------------------------------------------
+# Topic: Vegane Ernährung — DGE/WHO-Counter zu Mangel-Mythos
+# ---------------------------------------------------------------------------
+_VEGAN_TERMS = (
+    "vegan", "vegane ernährung", "veganer", "veganismus",
+    "vegan eisen", "vegan b12", "vegan vitamin b",
+    "pflanzliche ernährung mangel",
+    "vegan mangel", "vegan ungesund",
+)
+
+
+def _claim_mentions_vegan(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _VEGAN_TERMS)
+    if not has_term:
+        return False
+    has_mangel = any(t in claim_lc for t in (
+        "mangel", "fehlen", "unterversorgung", "ungesund",
+        "krank", "anämie", "anaemie", "mangelerscheinung",
+        "eisen", "b12", "vitamin",
+    ))
+    return has_mangel
+
+
+# ---------------------------------------------------------------------------
 # Topic 13: AMS-Mangelberufsliste
 # ---------------------------------------------------------------------------
 _LABOR_SHORTAGE_TERMS = (
@@ -694,6 +717,8 @@ def _claim_matches_any_topic(claim: str) -> list[str]:
         matched.append("eu_pakt_at")
     if _claim_mentions_bmf_steuer(cl):
         matched.append("bmf_tax_plans_at")
+    if _claim_mentions_vegan(cl):
+        matched.append("vegan_ernaehrung_counter")
     return matched
 
 
@@ -2008,6 +2033,36 @@ def _build_bmf_steuer_results(fact: dict, claim_lc: str) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
+# Vegane Ernährung — DGE/WHO-Counter
+# ---------------------------------------------------------------------------
+def _build_vegan_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "DGE + WHO + Cochrane"
+
+    headline = (
+        f"STRUKTURELL FALSCH: 'Vegane Ernährung führt zwingend zu Eisen-/B12-"
+        f"Mangel.' DGE-Position 04/2024: Vegane Ernährung kann bei guter "
+        f"Planung + B12-Supplementierung ALLE Nährstoffe decken — sogar mit "
+        f"Vorteilen bei Herz-Kreislauf-Risiko und Krebsraten. "
+        f"WICHTIG: B12 MUSS supplementiert werden (kommt in Pflanzen nicht "
+        f"vor). Eisen ist KEIN zwingendes Problem — EPIC-Oxford (n>65k): "
+        f"Veganer haben kein erhöhtes Anämie-Risiko bei adäquater Planung. "
+        f"VERDICT-EMPFEHLUNG: 'mostly_false' mit Confidence 0.85-0.9."
+    )
+
+    return [{
+        "indicator_name": "Vegane Ernährung — DGE/WHO-Counter zu Mangel-Mythos",
+        "indicator": "factbook_vegan_counter",
+        "country": "DEU/AUT/WLD", "country_name": "DACH/Welt",
+        "year": "2024",
+        "display_value": headline,
+        "description": " ".join(fact.get("context_notes") or []),
+        "url": src, "source": label,
+    }]
+
+
+# ---------------------------------------------------------------------------
 # Public search
 # ---------------------------------------------------------------------------
 async def search_at_factbook(analysis: dict) -> dict:
@@ -2073,6 +2128,8 @@ async def search_at_factbook(analysis: dict) -> dict:
                 results.extend(_build_eu_pakt_results(fact, cl))
             elif topic == "bmf_tax_plans_at":
                 results.extend(_build_bmf_steuer_results(fact, cl))
+            elif topic == "vegan_ernaehrung_counter":
+                results.extend(_build_vegan_results(fact, cl))
 
     return {
         "source": "AT Factbook",

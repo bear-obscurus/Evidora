@@ -91,6 +91,7 @@ _AUTHORITATIVE_INDICATORS = (
     "factbook_gasnetzgebuehren",
     "factbook_naturalized_equal",
     "factbook_health_mis",
+    "factbook_vegan_counter",
     "factbook_labor_shortage_at",
     "factbook_heat_pumps_at",
     "factbook_food_inflation",

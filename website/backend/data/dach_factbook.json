@@ -210,13 +210,23 @@
         "globale_temperatur_anomalie_2024_celsius": 1.55,
         "globale_temperatur_anomalie_2024_quelle": "Copernicus / NASA GISS / Berkeley Earth (alle übereinstimmend)",
         "letzte_10_waermste_jahre": "Alle 10 wärmsten Jahre seit Messbeginn 1880 liegen NACH 2014 (Berkeley Earth).",
-        "argumentationsfehler": "Wetter (kurzfristige Variabilität, Tage/Wochen) wird mit Klima (Statistik über 30+ Jahre) verwechselt."
+        "argumentationsfehler": "Wetter (kurzfristige Variabilität, Tage/Wochen) wird mit Klima (Statistik über 30+ Jahre) verwechselt.",
+        "hiatus_mythos_1998": {
+          "behauptung": "Globale Temperatur steigt seit 1998 nicht mehr — der Klimawandel pausiert.",
+          "kern_des_arguments": "Cherry-Picking: 1998 war ein extremes El-Niño-Jahr (außergewöhnlich warm), wodurch der Trend ab 1998 künstlich abgeflacht erscheint.",
+          "befund_nach_2010": "Der vermeintliche 'Hiatus' wurde durch verbesserte Ozean-Temperaturdaten widerlegt (Karl et al. 2015, Hausfather et al. 2017). Globaler Trend +0,18 °C/Dekade seit 1979 — KEINE Pause.",
+          "trend_seit_1998_celsius_pro_dekade": 0.20,
+          "rekordjahre_nach_1998": "12 der 13 wärmsten Jahre seit Messbeginn liegen nach 1998 (NASA GISS).",
+          "ipcc_position_ar6": "IPCC AR6 (2023): 'Es gibt keinen Beleg für eine globale Erwärmungspause.'"
+        }
       },
       "context_notes": [
         "STRUKTURELL FALSCH (Klima-Skeptiker-Klassiker): 'Klimawandel ist nicht real, weil es kalten Winter gab.' Das verwechselt Wetter mit Klima — Klima ist die Statistik des Wetters über mindestens 30 Jahre (WMO-Definition).",
         "Selbst kalte Wintermonate liegen über dem Mittel der Klimanormalperiode 1961-1990 — der Trend ist trotz Variabilität klar warming.",
         "2024 war global +1,55 °C über dem vorindustriellen Mittel (Copernicus). Die letzten 10 wärmsten Jahre seit 1880 liegen ALLE nach 2014.",
+        "STRUKTURELL FALSCH (Hiatus-Mythos): 'Globale Temperatur steigt seit 1998 nicht mehr.' Cherry-Picking — 1998 war extremes El-Niño-Jahr. Trend seit 1998 = +0,20 °C/Dekade laut NASA GISS, IPCC AR6 widerlegt 'Hiatus'-These dezidiert. 12 der 13 wärmsten Jahre liegen nach 1998.",
         "Eine Behauptung wie 'Klimawandel nicht real wegen kaltem Winter' ist FALSCH — verdict 'false' mit Confidence 0.95.",
+        "Eine Behauptung wie 'Globale Temperatur steigt seit 1998 nicht mehr' ist FALSCH — verdict 'false' mit Confidence 0.95.",
         "Andere Klima-Skeptiker-Klassiker (z.B. 'CO2 ist Pflanzennahrung, also gut') folgen demselben Logikfehler — sie ignorieren die Skala und Geschwindigkeit der aktuellen Veränderung."
       ],
       "claim_phrasings_handled": [
@@ -225,7 +235,13 @@
         "Frost Klimawandel",
         "Klimawandel Schwindel",
         "Wetter wie früher",
-        "kein Klimawandel weil"
+        "kein Klimawandel weil",
+        "Klimawandel pausiert",
+        "Klimawandel-Pause",
+        "Temperatur steigt nicht mehr",
+        "seit 1998 nicht mehr",
+        "Hiatus Klima",
+        "globale Erwärmung pausiert"
       ],
       "source_label": "WMO Klimadefinition; Copernicus / NASA GISS / Berkeley Earth Temperaturdaten",
       "source_url": "https://wmo.int/topics/climate",

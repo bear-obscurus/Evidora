@@ -185,6 +185,11 @@ _KLIMASKEPSIS_TERMS = (
     "kein klimawandel weil",
     "kalter winter klima", "frost klima",
     "klimawandel war früher genauso",
+    "klimawandel pausiert", "klimawandel-pause",
+    "globale temperatur steigt nicht",
+    "seit 1998 nicht mehr",
+    "hiatus klima", "klima-hiatus",
+    "erwärmung pausiert", "global warming hiatus",
 )
 
 
@@ -193,11 +198,16 @@ def _claim_mentions_klimaskepsis_basic(claim_lc: str) -> bool:
     if has_term:
         return True
     # Composite: 'klimawandel' + ('nicht' oder 'frost' oder 'kalter winter' oder 'erfunden')
-    has_klima = any(t in claim_lc for t in ("klimawandel", "klima-wandel", "global warming"))
+    has_klima = any(t in claim_lc for t in (
+        "klimawandel", "klima-wandel", "global warming",
+        "globale temperatur", "globale erwärmung",
+    ))
     has_skeptik = any(t in claim_lc for t in (
         "nicht real", "schwindel", "erfunden", "panikmache",
         "frost", "kalter winter", "kalter monat",
         "war früher", "schon immer",
+        "pausiert", "pause", "steigt nicht mehr",
+        "seit 1998", "hiatus",
     ))
     return has_klima and has_skeptik
 
@@ -689,6 +699,37 @@ def _build_klimaskepsis_counter_results(fact: dict, claim_lc: str) -> list[dict]
     src = fact.get("source_url") or ""
     label = fact.get("source_label") or "WMO + Copernicus"
 
+    results: list[dict] = []
+
+    # Hiatus-Special wenn Claim '1998' / 'pausiert' / 'hiatus' nennt
+    hiatus = data.get("hiatus_mythos_1998") or {}
+    if any(s in claim_lc for s in (
+        "1998", "pausiert", "pause", "hiatus",
+        "steigt nicht mehr", "stagniert",
+    )):
+        results.append({
+            "indicator_name": "Klima-Hiatus 1998 — direkter Counter",
+            "indicator": "dach_klimaskepsis_counter",
+            "country": "WLD", "country_name": "Welt",
+            "year": "1998-2024",
+            "display_value": (
+                f"STRUKTURELL FALSCH (Klima-Hiatus-Mythos): "
+                f"'{hiatus.get('behauptung', 'Globale Temperatur steigt seit 1998 nicht mehr')}'. "
+                f"Cherry-Picking — 1998 war ein extremes El-Niño-Jahr (Anomalie). "
+                f"Trend seit 1998 = +{hiatus.get('trend_seit_1998_celsius_pro_dekade')} °C/Dekade "
+                f"(NASA GISS). 12 der 13 wärmsten Jahre seit Messbeginn liegen NACH 1998. "
+                f"IPCC AR6 (2023): 'Es gibt keinen Beleg für eine globale Erwärmungspause.' "
+                f"VERDICT-EMPFEHLUNG: 'false' mit Confidence 0.9–0.95."
+            ),
+            "description": (
+                f"{hiatus.get('befund_nach_2010', '')} "
+                f"Quellen: Karl et al. 2015 (Science), Hausfather et al. 2017 "
+                f"(Science Advances), IPCC AR6 (2023)."
+            ),
+            "url": src, "source": label,
+        })
+
+    # Standard Wetter-vs-Klima-Eintrag
     headline = (
         f"STRUKTURELL FALSCH (Klima-Skeptiker-Klassiker): "
         f"'Klimawandel nicht real wegen kaltem Winter / Frost'. "
@@ -698,7 +739,7 @@ def _build_klimaskepsis_counter_results(fact: dict, claim_lc: str) -> list[dict]
         f"Alle 10 wärmsten Jahre seit 1880 liegen NACH 2014."
     )
 
-    return [{
+    results.append({
         "indicator_name": "Klima-Skeptizismus — Wetter-vs-Klima-Counter",
         "indicator": "dach_klimaskepsis_counter",
         "country": "WLD", "country_name": "Welt",
@@ -706,7 +747,9 @@ def _build_klimaskepsis_counter_results(fact: dict, claim_lc: str) -> list[dict]
         "display_value": headline,
         "description": " ".join(fact.get("context_notes") or []),
         "url": src, "source": label,
-    }]
+    })
+
+    return results
 
 
 def _build_asylbewerber_gesundheit_counter_results(fact: dict, claim_lc: str) -> list[dict]:

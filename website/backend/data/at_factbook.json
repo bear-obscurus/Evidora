@@ -617,6 +617,38 @@
       "fetched_at_iso": "2026-04-27"
     },
     {
+      "id": "vegane_ernaehrung_b12_eisen",
+      "topic": "vegan_ernaehrung_counter",
+      "scope": "Vegane Ernährung — Eisen- und Vitamin-B12-Mangel-Mythos",
+      "year": "WHO/DGE 2024",
+      "headline": "Vegane Ernährung und Mangelerscheinungen — DGE/WHO-Faktenlage",
+      "data": {
+        "behauptung_typ": "Vegane Ernährung führt ZWINGEND zu Eisen- und B12-Mangel.",
+        "dge_position_2024": "Vegane Ernährung kann bei guter Planung und Supplementierung von Vitamin B12 (zwingend!) ALLE Nährstoffanforderungen decken — ist sogar mit Vorteilen bei Herz-Kreislauf-Risiko und Krebsraten assoziiert (DGE-Position 04/2024).",
+        "b12_supplementierung_pflicht": "Vitamin B12 MUSS bei vegan supplementiert werden (kommt in Pflanzen nicht vor) — sonst Mangelrisiko nach 2-5 Jahren.",
+        "eisen_supplementierung_optional": "Pflanzliches Eisen (Non-Häm-Eisen) wird schlechter aufgenommen, aber durch Vitamin C und gezielte Lebensmittel-Auswahl (Hülsenfrüchte, Vollkorn, Tofu, dunkles Gemüse) kompensierbar — keine zwingende Mangel-Folge.",
+        "studien_basis": "Cochrane Reviews + EPIC-Oxford-Studie (n>65.000): Veganer haben kein erhöhtes Anämie-Risiko bei adäquater Planung.",
+        "who_position_2024": "WHO empfiehlt vegane/vegetarische Ernährung als gesunde Option — mit Hinweis auf B12-Supplementierung."
+      },
+      "context_notes": [
+        "STRUKTURELL FALSCH: Eine Behauptung 'Vegane Ernährung führt ZWINGEND zu Eisen- und B12-Mangel' ist zu absolut und widerspricht der DGE/WHO-Position.",
+        "Korrekt ist: Vitamin B12 MUSS supplementiert werden (kommt in pflanzlicher Kost nicht vor) — bei korrekter Supplementierung kein Mangelrisiko.",
+        "Eisen ist KEIN zwingendes Problem — pflanzliches Eisen wird schlechter aufgenommen, ist aber durch gezielte Auswahl + Vitamin C ausreichend zugänglich. EPIC-Oxford-Studie (n>65.000): Veganer haben statistisch KEIN erhöhtes Anämie-Risiko.",
+        "Eine Behauptung 'Vegane Ernährung führt zwingend zu Mangel' ist mostly_false — verdict 'mostly_false' mit Confidence 0.85-0.9. Die korrekte Aussage wäre: 'B12-Supplementierung ist bei veganer Ernährung notwendig'."
+      ],
+      "claim_phrasings_handled": [
+        "Vegan Eisen-Mangel",
+        "Vegan B12-Mangel",
+        "Vegane Ernährung Mangel",
+        "Veganismus ungesund",
+        "Vegan Vitamin-B12"
+      ],
+      "source_label": "DGE-Position 'Vegane Ernährung' (04/2024); WHO Healthy Diet; EPIC-Oxford-Studie",
+      "source_url": "https://www.dge.de/wissenschaft/positionen/vegane-ernaehrung/",
+      "secondary_url": "https://www.who.int/news-room/fact-sheets/detail/healthy-diet",
+      "fetched_at_iso": "2026-04-29"
+    },
+    {
       "id": "ams_mangelberufe_2025",
       "topic": "labor_shortage_jobs_at",
       "scope": "AMS-Mangelberufsliste Österreich 2025",

@@ -686,7 +686,7 @@ async def synthesize_results(
             {"role": "system", "content": SYSTEM_PROMPTS[lang]},
             {"role": "user", "content": context},
         ]
-        content = await chat_completion(messages=base_messages, timeout=180.0)
+        content = await chat_completion(messages=base_messages, timeout=300.0)
         logger.info(f"Synthesizer responded ({len(content)} chars)")
 
         result = _extract_json(content)
@@ -704,7 +704,7 @@ async def synthesize_results(
                 {"role": "user", "content": RETRY_HINTS[lang]},
             ]
             retry_content = await chat_completion(
-                messages=retry_messages, timeout=180.0
+                messages=retry_messages, timeout=300.0
             )
             logger.info(
                 f"Synthesizer retry responded ({len(retry_content)} chars)"
