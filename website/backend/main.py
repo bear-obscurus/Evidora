@@ -52,6 +52,7 @@ from services.pks import search_pks, claim_mentions_pks_cached
 from services.dach_factbook import search_dach_factbook, claim_mentions_dach_factbook_cached
 from services.retraction_watch import search_retraction_watch, claim_mentions_retraction_watch_cached
 from services.frontex import search_frontex, claim_mentions_frontex_cached
+from services.at_faktencheck_rss import search_at_faktencheck_rss, claim_mentions_at_faktencheck_rss_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -363,6 +364,11 @@ async def check_claim(request: Request):
         if claim_mentions_frontex_cached(claim):
             tasks.append(cached("Frontex", search_frontex, analysis))
             queried_names.append("Frontex")
+        # AT-Faktencheck-RSS-Aggregator (APA + Kontrast). Reranker
+        # filtert thematisch (FACTCHECK_THRESHOLD).
+        if claim_mentions_at_faktencheck_rss_cached(claim):
+            tasks.append(cached("AT-Faktencheck-RSS", search_at_faktencheck_rss, analysis))
+            queried_names.append("AT-Faktencheck-RSS")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

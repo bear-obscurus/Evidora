@@ -146,7 +146,8 @@ RELEVANCE_THRESHOLD = 0.25
 # typically score ≥ 0.65 on this multilingual model, so 0.55 cleanly
 # separates real hits from shared-vocabulary noise ("Italien", "EU").
 FACTCHECK_THRESHOLD = 0.55
-_FACTCHECK_SOURCES = {"GADMO", "DataCommons", "ClaimReview", "Faktenchecker", "Fact Check"}
+_FACTCHECK_SOURCES = {"GADMO", "DataCommons", "ClaimReview", "Faktenchecker", "Fact Check",
+                       "AT-Faktencheck-RSS"}
 
 # Academic databases (OpenAlex, Semantic Scholar) return papers whose titles
 # often share keywords with the claim without being topically relevant
