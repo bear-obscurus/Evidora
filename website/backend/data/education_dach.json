@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-04-29",
+  "source_label": "IEA TIMSS + IEA PIRLS + Statistik Austria Bildung + BMBWF Lehrer-Bedarf-Statistik",
+  "facts": [
+    {
+      "id": "timss_2023_at",
+      "topic": "timss_at",
+      "scope": "TIMSS 2023 — Mathematik + Naturwissenschaften 4. + 8. Schulstufe",
+      "year": 2023,
+      "headline": "TIMSS 2023 — Österreichs Volksschüler:innen + Mittelstufe im internationalen Vergleich",
+      "data": {
+        "timss_4_klasse_mathe_at": 487,
+        "timss_4_klasse_naturwiss_at": 506,
+        "timss_4_klasse_eu_avg": 503,
+        "timss_4_klasse_oecd_avg": 511,
+        "timss_8_klasse_mathe_at": "nicht teilgenommen",
+        "rang_at_in_eu_4_klasse_mathe": 18,
+        "rang_at_in_eu_4_klasse_naturwiss": 12,
+        "anzahl_eu_teilnehmer_2023": 22,
+        "trend_mathe_at_2007_2023": "493 (2007) → 487 (2019) → 487 (2023) — leicht rückläufig",
+        "context": "Österreich liegt 2023 bei TIMSS-Mathematik 4. Klasse mit 487 Punkten unter dem EU-Schnitt (503) und OECD-Schnitt (511). Naturwissenschaften deutlich besser (506, leicht über EU). Risikoschüler:innen-Anteil unter Niveau 1: ca. 7 % (Mathematik) — über dem OECD-Schnitt von 5 %."
+      },
+      "context_notes": [
+        "TIMSS = Trends in International Mathematics and Science Study, alle 4 Jahre. Veranstaltet vom IEA-Konsortium.",
+        "Boulevard-Behauptungen einer 'Bildungs-Krise' sind statistisch differenziert: AT-Mathematik leicht unter, Naturwissenschaften über EU-Schnitt; kein dramatischer Einbruch seit 2007.",
+        "TIMSS und PISA messen unterschiedliche Kompetenzen — TIMSS ist curricular verankert (was wurde gelehrt?), PISA misst Anwendungs-/Transferkompetenzen."
+      ],
+      "claim_phrasings_handled": [
+        "TIMSS Ergebnisse Österreich",
+        "österreichische Schüler Mathematik",
+        "Bildungskrise Österreich Volksschule",
+        "Mathematik Niveau Österreich"
+      ],
+      "trigger_keywords": [
+        "timss", "timss-studie", "timss studie",
+        "timss österreich", "timss volksschule",
+        "timss 2023", "iea timss"
+      ],
+      "trigger_composite": [
+        ["timss", "mathematik volksschule", "mathematik 4. klasse"],
+        ["österreich", "österreichisch", "at "]
+      ],
+      "source_label": "IEA TIMSS 2023 (Trends in International Mathematics and Science Study)",
+      "source_url": "https://www.iea.nl/studies/iea/timss/2023",
+      "secondary_url": "https://www.iqs.gv.at/themen/timss"
+    },
+    {
+      "id": "pirls_2021_at",
+      "topic": "pirls_at",
+      "scope": "PIRLS 2021 — Lesekompetenz 4. Schulstufe",
+      "year": 2021,
+      "headline": "PIRLS 2021 — Österreichs Volksschüler:innen Lesekompetenz",
+      "data": {
+        "pirls_at_score_2021": 530,
+        "pirls_eu_avg_2021": 527,
+        "pirls_oecd_avg_2021": 533,
+        "pirls_at_score_2016": 541,
+        "pirls_at_trend_2006_2021": "538 (2006) → 529 (2011) → 541 (2016) → 530 (2021)",
+        "rang_at_in_eu_2021": 9,
+        "anteil_risikoschueler_pct_2021": 14,
+        "anteil_risikoschueler_pct_2016": 13,
+        "context": "PIRLS-Lesekompetenz Österreichs Volksschüler:innen 2021: 530 Punkte — EU-Mittelfeld (Rang 9 von 22). Leichter Rückgang gegenüber 2016 (541) — die COVID-Pandemie wird in der IEA-Auswertung als plausibler Erklärungsfaktor genannt. Risikoschüler:innen-Anteil 14 % (knapp über OECD-Schnitt 11 %)."
+      },
+      "context_notes": [
+        "PIRLS = Progress in International Reading Literacy Study, alle 5 Jahre. 2026 die nächste Erhebung.",
+        "Boulevard-Schlagzeilen wie 'Jeder dritte Volksschüler kann nicht richtig lesen' verzerren die Risikoquote von ~14 % auf das Doppelte.",
+        "Migrations-Hintergrund-Effekt in PIRLS: Schüler:innen, die zuhause nicht-deutsch sprechen, liegen ~50 Punkte unter Schüler:innen mit Deutsch als Familiensprache — strukturkontrolliert wirkt das auch auf andere OECD-Staaten ähnlich."
+      ],
+      "claim_phrasings_handled": [
+        "PIRLS Österreich Lesekompetenz",
+        "österreichische Volksschüler Lesen",
+        "jeder dritte Volksschüler kann nicht lesen",
+        "Lesekrise Volksschule"
+      ],
+      "trigger_keywords": [
+        "pirls", "pirls-studie", "pirls 2021",
+        "pirls österreich",
+        "iea pirls",
+        "lesekrise", "lese-krise",
+        "können nicht lesen", "kann nicht lesen", "kann nicht richtig lesen",
+        "können nicht richtig lesen", "kein lesen können"
+      ],
+      "trigger_composite": [
+        ["pirls", "lesekompetenz", "leseverstehen", "lesen", "lese-",
+         "lese ", "leseschwäch", "leseschwierig"],
+        ["österreich", "österreichisch", "at ", "volksschule",
+         "grundschule", "4. klasse",
+         "drittel", "viertel", "fünftel", "hälfte", "jeder dritt",
+         "jeder vierte", "jeder zweite"]
+      ],
+      "source_label": "IEA PIRLS 2021 (Progress in International Reading Literacy Study)",
+      "source_url": "https://www.iea.nl/studies/iea/pirls/2021",
+      "secondary_url": "https://www.iqs.gv.at/themen/pirls"
+    },
+    {
+      "id": "lehrermangel_at_2024",
+      "topic": "lehrermangel_at",
+      "scope": "Lehrer:innen-Bedarf Österreich 2024–2030",
+      "year": 2024,
+      "headline": "Lehrer:innen-Bedarf Österreich — Stand 2024 und Prognose bis 2030",
+      "data": {
+        "anzahl_lehrkraefte_at_2024": 132000,
+        "anzahl_lehrkraefte_at_2014": 122000,
+        "neueinstellungen_pro_jahr_2024_planbestand": 5800,
+        "neueinstellungen_pro_jahr_geschaetzt_bedarf_2024": 6500,
+        "luecke_2024_geschaetzt": 700,
+        "vakanzquote_2024_pct": 0.5,
+        "studienanfaenger_lehramt_at_2014": 8200,
+        "studienanfaenger_lehramt_at_2024": 5400,
+        "rueckgang_studienanfaenger_pct_2014_2024": -34,
+        "prognose_pensionierungen_bis_2030": 32000,
+        "prognose_pensionierungen_bis_2030_anteil_pct": 24,
+        "context": "Österreich hatte 2024 ~132.000 Lehrkräfte (10.000 mehr als 2014). Die Boulevard-Behauptung eines flächendeckenden 'Lehrermangels' bezieht sich primär auf REGIONALE Engpässe (Wien, Wiener Neustadt) und FÄCHER-spezifische Engpässe (Mathematik, Physik, Informatik, technische Fachgegenstände). Die Vakanzquote 2024 lag bei ~0,5 %. Wichtiger Trend: 34 % weniger Studienanfänger:innen Lehramt in 10 Jahren + 24 % der heutigen Lehrkräfte gehen bis 2030 in Pension → strukturelle Lücke ABZUSEHEN, aber 2024 noch nicht akut."
+      },
+      "context_notes": [
+        "Quelle Schüler-/Lehrerzahlen: Statistik Austria Bildungsdokumentation; Bedarfs-Prognose: Bildungsdirektionen + BMBWF.",
+        "WICHTIG: 'Lehrermangel' ist regional + fachspezifisch, kein nationaler Notstand. In ländlichen NÖ/Burgenland-Regionen gibt es 2024 sogar einen Lehrer-Überhang in einzelnen Fächern.",
+        "Die Pensionierungswelle 2025–2030 ist der echte Stresstest — 32.000 Lehrkräfte gehen, die Studienanfänger-Zahlen reichen rechnerisch nicht aus."
+      ],
+      "claim_phrasings_handled": [
+        "Lehrermangel Österreich",
+        "Pensionierungswelle Lehrer",
+        "zu wenige Lehrer Österreich",
+        "Bildungssystem Personal Krise",
+        "Lehramts-Studierende Rückgang"
+      ],
+      "trigger_keywords": [
+        "lehrermangel", "lehrer-mangel", "lehrer mangel",
+        "lehrkräfte mangel", "lehrkräftemangel",
+        "lehramts-studienanfänger", "lehramt studienanfänger",
+        "pensionierungswelle lehrer",
+        "kein lehrer", "keine lehrer", "fehlende lehrer"
+      ],
+      "trigger_composite": [
+        ["lehrer", "lehrkraft", "lehrkräfte", "lehramt", "pädagog"],
+        ["mangel", "fehlend", "zu wenig", "engpass", "krise",
+         "pensionier", "ruhestand", "ausstand"],
+        ["österreich", "österreichisch", "at ", "wien", "burgenland"]
+      ],
+      "source_label": "Statistik Austria Bildung + BMBWF Lehrer-Bedarf-Bericht 2024",
+      "source_url": "https://www.statistik.at/statistiken/bildung",
+      "secondary_url": "https://www.bmbwf.gv.at/Themen/Lehrkraefte.html"
+    },
+    {
+      "id": "pisa_2022_dach",
+      "topic": "pisa_dach",
+      "scope": "PISA 2022 — Lesen, Mathematik, Naturwissenschaften DACH",
+      "year": 2022,
+      "headline": "PISA 2022 DACH — Österreich + Deutschland + Schweiz",
+      "data": {
+        "pisa_lesen_at": 480,
+        "pisa_lesen_de": 480,
+        "pisa_lesen_ch": 483,
+        "pisa_mathe_at": 487,
+        "pisa_mathe_de": 475,
+        "pisa_mathe_ch": 508,
+        "pisa_nawi_at": 491,
+        "pisa_nawi_de": 492,
+        "pisa_nawi_ch": 503,
+        "pisa_oecd_avg_lesen": 476,
+        "pisa_oecd_avg_mathe": 472,
+        "pisa_oecd_avg_nawi": 485,
+        "rang_at_oecd_lesen": 19,
+        "rang_at_oecd_mathe": 14,
+        "rang_at_oecd_nawi": 19,
+        "context": "PISA 2022 (15-Jährige): Österreich + Deutschland leistungsmäßig nahezu identisch und leicht über OECD-Schnitt. Schweiz deutlich besser, besonders in Mathematik (508 vs. AT 487 vs. DE 475). Risikoschüler:innen-Anteil DACH ~25 % (OECD: 26 %)."
+      },
+      "context_notes": [
+        "Boulevard-Behauptungen 'PISA-Schock', 'österreichische Bildung versagt' — übertreiben den OECD-Vergleich. AT liegt im OECD-Mittelfeld, NICHT abgehängt.",
+        "Im EU-internen Vergleich: AT bei Mathematik Rang 7 von 22 EU-Staaten (über EU-Schnitt 467).",
+        "Die 'PISA-Schock'-Erzählung von 2000 wurde bisher nie wieder erreicht — tatsächlich hat sich AT seit 2003 in allen drei Domänen verbessert oder stabilisiert."
+      ],
+      "claim_phrasings_handled": [
+        "PISA Österreich katastrophal",
+        "PISA-Ergebnisse DACH Vergleich",
+        "Bildungs-Schock Österreich"
+      ],
+      "trigger_keywords": [
+        "pisa österreich", "pisa-studie österreich",
+        "pisa-schock", "pisa schock",
+        "pisa 2022", "pisa-ergebnisse"
+      ],
+      "trigger_composite": [
+        ["pisa"],
+        ["österreich", "deutschland", "schweiz", "dach"]
+      ],
+      "source_label": "OECD PISA 2022 + Statistik Austria PISA-Auswertung",
+      "source_url": "https://www.oecd.org/pisa/publications/pisa-2022-results.htm",
+      "secondary_url": "https://www.iqs.gv.at/themen/pisa"
+    }
+  ]
+}

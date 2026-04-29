@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-04-29",
+  "source_label": "ÖBB Pünktlichkeits-Bericht + VCÖ Verkehrsstatistik + Eurostat tran_*",
+  "facts": [
+    {
+      "id": "oebb_puenktlichkeit_2024",
+      "topic": "oebb_puenktlichkeit",
+      "scope": "ÖBB-Pünktlichkeit Personenverkehr 2024 + EU-Vergleich",
+      "year": 2024,
+      "headline": "ÖBB-Pünktlichkeit 2024 — Nahverkehr + Fernverkehr",
+      "data": {
+        "puenktlichkeit_oebb_nahverkehr_2024_pct": 94.2,
+        "puenktlichkeit_oebb_fernverkehr_2024_pct": 88.7,
+        "puenktlichkeit_oebb_2014_nahverkehr_pct": 95.5,
+        "puenktlichkeit_oebb_2014_fernverkehr_pct": 92.8,
+        "puenktlichkeitsschwelle_oebb_minuten": 5,
+        "puenktlichkeit_db_fernverkehr_2024_pct": 62.5,
+        "puenktlichkeit_sbb_fernverkehr_2024_pct": 91.4,
+        "fahrgaeste_oebb_2024_mio": 510,
+        "fahrgaeste_oebb_2014_mio": 461,
+        "context": "ÖBB-Pünktlichkeit 2024: Nahverkehr 94,2 % (≤5 Min Verspätung), Fernverkehr 88,7 %. Im EU-Vergleich Spitze: Schweizerische SBB 91,4 % Fernverkehr; Deutsche DB nur 62,5 %. Trend AT 2014–2024: leichter Rückgang (~−1,3 PP Nahverkehr, −4,1 PP Fernverkehr) — Folge dichteren Fahrplans + Bauarbeiten Klimaticket-Phase."
+      },
+      "context_notes": [
+        "ÖBB-Pünktlichkeitsschwelle: ≤5 Minuten Verspätung. Andere Bahnen verwenden teils 6 Min (DB) oder 3 Min (SNCF) — direkter Vergleich nur eingeschränkt möglich.",
+        "Boulevard-Behauptung 'ÖBB sind unzuverlässig' ist im internationalen Kontext widerlegt — ÖBB liegen im DACH-Vergleich klar vor DB und nur knapp hinter SBB.",
+        "Fahrgastzahlen wuchsen 2014–2024 um 11 % auf 510 Mio. — Klimaticket-Effekt (Einführung 10/2021) deutlich sichtbar."
+      ],
+      "claim_phrasings_handled": [
+        "ÖBB Pünktlichkeit",
+        "ÖBB unzuverlässig",
+        "Bahn Verspätungen Österreich",
+        "ÖBB im Vergleich zur DB"
+      ],
+      "trigger_keywords": [
+        "öbb pünktlichkeit", "öbb-pünktlichkeit",
+        "öbb verspätung", "öbb verspätungen",
+        "bahn verspätung österreich",
+        "öbb unzuverlässig", "öbb chaos",
+        "klimaticket pünktlichkeit"
+      ],
+      "trigger_composite": [
+        ["öbb", "westbahn"],
+        ["pünktlich", "verspätung", "zuverlässig", "unzuverlässig",
+         "chaos", "ausfall", "vergleich", "verlassen", "schlecht"]
+      ],
+      "source_label": "ÖBB Pünktlichkeits-Bericht 2024 + EU-Bahn-Statistik",
+      "source_url": "https://infrastruktur.oebb.at/de/unternehmen/zahlen-fakten",
+      "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/rail_pa_total"
+    },
+    {
+      "id": "verkehr_co2_at_2024",
+      "topic": "verkehr_co2",
+      "scope": "CO2-Emissionen Verkehr Österreich + EU-Vergleich",
+      "year": 2024,
+      "headline": "Verkehrs-CO2-Emissionen Österreich 2024",
+      "data": {
+        "co2_verkehr_at_2024_mio_t": 22.9,
+        "co2_verkehr_at_1990_mio_t": 13.7,
+        "co2_verkehr_at_2005_peak_mio_t": 27.8,
+        "anteil_verkehr_an_thg_at_pct_2024": 28,
+        "anteil_pkw_an_verkehrs_co2_pct_2024": 42,
+        "anteil_lkw_an_verkehrs_co2_pct_2024": 33,
+        "anteil_flugverkehr_at_emissionen_pct_2024": 3,
+        "modal_split_pkw_at_pct": 67,
+        "modal_split_oeffi_at_pct": 18,
+        "modal_split_rad_fuss_at_pct": 12,
+        "context": "Verkehrs-CO2 in AT 2024: 22,9 Mio. t — 67 % über dem 1990-Niveau (13,7 Mio. t), aber 18 % unter dem 2005-Peak (27,8 Mio. t). Verkehr ist mit 28 % am Gesamt-THG-Aufkommen größter Sektor. Pkw-Verkehr verursacht 42 % der Verkehrs-CO2; Lkw 33 %; Flugverkehr nur 3 %."
+      },
+      "context_notes": [
+        "Boulevard-Behauptungen wie 'Klimakleber sollen Lkw blockieren, nicht Autos' verkennen die Strukturanteile: Pkw verursachen 42 % der Verkehrs-CO2, Lkw 33 %.",
+        "Modal-Split AT: 67 % Pkw, 18 % öffentlicher Verkehr, 12 % aktive Mobilität (Rad+Fuß) — bei Zielwerten der Klimastrategie 2030 müsste Pkw auf 50 %, ÖV auf 25 % verschoben werden.",
+        "Inland-Flugverkehr: nur 3 % der Verkehrs-CO2 — Symbol-Wert hoch, faktischer Reduktions-Hebel klein."
+      ],
+      "claim_phrasings_handled": [
+        "CO2 Verkehr Österreich",
+        "Verkehrs-Emissionen gestiegen",
+        "Auto vs. Lkw CO2-Anteil",
+        "Flugverkehr CO2 Bilanz Österreich"
+      ],
+      "trigger_keywords": [
+        "verkehrs-co2", "verkehrs co2", "co2 verkehr",
+        "verkehrs-emissionen", "verkehrsemissionen",
+        "thg verkehr",
+        "modal split österreich",
+        "klima-verkehr österreich"
+      ],
+      "trigger_composite": [
+        ["verkehr", "auto", "pkw", "lkw", "flugverkehr", "flieger"],
+        ["co2", "emission", "thg", "treibhausgas", "klima"],
+        ["österreich", "at "]
+      ],
+      "source_label": "Umweltbundesamt Klimaschutzbericht 2025 + Eurostat env_air_gge",
+      "source_url": "https://www.umweltbundesamt.at/news/treibhausgase-2024",
+      "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/env_air_gge"
+    },
+    {
+      "id": "klimaticket_2024",
+      "topic": "klimaticket",
+      "scope": "KlimaTicket Österreich — Verkauf, Wirkung, Kosten",
+      "year": 2024,
+      "headline": "KlimaTicket Österreich — Stand 2024",
+      "data": {
+        "klimaticket_inhaber_2024": 286000,
+        "klimaticket_inhaber_2022_start": 156000,
+        "klimaticket_kosten_2024_eur": 1095,
+        "klimaticket_kosten_jugend_2024_eur": 547,
+        "klimaticket_kosten_unter_27_eur": 821,
+        "klimaticket_kosten_senior_eur": 547,
+        "modal_shift_pkw_zu_oeffi_pct_geschaetzt": 4.1,
+        "co2_einsparung_geschaetzt_2024_kt": 250,
+        "context": "KlimaTicket: 286.000 Inhaber:innen 2024 (vs. 156.000 zum Start 10/2021 → +83 %). Vollpreis 1.095 €/Jahr; Jugend/Senior 547 €. Geschätzter Modal-Shift Pkw → ÖV: 4,1 % der Inhaber:innen wechseln substanziell vom Auto auf Bahn — Auto-Reduktion ~250 kt CO2/Jahr (1 % der Verkehrs-CO2)."
+      },
+      "context_notes": [
+        "Symbolische und faktische Wirkung divergieren: 286.000 Inhaber:innen sind eine Erfolgsgeschichte, der CO2-Effekt (~1 % Verkehrs-CO2) ist eher klein.",
+        "Hauptproblem für stärkeren Effekt: schlechte ÖV-Anbindung in ländlichen Regionen — nur ~30 % der ländlichen AT-Bevölkerung hat einen direkten Bahnanschluss.",
+        "Boulevard-Behauptung 'KlimaTicket ist gescheitert' ist faktisch widerlegt (Wachstum +83 % in 3 Jahren); 'KlimaTicket rettet das Klima' ist auch übertrieben (1 % CO2-Effekt)."
+      ],
+      "claim_phrasings_handled": [
+        "KlimaTicket Erfolg",
+        "KlimaTicket gescheitert",
+        "ÖBB KlimaTicket Wirkung"
+      ],
+      "trigger_keywords": [
+        "klimaticket", "klima-ticket", "klima ticket",
+        "österreich-ticket bahn", "1095 euro ticket",
+        "klimaticket erfolg", "klimaticket gescheitert"
+      ],
+      "trigger_composite": [
+        ["klimaticket", "klima-ticket", "österreich-ticket"],
+        ["erfolg", "gescheitert", "wirkung", "effekt", "co2",
+         "verkauft", "inhaber", "abonnent"]
+      ],
+      "source_label": "ÖBB Pünktlichkeits- + KlimaTicket-Bericht 2024",
+      "source_url": "https://www.klimaticket.at/de/zahlen-und-fakten/"
+    }
+  ]
+}

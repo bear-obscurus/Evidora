@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-04-29",
+  "source_label": "VfGH (Verfassungsgerichtshof) + VwGH (Verwaltungsgerichtshof) — kuratierte Schlüsselerkenntnisse",
+  "rulings": [
+    {
+      "id": "vfgh_g_258_2017_ehe_alle",
+      "court": "VfGH",
+      "case_number": "G 258/2017",
+      "case_name": "Ehe für alle (Aufhebung Eheverbot gleichgeschlechtlicher Paare)",
+      "year": 2017,
+      "decided_iso": "2017-12-04",
+      "url": "https://www.ris.bka.gv.at/Dokument.wxe?Abfrage=Vfgh&Dokumentnummer=JFT_20171204_17G00258_00",
+      "topic": "ehe_fuer_alle",
+      "kerninhalt": "Der VfGH hob die Beschränkung der Ehe auf verschiedengeschlechtliche Paare als verfassungswidrig auf. Das Erkenntnis trat mit 1.1.2019 in Kraft, sodass gleichgeschlechtliche Paare seitdem heiraten können.",
+      "boulevard_falschmeldung": "Die Ehe für alle wurde von der Regierung beschlossen / nicht der VfGH hat das durchgesetzt.",
+      "trigger_keywords": ["g 258/2017", "ehe für alle erkenntnis", "ehe-für-alle erkenntnis",
+                           "ehe öffnung gleichgeschlechtlich", "vfgh ehe für alle"],
+      "trigger_composite": [
+        ["vfgh", "verfassungsgerichtshof"],
+        ["ehe", "heirat"],
+        ["alle", "gleichgeschlechtlich", "homosexuell", "lgbt"]
+      ]
+    },
+    {
+      "id": "vfgh_g_77_2018_sterbehilfe",
+      "court": "VfGH",
+      "case_number": "G 139/2019",
+      "case_name": "Aufhebung des Verbots der Mitwirkung am Selbstmord",
+      "year": 2020,
+      "decided_iso": "2020-12-11",
+      "url": "https://www.ris.bka.gv.at/Dokument.wxe?Abfrage=Vfgh&Dokumentnummer=JFT_20201211_19G00139_00",
+      "topic": "sterbehilfe",
+      "kerninhalt": "Der VfGH hob § 78 StGB (Mitwirkung am Selbstmord) als verfassungswidrig auf — das absolute Verbot widerspricht dem Recht auf Selbstbestimmung. Mit Wirkung ab 1.1.2022 hat der Nationalrat das Sterbeverfügungsgesetz erlassen, das assistierten Suizid unter strengen Voraussetzungen erlaubt.",
+      "boulevard_falschmeldung": "Sterbehilfe wurde komplett legalisiert / es gibt keine Schranken mehr.",
+      "trigger_keywords": ["g 139/2019", "sterbehilfe-erkenntnis", "vfgh sterbehilfe",
+                           "assistierter suizid österreich erkenntnis",
+                           "sterbeverfügung erkenntnis"],
+      "trigger_composite": [
+        ["vfgh", "verfassungsgerichtshof"],
+        ["sterbehilfe", "assistierter suizid", "sterbeverfügung",
+         "selbstmord-mitwirkung"]
+      ]
+    },
+    {
+      "id": "vfgh_v_363_2020_lockdown",
+      "court": "VfGH",
+      "case_number": "V 363/2020 u.a.",
+      "case_name": "COVID-Lockdown-Verordnungen — Aufhebung wegen Mangelhaftigkeit",
+      "year": 2020,
+      "decided_iso": "2020-07-14",
+      "url": "https://www.ris.bka.gv.at/Dokument.wxe?Abfrage=Vfgh&Dokumentnummer=JFT_20200714_20V00363_00",
+      "topic": "covid_lockdown",
+      "kerninhalt": "Der VfGH hob mehrere COVID-19-Verordnungen (u. a. § 1 COVID-19-MaßnahmenG-Betretungsverbote) wegen unzureichender gesetzlicher Determinierung als verfassungswidrig auf — die Eingriffe waren grundsätzlich zulässig, mussten aber präziser im Gesetz verankert werden. Der Lockdown wurde NICHT als 'verboten' bezeichnet; Folgegesetzgebung war möglich.",
+      "boulevard_falschmeldung": "Der VfGH hat die Lockdowns als illegal erklärt / Ausgangsbeschränkungen waren nie zulässig.",
+      "trigger_keywords": ["vfgh lockdown", "vfgh covid-verordnung",
+                           "lockdown verfassungswidrig", "lockdown rechtswidrig",
+                           "v 363/2020"],
+      "trigger_composite": [
+        ["vfgh", "verfassungsgerichtshof"],
+        ["lockdown", "ausgangsbeschränkung", "covid-verordnung",
+         "covid verordnung", "betretungsverbot"]
+      ]
+    },
+    {
+      "id": "vfgh_g_223_2021_impfpflicht",
+      "court": "VfGH",
+      "case_number": "G 412/2022",
+      "case_name": "COVID-Impfpflicht-Gesetz — verfassungsrechtlich nicht beanstandet",
+      "year": 2022,
+      "decided_iso": "2022-09-14",
+      "url": "https://www.ris.bka.gv.at/Dokument.wxe?Abfrage=Vfgh&Dokumentnummer=JFT_20220914_22G00412_00",
+      "topic": "impfpflicht",
+      "kerninhalt": "Der VfGH wies eine Beschwerde gegen das COVID-19-Impfpflichtgesetz ab — die Impfpflicht war verfassungsrechtlich zulässig (verhältnismäßiger Grundrechtseingriff zur Pandemie-Bekämpfung). Das Gesetz wurde später vom Nationalrat ausgesetzt und schließlich aufgehoben — politische Entscheidung, keine VfGH-Aufhebung.",
+      "boulevard_falschmeldung": "Der VfGH hat die Impfpflicht für verfassungswidrig erklärt.",
+      "trigger_keywords": ["vfgh impfpflicht", "g 412/2022",
+                           "impfpflicht verfassungswidrig", "impfpflicht-erkenntnis"],
+      "trigger_composite": [
+        ["vfgh", "verfassungsgerichtshof"],
+        ["impfpflicht", "covid-impfpflicht", "corona-impfpflicht"]
+      ]
+    },
+    {
+      "id": "vfgh_orf_beitrag_g_226_2022",
+      "court": "VfGH",
+      "case_number": "G 226/2022",
+      "case_name": "ORF-Finanzierung (GIS) — verfassungswidrig",
+      "year": 2022,
+      "decided_iso": "2022-07-04",
+      "url": "https://www.ris.bka.gv.at/Dokument.wxe?Abfrage=Vfgh&Dokumentnummer=JFT_20220704_22G00226_00",
+      "topic": "orf_finanzierung",
+      "kerninhalt": "Der VfGH hob die GIS-Gebühren-Bemessung (Programmentgelt nur bei Rundfunk-Empfang) als verfassungswidrig auf — sie widerspräche dem Gleichheitsgrundsatz, weil Streaming-Nutzer:innen ohne Empfangsgerät nicht erfasst wurden. Folge: Haushaltsabgabe (ORF-Beitrag) seit 1.1.2024.",
+      "boulevard_falschmeldung": "Der VfGH hat den ORF-Beitrag eingeführt / hat die Haushaltsabgabe verlangt.",
+      "trigger_keywords": ["vfgh orf-beitrag", "vfgh gis-gebühr",
+                           "orf-finanzierung erkenntnis", "g 226/2022"],
+      "trigger_composite": [
+        ["vfgh", "verfassungsgerichtshof"],
+        ["orf", "gis"],
+        ["beitrag", "gebühr", "finanzierung", "haushaltsabgabe"]
+      ]
+    },
+    {
+      "id": "vwgh_ra_2018_19_0444_asyl_serbien",
+      "court": "VwGH",
+      "case_number": "Ra 2018/19/0444",
+      "case_name": "Asylverfahren Serbien — Sichere-Drittstaat-Vermutung",
+      "year": 2019,
+      "decided_iso": "2019-04-30",
+      "url": "https://www.ris.bka.gv.at/Dokument.wxe?Abfrage=Vwgh&Dokumentnummer=JWT_2019043009000444J00",
+      "topic": "asyl_drittstaat",
+      "kerninhalt": "Der VwGH stellte fest, dass die Vermutung eines 'sicheren Drittstaats' (z.B. Serbien) nicht generell, sondern im Einzelfall geprüft werden muss. Schutzsuchende, die plausibel machen, dass sie im Drittstaat keinen Schutz erhalten, können nicht pauschal abgewiesen werden.",
+      "boulevard_falschmeldung": "Der VwGH zwingt Österreich, alle Asyl-Anträge zu akzeptieren / kein Drittstaaten-Verfahren mehr möglich.",
+      "trigger_keywords": ["vwgh ra 2018/19/0444", "vwgh sicherer drittstaat",
+                           "vwgh asyl serbien"],
+      "trigger_composite": [
+        ["vwgh", "verwaltungsgerichtshof"],
+        ["asyl", "schutz"],
+        ["drittstaat", "serbien", "sicher"]
+      ]
+    },
+    {
+      "id": "vfgh_g_77_2014_volksbegehren_wahl",
+      "court": "VfGH",
+      "case_number": "G 41/2017",
+      "case_name": "Bundespräsidenten-Stichwahl 2016 — Aufhebung",
+      "year": 2016,
+      "decided_iso": "2016-07-01",
+      "url": "https://www.ris.bka.gv.at/Dokument.wxe?Abfrage=Vfgh&Dokumentnummer=JFT_20160701_16W00029_00",
+      "topic": "wahlanfechtung",
+      "kerninhalt": "Der VfGH hob die Bundespräsidenten-Stichwahl vom Mai 2016 (Hofer/Van der Bellen) wegen Mangelhaftigkeiten in der Briefwahl-Auszählung auf und ordnete eine Wiederholung an. Die Wiederholungswahl im Dezember 2016 führte zum selben Ergebnis — Van der Bellen.",
+      "boulevard_falschmeldung": "Der VfGH hat das Wahlergebnis manipuliert / Hofer wurde betrogen.",
+      "trigger_keywords": ["bundespräsidenten-stichwahl 2016 aufhebung",
+                           "vfgh hofer van der bellen", "wahlaufhebung 2016",
+                           "wahlanfechtung 2016",
+                           "stichwahl 2016 manipuliert",
+                           "stichwahl manipuliert",
+                           "stichwahl 2016 war manipuliert",
+                           "stichwahl 2016 betrog",
+                           "stichwahl 2016 gefälscht",
+                           "bundespräsidenten-stichwahl 2016 manipuliert",
+                           "bp-wahl 2016 manipuliert", "bp wahl 2016"],
+      "trigger_composite": [
+        ["vfgh", "verfassungsgerichtshof",
+         "hofer", "van der bellen", "bp-wahl", "bp wahl",
+         "bundespräsidenten-stichwahl",
+         "bundespräsidentenwahl"],
+        ["wahl", "stichwahl"],
+        ["aufgehoben", "wiederholt", "manipuliert", "betrog", "ungültig",
+         "manipulation", "fälschung", "gefälscht"]
+      ]
+    }
+  ]
+}

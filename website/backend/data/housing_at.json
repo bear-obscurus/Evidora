@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-04-29",
+  "source_label": "OeNB Wohnimmobilienpreis-Index + Statistik Austria HVPI/Wohnen + EU-SILC",
+  "facts": [
+    {
+      "id": "oenb_wohnpreise_2024",
+      "topic": "wohnpreise_at",
+      "scope": "OeNB Wohnimmobilienpreis-Index Österreich + Wien",
+      "year": 2024,
+      "headline": "Entwicklung der Wohnimmobilienpreise in Österreich + Wien",
+      "data": {
+        "wohnimmo_index_at_2010_basis": 100.0,
+        "wohnimmo_index_at_2015": 130.5,
+        "wohnimmo_index_at_2020": 175.4,
+        "wohnimmo_index_at_2022_peak": 217.8,
+        "wohnimmo_index_at_2023": 209.4,
+        "wohnimmo_index_at_2024": 207.1,
+        "wohnimmo_index_wien_2024": 222.3,
+        "preis_pro_m2_eigentumswohnung_wien_2024": 5980,
+        "preis_pro_m2_eigentumswohnung_at_2024": 4250,
+        "miete_pro_m2_wien_neuvermietung_2024": 11.20,
+        "miete_pro_m2_wien_altmietverhaeltnis_durchschnitt_2024": 7.40,
+        "trend_text": "Wohnimmobilienpreise AT: 2010 → 2022 mehr als verdoppelt (+118 %). 2022/23 Korrektur −5 % nach Zinswende. 2024 Stagnation. Wien noch stärker (+122 % seit 2010).",
+        "context": "Die Wohnimmobilienpreise haben sich in Österreich seit 2010 mehr als verdoppelt — die Boulevard-Behauptung 'Wohnen wird unleistbar' ist datenmäßig gestützt. Mieten in Wien-Neuvermietung haben sich seit 2010 verdreifacht; Altmietverhältnisse (Richtwert/Kategoriemiete) blieben niedriger."
+      },
+      "context_notes": [
+        "OeNB-Index: Quartalsdaten zum Wohnimmo-Markt — methodisch mit Hedonik-Korrektur (Bereinigung um Qualitätssprünge).",
+        "Junge Erwachsene + Alleinerziehende sind besonders betroffen — ihre Einkommensentwicklung lag deutlich unter der Wohnpreisentwicklung.",
+        "Wichtige Differenzierung: Wien-Neuvermietung (~11 €/m²) vs. Wien-Altmietverhältnis (~7 €/m²) — Mieten-Boulevard mischt diese oft."
+      ],
+      "claim_phrasings_handled": [
+        "Wohnen ist unleistbar geworden",
+        "Wohnpreise explodieren Österreich",
+        "Miete Wien gestiegen",
+        "Eigentumswohnung Preis Österreich"
+      ],
+      "trigger_keywords": [
+        "wohnimmobilienpreise", "wohnimmo-preise", "wohnpreis",
+        "miete wien", "mieten wien", "miete steigt",
+        "wohnen unleistbar", "wohnen ist unleistbar",
+        "eigentumswohnung preis",
+        "oenb wohnindex", "oenb wohnimmobilienindex"
+      ],
+      "trigger_composite": [
+        ["wohn", "miete", "mieten", "immobil", "eigentumswohnung"],
+        ["preis", "kosten", "unleistbar", "explod", "verdopp", "verdrei",
+         "gestiegen", "steigt", "steigend", "rasant", "hoch"],
+        ["österreich", "wien", "graz", "salzburg", "innsbruck", "linz",
+         "klagenfurt", "at "]
+      ],
+      "source_label": "OeNB Wohnimmobilienpreis-Index Q4/2024 + Statistik Austria HVPI",
+      "source_url": "https://www.oenb.at/Statistik/Standardisierte-Tabellen/Statistik-Wohnimmobilienpreise.html",
+      "secondary_url": "https://www.statistik.at/statistiken/volkswirtschaft-und-oeffentliche-finanzen/preise/verbraucherpreisindex-vpi-hvpi"
+    },
+    {
+      "id": "wohnkostenbelastung_at_2024",
+      "topic": "wohnkostenbelastung",
+      "scope": "Anteil Wohnkosten am verfügbaren Haushaltseinkommen",
+      "year": 2024,
+      "headline": "Wohnkostenbelastung der Haushalte Österreich 2024",
+      "data": {
+        "anteil_wohnkosten_at_2024_pct": 27.5,
+        "anteil_wohnkosten_eu_avg_2024_pct": 24.6,
+        "anteil_wohnkosten_at_unter_60_einkommensmedian_pct": 41.8,
+        "anteil_wohnkosten_de_2024_pct": 26.8,
+        "wohnkostenueberlastung_at_pct": 9.4,
+        "wohnkostenueberlastung_eu_avg_pct": 9.0,
+        "anteil_eigentum_at_pct": 53.5,
+        "anteil_miete_at_pct": 46.5,
+        "anteil_eigentum_eu_avg_pct": 69.1,
+        "context": "AT-Haushalte zahlen 27,5 % ihres verfügbaren Einkommens für Wohnkosten — leicht über EU-Schnitt (24,6 %). Bei niedrigen Einkommen (unter 60 % Median) klettert der Anteil auf 41,8 %. Wohnkostenüberlastung (>40 % Einkommen): 9,4 % der Haushalte (EU-Schnitt 9,0 %)."
+      },
+      "context_notes": [
+        "Eurostat-Definition Wohnkostenüberlastung: Wohnkosten > 40 % des verfügbaren Haushaltseinkommens (nach Sozialleistungen).",
+        "AT hat einen ungewöhnlich hohen Mietanteil (46,5 % vs. EU-Schnitt 30,9 %) — folge der Bundes- und Gemeindewohnbau-Tradition.",
+        "Wohnkostenüberlastung in AT ist regional konzentriert: Wien-Nord/Süd-Bezirke + ländliche periphere Regionen."
+      ],
+      "claim_phrasings_handled": [
+        "Wohnkostenbelastung Haushalte",
+        "Anteil Einkommen Wohnen",
+        "Wohnkostenüberlastung Österreich"
+      ],
+      "trigger_keywords": [
+        "wohnkostenbelastung", "wohnkosten-belastung",
+        "wohnkostenüberlastung", "wohnkosten-überlastung",
+        "anteil einkommen wohnen", "anteil einkommen miete",
+        "wohnkostenanteil"
+      ],
+      "trigger_composite": [
+        ["wohnkost", "miete", "wohnausgab"],
+        ["belastung", "anteil", "prozent", "überlastung", "überforder",
+         "haushalts-einkommen", "haushaltseinkommen"]
+      ],
+      "source_label": "Eurostat ilc_mded01/06 + Statistik Austria EU-SILC 2024",
+      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_mded01"
+    }
+  ]
+}

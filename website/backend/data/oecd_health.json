@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-04-29",
+  "source_label": "OECD Health Statistics 2024 + Health at a Glance 2023",
+  "facts": [
+    {
+      "id": "oecd_lebenserwartung_2024",
+      "topic": "lebenserwartung",
+      "scope": "Lebenserwartung bei Geburt — DACH + EU-Vergleich 2024",
+      "year": 2024,
+      "headline": "Lebenserwartung bei Geburt 2024 — Österreich, Deutschland, Schweiz, EU-Schnitt",
+      "data": {
+        "lebenserwartung_at_2024": 81.7,
+        "lebenserwartung_de_2024": 81.0,
+        "lebenserwartung_ch_2024": 83.7,
+        "lebenserwartung_eu_avg_2024": 81.0,
+        "lebenserwartung_oecd_avg_2024": 81.0,
+        "lebenserwartung_at_frauen_2024": 84.1,
+        "lebenserwartung_at_maenner_2024": 79.3,
+        "lebenserwartung_at_2010": 80.7,
+        "lebenserwartung_at_2000": 78.3,
+        "context": "AT-Lebenserwartung 2024: 81,7 Jahre — leicht über EU- und OECD-Schnitt (jeweils 81,0). Schweiz mit 83,7 Jahren EU-Spitze. Trend AT 2000–2024: +3,4 Jahre. COVID-Knick 2020/21: ~−0,7 Jahre, weitgehend aufgeholt 2024."
+      },
+      "context_notes": [
+        "Quelle: OECD Health Statistics 2024 + Eurostat demo_mlexpec.",
+        "Boulevard-Schlagzeilen 'Lebenserwartung sinkt' beziehen sich oft auf einzelne Sub-Gruppen (Männer in Ostösterreich, Personen ohne Schulabschluss). Im Schnitt steigt sie weiter.",
+        "Geschlechter-Lücke AT: Frauen 84,1 / Männer 79,3 = 4,8 Jahre — eine der größeren in Europa, aber rückläufig (2000: 6,1 Jahre)."
+      ],
+      "claim_phrasings_handled": [
+        "Lebenserwartung Österreich",
+        "Lebenserwartung sinkt",
+        "Gesundheitssystem Österreich Lebenserwartung",
+        "Frauen Männer Lebenserwartung"
+      ],
+      "trigger_keywords": [
+        "lebenserwartung", "lebens-erwartung",
+        "life expectancy", "durchschnittsalter sterben"
+      ],
+      "trigger_composite": [
+        ["lebenserwartung", "life expectancy"],
+        ["österreich", "deutschland", "schweiz", "dach", "eu-schnitt",
+         "europa-schnitt", "frauen", "männer", "geschlechter"]
+      ],
+      "source_label": "OECD Health Statistics 2024",
+      "source_url": "https://www.oecd.org/health/health-statistics.htm",
+      "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/demo_mlexpec"
+    },
+    {
+      "id": "oecd_spitalsbetten_2024",
+      "topic": "spitalsbetten",
+      "scope": "Akutbetten + Pflegebetten je 1.000 Einwohner DACH",
+      "year": 2024,
+      "headline": "Spitalsbetten in Österreich, Deutschland, Schweiz im EU-Vergleich",
+      "data": {
+        "akutbetten_pro_1000_at": 7.2,
+        "akutbetten_pro_1000_de": 7.8,
+        "akutbetten_pro_1000_ch": 4.6,
+        "akutbetten_pro_1000_eu_avg": 5.0,
+        "akutbetten_pro_1000_oecd_avg": 4.5,
+        "anzahl_aerzte_pro_1000_at": 5.4,
+        "anzahl_aerzte_pro_1000_de": 4.5,
+        "anzahl_aerzte_pro_1000_ch": 4.4,
+        "anzahl_aerzte_pro_1000_eu_avg": 4.0,
+        "anzahl_pflegekraefte_pro_1000_at": 7.2,
+        "anzahl_pflegekraefte_pro_1000_de": 12.2,
+        "anzahl_pflegekraefte_pro_1000_eu_avg": 8.4,
+        "context": "AT hat mit 7,2 Akutbetten / 1.000 Einwohner deutlich mehr als der EU-Schnitt (5,0) — eines der bettenreichsten Gesundheitssysteme der OECD. Deutschland sogar 7,8. Schweiz hingegen knapp unter EU-Schnitt. Bei Ärzte-Dichte ist AT mit 5,4 / 1.000 EU-weit Spitze (EU-Schnitt 4,0). Schwachstelle AT: Pflegekräfte mit 7,2 / 1.000 unter EU-Schnitt 8,4."
+      },
+      "context_notes": [
+        "Boulevard-Behauptung 'Gesundheitssystem kollabiert wegen Bettenmangel' ist statistisch widerlegt — AT hat überdurchschnittlich viele Akutbetten + Ärzte.",
+        "Echte Schwachstelle: Pflege-Personal-Mangel, regionale Engpässe (Wartezeiten Wiener Notaufnahmen) und ÖGK-Versorgungs-Engpässe in einzelnen Fachrichtungen (z.B. Kinder-/Jugendpsychiatrie).",
+        "DE hat doppelt so viele Pflegekräfte / 1.000 wie AT — strukturell bessere Pflege-Auslastung trotz vergleichbarer Bettenzahl."
+      ],
+      "claim_phrasings_handled": [
+        "Spitalsbetten Österreich",
+        "Bettenmangel Spital",
+        "Gesundheitssystem kollabiert",
+        "Ärzte-Dichte Österreich",
+        "Pflegekräfte-Mangel"
+      ],
+      "trigger_keywords": [
+        "spitalsbetten", "krankenhausbetten", "akutbetten",
+        "ärztedichte", "ärzte-dichte", "ärzte pro 1000",
+        "ärztemangel", "pflegekräftemangel",
+        "gesundheitssystem kollap", "spital kollap"
+      ],
+      "trigger_composite": [
+        ["spital", "krankenhaus", "betten", "ärzte", "ärztin",
+         "pflegekraft", "pflegekräfte", "gesundheitssystem"],
+        ["mangel", "kollap", "fehlend", "zu wenig", "engpass",
+         "dichte", "pro 1000", "pro 1.000", "pro tausend",
+         "vergleich", "im durchschnitt", "europa"]
+      ],
+      "source_label": "OECD Health at a Glance 2023 + Eurostat hlth_rs_bds",
+      "source_url": "https://www.oecd.org/health/health-at-a-glance/",
+      "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/hlth_rs_bds"
+    },
+    {
+      "id": "oecd_gesundheitsausgaben_2024",
+      "topic": "gesundheitsausgaben",
+      "scope": "Gesundheitsausgaben pro Kopf + % BIP DACH 2024",
+      "year": 2024,
+      "headline": "Gesundheitsausgaben Österreich + Deutschland + Schweiz 2024",
+      "data": {
+        "gesundheitsausgaben_at_pct_bip_2024": 11.7,
+        "gesundheitsausgaben_de_pct_bip_2024": 12.7,
+        "gesundheitsausgaben_ch_pct_bip_2024": 12.0,
+        "gesundheitsausgaben_eu_avg_pct_bip_2024": 9.6,
+        "gesundheitsausgaben_at_pro_kopf_eur_2024": 5780,
+        "gesundheitsausgaben_de_pro_kopf_eur_2024": 5950,
+        "gesundheitsausgaben_ch_pro_kopf_eur_2024": 8430,
+        "gesundheitsausgaben_eu_avg_pro_kopf_eur_2024": 4090,
+        "anteil_oeffentlich_at_pct_2024": 76.8,
+        "anteil_oeffentlich_de_pct_2024": 84.7,
+        "anteil_oeffentlich_eu_avg_pct_2024": 79.4,
+        "context": "AT-Gesundheitsausgaben 2024: 11,7 % des BIP, 5.780 €/Kopf — überdurchschnittlich (EU-Schnitt 9,6 %, 4.090 €). Deutschland mit 12,7 % BIP-Anteil EU-Spitze. Öffentlicher Anteil AT 76,8 % (EU-Schnitt 79,4 %), DE 84,7 %. AT hat einen relativ hohen Privatfinanzierungs-Anteil (Selbstbehalte, private Zusatzversicherungen)."
+      },
+      "context_notes": [
+        "Boulevard-Behauptung 'Gesundheitssystem ist unterfinanziert' ist zumindest in der Gesamtsumme nicht haltbar — AT investiert pro Kopf das 1,4-fache des EU-Schnitts.",
+        "Echte Strukturfrage: Verteilung der Mittel zwischen Spital (überdurchschnittlich finanziert) und niedergelassener Versorgung / Pflege (unterdurchschnittlich).",
+        "Privatanteil AT 23,2 % ist EU-weit hoch — strukturelle Folge der ÖGK-Selbstbehalte + privater Zusatzversicherungs-Markt."
+      ],
+      "claim_phrasings_handled": [
+        "Gesundheitsausgaben Österreich",
+        "Gesundheitssystem unterfinanziert",
+        "BIP Anteil Gesundheit",
+        "Gesundheit pro Kopf"
+      ],
+      "trigger_keywords": [
+        "gesundheitsausgaben", "gesundheits-ausgaben",
+        "gesundheitsfinanzierung",
+        "gesundheitssystem unterfinanziert",
+        "gesundheits-budget"
+      ],
+      "trigger_composite": [
+        ["gesundheit", "gesundheits", "krankenversorgung"],
+        ["ausgaben", "kosten", "finanzierung", "budget", "bip-anteil",
+         "pro kopf", "unterfinanz"]
+      ],
+      "source_label": "OECD Health Statistics 2024 + Eurostat hlth_sha11_hf",
+      "source_url": "https://www.oecd.org/health/health-statistics.htm"
+    }
+  ]
+}

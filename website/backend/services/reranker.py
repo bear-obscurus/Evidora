@@ -133,6 +133,11 @@ _AUTHORITATIVE_INDICATORS = (
     "medientransparenz_fact",            # RTR/KommAustria Inserate-§2-Daten
     "rki_surveillance_fact",             # RKI SurvStat Surveillance-Eckwerte
     "biorxiv_classic",                   # bioRxiv Anti-Vax-/COVID-Klassiker
+    "education_dach_fact",               # TIMSS/PIRLS/PISA/Lehrer-Bedarf DACH
+    "at_courts_ruling",                  # VfGH/VwGH Schlüsselerkenntnisse
+    "oecd_health_fact",                  # OECD Health DACH-Eckwerte
+    "housing_at_fact",                   # Wohnungsmarkt AT (OeNB + EU-SILC)
+    "transport_at_fact",                 # Verkehr AT (ÖBB + UBA + KlimaTicket)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

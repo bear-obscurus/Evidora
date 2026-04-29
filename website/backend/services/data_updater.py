@@ -64,6 +64,11 @@ from services.eu_crime import fetch_eu_crime
 from services.energy_charts import fetch_energy_charts
 from services.medientransparenz import fetch_medientransparenz
 from services.rki_surveillance import fetch_rki_surveillance
+from services.education_dach import fetch_education
+from services.at_courts import fetch_at_courts
+from services.oecd_health import fetch_oecd_health
+from services.housing_at import fetch_housing
+from services.transport_at import fetch_transport
 
 logger = logging.getLogger("evidora")
 
@@ -117,6 +122,11 @@ async def prefetch_all():
             fetch_energy_charts(client),
             fetch_medientransparenz(client),
             fetch_rki_surveillance(client),
+            fetch_education(client),
+            fetch_at_courts(client),
+            fetch_oecd_health(client),
+            fetch_housing(client),
+            fetch_transport(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "OWID Measles", "OWID Vaccination (WUENIC)",
@@ -138,7 +148,12 @@ async def prefetch_all():
                  "Eurostat Crime + DACH PKS",
                  "Energy-Charts (Fraunhofer) + APG",
                  "MedienTransparenz (RTR/KommAustria)",
-                 "RKI SurvStat"]
+                 "RKI SurvStat",
+                 "Bildung (TIMSS/PIRLS/PISA + Lehrer-Bedarf)",
+                 "VfGH + VwGH Schlüsselerkenntnisse",
+                 "OECD Health (DACH)",
+                 "Wohnen Österreich (OeNB + EU-SILC)",
+                 "Verkehr Österreich (ÖBB + UBA + KlimaTicket)"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")

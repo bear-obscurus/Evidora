@@ -62,6 +62,11 @@ from services.eu_crime import search_eu_crime, claim_mentions_eu_crime_cached
 from services.energy_charts import search_energy_charts, claim_mentions_energy_charts_cached
 from services.medientransparenz import search_medientransparenz, claim_mentions_medientransparenz_cached
 from services.rki_surveillance import search_rki_surveillance, claim_mentions_rki_surveillance_cached
+from services.education_dach import search_education, claim_mentions_education_cached
+from services.at_courts import search_at_courts, claim_mentions_at_courts_cached
+from services.oecd_health import search_oecd_health, claim_mentions_oecd_health_cached
+from services.housing_at import search_housing, claim_mentions_housing_cached
+from services.transport_at import search_transport, claim_mentions_transport_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -445,6 +450,34 @@ async def check_claim(request: Request):
         if claim_mentions_rki_surveillance_cached(claim):
             tasks.append(cached("RKI SurvStat", search_rki_surveillance, analysis))
             queried_names.append("RKI SurvStat")
+        # Bildung — TIMSS, PIRLS, PISA, Lehrer-Bedarf-Statistik AT;
+        # gegen Boulevard-Mythen "Bildungs-Krise", "Lehrermangel",
+        # "jeder dritte Volksschüler kann nicht lesen".
+        if claim_mentions_education_cached(claim):
+            tasks.append(cached("Bildung DACH", search_education, analysis))
+            queried_names.append("Bildung (TIMSS/PIRLS/PISA + Lehrer-Bedarf)")
+        # VfGH + VwGH — österreichische Höchstgerichts-Schlüsselerkenntnisse
+        # (Ehe für alle, Sterbehilfe, COVID-Verordnungen, Impfpflicht,
+        # ORF-Beitrag, Asyl-Drittstaat, BP-Wahl-Aufhebung 2016).
+        if claim_mentions_at_courts_cached(claim):
+            tasks.append(cached("VfGH+VwGH", search_at_courts, analysis))
+            queried_names.append("VfGH + VwGH Schlüsselerkenntnisse")
+        # OECD Health — Lebenserwartung, Spitalsbetten, Gesundheits-
+        # ausgaben DACH gegen Mythen "Gesundheitssystem kollabiert".
+        if claim_mentions_oecd_health_cached(claim):
+            tasks.append(cached("OECD Health", search_oecd_health, analysis))
+            queried_names.append("OECD Health (DACH)")
+        # Wohnen Österreich — OeNB-Wohnimmobilienpreis-Index +
+        # EU-SILC-Wohnkostenbelastung gegen Mythen "Wohnen wird unleistbar".
+        if claim_mentions_housing_cached(claim):
+            tasks.append(cached("Wohnen AT", search_housing, analysis))
+            queried_names.append("Wohnen Österreich (OeNB + EU-SILC)")
+        # Verkehr Österreich — ÖBB-Pünktlichkeit + Verkehrs-CO2 +
+        # KlimaTicket gegen Mythen "ÖBB unzuverlässig", "KlimaTicket
+        # gescheitert", "Klimakleber sollen Lkw blockieren".
+        if claim_mentions_transport_cached(claim):
+            tasks.append(cached("Verkehr AT", search_transport, analysis))
+            queried_names.append("Verkehr Österreich (ÖBB + UBA + KlimaTicket)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
