@@ -1,0 +1,29 @@
+{
+  "data": {
+    "stand_iso": "2026-04",
+    "ezb_leitzins_aktuell_pct": 2.15,
+    "ezb_leitzins_typ": "Hauptrefinanzierungssatz",
+    "ezb_einlagensatz_aktuell_pct": 2.0,
+    "ezb_letzte_aenderung": "Juni 2025 (Senkung von 2,40 auf 2,15 %)",
+    "ezb_konstante_seit": "Juli 2025 (sechs Sitzungen unverändert: Juli/September/Oktober/Dezember 2025; Februar/März 2026)",
+    "ezb_zinszyklus_2025_2026": "Senkungszyklus von 4,50 % (Sept 2023) auf 2,15 % (Juni 2025) — danach Pause",
+    "oenb_inflationsprognose_at_2025_pct": 3.6,
+    "oenb_inflationsprognose_at_2026_pct": 2.1,
+    "oenb_bip_prognose_at_2026_pct": 1.0,
+    "oenb_geschaeftsbericht_2025": "Veröffentlicht März 2026",
+    "wechselkurs_eur_usd_aktuell_approx": 1.08,
+    "wechselkurs_eur_chf_aktuell_approx": 0.94,
+    "wichtige_hinweise": [
+      "Österreich kann den EZB-Leitzins NICHT eigenständig ändern — er wird vom EZB-Rat (alle 6 Wochen) festgelegt.",
+      "OeNB ist Teil des Eurosystems; OeNB-Gouverneur ist Mitglied im EZB-Rat.",
+      "EZB-Leitzins ≠ Sparzins — Banken zahlen typisch 50-150 Basispunkte unter dem Leitzins.",
+      "EZB-Leitzins ≠ Kreditzins — Banken verlangen typisch 100-300 Basispunkte über dem Leitzins."
+    ]
+  },
+  "source_label": "OeNB — Oesterreichische Nationalbank, Statistik + Geschäftsbericht 2025",
+  "source_url": "https://www.oenb.at/Statistik/Standardisierte-Tabellen/zinssaetze-und-wechselkurse.html",
+  "secondary_url": "https://www.oenb.at/Geldpolitik/Konjunktur/wirtschaftsprognosen-fuer-oesterreich.html",
+  "fetched_at_iso": "2026-04-29",
+  "version": 1,
+  "note": "Kuratierte OeNB-Daten zu EZB-Leitzins, Inflations-Prognose, Wechselkursen. Refresh: nach jedem EZB-Rat-Termin (alle 6 Wochen) bzw. nach OeNB-Quartalsprognose."
+}

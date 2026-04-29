@@ -132,6 +132,8 @@ _AUTHORITATIVE_INDICATORS = (
     "frontex_main",
     "frontex_route",
     "wifo_ihs_main",
+    "oenb_main",
+    "oenb_euro_austritt_counter",
 )
 
 
