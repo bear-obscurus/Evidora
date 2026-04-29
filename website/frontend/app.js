@@ -72,7 +72,8 @@ form.addEventListener("submit", async (e) => {
         let gotResult = false;
         let eventType = null;
 
-        // Timeout: abort if no result after 120s
+        // Timeout: abort if no result after 320s (matches backend Mistral
+        // timeout of 300s + slack for source-collection + reranking)
         const timeout = setTimeout(() => {
             if (!gotResult) {
                 reader.cancel();
@@ -80,7 +81,7 @@ form.addEventListener("submit", async (e) => {
                     ? "Zeitüberschreitung — bitte erneut versuchen."
                     : "Request timed out — please try again.");
             }
-        }, 120000);
+        }, 320000);
 
         try {
             while (!streamDone) {
