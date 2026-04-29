@@ -148,12 +148,19 @@ async def search_medientransparenz(analysis: dict) -> dict:
                     e["betrag_mio_eur"] for e in top10
                     if any(k in e["medium"] for k in seriose_keys)
                 )
+                spitzenreiter = top5[0]
                 _emit(
                     topic=topic,
                     name="Top-5 Inserate-Empfänger AT 2024 (Boulevard-Konzentration)",
                     year=year,
                     display=(
-                        f"Top-5-Empfänger 2024: {top5_str}. "
+                        f"Spitzenreiter der Inserate-Empfänger 2024: "
+                        f"{spitzenreiter['medium']} mit "
+                        f"{spitzenreiter['betrag_mio_eur']} Mio. € — "
+                        f"das ist der größte Einzelposten unter allen "
+                        f"Medien, die öffentliche Inserate erhalten haben "
+                        f"(Rang #1 von 10). "
+                        f"Vollständige Top-5: {top5_str}. "
                         f"Boulevard-Trio (Krone + Heute + Österreich/oe24) "
                         f"erhielt zusammen {boulevard_sum:.1f} Mio. €; "
                         f"seriöse Tageszeitungen (Standard + Presse + SN + OÖN) "
