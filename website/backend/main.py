@@ -55,6 +55,7 @@ from services.frontex import search_frontex, claim_mentions_frontex_cached
 from services.at_faktencheck_rss import search_at_faktencheck_rss, claim_mentions_at_faktencheck_rss_cached
 from services.wifo_ihs import search_wifo_ihs, claim_mentions_wifo_ihs_cached
 from services.oenb import search_oenb, claim_mentions_oenb_cached
+from services.mimikama import search_mimikama, claim_mentions_mimikama_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -381,6 +382,11 @@ async def check_claim(request: Request):
         if claim_mentions_oenb_cached(claim):
             tasks.append(cached("OeNB", search_oenb, analysis))
             queried_names.append("OeNB")
+        # Mimikama — DACH Hoax-Faktencheck (Social-Media-Hoaxes,
+        # Verschwörungs-Klassiker, KI-generierte Inhalte).
+        if claim_mentions_mimikama_cached(claim):
+            tasks.append(cached("Mimikama", search_mimikama, analysis))
+            queried_names.append("Mimikama")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

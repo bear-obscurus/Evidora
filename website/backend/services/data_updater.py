@@ -57,6 +57,7 @@ from services.frontex import fetch_frontex
 from services.at_faktencheck_rss import fetch_at_faktencheck_rss
 from services.wifo_ihs import fetch_wifo_ihs
 from services.oenb import fetch_oenb
+from services.mimikama import fetch_mimikama
 
 logger = logging.getLogger("evidora")
 
@@ -103,6 +104,7 @@ async def prefetch_all():
             fetch_at_faktencheck_rss(client),
             fetch_wifo_ihs(client),
             fetch_oenb(client),
+            fetch_mimikama(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "OWID Measles", "OWID Vaccination (WUENIC)",
@@ -118,7 +120,8 @@ async def prefetch_all():
                  "BMI Wahlen", "Parlament Abstimmungen",
                  "AT Factbook", "BKA PKS", "DACH Factbook",
                  "Retraction Watch", "Frontex",
-                 "AT-Faktencheck-RSS", "WIFO + IHS", "OeNB"]
+                 "AT-Faktencheck-RSS", "WIFO + IHS", "OeNB",
+                 "Mimikama"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")
