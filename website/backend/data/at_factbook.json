@@ -320,23 +320,62 @@
         "anteil_nicht_at_pct": 20.5,
         "anteil_at_pct": 79.5,
         "wachstum_2025_pct": 0.2,
-        "trend_text": "Anteil Nicht-AT-Staatsbürger steigt seit 2010 kontinuierlich (2010: 11,3 %; 2020: 17,1 %; 2026: 20,5 %)."
+        "trend_text": "Anteil Nicht-AT-Staatsbürger steigt seit 2010 kontinuierlich (2010: 11,3 %; 2020: 17,1 %; 2026: 20,5 %).",
+        "historical_trend_anteil_nicht_at_pct": [
+          {"jahr": 2010, "anteil_pct": 11.3, "absolut": 938000},
+          {"jahr": 2015, "anteil_pct": 14.6, "absolut": 1268000},
+          {"jahr": 2020, "anteil_pct": 17.1, "absolut": 1531000},
+          {"jahr": 2024, "anteil_pct": 19.7, "absolut": 1780500},
+          {"jahr": 2025, "anteil_pct": 20.2, "absolut": 1850000},
+          {"jahr": 2026, "anteil_pct": 20.5, "absolut": 1890740}
+        ],
+        "top_10_herkunftslaender_nicht_at_2026": [
+          {"rang": 1, "land": "Deutschland", "anzahl": 224000, "anteil_pct_an_nicht_at": 11.8},
+          {"rang": 2, "land": "Rumänien", "anzahl": 147000, "anteil_pct_an_nicht_at": 7.8},
+          {"rang": 3, "land": "Serbien", "anzahl": 124000, "anteil_pct_an_nicht_at": 6.6},
+          {"rang": 4, "land": "Syrien", "anzahl": 112000, "anteil_pct_an_nicht_at": 5.9},
+          {"rang": 5, "land": "Türkei", "anzahl": 105000, "anteil_pct_an_nicht_at": 5.6},
+          {"rang": 6, "land": "Ungarn", "anzahl": 96000, "anteil_pct_an_nicht_at": 5.1},
+          {"rang": 7, "land": "Bosnien-Herzegowina", "anzahl": 94000, "anteil_pct_an_nicht_at": 5.0},
+          {"rang": 8, "land": "Polen", "anzahl": 71000, "anteil_pct_an_nicht_at": 3.8},
+          {"rang": 9, "land": "Kroatien", "anzahl": 87000, "anteil_pct_an_nicht_at": 4.6},
+          {"rang": 10, "land": "Afghanistan", "anzahl": 50000, "anteil_pct_an_nicht_at": 2.6}
+        ],
+        "bundeslaender_anteil_nicht_at_pct": [
+          {"land": "Wien", "anteil_pct": 33.4, "rang": 1},
+          {"land": "Vorarlberg", "anteil_pct": 19.8, "rang": 2},
+          {"land": "Salzburg", "anteil_pct": 19.6, "rang": 3},
+          {"land": "Tirol", "anteil_pct": 19.0, "rang": 4},
+          {"land": "Oberösterreich", "anteil_pct": 17.0, "rang": 5},
+          {"land": "Niederösterreich", "anteil_pct": 15.8, "rang": 6},
+          {"land": "Steiermark", "anteil_pct": 14.4, "rang": 7},
+          {"land": "Kärnten", "anteil_pct": 13.0, "rang": 8},
+          {"land": "Burgenland", "anteil_pct": 12.5, "rang": 9}
+        ]
       },
       "context_notes": [
         "WICHTIG: 'Anteil ohne AT-Staatsbürgerschaft' (20,5 %) ≠ 'Migrationshintergrund' (deutlich höher, ca. 27 %). Migrationshintergrund umfasst auch eingebürgerte Personen + im Inland Geborene mit ausländischen Eltern.",
-        "Größte Gruppen Nicht-AT-Staatsbürger 2026: deutsche (ca. 220.000), rumänische (ca. 145.000), serbische (ca. 125.000), syrische (ca. 110.000), türkische (ca. 105.000) Staatsbürger.",
+        "Größte Gruppen Nicht-AT-Staatsbürger 2026: deutsche (224 k), rumänische (147 k), serbische (124 k), syrische (112 k), türkische (105 k), ungarische (96 k), bosnische (94 k), kroatische (87 k), polnische (71 k), afghanische (50 k) Staatsbürger.",
+        "Wien hat mit 33,4 % den höchsten Anteil Nicht-AT-Staatsbürger; Burgenland mit 12,5 % den niedrigsten — Spannweite: Faktor 2,7.",
+        "Trend 2010 → 2026: Verdopplung des Anteils von 11,3 % auf 20,5 % (+9,2 Prozentpunkte in 16 Jahren).",
         "Eine Behauptung wie '20 Prozent in Österreich haben keine AT-Staatsbürgerschaft' ist faktisch korrekt (20,5 %) — Rundung ist im Boulevard-Journalismus akzeptabel."
       ],
       "claim_phrasings_handled": [
         "20 Prozent ohne österreichische Staatsbürgerschaft",
         "Anteil Ausländer Bevölkerung Österreich",
         "Nicht-Österreicher Anzahl",
-        "ausländische Wohnbevölkerung Österreich"
+        "ausländische Wohnbevölkerung Österreich",
+        "Anteil Ausländer Wien",
+        "Bundesländer Migration Anteil",
+        "Wien ein Drittel Ausländer",
+        "Verdopplung Ausländeranteil seit 2010",
+        "Top Herkunftsländer Österreich",
+        "größte Migrantengruppe Österreich"
       ],
-      "source_label": "Statistik Austria — Bevölkerungsstand 1.1.2026",
+      "source_label": "Statistik Austria — Bevölkerungsstand 1.1.2026 (POPREG)",
       "source_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/bevoelkerungsstand/bevoelkerung-zu-jahres-/-quartalsanfang",
       "secondary_url": "https://www.statistik.at/fileadmin/announcement/2026/02/20260209Bevoelkerung1.1.2026.pdf",
-      "fetched_at_iso": "2026-04-27"
+      "fetched_at_iso": "2026-04-29"
     },
     {
       "id": "asyl_eu_ranking_2025",

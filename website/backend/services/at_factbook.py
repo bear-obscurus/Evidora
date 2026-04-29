@@ -284,15 +284,40 @@ _CITIZEN_TERMS = (
     "ausländerquote", "auslaenderquote",
     "fremdenanteil", "fremde wohnbevölkerung",
     "anteil ausländer bevölkerung",
+    "anteil ausländischer", "anteil auslaendischer",
+    "ausländischer bevölkerung", "auslaendischer bevoelkerung",
+    "ausländeranteil", "auslaenderanteil",
     "non-austrian citizens", "share of foreigners",
+    "wohnbevölkerung",
+    "ein drittel der wiener", "drittel ausländer", "drittel auslaender",
 )
 
 
 def _claim_mentions_citizenship(claim_lc: str) -> bool:
     has_term = any(t in claim_lc for t in _CITIZEN_TERMS)
-    if not has_term:
-        return False
-    return _has_at_context(claim_lc)
+    if has_term and _has_at_context(claim_lc):
+        return True
+    # Composite: "Anteil/Prozent" + "Ausländer/Migranten" + AT-Kontext
+    has_share = any(t in claim_lc for t in (
+        "anteil", "prozent", "%", "quote", "drittel", "viertel", "fünftel",
+    ))
+    has_foreign = any(t in claim_lc for t in (
+        "ausländer", "auslaender", "migrant", "ausländisch", "auslaendisch",
+        "nicht-österreich", "nichtoesterreich",
+    ))
+    if has_share and has_foreign and _has_at_context(claim_lc):
+        return True
+    # Composite: "größte Gruppe/Migrantengruppe" + AT-Kontext
+    has_group = any(t in claim_lc for t in (
+        "größte gruppe", "groesste gruppe",
+        "größte migrant", "groesste migrant",
+        "größte herkunft", "groesste herkunft",
+        "top herkunft", "top-herkunft",
+        "rangliste herkunft",
+    ))
+    if has_group and _has_at_context(claim_lc):
+        return True
+    return False
 
 
 # ---------------------------------------------------------------------------
@@ -1321,6 +1346,7 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
     def _de(v):
         return f"{int(v):,}".replace(",", ".") if v is not None else "?"
 
+    # Always emit the main snapshot first
     headline = (
         f"Wohnbevölkerung Österreich 1.1.2026: {_de(data.get('bevoelkerung_gesamt'))} "
         f"insgesamt, davon {_de(data.get('bevoelkerung_nicht_at_staatsbuerger'))} "
@@ -1335,7 +1361,7 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
     for note in fact.get("context_notes") or []:
         description_parts.append(note)
 
-    return [{
+    out: list[dict] = [{
         "indicator_name": "Wohnbevölkerung Österreich nach Staatsbürgerschaft (1.1.2026)",
         "indicator": "factbook_citizenship_at",
         "country": "AUT",
@@ -1347,6 +1373,112 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
         "url": src,
         "source": label,
     }]
+
+    # Sub-result: Mehrjahres-Trend (gelistet, wenn Claim Trend/Verdopplung/Jahre erwähnt)
+    trend_triggers = ("trend", "seit 2010", "verdopp", "verdoppelt",
+                      "entwicklung", "anstieg", "gestiegen", "frueher",
+                      "früher", "letzte jahre", "jahrzehnt")
+    history = data.get("historical_trend_anteil_nicht_at_pct") or []
+    if history and any(t in claim_lc for t in trend_triggers):
+        timeline = " · ".join(
+            f"{p['jahr']}: {p['anteil_pct']} %" for p in history
+        )
+        first = history[0]
+        last = history[-1]
+        delta_pp = round(last["anteil_pct"] - first["anteil_pct"], 1)
+        ratio = round(last["anteil_pct"] / first["anteil_pct"], 2) if first["anteil_pct"] else None
+        out.append({
+            "indicator_name": f"Trend Anteil Nicht-AT-Staatsbürger {first['jahr']}–{last['jahr']}",
+            "indicator": "factbook_citizenship_at",
+            "country": "AUT",
+            "country_name": "Österreich",
+            "year": f"{first['jahr']}–{last['jahr']}",
+            "value": last["anteil_pct"],
+            "display_value": (
+                f"Anteil Nicht-AT-Staatsbürger: {first['jahr']} = {first['anteil_pct']} % "
+                f"→ {last['jahr']} = {last['anteil_pct']} % "
+                f"(+{delta_pp} Prozentpunkte, Faktor {ratio})."
+            ),
+            "description": (
+                f"Zeitreihe Statistik Austria (POPREG): {timeline}. "
+                f"Absolutzahlen: {first['jahr']} = {_de(first['absolut'])} Personen → "
+                f"{last['jahr']} = {_de(last['absolut'])} Personen."
+            ),
+            "url": src,
+            "source": label,
+        })
+
+    # Sub-result: Top-10 Herkunftsländer (wenn Claim Herkunft/Nationalität erwähnt)
+    origin_triggers = ("herkunft", "nationalität", "nationalitaet",
+                       "deutsche", "rumän", "serb", "syrer", "syrisch",
+                       "türk", "ungar", "bosn", "kroat", "polnisch",
+                       "afghan", "größte gruppe", "groesste gruppe",
+                       "größte migrant", "groesste migrant", "top",
+                       "rangliste", "ranking")
+    top10 = data.get("top_10_herkunftslaender_nicht_at_2026") or []
+    if top10 and any(t in claim_lc for t in origin_triggers):
+        ranking = " · ".join(
+            f"#{e['rang']} {e['land']} ({_de(e['anzahl'])})"
+            for e in top10[:10]
+        )
+        out.append({
+            "indicator_name": "Top-10 Herkunftsländer Nicht-AT-Staatsbürger (2026)",
+            "indicator": "factbook_citizenship_at",
+            "country": "AUT",
+            "country_name": "Österreich",
+            "year": "2026",
+            "value": top10[0]["anzahl"] if top10 else None,
+            "display_value": (
+                f"Größte Gruppen Nicht-AT-Staatsbürger 2026: "
+                f"#{top10[0]['rang']} {top10[0]['land']} ({_de(top10[0]['anzahl'])}), "
+                f"#{top10[1]['rang']} {top10[1]['land']} ({_de(top10[1]['anzahl'])}), "
+                f"#{top10[2]['rang']} {top10[2]['land']} ({_de(top10[2]['anzahl'])})."
+            ),
+            "description": f"Vollständige Top-10 (Statistik Austria, 1.1.2026): {ranking}.",
+            "url": src,
+            "source": label,
+        })
+
+    # Sub-result: Bundesländer-Aufschlüsselung (wenn Claim Wien/Bundesland erwähnt)
+    state_triggers = ("wien", "vorarlberg", "salzburg", "tirol",
+                      "oberösterreich", "oberoesterreich", "niederösterreich",
+                      "niederoesterreich", "steiermark", "kärnten", "kaernten",
+                      "burgenland", "bundesland", "bundesländer", "bundeslaender",
+                      "ein drittel", "drittel ausländer", "drittel auslaender")
+    states = data.get("bundeslaender_anteil_nicht_at_pct") or []
+    if states and any(t in claim_lc for t in state_triggers):
+        sorted_states = sorted(states, key=lambda x: x.get("rang", 99))
+        ranking = " · ".join(
+            f"{s['land']} {s['anteil_pct']} %" for s in sorted_states
+        )
+        wien = next((s for s in states if s["land"] == "Wien"), None)
+        burgenland = next((s for s in states if s["land"] == "Burgenland"), None)
+        head_parts = []
+        if wien:
+            head_parts.append(f"Wien {wien['anteil_pct']} % (Spitze)")
+        if burgenland:
+            head_parts.append(f"Burgenland {burgenland['anteil_pct']} % (niedrigster)")
+        head_parts.append(f"Bundesschnitt {data.get('anteil_nicht_at_pct')} %")
+        out.append({
+            "indicator_name": "Anteil Nicht-AT-Staatsbürger nach Bundesland (2026)",
+            "indicator": "factbook_citizenship_at",
+            "country": "AUT",
+            "country_name": "Österreich",
+            "year": "2026",
+            "value": wien["anteil_pct"] if wien else None,
+            "display_value": (
+                f"Bundesländer-Spannweite Nicht-AT-Anteil: "
+                + " · ".join(head_parts) + "."
+            ),
+            "description": (
+                f"Vollständige Liste (Statistik Austria, 1.1.2026): {ranking}. "
+                f"Spannweite zwischen Wien und Burgenland: Faktor 2,7."
+            ),
+            "url": src,
+            "source": label,
+        })
+
+    return out
 
 
 # ---------------------------------------------------------------------------
