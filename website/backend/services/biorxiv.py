@@ -81,7 +81,15 @@ def _claim_mentions_biorxiv(claim_lc: str) -> bool:
 
 
 def claim_mentions_biorxiv_cached(claim: str) -> bool:
-    return _claim_mentions_biorxiv((claim or "").lower())
+    cl = (claim or "").lower()
+    if _claim_mentions_biorxiv(cl):
+        return True
+    # Klassiker-Match (Anti-Vax-/COVID-Hoaxes ohne Studien-Wort)
+    # erlaubt das Triggern auch ohne Preprint-/Studie-Marker, weil der
+    # Service in dem Fall den Klassiker-Pool ausspielt.
+    if _match_classics(cl):
+        return True
+    return False
 
 
 # ---------------------------------------------------------------------------
