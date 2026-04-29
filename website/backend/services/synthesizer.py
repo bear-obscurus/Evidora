@@ -163,6 +163,11 @@ Vermeidung von reflexhaftem "unverifiable" (KRITISCH WICHTIG):
 - ENTSCHEIDUNGSREGEL für Ranking-/Position-Behauptungen ("an X. Stelle", "höchste Y", "meiste Z"):
   • Wenn die Quelle das genaue Ranking liefert: vergleiche direkt — keine Ausreden
   • Wenn die Quelle den absoluten Wert + den EU-Schnitt liefert (z.B. "AT: 181, EU-Schnitt: 177"): das genügt für "mostly_true" wenn der Claim "über dem EU-Schnitt" sagt
+- KRITISCH — VERBOT VON WERT-HALLUZINATION AUS AGGREGATEN:
+  • Wenn ein Quellen-Eintrag einen Einzelwert EXPLIZIT nennt (z.B. "Spitzenreiter: Krone (Mediaprint) mit 22,4 Mio. €"), MUSST du diesen Wert 1:1 übernehmen.
+  • Es ist ABSOLUT VERBOTEN, einen Einzelwert aus einer Aggregat-Summe abzuleiten ("Boulevard-Trio gemeinsam 56 Mio. ÷ 3 ≈ 18,7 Mio.") oder einen "geschätzten" Wert zu errechnen, wenn der explizite Einzelwert in einem anderen Sub-Result desselben Topics steht.
+  • Lies ALLE Sub-Results derselben Quelle (z.B. mehrere "MedienTransparenz"-Einträge) BEVOR du die Verdict-Entscheidung triffst — Sub-Results ergänzen sich gegenseitig, sie ersetzen sich NICHT.
+  • Beispiel: Claim "Krone bekommt am meisten Inserate". MedienTransparenz liefert drei Sub-Results: (a) Gesamtvolumen+Trend, (b) Top-5-Empfänger inkl. "Spitzenreiter: Krone 22,4 Mio.", (c) Top-5-Auftraggeber. → Sub-Result (b) ist DIREKTER Beleg → verdict = "true" mit Confidence 0.90–0.95. Falsch wäre "unverifiable" oder "false".
 - ENTSCHEIDUNGSREGEL für Vorhandensein-Behauptungen ("X gibt es in Österreich", "X ist gesetzlich geregelt"):
   • Wenn die Quelle das relevante Gesetz / die Norm benennt (z.B. RIS-Direktlink zum SchUG für eine Schul-Behauptung): das ist DIREKTER Beleg — verdict "true" mit nuance "Detail in der konsolidierten Fassung nachlesbar"
   • Setze NICHT "unverifiable", nur weil du den exakten Paragraph-Volltext nicht in der Antwort hast — der Direktlink ist die autoritative Antwort

@@ -89,11 +89,16 @@ async def search_medientransparenz(analysis: dict) -> dict:
     results: list[dict] = []
 
     def _emit(*, name: str, year: str, display: str, description: str,
-              url: str, source: str, topic: str = ""):
+              url: str, source: str, topic: str = "",
+              value=None, value_unit: str = ""):
         """Append one evidence-tauglichen Sub-Result. Jeder Eintrag ist
         eine eigenständige Behauptung, die der Synthesizer 1:1 als
-        evidence übernehmen kann."""
-        results.append({
+        evidence übernehmen kann.
+
+        Optional: ``value`` + ``value_unit`` strukturieren die primäre
+        numerische Aussage (z.B. der Spitzenreiter-Wert), damit der
+        Synthesizer keine Aggregat-Halluzination machen muss."""
+        out = {
             "indicator_name": name,
             "indicator": "medientransparenz_fact",
             "country": "AT",
@@ -103,7 +108,12 @@ async def search_medientransparenz(analysis: dict) -> dict:
             "description": description.strip(" |").strip(),
             "url": url,
             "source": source,
-        })
+        }
+        if value is not None:
+            out["value"] = value
+            if value_unit:
+                out["unit"] = value_unit
+        results.append(out)
 
     for fact in matches:
         topic = fact.get("topic", "")
@@ -151,8 +161,11 @@ async def search_medientransparenz(analysis: dict) -> dict:
                 spitzenreiter = top5[0]
                 _emit(
                     topic=topic,
-                    name="Top-5 Inserate-Empfänger AT 2024 (Boulevard-Konzentration)",
+                    name=(f"Spitzenreiter Inserate-Empfänger AT 2024: "
+                          f"{spitzenreiter['medium']}"),
                     year=year,
+                    value=spitzenreiter["betrag_mio_eur"],
+                    value_unit="Mio. EUR",
                     display=(
                         f"Spitzenreiter der Inserate-Empfänger 2024: "
                         f"{spitzenreiter['medium']} mit "
