@@ -271,6 +271,34 @@ def _claim_mentions_dach_pensions(claim_lc: str) -> bool:
     return False
 
 
+_EU_BESCHLUESSE_TERMS = (
+    "eu ai act", "ai act", "eu-ki-verordnung", "ki-verordnung eu",
+    "eu-taxonomie", "eu taxonomie",
+    "atomstrom eu-taxonomie", "atomstrom nachhaltig",
+    "csddd", "lieferketten-richtlinie", "eu-lieferketten",
+    "lieferkettengesetz eu",
+    "recht auf reparatur", "eu-reparatur",
+    "eu-plastiksteuer", "plastiksteuer eu",
+    "eu-methan", "methan-verordnung",
+    "eu-renaturierung", "renaturierungsverordnung",
+    "nature restoration law",
+    "eu-verordnung 2024", "eu-richtlinie 2024",
+)
+
+
+def _claim_mentions_eu_beschluesse(claim_lc: str) -> bool:
+    has_term = any(t in claim_lc for t in _EU_BESCHLUESSE_TERMS)
+    if has_term:
+        return True
+    # Composite: 'EU' + Verordnung/Richtlinie + 2024/2025/2026
+    has_eu = any(t in claim_lc for t in ("eu-verordnung", "eu-richtlinie",
+                                          "europäische verordnung",
+                                          "europäische richtlinie"))
+    if has_eu:
+        return True
+    return False
+
+
 _DACH_HPV_TERMS = (
     "hpv-impfrate", "hpv impfrate",
     "hpv-impfquote", "hpv impfquote",
@@ -353,6 +381,8 @@ def _claim_matches_any_topic(claim: str) -> list[str]:
         matched.append("dach_pensions_vergleich")
     if _claim_mentions_dach_hpv(cl):
         matched.append("dach_hpv_impfraten")
+    if _claim_mentions_eu_beschluesse(cl):
+        matched.append("eu_schluessel_beschluesse")
     return matched
 
 
@@ -839,6 +869,74 @@ def _build_dach_pensions_vergleich_results(fact: dict, claim_lc: str) -> list[di
     }]
 
 
+def _build_eu_beschluesse_results(fact: dict, claim_lc: str) -> list[dict]:
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "EUR-Lex / EU-Kommission"
+    beschluesse = data.get("beschluesse") or []
+
+    results: list[dict] = []
+
+    # Versuch, ein spezifisches Beschluss-Topic zu identifizieren
+    matched_beschluesse = []
+    for b in beschluesse:
+        bid = b.get("id", "").lower()
+        bname = b.get("name", "").lower()
+        # Match auf id oder name-Substring
+        for trigger_kw in (
+            ("ai act", "eu_ai_act"),
+            ("ki-verordnung", "eu_ai_act"),
+            ("taxonomie", "eu_taxonomie"),
+            ("atomstrom", "eu_taxonomie"),
+            ("csddd", "eu_csrd"),
+            ("lieferketten", "eu_csrd"),
+            ("recht auf reparatur", "eu_recht"),
+            ("plastiksteuer", "eu_plastik"),
+            ("methan", "eu_methan"),
+            ("renaturierung", "eu_nature"),
+            ("nature restoration", "eu_nature"),
+            ("asyl- und migrations", "eu_asyl"),
+        ):
+            if trigger_kw[0] in claim_lc and trigger_kw[1] in bid:
+                matched_beschluesse.append(b)
+                break
+
+    # Wenn ein spezifischer Beschluss erkannt → Detail-Eintrag
+    for b in matched_beschluesse:
+        results.append({
+            "indicator_name": f"EU: {b['name']}",
+            "indicator": "eu_beschluss_detail",
+            "country": "EU", "country_name": "Europäische Union",
+            "year": b.get("in_kraft", ""),
+            "display_value": (
+                f"EU-Rechtsakt: {b['name']} ({b.get('verordnung', '')}). "
+                f"In Kraft: {b.get('in_kraft', '?')}. "
+                f"{('Vollanwendung ab: ' + b['vollanwendung_ab'] + '. ') if b.get('vollanwendung_ab') else ''}"
+                f"Kerninhalt: {b.get('kerninhalt', '')}"
+            ),
+            "description": " ".join(fact.get("context_notes") or []),
+            "url": src, "source": label,
+        })
+
+    # Übersichts-Eintrag immer dazu
+    overview_text = (
+        f"EU-Schlüsselbeschlüsse 2024-2026 ({len(beschluesse)} dokumentierte): "
+        + ", ".join(f"{b['name']} ({b.get('in_kraft', '?')})" for b in beschluesse[:5])
+        + (f" und {len(beschluesse) - 5} weitere." if len(beschluesse) > 5 else "")
+    )
+    results.append({
+        "indicator_name": "EU-Schlüsselbeschlüsse 2024-2026 (Übersicht)",
+        "indicator": "eu_beschluesse_overview",
+        "country": "EU", "country_name": "Europäische Union",
+        "year": "2024-2026",
+        "display_value": overview_text,
+        "description": " ".join(fact.get("context_notes") or []),
+        "url": src, "source": label,
+    })
+
+    return results
+
+
 def _build_dach_hpv_results(fact: dict, claim_lc: str) -> list[dict]:
     data = fact.get("data") or {}
     src = fact.get("source_url") or ""
@@ -912,6 +1010,8 @@ async def search_dach_factbook(analysis: dict) -> dict:
                 results.extend(_build_dach_pensions_vergleich_results(fact, matchable))
             elif topic == "dach_hpv_impfraten":
                 results.extend(_build_dach_hpv_results(fact, matchable))
+            elif topic == "eu_schluessel_beschluesse":
+                results.extend(_build_eu_beschluesse_results(fact, matchable))
 
     return {
         "source": "DACH Factbook",

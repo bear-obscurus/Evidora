@@ -128,6 +128,8 @@ _AUTHORITATIVE_INDICATORS = (
     "dach_asyl_vergleich",
     "dach_pensions_vergleich",
     "dach_hpv_impfraten",
+    "eu_beschluss_detail",
+    "eu_beschluesse_overview",
     "retraction_watch_classic",
     "frontex_main",
     "frontex_route",

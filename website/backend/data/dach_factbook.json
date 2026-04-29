@@ -359,6 +359,102 @@
       "fetched_at_iso": "2026-04-29"
     },
     {
+      "id": "eu_schluessel_beschluesse_2024_2026",
+      "topic": "eu_schluessel_beschluesse",
+      "scope": "EU-Schlüsselbeschlüsse 2024-2026 (Übersicht für DACH-Boulevard-Themen)",
+      "year": "2024-2026",
+      "headline": "EU-Schlüsselbeschlüsse 2024-2026 — Beschlüsse, Inkrafttreten, Inhalt",
+      "data": {
+        "beschluesse": [
+          {
+            "id": "eu_ai_act_2024",
+            "name": "EU AI Act (KI-Verordnung)",
+            "verordnung": "Verordnung (EU) 2024/1689",
+            "in_kraft": "2024-08-01",
+            "vollanwendung_ab": "2026-08-02",
+            "kerninhalt": "Risiko-basierter Ansatz für KI-Systeme. Verbotene KI-Praktiken (Social Scoring, Echtzeit-biometrische Identifikation) ab 2025. Hochrisiko-Systeme (Recruiting, Justiz) ab 2026 reguliert."
+          },
+          {
+            "id": "eu_taxonomie_atomstrom_2022",
+            "name": "EU-Taxonomie für nachhaltige Investitionen",
+            "verordnung": "Delegierte Verordnung 2022/1214",
+            "in_kraft": "2023-01-01",
+            "kerninhalt": "Atomkraft + Erdgas unter strengen Bedingungen als 'nachhaltig' klassifiziert. AT hatte gegen die Verordnung geklagt — EuGH-Urteil C-647/22 hat Klage abgewiesen (Oktober 2024)."
+          },
+          {
+            "id": "eu_asyl_migrations_pakt_2024",
+            "name": "EU-Asyl- und Migrationspakt",
+            "verordnung": "VO 2024/1351 + 1348 + 7 weitere Rechtsakte",
+            "in_kraft": "2026-06-12",
+            "kerninhalt": "Außengrenzverfahren verpflichtend für niedrige Anerkennungsquoten, Solidaritätsmechanismus mit Relocations oder Ausgleichszahlungen, Crisis-Verordnung. AT hat Solidaritätsausnahme nach Art. 58 erhalten."
+          },
+          {
+            "id": "eu_csrd_lieferketten_2024",
+            "name": "EU-Lieferketten-Sorgfaltspflichten (CSDDD)",
+            "verordnung": "Richtlinie (EU) 2024/1760",
+            "in_kraft": "2024-07-25",
+            "vollanwendung_ab": "2027-07-26 (große Unternehmen), 2028 (mittlere)",
+            "kerninhalt": "Unternehmen mit >1.000 Mitarbeitern müssen Menschenrechts- und Umweltrisiken in der Lieferkette identifizieren und beheben. AT-Bezug: ÖVP/SPÖ haben gegen die Richtlinie gestimmt."
+          },
+          {
+            "id": "eu_recht_auf_reparatur_2024",
+            "name": "EU-Recht auf Reparatur (R2R-Richtlinie)",
+            "verordnung": "Richtlinie (EU) 2024/1799",
+            "in_kraft": "2024-07-30",
+            "umsetzung_ab": "2026-07-31",
+            "kerninhalt": "Hersteller müssen reparable Produkte anbieten, Ersatzteile verfügbar halten, Reparaturen erschwinglich machen. Gilt für Smartphones, Tablets, Waschmaschinen, etc."
+          },
+          {
+            "id": "eu_plastiksteuer_eigeneinnahme_2021",
+            "name": "EU-Plastiksteuer (Eigenmittel)",
+            "verordnung": "Beschluss (EU, Euratom) 2020/2053",
+            "in_kraft": "2021-01-01",
+            "kerninhalt": "Mitgliedstaaten zahlen 0,80 EUR pro kg nicht-recyceltes Plastik in EU-Haushalt. Österreich-Beitrag 2024: ca. 220 Mio EUR. EuGH-Urteil C-373/20 hat die Kompetenz bestätigt."
+          },
+          {
+            "id": "eu_methan_2024",
+            "name": "EU-Methan-Verordnung",
+            "verordnung": "Verordnung (EU) 2024/1787",
+            "in_kraft": "2024-08-04",
+            "kerninhalt": "Methan-Emissionen in Energie-Sektor regulieren (Öl, Gas, Kohle). Pflicht zur Leck-Detektion, Verbot von Routine-Flaring/Venting ab 2027."
+          },
+          {
+            "id": "eu_nature_restoration_law_2024",
+            "name": "EU-Renaturierungsverordnung",
+            "verordnung": "Verordnung (EU) 2024/1991",
+            "in_kraft": "2024-08-18",
+            "kerninhalt": "20 % der EU-Land- und Meeresflächen bis 2030 renaturieren. Mitgliedstaaten müssen Renaturierungspläne vorlegen. AT hat dagegen gestimmt (ÖVP-Position)."
+          }
+        ],
+        "wichtige_caveats": [
+          "EU-Verordnungen gelten direkt in allen Mitgliedstaaten ab Inkrafttreten. EU-Richtlinien müssen erst in nationales Recht umgesetzt werden (Frist typisch 18-24 Monate).",
+          "Österreich hat im Rat oft gegen Richtlinien gestimmt (CSDDD, Renaturierung), die dann mit qualifizierter Mehrheit angenommen wurden.",
+          "EuGH-Urteile zu EU-Verordnungen sind verbindlich für alle Mitgliedstaaten."
+        ]
+      },
+      "context_notes": [
+        "EU AI Act ist seit August 2024 in Kraft, volle Anwendung ab August 2026 — Behauptungen 'KI ist in der EU jetzt verboten' sind FALSCH (nur risiko-basierter Ansatz).",
+        "EU-Taxonomie hat Atomstrom + Erdgas als 'nachhaltig' klassifiziert — EuGH hat AT-Klage 2024 abgewiesen. Behauptung 'Atomstrom ist EU-grün' ist mostly_true mit Bedingungen.",
+        "Recht auf Reparatur ab Juli 2026 in nationales Recht umgesetzt — Hersteller müssen reparieren statt austauschen.",
+        "Lieferkettengesetz CSDDD gilt erst ab 2027 für Unternehmen > 1.000 MA — frühere Behauptungen 'Lieferketten-Gesetz greift schon 2025' sind FALSCH."
+      ],
+      "claim_phrasings_handled": [
+        "EU AI Act",
+        "EU KI-Verordnung",
+        "EU Taxonomie Atomkraft",
+        "EU Lieferkettengesetz CSDDD",
+        "EU Recht auf Reparatur",
+        "EU Plastiksteuer",
+        "EU Methan-Verordnung",
+        "EU Renaturierungsverordnung",
+        "Österreich gegen EU gestimmt"
+      ],
+      "source_label": "EUR-Lex (eur-lex.europa.eu); EU-Kommission Press corner; EuGH-Urteile",
+      "source_url": "https://eur-lex.europa.eu/",
+      "secondary_url": "https://ec.europa.eu/commission/presscorner/",
+      "fetched_at_iso": "2026-04-29"
+    },
+    {
       "id": "asylbewerber_gesundheit_de_counter",
       "topic": "asylbewerber_gesundheit_de_counter",
       "scope": "Counter zur AfD-Behauptung 'Asylbewerber bekommen sofort alle Gesundheitsleistungen'",
