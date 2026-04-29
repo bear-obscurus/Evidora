@@ -1,0 +1,44 @@
+{
+  "data": {
+    "stand_iso": "2026-04",
+    "wifo_kp_quartal": "WIFO-Konjunkturprognose 1/2026 (März 2026)",
+    "ihs_kp_quartal": "IHS-Konjunkturprognose 1/2026 (März 2026)",
+    "bip_wachstum_2025_pct_real_wifo": -0.3,
+    "bip_wachstum_2025_pct_real_ihs": -0.4,
+    "bip_wachstum_2026_pct_real_wifo": 1.2,
+    "bip_wachstum_2026_pct_real_ihs": 1.0,
+    "bip_wachstum_2027_pct_real_wifo": 1.5,
+    "bip_wachstum_2027_pct_real_ihs": 1.4,
+    "inflation_2025_pct_wifo": 3.5,
+    "inflation_2025_pct_ihs": 3.6,
+    "inflation_2026_pct_wifo": 2.6,
+    "inflation_2026_pct_ihs": 2.5,
+    "inflation_2027_pct_wifo": 2.2,
+    "inflation_2027_pct_ihs": 2.1,
+    "arbeitslosenquote_eurostat_2025_pct_wifo": 5.5,
+    "arbeitslosenquote_eurostat_2026_pct_wifo": 5.4,
+    "arbeitslosenquote_ams_2025_pct": 7.5,
+    "arbeitslosenquote_ams_2026_pct_prognose": 7.3,
+    "ams_methodologie_caveat": "AMS-Quote (national, mit Schulungsteilnehmer) ist systematisch ~1,5–2 PP höher als Eurostat-/ILO-Quote. Boulevard-Medien zitieren typisch die AMS-Quote.",
+    "rezession_2023_2024_charakterisierung": "Österreich war 2023-2024 zwei Jahre in Folge in Rezession (BIP -0,8 % bzw. -1,0 %) — historisch ungewöhnlich.",
+    "rezession_2025_charakterisierung": "2025 BIP-Wachstum knapp negativ (-0,3 % WIFO / -0,4 % IHS) — drittes schwaches Jahr in Folge, aber Aufschwung erkennbar.",
+    "aufschwung_2026_treiber": [
+      "Konsumimpuls durch sinkende Inflation",
+      "Außenwirtschaftliche Erholung (Eurozone-Konjunktur)",
+      "Investitionen (nach 3 schwachen Jahren)",
+      "Sparpaket dämpft Konsum, aber Konjunktur-Effekt überwiegt"
+    ],
+    "risiken_2026": [
+      "Geopolitik (Russland-Krieg, Naher Osten)",
+      "US-Handelspolitik (Trump-Zölle ab 2025)",
+      "China-Schwäche",
+      "Europäische Bankenrisiken"
+    ]
+  },
+  "source_label": "WIFO + IHS Konjunkturprognose 1/2026 (März 2026); Pressemeldung BMF April 2026",
+  "source_url": "https://www.wifo.ac.at/en/publications/wifo-konjunkturprognose/",
+  "secondary_url": "https://www.ihs.ac.at/de/datencenter/konjunkturprognose/",
+  "fetched_at_iso": "2026-04-29",
+  "version": 1,
+  "note": "Kuratierte WIFO + IHS Konjunkturprognose-Daten für AT-Wirtschaftsfaktenchecks. Refresh: vierteljährlich (WIFO/IHS publizieren synchron). Werte aus aktueller Q1-2026-Prognose; nächste Aktualisierung Juni 2026."
+}

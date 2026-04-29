@@ -131,6 +131,7 @@ _AUTHORITATIVE_INDICATORS = (
     "retraction_watch_classic",
     "frontex_main",
     "frontex_route",
+    "wifo_ihs_main",
 )
 
 

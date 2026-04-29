@@ -53,6 +53,7 @@ from services.dach_factbook import search_dach_factbook, claim_mentions_dach_fac
 from services.retraction_watch import search_retraction_watch, claim_mentions_retraction_watch_cached
 from services.frontex import search_frontex, claim_mentions_frontex_cached
 from services.at_faktencheck_rss import search_at_faktencheck_rss, claim_mentions_at_faktencheck_rss_cached
+from services.wifo_ihs import search_wifo_ihs, claim_mentions_wifo_ihs_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -369,6 +370,11 @@ async def check_claim(request: Request):
         if claim_mentions_at_faktencheck_rss_cached(claim):
             tasks.append(cached("AT-Faktencheck-RSS", search_at_faktencheck_rss, analysis))
             queried_names.append("AT-Faktencheck-RSS")
+        # WIFO + IHS Konjunkturprognosen (Österreichs Wirtschaftsforschungs-
+        # institute; BIP, Inflation, Arbeitslosigkeit, Rezession).
+        if claim_mentions_wifo_ihs_cached(claim):
+            tasks.append(cached("WIFO + IHS", search_wifo_ihs, analysis))
+            queried_names.append("WIFO + IHS")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

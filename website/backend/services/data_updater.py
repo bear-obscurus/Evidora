@@ -55,6 +55,7 @@ from services.dach_factbook import fetch_dach_factbook
 from services.retraction_watch import fetch_retraction_watch
 from services.frontex import fetch_frontex
 from services.at_faktencheck_rss import fetch_at_faktencheck_rss
+from services.wifo_ihs import fetch_wifo_ihs
 
 logger = logging.getLogger("evidora")
 
@@ -99,6 +100,7 @@ async def prefetch_all():
             fetch_retraction_watch(client),
             fetch_frontex(client),
             fetch_at_faktencheck_rss(client),
+            fetch_wifo_ihs(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "OWID Measles", "OWID Vaccination (WUENIC)",
@@ -114,7 +116,7 @@ async def prefetch_all():
                  "BMI Wahlen", "Parlament Abstimmungen",
                  "AT Factbook", "BKA PKS", "DACH Factbook",
                  "Retraction Watch", "Frontex",
-                 "AT-Faktencheck-RSS"]
+                 "AT-Faktencheck-RSS", "WIFO + IHS"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")
