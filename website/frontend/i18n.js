@@ -15,12 +15,12 @@ const TRANSLATIONS = {
         hint_gender: "Gleichstellung",
         // Clickable example claims for the home page (Frontend-Polish A)
         // Aktualisiert 2026-04-30: Mix aus Klassikern + Cluster-B-Themen
-        // (Bildung, Wohnen, EuGH, AT-Demographie, MedienTransparenz).
+        // (Bildung, Wohnen, EuGH, Verkehr, MedienTransparenz).
         examples_label: "Oder gleich ausprobieren:",
         example_claims: [
             { icon: "💉", text: "Impfungen verursachen Autismus." },
             { icon: "🌡️", text: "2024 war das wärmste Jahr in Wien seit Beginn der Aufzeichnungen." },
-            { icon: "🏙️", text: "In Wien ist mehr als jeder dritte Einwohner Ausländer." },
+            { icon: "🚆", text: "Die ÖBB sind im DACH-Vergleich pünktlicher als die Deutsche Bahn." },
             { icon: "🏫", text: "In Österreich gibt es einen flächendeckenden Lehrermangel." },
             { icon: "🏠", text: "Wohnen ist in Österreich seit 2010 unleistbar geworden." },
             { icon: "⚖️", text: "Schrems II macht alle US-Cloud-Dienste in Europa illegal." },
@@ -363,12 +363,12 @@ const TRANSLATIONS = {
         hint_gender: "Gender Equality",
         // Clickable example claims for the home page
         // Updated 2026-04-30: Mix of classics + Cluster-B topics
-        // (Education, Housing, ECJ, AT demographics, Media-Transparency).
+        // (Education, Housing, ECJ, Transport, Media-Transparency).
         examples_label: "Or try it directly:",
         example_claims: [
             { icon: "💉", text: "Vaccines cause autism." },
             { icon: "🌡️", text: "2024 was the warmest year on record globally." },
-            { icon: "🏙️", text: "More than one in three residents of Vienna are foreigners." },
+            { icon: "🚆", text: "Austrian Federal Railways are more punctual than Germany's Deutsche Bahn." },
             { icon: "🏫", text: "Austria suffers from a nationwide teacher shortage." },
             { icon: "🏠", text: "Housing in Austria has become unaffordable since 2010." },
             { icon: "⚖️", text: "Schrems II makes all US cloud services illegal in Europe." },

@@ -299,7 +299,11 @@ def _claim_mentions_citizenship(claim_lc: str) -> bool:
         return True
     # Composite: "Anteil/Prozent" + "Ausländer/Migranten" + AT-Kontext
     has_share = any(t in claim_lc for t in (
-        "anteil", "prozent", "%", "quote", "drittel", "viertel", "fünftel",
+        "anteil", "prozent", "%", "quote",
+        "drittel", "viertel", "fünftel", "fuenftel", "hälfte", "haelfte",
+        "jeder dritte", "jeder vierte", "jeder zweite", "jeder fünfte", "jeder fuenfte",
+        "jede dritte", "jede vierte", "jede zweite", "jede fünfte", "jede fuenfte",
+        "ein drittel", "ein viertel", "ein fünftel", "ein fuenftel",
     ))
     has_foreign = any(t in claim_lc for t in (
         "ausländer", "auslaender", "migrant", "ausländisch", "auslaendisch",
