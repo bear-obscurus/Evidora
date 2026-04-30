@@ -14,14 +14,18 @@ const TRANSLATIONS = {
         hint_migration: "Migration",
         hint_gender: "Gleichstellung",
         // Clickable example claims for the home page (Frontend-Polish A)
+        // Aktualisiert 2026-04-30: Mix aus Klassikern + Cluster-B-Themen
+        // (Bildung, Wohnen, EuGH, AT-Demographie, MedienTransparenz).
         examples_label: "Oder gleich ausprobieren:",
         example_claims: [
             { icon: "💉", text: "Impfungen verursachen Autismus." },
             { icon: "🌡️", text: "2024 war das wärmste Jahr in Wien seit Beginn der Aufzeichnungen." },
-            { icon: "🌍", text: "Klimawandel ist nicht real, weil es 2025 in Deutschland einen kalten Winter gegeben hat." },
+            { icon: "🏙️", text: "In Wien ist mehr als jeder dritte Einwohner Ausländer." },
+            { icon: "🏫", text: "In Österreich gibt es einen flächendeckenden Lehrermangel." },
+            { icon: "🏠", text: "Wohnen ist in Österreich seit 2010 unleistbar geworden." },
+            { icon: "⚖️", text: "Schrems II macht alle US-Cloud-Dienste in Europa illegal." },
+            { icon: "📰", text: "Die Krone bekommt am meisten Inserate von der öffentlichen Hand." },
             { icon: "📡", text: "Krebs wird hauptsächlich durch Handy-Strahlung verursacht." },
-            { icon: "⚛️", text: "Atomkraft ist die sicherste Form der Energieerzeugung." },
-            { icon: "❄️", text: "Wärmepumpen funktionieren in österreichischen Wintern auch bei Frost." },
         ],
         beta_notice: "Dieses Projekt befindet sich in aktiver Entwicklung.",
         beta_notice_online: "Dieses Projekt befindet sich in aktiver Entwicklung. Die KI-Analyse dieser Online-Version erfolgt über die Mistral Cloud API (EU-Server, Paris).",
@@ -358,14 +362,18 @@ const TRANSLATIONS = {
         hint_migration: "Migration",
         hint_gender: "Gender Equality",
         // Clickable example claims for the home page
+        // Updated 2026-04-30: Mix of classics + Cluster-B topics
+        // (Education, Housing, ECJ, AT demographics, Media-Transparency).
         examples_label: "Or try it directly:",
         example_claims: [
             { icon: "💉", text: "Vaccines cause autism." },
             { icon: "🌡️", text: "2024 was the warmest year on record globally." },
-            { icon: "🌍", text: "Climate change is not real, because Germany had a cold winter in 2025." },
+            { icon: "🏙️", text: "More than one in three residents of Vienna are foreigners." },
+            { icon: "🏫", text: "Austria suffers from a nationwide teacher shortage." },
+            { icon: "🏠", text: "Housing in Austria has become unaffordable since 2010." },
+            { icon: "⚖️", text: "Schrems II makes all US cloud services illegal in Europe." },
+            { icon: "📰", text: "Krone receives the most government advertising in Austria." },
             { icon: "📡", text: "Cancer is mainly caused by mobile phone radiation." },
-            { icon: "⚛️", text: "Nuclear power is the safest form of energy generation." },
-            { icon: "🏥", text: "Life expectancy in Italy is higher than in Germany." },
         ],
         beta_notice: "This project is under active development.",
         beta_notice_online: "This project is under active development. AI analysis on this online version is processed via the Mistral Cloud API (EU servers, Paris).",
