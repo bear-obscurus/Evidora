@@ -121,6 +121,20 @@ async def search_education(analysis: dict) -> dict:
                 f"DE {d.get('pisa_nawi_de')}, CH {d.get('pisa_nawi_ch')}."
             )
             description = d.get("context", "") + " " + notes_joined
+        elif topic == "sitzenbleiben_wirkung":
+            display = (
+                f"Sitzenbleiben — Bildungsforschungs-Konsens: Hattie-"
+                f"Megastudie ({d.get('hattie_studienanzahl')} Studien) findet "
+                f"Effektstärke d = {d.get('hattie_effektstaerke_d')} — "
+                f"Sitzenbleiben SCHADET dem Lernerfolg signifikant. "
+                f"Jimerson-Metaanalyse "
+                f"({d.get('metaanalyse_jimerson_studienanzahl')} Studien) und "
+                f"OECD-PISA-Auswertungen bestätigen: kein Lerngewinn, "
+                f"erhöhtes Schul-Abbrecher-Risiko. Repetentenquote AT 2024: "
+                f"{d.get('anteil_repeater_at_pflicht_pct_2024')} % Pflichtschule, "
+                f"{d.get('anteil_repeater_at_ahs_pct_2024')} % AHS-Mittelstufe."
+            )
+            description = d.get("context", "") + " " + notes_joined
         else:
             display = fact.get("headline", "?")
             description = notes_joined

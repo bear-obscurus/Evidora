@@ -105,6 +105,21 @@ async def search_oecd_health(analysis: dict) -> dict:
                 f"(EU-Schnitt {d.get('anteil_oeffentlich_eu_avg_pct_2024')} %)."
             )
             description = d.get("context", "") + " " + notes_joined
+        elif topic == "kinder_adipositas":
+            display = (
+                f"Kinder + Jugendliche Übergewicht/Adipositas (DACH-Vergleich): "
+                f"AT (6–15 J.) = {d.get('uebergewicht_at_kinder_6_15_pct_2024')} % "
+                f"übergewichtig, davon {d.get('adipositas_at_kinder_6_15_pct_2024')} % "
+                f"adipös. Trend AT 2008→2024: "
+                f"{d.get('uebergewicht_at_kinder_2014_pct')} % → "
+                f"{d.get('uebergewicht_at_kinder_6_15_pct_2024')} %. "
+                f"DE (KIGGS, 3–17 J.): "
+                f"{d.get('uebergewicht_de_kinder_3_17_pct_2024')} % / "
+                f"{d.get('adipositas_de_kinder_3_17_pct_2024')} %. "
+                f"OECD-Schnitt Übergewicht: "
+                f"{d.get('uebergewicht_oecd_avg_kinder_pct_2024')} %."
+            )
+            description = d.get("context", "") + " " + notes_joined
         else:
             display = fact.get("headline", "?")
             description = notes_joined

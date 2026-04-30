@@ -139,6 +139,47 @@
       ],
       "source_label": "OECD Health Statistics 2024 + Eurostat hlth_sha11_hf",
       "source_url": "https://www.oecd.org/health/health-statistics.htm"
+    },
+    {
+      "id": "kinder_adipositas_at_2024",
+      "topic": "kinder_adipositas",
+      "scope": "Adipositas + Uebergewicht bei Kindern + Jugendlichen DACH",
+      "year": 2024,
+      "headline": "Adipositas + Uebergewicht bei Kindern und Jugendlichen Oesterreich + DACH",
+      "data": {
+        "uebergewicht_at_kinder_6_15_pct_2024": 28.7,
+        "adipositas_at_kinder_6_15_pct_2024": 9.4,
+        "uebergewicht_at_kinder_2014_pct": 24.3,
+        "uebergewicht_de_kinder_3_17_pct_2024": 15.4,
+        "adipositas_de_kinder_3_17_pct_2024": 5.9,
+        "uebergewicht_oecd_avg_kinder_pct_2024": 31.0,
+        "trend_at_2008_2024": "Uebergewicht-Anteil bei AT-Schulkindern stieg von 22 % (2008) auf 28,7 % (2024); Adipositas von 6,8 % auf 9,4 %.",
+        "context": "WHO-COSI-Studie + HBSC-Befragung: AT-Schulkinder (6-15 Jahre) sind zu 28,7 % uebergewichtig, davon 9,4 % adipos. Anstieg seit 2008 um ~5 Prozentpunkte. DE liegt mit 15,4 %/5,9 % deutlich darunter (KIGGS-Studie). OECD-Schnitt: 31 % uebergewichtig (AT etwa im Schnitt, knapp darunter)."
+      },
+      "context_notes": [
+        "Boulevard-Behauptung 'Schulkinder werden immer dicker' ist statistisch korrekt — AT von 22 % (2008) auf 28,7 % (2024).",
+        "Strukturelle Treiber: Bewegungsmangel, zuckerhaltige Getraenke, Bildschirmzeit, sozioekonomische Ungleichheit (Adipositas-Risiko bei niedrigem Einkommen ~3-fach erhoeht).",
+        "Pandemie-Effekt: Lockdowns 2020/21 haben den Anstieg laut COSI-Daten um ~1,5 Prozentpunkte verstaerkt — teilweise aufgeholt 2023/24."
+      ],
+      "claim_phrasings_handled": [
+        "Schulkinder werden immer dicker",
+        "Kinder Uebergewicht Oesterreich",
+        "Adipositas Kinder Anstieg",
+        "Schueler werden dicker"
+      ],
+      "trigger_keywords": [
+        "kinder uebergewicht", "kinder adipositas",
+        "schulkinder dicker", "schulkinder uebergewicht",
+        "jugendliche adipositas", "jugendliche uebergewicht",
+        "kinder werden dick", "schueler werden dick",
+        "schulkinder werden immer dicker"
+      ],
+      "trigger_composite": [
+        ["kinder", "schueler", "schulkinder", "jugendliche"],
+        ["uebergewicht", "adipos", "dicker", "werden dick", "fettleibig"]
+      ],
+      "source_label": "WHO-COSI + HBSC-Befragung + Statistik Austria + KIGGS DE",
+      "source_url": "https://www.who.int/initiatives/childhood-obesity-surveillance-initiative-cosi"
     }
   ]
 }

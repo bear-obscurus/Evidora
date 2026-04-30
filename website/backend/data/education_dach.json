@@ -188,6 +188,49 @@
       "source_label": "OECD PISA 2022 + Statistik Austria PISA-Auswertung",
       "source_url": "https://www.oecd.org/pisa/publications/pisa-2022-results.htm",
       "secondary_url": "https://www.iqs.gv.at/themen/pisa"
+    },
+    {
+      "id": "sitzenbleiben_wirkung",
+      "topic": "sitzenbleiben_wirkung",
+      "scope": "Wirkung von Sitzenbleiben — Bildungsforschung-Konsens",
+      "year": "2008-2024",
+      "headline": "Sitzenbleiben in der Schule — Forschungs-Konsens zur Wirkung",
+      "data": {
+        "hattie_effektstaerke_d": -0.17,
+        "hattie_studienanzahl": 19,
+        "oecd_pisa_befund": "PISA-Auswertungen zeigen wiederholt: Schueler:innen, die wiederholen mussten, leisten LANGFRISTIG NICHT besser als ihre Altersgenoss:innen — sondern schlechter (kontrolliert fuer Vorleistung).",
+        "metaanalyse_jimerson_studienanzahl": 169,
+        "kosten_pro_repeater_at_schaetzung_eur": 12000,
+        "anteil_repeater_at_pflicht_pct_2024": 1.4,
+        "anteil_repeater_at_ahs_pct_2024": 5.7,
+        "context": "Hattie-Megastudie (Visible Learning, 19 Studien): Effektstaerke d = -0,17 — Sitzenbleiben SCHADET dem Lernerfolg signifikant gegenueber automatischem Aufstieg mit gezielter Foerderung. Jimerson-Metaanalyse 2001 (169 Studien): kein einziger nachgewiesener Lerngewinn, aber erhoehtes Schul-Abbrecher-Risiko. OECD PISA-Auswertungen bestaetigen: Wiederholer:innen liegen langfristig hinter ihren Altersgenoss:innen, nicht voraus."
+      },
+      "context_notes": [
+        "Boulevard-/Stammtisch-Behauptung 'Sitzenbleiben hilft beim Lernen' ist durch die internationale Bildungsforschung KLAR widerlegt.",
+        "Wirksamer sind nachweislich: gezielte Foerderung waehrend des Schuljahres, individualisierte Lernplaene, Mentoring-Programme.",
+        "AT hat in den letzten 10 Jahren die Repetentenquote in der Pflichtschule auf 1,4 % gesenkt (in der AHS-Mittelstufe noch 5,7 %)."
+      ],
+      "claim_phrasings_handled": [
+        "Sitzenbleiben hilft beim Lernen",
+        "Repetieren ist sinnvoll",
+        "Klassenwiederholung Wirkung",
+        "Sitzenbleiben sinnvoll oder schaedlich"
+      ],
+      "trigger_keywords": [
+        "sitzenbleiben", "sitzen-bleiben", "sitzen bleiben",
+        "klassenwiederholung", "klassen-wiederholung",
+        "schulversagen wiederholung", "repetieren",
+        "wiederholen lassen", "schueler wiederholen"
+      ],
+      "trigger_composite": [
+        ["sitzenbleiben", "klassenwiederholung", "repetier",
+         "wiederhol", "klassenstufe wiederhol"],
+        ["wirkung", "hilft", "sinnvoll", "schaden", "schaedlich",
+         "lernerfolg", "studie", "forschung", "effekt"]
+      ],
+      "source_label": "Hattie Visible Learning + Jimerson-Metaanalyse + OECD PISA",
+      "source_url": "https://visible-learning.org/influences/sitzenbleiben/",
+      "secondary_url": "https://www.oecd.org/pisa/"
     }
   ]
 }
