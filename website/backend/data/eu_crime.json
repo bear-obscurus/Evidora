@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "fetched_at_iso": "2026-04-29",
+  "fetched_at_iso": "2026-04-30",
   "source_label": "Eurostat (crim_off_cat, crim_hom_*) + BKA-DE PKS + BMI-AT PKS",
   "facts": [
     {
@@ -10,18 +10,36 @@
       "year": 2024,
       "headline": "Tötungsdelikte pro 100.000 Einwohner 2024 — Österreich, Deutschland, EU-Schnitt",
       "data": {
-        "homicide_at_per_100k": 0.7,
-        "homicide_de_per_100k": 0.9,
+        "homicide_at_per_100k": 0.98,
+        "homicide_de_per_100k": 0.93,
         "homicide_eu_avg_per_100k": 0.9,
         "homicide_eu_top_3": [
-          {"land": "Lettland", "wert": 4.5},
-          {"land": "Litauen", "wert": 2.8},
-          {"land": "Estland", "wert": 2.2}
+          {
+            "land": "Lettland",
+            "wert": 4.5
+          },
+          {
+            "land": "Litauen",
+            "wert": 2.8
+          },
+          {
+            "land": "Estland",
+            "wert": 2.2
+          }
         ],
         "homicide_eu_bottom_3": [
-          {"land": "Italien", "wert": 0.5},
-          {"land": "Liechtenstein", "wert": 0.5},
-          {"land": "Spanien", "wert": 0.6}
+          {
+            "land": "Italien",
+            "wert": 0.5
+          },
+          {
+            "land": "Liechtenstein",
+            "wert": 0.5
+          },
+          {
+            "land": "Spanien",
+            "wert": 0.6
+          }
         ],
         "trend_at": "Tötungsdelikte in Österreich seit 2010 (~1,0/100 k) tendenziell rückläufig auf 0,7/100 k 2024.",
         "context": "EU-weit gehört Österreich gemeinsam mit Italien, Spanien und Portugal zu den Ländern mit den niedrigsten Tötungsdelikt-Raten. Die baltischen Staaten haben strukturell höhere Raten."
@@ -39,19 +57,37 @@
         "Mord-Statistik Europa-Vergleich"
       ],
       "trigger_keywords": [
-        "tötungsdelikt", "tötungsdelikte",
-        "mordrate", "mord-rate", "mord pro 100",
-        "homicide", "intentional homicide",
-        "morde österreich", "morde pro kopf",
-        "pks mord", "pks tötung"
+        "tötungsdelikt",
+        "tötungsdelikte",
+        "mordrate",
+        "mord-rate",
+        "mord pro 100",
+        "homicide",
+        "intentional homicide",
+        "morde österreich",
+        "morde pro kopf",
+        "pks mord",
+        "pks tötung"
       ],
       "trigger_composite": [
-        ["mord", "morde", "tötungsdelikt", "homicide"],
-        ["österreich", "at ", "europa", "eu", "deutschland"]
+        [
+          "mord",
+          "morde",
+          "tötungsdelikt",
+          "homicide"
+        ],
+        [
+          "österreich",
+          "at ",
+          "europa",
+          "eu",
+          "deutschland"
+        ]
       ],
       "source_label": "Eurostat (crim_hom_soff) + BMI Österreich PKS 2024",
       "source_url": "https://ec.europa.eu/eurostat/databrowser/view/crim_hom_soff",
-      "secondary_url": "https://www.bmi.gv.at/Statistiken/"
+      "secondary_url": "https://www.bmi.gv.at/Statistiken/",
+      "fetched_at_iso": "2026-04-30"
     },
     {
       "id": "auslander_kriminalitaet_at_2024",
@@ -87,21 +123,50 @@
         "Migrationskriminalität Österreich"
       ],
       "trigger_keywords": [
-        "ausländerkriminalität österreich", "auslaenderkriminalitaet österreich",
+        "ausländerkriminalität österreich",
+        "auslaenderkriminalitaet österreich",
         "migrationskriminalität österreich",
         "asylkriminalität österreich",
         "krone asylkriminalität",
-        "pks österreich migrant", "pks österreich ausländer"
+        "pks österreich migrant",
+        "pks österreich ausländer"
       ],
       "trigger_composite": [
-        ["ausländer", "auslaender", "migrant", "asyl", "fremde", "ausländerkriminalität"],
-        ["kriminalität", "kriminalitaet", "tatverdächtig", "tatverdaechtig",
-         "verbrechen", "straftat", "straftaten", "delikt"],
-        ["österreich", "wien", "burgenland", "kärnten",
-         "niederösterreich", "oberösterreich", "salzburg", "steiermark",
-         "tirol", "vorarlberg",
-         "krone", "oe24", "exxpress", "österreichischen",
-         "österreichische "]
+        [
+          "ausländer",
+          "auslaender",
+          "migrant",
+          "asyl",
+          "fremde",
+          "ausländerkriminalität"
+        ],
+        [
+          "kriminalität",
+          "kriminalitaet",
+          "tatverdächtig",
+          "tatverdaechtig",
+          "verbrechen",
+          "straftat",
+          "straftaten",
+          "delikt"
+        ],
+        [
+          "österreich",
+          "wien",
+          "burgenland",
+          "kärnten",
+          "niederösterreich",
+          "oberösterreich",
+          "salzburg",
+          "steiermark",
+          "tirol",
+          "vorarlberg",
+          "krone",
+          "oe24",
+          "exxpress",
+          "österreichischen",
+          "österreichische "
+        ]
       ],
       "source_label": "BMI Österreich — PKS 2024 (Sicherheitsbericht)",
       "source_url": "https://www.bmi.gv.at/Statistiken/",
@@ -138,7 +203,8 @@
         "BKA PKS Migranten Anteil"
       ],
       "trigger_keywords": [
-        "bka pks", "bka-pks",
+        "bka pks",
+        "bka-pks",
         "polizeiliche kriminalstatistik deutschland",
         "kriminalstatistik deutschland",
         "migrationskriminalität deutschland",
@@ -146,10 +212,28 @@
         "zuwanderer im engeren sinne"
       ],
       "trigger_composite": [
-        ["ausländer", "auslaender", "migrant", "asyl", "zuwanderer"],
-        ["kriminalität", "tatverdächtig", "tatverdaechtig",
-         "verbrechen", "straftat", "delikt"],
-        ["deutschland", "deutsche", "brd", "bundesrepublik", "bka"]
+        [
+          "ausländer",
+          "auslaender",
+          "migrant",
+          "asyl",
+          "zuwanderer"
+        ],
+        [
+          "kriminalität",
+          "tatverdächtig",
+          "tatverdaechtig",
+          "verbrechen",
+          "straftat",
+          "delikt"
+        ],
+        [
+          "deutschland",
+          "deutsche",
+          "brd",
+          "bundesrepublik",
+          "bka"
+        ]
       ],
       "source_label": "BKA Deutschland — Polizeiliche Kriminalstatistik 2024",
       "source_url": "https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/PolizeilicheKriminalstatistik/pks_node.html"
@@ -181,17 +265,32 @@
         "Kriminalitätsboom Österreich"
       ],
       "trigger_keywords": [
-        "kriminalitätsexplosion", "kriminalitaetsexplosion",
+        "kriminalitätsexplosion",
+        "kriminalitaetsexplosion",
         "kriminalitäts-explosion",
         "kriminalitätsboom",
         "verbrechen nehmen zu",
         "verbrechen explodieren",
-        "kriminalität boomt", "kriminalität steigt rapide"
+        "kriminalität boomt",
+        "kriminalität steigt rapide"
       ],
       "trigger_composite": [
-        ["kriminalität", "verbrechen", "straftaten"],
-        ["explod", "boom", "rapide", "rasant", "drastisch"],
-        ["österreich", "at "]
+        [
+          "kriminalität",
+          "verbrechen",
+          "straftaten"
+        ],
+        [
+          "explod",
+          "boom",
+          "rapide",
+          "rasant",
+          "drastisch"
+        ],
+        [
+          "österreich",
+          "at "
+        ]
       ],
       "source_label": "BMI Österreich — PKS Hauptbericht 2024 + Statistik Austria",
       "source_url": "https://www.bmi.gv.at/Statistiken/"
