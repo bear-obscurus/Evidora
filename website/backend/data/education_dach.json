@@ -86,8 +86,10 @@
          "lese ", "leseschwäch", "leseschwierig"],
         ["österreich", "österreichisch", "at ", "volksschule",
          "grundschule", "4. klasse",
-         "drittel", "viertel", "fünftel", "hälfte", "jeder dritt",
-         "jeder vierte", "jeder zweite"]
+         "drittel", "viertel", "fünftel", "hälfte",
+         "jeder dritt", "jeder vierte", "jeder zweite", "jeder fünfte",
+         "jede dritte", "jede vierte", "jede zweite", "jede fünfte",
+         "ein drittel", "ein viertel", "ein fünftel"]
       ],
       "source_label": "IEA PIRLS 2021 (Progress in International Reading Literacy Study)",
       "source_url": "https://www.iea.nl/studies/iea/pirls/2021",

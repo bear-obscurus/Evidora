@@ -50,7 +50,7 @@
         ["atomstrom", "atomausstieg", "kernkraft", "atomenergie",
          "kernenergie", "stromimport"],
         ["frankreich", "französisch", "industrie", "versorg",
-         "kollap", "blackout", "saldo", "bilanz", "dauerhaft"]
+         "kollap", "kollabiert", "blackout", "saldo", "bilanz", "dauerhaft"]
       ],
       "source_label": "Energy-Charts.info (Fraunhofer ISE) — Stromhandelsbilanz 2024",
       "source_url": "https://www.energy-charts.info/charts/import_export/",

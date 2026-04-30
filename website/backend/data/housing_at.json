@@ -44,8 +44,9 @@
       ],
       "trigger_composite": [
         ["wohn", "miete", "mieten", "immobil", "eigentumswohnung"],
-        ["preis", "kosten", "unleistbar", "explod", "verdopp", "verdrei",
-         "gestiegen", "steigt", "steigend", "rasant", "hoch"],
+        ["preis", "kosten", "unleistbar",
+         "explod", "explosion", "verdopp", "verdrei",
+         "anstieg", "gestiegen", "steigt", "steigend", "rasant", "hoch"],
         ["österreich", "wien", "graz", "salzburg", "innsbruck", "linz",
          "klagenfurt", "at "]
       ],

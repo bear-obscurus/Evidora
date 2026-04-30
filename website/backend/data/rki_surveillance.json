@@ -39,9 +39,10 @@
       ],
       "trigger_composite": [
         ["masern", "measles"],
-        ["welle", "anstieg", "ausbruch", "explod", "bringt", "verbreit",
-         "import", "asylsuchend", "migrant", "migration", "migrat",
-         "asyl", "epidemie", "gestiegen", "stieg ", "ansteck"]
+        ["welle", "anstieg", "ausbruch", "explod", "explosion",
+         "bringt", "verbreit", "import",
+         "asylsuchend", "migrant", "migration", "migrat",
+         "asyl", "epidemie", "gestiegen", "stieg ", "steigt", "ansteck"]
       ],
       "source_label": "Robert Koch-Institut SurvStat 2.0",
       "source_url": "https://survstat.rki.de/Content/Query/Create.aspx",
@@ -85,9 +86,9 @@
       ],
       "trigger_composite": [
         ["tuberkulose", "tb-fall", "tb fall", "tb-fälle"],
-        ["welle", "anstieg", "ausbruch", "explod", "bringt",
+        ["welle", "anstieg", "ausbruch", "explod", "explosion", "bringt",
          "asylsuchend", "migrant", "migration", "migrat",
-         "asyl", "epidemie", "gestiegen", "stieg ", "stark",
+         "asyl", "epidemie", "gestiegen", "stieg ", "steigt", "stark",
          "volkskrankheit", "volks-krankheit", "verbreitet",
          "weit verbreitet", "weitverbreitet", "weitverbreite",
          "wieder", "rückkehr", "rueckkehr"]
@@ -129,8 +130,9 @@
       ],
       "trigger_composite": [
         ["grippe", "influenza", "atemwegsinfekt", "rsv", "ari", "sari", "covid"],
-        ["welle", "anstieg", "krise", "lahm", "kollap", "ausbruch", "boom",
-         "explod", "rapide"]
+        ["welle", "anstieg", "gestiegen", "steigt",
+         "krise", "lahm", "kollap", "kollabiert", "ausbruch", "boom",
+         "explod", "explosion", "rapide"]
       ],
       "source_label": "Robert Koch-Institut — ARE-/SARI-Wochenbericht",
       "source_url": "https://influenza.rki.de/Wochenberichte.aspx"

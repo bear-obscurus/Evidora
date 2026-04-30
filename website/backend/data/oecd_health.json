@@ -87,7 +87,7 @@
       "trigger_composite": [
         ["spital", "krankenhaus", "betten", "ärzte", "ärztin",
          "pflegekraft", "pflegekräfte", "gesundheitssystem"],
-        ["mangel", "kollap", "fehlend", "zu wenig", "engpass",
+        ["mangel", "kollap", "kollabiert", "fehlend", "zu wenig", "engpass",
          "dichte", "pro 1000", "pro 1.000", "pro tausend",
          "vergleich", "im durchschnitt", "europa"]
       ],
