@@ -15,16 +15,9 @@ mit Erklärung, Peak-Vergleich mit Vor-Pandemie-Niveau).
 import logging
 import os
 
-from services._static_cache import load_json_mtime_aware
-from services._reranker_backup import best_matches as _backup_best_matches
+from services._topic_match import find_matching_items, load_items
 
 logger = logging.getLogger("evidora")
-
-
-def _fact_with_descriptor(f: dict) -> tuple[dict, str]:
-    head = f.get("headline", "")
-    notes = " ".join((f.get("context_notes") or [])[:2])
-    return (f, f"{head}. {notes}"[:300])
 
 STATIC_JSON_PATH = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -33,41 +26,18 @@ STATIC_JSON_PATH = os.path.join(
 )
 
 
-def _load_static_json() -> dict | None:
-    data = load_json_mtime_aware(STATIC_JSON_PATH)
-    if data is None:
-        return None
-    if "facts" not in data:
-        logger.warning("rki_surveillance.json missing 'facts' key")
-        return None
-    return data
-
-
-def _fact_matches(fact: dict, claim_lc: str) -> bool:
-    for kw in fact.get("trigger_keywords") or ():
-        if kw.lower() in claim_lc:
-            return True
-    composite = fact.get("trigger_composite") or []
-    if composite and all(
-        isinstance(alt, (list, tuple)) and any(tok in claim_lc for tok in alt)
-        for alt in composite
-    ):
-        return True
-    return False
+def _descriptor(f: dict) -> tuple[dict, str]:
+    head = f.get("headline", "")
+    notes = " ".join((f.get("context_notes") or [])[:2])
+    return (f, f"{head}. {notes}"[:300])
 
 
 def _claim_matches_facts(claim_lc: str, full_claim: str | None = None) -> list[dict]:
-    data = _load_static_json()
-    if not data:
-        return []
-    facts = data.get("facts") or []
-    matches = [f for f in facts if _fact_matches(f, claim_lc)]
-    if matches:
-        return matches
-    if not full_claim:
-        return []
-    items = [_fact_with_descriptor(f) for f in facts]
-    return _backup_best_matches(full_claim, items, threshold=0.45, top_n=3)
+    return find_matching_items(
+        STATIC_JSON_PATH, "facts",
+        claim_lc=claim_lc, full_claim=full_claim,
+        descriptor_fn=_descriptor,
+    )
 
 
 def claim_mentions_rki_surveillance_cached(claim: str) -> bool:
@@ -77,10 +47,7 @@ def claim_mentions_rki_surveillance_cached(claim: str) -> bool:
 
 
 async def fetch_rki_surveillance(client=None):
-    data = _load_static_json()
-    if not data:
-        return []
-    return data.get("facts") or []
+    return load_items(STATIC_JSON_PATH, "facts")
 
 
 async def search_rki_surveillance(analysis: dict) -> dict:

@@ -13,17 +13,9 @@ Counter-Frame — analog zum eu_courts.py-Pattern.
 import logging
 import os
 
-from services._static_cache import load_json_mtime_aware
-from services._reranker_backup import best_matches as _backup_best_matches
+from services._topic_match import find_matching_items, load_items
 
 logger = logging.getLogger("evidora")
-
-
-def _ruling_with_descriptor(r: dict) -> tuple[dict, str]:
-    court = r.get("court", "")
-    name = r.get("case_name", "")
-    kern = r.get("kerninhalt", "")[:240]
-    return (r, f"{court}-Erkenntnis: {name}. {kern}")
 
 STATIC_JSON_PATH = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -32,41 +24,19 @@ STATIC_JSON_PATH = os.path.join(
 )
 
 
-def _load_static_json() -> dict | None:
-    data = load_json_mtime_aware(STATIC_JSON_PATH)
-    if data is None:
-        return None
-    if "rulings" not in data:
-        logger.warning("at_courts.json missing 'rulings' key")
-        return None
-    return data
-
-
-def _ruling_matches(ruling: dict, claim_lc: str) -> bool:
-    for kw in ruling.get("trigger_keywords") or ():
-        if kw.lower() in claim_lc:
-            return True
-    composite = ruling.get("trigger_composite") or []
-    if composite and all(
-        isinstance(alt, (list, tuple)) and any(tok in claim_lc for tok in alt)
-        for alt in composite
-    ):
-        return True
-    return False
+def _descriptor(r: dict) -> tuple[dict, str]:
+    court = r.get("court", "")
+    name = r.get("case_name", "")
+    kern = r.get("kerninhalt", "")[:240]
+    return (r, f"{court}-Erkenntnis: {name}. {kern}")
 
 
 def _claim_matches_rulings(claim_lc: str, full_claim: str | None = None) -> list[dict]:
-    data = _load_static_json()
-    if not data:
-        return []
-    rulings = data.get("rulings") or []
-    matches = [r for r in rulings if _ruling_matches(r, claim_lc)]
-    if matches:
-        return matches
-    if not full_claim:
-        return []
-    items = [_ruling_with_descriptor(r) for r in rulings]
-    return _backup_best_matches(full_claim, items, threshold=0.45, top_n=3)
+    return find_matching_items(
+        STATIC_JSON_PATH, "rulings",
+        claim_lc=claim_lc, full_claim=full_claim,
+        descriptor_fn=_descriptor,
+    )
 
 
 def claim_mentions_at_courts_cached(claim: str) -> bool:
@@ -76,10 +46,7 @@ def claim_mentions_at_courts_cached(claim: str) -> bool:
 
 
 async def fetch_at_courts(client=None):
-    data = _load_static_json()
-    if not data:
-        return []
-    return data.get("rulings") or []
+    return load_items(STATIC_JSON_PATH, "rulings")
 
 
 async def search_at_courts(analysis: dict) -> dict:

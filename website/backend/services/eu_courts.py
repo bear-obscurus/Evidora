@@ -16,18 +16,9 @@ Whitelist via 'eu_courts_ruling' indicator.
 import logging
 import os
 
-from services._static_cache import load_json_mtime_aware
-from services._reranker_backup import best_matches as _backup_best_matches
+from services._topic_match import find_matching_items, load_items
 
 logger = logging.getLogger("evidora")
-
-
-def _ruling_with_descriptor(r: dict) -> tuple[dict, str]:
-    """Pair a ruling with a kurze Topic-Repräsentation für Cosine-Match."""
-    court = r.get("court", "")
-    name = r.get("case_name", "")
-    kern = r.get("kerninhalt", "")[:240]
-    return (r, f"{court}-Urteil: {name}. {kern}")
 
 STATIC_JSON_PATH = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -36,55 +27,20 @@ STATIC_JSON_PATH = os.path.join(
 )
 
 
-def _load_static_json() -> dict | None:
-    data = load_json_mtime_aware(STATIC_JSON_PATH)
-    if data is None:
-        return None
-    if "rulings" not in data:
-        logger.warning("eu_courts.json missing 'rulings' key")
-        return None
-    return data
-
-
-# ---------------------------------------------------------------------------
-# Trigger
-# ---------------------------------------------------------------------------
-def _ruling_matches(ruling: dict, claim_lc: str) -> bool:
-    """Match if ANY of:
-      - any substring in `trigger_keywords` is present, OR
-      - all alternation-lists in `trigger_composite` fire
-        (interpretation: trigger_composite is ONE rule, each element
-         is an OR-list of synonyms; all elements must fire (AND)).
-    """
-    for kw in ruling.get("trigger_keywords") or ():
-        if kw.lower() in claim_lc:
-            return True
-    composite = ruling.get("trigger_composite") or []
-    if composite and all(
-        isinstance(alt, (list, tuple)) and any(tok in claim_lc for tok in alt)
-        for alt in composite
-    ):
-        return True
-    return False
+def _descriptor(r: dict) -> tuple[dict, str]:
+    """Pair a ruling with a kurze Topic-Repräsentation für Cosine-Match."""
+    court = r.get("court", "")
+    name = r.get("case_name", "")
+    kern = r.get("kerninhalt", "")[:240]
+    return (r, f"{court}-Urteil: {name}. {kern}")
 
 
 def _claim_matches_rulings(claim_lc: str, full_claim: str | None = None) -> list[dict]:
-    """Substring/Composite-Match — wenn keiner zündet, fällt der Service
-    auf einen Reranker-Backup-Trigger zurück (Cosine-Similarity zu
-    case_name + kerninhalt).
-    """
-    data = _load_static_json()
-    if not data:
-        return []
-    rulings = data.get("rulings") or []
-    matches = [r for r in rulings if _ruling_matches(r, claim_lc)]
-    if matches:
-        return matches
-    # Backup: Cosine ≥ 0.62 zu einem Topic-Descriptor → Top-3 als Match
-    if not full_claim:
-        return []
-    items = [_ruling_with_descriptor(r) for r in rulings]
-    return _backup_best_matches(full_claim, items, threshold=0.45, top_n=3)
+    return find_matching_items(
+        STATIC_JSON_PATH, "rulings",
+        claim_lc=claim_lc, full_claim=full_claim,
+        descriptor_fn=_descriptor,
+    )
 
 
 def claim_mentions_eu_courts_cached(claim: str) -> bool:
@@ -93,14 +49,8 @@ def claim_mentions_eu_courts_cached(claim: str) -> bool:
     return bool(_claim_matches_rulings(claim.lower(), full_claim=claim))
 
 
-# ---------------------------------------------------------------------------
-# Prefetch (no-op — static JSON, but uniform interface)
-# ---------------------------------------------------------------------------
 async def fetch_eu_courts(client=None):
-    data = _load_static_json()
-    if not data:
-        return []
-    return data.get("rulings") or []
+    return load_items(STATIC_JSON_PATH, "rulings")
 
 
 # ---------------------------------------------------------------------------
