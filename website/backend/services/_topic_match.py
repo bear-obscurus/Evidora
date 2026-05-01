@@ -69,14 +69,14 @@ def substring_or_composite_match(item: dict, claim_lc: str) -> bool:
             return True
     composite = item.get("trigger_composite") or []
     if composite and all(
-        isinstance(alt, (list, tuple)) and any(tok in claim_lc for tok in alt)
+        isinstance(alt, (list, tuple)) and any(tok.lower() in claim_lc for tok in alt)
         for alt in composite
     ):
         return True
     # Optional 2. Pattern: Liste von Regeln, je AND-of-OR
     for rule in item.get("trigger_all") or ():
         if rule and all(
-            isinstance(alt, (list, tuple)) and any(tok in claim_lc for tok in alt)
+            isinstance(alt, (list, tuple)) and any(tok.lower() in claim_lc for tok in alt)
             for alt in rule
         ):
             return True

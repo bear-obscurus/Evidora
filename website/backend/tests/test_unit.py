@@ -304,9 +304,12 @@ class TestOECD:
         assert _detect_subject("Bildung in Österreich") is None
 
     def test_country_code_detection(self):
-        assert _find_country_code({"entities": ["Österreich"], "claim": ""}) == "AUT"
-        assert _find_country_code({"entities": ["Germany"], "claim": ""}) == "DEU"
-        assert _find_country_code({"entities": [], "claim": "PISA in Finnland"}) == "FIN"
+        # _find_country_codes reads ner_entities.countries (from SpaCy) +
+        # claim-text — NOT the flat ``entities`` key (avoids LLM-hallucinated
+        # country names). Test reflects that schema.
+        assert _find_country_code({"ner_entities": {"countries": ["Österreich"]}, "claim": ""}) == "AUT"
+        assert _find_country_code({"ner_entities": {"countries": ["Germany"]}, "claim": ""}) == "DEU"
+        assert _find_country_code({"ner_entities": {}, "claim": "PISA in Finnland"}) == "FIN"
 
     def test_pisa_gender_search(self):
         analysis = {"claim": "Frauen sind schlechter in Mathematik", "entities": [], "category": "education"}
