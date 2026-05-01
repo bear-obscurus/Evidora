@@ -22,18 +22,18 @@ from xml.etree import ElementTree as ET
 
 import httpx
 
+from services._http_polite import USER_AGENT
+
 logger = logging.getLogger("evidora")
 
 FEED_CACHE_TTL = 3600  # 1h
 FEED_URL = "https://www.mimikama.org/feed/"
 FEED_NAME = "Mimikama"
 
-_BROWSER_HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-        "AppleWebKit/605.1.15 (KHTML, like Gecko) "
-        "Version/17.0 Safari/605.1.15"
-    ),
+# RSS feeds are explicitly machine-readable — no need for browser
+# masquerading. Polite UA identifies us consistently.
+_HEADERS = {
+    "User-Agent": USER_AGENT,
     "Accept": "application/rss+xml, application/xml, text/xml",
     "Accept-Language": "de-AT,de;q=0.9,en;q=0.8",
 }
@@ -92,7 +92,7 @@ async def fetch_mimikama(client: httpx.AsyncClient | None = None) -> list[dict]:
 
     try:
         try:
-            response = await client.get(FEED_URL, headers=_BROWSER_HEADERS, timeout=15)
+            response = await client.get(FEED_URL, headers=_HEADERS, timeout=15)
             response.raise_for_status()
             items = _parse_rss(response.text)
             logger.info(f"Mimikama fetched: {len(items)} items")

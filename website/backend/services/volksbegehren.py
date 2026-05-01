@@ -66,6 +66,8 @@ import time
 
 import httpx
 
+from services._http_polite import USER_AGENT
+
 logger = logging.getLogger("evidora")
 
 BMI_VBG_URL = (
@@ -81,15 +83,10 @@ STATIC_JSON_PATH = os.path.join(
     "volksbegehren.json",
 )
 
-# Realistische Browser-Header. Probieren wir trotzdem — falls Myra einmal
-# nicht aktiv ist (oder von einer freundlichen IP aus), bekommen wir
-# automatisch frische Daten.
-_BROWSER_HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-        "AppleWebKit/605.1.15 (KHTML, like Gecko) "
-        "Version/17.0 Safari/605.1.15"
-    ),
+# Polite-identified Header für den optionalen Live-Fallback (BMI-OGD
+# ist Open Government Data — keine Browser-Maskierung nötig).
+_HEADERS = {
+    "User-Agent": USER_AGENT,
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9",
     "Accept-Language": "de-AT,de;q=0.9,en;q=0.8",
 }
@@ -365,7 +362,7 @@ async def _try_online_refresh(
     try:
         resp = await client.get(
             BMI_VBG_URL,
-            headers=_BROWSER_HEADERS,
+            headers=_HEADERS,
             follow_redirects=False,
         )
     except httpx.HTTPError as e:

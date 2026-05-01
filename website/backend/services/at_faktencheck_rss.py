@@ -24,6 +24,8 @@ from xml.etree import ElementTree as ET
 
 import httpx
 
+from services._http_polite import USER_AGENT
+
 logger = logging.getLogger("evidora")
 
 FEED_CACHE_TTL = 3600  # 1h
@@ -41,12 +43,10 @@ FEEDS = [
     },
 ]
 
-_BROWSER_HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-        "AppleWebKit/605.1.15 (KHTML, like Gecko) "
-        "Version/17.0 Safari/605.1.15"
-    ),
+# RSS feeds are machine-readable — no need for browser masquerading.
+# Polite UA identifies us consistently to APA / Kontrast infrastructure.
+_HEADERS = {
+    "User-Agent": USER_AGENT,
     "Accept": "application/rss+xml, application/xml, text/xml",
     "Accept-Language": "de-AT,de;q=0.9,en;q=0.8",
 }
@@ -100,7 +100,7 @@ def _parse_rss(xml_text: str, feed_meta: dict) -> list[dict]:
 async def _fetch_one_feed(client: httpx.AsyncClient, feed_meta: dict) -> list[dict]:
     """Fetch one RSS feed; return parsed items or empty list on error."""
     try:
-        response = await client.get(feed_meta["url"], headers=_BROWSER_HEADERS, timeout=15)
+        response = await client.get(feed_meta["url"], headers=_HEADERS, timeout=15)
         response.raise_for_status()
         items = _parse_rss(response.text, feed_meta)
         logger.info(f"AT-Faktencheck-RSS: {feed_meta['name']} → {len(items)} items")
