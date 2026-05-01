@@ -264,6 +264,29 @@ server, edit `data/*.json` in-place, the next claim hits the new
 content. Verified in stress-test methodology step 4
 (`memory/stress_test_method.md`).
 
+#### Deploy decision table
+
+The hot-reload behavior interacts with the deployment workflow. After
+a change, exactly one of three actions is needed:
+
+| What changed | Deploy command | Why |
+|---|---|---|
+| `data/*.json` | nothing — picked up on next request | mtime-aware cache + verdict-cache version-suffix |
+| `services/*.py`, `main.py`, `requirements.txt` | `docker compose up -d --build backend` | needs a new image; `COPY` runs only at build time |
+| Container env / runtime flags only | `docker compose restart backend` | re-launches the same image with the new env |
+
+Common failure mode: choosing `restart` after a code change. The
+container relaunches cleanly, no error appears, but the new module is
+nowhere — the image still holds the old `COPY`-ed files. Verification
+trick:
+
+```bash
+ssh <host> 'docker exec evidora-backend-1 ls /app/services/<new_file>.py'
+```
+
+If the new file isn't there, the build was skipped and you're running
+the old image. `up -d --build` fixes it.
+
 ### 4.2 Cron-jobs on production
 
 Two cron-jobs run on the Hetzner host:
