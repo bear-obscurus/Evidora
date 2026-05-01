@@ -3,9 +3,6 @@
 Datenquelle: Reporters sans frontières / Reporters Without Borders, jährlicher
 Index der Pressefreiheit in 180 Ländern (seit 2013, aktuelle Methodik seit 2022).
 
-Datenformat: CSV, direkt von RSF, pro Jahr eine Datei.
-URL: https://rsf.org/sites/default/files/import_classement/{YYYY}.csv
-
 Skala: 0–100 Punkte (höher = freiere Presse).
 Kategorien: >85 Gut | 70–85 Zufriedenstellend | 55–70 Problematisch |
 40–55 Schwierig | <40 Sehr ernst.
@@ -19,30 +16,28 @@ Without Borders / RSF" erforderlich.
 GUARDRAILS (siehe project_political_guardrails.md):
 - Wir zitieren RSF-Scores, keine eigene Bewertung der Pressefreiheit.
 - Caveat zur Methodik (Mix aus Fragebogen + Sicherheitsvorfälle) ist Pflicht.
+
+Datenpfad seit 2026-05-01 (Open-Source-Compliance-Audit):
+- Daten als Static-First-Topic in ``data/rsf.json``.
+- Refresh einmal pro Jahr manuell via ``tools/refresh_rsf.py``.
+- Kein Live-API-Call mehr aus der Pipeline (eliminiert die frühere
+  User-Agent-Maskierung als TOS-Risiko).
 """
 
-import csv
-import io
 import logging
-import time
-from datetime import datetime
+import os
 
-import httpx
+from services._static_cache import load_json_mtime_aware
 
 logger = logging.getLogger("evidora")
 
-RSF_CSV_URL_TEMPLATE = "https://rsf.org/sites/default/files/import_classement/{year}.csv"
-# RSF blockt generische User-Agents — wir setzen einen Browser-UA
-RSF_USER_AGENT = "Mozilla/5.0 (compatible; Evidora-FactCheck/1.0)"
+STATIC_JSON_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "data",
+    "rsf.json",
+)
 
-RSF_CACHE_TTL = 86400  # 24h
-
-# Cache structure: {iso3: {year, score, rank, political, economic, legal, social, safety, country_en}}
-_rsf_cache: dict | None = None
-_rsf_cache_time: float = 0.0
-_rsf_data_year: int | None = None
-
-# Trigger-Keywords (DE + EN)
+# Trigger-Keywords (DE + EN) — unverändert vom alten Service
 RSF_KEYWORDS = [
     "pressefreiheit", "press freedom",
     "medienfreiheit", "media freedom",
@@ -108,107 +103,19 @@ COUNTRY_MAP = {
 }
 
 
-def _parse_eu_decimal(value: str | None) -> float | None:
-    """Parse European decimal format (comma as separator)."""
-    if not value:
-        return None
-    s = value.strip().replace(",", ".")
-    if not s:
-        return None
-    try:
-        return float(s)
-    except ValueError:
-        return None
-
-
-def _parse_int(value: str | None) -> int | None:
-    if not value:
-        return None
-    try:
-        return int(value.strip())
-    except ValueError:
-        return None
-
-
-async def fetch_rsf(client: httpx.AsyncClient | None = None) -> dict:
-    """Download and parse the RSF Press Freedom Index CSV.
-
-    Tries the current year first, falls back to previous years.
-    """
-    global _rsf_cache, _rsf_cache_time, _rsf_data_year
-
-    now = time.time()
-    if _rsf_cache is not None and (now - _rsf_cache_time) < RSF_CACHE_TTL:
-        return _rsf_cache
-
-    close_client = False
-    if client is None:
-        client = httpx.AsyncClient(
-            timeout=30.0, headers={"User-Agent": RSF_USER_AGENT}
-        )
-        close_client = True
-
-    current_year = datetime.now().year
-    data: dict = {}
-    year_loaded: int | None = None
-
-    try:
-        # Versuche aktuelles Jahr → dann bis zu 2 Jahre zurück
-        for candidate_year in [current_year, current_year - 1, current_year - 2]:
-            url = RSF_CSV_URL_TEMPLATE.format(year=candidate_year)
-            try:
-                resp = await client.get(url, headers={"User-Agent": RSF_USER_AGENT})
-                if resp.status_code == 404:
-                    continue
-                resp.raise_for_status()
-                # BOM-aware decode
-                text = resp.content.decode("utf-8-sig", errors="replace")
-                reader = csv.DictReader(io.StringIO(text), delimiter=";")
-
-                # Spalten können je Jahr "Score 2025", "Score 2024" etc. heißen
-                score_col = next(
-                    (c for c in (reader.fieldnames or []) if c.startswith("Score ")),
-                    None,
-                )
-                if not score_col:
-                    logger.warning(f"RSF {candidate_year}: No 'Score YYYY' column found")
-                    continue
-
-                for row in reader:
-                    iso = (row.get("ISO") or "").strip().upper()
-                    if not iso:
-                        continue
-                    entry = {
-                        "year": candidate_year,
-                        "score": _parse_eu_decimal(row.get(score_col)),
-                        "rank": _parse_int(row.get("Rank")),
-                        "political": _parse_eu_decimal(row.get("Political Context")),
-                        "economic": _parse_eu_decimal(row.get("Economic Context")),
-                        "legal": _parse_eu_decimal(row.get("Legal Context")),
-                        "social": _parse_eu_decimal(row.get("Social Context")),
-                        "safety": _parse_eu_decimal(row.get("Safety")),
-                        "country_en": (row.get("Country_EN") or "").strip(),
-                        "score_prev": _parse_eu_decimal(row.get("Score N-1")),
-                        "rank_prev": _parse_int(row.get("Rank N-1")),
-                    }
-                    data[iso] = entry
-
-                year_loaded = candidate_year
-                logger.info(f"RSF {candidate_year}: {len(data)} countries cached")
-                break
-            except Exception as e:
-                logger.warning(f"RSF {candidate_year}: fetch failed: {e}")
-                continue
-
-        _rsf_cache = data
-        _rsf_cache_time = now
-        _rsf_data_year = year_loaded
-        if not data:
-            logger.warning("RSF: no data loaded for any candidate year")
-        return data
-    finally:
-        if close_client:
-            await client.aclose()
+def _load_rsf_data() -> tuple[dict, int | None]:
+    """Return (by_country_dict, year). Empty dict + None if file is missing."""
+    pack = load_json_mtime_aware(STATIC_JSON_PATH)
+    if not pack:
+        return {}, None
+    facts = pack.get("facts") or []
+    if not facts:
+        return {}, None
+    fact = facts[0]
+    data = fact.get("data") or {}
+    by_country = data.get("by_country") or {}
+    year = data.get("year") or fact.get("year")
+    return by_country, year
 
 
 def _find_countries(analysis: dict, max_n: int = 3) -> list[str]:
@@ -235,6 +142,13 @@ def _claim_mentions_rsf(claim: str) -> bool:
     return any(kw in claim_lower for kw in RSF_KEYWORDS)
 
 
+def claim_mentions_rsf_cached(claim: str) -> bool:
+    """Public alias used by main.py fan-out."""
+    if not claim:
+        return False
+    return _claim_mentions_rsf(claim)
+
+
 def _category_label(score: float | None) -> str:
     if score is None:
         return "keine Daten"
@@ -249,12 +163,21 @@ def _category_label(score: float | None) -> str:
     return "Sehr ernst"
 
 
+async def fetch_rsf(client=None) -> dict:
+    """Compatibility shim: returns the by_country dict so tests / data_updater
+    that still reference fetch_rsf() keep working. The argument is ignored —
+    no HTTP client is used any more.
+    """
+    by_country, _year = _load_rsf_data()
+    return by_country
+
+
 async def search_rsf(analysis: dict) -> dict:
-    """Search RSF cache for press freedom data."""
+    """Search the static RSF pack for press-freedom data."""
     if not _claim_mentions_rsf(analysis.get("claim", "")):
         return {"source": "Reporter ohne Grenzen (RSF)", "type": "official_data", "results": []}
 
-    data = await fetch_rsf()
+    data, year = _load_rsf_data()
     if not data:
         return {"source": "Reporter ohne Grenzen (RSF)", "type": "official_data", "results": []}
 
@@ -269,7 +192,7 @@ async def search_rsf(analysis: dict) -> dict:
             continue
         score = entry.get("score")
         rank = entry.get("rank")
-        year = entry.get("year")
+        entry_year = entry.get("year") or year
         entity = entry.get("country_en") or code
         category = _category_label(score)
 
@@ -299,7 +222,7 @@ async def search_rsf(analysis: dict) -> dict:
         rank_text = f"Rang {rank}/180" if rank else ""
         score_text = f"{score:.1f}/100" if score is not None else "–"
 
-        name = f"RSF Pressefreiheit {entity} ({year}): {score_text} — {category}"
+        name = f"RSF Pressefreiheit {entity} ({entry_year}): {score_text} — {category}"
         if rank_text:
             name += f" ({rank_text})"
         name += trend_note
@@ -309,7 +232,7 @@ async def search_rsf(analysis: dict) -> dict:
             "indicator": "rsf_press_freedom_score",
             "country": code,
             "country_name": entity,
-            "year": str(year) if year else "",
+            "year": str(entry_year) if entry_year else "",
             "value": score,
             "display_value": score_text,
             "url": "https://rsf.org/en/index",
