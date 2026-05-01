@@ -67,6 +67,7 @@ from services.at_courts import search_at_courts, claim_mentions_at_courts_cached
 from services.oecd_health import search_oecd_health, claim_mentions_oecd_health_cached
 from services.housing_at import search_housing, claim_mentions_housing_cached
 from services.transport_at import search_transport, claim_mentions_transport_cached
+from services.esoterik_pack import search_esoterik, claim_mentions_esoterik_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -478,6 +479,14 @@ async def check_claim(request: Request):
         if claim_mentions_transport_cached(claim):
             tasks.append(cached("Verkehr AT", search_transport, analysis))
             queried_names.append("Verkehr Österreich (ÖBB + UBA + KlimaTicket)")
+        # Esoterik / Pseudowissenschaft — kuratierte Skeptiker-Konsens-
+        # Daten (GWUP, Cochrane, NHMRC, BfArM) für Themen, zu denen
+        # mainstream-DBs entweder nichts oder thematisch unrelevante
+        # Studien liefern (Heilsteine, Aura, Reinkarnation, Bioresonanz,
+        # Astrologie, Chakren, Wünschelrute u.a.).
+        if claim_mentions_esoterik_cached(claim):
+            tasks.append(cached("Esoterik-Faktencheck", search_esoterik, analysis))
+            queried_names.append("Esoterik-Faktencheck (GWUP + Cochrane + Skeptiker-Konsens)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

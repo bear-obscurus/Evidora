@@ -138,6 +138,7 @@ _AUTHORITATIVE_INDICATORS = (
     "oecd_health_fact",                  # OECD Health DACH-Eckwerte
     "housing_at_fact",                   # Wohnungsmarkt AT (OeNB + EU-SILC)
     "transport_at_fact",                 # Verkehr AT (ÖBB + UBA + KlimaTicket)
+    "esoterik_skeptic_fact",             # Esoterik-Pack (GWUP + Cochrane + Skeptiker)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",
