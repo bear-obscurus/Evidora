@@ -253,9 +253,42 @@ Evidora/
   to add a new data source, the static-first topic-service pattern,
   hot-reload, the cron-jobs that catch phrasing drift and stale data,
   and the stress-test methodology
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** — Branching workflow, commit
+  style, testing requirements, how to add a new data source step by
+  step, what NOT to commit
 - **[README.md](README.md)** — This file (installation + features)
-- **`memory/`** — Internal project memory (roadmap, deployment, political
-  guard-rails, source-rejection log, stress-test methodology)
+
+## Stress-testing
+
+In addition to the unit tests in `website/backend/tests/`, Evidora ships
+a stress-test runner that fires curated claim sets at the backend and
+reports verdict-match plus expected-source coverage:
+
+```bash
+cd website/backend
+
+# Run an existing claim set against the live site
+python3 tools/stress_test.py --claims tools/stress_tests/esoterik.json
+
+# Or against a local backend
+python3 tools/stress_test.py --claims tools/stress_tests/lehrer.json \
+    --url http://localhost:8000 --concurrency 2
+```
+
+Bundled claim sets live under `tools/stress_tests/`. Methodology
+(four measurement points: verdict-match, source-match, trigger gaps,
+hot-reload) is documented in [ARCHITECTURE.md §4.4](ARCHITECTURE.md).
+Cumulative result across 10 stress tests, 200 curated claims:
+**0 false-positives, 0 false-negatives** (state 2026-05-01).
+
+A latency profiler complements this:
+
+```bash
+python3 tools/profile_latency.py
+```
+
+reports per-stage durations (analyze / search / synth) so the
+bottleneck is always known.
 
 ## Testing
 
