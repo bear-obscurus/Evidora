@@ -1,0 +1,36 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  topic-match-unit-tests:
+    name: Unit tests (topic_match helper)
+    runs-on: ubuntu-latest
+
+    # The full pytest suite needs SpaCy models + sentence-transformers
+    # (~500 MB of downloads). For CI we run the topic_match unit tests
+    # only — they're standalone, ~2 s, and pin the central helper that
+    # ten static-first services delegate to. A regression there breaks
+    # every static-first topic at once, so this is the highest-value
+    # test for a PR check.
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install test dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pytest pytest-asyncio pytest-timeout httpx
+
+      - name: Run topic_match unit tests
+        working-directory: website/backend
+        run: python -m pytest tests/test_topic_match.py -v
