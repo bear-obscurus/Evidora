@@ -682,11 +682,30 @@ document.addEventListener("keydown", (e) => {
 });
 
 // --- Example Claims (clickable suggestions on the home page) ---
+// How many examples to show per page-load (random subset of the pool).
+const EXAMPLE_CLAIMS_VISIBLE = 8;
+
+// Cache of the currently-rendered subset. useExampleClaim(idx) looks up by
+// position in this list — NOT by position in the i18n pool, because we pick
+// a random subset per page-load.
+let renderedExamples = [];
+
+function pickRandomExamples(pool, n) {
+    // Fisher-Yates shuffle, then slice. Original pool stays untouched.
+    const arr = pool.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr.slice(0, Math.min(n, arr.length));
+}
+
 function renderExampleClaims() {
     const container = document.getElementById("example-claims");
     if (!container) return;
-    const examples = (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang].example_claims) || [];
-    container.innerHTML = examples.map((ex, i) => `
+    const pool = (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang].example_claims) || [];
+    renderedExamples = pickRandomExamples(pool, EXAMPLE_CLAIMS_VISIBLE);
+    container.innerHTML = renderedExamples.map((ex, i) => `
         <button type="button" class="example-claim-btn"
                 onclick="useExampleClaim(${i})"
                 data-i18n-tooltip="example_tooltip">
@@ -697,8 +716,7 @@ function renderExampleClaims() {
 }
 
 function useExampleClaim(idx) {
-    const examples = (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang].example_claims) || [];
-    const ex = examples[idx];
+    const ex = renderedExamples[idx];
     if (!ex) return;
     input.value = ex.text;
     updateCharCounter();

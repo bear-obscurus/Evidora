@@ -13,9 +13,11 @@ const TRANSLATIONS = {
         hint_education: "Bildung",
         hint_migration: "Migration",
         hint_gender: "Gleichstellung",
-        // Clickable example claims for the home page (Frontend-Polish A)
-        // Aktualisiert 2026-04-30: Mix aus Klassikern + Cluster-B-Themen
-        // (Bildung, Wohnen, EuGH, Verkehr, MedienTransparenz).
+        // Clickable example claims for the home page.
+        // Pool of 16 — ``app.js`` picks 8 at random per page-load, so each
+        // visit shows a different mix. Mix abdeckt: Wissenschaft (4),
+        // Klima/Energie (3), Bildung (2), Esoterik (3), AT-Boulevard (3),
+        // Justiz (1) — alle in den 10 Stress-Tests verifiziert.
         examples_label: "Oder gleich ausprobieren:",
         example_claims: [
             { icon: "💉", text: "Impfungen verursachen Autismus." },
@@ -26,6 +28,14 @@ const TRANSLATIONS = {
             { icon: "⚖️", text: "Schrems II macht alle US-Cloud-Dienste in Europa illegal." },
             { icon: "📰", text: "Die Krone bekommt am meisten Inserate von der öffentlichen Hand." },
             { icon: "📡", text: "Krebs wird hauptsächlich durch Handy-Strahlung verursacht." },
+            { icon: "✨", text: "Heilsteine wie Rosenquarz haben heilende Energien." },
+            { icon: "🌙", text: "Der Vollmond beeinflusst den Schlaf der Menschen nachweislich." },
+            { icon: "🔮", text: "Astrologie kann den Charakter eines Menschen vorhersagen." },
+            { icon: "⚛️", text: "Atomkraft ist gemessen an Toten pro Terawattstunde die sicherste Stromquelle." },
+            { icon: "🌳", text: "Die CO₂-Emissionen Österreichs sind seit 2010 deutlich gesunken." },
+            { icon: "🚭", text: "E-Zigaretten sind völlig harmlos für Jugendliche." },
+            { icon: "📚", text: "Sitzenbleiben hilft Schülern nachweislich beim Lernen." },
+            { icon: "🤖", text: "ChatGPT macht Schüler dumm und ruiniert ihre Schreibkompetenz." },
         ],
         beta_notice: "Dieses Projekt befindet sich in aktiver Entwicklung.",
         beta_notice_online: "Dieses Projekt befindet sich in aktiver Entwicklung. Die KI-Analyse dieser Online-Version erfolgt über die Mistral Cloud API (EU-Server, Paris).",
@@ -361,9 +371,11 @@ const TRANSLATIONS = {
         hint_education: "Education",
         hint_migration: "Migration",
         hint_gender: "Gender Equality",
-        // Clickable example claims for the home page
-        // Updated 2026-04-30: Mix of classics + Cluster-B topics
-        // (Education, Housing, ECJ, Transport, Media-Transparency).
+        // Clickable example claims for the home page.
+        // Pool of 16 — ``app.js`` picks 8 at random per page-load, so each
+        // visit shows a different mix. Coverage: science (4), climate/
+        // energy (3), education (2), esoteric (3), AT tabloid (3),
+        // justice (1) — all verified across the 10 stress-tests.
         examples_label: "Or try it directly:",
         example_claims: [
             { icon: "💉", text: "Vaccines cause autism." },
@@ -374,6 +386,14 @@ const TRANSLATIONS = {
             { icon: "⚖️", text: "Schrems II makes all US cloud services illegal in Europe." },
             { icon: "📰", text: "Krone receives the most government advertising in Austria." },
             { icon: "📡", text: "Cancer is mainly caused by mobile phone radiation." },
+            { icon: "✨", text: "Healing crystals like rose quartz have healing energies." },
+            { icon: "🌙", text: "The full moon noticeably affects people's sleep." },
+            { icon: "🔮", text: "Astrology can predict a person's character." },
+            { icon: "⚛️", text: "Nuclear power has the lowest deaths per terawatt-hour of any electricity source." },
+            { icon: "🌳", text: "Austria's CO₂ emissions have significantly decreased since 2010." },
+            { icon: "🚭", text: "E-cigarettes are completely harmless for teenagers." },
+            { icon: "📚", text: "Holding students back a year demonstrably helps them learn." },
+            { icon: "🤖", text: "ChatGPT makes students dumb and ruins their writing skills." },
         ],
         beta_notice: "This project is under active development.",
         beta_notice_online: "This project is under active development. AI analysis on this online version is processed via the Mistral Cloud API (EU servers, Paris).",
