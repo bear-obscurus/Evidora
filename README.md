@@ -4,16 +4,20 @@
 
 A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
-Evidora automatically verifies claims against scientific and institutional sources such as PubMed, OpenAlex, Cochrane, Europe PMC, Semantic Scholar, ClinicalTrials.gov, WHO, WHO Europe, EMA, EFSA, ECDC, Copernicus/NASA GISS, Eurostat, ECB, UNHCR, EEA, OECD, World Bank, Statistik Austria, DataCommons, EUvsDisinfo, and European fact-checkers.
+Evidora automatically verifies claims against **50+ scientific and institutional sources** spanning research databases, EU/UN/OECD statistics, climate data, disease surveillance, courts, parliaments, electoral records, fact-checker databases, and curated topic packs for Austria and the DACH region.
 
 **Live Demo:** [https://evidora.eu](https://evidora.eu)
+
+**Quality assurance:** 8 structured stress-tests run since project start, **160+ claims**, **0 false-positives, 0 false-negatives** (state 2026-04-30). See [ARCHITECTURE.md §4.4](ARCHITECTURE.md) for the methodology.
 
 > ⚠️ This project is under active development. The online version uses the Mistral Cloud API (EU servers, Paris) for AI analysis.
 
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **24 data sources** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD/Austrian statistics, climate data, disease surveillance, disinformation databases, and fact-checkers
+- **50+ data sources** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD/Austrian statistics, climate data, disease surveillance, court rulings, parliamentary records, electoral data, disinformation databases, and curated topic packs (see table below)
+- **Static-first topic services** — Curated facts (`data/*.json`) with substring/composite triggers and a cosine-similarity backup, so well-known claims hit deterministic answers without an extra API roundtrip. ~25 topic services cover Austrian/DACH-specific questions (housing, education, transport, courts, electoral data, etc.). See [ARCHITECTURE.md §3](ARCHITECTURE.md)
+- **Hot-reload of static data** — Edits to `data/*.json` go live without a backend restart (mtime-aware cache + verdict-cache version-suffix)
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Multi-country ranking** — Superlative claims ("highest", "most") automatically query all EU-27 countries for a full ranking
 - **Multi-dimensional context** — Prevents one-metric verdicts by injecting methodological caveats (energy safety: 7 dimensions; PISA: 7 education dimensions; CO₂: territorial vs. consumption-based; migration: asylum vs. total; GDP: welfare vs. output)
@@ -24,14 +28,12 @@ Evidora automatically verifies claims against scientific and institutional sourc
 - **Bilingual** — Full German/English interface (DE/EN toggle)
 - **Accessible** — ARIA labels, keyboard navigation, skip links, semantic landmarks
 - **SpaCy NER** — Named entity recognition enriches claim analysis with deterministic GPE/DATE/ORG entities (German lg + English sm models)
-- **OECD PISA + SDMX** — PISA 2022 scores (static CSV, 35 countries, by gender) + live OECD API for gender wage gap, education, employment
-- **Semantic reranking** — Sentence Transformers (multilingual MiniLM) rerank source results by relevance
+- **Semantic reranking** — Sentence Transformers (multilingual MiniLM) rerank source results by relevance, plus a backup-trigger fallback when curated triggers miss a phrasing
 - **Search history** — Last 10 checks stored locally (localStorage), no server storage
 - **PDF export** — Save fact-check results as PDF
 - **Share button** — Copy result link to clipboard (with fallback for HTTP/older browsers)
 - **Claim writing tips** — Built-in guidance for formulating precise, checkable claims
-- **Statistik Austria OGD** — Austrian official statistics: consumer price index (VPI), health expenditure (SHA), mortality with excess mortality, GDP/national accounts (47 ESA 2010 indicators), international migration by state, and naturalizations
-- **Background data updates** — Static datasets (PISA, OWID COVID, Statistik Austria) are automatically refreshed
+- **Background data updates** — Static datasets (PISA, OWID COVID, Statistik Austria) are automatically refreshed; two cron-jobs on production guard against phrasing drift and stale data
 
 ## Prerequisites
 
@@ -126,32 +128,28 @@ docker compose down
 
 ## Data Sources
 
-| Source | Type | Coverage | Status |
-|---|---|---|---|
-| PubMed | Biomedical studies | Health, medicine, biology | ✅ Active |
-| Cochrane Reviews | Systematic reviews (via PubMed) | Highest level of medical evidence | ✅ Active |
-| WHO GHO | Health indicators | Global health statistics | ✅ Active |
-| WHO Europe (HFA) | Health for All Gateway | 39 indicators, 66 European countries | ✅ Active |
-| EMA | Drug approvals (EU) | Pharmaceuticals, vaccines | ✅ Active |
-| EFSA | Food safety opinions (CrossRef/EFSA Journal) | Pesticides, additives, contaminants, GMOs, nutrition | ✅ Active |
-| ECDC (via OWID) | Infectious diseases | COVID-19 cases, deaths, vaccinations (cached CSV) | ✅ Active |
-| Copernicus CDS | Climate data (ERA5, CAMS) | Temperature, emissions, satellite | ✅ Active |
-| Eurostat | EU statistics | Economy, migration, energy, CO₂, housing, debt, wages, inequality, tourism | ✅ Active |
-| EEA (via Eurostat) | Environmental data | GHG emissions, air pollutants, renewables, waste | ✅ Active |
-| ECB | Central bank data | Interest rates, exchange rates, money supply | ✅ Active |
-| UNHCR | Refugee statistics | Refugee populations, asylum applications | ✅ Active |
-| OECD | Education & gender equality | PISA 2022 scores (35 countries, by gender), gender wage gap, employment | ✅ Active |
-| GADMO Faktenchecks | German-language fact-checks | APA, Correctiv (DACH region) | ✅ Active |
-| DataCommons | ClaimReview aggregator | Global fact-checker results via knowledge graph | ✅ Active |
-| World Bank | Development indicators | GDP, poverty, unemployment, inflation, CO₂, education, military, Gini | ✅ Active |
-| OWID Energy Safety | Multi-dimensional energy profiles | 9 sources × 7 dimensions: deaths/TWh, CO₂, land use, waste, catastrophe risk, decommissioning, capacity factor | ✅ Active |
-| OpenAlex | Scholarly works (250M+) | All disciplines: physics, social science, economics, engineering, etc. | ✅ Active |
-| Europe PMC | Life science literature (40M+) | European focus, Open Access, bioRxiv/medRxiv preprints | ✅ Active |
-| Semantic Scholar | AI-powered paper search (200M+) | TLDR summaries, citation-based influence scoring | ✅ Active |
-| ClinicalTrials.gov | Clinical trial registry (500K+) | Drug efficacy, treatment comparisons, vaccine trials | ✅ Active |
-| EUvsDisinfo | Disinformation database (14.5K cases + RSS) | Pro-Kremlin disinformation cases (EU East StratCom) | ✅ Active |
-| Statistik Austria | Austrian official statistics (OGD) | VPI/inflation, health expenditure (SHA), mortality, GDP (47 indicators), migration, naturalizations | ✅ Active |
-| Google Fact Check API | ClaimReview markup | European fact-checkers (EFCSN) | ✅ Active |
+Sources are grouped by domain. Each lives in its own service module
+(`backend/services/`). The fan-out chooses sources per claim category
+during analysis. For implementation patterns (live-API vs. static-first
+topic vs. hybrid), see [ARCHITECTURE.md §2](ARCHITECTURE.md).
+
+| Domain | Sources |
+|---|---|
+| **Science & medicine** | PubMed, Cochrane (via PubMed), Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, Retraction Watch, bioRxiv / medRxiv |
+| **Climate & environment** | NASA GISS, Berkeley Earth, Copernicus CDS, EEA (via Eurostat), GeoSphere AT, Skeptical Science, Energy-Charts |
+| **Economy & finance** | Eurostat, OECD (PISA + SDMX), World Bank, ECB, Statistik Austria, WIFO + IHS forecasts, OeNB |
+| **Politics & democracy** | V-Dem, Transparency International, RSF, SIPRI, IDEA, Parlament.gv.at, BMI Wahlen + Volksbegehren, MedienTransparenz (KommAustria) |
+| **Justice & courts** | RIS (Austrian legal information), EuGH + EGMR (EU & ECHR rulings), VfGH + VwGH (Austrian constitutional + administrative courts) |
+| **Health & disease surveillance** | WHO GHO, WHO Europe (HFA Gateway), ECDC (via OWID), EMA, EFSA, RKI SurvStat, OECD Health, BASG |
+| **Migration** | UNHCR, Frontex |
+| **Energy** | OWID Energy Safety (9 sources × 7 dimensions), Energy-Charts |
+| **Fact-checker databases** | GADMO (APA + Correctiv), Google Fact Check API (EFCSN), DataCommons ClaimReview, EUvsDisinfo, Mimikama, AT-Faktencheck-RSS |
+| **Austria-specific topic packs** | AT Factbook (18 topics), DACH Factbook (11 topics), BKA PKS (police crime statistics), Bildung DACH, Wohnen AT, Verkehr AT, AT Courts |
+
+Each curated topic pack is a `data/*.json` file with substring +
+composite triggers. The pattern is documented in
+[ARCHITECTURE.md §3](ARCHITECTURE.md). To contribute a new topic,
+follow the anatomy in §3.5.
 
 ## Security
 
@@ -167,57 +165,63 @@ docker compose down
 ```
 Evidora/
 ├── website/
-│   ├── .env                 # Your API keys (not committed!)
-│   ├── .env.example         # Template for .env
+│   ├── .env                       # Your API keys (not committed!)
+│   ├── .env.example
 │   ├── docker-compose.yml
 │   ├── backend/
-│   │   ├── main.py          # FastAPI entry point
+│   │   ├── main.py                # FastAPI entry point + SSE pipeline
 │   │   ├── Dockerfile
 │   │   ├── requirements.txt
-│   │   ├── pytest.ini        # Test configuration
-│   │   ├── tests/            # Test suite (unit, source API, integration)
-│   │   ├── data/             # Static datasets
-│   │   │   └── pisa_2022.csv # OECD PISA scores by country & gender
-│   │   └── services/        # Data source modules
-│   │       ├── claim_analyzer.py  # LLM-based claim analysis
-│   │       ├── ollama.py          # Ollama/Mistral API client
-│   │       ├── ner.py             # SpaCy NER enrichment (de_lg + en_sm)
-│   │       ├── pubmed.py          # PubMed (biomedical studies)
-│   │       ├── who.py             # WHO GHO (health indicators)
-│   │       ├── who_europe.py      # WHO Europe HFA Gateway (39 indicators)
-│   │       ├── ema.py             # EMA (drug approvals)
-│   │       ├── claimreview.py     # Google Fact Check API
-│   │       ├── copernicus.py      # Copernicus CDS (climate)
-│   │       ├── eurostat.py        # Eurostat (EU statistics)
-│   │       ├── eea.py             # EEA (environment, via Eurostat API)
-│   │       ├── ecdc.py            # ECDC (COVID via OWID)
-│   │       ├── cochrane.py        # Cochrane systematic reviews
-│   │       ├── ecb.py             # ECB (interest rates, exchange rates)
-│   │       ├── unhcr.py           # UNHCR (refugee statistics)
-│   │       ├── oecd.py            # OECD (PISA + SDMX live API)
-│   │       ├── gadmo.py           # GADMO fact-checks (APA, Correctiv)
-│   │       ├── datacommons.py     # DataCommons ClaimReview aggregator
-│   │       ├── euvsdisinfo.py     # EUvsDisinfo (disinformation DB)
-│   │       ├── energy_safety.py    # OWID energy safety (deaths per TWh)
-│   │       ├── openalex.py        # OpenAlex (250M+ scholarly works)
-│   │       ├── europe_pmc.py      # Europe PMC (40M+ life science articles)
-│   │       ├── semantic_scholar.py # Semantic Scholar (200M+ papers, TLDR)
-│   │       ├── clinicaltrials.py  # ClinicalTrials.gov (500K+ studies)
-│   │       ├── worldbank.py       # World Bank (global development indicators)
-│   │       ├── statistik_austria.py # Statistik Austria OGD (VPI, health, mortality)
-│   │       ├── data_updater.py    # Background CSV/data refresh
-│   │       ├── cache.py           # In-memory response cache
-│   │       ├── reranker.py        # Sentence Transformers reranking
-│   │       └── synthesizer.py     # LLM synthesis via Ollama/Mistral
+│   │   ├── pytest.ini
+│   │   ├── tests/                 # Unit, source API, integration tests
+│   │   ├── data/                  # Static datasets for static-first
+│   │   │   │                      #   topic services (~25 JSON packs)
+│   │   │   ├── pisa_2022.csv      # OECD PISA scores
+│   │   │   ├── housing_at.json    # OeNB + Statistik Austria wohnen
+│   │   │   ├── education_dach.json
+│   │   │   ├── eu_courts.json
+│   │   │   ├── …                  # +20 more topic packs
+│   │   ├── services/
+│   │   │   ├── _topic_match.py    # Shared trigger logic (10 services)
+│   │   │   ├── _reranker_backup.py # Cosine-similarity fallback trigger
+│   │   │   ├── _static_cache.py   # mtime-aware hot-reload for data/*.json
+│   │   │   ├── _eurostat_live.py  # Generic Eurostat SDMX connector
+│   │   │   ├── claim_analyzer.py  # LLM claim analysis
+│   │   │   ├── ner.py             # SpaCy NER (GPE/DATE/ORG)
+│   │   │   ├── reranker.py        # Sentence-Transformers reranking
+│   │   │   ├── synthesizer.py     # LLM synthesis + verdict-consistency
+│   │   │   ├── cache.py           # In-memory response cache
+│   │   │   ├── ollama.py          # Ollama/Mistral API client
+│   │   │   ├── data_updater.py    # Background data refresh
+│   │   │   ├── pubmed.py · who.py · ema.py · efsa.py · ecdc.py
+│   │   │   ├── eurostat.py · eea.py · ecb.py · unhcr.py · oecd.py
+│   │   │   ├── openalex.py · europe_pmc.py · semantic_scholar.py
+│   │   │   ├── clinicaltrials.py · cochrane.py · worldbank.py
+│   │   │   ├── statistik_austria.py · biorxiv.py · retraction_watch.py
+│   │   │   ├── basg.py · oenb.py · geosphere.py · copernicus.py
+│   │   │   ├── gadmo.py · claimreview.py · datacommons.py
+│   │   │   ├── euvsdisinfo.py · mimikama.py · at_faktencheck_rss.py
+│   │   │   ├── eu_courts.py · eu_crime.py · at_courts.py · ris.py
+│   │   │   ├── housing_at.py · transport_at.py · education_dach.py
+│   │   │   ├── oecd_health.py · rki_surveillance.py · energy_safety.py
+│   │   │   ├── energy_charts.py · medientransparenz.py · frontex.py
+│   │   │   ├── wahlen.py · volksbegehren.py · abstimmungen.py
+│   │   │   ├── parlament_at.py · transparency.py · vdem.py · rsf.py
+│   │   │   ├── sipri.py · idea.py · pks.py · wifo_ihs.py
+│   │   │   └── at_factbook.py · dach_factbook.py
+│   │   └── tools/
+│   │       ├── weekly_phrasing_check.py   # Cron: Sun 03:00
+│   │       ├── data_freshness_check.py    # Cron: Mon 04:00
+│   │       └── refresh_eurostat_crime.py  # Live-API refresh showcase
 │   └── frontend/
-│       ├── nginx.conf       # Nginx reverse proxy config
-│       ├── index.html
-│       ├── style.css
-│       ├── app.js
-│       ├── i18n.js          # DE/EN translations
+│       ├── nginx.conf
+│       ├── index.html · style.css · app.js
+│       ├── i18n.js                # DE/EN translations
 │       └── favicon.svg
+├── ARCHITECTURE.md                # Developer-facing architecture doc
+├── README.md                      # This file
 ├── .gitignore
-└── LICENSE                  # MIT License
+└── LICENSE                        # MIT License
 ```
 
 ## How It Works
@@ -236,12 +240,22 @@ Evidora/
 
 ## Tech Stack
 
-- **Backend:** Python, FastAPI, SSE streaming
+- **Backend:** Python 3.14, FastAPI, SSE streaming
 - **Frontend:** Vanilla JS, CSS (no frameworks)
-- **LLM:** Mistral 7B via Ollama (local) or Mistral API (cloud, EU servers)
+- **LLM:** Mistral 7B via Ollama (local) or Mistral Cloud API (EU servers, Paris)
 - **NLP:** SpaCy (de_core_news_lg + en_core_web_sm) for named entity recognition
-- **ML:** Sentence Transformers (multilingual MiniLM) for semantic reranking
-- **Deployment:** Docker Compose (backend + nginx)
+- **ML:** Sentence Transformers (multilingual MiniLM) for semantic reranking *and* a backup-trigger fallback for static-first topic services
+- **Deployment:** Docker Compose (backend + nginx) on a single Hetzner host
+
+## Documentation
+
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** — How the pipeline works, how
+  to add a new data source, the static-first topic-service pattern,
+  hot-reload, the cron-jobs that catch phrasing drift and stale data,
+  and the stress-test methodology
+- **[README.md](README.md)** — This file (installation + features)
+- **`memory/`** — Internal project memory (roadmap, deployment, political
+  guard-rails, source-rejection log, stress-test methodology)
 
 ## Testing
 
@@ -249,17 +263,27 @@ Evidora/
 cd website/backend
 
 # Unit tests (no backend needed, instant)
-python -m pytest tests/test_unit.py -v
+python3 -m pytest tests/test_unit.py tests/test_topic_match.py -v
 
 # Source API tests (needs network, no LLM)
-python -m pytest tests/test_sources.py -v --timeout=60
+python3 -m pytest tests/test_sources.py -v --timeout=60
 
 # Integration tests (needs running backend + LLM)
-python -m pytest tests/test_integration.py -v --timeout=180
+python3 -m pytest tests/test_integration.py -v --timeout=180
 
-# All tests
-python -m pytest -v --timeout=180
+# All tests except integration
+python3 -m pytest tests/ --ignore=tests/test_integration.py
 ```
+
+### Stress-test methodology
+
+In addition to unit/integration tests, Evidora uses **structured 20-claim
+stress-tests** to catch trigger gaps and verdict regressions. Each test
+measures verdict-match, expected-source coverage, trigger gaps, and live
+hot-reload behavior. The full methodology lives in
+`memory/stress_test_method.md` and [ARCHITECTURE.md §4.4](ARCHITECTURE.md);
+cumulative balance across 8 tests: **160+ claims, 0 false-positives,
+0 false-negatives** (state 2026-04-30).
 
 ## Troubleshooting
 
