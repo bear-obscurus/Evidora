@@ -70,6 +70,7 @@ from services.transport_at import search_transport, claim_mentions_transport_cac
 from services.esoterik_pack import search_esoterik, claim_mentions_esoterik_cached
 from services.geschichte_pack import search_geschichte, claim_mentions_geschichte_cached
 from services.verschwoerungen_pack import search_verschwoerungen, claim_mentions_verschwoerungen_cached
+from services.tech_ki_pack import search_tech_ki, claim_mentions_tech_ki_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -512,6 +513,15 @@ async def check_claim(request: Request):
         if claim_mentions_verschwoerungen_cached(claim):
             tasks.append(cached("Verschwoerungen-Faktencheck", search_verschwoerungen, analysis))
             queried_names.append("Verschwoerungen-Faktencheck (BVerfG + Verfassungsschutz + ADL/IKG/DÖW + IHRA)")
+        # Tech-/KI-Faktencheck — kuratierte Konsens-Daten zu klassischen
+        # Tech-/KI-Mythen (KI-Bewusstsein, Bitcoin-Anonymitaet, Quanten-
+        # computer-Verschluesselung, Anonymisierung, VPN, Apple/Android).
+        # 6 Topics; ergaenzt Wissenschafts-DBs (PubMed/SemanticScholar/
+        # OpenAlex), die schon ~95 % der Tech-Mythen abdecken — Pack ist
+        # vor allem Robustheits- und Konsistenz-Anker.
+        if claim_mentions_tech_ki_cached(claim):
+            tasks.append(cached("Tech-/KI-Faktencheck", search_tech_ki, analysis))
+            queried_names.append("Tech-/KI-Faktencheck (NIST + EFF + ACM + Tech-Konsens)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

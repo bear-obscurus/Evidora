@@ -141,6 +141,7 @@ _AUTHORITATIVE_INDICATORS = (
     "esoterik_skeptic_fact",             # Esoterik-Pack (GWUP + Cochrane + Skeptiker)
     "geschichte_konsens_fact",           # Geschichts-Pack (DÖW + USHMM + bpb)
     "verschwoerungen_konsens_fact",      # Verschwörungen-Pack (BVerfG + VS + ADL/IKG/DÖW)
+    "tech_ki_konsens_fact",              # Tech-/KI-Pack (NIST + EFF + ACM)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

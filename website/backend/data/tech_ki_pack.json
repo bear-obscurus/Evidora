@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-02",
+  "source_label": "NIST + BSI + EFF + ACM + Tech-Forschungs-Konsens",
+  "facts": [
+    {
+      "id": "ki_bewusstsein_2026",
+      "topic": "ki_bewusstsein_mythos",
+      "scope": "Behauptung, große Sprachmodelle (LLMs) seien bewusst oder fühlend",
+      "year": 2025,
+      "headline": "ChatGPT & Co. sind nicht bewusst — statistisches Pattern-Matching, kein Bewusstsein",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Die These, dass Sprachmodelle wie ChatGPT, Claude, Gemini oder Llama bewusst, fühlend oder selbst-aware seien, ist FALSCH/NICHT BELEGT. KI-Forschungs-Konsens: LLMs sind statistische Systeme, die das wahrscheinlichste nächste Token vorhersagen — kein Mechanismus für Bewusstsein. Inhaltliche Debatten über zukünftige AGI-Möglichkeit oder ethische Stellvertreter-Diskussionen sind davon zu trennen.",
+        "stochastic_parrots": "Bender, Gebru, Major McMillan-Major & Mitchell (2021, FAccT '21): 'On the Dangers of Stochastic Parrots' — beschreibt LLMs als Systeme, die Sprache rekombinieren, ohne Verständnis oder Intention. Wird in der ML-Forschung als zentraler Konsens-Punkt zitiert.",
+        "lecun_position": "Yann LeCun (Meta AI Chief Scientist, Turing-Award-Träger): wiederholte öffentliche Aussagen — LLMs haben kein Welt-Modell, kein Verständnis, kein Bewusstsein. Architektur-bedingt fehlen die Voraussetzungen für Selbst-Awareness.",
+        "lemoine_lamda_kontext": "2022 behauptete der Google-Engineer Blake Lemoine, das LaMDA-Modell sei bewusst — wurde von Google entlassen, die Aussage von der breiten ML-Community zurückgewiesen. Dies ist das Standard-Beispiel für anthropomorphes Missverständnis von LLM-Output.",
+        "context": "Sprachmodelle generieren überzeugend menschlich klingenden Text durch Wahrscheinlichkeits-Vorhersage. Dies erzeugt eine ELIZA-Effekt-Illusion von Bewusstsein. Es gibt keinen wissenschaftlichen Beleg, keine Architektur-Komponente und keine Mess-Methode, die LLM-Bewusstsein nachweist."
+      },
+      "context_notes": [
+        "Wir bewerten die spezifische These 'KI ist bewusst' — wissenschaftliche Diskussionen über zukünftige AGI-Wege, Bewusstseins-Theorie oder ethische Behandlung von KI-Systemen sind davon zu trennen.",
+        "ELIZA-Effekt (Weizenbaum 1966): Menschen attribuieren bereits primitivsten Chatbots Bewusstsein und Verständnis. Bei modernen LLMs ist dieser Effekt drastisch verstärkt.",
+        "Anthropomorphismus ist die größere Gefahr: nicht 'wann wird KI bewusst', sondern 'wann gewöhnen wir uns daran, KI Bewusstsein zuzuschreiben, wo keines ist'."
+      ],
+      "claim_phrasings_handled": [
+        "ChatGPT ist bewusst",
+        "KI hat Gefühle",
+        "Sprachmodelle sind selbst-bewusst",
+        "AI ist sentient"
+      ],
+      "trigger_keywords": [
+        "ki bewusst", "ki ist bewusst", "ki hat bewusstsein",
+        "chatgpt bewusst", "chatgpt fuehlt", "chatgpt fühlt",
+        "sprachmodell bewusst", "llm bewusst",
+        "ai sentient", "ai conscious", "ki sentient"
+      ],
+      "trigger_composite": [
+        ["ki", "ai", "chatgpt", "claude", "gemini", "llm", "sprachmodell", "kuenstliche intelligenz"],
+        ["bewusst", "sentient", "selbstbewusst", "selbst-bewusst", "fuehlt", "fühlt", "gefühl", "gefuehl", "gefuehle", "gefühle", "hat gefühle", "denkt selbst", "consciousness", "empfindet"]
+      ],
+      "source_label": "Bender et al. 2021 (FAccT) + LeCun + ML-Forschungs-Konsens",
+      "source_url": "https://dl.acm.org/doi/10.1145/3442188.3445922",
+      "secondary_url": "https://en.wikipedia.org/wiki/Stochastic_parrot"
+    },
+    {
+      "id": "bitcoin_anonymitaet_2026",
+      "topic": "bitcoin_anonymitaet_mythos",
+      "scope": "Behauptung, Bitcoin sei anonym und nicht nachverfolgbar",
+      "year": 2025,
+      "headline": "Bitcoin ist pseudonym, nicht anonym — Transaktionen sind global nachverfolgbar",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Die These, Bitcoin- (oder Standard-Krypto-) Transaktionen seien anonym und nicht nachverfolgbar, ist FALSCH. Bitcoin ist pseudonym (Wallet-Adressen statt Namen), aber die gesamte Transaktions-Historie ist im öffentlichen Ledger einsehbar. Cluster-Analyse-Tools verknüpfen Wallets mit realen Identitäten. Privacy-Coins (Monero, Zcash) sind eine separate Kategorie und nicht gemeint, wenn von 'Bitcoin' die Rede ist.",
+        "chainalysis_industrie": "Chainalysis Inc., Elliptic, TRM Labs: Industrie-Standard-Tools für Krypto-Forensik, von FBI, IRS, Europol, Interpol, BKA und EU-Geldwäsche-Behörden eingesetzt. Crypto Crime Report (jährlich) dokumentiert Tausende Strafverfolgungs-Erfolge.",
+        "konkrete_verfolgungs_cases": "Silk Road 2013 (Ross Ulbricht — durch Wallet-Verknüpfung verurteilt), Colonial Pipeline Ransomware 2021 (FBI rückforderte 63,7 BTC binnen Wochen), Bitfinex-Hack 2022 (Heather Morgan + Ilya Lichtenstein verhaftet — IRS rückforderte 3,6 Mrd USD).",
+        "cluster_analyse": "Wallet-Cluster-Analyse (Meiklejohn et al. 2013) zeigt, dass typische Bitcoin-Nutzer durch Verhaltens-Patterns, Mixing-Services-Spuren und Exchange-KYC-Daten de-anonymisiert werden können — oft binnen Stunden.",
+        "context": "Bitcoin wurde von Satoshi Nakamoto im Whitepaper als pseudonyme Zahlung beschrieben — nicht als anonyme. Die Mythos-Vorstellung 'Krypto = anonym' kommt aus frühen Marketing-Diskursen und Drogen-Marktplatz-Anwendungen, nicht aus der technischen Realität. Privacy-Coins sind eine eigene Kategorie, die separat zu bewerten wäre."
+      },
+      "context_notes": [
+        "Differenzierung: Bitcoin (pseudonym, nachverfolgbar) ≠ Monero/Zcash (kryptografisch anonym). Wenn ein Claim spezifisch Privacy-Coins meint, ist die Bewertung anders.",
+        "Mixer/Tumbler (TornadoCash etc.) erschweren Tracking, eliminieren es aber nicht; die meisten wurden mittlerweile von OFAC sanktioniert.",
+        "Selbst Privacy-Coins haben Schwächen — Monero-Forschungspapiere zeigen Korrelations-Angriffe."
+      ],
+      "claim_phrasings_handled": [
+        "Bitcoin ist anonym",
+        "Krypto-Transaktionen sind nicht nachverfolgbar",
+        "Bitcoin schützt vor Strafverfolgung"
+      ],
+      "trigger_keywords": [
+        "bitcoin anonym", "bitcoin nicht nachverfolgbar",
+        "krypto anonym", "kryptowaehrung anonym", "kryptowährung anonym",
+        "krypto nicht nachverfolgbar", "btc anonym"
+      ],
+      "trigger_composite": [
+        ["bitcoin", "btc", "krypto", "kryptowaehrung", "kryptowährung", "blockchain"],
+        ["anonym", "nicht nachverfolg", "nicht zurückverfolg", "nicht zurueckverfolg", "nicht identifizier", "geheim", "untraceable", "schuetzt vor", "schützt vor", "strafverfolg", "verfolgung"]
+      ],
+      "source_label": "Chainalysis Crypto Crime Report + DOJ-Cases + Meiklejohn 2013",
+      "source_url": "https://www.chainalysis.com/blog/2024-crypto-crime-trends/",
+      "secondary_url": "https://en.wikipedia.org/wiki/Bitcoin#Anonymity"
+    },
+    {
+      "id": "quantencomputer_2026",
+      "topic": "quantencomputer_verschluesselung_mythos",
+      "scope": "Behauptung, Quantencomputer brächen heute alle Verschlüsselungen",
+      "year": 2025,
+      "headline": "Quantencomputer brechen heute KEINE produktiven Verschlüsselungen — NIST-PQC-Standards seit 2024",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Behauptungen, Quantencomputer brächen heute oder in den nächsten 1–2 Jahren produktive Verschlüsselungen wie RSA-2048, AES-256 oder Elliptic Curves, sind FALSCH. Aktuelle Quantencomputer haben höchstens ~1000 fehlerkorrigierte Qubits — Shor's Algorithmus für RSA-2048 würde geschätzt Millionen logischer Qubits brauchen. Eine 'Quantum-Krypto-Apokalypse' wird in der Forschung für ~2030–2040 (Q-Day) projiziert, mit hoher Unsicherheit.",
+        "nist_pqc_standardisierung": "NIST hat im August 2024 die ersten drei Post-Quantum-Cryptography (PQC) Standards veröffentlicht: ML-KEM (CRYSTALS-Kyber, FIPS 203), ML-DSA (CRYSTALS-Dilithium, FIPS 204), SLH-DSA (SPHINCS+, FIPS 205). Migration läuft, aber nicht aus akuter Not — als Vorsorge.",
+        "shor_algorithmus_scale": "Peter Shor's Algorithmus (1994) bricht theoretisch RSA, ECC. Aber: Größenordnungs-Schätzungen (Gidney & Ekerå 2021): RSA-2048 zu brechen würde ~20 Mio physische Qubits + viele Stunden Rechenzeit benötigen. Beste aktuelle Quantencomputer (IBM, Google, IonQ): 100–1000 Qubits, hohe Fehlerraten, kurze Kohärenzzeiten.",
+        "harvest_now_decrypt_later": "Reales Risiko ist 'Harvest Now, Decrypt Later' (HNDL): heute verschlüsselte Daten werden gespeichert, in 10+ Jahren mit Quanten-Hardware entschlüsselt. Deshalb läuft die PQC-Migration JETZT, obwohl der Quantencomputer selbst noch nicht da ist.",
+        "context": "Die These 'Quantencomputer brechen 2025 alles' ist Boulevard-Übertreibung. Reale Lage: laufende PQC-Migration (NIST seit 2016 in Gang, Standards 2024 publiziert), keine produktive Quantencomputer-Bedrohung in Sicht. Forschungs-Konsens: Q-Day frühestens Mitte/Ende 2030er, möglicherweise nie."
+      },
+      "context_notes": [
+        "Differenzierung: Symmetrische Verfahren (AES-256) sind quantum-resistant durch Verdopplung der Schlüssellänge (Grover-Algorithmus halbiert Sicherheits-Niveau, AES-256 hat noch 128-Bit-Sicherheit nach Grover).",
+        "Hash-Funktionen (SHA-2, SHA-3): grundsätzlich quantum-resistant.",
+        "Asymmetrische Verfahren (RSA, ECC, Diffie-Hellman): theoretisch durch Shor brechbar, daher PQC-Migration."
+      ],
+      "claim_phrasings_handled": [
+        "Quantencomputer brechen alle Verschlüsselungen",
+        "RSA ist nicht mehr sicher",
+        "Quantencomputer kommen 2025"
+      ],
+      "trigger_keywords": [
+        "quantencomputer verschluesselung", "quantencomputer verschlüsselung",
+        "quantencomputer rsa", "quantum decryption",
+        "quantum computer break encryption",
+        "quantum krypto apokalypse"
+      ],
+      "trigger_composite": [
+        ["quantencomputer", "quantum computer", "quanten-computer", "quantum"],
+        ["verschluessel", "verschlüssel", "rsa", "encryption", "kryptografie", "kryptographie", "brechen", "knack", "break"]
+      ],
+      "source_label": "NIST PQC FIPS 203/204/205 + Gidney & Ekerå 2021",
+      "source_url": "https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards",
+      "secondary_url": "https://en.wikipedia.org/wiki/Post-quantum_cryptography"
+    },
+    {
+      "id": "anonymisierung_2026",
+      "topic": "anonymisierung_re_identifikation_mythos",
+      "scope": "Behauptung, anonymisierte Daten ließen sich nicht zurückverfolgen",
+      "year": 2025,
+      "headline": "Anonymisierte Daten lassen sich oft re-identifizieren — klassisches Forschungsergebnis",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, Anonymisierung schütze zuverlässig vor Re-Identifikation, ist FALSCH/MOSTLY_FALSE. Dreißig Jahre Privacy-Forschung zeigen: bereits wenige Quasi-Identifier (Geburtsdatum + ZIP + Geschlecht; Mobilfunkbewegungen; Browser-Fingerprints) reichen, um vermeintlich anonyme Records mit hoher Wahrscheinlichkeit Personen zuzuordnen.",
+        "sweeney_1997": "Latanya Sweeney (1997, 2000): 87 % der US-Bevölkerung sind durch (Geburtsdatum, ZIP-Code, Geschlecht) eindeutig identifizierbar. Wandte das an, um den damaligen Gouverneur William Weld in einem 'anonymisierten' Krankendatensatz wiederzufinden.",
+        "narayanan_2008": "Narayanan & Shmatikov (2008, IEEE Symp. Security & Privacy): Re-Identifikation des Netflix-Prize-Datensatzes durch Korrelation mit IMDB-Bewertungen. Effekt: Netflix musste den Datensatz zurückziehen.",
+        "demontjoye_2013": "de Montjoye et al. (2013, Scientific Reports): vier räumlich-zeitliche Punkte aus Mobilfunk-Daten reichen, um 95 % der Nutzer eindeutig zu identifizieren.",
+        "context": "Anonymisierung im klassischen Sinne (Namen entfernt, Aggregat-Daten) ist gegen die Re-Identifikations-Forschung der letzten 25 Jahre nicht haltbar. Strenge Privacy-Garantien gibt es nur via Differential Privacy, k-Anonymität (mit hohem k), oder synthetische Daten — und auch diese mit Trade-offs."
+      },
+      "context_notes": [
+        "DSGVO-Erwägungsgrund 26: 'Daten gelten als anonymisiert, wenn die betroffene Person nicht oder nicht mehr identifizierbar ist.' — die Frage, ob Daten dies tatsächlich erfüllen, ist immer kontext-abhängig.",
+        "Differential Privacy (Dwork 2006): mathematisch beweisbare Garantie, aber mit Genauigkeits-Trade-off.",
+        "Synthetische Daten + GANs: vielversprechend, aber neue Re-Identifikations-Angriffe entstehen."
+      ],
+      "claim_phrasings_handled": [
+        "Anonymisierte Daten sind sicher",
+        "Anonyme Daten lassen sich nicht zurückverfolgen",
+        "Datenschutz durch Anonymisierung"
+      ],
+      "trigger_keywords": [
+        "anonymisierte daten sicher", "anonymisierte daten nicht",
+        "anonyme daten zurueck", "anonyme daten zurück",
+        "re-identifikation", "reidentifikation",
+        "anonymisierung schuetzt", "anonymisierung schützt"
+      ],
+      "trigger_composite": [
+        ["anonymis", "anonym daten", "anonyme daten", "pseudonymis"],
+        ["sicher", "schuetz", "schütz", "zurueckverfolg", "zurückverfolg", "identifizier", "geheim", "unverfolgbar", "rueckverfolg", "rückverfolg"]
+      ],
+      "source_label": "Sweeney 1997 + Narayanan 2008 + de Montjoye 2013",
+      "source_url": "https://dataprivacylab.org/projects/identifiability/paper1.pdf",
+      "secondary_url": "https://en.wikipedia.org/wiki/Data_re-identification"
+    },
+    {
+      "id": "vpn_anonymitaet_2026",
+      "topic": "vpn_anonymitaet_mythos",
+      "scope": "Behauptung, VPN mache vollständig anonym im Internet",
+      "year": 2025,
+      "headline": "VPN ist Privacy-Tool, kein Anonymitäts-Garant — viele Angriffsflächen bleiben",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, ein VPN mache vollständig anonym im Internet, ist FALSCH/MOSTLY_FALSE. VPNs verschleiern die IP-Adresse gegenüber dem Ziel-Webserver, aber: (1) VPN-Anbieter selbst sieht alles, (2) Browser-Fingerprinting funktioniert weiter, (3) Login-Daten/Cookies identifizieren weiter, (4) DNS-Leaks und WebRTC-Leaks sind häufige Schwachstellen, (5) Strafverfolgung kann VPN-Anbieter zu Logs zwingen (Ausnahmen: Strict-No-Logs-Anbieter mit Audits).",
+        "eff_position": "EFF (Electronic Frontier Foundation): VPN ist nützlich gegen ISP-Snooping und beim Umgehen von Geo-Blocking, aber kein Ersatz für echte Anonymisierungs-Werkzeuge wie Tor. Tor-Browser bietet stärkere Anonymität durch Onion-Routing über mehrere Hops.",
+        "logging_zwang": "VPN-Anbieter unterliegen den Gesetzen ihres Hostings — IP-Vorrats­datenspeicherung in einigen EU-Ländern, US-Subpoenas, Five-Eyes-Datenaustausch. 'No-Logs'-Behauptungen sind ohne unabhängiges Audit (z.B. PwC, Cure53) schwer verifizierbar.",
+        "tracking_kontinuiert": "Cookies, Browser-Fingerprinting (Canvas, WebGL, AudioContext, Schriftarten-Liste), Login-Sessions, OS-/Browser-Spracheinstellungen — VPN ändert nichts daran. Webseiten erkennen wiederkehrende Nutzer trotz IP-Wechsel zuverlässig.",
+        "context": "VPNs sind ein nützliches Tool gegen klassisches IP-Tracking durch Webserver und ISPs. 'Vollständige Anonymität' ist ein Marketing-Versprechen vieler VPN-Anbieter, das technisch nicht haltbar ist. Wer wirkliche Anonymität braucht: Tor, mit allen Komfort-Einschränkungen."
+      },
+      "context_notes": [
+        "Differenzierung: VPN gegen ISP-Snooping (effektiv) ≠ VPN gegen Browser-Fingerprinting (unwirksam) ≠ VPN gegen Strafverfolgung (begrenzt wirksam).",
+        "Mullvad, ProtonVPN, IVPN haben unabhängige No-Logs-Audits durchlaufen — andere Anbieter oft nicht.",
+        "Tor-Browser ist die Goldstandard-Anonymisierung, mit deutlichen Einschränkungen (langsam, viele Sites blockieren, JavaScript-Issues)."
+      ],
+      "claim_phrasings_handled": [
+        "VPN macht anonym",
+        "Mit VPN bin ich unsichtbar",
+        "VPN schützt vor allem im Internet"
+      ],
+      "trigger_keywords": [
+        "vpn anonym", "vpn macht anonym",
+        "vpn unsichtbar", "vpn vollstaendig anonym",
+        "vpn vollständig anonym"
+      ],
+      "trigger_composite": [
+        ["vpn", "virtual private network"],
+        ["anonym", "unsichtbar", "spurlos", "nicht verfolgbar", "schuetzt vor", "schützt vor", "macht anonym"]
+      ],
+      "source_label": "EFF + Mullvad/ProtonVPN-Audits + Tor Project",
+      "source_url": "https://www.eff.org/issues/vpn",
+      "secondary_url": "https://en.wikipedia.org/wiki/Virtual_private_network"
+    },
+    {
+      "id": "apple_android_2026",
+      "topic": "apple_android_sicherheit_mythos",
+      "scope": "Pauschale Behauptung, Apple-Geräte seien sicherer als Android",
+      "year": 2025,
+      "headline": "Apple ≠ inhärent sicherer als Android — beide Plattformen mit Stärken und Schwächen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Die pauschale These, Apple-/iOS-Geräte seien grundsätzlich sicherer als Android, ist MOSTLY_FALSE/MIXED. Die Sicherheits-Realität ist nuancierter — beide Plattformen haben dokumentierte Stärken und Schwachstellen. iOS hat ein strikteres App-Review und einheitlichere Update-Politik; Android hat mehr Modell-/Hersteller-Vielfalt mit unterschiedlichen Sicherheits-Niveaus.",
+        "cve_database": "Die NIST CVE-Datenbank (Common Vulnerabilities and Exposures) listet sowohl iOS als auch Android über die Jahre konsistent — keine Plattform ist 'fast frei von Sicherheitslücken'. Pegasus-Spyware, Predator, Triangulation funktionierten gegen iOS; Joker-Trojaner, Banking-Trojaner gegen Android.",
+        "stärken_ios": "iOS-Vorteile: einheitliche Update-Versorgung über Apple, strikteres App-Store-Review, hardware-unterstützte Verschlüsselung (Secure Enclave), engere App-Sandbox. Bei breiter User-Population statistisch weniger Malware in freier Wildbahn — aber das liegt teils an Marktanteilen, nicht inhärenter Architektur.",
+        "stärken_android": "Android-Vorteile (vor allem Pixel/GrapheneOS): kompakteres Hardware-Anti-Tampering bei Pixel, schnellere Sicherheits-Patches als bei den meisten Apple-Versionen, bessere Berechtigungs-Granularität in neueren Versionen. F-Droid + Open-Source-Apps für privacy-bewusste User.",
+        "forensik_kontext": "Mobile-Forensik-Anbieter wie Cellebrite, GrayKey, MSAB veröffentlichen regelmäßig Berichte, dass beide Plattformen mit den richtigen Tools entsperrbar sind. Kein 'unbrechbares' Smartphone in der Praxis.",
+        "context": "Die Wahl zwischen iOS und Android sollte sich an konkreten Bedrohungs-Modellen orientieren, nicht an pauschalen Sicherheits-Claims. Für mobile Privacy mit hohen Anforderungen: GrapheneOS auf Pixel-Hardware ist Forschungs-Konsens. Für durchschnittliche Nutzer: regelmäßige Updates auf beiden Plattformen, keine Side-Loading-Apps, Berechtigungen prüfen."
+      },
+      "context_notes": [
+        "Zero-Day-Markt-Preise (Zerodium, etc.) sind ein indirekter Sicherheits-Indikator: iOS-Zero-Days sind oft teurer als Android-Zero-Days — was teils auf höhere Sicherheits-Hürden, teils auf Marktnachfrage hindeutet.",
+        "Apple-Default ('alles in Apple-Cloud, App-Store-only') ist für viele User sicher genug, aber nicht inhärent sicherer als ein gut konfiguriertes Android-System.",
+        "Forschungs-Konsens (z.B. Lookout-Threat-Reports, Kaspersky Mobile Threat Reports): beide Plattformen mit unterschiedlichen Risiko-Profilen."
+      ],
+      "claim_phrasings_handled": [
+        "iPhones sind sicherer als Android",
+        "Apple-Produkte sind sicherer",
+        "Android ist unsicher"
+      ],
+      "trigger_keywords": [
+        "iphone sicherer android", "apple sicherer android",
+        "ios sicherer android", "android unsicher",
+        "android nicht sicher"
+      ],
+      "trigger_composite": [
+        ["apple", "iphone", "ios"],
+        ["sicherer", "sicherer als android", "besser als android", "android unsicher"]
+      ],
+      "source_label": "NIST CVE-Datenbank + Lookout Threat Reports + Cellebrite-Forensik",
+      "source_url": "https://nvd.nist.gov/vuln/search",
+      "secondary_url": "https://en.wikipedia.org/wiki/Mobile_security"
+    }
+  ]
+}
