@@ -1,0 +1,642 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-02",
+  "source_label": "DÖW + USHMM + Yad Vashem + Bundesarchiv + bpb + Stiftung Berliner Mauer + Geschichts-Konsens",
+  "facts": [
+    {
+      "id": "hitler_sozialist_2026",
+      "topic": "hitler_sozialist_mythos",
+      "scope": "Behauptung, Hitler/NSDAP seien sozialistisch oder links",
+      "year": 2025,
+      "headline": "Hitler war kein Sozialist — die NSDAP war faschistisch-rechtsextrem",
+      "data": {
+        "forschungs_konsens": "Internationale Geschichtswissenschaft (Mommsen, Kershaw, Wehler, Evans) ordnet die NSDAP eindeutig dem rassistisch-faschistischen Spektrum zu — nicht dem sozialistischen.",
+        "nsdap_programm": "Das NSDAP-Programm 1920 enthielt zwar antikapitalistische Elemente (etwa zur 'Brechung der Zinsknechtschaft'), diese waren aber rassistisch-antisemitisch motiviert ('jüdischer Kapitalismus'), nicht sozialistisch im Sinne von Klassenkampf oder Vergesellschaftung.",
+        "praxis_1933": "Nach 1933 wurden Sozialdemokraten und Kommunisten verfolgt, Gewerkschaften zerschlagen (2. Mai 1933), Großindustrie und Großgrundbesitz blieben in Privathand. Hitler hatte Kontinuität mit konservativ-deutschnationalen Eliten.",
+        "context": "Der 'Hitler-war-Sozialist'-Mythos zirkuliert in libertären US-Kreisen und in DACH-Rechtspopulismus. Er beruht auf der namensbasierten Verkürzung 'Nationalsozialismus enthält Sozialismus'. Das ist sprachlich plausibel, historisch falsch."
+      },
+      "context_notes": [
+        "Bundeszentrale für politische Bildung (bpb): Klare Einordnung NSDAP als rechtsextrem-faschistisch.",
+        "Hitlers Förderer kamen aus konservativen Eliten (Hindenburg, Papen, Krupp, Thyssen) — nicht aus der Arbeiterbewegung.",
+        "Faschismus-Forschung (Paxton, Griffin) klassifiziert NS eindeutig als faschistische Bewegung."
+      ],
+      "claim_phrasings_handled": [
+        "Hitler war ein Sozialist",
+        "NSDAP war eine sozialistische Partei",
+        "Nationalsozialismus ist links"
+      ],
+      "trigger_keywords": [
+        "hitler war sozialist", "hitler war links",
+        "nsdap sozialistisch", "nsdap links",
+        "nationalsozialismus links", "ns sozialistisch"
+      ],
+      "trigger_composite": [
+        ["hitler", "nsdap", "nationalsozialismus", "ns-zeit"],
+        ["sozialist", "links", "linksextrem", "kommunist"]
+      ],
+      "source_label": "bpb + Mommsen/Kershaw/Wehler",
+      "source_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/",
+      "secondary_url": "https://www.doew.at/erkennen/rechtsextremismus"
+    },
+    {
+      "id": "wehrmacht_kriegsverbrechen_2026",
+      "topic": "wehrmacht_kriegsverbrechen",
+      "scope": "Behauptung, die Wehrmacht sei 'sauber' gewesen",
+      "year": 2025,
+      "headline": "Die Wehrmacht war systematisch an Kriegsverbrechen beteiligt",
+      "data": {
+        "wehrmachtsausstellung": "Die Hamburger Wehrmachtsausstellung (1995, überarbeitet 2001/2004 nach methodischer Kritik) dokumentierte auf Basis von Primärquellen (Befehle, Soldatenbriefe, Tagebücher), dass die Wehrmacht aktiv an Vernichtungsverbrechen beteiligt war — nicht nur SS und Einsatzgruppen.",
+        "konkrete_taten": "Beteiligung an Massenerschießungen (z.B. Babi Yar 1941, Korjukowka 1943), Hungerstrategie gegen sowjetische Kriegsgefangene (~3,3 Mio Tote), 'Kommissarbefehl' (Erschießung politischer Offiziere), 'Bandenbekämpfung' mit Massakern an Zivilisten.",
+        "forschungs_konsens": "Hannes Heer, Christian Gerlach, Wolfram Wette, Sönke Neitzel — die wissenschaftliche Forschung seit den 1990ern hat den 'Mythos der sauberen Wehrmacht' systematisch widerlegt.",
+        "context": "Der Mythos der 'sauberen Wehrmacht' wurde nach 1945 von Veteranenverbänden, ehemaligen Generälen (Memoirenliteratur) und der Adenauer-Regierung gepflegt — auch um die Bundeswehr-Integration zu erleichtern. Die Wehrmachtsausstellung 1995 brach mit diesem Bild, der Forschungs-Konsens ist seither eindeutig."
+      },
+      "context_notes": [
+        "Die ursprüngliche Wehrmachtsausstellung 1995 hatte methodische Mängel bei einigen Bildunterschriften — diese wurden in der Neukonzeption 2001/2004 korrigiert. Die Kernaussage (systematische Beteiligung) blieb bestätigt.",
+        "Hamburger Institut für Sozialforschung als Trägerinstitution.",
+        "DÖW (AT) und Bundeszentrale für politische Bildung (DE) folgen dem Forschungs-Konsens."
+      ],
+      "claim_phrasings_handled": [
+        "Die Wehrmacht hat keine Kriegsverbrechen begangen",
+        "Wehrmacht war sauber, nur SS war schuldig",
+        "Saubere Wehrmacht"
+      ],
+      "trigger_keywords": [
+        "saubere wehrmacht", "wehrmacht sauber",
+        "wehrmachtsausstellung", "wehrmacht-ausstellung",
+        "wehrmacht keine kriegsverbrech", "wehrmacht unschuldig"
+      ],
+      "trigger_composite": [
+        ["wehrmacht"],
+        ["sauber", "unschuldig", "anständig", "anstaendig", "kriegsverbrech", "schuldig", "nicht beteiligt", "keine schuld"]
+      ],
+      "source_label": "Hamburger Wehrmachtsausstellung 2001/2004 + Heer/Wette/Neitzel",
+      "source_url": "https://www.his-online.de/forschung/die-ausstellungen-zu-verbrechen-der-wehrmacht/",
+      "secondary_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/dossier-nationalsozialismus/"
+    },
+    {
+      "id": "holocaust_wissen_2026",
+      "topic": "holocaust_wissen_bevoelkerung",
+      "scope": "Behauptung, die Mehrheit der Deutschen habe nichts vom Holocaust gewusst",
+      "year": 2025,
+      "headline": "Die deutsche Bevölkerung wusste in großen Teilen vom Holocaust",
+      "data": {
+        "longerich_2006": "Peter Longerich: 'Davon haben wir nichts gewusst! Die Deutschen und die Judenverfolgung 1933–1945' (2006) — zeigt, dass Deportationen, Massenerschießungen und Vernichtungslager-Existenz in der Bevölkerung verbreitet bekannt waren, oft durch Soldatenbriefe von der Ostfront, BBC-Sendungen, Gerüchte und sichtbare Deportationen.",
+        "konkrete_evidenz": "Tagebuch-Aufzeichnungen (z.B. Klemperer, Reck-Malleczewen), Postzensur-Berichte, SD-Stimmungsberichte des Sicherheitsdienstes, alliierte Flugblätter, BBC-Goebbels-Reaktionen — alle deuten auf weitverbreitetes Wissen hin.",
+        "differenzierung": "Wissen war nicht universell und nicht detailgenau (Genaues über Industrialisierung der Vernichtung war weniger bekannt), aber die grundsätzliche Tatsache von Massenmord an Juden war breit kommuniziert.",
+        "context": "Die Nachkriegs-Selbsterzählung 'Davon haben wir nichts gewusst' war eine Schutz-Behauptung, kein historischer Befund. Längerich, Bankier (1992), Friedländer haben das systematisch widerlegt."
+      },
+      "context_notes": [
+        "USHMM (United States Holocaust Memorial Museum) folgt dem Forschungs-Konsens.",
+        "Yad Vashem dokumentiert die Wahrnehmungs-Frage in vielen Sammlungen.",
+        "Wissen ≠ Zustimmung; viele wussten und schwiegen aus Angst, Anpassung oder Indifferenz."
+      ],
+      "claim_phrasings_handled": [
+        "Die Deutschen wussten nichts vom Holocaust",
+        "Niemand hat etwas vom Holocaust gewusst",
+        "Holocaust war geheim"
+      ],
+      "trigger_keywords": [
+        "holocaust nichts gewusst", "holocaust nicht gewusst",
+        "deutsche wussten nichts", "deutsche haben nichts gewusst",
+        "holocaust geheim",
+        "wusste nichts vom holocaust", "wussten nichts vom holocaust"
+      ],
+      "trigger_composite": [
+        ["holocaust", "shoah", "judenverfolg", "judenmord", "deportation", "vernichtungslager"],
+        ["wusste", "wussten", "gewusst", "wissen", "geheim", "verschwieg", "nicht informiert", "unwissen"]
+      ],
+      "source_label": "Longerich 2006 + USHMM + Bankier 1992",
+      "source_url": "https://www.ushmm.org/learn/introduction-to-the-holocaust",
+      "secondary_url": "https://www.yadvashem.org/"
+    },
+    {
+      "id": "opfer_these_oesterreich_2026",
+      "topic": "opfer_these_oesterreich",
+      "scope": "Behauptung, Österreich sei das erste Opfer Nazi-Deutschlands gewesen",
+      "year": 2025,
+      "headline": "Die Opfer-These ist offiziell verworfen — Österreich war Mittäter",
+      "data": {
+        "vranitzky_1991": "Bundeskanzler Franz Vranitzky bekannte am 8. Juli 1991 im Nationalrat erstmals offiziell die Mittäterschaft Österreichs an NS-Verbrechen — Bruch mit der bis dahin offiziellen Opfer-These der Moskauer Deklaration 1943.",
+        "fakten": "Anschluss 1938 mit erheblicher Zustimmung in Teilen der Bevölkerung. Überdurchschnittliche Beteiligung von Österreichern an NS-Funktionseliten (40 % der Konzentrationslager-Bewacher, 80 % von Eichmanns Stab, etwa 15 % der SS bei nur 8 % Reichs-Bevölkerungsanteil).",
+        "doew_konsens": "Das DÖW (Dokumentationsarchiv des österreichischen Widerstandes) als zentrale wissenschaftliche Institution dokumentiert Mittäterschaft seit Jahrzehnten. Auch das Mauthausen Komitee, die Historikerkommission der Republik Österreich (2003) und die Schule der österreichischen Zeitgeschichte (Botz, Bailer, Embacher) folgen diesem Konsens.",
+        "context": "Die Moskauer Deklaration 1943 hatte Österreich aus politischem Kalkül (alliierte Verhandlung) als 'erstes Opfer' bezeichnet, parallel aber auch eine Verantwortungs-Klausel enthalten. Die nach 1945 alleinige Opfer-Selbst-Erzählung ohne Mittäterschafts-Anerkennung war eine politische Konstruktion, die wissenschaftlich nicht haltbar ist."
+      },
+      "context_notes": [
+        "Die Opfer-These war auch nach 1991 in Teilen der Politik und Öffentlichkeit präsent — aber nicht mehr offizielle Position.",
+        "Restitution + Versöhnungsfonds (2000) waren späte Konsequenz der überfälligen Anerkennung.",
+        "Differenzierung: Es gab in Österreich auch Widerstand und Verfolgung — beide Seiten gehören zur historischen Realität."
+      ],
+      "claim_phrasings_handled": [
+        "Österreich war erstes Opfer der Nazis",
+        "Österreich war erstes Opfer Hitlers",
+        "Österreich war Opfer, nicht Täter"
+      ],
+      "trigger_keywords": [
+        "österreich erstes opfer", "oesterreich erstes opfer",
+        "österreich war opfer", "oesterreich war opfer",
+        "opferthese österreich", "opferthese oesterreich",
+        "moskauer deklaration"
+      ],
+      "trigger_composite": [
+        ["österreich", "oesterreich", "wien"],
+        ["erstes opfer", "opfer der nazis", "opfer hitlers", "ns-opfer", "opfer nazi", "opferthese"]
+      ],
+      "source_label": "DÖW + Vranitzky-Rede 1991 + Historikerkommission 2003",
+      "source_url": "https://www.doew.at/",
+      "secondary_url": "https://www.parlament.gv.at/recherchieren/personen/wer-war-wer/franz-vranitzky/"
+    },
+    {
+      "id": "dresden_auschwitz_2026",
+      "topic": "dresden_auschwitz_vergleich",
+      "scope": "Behauptung, Dresden-Bombardierung habe mehr Opfer gefordert als Auschwitz",
+      "year": 2025,
+      "headline": "Dresden ~25.000 Tote vs. Auschwitz ~1,1 Millionen — Größenordnungen apart",
+      "data": {
+        "dresden_kommission_2010": "Die unabhängige Dresdner Historikerkommission (2010, Leitung Rolf-Dieter Müller) bestimmte nach jahrelanger Quellenforschung die Opferzahl der Bombardierung 13.–15. Februar 1945 auf maximal 25.000 Tote. Die in NS-Propaganda und rechtsextremer Geschichtsrevision verbreiteten Zahlen von 200.000 bis 500.000 sind nachweislich falsch.",
+        "auschwitz_zahlen": "Mindestens 1,1 Millionen Menschen wurden im Vernichtungslager Auschwitz-Birkenau ermordet (Forschungs-Konsens, gestützt auf SS-Akten, Häftlings-Datenbank, Aussagen). 90 % der Opfer waren Juden, daneben Sinti, Roma, polnische und sowjetische Häftlinge.",
+        "kontext_relativierung": "Der Dresden-Auschwitz-Vergleich wird in NPD-/AfD-naher Geschichtsrevision genutzt, um deutsche Schuld zu relativieren. Die Bombardierung Dresdens war ein Kriegsverbrechen-Vorwurf in der Rechtsdebatte (von Friedrich, Stargardt diskutiert) — die Opferzahl-Relativierung ist davon zu trennen.",
+        "context": "Bombardierungs-Opfer und Holocaust-Opfer sind beide tragisch und beide Teil deutscher Geschichte. Die Behauptung ähnlicher Größenordnungen ist faktisch falsch — Auschwitz übertrifft Dresden um den Faktor 40+."
+      },
+      "context_notes": [
+        "Bundeszentrale für politische Bildung warnt vor der Relativierungs-Funktion solcher Vergleiche.",
+        "Friedrich's 'Der Brand' (2002) hat Dresden-Diskussion neu entfacht, ohne die Opferzahl-Mythen zu stützen.",
+        "Auschwitz ist auch keine isolierte Zahl — der Holocaust insgesamt forderte ca. 6 Millionen Tote."
+      ],
+      "claim_phrasings_handled": [
+        "Dresden hatte mehr Tote als Auschwitz",
+        "In Dresden starben mehr Zivilisten als in Auschwitz",
+        "Alliierte Bombardierung Dresden Massenmord"
+      ],
+      "trigger_keywords": [
+        "dresden mehr tote", "dresden mehr opfer",
+        "dresden auschwitz vergleich",
+        "dresden 200000", "dresden 500000",
+        "bombardierung dresden massenmord"
+      ],
+      "trigger_composite": [
+        ["dresden", "bombardierung dresden", "alliierte"],
+        ["auschwitz", "konzentrationslager", "vernichtung", "tote", "opfer", "ziviltote"]
+      ],
+      "source_label": "Dresdner Historikerkommission 2010 + USHMM + Yad Vashem",
+      "source_url": "https://www.dresden.de/de/leben/geschichte/luftangriffe/historikerkommission.php",
+      "secondary_url": "https://www.ushmm.org/learn/introduction-to-the-holocaust"
+    },
+    {
+      "id": "stalin_hitler_gleich_2026",
+      "topic": "stalin_hitler_gleichsetzung",
+      "scope": "Behauptung, Stalin und Hitler seien ideologisch gleich gewesen",
+      "year": 2025,
+      "headline": "Stalin und Hitler — totalitaristisch ähnlich, ideologisch entgegengesetzt",
+      "data": {
+        "totalitarismus_forschung": "Friedrich/Brzeziński (1956) prägten den Totalitarismus-Begriff für Strukturähnlichkeiten (Einheitspartei, Geheimpolizei, Propaganda, Lager). Auf dieser strukturellen Ebene gibt es Vergleichbarkeit.",
+        "ideologische_gegensaetze": "Ideologisch waren Marxismus-Leninismus und Nationalsozialismus Gegner: Klassenkampf vs. Rassenkampf, Internationalismus vs. völkischer Nationalismus, Säkularismus vs. völkische Pseudoreligion. Bracher und Wehler betonen die ideologische Asymmetrie.",
+        "praktische_gegnerschaft": "Bis zum Hitler-Stalin-Pakt 1939 waren KPD und NSDAP erbitterte Gegner. Im 'Vernichtungskrieg' 1941–45 starben über 25 Millionen Sowjetbürger; Sowjetunion war Ziel, nicht Bündnispartner.",
+        "context": "Die Gleichsetzung wird in zweierlei Richtungen genutzt: (1) zur Relativierung NS-Verbrechen ('Stalin war auch nicht besser') in rechter Geschichtspolitik, (2) zur Diskreditierung sozialistischer Politik überhaupt ('alles links endet wie Stalin'). Beide Verwendungen sind historisch-wissenschaftlich nicht gestützt."
+      },
+      "context_notes": [
+        "Strukturvergleiche sind in der Forschung legitim und wichtig (Arendt, Friedrich, Brzeziński).",
+        "Die Gesamt-Gleichsetzung 'gleich' ohne Differenzierung ist nicht haltbar.",
+        "Beide Regime waren mörderisch und totalitär — das ist ihre Gemeinsamkeit, aber nicht ihre Identität."
+      ],
+      "claim_phrasings_handled": [
+        "Stalin und Hitler waren ideologisch gleich",
+        "Stalin war wie Hitler",
+        "Sozialismus = Nationalsozialismus"
+      ],
+      "trigger_keywords": [
+        "stalin hitler gleich", "stalin wie hitler", "hitler wie stalin",
+        "stalin und hitler ideologisch"
+      ],
+      "trigger_composite": [
+        ["stalin"],
+        ["hitler"],
+        ["gleich", "ähnlich", "aehnlich", "identisch", "ideologisch", "wie hitler", "wie stalin", "vergleichbar"]
+      ],
+      "source_label": "Bracher + Wehler + Totalitarismus-Forschung",
+      "source_url": "https://www.bpb.de/themen/zeit-kulturgeschichte/dossier-stalinismus/",
+      "secondary_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/"
+    },
+    {
+      "id": "versailles_2wk_2026",
+      "topic": "versailles_2wk_kausalitaet",
+      "scope": "Behauptung, der Versailler Vertrag habe allein den Zweiten Weltkrieg verursacht",
+      "year": 2025,
+      "headline": "Versailles war nicht allein die Ursache — multifaktorielle Erklärung",
+      "data": {
+        "tooze_2006": "Adam Tooze ('The Wages of Destruction', 2006) zeigt: Hitlers expansive Ostpolitik war ideologisch motiviert (Lebensraum, Antisemitismus), nicht primär eine Folge wirtschaftlicher Versailles-Lasten — bei Hitlers Machtantritt 1933 waren die meisten Reparationen bereits gestundet (Hoover-Moratorium 1931, Lausanne 1932).",
+        "mazower_2008": "Mark Mazower ('Hitler's Empire', 2008): Der Krieg war Resultat aus NS-Ideologie + ökonomischer Krise + politischem Versagen der Weimarer Demokratie + Appeasement der Westmächte. Versailles war ein Faktor, kein hinreichender.",
+        "kontrastfaelle": "Auch andere Verlierer-Staaten (Österreich, Ungarn) hatten harte Friedensbedingungen, aber nur Deutschland produzierte einen NS-Krieg. Italien war Sieger des 1. WK und produzierte trotzdem Faschismus — die Versailles-Mono-These erklärt das nicht.",
+        "context": "Die Versailles-als-Hauptursache-These war NS-Propaganda ('Diktat von Versailles') und nach 1945 entlastend. Die Forschungsmehrheit (Wehler, Kershaw, Mommsen, Tooze, Mazower) sieht ein multikausales Bündel."
+      },
+      "context_notes": [
+        "Die These ist nicht völlig falsch — Versailles war ein Faktor — aber als Mono-Erklärung nicht ausreichend.",
+        "John Maynard Keynes' 'Economic Consequences of the Peace' (1919) wurde später ideologisch instrumentalisiert.",
+        "Lessing-Spruch 'Hitler ist Versailles' wurde von NS-Propaganda popularisiert."
+      ],
+      "claim_phrasings_handled": [
+        "Versailles hat den 2. Weltkrieg verursacht",
+        "Versailler Vertrag war schuld am 2. WK",
+        "Diktat von Versailles"
+      ],
+      "trigger_keywords": [
+        "versailles weltkrieg", "versailler vertrag weltkrieg",
+        "versailles ursache", "versailler vertrag schuld",
+        "diktat von versailles"
+      ],
+      "trigger_composite": [
+        ["versailles", "versailler"],
+        ["zweiter weltkrieg", "2. weltkrieg", "wk2", "verursach", "schuld am krieg", "schuld 2", "ausgelöst", "ausgeloest"]
+      ],
+      "source_label": "Tooze 2006 + Mazower 2008 + Kershaw",
+      "source_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/dossier-nationalsozialismus/39548/der-erste-weltkrieg-und-seine-folgen/",
+      "secondary_url": "https://www.bpb.de/"
+    },
+    {
+      "id": "ddr_mauer_tote_2026",
+      "topic": "ddr_mauer_tote",
+      "scope": "Behauptung, an der DDR-Mauer seien keine friedlichen Bürger erschossen worden",
+      "year": 2025,
+      "headline": "Mindestens 140 Mauertote sind dokumentiert (Stiftung Berliner Mauer)",
+      "data": {
+        "stiftung_berliner_mauer": "Die Stiftung Berliner Mauer (gemeinsam mit dem Zentrum für Zeithistorische Forschung Potsdam) dokumentiert mindestens 140 Todesopfer der Berliner Mauer 1961–1989, darunter erschossene Republikflüchtlinge, an der Grenze tödlich verunglückte Personen, durch Grenzregime indirekt Getötete.",
+        "innerdeutsche_grenze": "An der gesamten innerdeutschen Grenze ('Stacheldraht-Grenze' Bayern bis Lübeck) starben zusätzlich mindestens 327 Personen (Forschungsverbund SED-Staat). Gesamtzahl Mauer + Grenze: weit über 460 Todesopfer.",
+        "schiessbefehl": "Der DDR-'Schießbefehl' (Befehl 39/65, später Grenzdurchführungsverordnung) war ein offizielles Anweisungsregime an Grenzsoldaten, im Zweifel auf 'Grenzverletzer' zu schießen — auch auf unbewaffnete Flüchtlinge.",
+        "context": "Die Behauptung 'niemand wurde erschossen, der nicht selbst schuld war' ist ein Apologetik-Mythos, der in DDR-nostalgischen Kreisen und Teilen der Linkspartei zirkuliert(e). Sie steht im klaren Widerspruch zur dokumentierten Quellenlage und zu BGH-Urteilen (Mauerschützen-Prozesse 1992 ff.)."
+      },
+      "context_notes": [
+        "Die jüngsten Mauertoten waren teils Minderjährige (z.B. Chris Gueffroy, 1989).",
+        "Es gab auch Tote auf DDR-Grenzsoldaten-Seite — auch dies ist dokumentiert.",
+        "Bundesgerichtshof-Rechtsprechung (1992 ff.) hat den Schießbefehl als Verstoß gegen Menschenrechte gewertet."
+      ],
+      "claim_phrasings_handled": [
+        "An der DDR-Mauer wurde niemand erschossen",
+        "Mauertote sind erfunden",
+        "Schießbefehl gab es nicht"
+      ],
+      "trigger_keywords": [
+        "mauertote", "mauer-tote", "ddr-mauer tote",
+        "schießbefehl", "schiessbefehl",
+        "republikflucht erschossen"
+      ],
+      "trigger_composite": [
+        ["ddr-mauer", "berliner mauer", "ddr mauer", "innerdeutsche grenze", "schießbefehl", "schiessbefehl"],
+        ["tote", "todesopfer", "erschossen", "erfunden", "niemand", "kein opfer", "republikflucht"]
+      ],
+      "source_label": "Stiftung Berliner Mauer + ZZF Potsdam",
+      "source_url": "https://www.stiftung-berliner-mauer.de/de/todesopfer-mauer/todesopfer",
+      "secondary_url": "https://www.zzf-potsdam.de/de"
+    },
+    {
+      "id": "marshall_plan_2026",
+      "topic": "marshall_plan_politische_bedingungen",
+      "scope": "Behauptung, der Marshall-Plan sei reine Wirtschaftshilfe ohne politische Bedingungen gewesen",
+      "year": 2025,
+      "headline": "Marshall-Plan war an klare politische Bedingungen geknüpft",
+      "data": {
+        "containment_kontext": "Der Marshall-Plan (European Recovery Program, 1948–1952) war Teil der Truman-Doktrin und Containment-Strategie gegen die Sowjetunion. Empfänger-Staaten mussten kapitalistisch-marktwirtschaftliche Strukturen behalten und sich aus dem sowjetischen Einflussbereich heraushalten.",
+        "konkrete_bedingungen": "OEEC-Mitgliedschaft (Vorläufer der OECD) als Bedingung; bilaterale Verträge mit Bedingungen zu Handelsfreiheit, US-Investitions-Schutz, antikommunistischen Regierungs-Politiken. Auch indirekt: keine Verstaatlichung von Schlüsselindustrien.",
+        "ablehnungen": "Die Sowjetunion lehnte für sich und ihre Satelliten ab, weil die Bedingungen ihrem Wirtschaftsmodell widersprachen. Tschechoslowakei wollte teilnehmen, wurde von Stalin gezwungen, abzulehnen — 1948 folgte der KP-Putsch.",
+        "context": "Der Marshall-Plan hatte sowohl wirtschaftliche als auch geopolitische Ziele. Die Darstellung 'reine Wirtschaftshilfe ohne Bedingungen' ist eine US-Idealisierung, die bei näherer Betrachtung nicht standhält. Die Forschung (Hogan 1987, Eichengreen) zeigt das deutlich."
+      },
+      "context_notes": [
+        "Der Plan war auch eine US-Wirtschaftsstrategie — Europa als Absatzmarkt für US-Exporte.",
+        "Bedingungen heißt nicht, dass der Plan 'schlecht' war — er hatte enorm positive Effekte für Westeuropa.",
+        "Die Mythen-Bekämpfung zielt nicht auf Diffamierung des Plans, sondern auf realistische Geschichtsdarstellung."
+      ],
+      "claim_phrasings_handled": [
+        "Marshall-Plan war reine Wirtschaftshilfe",
+        "Marshall-Plan ohne politische Bedingungen",
+        "Marshall-Plan war altruistisch"
+      ],
+      "trigger_keywords": [
+        "marshall-plan bedingungen", "marshallplan bedingungen",
+        "marshall-plan altruistisch", "marshall-plan rein wirtschaftlich",
+        "european recovery program"
+      ],
+      "trigger_composite": [
+        ["marshall-plan", "marshallplan", "marshall plan", "european recovery program"],
+        ["bedingung", "rein wirtschaft", "ohne politik", "altruistisch", "uneigennützig", "uneigennuetzig", "geschenk"]
+      ],
+      "source_label": "Hogan 'The Marshall Plan' 1987 + Eichengreen + bpb",
+      "source_url": "https://www.bpb.de/kurz-knapp/lexika/das-junge-politik-lexikon/319912/marshall-plan/",
+      "secondary_url": "https://history.state.gov/milestones/1945-1952/marshall-plan"
+    },
+    {
+      "id": "hiroshima_2026",
+      "topic": "hiroshima_alternativen",
+      "scope": "Behauptung, die Atombomben auf Japan seien notwendig zur Kriegsbeendigung gewesen",
+      "year": 2025,
+      "headline": "Notwendigkeit der Atombomben ist historisch umstritten",
+      "data": {
+        "alperovitz_1995": "Gar Alperovitz ('The Decision to Use the Atomic Bomb', 1995): Der Abwurf war nicht militärisch notwendig — Japan war bereits in Verhandlungs-Bereitschaft (über Sowjetunion), die strategische Bombardierung Japans zerstörte schon konventionell die Wirtschaft. Hauptmotiv war demonstrative Wirkung gegenüber Stalin.",
+        "frank_1999_gegenposition": "Richard B. Frank ('Downfall', 1999) argumentiert dagegen: Japan-Militärführung war nicht kapitulationsbereit, geplante Operation Downfall (Invasion) hätte 500.000 bis 1 Million US-Tote + Millionen japanische Tote bedeutet. Atombomben hätten den Krieg verkürzt.",
+        "konsens_kontroverse": "Forschungsstand: kontrovers. Beide Positionen werden in Universitäts-Lehrbüchern seriös vertreten. Das Truman-Narrativ 'einzige Alternative zu Invasion' wird von vielen Historikern (Bernstein, Walker) als zu vereinfachend gesehen — es gab auch Optionen wie Demonstration, weiter Wartet auf Sowjetunion-Eintritt, modifizierte bedingungslose Kapitulation.",
+        "context": "Der Mythos 'notwendige Bomben zur Kriegsbeendigung' ist offizielle US-Geschichtsschreibung, aber kein einheitlicher Forschungs-Konsens. Eine differenzierte Antwort verlangt 'kontrovers, beide Positionen vertretbar'."
+      },
+      "context_notes": [
+        "Die japanischen Opferzahlen: ca. 70.000 Sofort-Tote in Hiroshima, 40.000 in Nagasaki; mit Strahlenschäden ca. 200.000 bis 1950.",
+        "Die Sowjetunion erklärte Japan am 8. August 1945 (zwischen den beiden Bombenabwürfen) den Krieg — auch das beeinflusste die japanische Kapitulation am 15. August.",
+        "Stimson und Truman selbst hatten ihre Begründung im Lauf der Jahre verschoben — die offizielle Linie ist nicht so monolithisch wie populär dargestellt."
+      ],
+      "claim_phrasings_handled": [
+        "Hiroshima-Atombombe war notwendig",
+        "Atombomben auf Japan haben den Krieg beendet",
+        "Ohne Atombomben hätte der Krieg länger gedauert"
+      ],
+      "trigger_keywords": [
+        "hiroshima notwendig", "atombombe japan notwendig",
+        "hiroshima krieg beendet", "atombombe krieg beendet",
+        "ohne atombombe"
+      ],
+      "trigger_composite": [
+        ["hiroshima", "nagasaki", "atombombe", "atomwaffe"],
+        ["notwendig", "alternativ", "kriegsende", "japan kapituli", "musste", "mussten", "beenden", "beendet", "beend"]
+      ],
+      "source_label": "Alperovitz 1995 + Frank 1999 + Bernstein/Walker (Forschungs-Kontroverse)",
+      "source_url": "https://www.atomicheritage.org/history/decision-drop-atomic-bomb",
+      "secondary_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/dossier-nationalsozialismus/39605/das-ende-des-zweiten-weltkriegs/"
+    },
+    {
+      "id": "irak_krieg_wmd_2026",
+      "topic": "irak_krieg_wmd",
+      "scope": "Behauptung, der Irak-Krieg 2003 sei durch Massenvernichtungswaffen gerechtfertigt gewesen",
+      "year": 2025,
+      "headline": "Iraq Survey Group 2004: Keine WMD im Irak gefunden",
+      "data": {
+        "duelfer_report_2004": "Der 'Comprehensive Report' der Iraq Survey Group (Charles Duelfer, September 2004) bestätigte nach 18 Monaten Suche durch ~1500 US-Inspektoren: Saddam Hussein hatte zum Zeitpunkt der Invasion 2003 KEINE aktiven Massenvernichtungswaffen-Programme. Die letzten dokumentierten chemischen Waffen waren in den 1990ern zerstört worden.",
+        "vorgeschichte": "Saddam HATTE Chemiewaffen in den 1980ern (Halabja 1988 gegen Kurden, im Iran-Irak-Krieg) — diese wurden nach Golfkrieg 1991 unter UN-Aufsicht zerstört. Die Bush/Blair-Behauptungen 2002/03 stützten sich auf zweifelhafte Quellen (z.B. 'Curveball', Aluminium-Röhren-Fehlinterpretation).",
+        "konsequenzen": "Sowohl der US-Senat (Phase II Report 2008) als auch die britische Chilcot-Inquiry (2016) bestätigten: Die WMD-Behauptungen waren entweder falsch oder bewusst übertrieben. Es gab keinen Geheimdienst-Konsens über aktive Programme.",
+        "context": "Der Irak-Krieg ist ein Standard-Beispiel für gescheiterte Geheimdienst-Narrative und politische Instrumentalisierung. Die WMD-Begründung ist historisch widerlegt — alternative Begründungen (Demokratisierung, Öl, regionale Strategie) wurden nachträglich vorgeschoben."
+      },
+      "context_notes": [
+        "Saddam war ein brutaler Diktator — die Frage der WMD-Lüge ist davon zu trennen.",
+        "Andere Begründungen (Verbindung zu al-Qaida, 9/11) waren ebenfalls unbelegt.",
+        "Der Krieg führte zur Destabilisierung des Mittleren Ostens und zur Entstehung von ISIS aus al-Qaida-Resten."
+      ],
+      "claim_phrasings_handled": [
+        "Irak hatte Massenvernichtungswaffen 2003",
+        "Irak-Krieg wegen WMD gerechtfertigt",
+        "Saddam hatte Chemiewaffen 2003"
+      ],
+      "trigger_keywords": [
+        "irak massenvernichtungswaffen",
+        "irak wmd", "irak chemiewaffen 2003",
+        "saddam wmd"
+      ],
+      "trigger_composite": [
+        ["irak-krieg", "irakkrieg", "irak 2003", "saddam"],
+        ["massenvernichtung", "wmd", "chemiewaffen", "biologische waffen", "atomwaffen", "rechtfertig"]
+      ],
+      "source_label": "Iraq Survey Group / Duelfer Report 2004 + Chilcot Inquiry 2016",
+      "source_url": "https://www.cia.gov/resources/csi/static/Iraq-WMD.pdf",
+      "secondary_url": "https://webarchive.nationalarchives.gov.uk/ukgwa/20171123124908/http://www.iraqinquiry.org.uk/the-report/"
+    },
+    {
+      "id": "nato_osterweiterung_2026",
+      "topic": "nato_osterweiterung_versprechen",
+      "scope": "Behauptung, NATO habe 1990 versprochen, sich nicht zu erweitern",
+      "year": 2025,
+      "headline": "Kein schriftliches Versprechen — mündliche Aussagen umstritten",
+      "data": {
+        "sarotte_2021": "Mary Elise Sarotte ('Not One Inch', 2021) — die bisher umfassendste Quellenarbeit: Es gab in den 2+4-Verhandlungen 1990 KEIN schriftliches Versprechen. Mündliche Aussagen einzelner westlicher Politiker (Genscher, Baker) bezogen sich auf die Stationierung von NATO-Truppen in Ostdeutschland, nicht auf eine generelle Osterweiterung.",
+        "vertragslage": "Im 2+4-Vertrag (12. September 1990) ist nichts zu einer Osterweiterungs-Zusage festgehalten. Auch im NATO-Russland-Grundakte (1997) ist keine entsprechende Klausel enthalten.",
+        "russische_perspektive": "Russland argumentiert mit den mündlichen Genscher- und Baker-Aussagen vor Gorbatschow ('not one inch eastward') — diese sind dokumentiert, hatten aber keinen Vertragsstatus. Die Kontroverse besteht über deren Verbindlichkeit.",
+        "context": "Die Frage ist nicht 'gab es Aussagen' (ja), sondern 'gab es ein verbindliches Versprechen' (nein, kein Vertrag). Die russische Verbrechen-Narrative ('Westen hat sein Wort gebrochen') beruht auf der Lesart, dass die mündlichen Aussagen verbindlich gewesen seien. Das ist historiographisch kontrovers — die Mehrheit der westlichen Forschung verneint dies."
+      },
+      "context_notes": [
+        "Joshua Shifrinson 2016 hat eine differenzierte Position vertreten — nicht ganz so eindeutig wie Sarotte.",
+        "Die Mündlichkeit der Aussagen ist nicht trivial — auch in Diplomatie haben mündliche Zusagen Gewicht.",
+        "Die Frage berührt aktuelle Geopolitik (Putin-Argumentation) — historisch-faktisch geht es um Vertragsstatus."
+      ],
+      "claim_phrasings_handled": [
+        "NATO hat versprochen sich nicht zu erweitern",
+        "Westen hat Russland Wort gebrochen NATO-Erweiterung",
+        "1990 NATO-Versprechen Osterweiterung"
+      ],
+      "trigger_keywords": [
+        "nato versprechen 1990", "nato versprochen erweiterung",
+        "nato-osterweiterung versprechen", "nato osterweiterung 1990",
+        "westen wort gebrochen nato"
+      ],
+      "trigger_composite": [
+        ["nato"],
+        ["osterweiterung", "erweiter", "versprech", "nicht erweitern", "wort gebrochen", "nicht ausweiten"]
+      ],
+      "source_label": "Sarotte 'Not One Inch' 2021 + 2+4-Vertragstext",
+      "source_url": "https://www.bpb.de/themen/europa/dossier-russland/47049/zwei-plus-vier-vertrag/",
+      "secondary_url": "https://nsarchive.gwu.edu/briefing-book/russia-programs/2017-12-12/nato-expansion-what-gorbachev-heard-western-leaders-early"
+    },
+    {
+      "id": "putin_ukraine_2026",
+      "topic": "putin_ukraine_2022_aussagen",
+      "scope": "Behauptung, Putin habe vor Februar 2022 keine Kriegsabsichten signalisiert",
+      "year": 2025,
+      "headline": "Putin hat öffentlich verneint, gleichzeitig Truppen aufmarschiert",
+      "data": {
+        "truppenaufmarsch": "Von Frühjahr 2021 bis Februar 2022 dokumentierte Satellitenaufklärung (US/UK/Sat-Daten) eine kontinuierliche Verstärkung russischer Truppen an der Ukraine-Grenze auf 100.000+ (November 2021), 150.000+ (Anfang Februar 2022). Parallel führten russische Truppen Manöver in Belarus durch (Allied Resolve).",
+        "oeffentliche_aussagen": "Russische Regierungsvertreter (Lawrow, Peskow, Putin) verneinten bis kurz vor dem Angriff am 24.02.2022 öffentlich Invasions-Pläne. US- und britische Geheimdienste warnten ab Dezember 2021 wiederholt vor unmittelbar bevorstehendem Angriff.",
+        "diskrepanz_dokumentiert": "Die Diskrepanz zwischen öffentlichen Verneinungen und militärischer Vorbereitung ist in der EUvsDisinfo-Datenbank, in NATO-Briefings und in Mainstream-Medienarchiven (BBC, NYT, ZEIT) ausführlich dokumentiert. Die Aussage 'kein Krieg geplant' wurde durch die Tat am 24.02.2022 widerlegt.",
+        "context": "Die Frage 'hat Putin Aussagen gemacht?' ist faktisch ja — er und sein Apparat haben Kriegspläne öffentlich verneint. Die Frage 'waren die Aussagen ehrlich?' ist faktisch nein. Wenn der Claim so gestellt ist, dass er Ehrlichkeit/Glaubwürdigkeit prüft, ist die Antwort 'falsch' (Aussagen waren irreführend)."
+      },
+      "context_notes": [
+        "Klassisches Beispiel für Diplomatic Disinformation Campaign (Maskirovka).",
+        "Auch die Anerkennung der 'Volksrepubliken' Donezk/Luhansk am 21.02.2022 deutete bereits auf Eskalation.",
+        "Die EUvsDisinfo-Datenbank dokumentiert mehrere Putin-Aussagen aus dieser Zeit als 'Pro-Kremlin Disinformation'."
+      ],
+      "claim_phrasings_handled": [
+        "Putin hat keinen Krieg gegen Ukraine geplant",
+        "Putin hat versichert keinen Krieg zu führen",
+        "Russland hatte keine Kriegspläne 2022"
+      ],
+      "trigger_keywords": [
+        "putin keinen krieg", "putin hat versichert ukraine",
+        "putin februar 2022 versprechen",
+        "russland keine kriegsplan"
+      ],
+      "trigger_composite": [
+        ["putin", "kreml", "russland", "russische regierung"],
+        ["versichert", "kein krieg", "keine invasion", "kein angriff", "verneint", "nicht geplant", "februar 2022", "vor 2022"]
+      ],
+      "source_label": "EUvsDisinfo + NATO-Briefings + BBC/NYT-Archiv",
+      "source_url": "https://euvsdisinfo.eu/disinformation-cases/?text=ukraine",
+      "secondary_url": "https://www.bbc.com/news/world-europe-60506682"
+    },
+    {
+      "id": "mondlandung_2026",
+      "topic": "mondlandung_inszenierung",
+      "scope": "Behauptung, die Mondlandung 1969 sei in einem Studio inszeniert worden",
+      "year": 2025,
+      "headline": "Mondlandung war echt — Apollo-Reflektoren werden bis heute gemessen",
+      "data": {
+        "apollo_reflektoren": "Apollo 11, 14 und 15 platzierten Lunar Laser Ranging Reflectors auf der Mondoberfläche. Diese werden bis heute (2025) regelmäßig von Observatorien (USA, Frankreich, Deutschland, Italien) angemessen — die Laufzeit-Messung der Laserpulse ergibt die Mondentfernung mit Millimeter-Genauigkeit.",
+        "physikalische_evidenz": "382 kg zurückgebrachter Mondgestein wurde von hunderten Universitäten weltweit (auch Sowjetunion) untersucht; Isotopenverhältnisse und Mineralogie sind nicht auf der Erde reproduzierbar. Sowjetische Sonden Luna 16/20/24 brachten unabhängig Gestein zurück, dessen Struktur mit den Apollo-Proben übereinstimmt.",
+        "studiosignale_widerlegt": "Klassische Verschwörungs-Argumente (wehende Flagge, fehlende Sterne, Schatten) sind physikalisch und fototechnisch erklärbar (Mondstaub-Bewegung, Belichtungs-Einstellung). Die NASA-Foto- und Filmsammlung (Apollo Image Atlas) ist öffentlich, ebenso die Funksprüche.",
+        "context": "Die Mondlandungs-Verschwörungstheorie wurde insbesondere durch Bill Kaysing 1976 ('We Never Went to the Moon') und das Fox-Special 2001 popularisiert. Sie ist inhaltlich vollständig widerlegt; selbst russische Wissenschaftler bestätigen die Mondlandungen."
+      },
+      "context_notes": [
+        "Lunar Laser Ranging wird unter anderem von der TU Wien (mit Frankreichs OCA) durchgeführt.",
+        "Auch China und Japan haben in den 2000ern unabhängig Mondsonden geschickt — ihre Hochauflösungs-Bilder zeigen die Apollo-Landeplätze.",
+        "Die Verschwörungstheorie hält sich ironisch ausgerechnet, weil sie technisch unmöglich gewesen wäre, die Sowjetunion (im Kalten Krieg) hätte einen US-Schwindel sofort entlarvt."
+      ],
+      "claim_phrasings_handled": [
+        "Mondlandung wurde inszeniert",
+        "Apollo 11 war ein Studio-Fake",
+        "NASA hat Mondlandung gefälscht"
+      ],
+      "trigger_keywords": [
+        "mondlandung inszeniert", "mondlandung gefälscht", "mondlandung gefaelscht",
+        "mondlandung studio", "mondlandung fake",
+        "apollo 11 fake", "apollo 11 studio"
+      ],
+      "trigger_composite": [
+        ["mondlandung", "apollo 11", "apollo-11", "1969 mond", "neil armstrong"],
+        ["inszenier", "studio", "fake", "fälsch", "faelsch", "betrug", "schwindel", "nie auf dem mond", "gar nicht"]
+      ],
+      "source_label": "NASA + Lunar Laser Ranging Observatorien",
+      "source_url": "https://www.nasa.gov/history/the-apollo-program/",
+      "secondary_url": "https://blog.gwup.net/themen/verschwoerung/mondlandung/"
+    },
+    {
+      "id": "9_11_inside_job_2026",
+      "topic": "9_11_inside_job",
+      "scope": "Behauptung, 9/11 sei ein Inside Job der US-Regierung gewesen",
+      "year": 2025,
+      "headline": "9/11 war kein Inside Job — al-Qaida-Anschlag, NIST-Forschung",
+      "data": {
+        "nist_ncstar_2008": "Der National Institute of Standards and Technology (NIST) Final Report on the Collapse of World Trade Center Building 7 (NCSTAR 1A, 2008) — kontrollierte Brand-Simulation zeigt: Einsturz von WTC7 war Folge der Brände durch Trümmer aus den Türmen, kein 'controlled demolition'. Vorhergehender NCSTAR 1 (2005) erklärte WTC1 + WTC2.",
+        "9_11_commission_2004": "Die 9/11 Commission (überparteilich) bestätigte umfassend die Verantwortung von al-Qaida (Bin Laden, KSM) und identifizierte alle 19 Attentäter mit Pässen, Flugschule-Akten, Geld-Transfers (Mohamed Atta etc.).",
+        "operationelle_evidenz": "Zerstörte Flugzeugteile mit Seriennummern an allen vier Crash-Sites; DNA-Identifizierung der Passagiere; Telefonate von Passagieren (United 93, American 77); Aussagen entkommener WTC-Mitarbeiter; tausende Augenzeugen.",
+        "context": "Die '9/11 Truth'-Bewegung (Loose Change 2005 etc.) operiert mit selektiver Beweisführung und ignoriert die NIST-Forschung. Der Konsens internationaler Architekten- und Ingenieurs-Verbände (auch ASCE, AIA, japanische und deutsche Statiker) ist eindeutig pro NIST."
+      },
+      "context_notes": [
+        "Die Behauptung 'Jet-Treibstoff schmilzt keinen Stahl' ist physikalisch zwar formal richtig (Stahl-Schmelzpunkt ~1500°C, Kerosinflamme ~800°C), aber irrelevant — entscheidend war Stahl-Festigkeitsverlust (~50% bei 600°C).",
+        "Auch unabhängige Nicht-NIST-Studien (Purdue, MIT) bestätigen die Strukturanalyse.",
+        "Theorien über CIA-/Mossad-/Bush-Beteiligung sind in der seriösen Forschung und auch in Geheimdienst-Communities (auch westlicher Gegner) ohne Zustimmung."
+      ],
+      "claim_phrasings_handled": [
+        "9/11 war ein Inside Job",
+        "11. September Bush-Regierung selbst",
+        "WTC7 controlled demolition"
+      ],
+      "trigger_keywords": [
+        "9/11 inside job", "9 11 inside job",
+        "11. september inside job",
+        "wtc7 sprengung", "wtc7 controlled demolition",
+        "9/11 verschwörung", "9/11 verschwoerung"
+      ],
+      "trigger_composite": [
+        ["9/11", "9-11", "9 11", "11. september", "11 september", "world trade center", "wtc"],
+        ["inside job", "inszenier", "selbst", "us-regierung", "bush selbst", "controlled demolition", "sprengung", "verschwör", "verschwoer"]
+      ],
+      "source_label": "NIST NCSTAR Report 2005/2008 + 9/11 Commission Report 2004",
+      "source_url": "https://www.nist.gov/topics/disaster-failure-studies/world-trade-center-investigation",
+      "secondary_url": "https://9-11commission.gov/"
+    },
+    {
+      "id": "aids_cia_labor_2026",
+      "topic": "aids_cia_labor_mythos",
+      "scope": "Behauptung, das HI-Virus sei von der CIA in einem Labor entwickelt worden",
+      "year": 2025,
+      "headline": "HIV stammt aus Affen-zu-Mensch-Übertragung — KGB-Disinformation 'Operation Infektion'",
+      "data": {
+        "operation_infektion": "Die Behauptung 'AIDS von CIA im Labor entwickelt' war eine gezielte sowjetische Disinformations-Kampagne ab 1983 ('Operation INFEKTION' / 'Operation Denver'), platziert in indischer Zeitung 'Patriot' und dann global verbreitet. Nach Ende des Kalten Kriegs gaben russische Stellen (KGB-Nachfolger SWR) diese Operation 1992 öffentlich zu.",
+        "wissenschaftliche_herkunft": "HIV-1 stammt nachweislich aus einem Spillover-Ereignis SIVcpz (Schimpansen-Lentivirus) auf Mensch in Westafrika, wahrscheinlich frühes 20. Jahrhundert (Sharp & Hahn 2011, Faria et al. 2014). Älteste rekonstruierte HIV-Sequenz: ZR59-Probe von 1959 aus Kinshasa. Phylogenetische Analyse datiert HIV-1-Gruppe-M-Vorfahr auf etwa 1920.",
+        "labor_unmoeglichkeit": "Im Labor in den 1980ern war Genetik und Virus-Konstruktion noch nicht so weit entwickelt, dass HIV de novo synthetisierbar gewesen wäre. Die Komplexität des Virus + die phylogenetischen Daten machen Labor-Hypothesen wissenschaftlich unmöglich.",
+        "context": "Die KGB-Operation INFEKTION ist eines der bekanntesten Beispiele staatlicher Disinformation des Kalten Krieges. Sie wirkt bis heute nach (vor allem in afrikanischen und manchen US-Black-Communities) und wird als Fallstudie in Disinformations-Forschung verwendet (Boghardt 2009, Rid 2020)."
+      },
+      "context_notes": [
+        "Ende der Operation: Glasnost-Phase, Gorbatschow stoppte die Kampagne nach US-Beschwerden 1987.",
+        "Auch SIVcpz-Sequenzen wurden in Schimpansen-Populationen Westafrikas direkt nachgewiesen.",
+        "Es gibt seriöse Forschungs-Diskussionen über koloniale Faktoren (medizinische Kampagnen mit unzureichend sterilisierten Spritzen) als Verbreitungs-Beschleuniger — das ist ÜBERTRAGUNGS-Geschichte, nicht ENTSTEHUNGS-Geschichte."
+      ],
+      "claim_phrasings_handled": [
+        "CIA hat AIDS entwickelt",
+        "HIV kommt aus US-Labor",
+        "AIDS Biowaffe der USA"
+      ],
+      "trigger_keywords": [
+        "cia aids", "cia hiv",
+        "aids us-labor", "hiv us-labor",
+        "aids biowaffe", "hiv biowaffe",
+        "operation infektion"
+      ],
+      "trigger_composite": [
+        ["aids", "hi-virus", "hiv", "hi virus"],
+        ["cia", "us-labor", "us labor", "amerikanisches labor", "biowaffe", "us-regierung", "labor entwick", "labor erzeug"]
+      ],
+      "source_label": "Boghardt 'Operation INFEKTION' 2009 + Sharp & Hahn 2011 (HIV-Phylogenie)",
+      "source_url": "https://www.cia.gov/static/Operation-Denver-Soviet-AIDS-Disinformation.pdf",
+      "secondary_url": "https://www.cdc.gov/hiv/basics/about-hiv.html"
+    },
+    {
+      "id": "wikinger_hoerner_2026",
+      "topic": "wikinger_hoerner_helme",
+      "scope": "Behauptung, Wikinger hätten Hörnerhelme getragen",
+      "year": 2025,
+      "headline": "Hörnerhelme sind 19.-Jh.-Romantik — keine archäologischen Funde",
+      "data": {
+        "archaeologie": "In über 200 Jahren skandinavischer Archäologie wurde KEIN einziger wikingerzeitlicher Helm mit Hörnern gefunden. Die wenigen erhaltenen Wikingerhelme (z.B. Gjermundbu-Helm, Norwegen, ca. 970 n.Chr.) sind einfach gerundet, oft mit Brillenförmigem Augenschutz.",
+        "praktische_unmoeglichkeit": "Hörnerhelme wären im Kampf kontraproduktiv — sie würden Hiebe in den Helm leiten statt abprallen lassen, der Schwerpunkt wäre kopflastig, sie würden im Schiffsraum stoßen.",
+        "ursprung_des_mythos": "Der Mythos entstand im 19. Jahrhundert: Maler Carl Emil Doepler entwarf 1876 für Richard Wagners 'Ring des Nibelungen' (Bayreuther Festspiele) Hörnerhelme als germanische Kostüme. Die nordisch-germanische Romantik des 19. Jh. (Tacitus-Renaissance, Pan-Germanismus) verschmolz Wikinger und ältere bronzezeitliche Hörnerhelm-Funde (~1000 v.Chr., Veksø, Dänemark — religiös, nicht militärisch).",
+        "context": "Wikinger trugen einfache Helme, oft auch nur Lederkappen oder gar keine Helme. Die populäre Asterix- und Marvel-Ikonografie folgt der 19.-Jh.-Romantik, nicht der historischen Realität."
+      },
+      "context_notes": [
+        "Die Veksø-Helme aus der Bronzezeit (1000 v.Chr.) hatten Hörner, waren aber kultisch — und 2000 Jahre älter als die Wikinger.",
+        "Skandinavische Museen (Wikingerschiffsmuseum Roskilde, Statens Historiska Museum Stockholm) sind die wichtigsten Quellen.",
+        "Auch keine Wikinger-Quelle (Sagas, Skaldendichtung) erwähnt Hörnerhelme."
+      ],
+      "claim_phrasings_handled": [
+        "Wikinger trugen Hörnerhelme",
+        "Wikingerhelme hatten Hörner",
+        "Wikinger Hörner Helm"
+      ],
+      "trigger_keywords": [
+        "wikinger hörner", "wikinger hoerner",
+        "wikinger helm hörner", "wikinger helm hoerner",
+        "hörnerhelm wikinger", "hoernerhelm wikinger"
+      ],
+      "trigger_composite": [
+        ["wikinger", "viking", "nordmänner", "nordmaenner"],
+        ["hörner", "hoerner", "hörnerhelm", "hoernerhelm", "helm mit hörner", "helm mit hoerner"]
+      ],
+      "source_label": "Wikingerschiffsmuseum Roskilde + skandinavische Archäologie",
+      "source_url": "https://en.natmus.dk/historical-knowledge/denmark/prehistoric-period-until-1050-ad/the-viking-age/",
+      "secondary_url": "https://historiska.se/upptack-historien/artikel/the-viking-age/"
+    },
+    {
+      "id": "mittelalter_erde_flach_2026",
+      "topic": "mittelalter_erde_flach_mythos",
+      "scope": "Behauptung, im Mittelalter habe man eine flache Erde geglaubt",
+      "year": 2025,
+      "headline": "Mittelalter wusste um die Erdkugel — Mythos stammt aus 19. Jh.",
+      "data": {
+        "russell_1991": "Jeffrey Burton Russell ('Inventing the Flat Earth: Columbus and Modern Historians', 1991) — die Behauptung, mittelalterliche Menschen hätten an eine flache Erde geglaubt, ist eine Fälschung des 19. Jahrhunderts (Washington Irving 'Columbus' 1828, Andrew Dickson White 'Warfare of Science with Theology' 1896).",
+        "mittelalterliche_quellen": "Die Erdkugel-Vorstellung war seit der Antike (Aristoteles, Ptolemäus) Standard und im Mittelalter nie verloren: Beda Venerabilis (8. Jh.) lehrte Erdkugel; Sacrobosco 'De sphaera mundi' (~1230) war Standard-Lehrbuch an Universitäten; Dantes 'Divina Commedia' (1320) setzt sphärische Erde voraus.",
+        "columbus_mythos": "Columbus hatte 1492 keinen Streit über Erde-flach-vs-rund — sein Streit mit den Beratern der spanischen Krone war über die FALSCHE GRÖSSE der Erdkugel (Columbus glaubte sie sei ~25 % kleiner; die Berater hatten näher an der Realität liegende Schätzungen, weshalb sie die Asien-Westroute als zu lang ablehnten).",
+        "context": "Die 'Flache-Erde-im-Mittelalter'-Behauptung wurde im 19. Jahrhundert zur Diskreditierung des Mittelalters und der Kirche konstruiert — als Teil der Aufklärungs-Narrative ('dunkles Mittelalter'). Sie ist historiografisch widerlegt."
+      },
+      "context_notes": [
+        "Die heutige Flat-Earth-Bewegung ist ein 19./20.-Jh.-Phänomen (Samuel Rowbotham, Modern Flat Earth Society 1956), kein mittelalterliches Erbe.",
+        "Mittelalterliche Karten (T-O-Karten) wirken auf modernes Auge 'flach' — sie sind aber kosmologisch-symbolisch, nicht geografisch wörtlich.",
+        "Russell schätzte: nur 5 namentlich bekannte mittelalterliche Autoren vertraten flache Erde (z.B. Kosmas Indikopleustes, 6. Jh.) — eine Minderheit, die nie Mainstream war."
+      ],
+      "claim_phrasings_handled": [
+        "Im Mittelalter glaubte man an flache Erde",
+        "Mittelalter flache Erde",
+        "Columbus bewies Erde rund"
+      ],
+      "trigger_keywords": [
+        "mittelalter flache erde", "mittelalter erde flach",
+        "mittelalter erdscheibe",
+        "columbus erde rund"
+      ],
+      "trigger_composite": [
+        ["mittelalter", "im mittelalter", "mittelalterlich", "columbus"],
+        ["flach", "scheibe", "erdscheibe", "rund", "erde sei flach", "kugel"]
+      ],
+      "source_label": "Russell 'Inventing the Flat Earth' 1991 + Sacrobosco-Tradition",
+      "source_url": "https://www.history.com/news/columbus-flat-earth-myth",
+      "secondary_url": "https://blog.gwup.net/themen/verschwoerung/flache-erde/"
+    }
+  ]
+}

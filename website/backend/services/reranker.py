@@ -139,6 +139,7 @@ _AUTHORITATIVE_INDICATORS = (
     "housing_at_fact",                   # Wohnungsmarkt AT (OeNB + EU-SILC)
     "transport_at_fact",                 # Verkehr AT (ÖBB + UBA + KlimaTicket)
     "esoterik_skeptic_fact",             # Esoterik-Pack (GWUP + Cochrane + Skeptiker)
+    "geschichte_konsens_fact",           # Geschichts-Pack (DÖW + USHMM + bpb)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

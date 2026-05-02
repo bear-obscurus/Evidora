@@ -68,6 +68,7 @@ from services.oecd_health import search_oecd_health, claim_mentions_oecd_health_
 from services.housing_at import search_housing, claim_mentions_housing_cached
 from services.transport_at import search_transport, claim_mentions_transport_cached
 from services.esoterik_pack import search_esoterik, claim_mentions_esoterik_cached
+from services.geschichte_pack import search_geschichte, claim_mentions_geschichte_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -487,6 +488,18 @@ async def check_claim(request: Request):
         if claim_mentions_esoterik_cached(claim):
             tasks.append(cached("Esoterik-Faktencheck", search_esoterik, analysis))
             queried_names.append("Esoterik-Faktencheck (GWUP + Cochrane + Skeptiker-Konsens)")
+        # Geschichts-Faktencheck — kuratierte historische Konsens-Daten
+        # (DÖW + USHMM + bpb + Bundesarchiv + Stiftung Berliner Mauer +
+        # NIST + NASA) für Themen, zu denen mainstream-Wissenschafts-DBs
+        # nichts liefern (Geschichts-Forschung ist in PubMed/Cochrane
+        # nicht indiziert, Semantic Scholar findet zu DACH-spezifischen
+        # Mythen oft nichts direkt Passendes). 18 Topics: NS-Mythen,
+        # 20.-Jh.-Klassiker, aktuelle Geschichts-Mythen, Verschwörungs-
+        # Geschichte (Mondlandung, 9/11, AIDS-CIA), sehr alte Mythen
+        # (Wikinger-Hörner, Mittelalter-Erde-flach).
+        if claim_mentions_geschichte_cached(claim):
+            tasks.append(cached("Geschichts-Faktencheck", search_geschichte, analysis))
+            queried_names.append("Geschichts-Faktencheck (DÖW + USHMM + bpb + Konsens)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
