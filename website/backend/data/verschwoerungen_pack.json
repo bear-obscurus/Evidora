@@ -250,6 +250,9 @@
         ["chemtrails", "chemtrail", "kondensstreifen", "contrails"],
         ["echt", "real", "wahr", "absicht", "gezielt", "chemikali", "spruehung", "sprühung", "vergift", "geo-engineering geheim"]
       ],
+      "trigger_all": [
+        [["flugzeug", "flugzeuge"], ["spruehen", "sprühen", "versprueh", "verspruehe", "versprüh", "verspruehe"], ["chemikali", "gift", "vergift", "bevölkerungs", "bevoelkerungs"]]
+      ],
       "source_label": "Shearer et al. 2016 + DLR + DWD + AMS Position-Statement",
       "source_url": "https://iopscience.iop.org/article/10.1088/1748-9326/11/8/084011",
       "secondary_url": "https://www.dlr.de/content/de/artikel/news/2018/3/20180719_kondensstreifen-und-co.html"
@@ -362,7 +365,8 @@
         ["microchip", "chip impf", "tracking", "implantat", "rfid", "5g chip", "magnetisch"]
       ],
       "trigger_all": [
-        [["impfung", "impfstoff", "vakzin"], ["microchip", "chip", "tracking-chip", "rfid", "implantat"]]
+        [["impfung", "impfstoff", "vakzin"], ["microchip", "chip", "tracking", "rfid", "implantat", "modul"]],
+        [["gates-foundation", "gates foundation", "bill gates", "bill-gates"], ["tracking", "chip", "implantat", "modul", "microchip"]]
       ],
       "source_label": "MIT McHugh 2019 + Mimikama + Correctiv + AP-Faktencheck + Reuters",
       "source_url": "https://www.mimikama.org/bill-gates-impfchip-faktencheck/",
