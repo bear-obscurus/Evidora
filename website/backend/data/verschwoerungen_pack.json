@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-02",
+  "source_label": "Bundesverfassungsgericht + Verfassungsschutz AT/DE + bpb + ADL + IKG + Mimikama + EUvsDisinfo",
+  "facts": [
+    {
+      "id": "reichsbuerger_brd_gmbh_2026",
+      "topic": "reichsbuerger_brd_gmbh_mythos",
+      "scope": "Behauptungen, die staatliche Souveränität der BRD juristisch zu bestreiten",
+      "year": 2025,
+      "headline": "'BRD ist eine GmbH' — juristisch und völkerrechtlich nicht haltbar",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Wenn ein Claim die Bundesrepublik Deutschland (oder Österreich) als Unternehmen / GmbH / nicht-souveränen Staat / nicht-existent darstellt, ist das als FALSCH einzuordnen. Die Bewertung erfolgt anhand juristischer und völkerrechtlicher Faktenlage; sie ist KEINE politische Bewertung von Personen oder Bewegungen.",
+        "bundesverfassungsgericht": "Das Bundesverfassungsgericht (BVerfG) hat die staatliche Souveränität der BRD in mehreren Leitentscheidungen bestätigt — Solange-Urteile, Lissabon-Urteil 2009 (BVerfGE 123, 267), OMT-Urteil 2014, PSPP-Urteil 2020. Die These einer 'BRD-GmbH' findet keine Stütze in der deutschen Verfassungsrechtsprechung.",
+        "voelkerrechtsstatus": "Die BRD ist Völkerrechtssubjekt: UN-Mitglied seit 1973, EU-Mitglied (Gründungsstaat 1957), NATO-Mitglied seit 1955. Der Zwei-plus-Vier-Vertrag von 1990 (UN Treaty Series Vol. 1696, No. 29226) regelt die abschließenden völkerrechtlichen Aspekte der deutschen Einheit und wird in der Forschungsliteratur (Doehring, Frowein) als friedensvertraglich-äquivalente Schlussregelung eingeordnet.",
+        "behoerdliche_einstufung_de": "Bundesamt für Verfassungsschutz (BfV): 'Reichsbürger und Selbstverwalter' werden seit 2016 als eigenes Beobachtungsobjekt geführt; im Verfassungsschutzbericht 2023 als 'extremistische Bestrebung' eingestuft. Im Dezember 2022 nahm der Generalbundesanwalt mehrere Personen (u.a. Heinrich XIII. Prinz Reuß) wegen mutmaßlicher Vorbereitung eines hochverräterischen Unternehmens fest — Anklage wurde erhoben.",
+        "behoerdliche_einstufung_at": "Direktion Staatsschutz und Nachrichtendienst (DSN, Österreich) beobachtet die 'Staatsverweigerer-Szene' (Reichsdeutsche, OPPT, Souveränisten). Mit der Reform des § 246a StGB (staatsfeindliche Verbindung, in Kraft seit 2017, novelliert 2022) sind bestimmte organisierte Aktivitäten dieser Szene strafbar.",
+        "context": "Die These 'BRD ist eine GmbH', 'Personalausweis macht zur Sache', 'Es fehlt ein Friedensvertrag, deshalb kein souveräner Staat' und verwandte Aussagen sind juristisch falsch und durch das Bundesverfassungsgericht, den Zwei-plus-Vier-Vertrag und die UN-Mitgliedschaft widerlegt. Wir bewerten die spezifische Faktenaussage; die Bewertung politischer Sympathien für oder gegen das Reichsbürger-Phänomen ist nicht Sache eines Faktenchecks."
+      },
+      "context_notes": [
+        "Wir zitieren die Einstufungen der Verfassungsschutzbehörden DE (BfV) und AT (DSN) — wir machen diese Einstufungen nicht selbst.",
+        "Es gibt zahlreiche Variationen der These ('BRD GmbH', 'Personalausweis', 'Friedensvertrag', 'OPPT', 'Selbstverwalter') — der gemeinsame Kern ist die juristische Negation staatlicher Souveränität.",
+        "Die Behauptungen sind regelmäßig Gegenstand von Faktenchecks bei Mimikama, Correctiv und APA-Faktencheck.",
+        "Bundesgerichtshof + Bundesverfassungsgericht haben mehrfach klargestellt, dass das Berufen auf 'Reichsbürger'-Argumente in deutschen Gerichten keine rechtliche Wirkung entfaltet."
+      ],
+      "claim_phrasings_handled": [
+        "BRD ist eine GmbH",
+        "Deutschland ist nicht souverän",
+        "Personalausweis macht zur Sache",
+        "Es fehlt ein Friedensvertrag",
+        "Deutschland existiert juristisch nicht"
+      ],
+      "trigger_keywords": [
+        "brd ist gmbh", "brd gmbh", "deutschland gmbh",
+        "personalausweis sache", "personalausweis macht zur sache",
+        "kein friedensvertrag", "fehlender friedensvertrag",
+        "reichsbürger", "reichsbuerger", "souveränist", "souveraenist",
+        "staatenlos deutschland", "selbstverwalter",
+        "deutschland nicht souverän", "deutschland nicht souveraen"
+      ],
+      "trigger_composite": [
+        ["brd", "deutschland", "bundesrepublik", "österreich", "republik österreich"],
+        ["gmbh", "firma", "unternehmen", "nicht souverän", "nicht souveraen", "kein staat", "existiert nicht juristisch"]
+      ],
+      "trigger_all": [
+        [["personalausweis", "perso "], ["sache", "ware", "macht zur"]],
+        [["friedensvertrag"], ["fehlt", "kein", "fehlend", "nicht vorhanden"]]
+      ],
+      "source_label": "Bundesverfassungsgericht + 2+4-Vertrag + BfV (DE) + DSN (AT)",
+      "source_url": "https://www.verfassungsschutz.de/SharedDocs/publikationen/DE/reichsbuerger-und-selbstverwalter-2018-08-staatsfeinde.html",
+      "secondary_url": "https://www.bpb.de/themen/rechtsextremismus/dossier-rechtsextremismus/reichsbuerger/"
+    },
+    {
+      "id": "soros_eu_steuerung_2026",
+      "topic": "soros_eu_steuerung_mythos",
+      "scope": "Behauptungen einer geheimen Steuerung von EU-/Welt-Politik durch George Soros oder Open Society Foundations",
+      "year": 2025,
+      "headline": "Soros-'Welt-Steuerung' — nicht durch Belege gestützt; OSF-Förderungen sind transparent dokumentiert",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Die These einer geheimen Steuerung von Politik (EU, USA, Welt) durch George Soros oder die Open Society Foundations (OSF) ist FALSCH/NICHT BELEGT. Wir prüfen die spezifische faktische Aussage gegen den dokumentierten Sachstand; wir bewerten weder die Person George Soros pauschal noch die OSF als Organisation. Inhaltliche Kritik an einzelnen OSF-Förderprojekten ist legitime politische Debatte und fällt nicht unter diesen Topic — nur die spezifische Verschwörungs-These wird hier geprüft.",
+        "osf_transparenz": "Die Open Society Foundations (OSF) sind eine real existierende NGO mit transparent dokumentierter Fördertätigkeit. Jährliche Annual Reports auf opensocietyfoundations.org listen Empfänger und Beträge auf. US-Tax-Filing (Form 990) ist öffentlich einsehbar. Größenordnung laut OSF: rund 32 Mrd. USD an Förderungen seit Gründung 1979.",
+        "keine_steuerung_belegt": "Es existiert keine seriöse Recherche, kein Geheimdienst-Bericht und keine wissenschaftliche Untersuchung, die eine Steuerung der EU- oder US-Politik durch Soros oder OSF belegt. EU-Politik entsteht durch Mitgliedstaaten (Rat), direkt gewähltes Parlament und Kommission — keine NGO hat hier exekutive Macht.",
+        "antisemitismus_historische_kontextualisierung": "Die These einer geheimen Steuerung von Politik durch eine wohlhabende Person mit jüdischem Hintergrund reproduziert ein klassisches antisemitisches Muster, das in der antisemitischen Propaganda seit dem 19. Jahrhundert dokumentiert ist — beispielsweise in den 'Protokollen der Weisen von Zion' (gefälschte Schrift, 1903 in Russland publiziert, 1921 von der Times als Fälschung entlarvt) und in Henry Fords antisemitischer Schriftenreihe 'The International Jew' (1920–1922). Das gemeinsame Schema: Eine kleine, jüdische Elite agiere geheim aus dem Hintergrund und steuere Politik, Wirtschaft und Medien.",
+        "antisemitismus_einstufung_quellen": "Mehrere etablierte Institutionen haben Soros-Verschwörungs-Narrative als antisemitisch eingestuft: (1) Anti-Defamation League (ADL) — 'Quantifying Hate: A Year of Anti-Semitism on Twitter' (2018) und 'George Soros: Backgrounder' (laufend aktualisiert), dokumentiert antisemitische Tropen in Soros-Diskursen anhand quantitativer Twitter-Daten (https://www.adl.org/resources/backgrounder/quantifying-hate-soros). (2) Israelitische Kultusgemeinde Wien (IKG) — jährliche Antisemitismus-Berichte (zuletzt 2023) verweisen auf Soros-Mythen als zeitgenössische antisemitische Verschwörungs-Variante (https://www.antisemitismus-meldestelle.at/). (3) DÖW (Dokumentationsarchiv des österreichischen Widerstandes) — Soros-Mythen werden als rechtsextrem-antisemitisches Narrativ in der DÖW-Sammlung 'Rechtsextremismus' geführt (https://www.doew.at/erkennen/rechtsextremismus). (4) Bundesamt für Verfassungsschutz (DE) — Verfassungsschutzbericht 2023 nennt antisemitische Verschwörungstheorien als wesentliches Element des Rechtsextremismus, mit Soros-Mythen als wiederkehrendem Beispiel (https://www.verfassungsschutz.de/SharedDocs/publikationen/DE/verfassungsschutzberichte/).",
+        "ihra_working_definition": "Die IHRA Working Definition of Antisemitism (International Holocaust Remembrance Alliance, verabschiedet 2016, von über 40 Staaten und dem EU-Parlament 2017 adoptiert — Österreich 2017, Deutschland 2017) führt unter ihren illustrativen Beispielen ausdrücklich an: 'Mythische Anschuldigungen über Juden als solche oder die Macht der Juden als Kollektiv [...] insbesondere, aber nicht ausschließlich die Verschwörung der Juden zur Kontrolle der Medien, der Wirtschaft, der Regierung oder anderer gesellschaftlicher Institutionen.' Die Soros-Steuerungs-These erfüllt dieses Kriterium (https://holocaustremembrance.com/resources/working-definition-antisemitism).",
+        "holocaust_kontext_soros": "George Soros wurde 1930 in Budapest in eine jüdische Familie geboren. Während der deutschen Besatzung Ungarns 1944/45, in der der ungarische Pfeilkreuzler-Staat aktiv an der Deportation von rund 437.000 ungarischen Jüdinnen und Juden in das Vernichtungslager Auschwitz mitwirkte (Aktion Eichmann), überlebte Soros als 13–14-Jähriger durch falsche Papiere und Verstecken — eine Erfahrung, die er selbst öffentlich mehrfach beschrieben hat. Die Zuschreibung eines Mythos der 'jüdischen Welt-Lenkung' an einen Holocaust-Überlebenden wird in der Antisemitismus-Forschung als besonders zynische Variante eingeordnet.",
+        "euvsdisinfo_dokumentation": "Der Auswärtige Dienst der EU (EEAS / EUvsDisinfo) führt Soros-Verschwörungs-Narrative in seiner Datenbank als wiederkehrendes Element pro-russischer Disinformations-Kampagnen, mit dokumentierten Belegen aus russischen Staatsmedien (RT, Sputnik) und Anschluss-Kanälen.",
+        "context": "Die spezifische These 'Soros steuert die EU/USA/Welt' ist nicht belegt. Open Society Foundations sind eine real existierende NGO; legitime politische Debatte über deren konkrete Förderprojekte ist davon zu trennen. Der Topic prüft NICHT die Politik der OSF, sondern die spezifische Verschwörungs-Behauptung einer geheimen Steuerung."
+      },
+      "context_notes": [
+        "Differenzierung wichtig: 'Soros' (Person) ≠ 'OSF' (NGO) ≠ 'Soros-Verschwörungs-These' (politisches Narrativ). Wir bewerten nur Letzteres.",
+        "Vier Institutionen haben die Einstufung als antisemitisch dokumentiert: ADL, IKG Wien, DÖW, Bundesamt für Verfassungsschutz DE — wir wiederholen diese Einordnungen, ohne sie selbst zu konstruieren.",
+        "Die IHRA Working Definition of Antisemitism (2016, von 40+ Staaten und dem EU-Parlament adoptiert) ist der internationale Standard für die Klassifizierung antisemitischer Aussagen.",
+        "Das Topic gilt symmetrisch: auch die These einer 'jüdischen Welt-Verschwörung', wenn sie Soros als Symbol verwendet, fällt darunter — nicht erst, wenn der Name explizit genannt wird.",
+        "Konkrete OSF-Förderprojekte können sehr wohl politisch diskutiert werden — z.B. ist die Frage, ob bestimmte NGO-Förderungen sinnvoll sind, eine legitime Debatte. Diese wird vom Topic NICHT bewertet.",
+        "Die Antisemitismus-Forschung (u.a. Salzborn) ordnet die Anwendung des 'jüdischer Welt-Lenker'-Mythos auf einen Holocaust-Überlebenden als besonders zynische Variante ein."
+      ],
+      "claim_phrasings_handled": [
+        "Soros steuert die EU",
+        "Soros lenkt die Migration",
+        "Soros bezahlt die Demonstranten",
+        "Soros-NGOs steuern die Politik",
+        "Globalisten kontrollieren die Welt"
+      ],
+      "trigger_keywords": [
+        "soros steuert", "soros lenkt", "soros kontrolliert",
+        "soros bezahlt", "soros finanziert die",
+        "soros eu", "soros migration",
+        "open society foundation steuert", "osf steuert",
+        "globalist", "globalisten weltsteuerung",
+        "soros marionette", "soros strippenzieher"
+      ],
+      "trigger_composite": [
+        ["soros", "george soros", "open society", "osf", "globalist", "globalisten"],
+        ["steuert", "lenkt", "kontrolliert", "bezahlt", "finanziert die migrant", "finanziert die demo", "marionette", "strippenzieher", "im hintergrund", "weltverschw", "weltsteuerung"]
+      ],
+      "source_label": "ADL + IKG Wien + DÖW + BfV + IHRA + EUvsDisinfo + OSF Annual Reports",
+      "source_url": "https://www.adl.org/resources/backgrounder/quantifying-hate-soros",
+      "secondary_url": "https://holocaustremembrance.com/resources/working-definition-antisemitism"
+    }
+  ]
+}

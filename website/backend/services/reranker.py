@@ -140,6 +140,7 @@ _AUTHORITATIVE_INDICATORS = (
     "transport_at_fact",                 # Verkehr AT (ÖBB + UBA + KlimaTicket)
     "esoterik_skeptic_fact",             # Esoterik-Pack (GWUP + Cochrane + Skeptiker)
     "geschichte_konsens_fact",           # Geschichts-Pack (DÖW + USHMM + bpb)
+    "verschwoerungen_konsens_fact",      # Verschwörungen-Pack (BVerfG + VS + ADL/IKG/DÖW)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

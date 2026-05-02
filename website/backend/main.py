@@ -69,6 +69,7 @@ from services.housing_at import search_housing, claim_mentions_housing_cached
 from services.transport_at import search_transport, claim_mentions_transport_cached
 from services.esoterik_pack import search_esoterik, claim_mentions_esoterik_cached
 from services.geschichte_pack import search_geschichte, claim_mentions_geschichte_cached
+from services.verschwoerungen_pack import search_verschwoerungen, claim_mentions_verschwoerungen_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -500,6 +501,17 @@ async def check_claim(request: Request):
         if claim_mentions_geschichte_cached(claim):
             tasks.append(cached("Geschichts-Faktencheck", search_geschichte, analysis))
             queried_names.append("Geschichts-Faktencheck (DÖW + USHMM + bpb + Konsens)")
+        # Verschwörungstheorien-Faktencheck — kuratierte Konsens-Daten
+        # zu zeitgenössischen Verschwörungs-Narrativen mit klaren behörd-
+        # lichen oder akademischen Konsens-Quellen (BVerfG, Verfassungs-
+        # schutz AT/DE, ADL, IKG Wien, DÖW, IHRA Working Definition).
+        # Methodische Disziplin: Wir bewerten spezifische faktische
+        # Aussagen, machen keine eigenen Einstufungen, bewerten keine
+        # Personen oder Bewegungen pauschal. Probe-Pack startet mit
+        # 2 Topics (Reichsbürger/BRD-GmbH, Soros-EU-Steuerung).
+        if claim_mentions_verschwoerungen_cached(claim):
+            tasks.append(cached("Verschwoerungen-Faktencheck", search_verschwoerungen, analysis))
+            queried_names.append("Verschwoerungen-Faktencheck (BVerfG + Verfassungsschutz + ADL/IKG/DÖW + IHRA)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
