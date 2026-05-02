@@ -19,11 +19,13 @@ kontroversen Einzelfaellen (Apple vs Android, AGI-Timeline).
 Quellen-Mix: NIST CVE-Datenbank + NIST PQC-Standards (FIPS 203/204/205),
 EFF, ACM/FAccT (Bender et al. 2021 Stochastic Parrots), Chainalysis
 Crypto Crime Report, Sweeney 1997 / Narayanan 2008 / de Montjoye 2013
-(Re-Identifikation), LeCun-Position (LLMs/Bewusstsein).
+(Re-Identifikation), LeCun-Position (LLMs/Bewusstsein), Cambridge CBECI
+(Bitcoin-Stromverbrauch) + IEA Electricity Report.
 
 Topics:
   - ki_bewusstsein_mythos
   - bitcoin_anonymitaet_mythos
+  - bitcoin_stromverbrauch_konsens
   - quantencomputer_verschluesselung_mythos
   - anonymisierung_re_identifikation_mythos
   - vpn_anonymitaet_mythos

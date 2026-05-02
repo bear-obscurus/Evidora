@@ -78,6 +78,44 @@
       "secondary_url": "https://en.wikipedia.org/wiki/Bitcoin#Anonymity"
     },
     {
+      "id": "bitcoin_stromverbrauch_2026",
+      "topic": "bitcoin_stromverbrauch_konsens",
+      "scope": "Bitcoin-Stromverbrauch im Vergleich zu Industrieländern",
+      "year": 2025,
+      "headline": "Bitcoin-Netzwerk verbraucht 2024 ~140–170 TWh/Jahr — vergleichbar mit Schweden, Argentinien, Niederlanden",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, dass Bitcoin-Mining mehr Strom verbraucht als ganze Industrieländer, ist MOSTLY_TRUE/TRUE. Cambridge CBECI (2024): ~140–170 TWh/Jahr Bitcoin-Stromverbrauch — vergleichbar mit Sweden (~135 TWh), Argentinien (~125 TWh), Niederlande (~115 TWh). Über manchen, unter anderen Industrieländern (Deutschland ~485 TWh, USA ~4000 TWh). Die Aussage 'mehr als ganze Industrielaender' ist je nach Vergleichsland korrekt.",
+        "cambridge_cbeci": "Cambridge Centre for Alternative Finance (Cambridge Bitcoin Electricity Consumption Index, CBECI): seit 2019 wissenschaftlich anerkannte Schätzung des globalen Bitcoin-Stromverbrauchs. 2024-Bandbreite: ~140–170 TWh/Jahr (Mid-Estimate). Methode: Hashrate × ASIC-Effizienz × elektrische Leistung.",
+        "iea_kontext": "IEA (International Energy Agency, Electricity 2024 Report): globaler Krypto-Stromverbrauch 2022 ~110 TWh/Jahr; Prognose ~160 TWh/Jahr für 2026, davon Großteil Bitcoin. Krypto + Datenzentren + KI-Training kombiniert ~460 TWh/Jahr 2022, Verdopplung bis 2026 erwartet.",
+        "vergleichswerte": "Bitcoin-Stromverbrauch (~150 TWh/J) ist größer als Stromverbrauch von: Argentinien (~125), Niederlande (~115), Schweden (~135), Norwegen (~125), Polen (~165 — knapp). Aber kleiner als: Deutschland (~485), Frankreich (~440), Japan (~970), USA (~4000), China (~8500).",
+        "co2_zusatz": "Cambridge CCAF schätzt Bitcoin-CO₂-Emissionen 2023 auf ~70–95 Mt CO₂e — vergleichbar mit Belgien oder Tschechien. CO₂-Intensität abhängig vom Mining-Strommix; nach China-Ban 2021 verschoben sich Mining-Standorte (USA, Kazakhstan, Russland) und CO₂-Bilanz veränderte sich.",
+        "context": "Der Stromverbrauch des Bitcoin-Netzwerks ist seit Jahren wissenschaftlich gut dokumentiert (Cambridge CBECI als Goldstandard, IEA als zweite Referenz). Die Aussage 'mehr Strom als ganze Industrielaender' ist je nach Land korrekt — Bitcoin verbraucht mehr als kleine bis mittlere Industriestaaten, aber weniger als die größten."
+      },
+      "context_notes": [
+        "Bitcoin-Stromverbrauch fluktuiert mit Bitcoin-Preis und Hashrate. CBECI veröffentlicht Live-Werte; Schätzungen variieren je nach Annahmen über Miner-Hardware-Mix.",
+        "Differenzierung Bitcoin vs alle Krypto: Ethereum hat 2022 mit dem 'Merge' auf Proof-of-Stake umgestellt und seinen Stromverbrauch um >99 % reduziert. Bitcoin bleibt energieintensiv durch Proof-of-Work.",
+        "Pro-Argument: Bitcoin-Mining nutzt teils sonst-ungenutzte erneuerbare Energie (Hydro-Überschüsse, Flaring-Gas). Contra: globaler Mix bleibt fossil-dominiert."
+      ],
+      "claim_phrasings_handled": [
+        "Bitcoin verbraucht mehr Strom als Industrieländer",
+        "Bitcoin-Mining ist klimaschädlich",
+        "Krypto-Stromverbrauch ist enorm"
+      ],
+      "trigger_keywords": [
+        "bitcoin stromverbrauch", "bitcoin energie",
+        "bitcoin twh", "bitcoin mining strom",
+        "bitcoin mining energie", "bitcoin klimawandel",
+        "krypto stromverbrauch", "krypto-stromverbrauch"
+      ],
+      "trigger_composite": [
+        ["bitcoin", "btc", "krypto", "kryptowaehrung", "kryptowährung", "blockchain", "mining"],
+        ["strom", "energie", "verbrauch", "twh", "kohle", "co2", "umwelt", "klimawandel", "nachhaltigkeit", "kwh", "megawatt", "gigawatt"]
+      ],
+      "source_label": "Cambridge CBECI + IEA Electricity 2024",
+      "source_url": "https://ccaf.io/cbnsi/cbeci",
+      "secondary_url": "https://www.iea.org/reports/electricity-2024"
+    },
+    {
       "id": "quantencomputer_2026",
       "topic": "quantencomputer_verschluesselung_mythos",
       "scope": "Behauptung, Quantencomputer brächen heute alle Verschlüsselungen",
