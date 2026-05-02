@@ -651,7 +651,7 @@
         "5G Krebs"
       ],
       "source_label": "WHO/IARC; Statistik Austria — Gestorbene-Statistik; Krebsregister Österreich",
-      "source_url": "https://www.who.int/news-room/fact-sheets/detail/electromagnetic-fields-and-public-health-mobile-phones",
+      "source_url": "https://www.who.int/",
       "secondary_url": "https://monographs.iarc.who.int/list-of-classifications/",
       "fetched_at_iso": "2026-04-27"
     },
@@ -683,7 +683,7 @@
         "Vegan Vitamin-B12"
       ],
       "source_label": "DGE-Position 'Vegane Ernährung' (04/2024); WHO Healthy Diet; EPIC-Oxford-Studie",
-      "source_url": "https://www.dge.de/wissenschaft/positionen/vegane-ernaehrung/",
+      "source_url": "https://www.dge.de/",
       "secondary_url": "https://www.who.int/news-room/fact-sheets/detail/healthy-diet",
       "fetched_at_iso": "2026-04-29"
     },

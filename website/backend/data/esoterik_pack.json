@@ -36,8 +36,8 @@
         ["heil", "wirk", "energie", "schwingung", "schutz", "kraft", "aura"]
       ],
       "source_label": "GWUP Skeptiker-Faktencheck + Stiftung Warentest",
-      "source_url": "https://blog.gwup.net/themen/esoterik/heilsteine/",
-      "secondary_url": "https://www.test.de/medizin/alternativmedizin/"
+      "source_url": "https://www.gwup.org/themen/esoterik/",
+      "secondary_url": "https://www.test.de/"
     },
     {
       "id": "astrologie_2026",
@@ -106,7 +106,7 @@
       ],
       "source_label": "Cochrane Review (Ernst 2002/2010)",
       "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003974.pub2/full",
-      "secondary_url": "https://blog.gwup.net/themen/esoterik/bach-blueten/"
+      "secondary_url": "https://www.gwup.org/themen/esoterik/"
     },
     {
       "id": "reiki_energieheilung_2026",
@@ -140,7 +140,7 @@
       ],
       "source_label": "Cochrane (Joyce & Herbison 2015) + vanderVaart 2009",
       "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006535.pub3/full",
-      "secondary_url": "https://blog.gwup.net/themen/esoterik/reiki/"
+      "secondary_url": "https://www.gwup.org/themen/esoterik/"
     },
     {
       "id": "aura_diagnose_2026",
@@ -173,8 +173,8 @@
         ["lesen", "diagnose", "erkennen", "sichtbar", "zeigt", "krankheit", "wirk"]
       ],
       "source_label": "GWUP-Aura-Tests + Skeptical Inquirer",
-      "source_url": "https://blog.gwup.net/themen/esoterik/aura/",
-      "secondary_url": "https://skepticalinquirer.org/exclusive/aura-reading/"
+      "source_url": "https://www.gwup.org/themen/esoterik/",
+      "secondary_url": "https://skepticalinquirer.org/"
     },
     {
       "id": "chakren_2026",
@@ -205,7 +205,7 @@
         ["körper", "anatomi", "energetisch", "gesund", "heil", "zentr", "wirk", "öffnen"]
       ],
       "source_label": "GWUP + medizinische Anatomie-Lehrbücher",
-      "source_url": "https://blog.gwup.net/themen/esoterik/chakren/",
+      "source_url": "https://www.gwup.org/themen/esoterik/",
       "secondary_url": "https://en.wikipedia.org/wiki/Chakra"
     },
     {
@@ -240,7 +240,7 @@
       ],
       "source_label": "Cordi et al. 2014 (Current Biology)",
       "source_url": "https://www.cell.com/current-biology/fulltext/S0960-9822(14)00770-9",
-      "secondary_url": "https://blog.gwup.net/themen/esoterik/mondphasen/"
+      "secondary_url": "https://www.gwup.org/themen/esoterik/"
     },
     {
       "id": "wuenschelrute_2026",
@@ -274,7 +274,7 @@
         ["wirk", "funktion", "find", "zuverlässig", "zuverlaess", "wissenschaft", "wasserader"]
       ],
       "source_label": "Betz/GSF 1990 + Randi-Challenge",
-      "source_url": "https://blog.gwup.net/themen/esoterik/wuenschelrute/",
+      "source_url": "https://www.gwup.org/themen/esoterik/",
       "secondary_url": "https://web.randi.org/"
     },
     {
@@ -309,7 +309,7 @@
       ],
       "source_label": "Cochrane Review (Roberts et al. 2009)",
       "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD000368.pub3/full",
-      "secondary_url": "https://blog.gwup.net/themen/esoterik/geistheilung/"
+      "secondary_url": "https://www.gwup.org/themen/esoterik/"
     },
     {
       "id": "schuessler_salze_2026",
@@ -342,8 +342,8 @@
         ["salz", "biochemi", "wirk", "hilf", "mineral", "therapi"]
       ],
       "source_label": "BfArM + Stiftung Warentest + GWUP",
-      "source_url": "https://blog.gwup.net/themen/esoterik/schuessler-salze/",
-      "secondary_url": "https://www.test.de/medizin/alternativmedizin/"
+      "source_url": "https://www.gwup.org/themen/esoterik/",
+      "secondary_url": "https://www.test.de/"
     },
     {
       "id": "bioresonanz_2026",
@@ -376,8 +376,8 @@
         ["wirk", "heil", "behandl", "allergi", "krank", "diagnose", "dauerhaft"]
       ],
       "source_label": "Niggemann & Grüber 2002 + Stiftung Warentest + BfArM",
-      "source_url": "https://www.test.de/medizin/alternativmedizin/Bioresonanz-Diagnose-aus-dem-Off-1093866-0/",
-      "secondary_url": "https://blog.gwup.net/themen/medizin/bioresonanz/"
+      "source_url": "https://www.test.de/",
+      "secondary_url": "https://www.gwup.org/themen/medizin/"
     },
     {
       "id": "hellsehen_wahrsagen_2026",
@@ -447,7 +447,7 @@
       ],
       "source_label": "Loftus 1994 (False Memory) + GWUP",
       "source_url": "https://blog.gwup.net/themen/esoterik/reinkarnation/",
-      "secondary_url": "https://skepticalinquirer.org/exclusive/past-life-regression/"
+      "secondary_url": "https://skepticalinquirer.org/"
     },
     {
       "id": "iris_diagnose_2026",
@@ -480,7 +480,7 @@
         ["erkenn", "diagnost", "zuverläss", "zuverlaess", "wirk", "funktion", "krankheit"]
       ],
       "source_label": "Knipschild 1988 (BMJ) + Ernst 2000 (review)",
-      "source_url": "https://www.bmj.com/content/297/6663/1578",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/3147065/",
       "secondary_url": "https://blog.gwup.net/themen/medizin/iridologie/"
     },
     {
@@ -517,7 +517,7 @@
       ],
       "source_label": "VKI Konsumenteninformation + GWUP + Stiftung Warentest",
       "source_url": "https://blog.gwup.net/themen/esoterik/wasserbelebung/",
-      "secondary_url": "https://www.konsument.at/"
+      "secondary_url": "https://www.konsument.at/test/grander"
     },
     {
       "id": "schwitzen_detox_2026",
@@ -554,7 +554,7 @@
         ["detox", "entgift", "giftstoff", "toxin", "ausgeschied", "ausscheid", "reinig", "gift aus"]
       ],
       "source_label": "American Academy of Dermatology + medizinischer Konsens (Leber/Nieren-Clearance)",
-      "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/why-do-we-sweat",
+      "source_url": "https://www.aad.org/public/",
       "secondary_url": "https://blog.gwup.net/themen/esoterik/detox/"
     }
   ]

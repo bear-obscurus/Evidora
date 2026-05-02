@@ -70,7 +70,7 @@
         ["sauber", "unschuldig", "anständig", "anstaendig", "kriegsverbrech", "schuldig", "nicht beteiligt", "keine schuld"]
       ],
       "source_label": "Hamburger Wehrmachtsausstellung 2001/2004 + Heer/Wette/Neitzel",
-      "source_url": "https://www.his-online.de/forschung/die-ausstellungen-zu-verbrechen-der-wehrmacht/",
+      "source_url": "https://www.his-online.de/forschung/",
       "secondary_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/dossier-nationalsozialismus/"
     },
     {
@@ -107,7 +107,7 @@
       ],
       "source_label": "Longerich 2006 + USHMM + Bankier 1992",
       "source_url": "https://www.ushmm.org/learn/introduction-to-the-holocaust",
-      "secondary_url": "https://www.yadvashem.org/"
+      "secondary_url": "https://www.yadvashem.org/holocaust.html"
     },
     {
       "id": "opfer_these_oesterreich_2026",
@@ -143,7 +143,7 @@
       ],
       "source_label": "DÖW + Vranitzky-Rede 1991 + Historikerkommission 2003",
       "source_url": "https://www.doew.at/",
-      "secondary_url": "https://www.parlament.gv.at/recherchieren/personen/wer-war-wer/franz-vranitzky/"
+      "secondary_url": "https://www.parlament.gv.at/"
     },
     {
       "id": "dresden_auschwitz_2026",
@@ -178,7 +178,7 @@
         ["auschwitz", "konzentrationslager", "vernichtung", "tote", "opfer", "ziviltote"]
       ],
       "source_label": "Dresdner Historikerkommission 2010 + USHMM + Yad Vashem",
-      "source_url": "https://www.dresden.de/de/leben/geschichte/luftangriffe/historikerkommission.php",
+      "source_url": "https://www.dresden.de/de/leben/geschichte/luftangriffe/",
       "secondary_url": "https://www.ushmm.org/learn/introduction-to-the-holocaust"
     },
     {
@@ -213,7 +213,7 @@
         ["gleich", "ähnlich", "aehnlich", "identisch", "ideologisch", "wie hitler", "wie stalin", "vergleichbar"]
       ],
       "source_label": "Bracher + Wehler + Totalitarismus-Forschung",
-      "source_url": "https://www.bpb.de/themen/zeit-kulturgeschichte/dossier-stalinismus/",
+      "source_url": "https://www.bpb.de/themen/zeit-kulturgeschichte/",
       "secondary_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/"
     },
     {
@@ -248,7 +248,7 @@
         ["zweiter weltkrieg", "2. weltkrieg", "wk2", "verursach", "schuld am krieg", "schuld 2", "ausgelöst", "ausgeloest"]
       ],
       "source_label": "Tooze 2006 + Mazower 2008 + Kershaw",
-      "source_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/dossier-nationalsozialismus/39548/der-erste-weltkrieg-und-seine-folgen/",
+      "source_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/dossier-nationalsozialismus/",
       "secondary_url": "https://www.bpb.de/"
     },
     {
@@ -283,8 +283,8 @@
         ["tote", "todesopfer", "erschossen", "erfunden", "niemand", "kein opfer", "republikflucht"]
       ],
       "source_label": "Stiftung Berliner Mauer + ZZF Potsdam",
-      "source_url": "https://www.stiftung-berliner-mauer.de/de/todesopfer-mauer/todesopfer",
-      "secondary_url": "https://www.zzf-potsdam.de/de"
+      "source_url": "https://www.stiftung-berliner-mauer.de/de/",
+      "secondary_url": "https://www.zzf-potsdam.de/"
     },
     {
       "id": "marshall_plan_2026",
@@ -353,7 +353,7 @@
         ["notwendig", "alternativ", "kriegsende", "japan kapituli", "musste", "mussten", "beenden", "beendet", "beend"]
       ],
       "source_label": "Alperovitz 1995 + Frank 1999 + Bernstein/Walker (Forschungs-Kontroverse)",
-      "source_url": "https://www.atomicheritage.org/history/decision-drop-atomic-bomb",
+      "source_url": "https://ahf.nuclearmuseum.org/ahf/history/",
       "secondary_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/dossier-nationalsozialismus/39605/das-ende-des-zweiten-weltkriegs/"
     },
     {
@@ -388,8 +388,8 @@
         ["massenvernichtung", "wmd", "chemiewaffen", "biologische waffen", "atomwaffen", "rechtfertig"]
       ],
       "source_label": "Iraq Survey Group / Duelfer Report 2004 + Chilcot Inquiry 2016",
-      "source_url": "https://www.cia.gov/resources/csi/static/Iraq-WMD.pdf",
-      "secondary_url": "https://webarchive.nationalarchives.gov.uk/ukgwa/20171123124908/http://www.iraqinquiry.org.uk/the-report/"
+      "source_url": "https://www.govinfo.gov/app/details/GPO-CRPT-IRAQ_WMD_2004",
+      "secondary_url": "https://en.wikipedia.org/wiki/Chilcot_Inquiry"
     },
     {
       "id": "nato_osterweiterung_2026",
@@ -494,8 +494,8 @@
         ["inszenier", "studio", "fake", "fälsch", "faelsch", "betrug", "schwindel", "nie auf dem mond", "gar nicht"]
       ],
       "source_label": "NASA + Lunar Laser Ranging Observatorien",
-      "source_url": "https://www.nasa.gov/history/the-apollo-program/",
-      "secondary_url": "https://blog.gwup.net/themen/verschwoerung/mondlandung/"
+      "source_url": "https://www.nasa.gov/missions/apollo/",
+      "secondary_url": "https://www.gwup.org/themen/verschwoerung/"
     },
     {
       "id": "9_11_inside_job_2026",
@@ -530,7 +530,7 @@
         ["inside job", "inszenier", "selbst", "us-regierung", "bush selbst", "controlled demolition", "sprengung", "verschwör", "verschwoer"]
       ],
       "source_label": "NIST NCSTAR Report 2005/2008 + 9/11 Commission Report 2004",
-      "source_url": "https://www.nist.gov/topics/disaster-failure-studies/world-trade-center-investigation",
+      "source_url": "https://www.nist.gov/world-trade-center-investigation",
       "secondary_url": "https://9-11commission.gov/"
     },
     {
@@ -566,8 +566,8 @@
         ["cia", "us-labor", "us labor", "amerikanisches labor", "biowaffe", "us-regierung", "labor entwick", "labor erzeug"]
       ],
       "source_label": "Boghardt 'Operation INFEKTION' 2009 + Sharp & Hahn 2011 (HIV-Phylogenie)",
-      "source_url": "https://www.cia.gov/static/Operation-Denver-Soviet-AIDS-Disinformation.pdf",
-      "secondary_url": "https://www.cdc.gov/hiv/basics/about-hiv.html"
+      "source_url": "https://en.wikipedia.org/wiki/Operation_INFEKTION",
+      "secondary_url": "https://www.cdc.gov/hiv/"
     },
     {
       "id": "wikinger_hoerner_2026",
@@ -602,7 +602,7 @@
       ],
       "source_label": "Wikingerschiffsmuseum Roskilde + skandinavische Archäologie",
       "source_url": "https://en.natmus.dk/historical-knowledge/denmark/prehistoric-period-until-1050-ad/the-viking-age/",
-      "secondary_url": "https://historiska.se/upptack-historien/artikel/the-viking-age/"
+      "secondary_url": "https://en.natmus.dk/historical-knowledge/denmark/prehistoric-period-until-1050-ad/the-viking-age/"
     },
     {
       "id": "mittelalter_erde_flach_2026",
