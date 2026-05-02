@@ -53,7 +53,7 @@
       ],
       "source_label": "Bildungsdirektion Wien — Erhebung Religionsbekenntnisse 2024/25; ergänzt durch ÖIF-Factsheet",
       "source_url": "https://www.bildung-wien.gv.at/",
-      "secondary_url": "https://www.integrationsfonds.at/themen/integration-bildung/",
+      "secondary_url": "https://www.integrationsfonds.at/",
       "fetched_at_iso": "2026-04-26",
       "guardrails": [
         "Wir geben keine Bewertung dieser Demografie ab.",
@@ -133,8 +133,8 @@
         "ESVG Förderungen"
       ],
       "source_label": "BMF Förderungsbericht 2024 (an den Nationalrat); Statistik Austria — Volkswirtschaftliche Gesamtrechnungen ESVG 2010",
-      "source_url": "https://www.bmf.gv.at/themen/budget/das-budget/foerderungsbericht.html",
-      "secondary_url": "https://www.statistik.at/statistiken/wirtschaft/volkswirtschaftliche-gesamtrechnungen",
+      "source_url": "https://www.bmf.gv.at/themen/budget/",
+      "secondary_url": "https://www.statistik.at/",
       "fetched_at_iso": "2026-04-26",
       "guardrails": [
         "Wir bewerten nicht, ob die Förderhöhe 'zu hoch' oder 'zu niedrig' ist.",
@@ -179,7 +179,7 @@
         "Mindestsicherung Alleinstehende"
       ],
       "source_label": "Sozialministerium — Sozialhilfe und Mindestsicherung; Wiener Magistratsabteilung MA 40",
-      "source_url": "https://www.sozialministerium.gv.at/Themen/Soziales/Sozialhilfe-und-Mindestsicherung.html",
+      "source_url": "https://www.sozialministerium.gv.at/Themen/",
       "secondary_url": "https://www.wien.gv.at/zusammenleben/sozialhilfe-mindestsicherung",
       "fetched_at_iso": "2026-04-27"
     },
@@ -224,7 +224,7 @@
       ],
       "source_label": "Pensionsversicherungsanstalt (PV.at); Bundesministerium für Soziales (BMSGPK) Pensionsanpassungsgesetz 2026",
       "source_url": "https://www.pv.at/web/pension/in-der-pension/pensionsanpassung-und-pensionserhoehung",
-      "secondary_url": "https://www.sozialministerium.gv.at/",
+      "secondary_url": "https://www.sozialministerium.gv.at/Themen/",
       "fetched_at_iso": "2026-04-27"
     },
     {
@@ -542,7 +542,7 @@
       ],
       "source_label": "Eurostat HICP prc_hicp_manr; Statistik Austria VPI; OE24/Heute-Berichte",
       "source_url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/",
-      "secondary_url": "https://www.statistik.at/statistiken/wirtschaft/preise/verbraucherpreisindex-vpi",
+      "secondary_url": "https://www.statistik.at/",
       "fetched_at_iso": "2026-04-27"
     },
     {
@@ -612,8 +612,8 @@
         "Migranten höhere Sozialleistungen Staatsbürger"
       ],
       "source_label": "ASVG, Sozialhilfe-Grundsatzgesetz, Sozialministerium",
-      "source_url": "https://www.sozialministerium.gv.at/Themen/Soziales/Sozialhilfe-und-Mindestsicherung.html",
-      "secondary_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008147",
+      "source_url": "https://www.sozialministerium.gv.at/Themen/",
+      "secondary_url": "https://www.ris.bka.gv.at/Bundesrecht/",
       "fetched_at_iso": "2026-04-27"
     },
     {
@@ -712,8 +712,8 @@
         "Fachkräftemangel Berufe Österreich"
       ],
       "source_label": "BMA / AMS Mangelberufsliste 2025 (Verordnung)",
-      "source_url": "https://www.ams.at/unternehmen/personalsuche/auslaenderinnen-beschaeftigen/mangelberufsliste",
-      "secondary_url": "https://www.bma.gv.at/",
+      "source_url": "https://www.ams.at/",
+      "secondary_url": "https://www.bmsgpk.gv.at/",
       "fetched_at_iso": "2026-04-27"
     },
     {

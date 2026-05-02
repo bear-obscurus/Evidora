@@ -51,8 +51,8 @@
          "klagenfurt", "at "]
       ],
       "source_label": "OeNB Wohnimmobilienpreis-Index Q4/2024 + Statistik Austria HVPI",
-      "source_url": "https://www.oenb.at/Statistik/Standardisierte-Tabellen/Statistik-Wohnimmobilienpreise.html",
-      "secondary_url": "https://www.statistik.at/statistiken/volkswirtschaft-und-oeffentliche-finanzen/preise/verbraucherpreisindex-vpi-hvpi"
+      "source_url": "https://www.oenb.at/Statistik.html",
+      "secondary_url": "https://www.statistik.at/"
     },
     {
       "id": "wohnkostenbelastung_at_2024",

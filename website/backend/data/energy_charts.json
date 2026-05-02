@@ -53,7 +53,7 @@
          "kollap", "kollabiert", "blackout", "saldo", "bilanz", "dauerhaft"]
       ],
       "source_label": "Energy-Charts.info (Fraunhofer ISE) — Stromhandelsbilanz 2024",
-      "source_url": "https://www.energy-charts.info/charts/import_export/",
+      "source_url": "https://www.energy-charts.info/",
       "secondary_url": "https://transparency.entsoe.eu/"
     },
     {
@@ -185,7 +185,7 @@
          "100 %", "100%"]
       ],
       "source_label": "APG (Austrian Power Grid) + E-Control",
-      "source_url": "https://www.apg.at/transparency"
+      "source_url": "https://www.apg.at/"
     }
   ]
 }

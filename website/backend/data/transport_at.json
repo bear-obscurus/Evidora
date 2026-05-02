@@ -45,7 +45,7 @@
          "chaos", "ausfall", "vergleich", "verlassen", "schlecht"]
       ],
       "source_label": "ÖBB Pünktlichkeits-Bericht 2024 + EU-Bahn-Statistik",
-      "source_url": "https://infrastruktur.oebb.at/de/unternehmen/zahlen-fakten",
+      "source_url": "https://infrastruktur.oebb.at/de/",
       "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/rail_pa_total"
     },
     {
@@ -91,7 +91,7 @@
         ["österreich", "at "]
       ],
       "source_label": "Umweltbundesamt Klimaschutzbericht 2025 + Eurostat env_air_gge",
-      "source_url": "https://www.umweltbundesamt.at/news/treibhausgase-2024",
+      "source_url": "https://www.umweltbundesamt.at/",
       "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/env_air_gge"
     },
     {
@@ -132,7 +132,7 @@
          "verkauft", "inhaber", "abonnent"]
       ],
       "source_label": "ÖBB Pünktlichkeits- + KlimaTicket-Bericht 2024",
-      "source_url": "https://www.klimaticket.at/de/zahlen-und-fakten/"
+      "source_url": "https://www.klimaticket.at/"
     }
   ]
 }

@@ -42,8 +42,8 @@
         ["österreich", "österreichisch", "at "]
       ],
       "source_label": "IEA TIMSS 2023 (Trends in International Mathematics and Science Study)",
-      "source_url": "https://www.iea.nl/studies/iea/timss/2023",
-      "secondary_url": "https://www.iqs.gv.at/themen/timss"
+      "source_url": "https://www.iea.nl/index.php?id=studies",
+      "secondary_url": "https://www.iqs.gv.at/"
     },
     {
       "id": "pirls_2021_at",
@@ -93,7 +93,7 @@
       ],
       "source_label": "IEA PIRLS 2021 (Progress in International Reading Literacy Study)",
       "source_url": "https://www.iea.nl/studies/iea/pirls/2021",
-      "secondary_url": "https://www.iqs.gv.at/themen/pirls"
+      "secondary_url": "https://www.iqs.gv.at/"
     },
     {
       "id": "lehrermangel_at_2024",
@@ -141,8 +141,8 @@
         ["österreich", "österreichisch", "at ", "wien", "burgenland"]
       ],
       "source_label": "Statistik Austria Bildung + BMBWF Lehrer-Bedarf-Bericht 2024",
-      "source_url": "https://www.statistik.at/statistiken/bildung",
-      "secondary_url": "https://www.bmbwf.gv.at/Themen/Lehrkraefte.html"
+      "source_url": "https://www.statistik.at/",
+      "secondary_url": "https://www.bmbwf.gv.at/Themen/"
     },
     {
       "id": "pisa_2022_dach",
@@ -189,7 +189,7 @@
       ],
       "source_label": "OECD PISA 2022 + Statistik Austria PISA-Auswertung",
       "source_url": "https://www.oecd.org/pisa/publications/pisa-2022-results.htm",
-      "secondary_url": "https://www.iqs.gv.at/themen/pisa"
+      "secondary_url": "https://www.iqs.gv.at/"
     },
     {
       "id": "sitzenbleiben_wirkung",
@@ -231,7 +231,7 @@
          "lernerfolg", "studie", "forschung", "effekt"]
       ],
       "source_label": "Hattie Visible Learning + Jimerson-Metaanalyse + OECD PISA",
-      "source_url": "https://visible-learning.org/influences/sitzenbleiben/",
+      "source_url": "https://visible-learning.org/",
       "secondary_url": "https://www.oecd.org/pisa/"
     }
   ]

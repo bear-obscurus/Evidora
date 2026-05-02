@@ -73,8 +73,8 @@
          "bevorzug", "bevorteil", "begünstig", "systematisch"]
       ],
       "source_label": "RTR / KommAustria — MedienTransparenz Q1–Q4/2024",
-      "source_url": "https://www.rtr.at/medien/was_wir_tun/medientransparenz/veroeffentlichungen/",
-      "secondary_url": "https://www.kommaustria.at/medientransparenz/"
+      "source_url": "https://www.rtr.at/",
+      "secondary_url": "https://www.kommaustria.at/"
     },
     {
       "id": "medientransparenz_kurz_aera",
@@ -116,7 +116,7 @@
         ["kurz", "schmid", "beinschab", "pilnacek", "övp", "wkstaat", "wksta"]
       ],
       "source_label": "RTR / KommAustria — MedienTransparenz § 2 (Daten 2017–2021)",
-      "source_url": "https://www.rtr.at/medien/was_wir_tun/medientransparenz/veroeffentlichungen/"
+      "source_url": "https://www.rtr.at/"
     }
   ]
 }

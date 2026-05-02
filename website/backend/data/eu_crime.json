@@ -86,7 +86,7 @@
       ],
       "source_label": "Eurostat (crim_hom_soff) + BMI Österreich PKS 2024",
       "source_url": "https://ec.europa.eu/eurostat/databrowser/view/crim_hom_soff",
-      "secondary_url": "https://www.bmi.gv.at/Statistiken/",
+      "secondary_url": "https://www.bmi.gv.at/",
       "fetched_at_iso": "2026-04-30"
     },
     {
@@ -169,8 +169,8 @@
         ]
       ],
       "source_label": "BMI Österreich — PKS 2024 (Sicherheitsbericht)",
-      "source_url": "https://www.bmi.gv.at/Statistiken/",
-      "secondary_url": "https://www.parlament.gv.at/dokument/XXVIII/AB/sicherheitsbericht-2024.pdf"
+      "source_url": "https://www.bmi.gv.at/",
+      "secondary_url": "https://www.parlament.gv.at/"
     },
     {
       "id": "auslander_kriminalitaet_de_2024",
@@ -293,7 +293,7 @@
         ]
       ],
       "source_label": "BMI Österreich — PKS Hauptbericht 2024 + Statistik Austria",
-      "source_url": "https://www.bmi.gv.at/Statistiken/"
+      "source_url": "https://www.bmi.gv.at/"
     }
   ]
 }

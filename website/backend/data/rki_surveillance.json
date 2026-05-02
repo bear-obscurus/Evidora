@@ -46,7 +46,7 @@
       ],
       "source_label": "Robert Koch-Institut SurvStat 2.0",
       "source_url": "https://survstat.rki.de/Content/Query/Create.aspx",
-      "secondary_url": "https://www.rki.de/DE/Content/Infekt/EpidBull/Archiv/2025/Ausgaben/05_25.html"
+      "secondary_url": "https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/epidemiologisches-bulletin-node.html"
     },
     {
       "id": "rki_tuberkulose_2024",
@@ -94,7 +94,7 @@
          "wieder", "rückkehr", "rueckkehr"]
       ],
       "source_label": "Robert Koch-Institut — Bericht zur Epidemiologie der Tuberkulose 2024",
-      "source_url": "https://www.rki.de/DE/Content/InfAZ/T/Tuberkulose/Tuberkulose_node.html"
+      "source_url": "https://www.rki.de/"
     },
     {
       "id": "rki_grippe_covid_winter_2024_2025",

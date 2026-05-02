@@ -42,7 +42,7 @@
          "europa-schnitt", "frauen", "männer", "geschlechter"]
       ],
       "source_label": "OECD Health Statistics 2024",
-      "source_url": "https://www.oecd.org/health/health-statistics.htm",
+      "source_url": "https://en.wikipedia.org/wiki/Healthcare_in_Austria",
       "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/demo_mlexpec"
     },
     {
@@ -138,7 +138,7 @@
          "pro kopf", "unterfinanz"]
       ],
       "source_label": "OECD Health Statistics 2024 + Eurostat hlth_sha11_hf",
-      "source_url": "https://www.oecd.org/health/health-statistics.htm"
+      "source_url": "https://en.wikipedia.org/wiki/Healthcare_in_Austria"
     },
     {
       "id": "kinder_adipositas_at_2024",
