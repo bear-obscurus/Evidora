@@ -1,8 +1,15 @@
 import json
 import logging
+import os
 import re
 
 from services.ollama import chat_completion
+
+# Optional analyzer-specific model override. The analyzer does a relatively
+# deterministic job (extract entities, categorize) — a smaller model can
+# handle this with ~3× lower latency. Default is unset → uses MISTRAL_MODEL.
+# To opt-in, set MISTRAL_ANALYZER_MODEL=mistral-tiny in your .env.
+ANALYZER_MODEL = os.getenv("MISTRAL_ANALYZER_MODEL") or None
 
 logger = logging.getLogger("evidora")
 
@@ -192,6 +199,7 @@ async def analyze_claim(claim_text: str) -> dict:
             {"role": "user", "content": wrapped},
         ],
         timeout=90.0,
+        model=ANALYZER_MODEL,
     )
 
     result = _repair_json(content)

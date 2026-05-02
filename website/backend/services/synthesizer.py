@@ -5,7 +5,7 @@ import re
 
 import httpx
 
-from services.ollama import chat_completion
+from services.ollama import chat_completion, chat_completion_streaming
 from services.reranker import rerank_results
 
 logger = logging.getLogger("evidora")
@@ -567,8 +567,18 @@ async def _validate_urls(evidence: list[dict]) -> list[dict]:
 
 
 async def synthesize_results(
-    original_claim: str, analysis: dict, source_results: list, lang: str = "de"
+    original_claim: str, analysis: dict, source_results: list, lang: str = "de",
+    on_chunk=None,
 ) -> dict:
+    """Synthesize the verdict.
+
+    If ``on_chunk`` is given, the LLM call uses Mistral's streaming endpoint
+    and invokes ``await on_chunk(text)`` for every content delta. The full
+    accumulated content is then JSON-parsed identically to the non-streaming
+    path, so post-processing (verdict-consistency, hallucination filter,
+    etc.) is unaffected. Streaming only improves *first-token-time* perceived
+    latency for the user — total wall-clock time is the same.
+    """
     if lang not in SYSTEM_PROMPTS:
         lang = "de"
 
@@ -691,7 +701,12 @@ async def synthesize_results(
             {"role": "system", "content": SYSTEM_PROMPTS[lang]},
             {"role": "user", "content": context},
         ]
-        content = await chat_completion(messages=base_messages, timeout=300.0)
+        if on_chunk is not None:
+            content = await chat_completion_streaming(
+                messages=base_messages, on_chunk=on_chunk, timeout=300.0,
+            )
+        else:
+            content = await chat_completion(messages=base_messages, timeout=300.0)
         logger.info(f"Synthesizer responded ({len(content)} chars)")
 
         result = _extract_json(content)

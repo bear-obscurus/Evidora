@@ -556,12 +556,52 @@ async def check_claim(request: Request):
         # a source's result list entirely).
         pre_rerank_hits = sum(1 for r in valid_results if r.get("results"))
 
-        # Step 3: Synthesize results with Mistral
+        # Step 3: Synthesize results with Mistral.
+        # Streaming variant: we run synthesize_results in a background task
+        # with an on_chunk callback that pushes deltas onto an asyncio.Queue,
+        # and emit them as 'synth_chunk' SSE events to the frontend. This
+        # turns the ~11 s synthesizer wait from a frozen spinner into a live
+        # progress indicator (first chunk typically arrives in <1 s).
         yield {"event": "step", "data": json.dumps({"step": "synthesize"})}
         try:
             logger.info(f"Synthesizing {len(valid_results)} source results")
-            synthesis = await synthesize_results(claim, analysis, valid_results, lang=lang)
-            logger.info(f"Synthesis verdict: {synthesis.get('verdict')}")
+
+            chunk_queue: asyncio.Queue = asyncio.Queue()
+            DONE = object()
+
+            async def _on_chunk(text: str) -> None:
+                await chunk_queue.put(text)
+
+            async def _synth_runner():
+                try:
+                    return await synthesize_results(
+                        claim, analysis, valid_results, lang=lang,
+                        on_chunk=_on_chunk,
+                    )
+                finally:
+                    await chunk_queue.put(DONE)
+
+            synth_task = asyncio.create_task(_synth_runner())
+
+            chars_streamed = 0
+            while True:
+                item = await chunk_queue.get()
+                if item is DONE:
+                    break
+                chars_streamed += len(item)
+                yield {
+                    "event": "synth_chunk",
+                    "data": json.dumps({
+                        "delta": item,
+                        "total_chars": chars_streamed,
+                    }, ensure_ascii=False),
+                }
+
+            synthesis = await synth_task
+            logger.info(
+                f"Synthesis verdict: {synthesis.get('verdict')} "
+                f"(streamed {chars_streamed} chars)"
+            )
         except ValueError as e:
             if "MISTRAL_CREDITS_EXHAUSTED" in str(e):
                 logger.error("Mistral API credits exhausted")

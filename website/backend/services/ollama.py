@@ -1,7 +1,9 @@
 import asyncio
+import json
 import httpx
 import logging
 import os
+from typing import AsyncIterator, Callable, Awaitable
 
 logger = logging.getLogger("evidora")
 
@@ -13,7 +15,8 @@ MAX_RETRIES = 3
 RETRY_DELAY = 2  # Sekunden
 
 
-async def _call_mistral_api(messages: list, timeout: float) -> str:
+async def _call_mistral_api(messages: list, timeout: float,
+                             model: str | None = None) -> str:
     """Call Mistral API (EU servers, Paris).
 
     Determinism (Bug 1 fix):
@@ -34,7 +37,7 @@ async def _call_mistral_api(messages: list, timeout: float) -> str:
                 "Content-Type": "application/json",
             },
             json={
-                "model": MISTRAL_MODEL,
+                "model": model or MISTRAL_MODEL,
                 "messages": messages,
                 "temperature": 0.0,
                 "max_tokens": 2048,
@@ -83,19 +86,25 @@ async def _call_ollama(messages: list, timeout: float) -> str:
         return response.json()["choices"][0]["message"]["content"]
 
 
-async def chat_completion(messages: list, timeout: float = 90.0) -> str:
+async def chat_completion(messages: list, timeout: float = 90.0,
+                          model: str | None = None) -> str:
+    """Run a chat completion. ``model`` overrides MISTRAL_MODEL for this
+    call only — used by the analyzer to optionally switch to a smaller
+    model (e.g. mistral-tiny) for faster turnaround. Default keeps the
+    env-var setting unchanged.
+    """
     last_error = None
     use_cloud = bool(MISTRAL_API_KEY)
 
     if use_cloud:
-        logger.info("Using Mistral API (cloud)")
+        logger.info(f"Using Mistral API (cloud, model={model or MISTRAL_MODEL})")
     else:
         logger.info("Using Ollama (local)")
 
     for attempt in range(1, MAX_RETRIES + 1):
         try:
             if use_cloud:
-                return await _call_mistral_api(messages, timeout)
+                return await _call_mistral_api(messages, timeout, model=model)
             else:
                 return await _call_ollama(messages, timeout)
         except (httpx.ConnectError, httpx.TimeoutException) as e:
@@ -118,4 +127,116 @@ async def chat_completion(messages: list, timeout: float = 90.0) -> str:
             else:
                 raise
 
+    raise last_error
+
+
+# ---------------------------------------------------------------------------
+# Streaming variant (token-by-token) — used by the synthesizer to emit
+# SSE 'synth_chunk' events to the frontend so the user sees the
+# generation progress instead of staring at a 10–15 s spinner.
+# ---------------------------------------------------------------------------
+
+async def _stream_mistral_api(
+    messages: list, timeout: float
+) -> AsyncIterator[str]:
+    """Stream content tokens from Mistral's chat completion endpoint.
+
+    Yields each non-empty ``delta.content`` string as it arrives. Same
+    determinism settings as ``_call_mistral_api`` (temperature=0,
+    seed=42).
+    """
+    async with httpx.AsyncClient(timeout=timeout) as client:
+        async with client.stream(
+            "POST",
+            MISTRAL_API_URL,
+            headers={
+                "Authorization": f"Bearer {MISTRAL_API_KEY}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": MISTRAL_MODEL,
+                "messages": messages,
+                "temperature": 0.0,
+                "max_tokens": 2048,
+                "random_seed": 42,
+                "stream": True,
+            },
+        ) as resp:
+            if resp.status_code in (402, 429):
+                raise ValueError("MISTRAL_CREDITS_EXHAUSTED")
+            resp.raise_for_status()
+            async for line in resp.aiter_lines():
+                if not line or not line.startswith("data: "):
+                    continue
+                payload = line[6:].strip()
+                if payload == "[DONE]":
+                    return
+                try:
+                    chunk = json.loads(payload)
+                except json.JSONDecodeError:
+                    continue
+                choices = chunk.get("choices") or []
+                if not choices:
+                    continue
+                delta = choices[0].get("delta") or {}
+                content = delta.get("content")
+                if content:
+                    yield content
+
+
+async def chat_completion_streaming(
+    messages: list,
+    on_chunk: Callable[[str], Awaitable[None]] | None = None,
+    timeout: float = 300.0,
+) -> str:
+    """Streaming variant of ``chat_completion``.
+
+    Calls Mistral with ``stream=true``. For every content delta, invokes
+    ``on_chunk(text)`` (if given) and accumulates the full response.
+    Returns the full content string at the end — same as
+    ``chat_completion`` for downstream JSON-parsing compatibility.
+
+    Falls back to the non-streaming Ollama path if no Mistral key is set
+    (Ollama streaming would require its own implementation; for the
+    local-dev case the user-experience win is smaller anyway).
+    """
+    use_cloud = bool(MISTRAL_API_KEY)
+    if not use_cloud:
+        full = await _call_ollama(messages, timeout)
+        if on_chunk:
+            await on_chunk(full)  # single chunk, end of stream
+        return full
+
+    parts: list[str] = []
+    last_error = None
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            async for chunk in _stream_mistral_api(messages, timeout):
+                parts.append(chunk)
+                if on_chunk:
+                    await on_chunk(chunk)
+            return "".join(parts)
+        except (httpx.ConnectError, httpx.TimeoutException) as e:
+            last_error = e
+            parts.clear()
+            if attempt < MAX_RETRIES:
+                logger.warning(
+                    f"Mistral streaming attempt {attempt}/{MAX_RETRIES} "
+                    f"failed: {e}. Retrying in {RETRY_DELAY}s..."
+                )
+                await asyncio.sleep(RETRY_DELAY)
+            else:
+                logger.error(
+                    f"Mistral streaming failed after {MAX_RETRIES} attempts: {e}"
+                )
+                raise
+        except httpx.HTTPStatusError as e:
+            logger.error(
+                f"Mistral streaming HTTP error: {e.response.status_code}"
+            )
+            if e.response.status_code == 401:
+                raise ValueError("Invalid MISTRAL_API_KEY") from e
+            if e.response.status_code in (402, 429):
+                raise ValueError("MISTRAL_CREDITS_EXHAUSTED") from e
+            raise
     raise last_error

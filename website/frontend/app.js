@@ -110,6 +110,13 @@ form.addEventListener("submit", async (e) => {
                         }
                         if (eventType === "step") {
                             setStep(data.step);
+                        } else if (eventType === "synth_chunk") {
+                            // Streamed token-progress while the synthesizer
+                            // builds the verdict JSON. Show a live char-counter
+                            // so the user sees the model is actively working
+                            // (instead of staring at a frozen spinner during
+                            // the ~10–15 s synthesis call).
+                            updateSynthProgress(data.total_chars);
                         } else if (eventType === "error") {
                             if (data.detail === "MISTRAL_CREDITS_EXHAUSTED") {
                                 throw new Error(t("error_credits_exhausted"));
@@ -166,6 +173,16 @@ function setStep(step) {
         if (i < currentIndex) el.classList.add("done");
         if (i === currentIndex) el.classList.add("active");
     });
+}
+
+// Live progress indicator during synthesizer streaming. Shows char-count
+// of the response generated so far — turns the ~10–15 s wait from a
+// frozen spinner into a visibly-active progress signal.
+function updateSynthProgress(totalChars) {
+    const text = document.getElementById("loading-text");
+    if (!text) return;
+    const base = t("loading_synthesize") || "Erstelle Bewertung...";
+    text.textContent = `${base} (${totalChars} Zeichen)`;
 }
 
 function showResults(data) {
