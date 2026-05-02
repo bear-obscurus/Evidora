@@ -660,6 +660,19 @@ async def synthesize_results(
 
     secondary_sources = {"Google Fact Check", "ClaimReview", "Fact Check", "Faktenchecker", "GADMO"}
 
+    # Latency-Hebel #3: cap string fields to keep the synthesizer prompt
+    # compact. Mistral's prompt-processing time scales with token count;
+    # most descriptive fields (especially `description` from topic-pack
+    # services) carry hundreds of chars of context-notes that the LLM
+    # doesn't need verbatim — a 400-char truncation preserves the gist
+    # while reducing prompt size by ~30-40 %.
+    MAX_STR = 400
+
+    def _truncate_str(s: str) -> str:
+        if not isinstance(s, str) or len(s) <= MAX_STR:
+            return s
+        return s[:MAX_STR].rsplit(" ", 1)[0] + " […]"
+
     for source_data in source_results:
         if not isinstance(source_data, dict):
             continue
@@ -669,9 +682,12 @@ async def synthesize_results(
         source_type = "SECONDARY" if is_secondary else "PRIMARY"
         if results:
             context_parts.append(f"--- {source_name} [{source_type}] ---")
-            # Eurostat rankings need more entries; other sources stay at 5
+            # Per-Source-Cap: 15 für Eurostat-Rankings (Multi-Country-
+            # Vergleiche brauchen volle Liste), 3 für alle anderen
+            # (Hebel #3: war 5, jetzt 3 — Top-3 nach Reranker-Score
+            # reichen für ein gutes Verdict; mehr ist Token-Verschwendung).
             is_ranking = any(r.get("rank") for r in results[:1])
-            limit = 15 if is_ranking else 5
+            limit = 15 if is_ranking else 3
             for r in results[:limit]:
                 # Only include key fields
                 compact = {k: v for k, v in r.items() if v and k in (
@@ -689,6 +705,8 @@ async def synthesize_results(
                     # EMA
                     "active_substance", "therapeutic_area", "indication",
                 )}
+                # Truncate long string values to keep prompt small
+                compact = {k: _truncate_str(v) for k, v in compact.items()}
                 context_parts.append(json.dumps(compact, ensure_ascii=False))
             context_parts.append("")
 
