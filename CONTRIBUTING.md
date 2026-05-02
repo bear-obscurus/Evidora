@@ -108,6 +108,46 @@ If you add a *new* topic, also create a claim set under
 `tools/stress_tests/<your-topic>.json` (see existing files for the
 schema) and run it. The PR description should include the result.
 
+## URL stability for source links
+
+Every Topic-Pack `source_url` and `secondary_url` is shown to end users
+in the Verdict output — broken links damage credibility. We follow this
+**Stabilitäts-Hierarchie** when picking URLs:
+
+| Priorität | Methode | Wann |
+|---|---|---|
+| 1 | **DOI** (`https://doi.org/10.xxxx/yyyy`) | für wissenschaftliche Studien — Crossref garantiert Permanenz |
+| 2 | **PubMed PMID** (`https://pubmed.ncbi.nlm.nih.gov/12345/`) | für medizinische Studien — NIH-Garantie |
+| 3 | **Aktuelle Original-URL** (Topic-Übersicht oder spezifischer Pfad) | wenn Site stabile Topic-URLs hat |
+| 4 | **Wikipedia-Artikel** als kurierte Alternative | wenn Original nicht erreichbar oder Cloudflare-blockt |
+| 5 | **Domain-Hauptseite** als Notfall-Fallback | nur wenn alles andere ausfällt |
+
+Vor jedem Commit, der `data/*.json` ändert, **bitte URLs prüfen**:
+
+```bash
+cd website/backend
+
+# Voll-Audit aller URLs (langsam, ~3 min):
+python3 tools/check_urls.py --tier 1
+
+# Nur die URLs prüfen, die in deinem Branch neu hinzugekommen sind
+# (schnell, das ist auch was die CI prüft):
+python3 tools/check_new_urls.py --base origin/main --head HEAD
+```
+
+Das CI-Gate `check-new-urls` läuft bei jedem PR und schlägt fehl, wenn
+neu hinzugekommene URLs **404/410** zurückgeben (echt tot). 403er
+(Bot-Filter), Timeouts (transient) und ähnliche Edge-Cases werden als
+**Warnung** ausgegeben, blockieren aber nicht — diese URLs sind oft im
+User-Browser funktional.
+
+Bei toten URLs nutze `tools/repair_urls.py` für Wayback-/DOI-/Domain-
+Vorschläge:
+
+```bash
+python3 tools/repair_urls.py --url https://www.example.com/dead-page
+```
+
 ## Adding a new data source
 
 The static-first topic-service pattern is the most common contribution
