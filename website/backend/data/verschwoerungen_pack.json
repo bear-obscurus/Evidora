@@ -97,6 +97,315 @@
       "source_label": "ADL + IKG Wien + DÖW + BfV + IHRA + EUvsDisinfo + OSF Annual Reports",
       "source_url": "https://www.adl.org/resources/backgrounder/quantifying-hate-soros",
       "secondary_url": "https://holocaustremembrance.com/resources/working-definition-antisemitism"
+    },
+    {
+      "id": "qanon_pizzagate_2026",
+      "topic": "qanon_pizzagate_mythos",
+      "scope": "QAnon-Komplex und Pizzagate-Verschwörungstheorien",
+      "year": 2025,
+      "headline": "QAnon / Pizzagate — vom FBI als 'domestic terrorism threat' eingestuft",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Aussagen der QAnon-Verschwörung (hochrangige Politiker betrieben einen Kindesmissbrauchsring; Donald Trump kämpfe geheim gegen die 'Kabale'; 'Q' sei ein Insider) sind FALSCH und unbelegt. Pizzagate (2016) — Behauptung, in einem Pizza-Restaurant in Washington werde ein Kindermissbrauchsring betrieben — wurde durch Strafverfolgungsbehörden geprüft und als haltlos festgestellt.",
+        "fbi_einstufung": "Das FBI Phoenix Field Office stufte QAnon in einem internen Memo (Mai 2019, öffentlich gemacht durch Yahoo News August 2019) als 'domestic terrorism threat' ein. Mehrere QAnon-motivierte Gewalttaten sind in DOJ-Anklageschriften dokumentiert.",
+        "pizzagate_strafverfolgung": "Comet Ping Pong Restaurant Washington D.C., Dezember 2016: Edgar Welch betrat das Lokal bewaffnet, um angebliche eingesperrte Kinder zu befreien — fand keine Hinweise. Welch wurde verurteilt (DOJ-Strafverfahren). Polizei und FBI haben die Behauptungen in Pizzagate untersucht und keine Belege gefunden.",
+        "ncmec_distanzierung": "Das National Center for Missing & Exploited Children (NCMEC) distanzierte sich 2020 öffentlich von der Vereinnahmung des Hashtags '#SaveTheChildren' durch QAnon — die QAnon-Adoption beeinträchtigte die echte Anti-Kindesmissbrauchsarbeit etablierter NGOs.",
+        "capitol_sturm_kontext": "Beim Sturm auf das US-Capitol am 6. Januar 2021 sind QAnon-Bezüge in zahlreichen DOJ-Anklageschriften dokumentiert — das ist Tatsachen-Befund, keine politische Wertung des Ereignisses.",
+        "context": "QAnon ist ein zusammenhängender Verschwörungs-Komplex US-amerikanischen Ursprungs (2017, 4chan/8chan), der seit 2020 auch im DACH-Raum verbreitet ist. Die zentralen Behauptungen sind durch Strafverfolgungsbehörden geprüft und unbelegt. Mehrere Studien (RAND, ADL) dokumentieren QAnon als gefährliche Verschwörungs-Ideologie."
+      },
+      "context_notes": [
+        "Wir bewerten die spezifischen QAnon-Aussagen anhand strafrechtlich-polizeilicher und behördlicher Untersuchungs-Befunde — keine politische Bewertung von QAnon-Anhänger:innen pauschal.",
+        "Mimikama und Correctiv haben über 100 QAnon-bezogene Faktenchecks publiziert.",
+        "Die Behauptung 'Save the Children' / Kinderhandel-Bekämpfung ist als Anliegen legitim — die Vereinnahmung dieser Sprache durch QAnon ist von etablierten NGOs (NCMEC, UNICEF) explizit zurückgewiesen worden."
+      ],
+      "claim_phrasings_handled": [
+        "QAnon hat recht",
+        "Pizzagate ist real",
+        "Hochrangige Politiker betreiben Kinderhandel",
+        "Trump kämpft gegen die Kabale",
+        "Q ist ein Insider"
+      ],
+      "trigger_keywords": [
+        "qanon", "q-anon", "q anon",
+        "pizzagate",
+        "trump kabale", "kabale gegen trump",
+        "kinderhandel-ring politik", "politiker kindermissbrauch ring",
+        "save the children verschwörung", "save the children verschwoerung",
+        "wwg1wga"
+      ],
+      "trigger_composite": [
+        ["qanon", "q-anon", "q anon", "wwg1wga", "pizzagate"],
+        ["wahr", "real", "stimmt", "recht", "insider", "deep state", "kabale"]
+      ],
+      "trigger_all": [
+        [["politiker", "elite", "prominent"], ["kindesmissbrauch", "kinderhandel", "missbrauchsring", "kinderschaender"], ["ring", "netzwerk", "geheim"]]
+      ],
+      "source_label": "FBI Phoenix 2019 + DOJ + NCMEC + ADL + RAND + Mimikama",
+      "source_url": "https://www.adl.org/resources/backgrounder/qanon",
+      "secondary_url": "https://www.bpb.de/themen/rechtsextremismus/dossier-rechtsextremismus/qanon/"
+    },
+    {
+      "id": "great_reset_wef_2026",
+      "topic": "great_reset_wef_verschwoerung",
+      "scope": "Verschwörungs-Auslegungen der WEF-Initiative 'The Great Reset' (2020)",
+      "year": 2025,
+      "headline": "'Great Reset' — Verschwörungs-Auslegungen sind nicht durch WEF-Originaltexte gestützt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Behauptungen, das WEF / Klaus Schwab planten via 'Great Reset' eine Bevölkerungs-Reduktion, Abschaffung des Privateigentums oder eine globale Diktatur, sind FALSCH/NICHT BELEGT. Die WEF-Initiative 'The Great Reset' (Juni 2020, im Zusammenhang mit COVID-Recovery) ist als wirtschaftspolitischer Diskussions-Rahmen öffentlich auf weforum.org dokumentiert. Inhaltliche Kritik am WEF-Einfluss (z.B. Demokratie-Defizit, fehlende Legitimation) ist legitime politische Debatte und fällt nicht unter diesen Topic.",
+        "wef_originaltexte": "Das 'Great Reset'-Programm ist auf weforum.org/great-reset öffentlich dokumentiert — eine Sammlung von Diskussionsbeiträgen + Schwab/Malleret-Buch (2020) zu Post-COVID-Wirtschaftspolitik. Es enthält keine Beschlüsse, kein bindendes Programm, keine Politik-Implementierung — das WEF ist eine private NGO ohne staatliche oder zwischenstaatliche Befugnisse.",
+        "you_will_own_nothing_kontext": "Das oft zitierte 'You will own nothing and be happy' stammt NICHT aus dem Great-Reset-Programm, sondern aus einem WEF-Predictions-Video von 2016 — das einen Trend zur Sharing-Economy beschrieb (Streaming statt CD-Kauf, Carsharing statt Auto-Besitz), keine Politik-Initiative. Das Video wurde 2020 auf Verlangen vieler Kommentar:innen wegen Missverständnis-Anfälligkeit zurückgezogen.",
+        "faktencheck_konsens": "Mimikama, Correctiv, AP-Faktencheck, Reuters Fact Check, dpa-Faktencheck und APA-Faktencheck haben Great-Reset-Verschwörungs-Behauptungen mehrfach geprüft und als false / kontextlos / falsch interpretiert eingestuft.",
+        "context": "Das 'Great Reset' ist eine reale WEF-Initiative — Verschwörungs-Auslegungen, die daraus eine geheime Welt-Diktatur konstruieren, gehen weit über die WEF-Originaltexte hinaus. Die spezifischen Behauptungen (Bevölkerungs-Reset, Eigentums-Abschaffung, Mikrochip-Totalitarismus) sind durch Originalquellen widerlegt. Legitime Kritik am WEF-Einfluss bleibt davon getrennt zu betrachten."
+      },
+      "context_notes": [
+        "Differenzierung: WEF-Initiative (real, dokumentiert, kritisierbar) ≠ Great-Reset-Verschwörungs-These (nicht belegt) — wir bewerten nur Letzteres.",
+        "Das WEF ist eine private Stiftung in der Schweiz — keine zwischenstaatliche Organisation. Es hat keine Macht, Politik-Reformen durchzusetzen.",
+        "Die Behauptung 'You will own nothing' ist faktisch ein WEF-Zitat aus 2016 (anderes Programm), wird aber regelmäßig fehlattribuiert."
+      ],
+      "claim_phrasings_handled": [
+        "Great Reset ist eine geheime Diktatur-Planung",
+        "WEF will Privateigentum abschaffen",
+        "Klaus Schwab plant Bevölkerungs-Reset",
+        "You will own nothing — WEF-Pläne"
+      ],
+      "trigger_keywords": [
+        "great reset", "the great reset",
+        "wef diktatur", "wef weltherrschaft",
+        "klaus schwab plan", "klaus schwab pläne",
+        "you will own nothing"
+      ],
+      "trigger_composite": [
+        ["great reset", "wef", "world economic forum", "weltwirtschaftsforum", "klaus schwab"],
+        ["diktatur", "weltherrschaft", "geheime planung", "geheimplan", "agenda 2030 zwang", "privateigentum abschaffen", "bevölkerungsreduktion", "bevoelkerungsreduktion", "you will own nothing"]
+      ],
+      "source_label": "WEF Originaltexte + Mimikama + Correctiv + AP-Faktencheck + Reuters",
+      "source_url": "https://www.weforum.org/great-reset/",
+      "secondary_url": "https://www.mimikama.org/great-reset-faktencheck/"
+    },
+    {
+      "id": "bilderberger_weltsteuerung_2026",
+      "topic": "bilderberger_weltsteuerung_mythos",
+      "scope": "These einer geheimen Welt-Steuerung durch die Bilderberg-Konferenz",
+      "year": 2025,
+      "headline": "Bilderberg-Konferenz — privates Diskussionsforum, keine Welt-Steuerung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Die These einer geheimen Welt-Steuerung durch die Bilderberg-Konferenz ist FALSCH/NICHT BELEGT. Bilderberg ist seit 1954 ein jährliches privates Treffen von ~130 Teilnehmer:innen aus Politik, Wirtschaft und Medien. Die Konferenz fasst keine Beschlüsse, gibt keine bindenden Resolutionen heraus, hat keine Verwaltungs- oder Exekutiv-Funktion. Legitime Kritik am Transparenz-Defizit privater Elite-Treffen ist möglich, aber davon zu trennen.",
+        "bilderberg_offene_dokumentation": "Seit 2010 veröffentlicht die Bilderberg-Konferenz die Teilnehmer:innen-Liste und das Themen-Programm vor dem Treffen auf bilderbergmeetings.org. Aussagen zu konkreten Diskussionsinhalten unterliegen der Chatham House Rule — kein Beschluss, kein Protokoll wird publiziert.",
+        "kein_beschluss_organ": "Bilderberg hat keinen Verwaltungsapparat, keine satzungsmäßigen Befugnisse, keine Mitgliedsstaaten. Es ist ein informelles Diskussionsformat — vergleichbar etwa mit dem Munich Security Conference oder dem WEF Davos in Bezug auf den privaten Charakter, mit Bezeichnung der Bilderberg-Steering-Committee als Organisations-Struktur.",
+        "faktencheck_konsens": "bpb (Bundeszentrale für politische Bildung), Mimikama und Correctiv haben Bilderberg-Verschwörungs-Behauptungen mehrfach geprüft und als unbelegt eingestuft.",
+        "context": "Bilderberg ist ein real existierendes Konferenz-Format mit dokumentierter Geschichte (gegründet 1954 in Oosterbeek, Niederlande). Die Behauptung einer 'geheimen Welt-Steuerung' geht weit über die belegbare Funktion einer Diskussionsrunde hinaus. Zugleich ist berechtigte Kritik an mangelnder Transparenz privater Elite-Treffen ein legitimes Diskursthema, das vom Verschwörungs-Narrativ zu unterscheiden ist."
+      },
+      "context_notes": [
+        "Differenzierung: Bilderberg-Konferenz (real, dokumentiert, kritisierbar) ≠ 'Bilderberger steuern die Welt' (nicht belegt).",
+        "Die Verschwörungs-These verbindet sich häufig mit antisemitischen Tropen ('jüdische Elite-Verschwörung') — siehe ADL-Backgrounder zu antisemitischen Verschwörungstheorien.",
+        "Legitime politische Debatte: ob solche Foren demokratie-theoretisch problematisch sind, ist eine offene Diskussion in der Politikwissenschaft."
+      ],
+      "claim_phrasings_handled": [
+        "Bilderberger steuern die Welt",
+        "Bilderberg-Konferenz ist eine geheime Weltregierung",
+        "Bilderberger entscheiden alles im Hintergrund"
+      ],
+      "trigger_keywords": [
+        "bilderberger steuern", "bilderberg steuert",
+        "bilderberger weltregierung", "bilderberg weltregierung",
+        "bilderberger geheime weltherrschaft",
+        "bilderberger entscheiden"
+      ],
+      "trigger_composite": [
+        ["bilderberg", "bilderberger", "bilderberg-konferenz"],
+        ["steuert", "steuern", "weltregierung", "weltherrschaft", "entscheid", "kontroll", "im hintergrund", "geheimplan"]
+      ],
+      "source_label": "Bilderberg Meetings + bpb + Mimikama + Correctiv",
+      "source_url": "https://bilderbergmeetings.org/",
+      "secondary_url": "https://www.bpb.de/kurz-knapp/lexika/das-junge-politik-lexikon/"
+    },
+    {
+      "id": "chemtrails_kondensstreifen_2026",
+      "topic": "chemtrails_kondensstreifen_mythos",
+      "scope": "Behauptung, Flugzeug-Kondensstreifen seien gezielt versprühte Chemikalien",
+      "year": 2025,
+      "headline": "'Chemtrails' — sind atmosphärisch gut erklärte Kondensstreifen (contrails)",
+      "data": {
+        "physik_kondensstreifen": "Kondensstreifen ('contrails', condensation trails) entstehen, wenn heiße, wasserdampfreiche Triebwerksabgase auf kalte, feuchte Luft in Reiseflughöhe (~9–12 km) treffen. Wasserdampf kondensiert an Rußpartikeln und gefriert zu Eiskristallen. Je nach atmosphärischer Übersättigung lösen sich Kondensstreifen schnell auf oder breiten sich zu Cirrus-Wolken aus.",
+        "shearer_2016_studie": "Shearer, West, Caldeira & Davis (2016, Environ. Res. Lett.): Anonyme Befragung von 77 atmosphären- und geochemischen Wissenschaftler:innen — 76 von 77 fanden keine Evidenz für ein Sprüh-Programm. Der eine fand ein Element (Aluminium), das durch normale Industrie-Emissionen erklärbar ist. Die Studie ist die größte wissenschaftliche Untersuchung des Chemtrails-Mythos.",
+        "dlr_dwd_konsens": "Deutsches Zentrum für Luft- und Raumfahrt (DLR) und Deutscher Wetterdienst (DWD) haben Chemtrails-Mythen mehrfach in öffentlichen Stellungnahmen widerlegt. American Meteorological Society (AMS) hat 2017 ein Position-Statement zu Chemtrails veröffentlicht — keine Evidenz für ein Sprüh-Programm.",
+        "technische_unmoeglichkeit": "Massenhafte Sprühung über mehrere Länder/Kontinente wäre logistisch nicht durchführbar — die nötigen Tanks, Düsen und Crew-Anzahl wären sichtbar bei zivilen Verkehrsflugzeugen. Whistleblower aus Boeing/Airbus oder einer Airline gibt es nicht; alle behaupteten 'Insider'-Aussagen sind fabriziert oder fehlinterpretiert.",
+        "context": "Der Chemtrails-Mythos basiert auf Fehlinterpretation eines normalen atmosphärischen Phänomens. Die wissenschaftliche Evidenz (DLR, DWD, AMS, Shearer 2016) widerlegt die These einer absichtlichen Sprühung. Anders sind reale Diskussionen über Geo-Engineering (z.B. Stratospheric Aerosol Injection als hypothetische Klima-Maßnahme) — dazu gibt es offene wissenschaftliche Debatten, aber keine geheime Umsetzung."
+      },
+      "context_notes": [
+        "Geo-Engineering als wissenschaftliche Debatte (Royal Society 2009, NAS 2021) ist von der Chemtrails-Verschwörungs-These zu trennen — wir bewerten nur Letztere.",
+        "Cloud Seeding (Wolkenimpfen mit Silberiodid) ist eine reale, regulierte Wettermodifikations-Technik — aber lokal angewendet, gut dokumentiert, nicht 'Chemtrails'.",
+        "Mimikama, Correctiv, dpa-Faktencheck haben Chemtrails-Behauptungen mehrfach geprüft."
+      ],
+      "claim_phrasings_handled": [
+        "Chemtrails sind echte Sprühungen",
+        "Flugzeuge versprühen Chemikalien",
+        "Kondensstreifen sind Chemtrails"
+      ],
+      "trigger_keywords": [
+        "chemtrails echt", "chemtrails real", "chemtrails wahrheit",
+        "kondensstreifen chemtrails",
+        "flugzeuge spruehen", "flugzeuge sprühen"
+      ],
+      "trigger_composite": [
+        ["chemtrails", "chemtrail", "kondensstreifen", "contrails"],
+        ["echt", "real", "wahr", "absicht", "gezielt", "chemikali", "spruehung", "sprühung", "vergift", "geo-engineering geheim"]
+      ],
+      "source_label": "Shearer et al. 2016 + DLR + DWD + AMS Position-Statement",
+      "source_url": "https://iopscience.iop.org/article/10.1088/1748-9326/11/8/084011",
+      "secondary_url": "https://www.dlr.de/content/de/artikel/news/2018/3/20180719_kondensstreifen-und-co.html"
+    },
+    {
+      "id": "5g_krebs_mythos_2026",
+      "topic": "5g_krebs_mythos",
+      "scope": "Behauptung, 5G-Mobilfunk verursache Krebs",
+      "year": 2025,
+      "headline": "5G-Krebs — Bundesamt für Strahlenschutz: keine Evidenz bei Einhaltung der Grenzwerte",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Die Behauptung, 5G-Mobilfunk verursache Krebs, ist NICHT durch wissenschaftliche Evidenz gestützt. Bei Einhaltung der ICNIRP-Grenzwerte (1998 + Update 2020) gibt es keine nachgewiesene Gesundheitsgefahr durch 5G-Strahlung. Skeptische Forschungs-Diskussion zu Langzeitwirkungen ist legitim, aber davon zu trennen — die spezifische Behauptung 'verursacht Krebs' ist unbelegt.",
+        "5g_frequenzen": "5G nutzt Frequenzen 600 MHz – 6 GHz (Sub-6) und teilweise 24–60 GHz (mmWave). Alle diese Frequenzen liegen im nicht-ionisierenden Bereich des elektromagnetischen Spektrums — sie haben nicht genug Energie, um chemische Bindungen zu brechen oder DNA direkt zu schädigen (anders als z.B. Röntgen oder UV-C).",
+        "icnirp_grenzwerte": "Die International Commission on Non-Ionizing Radiation Protection (ICNIRP) hat 2020 ihre Grenzwerte aktualisiert — alle 5G-Anwendungen liegen weit unter diesen Werten. Bundesamt für Strahlenschutz (BfS) und Strahlenschutzkommission (SSK) folgen diesen Standards.",
+        "iarc_2b_kontext": "Die International Agency for Research on Cancer (IARC, WHO) klassifizierte 2011 RF-EMF generell als '2B — möglicherweise karzinogen für Menschen'. Diese Einstufung basiert auf älteren Studien zu intensiver Mobiltelefon-Nutzung, nicht spezifisch auf 5G. 'Möglicherweise' bedeutet: begrenzte Evidenz; Kategorie 2B umfasst auch Aloe Vera, eingelegtes Gemüse und Kaffee (bis 2016).",
+        "review_konsens": "Karipidis et al. 2021 (Reviews on Environmental Health), AGNIR 2012 (Advisory Group on Non-Ionizing Radiation, UK): keine kausale Verbindung zwischen RF-EMF (inkl. 5G) und Krebs in Bevölkerungs-Studien.",
+        "context": "5G-Mobilfunk verwendet nicht-ionisierende Strahlung weit unter den ICNIRP-Grenzwerten. Die Behauptung 'verursacht Krebs' ist durch BfS, ICNIRP und Review-Studien (Karipidis 2021) nicht gestützt. Eine vorsichtige Diskussion über Langzeitstudien-Lücken ist wissenschaftlich legitim, ändert aber nichts an der aktuellen Evidenzlage."
+      },
+      "context_notes": [
+        "Differenzierung: pauschale 'Krebs durch 5G' (unbelegt) ≠ wissenschaftliche Diskussion über Langzeit-Forschungslücken (legitim, aber kein Beleg für Krebs).",
+        "Mobilfunk-Grenzwerte werden in DACH von BfS/SSK (DE) und BMK/AGES (AT) reguliert.",
+        "Mimikama, Correctiv, BBC Reality Check haben 5G-Krebs-Behauptungen mehrfach faktengeprüft."
+      ],
+      "claim_phrasings_handled": [
+        "5G verursacht Krebs",
+        "5G-Strahlung macht krank",
+        "5G-Antennen verursachen Tumore"
+      ],
+      "trigger_keywords": [
+        "5g krebs", "5g verursacht krebs", "5g macht krebs",
+        "5g tumor", "5g strahlung krank",
+        "5g gesundheit gefahr"
+      ],
+      "trigger_composite": [
+        ["5g", "5-g", "fünfte generation mobilfunk", "fuenfte generation mobilfunk"],
+        ["krebs", "tumor", "karzinogen", "cancer", "krank", "gesundheitsgefahr", "schadstoff"]
+      ],
+      "source_label": "BfS + ICNIRP 2020 + IARC + Karipidis et al. 2021",
+      "source_url": "https://www.bfs.de/DE/themen/emf/mobilfunk/basiswissen/5g/5g.html",
+      "secondary_url": "https://www.icnirp.org/cms/upload/publications/ICNIRPrfgdl2020.pdf"
+    },
+    {
+      "id": "5g_corona_2026",
+      "topic": "5g_corona_verbreitung_mythos",
+      "scope": "Behauptung, 5G verbreite Corona-Viren oder verursache COVID-Symptome",
+      "year": 2025,
+      "headline": "5G und Corona — physikalisch unmöglicher Mythos",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Die These, 5G-Mobilfunk verbreite Corona-Viren oder verursache COVID-19-Symptome, ist physikalisch unmöglich und FALSCH. Funkwellen können keine biologischen Partikel (Viren) übertragen. Die Behauptung ist von WHO, BfS und mehreren Faktencheck-Plattformen widerlegt.",
+        "physikalische_unmoeglichkeit": "Funkwellen sind elektromagnetische Strahlung — sie übertragen Information, keine materiellen Partikel. Viren sind biologische Partikel (~100–200 nm), die Übertragung erfolgt durch Tröpfchen, Aerosole oder Kontakt — nicht durch elektromagnetische Wellen. Es gibt keinen bekannten Mechanismus, durch den Funkwellen Virenpartikel transportieren oder erzeugen könnten.",
+        "geographischer_widerspruch": "COVID-19 breitete sich auch in Regionen ohne 5G-Infrastruktur stark aus — Iran (Frühjahr 2020 ohne 5G), ländliche Gebiete weltweit, viele Länder Afrikas und Lateinamerikas mit schwacher Mobilfunk-Infrastruktur waren betroffen. Die geographische Korrelation 5G ↔ COVID besteht nicht.",
+        "folgen_des_mythos": "Anschläge auf Mobilfunkmasten 2020/2021: In Großbritannien wurden ~80 Mobilfunkmasten in Brand gesteckt oder beschädigt (BT/Mobile UK Berichte); in den Niederlanden, Frankreich und Deutschland gab es ähnliche Vorfälle. Bedrohung gegen Techniker:innen wurde mehrfach polizeilich verfolgt.",
+        "behoerdliche_einstufung": "WHO hat 5G-Corona-Mythen explizit als Falschinformation eingestuft (WHO Mythbusters). Ofcom (UK), Bundesnetzagentur (DE), BfS, BBC Reality Check, Reuters Fact Check haben den Mythos mehrfach widerlegt.",
+        "context": "Der 5G-Corona-Mythos ist ein Beispiel für eine Verschwörungs-These, die physikalisch und epidemiologisch leicht widerlegbar ist. Die reale Folge war erheblich: Mobilfunkmast-Anschläge gefährdeten Notruf-Infrastruktur in Pandemie-Zeiten, mit polizeilich-justizieller Verfolgung."
+      },
+      "context_notes": [
+        "Der Mythos wurde teilweise mit dem 5G-Krebs-Mythos vermischt — beide sind separat zu betrachten.",
+        "Die WHO hat einen eigenen 'Mythbusters'-Bereich zu COVID-Falschinformationen, in dem 5G prominent behandelt wird.",
+        "Mast-Anschläge sind in DACH und UK strafrechtlich verfolgt worden — relevante Fälle sind in DOJ-/CPS-/Staatsanwaltschafts-Akten dokumentiert."
+      ],
+      "claim_phrasings_handled": [
+        "5G verbreitet Corona",
+        "5G verursacht COVID",
+        "5G-Antennen sind für die Pandemie verantwortlich"
+      ],
+      "trigger_keywords": [
+        "5g corona", "5g covid",
+        "5g pandemie",
+        "5g verbreitet virus", "5g antennen virus"
+      ],
+      "trigger_composite": [
+        ["5g", "5-g"],
+        ["corona", "covid", "pandemie", "virus", "sars-cov-2"]
+      ],
+      "source_label": "WHO Mythbusters + BfS + Ofcom UK + BBC Reality Check",
+      "source_url": "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters",
+      "secondary_url": "https://www.bfs.de/DE/themen/emf/mobilfunk/basiswissen/5g/5g.html"
+    },
+    {
+      "id": "bill_gates_microchips_2026",
+      "topic": "bill_gates_microchips_impfung_mythos",
+      "scope": "Behauptung, Bill Gates plane Microchip-Implantate über COVID-Impfungen",
+      "year": 2025,
+      "headline": "Bill-Gates-Microchip-Mythos — technisch unmöglich, mehrfach faktengeprüft",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Die Behauptung, Bill Gates plane via COVID-Impfungen Microchip-Implantate in Menschen einzusetzen, ist FALSCH und technisch unmöglich. Mehrere Faktencheck-Plattformen (Mimikama, Correctiv, AP, Reuters) haben das geprüft.",
+        "technische_unmoeglichkeit": "Standard-Impfnadeln haben Innendurchmesser von ~0,4 bis 0,7 mm. Selbst kleinste GPS-Tracking-Microchips sind etwa 5×5 mm groß. Selbst RFID-Chips für Haustiere (~12 mm Länge) sind viel zu groß für Impfnadeln. Es gibt keine bekannte Technologie, die Tracking-Hardware durch eine Standard-Impfung im Körper platzieren könnte.",
+        "ursprung_des_mythos": "Der Mythos entstand im April 2020 durch falsche Auslegung eines MIT-Forschungsprojekts: Robert Langer und Team entwickelten eine Sub-skin-Tinte (Quantum-Dot-Marker), die zur Dokumentation von Impfungen in Entwicklungsländern dient — ohne flächendeckende Krankenakten. Das ist KEIN Microchip, sondern ein passiver Farbmarker, ablesbar mit einer modifizierten Smartphone-Kamera.",
+        "gates_dementi": "Bill Gates hat den Microchip-Mythos mehrfach öffentlich dementiert — u.a. in Interviews mit CBS, BBC und Reuters (Juni 2020, Juli 2020). Gates Foundation finanziert reale Impf-Programme (GAVI, COVAX), aber keine Microchip-Implementierung.",
+        "faktencheck_konsens": "Mimikama, Correctiv, AP-Faktencheck, Reuters Fact Check, dpa-Faktencheck und APA-Faktencheck haben den Mythos mehrfach als false eingestuft.",
+        "context": "Der Bill-Gates-Microchip-Mythos verbindet zwei reale Elemente — Gates' Engagement in der globalen Gesundheit + ein MIT-Forschungsprojekt zu Impf-Dokumentation — mit einer technisch unmöglichen Verschwörungs-These. Die spezifische Behauptung ist faktisch widerlegt."
+      },
+      "context_notes": [
+        "Differenzierung: Gates-Foundation-Aktivitäten in der globalen Gesundheit (real, kritisierbar) ≠ Microchip-Verschwörungs-These (faktisch falsch).",
+        "Legitime Debatte: Welchen Einfluss private Stiftungen auf globale Gesundheits-Politik haben sollten, ist eine offene Diskussion (u.a. Lancet 2020, Birn 2014). Diese ist vom Microchip-Mythos zu unterscheiden.",
+        "MIT-Quantum-Dot-Forschung (McHugh et al. 2019, Sci. Transl. Med.) ist real — aber keine Microchip-Technologie."
+      ],
+      "claim_phrasings_handled": [
+        "Bill Gates implantiert Microchips über Impfungen",
+        "Gates plant Tracking-Chips in Impfungen",
+        "COVID-Impfung enthält Microchip"
+      ],
+      "trigger_keywords": [
+        "bill gates microchip", "bill gates chip impfung",
+        "gates tracking impfung",
+        "covid impfung microchip", "impfung enthält chip"
+      ],
+      "trigger_composite": [
+        ["bill gates", "gates foundation", "bill-gates"],
+        ["microchip", "chip impf", "tracking", "implantat", "rfid", "5g chip", "magnetisch"]
+      ],
+      "trigger_all": [
+        [["impfung", "impfstoff", "vakzin"], ["microchip", "chip", "tracking-chip", "rfid", "implantat"]]
+      ],
+      "source_label": "MIT McHugh 2019 + Mimikama + Correctiv + AP-Faktencheck + Reuters",
+      "source_url": "https://www.mimikama.org/bill-gates-impfchip-faktencheck/",
+      "secondary_url": "https://www.reuters.com/article/uk-factcheck-coronavirus-bill-gates-micr-idUSKBN23J2L1"
+    },
+    {
+      "id": "plandemic_corona_2026",
+      "topic": "plandemic_corona_geplant_mythos",
+      "scope": "Behauptung, die COVID-19-Pandemie sei absichtlich von Eliten geplant worden",
+      "year": 2025,
+      "headline": "'Plandemic' — natürlicher Spillover ist wahrscheinlich; 'absichtlich geplant' ist nicht belegt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Die These, die COVID-19-Pandemie sei von einer Elite (WEF, Gates Foundation, Big Pharma) absichtlich geplant und in Umlauf gebracht worden, ist FALSCH/NICHT BELEGT. Natürlicher Spillover (Tier-zu-Mensch-Übertragung in Wuhan) ist die wissenschaftlich wahrscheinlichste Erklärung. Eine offene Frage ist die Lab-Leak-Hypothese (unbeabsichtigte Freisetzung aus dem Wuhan Institute of Virology) — diese ist von der gezielten 'Plandemic'-These zu trennen.",
+        "phylogenie_natuerlicher_ursprung": "Phylogenetische Analysen (Andersen et al. 2020 Nature Med, Worobey et al. 2022 Science) zeigen: SARS-CoV-2 stammt evolutionär von SARSr-CoVs in Fledermäusen ab, mit möglichem Zwischen-Wirt (Schuppentier oder andere). Genetische Marker, die auf Lab-Manipulation hindeuten würden, fehlen.",
+        "intelligence_assessment_2021": "US Intelligence Community Joint Assessment (August 2021, deklassifiziert): vier IC-Elemente bewerten natürlichen Spillover als wahrscheinlich, eines die Lab-Leak-Hypothese, drei mit niedriger Konfidenz. Keine Bewertung stützte 'gezielte Erzeugung' — die 'Plandemic'-These wurde explizit verworfen.",
+        "event_201_kontext": "Event 201 (Oktober 2019, Johns Hopkins/WEF/Gates Foundation) war eine Pandemie-Simulationsübung — routine pandemic preparedness wie viele andere (z.B. Crimson Contagion 2019 USA, Cygnus 2016 UK). Solche Übungen finden regelmäßig statt, sind öffentlich dokumentiert und seit Jahrzehnten Standard. 'Beweis für Plandemic' ist Event 201 nicht.",
+        "plandemic_film_kritik": "Mikki Willis' 'Plandemic'-Filme (2020) wurden von Mimikama, Correctiv, AP, Reuters und Snopes Punkt für Punkt geprüft — die zentralen Behauptungen (Judy Mikovits' Anschuldigungen gegen Anthony Fauci, Hydroxychloroquin als 'unterdrücktes Heilmittel', Masken seien schädlich) sind widerlegt.",
+        "context": "Die Plandemic-These verbindet reale Elemente (Pandemic Preparedness, Big-Pharma-Profite, Big-Tech-Daten) mit einer nicht belegten Konspirations-Erklärung (gezielte Erzeugung). Wissenschaftliche Konsens-Erklärung: natürlicher Spillover, mit offener Lab-Leak-Frage. 'Geplant' ist von beiden Hypothesen zu unterscheiden — keine wissenschaftliche Untersuchung stützt die These einer absichtlichen Freisetzung."
+      },
+      "context_notes": [
+        "Differenzierung: 'Lab-Leak' (offen, wissenschaftlich diskutiert) ≠ 'Plandemic / absichtliche Freisetzung' (nicht belegt). Wir prüfen nur die zweite These.",
+        "Legitime Kritik: Pandemic-Response-Maßnahmen, Big-Pharma-Profite, Big-Tech-Datennutzung — alles offene politische Debatten, keine Bestätigung einer 'Plandemic'.",
+        "Pandemic-Vorbereitungs-Übungen (Event 201, Crimson Contagion) sind seit Jahren Standard und keine 'Insider-Hinweise'."
+      ],
+      "claim_phrasings_handled": [
+        "Corona war geplant",
+        "Plandemic statt Pandemic",
+        "Eliten haben COVID absichtlich verbreitet",
+        "Event 201 hat die Pandemie geplant"
+      ],
+      "trigger_keywords": [
+        "plandemic", "plandemie",
+        "corona geplant", "covid geplant",
+        "pandemie absichtlich", "pandemie inszeniert",
+        "event 201 beweis"
+      ],
+      "trigger_composite": [
+        ["corona", "covid", "covid-19", "pandemie", "sars-cov-2", "plandemic", "plandemie"],
+        ["geplant", "absichtlich", "inszeniert", "elite hat", "elite haben", "wef hat", "gates hat", "labor freigesetzt absicht", "kein zufall"]
+      ],
+      "source_label": "Andersen 2020 (Nature Med) + Worobey 2022 (Science) + US IC Assessment 2021 + WHO + Mimikama",
+      "source_url": "https://www.nature.com/articles/s41591-020-0820-9",
+      "secondary_url": "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters"
     }
   ]
 }
