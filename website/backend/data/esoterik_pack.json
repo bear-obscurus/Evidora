@@ -518,6 +518,44 @@
       "source_label": "VKI Konsumenteninformation + GWUP + Stiftung Warentest",
       "source_url": "https://blog.gwup.net/themen/esoterik/wasserbelebung/",
       "secondary_url": "https://www.konsument.at/"
+    },
+    {
+      "id": "schwitzen_detox_2026",
+      "topic": "schwitzen_detox",
+      "scope": "Schweiß als angeblicher Entgiftungsmechanismus / Sauna-Detox",
+      "year": 2025,
+      "headline": "Schwitzen — Thermoregulation, kein nennenswerter Detox-Effekt",
+      "data": {
+        "physiologische_funktion": "Schweiß besteht zu ca. 99 % aus Wasser, Salzen, Harnstoff und Spuren organischer Verbindungen. Hauptfunktion ist Thermoregulation durch Verdunstungskühlung — nicht Entgiftung.",
+        "echte_entgiftung": "Die Entgiftung des Körpers erfolgt fast ausschließlich über Leber (Phase-I/II-Biotransformation) und Nieren (renale Clearance). Hepato-renale Clearance ist um Größenordnungen leistungsfähiger als die Schweißdrüsen.",
+        "studienlage_kritik": "Genuis et al. 2011 (Blood, Urine, and Sweat / BUS Study) und ähnliche Untersuchungen finden zwar Spuren von Schwermetallen, BPA und Phthalaten im Schweiß. Die quantitativen Mengen sind jedoch klinisch irrelevant verglichen mit Urin- und Stuhl-Ausscheidung. Die Studien werden in der Wellness-Industrie selektiv zitiert, ohne den quantitativen Kontext.",
+        "aad_konsens": "American Academy of Dermatology (AAD): 'Sweating is not a means of detoxification — it is the body's mechanism for cooling itself.'",
+        "context": "Der populäre Mythos, Schwitzen (insbesondere in Sauna oder beim Sport) entgifte den Körper, beruht auf einer halben Wahrheit: Spuren von Toxinen sind nachweisbar, ihre Ausscheidungsmenge ist aber gegenüber Leber + Nieren vernachlässigbar. Sauna und Sport haben dokumentierte Vorteile (Herz-Kreislauf, Stress), aber 'Detox' gehört nicht dazu."
+      },
+      "context_notes": [
+        "Der 'Detox'-Mythos wird von Wellness-Industrie + Boulevard popularisiert — wissenschaftliche Fachgesellschaften (AAD, dermatologische Gesellschaften DACH) widersprechen klar.",
+        "Sauna-Nutzen (Laukkanen-Studien Finnland): kardiovaskulärer Effekt, Stress-Reduktion — kein Entgiftungs-Effekt.",
+        "Genuis 2011 wird häufig fehlinterpretiert: nachgewiesen wurde Detektierbarkeit, nicht klinisch relevante Mengen.",
+        "Bei vermuteter echter Toxin-Exposition (Schwermetalle, Pestizide) ist medizinische Diagnose + ggf. Chelat-Therapie der Standard, nicht Schwitzen."
+      ],
+      "claim_phrasings_handled": [
+        "Schwitzen scheidet Giftstoffe aus",
+        "Sauna entgiftet den Körper",
+        "Sport reinigt den Körper durch Schweiß",
+        "Beim Schwitzen werden Toxine ausgeschieden"
+      ],
+      "trigger_keywords": [
+        "schwitzen detox", "schwitzen entgiftung", "sauna detox",
+        "sauna entgiftung", "schweiß giftstoffe", "schweiss giftstoffe",
+        "schwitzen reinigt", "schwitzen entgiftet"
+      ],
+      "trigger_composite": [
+        ["schwitz", "schweiß", "schweiss", "sauna"],
+        ["detox", "entgift", "giftstoff", "toxin", "ausgeschied", "ausscheid", "reinig", "gift aus"]
+      ],
+      "source_label": "American Academy of Dermatology + medizinischer Konsens (Leber/Nieren-Clearance)",
+      "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/why-do-we-sweat",
+      "secondary_url": "https://blog.gwup.net/themen/esoterik/detox/"
     }
   ]
 }
