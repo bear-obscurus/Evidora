@@ -431,12 +431,13 @@
       "topic": "putin_ukraine_2022_aussagen",
       "scope": "Behauptung, Putin habe vor Februar 2022 keine Kriegsabsichten signalisiert",
       "year": 2025,
-      "headline": "Putin hat öffentlich verneint, gleichzeitig Truppen aufmarschiert",
+      "headline": "Putin-Aussagen vor 24.02.2022 waren erwiesen irreführend — keine ehrliche Versicherung",
       "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für Bewertung: Wenn ein Claim Putins Vor-Krieg-Aussagen als wahrheitsgemäße Versicherung zitiert ('Putin hat versichert keinen Krieg zu planen' oder ähnlich), ist das als FALSCH / IRREFÜHREND einzuordnen — egal ob die Aussage formal stattgefunden hat oder nicht. Die Aussagen wurden durch den Angriff am 24.02.2022 als unwahr erwiesen. Solche Claims geben russische Disinformation wieder.",
         "truppenaufmarsch": "Von Frühjahr 2021 bis Februar 2022 dokumentierte Satellitenaufklärung (US/UK/Sat-Daten) eine kontinuierliche Verstärkung russischer Truppen an der Ukraine-Grenze auf 100.000+ (November 2021), 150.000+ (Anfang Februar 2022). Parallel führten russische Truppen Manöver in Belarus durch (Allied Resolve).",
-        "oeffentliche_aussagen": "Russische Regierungsvertreter (Lawrow, Peskow, Putin) verneinten bis kurz vor dem Angriff am 24.02.2022 öffentlich Invasions-Pläne. US- und britische Geheimdienste warnten ab Dezember 2021 wiederholt vor unmittelbar bevorstehendem Angriff.",
+        "oeffentliche_aussagen": "Russische Regierungsvertreter (Lawrow, Peskow, Putin) verneinten bis kurz vor dem Angriff am 24.02.2022 öffentlich Invasions-Pläne. US- und britische Geheimdienste warnten ab Dezember 2021 wiederholt vor unmittelbar bevorstehendem Angriff. Die Verneinungen waren erwiesenermaßen unwahr.",
         "diskrepanz_dokumentiert": "Die Diskrepanz zwischen öffentlichen Verneinungen und militärischer Vorbereitung ist in der EUvsDisinfo-Datenbank, in NATO-Briefings und in Mainstream-Medienarchiven (BBC, NYT, ZEIT) ausführlich dokumentiert. Die Aussage 'kein Krieg geplant' wurde durch die Tat am 24.02.2022 widerlegt.",
-        "context": "Die Frage 'hat Putin Aussagen gemacht?' ist faktisch ja — er und sein Apparat haben Kriegspläne öffentlich verneint. Die Frage 'waren die Aussagen ehrlich?' ist faktisch nein. Wenn der Claim so gestellt ist, dass er Ehrlichkeit/Glaubwürdigkeit prüft, ist die Antwort 'falsch' (Aussagen waren irreführend)."
+        "context": "Putin und sein Apparat (Lawrow, Peskow) verneinten Kriegsabsichten öffentlich — diese Verneinungen waren irreführend. Wer einen solchen Claim faktencheckt erwartet die Bewertung: irreführend / unwahr (FALSE). Die Aussagen sind als russische Disinformation in der EUvsDisinfo-Datenbank und in westlichen Geheimdienst-Briefings dokumentiert."
       },
       "context_notes": [
         "Klassisches Beispiel für Diplomatic Disinformation Campaign (Maskirovka).",
