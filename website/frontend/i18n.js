@@ -713,6 +713,222 @@ const TRANSLATIONS = {
             <p>Search icon: <a href="https://github.com/google/material-design-icons" target="_blank" rel="noopener">Google Material Design Icons</a> (Apache 2.0 License).</p>
         `,
     },
+
+    fr: {
+        // Méta
+        page_title: "Evidora.eu — Vérification des faits",
+        tagline: "Vérification des faits européenne contre les fake news",
+
+        // Recherche
+        placeholder: 'Saisir une affirmation, p.ex. "Les vaccins causent l\'autisme"',
+        search_btn: "Vérifier",
+        hint_health: "Santé",
+        hint_climate: "Climat",
+        hint_economy: "Économie",
+        hint_education: "Éducation",
+        hint_migration: "Migration",
+        hint_gender: "Égalité",
+        examples_label: "Ou essayez directement :",
+        example_claims: [
+            { icon: "💉", text: "Les vaccins causent l'autisme." },
+            { icon: "🌡️", text: "2024 a été l'année la plus chaude jamais enregistrée mondialement." },
+            { icon: "📡", text: "Le cancer est principalement causé par les ondes des téléphones portables." },
+            { icon: "✨", text: "Les cristaux comme le quartz rose ont des énergies de guérison." },
+            { icon: "🌙", text: "La pleine lune affecte significativement le sommeil." },
+            { icon: "🔮", text: "L'astrologie peut prédire le caractère d'une personne." },
+            { icon: "⚛️", text: "Le nucléaire a le moins de morts par térawattheure parmi les sources d'électricité." },
+            { icon: "🚭", text: "Les e-cigarettes sont totalement inoffensives pour les adolescents." },
+            { icon: "📚", text: "Le redoublement aide démontrablement les élèves à apprendre." },
+            { icon: "🤖", text: "ChatGPT rend les élèves stupides et ruine leurs capacités d'écriture." },
+            { icon: "💰", text: "L'inflation officielle est bien plus basse que l'inflation réelle." },
+            { icon: "🚗", text: "Les voitures électriques ont un pire bilan CO₂ que les thermiques." },
+            { icon: "🐟", text: "Les poissons rouges n'ont qu'une mémoire de 3 secondes." },
+            { icon: "🦇", text: "Les chauves-souris sont aveugles." },
+            { icon: "🇪🇺", text: "La majorité des Allemands veut quitter l'UE." },
+            { icon: "🌍", text: "Le Sahara est le plus grand désert du monde." },
+        ],
+        beta_notice: "Ce projet est en développement actif.",
+        beta_notice_online: "Ce projet est en développement actif. L'analyse IA de cette version en ligne se fait via l'API Mistral Cloud (serveurs UE, Paris).",
+
+        // Chargement
+        loading_analyze: "Analyse de l'affirmation...",
+        loading_search: "Recherche dans les sources...",
+        loading_synthesize: "Création de l'évaluation...",
+        step_analyze: "Analyse de l'affirmation",
+        step_search: "Recherche des sources",
+        step_synthesize: "Génération du résultat",
+
+        // Verdicts
+        verdict_true: "Vrai",
+        verdict_mostly_true: "Majoritairement vrai",
+        verdict_mixed: "Mitigé",
+        verdict_mostly_false: "Majoritairement faux",
+        verdict_false: "Faux",
+        verdict_unverifiable: "Non vérifiable",
+
+        // Couverture des sources
+        source_coverage: "Couverture des sources :",
+        source_coverage_detail: "{with} sources sur {total} ont fourni des résultats",
+        source_coverage_low: "Faible couverture des sources — verdict basé sur peu de sources. À interpréter avec prudence.",
+        source_coverage_single: "Une seule source a fourni des résultats. Le verdict est donc peu robuste.",
+        source_coverage_none: "Aucune source n'a fourni de résultats. L'affirmation n'a pas pu être vérifiée.",
+
+        // Preuves
+        confidence: "Confiance :",
+        confidence_tooltip: "La confiance indique à quel point le modèle IA est sûr de son évaluation — basée sur la clarté des preuves trouvées. Confiance élevée (≥90%) = base de preuves claire ; faible confiance = preuves contradictoires ou incomplètes.",
+        evidence_title: "Preuves",
+        strength_strong: "Forte",
+        strength_moderate: "Moyenne",
+        strength_weak: "Faible",
+        sources_title: "Sources en détail",
+        source_fallback: "Source",
+
+        // Erreurs
+        error_title: "Erreur",
+        error_retry: "Réessayer",
+        error_server: "Erreur serveur",
+        error_claim_too_short: "Affirmation trop courte — veuillez saisir au moins 2 mots.",
+        error_claim_too_long: "Affirmation trop longue (max. 1000 caractères).",
+        error_claim_empty: "L'affirmation ne doit pas être vide.",
+        error_rate_limit: "Trop de requêtes. Veuillez patienter un moment.",
+        error_credits_exhausted: "L'API Mistral n'a temporairement plus de crédits. Veuillez réessayer plus tard.",
+        error_synth_failed: "Erreur lors de la génération du résultat. Veuillez réessayer.",
+        error_analyze_failed: "Erreur lors de l'analyse de l'affirmation. Veuillez réessayer.",
+
+        // Disclaimer
+        disclaimer_title: "Avertissement",
+        disclaimer_text: "Ceci est une vérification automatique et ne remplace pas une rédaction professionnelle de fact-checking. Vérifiez les sources indiquées vous-même.",
+        nuance_title: "Nuance",
+
+        // Historique
+        history_title: "Historique",
+        history_empty: "Aucun fact-check encore effectué.",
+        history_clear: "Effacer l'historique",
+
+        // PDF / Partage
+        export_pdf: "Exporter en PDF",
+        share_link: "Lien à partager",
+        share_link_copied: "Lien copié !",
+
+        // Disclaimer / Légal
+        impressum_title: "Mentions légales",
+        impressum_intro_li: "Disponible en allemand. Pour les questions juridiques, veuillez utiliser la version allemande.",
+
+        privacy_title: "Confidentialité",
+        privacy_intro: "Disponible en allemand. Pour les questions juridiques, veuillez utiliser la version allemande.",
+
+        // À propos
+        about_title: "À propos d'Evidora",
+        about_intro: "Service européen de fact-checking, soutenu par plus de 50 sources scientifiques et institutionnelles, avec des modèles IA hébergés en UE (Mistral Cloud, Paris).",
+    },
+
+    it: {
+        // Meta
+        page_title: "Evidora.eu — Verifica dei fatti",
+        tagline: "Verifica europea dei fatti contro le fake news",
+
+        // Ricerca
+        placeholder: 'Inserisci un\'affermazione, es. "I vaccini causano l\'autismo"',
+        search_btn: "Verifica",
+        hint_health: "Salute",
+        hint_climate: "Clima",
+        hint_economy: "Economia",
+        hint_education: "Istruzione",
+        hint_migration: "Migrazione",
+        hint_gender: "Parità",
+        examples_label: "O prova subito:",
+        example_claims: [
+            { icon: "💉", text: "I vaccini causano l'autismo." },
+            { icon: "🌡️", text: "Il 2024 è stato l'anno più caldo mai registrato a livello globale." },
+            { icon: "📡", text: "Il cancro è causato principalmente dalle radiazioni dei cellulari." },
+            { icon: "✨", text: "Le pietre come il quarzo rosa hanno energie curative." },
+            { icon: "🌙", text: "La luna piena influenza il sonno delle persone in modo dimostrabile." },
+            { icon: "🔮", text: "L'astrologia può predire il carattere di una persona." },
+            { icon: "⚛️", text: "Il nucleare ha il minor numero di morti per terawattora tra le fonti elettriche." },
+            { icon: "🚭", text: "Le sigarette elettroniche sono completamente innocue per gli adolescenti." },
+            { icon: "📚", text: "La bocciatura aiuta dimostrabilmente gli studenti a imparare." },
+            { icon: "🤖", text: "ChatGPT rende gli studenti stupidi e rovina le loro capacità di scrittura." },
+            { icon: "💰", text: "L'inflazione ufficiale è molto più bassa di quella reale." },
+            { icon: "🚗", text: "Le auto elettriche hanno un bilancio CO₂ peggiore dei motori a combustione." },
+            { icon: "🐟", text: "I pesci rossi hanno solo 3 secondi di memoria." },
+            { icon: "🦇", text: "I pipistrelli sono ciechi." },
+            { icon: "🇪🇺", text: "La maggioranza dei tedeschi vuole uscire dall'UE." },
+            { icon: "🌍", text: "Il Sahara è il deserto più grande del mondo." },
+        ],
+        beta_notice: "Questo progetto è in sviluppo attivo.",
+        beta_notice_online: "Questo progetto è in sviluppo attivo. L'analisi IA di questa versione online avviene tramite l'API Mistral Cloud (server UE, Parigi).",
+
+        // Caricamento
+        loading_analyze: "Analisi dell'affermazione...",
+        loading_search: "Ricerca tra le fonti...",
+        loading_synthesize: "Creazione della valutazione...",
+        step_analyze: "Analisi dell'affermazione",
+        step_search: "Ricerca delle fonti",
+        step_synthesize: "Generazione del risultato",
+
+        // Verdetti
+        verdict_true: "Vero",
+        verdict_mostly_true: "Per lo più vero",
+        verdict_mixed: "Misto",
+        verdict_mostly_false: "Per lo più falso",
+        verdict_false: "Falso",
+        verdict_unverifiable: "Non verificabile",
+
+        // Copertura delle fonti
+        source_coverage: "Copertura delle fonti:",
+        source_coverage_detail: "{with} fonti su {total} hanno restituito risultati",
+        source_coverage_low: "Bassa copertura delle fonti — verdetto basato su poche fonti. Da interpretare con cautela.",
+        source_coverage_single: "Solo una fonte ha restituito risultati. Il verdetto è quindi poco robusto.",
+        source_coverage_none: "Nessuna fonte ha restituito risultati. L'affermazione non è stata verificabile.",
+
+        // Prove
+        confidence: "Affidabilità:",
+        confidence_tooltip: "L'affidabilità indica quanto sicuro è il modello IA della sua valutazione — basata sulla chiarezza delle prove trovate. Alta affidabilità (≥90%) = base di prove chiara; bassa affidabilità = prove contraddittorie o incomplete.",
+        evidence_title: "Prove",
+        strength_strong: "Forte",
+        strength_moderate: "Media",
+        strength_weak: "Debole",
+        sources_title: "Fonti in dettaglio",
+        source_fallback: "Fonte",
+
+        // Errori
+        error_title: "Errore",
+        error_retry: "Riprova",
+        error_server: "Errore del server",
+        error_claim_too_short: "Affermazione troppo corta — inserisci almeno 2 parole.",
+        error_claim_too_long: "Affermazione troppo lunga (max. 1000 caratteri).",
+        error_claim_empty: "L'affermazione non può essere vuota.",
+        error_rate_limit: "Troppe richieste. Attendi un momento.",
+        error_credits_exhausted: "L'API Mistral è temporaneamente esaurita. Riprova più tardi.",
+        error_synth_failed: "Errore nella generazione del risultato. Riprova.",
+        error_analyze_failed: "Errore nell'analisi dell'affermazione. Riprova.",
+
+        // Disclaimer
+        disclaimer_title: "Avvertenza",
+        disclaimer_text: "Questa è una verifica automatica e non sostituisce una redazione professionale di fact-checking. Verifica le fonti indicate.",
+        nuance_title: "Sfumatura",
+
+        // Cronologia
+        history_title: "Cronologia",
+        history_empty: "Nessun fact-check ancora effettuato.",
+        history_clear: "Cancella cronologia",
+
+        // PDF / Condivisione
+        export_pdf: "Esporta in PDF",
+        share_link: "Link da condividere",
+        share_link_copied: "Link copiato!",
+
+        // Legale
+        impressum_title: "Note legali",
+        impressum_intro_li: "Disponibile in tedesco. Per questioni legali, usa la versione tedesca.",
+
+        privacy_title: "Privacy",
+        privacy_intro: "Disponibile in tedesco. Per questioni legali, usa la versione tedesca.",
+
+        // Chi siamo
+        about_title: "Su Evidora",
+        about_intro: "Servizio europeo di fact-checking, supportato da più di 50 fonti scientifiche e istituzionali, con modelli IA ospitati nell'UE (Mistral Cloud, Parigi).",
+    },
 };
 
 let currentLang = localStorage.getItem("evidora-lang") || "de";
