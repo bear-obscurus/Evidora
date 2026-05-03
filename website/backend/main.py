@@ -76,6 +76,7 @@ from services.destatis import search_destatis, claim_mentions_destatis_cached
 from services.tier_natur_pack import search_tier_natur, claim_mentions_tier_natur_cached
 from services.ernaehrungs_pack import search_ernaehrung, claim_mentions_ernaehrung_cached
 from services.recht_pack import search_recht, claim_mentions_recht_cached
+from services.energie_klima_pack import search_energie_klima, claim_mentions_energie_klima_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -567,6 +568,14 @@ async def check_claim(request: Request):
         if claim_mentions_recht_cached(claim):
             tasks.append(cached("Recht/Rechtsmythen", search_recht, analysis))
             queried_names.append("Recht/Rechtsmythen (RIS + BGBl + BGH/OGH + AK + Verbraucherzentrale)")
+        # Energie-/Klima-Politik-Pack — populaere Energie- + Klimaschutz-
+        # politische Halbwahrheiten (Atomkraft-CO2, China-Whataboutism,
+        # E-Auto-Lifecycle, Waermepumpen-Frost, Solar-Recycling,
+        # Windkraft-Voegel, Versorgungssicherheit-Erneuerbare, Diesel-
+        # Skandal). 8 Topics. Quellen: IPCC + IEA + Fraunhofer + UBA + JRC.
+        if claim_mentions_energie_klima_cached(claim):
+            tasks.append(cached("Energie/Klima-Politik", search_energie_klima, analysis))
+            queried_names.append("Energie/Klima-Politik (IPCC + IEA + Fraunhofer + UBA + JRC + EEA)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

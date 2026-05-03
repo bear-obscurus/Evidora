@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-03",
+  "source_label": "IPCC + IEA + Fraunhofer ISE + UBA AT/DE + JRC + EEA",
+  "facts": [
+    {
+      "id": "atomkraft_co2_2026",
+      "topic": "atomkraft_co2_konsens",
+      "scope": "CO2-Bilanz von Atomkraft im Vergleich zu anderen Energieträgern",
+      "year": 2024,
+      "headline": "Atomkraft hat sehr niedrige Lifecycle-CO2-Emissionen — vergleichbar mit Wind/Solar, deutlich unter Kohle/Gas",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Atomkraft ist CO2-arm' ist MOSTLY_TRUE/TRUE. IPCC AR6 (2022) Lifecycle-Median: Atomkraft 12 g CO2/kWh, Wind 11 g, Solar PV 48 g, Wasserkraft 24 g, Erdgas-Kombikraft 490 g, Kohle ~820 g, Braunkohle ~1100 g. Atomkraft ist auf Lifecycle-Basis (Bau, Brennstoff, Betrieb, Rückbau, Endlagerung) eine der CO2-ärmsten Stromquellen. Andere Bewertungsdimensionen (Endlagerung, Sicherheit, Ökonomie) sind separate Diskussionen.",
+        "ipcc_ar6_lifecycle": "IPCC AR6 (2022, Working Group III, Annex III): Median-Lifecycle-Emissionen pro kWh Strom: Onshore-Wind 11, Atomkraft 12, Offshore-Wind 12, Wasserkraft 24, Geothermie 38, Solar-CSP 27, Solar-PV 48, Biomasse 230, Erdgas-Kombikraft 490, Kohlestrom ~820, Braunkohle ~1100 g CO2-Äquivalent.",
+        "betriebsemissionen_null": "Im Betrieb selbst emittieren Atomkraftwerke kein CO2 (Spaltung von U-235, kein Verbrennungsprozess). Lifecycle-Emissionen kommen aus: Uran-Bergbau, Anreicherung, Brennstab-Fertigung, Bau-Beton/Stahl, Rückbau.",
+        "uban_anreicherung": "Anreicherungs-Energie variiert je nach Methode: Zentrifuge (modern, EU-Standard) ~250 kWh/kg SWU. Diffusion (alt, USA bis 2013) ~2400 kWh/kg SWU. Bei strommix-bedingter Anreicherung kann Atomkraft-CO2 höher sein (Studien zeigen ~30-90 g/kWh bei Diffusion, ~10-15 g/kWh bei Zentrifuge).",
+        "andere_dimensionen": "CO2-Bilanz ist NUR EINE Dimension. Endlager-Frage (Hochradioaktiver Müll), Unfall-Risiko, Proliferations-Risiko, ökonomische Wettbewerbsfähigkeit (LCOE 2024: Atomkraft EU ~120-180 EUR/MWh neu, Wind 40-70 EUR/MWh, Solar 30-60 EUR/MWh) sind separate Bewertungs-Dimensionen.",
+        "context": "Aussage 'Atomkraft ist Klimaschutz' ist faktisch korrekt im Sinne von CO2-Vermeidung. Politische Bewertung 'Atomkraft soll Teil der Energie-Wende sein' ist davon zu trennen — hängt von Endlager-, Sicherheits-, Wirtschaftlichkeits- und Zeit-Skalen-Fragen ab."
+      },
+      "context_notes": [
+        "EU-Taxonomie (2022): Atomkraft als 'Übergangs-Technologie' grün-klassifiziert mit Auflagen (Endlager-Plan bis 2050).",
+        "Differenzierung Atomkraft 1./2./3. Generation (heute) vs 4. Generation (theoretisch, kommerziell nicht verfügbar) vs SMR (Small Modular Reactors, Pilotphase) — Bewertungen variieren.",
+        "Deutschland-Kontext: nationaler Atomausstieg April 2023 — politische Entscheidung, nicht primär CO2-bezogen."
+      ],
+      "claim_phrasings_handled": [
+        "Atomkraft ist CO2-frei",
+        "Atomkraft hat niedrige CO2-Bilanz",
+        "Atomstrom ist klimaneutral"
+      ],
+      "trigger_keywords": [
+        "atomkraft co2", "atomkraft klimaneutral",
+        "atomstrom co2", "kernenergie co2",
+        "atomkraft klimaschutz"
+      ],
+      "trigger_composite": [
+        ["atomkraft", "atomstrom", "kernenergie", "kernkraft", "akw", "atom"],
+        ["co2", "co₂", "emissionen", "klima", "klimaneutral", "klimaschutz", "treibhausgas", "lifecycle", "lebenszyklus", "klimabilanz", "klimakatastrophe"]
+      ],
+      "source_label": "IPCC AR6 WG III Annex III (2022) + IEA + Fraunhofer ISE",
+      "source_url": "https://www.ipcc.ch/report/ar6/wg3/",
+      "secondary_url": "https://world-nuclear.org/information-library/energy-and-the-environment/carbon-dioxide-emissions-from-electricity"
+    },
+    {
+      "id": "china_kohle_whataboutism_2026",
+      "topic": "china_kohle_whataboutism_mythos",
+      "scope": "'EU-Klimaschutz bringt nichts solange China baut Kohlekraftwerke'",
+      "year": 2024,
+      "headline": "China baut Kohlekraftwerke UND größte Erneuerbare-Kapazitäten weltweit — Whataboutism-Logik ignoriert beides",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die Aussage 'EU-Klimaschutz bringt nichts solange China Kohlekraftwerke baut' ist eine WHATABOUTISM-Argumentation, die Fakten verzerrt. Realität 2024: (1) China hat 2024 mehr Solar + Wind installiert als der gesamte Rest der Welt zusammen — über 200 GW PV in einem Jahr. (2) China baut weiterhin neue Kohlekraftwerke, aber gleichzeitig schließt es alte ab + Kohle-Anteil am Stromix sinkt seit 2011. (3) China-Pro-Kopf-Emissionen sind ~ EU-Niveau, deutlich unter USA. (4) EU-Klimaschutz und China-Energie-Wende sind nicht-konkurrierend, beide tragen zu globalen Zielen bei.",
+        "china_renewables_2024": "IEA Renewables 2024: China installierte 2024 ~280 GW Solar PV + ~75 GW Wind = ~355 GW Erneuerbare neu. EU 2024 zum Vergleich: ~70 GW Solar + ~17 GW Wind. China baut Erneuerbare ~5x so schnell wie EU.",
+        "china_kohle_beide_ja": "China genehmigt + baut weiterhin neue Kohlekraftwerke (2023: ~96 GW Genehmigungen) — gleichzeitig wird der Anteil von Kohle am Stromix gesenkt (60 % 2011, ~55 % 2023, Ziel <50 % 2030). Stromnachfrage wächst so schnell, dass beide Kapazitäten zubauen können.",
+        "pro_kopf_emissionen": "Climate Watch 2023: CO2-Pro-Kopf-Emissionen — Katar 36, USA 14, Australien 14, Russland 12, EU-27 6,2, China 7,3, Indien 1,8, Welt-Schnitt 4,6. China und EU pro Kopf vergleichbar.",
+        "globaler_emissions_anteil": "China ist 2024 der größte Emittent absolut (~28 % global), USA zweiter (~13 %), EU dritter (~7 %). Bei historisch akkumulierten Emissionen (kumulativ seit 1850, klimaforschungs-relevant) sind USA + EU vorne.",
+        "whataboutism_logik": "Whataboutism-Argumentation: 'X handelt nicht perfekt, also ist Y-Handeln sinnlos' — funktioniert mathematisch nicht. Globaler Klimaschutz ist Summen-Spiel: jedes Land + jeder Sektor zählt.",
+        "context": "Politisch ist die China-Kohle-Argumentation oft als Rechtfertigung für Untätigkeit auf Klimaschutz verwendet. Faktisch: globale Energie-Wende ist multilateral; Vorbild-Effekt + Technologie-Skalierungs-Effekt von EU-Politik (PV-Preise -90 % seit 2010 großteils EU-Anschub) sind dokumentiert."
+      },
+      "context_notes": [
+        "China-Energie-Politik ist nicht primär 'Klimaschutz' motiviert — Wirtschafts-Sicherheit (Energie-Souveränität durch Erneuerbare) + Stadt-Luftqualität (Kohle-Bann in Großstädten) sind Treiber.",
+        "Indien als ähnliches Beispiel: kombiniert massive Solar-Expansion mit weiteren Kohlekraftwerken — beide gleichzeitig.",
+        "USA-Kohle-Anteil ist seit 2007 stark gesunken (50 % → 16 % 2023), aber nicht aus Klimagründen — Marktmechanismus durch billiges Schiefergas."
+      ],
+      "claim_phrasings_handled": [
+        "EU-Klimaschutz bringt nichts solange China Kohlekraftwerke baut",
+        "China baut Kohlekraft, also ist EU-Anstrengung sinnlos",
+        "Während EU Strom spart, baut China dreckige Kraftwerke"
+      ],
+      "trigger_keywords": [
+        "china kohle eu klimaschutz",
+        "china kohlekraftwerk eu sinnlos",
+        "china baut kohle eu",
+        "kohle china whataboutism",
+        "china klimasch"
+      ],
+      "trigger_composite": [
+        ["china", "asien"],
+        ["kohle", "kohlekraftwerk", "kohlekraft", "kraftwerk", "kraftwerke", "co2", "klima", "klimaschutz", "klimawandel", "emissionen", "dreckig", "schmutzig"]
+      ],
+      "source_label": "IEA Renewables 2024 + Climate Watch + IPCC + Carbon Brief",
+      "source_url": "https://www.iea.org/reports/renewables-2024",
+      "secondary_url": "https://www.carbonbrief.org/analysis-china-built-more-clean-energy-capacity-in-2024-than-rest-of-world-combined/"
+    },
+    {
+      "id": "e_auto_akku_co2_2026",
+      "topic": "e_auto_co2_lifecycle_konsens",
+      "scope": "CO2-Bilanz E-Auto vs Verbrenner über Lifecycle",
+      "year": 2024,
+      "headline": "E-Auto hat in DE/EU besseres CO2-Lifecycle als Diesel/Benziner — Pay-back nach ~30.000-50.000 km",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'E-Autos haben schlechtere CO2-Bilanz als Verbrenner' ist FALSE im EU-Stromnetz. JRC, Agora Verkehrswende + ICCT-Lifecycle-Analysen 2024: E-Auto hat höhere Bau-Emissionen (Akku-Produktion +50-70 % CO2 vs Verbrenner-Bau), aber bei Nutzung im EU-Strommix bricht E-Auto nach 30.000-50.000 km in der CO2-Bilanz die Verbrenner-Linie. Über typische Auto-Lebensdauer (200.000+ km) hat E-Auto ~50-65 % weniger Lifecycle-CO2 in der EU. In DE/AT mit hohem Erneuerbaren-Anteil deutlich besser, in PL/IN mit hohem Kohle-Anteil weniger gut.",
+        "icct_lifecycle_2024": "ICCT Lifecycle Analysis 2024 (Bieker et al., updated): mittel-große Limousine, 200.000 km Lebensdauer, EU-Strommix 2024: BEV-CO2-gesamt ~80 g/km, Diesel ~210 g/km, Benziner ~245 g/km. BEV ~62 % weniger über Lifecycle.",
+        "agora_2023": "Agora Verkehrswende 2023: Pay-back-Distanz E-Auto vs Verbrenner: ~30.000-50.000 km in DE-Strommix 2023. Bei sich-dekarbonisierendem Strom verkürzt sich Pay-back über Zeit.",
+        "akku_produktion_co2": "Akku-Produktion CO2: 2020: ~120 kg CO2/kWh Akku-Kapazität. 2024: ~75 kg CO2/kWh (Skalierung + Erneuerbare in Asien-Fertigungs-Strommix). Erwartete Reduktion auf ~40 kg CO2/kWh bis 2030.",
+        "regional_differences": "EU-2024-Strommix (~280 g CO2/kWh, sinkt): E-Auto klar besser. PL-Strommix (~600 g CO2/kWh): E-Auto Pay-back nach ~80.000 km. Norwegen-Strommix (~25 g CO2/kWh, Wasserkraft): E-Auto ab ersten km besser.",
+        "akku_recycling": "EU-Batterieverordnung 2023: Akku-Recycling-Quote bis 2031: 70 % Lithium, 95 % Co/Cu/Ni. Im Recycling reduzieren sich zukünftige Akku-CO2 weiter.",
+        "context": "Aussage 'E-Auto + Kohlestrom = Verbrenner' ist nur in extremen Strommixen wahr (z.B. PL ohne Erneuerbare). EU-Standard-Strommix führt zu klar positiver E-Auto-Bilanz. Kritik 'die ganze Energie kommt eh aus Kohle' ist faktisch falsch für DE/AT/EU 2024."
+      },
+      "context_notes": [
+        "Kleine E-Autos haben besseren CO2-Pay-back als große SUV-E-Autos — Akku-Größe steigt linear mit Reichweite.",
+        "Nutzfahrzeug-Bewertung anders: E-LKW noch schlechtere Pay-back-Quote, vor allem bei Langstrecken.",
+        "Reine Kalt-Wetter-Reichweiten-Verluste (~20-30 % in Frost) verlängern Pay-back leicht — nicht die Bilanz qualitativ ändern."
+      ],
+      "claim_phrasings_handled": [
+        "E-Autos haben schlechtere CO2-Bilanz als Verbrenner",
+        "E-Auto-Akkus sind sehr CO2-intensiv",
+        "Verbrenner sind klimafreundlicher als E-Autos"
+      ],
+      "trigger_keywords": [
+        "e-auto co2 verbrenner", "elektroauto co2",
+        "e-auto klimabilanz", "elektroauto akku co2",
+        "tesla co2 schlechter", "elektroauto schlecht klima"
+      ],
+      "trigger_composite": [
+        ["e-auto", "elektroauto", "ev", "bev", "tesla", "akku", "batterie", "elektromobilitaet", "elektromobilität"],
+        ["co2", "klima", "klimabilanz", "lifecycle", "verbrenner", "diesel", "benziner", "umweltbilanz", "klimafreundlich", "schlechter"]
+      ],
+      "source_label": "ICCT Lifecycle Analysis 2024 + Agora Verkehrswende + JRC",
+      "source_url": "https://theicct.org/publication/lifecycle-emissions-roadmap-passenger-vehicles-jul24/",
+      "secondary_url": "https://www.agora-verkehrswende.de/publikationen/"
+    },
+    {
+      "id": "waermepumpe_winter_2026",
+      "topic": "waermepumpe_winter_konsens",
+      "scope": "Funktionieren Wärmepumpen bei Frost?",
+      "year": 2024,
+      "headline": "Wärmepumpen funktionieren bei Frost — moderne Geräte heizen bis -25°C, Effizienz sinkt aber",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Wärmepumpen funktionieren bei Frost nicht' ist FALSE. Moderne Luft/Wasser-Wärmepumpen heizen zuverlässig bis -20°C bis -25°C Außentemperatur. Effizienz (COP) sinkt in Frost: COP ~4-5 bei +7°C, COP ~2-2,5 bei -10°C, COP ~1,5-2 bei -20°C. Aussage 'WP friert ein und gibt auf' kommt aus Erfahrungen mit alten Geräten + falscher Auslegung. Norwegen + Finnland (extrem-Winter) nutzen Wärmepumpen flächendeckend — Beweis-Praxis.",
+        "fraunhofer_2023": "Fraunhofer ISE Studie 'Wärmepumpen in Bestandsgebäuden' (2020 + Update 2023): Wärmepumpen erreichen in Bestandsgebäuden im Schnitt JAZ (Jahresarbeitszahl) 3,1 — d.h. 1 kWh Strom = 3,1 kWh Heizwärme. In Neubau höher (3,8-4,5).",
+        "norwegen_finnland_referenz": "Norwegen 2024: ~80 % der neuen Heizungen sind Wärmepumpen. Finnland: ~70 %. Beide Länder mit Winter-Tiefstwerten unter -30°C — Wärmepumpen-Praxistauglichkeit gut belegt.",
+        "auslegung_kritisch": "Korrekte Auslegung wichtig: Heizleistung bei Norm-Außentemperatur ('Auslegungstemperatur', je nach Region -10 bis -20°C in DE/AT) muss zu Bedarfs-Lastfall passen. Häufiger Fehler: Wärmepumpe wird zu klein dimensioniert + Heizstab springt häufig ein → Effizienz-Einbruch.",
+        "luft_vs_sole_wasser": "Luft-Wasser-WP: einfachste Installation, Effizienz sinkt mit Temperatur. Sole-Wasser-WP (Erdsonde, Erdkollektor): konstante Effizienz das ganze Jahr (Erdreich +5 bis +10°C), aber Bohr-Aufwand. Wasser-Wasser-WP: höchste Effizienz, aber Grundwasser-Genehmigung nötig.",
+        "fluestige_kosten": "Strom-Lastspitze im Winter: in DE/AT ist die Stromnachfrage kein Problem (Wind dominiert Winter, Solar Sommer). Argumente 'Wärmepumpen brechen das Stromnetz' sind durch Lastflüsse-Studien (50Hertz, Tennet 2023) widerlegt.",
+        "context": "Praktische Empfehlung: bei Wärmepumpen-Installation Energie-Berater einbeziehen, Norm-Heizlastberechnung (DIN EN 12831) machen, ggf. Heizflächen anpassen (Fußbodenheizung optimal, Heizkörper mit Vorlauftemperatur 50-55°C statt 70°C)."
+      },
+      "context_notes": [
+        "Heizstab als Notfall-Heizung in WP eingebaut: aktiviert bei Frost-Spitzen, oft 1-3 % der Jahres-Heizenergie.",
+        "Hybrid-Heizung WP + Gas: Übergangs-Lösung in schlecht gedämmten Altbauten — WP für Grundlast, Gas für Spitzen.",
+        "Dänemark-Statistik 2023: Bestand Luft-Wasser-WP funktioniert auch bei -15°C zuverlässig — IEA Heat Pump Centre."
+      ],
+      "claim_phrasings_handled": [
+        "Wärmepumpen funktionieren bei Frost nicht",
+        "Bei Minus-Temperaturen friert die Wärmepumpe ein",
+        "Wärmepumpen sind nichts für Winter"
+      ],
+      "trigger_keywords": [
+        "waermepumpe frost", "wärmepumpe frost",
+        "waermepumpe winter", "wärmepumpe winter",
+        "waermepumpe minus", "wärmepumpe minus"
+      ],
+      "trigger_composite": [
+        ["waermepumpe", "wärmepumpe", "wp-heizung", "luft-wasser-wärmepumpe", "luft-wasser-waermepumpe"],
+        ["frost", "minus", "winter", "kälte", "kalt", "kaelte", "tief", "funktioniert nicht", "friert ein", "minus-temperatur"]
+      ],
+      "source_label": "Fraunhofer ISE Wärmepumpen-Studie 2020/2023 + IEA Heat Pump Centre",
+      "source_url": "https://www.ise.fraunhofer.de/de/forschungsprojekte/wp-monitor.html",
+      "secondary_url": "https://heatpumpingtechnologies.org/"
+    },
+    {
+      "id": "solar_recycling_2026",
+      "topic": "solar_recycling_konsens",
+      "scope": "Solar-Module Recycling-Quote",
+      "year": 2024,
+      "headline": "Solar-Module sind zu ~95 % recyclebar — EU-Pflicht, deutsche Industriestruktur baut sich auf",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Solar-Module sind nicht recyclebar' ist FALSE. EU-Elektroaltgeräte-Verordnung (WEEE-Richtlinie 2012/19/EU) schreibt 85 % Recycling-Pflicht für Solar-Module seit 2014. Aktuelle Recycling-Quoten: Glas + Aluminium-Rahmen ~95 %, Silizium-Wafer ~85 %, Lötzinn-Kontakte und Backsheet schwieriger. Eine wachsende Industrie (in DE: Reiling Glas Recycling, Veolia, Loser Chemie) bearbeitet die zunehmenden Altmodule.",
+        "eu_weee_richtlinie": "EU-WEEE-Richtlinie 2012/19/EU (Elektroaltgeräte-Recycling, gültig in DE als ElektroG): seit 14. Februar 2014 sind Solar-Modul-Hersteller verpflichtet, Rücknahme + Recycling zu organisieren. Recycling-Quote 85 % vorgeschrieben.",
+        "materialflus": "PV-Modul-Bestandteile: ~75 % Glas, ~10 % Aluminium-Rahmen, ~5 % Silizium-Wafer, ~5 % Polymer-Backsheet, ~3 % Lötzinn (Cu/Sn/Pb), ~2 % Sonstige. Glas + Alu: gut recyclebar. Si-Wafer: inzwischen recyclebar (Reiling-Verfahren in DE seit 2018).",
+        "abfallmenge_prognose": "IRENA 2030-Prognose: globale PV-Modul-Altlast ~10 Mio Tonnen kumulativ bis 2030. EU 2024 Bestand: ~280 Mio Modulen, ~30-Jahre-Lebensdauer → Höhepunkt der Recycling-Bedarfs ab 2035-2045.",
+        "wertschoepfung_recycling": "Wirtschaftlichkeit: Glas + Alu-Recycling Standard-prozess. Silber + Silizium-Wertgewinnung: bei steigenden Rohstoff-Preisen ökonomisch. EU-Frankfurt-Studie 2023: Recycling-Erlös pro Modul ~5-15 EUR vs Entsorgungskosten ~3-8 EUR — knapp positiv.",
+        "deponierung_strafbar": "Deponierung von Solar-Modulen ist in DE/AT illegal — Pflicht zur Annahme bei kommunalen Wertstoffhöfen oder Hersteller-Rücknahme. Kontrolliert durch Stiftung EAR (DE) bzw. ARA (AT).",
+        "context": "Aussage 'Solar ist Sondermüll' ist beliebt im Anti-Erneuerbaren-Diskurs, faktisch widerlegt. EU-Standard-Modul von 2024 ist zu ~95 % recyclebar — eine der höchsten Quoten unter Konsumgütern."
+      },
+      "context_notes": [
+        "Cadmium-Telurid-Module (CdTe, ~5 % Marktanteil): zusätzliche Recycling-Anforderungen wegen Cadmium-Inhalt — First Solar betreibt eigenes Recycling-System mit ~90 % Quote.",
+        "Forschung an Modul-Design für leichtere Demontage (Reduktion von Klebeverbindungen) ist EU-Förderschwerpunkt.",
+        "Wechselrichter + Verkabelung: zusätzliche Recycling-Pflicht (Elektronik-Schrott-Standard, gut etabliert)."
+      ],
+      "claim_phrasings_handled": [
+        "Solar-Module sind nicht recyclebar",
+        "Solarpanels sind Sondermüll",
+        "PV-Module landen auf Deponie"
+      ],
+      "trigger_keywords": [
+        "solar nicht recyclebar", "solar sondermuell", "solar sondermüll",
+        "pv modul recycling", "solar module muell", "solar module müll",
+        "photovoltaik recycling"
+      ],
+      "trigger_composite": [
+        ["solar", "solarmodul", "pv-modul", "photovoltaik", "solarpanel", "solarmodule", "pv-module"],
+        ["recycling", "recyclebar", "wiederverwertung", "müll", "muell", "abfall", "sondermuell", "sondermüll", "deponie", "entsorgung"]
+      ],
+      "source_label": "EU-WEEE-Richtlinie 2012/19/EU + IRENA + Fraunhofer ISE",
+      "source_url": "https://environment.ec.europa.eu/topics/waste-and-recycling/waste-electrical-and-electronic-equipment-weee_en",
+      "secondary_url": "https://www.irena.org/publications/2016/Jun/End-of-life-management-Solar-Photovoltaic-Panels"
+    },
+    {
+      "id": "windkraft_voegel_2026",
+      "topic": "windkraft_voegel_konsens",
+      "scope": "Windkraft und Vogelschlag-Risiko",
+      "year": 2024,
+      "headline": "Windkraft tötet Vögel — aber Größenordnung deutlich unter Glasflächen, Katzen, Hauptstraßen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Vogelschlag durch Windkraft existiert real — aber die Aussage 'Windkraft tötet Massen von Vögeln' ist MOSTLY_FALSE im Größenordnungs-Vergleich. Schätzungen DE 2020: ~100.000-300.000 Vögel/Jahr durch Windkraft (Hötker et al. + LfU). Im Vergleich: ~18 Mio durch Hauskatzen, ~100 Mio durch Glasflächen, ~70 Mio durch Auto-Verkehr. Windkraft macht ~0,1-0,3 % der anthropogenen Vogel-Sterblichkeit aus. Bei Greifvögeln (Rotmilan, Mäusebussard) lokal jedoch relevante Population-Belastung — daher Schutzauflagen + Standortprüfung.",
+        "hoetker_2006_2017": "Hötker et al. (2006, NABU/IFAB) + Aktualisierungen: ca. 0,5-2 Vögel pro Windrad pro Jahr im Mittel. Bei ~30.000 Windkraftanlagen DE = ~15.000-60.000 Vögel/Jahr. LfU Bayern + LANUV NRW haben Updates publiziert.",
+        "vergleichsmortalitaet": "USA-Studie Loss et al. (2013, Nature): Hauskatzen 1,3-4 Mrd Vögel/Jahr USA. Glasflächen 365-988 Mio. Auto-Verkehr 89-340 Mio. Windkraft 234.000-573.000. EU-Größenordnung ähnlich.",
+        "rotmilan_relevanz": "Rotmilan (Milvus milvus): ~50 % der Welt-Population in DE. Hötker-Studie 2017: signifikante Mortalität durch Windkraft, vor allem in offenen Landschaften mit Mais-Anbau (Beute-Konzentration). NABU + DDA fordern Mindestabstände + saisonale Abschaltung.",
+        "fledermaus_zusatz": "Fledermäuse: deutlich höhere Mortalität pro Anlage als Vögel (~6-10 Fledermäuse/Anlage/Jahr im Schnitt). Saisonale Abschaltung (Aug-Sep, niedriger Wind) reduziert Fledermaus-Mortalität um >80 % bei nur ~2 % Energieverlust.",
+        "schutzauflagen_de": "DE-Bundesnaturschutzgesetz: Standort-Konflikte werden in Vorgenehmigungs-Verfahren geprüft. Tabu-Zonen (Vogel-Schutz-Gebiete, Brut-Reviere von Roterhalt-Arten) führen zu Verzögerungen. EEG 2023 + LNV 2024 haben Verfahren beschleunigt mit Ausgleichsmaßnahmen.",
+        "context": "Differenzierte Aussage: Windkraft hat lokale Auswirkungen auf Vogelpopulationen, vor allem bei Greifvögeln. Globale Vogel-Mortalität ist NICHT primär durch Windkraft getrieben. Klimaschutz-Wirkung der Windkraft ist gegenüber Vogel-Verlusten zu wägen — viele Vogel-Arten sind durch Klimawandel selbst stärker bedroht."
+      },
+      "context_notes": [
+        "Repowering (alte Anlagen ersetzen mit weniger, größeren): reduziert Vogelschlag pro produzierter MWh.",
+        "Offshore-Windkraft: andere Risiko-Profile (Kollisionen mit Zugvögeln, Lärm-Effekte auf Meeressäuger).",
+        "DDA (Dachverband Deutscher Avifaunisten) + NABU haben gemeinsame Position: Windkraft-Ausbau ja, mit korrekter Standort-Steuerung + Monitoring."
+      ],
+      "claim_phrasings_handled": [
+        "Windkraft tötet zu viele Vögel",
+        "Windräder sind Vogelschredder",
+        "Windkraft ist Vogelmörder"
+      ],
+      "trigger_keywords": [
+        "windkraft voegel", "windkraft vögel",
+        "windraeder voegel", "windräder vögel",
+        "windkraft vogelschred", "vogelschlag windrad"
+      ],
+      "trigger_composite": [
+        ["windkraft", "windrad", "windräder", "windraeder", "windturbinen", "windenergie"],
+        ["vogel", "voegel", "vögel", "vogelschlag", "vogelmord", "vogelschredder", "tötet", "toetet", "töten", "toeten", "rotmilan", "greifvogel", "fledermaus"]
+      ],
+      "source_label": "Hötker NABU 2017 + Loss Nature 2013 + LfU Bayern + DDA",
+      "source_url": "https://www.nabu.de/imperia/md/content/nabude/energie/wind/2017_hoetker_studie_windkraft.pdf",
+      "secondary_url": "https://www.bfn.de/themen/erneuerbare-energien/windenergie/voegel-und-fledermaeuse.html"
+    },
+    {
+      "id": "erneuerbare_versorgungssicher_2026",
+      "topic": "erneuerbare_versorgungssicher_mythos",
+      "scope": "Behauptung, Erneuerbare gefährden Versorgungssicherheit",
+      "year": 2024,
+      "headline": "Erneuerbare Energie-Anteil DE 2024: ~62 % — Versorgungssicherheit unverändert hoch (SAIDI <13 Min/Jahr)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Erneuerbare gefährden Versorgungssicherheit' ist FALSE im DE/AT/EU-Kontext 2024. Empirische Daten: DE-Stromversorgungs-Zuverlässigkeit (SAIDI: System Average Interruption Duration Index) bleibt seit 2006 zwischen 12-17 Min/Jahr — einer der besten Werte weltweit, trotz Anstieg Erneuerbaren-Anteil von 12 % (2006) auf ~62 % (2024). USA-Vergleich: ~120-180 Min/Jahr. Aussage 'Wind- + Solar-Strom kollabiert Netze' wird durch Lastflüsse-Studien (50Hertz, BNetzA, Tennet 2024) widerlegt.",
+        "saidi_de_2024": "BNetzA SAIDI 2024 (vorläufig): ~12 Minuten ungeplante Stromunterbrechung pro Endkunde pro Jahr. EU-Top-3, nahe Schweiz + Niederlande. AT SAIDI 2023: ~30-40 Min, ebenfalls niedrig.",
+        "ee_anteil_de": "Fraunhofer ISE Energy Charts 2024: Erneuerbare im DE-Stromix 2024: ~62 % (Wind 31 %, Solar 14 %, Biomasse 8 %, Wasser 3,5 %, Sonstige 5,5 %). Trend +3-5 PP/Jahr.",
+        "dunkelflaute_kontext": "'Dunkelflaute' (wenig Wind + Solar gleichzeitig) sind 1-2 Mal pro Jahr für 1-3 Tage. Ausgleich durch: Pumpspeicher (DE ~7 GW), Erdgas-Backup (DE ~22 GW Reserveleistung), EU-Stromhandel (Nord-Süd-Ost-Import), zukünftig Wasserstoff-Backup-Kraftwerke.",
+        "tennet_studie": "Tennet (DE Übertragungsnetzbetreiber, 2023 Lastflüsse-Studie): Stromsystem 2030 mit 80 % EE technisch beherrschbar bei adequatem Ausbau Backup + Speicher + Netz. Ähnliche Studien von 50Hertz, Amprion, Transnet BW.",
+        "regelreserve_kosten": "Regelreserve-Kosten für Netzstabilisierung: 2010 (kohle-dominiert) ~600 Mio EUR/Jahr DE. 2023 (höherer EE-Anteil): ~700-800 Mio EUR/Jahr. Nur leichter Anstieg trotz fundamentaler Mix-Veränderung.",
+        "context": "Versorgungssicherheit und EE-Ausbau sind kompatibel — die Argumentation 'Wind + Solar = Blackout' kommt oft aus Industrie-Lobby-Argumentation (z.B. fossile Backup-Befürworter). Empirische Praxis: skandinavische Länder, Spanien, Portugal mit hohem EE-Anteil zeigen funktionierende Systeme."
+      },
+      "context_notes": [
+        "Spanien-Blackout 2025 (real): kontroverse Diskussion zu EE-Anteil als Mit-Ursache, aber primär kaskaden-Effekt durch unkoordinierte Trennung.",
+        "Texas-Winter-Blackout 2021: PRIMÄR durch Versagen von Erdgas-Anlagen + nicht-Vorbereitung auf Frost — Wind-Anlagen waren teilweise auch betroffen, aber weniger Anteil.",
+        "Versorgungssicherheit hat mehrere Dimensionen: SAIDI (Unterbrechungs-Dauer), SAIFI (Häufigkeit), N-1-Sicherheit (Redundanz). Alle in DE/AT auf hohem Niveau."
+      ],
+      "claim_phrasings_handled": [
+        "Erneuerbare gefährden Versorgungssicherheit",
+        "Wind und Solar führen zu Blackouts",
+        "Erneuerbare Energien sind unzuverlässig"
+      ],
+      "trigger_keywords": [
+        "erneuerbare versorgungssich", "wind solar blackout",
+        "erneuerbare unzuverl", "energiewende blackout",
+        "wind solar gefaehr", "wind solar gefähr"
+      ],
+      "trigger_composite": [
+        ["erneuerbar", "erneuerbare", "wind", "solar", "windstrom", "solarstrom", "energiewende", "ee-anteil"],
+        ["versorgungssicherheit", "blackout", "stromausfall", "unzuverlässig", "unzuverlaessig", "gefährden", "gefaehrden", "instabil", "kollabieren", "zusammenbruch"]
+      ],
+      "source_label": "BNetzA SAIDI Bericht 2024 + Fraunhofer Energy Charts + Tennet Lastflüsse",
+      "source_url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Versorgungssicherheit/Versorgungsunterbrechungen/start.html",
+      "secondary_url": "https://www.energy-charts.info/"
+    },
+    {
+      "id": "diesel_skandal_2026",
+      "topic": "diesel_emissionen_konsens",
+      "scope": "Aktueller Diesel-Standard und Schadstoff-Emissionen",
+      "year": 2024,
+      "headline": "Moderne Euro-6d Diesel sind sauberer als Vorgänger — aber NOx-Realwerte bleiben Problem-Punkt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Moderne Diesel sind sauber' ist MIXED. Euro-6d (verpflichtend ab 2021): NOx-Real-Welt-Emissionen typisch 50-150 mg/km (Grenzwert 80 mg/km Lab + ~120 mg/km RDE-Faktor) — deutlich besser als Euro-5 (oft 400-1000 mg/km Real-Welt) und besser als Euro-6c. ABER: Diesel-Real-NOx oft noch über Lab-Grenzwerten, vor allem bei Kaltstart + Stadtverkehr. Aussage 'Diesel ist sauber' ist nicht falsch (deutliche Verbesserung), aber 'sauber wie Benzin oder Elektro' ist FALSE.",
+        "euro_normen_chronologie": "Euro 5 (2009-2014): NOx-Lab 180 mg/km, Real oft 400-1500 mg/km (Skandal-Werte bei Manipulation). Euro 6 (2014-2017): NOx 80 mg/km, Real 80-400 mg/km. Euro 6d-temp (2017-2020) + Euro 6d (ab 2021): RDE-Tests mit Konformitätsfaktor 1,5x → effektiv 120 mg/km Real-Toleranz.",
+        "rde_real_driving": "RDE (Real Driving Emissions) seit Euro 6d: Tests auf realer Strecke mit PEMS-Messgerät (Portable Emission Measurement System). Vermeidet Lab-zu-Real-Diskrepanz, die VW-Diesel-Skandal aufdeckte.",
+        "vw_diesel_skandal_2015": "September 2015: EPA + ICCT decken Manipulations-Software bei VW-Konzern-Diesel auf (EA189/EA288 Motoren). Defeat Devices erkannten Lab-Test-Modus + reduzierten NOx-Filter. Ca. 11 Mio Fahrzeuge weltweit betroffen, 50+ Mrd USD Strafen + Vergleiche.",
+        "diesel_vs_benzin_co2": "Diesel hat ~15-20 % geringere CO2-Emissionen pro km als Benziner mit ähnlicher Größe (höherer Wirkungsgrad). Bei NOx + Feinstaub schlechter (auch Euro-6d). Kompromiss-Bewertung.",
+        "stickoxid_gesundheit": "EEA + WHO 2023: Stickoxide tragen zu ~50.000-70.000 vorzeitigen Todesfällen/Jahr in EU bei. Stadt-NOx-Belastung (Stuttgart, München, Wien Hauptstraßen) oft über WHO-Empfehlung 10 µg/m³ Jahres-Mittel.",
+        "context": "Aktuelle Diesel deutlich sauberer als 2015er-Pflanzen-Generation. Verkehrswende-Trend führt zu sinkenden Diesel-Marktanteilen (DE 2024: ~30 % Neuwagen-Diesel, vs ~48 % 2015). Politische Streit-Frage: Diesel-Übergangs-Technologie oder Auslauf?"
+      },
+      "context_notes": [
+        "Software-Updates (Diesel-Skandal-Maßnahmen) reduzieren NOx-Emissionen alter Euro-5/6c-Diesel um ~20-30 %.",
+        "Adblue-Lecks oder defekte SCR-Katalysatoren können moderne Diesel auf Euro-3-Niveau zurückwerfen — Wartung wichtig.",
+        "Plugin-Hybrid-Diesel: kombiniert kleinere Diesel-Motoren mit E-Antrieb für Stadt — gemischte Effizienz-Bilanz."
+      ],
+      "claim_phrasings_handled": [
+        "Moderne Diesel sind sauber",
+        "Euro 6 Diesel sind unproblematisch",
+        "Diesel-Skandal ist überstanden"
+      ],
+      "trigger_keywords": [
+        "diesel sauber", "euro 6 diesel",
+        "diesel umwelt", "diesel skandal vorbei",
+        "moderne diesel"
+      ],
+      "trigger_composite": [
+        ["diesel", "euro-6d", "euro 6d", "euro-6", "selbstzünder", "selbstzuender"],
+        ["sauber", "umweltfreundlich", "nox", "stickoxid", "feinstaub", "skandal", "klima", "schmutz", "emissionen", "abgas"]
+      ],
+      "source_label": "ICCT RDE Reports + EEA + EPA-Untersuchungen",
+      "source_url": "https://theicct.org/research-area/passenger-cars/",
+      "secondary_url": "https://www.umweltbundesamt.de/themen/luft/emissionen-von-luftschadstoffen/spezifische-emissionen-des-verkehrs"
+    }
+  ]
+}
