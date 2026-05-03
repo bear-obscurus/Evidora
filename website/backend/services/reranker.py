@@ -156,6 +156,7 @@ _AUTHORITATIVE_INDICATORS = (
     "internationale_quellen_fact",       # Pew + WMO + IMF + WTO (globale Perspektive)
     "sport_fitness_konsens_fact",        # Sport/Fitness-Pack (ACSM + Cochrane + ISSN + NSCA)
     "kunst_kultur_konsens_fact",         # Kunst/Kultur-Pack (Smithsonian + Harvard + Folger + UNESCO)
+    "geschichts_mythen2_konsens_fact",   # Geschichts-Mythen-2-Pack (Stanford SEP + Britannica + Royal Society + Princeton)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

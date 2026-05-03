@@ -85,6 +85,7 @@ from services.bildung_pack import search_bildung, claim_mentions_bildung_cached
 from services.internationale_quellen import search_internationale_quellen, claim_mentions_internationale_quellen_cached
 from services.sport_fitness_pack import search_sport_fitness, claim_mentions_sport_fitness_cached
 from services.kunst_kultur_pack import search_kunst_kultur, claim_mentions_kunst_kultur_cached
+from services.geschichts_mythen2_pack import search_geschichts_mythen2, claim_mentions_geschichts_mythen2_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -665,6 +666,16 @@ async def check_claim(request: Request):
         if claim_mentions_kunst_kultur_cached(claim):
             tasks.append(cached("Kunst/Kultur-Mythen", search_kunst_kultur, analysis))
             queried_names.append("Kunst-/Kultur-Mythen (Smithsonian + Harvard + Folger + UNESCO)")
+        # Geschichts-Mythen-2-Pack (8 Topics: Buddha-Hotei, Mittelalter-Dunkel,
+        # Galileo-Folter, Newton-Apfel, Marie-Antoinette-Kuchen, Einstein-
+        # Schulversager, Edison-Glühbirne, Napoleon-Sphinx-Nase). Komplemen-
+        # tär zu geschichts_pack v1 (politisch-militärisch). Stanford SEP +
+        # Britannica + Smithsonian + Royal Society + Princeton Einstein
+        # Papers + Vatican Archives. Lehrer-Relevanz: Wissenschafts-
+        # Geschichte + Geistes-Geschichte AT/DE Schul-Mythen-Korrektur.
+        if claim_mentions_geschichts_mythen2_cached(claim):
+            tasks.append(cached("Geschichts-Mythen-2", search_geschichts_mythen2, analysis))
+            queried_names.append("Geschichts-Mythen-2 (Stanford SEP + Britannica + Smithsonian + Royal Society + Princeton)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

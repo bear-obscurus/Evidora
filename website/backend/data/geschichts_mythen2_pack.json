@@ -1,0 +1,385 @@
+{
+  "facts": [
+    {
+      "topic": "buddha_hotei_mythos",
+      "headline": "Der historische Buddha (Siddhartha Gautama, 5. Jh. v. Chr.) war asketisch-schlank — die dicke lachende 'Buddha'-Statue ist Hotei/Budai, eine andere Figur aus dem chinesischen Volksglauben (10. Jh. n. Chr.)",
+      "year": 2024,
+      "source_url": "https://www.britannica.com/biography/Buddha-founder-of-Buddhism",
+      "secondary_url": "https://plato.stanford.edu/entries/buddha/",
+      "source_label": "Encyclopedia Britannica + Stanford Encyclopedia of Philosophy + Heinrich Dumoulin 'Zen Buddhism'",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Buddha war dick' / 'Buddha lachte ständig' ist FALSE. Der historische Buddha (Siddhartha Gautama, ~563-483 v.Chr., Nordindien) wird in den ältesten überlieferten Texten und Skulpturen als groß, würdig und nach Jahren der Askese eher schlank dargestellt. Die dicke lachende Figur, die im Westen oft als 'Buddha' verkauft wird, ist HOTEI (japanisch) oder BUDAI (chinesisch) — ein chinesischer Wandermönch des 10. Jh. n.Chr. aus der Chan-Tradition (Vorgänger des Zen), der später als Glücks- und Wohlstandsgottheit popularisiert wurde. Die Verwechslung ist ein westliches 19.-Jahrhundert-Phänomen.",
+        "historischer_buddha": "Siddhartha Gautama: geboren ~563 v.Chr. (oder ~480 v.Chr. nach neuerer Datierung) in Lumbini (heute Nepal), gestorben ~483 v.Chr. (oder ~400 v.Chr.) in Kushinagar. Stamm der Shakya. Lebte in königlicher Familie, verließ den Palast mit 29 Jahren, praktizierte 6 Jahre extreme Askese (war fast verhungert), entdeckte den 'Mittleren Weg', erreichte Erleuchtung mit 35.",
+        "hotei_budai_geschichte": "Hotei (布袋, japanisch) / Budai (布袋和尚, chinesisch): legendärer chinesischer Mönch der späten Tang/frühen Song-Dynastie (~907 n.Chr.). Wandernd, mit großem Bauch und Sack über der Schulter — der Sack symbolisierte Reichtum/Geschenke für Kinder. Wurde später als Inkarnation des Bodhisattva Maitreya (zukünftiger Buddha) interpretiert, in Japan als einer der 7 Glücksgötter (Shichifukujin).",
+        "westliche_verwechslung": "Die Verwechslung 'Hotei = Buddha' entstand im westlichen Asien-Tourismus des 19. Jh., als Hotei-Statuen aus China/Japan als 'Lucky Buddha' / 'Laughing Buddha' vermarktet wurden. In buddhistischen Ländern selbst ist die Unterscheidung klar: Siddhartha Gautama vs. Hotei/Budai sind verschiedene Figuren mit verschiedener Ikonographie.",
+        "ikonographie_unterschied": "Klassische Buddha-Skulpturen (Gandhara 1.-3. Jh., Mathura, Indien): schlank, sitzend in Meditationshaltung (Padmasana), mit Ushnisha (Schädelerhebung), langen Ohrläppchen, halbgeschlossenen Augen. Hotei: rundlicher dicker Bauch, breites Lachen, oft stehend mit Sack, manchmal mit Kindern oder einem 'Reichtums-Krug'.",
+        "context": "Die Buddha-Hotei-Verwechslung ist ein klassisches Beispiel kulturellen Importierens. Der historische Buddha lehrte den 'Mittleren Weg' zwischen Askese und Genuss — die Darstellung als heiterer dicker Mann widerspricht direkt seiner überlieferten Lehre der Mäßigung."
+      },
+      "context_notes": [
+        "Frühe Buddha-Statuen entstanden erst ~500 Jahre NACH seinem Tod (um die Zeitenwende), in der Gandhara-Region (heute Pakistan/Afghanistan). Davor wurde Buddha aniconisch dargestellt: durch leeren Thron, Fußabdrücke, Bodhi-Baum.",
+        "Hotei/Budai stirbt laut Überlieferung 916 oder 917 n.Chr. in Fenghua (China). Sein historischer Name war angeblich Qieci oder ähnlich.",
+        "Die Verwechslung wird durch Pop-Kultur perpetuiert (Restaurants, Souvenirs). Buddhisten in Asien selbst haben oft beide Statuen — Buddha auf dem Altar, Hotei am Eingang als Glücksbringer."
+      ],
+      "claim_phrasings_handled": [
+        "Buddha war dick",
+        "Der lachende Buddha ist der echte Buddha",
+        "Buddha hatte einen großen Bauch",
+        "Der dicke Buddha ist Siddhartha Gautama"
+      ],
+      "trigger_composite": [
+        [
+          "buddha",
+          "buddhismus",
+          "buddhist",
+          "siddhartha",
+          "gautama",
+          "hotei",
+          "budai"
+        ],
+        [
+          "dick",
+          "fett",
+          "lachend",
+          "lachende",
+          "lacht",
+          "bauch",
+          "rund",
+          "korpulent",
+          "lucky",
+          "glück",
+          "fröhlich"
+        ]
+      ]
+    },
+    {
+      "topic": "mittelalter_dunkel_mythos",
+      "headline": "'Dunkles Mittelalter' ist eine Aufklärungs-Erfindung — das Hochmittelalter (11.-13. Jh.) war Blütezeit der Universitäten, und Hexenverfolgungen waren primär Frühe Neuzeit (16.-17. Jh.), nicht Mittelalter",
+      "year": 2024,
+      "source_url": "https://plato.stanford.edu/entries/medieval-political/",
+      "secondary_url": "https://www.britannica.com/topic/Middle-Ages",
+      "source_label": "Stanford Encyclopedia of Philosophy + Britannica + Wolfgang Behringer 'Witches and Witch-Hunts' + Brian Levack 'Witch-Hunt in Early Modern Europe'",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mittelalter = dunkles Zeitalter' / 'Hexenverbrennungen waren typisch Mittelalter' ist FALSE/MOSTLY_FALSE. Das Hochmittelalter (11.-13. Jh.) war eine intellektuelle Blütezeit: Universitätsgründungen Bologna 1088, Paris ~1150, Oxford ~1167, Cambridge 1209. Hexenverfolgungen mit Massencharakter fanden HAUPTSÄCHLICH 1580-1640 statt — also in der FRÜHEN NEUZEIT, im konfessionellen Zeitalter NACH der Reformation. Der Begriff 'Dark Ages' geht auf den italienischen Humanisten Petrarca (14. Jh.) zurück, wurde von Aufklärern (Voltaire) zur ideologischen Polemik gegen die Kirche ausgebaut. Mediävisten lehnen den Begriff seit ~1900 ab.",
+        "universitaeten_mittelalter": "Universitäten als europäische Institution sind eine MITTELALTERLICHE Erfindung: Bologna 1088 (älteste, römisches Recht), Paris ~1150 (Theologie + Künste, Sorbonne 1257), Oxford ~1167, Salamanca 1218, Cambridge 1209, Padua 1222, Neapel 1224 (Friedrich II.). Studierende lernten 7 freie Künste (Trivium + Quadrivium), Aristoteles wurde via arabische Übersetzungen rezipiert.",
+        "wissenschaft_technik_mittelalter": "Mechanische Räderuhr (~1280), Brille (~1280, Italien), Wasserräder zur Industrie (12. Jh., Cistercienser), Buchdruck-Holzschnitt (Anfang 15. Jh.), Schießpulver-Adoption (14. Jh.), gotische Kathedral-Architektur (12.-15. Jh., Statik-Fortschritt: Strebepfeiler, Spitzbogen). Roger Bacon (~1265): empirische Methode + frühe Optik.",
+        "hexenverfolgung_zeitlich": "Hexenverfolgungen mit Massencharakter (Quelle: Behringer 2004, Levack 2016): Peak 1580-1640, ca. 80% aller Hinrichtungen. Geschätzt 40.000-60.000 Hinrichtungen GESAMT in Europa von ~1450 bis ~1750 (NICHT die oft kolportierten 'Millionen'). Häufung im konfessionellen Übergangs-Bereich (Süddeutschland, Schweiz, Frankreich/Lothringen, Schottland). KEIN Massenphänomen vor ca. 1450.",
+        "begriff_dark_ages": "Petrarca (1304-1374, italienischer Humanist) prägte 'tenebrae' (Dunkelheit) für die Zeit nach Roms Fall — meinte literarische Latinität, nicht Wissen. Voltaire (1694-1778) und Aufklärer machten daraus 'Dark Ages' = Aberglauben, Folter, Inquisition. Moderne Mediävistik (Jacques Le Goff, Hans-Werner Goetz, etc.) lehnt den Begriff seit ~1900 ab.",
+        "context": "Das Mittelalter als Begriff (~500-1500) ist heterogen: Frühmittelalter (500-1000) durchaus politisch chaotisch in Westeuropa, aber Byzanz + Karolingische Renaissance + arabische Gelehrsamkeit. Hochmittelalter (1000-1300) Blütezeit. Spätmittelalter (1300-1500) Krisen (Pest, Hundertjähriger Krieg). Pauschale 'Dunkelheit' verdeckt diese Differenzierung."
+      },
+      "context_notes": [
+        "Karl der Große (768-814) gründete die Hofschule in Aachen, beauftragte die karolingische Minuskel — DIE Schrift, in der bis heute lateinische Texte gesetzt werden (auch dieser hier).",
+        "Die meisten antiken griechischen Texte (Aristoteles, Galen, Ptolemäus) sind nur über islamische Gelehrte (Bagdad 8.-12. Jh.) und mittelalterliche Übersetzer (Toledo 12. Jh.) ins lateinische Europa zurückgekommen.",
+        "Pest und Hexenverfolgung: Wichtige Differenzierung — die Pest (1347-1352, ~30% Bevölkerungsverlust) war Mittelalter, ja. Die systematischen Hexenprozesse (Trier 1581, Würzburg 1626, Salem 1692) waren bereits Frühe Neuzeit."
+      ],
+      "claim_phrasings_handled": [
+        "Im Mittelalter wurden viele Hexen verbrannt",
+        "Das Mittelalter war ein dunkles Zeitalter",
+        "Im Mittelalter gab es keine Wissenschaft",
+        "Hexenverbrennungen waren typisch fürs Mittelalter"
+      ],
+      "trigger_composite": [
+        [
+          "mittelalter",
+          "mittelalterlich",
+          "mittelalters",
+          "dunkles zeitalter",
+          "dark ages",
+          "finsteres zeitalter"
+        ],
+        [
+          "dunkel",
+          "finster",
+          "hexen",
+          "hexenverbrennung",
+          "hexenverfolgung",
+          "scheiterhaufen",
+          "aberglauben",
+          "wissenschaft",
+          "rückständig",
+          "barbarisch",
+          "primitiv"
+        ]
+      ]
+    },
+    {
+      "topic": "galileo_folter_mythos",
+      "headline": "Galileo Galilei wurde NICHT gefoltert — sein Inquisitions-Prozess 1633 endete mit Hausarrest in Villa Arcetri, der berühmte Ausspruch 'E pur si muove' ist apokryph",
+      "year": 2024,
+      "source_url": "https://plato.stanford.edu/entries/galileo/",
+      "secondary_url": "https://www.britannica.com/biography/Galileo-Galilei",
+      "source_label": "Stanford Encyclopedia of Philosophy + Maurice Finocchiaro 'The Galileo Affair' + Britannica + Vatican Archives Reha-Erklärung 1992",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Galileo wurde gefoltert' / 'Galileo wurde verbrannt' ist FALSE. Galileo Galilei wurde 1633 von der römischen Inquisition zum 'lebenslangen Hausarrest' verurteilt — NICHT gefoltert, NICHT hingerichtet. Er erhielt im Verfahren die formelle Drohung der 'rigorosa esaminazione' (Folter), aber diese wurde NICHT durchgeführt — was Inquisitions-Akten und moderne Historiker (Finocchiaro 1989, Stanford SEP) klar dokumentieren. Galileo lebte bis zu seinem Tod 1642 weiter wissenschaftlich tätig in seiner Villa in Arcetri bei Florenz, schrieb dort sein bedeutendes Spätwerk 'Discorsi' (1638). Der Ausspruch 'E pur si muove' (und sie bewegt sich doch) ist erst 1761 — 119 Jahre nach Galileos Tod — schriftlich belegt und gilt als historisch nicht authentisch.",
+        "prozess_1633": "Inquisitions-Prozess in Rom, April-Juni 1633. Galileo (69 Jahre alt) wurde mehrfach verhört, hatte aber bequeme Unterkunft im Palast des Toskanischen Botschafters und später beim Inquisitions-Sekretär Niccolò Lana. Verurteilung 22.06.1633: 'vehementer suspectus de haeresi' (im hohen Maße der Häresie verdächtig — NICHT 'Häretiker'). Strafe: lebenslanger Hausarrest + Verbot des 'Dialogo'.",
+        "folter_drohung": "Sentenza vom 22.06.1633 erwähnt 'rigorosa esaminazione' (formelle Folter-Drohung). Aber: laut Inquisitions-Recht des 17. Jh. konnte ein 70-Jähriger (Galileo war 69) gar nicht der 'Tortur' ausgesetzt werden — die Drohung war prozessuale Formalität. Maurice Finocchiaro (UC Press 1989) nach Studium der Akten: keine Folter durchgeführt, keine Folter-Spuren am Körper.",
+        "hausarrest_arcetri": "Villa Il Gioiello in Arcetri (bei Florenz). Galileo hatte Bibliothek, Besucher (sein Schüler Vincenzo Viviani, Evangelista Torricelli, John Milton kam 1638), publizierte 'Discorsi e dimostrazioni matematiche' 1638 in Leiden (umgangen via niederländische Verleger Elsevier). Erblindete 1638. Starb 08.01.1642.",
+        "e_pur_si_muove_apokryph": "Erste schriftliche Erwähnung: Giuseppe Baretti 'The Italian Library' (London 1757), bzw. Querini Stampalia Bibliothek (1761) — also 119+ Jahre nach Galileos Tod. Stanford SEP: 'almost certainly apocryphal'. Wahrscheinlich später erfunden, um Galileo als Märtyrer der Wissenschaft zu inszenieren.",
+        "kontext_vatikan_1992": "Papst Johannes Paul II. erklärte 1992 (nach 13-jähriger Untersuchungs-Kommission) den Prozess 1633 für ein 'tragisches Missverständnis': Galileo hatte zwar wissenschaftlich Recht, aber prozessual war die Inquisition aus damaliger Perspektive korrekt verfahren. Re-Habilitierung der Person Galileo, Bedauern der Kirche.",
+        "context": "Der Galileo-Folter-Mythos kommt aus dem Aufklärungs-Narrativ 'Wissenschaft vs. Religion' (Voltaire, John William Draper 1874 'Conflict between Religion and Science'). Moderne Wissenschaftsgeschichte (Hannam, Wootton): differenzierter, zeigt verflochtenes Verhältnis."
+      },
+      "context_notes": [
+        "Ein Vorgänger-Fall: Giordano Bruno wurde 1600 in Rom verbrannt — aber NICHT primär für Heliozentrismus, sondern für theologische Häresien (Trinitäts-Leugnung, Reinkarnation, etc.). Bruno war Dominikaner-Mönch, kein Astronom. Verwechslung mit Galileo häufig.",
+        "Galileo war zeit seines Lebens praktizierender Katholik, hatte gute Beziehungen zu Papst Urban VIII. (Maffeo Barberini) — ein persönlicher Bruch trug zum Prozess bei: Galileo hatte im 'Dialogo' (1632) den Papst als 'Simplicio' karikiert.",
+        "Galileos Tochter Maria Celeste (Suor Maria Celeste, im Kloster San Matteo) blieb mit ihm in Briefkontakt. ~120 Briefe sind erhalten — wertvolle Quelle für Familien-Leben Galileos."
+      ],
+      "claim_phrasings_handled": [
+        "Galileo wurde von der Inquisition gefoltert",
+        "Galileo wurde wegen Heliozentrismus verbrannt",
+        "Galileo musste 'E pur si muove' nach Folter sagen",
+        "Galileo wurde von der Kirche getötet"
+      ],
+      "trigger_composite": [
+        [
+          "galileo",
+          "galilei",
+          "galileo galilei"
+        ],
+        [
+          "folter",
+          "gefoltert",
+          "verbrannt",
+          "hingerichtet",
+          "tortur",
+          "scheiterhaufen",
+          "inquisition",
+          "kirche",
+          "vatikan",
+          "e pur si muove",
+          "und sie bewegt sich"
+        ]
+      ]
+    },
+    {
+      "topic": "newton_apfel_mythos",
+      "headline": "Isaac Newton sah einen Apfel fallen — aber er fiel NICHT auf seinen Kopf; die Anekdote stammt aus Newtons eigener Erzählung Jahrzehnte später (Stukeley 1726/1752)",
+      "year": 2024,
+      "source_url": "https://www.royalsociety.org/news/2010/newton-apple/",
+      "secondary_url": "https://plato.stanford.edu/entries/newton/",
+      "source_label": "Royal Society + Stanford Encyclopedia of Philosophy + William Stukeley 'Memoirs of Sir Isaac Newton's Life' (1752) + Patricia Fara 'Newton: The Making of Genius'",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Newton hatte den Apfel auf den Kopf bekommen' ist FALSE. Newton selbst erzählte die Anekdote in seinen letzten Lebensjahren mehrfach — überliefert von seinem Vertrauten William Stukeley (Memoirs 1752, Manuskript 1726) und seiner Nichte Catherine Conduitt: Newton sah im Familien-Garten in Woolsthorpe einen Apfel vom Baum fallen und fragte sich, warum Äpfel immer senkrecht fallen — was zur Theorie der allgemeinen Gravitation führte. KEINE Quelle berichtet, der Apfel sei auf seinen Kopf gefallen. Diese Variante taucht erst im 19./20. Jh. in Pop-Kultur auf.",
+        "stukeley_memoiren": "William Stukeley (Newton-Freund, Royal Society Sekretär) 'Memoirs of Sir Isaac Newton's Life' (Manuskript ~1726, gedruckt 1752): Eintrag 15. April 1726, Newton (damals 84) erzählt beim Tee unter einem Apfelbaum: 'just in the same situation, as when formerly, the notion of gravitation came into his mind. ... it was occasion'd by the fall of an apple, as he sat in a contemplative mood'. KEIN 'on his head'.",
+        "woolsthorpe_1665_66": "Pest-Lockdown 1665-66: Newton (22-23 Jahre alt) war von Cambridge zurück auf den Familien-Hof Woolsthorpe Manor (Lincolnshire) verbannt. In dieser Zeit (sein 'annus mirabilis') entwickelte er Grundlagen der Differentialrechnung, Optik (Prisma + Spektral-Zerlegung) UND Gravitations-Theorie. Apfelbaum stand laut Familie an spezifischer Stelle — heute markiert als Touristen-Attraktion.",
+        "weitere_quellen": "Voltaire (Élémens de la philosophie de Newton, 1738) erwähnte die Anekdote: 'M. Newton, étant retiré dans la campagne... vit tomber des fruits d'un arbre' — also nur 'fallende Früchte', nicht auf den Kopf. Newtons Nichte Catherine Conduitt erzählte ähnlich. John Conduitt (Newtons Mann der Nichte) schrieb 1727 ähnliches.",
+        "auf_kopf_variante": "Die Variante 'Apfel auf Kopf' ist erst in spätem 19./20. Jh. in populären Wissenschafts-Geschichten zu finden. Wahrscheinlich Comic-Zuspitzung — bildet sich gut, aber historisch unbelegt. Patricia Fara (Cambridge HoS, 'Newton: The Making of Genius', 2002): Anekdote von Newton selbst dramatisiert in Spätzeit, um seinen Genie-Status retrospektiv zu konstruieren.",
+        "context": "Auch ohne Apfel-Schädel-Treffer war Newtons Leistung enorm: 'Principia Mathematica' 1687 (3 Bewegungs-Gesetze + universelle Gravitation), Optik 1704, Differentialrechnung parallel zu Leibniz. Aber die 'Heureka-Apfel'-Mythologie verkürzt einen langen Forschungs-Prozess (Newton arbeitete 20 Jahre an Gravitation, ~1665-1685)."
+      },
+      "context_notes": [
+        "Der 'Newton-Apfelbaum' in Woolsthorpe Manor (heute National Trust property) lebt noch — 'Flower of Kent' Sorte, wurde 1820 vom Sturm gefällt, hat aber wieder ausgetrieben. Stecklinge sind in viele wissenschaftliche Institutionen verschenkt (Cambridge Trinity College, MIT, NIST, etc.).",
+        "Newtons 'annus mirabilis' war 1665-66 — nicht ein Jahr, sondern ~18 Monate Pest-Lockdown. Parallel: Cambridge Plague (Bubonic Plague), Universität geschlossen.",
+        "Newton war NICHT im Garten zur Lockdown-Zeit allein wegen Genie-Faulheit — die Universität war wegen Seuche geschlossen, alle Studierenden hatten Zwangsurlaub. Vergleich: COVID-Lockdowns 2020 als historisches Echo."
+      ],
+      "claim_phrasings_handled": [
+        "Newton hatte den Apfel auf den Kopf bekommen",
+        "Ein Apfel ist auf Newtons Kopf gefallen",
+        "Newton entdeckte Gravitation als ihm Apfel auf Kopf fiel",
+        "Die Schwerkraft wurde durch einen Apfel auf Newtons Kopf entdeckt"
+      ],
+      "trigger_composite": [
+        [
+          "newton",
+          "isaac newton"
+        ],
+        [
+          "apfel",
+          "äpfel",
+          "fiel auf",
+          "auf den kopf",
+          "auf seinen kopf",
+          "schwerkraft",
+          "gravitation",
+          "fallen",
+          "fallender"
+        ]
+      ]
+    },
+    {
+      "topic": "marie_antoinette_kuchen_mythos",
+      "headline": "Marie Antoinette sagte NIE 'Lasst sie Kuchen essen' — Rousseau zitierte den Spruch 1767 (Confessions Buch VI) als von einer 'großen Prinzessin', als Marie Antoinette erst 11-12 Jahre alt war und nicht mal in Frankreich lebte",
+      "year": 2024,
+      "source_url": "https://www.britannica.com/biography/Marie-Antoinette-queen-of-France",
+      "secondary_url": "https://www.smithsonianmag.com/history/marie-antoinette-was-not-empty-headed-flighty-queen-180982361/",
+      "source_label": "Britannica + Smithsonian Magazine + Antonia Fraser 'Marie Antoinette: The Journey' (2001) + Rousseau Confessions Buch VI",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die Zuschreibung 'Marie Antoinette: Lasst sie Kuchen essen' (Qu'ils mangent de la brioche) ist FALSE. Der Spruch wurde erstmals von Jean-Jacques Rousseau in seinen 'Confessions' Buch VI (geschrieben ca. 1765-67, posthum 1782 gedruckt) zitiert — Rousseau berichtete, eine 'große Prinzessin' habe gesagt 'Wenn sie kein Brot haben, sollen sie Brioche essen'. Zur Zeit der Niederschrift (1765-67) war Marie Antoinette 9-12 Jahre alt und lebte in Wien als österreichische Erzherzogin — sie heiratete erst 1770 nach Frankreich (mit 14). Die Zuschreibung an Marie Antoinette taucht erst NACH der Französischen Revolution (1789) als anti-monarchische Propaganda auf, nicht in zeitgenössischen Quellen.",
+        "rousseau_confessions": "Jean-Jacques Rousseau (1712-1778) 'Les Confessions' (autobiographisch, geschrieben 1765-1770, postum 1782 publiziert). Buch VI berichtet von einem Inzident in Rousseaus Jugend (~1740), als er Wein trank ohne Brot dazu. Originalzitat: 'Enfin je me rappelai le pis-aller d'une grande princesse à qui l'on disait que les paysans n'avaient pas de pain, et qui répondit : Qu'ils mangent de la brioche.' (Schließlich erinnerte ich mich an die Notlösung einer großen Prinzessin, der man sagte, die Bauern hätten kein Brot, und die antwortete: 'Sie sollen Brioche essen.')",
+        "marie_antoinette_zeitlinie": "Geboren 02.11.1755 in Wien (Habsburg), Tochter von Maria Theresia. Als Rousseau ca. 1765-67 die Confessions schrieb, war Marie Antoinette also 9-12 Jahre alt UND lebte in Wien, NICHT in Frankreich. Heiratete am 16.05.1770 (mit 14) den späteren Louis XVI. Wurde Königin 1774 (mit 18). Hingerichtet 16.10.1793 (mit 37) durch Guillotine.",
+        "moegliche_zuschreibungen": "Wer war die 'große Prinzessin'? Möglicherweise Marie-Thérèse d'Autriche (1638-1683), Frau von Louis XIV — sie ist von Mémoires-Autoren der Zeit als ähnlich naiv-zynisch dargestellt. Andere Kandidaten: Marie Leszczyńska (Frau Louis XV.) oder Louise-Élisabeth de Bourbon. KEINE zeitgenössische Zuordnung zu Marie Antoinette.",
+        "post_revolution_propaganda": "Erste Zuschreibung an Marie Antoinette: pamphletistische Schriften der Französischen Revolution 1789-1793 ('Vie privée de Marie-Antoinette', anonyme libelles). Diente der Delegitimierung der Königin als 'fremd, gefräßig, gefühllos'. Antonia Fraser (2001 Biographie): Marie Antoinette spendete an Hungerleidende (Frost-Winter 1788), las kritische Memoirs, war NICHT die karikatur-hafte gleichgültige Königin.",
+        "context": "Marie Antoinette ist ein Lehrbuch-Beispiel für Geschichts-Mythologie: politische Propaganda im 18. Jh. wird zur 'historischen Wahrheit' im 19./20. Jh. Sofia Coppolas Film 'Marie Antoinette' (2006) trug zur populären Re-Kontextualisierung bei."
+      },
+      "context_notes": [
+        "Die Übersetzung 'brioche' → 'cake/Kuchen': im 18. Jh. war Brioche ein einfacheres süßes Hefebrot, kein Luxus-Kuchen. Aber auch das wäre für Bauern, die kein BROT hatten, höhnisch.",
+        "Marie Antoinette war 19 Jahre Königin (1774-1791 als regierende, 1791-1793 unter Hausarrest). Sie hatte 4 Kinder, von denen 2 vor 1789 starben. Wurde nach 22 Monaten Haft verurteilt — der Prozess war ein Schauprozess mit fingierten Anklagen (Inzest mit ihrem Sohn, etc.).",
+        "Andere falsche Zitate: 'Let them eat cake' wurde u.a. auch der spanischen Königin Maria Theresa (1638-1683) und sogar Königin Margarete von Schottland angedichtet — der Spruch ist eine wandernde Anekdote vom Typ 'arrogante höfische Naivität'."
+      ],
+      "claim_phrasings_handled": [
+        "Marie Antoinette sagte 'Lasst sie Kuchen essen'",
+        "Marie Antoinette: 'Sollen sie doch Kuchen essen'",
+        "Marie Antoinette war so unsensibel zu sagen 'Sollen sie Kuchen essen'",
+        "Let them eat cake war von Marie Antoinette"
+      ],
+      "trigger_composite": [
+        [
+          "marie antoinette",
+          "antoinette",
+          "französische königin",
+          "french queen"
+        ],
+        [
+          "kuchen",
+          "brioche",
+          "let them eat",
+          "essen",
+          "brot",
+          "lasst sie",
+          "sollen sie"
+        ]
+      ]
+    },
+    {
+      "topic": "einstein_schulversager_mythos",
+      "headline": "Albert Einstein war KEIN Schulversager — der Mythos beruht auf einer Verwechslung des Schweizer Notensystems (6 = sehr gut) mit dem deutschen (6 = ungenügend); Einstein hatte auf der Aargauer Matura 1896 in Mathematik und Physik die Note 6",
+      "year": 2024,
+      "source_url": "https://www.einstein.caltech.edu/what/index.html",
+      "secondary_url": "https://www.britannica.com/biography/Albert-Einstein",
+      "source_label": "Princeton Einstein Papers Project + Britannica + Walter Isaacson 'Einstein: His Life and Universe' (2007) + Aargauer Kantonsschule Originalzeugnisse",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Einstein war Schulversager' / 'Einstein hatte schlechte Noten in Mathe' ist FALSE. Der Mythos basiert auf einer Verwechslung der Notensysteme: in der Schweizer Aargauer Kantonsschule (wo Einstein 1895-96 zur Schule ging) war die Note 6 die HÖCHSTE Note. Im deutschen System ist 6 die SCHLECHTESTE Note. Einsteins Matura-Zeugnis vom September 1896 zeigt: Mathematik 6, Physik 6, Geschichte 6, Italienisch 5, Deutsch 5 — nach Schweizer System EXZELLENT. Bei Übertragung ins deutsche System wurde aus dem Mythos 'Einstein hatte 6 in Mathe = ungenügend'. Walter Isaacson (offizielle Princeton-Biographie 2007): Einstein war schon als 12-Jähriger im Selbststudium bei Algebra + Differentialrechnung — definitiv KEIN Mathematik-Versager.",
+        "schweizer_notensystem": "Schweizer System (offiziell bis heute, EU-anerkannt): 6 = sehr gut, 5 = gut, 4 = genügend, 3 = ungenügend, 2 = schlecht, 1 = sehr schlecht. Aargauer Kantonsschule Aarau 1895-96 verwendete dieses System. Einsteins Originalzeugnis ist erhalten (Schweizerisches Bundesarchiv).",
+        "einstein_matura_1896": "Schweizer Matura-Zeugnis 30.09.1896 (Aarau, Einstein 17 Jahre alt): Deutsche Sprache + Literatur 5, Französische Sprache 3 (knapp genügend!), Italienisch 5, Geschichte 6, Geographie 4, Algebra 6, Geometrie 6, Darstellende Geometrie 6, Physik 6, Chemie 5, Naturgeschichte 5, Künstlerisches Zeichnen 4, Technisches Zeichnen 4. Durchschnitt: 5.0 von 6 — guter bis sehr guter Schüler.",
+        "eth_ablehnung_1895": "Einstein versuchte 1895 (mit 16) die ETH-Aufnahmeprüfung — bestand Mathe + Physik glänzend, aber generelle Allgemeinbildung (insb. Französisch) zu schwach für sein Alter (er war 2 Jahre jünger als üblich). Wurde abgelehnt, ging stattdessen 1 Jahr in Aarau auf die Kantonsschule, dann 1896 problemlose ETH-Zulassung. Das ist KEIN 'durchgefallen' im modernen Sinn, sondern altersbedingte Vorbedingungen-Lücke.",
+        "einstein_kindheit_mathe": "Einstein erzählte selbst (Briefe an Hans Albert, 1944): er begann Algebra mit 7-8 Jahren mit Onkel Jakob, las als 12-Jähriger Eulers 'Algebra' und 'Heilige Geometrie-Büchlein' (Euklid). Mit 14 Differentialrechnung. Sein Mathematik-Niveau war als Teenager bereits Universitäts-niveau.",
+        "muenchen_realgymnasium": "1888-1894 in München (Luitpold-Gymnasium): Einstein hatte autoritäre Lehrer-Konflikte, Klagen über Drill-Pädagogik. Aber: durchgehend gute bis sehr gute Noten in Mathematik + Naturwissenschaften, schwächer in Latein/Altgriechisch. 1894 verließ er die Schule freiwillig (Eltern zogen nach Italien wegen Geschäfts-Problemen). KEIN Schulverweis, KEIN Sitzenbleiben.",
+        "context": "Der Einstein-Schulversager-Mythos diente in der pädagogischen Pop-Literatur des 20. Jh. als Trostgeschichte für lernschwache Kinder ('auch ein Genie war Schulversager'). Aber: er ist falsch — und entwertet zudem das, was Schulversager-Sein wirklich bedeutet."
+      },
+      "context_notes": [
+        "Princeton Einstein Papers Project (Universität Princeton, gegründet 1986): publiziert Einsteins Korrespondenz + akademische Papiere, dokumentiert auch Originalzeugnisse — verfügbar online unter einsteinpapers.press.princeton.edu",
+        "Einstein hatte in Französisch tatsächlich Schwierigkeiten (Note 3 in der Matura) — was später als 'er hatte schlechte Noten' interpretiert wurde, aber 3 nach Schweizer System ist 'ungenügend' (also nicht 'mangelhaft' wie deutsch 5, sondern 'gerade nicht durchgekommen').",
+        "Albert Einstein nahm 1900 die Schweizer Staatsbürgerschaft an (zuvor stateless seit 1896, da deutsche aufgegeben). 1933 Emigration in die USA, ab 1940 US-Staatsbürger zusätzlich zur Schweizer."
+      ],
+      "claim_phrasings_handled": [
+        "Einstein war ein Schulversager",
+        "Einstein hatte schlechte Noten in Mathe",
+        "Einstein war in der Schule schlecht",
+        "Einstein bekam eine 6 in Mathematik"
+      ],
+      "trigger_composite": [
+        [
+          "einstein",
+          "albert einstein"
+        ],
+        [
+          "schulversager",
+          "schlechte noten",
+          "schlecht in",
+          "mathe",
+          "mathematik",
+          "sechs",
+          "6 in",
+          "durchgefallen",
+          "schule",
+          "schüler",
+          "zeugnis"
+        ]
+      ]
+    },
+    {
+      "topic": "edison_gluehbirne_mythos",
+      "headline": "Thomas Edison erfand NICHT die Glühbirne — er verbesserte sie und kommerzialisierte sie; Joseph Swan (UK, Patent 1878) und über 20 weitere Erfinder waren früher dran",
+      "year": 2024,
+      "source_url": "https://americanhistory.si.edu/lighting-revolution/edison",
+      "secondary_url": "https://www.britannica.com/biography/Thomas-Edison",
+      "source_label": "Smithsonian National Museum of American History + Britannica + Robert Friedel 'Edison's Electric Light: Biography of an Invention' (1986) + UK Patent 4933/1878",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Edison erfand die Glühbirne' ist FALSE/MOSTLY_FALSE. Edisons Glühlampen-Patent stammt von 1879 — über 20 frühere Erfinder hatten bereits funktionierende Glühlampen gebaut. Joseph Swan (UK) hatte 1878 (also ein Jahr VOR Edison) eine Glühlampe öffentlich vorgeführt und 1880 patentiert. Heinrich Goebel (deutscher Auswanderer in NY) demonstrierte bereits 1854 Bambus-Faden-Lampen. Der Beitrag Edisons war KOMMERZIELL: er entwickelte (1) eine längere Lebensdauer (~1.200 Stunden Brenndauer) und (2) das ÖKONOMISCHE GESAMT-SYSTEM (Stromerzeugung, Verteilung, Sockel, Schalter, Tarif). Edison + Swan fusionierten 1883 in Großbritannien zur 'Edison & Swan United Electric Light Company', um sich gegenseitige Patent-Klagen zu ersparen.",
+        "vorgaenger_chronologisch": "Humphry Davy 1802 (erste elektrische Bogenlampe, Royal Institution London). Warren de la Rue 1840 (Platin-Glühfaden, UK). Heinrich Goebel 1854 (Bambus-Faden, NY). Alexander Lodygin 1872 (Russland, Stickstoff-Atmosphäre). Pavel Yablochkov 1876 (Frankreich, 'Yablochkov Candle'). Joseph Swan 1878 (UK, Carbon-Faden, öffentliche Demo Newcastle 18.10.1878). Edison 22.10.1879 (Erstmals länger als 13 Stunden brennende Lampe). Swan UK Patent 4933 vom 27.11.1878.",
+        "edison_beitrag_konkret": "Edisons Patent 0223,898 (27.01.1880, USA) für 'Electric-Lamp' mit 'carbonized cotton thread'. Eigentlicher Edison-Beitrag (Robert Friedel 1986): nicht die Glühbirne SELBST, sondern (a) hochresistenter Faden für niedrige Stromstärken (kommerziell ökonomisch), (b) verbesserte Vakuum-Pumpe (Sprengel-Pumpe + Williams), (c) Edison Electric Light Company gegründet 15.10.1878 für Vermarktung, (d) Pearl Street Station NY 1882 (erstes kommerzielles Stromnetz für 59 Kunden + 110V Verteilung).",
+        "swan_edison_fusion": "Joseph Swan (1828-1914): Chemiker aus Sunderland, UK. Hatte ab 1860er an Glühlampen gearbeitet, durch verbesserte Vakuumtechnik (1875+) konkurrenzfähig. Swan-Demo 18.10.1878 in der Newcastle Chemical Society. Patent 27.11.1878. Edison verklagte Swan, Swan verklagte Edison. Vergleich 1883: 'Edison & Swan United Electric Light Company' (Genossenschaft), Swan-Lampen in UK, Edison-Lampen in USA. Beide konnten ihre Märkte dominieren.",
+        "heinrich_goebel_kontext": "Heinrich Goebel (1818-1893): deutscher Uhrmacher aus Springe/Hannover, 1848 Auswanderung nach NY. Demonstrierte ab ~1854 in Schaufenstern Bambusfaden-Glühlampen mit Vakuum-Vorrichtung. Edison kaufte 1893 (Goebels Sterbejahr) Goebels Patent-Rechte als 'Versicherung' gegen weitere Klagen — was Edisons Anwälte als implizite Anerkennung einer Goebel-Priorität-Möglichkeit interpretiert hatten. US-Gerichte später (1893): Goebels Lampen 'demonstrably operative' aber nicht öffentlich-relevant patentiert.",
+        "patent_streit_geschichte": "Edison-Glühlampe war Gegenstand von ~600 US-Patentprozessen 1880-1895. Edisons Anwalts-Strategie: Patent-Buyout aller potenziellen Konkurrenten + aggressive Klagen. Verteidigt vor allem den ökonomischen Erfolg (Pearl Street Station etc.), nicht primär 'Erst-Erfindung'.",
+        "context": "Edison-Mythos ('Erfinder der Glühbirne') ist Teil amerikanischer Industrie-Patriotismus 19. Jh. Edison hatte am Ende 1.093 US-Patente, war ein außerordentlicher Erfinder + Manager — aber nicht 'der Erste'. Sein eigentlicher Genius lag im SYSTEM-DENKEN: nicht die Glühbirne SELBST, sondern Stromerzeugung + Verteilung + Endgerät als kommerzielles Gesamt-Paket."
+      },
+      "context_notes": [
+        "Joseph Swan zündete 1881 die erste private Hauslicht-Anlage in Britannien an (Sir William Armstrong's Cragside House, Northumberland) — über ein Jahr vor Edisons Pearl Street Station.",
+        "Joseph Wilson Swan war auch Erfinder der ersten Trocken-Plate für Fotografie (1871) und der Bromsilber-Plate, was die Fotografie revolutionierte. Eigenständiger Erfinder ersten Ranges.",
+        "Edisons Pearl Street Station (NY 1882): 50 KW Generator, Gleichstrom, 110V — verteilte Strom an 59 Kunden in unmittelbarer Nähe. Innovation: nicht die Glühbirne, sondern die kommerzielle Strom-Distribution. Wichtiger Schritt in Industrialisierung."
+      ],
+      "claim_phrasings_handled": [
+        "Edison erfand die Glühbirne",
+        "Thomas Edison hat die Glühbirne erfunden",
+        "Die Glühbirne ist eine Erfindung von Edison",
+        "Edison war der erste, der eine Glühbirne baute"
+      ],
+      "trigger_composite": [
+        [
+          "edison",
+          "thomas edison",
+          "thomas alva edison"
+        ],
+        [
+          "erfand",
+          "erfunden",
+          "erfindung",
+          "glühbirne",
+          "glühlampe",
+          "lichtbirne",
+          "lampe",
+          "elektrisches licht",
+          "electric light",
+          "swan",
+          "joseph swan",
+          "goebel"
+        ]
+      ]
+    },
+    {
+      "topic": "napoleon_sphinx_nase_mythos",
+      "headline": "Napoleons Soldaten haben NICHT die Nase der Sphinx von Gizeh abgeschossen — die Nase fehlte bereits 1755, also 43 Jahre VOR Napoleons Ägypten-Feldzug 1798 (Beweis: Frederic Norden's Zeichnungen)",
+      "year": 2024,
+      "source_url": "https://www.britannica.com/topic/Great-Sphinx",
+      "secondary_url": "https://www.smithsonianmag.com/history/uncovering-secrets-sphinx-5053442/",
+      "source_label": "Britannica + Smithsonian Magazine + Frederic Norden 'Voyage d'Égypte et de Nubie' (1755) + Selim Hassan archaeological work + Mark Lehner Harvard",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Napoleons Soldaten schossen der Sphinx die Nase ab' / 'Britische Truppen schossen Sphinx-Nase ab' ist FALSE. Beweis: der dänische Marineoffizier Frederic Norden bereiste 1737-38 Ägypten und veröffentlichte 1755 (postum) detaillierte Zeichnungen — die Sphinx ist darauf bereits OHNE Nase abgebildet. Das ist 43 Jahre VOR Napoleons Ägypten-Feldzug (1798-1801) und ~64 Jahre vor britischer Intervention. Wahrscheinliche historische Zerstörung: 1378 n.Chr. durch den Sufi-Mönch Sa'im al-Dahr, der gegen den Bauern-Volksglauben (die Sphinx als Glücks-/Erntegottheit) vorging. Bezeugt durch den arabischen Chronisten al-Maqrizi (1364-1442) in seiner historischen Topographie Ägyptens. Der Napoleon-Mythos ist anti-französische Propaganda britischer Provenienz post-1815.",
+        "norden_1755_beweis": "Frederic Ludvig Norden (1708-1742): dänischer Marineoffizier auf Auftrag König Christian VI., Ägypten-Reise 1737-1738. Veröffentlichung 'Voyage d'Égypte et de Nubie' (Kopenhagen 1755, postum). Detaillierte Stiche der Sphinx — die Nase fehlt bereits. Dies ist die ÄLTESTE detaillierte westliche Sphinx-Darstellung. Diese Zeichnungen sind in zahlreichen Museen + Bibliotheken erhalten (Royal Library Copenhagen, British Library).",
+        "saim_al_dahr_1378": "Al-Maqrizi (~1364-1442, Ägyptischer Historiker) berichtet in 'al-Mawa'iz wa-l-i'tibar fi dhikr al-khitat wa-l-athar' (geschr. ~1416-1437): der Sufi-Mönch Mohammed Sa'im al-Dahr fand 1378, dass Bauern aus der Region Khufu Opfergaben an die Sphinx brachten und sie als 'Abu al-Hawl' (Vater des Schreckens) als Erntegottheit verehrten. Er meißelte die Nase ab als Akt iconoclastischer Reform — laut Al-Maqrizi wurde er später dafür hingerichtet (von der Bevölkerung gelyncht).",
+        "napoleon_kontext_1798": "Napoleon Bonaparte's Ägypten-Feldzug Mai 1798 - August 1801: 38.000 Soldaten, ca. 167 Wissenschaftler/Künstler ('savants'). Die wissenschaftliche Mission produzierte 'Description de l'Égypte' (1809-1828, 23 Bände) — eines der bedeutendsten archäologischen Dokumente überhaupt. Die savants haben die Sphinx eingehend studiert und gezeichnet — bereits OHNE Nase. Französisches Interesse galt Verständnis, nicht Zerstörung.",
+        "weitere_zeitgenoessische_quellen": "Vor Norden: arabische Reisende und Chronisten (Ibn Fadl Allah al-Umari 14. Jh., al-Idrisi 12. Jh.) erwähnten die Sphinx, ohne explizit Nase oder Nasen-Verlust zu thematisieren. Westeuropäische Reisende vor Norden: u.a. George Sandys 1610 (verschwommene Beschreibung). Renaissance-Karten der Sphinx (oft idealisiert) — schwer zu verwenden als Beleg.",
+        "anti_franzoesische_propaganda": "Der 'Napoleon-Soldaten-Schoss-Sphinx-Nase-Ab'-Mythos taucht primär in britischen + osmanisch-türkischen Quellen NACH 1815 auf — als Teil anti-napoleonischer Geschichts-Schreibung. Es passte zum Narrativ 'Franzosen als Vandalen / Briten als Bewahrer'. Selim Hassan ägyptischer Archäologe 1949: explizit bestritten.",
+        "context": "Die Sphinx wurde im Lauf von ~4.500 Jahren mehrfach umgestaltet, restauriert und beschädigt: ursprünglich Pharao Khafre (~2500 v.Chr.), wahrscheinlich mit Bart (Bart-Fragmente in British Museum + Egyptian Museum Cairo), Augenschmuck (möglicherweise Gold), Nemes-Kopftuch + Pschent-Krone. Nasenverlust ist nur EIN von vielen Schäden."
+      },
+      "context_notes": [
+        "Die Sphinx besteht aus drei Schichten Kalkstein, die unterschiedlich erodieren — der Hals und Kopf sind aus härterem Stein, Schultern und Körper aus weicherem. Daher ist sie nicht über Jahrtausende gleichmäßig zerfallen.",
+        "Bart-Fragmente der Sphinx sind im British Museum und im Egyptian Museum Cairo. Sie zeigen, dass die Sphinx ursprünglich einen Pharao-Bart hatte — also das idealisierte Khafre-Pharao-Porträt mit königlicher Insigne.",
+        "Mark Lehner (Harvard / Ancient Egypt Research Associates) — derselbe Forscher, der die Pyramiden-Sklaven-Mythos widerlegt hat — leitet seit 1980er die Sphinx-Restaurierungsarbeiten. Er datiert die Sphinx auf ~2500 v.Chr. (Khafre-Dynastie 4)."
+      ],
+      "claim_phrasings_handled": [
+        "Napoleons Soldaten haben die Nase der Sphinx abgeschossen",
+        "Napoleon ließ die Sphinx-Nase abschießen",
+        "Die Briten haben die Nase der Sphinx zerstört",
+        "Die Sphinx-Nase wurde im 19. Jahrhundert abgeschossen"
+      ],
+      "trigger_composite": [
+        [
+          "sphinx",
+          "große sphinx",
+          "great sphinx",
+          "gizeh",
+          "giza"
+        ],
+        [
+          "nase",
+          "abgeschossen",
+          "abschießen",
+          "zerstört",
+          "abgeschlagen",
+          "napoleon",
+          "soldaten",
+          "franzosen",
+          "briten"
+        ]
+      ]
+    }
+  ]
+}
