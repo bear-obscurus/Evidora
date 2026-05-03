@@ -1,0 +1,11 @@
+{
+  "title": "Energie/Klima-Politik",
+  "topic_count": "8 Topics (Atomkraft-CO2, China-Whataboutism, E-Auto-Lifecycle, Wärmepumpen-Frost, Solar-Recycling, Windkraft-Vögel, Erneuerbare-Versorgungssicher, Diesel-Skandal-MIXED)",
+  "description": "20 Claims aus populären Energie- und Klimaschutz-politischen Halbwahrheiten. 9. Static-First-Cluster. Mittlere politische Sensibilität — Themen sind aufgeladen (Atomkraft-Debatte, E-Auto-Skepsis, Diesel-Skandal-Aufarbeitung), aber faktisch gut belegbar mit autoritativen Quellen. Pack zitiert Zahlen, nimmt keine politischen Wertungen vor.",
+  "methodology": "Quellen-Mix: IPCC AR6 (2022) WG III für Lifecycle-Emissionen, IEA (International Energy Agency) für globale Energie-Bilanzen, Fraunhofer ISE für DE-Wärmepumpen + Energy-Charts, JRC (Joint Research Centre EU) für Lifecycle-Analysen, ICCT (International Council on Clean Transportation) für E-Auto + Diesel-Lifecycle, UBA AT/DE (Umweltbundesamt), EEA (European Environment Agency), NABU/IFAB für Vogelschlag-Studien. Bei MIXED-Verdicts (Diesel) wird Differenzierung explizit gemacht.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "8/8 Topics aktiv"},
+    {"label": "MIXED-Verdicts:", "value": "Diesel-Skandal (Euro-6d sauberer, aber NOx-Real bleibt)"},
+    {"label": "Politische Sensibilität:", "value": "mittel"}
+  ]
+}

@@ -79,6 +79,7 @@ from services.recht_pack import search_recht, claim_mentions_recht_cached
 from services.energie_klima_pack import search_energie_klima, claim_mentions_energie_klima_cached
 from services.migration_pack import search_migration, claim_mentions_migration_cached
 from services.geographie_pack import search_geographie, claim_mentions_geographie_cached
+from services.eurobarometer import search_eurobarometer, claim_mentions_eurobarometer_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -208,6 +209,21 @@ async def check_claim(request: Request):
         raise HTTPException(status_code=400, detail="Claim too short — please enter at least 2 words." if lang == "en" else "Behauptung zu kurz — bitte mindestens 2 Wörter eingeben.")
 
     async def event_stream():
+        # Hebel #4: Verdict-Cache mit semantischer Aehnlichkeit. Vor der
+        # gesamten Pipeline (Analyzer + Datenquellen + Synthesizer)
+        # pruefen, ob ein gleicher oder fast-gleicher Claim bereits
+        # gecacht ist. Bei Hit: gesamte Pipeline ueberspringen,
+        # Antwort in <100 ms statt 8-15 s.
+        from services import verdict_cache as _vc
+        cached_result = _vc.get(claim)
+        if cached_result is not None:
+            yield {"event": "step", "data": json.dumps({"step": "analyze"})}
+            yield {"event": "step", "data": json.dumps({"step": "cache_hit"})}
+            yield {"event": "result",
+                   "data": json.dumps(cached_result, ensure_ascii=False)}
+            yield {"event": "done", "data": "{}"}
+            return
+
         # Step 1: Analyze claim with Mistral
         yield {"event": "step", "data": json.dumps({"step": "analyze"})}
         try:
@@ -596,6 +612,14 @@ async def check_claim(request: Request):
         if claim_mentions_geographie_cached(claim):
             tasks.append(cached("Geographie-Mythen", search_geographie, analysis))
             queried_names.append("Geographie-/Reise-Mythen (NASA + Lloyd's + USCG + NatGeo + CIA Factbook + UNESCO)")
+        # Eurobarometer — kuratierte Eckwerte zu EU-Buerger-Einstellungen
+        # (EU-Vertrauen, Top-Themen, Klimawandel-Einstellung, Demokratie-
+        # Zufriedenheit, EU-Mitgliedschaft, Einwanderungs-Einstellung).
+        # 6 Topics. Pack feuerte bei Aussagen mit 'die Buerger / die
+        # Mehrheit der Europaeer wollen X'.
+        if claim_mentions_eurobarometer_cached(claim):
+            tasks.append(cached("Eurobarometer", search_eurobarometer, analysis))
+            queried_names.append("Eurobarometer (Europäische Kommission + EP)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
@@ -735,6 +759,13 @@ async def check_claim(request: Request):
             "names": hit_names,
             "all_names": queried_names,
         }
+        # Hebel #4: Verdict in den Semantic-Cache schreiben (TTL 30 Min,
+        # nur wenn Confidence ≥ 0.8 + Verdict != unverifiable). Filtert
+        # Stream-Loss-Artefakte aus.
+        try:
+            _vc.put(claim, synthesis)
+        except Exception as e:
+            logger.warning(f"verdict_cache.put failed (non-blocking): {e}")
         yield {"event": "result", "data": json.dumps(synthesis, ensure_ascii=False)}
         yield {"event": "done", "data": "{}"}
 

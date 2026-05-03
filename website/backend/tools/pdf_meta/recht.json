@@ -1,0 +1,11 @@
+{
+  "title": "Recht-/Rechtsmythen DACH",
+  "topic_count": "10 Topics (Notwehr, Schimmel-Mietrecht-MIXED, Schönheitsreparaturen, Probezeit-DE/AT, Screenshot-WhatsApp, Hausrecht-AGG, Erbrecht-Pflichtteil, Pause-Bezahlung, Kündigungsschutz-Kleinbetrieb, Hund-Haftung-§833)",
+  "description": "20 Claims aus populären rechtlichen Halbwahrheiten in DACH. 8. Static-First-Cluster. Komplementär zu eu_courts (EuGH/EGMR), at_courts (VfGH/VwGH). Während die anderen Justiz-Quellen Höchstgerichts-Urteile abdecken, fokussiert recht_pack auf alltägliche rechtliche Halbwahrheiten — relevant für AT-Lehrer-Kontext (Klassen-Diskussionen).",
+  "methodology": "Quellen-Mix: RIS AT (Bundesgesetzes-DB), Bundesgesetzblatt DE, BGH-Urteile (insb. VIII ZR 277/16 zu Schönheitsreparaturen 2018), OGH-Erkenntnisse (5 Ob 207/14k Schimmel), Verbraucherzentrale, AK Wien, DGB Beratung, Antidiskriminierungsstelle des Bundes (DE) + Gleichbehandlungsanwaltschaft (AT). WICHTIG: Pack ersetzt KEINE anwaltliche Beratung — kernsatz_fuer_synthesizer instruiert präzise Bedingungen statt pauschale Aussage. Bei MIXED-Topics (Schimmel je Ursache, Probezeit-DE/AT-Unterschied) wird Differenzierung explizit aufgezeigt.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "MIXED-Verdicts:", "value": "Schimmel-Haftung (je Ursache), Probezeit (DE/AT-Unterschied)"},
+    {"label": "Methodischer Hinweis:", "value": "Pack ersetzt KEINE anwaltliche Beratung"}
+  ]
+}

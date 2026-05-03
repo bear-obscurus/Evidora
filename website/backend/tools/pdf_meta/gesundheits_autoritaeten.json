@@ -1,0 +1,10 @@
+{
+  "title": "Gesundheits-Autoritaeten",
+  "topic_count": "10 Topics (Vaccines-Autismus, Fluorid-Trinkwasser, Cannabis-NIDA, rotes-Fleisch-IARC, Acrylamid, Mikroplastik, Glyphosat-MIXED, Aspartam-MIXED, BPA-Babyflasche, Vitamin-Supplemente)",
+  "description": "20 Claims aus klassischen Gesundheits-/Lebensmittel-/Pharma-Mythen, abgedeckt durch maßgebende Health-Behörden: NIH (NIDA, NCI, NCCIH), CDC, BfR, WHO IARC, EFSA, JECFA, USPSTF. Pack komplementär zu PubMed/Cochrane/EMA — fokussiert auf Themen mit klaren Behörden-Stellungnahmen.",
+  "methodology": "Methodische Innovation: Bei regulatorischer Uneinigkeit zwischen WHO IARC und EU/US-Regulatoren (Glyphosat: IARC 2A vs EFSA/BfR/EPA 'no carcinogenic risk'; Aspartam: IARC 2B vs JECFA 'ADI 40 mg/kg sicher') wird die UNEINIGKEIT selbst als Faktum geliefert, nicht eine Position als Wahrheit ausgewählt. Synthesizer wird via kernsatz_fuer_synthesizer instruiert, beide Bewertungen mit der jeweiligen Methodik (Hazard vs Risk) zu erklären — der saubere Faktencheck zeigt die regulatorische Realität, nicht eine Auswahl.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "MIXED-Verdicts:", "value": "Glyphosat, Aspartam (regulatorische Uneinigkeit IARC vs EFSA/BfR)"}
+  ]
+}

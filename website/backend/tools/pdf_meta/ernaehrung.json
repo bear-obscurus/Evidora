@@ -1,0 +1,10 @@
+{
+  "title": "Ernaehrungs-Mythen",
+  "topic_count": "10 Topics (5-Sek-Regel, Spinat-Eisen, Eier-Cholesterin-MIXED, Karotten-Sehkraft, Detox-Säfte, Mikrowelle-Nährstoffe, brauner-Zucker, Bio-Pestizidfrei, Kaffee-Dehydration, Milch-Schleim)",
+  "description": "20 Claims aus populären Ernährungs-/Lebensmittel-Halbwahrheiten — täglich relevante Hausmythen. 7. Static-First-Cluster. Komplementär zu gesundheits_autoritaeten_pack (das die HOCH-AUTORITATIVEN Behörden-Stellungnahmen zu Stoff-Risiken liefert) — ernaehrungs_pack fokussiert auf populäre Hausmythen ohne explizite Behörden-Position.",
+  "methodology": "Quellen-Mix: DGE (Deutsche Gesellschaft für Ernährung), Cochrane (PubMed) für Meta-Analysen, Mayo Clinic + Harvard T.H. Chan School of Public Health, NHS UK (für Detox-Position), BfR + AGES (für Lebensmittel-Sicherheit), EFSA (für EU-Lebensmittel-Sicherheits-Position), peer-reviewed Studien (Killer 2014 PLoS One Kaffee-Hydration, Pinnock 1990 BMJ Milch-Schleim, Miranda & Schaffner Rutgers 2016 5-Sek-Regel). Einige Studien aus dem 'Supermyth'-Bereich (z.B. Spinat-Eisen-Decimal-Punkt selbst ein Mythos laut Sutton).",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "MIXED-Verdicts:", "value": "Eier-Cholesterin (Meta-Analysen widersprüchlich), Karotten-Sehkraft (TRUE-mit-Kontext)"}
+  ]
+}

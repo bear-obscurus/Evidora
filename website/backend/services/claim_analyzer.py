@@ -200,6 +200,7 @@ async def analyze_claim(claim_text: str) -> dict:
         ],
         timeout=90.0,
         model=ANALYZER_MODEL,
+        json_mode=True,  # Hebel #5: structured-output for clean JSON
     )
 
     result = _repair_json(content)
@@ -257,7 +258,7 @@ async def analyze_claim(claim_text: str) -> dict:
     ]
     try:
         retry_content = await chat_completion(
-            messages=retry_messages, timeout=60.0
+            messages=retry_messages, timeout=60.0, json_mode=True,
         )
         retry_result = _repair_json(retry_content)
     except Exception as e:

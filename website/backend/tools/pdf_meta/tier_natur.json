@@ -1,0 +1,10 @@
+{
+  "title": "Tier-/Natur-Mythen",
+  "topic_count": "10 Topics (Goldfisch-Gedächtnis, Stier-rote-Farbe, Fledermaus-blind, Hund-schwarz-weiß, Spinnen-im-Schlaf, Lemming-Massensuizid, Hai-Angriffe, Eskimo-Schnee-Wörter, Strauss-Kopf-Sand, Elefant-Maus)",
+  "description": "20 Claims aus klassischen Tier- und Natur-Halbwahrheiten. 6. Static-First-Cluster, niedrige politische Sensibilität — biologische und linguistische Fakten ohne politische Implikationen. Pack ergänzt Wissenschafts-Datenbanken durch kuratierte authoritative Anker (Smithsonian, AMNH, Britannica, Snopes), die bei populär-falschen Aussagen die Verdict-Konsistenz deutlich verbessern.",
+  "methodology": "Quellen-Mix: Smithsonian National Zoo + Smithsonian Magazine, American Museum of Natural History (AMNH), Britannica, Snopes (Hoax-Verifikation), International Shark Attack File (Florida Museum), Alaska Native Language Center (ANLC), Alaska Department of Fish & Game, Burke Museum (Univ. Washington), VCA Animal Hospitals + peer-reviewed Studien (Neitz 1989 Hunde-Farben, Pullum 1991 'Eskimo Vocabulary Hoax', MythBusters 2007 Stier-rote-Farbe).",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "Politische Sensibilität:", "value": "niedrig"}
+  ]
+}

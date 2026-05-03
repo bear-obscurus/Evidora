@@ -722,9 +722,13 @@ async def synthesize_results(
         if on_chunk is not None:
             content = await chat_completion_streaming(
                 messages=base_messages, on_chunk=on_chunk, timeout=300.0,
+                json_mode=True,  # Hebel #5: structured output, no code fences
             )
         else:
-            content = await chat_completion(messages=base_messages, timeout=300.0)
+            content = await chat_completion(
+                messages=base_messages, timeout=300.0,
+                json_mode=True,  # Hebel #5
+            )
         logger.info(f"Synthesizer responded ({len(content)} chars)")
 
         result = _extract_json(content)
@@ -742,7 +746,7 @@ async def synthesize_results(
                 {"role": "user", "content": RETRY_HINTS[lang]},
             ]
             retry_content = await chat_completion(
-                messages=retry_messages, timeout=300.0
+                messages=retry_messages, timeout=300.0, json_mode=True,
             )
             logger.info(
                 f"Synthesizer retry responded ({len(retry_content)} chars)"

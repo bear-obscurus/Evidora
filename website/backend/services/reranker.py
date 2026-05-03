@@ -150,6 +150,7 @@ _AUTHORITATIVE_INDICATORS = (
     "energie_klima_konsens_fact",        # Energie/Klima-Politik-Pack (IPCC + IEA + Fraunhofer)
     "migration_konsens_fact",            # Migrations-Pack (BfV + bpb + IAB + DIW + OECD + BKA)
     "geographie_konsens_fact",           # Geographie/Reise-Pack (NASA + Lloyd's + NatGeo + CIA Factbook)
+    "eurobarometer_fact",                # Eurobarometer (Europäische Kommission + EP)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

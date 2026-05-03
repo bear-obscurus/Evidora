@@ -1,0 +1,12 @@
+{
+  "title": "Migrations-Konsens",
+  "topic_count": "6 Topics (Großer-Austausch, Migration-Kriminalität-PKS, Sozialmagnet, Abschiebungen-Hindernisse, Integration, Asyl-Arbeitsverbot)",
+  "description": "20 Claims aus migrations-politischen Halbwahrheiten. 10. Static-First-Cluster, Probe-Strategie wegen politischer Sensibilität (analog zum Verschwörungs-Pack). Erst 6 gut belegte Topics deployed, Live-Test bestätigt korrekte Methodik. Pack komplementär zu frontex (EU-Außengrenzen-Daten), UNHCR, factbook_eu_pakt_*, bamf_asyl_de_2025_2026 (im dach_factbook).",
+  "methodology": "Quellen-Mix: Bundesamt für Verfassungsschutz (BfV) für Einstufung 'Großer Austausch' als rechtsextrem-antisemitisch (Haldenwang 2019). bpb (Bundeszentrale für politische Bildung) Dossier. IDZ Jena. BAMF + BAMF Forschungszentrum. IAB Kurzbericht 17/2025 zu Beschäftigungsquoten. DIW Berlin (SOEP) — IAB-BAMF-SOEP-Befragung 2016 mit Frage 'Warum Deutschland?' (Menschenrechte 73 % vs Sozialleistungen 26 %). OECD International Migration Outlook 2025. BKA-PKS Methodik-Hinweise + Wissenschaftler (Feltes Univ. Bochum, KFN Hannover). Mediendienst Integration. Bundestags-Drucksachen (z.B. 21/1532 zu Abschiebungen 2024). § 61 AsylG, § 60 AufenthG, Dublin-III-VO als Rechtsgrundlagen.",
+  "guardrails": "POLITISCHE GUARDRAILS: (1) Wir bewerten KEINE politischen Bewegungen oder Parteien pauschal. (2) Wir zitieren BEHÖRDLICHE Einstufungen (Verfassungsschutz, BMI), nicht eigene Wertungen. (3) Bei Statistiken werden METHODIK-CAVEATS prominent zitiert (PKS-Kategorie 'Nichtdeutsche', Anzeige-Quoten +10-30 % Verzerrung, Racial-Profiling 2x häufige Polizeikontrollen, Sammelunterkunfts-Erfassung). (4) Bei MIXED-Bewertungen Differenzierung explizit (Integration nach Generation/Herkunft/Bildungsstand).",
+  "distanzierung": "Antisemitismus-Klausel (vgl. IHRA-Arbeitsdefinition + bpb-Dokumente): 'Großer Austausch' baut typischerweise auf antisemitischen Vorstellungen einer 'jüdischen Welt-Verschwörung' auf — auch wenn nicht in jedem Einzelfall explizit benannt. Differenzierung: Aussagen über tatsächliche demografische Veränderungen (Geburtenrückgang, Migration) sind faktisch belegbar und legitime Politik-Debatte — aber das ist NICHT die 'Großer Austausch'-Theorie.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "6/6 Topics aktiv (Probe-Pack)"},
+    {"label": "Politische Sensibilität:", "value": "hoch — methodische Disziplin durchgehend"}
+  ]
+}

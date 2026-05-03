@@ -1,0 +1,11 @@
+{
+  "title": "Geographie/Reise-Mythen",
+  "topic_count": "7 Topics (Bermudadreieck, Chinesische-Mauer-Mond, Höchster-Berg-MIXED, Toilette-Coriolis, Sahara-Wüste-MIXED, Australien-Tiere-MIXED, Vatikan-Staat)",
+  "description": "20 Claims aus klassischen geographischen + Reise-Halbwahrheiten. 11. Static-First-Cluster, politisch unauffällig — primär unterhaltsam-bildend. Pack komplementär zu tier_natur_pack (Eskimo-Schnee-Wörter dort, NICHT hier — Überlappung vermieden).",
+  "methodology": "Quellen-Mix: NASA für Astronauten-Beobachtungen (Chinesische-Mauer-Mond mit Yang Liwei 2003 + Leroy Chiao 2004). Lloyd's of London (Versicherer mit ökonomischem Anreiz für korrekte Risiko-Bewertung) + US Coast Guard für Bermudadreieck. Britannica + National Geographic für Definitionen. CIA World Factbook für Vatikan-Daten. UNESCO für Wüsten-Definition. WHO für Schlangenbiss-Statistiken. Peer-reviewed Studien (Trefethen MIT 1962 Coriolis im Waschbecken).",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "7/7 Topics aktiv"},
+    {"label": "MIXED-Verdicts:", "value": "Höchster-Berg (Definitions-Frage Mauna Kea / Chimborazo / Everest), Sahara (Definitions-Frage Antarktis), Australien-Tiere (giftig vs Tier-Tote)"},
+    {"label": "Politische Sensibilität:", "value": "niedrig"}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Tech-/KI-Mythen",
+  "topic_count": "9 Topics (KI-Bewusstsein, Bitcoin-Anonymität, Bitcoin-Stromverbrauch, Quantencomputer-Verschlüsselung, Anonymisierung-Re-ID, VPN-Anonymität, ENISA-Threat-Landscape, 5G-Telekom-QoS, Apple-vs-Android)",
+  "description": "20 Claims aus klassischen Tech-/KI-Mythen-Repertoire: KI-Bewusstsein, Krypto + Blockchain, Cybersicherheit, Datenschutz, Tech-Klassiker. 5. Static-First-Cluster (commit 2ef7764, 2026-05-02), nach Regression-Fix (commit bb217d4) auf 7 Topics, in Coverage-Sprint 2026-05-03 um ENISA + BEREC erweitert auf 9 Topics.",
+  "methodology": "Methodische Innovation: Bei der ursprünglich gemeldeten Regression bei #7 Bitcoin-Stromverbrauch (false-Verdict mit conf=0.1 nach Pack-Deploy) wurde empirisch nachgewiesen, dass der bitcoin_anonymitaet-Topic-Descriptor mit Cosine 0,541 zur Stromverbrauch-Claim über dem Reranker-Backup-Threshold 0,45 lag. Lösung: NEUER 7. Topic bitcoin_stromverbrauch_konsens mit explizitem Composite-Trigger ('bitcoin' AND 'strom/energie/twh'), wodurch Composite-Match das Reranker-Backup preempt. Lessons Learned: bei wiederkehrenden Entitäten (Bitcoin, Spinat, Atomkraft) hilft semantisches Embedding nicht — das Entity dominiert die Cosine. Composite-Trigger ist die einzige saubere Lösung.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "9/9 Topics aktiv"},
+    {"label": "Erweiterung 2026-05-03:", "value": "+2 Topics (ENISA Threat Landscape 2024, BEREC 5G/Telekom-QoS)"}
+  ]
+}

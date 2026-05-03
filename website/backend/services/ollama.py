@@ -16,7 +16,8 @@ RETRY_DELAY = 2  # Sekunden
 
 
 async def _call_mistral_api(messages: list, timeout: float,
-                             model: str | None = None) -> str:
+                             model: str | None = None,
+                             json_mode: bool = False) -> str:
     """Call Mistral API (EU servers, Paris).
 
     Determinism (Bug 1 fix):
@@ -28,7 +29,23 @@ async def _call_mistral_api(messages: list, timeout: float,
     - ``random_seed=42`` gives a stable seed when the model still
       tie-breaks (e.g. equal-probability tokens).  Same input → same
       output, reproducible across runs.
+
+    Hebel #5 (JSON-Mode): with ``json_mode=True`` we add Mistral's
+    ``response_format={"type": "json_object"}``. This makes the model
+    emit syntactically-valid JSON without surrounding markdown code
+    fences — saves ~3-8 tokens per response and eliminates the
+    "stripped ```json prefix" parsing edge cases.  The system prompt
+    must still mention "JSON" for the API to accept the request.
     """
+    body: dict = {
+        "model": model or MISTRAL_MODEL,
+        "messages": messages,
+        "temperature": 0.0,
+        "max_tokens": 2048,
+        "random_seed": 42,
+    }
+    if json_mode:
+        body["response_format"] = {"type": "json_object"}
     async with httpx.AsyncClient(timeout=timeout) as client:
         response = await client.post(
             MISTRAL_API_URL,
@@ -36,13 +53,7 @@ async def _call_mistral_api(messages: list, timeout: float,
                 "Authorization": f"Bearer {MISTRAL_API_KEY}",
                 "Content-Type": "application/json",
             },
-            json={
-                "model": model or MISTRAL_MODEL,
-                "messages": messages,
-                "temperature": 0.0,
-                "max_tokens": 2048,
-                "random_seed": 42,
-            },
+            json=body,
         )
         response.raise_for_status()
         # Defensive: Mistral can return 200 OK with an unexpected body shape
@@ -87,24 +98,31 @@ async def _call_ollama(messages: list, timeout: float) -> str:
 
 
 async def chat_completion(messages: list, timeout: float = 90.0,
-                          model: str | None = None) -> str:
+                          model: str | None = None,
+                          json_mode: bool = False) -> str:
     """Run a chat completion. ``model`` overrides MISTRAL_MODEL for this
     call only — used by the analyzer to optionally switch to a smaller
     model (e.g. mistral-tiny) for faster turnaround. Default keeps the
     env-var setting unchanged.
+
+    ``json_mode`` activates Mistral's structured-output mode (Hebel #5).
+    When True, the model emits a JSON object directly — no surrounding
+    code fences, no preamble. Faster + more reliable parsing for the
+    analyzer + synthesizer paths. System prompt must mention 'JSON' for
+    Mistral to accept the request.
     """
     last_error = None
     use_cloud = bool(MISTRAL_API_KEY)
 
     if use_cloud:
-        logger.info(f"Using Mistral API (cloud, model={model or MISTRAL_MODEL})")
+        logger.info(f"Using Mistral API (cloud, model={model or MISTRAL_MODEL}, json_mode={json_mode})")
     else:
         logger.info("Using Ollama (local)")
 
     for attempt in range(1, MAX_RETRIES + 1):
         try:
             if use_cloud:
-                return await _call_mistral_api(messages, timeout, model=model)
+                return await _call_mistral_api(messages, timeout, model=model, json_mode=json_mode)
             else:
                 return await _call_ollama(messages, timeout)
         except (httpx.ConnectError, httpx.TimeoutException) as e:
@@ -137,14 +155,27 @@ async def chat_completion(messages: list, timeout: float = 90.0,
 # ---------------------------------------------------------------------------
 
 async def _stream_mistral_api(
-    messages: list, timeout: float
+    messages: list, timeout: float, json_mode: bool = False,
 ) -> AsyncIterator[str]:
     """Stream content tokens from Mistral's chat completion endpoint.
 
     Yields each non-empty ``delta.content`` string as it arrives. Same
     determinism settings as ``_call_mistral_api`` (temperature=0,
     seed=42).
+
+    Hebel #5: ``json_mode=True`` adds response_format json_object —
+    streamed deltas come without surrounding code fences.
     """
+    body: dict = {
+        "model": MISTRAL_MODEL,
+        "messages": messages,
+        "temperature": 0.0,
+        "max_tokens": 2048,
+        "random_seed": 42,
+        "stream": True,
+    }
+    if json_mode:
+        body["response_format"] = {"type": "json_object"}
     async with httpx.AsyncClient(timeout=timeout) as client:
         async with client.stream(
             "POST",
@@ -153,14 +184,7 @@ async def _stream_mistral_api(
                 "Authorization": f"Bearer {MISTRAL_API_KEY}",
                 "Content-Type": "application/json",
             },
-            json={
-                "model": MISTRAL_MODEL,
-                "messages": messages,
-                "temperature": 0.0,
-                "max_tokens": 2048,
-                "random_seed": 42,
-                "stream": True,
-            },
+            json=body,
         ) as resp:
             if resp.status_code in (402, 429):
                 raise ValueError("MISTRAL_CREDITS_EXHAUSTED")
@@ -188,6 +212,7 @@ async def chat_completion_streaming(
     messages: list,
     on_chunk: Callable[[str], Awaitable[None]] | None = None,
     timeout: float = 300.0,
+    json_mode: bool = False,
 ) -> str:
     """Streaming variant of ``chat_completion``.
 
@@ -211,7 +236,7 @@ async def chat_completion_streaming(
     last_error = None
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            async for chunk in _stream_mistral_api(messages, timeout):
+            async for chunk in _stream_mistral_api(messages, timeout, json_mode=json_mode):
                 parts.append(chunk)
                 if on_chunk:
                     await on_chunk(chunk)
