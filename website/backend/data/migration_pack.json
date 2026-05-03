@@ -242,6 +242,165 @@
       "source_label": "§ 61 AsylG + Informationsverbund Asyl & Migration + BMAS",
       "source_url": "https://www.gesetze-im-internet.de/asylvfg_1992/__61.html",
       "secondary_url": "https://www.bmas.de/DE/Arbeit/Migration-und-Arbeit/Flucht-und-Aysl/Arbeitsmarktzugang-fuer-Gefluechtete/arbeitsmarktzugang-fuer-gefluechtete.html"
+    },
+    {
+      "id": "migration_demografie_arbeitsmarkt_2026",
+      "topic": "migration_demografie_arbeitsmarkt_konsens",
+      "scope": "Beitrag der Migration zum Arbeitsmarkt + demografischen Stabilität",
+      "year": 2024,
+      "headline": "IAB 2024: ~40 % des DE-Beschäftigtenzuwachses 2015-2024 durch ausländische Beschäftigte; 400.000 Netto-Migration für Stabilisierung nötig",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'Migration entlastet den Arbeitsmarkt nicht' oder 'Migration kommt nur in Sozialsystem' sind FALSE. IAB-Studien 2024: Sozialversicherungspflichtig Beschäftigte stiegen 2015-2024 um 4,1 Mio in DE — davon ~40 % durch Beschäftigte mit ausländischer Staatsangehörigkeit. Bei Fachkräfte-Niveau: Zuwachs von 600k+ ging FAST VOLLSTÄNDIG auf ausländische Beschäftigte zurück. IAB-Forschungsprojekt IMPa 2024: 400.000 Netto-Migration pro Jahr nötig zur Stabilisierung des Arbeitskräfte-Potenzials in DE.",
+        "iab_kurzbericht_2024": "IAB Kurzbericht 'Ohne ausländische Beschäftigte wird es in vielen Berufen eng' (2024): Sozialversicherungspflichtig Beschäftigte +4,1 Mio 2015-2024. Davon ~1,6 Mio (40 %) ausländische Staatsangehörige. Bei Fachkraft-Niveau-Zuwachs (600k+): nahezu vollständig durch Migration.",
+        "berufe_zuwachs_migration": "Berufe mit höchstem Migration-Beschäftigten-Zuwachs 2015-2024 (IAB): Verkehrs/Logistik +562k (+236 %), Gesundheitsberufe +328k (+266 %), Lebensmittel/Gastgewerbe +265k (+171 %), Fertigung +241k (+183 %), Bau +235k (+210 %).",
+        "demografische_lücke": "IAB IMPa-Studie 2024: zur Stabilisierung des Arbeitskräfte-Potenzials in DE braucht es ~400.000 Netto-Migration pro Jahr — bei aktueller Geburtenrate von 1,35 Kindern/Frau (DESTATIS 2024) und steigender Lebenserwartung schrumpft die erwerbstätige Bevölkerung sonst.",
+        "rentenfinanzierung_aspekt": "Rentenversicherungs-Beiträge: Migranten sind im Schnitt jünger, höhere Erwerbstätigkeitsquote in den 35-50-Jahre-Kohorten. Beitrag zur DRV-Beitragsbasis ohne entsprechende Renten-Auszahlung (yet) ist kurzfristig fiskal-positiv.",
+        "kontext_unterschiedliche_migration": "Wichtig: nicht jede Migration ist Arbeitsmarkt-Migration. Asyl-Migration hat anderes Profil als EU-Binnenmigration oder Fachkräfte-Visa. IAB-Aussagen beziehen sich oft auf alle Beschäftigten mit ausländischer Staatsangehörigkeit (inkl. EU-Bürger).",
+        "context": "Pauschale Aussagen 'Migration löst keinen Fachkräftemangel' oder 'Migration ist Belastung für Arbeitsmarkt' sind methodisch nicht haltbar. Differenzierte Aussage: ohne Migration der letzten 10 Jahre wäre der Fachkräftemangel deutlich größer. Migration ALLEIN löst aber auch nicht den demografischen Wandel — Mix aus Migration + Bildung + Automatisierung + längerer Erwerbsleben nötig."
+      },
+      "context_notes": [
+        "Bertelsmann-Stiftung Fachkräftemigrationsmonitor 2024: ähnliche Befunde — Migration deckt einen Großteil der demografisch bedingten Lücke.",
+        "Differenzierung: ausländische Staatsangehörigkeit ≠ Migrationshintergrund. IAB-Daten basieren auf Staatsangehörigkeit — Eingebürgerte sind 'Deutsche'.",
+        "EU-Binnenmigration (~50 % der Migration nach DE) hat andere Charakteristik als Drittstaatler-Migration; Migration aus EU-Ost ist saisonal stark schwankend."
+      ],
+      "claim_phrasings_handled": [
+        "Migration löst den Fachkräftemangel nicht",
+        "Migranten kommen nur ins Sozialsystem, nicht in den Arbeitsmarkt",
+        "Deutschland braucht keine Migration für den Arbeitsmarkt"
+      ],
+      "trigger_keywords": [
+        "migration fachkraeftemangel", "migration fachkräftemangel",
+        "migration arbeitsmarkt",
+        "migration sozialsystem nicht arbeitsmarkt",
+        "migration demografie", "migration demographischer wandel"
+      ],
+      "trigger_composite": [
+        ["migration", "migrant", "migranten", "auslaender", "ausländer", "zuwanderer", "zuwanderung", "fachkraefte", "fachkräfte", "ausländisch", "auslaendisch"],
+        ["arbeitsmarkt", "fachkraeftemangel", "fachkräftemangel", "demografie", "demographie", "demographischer wandel", "renten", "beschaeftigte", "beschäftigte", "erwerbstaetig", "erwerbstätig", "wirtschaft", "lohnt sich", "loest", "löst", "bringt nichts"]
+      ],
+      "source_label": "IAB Kurzbericht + IAB IMPa-Studie 2024 + Bertelsmann Fachkräftemigrationsmonitor",
+      "source_url": "https://iab-forum.de/ohne-auslaendische-beschaeftigte-wird-es-in-vielen-berufen-eng/",
+      "secondary_url": "https://www.bertelsmann-stiftung.de/fileadmin/files/Projekte/Migration_fair_gestalten/Fachkraeftemigrationsmonitor_2024.pdf"
+    },
+    {
+      "id": "migration_fiskalbilanz_2026",
+      "topic": "migration_fiskalbilanz_mixed",
+      "scope": "Fiskalbilanz der Migration — Studienlage + methodische Kontroverse",
+      "year": 2024,
+      "headline": "Fiskalbilanz Migration MIXED: Sachverständigenrat (langfristig) fiskal-neutral bis -positiv; Stiftung Marktwirtschaft (kurzfristig) negativ — Methodik bestimmt Ergebnis",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Pauschale Aussagen 'Migration kostet den Steuerzahler X Mrd' oder 'Migration zahlt sich aus' sind beide MIXED. Studien-Lage zeigt: kurzfristig (1-5 Jahre) verursacht Migration fiskalische Kosten (Sozialleistungen, Integrations-Kurse, Wohnen). Langfristig (10+ Jahre) wird die Bilanz fiskal-neutral oder -positiv (Steuerabgaben + Sozialversicherungs-Beiträge). Sachverständigenrat-Studien 2023 + IW-Berechnungen zeigen: Erwerbstätigkeit ab ~55 % Quote macht Migration fiskal-positiv. Methodik (Zeit-Horizont, Diskontierungsrate, eingerechnete Kosten/Nutzen) bestimmt das Ergebnis.",
+        "svr_2023": "Sachverständigenrat für Wirtschaft + SVR Migration: langfristige Fiskalbilanz der Migrations-Kohorten 2015-2020 wird mittel-fristig (10+ Jahre) als fiskal-neutral bis -positiv bewertet, sobald die Erwerbstätigkeitsquote 55 % überschreitet — was IAB-Daten 2024 für Geflüchtete der 2015-Kohorte nach 8-10 Jahren bestätigen.",
+        "stiftung_marktwirtschaft_2024": "Stiftung Marktwirtschaft 'Ehrbarer Staat: Fokus Migration' (Januar 2024): Generationenbilanz mit pessimistischeren Annahmen kommt zu kurzfristig fiskal-negativem Ergebnis. Methodik: höhere Diskontierungsrate, längere Anpassungs-Zeit, Inflation-Effekte.",
+        "kas_studie": "KAS-Studie 'Erwerbszuwanderung': Differenzierung nach Migrations-Typ. Hochqualifizierte EU-Binnenmigration: stark fiskal-positiv. Asyl-Migration: anfangs negativ, langfristig neutral bis positiv.",
+        "iw_iza_modelle": "IW + IZA-Berechnungen 2018-2024: Range fiskaler Bilanz pro Asylantragsteller schwankt stark mit Annahmen. Mittel-Schätzung: ~50.000-80.000 EUR Netto-Kosten pro Person über 30-Jahre-Horizont, je nach Erwerbstätigkeit + Bildungsstand.",
+        "methodische_kontroverse": "Studien zeigen: gleiche Daten, unterschiedliche Methodik → unterschiedliche Ergebnisse. Faktoren: (1) Diskontierungsrate (höher = pessimistischer), (2) Eingerechnete Kosten (nur direkte Sozialleistungen vs auch Bildung + Verwaltung + Wohnen), (3) Eingerechnete Nutzen (nur Steuern vs auch sekundäre Wirtschaftseffekte), (4) Kohorten-Unterschiede.",
+        "context": "Politisch werden gegensätzliche Studien zitiert ('Migration kostet 100 Mrd' vs 'Migration ist fiskal-Gewinn'). Beide sind methodisch verteidigbar, aber gehen von unterschiedlichen Annahmen aus. Sauberster Faktencheck: Methodik nennen, Differenzierung nach Migrations-Typ + Zeit-Horizont machen."
+      },
+      "context_notes": [
+        "Wichtige Variable: Erwerbstätigkeitsquote der Migranten. Bei <40 % deutlich fiskal-negativ; bei >60 % oft fiskal-positiv. IAB-Daten: 2015-Kohorten erreichen >60 % nach ~10 Jahren.",
+        "Differenzierung: Asyl-Migration vs Fachkräfte-Migration vs EU-Binnenmigration. Letztere oft schon nach 1-2 Jahren fiskal-positiv.",
+        "Aktualisierung 2026 erwartet: SVR-Generationenbilanz neu, methodischer Konsens-Versuch von SVR + IW."
+      ],
+      "claim_phrasings_handled": [
+        "Migration kostet den Steuerzahler hunderte Milliarden",
+        "Migration zahlt sich für den Staat aus",
+        "Asylsuchende sind eine fiskalische Belastung"
+      ],
+      "trigger_keywords": [
+        "migration kosten staat",
+        "migration milliarden",
+        "migration fiskal", "migration kostet",
+        "asyl kosten steuerzahler",
+        "fluechtlinge milliarden", "flüchtlinge milliarden"
+      ],
+      "trigger_composite": [
+        ["migration", "migrant", "migranten", "asyl", "asylsuchende", "fluechtling", "flüchtling", "geflüchtete", "gefluechtete", "zuwander"],
+        ["kosten", "kostet", "milliarden", "milliarde", "fiskal", "steuerzahler", "haushalt", "belastung", "rechnen sich", "zahlt sich", "lohnt sich", "wirtschaft", "geld", "staat"]
+      ],
+      "source_label": "Sachverständigenrat 2023 + Stiftung Marktwirtschaft 2024 + KAS + IW + IZA — Methodik-Pluralität",
+      "source_url": "https://www.svr-migration.de/publikationen/jahresbericht/jahresbericht-2024/",
+      "secondary_url": "https://www.stiftung-marktwirtschaft.de/inhalte/publikationen/detailansicht/ehrbarer-staat-fokus-migration-zur-fiskalischen-bilanz-der-zuwanderung/"
+    },
+    {
+      "id": "migration_anerkennungsquoten_2026",
+      "topic": "migration_anerkennungsquoten_konsens",
+      "scope": "Asyl-Anerkennungs-Quoten in Deutschland — Verteilung nach Herkunftsland",
+      "year": 2024,
+      "headline": "BAMF Anerkennungs-Quoten 2024 stark variabel: ~75 % Schutzquote bei Syrien, ~30 % Afghanistan, <5 % Westbalkan-Staaten — keine pauschale '90 % werden anerkannt'-Aussage",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Pauschale Aussagen 'fast alle Asylanträge werden anerkannt' oder 'Asylanträge werden alle abgelehnt' sind beide FALSE. BAMF-Statistik 2024: Bereinigte Schutzquote (alle Schutzformen, ohne formale Erledigung) liegt bei ~45-50 %. Nach Herkunftsland stark differenziert: Syrien ~75 %, Eritrea ~85 %, Afghanistan ~30-40 %, Türkei ~10-15 %, Westbalkan-Staaten <5 %, Georgia <2 %. Schutzquote variiert auch über Zeit (politische Lage Herkunftsland).",
+        "bamf_2024_overall": "BAMF Bundesamt in Zahlen 2024: ~230.000 Asylanträge erstmals in DE 2024 (Rückgang von 330k 2023). Bereinigte Gesamt-Schutzquote ~45-50 % (Schutzformen: Asylberechtigte Art. 16a GG, Flüchtlingsstatus § 3, subsidiärer Schutz § 4, Abschiebungsverbote).",
+        "syrien_quote": "Syrien-Antragsteller 2024: Schutzquote ~75 %. Hohe Quote durch ungeklärte humanitäre Lage + Auswirkungen Bürgerkrieg.",
+        "afghanistan_quote": "Afghanistan-Antragsteller 2024: Schutzquote ~30-40 % je Untergruppe. Differenzierte Bewertung nach Herkunftsregion + Verfolgungsgrund.",
+        "westbalkan_quote": "Westbalkan-Staaten (Albanien, Kosovo, Bosnien, Nordmazedonien, Serbien, Montenegro) sind als 'sichere Herkunftsstaaten' (§ 29a AsylG) eingestuft — Schutzquoten <5 %, oft <1 %. Schnellverfahren in vielen Bundesländern.",
+        "georgia_moldova": "Georgia + Moldavien 2023 als sichere Herkunftsstaaten erweitert — Quoten unter 2 %. Asyl-Anträge dieser Staaten gehen seither stark zurück.",
+        "subsidiaere_form": "Subsidiärer Schutz (§ 4 AsylG): bei Bürgerkriegs-Situationen ohne individuelle Verfolgung, aber Lebensgefahr durch Konflikt. Bei Syrien + Afghanistan oft die Mehrheit der Schutzgewährungen.",
+        "context": "Die Aussage 'fast alle Asylanträge werden anerkannt' ist FALSE — sie verkennt die starke Differenzierung nach Herkunftsland. Aussagen 'Asylanträge werden alle abgelehnt' sind ebenso FALSE. Korrekter Faktencheck: Quoten nach Herkunftsland zitieren + Methodik-Caveats (bereinigt vs unbereinigt, Schutzform-Differenzierung)."
+      },
+      "context_notes": [
+        "Bereinigte vs unbereinigte Schutzquote: bereinigt rechnet formale Erledigungen (z.B. Antragsrücknahme, Anerkennungs-Verschiebung) heraus — sonst wären Quoten künstlich niedriger.",
+        "Klage-Quote: ein erheblicher Teil der ablehnten Anträge wird vor Verwaltungsgerichten beklagt; nochmals Korrekturen nach oben oder unten.",
+        "EU-Asyl-Pakt 2024: Schnellverfahren an Außengrenzen für Antragsteller aus Ländern mit <20 % Schutzquote — soll bis 2026 implementiert werden."
+      ],
+      "claim_phrasings_handled": [
+        "Fast alle Asylanträge werden anerkannt",
+        "Asyl wird in Deutschland kaum vergeben",
+        "Die Anerkennungs-Quote bei Asyl ist über 90 Prozent"
+      ],
+      "trigger_keywords": [
+        "asyl anerkennungsquote",
+        "asyl quote anerkennung",
+        "schutzquote asyl",
+        "asylantrag anerkannt prozent",
+        "asyl bewilligungsquote"
+      ],
+      "trigger_composite": [
+        ["asyl", "asylantrag", "asylantraege", "asylanträge", "schutzquote", "anerkennung"],
+        ["quote", "prozent", "anerkannt", "anerkennen", "abgelehnt", "ablehnung", "vergeben", "bewilligt", "fast alle", "kaum"]
+      ],
+      "source_label": "BAMF Bundesamt in Zahlen 2024 + bpb Migration",
+      "source_url": "https://www.bamf.de/SharedDocs/Anlagen/DE/Statistik/BundesamtinZahlen/bundesamt-in-zahlen-2024.html",
+      "secondary_url": "https://www.bpb.de/themen/migration-integration/zahlen-zu-asyl/"
+    },
+    {
+      "id": "migration_familiennachzug_2026",
+      "topic": "migration_familiennachzug_konsens",
+      "scope": "Familiennachzug zu Asylberechtigten + Subsidiär-Geschützten",
+      "year": 2024,
+      "headline": "Familiennachzug zu subsidiär Geschützten in DE auf 1.000 Visa/Monat begrenzt; Asylberechtigte haben weiterhin Anspruch ohne Limitierung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'unkontrollierter Familien-Massen-Nachzug' sind FALSE in der pauschalen Form. § 36a AufenthG (DE): Familiennachzug zu SUBSIDIÄR Geschützten ist auf 1.000 Visa pro Monat begrenzt (seit August 2018). Familiennachzug zu ASYLBERECHTIGTEN (Art. 16a GG) + GFK-Flüchtlingen (§ 3 AsylG): Anspruch ohne Quoten, aber mit Voraussetzungen (Sicherungsfähigkeit, Wohnraum). 2024 wurden ~30.000-40.000 Familiennachzugs-Visa erteilt — eine Größenordnung, nicht 'Massen'.",
+        "paragraph_36a_aufenthg": "§ 36a AufenthG: 'Bei Inhabern subsidiären Schutzes wird das Familiennachzug-Verfahren begrenzt durch eine Höchstzahl von 1.000 nationalen Visa pro Monat.' Eingeführt 2018 als Kompromiss. Auswahl nach humanitären Kriterien (Härtefälle, Familien mit Kindern, Krankheits-Bezug).",
+        "asylberechtigte_anspruch": "Asylberechtigte (Art. 16a GG, ~5 % der Schutzgewährungen) + GFK-Flüchtlinge (§ 3 AsylG, ~30-40 % der Schutzgewährungen): Familiennachzugs-Anspruch nach §§ 27-36 AufenthG. Voraussetzung typisch: Sicherungsfähigkeit + Wohnraum (Ausnahmen für Kernfamilie binnen 3 Monaten nach Anerkennung).",
+        "praktische_zahlen_2024": "Auswärtiges Amt + BMI-Statistik 2024: ~30.000-40.000 Familiennachzugs-Visa erteilt. Großteil zu syrischen + afghanischen + irakischen + eritreischen Familien. Verfahrens-Dauer typisch 6-18 Monate, oft 2-3 Jahre.",
+        "kernfamilie_definition": "Kernfamilie nach AufenthG: Ehegatten, minderjährige Kinder. Erwachsene Kinder, Geschwister, Eltern fallen nicht unter den allgemeinen Anspruch — nur in Härtefällen.",
+        "ressourcen_voraussetzung": "Sicherungsfähigkeit + Wohnraum-Voraussetzung wirken faktisch als Limit. Subsidiär Geschützte mit niedrigem Einkommen schaffen die Hürden oft nicht — Familiennachzug bleibt theoretisch möglich, praktisch beschwerlich.",
+        "context": "Pauschale Behauptungen 'jeder Asylberechtigte holt 5-10 Familienangehörige nach' verkennen die rechtlichen + praktischen Hürden. Realer Familiennachzug-Faktor (Anerkannte Personen × durchschnittlich nachgezogenen Familienmitglieder): in Studien zwischen 0,5 und 1,5 — typisch Ehegatten + minderjährige Kinder."
+      },
+      "context_notes": [
+        "Familiennachzugs-Reform-Diskussion läuft 2024-2026: Vorschläge von SPD/Grünen für Lockerung subsidiärer Schutz, von CDU/CSU/AfD für strikteres Limit.",
+        "EU-RL 2003/86/EG (Familienzusammenführungs-Richtlinie): Mindeststandards für Familiennachzug. DE-Regelung an einigen Stellen restriktiver als EU-Vorgaben (z.B. Sprachtest vor Einreise).",
+        "Klagen vor BVerfG zu § 36a-Limitierung: BVerfG bestätigte 2018 die Verfassungsmäßigkeit der Limitierung."
+      ],
+      "claim_phrasings_handled": [
+        "Familienzusammenführung verstärkt unkontrolliert die Migration",
+        "Jeder Asylberechtigte holt unbegrenzt Familienangehörige nach",
+        "Familiennachzug ist eine Migrations-Lawine"
+      ],
+      "trigger_keywords": [
+        "familiennachzug unkontrolliert",
+        "familienzusammenfuehrung", "familienzusammenführung",
+        "familiennachzug masse", "familiennachzug lawine",
+        "familie nachholen asyl"
+      ],
+      "trigger_composite": [
+        ["familiennachzug", "familienzusammenfuehrung", "familienzusammenführung", "familie nachhol", "familienangehoerige", "familienangehörige", "angehoerige nachhol", "angehörige nachhol", "angehoerige nach", "angehörige nach"],
+        ["unkontrolliert", "masse", "massen", "lawine", "unbegrenzt", "verstaerkt", "verstärkt", "kettenmigration", "asyl", "asylberechtigt", "fluechtling", "flüchtling", "schutzsuchend", "jeder"]
+      ],
+      "source_label": "§ 36a AufenthG + Auswärtiges Amt + BMI-Statistik",
+      "source_url": "https://www.gesetze-im-internet.de/aufenthg_2004/__36a.html",
+      "secondary_url": "https://www.bamf.de/SharedDocs/Meldungen/DE/2024/familiennachzug-2024.html"
     }
   ]
 }
