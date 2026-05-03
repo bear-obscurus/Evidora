@@ -153,6 +153,7 @@ _AUTHORITATIVE_INDICATORS = (
     "eurobarometer_fact",                # Eurobarometer (Europäische Kommission + EP)
     "finanzen_konsens_fact",             # Finanzen-Pack (EZB + Bundesbank + DAI + StiftungW + BaFin)
     "bildung_konsens_fact",              # Bildungs-Pack (APA + Hattie + EEF + Pashler + Nielsen)
+    "internationale_quellen_fact",       # Pew + WMO + IMF + WTO (globale Perspektive)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

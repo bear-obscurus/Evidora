@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-03",
+  "source_label": "Pew Research Center + WMO + IMF + WTO + UNESCO + WTO Trade",
+  "facts": [
+    {
+      "id": "pew_demokratie_2024",
+      "topic": "pew_demokratie_zufriedenheit",
+      "scope": "Pew Research Center: Zufriedenheit mit Demokratie + politische Beteiligung weltweit",
+      "year": 2024,
+      "headline": "Pew Research 2024: Demokratie-Zufriedenheit weltweit deutlich variiert; in DE/AT/EU nuancierte Bewertung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Pew Research Center-Studien zur globalen Demokratie-Wahrnehmung 2024: Hohe Zufriedenheit in Skandinavien (Schweden 68 %, Niederlande ~58 %), niedrigere in Süd-/Osteuropa, USA polarisiert. DE 2023-2024: ~52 % zufrieden mit Funktionieren der Demokratie. Trend gemischt — kurze Verbesserung 2020-22 (Pandemie-Antwort), Rückgang 2023-24 (Inflation, Migrations-Debatte). Aussagen 'weltweit verlieren Demokratien an Zustimmung' sind GEMISCHT korrekt — abhängig von Region + Zeitfenster.",
+        "pew_2024_demokratie_studie": "Pew Research Center 'Representative Democracy Remains Popular Globally' (2024): 36-Länder-Studie. Demokratie als 'gut' für das Land: median 70 % weltweit. Aber Zufriedenheit mit dem AKTUELLEN Funktionieren der Demokratie: median nur 47 %.",
+        "de_zufriedenheit": "Deutschland 2023-2024 (Pew + Infratest dimap): ~52 % zufrieden mit Funktionieren der Demokratie. Rückgang gegenüber 2020-2022 (~58-62 %).",
+        "us_polarisierung": "USA 2024: tiefe parteipolitische Polarisierung in Demokratie-Wahrnehmung. Demokraten ~60 % zufrieden, Republikaner ~25 % zufrieden. Pew-Studien dokumentieren diese parteipolitische Lücke seit 2016.",
+        "vergleich_eu_brd": "EU-Demokratie-Zufriedenheit (Eurobarometer + Pew): Skandinavien-Spitze, Mittel-EU mittlere Zufriedenheit, Süd-/Osteuropa unten. DE/AT durchschnittlich.",
+        "weltweite_trends": "Pew 2024 globale Trends: Demokratie als IDEAL bleibt populär (~70 %), aber TATSÄCHLICHE Funktion bleibt Source der Unzufriedenheit. Nicht 'Demokratie-Müdigkeit' sondern 'Frust mit aktueller Umsetzung'.",
+        "context": "Demokratie-Skepsis als Trend ist nuancierter als pauschal. Pew-Daten zeigen: Mehrheit will Demokratie als System, kritisiert aber die aktuelle Umsetzung. Die Aussage 'Demokratie ist am Ende' ist FALSE; die Aussage 'Bürger sind unzufrieden mit aktueller Politik' ist OFT MIXED-TRUE."
+      },
+      "context_notes": [
+        "Pew Research Center: US-NGO mit ~75 Jahren Erfahrung in Survey-Forschung. Hohe Methodik-Standards.",
+        "Differenzierung von Eurobarometer: Pew umfasst auch nicht-EU-Länder (USA, Asien, Lateinamerika).",
+        "Daten 2024 sind aktuell; vor 2020 zeigte sich teilweise höhere Zufriedenheit weltweit."
+      ],
+      "claim_phrasings_handled": [
+        "Weltweit verlieren Demokratien das Vertrauen ihrer Bürger",
+        "Demokratie ist als System am Ende",
+        "Pew Research zeigt globale Demokratie-Krise"
+      ],
+      "trigger_keywords": [
+        "pew demokratie", "pew research demokratie",
+        "demokratie weltweit", "global demokratie krise",
+        "buerger weltweit demokratie", "bürger weltweit demokratie"
+      ],
+      "trigger_composite": [
+        ["pew", "pew research", "demokratie", "demokrat"],
+        ["weltweit", "global", "international", "welt", "weltordnung", "ueberall", "überall", "ende", "krise", "verlieren", "verliert"]
+      ],
+      "source_label": "Pew Research Center 2024 Global Democracy Survey",
+      "source_url": "https://www.pewresearch.org/global/2024/02/28/representative-democracy-remains-popular/",
+      "secondary_url": "https://www.pewresearch.org/topic/politics-policy/political-issues/democracy/"
+    },
+    {
+      "id": "wmo_klimazustand_2024",
+      "topic": "wmo_klimazustand",
+      "scope": "WMO State of the Global Climate Report",
+      "year": 2024,
+      "headline": "WMO State of Global Climate 2024: 1.5 °C-Schwelle erstmals dauerhaft überschritten; alle 10 wärmsten Jahre seit 2014",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: WMO (World Meteorological Organization, UN-Agency) State of the Global Climate 2024-Report: Globaler Mittelwert +1.55 °C über prä-industriellem Niveau für 2024 — erstmals 1.5°C-Schwelle dauerhaft überschritten. Alle 10 wärmsten Jahre seit Beobachtungsbeginn liegen in den letzten 10 Jahren. Aussagen 'Klimawandel ist übertrieben' / 'die Erwärmung hat sich verlangsamt' sind FALSE — Daten zeigen Beschleunigung.",
+        "wmo_2024_report": "WMO State of the Global Climate 2024 (publiziert März 2025): Globaler Mittelwert +1.55 °C (Range 1.34-1.76 °C) über vor-industrieller Basis 1850-1900. Erstes Kalenderjahr mit Wert über 1.5°C-Pariser-Klima-Ziel. CO2-Konzentration: 422 ppm (höchster Stand seit 800.000+ Jahren).",
+        "10_waermste_jahre": "WMO-Statistik: alle 10 wärmsten Jahre seit Beobachtungsbeginn (1880) liegen in den letzten 10 Jahren. 2024 wärmstes Jahr, gefolgt von 2023, 2016, 2020, 2019, 2017, 2022, 2018, 2015, 2014.",
+        "ozeanwaerme": "Ozean-Wärmemenge 2024: höchster jemals gemessener Wert. 90 % der durch Treibhausgase eingefangenen Wärme geht in Ozeane.",
+        "meereisrueckgang": "Antarktis-Meereisausdehnung Februar 2024: Rekord-Niedrigwert seit Satelliten-Beobachtung (1979). Arktis September 2024: 6. niedrigster Wert.",
+        "extremwetter_2024": "WMO 2024 dokumentiert: Hitzewellen in Süd-Europa, Indien, Sahel; Überschwemmungen in DE (Hochwasser Mai/Juni), Italien, Westafrika; tropische Wirbelstürme im Atlantik (Helene, Milton). Direkte Zuschreibung zu Klimawandel über Attribution Science-Studien.",
+        "context": "WMO ist die UN-Klima-Beobachtungs-Agency, basierend auf dem aggregierten Daten von ~190 nationalen Wetterdiensten. Diese Daten sind die methodisch verbindlichste Klima-Quelle. Aussagen 'WMO übertreibt' oder 'Daten manipuliert' sind nicht haltbar."
+      },
+      "context_notes": [
+        "WMO 1.5°C-Bewertung: 1 Jahr über 1.5°C bedeutet noch NICHT, dass Pariser-Klima-Ziel verfehlt ist (das ist 30-Jahres-Mittel). Aber: Trend zeigt klare Annäherung an dauerhaftes Verfehlen.",
+        "Differenzierung: WMO-Daten sind globale Mittel; regionale Variation deutlich (manche Regionen +3-5°C, manche stabil oder leicht kühler).",
+        "Komplementär zu Berkeley Earth, NASA GISS, NOAA — alle vier zeigen ähnliche Trends, leichte methodische Unterschiede."
+      ],
+      "claim_phrasings_handled": [
+        "Die globale Erwärmung hat sich verlangsamt",
+        "Klimawandel ist übertrieben",
+        "Die WMO-Daten zur globalen Erwärmung sind nicht zuverlässig"
+      ],
+      "trigger_keywords": [
+        "wmo klima", "wmo klimazustand",
+        "wmo report", "wmo daten",
+        "globale erwaermung verlangsamt", "globale erwärmung verlangsamt",
+        "klimawandel uebertrieben", "klimawandel übertrieben"
+      ],
+      "trigger_composite": [
+        ["wmo", "world meteorological", "weltklima", "klimawandel", "globale erwaermung", "globale erwärmung", "klima"],
+        ["uebertrieben", "übertrieben", "verlangsamt", "stillstand", "echte", "wahre", "global", "weltweit", "report", "daten", "zuverlässig", "zuverlaessig", "panik"]
+      ],
+      "source_label": "WMO State of the Global Climate 2024 + WMO Annual Bulletins",
+      "source_url": "https://wmo.int/publication-series/state-of-global-climate-2024",
+      "secondary_url": "https://wmo.int/topics/climate"
+    },
+    {
+      "id": "imf_weltwirtschaft_2024",
+      "topic": "imf_weltwirtschaft_outlook",
+      "scope": "IMF World Economic Outlook — globale Wirtschaftsprognosen",
+      "year": 2024,
+      "headline": "IMF World Economic Outlook Oktober 2024: Globales Wachstum 2024 +3.2 %; EU + DE schwächer als globaler Durchschnitt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: IMF World Economic Outlook (Oktober 2024) — der maßgebende globale Wirtschafts-Indikator. Globales Wachstum 2024: +3.2 %. Schwellenländer +4.2 %, Industriestaaten +1.8 %. Deutschland 2024: 0 % (Stagnation), EU-27 +0.8 %. Aussagen 'die Weltwirtschaft kollabiert' sind FALSE — globales Wachstum bleibt im Trend, aber Industriestaaten (vor allem DE) schwach. Aussagen 'Deutschland ist Schlusslicht' MOSTLY_TRUE bei DE-EU-Vergleich.",
+        "imf_oktober_2024_weo": "IMF World Economic Outlook (Oktober 2024): Globales BIP 2024 +3.2 %, 2025 prognostiziert +3.2 %. Stabilität trotz Geopolitik + Inflation.",
+        "schwellen_vs_industrie": "Industriestaaten 2024: USA +2.8 %, Japan +0.3 %, EU-27 +0.8 %, DE 0 %, FR +1.1 %, IT +0.7 %, UK +1.1 %. Schwellenländer 2024: China +4.8 %, Indien +7.0 %, Brasilien +3.0 %.",
+        "deutschland_imf_einschaetzung": "IMF zu DE 2024 (Article IV Consultation): Stagnation +0 % real BIP, schwach durch Energiekosten, Industrie-Transformation, China-Konkurrenz im Maschinenbau. Erholung 2025 erwartet (+0.8 %).",
+        "inflations_outlook": "IMF Global Inflation 2024: 5.8 % (vs 6.7 % 2023). Industriestaaten 2.6 %, Schwellenländer 8.0 %. Trend rückläufig, aber Volatilität hoch.",
+        "geopolitische_risiken": "IMF identifiziert Hauptrisiken: 1) Zuspitzung Geopolitik (Ukraine, Naher Osten, Taiwan), 2) Handelskonflikte, 3) Klima-Schocks. Probabilistic outlook mit ~25 % Wahrscheinlichkeit eines Szenarios mit globalem Wachstum <2 %.",
+        "context": "IMF-Daten sind global anerkannte Standard. Aussagen 'IMF lügt' / 'IMF ist Lobby-Organisation' verkennen das methodische Verfahren (200+ Volkswirte, Peer-Review, regelmäßige Aktualisierung)."
+      },
+      "context_notes": [
+        "IMF-Methodik: Mitgliederstaaten reichen Daten ein, IMF aggregiert + prüft + adjustiert. Hohe methodische Konsistenz seit 1944.",
+        "Komplementäre Quellen: World Bank Group (verschiedene Indikatoren), OECD Economic Outlook (für OECD-Staaten), Eurostat (für EU)."
+      ],
+      "claim_phrasings_handled": [
+        "Die Weltwirtschaft kollabiert",
+        "Deutschland ist wirtschaftliches Schlusslicht in Europa",
+        "Globales Wachstum ist negativ"
+      ],
+      "trigger_keywords": [
+        "imf weltwirtschaft",
+        "imf welt wirtschaft", "imf prognose",
+        "weltwirtschaft kollabiert",
+        "weltwirtschaft schrumpft"
+      ],
+      "trigger_composite": [
+        ["imf", "iwf", "weltwirtschaft", "world economic", "globales wachstum", "globale wirtschaft", "deutschland", "deutsch", "wirtschaft"],
+        ["wachstum", "schrumpft", "kollabiert", "rezession", "stagniert", "schlusslicht", "krise", "prognose", "europa", "in europa"]
+      ],
+      "source_label": "IMF World Economic Outlook Oktober 2024",
+      "source_url": "https://www.imf.org/en/Publications/WEO/Issues/2024/10/22/world-economic-outlook-october-2024",
+      "secondary_url": "https://www.imf.org/en/Countries/DEU"
+    },
+    {
+      "id": "wto_welthandel_2024",
+      "topic": "wto_welthandel_konsens",
+      "scope": "WTO Welthandels-Statistik + Trends",
+      "year": 2024,
+      "headline": "WTO Trade Forecast 2024: Globaler Warenhandel +2.7 %; EU + China bleiben dominante Akteure trotz USA-Zoll-Politik",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: WTO (World Trade Organization) ist die maßgebende Quelle für Welthandel-Statistik. WTO Trade Forecast Oktober 2024: Globaler Warenhandel 2024 +2.7 % (vs -1.0 % 2023). Top-Exportnationen 2024: China (1) ~3.6 Bio USD, USA (2) ~2.0 Bio USD, Deutschland (3) ~1.7 Bio USD. EU als Block: ~6.7 Bio USD (inklusive intra-EU-Handel). Aussagen 'der freie Welthandel bricht zusammen' sind GEMISCHT — Handel wächst, aber mit Verschiebungen + neuen Hindernissen (USA-Zölle, Sanktionen).",
+        "wto_trade_forecast_2024": "WTO World Trade Outlook (Oktober 2024): globaler Warenhandel-Volumen 2024 +2.7 %, 2025 prognostiziert +3.0 %. Erholung von -1.0 % im Krisenjahr 2023.",
+        "top_exportnationen": "WTO-Daten 2024 (Warenhandel): 1) China 3.6 Bio USD, 2) USA 2.0 Bio USD, 3) Deutschland 1.7 Bio USD, 4) Niederlande 0.95 Bio USD (Re-Exports), 5) Japan 0.85 Bio USD. Anteil DE am Welthandel: ~7.5 %.",
+        "eu_handelsmacht": "EU als Block 2024 (inklusive intra-EU-Handel): ~6.7 Bio USD Exporte, ~6.5 Bio USD Importe. Größte Handelsmacht der Welt vor China + USA.",
+        "trumps_zoll_politik": "USA-Trump-Administration Januar 2025+: Zölle auf China (10 % zusätzlich), Mexiko + Kanada (25 % vorgesehen), EU (25 % auf Stahl/Alu). WTO erkennt Verschiebungen, aber freier Welthandel als Konzept bleibt mehrheitlich erhalten — auch China + EU bleiben in WTO.",
+        "service_handel_kontext": "Service-Handel (nicht im Waren-Forecast): 2024 +6 % geschätzt. EU + USA + UK + Indien dominieren. DE-Service-Export: ~$370 Mrd, hauptsächlich Maschinen-/Auto-Service + Tourismus.",
+        "context": "Welthandels-Krise-Narrative sind übertrieben. WTO-Daten zeigen wachsende globale Vernetzung trotz Zoll-Konflikten. Multilaterale Strukturen (WTO, IWF) bleiben erhalten — auch wenn unter Druck."
+      },
+      "context_notes": [
+        "WTO seit 1995. Vorgänger GATT (General Agreement on Tariffs and Trade) seit 1947. 164 Mitgliedstaaten 2024.",
+        "Trade Forecast wird halbjährlich publiziert (April + Oktober).",
+        "Methodisch: aggregiert aus nationalen Zoll-Statistiken + Mitglieder-Surveys."
+      ],
+      "claim_phrasings_handled": [
+        "Der freie Welthandel bricht zusammen",
+        "Globaler Warenhandel kollabiert wegen Trump-Zöllen",
+        "Deutschland verliert seine Stellung im Welthandel"
+      ],
+      "trigger_keywords": [
+        "wto welthandel",
+        "globaler welthandel kollabiert",
+        "welthandel zusammenbruch",
+        "wto trade"
+      ],
+      "trigger_composite": [
+        ["wto", "world trade organization", "welthandel", "globaler handel", "globaler warenhandel", "deutschland welthandel", "freier welthandel", "globalen handel", "internationalen handel"],
+        ["kollabiert", "zusammenbruch", "wachstum", "schrumpft", "krise", "exporte", "importe", "ende", "bricht zusammen", "verliert", "stellung"]
+      ],
+      "source_label": "WTO World Trade Outlook + Statistical Review 2024",
+      "source_url": "https://www.wto.org/english/news_e/pres24_e/pr948_e.htm",
+      "secondary_url": "https://www.wto.org/english/res_e/statis_e/statis_e.htm"
+    }
+  ]
+}

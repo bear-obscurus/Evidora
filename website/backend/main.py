@@ -82,6 +82,7 @@ from services.geographie_pack import search_geographie, claim_mentions_geographi
 from services.eurobarometer import search_eurobarometer, claim_mentions_eurobarometer_cached
 from services.finanzen_pack import search_finanzen, claim_mentions_finanzen_cached
 from services.bildung_pack import search_bildung, claim_mentions_bildung_cached
+from services.internationale_quellen import search_internationale_quellen, claim_mentions_internationale_quellen_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -635,6 +636,14 @@ async def check_claim(request: Request):
         if claim_mentions_bildung_cached(claim):
             tasks.append(cached("Bildungs-Mythen", search_bildung, analysis))
             queried_names.append("Bildungs-Mythen (APA + Hattie + EEF + Pashler 2008 + Nielsen 2013 + OECD ECE)")
+        # Internationale Quellen — Pew + WMO + IMF + WTO. Static-Aggregate
+        # fuer globale (nicht-EU-zentrierte) Perspektive. 4 Topics:
+        # Demokratie-Zufriedenheit weltweit, Klimazustand, Welt-Wirtschaft,
+        # Welthandel.
+        if claim_mentions_internationale_quellen_cached(claim):
+            tasks.append(cached("Internationale Quellen",
+                                search_internationale_quellen, analysis))
+            queried_names.append("Internationale Quellen (Pew + WMO + IMF + WTO)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
