@@ -83,6 +83,8 @@ from services.eurobarometer import search_eurobarometer, claim_mentions_eurobaro
 from services.finanzen_pack import search_finanzen, claim_mentions_finanzen_cached
 from services.bildung_pack import search_bildung, claim_mentions_bildung_cached
 from services.internationale_quellen import search_internationale_quellen, claim_mentions_internationale_quellen_cached
+from services.sport_fitness_pack import search_sport_fitness, claim_mentions_sport_fitness_cached
+from services.kunst_kultur_pack import search_kunst_kultur, claim_mentions_kunst_kultur_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -644,6 +646,25 @@ async def check_claim(request: Request):
             tasks.append(cached("Internationale Quellen",
                                 search_internationale_quellen, analysis))
             queried_names.append("Internationale Quellen (Pew + WMO + IMF + WTO)")
+        # Sport/Fitness-Mythen-Pack — Trainings- und Fitness-Halbwahrheiten
+        # (spot-fat-reduction, muscle-confusion, knuckle-cracking, no-pain-
+        # no-gain, lactic-acid, women-bulky, stretching-injury, fat-burning-
+        # zone, abs-kitchen, high-protein-kidneys). 10 Topics. ACSM/Cochrane/
+        # AHA/ISSN/NSCA. Lehrer-Relevanz: Sport-Lehrer-Mythen + Fitness-
+        # Trainer-Marketing.
+        if claim_mentions_sport_fitness_cached(claim):
+            tasks.append(cached("Sport/Fitness-Mythen", search_sport_fitness, analysis))
+            queried_names.append("Sport-/Fitness-Mythen (ACSM + Cochrane + AHA + ISSN + NSCA)")
+        # Kunst-/Kultur-Mythen-Pack (8 Topics: Pyramiden-Sklaven, Mozart-Armer-
+        # Tod, Napoleon-Klein, Wikinger-Hörner, Kolumbus-Erde-Rund, Salem-
+        # Hexen-Konsens, Great-Wall-China-Alter, Shakespeare-Autorenschaft).
+        # Smithsonian / Harvard (Mark Lehner) / Folger Library / UNESCO /
+        # Otto Erich Deutsch / Stephen Jay Gould / Univ. Virginia Salem-
+        # Archive / James Shapiro Columbia. Lehrer-Relevanz: Geschichts-
+        # Lehrplan AT/DE Schul-Mythen-Korrektur.
+        if claim_mentions_kunst_kultur_cached(claim):
+            tasks.append(cached("Kunst/Kultur-Mythen", search_kunst_kultur, analysis))
+            queried_names.append("Kunst-/Kultur-Mythen (Smithsonian + Harvard + Folger + UNESCO)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

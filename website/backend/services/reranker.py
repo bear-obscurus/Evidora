@@ -154,6 +154,8 @@ _AUTHORITATIVE_INDICATORS = (
     "finanzen_konsens_fact",             # Finanzen-Pack (EZB + Bundesbank + DAI + StiftungW + BaFin)
     "bildung_konsens_fact",              # Bildungs-Pack (APA + Hattie + EEF + Pashler + Nielsen)
     "internationale_quellen_fact",       # Pew + WMO + IMF + WTO (globale Perspektive)
+    "sport_fitness_konsens_fact",        # Sport/Fitness-Pack (ACSM + Cochrane + ISSN + NSCA)
+    "kunst_kultur_konsens_fact",         # Kunst/Kultur-Pack (Smithsonian + Harvard + Folger + UNESCO)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

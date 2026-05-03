@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-03",
+  "source_label": "ACSM + Cochrane + AHA + Mayo Clinic + ISSN + peer-reviewed Studien",
+  "facts": [
+    {
+      "id": "spot_fat_reduction_2026",
+      "topic": "spot_fat_reduction_mythos",
+      "scope": "Behauptung, gezielte Übungen verbrennen Fett an spezifischer Körperstelle",
+      "year": 2024,
+      "headline": "Ziel-Fettverbrennung (Spot Reduction) ist FALSE — Sit-Ups verbrennen NICHT primär Bauchfett, Fett wird global mobilisiert",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'gezielte Übungen (Sit-Ups, Bizeps-Curls) verbrennen Fett an genau der Stelle' ist FALSE. Wissenschaftlicher Konsens (2021 Meta-Analyse mit 13 Studien, n=1100): lokales Muskeltraining hat KEINEN Effekt auf lokale Fett-Reduktion. Fett wird über Lipolyse global aus allen Speichern mobilisiert — wo zuerst, hängt von Genetik + Hormonen + Geschlecht ab. Für Bauchfett-Reduktion: Kalorien-Defizit + Cardio + Krafttraining für Gesamtkörper.",
+        "ramirez_2021_meta": "Ramirez-Campillo et al. (2021, Meta-Analyse, J Strength Cond Res): 13 RCTs mit insgesamt ~1.100 Probanden. Befund: lokales Muskeltraining (z.B. Bauch-Übungen 6 Wochen, 5x/Woche) hat NULL Effekt auf lokale Fett-Schicht (subkutaner Fett). Konsistente Evidenz seit 1980er.",
+        "sydney_2023_position": "University of Sydney 2023 (öffentliche Stellungnahme): 'Spot reduction is a myth — Targeted weight loss to a specific area is not achievable.' Erklärt Lipolyse-Mechanismus + Genetik-Faktor.",
+        "mechanismus_lipolyse": "Beim Energie-Bedarf werden Triglyceride aus Fettzellen mobilisiert via hormone-sensitive Lipase. Mobilisierungs-Reihenfolge: hängt von alpha- vs beta-adrenergen Rezeptor-Dichte (Genetik), Hormonen (Cortisol, Insulin), und nicht von der trainierten Muskelgruppe.",
+        "praktische_strategie": "Bauchfett-Reduktion: 1) Kalorien-Defizit (~500 kcal/Tag), 2) Krafttraining (erhält Muskelmasse, erhöht Grundumsatz), 3) Cardio (verbrennt zusätzlich Kalorien), 4) Geduld (3-6 Monate für sichtbare Reduktion). Bauch-Übungen verbessern Muskel-Definition, aber nicht Fett-Schicht.",
+        "context": "Fitness-Industrie verkauft 'Bauch-weg-in-7-Tagen'-Programme + Hochfrequenz-Sit-Ups als Spot-Reduction. Wissenschaftlich nicht haltbar. Eine Studie 2023 (PMC, Korea) deutet leichten Effekt bei Aerobic-Training auf Bauch-Fett — aber dort ist es Aerobic + Kalorien-Verbrennung, nicht 'gezielt'."
+      },
+      "context_notes": [
+        "Genetik bestimmt 'wo zuerst Fett verschwindet' — manche verlieren zuerst am Bauch, manche an den Hüften. Anti-Aging-Lobbying-Positionen hierzu nicht haltbar.",
+        "Frauen-Spezifik: prä-menopausal mehr Fett-Speicher in Hüften/Oberschenkeln (Östrogen-Effekt); post-menopausal verschiebt sich Fett in Bauch-Region.",
+        "Lokale Behandlungen wie Cool-Sculpting / Kryolipolyse können fett-Zellen lokal abbauen — das ist KEINE Spot-Reduction durch Training, sondern medizinische Intervention."
+      ],
+      "claim_phrasings_handled": [
+        "Sit-Ups verbrennen Bauchfett",
+        "Mit gezielten Übungen kann man an einer Körperstelle abnehmen",
+        "Spot Reduction funktioniert"
+      ],
+      "trigger_keywords": [
+        "spot reduction", "ziel-fettverbrennung",
+        "bauchfett uebung", "bauchfett übung",
+        "sit-ups bauchfett",
+        "gezielt abnehmen"
+      ],
+      "trigger_composite": [
+        ["sit-ups", "sit ups", "bauchuebung", "bauchübung", "bauch-uebung", "bauch-übung", "spot reduction", "spot-reduction", "uebung", "übung", "training", "fitness", "krafttraining"],
+        ["bauchfett", "fett verbrennen", "fettverbrennung", "abnehmen", "ziel", "gezielt", "spezifisch", "stelle", "körperstelle", "koerperstelle", "an bestimmten"]
+      ],
+      "source_label": "Ramirez-Campillo et al. 2021 Meta-Analyse + University of Sydney 2023",
+      "source_url": "https://www.sydney.edu.au/news-opinion/news/2023/11/07/spot-reduction--why-targeting-weight-loss-to-a-specific-area-is-.html",
+      "secondary_url": "https://en.wikipedia.org/wiki/Spot_reduction"
+    },
+    {
+      "id": "muscle_confusion_2026",
+      "topic": "muscle_confusion_mythos",
+      "scope": "Behauptung, ständig wechselnde Übungen 'verwirren' Muskeln und führen zu mehr Wachstum",
+      "year": 2024,
+      "headline": "'Muscle Confusion' ist Marketing-Begriff (P90X, Beachbody) — Muskeln passen sich an, sie verwirren sich nicht; Progressive Overload ist der echte Treiber",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Muskeln müssen ständig durch wechselnde Übungen verwirrt werden, um zu wachsen' ist FALSE. Wissenschaftlicher Konsens (ACSM, NSCA, ISSN): Muskel-Wachstum folgt dem SAID-Prinzip (Specific Adaptation to Imposed Demands) — Muskeln passen sich an spezifischen Stress an. Der primäre Treiber für Hypertrophie ist PROGRESSIVE OVERLOAD: schrittweise Steigerung von Last, Volumen, Intensität. Variation hat motivatorische + Plateau-Brechende Vorteile, aber ist kein 'Verwirrungs-Mechanismus'.",
+        "said_prinzip": "SAID-Prinzip (Specific Adaptation to Imposed Demands): Muskeln + Bindegewebe + Nervensystem adaptieren spezifisch zu dem trainings-stimulus. Adaptation ist GUT (Effizienz steigt) und gewünscht — nicht ein Problem, das durch 'Verwirrung' überwunden werden muss.",
+        "progressive_overload": "Progressive Overload (Hauptevidenz: Schoenfeld 2010 + Update 2017, NSCA Systematische Reviews): schrittweise Erhöhung von Volumen (Sätze × Wiederholungen) + Intensität (% 1RM) + Frequenz. Treibt Muskelhypertrophie. KEIN Wechseln-um-zu-wechseln nötig.",
+        "p90x_marketing": "P90X (Tony Horton, 2003) + Beachbody-Reihe vermarkten 'Muscle Confusion' als Verkaufsargument. Studien zur Effektivität von P90X zeigen normale Trainings-Effekte — aber nicht durch 'Verwirrung', sondern durch konsistente moderate Belastung über 90 Tage.",
+        "variation_motivations_aspekt": "Variation hat realen Wert: (1) Motivations-Erhalt (weniger Langeweile), (2) Plateau-Brechen (wenn Progressive Overload stagniert, neue Übungen geben neue Wachstums-Reize), (3) muskelgruppen-spezifische Schwächen ausgleichen. Aber das ist nicht 'Verwirrung', sondern strukturierte Periodisierung.",
+        "context": "Marketing-Aussagen 'unsere Muscle-Confusion-Methode trainiert garantiert mehr Muskel-Wachstum' sind nicht wissenschaftlich belegbar. Was wirklich wirkt: Konsistenz + Progressive Overload + 8-15 Wiederholungen für Hypertrophie + ausreichende Erholung."
+      },
+      "context_notes": [
+        "Periodisierung (Linear, Wellig, Block) sind seit Jahrzehnten etablierte Trainings-Methoden — bewusste strukturierte Variation, nicht zufällige 'Verwirrung'.",
+        "Nutzer der Beachbody-Programme zeigen Erfolge — aber das ist eher die Folge von 6 Tage/Woche Training + Diät als von 'Confusion'.",
+        "ISSN (International Society of Sports Nutrition) Position-Statement zu Hypertrophie listet Variation NICHT in den Top-5-Faktoren für Muskel-Wachstum."
+      ],
+      "claim_phrasings_handled": [
+        "Muskel-Verwirrung führt zu mehr Wachstum",
+        "Muskeln müssen ständig durch neue Übungen verwirrt werden",
+        "Wer immer das Gleiche trainiert, baut keine Muskeln auf"
+      ],
+      "trigger_keywords": [
+        "muscle confusion", "muskel verwirrung",
+        "muskel verwirren", "muskel verwirrt",
+        "p90x"
+      ],
+      "trigger_composite": [
+        ["muscle confusion", "muskel-verwirrung", "muskel verwirrung", "uebung wechseln", "übung wechseln", "muskel verwir", "p90x", "beachbody", "neue uebung", "neue übung", "immer das gleiche", "gleiche trainier", "gleiche übung"],
+        ["wachstum", "muskel-wachstum", "hypertrophie", "muskelaufbau", "training", "verwirrt", "muskeln aufbauen", "muskeln wachsen", "trainier", "baut", "muskeln"]
+      ],
+      "source_label": "ACSM + NSCA + Schoenfeld 2010/2017 + ISSN Position",
+      "source_url": "https://journals.lww.com/nsca-jscr/abstract/2010/10000/the_mechanisms_of_muscle_hypertrophy_and_their.40.aspx",
+      "secondary_url": "https://www.acsm.org/blog-detail/acsm-certified-blog/2018/10/15/progressive-overload-strength-training"
+    },
+    {
+      "id": "knuckle_cracking_2026",
+      "topic": "knuckle_cracking_arthritis_mythos",
+      "scope": "Behauptung, Knöchel-Cracken verursacht Arthritis",
+      "year": 2024,
+      "headline": "Knöchel-Cracken verursacht KEINE Arthritis — Donald Unger 60-Jahre-Selbstexperiment + 8+ Studien bestätigen: kein Zusammenhang",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Knöchel-Cracken verursacht Arthritis' ist FALSE. Wissenschaftlicher Konsens (Harvard Health, Johns Hopkins Arthritis Center, AAOS, mehrere Studien): KEIN Zusammenhang zwischen Knöchel-Cracken und Hand-Arthritis. Berühmt: Donald Unger Ig-Nobelpreis 2009 — knackte 60 Jahre lang nur die linke Hand mehrmals täglich, nie die rechte. Resultat: keine Arthritis-Differenz zwischen den Händen. Was Cracken kann: leicht reduzierte Griffstärke + temporäre Gelenk-Schwellung — KEINE strukturelle Schädigung.",
+        "unger_60_jahre_experiment": "Donald Unger Selbstexperiment 60 Jahre (1948-2008): linke Hand mehrmals täglich gecrackt, rechte nie. Resultat: KEINE Arthritis in beiden Händen. Veröffentlicht 1998 in Arthritis & Rheumatology, Ig-Nobelpreis 2009.",
+        "deweber_2011_studie": "deWeber et al. 2011 (J Am Board Fam Med): Studie mit 215 Probanden 50-89 Jahre — 20 % regelmäßige Knöchel-Cracker. Hand-Röntgen-Vergleich: KEIN signifikanter Unterschied in Osteoarthritis-Inzidenz zwischen Crackern + Nicht-Crackern.",
+        "swezey_1975": "Swezey & Swezey 1975 (West J Med): erste systematische Studie mit 28 Senioren-Heim-Bewohnern. Befund: kein Arthritis-Unterschied. Wiederholt von späteren Studien.",
+        "mri_evidence_2015": "Kawchuk et al. 2015 (PLoS ONE): MRI-Aufnahme während Cracken. Pop-Geräusch ist Bildung einer Gas-Kavität (Tribonukleation), nicht 'Bubble-Burst' — also KEIN mechanischer Schaden am Gelenk, sondern Gas-Lösung im Gelenk-Sekret.",
+        "moegliche_negative_effekte": "Real dokumentiert: leicht reduzierte Griffstärke (~10 %) bei chronischen Cracker (Castellanos & Axelrod 1990); temporäre Gelenk-Schwellung möglich; in extremen Fällen Verletzung von Bändern bei sehr forcierten Cracks. ABER: keine Arthritis.",
+        "context": "Mythos von Eltern-Generationen weitergegeben. Kein wissenschaftlicher Beleg trotz mehreren Studien-Generationen. Praktischer Tipp: Cracken ist OK, aber wenn schmerzhaft → aufhören."
+      },
+      "context_notes": [
+        "Cracken auch bei anderen Gelenken (Hals, Rücken) prinzipiell ähnliches Phänomen — leichte Vorsicht beim Hals (Vertebra-arteria-Risiko, sehr selten).",
+        "Reflexartiges Cracken kann nervöse Komponente haben (manche bei Stress) — kein Gesundheits-Problem aber.",
+        "Knöchel-Cracken ist NICHT therapeutisch relevant — keine Schmerz-Reduktion, keine Beweglichkeits-Verbesserung. Beruht auf Gewohnheit + sensorischem Feedback."
+      ],
+      "claim_phrasings_handled": [
+        "Knöchel-Cracken verursacht Arthritis",
+        "Wer mit den Fingern knackt, bekommt Gelenkverschleiß",
+        "Häufiges Knacken mit den Knöcheln führt zu Hand-Arthrose"
+      ],
+      "trigger_keywords": [
+        "knoechel cracken", "knöchel cracken",
+        "finger knacken arthritis", "finger knacken gelenk",
+        "knoechel knacken", "knöchel knacken"
+      ],
+      "trigger_composite": [
+        ["knoechel", "knöchel", "finger", "gelenk-knacken", "finger knacken", "knuckle"],
+        ["arthritis", "arthrose", "gelenk-verschleiss", "gelenkverschleiss", "gelenkverschleiß", "schaden", "verursacht", "krank", "kaputt"]
+      ],
+      "source_label": "Donald Unger 1998 + Kawchuk 2015 PLoS ONE + Harvard Health",
+      "source_url": "https://www.health.harvard.edu/pain/does-cracking-knuckles-cause-arthritis",
+      "secondary_url": "https://www.hopkinsarthritis.org/arthritis-news/knuckle-cracking-q-a-from/"
+    },
+    {
+      "id": "no_pain_no_gain_2026",
+      "topic": "no_pain_no_gain_mythos",
+      "scope": "Behauptung, ohne Schmerzen kein Trainings-Erfolg",
+      "year": 2024,
+      "headline": "'No Pain No Gain' ist GEFÄHRLICH falsch — Schmerz signalisiert Verletzung, nicht Trainings-Erfolg; Anstrengung ≠ Schmerz",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'wer beim Training keine Schmerzen hat, macht keinen Fortschritt' ist FALSE und potentiell GEFÄHRLICH. Wichtige Differenzierung: ANSTRENGUNG (Brennen in Muskeln, Belastungs-Wahrnehmung, leichter Muskelkater am Folgetag) ist normaler Trainings-Stimulus. SCHMERZ (stechend, einschießend, Gelenk-Schmerz, anhaltender Schmerz nach Training) ist ein Verletzungs-Signal. Wer durch Schmerz weitertrainiert, riskiert chronische Verletzungen, Sehnen-Entzündungen, Stress-Frakturen.",
+        "acsm_position": "ACSM (American College of Sports Medicine, 2018 Position-Statement): 'No Pain, No Gain' ist nicht evidenz-basiert. Empfohlen: Borg-RPE-Skala (Rate of Perceived Exertion) für Belastungs-Steuerung. RPE 6-7 von 10 bei Krafttraining = produktive Anstrengung; RPE 9-10 = nahe Maximum, sparsam einsetzen.",
+        "schmerz_kategorien": "Differenzierung: (1) Brennen während Training (Lactat-Akkumulation, normal), (2) DOMS / Delayed Onset Muscle Soreness 12-72h danach (mikroskopische Muskel-Faser-Schäden, normal bei neuen Reizen), (3) Stechender Schmerz während/nach Training (Verletzungs-Signal, AUFHÖREN), (4) Gelenk-Schmerz (Verletzungs-Risiko, AUFHÖREN).",
+        "verletzungs_studien": "Sport-Verletzungs-Studien (BJSM systematische Reviews 2020-2024): Anteil der Sport-Verletzungen, die durch zu hohe Trainingsbelastung + Ignorierung von Schmerz-Signalen verursacht: ~30-50 % je nach Sportart. Hauptkategorien: Tendinopathien (Sehnen-Reizungen), Stress-Frakturen, Bänder-Risse.",
+        "doms_kontext": "Muskelkater (DOMS) tritt nach intensiven oder neuen Reizen auf. KEIN Indikator für Trainings-Erfolg. Studien zeigen: Trainierte mit weniger DOMS haben oft besseres Adaption — DOMS ist Schaden-Reaktion, nicht Wachstums-Reaktion.",
+        "anstrengungs_alternative": "Methodisch besser: progressive Belastung, RPE-Steuerung, ausreichende Erholung (48-72h pro Muskelgruppe), Schlaf-Hygiene, Ernährung. 'Beste Performance' kommt aus konsistentem moderaten Training, nicht aus Schmerz-überschreiten.",
+        "context": "Slogan stammt aus Bodybuilding-Kultur 1980er (Jane Fonda Workout 1982). Wissenschaftlich überholt. Smart Trainers heute: 'Train hard but recover smarter' — Erholung ist Teil des Trainings."
+      },
+      "context_notes": [
+        "Bei Anfängern: Anstrengung wird oft als Schmerz wahrgenommen — Coaching hilft bei Differenzierung.",
+        "Marathon-Training-Spezifik: 'Wall'-Phänomen + Erschöpfung sind normal, aber stechender Schmerz im Knie/Schienbein bedeutet AUFHÖREN.",
+        "Schmerz-Tagebuch: Empfehlung für Hobby-Athleten, um Verletzungen früh zu erkennen + zu unterscheiden zwischen DOMS + akutem Schmerz."
+      ],
+      "claim_phrasings_handled": [
+        "Ohne Schmerz kein Trainings-Erfolg",
+        "No Pain No Gain ist eine wichtige Trainings-Regel",
+        "Wer beim Sport keine Schmerzen spürt, trainiert nicht hart genug"
+      ],
+      "trigger_keywords": [
+        "no pain no gain",
+        "ohne schmerz kein erfolg",
+        "schmerz training",
+        "ohne schmerzen trainieren"
+      ],
+      "trigger_composite": [
+        ["no pain no gain", "schmerz training", "schmerz beim training", "ohne schmerz", "ohne schmerzen", "weh tun", "weh tut", "keine schmerz", "schmerzen spürt", "schmerzen spuert", "beim sport"],
+        ["erfolg", "fortschritt", "wirkung", "gain", "regel", "trainings-regel", "muskelaufbau", "muskel-wachstum", "wachstum", "kein", "no", "hart genug", "hart trainier", "trainier"]
+      ],
+      "source_label": "ACSM Position-Statement + BJSM Systematische Reviews 2020-2024",
+      "source_url": "https://www.acsm.org/all-blog-posts/certification-blog/acsm-certified-blog/2018/03/27/listening-to-the-pain",
+      "secondary_url": "https://bjsm.bmj.com/"
+    },
+    {
+      "id": "lactic_acid_2026",
+      "topic": "lactic_acid_soreness_mythos",
+      "scope": "Behauptung, Muskelkater wird durch Milchsäure verursacht",
+      "year": 2024,
+      "headline": "Muskelkater (DOMS) wird NICHT durch Milchsäure verursacht — Mikroriss-Theorie + entzündliche Reaktion sind die echten Mechanismen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Muskelkater entsteht durch Milchsäure-Anreicherung' ist FALSE. Wissenschaftlicher Konsens (J Appl Physiol, ACSM, BJSM): Lactat (Milchsäure-Anion) verschwindet binnen 30-60 Min nach Trainings-Ende aus dem Blut/Muskeln. DOMS (Delayed Onset Muscle Soreness) tritt 12-72 STUNDEN nach Training auf — also lange nach Lactat-Clearance. Echte Mechanismen: (1) mikroskopische Muskel-Faser-Schäden bei exzentrischer Belastung, (2) entzündliche Reaktion + Heilungs-Prozess, (3) Bindegewebs-/Faszien-Reizung.",
+        "lactat_clearance": "Lactat-Halbwertszeit nach Belastung: ~15-30 Min. Nach 60 Min ist Lactat auf Ruhe-Niveau zurück. DOMS tritt bei intensiven Reizen 24-48h später auf — chronologisch unmöglich, dass Lactat Ursache ist.",
+        "newham_1983": "Newham (1983, Eur J Appl Physiol): erste Studie, die Lactat-Hypothese widerlegte. Probanden mit hohem Lactat-Plateau zeigten KEINEN Muskelkater; Probanden mit niedrigem Lactat aber exzentrischer Belastung zeigten klassische DOMS.",
+        "exzentrische_kontraktion": "Exzentrische Kontraktion (Muskel-Verlängerung unter Last, z.B. Abwärts-Phase einer Squat) verursacht ~5x mehr DOMS als konzentrische (Verkürzung). Mechanismus: Mikrorisse im Z-Disc-Bereich der Sarkomer (Friden 1981, McHugh 2003).",
+        "entzuendliche_reaktion": "Sekundärer Mechanismus: 24-48h nach Training Infiltration durch Neutrophile + Makrophagen → entzündliche Reaktion → Schmerz-Signal über C-Fasern. Healthy + nötiger Teil der Muskel-Reparatur + Hypertrophie.",
+        "praktische_implikation": "DOMS-Reduktion: nicht durch 'Lactat-Massage' (sinnlos), sondern durch (1) progressives Training (graduelle Steigerung), (2) leichtes Cardio nach Workout (Recovery Run), (3) Schlaf + Ernährung + Hydration, (4) ggf. NSAIDs bei stark beeinträchtigendem DOMS (aber erst bei Schmerzen >3 Tage).",
+        "context": "Lactat-Mythos hält sich seit 1900er — frühe Studien interpretierten Lactat-Erscheinen mit Erschöpfung-Sensation. Aktuelle Forschung: Lactat ist sogar Energie-Quelle (Brooks-Cycle), nicht 'Abfall'. ACSM hat den Mythos schon 2014 öffentlich widerlegt."
+      },
+      "context_notes": [
+        "DOMS ist NICHT Indikator für Trainings-Effektivität (siehe no_pain_no_gain-Topic). Trainierte zeigen weniger DOMS bei gleicher absoluter Belastung.",
+        "Milchsäure-Massage / 'Lactat-Cool-Down' Marketing-Behauptungen sind nicht haltbar.",
+        "Differenzierung: Brennen IM Muskel während Training (echtes Lactat-Symptom) ≠ Muskelkater nach Training (DOMS, andere Ursache)."
+      ],
+      "claim_phrasings_handled": [
+        "Muskelkater entsteht durch Milchsäure",
+        "Milchsäure verursacht Schmerzen nach dem Training",
+        "Nach intensivem Sport sammelt sich Milchsäure und macht Muskelkater"
+      ],
+      "trigger_keywords": [
+        "muskelkater milchsaeure", "muskelkater milchsäure",
+        "milchsaeure muskel", "milchsäure muskel",
+        "lactat muskelkater"
+      ],
+      "trigger_composite": [
+        ["muskelkater", "doms", "milchsäure", "milchsaeure", "lactat"],
+        ["ursache", "verursacht", "kommt von", "entstand durch", "muskel", "schmerz", "training"]
+      ],
+      "source_label": "Newham 1983 + Friden 1981 + McHugh 2003 + ACSM Position",
+      "source_url": "https://www.acsm.org/blog-detail/acsm-certified-blog/2018/04/06/3-myths-about-muscle-soreness",
+      "secondary_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1473829/"
+    },
+    {
+      "id": "women_bulky_muscles_2026",
+      "topic": "women_bulky_muscles_mythos",
+      "scope": "Behauptung, Frauen werden durch Krafttraining 'bulky' (stark muskulös)",
+      "year": 2024,
+      "headline": "Frauen werden durch normales Krafttraining NICHT 'bulky' — Testosteron-Niveau ~5-10 % von Männern, Hypertrophie-Limit deutlich niedriger",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Frauen werden durch Krafttraining schnell zu muskulös / bulky' ist FALSE. Hormonelle Realität: Frauen haben durchschnittlich ~10 % des Testosteron-Niveaus von Männern. Testosteron ist Haupt-Treiber für Muskel-Hypertrophie. Frauen können durch Krafttraining Muskel-Tonus + Kraft + Knochendichte deutlich verbessern, aber NICHT die 'männliche' Muskelmasse-Optik entwickeln. 'Bulky'-Ergebnisse bei Bodybuilderinnen erfordern jahrelanges hochintensives Training + oft Anabolika.",
+        "testosteron_unterschied": "Durchschnittliches Total-Testosteron: Männer ~270-1.070 ng/dL, Frauen ~15-70 ng/dL. Ratio ~10-15:1. Testosteron als anaboles Hormon ist HAUPT-Treiber für Muskel-Wachstum (Bhasin et al. 1996 NEJM, Klassiker-Studie).",
+        "hypertrophie_geschlechts_unterschied": "Studien (Roberts et al. 2020 Sports Med, Gentil et al. 2018): bei gleichem Trainings-Reiz erreichen Frauen ~50-60 % des Hypertrophie-Effekts von Männern. NICHT weil Frauen weniger Muskeln aufbauen können, sondern weil sie weniger TESTOSTERON haben.",
+        "praktische_realitaet": "Frauen, die Krafttraining 3-4x/Woche machen + ausreichend Protein essen (1,6 g/kg): erleben in 6-12 Monaten ~2-4 kg Muskelmasse-Zuwachs. Ergebnis: schlanker, stärker, definierter — NICHT 'bulky'. Männer mit gleichem Training: ~5-8 kg Zuwachs.",
+        "bodybuilderinnen_kontext": "Professionelle Bodybuilderinnen mit 'männlicher' Muskel-Optik: jahrelanges Training (5-7x/Woche, sehr hochintensiv), spezialisierte Ernährung + sehr oft anabole Steroide (Testosteron, Trenbolon, Winstrol). Das ist KEIN Ergebnis von normalem Krafttraining.",
+        "vorteile_krafttraining_frauen": "Wissenschaftlicher Konsens (ACSM Position-Statement Frauen + Krafttraining 2020): Krafttraining für Frauen reduziert Osteoporose-Risiko um ~30-50 %, verbessert Glukose-Toleranz, reduziert Bauch-Fett, erhöht Selbstwertgefühl. Empfehlung: 2-3x/Woche Ganzkörper-Krafttraining für ALLE Frauen.",
+        "context": "Mythos hält Frauen oft vom Krafttraining ab → Verzicht auf alle gesundheitlichen Vorteile. Marketing in Frauen-Fitness oft auf 'Toning'-Einreden ('lange schlanke Muskeln' etc.) — Toning ist physiologisch NICHTS anderes als Muskelaufbau + Fett-Reduktion."
+      },
+      "context_notes": [
+        "Frauen mit polyzystischem Ovar-Syndrom (PCOS) haben höhere Androgen-Werte und können mehr Muskel aufbauen — Ausnahme.",
+        "Differenzierung: 'Tonus' = Muskel-Spannung im Ruhezustand. 'Definition' = Muskel-Sichtbarkeit (geringer Körperfett-Anteil). Beide werden durch Krafttraining erreicht.",
+        "Empfohlen für Frauen ab 40: Krafttraining 2-3x/Woche zur Knochendichte-Erhaltung, Sturzprophylaxe, Sarkopenie-Prävention."
+      ],
+      "claim_phrasings_handled": [
+        "Frauen werden durch Krafttraining zu muskulös",
+        "Hanteltraining macht Frauen männlich",
+        "Krafttraining macht Frauen bulky"
+      ],
+      "trigger_keywords": [
+        "frauen krafttraining muskuloes", "frauen krafttraining muskulös",
+        "frauen hanteltraining maennlich", "frauen hanteltraining männlich",
+        "frauen bulky", "frauen muskelpaket"
+      ],
+      "trigger_composite": [
+        ["frauen", "frau", "weibliche", "ladies"],
+        ["krafttraining", "hanteltraining", "muskulös", "muskuloes", "bulky", "muskel", "männlich", "maennlich", "muskelpaket"]
+      ],
+      "source_label": "Roberts et al. 2020 Sports Med + ACSM Position 2020 + Bhasin NEJM 1996",
+      "source_url": "https://www.acsm.org/blog-detail/acsm-blog/2020/01/22/strength-training-women",
+      "secondary_url": "https://link.springer.com/article/10.1007/s40279-020-01345-1"
+    },
+    {
+      "id": "stretching_injury_2026",
+      "topic": "stretching_injury_mythos",
+      "scope": "Behauptung, Stretching vor dem Training reduziert Verletzungs-Risiko",
+      "year": 2024,
+      "headline": "Statisches Stretching VOR dem Training reduziert KEINE Verletzungen + reduziert kurzfristig Kraft — dynamisches Aufwärmen ist die evidenzbasierte Alternative",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Stretching vor dem Training verhindert Verletzungen' ist FALSE bzw. MIXED. Cochrane-Review 2007 (Herbert & Gabriel) + nachfolgende Studien: statisches Stretching VOR Training reduziert KEINE Sport-Verletzungs-Inzidenz. ZUSÄTZLICH: statisches Stretching reduziert kurzfristig (5-30 Min) maximale Kraft + Sprunghöhe um 5-15 %. Empfohlen: dynamisches Aufwärmen (Joggen, Hampelmänner, Bein-Schwingen) VOR Training; statisches Stretching NACH Training oder als separate Beweglichkeits-Einheit.",
+        "cochrane_2007_review": "Herbert & Gabriel (2007, Cochrane Database Syst Rev): meta-Analyse 5 Studien mit ~2.500 Teilnehmern. Befund: Stretching vor Training hatte KEINEN signifikanten Effekt auf Verletzungs-Risiko. Effekt-Stärke ~0.05 (vernachlässigbar).",
+        "small_2008_studie": "Small et al. (2008, Res Sports Med): systematischer Review 7 Studien — Stretching reduziert Muskel-/Bänder-Verletzungen NICHT. Andere Faktoren (Trainings-Volumen, Aufwärmen, Schuhwerk) wichtiger.",
+        "kraft_reduktion_simao_2011": "Simao et al. (2011, J Strength Cond Res) + Behm 2016 Meta-Analyse: 30 Sek statisches Stretching pro Muskelgruppe vor Krafttraining reduziert max. Kraft um 5-10 %. 60-Sek-Stretching reduziert um 15 %. Effekt hält 5-30 Min.",
+        "dynamisches_aufwaermen": "Empfohlene Alternative: dynamisches Aufwärmen 5-10 Min vor Training. Beispiele: leichtes Joggen, Hampelmänner, Bein-Schwingen (Front-Back, Seite-Seite), Kreis-Bewegungen, Ausfallschritte. Erhöht Muskel-Temperatur, neuromuskuläre Aktivierung, ohne Kraft zu reduzieren.",
+        "stretching_nach_training": "Statisches Stretching NACH Training: kann Beweglichkeit verbessern (sinnvoll für Sportler mit Beweglichkeits-Defiziten) + leicht DOMS reduzieren (umstritten). Aber NICHT verletzungs-präventiv.",
+        "context": "Schul-Sport + Kindergarten-Sport oft mit 'Aufwärmen + Dehnen vor Bewegung'-Routine — wissenschaftlich überholt seit ~2010, aber didaktisch lange tradiert. Sport-Pädagogen sollten dynamisches Aufwärmen lehren."
+      },
+      "context_notes": [
+        "Yoga + dedicated Stretching-Einheiten als separate Praxis (nicht-Vor-Sport): wertvoll für Beweglichkeit, Stress-Reduktion, Mobilität. Hier nicht relevant.",
+        "Bei Tanz, Ballet, Kampfsport: spezifische Beweglichkeits-Anforderungen können statisches Stretching rechtfertigen — disziplin-spezifisch.",
+        "Meta-Analyse Behm 2016 (App Physiol Nutr Metab): Effekt-Größe und Risiko-Bewertung quantifiziert. Behm + andere Sport-Wissenschaftler dominieren das Feld."
+      ],
+      "claim_phrasings_handled": [
+        "Stretching vor dem Training verhindert Verletzungen",
+        "Vor dem Sport sollte man sich dehnen",
+        "Wer sich nicht dehnt, verletzt sich häufiger beim Sport"
+      ],
+      "trigger_keywords": [
+        "stretching verhindert verletzung",
+        "dehnen vor sport",
+        "stretching vor training",
+        "dehnen verletzung verhindern"
+      ],
+      "trigger_composite": [
+        ["stretching", "dehnen", "dehnung", "stretchen", "dehnt"],
+        ["verhindert", "verletzung", "verletzungsrisiko", "vor sport", "vor training", "vor dem sport", "schuetzt", "schützt", "verletzt", "wichtig", "sollte", "beim sport", "sport"]
+      ],
+      "source_label": "Cochrane Review 2007 + Behm Meta-Analyse 2016 + ACSM",
+      "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004577.pub2/full",
+      "secondary_url": "https://www.acsm.org/blog-detail/acsm-certified-blog/2017/04/26/dynamic-stretching"
+    },
+    {
+      "id": "fat_burning_zone_2026",
+      "topic": "fat_burning_zone_mythos",
+      "scope": "Behauptung, niedrige Trainings-Intensität (60-70 % HF) verbrennt mehr Fett",
+      "year": 2024,
+      "headline": "Die 'Fett-Verbrennungs-Zone' bei niedriger Intensität ist irreführend — höhere Intensität verbrennt MEHR Gesamt-Kalorien + mehr Fett insgesamt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Bei 60-70 % der Maximalherzfrequenz wird mehr Fett verbrannt' ist MIXED/MOSTLY_FALSE. Bei niedriger Intensität ist der RELATIVE Anteil der Fett-Verbrennung an Gesamt-Energie höher (~60-65 % Fett, 35-40 % Kohlenhydrate). Bei hoher Intensität sinkt der relative Fett-Anteil (~30 % Fett, 70 % Kohlenhydrate), aber die ABSOLUTE Kalorien-Verbrennung ist VIEL HÖHER. Resultat: hohe Intensität verbrennt MEHR Fett-Gramm pro Trainings-Einheit + mehr Gesamt-Kalorien. Für Fett-Reduktion: was zählt ist Gesamt-Kalorien-Defizit + Trainings-Volumen, nicht 'Zone'.",
+        "relative_vs_absolute": "ACSM Erklärung: bei Sport mit 50 % VO2max werden ~60 % des Energie-Bedarfs aus Fett gedeckt; bei 70 % VO2max ~40 %; bei 85 % VO2max ~20 %. ABER: bei 50 % VO2max werden insgesamt ~5 kcal/min verbraucht, bei 85 % ~12 kcal/min. Resultat absolut: 50 %-Intensität = 3 kcal Fett/min, 85 %-Intensität = 2,4 kcal Fett/min — knapp ähnlich, aber Gesamt-Kalorien-Verbrennung höher.",
+        "epoc_effekt": "EPOC (Excess Post-Exercise Oxygen Consumption, 'Nachbrenn-Effekt'): hochintensives Training (HIIT, Tabata) erzeugt 24-h-erhöhten Stoffwechsel — zusätzliche ~7-15 % Kalorien-Verbrennung in den 24h NACH Training. Niedrige Intensität: kaum EPOC.",
+        "hiit_studien_2024": "Wewege et al. 2017 + Update 2022 (Obesity Reviews): HIIT vs Moderate-Cardio Meta-Analyse. HIIT verbrennt MEHR oder gleich viel Fett pro Zeit-Einheit + braucht weniger Trainings-Zeit. 30 Min HIIT ≈ 60 Min moderate Cardio in Fett-Verlust.",
+        "praktische_strategie": "Für Fett-Reduktion: was tatsächlich wirkt (Hierarchie nach Wirksamkeit): 1) Kalorien-Defizit (~80 % des Effekts), 2) Trainings-Volumen (egal welche Intensität), 3) Krafttraining-Anteil (erhalten Muskelmasse), 4) Variation bei Plateau. Die 'Fett-Verbrennungs-Zone' ist nicht oben in der Liste.",
+        "wann_niedrig_intensiv_sinnvoll": "Niedrige Intensität ist sinnvoll bei: Anfängern (Konditionierung), Erholungstraining zwischen harten Einheiten, Bei Verletzungen, Bei langer Trainings-Dauer (60+ Min). NICHT für maximalen Fett-Verlust.",
+        "context": "Mythos kommt aus Polar-/Garmin-Pulsuhren-Marketing 1990er — 'Find your fat-burning zone' war Verkaufsargument. Wissenschaftlich überholt seit Coyle 1995 + nachfolgende Forschung."
+      },
+      "context_notes": [
+        "Differenzierung Trainings-Ziel: für Endurance-Aufbau (Marathon-Training): 70-80 % Zeit in niedriger Intensität sinnvoll (Polarisierungs-Modell Seiler). Aber NICHT für Fett-Verlust.",
+        "EKG-/Diabetiker-Patienten: medizinisch oft auf moderate Intensität limitiert — andere Diskussion.",
+        "Pulsuhr-Genauigkeit: optische Pulsmesser am Handgelenk sind bei hoher Intensität ungenau — Brustgurt für präzise HF-Steuerung."
+      ],
+      "claim_phrasings_handled": [
+        "Bei niedriger Intensität verbrennt man mehr Fett",
+        "Die Fett-Verbrennungs-Zone bei 65 Prozent ist optimal zum Abnehmen",
+        "Langsames Cardio ist besser für Fett-Verlust als HIIT"
+      ],
+      "trigger_keywords": [
+        "fett-verbrennungs-zone", "fettverbrennungszone",
+        "fat burning zone",
+        "niedrige intensitaet fett", "niedrige intensität fett",
+        "65 prozent puls fett", "70 prozent puls fett"
+      ],
+      "trigger_composite": [
+        ["fettverbrennung", "fett-verbrennung", "abnehmen", "fett-verlust", "fett-zone", "fettzone", "fat burning", "fett verbrenn", "verbrennt man", "verbrennt mehr"],
+        ["zone", "65 prozent", "70 prozent", "puls", "herzfrequenz", "intensitaet", "intensität", "niedrig", "moderat", "hiit", "cardio", "vo2max", "mehr fett", "fett"]
+      ],
+      "source_label": "Wewege Obesity Reviews 2022 + ACSM + Coyle 1995",
+      "source_url": "https://www.acsm.org/blog-detail/acsm-blog/2014/06/24/exercise-fuels-low-intensity-vs-high-intensity",
+      "secondary_url": "https://onlinelibrary.wiley.com/doi/10.1111/obr.13035"
+    },
+    {
+      "id": "abs_kitchen_2026",
+      "topic": "abs_kitchen_konsens",
+      "scope": "Behauptung, sichtbare Bauchmuskeln werden 'in der Küche' (durch Ernährung) gemacht",
+      "year": 2024,
+      "headline": "'Abs are made in the kitchen' ist TRUE-mit-Kontext — sichtbare Bauchmuskeln benötigen niedrigen Körperfett-Anteil (~10-15 % Männer, ~17-22 % Frauen), erreichbar primär über Ernährung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Sichtbare Bauchmuskeln werden in der Küche gemacht' ist TRUE-mit-Kontext. Sichtbarkeit der Bauchmuskeln (Sixpack) hängt PRIMÄR vom Körperfett-Anteil ab — Männer brauchen ~10-15 %, Frauen ~17-22 % Körperfett für Sixpack-Sichtbarkeit. Diese Werte erreicht man primär durch Kalorien-Defizit (Ernährung), nicht durch Bauch-Übungen. Bauch-Übungen entwickeln die Muskel-Größe (Hypertrophie) — aber wenn Fett-Schicht darüber bleibt, sind die Muskeln nicht sichtbar. Daher die Aussage 'in der Küche': 70-80 % der Sixpack-Sichtbarkeit kommt aus Ernährung, 20-30 % aus Training.",
+        "koerperfett_grenzen": "Sixpack-Sichtbarkeit (visuell): Männer ~10-12 % Körperfett (Athleten-Niveau), Frauen ~17-19 % (sehr niedrig für Frauen). Zum Vergleich: Durchschnitt 20-30 % Männer, 25-35 % Frauen.",
+        "kalorien_defizit_primaer": "Kalorien-Defizit ist PRIMÄRER Treiber für Fett-Verlust. ~500 kcal/Tag Defizit = ~0,5 kg Fett pro Woche (1 kg Fett ≈ 7700 kcal). Ohne Defizit: kein Fett-Verlust, kein Sixpack-Sichtbarkeit, egal wie viele Sit-Ups.",
+        "training_anteil": "Bauch-Training ist NICHT nutzlos: stärkt Core-Stabilität, verbessert Haltung, kann Größe der Bauchmuskeln entwickeln. Aber Training ALLEIN reicht nicht für Sixpack-Sichtbarkeit. Empfehlung: Krafttraining für ganzen Körper + 2-3x/Woche Bauch-spezifisch + Ernährung.",
+        "geschlechts_unterschied": "Frauen haben physiologisch höheren essenziellen Körperfett-Anteil (~12 % vs Männer ~3 %). Sixpack-Sichtbarkeit für Frauen erreichbar, aber unter ~17 % Körperfett kann zu Hormon-Störungen + Menstruations-Ausfall führen (Kalibrierung mit Sport-Mediziner).",
+        "extreme_diaeten_warnung": "Sixpack ist ein extremer ästhetischer Standard. Sehr niedriger Körperfett-Anteil ist NICHT zwingend gesund — kann zu Energy-Deficit-Symptomen führen (Müdigkeit, Stimmungs-Schwankungen, hormonelle Probleme). Bodybuilder leben Sixpack nur in Wettkampf-Phase, gehen sonst zu höherer Wert.",
+        "context": "Aussage stammt aus Bodybuilding-Kultur. Vermarktet als '80 % Ernährung, 20 % Training' — wissenschaftlich plausibel, wenn Wahrheit ist Ernährung determiniert Fett-Schicht über Muskel."
+      },
+      "context_notes": [
+        "Genetik beeinflusst, wie schnell man Sixpack-Sichtbarkeit erreicht. Manche haben tief-liegende Bauchmuskeln + brauchen sehr niedrige Körperfett, andere haben prominentere Bauchmuskeln + sehen Sixpack bei moderatem Fett-Anteil.",
+        "DEXA-Scan oder Hydrostatic-Weighing für genaue Körperfett-Messung. Optische Beurteilung allein zu ungenau.",
+        "Hyperkalorische Diät + extremes Training KANN auch zu sichtbaren Bauchmuskeln führen (durch sehr starke Hypertrophie), aber selten und nicht effizient."
+      ],
+      "claim_phrasings_handled": [
+        "Sichtbare Bauchmuskeln werden in der Küche gemacht",
+        "Abs are made in the kitchen",
+        "Ernährung ist wichtiger als Sit-Ups für ein Sixpack"
+      ],
+      "trigger_keywords": [
+        "abs kitchen",
+        "bauchmuskel ernaehrung", "bauchmuskel ernährung",
+        "sixpack ernaehrung", "sixpack ernährung",
+        "bauchmuskel kueche", "bauchmuskel küche"
+      ],
+      "trigger_composite": [
+        ["sixpack", "bauchmuskel", "bauch-muskel", "abs", "abdominal"],
+        ["kueche", "küche", "ernährung", "ernaehrung", "essen", "diaet", "diät", "kitchen", "kalorien", "ernaehrungsplan", "ernährungsplan"]
+      ],
+      "source_label": "ACSM + ISSN + WHO Body Composition + Hall NIH 2017",
+      "source_url": "https://www.issn.com/issn-position-stands.html",
+      "secondary_url": "https://www.acsm.org/blog-detail/acsm-blog/2018/03/14/lean-body-mass"
+    },
+    {
+      "id": "high_protein_kidneys_2026",
+      "topic": "high_protein_kidneys_mythos",
+      "scope": "Behauptung, hohe Eiweiß-Aufnahme schadet den Nieren",
+      "year": 2024,
+      "headline": "Hohe Protein-Aufnahme (bis 2 g/kg) schadet GESUNDEN Nieren NICHT — Vorsicht nur bei vorbestehender Nieren-Erkrankung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'hohe Eiweiß-Zufuhr schadet den Nieren' ist FALSE für GESUNDE Menschen. Wissenschaftlicher Konsens (ISSN Position-Statement 2017, Antonio et al.): bei gesunden Erwachsenen gibt es KEINE Evidenz, dass hohe Protein-Aufnahme (bis 2,0-2,5 g/kg/Tag) zu Nieren-Schäden führt. Bei vorbestehender chronischer Nieren-Erkrankung (CKD) gilt die Empfehlung anders: dort wird Protein-Restriktion empfohlen. Aber für 99 % der Bevölkerung: hohes Protein ist sicher + sogar förderlich (Muskel-Erhalt, Sättigung, Knochengesundheit).",
+        "issn_position_2017": "Antonio et al. 2017 Position Stand 'Diets and Body Composition' (J Int Soc Sports Nutr): keine Evidenz für Nieren-Schaden bei gesunden Erwachsenen mit Protein-Aufnahmen bis 4,4 g/kg/Tag (extreme Werte). Klinisch sinnvoller Range: 1,6-2,2 g/kg für Sportler.",
+        "knight_2003_studie": "Knight et al. (2003, Annals Internal Medicine): 11-Jahres-Längsschnitt, 1.624 Frauen. Hohe Protein-Aufnahme (>1,3 g/kg) verlangsam GFR-Abfall NICHT bei gesunden Nieren. Effekt nur bei vorbestehender Nieren-Erkrankung.",
+        "devries_2018_meta": "Devries et al. 2018 (J Nutr): Meta-Analyse 28 RCTs mit Hochprotein-Diäten. Befund: keine Verschlechterung der Nieren-Funktion bei gesunden Probanden. eGFR-Werte stabil oder leicht verbessert.",
+        "ckd_kontext": "Chronische Nieren-Erkrankung (CKD): bei diagnostizierter CKD wird Protein-Restriktion (~0,6-0,8 g/kg) empfohlen, um Progression zu verlangsamen. Aber: 'CKD verhindern' durch Protein-Restriktion bei gesunden Menschen NICHT belegt.",
+        "vorteile_hohes_protein": "Protein-Aufnahme 1,2-2,2 g/kg/Tag: erhält Muskelmasse (besonders bei Diät), erhöht Sättigung, unterstützt Knochengesundheit (zusammen mit Calcium), reduziert Sturzrisiko bei Senioren. Kein Risiko für Gesunde.",
+        "context": "Mythos stammt aus 1980er Bodybuilding-Diskurs + alten Empfehlungen für CKD-Patienten, die fälschlich auf Gesunde übertragen wurden. Aktuelle Empfehlung (DGE, ACSM, ISSN): Sportler 1,4-2,0 g/kg, Senioren 1,2-1,5 g/kg, normale Erwachsene 0,8-1,2 g/kg."
+      },
+      "context_notes": [
+        "Hydratation: bei hoher Protein-Aufnahme ausreichend trinken (Empfehlung 35-40 ml/kg Körpergewicht/Tag) — Stickstoff-Abbau braucht Wasser.",
+        "Differenzierung Protein-Quellen: tierisches vs pflanzliches Protein. Beide ohne Nieren-Risiko bei Gesunden. Pflanzliches Protein hat zusätzliche Vorteile (Ballaststoffe, weniger gesättigte Fettsäuren).",
+        "Eiweiß-Pulver / Whey/Casein/Pflanzen: sicher bei korrekter Anwendung. Whey-Allergie + Laktose-Intoleranz beachten."
+      ],
+      "claim_phrasings_handled": [
+        "Hohe Eiweiß-Zufuhr schadet den Nieren",
+        "Wer viel Protein isst, riskiert Nieren-Schäden",
+        "Whey-Protein ist schlecht für die Nieren"
+      ],
+      "trigger_keywords": [
+        "protein nieren", "eiweiss nieren", "eiweiß nieren",
+        "whey nieren",
+        "hohe eiweiss aufnahme nieren"
+      ],
+      "trigger_composite": [
+        ["protein", "eiweiss", "eiweiß", "whey", "casein", "proteinpulver", "eiweisspulver", "hohe eiweis", "viel protein"],
+        ["nieren", "niere", "nierenschaden", "nieren-schaden", "schad", "krank", "ungesund", "gefährlich", "gefaehrlich", "kidney"]
+      ],
+      "source_label": "Antonio et al. 2017 ISSN Position + Knight 2003 + Devries 2018",
+      "source_url": "https://jissn.biomedcentral.com/articles/10.1186/s12970-017-0177-8",
+      "secondary_url": "https://academic.oup.com/jn/article/148/11/1760/5078551"
+    }
+  ]
+}

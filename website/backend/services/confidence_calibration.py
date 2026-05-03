@@ -58,6 +58,8 @@ AUTHORITATIVE_PACK_MARKERS = (
     "Bildungs-Mythen",
     "Internationale Quellen",
     "DESTATIS",
+    "Sport-/Fitness-Mythen",
+    "Kunst-/Kultur-Mythen",
 )
 
 # Caps abhängig von Quellen-Anzahl (n_sources_with_results).

@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-03",
+  "source_label": "Smithsonian + Britannica + JSTOR + Egyptology Royal Society + UNESCO",
+  "facts": [
+    {
+      "id": "pyramiden_sklaven_2026",
+      "topic": "pyramiden_sklaven_mythos",
+      "scope": "Behauptung, die ägyptischen Pyramiden seien von Sklaven gebaut worden",
+      "year": 2024,
+      "headline": "Pyramiden wurden NICHT von Sklaven gebaut — Archäologen-Konsens: bezahlte qualifizierte Arbeiter aus Ägypten",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Pyramiden wurden von Sklaven gebaut' ist FALSE. Wissenschaftlicher Konsens (Egyptology + Smithsonian + Mark Lehner Harvard + Zahi Hawass): Die Pyramiden-Bauer waren bezahlte ägyptische Arbeiter, die in organisierten Lagern bei Gizeh lebten. 1990er Ausgrabungen unter Mark Lehner deckten Arbeiter-Gräber + Wohnkomplexe auf — mit Hinweisen auf gute Ernährung (Rind, Brot, Bier), medizinische Versorgung + ehrenvolle Beerdigungen. Die 'Sklaven-Theorie' kommt aus Herodot (5. Jh. v. Chr.) und Hollywood-Filmen — nicht aus archäologischer Evidenz.",
+        "lehner_ausgrabungen": "Mark Lehner (Ancient Egypt Research Associates) Ausgrabungen 1988-2000 bei Gizeh: Arbeiter-Stadt mit Wohnungen für ~10.000 Menschen, Bäckerei, Schlachthaus (Rinder + Schafe), Werkstätten. Knochen-Analyse: gut ernährt, körperlich abgenutzt aber mit medizinischer Behandlung.",
+        "arbeiter_graeber": "Zahi Hawass (Antiken-Behörde Ägypten) entdeckte 1990 Arbeiter-Gräber bei Gizeh. Die Grab-Inschriften nennen Funktionen (Vorarbeiter, Maurer, etc.) — Sklaven hätten KEINE individuellen Grabinschriften erhalten, sondern Massengräber.",
+        "schicht_system": "Antike Schriften (Diodor, Plinius) + archäologische Hinweise: Pyramiden wurden in 3-Monats-Schichten gebaut, oft während der Nil-Überschwemmungs-Zeit, wenn Bauern nicht aufs Feld konnten. Quasi 'staatliche Beschäftigungs-Maßnahme' kombiniert mit religiöser Pflicht für den Pharao.",
+        "herodot_quelle_kontext": "Herodot (5. Jh. v. Chr., 'Historien' II): schrieb 2.000 Jahre NACH dem Pyramiden-Bau über 100.000 'Sklaven'. Methodisch: Hörensagen-Quelle, geschichtlicher Abstand zu groß für direkte Evidenz. Spätere ägyptische Texte + archäologische Funde widerlegen.",
+        "hollywood_einfluss": "Cecil B. DeMille's 'Die zehn Gebote' (1956) + 'Land der Pharaonen' (1955) etablierten das Sklaven-Bild visuell. Auch biblisches Buch Exodus erwähnt 'Israeliten als Sklaven in Ägypten' — historische Verifikation kontrovers, aber NICHT spezifisch auf Pyramiden bezogen (zeitlich Generationen später).",
+        "context": "Archäologen-Konsens seit 1990ern + offiziell durch ägyptische Antikenbehörde + Smithsonian bestätigt. Sklaven-Mythos hält sich populärkulturell, aber nicht in der Forschung."
+      },
+      "context_notes": [
+        "Differenzierung: Pyramiden von Gizeh (4. Dynastie, ~2580 v. Chr.) und biblische Exodus-Erzählung (Datierung umstritten, ggf. ~1280 v. Chr. unter Ramses II) sind ZEITLICH ~1.300 Jahre auseinander.",
+        "Spätere ägyptische Bau-Projekte (z.B. unter Ramses II) nutzten teilweise Kriegsgefangene als Arbeiter — aber nicht für Pyramiden.",
+        "Sklaverei in Ägypten existierte (Hauspersonal, Kriegsgefangene), aber nicht in der industriellen Form der Pyramiden-Bauten."
+      ],
+      "claim_phrasings_handled": [
+        "Die ägyptischen Pyramiden wurden von Sklaven gebaut",
+        "Sklaven haben die Pyramiden gebaut",
+        "Hunderttausende Sklaven errichteten die Pyramiden von Gizeh"
+      ],
+      "trigger_keywords": [
+        "pyramiden sklaven", "sklaven pyramiden",
+        "aegypten sklaven pyramide", "ägypten sklaven pyramide",
+        "gizeh sklaven"
+      ],
+      "trigger_composite": [
+        ["pyramide", "pyramiden", "gizeh", "ägyptisch", "aegyptisch"],
+        ["sklaven", "sklave", "zwangsarbeit", "gefangene", "unterdrueck", "unterdrück"]
+      ],
+      "source_label": "Mark Lehner Harvard + Zahi Hawass + Smithsonian + Egyptology Royal Society",
+      "source_url": "https://www.smithsonianmag.com/travel/the-pyramid-builders-130984123/",
+      "secondary_url": "https://en.wikipedia.org/wiki/Egyptian_pyramid_construction_techniques"
+    },
+    {
+      "id": "mozart_armer_2026",
+      "topic": "mozart_armer_tod_mythos",
+      "scope": "Behauptung, Mozart starb arm und in einem Massengrab",
+      "year": 2024,
+      "headline": "Mozart starb NICHT in Armut — er hatte ein gutes Einkommen, aber Schulden; das 'Massengrab' war übliche Wiener Bestattungs-Praxis 1791",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mozart starb arm + wurde in Massengrab beerdigt' ist FALSE/MOSTLY_FALSE. Mozart-Forschung (Otto Erich Deutsch, Maynard Solomon, neuer Stand 2020): Mozart hatte 1790-91 ein Jahres-Einkommen von ~10.000 Gulden — etwa das 4-Fache eines mittleren Wiener Beamten. Aber er hatte hohe Ausgaben + Schulden (Spielsucht-Verdacht, Lifestyle). Das 'Schachtgrab' war STANDARD-Bestattung in Wien 1791 unter Joseph II's Bestattungs-Reform — nicht Armen-Grab, sondern hygiene-orientierte Sammelbestattung für 75 % der Wiener Bevölkerung.",
+        "deutsch_dokumentation": "Otto Erich Deutsch 'Mozart: A Documentary Biography' (1965, immer noch maßgebend): Mozart-Einkommen 1790-91 ~10.000 Gulden/Jahr. Vergleich: kaiserlicher Hofbeamter mittlerer Rang ~500-1.000 Gulden/Jahr. Mozart war OBERSCHICHT.",
+        "schulden_lifestyle": "Mozart hinterließ Schulden ~3.000 Gulden — aber gleichzeitig Vermögen + Einkommens-Erwartungen. Witwe Constanze konnte die Schulden begleichen + erhielt Pension von Kaiser Leopold II. Sie war NICHT mittellos.",
+        "schachtgrab_kontext": "St. Marxer Friedhof Wien 1791: Joseph II's Bestattungs-Reform 1784/1785 verbot Einzelgräber für 75 % der Bevölkerung (Hygiene + Platz-Effizienz). 'Schachtgrab' = Sammelgrab für 5-6 Tote, Sarg ohne Markierung. Standard für ALLE außer Adel.",
+        "wetter_2_dezember_1791": "Begräbnis Mozart 6. Dezember 1791: nicht im Schneesturm + ohne Trauergesellschaft (Mythos aus 1796-Biographie). Aktuelle Forschung (z.B. Walter Brauneis 1991): Wetter war mild, Trauergesellschaft anwesend. Zur damaligen Zeit war es jedoch nicht üblich, dass Trauergäste der Leiche zum Friedhof folgten — sie verabschiedeten sich beim Stephansdom.",
+        "amadeus_film_einfluss": "Milos Forman 'Amadeus' (1984, 8 Oscars): dramatisierte Salieri-Mord-Theorie + Armen-Begräbnis. Hervorragender Film, aber nicht historisch genau. Salieri-Beziehung: tatsächlich beruflich kompetitiv, kein Mord.",
+        "context": "Der Mozart-Armuts-Mythos kommt aus Romantisierungs-Bedürfnis 19. Jh. ('Genie leidet') + Hollywood. Mozart-Forschung der letzten 50 Jahre korrigiert dieses Bild deutlich."
+      },
+      "context_notes": [
+        "Mozarts Todes-Ursache: medizinisch-historische Konsens (Ärzte-Round-Table 2009): Trichinose / Streptokokken-Sepsis / Niereninsuffizienz. NICHT Vergiftung durch Salieri.",
+        "Constanze Mozart heiratete 1809 erneut (Georg Nikolaus von Nissen) und veröffentlichte 1828 die erste umfangreiche Mozart-Biographie.",
+        "Differenzierung: Mozart in seinen letzten Monaten kämpfte mit Cash-Flow-Problemen (Briefe an Puchberg um Darlehen) — aber das ist nicht 'arm sterben', sondern Liquiditäts-Engpass."
+      ],
+      "claim_phrasings_handled": [
+        "Mozart starb in Armut",
+        "Mozart wurde in einem Massengrab beerdigt",
+        "Mozart hatte am Lebensende kein Geld mehr"
+      ],
+      "trigger_keywords": [
+        "mozart arm gestorben", "mozart in armut",
+        "mozart massengrab",
+        "mozart armer tod"
+      ],
+      "trigger_composite": [
+        ["mozart", "amadeus"],
+        ["arm", "armut", "massengrab", "kein geld", "starb arm", "gestorben arm", "schachtgrab", "anonyme bestattung"]
+      ],
+      "source_label": "Otto Erich Deutsch 'Mozart Documentary Biography' + Walter Brauneis + Maynard Solomon",
+      "source_url": "https://en.wikipedia.org/wiki/Death_of_Wolfgang_Amadeus_Mozart",
+      "secondary_url": "https://www.britannica.com/biography/Wolfgang-Amadeus-Mozart"
+    },
+    {
+      "id": "napoleon_klein_2026",
+      "topic": "napoleon_klein_mythos",
+      "scope": "Behauptung, Napoleon Bonaparte sei besonders klein gewesen",
+      "year": 2024,
+      "headline": "Napoleon war NICHT klein — ~1,68 m, durchschnittliche französische Größe seiner Zeit; 'Klein-Mythos' kommt aus britischer Propaganda + Maßeinheiten-Verwechslung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Napoleon war besonders klein' ist FALSE. Historische Quellen (Autopsie-Bericht 1821, Schneider-Aufzeichnungen, persönliche Beschreibungen): Napoleon war ~1,68-1,69 m groß — DURCHSCHNITT für französische Männer der Zeit (~1,65 m Mitte). 'Klein'-Mythos kommt aus zwei Quellen: (1) Verwechslung französischer/englischer Inch (französischer Pouce = 2,71 cm vs englischer Inch = 2,54 cm) — bei 5'2\" französisch vs 5'2\" englisch entstanden ~6 cm Unterschied. (2) Britische Propaganda-Karikaturen (vor allem James Gillray) zeigten Napoleon klein — politische Karikatur, keine Realität.",
+        "autopsie_1821": "Napoleon-Autopsie 1821 St. Helena (Dr. Antommarchi + Dr. Burton): notiert Größe ~5 pieds 2 pouces (französisch) = ~168 cm. Englische Übersetzung las das als 5'2\" (~157 cm) — Verwechslung der Inch-Maßeinheiten.",
+        "französisch_durchschnitt": "Französische Männer 1800: durchschnittlich ~1,65 m (Anthropometrie-Studien Historiker Floud). Napoleon mit ~1,68 m war LEICHT ÜBERDURCHSCHNITTLICH groß für seine Zeit.",
+        "spitzname_le_petit_caporal": "'Le Petit Caporal' war Spitzname seiner Soldaten — bedeutete affektiv 'der kleine Gefreite' (kameradschaftlich, nicht physisch). 'Petit' im Französischen oft als Koseform, nicht Größenangabe.",
+        "gillray_karikaturen": "James Gillray (britischer Karikaturist 1796-1815): 'Little Boney'-Serie. Napoleon übertrieben klein gezeichnet als politische Diffamierung. Karikaturen verbreiteten sich europaweit + prägten lange das Image.",
+        "psychologie_kontext": "'Napoleon-Komplex' (psychologischer Begriff: kleiner Mann mit Überkompensations-Verhalten) wurde Ende 19. Jh. von Alfred Adler basierend auf dem Mythos formuliert. Da Mythos falsch ist: Napoleon-Komplex steht auf wackligen historischen Beinen, ist aber psychologisch separat verwendbar.",
+        "context": "Mythos hat sich populärkulturell festgesetzt (Witze, Filme, Idioms). Historische Forschung des 20. Jh. korrigiert das Bild durchgängig."
+      },
+      "context_notes": [
+        "Wellington (Sieger Waterloos): ebenfalls ~1,75 m, also größer als Napoleon. Aber: in Schlacht-Effektivität spielt Größe keine Rolle.",
+        "Andere 'klein-gemachte' Figuren: Adolf Hitler (~1,75 m, durchschnittlich); Stalin (~1,65 m, klein). Stalin wurde aber meist NICHT als klein dargestellt — Propaganda-Kontext anders.",
+        "Schuhgrößen sind oft als Beweis genannt: Napoleon-Schuhe in Museen zeigen größe ~38-39 (heutige EU-Größe), durchaus normal."
+      ],
+      "claim_phrasings_handled": [
+        "Napoleon war besonders klein",
+        "Napoleon war ein Zwerg",
+        "Napoleon Bonaparte hatte einen Komplex wegen seiner geringen Körpergröße"
+      ],
+      "trigger_keywords": [
+        "napoleon klein", "napoleon groesse", "napoleon größe",
+        "napoleon zwerg",
+        "napoleon komplex"
+      ],
+      "trigger_composite": [
+        ["napoleon", "bonaparte", "le petit caporal"],
+        ["klein", "kurz", "groesse", "größe", "zwerg", "komplex", "ueberkompensation", "überkompensation"]
+      ],
+      "source_label": "Autopsie-Bericht 1821 + Floud Anthropometrie-Studien + Gillray-Karikaturen",
+      "source_url": "https://en.wikipedia.org/wiki/Napoleon",
+      "secondary_url": "https://www.snopes.com/fact-check/napoleon-was-short/"
+    },
+    {
+      "id": "wikinger_helme_2026",
+      "topic": "wikinger_hoerner_mythos",
+      "scope": "Behauptung, Wikinger trugen Helme mit Hörnern",
+      "year": 2024,
+      "headline": "Wikinger trugen KEINE Hörner-Helme — alle ~30 erhaltenen Wikinger-Helme sind hörnerlos; Mythos kommt aus Wagner-Oper 1876",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Wikinger trugen Helme mit Hörnern' ist FALSE. Archäologie: alle ~30 als Wikinger-Helme identifizierten Funde (Gjermundbu-Helm Norwegen 970er als bedeutendster) sind HÖRNERLOS — entweder konische Eisenhelme mit Augenschutz, oder einfache Lederkappen. Mythos kommt aus zwei Quellen: (1) Bronze-Zeit-Helme aus Skandinavien (~1.000 v. Chr., NICHT Wikinger-Zeit, oft mit ritualem Charakter, manche mit Hörnern) — falsch zugeordnet. (2) Costume-Designer Carl Emil Doepler für Richard Wagners 'Ring der Nibelungen' Bayreuth 1876 — schuf Hörnerhelme als visuelles Drama. Mythos verbreitete sich seit 1876.",
+        "gjermundbu_helm": "Gjermundbu-Helm (Norwegen 970er, gefunden 1943): einziger vollständiger Wikinger-Helm in Skandinavien. Konische Form mit Augen-Sicht-Schutz, KEINE Hörner. Andere Funde: Helm-Fragmente aus York, Birka, Trelleborg — alle hörnerlos.",
+        "bronze_zeit_helme": "Bronze-Zeit-Helme aus Veksø (Dänemark, ~900 v. Chr.) + Brno-Lišeň (Tschechien): mit Hörnern, aber RITUEL ODER ZEREMONIELL, nicht im Kampf. Datierung: ~1.800 Jahre VOR der Wikinger-Zeit (793-1066 n. Chr.).",
+        "wagner_doepler_1876": "Carl Emil Doepler designte Kostüme für Richard Wagner 'Der Ring des Nibelungen' (Bayreuth 1876). Hörner-Helm war optisches Symbol für 'germanische Krieger' — historisch nicht verifiziert, aber visuell wirkungsvoll. Mythos verbreitete sich + verfestigte sich in Filmen, Comics, Maskottchen.",
+        "praktische_unmoeglichkeit": "Praktisch wären Hörner im Kampf nachteilig: würden Schwerthieb-Aufprall verstärken (Hebel) statt abgleiten lassen, könnten in Bäumen/Schiff-Tauwerk hängen bleiben. Echte Helme zeigen aerodynamische Form für Kampf-Effizienz.",
+        "asterix_einfluss": "Asterix-Comics (René Goscinny + Albert Uderzo, ab 1959): zeigen Wikinger oft mit Hörnern. Asterix ist nicht historisch-akurat, sondern karikatur. Trotz dieses Wissens prägt Asterix das Wikinger-Bild Generationen.",
+        "context": "Mythos wird von skandinavischen Tourismus-Industrie + Hollywood-Filmen perpetuiert. Wissenschaftler-Konsens (Smithsonian, National Geographic, Skandinavische Universitäten) ist klar."
+      },
+      "context_notes": [
+        "Differenzierung Wikinger-Zeit (793-1066 n. Chr.) vs Bronzezeit-Skandinavien (~1.500-500 v. Chr.). Die Hörner-Helme der Bronzezeit sind real — aber nicht 'Wikinger'.",
+        "Manche Wikinger trugen vielleicht Federn / Verzierungen am Helm zu Festen — das ist allerdings dekorativ, nicht 'Hörner'.",
+        "TV-Serie 'Vikings' (History Channel, 2013-2020) ist im Großen und Ganzen historisch-akurater als ältere Filme — meist OHNE Hörner-Helme."
+      ],
+      "claim_phrasings_handled": [
+        "Wikinger trugen Helme mit Hörnern",
+        "Wikinger hatten Hörner-Helme",
+        "Die typische Wikinger-Helm-Form hat Hörner"
+      ],
+      "trigger_keywords": [
+        "wikinger hoerner", "wikinger hörner",
+        "wikinger helm hoerner", "wikinger helm hörner"
+      ],
+      "trigger_composite": [
+        ["wikinger", "viking"],
+        ["hoerner", "hörner", "horn", "helm", "kopfschmuck"]
+      ],
+      "source_label": "Smithsonian + Gjermundbu-Helm-Forschung + Wagner/Doepler Theatergeschichte",
+      "source_url": "https://www.smithsonianmag.com/history/did-vikings-really-wear-horned-helmets-180978311/",
+      "secondary_url": "https://en.wikipedia.org/wiki/Horned_helmet"
+    },
+    {
+      "id": "kolumbus_erde_rund_2026",
+      "topic": "kolumbus_erde_rund_mythos",
+      "scope": "Behauptung, Kolumbus habe entdeckt, dass die Erde rund ist (gegen flache-Erde-Glaube)",
+      "year": 2024,
+      "headline": "Im Mittelalter wussten Gebildete bereits, dass die Erde rund ist — die Kontroverse 1492 ging um die GRÖSSE der Erde, nicht um deren Form",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Vor Kolumbus glaubten alle, die Erde sei flach' ist FALSE. Wissenschafts-historischer Konsens: bereits Eratosthenes (~240 v. Chr.) berechnete Erdumfang erstaunlich genau (~40.000 km, real ist ~40.075 km). Mittelalterliche Gelehrte (Beda, Tomas von Aquin, Dante 1320) wussten von der Kugelform. Die Kontroverse um Kolumbus 1492 ging um die GRÖSSE: Kolumbus unterschätzte den Erdumfang massiv (~28.000 km laut seiner Berechnung) + meinte, China sei ~3.700 km westlich von den Kanaren — die Skeptiker (Universität Salamanca) wussten, dass Eratosthenes näher an der Wahrheit war + warnten davor.",
+        "eratosthenes_240bc": "Eratosthenes (~276-194 v. Chr.), Bibliothekar von Alexandria: berechnete Erdumfang aus Schatten-Winkel-Vergleich Syene (Aswan) vs Alexandria zur Sommer-Sonnenwende. Resultat: ~252.000 Stadien = ~40.000 km. Tatsächlicher Erdumfang: 40.075 km.",
+        "mittelalterliche_kosmologie": "Beda Venerabilis (~700 n. Chr.) 'De temporum ratione': Erde ist Kugel. Tomas von Aquin (1265 'Summa Theologiae'): Kugel-Erde als Ausgangspunkt. Dante 'Divina Commedia' (1320): Erde als Kugel mit Hölle im Zentrum. Ptolemaios-Modell (geozentrisch, aber kugel-Erde) war Standard.",
+        "kolumbus_irrtum": "Kolumbus benutzte stark unterschätzte Berechnungen aus alten arabischen Quellen (Marinus von Tyros + Alfraganus): Erdumfang ~28.000 km. Daher meinte er, China sei nur ~4.000 km westwärts erreichbar. Salamanca-Universität-Berater warnten ihn 1485-86, abgelehnt vom König von Portugal AUS DIESEM GRUND.",
+        "salamanca_kontroverse": "Universität Salamanca-Beratung (1486-87, Anweisung von Königin Isabella): die Gelehrten wussten KORREKTERWEISE, dass die Erde größer ist + die Reise unmöglich ohne Zwischenstopp. Sie wussten NICHT von Amerika — dies entdeckte Kolumbus zufällig, weil er auf dem Kurs in Richtung China auf den amerikanischen Kontinent stieß.",
+        "washington_irving_1828": "Mythos 'Kolumbus gegen die flache-Erde-Theorie' geht zurück auf Washington Irving 'A History of the Life and Voyages of Christopher Columbus' (1828) — historisch fiktional, dramatisierte Salamanca-Treffen als Kampf gegen flache-Erde-Glaube. Wurde in Schul-Curricula übernommen.",
+        "context": "Konsens unter Wissenschafts-Historikern (Stephen Jay Gould 1995 'The Late Birth of a Flat Earth') seit Jahrzehnten klar. Mythos hält sich populärkulturell + in Schulbüchern."
+      },
+      "context_notes": [
+        "Flache-Erde-Glaube als organisierte Bewegung entstand erst Anfang 19. Jh. — paradox NACH Kolumbus, nicht davor.",
+        "Aristotle (~340 v. Chr.) listete bereits drei Beweise für Kugelform: Schatten-Form bei Mondfinsternissen, andere Sterne in anderen Breitengraden, Schiffe verschwinden 'unter dem Horizont' am Meer.",
+        "Eratosthenes' Berechnung wurde im Mittelalter allmählich vergessen, aber alternative Berechnungen blieben mit ähnlichen Größenordnungen — nur Kolumbus nutzte die unterschätzendsten."
+      ],
+      "claim_phrasings_handled": [
+        "Vor Kolumbus glaubten alle, die Erde sei flach",
+        "Kolumbus hat entdeckt, dass die Erde rund ist",
+        "Im Mittelalter dachte man, die Erde sei eine Scheibe"
+      ],
+      "trigger_keywords": [
+        "kolumbus erde rund", "kolumbus flache erde",
+        "mittelalter erde flach",
+        "vor kolumbus erde",
+        "scheibe erde mittelalter"
+      ],
+      "trigger_composite": [
+        ["kolumbus", "columbus", "vor kolumbus", "mittelalter", "vor 1492"],
+        ["erde", "flach", "rund", "scheibe", "kugel", "form"]
+      ],
+      "source_label": "Stephen Jay Gould 1995 + Eratosthenes-Quellen + Salamanca-Universität",
+      "source_url": "https://en.wikipedia.org/wiki/Myth_of_the_flat_Earth",
+      "secondary_url": "https://www.britannica.com/topic/Christopher-Columbus"
+    },
+    {
+      "id": "salem_hexen_2026",
+      "topic": "salem_hexen_konsens",
+      "scope": "Salem-Hexenprozesse — Zahl der Hingerichteten + Ursachen",
+      "year": 2024,
+      "headline": "Salem-Hexenprozesse 1692/93: 20 Hingerichtete (19 erhängt, 1 zu Tode gesteinigt) — keine Hexenverbrennung in Massachusetts; europäische Hexenverfolgung tötete weit mehr",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Salem-Hexenprozesse 1692-93 (Massachusetts Bay Colony): 20 Hinrichtungen + 5 Todesfälle in Haft + ca. 200 Anklagen. NICHT Hunderte oder Tausende, wie populärkulturell oft gedacht. Hinrichtungs-Methode war HÄNGEN, NICHT VERBRENNEN — anders als in Europa, wo Verbrennung üblich war. Bei europäischen Hexenverfolgungen im gesamten 16.-17. Jh. waren es geschätzt 35.000-50.000 Hinrichtungen — Salem ist eine VERHÄLTNISMÄßIG kleine Episode, aber kulturell-symbolisch zentral.",
+        "salem_zahlen": "Historische Dokumentation: 19 Personen wurden gehängt zwischen Juni-September 1692 (14 Frauen, 5 Männer). Giles Corey wurde am 19. September 1692 zu Tode gepresst (Stein-Folter zum Geständnis-Erzwingen). 5 weitere Personen starben in Haft. ~200 Anklagen, ca. 150 Inhaftierte.",
+        "verbrennung_europa": "Europäische Hexenverfolgung 1450-1750: ~35.000-50.000 Hinrichtungen geschätzt (Levack, Behringer, neuere Forschung). Hauptmethoden: Verbrennung (besonders Heiliges Römisches Reich, Frankreich), Hängen (England, Schottland), Enthauptung (manche Regionen).",
+        "salem_kontext_ursachen": "Salem 1692 Ursachen: Konvulsionen + Halluzinationen bei Mädchen Betty Parris + Abigail Williams ab Januar 1692. Mögliche moderne Erklärungen: Mutterkorn-Vergiftung (Kreichbaum 1976), psychogene Massenhysterie (Demos 1982), interpersonale Konflikte mit projektiver Suchen-nach-Schuldigen.",
+        "ende_der_prozesse": "Mai 1693: Gouverneur William Phips beendet die Prozesse, da angesehene Bürger angeklagt wurden (incl. seine eigene Frau). Spätere Rehabilitierung ab 1711 (Massachusetts-Generalversammlung), formaler Freispruch der letzten Verurteilten 2001 + 2022.",
+        "kulturelle_bedeutung": "Arthur Miller's 'The Crucible' (1953): symbolisierte McCarthyismus + politische Verfolgung. Salem als Symbol für Massenhysterie + Justiz-Versagen ist über die historischen Zahlen hinaus zentral.",
+        "context": "Differenzierung Salem (1692-93, USA, 20 Tote) vs europäische Hexenverfolgung (1450-1750, ganze Epoche, 35-50k Tote): beide real, aber unterschiedliche Größenordnungen. Salem oft überproportional in der populären Wahrnehmung wegen Hollywood-Adaptionen."
+      },
+      "context_notes": [
+        "Größte Hexenverfolgungs-Welle in deutschen Gebieten: Würzburg 1626-31 (~900 Hinrichtungen), Trier 1581-93 (~360 Hinrichtungen), Bamberg 1626-31 (~600+).",
+        "Letzte offizielle Hexenhinrichtung in Europa: Anna Göldi, Schweiz, 1782. Posthum 2008 rehabilitiert.",
+        "Spektakulär in moderner Zeit: Hexenhammer (Malleus Maleficarum, Heinrich Kramer 1486) als systematisches Hexen-Handbuch — wurde aber von der katholischen Kirche teilweise verworfen + nicht universal akzeptiert."
+      ],
+      "claim_phrasings_handled": [
+        "Bei den Salem-Hexenprozessen wurden Tausende verbrannt",
+        "Salem ist das berüchtigtste Beispiel für Hexenverbrennungen",
+        "In Salem wurden hunderte Hexen verbrannt"
+      ],
+      "trigger_keywords": [
+        "salem hexen", "salem hexenprozess",
+        "salem witches", "salem hinrichtung"
+      ],
+      "trigger_composite": [
+        ["salem"],
+        ["hexen", "hexenprozess", "verbrennung", "hinrichtung", "witches", "hexen verbren", "hexenverbrennung"]
+      ],
+      "source_label": "Salem Witch Trials Documentary Archive (Univ. Virginia) + Behringer + Levack",
+      "source_url": "https://salem.lib.virginia.edu/home.html",
+      "secondary_url": "https://en.wikipedia.org/wiki/Salem_witch_trials"
+    },
+    {
+      "id": "great_wall_china_alter_2026",
+      "topic": "great_wall_china_alter_konsens",
+      "scope": "Alter und Bauphase der Großen Mauer Chinas",
+      "year": 2024,
+      "headline": "Die heutige Große Mauer wurde HAUPTSÄCHLICH zur Ming-Zeit (1368-1644) gebaut — ältere Mauer-Teile (Qin 221 v. Chr.) sind weitgehend zerfallen oder integriert",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'die Große Mauer ist 2.300 Jahre alt' sind MISLEADING. Differenzierung: (1) Ältere Mauer-Strukturen reichen zurück bis ~7. Jh. v. Chr. (Frühe Frühlings- und Herbst-Periode). (2) Erste Konsolidierung unter Qin Shi Huangdi (221 v. Chr.) verband regionale Mauern. ABER: (3) ~95 % der HEUTIGEN sichtbaren Mauer-Strukturen wurden zur Ming-Dynastie (1368-1644) gebaut — also ~400-650 Jahre alt, nicht 2.300. Die Qin-zeitlichen Strukturen sind weitgehend zerfallen oder unter neueren Schichten integriert.",
+        "ming_dynastie_dominanz": "Ming-Dynastie 1368-1644: massive Mauer-Bauten gegen Mongolen-Einfälle. Geschätzte ~6.260 km Steinmauer + ~3.840 km natürliche Barrieren. Material: Steine + Ziegel + Mörtel mit Reis-Klebrig. Heute touristisch zugängliche Abschnitte (Badaling, Mutianyu, Jinshanling): allesamt Ming-Mauer.",
+        "qin_dynastie_anteil": "Qin Shi Huangdi (221-210 v. Chr.): erste Konsolidierung verschiedener Streitende-Reiche-Mauern. Material: gestampfte Erde (Tian-Bau-Methode), Holz, Stein. Geringe Haltbarkeit über 2.000 Jahre — Ruinen erhalten in einigen Provinzen, nicht zugänglich für Tourismus.",
+        "han_dynastie_erweiterung": "Han-Dynastie (206 v. Chr.-220 n. Chr.): Erweiterung der Mauer nach Westen entlang Seidenstraße (Schutz Handel + Militär). Strukturen oft aus gestampfter Erde + Schilfrohr-Schichten — interessanterweise teilweise besser erhalten als Qin-Strukturen aufgrund Wüsten-Klima.",
+        "gesamt_mauer_laenge": "Gesamt-Länge ALLER historischen Mauer-Strukturen (chinesische Wissenschaft 2012): ~21.196 km, davon nur ~25 % im 'guten' Zustand. Heutige sichtbare Mauer (Ming): ~8.850 km. Dauerhaft erhalten: ~10 %, also ~880 km.",
+        "tourismus_kontext": "Touristen-Standorte (Badaling, Mutianyu): Ming-Mauer, restauriert/rekonstruiert in den letzten 50 Jahren. Authentische, unrenovierte Abschnitte ('wilde Mauer') sind für Touristen nur eingeschränkt zugänglich.",
+        "context": "Die Aussage 'Mauer ist 2.300+ Jahre alt' ist nicht falsch (in dem Sinne, dass es Vorläufer gab), aber irreführend — was Touristen sehen + was die meisten Bilder zeigen, ist 400-650 Jahre alt. Korrekte Aussage: 'Die Große Mauer hat eine 2.300-jährige Geschichte, aber die heutigen Bauwerke stammen primär aus der Ming-Zeit.'"
+      },
+      "context_notes": [
+        "UNESCO-Welterbe seit 1987. Schutz-Status für ~6.000 km der Ming-Mauer.",
+        "Erosion + illegale Stein-Entnahme bedrohen erhaltene Abschnitte. Rund 1/3 der Ming-Mauer ist heute zerstört oder stark beschädigt.",
+        "Nicht zu verwechseln: Sichtbarkeit-vom-Mond-Mythos (FALSE) — siehe geographie_pack.json."
+      ],
+      "claim_phrasings_handled": [
+        "Die Große Mauer Chinas ist 2300 Jahre alt",
+        "Die Chinesische Mauer wurde unter Qin Shi Huangdi erbaut",
+        "Die Mauer ist seit der Antike das gleiche Bauwerk"
+      ],
+      "trigger_keywords": [
+        "grosse mauer china alter", "große mauer china alter",
+        "chinesische mauer alter",
+        "china mauer 2300 jahre"
+      ],
+      "trigger_composite": [
+        ["chinesische mauer", "grosse mauer", "große mauer", "great wall", "mauer china"],
+        ["alter", "alt", "jahre", "2300", "antike", "qin", "ming", "antik"]
+      ],
+      "source_label": "UNESCO World Heritage + Chinesische Akademie der Wissenschaften + Britannica",
+      "source_url": "https://whc.unesco.org/en/list/438",
+      "secondary_url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+    },
+    {
+      "id": "shakespeare_autorenschaft_2026",
+      "topic": "shakespeare_autorenschaft_konsens",
+      "scope": "Autorenschaft der Shakespeare-Werke",
+      "year": 2024,
+      "headline": "Shakespeare schrieb seine Werke selbst — anti-Stratford-Theorien (Bacon/Marlowe/Oxford als wahre Autoren) sind in der Forschung Randposition",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Shakespeare hat seine Werke nicht selbst geschrieben' ist FALSE im wissenschaftlichen Konsens. Sie ist eine bekannte Randposition (anti-Stratfordianismus) mit ~5 % Befürwortern unter Shakespeare-Forschern (Shakespeare Authorship Roundtable Survey 2007). Mainstream-Konsens (Stratfordianismus): William Shakespeare aus Stratford-upon-Avon ist Autor. Beweise: zeitgenössische Erwähnungen, First Folio 1623 mit Mitarbeitern-Heming + Condell, Stilometrie-Analysen 2006-2024 (Crystal, Kean), königliche Dokumente. Anti-Stratford-Theorien (Bacon-Theorie 1856, Marlowe 1895, Oxford 1920) basieren auf 'wie kann ein Provinz-Schauspieler so gebildet sein'-Argumentation.",
+        "stratfordianismus_evidenz": "First Folio 1623 (sieben Jahre nach Shakespeares Tod): herausgegeben von John Heminges + Henry Condell, persönliche Mitarbeiter Shakespeares im King's Men. Beide listen ihn klar als Autor + lieferten Manuskripte aus seinem Nachlass. Zeitgenössische Erwähnungen: Greene, Jonson, Davies — alle erkennen Shakespeare.",
+        "stilometrie_analysen": "Computer-gestützte Stilometrie (Brian Vickers 2002, MacDonald Jackson 2014, Hugh Craig 2017): Shakespeare-Werke haben einheitlichen Stil-Fingerabdruck mit charakteristischen Wort-Frequenzen, Syntax-Mustern, Vokabular. Co-Autor-Anteile (z.B. mit John Fletcher in 'Henry VIII') werden statistisch identifiziert — aber NICHT mit Bacon/Marlowe/Oxford.",
+        "anti_stratford_argumente": "Anti-Stratford-Argumente: (1) Shakespeare-Schriftbild wirkt 'ungebildet'; (2) keine Bibliothek im Nachlass; (3) kann eine Stratford-Provinz-Person Hofszenen so gut beschreiben? Gegenargumente: (1) 6 erhaltene Unterschriften zeigen unterschiedliche Schrift-Qualität — Stress-bedingt; (2) Bücher waren teuer + selten Erbenswert; (3) Shakespeare lebte 25 Jahre in London, schrieb für King's Men, hatte Hof-Aufträge.",
+        "bacon_theorie_1856": "Delia Bacon 'The Philosophy of the Plays of Shakespeare Unfolded' (1856): erste systematische Anti-Stratford-Theorie. Argument: Sir Francis Bacon habe geschrieben, weil er philosophisch + juristisch gebildeter sei. Methodisch: schwach, basiert auf Code-Theorien (Bacon-Cipher).",
+        "oxford_theorie_1920": "Thomas Looney 'Shakespeare Identified' (1920): Edward de Vere, 17. Earl of Oxford als Autor. Problem: Oxford starb 1604, ~12 Shakespeare-Stücke wurden danach erstmals geschrieben/aufgeführt. Stilometrie + Aufführungs-Daten widerlegen.",
+        "context": "Die anti-Stratford-Theorien sind im Forschungs-Mainstream als Randpositionen eingestuft. Forschungs-Institute (Folger Shakespeare Library, Shakespeare Birthplace Trust, Royal Shakespeare Company) bestätigen Stratford-Shakespeare als Autor."
+      },
+      "context_notes": [
+        "James Shapiro 'Contested Will' (2010): definitive Geschichte des Anti-Stratford-Streits.",
+        "Co-Autorschaft bei einigen Stücken (insbesondere Spätwerk mit John Fletcher) ist akzeptiert + bestätigt durch Stilometrie — das ist NICHT 'Shakespeare hat nichts geschrieben'.",
+        "Edward de Vere (Oxford) ist die populärste Anti-Stratford-Theorie, gefolgt von Marlowe + Bacon. Alle drei haben aktive Anhänger-Vereine."
+      ],
+      "claim_phrasings_handled": [
+        "Shakespeare hat seine Werke nicht selbst geschrieben",
+        "Sir Francis Bacon ist der wahre Autor der Shakespeare-Werke",
+        "Edward de Vere hat als Earl of Oxford die Shakespeare-Stücke verfasst"
+      ],
+      "trigger_keywords": [
+        "shakespeare autor", "shakespeare echt",
+        "shakespeare bacon", "shakespeare oxford",
+        "shakespeare wahre autor"
+      ],
+      "trigger_composite": [
+        ["shakespeare", "stratford", "shakespeare-werke", "shakespeare's"],
+        ["autor", "geschrieben", "verfasst", "wahre", "echt", "bacon", "oxford", "marlowe", "verfasser"]
+      ],
+      "source_label": "James Shapiro 'Contested Will' 2010 + Folger Shakespeare Library + Stilometrie 2006-2024",
+      "source_url": "https://www.folger.edu/explore/shakespeares-life/shakespeare-authorship-question/",
+      "secondary_url": "https://en.wikipedia.org/wiki/Shakespeare_authorship_question"
+    }
+  ]
+}
