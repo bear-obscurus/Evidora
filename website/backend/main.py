@@ -783,6 +783,23 @@ async def check_claim(request: Request):
             "names": hit_names,
             "all_names": queried_names,
         }
+        # Konfidenz-Kalibrierung (Vorschlag C — Hybrid):
+        # Cap die LLM-Konfidenz basierend auf objektiven Quellen-Metriken.
+        # Authoritative-Pack-Boost: kuratierte Static-First-Packs zaehlen
+        # als methodisch starke Quellen (mildere Caps).
+        try:
+            from services.confidence_calibration import calibrate_confidence
+            calibrated, cal_debug = calibrate_confidence(
+                raw_conf=synthesis.get("confidence"),
+                source_coverage=synthesis["source_coverage"],
+                evidence=synthesis.get("evidence", []),
+                sources_used=hit_names,
+            )
+            synthesis["confidence"] = calibrated
+            synthesis["_confidence_calibration"] = cal_debug
+        except Exception as e:
+            logger.warning(f"confidence_calibration failed (non-blocking): {e}")
+
         # Hebel #4: Verdict in den Semantic-Cache schreiben (TTL 30 Min,
         # nur wenn Confidence ≥ 0.8 + Verdict != unverifiable). Filtert
         # Stream-Loss-Artefakte aus.

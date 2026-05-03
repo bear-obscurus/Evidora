@@ -65,7 +65,7 @@ const TRANSLATIONS = {
 
         // Evidence
         confidence: "Konfidenz:",
-        confidence_tooltip: "Die Konfidenz gibt an, wie sicher das KI-Modell bei seiner Einschätzung ist — basierend auf der Eindeutigkeit der gefundenen Belege. Hohe Konfidenz (≥90%) bedeutet klare Datenlage; niedrige Konfidenz bedeutet widersprüchliche oder unvollständige Evidenz.",
+        confidence_tooltip: "Die Konfidenz gibt an, wie sicher das KI-Modell bei seiner Einschätzung ist — basierend auf objektiver Quellen-Stärke. Sehr hoch (≥95%): 5+ peer-reviewed Top-Quellen übereinstimmend. Hoch (85-94%): 3-5 starke Quellen. Mittel (70-84%): 1-2 starke Quellen oder methodische Uneinigkeit (z.B. IARC vs EFSA bei Glyphosat). Begrenzt (50-69%): widersprüchliche Befunde, Verdict oft 'mixed'. Niedrig (<50%): wenig Evidenz, Verdict oft 'unverifiable'. Die Konfidenz wird zusätzlich basierend auf der Quellen-Anzahl und Evidenz-Stärke gecappt, um LLM-Übersicherheit auszugleichen.",
         evidence_title: "Evidenz",
         strength_strong: "Stark",
         strength_moderate: "Mittel",
@@ -423,7 +423,7 @@ const TRANSLATIONS = {
 
         // Evidence
         confidence: "Confidence:",
-        confidence_tooltip: "Confidence indicates how certain the AI model is about its assessment — based on the clarity of the evidence found. High confidence (≥90%) means a clear evidence base; low confidence means contradictory or incomplete evidence.",
+        confidence_tooltip: "Confidence indicates how certain the AI model is about its assessment — based on objective source strength. Very high (≥95%): 5+ peer-reviewed top sources concurring. High (85-94%): 3-5 strong sources. Medium (70-84%): 1-2 strong sources or methodological disagreement (e.g. IARC vs EFSA on glyphosate). Limited (50-69%): contradictory findings, verdict often 'mixed'. Low (<50%): little evidence, verdict often 'unverifiable'. Confidence is additionally capped based on source count and evidence strength to counter LLM overconfidence.",
         evidence_title: "Evidence",
         strength_strong: "Strong",
         strength_moderate: "Moderate",
@@ -775,7 +775,7 @@ const TRANSLATIONS = {
 
         // Preuves
         confidence: "Confiance :",
-        confidence_tooltip: "La confiance indique à quel point le modèle IA est sûr de son évaluation — basée sur la clarté des preuves trouvées. Confiance élevée (≥90%) = base de preuves claire ; faible confiance = preuves contradictoires ou incomplètes.",
+        confidence_tooltip: "La confiance indique à quel point le modèle IA est sûr de son évaluation — basée sur la force objective des sources. Très élevée (≥95%) : 5+ sources peer-reviewed concordantes. Élevée (85-94%) : 3-5 sources fortes. Moyenne (70-84%) : 1-2 sources fortes ou désaccord méthodologique (p.ex. IARC vs EFSA sur le glyphosate). Limitée (50-69%) : résultats contradictoires, verdict souvent 'mitigé'. Faible (<50%) : peu de preuves, verdict souvent 'non vérifiable'. La confiance est plafonnée selon le nombre de sources et la force des preuves pour compenser la surassurance des LLM.",
         evidence_title: "Preuves",
         strength_strong: "Forte",
         strength_moderate: "Moyenne",
@@ -883,7 +883,7 @@ const TRANSLATIONS = {
 
         // Prove
         confidence: "Affidabilità:",
-        confidence_tooltip: "L'affidabilità indica quanto sicuro è il modello IA della sua valutazione — basata sulla chiarezza delle prove trovate. Alta affidabilità (≥90%) = base di prove chiara; bassa affidabilità = prove contraddittorie o incomplete.",
+        confidence_tooltip: "L'affidabilità indica quanto sicuro è il modello IA della sua valutazione — basata sulla forza oggettiva delle fonti. Molto alta (≥95%): 5+ fonti peer-reviewed concordi. Alta (85-94%): 3-5 fonti forti. Media (70-84%): 1-2 fonti forti o disaccordo metodologico (es. IARC vs EFSA sul glifosato). Limitata (50-69%): risultati contraddittori, verdetto spesso 'misto'. Bassa (<50%): poche prove, verdetto spesso 'non verificabile'. L'affidabilità è inoltre limitata in base al numero di fonti e alla forza delle prove per compensare l'eccessiva sicurezza dei LLM.",
         evidence_title: "Prove",
         strength_strong: "Forte",
         strength_moderate: "Media",

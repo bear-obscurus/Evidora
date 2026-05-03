@@ -104,7 +104,17 @@ Verdict-Abstufung und Eindeutigkeit (SEHR WICHTIG):
 - "mostly_false" bedeutet: Die Behauptung enthält einen WAHREN Kern, ist aber in der Gesamtaussage falsch. Verwende dies NUR wenn es einen substanziellen wahren Teilaspekt gibt.
 - In-vitro-Effekte (Laborversuche an Zellkulturen) sind KEIN substanzieller wahrer Kern — "X wirkt gegen Krankheit Y" bezieht sich auf klinische Wirksamkeit beim Menschen. In-vitro-Ergebnisse, die sich klinisch nicht bestätigen, machen eine Wirksamkeitsbehauptung NICHT "teilweise wahr", sondern gehören ins nuance-Feld.
 - Wenn die überwältigende Mehrheit der Quellen (>80%) eine Behauptung klar widerlegt und keine substanziellen Gegenbelege existieren, setze verdict auf "false", NICHT auf "mostly_false"
-- Die confidence sollte die STÄRKE der Evidenz widerspiegeln: 10/10 übereinstimmende Quellen mit Cochrane-Reviews und RCTs = 95-100% Konfidenz
+
+Konfidenz-Kalibrierung (PRÄZISE 6-Stufen-Skala — verwende NICHT 0.95 als Default):
+- 0.95-1.00 ► 5+ peer-reviewed Top-Quellen ÜBEREINSTIMMEND + mehrere Faktenchecker bestätigen identisch + keine ernstzunehmenden Gegenstimmen. Beispiele: "MMR verursacht KEIN Autismus", "Erde ist rund", "Klimawandel ist menschgemacht".
+- 0.85-0.94 ► 3-5 starke Quellen, vereinzelte Gegenargumente möglich, klar dokumentierter wissenschaftlicher Konsens. Beispiele: "Bitcoin ist pseudonym, nicht anonym", "Goldfische haben mehr als 3-Sek-Gedächtnis".
+- 0.70-0.84 ► 1-2 starke Quellen, ODER methodische Uneinigkeit dokumentiert (z.B. WHO IARC vs EFSA bei Glyphosat), ODER definitions-abhängig (z.B. "höchster Berg" je nach Definition). Verdict oft mit Differenzierung im nuance-Feld.
+- 0.50-0.69 ► Quellen liefern teils widersprüchliche Befunde, ODER Daten aus alten Studien mit unklarem aktuellen Konsens, ODER zentrale Fakten fehlen. Verdict typisch "mixed".
+- 0.30-0.49 ► Wenig Evidenz, indirekte Hinweise, ODER nur 1 schwache Quelle, ODER Frage ist primär normativ statt empirisch.
+- 0.10-0.29 ► Sehr wenig Evidenz, ODER vorhandene Quellen sind nicht autoritativ für die Behauptung.
+- 0.00-0.10 ► Keine Evidenz aus den Quellen verfügbar ODER Behauptung ist strukturell ungeprüfbar. Verdict typisch "unverifiable".
+
+WICHTIG: Verwende 0.95 NICHT als Default für "klare Antwort". Wenn die Evidenz nicht 5+ Top-Quellen ÜBEREINSTIMMEND umfasst, ist 0.85, 0.80 oder 0.75 die methodisch korrekte Konfidenz. Der mittlere Bereich (0.70-0.85) ist häufig — nutze ihn.
 
 Zeitbezogene Behauptungen und Rekord-Claims (SEHR WICHTIG):
 - Behauptungen im Präsens ("ist", "liegt bei", "beträgt") beziehen sich auf den AKTUELLEN Zeitpunkt — vergleiche mit dem neuesten verfügbaren Datenpunkt
@@ -282,7 +292,17 @@ Verdict grading and clarity (VERY IMPORTANT):
 - "mostly_false" means: The claim contains a SUBSTANTIVE true element but is false in its overall assertion. Use this ONLY when there is a meaningful true sub-aspect.
 - In-vitro effects (laboratory cell culture experiments) are NOT a substantive true element — "X works against disease Y" refers to clinical efficacy in humans. In-vitro results that are not confirmed clinically do NOT make an efficacy claim "partially true" — they belong in the nuance field.
 - When the overwhelming majority of sources (>80%) clearly refute a claim and no substantive counter-evidence exists, set verdict to "false", NOT "mostly_false"
-- Confidence should reflect the STRENGTH of evidence: 10/10 concordant sources with Cochrane reviews and RCTs = 95-100% confidence
+
+Confidence calibration (PRECISE 6-tier scale — do NOT use 0.95 as default):
+- 0.95-1.00 ► 5+ peer-reviewed top sources CONSISTENT + multiple fact-checkers confirm identically + no serious counter-positions. Examples: "MMR does NOT cause autism", "Earth is round", "Climate change is human-caused".
+- 0.85-0.94 ► 3-5 strong sources, occasional counter-arguments possible, clearly documented scientific consensus. Examples: "Bitcoin is pseudonymous, not anonymous", "Goldfish have memory longer than 3 seconds".
+- 0.70-0.84 ► 1-2 strong sources, OR documented methodological disagreement (e.g. WHO IARC vs EFSA on glyphosate), OR definition-dependent (e.g. "highest mountain" depends on definition). Verdict often paired with differentiation in nuance field.
+- 0.50-0.69 ► Sources deliver partly contradictory findings, OR data from old studies with unclear current consensus, OR central facts missing. Verdict typically "mixed".
+- 0.30-0.49 ► Little evidence, indirect hints, OR only 1 weak source, OR question is primarily normative rather than empirical.
+- 0.10-0.29 ► Very little evidence, OR available sources are not authoritative for the claim.
+- 0.00-0.10 ► No evidence from sources available OR claim is structurally unverifiable. Verdict typically "unverifiable".
+
+IMPORTANT: Do NOT use 0.95 as default for "clear answer". When the evidence does NOT comprise 5+ top sources CONCURRING, 0.85, 0.80 or 0.75 is the methodologically correct confidence. The middle range (0.70-0.85) is common — use it.
 
 Time-sensitive claims and record claims (VERY IMPORTANT):
 - Claims in present tense ("is", "stands at", "amounts to") refer to the CURRENT point in time — compare with the most recent available data point
