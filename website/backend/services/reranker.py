@@ -157,6 +157,7 @@ _AUTHORITATIVE_INDICATORS = (
     "sport_fitness_konsens_fact",        # Sport/Fitness-Pack (ACSM + Cochrane + ISSN + NSCA)
     "kunst_kultur_konsens_fact",         # Kunst/Kultur-Pack (Smithsonian + Harvard + Folger + UNESCO)
     "geschichts_mythen2_konsens_fact",   # Geschichts-Mythen-2-Pack (Stanford SEP + Britannica + Royal Society + Princeton)
+    "reproduktion_konsens_fact",         # Reproduktions-Pack (NEJM Wilcox + Cochrane + ACOG + AUA + NAMS + NIH + WHO)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

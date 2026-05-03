@@ -61,6 +61,7 @@ AUTHORITATIVE_PACK_MARKERS = (
     "Sport-/Fitness-Mythen",
     "Kunst-/Kultur-Mythen",
     "Geschichts-Mythen-2",
+    "Reproduktions-Medizin-Konsens",
 )
 
 # Caps abhängig von Quellen-Anzahl (n_sources_with_results).

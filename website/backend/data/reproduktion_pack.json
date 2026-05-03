@@ -1,0 +1,258 @@
+{
+  "facts": [
+    {
+      "topic": "spermien_lebensdauer_mythos",
+      "headline": "Spermien überleben im weiblichen Reproduktionstrakt durchschnittlich 3-5 Tage, in Einzelfällen bis zu 7 Tage — nicht nur wenige Stunden, wie der Mythos besagt",
+      "year": 2024,
+      "source_url": "https://www.nejm.org/doi/full/10.1056/NEJM199512073332301",
+      "secondary_url": "https://www.acog.org/womens-health/faqs/fertility-awareness-based-methods-of-family-planning",
+      "source_label": "NEJM Wilcox, Weinberg, Baird (1995) + ACOG + Mayo Clinic + Cochrane",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Spermien sterben nach wenigen Stunden im Frauenkörper' ist FALSE. Die prospektive Wilcox-Weinberg-Baird-Studie (NEJM 1995, n=192 Frauen mit dokumentiertem Ovulations-Zeitpunkt via Hormon-Assays) zeigte: Spermien können im weiblichen Reproduktionstrakt 3-5 Tage überleben, in Einzelfällen bis zu 6-7 Tage. Konzeption ist bei Geschlechtsverkehr 5 Tage VOR Ovulation noch in 10% der Fälle möglich. Der überlebens-fördernde Mechanismus liegt in den Zervixkrypten (kryptenartige Einbuchtungen der Cervix uteri), die als 'Spermien-Reservoir' fungieren — vorausgesetzt, der Zervixschleim ist von östrogen-dominierter Konsistenz (peri-ovulatorisch).",
+        "wilcox_1995_design": "Wilcox AJ, Weinberg CR, Baird DD. 'Timing of sexual intercourse in relation to ovulation: effects on the probability of conception, survival of the pregnancy, and sex of the baby.' New England Journal of Medicine 1995;333(23):1517-1521. Studien-Design: 221 Frauen rekrutiert, 192 mit datengeneigten Zyklen ausgewertet. Hormonbestimmung (Östrogenmetaboliten, Progesteron-Metaboliten, LH) im Morgen-Urin täglich ermöglichte exakte Ovulations-Datierung.",
+        "fertiles_fenster": "Konzeptions-Wahrscheinlichkeit nach Geschlechtsverkehr-Zeitpunkt (Wilcox 1995): Tag -5 (5 Tage vor Ovulation): ~10%. Tag -4: ~16%. Tag -3: ~14%. Tag -2: ~27%. Tag -1: ~33%. Tag 0 (Ovulationstag): ~33%. Tag +1: ~12%. Tag +2: praktisch 0%. Hieraus folgt: das fertile Fenster ist ~6 Tage vor Ovulation + Ovulationstag, NICHT nach der Ovulation.",
+        "zervixkrypten_mechanismus": "Anatomische Grundlage (Quelle: Williams Gynecology, 4th edition; Hoffman et al. 2020): die Cervix uteri enthält ~100 Krypten in der Schleimhaut. Spermien werden in diesen Krypten gespeichert und in 'pulsen' freigesetzt — ein evolutionärer Mechanismus der Spermien-Selektion + verlängerter Befruchtungs-Möglichkeit. Östrogen-dominierte Schleim-Konsistenz (peri-ovulatorisch, 'Spinnbarkeit') ist Voraussetzung.",
+        "abnormale_faelle": "Maximales dokumentiertes Überleben: 7 Tage (Wilcox 1995, einzelne Fälle). Ältere Studien (Behrman/Sturgis 1959, Settlage et al. 1973) hatten kürzere Werte berichtet, basierten aber auf unsystematischer Probennahme. Rechtsmedizinisch relevant: bei verzögerter Spurensicherung ist Spermien-Nachweis bis ~5 Tage post-coitum etabliert (Bradford et al., J Forensic Sciences).",
+        "context": "Der Mythos 'Spermien sterben in Stunden' wurde u.a. durch Sexualkunde-Schulbücher der 1960er-1980er perpetuiert (mit Verweis auf veraltete Settlage-Studie). Die Korrektur ist heute Konsens in ACOG, RCOG, DGGG (Deutsche Gesellschaft für Gynäkologie und Geburtshilfe) — und hat klinisch Relevanz für Familienplanung (NFP) sowie Beratung bei sexueller Übergriffigkeit."
+      },
+      "context_notes": [
+        "Klinische Implikation für natürliche Familienplanung (NFP/symptothermal): 'Sicheres' Fenster nach Ovulation beginnt erst ~3 Tage POST Ovulation (nach 3 erhöhten Basal-Temperatur-Tagen) — nicht direkt am Ovulationstag, da bereits stattgefundene Spermien-Aufnahme noch zu Befruchtung führen kann.",
+        "Die Eizelle ist nach Ovulation nur ~12-24 Stunden befruchtungsfähig — ein deutlicher Unterschied zur Spermien-Lebensdauer. Daher ist das fertile Fenster 'asymmetrisch' (~6 Tage davor, nur 1 Tag danach).",
+        "ACOG Committee Opinion 651 (2015, reaffirmed): empfiehlt für Patientinnen mit Kinderwunsch Geschlechtsverkehr alle 1-2 Tage im fertilen Fenster — nicht 'erst am Ovulationstag', da dann bereits Spermien-Vorrat vorhanden sein sollte."
+      ],
+      "claim_phrasings_handled": [
+        "Spermien sterben nach wenigen Stunden",
+        "Spermien überleben nur kurze Zeit im Körper",
+        "Nach 24 Stunden sind alle Spermien tot",
+        "Spermien leben nur Stunden in der Frau"
+      ],
+      "trigger_composite": [
+        ["sperm", "spermien", "spermium", "samenzelle", "samenzellen"],
+        ["lebensdauer", "überleben", "stunden", "tage", "leben", "sterben", "tot", "zeit", "frauenkörper", "weiblich"]
+      ]
+    },
+    {
+      "topic": "fruchtbarstes_fenster_mythos",
+      "headline": "Das fruchtbare Fenster umfasst etwa die 5 Tage VOR der Ovulation und den Ovulationstag selbst (insgesamt ~6 Tage); Konzeption ist nicht auf den Ovulations-Tag beschränkt",
+      "year": 2024,
+      "source_url": "https://www.nejm.org/doi/full/10.1056/NEJM199512073332301",
+      "secondary_url": "https://www.nichd.nih.gov/health/topics/menstruation/conditioninfo/fertility-window",
+      "source_label": "NEJM Wilcox/Weinberg/Baird 1995 + NIH NICHD + ACOG + ASRM",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Konzeption nur am Ovulationstag möglich' ist FALSE. Das fertile Fenster umfasst ca. 6 Tage: 5 Tage VOR Ovulation + Ovulationstag selbst. Wahrscheinlichkeit für klinische Schwangerschaft pro einzelnem Geschlechtsverkehr-Zyklus ist am Tag -2 und -1 maximal (je ~27-33%, Wilcox NEJM 1995). NACH der Ovulation sinkt die Konzeptions-Wahrscheinlichkeit innerhalb von 12-24 Stunden auf nahe null, weil die Eizelle nur diese Zeit befruchtungsfähig ist. Praktische Konsequenz: 'sichere Tage'-Berechnung allein anhand Kalender ist unzuverlässig; Ovulations-Vorhersage erfordert Symptothermie, LH-Tests oder Ultraschall.",
+        "wilcox_konzeptions_kurve": "Wilcox 1995 Konzeptions-Wahrscheinlichkeiten (klinische Schwangerschaft, n=192 Zyklen): Tag -7: ~0%. Tag -6: 4-8%. Tag -5: ~10%. Tag -4: ~16%. Tag -3: ~14%. Tag -2: ~27%. Tag -1: ~33%. Tag 0: ~33%. Tag +1: ~12%. Tag +2 und später: ~0%. Maximale Konzeptions-Wahrscheinlichkeit liegt also UNMITTELBAR vor Ovulation, NICHT am Ovulations-Tag.",
+        "biologische_grundlagen": "Eizell-Lebensdauer post Ovulation: 12-24 Stunden Befruchtungsfähigkeit (Quellen: ASRM Practice Committee, Hoffman Williams Gyn 2020). Spermien-Lebensdauer im Reproduktionstrakt: 3-5 Tage (s. spermien_lebensdauer_mythos). Daraus resultiert das asymmetrische 6-Tage-Fenster.",
+        "ovulations_vorhersage_methoden": "Klinische Methoden zur Ovulations-Vorhersage: (1) Basaltemperatur-Messung (post-ovulatorischer Anstieg um 0.2-0.5°C, retrospektiv), (2) LH-Urintests (Peak ca. 24-36h vor Ovulation), (3) Zervixschleim-Beobachtung (spinnbar, klar peri-ovulatorisch), (4) symptothermale Methode (Kombination 1+3), (5) Ultraschall-Follikulometrie (nur klinisch). Kalender-Methode allein: Versagensquote pro Jahr 12-24% (vs. <1% bei symptothermal nach Sensiplan-Studie 2007).",
+        "ar_assistierte_reproduktion": "In der reproduktiven Medizin (IVF, ICSI): Ovulations-Steuerung durch hCG-Trigger (Choriogonadotropin) → Eizell-Entnahme exakt 35-36h nach Trigger. Das demonstriert die zeitliche Präzision, die in spontanen Zyklen schwer erreichbar ist.",
+        "context": "Der 'nur Ovulationstag fertil'-Mythos verkennt sowohl die Spermien-Lebensdauer (3-5 Tage) als auch die Schwierigkeit der Ovulations-Vorhersage in Echtzeit (LH-Peak nicht immer präzise messbar). Klinisch: Paare mit Kinderwunsch sollten alle 1-2 Tage Geschlechtsverkehr im 6-Tage-Fenster haben (ACOG Committee Opinion 781, 2019)."
+      },
+      "context_notes": [
+        "Stanford-Datenbank-Reanalyse 2002 (Dunson et al.): bestätigte Wilcox-Befund mit n>700 Zyklen. Maximum Konzeptions-Wahrscheinlichkeit pro Zyklus nicht über ~37% — auch bei optimalem Timing nicht 100%, weil weitere Faktoren (Eizell-Qualität, Implantation) dazu kommen.",
+        "Bedeutung für Verhütung: 'sichere Tage' ohne Ovulationsmessung sind unzuverlässig. Pearl-Index für Kalender-Methode: 12-24% pro Jahr (perfect use vs. typical use). Symptothermale Methode (Sensiplan, Arbeitsgruppe NFP): 0.4-0.6% perfect, 1.8% typical use.",
+        "Forschungs-Paradigma: Wilcox-Studien-Design (prospektiv mit täglicher Hormon-Bestimmung) wurde mehrfach repliziert (Stanford 2002, ESHRE-Database 2018) und gilt als methodischer Goldstandard."
+      ],
+      "claim_phrasings_handled": [
+        "Eine Frau kann nur am Ovulationstag schwanger werden",
+        "Konzeption ist nur am Eisprung möglich",
+        "Schwanger werden geht nur am Ovulationstag",
+        "Vor dem Eisprung kann man nicht schwanger werden"
+      ],
+      "trigger_composite": [
+        ["ovulation", "eisprung", "fruchtbar", "fertil", "konzeption", "schwanger werden", "befruchtung"],
+        ["tag", "tage", "fenster", "zeitpunkt", "zeit", "stunden", "möglich", "kann nur", "geht nur", "vor", "nach", "nur am"]
+      ]
+    },
+    {
+      "topic": "eltern_geschlecht_vererbung_mythos",
+      "headline": "Das Geschlecht des Embryos wird durch das Sex-Chromosom des befruchtenden Spermiums determiniert — paternal — nicht durch die Eizelle, die ausschließlich ein X-Chromosom enthält",
+      "year": 2024,
+      "source_url": "https://medlineplus.gov/genetics/understanding/basics/howgeneswork/",
+      "secondary_url": "https://my.clevelandclinic.org/health/articles/sex-chromosomes",
+      "source_label": "NIH MedlinePlus Genetics + Cleveland Clinic + ACOG + Lewis Genetics 13th edition",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Die Mutter bestimmt das Geschlecht des Kindes' ist FALSE. Bei der Befruchtung trägt die Eizelle (oocyte) IMMER ein X-Chromosom — sie kann genetisch nichts anderes mitbringen. Spermien hingegen tragen ENTWEDER ein X- ODER ein Y-Chromosom (in etwa gleichem Verhältnis 50:50). Bei Fusion entsteht entweder XX (weiblich) oder XY (männlich). Damit ist das Geschlecht des Embryos paternal determiniert — durch das Spermium, nicht durch die Eizelle. Dieser Mechanismus ist seit 1905 bekannt (Nettie Stevens, Edmund Wilson — unabhängige Entdeckungen Sex-Chromosomen).",
+        "chromosomen_grundlagen": "Menschliche somatische Zellen: 46 Chromosomen (23 Paare). 22 Autosomen-Paare + 1 Sex-Chromosom-Paar. Frauen: 46,XX. Männer: 46,XY. Keimzellen sind haploid (n=23): Eizelle 23,X (immer). Spermien zur Hälfte 23,X, zur Hälfte 23,Y (Meiose-Trennung).",
+        "befruchtungs_genetik": "Bei Fusion Eizelle (X) + Spermium: X-tragendes Spermium → Zygote XX → weiblicher Phänotyp. Y-tragendes Spermium → Zygote XY → männlicher Phänotyp. Y-Chromosom enthält das SRY-Gen (Sex-determining Region Y, Sinclair et al. 1990, Nature), welches die Hodendifferenzierung in Embryonal-Woche 7-8 initiiert.",
+        "geschlechterverhaeltnis": "Sekundäres Geschlechterverhältnis (bei Geburt) liegt bei ca. 105 Jungen : 100 Mädchen weltweit (NIH NICHD Daten). Primäres Verhältnis (bei Befruchtung) ist näher 50:50 — die Diskrepanz beruht auf höherer pränataler Sterblichkeit weiblicher Embryonen in bestimmten Phasen. Verschiedene Erklärungs-Modelle (Hamilton 1967, James 2010).",
+        "historische_widerlegung": "Aristoteles (4. Jh. v.Chr., 'De Generatione Animalium') postulierte: Mütterliche Wärme bestimmt Jungen vs. Mädchen. Galen (2. Jh. n.Chr.): rechte vs. linke Hoden / Eierstock-Seite. Diese Theorien dominierten bis ins 19. Jh. — wurden durch zellbiologische Forschung 1880-1905 widerlegt (Theodor Boveri, Nettie Stevens, Edmund Wilson).",
+        "ausnahmen_intersex": "Nicht alle Fälle folgen dem klaren XX/XY-Schema. Variationen der Geschlechtsentwicklung (Differences of Sex Development, DSD): u.a. 47,XXY (Klinefelter), 45,X (Turner), 46,XX/SRY+, 46,XY/AIS (Androgen-Insensitivity-Syndrome). Häufigkeit DSD insgesamt: ~1:4500 Geburten (Sax 2002, J Sex Research). Das ändert nichts am Grundprinzip 'Spermium determiniert', sondern erweitert es um Variationen der Chromosomen-Verteilung.",
+        "context": "Die Falsch-Zuschreibung 'Mutter ist schuld am Geschlecht' hat historisch zu sozialer Diskriminierung von Frauen geführt — z.B. Verstoßung von Ehefrauen, die 'keine Söhne lieferten' (in patriarchalen Gesellschaften vom 5. Jh. v.Chr. bis ins 20. Jh.). Henry VIII. ist berühmtes Beispiel: ließ 2 seiner Frauen hinrichten u.a. weil sie 'keine männlichen Erben' produziert hätten — biologisch lag der Fehler bei ihm."
+      },
+      "context_notes": [
+        "Nettie Stevens (1861-1912, Bryn Mawr College, USA) und Edmund Wilson (Columbia University) entdeckten unabhängig 1905 die Sex-Chromosomen — Stevens an Mehlkäfern, Wilson an Insekten. Stevens als Frau in Wissenschaft des frühen 20. Jh. ist eine eigene Geschichts-Anekdote.",
+        "Das SRY-Gen (Sex-determining Region Y) ist nur ein Auslöser — die volle Geschlechts-Differenzierung umfasst ~50 Gene auf Y und Autosomen. Mutationen in z.B. SOX9 (Autosom 17) können auch in 46,XY zu phänotypisch weiblichen Personen führen (Swyer-Syndrom).",
+        "Sperm-Sorting für Geschlechts-Wahl ist technisch möglich (MicroSort, FlowCytometry-Trennung X/Y nach DNA-Gehalt — X-Spermien tragen ~2.8% mehr DNA) — in Deutschland und Österreich ESchG-/FMedG-rechtlich nicht zur freien Geschlechts-Selektion erlaubt, nur bei medizinischer Indikation (X-chromosomale Erbkrankheiten)."
+      ],
+      "claim_phrasings_handled": [
+        "Die Mutter bestimmt das Geschlecht des Kindes",
+        "Es liegt an der Frau ob ein Junge oder Mädchen kommt",
+        "Frauen können beeinflussen welches Geschlecht das Kind hat",
+        "Das Geschlecht des Babys hängt von der Mutter ab"
+      ],
+      "trigger_composite": [
+        ["geschlecht", "geschlechts", "junge oder mädchen", "x-chromosom", "y-chromosom", "chromosom"],
+        ["mutter", "mütterlich", "frau", "eizelle", "vater", "väterlich", "mann", "spermium", "bestimmt", "vererb", "kind", "baby", "embryo"]
+      ]
+    },
+    {
+      "topic": "antibabypille_gewicht_mythos",
+      "headline": "Hormonelle Verhütungsmittel verursachen keine systematische klinisch signifikante Gewichtszunahme — Cochrane-Systematic-Review 2014 (49 RCTs, n>16.000) fand keinen kausalen Zusammenhang",
+      "year": 2024,
+      "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003987.pub5/full",
+      "secondary_url": "https://www.acog.org/womens-health/faqs/combined-hormonal-birth-control-pill-patch-and-ring",
+      "source_label": "Cochrane Database Syst Rev: Gallo et al. 2014 (CD003987) + ACOG + Mayo Clinic",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Antibabypille macht dick' ist FALSE/MOSTLY_FALSE. Gallo MF, Lopez LM, Grimes DA, Carayon F, Schulz KF, Helmerhorst FM. 'Combination contraceptives: effects on weight.' Cochrane Database Syst Rev. 2014;(1):CD003987 — meta-analysierte 49 randomisierte kontrollierte Studien (RCTs) mit über 16.000 Teilnehmerinnen. ERGEBNIS: kein kausal-signifikanter Effekt von Kombinations-Pillen auf Gewicht in den ersten 6-12 Monaten. Beobachtete Gewichts-Schwankungen lagen im Bereich der natürlichen Varianz (±1-2 kg), die auch in Placebo-Gruppen auftraten. Wichtige methodische Anmerkung: Studien-Design erfasst Durchschnitts-Effekte — individuelle Varianz möglich, aber statistisch ohne Trend.",
+        "cochrane_2014_methode": "Gallo et al. 2014: Cochrane Systematic Review nach Cochrane-Methodik (PRISMA-konform). Eingeschlossen: alle RCTs mit Kombinations-Pille (Östrogen + Progestin) vs. Placebo ODER vs. anderer Hormonkonzeptiva, mit Gewichts-Outcome dokumentiert. Suchstrategie: MEDLINE, POPLINE, CENTRAL, EMBASE bis 11/2013. Datenextraktion + Bias-Bewertung doppelt, unabhängig.",
+        "ergebnis_quantifiziert": "Differenz Pille vs. Placebo nach 6 Monaten: -0.05 kg (95% KI: -0.55 bis +0.45 kg, n.s.). Nach 12 Monaten: +0.20 kg (95% KI: -0.45 bis +0.85 kg, n.s.). Sub-Analysen nach Pillen-Generation, Östrogen-Dosis, Progestin-Typ: keine systematischen Unterschiede.",
+        "depo_provera_ausnahme": "Wichtige Ausnahme: Depot-Medroxyprogesteronacetat (DMPA, 'Depo-Provera', 3-Monats-Spritze) zeigt in einigen Studien Gewichtszunahme von 1.5-3 kg über 1-2 Jahre (Berenson 2011, Pantoja 2010). Cochrane-Review zu DMPA (Lopez 2016): Effekt-Stärke variabel, klinisch relevant aber nicht universal. KEINE Verallgemeinerung von DMPA auf orale Pillen erlaubt.",
+        "psychologie_attribution_bias": "Warum hält sich der Mythos? Mögliche Erklärungen: (1) Pille beginnt oft in Lebensphase mit anderen Veränderungen (Auszug von zuhause, Studium, Beziehungen, Stress) — natürliche Gewichts-Schwankungen 18-25 J. werden auf Pille attribuiert. (2) Attributions-Bias: bekannte Risiko-Liste der Pille auf Beipackzettel führt zu Confirmation-Bias bei Patientinnen. (3) Frühere höher-dosierte Pillen (1960er-1970er, 50µg Ethinylestradiol) hatten möglicherweise andere Effekte als heutige (20-30µg).",
+        "context": "Die Pillen-Gewichts-Mythos verzögert in der gynäkologischen Praxis manchmal Therapie-Entscheidungen — Patientinnen lehnen wirksame Verhütung ab aus Angst vor Gewichts-Effekt. Beratung sollte Cochrane-Evidenz transparent kommunizieren, ohne individuelle Erfahrungen zu invalidieren."
+      },
+      "context_notes": [
+        "Hormon-Spezifika: Alte Pillen mit hoher Östrogen-Dosis (50µg+) konnten via Wasser-Retention zu kurzfristiger Gewichts-Zunahme führen. Moderne Mikropillen (20-30µg) zeigen diesen Effekt nicht.",
+        "Differential-Diagnose Gewichts-Zunahme bei Pillen-Beginn: ausschließen sind Schwangerschaft (trotz Pille möglich bei Anwendungs-Fehlern), Hypothyreose (Vorscreening Pille möglich Östrogen-induziert TBG erhöht), PCOS (Polyzystisches Ovarial-Syndrom) — können alle Gewichts-relevant sein.",
+        "Gewichts-Verlauf in jungem Erwachsenenalter ohne Intervention: durchschnittlich +0.5-1 kg pro Jahr in Industrie-Ländern (NHANES-Daten). Pillen-Anwenderinnen liegen statistisch nicht darüber."
+      ],
+      "claim_phrasings_handled": [
+        "Die Pille macht dick",
+        "Antibabypille führt zu Gewichtszunahme",
+        "Frauen nehmen durch die Pille zu",
+        "Hormonelle Verhütung lässt einen zunehmen"
+      ],
+      "trigger_composite": [
+        ["pille", "antibabypille", "verhütung", "verhütungspille", "hormonelle verhütung", "kombinationspille", "östrogen", "progestin", "gestagen"],
+        ["dick", "gewicht", "zunahme", "zunehmen", "zugenommen", "abnehmen", "fett", "kilo"]
+      ]
+    },
+    {
+      "topic": "vasektomie_libido_mythos",
+      "headline": "Eine Vasektomie unterbricht ausschließlich den Vas deferens (Samenleiter); die Testosteron-Produktion in den Leydig-Zellen der Hoden bleibt unverändert, Libido und Erektion sind nicht betroffen",
+      "year": 2024,
+      "source_url": "https://www.auanet.org/guidelines-and-quality/guidelines/vasectomy-guideline",
+      "secondary_url": "https://www.mayoclinic.org/tests-procedures/vasectomy/about/pac-20384580",
+      "source_label": "AUA Vasectomy Guideline 2012 (reaffirmed 2015) + Mayo Clinic + BJU International",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Vasektomie macht impotent / senkt Libido / reduziert Testosteron' ist FALSE. Die Vasektomie ist ein chirurgischer Eingriff, der ausschließlich den Vas deferens (Samenleiter, ductus deferens) durchtrennt oder verschließt — typischerweise im Bereich Skrotum, ambulant, lokal-anästhetisch. Hoden, Nebenhoden, Leydig-Zellen (Testosteron-Produktion) und Sertoli-Zellen (Spermien-Produktion) bleiben anatomisch und funktionell unverändert. Die endokrine Hoden-Funktion läuft weiter (Testosteron-Synthese, Sekretion ins Blut über Vena testicularis). Libido, Erektion, Orgasmus, Ejakulat-Volumen (Spermien machen nur ~5% des Ejakulats aus) bleiben weitgehend unverändert. Die American Urological Association (AUA) hat dies in der offiziellen Vasectomy-Guideline 2012 (reaffirmed 2015) als evidence-based Konsens festgelegt.",
+        "anatomie_vasektomie": "Vas deferens (Samenleiter, ~30 cm lang): transportiert Spermien von Nebenhoden zur Prostata. Vasektomie: Durchtrennung 1-2 cm Segment, Ligatur + Kauterisation der Enden, oft Faszien-Interposition zur Re-Kanalisierungs-Prävention. KEINE Berührung der Hoden-Architektur, der hormonproduzierenden Strukturen oder der Nervenbahnen für Erektion (sympathische und parasympathische Fasern aus Plexus pelvicus, separat verlaufend).",
+        "endokrine_funktion_unverändert": "Studien (mehrfach repliziert, u.a. Manikandan 2004 BJU Int., Mo 1995): Testosteron-Spiegel vor und nach Vasektomie messbar identisch. LH und FSH zeigen keine kompensatorische Veränderung. Hoden-Volumen (sonographisch) unverändert. Histologie unverändert.",
+        "ejakulat_volumen": "Ejakulat besteht aus: ~70% Vesikulär-Sekret, ~25% Prostata-Sekret, ~5% Spermien + Cowper-Drüsen-Sekret. Nach Vasektomie fehlen die Spermien (~5%), Volumen-Reduktion klinisch nicht wahrnehmbar. Konsistenz, Farbe, Textur: weitgehend unverändert.",
+        "psychogene_post_op_effekte": "In ~5-10% der Fälle berichten Männer post-Vasektomie subjektive Libido-Veränderungen oder Erektions-Probleme. Bei systematischer Untersuchung (Bertero 2005, J Sex Med): primär PSYCHOGEN — z.B. veränderte Identitäts-Wahrnehmung als 'nicht mehr fortpflanzungsfähig', Beziehungs-Dynamiken. Aufklärung vor OP reduziert diese Häufigkeit. Organische Genese ausgeschlossen.",
+        "post_vasektomie_schmerz": "PVPS (Post-Vasectomy Pain Syndrome): chronische skrotale Schmerzen >3 Monate post-OP, Inzidenz ~1-2% in modernen Serien. Mechanismus: Stauungs-Druck, Granulome, neuropatischer Anteil. Eine der wenigen seriösen Komplikationen. Reversible mit Schmerztherapie oder reversibler Vasektomie (vasovasostomy).",
+        "context": "Die Vasektomie ist die effektivste reversible männliche Verhütungsmethode (Pearl-Index <0.15% nach Azoospermie-Bestätigung). In den USA ~500.000 Vasektomien/Jahr. AUA + DGU (Deutsche Gesellschaft für Urologie) empfehlen sie als sichere ambulante Routine-Intervention. Reversibilität (vasovasostomy): in 70-90% chirurgisch möglich, Schwangerschafts-Rate je nach Zeit-Intervall 30-75%."
+      },
+      "context_notes": [
+        "Mythos 'Vasektomie ↔ Prostatakrebs': frühere Studien (Giovannucci 1993) hatten schwachen Zusammenhang vermutet — große Meta-Analyse 2017 (Bhindi BJU Int., 16 Studien, n>2.5 Mio): NULL Assoziation. AUA Practice Statement 2017 zog Warnung zurück.",
+        "Sterilitäts-Erfolgs-Bestätigung: post-OP Spermiogramm nach 8-16 Wochen + 20 Ejakulationen — Azoospermie-Nachweis nötig, bevor 'effektiv' gilt. Anwendungsfehler-Versagen sehr selten (~0.5% Re-Kanalisierung nach 1 Jahr).",
+        "Soziale Akzeptanz: Vasektomie-Rate variiert international stark — Neuseeland/UK: 10-20% der über-40-jährigen Männer. Deutschland/Österreich: 2-3%. Italien: <1%. Kulturelle/religiöse Faktoren spielen Rolle."
+      ],
+      "claim_phrasings_handled": [
+        "Vasektomie macht impotent",
+        "Nach einer Vasektomie ist man impotent",
+        "Vasektomie senkt die Libido",
+        "Männer haben nach Vasektomie weniger Lust",
+        "Vasektomie reduziert Testosteron"
+      ],
+      "trigger_composite": [
+        ["vasektomie", "vasectomie", "samenleiter", "sterilisation mann", "sterilisation männlich"],
+        ["impotent", "potenz", "libido", "lust", "erektion", "testosteron", "männlichkeit", "wirkt sich"]
+      ]
+    },
+    {
+      "topic": "menstruation_synchronisation_mythos",
+      "headline": "Die McClintock-These der Menstrual-Synchronisation (1971, Nature) ist methodisch nicht reproduzierbar; mehrere Re-Analysen seit 1992 (Wilson, Strassmann, Yang & Schank) widersprechen dem postulierten Effekt",
+      "year": 2024,
+      "source_url": "https://royalsocietypublishing.org/doi/10.1098/rspb.2006.3506",
+      "secondary_url": "https://academic.oup.com/humrep/article/14/3/579/716050",
+      "source_label": "Yang & Schank 2006 (Proc R Soc B) + Strassmann 1999 (Hum Reprod) + Wilson 1992 (J Sex Res)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Frauen, die zusammenwohnen, synchronisieren ihre Menstruation' ist FALSE/MOSTLY_FALSE. Die ursprüngliche McClintock-Studie (Martha McClintock, Nature 1971, 'Menstrual synchrony and suppression', n=135 Studentinnen Wellesley College) berichtete eine Verkürzung der Zyklus-Differenzen über mehrere Monate — wurde zur populärwissenschaftlichen Standard-These. Mehrere methodische Re-Analysen widersprechen aber: Wilson (1992, J Sex Research) wies auf statistische Schwächen hin (zu kurze Beobachtungs-Zeiträume, willkürliche Definitionen). Strassmann (1999, Human Reproduction, n=58 Frauen Dogon-Population Mali, 10 Monate prospektiv): keine Synchronisation. Yang & Schank (2006, Proc R Soc B, Re-Analyse mit n=186 chinesischen Studentinnen, 10 Monate): ebenfalls kein Effekt. Schank (2006) zeigte zudem mathematisch: zufällige Zyklus-Längen produzieren naturgemäß scheinbare 'Synchronisations-Episoden' (statistisches Artefakt).",
+        "mcclintock_1971_design": "McClintock M. 'Menstrual synchrony and suppression.' Nature 1971;229:244-245. Studien-Design: 135 Studentinnen-Bewohnerinnen Wellesley College, Selbstbericht-Tagebücher über Menstruationsdaten, retrospektive Befragung. Ergebnis: berichtete Verkürzung der Zyklus-Onset-Differenzen über 4-6 Monate von ~6.4 Tagen auf ~4.8 Tage zwischen Mitbewohnerinnen. Erklärung postuliert: Pheromon-vermittelte Kommunikation.",
+        "wilson_1992_kritik": "Wilson HC. 'A critical review of menstrual synchrony research.' Psychoneuroendocrinology 1992;17:565-591. Methodische Schwächen identifiziert: (1) willkürliche Auswahl 'Mitbewohnerinnen-Paare', (2) statistisches Modell unterschätzt Zufalls-Konvergenz, (3) Onset-Daten subjektiv erinnert. Re-Berechnung mit korrigierten Modellen: Effekt nicht mehr signifikant.",
+        "strassmann_1999_dogon": "Strassmann BI. 'Menstrual cycles and breastfeeding amenorrhea in the Dogon of Mali.' Human Reproduction 1999;14:579-584. Prospektive Studie in einer Population mit traditionellen Menstruations-Hütten (öffentliche Daten zur Onset-Zeit, n=58 Frauen, 736 Zyklen, 10 Monate). Befund: KEINE Synchronisation, weder zwischen Verwandten noch zwischen Gleich-Hütten-Bewohnerinnen.",
+        "yang_schank_2006": "Yang Z, Schank JC. 'Women do not synchronize their menstrual cycles.' Proc R Soc B 2006;273:2467-2473. n=186 chinesische Studentinnen-Wohnheim-Mitbewohnerinnen, 10 Monate täglich dokumentiert. Statistisches Modell: nicht-zentrales chi-Quadrat. Ergebnis: KEIN signifikanter Synchronisations-Effekt. Mathematisches Modell (Schank 2006, J Theor Biol): zufällige Zyklen produzieren über ein Jahr durchschnittlich mehrere 'Synchron-Episoden' rein durch chi-Quadrat-Verteilung — also scheinbare Synchronisation als Statistik-Artefakt.",
+        "moegliche_quellen_des_mythos": "Warum hält sich der Mythos so hartnäckig? (1) Confirmation Bias: Frauen MERKEN Synchronisations-Episoden, aber NICHT die Auseinander-Driften. (2) Zyklus-Längen variieren typisch 25-35 Tage, sodass 2 Frauen mit verschiedenen Mittelwerten zwingend periodisch ähnliche Zeitpunkte haben. (3) Sozialer Mythos / 'Frauen-Wissen' bleibt durch Wiederholung lebendig.",
+        "context": "Die Pheromon-Forschung als breiteres Feld bleibt umstritten — die spezifische 'menstruelle Synchronisation' ist aber methodisch widerlegt. McClintock selbst arbeitete 1998 an Pheromon-Studien (modulieren Ovulations-Zeitpunkt durch Achsel-Sekrete), die ebenfalls nicht zuverlässig repliziert werden konnten."
+      },
+      "context_notes": [
+        "Mathematisches Argument (Schank 2006): bei zufälligen Zyklen-Längen Mittelwert 28 Tage und Standard-Abweichung ±3 Tage konvergieren zwei Frauen rein zufällig in ca. 4-6 von 12 Monaten 'kompatibel' (Onset-Differenz <5 Tage). Das ist statistisch erwartbar, aber NICHT 'Synchronisation'.",
+        "Pheromon-Mechanismus beim Menschen: das vomeronasale Organ (VNO) ist beim erwachsenen Menschen rudimentär oder fehlend. TRPC2-Gen (für VNO-Signal-Transduktion) ist beim Menschen ein Pseudogen. Strukturelle Voraussetzung für Pheromon-vermittelte Kommunikation ist daher beim Menschen umstritten (Stoyanov 2018, Anatomy and Embryology).",
+        "Praktische Implikation: 'Mitbewohnerinnen synchronisieren'-Beobachtungen sind subjektiv real (kognitive Wahrnehmung), aber statistisch zufällig. Es gibt keinen kausalen biologischen Mechanismus."
+      ],
+      "claim_phrasings_handled": [
+        "Frauen die zusammenwohnen synchronisieren ihre Menstruation",
+        "Mitbewohnerinnen bekommen ihre Periode gleichzeitig",
+        "Wenn Frauen zusammenleben gleicht sich ihr Zyklus an",
+        "Menstruationszyklus synchronisiert sich"
+      ],
+      "trigger_composite": [
+        ["menstruation", "menstruations", "regelblutung", "periode", "zyklus", "menstruationszyklus"],
+        ["synchron", "synchronisier", "gleichzeitig", "angleich", "anpass", "wohnen", "leben", "mitbewohner", "frauen", "wg", "wohngemeinschaft"]
+      ]
+    },
+    {
+      "topic": "stillen_verhuetung_mythos",
+      "headline": "Stillen ist nur unter den 3 LAM-Kriterien (Lactational Amenorrhea Method) eine effektive Verhütungsmethode (98% Schutz bei strikter Befolgung); ohne diese Kriterien NICHT zuverlässig",
+      "year": 2024,
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/family-planning-contraception",
+      "secondary_url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2018/12/optimizing-postpartum-care",
+      "source_label": "WHO Family Planning Handbook + ACOG Practice Bulletin + Bellagio Consensus 1988 + Kennedy Trussell 1996",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Stillen ist eine sichere Verhütung' ist NUR UNTER STRENGEN BEDINGUNGEN richtig — sonst FALSE. Die Lactational Amenorrhea Method (LAM) ist als wissenschaftlich evaluierte Methode unter genau 3 gleichzeitig erfüllten Bedingungen ~98% effektiv (Pearl-Index 1.5-2 in Studien). Sind alle 3 Kriterien NICHT gleichzeitig erfüllt, ist Stillen NICHT zuverlässige Verhütung. LAM-Kriterien (Bellagio Consensus 1988, WHO/UNFPA): (1) Amenorrhö (keine Menstruations-Wiederkehr seit Geburt — Wochenfluss zählt nicht), (2) Vollstillen oder fast-Vollstillen (Baby ausschließlich Muttermilch, keine Beikost, höchstens minimale Flüssigkeits-Zufütterung), (3) Baby <6 Monate alt. Sobald EINES der 3 Kriterien wegfällt — Beikost-Beginn, erste Menstruation, oder 6-Monats-Marke — sinkt die Effektivität dramatisch und ergänzende Verhütung wird empfohlen.",
+        "lam_mechanismus": "Physiologische Grundlage: hohe Prolaktin-Spiegel durch häufiges Stillen unterdrücken die GnRH-Pulsation im Hypothalamus → unterdrückt LH-Surge → keine Ovulation. Mechanismus ist DOSIS-ABHÄNGIG: nur bei häufigem, intensivem Stillen (alle 3-4 Stunden tagsüber, alle 6 Stunden nachts) ist Prolaktin hoch genug. Bei Beikost-Beginn oder Schlaf-durch-Phasen sinkt die Stimulation, Ovulation kann zurückkehren.",
+        "bellagio_consensus_1988": "Internationaler Experten-Konsens 1988 in Bellagio (Italien), publiziert Kennedy KI, Rivera R, McNeilly AS. 'Consensus statement on the use of breastfeeding as a family planning method.' Contraception 1989;39:477-496. Definierte die 3 LAM-Kriterien + 2-Prozent-Schwangerschafts-Rate-Grenze für 'effektiv'. Anschließende klinische Studien (Labbok 1997 in Chile, Pakistan, Türkei): bestätigten die 98%-Effektivität bei strikter LAM-Anwendung.",
+        "perfect_vs_typical_use": "Perfect Use (alle 3 Kriterien strikt): Pearl-Index 0.5-1.5 (vergleichbar mit Spirale). Typical Use (real-life Anwendung mit Abweichungen, z.B. nächtliche Schlaf-Phasen >6h, gelegentliche Flaschen-Fütterung): Pearl-Index 2-7 — also 2-7 Schwangerschaften pro 100 Frauen-Jahre. Höher als Pille (typical 7-9), niedriger als 'kein Schutz' (~85% Pearl).",
+        "ovulation_vor_menstruation": "Wichtig: ERSTE Ovulation kommt VOR der ersten Menstruation post-partum. D.h. eine Frau kann schwanger werden BEVOR sie merkt, dass die Zyklus-Funktion zurück ist. Gross & Eastman 1985 (n=28 stillende Mütter): 78% hatten Ovulation vor erster Menstruation. Für LAM-Anwendung kritisch: man kann sich NICHT auf 'noch keine Menstruation = noch nicht fertil' verlassen, wenn Stillen reduziert ist.",
+        "kontextualisierung_globalsouth": "WHO empfiehlt LAM in Ländern mit eingeschränktem Verhütungs-Zugang (sub-saharisches Afrika, Süd-Asien). In Industrieländern wird empfohlen, ab 6 Wochen post-partum eine zusätzliche Methode zu verwenden (Mini-Pille, Hormonspirale, Kondom — nicht-stillen-relevante Methoden). Östrogen-haltige Pille NICHT in den ersten 6 Wochen wegen erhöhtem Thrombose-Risiko, danach möglich aber Milch-Reduktions-Effekt.",
+        "context": "Das Stillen-als-Verhütung-Konzept ist in vielen Kulturen tradiert, aber strikte LAM-Kriterien sind oft nicht bekannt. Korrekt angewendet ist LAM eine wertvolle Methode (besonders Global South); falsch verstanden ('Stillen schützt einfach') kann es zu ungewollten dichten Folge-Schwangerschaften führen."
+      },
+      "context_notes": [
+        "Kennedy KI, Trussell J 'Postpartum and breastfeeding' in Contraceptive Technology (20th ed., 2011): empfehlen, ab Tag 21 post-partum bei nicht-Vollstillenden Müttern bereits Verhütung — wegen frühestmöglichem Ovulations-Wiedereintritt.",
+        "Hormonspirale (Levonorgestrel-IUS, z.B. Mirena) und Kupferspirale können sicher direkt nach Geburt eingesetzt werden (post-placental insertion) — beste Effektivität bei stillenden Müttern.",
+        "Häufige Missverständnisse: 'Solange ich stille, kann nichts passieren' — falsch sobald Beikost beginnt. 'Spätzeit-Stillen >12 Monate verhütet' — falsch, Effektivität nur in den ersten 6 Monaten dokumentiert."
+      ],
+      "claim_phrasings_handled": [
+        "Solange ich stille kann ich nicht schwanger werden",
+        "Stillen ist sichere Verhütung",
+        "Beim Stillen kann man nicht schwanger werden",
+        "Mütter werden während Stillzeit nicht schwanger"
+      ],
+      "trigger_composite": [
+        ["stillen", "stillzeit", "stillende", "stille", "lactation", "muttermilch"],
+        ["verhütung", "schwanger", "schwangerschaft", "kontrazeption", "lam", "schützt", "kein schutz", "amenorrhö", "amenorrhoe", "nicht schwanger"]
+      ]
+    },
+    {
+      "topic": "wechseljahre_alter_mythos",
+      "headline": "Das mediane Menopause-Alter liegt bei 51 Jahren; die normale Variations-Spanne der natürlichen Menopause umfasst 45-55 Jahre (10. - 90. Perzentil) — die Vorstellung 'Wechseljahre erst ab 50' ist eine Vereinfachung",
+      "year": 2024,
+      "source_url": "https://www.menopause.org/publications/clinical-care-recommendations",
+      "secondary_url": "https://www.womenshealth.gov/menopause/menopause-basics",
+      "source_label": "NAMS Position Statement 2022 (STRAW+10) + NIH Office on Women's Health + SWAN Study (Study of Women's Health Across the Nation)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Menopause kommt mit 50 Jahren' / 'Wechseljahre erst ab 50' ist eine Vereinfachung. Das mediane Alter der natürlichen Menopause (definiert als 12 Monate ohne Menstruation, ohne andere Ursache) liegt in westlichen Industrie-Ländern bei 51 Jahren (USA: 51.4 Jahre, SWAN-Studie 1996-2017; Deutschland/Österreich vergleichbar). Aber: die normale Variations-Spanne (10. - 90. Perzentil) reicht von 45 bis 55 Jahren. Frühe Menopause (40-44 Jahre) gilt als normvariant aber selten — kommt bei ~5% der Frauen vor. Vorzeitige Ovarial-Insuffizienz (Premature Ovarian Insufficiency, POI; früher: 'vorzeitige Menopause') unter 40 Jahren betrifft ~1% der Frauen — gilt als pathologisch und sollte abgeklärt werden. Die Perimenopause (Phase mit Zyklus-Unregelmäßigkeiten + Symptomen vor finaler Menstruation) beginnt durchschnittlich 4 Jahre vor Menopause, also ab ~47.",
+        "straw_staging_2012": "STRAW+10 Staging-System (Stages of Reproductive Aging Workshop, Harlow et al. 2012, J Clin Endocrinol Metab): konsensgestützte Klassifikation der reproduktiven Lebens-Stadien. Stadium -2 (Late Reproductive): 35-45 J., Zyklen noch regelmäßig, FSH bereits ansteigend. Stadium -1 (Early Perimenopause): variable Zyklen ≥7 Tage Differenz, Beginn um 47. Stadium 0 (Final Menstrual Period, FMP): 51 (median). Stadium +1 (Early Postmenopause): erste 5 J. nach FMP. Stadium +2 (Late Postmenopause): >5 J.",
+        "swan_study_zahlen": "SWAN Study (n>3.300 Frauen, multi-ethnisch, USA, longitudinal seit 1996): mediane Menopause-Alter nach Ethnizität: weiße non-Hispanic 51.5, afro-amerikanisch 50.3, hispanisch 50.5, Chinesisch 51.2, Japanisch 51.7. Variation gering, aber konsistent — biologisch ähnlich, soziale Unterschiede in Symptom-Intensität dokumentiert.",
+        "frueh_und_spaet_menopause": "Frühe natürliche Menopause (45-49 J.): ca. 12% der Frauen. Spät-Menopause (>55 J.): ca. 5%. Genetische Komponente: ~50% der Variation erblich (Murabito 2005, Twin Studies). Familien-Anamnese ist Hinweis. Lebensstil-Faktoren: Rauchen senkt Menopause-Alter um durchschnittlich 1-2 Jahre (Pokoradi 2011, Fertility Sterility).",
+        "premature_ovarian_insufficiency": "POI (Premature Ovarian Insufficiency): Zyklus-Stillstand vor 40. Lj. mit FSH >40 IU/L 2-malig im Abstand 4-6 Wochen + Östrogen erniedrigt. Inzidenz ~1% (Coulam 1986, Obstet Gynecol). Ursachen: idiopathisch (90%), genetisch (Turner-Syndrom, FMR1-Premutation Fragile-X), autoimmun (M. Addison, Schilddrüse), iatrogen (Chemotherapie, Bestrahlung), chirurgisch (bilaterale Ovarektomie). Therapie: Hormon-Substitution bis zur normalen Menopause-Zeit (Schutz vor Osteoporose + Herz-Kreislauf-Risiko).",
+        "perimenopause_phase": "Perimenopause: 'Übergangs-Phase' mit Zyklus-Veränderungen + vasomotorischen Symptomen (Hitzewallungen, Schweiß-Ausbrüche), Schlaf-Störungen, Stimmungs-Schwankungen. Beginnt durchschnittlich 4 Jahre vor finaler Menstruation, also Median 47. Hormonell: FSH steigt (>25 IU/L), Östradiol fluktuiert stark, AMH (Anti-Müller-Hormon) sinkt. Nicht alle Frauen haben Symptome (~30% asymptomatisch).",
+        "context": "Die 'Wechseljahre = ab 50' Vereinfachung führt klinisch zu zwei Problemen: (1) Frauen mit Symptomen vor 50 werden mit 'da musst Du noch warten, du bist zu jung' abgespeist; (2) Frauen mit später Menopause (>55) erhalten manchmal unnötige Endometrium-Diagnostik. Korrekte Information: 45-55 ist normaler Bereich, 47 typischer Perimenopause-Beginn."
+      },
+      "context_notes": [
+        "Bilaterale Ovarektomie führt zu sofortiger 'chirurgischer Menopause' unabhängig vom Lebensalter. Bei Frauen <50 Jahren: ESHRE empfiehlt Hormon-Substitution bis ~Mediane-Menopause-Alter (51) wegen erhöhtem kardiovaskulärem + Osteoporose-Risiko (Sarrel 2013, Menopause).",
+        "Hysterektomie ohne Ovarektomie führt nicht zur Menopause, aber zu früherem Eintritt der natürlichen Menopause (im Durchschnitt 1-2 J. früher) — vermutlich durch Beeinträchtigung der ovariellen Blut-Versorgung (Trabuco 2016, Menopause).",
+        "Reproduktiv-Älter und Anti-Müller-Hormon (AMH): AMH-Spiegel korreliert mit Eizell-Reserve. Niedriges AMH (<1.0 ng/mL) deutet auf nahende Menopause, ist aber kein präziser Prädiktor für genaues Datum (Tehrani 2013)."
+      ],
+      "claim_phrasings_handled": [
+        "Mit 50 Jahren bekommen alle Frauen die Wechseljahre",
+        "Wechseljahre fangen erst ab 50 an",
+        "Menopause kommt mit 50",
+        "Frauen sind erst ab 50 in den Wechseljahren"
+      ],
+      "trigger_composite": [
+        ["menopause", "wechseljahre", "klimakterium", "perimenopause"],
+        ["50", "fünfzig", "alter", "frauen", "mit 40", "mit 45", "mit 50", "mit 55", "ab 50", "ab 45", "beginn", "anfang", "bekommen"]
+      ]
+    }
+  ]
+}
