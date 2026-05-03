@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-03",
+  "source_label": "DESTATIS — Statistisches Bundesamt Deutschland",
+  "facts": [
+    {
+      "id": "destatis_bevoelkerung_2024",
+      "topic": "destatis_bevoelkerung",
+      "scope": "Bevölkerungs-Stand und -entwicklung Deutschland",
+      "year": 2024,
+      "headline": "Deutschland: ~83,5 Mio Einwohner Ende 2024 — leicht rückläufig nach starker Zuwanderung 2022",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deutschland-Bevölkerung Ende 2024: ca. 83,5 Mio Einwohner (DESTATIS-Schätzung). Trend: 2022 starke Zunahme durch Ukraine-Zuwanderung (+1,3 Mio), 2023 weiter leicht positiv, 2024 leicht rückläufig (Wanderungssaldo nahe Null + negativer Geburten-Saldo). Pauschale 'Deutschland schrumpft' ist nuanciert — strukturell ja (Geburten unter Sterbefällen seit 1972), aber durch Zuwanderung wuchs die Bevölkerung in den letzten Dekaden trotzdem.",
+        "stand_2024": "DESTATIS Pressemitteilung August 2025: Bevölkerungs-Wachstum seit 1990 (Wiedervereinigung): +3,8 Mio Einwohner.",
+        "wanderungssaldo_2022_2024": "2022: +1,46 Mio (Ukraine-Flüchtlinge). 2023: +0,66 Mio. 2024: leicht positiv bis nahe Null (vorläufig).",
+        "geburten_sterbefaelle": "Seit 1972 sterben in Deutschland mehr Menschen als geboren werden ('natürliches Defizit'). 2024: ~677k Geburten vs ~1,02 Mio Sterbefälle = ~−343k natürliches Defizit.",
+        "context": "Bevölkerungsstatistik in Deutschland: starke regionale Unterschiede. Ostdeutschland (außer Berlin) schrumpft, süddeutsche Ballungsräume + Berlin wachsen. Demographischer Wandel ist real, aber durch Migration über lange Zeit kompensiert worden."
+      },
+      "context_notes": [
+        "DESTATIS unterscheidet 'Bevölkerung' (registrierte Einwohner) von 'Wohnbevölkerung mit Hauptwohnsitz'. Beide weichen leicht voneinander ab.",
+        "Zensus 2022 hat die Bevölkerungs-Schätzung um ~1,4 Mio nach unten korrigiert — viele Vorab-Aussagen vor Mai 2024 waren entsprechend zu hoch.",
+        "EU-weit ist Deutschland bevölkerungsstärkstes Land (vor Frankreich ~68 Mio, Italien ~59 Mio)."
+      ],
+      "claim_phrasings_handled": [
+        "Deutschland verliert massiv Bevölkerung",
+        "Deutschland schrumpft",
+        "Bevölkerung Deutschlands sinkt"
+      ],
+      "trigger_keywords": [
+        "deutschland bevoelkerung", "deutschland bevölkerung",
+        "einwohner deutschland",
+        "deutschland schrumpft", "bevoelkerung sinkt", "bevölkerung sinkt"
+      ],
+      "trigger_composite": [
+        ["deutschland", "deutsch", "brd", "bundesrepublik"],
+        ["bevoelkerung", "bevölkerung", "einwohner", "demografie", "demographie"]
+      ],
+      "source_label": "DESTATIS — Bevölkerungsstatistik",
+      "source_url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/_inhalt.html",
+      "secondary_url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2025/08/PD25_N047_12.html"
+    },
+    {
+      "id": "destatis_inflation_2024",
+      "topic": "destatis_inflation",
+      "scope": "Inflation Deutschland — Verbraucherpreisindex und Kerninflation",
+      "year": 2024,
+      "headline": "Deutschland-Inflation 2024: +2,2 % (Jahresdurchschnitt) nach 5,9 % (2023) und 6,9 % (2022)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "DESTATIS Inflationsrate Deutschland (Jahresdurchschnitt VPI): 2024: +2,2 %, 2023: +5,9 %, 2022: +6,9 %, 2021: +3,1 %. Kerninflation (ohne Energie und Lebensmittel) 2024: +3,0 %. Vor 2021 wurde die 2-%-Schwelle im Jahresdurchschnitt selten überschritten — zuletzt 2011 (auch 2,2 %). Pauschale Aussagen 'Inflation außer Kontrolle' sind 2024 nicht mehr zutreffend; die Hochinflations-Phase 2022/23 ist abgeklungen.",
+        "vpi_2024_jahresdurchschnitt": "Verbraucherpreisindex 2024: +2,2 % (Pressemitteilung 020/2025 vom 16.01.2025). Liegt über EZB-Ziel (~2 %), aber im normalen Bereich.",
+        "kerninflation_2024": "Kerninflation 2024 (ohne Energie + Nahrungsmittel): +3,0 % (nach 5,1 % 2023). Zeigt Persistenz auf Sektoren-Ebene, vor allem Dienstleistungen.",
+        "energiepreise_2024": "Haushaltsenergie -3,1 % (2024). Strom -6,4 %, leichtes Heizöl -3,9 %, Erdgas -3,5 %. Damit dämpfender Effekt nach Hochpunkt 2022.",
+        "vergleich_eurozone": "Eurozone-HVPI 2024: ~2,4 %. Deutschland leicht unter Eurozone-Schnitt nach Jahren über dem Schnitt 2022/23.",
+        "context": "Inflation 2022/23 war Folge mehrerer Schocks: Post-Covid-Nachfrage, Ukraine-Krieg-Energiekrise, Lieferketten-Stress. Rückgang 2024 ist Folge stabilisierter Energiepreise, EZB-Zinserhöhungen, normalisierter Lieferketten."
+      },
+      "context_notes": [
+        "Verbraucherpreisindex (VPI) ist die nationale Größe; Harmonisierter Verbraucherpreisindex (HVPI) ist die EU-vergleichbare Größe — beide weichen leicht ab.",
+        "Inflation 2025 (Jahresdurchschnitt) laut DESTATIS-Korrektur 2026: ~2,2 % — Stabilisierung im Zielbereich.",
+        "Wahrgenommene Inflation oft höher als gemessene — psychologischer Effekt (Aufmerksamkeit auf häufig gekaufte Güter)."
+      ],
+      "claim_phrasings_handled": [
+        "Inflation in Deutschland ist außer Kontrolle",
+        "Verbraucherpreise explodieren",
+        "Deutschland hat hohe Inflation"
+      ],
+      "trigger_keywords": [
+        "deutschland inflation", "inflation deutschland",
+        "verbraucherpreisindex", "vpi deutschland",
+        "preise explodieren", "preise steigen deutschland"
+      ],
+      "trigger_composite": [
+        ["deutschland", "deutsch", "brd", "bundesrepublik"],
+        ["inflation", "verbraucherpreis", "vpi", "hvpi", "preise", "preisanstieg", "teuerung"]
+      ],
+      "source_label": "DESTATIS — Verbraucherpreisindex",
+      "source_url": "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/_inhalt.html",
+      "secondary_url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2025/01/PD25_020_611.html"
+    },
+    {
+      "id": "destatis_geburten_2024",
+      "topic": "destatis_geburtenrate",
+      "scope": "Geburtenrate und Geburten Deutschland",
+      "year": 2024,
+      "headline": "Deutschland-Geburtenrate 2024: 1,35 Kinder je Frau — 677.117 Geburten, Tiefststand seit 2013",
+      "data": {
+        "kernsatz_fuer_synthesizer": "DESTATIS Pressemitteilung 259/2025 (Juli 2025): Zusammengefasste Geburtenziffer 2024 = 1,35 Kinder je Frau (vs 1,38 in 2023). Geburten absolut 2024: 677.117 (vs 692.989 in 2023, vs 738.819 in 2022). Tiefststand seit 2013. Aussagen 'Geburtenrate fällt' sind WAHR; Aussage 'Deutsche bekommen keine Kinder mehr' überzeichnet — 1,35 ist niedrig, aber EU-Mitte (Frankreich ~1,67, Italien ~1,20).",
+        "geburtenziffer_2024": "1,35 Kinder je Frau (2024) vs 1,38 (2023) vs 1,46 (2022) — anhaltender Rückgang seit 2017 (1,57). Reproduktions-Niveau wäre 2,1.",
+        "ost_west_unterschied": "West-Deutschland 2024: 1,38 Kinder/Frau (von 1,41). Ost-Deutschland 2024: 1,27 Kinder/Frau (von 1,33). Ost-Rückgang in 2024 doppelt so stark wie West.",
+        "geburten_absolut": "Geburten absolut 2024: 677.117. 2023: 692.989. 2022: 738.819 (Spitze nach Corona-Einbruch). 2013: 682.069 (jüngster Tiefpunkt). Trend: Rückgang seit 2017 mit Beschleunigung 2022-2024.",
+        "eu_vergleich": "EU-Geburtenraten 2023 (Eurostat): Frankreich 1,67, Irland 1,52, Schweden 1,45, Niederlande 1,43, Deutschland 1,38, Österreich 1,32, Italien 1,20, Spanien 1,16. Deutschland leicht unter EU-Mitte.",
+        "context": "Geburtenrückgang ist gesamteuropäisches Phänomen, beschleunigt durch Krisen-Wahrnehmungen (Energie, Inflation, Ukraine-Krieg). Demografischer Effekt: in 20-30 Jahren weniger Erwerbstätige, mehr Rentner — Treiber für Migrations-, Renten-, Bildungsdebatten."
+      },
+      "context_notes": [
+        "Geburten-Statistik basiert auf Standesämtern + Hebammen-Meldungen — sehr zuverlässig, auch in Echtzeit (Monatszahlen).",
+        "DESTATIS unterscheidet 'Lebendgeburten' (gemessen) von der 'zusammengefassten Geburtenziffer TFR' (modellbasiert).",
+        "Kohorten-Geburten je Frau (CFR) — also tatsächliches gelebte Kinder-pro-Frau einer Geburten-Jahrgangs — liegt höher als TFR (~1,55-1,60 für die 1970er-Frauen-Kohorte)."
+      ],
+      "claim_phrasings_handled": [
+        "Deutsche bekommen keine Kinder mehr",
+        "Geburtenrate Deutschlands ist auf Tiefststand",
+        "Geburtenrate Deutschland sinkt"
+      ],
+      "trigger_keywords": [
+        "deutschland geburtenrate", "geburtenrate deutschland",
+        "deutschland geburten", "geburtenziffer deutschland",
+        "tiefststand geburten", "geburten sinken",
+        "deutsche bekommen keine kinder", "deutsche kinderlos"
+      ],
+      "trigger_composite": [
+        ["deutschland", "deutsch", "brd"],
+        ["geburten", "geburtenrate", "geburtenziffer", "kinder pro", "kinder je frau", "kinder bekommen", "keine kinder", "kinderlos", "fertilitaet", "fertilität", "tfr"]
+      ],
+      "source_label": "DESTATIS — Geburtenstatistik",
+      "source_url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Geburten/_inhalt.html",
+      "secondary_url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2025/07/PD25_259_12.html"
+    },
+    {
+      "id": "destatis_arbeitslosigkeit_2024",
+      "topic": "destatis_arbeitslosigkeit",
+      "scope": "Arbeitslosigkeit Deutschland — ILO und BA-Definition",
+      "year": 2024,
+      "headline": "Deutschland-Arbeitslosenquote 2024: ~3,5 % (ILO/Eurostat) bzw. ~6,0 % (BA, registriert)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deutschland-Arbeitslosenquote 2024: ILO-konform (Eurostat-Methode) ~3,5 %, registriert (Bundesagentur für Arbeit) ~6,0 %. Beide sind korrekt, messen aber Unterschiedliches: ILO zählt aktiv suchende Personen ohne Arbeit, BA zählt Bezugs-Berechtigte. Aussage 'Deutschland hat hohe Arbeitslosigkeit' ist FALSCH im internationalen Vergleich (EU-Schnitt ~6 % ILO 2024). Pauschale 'Arbeitslosigkeit explodiert' nicht zutreffend für 2024.",
+        "ilo_quote_2024": "DESTATIS/Eurostat ILO-Quote 2024 (Jahresdurchschnitt): ~3,4-3,5 % (Erwerbslose / Erwerbspersonen). EU-27 Schnitt: ~6,0 %. Niedriger als USA, UK, Frankreich, Italien, Spanien.",
+        "ba_quote_2024": "Bundesagentur für Arbeit Arbeitslosenquote (Jahresdurchschnitt 2024): ca. 6,0 % (alle zivilen Erwerbspersonen). Höher als ILO, weil BA breiter zählt (auch nicht-aktiv suchende Bezugs-Berechtigte).",
+        "trend_2022_2024": "ILO 2022: 3,1 %. 2023: 3,1 %. 2024: ~3,5 %. Leichter Anstieg, aber historisch niedrig. BA 2022: 5,3 %. 2023: 5,7 %. 2024: 6,0 %.",
+        "ost_west_unterschied": "Ost-Deutschland traditionell höher: 2024 ~7-8 % BA vs ~5,5 % West. Konvergenz seit 1990, aber nicht abgeschlossen.",
+        "context": "Definitions-Differenzen zwischen ILO und BA verwirren oft. ILO ist EU-vergleichbar; BA ist national-traditionell. Beide werden parallel publiziert, was zu unterschiedlichen 'Quoten' in Medien führt — ohne dass das ein Widerspruch ist."
+      },
+      "context_notes": [
+        "ILO-Definition: Person ist arbeitslos, wenn sie 1) ohne Job, 2) aktiv binnen 4 Wochen gesucht hat, 3) binnen 2 Wochen verfügbar ist. Strenger als BA-Definition.",
+        "BA-Definition: registriert arbeitslos bei der Bundesagentur, weniger als 15 h/Woche arbeiten, Verfügbar.",
+        "Underemployment (BA-Konzept inkl. Maßnahmen-Teilnehmer, krank): höher als BA-Quote, ca. 7,5 % 2024."
+      ],
+      "claim_phrasings_handled": [
+        "Deutschland hat hohe Arbeitslosigkeit",
+        "Arbeitslosigkeit in Deutschland explodiert",
+        "Arbeitslosenquote Deutschland steigt"
+      ],
+      "trigger_keywords": [
+        "deutschland arbeitslosigkeit", "arbeitslosigkeit deutschland",
+        "arbeitslosenquote deutschland", "deutschland erwerbslos"
+      ],
+      "trigger_composite": [
+        ["deutschland", "deutsch", "brd"],
+        ["arbeitslos", "arbeitslosigkeit", "arbeitslosenquote", "erwerbslos", "erwerbslosenquote", "ilo-quote", "ba-quote"]
+      ],
+      "source_label": "DESTATIS / Bundesagentur für Arbeit",
+      "source_url": "https://www.destatis.de/DE/Themen/Arbeit/Arbeitsmarkt/_inhalt.html",
+      "secondary_url": "https://statistik.arbeitsagentur.de/DE/Navigation/Statistiken/Statistiken-Nav.html"
+    },
+    {
+      "id": "destatis_bip_2024",
+      "topic": "destatis_bip_wachstum",
+      "scope": "BIP-Wachstum Deutschland — Konjunktur",
+      "year": 2024,
+      "headline": "Deutschland-BIP 2024: real -0,2 %, nominal +2,8 % — zweites Stagnations-Jahr nach -0,3 % 2023",
+      "data": {
+        "kernsatz_fuer_synthesizer": "DESTATIS BIP-Schnellschätzung Januar 2025: Reales BIP-Wachstum Deutschland 2024 = -0,2 %, nach -0,3 % in 2023. Damit zweites Stagnations-Jahr in Folge. Nominales BIP 2024: +2,8 % (Inflations-getrieben). Pauschale 'Deutschland in tiefer Rezession' ist überzeichnet (-0,2 % ist Stagnation, nicht Krisen-Rezession). Pauschale 'Deutschland boomt' ist ebenfalls falsch — keine echte Erholung.",
+        "bip_2024": "Real -0,2 % (Vorläufige Berechnung Januar 2025). Nominal: ca. 4.300 Mrd EUR.",
+        "bip_2023": "Real -0,3 %. Nominal +6,3 % (Inflations-Effekt). Erste Schrumpfung seit 2020 (Corona-Effekt).",
+        "treiber_2024": "Schwache Weltwirtschaftsnachfrage (vor allem China-Schwäche), Energie-Kostendruck (trotz Stabilisierung weiter über Vorkrisen-Niveau), Investitions-Zurückhaltung der Industrie, schwache Bau-Konjunktur.",
+        "vergleich_eu": "EU-27 Real-Wachstum 2024: ~+0,9 %. Deutschland deutlich unter EU-Schnitt (Schwäche industrielastiger Volkswirtschaft). Spanien +3,2 %, Frankreich +1,1 %, Italien +0,5 %.",
+        "context": "Deutschland-Konjunktur 2023-24 ist von strukturellen Faktoren geprägt: Energie-Wende, China-Konkurrenz im Maschinenbau, Auto-Industrie-Transformation E-Mobilität. Zyklische Abkühlung über strukturelle Probleme gelagert."
+      },
+      "context_notes": [
+        "BIP-Erstrechnung im Januar wird im Lauf des Jahres mehrfach revidiert (Februar, August, September). Vorläufige Werte können sich um ±0,1-0,3 PP ändern.",
+        "Pro-Kopf-BIP (EU-Lebensstandard-Vergleich): Deutschland 2024 ~50.700 EUR/Person nominal, EU-27-Schnitt ~38.000 EUR. Im EU-Spitzendrittel.",
+        "Reales vs nominales BIP: real (preisbereinigt) zeigt Mengen-Veränderung, nominal zeigt Wert-Veränderung incl. Inflation."
+      ],
+      "claim_phrasings_handled": [
+        "Deutschland steckt in tiefer Rezession",
+        "Deutschland-Wirtschaft kollabiert",
+        "BIP Deutschland schrumpft"
+      ],
+      "trigger_keywords": [
+        "deutschland bip", "bip deutschland",
+        "deutschland rezession", "deutschland wirtschaft",
+        "deutschland kollabiert", "wirtschaft deutschland"
+      ],
+      "trigger_composite": [
+        ["deutschland", "deutsch", "brd"],
+        ["bip", "bruttoinlandsprodukt", "rezession", "wirtschaftswachstum", "konjunktur", "wirtschaft", "stagnation"]
+      ],
+      "source_label": "DESTATIS — Volkswirtschaftliche Gesamtrechnungen",
+      "source_url": "https://www.destatis.de/DE/Themen/Wirtschaft/Volkswirtschaftliche-Gesamtrechnungen-Inlandsprodukt/_inhalt.html",
+      "secondary_url": "https://www.destatis.de/DE/Themen/Wirtschaft/Konjunkturindikatoren/_inhalt.html"
+    },
+    {
+      "id": "destatis_lebenserwartung_2024",
+      "topic": "destatis_lebenserwartung",
+      "scope": "Lebenserwartung Deutschland",
+      "year": 2024,
+      "headline": "Deutschland-Lebenserwartung Sterbetafel 2021/23: Männer 78,3 / Frauen 83,2 Jahre",
+      "data": {
+        "kernsatz_fuer_synthesizer": "DESTATIS Sterbetafel 2021/23 (publiziert 2024): Lebenserwartung bei Geburt — Männer: 78,3 Jahre, Frauen: 83,2 Jahre. Gegenüber Vor-Corona-Werten (2017/19: M 78,5 / F 83,3) leicht reduziert wegen Corona-Übersterblichkeit 2020-22. Aussage 'Deutsche werden immer älter' ist langfristig WAHR (Anstieg 1990: M 72,4 / F 78,7), kurzfristig STAGNIERT seit 2019.",
+        "stand_2021_23": "Sterbetafel 2021/23 (DESTATIS Mai 2024): M 78,3 Jahre, F 83,2 Jahre. Geschlechter-Gap konstant ~5 Jahre.",
+        "covid_effekt": "Corona-Übersterblichkeit 2020-22 senkte die Lebenserwartung in vielen EU-Ländern um 0,5-1,5 Jahre. Deutschland: weniger stark betroffen (~-0,2 Jahre M, -0,1 F von Sterbetafel 2017/19 zu 2021/23).",
+        "trend_1990_2023": "M 1990: 72,4 → 2023: 78,3 (+5,9 Jahre). F 1990: 78,7 → 2023: 83,2 (+4,5 Jahre). Stagnation seit ~2019 (auch ohne Corona).",
+        "eu_vergleich": "Eurostat 2023: EU-27-Schnitt M 78,5, F 83,8. Deutschland leicht unter EU-Schnitt, vor allem bei Frauen. Spitzen: Spanien 84,0 (gemittelt), Schweiz 84,0. Schlusslicht: Bulgarien 75,6.",
+        "context": "Lebenserwartungs-Stagnation in entwickelten Ländern seit ~2015 ist Forschungs-Gegenstand: Adipositas, Substanzkonsum (Opioide USA), Pandemien sind Treiber. Deutschland-Stagnation moderater als USA (-2 Jahre seit 2014)."
+      },
+      "context_notes": [
+        "Sterbetafel-Methode unterstellt: Eine heute geborene Person erlebt die heutigen alterspezifischen Sterberaten — eine Modell-Größe, nicht Realität.",
+        "Lebenserwartung im Alter 65: M 17,4, F 20,7 Jahre (Sterbetafel 2021/23). Höher als Pendant 1990 — Älter werden im hohen Alter funktioniert.",
+        "Gesunde Lebenserwartung (HALE, WHO): liegt mehrere Jahre unter Lebenserwartung — 'Lebenserwartungs-Gewinn' beinhaltet teils Krankheits-Jahre."
+      ],
+      "claim_phrasings_handled": [
+        "Deutsche werden immer älter",
+        "Lebenserwartung Deutschland sinkt",
+        "Deutsche leben länger als früher"
+      ],
+      "trigger_keywords": [
+        "lebenserwartung deutschland", "deutschland lebenserwartung",
+        "wie alt deutsche", "deutsche alter",
+        "deutsche werden aelter", "deutsche werden älter",
+        "deutsche leben laenger", "deutsche leben länger"
+      ],
+      "trigger_composite": [
+        ["deutschland", "deutsch", "brd"],
+        ["lebenserwartung", "sterbetafel", "lebensalter", "altert", "ältere", "aeltere", "älter", "aelter", "alter werden", "lebensjahre", "leben laenger", "leben länger"]
+      ],
+      "source_label": "DESTATIS — Sterbetafel 2021/23",
+      "source_url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Sterbefaelle-Lebenserwartung/_inhalt.html",
+      "secondary_url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Sterbefaelle-Lebenserwartung/Tabellen/lebenserwartung-deutschland.html"
+    }
+  ]
+}

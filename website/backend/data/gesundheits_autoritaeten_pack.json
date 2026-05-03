@@ -1,0 +1,387 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-03",
+  "source_label": "NIH (NIDA, NCI, NCCIH) + CDC + BfR + WHO IARC",
+  "facts": [
+    {
+      "id": "cdc_vaccines_autism_2026",
+      "topic": "vaccines_autism_konsens",
+      "scope": "Behauptung, Impfungen verursachen Autismus",
+      "year": 2024,
+      "headline": "CDC + IOM + 200+ Studien: Kein Zusammenhang zwischen Impfungen und Autismus",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, Impfungen (insbesondere MMR oder Thiomersal-haltige) verursachten Autismus, ist FALSE. CDC, IOM (Institute of Medicine), WHO und 200+ peer-reviewed Studien stimmen überein: kein kausaler Zusammenhang. Die ursprüngliche Wakefield-Studie (1998) wurde 2010 als Betrug enthüllt und retracted; Wakefield verlor seine ärztliche Zulassung.",
+        "cdc_position": "CDC explizit: 'Studies have shown that there is no link between receiving vaccines and developing autism spectrum disorder.' Auch nach Entfernung von Thiomersal aus fast allen Kinder-Impfstoffen steigen Autismus-Diagnosen weiter — das Gegenteil dessen, was bei einem kausalen Zusammenhang erwartet würde.",
+        "iom_review": "IOM-Review 2004 + 2011: Über 200 Studien zu Thiomersal-haltigen Impfstoffen ausgewertet — 'consistently provided evidence of no association between thimerosal-containing vaccines and autism'.",
+        "wakefield_betrug": "Wakefield et al. (1998, Lancet): Behauptete einen MMR-Autismus-Zusammenhang basierend auf 12 Kindern. 2010 retracted, Wakefield als Betrug enthüllt (Daten manipuliert, Interessenkonflikte verschwiegen, GMC-Zulassung entzogen).",
+        "context": "Der Mythos ist trotz erdrückender Gegenbeweise gesellschaftlich hartnäckig — Folge: sinkende Impfquoten, Wiederauftreten von Masern-Ausbrüchen in Europa und USA seit 2017."
+      },
+      "context_notes": [
+        "Differenzierung: Echte Impf-Nebenwirkungen existieren (Schmerz an Einstichstelle, Fieber, sehr selten allergische Reaktionen). Diese sind dokumentiert und werden von den Behörden offen kommuniziert. Autismus ist NICHT in dieser Liste.",
+        "Selbst nach Entfernung von Thiomersal aus fast allen Kinder-Impfungen ab 2001 stiegen Autismus-Diagnosen weiter — Beweis gegen jede Kausalität.",
+        "Das Original-Wakefield-Paper wurde nach 12 Jahren als wissenschaftlicher Betrug entlarvt (BMJ Investigation, Brian Deer)."
+      ],
+      "claim_phrasings_handled": [
+        "Impfungen verursachen Autismus",
+        "MMR-Impfung führt zu Autismus",
+        "Thiomersal in Impfstoffen verursacht Autismus bei Kindern"
+      ],
+      "trigger_keywords": [
+        "impfung autismus", "impfen autismus",
+        "mmr autismus", "thiomersal autismus",
+        "vaccine autism", "vaccines cause autism",
+        "impfen verursacht autismus"
+      ],
+      "trigger_composite": [
+        ["impfung", "impfen", "vakzin", "vaccine", "mmr", "masern-impfung", "thiomersal", "quecksilber"],
+        ["autismus", "autism", "asd", "autismus-spektrum", "autistisch"]
+      ],
+      "source_label": "CDC Vaccine Safety + IOM Reviews",
+      "source_url": "https://www.cdc.gov/vaccine-safety/about/autism.html",
+      "secondary_url": "https://www.cdc.gov/vaccine-safety/about/thimerosal.html"
+    },
+    {
+      "id": "cdc_fluoride_water_2026",
+      "topic": "fluoride_trinkwasser_konsens",
+      "scope": "Behauptung, Trinkwasser-Fluoridierung sei schädlich oder unwirksam",
+      "year": 2024,
+      "headline": "CDC + ADA + WHO: Trinkwasser-Fluoridierung reduziert Karies um ~25 %, sicher in empfohlenen Konzentrationen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, Trinkwasser-Fluoridierung sei schädlich oder unwirksam, ist FALSE/MOSTLY_FALSE. CDC zählt sie zu den 10 wichtigsten Public-Health-Errungenschaften des 20. Jahrhunderts. Studien zeigen ~25 % Karies-Reduktion bei Erwachsenen und Kindern. Empfohlene Konzentration: 0,7 mg/L (USA) bzw. natürlich vorkommend in vielen Trinkwasser-Quellen.",
+        "cdc_evidence": "CDC: 'Drinking fluoridated water keeps teeth strong and reduces cavities by about 25 % in children and adults.' ROI: ~$20 pro $1 investiert. Empfehlung von ADA, AAP, US Public Health Service, WHO.",
+        "konsens_organisationen": "American Dental Association, American Academy of Pediatrics, U.S. Public Health Service, WHO unterstützen Trinkwasser-Fluoridierung in den empfohlenen niedrigen Konzentrationen.",
+        "differenzierung_zahnpasta": "Fluorid-Zahnpasta (1000-1500 ppm) wirkt topisch und ist davon zu trennen. Beide Pfade (systemisch via Trinkwasser + topisch via Zahnpasta) sind etabliert wirksam.",
+        "context": "Anti-Fluoridierungs-Mythen reichen von 'Massenmedikation' (rechtlich-ethisch) über 'Mind Control' (verschwörungstheoretisch) bis 'Knochengesundheit' (wissenschaftlich widerlegt bei empfohlenen Dosen). Hochdosis-Effekte (Skelett-Fluorose) sind bekannt, aber bei Trinkwasser-Niveau (0,7 mg/L) nicht relevant."
+      },
+      "context_notes": [
+        "Skelett-Fluorose und schwere Dental-Fluorose treten bei viel höheren Konzentrationen auf (>4 mg/L Trinkwasser). In den USA ist das EPA-Maximum 4 mg/L, empfohlen 0,7 mg/L.",
+        "Einige Länder (Niederlande, Deutschland) fluoridieren Trinkwasser nicht, setzen stattdessen auf fluoridiertes Speisesalz und Zahnpasta — beide Wege sind etabliert wirksam.",
+        "Vorsorge bei Säuglingen: Empfehlung, fluoridiertes Trinkwasser zur Säuglingsnahrungs-Zubereitung mit anderen Quellen abzuwechseln (mildes Risiko milder Dental-Fluorose)."
+      ],
+      "claim_phrasings_handled": [
+        "Fluorid im Trinkwasser ist gefährlich",
+        "Trinkwasser-Fluoridierung ist Massenmedikation",
+        "Fluorid macht dumm"
+      ],
+      "trigger_keywords": [
+        "fluorid trinkwasser", "fluoride wasser",
+        "fluoridierung", "trinkwasser fluorid",
+        "fluorid gefaehrlich", "fluorid gefährlich"
+      ],
+      "trigger_composite": [
+        ["fluorid", "fluoride", "fluoridierung"],
+        ["trinkwasser", "wasser", "leitungswasser", "leitung", "schaedlich", "schädlich", "gefaehrlich", "gefährlich", "vergiftung", "macht dumm", "iq"]
+      ],
+      "source_label": "CDC Community Water Fluoridation + ADA + WHO",
+      "source_url": "https://www.cdc.gov/fluoridation/about/index.html",
+      "secondary_url": "https://www.cdc.gov/fluoridation/about/statement-on-the-evidence-supporting-the-safety-and-effectiveness-of-community-water-fluoridation.html"
+    },
+    {
+      "id": "nida_cannabis_health_2026",
+      "topic": "cannabis_gesundheit_konsens",
+      "scope": "Behauptungen über Cannabis und Gesundheit",
+      "year": 2024,
+      "headline": "NIDA: Cannabis hat dokumentierte Gesundheitseffekte — nicht harmlos, aber auch keine Gateway-Droge im populär-mythischen Sinne",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Cannabis-Behauptungen sind oft polarisiert. NIDA-Forschungs-Konsens: (1) Cannabis ist NICHT harmlos — dokumentierte Effekte auf jugendliches Gehirn (IQ-Reduktion bei frühem Konsum), Psychose-Risiko, Cannabis-Use-Disorder bei ~9 % der Konsumenten (~17 % bei Jugend-Beginn). (2) Aber auch KEINE Gateway-Droge im einfachen Sinne — Korrelation mit anderen Drogen-Konsum, aber Kausalität nicht etabliert. (3) Medizinische Anwendungen (CBD bei Epilepsie, THC bei Chemo-Übelkeit) sind klar dokumentiert.",
+        "neurologische_effekte": "NIDA: 'Regular marijuana use in the early teen years lowers IQ into adulthood, even if users stopped smoking marijuana as adults.' THC verändert Hippocampus + präfrontaler Cortex (Gedächtnis, Entscheidungsfindung). Bei Erwachsenen-Konsum reversibel; bei Jugend-Konsum teils irreversibel.",
+        "psychose_risiko": "Frühe Cannabis-Nutzung verdoppelt das Psychose-Risiko (Henquet et al. 2005, Marconi et al. 2016). Bei genetischer Prädisposition (COMT-Gen, AKT1) deutlich verstärkt. Hochpotente Cannabis-Sorten (>10 % THC) erhöhen das Risiko weiter.",
+        "abhaengigkeitsrisiko": "Cannabis-Use-Disorder: ~9 % aller Konsumenten, ~17 % wenn Konsum als Jugendliche begonnen. Wesentlich niedriger als Nikotin (~32 %), Alkohol (~15 %) oder Opioide (~23 %), aber NICHT null.",
+        "medizinisch_anerkannt": "FDA-anerkannte cannabis-basierte Medikamente: Epidiolex (CBD bei Dravet-Syndrom + Lennox-Gastaut), Dronabinol/Marinol (synthetisches THC bei Chemo-Übelkeit + AIDS-Wasting), Sativex (Spastik bei MS, EU/UK).",
+        "context": "Die Bewertung einzelner Cannabis-Aussagen hängt vom Kontext ab: 'Cannabis ist harmlos' ist FALSCH, 'Cannabis ist eine Gateway-Droge' ist OFT FALSCH (Korrelation ≠ Kausalität), 'Cannabis hat medizinische Anwendungen' ist WAHR mit klaren Evidenzgrenzen."
+      },
+      "context_notes": [
+        "NIDA-Position ≠ Drug-Enforcement-Position. NIDA forscht; DEA klassifiziert (Schedule I in den USA bis 2024). Forschungs- und Politik-Aussagen sind getrennt zu lesen.",
+        "EU-Regulierung variiert: Deutschland Teillegalisierung 2024, Niederlande Toleranz seit 1976, Tschechien 2024 Erweiterung — Forschungs-Konsens ist davon unabhängig.",
+        "Cannabis ≠ CBD-only-Produkte. CBD allein hat anders verlaufende Risiken (sehr niedriges Sucht-Potenzial, andere Indikationen)."
+      ],
+      "claim_phrasings_handled": [
+        "Cannabis ist harmlos",
+        "Marihuana ist eine Gateway-Droge",
+        "Cannabis macht süchtig",
+        "Cannabis hat keine medizinischen Anwendungen"
+      ],
+      "trigger_keywords": [
+        "cannabis harmlos", "cannabis gefahr",
+        "marihuana gateway", "cannabis sucht", "cannabis suechtig",
+        "cannabis medizin", "cbd thc",
+        "cannabis psychose", "cannabis schizophrenie"
+      ],
+      "trigger_composite": [
+        ["cannabis", "marihuana", "thc", "marijuana", "weed"],
+        ["harmlos", "gefahr", "gefährlich", "gefaehrlich", "gateway", "einstieg", "sucht", "süchtig", "suechtig", "abhaeng", "abhäng", "psychose", "schizophrenie", "iq", "gehirn", "hirn", "medizin", "heilung", "therap"]
+      ],
+      "source_label": "NIH NIDA Cannabis Research",
+      "source_url": "https://nida.nih.gov/research-topics/cannabis-marijuana",
+      "secondary_url": "https://nida.nih.gov/download/1380/cannabis-marijuana-research-report.pdf"
+    },
+    {
+      "id": "nci_red_meat_cancer_2026",
+      "topic": "red_meat_cancer_konsens",
+      "scope": "Behauptungen über roten/verarbeiteten Fleischkonsum und Krebsrisiko",
+      "year": 2024,
+      "headline": "IARC + NCI: Verarbeitetes Fleisch Group 1 (krebserregend), rotes Fleisch Group 2A (wahrscheinlich krebserregend)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, dass roter und verarbeiteter Fleischkonsum das Krebsrisiko erhöht, ist MOSTLY_TRUE/TRUE. WHO IARC (2015) klassifiziert: Verarbeitetes Fleisch (Wurst, Schinken, Speck) als Gruppe 1 'krebserregend für Menschen', rotes Fleisch (Rind, Schwein, Lamm) als Gruppe 2A 'wahrscheinlich krebserregend'. NCI bestätigt: Assoziation mit Darmkrebs (kolorektales Karzinom), schwächere Hinweise für Prostata- und Pankreas-Krebs.",
+        "iarc_klassifikation": "WHO/IARC Monograph Volume 114 (2015): 'Carcinogenicity of consumption of red and processed meat' — Auswertung von >800 epidemiologischen Studien. Verarbeitetes Fleisch: ~18 % erhöhtes Darmkrebs-Risiko pro 50g/Tag. Rotes Fleisch: ~17 % pro 100g/Tag.",
+        "nci_factsheet": "NCI Cancer Trends Progress Report: rotes + verarbeitetes Fleisch sind unter den modifizierbaren Krebs-Risikofaktoren. NCI empfiehlt Reduktion entsprechend USDA Dietary Guidelines (max. 26 oz / 740 g rotes + verarbeitetes Fleisch pro Woche).",
+        "mechanismen": "Heterocyclische Amine (HCA) + Polyzyklische aromatische Kohlenwasserstoffe (PAK) entstehen beim Hochtemperatur-Garen (Grillen, Pfanne). Häm-Eisen + N-Nitroso-Verbindungen bei verarbeitetem Fleisch sind weitere Mechanismen.",
+        "groessenordnung": "Group 1 (verarbeitetes Fleisch) = gleiche Kategorie wie Tabak und Asbest, aber das misst die Sicherheit der Evidenz, NICHT die Stärke des Risikos. Absolute Risikoerhöhung ist deutlich geringer als bei Tabak.",
+        "context": "Fleischkonsum-Krebs-Aussagen sind in der Bevölkerung oft unter- oder über-interpretiert. Der wissenschaftliche Konsens ist klar (IARC + NCI + WCRF), aber das absolute Risiko bei moderatem Konsum ist deutlich geringer als bei Tabak. Vegetarisch-vegane Ernährung ist NICHT zwingend nötig, Reduktion verarbeitete Wurst und Grillen-mit-Anbrennen ist die hauptsächliche Empfehlung."
+      },
+      "context_notes": [
+        "IARC-Klassifikation ist eine Hazard-Aussage (kann das Krebs-Risiko erhöhen?), keine Risk-Aussage (wie viel?). Beim Tabak ist die absolute Risikoerhöhung viel größer als bei Fleisch.",
+        "Differenzierung: Geflügel und Fisch sind NICHT in der IARC-Klassifikation für rotes Fleisch enthalten.",
+        "Mediterrane Ernährung mit moderatem Fleischkonsum (Fisch + Geflügel) zeigt in Studien neutrale bis positive Effekte."
+      ],
+      "claim_phrasings_handled": [
+        "Rotes Fleisch verursacht Krebs",
+        "Wurst ist krebserregend",
+        "Fleisch erhöht Krebsrisiko"
+      ],
+      "trigger_keywords": [
+        "rotes fleisch krebs", "wurst krebs",
+        "fleisch krebsrisiko", "verarbeitetes fleisch krebs",
+        "schinken speck krebs", "wurst krebserregend"
+      ],
+      "trigger_composite": [
+        ["rotes fleisch", "rindfleisch", "schweinefleisch", "wurst", "speck", "schinken", "verarbeitetes fleisch", "salami", "fleisch"],
+        ["krebs", "tumor", "karzinom", "darmkrebs", "krebserregend", "krebs-risiko", "krebsrisiko"]
+      ],
+      "source_label": "WHO IARC Monograph Vol. 114 + NCI Progress Report",
+      "source_url": "https://www.cancer.gov/about-cancer/causes-prevention/risk/diet/cooked-meats-fact-sheet",
+      "secondary_url": "https://progressreport.cancer.gov/prevention/diet_alcohol/red_meat"
+    },
+    {
+      "id": "bfr_acrylamid_2026",
+      "topic": "acrylamid_lebensmittel_konsens",
+      "scope": "Acrylamid-Bildung in Lebensmitteln und Gesundheitsrisiko",
+      "year": 2023,
+      "headline": "BfR: Acrylamid in Pommes/Chips/Crispbread/Kaffee — krebserregend in Tierversuchen, Risiko beim Menschen nicht ausschließbar",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Acrylamid in stark gebräunten Lebensmitteln ist ein dokumentiertes Anliegen. BfR-Position: Acrylamid ist im Tierversuch krebserregend und schädigt das Erbgut. Beim Menschen kann ein Krebs-Zusammenhang weder angenommen noch ausgeschlossen werden — Vorsorge-Prinzip rechtfertigt Minimierung. Empfehlung 'vergolden statt verkohlen' beim Frittieren/Backen/Rösten.",
+        "bfr_position": "BfR Stellungnahme Nr. 043/2011 + Updates: Acrylamid entsteht beim Erhitzen kohlenhydrathaltiger Lebensmittel über ~120 °C (Maillard-Reaktion). Hohe Gehalte in Pommes frites, Kartoffelchips, Knäckebrot, Müsli, Lebkuchen, Kaffee.",
+        "minimierungs_strategie": "EU-Verordnung 2017/2158: Hersteller-Pflicht zur Minimierung. Haushalt-Empfehlung: kürzer + bei niedrigerer Temperatur garen, mehr Wasser-haltige Zubereitung (Kochen statt Backen wo möglich), nicht braun-schwarz braten, Pommes vor dem Frittieren wässern.",
+        "risiko_einordnung": "Acrylamid ist in Vol. 60 IARC Monographs als 'wahrscheinlich krebserregend für Menschen' (Group 2A) eingestuft. Tierversuche: Tumorbildung in mehreren Organen. Bevölkerungs-Studien: Hinweise auf Brust-, Eierstock- und Endometrium-Karzinome, Evidenz aber inkonsistent.",
+        "context": "Acrylamid ist nicht spezifisch für ein bestimmtes Produkt, sondern Effekt der Hochtemperatur-Bräunung. Vermeidung kompletter Lebensmittelgruppen ist nicht nötig — bewusst zubereiten reicht."
+      },
+      "context_notes": [
+        "BfR + EFSA empfehlen Minimierung des Acrylamid-Konsums vor allem für Kinder (höhere Aufnahme pro kg Körpergewicht).",
+        "Differenzierung: Acrylamid in Industrie-Verpackungen (Acrylamid-Polymere) ≠ Acrylamid-Monomer in gebräunten Lebensmitteln.",
+        "EU-Benchmark-Werte (Verordnung 2017/2158) sind nicht Grenzwerte, sondern Auslöse-Werte für Hersteller-Maßnahmen."
+      ],
+      "claim_phrasings_handled": [
+        "Acrylamid ist krebserregend",
+        "Pommes verursachen Krebs",
+        "Verbrannte Lebensmittel sind giftig"
+      ],
+      "trigger_keywords": [
+        "acrylamid krebs", "acrylamid lebensmittel",
+        "pommes krebs", "chips acrylamid",
+        "pommes verursachen krebs", "verbrannte lebensmittel",
+        "verkohlt krebs", "kruste krebs"
+      ],
+      "trigger_composite": [
+        ["acrylamid", "acrylamide", "pommes", "kartoffelchips", "verbrannt", "verkohlt", "kruste", "verbrennen", "verbrannte lebensmittel"],
+        ["krebs", "krebserregend", "tumor", "karzinom", "giftig", "schaedlich", "schädlich", "gefaehrlich", "gefährlich"]
+      ],
+      "source_label": "BfR Stellungnahme + IARC Monograph",
+      "source_url": "https://www.bfr.bund.de/de/a-z_index/acrylamid-4185.html",
+      "secondary_url": "https://www.bfr.bund.de/cm/343/acrylamid-in-lebensmitteln.pdf"
+    },
+    {
+      "id": "bfr_mikroplastik_2026",
+      "topic": "mikroplastik_lebensmittel_konsens",
+      "scope": "Mikroplastik in Lebensmitteln und Trinkwasser — Gesundheitsrisiko",
+      "year": 2024,
+      "headline": "BfR: Aktuell keine belastbaren toxikologischen Hinweise auf Gesundheitsrisiken durch Mikroplastik im Essen — Datenlage aber lückenhaft",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Mikroplastik-Aussagen sind oft zu pauschal. BfR-Position 2024: Nach aktuellem Kenntnisstand gibt es 'keine belastbaren toxikologischen Hinweise auf Gesundheitsrisiken durch die Aufnahme von Mikroplastik über Lebensmittel.' Das ist KEINE Entwarnung — die Datenlage ist lückenhaft, und 'kein nachgewiesenes Risiko' ≠ 'nachgewiesen sicher'. Forschung läuft.",
+        "bfr_position": "BfR (FAQ Mikroplastik 2024): Initial-Tests an Modell-Partikeln zeigten keine Schädigung von Darmgewebe. ABER: Aufgrund begrenzter Daten ist eine umfassende Risikobewertung der Wirkung von Mikroplastik auf die Darmbarriere und nachfolgende Risikobewertung NOCH NICHT möglich.",
+        "datenluecken": "BfR ausdrücklich: 'Keine belastbaren Erkenntnisse zu relevanten Eintragspfaden, Vorkommen, Zusammensetzung, Partikelgröße und Menge der Mikroplastik-Partikel in Lebensmitteln.'",
+        "studie_2024_gehirn": "BfR-Bewertung der Nature-Medicine-Studie (Campen et al. 2024) zu Mikroplastik in menschlichen Hirn-Proben: methodisch fragwürdig (mögliche Artefakte aus Probenvorbereitung), Schlussfolgerungen nicht ableitbar.",
+        "risiko_perspective": "EU-EFSA-Schätzung (2016): durchschnittliche Aufnahme ~5 g Mikroplastik pro Woche — entspricht ungefähr einer Kreditkarte. Allerdings methodisch umstritten (Hochrechnungen aus stark variablen Daten). Toxikologische Bewertung ist davon zu trennen.",
+        "context": "Mikroplastik im Lebensmittel ist nachgewiesen (Salz, Bier, Honig, Trinkwasser). Aber: Nachweis ≠ Schaden. Die populärwissenschaftliche Aussage 'wir essen jede Woche eine Kreditkarte Plastik' ist methodisch wackelig. Vorsorge-Prinzip + weitere Forschung sind die wissenschaftlich vernünftige Antwort."
+      },
+      "context_notes": [
+        "Differenzierung: Mikroplastik (1 µm – 5 mm) vs Nanoplastik (<1 µm) — unterschiedliche toxikologische Bewertungen, da Nanoplastik Zellbarrieren überschreiten kann.",
+        "EFSA, BfR und FDA-Position konvergieren: Forschung zeigt Vorhandensein, aber keine quantifizierten Gesundheitsschäden bei aktuellen Aufnahmemengen.",
+        "Industrielle Maßnahmen (Mikroplastik-Verbot in Kosmetika, EU-2022) werden trotz fehlender etablierter Schäden vorsorglich umgesetzt."
+      ],
+      "claim_phrasings_handled": [
+        "Mikroplastik im Essen ist gefährlich",
+        "Wir essen jede Woche eine Kreditkarte Plastik",
+        "Mikroplastik im Trinkwasser schadet"
+      ],
+      "trigger_keywords": [
+        "mikroplastik essen", "mikroplastik gesund",
+        "mikroplastik schaedlich", "mikroplastik schädlich",
+        "kreditkarte plastik woche", "kreditkarte plastik",
+        "mikroplastik trinkwasser",
+        "wir essen plastik", "plastik im essen"
+      ],
+      "trigger_composite": [
+        ["mikroplastik", "microplastik", "microplastics", "nanoplastik"],
+        ["essen", "lebensmittel", "trinkwasser", "wasser", "gesund", "schaedlich", "schädlich", "krank", "kreditkarte", "darm", "gehirn"]
+      ],
+      "source_label": "BfR FAQ Mikroplastik 2024",
+      "source_url": "https://www.bfr.bund.de/de/a-z_index/mikroplastik-192184.html",
+      "secondary_url": "https://www.bfr.bund.de/cm/343/mikroplastik-fakten-forschung-und-offene-fragen.pdf"
+    },
+    {
+      "id": "bfr_glyphosat_2026",
+      "topic": "glyphosat_krebs_konsens",
+      "scope": "Glyphosat (Herbizid) und Krebsrisiko — regulatorische Uneinigkeit",
+      "year": 2023,
+      "headline": "Glyphosat-Krebs-Frage MIXED: WHO IARC Group 2A (wahrscheinlich), aber EFSA/BfR/EPA: kein Krebsrisiko bei sachgemäßer Anwendung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die Glyphosat-Krebs-Frage ist MIXED — Bewertungs-Uneinigkeit zwischen WHO IARC und EU/US-Regulatoren ist FAKTISCH. WHO IARC (2015): Glyphosat als Group 2A 'wahrscheinlich krebserregend für Menschen' eingestuft. EFSA (2015 + 2023), BfR und US EPA: kein Krebsrisiko bei sachgemäßer Anwendung. Uneinigkeit kommt aus unterschiedlicher Methodik (IARC bewertet Gefahr, Regulatoren bewerten Risiko) und Daten-Selektion.",
+        "iarc_position": "WHO IARC Monograph Vol. 112 (2015): Glyphosat als Group 2A 'probably carcinogenic to humans' eingestuft. Hauptgrundlage: 'limited evidence' beim Menschen (Non-Hodgkin-Lymphom in einigen Studien) + 'sufficient evidence' bei Versuchstieren. Methodik: hazard-based.",
+        "efsa_bfr_position": "EFSA (Europ. Lebensmittel-Sicherheits-Behörde) 2015 + 2023: 'Unlikely to pose a carcinogenic hazard to humans.' BfR-Position 2017 (Bewertungsbericht für EU-Wiederzulassung) folgt EFSA. Methodik: risk-based (= bei realistischer Exposition).",
+        "us_epa_position": "US EPA (2020): 'Glyphosate is not likely to be carcinogenic to humans.' Trotzdem: zahlreiche US-Bürger-Klagen gegen Bayer-Monsanto erfolgreich (Roundup-Vergleiche, ca. 11 Mrd USD seit 2020) — bewertet Mitschuld an Erkrankungen einzelner Kläger, nicht generelles Krebsrisiko.",
+        "kontroverse_methoden": "Kritik an BfR-Bewertung (2017): substantielle Text-Übernahme aus Industrie-Quellen (Monsanto-Materialien) ohne Attribution dokumentiert. BfR + EFSA verwendeten teils unveröffentlichte Industrie-Studien; IARC verwendete nur publizierte Studien. Beide Methoden sind verteidigbar, kommen aber zu unterschiedlichen Schlüssen.",
+        "context": "Pauschale Aussagen 'Glyphosat verursacht Krebs' (zu absolut) oder 'Glyphosat ist sicher' (zu absolut) verfehlen die regulatorische Realität. Korrekte Aussage: Wissenschaftliche Bewertungs-Uneinigkeit zwischen WHO IARC und EU/US-Lebensmittelregulatoren — beide gut begründet, mit unterschiedlicher Methodik."
+      },
+      "context_notes": [
+        "Hazard-vs-Risk-Unterschied: Glyphosat in Group 2A (IARC) heißt 'kann Krebs bei genug Exposition'. Bei realistischer Anwendungs-Exposition (EFSA/EPA) ist das Risiko nicht erwiesen. Beide Aussagen sind komplementär, nicht widersprüchlich.",
+        "EU-Wiederzulassung Glyphosat: bis 2033 verlängert (Nov 2023), trotz Bedenken einiger Mitgliedstaaten. Deutschland-Position: Ausstieg geplant.",
+        "Bayer-Monsanto-Roundup-Klagen in den USA: Gerichtsentscheidungen für Kläger basieren auf 'preponderance of evidence' im Einzelfall, nicht auf wissenschaftlichem Krebs-Konsens."
+      ],
+      "claim_phrasings_handled": [
+        "Glyphosat verursacht Krebs",
+        "Roundup ist krebserregend",
+        "Glyphosat ist sicher"
+      ],
+      "trigger_keywords": [
+        "glyphosat krebs", "glyphosate cancer",
+        "roundup krebs", "monsanto krebs",
+        "glyphosat sicher", "glyphosat gefahr"
+      ],
+      "trigger_composite": [
+        ["glyphosat", "glyphosate", "roundup", "monsanto"],
+        ["krebs", "cancer", "krebserregend", "sicher", "gefahr", "gefährlich", "gefaehrlich", "schaedlich", "schädlich"]
+      ],
+      "source_label": "WHO IARC vs EFSA + BfR + US EPA — Bewertungs-Uneinigkeit",
+      "source_url": "https://www.bfr.bund.de/de/a-z_index/glyphosat-126638.html",
+      "secondary_url": "https://www.iarc.who.int/featured-news/media-centre-iarc-news-glyphosate/"
+    },
+    {
+      "id": "bfr_aspartam_2026",
+      "topic": "aspartam_krebs_konsens",
+      "scope": "Aspartam (Süßstoff) und Krebsrisiko",
+      "year": 2024,
+      "headline": "Aspartam-Krebs-Frage MIXED: WHO IARC Group 2B (möglich) seit 2023, aber JECFA/BfR/EFSA: sicher in empfohlenen Mengen (40 mg/kg/Tag)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Aspartam-Krebs-Frage ist MIXED — IARC (Juli 2023) stufte Aspartam als Group 2B 'möglicherweise krebserregend' ein, aber JECFA (Joint FAO/WHO Expert Committee on Food Additives) und EFSA und BfR haben gleichzeitig die akzeptable tägliche Aufnahmemenge (ADI) bei 40 mg/kg Körpergewicht/Tag bestätigt. Bei dieser Dosis ist Aspartam als sicher eingestuft. Group 2B ist die schwächste 'möglich krebserregend'-Kategorie und enthält auch z.B. Aloe vera und Petergeräusche.",
+        "iarc_einstufung_2023": "IARC Monograph 134 (Juli 2023): Aspartam in Group 2B ('möglicherweise krebserregend'). Begründung: 'limited evidence' für Hepatokarzinome in einer ostasiatischen Studie. JECFA bewertete dieselben Daten und kam zu keinem geänderten ADI.",
+        "bfr_position": "BfR 2024: 'Aspartam ist eines der am besten untersuchten und von internationalen Expertengremien wiederholt bewerteten Süßungsmittel; das BfR hat keine Bedenken bei Konsum innerhalb des ADI von 40 mg/kg/Tag.'",
+        "praktische_groessenordnung": "ADI 40 mg/kg/Tag — für 70-kg-Person: 2,8 g Aspartam/Tag = ca. 14 Dosen Diät-Cola pro Tag. Realistischer Konsum liegt typischerweise bei <5 % des ADI. WHO/JECFA-Position: Bei realistischer Exposition besteht kein erhöhtes Krebs-Risiko.",
+        "iarc_kategorie_2b_kontext": "Group 2B 'möglicherweise krebserregend' enthält ~322 Substanzen, darunter: Aloe vera Vollblatt-Extrakt, Eingelegtes Gemüse (asiatisch), Bisphenol A. Group 2B = 'limited evidence' beim Menschen, 'less than sufficient' bei Versuchstieren. Schwächste 'mögliche'-Kategorie.",
+        "context": "Pauschale Aussagen 'Aspartam ist krebserregend' überinterpretieren die IARC-2B-Klassifikation. Korrekte Lesart: möglich-aber-bei-üblicher-Exposition-nicht-belegt. Wer Aspartam vermeidet, kann das aus Vorsorge tun, aber wissenschaftlich ist der Konsens-Korridor: bei ADI-Konsum sicher."
+      },
+      "context_notes": [
+        "ADI 40 mg/kg/Tag wurde nach IARC-Bewertung 2023 NICHT abgesenkt — JECFA und EFSA fanden keine ausreichenden Daten für Reduktion.",
+        "Aspartam-Phenylalanin-Anteil: bei Phenylketonurie (PKU) muss Aspartam vermieden werden. Daher Warnhinweis 'enthält Phenylalanin' auf Produkten.",
+        "Differenzierung: Aspartam ≠ andere Süßstoffe (Sucralose, Stevia, Erythrit, Acesulfam-K). Jeder Süßstoff hat individuelle ADI und Bewertung."
+      ],
+      "claim_phrasings_handled": [
+        "Aspartam verursacht Krebs",
+        "Süßstoff ist krebserregend",
+        "Diät-Cola macht krank"
+      ],
+      "trigger_keywords": [
+        "aspartam krebs", "aspartame cancer",
+        "suessstoff krebs", "süßstoff krebs",
+        "diaet-cola krebs", "diät-cola krebs",
+        "diaet-cola macht krank", "diät-cola macht krank",
+        "cola light krebs", "cola light krank"
+      ],
+      "trigger_composite": [
+        ["aspartam", "aspartame", "suessstoff", "süßstoff", "süssstoff", "suessungsmittel", "süßungsmittel", "diaet-cola", "diät-cola", "cola light", "zero cola", "light-getraenk"],
+        ["krebs", "cancer", "krebserregend", "tumor", "krank", "schaedlich", "schädlich"]
+      ],
+      "source_label": "BfR + JECFA vs WHO IARC 2B-Klassifikation",
+      "source_url": "https://www.bfr.bund.de/de/aspartam.html",
+      "secondary_url": "https://www.iarc.who.int/news-events/aspartame-hazard-and-risk-assessment-results-released/"
+    },
+    {
+      "id": "bfr_bpa_2026",
+      "topic": "bpa_babyflasche_konsens",
+      "scope": "Bisphenol A (BPA) in Plastik-Verpackungen und Babyflaschen",
+      "year": 2024,
+      "headline": "BfR + EU: BPA in Babyflaschen seit 2011 verboten, TDI 2023 drastisch von 4 µg/kg auf 0,2 µg/kg abgesenkt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: BPA-Behauptungen sollten zwischen 'Babyflaschen' und 'allgemeinen Plastik-Produkten' differenzieren. (1) Babyflaschen: BPA EU-weit seit 2011 verboten — alle aktuellen Babyflaschen müssen BPA-frei sein. (2) Allgemeine Lebensmittelverpackungen (Konservendosen-Innen-Beschichtung, einige Plastikbehälter): EFSA hat 2023 die TDI drastisch von 4 µg/kg auf 0,2 µg/kg Körpergewicht/Tag gesenkt — viele Konsumenten überschreiten diese neue TDI.",
+        "eu_verbot_babyflaschen": "EU-Kommissions-Richtlinie 2011/8/EU: Polycarbonat-Babyflaschen mit BPA seit 1. Juni 2011 EU-weit verboten. Erweitert 2018 auf Polycarbonat-Trinkbehälter und -flaschen für Säuglinge und Kleinkinder.",
+        "tdi_absenkung_2023": "EFSA-Re-Evaluation 2023: neue Tolerable Daily Intake = 0,2 µg/kg Körpergewicht/Tag (vorher 4 µg/kg, also Faktor 20 strenger). Begründung: zusätzliche Daten zu Auswirkungen auf das Immunsystem (Th17-Zellen). Viele Bevölkerungsgruppen überschreiten den neuen TDI nach EFSA-Schätzungen.",
+        "bfr_position": "BfR (2024): Hält die EFSA-Absenkung methodisch für nicht ausreichend begründet. BfR-eigener TDI-Vorschlag: 0,2 µg/kg/Tag für gastrointestinale Exposition. BfR + EFSA + Mitgliedstaaten verhandeln seit 2023 über harmonisierte Bewertung.",
+        "haupt_expositions_quellen": "Hauptquellen für BPA-Aufnahme: epoxidharz-beschichtete Konservendosen (Tomaten, Mais, Suppen), Thermal-Quittungspapier, einige Polycarbonat-Mehrweg-Behälter. Babyflaschen: ausgeschlossen (EU-Verbot).",
+        "klassifizierung": "EU-Kommission: BPA als reproduktionstoxisch Kategorie 1B eingestuft. Hinweise auf endokrin-disruptive Wirkung dokumentiert. Aktuelle Diskussion: weitere Verbote in Lebensmittelkontaktmaterialien."
+      },
+      "context_notes": [
+        "Differenzierung: 'BPA-frei' bei aktuellen Babyflaschen ist EU-rechtliche Pflicht, nicht Marketing-Vorteil. Vor 2011 produzierte Flaschen sollten ersetzt werden.",
+        "Ersatzstoffe BPS und BPF: ähnliche endokrin-disruptive Eigenschaften möglich. EU-Bewertung läuft.",
+        "Praktische Empfehlung BfR: Polycarbonat-Behälter nicht mit kochend heißem Inhalt verwenden, Konserven-Verzehr von Säuglings-Risikogruppen reduzieren."
+      ],
+      "claim_phrasings_handled": [
+        "BPA in Babyflaschen ist gefährlich",
+        "Bisphenol A schadet Säuglingen",
+        "Plastikflaschen geben Hormone ab"
+      ],
+      "trigger_keywords": [
+        "bpa babyflasche", "bisphenol babyflasche",
+        "bpa plastik gefaehrlich", "bpa plastik gefährlich",
+        "bisphenol a krebs", "bpa hormon",
+        "plastikflaschen hormone", "plastikflasche hormon",
+        "weichmacher hormone"
+      ],
+      "trigger_composite": [
+        ["bpa", "bisphenol", "bisphenol a", "bisphenol-a", "plastikflasche", "plastikflaschen", "weichmacher", "polycarbonat"],
+        ["babyflasche", "saeugling", "säugling", "baby", "plastik", "konserven", "konservendose", "schaedlich", "schädlich", "gefährlich", "gefaehrlich", "hormon", "hormone", "endokrin", "geben ab", "gibt ab"]
+      ],
+      "source_label": "BfR + EFSA TDI-Absenkung 2023 + EU-Kommissionsverbot 2011",
+      "source_url": "https://www.bfr.bund.de/de/a-z_index/bpa_bisphenol_a-7806.html",
+      "secondary_url": "https://www.efsa.europa.eu/en/news/bisphenol-efsa-draft-opinion-proposes-lowering-tolerable-daily-intake"
+    },
+    {
+      "id": "nih_supplements_disease_prevention_2026",
+      "topic": "vitaminpraeparate_krankheitspraevention_konsens",
+      "scope": "Vitamine/Mineralstoff-Präparate und Krankheitsprävention bei gesunden Menschen",
+      "year": 2024,
+      "headline": "NIH NCCIH + USPSTF: Routine-Multivitamin-Supplemente bringen gesunden Erwachsenen kaum Krankheits-Vorbeugung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Multivitamine + Mineralstoff-Präparate beugen Krankheiten bei gesunden Menschen vor', ist MOSTLY_FALSE. NIH NCCIH + US Preventive Services Task Force (USPSTF) + JAMA-Reviews: Routine-Supplementierung mit Multivitaminen bei gut ernährten Erwachsenen zeigt keinen klaren Vorteil bei Herz-Kreislauf-Erkrankungen, Krebs oder Mortalität. Manche Hochdosis-Präparate können sogar schaden (Beta-Carotin + Raucher, Vitamin E hochdosiert).",
+        "uspstf_2022": "USPSTF (2022): 'Insufficient evidence' für Multivitamin- oder einzelne Vitamin/Mineralstoff-Supplementierung zur Vorbeugung von Herz-Kreislauf-Erkrankungen oder Krebs bei gesunden, nicht-schwangeren Erwachsenen. Aktive Empfehlung GEGEN Beta-Carotin + Vitamin E zur Prävention.",
+        "carotene_smokers_studien": "Klassische Warn-Studie ATBC (1994): Beta-Carotin + Alpha-Tocopherol bei Rauchern führte zu HÖHEREM Lungenkrebs-Risiko, nicht niedrigerem (-18 %). CARET-Studie (1996): bestätigt. Mechanismen: pro-oxidative Effekte bei hoher Dosis.",
+        "vitamin_d_kontext": "Vitamin D und Calcium: USPSTF empfiehlt Routine-Supplementierung bei post-menopausalen Frauen NICHT zur Sturz/Frakturen-Vorbeugung. Ausnahme: gemessener Mangel (Bluttest). Vitamin-D-Konsens (NHS UK): 10 µg/Tag empfohlen für Erwachsene in lichtarmen Monaten/Breiten.",
+        "wann_sinnvoll": "Supplementierung sinnvoll bei: dokumentiertem Mangel (Bluttest), Schwangerschaft (Folsäure 400 µg/Tag in den ersten 12 Wochen), Veganer (B12), Säuglinge (Vitamin K + D), strenge Diät, Malabsorption-Erkrankungen, ältere Menschen (B12).",
+        "context": "Vitaminpräparate sind eine ~150-Mrd-USD-Industrie. Marketing-Aussagen sind oft weiter als die Evidenz. NIH-Position: ausgewogene Ernährung deckt den Vitamin/Mineralstoff-Bedarf bei den meisten gesunden Menschen besser als Tabletten."
+      },
+      "context_notes": [
+        "Differenzierung: dokumentierter Mangel (Bluttest oder Symptome) → Supplementierung sinnvoll. Vorsorge bei gesunden Menschen → Evidenz schwach.",
+        "Hohe Dosen (über 200 % der RDA) für fettlösliche Vitamine (A, D, E, K) bergen Risiken — Akkumulation, Toxizität.",
+        "Die Industrie zitiert oft Beobachtungs-Studien (Korrelation), nicht RCTs (Kausalität). USPSTF + NIH bewerten primär RCTs."
+      ],
+      "claim_phrasings_handled": [
+        "Multivitamine beugen Krankheiten vor",
+        "Vitamin C verhindert Erkältung",
+        "Antioxidantien schützen vor Krebs"
+      ],
+      "trigger_keywords": [
+        "multivitamin krankheit", "vitamin krebs",
+        "vitamin c erkaeltung", "vitamin c erkältung",
+        "antioxidantien krebs",
+        "vitaminpraeparate gesund", "vitaminpräparate gesund",
+        "nahrungsergaenzung", "nahrungsergänzung",
+        "supplemente"
+      ],
+      "trigger_composite": [
+        ["multivitamin", "vitamin", "antioxidantien", "antioxidans", "nahrungsergaenz", "nahrungsergänz", "supplement", "supplemente"],
+        ["krankheit", "krebs", "herzkrank", "vorbeugen", "praevention", "prävention", "erkaeltung", "erkältung", "gesund", "schuetzen", "schützen", "stark"]
+      ],
+      "source_label": "NIH NCCIH + USPSTF Recommendations + ATBC/CARET Studies",
+      "source_url": "https://www.nccih.nih.gov/health/multivitamin-mineral-supplements",
+      "secondary_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/vitamin-supplementation-to-prevent-cancer-and-cvd-counseling"
+    }
+  ]
+}

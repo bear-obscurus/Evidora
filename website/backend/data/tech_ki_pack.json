@@ -109,7 +109,7 @@
       ],
       "trigger_composite": [
         ["bitcoin", "btc", "krypto", "kryptowaehrung", "kryptowährung", "blockchain", "mining"],
-        ["strom", "energie", "verbrauch", "twh", "kohle", "co2", "umwelt", "klimawandel", "nachhaltigkeit", "kwh", "megawatt", "gigawatt"]
+        ["strom", "energie", "verbrauch", "twh", "kohle", "co2", "umwelt", "klima", "klimawandel", "klimaschäd", "klimaschaed", "nachhaltigkeit", "kwh", "megawatt", "gigawatt"]
       ],
       "source_label": "Cambridge CBECI + IEA Electricity 2024",
       "source_url": "https://ccaf.io/cbnsi/cbeci",
@@ -224,6 +224,87 @@
       "source_label": "EFF + Mullvad/ProtonVPN-Audits + Tor Project",
       "source_url": "https://www.eff.org/issues/vpn",
       "secondary_url": "https://en.wikipedia.org/wiki/Virtual_private_network"
+    },
+    {
+      "id": "enisa_threat_landscape_2026",
+      "topic": "enisa_threat_landscape_konsens",
+      "scope": "Cyber-Bedrohungs-Landschaft EU — ENISA Threat Landscape Reports",
+      "year": 2024,
+      "headline": "ENISA Threat Landscape 2024: 11.079 Incidents EU-weit, Top-Threats DDoS + Ransomware + Datenangriffe",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Bei Cyber-Bedrohungs-Aussagen liefert die ENISA (EU-Cybersicherheits-Agentur) den maßgebenden EU-Konsens. Threat Landscape 2024: 11.079 dokumentierte Incidents (Juli 2023–Juni 2024), davon 322 mit grenzüberschreitendem EU-Bezug. Top 7 Bedrohungen: Verfügbarkeit (DDoS), Ransomware, Datenangriffe, Malware, Social Engineering, Information Manipulation, Lieferketten-Angriffe. Aussagen wie 'Cyberangriffe nehmen zu' sind im EU-Kontext durch ENISA-Daten belegt.",
+        "enisa_top_threats": "ENISA Threat Landscape 2024: 1. Bedrohungen gegen Verfügbarkeit (DDoS) — dominante Bedrohung; 2. Ransomware; 3. Bedrohungen gegen Daten (Datendiebstahl, -manipulation); 4. Malware; 5. Social Engineering (Phishing); 6. Bedrohungen gegen Integrität (Information Manipulation); 7. Supply-Chain-Angriffe.",
+        "incident_volumen": "Berichtsperiode Juli 2023–Juni 2024: 11.079 Incidents EU-weit, davon 322 mit Auswirkung auf zwei oder mehr Mitgliedstaaten. Vulnerabilities 2024: 19.754 entdeckt, davon 9,3 % als 'critical' und 21,8 % als 'high' eingestuft (CVSS).",
+        "threat_actors": "ENISA klassifiziert 4 Akteurs-Kategorien: (1) Staats-naheliegende Akteure (Russland, China, Iran, Nordkorea-Anbindungen), (2) Cyberkriminalität / Hacker-for-Hire, (3) Private-Sector-Offensive-Actors (PSOA, z.B. NSO Group / Pegasus), (4) Hacktivisten. Anteile schwanken jährlich; 2024: deutliche Zunahme Hacktivismus mit Bezug auf Konflikte.",
+        "ai_threat_dimension": "ENISA dokumentiert 2024 erstmals: KI-gestützte Angriffe (FraudGPT, WormGPT etc.) zur Phishing-Mail-Erstellung und PowerShell-Skript-Generierung. Defensiv: KI-Modelle als Threat-Vektor (Modell-Manipulation, Prompt-Injection).",
+        "context": "ENISA Threat Landscape ist das EU-Pendant zum US Cybersecurity & Infrastructure Security Agency (CISA) Annual Report. Beide nutzen ähnliche Methodik (CVSS-Scoring, ATT&CK-Framework). Im Vergleich: USA-CISA fokussiert stärker auf Critical Infrastructure, ENISA breiter über alle Sektoren."
+      },
+      "context_notes": [
+        "ENISA-Daten sind Incident-Reports von Mitgliedstaaten + öffentliche OSINT — nicht alle Vorfälle werden gemeldet. Reale Zahl deutlich höher.",
+        "Trend 2024: Hacktivismus mit politischem Bezug (Ukraine, Israel-Gaza, Wahlen) deutlich gestiegen.",
+        "DDoS-Wellen oft kurzlebig + medienaufmerksam; Ransomware verursacht im Schnitt höhere finanzielle Schäden."
+      ],
+      "claim_phrasings_handled": [
+        "Cyberangriffe in der EU nehmen zu",
+        "Ransomware ist die größte Cyber-Bedrohung",
+        "Russische Hacker greifen Europa an",
+        "Cyber-Kriminalität wächst exponentiell"
+      ],
+      "trigger_keywords": [
+        "cyberangriff", "cyber-angriff",
+        "cyberkriminalitaet", "cyber-kriminalitaet",
+        "cyberkriminalität", "cyber-kriminalität",
+        "ransomware", "ddos",
+        "phishing welle", "hacker eu",
+        "enisa cybersecurity"
+      ],
+      "trigger_composite": [
+        ["cyber", "ransomware", "ddos", "hacker", "phishing", "malware", "cybersecurity", "datenangriff", "datenleck"],
+        ["eu", "europa", "europaeisch", "europäisch", "deutschland", "österreich", "oesterreich", "zunehmen", "wachsen", "groesser werden", "größer werden", "bedrohung", "attacke", "angriff", "incident"]
+      ],
+      "source_label": "ENISA Threat Landscape 2024",
+      "source_url": "https://www.enisa.europa.eu/publications/enisa-threat-landscape-2024",
+      "secondary_url": "https://www.enisa.europa.eu/topics/cyber-threats/threat-landscape"
+    },
+    {
+      "id": "5g_telekom_qos_2026",
+      "topic": "5g_telekom_qos_konsens",
+      "scope": "5G-Mobilfunk-Performance + Ausbau in der EU — BEREC + EU-Daten",
+      "year": 2024,
+      "headline": "BEREC: 5G in EU mit guter Latenz + Value-for-Money, aber Download-Speeds unter US/Asien-Niveau",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: 5G-Aussagen sollten zwischen Speed/Latenz/Coverage/Value differenzieren. BEREC (EU-Regulator-Verband) Telecom-Reality-Check 2024: EU-Performance MIXED. Latenz: EU führend; Upload: moderat; Download-Speeds: hinter USA/Asien; Value-for-Money: deutlich besser als USA. 5G-Coverage 2023: ~73 % der EU-Bevölkerung. Pauschale Aussagen 'EU hängt bei 5G hinterher' sind je nach Metrik korrekt oder falsch.",
+        "berec_position": "BEREC Telecom-Reality-Check (2024) + Broadband Coverage in Europe 2023: 'evidence of the networks' performance is mixed, with the EU trailing on download speeds, moderate performance in upload, but leading in latency, and consumers benefit from a clear strength in value for money.'",
+        "5g_speed_4g_vergleich": "5G-Download-Spitze (mmWave, ideal): 1–10 Gbit/s. 4G-LTE-Spitze: ~300 Mbit/s–1 Gbit/s. Real-World 5G in EU 2024: ~150–500 Mbit/s typischer Download. Latenz 5G: 10–20 ms (vs 30–50 ms bei 4G). Aussage '5G ist langsamer als 4G' ist FALSE — sowohl bei Speed als auch Latenz.",
+        "5g_coverage_eu_2023": "EU-Kommission Broadband Coverage Europe 2023: 5G-Coverage erreichte ~73 % der EU-Bevölkerung Ende 2023 (Variation MS: AT ~95 %, DE ~91 %, IT ~99 %, vs RO ~57 %, EL ~73 %). Ziel EU Digital Decade: 100 % 5G-Coverage bis 2030.",
+        "value_money_us_vergleich": "Mobilfunk-Konsumentenpreise EU 2024: ~12–18 EUR/Monat unlimited Daten typisch (DE/AT/FR). USA: ~50–80 USD/Monat unlimited. EU-Konsumentenvorteil dokumentiert in BEREC-Report 2024.",
+        "private_5g_networks": "Trend 2024: private 5G-Netze (Industrie, Logistik, Krankenhäuser). BEREC Report 2024 zur Evolution privater + öffentlicher 5G-Netze: ~280 private 5G-Networks EU-weit (Stand Q3 2024).",
+        "context": "5G-Diskurs ist oft polarisiert: 'EU hängt zurück' (Marketing-Narrativ aus Industrie) vs 'EU hat günstige Tarife' (BEREC-Befund). Beides ist je nach Metrik korrekt — sauberer Faktencheck differenziert nach Speed/Latenz/Coverage/Preis."
+      },
+      "context_notes": [
+        "Differenzierung Standalone (SA) vs Non-Standalone (NSA): viele aktuelle 5G-Netze sind NSA mit 4G-Kern. Volles 5G-Potenzial (Edge-Computing, Network-Slicing) erfordert SA.",
+        "mmWave (24+ GHz) bietet höchste Speeds, aber kurze Reichweite + Empfindlichkeit gegenüber Wänden. Sub-6-GHz dominiert in EU-Outdoor-Roll-out.",
+        "Smartphone-Marktanteil 5G-fähig EU 2024: ~78 % (variiert MS). Nutzer mit alten Geräten erleben weiter 4G-Speeds, unabhängig vom Netzausbau."
+      ],
+      "claim_phrasings_handled": [
+        "EU hängt bei 5G hinter den USA und Asien zurück",
+        "5G ist in Europa schlecht ausgebaut",
+        "5G ist langsamer als 4G",
+        "5G hat schlechtere Coverage als 4G"
+      ],
+      "trigger_keywords": [
+        "5g eu zurueck", "5g eu zurück",
+        "5g europa schlecht", "5g langsam",
+        "5g coverage", "5g ausbau",
+        "5g vs 4g speed", "5g langsamer 4g"
+      ],
+      "trigger_composite": [
+        ["5g", "5g-mobilfunk", "5g-ausbau", "5g-netz", "5g-coverage", "5g-network"],
+        ["4g", "lte", "speed", "geschwindigkeit", "schnell", "schnellig", "schnelle", "langsam", "langsamer", "ausbau", "ausgebaut", "ausgebaute", "coverage", "abdeckung", "schlecht", "zurück", "zurueck", "hinter", "alltag"]
+      ],
+      "source_label": "BEREC Telecom Reality Check 2024 + EU Broadband Coverage Report",
+      "source_url": "https://www.berec.europa.eu/en/document-categories/berec/reports/berec-report-on-the-5g-ecosystem",
+      "secondary_url": "https://digital-strategy.ec.europa.eu/en/library/broadband-coverage-europe-2023"
     },
     {
       "id": "apple_android_2026",
