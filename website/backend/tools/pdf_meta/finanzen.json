@@ -1,0 +1,12 @@
+{
+  "title": "Finanzen-Mythen",
+  "topic_count": "7 Topics (Aktien-Glücksspiel, Inflation-Manipulation-MIXED, Zinseszins, Riester-MIXED, kalte Progression, Krypto-Pyramide, Negativzins)",
+  "description": "20 Claims zum Geld/Finanzen-Mythen-Pack — populäre Halbwahrheiten zu Aktien, Inflation, Zinsen, Krypto und Sparen. 13. Static-First-Service. Komplementär zu ECB (Live-API), OeNB, DESTATIS-Inflation.",
+  "methodology": "Quellen-Mix: EZB Financial Stability Review, Bundesbank Studien, OeNB, DESTATIS Verbraucherpreis-Methodik, Stiftung Warentest, Verbraucherzentrale, Deutsches Aktieninstitut (DAI Renditedreieck), BaFin (Definition Schneeball-System), BMF (Inflations-Anpassungs-Gesetz 2022), BIS Bitcoin-Studie 2022, ifo + DIW + IZA. Bei MIXED-Topics (Riester, kalte Progression) wird Differenzierung explizit gemacht — Riester lohnt sich für Geringverdiener mit Kindern, oft NICHT für Besserverdiener; kalte Progression real, aber in DE seit 2022 jährlich kompensiert.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "7/7 Topics aktiv"},
+    {"label": "MIXED-Verdicts:", "value": "Riester (Lohn-/Kinder-abhängig), kalte Progression (real aber kompensiert), Aktien/Krypto-Risiko (Spekulationsblase ≠ Pyramide)"},
+    {"label": "Politische Sensibilität:", "value": "niedrig-mittel"},
+    {"label": "Konfidenz-Kalibrierung:", "value": "aktiv (commit cba549b)"}
+  ]
+}

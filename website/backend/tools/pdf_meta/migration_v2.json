@@ -1,0 +1,14 @@
+{
+  "title": "Migration-Konsens (v2 — Voll-Pack)",
+  "topic_count": "10 Topics (Großer-Austausch, Migration-Kriminalität-PKS, Sozialmagnet, Abschiebungen, Integration, Asyl-Arbeitsverbot, Demografie/Arbeitsmarkt, Fiskalbilanz-MIXED, Anerkennungsquoten, Familiennachzug)",
+  "description": "20 Claims zum erweiterten Migrations-Pack (Probe + Voll-Erweiterung). 10. Static-First-Cluster, von 6 → 10 Topics nach erfolgreicher Probe-Phase. Politisch sensibel — methodische Disziplin durchgehend.",
+  "methodology": "Quellen-Mix: Bundesamt für Verfassungsschutz (BfV), bpb (Bundeszentrale für politische Bildung), IDZ Jena, BAMF + BAMF Forschungszentrum, IAB Kurzbericht 17/2025, DIW Berlin (SOEP) IAB-BAMF-SOEP-Befragung 2016, OECD International Migration Outlook 2025, BKA-PKS Methodik-Hinweise + Wissenschaftler (Feltes Univ. Bochum, KFN Hannover), Mediendienst Integration, Bundestags-Drucksachen, Sachverständigenrat 2023, Stiftung Marktwirtschaft 2024, Bertelsmann Fachkräftemigrationsmonitor, § 36a/§ 61 AsylG + § 60 AufenthG.",
+  "guardrails": "POLITISCHE GUARDRAILS: (1) KEINE Bewertung politischer Bewegungen / Parteien / Personen pauschal. (2) BEHÖRDLICHE Einstufungen zitieren (BfV, BMI, BAMF), nicht selbst eingruppieren. (3) Bei Statistiken werden METHODIK-CAVEATS prominent zitiert (PKS-Kategorie 'Nichtdeutsche', Anzeige-Quoten +10-30 % Verzerrung, Racial-Profiling 2x häufige Polizeikontrollen, Sammelunterkunfts-Erfassung). (4) Bei MIXED-Bewertungen Differenzierung explizit (Integration nach Generation/Herkunft/Bildungsstand; Fiskalbilanz nach Methodik + Zeit-Horizont).",
+  "distanzierung": "Antisemitismus-Klausel (vgl. IHRA-Arbeitsdefinition + bpb-Dokumente): 'Großer Austausch' baut typischerweise auf antisemitischen Vorstellungen einer 'jüdischen Welt-Verschwörung' auf — auch wenn nicht in jedem Einzelfall explizit benannt. Differenzierung: Aussagen über tatsächliche demografische Veränderungen (Geburtenrückgang, Migration) sind faktisch belegbar und legitime Politik-Debatte — aber das ist NICHT die 'Großer Austausch'-Theorie.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv (Voll-Erweiterung von 6 → 10 nach Probe)"},
+    {"label": "MIXED-Verdicts:", "value": "Fiskalbilanz (methodische Pluralität SVR vs Stiftung Marktwirtschaft)"},
+    {"label": "Politische Sensibilität:", "value": "hoch — methodische Disziplin durchgehalten"},
+    {"label": "Konfidenz-Kalibrierung:", "value": "aktiv (commit cba549b) mit Authoritative-Pack-Boost"}
+  ]
+}

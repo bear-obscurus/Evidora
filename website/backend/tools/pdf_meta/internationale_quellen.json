@@ -1,0 +1,12 @@
+{
+  "title": "Internationale Quellen",
+  "topic_count": "4 Topics (Pew-Demokratie-Zufriedenheit, WMO-Klimazustand, IMF-Weltwirtschaft, WTO-Welthandel)",
+  "description": "20 Claims zum Internationale-Quellen-Service — globale (nicht-EU-zentrierte) Perspektive aus 4 maßgebenden Aggregat-Quellen. 15. Static-First-Service. Komplementär zu Eurobarometer (EU-Bürger-Stimmung), ECB (EU-Geldpolitik), Worldbank (Live-API), Copernicus + NASA-GISS (Klima-Daten).",
+  "methodology": "Quellen-Mix: Pew Research Center (US-NGO mit ~75 Jahren Survey-Erfahrung, hohe methodische Standards) für globale Demokratie-Zufriedenheit + Politik-Meinung. World Meteorological Organization (UN-Agency, aggregiert ~190 nationale Wetterdienste) für State of the Global Climate-Reports. International Monetary Fund (200+ Volkswirte, halbjährlicher World Economic Outlook) für globale Wirtschafts-Prognosen. World Trade Organization (164 Mitgliedstaaten seit 1995, halbjährlicher Trade Forecast) für Welthandels-Statistik. Alle vier mit anerkannter methodischer Konsistenz.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "4/4 Topics aktiv"},
+    {"label": "Globale Perspektive:", "value": "Komplementär zu EU-zentrierten Quellen (Eurobarometer, Eurostat, EZB)"},
+    {"label": "Politische Sensibilität:", "value": "niedrig-mittel"},
+    {"label": "Aktualität:", "value": "Pew 2024 + WMO State of Climate 2024 + IMF WEO Oktober 2024 + WTO Trade Forecast Oktober 2024"}
+  ]
+}
