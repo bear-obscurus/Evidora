@@ -1,0 +1,376 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-03",
+  "source_label": "Smithsonian + AMNH + Britannica + Snopes + IUCN + peer-rev. Studien",
+  "facts": [
+    {
+      "id": "goldfish_gedaechtnis_2026",
+      "topic": "goldfish_gedaechtnis_mythos",
+      "scope": "Behauptung, Goldfische haben nur 3-Sekunden-Gedächtnis",
+      "year": 2024,
+      "headline": "Goldfische merken sich Wochen, Monate und Jahre — der 3-Sek-Mythos ist seit 60+ Jahren widerlegt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, Goldfische hätten nur ein 3-Sekunden-Gedächtnis, ist FALSE. Wissenschaftliche Studien seit 1966 (University of Michigan) zeigen Lernen über Tage und Wochen. Goldfische erkennen Personen, lernen Routine-Fütterung, navigieren Labyrinthe nach 6 Monaten Pause in 12 Sekunden. Memory-Spanne: mindestens 3 Monate, oft länger.",
+        "michigan_1966": "Original-Studie University of Michigan (1966): Goldfische lernten Schock-Vermeidungs-Übung über mehrere Tage — erste klare Evidenz für mittelfristiges Gedächtnis bei Goldfischen.",
+        "labyrinth_6_monate": "Long-term-Memory-Studie: Goldfische, die Labyrinth-Aufgabe trainiert hatten, lösten dieselbe Aufgabe 6 Monate später in 12,82 Sekunden — schneller als am letzten Trainingstag über ein Jahr zuvor. Belegt: Memory-Stabilität über mindestens 6 Monate.",
+        "fuetterungs_kontextualisierung": "Goldfische erkennen Fütterungs-Standorte, Tageszeiten, Pflege-Personen. Können konditioniert werden auf Farben (rote vs blaue Pedale für Belohnung) — und behalten diese Konditionierung lange nach Ende des Trainings.",
+        "amnh_position": "American Museum of Natural History (AMNH): Goldfische sind Modell-Organismus für Lern-/Gedächtnis-Forschung wegen ihrer komplexeren kognitiven Leistung als gedacht.",
+        "context": "Ursprung des 3-Sek-Mythos unklar — möglicherweise scherzhaft entstanden, dann ernst genommen. Fische haben ein 'PR-Problem' weil sie weniger interaktiv mit Menschen sind als Säugetiere oder Vögel."
+      },
+      "context_notes": [
+        "Goldfisch ≠ Karpfen ≠ Koi — alle Cyprinidae mit ähnlichen Lern-Leistungen, aber Goldfisch ist am besten studiert (Aquarium-Standard).",
+        "Memory-Forschung an Fischen liefert Erkenntnisse für menschliche Neurowissenschaft — Hippocampus-Pendant existiert.",
+        "Aquarium-Größe: Goldfische in winzigen Schalen sind nicht 'glücklich vergesslich', sondern haltungs-rechtlich problematisch."
+      ],
+      "claim_phrasings_handled": [
+        "Goldfische haben 3 Sekunden Gedächtnis",
+        "Fische haben ein schlechtes Gedächtnis",
+        "Goldfische vergessen alles nach Sekunden"
+      ],
+      "trigger_keywords": [
+        "goldfisch gedaechtnis", "goldfisch gedächtnis",
+        "goldfish memory", "goldfisch 3 sekunden",
+        "fische gedaechtnis", "fische gedächtnis"
+      ],
+      "trigger_composite": [
+        ["goldfisch", "goldfish", "fisch", "fische"],
+        ["gedaechtnis", "gedächtnis", "memory", "vergessen", "merken", "erinnern", "sekunden", "minute"]
+      ],
+      "source_label": "AMNH + University of Michigan + Live Science + Discover Wildlife",
+      "source_url": "https://www.amnh.org/learn-teach/curriculum-collections/young-naturalist-awards/goldfish-as-a-model-for-understanding-learning-and-memory-more-complex-than-you-think",
+      "secondary_url": "https://www.livescience.com/goldfish-memory.html"
+    },
+    {
+      "id": "stier_rote_farbe_2026",
+      "topic": "stier_rote_farbe_mythos",
+      "scope": "Behauptung, Stiere reagieren aggressiv auf die Farbe Rot",
+      "year": 2024,
+      "headline": "Stiere sehen kein Rot — sie reagieren auf Bewegung, nicht auf Farbe",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, Stiere würden durch die Farbe Rot aggressiv, ist FALSE. Stiere sind dichromat (rot-grün-blind, wie ~5 % der menschlichen Männer). Sie sehen die Welt in Gelb-/Blau-Tönen. Was sie zum Angriff bringt, ist die schnelle Bewegung des Tuchs — egal welcher Farbe. Beim Stierkampf werden auch rosa und gelbe Capes verwendet, mit identischer Stier-Reaktion.",
+        "dichromat_sehen": "Stiere haben nur 2 Zapfentypen (gelb-blau-Sehkraft). Rot erscheint ihnen als Grau oder dunkles Grün. Wissenschaftlicher Konsens seit Studien der 1920er.",
+        "mythbusters_2007": "MythBusters Folge 2007 testete: Bewegungs-loser roter Stoff wird ignoriert. Bewegter weißer Stoff zieht Angriff an. Bewegter blauer Stoff zieht ebenso Angriff an. Die FARBE spielt keine Rolle — die BEWEGUNG ja.",
+        "stierkampf_capes": "Im traditionellen Stierkampf werden mehrere Capes eingesetzt: 1. + 2. Runde Capote (rosa/gelb-violett). 3. Runde Muleta (rot). Stier reagiert in allen drei Runden gleich aggressiv. Die rote Muleta dient laut Tradition zum Verbergen von Blutspuren — nicht zur Provokation des Stiers.",
+        "context": "Der Mythos hat metaphorisch-kulturelle Wurzeln (lateinisch-spanische Tradition) und bietet narrative Dramatik. Fakten-mäßig: Stiere reagieren auf Schwingung-Frequenz von Bewegungs-Mustern, ähnlich wie viele Beutetier-Arten."
+      },
+      "context_notes": [
+        "Andere dichromate Säugetiere mit ähnlicher Sehkraft: Hunde, Katzen, Pferde, Rinder generell.",
+        "Stiere im Wildbestand reagieren primär auf Wiederholungs-Aggression von Artgenossen (Konkurrenz-Reize), nicht auf Farbsignale.",
+        "Mythos-Versionen: 'Bullen reagieren auf Rot' wird oft auch auf Kühe übertragen — gleiche Sehkraft, gleiche Falsch-Aussage."
+      ],
+      "claim_phrasings_handled": [
+        "Stiere werden bei Rot aggressiv",
+        "Bullen reagieren auf rote Farbe",
+        "Rot macht Stiere wütend"
+      ],
+      "trigger_keywords": [
+        "stier rot", "bull red",
+        "stierkampf rot", "muleta rot",
+        "stiere reagieren rot", "bullen rot"
+      ],
+      "trigger_composite": [
+        ["stier", "bulle", "bullen", "bull", "rind", "rinder"],
+        ["rot", "rote", "rotes", "red", "farbe", "stierkampf"]
+      ],
+      "source_label": "Live Science + ScienceABC + MythBusters Episode 2007 + Snopes",
+      "source_url": "https://www.livescience.com/33700-bulls-charge-red.html",
+      "secondary_url": "https://www.snopes.com/fact-check/red-triggers-bulls/"
+    },
+    {
+      "id": "fledermaus_blind_2026",
+      "topic": "fledermaus_blind_mythos",
+      "scope": "Behauptung, Fledermäuse seien blind",
+      "year": 2024,
+      "headline": "Fledermäuse sind nicht blind — viele sehen sogar besser als Menschen, nutzen Sehkraft + Echoortung gleichzeitig",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die Redensart 'blind wie eine Fledermaus' ist FALSE. Keine der über 1.400 Fledermaus-Arten ist blind. Viele haben Augen mit 300.000-800.000 Stäbchen pro mm² (Mensch: max 150.000) — sehen also bei deutlich weniger Licht als wir. Echoortung wird zusätzlich zur Sehkraft genutzt, nicht statt — vor allem in Dunkelheit + im Nahbereich.",
+        "stäbchen_dichte": "Fledermaus-Augen haben 300.000-800.000 Stäbchen pro mm² Netzhaut, vs ~150.000 beim Menschen. Damit sehen sie bei sehr niedrigen Lichtstärken (Dämmerung, Mondnacht) deutlich besser als wir.",
+        "echoortung_kombiniert": "Echoortung funktioniert nur bis ~50 m Reichweite. Für Längstrecken-Navigation (Wanderung zu Schlafplatz, Migrationsflug) müssen Fledermäuse auf Sehkraft + Sternennavigation + Magnetfeld zurückgreifen.",
+        "spektrale_sehkraft": "Einige Fledermaus-Arten (z.B. Steppen-Hasenmaus / Pteropus) sehen sogar UV-Licht — können Blütenstellungen identifizieren, was für Bestäuber-Arten essenziell ist.",
+        "redensart_ursprung": "'Blind wie eine Fledermaus' im Englischen ('blind as a bat') geht auf Aristoteles zurück, der Fledermäuse fälschlich für blind hielt — Beobachtung von Tag-Inaktivität bei nachtaktiven Tieren als Blindheit fehlinterpretiert.",
+        "context": "Fledermäuse sind taxonomisch nicht eine Gruppe — Megachiroptera (Flughunde, vor allem in Asien/Afrika, kein Echoortung) vs Microchiroptera (klassische 'Fledermäuse' mit Echoortung). Beide Gruppen sehend."
+      },
+      "context_notes": [
+        "Echoortung produziert frequenzhohe (20-200 kHz) Schallpulse, oberhalb des menschlichen Hörbereichs. Aufnahmegeräte (Bat-Detektoren) machen sie für Forscher hörbar.",
+        "Flughunde (Pteropus) navigieren rein visuell und können bis zu 1500 km wandern.",
+        "Fledermaus-Augenkrankheiten (Katarakt etc.) sind dokumentiert — wie bei allen Wirbeltieren mit Augen."
+      ],
+      "claim_phrasings_handled": [
+        "Fledermäuse sind blind",
+        "Fledermäuse können nicht sehen",
+        "Blind wie eine Fledermaus"
+      ],
+      "trigger_keywords": [
+        "fledermaus blind", "fledermaeuse blind",
+        "fledermäuse blind", "blind wie fledermaus",
+        "fledermaus sehen"
+      ],
+      "trigger_composite": [
+        ["fledermaus", "fledermäuse", "fledermaeuse", "bat", "bats"],
+        ["blind", "sehen", "augen", "echoortung", "echolocation"]
+      ],
+      "source_label": "Britannica + NIH NCBI + Forest Preserve + Crittercontrol",
+      "source_url": "https://www.britannica.com/story/are-bats-really-blind",
+      "secondary_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10249486/"
+    },
+    {
+      "id": "hund_schwarz_weiss_2026",
+      "topic": "hund_schwarz_weiss_mythos",
+      "scope": "Behauptung, Hunde sehen nur schwarz-weiß",
+      "year": 2024,
+      "headline": "Hunde sehen nicht schwarz-weiß — sie sind dichromat (Blau-Gelb-Sehkraft), ähnlich rot-grün-blinden Menschen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, Hunde sehen nur schwarz-weiß, ist FALSE. Hunde sind dichromat — sie haben 2 Zapfentypen (Mensch: 3) und sehen Blau-Gelb-Spektrum, aber kein Rot oder Grün. Damit ähnelt ihre Sicht der eines rot-grün-blinden Menschen. Mythos wurde 1989 von Neitz et al. (University of California) experimentell widerlegt.",
+        "neitz_1989": "Jay Neitz et al. (Univ. California, 1989): Verhaltens-Experimente und retinale Spektral-Sensitivitäts-Messungen. Hunde unterscheiden zuverlässig Blau von Gelb, NICHT Rot von Grün. Beweis für Dichromatismus.",
+        "spektrum_konkret": "Hunde sehen Wellenlängen ~430-450 nm (Blau) und ~555 nm (Gelb-Grün). Rot erscheint als Dunkelgrau/Braun, Grün als helleres Gelb. Sehschärfe (~20/75 in Snellen-Notation) deutlich unter Mensch.",
+        "praktische_implikation": "Hundespielzeug: Blau und Gelb sind sichtbar. Rot und Grün verschmelzen mit Hintergrund — schlechte Wahl für Apportier-Spielzeug auf grüner Wiese. Trainer empfehlen blaue/gelbe Bälle.",
+        "evolutionärer_kontext": "Dichromatismus typisch für Säugetiere — die meisten sind dichromat oder monochromat. Trichromatismus (3 Zapfen) entwickelte sich erst bei Primaten als Anpassung an Frucht-/Blüten-Suche.",
+        "context": "Mythos 'Hunde sehen schwarz-weiß' stammt aus Pre-1980er populär-wissenschaftlichen Texten. Neitz-Studie wurde danach in Lehrbücher übernommen, aber populäre Kultur hinkt hinterher."
+      },
+      "context_notes": [
+        "Andere Säugetiere mit Dichromatismus: Katzen, Pferde, Stiere, viele Nagetiere. Trichromatismus: Primaten, einige Beuteltiere.",
+        "Hundenetzhaut hat dafür mehr Stäbchen als Mensch — bessere Dunkel-Sicht (Adaption an Dämmerungsjäger).",
+        "'Color-Blind-Glasses' für Hunde (kommerziell vermarktet) sind funktional unnütz — Hund hat keinen Mangel, sondern eine Anpassung."
+      ],
+      "claim_phrasings_handled": [
+        "Hunde sehen nur schwarz-weiß",
+        "Hunde sind farbenblind",
+        "Hunde können keine Farben sehen"
+      ],
+      "trigger_keywords": [
+        "hunde schwarz weiß", "hunde schwarz weiss",
+        "hunde farbenblind", "hund farben",
+        "hund schwarz weiss"
+      ],
+      "trigger_composite": [
+        ["hund", "hunde", "dog", "dogs"],
+        ["schwarz weiß", "schwarz weiss", "schwarz-weiss", "schwarz-weiß", "farbenblind", "farben sehen", "color blind", "monochrom"]
+      ],
+      "source_label": "Neitz et al. 1989 + VCA Hospitals + Scientific American",
+      "source_url": "https://vcahospitals.com/know-your-pet/do-dogs-see-color",
+      "secondary_url": "https://www.scientificamerican.com/article/what-colors-do-dogs-see/"
+    },
+    {
+      "id": "spinnen_im_schlaf_2026",
+      "topic": "spinnen_im_schlaf_mythos",
+      "scope": "Behauptung, Menschen verschlucken pro Jahr 8 Spinnen im Schlaf",
+      "year": 2024,
+      "headline": "Spinnen-im-Schlaf-Mythos: 1993 von Lisa Holst als Demo für leichtgläubige Verbreitung erfunden — KEIN dokumentierter Fall",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, Menschen verschlucken im Durchschnitt 8 Spinnen pro Jahr im Schlaf, ist FALSE. Es gibt KEINEN dokumentierten Fall in der wissenschaftlich-medizinischen Literatur. Mythos wurde 1993 von der Schriftstellerin Lisa Holst im PC Professional Magazin als BEWUSSTE PARODIE erfunden — um zu illustrieren, wie schnell Menschen alarmierende 'Fakten' ohne Verifikation übernehmen. Genau das passierte dann.",
+        "holst_1993": "Lisa Holst (PC Professional Magazine, 1993) erfand die Statistik bewusst, um Leichtgläubigkeit von E-Mail-Forwards zu demonstrieren. Stand zwischen anderen absichtlich erfundenen 'Fakten'. Die Spinne-Story ging viral — Lisa Holst gestand später öffentlich, dass es Hoax war.",
+        "biologische_unmöglichkeit": "Spinnen sind extrem vibrations-empfindlich. Schlafender Mensch erzeugt: Atem, Herzschlag, gelegentliche Bewegungen — alles registrierbar als 'Predator-Anwesenheit'. Spinne würde gezielt vermeiden.",
+        "human_response": "Menschen reagieren auf Krabbeln im Gesicht stark — typisch wachen sie auf. Schluckreflex bei geschlossenem Mund + nicht-aktivem Kauen ist ohnehin sehr unwahrscheinlich.",
+        "burke_museum": "Burke Museum (Univ. Washington) hat eine eigene 'Spider Myths'-Seite zu diesem Mythos: 'Es gibt buchstäblich keinen Fall in der medizinischen Literatur.' Mythos wird als Lehrbuch-Beispiel für virale Falsch-Informations-Kreisläufe verwendet.",
+        "context": "Der Spinnen-im-Schlaf-Mythos ist meta-ironisch interessant: Eine Falsch-Aussage, die ZUR ILLUSTRATION VON FALSCH-AUSSAGEN-VERBREITUNG erfunden wurde, wurde selbst zu einer der erfolgreichsten viralen Falsch-Aussagen."
+      },
+      "context_notes": [
+        "Echte Spinnen-Begegnungen im Haus: meist Hauswandelspinnen oder Zitterspinnen, selten beißende Arten.",
+        "Spinnen-Phobie (Arachnophobie) ist evolutionär eingelagert (vermutete Schutz-Reaktion gegen tatsächliche Gift-Spinnen in afrikanischer Vorzeit), aber statistisch in Mitteleuropa unbegründet.",
+        "Falls eine Spinne tatsächlich verschluckt würde: hochsaure Magen-Umgebung würde sie sofort auflösen, kein gesundheitliches Risiko."
+      ],
+      "claim_phrasings_handled": [
+        "Wir essen jede Woche eine Spinne im Schlaf",
+        "8 Spinnen pro Jahr verschluckt im Schlaf",
+        "Menschen verschlucken Spinnen im Schlaf"
+      ],
+      "trigger_keywords": [
+        "spinnen schlaf", "spinne verschluckt",
+        "spinnen jahr schlaf", "spinne im mund",
+        "spider in sleep"
+      ],
+      "trigger_composite": [
+        ["spinne", "spinnen", "spider", "spiders"],
+        ["schlaf", "schlafen", "verschluckt", "verschlucken", "geschluckt", "im mund", "essen", "swallow", "jahr", "woche", "nacht"]
+      ],
+      "source_label": "Burke Museum + Scientific American + Britannica + Snopes",
+      "source_url": "https://www.burkemuseum.org/collections-and-research/biology/arachnology-and-entomology/spider-myths/myth-you-swallow-spiders",
+      "secondary_url": "https://www.scientificamerican.com/article/fact-or-fiction-people-swallow-8-spiders-a-year-while-they-sleep1/"
+    },
+    {
+      "id": "lemming_massensuizid_2026",
+      "topic": "lemming_massensuizid_mythos",
+      "scope": "Behauptung, Lemminge begehen Massensuizid",
+      "year": 2024,
+      "headline": "Lemminge begehen KEINEN Massensuizid — Disney 'White Wilderness' (1958) hat die Szene als Tierquälerei inszeniert",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, Lemminge stürzen sich kollektiv in den Tod, ist FALSE — und bekanntermaßen durch Tier-Misshandlung im Disney-Pseudo-Dokumentarfilm 'White Wilderness' (1958) inszeniert. CBC-Investigation 1982 (The Fifth Estate) deckte auf: Filmcrew fing eine kleine Gruppe Lemminge ein, transportierte sie zum Bow River in Alberta (wo Lemminge gar nicht leben), warf sie wiederholt von einer Klippe und filmte. Was real existiert: Dispersal-Wanderungen bei Populations-Spitzen, dabei kann Ertrinken bei Wasser-Überquerung passieren — das ist KEIN Suizid.",
+        "disney_white_wilderness_1958": "'White Wilderness' (Disney 1958, Oscar für Best Documentary Feature). Sequenz mit angeblich freiwillig springenden Lemmingen ikonisch in den USA + Europa. CBC-Recherche 1982: gefälscht.",
+        "cbc_investigation_1982": "CBC-Sendung 'The Fifth Estate' (Bob McKeown, 1982) interviewte überlebende Crew-Mitglieder. Zeugenaussagen: Lemminge wurden auf Drehscheiben platziert, dann wiederholt geworfen. Nicht-arktische Standortwahl (Alberta vs. tatsächliche Lemming-Habitate Nordnorwegen/Sibirien) war praktisch entlarvend.",
+        "echtes_lemming_verhalten": "Bei Populations-Spitzen (zyklisch ca. alle 4 Jahre, Norwegen-Lemming Lemmus lemmus) wandern Lemminge in suchender Bewegung in alle Richtungen. Manche überqueren Bäche/Seen schwimmend. Manche ertrinken — das ist normales Migrations-Risiko, KEIN Suizid.",
+        "alaska_dept_fish_position": "Alaska Department of Fish & Game offiziell: 'Lemming Suicide Myth: Disney Film Faked Bogus Behavior' — der Disney-Film ist die direkte Quelle des Mythos und wird in Wissenschaftskommunikation als Lehr-Beispiel für Hoax-Persistenz verwendet.",
+        "context": "Der Mythos hat möglicherweise ältere Wurzeln (norwegische Volksbeobachtungen von Migrations-Sterben), aber die spezifische Selbstmord-Vorstellung wurde durch Disney 1958 zum Welt-Mythos verbreitet."
+      },
+      "context_notes": [
+        "Lemming-Populations-Zyklen (4-Jahres-Rhythmus) sind real und gut dokumentiert (Predator-Prey-Modelle).",
+        "Diverse Lemming-Arten (Norwegen, Berg-, Steppen-Lemming) zeigen unterschiedliches Migrations-Verhalten — keine begeht Suizid.",
+        "Wissenschaftskommunikation der 2000er hat den Mythos systematisch widerlegt; Disney-Film wurde nicht zurückgezogen, ist aber in Schul-Curricula als Pseudo-Dokumentarfilm-Beispiel etabliert."
+      ],
+      "claim_phrasings_handled": [
+        "Lemminge begehen Massensuizid",
+        "Lemminge stürzen sich von Klippen",
+        "Lemming-Selbstmord Wanderung"
+      ],
+      "trigger_keywords": [
+        "lemming suizid", "lemming selbstmord",
+        "lemminge stuerzen", "lemminge stürzen",
+        "lemming klippe", "lemming massensuizid"
+      ],
+      "trigger_composite": [
+        ["lemming", "lemminge", "lemmings"],
+        ["suizid", "selbstmord", "stuerzen", "stürzen", "klippe", "kollektiv", "massensterben", "suicide", "mass"]
+      ],
+      "source_label": "Alaska Dept Fish & Game + Britannica + Snopes + CBC Fifth Estate 1982",
+      "source_url": "https://www.adfg.alaska.gov/index.cfm?adfg=wildlifenews.view_article&articles_id=56",
+      "secondary_url": "https://www.britannica.com/story/do-lemmings-really-commit-mass-suicide"
+    },
+    {
+      "id": "hai_angriff_2026",
+      "topic": "hai_angriff_haeufigkeit_mythos",
+      "scope": "Behauptung, Hai-Angriffe auf Menschen seien häufig",
+      "year": 2024,
+      "headline": "Hai-Angriffe sind extrem selten: ~65 unprovozierte Bisse + ~9 Tote weltweit pro Jahr (2025)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Hai-Angriffe sind häufig + gefährlich' ist FALSE im statistischen Sinne. International Shark Attack File (Florida Museum) 2025: 65 unprovozierte Hai-Bisse weltweit, davon 9 tödlich. Im Vergleich: ~4.000 Ertrunkene pro Jahr nur in den USA. Wahrscheinlichkeit eines tödlichen Hai-Angriffs in den USA: ~1:4,3 Millionen. Sie sind 7x wahrscheinlicher Blitz-getroffen, 635x wahrscheinlicher ermordet zu werden.",
+        "isaf_2025": "International Shark Attack File (ISAF), Florida Museum of Natural History: 2025 weltweit 65 unprovozierte Hai-Bisse (5-Jahres-Schnitt 2020-24: 61). USA 2025: 25 Bisse (2024: 28).",
+        "todesfaelle_global": "2025 weltweit 12 hai-bezogene Todesfälle, davon 9 als 'unprovoziert' klassifiziert. 5-Jahres-Schnitt unprovozierter Todesfälle: ~8 pro Jahr. Australien + USA + Südafrika dominieren die Statistik.",
+        "vergleichsstatistik": "Florida Museum: Wahrscheinlichkeit eines tödlichen Hai-Angriffs in den USA = 1:4.332.817. CDC: ~4.000 Ertrunkene/Jahr in USA-Gewässern. Mensch wird statistisch 7x öfter vom Blitz getroffen, 635x öfter ermordet.",
+        "haie_vs_menschen_quotient": "Mensch tötet jährlich ~80-100 Mio Haie (kommerzielle Fischerei + Beifang). Verhältnis Hai-tötet-Mensch zu Mensch-tötet-Hai = ~9 : 90.000.000 — also Mensch ~10 Mio mal gefährlicher für Hai als umgekehrt.",
+        "context": "Mediale Berichterstattung über Hai-Angriffe ('Jaws-Effekt') verzerrt die Wahrnehmung dramatisch. Realität: Hai-Sterblichkeit unter den seltensten unfall-bedingten Todesarten."
+      },
+      "context_notes": [
+        "Provozierte Bisse (Mensch greift Hai an / hält Beute fest) werden separat gezählt — etwa 30-40 zusätzliche Fälle pro Jahr global.",
+        "Drei Hai-Arten verursachen ~80 % aller bestätigten unprovozierten Bisse: Weißer Hai, Bullenhai, Tigerhai.",
+        "Hai-Population im atlantischen Ozean ist seit 1970 um 70-95 % reduziert (verschiedene Spezies-Schätzungen) — ökologische Bedrohung deutlich realer als Mensch-Bedrohung."
+      ],
+      "claim_phrasings_handled": [
+        "Hai-Angriffe sind häufig",
+        "Haie töten viele Menschen",
+        "Haie sind eine große Gefahr beim Schwimmen"
+      ],
+      "trigger_keywords": [
+        "hai angriff", "haie attackieren",
+        "hai gefahr", "haie schwimmen gefahr",
+        "shark attack", "hai-attacke"
+      ],
+      "trigger_composite": [
+        ["hai", "haie", "shark", "haifisch"],
+        ["angriff", "attacke", "gefahr", "gefährlich", "gefaehrlich", "biss", "toetet", "tötet", "töten", "toeten"]
+      ],
+      "source_label": "International Shark Attack File 2025 + CDC + Florida Museum",
+      "source_url": "https://www.floridamuseum.ufl.edu/shark-attacks/yearly-worldwide-summary/",
+      "secondary_url": "https://en.wikipedia.org/wiki/Shark_attack"
+    },
+    {
+      "id": "eskimo_schnee_woerter_2026",
+      "topic": "eskimo_schnee_woerter_mythos",
+      "scope": "Behauptung, Eskimos/Inuit haben hunderte Wörter für Schnee",
+      "year": 2024,
+      "headline": "Inuit haben NICHT 100 Wörter für Schnee — Mythos basiert auf Fehlinterpretation von Boas (1911) durch Whorf (1940), später wild übertrieben",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, Inuit/Eskimo haben 50, 100 oder mehr Wörter für Schnee, ist FALSE/MOSTLY_FALSE. Ursprung: Franz Boas (1911 'The Mind of Primitive Man') erwähnte 4 Inuit-Wurzelwörter für Schnee. Benjamin Lee Whorf (1940) machte daraus 7. Bis 1984 hatte die NYT die Zahl auf 100 aufgeblasen. Linguistische Realität: Inuktitut ist polysynthetische Sprache — kombiniert Wurzelwort + Suffixe zu unbegrenzt vielen Komposita. Englisch hat ähnlich viele Schnee-bezogene Konstruktionen ('snowstorm', 'snowflake', 'powder snow' etc.).",
+        "boas_1911": "Franz Boas, 'The Mind of Primitive Man' (1911): erwähnte 4 Wurzelwörter für Schnee bei Inuktitut: aput (Schnee am Boden), gana (fallender Schnee), piqsirpoq (treibender Schnee), qimuqsuq (Schneewehe). NICHT 'Eskimos haben unzählige Wörter'.",
+        "whorf_1940": "Benjamin Lee Whorf, populäre 1940-Artikel: erweiterte fälschlich auf 7 Wörter, baute lingusitischen Determinismus-These darauf auf (Sprache prägt Denken). Wurde in Lehrbücher übernommen.",
+        "pullum_1991": "Geoffrey Pullum, 'The Great Eskimo Vocabulary Hoax' (1991): definitive linguistische Widerlegung. Inuktitut ist polysynthetisch — beliebige Konzepte werden durch Suffix-Anhang gebildet. Englisch macht das ebenso (snowstorm, snowflake, snow-covered, snow-blind).",
+        "alaska_native_language_center": "ANLC (Univ. Alaska Fairbanks): Anzahl 'Inuit-Schnee-Wörter' hängt von Definitions-Frage ab. Wurzelwörter: ~3-5. Komposita unbeschränkt — wie in jeder Sprache.",
+        "context": "Mythos passt zum Romantisierungs-Bedürfnis 'fremde Kulturen sind anders' und zum Sapir-Whorf-Hypothesen-Eifer der 1940er-50er. Linguistik-Konsens seit den 1990ern: Falsch."
+      },
+      "context_notes": [
+        "Nicht 'Eskimo' ist eine Sprache, sondern Inuktitut, Yupik, Iñupiat — drei verwandte Sprachen mit ähnlicher Polysynthetik.",
+        "Sami-Sprachen (Norwegen/Schweden/Finnland) haben tatsächlich ~180-200 Schneebezogene Wurzelwörter (Magga 2006) — das ist ein anderer Fall, kein Inuit.",
+        "Sapir-Whorf-Hypothese (Sprache prägt Denken) wurde durch den Mythos populär; ihr Stark-Determinismus ist heute weitgehend abgelehnt, schwach-Determinismus (Sprache beeinflusst Wahrnehmungs-Schwerpunkte) bleibt aktive Forschung."
+      ],
+      "claim_phrasings_handled": [
+        "Eskimos haben hundert Wörter für Schnee",
+        "Inuit haben viele Wörter für Schnee",
+        "100 Eskimo-Wörter für Schnee"
+      ],
+      "trigger_keywords": [
+        "eskimo schnee", "inuit schnee",
+        "eskimo woerter schnee", "inuit wörter schnee",
+        "eskimo words snow"
+      ],
+      "trigger_composite": [
+        ["eskimo", "inuit", "yupik", "inuktitut"],
+        ["schnee", "snow", "wort", "woerter", "wörter", "begriffe"]
+      ],
+      "source_label": "Pullum 1991 'Great Eskimo Vocabulary Hoax' + Alaska Native Language Center",
+      "source_url": "https://www.uaf.edu/anlc/research-and-resources/resources/archives/inuit_snow_terms.php",
+      "secondary_url": "https://en.wikipedia.org/wiki/Eskimo_words_for_snow"
+    },
+    {
+      "id": "strauss_kopf_sand_2026",
+      "topic": "strauss_kopf_sand_mythos",
+      "scope": "Behauptung, Strauße stecken bei Gefahr den Kopf in den Sand",
+      "year": 2024,
+      "headline": "Strauße stecken NICHT den Kopf in den Sand — bei Gefahr fliehen sie (>70 km/h) oder verteidigen sich mit kräftigen Tritten",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, Strauße stecken bei Gefahr den Kopf in den Sand, ist FALSE. Strauße sind die schnellsten zweibeinigen Tiere (Top-Speed bis 70 km/h Dauerlauf, kurz bis 90 km/h) und fliehen bei Gefahr. Was sie wirklich tun: regelmäßig den Kopf zum Boden bewegen, um Eier zu wenden (Bodengelege) oder Steine/Insekten zu fressen — was aus Distanz wie 'Kopf in Sand' aussieht. Bei akuter Bedrohung: Flucht oder Verteidigung mit kräftigen Tritten der starken Beine.",
+        "fluchtgeschwindigkeit": "Strauß (Struthio camelus): schnellstes zweibeiniges Landtier. Dauergeschwindigkeit ~50-65 km/h, Spitze ~70-90 km/h, Flugzeit über 10-15 km möglich. Damit übertrifft er die meisten potenziellen Predatoren.",
+        "echte_kopfbewegung": "Strauße bauen Boden-Gelege (kein Nest in Bäumen). Eier werden 1-2x pro Stunde mit dem Kopf gewendet. Aus Ferne sieht das aus wie 'Kopf in Sand'. Auch Nahrungssuche (Steine als Magenmühlen, Insekten) erfordert Kopf-am-Boden-Position.",
+        "verteidigung_tritte": "Bei Eltern-Verteidigung des Geleges: Strauß-Hennen attackieren mit kräftigen Tritten. Strauß-Tritt kann Löwen-Halswirbel zerschmettern — dokumentierte Vorfälle.",
+        "ursprung_mythos": "Mythos reicht zurück auf Plinius den Älteren (Naturalis Historia, 1. Jh. n.Chr.): 'Strauße glauben, sie seien unsichtbar wenn sie den Kopf verstecken.' Beobachtungs-Fehler des Plinius — verbreitet durch antike + mittelalterliche Bestiarien.",
+        "context": "Der Mythos ist metaphorisch nützlich ('den Kopf in den Sand stecken' = Probleme ignorieren) und überlebt deshalb trotz biologischer Falschheit."
+      },
+      "context_notes": [
+        "Strauß-Eier (Bodengelege): bis zu 1,5 kg, ~24 cm Durchmesser. Inkubation 42 Tage. Eltern-Schutz aktiv (Tritte gegen Predatoren).",
+        "Verwandte Großvögel mit Boden-Gelegen (Emu, Nandu, Kasuar): kein 'Kopf-in-Sand'-Mythos, aber auch dort ähnliches Eier-Wenden-Verhalten.",
+        "Strauße sind nicht aggressiv gegen Menschen außerhalb von Gelege-Schutz — viele afrikanische Farmen bieten Strauß-Reiten als Touristenattraktion an."
+      ],
+      "claim_phrasings_handled": [
+        "Strauß steckt den Kopf in den Sand",
+        "Strauße verstecken sich im Sand",
+        "Den Kopf in den Sand stecken wie ein Strauß"
+      ],
+      "trigger_keywords": [
+        "strauss kopf sand", "strauß kopf sand",
+        "strauß verstecken", "strauss verstecken",
+        "ostrich head sand"
+      ],
+      "trigger_composite": [
+        ["strauss", "strauß", "ostrich"],
+        ["kopf", "sand", "verstecken", "vergraben", "head", "hide", "buried"]
+      ],
+      "source_label": "Smithsonian + Britannica + American Ostrich Association",
+      "source_url": "https://www.britannica.com/story/do-ostriches-really-bury-their-heads-in-the-sand",
+      "secondary_url": "https://en.wikipedia.org/wiki/Common_ostrich"
+    },
+    {
+      "id": "elefant_maus_2026",
+      "topic": "elefant_maus_mythos",
+      "scope": "Behauptung, Elefanten haben Angst vor Mäusen",
+      "year": 2024,
+      "headline": "Elefanten haben KEINE inhärente Maus-Phobie — sie reagieren auf JEDE plötzliche Bewegung im Sichtfeld, das ist Vorsicht, nicht Phobie",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Elefanten haben Angst vor Mäusen' ist MOSTLY_FALSE. Beobachtetes Erschrecken von Elefanten bei Maus-Begegnung ist nicht Maus-spezifisch, sondern allgemeine Reaktion auf jede plötzliche Bewegung im Sichtfeld. MythBusters-Test (2007) zeigte: Elefanten weichen wechen Mäusen aus, aber genauso vor anderen kleinen Bewegungen. Mythos reicht zurück auf Plinius den Älteren (1. Jh. n.Chr.).",
+        "mythbusters_2007": "MythBusters Folge 1 Staffel 5 (2007): Wilde Elefanten in Südafrika zeigten Erschrecken bei Maus-Konfrontation, aber auch bei beweglichen Gummibällen, ungewöhnlichen Schatten etc. Reaktion ist Vorsicht, keine spezifische Phobie.",
+        "evolutionärer_kontext": "Elefanten-Sehkraft (~20/200 Snellen, sehr schwach) macht plötzliche Boden-Bewegungen besonders alarmierend — kann Schlange / Aaskäfer / Krokodil-Junge sein. Ausweich-Verhalten ist evolutionär sinnvoll, nicht 'Phobie'.",
+        "plinius_ursprung": "Plinius der Ältere (Naturalis Historia, 1. Jh. n.Chr.): behauptete Elefanten würden Mäuse 'mehr als alles fürchten'. Fehlbeobachtung in antiker Zoologie, später durch Aesop-Fabeln + Walt-Disney-Filme verfestigt.",
+        "elefanten_kognition": "Elefanten zeigen komplexe kognitive Leistung: Selbsterkennung im Spiegel, Werkzeug-Nutzung (Stöcke gegen Insekten), Begräbnis-Rituale. 'Maus-Phobie' wäre untypisch eine starre Reizreaktion.",
+        "context": "Der Mythos ist narrativ dankbar (klein vs groß) und in westlicher Populärkultur verankert (Aesop, Disney 'Dumbo'). Faktisch: Elefanten weichen bei jeder unerwarteten kleinen Bewegung aus, das ist alles."
+      },
+      "context_notes": [
+        "Elefanten haben außerordentlich gute Hör- und Riechfähigkeit, aber schwache Sehkraft — Reaktionen auf visuelle Reize sind oft 'Erstmal-zurückweichen-Schritt'.",
+        "Smithsonian National Zoological Park bestätigt: Beobachtete Elefanten-Maus-Reaktionen sind nicht Maus-spezifisch.",
+        "In Asia-Pazifik-Volkstum existiert Mythos in spiegelverkehrter Form: Mäuse fliehen vor Elefanten — biologisch ebenso falsch."
+      ],
+      "claim_phrasings_handled": [
+        "Elefanten haben Angst vor Mäusen",
+        "Maus erschreckt Elefanten",
+        "Elefanten fürchten Mäuse"
+      ],
+      "trigger_keywords": [
+        "elefant maus", "elefant angst maus",
+        "elefanten maeuse", "elefanten mäuse",
+        "elephant mouse"
+      ],
+      "trigger_composite": [
+        ["elefant", "elefanten", "elephant", "elephants"],
+        ["maus", "maeuse", "mäuse", "mice", "mouse", "angst", "furcht", "fuerchten", "fürchten", "scared", "afraid"]
+      ],
+      "source_label": "MythBusters 2007 + Smithsonian National Zoo + Britannica",
+      "source_url": "https://www.smithsonianmag.com/science-nature/why-are-elephants-afraid-of-mice-180955875/",
+      "secondary_url": "https://en.wikipedia.org/wiki/Elephants_and_mice"
+    }
+  ]
+}

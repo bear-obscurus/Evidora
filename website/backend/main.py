@@ -73,6 +73,7 @@ from services.verschwoerungen_pack import search_verschwoerungen, claim_mentions
 from services.tech_ki_pack import search_tech_ki, claim_mentions_tech_ki_cached
 from services.gesundheits_autoritaeten_pack import search_gesundheits_autoritaeten, claim_mentions_gesundheits_autoritaeten_cached
 from services.destatis import search_destatis, claim_mentions_destatis_cached
+from services.tier_natur_pack import search_tier_natur, claim_mentions_tier_natur_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -541,6 +542,13 @@ async def check_claim(request: Request):
         if claim_mentions_destatis_cached(claim):
             tasks.append(cached("DESTATIS", search_destatis, analysis))
             queried_names.append("DESTATIS — Statistisches Bundesamt Deutschland")
+        # Tier-/Natur-Mythen-Pack (Goldfisch-Gedaechtnis, Stier-Rot,
+        # Fledermaus-blind, Hund-s/w, Spinnen-im-Schlaf, Lemming-Suizid,
+        # Hai-Angriffe, Eskimo-Schnee, Strauss-Sand, Elefant-Maus).
+        # 10 Topics aus klassischer Tier-/Natur-Halbwahrheit-Repertoire.
+        if claim_mentions_tier_natur_cached(claim):
+            tasks.append(cached("Tier-/Natur-Mythen", search_tier_natur, analysis))
+            queried_names.append("Tier-/Natur-Mythen (Smithsonian + AMNH + Britannica + Snopes)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

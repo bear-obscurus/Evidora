@@ -144,6 +144,7 @@ _AUTHORITATIVE_INDICATORS = (
     "tech_ki_konsens_fact",              # Tech-/KI-Pack (NIST + EFF + ACM)
     "gesundheits_autoritaeten_fact",     # Gesundheits-Autoritäten (NIH + CDC + BfR + IARC)
     "destatis_de_fact",                  # DESTATIS DE-Baseline (Bevölkerung, BIP, Inflation, etc.)
+    "tier_natur_konsens_fact",           # Tier-/Natur-Pack (Smithsonian + AMNH + Britannica + Snopes)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",
