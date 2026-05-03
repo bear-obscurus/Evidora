@@ -78,6 +78,7 @@ from services.ernaehrungs_pack import search_ernaehrung, claim_mentions_ernaehru
 from services.recht_pack import search_recht, claim_mentions_recht_cached
 from services.energie_klima_pack import search_energie_klima, claim_mentions_energie_klima_cached
 from services.migration_pack import search_migration, claim_mentions_migration_cached
+from services.geographie_pack import search_geographie, claim_mentions_geographie_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -587,6 +588,14 @@ async def check_claim(request: Request):
         if claim_mentions_migration_cached(claim):
             tasks.append(cached("Migrations-Konsens", search_migration, analysis))
             queried_names.append("Migrations-Konsens (BfV + bpb + IAB + DIW + OECD + BKA + Mediendienst)")
+        # Geographie-/Reise-Mythen — populaere geo-Halbwahrheiten
+        # (Bermudadreieck, Chinesische-Mauer-Mond, Everest-hoechster,
+        # Toilette-Coriolis, Sahara-groesste-Wueste, Australien-giftigste-
+        # Tiere, Vatikan-kleinster-Staat). 7 Topics. Politisch unauffaellig,
+        # primaer unterhaltsam-bildend.
+        if claim_mentions_geographie_cached(claim):
+            tasks.append(cached("Geographie-Mythen", search_geographie, analysis))
+            queried_names.append("Geographie-/Reise-Mythen (NASA + Lloyd's + USCG + NatGeo + CIA Factbook + UNESCO)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

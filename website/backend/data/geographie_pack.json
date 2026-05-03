@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-03",
+  "source_label": "NASA + Lloyd's of London + USCG + National Geographic + CIA Factbook + UNESCO + Smithsonian + Britannica",
+  "facts": [
+    {
+      "id": "bermudadreieck_2026",
+      "topic": "bermudadreieck_mythos",
+      "scope": "Behauptung, im Bermudadreieck verschwinden überproportional viele Schiffe + Flugzeuge",
+      "year": 2024,
+      "headline": "Bermudadreieck: KEINE überproportionale Verlust-Rate — Lloyd's of London + USCG bestätigen statistisch unauffällig",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Im Bermudadreieck verschwinden überproportional viele Schiffe + Flugzeuge' ist FALSE. Lloyd's of London (führender Schifffahrts-Versicherer): keine erhöhten Verlust-Raten gemessen — Versicherungs-Prämien sind im Bermudadreieck-Bereich gleich wie im umliegenden Atlantik. US Coast Guard offiziell: 'Number of incidents does not exceed what would be expected in an area with such heavy maritime and air traffic.' Lawrence David Kusche dekonstruierte 1975 die ursprünglichen 'Bermuda Triangle Mystery'-Fälle und fand viele außerhalb des Dreiecks, in dokumentierten Stürmen, oder mit offiziellen Ursachen-Erklärungen.",
+        "lloyds_position": "Lloyd's of London (Versicherer mit starkem ökonomischen Anreiz für Risiko-Bewertung): keine erhöhte Schiffsverlust-Rate im Bermudadreieck-Sektor festgestellt. Versicherungsprämien Standard für den Atlantik. Wenn Verluste real wären, würde Lloyd's höhere Prämien verrechnen — tut es nicht.",
+        "uscg_position": "US Coast Guard offizielle Stellungnahme: 'Die Zahl der Vorfälle im Bermudadreieck überschreitet nicht das, was bei einem Verkehrsbereich mit so hoher Schifffahrt + Luftverkehr zu erwarten wäre.' Dokumentation der 'mystischen' Fälle zeigt oft normale Erklärungen.",
+        "kusche_1975": "Lawrence David Kusche, 'The Bermuda Triangle Mystery: Solved' (1975): systematisches Recherche der Bermuda-Mythen-Quellfälle. Befunde: viele Vorfälle nicht im Dreieck, sondern weit weg; viele in dokumentierten Sturm-Phasen; viele mit klar dokumentierten Ursachen (Maschinen-Versagen, Erfahrungs-Mängel der Crew). Oft selektive Berichterstattung der Mythen-Autoren.",
+        "natuerliche_ursachen": "Reale Faktoren in der Region: Golfstrom (starke Strömung, schnelle Überflutung von Wracks → später schwierig zu bergen), tropische Wirbelstürme häufig, aktive Schifffahrts-Route (statistisch mehr Vorfälle erwartbar weil mehr Verkehr), elektromagnetische Anomalien lokal nachgewiesen aber irrelevant für Navigation, Methangas-Eruptionen vom Meeresboden — letztere sind Hypothese, nicht etablierte Erklärung.",
+        "verkehrsdichte_kontext": "Atlantik-Sektor zwischen Miami, Puerto Rico, Bermuda ist einer der dichtesten Schifffahrts- + Luftverkehrs-Sektoren der Welt. Statistisch sollten dort viele Vorfälle pro Jahr erwartbar sein — auch ohne übernatürliche Erklärung.",
+        "context": "Charles Berlitz' Buch 'The Bermuda Triangle' (1974) machte den Mythos populär — nutzte aber selektive + erfundene Quellen. Das Mythos-Element verkauft sich, wissenschaftliche Dekonstruktion (Kusche, Skeptiker-Magazine) bekommt weniger Aufmerksamkeit."
+      },
+      "context_notes": [
+        "Fluginspektoren der NTSB + maritime Untersuchungs-Behörden behandeln Bermudadreieck wie jedes andere Seegebiet — keine Sonder-Statistik.",
+        "Selbst der berühmteste 'Fall' Flight 19 (1945) hat eine prosaische Erklärung: Disorientierte Piloten + Funkversagen + Treibstoff-Limit + nächtliches Absturz im Sturm.",
+        "Wer im Bermudadreieck segelt, sollte normale Atlantik-Vorsicht walten lassen — nicht mehr, nicht weniger."
+      ],
+      "claim_phrasings_handled": [
+        "Im Bermudadreieck verschwinden viele Schiffe",
+        "Bermudadreieck ist gefährlicher als andere Meeresgebiete",
+        "Bermudadreieck-Mysterium ist real"
+      ],
+      "trigger_keywords": [
+        "bermudadreieck", "bermuda dreieck", "bermuda triangle",
+        "bermudadreieck verschwund", "bermudadreieck mysterium"
+      ],
+      "trigger_composite": [
+        ["bermuda", "bermudadreieck", "bermuda dreieck", "bermuda triangle"],
+        ["verschwund", "verschwind", "schiff", "schiffe", "flugzeug", "flugzeuge", "mysterium", "geheimnis", "gefährlich", "gefaehrlich", "real", "wahr"]
+      ],
+      "source_label": "Lloyd's of London + US Coast Guard + Kusche 1975",
+      "source_url": "https://en.wikipedia.org/wiki/Bermuda_Triangle",
+      "secondary_url": "https://www.history.uscg.mil/Browse-by-Topic/Notable-People-Events/Bermuda-Triangle/"
+    },
+    {
+      "id": "chinesische_mauer_2026",
+      "topic": "chinesische_mauer_vom_mond_mythos",
+      "scope": "Behauptung, die Chinesische Mauer sei vom Mond aus / vom Weltraum sichtbar",
+      "year": 2024,
+      "headline": "Chinesische Mauer ist NICHT vom Mond sichtbar — auch vom Erdorbit nur unter Idealbedingungen mit Optik",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Die Chinesische Mauer ist vom Mond / Weltraum sichtbar' ist FALSE. Vom Mond aus ist KEIN menschliches Bauwerk mit bloßem Auge sichtbar (Distanz 384.000 km). Vom Erdorbit (Internationale Raumstation, ~400 km Höhe) ist die Mauer auch mit bloßem Auge NICHT zuverlässig sichtbar — weil sie zwar lang (~7.200 km), aber sehr schmal (~6-9 m) und farblich kaum vom umgebenden Boden abgegrenzt ist. NASA-Astronauten + China's erster Astronaut Yang Liwei (2003) bestätigten: nicht mit bloßem Auge sichtbar.",
+        "yang_liwei_2003": "Yang Liwei, Chinas erster Astronaut, Mission Shenzhou 5 (Oktober 2003): nach 14 Erd-Umkreisungen mit Frage zur Mauer-Sichtbarkeit: 'Die Erde sah sehr schön aus aus dem All, aber ich habe unsere Große Mauer nicht gesehen.' Damit bestätigt durch chinesische Quelle.",
+        "leroy_chiao_2004": "Leroy Chiao (NASA-Astronaut, ISS Expedition 10, 2004): erste verifizierbare Foto-Aufnahme der Großen Mauer aus der ISS — aber nur mit hochauflösender Kamera + 180mm-Linse + Schnee-Kontrast. Mit bloßem Auge bestätigte er: nicht erkennbar.",
+        "ripley_1932_ursprung": "Ripley's Believe It or Not! Cartoon 1932: 'die mächtigste Konstruktion der Menschheit, die einzige vom Mond aus sichtbar.' Kein wissenschaftlicher Beleg, sondern Marketing-Aussage. Mythos verbreitete sich seither populärwissenschaftlich.",
+        "auflösungs_grenze": "Auflösung des menschlichen Auges: ~1 Bogenminute (1/60 Grad). Bei 400 km Höhe (ISS) entspricht das ~120 m Boden-Auflösung. Mauer-Breite 6-9 m ist deutlich unter dieser Schwelle.",
+        "andere_objekte_aus_iss_sichtbar": "Vom ISS-Orbit MIT BLOßEM AUGE sichtbar: Großstädte (nachts durch Lichter), Autobahnen unter Idealbedingungen (Lichtreflexion), Pyramiden von Gizeh (selten, Schatten-Effekt), Flughäfen (groß, hell). Die Mauer ist trotz Länge bei ihrer Schmalheit nicht zuverlässig sichtbar.",
+        "context": "Mauer-Mythos hält sich in Schulbuchern + Reiseführern hartnäckig. NASA hat 2005 ein offizielles Statement 'China's Wall Less Great in View from Space' veröffentlicht. Trotz Klärung wird Mythos noch heute in Boulevardmedien wiedergegeben."
+      },
+      "context_notes": [
+        "Differenzierung Mond vs Erdorbit: Mond = ~384.000 km, dort kein Bauwerk sichtbar mit bloßem Auge. ISS = ~400 km, dort einige Großstrukturen sichtbar.",
+        "Mit Optik (Teleskop, Kamera-Zoom): vom ISS aus auch die Mauer fotografierbar. Aber das ist 'sichtbar mit Hilfsmitteln', nicht 'mit bloßem Auge'.",
+        "Andere lange schmale Strukturen (Highways, Eisenbahn-Linien) sind aus dem Orbit ähnlich schwer auf der reinen Boden-Ebene zu erkennen — der Mythos 'Mauer = einzige Ausnahme' ist falsch."
+      ],
+      "claim_phrasings_handled": [
+        "Die Chinesische Mauer ist vom Mond aus sichtbar",
+        "Die Große Mauer Chinas sieht man aus dem Weltraum",
+        "Chinesische Mauer ist das einzige Bauwerk vom All sichtbar"
+      ],
+      "trigger_keywords": [
+        "chinesische mauer mond", "chinesische mauer weltraum",
+        "grosse mauer mond", "große mauer mond",
+        "chinesische mauer all sichtbar",
+        "great wall moon visible"
+      ],
+      "trigger_composite": [
+        ["chinesische mauer", "grosse mauer", "große mauer", "great wall", "mauer china"],
+        ["mond", "moon", "weltraum", "all", "orbit", "iss", "raumstation", "vom mond", "aus dem", "sichtbar", "sehen"]
+      ],
+      "source_label": "NASA + Yang Liwei 2003 + Leroy Chiao 2004 + Scientific American",
+      "source_url": "https://www.scientificamerican.com/article/is-chinas-great-wall-visible-from-space/",
+      "secondary_url": "https://www.nasa.gov/image-article/great-wall/"
+    },
+    {
+      "id": "everest_hoechster_2026",
+      "topic": "everest_hoechster_berg_mythos",
+      "scope": "Welcher Berg ist der höchste — Mount Everest, Mauna Kea oder Chimborazo?",
+      "year": 2024,
+      "headline": "Mount Everest ist höchster ÜBER MEERESSPIEGEL — aber Mauna Kea ist vom Meeresboden höher, Chimborazo ist erdmittelpunkt-fernster",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die Frage 'Welcher Berg ist der höchste' hängt von der Definition ab — 3 mögliche TRUE-Antworten: (1) Mount Everest (8.849 m über Meeresspiegel) — der populär höchste; (2) Mauna Kea auf Hawai'i (~10.210 m vom Meeresgrund, davon ~4.207 m über Wasser) — vom Sockel-zur-Spitze höchster; (3) Chimborazo in Ecuador (6.263 m über Meeresspiegel, aber durch Erd-Abplattung am Äquator ~6.384 km vom Erdmittelpunkt) — am weitesten vom Erdmittelpunkt entfernter Punkt der Erdoberfläche.",
+        "everest": "Mount Everest, Himalaya (Nepal/China-Grenze): 8.848,86 m über Meeresspiegel (offizielle Vermessung 2020 nach gemeinsamer Vermessung). Bisher höchster Punkt der Erde nach klassischer Definition.",
+        "mauna_kea": "Mauna Kea, Hawai'i (USA): Schildvulkan, Spitze 4.207 m über Meeresspiegel. Vom Meeresgrund aus ~10.210 m. Nach 'Berg = Sockel-zu-Spitze'-Definition: höchster Berg der Erde.",
+        "chimborazo": "Chimborazo, Ecuador (Anden): 6.263 m über Meeresspiegel. Liegt aber nur 1° südlich des Äquators, wo die Erde durch Rotations-Abplattung ihren größten Radius hat. Spitze ist ~6.384.400 m vom Erdmittelpunkt entfernt — am weitesten vom Erdmittelpunkt entfernter Punkt der Erdoberfläche.",
+        "everest_radius_vergleich": "Everest-Spitze: ~6.382.300 m vom Erdmittelpunkt (laut moderner GPS-Vermessung). Damit ~2.100 m näher zum Erdmittelpunkt als die Chimborazo-Spitze, obwohl Everest 'höher' im Meeresspiegel-Sinne ist.",
+        "definitionsfrage": "Wissenschaftlich: alle 3 Aussagen sind gleichermaßen valid, je nach Definition. Populär ist 'Höhe über Meeresspiegel' der Standard — daher Everest die übliche Antwort.",
+        "context": "Frage 'Wer ist höchster Berg' kann SO FORMULIERT sein, dass die Antwort eindeutig ist (z.B. 'höchster über Meeresspiegel' = Everest). Pauschal ohne Spezifizierung: alle 3 Antworten richtig — kontextabhängig."
+      },
+      "context_notes": [
+        "Aktuelle Everest-Höhe: 8.848,86 m (Vermessung Nepal+China 2020). Vorherige offizielle Höhe 8.848 m. Tektonik-Bewegung +2-4 mm/Jahr.",
+        "Schwierigkeit von Aufstiegen: Everest > Mauna Kea (technisch leichter, aber auch nicht trivial). Chimborazo ist mittel-anspruchsvoll.",
+        "Andere Höhen-Definitionen: 'Topographische Schartenhöhe' macht Mount McKinley/Denali zu einem der dramatischsten Berge der Erde."
+      ],
+      "claim_phrasings_handled": [
+        "Mount Everest ist der höchste Berg der Welt",
+        "Mauna Kea ist höher als Everest",
+        "Chimborazo ist der höchste Berg"
+      ],
+      "trigger_keywords": [
+        "everest hoechster", "everest höchster",
+        "mauna kea hoechster", "mauna kea höchster",
+        "chimborazo hoechster", "chimborazo höchster",
+        "hoechster berg", "höchster berg"
+      ],
+      "trigger_composite": [
+        ["everest", "mauna kea", "chimborazo", "berg", "berge"],
+        ["höchster", "hoechster", "höchste", "hoechste", "höher", "hoeher", "groesser", "größer", "groesst", "größt", "tiefster", "weltranking", "welt", "welt-record"]
+      ],
+      "source_label": "Nepal+China Vermessung 2020 + USGS + Britannica",
+      "source_url": "https://www.britannica.com/place/Mount-Everest",
+      "secondary_url": "https://www.britannica.com/story/whats-the-tallest-mountain-on-earth"
+    },
+    {
+      "id": "toilette_coriolis_2026",
+      "topic": "toilette_coriolis_mythos",
+      "scope": "Behauptung, das Wasser im Toiletten-/Waschbecken-Abfluss dreht je nach Hemisphäre andersrum",
+      "year": 2024,
+      "headline": "Coriolis-Effekt ist im Waschbecken-/Toilette-Maßstab unbedeutend — Drehrichtung hängt von Becken-Geometrie + Wasserzufluss ab",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Wasser dreht im Waschbecken/Toilette in der Nordhalbkugel anders herum als in der Südhalbkugel wegen Coriolis-Kraft' ist FALSE. Coriolis-Effekt wirkt physikalisch real auf große rotierende Systeme (Hurricane, Atmosphäre, Ozeane), aber in einem Waschbecken (Maßstab ~30-50 cm, Wasser-Strömung wenige Sekunden) ist die Coriolis-Beschleunigung um Größenordnungen kleiner als andere Einflüsse: Becken-Geometrie, Restströmung beim Befüllen, Asymmetrie des Abflusses, Wasser-Bewegung beim Hineingreifen.",
+        "physikalische_groessenordnung": "Coriolis-Beschleunigung: 2 × ω × v × sin(φ), mit ω = Erdrotation (7,3 × 10⁻⁵ rad/s), v = typische Waschbecken-Wassergeschwindigkeit (~0,1 m/s). Resultat: ~10⁻⁵ m/s² = ~0,000001 g. Vernachlässigbar gegen jede andere Strömungs-Asymmetrie.",
+        "kontrolliertes_experiment": "Lloyd Trefethen (MIT, 1962): unter strikt kontrollierten Bedingungen (riesige Becken, perfekt zentriertes Auslass, Wasser 24h ruhen lassen, sehr langsame Entleerung) lässt sich der Coriolis-Effekt im Becken nachweisen. Im Alltagsbecken ist er völlig überlagert.",
+        "alltagsexperiment": "MythBusters Episode 2009: Test in Australien (Südhalbkugel) und USA (Nordhalbkugel) zeigte unterschiedliche Drehrichtungen — aber nicht durch Coriolis, sondern durch unterschiedliche Becken-Designs + Wassereinlass-Richtungen.",
+        "hurricanes_wirklich_coriolis": "Wo Coriolis tatsächlich wirkt: Hurricane in der Nordhalbkugel drehen gegen den Uhrzeigersinn (zyklonisch), in der Südhalbkugel im Uhrzeigersinn. Skala: Hunderte km, Stunden bis Tage Dauer. Da reicht die Coriolis-Beschleunigung deutlich.",
+        "touristen_show": "An Touristen-Plätzen am Äquator (z.B. in Quito, Ecuador) werden 'Coriolis-Demonstrationen' angeboten — typisch Trick mit Becken-Drehung beim Rotieren des Aufstellungs-Hebels. Pure Show, kein echtes Coriolis-Phänomen.",
+        "context": "Coriolis ist real und wichtig für Klimatologie, Meteorologie, Ballistik, Ozeanographie. Aber NICHT für Waschbecken. Ein klassischer 'wahrer Effekt im falschen Maßstab'-Mythos."
+      },
+      "context_notes": [
+        "Coriolis-Demonstrationen mit großen Becken (Foucault-Pendel-ähnlich) sind möglich — aber erfordern strenge Kontrolle.",
+        "Toiletten-Spülung: Drehrichtung wird durch das Spülrand-Design vorgegeben (Wasserstrahl-Richtung), Coriolis spielt keine Rolle.",
+        "Hurricane vs Tornado: beide zyklonisch, aber Tornados folgen NICHT zwingend dem Coriolis (zu kleiner Maßstab) — können in jeder Halbkugel in beiden Richtungen drehen, mit leichter Coriolis-Tendenz."
+      ],
+      "claim_phrasings_handled": [
+        "Wasser im Waschbecken dreht in der Südhalbkugel anders",
+        "Toiletten-Wasser dreht je nach Hemisphäre anders",
+        "Coriolis-Effekt zeigt sich im Waschbecken"
+      ],
+      "trigger_keywords": [
+        "coriolis waschbecken", "coriolis toilette",
+        "waschbecken dreht", "toilette dreht hemisphaere",
+        "toilette dreht hemisphäre",
+        "wasser abfluss richtung halbkugel"
+      ],
+      "trigger_composite": [
+        ["coriolis", "waschbecken", "abfluss", "toilette", "klospuelung", "klospülung"],
+        ["dreht", "richtung", "halbkugel", "nordhalbkugel", "suedhalbkugel", "südhalbkugel", "hemisphaere", "hemisphäre", "andersrum", "umgekehrt", "anders", "zeigt sich", "demonstrat", "experiment", "im becken", "im waschbecken", "wasser"]
+      ],
+      "source_label": "Trefethen MIT 1962 + MythBusters 2009 + Britannica",
+      "source_url": "https://www.britannica.com/science/Coriolis-force",
+      "secondary_url": "https://en.wikipedia.org/wiki/Coriolis_force"
+    },
+    {
+      "id": "sahara_groesste_wueste_2026",
+      "topic": "sahara_groesste_wueste_mythos",
+      "scope": "Welche ist die größte Wüste — Sahara oder Antarktis?",
+      "year": 2024,
+      "headline": "Sahara ist NICHT die größte Wüste — Antarktis ist mit 14 Mio km² größere Wüste, definiert über Niederschlags-Mangel (<250 mm/Jahr)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Sahara ist die größte Wüste der Welt' ist FALSE/MIXED je nach Definition. Wüste wird wissenschaftlich definiert über Niederschlags-Mangel (<250 mm/Jahr), nicht über Hitze + Sand. Nach dieser Definition: (1) Antarktis = größte Wüste der Welt mit ~14,2 Mio km² (etwa 1,5x Sahara). Niederschlags-Werte oft <50 mm/Jahr im Inneren. (2) Arktis-Polar-Wüste ~13,9 Mio km². (3) Sahara ~9,2 Mio km² — größte HEISSE Wüste, dritt-größte Wüste insgesamt. Pauschale Aussage 'Sahara ist die größte' ist nur dann TRUE, wenn man Wüste als 'heiße Sand-Wüste' definiert.",
+        "wueste_definition": "Wissenschaftliche Definition (UNESCO + Geographen): Wüste = Region mit Jahres-Niederschlag <250 mm. Dabei werden 4 Wüsten-Typen unterschieden: heiße Wüste (Sahara, Arabien), kalte Wüste (Gobi, Patagonien), Küsten-Wüste (Atacama, Namib), Polar-Wüste (Antarktis, Arktis).",
+        "antarktis_groesse": "Antarktis-Polar-Wüste: ~14,2 Mio km² (14.200.000 km²). Niederschlag im Inneren: 50-200 mm/Jahr (oft Schnee, der nicht schmilzt). Vergleich: Sahara 9,2 Mio km², EU 4,2 Mio km², Australien 7,7 Mio km².",
+        "sahara_eigenschaften": "Sahara-Wüste in Nordafrika: ~9,2 Mio km², bedeckt Mauretanien, Mali, Niger, Tschad, Sudan, Ägypten, Libyen, Algerien, Tunesien, Marokko, West-Sahara. Klassisches heiße-Sand-Wüsten-Bild. Höchste je gemessene Boden-Temperatur ~93 °C (Aziziya, Libyen, 1922 — umstritten).",
+        "arktis_polar": "Arktis-Polar-Wüste: ~13,9 Mio km² (Wikipedia). Region nördlich der Baumgrenze, niedrige Verdunstung trotz Schnee + Eis.",
+        "atacama_trockenster_ort": "Trockenster Ort der Erde: Atacama-Wüste in Chile. Manche Stationen seit 400+ Jahren ohne nennenswerten Niederschlag. Aber Größe nur ~105.000 km² — kleine Wüste.",
+        "context": "Lehrbuch-Aktualisierung: viele alte Lehrbücher (vor 2000) zeigten Sahara als 'größte Wüste' — basiert auf veralteter Definition. Moderne Geographie-Lehre (UNESCO, National Geographic) zeigt Antarktis als größte."
+      },
+      "context_notes": [
+        "Differenzierung 'Wüste' vs 'Eiswüste' vs 'Trockenwüste': in deutscher Alltagssprache wird 'Wüste' oft mit Hitze assoziiert; geografisch nicht zwingend.",
+        "Sahara-Größe variiert über Jahrzehnte — wachsen + schrumpfen mit Klima-Schwankungen ('Grüne Sahara' vor ~6000 Jahren).",
+        "Definitions-Streit ist akademisch vorhanden, aber Konsens-Geographie-Lehrbücher folgen mehrheitlich der Niederschlags-Definition."
+      ],
+      "claim_phrasings_handled": [
+        "Sahara ist die größte Wüste der Welt",
+        "Die größte Wüste ist die Sahara",
+        "Sahara ist die größte Wueste"
+      ],
+      "trigger_keywords": [
+        "sahara groesste wueste", "sahara größte wüste",
+        "groesste wueste welt", "größte wüste welt",
+        "antarktis wueste", "antarktis wüste"
+      ],
+      "trigger_composite": [
+        ["sahara", "antarktis", "antarktika", "wueste", "wüste", "polar-wueste", "polar-wüste"],
+        ["groesste", "größte", "groesst", "größt", "welt", "weltweit", "welt"]
+      ],
+      "source_label": "UNESCO + National Geographic + Britannica",
+      "source_url": "https://www.britannica.com/place/desert",
+      "secondary_url": "https://education.nationalgeographic.org/resource/desert/"
+    },
+    {
+      "id": "australien_giftigste_2026",
+      "topic": "australien_giftigste_tiere_mythos",
+      "scope": "Behauptung, Australien hat die meisten gefährlichen Tiere",
+      "year": 2024,
+      "headline": "Australien hat viele giftige Tiere — aber tödliche Tierangriffe sind in den USA + Indien deutlich häufiger",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Australien hat die gefährlichsten / meisten gefährlichen Tiere' ist MIXED. RICHTIG ist: Australien hat überproportional viele GIFTIGE Tiere (alle 5 giftigsten Schlangen, einige Spinnen, Box-Quallen, Trichterspinnen). FALSCH ist: 'Australien hat die meisten Tier-Tode'. Realität: Australien ~3-5 Tier-Tote pro Jahr durch Wildtiere. USA ~500-700 (Bienen-Schock, Hunde, Hirschunfälle, Schlangen). Indien ~50.000 durch Schlangen-Bisse jährlich. Viele Tier-Tote-Statistiken zeigen Australien NICHT in Top-10.",
+        "schlangen_giftigkeit_top": "Top 10 giftigste Schlangen der Welt (nach LD50): 7 von 10 in Australien. Inland Taipan ('Fierce Snake'): giftigste Landschlange. Östlicher Brauner Schlange: zweitgiftigste. Tiger-Schlange, Tiger-Schlange, ... Aber: Australische Schlangen sind oft scheu + gut sichtbar, viele Bisse erfolgen in Schutz-Klinik-erreichbarer Zeit, Anti-Serum verfügbar.",
+        "australien_tier_tote_pro_jahr": "Australien Tier-Tote pro Jahr: ~3-5 (Schlangen, Krokodile, Quallen, Spinnen). Quelle: Australian Bureau of Statistics + Coronial Information System.",
+        "indien_schlangen": "Indien-Schlangen-Bissze: ~2,8 Mio Bisse pro Jahr, ~50.000 Tote. Big Four (Brillenschlange, Russell's Viper, Saw-scaled Viper, Krait) verantwortlich für ~80 % der Tode. Anti-Serum-Verfügbarkeit + Land-Bevölkerung sind Treiber.",
+        "usa_tier_tote": "USA Tier-Tote pro Jahr: ~500-700. Hauptursachen: Hirsch-Auto-Unfälle (~200), Bienen/Wespen-Schock (~60), Hunde (~30-50), Schlangen (~5), Bären (~1-3). Australische Statistiken im Vergleich gering.",
+        "krokodile_lebensraum": "Salzwasser-Krokodil (Australien Nord) und Nil-Krokodil (Afrika): tödliche Begegnungen. Aber Nil-Krokodile machen ~700-1.000 Tote pro Jahr in Afrika (vor allem in Subsahara), Australien-Krokodile ~1-2 pro Jahr.",
+        "afrika_gefaehrlichste_tiere": "Wenn 'gefährlichste Tiere' = 'meiste Tote': Mücken (Malaria + andere Krankheiten, ~700.000 Tote/Jahr), Schlangen (50-100k), Hunde (Tollwut, ~25k), Krokodile (~1k), Nilpferde (~500), Elefanten (~500). Mehrheit der Top-Listen kommt aus Asien + Afrika.",
+        "context": "Australisch-Mythen-Marketing (für Tourismus + Stolz) hat das Image 'Australien tötet dich' verstärkt. Faktisch ist Australien für Reisende sehr sicher — moderne Medizin + erfahrene Notdienste machen Australien-Tier-Tote selten. Reise-Risiko in Indien oder Subsahara-Afrika deutlich höher."
+      },
+      "context_notes": [
+        "Australische Spinnen-Anti-Sera (Sydney-Trichternetzspinne, Rotrückenspinne): seit 1981 verfügbar, davor mehrere Tote pro Jahr — heute praktisch null.",
+        "Box-Quallen (Chironex fleckeri): tödlich, aber Strände in betroffenen Zeiten markiert + abgesperrt.",
+        "Differenzierung Giftigkeit (LD50) vs tatsächliche Bisszahlen + medizinische Versorgung. Hochgiftig + selten gebissen + gute Klinik = wenig Tote."
+      ],
+      "claim_phrasings_handled": [
+        "Australien hat die gefährlichsten Tiere der Welt",
+        "Australien hat die giftigsten Tiere",
+        "In Australien gibt es die meisten gefährlichen Tiere"
+      ],
+      "trigger_keywords": [
+        "australien gefaehrlichste tiere", "australien gefährlichste tiere",
+        "australien giftigste", "australien gift tier",
+        "australien meisten gefaehr", "australien meisten gefähr"
+      ],
+      "trigger_composite": [
+        ["australien", "australia"],
+        ["gefaehrlich", "gefährlich", "giftig", "giftige", "tier", "tiere", "schlange", "spinne", "qualle", "krokodil", "tödlich", "toedlich"]
+      ],
+      "source_label": "Australian Bureau of Statistics + WHO Snake Bites + CDC",
+      "source_url": "https://www.britannica.com/list/the-10-most-dangerous-animals-in-the-world",
+      "secondary_url": "https://www.who.int/news-room/fact-sheets/detail/snakebite-envenoming"
+    },
+    {
+      "id": "vatikan_kleinster_2026",
+      "topic": "vatikan_kleinster_staat_konsens",
+      "scope": "Behauptung, der Vatikan sei der kleinste Staat der Welt",
+      "year": 2024,
+      "headline": "Vatikanstadt IST der kleinste anerkannte Staat der Welt: 0,49 km² (UN-Beobachterstatus, kein UN-Vollmitglied)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Der Vatikan ist der kleinste Staat der Welt' ist TRUE. Vatikanstadt: 0,49 km² (0,44 km² nach manchen Quellen), 825 Einwohner Stand 2024. Anerkannt als souveräner Stadtstaat seit Lateran-Verträge 1929. UN-Beobachterstatus (kein Vollmitglied), eigene Briefmarken, Münzen (Euro mit eigener Vatikan-Prägung), Gesetze. Zweitkleinster Staat: Monaco (~2,02 km²). Nauru (Pazifik, ~21 km²) ist kleinste Insel-Republik.",
+        "vatikan_eckdaten": "Vatikanstadt (Stato della Città del Vaticano): 0,49 km² Fläche (kleinster Staat), 825 Einwohner (Stand 2024, davon ~450 mit Vatikan-Staatsbürgerschaft), souverän seit 11. Februar 1929 (Lateran-Verträge zwischen Italien + Heiligen Stuhl).",
+        "anerkennung_un": "UN-Status: Heiliger Stuhl ist 'Permanent Observer' seit 1964 — Beobachter, kein Vollmitglied. Diplomatische Beziehungen mit über 180 Staaten. Eigene Botschaften (Apostolische Nuntiaturen) weltweit.",
+        "monaco_zweitkleinster": "Monaco: 2,02 km² (4x Vatikan), ~38.000 Einwohner. Zweitkleinster anerkannter Staat. Souverän seit Vertrag von Versailles 1297, modernes Fürstentum mit Verfassung.",
+        "andere_kleine": "San Marino 61 km², Liechtenstein 160 km², Tuvalu 26 km², Nauru 21 km², Marshall-Inseln 181 km². Alle größer als Vatikan + Monaco.",
+        "kleine_aber_unanerkannt": "Verschiedene 'Mikronationen' beanspruchen Souveränität (Sealand, 0,025 km²; Sovereign Military Order of Malta — Sonderstatus). Werden international nicht als Staaten anerkannt.",
+        "vatikan_eigenheiten": "Eigene Schweizergarde (~135 Soldaten), eigene Polizei, eigenes Postsystem, eigene Eisenbahn (700 m, kürzeste Bahnlinie der Welt), eigener Bahnhof, eigene Apotheke. Aber: kein eigener Wohnungsbau, keine eigene Industrie, abhängig von Italien für Versorgung.",
+        "context": "Vatikan ist klar kleinster anerkannter Staat. Manche populäre Diskussionen verwechseln 'kleinster Staat' mit 'kleinste Insel' oder 'kleinste Republik' — andere Kategorien."
+      },
+      "context_notes": [
+        "Heiliger Stuhl (subjekt des Völkerrechts) und Vatikanstadt (Staat) sind rechtlich getrennte Entitäten — nicht alle vereinen die Konzepte korrekt.",
+        "Vatikan-Bürger sind oft Geistliche oder Schweizergarde-Mitglieder, mit Bürgerschaft auf Funktions-Dauer. Kein Geburtsrecht-Bürgerschaft.",
+        "Bevölkerungsdichte Vatikan: ~1.683 Einw./km² — vergleichbar mit deutscher Großstadt-Außenbezirken. Aber bei 0,49 km² absolute Bevölkerung sehr klein."
+      ],
+      "claim_phrasings_handled": [
+        "Vatikan ist der kleinste Staat der Welt",
+        "Vatikanstadt ist das kleinste Land",
+        "Kleinster Staat der Welt ist der Vatikan"
+      ],
+      "trigger_keywords": [
+        "vatikan kleinster staat", "vatikan kleinstes land",
+        "vatikanstadt kleinster", "kleinster staat welt"
+      ],
+      "trigger_composite": [
+        ["vatikan", "vatikanstadt", "heiliger stuhl"],
+        ["kleinst", "kleinster", "kleinste", "land", "staat", "republik", "weltweit", "welt"]
+      ],
+      "source_label": "CIA Factbook + UN-Beobachterstatus + Britannica",
+      "source_url": "https://www.cia.gov/the-world-factbook/countries/holy-see-vatican-city/",
+      "secondary_url": "https://www.britannica.com/place/Vatican-City"
+    }
+  ]
+}
