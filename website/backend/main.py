@@ -789,7 +789,70 @@ async def check_claim(request: Request):
 
 @app.get("/api/health")
 async def health():
+    """Basic readiness — process up + can respond."""
     return {"status": "ok"}
+
+
+@app.get("/api/health/full")
+async def health_full():
+    """Vollständige Bereitschafts-Prüfung — inklusive ML-Modelle.
+
+    Stress-Tests sollten nach Backend-Rebuild auf diesen Endpoint
+    warten (statt /api/legal), damit SpaCy + sentence-transformers
+    geladen sind, bevor erste Claims gefeuert werden. Vermeidet
+    Stream-Loss-Artefakte bei concurrency>=2 in den ersten 30-90
+    Sekunden nach Container-Start.
+
+    Returns 200 nur wenn:
+      - SpaCy de_core_news_lg + en_core_web_sm geladen
+      - sentence-transformers paraphrase-multilingual-MiniLM-L12-v2
+        geladen
+      - Static-Cache initialisiert
+    Returns 503 sonst.
+    """
+    from fastapi import HTTPException
+    checks: dict[str, bool] = {}
+
+    # SpaCy NER-Pipelines (Lazy-Loading triggern via _load_models)
+    try:
+        from services import ner as _ner
+        _ner._load_models()
+        checks["spacy_de"] = _ner._nlp_de is not None
+        checks["spacy_en"] = _ner._nlp_en is not None
+    except Exception as e:
+        logger.warning(f"health/full: spacy check failed: {e}")
+        checks["spacy_de"] = False
+        checks["spacy_en"] = False
+
+    # sentence-transformers (Reranker-Backup + Verdict-Cache)
+    try:
+        from services._reranker_backup import _get_model as _get_st
+        m = _get_st()
+        checks["sentence_transformers"] = m is not None
+    except Exception as e:
+        logger.warning(f"health/full: sentence-transformers check failed: {e}")
+        checks["sentence_transformers"] = False
+
+    # Static-Cache initialisiert (mind. 1 fact-pack geladen)
+    try:
+        from services._static_cache import load_json_mtime_aware
+        eso = load_json_mtime_aware(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         "data", "esoterik_pack.json")
+        )
+        checks["static_cache"] = eso is not None and "facts" in (eso or {})
+    except Exception as e:
+        logger.warning(f"health/full: static_cache check failed: {e}")
+        checks["static_cache"] = False
+
+    all_ok = all(checks.values())
+    if not all_ok:
+        # 503 Service Unavailable signalisiert Startup-Phase
+        raise HTTPException(status_code=503, detail={
+            "status": "starting",
+            "checks": checks,
+        })
+    return {"status": "ready", "checks": checks}
 
 
 @app.get("/api/legal")

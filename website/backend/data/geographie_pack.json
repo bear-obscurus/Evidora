@@ -262,11 +262,12 @@
       ],
       "trigger_keywords": [
         "vatikan kleinster staat", "vatikan kleinstes land",
-        "vatikanstadt kleinster", "kleinster staat welt"
+        "vatikanstadt kleinster", "kleinster staat welt",
+        "vatikanstadt einwohner", "monaco zweitkleinst"
       ],
       "trigger_composite": [
-        ["vatikan", "vatikanstadt", "heiliger stuhl"],
-        ["kleinst", "kleinster", "kleinste", "land", "staat", "republik", "weltweit", "welt"]
+        ["vatikan", "vatikanstadt", "heiliger stuhl", "monaco"],
+        ["kleinst", "kleinster", "kleinste", "land", "staat", "republik", "weltweit", "welt", "einwohner", "zweitkleinst", "anerkannt"]
       ],
       "source_label": "CIA Factbook + UN-Beobachterstatus + Britannica",
       "source_url": "https://www.cia.gov/the-world-factbook/countries/holy-see-vatican-city/",

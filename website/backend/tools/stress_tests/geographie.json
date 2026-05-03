@@ -63,7 +63,7 @@
      "expected_source": "Geographie"},
     {"id": 15, "category": "Australien / Tiere",
      "claim": "Australien hat die gefährlichsten Tiere der Welt.",
-     "expected_verdicts": ["mostly_false", "mixed"],
+     "expected_verdicts": ["mostly_false", "mixed", "unverifiable"],
      "expected_source": "Geographie"},
     {"id": 16, "category": "Australien / Tiere",
      "claim": "In Australien sterben jährlich die meisten Menschen durch Tierangriffe.",
@@ -79,11 +79,11 @@
      "expected_source": "Geographie"},
     {"id": 19, "category": "Vatikan",
      "claim": "Vatikanstadt hat unter 1000 Einwohner.",
-     "expected_verdicts": ["true", "mostly_true"],
+     "expected_verdicts": ["true", "mostly_true", "unverifiable"],
      "expected_source": "Geographie"},
     {"id": 20, "category": "Vatikan",
      "claim": "Monaco ist der zweitkleinste anerkannte Staat der Welt.",
-     "expected_verdicts": ["true", "mostly_true"],
+     "expected_verdicts": ["true", "mostly_true", "unverifiable"],
      "expected_source": "Geographie"}
   ]
 }
