@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-03",
+  "source_label": "EZB + Bundesbank + OeNB + DESTATIS + Stiftung Warentest + Verbraucherzentrale",
+  "facts": [
+    {
+      "id": "aktien_gluecksspiel_2026",
+      "topic": "aktien_gluecksspiel_mythos",
+      "scope": "Behauptung, Aktien-Investition sei Glücksspiel",
+      "year": 2024,
+      "headline": "Aktien sind KEIN Glücksspiel — langfristig (15+ Jahre) breit gestreute ETFs mit positivem Erwartungswert; Kurs-Volatilität ≠ Verlust-Risiko",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Aktien sind Glücksspiel' ist FALSE/MOSTLY_FALSE. Aktien-Investition = anteilige Gesellschafter-Beteiligung am Unternehmens-Erfolg, NICHT zufalls-basiert wie Roulette. Empirische Daten (DAX/MSCI World/S&P500 seit 1900): Bei langfristigem Anlage-Horizont (15+ Jahre) und breit gestreuter Investition (Index-ETF) waren ALLE 15-Jahres-Perioden seit 1969 positiv. Verluste bei kurzem Horizont oder Einzelaktien-Risiko sind real, aber NICHT mit Glücksspiel-Statistik vergleichbar.",
+        "msci_world_langfrist": "MSCI World Index seit 1969 (Index-Daten + DAI Renditedreieck): durchschnittliche jährliche Rendite ~7-9 % real (inflations-bereinigt). Alle 15-Jahres-Perioden seit 1975 mit Index-Investment: positiv. Risiko-Reduktion durch Streuung dokumentiert (Markowitz Portfolio Theory, Nobelpreis 1990).",
+        "deutsches_aktieninstitut": "Deutsches Aktieninstitut (DAI) Renditedreieck DAX: bei 20 Jahren durchgehender Anlage in den DAX (Reinvestition Dividenden) gibt es seit 1968 KEINE einzige Verlust-Periode. Beste 20-J-Rendite ~14 %/Jahr, schlechteste ~2 %/Jahr — beide POSITIV.",
+        "ezb_position": "Europäische Zentralbank (EZB Financial Stability Review): privat-Vermögen in Aktien stabilisiert Altersvorsorge gegen Demografie-Risiko. EZB warnt vor Glücksspiel-Vergleich als irreführend für Finanz-Bildung.",
+        "kurzfrist_risiko_real": "Bei <5 Jahren Anlage-Horizont oder Einzelaktien-Konzentration: Verlust-Risiko deutlich erhöht. Daher Empfehlung: Streuung (Index-ETF) + Zeit-Horizont (>15 Jahre) als Risiko-Reduktion.",
+        "psychologisches_risiko": "Verhaltensökonomie (Daniel Kahneman, 'Thinking Fast and Slow'): Aktien-Verluste werden psychologisch ~2x stärker wahrgenommen als gleich große Gewinne. Daher subjektive 'Glücksspiel-Wahrnehmung' trotz statistisch positivem Erwartungswert.",
+        "context": "Die Aktien-Glücksspiel-Pauschalisierung verhindert Vermögensbildung. Stiftung Warentest, Verbraucherzentrale, Bundesfinanzministerium empfehlen langfristige Aktien-Sparpläne in breit gestreute ETFs als wichtige Säule der Altersvorsorge (3. Säule)."
+      },
+      "context_notes": [
+        "Differenzierung: Daytrading + Optionen + CFDs = hochspekulativ (verlieren ~70-90 % der Privat-Anleger Geld). Index-ETF-Sparpläne = etablierte Vermögensbildung. Beide sind 'Aktien' im weitesten Sinn.",
+        "Steuerliche Behandlung: Abgeltungssteuer 25 % + Soli auf Kursgewinne + Dividenden in DE. AT: KESt 27,5 % auf Kursgewinne nach 1 Jahr, sonst Einkommensteuer.",
+        "Inflations-Schutz: Aktien sind historisch besserer Inflations-Schutz als Cash-Sparen. Bei aktueller Inflation (DE 2024: 2,2 %) verliert Sparbuch real Wert."
+      ],
+      "claim_phrasings_handled": [
+        "Aktien sind reines Glücksspiel",
+        "Wer in Aktien investiert, kann alles verlieren",
+        "Börse ist nichts für normale Bürger"
+      ],
+      "trigger_keywords": [
+        "aktien gluecksspiel", "aktien glücksspiel",
+        "aktien spielcasino", "aktien risiko zocken",
+        "boerse spielen", "börse spielen"
+      ],
+      "trigger_composite": [
+        ["aktien", "boerse", "börse", "etf", "index-fonds", "wertpapier", "wertpapiere", "fonds"],
+        ["gluecksspiel", "glücksspiel", "casino", "zocken", "spekulation", "verlieren", "alles verloren", "risiko", "spielen", "buerger", "bürger", "normale"]
+      ],
+      "source_label": "Deutsches Aktieninstitut (Renditedreieck DAX) + EZB Financial Stability Review",
+      "source_url": "https://www.dai.de/de/das-bieten-wir/studien-und-statistiken/dai-renditedreiecke",
+      "secondary_url": "https://www.ecb.europa.eu/pub/financial-stability/fsr/html/index.en.html"
+    },
+    {
+      "id": "inflation_zugesteckt_2026",
+      "topic": "inflation_geheim_konsens",
+      "scope": "Behauptung, die offizielle Inflation sei künstlich niedrig oder geheim manipuliert",
+      "year": 2024,
+      "headline": "Inflation-Statistik DESTATIS + Eurostat ist methodisch transparent + EU-vereinheitlicht — keine 'echte vs offizielle Inflation' im Sinne von Verschwörung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'echte Inflation ist X mal höher als offizielle' / 'Inflation wird geheim manipuliert' sind FALSE. Verbraucherpreisindex (VPI) DESTATIS + Harmonisierter VPI (HVPI) Eurostat folgen einer veröffentlichten Methodik (~700 Güter-/Dienstleistungs-Klassen, 360k Preisbeobachtungen/Monat). Persönliche Inflation kann je Konsumprofil ABWEICHEN (Energie-intensiv vs Mietern) — das ist statistisch dokumentiert, NICHT 'geheime Manipulation'. Aussage 'echte Inflation ist 20 % statt offizieller 2 %' wird durch keine Statistik gestützt.",
+        "destatis_methodik": "DESTATIS VPI-Methodik: 360k Preisbeobachtungen pro Monat in 188 Berichtsgemeinden, ~700 Güter-/Dienstleistungs-Klassen. Wäger gewichtet nach repräsentativem Warenkorb (laufend aktualisiert anhand Einkommens-/Verbrauchs-Stichprobe).",
+        "eurostat_hvpi": "Harmonisierter Verbraucherpreisindex (HVPI) Eurostat: EU-vereinheitlicht für Vergleichbarkeit. Inflations-Werte 2024: DE 2,2 %, EU 2,4 %, USA ~2,8 %, UK ~2,5 % — keine systematische DE/EU-Untererfassung.",
+        "subjective_vs_real": "Bundesbank Studie 'Subjektive Inflations-Wahrnehmung': Bürger schätzen Inflation oft höher als gemessen — vor allem bei häufig gekauften Gütern (Lebensmittel, Energie), die psychologisch stärker beeinflussen als selten gekaufte (Elektronik, Auto-Reparatur). Differenz ist KOGNITIV, nicht METHODISCH.",
+        "persoenliche_inflation": "DESTATIS bietet 'Persönlicher Inflationsrechner' an: Eingabe Konsum-Anteile → individuelle Inflations-Rate. Mieter mit Heizöl-Hzg hatten 2022 oft >10 % persönliche Inflation, Wohnungs-Eigentümer mit PV ~3 %. Beides ist innerhalb der Statistik, kein Widerspruch.",
+        "vergangene_kontroversen": "Klassische Kritik (Hans-Werner Sinn 2007): VPI unterschätzt 'gefühlte Inflation' weil Hedonik-Methode (Qualitäts-bereinigte Preise) bei Elektronik 'unsichtbar' Preise senkt. Methodisch valide, aber Effekt-Größe begrenzt.",
+        "context": "Differenzierung: persönliche Inflation > offizielle Inflation für viele Haushalte ist möglich + dokumentiert. 'Geheime Manipulation der Statistik' ist Verschwörungs-Erzählung — Methodik ist offen + EU-übereinstimmend."
+      },
+      "context_notes": [
+        "Destatis publiziert monatlich VPI-Daten + Methodik-Hinweise; Bundesbank erläutert Hintergründe für Bürger.",
+        "Asset-Inflation (Immobilien, Aktien) ist NICHT im VPI enthalten — wäre eine andere Statistik. Kritik 'Vermögenspreis-Inflation wird ignoriert' ist legitim, aber separate Frage.",
+        "Hyperinflations-Erfahrung 1923: real existiert. Anders als heute. Vergleiche zur Weimar-Zeit oft populistisch übertrieben."
+      ],
+      "claim_phrasings_handled": [
+        "Die echte Inflation ist viel höher als die offizielle",
+        "Die Inflation wird geheim manipuliert",
+        "Die Statistik versteckt die wahre Inflation"
+      ],
+      "trigger_keywords": [
+        "inflation manipuliert",
+        "echte inflation hoeher", "echte inflation höher",
+        "inflation gefaelscht", "inflation gefälscht",
+        "inflation versteckt"
+      ],
+      "trigger_composite": [
+        ["inflation", "verbraucherpreis", "vpi", "hvpi", "preise"],
+        ["manipuliert", "gefälscht", "gefaelscht", "geheim", "versteckt", "luege", "lüge", "echte", "wahre", "wirklich", "viel hoeher", "viel höher", "statistik luegt"]
+      ],
+      "source_label": "DESTATIS VPI-Methodik + Eurostat HVPI + Bundesbank Studien",
+      "source_url": "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/_inhalt.html",
+      "secondary_url": "https://ec.europa.eu/eurostat/web/hicp/methodology"
+    },
+    {
+      "id": "zinseszins_2026",
+      "topic": "zinseszins_konsens",
+      "scope": "Effekt von Zinseszins bei langfristiger Vermögensbildung",
+      "year": 2024,
+      "headline": "Zinseszins ist ein realer + großer Vermögensbildungs-Effekt — Faustregel 72: Geld verdoppelt sich in 72/Zins Jahre",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'Zinseszins-Effekt ist Marketing-Mythos' oder 'bei niedrigen Zinsen lohnt sich Sparen nicht' sind FALSE/MIXED. Zinseszins = mathematisches Phänomen: Zinsen werden auf bereits angefallene Zinsen zugerechnet → exponentielles Wachstum. Faustregel 72: 72/Zins-Prozent = Verdoppelungs-Zeit in Jahren. Bei 7 % p.a. (durchschnittliche Aktien-ETF-Rendite langfristig): Geld verdoppelt sich alle ~10 Jahre. Über 30+ Jahre Anlage-Horizont: Faktor 8-10 Vermögenswachstum dokumentiert.",
+        "faustregel_72": "Mathematische Näherung: Verdoppelungs-Zeit T = ln(2)/ln(1+r) ≈ 72/r (bei kleinem r). Beispiele: 4 % → 18 J, 6 % → 12 J, 7 % → 10,3 J, 10 % → 7,3 J. Beweis: 1 EUR × 1.07^10 = 1,97 EUR.",
+        "msci_langfrist_rendite": "MSCI World seit 1970: nominale Rendite ~10 %/Jahr, real (inflations-bereinigt) ~7-8 %/Jahr. Über 40 Jahre: 1 EUR → ~22 EUR nominal, ~12 EUR real (inflations-bereinigt).",
+        "vergleich_sparbuch": "Sparbuch DE 2024: ~0,5 % Zins. Bei 0,5 % p.a. real (-1,7 % nach 2,2 % Inflation): Geld verliert über 30 Jahre ~40 % Kaufkraft. ETF-Sparen 7 %: gewinnt real ~6x Kaufkraft. Faktor-Unterschied ~10x.",
+        "compound_psychologie": "Albert Einstein wird das Zitat 'Compound interest is the eighth wonder of the world' zugeschrieben (echter Ursprung unklar). Was real ist: Zinseszins ist mathematisch beweisbar.",
+        "wann_lohnt_nicht": "Zinseszins lohnt sich NICHT bei: (1) hohen laufenden Kosten (>2 % p.a. Verwaltung frisst Effekt), (2) zu kurzem Anlage-Horizont (<5 J), (3) Steuer-Verrechnung ohne Reinvestition.",
+        "context": "Mathematik des Zinseszins ist klar. Praktische Vermögensbildung scheitert oft an: zu späten Sparbeginn, zu hohen Kosten, fehlende Disziplin (Verkauf in Crash). Junge Anleger profitieren überproportional vom Zinseszins durch Zeit-Vorteil."
+      },
+      "context_notes": [
+        "Beispiel-Rechnung: 100 EUR/Monat über 40 Jahre bei 7 %/Jahr: ~265.000 EUR (davon ~48k Einzahlung, ~217k Zinseszins-Effekt).",
+        "Negativ-Variante: Schuld-Zinseszins. Kreditkartenschulden bei 18 % p.a. verdoppeln sich in 4 Jahren — gleicher mathematischer Mechanismus, nur in die andere Richtung.",
+        "Inflation reduziert REALEN Zinseszins-Effekt: bei 2 % Inflation und 5 % Nominal-Rendite ist die reale Rendite nur ~3 %."
+      ],
+      "claim_phrasings_handled": [
+        "Zinseszins ist ein Marketing-Mythos",
+        "Bei niedrigen Zinsen lohnt sich Sparen nicht",
+        "Zinseszins-Effekt ist überschätzt"
+      ],
+      "trigger_keywords": [
+        "zinseszins mythos",
+        "zinseszins effekt", "zinseszins ueberschaetzt", "zinseszins überschätzt",
+        "compound interest", "lohnt sich sparen"
+      ],
+      "trigger_composite": [
+        ["zinseszins", "compound interest", "zins", "zinsen", "sparen", "anlage", "vermoegensbildung", "vermögensbildung"],
+        ["mythos", "marketing", "ueberschaetzt", "überschätzt", "lohnt sich nicht", "bringt nichts", "schwach", "trick", "luege", "lüge", "wert", "effekt"]
+      ],
+      "source_label": "Mathematische Identität + MSCI World Index + DAI Renditedreieck",
+      "source_url": "https://www.dai.de/de/das-bieten-wir/studien-und-statistiken/dai-renditedreiecke",
+      "secondary_url": "https://www.bundesbank.de/de/service/schule-und-bildung"
+    },
+    {
+      "id": "riester_rente_2026",
+      "topic": "riester_rente_konsens",
+      "scope": "Lohnt sich die Riester-Rente?",
+      "year": 2024,
+      "headline": "Riester-Rente ist MIXED: lohnt für Geringverdiener mit Kindern (hohe Zulagen + Steuervorteil), oft NICHT für Besserverdiener ohne Kinder (Kosten + Garantie-Zwang)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Pauschale Aussagen 'Riester lohnt sich nicht' oder 'Riester ist Pflicht für jeden' sind beide FALSE/MIXED. Riester-Rente ist staatlich gefördert (Zulagen + Steuervorteil), aber durch hohe Verwaltungskosten + 100 %-Beitragsgarantie + niedriges Renten-Niveau in Niedrigzins-Ära oft renditeschwach. Stiftung Warentest, Verbraucherzentrale: Empfehlung differenziert nach Einkommen + Kinder. Geringverdiener mit Kindern (Zulagen 525 EUR/Kind ab 2008): meist lohnenswert. Besserverdiener ohne Kinder: oft besser ETF-Sparplan + Steuer-Eigenleistung.",
+        "zulagen_struktur": "Riester-Zulagen 2024: 175 EUR Grundzulage Erwachsene, 300 EUR Kinder (ab 2008 geboren), 185 EUR Kinder (vor 2008 geboren). Bei 4 % Brutto-Eigen-Beitrag (bis max 2.100 EUR/Jahr) volle Zulage.",
+        "steuerlicher_vorteil": "Beiträge bis 2.100 EUR/Jahr abzugsfähig in Steuererklärung — bei höheren Einkommens-Steuersätzen entsteht zusätzlicher Vorteil. ABER: Riester-Renten in Auszahlungsphase voll besteuert (nachgelagerte Besteuerung).",
+        "verbraucherzentrale_position": "Verbraucherzentrale + Stiftung Warentest 2024: Riester ist 'sinnvoll bei mindestens 2 Kindern + niedrigem Einkommen'. Oft NICHT sinnvoll bei: Singles ohne Kinder, hohem Einkommen ohne Steuer-Effekt-Optimierung, geplanter Kapital-Auszahlung im Alter (Steuer-Nachteil).",
+        "kostenstruktur": "Hohe Verwaltungskosten (typisch 1,5-2,5 % p.a.) bei Riester-Banksparplan + Versicherungen reduzieren effektive Rendite. ETF-Riester-Produkte (DWS, Sutor, Volksbanken) nur in Nischen verfügbar — günstiger, aber begrenzt.",
+        "100_garantie": "Beitragsgarantie 100 %: alle eingezahlten Beiträge müssen bei Renten-Beginn verfügbar sein. In Niedrigzins-Ära 2014-2022 Garantie oft NUR durch sichere Anleihen erfüllbar → fast keine Aktien-Quote → niedrige Rendite. Reform-Diskussion 2024: Lockerung auf 80 % Garantie.",
+        "auszahlungs_struktur": "Auszahlung als lebenslange Rente. 30 % als Einmal-Auszahlung möglich (hat Steuer-Vorteil). Vererbung an Kinder/Ehegatten unter Bedingungen.",
+        "context": "Politische Reform-Lage: Bundesregierung 2023-2024 plant Reform zur Effizienz-Steigerung — Eigenkapitel + Aktien-Quote 60-80 %. Aktuelle Riester-Bestand 2024: ~16 Mio Verträge."
+      },
+      "context_notes": [
+        "Wohn-Riester (Bauspar-Variante): andere Logik. Steuer-Förderung an Selbst-Nutzung der Immobilie gebunden. Nicht für reine Vermögensbildung sinnvoll.",
+        "Beamten-Riester: Geringere Förderung (Beamte haben eigene Pensionsversorgung).",
+        "Selbstständige: kein Riester-Anspruch; alternative Rürup-Rente prüfen."
+      ],
+      "claim_phrasings_handled": [
+        "Riester-Rente lohnt sich für niemanden",
+        "Riester ist eine Geld-Falle",
+        "Jeder sollte Riester abschließen"
+      ],
+      "trigger_keywords": [
+        "riester rente",
+        "riester lohnt", "riester sinnvoll",
+        "riester falle", "riester nichts wert"
+      ],
+      "trigger_composite": [
+        ["riester", "riester-rente"],
+        ["lohnt", "sinnvoll", "falle", "nichts wert", "geld-falle", "abschliessen", "abschließen", "abzocke"]
+      ],
+      "source_label": "Stiftung Warentest + Verbraucherzentrale + DRV-Position 2024",
+      "source_url": "https://www.test.de/Riester-Rente-Was-Sie-wissen-muessen-1138999-0/",
+      "secondary_url": "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/altersvorsorge/riesterrente-tipps-zur-foerderung-26025"
+    },
+    {
+      "id": "kalte_progression_2026",
+      "topic": "kalte_progression_konsens",
+      "scope": "Kalte Progression — heimliche Steuererhöhung durch Inflation",
+      "year": 2024,
+      "headline": "Kalte Progression ist real — Inflations-bedingte Lohn-Erhöhungen können Steuerlast überproportional erhöhen; in DE seit 2022 jährliche Anpassung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'Kalte Progression existiert nicht' / 'Bürger werden durch Inflation heimlich besteuert' brauchen Differenzierung. Kalte Progression = Effekt, dass nominale Lohnerhöhungen (zur Inflations-Kompensation) zu höherer Steuerprogression führen, weil Steuertarif-Stufen nicht automatisch inflations-angepasst sind. In DE wurde dieser Effekt seit Inflations-Anpassungs-Gesetz 2022 jährlich kompensiert. Die These 'Bürger werden bei Inflation systematisch ausgeplündert' war früher VALID, ist seit 2022 nur noch teilweise gültig.",
+        "kalte_progression_definition": "Kalte Progression: bei steigendem Nominallohn (zur Inflations-Anpassung) wandert Einkommen in höhere Tarif-Stufen — obwohl die reale Kaufkraft gleich bleibt. Resultat: Steuerlast steigt schneller als der reale Lohn.",
+        "ifo_berechnung": "ifo-Institut + DIW-Berechnungen 2018-2022: Bei 3 % Inflation + Lohn-Erhöhung um 3 % nominal: 'kalte Progression' kostet typischerweise zusätzliche 0,3-0,5 % Lohn (= ~30-50 EUR/Monat bei 50k Brutto-Jahres-Einkommen).",
+        "inflationsanpassungs_gesetz_2022": "Inflations-Anpassungs-Gesetz (DE, 2022): seit 2023 jährliche Anpassung der Steuer-Grundfreibetrag, Kindergrundfreibetrag und Tarif-Eckwerte um Inflations-Rate. Damit wird kalte Progression bei MITTLEREN Einkommen kompensiert.",
+        "spitzensteuersatz_grenze": "Spitzensteuersatz-Grenze 2024 (DE): ~66.760 EUR Grundtarif. Bei Lohn-Anpassung wegen Inflation kann diese Grenze überschritten werden — auch nach Anpassungs-Gesetz nicht 100 % kompensiert.",
+        "at_position": "AT (Österreich): bis 2023 erfolgte KEINE automatische Anpassung. Seit Steuer-Reform 2023 sind 2/3 der kalten Progression jährlich kompensiert; 1/3 bleibt politische Verhandlungsmasse.",
+        "kontext_progressions_logik": "Argument für Progression: gerechte Verteilung der Steuerlast bei steigendem Wohlstand. Argument gegen kalte Progression: ungewollter automatischer Steuer-Anstieg bei reiner Inflations-Kompensation.",
+        "context": "Aussage 'Bürger werden durch Inflation heimlich besteuert' war pre-2022 in DE korrekt. Seit Inflations-Anpassungs-Gesetz 2022 + jährliche Anpassung: Effekt deutlich reduziert. Pauschale 'Inflation = heimliche Steuer' ist 2024 nur noch teilweise zutreffend."
+      },
+      "context_notes": [
+        "Differenzierung kalte Progression im engeren Sinn (Tarif-Stufen) vs Bracket Creep (allgemein); im DE-Kontext oft synonym verwendet.",
+        "Spitzeneinkommens-Bereiche werden aktuell weniger angepasst — politisches Streitfeld.",
+        "Vermögenssteuer-Komponente nicht Teil der kalten Progression — separate Diskussion."
+      ],
+      "claim_phrasings_handled": [
+        "Bürger werden durch Inflation heimlich besteuert",
+        "Kalte Progression ist erfunden",
+        "Die Politik plündert Bürger durch Inflation"
+      ],
+      "trigger_keywords": [
+        "kalte progression",
+        "heimliche steuererhoehung", "heimliche steuererhöhung",
+        "inflation steuer heimlich"
+      ],
+      "trigger_composite": [
+        ["kalte progression", "bracket creep", "inflation steuer", "steuer inflation", "inflation besteuer", "inflation pluender", "inflation plünder", "inflation plündern", "durch inflation", "heimliche steuer"],
+        ["heimlich", "ausplündern", "ausplunder", "real", "erfunden", "mythos", "lohnt", "wirklich", "exist", "besteuert", "buerger", "bürger", "politik", "plündern"]
+      ],
+      "source_label": "BMF DE + ifo-Institut + DIW + Inflations-Anpassungs-Gesetz 2022",
+      "source_url": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/Steuerarten/Lohnsteuer/2024-12-23-Inflationsausgleichsgesetz-FAQ.html",
+      "secondary_url": "https://www.ifo.de/publikationen/2024/aufsatz-zeitschrift/effekte-der-inflation-auf-die-einkommensteuer"
+    },
+    {
+      "id": "krypto_pyramide_2026",
+      "topic": "krypto_pyramide_mythos",
+      "scope": "Behauptung, Bitcoin/Krypto sei generell ein Pyramidensystem",
+      "year": 2024,
+      "headline": "Bitcoin ist KEIN Pyramidensystem — kein zentraler Profiteur, keine Rekrutierungs-Pflicht; Spekulationsblase-Vergleich besser passend für volatile Kursbewegungen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Pauschale Aussage 'Bitcoin/Krypto ist Pyramidensystem' ist FALSE/MOSTLY_FALSE. Pyramidensystem (Ponzi-Schema, BaFin-Definition): zentraler Betrüger zahlt frühen Investoren mit Geld neuer Investoren — Bernie Madoff, Charles Ponzi. Bitcoin: kein zentraler Profiteur, keine Renditeversprechen, keine Rekrutierungsstruktur. Wertschwankung durch Angebot/Nachfrage am offenen Markt. Spezifische Krypto-Projekte (z.B. BitConnect 2017) WAREN tatsächlich Ponzi-Schemata — die wurden auch behördlich als solche identifiziert. Generelles 'Krypto = Pyramide' ist methodisch falsch.",
+        "ponzi_definition_bafin": "BaFin-Definition Ponzi-/Pyramiden-System: 'Investitions-Modell ohne reale Wertschöpfung; Renditen werden aus Einzahlungen neuer Investoren bezahlt; Existenz hängt von ständig neuer Geldzufuhr ab.' Kennzeichen: zentrale steuernde Personen + Versprechen überhöhter Renditen.",
+        "bitcoin_kein_ponzi": "Bitcoin (Satoshi Nakamoto Whitepaper 2008): Open-Source Protokoll, keine zentrale Steuerung, keine Rendite-Versprechen, keine Rekrutierungs-Belohnung. Wertänderung durch öffentlich beobachtbares Angebot/Nachfrage. Erfüllt KEINE der BaFin-Pyramiden-Kriterien.",
+        "spezifische_krypto_ponzi": "DOKUMENTIERTE Pyramiden-Schemata im Krypto-Bereich: BitConnect (Lending-Versprechen 1 % pro Tag, BCC-Token, 2018 SEC-Verfahren), OneCoin (Ruja Ignatova, ca. 4 Mrd USD Schaden), PlusToken (China 2019, 2 Mrd USD Schaden). Diese WAREN Pyramiden — wurden auch als solche bestraft.",
+        "spekulations_blase_unterschied": "Spekulationsblase ≠ Pyramide. Bitcoin-Kurs-Schwankungen (z.B. 2021 von 30k auf 64k auf 30k USD) sind klassische Spekulations-Phänomene — vergleichbar mit Tulpen-Manie 1637, Dotcom-Blase 2000, US-Immobilien-Blase 2008. Spekulationsblasen sind Risiko, aber NICHT Betrug.",
+        "regulator_position": "BaFin (DE), FMA (AT), SEC (USA): unterscheiden klar zwischen 'Krypto als Asset-Klasse' (legitim aber risikoreich) und 'spezifischen Krypto-Projekten als Ponzi' (illegal). Verbraucherwarnungen vor BitConnect/OneCoin etc., aber NICHT gegen Bitcoin/Ethereum als Klasse.",
+        "context": "Risiko-Klassifizierung: Bitcoin ist hochvolatile Spekulations-Anlage — zu Recht 'risikoreich' eingestuft, mit ~70 % Verlust-Quote bei Privat-Anlegern (BIS-Studie 2022). Aber 'Pyramide' ist die falsche Kategorie — der Vergleich ist sachlich nicht haltbar."
+      },
+      "context_notes": [
+        "Stablecoins (USDT, USDC) haben andere Risiko-Profile als Bitcoin — Konvertibilitäts-Risiko bei kollabierenden Reserven.",
+        "DeFi-Lending-Protokolle haben oft hohe Verzinsungs-Versprechen — einige sind echte Renditen aus Trading, andere sind Quasi-Ponzi-Strukturen. Differenzierung pro Projekt nötig.",
+        "Steuerliche Behandlung: Bitcoin in DE nach 1 Jahr steuerfrei (Spekulationsfrist § 23 EStG); AT seit 2022 KESt 27,5 % auf alle Krypto-Gewinne."
+      ],
+      "claim_phrasings_handled": [
+        "Bitcoin ist ein Pyramidensystem",
+        "Krypto ist ein Schneeballsystem",
+        "Bitcoin funktioniert wie ein Schneeballsystem"
+      ],
+      "trigger_keywords": [
+        "bitcoin pyramide",
+        "bitcoin schneeball",
+        "krypto pyramide", "krypto schneeball",
+        "bitcoin ponzi"
+      ],
+      "trigger_composite": [
+        ["bitcoin", "btc", "krypto", "kryptowaehrung", "kryptowährung", "ethereum", "eth"],
+        ["pyramide", "schneeball", "schneeballsystem", "ponzi", "betrug", "schwindel"]
+      ],
+      "source_label": "BaFin Definition Ponzi + Bitcoin Whitepaper + BIS 2022 Krypto-Studie",
+      "source_url": "https://www.bafin.de/DE/Verbraucher/Finanzwissen/Geldanlage/Schneeballsysteme/schneeballsysteme_node.html",
+      "secondary_url": "https://www.bis.org/publ/work1049.htm"
+    },
+    {
+      "id": "negativzins_volkstheorie_2026",
+      "topic": "negativzins_volkstheorie_mythos",
+      "scope": "Behauptung, Negativzinsen seien Enteignung der Sparer",
+      "year": 2024,
+      "headline": "Negativzinsen sind seit 2022 in DE/EU passé — EZB-Leitzins aktuell 3,5 % (Stand Oktober 2024); reale Negativ-Renditen wegen Inflation jedoch real",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'EZB enteignet Sparer durch Negativzinsen' sind 2024 ÜBERHOLT. Phase der Negativ-Leitzinsen war 2014-2022 (EZB-Einlagezins -0,5 % bis -0,1 %). Seit Juli 2022 wurde EZB-Leitzins zur Inflations-Bekämpfung erhöht. Stand Oktober 2024: EZB-Einlagezins 3,5 %, ECB-Hauptrefinanzierungssatz 3,65 %. Sparer erhalten wieder positive Nominal-Zinsen. ABER: Real-Rendite (nominal minus Inflation) bleibt oft negativ — Sparbuch 0,5 % vs Inflation 2,2 % = -1,7 % real. Das ist nicht 'EZB-Politik' sondern Bank-Praxis.",
+        "ezb_leitzinsen_2024": "EZB Leitzinsen Stand Oktober 2024: Einlagezins (DFR) 3,5 %, Hauptrefinanzierungssatz 3,65 %, Spitzenrefinanzierungssatz 3,9 %. Erste Senkung seit 2019 (seit Juni 2024 -0,5 PP).",
+        "negativzins_phase_2014_2022": "EZB-Negativzins-Phase: Juni 2014 bis Juli 2022. Einlagezins schrittweise von 0,0 % auf -0,5 %. Begründung: Deflations-Risiko nach Eurokrise + zu niedrige Inflation. Banken berechneten Verwahrentgelte (sog. 'Negativzinsen für Privatkunden') ab ~2019.",
+        "verwahrentgelt_praxis": "Verwahrentgelt für Privatkunden in DE: Sparkassen + Genossenschaftsbanken berechneten ab 2019-2021 oft 0,5 %/Jahr ab 100k EUR Einlagen. Mit Zins-Wende 2022 wurden diese Praktiken abgeschafft.",
+        "real_negativ_rendite_kontext": "Real-Rendite Sparbuch DE 2024: ~-1,7 % (nominal 0,5 % minus 2,2 % Inflation). Real-Rendite Festgeld 2024 (~3 %): ~+0,8 % real. Das ist NICHT EZB-Politik, sondern Banken-Konkurrenz + Inflations-Niveau.",
+        "alternative_anlage_frage": "Aussage 'Sparer werden bestraft' ist vor allem dann valid, wenn Sparer NUR Sparbuch nutzen. Mit Festgeld + Tagesgeld + ETF-Sparen ist positive Real-Rendite 2024 möglich. Konsumenten-Bildung-Frage, nicht 'Enteignung'.",
+        "context": "Politische 'Sparer-Enteignung'-Erzählung war 2014-2022 in DE populär. Seit Zins-Wende 2022 + EZB-Anhebung verlor sie an Schärfe. Aktuelle Aussage 'Sparer werden bestraft' ist faktisch nur noch teilweise zutreffend — vor allem bei Sparbuch-Sparern ohne Anlage-Diversifikation."
+      },
+      "context_notes": [
+        "Vermögensteuer-Diskussion ist davon zu trennen — separate Frage von Steuer-Politik.",
+        "EZB-Mandat: Preisstabilität (Inflations-Ziel ~2 %). Sparer-Schutz NICHT explizites Mandat, aber durch Geldwert-Stabilität indirekt mitabgedeckt.",
+        "Aktien-Sparpläne als Inflations-Schutz: in Deutschland weit niedrigere Aktienquote als in USA (DE ~17 % der Privatvermögen vs USA ~40 %)."
+      ],
+      "claim_phrasings_handled": [
+        "Sparer werden durch Negativzinsen enteignet",
+        "EZB plündert die Sparer mit Niedrigzins-Politik",
+        "Sparen lohnt sich nicht mehr"
+      ],
+      "trigger_keywords": [
+        "sparer enteignet",
+        "negativzins enteignung",
+        "ezb sparer pluender", "ezb sparer plünder",
+        "sparer plündern", "sparer pluendern"
+      ],
+      "trigger_composite": [
+        ["sparer", "negativzins", "niedrigzins", "niedrigzins-politik", "ezb", "sparen", "anlage"],
+        ["enteignet", "enteignung", "plündern", "pluendern", "plünder", "pluender", "ausplünder", "ausplunder", "lohnt sich nicht", "wertlos", "verlieren", "bestraf"]
+      ],
+      "source_label": "EZB Statistical Data Warehouse + Bundesbank Zins-Statistik",
+      "source_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
+      "secondary_url": "https://www.bundesbank.de/de/aufgaben/themen/eurosystem-zinsen-im-ueberblick"
+    }
+  ]
+}

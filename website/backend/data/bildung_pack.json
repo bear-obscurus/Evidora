@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-03",
+  "source_label": "BMBF + IPN Kiel + EARLI + APA + Hattie + Pashler 2008 + Cochrane Education",
+  "facts": [
+    {
+      "id": "lernstile_2026",
+      "topic": "lernstile_mythos",
+      "scope": "Behauptung, Schüler lernen besser, wenn nach 'Lernstilen' (visuell/auditiv/kinästhetisch) unterrichtet wird",
+      "year": 2024,
+      "headline": "Lernstile-Modell ist wissenschaftlich widerlegt — APA + Pashler 2008: kein empirischer Vorteil bei Anpassung an angeblichen Lernstil",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Schüler lernen besser, wenn an ihren Lernstil (visuell/auditiv/kinästhetisch) angepasst wird' ist FALSE. Pashler et al. 2008 (Psychological Science in the Public Interest, eingehender systematischer Review): keine empirische Evidenz, dass die Anpassung des Unterrichts an angebliche 'Lernstile' das Lernen verbessert. Stattdessen sollte die Methode an den INHALT angepasst werden (z.B. Geometrie visuell, Phonetik auditiv) — nicht an angebliche Schüler-Präferenzen. APA + Educational Endowment Foundation (EEF): Lernstile-Programme verschwenden Lehrer-Zeit ohne nachweisbaren Lerngewinn.",
+        "pashler_2008": "Pashler, McDaniel, Rohrer, Bjork (2008, 'Learning Styles: Concepts and Evidence', Psychological Science in the Public Interest). Systematischer Review der gesamten Literatur. Befund: 'There is no adequate evidence base to justify incorporating learning-styles assessments into general educational practice.' 18 Jahre später: keine substanzielle Widerlegung dieser Konklusion.",
+        "apa_position": "American Psychological Association (APA, 'Top 20 Principles for Teaching and Learning', 2015): Lernstile-Anpassung NICHT in den Top-20-Prinzipien — stattdessen evidenzbasierte Methoden wie spaced repetition, retrieval practice, formative feedback.",
+        "eef_position": "Educational Endowment Foundation (UK): Lernstile-Programme als 'Effekt-Stärke 0' bewertet — keine nachweisbare Lernverbesserung. Empfohlen werden stattdessen Methoden mit Effekt-Stärke 0,4+ (Hattie-Skala): Feedback, Metakognition, formative Assessment.",
+        "anpassung_inhalt_statt_stil": "Was funktioniert: Methode an den FACHLICHEN INHALT anpassen, nicht an Schüler-Präferenz. Geometrie braucht visuelle Repräsentation für jede Schüler-Gruppe; Phonetik braucht auditive für jede Schüler-Gruppe. Das ist NICHT 'Lernstile' — das ist content-pedagogical fit.",
+        "warum_haelt_sich_mythos": "Lernstile-Modell ist intuitiv plausibel + verkauft sich gut (Lernstil-Tests als Schul-Trainings, Bücher, Online-Kurse). Trotz wissenschaftlicher Widerlegung verbleibt es in vielen Lehrer-Fortbildungen + populären Pädagogik-Ratgebern.",
+        "context": "Faktisch erwachsen-pädagogisch: Schüler haben unterschiedliche Vorerfahrungen, Vor-Wissen, Motivation, Aufmerksamkeitsspanne — DIESE Differenzierung ist evidenzbasiert sinnvoll. Aber das ist kein 'Lernstil', sondern individuelle Lernvoraussetzung."
+      },
+      "context_notes": [
+        "Berühmt: VAK-Modell (Visuell-Auditiv-Kinästhetisch). Bei mehrfachen Replikations-Studien NICHT bestätigt.",
+        "Gardner Multiple-Intelligence-Theorie: zwar populär, aber methodisch ebenfalls schwach belegt. Nicht das Gleiche wie Lernstile, aber verwandte Pseudo-Pädagogik.",
+        "Differenzierter Unterricht (DACH-Pädagogik) ≠ Lernstile-Anpassung — Differenzierung passt an Niveau + Vor-Kenntnisse, nicht an angebliche Sinneskanal-Präferenz."
+      ],
+      "claim_phrasings_handled": [
+        "Schüler lernen besser, wenn an ihren Lernstil angepasst wird",
+        "Visuelle Lerntypen brauchen visuellen Unterricht",
+        "Lernstil-Tests verbessern den Unterricht"
+      ],
+      "trigger_keywords": [
+        "lernstil", "lernstile",
+        "visueller lerntyp", "auditiver lerntyp", "kinaesthetischer lerntyp",
+        "kinästhetischer lerntyp",
+        "vak modell"
+      ],
+      "trigger_composite": [
+        ["lernstil", "lernstile", "lerntyp", "lerntypen", "vak", "visueller lerner", "auditiver lerner"],
+        ["unterricht", "lernen", "schueler", "schüler", "anpass", "verbessern", "test", "modell", "wirksam", "funktioniert", "brauchen", "hilft"]
+      ],
+      "source_label": "Pashler et al. 2008 + APA Top 20 Principles + EEF Toolkit",
+      "source_url": "https://journals.sagepub.com/doi/10.1111/j.1539-6053.2009.01038.x",
+      "secondary_url": "https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit/learning-styles"
+    },
+    {
+      "id": "mozart_effekt_2026",
+      "topic": "mozart_effekt_mythos",
+      "scope": "Behauptung, Mozart-Hören macht Babys/Kinder intelligenter",
+      "year": 2024,
+      "headline": "Mozart-Effekt für Intelligenz ist wissenschaftlich widerlegt — Original-Studie 1993 zeigte nur kurzzeitigen Spatial-Reasoning-Effekt bei Erwachsenen, nicht IQ-Steigerung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mozart-Hören macht Babys/Kinder intelligenter' ist FALSE. Original-Studie Rauscher, Shaw, Ky (1993, Nature): zeigte nur einen 10-15-minütigen Effekt auf SPATIAL REASONING bei ERWACHSENEN College-Studenten — KEIN allgemeiner IQ-Effekt, KEIN Effekt bei Kindern, KEIN dauerhafter Effekt. Replikations-Studien (Steele 1999, Pietschnig et al. 2010 Meta-Analyse): Effekt nicht reproduzierbar. Mozart als 'Baby-Smart-Macher' war Marketing-Mythos der 'Baby Mozart'-CD-Industrie. APA + Cochrane: keine evidenz-basierte Empfehlung für Mozart als Bildungstool.",
+        "rauscher_1993_original": "Rauscher, Shaw, Ky (1993, Nature, 'Music and spatial task performance'): 36 College-Studenten hörten 10 Min Mozart-Sonate KV448, dann Spatial-Reasoning-Test. Score ~8-9 IQ-Punkte höher als Stille-Kontrollgruppe. Effekt dauerte 10-15 Min. Nature-Editorial 1999 + Update: 'Spatial-temporal reasoning' nicht 'general intelligence'.",
+        "pietschnig_2010_meta": "Pietschnig, Voracek, Formann (2010, 'Mozart effect — Shmozart effect: A meta-analysis'): 39 Studien meta-analysiert. Befund: Effekt-Stärke statistisch signifikant ABER deutlich kleiner als 1993 berichtet (~0,3 Punkte IQ statt 8-9). Klassisch 'Mozart' nicht überlegen über 'andere Stücke' (Schubert, etc.) — eher Stimmungs-Effekt.",
+        "kinder_baby_keine_evidenz": "Pietschnig et al.: KEINE Studie mit Babys/Kindern + KEINE Studie mit DAUERHAFTEM IQ-Effekt. 'Baby Mozart'-CDs (Disney 1998, Marketing 'Mozart macht Babys schlau'): keine empirische Basis.",
+        "stimmungs_effekt": "Aktuelle Forschungs-Konsens: was Mozart-Hören wirklich macht — Stimmung verbessert + Aufmerksamkeit erhöht. Ähnliches gilt für andere klassische Musik, Pop, sogar Kaffee. Indirekter Effekt auf Test-Performance, kein 'IQ-Boost'.",
+        "klassik_unterricht_alternative": "Was wirklich Kinder-Kognition fördert (Hattie + EEF + Cochrane Education): aktive Musikausübung (Instrument lernen), gesprochene Sprache, Lesen vorlesen, Bewegung, Schlaf, Ernährung. Klassische Musik passiv hören: maximaler Effekt 'macht den Moment angenehmer'.",
+        "context": "Disney + Don Campbell ('The Mozart Effect' Buch 1997, 1998 'Don Campbell Mozart for Children') waren primäre Verbreiter. Don Campbell selbst rückte später teilweise von der Pauschalisierung ab. Trotzdem hält sich der Mythos hartnäckig in Eltern-Communities."
+      },
+      "context_notes": [
+        "Differenzierung: aktives Musizieren (Instrument lernen) hat dokumentierte kognitive Vorteile. Mozart passiv hören: nicht.",
+        "Gouverneur Don Sundquist (Tennessee) verteilte 1998 staatlich Mozart-CDs an Neugeborene — Programm wurde später als wirkungslos eingestellt.",
+        "Mozart-Effekt als 'Brain-Training': Kommerzielle Programme wie Lumosity hatten ähnliche Marketing-Versprechen — 2016 von FTC mit 2 Mio USD Strafe belegt wegen unbelegter Werbung."
+      ],
+      "claim_phrasings_handled": [
+        "Mozart-Hören macht Babys schlauer",
+        "Klassische Musik erhöht den IQ",
+        "Babys profitieren von Mozart-Musik"
+      ],
+      "trigger_keywords": [
+        "mozart effekt",
+        "mozart babys schlau", "mozart babys intelligent",
+        "klassische musik iq", "musik schlau",
+        "mozart kinder iq"
+      ],
+      "trigger_composite": [
+        ["mozart", "klassische musik", "klassik", "baroque", "bach"],
+        ["intelligen", "schlau", "iq", "klueger", "klüger", "babys", "kinder", "saeugling", "säugling", "lernen", "fördert", "foerdert", "macht", "effekt"]
+      ],
+      "source_label": "Pietschnig 2010 Meta-Analyse + Rauscher 1993 Original-Studie + APA",
+      "source_url": "https://www.sciencedirect.com/science/article/abs/pii/S0160289610000395",
+      "secondary_url": "https://www.apa.org/topics/cognitive-neuroscience/mozart-effect"
+    },
+    {
+      "id": "linke_rechte_gehirnhaelfte_2026",
+      "topic": "gehirnhaelften_mythos",
+      "scope": "Behauptung, Menschen sind 'links-' oder 'rechts-hirnig' (analytisch vs kreativ)",
+      "year": 2024,
+      "headline": "'Linke vs rechte Gehirnhälfte'-Persönlichkeits-Theorie ist Neuro-Mythos — fMRI-Studien zeigen: kein Mensch nutzt eine Gehirnhälfte dominant",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Manche Menschen sind links-hirnig (analytisch), andere rechts-hirnig (kreativ)' ist FALSE. Nielsen et al. (2013, PLoS ONE): fMRI-Studie an 1.000+ Probanden, 7.000 Hirn-Regionen analysiert. Befund: KEIN Mensch zeigte systematisch dominante Aktivität einer Gehirnhälfte. Beide Hemisphären arbeiten bei fast allen kognitiven Aufgaben zusammen. Die Aussage 'Künstler nutzen rechte Hälfte, Ingenieure linke' ist Neuro-Mythos.",
+        "nielsen_2013_fmri_studie": "Nielsen, Zielinski, Ferguson, Lainhart, Anderson (2013, PLoS ONE): 'An evaluation of the left-brain vs right-brain hypothesis with resting state functional connectivity magnetic resonance imaging'. 1.011 Probanden im Alter 7-29, 7.266 Hirn-Regionen-Paare. Kein Hinweis, dass Personen in einer Hemisphären-Vorliebe lateralisiert sind.",
+        "echte_lateralisierung": "Was REAL ist: Lateralisierung BEI SPEZIFISCHEN AUFGABEN. Sprache typisch links-lateralisiert (Broca + Wernicke-Areal), räumliche Wahrnehmung tendenziell rechts-betont. Aber das ist task-spezifisch, NICHT Persönlichkeits-Typus.",
+        "ned_herrmann_modell": "Ned Herrmann's HBDI (Herrmann Brain Dominance Instrument): Persönlichkeits-Test basierend auf 'Links-/Rechts-Hirn'-Modell. Kommerziell vermarktet (~Personalauswahl, Coaching). Wissenschaftlich nicht haltbar — Konstrukt-Validität fragwürdig.",
+        "split_brain_studien": "Roger Sperry (Nobelpreis 1981) Split-Brain-Studien: bei Patienten mit durchtrennter Corpus Callosum zeigten sich tatsächlich unterschiedliche Hemisphären-Funktionen. Aber: bei GESUNDEN Menschen mit intaktem Corpus Callosum kommunizieren beide Hemisphären 100k+ mal pro Sekunde — keine isolierte Hemisphären-Dominanz.",
+        "warum_haelt_sich_mythos": "Lehre 'Kreativität rechts, Logik links' ist intuitiv eingängig + verkauft Selbsthilfe-Bücher + Trainings. Manche Persönlichkeits-Tests basieren darauf. Wissenschaft hat den Mythos seit ~2000 systematisch widerlegt — kommt in populärer Kultur trotzdem fort.",
+        "context": "Faktisch korrekt: das menschliche Gehirn ist NIEMALS in einer Hemisphäre 'dominant' — beide arbeiten parallel + kooperativ. Aussagen 'wechseln Sie auf die rechte Hirn-Hälfte für Kreativität' sind pseudo-wissenschaftlich."
+      },
+      "context_notes": [
+        "Lateralisierung-Funktionen: Sprache tendenziell links (90 % Rechtshänder, 70 % Linkshänder), Mathematik bilateral, Musik bilateral mit rechts-Tendenz. Aber: pro Person variabel + überlappend.",
+        "Echte Hemisphären-Spezialisierung gibt es bei spezifischen pathologischen Befunden (z.B. Aphasie nach Schlaganfall in linker Sprachregion). Das ist Neurologie, nicht Persönlichkeits-Theorie.",
+        "Verbreitung in Lehrer-Trainings: Lernstile + 'Linke vs rechte Hirn-Hälfte' sind die zwei beliebtesten Neuro-Mythen in Lehrer-Fortbildungen (Geake 2008 Studie)."
+      ],
+      "claim_phrasings_handled": [
+        "Manche Menschen sind links-hirnig, andere rechts-hirnig",
+        "Künstler nutzen die rechte Gehirnhälfte mehr als Wissenschaftler",
+        "Linke Gehirnhälfte ist für Logik, rechte für Kreativität zuständig"
+      ],
+      "trigger_keywords": [
+        "linke gehirnhaelfte", "rechte gehirnhaelfte",
+        "linke gehirnhälfte", "rechte gehirnhälfte",
+        "links-hirnig", "rechts-hirnig",
+        "hemisphaere persoenlichkeit",
+        "left brain right brain"
+      ],
+      "trigger_composite": [
+        ["gehirnhaelfte", "gehirnhälfte", "hemisphaere", "hemisphäre", "hirn-hälfte", "hirn-haelfte", "linke gehirn", "rechte gehirn", "left brain", "right brain"],
+        ["analytisch", "kreativ", "logik", "kunst", "wissenschaft", "persoenlich", "persönlich", "denkt", "menschen", "lerntyp", "dominant"]
+      ],
+      "source_label": "Nielsen et al. 2013 PLoS ONE + Sperry Split-Brain + APA",
+      "source_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0071275",
+      "secondary_url": "https://www.apa.org/monitor/2014/03/myth-busters"
+    },
+    {
+      "id": "multitasking_2026",
+      "topic": "multitasking_mythos",
+      "scope": "Behauptung, Multitasking sei effizient",
+      "year": 2024,
+      "headline": "Multitasking ist KEINE echte Parallelisierung — Aufgaben-Wechsel kostet 20-40 % Effizienz; nur Routine-Aufgaben sind echt parallelisierbar",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Multitasking ist effizient' ist FALSE. Was Menschen subjektiv als 'Multitasking' erleben, ist tatsächlich rapides TASK-SWITCHING — bei jedem Wechsel entstehen Switching-Costs (Aufmerksamkeit-Reorientierung). APA + Rubinstein, Meyer, Evans (2001, Journal of Experimental Psychology): Aufgaben-Wechsel kostet 20-40 % Zeit + erhöht Fehlerrate. Beim ERLERNEN neuer Skills ist Multitasking besonders schädlich. Echte Parallel-Verarbeitung: nur bei automatisierten Routine-Aufgaben (Gehen + Sprechen). Bei zwei aufmerksamkeits-erfordernden Aufgaben: keine echte Parallelität möglich.",
+        "rubinstein_2001": "Rubinstein, Meyer, Evans (2001, Journal of Experimental Psychology, 'Executive control of cognitive processes in task switching'): Reaktionszeit-Studien. Bei Aufgaben-Wechsel: ~20-40 % zusätzliche Zeit pro Task gegenüber sequenzieller Bearbeitung. Komplexere Aufgaben → höhere Switching-Costs.",
+        "ophir_2009_stanford": "Ophir, Nass, Wagner (2009, PNAS, 'Cognitive control in media multitaskers'): Heavy-Media-Multitasker waren in Aufmerksamkeits-Tests SCHLECHTER als Light-Multitasker. Auch in Aufgaben-Wechsel-Effizienz schwächer. Studie wurde mehrfach repliziert.",
+        "fahren_telefonieren": "Drews, Strayer, Crouch (2008, Human Factors): Telefonieren beim Autofahren — Reaktions-Verzögerung +18 % gegenüber konzentriertem Fahren. Vergleichbar mit 0,8-Promille-Alkohol-Niveau. Hands-free-Telefonieren: NICHT signifikant besser als Handheld.",
+        "echte_parallelisierung": "Was real parallel funktioniert: Routine-Aufgaben (Gehen + Sprechen, Atmen + Lesen, Auto-Fahren auf bekannter Strecke + Radio hören). Sobald eine Aufgabe Aufmerksamkeit erfordert (komplexer Verkehr, Streit-Gespräch, Lernen): Switching, kein Parallel.",
+        "lernen_multitasking_extra_schaedlich": "Beim Erlernen neuer Skills + Hausaufgaben: Multitasking (z.B. Lernen + Social-Media-Scrolling) reduziert Lern-Erfolg deutlich. Cochrane Education Review 2018: Mediennutzung beim Lernen erhöht Lernzeit + senkt Behaltensleistung um 20-30 %.",
+        "context": "Marketing-Aussagen 'Frauen können besser multitasken als Männer' sind methodisch nicht haltbar — alle Geschlechter haben Switching-Costs. Differenz in Studien meist <5 % und je nach Aufgabe variabel."
+      },
+      "context_notes": [
+        "Differenzierung: Multitasking (zwei aufmerksamkeits-erfordernde Aufgaben gleichzeitig) vs Time-Slicing (rapides Wechseln, subjektiv 'multitasking') vs echte Parallelisation (nur bei Automatisierung).",
+        "Smartphone + Lernen: meist als Multitasking missverstanden. Tatsächlich Switching mit hoher Frequenz + entsprechend hohen Switching-Costs.",
+        "Manche Menschen sind im Switching schneller (~5 % Population, 'Supertasker' nach Watson + Strayer 2010) — aber selbst die haben Switching-Costs, nur weniger."
+      ],
+      "claim_phrasings_handled": [
+        "Multitasking ist effizient",
+        "Frauen können besser multitasken als Männer",
+        "Lernen mit Social Media nebenbei funktioniert genauso gut"
+      ],
+      "trigger_keywords": [
+        "multitasking effizient",
+        "multitasking gut",
+        "multitasking funktioniert",
+        "frauen multitask"
+      ],
+      "trigger_composite": [
+        ["multitasking", "multitask", "lernen mit", "social media nebenbei", "lernen nebenbei", "soziale medien"],
+        ["effizient", "gut", "funktioniert", "schneller", "produktiv", "frauen", "maenner", "männer", "lernen", "social media", "nebenbei", "genauso"]
+      ],
+      "source_label": "Rubinstein, Meyer, Evans 2001 + Ophir/Nass/Wagner 2009 (Stanford) + APA",
+      "source_url": "https://www.apa.org/topics/research/multitasking",
+      "secondary_url": "https://www.pnas.org/doi/10.1073/pnas.0903620106"
+    },
+    {
+      "id": "10_prozent_gehirn_2026",
+      "topic": "10_prozent_gehirn_mythos",
+      "scope": "Behauptung, der Mensch nutze nur 10 % seines Gehirns",
+      "year": 2024,
+      "headline": "10-%-Gehirn-Mythos ist klar widerlegt — fMRI + PET zeigen, dass alle Gehirnregionen verwendet werden, oft schon in Ruhe",
+      "data": {
+        "kernsatz_fuer_synthesizer": "FALSE: Mensch nutzt 100 % seines Gehirns über den Tag verteilt. fMRI + PET-Studien zeigen Aktivität in allen Hirnregionen, oft schon im Ruhezustand (Default Mode Network). Selbst beim Schlafen sind ~50-80 % der Neuronen aktiv. 10-%-Mythos hat keine wissenschaftliche Basis. Ursprung unklar — möglicherweise verzerrte Lesart von William James (1907) oder Albert Einstein-falsch-zitiert. Wird in Selbsthilfe + Pseudo-Pädagogik (Brain-Training) als Aufhänger verwendet.",
+        "fmri_pet_evidenz": "fMRI-Studien (z.B. Buckner et al. 2008, 'The brain's default network'): selbst im Ruhezustand sind weite Teile des Gehirns aktiv (Default Mode Network DMN). Bei kognitiven Aufgaben: zusätzliche Regionen aktiv. Über den Tag: 100 % der Hirnregionen werden zumindest zeitweise verwendet.",
+        "energieverbrauch_argument": "Das Gehirn verbraucht ~20 % des täglichen Kalorien-Bedarfs (bei nur 2 % Körpermasse). Evolution hätte ungenutzte Hirnregionen längst eliminiert — Energie-Verschwendung nicht haltbar.",
+        "schaden_lokal_immer_relevant": "Bei Schlaganfall, Gehirnblutung, Tumor: SOGAR KLEINSTE Hirn-Verluste haben spezifische Funktions-Ausfälle. Wären 90 % des Gehirns 'ungenutzt', wären solche kleinen Schäden folgenlos — sie sind aber sehr folgenreich.",
+        "ursprung_mythos": "Ursprung 1907 William James 'Energies of Men': metaphorisch über Potenzial-Ausschöpfung, NICHT über Hirn-Volumen. Späterer Apocrypha-Beleg an Einstein zugeschrieben — ohne Beleg in Einsteins Schriften.",
+        "lucy_film_2014": "Lucy-Film (Luc Besson, 2014) verbreitet Mythos millionenfach: Hauptfigur erlangt durch Drogen 'Zugang zu 100 % des Gehirns' und kann dadurch Übermenschen-Fähigkeiten. Reine Fiktion, wissenschaftlich völlig falsch.",
+        "context": "Werbeslogans wie 'Brain-Training entriegelt die ungenutzten 90 % deines Gehirns' (Lumosity, BrainHQ): wissenschaftlich falsch. FTC-Strafen 2016 gegen Lumosity wegen unbelegter Werbung."
+      },
+      "context_notes": [
+        "Beverly Sills wurde fälschlich als '10 %-Gehirn'-Quelle zitiert — Apocrypha.",
+        "Bei Hirntoten: tatsächlich ~0 % aktiv. Das ist die einzige Situation, in der Gehirn-Nutzung minimal ist — und das ist der medizinisch definierte Tod.",
+        "Brain-Training-Effekt (z.B. Cogmed bei ADHS, klinisch evaluierte Programme): hat dokumentierten Effekt auf konkrete Skills, NICHT auf 'IQ-Boost'."
+      ],
+      "claim_phrasings_handled": [
+        "Wir nutzen nur 10 Prozent unseres Gehirns",
+        "90 Prozent des Gehirns sind ungenutzt",
+        "Mit Brain-Training kann man die ungenutzten Hirn-Bereiche entriegeln"
+      ],
+      "trigger_keywords": [
+        "10 prozent gehirn", "10% gehirn",
+        "nur ein zehntel gehirn",
+        "ungenutzte hirn",
+        "90 prozent gehirn ungenutzt"
+      ],
+      "trigger_composite": [
+        ["gehirn", "hirn", "brain"],
+        ["10 prozent", "zehn prozent", "10%", "ein zehntel", "ungenutzt", "ungenuetzt", "nur 10", "nur zehn", "90%", "90 prozent"]
+      ],
+      "source_label": "Buckner et al. 2008 Default Network + APA + FTC Lumosity-Verfahren 2016",
+      "source_url": "https://www.apa.org/monitor/2014/03/myth-busters",
+      "secondary_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2724622/"
+    },
+    {
+      "id": "frueh_lernen_immer_besser_2026",
+      "topic": "frueh_lernen_immer_besser_mythos",
+      "scope": "Behauptung, je früher Kinder lernen (Sprache, Lesen, Musik), desto besser",
+      "year": 2024,
+      "headline": "Früher Bildungs-Beginn ist NICHT pauschal besser — strukturierte Förderung vor 4-5 Jahren oft kontraproduktiv; Spielen + Beziehung wichtiger",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'je früher das Kind lernt, desto besser' ist FALSE/MIXED. Forschung (NICHD, OECD Early Childhood + Hattie): bis ca. 4-5 Jahren ist FREIES SPIELEN + BEZIEHUNGS-orientierte Erfahrung (Vorlesen, Singen, Bewegung) wichtiger als strukturiertes Lernen (Buchstaben-Pauken, Vokabel-Tests). Strukturierte 'Vorschule' ab 3 Jahren oder 'Babys-Lesen-Programm' liefern in Studien KEINE dauerhaften Vorteile gegenüber Beziehung-orientierter Frühpädagogik. Klassenwiederholung-Spät vs zu-früh-Einschulung: weder Pauschal-Aussage hat Evidenz.",
+        "spielen_vs_strukturiertes_lernen": "Studien (z.B. Marcon 2002, NICHD-Längsschnitt 2007, OECD Early Childhood Education): Kinder in spielbasierten Vorschulen vs in strukturierten Akademie-Vorschulen — über mehrere Jahre KEIN signifikanter Lernvorteil bei strukturiertem Vorschul-Stil. Sozial-emotionale Vorteile bei spielbasiert sogar leicht höher.",
+        "marcon_2002_kindergarten_styles": "Marcon (2002) Längsschnitt: Kinder von akademisch-orientierten Kindergärten (Buchstaben, Mathe-Aufgaben) zeigten in der 4. Klasse SCHLECHTERE Schul-Ergebnisse als Kinder von spielbasierten Kindergärten. Effekt-Stärke etwa -0,3.",
+        "vorlesen_evidenzbasiert": "Stiftung-Lesen-Studien + Cochrane: Vorlesen 15-30 Min/Tag in Vorschule = einer der robustesten Bildungs-Effekte (Effekt-Stärke ~0,5). Mehr als 'Akademie-Vorbereitung'.",
+        "kritisches_zeitfenster_sprache": "Sprache: das einzige WIRKLICHE kritische Zeitfenster ist Sprach-Erwerb VOR der Pubertät. Mehrsprachige Kinder profitieren stark von früher Exposition. Aber das ist NATÜRLICHES Sprache-hören, nicht 'Vokabel-Pauken'.",
+        "zu_frueh_einschulung": "PISA 2022 + bildungsministerien: zu früh eingeschulte Kinder (1+ Jahr unter Alter) zeigen oft langfristig leichte Nachteile. Empfehlung: nicht hetzen, Reife abwarten.",
+        "context": "Pauschale 'frühestens lernen ist immer besser' wird durch Studien NICHT gestützt. Pauschale 'Frühpädagogik ist Stress' auch nicht. Differenzierte Aussage: Beziehung + Spielen + Vorlesen + Bewegung sind in 0-5-Jahren-Phase WICHTIGER als strukturiertes Lernen."
+      },
+      "context_notes": [
+        "Kommerzielle Programme wie 'Baby Einstein' (Disney 1997-) wurden 2009 in den USA mit Geld zurückgezahlt, da keine Bildungs-Effekte nachweisbar.",
+        "Rechen-Frühförderung: aktuelle Forschung (z.B. Aunola 2015) zeigt KAUM Vorteile vor 5-6 Jahren.",
+        "Differenzierung Bildung in der 0-3-Phase (Wickelbarkeit, Bindung, Sprache durch Vorlesen) vs strukturiertes Lernen ab 4-5 Jahren — beides hat seinen Platz."
+      ],
+      "claim_phrasings_handled": [
+        "Je früher Kinder lernen, desto besser",
+        "Vorschulkinder sollten schon Buchstaben kennen",
+        "Babys können bereits zwei Sprachen perfekt lernen"
+      ],
+      "trigger_keywords": [
+        "frueh lernen besser", "früh lernen besser",
+        "frueh foerdern", "früh fördern",
+        "babys frueh lernen", "babys früh lernen",
+        "vorschul lernen"
+      ],
+      "trigger_composite": [
+        ["frueh", "früh", "babys", "kleinkind", "kleinkinder", "vorschul", "kindergarten"],
+        ["lernen", "fördern", "foerdern", "bildung", "buchstaben", "sprache", "vokabel", "rechnen", "besser", "vorteil"]
+      ],
+      "source_label": "NICHD Längsschnitt + OECD Early Childhood + Marcon 2002",
+      "source_url": "https://www.oecd.org/education/school/earlychildhoodeducationandcare.htm",
+      "secondary_url": "https://www.nichd.nih.gov/research/supported/seccyd"
+    },
+    {
+      "id": "hattie_visible_learning_2026",
+      "topic": "hattie_visible_learning_konsens",
+      "scope": "Was sind die wirklich wirksamen Unterrichts-Methoden — Hattie Visible Learning Meta-Analyse",
+      "year": 2024,
+      "headline": "Hattie Visible Learning: Effekt-Stärke 0,4+ als 'wirksam' — Top-Faktoren: Kollektives Lehrkraft-Vertrauen (1,57), kollaborative Lehrkräfte-Diskussion (1,57), formatives Feedback (0,9)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen über 'das funktioniert im Unterricht' brauchen empirische Basis. John Hattie's Visible Learning Meta-Analyse (1.500+ Meta-Analysen, 100.000+ Studien, 300+ Mio Schüler weltweit): Effekt-Stärke 0,4 ist die 'Hinge Point' — über 0,4 ist überdurchschnittlich wirksam. Top-Wirksamkeit: kollektives Lehrkraft-Vertrauen (1,57), klare Lernziele (0,77), formatives Feedback (0,9), Direkter Unterricht (0,57). Niedrige Wirksamkeit: Lernstile (~0,1), offene Lernumgebungen (~0,01), Klassenwiederholung (~-0,17 NEGATIV).",
+        "hattie_methodik": "John Hattie (Univ. Auckland, später Univ. Melbourne), 2009 'Visible Learning' + Updates 2017, 2023. Meta-Synthese: ~1.500 Meta-Analysen → ~100.000 Original-Studien → ~300 Mio Schüler. Effekt-Stärke 'd' (Cohen's d) als zentrale Metrik.",
+        "hinge_point_0_4": "Hinge Point 0,4: Effekt-Stärke über diesem Wert = Methode wirkt überdurchschnittlich wirksam. Methoden unter 0,4 erzeugen kaum oder keinen Lerngewinn — sind aber oft Standard in Schulen.",
+        "top_5_wirksam": "Hattie 2017 Top-5: 1. Kollektives Lehrkraft-Vertrauen (1,57), 2. Lehrkraft-Schätzung der Schüler-Leistung (1,29), 3. Vorwissen-Aktivierung + Vorbereitung (0,93), 4. Formatives Feedback (0,9), 5. Reciprocal Teaching (0,74).",
+        "ineffektive_methoden": "Hattie listet Methoden mit Effekt-Stärke <0,2 (kaum bessere Wirkung als 'Nichts-Tun'): Klassenwiederholung (-0,17), Lernstile (~0,1), offene Lernumgebung (0,01), Hausaufgaben in Primarschule (0,15).",
+        "kontroverse_methodik": "Hattie hat methodische Kritik bekommen (z.B. Effekt-Stärke-Aggregation über sehr unterschiedliche Studien-Designs). Aber selbst Kritiker (z.B. Wiliam, Coe) bestätigen: die ungefähre Reihenfolge der Wirksamkeits-Faktoren ist robust.",
+        "kontext_lehrer_relevanz": "Für Lehrkräfte (DACH): Hattie-Daten sind als Orientierung sehr nützlich — aber NICHT als 'Rezept'. Was wirkt: kombinierte evidenzbasierte Methoden, strukturierte Routine-Reflexion, Peer-Lehrkraft-Diskussion."
+      },
+      "context_notes": [
+        "EEF (Education Endowment Foundation, UK) Toolkit: ähnliche Bewertung mit etwas anderer Methodik. Hohe Übereinstimmung zwischen Hattie + EEF in den meisten Top-Faktoren.",
+        "Replikations-Krise in Bildungsforschung: einige der von Hattie zitierten Studien-Effekte konnten in späteren Replikations-Studien nicht reproduziert werden. Liste laufend aktualisiert.",
+        "AT/DE-Anwendung: Klassengröße-Effekt (Hattie ~0,2) ist niedriger als populär angenommen — aber Lehrkraft-Qualität (Hattie ~0,3-0,9 je nach Aspekt) ist deutlich wichtiger."
+      ],
+      "claim_phrasings_handled": [
+        "Kleine Klassengröße ist der wichtigste Faktor für Lernerfolg",
+        "Hausaufgaben sind in der Grundschule lernfördernd",
+        "Klassenwiederholung hilft schwachen Schülern langfristig"
+      ],
+      "trigger_keywords": [
+        "kleine klassen lernerfolg",
+        "hausaufgaben grundschule wirksam",
+        "klassenwiederholung hilft",
+        "hattie visible learning",
+        "wirksame unterrichtsmethoden"
+      ],
+      "trigger_composite": [
+        ["unterricht", "lernerfolg", "klassengroesse", "klassengröße", "hausaufgaben", "klassenwiederhol", "hattie", "lehrkraft", "lehrer"],
+        ["wirksam", "wichtig", "hilft", "erfolgreich", "effektiv", "lernen", "schueler", "schüler", "verbessern", "fördern", "foerdern"]
+      ],
+      "source_label": "Hattie Visible Learning Meta-Analyse 2009/2017/2023 + EEF Toolkit",
+      "source_url": "https://visible-learning.org/",
+      "secondary_url": "https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit"
+    }
+  ]
+}

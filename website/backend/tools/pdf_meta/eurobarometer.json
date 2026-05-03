@@ -1,0 +1,11 @@
+{
+  "title": "Eurobarometer",
+  "topic_count": "6 Topics (EU-Vertrauen, Top-Themen, Klimawandel-Einstellung, Demokratie-Zufriedenheit, EU-Mitgliedschaft, Einwanderungs-Einstellung)",
+  "description": "20 Claims zum Eurobarometer-Service: kuratierte Eckwerte zu EU-Bürger-Stimmungen aus den Standard- und Special-Eurobarometer-Umfragen der EU-Kommission + des EP. 12. Static-First-Service. Komplementär zu V-Dem (akademisch), Transparency International (Korruption), Migrations-Pack (Migrations-Mythen).",
+  "methodology": "Eurobarometer hat KEIN offen zugängliches API für Roh-Daten — die Standard-Umfragen werden als PDF-Reports + interactive dashboards publiziert. Der Service liefert daher Static-Aggregate-Eckwerte zu den am häufigsten zitierten Topics + verweist auf die Original-Reports. Methodische Disziplin: Eurobarometer-Daten sind Bevölkerungs-Stimmungen, nicht objektive Wahrheiten — Aussagen über die EU-Bürger-Mehrheit ('Bürger wollen X') werden mit konkreten EB-Zahlen + Differenzierung (national, Generation, Bildung) belegt. Pack feuert primär bei Aussagen mit Bezug 'die Bürger / die Mehrheit der Europäer wollen X'.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "6/6 Topics aktiv"},
+    {"label": "Aktualität:", "value": "Standard EB 102 (Herbst 2024) + EP-Special 2024"},
+    {"label": "Politische Sensibilität:", "value": "mittel — Themen sind politisch relevant, aber Stimmungs-Daten transparent"}
+  ]
+}

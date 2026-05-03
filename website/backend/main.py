@@ -80,6 +80,8 @@ from services.energie_klima_pack import search_energie_klima, claim_mentions_ene
 from services.migration_pack import search_migration, claim_mentions_migration_cached
 from services.geographie_pack import search_geographie, claim_mentions_geographie_cached
 from services.eurobarometer import search_eurobarometer, claim_mentions_eurobarometer_cached
+from services.finanzen_pack import search_finanzen, claim_mentions_finanzen_cached
+from services.bildung_pack import search_bildung, claim_mentions_bildung_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -620,6 +622,19 @@ async def check_claim(request: Request):
         if claim_mentions_eurobarometer_cached(claim):
             tasks.append(cached("Eurobarometer", search_eurobarometer, analysis))
             queried_names.append("Eurobarometer (Europäische Kommission + EP)")
+        # Geld/Finanzen-Mythen-Pack — populaere Finanz-Halbwahrheiten
+        # (Aktien-Gluecksspiel, Inflation-geheim, Zinseszins, Riester,
+        # kalte Progression, Krypto-Pyramide, Negativzins). 7 Topics.
+        if claim_mentions_finanzen_cached(claim):
+            tasks.append(cached("Finanzen-Mythen", search_finanzen, analysis))
+            queried_names.append("Finanzen-Mythen (EZB + Bundesbank + DAI + Stiftung Warentest + BaFin)")
+        # Bildungs-Mythen-Pack — paedagogische + neuro-didaktische
+        # Halbwahrheiten (Lernstile, Mozart-Effekt, Hirn-Haelften,
+        # Multitasking, 10%-Gehirn, frueh-lernen, Hattie). 7 Topics.
+        # Hohe Lehrer-Relevanz fuer User-Profil (BORG Guntramsdorf).
+        if claim_mentions_bildung_cached(claim):
+            tasks.append(cached("Bildungs-Mythen", search_bildung, analysis))
+            queried_names.append("Bildungs-Mythen (APA + Hattie + EEF + Pashler 2008 + Nielsen 2013 + OECD ECE)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

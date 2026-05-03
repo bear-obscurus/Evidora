@@ -151,6 +151,8 @@ _AUTHORITATIVE_INDICATORS = (
     "migration_konsens_fact",            # Migrations-Pack (BfV + bpb + IAB + DIW + OECD + BKA)
     "geographie_konsens_fact",           # Geographie/Reise-Pack (NASA + Lloyd's + NatGeo + CIA Factbook)
     "eurobarometer_fact",                # Eurobarometer (Europäische Kommission + EP)
+    "finanzen_konsens_fact",             # Finanzen-Pack (EZB + Bundesbank + DAI + StiftungW + BaFin)
+    "bildung_konsens_fact",              # Bildungs-Pack (APA + Hattie + EEF + Pashler + Nielsen)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",
