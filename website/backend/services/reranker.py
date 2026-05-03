@@ -146,6 +146,7 @@ _AUTHORITATIVE_INDICATORS = (
     "destatis_de_fact",                  # DESTATIS DE-Baseline (Bevölkerung, BIP, Inflation, etc.)
     "tier_natur_konsens_fact",           # Tier-/Natur-Pack (Smithsonian + AMNH + Britannica + Snopes)
     "ernaehrung_konsens_fact",           # Ernährungs-Pack (DGE + Cochrane + Mayo + Harvard + NHS + EFSA)
+    "recht_konsens_fact",                # Recht-/Rechtsmythen-Pack (RIS + BGBl + BGH/OGH + AK)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-03",
+  "source_label": "RIS (AT) + Bundesgesetzblatt (DE) + EuGH + AK Wien + Verbraucherzentrale + BGH-Rechtsprechung",
+  "facts": [
+    {
+      "id": "notwehr_pauschalen_2026",
+      "topic": "notwehr_pauschalen_mythos",
+      "scope": "Falsche pauschale Notwehr-Annahmen ('Bei Einbruch darf man schießen')",
+      "year": 2024,
+      "headline": "Notwehr ist KEINE Generalvollmacht — strenge Verhältnismäßigkeit, Erforderlichkeit, Gegenwärtigkeit",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Pauschale Aussagen wie 'Bei Einbruch darf man schießen' oder 'Im eigenen Haus darf man alles' sind FALSE in DE und AT. Notwehr (DE: § 32 StGB, AT: § 3 StGB) erfordert: (1) gegenwärtigen rechtswidrigen Angriff, (2) Erforderlichkeit der Verteidigungs-Mittel (mildestes wirksames Mittel), (3) Verteidigungs-Wille. Tödliche Gewalt ist nur als ultima ratio gerechtfertigt — nicht gegen reine Sachangriffe (Einbruch, Diebstahl ohne Personen-Gefahr).",
+        "de_paragraph_32_stgb": "§ 32 StGB (DE): 'Wer eine Tat begeht, die durch Notwehr geboten ist, handelt nicht rechtswidrig.' Drei Voraussetzungen: gegenwärtiger Angriff, rechtswidrig, Notwehr-Wille. BGH-Rechtsprechung: Schusswaffen-Einsatz nur bei direkter Lebensgefahr, nicht bei reinem Sachangriff.",
+        "at_paragraph_3_stgb": "§ 3 StGB (AT): 'Nicht rechtswidrig handelt, wer sich nur der Verteidigung bedient, die notwendig ist, um einen gegenwärtigen oder unmittelbar drohenden rechtswidrigen Angriff auf Leben, Gesundheit, körperliche Unversehrtheit, Freiheit oder Vermögen von sich oder einem anderen abzuwehren.' Gleiche Verhältnismäßigkeit-Anforderungen wie in DE.",
+        "verhaeltnismaessigkeit": "BGH-Rechtsprechung: Verteidiger muss das mildeste wirksame Mittel wählen. Beispiele: Pfefferspray vor Schlagstock vor Schusswaffe. Tödliche Verteidigung gegen einen unbewaffneten Einbrecher ohne Personen-Gefahr ist regelmäßig EXZESSIVE Notwehr → strafbar.",
+        "notwehrexzess": "§ 33 StGB (DE) / § 3 Abs. 2 StGB (AT): 'Notwehrexzess' bei aus Verwirrung, Furcht oder Schrecken überzogene Verteidigung kann straffrei bleiben — aber wird im Einzelfall geprüft. Nicht automatisch.",
+        "praktische_einschraenkung": "Nothilfe (zur Verteidigung Dritter) folgt denselben Regeln. Erlaubnis zum Schießen aus Privatbesitz an Hausschwelle ist Hollywood-Mythos: deutsche/österreichische Justiz bewertet konservativ, lange Gerichtsverfahren auch bei Notwehr-Berufung typisch.",
+        "context": "Im praktischen Konflikt: Polizei rufen, sich in sicheren Raum zurückziehen, erst dann verteidigen wenn keine andere Option. Dauerhafte Bewachung mit Schusswaffe oder selbstbau-Fallen sind oft strafbar (Hausfriedensbruch-Verteidigung)."
+      },
+      "context_notes": [
+        "USA-Recht ist anders: 'Castle Doctrine' und 'Stand Your Ground' Gesetze einiger US-Staaten erlauben tödliche Verteidigung im eigenen Haus. Diese gelten NICHT in DE/AT.",
+        "Schweizer Recht (Art. 15 StGB CH): vergleichbar mit DE/AT, mit eigenen Verfahrens-Aspekten.",
+        "Notwehr-Provokation: Wer den Angriff selbst provoziert hat, hat eingeschränkte Notwehrrechte."
+      ],
+      "claim_phrasings_handled": [
+        "Bei Einbruch darf man schießen",
+        "Im eigenen Haus darf man alles",
+        "Notwehr erlaubt jede Gegenwehr"
+      ],
+      "trigger_keywords": [
+        "notwehr einbruch", "einbrecher schiessen", "einbrecher schießen",
+        "notwehr schussel", "notwehr schiessen", "notwehr schießen",
+        "im haus darf", "notwehr alles"
+      ],
+      "trigger_composite": [
+        ["notwehr", "selbstverteidigung", "einbruch", "einbrecher", "selbst-verteidigung", "eigenen haus", "im haus", "gegenwehr"],
+        ["schießen", "schiessen", "töten", "toeten", "alles erlaubt", "alles", "darf man", "verteidigung", "schusswaffe", "bewaffn", "jede"]
+      ],
+      "source_label": "§ 32 StGB DE / § 3 StGB AT + BGH-Rechtsprechung",
+      "source_url": "https://www.gesetze-im-internet.de/stgb/__32.html",
+      "secondary_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002296"
+    },
+    {
+      "id": "mietrecht_schimmel_2026",
+      "topic": "mietrecht_schimmel_mythos",
+      "scope": "Schimmel in Mietwohnung — Vermieter-Pflicht oder Mieter-Lüftungsverhalten",
+      "year": 2024,
+      "headline": "Schimmel-Haftung MIXED: Vermieter haftet bei Bau-Mängeln, Mieter bei Lüftungs-/Heiz-Fehlern — Beweislast komplex",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Pauschale Aussagen 'Vermieter haftet immer für Schimmel' oder 'Mieter ist immer schuld' sind beide FALSE/MIXED. BGH-Rechtsprechung (DE) und OGH-Rechtsprechung (AT): Schimmel ist Gewährleistungs-Mangel, der von der URSACHE abhängt. Bauliche Mängel (Wärmebrücken, undichte Dächer, fehlende Dampfsperre): Vermieter-Pflicht. Mieter-Verhalten (unzureichende Lüftung, Möbel an Außenwänden, Trocknen von Wäsche): Mieter-Pflicht. Beweislast oft beim Vermieter (BGH: Mieter zeigt Schaden, Vermieter muss Bau-Mangel ausschließen).",
+        "bgh_rechtsprechung": "BGH-Urteile (z.B. VIII ZR 44/15, VIII ZR 110/19): Mieter muss zumutbare Lüftung leisten (Stoß-Lüftung 5-10 Min, 3-4x/Tag). Vermieter muss bauliche Voraussetzungen für Mangel-freie Nutzung schaffen. Beweislast-Reihenfolge: Mieter zeigt Schimmel; dann hat Vermieter zu beweisen, dass Schaden NICHT aus Bau-Mangel kommt.",
+        "ogh_at": "OGH (AT) 5 Ob 207/14k + spätere Urteile: ähnliche Bewertung. Schimmel-Bewertung erfolgt typisch durch Sachverständigen-Gutachten — Wärmebrücken, U-Werte, hygrische Eigenschaften der Mauer.",
+        "mietminderung": "Bei nachgewiesenem Bau-Mangel: Mietminderung 5-30 % je nach Schwere möglich (DE: § 536 BGB, AT: § 1096 ABGB). Mieter muss Vermieter VORHER schriftlich informieren (Mängelanzeige).",
+        "lueftungs_verhalten": "Empfohlene Lüftung: 5-10 Min Stoß-Lüftung 3-4x/Tag. Kipp-Lüftung dauerhaft ist wirkungs-arm und energie-verschwendend. Tau-Punkt-Effekte besonders kritisch im Winter.",
+        "praktischer_weg": "Bei Schimmel: 1. Schriftliche Mängelanzeige an Vermieter, 2. Foto-/Video-Dokumentation, 3. Sachverständigen einbeziehen (Mietminderung erst nach Klärung der Ursache rechtlich sicher), 4. AK Wien (AT) oder Mieterverein (DE) zur Beratung.",
+        "context": "Schimmel-Streitfälle sind eine der häufigsten Mietrechts-Konflikte. 60 % der Verfahren ergeben gemischte Verschuldens-Lage (BGH-Statistiken)."
+      },
+      "context_notes": [
+        "Schimmel-Sporen sind gesundheitlich relevant — vor allem bei Allergikern, Asthma-Kranken, Schwangeren, Säuglingen. Sanierung sollte schnell erfolgen.",
+        "Selbst-Sanierung mit Bleichmittel: kurzfristig wirksam, beseitigt aber nicht die Ursache. Profi-Sanierung empfohlen bei größeren Befall-Flächen.",
+        "Energetische Sanierung von Altbauten kann Schimmel-Risiko ERHÖHEN, wenn Wärmebrücken nicht adressiert werden — paradoxer Effekt nach Dämmung."
+      ],
+      "claim_phrasings_handled": [
+        "Vermieter haftet immer für Schimmel",
+        "Bei Schimmel ist immer der Mieter schuld",
+        "Schimmel ist Vermieter-Sache"
+      ],
+      "trigger_keywords": [
+        "vermieter schimmel haft", "mieter schimmel schuld",
+        "schimmel mietwohnung", "schimmel haftung",
+        "schimmel mietminderung"
+      ],
+      "trigger_composite": [
+        ["schimmel", "schimmelpilz", "feuchtigkeit"],
+        ["vermieter", "mieter", "mietwohnung", "wohnung", "miete", "haftung", "haftet", "schuld", "minderung", "mietminderung", "renovieren", "sanieren"]
+      ],
+      "source_label": "BGH VIII ZR 44/15 + OGH 5 Ob 207/14k + Verbraucherzentrale",
+      "source_url": "https://www.verbraucherzentrale.de/wissen/digitale-welt/mietrecht/schimmelpilz-rechte-und-pflichten-von-mietern-und-vermietern-13738",
+      "secondary_url": "https://www.arbeiterkammer.at/beratung/wohnen/Schimmel.html"
+    },
+    {
+      "id": "schoenheitsreparaturen_2026",
+      "topic": "schoenheitsreparaturen_mythos",
+      "scope": "Mieter muss bei Auszug renovieren / Schönheitsreparaturen-Pflicht",
+      "year": 2024,
+      "headline": "BGH 2015/2018: Pauschale Schönheitsreparaturen-Klauseln im Mietvertrag oft UNWIRKSAM, Mieter dann frei",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mieter muss bei Auszug renovieren' ist MIXED/MOSTLY_FALSE in der pauschalen Form. BGH-Rechtsprechung (vor allem VIII ZR 277/16 von 2018 + frühere Urteile): Standardisierte Schönheitsreparaturen-Klauseln in Formular-Mietverträgen sind weitgehend UNWIRKSAM, wenn (1) starre Fristen genannt sind, (2) Wohnung unrenoviert übergeben wurde, (3) Klauseln den Mieter unangemessen benachteiligen. Folge: bei unwirksamer Klausel ist Mieter NICHT zur Schönheitsreparatur verpflichtet — gar nicht.",
+        "bgh_2018_viii_zr_277": "BGH VIII ZR 277/16 vom 22. Aug 2018: Schönheitsreparaturen-Klauseln in unrenoviert übernommenen Wohnungen sind unwirksam — Mieter müssen NICHT renovieren. Dies betrifft schätzungsweise Millionen von Mietverträgen in DE.",
+        "starre_fristen_unwirksam": "BGH VIII ZR 162/02 (2003) + folge-Urteile: 'starre Fristen' (z.B. 'nach 3 Jahren Küche, nach 5 Jahren Schlafzimmer streichen, egal ob nötig') sind unwirksam. Erst weichere 'soweit erforderlich'-Klauseln wären rechtssicher.",
+        "endrenovierungs_klausel_unwirksam": "BGH VIII ZR 178/05 (2007): Klauseln, die Endrenovierung pauschal vorschreiben (unabhängig vom tatsächlichen Zustand), sind unwirksam.",
+        "at_rechtlage": "AT: § 8 MRG (Mietrechtsgesetz) und § 1099 ABGB. Vergleichbarer Trend: Klauseln, die Renovierung pauschal überwälzen, sind oft als gröblich benachteiligend nichtig (OGH 2 Ob 157/12y u.a.).",
+        "praktischer_weg": "Mieter beim Auszug: 1. Mietvertrags-Klausel prüfen, 2. wenn unwirksam: Vermieter informieren, dass keine Renovierung geleistet wird, 3. bei Konflikt: AK Wien/Mieterverein einschalten. Vor allem auf 'starre Fristen' und 'unrenoviert übergeben'-Klauseln achten.",
+        "context": "Vermieter haben oft veraltete Mietverträge mit unwirksamen Klauseln im Bestand. Mieter, die trotzdem renovieren, weil sie es 'so kennen', verschenken oft mehrere hundert Euro."
+      },
+      "context_notes": [
+        "Die Mieterverein-Rechtsdatenbanken (DMB DE, MVÖ AT) bieten kostenfreie Klausel-Prüfung für Mitglieder.",
+        "Schönheitsreparaturen ≠ Verschleiß-Reparaturen. Verschleiß (z.B. defekte Türklinken) ist immer Vermieter-Sache (AT: Erhaltungspflicht § 1096 ABGB).",
+        "Bei normaler Abnutzung darf Vermieter NICHT die volle Renovierungs-Quote verlangen — nur anteilige Wertminderung (BGH-Rechtsprechung)."
+      ],
+      "claim_phrasings_handled": [
+        "Mieter muss bei Auszug Renovierung machen",
+        "Schönheitsreparaturen sind Mieter-Pflicht",
+        "Beim Auszug muss man die Wohnung streichen"
+      ],
+      "trigger_keywords": [
+        "schoenheitsreparaturen", "schönheitsreparaturen",
+        "renovieren auszug", "wohnung streichen auszug",
+        "endrenovierung mieter"
+      ],
+      "trigger_composite": [
+        ["schönheitsreparatur", "schoenheitsreparatur", "renovierung", "renovieren", "streichen", "endrenovierung", "auszug", "ausziehen"],
+        ["mieter", "mietvertrag", "wohnung", "vermieter", "pflicht", "muessen", "müssen"]
+      ],
+      "source_label": "BGH VIII ZR 277/16 (2018) + DMB Mieterverein Position",
+      "source_url": "https://mieterbund.de/mietrecht/schoenheitsreparaturen.html",
+      "secondary_url": "https://www.bundesgerichtshof.de/SharedDocs/Pressemitteilungen/DE/2018/2018126.html"
+    },
+    {
+      "id": "probezeit_kuendigung_2026",
+      "topic": "probezeit_kuendigung_mythos",
+      "scope": "Kündigung in der Probezeit — Fristen + Voraussetzungen",
+      "year": 2024,
+      "headline": "Probezeit-Kündigung: 2-Wochen-Frist gesetzlich, kein Kündigungsschutz nach KSchG erst ab 6 Monaten — aber NICHT 'jederzeit ohne Frist'",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'In der Probezeit kann man jederzeit kündigen' ist TEILWEISE TRUE — mit präzisen Einschränkungen. (1) Kündigungsschutz nach KSchG (DE) gilt erst nach 6 Monaten Beschäftigung — in den ersten 6 Monaten brauchen Arbeitgeber + Arbeitnehmer KEINEN Kündigungsgrund. (2) ABER: gesetzliche Kündigungsfrist von 2 Wochen gilt (§ 622 Abs. 3 BGB DE) — nicht 'fristlos'. (3) Tarifverträge können längere Probezeit-Fristen vorsehen. (4) Ausnahmefälle (Schwangerschaft, Schwerbehinderung, Betriebsrat) genießen Sonderkündigungsschutz auch in Probezeit.",
+        "de_paragraph_622_bgb": "§ 622 Abs. 3 BGB (DE): 'Während einer vereinbarten Probezeit kann das Arbeitsverhältnis mit einer Frist von zwei Wochen gekündigt werden.' Maximum 6 Monate Probezeit zulässig.",
+        "de_kschg": "Kündigungsschutzgesetz (KSchG, DE): § 1 — 'Wartezeit' von 6 Monaten ununterbrochener Beschäftigung im Betrieb. Davor: keine 'sozial gerechtfertigten' Gründe nötig (das gilt erst ab Monat 7). Aber Probezeit ≠ Wartezeit — Probezeit-Klausel ist arbeitsvertraglich, Wartezeit ist gesetzlich.",
+        "at_probezeit": "AT (§ 19 Abs. 2 AngG, § 1158 ABGB): Probezeit max. 1 Monat. Beendigung in Probezeit ist jederzeit OHNE Frist möglich (§ 1158 Abs. 2 ABGB). Damit ist AT für Arbeitnehmer ungünstiger als DE in Probezeit.",
+        "sonderkuendigungsschutz": "DE-Mutterschutzgesetz (MuSchG): Schwangere genießen Kündigungsschutz auch in Probezeit. Schwerbehinderte (SGB IX): Zustimmung des Integrationsamts nach 6 Monaten erforderlich. Betriebsrats-Mitglieder: § 15 KSchG.",
+        "fristlose_kuendigung": "Auch in Probezeit ist 'fristlose Kündigung' nur bei wichtigem Grund (§ 626 BGB, § 27 AngG/§ 1162 ABGB) zulässig — z.B. Diebstahl, schwerwiegender Vertrauensbruch. Sonst gelten die jeweiligen Fristen.",
+        "context": "Praktische Implikation: Arbeitnehmer in DE in Probezeit kann 2-Wochen-Frist nutzen oder verlängern (sich krankmelden ist im Probezeit nicht schutz-relevant). Arbeitnehmer in AT in Probezeit kann tagesgleich beendet werden."
+      },
+      "context_notes": [
+        "Probezeit ≠ Wartezeit. Probezeit ist arbeitsvertraglich vereinbarte Phase mit verkürzten Fristen. Wartezeit ist gesetzliche Mindestbeschäftigung für Kündigungsschutz.",
+        "Tarifverträge (DE) und Kollektivverträge (AT) können längere Probezeit-Fristen, längere Mindest-Probezeiten oder besondere Beendigungsgründe vorsehen — vorrangig vor Gesetz.",
+        "Bei kleinen Betrieben (DE: <10 Vollzeit-Beschäftigte) gilt Kündigungsschutzgesetz NICHT — Kündigungsgründe sind dauerhaft frei."
+      ],
+      "claim_phrasings_handled": [
+        "In der Probezeit kann man jederzeit kündigen",
+        "Während Probezeit kein Kündigungsschutz",
+        "Probezeit kann man fristlos beenden"
+      ],
+      "trigger_keywords": [
+        "probezeit kuendig", "probezeit kündig",
+        "probezeit jederzeit kündig", "probezeit fristlos",
+        "probezeit kuendigung", "probezeit kündigung"
+      ],
+      "trigger_composite": [
+        ["probezeit"],
+        ["kündig", "kuendig", "kündigung", "kuendigung", "beend", "beendigen", "fristlos", "jederzeit", "ohne frist"]
+      ],
+      "source_label": "§ 622 BGB DE + KSchG + § 19 AngG + § 1158 ABGB AT",
+      "source_url": "https://www.gesetze-im-internet.de/bgb/__622.html",
+      "secondary_url": "https://www.arbeiterkammer.at/beratung/arbeitundrecht/Beendigung/Probezeit.html"
+    },
+    {
+      "id": "screenshot_whatsapp_2026",
+      "topic": "screenshot_whatsapp_mythos",
+      "scope": "Screenshot von WhatsApp-Chats — Recht, Strafbarkeit, Verwendung",
+      "year": 2024,
+      "headline": "Screenshot eines WhatsApp-Chats ist NICHT generell illegal — Verwendung kann aber rechtswidrig sein (Datenschutz, Persönlichkeitsrecht, Urheberrecht)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die pauschale These 'Screenshot von WhatsApp ist illegal' ist FALSE/MOSTLY_FALSE. Screenshot AN SICH ist nicht strafbar. ABER: Verwendung des Screenshots (Veröffentlichung, Weiterleitung, gerichtliche Verwendung) hängt von verschiedenen Rechten ab: (1) DSGVO bei personenbezogenen Daten, (2) Persönlichkeitsrecht/§ 201a StGB DE bei intimsten Aufnahmen, (3) Urheberrecht bei kreativen Inhalten, (4) Vertrauensbruch-Aspekte. Differenzierte Bewertung je Kontext.",
+        "screenshot_an_sich": "Screenshot eines Chat-Verlaufs für persönliche Verwendung (Erinnerung, Backup) ist rechtlich unproblematisch. Erst die Weiter-Verwendung kann rechtswidrig sein.",
+        "veroeffentlichung_persoenlichkeitsrecht": "§ 201a StGB DE (Recht am eigenen Bild) erstreckt sich auf intime Aufnahmen. Bei Chat-Inhalten gilt eher das Allgemeine Persönlichkeitsrecht (Art. 2 Abs. 1 GG / Art. 8 EMRK + §§ 1004, 823 BGB analog). Veröffentlichung privater Chat-Inhalte kann Unterlassungs- + Schadens-Ansprüche auslösen.",
+        "dsgvo_personenbezug": "DSGVO (EU): Chat-Inhalte sind personenbezogene Daten. Veröffentlichung ohne Einwilligung kann Bußgeld + Schadens-Klage auslösen — vor allem wenn Profilbild oder klare Identitäts-Hinweise enthalten.",
+        "gerichtliche_verwendung": "Vorlage von WhatsApp-Screenshots als Beweismittel in Gerichtsverfahren ist GRUNDSÄTZLICH zulässig (BGH XII ZB 124/20 + OGH 1 Ob 7/22w). Gerichte bewerten Beweis-Wert, abhängig von Authentifizierbarkeit + Vollständigkeit.",
+        "agb_whatsapp": "WhatsApp-AGB enthalten Hinweise zur 'fairen Nutzung'. Massen-Weiterleitung mit identifizierender Information kann gegen AGB verstoßen — aber AGB-Verstoß ≠ Strafbarkeit.",
+        "context": "Praktische Empfehlung: Screenshots für sich behalten ist OK. Vor Veröffentlichung (Social Media, Forum, Presse) sollten Identifikatoren entfernt werden. Bei Konflikten oder als Beweis: anwaltliche Beratung."
+      },
+      "context_notes": [
+        "Screenshots in WhatsApp-Gruppen: ähnliche Bewertung. Identifikatoren der anderen Gruppen-Mitglieder sollten anonymisiert werden bei Veröffentlichung.",
+        "Heimliche Aufzeichnung (Sprach-Memos, Bildschirm-Aufzeichnung): § 201 StGB DE (Verletzung der Vertraulichkeit des Wortes) — strenger als Screenshot.",
+        "Cyber-Mobbing / Drohungen via WhatsApp: Screenshot ist legitime Beweissicherung — Anzeige bei Polizei → Polizei kann Inhalte beschlagnahmen."
+      ],
+      "claim_phrasings_handled": [
+        "Screenshots von WhatsApp sind illegal",
+        "Es ist verboten Screenshots von Chats zu machen",
+        "WhatsApp-Screenshots strafbar"
+      ],
+      "trigger_keywords": [
+        "screenshot whatsapp illegal", "whatsapp screenshot strafbar",
+        "chat screenshot verboten", "screenshot chat",
+        "messenger screenshot recht"
+      ],
+      "trigger_composite": [
+        ["screenshot", "bildschirm-aufnahme", "chat-verlauf", "whatsapp", "messenger", "telegram", "signal", "sms"],
+        ["illegal", "strafbar", "verboten", "rechtswidrig", "datenschutz", "persoenlichkeitsrecht", "persönlichkeitsrecht"]
+      ],
+      "source_label": "BGH XII ZB 124/20 + OGH 1 Ob 7/22w + Verbraucherzentrale",
+      "source_url": "https://www.verbraucherzentrale.de/wissen/digitale-welt/datenschutz/whatsapp-chats-als-beweismittel-rechtslage-und-tipps-69466",
+      "secondary_url": "https://www.juraforum.de/lexikon/screenshot-recht"
+    },
+    {
+      "id": "hausrecht_geschaefte_2026",
+      "topic": "hausrecht_geschaefte_mythos",
+      "scope": "Hausrecht in Geschäften — Rauswurf ohne Begründung",
+      "year": 2024,
+      "headline": "Hausrecht in Geschäften erlaubt Rauswurf — ABER NICHT bei diskriminierenden Gründen (AGG/GleichBG)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Geschäft kann mich ohne Grund rauswerfen' ist TEILWEISE TRUE — mit AGG-Einschränkungen. Inhaber/Betreiber haben Hausrecht (§ 903 BGB DE / §§ 354 + 1024 ABGB AT). Rauswurf grundsätzlich erlaubt. ABER: AGG (DE) und GleichBG (AT) verbieten Diskriminierung wegen Rasse, ethnischer Herkunft, Geschlecht, Religion, Behinderung, Alter, sexueller Identität bei Massengeschäften. Pauschale Aussagen 'ich kann jeden rauswerfen' sind FALSCH.",
+        "hausrecht_grundsatz": "§ 903 BGB (DE): 'Der Eigentümer einer Sache kann mit der Sache nach Belieben verfahren und andere von jeder Einwirkung ausschließen.' Hausrecht erstreckt sich auf alle Geschäftsräume + Außenflächen.",
+        "agg_de_diskriminierungs_verbot": "Allgemeines Gleichbehandlungsgesetz (AGG, DE): bei 'Massengeschäften des täglichen Lebens' (Supermarkt, Kino, Restaurant, Diskothek) sind diskriminierende Hausverbote rechtswidrig. Geschützte Merkmale: Rasse/ethnische Herkunft, Geschlecht, Religion/Weltanschauung, Behinderung, Alter, sexuelle Identität.",
+        "gleichbg_at": "Gleichbehandlungsgesetz (GlBG, AT): vergleichbare Anti-Diskriminierungs-Pflichten. § 31-32 für Güter und Dienstleistungen.",
+        "selektivitaet_legitim": "Hausrecht zulässig bei: störendem Verhalten, Sicherheits-Bedenken, vorherigen Hausverboten, betrieblichen Gründen (Kapazität ausgeschöpft). Nicht zulässig: 'Person sieht arabisch aus', 'Frau im Kopftuch', 'sichtbar betrunken' (letzteres ist Grenzfall — Verhalten ist kein geschütztes Merkmal).",
+        "diskothek_test_cases": "Klassisches Test-Feld: Diskotheken-Türsteher, die selektiv abweisen. Mehrere Verbands-Klagen + Bußgeld-Bescheide nach AGG/GlBG. Beweisführung: 'Test-Trinker' aus Anti-Diskriminierungs-Verbänden mit Vergleichs-Personen.",
+        "context": "Praktischer Anspruch: Bei vermuteter Diskriminierung — Anti-Diskriminierungs-Stelle einschalten (DE: Antidiskriminierungsstelle des Bundes; AT: Gleichbehandlungsanwaltschaft)."
+      },
+      "context_notes": [
+        "Hausverbot durch Schreiben oder mündlich — Form-frei. Aber Beweisbarkeit besser bei schriftlich.",
+        "Hausverbot kann im Wiederholungsfall mit Strafanzeige (Hausfriedensbruch) verbunden werden.",
+        "Bei Gastronomie + Bier: § 9 GastG (DE) + Gastronomie-Ausnahme — bestimmte selektive Beschränkungen erlaubt (z.B. Geschlecht bei Themen-Events)."
+      ],
+      "claim_phrasings_handled": [
+        "Geschäft kann mich ohne Grund rauswerfen",
+        "Hausrecht erlaubt Rauswurf ohne Begründung",
+        "Im Geschäft hat der Inhaber alle Rechte"
+      ],
+      "trigger_keywords": [
+        "hausrecht geschaeft", "hausrecht geschäft",
+        "rauswurf geschaeft", "rauswurf geschäft",
+        "hausverbot supermarkt", "hausverbot diskothek"
+      ],
+      "trigger_composite": [
+        ["hausrecht", "hausverbot", "rauswurf", "rauswerfen", "inhaber", "betreiber"],
+        ["geschaeft", "geschäft", "supermarkt", "laden", "restaurant", "diskothek", "club", "lokal", "ohne grund", "begruendung", "begründung", "alle rechte", "alles"]
+      ],
+      "source_label": "§ 903 BGB + AGG + GlBG + Antidiskriminierungs-Stelle",
+      "source_url": "https://www.antidiskriminierungsstelle.de/DE/themen-und-forschung/recht-und-beratung/recht/_node.html",
+      "secondary_url": "https://www.gleichbehandlungsanwaltschaft.gv.at/themen/Schutz_vor_Diskriminierung/index.html"
+    },
+    {
+      "id": "erbrecht_pflichtteil_2026",
+      "topic": "erbrecht_pflichtteil_mythos",
+      "scope": "Behauptung, Kinder können vollständig enterbt werden",
+      "year": 2024,
+      "headline": "Kinder können NICHT vollständig enterbt werden — Pflichtteil garantiert (DE: 50 % des gesetzlichen Erbteils, AT: 50 %)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Kinder können vollständig enterbt werden' ist FALSE in DE und AT. Beide Rechtssysteme garantieren PFLICHTTEIL: Kinder, Ehegatten und (in DE) Eltern haben Anspruch auf Pflichtteil = 50 % ihres gesetzlichen Erbteils. Pflichtteil ist nur bei extremen Fällen entziehbar (Pflichtteilsentziehung) — Mord, schwerer Mord-Versuch am Erblasser/Familie, schwerer wiederholter Pflichtenbruch. Diese Hürde ist sehr hoch.",
+        "de_paragraph_2303_bgb": "§ 2303 BGB (DE): 'Pflichtteilsberechtigte sind die Abkömmlinge, die Eltern und der Ehegatte des Erblassers, soweit sie durch Verfügung von Todes wegen von der Erbfolge ausgeschlossen sind.' Pflichtteil = 50 % des gesetzlichen Erbteils.",
+        "at_paragraph_762_abgb": "§ 762 ABGB (AT): 'Pflichtteilsberechtigte sind Nachkommen und Ehegatte/eingetragener Partner.' Pflichtteils-Höhe: 50 % des gesetzlichen Erbteils. Eltern sind in AT seit Erbrechtsreform 2017 NICHT mehr pflichtteilsberechtigt.",
+        "pflichtteilsentziehung_de": "§ 2333 BGB: Pflichtteilsentziehung nur bei taxativ aufgezählten Gründen — Mord/-versuch am Erblasser/-Ehegatten/Eltern/Geschwistern, schweres körperliches Vergehen, ehrlose oder unsittliche Lebensführung (sehr eng ausgelegt). Erblasser muss in Testament BEGRÜNDEN — nicht nur erwähnen.",
+        "pflichtteilsentziehung_at": "§ 770 ABGB (AT): Ähnliche enge Gründe wie DE. Selten erfolgreich vor Gericht.",
+        "praktische_strategien": "Pflichtteil 'minimieren' (statt entziehen): Schenkungen zu Lebzeiten an gewünschte Erben (Anrechnungs- + Ergänzungs-Regeln beachten — § 2325 BGB DE / § 781 ABGB AT). Konstrukte wie Testamentsvollstreckung, Bedingungen, Auslassungs-Wahl in §§ 2065-2069 BGB.",
+        "schenkung_anrechnung": "10-Jahres-Regel: Schenkungen aus den letzten 10 Jahren werden auf Pflichtteil angerechnet (DE), AT 2 Jahre. Schenkungen unter Ehegatten verlängern Frist.",
+        "context": "Erbrechts-Beratung sollte VOR der Testamentserstellung erfolgen — von Notar oder Fachanwalt für Erbrecht. Selbstgeschriebene Testamente mit pauschaler Enterbung sind oft anfechtbar."
+      },
+      "context_notes": [
+        "Schweiz: ähnliche Pflichtteils-Regelung mit Erbrechtsreform 2023 — Pflichtteilsquoten reduziert.",
+        "Pflichtteilsverzicht: vertragliche Vereinbarung mit potentiellen Pflichtteilsberechtigten möglich (notariell, in DE § 2346 BGB).",
+        "Bei großem Vermögen: Stiftungen oder andere Konstrukte können Pflichtteils-Belastung reduzieren — komplexe Steuer-Folgen, Beratung nötig."
+      ],
+      "claim_phrasings_handled": [
+        "Kinder können vollständig enterbt werden",
+        "Per Testament kann man Erbe komplett ausschließen",
+        "Erblasser kann frei entscheiden wer was bekommt"
+      ],
+      "trigger_keywords": [
+        "kinder enterben", "vollstaendig enterbt", "vollständig enterbt",
+        "erbe ausschliessen", "erbe ausschließen",
+        "pflichtteil testament"
+      ],
+      "trigger_composite": [
+        ["enterben", "enterbt", "erbe", "erbschaft", "testament", "pflichtteil", "pflichtteilsentziehung", "erblasser"],
+        ["kinder", "tochter", "sohn", "ehepartner", "ehegatte", "vollständig", "vollstaendig", "ausschluss", "ausschließen", "ausschliessen", "frei entscheiden", "wer was", "frei", "entscheiden"]
+      ],
+      "source_label": "§ 2303 BGB + § 762 ABGB AT + Notarkammern",
+      "source_url": "https://www.gesetze-im-internet.de/bgb/__2303.html",
+      "secondary_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10001622"
+    },
+    {
+      "id": "arbeitsrecht_pause_2026",
+      "topic": "arbeitsrecht_pause_mythos",
+      "scope": "Sind Arbeitspausen vom Arbeitgeber zu bezahlen?",
+      "year": 2024,
+      "headline": "Pflicht-Pausen sind in DE/AT NICHT bezahlt — sie zählen NICHT zur Arbeitszeit (Ausnahmen: Arbeit-Bereitschaft / Pausen-Beschneidung)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Pausen müssen vom Arbeitgeber bezahlt werden' ist MOSTLY_FALSE für die gesetzlichen Pflicht-Pausen. § 4 ArbZG (DE) und § 11 AZG (AT): Bei mehr als 6 h Arbeitszeit sind 30 Minuten Pause Pflicht — diese Pausen ZÄHLEN NICHT zur Arbeitszeit und sind unbezahlt. Ausnahmen: Tarifverträge mit bezahlten Pausen, Arbeit auf Bereitschaft (Pausen am Arbeitsplatz), Pausen-Beschneidung (Notfälle).",
+        "de_paragraph_4_arbzg": "§ 4 ArbZG (DE): 'Die Arbeit ist durch im Voraus feststehende Ruhepausen von mindestens 30 Minuten bei einer Arbeitszeit von mehr als sechs bis zu neun Stunden und 45 Minuten bei einer Arbeitszeit von mehr als neun Stunden insgesamt zu unterbrechen.' Pausen sind nicht Arbeitszeit (§ 4 letzter Satz).",
+        "at_paragraph_11_azg": "§ 11 AZG (AT): 'Beträgt die Gesamtdauer der Tagesarbeitszeit mehr als sechs Stunden, so ist die Arbeitszeit durch eine Ruhepause von mindestens einer halben Stunde zu unterbrechen.' Auch hier: Pausen NICHT Arbeitszeit, unbezahlt.",
+        "tarifvertrag_ausnahme": "Tarifverträge können bezahlte Pausen vereinbaren — typisch in Industrie + Pflege. Vorrang vor Gesetz, soweit für Arbeitnehmer günstiger.",
+        "kurze_pausen_5_min": "'Kurzpausen' (Toilette, Trinken, Bildschirm-Erholung): keine Arbeitszeit-Unterbrechung im rechtlichen Sinne — bezahlt. Nur die GESETZLICHE Pflicht-Pause (≥30 Min) ist unbezahlt.",
+        "bereitschaftsdienst": "Wenn Arbeitnehmer in der Pause am Arbeitsplatz bleiben muss (Sicherheits-Personal, Notarzt-Bereitschaft): das ist Arbeitszeit (Bereitschaftsdienst), nicht Pause — bezahlt.",
+        "context": "Gesetzliche Pflicht-Pause kann am Stück oder geteilt genommen werden (max. 3 Teile à 15 Min in DE). Sie muss IM VORAUS feststehen — spontane Pausen-Verlängerung ist arbeitszeit-rechtlich keine echte Pause."
+      },
+      "context_notes": [
+        "Pausen-Verschiebung wegen Arbeits-Spitzen ist möglich, aber muss nachgeholt werden.",
+        "Mutterschutz, Stillzeiten: zusätzliche bezahlte Pausen-Ansprüche (§ 7 MuSchG DE, § 9 MSchG AT).",
+        "Mini-Job / Werksstudent: gleiche Pausen-Regelung wie Vollzeit ab 6h — Pause Pflicht."
+      ],
+      "claim_phrasings_handled": [
+        "Pausen müssen vom Arbeitgeber bezahlt werden",
+        "Mittagspause ist bezahlte Arbeitszeit",
+        "Arbeitgeber muss Pause vergüten"
+      ],
+      "trigger_keywords": [
+        "pause bezahlt arbeit", "mittagspause bezahlt",
+        "ruhepause arbeitgeber bezahlen", "pause vergueten",
+        "pause vergüten"
+      ],
+      "trigger_composite": [
+        ["pause", "pausen", "ruhepause", "mittagspause"],
+        ["bezahlt", "bezahlen", "vergüt", "verguet", "arbeitszeit", "arbeitgeber", "lohn", "geld", "vergütung"]
+      ],
+      "source_label": "§ 4 ArbZG DE + § 11 AZG AT + AK Wien",
+      "source_url": "https://www.gesetze-im-internet.de/arbzg/__4.html",
+      "secondary_url": "https://www.arbeiterkammer.at/beratung/arbeitundrecht/arbeitszeit/Pausen.html"
+    },
+    {
+      "id": "kuendigungsschutz_klein_2026",
+      "topic": "kuendigungsschutz_kleinbetrieb_mythos",
+      "scope": "Kündigungsschutz in Kleinbetrieben",
+      "year": 2024,
+      "headline": "Kündigungsschutzgesetz gilt in DE NICHT bei Kleinbetrieben (≤10 Vollzeit-AN) — auch nicht nach 6 Monaten",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Nach 6 Monaten gibt es immer Kündigungsschutz' ist FALSE für DE-Kleinbetriebe. Kündigungsschutzgesetz (KSchG, DE) gilt NUR bei Betrieben mit mehr als 10 Vollzeit-Beschäftigten (§ 23 KSchG). Bei Kleinbetrieben bleibt der Kündigungsschutz dauerhaft eingeschränkt — selbst nach Jahren der Beschäftigung. Aber: Mindestschutz durch § 242 BGB (Treu und Glauben), Diskriminierungs-Verbote (AGG), Sonderkündigungsschutz (Schwangere, Schwerbehinderte).",
+        "de_paragraph_23_kschg": "§ 23 Abs. 1 KSchG: 'Die Vorschriften dieses Gesetzes gelten nicht in Betrieben, in denen in der Regel zehn oder weniger Arbeitnehmer beschäftigt werden.' Kleinbetriebe sind ausgenommen.",
+        "berechnung_betriebsgroesse": "Bei Berechnung: Vollzeit zählt 1, Teilzeit bis 20h zählt 0,5, Teilzeit 20-30h zählt 0,75, Auszubildende NICHT mit. Stichtag: Eingang der Kündigung.",
+        "mindestschutz_242_bgb": "Selbst in Kleinbetrieben gibt es Mindestschutz: § 242 BGB (Treu und Glauben) schützt vor offensichtlich willkürlichen, treu-widrigen Kündigungen. AGG schützt vor diskriminierenden Kündigungen.",
+        "sonderkuendigungsschutz_immer": "Sonderkündigungsschutz gilt auch in Kleinbetrieben: Mutterschutzgesetz (§ 17 MuSchG), Schwerbehinderten-Schutz (§ 168 SGB IX), Pflegezeit (§ 5 PflegeZG), Betriebsräte (§ 15 KSchG).",
+        "at_kuendigungsschutz": "AT: § 105 ArbVG bzw. AngG. Kündigungsschutz ist anders strukturiert — Anfechtungs-Möglichkeit bei 'sozial widriger' Kündigung beim Betriebsrat oder Gericht. Gilt grundsätzlich auch in Kleinbetrieben (anders als DE).",
+        "context": "Praktischer Tipp: bei DE-Kleinbetrieb-Kündigung — Anwalt prüft (1) ob Diskriminierung, (2) ob Sonderkündigungsschutz, (3) ob § 242 BGB-Verstoß. Klage-Frist: 3 Wochen (auch bei unwirksamer Kündigung)."
+      },
+      "context_notes": [
+        "Begriff 'Kleinbetrieb' im KSchG ist nicht identisch mit 'Kleinunternehmer' im Steuerrecht.",
+        "AT-System ist arbeitnehmer-freundlicher: Anfechtungs-Möglichkeit auch in kleinsten Betrieben über Betriebsrat-Mechanismen.",
+        "Kettenbefristung-Regelung (§ 14 TzBfG DE): unabhängig von Betriebsgröße — Befristung max. 2 Jahre ohne sachlichen Grund."
+      ],
+      "claim_phrasings_handled": [
+        "Kündigungsschutz besteht immer nach 6 Monaten",
+        "Auch in kleinen Firmen gibt es Kündigungsschutz",
+        "Nach Probezeit kann man nicht mehr ohne Grund gekündigt werden"
+      ],
+      "trigger_keywords": [
+        "kuendigungsschutz kleinbetrieb", "kündigungsschutz kleinbetrieb",
+        "kleinbetriebs-kuendigungsschutz",
+        "kuendigungsschutz nach 6 monaten", "kündigungsschutz nach 6 monaten",
+        "kleine firma kuendigungsschutz", "kleine firma kündigungsschutz"
+      ],
+      "trigger_composite": [
+        ["kündigungsschutz", "kuendigungsschutz", "kuendigung", "kündigung", "kuendig", "kündig", "gekündigt", "gekuendigt"],
+        ["kleinbetrieb", "kleine firma", "kleines unternehmen", "ohne grund", "nach 6 monaten", "nach probezeit", "wartezeit", "kschg", "kleine", "monaten", "immer", "auch in", "schutz", "nicht mehr"]
+      ],
+      "source_label": "§ 23 KSchG DE + § 105 ArbVG AT + DGB Beratung",
+      "source_url": "https://www.gesetze-im-internet.de/kschg/__23.html",
+      "secondary_url": "https://www.arbeiterkammer.at/beratung/arbeitundrecht/Beendigung/Kuendigung.html"
+    },
+    {
+      "id": "hund_haftung_2026",
+      "topic": "hund_haftung_mythos",
+      "scope": "Tierhalter-Haftung bei Hund-Hund / Hund-Mensch-Schaden",
+      "year": 2024,
+      "headline": "Tierhalter haftet GRUNDSÄTZLICH für Hunde-Schäden — Gefährdungshaftung in DE/AT (§ 833 BGB / § 1320 ABGB)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die Frage 'Wer haftet wenn mein Hund einen anderen Hund / Menschen verletzt?' ist klar geregelt: Tierhalter haftet GRUNDSÄTZLICH (Gefährdungshaftung). Anspruch auf Schadensersatz besteht UNABHÄNGIG von Verschulden — d.h. auch bei sorgfältigem Halter. § 833 BGB (DE) und § 1320 ABGB (AT). Ausnahmen: Mitverschulden Geschädigter, höhere Gewalt, bei 'Nutztierhalter' eingeschränkte Haftung.",
+        "de_paragraph_833_bgb": "§ 833 Satz 1 BGB (DE): 'Wird durch ein Tier ein Mensch getötet oder der Körper oder die Gesundheit eines Menschen verletzt oder eine Sache beschädigt, so ist derjenige, welcher das Tier hält, verpflichtet, dem Verletzten den daraus entstehenden Schaden zu ersetzen.' Reine Gefährdungshaftung — kein Verschulden nötig.",
+        "at_paragraph_1320_abgb": "§ 1320 ABGB (AT): 'Wird ein Schaden durch ein Tier verursacht, so ist derjenige dafür verantwortlich, der dasselbe dazu angetrieben, gereizt oder zu verwahren vernachlässigt hat. Den Halter trifft die Beweispflicht, dass er für die erforderliche Verwahrung oder Beaufsichtigung gesorgt hat.' Beweislast-Umkehr — Halter muss Sorgfalt nachweisen.",
+        "tierhalterhaftpflicht": "Praktisch: Tierhalter-Haftpflicht-Versicherung deckt diese Schäden ab. In einigen DE-Bundesländern (z.B. Berlin, Hamburg, NRW) gesetzlich vorgeschrieben. AT: in einigen Bundesländern Pflicht, sonst dringend empfohlen.",
+        "mitverschulden_geschaedigter": "Wenn Geschädigter selbst zur Tier-Reaktion beigetragen hat (Reizung, Provokation): Schadens-Quote anteilig. § 254 BGB DE / § 1304 ABGB AT.",
+        "nutztierhalter_einschraenkung_de": "§ 833 Satz 2 BGB DE: bei 'Haustieren, die der gewerblichen oder beruflichen Tätigkeit dienen' (Hütehund Bauer, Diensthund Polizei) gilt eingeschränkte Haftung mit Verschuldens-Vermutung — Halter kann Sorgfalts-Nachweis erbringen.",
+        "context": "Praktischer Ablauf bei Vorfall: Personalien austauschen (wie bei Verkehrsunfall), Foto-Dokumentation, ggf. Polizei oder Tierarzt einschalten, Versicherung informieren binnen einer Woche."
+      },
+      "context_notes": [
+        "Hunde-Listen (Listed Breeds, 'Kampfhund'-Regelung) gibt es in einigen DE-Bundesländern und einigen AT-Bundesländern. Dort: erhöhte Haftungs-Anforderungen, oft Maul-Korb-Pflicht in Öffentlichkeit.",
+        "Bei Hund-Hund-Streit: Tierarzt-Kosten + ggf. Behandlung sind ersetzbar. Wertminderung des verletzten Hundes ebenfalls möglich.",
+        "Grundlose Aussagen 'Mein Hund hat noch nie...' sind rechtlich irrelevant — Gefährdungshaftung gilt unabhängig von Vorgeschichte."
+      ],
+      "claim_phrasings_handled": [
+        "Wenn mein Hund einen Menschen beißt muss ich nicht haften",
+        "Hund-Hund-Schaden ist Pech",
+        "Tierhalter haftet nur bei Verschulden"
+      ],
+      "trigger_keywords": [
+        "hund haftung", "tierhalter haftung",
+        "hund beisst haftung", "hund beißt haftung",
+        "hund schaden", "tierhalter haftpflicht"
+      ],
+      "trigger_composite": [
+        ["hund", "hunde", "tier", "tiere", "tierhalter"],
+        ["haftung", "haftet", "haften", "verschulden", "schaden", "schadensersatz", "haftpflicht", "verantwortung", "verantwortlich", "beisst", "beißt", "biss", "verletzt", "pech"]
+      ],
+      "source_label": "§ 833 BGB + § 1320 ABGB + Verbraucherzentrale",
+      "source_url": "https://www.gesetze-im-internet.de/bgb/__833.html",
+      "secondary_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10001622"
+    }
+  ]
+}

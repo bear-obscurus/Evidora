@@ -75,6 +75,7 @@ from services.gesundheits_autoritaeten_pack import search_gesundheits_autoritaet
 from services.destatis import search_destatis, claim_mentions_destatis_cached
 from services.tier_natur_pack import search_tier_natur, claim_mentions_tier_natur_cached
 from services.ernaehrungs_pack import search_ernaehrung, claim_mentions_ernaehrung_cached
+from services.recht_pack import search_recht, claim_mentions_recht_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -558,6 +559,14 @@ async def check_claim(request: Request):
         if claim_mentions_ernaehrung_cached(claim):
             tasks.append(cached("Ernährungs-Mythen", search_ernaehrung, analysis))
             queried_names.append("Ernährungs-Mythen (DGE + Cochrane + Mayo + Harvard Chan + NHS + EFSA)")
+        # Recht/Rechtsmythen-Pack — populaere rechtliche Halbwahrheiten in
+        # DACH (Notwehr, Mietrecht-Schimmel, Schoenheitsreparaturen,
+        # Probezeit, Screenshot-Recht, Hausrecht, Erbrecht-Pflichtteil,
+        # Pause-Bezahlung, Kuendigungsschutz-Kleinbetrieb, Hund-Haftung).
+        # 10 Topics. Pack ersetzt KEINE anwaltliche Beratung.
+        if claim_mentions_recht_cached(claim):
+            tasks.append(cached("Recht/Rechtsmythen", search_recht, analysis))
+            queried_names.append("Recht/Rechtsmythen (RIS + BGBl + BGH/OGH + AK + Verbraucherzentrale)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
