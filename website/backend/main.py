@@ -74,6 +74,7 @@ from services.tech_ki_pack import search_tech_ki, claim_mentions_tech_ki_cached
 from services.gesundheits_autoritaeten_pack import search_gesundheits_autoritaeten, claim_mentions_gesundheits_autoritaeten_cached
 from services.destatis import search_destatis, claim_mentions_destatis_cached
 from services.tier_natur_pack import search_tier_natur, claim_mentions_tier_natur_cached
+from services.ernaehrungs_pack import search_ernaehrung, claim_mentions_ernaehrung_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -549,6 +550,14 @@ async def check_claim(request: Request):
         if claim_mentions_tier_natur_cached(claim):
             tasks.append(cached("Tier-/Natur-Mythen", search_tier_natur, analysis))
             queried_names.append("Tier-/Natur-Mythen (Smithsonian + AMNH + Britannica + Snopes)")
+        # Ernaehrungs-Mythen-Pack — populaere Lebensmittel-Halbwahrheiten
+        # (5-Sek-Regel, Spinat-Eisen, Eier-Cholesterin, Detox, Mikrowelle,
+        # brauner Zucker, Bio-Pestizide, Kaffee-Dehydration, Milch-Schleim,
+        # Karotten-Sehkraft). 10 Topics. Komplementaer zu
+        # gesundheits_autoritaeten (BfR/CDC-spezifische Stoff-Risiken).
+        if claim_mentions_ernaehrung_cached(claim):
+            tasks.append(cached("Ernährungs-Mythen", search_ernaehrung, analysis))
+            queried_names.append("Ernährungs-Mythen (DGE + Cochrane + Mayo + Harvard Chan + NHS + EFSA)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

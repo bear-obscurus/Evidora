@@ -1,0 +1,385 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-03",
+  "source_label": "BfR + DGE + Cochrane + Mayo Clinic + Harvard Chan + AGES + EFSA",
+  "facts": [
+    {
+      "id": "fuenf_sekunden_regel_2026",
+      "topic": "fuenf_sekunden_regel_mythos",
+      "scope": "Behauptung, heruntergefallene Lebensmittel sind binnen 5 Sek sicher",
+      "year": 2024,
+      "headline": "5-Sekunden-Regel: Bakterien übertragen sich SOFORT — Rutgers-Studie 2016 widerlegt definitiv",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These, dass heruntergefallene Lebensmittel binnen 5 Sekunden sicher sind, ist FALSE. Rutgers-Studie 2016 (Miranda & Schaffner, Applied & Environmental Microbiology): Bakterien-Übertragung beginnt sofort, oft <1 Sekunde. Faktoren: Feuchtigkeit (höher = mehr Transfer), Untergrund (Edelstahl + Fliesen mehr als Teppich), Lebensmittel-Typ (Wassermelone überträgt mehr als Gummibärchen). Empfehlung: bei Bedenken einfach wegwerfen.",
+        "rutgers_2016": "Miranda & Schaffner (Rutgers, Applied & Environmental Microbiology 2016): Tests mit Wassermelone, Gummibärchen, Brot mit Butter, Brot ohne Butter auf Edelstahl/Fliesen/Teppich/Holz. Salmonella-Transfer kontaminierte alle Proben binnen 1 Sekunde, mit ansteigender Menge bei längerer Kontakt-Zeit (5, 30, 300 Sek).",
+        "uab_kontext": "University of Alabama Birmingham: '5-Sek-Regel ist deutliche Vereinfachung. Bakterien übertragen sich instantan.' Bakterien haben keine Beine — sie bewegen sich mit Feuchtigkeit. Je nasser das Lebensmittel, desto höher der Transfer.",
+        "untergrund_unterschiede": "Transfer-Raten 2016: Edelstahl + Fliesen ~hohe Raten, Holz variabel, Teppich überraschend niedrig (Fasern halten Bakterien zurück, Lebensmittel nimmt weniger auf).",
+        "lebensmittel_typ": "Höchster Transfer: Wassermelone (sehr feucht). Niedrigster: Gummibärchen (fest, trocken). Brot + Butter: dazwischen.",
+        "context": "Praktische Risiko-Einordnung: Gesunde Erwachsene haben mit den Bakterien-Mengen aus Boden-Kontakt typischerweise keine Probleme. Vulnerable Gruppen (Schwangere, Säuglinge, Immungeschwächte): konsequent wegwerfen."
+      },
+      "context_notes": [
+        "Risiko hängt stark von der Boden-Hygiene ab. Frisch gewischter Boden vs. öffentliche Wege: völlig andere Bakterien-Last.",
+        "Salmonellen, E. coli, Listerien sind die häufigsten relevanten Erreger — alle übertragen sich sofort bei Kontakt.",
+        "Die 5-Sekunden-Regel hat psychologisch Wert (Erlaubnis-zur-Bequemlichkeit), nicht wissenschaftlich."
+      ],
+      "claim_phrasings_handled": [
+        "Heruntergefallenes Essen ist binnen 5 Sekunden sicher",
+        "Die 5-Sekunden-Regel funktioniert",
+        "Wenn man schnell ist, kann man heruntergefallenes Essen noch essen"
+      ],
+      "trigger_keywords": [
+        "5 sekunden regel", "fuenf sekunden regel", "fünf sekunden regel",
+        "5-sekunden-regel", "five second rule",
+        "heruntergefallenes essen sicher"
+      ],
+      "trigger_composite": [
+        ["5 sekunden", "5-sekunden", "fuenf sekunden", "fünf sekunden", "5 second", "five second", "heruntergefallen", "heruntergefallene", "boden", "fallen lassen"],
+        ["regel", "essen", "lebensmittel", "sicher", "noch essen", "rule", "bakterien", "kontamination"]
+      ],
+      "source_label": "Miranda & Schaffner Rutgers 2016 + UAB News + Houston Methodist",
+      "source_url": "https://www.rutgers.edu/news/rutgers-researchers-debunk-five-second-rule-eating-food-floor-isnt-safe",
+      "secondary_url": "https://www.uab.edu/news/news-you-can-use/the-five-second-rule-fact-or-myth"
+    },
+    {
+      "id": "spinat_eisen_2026",
+      "topic": "spinat_eisen_mythos",
+      "scope": "Behauptung, Spinat hat besonders viel Eisen",
+      "year": 2024,
+      "headline": "Spinat-Eisen-Mythos: ~3,4 mg/100g (gut, aber nicht spitze) — Phytate hemmen die Aufnahme zusätzlich",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Spinat ist Eisen-Wunder' ist MOSTLY_FALSE/MIXED. Realer Eisen-Gehalt: ~3,4 mg/100g frischer Spinat — gut, aber NICHT außergewöhnlich. Linsen ~6,9 mg, weiße Bohnen ~6,7 mg, Sojabohnen ~6,6 mg/100g. Zusätzlich enthält Spinat Phytate + Oxalate, die die Eisen-Aufnahme HEMMEN — bioverfügbares Eisen aus Spinat ist niedrig (~2-5 % im Vergleich zu 15-35 % bei tierischem Häm-Eisen). Mythos vom 'Decimal-Punkt-Fehler' ist selbst ein Mythos (sog. 'Supermyth').",
+        "echter_eisengehalt": "DGE Nährwerttabelle: Frischer Spinat ~3,4 mg Eisen/100g. Tiefkühl-Spinat ähnlich. Getrockneter Spinat höher (~13 mg) wegen Konzentration.",
+        "vergleich_andere": "100 g Linsen: 6,9 mg. Weiße Bohnen: 6,7 mg. Sojabohnen: 6,6 mg. Kürbiskerne: 8,8 mg. Schweineleber: ~18 mg (Spitze). Spinat: ~3,4 mg — Mittelfeld unter Pflanzen.",
+        "bioverfuegbarkeit": "Spinat enthält Oxalsäure und Phytate, die Eisen-Aufnahme hemmen. Vit-C-haltige Beilagen (Tomaten, Paprika, Zitronensaft) verbessern Aufnahme deutlich. Kombination Spinat + Vit-C ist effektive Eisen-Strategie.",
+        "popeye_wirklich": "Popeye-Schöpfer E.C. Segar (1929): wählte Spinat NICHT wegen Eisen, sondern wegen Vitamin A (Beta-Carotin). Spätere Marketing-Übersetzungen verbanden Popeyes Stärke fälschlich mit Eisen.",
+        "decimal_supermyth": "Die Geschichte 'verschobenes Komma in 1870er-Studie machte 3,5 zu 35 mg' ist seit Jahrzehnten beliebte Mythbusters-Erklärung — aber vermutlich selbst ein Mythos (Mike Sutton, 'Supermyth'-Theorie). Echte Variabilität in alten Eisen-Messungen kam aus unterschiedlichen Methoden + frisch vs. getrocknet.",
+        "context": "Spinat ist GUTES Lebensmittel: viel Vit A, Folsäure, Magnesium, Vit K, Kalzium (mit Bioverfügbarkeits-Vorbehalt durch Oxalate). Die einzige übertriebene Aussage ist die spezifische Eisen-Wunder-Behauptung."
+      },
+      "context_notes": [
+        "Vegetarier-/Veganer-Eisen-Versorgung: NICHT Spinat als Hauptquelle, sondern Hülsenfrüchte + Vollkorn + Vit-C-Kombination.",
+        "Eisen-Mangel ist häufig bei menstruierenden Frauen, Schwangeren, Veganern — bei Verdacht: Bluttest (Ferritin), nicht Selbst-Diagnose.",
+        "Kohle-Diät / 'super-foods' Marketing übertreibt regelmäßig Nährstoff-Gehalte einzelner Lebensmittel — kein Lebensmittel ist 'magisch'."
+      ],
+      "claim_phrasings_handled": [
+        "Spinat hat besonders viel Eisen",
+        "Spinat ist die beste Eisenquelle",
+        "Popeye ist wegen dem Spinat-Eisen stark"
+      ],
+      "trigger_keywords": [
+        "spinat eisen", "spinat eisengehalt",
+        "popeye spinat", "spinat staerk", "spinat stärk",
+        "eisen spinat"
+      ],
+      "trigger_composite": [
+        ["spinat", "spinach", "popeye"],
+        ["eisen", "eisengehalt", "iron", "naehrstoff", "nährstoff", "mineralstoff"]
+      ],
+      "source_label": "DGE Nährwerttabelle + McGill OSS + Sutton Supermyths",
+      "source_url": "https://www.mcgill.ca/oss/article/food-health-news-quirky-science/setting-facts-straight-about-iron-spinach",
+      "secondary_url": "https://uamshealth.com/medical-myths/is-spinach-a-great-source-of-iron/"
+    },
+    {
+      "id": "eier_cholesterin_2026",
+      "topic": "eier_cholesterin_mythos",
+      "scope": "Eier-Konsum und Blutcholesterin/Herzkrankheits-Risiko",
+      "year": 2024,
+      "headline": "Eier-Cholesterin-Frage MIXED: Meta-Analysen zu Herzkrankheits-Risiko widersprüchlich; gesättigte Fettsäuren wichtiger als Diät-Cholesterin",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die alte These 'Eier sind Herz-Killer wegen Cholesterin' ist MOSTLY_FALSE/MIXED. Meta-Analysen 2018-2024 sind WIDERSPRÜCHLICH: einige finden moderates Risiko bei US-Bevölkerung, andere kein Risiko oder sogar Vorteil bei Schlaganfall. Konsens bei den meisten Ernährungs-Gesellschaften (DGE, AHA seit 2019): moderater Eier-Konsum (bis 7/Woche) bei gesunden Erwachsenen UNPROBLEMATISCH. Wichtiger als Diät-Cholesterin: gesättigte Fettsäuren (Wurst, Fleisch, frittiert).",
+        "aha_2019_position": "American Heart Association (2019, Wissenschaftliche Stellungnahme): 'Cholesterin in Eiern ist ein Faktor unter vielen.' Empfiehlt 'gesunde Ernährungs-Muster' über Einzel-Lebensmittel-Verbote. Bis ca. 1 Ei/Tag bei gesunden Erwachsenen ohne Risiko-Marker akzeptabel.",
+        "meta_analyse_2020_dose_response": "Meta-Analyse Eur. J. Nutr. 2020 (Drouin-Chartier et al.): Dose-Response-Vergleich. 1 Ei/Tag erhöht moderat das Risiko in US-Studien, neutrale Ergebnisse in EU/asiatischen Studien — Effekt vermutlich konfoundiert mit Begleitkonsum (US-Frühstück-Kontext mit Speck/Wurst).",
+        "circulation_2022": "Circulation 2022 Meta-Analyse (Updated): 'Compelling evidence for increased CVD risk with increased egg consumption in US, possibly Europe — not Asia.' Effekt klein aber detektierbar.",
+        "diaet_cholesterin_kontext": "Body-eigene Cholesterin-Synthese ist 3-4x größer als typische Diät-Cholesterin-Aufnahme. Reaktive Down-Regulation bei den meisten Menschen kompensiert höhere Aufnahme. Hyper-Responder (~25 % der Bevölkerung) reagieren stärker.",
+        "saettigung_alternative": "Konsens 2024 (Cochrane + WHO + DGE): gesättigte Fettsäuren (Wurst, fettes Fleisch, Butter, Kokosfett) haben deutlich größeren LDL-Effekt als Diät-Cholesterin aus Eiern. Praktische Empfehlung: Eier moderat OK, Wurst-Konsum reduzieren.",
+        "context": "Die 'Eier-Phobie' war populär 1980er-2000er, hat sich seither aufgrund neuer Studien deutlich entschärft. Aktuelle Empfehlung bei gesunden Erwachsenen: 4-7 Eier/Woche unproblematisch. Bei familiärer Hypercholesterinämie oder Hyper-Respondern: Beratung mit Arzt."
+      },
+      "context_notes": [
+        "Hyper-Responder vs Hypo-Responder: Genetisch bedingte unterschiedliche Reaktion auf Diät-Cholesterin. Bluttest (LDL/HDL-Ratio) gibt Aufschluss.",
+        "Eier-Qualität: Bio/Freilandhaltung haben ähnliche Nährstoff-Profile, aber andere ökologische/ethische Dimension.",
+        "Vegan-Substitut für Eier (z.B. Kichererbsen-Mehl + Salt-Black) hat KEIN Cholesterin und liefert ähnliche Backfunktion."
+      ],
+      "claim_phrasings_handled": [
+        "Eier sind schlecht für das Herz",
+        "Eier erhöhen den Cholesterin-Spiegel gefährlich",
+        "Mehr als 2 Eier pro Woche schadet"
+      ],
+      "trigger_keywords": [
+        "eier cholesterin", "eier herz", "eier herzinfarkt",
+        "eier ungesund", "eier woche zuviel",
+        "mehr als 2 eier", "mehr als zwei eier",
+        "eier schaden"
+      ],
+      "trigger_composite": [
+        ["eier", "ei essen", "eier konsum", "eggs"],
+        ["cholesterin", "ldl", "herz", "herzinfarkt", "herzkrank", "schlecht", "ungesund", "schaedlich", "schädlich"]
+      ],
+      "source_label": "American Heart Association 2019 + Circulation 2022 Meta-Analyse + DGE",
+      "source_url": "https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.057642",
+      "secondary_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10285014/"
+    },
+    {
+      "id": "karotten_sehkraft_2026",
+      "topic": "karotten_sehkraft_mythos",
+      "scope": "Behauptung, Karotten verbessern die Sehkraft",
+      "year": 2024,
+      "headline": "Karotten-Sehkraft TRUE-mit-Kontext: nur bei Vit-A-Mangel, sonst kein Effekt — Mythos teils WW2-RAF-Propaganda",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Karotten verbessern die Sehkraft' ist MIXED/TRUE-mit-Kontext. Beta-Carotin (Provitamin A) in Karotten ist ESSENTIELL für Sehkraft — bei Vit-A-Mangel führt das zu Nachtblindheit (Hemeralopie) und im Extremfall Blindheit. ABER: bei bedarfsdeckender Versorgung bringt zusätzliches Beta-Carotin KEINE bessere Sehkraft. Mythos wurde im 2. Weltkrieg von der RAF (Royal Air Force) gezielt verstärkt, um Radar-Technologie zu verschleiern.",
+        "vit_a_essenziell": "Vitamin A (Retinol) ist Bestandteil von Rhodopsin, dem licht-empfindlichen Pigment in den Stäbchen-Zellen der Netzhaut. Mangel führt zu Nachtblindheit (klinisch: Hemeralopie). WHO: Vit-A-Mangel ist häufigster Grund für vermeidbare Blindheit weltweit (ca. 250.000-500.000 Kinder/Jahr).",
+        "raf_propaganda_1940": "WW2-Propaganda der RAF: behauptete, britische Nachtjäger sehen besser im Dunkeln dank Karotten-Konsum. Der wahre Grund war Radar-Technologie (Airborne Interception Radar AI Mark IV), die geheim gehalten werden sollte. Geschickte Doppelpropaganda — soll auch deutsche Karotten-Lager erschöpfen.",
+        "saettigung_effekt": "Bei bedarfsdeckender Vit-A-Versorgung (RDA 700-900 µg Retinol-Äquivalent/Tag) gibt es KEINEN zusätzlichen Sehkraft-Vorteil durch mehr Karotten. Hyper-Hypervitaminose A (Karoten-Akkumulation, Carotinämie) macht die Haut leicht orange, hat aber kein Sehkraft-Wirkung.",
+        "altersbedingte_makula_degeneration": "AREDS- und AREDS2-Studien: Lutein, Zeaxanthin (in Spinat, Brokkoli, Eigelb) + Vit C, E, Zink reduzieren AMD-Progression. Beta-Carotin allein hat NICHT diesen Effekt — bei Rauchern erhöht es sogar das Lungenkrebs-Risiko.",
+        "context": "Praktisch sinnvoll: regelmäßiger Karotten-Konsum als Teil ausgewogener Ernährung. UNSINN: Karotten als Sehkraft-Booster bei normaler Versorgung. Bei Sehproblemen: Augenärztliche Untersuchung, nicht Karotten-Diät."
+      },
+      "context_notes": [
+        "Vit-A-Mangel ist in Industrieländern selten. Risikogruppen: Säuglinge in Entwicklungsländern, Mukoviszidose-Patienten, lebererkrankte Menschen.",
+        "Karotten enthalten zusätzlich Lutein und Zeaxanthin (Carotinoide) — gute Augenheits-Bestandteile, aber keine 'Verbesserung' bei normaler Sicht.",
+        "Carotinämie: bei extremem Karottenkonsum (>1 kg/Tag) gelbliche Hautverfärbung — harmlos, reversibel."
+      ],
+      "claim_phrasings_handled": [
+        "Karotten machen gute Augen",
+        "Karotten verbessern die Sehkraft",
+        "Möhren essen für gute Sicht"
+      ],
+      "trigger_keywords": [
+        "karotten augen", "karotten sehkraft",
+        "moehren augen", "möhren augen",
+        "karotten gute sicht", "karotten beta-carotin sehkraft"
+      ],
+      "trigger_composite": [
+        ["karotten", "karotte", "möhren", "moehren", "carrot", "carrots"],
+        ["augen", "sehen", "sehkraft", "sicht", "vision", "blind", "nachtsehen", "nachtblind"]
+      ],
+      "source_label": "WHO Vit-A-Position + AREDS-Studie + RAF-Propaganda-Geschichte",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/blindness-and-visual-impairment",
+      "secondary_url": "https://www.smithsonianmag.com/arts-culture/a-wwii-propaganda-campaign-popularized-the-myth-that-carrots-help-you-see-in-the-dark-28812484/"
+    },
+    {
+      "id": "detox_saefte_2026",
+      "topic": "detox_saefte_mythos",
+      "scope": "Behauptung, Detox-Säfte/Reinigungs-Diäten entgiften den Körper",
+      "year": 2024,
+      "headline": "Detox-Säfte entgiften NICHTS — Leber + Nieren erledigen die Entgiftung kontinuierlich, ohne Hilfe",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Detox-Säfte / Reinigungs-Diäten entgiften den Körper' ist FALSE. Es gibt KEINE wissenschaftliche Evidenz für entgiftende Wirkung kommerzieller Detox-Produkte. Die Leber, Nieren, Haut und Lunge erledigen Entgiftung kontinuierlich, unabhängig von speziellen Säften oder Diäten. NHS, Cochrane, AGES + DGE sind klar: 'Detox' ist Marketing-Begriff ohne medizinische Substanz.",
+        "nhs_position": "NHS (UK): 'There is no evidence that detox diets do anything to support the body's own natural detoxification processes. Your liver and kidneys are highly effective at filtering out and eliminating most ingested toxins.'",
+        "leber_funktion": "Leber: filtert ~1,5 L Blut/Min, baut Toxine in 2 Phasen ab (Phase I: CYP450-Enzyme; Phase II: Konjugation), liefert wasserlösliche Metabolite zur renalen Ausscheidung.",
+        "nieren_funktion": "Nieren: filtern ~180 L Plasma/Tag, scheiden harnpflichtige Substanzen + Stoffwechselprodukte aus. Hyperhydratation hilft NICHT bei besserer Entgiftung — überschüssiges Wasser wird einfach ausgeschieden.",
+        "kommerzielle_detox_produkte": "BfArM + AGES haben mehrfach Detox-Produkte mit fragwürdigen Heilungsversprechen abgemahnt. Klassische Tricks: Promi-Endorsements, 'natürliche Inhaltsstoffe' ohne Mechanismus, 'reinigende' Effekte (oft osmotische Diuretika oder Laxantien — kurzfristige Wasser-Verlust ≠ Entgiftung).",
+        "echte_giftbelastung": "Echte Vergiftungen (Schwermetalle, Pestizide, Lösungsmittel) erfordern medizinische Behandlung (Chelat-Therapie, BAL, Dimaval) — nicht Smoothies. Ärzte messen Belastung über Bluttest oder Haaranalyse.",
+        "context": "Wer sich nach Detox-Diäten 'besser fühlt': vermutlich Effekt von 1-3 Tagen reduzierter Kalorien-Aufnahme, weniger Alkohol, mehr Schlaf, mehr Wasser. Diese Faktoren wirken — die spezifischen 'Detox-Inhaltsstoffe' nicht."
+      },
+      "context_notes": [
+        "Detox-Diäten ohne medizinische Indikation können bei langer Anwendung gesundheitsschädlich sein (Mangel-Versorgung, Elektrolyt-Störungen).",
+        "Ausnahmen: medizinische Detox bei Drogen-Entzug, Alkohol-Entzug, Schwermetall-Vergiftung — das sind klinische Verfahren, keine Diät-Trends.",
+        "Begriff 'Detox' ist im Lebensmittelrecht der EU NICHT geregelt — Hersteller dürfen ihn frei verwenden."
+      ],
+      "claim_phrasings_handled": [
+        "Detox-Säfte entgiften den Körper",
+        "Reinigungs-Diäten reinigen",
+        "Detox-Kur ist gesund"
+      ],
+      "trigger_keywords": [
+        "detox saft", "detox säfte", "detox kur",
+        "entgiftungs kur", "reinigungs diaet", "reinigungs diät",
+        "detox-kur"
+      ],
+      "trigger_composite": [
+        ["detox", "entgift", "reinigungs"],
+        ["saft", "saefte", "säfte", "kur", "diaet", "diät", "smoothie", "körper", "koerper", "leber", "nieren", "gesund"]
+      ],
+      "source_label": "NHS UK + AGES + DGE + BfArM",
+      "source_url": "https://www.nhs.uk/conditions/detoxes-and-cleanses-do-they-work/",
+      "secondary_url": "https://www.dge.de/wissenschaft/weitere-publikationen/fachinformationen/detox/"
+    },
+    {
+      "id": "mikrowelle_naehrstoffe_2026",
+      "topic": "mikrowelle_naehrstoffe_mythos",
+      "scope": "Behauptung, Mikrowelle zerstört Nährstoffe",
+      "year": 2024,
+      "headline": "Mikrowelle zerstört NICHT Nährstoffe — meist sogar SCHONENDER als Kochen, weil kürzer + weniger Wasser",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mikrowelle zerstört Nährstoffe' ist FALSE. Mikrowellen erhitzen Wasser-Moleküle direkt — durch Vibration. Es gibt keinen 'spezifischen Nährstoff-Schaden'. Im Gegenteil: weil Mikrowellen-Erhitzen oft KÜRZER ist als Kochen + weniger Wasser benötigt, bleiben hitze- und wasserlösliche Vitamine (Vit C, B-Komplex) BESSER erhalten als beim klassischen Kochen.",
+        "harvard_position": "Harvard T.H. Chan School of Public Health: 'Mikrowellen-Erhitzen erhält Vitamine und Mineralstoffe oft besser als andere Methoden, weil es schnell und mit wenig Wasser arbeitet — die zwei Hauptursachen für Vitamin-Verlust.'",
+        "vit_c_studie_2003": "Vergleichsstudie 2003 (Murcia et al., J. Sci. Food & Agric.): Brokkoli verlor 80 % Vit-C beim langem Kochen, 20 % beim Mikrowellen-Erhitzen, 30 % beim Dampfgaren. Mikrowelle gewinnt klar.",
+        "warum_funktioniert": "Mikrowellen (2,45 GHz) regen H₂O-Moleküle zur Rotation an → Reibungswärme. Kein chemischer Effekt auf Vitamine, Proteine, Mineralien. Die einzige Veränderung ist Wärme — wie bei Herd, Backofen, Dampf.",
+        "ausnahme_milch_h2o2": "Eine Ausnahme: Muttermilch in Mikrowelle erhitzt verliert Lysozym und sekretorisches IgA (Antikörper) deutlich — empfohlen: Wasserbad oder Flaschenwärmer für Babymilch. Das ist keine 'Mikrowellen-Schädlichkeit' im allgemeinen Sinn, sondern Hitze-Effekt unabhängig von der Methode.",
+        "behaelter_warnung": "Plastikbehälter mit BPA-Verdacht oder Phthalat-Weichmachern können in der Mikrowelle Substanzen abgeben. Empfehlung: Glas oder Mikrowellen-zertifiziertes Plastik verwenden. Das ist Behälter-Problem, nicht Mikrowelle.",
+        "context": "Mikrowellen sind elektromagnetische Wellen unterhalb von Infrarot. Keine ionisierende Strahlung — keine DNA-Schädigung möglich. Geräte sind streng zertifiziert (FDA, BfS, EU-Normen)."
+      },
+      "context_notes": [
+        "Mikrowellen-Strahlung wird vom Faraday-Käfig in der Tür blockiert. Lecks sind durch BfS überwacht — typische Werte deutlich unter Grenzwert.",
+        "Texturveränderungen (manche Lebensmittel werden gummig) sind real, aber nährstoff-irrelevant.",
+        "Verstaerkungs-Mythos 'Mikrowellen-Wasser tötet Pflanzen': nicht reproduzierbar in kontrollierten Studien — Methodik-Artefakt."
+      ],
+      "claim_phrasings_handled": [
+        "Mikrowelle zerstört Nährstoffe",
+        "Mikrowellen-Essen ist ungesund",
+        "Mikrowelle macht Lebensmittel kaputt"
+      ],
+      "trigger_keywords": [
+        "mikrowelle naehrstoffe", "mikrowelle nährstoffe",
+        "mikrowelle ungesund", "mikrowelle vitamin",
+        "mikrowelle gesund", "mikrowelle schaedlich"
+      ],
+      "trigger_composite": [
+        ["mikrowelle", "microwave", "mikrowellen-erhitz"],
+        ["naehrstoff", "nährstoff", "vitamin", "ungesund", "schaedlich", "schädlich", "gefährlich", "gefaehrlich", "kaputt", "zerstört", "zerstoert"]
+      ],
+      "source_label": "Harvard T.H. Chan + BfS + Murcia 2003 J. Sci. Food",
+      "source_url": "https://www.hsph.harvard.edu/nutritionsource/microwave-food-safety/",
+      "secondary_url": "https://www.bfs.de/EN/topics/emf/applications/household/microwave-oven/microwave-oven_node.html"
+    },
+    {
+      "id": "brauner_zucker_2026",
+      "topic": "brauner_zucker_mythos",
+      "scope": "Behauptung, brauner Zucker ist gesünder als weißer Zucker",
+      "year": 2024,
+      "headline": "Brauner Zucker ist NICHT gesünder als weißer — kalorisch identisch, minimaler Mineralstoff-Unterschied",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Brauner Zucker ist gesünder als weißer Zucker' ist FALSE. Weißer und brauner Zucker sind kalorisch identisch (~390 kcal/100g). Der Unterschied ist Melasse-Anteil (3-6 % bei dunklem braunem Zucker). Mineralstoff-Gehalt minimal (z.B. ~85 mg Calcium/100g brauner Zucker — würde man 100g essen, hätte man die Tageszufuhr Zucker UND nur 11 % Calcium-Tagesbedarf gedeckt).",
+        "kalorien_identisch": "Brauner Zucker: 380-390 kcal/100g. Weißer Raffinade-Zucker: 400 kcal/100g. Differenz vernachlässigbar; brauner Zucker ist nur leicht 'feuchter' wegen Melasse.",
+        "melasse_kontext": "Melasse (Sirup-Rest aus Zucker-Raffination) enthält geringe Mengen Mineralien (Eisen, Magnesium, Kalium, Calcium). Aber selbst dunkler brauner Zucker mit 6 % Melasse-Anteil hat nur Spuren — irrelevante Tagesversorgung.",
+        "varianten": "Echter brauner Zucker (turbinado, demerara, muscovado): unraffinierter / teil-raffinierter Zucker mit unterschiedlichen Melasse-Gehalten. 'Brauner Zucker' aus Supermarkt ist oft weißer Zucker mit zugesetzter Melasse — chemisch identisch zur Konstitution.",
+        "metabolismus": "Sucrose (Saccharose) wird im Dünndarm zu Glukose + Fruktose gespalten. Pankreas-Insulin-Antwort: identisch bei braunem und weißem Zucker. Glykämischer Index (GI): ~65 für beide.",
+        "andere_zuckeralternativen": "Honig, Ahornsirup, Agavendicksaft, Kokosblütenzucker: ähnliche kalorische Werte (300-400 kcal/100g), unterschiedliche Glukose/Fruktose-Verhältnisse, geschmackliche Unterschiede. Gesundheitlich ähnlich. Nur Stevia und Erythrit sind kalorien-arm — andere Zucker-Alternativen.",
+        "context": "Marketing-Versprechen 'natürlicher = gesünder' ist bei Zucker irreführend. WHO-Empfehlung: maximal 10 % der täglichen Kalorien aus freiem Zucker (Saccharose, Glucose, Fructose, Sirup), unabhängig von Farbe."
+      },
+      "context_notes": [
+        "Vollrohrzucker (rapadura, Muscovado): minimal verarbeitet, etwas mehr Melasse-Aroma — gesundheitlich gleich, kulinarisch anders.",
+        "Diabetes-Patienten: KEIN Vorteil von braunem Zucker. Kohlenhydrat-Anrechnung identisch.",
+        "Kinder-Marketing 'Brauner Zucker für gesundes Frühstück' ist faktisch unbegründet — verleitet zu Mehr-Konsum."
+      ],
+      "claim_phrasings_handled": [
+        "Brauner Zucker ist gesünder als weißer",
+        "Naturzucker ist besser",
+        "Roher Zucker ist gesund"
+      ],
+      "trigger_keywords": [
+        "brauner zucker gesund", "brauner zucker besser",
+        "naturzucker gesund", "roher zucker gesund",
+        "weisser zucker schlecht", "weißer zucker schlecht"
+      ],
+      "trigger_composite": [
+        ["brauner zucker", "naturzucker", "roher zucker", "rohrohrzucker", "vollrohrzucker", "muscovado", "demerara"],
+        ["gesünder", "gesuender", "gesund", "besser", "gut", "weiss", "weiß", "raffinad"]
+      ],
+      "source_label": "DGE + Harvard Chan School + WHO Sugar Guidelines",
+      "source_url": "https://www.dge.de/wissenschaft/referenzwerte/kohlenhydrate-ballaststoffe/",
+      "secondary_url": "https://www.hsph.harvard.edu/nutritionsource/carbohydrates/added-sugar/"
+    },
+    {
+      "id": "bio_pestizidfrei_2026",
+      "topic": "bio_pestizidfrei_mythos",
+      "scope": "Behauptung, Bio-Lebensmittel sind komplett pestizidfrei",
+      "year": 2024,
+      "headline": "Bio ist NICHT pestizidfrei — natürliche Pestizide (Kupfer, Pyrethrum, Spinosad) sind erlaubt, Rückstände beider Systeme dokumentiert",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Bio = pestizidfrei' ist FALSE/MOSTLY_FALSE. Bio-Anbau (EU-Bio-Verordnung 2018/848 + DE-Verordnungen) erlaubt eine spezifische Liste 'natürlicher' Pestizide: Kupfersalze, Schwefel, Pyrethrum (aus Chrysanthemen), Bacillus thuringiensis, Spinosad, Azadirachtin (Neem). Diese können Rückstände hinterlassen. EU-Lebensmittel-Sicherheits-Berichte: ~10-15 % der Bio-Lebensmittel-Proben enthalten Pestizid-Rückstände, davon ein Teil über Bio-Toleranz, aber unter konventionellen Grenzwerten.",
+        "eu_bio_verordnung": "EU-Verordnung 2018/848 (gültig seit Jan 2022): regelt Bio-Standard. Anhang II listet erlaubte Pflanzenschutz-Mittel. Synthetische Pestizide verboten, natürliche Stoffe (Mineralien, Pflanzenextrakte, Mikroorganismen) erlaubt.",
+        "kupfer_problem": "Kupferpräparate (Kupferoxychlorid, Kupferhydroxid): erlaubt im Bio-Wein- und Hopfen-Bau gegen Pilzbefall. Kupfer akkumuliert im Boden — ökologisches Problem. Frankreich, AT haben Höchstmengen-Regelungen.",
+        "rueckstand_studien": "EFSA Pesticide Residues Report 2022: Bio-Lebensmittel haben durchschnittlich ~5-10x weniger Rückstands-Befunde als konventionelle. ABER: Bio nicht null. Studien fanden 10-15 % der Bio-Proben mit detektierbaren Rückständen.",
+        "natuerlich_ist_nicht_harmlos": "'Natürlich' bedeutet nicht 'unbedenklich': Pyrethrum (Insektizid aus Chrysanthemen) ist toxisch für Bienen. Kupfersalze akkumulieren in Böden. Bacillus thuringiensis-Toxine wirken auf Insekten-Larven — nicht auf Menschen, aber das Toxin ist kein 'pestizidfrei'.",
+        "abdrift_kontamination": "Bio-Felder grenzen oft an konventionelle. Wind-Abdrift kann Bio-Produkte mit konventionellen Pestiziden kontaminieren. EU-Bio erlaubt geringe unbeabsichtigte Rückstände, sofern Hersteller dokumentiert vorsichtig war.",
+        "context": "Bio bringt: meist weniger Rückstände, weniger synthetische Pestizide, oft besseres Tierwohl, oft besser für Bodengesundheit. Bringt NICHT: 0 Pestizide, automatisch gesünder im wissenschaftlichen Sinne, automatisch besser für Umwelt (Flächen-Effekte komplex)."
+      },
+      "context_notes": [
+        "EU-Pestizid-Höchstmengen-Verordnung 396/2005 gilt für ALLE Lebensmittel, Bio und konventionell. Bio-Übereinkommen ist additiv strenger.",
+        "Wäschen + Schälen reduziert Pestizid-Rückstände stark — bei beiden Anbau-Systemen.",
+        "Glyphosat ist im Bio-Anbau VERBOTEN, in konventionell erlaubt — eine der klarsten Differenzen."
+      ],
+      "claim_phrasings_handled": [
+        "Bio-Lebensmittel sind pestizidfrei",
+        "Bio enthält keine Pestizide",
+        "Organische Lebensmittel sind pestizid-frei"
+      ],
+      "trigger_keywords": [
+        "bio pestizidfrei", "bio pestizide",
+        "organisch pestizidfrei", "bio frei pestizid",
+        "biolebensmittel pestizide"
+      ],
+      "trigger_composite": [
+        ["bio", "biolebensmittel", "biologisch", "organisch", "organic", "demeter"],
+        ["pestizid", "pestizidfrei", "spritzmittel", "chemie", "rueckstand", "rückstand", "frei von"]
+      ],
+      "source_label": "EU-Verordnung 2018/848 + EFSA Pesticide Residues Report 2022",
+      "source_url": "https://www.efsa.europa.eu/en/topics/topic/pesticide-residues",
+      "secondary_url": "https://www.bfr.bund.de/de/oekologische_lebensmittel-3787.html"
+    },
+    {
+      "id": "kaffee_dehydration_2026",
+      "topic": "kaffee_dehydration_mythos",
+      "scope": "Behauptung, Kaffee dehydriert den Körper",
+      "year": 2024,
+      "headline": "Kaffee dehydriert NICHT — moderate Diurese kompensiert durch Wasser-Anteil, Netto-Effekt: positiv für Flüssigkeitshaushalt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Kaffee dehydriert den Körper' ist MOSTLY_FALSE. Studien (Killer et al. 2014, PLoS One; EFSA-Position 2015): Bei moderatem Konsum (bis 4 Tassen/Tag, ca. 400 mg Koffein) ist die diuretische Wirkung NICHT stärker als bei Wasser. Netto-Flüssigkeits-Bilanz: positiv. Empfehlung 'pro Tasse Kaffee ein Glas Wasser zusätzlich' ist faktisch nicht mehr nötig.",
+        "killer_2014": "Killer et al., Loughborough University (PLoS One 2014): randomisiertes Cross-Over-Design, 50 Männer, 4 Tassen Kaffee vs 4 Tassen Wasser pro Tag über 3 Tage. Hydratations-Marker (Urin-Osmolalität, Plasma-Volumen, Körpergewicht) zeigten KEINE signifikanten Unterschiede.",
+        "efsa_position_2015": "EFSA Scientific Opinion (2015): tägliche Koffein-Aufnahme bis 400 mg (= ca. 4 Tassen Kaffee) ist für gesunde Erwachsene unbedenklich. Hydratations-Wirkung ist neutral bis positiv.",
+        "diuretisch_aber_kompensiert": "Koffein hat tatsächlich diuretische Wirkung (Adenosin-Rezeptor-Blockade in den Nieren), die zu erhöhter Urin-Produktion führt — aber NUR bei Erst-Konsumenten. Regelmäßige Kaffee-Trinker entwickeln Toleranz binnen 4-5 Tagen.",
+        "ausnahme_hochdosis": "Sehr hohe Dosen (>500 mg/Tag, ca. 5+ Tassen Kaffee oder Energydrinks) können bei Erst-Konsumenten zu mehr Urin-Verlust führen als Flüssigkeits-Aufnahme. Bei chronisch Konsumierenden: Toleranz ausgleichend.",
+        "context": "Kaffee zählt zur Tages-Flüssigkeits-Bilanz. WHO empfiehlt 1,5-2 L Tag, davon kann ein guter Teil Tee, Kaffee, Saft, Suppe sein. Die alte 'reines Wasser nur'-Empfehlung ist überholt."
+      },
+      "context_notes": [
+        "Kinder + Schwangere + Herz-Patienten: niedrigere Koffein-Toleranz, Empfehlung <200 mg/Tag (Schwangerschaft) bzw. weniger.",
+        "Schwarzer Tee + Cola enthalten ebenfalls Koffein — gleiche Hydratations-Logik.",
+        "Espresso vs Filter-Kaffee: ähnlicher Koffein-Gehalt pro Portion (Espresso konzentrierter, aber kleineres Volumen)."
+      ],
+      "claim_phrasings_handled": [
+        "Kaffee dehydriert den Körper",
+        "Pro Kaffee ein Glas Wasser zusätzlich",
+        "Kaffee macht Durst"
+      ],
+      "trigger_keywords": [
+        "kaffee dehydriert", "kaffee fluessigkeit",
+        "kaffee flüssigkeit", "kaffee wasser",
+        "kaffee dehydration", "kaffee durst"
+      ],
+      "trigger_composite": [
+        ["kaffee", "espresso", "coffee"],
+        ["dehydrier", "fluessigkeit", "flüssigkeit", "wasser", "durst", "dehydration", "entwässer", "entwaesser", "ausgleichen"]
+      ],
+      "source_label": "Killer et al. 2014 PLoS One + EFSA Scientific Opinion 2015",
+      "source_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0084154",
+      "secondary_url": "https://www.efsa.europa.eu/en/efsajournal/pub/4102"
+    },
+    {
+      "id": "milch_schleim_2026",
+      "topic": "milch_schleim_mythos",
+      "scope": "Behauptung, Milch verschleimt die Atemwege",
+      "year": 2024,
+      "headline": "Milch macht NICHT Schleim — kontrollierte Studien zeigen keine Schleim-Produktion, sondern transienten Mund-Belag",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Milch macht Schleim' bzw. 'Milch verschleimt die Atemwege' ist FALSE. Kontrollierte Studien (Pinnock et al. 1990, Wüthrich et al. 2005, Lancet 2024 Review): Milch-Konsum hat KEINEN messbaren Effekt auf Schleim-Produktion in den Atemwegen. Die wahrgenommene 'Verschleimung' ist tatsächlich eine kurze Mund-Belag-Sensation durch Emulsion (Fett + Eiweiß) — vergleichbar mit Soja-Milch oder anderen emulsions-haltigen Getränken.",
+        "pinnock_1990": "Pinnock et al. (Br. J. Diseases of the Chest 1990): randomisierte Doppelblind-Studie, Milch vs Sojamilch bei akuter rhinovirus-Infektion. KEINE Unterschiede in Husten-Frequenz, Sekret-Produktion, Atemweg-Symptomen.",
+        "wuthrich_2005": "Wüthrich et al. (J. Am. Coll. Nutr. 2005): Review zu Milch und Atemwegs-Symptomen bei Asthma-Patienten — kein konsistenter Verschleimungs-Effekt.",
+        "balfour_lynn_2019": "Balfour-Lynn (Arch. Dis. Childhood 2019): Pediatric Pulmonologist Review — Mythos hat keine wissenschaftliche Basis. Eltern, die Milch wegen Erkältungen vermeiden, schaffen unnötige Mangel-Versorgung (Calcium, Vit D).",
+        "echter_mund_belag": "Was real existiert: Mund-Sensation eines 'Films' durch Milch-Emulsion. Dauer: wenige Sekunden bis Minuten. Wird oft als 'Schleim' fehl-interpretiert. Test: gleicher Effekt mit Soja-, Hafer-, Reis-Milch.",
+        "ausnahmen": "Echte Milch-Allergie (IgE-vermittelt) kann Atemweg-Symptome verursachen — das ist allergische Reaktion, nicht 'Verschleimung'. Laktose-Intoleranz: Verdauungs-Beschwerden, KEINE Atemweg-Effekte.",
+        "context": "Mythos kann mit chinesisch-traditioneller Medizin verbunden sein, wo Milch als 'kalte/feuchte' Substanz klassifiziert wird. In moderner Wissenschaft: kein Effekt auf Schleim-Produktion."
+      },
+      "context_notes": [
+        "Bei akuter Erkältung muss Milch nicht vermieden werden — keine Studien-Evidenz für Verschlechterung.",
+        "Milch-Allergie (Kuhmilch-Eiweiß-Allergie): andere Sache, häufig bei Säuglingen, oft im Schulalter überwunden.",
+        "Bei Asthma + Milch-Allergie: vermeiden ist sinnvoll. Bei Asthma ohne nachgewiesene Milch-Allergie: kein medizinischer Grund."
+      ],
+      "claim_phrasings_handled": [
+        "Milch macht Schleim",
+        "Milch verschleimt die Atemwege",
+        "Bei Erkältung keine Milch trinken"
+      ],
+      "trigger_keywords": [
+        "milch schleim", "milch verschleim",
+        "milch atemwege", "milch erkaeltung",
+        "milch erkältung"
+      ],
+      "trigger_composite": [
+        ["milch", "milk", "kuhmilch", "milchprodukte"],
+        ["schleim", "verschleim", "atemwege", "lunge", "huste", "erkältung", "erkaeltung", "schnupfen", "bronchien"]
+      ],
+      "source_label": "Pinnock 1990 + Wüthrich 2005 + Balfour-Lynn 2019 (Arch Dis Child)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/30798237/",
+      "secondary_url": "https://www.healthline.com/nutrition/does-milk-cause-mucus"
+    }
+  ]
+}
