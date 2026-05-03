@@ -6,6 +6,7 @@ non-biomedical fields: physics, social science, economics, engineering, etc.
 
 import httpx
 import logging
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -70,7 +71,7 @@ async def search_openalex(analysis: dict) -> dict:
         "mailto": MAILTO,
     }
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with polite_client(timeout=30.0) as client:
         resp = await client.get(BASE_URL, params=params)
         if resp.status_code == 429:
             logger.warning("OpenAlex daily rate limit reached")

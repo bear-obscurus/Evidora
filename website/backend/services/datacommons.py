@@ -16,6 +16,7 @@ import time
 from pathlib import Path
 
 import httpx
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -120,7 +121,7 @@ async def _download_and_filter() -> list[dict]:
     entries = []
 
     try:
-        async with httpx.AsyncClient(timeout=120.0) as client:
+        async with polite_client(timeout=120.0) as client:
             # Stream the large JSON file
             async with client.stream("GET", FEED_URL) as resp:
                 resp.raise_for_status()

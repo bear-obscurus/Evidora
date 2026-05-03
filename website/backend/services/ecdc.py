@@ -25,6 +25,7 @@ import time
 from datetime import datetime
 
 import httpx
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -210,7 +211,7 @@ async def _fetch_measles(client: httpx.AsyncClient | None = None) -> dict:
 
     close_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=30.0)
+        client = polite_client(timeout=30.0)
         close_client = True
 
     merged: dict = {}
@@ -262,7 +263,7 @@ async def _fetch_vaccination(client: httpx.AsyncClient | None = None) -> dict:
 
     close_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=30.0)
+        client = polite_client(timeout=30.0)
         close_client = True
 
     merged: dict = {}
@@ -634,7 +635,7 @@ async def search_ecdc(analysis: dict) -> dict:
     """
     results: list[dict] = []
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with polite_client(timeout=30.0) as client:
         disease = _find_disease(analysis)
         covid_kw = _is_covid_claim(analysis)
 

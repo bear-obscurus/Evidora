@@ -6,6 +6,7 @@ import logging
 from pathlib import Path
 
 import httpx
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -409,7 +410,7 @@ async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
                 f"&dimensionAtObservation=AllDimensions"
             )
 
-            async with httpx.AsyncClient(timeout=SDMX_TIMEOUT) as client:
+            async with polite_client(timeout=SDMX_TIMEOUT) as client:
                 resp = await client.get(url, headers={
                     "Accept": "application/vnd.sdmx.data+json",
                 })

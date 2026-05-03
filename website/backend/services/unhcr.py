@@ -1,5 +1,6 @@
 import httpx
 import logging
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -74,7 +75,7 @@ async def search_unhcr(analysis: dict) -> dict:
 
     results = []
 
-    async with httpx.AsyncClient(timeout=20.0) as client:
+    async with polite_client(timeout=20.0) as client:
         # 1. Population data (refugees, asylum seekers)
         pop_params = {
             "yearFrom": "2019",

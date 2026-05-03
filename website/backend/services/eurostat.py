@@ -3,6 +3,7 @@ import re
 
 import httpx
 import logging
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -1105,7 +1106,7 @@ async def search_eurostat(analysis: dict) -> dict:
                 "url": f"https://ec.europa.eu/eurostat/databrowser/view/{ds['dataset']}/default/table",
             }]
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with polite_client(timeout=30.0) as client:
         # Fetch datasets in parallel instead of sequentially
         tasks = [_fetch_dataset(client, ds) for ds in datasets[:2]]
         results_list = await asyncio.gather(*tasks)

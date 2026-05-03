@@ -10,6 +10,7 @@ Lizenz: Open data, CC BY-NC-SA 3.0 IGO
 import logging
 
 import httpx
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -167,7 +168,7 @@ async def search_who_europe(analysis: dict) -> dict:
 
     results = []
     try:
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        async with polite_client(timeout=30.0) as client:
             resp = await client.get(
                 f"{BASE_URL}/measures/{indicator}",
                 params={"filter": filter_str, "output": "data"},

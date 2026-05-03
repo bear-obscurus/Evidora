@@ -9,6 +9,7 @@ Uses the free v2 API (no key required). Essential for verifying claims about:
 
 import httpx
 import logging
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -33,7 +34,7 @@ async def search_clinicaltrials(analysis: dict) -> dict:
         "format": "json",
     }
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with polite_client(timeout=30.0) as client:
         resp = await client.get(BASE_URL, params=params)
         resp.raise_for_status()
         data = resp.json()

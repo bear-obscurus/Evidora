@@ -3,6 +3,7 @@ import logging
 import time
 
 import httpx
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -286,7 +287,7 @@ async def prefetch_eea(client: httpx.AsyncClient | None = None) -> dict:
     """
     close_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=30.0)
+        client = polite_client(timeout=30.0)
         close_client = True
 
     try:
@@ -321,7 +322,7 @@ async def search_eea(analysis: dict) -> dict:
     # Query the country plus EU27 average for side-by-side context.
     geos: tuple[str, ...] = (geo,) if geo == "EU27_2020" else (geo, "EU27_2020")
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with polite_client(timeout=30.0) as client:
         for ds in datasets[:2]:
             # Find the dataset key (DATASETS is dict; we passed values in)
             ds_key = next((k for k, v in DATASETS.items() if v is ds), None)

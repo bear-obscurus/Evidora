@@ -22,6 +22,7 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 import httpx
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -158,7 +159,7 @@ def _extract_items(xml_text: str) -> list[dict]:
 async def _fetch_feed() -> list[dict]:
     """Fetch the EUvsDisinfo RSS feed."""
     try:
-        async with httpx.AsyncClient(timeout=15.0) as client:
+        async with polite_client(timeout=15.0) as client:
             resp = await client.get(FEED_URL)
             resp.raise_for_status()
             items = _extract_items(resp.text)

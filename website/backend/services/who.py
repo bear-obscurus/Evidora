@@ -1,6 +1,7 @@
 import re
 
 import httpx
+from services._http_polite import polite_client
 
 BASE_URL = "https://ghoapi.azureedge.net/api"
 
@@ -90,7 +91,7 @@ async def search_who(analysis: dict) -> dict:
         if indicator:
             break
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with polite_client(timeout=30.0) as client:
         if indicator:
             # Fetch specific indicator data
             resp = await client.get(

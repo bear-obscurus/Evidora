@@ -25,6 +25,7 @@ from xml.etree import ElementTree as ET
 import httpx
 
 from services._http_polite import USER_AGENT
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -120,7 +121,7 @@ async def fetch_at_faktencheck_rss(client: httpx.AsyncClient | None = None) -> l
 
     own_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=15.0)
+        client = polite_client(timeout=15.0)
         own_client = True
 
     try:

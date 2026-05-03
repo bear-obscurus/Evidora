@@ -13,6 +13,7 @@ API-Key beantragen (kostenlos): https://console.cloud.google.com/apis/library/fa
 import os
 import logging
 import httpx
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -68,7 +69,7 @@ async def search_claimreview(analysis: dict) -> dict:
     all_results = []
     seen_urls = set()
 
-    async with httpx.AsyncClient(timeout=15.0) as client:
+    async with polite_client(timeout=15.0) as client:
         for query in queries[:2]:  # Max 2 queries
             try:
                 resp = await client.get(

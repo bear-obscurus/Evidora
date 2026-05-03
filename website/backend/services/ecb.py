@@ -2,6 +2,7 @@ import re
 
 import httpx
 import logging
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -284,7 +285,7 @@ async def search_ecb(analysis: dict) -> dict:
 
     results = []
 
-    async with httpx.AsyncClient(timeout=20.0) as client:
+    async with polite_client(timeout=20.0) as client:
         for series_info in matching[:3]:  # Max 3 series per request
             series_path = series_info["series"]
             url = f"{BASE_URL}/{series_path}"

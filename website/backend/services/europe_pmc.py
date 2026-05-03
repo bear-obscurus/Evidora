@@ -11,6 +11,7 @@ import asyncio
 
 import httpx
 import logging
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -81,7 +82,7 @@ async def search_europe_pmc(analysis: dict) -> dict:
         return {"source": "Europe PMC", "results": []}
 
     # Run up to 3 queries in parallel, merge and deduplicate
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with polite_client(timeout=30.0) as client:
         tasks = [_epmc_single_query(client, q) for q in queries[:3]]
         all_articles = await asyncio.gather(*tasks)
 

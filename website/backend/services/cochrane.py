@@ -1,5 +1,6 @@
 import httpx
 import os
+from services._http_polite import polite_client
 
 PUBMED_API_KEY = os.getenv("PUBMED_API_KEY", "")
 PUBMED_EMAIL = os.getenv("PUBMED_EMAIL", "")
@@ -15,7 +16,7 @@ async def search_cochrane(analysis: dict) -> dict:
     # Use the broadest query + Cochrane journal filter
     query = f'({" OR ".join(queries[:3])}) AND "Cochrane Database Syst Rev"[Journal]'
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with polite_client(timeout=30.0) as client:
         params = {
             "db": "pubmed",
             "term": query,

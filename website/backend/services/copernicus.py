@@ -4,6 +4,7 @@ import time
 
 import httpx
 import logging
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -395,7 +396,7 @@ async def _fetch_berkeley(client: httpx.AsyncClient | None = None) -> dict:
 
     close_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=60.0)
+        client = polite_client(timeout=60.0)
         close_client = True
 
     merged: dict = {}
@@ -618,7 +619,7 @@ async def search_copernicus(analysis: dict) -> dict:
 
     results = []
 
-    async with httpx.AsyncClient(timeout=20.0) as client:
+    async with polite_client(timeout=20.0) as client:
         # Fetch real temperature data from NASA GISS if claim is temperature-related
         if is_temperature:
             giss_data = await _fetch_nasa_giss(client)

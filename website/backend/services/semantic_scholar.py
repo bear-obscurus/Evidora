@@ -10,6 +10,7 @@ import os
 
 import httpx
 import logging
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -93,7 +94,7 @@ async def search_semantic_scholar(analysis: dict) -> dict:
         headers["x-api-key"] = S2_API_KEY
 
     # Run up to 3 queries in parallel, merge and deduplicate
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with polite_client(timeout=30.0) as client:
         tasks = [_s2_single_query(client, q, headers) for q in queries[:3]]
         all_papers = await asyncio.gather(*tasks)
 

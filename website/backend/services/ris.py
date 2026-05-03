@@ -40,6 +40,7 @@ import time
 from urllib.parse import urlencode
 
 import httpx
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -919,7 +920,7 @@ async def search_ris(analysis: dict) -> dict:
     # 2. BGBl-Treffer als Ergänzung (auch wenn Section-Refs schon vorhanden,
     #    da Novellen + Stammgesetz zusätzlichen Kontext liefern).
     if terms:
-        async with httpx.AsyncClient(timeout=15.0) as client:
+        async with polite_client(timeout=15.0) as client:
             all_refs_by_term: list[tuple[str, list[dict]]] = []
             for term in terms:
                 refs = await _search_ris_for_term(client, term)

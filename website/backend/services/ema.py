@@ -11,6 +11,7 @@ import time
 import logging
 
 import httpx
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -130,7 +131,7 @@ async def search_ema(analysis: dict) -> dict:
     if not entities:
         return {"source": "EMA (European Medicines Agency)", "type": "official_data", "results": []}
 
-    async with httpx.AsyncClient(timeout=60.0) as client:
+    async with polite_client(timeout=60.0) as client:
         medicines = await _load_medicines(client)
 
     if not medicines:

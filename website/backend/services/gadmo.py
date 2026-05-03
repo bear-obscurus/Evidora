@@ -2,6 +2,7 @@ import httpx
 import logging
 import re
 import time
+from services._http_polite import polite_client
 from xml.etree import ElementTree
 
 logger = logging.getLogger("evidora")
@@ -87,7 +88,7 @@ def _matches_keywords(item: dict, keywords: list[str]) -> bool:
 async def _fetch_all_feeds() -> list[dict]:
     """Fetch all GADMO RSS feeds and return combined items."""
     all_items = []
-    async with httpx.AsyncClient(timeout=15.0) as client:
+    async with polite_client(timeout=15.0) as client:
         for feed in FEEDS:
             try:
                 resp = await client.get(feed["url"])

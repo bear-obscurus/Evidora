@@ -9,6 +9,7 @@ License: CC BY 4.0
 
 import httpx
 import logging
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -213,7 +214,7 @@ async def search_worldbank(analysis: dict) -> dict:
         country_str += f";{EU_AGGREGATE}"
 
     try:
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        async with polite_client(timeout=30.0) as client:
             resp = await client.get(
                 f"{BASE_URL}/country/{country_str}/indicator/{indicator}",
                 params={

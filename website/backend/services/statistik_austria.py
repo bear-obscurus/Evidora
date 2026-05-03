@@ -22,6 +22,7 @@ import re
 from datetime import datetime
 
 import httpx
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -335,7 +336,7 @@ async def fetch_vpi(client: httpx.AsyncClient | None = None) -> list[dict]:
 
     close_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=30.0)
+        client = polite_client(timeout=30.0)
         close_client = True
 
     try:
@@ -392,7 +393,7 @@ async def fetch_health_expenditure(client: httpx.AsyncClient | None = None) -> l
 
     close_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=30.0)
+        client = polite_client(timeout=30.0)
         close_client = True
 
     try:
@@ -448,7 +449,7 @@ async def fetch_mortality(client: httpx.AsyncClient | None = None) -> dict:
 
     close_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=60.0)
+        client = polite_client(timeout=60.0)
         close_client = True
 
     try:
@@ -512,7 +513,7 @@ async def fetch_vgr(client: httpx.AsyncClient | None = None) -> list[dict]:
 
     close_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=30.0)
+        client = polite_client(timeout=30.0)
         close_client = True
 
     try:
@@ -566,7 +567,7 @@ async def fetch_migration(client: httpx.AsyncClient | None = None) -> dict:
 
     close_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=60.0)
+        client = polite_client(timeout=60.0)
         close_client = True
 
     try:
@@ -671,7 +672,7 @@ async def fetch_naturalizations(client: httpx.AsyncClient | None = None) -> dict
 
     close_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=30.0)
+        client = polite_client(timeout=30.0)
         close_client = True
 
     try:
@@ -742,7 +743,7 @@ async def fetch_arbeitsmarkt(client: httpx.AsyncClient | None = None) -> dict:
 
     close_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=30.0)
+        client = polite_client(timeout=30.0)
         close_client = True
 
     yearly: dict[int, dict] = {}
@@ -894,7 +895,7 @@ async def fetch_armut(client: httpx.AsyncClient | None = None) -> dict:
 
     close_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=30.0)
+        client = polite_client(timeout=30.0)
         close_client = True
 
     yearly: dict[int, dict] = {}

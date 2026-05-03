@@ -67,6 +67,7 @@ import time
 import httpx
 
 from services._http_polite import USER_AGENT
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -422,7 +423,7 @@ async def fetch_volksbegehren(
     # 2. Best-effort online refresh.
     close_client = False
     if client is None:
-        client = httpx.AsyncClient(timeout=30.0)
+        client = polite_client(timeout=30.0)
         close_client = True
     try:
         fresh = await _try_online_refresh(client)

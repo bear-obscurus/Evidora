@@ -7,6 +7,7 @@ on food safety, pesticides, additives, contaminants, nutrition, GMOs, etc.
 
 import httpx
 import logging
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -32,7 +33,7 @@ async def search_efsa(analysis: dict) -> dict:
     }
 
     try:
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        async with polite_client(timeout=30.0) as client:
             resp = await client.get(BASE_URL, params=params, headers=headers)
             resp.raise_for_status()
             data = resp.json()
