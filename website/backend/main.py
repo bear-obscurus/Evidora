@@ -77,6 +77,7 @@ from services.tier_natur_pack import search_tier_natur, claim_mentions_tier_natu
 from services.ernaehrungs_pack import search_ernaehrung, claim_mentions_ernaehrung_cached
 from services.recht_pack import search_recht, claim_mentions_recht_cached
 from services.energie_klima_pack import search_energie_klima, claim_mentions_energie_klima_cached
+from services.migration_pack import search_migration, claim_mentions_migration_cached
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -576,6 +577,16 @@ async def check_claim(request: Request):
         if claim_mentions_energie_klima_cached(claim):
             tasks.append(cached("Energie/Klima-Politik", search_energie_klima, analysis))
             queried_names.append("Energie/Klima-Politik (IPCC + IEA + Fraunhofer + UBA + JRC + EEA)")
+        # Migrations-Pack — methodische Disziplin: behoerdliche Einstufungen
+        # zitieren, NICHT eigene Wertungen; bei PKS Methodik-Caveats; bei
+        # MIXED-Bewertungen Differenzierung explizit. 6 Topics:
+        # demographic_replacement (BfV+bpb), migration_kriminalitaet
+        # (PKS-Caveats), sozialmagnet_asyl (IAB-BAMF-SOEP), abschiebungen
+        # (BAMF-Statistik), integration_gescheitert (IAB+OECD), asyl_arbeit
+        # (§ 61 AsylG).
+        if claim_mentions_migration_cached(claim):
+            tasks.append(cached("Migrations-Konsens", search_migration, analysis))
+            queried_names.append("Migrations-Konsens (BfV + bpb + IAB + DIW + OECD + BKA + Mediendienst)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

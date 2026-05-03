@@ -148,6 +148,7 @@ _AUTHORITATIVE_INDICATORS = (
     "ernaehrung_konsens_fact",           # Ernährungs-Pack (DGE + Cochrane + Mayo + Harvard + NHS + EFSA)
     "recht_konsens_fact",                # Recht-/Rechtsmythen-Pack (RIS + BGBl + BGH/OGH + AK)
     "energie_klima_konsens_fact",        # Energie/Klima-Politik-Pack (IPCC + IEA + Fraunhofer)
+    "migration_konsens_fact",            # Migrations-Pack (BfV + bpb + IAB + DIW + OECD + BKA)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

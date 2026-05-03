@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-03",
+  "source_label": "Verfassungsschutz + bpb + BAMF + IAB + DIW + OECD + BKA + Mediendienst Integration",
+  "facts": [
+    {
+      "id": "demographic_replacement_2026",
+      "topic": "demographic_replacement_mythos",
+      "scope": "'Großer Austausch' / 'Bevölkerungsaustausch' — als rechtsextremistische Theorie behördlich eingestuft",
+      "year": 2024,
+      "headline": "'Großer Austausch' wird vom Verfassungsschutz + bpb als rechtsextremistische Verschwörungserzählung eingestuft",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Methodisch sauber: Wir bewerten KEINE politischen Bewegungen oder Personen. Aber wir zitieren BEHÖRDLICHE Einstufungen. BfV (Bundesamt für Verfassungsschutz, DE), bpb (Bundeszentrale für politische Bildung) und IDZ Jena stufen die Erzählung vom 'Großen Austausch' / 'Bevölkerungsaustausch' / 'Umvolkung' als rechtsextremistische und antisemitische Verschwörungserzählung ein. Behauptungen, eine 'Elite' / 'Globalisten' / 'die EU' / 'Die Juden' steuerten gezielt eine demografische Auswechslung der Bevölkerung, sind FALSCH bzw. verschwörungstheoretisch — empirisch nicht belegt + auf antisemitischen Stereotypen aufgebaut.",
+        "bfv_einstufung": "Bundesamt für Verfassungsschutz (BfV, DE), Präsident Thomas Haldenwang Oktober 2019: Die 'Neue Rechte' verbreite die Verschwörungstheorie der 'Umvolkung' und vermittle 'das Gefühl, dass etwas geschehen müsse, um solche vermeintlichen Entwicklungen zu stoppen.' Charakterisiert als 'geistiger Nährboden' für Anschläge wie Halle 2019.",
+        "bpb_einordnung": "bpb (Bundeszentrale für politische Bildung) Dossier 'Erzählung vom großen Austausch' (Update 2023): rassistische und antisemitische Verschwörungserzählung. Kerngedanke: 'globalistische' / 'jüdische' Eliten wechseln gezielt 'die weiße europäische Bevölkerung' aus. Antisemitische Stereotype bilden Grundgerüst.",
+        "identitaere_bewegung": "Identitäre Bewegung adoptierte und verbreitete den Mythos in Europa + Nordamerika seit ~2012. Wird in DE/AT vom Verfassungsschutz beobachtet (DE als gesichert rechtsextrem 2021, AT-DSN seit Jahren).",
+        "rechtsterror_bezug": "Rechtsterroristische Anschläge mit explizitem Bezug auf 'Großen Austausch'-Theorie: Christchurch 2019 (51 Tote, Bekennerschreiben), El Paso 2019 (23 Tote), Halle 2019 (2 Tote), Buffalo 2022 (10 Tote). Täter zitierten die Theorie direkt in Bekennerschreiben.",
+        "demografie_realitaet": "Empirische Demografie: DESTATIS, Statistik AT, Eurostat zeigen — Bevölkerungs-Veränderungen in DACH seit 1990 sind GEMESSEN: Geburtenrückgang + Migration aus EU + außerhalb EU + Sterblichkeit. Ein 'gezielt gesteuerter Austausch' mit Plan ist EMPIRISCH nicht belegbar — es gibt keine politische Entität mit dieser Strategie.",
+        "context": "Wir zitieren Behörden-Einstufungen, weil das die methodisch saubere Vorgehensweise ist. Wir bewerten KEINE politischen Bewegungen oder Personen. Wer die Theorie verbreitet, kann sich damit politisch legal äußern — aber inhaltlich ist sie als Verschwörungserzählung von BfV + bpb + IDZ Jena dokumentiert."
+      },
+      "context_notes": [
+        "Antisemitismus-Klausel (vgl. IHRA-Arbeitsdefinition + Bundeszentrale-Dokumente): 'Großer Austausch' baut typischerweise auf antisemitischen Vorstellungen einer 'jüdischen Welt-Verschwörung' auf — auch wenn nicht in jedem Einzelfall explizit benannt.",
+        "Differenzierung: Aussagen über tatsächliche demografische Veränderungen (Geburtenrückgang, Migration) sind faktisch belegbar und legitime Politik-Debatte — aber das ist NICHT die 'Großer Austausch'-Theorie.",
+        "Verfassungsschutz-Beobachtung der Identitären Bewegung: DE als gesichert rechtsextrem 2021, AT-DSN listet sie als rechtsextremistisches Sammelbecken."
+      ],
+      "claim_phrasings_handled": [
+        "Es findet ein großer Bevölkerungsaustausch statt",
+        "Eliten planen einen Bevölkerungsaustausch in Europa",
+        "Die EU steuert eine Umvolkung"
+      ],
+      "trigger_keywords": [
+        "grosser austausch", "großer austausch",
+        "bevoelkerungsaustausch", "bevölkerungsaustausch",
+        "umvolkung",
+        "migrant ersetz", "weisse ersetz", "weiße ersetz",
+        "bevoelkerung ausgetauscht", "bevölkerung ausgetauscht"
+      ],
+      "trigger_composite": [
+        ["austausch", "umvolkung", "ausgetauscht", "ersetzt", "ersetzen", "auswechs"],
+        ["bevoelkerung", "bevölkerung", "deutsche", "europaeer", "europäer", "weisse", "weiße", "elite", "globalist", "eu"]
+      ],
+      "source_label": "Bundesamt für Verfassungsschutz (BfV) + bpb + IDZ Jena",
+      "source_url": "https://www.bpb.de/themen/rechtsextremismus/dossier-rechtsextremismus/549525/die-erzaehlung-vom-grossen-austausch/",
+      "secondary_url": "https://www.idz-jena.de/im-dialog/weitere-publikationen/der-grosse-austausch"
+    },
+    {
+      "id": "migration_kriminalitaet_2026",
+      "topic": "migration_kriminalitaet_pauschal_mythos",
+      "scope": "Pauschale Aussagen 'Migranten sind krimineller' — Methodik der PKS-Statistik",
+      "year": 2024,
+      "headline": "PKS-Daten zu 'Nichtdeutschen' enthalten massive Methodik-Caveats — Vergleichs-/Anzeigequoten + Aufenthalts-Verzerrungen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Pauschale Aussagen 'Migranten / Ausländer sind krimineller als Deutsche' sind METHODISCH IRREFÜHREND, ohne dass alle Caveats der PKS bekannt sind. BKA-PKS und Wissenschaft (Kriminologe Thomas Feltes, MaxPlanck-Institut Freiburg, Deutsches Institut für Wirtschaftsforschung): Die Kategorie 'Nichtdeutsche' in der PKS hat (1) keine homogene Bevölkerung, (2) wird durch Anzeige-Verhalten (Migranten häufiger angezeigt), (3) Polizei-Kontrolldichte (Racial Profiling, Sammelunterkünfte) und (4) demografische Struktur (junge Männer überrepräsentiert) verzerrt. Vergleichbare nicht-migrantische Vergleichsgruppen (junge Männer 18-30) zeigen ähnliche Kriminalitätsraten.",
+        "pks_definition_problem": "BKA selbst (PKS-Methodik-Hinweise): Kategorie 'Nichtdeutsche' umfasst Touristen, EU-Bürger, Geflüchtete, Studenten, Geschäftsreisende — keine homogene Gruppe. 'Deutsche' sind teils Personen mit Migrationsgeschichte, die eingebürgert wurden. PKS misst Tatverdächtige nach Staatsangehörigkeit, nicht nach 'Migrationshintergrund'.",
+        "anzeigeverhalten_verzerrung": "Empirische Studien (z.B. Pfeiffer/Wetzels, KFN Hannover): Straftaten mit als 'Migranten' / 'Ausländer' wahrgenommenen Tatverdächtigen werden signifikant häufiger angezeigt — Anzeige-Quoten-Differenz liegt bei +10 bis +30 % je nach Delikt. Daher erscheinen 'Nichtdeutsche' auch ohne reales Mehr-Delikt höher in PKS.",
+        "racial_profiling": "Studien zu Polizeikontrollen (Bürgerrechte & Polizei/CILIP, KFN, Deutsches Polizei-Forschungsinstitut): Personen, die als 'ausländisch' wahrgenommen werden, werden ca. doppelt so häufig kontrolliert wie 'deutsch wahrgenommene' Personen. Kontrollen produzieren Statistik.",
+        "sammelunterkuenfte_effekt": "In Sammelunterkünften wird Polizei + Bewachung früher gerufen (Mitarbeiter-Pflicht statt informelle Konfliktlösung wie in Wohnungs-Nachbarschaft). Resultat: Mehr Tatverdächtigen-Erfassungen pro Bewohner.",
+        "demografie_kontrolle": "Wenn man Alter + Geschlecht + Sozialstruktur + Wohnungs-Situation KONSTANT HÄLT, schrumpfen oder verschwinden die Kriminalitäts-Differenzen. Bei jungen Männern 18-30 in beengten Wohnverhältnissen ohne Erwerbstätigkeit ähnliche Kriminalitätsraten unabhängig von Staatsangehörigkeit.",
+        "feltes_zitat": "Kriminologe Thomas Feltes (Univ. Bochum): 'Die PKS ist keine zuverlässige Grundlage für Aussagen zu Kriminalitätsentwicklung. Sie ist primär ein Tätigkeitsbericht der Polizei — sie zeigt, womit sich die Polizei beschäftigt.' (Lto.de + Sonntagsblatt-Interview).",
+        "context": "Es gibt KEINEN seriösen Sozialwissenschaftler, der die Aussage 'Migranten sind grundsätzlich krimineller als Deutsche' im PKS-Sinne stützt. Diese Aussage ist methodisch nicht haltbar. Differenzierte Aussagen (z.B. 'in dieser Gruppe / in diesem Delikt-Bereich / in dieser Zeit' gibt es Auffälligkeiten) sind möglich — aber nur mit den Caveats."
+      },
+      "context_notes": [
+        "PKS misst Tatverdächtige (Verdacht, vor Anklage). Tatsächliche Verurteilungen werden in der Strafverfolgungsstatistik (StVS) abgebildet — meist deutlich niedrigere Zahlen.",
+        "BMI veröffentlicht jährlich PKS am Frühling. Korrekte Lesart: Tendenzen über mehrere Jahre, mit Methodik-Caveats. Pauschale Headlines aus einzelnen Spitzen-Werten sind irreführend.",
+        "Ähnliche Verzerrungs-Probleme existieren in BKA-Migrationskriminalitäts-Lagebild — separates Reporting für 'Zuwanderer'-Kategorie."
+      ],
+      "claim_phrasings_handled": [
+        "Migranten sind krimineller als Deutsche",
+        "Ausländer begehen mehr Straftaten",
+        "Geflüchtete sind eine Sicherheitsgefahr"
+      ],
+      "trigger_keywords": [
+        "migranten krimineller", "auslaender kriminalitaet", "ausländer kriminalität",
+        "fluechtlinge kriminell", "flüchtlinge kriminell",
+        "asyl krimineller", "auslaender straftaten", "ausländer straftaten"
+      ],
+      "trigger_composite": [
+        ["migrant", "migranten", "auslaender", "ausländer", "auslaend", "ausländ", "fluechtling", "flüchtling", "asyl", "geflüchtete", "gefluechtete", "zuwanderer"],
+        ["kriminell", "kriminalitaet", "kriminalität", "straftaten", "straftat", "verbrechen", "delikt", "gefahr", "gefährlich", "gefaehrlich", "krimineller"]
+      ],
+      "source_label": "BKA-PKS Methodik + Feltes Univ. Bochum + KFN Hannover + LTO + correctiv",
+      "source_url": "https://wr-magazin.de/themen/polizeiliche-kriminalstatistik-gewalt-migration/",
+      "secondary_url": "https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/PolizeilicheKriminalstatistik/PKS2024/Polizeiliche_Kriminalstatistik_2024/Polizeiliche_Kriminalstatistik_2024_node.html"
+    },
+    {
+      "id": "sozialmagnet_asyl_2026",
+      "topic": "sozialmagnet_asyl_mythos",
+      "scope": "Behauptung, Sozialleistungen seien primärer Pull-Faktor für Asylsuchende",
+      "year": 2024,
+      "headline": "Sozialleistungen sind KEIN primärer Pull-Faktor — IAB-BAMF-SOEP-Befragung: Menschenrechte (73 %), Bildung (43 %), Sicherheit-Gefühl (42 %) wichtiger",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Sozialleistungen ziehen Asylsuchende nach DE' ist FALSE/MOSTLY_FALSE im wissenschaftlichen Konsens. IAB-BAMF-SOEP-Befragung Geflüchteter (Brücker et al., DIW + IAB + BAMF Forschungszentrum, seit 2016 jährlich, ~2.000 Befragte): Bei der Wahl Deutschlands als Zielland nennen Geflüchtete Menschenrechte (73 %), Bildung (43 %), 'Gefühl willkommen zu sein' (42 %), Bekannte vor Ort (~30 %) deutlich häufiger als Sozialleistungen (26 %). Migrationsforschung-Konsens: Pull-Effekt durch Sozialleistungen ist nicht nachweisbar. Alle wesentlichen Migrationsforscher-Studien stützen das.",
+        "iab_bamf_soep_2016": "IAB-BAMF-SOEP-Befragung 2016 (Brücker et al., DIW Berlin + IAB Nürnberg + BAMF FZ): Frage 'Warum Deutschland?'. Top-Antworten: Achtung der Menschenrechte 73 %, Bildungssystem 43 %, Gefühl willkommen zu sein 42 %, Sozialleistungen 26 %. Mehrfach-Antworten möglich. Befragte: ~2.000 Asyl-Antragsteller 2013-2016.",
+        "wissenschaftliche_position": "Migrationsforscher-Konsens (Brücker, Bauer, Zimmermann, Hatton): Pull-Effekt durch Sozialleistungen empirisch nicht nachgewiesen. Hauptpunkte: Politische/persönliche Sicherheit (Krieg, Verfolgung) treibt Asyl-Migration; vor Ort lebende Communities + Sprachverständnis sind sekundäre Faktoren; Sozialleistungs-Niveau wird selten/falsch eingeschätzt vor der Migration.",
+        "diw_meta_analyse": "DIW-Meta-Analyse 2016 (Wochenbericht 46): EU-Vergleichsstudie zu Sozialleistungen vs Asyl-Antragszahlen — keine signifikante Korrelation. Länder mit höheren Sozialleistungen (Skandinavien) erhalten NICHT proportional mehr Anträge.",
+        "schlepperinfos": "Realität der Information: Geflüchtete + Schlepper-Infos beziehen sich auf Anerkennungs-Quoten (Politik), nicht primär auf Sozialleistungs-Niveau. Pull-Faktor ist rechtliche Schutz-Wahrscheinlichkeit, nicht Sozialgeld-Höhe.",
+        "kostenoekonomie": "Asyl-Bewerber-Leistungen liegen DEUTLICH unter Bürgergeld + ALG-II — explizit gesetzlich geregelt (AsylbLG, Sozialhilfe-Niveau −20 %). Wer aus Sozialleistungs-Motivation kommt, kalkuliert ungenau.",
+        "context": "Der Mythos vom 'Sozialmagneten' ist politisch resonant, wissenschaftlich aber gut widerlegt. Empirische Studien aus 2010er und 2020ern zeigen konsistent, dass Asylzahlen primär durch Konflikte + Verfolgungslagen + Anerkennungspraxis getrieben werden — nicht durch Sozialleistungs-Niveau."
+      },
+      "context_notes": [
+        "Differenzierung: Innerhalb der EU gibt es Anerkennungs-Quoten-Unterschiede (Stichwort 'Hinkende Anerkennung'). Geflüchtete kalkulieren oft danach, das ist legitim und nicht 'Sozial-Pull'.",
+        "Familienzusammenführung ist real ein Pull-Faktor — aber das ist kein 'Sozialmagnet', sondern legitimer Grundrechts-Aspekt (Art. 6 GG, Art. 8 EMRK).",
+        "AT-Grundversorgung-System: ähnlich Asyl-bewerber-Leistungen DE, deutlich unter Mindestsicherung. Auch hier kein Sozialmagnet-Effekt nachweisbar."
+      ],
+      "claim_phrasings_handled": [
+        "Asylsuchende kommen wegen der Sozialleistungen",
+        "Sozialleistungen sind ein Pull-Faktor für Asylsuchende",
+        "Migranten kommen wegen dem deutschen Sozialsystem"
+      ],
+      "trigger_keywords": [
+        "asyl sozialleistung pull",
+        "asyl sozialleistung magnet",
+        "fluechtlinge sozialleistung magnet", "flüchtlinge sozialleistung magnet",
+        "asyl deutschland sozialgeld",
+        "sozialmagnet"
+      ],
+      "trigger_composite": [
+        ["asyl", "asylsuchende", "fluechtling", "flüchtling", "geflüchtete", "gefluechtete", "migration", "migrant", "zuwanderer"],
+        ["sozialleistung", "sozialgeld", "sozialhilfe", "sozialsystem", "sozialstaat", "buergergeld", "bürgergeld", "alg", "pull-faktor", "pullfaktor", "pull faktor", "magnet", "sozialmagnet", "wegen geld", "wegen sozial", "wegen dem"]
+      ],
+      "source_label": "IAB-BAMF-SOEP-Befragung 2016 + DIW-Meta-Analyse + Brücker et al.",
+      "source_url": "https://mediendienst-integration.de/fluechtlinge/sozialleistungen/sind-sozialleistungen-ein-pull-faktor/",
+      "secondary_url": "https://www.diw.de/de/diw_01.c.538695.de/projekte/iab-bamf-soep-befragung_gefluechteter_in_deutschland.html"
+    },
+    {
+      "id": "abschiebungen_simpel_2026",
+      "topic": "abschiebungen_simpel_mythos",
+      "scope": "Behauptung, Abschiebungen seien einfach möglich, scheitern nur an politischer Unwilligkeit",
+      "year": 2024,
+      "headline": "Abschiebungs-Realität DE 2024: 8,28 % Quote der Ausreisepflichtigen, 33.717 gescheiterte Versuche — primär nicht Politik, sondern Identitäts-Klärung + Dublin-Hindernisse",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Abschiebungen sind einfach möglich, scheitern nur an politischer Unwilligkeit' ist FALSE/MOSTLY_FALSE im operativen Sinn. Bundestags-Drucksache 21/1532 (Sept 2025): Im Jahr 2024 standen 20.084 erfolgreichen Abschiebungen 33.717 GESCHEITERTE Abschiebeversuche gegenüber. Hauptgründe: (1) ungeklärte Identität (~30 % der Fälle, fehlende Reisedokumente), (2) Dublin-III-Überstellungs-Probleme (40k+ Verfahren gingen 2024 auf DE über wegen Fristablauf), (3) gesundheitliche Gründe (zielstaatsbezogene Abschiebungs-Verbote), (4) Familien-Trennungs-Verhinderungen (EMRK Art. 8). Die Aussage 'kein politischer Wille' ist Kurzschluss — operativ ist Abschiebung komplex.",
+        "abschiebungen_2024": "Bundestags-Drucksache 21/1532: 20.084 erfolgreiche Abschiebungen 2024. 33.717 gescheiterte Abschiebeversuche. Quote 8,28 % bezogen auf Ausreisepflichtige zu Jahresbeginn (~226.882 Stand 30.06.2024).",
+        "ausreisepflichtige_struktur": "Stand 30.06.2024: 226.882 vollziehbar Ausreisepflichtige, davon 182.727 GEDULDET (§ 60a AufenthG). Duldung = Aussetzung der Abschiebung, oft wegen rechtlicher / gesundheitlicher / praktischer Gründe.",
+        "identitaets_problem": "Baden-Württemberg-Bilanz 2024: bei 5.293 Personen fehlende Reisedokumente, bei 2.278 Personen Identitäts-Täuschung — knapp 1/3 der Aussetzungen aus Identitätsgründen. Herkunftsländer-Botschaften müssen Pässe ausstellen — manche Länder kooperieren wenig (Eritrea, Iran, Afghanistan).",
+        "dublin_hindernisse": "Dublin-III-VO: Asylantragsteller sollten in den ersteinreisenden EU-Mitgliedstaat überstellt werden. 2024 gingen 40.000+ Verfahren auf DE über, weil Dublin-Überstellung an Frankreich/Italien/Polen scheiterte (Frist verstrichen, Aufnahme verweigert).",
+        "rechtliche_huerden": "Zielstaatsbezogene Abschiebungsverbote (§ 60 Abs. 5 + 7 AufenthG), gesundheitliche Gründe (PTBS, Behandlungs-Verfügbarkeit im Zielstaat), EMRK Art. 8 Familienleben — alle reduzieren faktisch Abschiebungs-Möglichkeiten. Diese sind RECHTLICH zwingend, nicht 'politische Unwilligkeit'.",
+        "kosten": "Eine Abschiebung kostet im Schnitt 4.000-15.000 EUR (Charterflug, Begleitung, Vorbereitung). Sammelcharter günstiger pro Person, aber logistisch aufwendig.",
+        "context": "Realistische Aussage: Abschiebungs-Praxis ist operativ komplex — rechtlich, diplomatisch, logistisch. Pauschale 'Politik will nicht' verkennt strukturelle Hindernisse. Politische Lockerungen wären möglich (z.B. striktere Identitäts-Klärung in Aufnahmestellen), aber nicht alle Hindernisse politisch lösbar (Botschafts-Kooperation, EMRK)."
+      },
+      "context_notes": [
+        "Vorderasien (Syrien): keine Abschiebungen wegen Bürgerkrieg-Lage — humanitäres Abschiebungs-Verbot (Vereinbarung Innenminister-Konferenz IMK).",
+        "Afghanistan: Wiederaufnahme einzelner Abschiebungen 2024 nach Vereinbarung mit Taliban-Regierung umstritten + selten.",
+        "AT-Bilanz: Fremdenrechtsbericht 2024 (BFA): ähnliche Hürden, andere Detail-Zahlen. AT-Quote vergleichbar im Bereich 8-12 %."
+      ],
+      "claim_phrasings_handled": [
+        "Abschiebungen sind einfach möglich",
+        "Es gibt keinen politischen Willen für Abschiebungen",
+        "Politik blockiert Abschiebungen"
+      ],
+      "trigger_keywords": [
+        "abschiebung einfach",
+        "abschiebung politik blockiert",
+        "abschiebungen scheitern politik",
+        "abschiebung will nicht",
+        "abschiebung verhindert"
+      ],
+      "trigger_composite": [
+        ["abschiebung", "abschiebungen", "ausreisepflicht", "duldung", "ausreis"],
+        ["einfach", "moeglich", "möglich", "politik", "wille", "blockier", "verhindert", "scheitert", "scheitern", "gescheitert", "will nicht", "untaetig", "untätig"]
+      ],
+      "source_label": "BT-Drucksache 21/1532 + bpb Migration + BAMF Bundesamt in Zahlen 2024",
+      "source_url": "https://www.bpb.de/themen/migration-integration/zahlen-zu-asyl/265765/abschiebungen-in-deutschland/",
+      "secondary_url": "https://dserver.bundestag.de/btd/21/015/2101532.pdf"
+    },
+    {
+      "id": "integration_gescheitert_2026",
+      "topic": "integration_gescheitert_mythos",
+      "scope": "Pauschale Behauptung 'Integration ist gescheitert'",
+      "year": 2024,
+      "headline": "Integration in DE ist NICHT pauschal gescheitert — IAB 2024: Beschäftigungsquote Geflüchteter nähert sich DE-Schnitt nach 7-10 Jahren an",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die pauschale These 'Integration in Deutschland ist gescheitert' ist FALSE/MOSTLY_FALSE — empirisch nicht haltbar. IAB Kurzbericht 17/2025 + 10/2024 + OECD International Migration Outlook 2025: Beschäftigungsquote der 2013-2019-Geflüchteten erreicht nach 7-10 Jahren ~64-68 %, nähert sich dem deutschen Durchschnitt (~78 %) an. 2. Generation Migrationshintergrund hat in DE-OECD-Tests gemischte Ergebnisse — manche Gruppen aufgeholt, andere mit Bildungs-Lücken. Pauschale 'Integration gescheitert' verkennt die Datenlage.",
+        "iab_beschaeftigungsquote": "IAB Kurzbericht 17/2025: Geflüchtete der Kohorte 2013-2019 erreichen nach 8 Jahren Beschäftigungsquote ~64 % (Männer ~76 %, Frauen ~38 %). Nach 10 Jahren angenähert an DE-Durchschnitt. Auf Niveau anderer EU-Länder mit ähnlichen Aufnahme-Zahlen (Schweden, NL).",
+        "iab_2024_kohorten": "IAB Kurzbericht 10/2024: Kohorten-Vergleich. 2014-Kohorte hatte nach 5 Jahren ~50 % Beschäftigungsquote, nach 8 Jahren ~64 %. Spätere Kohorten 2019-2022 zeigen ähnliche Verläufe — aber langsamer durch Pandemie-Effekt.",
+        "oecd_imo_2025": "OECD International Migration Outlook 2025 (Germany Country Note): DE hat Integrationspolitik durch das Staatsangehörigkeitsmodernisierungsgesetz (Juni 2024) erweitert — Mindestaufenthaltsdauer 8 → 5 Jahre, Doppelpass uneingeschränkt zulässig. Integrationskurse für Asylbewerber erweitert.",
+        "differenzierung_generation": "1. Generation: Sprache + Bildungs-Anerkennung + Arbeitsmarkt-Eingang sind Hürden. 2. Generation: in Schul-Tests (PISA, Bildungsstudien) bei einigen Subgruppen unterhalb des DE-Durchschnitts (Türkei-Migration vor 1990, Roma-Stichprobe), bei anderen oberhalb (Vietnam-Migration, Asien-Migration nach 1990).",
+        "differenzierung_herkunft": "OECD-Daten: starke Differenzen je Herkunftsregion. EU-Migration: weitestgehend integriert (Bildung + Arbeit DE-Schnitt-Niveau). Vietnam-/asiatische Migration: über Bildungs-DE-Schnitt. MENA-Region: Aufholbedarf, vor allem bei weiblichen Migrantinnen. Westbalkan: gemischtes Bild.",
+        "kosten_ertrag_studie": "Sachverständigenrat 2023: Migration von 2015-2020 wird mittelfristig (10+ Jahre) als FISKAL-NEUTRAL bis -POSITIV bewertet — Steuerabgaben + Sozialversicherungs-Beiträge übersteigen Sozialleistungen sobald Erwerbstätigkeits-Quote >55 %.",
+        "context": "Pauschale 'Integration gescheitert' ist primär politisches Narrativ. Differenzierte Befunde: Integration funktioniert in vielen Bereichen, hat strukturelle Probleme in anderen, dauert Jahrzehnte (Generations-Skala). Kein einziger seriöser Migrationsforscher unterstützt die Pauschal-These."
+      },
+      "context_notes": [
+        "Sprachkurs-Investition: 1 EUR Sprachkurs-Investition bringt im Schnitt 4-7 EUR Lebensspann-Steueraufkommen zurück (Sachverständigenrat).",
+        "Bildungs-System hat Verbesserungspotenzial: deutsches Schul-System reproduziert sozialen Status stärker als skandinavische — auch ohne Migrationsbezug.",
+        "Pegida + AfD-Diskurs nutzte Pauschalisierung. Daten widersprechen, was politische Bewegung stört."
+      ],
+      "claim_phrasings_handled": [
+        "Integration in Deutschland ist gescheitert",
+        "Migranten integrieren sich nicht",
+        "Die Integrationspolitik ist ein Misserfolg"
+      ],
+      "trigger_keywords": [
+        "integration gescheitert",
+        "integration funktioniert nicht",
+        "integration deutschland gescheitert",
+        "migranten integrieren sich nicht"
+      ],
+      "trigger_composite": [
+        ["integration", "integriert", "integrieren"],
+        ["gescheitert", "scheitert", "misserfolg", "funktioniert nicht", "klappt nicht", "katastrophe", "fehlgeschlagen", "kollabiert", "versagt"]
+      ],
+      "source_label": "IAB Kurzbericht 17/2025 + OECD International Migration Outlook 2025",
+      "source_url": "https://iab.de/presseinfo/10-jahre-fluchtmigration-beschaeftigungsquote-von-gefluechteten-naehert-sich-dem-durchschnitt-in-deutschland-an/",
+      "secondary_url": "https://www.oecd.org/en/publications/international-migration-outlook-2025_ae26c893-en/full-report/germany_8ad94e8b.html"
+    },
+    {
+      "id": "asyl_arbeitsverbot_2026",
+      "topic": "asyl_arbeitsverbot_mythos",
+      "scope": "Asylsuchende und Arbeitsmarkt-Zugang in DE",
+      "year": 2024,
+      "headline": "Asylsuchende dürfen nach 3 Monaten arbeiten — KEIN dauerhaftes Arbeitsverbot, aber Beschäftigungserlaubnis erforderlich",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Asylsuchende dürfen in DE nicht arbeiten' ist FALSE/MISLEADING. § 61 AsylG (Asylgesetz, DE): Asylsuchende dürfen nach 3 Monaten Aufenthalt in DE arbeiten — vorausgesetzt Beschäftigungserlaubnis durch Bundesagentur für Arbeit. Während des Aufenthalts in der Aufnahmeeinrichtung gilt allerdings Arbeitsverbot. Asylsuchende aus 'sicheren Herkunftsländern' (§ 29a AsylG) bleiben dauerhaft mit Arbeitsverbot belegt. Die populäre Aussage 'Asylsuchende sitzen herum und dürfen nichts machen' ignoriert die Differenzierung.",
+        "paragraph_61_asyl_mechanik": "§ 61 AsylG: (1) Während Aufnahmeeinrichtung-Aufenthalt: Arbeitsverbot. (2) Nach 3 Monaten + Verlassen der AE: Beschäftigungserlaubnis MÖGLICH (Bundesagentur muss zustimmen, oder § 32 BeschV: keine Zustimmung erforderlich z.B. bei akademischer Ausbildung).",
+        "ausnahme_sichere_herkunft": "§ 29a AsylG: 'Sichere Herkunftsländer' (z.B. Westbalkan-Staaten, einige afrikanische Länder, Georgia, Moldavien). Antragsteller, die nach 31.08.2015 Antrag stellten, haben dauerhaft Arbeitsverbot während Asylverfahren. Begründung: Asyl-Aussichten als gering eingestuft.",
+        "duldungsstatus_arbeit": "Geduldete Personen (§ 60a AufenthG, abgelehnt aber nicht abgeschoben): nach 3 Monaten ggf. Arbeitserlaubnis. 'Ausbildungsduldung' + 'Beschäftigungsduldung' erweitern Optionen seit 2019.",
+        "anerkannte_status": "Anerkannte Asylberechtigte + Schutzsuchende mit anerkanntem Status: VOLLE Arbeitsmarkt-Erlaubnis (§ 31 AufenthV). Kein Vorrang-Test, keine Beschäftigungserlaubnis nötig.",
+        "praxis_huerden": "Praktische Hürden: Sprachkenntnisse (Sprachkurs-Wartezeiten), Berufsabschluss-Anerkennung (lange Dauer bei reglementierten Berufen), Wohnortbindung, Arbeitgeber-Akzeptanz. Diese erschweren Arbeit-Aufnahme zusätzlich.",
+        "iab_befund_2024": "IAB-BAMF-SOEP 2024: Beschäftigungsquote im Asylverfahren <10 %. NACH Anerkennung steigt sie nach 5 Jahren auf ~50 %, nach 8 Jahren ~64 %.",
+        "context": "Faktisch korrekt: Asylsuchende sind in den ersten 3-9 Monaten überwiegend nicht erwerbstätig. Das ist NICHT Arbeitsverbot, sondern Mix aus Aufnahmeeinrichtungs-Aufenthalt + Wartezeit + Sprachhürden. Pauschale Aussage 'sie dürfen nicht arbeiten' verkennt die rechtliche Differenzierung."
+      },
+      "context_notes": [
+        "Bundestags-Drucksache 536/24 (Bundesrat 2024): Diskussion einer Reform mit kürzerer Wartezeit, schnellerer Beschäftigungserlaubnis. Kontroverse Position.",
+        "AT-Recht: § 7 AsylG-Vollzugsgesetz + Grundversorgungs-Vereinbarung. Asylsuchende dürfen ab 3 Monaten in saisonale + gemeinnützige Beschäftigung — strikter als DE.",
+        "EU-Aufnahme-RL 2013/33/EU: schreibt vor, dass Mitgliedstaaten Asylsuchenden binnen 9 Monaten Arbeitsmarkt-Zugang bieten. DE-Fristen mit 3 Monaten innerhalb dieser EU-Vorgabe."
+      ],
+      "claim_phrasings_handled": [
+        "Asylsuchende dürfen in Deutschland nicht arbeiten",
+        "Es gibt ein dauerhaftes Arbeitsverbot für Flüchtlinge",
+        "Asylbewerber sitzen herum, weil sie nicht arbeiten dürfen"
+      ],
+      "trigger_keywords": [
+        "asyl arbeitsverbot",
+        "fluechtlinge arbeit verboten", "flüchtlinge arbeit verboten",
+        "asyl darf nicht arbeiten",
+        "asyl beschaeftigungsverbot", "asyl beschäftigungsverbot"
+      ],
+      "trigger_composite": [
+        ["asyl", "asylsuchende", "asylbewerber", "fluechtling", "flüchtling", "geflüchtete", "gefluechtete"],
+        ["arbeitsverbot", "arbeit verboten", "darf nicht arbeit", "duerfen nicht arbeit", "dürfen nicht arbeit", "duerfen nicht in", "dürfen nicht in", "nicht arbeit", "beschaeftigungsverbot", "beschäftigungsverbot", "kein arbeit", "sitzen herum", "untaetig", "untätig"]
+      ],
+      "source_label": "§ 61 AsylG + Informationsverbund Asyl & Migration + BMAS",
+      "source_url": "https://www.gesetze-im-internet.de/asylvfg_1992/__61.html",
+      "secondary_url": "https://www.bmas.de/DE/Arbeit/Migration-und-Arbeit/Flucht-und-Aysl/Arbeitsmarktzugang-fuer-Gefluechtete/arbeitsmarktzugang-fuer-gefluechtete.html"
+    }
+  ]
+}
