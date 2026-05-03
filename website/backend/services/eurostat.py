@@ -631,6 +631,140 @@ DATASET_MAP = {
         "params": {"c_resid": "TOTAL", "nace_r2": "I551-I553", "unit": "NR", "lastTimePeriod": "5"},
         "unit": "Übernachtungen",
     },
+    # Sprint 2026-05-03: Live-API-Erweiterung (Mittel #3)
+    # Lohn / Verdienst — Brutto-Verdienst pro Stunde im Industrie+Dienstleistungs-Sektor
+    "lohn": {
+        "dataset": "earn_ses_pub2s",
+        "label": "Brutto-Stundenverdienst (Median)",
+        "label_en": "Gross Hourly Earnings (Median)",
+        "params": {"nace_r2": "B-S_X_O", "indic_se": "MED_E_HR", "unit": "EUR", "sex": "T", "age": "Y_GE16", "lastTimePeriod": "3"},
+        "unit": "EUR/Stunde",
+    },
+    "verdienst": {
+        "dataset": "earn_ses_pub2s",
+        "label": "Brutto-Stundenverdienst (Median)",
+        "label_en": "Gross Hourly Earnings (Median)",
+        "params": {"nace_r2": "B-S_X_O", "indic_se": "MED_E_HR", "unit": "EUR", "sex": "T", "age": "Y_GE16", "lastTimePeriod": "3"},
+        "unit": "EUR/Stunde",
+    },
+    "wages": {
+        "dataset": "earn_ses_pub2s",
+        "label": "Brutto-Stundenverdienst (Median)",
+        "label_en": "Gross Hourly Earnings (Median)",
+        "params": {"nace_r2": "B-S_X_O", "indic_se": "MED_E_HR", "unit": "EUR", "sex": "T", "age": "Y_GE16", "lastTimePeriod": "3"},
+        "unit": "EUR/Stunde",
+    },
+    # Armuts-Quote (At-risk-of-poverty rate, AROP)
+    "armut": {
+        "dataset": "ilc_li02",
+        "label": "Armutsgefährdungsquote (60 % vom Median)",
+        "label_en": "At-Risk-of-Poverty Rate (60% of Median)",
+        "params": {"sex": "T", "age": "TOTAL", "indic_il": "LI_R_MD60", "unit": "PC", "lastTimePeriod": "5"},
+        "unit": "%",
+    },
+    "armutsquote": {
+        "dataset": "ilc_li02",
+        "label": "Armutsgefährdungsquote (60 % vom Median)",
+        "label_en": "At-Risk-of-Poverty Rate (60% of Median)",
+        "params": {"sex": "T", "age": "TOTAL", "indic_il": "LI_R_MD60", "unit": "PC", "lastTimePeriod": "5"},
+        "unit": "%",
+    },
+    "poverty": {
+        "dataset": "ilc_li02",
+        "label": "Armutsgefährdungsquote (60 % vom Median)",
+        "label_en": "At-Risk-of-Poverty Rate (60% of Median)",
+        "params": {"sex": "T", "age": "TOTAL", "indic_il": "LI_R_MD60", "unit": "PC", "lastTimePeriod": "5"},
+        "unit": "%",
+    },
+    # Forschung + Entwicklung — F&E-Ausgaben in % des BIP
+    "forschungsausgaben": {
+        "dataset": "rd_e_gerdtot",
+        "label": "Forschungs- und Entwicklungsausgaben (% des BIP)",
+        "label_en": "R&D Expenditure (% of GDP)",
+        "params": {"sectperf": "TOTAL", "unit": "PC_GDP", "lastTimePeriod": "5"},
+        "unit": "% des BIP",
+    },
+    "f&e": {
+        "dataset": "rd_e_gerdtot",
+        "label": "Forschungs- und Entwicklungsausgaben (% des BIP)",
+        "label_en": "R&D Expenditure (% of GDP)",
+        "params": {"sectperf": "TOTAL", "unit": "PC_GDP", "lastTimePeriod": "5"},
+        "unit": "% des BIP",
+    },
+    "research": {
+        "dataset": "rd_e_gerdtot",
+        "label": "Forschungs- und Entwicklungsausgaben (% des BIP)",
+        "label_en": "R&D Expenditure (% of GDP)",
+        "params": {"sectperf": "TOTAL", "unit": "PC_GDP", "lastTimePeriod": "5"},
+        "unit": "% des BIP",
+    },
+    # Lehrer-Schüler-Verhältnis (Education) — beste Datenquelle
+    "lehrer-schueler": {
+        "dataset": "educ_uoe_perp04",
+        "label": "Schüler-Lehrer-Verhältnis im Schulwesen",
+        "label_en": "Pupil-Teacher Ratio in Schools",
+        "params": {"isced11": "ED1", "lastTimePeriod": "5"},
+        "unit": "Schüler/Lehrkraft",
+    },
+    "lehrer schueler": {
+        "dataset": "educ_uoe_perp04",
+        "label": "Schüler-Lehrer-Verhältnis im Schulwesen",
+        "label_en": "Pupil-Teacher Ratio in Schools",
+        "params": {"isced11": "ED1", "lastTimePeriod": "5"},
+        "unit": "Schüler/Lehrkraft",
+    },
+    "pupil-teacher": {
+        "dataset": "educ_uoe_perp04",
+        "label": "Schüler-Lehrer-Verhältnis im Schulwesen",
+        "label_en": "Pupil-Teacher Ratio in Schools",
+        "params": {"isced11": "ED1", "lastTimePeriod": "5"},
+        "unit": "Schüler/Lehrkraft",
+    },
+    # Hochtech-Beschäftigung (Anteil)
+    "hochtechnologie": {
+        "dataset": "htec_emp_nat",
+        "label": "Beschäftigung in Hochtechnologie-Sektoren (% gesamt)",
+        "label_en": "Employment in High-Technology Sectors (% of total)",
+        "params": {"unit": "PC_EMP_TOT", "sectex": "T_M_NMT_KIS", "sex": "T", "lastTimePeriod": "5"},
+        "unit": "% gesamt",
+    },
+    "high-tech": {
+        "dataset": "htec_emp_nat",
+        "label": "Beschäftigung in Hochtechnologie-Sektoren (% gesamt)",
+        "label_en": "Employment in High-Technology Sectors (% of total)",
+        "params": {"unit": "PC_EMP_TOT", "sectex": "T_M_NMT_KIS", "sex": "T", "lastTimePeriod": "5"},
+        "unit": "% gesamt",
+    },
+    # Mindestlohn (Mindestlöhne in EU-Mitgliedstaaten)
+    "mindestlohn": {
+        "dataset": "earn_mw_cur",
+        "label": "Gesetzlicher Bruttomonatsmindestlohn",
+        "label_en": "Statutory Gross Monthly Minimum Wage",
+        "params": {"currency": "EUR", "lastTimePeriod": "3"},
+        "unit": "EUR/Monat",
+    },
+    "minimum wage": {
+        "dataset": "earn_mw_cur",
+        "label": "Gesetzlicher Bruttomonatsmindestlohn",
+        "label_en": "Statutory Gross Monthly Minimum Wage",
+        "params": {"currency": "EUR", "lastTimePeriod": "3"},
+        "unit": "EUR/Monat",
+    },
+    # Erwerbstätigenquote (Eurostat Lissabon-Indikator)
+    "erwerbstaetigenquote": {
+        "dataset": "lfsi_emp_a",
+        "label": "Erwerbstätigenquote (20-64 Jahre)",
+        "label_en": "Employment Rate (20-64 years)",
+        "params": {"sex": "T", "age": "Y20-64", "indic_em": "EMP_LFS", "unit": "PC_POP", "lastTimePeriod": "5"},
+        "unit": "%",
+    },
+    "employment rate": {
+        "dataset": "lfsi_emp_a",
+        "label": "Erwerbstätigenquote (20-64 Jahre)",
+        "label_en": "Employment Rate (20-64 years)",
+        "params": {"sex": "T", "age": "Y20-64", "indic_em": "EMP_LFS", "unit": "PC_POP", "lastTimePeriod": "5"},
+        "unit": "%",
+    },
 }
 
 # Map country names to Eurostat geo codes
