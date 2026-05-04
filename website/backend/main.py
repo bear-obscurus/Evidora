@@ -93,6 +93,7 @@ from services.substanzen_pack import search_substanzen, claim_mentions_substanze
 from services.digital_familie_pack import search_digital_familie, claim_mentions_digital_familie_cached
 from services.geldanlage_pack import search_geldanlage, claim_mentions_geldanlage_cached
 from services.alltags_mythen_pack import search_alltags_mythen, claim_mentions_alltags_mythen_cached
+from services.verkehrssicherheit_pack import search_verkehrssicherheit, claim_mentions_verkehrssicherheit_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.clinvar import search_clinvar
@@ -786,6 +787,15 @@ async def check_claim(request: Request):
         if claim_mentions_alltags_mythen_cached(claim):
             tasks.append(cached("Alltags-Mythen-Konsens", search_alltags_mythen, analysis))
             queried_names.append("Alltags-Mythen-Konsens (NHS + AAO + AASM + Mayo Clinic + NIH + Cochrane + RKI)")
+        # Verkehrssicherheit-Pack (10 Topics: Tempo-30, Helmpflicht, Kinder-
+        # sitz, Tagfahrlicht, Promille, Hands-free, Rote-Ampel, Müdigkeits-
+        # Fahren, Bremsweg-Quadratisch, Winterreifen). Quellen: WHO Speed
+        # Management, OECD-IRTAD, BASt, ADAC, ÖAMTC, KFV, IIHS, NHTSA,
+        # Cochrane, ECE R129. Hohe Lebensalltag-Relevanz für Verkehrs-
+        # Teilnehmer:innen.
+        if claim_mentions_verkehrssicherheit_cached(claim):
+            tasks.append(cached("Verkehrssicherheit-Konsens", search_verkehrssicherheit, analysis))
+            queried_names.append("Verkehrssicherheit-Konsens (WHO + OECD-IRTAD + BASt + ADAC + KFV + IIHS + NHTSA)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

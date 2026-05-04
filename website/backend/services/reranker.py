@@ -164,6 +164,7 @@ _AUTHORITATIVE_INDICATORS = (
     "digital_familie_konsens_fact",      # Digital-Familie-Pack (AAP + APA + Orben Oxford + ABCD Study + EU Kids Online)
     "geldanlage_konsens_fact",           # Geldanlage-Pack (BaFin + FCA + SEC + ESMA + Stiftung Warentest)
     "alltags_mythen_konsens_fact",       # Alltags-Mythen-Pack (NHS + AAO + AASM + Mayo Clinic + NIH + Cochrane)
+    "verkehrssicherheit_konsens_fact",   # Verkehrssicherheit-Pack (WHO + OECD-IRTAD + BASt + ADAC + IIHS + NHTSA)
     "medlineplus_health_topic",          # NIH MedlinePlus Live (National Library of Medicine, US)
     "cdc_newsroom_item",                 # CDC Newsroom Live (Centers for Disease Control, US)
     "clinvar_variant",                   # NIH ClinVar Live (NCBI Genetic Variants, US)

@@ -1,0 +1,524 @@
+{
+  "facts": [
+    {
+      "topic": "tempo_30_kindersicherheit_konsens",
+      "headline": "Tempo 30 in Wohngebieten reduziert die Kollisions-Mortalität bei Fußgänger:innen und Kindern signifikant; bei Aufprall mit 50 km/h beträgt die Fußgänger-Sterblichkeit etwa 85 Prozent, bei 30 km/h nur etwa 10 Prozent (WHO Speed Management 2008, ETSC 2018, Pasanen 1992)",
+      "year": 2024,
+      "source_url": "https://www.who.int/publications/i/item/speed-management-a-road-safety-manual-for-decision-makers-and-practitioners",
+      "secondary_url": "https://www.itf-oecd.org/road-safety-data",
+      "source_label": "WHO Speed Management 2008 + ETSC European Transport Safety Council + OECD-IRTAD + BASt Bundesanstalt für Straßenwesen + KFV Österreich",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Tempo 30 in Wohngebieten ist Verkehrsbehinderung ohne Sicherheits-Nutzen ist FALSE. Geschwindigkeits-Reduktion von 50 auf 30 km/h hat dokumentierte Mortalitäts-Effekte bei Kollisionen mit ungeschützten Verkehrs-Teilnehmer:innen (Fußgänger:innen, Radfahrer:innen, Kinder). Pasanen 1992 (Helsinki Univ. Tech.) und nachfolgende Replikationen: bei Kollision mit Fußgänger und 50 km/h liegt die Sterblichkeits-Wahrscheinlichkeit bei ca. 85 Prozent; bei 30 km/h sinkt sie auf ca. 10 Prozent. ETSC (European Transport Safety Council) 2018 Position-Paper bestätigt: Tempo-Reduktion in Stadt-Bereichen ist effektivste Einzelmaßnahme zur Reduktion von Verkehrstoten und Schwerverletzten unter ungeschützten Verkehrs-Teilnehmer:innen. WHO 2008 Speed Management: 50→30 km/h-Reduktion in Wohngebieten reduziert Verkehrs-Tote um 50-80 Prozent. Mechanismen: (a) Bremsweg quadratisch mit Geschwindigkeit (siehe bremsweg_geschwindigkeit_quadratisch_konsens), bei 30 km/h Brems-Gesamtweg ~13m vs. bei 50 km/h ~28m. (b) Aufprall-Energie E=½mv² steigt ebenfalls quadratisch — Verdoppelung der Geschwindigkeit vervierfacht Aufprall-Energie. (c) Reaktions-Zeit für Fahrer:innen bei niedrigerer Geschwindigkeit besser, Sicht-Verarbeitung erweitert. Aktuelle Implementierung: in vielen DE/AT-Städten (z.B. Berlin, Wien, Graz) Tempo 30 als Regel-Geschwindigkeit in Wohngebieten oder gesamten Stadt-Bereichen eingeführt. Faktencheck-relevant: Aussagen wie Tempo 30 ist nur bürokratische Schikane ohne Sicherheits-Effekt widersprechen WHO/ETSC/IRTAD-Konsens. Korrekt: differenzierte Bewertung mit dokumentierter Mortalitäts-Reduktion vs. moderate Reise-Zeit-Erhöhung.",
+        "pasanen_mortalitaets_kurve": "Pasanen E. Driving speeds and pedestrian safety. Helsinki University of Technology Transportation Engineering Publication 1992. Etablierte die heute klassische Pasanen-Kurve: Beziehung zwischen Aufprall-Geschwindigkeit und Fußgänger-Sterblichkeits-Wahrscheinlichkeit. Bei 30 km/h ca. 10 Prozent, bei 50 km/h ca. 85 Prozent, bei 70 km/h >95 Prozent. Diese Kurve wurde mehrfach repliziert (Rosen 2009 Accid Anal Prev, Tefft 2013 Accid Anal Prev) mit ähnlichen Werten. Aktuelle Kurven: bei 50 km/h ca. 25-50 Prozent (durch verbesserte Fahrzeug-Sicherheit + medizinische Versorgung), bei 30 km/h <10 Prozent — Reduktion bleibt im gleichen Verhältnis.",
+        "etsc_2018_position": "European Transport Safety Council ETSC 2018 Position-Paper Reducing Speed Limits to 30 km/h: Position für flächendeckende 30-km/h-Geschwindigkeitsbegrenzung in Wohngebieten als evidenzbasierte Maßnahme. Empfehlung Default-30-km/h in Innen-Städten mit Ausnahmen für Hauptverkehrsstraßen statt umgekehrt.",
+        "who_speed_management_2008": "WHO Speed Management 2008 Manual for Decision Makers and Practitioners. Kernempfehlung: 30 km/h als Standard für Bereiche mit Mischverkehr (Wohngebiete, Schulen, Spielplätze, Stadtzentren). Begründung in Manual: 50→30-Reduktion reduziert Verkehrs-Toten-Anzahl um 50-80 Prozent. Globale Empfehlung gilt für alle WHO-Mitgliedstaaten.",
+        "praktische_zeitverlust_argument": "Argument Tempo 30 verlängert Reise-Zeit drastisch: empirisch nicht belegt. Studien (BASt 2014, ADAC 2018): in städtischen Bereichen mit Stop-and-Go, Ampeln, Kreuzungen ist Durchschnitts-Geschwindigkeit ohnehin <30 km/h — Tempo-Limit-Reduktion verändert tatsächliche Reise-Zeit oft nur um 5-10 Prozent. Im Vergleich: Mortalitäts-Reduktion 50-80 Prozent — Nutzen-Schaden-Bilanz klar zugunsten Tempo 30.",
+        "lärm_emission_zusatzeffekt": "Sekundär-Effekt: Tempo-Reduktion 50→30 reduziert Verkehrslärm um 2-3 dB (entspricht Halbierung der wahrgenommenen Lautstärke). UBA Umweltbundesamt DE: signifikanter Lebensqualitäts-Effekt in Wohngebieten. CO2/NOx-Emissionen ändern sich gemischt — bei sehr niedrigem Tempo (15-20 km/h) erhöhte Emissionen, bei 30 km/h bei moderaten Geschwindigkeits-Profilen ähnlich oder leicht reduziert.",
+        "context": "Tempo-30-Diskurs in DACH-Region polarisiert. Pro-Argumente (Verkehrstote-Reduktion, Lärm, Lebensqualität) sind empirisch dokumentiert. Anti-Argumente (Reisezeit, Wirtschafts-Behinderung) sind bei genauer Untersuchung kleiner als oft behauptet. Faktencheck-relevant: Aussagen wie Tempo 30 hat keinen Sicherheits-Nutzen widersprechen WHO/ETSC/Pasanen-Konsens. Politisch ist Implementierung Entscheidung der jeweiligen Stadt — wissenschaftliche Datenlage unterstützt Tempo 30 in Wohngebieten klar."
+      },
+      "context_notes": [
+        "DE situative Implementierung: § 45 Abs. 1c StVO erlaubt Kommunen Tempo-30-Anordnungen in Wohngebieten + vor Schulen/Kindergärten. 2024 Reform-Diskussion: vereinfachte Anordnungs-Möglichkeiten für Kommunen.",
+        "AT: § 20 StVO Geschwindigkeits-Beschränkungen, Wien hat 2024 Tempo 30 als Default in den meisten Wohnstraßen. KFV-Empfehlung: Tempo 30 als Standard.",
+        "Gegenargument moderne Fahrzeug-Sicherheit: aktuelle Pkw mit Notbrems-Assistenz, Fußgänger-Erkennung haben Aufprall-Mortalität reduziert. Aber: physikalisch bleibt Energie ½mv² gleich — Tempo-Reduktion wirkt zusätzlich zu Fahrzeug-Technik. Beides kombiniert ist optimal."
+      ],
+      "claim_phrasings_handled": [
+        "Tempo 30 ist nur bürokratische Schikane",
+        "Tempo 30 in Wohngebieten bringt nichts für die Sicherheit",
+        "Geschwindigkeits-Limits haben keinen messbaren Effekt",
+        "Tempo 30 verlängert Reisezeit erheblich"
+      ],
+      "trigger_composite": [
+        [
+          "tempo 30",
+          "tempo-30",
+          "30 km/h",
+          "30 kmh",
+          "geschwindigkeitsbegrenzung",
+          "tempolimit",
+          "tempo limit"
+        ],
+        [
+          "sicherheit",
+          "kinder",
+          "wohngebiet",
+          "stadt",
+          "schikane",
+          "schikan",
+          "bringt nichts",
+          "sinnvoll",
+          "sinn",
+          "verkehrsbehinderung",
+          "blödsinn",
+          "unfall"
+        ]
+      ]
+    },
+    {
+      "topic": "helmpflicht_radfahrer_kontroverse_mythos",
+      "headline": "Fahrradhelm reduziert Kopfverletzungs-Schwere bei einem konkreten Unfall (Cochrane Review 2018: RR ~0,49 für schwere Kopfverletzungen); Effekte einer GESETZLICHEN Helmpflicht auf Bevölkerungs-Ebene sind kontrovers (Risiko-Kompensation, Rad-Nutzungs-Reduktion) — individueller Schutz ja, populationsweite Effekt-Bewertung komplex",
+      "year": 2024,
+      "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001855/full",
+      "secondary_url": "https://academic.oup.com/ije",
+      "source_label": "Cochrane Review Thompson 2018 Bicycle Helmets + Olivier 2017 International Journal Epidemiology + ETSC + DVR Deutscher Verkehrssicherheitsrat",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die Frage Helmpflicht für Radfahrer:innen — pauschal pro oder kontra ist OVERSIMPLIFIED. Wissenschaftlich differenzierte Position: (1) Individueller Helm-Schutz: bei einem konkreten Unfall reduziert Helm Kopfverletzungs-Schwere signifikant. Cochrane Review Thompson DC, Rivara FP, Thompson R 2018 Bicycle Helmets for Reducing Head Injury: 7 Studien analysiert, RR für schwere Kopfverletzungen ca. 0,49 (95-Prozent-KI 0,42-0,57) — Helm halbiert ungefähr das Risiko schwerer Kopfverletzung. (2) Populationsweiter Effekt einer GESETZLICHEN Helmpflicht: kontrovers. Olivier J et al. 2017 Int J Epidemiol Bicycle helmet legislation analysierte mehrere Helmpflicht-Einführungen (Australien 1990er, Neuseeland 1994, einige kanadische Provinzen). Befunde gemischt: Helm-Tragerate steigt deutlich, aber Effekte auf Verkehrs-Toten-Anzahl sind durch zwei Mechanismen kompliziert. (a) Risiko-Kompensation: Hypothese (Walker 2007 Accid Anal Prev), dass Kraftfahrzeug-Fahrer:innen weniger Sicherheitsabstand zu Helm-Trägern halten — empirisch in einigen Studien nachgewiesen. (b) Rad-Nutzungs-Reduktion: nach Helmpflicht-Einführung sinkt manchmal Rad-Nutzung um 20-30 Prozent; weniger Rad-Trips können kurzfristig weniger Unfälle bedeuten, langfristig weniger Bewegung in Bevölkerung mit eigenen Gesundheits-Folgen. (3) Praktische Empfehlung: individueller Helm-Schutz wird allgemein empfohlen. Helmpflicht-Gesetzgebung ist eine politische Frage mit komplexen Trade-offs, kein einfacher Sicherheits-Hebel. ETSC Position: Helm tragen ja, gesetzliche Pflicht hingegen mit Vorsicht prüfen. Faktencheck-relevant: Aussagen wie Helmpflicht würde 90 Prozent der Rad-Unfälle verhindern überzeichnen Datenlage; Aussagen Helm bringt nichts widersprechen Cochrane-Befunden.",
+        "cochrane_thompson_2018": "Thompson DC, Rivara FP, Thompson R. Helmets for preventing head and facial injuries in bicyclists. Cochrane Database Syst Rev 2018 Update. 7 Fall-Kontroll-Studien analysiert. Befunde: Helmet-Träger haben Risk Ratio (RR) 0,49 für schwere Kopfverletzungen (95-Prozent-KI 0,42-0,57), RR 0,39 für Hirnverletzungen, RR 0,27 für mortale Kopfverletzungen. Schluss: Helm reduziert Kopfverletzungs-Risiko bei einem konkreten Unfall etwa um die Hälfte. Methodische Limitation: Fall-Kontroll-Design, kein RCT (ethisch problematisch — kann nicht gezielt Unfälle Helm-Träger vs. Nicht-Träger erzeugen).",
+        "olivier_2017_helmpflicht": "Olivier J, Creighton P. Bicycle injuries and helmet use: a systematic review and meta-analysis. International Journal of Epidemiology 2017;46:278-292. Sowie Olivier 2018 Bicycle helmet legislation. Analysierte Helmpflicht-Einführungen in Australien, Neuseeland, kanadische Provinzen. Befunde: kurzfristig Helm-Tragerate von 30-40 Prozent auf 80+ Prozent, aber Verkehrs-Toten-Anzahl nicht klar reduziert wegen Confounders. Schluss: Helmpflicht-Effekt populationsweit komplex, nicht eindeutig positiv.",
+        "risiko_kompensation_walker": "Walker I. Drivers overtaking bicyclists: Objective data on the effects of riding position, helmet use, vehicle type and apparent gender. Accid Anal Prev 2007;39:417-425. Britische Beobachtungs-Studie: Auto-Fahrer:innen halten zu Helm-tragenden Radfahrer:innen ca. 8,5 cm WENIGER Abstand als zu Nicht-Helm-Trägern. Hypothese: Helm-Erscheinung signalisiert erfahrenen Radfahrer + reduziert wahrgenommene Vulnerabilität. Effekt klein, aber statistisch signifikant. Risiko-Kompensations-Hypothese (Wilde 1982) ist Versuch, populationsweite Helmpflicht-Effekte zu erklären.",
+        "rad_nutzungs_reduktion": "Beobachtete Rad-Nutzungs-Reduktion nach Helmpflicht-Einführung: Australien 1990: -20 bis -30 Prozent Rad-Trips kurzfristig. Mexico City 2010: -50 Prozent über 18 Monate, später Aufhebung der Helmpflicht. Ursachen: empirisch (a) Helm als Inconvenience, (b) Symbolisierung Rad-Fahren als gefährlich, (c) Frisur-Argumente. Langfristige Bevölkerungs-Folge: weniger körperliche Aktivität → mehr Adipositas-bezogene Erkrankungen — Pucher 2010 J Phys Act Health quantifizierte Trade-off zwischen Helm-Schutz und Bewegungs-Verlust.",
+        "etsc_position_2024": "European Transport Safety Council 2024 Position: Helm-Tragen empfohlen für individuellen Schutz, aber gesetzliche Helmpflicht NICHT pauschal empfohlen. Begründung: Mortalitäts-Reduktion durch Verbesserung der Infrastruktur (separate Rad-Wege, sichere Kreuzungen, Tempo 30 in Mischverkehrs-Bereichen) ist evidenzbasiert deutlich effektiver als Helmpflicht. Skandinavische Länder (DK, NL) haben hohe Rad-Sicherheit ohne Helmpflicht durch Infrastruktur-Investitionen.",
+        "context": "Helm-Diskurs polarisiert: Pro-Helm-Camp betont individuellen Schutz, Anti-Helmpflicht-Camp warnt vor populations-Effekten. Wissenschaftliche Evidenz: individueller Schutz ja, populationsweiter Effekt einer Pflicht komplex. Faktencheck-relevant: Aussagen wie Helm rettet bei jedem Unfall Leben sind übertrieben (Helm reduziert Kopfverletzungs-Risiko, nicht Gesamt-Unfall-Risiko); Aussagen Helmpflicht würde alle Probleme lösen widersprechen Datenlage."
+      },
+      "context_notes": [
+        "DE: keine generelle Helmpflicht für Radfahrer:innen 2024. Helm-Tragerate freiwillig ca. 25-35 Prozent (BASt). AT: ähnlicher Status, keine Pflicht für Erwachsene, Pflicht für Kinder <12 Jahre seit 2011.",
+        "Wichtige Differenzierung: bei E-Bike/Pedelec mit Tretunterstützung bis 25 km/h kein Helm-Pflicht in DE/AT. Bei S-Pedelec mit Unterstützung bis 45 km/h: Helmpflicht (gilt rechtlich als Mofa).",
+        "Empfehlung: bei Stadt-Verkehr mit hohem Auto-Aufkommen Helm sinnvoll. Bei Rad-Wegen, Park-Strecken individuelle Entscheidung. Kinder unter 12 sollten in DE/AT Helm tragen (entspricht AT-Pflicht-Regelung)."
+      ],
+      "claim_phrasings_handled": [
+        "Fahrradhelm bringt nichts",
+        "Helmpflicht würde 90 Prozent der Rad-Unfälle verhindern",
+        "Ohne Helmpflicht passieren mehr Rad-Tote",
+        "Wer Helm trägt überlebt jeden Unfall"
+      ],
+      "trigger_composite": [
+        [
+          "fahrradhelm",
+          "rad-helm",
+          "fahrrad-helm",
+          "helmpflicht",
+          "helm tragen",
+          "rad fahren",
+          "radfahren",
+          "fahrrad"
+        ],
+        [
+          "bringt nichts",
+          "rettet leben",
+          "verhindert",
+          "sinnlos",
+          "pflicht",
+          "alle",
+          "100 prozent",
+          "9o prozent",
+          "schützt",
+          "schaden",
+          "sicher"
+        ]
+      ]
+    },
+    {
+      "topic": "kindersitz_alter_groesse_konsens",
+      "headline": "Kindersitze sind nach Alter UND Körpergröße auszuwählen; ECE R129 (i-Size) Standard seit 2013 definiert Größen-Kategorien — korrekt-passender Kindersitz reduziert Verletzungs-Wahrscheinlichkeit bei Aufprall um 60-80 Prozent (NHTSA, ADAC Crash-Tests, KFV)",
+      "year": 2024,
+      "source_url": "https://www.adac.de/rund-ums-fahrzeug/ausstattung-technik-zubehoer/kindersitze/",
+      "secondary_url": "https://www.kfv.at/strassenverkehr/kindersicherheit-im-auto/",
+      "source_label": "ECE R129 i-Size Standard + ADAC Kindersitz-Tests + KFV Österreich + NHTSA Child Passenger Safety",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Kindersitze sind alle gleich gut, Hauptsache irgendeiner ist FALSE. Korrekt-passender Kindersitz nach ALTER und KÖRPERGRÖSSE des Kindes reduziert Verletzungs-Wahrscheinlichkeit bei Verkehrs-Unfall signifikant. ECE R129 (i-Size) ist seit 2013 europäischer Standard, ergänzend zu älterem ECE R44/04. Kategorisierung in i-Size: nach Körpergröße statt Gewicht (wie ECE R44). Kategorien: (a) bis 75 cm: Babyschale rückwärtsgerichtet, Pflicht bis 15 Monate. (b) 76-105 cm: Reboard-Sitz oder Vorwärts-Sitz mit Hosenträger-Gurt. (c) 100-135 cm: Sitzerhöhung mit Rückenlehne und Auto-Gurt. (d) 135+ cm und 36+ kg: regulärer Auto-Gurt OK. ADAC Crash-Tests (jährlich, ~50 Modelle): Sicherheits-Bewertung in mehreren Kategorien (Frontal-/Seitenaufprall, Bedienbarkeit, Schadstoffe). Hochwertige Modelle reduzieren Kopf-/Brust-/Halsverletzungs-Wahrscheinlichkeit bei Aufprall um ca. 60-80 Prozent gegenüber regulärem Erwachsenen-Gurt. NHTSA-Daten USA: Kindersitz reduziert Verkehrstoten-Wahrscheinlichkeit bei Säuglingen um 71 Prozent, bei Kleinkindern 1-4 Jahre um 54 Prozent. WICHTIG: Rückwärtsgerichtetes Sitzen ist bis Körpergröße 75 cm Pflicht (i-Size), wird empfohlen bis 4 Jahre/105 cm — Hals-Wirbel-Säule bei Kleinkindern noch nicht vollständig stabilisiert, Frontal-Aufprall-Belastung deutlich höher in Vorwärts-Position. Faktencheck-relevant: Aussagen wie Mein Kind ist groß für sein Alter, kann auf Sitzerhöhung wechseln müssen mit ECE-R129-Kriterien (Körpergröße + Alter) abgeglichen werden, nicht nach Eltern-Einschätzung.",
+        "ece_r129_i_size_details": "Economic Commission for Europe Regulation 129 (i-Size, 2013 eingeführt, mehrere Phasen-Erweiterungen). Hauptverbesserungen gegenüber ECE R44: (1) Körpergrößen-basierte Klassifikation statt Gewicht. (2) Reboard-Pflicht bis 15 Monate (statt 9 Monate ECE R44). (3) Pflicht-Seitenaufprall-Test (in R44 nicht standardisiert). (4) ISOFIX-Pflicht-Befestigung statt Auto-Gurt-Befestigung (reduziert Anwendungs-Fehler). Übergangs-Phase: ECE R44/04 weiterhin gültig bis 2025-2030, dann ausschließlich R129.",
+        "adac_crash_tests_resultate": "ADAC Kindersitz-Tests jährlich (zusammen mit ÖAMTC, TCS Schweiz, Stiftung Warentest). 2024 ~50 Modelle getestet. Bewertungs-Kategorien: (1) Sicherheit (50 Prozent): Frontal-Aufprall 64 km/h, Seiten-Aufprall, Belastung-Werte für Kopf, Brust, Hals. (2) Bedienbarkeit (40 Prozent): Einbau, Kindergerechtheit. (3) Schadstoffe (10 Prozent). Hochwertige Modelle erreichen Sicherheits-Note 1,5-2,5 (von 5,5). Schlechte Modelle haben Sicherheits-Probleme + sollten nicht verwendet werden — Liste ADAC publiziert.",
+        "rueckwaerts_sitzen_evidenz": "Rückwärtsgerichtetes Sitzen (Reboard) bei Kleinkindern: schwedische Datenanalyse (Carlsson 2003 STR Vägverket): Mortalitäts-Reduktion 75-90 Prozent vs. Vorwärts-Sitz bei Frontal-Aufprall. Mechanismus: bei Frontal-Aufprall wird Reboard-Insasse gleichmäßig in Sitz-Schale gedrückt, Belastung verteilt; bei Vorwärts-Sitz schießt Kopf nach vorn, Hals-Wirbel-Säule (bei Kleinkindern unvollständig stabilisiert) belastet. Schwedische Empfehlung: Reboard bis 4 Jahre.",
+        "nhtsa_us_daten": "NHTSA Child Passenger Safety: USA-Daten 2018-2022: Kindersitz reduziert Verkehrstoten-Wahrscheinlichkeit bei Säuglingen <1 Jahr um 71 Prozent, bei Kleinkindern 1-4 Jahre um 54 Prozent. Booster-Sitz für Kinder 4-8 Jahre reduziert mortale Verletzungen um zusätzliche 45 Prozent gegenüber alleinigem Auto-Gurt.",
+        "haeufige_fehler": "Häufige Anwendungs-Fehler (NHTSA + ADAC): (a) zu lockerer Hosenträger-Gurt (>2 cm Spielraum). (b) Kind in Winter-Jacke gesichert — Jacke komprimiert bei Aufprall, Hosenträger-Gurt wird locker. (c) Falsche Kindersitz-Klasse für Körpergröße/Alter. (d) Beifahrersitz-Position bei aktivem Beifahrer-Airbag (kontraindiziert für Kindersitz). (e) Sitz nicht ISOFIX-befestigt oder mit losen Auto-Gurt. Korrektur dieser Fehler verbessert Schutz-Wirksamkeit deutlich.",
+        "context": "Kindersitz-Sicherheit ist Bereich mit klarer evidenzbasierter Datenlage. Faktencheck-relevant: Aussagen wie Mein Kind kann auf Sitzerhöhung mit 5 Jahren wechseln benötigen Körpergrößen-Prüfung (i-Size empfiehlt erst ab 105 cm). Praktische Empfehlung: ADAC-Test-Liste konsultieren, nicht das billigste Modell wählen, korrekte Anwendung wichtiger als teurer Sitz."
+      },
+      "context_notes": [
+        "Gesetzliche Verpflichtungs-Basis: DE § 21 Abs. 1a StVO + ECE R44/R129 — Pflicht-Sicherung mit zugelassenem Kindersitz für Kinder <150 cm UND <12 Jahre. AT § 106 Abs. 1b KFG analog. Schweiz ähnliche Vorgaben.",
+        "Wichtige Differenzierung: Sitz-Erhöhung mit Rückenlehne (Booster mit Rückenstütze) vs. Sitz-Erhöhung ohne Rückenlehne. Mit Rückenstütze deutlich besserer Seiten-Aufprall-Schutz. Empfehlung: nur mit Rückenstütze bis Kind groß genug.",
+        "Praktische Empfehlung: gebrauchte Kindersitze nur mit klarer Historie (kein Unfall) verwenden. Nach jedem Unfall Sitz austauschen — interne Schaden-Strukturen können unsichtbar sein. Nach 5-7 Jahren materielle Alterung der Schutzschichten."
+      ],
+      "claim_phrasings_handled": [
+        "Mein Kind ist groß genug für die Sitzerhöhung mit 5 Jahren",
+        "Kindersitze sind alle gleich gut",
+        "Reboard-Sitz ist nicht nötig",
+        "Erwachsenen-Gurt reicht für Schul-Kinder"
+      ],
+      "trigger_composite": [
+        [
+          "kindersitz",
+          "kinder-sitz",
+          "babyschale",
+          "sitzerhöhung",
+          "booster",
+          "reboard",
+          "i-size",
+          "ece r129",
+          "ece r44"
+        ],
+        [
+          "alter",
+          "größe",
+          "körpergröße",
+          "groß genug",
+          "richtig",
+          "wechseln",
+          "auswählen",
+          "passend",
+          "kind",
+          "erwachsenen-gurt",
+          "wann"
+        ]
+      ]
+    },
+    {
+      "topic": "tagfahrlicht_unfall_reduktion_mythos",
+      "headline": "Tagfahrlicht (DRL) reduziert die Häufigkeit von Verkehrs-Unfällen bei Tageslicht moderat um 5-15 Prozent (Elvik 2009 systematic review n>40 Studien); EU-Pflicht für Neufahrzeuge seit 2011 — Effekt populationsweit dokumentiert aber nicht dramatisch",
+      "year": 2024,
+      "source_url": "https://www.toi.no/getfile.php?mmfileid=15084",
+      "secondary_url": "https://www.bast.de/",
+      "source_label": "Elvik 2009 systematic review + Cochrane DRL + OECD-IRTAD + BASt + EU-Verordnung 1004/2008",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Tagfahrlicht ist nutzlos oder überflüssig ist FALSE/MIXED, ebenso wie Aussagen Tagfahrlicht halbiert Unfälle (übertrieben). Tagfahrlicht (Daytime Running Lights, DRL) sind automatisch eingeschaltete Niedrig-Energie-Frontscheinwerfer, die das Fahrzeug bei Tag besser sichtbar machen. EU-Verordnung 1004/2008: ab 7. Februar 2011 sind alle in EU neu zugelassenen Pkw mit DRL ausgestattet, ab 2012 Lkw + Busse. Hintergrund-Forschung: Elvik R 2009 (Institute of Transport Economics Norwegen) systematic review von 40+ Studien zur DRL-Wirksamkeit. Befund: DRL reduzieren Tag-Verkehrs-Unfall-Häufigkeit um 5-15 Prozent (Punkt-Schätzung ~10 Prozent), insbesondere Frontal-/Seiten-Kollisionen mit Gegenverkehr und Kreuzungs-Unfälle. Cochrane-Review zu DRL kommt zu ähnlichem Ergebnis. Mechanismus: bessere Wahrnehmung des Fahrzeugs durch andere Verkehrs-Teilnehmer:innen — sowohl andere Auto-Fahrer:innen als auch Fußgänger und Radfahrer. Vorteil ist relativ in Bedingungen mit reduzierter Kontrast-Wahrnehmung (Dämmerung, leichtes Schmuddel-Wetter, schräges Licht). WICHTIG: DRL ist NICHT gleich Abblendlicht — DRL sind nur Front-Lichter mit niedrigerer Helligkeit, kein Rück-Licht (außer bei einigen Modellen) — bei Dunkelheit/Regen/Nebel reicht DRL nicht, Abblendlicht erforderlich. Faktencheck-relevant: Aussagen wie Tagfahrlicht halbiert Unfälle überzeichnen den Effekt; Aussagen Tagfahrlicht ist nutzlos widersprechen Elvik-/Cochrane-Befunden. Korrekt: moderater aber dokumentierter Effekt 5-15 Prozent Unfall-Reduktion bei Tag-Bedingungen.",
+        "elvik_2009_review": "Elvik R. The non-linearity of risk and the promotion of environmentally sustainable transport. Accident Analysis and Prevention 2009. Plus separate Elvik 2003 + 2009 reviews zur DRL-Wirksamkeit. Meta-analyse 40+ Studien aus Skandinavien (frühe DRL-Adoption ab 1970er), Kanada, USA, EU. Befund: DRL reduzieren Tag-Multifahrzeug-Kollisionen um durchschnittlich 5-15 Prozent. Effekt stärker bei Frontal-/Seiten-Kollisionen mit Gegenverkehr (~13 Prozent) als bei Auffahrunfällen (~5 Prozent). Skandinavische Daten zeigten teilweise höhere Effekte (15-25 Prozent), möglicherweise aufgrund der dort längeren Dämmerungs-Phasen und niedrigeren Sonnen-Stand.",
+        "eu_verordnung_2011": "EU-Verordnung 1004/2008 zur Tagfahrlicht-Pflicht: Februar 2011 für Pkw, ab 2012 für Lkw + Busse. Implementierungs-Zeitraum hat sukzessive Wirksamkeit. Vor 2011 hatten ca. 20-30 Prozent EU-Pkw bereits DRL freiwillig. Nach 2011 Verbreitung deutlich gestiegen. EU-Daten 2018+ zeigen erwartbare Unfall-Reduktion in Tag-Multifahrzeug-Kollisionen.",
+        "drl_vs_abblendlicht": "Wichtige Differenzierung DRL vs. Abblendlicht: DRL sind nur Front-LEDs mit reduzierter Helligkeit, oft KEIN Rücklicht. Bei einbrechender Dämmerung oder schlechter Sicht muss auf Abblendlicht (mit Rücklicht) gewechselt werden — viele Auto-Hersteller automatisieren das mit Lichtsensor. Mythos: das DRL ist immer ausreichend ist falsch — bei reduzierter Sicht ist Abblendlicht erforderlich, bei Nebel zusätzlich Nebel-Schluss-Leuchten.",
+        "zusatzeffekt_motorrad_radfahrer": "DRL-ähnliche Maßnahmen für Motorräder + E-Bikes: Pflicht-Beleuchtung bei Tag wird empfohlen. Studien (Yuan 2000 Accid Anal Prev Taiwan): Pflicht-Tagfahrlicht für Motorräder reduziert Multifahrzeug-Kollisionen um 10-15 Prozent. Ähnliche Effekte für Fahrräder (Kullgren 2013 Accid Anal Prev): Tag-Beleuchtung reduziert Kollisions-Häufigkeit. EU-Verordnung 168/2013: Motorrad-Pflicht-Beleuchtung bei Tag.",
+        "energie_effizienz": "Energie-Verbrauch DRL: typisch 5-15 Watt pro LED-System, vs. konventionelles Abblendlicht 55W (H7-Lampe) je Lampe. Kraftstoff-Verbrauch-Erhöhung durch DRL: <0,1 Liter/100 km, vernachlässigbar. Kein praktisch relevanter Energie-Sparen-Argument gegen DRL.",
+        "context": "DRL-Diskurs ist gering polarisiert. Faktencheck-relevant: präzise Effekt-Größen kommunizieren (5-15 Prozent), nicht über- oder unterschätzen. EU-Pflicht ist evidenzbasiert begründet."
+      },
+      "context_notes": [
+        "DRL-Anschalt-Logik: DRL sind beim Motor-Start automatisch aktiv, schalten bei Aktivierung des Abblendlichts ab oder werden durch dieses ergänzt. Manuelles Abschalten von DRL ist in EU nur in spezifischen Fahrzeugen möglich, generell nicht empfohlen.",
+        "Skandinavische Vorreiter: Schweden 1977 als erstes Land Pflicht-Tagfahrlicht (damals Abblendlicht), Finnland 1972 (Winter), Norwegen 1988. Lange Daten-Reihe ermöglichte solide Effekt-Studien.",
+        "Wichtige Differenzierung gegenüber Tag-Abblendlicht (immer eingeschaltet): das war frühere skandinavische Praxis, ist energieintensiver. Moderne LED-DRL ist energieeffizienter und ermöglicht selektive Aktivierung."
+      ],
+      "claim_phrasings_handled": [
+        "Tagfahrlicht ist nutzlos und überflüssig",
+        "Tagfahrlicht halbiert die Unfallzahlen",
+        "DRL bringt nichts für die Sicherheit",
+        "Tagfahrlicht ist nur Energie-Verschwendung"
+      ],
+      "trigger_composite": [
+        [
+          "tagfahrlicht",
+          "drl",
+          "daytime running lights",
+          "tagfahrleuchte",
+          "abblendlicht",
+          "fahrzeugbeleuchtung"
+        ],
+        [
+          "nutzlos",
+          "sinnlos",
+          "überflüssig",
+          "halbiert",
+          "halbier",
+          "reduziert",
+          "wirkung",
+          "effekt",
+          "energie",
+          "sparen",
+          "bringt nichts"
+        ]
+      ]
+    },
+    {
+      "topic": "promille_grenzen_alkohol_kontext",
+      "headline": "Bei 0,5 Promille Blutalkohol sind Reaktions- und Aufmerksamkeits-Fähigkeiten messbar beeinträchtigt; bei 1,0 Promille ist die Beeinträchtigung ähnlich wie bei 24 Stunden Schlafentzug; bereits ab 0,3 Promille treten dokumentierte Effekte auf (NHS, AAA Foundation, BASt)",
+      "year": 2024,
+      "source_url": "https://www.nhs.uk/live-well/alcohol-advice/alcohol-units/",
+      "secondary_url": "https://aaafoundation.org/",
+      "source_label": "NHS UK + AAA Foundation for Traffic Safety + BASt + WHO + StVO § 24a",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Bei 0,5 Promille ist man noch fahrtüchtig ist FALSE. Empirische Studien zur Alkohol-Wirkung auf Fahr-Fähigkeit zeigen messbare Beeinträchtigungen schon ab niedrigen Konzentrationen. Bereits bei 0,3-0,5 Promille (entspricht ca. 1 Glas Bier 0,5 L oder 1 Glas Wein 0,2 L bei 70 kg Person): Reaktionszeit verlängert um 20-50 ms, Aufmerksamkeits-Spaltung beeinträchtigt, Risiko-Wahrnehmung reduziert, Selbstüberschätzung der Fahr-Fähigkeit. Bei 0,5 Promille (DE/AT-Grenze): Unfall-Risiko gegenüber nüchtern ca. 1,4-fach erhöht. Bei 0,8 Promille: ca. 2,7-fach. Bei 1,0 Promille: ca. 7-fach erhöhtes Unfallrisiko. Diese Daten basieren auf umfassenden Datenanalysen (Borkenstein-Studie 1964 Grand-Rapids USA n=5.985, mehrere Replikationen seitdem) und Reaktionstest-Studien. WICHTIG: bei 1,0 Promille ist die Reaktions-Beeinträchtigung ähnlich wie 24 Stunden ohne Schlaf — beide Zustände machen Fahren signifikant unsicher (Williamson 2000 Occup Environ Med). Gesetzliche Grenzen DE: 0,5 Promille Bußgeld-Grenze, 0,3 Promille bei Auffälligkeiten Strafdelikt, 1,1 Promille absolute Fahruntüchtigkeit Strafdelikt. AT: 0,5 Promille Bußgeld, 0,8 Promille erhöhter Bußgeld, 1,2 Promille Strafdelikt. Wichtige Subjekt-Variation: Toleranz-Entwicklung bei chronischen Konsumenten — gleicher Promille-Wert kann bei Gelegenheits-Trinkern stärker beeinträchtigen. Das ändert nichts an der gesetzlichen Grenze — der Wert ist messbar, die rechtliche Bewertung folgt dem Wert. Faktencheck-relevant: Aussagen wie Bei einem Bier kann ich noch sicher fahren widersprechen Borkenstein-/AAA-Daten; Aussagen 0,5 Promille ist gefahrlos sind nicht haltbar.",
+        "borkenstein_1964_klassiker": "Borkenstein RF, Crowther RF, Shumate RP, Ziel WB, Zylman R. The Role of the Drinking Driver in Traffic Accidents. Bloomington: Department of Police Administration, Indiana University 1964. Klassische epidemiologische Studie: Grand Rapids USA, n=5.985 Auto-Unfall-Beteiligte vs. n=7.590 Kontroll-Fahrer. Befund: Fahr-Risiko-Kurve nach Blutalkohol — bei 0,5 Promille ca. 1,4-fach, bei 0,8 ca. 2,7-fach, bei 1,0 ca. 7-fach, bei 1,5 ca. 25-fach. Diese Kurve wurde mehrfach repliziert und verfeinert (Compton 2015 NHTSA), ist Standard-Referenz für Promille-Risiko-Bewertung.",
+        "compton_2015_nhtsa": "Compton RP, Berning A. Drug and alcohol crash risk. NHTSA Traffic Safety Facts 2015. Aktuelle US-Daten: Borkenstein-Kurve bestätigt, leicht modifiziert. Bei 0,5 Promille Risk Ratio 1,38, bei 0,8 RR 3,13, bei 1,5 RR 22,1. Risiko-Anstieg ist exponentiell, nicht linear.",
+        "neurokognitive_effekte": "Alkohol-induzierte Beeinträchtigung-Mechanismen: (1) Reaktionszeit-Verlängerung — Verarbeitungs-Geschwindigkeit reduziert. (2) Aufmerksamkeits-Spaltung beeinträchtigt — bei Multi-Tasking (Spiegel + Verkehr + Navigation) frühere Sättigung. (3) Risiko-Wahrnehmung reduziert — bei subjektiver Einschätzung der eigenen Fahr-Fähigkeit Selbstüberschätzung. (4) Motorische Koordinations-Einschränkung — Lenkrad-Stabilität, Pedal-Modulation. (5) Sehfunktion (Vergence + Akkommodation) leicht beeinträchtigt. Effekte alle Dosis-abhängig.",
+        "muedigkeit_aequivalent": "Williamson AM, Feyer AM 2000 Occupational and Environmental Medicine: kontrollierte Studie zu Reaktions-Beeinträchtigung bei Schlafentzug vs. Alkohol-Konsum. Befunde: 17-19 Stunden ohne Schlaf entspricht ca. 0,5 Promille Reaktions-Beeinträchtigung; 24 Stunden ohne Schlaf entspricht ca. 1,0 Promille. Schlussfolgerung der Autoren: Übermüdung sollte gleich kritisch wie Alkohol bewertet werden im Verkehrs-Sicherheits-Kontext.",
+        "promille_berechnung_konkret": "Approximation Blutalkohol-Konzentration (Widmark-Formel): BAK [Promille] = Alkoholmenge [g] / (Körpergewicht [kg] × Verteilungsfaktor). Verteilungsfaktor ~0,7 für Männer, ~0,6 für Frauen. Beispiel 70-kg-Mann + 1 Bier 0,5 L (5 Vol-Prozent = 25g Reinalkohol): BAK ≈ 25 / (70 × 0,7) = 0,51 Promille — schon an der DE-Grenze. Frauen mit niedrigerem Körpergewicht erreichen BAK schneller. Abbau-Rate: ~0,1 Promille pro Stunde, individuell variabel.",
+        "context": "Alkohol-Verkehrs-Diskurs hat klare wissenschaftliche Datenbasis. Faktencheck-relevant: empirische Daten respektieren — Aussagen wie ich vertrage viel sind subjektiv aber objektive Reaktions-Tests zeigen Beeinträchtigung dosis-abhängig. Praktische Empfehlung: bei Verkehr 0,0 Promille (Promille-frei) als sicherste Option, gesetzliche Grenzen sind Toleranz-, nicht Sicherheits-Werte."
+      },
+      "context_notes": [
+        "Schweiz: 0,5 Promille reguläre Grenze, 0,1 Promille für Berufs-Fahrer:innen, Fahrlehrer:innen, Lkw, Bus. Niedriger gewählte Grenzen für höhere Verantwortlichkeit.",
+        "Drogen + Alkohol kombiniert: synergistische Wirkungs-Verstärkung. 0,3 Promille + Cannabis-Konsum kann Reaktions-Effekt von 0,8 Promille haben. Vorsicht bei Kombinationen.",
+        "Bei chronischen Konsumenten: Toleranz-Entwicklung verändert subjektive Wahrnehmung, NICHT die objektive Beeinträchtigung. Reaktionstest-Studien zeigen ähnliche Reaktions-Verlangsamung, auch wenn der Konsument sich subjektiv noch klar fühlt."
+      ],
+      "claim_phrasings_handled": [
+        "Bei 0,5 Promille kann ich sicher fahren",
+        "Ein Bier macht keinen Unterschied beim Fahren",
+        "Promille-Grenze ist Schikane, ich vertrage viel",
+        "0,5 Promille ist gefahrlos zum Fahren"
+      ],
+      "trigger_composite": [
+        [
+          "promille",
+          "alkohol",
+          "blutalkohol",
+          "bak",
+          "alkoholgrenze",
+          "trinken und fahren",
+          "drink and drive"
+        ],
+        [
+          "fahren",
+          "auto fahren",
+          "fahrtüchtig",
+          "sicher",
+          "0,5",
+          "0.5",
+          "1,0",
+          "1.0",
+          "vertrage",
+          "schikane",
+          "gefahrlos"
+        ]
+      ]
+    },
+    {
+      "topic": "mobile_telefon_freisprech_konsens",
+      "headline": "Hands-free-Telefonieren während Autofahrt reduziert Unfall-Risiko NICHT signifikant gegenüber Handy-Telefonieren in der Hand; primärer Risiko-Faktor ist kognitive Ablenkung (cognitive distraction), nicht manuelle Belastung (Strayer 2003 Univ Utah, IIHS, NHTSA, AAA Foundation Cognitive Distraction Study)",
+      "year": 2024,
+      "source_url": "https://www.iihs.org/topics/distracted-driving",
+      "secondary_url": "https://www.nhtsa.gov/risky-driving/distracted-driving",
+      "source_label": "IIHS Insurance Institute for Highway Safety + NHTSA + AAA Foundation Cognitive Distraction Study + Strayer 2003 Univ Utah",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Mit Freisprech-Anlage ist Telefonieren während Autofahrt sicher ist FALSE. Strayer DL et al. 2003 Univ Utah Driving Simulator-Studie n=40: Telefonieren während Autofahrt (handheld oder hands-free) reduziert Reaktionszeit ähnlich wie Blutalkohol von 0,8 Promille. Wichtigste Ergebnis: kein signifikanter Unterschied zwischen handheld und hands-free in der Reaktions-Beeinträchtigung. Ursache: primärer Risiko-Faktor ist KOGNITIVE Ablenkung (cognitive distraction), nicht manuelle Beeinträchtigung. Telefon-Gespräche aktivieren Sprach-Verarbeitungs-Areale im Gehirn, die mit räumlicher und Aufmerksamkeits-Verarbeitung interferieren — unabhängig davon, ob das Telefon in der Hand ist oder nicht. AAA Foundation 2014 Cognitive Distraction Study (Strayer & Cooper): kategorisierte Ablenkungs-Quellen nach kognitiver Belastung: handheld-Telefonat 2,45 (Skala 1-5), hands-free 2,27, voice-controlled E-Mail 3,06, voice-Texting 3,06 — alles deutlich über sicherer Schwelle. IIHS-Datenanalyse 2018: hands-free-Erlaubnis in einigen US-Bundesstaaten zeigte KEINE Reduktion der Distracted-Driving-Unfälle. Praktische Konsequenz: Texten ist deutlich gefährlicher (visuell + manuell + kognitiv kombiniert), aber auch Hands-free-Telefonate sind nicht sicher. Empfehlung NHTSA + IIHS: KEINE Telefonate während Fahrt — weder hands-free noch handheld. Gesetzliche Lage: in DE/AT handheld-Telefonieren verboten, hands-free toleriert (legal aber empirisch riskant). Faktencheck-relevant: Aussagen wie Hands-free ist sicher überzeichnen Gesetzes-Konformität als Sicherheits-Aussage; korrekt ist: legal nicht gleich sicher.",
+        "strayer_2003_studie": "Strayer DL, Drews FA, Crouch DJ. A comparison of the cell phone driver and the drunk driver. Human Factors 2006;48:381-391. Sowie früher 2003. Driving Simulator-Studie n=40 Probanden. 4 Bedingungen: (1) baseline ohne Distraktion. (2) handheld Telefonat. (3) hands-free Telefonat. (4) Blutalkohol 0,8 Promille (oral verabreicht). Reaktions-Tests + Brems-Verhalten. Befund: handheld + hands-free sind ähnlich beeinträchtigt, beide ähnlich schlecht wie 0,8 Promille — handheld leicht schlechter durch zusätzliche manuelle Komponente, aber Differenz klein.",
+        "kognitive_distraktion_mechanismus": "Ferreira S et al. 2017 Frontiers in Psychology: kognitive Ablenkung beim Telefonieren — neuroimaging-Studien zeigen, dass Sprach-Verarbeitung (Brodmann-Areale 22, 39, 44, 45) Aktivität reduziert in räumlichen Verarbeitungs-Arealen (parietaler Cortex). Selbst hands-free-Telefonat aktiviert Sprach-Areale, die mit Fahr-relevanten Aufgaben (Verkehrs-Beobachtung, Spiegel-Kontrolle) konkurrieren. Inattentional Blindness-Phänomen: Fahrer:innen bemerken weniger Verkehrs-Ereignisse während Telefonats, auch hands-free.",
+        "iihs_2018_legal_vs_real": "IIHS Hauptbefund 2018: in US-Staaten mit hands-free-Erlaubnis (handheld verboten) wurde kein Rückgang der distracted-driving-Unfälle gemessen, obwohl handheld-Nutzung sank. Erklärung: Fahrer:innen wechselten zu hands-free, aber das Risiko bleibt ähnlich. Konsequenz: gesetzliche Bestimmungen, die nur handheld verbieten, sind nicht ausreichend für tatsächliche Risiko-Reduktion.",
+        "texten_deutlich_gefaehrlicher": "Texten während Fahrt: deutlich gefährlicher als Telefonieren wegen Kombination visuell + manuell + kognitiv. NHTSA 2019: Texting bedeutet Augen vom Verkehr für durchschnittlich 4,6 Sekunden — bei 80 km/h entspricht das einer Strecke von ca. 100 Metern blind gefahren. Risiko-Faktor 23-fach gegenüber nüchterner Fahrt ohne Distraktion. Gesetzlich: Texten am Steuer in DE/AT/CH ohne Ausnahme verboten.",
+        "praktische_empfehlung": "NHTSA + IIHS + AAA Empfehlung: kein Telefonieren während Fahrt. Wenn unbedingt nötig: anhalten + telefonieren + weiterfahren. Bei Notfall (kurzer wichtiger Anruf): hands-free, aber kein längeres Gespräch, kein emotional belastendes Thema, keine Multitasking (Notiz + Anruf). Voice-controlled-Systeme (Siri, Google Assistant): ähnlich kognitiv belastend wie Telefonat — auch nicht sicher.",
+        "context": "Telefon-Verkehrs-Diskurs polarisiert sich oft entlang gesetzlicher Konformität (handheld-Verbot) — aber empirische Datenlage zeigt: hands-free ist NICHT signifikant sicherer. Faktencheck-relevant: Aussagen wie Mit Bluetooth ist Telefonieren während Fahrt OK widersprechen IIHS/AAA-Daten. Korrekt: gesetzliche Konformität ≠ Sicherheit, kein Telefonat während Fahrt empfohlen."
+      },
+      "context_notes": [
+        "DE-Gesetzes-Lage: § 23 Abs. 1a StVO verbietet handheld-Nutzung von Mobil-Telefon, Sichtschirm darf nicht aktiv im Sichtfeld sein. Hands-free über CarPlay/Bluetooth: erlaubt. Bußgeld bei Verstoß: 100 Euro + 1 Punkt.",
+        "AT-Gesetzes-Lage: § 102 Abs. 3a KFG analog. Bußgeld 100 Euro bei handheld-Nutzung.",
+        "Wichtige Differenzierung: Sprach-Steuerung des Navi (kurze Befehle) ist deutlich weniger ablenkend als längeres Telefon-Gespräch. Aber bei konzentrations-fordernden Verkehrs-Situationen (Stadt-Verkehr, Stau, Baustellen, schlechte Sicht) jede Distraktion vermeiden."
+      ],
+      "claim_phrasings_handled": [
+        "Mit Freisprech-Anlage telefonieren ist sicher",
+        "Hands-free macht das Telefonieren beim Autofahren sicher",
+        "Bluetooth-Telefonieren während Fahrt ist OK",
+        "Hands-free ist genauso sicher wie nicht zu telefonieren"
+      ],
+      "trigger_composite": [
+        [
+          "telefonieren",
+          "telefon",
+          "handy",
+          "freisprech",
+          "hands-free",
+          "bluetooth",
+          "freisprech-anlage"
+        ],
+        [
+          "sicher",
+          "fahren",
+          "autofahren",
+          "während fahrt",
+          "ablenkung",
+          "ungefährlich",
+          "ok",
+          "harmlos",
+          "erlaubt"
+        ]
+      ]
+    },
+    {
+      "topic": "rote_ampel_kein_verkehr_mythos",
+      "headline": "Rote-Ampel-Übertretung an Knotenpunkten erhöht Unfall-Risiko signifikant — auch nachts oder bei vermeintlich leerem Verkehr; NHTSA-Crash-Studien dokumentieren Red-Light-Running als Hauptursache schwerer Kreuzungs-Unfälle (Retting 2003 NHTSA + IIHS Daten)",
+      "year": 2024,
+      "source_url": "https://www.iihs.org/topics/red-light-running",
+      "secondary_url": "https://www.nhtsa.gov/",
+      "source_label": "IIHS Red-Light Running + NHTSA Crash Studies + BASt + Retting 2003",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Bei roter Ampel und keinem sichtbaren Verkehr fahren ist sicher ist FALSE. NHTSA-Crash-Studien (Federal Highway Administration + IIHS): Red-Light-Running ist eine der häufigsten Ursachen schwerer Kreuzungs-Unfälle in den USA — ca. 1.000 Tote und 130.000 Verletzte jährlich durch Rotlicht-Überfahren. IIHS-Daten 2024: pro Jahr in USA ca. 1.000 verkehrstote durch Rotlicht-Verstöße — primär Querverkehr, der bei seinem Grünsignal in den Fahrweg trifft. Risiko-Verstärker bei Rotlicht-Übertretung: (a) Querverkehr fährt mit voller Geschwindigkeit (sein Grünsignal aktiv), Aufprall-Geschwindigkeit kombiniert sehr hoch. (b) Seiten-Aufprall (T-bone collision) hat höhere Verletzungsschwere als Frontal-/Heck-Aufprälle wegen weniger Knautschzone. (c) bei Nacht: reduzierte Sicht erhöht Risiko, dass Querverkehr nicht zeitnah wahrgenommen wird. (d) Fußgänger und Radfahrer: nicht immer durch Auto-Sicht erfassbar an Knotenpunkten. Selbst-Wahrnehmung kein Verkehr ist methodisch unzuverlässig. Empirisch: Retting 2003 NHTSA-Studie bei mehreren Knotenpunkten zeigte, dass Auto-Fahrer:innen die queren Verkehrs-Pattern bei Rotlicht-Übertretungs-Versuchen falsch einschätzen — 3-5-fach erhöhtes Risiko-Pattern. Gesetzliche Lage: Rotlicht-Übertretung in DE/AT Bußgeld 90-200 Euro, 1-2 Punkte, ab Gefährdung weiterer Verkehrs-Teilnehmer:innen Strafdelikt. Bei Rotphase >1 Sekunde: erhöhter Bußgeld-Tatbestand. Red-Light-Cameras: in mehreren EU-Städten installiert, dokumentieren statistisch signifikante Reduktion der Rotlicht-Verstöße. Faktencheck-relevant: Aussagen wie Bei roter Ampel + leerem Verkehr ist Übertretung OK sind kausal nicht haltbar; gesetzliche + Sicherheits-Begründung beide gegen pauschales Übertreten.",
+        "iihs_red_light_running": "IIHS Insurance Institute for Highway Safety: regelmäßig aktualisierte Daten zu Red-Light-Running. Pro Jahr USA ca. 939 Verkehrstote 2022 durch Rotlicht-Verstöße (FARS-Datenbank). Charakteristikum: Opfer sind oft NICHT die Rotlicht-Übertreter selbst, sondern Querverkehr — Fußgänger, Radfahrer, Auto-Fahrer mit Grünsignal. Schwere der Verletzungen hoch wegen Geschwindigkeit + Seiten-Aufprall.",
+        "retting_2003_studie": "Retting RA, Williams AF, Greene MA. Red-Light Running and Sensible Countermeasures: Summary of Research Findings. Transportation Research Board 2003. Beobachtungs-Studie an mehreren US-Knotenpunkten. Quantifizierung der Übertretungs-Häufigkeit + zugehörigen Unfall-Pattern. Befund: an Hochrisiko-Knotenpunkten 3-5-fach erhöhtes Unfall-Risiko gegenüber Knotenpunkten mit Rotlicht-Compliance. Wichtige Erkenntnis: Pre-Crash-Sekunden zeigen, dass auch bewusst-Übertretende Fahrer:innen die quere Verkehrs-Wahrnehmung oft falsch einschätzen.",
+        "seiten_aufprall_t_bone": "T-bone collision (Seiten-Aufprall): Auto wird seitlich von Querverkehr getroffen. Verletzungs-Profil: bei vergleichbarem Energie-Aufprall ist Verletzungsschwere höher als bei Frontal-/Heck-Aufprall, weil Knautschzone seitlich kleiner ist (Türen + B-Säule). Insbesondere Insassen-Seite hat reduzierten Schutz. Statistisch: T-bone-Crashes haben 3-5-fach höhere Mortalitäts-Wahrscheinlichkeit als Frontal-Crashes bei vergleichbarer Geschwindigkeit.",
+        "red_light_kameras": "Rotlicht-Überwachungs-Kameras: in mehreren EU-Städten installiert (DE: ~200 Geräte, AT: ~50). Studien (Hu 2011 Am J Public Health, Hochmuth 2018 Accid Anal Prev): signifikante Reduktion der Rotlicht-Verstöße um 30-50 Prozent in Knotenpunkten mit Kamera-Überwachung. Mortalitäts-Reduktion an überwachten Knotenpunkten ca. 25 Prozent, häufiger Auffahr-Unfall-Anstieg minimal. Netto-Effekt positiv.",
+        "psychologische_motivation": "Studien zur Psychologie des Rotlicht-Übertretens: häufige Motive (a) Zeit-Druck (Termine, Eile), (b) erlernte Toleranz bei früh-roter Ampel (Phantom-Toleranz), (c) Selbstüberschätzung der Risiko-Wahrnehmung, (d) Substanz-Beeinträchtigung (Alkohol, Müdigkeit). Aufklärungs-Kampagnen + Kamera-Überwachung sind die wirksamsten Maßnahmen.",
+        "context": "Rotlicht-Diskurs ist gering polarisiert. Faktencheck-relevant: pauschale Aussagen wie wenn ich keinen Verkehr sehe, kann ich rote Ampel überfahren widersprechen NHTSA-Daten. Korrekt: Rotlicht-Disziplin ist evidenzbasierter Sicherheits-Hebel."
+      },
+      "context_notes": [
+        "DE/AT-spezifisch: gelb-rot-Phase: bei DE/AT/CH-System gibt es Gelb-Phase vor Rot, die als Warnung dient. Gelb-Übertretung ist gesetzlich Übertretung wenn Bremsen ohne Gefährdung möglich gewesen wäre.",
+        "Differenzierung Rotlicht-Übertretung vs. Rechtsabbiegen-bei-Rot in den USA: in den USA in einigen Staaten erlaubt nach kurzem Stehen-bleiben. In DE/AT gibt es Grünpfeil-Schild für Rechtsabbieger — gilt nur bei vorhergehendem Anhalten.",
+        "Praktische Empfehlung: an Ampel-Kreuzungen voll ausstoppen, Querverkehr beobachten, erst bei klarem Grün anfahren. Bei Rotlicht-Anhalten Reaktions-Bereitschaft auf nachfolgenden Verkehr (Auffahr-Unfall) durch Spiegel-Kontrolle."
+      ],
+      "claim_phrasings_handled": [
+        "Bei roter Ampel und keinem Verkehr ist Übertretung OK",
+        "Nachts bei roter Ampel kann man fahren wenn niemand kommt",
+        "Rotlicht-Übertretung ist nicht so schlimm wenn die Straße leer ist",
+        "Rote Ampel überfahren ohne Verkehr ist sicher"
+      ],
+      "trigger_composite": [
+        [
+          "rote ampel",
+          "rotlicht",
+          "rotlicht-übertretung",
+          "ampel überfahren",
+          "rote ampeln",
+          "roter ampel",
+          "ampel"
+        ],
+        [
+          "überfahren",
+          "übertretung",
+          "leer",
+          "kein verkehr",
+          "ohne verkehr",
+          "nachts",
+          "sicher",
+          "ok",
+          "harmlos",
+          "ungefährlich"
+        ]
+      ]
+    },
+    {
+      "topic": "mued_fahren_promille_aequivalent_mythos",
+      "headline": "Fahren nach 18 Stunden ohne Schlaf hat ähnliche Reaktionszeit-Beeinträchtigung wie 0,5 Promille Blutalkohol; nach 24 Stunden ohne Schlaf entspricht die Beeinträchtigung ca. 1,0 Promille (Williamson 2000 Occup Environ Med, Dawson 1997 Nature) — Müdigkeit ist eine ernste Verkehrsgefahr",
+      "year": 2024,
+      "source_url": "https://oem.bmj.com/content/57/10/649",
+      "secondary_url": "https://www.nhtsa.gov/risky-driving/drowsy-driving",
+      "source_label": "Williamson AM 2000 Occupational and Environmental Medicine + Dawson D 1997 Nature + NHTSA Drowsy Driving + AAA Foundation",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Müdigkeit ist nicht so kritisch wie Alkohol beim Fahren ist FALSE. Williamson AM, Feyer AM 2000 Occupational and Environmental Medicine direkter Vergleich Schlafentzug vs. Alkohol-Konsum bei Reaktions-Tests: nach 17-19 Stunden ohne Schlaf liegt die Reaktions-Beeinträchtigung im Bereich von 0,5 Promille Blutalkohol; nach 24 Stunden ohne Schlaf entspricht die Beeinträchtigung etwa 1,0 Promille — der Wert, bei dem strafrechtliche Fahruntüchtigkeit (DE absolute) angesetzt wird. Dawson D, Reid K 1997 Nature Fatigue, alcohol and performance impairment: ähnliches Befund-Pattern, Reaktions-Verlangsamung quantifiziert. NHTSA Drowsy Driving Statistics: in den USA ca. 800 Verkehrstote jährlich direkt durch Müdigkeits-Unfälle, aber Schätzungen der Dunkelziffer deutlich höher (Müdigkeit ist post-hoc oft schwer zu attestieren). AAA Foundation 2018 Schätzung: Drowsy-Driving könnte bei 9-21 Prozent aller Verkehrstoten beteiligt sein. Risiko-Verstärker: (a) Mikro-Schlafphasen (microsleep) — kurze unfreiwillige 1-30-Sekunden-Schlaf-Episoden während Fahrt, dokumentiert bei extremer Müdigkeit. (b) Zirkadianische Phase: zwischen 02:00 und 06:00 Uhr und zwischen 14:00 und 16:00 Uhr biologische Tiefphasen — höheres Müdigkeits-Risiko unabhängig vom Schlaf-Defizit. (c) chronisches Schlaf-Defizit (5h Schlaf 3 Tage in Folge) ähnliche Effekte wie 24h ohne Schlaf. (d) Alkohol potenziert Müdigkeits-Effekte synergistisch. WICHTIG: trotz wissenschaftlicher Klarheit ist Müdigkeits-Fahren rechtlich oft schwer zu beweisen — viele Strafrechts-Systeme behandeln es als allgemeine Sorgfaltspflicht-Verletzung statt spezifischer Tatbestand. Praktische Konsequenzen: bei Anzeichen (Gähnen, Augen-Schließen, Konzentrations-Verlust) sofort Pause, kurzes Schläfchen 15-20 Min auf Rastplatz, Koffein-Boost mit Wirkung ~30 Min später. Faktencheck-relevant: Aussagen wie Müdigkeit ist nicht so schlimm wie Alkohol beim Fahren widersprechen Williamson/Dawson-Daten; korrekt: 24h ohne Schlaf ≈ 1,0 Promille Reaktions-Beeinträchtigung.",
+        "williamson_2000_studie": "Williamson AM, Feyer AM. Moderate sleep deprivation produces impairments in cognitive and motor performance equivalent to legally prescribed levels of alcohol intoxication. Occup Environ Med 2000;57:649-655. Kontrollierte Studie n=39 Probanden. Schlafentzug-Bedingungen: 24-28 Stunden ohne Schlaf. Reaktions-Tests + Hand-Augen-Koordination + Vigilanz. Vergleichs-Bedingung: gleiche Probanden mit Alkohol-Konsum bis BAK 0,1 Prozent (=1,0 Promille). Befunde: 17-19 Stunden ohne Schlaf entspricht 0,5 Promille; 24 Stunden ohne Schlaf entspricht 1,0 Promille. Effekt-Größen sehr ähnlich für beide Bedingungen.",
+        "dawson_1997_nature": "Dawson D, Reid K. Fatigue, alcohol and performance impairment. Nature 1997;388:235. Driver-Simulation + Reaktions-Tests bei kontrollierter Müdigkeit. Klassische Studie, in mehreren Replikationen bestätigt. Kernbotschaft: Müdigkeits-Beeinträchtigung quantitativ vergleichbar mit Alkohol-Beeinträchtigung — wichtige Public-Health-Aussage.",
+        "mikroschlafphasen": "Microsleep-Phänomen: kurze unfreiwillige Schlaf-Episoden 1-30 Sekunden, oft nicht bewusst wahrgenommen. EEG-Studien dokumentieren Übergang in Schlaf-Stadien NREM-1/NREM-2 trotz Augen-offen + sichtbarer Wachheit. Kritisch im Verkehrs-Kontext: 5 Sekunden Microsleep bei 100 km/h = 140 Meter blind gefahren. Mehrere prominente Verkehrs-Unfälle in DE/AT durch Microsleep-Phasen erklärbar (Sicherheits-Untersuchungen).",
+        "zirkadianische_tiefphasen": "Zirkadianer Rhythmus: biologische Wach-Schlaf-Schwankungen über 24 Stunden. Tiefphasen 02:00-06:00 Uhr (Hauptschlaf-Phase) und ca. 14:00-16:00 Uhr (Post-Lunch Dip). Beide haben dokumentiert höhere Unfall-Wahrscheinlichkeit (Folkard 2001 Chronobiol Int): nachts +20-30 Prozent Unfall-Risiko unabhängig vom Schlaf-Defizit. Praktische Konsequenz: Lkw-/Bus-Fahrer-Pausen-Vorschriften sind teilweise zirkadianisch begründet.",
+        "praeventive_strategien": "Müdigkeits-Präventions-Empfehlungen NHTSA + AAA: (1) ausreichend Schlaf vor langen Fahrten (mindestens 7 Stunden pro Nacht). (2) Pause alle 2 Stunden, mind. 15 Minuten. (3) bei Müdigkeits-Anzeichen sofort Rastplatz + Power-Nap 15-20 Min. (4) Koffein-Boost bei kurzfristiger Wachheit (Wirkung tritt in 15-30 Min ein, hält 3-4h). (5) bei langen Strecken Fahrer-Wechsel. (6) keine alleinigen Nacht-Fahrten nach normalem Arbeitstag. (7) bei Alkohol- oder Drogen-Konsum Müdigkeit verstärkt — keine Fahrt nach Konsum, auch wenn unter Promille-Grenze.",
+        "context": "Müdigkeits-Verkehrs-Diskurs ist kulturell weniger präsent als Alkohol-Verkehrs-Diskurs, obwohl wissenschaftlich vergleichbares Risiko. Faktencheck-relevant: Aussagen wie Mit etwas Müdigkeit kann ich noch fahren widersprechen empirischen Daten; differenzierte Bewertung mit Williamson-/Dawson-Quantifizierung evidenzbasierter."
+      },
+      "context_notes": [
+        "Berufs-Verkehr (Lkw, Bus, Taxi): EU-Verordnung 561/2006 regelt Lenk-/Ruhe-Zeiten — primär Müdigkeits-Prävention. Tachograph-Pflicht dokumentiert Compliance. Verstöße: Bußgeld + Fahr-Verbot. Diese Regelungen sind evidenzbasiert.",
+        "Müdigkeit vs. chronisches Schlaf-Defizit: 24h ohne Schlaf ≠ 5h Schlaf über mehrere Nächte. Letzteres akkumuliert ähnliche Effekte (Belenky 2003 Sleep). Wichtig für berufliche Schicht-Arbeit + Eltern mit Kleinkindern.",
+        "Mythos Frische-Luft / lautes Radio gegen Müdigkeit: minimale Wirkung. Empirische Studie Reyner 1998 Lancet zeigt: nur Power-Nap (15-20 Min) + Koffein zeigen messbare Effekte. Frische Luft / laute Musik bringen nichts."
+      ],
+      "claim_phrasings_handled": [
+        "Müdigkeit ist nicht so schlimm wie Alkohol beim Fahren",
+        "Mit ein bisschen Müdigkeit kann ich noch fahren",
+        "Schlafmangel ist harmlos für Verkehr",
+        "Übermüdung ist Sache der Selbst-Einschätzung"
+      ],
+      "trigger_composite": [
+        [
+          "müdigkeit",
+          "müde fahren",
+          "müde am steuer",
+          "schlafmangel",
+          "übermüdung",
+          "schlaf-defizit",
+          "drowsy"
+        ],
+        [
+          "fahren",
+          "auto fahren",
+          "harmlos",
+          "kein problem",
+          "schlimm",
+          "alkohol",
+          "nicht so",
+          "promille",
+          "vergleich",
+          "selbst-einschätzung"
+        ]
+      ]
+    },
+    {
+      "topic": "bremsweg_geschwindigkeit_quadratisch_konsens",
+      "headline": "Der reine Bremsweg steigt quadratisch mit der Geschwindigkeit (kinetische Energie E=½mv²); bei Verdoppelung der Geschwindigkeit (50→100 km/h) vervierfacht sich der reine Bremsweg, NICHT verdoppelt — physikalisch zwingend, dokumentiert in ADAC + BASt Bremsweg-Tabellen",
+      "year": 2024,
+      "source_url": "https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/auto-kosten/sicherheit/anhalteweg/",
+      "secondary_url": "https://www.bast.de/",
+      "source_label": "Physik-Konsens (Energie-Erhaltungs-Satz) + ADAC Bremsweg-Tabellen + BASt + StVO Faustformel",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die Annahme Doppelte Geschwindigkeit verdoppelt den Bremsweg ist FALSE. Tatsächlich gilt: der reine Bremsweg (vom Aufsetzen des Bremspedals bis zum Stillstand) steigt QUADRATISCH mit der Geschwindigkeit, weil die kinetische Energie E=½mv² ebenfalls quadratisch mit der Geschwindigkeit skaliert. Bei Verdoppelung der Geschwindigkeit (50→100 km/h) ist die kinetische Energie viermal so groß; bei gleichem Reibungs-Koeffizient muss der Bremsweg ebenfalls viermal so groß sein. Konkrete Werte (ADAC Bremsweg-Tabellen, trockene Asphalt, sommerliche Bedingungen): bei 30 km/h reiner Bremsweg ~5 m. Bei 50 km/h ~14 m. Bei 80 km/h ~36 m. Bei 100 km/h ~56 m. Bei 130 km/h ~94 m. Bei 200 km/h ~222 m. Hinzu kommt der REAKTIONS-WEG (vom Erkennen einer Gefahr bis zum Beginn des Bremsvorgangs) — dieser steigt LINEAR mit der Geschwindigkeit (typisch 1 Sekunde Reaktionszeit). Reaktions-Weg bei 50 km/h ~14 m, bei 100 km/h ~28 m. Anhalte-Weg gesamt = Reaktions-Weg + Brems-Weg. Faustformel StVO-Empfehlung: bei trockener Straße entspricht bei 100 km/h Anhalte-Weg etwa Geschwindigkeit/10 × Geschwindigkeit/10 = 100 m; bei nasser Straße verdoppelt sich der Bremsweg-Anteil. Bei Schnee/Eis Bremsweg 5-10x länger. Praktische Konsequenz: Tempo-Reduktion hat überproportionale Sicherheits-Wirkung — 50→30 km/h reduziert Bremsweg nicht um 40 Prozent, sondern um ca. 65 Prozent (von 14 m auf 5 m). Faktencheck-relevant: Aussagen wie Bei 100 km/h ist Bremsweg doppelt so lang wie bei 50 sind physikalisch falsch (vierfach, nicht doppelt). Diese Fehl-Einschätzung ist eine wichtige Sicherheits-Lücke in der Verkehrs-Pädagogik.",
+        "energie_erhaltungs_satz": "Physikalisches Grundprinzip: kinetische Energie eines Körpers ist Ekin = ½ × m × v². Beim Bremsen wird kinetische Energie in Reibungs-Wärme umgewandelt. Die zu verrichtende Brems-Arbeit ist W = Fbrems × s, wo s der Bremsweg ist. Aus W = Ekin folgt s = ½mv²/Fbrems. Bei gegebener Brems-Kraft (durch Reibungs-Koeffizient + Gewicht determiniert) ist Bremsweg s ∝ v² — zwingend quadratisch. Ein Verdoppeln von v vervierfacht s.",
+        "adac_bremsweg_tabelle": "ADAC Bremsweg-Tabelle (trockene Sommer-Bedingungen, gute Sommerreifen): 30 km/h ~5,2 m. 40 km/h ~9,3 m. 50 km/h ~14,5 m. 60 km/h ~20,8 m. 80 km/h ~37,1 m. 100 km/h ~57,9 m. 120 km/h ~83,4 m. 130 km/h ~97,9 m. 160 km/h ~148 m. 200 km/h ~232 m. Anhalte-Weg = Reaktionsweg + Bremsweg. Reaktionsweg bei typisch 1s Reaktionszeit: 30 km/h ~8 m, 50 km/h ~14 m, 100 km/h ~28 m, 200 km/h ~56 m.",
+        "stvo_faustformel": "StVO-Faustformel zur mentalen Schätzung: Anhalte-Weg-Daumen-Regel: (Geschwindigkeit/10)² + (Geschwindigkeit/10)×3. Beispiel 100 km/h: (100/10)² + (100/10)×3 = 100 + 30 = 130 m. Bei 50 km/h: 25 + 15 = 40 m. Bei 130 km/h: 169 + 39 = 208 m. Diese Regel überschätzt leicht im Vergleich zur ADAC-Tabelle (durch konservative 1,5s-Reaktionszeit-Annahme), ist aber praktisch verwendbar.",
+        "nass_schnee_eis_modifikator": "Reibungs-Koeffizient-Modifikator je Straßen-Bedingungen: trockener Asphalt μ ≈ 0,8 (Referenz). Nasser Asphalt μ ≈ 0,5-0,6 — Bremsweg-Verlängerung ca. 30-50 Prozent. Aquaplaning bei stehendem Wasser: μ kann bis 0,1 fallen — Bremsweg vervielfacht. Schnee μ ≈ 0,1-0,3 — Bremsweg 3-5x länger. Eis (Black Ice) μ ≈ 0,03-0,1 — Bremsweg 8-15x länger. Winterreifen können μ auf Schnee/Eis um 30-50 Prozent verbessern (siehe winterreifen_pflicht_konsens).",
+        "abs_brems_assistenten": "Anti-Blockier-System (ABS) und Brems-Assistenten beeinflussen den Bremsweg auf trockener Straße geringfügig (verhindern Blockieren der Räder, das bei vielen Pkw aber durch geschulte Fahrer ohnehin minimiert wird). Größere Wirkung auf nassem oder rutschigem Untergrund — ABS verhindert dort Schleudern + ermöglicht Lenken während Bremsens. Auto-Brems-Assistent (Notbrems-Assistent) reduziert Reaktionszeit, ist aber nicht in allen Pkw verfügbar.",
+        "context": "Quadratische Bremsweg-Beziehung ist physikalisch zwingend, aber kontraintuitive für Pop-Verständnis. Faktencheck-relevant: Aussagen wie Doppelte Geschwindigkeit verdoppelt Bremsweg sind falsch — vierfach. Diese Fehl-Einschätzung kann Risiko-Wahrnehmung in Verkehrs-Situationen unter-treffen."
+      },
+      "context_notes": [
+        "Praktische Empfehlung: bei höheren Geschwindigkeiten überproportional größeren Sicherheits-Abstand halten. Faustregel halbe Geschwindigkeit in Metern (ohne nachstehende Bedingungen) bedeutet bei 100 km/h ca. 50 m Abstand zum Vordermann — das ist die 2-Sekunden-Regel ungefähr.",
+        "Ladegewicht beeinflusst Bremsweg quadratisch wenig (Reibungs-Kraft ist proportional zur Normal-Kraft = Gewicht), aber bei Lkw + großen Anhängern ist die Gesamt-Masse anders verteilt + Brems-Anlage anders dimensioniert. Lkw-Bremswege bei 80 km/h können 50-70 m sein.",
+        "Physikalische Fakten in Lehrplänen: in DE/AT-Fahrschule wird quadratische Bremsweg-Beziehung explizit unterrichtet. Trotzdem im Pop-Verständnis oft vergessen — wichtige Verkehrs-Aufklärungs-Aufgabe."
+      ],
+      "claim_phrasings_handled": [
+        "Doppelte Geschwindigkeit verdoppelt nur den Bremsweg",
+        "Bei 100 km/h ist Bremsweg doppelt so lang wie bei 50",
+        "Tempo verdoppelt = Bremsweg verdoppelt",
+        "Bei 130 km/h muss man nicht viel weiter rechnen als bei 50 km/h"
+      ],
+      "trigger_composite": [
+        [
+          "bremsweg",
+          "anhalteweg",
+          "anhalte-weg",
+          "stoppweg",
+          "stoppstrecke"
+        ],
+        [
+          "doppelt",
+          "verdoppelt",
+          "verdoppel",
+          "linear",
+          "quadratisch",
+          "geschwindigkeit",
+          "tempo",
+          "100 km/h",
+          "50 km/h",
+          "vervierfacht",
+          "vierfach"
+        ]
+      ]
+    },
+    {
+      "topic": "winterreifen_pflicht_konsens",
+      "headline": "Winterreifen reduzieren Bremsweg auf Schnee/Eis um 30-50 Prozent gegenüber Sommerreifen; in Deutschland situative Winterreifen-Pflicht (StVO § 2 Abs. 3a), in Österreich § 102 Abs. 8a KFG (1. November bis 15. April bei winterlichen Straßenverhältnissen)",
+      "year": 2024,
+      "source_url": "https://www.adac.de/rund-ums-fahrzeug/ausstattung-technik-zubehoer/reifen/winterreifen/",
+      "secondary_url": "https://www.kfv.at/strassenverkehr/winter-reifen/",
+      "source_label": "ADAC Winterreifen-Tests + ÖAMTC + KFV Österreich + TÜV + BMVBS DE + BMK Österreich",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Sommerreifen sind im Winter ausreichend ist FALSE. Winterreifen unterscheiden sich von Sommerreifen durch (a) speziellen Profilcharakter (mehr Lamellen, tiefere Profilrillen für Schnee-/Wasser-Verdrängung) und (b) andere Gummi-Mischung mit niedriger Glasübergangs-Temperatur (~–7 °C statt ~+7 °C bei Sommerreifen). Folge: bei niedrigen Temperaturen behalten Winterreifen Elastizität, sorgen für besseren Reibungs-Kontakt zur Straße. Mess-Werte ADAC-Tests + ÖAMTC: Bremsweg auf Schnee von 50 km/h auf 0: Sommerreifen ~64 m, Winterreifen ~33 m. Auf Glatteis bei -5 °C: Sommerreifen >100 m, Winterreifen ~50-60 m. Aufprall-Energie bei 50 km/h auf trockener Straße ~65 m vs. winterliche Bedingungen — Faktor 2-5 längerer Brems-Weg ohne Winter-Reifen-Anpassung. Gesetzliche Lage: DE situative Pflicht nach § 2 Abs. 3a StVO seit 2010 — bei winterlichen Straßenverhältnissen (Schnee, Glätte, Schneematsch, Reif) müssen Pkw mit Winterreifen ausgerüstet sein. Verstoß: Bußgeld + 1 Punkt. Bei Behinderung anderer Verkehrs-Teilnehmer:innen erhöhter Bußgeld + ggf. Fahr-Verbot. AT § 102 Abs. 8a KFG: zeitlich-situative Pflicht 1. November bis 15. April bei winterlichen Bedingungen. Verstoß: Bußgeld bis 5.000 Euro. Schweiz: keine generelle Pflicht, aber bei Witterungs-bedingten Verkehrs-Behinderungen Haftung. ADAC + ÖAMTC + KFV Empfehlungen: O-O-Regel von Oktober bis Ostern Winterreifen montiert. Reifen-Mischung Ganzjahresreifen sind Kompromiss — funktionieren teilweise, sind aber bei reinen Winter- oder reinen Sommer-Bedingungen nicht optimal. M+S-Symbol allein reicht nicht — seit 2018 EU-Verordnung erfordert 3PMSF (3-Peak Mountain Snowflake) für echten Winter-Tauglichkeits-Nachweis.",
+        "winterreifen_physik": "Gummi-Mischung Winterreifen vs. Sommerreifen: Sommerreifen haben höheren Glasübergangs-Temperatur ca. +7 °C — bei niedrigeren Temperaturen werden sie hart und verlieren Reibung. Winterreifen haben Glasübergangs-Temperatur ca. -7 °C — bleiben bei niedrigen Temperaturen elastisch. Profil: Winterreifen haben mehr Lamellen (Querschnitte im Profil), die sich beim Bremsen + Beschleunigen verkanten und Schnee greifen. Profil-Tiefe: typisch >8 mm bei neuem Winterreifen, sollte nicht unter 4 mm fallen (Sicherheits-Empfehlung; gesetzlich 1,6 mm Mindest-Profil-Tiefe).",
+        "adac_oeamtc_tests": "ADAC Winterreifen-Tests jährlich (zusammen mit ÖAMTC + TCS). Mess-Bedingungen: trockener Asphalt, nasser Asphalt, Schnee, Eis. Bewertungs-Kategorien: Trocken-Eigenschaften, Nass-Eigenschaften, Schnee-Eigenschaften, Eis-Eigenschaften, Verschleiß, Kraftstoff-Verbrauch, Fahr-Geräusch. Hochwertige Modelle erreichen Note 1,5-2,5. Schlechte Modelle haben dramatisch schlechtere Schnee-/Eis-Performance — Liste publiziert.",
+        "de_situative_pflicht": "Deutschland § 2 Abs. 3a StVO (seit 2010 angepasst): bei Glatteis, Schneeglätte, Schneematsch, Reifglätte oder Eisglätte darf Pkw nur mit Winterreifen oder gleichwertigen geeigneten Reifen am Verkehr teilnehmen. M+S-Symbol oder 3PMSF-Symbol erforderlich. Bei Verstoß: 60 Euro Bußgeld, 1 Punkt; bei Behinderung 80 Euro + 1 Punkt; bei Gefährdung 100 Euro + 1 Punkt + Fahr-Verbot möglich.",
+        "at_zeitliche_pflicht": "Österreich § 102 Abs. 8a KFG: zeitliche Komponente 1. November bis 15. April. In dieser Zeit bei winterlichen Bedingungen (Schneematsch, Schnee, Eis, Glatteis) Pflicht zu Winterreifen oder Schneeketten auf wenigstens den Antriebs-Rädern. Verstoß: Bußgeld 35-5.000 Euro je nach Schwere. Beim Auslandsfahrt-Reisen: Mietwagen-Anbieter müssen entsprechend ausstatten.",
+        "ganzjahresreifen_kompromiss": "Ganzjahres-/Allwetter-Reifen mit 3PMSF-Symbol: Kompromiss zwischen Sommer- und Winter-Reifen. Funktionieren akzeptabel in DACH-Klima mit moderaten Wintern (Norddeutschland, Wien-Flachland). Bei Bergregionen oder strengen Wintern (Alpen-Pässe, Schwarzwald, Bayern-Alpen) reichen sie nicht. ADAC-Empfehlung: Ganzjahres-Reifen für mildere Lagen + Wenig-Fahrer:innen, separate Winter- und Sommerreifen für Vielfahrer:innen + Bergregion-Bewohner:innen.",
+        "praktische_montage": "Praktische Empfehlung: Wechsel zwischen Sommer- und Winterreifen je Saison. O-O-Regel ADAC: Oktober bis Ostern Winterreifen montieren. Wechsel-Kosten: typisch 30-50 Euro je Wechsel beim Werkstatt, oder selbst (Reifen-Druck-Prüfung wichtig). Reifen-Lagerung: kühl, dunkel, trocken, nicht stehend (Verformung) — auf Felgen oder hängend besser. Lebensdauer Winterreifen: 6-8 Saisonen bei sachgemäßer Lagerung.",
+        "context": "Winterreifen-Diskurs ist gering polarisiert. Faktencheck-relevant: Aussagen wie Sommer-Reifen sind im Winter ausreichend wenn ich vorsichtig fahre widersprechen empirischen Bremsweg-Daten + gesetzlicher Pflicht. Korrekt: Winterreifen sind in DACH-Klima essentielle Sicherheits-Maßnahme."
+      },
+      "context_notes": [
+        "Schweiz hat keine generelle Winterreifen-Pflicht 2024, aber in den Kantonen mit alpinen Strecken faktische Notwendigkeit. Bei Unfall mit Sommerreifen im Winter: Haftung + Versicherungs-Abzug oft.",
+        "Differenzierung: M+S-Symbol war früher Winterreifen-Indikator, ist seit 2018 nicht mehr ausreichend in DE/AT. 3PMSF (Three-Peak Mountain Snowflake) ist neuer EU-Standard mit getesteter Schnee-Tauglichkeit. Reifen mit nur M+S aus Vor-2018-Produktion sind übergangsweise weiterhin gültig.",
+        "Schneeketten in EU: in Bergregionen (Schweiz, Österreich Alpen) bei Hinweis-Schildern Pflicht. Schneeketten geben mehr Traktion als Winterreifen, sind aber für reguläre Fahrt unkomfortabel + langsam (max 50 km/h). Nur in spezifischen Pass-Strecken empfehlenswert."
+      ],
+      "claim_phrasings_handled": [
+        "Sommerreifen reichen auch im Winter wenn ich vorsichtig fahre",
+        "Winterreifen sind nur bürokratische Pflicht ohne Sicherheits-Nutzen",
+        "Mit guten Sommerreifen brauche ich keine Winter-Reifen",
+        "Winterreifen-Pflicht ist Geld-Verschwendung"
+      ],
+      "trigger_composite": [
+        [
+          "winterreifen",
+          "winter-reifen",
+          "sommerreifen",
+          "ganzjahresreifen",
+          "ganzjahres-reifen",
+          "allwetter-reifen",
+          "schnee",
+          "eis",
+          "glatteis"
+        ],
+        [
+          "pflicht",
+          "ausreichend",
+          "vorsichtig",
+          "bürokratisch",
+          "schikane",
+          "geld-verschwendung",
+          "geld verschwendung",
+          "unsinn",
+          "schnee",
+          "winter",
+          "fahrzeug"
+        ]
+      ]
+    }
+  ]
+}
