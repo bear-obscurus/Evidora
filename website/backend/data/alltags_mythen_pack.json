@@ -1,0 +1,498 @@
+{
+  "facts": [
+    {
+      "topic": "acht_glaeser_wasser_mythos",
+      "headline": "Die Empfehlung 8 Gläser Wasser pro Tag hat keine wissenschaftlich-systematische Grundlage; Valtin 2002 American Journal of Physiology suchte den Ursprung und fand keinen; Flüssigkeitsbedarf variiert individuell nach Aktivität, Klima, Körpergewicht — Durst ist evidenzbasierter Indikator (NHS, Mayo Clinic)",
+      "year": 2024,
+      "source_url": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/water-drinks-nutrition/",
+      "secondary_url": "https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/water/art-20044256",
+      "source_label": "NHS UK + Mayo Clinic + Valtin 2002 American Journal of Physiology + EFSA Adequate Intake",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die Empfehlung Jeder Mensch muss täglich genau 8 Gläser oder 2 Liter Wasser trinken ist OVERSIMPLIFIED/MIXED. Heinz Valtin (Dartmouth Medical School Physiologe) untersuchte 2002 in Drink at least eight glasses of water a day. Really? Is there scientific evidence for 8x8? American Journal of Physiology den Ursprung dieser Empfehlung und fand: keine systematische wissenschaftliche Grundlage, vermutlich Missinterpretation einer 1945 NRC-Empfehlung über Gesamt-Wasser-Aufnahme aus ALLEN Quellen (Lebensmittel + Getränke). Tatsächlicher Flüssigkeits-Bedarf ist individuell und variiert nach (a) Körpergewicht (~30-35 ml/kg KG/Tag als grobe Orientierung), (b) körperlicher Aktivität (Schweiß-Verluste), (c) Klima (Hitze + Trockenheit erhöhen Bedarf), (d) Ernährung (Obst + Gemüse + Suppen liefern erheblichen Anteil), (e) Gesundheits-Status (Fieber, Erbrechen, Diarrhö erhöhen Bedarf). EFSA Adequate Intake 2010: Frauen 1,6 L Wasser/Tag aus Getränken, Männer 2,0 L Wasser/Tag aus Getränken — bei normalen klimatischen Bedingungen, durchschnittlicher Aktivität. Wichtig: Wasser-Aufnahme aus Lebensmitteln (Obst, Gemüse, Suppe) entspricht ca. 20-30 Prozent des Gesamt-Bedarfs. Durst ist evidenzbasierter Indikator für Trink-Bedarf bei gesunden Erwachsenen (Cheuvront 2014 J Am Coll Nutr); aktive Anti-Durst-Disziplin ist nicht erforderlich. WICHTIGE Differenzierung: bei Älteren (>65 J.) ist Durst-Empfindung reduziert — proaktives Trinken sinnvoll. Bei spezifischen Erkrankungen (Diabetes insipidus, Niereninsuffizienz) gelten eigene Richtlinien. Faktencheck-relevant: pauschale Aussagen wie Du musst täglich 8 Gläser trinken sonst dehydrierst Du sind nicht evidenzbasiert; Anpassung an individuelle Bedingungen + Durst-Beachtung wissenschaftlich korrekter.",
+        "valtin_2002_studie": "Valtin H. Drink at least eight glasses of water a day. Really? Is there scientific evidence for 8 x 8? American Journal of Physiology — Regulatory, Integrative and Comparative Physiology 2002;283:R993-R1004. Systematische Recherche nach dem Ursprung der 8x8-Empfehlung. Befund: keine peer-reviewed Studie identifiziert, die diese spezifische Empfehlung evidenzbasiert begründet. Wahrscheinliche Quelle: 1945 National Research Council Empfehlung 2,5 Liter Wasser/Tag — DIE ABER aus allen Quellen Lebensmittel + Getränke gemeint war. Diese Nuance ging in der Pop-Kultur verloren.",
+        "efsa_adequate_intake": "EFSA Panel on Dietetic Products, Nutrition and Allergies 2010 Scientific Opinion on Dietary Reference Values for water. Total Water Intake (alle Quellen): Frauen 2,0 L/Tag, Männer 2,5 L/Tag. Aus Lebensmitteln (Obst/Gemüse/Suppe) typisch 20-30 Prozent. Aus Getränken (Wasser, Tee, Kaffee): Frauen 1,6 L, Männer 2,0 L. Diese Werte sind Ratschläge bei normalen Bedingungen, nicht starre Vorgaben.",
+        "individuelle_variation": "Variations-Faktoren: (1) Körpergewicht: Faustregel 30-35 ml/kg/Tag bei Erwachsenen (Mayo Clinic). (2) Aktivität: zusätzliche 0,5-1 L pro Stunde intensiver Sport. (3) Klima: tropisch-feuchte Hitze kann Bedarf um 50-100 Prozent erhöhen. (4) Ernährung: vegetarische Wasser-reiche Ernährung deckt mehr durch Lebensmittel ab. (5) Gesundheits-Status: Fieber, Erbrechen, Diarrhö erhöhen Bedarf. (6) Alter: ältere Menschen haben reduzierte Durst-Empfindung — proaktives Trinken empfehlenswert.",
+        "durst_als_indikator": "Cheuvront SN, Kenefick RW. Dehydration: physiology, assessment, and performance effects. J Am Coll Nutr 2014. Bei gesunden, jungen Erwachsenen ist Durst-Mechanismus zuverlässig: Plasma-Osmolalität-Anstieg um <2 Prozent triggert Durst-Antwort. Wer auf Durst hört, dehydriert in der Regel nicht. Pseudo-Disziplinen wie Anti-Durst-Trinken sind unnötig. Bei Älteren oder bei bestimmten Medikamenten (Diuretika): Durst-Mechanismus weniger zuverlässig — proaktives Trinken sinnvoller.",
+        "ueberhydration_risiko": "Hyper-Hydratation (Wasser-Vergiftung): selten aber real. Bei extremem Wasser-Konsum (>5-6 L/Tag) ohne entsprechenden Salz-Verlust kann Hyponatriämie auftreten — Symptome Verwirrtheit, Krampfanfälle, in schweren Fällen tödlich. Beispiele: Marathonläufer mit übermäßigem Trinken (Almond 2005 NEJM), Wasser-Trink-Wettbewerbe (mehrere Todesfälle dokumentiert). Mehr ist nicht immer besser.",
+        "context": "Der 8-Gläser-Mythos wird durch Wasser-Industrie-Marketing + Gesundheits-Influencer perpetuiert. Faktencheck-relevant: pauschale Trinkmengen-Empfehlungen ohne Anpassung an Individuum sind nicht evidenzbasiert. Korrekt: Durst-Beachtung + Anpassung an Aktivität/Klima/Gesundheits-Status. Bei Älteren: proaktives Trinken sinnvoll wegen reduzierter Durst-Empfindung."
+      },
+      "context_notes": [
+        "Differenzierung Sport-Trinken: bei intensivem Sport >1 Stunde + Hitze sind isotonische Getränke sinnvoll (Salz-Verlust ausgleichen). Bei normaler Tätigkeit reicht Wasser. Pop-Sport-Drinks haben oft Zucker-Gehalt, der unnötig ist.",
+        "Pop-Detox-Behauptung mehr Wasser entgiftet ist falsch (siehe substanzen_pack entgiftungs_diaeten_drogen_mythos): Niere reguliert Eliminierung, Mehr-Wasser-Trinken erhöht Eliminierung nicht über das normale Maß hinaus.",
+        "Praktische Empfehlung: bei Unsicherheit einen Tag lang Trinkmenge dokumentieren, Urin-Farbe als Indikator (hellgelb = gut hydriert, dunkelgelb = zu wenig, fast farblos = möglicherweise zu viel). Anpassen an persönliches Befinden + Durst."
+      ],
+      "claim_phrasings_handled": [
+        "Jeder Mensch muss täglich 8 Gläser Wasser trinken",
+        "Man braucht zwingend 2 Liter Wasser pro Tag",
+        "Wer weniger als 8 Gläser trinkt dehydriert",
+        "8 Gläser Wasser täglich ist gesund"
+      ],
+      "trigger_composite": [
+        [
+          "wasser",
+          "wassertrinken",
+          "trinkmenge",
+          "flüssigkeit",
+          "hydratation",
+          "dehydration",
+          "8 gläser",
+          "2 liter"
+        ],
+        [
+          "täglich",
+          "muss",
+          "zwingend",
+          "jeden tag",
+          "pro tag",
+          "gesund",
+          "notwendig",
+          "trinken",
+          "braucht"
+        ]
+      ]
+    },
+    {
+      "topic": "lesen_im_dunkeln_augen_mythos",
+      "headline": "Lesen bei schwacher Beleuchtung verursacht KEINE bleibenden Augenschäden; vorübergehende Augenermüdung (asthenopia) ja, dauerhafter Sehkraft-Verlust nein (American Academy of Ophthalmology AAO, NHS, Mayo Clinic)",
+      "year": 2024,
+      "source_url": "https://www.aao.org/eye-health/tips-prevention/will-reading-in-dim-light-damage-eyes",
+      "secondary_url": "https://www.nhs.uk/conditions/eye-strain/",
+      "source_label": "American Academy of Ophthalmology (AAO) + NHS UK + Mayo Clinic + Optometrists Association",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Lesen bei schwacher Beleuchtung schädigt die Augen dauerhaft ist FALSE. American Academy of Ophthalmology (AAO) Position seit Jahrzehnten konsistent: schwache Beleuchtung beim Lesen kann zu vorübergehender Augenermüdung führen (Astenopie / Eye Strain), aber keine dauerhaften Augen-Schäden, keine Verschlechterung der Sehkraft, keine Myopie-Entwicklung. Symptome temporär: brennende Augen, Müdigkeit, leichte Kopfschmerzen, verschwommenes Sehen — diese Symptome verschwinden nach Pause oder besserer Beleuchtung komplett. NHS UK + Mayo Clinic bestätigen diese Position. Hintergrund: das Auge passt sich an Licht-Bedingungen an (Pupillen-Adaptation, Akkommodation), bei schwachem Licht ist Sehen anstrengender, aber nicht schädlich. Keine wissenschaftliche Studie hat einen kausalen Zusammenhang zwischen Lese-Beleuchtung und dauerhaftem Sehkraft-Verlust nachgewiesen. WICHTIG: Bei chronischer Augenermüdung trotz guter Beleuchtung sollten andere Ursachen (Refraktions-Fehler, trockenes Auge, Bildschirm-Nutzung) abgeklärt werden — Augenarzt-Konsultation. Mythos kommt vermutlich aus historischer Sorge der Eltern (Pop-Pädagogik im 19./20. Jh.), wissenschaftlich nicht haltbar.",
+        "aao_position_offiziell": "American Academy of Ophthalmology offizielle FAQ: Will reading in dim light damage your eyes? Answer: No. Reading in dim light can cause eye strain with multiple symptoms, but it is unlikely to cause a permanent change in the function or structure of the eyes. Reading is a complex activity for our eyes... but the eyes are designed for use under any reasonable light conditions. Position seit 1990er konsistent.",
+        "asthenopie_definition": "Asthenopie (Eye Strain) — Symptome: (a) brennende oder müde Augen, (b) verschwommenes Sehen, (c) Kopfschmerzen, (d) Schmerzen in Hals/Schulter (Haltungs-Folge), (e) erhöhte Lichtempfindlichkeit. Ursachen: zu wenig oder zu viel Licht, lange ohne Pausen, falsche Sehhilfe, falsche Bildschirm-Distanz. Reversibel nach Pause oder Bedingungs-Änderung.",
+        "myopie_kontext": "Myopie (Kurzsichtigkeit) ist ein anderes Phänomen mit eigenen Ursachen: Genetik + Umwelt-Faktoren (zu wenig Tageslicht-Exposition in Kindheit, viel Naharbeit). Studien (Sherwin 2012 Ophthalmology, Rose 2008 Optom Vis Sci): Tageslicht-Exposition >2 Stunden/Tag in Kindheit reduziert Myopie-Entwicklung. Lese-Beleuchtung im Innenraum hat KEINE direkte Kausal-Rolle für Myopie. Faktencheck-Konsequenz: Empfehlung Kinder sollten draußen spielen ist gegen Myopie evidenzbasiert; Empfehlung im Hellen lesen ist gegen Augenermüdung ja, gegen dauerhafte Schäden nein.",
+        "20_20_20_regel": "Praktische Empfehlung gegen Augenermüdung — 20-20-20-Regel (American Optometric Association): alle 20 Minuten für 20 Sekunden auf einen Gegenstand 20 Fuß (~6 Meter) entfernt blicken. Reduziert Akkommodations-Stress bei Naharbeit. Empfehlung primär für Bildschirm-Arbeit, gilt aber auch für intensives Lesen.",
+        "augenarzt_konsultation": "Indikationen für Augenarzt-Besuch trotz Beleuchtungs-Anpassung: (a) anhaltende Augenermüdung trotz Pausen, (b) verschwommenes Sehen, das nach Erholung nicht weggeht, (c) Doppelbilder, (d) Kopfschmerzen >mehrere Tage, (e) erhöhte Lichtempfindlichkeit. Mögliche Ursachen: Refraktions-Fehler nicht korrigiert, trockenes Auge, Akkommodations-Spasmus, in seltenen Fällen schwerere Erkrankungen.",
+        "context": "Der Lesen-im-Dunkeln-Mythos ist ein Klassiker der Eltern-Sorge und wird konsistent von Augenärzten widerlegt. Faktencheck-relevant: Aussagen wie Du machst Dir die Augen kaputt sind nicht evidenzbasiert; Aussagen Augenermüdung ist möglich sind korrekt. Praktische Empfehlung: bei Lesen Augenfreundliche Bedingungen schaffen (gute Beleuchtung, Pausen alle 20 min) zur Komfort-Förderung, nicht zur Schaden-Verhinderung."
+      },
+      "context_notes": [
+        "Differenzierung Bildschirm-Arbeit: Computer Vision Syndrome (CVS) ist eine spezifische Form der Asthenopie bei langer Bildschirm-Arbeit. Symptome ähnlich Eye Strain, Therapie ähnlich (Pausen, gute Bildschirm-Position, ggf. Bildschirm-Brille). Auch hier: keine dauerhaften Schäden dokumentiert, nur Komfort-Probleme.",
+        "Bei Kindern: häufigeres Tageslicht-Spielen (>2h/Tag) reduziert Myopie-Entwicklung — das ist gut dokumentiert. Lese-Beleuchtung im Haus hat KEINE primäre Rolle für Myopie-Prävention.",
+        "Mythos im Pop-Kultur-Kontext: in vielen Medien (Filme, Bücher) wird Lesen-im-Dunkeln-Mythos als Pop-Trope verwendet. Faktencheck-Empfehlung: Augenermüdung möglich, dauerhafte Schäden nicht."
+      ],
+      "claim_phrasings_handled": [
+        "Lesen im Dunkeln macht die Augen kaputt",
+        "Bei schwachem Licht lesen schädigt die Sehkraft",
+        "Lesen ohne gutes Licht zerstört die Augen",
+        "Wer im Dunkeln liest wird kurzsichtig"
+      ],
+      "trigger_composite": [
+        [
+          "lesen",
+          "buch lesen",
+          "augen",
+          "auge",
+          "dunkel",
+          "dämmerlicht",
+          "schwaches licht",
+          "wenig licht"
+        ],
+        [
+          "macht kaputt",
+          "schädigt",
+          "schaden",
+          "schäden",
+          "zerstört",
+          "schadet",
+          "kurzsichtig",
+          "verlieren",
+          "verschlechter",
+          "kaputt",
+          "schlecht für"
+        ]
+      ]
+    },
+    {
+      "topic": "acht_stunden_schlaf_zwingend_mythos",
+      "headline": "Die These Jeder Mensch braucht zwingend 8 Stunden Schlaf simplifiziert; individueller Schlafbedarf variiert 7-9h bei gesunden Erwachsenen, ältere Menschen oft 6-7h ausreichend (Hirshkowitz 2015 Sleep Health, AASM National Sleep Foundation Guidelines)",
+      "year": 2024,
+      "source_url": "https://aasm.org/clinical-resources/practice-standards/practice-guidelines/",
+      "secondary_url": "https://www.thensf.org/how-much-sleep-do-we-really-need/",
+      "source_label": "American Academy of Sleep Medicine (AASM) + National Sleep Foundation + Hirshkowitz 2015 Sleep Health + NIH NHLBI",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Jeder Mensch braucht zwingend 8 Stunden Schlaf pro Nacht ist OVERSIMPLIFIED. Individueller Schlafbedarf variiert nach Alter, Genetik und individuellem Stoffwechsel. National Sleep Foundation Guidelines (Hirshkowitz M et al. 2015 Sleep Health Vol 1: National Sleep Foundations sleep time duration recommendations) Konsens-Empfehlungen nach Alter: (a) Säuglinge 4-12 Monate: 12-16h. (b) Kleinkinder 1-2 J.: 11-14h. (c) Vorschulkinder 3-5 J.: 10-13h. (d) Schulkinder 6-13 J.: 9-11h. (e) Jugendliche 14-17 J.: 8-10h. (f) Junge Erwachsene 18-25 J.: 7-9h. (g) Erwachsene 26-64 J.: 7-9h. (h) Ältere Erwachsene 65+ J.: 7-8h (oft natürlich 6-7h ausreichend). Diese sind RANGES, keine fixen Werte. AASM Position: 7+h für gesunde Erwachsene als Minimum-Empfehlung, 8h ist mittlerer Wert nicht universelle Pflicht. Genetische Variation: kleine Subgruppe natürlicher Kurzschläfer (DEC2-Mutation, ca. 1-3 Prozent Bevölkerung) braucht nur 4-6h für volle Performance ohne gesundheitliche Konsequenzen. Walker M Why We Sleep 2017 (Bestseller, populär) hat 8-Stunden-Empfehlung verstärkt — methodische Kritik (Guzey 2019 Buchkritik): Walker übergeneralisiert vereinzelte Studien. Wichtige Ausnahmen: chronisches Schlafdefizit (<5h dauerhaft) ist mit erhöhtem Risiko für Herz-Kreislauf-Erkrankungen, Diabetes, kognitive Einschränkungen assoziiert (Cappuccio 2010 Sleep Meta-Analyse) — Risiko ist Dosis-abhängig, nicht binär. Faktencheck-relevant: pauschale Aussagen wie Wer keine 8 Stunden schläft ist unproduktiv überzeichnen die Datenlage; differenzierte Bewertung mit individuellem Bedarfs-Range evidenzbasierter.",
+        "hirshkowitz_2015_konsens": "Hirshkowitz M, Whiton K, Albert SM et al. National Sleep Foundations sleep time duration recommendations: methodology and results summary. Sleep Health 2015;1:40-43. Internationaler Experten-Konsens (18 Wissenschaftler, mehrere medizinische Fachgesellschaften). Methodisch: systematic review von >300 wissenschaftlichen Studien zum Schlafbedarf. Ergebnis: Empfehlungen als RANGES nach Alter, mit jeweiligen May-Be-Appropriate-Bändern für individuelle Variation.",
+        "alters_variation_konkret": "Erwachsene 18-64 J.: 7-9h optimal, 6h kann angemessen sein (May Be Appropriate), 5h nicht empfohlen. Ältere 65+: 7-8h optimal, 5-6h kann angemessen sein, <5h nicht empfohlen. Diese May-Be-Appropriate-Kategorien anerkennen individuelle Variation, ohne sie zu pathologisieren.",
+        "genetische_kurzschlaefer": "DEC2-Mutation (BHLHE41-Gen): ca. 1-3 Prozent Bevölkerung haben Variante, die mit natürlich verkürztem Schlafbedarf (4-6h) assoziiert ist ohne kognitive oder gesundheitliche Defizite. Erstmals He 2009 Science (Mutationsanalyse), bestätigt in mehreren Studien. Wichtige Differenzierung: das ist genetisch determiniert + asymptomatisch, nicht durch Lebensstil verursacht.",
+        "chronisches_defizit_risiko": "Cappuccio FP et al. Sleep duration and all-cause mortality: a systematic review and meta-analysis. Sleep 2010;33:585-592. n>1,3 Mio. Personen aus 16 Studien. Befund: U-förmige Risiko-Kurve. <5h Schlaf: erhöhtes Mortalitäts-Risiko (HR 1,12). >9h Schlaf: ebenfalls erhöht (HR 1,30). Zwischen 6-8h: niedrigste Mortalität. Schluss: chronische Schlaf-Verkürzung UND chronische Schlaf-Verlängerung sind beide mit erhöhter Mortalität assoziiert.",
+        "walker_kontroverse": "Matthew Walker (UC Berkeley) Why We Sleep 2017 wurde Bestseller, popularisierte 8-Stunden-Empfehlung. 2019 publizierte Alexey Guzey kritische Buchkritik (Many of the Statistics in Walkers Why We Sleep are Wrong), fand mehrere methodische Schwächen + statistische Fehler. Walker hat einige Korrekturen anerkannt. Konsequenz: 8-Stunden-Pflicht wurde overgeneralisiert; differenzierte Range-Empfehlungen aktueller Stand.",
+        "context": "Der 8-Stunden-Mythos ist medial verbreitet und nicht falsch im Sinne, dass 8h für viele Menschen optimal sind. Falsch ist die Zwingenheit + Universalität. Faktencheck-relevant: Aussagen wie Wer keine 8 Stunden schläft schadet seinem Körper sind übertrieben; differenzierte Bewertung 7-9h Range + individuelle Variation evidenzbasierter. Wichtig: chronisches Schlaf-Defizit <5h ist gesundheitlich problematisch — das ist nicht zu bagatellisieren."
+      },
+      "context_notes": [
+        "Schlaf-Qualität vs. Schlaf-Dauer: für gesundheitliche Auswirkungen ist Schlaf-Qualität (Tiefschlaf-Anteil, REM-Schlaf, Durchschlaf) wichtiger als reine Dauer. 7h erholsamer Schlaf > 9h fragmentierter Schlaf. Smartwatches/Schlaf-Tracker sind diagnostisch begrenzt — bei Verdacht auf Schlafstörung Schlaf-Labor-Untersuchung.",
+        "Praktische Schlaf-Hygiene-Empfehlungen (AASM): regelmäßige Schlaf-Zeiten, dunkles ruhiges Schlafzimmer, kühle Raumtemperatur, kein Bildschirm vor dem Schlafengehen, kein Koffein nach 14 Uhr, keine Mahlzeiten 2h vor Schlaf, regelmäßige körperliche Aktivität.",
+        "Schlafstörungen ernst nehmen: Insomnie (Ein-/Durchschlafstörungen >3 Monate, mit Tageschäden), Schlafapnoe-Syndrom (Atemaussetzer im Schlaf), Restless-Legs-Syndrom — diese sind klinische Diagnosen, gehören in ärztliche Behandlung, nicht in Selbsttherapie."
+      ],
+      "claim_phrasings_handled": [
+        "Jeder Mensch braucht zwingend 8 Stunden Schlaf",
+        "Wer weniger als 8 Stunden schläft schadet seinem Körper",
+        "8 Stunden Schlaf sind universelle Pflicht",
+        "Mit 6 Stunden Schlaf wird man krank"
+      ],
+      "trigger_composite": [
+        [
+          "schlaf",
+          "schlafen",
+          "stunden schlaf",
+          "schlafdauer",
+          "schlafstunden"
+        ],
+        [
+          "8 stunden",
+          "acht stunden",
+          "zwingend",
+          "muss",
+          "jeder mensch",
+          "universal",
+          "pflicht",
+          "jede nacht",
+          "braucht"
+        ]
+      ]
+    },
+    {
+      "topic": "kalter_boden_blasenentzuendung_mythos",
+      "headline": "Sitzen auf kalter Oberfläche verursacht KEINE bakterielle Blasenentzündung (Cystitis); Cystitis wird durch aufsteigende Bakterien aus dem Darm verursacht (E. coli ~80 Prozent), Kälte-Exposition ist nicht primärer Risiko-Faktor (NHS, Mayo Clinic, RKI)",
+      "year": 2024,
+      "source_url": "https://www.nhs.uk/conditions/cystitis/",
+      "secondary_url": "https://www.mayoclinic.org/diseases-conditions/urinary-tract-infection/symptoms-causes/syc-20353447",
+      "source_label": "NHS UK + Mayo Clinic + RKI + Cochrane Reviews on UTI",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Sitzen auf kalter Oberfläche / im Auto verursacht direkt eine Blasenentzündung ist FALSE/MIXED. Blasenentzündung (Cystitis) ist eine bakterielle Infektion des unteren Harntrakts. Hauptursache (NHS, Mayo Clinic, Cochrane): aufsteigende Bakterien-Infektion, primär E. coli (Escherichia coli, ~80 Prozent der unkomplizierten Fälle), aus eigener Darm-Flora. Risiko-Faktoren mit dokumentierter Kausalität: (a) anatomische Faktoren bei Frauen (kürzere Harnröhre), (b) Geschlechtsverkehr (mechanische Verlagerung von Bakterien), (c) Schwangerschaft (hormonell + mechanisch), (d) Wechseljahre (Östrogen-Mangel verändert Vaginal-Mikrobiom), (e) Diabetes mellitus, (f) Harn-Retention oder -Obstruktion, (g) Katheterisierung, (h) bestimmte Verhütungsmittel (Diaphragma + Spermizid). Kälte-Exposition als alleinige Ursache ist NICHT etabliert. Mögliche indirekte Verbindungen: (1) Kälte kann periphere Vasokonstriktion bewirken, was lokale Immun-Antwort modulieren KÖNNTE — keine starken Daten. (2) Kälte-induziert reduzierte Trinkmenge → weniger Spülung des Harntrakts. (3) Korrelation, nicht Kausalität: Menschen mit häufigen Cystitiden sind generell anfälliger; Kälte-Exposition fällt zeitlich auf, ohne kausal zu sein. WICHTIG: bei Cystitis-Symptomen (häufiger Drang, Brennen beim Wasserlassen, trüber/blutiger Urin, Unterbauch-Schmerzen) ärztliche Konsultation für Antibiotikum-Therapie wichtig — KEINE Selbst-Therapie nur mit Wärme. Faktencheck-relevant: Aussagen wie Sitz nicht auf kaltem Boden, sonst hast Du Blasenentzündung sind kausal nicht haltbar; die Sorge ist verständlich, aber bakterielle UTI hat andere Ursachen.",
+        "uti_pathophysiologie": "Urinary Tract Infection (UTI) Mechanismus: Bakterien aus eigener Darm-Flora (überwiegend E. coli) wandern über Urethra in Harnblase. Begünstigende Faktoren: (a) anatomisch — Frauen haben Urethra ca. 4 cm vs. Männer ca. 18 cm, daher 4-8x höheres UTI-Risiko bei Frauen. (b) mechanisch — Geschlechtsverkehr verlagert periurethrale Bakterien, daher Honeymoon-Cystitis-Phänomen. (c) immunologisch — bei Wechseljahren Östrogen-Mangel-induzierte Veränderung des Vaginal-Mikrobioms (Lactobacillus-Reduktion) erhöht Pathogen-Akkumulation.",
+        "kaelte_indirekte_effekte": "Mögliche indirekte Kälte-UTI-Verbindungen: (1) Vasokonstriktion in peripheren Bereichen (Becken-/Beckenboden-Region) könnte lokale Immun-Antwort modulieren, aber empirische Daten schwach. (2) Bei Kälte trinken Menschen oft weniger → weniger Diurese → weniger Spülung des Harntrakts → längere Bakterien-Verweildauer. Aber das ist Trinkverhaltens-Mediator, nicht Kälte-direkt. (3) Bei längerer Kälte-Exposition Becken-Boden-Muskulatur-Anspannung möglich → eventuell ungleichmäßige Blasenentleerung — aber nicht hauptsächlicher Pathomechanismus.",
+        "epidemiologie_uti": "UTI-Lebensprävalenz: 50-60 Prozent aller Frauen erleben mindestens einen UTI im Leben. Inzidenz junge sexuell aktive Frauen: 10-20 Prozent jährlich. Wiederkehrende UTI: 20-30 Prozent der ersten UTI-Patientinnen entwickeln Recurrence binnen 6 Monaten. Hauptpathogen E. coli 70-80 Prozent. Andere Erreger: Klebsiella, Proteus, Enterococcus, Staphylococcus saprophyticus.",
+        "praeventions_evidenz": "Evidenzbasierte UTI-Prävention bei wiederkehrenden Cystitiden (Cochrane Reviews): (a) Cranberry-Saft / -Extrakte: schwache Evidenz für moderate Reduktion bei Frauen mit häufigen UTI (Cochrane Jepson 2012, mehrere RCTs gemischt). (b) Estrogen lokal vaginal in Wechseljahren: signifikante UTI-Reduktion. (c) Antibiotika-Prophylaxe (low-dose Nitrofurantoin, Trimethoprim): wirksam aber Resistenz-Sorge. (d) D-Mannose: emerging Evidenz, aber methodisch limitiert. (e) ausreichend Trinken (>1,5-2 L/Tag) + post-coital Wasserlassen: alte Empfehlungen, schwache Evidenz. KÄLTE-VERMEIDUNG ist NICHT auf evidenzbasierter Präventions-Liste.",
+        "wann_arztbesuch": "Cystitis-Symptome: häufiger + drängender Harndrang, Brennen beim Wasserlassen, trüber oder übel-riechender oder blutiger Urin, leichte Unterbauch-Schmerzen. Bei diesen Symptomen ärztliche Konsultation, da Antibiotikum-Therapie typischerweise erforderlich (Nitrofurantoin oder Fosfomycin als Erstlinie). Bei Fieber, Flanken-Schmerzen, Übelkeit: Verdacht auf aufsteigende Pyelonephritis (Nieren-Infektion) — sofortige ärztliche Versorgung notwendig.",
+        "context": "Der Kalter-Boden-Mythos ist ein Klassiker der Volksmedizin in DACH-Region. Die Sorge ist verständlich, aber bakterielle Cystitis hat andere Ursachen. Faktencheck-relevant: Aussagen wie Setz Dich nicht auf kalten Boden, sonst kriegst Du Blasenentzündung sind kausal nicht haltbar. Korrekt: bakterielle Hygiene + ausreichendes Trinken + post-coital Wasserlassen sind evidenzbasierter als Kälte-Vermeidung."
+      },
+      "context_notes": [
+        "Bei Männern: UTI deutlich seltener als bei Frauen (anatomisch). Aber wenn UTI bei Mann vorkommt, ist meist anatomische Ursache (Prostata-Vergrößerung, Stein, Strangulationen) — sofortige ärztliche Abklärung wichtig.",
+        "Kinder: rezidivierende UTI bei Kindern erfordert urologische Abklärung wegen möglicher Reflux-Erkrankung (vesikoureteraler Reflux).",
+        "Wichtige Differenzierung: Reizblase (Overactive Bladder) ist KEINE bakterielle Infektion — ähnliche Symptome (häufiger Harndrang) ohne Bakterien. Diagnostik durch Urinkultur. Behandlung anders (Verhaltens-Training, ggf. Anticholinergika)."
+      ],
+      "claim_phrasings_handled": [
+        "Sitzen auf kaltem Boden verursacht Blasenentzündung",
+        "Setz Dich nicht auf kalten Stein, dann hast Du Cystitis",
+        "Im Auto auf kaltem Sitz sitzen führt zu Blasenentzündung",
+        "Kälte am Becken macht Blasenentzündung"
+      ],
+      "trigger_composite": [
+        [
+          "blasenentzündung",
+          "cystitis",
+          "harnwegsinfekt",
+          "harnwegs-infekt",
+          "harnwegsinfektion",
+          "harnblase"
+        ],
+        [
+          "kalt",
+          "kälte",
+          "kalten boden",
+          "kaltem boden",
+          "kalter stein",
+          "kalt sitzen",
+          "im auto sitzen",
+          "winter"
+        ]
+      ]
+    },
+    {
+      "topic": "linkshaender_sterblichkeit_mythos",
+      "headline": "Die These Linkshänder sterben früher basiert auf der methodisch fehlerhaften Coren-Halpern 1991 NEJM-Studie; spätere Replikations-Versuche und Re-Analysen (Aggleton 1993 Lancet, Marks 1994, Martin 2009) widerlegen den vermeintlichen Effekt — er war Selektions-Bias-Artefakt",
+      "year": 2024,
+      "source_url": "https://www.nejm.org/doi/full/10.1056/NEJM199104043241418",
+      "secondary_url": "https://www.thelancet.com/",
+      "source_label": "Coren & Halpern 1991 NEJM (Originalstudie) + Aggleton 1993 Lancet (Kritik) + Marks 1994 Br J Psychol + Martin 2009 (longitudinal-Replikation)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Linkshänder sterben durchschnittlich 9 Jahre früher als Rechtshänder ist FALSE. Diese Behauptung basiert auf einer einzelnen 1991 NEJM-Studie (Coren S & Halpern DF. Left-handedness: A marker for decreased survival fitness. Psychological Bulletin 1991, popularisiert in NEJM-Korrespondenz), die methodisch schwerwiegende Probleme hatte. Methodik der Original-Studie: Befragung von Familien-Angehörigen verstorbener Personen über die Händigkeit der Verstorbenen. Befund: höherer Rechtshänder-Anteil bei älteren Verstorbenen, niedriger bei jüngeren. Schlussfolgerung der Autoren: Linkshänder sterben früher. Methodische Probleme (Aggleton JP et al. 1993 Lancet, Marks JS 1994 Br J Psychol, Martin WLB & Freitas MB 2009): (1) Cohort-Effekt — ältere Generationen wurden in Schule und Familie zu Rechtshändigkeit umerzogen (häufig in Geburtsjahrgänge vor 1950). Daher haben verstorbene Ältere niedrigeren NATÜRLICHEN Linkshänder-Anteil, nicht weil Linkshänder früher sterben, sondern weil sie als Rechtshänder zählen. (2) Selektions-Bias der Befragten — Familien-Erinnerungen ungenau. (3) keine prospektive Daten. Spätere prospektive Studien (Martin 2009, Coren-Originalstudie wurde nicht repliziert) finden keinen signifikanten Lebensspann-Unterschied zwischen Links- und Rechtshändern. Aktuelle Position der Wissenschaft: kein Mortalitäts-Unterschied. Faktencheck-relevant: Aussagen wie Linkshänder leben kürzer sind ein klassisches Lehrbuch-Beispiel für statistisches Cohort-Effekt-Artefakt; differenzierte Bewertung erkennt: Coren-Studie war methodisch problematisch und nicht reproduzierbar.",
+        "coren_halpern_1991_studie": "Coren S, Halpern DF. Left-handedness: A marker for decreased survival fitness. Psychol Bull 1991;109:90-106. Plus NEJM-Korrespondenz The 9-year-shorter lifespan claim. Methode: retrospektive Befragung von Familien über Händigkeit verstorbener Verwandter aus Todesanzeigen-Datensätzen. Behauptetes Befund-Resultat: Linkshänder-Anteil bei jüngeren Verstorbenen ~13 Prozent, bei älteren Verstorbenen ~1 Prozent. Schlussfolgerung: Linkshänder hätten kürzere Lebenserwartung von ca. 9 Jahren. Sehr medial aufgegriffen — Time Magazine, Newsweek-Artikel.",
+        "cohort_effekt_hauptkritik": "Hauptkritik (Aggleton 1993 Lancet): Cohort-Effekt durch Linkshänder-Umerziehung. In den USA und Europa wurden Kinder bis ca. 1950er-1960er häufig zur Rechtshändigkeit umerzogen (Schule, Familien-Druck). In den 1970er-1980er Jahren entspannte sich diese Praxis, daher haben jüngere Generationen höheren Linkshänder-Anteil. Coren-Studie verglich verstorbene Ältere (geboren ~1900-1920, viele zwangsweise umerzogen) mit verstorbenen Jüngeren (geboren ~1950-1970, weniger umerzogen). Der scheinbare Mortalitäts-Effekt war eigentlich ein Generations-Klassifikations-Effekt.",
+        "aggleton_1993_replikation": "Aggleton JP, Bland JM, Kentridge RW, Neave NJ. Handedness and longevity: archival study of cricketers. BMJ 1994;309:1681-1684. Studie nutzt umfangreiche Cricket-Spieler-Archive (Geburts-/Todesdaten + Händigkeit dokumentiert über >100 Jahre). Befund: keine signifikante Lebenserwartungs-Differenz zwischen Links- und Rechtshändern. Cricket-Daten haben Vorteil prospektiver Dokumentation der Händigkeit, weniger Selektions-Bias.",
+        "marks_1994_kritik": "Marks JS, Williamson DF. Left-handedness and life expectancy. New England Journal of Medicine 1991;325:1042-1043 (Korrespondenz, später Br J Psychol vertiefte Kritik). Hauptpunkt: Coren-Daten sind mit Cohort-Effekt vollständig konsistent, ohne tatsächliche Mortalitäts-Differenz zu erfordern. Statistische Re-Analyse zeigt keine Mortalitäts-Differenz nach Cohort-Adjustierung.",
+        "aktuelle_konsens": "Aktuelle wissenschaftliche Position: keine signifikante Lebenserwartungs-Differenz zwischen Linkshändern und Rechtshändern. Linkshändigkeit ist eine normale neuro-anatomische Variation, ca. 10-12 Prozent der Bevölkerung weltweit. Vermutlich primär genetisch determiniert (Twin-Studien Heritabilität ~25 Prozent), Rest durch Entwicklungs-Faktoren. Keine Assoziation mit erhöhter Mortalität, keine Assoziation mit erhöhter Krankheits-Anfälligkeit (außer einigen sehr spezifischen Sonderfällen wie Schwangerschafts-Komplikationen, die keine direkte Lebensspann-Konsequenz haben).",
+        "context": "Coren-Halpern 1991 ist ein klassisches Lehrbuch-Beispiel in Statistik-Kursen für Cohort-Effekt-induzierte Schein-Befunde. Der Mythos hält sich in der Pop-Kultur trotz wissenschaftlicher Widerlegung — Pop-Bücher und Medien zitieren manchmal noch die Originalstudie ohne Kritik-Kontext. Faktencheck-relevant: Aussagen wie Linkshänder leben kürzer sind nicht aktuell wissenschaftlich gestützt; Coren-Studie war methodisch fehlerhaft."
+      },
+      "context_notes": [
+        "Linkshänder-Umerziehung historisch: in DE/AT bis ca. 1950er-1960er Jahre häufig (Schul-Disziplin, religiöse Sorgen, kulturelle Vorurteile). Heute medizinisch eindeutig nicht empfohlen — Umerziehung kann zu Lese-/Schreib-Problemen, Stottern, allgemeinen Lern-Schwierigkeiten führen.",
+        "Linkshänder-Vorteile: einige sportliche Disziplinen (Tennis, Fechten, Boxen) haben Links-Hand-Vorteile durch Asymmetrie der gegnerischen Wahrnehmung. Aber keine generelle kognitive oder körperliche Überlegenheit dokumentiert.",
+        "Differenzierung Links-Hand vs. Beid-Händigkeit: ca. 1-2 Prozent der Bevölkerung sind beidhändig (Mixed Hand-Dominance). Diese Subgruppe hat in einigen Studien tatsächlich leicht erhöhte Risiken für bestimmte neuro-entwicklungs-bezogene Bedingungen — separat von normaler Links-Händigkeit zu betrachten."
+      ],
+      "claim_phrasings_handled": [
+        "Linkshänder sterben durchschnittlich früher",
+        "Linkshänder haben 9 Jahre kürzere Lebenserwartung",
+        "Wer linkshändig ist lebt kürzer",
+        "Studien zeigen dass Linkshänder früher sterben"
+      ],
+      "trigger_composite": [
+        [
+          "linkshänder",
+          "linkshändig",
+          "rechtshänder",
+          "händigkeit",
+          "linkshändigkeit"
+        ],
+        [
+          "sterben",
+          "sterblichkeit",
+          "lebenserwartung",
+          "kürzer",
+          "länger leben",
+          "lebensspanne",
+          "9 jahre",
+          "studie",
+          "früher"
+        ]
+      ]
+    },
+    {
+      "topic": "glas_kaffee_dehydrierung_mythos",
+      "headline": "Koffein hat milde diuretische Wirkung, aber regelmäßiger Kaffee-Konsum trägt zur Flüssigkeits-Bilanz NETTO POSITIV bei (Killer 2014 PLoS One, Maughan 2003); Kaffee zählt zur täglichen Flüssigkeits-Aufnahme, der Glas-Wasser-pro-Kaffee-Mythos ist FALSE",
+      "year": 2024,
+      "source_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0084154",
+      "secondary_url": "https://www.efsa.europa.eu/en/efsajournal/pub/4102",
+      "source_label": "Killer 2014 PLoS One + Maughan & Griffin 2003 J Hum Nutr Diet + EFSA Caffeine Opinion 2015 + Cochrane Reviews",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Jeder Kaffee braucht ein zusätzliches Glas Wasser, weil Kaffee dehydriert ist FALSE. Killer SC, Blannin AK, Jeukendrup AE 2014 PLoS One No Evidence of Dehydration with Moderate Daily Coffee Intake: cross-over randomisiert kontrollierte Studie n=50 gewohnheitsmäßige Kaffee-Konsumenten, 4 Tage 4 Tassen Kaffee/Tag (200 mg Koffein) vs. 4 Tage Wasser-Konsum gleicher Volumen. Hydratations-Marker (Plasma-Osmolalität, Urin-Osmolalität, 24h-Urin-Volumen, Körpergewicht): KEINE signifikanten Unterschiede zwischen Kaffee- und Wasser-Phase. Schluss: bei regelmäßigem Konsum trägt Kaffee NETTO POSITIV zur täglichen Flüssigkeits-Bilanz bei. Maughan RJ, Griffin J 2003 J Hum Nutr Diet ähnliches Befund-Pattern. Mechanismus: Koffein hat tatsächlich milde diuretische Wirkung — bei NEU-Konsumenten kann erste Tasse Kaffee leicht erhöhte Urin-Produktion auslösen. Aber bei gewohnheitsmäßigem Konsum entwickelt sich Tolerance: Adenosin-Rezeptor-Down-Regulation reduziert die diuretische Wirkung deutlich. Studie quantifizierte: gewohnheitsmäßige Kaffee-Konsumenten zeigen ähnliche Diurese auf Kaffee wie auf gleiches Volumen Wasser. WICHTIG: bei sehr hohem Konsum (>500 mg Koffein/Tag entspricht ~6 Tassen Kaffee) könnte diuretische Wirkung relevant werden, aber bei normaler 1-4 Tassen/Tag KEIN Hydratations-Problem. EFSA Position 2015: Kaffee zählt zur täglichen Flüssigkeits-Aufnahme. Faktencheck-relevant: Empfehlungen wie Pro Tasse Kaffee ein Glas Wasser sind nicht evidenzbasiert; bei moderater Konsum-Menge ist Kaffee Flüssigkeitsbilanz-positiv.",
+        "killer_2014_studie": "Killer SC, Blannin AK, Jeukendrup AE. No Evidence of Dehydration with Moderate Daily Coffee Intake: A Counterbalanced Cross-Over Study in a Free-Living Population. PLoS One 2014;9:e84154. Studien-Design: cross-over RCT, n=50 gewohnheitsmäßige Kaffee-Konsumenten (3-6 Tassen/Tag normal). 4 Tage Kaffee-Phase (4 Tassen á 200 ml mit 1,5-1,8 g Bohnen, ~200 mg Koffein gesamt) vs. 4 Tage Wasser-Phase (gleiches Volumen). Outcomes: Plasma-Osmolalität, Plasma-Natrium, Urin-Osmolalität, Urin-spezifisches-Gewicht, 24h-Urin-Volumen, Körpergewicht. Befund: KEINE signifikanten Unterschiede in irgendeinem Hydratations-Marker. Schluss: 4 Tassen Kaffee/Tag bei gewohnheitsmäßigen Konsumenten ist hydratisch äquivalent zu Wasser.",
+        "tolerance_entwicklung": "Adenosin-Rezeptor-Pharmakologie: Koffein blockiert Adenosin-Rezeptoren A1/A2A, was diuretische + stimulierende Effekte vermittelt. Bei chronischem Konsum (>1 Woche regelmäßig): Down-Regulation der Adenosin-Rezeptoren. Konsequenz: diuretische Wirkung wird stark abgeschwächt — bei langjährigen Kaffee-Trinkern fast vernachlässigbar. Bei Neu-Konsumenten oder bei stark erhöhter Dosis (kurz-/mittelfristig) kann milder diuretischer Effekt vorhanden sein.",
+        "moderate_dosis_definition": "EFSA-Empfehlung 2015: bis 400 mg Koffein/Tag für gesunde Erwachsene sicher (entspricht ca. 4-5 Tassen Filterkaffee oder 8-10 Espressi). Bei dieser Dosis keine Dehydratation. Schwangere: max 200 mg/Tag. Kinder/Jugendliche: 3 mg/kg KG/Tag. Bei Hoch-Konsumenten >500 mg/Tag mehrere Effekte (Schlaf-Probleme, Tachykardie, Reizdarm) — Hydratation aber meist noch kein Hauptproblem.",
+        "vergleich_andere_getraenke": "Andere koffein-haltige Getränke verhalten sich ähnlich: Tee (60-80 mg Koffein/Tasse) ähnlich Kaffee, sogar mehr Flüssigkeits-positiv wegen niedrigerer Koffein-Dichte. Cola (30-40 mg Koffein/Glas) sehr mild diuretisch. Energy-Drinks (80-200 mg Koffein/Dose) haben höhere Koffein-Dichte, aber bei moderaten Mengen ebenfalls Flüssigkeits-positiv.",
+        "wann_diuretika_relevant": "Diuretische Wirkung kann relevant werden bei: (a) sehr hohen Koffein-Dosen >500 mg akut (Pre-Workout-Pulver mit >300 mg + Kaffee), (b) bei Hochrisiko-Personen für Dehydratation (ältere Menschen, Hitze-Exposition, intensive Sport-Aktivität), (c) bei spezifischen medizinischen Bedingungen (Diabetes insipidus). Im Alltag bei moderaten Konsumenten ist es kein Problem.",
+        "context": "Der Kaffee-dehydriert-Mythos ist Pop-Wissen, das durch Wasser-Industrie + Wellness-Empfehlungen perpetuiert wurde. Killer 2014 + Maughan 2003 widerlegen empirisch. Faktencheck-relevant: Empfehlungen Pro Kaffee ein Glas Wasser sind nicht evidenzbasiert. Pragmatische Korrektur: Kaffee zählt zur täglichen Flüssigkeits-Aufnahme."
+      },
+      "context_notes": [
+        "Differenzierung gegenüber Alkohol: Alkohol ist tatsächlich diuretisch (hemmt ADH = Antidiuretisches Hormon). Bei Alkohol-Konsum braucht man tatsächlich mehr Wasser zum Ausgleich. Kaffee-Mythos überträgt Alkohol-Logik auf Koffein, ist aber pharmakologisch unterschiedlich.",
+        "Bei Kaffee-Liebhabern: 3-5 Tassen pro Tag sind nach aktueller Datenlage gesund — assoziiert mit reduziertem Risiko für Diabetes Typ 2, Parkinson, Lebererkrankungen, kolorektales Karzinom (Poole 2017 BMJ Umbrella Review). Die Hydratations-Sorge ist also nicht nur unbegründet, sondern Kaffee hat sogar eigene Gesundheits-Vorteile.",
+        "Praktische Empfehlung: bei Bedarf Wasser zusätzlich trinken nach Durst-Empfindung (Kaffee löscht Durst nicht so gut wie Wasser, aber Hydrierung ist gewährleistet)."
+      ],
+      "claim_phrasings_handled": [
+        "Pro Tasse Kaffee braucht man ein Glas Wasser",
+        "Kaffee dehydriert den Körper",
+        "Wer Kaffee trinkt muss extra Wasser trinken",
+        "Kaffee zählt nicht zur Flüssigkeitsaufnahme"
+      ],
+      "trigger_composite": [
+        [
+          "kaffee",
+          "espresso",
+          "tee",
+          "koffein",
+          "cola"
+        ],
+        [
+          "dehydrier",
+          "dehydration",
+          "wasser",
+          "flüssigkeit",
+          "extra glas",
+          "zusätzlich",
+          "ausgleich",
+          "trockenheit",
+          "entwässert",
+          "zählt nicht"
+        ]
+      ]
+    },
+    {
+      "topic": "nasse_haare_erkaeltung_mythos",
+      "headline": "Erkältung wird durch Rhino-/Coronaviren übertragen, nicht durch nasse Haare oder Kälte; CDC, NHS und RKI bestätigen virologische Ursache; Kälte-Exposition kann Immunabwehr leicht modulieren, aber kausal nicht primär verantwortlich",
+      "year": 2024,
+      "source_url": "https://www.cdc.gov/dotw/common-cold/index.html",
+      "secondary_url": "https://www.nhs.uk/conditions/common-cold/",
+      "source_label": "CDC + NHS UK + RKI + Cochrane Reviews on Common Cold",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Mit nassen Haaren in die Kälte = Erkältung oder Kalte Füße = Schnupfen ist FALSE/MIXED. Erkältungen (Common Cold) sind ausschließlich virale Infektionen. Hauptursachen (CDC, NHS, RKI): Rhinoviren (~30-50 Prozent aller Erkältungen), Coronaviren (10-15 Prozent, NICHT SARS-CoV-2 sondern HCoV-OC43 etc.), Adenoviren, RSV, Parainfluenza-Viren, Enteroviren. Übertragungswege: Tröpfchen-Infektion (Husten, Niesen) + Schmierinfektion (Hände → Gesichts-Schleimhäute). Ohne Virus-Kontakt ist Erkältung KAUM möglich. Möglicherweise indirekte Kälte-Effekte: (1) Johnson & Eccles 2005 Family Practice: Studie zeigte, dass Eintauchen der Füße in kaltes Wasser für 20 Min bei subklinisch infizierten Probanden zu mehr klinischen Erkältungs-Symptomen führte (29 Prozent vs. 9 Prozent). Mechanismus: Kälte-induzierte Vasokonstriktion in Nasen-Schleimhaut könnte Immun-Antwort lokal reduzieren. Aber: Voraussetzung war BEREITS-INFEKTION mit Erkältungs-Virus. (2) Foxman 2015 PNAS: Mausmodell zeigte Rhinovirus-Replikation bei niedriger Temperatur höher als bei Körpertemperatur — biologische Plausibilität für Kälte-Modulation. (3) Eccles 2002 Acta Otolaryngol: epidemiologische Saison-Korrelation Winter+ Erkältungen — aber primär durch (a) mehr Innenraum-Aufenthalt → mehr Tröpfchen-Übertragung, (b) trockene Heizungsluft schwächt Schleim-Abwehr, (c) reduziertes Vitamin D + UV-Exposition. WICHTIG: Kälte-Exposition ALLEIN OHNE VIRUS-KONTAKT verursacht KEINE Erkältung. Bei VORHANDENEM Virus-Kontakt kann Kälte den Verlauf modulieren, aber ist nicht primärer Pathomechanismus. Faktencheck-relevant: Aussagen wie Geh nicht mit nassen Haaren raus, sonst erkältest Du Dich verkennen virologische Realität; primärer Schutz ist Hand-Hygiene und Tröpfchen-Vermeidung.",
+        "rhinoviren_hauptkausse": "Rhinoviren: ca. 100 verschiedene Serotypen, hauptsächliche Erkältungs-Erreger. Inkubationszeit 1-3 Tage. Infektionsweg: Tröpfchen + Schmier. Replikations-Optimum bei 33-35 °C (Nasen-Temperatur), höher als 37 °C (Körper-Kern). Diese Temperatur-Affinität erklärt, warum Erkältungs-Symptome primär in oberen Atemwegen lokalisiert sind. Foxman 2015 PNAS: Rhinovirus-Replikation in Maus-Atemwegen bei 33 °C vs. 37 °C: 100-fach höher bei niedrigerer Temperatur — Hinweis auf temperatur-abhängige Immunabwehr.",
+        "johnson_eccles_2005": "Johnson C & Eccles R. Acute cooling of the feet and the onset of common cold symptoms. Family Practice 2005;22:608-613. Kontrollierte Studie: 90 Probanden, randomisiert in (a) Füße in 10 °C kaltem Wasser für 20 Min vs. (b) Füße in leerer Schüssel. Outcome: Erkältungs-Symptome in den nächsten 4-5 Tagen. Befund: Kälte-Gruppe 29 Prozent Symptom-Inzidenz vs. Kontrolle 9 Prozent. Schluss der Autoren: Kälte könnte bei subklinisch infizierten Probanden klinische Symptomatik triggern. Hypothese: Vasokonstriktion in Nasen-Schleimhaut reduziert Immun-Antwort, latente Infektion wird klinisch.",
+        "saisonale_haeufigkeit": "Erkältungs-Saisonalität: in gemäßigten Klimazonen (DE/AT/EU) Häufung Herbst/Winter (Oktober-März). Mehrere Erklärungs-Faktoren: (a) mehr Innenraum-Aufenthalt → höhere Übertragung-Wahrscheinlichkeit. (b) Trockene Heizungsluft reduziert Schleimhaut-Abwehr (mukoziliäre Clearance). (c) Niedrigere Vitamin-D-Spiegel im Winter durch reduzierte UV-B-Exposition (Vitamin-D-Mangel mit erhöhter Infekt-Anfälligkeit assoziiert, Aglipay 2017 JAMA für Kinder). (d) Niedrigere Temperatur und Luftfeuchtigkeit fördern Virus-Stabilität in Aerosolen.",
+        "kaelte_immun_modulation": "Eccles R. An explanation for the seasonality of acute upper respiratory tract viral infections. Acta Otolaryngol 2002;122:183-191. Übersichts-Artikel über Saisonalitäts-Mechanismen. Zentrale Punkte: Kälte allein verursacht keine Erkältung, aber kann Immun-Antwort lokal modulieren. Alle bisherigen Studien zeigen Kälte als möglichen MODULATOR, nicht als URSACHE. Empfehlung: warme Kleidung sinnvoll für Komfort + leichte Reduktion des Modulator-Effekts, nicht für Erkältungs-Vermeidung als Hauptmaßnahme.",
+        "praevention_evidenzbasiert": "Evidenzbasierte Erkältungs-Prävention (Cochrane Reviews): (a) Hand-Hygiene mit Seifen-/Desinfektion: signifikante Reduktion (Jefferson 2011). (b) Influenza-Impfung: spezifisch gegen Influenza, nicht andere Erkältungs-Viren. (c) Vitamin-D-Supplementierung bei Mangel: moderate Reduktion bei Atemwegs-Infekten (Martineau 2017 BMJ Meta-Analyse). (d) Probiotika: schwache Evidenz, möglicher leichter Schutz-Effekt. (e) Echinacea / Vitamin C / Zink: heterogene Studienlage, schwache bis keine konsistente Evidenz. KÄLTE-VERMEIDUNG: nicht auf evidenzbasierter Präventions-Liste.",
+        "context": "Der nasse-Haare-Erkältung-Mythos ist tradierte Eltern-Sorge in DACH-Region. Wissenschaftlich primär Virus-Kontakt für Erkältung verantwortlich. Faktencheck-relevant: Aussagen wie Mit nassen Haaren raus = Erkältung sind kausal nicht haltbar; Hand-Hygiene und Tröpfchen-Vermeidung sind evidenzbasierte Schutz-Hebel. Kälte-Komfort (warme Kleidung) hat Lebensqualitäts-Wert, ist aber nicht primärer Erkältungs-Schutz."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung Erkältung vs. Influenza: Erkältung wird durch verschiedene Atemwegs-Viren verursacht, mild verlaufend, dauert 7-10 Tage, kein Fieber meist. Influenza wird spezifisch durch Influenza-A/B-Viren verursacht, schwerer verlaufend, hohes Fieber, Muskel-Schmerzen, Müdigkeit, dauert 1-2 Wochen. Influenza-Impfung schützt nur gegen Influenza, nicht gegen Erkältung.",
+        "COVID-19: SARS-CoV-2 ist andere Familie als Erkältungs-Coronaviren (HCoV-OC43, NL63, 229E). Differenzialdiagnose bei Atemwegs-Symptomen: bei systemischen Symptomen + Verlauf-Verschlechterung Test sinnvoll.",
+        "Wichtig bei Kindern: häufigere Erkältungen normal (8-12 pro Jahr in ersten Schul-Jahren). Mit zunehmender Immun-Reife reduziert sich Häufigkeit. Erkältungs-Häufigkeit bei Kindern ist NICHT durch Eltern-Kälte-Vermeidung zu reduzieren — Hand-Hygiene-Schulung ist effektiver."
+      ],
+      "claim_phrasings_handled": [
+        "Mit nassen Haaren in die Kälte = Erkältung",
+        "Kalte Füße verursachen Schnupfen",
+        "Ohne Mütze rausgehen macht erkältet",
+        "Wer im Winter friert wird krank"
+      ],
+      "trigger_composite": [
+        [
+          "erkältung",
+          "schnupfen",
+          "husten",
+          "krank werden",
+          "common cold"
+        ],
+        [
+          "nass",
+          "nasse haare",
+          "nass raus",
+          "kälte",
+          "kalt",
+          "kalte füße",
+          "kalter wind",
+          "ohne mütze",
+          "frieren",
+          "winter"
+        ]
+      ]
+    },
+    {
+      "topic": "gehirn_10_prozent_mythos",
+      "headline": "Die These Wir nutzen nur 10 Prozent unseres Gehirns ist FALSE; fMRT-/PET-Studien zeigen, dass über 24 Stunden alle Gehirn-Regionen aktiv sind, je nach Aufgabe verschiedene Areale aktiviert (Boyd 2008 Sci Am, Beyerstein 1999 Mind Myths)",
+      "year": 2024,
+      "source_url": "https://www.scientificamerican.com/article/do-people-only-use-10-percent-of-their-brains/",
+      "secondary_url": "https://www.ninds.nih.gov/health-information/disorders/brain-basics-know-your-brain",
+      "source_label": "Boyd 2008 Scientific American + Beyerstein 1999 Mind Myths + NIH NINDS Brain Basics + Aamodt & Wang Neuro-Wissenschaftler",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Wir nutzen nur 10 Prozent unseres Gehirns ist FALSE und seit Jahrzehnten in der Neurowissenschaft widerlegt. Mehrere methodische Belege: (1) fMRT-Studien (functional Magnetic Resonance Imaging): zeigen je nach kognitiver Aufgabe verschiedene Hirn-Regionen aktiv. Über 24 Stunden Beobachtungs-Zeitraum sind ALLE Gehirn-Regionen mehrfach aktiviert. Boyd R 2008 Scientific American Do People Only Use 10 Percent of Their Brains? bezeichnet 10-Prozent-Behauptung als wahrscheinlich falsche Behauptung mit klaren empirischen Widerlegungen. (2) PET-Studien (Positronen-Emissions-Tomographie): zeigen Glukose-Verbrauch praktisch über das gesamte Gehirn verteilt, mit lokaler Variation je nach Aktivität. Inaktive Bereiche existieren nicht. (3) Klinische Beobachtungen: Gehirn-Schäden in praktisch JEDER Region führen zu Funktions-Verlust — wenn 90 Prozent ungenutzt wären, sollte Schaden in diesen 90 Prozent symptomlos sein, was klar nicht der Fall ist. (4) Evolutionäre Logik: Gehirn ist energetisch teuer (~20 Prozent des Grundumsatzes bei nur 2 Prozent Körpermasse). Evolutions-Druck hätte ungenutzte Hirn-Masse reduziert, wenn sie funktionslos wäre. Ursprung des Mythos: nicht klar identifizierbar, möglicherweise Misinterpretation der Aussage William James 19. Jh. (men employ ... a small portion of the possibilities of their personality), oder Albert-Einstein-Falsch-Zuschreibung (es gibt KEIN dokumentiertes Einstein-Zitat dieser Art), oder Marketing-Verzerrung. Pop-Kultur-Verstärkung: Filme wie Lucy 2014 (Luc Besson) und Limitless 2011 verwenden 10-Prozent-These als Plot-Treiber, was den Mythos zementiert. Faktencheck-relevant: Aussagen wie Wir nutzen nur 10 Prozent oder Mit dieser Methode aktivieren Sie 100 Prozent Ihres Gehirns sind neurowissenschaftlich nicht haltbar.",
+        "fmrt_evidenz_konkret": "Functional Magnetic Resonance Imaging (fMRT): misst Sauerstoff-Verbrauch in Hirn-Regionen als Indikator neuronaler Aktivität (BOLD-Signal). Studien aus den 1990ern und seitdem: bei jeder cognitive Task sind verschiedene Hirn-Regionen aktiv. Selbst in Ruhe (Default Mode Network) sind ausgedehnte Hirnareale aktiv. Über alle Wachzeit-Aktivitäten gemittelt: alle Gehirn-Regionen werden mehrfach aktiviert. Schluss: keine 90-Prozent-Inaktivität nachweisbar.",
+        "pet_glukose_verteilung": "PET-Imaging mit ¹⁸F-Fluorodeoxyglucose (FDG): visualisiert Glukose-Verbrauch im Gehirn. Befund: gleichmäßig verteilte Aktivität über das gesamte Gehirn, mit lokalen Variationen (höher in Cortex, etwas niedriger in weißer Substanz). Keine inaktiven Bereiche identifiziert. Gehirn verbraucht in Ruhe ~5 mg Glukose/100g Hirngewebe/Min, in Aktivität bis 10 mg.",
+        "klinische_evidenz": "Klinische Neurologie: Schlaganfälle, Tumoren, traumatische Hirnverletzungen praktisch JEDER Region führen zu spezifischen Funktions-Verlusten. Hippocampus-Schaden → Gedächtnis-Probleme. Frontalhirn-Schaden → Persönlichkeits-Veränderung, Exekutiv-Dysfunktion. Visueller Cortex-Schaden → Hemianopsie. Selbst kleine Schäden in vermeintlich unspezifischen Bereichen (z.B. Cerebellum) führen zu motorischen oder kognitiven Defiziten. Argument: wenn 90 Prozent ungenutzt wären, sollten 90 Prozent der Hirnverletzungen folgenlos sein.",
+        "evolutionaer_argument": "Evolutionäre Energie-Bilanz: Gehirn ist beim Menschen ~2 Prozent der Körpermasse aber verbraucht ~20 Prozent des Grundumsatzes. Im historischen Kontext (Hunter-Gatherer-Stammesgesellschaften, hohe Nahrungsknappheit) wäre 90 Prozent ungenutzte Hirnmasse evolutionärer Energie-Verschwendung — wäre durch natürliche Selektion reduziert. Tatsache, dass Gehirn so groß und teuer ist, weist auf vollständige Nutzung hin.",
+        "ursprung_mythos_unklar": "Ursprung der 10-Prozent-These nicht eindeutig zu rekonstruieren. Mögliche Quellen: (a) Misinterpretation William James (1842-1910 Psychologe) — hatte gesagt, Menschen nutzen nur einen Teil ihrer mentalen Möglichkeiten (gemeint: Potenzial, nicht Hirnmasse). (b) Albert-Einstein-Falsch-Zuschreibung (es gibt KEIN authentisches Einstein-Zitat, das die 10-Prozent-These bestätigt; ist Pop-Mythos). (c) Marketing für Self-Help-Bücher 1920er-1950er. (d) Bestätigt durch Filme: Lucy 2014, Limitless 2011 verwenden These als Plot-Element.",
+        "context": "Der 10-Prozent-Mythos ist einer der hartnäckigsten Pop-Mythen. Trotz konsistenter Widerlegung durch Neurowissenschaft seit 50+ Jahren bleibt er populär — wird durch Filme + Self-Help-Industrie + Hirntraining-Apps perpetuiert. Faktencheck-relevant: Aussagen wie aktivieren Sie 100 Prozent Ihres Gehirns mit dieser Methode sind Marketing-Behauptungen ohne wissenschaftliche Basis."
+      },
+      "context_notes": [
+        "Verwandte Mythen: Linke vs. rechte Hirnhälfte (logisch-kreativ-Dichotomie) ist ähnlich überzeichnet. Beide Hemisphären arbeiten bei den meisten Aufgaben zusammen, mit Lateralisations-Mustern in einzelnen Funktionen (Sprache primär links, räumliche Wahrnehmung primär rechts), aber keine strikte Logik-vs-Kreativität-Trennung.",
+        "Echte Forschung zu Hirntraining: einige spezifische Trainings-Programme zeigen Verbesserungen in spezifischen kognitiven Aufgaben (Working Memory bei dual-n-back-Training, motorische Skills durch Bewegungs-Training). Aber Transfer auf allgemeine Intelligenz schwach (Owen 2010 Nature). Gut etablierte Hirnschutz-Faktoren: körperliche Aktivität, mediterrane Ernährung, sozialer Austausch, lebenslanges Lernen, ausreichend Schlaf.",
+        "Differenzierung Bewusstsein vs. Hirnaktivität: nur ein kleiner Teil der Hirnaktivität wird bewusst wahrgenommen (Sensorik, Motorik unbewusst aktiv). Das ist anders als 10-Prozent-These — es geht um BEWUSSTSEIN, nicht ungenutzte Hirnregionen."
+      ],
+      "claim_phrasings_handled": [
+        "Wir nutzen nur 10 Prozent unseres Gehirns",
+        "Einstein hat gesagt wir nutzen nur 10 Prozent",
+        "Das Gehirn hat 90 Prozent ungenutztes Potenzial",
+        "Mit dieser Methode aktivieren Sie 100 Prozent des Gehirns"
+      ],
+      "trigger_composite": [
+        [
+          "gehirn",
+          "hirn",
+          "brain",
+          "cortex",
+          "hirnareale"
+        ],
+        [
+          "10 prozent",
+          "zehn prozent",
+          "ungenutzt",
+          "ungenutztes potenzial",
+          "100 prozent",
+          "aktivieren",
+          "potenzial",
+          "kapazität"
+        ]
+      ]
+    },
+    {
+      "topic": "vollmond_schlaf_geburten_mythos",
+      "headline": "Vollmond-Effekte auf Schlafqualität, Geburten-Häufigkeit, Notaufnahme-Andrang oder Aggressivität sind in randomisiert-kontrollierten Studien (Periti & Biagini 1998 Minerva Ginecol, Schwartz 1991 J Reprod Med) sowie systematischen Reviews nicht robust nachweisbar; berichtete Effekte sind primär Confirmation-Bias-Artefakte",
+      "year": 2024,
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/9534179/",
+      "secondary_url": "https://www.cochranelibrary.com/",
+      "source_label": "Periti & Biagini 1998 Minerva Ginecologica + Schwartz 1991 J Reprod Med + Cochrane Reviews + Iosif & Ballon 2005 Journal Affective Disord",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Vollmond verändert Schlaf, Geburten, Notaufnahme-Andrang oder Aggressivität ist FALSE. Vollmond-bezogene Pop-Behauptungen wurden mehrfach in systematischen Studien überprüft und sind nicht robust nachweisbar. (1) Schlafqualität: Cajochen et al. 2013 Curr Biol einzelne Studie n=33 berichtete Vollmond-Schlaf-Reduktion ~20 Min, methodisch problematisch (Cherry-Picking, kleine Stichprobe). Re-Analysen (Cordi 2014 Curr Biol, Smith 2014 Curr Biol) zeigten Effekt nicht reproduzierbar in größeren Datensätzen. (2) Geburten-Häufigkeit: Periti & Biagini 1998 Minerva Ginecologica analysierten 7.842 Geburten in einer italienischen Klinik über 7 Jahre, korreliert mit Mondphasen — KEINE signifikante Häufung bei Vollmond. Schwartz 1991 J Reprod Med n>500.000 US-Geburten ähnliche Befunde. (3) Notaufnahme-Andrang: mehrere Studien (Buckley 1999 J Emerg Med, Margot 2015 J Emerg Med Australia) — keine konsistente Vollmond-Häufung. (4) Aggressivität / Verbrechen: Iosif & Ballon 2005 J Affective Disord systematic review — keine konsistente Korrelation. Erklärung der berichteten Pop-Effekte: Confirmation-Bias (Vollmond-Inzidenz fällt auf, Nicht-Vollmond-Inzidenz nicht), Recall-Bias (Erinnerung an besondere Nächte besser), kleine Stichproben mit Schein-Effekten. Mond hat tatsächlichen Einfluss auf Tide-Bewegung der Ozeane (durch Gravitations-Kraft auf große Wasser-Massen), aber auf einzelnen menschlichen Körper ist Gravitations-Kraft des Mondes etwa Größenordnung kleiner als Gravitations-Kraft eines vorbeigehenden Lkw oder Mücke. Keine biologisch plausiblen Mechanismen für die behaupteten Effekte. Faktencheck-relevant: Aussagen wie Bei Vollmond schlafen Menschen schlechter sind in größeren Datensätzen nicht reproduzierbar; berichtete Effekte sind primär kognitive Bias-Artefakte. (Wichtig: ein generelles Mond-Phasen-Topic existiert auch im esoterik_pack — dort werden Pop-Astrology-Behauptungen behandelt, hier spezifisch Schlaf/Geburten/Aggression.)",
+        "cajochen_2013_kontroverse": "Cajochen C et al. Evidence that the lunar cycle influences human sleep. Curr Biol 2013;23:1485-1488. Studie n=33, Schlaf-Labor-Daten Re-Analyse von Daten, die ursprünglich für andere Forschungs-Frage gesammelt waren. Berichtete: ca. 20 Min weniger Schlaf bei Vollmond, 5 Min längere Einschlaf-Latenz. Methodische Kritik (Cordi 2014, Smith 2014): post-hoc-Analyse, kleine Stichprobe, fehlende Kontrolle für Lichtverhältnisse, Cherry-Picking aus mehreren möglichen Mondphasen-Operationalisierungen. Re-Analysen mit größeren Datensätzen (n>2.000) reproduzierten Effekt NICHT.",
+        "periti_1998_geburten": "Periti E, Biagini E. Lunar phases and incidence of spontaneous deliveries: our experience. Minerva Ginecologica 1998;50:177-180. n=7.842 spontane Geburten in italienischer Geburtsklinik über 7 Jahre, korreliert mit Mondphasen. Befund: KEINE signifikante Häufung bei Vollmond oder Neumond. Schwartz BS 1991 J Reprod Med ähnliche Studie n=521.000 US-Geburten 1979-1989: keine signifikante Korrelation Geburten-Häufigkeit ↔ Mondphase.",
+        "notaufnahme_studien": "Buckley NA, Whyte IM, Dawson AH. Lack of relationship between aggression and lunar cycle. Journal of Emergency Medicine 1999;17:281-282. Australische Notaufnahme-Daten: keine Vollmond-Häufung von Aggressions-Vorkommen. Margot 2015 J Emerg Med ähnliches Pattern. Trotz vieler Notaufnahme-Personalien-Anekdoten ist statistisch kein Effekt belegbar.",
+        "psychiatrie_aggression": "Iosif A, Ballon B. Bad Moon Rising: the persistent belief in lunar connections to madness. Journal of Affective Disorders 2005;88:323-327. Systematischer Review zu Mondphase-Psychiatrie-Effekten. Befund: keine signifikante Assoziation zwischen Mondphase und psychiatrischen Notaufnahmen, Suizid-Versuchen, Aggression in Anstalten. Schluss der Autoren: persistierender Glaube an Mond-Effekte ist Kultur-Fact, nicht Medizin-Fact.",
+        "gravitation_kontext": "Gravitations-Argument: Mond hat Gezeiten-Wirkung auf Ozeane (große Wasser-Massen mit Mond-Gravitation interagierend). Auf individuelle menschliche Körper ist Gravitations-Wirkung sehr klein. Konkretes Berechnung: Mond übt auf 70-kg-Person ~0,003 mN Gravitations-Kraft aus. Vergleich: ein vorbeigehendes Auto in 10 m Entfernung übt etwa 50-100x stärkere Gravitations-Kraft aus. Eine Mücke an der Stirn übt vergleichbare Kraft aus. Biologisch nicht relevant.",
+        "context": "Vollmond-Glauben ist seit Antike kulturell verankert (Lateinisch lunaticus = mond-süchtig, Englisch lunatic). Trotz wissenschaftlicher Widerlegung bleibt Pop-Glaube stark. Faktencheck-relevant: berichtete Effekte sind primär Confirmation-Bias-Artefakte. Korrekt: Mond hat astrophysikalische Bedeutung (Gezeiten, Sonnenfinsternis-Geometrie), aber keine direkte biologische Wirkung auf einzelnen Menschen-Körper."
+      },
+      "context_notes": [
+        "Differenzierung gegenüber Lichtverhältnis-Effekten: Vollmond-Nacht ist heller (~0,1-0,3 Lux Mondlicht). Bei direkter Lichtexposition durch ungestörtes Schlafzimmer-Fenster könnte das Schlaf marginal beeinträchtigen. Aber das ist kein Vollmond-Mystik-Effekt, sondern simple Beleuchtungs-Faktor — durch geschlossene Vorhänge eliminierbar.",
+        "Wichtige Differenzierung Frauenzyklus: einige Pop-Astrologien postulieren Synchronisation Menstruationszyklus mit Mondzyklus — beide ca. 28-29 Tage. Keine Evidenz für Synchronisation: Helfrich-Förster 2021 Sci Adv Re-Analyse großer Datensätze fand keine statistische Synchronisations-Evidenz.",
+        "Kulturell verankerte Sorgen: Vollmond-Glaube ist häufig im Pflegeberufen, Notaufnahmen, Polizei. Empirische Daten widersprechen kontinuierlich. Aufklärung im Berufsalltag ist hilfreich, aber tief-verankerte Kultur-Vorstellungen sind langlebig."
+      ],
+      "claim_phrasings_handled": [
+        "Bei Vollmond schlafen Menschen schlechter",
+        "Vollmond verursacht mehr Geburten",
+        "Notaufnahmen sind bei Vollmond voller",
+        "Bei Vollmond werden Menschen aggressiver"
+      ],
+      "trigger_composite": [
+        [
+          "vollmond",
+          "mondphase",
+          "mondzyklus",
+          "mond-einfluss",
+          "neumond"
+        ],
+        [
+          "schlaf",
+          "schlafen",
+          "geburten",
+          "geburt",
+          "notaufnahme",
+          "aggressiv",
+          "aggression",
+          "verrückt",
+          "krank",
+          "einfluss",
+          "wirkung"
+        ]
+      ]
+    },
+    {
+      "topic": "wundbrand_jod_mythos",
+      "headline": "Jodtinktur und Alkohol als Wund-Desinfektion verzögern Heilung durch Zellschädigung; moderne Wund-Pflege (sauberes Wasser + Abdeckung mit Pflaster) ist evidenzbasiert besser bei kleinen Wunden (NICE Wound Care Guidelines, Cochrane Wound Care Reviews)",
+      "year": 2024,
+      "source_url": "https://www.nice.org.uk/guidance/conditions-and-diseases/cardiovascular-conditions/wound-management",
+      "secondary_url": "https://www.cochranelibrary.com/",
+      "source_label": "NICE Wound Care Guidelines + Cochrane Wound Care Group + WHO + Mayo Clinic + Wound Healing Society",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Jodtinktur (Betadine) und Alkohol (Ethanol 70 Prozent) sind das Beste zur Desinfektion frischer Wunden ist FALSE/MIXED. Moderne Wund-Pflege-Empfehlungen (NICE, Cochrane, WHO) für KLEINE BIS MITTLERE WUNDEN: Ausspülung mit sauberem Wasser oder isotoner Kochsalzlösung, Trocknen, Abdecken mit Pflaster. Begründung: Jodtinktur und Alkohol haben antibakterielle Wirkung, schädigen aber AUCH das gesunde Gewebe (Fibroblasten, Leukozyten, Gewebs-Wachstums-Zellen). Khan & Naqvi 2006 (J Pakistan Med Assoc): Tierstudien zeigen verzögerte Wundheilung bei Jod-/Alkohol-Behandlung vs. Wasser-Kochsalz-Spülung. Cochrane Wound Care Group seit Jahrzehnten konsistent: für unkomplizierte Akut-Wunden sind antiseptische Lösungen NICHT besser als sauberes Wasser, oft schlechter wegen Zell-Toxizität. WICHTIGE Differenzierung: bei spezifischen Wund-Typen sind Antiseptika sinnvoll. (a) Stark verschmutzte Wunden mit Erde/Schmutz/Tierbiss: Ausspülung primär, danach optional Antiseptikum. (b) Operations-Wunden / Punktions-Stellen: Antiseptika prä-procedural Standard. (c) chronische Wunden / Diabetes-Geschwüre: spezialisierte Wund-Behandlung mit modernen Antiseptika (Polihexanid, Octenidin) statt klassischer Jod-/Alkohol-Lösungen. (d) bei Tetanus-Risiko (rostige Nägel, schmutzige Verletzungen): ärztliche Vorstellung + Tetanus-Auffrischung. Faktencheck-relevant: Empfehlung pauschal Wunde mit Jod/Alkohol desinfizieren ist überholtes Pop-Wissen. Korrekt: bei kleinen Schnitt-/Schürf-Wunden sauberes Wasser, abdecken; bei größeren oder schmutzigen Wunden ärztliche Konsultation.",
+        "wund_pflege_evidenz_basis": "Cochrane Wound Care Group + NICE Wound Management Guidelines aktueller Konsens: für unkomplizierte Akut-Wunden ist Ausspülung mit sauberem Trinkwasser oder isotoner NaCl-Lösung (0,9 Prozent) effektiv und gewebs-schonend. Routinemäßiger Einsatz von Jodtinktur, H₂O₂, Alkohol für gesunde Wunden ist NICHT empfohlen — Zellgifte verzögern Heilung. Bei kleinen Wunden: sauber spülen, trocknen, abdecken mit sterilen Pflaster.",
+        "zelltoxizitaet_antiseptika": "Antiseptika wirken durch Membran-Schädigung von Bakterien — aber sie schädigen auch Säuger-Zellen. Cytotoxizitäts-Studien (in vitro mit humanen Fibroblasten): (a) Jodtinktur Povidon-Iod 10 Prozent: Fibroblast-Toxizität nach 30 Min Exposition. (b) Ethanol 70 Prozent: schwere Cytotoxizität bei Hautkontakt. (c) H₂O₂ 3 Prozent: Schaum-Wirkung bei Wunden, aber Cytotoxisch. (d) Polihexanid 0,02 Prozent: niedrigere Cytotoxizität, in modernen Wund-Lösungen verwendet. (e) Octenidin: niedrige Cytotoxizität, ähnlich Polihexanid.",
+        "modernde_wundbehandlung_konkret": "Praktische Empfehlung NICE 2023 für kleine Wunden: (1) Wund mit lauwarmem Trinkwasser oder isotoner Kochsalz-Lösung 1-2 Min spülen — entfernt mechanisch Schmutz und Bakterien. (2) Wund-Umgebung trocknen mit sauberem Tuch (nicht reiben). (3) Abdecken mit sterilem Pflaster, das die Wund-Mitte abdeckt aber Luft-Zirkulation nicht völlig unterbindet. (4) Pflaster täglich wechseln, Wund-Verlauf kontrollieren. (5) Bei Anzeichen Infektion (Rötung-Ausdehnung, Schwellung, Schmerz-Verstärkung, Eiter, Fieber): ärztliche Vorstellung.",
+        "spezifische_wundtypen": "Bei spezifischen Verletzungs-Typen ärztliche Versorgung empfehlen: (a) tiefe Schnitt-Wunden, die genäht werden müssen (Tendons, Nerven sichtbar), (b) Tier-Bisse (Tetanus + Tollwut-Risiko), (c) menschliche Bisse (hohes Infektions-Risiko durch Mund-Flora), (d) Verbrennungen Grad 2 oder größer als Handfläche, (e) Augen-Verletzungen, (f) chronische nicht-heilende Wunden bei Diabetes / Durchblutungsstörungen, (g) vor 5+ Jahren letzte Tetanus-Impfung.",
+        "tetanus_kontext": "Tetanus-Schutz ist wichtige spezifische Sorge bei verschmutzten Wunden: bei Verletzungen mit Erde / rostige Metalle / Tier-Biss / tiefen Punktions-Wunden (Nägel) kann Tetanus-Auffrischung indiziert sein. STIKO-Empfehlung Tetanus-Auffrischung alle 10 Jahre. Bei Verletzung mit unklarem Impf-Status: Hausarzt konsultieren — Auffrischung kann 3 Tage post-Verletzung noch wirksam sein.",
+        "context": "Der Jod-Alkohol-Wund-Mythos ist Generationen-übergreifender Pop-Glaube in DACH-Region. Moderne evidenzbasierte Wund-Pflege ist deutlich differenzierter: für kleine, saubere Wunden Wasser-Spülung + Abdeckung; für komplizierte Wunden ärztliche Versorgung. Faktencheck-relevant: pauschale Aussage Jod desinfiziert immer Wunden ist überholt; differenzierte Empfehlungen wissenschaftlich aktueller."
+      },
+      "context_notes": [
+        "Differenzierung Octenidin / Polihexanid: moderne Antiseptika-Lösungen (Octenisept, Lavasept) haben niedrigere Cytotoxizität als klassische Jod/Alkohol-Lösungen. Werden in spezifischen Indikationen empfohlen (chronische Wunden, prä-operativ, Wund-Reinigung bei Verbrennungen). Kein routinemäßiger Einsatz bei kleinen unkomplizierten Wunden empfohlen.",
+        "Bei Kindern: häufige Pflaster-Diskussionen weil Kinder Pflaster oft abreißen wollen. Wechsel-Empfehlung: 1-2x täglich + bei Durchnässung. Wund-Verlauf engmaschig kontrollieren wegen Infektions-Anfälligkeit.",
+        "Ältere Erwachsene + diabetische Patient/innen: Wund-Heilung verzögert, höheres Infektions-Risiko. Frühzeitige ärztliche Konsultation bei jeder nicht-trivialen Wunde sinnvoll. Diabetes-Fuß-Geschwüre können lebensbedrohlich werden — spezialisierte Wund-Behandlung notwendig."
+      ],
+      "claim_phrasings_handled": [
+        "Wunden müssen mit Jodtinktur desinfiziert werden",
+        "Alkohol ist beste Wund-Desinfektion",
+        "Bei jeder Verletzung sofort Jod auftragen",
+        "Ohne Jod heilt eine Wunde schlechter"
+      ],
+      "trigger_composite": [
+        [
+          "wunde",
+          "wunden",
+          "verletzung",
+          "schnitt",
+          "schürfwunde",
+          "wund-pflege",
+          "wundheilung",
+          "wundbrand"
+        ],
+        [
+          "jod",
+          "jodtinktur",
+          "betadine",
+          "alkohol",
+          "ethanol",
+          "desinfektion",
+          "desinfizier",
+          "wasserstoffperoxid",
+          "h2o2"
+        ]
+      ]
+    }
+  ]
+}

@@ -67,6 +67,7 @@ AUTHORITATIVE_PACK_MARKERS = (
     "Substanzen-Konsens",
     "Digital-Familie-Konsens",
     "Geldanlage-Konsens",
+    "Alltags-Mythen-Konsens",
 )
 
 # Caps abhängig von Quellen-Anzahl (n_sources_with_results).
