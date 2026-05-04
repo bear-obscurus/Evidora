@@ -89,6 +89,7 @@ from services.geschichts_mythen2_pack import search_geschichts_mythen2, claim_me
 from services.reproduktion_pack import search_reproduktion, claim_mentions_reproduktion_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
+from services.clinvar import search_clinvar
 from services.snopes import search_snopes
 from services.correctiv import search_correctiv
 from services.full_fact import search_full_fact
@@ -746,6 +747,13 @@ async def check_claim(request: Request):
         if analysis.get("pubmed_queries") or analysis.get("ecdc_relevant"):
             tasks.append(cached("CDCNewsroom", search_cdc_newsroom, analysis))
             queried_names.append("CDC Newsroom")
+        # NIH ClinVar (NCBI Genetic Variant Database): variant-level
+        # clinical significance. Komplementär zu PubMed (Forschung) +
+        # MedlinePlus (Edukation). Service eigene Trigger-Logik:
+        # nur bei Genetik-Stichworten ODER Gen-Name-Pattern im Claim.
+        if analysis.get("pubmed_queries"):
+            tasks.append(cached("ClinVar", search_clinvar, analysis))
+            queried_names.append("NIH ClinVar")
 
         # Use asyncio.wait so completed tasks return results even if others time out
         valid_results = []
