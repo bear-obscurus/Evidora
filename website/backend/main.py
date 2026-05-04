@@ -87,6 +87,8 @@ from services.sport_fitness_pack import search_sport_fitness, claim_mentions_spo
 from services.kunst_kultur_pack import search_kunst_kultur, claim_mentions_kunst_kultur_cached
 from services.geschichts_mythen2_pack import search_geschichts_mythen2, claim_mentions_geschichts_mythen2_cached
 from services.reproduktion_pack import search_reproduktion, claim_mentions_reproduktion_cached
+from services.medlineplus import search_medlineplus
+from services.cdc_newsroom import search_cdc_newsroom
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -704,6 +706,20 @@ async def check_claim(request: Request):
         if analysis.get("pubmed_queries"):
             tasks.append(cached("SemanticScholar", search_semantic_scholar, analysis))
             queried_names.append("Semantic Scholar")
+        # NIH MedlinePlus (National Library of Medicine): patient-facing
+        # health topic search — ergänzt PubMed/Europe PMC um konsumenten-
+        # taugliche Krankheits-/Symptom-Edukation, US-Behörden-Sicht.
+        # Trigger gleich wie PubMed (analysis.pubmed_queries vorhanden).
+        if analysis.get("pubmed_queries"):
+            tasks.append(cached("MedlinePlus", search_medlineplus, analysis))
+            queried_names.append("NIH MedlinePlus")
+        # CDC Newsroom (Centers for Disease Control): Public-Health-RSS,
+        # Outbreak-Berichte, US-Behörden-Sicht auf aktuelle Gesundheits-
+        # Themen. Trigger: pubmed_queries vorhanden ODER spezifische
+        # Outbreak-/Seuche-Stichworte (CDC-Service eigene Filter-Logik).
+        if analysis.get("pubmed_queries") or analysis.get("ecdc_relevant"):
+            tasks.append(cached("CDCNewsroom", search_cdc_newsroom, analysis))
+            queried_names.append("CDC Newsroom")
 
         # Use asyncio.wait so completed tasks return results even if others time out
         valid_results = []

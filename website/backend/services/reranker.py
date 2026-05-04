@@ -158,6 +158,8 @@ _AUTHORITATIVE_INDICATORS = (
     "kunst_kultur_konsens_fact",         # Kunst/Kultur-Pack (Smithsonian + Harvard + Folger + UNESCO)
     "geschichts_mythen2_konsens_fact",   # Geschichts-Mythen-2-Pack (Stanford SEP + Britannica + Royal Society + Princeton)
     "reproduktion_konsens_fact",         # Reproduktions-Pack (NEJM Wilcox + Cochrane + ACOG + AUA + NAMS + NIH + WHO)
+    "medlineplus_health_topic",          # NIH MedlinePlus Live (National Library of Medicine, US)
+    "cdc_newsroom_item",                 # CDC Newsroom Live (Centers for Disease Control, US)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",
