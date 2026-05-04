@@ -62,6 +62,7 @@ AUTHORITATIVE_PACK_MARKERS = (
     "Kunst-/Kultur-Mythen",
     "Geschichts-Mythen-2",
     "Reproduktions-Medizin-Konsens",
+    "Onkologie-Konsens",
 )
 
 # Caps abhängig von Quellen-Anzahl (n_sources_with_results).

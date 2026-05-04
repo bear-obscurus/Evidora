@@ -1,0 +1,323 @@
+{
+  "facts": [
+    {
+      "topic": "mikrowelle_krebs_mythos",
+      "headline": "Mikrowellengeräte erzeugen nicht-ionisierende elektromagnetische Strahlung im Frequenzbereich 2,45 GHz; FDA, WHO und BfS klassifizieren diese als nicht karzinogen — DNA-Schäden setzen ionisierende Strahlung voraus, die Mikrowellengeräte nicht emittieren",
+      "year": 2024,
+      "source_url": "https://www.fda.gov/radiation-emitting-products/resources-you-radiation-emitting-products/microwave-oven-radiation",
+      "secondary_url": "https://www.who.int/news-room/questions-and-answers/item/electromagnetic-fields",
+      "source_label": "FDA + WHO + BfS (Bundesamt für Strahlenschutz, DE)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mikrowellengeräte verursachen Krebs' / 'mikrowellen-erhitzte Speisen sind karzinogen' ist FALSE. Mikrowellengeräte arbeiten bei einer Frequenz von 2,45 GHz im Bereich der nicht-ionisierenden elektromagnetischen Strahlung. Diese hat unter Maxwell-Gleichungen-Physik kein Energie-Quantum, das DNA-Doppelhelix-Bindungen brechen kann (~10 eV nötig; Mikrowellen-Photonen ~10⁻⁵ eV). Der Erwärmungs-Mechanismus erfolgt durch Dipol-Rotation der Wassermoleküle (dielektrische Erwärmung), die Speisen-Inhaltsstoffe werden weder ionisiert noch radioaktiv. Nach Geräte-Abschaltung bleibt KEINE Reststrahlung. WHO/IARC haben Mikrowellenstrahlung NICHT als karzinogen klassifiziert (im Gegensatz zu z.B. UV-Strahlung Gruppe 1). FDA Federal-Standard 21 CFR 1030.10 begrenzt Geräte-Leakage auf 5 mW/cm² in 5 cm Abstand — in der Praxis liegen Messungen ~10× darunter.",
+        "physik_grundlage": "Photonen-Energie elektromagnetischer Strahlung E=hf (h=Planck-Konstante 6,626·10⁻³⁴ Js, f=Frequenz). Bei 2,45 GHz: E=1,6·10⁻⁵ eV. Zum Vergleich: UV-Photonen 3-12 eV, Röntgen 100-10000 eV, Gamma >10000 eV. DNA-Bindungs-Energie ~3-10 eV — Mikrowellen-Photonen liegen 5-6 Größenordnungen darunter, können DNA daher physikalisch nicht direkt schädigen.",
+        "fda_position": "U.S. Food and Drug Administration (CDRH, Center for Devices and Radiological Health): Mikrowellengeräte werden seit 1971 reguliert. Federal Performance Standard 21 CFR 1030.10 begrenzt Leakage auf 5 mW/cm² (vor Verkauf) bzw. 1 mW/cm² (Lebensdauer). Position: 'There are very few documented injuries from microwave ovens that are caused by ionizing radiation' — keine.",
+        "iarc_klassifikation": "WHO IARC (International Agency for Research on Cancer) klassifiziert Karzinogene in Gruppe 1 (kausal nachgewiesen, z.B. Tabak, UV), 2A (wahrscheinlich, z.B. rotes Fleisch, ehedem Glyphosat), 2B (möglich), 3 (nicht klassifizierbar). Mikrowellen-Haushaltsstrahlung ist NICHT klassifiziert (= keine kausale Evidenz, keine Aufnahme in Gruppen 1/2A/2B).",
+        "bfs_position": "Bundesamt für Strahlenschutz (DE): 'Bei bestimmungsgemäßer Verwendung von Mikrowellengeräten besteht keine Gesundheitsgefährdung.' Stand-Aussage seit 2018, regelmäßig in Studien-Reviews bestätigt. Geräte-Tests erfolgen nach IEC 60335-2-25.",
+        "spezifische_falsch_behauptungen": "Diverse virale Behauptungen sind alle widerlegt: (1) 'Mikrowellen zerstören Nährstoffe stärker als andere Garmethoden' — FALSCH, Vitamin-Verlust ist primär eine Funktion von Garzeit + Wasser, Mikrowelle reduziert beide. Vergleichsstudien (Vallejo 2003): Brokkoli-Vitamin-C-Erhalt höher in Mikrowelle vs. Kochwasser. (2) 'Mikrowelle ändert Wasser-Struktur' — die berühmte 'Pflanzen-Experiment'-Behauptung von 2008 wurde nie peer-reviewed reproduziert.",
+        "context": "Der Mikrowelle-Krebs-Mythos kursiert seit den 1970er Jahren in Verbraucherschutz-Kreisen, populär bei Esoterik- und Anti-Technik-Communities. Quellen sind oft selbst-publizierte Bücher (z.B. Hans-Ulrich Hertel 1992, Schweiz; gerichtlich gestoppt wegen unbegründeter Behauptungen). Das Mikrowellen-Erhitzen ist physikalisch+toxikologisch sicher — separate Frage ist Lebensmittel-Plastik-Migration in Behältern, das ist eine Container-Frage, nicht Geräte-Frage."
+      },
+      "context_notes": [
+        "Hans-Ulrich Hertel + Bernhard Blanc 'Mikrowellenkost — die unbekannte Gefahr' (1992) wurde in CH-Gerichten verboten wegen wissenschaftlich unbegründeter Behauptungen; Aufhebung 1998 nach EGMR-Urteil zur Meinungsfreiheit, ohne wissenschaftliche Wiederherstellung der Thesen.",
+        "Tatsächliches Risiko bei Mikrowellengeräten: Verbrennungs-Verletzungen durch heiße Behälter/Speisen + Dampf (mehrere Tausend Notaufnahme-Besuche/Jahr in DE). Strahlung NICHT involviert.",
+        "Lebensmittel-Erhitzungs-spezifische Frage: Beim Erhitzen über 120°C entstehen Acrylamid-Bildung in stärkereichen Speisen — das ist eine Garzeit/Temperatur-Frage, NICHT mikrowellen-spezifisch (auch Backofen + Frittieren betroffen). Siehe ernaehrungs_pack."
+      ],
+      "claim_phrasings_handled": [
+        "Mikrowellengeräte verursachen Krebs",
+        "Mikrowellen-Strahlung ist karzinogen",
+        "Mikrowellen-erhitzte Speisen sind krebserregend",
+        "Mikrowellen zerstören die Nährstoffe und machen Krebs"
+      ],
+      "trigger_composite": [
+        ["mikrowelle", "mikrowellen", "mikrowellengerät", "mikrowellen-strahlung"],
+        ["krebs", "karzinogen", "krebserregend", "tumor", "krebsrisiko", "kanzerogen"]
+      ]
+    },
+    {
+      "topic": "zucker_fuettert_krebs_mythos",
+      "headline": "Glukose ist der primäre Energieträger aller Körperzellen — auch gesunder. Krebszellen zeigen den Warburg-Effekt (verstärkte Glykolyse), aber Zucker-Reduktion eliminiert keine Tumore; ketogene Diäten zeigen in randomisierten Studien keinen klinisch signifikanten Anti-Tumor-Effekt (Cochrane 2018)",
+      "year": 2024,
+      "source_url": "https://www.cancerresearchuk.org/about-cancer/causes-of-cancer/cancer-controversies/sugar-and-cancer",
+      "secondary_url": "https://www.krebsinformationsdienst.de/vorbeugung/risiken/zucker.php",
+      "source_label": "Cancer Research UK + DKFZ Krebsinformationsdienst + NCI + AICR",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Zucker füttert den Krebs' / 'Krebs stirbt ohne Zucker' ist FALSE/MIXED. Korrekt ist: Krebszellen weisen den Warburg-Effekt auf (Otto Warburg 1924) — sie betreiben Glykolyse auch in Anwesenheit von Sauerstoff (aerobe Glykolyse), was sich von Normalzellen unterscheidet. Aber: alle Zellen, gesund wie krank, brauchen Glukose oder alternativ Aminosäuren/Fettsäuren als Energieträger. Krebszellen können bei Glukose-Mangel auf Glutamin und Fettsäuren umschalten (metabolic flexibility). Mehrere randomisierte ketogene Diät-Studien (Klement 2014, Champ 2014, Cochrane Review 2018) zeigen keinen konsistenten Anti-Tumor-Effekt. Was etabliert ist: chronisch hoher Insulinspiegel (durch dauerhafte hochzucker- und überkalorische Ernährung) korreliert mit erhöhtem Krebsrisiko bei bestimmten Tumortypen (kolorektal, postmenopausales Mammakarzinom, Endometrium); der kausale Mechanismus ist Insulin/IGF-1-Signaling + Adipositas, NICHT Zucker SELBST.",
+        "warburg_effekt": "Otto Warburg 1924 (Nobelpreis 1931 für Atmungsketten-Forschung): beobachtete in Tumorgeweben verstärkte aerobe Glykolyse trotz Sauerstoff-Verfügbarkeit. Folge: erhöhter Glukose-Konsum, Laktat-Produktion. Heute Grundlage von FDG-PET-Diagnostik (¹⁸F-Fluorodeoxyglucose-Tracer akkumuliert in Tumoren). ABER: Warburg-Effekt ≠ 'Krebs braucht Zucker mehr als andere Zellen energetisch nötig hätten'.",
+        "metabolic_flexibility": "Krebszellen sind metabolisch flexibel (Vander Heiden 2009 Science): nutzen Glukose, Glutamin, Fettsäuren, Acetat. Bei Glukose-Mangel (z.B. ketogene Diät): Umschalten auf Lipid-Oxidation und Glutamin-Anaplerose. Daher 'Krebs aushungern' durch Diät pharmakologisch nicht möglich — der Tumor adaptiert.",
+        "ketogene_diaet_studien": "Klement RJ et al. 2014: systematic review, gemischte Ergebnisse, keine RCT mit klar positivem Outcome. Champ CE et al. 2014: 14 Patienten Glioblastom, keine Tumor-Reduktion. Cochrane Review 'Ketogenic diet for cancer treatment' 2018: 'insufficient evidence to support the use as primary treatment'. Akzeptiert ist Ketose als Adjuvans bei pediatrischer epileptischer Therapie, nicht in Onkologie.",
+        "insulin_igf_kausalitaet": "Etablierte Risiko-Korrelation: chronisch erhöhter Insulin/IGF-1-Spiegel (durch Adipositas + Bewegungsmangel + langfristig hochzucker-Diät) → erhöhtes Risiko für: kolorektales Karzinom (RR 1.3-1.5), Endometrium-Karzinom (RR 1.5-2), Postmenopausales Mammakarzinom (RR 1.2-1.4), Pankreas-Karzinom (RR 1.3-1.7). Quellen: WCRF/AICR Continuous Update Project 2018, IARC Working Group 2002.",
+        "wcrf_aicr_konsens": "World Cancer Research Fund + American Institute for Cancer Research (Continuous Update Project, regelmäßig aktualisiert): Empfehlung 'limit consumption of sugar-sweetened drinks' — basiert auf Adipositas-Risiko, nicht auf direkter Krebs-Kausalität. Empfehlung 'be a healthy weight' ist primärer Hebel.",
+        "context": "Der 'Zucker-füttert-Krebs'-Mythos verkürzt eine komplexe metabolische Wissenschaft auf eine intuitive aber falsche Causation. Praktisch: Patienten unter Onkologie-Therapie sollten WHO/AICR-Empfehlungen folgen (Mediterrane Ernährung, BMI im Normbereich), aber NICHT auf radikale Zucker-Eliminierung setzen — diese kann zu Mangelernährung führen und ist als alleinige 'Krebs-Therapie' kontraindiziert."
+      },
+      "context_notes": [
+        "FDG-PET-Bildgebung (Fluorodeoxyglucose-Positronen-Emissions-Tomographie) nutzt den Warburg-Effekt diagnostisch — Tumoren leuchten heller, weil sie radioaktiv markierte Glukose stärker akkumulieren. Das heißt aber nicht, dass weniger Zucker-Konsum den Tumor schwächt — die Glukose-Aufnahme erfolgt aus dem Blut, das durch Hormonregulation konstant gehalten wird.",
+          "Pankreas-Tumoren (Adenokarzinom) waren ursprünglich Mit-Anlass der 'Zucker-Hypothese', weil sie endokrine Stör-Konstellation aufweisen. Aber Studien zeigen: Pankreaskarzinom-Risiko steigt mit Adipositas/Diabetes (etabliert), NICHT direkt mit Zucker-Konsum unabhängig davon (Pang 2017 Brit J Cancer Meta-Analyse).",
+          "Differenzierung 'verarbeiteter Zucker vs. natürliche Frucht-Glukose': beide lösen identische Insulin-Antwort aus, aber Frucht enthält zusätzlich Ballaststoffe + Polyphenole, die Resorption verzögern und antiinflammatorisch wirken. Krebs-Risiko-Studien (Aune 2017 Int J Epidemiol Meta-Analyse): Obst-/Gemüse-reiche Ernährung schützend, Zucker-Frucht-Säfte neutral bis leicht risikofördernd."
+      ],
+      "claim_phrasings_handled": [
+        "Zucker füttert den Krebs",
+        "Krebs stirbt ohne Zucker",
+        "Wenn man keinen Zucker isst kann man Krebs heilen",
+        "Ketogene Diät heilt Krebs"
+      ],
+      "trigger_composite": [
+        ["krebs", "krebszelle", "tumor", "karzinom", "metastas", "onkolog"],
+        ["zucker", "glukose", "glucose", "kohlenhydrate", "ketogen", "low carb", "low-carb", "süß", "süssigkeit"]
+      ]
+    },
+    {
+      "topic": "saeure_basen_krebs_mythos",
+      "headline": "Der Blut-pH-Wert wird durch homöostatische Mechanismen (Bicarbonat-Puffer, Atmung, renale Bicarbonat-Reabsorption) im engen Bereich 7,35-7,45 reguliert; Ernährung verschiebt diesen Wert nicht messbar — 'alkalische Diät' verändert weder Tumor-Mikromilieu noch Krebs-Risiko (Cancer Research UK, AICR)",
+      "year": 2024,
+      "source_url": "https://www.cancerresearchuk.org/about-cancer/causes-of-cancer/cancer-controversies/alkaline-diet",
+      "secondary_url": "https://www.aicr.org/cancer-prevention/food-facts/alkaline-diet/",
+      "source_label": "Cancer Research UK + AICR (American Institute for Cancer Research) + DKFZ + ÖGHO",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Säure-Basen-Diät heilt Krebs' / 'alkalische Ernährung verhindert Tumore' ist FALSE. Der menschliche Blut-pH-Wert wird durch drei Puffer-Systeme im engen Bereich von 7,35-7,45 gehalten: (1) Bicarbonat-Kohlensäure-Puffer im Blut (HCO₃⁻/H₂CO₃), (2) renale H⁺-Ausscheidung mit Bicarbonat-Reabsorption, (3) respiratorische CO₂-Abatmung. Abweichungen unter 7,1 oder über 7,7 sind lebensbedrohlich (metabolische/respiratorische Azidose/Alkalose) und treten ausschließlich bei schweren Erkrankungen auf. Ernährung kann Urin-pH (renaler Output) verändern, aber NICHT Blut-pH. Tumor-Mikromilieu ist tatsächlich oft sauer (durch lokale Laktat-Akkumulation des Warburg-Effekts), aber das ist FOLGE des Tumors, nicht URSACHE — und durch Ernährung nicht beeinflussbar. Cancer Research UK + AICR + DKFZ stimmen überein: keine Evidenz für Anti-Tumor-Effekt alkalischer Diäten.",
+        "ph_homoeostase": "Drei zusammenwirkende Puffer-Systeme: (1) Bicarbonat-System: CO₂ + H₂O ⇌ H₂CO₃ ⇌ H⁺ + HCO₃⁻ (Henderson-Hasselbalch-Gleichung). (2) Renale Regulation: Niere reabsorbiert Bicarbonat (proximaler Tubulus, ~85%), bei Bedarf neue Bicarbonat-Bildung im distalen Tubulus, ammonium-Ausscheidung. Antwortzeit: Stunden bis Tage. (3) Respiratorische Regulation: Atemfrequenz und -tiefe variieren CO₂-Partialdruck, Antwortzeit: Sekunden bis Minuten.",
+        "urin_ph_irrelevant": "Urin-pH variiert physiologisch zwischen 4,5 und 8,0 abhängig von Ernährung. Veggie-Kost erhöht Urin-pH (mehr Bicarbonat-Ausscheidung), Fleisch-Kost senkt ihn (Sulfat aus schwefelhaltigen Aminosäuren). Diese Urin-pH-Veränderung ist GENAU DER MECHANISMUS, der Blut-pH konstant hält — Niere kompensiert. Urin-pH-Änderung beweist also gerade, dass Blut-pH konstant ist, NICHT dass es sich verschiebt.",
+        "tumor_mikromilieu": "Tumoren weisen lokal niedrigeren pH (~6,5-7,0) auf als gesunde Gewebe (~7,2-7,4). Ursache: Warburg-Effekt → Laktat-Produktion → lokal extrazelluläre Azidose. Folgen: gefördert Invasion, Immunsystem-Suppression, Therapie-Resistenz. ABER: dies ist Tumor-FOLGE, nicht Tumor-URSACHE. Pharmakologische Ansätze zur pH-Modulation des Tumor-Mikromilieus (z.B. Bicarbonat-Infusion, Robey 2009 präklinisch) sind aktive Forschung — funktional unterscheiden sie sich aber FUNDAMENTAL von alkalischer Diät, da systemische Bicarbonat-Therapie deutlich höhere Plasma-Konzentrationen erfordert.",
+        "robert_young_strafrechtlich": "Robert O. Young (Buch 'The pH Miracle' 1999, Bestseller mehrere Mio. Exemplare): wurde 2017 in Kalifornien zu 3 Jahren Haft verurteilt wegen unerlaubter Krebs-Therapie ohne Lizenz, nachdem eine Patientin (Dawn Kali, Stadium-IV-Brustkrebs) durch seine Behandlung deutlich verschlechtert wurde. Stoddard-Urteil: $105 Mio. Schadensersatz. Konkretes Beispiel für den Schaden, den der Mythos anrichtet.",
+        "vor_nachteile_pflanzlicher_ernaehrung": "Pflanzlich-betonte Ernährung IST ein evidenzbasierter Hebel zur Krebs-Prävention (WCRF/AICR Continuous Update Project). Aber NICHT wegen pH-Effekts, sondern wegen: (a) niedrigerer Energiedichte → günstiger BMI, (b) Ballaststoffe → Mikrobiom + kolorektale Schutzeffekte, (c) Polyphenole/Carotinoide → antioxidative + antiinflammatorische Wirkung, (d) niedrigerer Anteil an verarbeiteten und roten Fleisch (IARC-Gruppe 2A bzw. 1).",
+        "context": "Die 'alkalische Diät heilt Krebs'-These ist seit den 2000ern populär durch das Buch 'The pH Miracle' (Robert Young), das wissenschaftlich widerlegt + zivilrechtlich gestoppt wurde. Cancer Research UK position: 'There is nothing wrong with most of the diets [alkaline] follow — they tend to be healthy. But the underlying science behind why is wrong.' Faktencheck: empfehlenswerte Ernährungsmuster (mediterrane / pflanzenbetonte Kost) JA, aber nicht 'wegen pH-Wert'."
+      },
+      "context_notes": [
+        "Pubmed-Suche nach 'alkaline diet cancer' liefert systematische Reviews (z.B. Fenton TR 2016 BMJ Open), die alle zum gleichen Ergebnis kommen: keine kausale Evidenz für Anti-Tumor-Effekt durch Diät-pH-Modulation.",
+        "Wichtige Differenzierung: Pharmakologische Bicarbonat-Therapie BEI Onkologie-Patienten unter Chemo-Therapie zur Reduktion von Hyperurikämie/Tumor-Lyse-Syndrom IST etabliert — das ist aber stationäre intravenöse Infusion, nicht Lebensmittel-Auswahl.",
+        "Knochen-Demineralisierung-Theorie ('Säure-Last entzieht Calcium aus Knochen, fördert Osteoporose'): WHO 2009 Position-Paper widerlegt dies — Calcium-Bilanz wird durch Calcium-Aufnahme bestimmt, nicht durch sogenannte 'PRAL' (Potential Renal Acid Load) der Ernährung."
+      ],
+      "claim_phrasings_handled": [
+        "Säure-Basen-Diät heilt Krebs",
+        "Alkalische Ernährung verhindert Krebs",
+        "Krebszellen sterben in basischem Milieu",
+        "Übersäuerung verursacht Krebs"
+      ],
+      "trigger_composite": [
+        ["krebs", "tumor", "karzinom", "metastas"],
+        ["säure", "basisch", "alkalisch", "ph", "ph-wert", "übersäuer", "basen", "säure-basen", "saeure"]
+      ]
+    },
+    {
+      "topic": "aprikosenkerne_laetril_mythos",
+      "headline": "Laetril (synthetisches Amygdalin, als 'Vitamin B17' vermarktet) zeigt in randomisierten klinischen Studien keinen Anti-Tumor-Effekt; Cochrane Review 2015 (Milazzo & Horneber) findet keine Wirksamkeits-Evidenz. Amygdalin-Hydrolyse setzt Cyanid frei, Vergiftungen mit 5-25 bitteren Kernen letal möglich (BfR)",
+      "year": 2024,
+      "source_url": "https://www.cancer.gov/about-cancer/treatment/cam/hp/laetrile-pdq",
+      "secondary_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD005476.pub4/full",
+      "source_label": "NCI PDQ + Cochrane Review (Milazzo & Horneber 2015) + FDA + BfR Risikobewertung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Aprikosenkerne / Laetril / Amygdalin / Vitamin B17 heilen Krebs' ist FALSE. 'Vitamin B17' ist KEIN Vitamin (kein essentieller Nährstoff, kein Mangel-Syndrom dokumentiert) — der Begriff wurde 1952 vom Vermarkter Andrew McNaughton erfunden. Amygdalin (chemisch D-Mandelonitril-β-D-Gentiobiosid) kommt natürlich in Stein-Obstkernen vor (Aprikose, Bittermandel, Pfirsich). Bei Hydrolyse durch β-Glukosidase (im Darm vorhanden) wird Hydrocyansäure (HCN) freigesetzt — toxisch ab ~50 mg HCN bei Erwachsenen, letal bei 200-300 mg. Bittere Aprikosenkerne enthalten 0,5-3 mg HCN-Äquivalent pro Kern. BfR-Empfehlung 2015: maximal 1-2 bittere Aprikosenkerne pro Tag. Cochrane Review (Milazzo S, Horneber M, 2015): keine RCTs mit positivem Tumor-Outcome; mehrere Berichte schwerer Cyanid-Toxizität bei Krebs-Patienten unter Laetril-Therapie. NCI-Position seit 1980er-Jahren: keine Anti-Tumor-Wirksamkeit bei klinischen Studien (Moertel 1982 NEJM).",
+        "vitamin_b17_marketing_geschichte": "Andrew McNaughton (Quack Cancer Society 1956, Mexiko) und Ernst T. Krebs Jr. prägten 1952-1956 'Vitamin B17' für Marketingzwecke. Krebs Jr. war kein Mediziner (gefälschte Doktorgrade, FDA-Anklage 1977). Begriff im offiziellen IUPAC-/WHO-Vitaminsystem nicht anerkannt — Vitamine sind essentielle Mikronährstoffe; Amygdalin erfüllt keine dieser Kriterien.",
+        "moertel_1982_nejm_studie": "Moertel CG et al. 1982 NEJM 306:201-206. Phase-II-Studie, Mayo Clinic + 3 weitere US-Zentren. n=178 Krebs-Patienten verschiedener Tumor-Entitäten. Behandlung: Amygdalin 4,5 g/m² IV täglich für 21 Tage, dann oral 0,5 g 3×/Tag, plus 'metabolic therapy' (Vit C, Pankreas-Enzyme, Diät). Outcome: KEINE objektive Tumor-Response (RECIST), KEIN signifikanter Survival-Effekt vs. historischer Kontrolle, mehrere Patienten mit Cyanid-Toxizität-Symptomen (Übelkeit, Vertigo, perioral-Parästhesie, in einigen Fällen Hospitalisierung).",
+        "cochrane_review_2015": "Milazzo S, Horneber M. 'Laetrile treatment for cancer.' Cochrane Database Syst Rev. 2015;(4):CD005476. Methodischer Standard: PRISMA, RoB-2. Suche bis 2014. Befund: 0 RCTs mit positiver Tumor-Response. 36 Beobachtungsstudien aller methodischer Qualitäten. Eindeutige Schlussfolgerung: 'no reliable evidence for the alleged effects of laetrile or amygdalin for curative effects in cancer patients'.",
+        "cyanid_toxizitaet_dosen": "BfR Risikobewertung 2015 ('Vergiftungs-Gefahr durch zu hohen Verzehr bitterer Aprikosenkerne'): bittere Kerne enthalten Amygdalin entsprechend 0,5-3 mg HCN-Äquivalent pro Kern (variiert nach Sorte/Reife). Toxische Dosis Erwachsener: ~50 mg HCN (Übelkeit, Schwindel). Letale Dosis: 200-300 mg (Atemlähmung). Daraus: 5-25 bittere Kerne können letal sein. Kinder und kleine Personen entsprechend weniger. Empfehlung: max 1-2 bittere Aprikosenkerne/Tag bei Erwachsenen. Süße Aprikosenkerne (gezüchtet, Marzipan) enthalten <1/100 dieser Mengen — gefahrlos.",
+        "fda_anti_promotion": "U.S. Food and Drug Administration: keine Zulassung für Laetril/Amygdalin als Krebs-Therapie. Mehrere Strafverfolgungen 1976-2000 gegen Hersteller/Vermarkter wegen unzulässiger Werbeansprüche. Bekanntester Fall: U.S. v. Rutherford (1979 Supreme Court), der Versuch einer Patient-Rechte-Argumentation für Laetril-Zugang scheiterte: 'safety and effectiveness apply to terminally ill patients'. Mexiko-Kliniken (Tijuana etc.) operieren weiterhin außerhalb FDA-Jurisdiktion.",
+        "context": "Der Aprikosenkerne-/Laetril-Mythos ist ein klassisches Beispiel für 'medizinischen Quackery' aus der Krebs-Alternativ-Szene. Risiko-Doppelschaden: (a) keine Anti-Tumor-Wirkung → Verzögerung etablierter Therapien, (b) aktive Cyanid-Toxizität. Kombinations-Risiko mit hochdosiertem Vitamin C (theoretische Hydrolyse-Förderung) macht die Konstellation noch gefährlicher. Differenzierung: kleine Mengen süßer Aprikosenkerne in Marzipan/Backwaren sind unbedenklich — der Mythos betrifft therapeutische Hochdosis-Anwendung."
+      },
+      "context_notes": [
+        "Steve McQueen (Schauspieler, †1980) ist bekanntestes Opfer des Laetril-Mythos: erhielt mexikanische Laetril-Therapie für Mesotheliom, verstarb 1980 in Tijuana. Laetril-Befürworter führen Fall paradoxerweise als 'McQueen wurde gerettet' bis zum Tod fort — historische Quellen (Ärzte-Berichte 1980/81) zeigen progressiven Tumor-Verlauf trotz Therapie.",
+        "Der österreichische Apotheker-Markt: bittere Aprikosenkerne sind als Lebensmittel verkehrsfähig (mit Warnhinweis), aber NICHT als Arzneimittel. Anbieter wie 'biopurus' oder Reformhäuser verkaufen Kerne mit Maximaldosis-Warnung — das stellt Lebensmittelrecht-konforme Praxis dar, nicht Medizin.",
+        "Die Kalifornische Versicherung lehnt seit 1976 Laetril-Behandlungs-Erstattungen ab — mit Verweis auf Moertel 1982 als Standard-Referenz."
+      ],
+      "claim_phrasings_handled": [
+        "Aprikosenkerne heilen Krebs",
+        "Vitamin B17 heilt Krebs",
+        "Laetril ist eine natürliche Krebs-Therapie",
+        "Bittermandeln gegen Tumor"
+      ],
+      "trigger_composite": [
+        ["krebs", "tumor", "karzinom", "metastas", "onkolog"],
+        ["aprikosenkern", "aprikosenkerne", "bittermandel", "bittermandeln", "laetril", "laetrile", "amygdalin", "vitamin b17", "b17", "blausäure"]
+      ]
+    },
+    {
+      "topic": "alkalisches_wasser_krebs_mythos",
+      "headline": "'Alkalisches Wasser' (pH 8,5-10) wird durch die Magensäure (pH 1,5-3,5) sofort und vollständig neutralisiert; randomisierte Studien zeigen keinen messbaren Effekt auf Blut-pH oder Krebs-Biomarker (Mayo Clinic, NIH NCCIH)",
+      "year": 2024,
+      "source_url": "https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/expert-answers/alkaline-water/faq-20058029",
+      "secondary_url": "https://www.nccih.nih.gov/health/alkaline-water",
+      "source_label": "Mayo Clinic + NIH NCCIH + Cancer Research UK",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'alkalisches Wasser hat gesundheitliche Vorteile / verhindert Krebs' ist FALSE. 'Alkalisches Wasser' (über Ionisierungs-Geräte oder Mineralsalzzusatz auf pH 8,5-10 angehoben) wird beim Trinken sofort durch die Salzsäure-Sekretion des Magens (pH 1,5-3,5) neutralisiert. Der Bicarbonat-Plasma-Spiegel wird durch dieses Neutralisations-Vorgang minimal verändert (~ Standardabweichung < 1 mmol/L), aber Blut-pH bleibt durch homöostatische Mechanismen (siehe saeure_basen_krebs_mythos) unverändert. Mayo Clinic Position: 'There's no scientific evidence that fully supports many of the health claims made by supporters'. NIH NCCIH: keine Wirksamkeits-Studien identifiziert, die alkalisches Wasser für Krebs-Prävention oder -Therapie unterstützen würden. Industrie-Marketing-Begriffe wie 'Wasserstoff-Wasser', 'ionisiertes Wasser', 'mikro-cluster Wasser' sind keine peer-reviewed wissenschaftlichen Konzepte.",
+        "magen_neutralisierung_kinetik": "Magen-Sekretion: Parietalzellen produzieren HCl bei pH 0,8 mit ~3 mmol H⁺ pro 100 ml Sekret. Bei einer Magen-Mahlzeit-Mischung pH ~1,5-3,5 (postprandial). Trinken von 250 ml alkalischem Wasser pH 9,5 (entspricht ~5 µmol H⁺ pro 250 ml) wird in 10-60 Sekunden auf Magen-pH heruntergepuffert. Die im Wasser enthaltenen Hydroxidionen (OH⁻) werden zu H₂O neutralisiert.",
+        "wasserstoff_wasser_marketing": "'Hydrogen-rich water' (H₂-angereichertes Wasser, ~1 ppm gelöster molekularer Wasserstoff) wird seit ~2010 als Anti-Aging und Anti-Tumor-Mittel vermarktet. Die wenigen vorhandenen Studien (z.B. Ohsawa 2007 Nat Med, in vitro/in vivo bei kleinen Tierzahlen) sind methodisch problematisch und nicht repliziert in größeren RCTs. Cochrane: keine systematischen Reviews zur Krebs-Prävention oder -Therapie mit H₂-Wasser. NCCIH: 'no scientific evidence to support'.",
+        "kangen_wasser_business_modell": "Kangen Water (Hersteller: Enagic Inc., Japan): Heimgerät verkauft für $4.000-6.000, Multi-Level-Marketing. Behauptungen: 'antioxidativ', 'rejuvenizing', 'krebs-präventiv'. Wissenschaftliche Studienbasis: keine peer-reviewed Studien des Herstellers selbst, nur Eigen-Publikationen. Kohorten-Studien zu Health-Outcomes: nicht durchgeführt.",
+        "trinkwasser_qualitaet_vergleich": "Standard-Trinkwasser hat pH 6,5-8,5 (EU-Trinkwasser-Verordnung; AT ÖNORM B 5008). Mineralwässer mit Bicarbonat (>1.500 mg/L) erreichen natürlich pH 8-9 (z.B. Vichy Catalan, Gerolsteiner, Apollinaris). Diese sind mineralreich, geschmacklich angenehm und lebensmittelrechtlich unbedenklich — aber kein 'Anti-Tumor-Wasser'.",
+        "context": "Alkalisches-Wasser-Marketing erreicht 2020-2024 Marktvolumen ~$1 Mrd weltweit, primär Asien + USA. Health-Claim-Aufsicht: in EU strikt (Health-Claim-Verordnung 1924/2006 — Krebs-Prävention-Claims müssen EFSA-Zulassung haben, die gibt es für alkalisches Wasser NICHT). In USA FDA-Position: Hersteller dürfen 'general wellness'-Claims machen, aber keine Krebs-Therapie-Claims. In Asien (Japan, Korea) liberalere Regulierung ermöglicht aggressives Marketing."
+      },
+      "context_notes": [
+        "Mineralwasser-pH-Variation in Österreich: Vöslauer Still pH 7,5; Römerquelle pH 7,2; Rauch Mineralwasser pH 7,8; Gerolsteiner pH 8,4. Der natürliche pH ist Funktion des gelösten Bicarbonats — und bedenkenlos.",
+        "Reverse-Osmose-Wasserfilter erzeugen leicht saures Wasser (pH ~6) durch Mineral-Entfernung. Auch das ist gesundheitlich unbedenklich, aber wegen Mineral-Verlust für Daueranwendung nicht ideal.",
+        "Der Mythos überschneidet sich teils mit dem Schwitzen-Detox-Mythos und dem allgemeinen Übersäuerungs-Mythos. Alle drei sind in der esoterik_pack/onkologie_pack-Schnittmenge."
+      ],
+      "claim_phrasings_handled": [
+        "Alkalisches Wasser verhindert Krebs",
+        "Basisches Wasser ist gesund gegen Tumor",
+        "Wasserstoff-Wasser hilft gegen Krebs",
+        "Ionisiertes Wasser hat gesundheitliche Vorteile"
+      ],
+      "trigger_composite": [
+        ["wasser", "trinkwasser", "mineralwasser", "kangen", "ionisier", "wasserstoff-wasser"],
+        ["alkalisch", "basisch", "ph 8", "ph 9", "krebs", "tumor", "präventiv", "gesund", "gegen krebs", "anti-tumor"]
+      ]
+    },
+    {
+      "topic": "deo_brustkrebs_mythos",
+      "headline": "Aluminium-haltige Antitranspirantien zeigen in epidemiologischen Studien (Kohorten + Fall-Kontroll) keine kausale Assoziation mit Brustkrebs; Hautresorption von Aluminium ist klinisch vernachlässigbar (DKFZ, ACS, BfR Risikobewertung)",
+      "year": 2024,
+      "source_url": "https://www.krebsinformationsdienst.de/vorbeugung/risiken/aluminium.php",
+      "secondary_url": "https://www.cancer.org/cancer/cancer-causes/antiperspirants-and-breast-cancer-risk.html",
+      "source_label": "DKFZ Krebsinformationsdienst + American Cancer Society + BfR Bundesinstitut für Risikobewertung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Aluminium-haltige Deos verursachen Brustkrebs' ist FALSE. Diese Hypothese wurde 2003 von Philippa Darbre (Univ. Reading) aufgestellt: Aluminium würde durch die Achselhaut absorbiert und in lokalem Brustgewebe akkumulieren, dort hyperplastisch wirken. Spätere große epidemiologische Studien widerlegten dies: Mirick et al. 2002 (n=813), Fakri et al. 2006 (n=148), Hardefeldt 2013 Meta-Analyse — keine Assoziation. Hautresorption von Aluminium aus Antitranspirantien ist klinisch vernachlässigbar (~0,01% laut Pineau et al. 2012). BfR Bundesinstitut zog 2020 die frühere konservative Empfehlung (Vermeidung Antitranspirantien direkt nach Rasur) zurück nach Studienlage-Update (Jappy & Bennett 2019). DKFZ + American Cancer Society offizielle Position: keine wissenschaftliche Evidenz für Brustkrebs-Risiko durch Antitranspirantien.",
+        "darbre_2003_hypothese": "Philippa D. Darbre, Univ. Reading (UK), publizierte 2003 in J Inorg Biochem ('Underarm cosmetics and breast cancer'): Hypothese basierend auf (a) lokalisierte Häufung von Brustkrebs-Tumoren in oberen lateralen Brust-Quadranten (laut ihrer Kasuistik), (b) Aluminium-Bioakkumulations-Theorie. Methodische Schwächen: keine Kohorten-Daten, keine Kontrollen, post-hoc-Analyse von 17 Patientinnen.",
+        "mirick_2002_kohort": "Mirick DK, Davis S, Thomas DB. 'Antiperspirant use and the risk of breast cancer.' J Natl Cancer Inst 2002;94:1578. Bevölkerungsbezogene Fall-Kontroll-Studie, Seattle/Puget Sound, n=813 Brustkrebs-Patientinnen vs. 793 Kontrollen. Methodisch ASCO-Standard. Befund: kein erhöhtes Risiko durch Antitranspirantien-Verwendung (OR 1.04, 95%-KI 0.75-1.43).",
+        "fakri_2006_studie": "Fakri S, Al-Azzawi A, Al-Tawil N. 'Antiperspirant use as a risk factor for breast cancer in Iraq.' East Mediterr Health J 2006;12:478. Fall-Kontroll, n=148 Patientinnen vs. 134 Kontrollen. Befund: keine signifikante Assoziation. (Anmerkung: kleinere Studie, andere Population, ähnliches Ergebnis.)",
+        "bfr_revision_2020": "Bundesinstitut für Risikobewertung: ursprüngliche Empfehlung 2014 (basierend auf Hypothese akkumulierender Hautresorption nach Rasur-Mikroverletzungen): 'Antitranspirantien nicht direkt nach Rasur anwenden'. 2020-Stellungnahme: 'Im Lichte aktualisierter Studien (Jappy & Bennett 2019, Pineau 2012) ist die zuvor angenommene Resorptionsrate deutlich überschätzt; eine Beschränkung der Antitranspirantien-Verwendung aus Krebs-Schutz-Erwägungen ist nicht erforderlich.'",
+        "alzheimer_separater_diskurs": "Aluminium-Demenz/Alzheimer-Hypothese (Crapper 1973, später revidiert) ist eine SEPARATE Diskussion und gehört NICHT zur Brustkrebs-Frage. Aluminium-Lebensmittel-Aufnahme aus Verpackungen, Backpulver, Deodorants als Gesamtbild ist Aufgabe der Lebensmittelchemie/EFSA — die definiert tolerierbare Aufnahmemengen (TWI 1 mg/kg KG/Woche).",
+        "context": "Der Deo-Brustkrebs-Mythos kursiert als E-Mail-Kettenbrief seit ~2000 weltweit. Cancer Research UK + DKFZ + ACS sind in seltener Eindeutigkeit übereinstimmend: keine Evidenz. Wichtig: das schließt NICHT aus, dass eine Subgruppe (z.B. genetische Aluminium-Sensitivität) anders reagiert — aber für die Allgemeinbevölkerung ist die Evidenzlage klar."
+      },
+      "context_notes": [
+        "Der Mythos wird oft mit der angeblichen 'Schwitzen-ist-Detox'-These kombiniert: 'Antitranspirantien blockieren die natürliche Entgiftung'. Beide Mythen sind unabhängig falsch (siehe esoterik_pack Schwitzen-Detox-Topic; und siehe Anti-Tumor-Datenlage hier).",
+        "Differenzierung: aluminiumfreie Deodorants (auf Basis Backpulver/Zinkricinoleat) sind ebenso sicher wie Aluminium-haltige. Die Wahl ist Verbraucher-Präferenz, KEIN Krebs-Schutz-Hebel.",
+        "Brustkrebs-Risikofaktoren mit echter Evidenz (WCRF/AICR 2018): Adipositas postmenopausal (RR 1.3-1.5), Alkohol (RR 1.07 pro 10 g/Tag), Bewegungsmangel, später Erstgeburt, Hormon-Substitution. Aluminium-Deos: NICHT in der Liste."
+      ],
+      "claim_phrasings_handled": [
+        "Aluminium-Deos verursachen Brustkrebs",
+        "Antitranspirantien sind krebserregend",
+        "Aluminium im Deodorant macht Krebs",
+        "Antitranspirantien blockieren die Entgiftung und verursachen Brustkrebs"
+      ],
+      "trigger_composite": [
+        ["deo", "deodorant", "antitranspirant", "antitranspirantien", "achselspray", "aluminium-deo"],
+        ["krebs", "brustkrebs", "tumor", "karzinom", "krebsrisiko", "krebserregend"]
+      ]
+    },
+    {
+      "topic": "bh_brustkrebs_mythos",
+      "headline": "Die Singer-Grismaijer-Hypothese (Buch 'Dressed to Kill' 1995) zu BH-Tragen und Brustkrebs ist methodisch widerlegt; epidemiologische Studien (Chen 2014, Hsieh 1991) zeigen keine Assoziation zwischen BH-Tragestunden, Bügel-BHs oder Cup-Größe und Brustkrebs (American Cancer Society)",
+      "year": 2024,
+      "source_url": "https://www.cancer.org/cancer/breast-cancer/about/types-of-breast-cancer/myths-misconceptions.html",
+      "secondary_url": "https://www.cancer.gov/types/breast/risk-fact-sheet",
+      "source_label": "American Cancer Society + NCI + Chen 2014 Cancer Epidemiology Biomarkers Prev",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'BH-Tragen verursacht Brustkrebs' ist FALSE. Sydney Singer + Soma Grismaijer publizierten 1995 das Buch 'Dressed to Kill' mit der Hypothese: BHs (insbesondere Bügel-BHs, lange Tragezeiten) blockieren die lymphatische Drainage der Brust, akkumulieren 'Toxine', begünstigen Tumor-Bildung. Die Arbeit war NICHT peer-reviewed, methodische Schwächen: keine Kontrollen, keine multivariate Analyse, Selektions-Bias. Spätere prospektive epidemiologische Studien widerlegten die Hypothese: Chen et al. 2014 Cancer Epidemiology Biomarkers Prev (Fall-Kontroll-Studie, n=454 Brustkrebs vs. 469 Kontrollen) — kein Zusammenhang BH-Tragestunden ↔ Brustkrebs. Hsieh 1991 frühere Studie: kein Zusammenhang BH-Cup-Größe ↔ Brustkrebs unabhängig vom BMI. Korrelationen, die in 'Dressed to Kill' angeführt wurden (z.B. BH-Tragen häufiger in Industrie-Ländern, Brustkrebs häufiger in Industrie-Ländern), sind klassisches Confounding (BMI, Alter bei Erstgeburt, Hormonsubstitution, Alkohol — alle Risikofaktoren häufen sich ebenfalls in Industrie-Ländern).",
+        "singer_grismaijer_buch_1995": "Sydney Ross Singer + Soma Grismaijer, 'Dressed to Kill: The Link Between Breast Cancer and Bras' (Avery 1995). Methode: Anthropologische Befragung von ~5.000 Frauen, autoreport-basiert. Behauptung: Frauen, die >12h/Tag BH tragen, hätten 21-fach erhöhtes Brustkrebs-Risiko. Schwächen (Cancer Research UK Analyse 2014): (a) keine Kontrollen für BMI (BH-Tragezeiten korrelieren mit größerer Cup-Größe → höherer BMI → bekannter Risiko-Faktor), (b) Recall-Bias (Krebs-Patientinnen erinnern sich anders an Lebensgewohnheiten), (c) keine multivariate Analyse, (d) Buch im Selbstverlag, kein peer-reviewed Journal.",
+        "chen_2014_epi_studie": "Chen L, Malone KE, Li CI. 'Bra wearing not associated with breast cancer risk: a population-based case-control study.' Cancer Epidemiol Biomarkers Prev 2014;23:2181-2185. Bevölkerungsbezogene Fall-Kontroll-Studie, Seattle/Puget Sound 2010-2012. Postmenopausale Frauen 55-74 J. n=454 invasive duktale + lobuläre Karzinome vs. 469 Kontrollen. Datenerhebung: standardisiertes Interview zu BH-Trage-Verhalten (Stunden/Tag, Bügel ja/nein, Cup-Größe, Schlafen mit BH). Multivariate Analyse: keine signifikante Assoziation für irgendeines der BH-Merkmale. OR für >24h/Wochenstd Bügel-BH: 1.05 (95%-KI 0.61-1.81).",
+        "hsieh_1991_finding": "Hsieh CC, Trichopoulos D. 'Breast size, handedness and breast cancer risk.' Eur J Cancer 1991;27:131-135. Untersucht: Cup-Größe als Surrogat-Marker für Brustgewebe-Volumen + handedness. Kein direkter BH-Tragezeit-Bezug. Befund: BMI ist primärer Confounder; nach Anpassung kein unabhängiger Cup-Größe-Effekt.",
+        "lymphatische_drainage_anatomie": "Anatomische Realität: die lymphatische Drainage der Brust erfolgt primär über axilläre Lymphknoten (Achsel) und teils über supraklavikuläre + parasternale Knoten. Ein BH komprimiert diese Drainage-Wege NICHT — sie verlaufen seitlich/oben durch Bereiche, die nicht durch BH-Stoff abgedeckt sind. Bügel-BHs üben minimale lokale Druck aus auf submammäre Region (unter der Brust), was lymphatisch fast irrelevant ist.",
+        "context": "Der BH-Brustkrebs-Mythos hält sich seit 30 Jahren primär in alternativ-medizinischen + feministisch-Esoterik-Communities. Cancer Research UK hat 2014 explizit nach Chen-Studie eine Pressemitteilung mit 'no link' herausgegeben. Praktisch: BH-Tragen ist KEIN modifizierbarer Risikofaktor für Brustkrebs. Modifizierbare Faktoren mit echter Evidenz: Adipositas postmenopausal, Alkohol, Bewegungsmangel — diese sind quantitativ deutlich relevanter."
+      },
+      "context_notes": [
+        "Frequenter Folge-Mythos: 'Schlafen mit BH verursacht Krebs'. Chen 2014 untersuchte auch dieses spezifisch und fand keine Assoziation.",
+        "BH-Tragen-Verhalten korreliert mit Berufs-/Lifestyle-Faktoren (Office-Jobs, Stadt, höheres Einkommen) — alle haben unabhängig leichte Assoziationen mit Brustkrebs durch confoundeing-mechanismen (späte Erstgeburt, weniger Bewegung). Multivariate Analysen identifizieren BH-Tragen NICHT als unabhängigen Faktor.",
+        "Australian Women's Weekly + Daily Mail haben den Mythos mehrfach repliziert (2015, 2017, 2019). Vorgehen-Pattern: einzelne 'Studie zeigt erhöhtes Risiko' → in der Tiefe ist es immer Singer-Grismaijer-Buch oder methodisch ähnlich problematische Quelle."
+      ],
+      "claim_phrasings_handled": [
+        "BH-Tragen verursacht Brustkrebs",
+        "Bügel-BHs erhöhen Krebsrisiko",
+        "Schlafen mit BH macht Brustkrebs",
+        "BHs blockieren die Lymphdrainage und verursachen Tumore"
+      ],
+      "trigger_composite": [
+        ["bh", "büstenhalter", "bra", "bügel-bh", "bügelbh"],
+        ["brustkrebs", "krebs", "tumor", "karzinom", "lymphdrainage", "krebsrisiko"]
+      ]
+    },
+    {
+      "topic": "mistel_krebs_therapie_mythos",
+      "headline": "Misteltherapie (Iscador, Helixor, Abnoba) zeigt in Cochrane-Review 2008 (Horneber et al., 21 RCTs) keine konsistente Wirkung auf Tumor-Progression oder Gesamt-Überleben; einzelne Lebensqualitäts-Studien mit niedriger methodischer Qualität (DGHO, ÖGHO)",
+      "year": 2024,
+      "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003297.pub2/full",
+      "secondary_url": "https://www.krebsinformationsdienst.de/behandlung/misteltherapie.php",
+      "source_label": "Cochrane Review (Horneber et al. 2008) + DGHO + ÖGHO + DKFZ Krebsinformationsdienst",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mistelpräparate heilen oder reduzieren Krebs' ist FALSE/MIXED. Misteltherapie (Viscum album, Hauptpräparate Iscador®, Helixor®, abnobaVISCUM®, Lektinol®) ist ein anthroposophisches Adjuvans-Verfahren, das auf Rudolf Steiners Konzeption (1920er) basiert. Cochrane Systematic Review 'Mistletoe therapy in oncology' (Horneber MA, Bueschel G, Huber R, Linde K, Rostock M. Cochrane Database Syst Rev 2008;CD003297) analysierte 21 randomisierte kontrollierte Studien. Ergebnis: 'It is not clear if there is sufficient evidence to support the routine use of mistletoe extracts in cancer therapy. Reported clinical effects on quality of life or symptoms (...) are based on weak evidence.' DGHO (Deutsche Gesellschaft für Hämatologie und Medizinische Onkologie) Position 2014/2018: 'Misteltherapie als alleinige Tumor-Therapie ist abzulehnen; als adjuvant zu evidenzbasierter Behandlung kann sie bei Patientenwunsch unter ärztlicher Kontrolle erwogen werden, ohne dass eine evidenzbasierte Wirksamkeit auf Tumor-Progression dokumentiert ist.' DKFZ Position: 'Wirksamkeit gegen Tumorzellen am Menschen ist nicht überzeugend belegt'.",
+        "anthroposophische_grundlage": "Rudolf Steiner (1861-1925) prägte 1917 die Hypothese: Mistel als 'Halb-Parasit' verkörpere Tumor-ähnliche Wachstumsmuster — und sei daher therapeutisch geeignet. Diese Lehre ist nicht naturwissenschaftlich begründet, sondern weltanschaulich-symbolisch. Anthroposophische Pharmaka unterliegen in DE einer reduzierten Zulassungs-Procedure (§ 38 AMG, 'Besondere Therapieeinrichtungen') — d.h. sie müssen NICHT die normalen Wirksamkeits-Standards von § 22 AMG erfüllen.",
+        "cochrane_2008_methodologie": "Horneber et al. 2008: PRISMA-konformer Cochrane Review. Suche bis 2007 in MEDLINE, EMBASE, CENTRAL, BIBLIOMED + Hand-Suche anthroposophischer Zeitschriften. Eingeschlossen: 21 RCTs (n=2.916 Patienten gesamt). Studien-Qualität: 6/21 niedriges Bias-Risiko, 15/21 mittel-hohes. Outcome-Domänen: Tumor-Progression, Gesamt-Überleben, Lebensqualität, Chemo-Verträglichkeit. Befund: keine konsistente Wirkung auf Tumor-Progression; bei Lebensqualität gemischte Ergebnisse mit methodischen Einschränkungen (open-label, fehlende Verblindung).",
+        "lebensqualitaets_aspekte": "Einige Studien (Grossarth-Maticek 2001, Tröger 2009) berichten Verbesserungen subjektiver Lebensqualität (Müdigkeit, Schlafqualität, Stimmung) bei Misteltherapie-Patienten. Methodische Einschränkungen: open-label, häufig unklare Randomisierung, Selektions-Bias (Patienten wählen anthroposophische Klinik). Ein Teil der LebensQ-Verbesserung lässt sich durch Aufmerksamkeits-Effekt + therapeutische Beziehung erklären, NICHT durch pharmakologische Wirkung der Mistel.",
+        "iscador_zulassungsstatus": "Iscador® (Hersteller Weleda + Helixor): in DE als 'Anthroposophisches Arzneimittel' verkehrsfähig (registrierungspflichtig nicht zulassungspflichtig), in CH und AT analog. Onkologische Off-Label-Anwendung weit verbreitet. EMA: KEINE zentrale Zulassung für Tumor-Therapie. FDA USA: nicht zugelassen, einige Iscador-Präparate als Investigational Drugs in NCI-Studien (z.B. Pancreas Carcinoma, Jansen 2007), keine erfolgreiche Phase-III-Bestätigung.",
+        "klassische_oekonomie": "Anthroposophische Misteltherapie ist in DE-Krankenkassen-Erstattung aufgenommen für Begleittherapie bei onkologischer Indikation (§ 35a SGB V — gemeinsame Zustimmung mehrerer KV-Senate). Kosten ca. €600-1.200/Jahr/Patient. Marktvolumen ~€80 Mio./Jahr (Weleda + Helixor + Abnoba zusammen, 2022). Pharmakologische Begründung der Erstattung umstritten — Argument: Patienten-Versorgung mit dokumentierter Sicherheit, nicht dokumentierte Wirksamkeit.",
+        "context": "Misteltherapie ist ein Lehrbuch-Beispiel der 'Komplementärmedizin' — sie ergänzt etablierte Onkologie und ist als alleinige Tumor-Behandlung abzulehnen. Die Probleme treten dann auf, wenn Patienten Misteltherapie ALSTERNATIVE zu Chemo/Radiatio wählen — dann wird der Verzögerungs-Schaden lebensbedrohlich. ÖGHO/DGHO/DKFZ-Konsens: Begleitanwendung bei Patientenwunsch akzeptabel, keinesfalls als Ersatz."
+      },
+      "context_notes": [
+        "Steve Jobs (Apple-CEO, †2011) wählte 9 Monate alternative Therapien (inkl. anthroposophische Ansätze) für sein neuroendokrines Pankreas-Karzinom, bevor er sich für Operation entschied — ein vermutlich tödlicher Verzögerungs-Faktor. Sein Biograph Walter Isaacson zitiert Jobs später: 'I didn't want my body to be opened... I really didn't want them to mess with my body.' Beispiel für Komplementär-vs-Alternativ-Konfusion.",
+        "Lektine (z.B. Mistellektin ML-I) sind tatsächlich pharmakologisch aktive Substanzen — sie binden an ribosomale Proteine und können Apoptose auslösen. In vitro/in-vivo (Zellkultur, Maus) sind Anti-Tumor-Effekte beobachtet. Die Hypothese 'das könnte therapeutisch funktionieren' ist also nicht völlig haltlos — aber die KLINISCHE Translation in Phase-III-Studien hat bisher nicht stattgefunden.",
+        "Differenzierung: Mistel-Therapie hat moderate Sicherheits-Bilanz (gelegentliche lokale Hautreaktionen an Injektionsstelle, sehr selten allergische Reaktionen). Die Frage ist nicht 'Schadet sie?' sondern 'Wirkt sie kausal anti-tumor?' — die Antwort ist 'methodisch nicht belegt'."
+      ],
+      "claim_phrasings_handled": [
+        "Misteltherapie heilt Krebs",
+        "Mistelpräparate stoppen Tumor",
+        "Iscador ist eine wirksame Krebs-Therapie",
+        "Anthroposophische Mistel-Spritzen helfen bei Krebs"
+      ],
+      "trigger_composite": [
+        ["mistel", "misteltherapie", "iscador", "helixor", "abnoba", "viscum", "anthroposophisch", "anthroposoph"],
+        ["krebs", "tumor", "karzinom", "metastas", "onkolog", "therapie", "heilung", "wirksam"]
+      ]
+    },
+    {
+      "topic": "vitamin_c_hochdosis_krebs_mythos",
+      "headline": "Linus Paulings Hochdosis-Vitamin-C-Hypothese (1976) wurde durch zwei methodisch saubere Mayo-Clinic-RCTs (Creagan 1979, Moertel 1985) widerlegt; aktuelle intravenöse Hochdosis-Studien zeigen pharmakologische Plasmaspiegel, aber kein klinisch signifikantes Anti-Tumor-Signal in Phase-III-Studien (NCI PDQ)",
+      "year": 2024,
+      "source_url": "https://www.cancer.gov/about-cancer/treatment/cam/hp/vitamin-c-pdq",
+      "secondary_url": "https://www.nccih.nih.gov/health/providers/digest/high-dose-vitamin-c-and-cancer-science",
+      "source_label": "NCI PDQ + NIH NCCIH + Mayo Clinic RCTs (Creagan 1979 NEJM, Moertel 1985 NEJM)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Hochdosis-Vitamin-C heilt Krebs' ist FALSE/MIXED. Linus Pauling (Doppel-Nobelpreisträger, 1954 Chemie, 1962 Frieden) und Ewan Cameron publizierten 1976 eine nicht-randomisierte Beobachtungsstudie aus Vale-of-Leven-Hospital, Schottland (n=100 Krebs-Patienten + historische Kontrollen) mit angeblich verlängertem Überleben unter Vit-C-Hochdosis (10 g/Tag oral + IV). Die Mayo Clinic führte daraufhin zwei randomisierte placebo-kontrollierte Doppelblind-Studien durch: Creagan ER et al. 1979 NEJM 301:687 (n=150) und Moertel CG et al. 1985 NEJM 312:137 (n=100). BEIDE Studien fanden KEINEN Survival-Effekt gegenüber Placebo. Diese Studien gelten als Standard-Referenz. Aktuelle Forschung zu intravenösem Vitamin C in pharmakologischer Hochdosis (>1 g/kg KG, Plasmaspiegel >mM) zeigt präklinische in-vitro/in-vivo Anti-Tumor-Effekte (Padayatty 2010, Hoffer 2008) — aber Phase-III-RCTs mit klinischen Outcomes haben bisher nicht stattgefunden. Linus Pauling selbst starb 1994 an Prostata-Karzinom trotz täglicher Vitamin-C-Megadosen (~18 g/Tag).",
+        "pauling_cameron_1976_studie": "Cameron E, Pauling L. 'Supplemental ascorbate in the supportive treatment of cancer: Prolongation of survival times in terminal human cancer.' Proc Natl Acad Sci USA 1976;73:3685. Methodisch: Beobachtungsstudie n=100 'untreatable' Patienten in Vale of Leven Hospital (Pauling-Cameron's Klinik), Vit C 10 g/Tag IV/oral. Vergleich gegen 1.000 historische Kontrollen aus dem gleichen Krankenhaus mit ähnlichen Diagnosen. Berichteter Mittel-Überleben-Unterschied: Cameron-Patienten 4× länger. Schwächen: nicht-randomisiert, Selektionsbias, historische statt zeitgleiche Kontrolle, prognose-confoundeing.",
+        "creagan_1979_nejm": "Creagan ER, Moertel CG, O'Fallon JR, et al. 'Failure of high-dose vitamin C (ascorbic acid) therapy to benefit patients with advanced cancer. A controlled trial.' New England Journal of Medicine 1979;301:687-690. Mayo Clinic + 3 weitere US-Onkologie-Zentren. n=150 Patienten mit fortgeschrittenem soliden Tumor (Magen, Pankreas, Colorectal, Lunge, etc.), randomisiert auf 10 g Vitamin C/Tag oral vs. Placebo (Lactose-Pille), double-blind. Outcomes: Tumor-Progression, Symptomatik, Survival. Befund: KEIN Unterschied in irgendeinem Outcome-Maß. Median-Survival Vit C 7 Wochen vs. Placebo 7 Wochen.",
+        "moertel_1985_nejm": "Moertel CG, Fleming TR, Creagan ER, et al. 'High-dose vitamin C versus placebo in the treatment of patients with advanced cancer who have had no prior chemotherapy. A randomized double-blind comparison.' NEJM 1985;312:137-141. Replikations-Studie speziell für Pauling-Cameron-Argument 'Patienten dürfen nicht zuvor Chemo gehabt haben'. n=100 Patienten mit fortgeschrittenem kolorektalen Karzinom, KEINE vorherige Chemo, randomisiert Vit C 10 g/Tag oral vs. Placebo. Befund erneut: KEIN Survival-Unterschied (median Vit C 4,1 Monate vs. Placebo 4,1 Monate; HR 1.04, 95%-KI 0.69-1.57). Methodisch saubere Replikation.",
+        "padayatty_iv_pharmakologie": "Padayatty SJ et al. 'Vitamin C: intravenous use by complementary and alternative medicine practitioners and adverse effects.' PLoS One 2010;5:e11414. Beobachtung: Orales Vitamin C wird durch intestinale Resorption auf <100 µM Plasmaspiegel begrenzt (sättigbarer SVCT-Transporter). IV-Applikation umgeht diesen Mechanismus, kann mM-Plasmaspiegel erreichen. Bei mM-Konzentrationen entstehen über Fenton-Reaktion (Eisen-katalysiert) reaktive Sauerstoffspezies (H₂O₂), die in vitro tumortoxisch wirken. Klinische Translation in Phase-II-Studien (Hoffer 2008, Welsh 2013): Sicherheit gut, Wirkungs-Signal schwach.",
+        "phase_iii_lücke": "Bis 2024 KEINE positive Phase-III-RCT für IV-Vitamin-C als Krebs-Therapie. Cochrane Database Systematic Review 2014 (Vollbracht 2014): 'There is no evidence of a benefit on survival outcomes; insufficient evidence to support routine use.' NCCIH-Position: 'Although high-dose IV vitamin C has been studied for over 30 years, there is no convincing evidence that it is an effective treatment for cancer.' Aktuelle Studien (Klinische Studien Database NCT) laufen primär als Zusatz-Therapie in Phase-II-Setting.",
+        "context": "Linus Pauling war ein bedeutender Wissenschaftler (Quanten-Chemie, Protein-Strukturen), aber sein Engagement für Vitamin-C-Megadosen seit 1970 lag außerhalb seiner Expertise und stützte sich auf methodisch schwache Observations-Daten. Ironie: Pauling selbst starb 1994 an Prostata-Karzinom. Sein Sohn Linus Pauling Jr. distanzierte sich später teils öffentlich von den Vitamin-C-Behauptungen. Praktisch heute: orale Vitamin-C-Substitution bei nachgewiesenem Mangel ja, Hochdosis-Megadose-Therapie als Tumor-Behandlung NEIN."
+      },
+      "context_notes": [
+        "Linus-Pauling-Institut (Oregon State University) führt seit Paulings Tod weitere Vitamin-C-Forschung durch — aktuell primär präklinisch und in pharmakologischer (statt nutritiver) Dosierung. Das Institut selbst formuliert vorsichtig: 'mounting evidence' rather than 'proven therapy'.",
+          "Hoher Vitamin-C-Konsum (oral, im Bereich >2 g/Tag) kann zu Nierensteinen (Oxalat-Bildung), Diarrhoe (osmotisch) und bei Hämochromatose-Patienten zu Eisen-Überladung führen. NIH Office of Dietary Supplements: Tolerable Upper Intake Level (UL) 2.000 mg/Tag.",
+          "Differenzierung: bei Vitamin-C-Mangel (z.B. Skorbut bei Mangelernährung, Alkoholismus, lange Krankheits-Verläufe) IST orale oder IV-Substitution lebensrettend — das ist aber Skorbut-Behandlung, nicht Krebs-Behandlung."
+      ],
+      "claim_phrasings_handled": [
+        "Hochdosis-Vitamin-C heilt Krebs",
+        "Vitamin-C-Infusionen helfen gegen Krebs",
+        "Linus Pauling hat bewiesen dass Vitamin C Krebs heilt",
+        "Megadosen Vitamin C bei Tumor"
+      ],
+      "trigger_composite": [
+        ["vitamin c", "vitamin-c", "ascorbinsäure", "ascorbat", "linus pauling", "pauling"],
+        ["krebs", "tumor", "karzinom", "metastas", "onkolog", "heilen", "hochdosis", "megadose", "infusion", "behandlung"]
+      ]
+    },
+    {
+      "topic": "frueh_erkennung_uebertherapie_konsens",
+      "headline": "Krebsfrüherkennungs-Programme können Mortalität reduzieren, aber auch Übertherapie verursachen — der Netto-Nutzen ist screening-spezifisch unterschiedlich. Mammographie 50-69 J. NETTO-NUTZEN; PSA-Screening Prostatakrebs MIXED; Schilddrüsen-Screening NEGATIV (USPSTF, IQWiG, Cochrane Screening Group)",
+      "year": 2024,
+      "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/topic_search_results?topic_status=P",
+      "secondary_url": "https://www.iqwig.de/themen/screening-frueherkennung/",
+      "source_label": "USPSTF + IQWiG (Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen DE) + Cochrane Cancer Screening Group + Welch HG 'Less Medicine, More Health'",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mehr Krebsfrüherkennung = weniger Krebs-Tote' ist OVERSIMPLIFIED/MIXED. Krebsfrüherkennungs-Programme (Screening) können Mortalität reduzieren — aber auch ÜBERTHERAPIE verursachen, wenn sie indolente Tumoren entdecken, die nie symptomatisch geworden wären. Der Netto-Nutzen ist screening-spezifisch und altersabhängig. Drei klare Fallbeispiele: (a) Mammographie 50-69 Jahre: NETTO-NUTZEN dokumentiert (Cochrane 2013, Marmot 2013 Lancet). (b) PSA-Screening Prostatakrebs: NETTO-NUTZEN umstritten (USPSTF Grade C 55-69 J., individuelle Entscheidung; Grade D >70 J., nicht empfohlen). (c) Schilddrüsen-Screening Korea 2003-2011: 15-fache Diagnose-Erhöhung OHNE Mortalitäts-Reduktion (Ahn 2014 NEJM) — Programm 2014 reformiert. Zentral für Faktencheck: 'mehr Screening' ist KEIN automatischer Nutzen-Hebel; Evidenz pro Screening-Typ einzeln evaluieren. Übertherapie umfasst: unnötige Operationen + Strahlung + Chemo bei Tumoren, die ohne Behandlung nie progredient geworden wären.",
+        "uebertherapie_definition": "'Übertherapie' (overtreatment, overdiagnosis): die Diagnose und Behandlung von Tumoren, die im Lebenszeitraum des Patienten nie symptomatisch geworden wären. Das Konzept geht auf Welch HG (Dartmouth, 'Overdiagnosed' 2011) und Esserman LJ (UCSF, 'Rethinking Screening' 2013 Lancet) zurück. Quantifizierung methodisch schwierig, da fehlend kontrafaktisches Wissen. Schätzungen via Population-Modeling: Prostata 30-50% der Screening-detected, Brust 15-20%, Schilddrüse Korea historisch >90%.",
+        "mammographie_50_69_evidenz": "Cochrane Review 2013 (Gøtzsche PC, Jørgensen KJ): Mammographie-Screening reduziert Brustkrebs-Mortalität um ~15-20% bei Frauen 50-69 J. NNT (number needed to invite for screening over 10 years) ~2.000 für 1 verhindertes Brustkrebs-Death. Marmot M et al. 2013 Lancet (UK Independent Review): bestätigt, NNT ~235 für 1 verhindertes Death über 20-Jahre-Lebensspanne. Übertherapie-Ratio: ~3 Frauen overdiagnosed pro 1 verhindertes Death. Netto-Nutzen positiv für 50-69 J.",
+        "mammographie_40_49_kontrovers": "Mammographie 40-49 J.: USPSTF 2024 Grade C (individuelle Entscheidung); IQWiG: keine pauschale Empfehlung. Grund: niedrigere Inzidenz + dichteres Brustgewebe + höheres False-Positive-Risiko + längere Lebenszeit für Übertherapie-Folgen. Nutzen-Schaden-Bilanz unklarer als 50-69 J.",
+        "psa_screening_mixed": "Prostata-Karzinom-PSA-Screening (PLCO-Trial USA 2009 + ERSPC-Trial EU 2009/2014): ERSPC zeigt 21% Mortalitäts-Reduktion, PLCO zeigt keine. USPSTF 2018: Grade C für Männer 55-69 J. ('individual decision based on patient values'), Grade D für >70 J. (nicht empfohlen). Kernproblem: PSA detektiert auch indolente Tumoren (Gleason 6 nicht-aggressiv), die zu Übertherapie (radikale Prostatektomie mit Inkontinenz/Erektionsstörung in 30-60%) führen. Aktive Surveillance bei Niedrig-Risiko ist evidenzbasierter Mittelweg.",
+        "schilddruese_korea_lehrstueck": "Ahn HS et al. 'Korea Thyroid-Cancer Epidemic — Screening and Overdiagnosis.' NEJM 2014;371:1765. Korea führte 1999 ein nationales Schilddrüsen-Sonographie-Screening-Programm ein. Folge: Schilddrüsen-Karzinom-Inzidenz stieg 15-fach (1993-2011), während die Mortalität UNVERÄNDERT blieb. Schluss: ~90% der Screening-detected Karzinome waren indolente Mikrokarzinome. Korea reformierte 2014 das Programm radikal nach NEJM-Publikation. Klassisches Lehrbuch-Beispiel für screening-induzierte Übertherapie.",
+        "darmkrebs_kolonoskopie_konsens": "Darmkrebs-Screening (Kolonoskopie ab 50 oder 55 J., FIT-Test): NETTO-NUTZEN klar dokumentiert (Cochrane 2007, USPSTF Grade A 45-75 J.). Spezialfall, weil Polypen-Entfernung präventiv wirken (ADENOM zu Karzinom-Sequenz unterbrochen) — kein klassisches Übertherapie-Problem.",
+        "context": "Krebsfrüherkennung ist eines der am besten erforschten Felder der Public Health. Die Erkenntnis, dass 'mehr Screening' nicht automatisch besser ist, ist seit ~2010 Mainstream-Konsens, aber in der medialen + populären Wahrnehmung noch nicht angekommen. Faktencheck-Relevanz: Behauptungen wie 'jede Frau ab 30 sollte Mammographie' oder 'PSA-Test rettet Leben — pauschal' sind nicht evidenzbasiert; korrekt ist altersspezifische, Screening-spezifische Nutzen-Schaden-Bewertung. Übertherapie ist nicht nur Lebensqualitäts-Schaden — operative Komplikationen + Bestrahlungs-Folgeschäden können in seltenen Fällen tödlich sein."
+      },
+      "context_notes": [
+        "Welch HG 'Less Medicine, More Health' 2015 ist zugängliche Lese-Empfehlung für Patient/innen — präsentiert die Evidenz zu 'mehr Medizin = nicht immer mehr Gesundheit' allgemein verständlich.",
+        "Differenzierung 'Screening' vs. 'Diagnostik': Screening = systematische Untersuchung gesunder Bevölkerung; Diagnostik = Untersuchung bei Symptomen. Nutzen-Schaden-Bilanz beider radikal unterschiedlich. Diese Unterscheidung wird in populären Diskussionen oft vermischt.",
+        "AT/DE-spezifische Empfehlungs-Quellen: ÖGGG (Österr. Ges. f. Gynäkologie und Geburtshilfe) Mammographie-Konsens, S3-Leitlinie Darmkrebsprävention DKG (Deutsche Krebsgesellschaft). Diese folgen primär USPSTF/Cochrane/IQWiG-Linien — österreichisch-deutsche Adaption."
+      ],
+      "claim_phrasings_handled": [
+        "Mehr Krebsfrüherkennung rettet immer Leben",
+        "Screening verhindert Krebs-Tode",
+        "Mammographie sollte ab 30 verpflichtend sein",
+        "PSA-Test sollte jeder Mann machen"
+      ],
+      "trigger_composite": [
+        ["screening", "früherkennung", "vorsorge", "mammographie", "psa", "kolonoskopie", "darmspiegelung", "schilddrüsen-sonographie"],
+        ["krebs", "tumor", "karzinom", "übertherapie", "übermedikalisier", "rettung", "leben", "verhindert", "sollte", "ab", "jährlich"]
+      ]
+    }
+  ]
+}

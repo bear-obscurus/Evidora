@@ -87,6 +87,7 @@ from services.sport_fitness_pack import search_sport_fitness, claim_mentions_spo
 from services.kunst_kultur_pack import search_kunst_kultur, claim_mentions_kunst_kultur_cached
 from services.geschichts_mythen2_pack import search_geschichts_mythen2, claim_mentions_geschichts_mythen2_cached
 from services.reproduktion_pack import search_reproduktion, claim_mentions_reproduktion_cached
+from services.onkologie_pack import search_onkologie, claim_mentions_onkologie_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.clinvar import search_clinvar
@@ -717,6 +718,17 @@ async def check_claim(request: Request):
         if claim_mentions_reproduktion_cached(claim):
             tasks.append(cached("Reproduktions-Konsens", search_reproduktion, analysis))
             queried_names.append("Reproduktions-Medizin-Konsens (NEJM + Cochrane + ACOG + AUA + NAMS + NIH + WHO)")
+        # Onkologie-Pack (10 Topics: Mikrowelle-Krebs, Zucker-füttert-Krebs,
+        # Säure-Basen-Diät, Aprikosenkerne-Laetril, Alkalisches-Wasser,
+        # Deo-Brustkrebs, BH-Brustkrebs, Misteltherapie, Hochdosis-Vit-C,
+        # Übertherapie-Konsens). Quellen: NCI PDQ, DKFZ, Cancer Research UK,
+        # ACS, AICR/WCRF, Cochrane (Horneber 2008, Milazzo 2015), Mayo
+        # Clinic RCTs Creagan 1979 + Moertel 1985, Chen 2014, Mirick 2002,
+        # Ahn 2014 NEJM, Welch 'Overdiagnosed', USPSTF, IQWiG. Hoher
+        # Schaden-Reduktions-Wert wegen Therapie-Verweigerungs-Risiko.
+        if claim_mentions_onkologie_cached(claim):
+            tasks.append(cached("Onkologie-Konsens", search_onkologie, analysis))
+            queried_names.append("Onkologie-Konsens (NCI + DKFZ + Cochrane + Cancer Research UK + USPSTF + IARC)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
