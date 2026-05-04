@@ -96,6 +96,7 @@ from services.alltags_mythen_pack import search_alltags_mythen, claim_mentions_a
 from services.verkehrssicherheit_pack import search_verkehrssicherheit, claim_mentions_verkehrssicherheit_cached
 from services.tierhaltung_pack import search_tierhaltung, claim_mentions_tierhaltung_cached
 from services.cybersecurity_pack import search_cybersecurity, claim_mentions_cybersecurity_cached
+from services.lebensmittel_pack import search_lebensmittel, claim_mentions_lebensmittel_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.clinvar import search_clinvar
@@ -813,6 +814,15 @@ async def check_claim(request: Request):
         if claim_mentions_cybersecurity_cached(claim):
             tasks.append(cached("Cybersecurity-Konsens", search_cybersecurity, analysis))
             queried_names.append("Cybersecurity-Konsens (NIST + BSI + ENISA + EFF + Mozilla + NCSC)")
+        # Lebensmittel-Pack (10 Topics: Spinat-Aufwärmen, Pilze-Aufwärmen,
+        # Kartoffel-Solanin, Mikrowelle-Ei-Explosion, Honig-Baby, Eier-
+        # Lagerung, MHD-vs-Verbrauchsdatum, Würstchen-Erstickung, Kühl-
+        # ketten-Unterbrechung, Auftauen-Zimmertemperatur). Quellen: BfR,
+        # EFSA, FDA, RKI, AAP, ÖLMB, BLE, DGE, USDA. Komplementär zum
+        # ernaehrungs_pack.
+        if claim_mentions_lebensmittel_cached(claim):
+            tasks.append(cached("Lebensmittel-Konsens", search_lebensmittel, analysis))
+            queried_names.append("Lebensmittel-Sicherheit-Konsens (BfR + EFSA + FDA + RKI + AAP + ÖLMB)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
