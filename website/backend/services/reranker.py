@@ -162,6 +162,7 @@ _AUTHORITATIVE_INDICATORS = (
     "mental_health_konsens_fact",        # Mental-Health-Pack (DGPPN + NIMH + Cochrane + APA + NICE + WHO)
     "substanzen_konsens_fact",           # Substanzen-Pack (NIDA + EMCDDA + EFSA + WHO + Cochrane + FDA)
     "digital_familie_konsens_fact",      # Digital-Familie-Pack (AAP + APA + Orben Oxford + ABCD Study + EU Kids Online)
+    "geldanlage_konsens_fact",           # Geldanlage-Pack (BaFin + FCA + SEC + ESMA + Stiftung Warentest)
     "medlineplus_health_topic",          # NIH MedlinePlus Live (National Library of Medicine, US)
     "cdc_newsroom_item",                 # CDC Newsroom Live (Centers for Disease Control, US)
     "clinvar_variant",                   # NIH ClinVar Live (NCBI Genetic Variants, US)

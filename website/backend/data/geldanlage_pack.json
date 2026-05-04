@@ -1,0 +1,544 @@
+{
+  "facts": [
+    {
+      "topic": "krypto_promi_endorsement_mythos",
+      "headline": "Werbung mit angeblichen Promi-Endorsements für Krypto-Plattformen (Elon Musk, Tesla, Beck, Schweighöfer Deepfakes) ist fast immer Betrug; BaFin, FCA und SEC dokumentieren seit 2023 weltweite Welle gefälschter Werbung mit KI-generierten Videos und Stimmen — Chainalysis 2023 schätzt globalen Schaden durch Krypto-Scams >5 Mrd USD jährlich",
+      "year": 2024,
+      "source_url": "https://www.bafin.de/DE/Verbraucher/Anlegerwarnungen/anlegerwarnungen_node.html",
+      "secondary_url": "https://www.fca.org.uk/scamsmart",
+      "source_label": "BaFin Anlegerwarnungen + FCA ScamSmart + SEC Investor Alerts + FMA Österreich + Chainalysis 2024 Crypto Crime Report",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Promi X (Elon Musk, Beck, Schweighöfer, Anke Engelke usw.) empfiehlt diese Krypto-Plattform / dieses Investment ist in 99 Prozent der Fälle FALSE und Betrug. Seit 2023 dokumentieren BaFin (DE), FCA (UK), SEC (USA), FMA (AT) eine massive Welle gefälschter Promi-Werbung für Krypto-Investments mit KI-generierten Deepfake-Videos und geklonten Stimmen. Beispiele aktueller Fall-Kategorien: (a) Bitcoin Code / Bitcoin Era / Bitcoin Pro — beworbene Anbieter mit gefälschten Tagesschau-/Higi-Tag-Layouts, angeblichen Höhle-der-Löwen-Auftritten von Personen, die nie dort waren. (b) Elon Musk / Tesla Krypto-Initiativen — gefälschte Twitter/Telegram-Werbung für Live-Streams, in denen Musk angeblich Bitcoin verdoppelt. (c) Schauspieler-Deepfake-Werbung in deutschen sozialen Medien — Verwendung von Schweighöfer-/Beck-Footage in manipulierter Form. Schaden: Chainalysis 2024 Crypto Crime Report schätzt globalen Schaden durch Krypto-Scams allein 2023 auf >5,6 Mrd USD. BaFin Watchlist führt 2024 über 100 unseriöse Plattformen. Wichtige Erkennungs-Merkmale: (1) gefälschte Logos seriöser Medien, (2) Hochdruck-Stil mit knappen Fristen, (3) sehr hohe versprochene Renditen, (4) Anmeldung erfordert sofortige Einzahlung, (5) Auszahlung verzögert oder unmöglich, (6) Berater-Anrufe drängen zur Erhöhung der Investition. Faktencheck-relevant: ALLE Werbungen mit angeblichen Promi-Endorsements für spezifische Krypto-Plattformen sind mit hoher Wahrscheinlichkeit Betrug — die echten Promis distanzieren sich aktiv davon (Beck 2023 Statement, Musk regelmäßig).",
+        "deepfake_technologie_2023": "KI-Deepfake-Technologie-Stand 2023-2024: hochqualitative Video-Manipulation mit Lippen-Synchronisation in unter 30 Minuten Bearbeitungszeit auf normaler Hardware. Audio-Klonen einer Stimme erfordert nur ca. 30 Sekunden Original-Audio-Material. Plattformen wie Elven Labs, Stable Diffusion + Audio-Modelle haben technische Hürde drastisch gesenkt. Konsequenz: Promi-Endorsement-Fakes sind massengetauglich produzierbar.",
+        "bafin_anlegerwarnungen_system": "BaFin (Bundesanstalt für Finanzdienstleistungsaufsicht) führt öffentlich zugängliche Anlegerwarnungs-Liste, regelmäßig aktualisiert. URL bafin.de/DE/Verbraucher/Anlegerwarnungen. 2023-2024: über 100 neue Warnungen pro Jahr für Krypto-/Forex-Plattformen, viele mit Promi-Endorsement-Schema. Liste ist nicht erschöpfend (BaFin kann nur die Anbieter listen, von denen sie Kenntnis hat).",
+        "fca_scamsmart": "FCA UK ScamSmart-Service: vor jedem Investment kann auf scamsmart.fca.org.uk geprüft werden, ob Anbieter regulatorisch auffällig ist. FCA-Liste ähnlich BaFin, internationale Koordination. Schwerpunkt: Boiler-Room-Schemes, Pump-and-Dump, gefälschte Investment-Plattformen.",
+        "schadens_quantifizierung": "Chainalysis 2024 Crypto Crime Report: globaler Krypto-Scam-Schaden 2023 ca. 5,6 Mrd USD. Davon ca. 60 Prozent Pig-Butchering-Scams (langfristige Vertrauens-Aufbau-Betrug, oft mit Romance-Component), 25 Prozent Investment-Scam mit Promi-Fake-Endorsement, 15 Prozent Phishing/Wallet-Drain. Trend: Investment-Scams 2022-2023 stark wachsend, Pig-Butchering dominiert.",
+        "praxis_erkennungs_checklist": "Praktische Erkennung von Promi-Endorsement-Krypto-Betrug: (1) Werbung erscheint auf Social-Media-Banner, nicht auf seriösen Finanz-Seiten — Verdacht. (2) Klick führt auf Webseite mit gefälschtem Tagesschau-/RTL-/CNN-Layout — Betrug. (3) Anmeldung erfordert sofortige Einzahlung von 250 Euro+ — typischer Betrugs-Indikator. (4) Berater-Anruf nach 24h drängt zur Erhöhung — typischer Betrugs-Indikator. (5) Auszahlungsversuche werden durch Steuern oder Verifikations-Kosten verzögert — der Endpunkt jedes Schema-Betrugs.",
+        "context": "Promi-Endorsement-Krypto-Betrug ist 2023-2024 explodiert wegen KI-Deepfake-Demokratisierung. Faktencheck-relevant: ALLE Aussagen wie Promi X investiert in Coin Y oder Beck empfiehlt diese Plattform mit Werbe-Link sind mit hoher Wahrscheinlichkeit Betrug. Praktische Empfehlung: vor jedem Investment BaFin-Anlegerwarnungen + FCA ScamSmart prüfen, niemals bei Werbung-getriebenem Druck investieren, bei Verdacht direkt Bundesanstalt für Finanzdienstleistungsaufsicht (BaFin Verbraucher-Hotline 0800/2 100 500) oder FMA AT (FMA Verbraucher-Hotline 1/24959-3502) kontaktieren."
+      },
+      "context_notes": [
+        "Konkretes deutsches Fallbeispiel 2023: Mathias Beck Deepfake-Video, das auf Tagesschau-Optik in Werbe-Banner zirkulierte. Beck distanzierte sich öffentlich, ARD machte rechtliche Schritte. Ähnliche Fälle mit Schweighöfer, Sabia Boulahrouz, Carolin Kebekus.",
+        "Pig-Butchering-Schema: Langfristiger Betrug mit Vertrauensaufbau über Wochen-Monate (Online-Romance + Investment-Empfehlung). FBI 2023: ca. 3,3 Mrd USD US-Schaden allein durch Pig-Butchering. Häufige Plattformen: Tinder, Bumble, WhatsApp, Telegram für Erstkontakt.",
+        "Bei Verdachtsfall sofortige Schritte: (1) Bank kontaktieren wegen Überweisungs-Stop falls möglich, (2) Polizei-Anzeige (BKA bei größerem Schaden), (3) BaFin/FMA-Meldung, (4) eigene Bank/Wallet auf Folge-Schäden prüfen. Verluste sind oft nicht zurückzuholen, aber Dokumentation hilft Strafverfolgung."
+      ],
+      "claim_phrasings_handled": [
+        "Elon Musk empfiehlt diese Krypto-Plattform",
+        "Beck investiert in Bitcoin Code",
+        "Promi X verdoppelt Geld mit Bitcoin Era",
+        "Schweighöfer wirbt für Krypto-Investment"
+      ],
+      "trigger_composite": [
+        [
+          "bitcoin",
+          "krypto",
+          "kryptowährung",
+          "ethereum",
+          "bitcoin code",
+          "bitcoin era",
+          "bitcoin pro",
+          "bitcoin trader",
+          "musk",
+          "beck",
+          "schweighöfer",
+          "promi",
+          "celebrity",
+          "endorsement"
+        ],
+        [
+          "empfiehlt",
+          "investiert",
+          "verdoppelt",
+          "wirbt",
+          "wirbt für",
+          "tipp",
+          "exklusiv",
+          "geheim",
+          "automatisch",
+          "passiv",
+          "schnell reich"
+        ]
+      ]
+    },
+    {
+      "topic": "daytrading_erfolg_mythos",
+      "headline": "Empirische Studien zu Privat-Day-Trading-Erfolgsraten zeigen 70-95 Prozent Verlust-Anteile; Barber & Odean 2000 J Finance n>66.000, Chague & De-Losso 2017 Brasilien-Studie n=1.551 Day-Trader: 97 Prozent verlieren über 1 Jahr; ESMA-Statistik 2018: 74-89 Prozent CFD-Privatanleger verlieren",
+      "year": 2024,
+      "source_url": "https://www.esma.europa.eu/sites/default/files/library/esma35-43-1135_decision_renewing_temporary_intervention_measures_relating_to_contracts_for_differences.pdf",
+      "secondary_url": "https://onlinelibrary.wiley.com/doi/10.1111/0022-1082.00226",
+      "source_label": "ESMA CFD Statistics + Barber & Odean 2000 J Finance + Chague & De-Losso 2017 + Dalbar QAIB Annual + BaFin",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Mit Day-Trading kann man im Privat-Bereich systematisch reich werden ist FALSE/MOSTLY_FALSE. Empirische Studien zu Erfolgs-Quoten von Privat-Day-Tradern zeigen konsistent: die große Mehrheit verliert Geld. Barber BM & Odean T 2000 J Finance: Datenanalyse von n>66.000 Discount-Brokerage-Konten 1991-1996, höhere Trading-Frequenz korreliert linear mit niedrigerer Net-Performance. Chague F & De-Losso R 2017 (Working Paper, Brasilien): n=1.551 zertifizierte Day-Trader, 1+ Jahr Tätigkeit — 97 Prozent verlieren Geld, nur 1,1 Prozent erzielen Mindestlohn-äquivalente Einkommen. ESMA 2017-2018 CFD-Studie zur Begründung der CFD-Beschränkung: 74-89 Prozent der Privatanleger in CFD-Plattformen (oft Day-Trading) verlieren Geld, durchschnittlicher Verlust pro Konto 1.600-29.000 Euro. Dalbar QAIB-Studie: durchschnittlicher Privat-Anleger underperformt S&P 500 um 3-5 Prozent jährlich wegen Behavior Gap (schlechtes Markttiming, Panik-Verkäufe). Mythos Mit Übung wird man besserer Day-Trader: Survivor-Bias der wenigen Erfolg-Fälle. Strukturell: Day-Trading hat negative Erwartungswert für Privat-Anleger nach Trading-Kosten + Spreads + Steuern. Mathematisch: für jeden Gewinner gibt es einen Verlierer (Zero-Sum-Game vor Kosten, Negativ-Sum nach). Faktencheck-relevant: Aussagen wie Mit Day-Trading 5.000 Euro pro Monat verdienen widersprechen meta-analytischen Daten massiv.",
+        "barber_odean_2000_studie": "Barber BM, Odean T. Trading is hazardous to your wealth: The common stock investment performance of individual investors. J Finance 2000;55:773-806. Datenbasis: 78.000 US-Discount-Brokerage-Konten 1991-1996. Befund: Trading-Frequenz korreliert linear mit niedrigerer Net-Performance. Hochfrequente Trader (oberstes Quintil) verlieren ca. 6,5 Prozent jährlich vs. Markt-Index. Niedrig-Frequente: Performance nahe Index. Schluss: Aktive Trading-Strategie Schaden-Faktor.",
+        "chague_2017_brasilien": "Chague F, De-Losso R. It is hard to beat the market: Brazilian day-traders profitability. Working Paper, Universidade de São Paulo 2017. n=1.551 zertifizierte Day-Trader auf BM&FBOVESPA, 1+ Jahr aktives Trading. Befunde: 97 Prozent verlieren Geld, 1,1 Prozent erzielen >Mindestlohn. Mehrjahres-Persistenz: nur 1 Day-Trader von 1.551 hatte über 5+ Jahre profitable Tätigkeit. Schluss: Day-Trading-Erfolg ist statistisch extrem unwahrscheinlich.",
+        "esma_2018_cfd_decision": "ESMA Decision 2018-08-01 zur CFD-Beschränkung. Begründung in Decision-Text: 74-89 Prozent der EU-Privat-CFD-Konten verlieren Geld. Durchschnittlicher Verlust pro Konto: 1.600-29.000 Euro je Plattform. Konsequenz: ESMA-Beschränkung Hebel max 1:30 Major-Currency, Pflicht-Negative-Balance-Schutz. Auch nach 1:30-Beschränkung weiterhin Verlust-Quoten >70 Prozent.",
+        "dalbar_behavior_gap": "Dalbar QAIB Quantitative Analysis of Investor Behavior Annual Study: vergleicht Privat-Anleger-Net-Returns mit Index-Returns. Konsistenter Befund: durchschnittlicher Privat-Anleger underperformt S&P 500 um 3-5 Prozent jährlich, primär durch (a) Markt-Timing-Fehler (zu spät Einstieg, zu früh Ausstieg), (b) Panik-Verkäufe in Bear-Märkten, (c) FOMO-Käufe in Bubble-Phasen. Behavior Gap ist robuster Befund über 30+ Jahre Studien.",
+        "trading_kosten_komponenten": "Trading-Kosten-Komponenten, die Day-Trading strukturell unrentabel machen: (1) Spreads (Bid-Ask-Spread bei Aktien 0,01-0,1 Prozent, bei Forex 0,5-2 Pips), (2) Trading-Gebühren (Discount-Broker 0-5 Euro pro Trade, traditionelle Broker 5-25 Euro), (3) Steuern (DE 26,375 Prozent Abgeltungssteuer + Soli auf Gewinne, AT 27,5 Prozent KESt), (4) Slippage (bei großen Volumina). Pro Trade kosten 0,5-2 Prozent — bei mehreren Trades pro Tag wird positives Gesamt-Ergebnis sehr unwahrscheinlich.",
+        "context": "Day-Trading-Erfolg-Mythos wird durch Social-Media-Influencer + Online-Trading-Plattformen aktiv vermarktet. Marketing-Tropen: junger Mann mit Lamborghini, Eintrags-Screenshots positiver Trades, Trading-Kurse für 2.000+ Euro. Faktencheck-relevant: ALLE Werbe-Aussagen wie Day-Trading-Lifestyle, finanzielle Freiheit durch Trading widersprechen empirischer Datenlage. Korrekt: für >95 Prozent der Privat-Anleger ist passives Index-Investment (ETF, breit diversifiziert) deutlich erfolgreicher als aktives Day-Trading."
+      },
+      "context_notes": [
+        "Empfehlung Stiftung Warentest + DAI: passive ETF-Sparpläne (z.B. MSCI World, FTSE All-World) als Standard-Geldanlage. Erwartete reale Rendite langfristig 5-7 Prozent jährlich, vergleichsweise niedrige Kosten (TER 0,1-0,3 Prozent), keine aktives Management nötig.",
+        "Differenzierung: institutioneller Day-Trader (Hedgefonds, Bank-Trading-Desk) hat strukturelle Vorteile (niedrigere Kosten, schnellere Information, Risk-Management-Tools). Privat-Trader ohne diese Vorteile sind systematisch im Nachteil. Mythos individuelle Day-Trader erwirtschaftet konsistent Marktrendite ist statistisch nicht belegbar.",
+        "Aktuelle Trends 2024: Robinhood / Trade Republic / etoro haben Trading-Kosten-Hürde gesenkt, aber Verhaltens-Bias-Schäden bleiben. Gamification von Trading-Apps (Konfetti-Animationen bei Trade-Erfolg) ist von Verhaltensforschung als problematisch kritisiert (SEC Report 2021)."
+      ],
+      "claim_phrasings_handled": [
+        "Mit Day-Trading kann man reich werden",
+        "Day-Trading ist eine systematische Geldquelle",
+        "Trader verdienen 5000 Euro pro Monat im Schlaf",
+        "Mit Übung wird man immer besser im Trading"
+      ],
+      "trigger_composite": [
+        [
+          "day-trading",
+          "daytrading",
+          "trading",
+          "day trader",
+          "daytrader",
+          "cfd",
+          "forex-trading",
+          "aktien-trading"
+        ],
+        [
+          "reich",
+          "verdienen",
+          "monat",
+          "verdient",
+          "lifestyle",
+          "passiv",
+          "schnell",
+          "erfolg",
+          "system",
+          "garantiert",
+          "von zuhause",
+          "freiheit"
+        ]
+      ]
+    },
+    {
+      "topic": "garantierte_rendite_mythos",
+      "headline": "Garantierte hohe Renditen jenseits der Inflations-Rate sind ökonomisch unmöglich; Versprechen wie 5 Prozent pro Monat oder Risiko-frei reich werden oder 50 Prozent jährlich risikolos sind klassische Indikatoren für Schneeball-Systeme (Ponzi-Scheme); BaFin-Definition: Anbieter ist Betrüger",
+      "year": 2024,
+      "source_url": "https://www.bafin.de/DE/Verbraucher/Anlegerwarnungen/anlegerwarnungen_node.html",
+      "secondary_url": "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/anlagebetrug-erkennen-und-meiden",
+      "source_label": "BaFin Anlegerwarnungen + Verbraucherzentrale + BdV (Bund der Versicherten) + SEC Investor Alerts on Ponzi Schemes",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Es gibt seriöse Anlagen mit garantierten hohen Renditen ohne Risiko ist FALSE. Das fundamentale ökonomische Prinzip Risiko-Rendite-Trade-off besagt: höhere Rendite-Erwartung erfordert proportional höheres Risiko. Garantierte hohe Renditen (>3-4 Prozent über Inflations-Rate) ohne Risiko sind logisch widersprüchlich und in seriösen Märkten nicht möglich. Wenn es so wäre, würden riesige institutionelle Anleger (Pensionskassen, Versicherungen, Staatsfonds) das gesamte Kapital in solche Anlagen verlagern, der Markt würde sich angleichen. Wenn ein Anbieter trotzdem garantierte hohe Renditen bewirbt (5 Prozent pro Monat = 60 Prozent jährlich, 50 Prozent jährlich risikofrei, etc.), gibt es nur 3 Möglichkeiten: (1) Es ist ein Schneeball-System (Ponzi-Scheme): Anfangs-Renditen werden aus neuen Anleger-Geldern gezahlt, bricht zusammen wenn Neukunden-Strom versiegt. Klassisch: Madoff 2008 ca. 65 Mrd USD Schaden, Phoenix-Capital DE 2007 ca. 700 Mio Euro Schaden. (2) Es ist Pyramidensystem ohne reales Produkt — strafrechtlich verboten in DE/AT (Strafgesetz). (3) Es ist andere Form von Betrug — Anlage-Übergabe ohne Investment, Wertpapier-Fälschung. BaFin-Definition: jeder Anbieter mit nicht-marktkonformen Renditen + Garantie-Versprechen ist mit hoher Wahrscheinlichkeit Betrüger. Standardprüfung: BaFin-Anlegerwarnungs-Liste + FCA ScamSmart konsultieren. Faktencheck-relevant: Aussagen wie Bei Anbieter X bekommen Sie garantiert 12 Prozent jährlich oder Diese Anlage ist risikofrei mit hoher Rendite sind klassische Betrugs-Indikatoren.",
+        "ponzi_scheme_definition": "Ponzi-Scheme nach Bernard Madoff (verurteilt 2009, 150 Jahre Haft) und Charles Ponzi (1920er): System, in dem Frühkunden-Renditen aus den Einlagen späterer Kunden bezahlt werden, statt aus tatsächlichen Investitions-Gewinnen. Funktioniert solange der Strom neuer Kunden anhält. Bricht zusammen wenn (a) Markt-Stress führt zu Auszahlungs-Wünschen, (b) Aufsicht ermittelt, (c) Neukunden-Strom versiegt. Typische Lebensdauer 2-15 Jahre.",
+        "madoff_2008_fallbeispiel": "Bernard Madoff Investment Securities: über ~30 Jahre operiert, Höchststand 1990er-2000er. Behauptete jährlich 10-12 Prozent stabile Renditen unabhängig von Marktbedingungen. SEC-Untersuchungen 2000-2006 fanden Unstimmigkeiten, aber keine Konsequenzen. Madoff wurde während Finanzkrise 2008 entdeckt, als Auszahlungs-Wünsche stiegen. Endgültiger Schaden ca. 65 Mrd USD (geschätzte Forderung-Beträge), tatsächlicher Net-Verlust für Anleger ca. 17 Mrd USD. Madoff verurteilt 2009 zu 150 Jahren Haft, starb 2021.",
+        "phoenix_capital_de_2007": "Phoenix Kapitaldienst (DE) 2007: 700 Mio Euro Schaden, ca. 30.000 Anleger. Phoenix bewarb sich als Hedge-Fund-Investment mit 6-12 Prozent jährlichen Renditen. Tatsächlich Schneeball-System. Erfinder Dr. Dieter Breitkreuz wurde 2008 zu 9 Jahren Haft verurteilt. Beispiel großer DE-Fall.",
+        "regulatorische_kennzeichen": "Praktische Erkennungsmerkmale für Schneeball-Verdacht: (1) Versprechen jenseits Markt-Üblichkeit (>10-15 Prozent jährlich), (2) Garantie-Sprache (garantiert, risikofrei, sicher), (3) Stabilität unabhängig von Marktbedingungen, (4) komplexe undurchsichtige Investment-Beschreibung, (5) Schwierigkeiten bei Auszahlung (verzögert, an Folge-Investitionen geknüpft), (6) Vermarktung primär über Empfehlungen (nicht regulär werbend), (7) keine BaFin/FCA/SEC-Lizenz oder ungewöhnliche Lizenz-Status, (8) Anbieter sitzt offshore oder in Niedrig-Regulations-Jurisdiktionen.",
+        "echte_renditen_referenz": "Markt-übliche Renditen 2024 (zur Orientierung): (a) Sparbuch DE/AT: 0-2 Prozent jährlich, (b) Festgeld 1 Jahr: 2-4 Prozent, (c) deutsche Staatsanleihen 10 Jahre: 2-3 Prozent, (d) globaler Aktienindex MSCI World erwartet langfristig: 5-7 Prozent real, (e) Hochrisiko-Anleihen / Junk Bonds: 7-12 Prozent (mit Default-Risiko). Wenn ein Anbieter dauerhaft >12 Prozent verspricht ohne entsprechendes Risiko-Profil offenzulegen — Verdacht.",
+        "context": "Garantierte-hohe-Rendite-Schemes funktionieren psychologisch durch (a) FOMO (siehe fomo_signal_anlage_mythos), (b) Vertrauens-Aufbau über Empfehlungen (oft im Familien-/Freundes-Kreis), (c) Anfangs-Auszahlungen, die das Schema legitim erscheinen lassen. Faktencheck-relevant: ALLE Anlage-Versprechen mit Garantie-Sprache und nicht-marktkonformen Renditen sind mit hoher Wahrscheinlichkeit Betrug. Empfehlung: vor Investition BaFin-Anlegerwarnungs-Liste konsultieren, Verbraucherzentrale-Beratung nutzen (kostenpflichtig ca. 30-50 Euro für ausführliche Beratung)."
+      },
+      "context_notes": [
+        "Echte Garantie gibt es bei: Spareinlagen mit gesetzlichem Einlagenschutz bis 100.000 Euro pro Bank EU-weit (DE Einlagensicherungsfonds, AT FATCA), Bundesanleihen (DE) bzw. Republik Österreich Anleihen — aber dort sind Renditen markt-üblich-niedrig. Echte Garantie + hohe Rendite = strukturell unmöglich.",
+        "Bei Verdacht auf bereits-erlebten Anlage-Betrug: (1) Polizei-Anzeige (LKA bei größerem Schaden), (2) BaFin/FMA-Meldung über Online-Formular, (3) Verbraucherzentrale-Klage-Sammlung wenn andere Geschädigte vorhanden. Geld zurück sehr unwahrscheinlich, aber Strafverfolgung kann andere schützen.",
+        "Differenzierung Crowdfunding vs. Schneeball: Equity-Crowdfunding-Plattformen (Companisto, Seedrs) sind regulatorisch erlaubt, aber Hochrisiko (90 Prozent der Startup-Investments enden mit Total-Verlust). Diese Realität wird bei seriösem Crowdfunding klar kommuniziert — Garantie-Sprache fehlt."
+      ],
+      "claim_phrasings_handled": [
+        "Garantierte 5 Prozent monatliche Rendite",
+        "Risiko-frei 50 Prozent jährlich",
+        "Sichere Anlage mit hoher Rendite",
+        "Diese Plattform garantiert dauerhafte Gewinne"
+      ],
+      "trigger_composite": [
+        [
+          "rendite",
+          "renditen",
+          "anlage",
+          "investition",
+          "investment",
+          "ponzi",
+          "schneeball"
+        ],
+        [
+          "garantiert",
+          "risiko-frei",
+          "risikolos",
+          "sicher",
+          "ohne risiko",
+          "monat",
+          "monatlich",
+          "100 prozent",
+          "verdoppeln",
+          "5 prozent",
+          "10 prozent",
+          "50 prozent"
+        ]
+      ]
+    },
+    {
+      "topic": "forex_plattform_mythos",
+      "headline": "Online-Forex-Plattformen mit Hebeln >1:30 sind in EU durch ESMA-Beschränkung 2018-08-01 für Privatanleger beschränkt; vor der Regulation 74-89 Prozent Privat-Verlust-Quote; auch nach 1:30-Beschränkung weiterhin >70 Prozent Privat-Verluste; off-EU-Plattformen mit höheren Hebeln umgehen Schutz",
+      "year": 2024,
+      "source_url": "https://www.esma.europa.eu/press-news/esma-news/esma-renews-restriction-cfds-binary-options-restriction-cancelled",
+      "secondary_url": "https://www.bafin.de/DE/Aufsicht/MaFinanzgeschaefte/CFD/cfd_node.html",
+      "source_label": "ESMA Decision 2018-08-01 + ESMA Renewal Decisions + BaFin CFD Aufsicht + FCA UK + FMA AT + ASIC Australia",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Mit Forex-Trading kann man als Privat-Anleger systematisch profitieren, vor allem mit hohen Hebeln ist FALSE. Forex (Foreign Exchange = Devisenhandel) und CFDs (Contracts for Differences) auf Forex-Paaren sind hochriskante Finanzinstrumente. Vor 2018: EU-Privat-Anleger konnten Hebel bis 1:500 nutzen, Verlust-Quoten 74-89 Prozent dokumentiert (ESMA 2017-2018 Datensammlung). Konsequenz: ESMA Decision 2018-08-01 verhängte EU-weite Beschränkung — Hebel max 1:30 für Major-Currency-Pairs, 1:20 Indizes, 1:10 Rohstoffe, 1:5 Aktien, 1:2 Krypto. Plus: Pflicht-Negative-Balance-Schutz (Anleger kann nicht mehr verlieren als Einlage), Standard-Risikohinweise. Diese Beschränkungen wurden 2019 als permanent in Mitgliedstaaten umgesetzt (DE WpHG-Anlage). Auch nach Beschränkung: Privat-Verlust-Quoten bleiben hoch (70+ Prozent) — die Reform schützt vor totalem Bankrott, nicht vor Verlust. Mehrere Off-EU-Plattformen (St. Vincent and the Grenadines, Vanuatu, einige asiatische Jurisdiktionen) bewerben sich an EU-Anleger mit höheren Hebeln (1:500-1:1000) — das ist regulatorische Umgehung, kein Schutz greift bei Insolvenz, KEINE Empfehlung. BaFin Position: keine Werbung für CFD-Plattformen mit Versprechen risikofreier hoher Renditen ist seriös. Faktencheck-relevant: Aussagen wie Mit Forex / CFD verdiene ich täglich ohne Risiko sind statistisch widersprochen.",
+        "esma_2018_decision_volltext": "ESMA Decision 2018-08-01 zur CFD-Beschränkung. Hauptmaßnahmen: (1) Hebel-Beschränkung Major-Forex 1:30, Minor-Forex 1:20, Indizes 1:20, Rohstoffe 1:10, Einzelaktien 1:5, Kryptos 1:2. (2) Pflicht-Negative-Balance-Schutz: Privat-Anleger kann max Einlage verlieren, nicht ins Negative. (3) Stop-Loss bei 50 Prozent der initialen Margin. (4) Pflicht-Risikohinweis mit konkreten Verlust-Quoten der jeweiligen Plattform. (5) Werbeverbot für Tradern mit gefälschten Erfolgs-Geschichten. Begründung im Decision-Text: 74-89 Prozent EU-Privat-Anleger verlieren in CFD-Konten, durchschnittlicher Verlust 1.600-29.000 Euro pro Konto pro Jahr.",
+        "off_eu_umgehung": "Off-EU-Plattformen umgehen ESMA-Beschränkung durch Sitz in (a) St. Vincent and the Grenadines (zentral für viele unregulierte Forex-Broker), (b) Vanuatu, (c) Belize, (d) Marshall-Inseln, (e) einige australische Subjurisdiktionen. Werbe-Sprache: höhere Hebel-Möglichkeiten, schnellere Auszahlung — alles Verkaufs-Argumente, die regulatorische Schwächen ausnutzen. Bei Insolvenz dieser Plattformen: kein Einlagen-Schutz, kein Klagerecht, oft kompletter Verlust. BaFin warnt davor.",
+        "verlust_persistenz_post_2018": "Auch nach ESMA-2018-Beschränkung: BaFin und FCA Berichten von 70-80 Prozent Verlust-Quoten in CFD-Konten 2019-2024. Reform schützt vor totalem Ruin (Negative-Balance-Schutz), aber nicht vor erheblichen Verlusten. Day-Trading-Strategien blieben strukturell unrentabel.",
+        "haebelung_logik": "Hebel-Wirkungsweise: 1:30 bedeutet, mit 1.000 Euro Einlage kontrolliert man 30.000 Euro Position. Bei 1 Prozent Marktbewegung: bei 30.000-Euro-Position 300 Euro Gewinn/Verlust = 30 Prozent der Einlage. Schon 3 Prozent Markt-Drop = totaler Einlagen-Verlust. Pre-2018 mit 1:500: schon 0,2 Prozent Markt-Drop = totaler Verlust. Hebel multipliziert Verluste linear, das ist der eigentliche Schaden — psychologisch + finanziell.",
+        "context": "Forex-Plattform-Marketing nutzt mehrere problematische Pattern: (a) gefälschte Erfolgs-Geschichten (Lambo + Promi-Stil), (b) Online-Trading-Influencer ohne Lizenz, (c) Pseudo-Bildungs-Inhalte, die zur Plattform-Anmeldung führen, (d) Affiliate-Marketing mit Kickback-Modellen. Faktencheck-relevant: kein seriöser Finanzberater empfiehlt Forex-CFD als Privat-Anleger-Hauptinvestition. Korrekt: Forex-Trading hat empirisch >70 Prozent Verlust-Quote selbst nach Reform, ist hochriskant + nicht für langfristige Geldanlage geeignet."
+      },
+      "context_notes": [
+        "Die ESMA-Beschränkung wurde 2019 von einzelnen EU-Mitgliedstaaten in nationale Gesetzgebung übernommen, weil ESMA-Decisions nur 3 Monate gültig sind und alle 3 Monate erneuert werden mussten. Konsequenz: dauerhafte CFD-Beschränkung in EU.",
+        "Australien folgte 2021 mit ähnlicher CFD-Beschränkung (ASIC Product Intervention Order). Großbritannien post-Brexit hat eigene FCA-Regulierung, die 2018 und seither analog zu ESMA blieb. USA hat traditionell strenge Forex-Regulierung über CFTC/NFA.",
+        "Differenzierung: institutioneller Forex-Handel (Banken, Hedge-Funds, große Firmen für Hedging) ist ein anderes Thema und hat ökonomisch sinnvolle Funktion (Wechselkurs-Risiko-Management). Privat-Anleger-Forex-Day-Trading hat empirisch keine vergleichbare Funktion."
+      ],
+      "claim_phrasings_handled": [
+        "Mit Forex kann ich täglich Geld verdienen",
+        "CFD-Trading ist eine sichere Geldanlage",
+        "Hebel 1 zu 500 macht reich",
+        "Forex-Plattformen sind sicherer Weg zu Wohlstand"
+      ],
+      "trigger_composite": [
+        [
+          "forex",
+          "cfd",
+          "cfd-trading",
+          "devisenhandel",
+          "fx",
+          "fx-trading",
+          "hebel"
+        ],
+        [
+          "sicher",
+          "verdienen",
+          "reich",
+          "geldanlage",
+          "lohnt",
+          "wohlstand",
+          "1:500",
+          "1:1000",
+          "1:30",
+          "monatlich",
+          "täglich"
+        ]
+      ]
+    },
+    {
+      "topic": "pyramidensystem_mlm_mythos",
+      "headline": "Multi-Level-Marketing-Systeme (Tupperware, Amway, Herbalife, doTERRA, Younique) sind in DE/AT/EU legal, aber FTC + Verbraucherzentrale-Daten zeigen: 99 Prozent der Teilnehmer:innen verdienen weniger als Mindestlohn; klassische Pyramidensysteme ohne reales Produkt sind strafrechtlich verboten (DE § 16 UWG, AT § 168a StGB)",
+      "year": 2024,
+      "source_url": "https://www.ftc.gov/news-events/topics/truth-advertising/multi-level-marketing",
+      "secondary_url": "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/sparen-und-anlegen/multilevelmarketing-mlm-vorsicht-vor-pyramidensystemen-77373",
+      "source_label": "FTC Multi-Level Marketing Guidance + Verbraucherzentrale + DE § 16 UWG + AT § 168a StGB + Direct Selling Association vs. CASE",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These MLM ist eine seriöse Möglichkeit, von zu Hause aus reich zu werden ist FALSE/MIXED. Multi-Level-Marketing (MLM) Systeme wie Tupperware, Amway, Herbalife, doTERRA, Forever Living, Younique, Mary Kay sind in DE/AT/EU LEGAL — sofern ein reales Produkt verkauft wird. Empirisch zeigen FTC-Daten + Verbraucherzentrale-Analysen + Income Disclosure Statements der MLM-Firmen selbst: 99 Prozent der Teilnehmer:innen verdienen weniger als Mindestlohn (FTC 2018 Studie n=180 MLM-Firmen, Median-Net-Income für aktive Teilnehmer:innen <0 Euro nach Inventar-Kosten). Tatsächliche Profitable: Top 1 Prozent (oft Gründer-/Top-Verkäufer-Cluster). Strukturelle Probleme: (a) Verdienst kommt primär aus Sponsorings (Werben neuer Teilnehmer), nicht aus Produkt-Verkauf, (b) Inventar-Kauf-Pflicht zu Großhandels-Konditionen führt zu Lager-Akkumulation, (c) Saturierung des Marktes — wenn die Pyramide weiter wächst, sinkt Erfolgs-Wahrscheinlichkeit für späte Teilnehmer:innen. Strafrechtliche Abgrenzung Pyramidensystem: ohne reales Produkt = Pyramidensystem (illegal in DE § 16 UWG bzw. AT § 168a StGB Strafrecht). Mit Produkt + überwiegend Provision aus Sponsorings = MLM (legal, aber meistens unprofitabel). Sozial-Folgen MLM-Teilnahme: Familien-Konflikte (Druck auf Verwandte zum Kauf), soziale Isolation (Freunde wenden sich ab), finanzielle Verluste durch unverkäufliches Inventar. Faktencheck-relevant: MLM-Werbung mit Versprechen finanzielle Freiheit oder als Hausfrau 5.000 pro Monat widerspricht statistischer Realität fast immer.",
+        "ftc_2018_studie": "FTC 2018 Study on Direct Selling and MLM. Befund: bei 180 untersuchten MLM-Firmen verdienen 99 Prozent der aktiven Teilnehmer:innen weniger als Mindestlohn nach Berücksichtigung von Inventar-Kosten + Schulungs-Gebühren + Anmelde-Gebühren. Median Net Income oft negativ. Top 1 Prozent (Gründer + Erst-Sponsoren) vereinnahmt 60-80 Prozent des Gesamt-Provisions-Topfes. FTC-Position: Mehrheit kann nicht profitabel sein, weil Pyramide strukturell.",
+        "income_disclosure_statements": "Income Disclosure Statements: einige MLM-Firmen publizieren öffentlich Verdienst-Verteilungen ihrer Teilnehmer:innen (z.B. Herbalife, doTERRA, Younique). Diese Daten zeigen konsistent: Top 1 Prozent verdient 5.000-50.000 Euro/Monat, untere 50 Prozent verdienen <100 Euro/Monat (oft negativ nach Kosten). Median-Verdienst alle Teilnehmer:innen: typisch 50-300 Euro/Monat. Lebensunterhalt davon nicht möglich.",
+        "mlm_legal_pyramid_illegal": "Strafrechtliche Abgrenzung in DE: § 16 UWG (Strafvorschriften) verbietet progressive Kundenwerbung ohne reales Produkt. AT § 168a StGB Pyramiden- und Schneeballsysteme. Kriterium: wo kommt der Hauptanteil der Vergütung her — wenn primär aus Produkt-Verkauf, MLM legal; wenn primär aus Anwerbung neuer Teilnehmer ohne realen Produkt-Wert, Pyramidensystem illegal. Klassischer Fall: Vemma (USA) wurde 2015 von FTC als Pyramidensystem klassifiziert, geschlossen.",
+        "soziale_kosten": "Sozial-psychologische Folgen MLM-Teilnahme (Verbraucherzentrale + akademische Studien): (a) Familien-Konflikte durch Verkaufs-Druck auf Verwandte, (b) soziale Isolation durch ständige Verkaufs-Versuche, (c) finanzielle Verluste durch unverkäufliches Inventar (Lager-Akkumulation), (d) emotionale Belastung durch hochmotivierende MLM-Veranstaltungen mit unrealistischen Versprechungen, (e) Verlust von realen Karriere-Möglichkeiten durch MLM-Fokus. Mehr-Jahres-Beobachtung: ca. 90 Prozent der MLM-Teilnehmer:innen kündigen innerhalb 1 Jahr.",
+        "differenzierung_traditioneller_vertrieb": "MLM ist nicht jedes Direkt-Vertriebs-System. Traditionelle Direkt-Vertrieb-Modelle (Tupperware, Avon im klassischen Sinn) hatten überwiegend Produkt-Verkauf-Provisionen + niedrigeren Sponsoring-Fokus. Modernere MLM (Herbalife, doTERRA, Forever Living) verschoben Schwerpunkt zu Sponsoring + Multi-Level-Provisionen, was strukturelle Pyramide verstärkt. Faktencheck-relevant: nicht jedes Direkt-Vertrieb-Angebot ist MLM-Pyramidensystem-Schema, aber moderne MLM-Strukturen sind besonders risikoreich.",
+        "context": "MLM-Vermarktung nutzt häufig (a) Empfehlungen aus Familie/Freundeskreis (sozialer Druck), (b) Erfolgs-Geschichten Top-Sponsorings (Survivor-Bias), (c) Gemeinschafts-Versprechen (be your own boss, support women). Faktencheck-relevant: Werbe-Aussagen wie Bei MLM X verdiene jeder, der hart arbeitet 5.000 Euro/Monat sind statistisch widersprochen. Korrekt: 99 Prozent der Teilnehmer:innen verdienen unter Mindestlohn. Einstieg in MLM ist meistens finanziell schädlich, Empfehlung Verbraucherzentrale: prüfe Income Disclosure Statement der jeweiligen Firma vor Einstieg."
+      },
+      "context_notes": [
+        "John Oliver Last Week Tonight 2016 MLM-Episode: zeitlose Übersicht der MLM-Probleme, populärwissenschaftlich aufbereitet. Auf YouTube verfügbar, ~30 min Sehzeit.",
+        "Wichtige Dokumentation: Eric Scheibeler 2009 Whistleblower Buch Merchants of Deception über Amway-Erfahrung. Vermittelt das innere Marketing-System.",
+        "Differenzierung Network-Marketing-Karriere: bei manchen MLM-Firmen ist Top-1-Prozent-Position erreichbar mit langjähriger Tätigkeit + großem Netzwerk-Aufbau + relativ qualitativen Produkten. Aber: das ist Vollzeit-Karriere mit hohem Anfangs-Risiko, NICHT die beworbene Hausfrauen-Tätigkeit-am-Wochenende. Werbe-Erwartung vs. realistische Zugangs-Anforderung sind massiv unterschiedlich."
+      ],
+      "claim_phrasings_handled": [
+        "MLM ist eine seriöse Möglichkeit, von zu Hause Geld zu verdienen",
+        "Mit Tupperware / Amway / Herbalife wird man finanziell frei",
+        "Network-Marketing ist die Zukunft des Geldverdienens",
+        "Bei doTERRA verdient jeder 5000 Euro im Monat"
+      ],
+      "trigger_composite": [
+        [
+          "mlm",
+          "multi-level-marketing",
+          "multi level marketing",
+          "network-marketing",
+          "networkmarketing",
+          "tupperware",
+          "amway",
+          "herbalife",
+          "doterra",
+          "younique",
+          "mary kay",
+          "forever living",
+          "vemma"
+        ],
+        [
+          "seriös",
+          "geld verdienen",
+          "finanziell frei",
+          "freiheit",
+          "zukunft",
+          "verdient",
+          "monat",
+          "5000",
+          "10000",
+          "hausfrau",
+          "nebenbei",
+          "von zuhause",
+          "boss"
+        ]
+      ]
+    },
+    {
+      "topic": "gold_inflation_schutz_mythos",
+      "headline": "Gold ist über lange Zeiträume KEIN konsistenter Inflationsschutz; akademische Studien (Erb & Harvey 2013 Financial Analysts Journal n=200 Jahre Daten) zeigen, dass die Gold-Inflation-Korrelation nur in spezifischen Phasen (1970er, 2008-2012) ausgeprägt ist; reale Renditen volatil; Gold-Volatilität ähnlich Aktien (~15-20 Prozent jährlich)",
+      "year": 2024,
+      "source_url": "https://www.cfainstitute.org/research/financial-analysts-journal",
+      "secondary_url": "https://www.imf.org",
+      "source_label": "Erb & Harvey 2013 Financial Analysts Journal + IMF + EZB Position + Bouri 2017 + Roy 2024",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Gold ist immer Inflationsschutz / sicherer Hafen ist OVERSIMPLIFIED/MIXED. Akademische Untersuchungen über lange Zeiträume zeigen differenzierte Ergebnisse. Erb CB & Harvey CR 2013 Financial Analysts Journal The Golden Dilemma analysierten Gold-Daten über 200 Jahre (1800-2013) im Vergleich zu Inflation, Aktien, Anleihen. Befunde: (a) Gold zeigt langfristig reale Rendite ca. 1-2 Prozent jährlich (vergleichbar mit US 10-Year-Treasury Real-Yield, deutlich unter Aktien-Markt 5-7 Prozent real). (b) Inflations-Schutz-Funktion war stark ausgeprägt in 1970er Jahren (Stagflations-Periode USA) und 2008-2012 (Finanzkrise + Eurozonen-Krise + QE-Reaktion), in anderen Perioden schwach oder negativ. (c) Volatilität ähnlich wie Aktien (~15-20 Prozent jährlich), höher als Anleihen. (d) keine konsistente negative Korrelation mit Aktien (kein klassisches Diversifikator-Asset). EZB Working Paper 2022 + IMF Position bestätigen: Gold ist eines von mehreren möglichen Inflationsschutz-Assets, NICHT überlegen gegenüber inflations-gesicherten Anleihen (TIPS in USA, ILBs Inflation-Linked Bonds in EU). World Gold Council und Goldfan-Marketing präsentieren oft selektive Daten aus Hochinflations-Phasen — methodisch fragwürdig. Faktencheck-relevant: Aussagen wie Gold ist immer Schutz gegen Inflation oder Gold ist sicheres Investment widersprechen umfassender akademischer Datenlage. Korrekt: Gold ist EIN Diversifikator unter mehreren, mit eigenen Risiken (hohe Volatilität, keine Cashflow-Generierung, Lagerung-Kosten).",
+        "erb_harvey_2013_studie": "Erb CB, Harvey CR. The Golden Dilemma. Financial Analysts Journal 2013;69:10-42. Datenbasis: Gold-Preise + Inflation + Aktien-/Anleihen-Returns 1800-2012. Befunde: (1) Gold-Inflations-Korrelation 1800-2012 schwach (r=0,13). (2) Bestimmte Sub-Perioden zeigen starke positive Korrelation (1970-1980: r=0,7), andere zeigen NEGATIVE Korrelation (1980-2000: r=-0,3). (3) Gold-Real-Rendite langfristig ~1-2 Prozent jährlich, deutlich unter Aktien-Real-Rendite ~5-7 Prozent. (4) Gold-Volatilität ~16 Prozent jährlich, vergleichbar mit Aktien. Schluss der Autoren: Gold ist nicht generell überlegene Inflations-Hedge.",
+        "tips_alternative": "Treasury Inflation-Protected Securities (TIPS): von US-Treasury seit 1997 ausgegebene Anleihen, deren Nennbetrag mit Verbraucherpreisindex CPI angepasst wird. Direkter Inflations-Schutz, ohne Volatilität von Gold. Reale Rendite typisch 0-2 Prozent. EU-Äquivalent: Inflation-Linked Bonds (ILBs) von einigen EU-Mitgliedstaaten (DE Bund, FR OAT€i). Empfehlung Stiftung Warentest: TIPS/ILBs sind sauberer Inflations-Schutz als Gold.",
+        "gold_volatilitaet_real": "Gold-Volatilität (annualisierte Standardabweichung der Tages-Returns): ca. 15-20 Prozent jährlich, ähnlich wie globaler Aktien-Index MSCI World. Vergleich: US 10-Year-Treasury ca. 8-10 Prozent. Schluss: Gold ist kein Niedrig-Volatilitäts-Asset, kein klassisches Safe-Haven im Sinne klassischer Definition (geringe Volatilität in Krisen).",
+        "klassisches_safe_haven_kriterien": "Klassische Safe-Haven-Asset-Kriterien (Baur & Lucey 2010 J Financ Stab): negative Korrelation mit Risiko-Assets in Stress-Phasen + niedrige Volatilität + hohe Liquidität. Gold erfüllt das nur teilweise — in einigen Krisen ja (2008 Finanzkrise), in anderen nein (März 2020 COVID-Crash: Gold fiel zunächst, weil Anleger Cash brauchten). Klassischere Safe-Haven: Schweizer Franken, US-Treasury, japanischer Yen.",
+        "world_gold_council_marketing": "World Gold Council ist Industrie-Verband der Gold-Producer (Newmont, Barrick, AngloGold Ashanti). Veröffentlicht regelmäßig Studien, die Gold positiv darstellen. Methodische Kritik: oft selektive Zeiträume (1971+ wenn Gold-Standard endete) statt Vollzeit-Daten ab 1800, selektive Inflations-Phasen-Vergleiche. Akademische Studien wie Erb-Harvey nehmen umfassendere Daten und kommen zu differenzierterem Bild.",
+        "context": "Gold als Anlage-Argument funktioniert in Hochinflations-/Krisen-Phasen psychologisch attraktiv (Sicherheit, Greifbarkeit, Werbung-Tropen). Empirisch ist Gold ein Diversifikations-Element mit eigenen Risiken, NICHT überlegener Inflationsschutz. Faktencheck-relevant: pauschale Aussagen wie Gold ist Inflations-sicher widersprechen Erb-Harvey-Daten; differenzierte Bewertung mit klassischen Inflations-Hedge-Alternativen (TIPS, breit-diversifiziertes Aktien-Portfolio, inflations-gesicherte Anleihen) wissenschaftlich korrekter."
+      },
+      "context_notes": [
+        "Gold-Lagerung-Kosten: physisches Gold benötigt sicherer Lagerung (Bankschließfach 60-200 Euro/Jahr, Versicherung). Gold-ETFs (z.B. Xetra Gold) haben jährliche Verwaltungs-Gebühr 0,3-0,5 Prozent. Diese Kosten reduzieren die effektive Rendite.",
+        "Steuerliche Behandlung in DE/AT: physisches Gold (Münzen, Barren) ist nach 1 Jahr Haltefrist steuerfrei (Abgeltungssteuer-frei) bei Privatanlegern. Gold-ETFs (mit physischem Gold gedeckt, z.B. Xetra Gold) sind ebenfalls nach 1 Jahr Haltefrist steuerfrei. Vorteil gegenüber Aktien (immer Abgeltungssteuer-pflichtig). Diese steuerliche Sondersregelung kann Empfehlung als Beimischung im Portfolio rechtfertigen — nicht aber als Hauptinvestment.",
+        "Praktische Empfehlung Mainstream-Finanzberatung: 5-10 Prozent Gold-Anteil im Gesamt-Portfolio als Diversifikator akzeptabel, NICHT mehr. Hauptinvestment global breit-diversifiziertes Aktien-/Anleihen-Portfolio (z.B. ETF-Sparplan MSCI World + ggf. inflations-gesicherte Anleihen)."
+      ],
+      "claim_phrasings_handled": [
+        "Gold ist immer Inflationsschutz",
+        "Gold ist sicheres Investment in Krisen",
+        "Gold-Anlage ist immer eine gute Wahl",
+        "Gold steigt immer in der Inflation"
+      ],
+      "trigger_composite": [
+        [
+          "gold",
+          "goldanlage",
+          "gold-anlage",
+          "goldinvestment",
+          "goldbarren",
+          "goldmünzen"
+        ],
+        [
+          "inflation",
+          "inflationsschutz",
+          "schutz",
+          "sicher",
+          "sicheres",
+          "krise",
+          "anlage",
+          "investment",
+          "immer",
+          "steigt"
+        ]
+      ]
+    },
+    {
+      "topic": "compound_interest_24_mythos",
+      "headline": "24 Prozent jährliche Rendite (Warren Buffett's Berkshire Hathaway Long-term-Average) ist extreme Ausnahme; S&P 500 Real-Rendite 1900-2024 ~7 Prozent jährlich; Privat-Anleger underperformen typisch um 3-5 Prozent (Dalbar QAIB Behavior Gap) wegen Timing- und Verhaltens-Fehlern",
+      "year": 2024,
+      "source_url": "https://www.dalbar.com/QAIB",
+      "secondary_url": "https://www.dai.de/",
+      "source_label": "Dalbar QAIB Annual Study + DAI Deutsches Aktieninstitut + Vanguard / Bogleheads + Dimson Marsh Staunton Triumph of Optimists",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Mit Aktien kann ich 20+ Prozent jährlich erwirtschaften wie Warren Buffett ist FALSE. Warren Buffett's Berkshire Hathaway erzielte über 1965-2024 ca. 20-22 Prozent jährliche Rendite — das ist extreme Ausnahme, basiert auf 60-Jahre-Investment-Horizont, einzigartiges Geschäfts-Modell (Versicherungs-Float für günstigen Hebel), persönliche analytische Genialität. Realistischer Bezugspunkt für Privat-Anleger: globaler Aktienmarkt-Index (S&P 500 oder MSCI World) historisch 1900-2024 ca. 9-10 Prozent nominal pro Jahr, ca. 6-7 Prozent real (nach Inflations-Bereinigung). Quelle: Dimson E, Marsh P, Staunton M. Triumph of the Optimists 2002 + Credit Suisse Yearbook fortlaufend. WICHTIG: Privat-Anleger erzielen typisch DEUTLICH WENIGER als der Markt — Dalbar QAIB Annual Study zeigt konsistent: durchschnittlicher Privat-Anleger underperformt S&P 500 um 3-5 Prozent jährlich. Die Differenz heißt Behavior Gap und entsteht durch (a) Markt-Timing-Fehler (zu spät einsteigen, zu früh aussteigen), (b) Panik-Verkäufe in Bear-Märkten (z.B. März 2020, 2008), (c) FOMO-Käufe in Bubble-Phasen (z.B. Dotcom 2000, Krypto 2021), (d) übermäßiger Trading-Frequenz (siehe daytrading_erfolg_mythos). Mathematische Realität: 24 Prozent jährlich verdoppelt sich alle 3 Jahre — über 30 Jahre wären das das 1.024-fache. Das wäre möglich nur für Sub-1-Prozent der Anleger weltweit. Mainstream-Empfehlung (Bogle, Vanguard, Stiftung Warentest, DAI): passive Index-Investition mit 5-7 Prozent realer Renditeerwartung über 20+ Jahre, niedrige Kosten, keine Markt-Timing-Versuche. Faktencheck-relevant: Anlage-Versprechen mit 20+ Prozent jährlich für Privat-Anleger ohne extreme Risiko-Disclosure widersprechen empirischen Renditen.",
+        "buffett_historische_rendite": "Warren Buffett (Berkshire Hathaway): 1965-2024 ca. 20-22 Prozent jährliche Rendite, vs. S&P 500 ca. 10-11 Prozent jährlich im selben Zeitraum. Mehr-Faktoren-Erklärung: (a) lang anhaltender Investment-Horizont, (b) Versicherungs-Float (Berkshire-Versicherungs-Gesellschaften erlauben günstigen Investment-Hebel), (c) konzentrierte Investitionen in unterbewertete Qualitätsunternehmen, (d) persönliche analytische Genialität + Geduld. Wenige andere Investoren der Welt haben langfristig vergleichbare Performance erzielt: Peter Lynch (Magellan Fund 1977-1990, ~29 Prozent), Joel Greenblatt, Stan Druckenmiller, John Templeton — alle in spezifischen Perioden, alle institutionell, fast alle mit Strukturvorteilen unmöglich für Privat-Anleger.",
+        "sp500_lange_zeit_rendite": "S&P 500 Real-Rendite (inflationsbereinigt) langfristig: Dimson Marsh Staunton 2002 + 2024 Updates: 1900-2023 weltweit ca. 5,2 Prozent reale Aktien-Rendite, USA spezifisch ca. 6,6 Prozent. Nominal vor Inflations-Bereinigung: 9-10 Prozent. Diese Zahlen sind 100+-Jahre-Mittelwerte. Einzelne Jahrzehnte können stark abweichen: 2000-2010 negative Real-Rendite USA (Lost Decade), 1990er +18 Prozent jährlich nominal. Nicht jedes Jahrzehnt ist 7 Prozent.",
+        "dalbar_behavior_gap_aktuell": "Dalbar QAIB 2024 (Quantitative Analysis of Investor Behavior): durchschnittlicher US-Aktienfonds-Privat-Anleger erzielte 1994-2023 ca. 7,1 Prozent jährliche Rendite vs. S&P 500 10,2 Prozent — Behavior Gap 3,1 Prozent. Über 30 Jahre kumuliert: $10.000 wurden bei Markt-Index $190.000, bei Durchschnitts-Privat-Anleger $80.000. Behavior Gap ist real und persistierend.",
+        "compound_interest_mathematik": "Mathematische Konsequenz von Renditen über lange Zeiträume: 7 Prozent jährlich → Verdopplung alle 10 Jahre → über 30 Jahre 7,6-fach. 10 Prozent → Verdopplung alle 7,2 Jahre → über 30 Jahre 17,4-fach. 20 Prozent → Verdopplung alle 3,9 Jahre → über 30 Jahre 237-fach. 24 Prozent → über 30 Jahre 591-fach. Wenn Buffett-Rendite für jeden möglich wäre, wäre 1 Euro 1965 heute 100.000 Euro+ — aber tatsächlich nur 5.000-10.000 Euro für Markt-Index-Anleger. Mathematisch klar: 20+ Prozent ist Ausnahme, nicht Norm.",
+        "praktische_empfehlung_mainstream": "Mainstream-Finanzberatung (Vanguard / Bogleheads / DAI / Stiftung Warentest): (a) Anlage-Horizont mindestens 10-15 Jahre für Aktien-Investitionen. (b) breit-diversifiziertes globales Aktien-Index-Investment (MSCI World, FTSE All-World ETFs). (c) niedrige Kosten (TER <0,3 Prozent jährlich). (d) regelmäßiger Sparplan unabhängig von Markt-Lage (Cost-Average-Effekt). (e) keine Markt-Timing-Versuche. (f) Erwartungs-Rendite real 5-7 Prozent jährlich, nominal 7-9 Prozent. (g) signifikante Volatilität auch bei breitem Markt: -50 Prozent Drawdowns sind historisch alle 10-20 Jahre vorgekommen.",
+        "context": "24-Prozent-Rendite-Versprechen sind oft Marketing-Tropen von (a) MLM-Anlage-Programmen, (b) Krypto-Plattformen mit Promi-Endorsements, (c) Trading-Influencern, (d) Schneeball-Systemen. Faktencheck-relevant: Werbe-Aussagen wie Verdopple Dein Geld in 3 Jahren oder garantierte 20 Prozent Rendite widersprechen langfristiger Marktdurchschnitts-Realität fast immer. Korrekt: realistische Erwartungen für Privat-Anleger sind 5-7 Prozent reale Aktien-Rendite über lange Zeiträume."
+      },
+      "context_notes": [
+        "FIRE-Bewegung (Financial Independence Retire Early): basiert auf 4-Prozent-Entnahme-Regel und Markt-Real-Rendite ~7 Prozent. Auch FIRE setzt KEINE 20-Prozent-Renditen voraus, sondern hohe Sparquote (50-70 Prozent des Einkommens) + langfristige Markt-Rendite + niedrige Kosten + steuer-effiziente Allokation.",
+        "Junge Anleger und Compound-Interest-Wirkung: bei realistischer 7-Prozent-Real-Rendite ist Compound-Interest über 40 Jahre dramatisch — 100 Euro/Monat über 40 Jahre bei 7 Prozent ergibt ca. 240.000 Euro real. Das ist ohne 20-Prozent-Wunder-Renditen schon erheblich. Die Lehre: Zeit + Disziplin + Diversifikation > Markt-Timing-Suche.",
+        "Differenzierung: einzelne Aktien-Trades können ja 20+ Prozent erzielen, aber langfristige systematische Renditen über breites Portfolio sind eingegrenzt. Mythos überträgt Einzelfall-Erfolg auf Gesamt-Strategie."
+      ],
+      "claim_phrasings_handled": [
+        "Mit Aktien 20 Prozent jährliche Rendite ist normal",
+        "Wer wie Buffett investiert verdoppelt Geld alle 3 Jahre",
+        "24 Prozent jährliche Rendite ist mit Strategie machbar",
+        "Privat-Anleger schaffen problemlos 15 Prozent jährlich"
+      ],
+      "trigger_composite": [
+        [
+          "aktien",
+          "investition",
+          "investment",
+          "geldanlage",
+          "anlage",
+          "portfolio",
+          "buffett",
+          "berkshire",
+          "compound",
+          "rendite"
+        ],
+        [
+          "20 prozent",
+          "24 prozent",
+          "verdoppelt",
+          "verdoppeln",
+          "jährlich",
+          "monatlich",
+          "garantiert",
+          "erreichen",
+          "schaffen",
+          "reich werden"
+        ]
+      ]
+    },
+    {
+      "topic": "versicherung_kapital_anlage_mythos",
+      "headline": "Kapital-Lebensversicherungen mit ETF-Komponente (fondsgebundene Lebensversicherungen, Riester-Rente, Rürup-Rente) haben in der Regel höhere Kosten-Friktion als getrennte Lösung (Direkt-ETF + Risiko-Lebensversicherung getrennt); Stiftung Warentest, BdV und Finanztip dokumentieren Kosten-Bilanz seit Jahrzehnten",
+      "year": 2024,
+      "source_url": "https://www.test.de/Lebensversicherung",
+      "secondary_url": "https://www.bundderversicherten.de/",
+      "source_label": "Stiftung Warentest + BdV (Bund der Versicherten) + Finanztip + Verbraucherzentrale + DAI",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Kapital-Lebensversicherung ist gute Geldanlage und Risiko-Schutz in einem ist FALSE/MIXED. Kombinierte Versicherungs-/Anlage-Produkte (Kapital-Lebensversicherung KLV, fondsgebundene Lebensversicherung FLV, Riester-Rente, Rürup-Rente) bündeln Risiko-Lebensversicherung mit Geldanlage. Strukturelle Kosten-Probleme: (1) Abschlusskosten 2-5 Prozent der Beitrags-Summe, oft in den ersten 5 Jahren komplett abgezogen. (2) Verwaltungs-Kosten 0,5-2 Prozent jährlich der gesamten Police-Summe. (3) Risiko-Anteil-Kosten (für integrierten Todesfall-Schutz) 0,5-1 Prozent jährlich. (4) Garantie-Kosten (Mindestverzinsung garantiert) reduzieren effektive Rendite. (5) Provisionen für Vermittler 4-7 Prozent der Beitrags-Summe. Stiftung Warentest, BdV und Finanztip haben über Jahrzehnte konsistent gezeigt: durchschnittliche Renditen-Reduktion vs. getrennter Lösung 1-3 Prozent jährlich. Dies summiert sich über 20-30 Jahre Police-Laufzeit dramatisch (50-150 Prozent weniger Endkapital). Empfehlung Stiftung Warentest seit Jahrzehnten konsistent: getrennte Lösung — (a) Risiko-Lebensversicherung extern (sehr günstig, ca. 100-300 Euro/Jahr für 200.000 Euro Versicherungs-Summe je nach Alter), (b) Direkt-ETF-Sparplan oder andere Direktinvestition für Vermögens-Aufbau. Riester-Rente besonders kritisch: hohe Kosten + niedrige Renditen (oft <2 Prozent real), Auszahlungs-Phase mit Beitragsbemessungsgrenze + nachträglicher Besteuerung — viele Riester-Verträge haben Ende der Ansparphase weniger als investiertes Kapital plus Inflation. Faktencheck-relevant: Aussagen wie Kapital-Lebensversicherung ist sichere Anlage mit Versicherungs-Schutz übersehen Kosten-Friktion und sind oft empfehlungs-getrieben (Provisionen für Vermittler).",
+        "abschlusskosten_struktur": "Versicherungs-Abschlusskosten: bei klassischen Kapital-Lebensversicherungen werden 2-5 Prozent der gesamten zukünftigen Beitrags-Summe als Abschlusskosten verrechnet — typisch innerhalb der ersten 5 Jahre. Beispiel: 100 Euro/Monat über 30 Jahre = 36.000 Euro Beitrags-Summe. Abschlusskosten 4 Prozent = 1.440 Euro, alle aus den ersten 5 Jahren. Ergebnis: Vertrags-Kapital nach 5 Jahren ist deutlich niedriger als eingezahlte Beiträge. Bei Vorzeit-Kündigung (statistisch ~30-50 Prozent der Verträge nach 10 Jahren) hohe Verluste.",
+        "verwaltungskosten_jaehrlich": "Verwaltungs-Kosten klassischer FLV: 1,5-2,5 Prozent der Vertrags-Summe jährlich. Vergleich: Direkt-ETF-Sparplan (z.B. iShares Core MSCI World) hat TER 0,2 Prozent jährlich + Sparplan-Gebühr 0,5-1 Euro pro Ausführung. Differenz 1-2 Prozent jährlich erscheint klein, summiert über 30 Jahre auf 30-60 Prozent weniger Endkapital.",
+        "stiftung_warentest_position": "Stiftung Warentest publiziert seit Jahrzehnten Vergleiche. Standard-Empfehlung: getrennte Lösung. Bei Bedarf nach Lebensversicherungs-Schutz: reine Risiko-Lebensversicherung (RLV) — sehr günstig im Vergleich zu KLV/FLV. Beispiel: 35-jähriger Nichtraucher, 200.000 Euro Versicherungs-Summe, 30 Jahre Laufzeit: ca. 10-20 Euro/Monat (RLV) vs. KLV mit 250.000 Euro Versicherungs-Summe + 200.000 Euro angespart über 30 Jahre für 200 Euro/Monat. Die separate Lösung ist effizienter.",
+        "riester_rente_kritik": "Riester-Rente: 2002 eingeführt zur privaten Altersvorsorge, staatlich subventioniert. Kritik (Stiftung Warentest, BdV, Verbraucherzentrale): (a) hohe Kosten (Abschluss 4-5 Prozent + 1-2 Prozent jährlich Verwaltung), (b) niedrige Renditen (oft <2 Prozent real), (c) komplexe Auszahlungs-Phase mit Garantie-Anbindung, (d) sehr begrenzte Flexibilität (Vorzeit-Auflösung mit Verlust der Subventionen), (e) bei Sterbefall vor Auszahlungs-Beginn häufig Total-Verlust für Erben. Empfehlungen Reform-Vorschläge: vereinfachung, höhere Aktien-Quote — politisch lange diskutiert.",
+        "ruerup_rente_kontext": "Rürup-Rente (Basis-Rente): für Selbständige + bei Aufstocker als Alternative zu gesetzlicher Rente. Steuerliche Förderung in Anspar-Phase (Anbieter erzielen Rendite teilweise durch Steuer-Vorteil). Kritik ähnlich wie Riester: hohe Kosten, eingeschränkte Flexibilität, lebenslange Renten-Pflicht (Auszahlung als monatliche Rente, nicht Kapital-Auszahlung). Bei kurzer Bezugs-Dauer (frühem Tod) ungünstig.",
+        "context": "Versicherungs-Anlage-Produkte sind durch Provisionsstruktur stark vermarktet — Vermittler erhalten bis 7 Prozent der Beitrags-Summe, Direkt-ETF gibt keine Vermittler-Provision. Konsequenz: Vermittler bevorzugen Versicherungs-Lösungen, auch wenn Kunde mit Direkt-ETF besser fahren würde. Faktencheck-relevant: Vertriebs-Aussagen wie Lebensversicherung ist Anlage und Schutz in einem übersehen Kosten-Bilanz; differenzierte Verbraucher-Beratung mit getrennter-Lösung-Empfehlung evidenzbasierter."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung Risiko-Lebensversicherung (RLV) vs. Kapital-Lebensversicherung (KLV): RLV nur Todesfall-Schutz, sehr günstig (10-50 Euro/Monat), keine Geldanlage-Komponente. Sinnvoll für Familien mit minderjährigen Kindern oder hohen finanziellen Verpflichtungen (Hauskredit). KLV/FLV sind Kombi-Produkte mit Anlage-Komponente.",
+        "BdV (Bund der Versicherten): unabhängiger Verbraucherschutz-Verein, kostenpflichtige Beratung 30-60 Euro für individuelle Tarif-Bewertung. Empfehlenswert vor Abschluss großer Versicherungs-Produkte.",
+        "Finanztip-Position 2024: Riester-Rente nur sinnvoll bei (a) Eigenheim-Förderung (Wohn-Riester), (b) sehr hoher Steuer-Belastung, (c) bei kinderreichen Familien wegen Kinderzulagen. Standard-Empfehlung: stattdessen Direkt-ETF-Sparplan + Risiko-Lebensversicherung getrennt."
+      ],
+      "claim_phrasings_handled": [
+        "Kapital-Lebensversicherung ist sichere Anlage",
+        "Riester-Rente lohnt sich immer",
+        "Lebensversicherung ist beste Geldanlage mit Schutz",
+        "Fondsgebundene Lebensversicherung schlägt direkten ETF"
+      ],
+      "trigger_composite": [
+        [
+          "lebensversicherung",
+          "kapital-lebensversicherung",
+          "klv",
+          "flv",
+          "fondsgebundene",
+          "riester",
+          "rürup",
+          "rente",
+          "renten-versicherung",
+          "altersvorsorge"
+        ],
+        [
+          "sicher",
+          "anlage",
+          "lohnt",
+          "beste",
+          "schutz",
+          "schlägt",
+          "geldanlage",
+          "rendite",
+          "investition"
+        ]
+      ]
+    },
+    {
+      "topic": "fomo_signal_anlage_mythos",
+      "headline": "Hochdruck-Verkaufs-Indikatoren wie eilig handeln, geheimer Insider-Tipp, einmalige Chance, exklusiver Zugang sind klassische FOMO-Marketing-Tools für Anlage-Betrug; SEC + BaFin Investor Alerts warnen vor diesen psychologischen Mustern als roten Flaggen",
+      "year": 2024,
+      "source_url": "https://www.sec.gov/investor/pubs/cyberfraud.htm",
+      "secondary_url": "https://www.bafin.de/DE/Verbraucher/Anlegerwarnungen/anlegerwarnungen_node.html",
+      "source_label": "SEC Investor Alerts on Investment Fraud + BaFin Anlegerwarnungen + Cialdini Influence Principles + FCA Behavioural Insights",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Hochdruck-Verkaufs-Indikatoren in Anlage-Werbung sind starke Indikatoren für Betrug. Robert Cialdini Psychologe, Buch Influence 1984, identifizierte 6 Beeinflussungs-Prinzipien, die Betrüger systematisch ausnutzen: (1) Knappheit — limitiertes Angebot, nur noch 24 Stunden, nur 100 Plätze. (2) Sozialer Beweis — andere haben schon investiert, viele Kunden vertrauen uns. (3) Autorität — Promi-Endorsement, angebliche Behörden-Anerkennung, Pseudo-Zertifikate. (4) Reziprozität — Geschenk-Strategie wir geben Ihnen 50 Euro Bonus zum Beginnen. (5) Sympathie — Charisma der Vermittler, persönliche Beziehung. (6) Konsistenz — kleine erste Investition, dann Erweiterungs-Druck. SEC + BaFin + FCA dokumentieren diese Pattern als rote Flaggen für Anlage-Betrug. Standard-Pattern bei (a) Krypto-Pump-and-Dump-Schemes, (b) Schneeball-Systemen, (c) MLM-Rekrutierung, (d) Boiler-Room-Schemes (Hochdruck-Telefon-Verkauf), (e) Pig-Butchering-Scams (langfristige Beziehungs-Aufbau-Betrug), (f) Promi-Endorsement-Krypto-Werbung. Faktencheck-Konsequenz: bei Hochdruck-Stil GRUNDSÄTZLICH Vorsicht — seriöse Anbieter haben keinen künstlichen Zeitdruck, geben Kunden Bedenkzeit, erlauben unabhängige Beratung. Wenn Anbieter sagt jetzt sofort entscheiden, sonst verpasst — fast immer Betrug. Empfehlung: bei Hochdruck-Werbung 24-48 Stunden Pause einlegen, zweite Meinung einholen (Verbraucherzentrale, BaFin Verbraucher-Hotline), BaFin-Anlegerwarnungs-Liste prüfen.",
+        "cialdini_6_prinzipien": "Robert Cialdini Influence: The Psychology of Persuasion 1984 (Standard-Werk Beeinflussungs-Psychologie): (1) Reciprocity (Reziprozität): Menschen fühlen sich verpflichtet, Geschenke zurückzugeben. Im Betrug: kleines initiales Geschenk (Bonus, Probezeit, Testkonto), dann Erweiterungs-Druck. (2) Commitment & Consistency: kleine erste Zustimmung führt zu größeren Konsistenz-Verpflichtungen. Im Betrug: erste 250 Euro Einzahlung, dann Berater-Anrufe für Erhöhung. (3) Social Proof: viele andere machen es. Im Betrug: gefälschte Kundenzahlen, gefälschte Erfolgs-Geschichten. (4) Authority: Experten-Aussagen, Pseudo-Zertifikate. Im Betrug: gefälschte Promi-Endorsements, erfundene Doktortitel. (5) Liking: Sympathie-Faktor. Im Betrug: Charisma-Vermittler, Beziehungs-Aufbau. (6) Scarcity: Knappheit erhöht Wert-Wahrnehmung. Im Betrug: nur noch 5 Plätze, exklusives Angebot.",
+        "rote_flaggen_konkret": "Konkrete rote Flaggen für Anlage-Betrug (SEC + BaFin + FCA Konsens-Liste): (a) Hochdruck-Sprache (jetzt sofort, einmalige Chance, knapp werdend), (b) Garantierte Renditen mit Hoch-Versprechen, (c) Promi-Endorsements für spezifische Plattformen (siehe krypto_promi_endorsement_mythos), (d) Anrufe von unbekannten Vermittlern, (e) Schwierigkeit, Hintergrund-Informationen zur Plattform zu finden, (f) Auszahlungs-Probleme (verzögert, an Folge-Investition geknüpft), (g) Bezahl-Anforderungen über Krypto / Wire-Transfer (statt regulärer Bank-Methoden), (h) Sitz in Niedrig-Regulations-Jurisdiktionen.",
+        "boiler_room_pattern": "Boiler-Room-Schemes: organisierte Telefon-Verkaufs-Operationen, oft aus Off-Shore-Locations (Spanien, Israel, Bulgarien historisch). Pattern: erste Anrufe sind Pseudo-Beratung (kostenlose Marktanalyse), dann graduierter Verkaufs-Druck. SEC und BaFin warnen seit Jahrzehnten vor Boiler-Rooms. 2024 sind Boiler-Rooms zunehmend in WhatsApp/Telegram-Gruppen migriert (sogenannter Pig-Butchering Schema).",
+        "praktische_pruefung": "Praktische Schritte vor Investment: (1) BaFin Anlegerwarnungs-Liste konsultieren (bafin.de). (2) FCA ScamSmart-Service prüfen. (3) Anbieter-Lizenz-Status verifizieren (BaFin-Datenbank für Finanz-Dienstleister). (4) Online-Reviews lesen, aber kritisch (Reviews können auch gefälscht sein). (5) Verbraucherzentrale-Beratung in Anspruch nehmen (kostenpflichtig 30-60 Euro). (6) Bei Hochdruck-Stil GRUNDSÄTZLICH 24-48 Stunden Bedenkzeit einlegen — seriöse Anbieter respektieren das.",
+        "context": "FOMO-Marketing ist ubiquitär in Online-Werbung. Die Schwelle zum Betrug ist nicht beim Vorhandensein einzelner FOMO-Elemente erreicht, sondern bei der Konzentration mehrerer + Kombination mit anderen roten Flaggen (Garantie-Sprache, Promi-Endorsement, hohe Renditen). Faktencheck-relevant: bei Anlage-Werbung mit konzentrierten Hochdruck-Indikatoren ist Betrugs-Wahrscheinlichkeit hoch. Praktische Empfehlung: Bedenkzeit + zweite Meinung + Anlegerwarnungs-Listen-Prüfung vor jedem Investment."
+      },
+      "context_notes": [
+        "Pig-Butchering ist der aktuell wachsende Betrugs-Schema (Chainalysis 2024): langfristiger Vertrauens-Aufbau über Wochen-Monate via Dating-Apps, dann Investment-Empfehlung mit gefälschter Plattform. Schaden 2023 USA ca. 3,3 Mrd USD. Verläuft anders als klassisches Boiler-Room: kein Hochdruck am Anfang, sondern langsame psychologische Manipulation.",
+        "Telefonseelsorge / Beratungs-Hotlines bei Verdacht auf bereits-erlebten Betrug: BaFin Verbraucher-Hotline 0800/2 100 500, Verbraucherzentrale-Telefon (kostenpflichtig), Polizei 110/112 (bei akut laufendem Betrug), Online-Anzeige bei örtlicher Polizei.",
+        "Differenzierung legitime Knappheit vs. Betrugs-Knappheit: legitime Anlage-Produkte (z.B. begrenzte Aktien-Emissionen) können knapp sein, aber dort ist Knappheit transparent + nicht psychologisch instrumentalisiert. Betrugs-Knappheit ist instrumentalisiert ohne reale Begründung."
+      ],
+      "claim_phrasings_handled": [
+        "Eilig handeln um Geld zu verdienen",
+        "Geheimer Insider-Tipp ist Erfolgsgeheimnis",
+        "Hochdruck-Stil zeigt seriöses Investment",
+        "Nur noch 24 Stunden für diese einmalige Chance"
+      ],
+      "trigger_composite": [
+        [
+          "investment",
+          "anlage",
+          "geld verdienen",
+          "rendite",
+          "krypto",
+          "trading",
+          "geld",
+          "verdienen"
+        ],
+        [
+          "eilig",
+          "sofort",
+          "schnell",
+          "knapp",
+          "begrenzt",
+          "exklusiv",
+          "einmalig",
+          "geheim",
+          "insider",
+          "tipp",
+          "chance",
+          "24 stunden",
+          "noch heute",
+          "letzte chance"
+        ]
+      ]
+    },
+    {
+      "topic": "bitcoin_inflations_safe_haven_mythos",
+      "headline": "Bitcoin ist KEIN klassisches Safe-Haven-Asset; Bitcoin-Korrelation mit Inflation inkonsistent (positiv 2020-2021, negativ 2022); Bitcoin-Volatilität >70 Prozent jährlich (vs. Gold ~15 Prozent); EZB Position 2022 + IMF Working Paper 2023 + Roy 2024: Bitcoin verhält sich in Krisen Risk-On, nicht Risk-Off",
+      "year": 2024,
+      "source_url": "https://www.ecb.europa.eu/pub/economic-research/working-papers/html/index.en.html",
+      "secondary_url": "https://www.imf.org/en/Publications/WP",
+      "source_label": "EZB Working Papers + IMF Position Papers + Roy 2024 Energy Economics + Baur & Lucey 2010 J Financ Stab Safe-Haven-Definition",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Bitcoin ist digitales Gold und Inflations-Schutz und Safe-Haven ist FALSE/MIXED. Bitcoin (BTC) ist eine kryptografische Wertmarke mit deflationärem Emissions-Plan (max. 21 Mio. Einheiten). Marketing-Behauptung Bitcoin als digitales Gold und Inflations-Hedge wird durch empirische Daten 2020-2024 weitgehend widerlegt: (1) Korrelation mit Inflation: 2020-2021 stark positiv (Bitcoin stieg von ~10.000 auf ~64.000 USD parallel zur weltweiten Inflations-Eskalation und QE-Expansion). 2022: -65 Prozent Bitcoin-Drawdown trotz höchster Inflation seit 1980 (USA 9 Prozent, EU 10,6 Prozent) — Inflations-Hedge-These widersprochen. 2023-2024: Bitcoin Erholung trotz fallender Inflation. Korrelation mit Inflation also INKONSISTENT. (2) Volatilität: Bitcoin-Standardabweichung der Tages-Returns annualisiert 70-100 Prozent jährlich. Vergleich: Gold ca. 15-20 Prozent, S&P 500 ca. 15-20 Prozent. Bitcoin-Volatilität ist ca. 4-5x höher als klassische Aktien — kein Niedrig-Volatilitäts-Asset. (3) Verhalten in Krisen: klassisches Safe-Haven-Asset (Baur & Lucey 2010 Definition) zeigt negative Korrelation mit Risiko-Assets in Stress-Phasen. Bitcoin verhält sich gegenteilig: in Krisen (März 2020 COVID-Crash, 2022 Bear-Markt) korreliert Bitcoin POSITIV mit Aktien — Risk-On-Asset, nicht Risk-Off. EZB Working Paper 2022, IMF Working Paper 2023, Roy 2024 Energy Economics konsistent: Bitcoin erfüllt klassische Safe-Haven-Kriterien NICHT. WICHTIG: Bitcoin kann andere Funktionen haben (Diversifikator-Element, Hedge gegen spezifische Szenarien wie Banking-Verbote, langfristige Spekulation auf Adoption). Aber als sicherer Inflations-Hedge ist die empirische Datenlage nicht stützend.",
+        "bitcoin_volatilitaet_daten": "Bitcoin-Volatilität (annualisierte Standardabweichung der Tages-Returns) 2017-2024: 60-110 Prozent jährlich. Vergleich klassischer Assets: Gold 15-20 Prozent, S&P 500 15-25 Prozent (in Krisen-Jahren bis 30+), US 10-Year-Treasury 8-12 Prozent. Bitcoin-Volatilität ist Größenordnung höher — kein Asset, das in stabiler Geldanlage als Schutz fungieren kann ohne erhebliche Wert-Schwankungen.",
+        "korrelation_inflation_inkonsistent": "Bitcoin-Inflations-Korrelation 2010-2024: zeitlich variabel. 2010-2017 schwach positiv. 2017-2018 stark positiv (Hype-Phase). 2018-2020 negativ. 2020-2021 stark positiv (Pandemie + Stimulus + Inflations-Anstieg). 2022 negativ (Inflations-Peak vs. Bitcoin-Crash). Schluss: keine konsistente Inflations-Hedge-Eigenschaft. Bessere Inflations-Hedge: TIPS, breit-diversifizierte Aktien, inflations-gesicherte Anleihen.",
+        "ezb_2022_position": "EZB Working Paper 2022 zur Bitcoin-Funktion: analysiert Bitcoin-Verhalten in spezifischen Stress-Szenarien (Banken-Krisen, Inflations-Schübe, Geopolitische Krisen). Befund: Bitcoin verhält sich in Krisen wie Risk-On-Asset, nicht klassisches Safe-Haven. Volatilität in Stress-Phasen typisch 100+ Prozent jährlich, was klassische Safe-Haven-Definition disqualifiziert.",
+        "klassische_safe_haven_kriterien": "Klassische Safe-Haven-Asset-Kriterien (Baur & Lucey 2010 Journal of Financial Stability): (1) negative oder unkorrelierte Performance mit Risk-Assets in Stress-Phasen. (2) Niedrige Volatilität allgemein. (3) Hohe Liquidität auch in Krisen. (4) Lange Track-Record (>20 Jahre). Klassische Safe-Haven-Assets: US-Treasury, Schweizer Franken, japanischer Yen, Gold (teilweise). Bitcoin erfüllt nur (3) Liquidität teilweise — Track-Record kurz, Volatilität extrem, Krisen-Korrelation positiv mit Risk-Assets.",
+        "bitcoin_legitime_funktionen": "Differenzierung was Bitcoin könnte sein: (a) Diversifikations-Element im Portfolio (geringe Korrelation mit traditionellen Assets über lange Zeiträume), (b) Hedge gegen spezifische Szenarien (Kapital-Kontrollen, Banking-Verbote — Beispiel Türkei 2021, Venezuela), (c) langfristige Spekulation auf Adoption (Bitcoin als globales Wertaufbewahrungs-Mittel), (d) digitale Zahlungs-Infrastruktur (Lightning Network). Diese Funktionen sind je nach Standpunkt diskutabel, aber NICHT überlegener Inflations-Schutz im klassischen Sinn.",
+        "context": "Bitcoin-Marketing positioniert oft Bitcoin als digital gold + inflation hedge + safe haven (sogenanntes BTC Maxi-Narrativ). Empirisch zeigen 2020-2024 Daten Inkonsistenzen mit dieser These. Faktencheck-relevant: Aussagen wie Bitcoin schützt vor Inflation oder Bitcoin ist sicherer Hafen widersprechen Volatilitäts- und Krisen-Korrelations-Daten. Korrekt: Bitcoin ist hochvolatiles spekulatives Asset mit unkonventionellen Eigenschaften, kann Diversifikator-Element sein, aber kein klassischer Schutz im Sinne von Gold oder TIPS."
+      },
+      "context_notes": [
+        "Bitcoin-Adoption durch institutionelle Anleger 2020-2024: BlackRock, Fidelity, einige Pensionsfonds haben Bitcoin-ETFs eingeführt (Spot-Bitcoin-ETF in USA seit Januar 2024). Das verändert Liquiditäts-Profil aber nicht Volatilitäts-Profil. Kritische Diskussion: erhöht institutionelle Adoption die Korrelation mit traditionellen Assets weiter (was den Diversifikations-Wert reduziert).",
+        "Differenzierung Bitcoin vs. andere Krypto: Bitcoin hat 60+ Prozent des gesamten Krypto-Marktwerts und längste Historie. Andere Krypto-Assets (Ethereum, Solana, Memecoins) haben höhere Volatilität, kürzere Historie, weniger institutionelle Adoption. Allgemeine Krypto-Marketing-Aussagen sind oft Bitcoin-zentriert, aber das gilt nicht universell für alle Krypto-Assets.",
+        "Praktische Empfehlung Mainstream-Finanzberatung: max 5-10 Prozent Krypto-Anteil in Gesamt-Portfolio bei höherem Risiko-Toleranz, NIE als sicherer Inflations-Schutz. Hauptinvestment bleibt breit-diversifiziertes Aktien-/Anleihen-Portfolio."
+      ],
+      "claim_phrasings_handled": [
+        "Bitcoin ist digitales Gold",
+        "Bitcoin schützt vor Inflation",
+        "Bitcoin ist sicherer Hafen in Krisen",
+        "Bitcoin ist beste Inflations-Hedge"
+      ],
+      "trigger_composite": [
+        [
+          "bitcoin",
+          "btc",
+          "krypto",
+          "kryptowährung",
+          "kryptowaehrung",
+          "ethereum",
+          "krypto-asset",
+          "digitales gold"
+        ],
+        [
+          "inflation",
+          "inflationsschutz",
+          "schutz",
+          "sicherer hafen",
+          "safe haven",
+          "krise",
+          "verhindert verlust",
+          "wertaufbewahrung",
+          "stabil"
+        ]
+      ]
+    }
+  ]
+}
