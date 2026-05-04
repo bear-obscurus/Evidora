@@ -94,6 +94,7 @@ from services.digital_familie_pack import search_digital_familie, claim_mentions
 from services.geldanlage_pack import search_geldanlage, claim_mentions_geldanlage_cached
 from services.alltags_mythen_pack import search_alltags_mythen, claim_mentions_alltags_mythen_cached
 from services.verkehrssicherheit_pack import search_verkehrssicherheit, claim_mentions_verkehrssicherheit_cached
+from services.tierhaltung_pack import search_tierhaltung, claim_mentions_tierhaltung_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.clinvar import search_clinvar
@@ -796,6 +797,14 @@ async def check_claim(request: Request):
         if claim_mentions_verkehrssicherheit_cached(claim):
             tasks.append(cached("Verkehrssicherheit-Konsens", search_verkehrssicherheit, analysis))
             queried_names.append("Verkehrssicherheit-Konsens (WHO + OECD-IRTAD + BASt + ADAC + KFV + IIHS + NHTSA)")
+        # Tierhaltung-Pack (10 Topics: Hund-Schokolade, Katze-Milch, Vegan-
+        # Fütterung, Welpen-Schlaf, Wildschwein-Tollwut, BARF, Katzen-9-
+        # Leben, Hund-Mensch-Alter, Katzen-Drehreflex, Pferdefleisch).
+        # Quellen: ÖTK, Bundestierärztekammer, WSAVA, AAFCO, FAO, EFSA,
+        # ASPCA, AVMA, FLI, peer-reviewed Studien.
+        if claim_mentions_tierhaltung_cached(claim):
+            tasks.append(cached("Tierhaltung-Konsens", search_tierhaltung, analysis))
+            queried_names.append("Tierhaltung-Konsens (ÖTK + Bundestierärztekammer + WSAVA + AAFCO + FAO + EFSA + ASPCA)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
