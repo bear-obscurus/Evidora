@@ -166,6 +166,7 @@ _AUTHORITATIVE_INDICATORS = (
     "alltags_mythen_konsens_fact",       # Alltags-Mythen-Pack (NHS + AAO + AASM + Mayo Clinic + NIH + Cochrane)
     "verkehrssicherheit_konsens_fact",   # Verkehrssicherheit-Pack (WHO + OECD-IRTAD + BASt + ADAC + IIHS + NHTSA)
     "tierhaltung_konsens_fact",          # Tierhaltung-Pack (ÖTK + Bundestierärztekammer + WSAVA + AAFCO + FAO + EFSA)
+    "cybersecurity_konsens_fact",        # Cybersecurity-Pack (NIST + BSI + ENISA + EFF + Mozilla + NCSC)
     "medlineplus_health_topic",          # NIH MedlinePlus Live (National Library of Medicine, US)
     "cdc_newsroom_item",                 # CDC Newsroom Live (Centers for Disease Control, US)
     "clinvar_variant",                   # NIH ClinVar Live (NCBI Genetic Variants, US)

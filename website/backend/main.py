@@ -95,6 +95,7 @@ from services.geldanlage_pack import search_geldanlage, claim_mentions_geldanlag
 from services.alltags_mythen_pack import search_alltags_mythen, claim_mentions_alltags_mythen_cached
 from services.verkehrssicherheit_pack import search_verkehrssicherheit, claim_mentions_verkehrssicherheit_cached
 from services.tierhaltung_pack import search_tierhaltung, claim_mentions_tierhaltung_cached
+from services.cybersecurity_pack import search_cybersecurity, claim_mentions_cybersecurity_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.clinvar import search_clinvar
@@ -805,6 +806,13 @@ async def check_claim(request: Request):
         if claim_mentions_tierhaltung_cached(claim):
             tasks.append(cached("Tierhaltung-Konsens", search_tierhaltung, analysis))
             queried_names.append("Tierhaltung-Konsens (ÖTK + Bundestierärztekammer + WSAVA + AAFCO + FAO + EFSA + ASPCA)")
+        # Cybersecurity-Pack (10 Topics: Passwort-Wechsel, Mac-Viren, VPN-
+        # Anonymität, Public-Wifi, Cookie-Banner, Inkognito-Modus, 2FA,
+        # Passwort-Manager, Phishing-Erkennung, Linux-Antivirus). Quellen:
+        # NIST 800-63B, BSI, ENISA, EFF, Mozilla, NCSC, Microsoft, Google.
+        if claim_mentions_cybersecurity_cached(claim):
+            tasks.append(cached("Cybersecurity-Konsens", search_cybersecurity, analysis))
+            queried_names.append("Cybersecurity-Konsens (NIST + BSI + ENISA + EFF + Mozilla + NCSC)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

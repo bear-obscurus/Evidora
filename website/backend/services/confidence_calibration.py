@@ -70,6 +70,7 @@ AUTHORITATIVE_PACK_MARKERS = (
     "Alltags-Mythen-Konsens",
     "Verkehrssicherheit-Konsens",
     "Tierhaltung-Konsens",
+    "Cybersecurity-Konsens",
 )
 
 # Caps abhängig von Quellen-Anzahl (n_sources_with_results).
