@@ -160,6 +160,11 @@ _AUTHORITATIVE_INDICATORS = (
     "reproduktion_konsens_fact",         # Reproduktions-Pack (NEJM Wilcox + Cochrane + ACOG + AUA + NAMS + NIH + WHO)
     "medlineplus_health_topic",          # NIH MedlinePlus Live (National Library of Medicine, US)
     "cdc_newsroom_item",                 # CDC Newsroom Live (Centers for Disease Control, US)
+    "snopes_factcheck_item",             # Snopes Live (US, IFCN-zertifiziert)
+    "correctiv_factcheck_item",          # Correctiv Live (DE-Recherchezentrum, IFCN)
+    "full_fact_factcheck_item",          # Full Fact Live (UK-Charity, IFCN)
+    "bellingcat_investigation_item",     # Bellingcat Live (UK/global, OSINT)
+    "factcheck_org_item",                # FactCheck.org Live (Annenberg Univ. Pennsylvania)
     "dach_asylbLG_counter",
     "dach_ch_frauen_65",
     "dach_asyl_vergleich",

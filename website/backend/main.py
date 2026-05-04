@@ -89,6 +89,11 @@ from services.geschichts_mythen2_pack import search_geschichts_mythen2, claim_me
 from services.reproduktion_pack import search_reproduktion, claim_mentions_reproduktion_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
+from services.snopes import search_snopes
+from services.correctiv import search_correctiv
+from services.full_fact import search_full_fact
+from services.bellingcat import search_bellingcat
+from services.factcheck_org import search_factcheck_org
 from services.cache import get as cache_get, put as cache_put
 from services.synthesizer import synthesize_results
 from services.ner import enrich_entities
@@ -455,6 +460,27 @@ async def check_claim(request: Request):
         if claim_mentions_mimikama_cached(claim):
             tasks.append(cached("Mimikama", search_mimikama, analysis))
             queried_names.append("Mimikama")
+        # 5 internationale Fact-Check-RSS-Quellen — multipliziert die
+        # Reichweite ALLER Themen mit den größten externen Faktencheck-
+        # Datenbanken. Service-Helper filtert clientseitig nach
+        # Entity/Query-Match — feuert nur, wenn analysis Entities ODER
+        # pubmed/factcheck-Queries enthält (also fast immer).
+        if (analysis or {}).get("entities") or (analysis or {}).get("pubmed_queries") or (analysis or {}).get("factcheck_queries"):
+            # Snopes — größte EN-Faktencheck-DB (Mikkelson 1994, IFCN).
+            tasks.append(cached("Snopes", search_snopes, analysis))
+            queried_names.append("Snopes")
+            # Correctiv — DE-Recherchezentrum, IFCN, investigative + Faktenchecks.
+            tasks.append(cached("Correctiv", search_correctiv, analysis))
+            queried_names.append("Correctiv")
+            # Full Fact — UK-unabhängiges Faktencheck-Charity, IFCN.
+            tasks.append(cached("FullFact", search_full_fact, analysis))
+            queried_names.append("Full Fact")
+            # Bellingcat — Open-Source-Investigative (OSINT), Geopolitik + Visuals.
+            tasks.append(cached("Bellingcat", search_bellingcat, analysis))
+            queried_names.append("Bellingcat")
+            # FactCheck.org — Annenberg Public Policy Center (Univ. Pennsylvania).
+            tasks.append(cached("FactCheckOrg", search_factcheck_org, analysis))
+            queried_names.append("FactCheck.org")
         # bioRxiv/medRxiv — Preprint-Server (frische Lebenswissenschafts-
         # Studien vor Peer-Review). Caveat im Output-Indikator.
         if claim_mentions_biorxiv_cached(claim):
