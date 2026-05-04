@@ -65,6 +65,7 @@ AUTHORITATIVE_PACK_MARKERS = (
     "Onkologie-Konsens",
     "Mental-Health-Konsens",
     "Substanzen-Konsens",
+    "Digital-Familie-Konsens",
 )
 
 # Caps abhängig von Quellen-Anzahl (n_sources_with_results).

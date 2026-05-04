@@ -1,0 +1,529 @@
+{
+  "facts": [
+    {
+      "topic": "bildschirmzeit_hirnentwicklung_mythos",
+      "headline": "Effekte von Bildschirmzeit auf kindliche Hirnentwicklung sind in Längsschnittstudien (ABCD Study n>11.000; Orben 2019 Nat Hum Behav Specification Curve Analysis) deutlich kleiner als in populären Darstellungen — Effektstärken Cohens d 0,05-0,10, primär durch Schlaf- und Bewegungs-Verdrängung erklärbar; primärer Mediations-Faktor ist nicht Bildschirm selbst, sondern was er verdrängt",
+      "year": 2024,
+      "source_url": "https://abcdstudy.org/",
+      "secondary_url": "https://www.nature.com/articles/s41562-018-0506-1",
+      "source_label": "ABCD Study (NIH-funded longitudinal n>11.000) + Orben & Przybylski 2019 Nat Hum Behav + Twenge 2018 Emotion (für Replikations-Kontext)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Bildschirmzeit zerstört das kindliche Gehirn ist FALSE/OVERSIMPLIFIED. Die Adolescent Brain Cognitive Development (ABCD) Study, die größte longitudinale neurologische Studie an Kindern (NIH-funded, n>11.000 9-10-Jährige mit Follow-up bis 19), liefert seit 2018 differenzierte Befunde: Bildschirmzeit-bezogene Effekte auf Hirnstruktur und kognitive Performance sind statistisch nachweisbar, aber sehr klein. Orben A & Przybylski AK 2019 Nat Hum Behav führten Specification Curve Analysis (SCA) auf 3 großen Datensätzen (ABCD, Millennium Cohort UK, Youth Risk Behavior Survey US, kombiniert n>350.000) durch: Mittlere Effektstärke Cohens d für Bildschirmzeit auf Wohlbefinden 0,05 — vergleichbar mit Effekten von Brillen-Tragen oder regelmäßigem Kartoffel-Essen. Ähnliche Reanalysen (Vuorre 2022 BMJ Mental Health, Heffer 2019): Twenge-Hypothese kausaler Smartphone-Effekt auf Jugend-Depression nicht reproduzierbar. Mediations-Analysen zeigen: nicht Bildschirm SELBST ist primärer Schaden-Treiber, sondern was er VERDRÄNGT — Schlaf, Bewegung, Eltern-Interaktion, Hausaufgaben. Faktencheck-Konsequenz: pauschale Aussagen wie 1 Stunde Bildschirm schadet dem kindlichen Hirn überzeichnen die empirische Datenlage; differenzierte Bewertung von Schlaf-/Bewegungs-/Sozial-Verdrängung ist wissenschaftlich korrekter.",
+        "abcd_study_design": "Adolescent Brain Cognitive Development (ABCD) Study: NIH NIDA-koordiniert, gestartet 2015. n=11.880 9-10-Jährige aus 21 US-Studienzentren rekrutiert, Follow-up alle 2 Jahre bis Lebensalter 19. Datenquellen: strukturelles + funktionelles MRT, neuropsychologische Tests, mentale Gesundheit, Substanzkonsum, Familien-/Sozialdaten. Größte longitudinale Hirnentwicklungs-Studie weltweit. Erste Befunde Paulus 2019 Curr Opin Pediatr: Bildschirmzeit-Korrelationen mit Hirnstruktur klein und in Multi-Level-Adjustierung weiter abgeschwächt.",
+        "orben_2019_sca": "Orben A, Przybylski AK. The association between adolescent well-being and digital technology use. Nat Hum Behav 2019;3:173-182. Innovation: Specification Curve Analysis prüfte ALLE möglichen analytischen Spezifikationen (Variablen-Operationalisierungen, Kovariate-Kombinationen, Subsample-Selektionen) — über 20.000 Analyse-Spezifikationen pro Datensatz. Befund: mittlere standardisierte Effektgröße zwischen digitaler Technologie-Nutzung und Wohlbefinden b = -0,035 (SCA-Median über alle Spezifikationen). Vergleich: regelmäßiges Kartoffel-Essen b = -0,03; Brille-Tragen b = -0,04. Kein robust positiver oder negativer Befund.",
+        "vuorre_2022_replikation": "Vuorre M, Orben A, Przybylski AK. There is no evidence that associations between adolescents digital technology engagement and mental health problems have increased. Clin Psychol Sci 2021;9:823-835. Re-Analyse Twenge-Daten: keine zeitliche Verstärkung der Smartphone-Depression-Korrelation, wie Twenge behauptet hatte. Schluss: Befund-Stabilität spricht gegen kausalen Smartphone-Effekt mit historischem Kipp-Punkt.",
+        "verdraengungs_hypothese": "Bildschirm-Verdrängungs-Hypothese: Bildschirmzeit ersetzt typischerweise Schlaf, körperliche Aktivität, Lese-Zeit, soziale Direkt-Interaktion, schulische Aufgaben. Diese verdrängten Aktivitäten haben dokumentierte positive Effekte auf Wohlbefinden und kognitive Entwicklung. Daher Bildschirm-NEGATIV-Effekt sekundär durch Verdrängung — wenn man für gleichmäßige Schlaf-/Bewegung-Mengen kontrolliert, schrumpft Bildschirm-Effekt weiter (Twenge 2018 Pediatrics, Sigmund 2018).",
+        "differenzierung_aktiv_passiv": "Wichtige Differenzierung in der Forschung (Przybylski 2017, Royal Society for Public Health UK 2017): aktive interaktive Bildschirm-Nutzung (z.B. Texten mit Freunden, Lernen, kreatives Schaffen) hat andere Effekte als passive Konsumption (Endloses Scrollen, Video-Streaming). Letztere ist mit ungünstigeren Outcomes assoziiert. Die Pop-Diskussion verallgemeinert oft alle Bildschirmzeit zur Einheits-Kategorie.",
+        "context": "Der Bildschirmzeit-Hirnschaden-Mythos ist in den 2010er Jahren parallel zur iPhone-Verbreitung populär geworden. Treiber: Twenge JM 2017 Buch iGen, mediale Aufmerksamkeit, Eltern-Sorgen-Resonanz. Wissenschaftliche Korrektur seit 2019 (Orben/Przybylski) noch nicht in Pop-Diskurs angekommen. Faktencheck-relevant: Aussagen wie Bildschirm zerstört das Hirn von Kindern überzeichnen Datenlage; differenzierte Empfehlungen (genug Schlaf, genug Bewegung, qualitative statt quantitative Bewertung) sind evidenzbasierter."
+      },
+      "context_notes": [
+        "AAP (American Academy of Pediatrics) revidierte 2016 ihre frühere strikte Empfehlung 0 Bildschirmzeit unter 2 Jahren auf differenzierte Position: aktive Co-Viewing mit Eltern ja, passive Smartphone-Babysitter nein. Aktuelle Empfehlung 2024: bei Schulkindern <60 min Unterhaltungs-Bildschirmzeit/Tag, dabei priorisiert Schlaf, Bewegung, soziale Direkt-Interaktion.",
+        "Wichtige Differenzierung: Bildschirmzeit für Lernen (Khan Academy, Lese-Apps mit Eltern-Co-Use) vs. passive Unterhaltung (TikTok/YouTube Endloses Scrollen). Forschung unterscheidet zunehmend, populäre Empfehlungen tun das selten.",
+        "Schlaf als wichtigster Mediator: Bildschirm vor dem Schlafengehen (Blue Light, Aktivierung) verzögert Einschlaf-Latenz; bei chronischer Schlaf-Verkürzung kindliche kognitive + emotionale Entwicklung beeinträchtigt. Die meisten Bildschirm-Schäden sind eigentlich Schlaf-Schäden."
+      ],
+      "claim_phrasings_handled": [
+        "Bildschirmzeit zerstört das kindliche Gehirn",
+        "Smartphones machen Kinder dumm",
+        "Eine Stunde Smartphone schadet der Hirnentwicklung",
+        "Tablets sind schlecht für die Hirnentwicklung von Kindern"
+      ],
+      "trigger_composite": [
+        [
+          "bildschirm",
+          "bildschirmzeit",
+          "smartphone",
+          "tablet",
+          "ipad",
+          "screen-time",
+          "screen time"
+        ],
+        [
+          "kind",
+          "kinder",
+          "jugend",
+          "jugendliche",
+          "hirn",
+          "gehirn",
+          "hirnentwicklung",
+          "entwicklung",
+          "schaden",
+          "zerstör",
+          "dumm",
+          "intelligenz"
+        ]
+      ]
+    },
+    {
+      "topic": "tiktok_algorithmus_dumm_mythos",
+      "headline": "Korrelations-Studien zwischen Habitual-TikTok-Use und reduzierter Aufmerksamkeitsspanne (Maza 2023 JAMA Pediatr) zeigen Effekte, die teilweise durch Schlaf- und Bewegungs-Verdrängung mediiert sind; pauschale Aussagen TikTok-Algorithmus macht dumm verallgemeinern Korrelation zur Kausalität",
+      "year": 2024,
+      "source_url": "https://jamanetwork.com/journals/jamapediatrics",
+      "secondary_url": "https://www.commonsensemedia.org",
+      "source_label": "Maza 2023 JAMA Pediatrics + Common Sense Media + AAP Council on Communications and Media + NICE digital media guidance",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These TikTok-Algorithmus macht Kinder dumm ist OVERSIMPLIFIED. Habituelle TikTok-Nutzung korreliert in Beobachtungs-Studien mit reduzierter Aufmerksamkeitsspanne und schlechteren Schul-Performances (Maza MT et al. 2023 JAMA Pediatr, sowie weitere). ABER: kausale Mechanismen sind umstritten. Mediations-Analysen zeigen, dass ein erheblicher Teil der Korrelation durch (a) Schlaf-Verdrängung (TikTok-Nutzung in den Abendstunden verzögert Einschlafen), (b) Bewegungs-Verdrängung (sitzendes Konsumieren statt Sport), (c) Hausaufgaben-Verdrängung erklärbar ist — also nicht durch direkten algorithmischen Effekt auf das Gehirn, sondern durch Verhaltens-Verdrängung. Algorithmus-Optimierung für Aufmerksamkeit (Variable Reward Schedules, kurzes Video-Format, Endloses Scrollen) ist gestaltungstechnisch real und problematisch — aber Macht-dumm-Aussagen sind vereinfachend. AAP und Common Sense Media empfehlen Begrenzung auf <60 min Unterhaltungs-Bildschirmzeit/Tag bei Schulkindern, prioritären Fokus auf Schlaf + Bewegung + soziale Direkt-Interaktion. Faktencheck-relevant: differenzierte Bewertung ist evidenzbasierter als pauschale Algorithmus-Verteufelung.",
+        "maza_2023_jama_studie": "Maza MT et al. Adolescents Habitual Use of Social Media Predicts Brain Sensitivity to Social Feedback. JAMA Pediatr 2023. Adoleszente Smartphone-Habitual-Users zeigen erhöhte Sensitivität für soziales Feedback in fMRT-Studien (Insula, Amygdala-Aktivierung). Korrelations-, nicht Kausal-Befund. Schluss: chronische Social-Media-Nutzung korreliert mit neuronaler Anpassung an Belohnungs-Cues — was bedeutet das für Konzentrations- und Lern-Performance ist offene Forschungs-Frage.",
+        "algorithmus_design_problem": "TikTok-Algorithmus (For You Page) optimiert für Engagement-Zeit: Variable Reward Schedule, kurze Video-Häppchen (15-60s), Trends + Memes + Personalisierung. Diese Design-Elemente nutzen psychologische Belohnungs-Mechanismen. Das ist gestaltungstechnisch problematisch — aber nicht spezifisch für TikTok (Instagram Reels, YouTube Shorts haben ähnliche Mechaniken). Whistleblower-Berichte (Frances Haugen 2021 Facebook Files): interne Meta-Daten zeigen wissentliche Algorithmus-Optimierung trotz dokumentierter Schäden bei Jugendlichen.",
+        "konzentrations_effekte": "Aktuelle Studien zur Aufmerksamkeitsspanne und Smartphone-Nutzung: Subjektive Selbst-Berichte zeigen Wahrnehmungs-Probleme (Schwierigkeiten, längere Texte zu lesen, lange Vorlesungen zu folgen). Objektive Tests (anhaltende Aufmerksamkeit Tasks, Working Memory) zeigen weniger konsistente Effekte. Wahrnehmung subjektiv real, aber kausal-pharmakologische Auswirkungen kleiner als gefühlt.",
+        "verdraengungs_anteil": "Mediations-Analysen (Twenge 2018 Pediatrics, Hökby 2016): erheblicher Anteil der Smartphone-Effekt-Korrelation auf Verhaltens-Outcomes wird durch Schlaf-/Bewegungs-/Hausaufgaben-Verdrängung mediiert. Wenn diese Mediatoren konstant gehalten werden, schrumpfen direkte Smartphone-Effekte deutlich.",
+        "aap_empfehlung_2024": "AAP (American Academy of Pediatrics) Council on Communications and Media 2024: keine fixe Bildschirmzeit-Grenze, sondern altersadaptierte Empfehlung. Schulkinder 6-12: <60 min Unterhaltungs-Bildschirmzeit, mit Priorität auf 9-12h Schlaf, 60 min körperliche Aktivität, soziale Direkt-Interaktion. Familie soll Family Media Plan erstellen.",
+        "context": "TikTok-Mythos polarisiert. Ein Lager: TikTok-Algorithmus zerstört Generation Z Konzentration. Anderes Lager: Tech-Panik, Boomer-Überreaktion. Faktencheck-relevant: differenzierte Bewertung. Algorithmus-Design ist gestaltungstechnisch fragwürdig, aber Macht-dumm-Aussagen sind kausal überzeichnet. Empfehlungen: Begrenzung der Unterhaltungs-Bildschirmzeit, Schlaf-Priorität, gemeinsame Familien-Mediennutzung."
+      },
+      "context_notes": [
+        "EU Digital Services Act 2024: schreibt großen Plattformen (TikTok, Instagram) Risiko-Bewertungen für Jugend-Auswirkungen vor. EU-Kommission untersucht TikTok 2024 wegen mangelnden Jugendschutzes. Regulatorische Antwort auf Designsorgen, nicht direkt Kausal-Argument.",
+        "Wichtige Differenzierung: TikTok als Bildungs-Tool (Tutorial-Videos, schulische Erklärungen) vs. TikTok als Endlos-Scroll-Unterhaltung. Beide existieren in derselben App, haben aber sehr unterschiedliche Effekte.",
+        "Verbote in Schulen: Frankreich, einige US-Bundesstaaten haben TikTok-Verbote im Schulkontext eingeführt. Empirische Evaluation der Effekte erst ab 2025-2026 möglich."
+      ],
+      "claim_phrasings_handled": [
+        "TikTok-Algorithmus macht Kinder dumm",
+        "Durch TikTok werden Kinder konzentrationsschwach",
+        "Der TikTok-Algorithmus zerstört das jugendliche Gehirn",
+        "TikTok ist wie Drogen für das Gehirn"
+      ],
+      "trigger_composite": [
+        [
+          "tiktok",
+          "instagram reels",
+          "youtube shorts",
+          "social media",
+          "soziale medien"
+        ],
+        [
+          "dumm",
+          "konzentration",
+          "konzentrationsschwach",
+          "aufmerksamkeit",
+          "algorithmus",
+          "scroll",
+          "endloses scrollen",
+          "kinder",
+          "jugend",
+          "süchtig",
+          "abhängig"
+        ]
+      ]
+    },
+    {
+      "topic": "smartphone_macht_dumm_mythos",
+      "headline": "Korrelations-Studien zwischen Smartphone-Nutzung und kognitiven Performance-Indizes (Ward 2017 J Assoc Consum Res Brain Drain Study) zeigen kleine bis moderate Effekte; Replikations-Versuche (Bowman 2021 Comput Hum Behav, Ruiz Pardo 2023) konnten den Brain-Drain-Effekt nicht konsistent reproduzieren",
+      "year": 2024,
+      "source_url": "https://www.journals.uchicago.edu/doi/10.1086/691462",
+      "secondary_url": "https://www.sciencedirect.com",
+      "source_label": "Ward AF et al. 2017 J Assoc Consum Res + Bowman 2021 Comput Hum Behav + Ruiz Pardo 2023 Replikations-Studie",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Smartphones machen dumm ist OVERSIMPLIFIED. Ward AF et al. 2017 Brain Drain — The Mere Presence of Ones Own Smartphone Reduces Available Cognitive Capacity (J Assoc Consum Res 2017;2:140-154) zeigte in zwei Experimenten n=520 + n=275: bloße Anwesenheit des Smartphones (sogar ausgeschaltet auf dem Schreibtisch) reduzierte Working-Memory-Capacity und Fluid-Intelligence-Performance. Effektstärke moderat (Cohens d 0,2-0,4). ABER: methodisch saubere Replikations-Versuche zeigten gemischte Ergebnisse. Bowman ND et al. 2021 Comput Hum Behav: Replikation in größerer Stichprobe, Brain-Drain-Effekt deutlich kleiner als ursprünglich berichtet, in einigen Subgruppen nicht signifikant. Ruiz Pardo AF 2023 Comput Hum Behav: konzeptuelle Replikation, Effekt nicht reproduzierbar in deutscher Stichprobe. Open-Science-Reproducibility-Krise hat auch dieses Forschungsfeld erfasst. WICHTIG: das schließt nicht aus, dass Smartphone-Anwesenheit Aufmerksamkeit beeinflusst — anekdotisch real, methodisch in RCTs schwer zu beweisen. Praktische Empfehlung von Lern-/Arbeitspsychologie ist dennoch: bei konzentrierter Arbeit Smartphone weglegen oder auf Flugmodus, mind. um Notification-Unterbrechungen zu eliminieren. Faktencheck-relevant: pauschale Smartphone-macht-dumm-Aussagen sind kausal nicht klar, aber Begrenzung der Smartphone-Präsenz bei Konzentrations-Aufgaben ist empirisch sinnvoll.",
+        "ward_2017_originalstudie": "Ward AF, Duke K, Gneezy A, Bos MW. Brain Drain: The Mere Presence of Ones Own Smartphone Reduces Available Cognitive Capacity. J Assoc Consum Res 2017;2:140-154. Experiment 1 n=520 University of California San Diego: zufällige Zuordnung Smartphone-Position (Visible auf Tisch, in Tasche, in anderem Raum). Cognition-Tests: OSpan (Working Memory), Raven Matrices (Fluid Intelligence). Befund: Smartphone-im-anderen-Raum-Bedingung beste Performance, mit-Smartphone-auf-Tisch schlechteste. Effektstärke d 0,21-0,32. Experiment 2 n=275: Replikation mit alternativer Methodik, ähnliche Befunde.",
+        "bowman_2021_replikation": "Bowman ND, Ahn S, Mercincavage M, Lo MM. Smartphones in the laboratory: A replication of the Brain Drain effect. Comput Hum Behav 2021;120:106750. Pre-registered Replikation, größere Stichprobe n>800. Befund: Brain-Drain-Effekt nachweisbar, aber Effektstärke deutlich kleiner (d 0,1-0,15) und in Subgruppen nicht signifikant. Schluss: Effekt real, aber kleiner als ursprünglich berichtet (typische Replikations-Erfahrung in der Sozialpsychologie).",
+        "ruiz_pardo_2023_konzeptionell": "Ruiz Pardo AF et al. 2023 Comput Hum Behav. Konzeptuelle Replikation in deutscher Hochschul-Stichprobe. Brain-Drain-Effekt nicht statistisch signifikant nachweisbar. Mögliche Erklärung: kulturelle/demographische Unterschiede oder ursprünglicher Effekt in den USA von 2017 spezifisch. Beispiel für Replikations-Krise.",
+        "konkrete_kontext_effekte": "Sicher dokumentiert: Notification-Unterbrechungen reduzieren Konzentration messbar (Stothart 2015 J Exp Psychol Hum Percept Perform). Multitasking während Lernens reduziert Lern-Performance (Sana 2013 Comput Educ): Studierende mit Multitasking lernen 11 Prozent weniger als ohne. Diese Effekte sind robuster als der Brain-Drain-Effekt der bloßen Anwesenheit.",
+        "praktische_empfehlung": "Lern-/Arbeitspsychologie konsens: bei konzentrationsintensiven Aufgaben (Lernen, Schreiben, Programmieren) Smartphone in anderen Raum oder mindestens Flugmodus + Stummschaltung + Notifications aus. Empirisch: Notifications-Unterbrechung kostet 1-15 Minuten Reorientierungs-Zeit. Pomodoro-Technik (25 min Fokus + 5 min Pause) integriert das.",
+        "context": "Smartphone-macht-dumm-Mythos ist verallgemeinerte Form mehrerer spezifischer Effekte: (a) Notification-Distraktion (real), (b) Multitasking-Schaden (real), (c) Brain-Drain-Effekt der bloßen Präsenz (klein und nicht konsistent reproduzierbar). Differenzierung wichtig. Faktencheck-relevant: pauschale Smartphone-macht-dumm-Aussagen verallgemeinern; spezifische Empfehlungen wie Smartphone weglegen während Lernen sind evidenzbasiert."
+      },
+      "context_notes": [
+        "Replikations-Krise in der Sozialpsychologie ist seit Open Science Collaboration 2015 Science-Studie dokumentiert. Brain-Drain-Effekt fällt in dieses Muster: ursprünglich starker Befund, in Replikationen abgeschwächt.",
+        "Differenzierung: aktive Smartphone-Nutzung während Lernen (z.B. Quizlet, Khan Academy) hat andere Effekte als Distraktion durch Social-Media-Notification. Forschung unterscheidet zunehmend, populäre Empfehlungen oft nicht.",
+        "Praktische Studientechnik: Studierende mit Smartphone in anderem Raum berichten in qualitativen Interviews bessere Konzentrations-Wahrnehmung, auch wenn objektive Tests nur kleine Effekte zeigen. Wahrnehmung beeinflusst Verhalten — Empfehlung daher pragmatisch sinnvoll, auch ohne klaren kausalen Mechanismus."
+      ],
+      "claim_phrasings_handled": [
+        "Smartphones machen dumm",
+        "Studien zeigen Smartphone reduziert Intelligenz",
+        "Brain Drain durch Handy auf dem Tisch",
+        "Smartphone in der Nähe lähmt das Gehirn"
+      ],
+      "trigger_composite": [
+        [
+          "smartphone",
+          "handy",
+          "telefon",
+          "iphone",
+          "android-handy"
+        ],
+        [
+          "dumm",
+          "intelligenz",
+          "konzentration",
+          "leistung",
+          "aufmerksamkeit",
+          "macht dumm",
+          "brain drain",
+          "iq",
+          "kognitiv",
+          "lähmt"
+        ]
+      ]
+    },
+    {
+      "topic": "kinderschutz_filter_wirksamkeit_mythos",
+      "headline": "Web-Filter und Kindersicherungs-Software (Net Nanny, Family Link, Browser-Kindersicherung, Router-Filter) haben moderate Wirksamkeit gegen unbeabsichtigten Zugriff, werden aber von technisch-versierten Jugendlichen in 30-40 Prozent der Fälle umgangen (Livingstone 2017 EU Kids Online); aktive Mediengespräche und elterliche Begleitung sind effektiver",
+      "year": 2024,
+      "source_url": "https://www.bzkj.de",
+      "secondary_url": "https://www.lse.ac.uk/media-and-communications/research/research-projects/eu-kids-online",
+      "source_label": "Bundeszentrale für Kinder- und Jugendmedienschutz (BzKJ DE) + EU Kids Online (LSE Livingstone) + jugendschutz.net",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Kindersicherungs-Filter schützt das Kind komplett ist FALSE. Web-Filter-Software hat moderate Wirksamkeit, aber dokumentierte Limitierungen. Livingstone S et al. 2017 EU Kids Online (im Auftrag der EU-Kommission, n>25.000 Kinder/Eltern in 19 Ländern): Web-Filter werden in 30-40 Prozent der Fälle von älteren Kindern und Jugendlichen umgangen, häufig durch (a) VPN-Apps, (b) Inkognito-Modus, (c) alternative Browser, (d) Smartphone von Freunden/Geschwistern. Filter haben zudem False-Positive-Probleme (legitime Bildungs-Inhalte blockiert) und False-Negative-Probleme (problematischer Content nicht erkannt). BzKJ (Bundeszentrale für Kinder- und Jugendmedienschutz, DE) und jugendschutz.net Empfehlung 2024: Filter als EIN Element in einem Mix verwenden, NICHT als alleinige Strategie. Wichtigster Schutzfaktor in EU-Kids-Online-Daten: aktive Mediengespräche zwischen Eltern und Kindern, gemeinsame Smartphone-Nutzung, Vertrauens-Beziehung mit Adressierbarkeit bei problematischem Content. Restriktive Filter-only-Strategie korreliert paradoxerweise mit weniger Eltern-Kind-Mediengesprächen — und damit weniger Bewältigungs-Kompetenz beim Kind. Faktencheck-relevant: Aussagen wie Family Link macht Kind sicher überzeichnen Filter-Wirksamkeit; differenzierte Empfehlungen umfassen Filter, Mediengespräche, gemeinsame Nutzung.",
+        "filter_wirksamkeit_typen": "Filter-Typen: (1) Browser-Kindersicherung (z.B. Chrome SafeSearch): blockiert nur expliziten Adult-Content, umgehbar durch privates Browsing. (2) Family-Link-Apps (Google Family Link, Apple Screen Time): zeitliche Limitierung + App-Beschränkungen, umgehbar durch Multi-Account-Setup oder Geräte-Wechsel. (3) DNS-Filter (OpenDNS Family Shield, NextDNS): netzwerk-level, umgehbar durch VPN. (4) Hardware-Router-Filter (Fritz!Box Kindersicherung): geräte-übergreifend, aber außerhalb Heim-Netzwerk wirkungslos. Keine Filter-Lösung ist absolut.",
+        "umgehung_methoden_jugendliche": "EU Kids Online + jugendschutz.net dokumentieren typische Umgehungs-Methoden bei 13-17-Jährigen: (a) Free-VPN-Apps (Hola, ProtonVPN Free) in App-Stores frei verfügbar, (b) Inkognito-Modus + Tor-Browser, (c) Alternative DNS-Server eintragen, (d) WLAN-Hotspot von Smartphone-Freunden, (e) Smartphone des älteren Geschwisterkindes, (f) öffentliche WLAN-Netze (Bibliothek, Café). Liste ist nicht erschöpfend.",
+        "false_positive_negative": "False-Positive: legitime Bildungs-Inhalte (z.B. Aufklärungs-Material zu Sexualität, LGBTQ-Beratung, medizinische Informationen) werden blockiert. Frustriert Jugendliche, motiviert zur Umgehung. False-Negative: neue Webseiten oder Plattform-Inhalte (z.B. Discord-Server, neue TikTok-Trends) sind im Filter noch nicht klassifiziert. Filter-Datenbanken sind retrospektiv, nicht präventiv.",
+        "eltern_kind_kommunikation": "EU-Kids-Online-Datenbefund: aktive Mediengespräche zwischen Eltern und Kindern korrelieren mit (a) niedrigerem Risiko für Online-Probleme, (b) höherer Resilienz wenn Probleme auftreten, (c) besserer Bewältigungs-Kompetenz. Rein restriktive Strategien korrelieren paradoxerweise mit weniger Eltern-Kind-Mediengesprächen und weniger Vertrauens-Disclosure beim Kind.",
+        "bzkj_aktuelle_position": "BzKJ und jugendschutz.net Position 2024: Triple-A-Empfehlung Aufklärung, Aufsicht, Austausch. (a) Aufklärung: gemeinsame Erforschung von Apps und Webseiten, Erklärung der Risiken, (b) Aufsicht: Filter + altersadäquate Geräte (Kinder-Smartwatch, Featurephone, später Smartphone), (c) Austausch: regelmäßige Gespräche, niedrige Hemm-Schwelle für Hilfe-Suche bei Online-Problemen. Filter ist EIN Element von dreien, nicht alleinige Strategie.",
+        "context": "Kindersicherungs-Diskurs polarisiert: Tech-Eltern vertrauen oft zu sehr Filter-Software, Pop-Eltern denken Smartphone-Verbot ist die Lösung. Faktencheck-relevant: pauschale Aussagen wie Family Link schützt mein Kind übertrieben; differenzierte Strategie mit Filter + Aufklärung + Begleitung evidenzbasiert."
+      },
+      "context_notes": [
+        "Kinder-Apps und Tracking: viele Apps für Kinder enthalten unerwünschte Tracking-Mechanismen (Reyes 2018 Proc Privacy Enhancing Tech: 67 Prozent von Tausenden untersuchten Kinder-Apps verletzten COPPA-Standards). Filter-Software adressiert dieses Problem nicht. Datenschutz ist eigene Diskussion.",
+        "Geräte-Empfehlung altersgestuft: Kinder-Smartwatch (z.B. Anio) für 6-9 Jahre, Featurephone (Nokia 3210 Reissue, Light Phone) für 10-12, Smartphone mit Begleit-Apps für 13+. Diese Stufung umgeht das Filter-Problem teilweise, weil weniger zu beschränken ist.",
+        "Schul-Smartphone-Verbote: Frankreich hat 2018 nationales Smartphone-Verbot in Grundschulen + Mittelschulen eingeführt, einige US-Staaten folgen. Empirische Wirkungs-Studien laufen 2024-2026 — vorläufige Befunde gemischt."
+      ],
+      "claim_phrasings_handled": [
+        "Family Link schützt mein Kind sicher vor allem",
+        "Kindersicherung im Browser ist effektiv genug",
+        "Mit dem richtigen Filter ist mein Kind online sicher",
+        "Net Nanny verhindert alle problematischen Inhalte"
+      ],
+      "trigger_composite": [
+        [
+          "kindersicherung",
+          "kinderschutz",
+          "kinderschutz-filter",
+          "filter",
+          "family link",
+          "screen time",
+          "net nanny",
+          "fritz!box",
+          "jugendschutz"
+        ],
+        [
+          "sicher",
+          "schützt",
+          "verhindert",
+          "alles",
+          "wirksam",
+          "effektiv",
+          "schutz",
+          "kind",
+          "kinder",
+          "online"
+        ]
+      ]
+    },
+    {
+      "topic": "online_spiele_aggression_mythos",
+      "headline": "Meta-analytische Befunde zur Gewalt-Videospiel-Aggression-Korrelation (Hilgard 2017 Psychol Bull Re-Analyse, Drummond 2020 R Soc Open Sci longitudinal n>21.000) zeigen sehr kleine bis null Effektstärken; APA 2020-Resolution distanzierte sich von früherer kausaler Position (APA 2015)",
+      "year": 2024,
+      "source_url": "https://www.apa.org/about/policy/violent-video-games",
+      "secondary_url": "https://royalsocietypublishing.org/journal/rsos",
+      "source_label": "APA 2020 Task Force Resolution + Hilgard 2017 Psychol Bull + Drummond 2020 Royal Soc Open Sci + Anderson 2010 Original-Position",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Gewalt-Videospiele machen Kinder aggressiv ist FALSE/MOSTLY_FALSE. In den 1990er und 2000er Jahren war diese These wissenschaftlich diskutiert (Anderson CA 2010 Psychol Bull meta-analyse: kleine bis moderate Effektstärken r 0,15-0,20). Aber: methodische Re-Analysen seit 2015 (Hilgard J 2017 Psychol Bull, Ferguson 2017) korrigierten Befund deutlich nach unten — nach Publikations-Bias-Adjustierung Effektstärken nahe null. Drummond A et al. 2020 R Soc Open Sci longitudinale Studie n>21.000 Adoleszente: keine signifikante Korrelation zwischen Gewalt-Videospiel-Konsum und realer Aggression über 10 Jahre Beobachtungs-Zeitraum, multivariat adjustiert. American Psychological Association 2020 Task Force on Violent Media Resolution: revidierte 2015-Position, aktuelle Position: insufficient evidence to support direct link between violent video games and lethal violence. Wichtige Differenzierungen: (a) kurzfristige Affekt-Erhöhung (Frust, Adrenalin) während des Spielens — real, aber kein Persönlichkeits-Effekt; (b) Bullet-Time-Hypothese (Spiele simulieren Schießen-Praxis) ist methodisch nicht haltbar; (c) Massenschießerei-Täter haben oft Gewalt-Videospiele konsumiert, aber prävalente Konsumption macht Korrelations-Argument nicht aussagekräftig (auch Dauer-Sportler, Pizza-Esser, Chrome-Nutzer). Faktencheck-relevant: pauschale Aussagen Gewalt-Videospiele machen Amokläufer widersprechen aktueller meta-analytischer Datenlage.",
+        "anderson_2010_originalbefund": "Anderson CA et al. Violent Video Game Effects on Aggression, Empathy, and Prosocial Behavior in Eastern and Western Countries: A Meta-Analytic Review. Psychological Bulletin 2010;136:151-173. 136 Studien analysiert, n>130.000 Probanden. Mittlere Effektstärke r 0,15-0,19 für Aggressions-Outcome. Position der Autoren: kausaler Effekt etabliert. Kontroverse: methodische Kritik wegen Publikations-Bias und Outcome-Definition (Lab-Aggression Tasks sind oft nicht stark mit realer Aggression korreliert).",
+        "hilgard_2017_reanalyse": "Hilgard J, Engelhardt CR, Rouder JN. Overstated evidence for short-term effects of violent games on affect and behavior: A reanalysis of Anderson et al. Psychological Bulletin 2017;143:757-774. Reanalyse mit moderner Bias-Korrektur (PET-PEESE, Trim-and-Fill). Befund: nach Publikations-Bias-Adjustierung Effektstärken r 0,03-0,05 — praktisch null. Schluss: Anderson 2010-Befunde sind Publikations-Bias-getrieben.",
+        "drummond_2020_longitudinal": "Drummond A, Sauer JD, Ferguson CJ. Do longitudinal studies support long-term relationships between aggressive game play and youth aggressive behaviour? A meta-analytic examination. Royal Society Open Science 2020;7:200373. Meta-analyse 28 longitudinale Studien, gesamt n>21.000. Befund: kein signifikanter Effekt von Gewalt-Videospiel-Konsum auf reale Aggression über Zeit, nach multivariater Adjustierung. Schluss: keine Evidenz für kausalen Langzeit-Effekt.",
+        "apa_2020_resolution": "APA Task Force on Violent Media. Technical Report on the Review of the Violent Video Game Literature. American Psychological Association 2020. Revision der 2015-Resolution: insufficient evidence to support a causal link between violent video games and lethal violence. Mainstream-Konsens-Wechsel.",
+        "ferguson_kontextualisierung": "Ferguson CJ et al. (Stetson University, kritischer Cited-Author) hat seit 2007 die Evidenz-Schwäche der Gewalt-Videospiel-These dokumentiert. Sein Argument: gleichzeitig mit Verbreitung von Gewalt-Videospielen seit 1990er Jahren hat Jugend-Gewalt-Kriminalität in den USA und EU drastisch ABGENOMMEN (FBI Uniform Crime Reports, RKI PKS). Wenn Gewalt-Videospiele kausal aggressiv machten, hätten wir Anstieg sehen müssen, nicht Abnahme.",
+        "context": "Gewalt-Videospiel-Mythos ist 1990er-Jahre Erbe (Mortal Kombat 1992, Doom 1993, Counter-Strike 1999). Politische Diskussion nach Schul-Schießereien (Columbine 1999) verstärkte. Wissenschaftliche Korrektur seit 2015-2020 noch nicht in Pop-Diskurs angekommen. Faktencheck-relevant: Aussagen wie Egoshooter machen Amokläufer widersprechen meta-analytischer Datenlage. Korrekt: kurzfristige Affekt-Effekte ja, langfristige Persönlichkeits-/Verhaltens-Effekte nein."
+      },
+      "context_notes": [
+        "Die deutsche Killerspiel-Debatte 2007-2009 nach Erfurt + Winnenden hat zu Verkaufs-Beschränkungen für indizierte Spiele geführt (USK), aber nicht zum Verbot. Empirische Evaluierung der USK-Wirkung: kein nachweisbarer Effekt auf Jugend-Kriminalität.",
+        "Wichtige Differenzierung: zeitliche Bildschirmzeit-Begrenzung (z.B. AAP <60 min Unterhaltungs-Bildschirmzeit) hat eigene Begründung, NICHT die Gewalt-Aggression-These. Kinder sollten genug schlafen + bewegen + sozial interagieren — das Argument bleibt unabhängig von der Gewalt-Frage.",
+        "Aktuelle Forschungs-Frage: spezifische Mechaniken wie Lootboxen + Gambling-ähnliche Designs in Spielen (Drummond 2018 Nat Hum Behav: Lootboxen als psychologisches Glücksspiel kategorisieren). Das ist eine SEPARATE Diskussion, nicht Gewalt-Videospiel-These."
+      ],
+      "claim_phrasings_handled": [
+        "Gewalt-Videospiele machen Kinder aggressiv",
+        "Killerspiele führen zu Amokläufen",
+        "Egoshooter machen Schüler gewalttätig",
+        "Counter-Strike fördert Gewalt-Verhalten"
+      ],
+      "trigger_composite": [
+        [
+          "videospiele",
+          "videospiel",
+          "computerspiel",
+          "computerspiele",
+          "killerspiel",
+          "killerspiele",
+          "egoshooter",
+          "ego-shooter",
+          "counter-strike",
+          "fortnite",
+          "call of duty",
+          "gta"
+        ],
+        [
+          "aggressiv",
+          "aggression",
+          "gewalt",
+          "amok",
+          "amoklauf",
+          "amokläufer",
+          "amokläufe",
+          "gewalttätig",
+          "machen",
+          "fördern",
+          "ursache",
+          "schießen"
+        ]
+      ]
+    },
+    {
+      "topic": "gen_z_iphone_depression_mythos",
+      "headline": "Die Twenge-Hypothese (iGen 2017: Smartphone- und Soziale-Medien-Verbreitung als Hauptursache für Anstieg der Jugend-Depressions-Raten ab 2012) ist methodisch umstritten; Orben & Przybylski 2019 Nat Hum Behav Specification Curve Analysis zeigt Effektstärken Cohens d 0,05 — vergleichbar mit Brillen-Tragen oder Kartoffel-Konsum",
+      "year": 2024,
+      "source_url": "https://www.nature.com/articles/s41562-018-0506-1",
+      "secondary_url": "https://www.thelancet.com/journals/lanpsy/article/PIIS2215-0366(20)30015-5/fulltext",
+      "source_label": "Orben & Przybylski 2019 Nat Hum Behav + Vuorre 2022 Clin Psychol Sci + Twenge 2017 (Original-These) + NIMH",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Smartphones und Soziale Medien sind Hauptursache der Jugend-Depressions-Krise ist OVERSIMPLIFIED/MIXED. Twenge JM (Psychologin, San Diego State University) publizierte 2017 das populäre Buch iGen + 2018 Emotion-Studie mit der These: Anstieg der Jugend-Depression in den USA ab ca. 2012 sei kausal auf Smartphone- und Soziale-Medien-Verbreitung zurückzuführen. Korrelations-Befunde sind real (Smartphone-Verbreitung 2007-2012, parallel Anstieg Jugend-Depression-Diagnosen). Aber: kausale Beweise sind methodisch schwach. Orben A & Przybylski AK 2019 Nat Hum Behav Specification Curve Analysis von 3 großen Datensätzen (n>350.000): mittlere standardisierte Effektgröße b -0,035 — vergleichbar mit Effekten von Brillen-Tragen (b -0,04) oder regelmäßigem Kartoffel-Essen (b -0,03). Vuorre M, Orben A, Przybylski AK 2022 Clin Psychol Sci: keine zeitliche Verstärkung der Smartphone-Depression-Korrelation, wie Twenge behauptet hatte. Mögliche alternative Erklärungen für Jugend-Depressions-Anstieg: (a) COVID-19-Pandemie (2020-2022 ZUSÄTZLICHER Anstieg, NICHT 2012), (b) Klima-Angst, (c) ökonomische Unsicherheit + Wohnmarkt-Krise, (d) verbesserte Diagnostik + reduziertes Stigma führt zu mehr Diagnosen, (e) Schul-Druck-Steigerung. Heterogene Subgruppen-Effekte: Mädchen + LGBTQ+ Jugendliche zeigen stärkere Effekte als andere Subgruppen (Vuorre 2022), möglich aufgrund spezifischer Online-Belastung (Cybermobbing, Body-Image-Inhalte). Faktencheck-relevant: pauschale Aussagen Smartphone hat eine ganze Generation depressiv gemacht überzeichnen kausale Datenlage; differenzierte Bewertung mit multifaktoriellem Ansatz wissenschaftlich korrekter.",
+        "twenge_2017_buch_iGen": "Twenge JM. iGen: Why Todays Super-Connected Kids Are Growing Up Less Rebellious, More Tolerant, Less Happy and Completely Unprepared for Adulthood. Atria Books 2017. Argumentation basierend auf Monitoring the Future + American Freshman Survey + andere Surveys: Anstieg Jugend-Depression-Symptome ab ca. 2012 (Smartphone-Verbreitungs-Schwelle) bei US-Jugendlichen, primär Mädchen. Korrelations-Argument stark, kausales Argument umstritten. Bestseller, mediale Aufmerksamkeit hoch.",
+        "orben_2019_sca_method": "Orben A & Przybylski AK 2019 Nat Hum Behav Methode: Specification Curve Analysis (SCA) prüft alle möglichen analytischen Spezifikationen — Variablen-Operationalisierungen (Bildschirmzeit, Social-Media-Use, Gaming-Use, Smartphone-Use), Kovariate-Kombinationen (Geschlecht, Alter, sozioökonomischer Status), Subsample-Selektionen. Über 20.000 Analyse-Spezifikationen pro Datensatz. Befund: mittlere Effektgröße b -0,035 (Cohens d ~0,07). Vergleich mit anderen Faktoren: Brille-Tragen b -0,04, Kartoffel-Essen b -0,03, regelmäßig frühstücken b +0,03. Schluss: Smartphone-Effekt ist nicht spezifisch groß.",
+        "vuorre_2022_replikation": "Vuorre M, Orben A, Przybylski AK. There Is No Evidence That Associations Between Adolescents Digital Technology Engagement and Mental Health Problems Have Increased. Clinical Psychological Science 2021;9:823-835. Re-Analyse Twenge-Daten + zusätzliche Datensätze. Befund: keine zeitliche Verstärkung der Korrelation seit 2007. Wenn Smartphone wirklich kausal wäre, hätte man stärker werdende Korrelation erwartet — diese fehlt.",
+        "alternative_erklaerungen": "Multifaktorielle Erklärung Jugend-Depression-Anstieg: (a) verbesserte Diagnostik + reduziertes Stigma führt zu mehr Erkennung. (b) Schul-Druck-Steigerung in OECD-Ländern. (c) ökonomische Unsicherheit + Klima-Angst. (d) COVID-19-Pandemie 2020-2022 — zusätzlicher Anstieg, nicht 2012-Effekt. (e) Bewegungs-/Schlaf-Veränderungen. Smartphone ist EIN Faktor unter vielen, nicht unbedingt Hauptfaktor.",
+        "heterogene_subgruppen": "Subgruppen-Heterogenität: Vuorre 2022 + Heffer 2019: Mädchen zeigen stärkere Smartphone-Depression-Korrelation als Jungen, möglicher Mechanismus Body-Image-Vergleich + Cybermobbing. LGBTQ+ Jugendliche zeigen ebenfalls stärkere Effekte, möglicher Mechanismus Online-Stigmatisierung. Diese Subgruppen-Befunde sind real, aber rechtfertigen nicht pauschales Generation-Doomsday-Narrativ.",
+        "haidt_kontroverse_2024": "Jonathan Haidt (NYU) publizierte 2024 The Anxious Generation, das Twenge-Argument verstärkt. Methodische Kritik (Odgers 2024 Nature Review): Haidt selektiert Studien, die seine Hypothese stützen, ignoriert Orben/Przybylski/Vuorre Replikations-Probleme. Aktive Forschungs-Debatte 2024.",
+        "context": "Jugend-Depression-Anstieg ist real und ernst zu nehmen. Die Frage ist, ob Smartphones kausal hauptverantwortlich sind. Wissenschaftliche Antwort 2024: vermutlich nicht hauptverantwortlich, aber Mit-Faktor in einer multifaktoriellen Konstellation. Faktencheck-relevant: pauschale Aussagen wie Generation Z ist wegen Smartphones depressiv überzeichnen Evidenz; differenzierte Bewertung mit COVID, Klimaangst, ökonomischen Unsicherheiten als Mit-Faktoren wissenschaftlich korrekter."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Jugend-Suizid-Raten haben in einigen Ländern seit 2010 gestiegen (USA), in anderen nicht (UK gestiegen 2015-2020 dann gefallen). Wenn Smartphone kausal wäre, hätten alle Industrie-Länder ähnlichen Trend zeigen müssen. Heterogenität spricht gegen einzelne globale Ursache.",
+        "Gendered Pattern: Mädchen sind seit ca. 2012 in den USA stärker betroffen als Jungen — Twenge interpretiert als Smartphone-Effekt (Mädchen häufiger auf Social Media), Kritiker als anderes (z.B. Schul-Druck-Geschlechts-Asymmetrie).",
+        "Aktuelle praktische Empfehlung trotz Evidenz-Unklarheit: Smartphone-Limitierung bei Schulkindern + Schlaf-Priorität + Bewegung sind unabhängig vom Smartphone-Depression-Argument vernünftig. Empfehlungen müssen nicht auf maximalistischer Gefahr-Behauptung basieren."
+      ],
+      "claim_phrasings_handled": [
+        "Smartphones haben Generation Z depressiv gemacht",
+        "Soziale Medien sind Hauptursache der Jugend-Depression",
+        "iGen ist die Smartphone-Depression-Generation",
+        "Instagram ist schuld am Anstieg der Mädchen-Depression"
+      ],
+      "trigger_composite": [
+        [
+          "smartphone",
+          "soziale medien",
+          "social media",
+          "instagram",
+          "snapchat",
+          "tiktok",
+          "iphone",
+          "gen z",
+          "generation z",
+          "igen"
+        ],
+        [
+          "depression",
+          "depressiv",
+          "depressions",
+          "psychische gesundheit",
+          "mental health",
+          "krise",
+          "schuld",
+          "ursache",
+          "verursacht",
+          "macht depressiv"
+        ]
+      ]
+    },
+    {
+      "topic": "cyberbullying_mehr_als_offline_mythos",
+      "headline": "Cyberbullying-Prävalenz ist nicht systematisch höher als klassisches Bullying; Olweus 2018 + Modecki 2014 J Adolesc Health Meta-Analyse zeigen klassische Bullying-Prävalenz ~36 Prozent vs. Cyberbullying ~15 Prozent unter Schülern; oft sind dieselben Personen in beiden Kontexten betroffen — Cyberbullying ist ernst, aber Online-Spezifika nicht durchgehend schädlicher",
+      "year": 2024,
+      "source_url": "https://aggressionresearchgroup.com/dan-olweus-1931-2020/",
+      "secondary_url": "https://www.lse.ac.uk/media-and-communications/research/research-projects/eu-kids-online",
+      "source_label": "Olweus 2018 + Modecki 2014 J Adolesc Health Meta-Analyse + EU Kids Online Livingstone + Hinduja & Patchin Cyberbullying Research Center",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Cyberbullying ist viel schlimmer als klassisches Bullying ist OVERSIMPLIFIED. Klassisches Bullying-Forschung seit den 1970er Jahren (Dan Olweus, Universität Bergen, Pionier) zeigt: Bullying ist altes, weit verbreitetes Phänomen. Modecki KL et al. 2014 J Adolesc Health systematic review meta-analyse: klassisches Bullying-Prävalenz unter Jugendlichen ca. 36 Prozent (Lebenszeit-Erfahrung als Opfer), Cyberbullying-Prävalenz ca. 15 Prozent. Wichtige Beobachtung: ca. 80-85 Prozent der Cyberbullying-Opfer sind auch Opfer von klassischem Bullying — Cyberbullying ist meist ZUSATZ-Form, nicht ERSATZ-Form. Online-Spezifika existieren: 24/7-Verfügbarkeit, schnelle Verbreitung, vermeintliche Anonymität, dauerhafte digitale Spuren — diese sind problematisch. Aber gesamtgesellschaftliche Schaden-Bilanz ist nicht zwangsläufig schlimmer als klassische Bullying. Olweus 2018 Position: Cyberbullying als Teilmenge von Bullying behandeln, NICHT als separate Kategorie mit eigenem Mythos-Status. Faktencheck-relevant: Aussagen wie Cyberbullying ist die schlimmste Form von Mobbing pauschalisieren; differenzierte Bewertung erkennt Online-Spezifika ohne klassisches Bullying zu bagatellisieren.",
+        "olweus_klassisches_bullying": "Dan Olweus (1931-2020), norwegischer Aggressions-Forscher, definierte klassisches Bullying mit drei Kernkriterien: (1) Aggressives Verhalten mit Schädigungs-Absicht, (2) Wiederholt über Zeit, (3) Macht-Asymmetrie zwischen Tätern und Opfern. Olweus Bullying Prevention Program (OBPP) ist evidenzbasiertes Schul-Programm, Cochrane-validiert. Über 50 Jahre Forschung etabliert klassisches Bullying als ernsten Public-Health-Issue.",
+        "modecki_2014_meta": "Modecki KL, Minchin J, Harbaugh AG, Guerra NG, Runions KC. Bullying Prevalence Across Contexts: A Meta-analysis Measuring Cyber and Traditional Bullying. J Adolesc Health 2014;55:602-611. 80 Studien analysiert, n>335.000 Adoleszente. Befunde: Lebenszeit-Prävalenz klassisches Bullying-Opferschaft 36 Prozent, Cyberbullying 15 Prozent. Korrelation der beiden Formen stark (r=0,5-0,7) — viele Personen haben beide Formen erlebt.",
+        "ueberlapp_dieselben_personen": "EU Kids Online + Hinduja-Patchin (Cyberbullying Research Center) Befunde: ca. 80-85 Prozent der Cyberbullying-Opfer sind auch klassische Bullying-Opfer. Vice versa weniger ausgeprägt: nur ~30 Prozent der klassischen Bullying-Opfer berichten Cyberbullying-Erfahrungen. Schluss: Online-Belästigung ist meist Erweiterung der Offline-Aggression, nicht neues separates Phänomen.",
+        "online_spezifika_real": "Online-Spezifika, die problematisch sind: (1) 24/7-Verfügbarkeit (klassisches Bullying ist auf Schul-Hof, Schulweg räumlich begrenzt; Cyberbullying erreicht Opfer auch zuhause). (2) Schnelle Verbreitung (Screenshots gehen viral). (3) Vermeintliche Anonymität reduziert Hemm-Schwelle. (4) Dauerhafte digitale Spuren (Cyber-Inhalte können Jahre persistieren). Diese Spezifika sind real und ernst, aber nicht alle Cyberbullying-Erfahrungen sind durch sie geprägt.",
+        "ernst_aber_nicht_dramatisierung": "Wichtige Position der Forschung: weder bagatellisieren noch dramatisieren. Klassische und Cyber-Formen von Bullying sind beide ernst, beide haben dokumentierte mentale Gesundheits-Folgen (Depression, Angststörungen, Suizid-Risiko). Olweus + Modecki + EU Kids Online Empfehlung: integrierte Schul-Anti-Bullying-Programme adressieren beide Formen, nicht separate Cyberbullying-Programme.",
+        "context": "Cyberbullying-Diskurs ist medial polarisiert: Pop-Medien dramatisieren Online-Spezifika, Boomer-Diskurs unterschätzt manchmal klassisches Bullying. Faktencheck-relevant: differenzierte Bewertung. Cyberbullying ist real und ernst, aber nicht systematisch schlimmer als klassisches Bullying. Beide brauchen integrierte Präventions-Strategien."
+      },
+      "context_notes": [
+        "Wichtige Anti-Bullying-Programme: Olweus Bullying Prevention Program (OBPP), KiVa (Finnland), Friendly Schools (Australia). Alle adressieren beide Bullying-Formen integriert. Cochrane-Reviews zeigen moderate Wirksamkeit (Effektstärke 0,2-0,4 für Reduktion).",
+        "Suizid-Risiko: Bullying-Opferschaft (klassisch oder Cyber) ist signifikanter Risikofaktor für Suizid-Gedanken. Multivariate Studien (Hinduja & Patchin 2018): Effekte sind real, aber Cyberbullying nicht stärkerer Suizid-Prädiktor als klassisches Bullying. Bei Verdacht: Hilfsangebote (Telefonseelsorge AT 142, Kinder-/Jugendtelefon 116111).",
+        "Praktische Empfehlung Eltern: bei Verdacht auf Bullying-Erfahrung Kind nicht für Smartphone- oder Internet-Nutzung schimpfen (Risiko: Kind redet nicht mehr darüber). Stattdessen unterstützend nachfragen, bei Bedarf Schul-Sozialarbeit + Beratungs-Stelle einschalten."
+      ],
+      "claim_phrasings_handled": [
+        "Cyberbullying ist viel schlimmer als klassisches Mobbing",
+        "Online-Mobbing zerstört Kinder mehr als Schul-Mobbing",
+        "Internet-Mobbing ist die schlimmste Form",
+        "Cybermobbing führt häufiger zu Suizid als reales Mobbing"
+      ],
+      "trigger_composite": [
+        [
+          "cyberbullying",
+          "cybermobbing",
+          "online-mobbing",
+          "internet-mobbing",
+          "online mobbing",
+          "internet mobbing"
+        ],
+        [
+          "schlimmer",
+          "schlimmste",
+          "klassisch",
+          "real",
+          "schul-mobbing",
+          "schulhof",
+          "viel mehr",
+          "zerstört",
+          "schlimmer als",
+          "form"
+        ]
+      ]
+    },
+    {
+      "topic": "social_media_addiction_mythos",
+      "headline": "Social-Media-Addiction ist NICHT in DSM-5-TR oder ICD-11 als eigenständige psychiatrische Diagnose anerkannt; Internet-Gaming-Disorder ist in ICD-11 (6C51) als spezifische Sektion-Diagnose aufgenommen mit strengen Kriterien — aber Social-Media-Use-Disorder NICHT",
+      "year": 2024,
+      "source_url": "https://www.psychiatry.org/psychiatrists/practice/dsm",
+      "secondary_url": "https://icd.who.int/browse11",
+      "source_label": "APA DSM-5-TR + WHO ICD-11 + NICE digital media guidance + NIMH Internet Use Disorder Position",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Social-Media-Sucht ist eine offizielle psychiatrische Diagnose ist FALSE. Aktuelle internationale Klassifikations-Systeme: (1) DSM-5-TR (APA 2022): keine Social-Media-Use-Disorder, keine Internet-Use-Disorder als eigenständige Diagnose. Internet Gaming Disorder ist als Bedingung für weitere Forschung (Section III) aufgeführt, NICHT als reguläre Diagnose. (2) ICD-11 (WHO, gültig seit 2022): Internet Gaming Disorder (6C51) IST aufgenommen als eigenständige Diagnose unter Disorders due to addictive behaviours, mit strengen Kriterien — Social-Media-Use-Disorder NICHT. Begründung der Nicht-Aufnahme von Social-Media-Sucht: methodische Schwächen der vorhandenen Studien, schlechte Validität von Selbstbericht-Fragebögen wie Bergen Social Media Addiction Scale, Risiko der Pathologisierung normaler Nutzung. Tatsächliche Sucht-Kriterien (DSM-5-Substanzkonsumstörung erweitert auf Verhaltens-Süchte): Toleranz, Entzug, Drug-Seeking, fortgesetzter Konsum trotz Schäden, Beziehungs-Störungen. Diese sind bei einigen Social-Media-Nutzern erfüllbar, aber die Forschung hat noch keine klare diagnostische Entität hergestellt. Differenzierte alternative Konzepte: problematische Nutzung als Anpassungs-Störung, Coping-Strategie für andere zugrundeliegende Probleme, Verhaltens-Muster mit funktionalen Beeinträchtigungen — aber NICHT klinische Sucht-Diagnose. Faktencheck-relevant: pauschale Aussagen wie ich bin TikTok-süchtig (klinisch) widersprechen aktuellem DSM-5-TR/ICD-11-Konsens; problematische Nutzung möglich, klinische Sucht ist andere Kategorie.",
+        "dsm5_tr_position": "DSM-5-TR (APA 2022): Substance-Related and Addictive Disorders Sektion enthält Substance Use Disorders + Gambling Disorder. Internet Gaming Disorder ist in Section III Conditions for Further Study aufgeführt — explizit NICHT als reguläre Diagnose. Social-Media-Addiction ist NICHT enthalten, weder regulär noch in Section III. APA-Position: insufficient evidence for distinct disorder.",
+        "icd11_status": "ICD-11 (WHO, gültig seit 2022): Disorders due to addictive behaviours Sektion enthält (6C50) Gambling Disorder + (6C51) Gaming Disorder. Beide haben strenge Kriterien: 12+ Monate Persistenz, klinisch signifikante Beeinträchtigung in mehreren Lebensbereichen, Loss of control. Social-Media-Use-Disorder ist NICHT enthalten. Begründung WHO: heterogene Studienlage, mangelnde diagnostische Validität.",
+        "validitaet_skalen_problem": "Bergen Social Media Addiction Scale (Andreassen 2012, 6-Item-Selbstbericht): häufig in Studien verwendet, aber methodische Kritik (Brand 2020 Neurosci Biobehav Rev): hohe False-Positive-Rate, korreliert stark mit allgemeinen psychischen Belastungen + Persönlichkeits-Faktoren (Neurotizismus), nicht mit objektiven Funktions-Beeinträchtigungen. Schluss: Skala identifiziert eher psychische Belastung ALS Social-Media-Nutzung, NICHT Sucht.",
+        "alternative_konzepte": "Differenzierte alternative Konzepte für problematische Social-Media-Nutzung: (a) Problematic Social Media Use als Verhaltens-Muster ohne klinische Sucht-Diagnose, (b) Anpassungs-Störung mit Internet-Bezug, (c) Coping-Strategie für zugrundeliegende Probleme (Depression, Angst, ADHS) — Behandlung der Grundstörung wichtiger als Behandlung der Internet-Nutzung, (d) Funktional gestörte Nutzung mit klinisch signifikanten Auswirkungen — aber nicht Sucht.",
+        "internet_gaming_disorder_specifics": "ICD-11 6C51 Gaming Disorder: Kriterien sind sehr streng. 12+ Monate Persistenz erforderlich. Loss of control over gaming. Increasing priority gaming over other activities. Continued/escalated gaming despite negative consequences. Klinisch significant impairment in personal, family, social, educational, occupational areas. Geschätzte Prävalenz <3 Prozent unter Gamern weltweit (Stevens 2021 Aust NZ J Psychiatry). Strenge Kriterien sollen Übermedikalisierung vermeiden.",
+        "context": "Social-Media-Sucht-Diskurs ist medial verbreitet, klinisch nicht etabliert. Pop-Selbstdiagnose ich bin Instagram-süchtig ist häufig Hyperbolik, nicht klinische Diagnose. Faktencheck-relevant: pauschale Aussagen Social-Media macht süchtig wie Drogen ohne Differenzierung sind klinisch nicht akkurat; problematische Nutzungs-Muster real, aber Sucht-Kategorie spezifisch."
+      },
+      "context_notes": [
+        "Forschungs-Trend 2020-2024: Verschiebung vom Sucht-Modell zu funktionalen Beeinträchtigungs-Modellen. Zentrale Frage nicht: Wie viele Stunden? sondern: Beeinträchtigt die Nutzung Lebens-Funktionen (Schule, Beruf, Beziehungen, Gesundheit)?",
+        "Differenzierung Verhaltens-Sucht vs. Substanz-Sucht: ICD-11 hat 2022 Verhaltens-Sucht-Kategorie etabliert (Gambling, Gaming). Andere Verhaltens-Sucht-Kategorien (Sex-Sucht, Shopping-Sucht, Social-Media-Sucht) sind kontrovers + nicht aufgenommen. Konservative Aufnahme verhindert Übermedikalisierung.",
+        "Praktische Empfehlung: bei wahrgenommener problematischer Nutzung Selbst-Reflexion, Mediengespräche, Begrenzung-Tools (Apple Screen Time, Google Family Link, Forest-App). Bei klinisch signifikanter Beeinträchtigung psychotherapeutische Beratung — primär Bearbeitung zugrundeliegender Probleme."
+      ],
+      "claim_phrasings_handled": [
+        "Social-Media-Sucht ist offizielle Diagnose",
+        "TikTok-Sucht ist klinisch anerkannt",
+        "Instagram macht süchtig wie Drogen",
+        "Smartphone-Sucht ist eine Krankheit"
+      ],
+      "trigger_composite": [
+        [
+          "social media",
+          "soziale medien",
+          "tiktok",
+          "instagram",
+          "smartphone",
+          "snapchat",
+          "facebook",
+          "internet",
+          "social-media",
+          "social-media-sucht"
+        ],
+        [
+          "sucht",
+          "süchtig",
+          "abhängig",
+          "abhängigkeit",
+          "diagnose",
+          "krankheit",
+          "klinisch",
+          "anerkannt",
+          "wie drogen"
+        ]
+      ]
+    },
+    {
+      "topic": "frueh_lesen_lernen_smartphone_mythos",
+      "headline": "Smartphone- und Tablet-Apps zur Lese-Frühförderung haben begrenzte Wirksamkeit für tatsächliche Lese-Kompetenz-Entwicklung; aktive Vorlesen-Interaktion zeigt deutlich größere Effekte (Hattie 2009 Visible Learning Effektstärke d~0,65 vs. typische Bildschirm-App-Studien d~0,10); gemeinsame Lese-Interaktion bleibt überlegen",
+      "year": 2024,
+      "source_url": "https://visible-learning.org/hattie-ranking-influences-effect-sizes-learning-achievement/",
+      "secondary_url": "https://educationendowmentfoundation.org.uk",
+      "source_label": "Hattie 2009/2023 Visible Learning + EEF Education Endowment Foundation + Cochrane Education Group + AAP Council on Communications and Media",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Smartphone-Apps ersetzen Vorlesen für Lese-Frühförderung ist FALSE. Smartphone- und Tablet-Apps zur Lese-Frühförderung (z.B. ABC Mouse, Khan Academy Kids, Anton, Lese-Apps verschiedener Hersteller) haben in randomisierten Studien begrenzte Wirksamkeit für tatsächliche Lese-Kompetenz-Entwicklung. Effektstärken typisch Cohens d 0,1-0,2 (klein). Im Vergleich: aktive Vorlesen-Interaktion zwischen Eltern und Kind, mit dialogischem Sprechen über Bilder/Inhalt (Dialogic Reading), zeigt in meta-analytischen Studien Effektstärken d 0,5-0,7 (moderat bis groß). Hattie 2009/2023 Visible Learning meta-meta-analyse identifizierte Lehrer-Schüler-Beziehung + reziprokes Lehren + formative Bewertung als stärkste Lernfaktoren — alle Beziehung-basiert, nicht App-basiert. EEF (Education Endowment Foundation, UK Tooling-Repository für evidenzbasierte Bildung): Empfehlung Lesen mit Kindern als Top-Effektivitäts-Intervention, Apps als Ergänzung NICHT als Ersatz. Cochrane Education-Reviews bestätigen ähnliche Hierarchie. Mögliche Erklärungen: Vorlesen umfasst (a) reichhaltigeren Sprach-Input (Eltern-Sprache hat größeres Vokabular als Kinder-App-Texte), (b) emotionale Bindung + Sicherheit, (c) dialogische Frage-Antwort-Interaktion, (d) Aufmerksamkeits-Modellierung. App-Lernen hat (a) standardisierte Inhalte, (b) immediate Feedback, (c) Skalierung — aber fehlt soziale Komponente. AAP Council on Communications and Media 2024 Empfehlung: Apps können Werkzeug sein, sollen aber Vorlesen NICHT ersetzen. Faktencheck-relevant: Aussagen wie Lese-Apps sind genauso gut wie Vorlesen widersprechen meta-analytischer Datenlage; differenzierte Position erkennt Apps als Ergänzung an, priorisiert aber gemeinsame Lese-Interaktion.",
+        "hattie_2023_visible_learning": "John Hattie, Visible Learning meta-meta-analyse (2009 erste Auflage, 2023 aktualisierte Version): über 1.500 Meta-Analysen integriert, mehr als 100.000 Studien gesamt. Effektstärken in Bildungs-Forschung: d <0,2 vernachlässigbar, 0,2-0,4 klein, 0,4-0,6 moderat, >0,6 groß. Vorlesen mit Kindern ist konsistent in der oberen Hälfte mit d 0,5-0,7. Bildschirm-Lerntechnologie alleinig: d 0,1-0,3 typisch.",
+        "dialogic_reading_evidenz": "Whitehurst GJ, Lonigan CJ. Child development and emergent literacy. Child Dev 1998;69:848-872 etabliert Dialogic Reading: Eltern stellen offene Fragen während Vorlesens, ermutigen Kind zu Eigen-Beiträgen, geben verbales Feedback. Meta-Analyse Mol 2008 J Educ Psychol: Effektstärke für Sprach-Entwicklung d 0,5-0,7. Gleichwertige App-basierte Interventionen erreichen diese Effektstärke nicht.",
+        "app_basierte_studien": "Cochrane-Reviews + EEF Toolkit: digitale Lern-Tools für frühe Lese-Entwicklung. Effektstärken typisch Cohens d 0,1-0,2 für Apps allein, leicht höher bei Kombination App + Eltern-Begleitung (d 0,2-0,3). Apps bieten standardisierte Inhalte + immediate Feedback, aber fehlen soziale Komponente und dialogische Interaktion.",
+        "eltern_sprach_input": "Hart B & Risley TR Meaningful Differences in the Everyday Experience of Young American Children 1995: Studie zeigt enorme Unterschiede in Wörter-Anzahl, die Kinder bis Alter 3 hören (variabel zwischen Familien-Klassen, ~13 Mio. bis ~45 Mio. Wörter). Diese frühen Sprach-Erfahrungen prädizieren spätere Lese-Kompetenz stark. Apps können Sprach-Volumen liefern, aber nicht in der reichen, individualisierten Form von Eltern-Kind-Interaktion.",
+        "screen_zeit_versus_inhaltsqualitaet": "Wichtige Differenzierung in der Forschung: nicht jede Bildschirmzeit ist gleich. Aktive Lern-Apps (Lese-Apps, Mathe-Apps) mit Eltern-Co-Use sind anders als passive Unterhaltung. Forschung zeigt: Co-Viewing (gemeinsame Nutzung mit Erwachsenem) erhöht Lern-Outcome erheblich (Strouse 2018 Educ Psychol Rev meta-analyse). Empfehlung: Apps gemeinsam nutzen, nicht als Babysitter.",
+        "context": "Lese-Förderungs-Diskurs wird durch Tech-Industrie-Marketing oft simplifiziert: App ersetzt Buch, App macht klüger. Meta-analytische Datenlage ist klar: gemeinsame Vorlesen-Interaktion bleibt überlegen für frühe Lese-Entwicklung. Faktencheck-relevant: Aussagen Apps reichen für Lese-Förderung widersprechen Hattie/EEF/Cochrane-Konsens; differenzierte Empfehlung umfasst Apps als Ergänzung und Vorlesen als Priorität."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: bei Familien mit Sprach-/Lese-Schwierigkeiten der Eltern (z.B. Migrant/innen-Familien mit Erstsprache nicht Deutsch) können Apps + KiTa-Programme + Bibliothek-Programme wichtige Ergänzung sein. Empfehlung Vorlesen ersetzt nichts ist nicht universell anwendbar — sozio-ökonomische + sprachliche Realitäten differenzieren.",
+        "Zwischenform: Audiobook-/Hörspiel-Konsum ist nicht Vorlesen, aber näher als App. Reichhaltiger Sprach-Input + Imagination, ohne Bildschirm-Komponente. Kann gute Ergänzung sein.",
+        "EEF Toolkit (https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit) ist kostenfreie Ressource für evidenzbasierte Bildungs-Empfehlungen, Effektstärken pro Intervention. Für Eltern + Lehrer/innen wertvoll."
+      ],
+      "claim_phrasings_handled": [
+        "Lese-Apps sind genauso gut wie Vorlesen",
+        "Tablet-Apps fördern frühe Lese-Kompetenz besser als Bücher",
+        "Smartphone-Apps ersetzen das Vorlesen",
+        "Khan Academy Kids macht Vorlesen unnötig"
+      ],
+      "trigger_composite": [
+        [
+          "lese-app",
+          "lese-apps",
+          "tablet-app",
+          "smartphone-app",
+          "khan academy",
+          "abc mouse",
+          "anton",
+          "vorlesen",
+          "lese-förderung"
+        ],
+        [
+          "genauso",
+          "ersetzt",
+          "besser als",
+          "anstatt",
+          "fördert",
+          "ersetzen",
+          "buch",
+          "bücher",
+          "kompetenz",
+          "lernen"
+        ]
+      ]
+    },
+    {
+      "topic": "kinder_smartphone_alter_mythos",
+      "headline": "Empfehlungen wie Kein Smartphone vor 14 (Wait Until 8th Movement) basieren auf Vorsichtsprinzip, nicht auf empirischer Schwellen-Forschung; AAP, Common Sense Media, BzKJ empfehlen differenzierte altersspezifische Begleitung statt fixer Altersgrenze; gestufte Geräte-Einführung (Featurephone → Smartphone) evidenz-konform",
+      "year": 2024,
+      "source_url": "https://www.aap.org/en/patient-care/media-and-children/",
+      "secondary_url": "https://www.commonsensemedia.org",
+      "source_label": "AAP Council on Communications and Media + Common Sense Media + BzKJ + Wait Until 8th Movement (Aktivisten)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Es gibt eine wissenschaftlich erwiesene Schwelle Kein Smartphone vor 14 ist FALSE. Wait Until 8th ist eine Aktivisten-Bewegung (gegründet 2017 in Texas) mit der Empfehlung, kein Smartphone vor 8. Klasse (~14) zu geben. Argument basiert auf Vorsichtsprinzip + Sorgen vor Online-Risiken + Hirnreife — NICHT auf empirisch nachgewiesener spezifischer Altersschwelle. AAP Council on Communications and Media 2024 + Common Sense Media + BzKJ Position: KEINE fixe Altersschwelle, stattdessen differenzierte altersspezifische Begleitung. Argumente für gestaffelte Verzögerung: (a) Hirnreifung präfrontaler Cortex bis ~25 Jahre, (b) Selbstkontroll-Entwicklung, (c) Soziale Reife für Online-Interaktion, (d) Schutz vor problematischen Inhalten. Argumente gegen rigide Schwelle: (a) Smartphone als Kommunikations-Tool für Sicherheit (Schul-Kontakt, Notfall), (b) Soziale Inklusion (wenn alle Klassen-Mitglieder Smartphone haben, ist Kind ohne Smartphone isoliert), (c) Individuelle Reife variabel. Empfohlen: gestufte Geräte-Einführung. Beispiele: 6-9 Jahre Kinder-Smartwatch (z.B. Anio mit GPS + begrenzter Kommunikation), 10-12 Featurephone (Nokia 3210, Light Phone, Wisephone), 13+ Smartphone mit Begleit-Apps + zeitlichen Limits + gemeinsamer Nutzung. Bei reifer Schule + reifer Familie + gestaffelter Einführung kann Smartphone-Aufnahme mit 12 oder 13 evidenz-konform sein. Bei jüngeren Kindern oder anfälliger Familie ist spätere Aufnahme sinnvoll. Faktencheck-relevant: pauschale Aussagen wie Smartphone vor 14 schadet immer überzeichnen Datenlage; differenzierte altersspezifische Empfehlungen sind evidenzbasierter.",
+        "wait_until_8th_movement": "Wait Until 8th: Aktivisten-Bewegung gegründet 2017 von Brooke Shannon (Texas, USA). Empfehlung: kein Smartphone vor 8. Klasse (USA-System, ~13-14 Jahre). Erfolgte Pledges in den USA + EU mit Hunderttausenden Eltern-Unterschriften. Keine wissenschaftlich-empirisch hergeleitete spezifische Schwelle bei 8. Klasse, sondern Vorsichts-Prinzip + Argument der gegenseitigen Unterstützung (Eltern-Bündnisse vermeiden Sozial-Druck einzelner Kinder ohne Smartphone).",
+        "aap_2024_position": "AAP Council on Communications and Media 2024 Position-Statement: keine fixe Altersgrenze für Smartphone-Einführung empfohlen. Stattdessen Family Media Plan-Konzept: jede Familie definiert eigene Regeln basierend auf (a) Alter und Reife des Kindes, (b) Familien-Werte, (c) konkretem Bedarf des Kindes. Empfehlung 2024: Smartphone-Einführung nicht vor mittlerem Schul-Alter (etwa 11-12), aber individuelle Variabilität anerkannt.",
+        "common_sense_media_alters": "Common Sense Media: gestaffelte Empfehlungen nach Alter. 0-3: kein Smartphone-Spielen außer kurze Video-Anrufe mit Familie. 4-6: <30 min/Tag mit hochqualitativen Bildungs-Inhalten und Eltern-Co-Use. 7-9: Featurephone für Sicherheit OK, kein eigenes Smartphone. 10-12: gestaffelter Einstieg mit klaren Regeln + Eltern-Aufsicht. 13+: gradueller Übergang zu mehr Autonomie mit fortgesetzten Mediengesprächen. Konkrete Empfehlungen alters-adaptiert.",
+        "gestufte_geraete_einfuehrung": "Geräte-Stufung als evidenzbasierter Kompromiss: (1) 6-9 Jahre Kinder-Smartwatch (Anio, Pixavi, Apple Watch SE im Familien-Setup): GPS-Tracking, Anrufe nur an gewählte Kontakte, keine offene App-Nutzung, kein Internet-Zugang. (2) 10-12 Jahre Featurephone (Nokia 3210 Reissue 2024, Light Phone II): Anrufen + SMS, kein Smartphone-OS, keine Apps, keine Soziale-Medien. (3) 13+ Jahre Smartphone mit (a) zeitlichen Limits via Family Link/Screen Time, (b) Eltern-genehmigten Apps, (c) gemeinsame Wochen-Reviews. Stufung umgeht das Filter-Problem teilweise, da weniger zu beschränken ist.",
+        "soziale_inklusion_argument": "Argument für rechtzeitige Smartphone-Einführung: in deutschen + österreichischen Schulen ist Smartphone-Verbreitung in 5./6. Klasse bei >70 Prozent (RKI BELLA, MPFS JIM Studie 2023). Schüler ohne Smartphone können von Klassen-Chats, gemeinsamen Spielen, Treffen-Organisation ausgeschlossen sein. Soziale Inklusion ist ein Faktor in der Familien-Entscheidung. Wait Until 8th adressiert das durch Eltern-Bündnisse: wenn Klassen-Mehrheit gemeinsam wartet, sinkt Sozial-Druck.",
+        "context": "Smartphone-Alter-Diskurs polarisiert: Pro-Wait-Camp warnt vor Risiken, Pro-Inclusion-Camp betont soziale + Sicherheits-Argumente. Wissenschaftlich: keine fixe Schwelle empirisch hergeleitet. Faktencheck-relevant: pauschale Aussagen wie 14 ist die wissenschaftliche Schwelle für Smartphone-Reife sind nicht korrekt; differenzierte alters- und reife-adaptierte Empfehlungen mit gestaffelter Einführung sind evidenzbasierter."
+      },
+      "context_notes": [
+        "DE Verbraucherschutz: Pixavi, Anio, Doro PhoneEasy verkaufen kindersichere Telefone in DE. Markt für gestaffelte Einführung wächst seit 2022. Frankreich hat 2024 Empfehlung gegen Smartphone vor 13, ohne gesetzliches Verbot.",
+        "Schul-Smartphone-Verbote: Frankreich 2018 nationales Verbot in Grund- und Mittelschulen, einige US-Bundesstaaten 2024 ähnliche Initiativen. Empirische Evaluation läuft 2024-2026. Vorläufige Befunde gemischt — keine universelle Wirkung auf Lern-Outcome dokumentiert.",
+        "Empfehlung praktisch für Eltern: Family Media Plan erstellen (AAP Tool kostenlos online), Klassen-Eltern-Gespräche über gemeinsame Strategien, gestaffelte Geräte-Einführung. Bei Sorgen über Geräte-Effekte zuerst Schlaf, Bewegung, soziale Direkt-Interaktion sicherstellen — diese Faktoren haben dokumentiert größere Auswirkungen als Bildschirmzeit selbst."
+      ],
+      "claim_phrasings_handled": [
+        "Kinder sollten kein Smartphone vor 14 haben",
+        "Es ist wissenschaftlich erwiesen dass Smartphone vor 13 schadet",
+        "Vor 8 Klasse darf Kind kein Smartphone bekommen",
+        "Wait Until 8th basiert auf wissenschaftlicher Evidenz"
+      ],
+      "trigger_composite": [
+        [
+          "smartphone",
+          "handy",
+          "iphone",
+          "wait until 8th",
+          "schwelle"
+        ],
+        [
+          "kein",
+          "vor 14",
+          "vor 13",
+          "vor 12",
+          "vor 8",
+          "vor 8 klasse",
+          "alter",
+          "altersgrenze",
+          "altersschwelle",
+          "schadet",
+          "wissenschaftlich erwiesen",
+          "darf nicht"
+        ]
+      ]
+    }
+  ]
+}

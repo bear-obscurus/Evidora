@@ -90,6 +90,7 @@ from services.reproduktion_pack import search_reproduktion, claim_mentions_repro
 from services.onkologie_pack import search_onkologie, claim_mentions_onkologie_cached
 from services.mental_health_pack import search_mental_health, claim_mentions_mental_health_cached
 from services.substanzen_pack import search_substanzen, claim_mentions_substanzen_cached
+from services.digital_familie_pack import search_digital_familie, claim_mentions_digital_familie_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.clinvar import search_clinvar
@@ -754,6 +755,16 @@ async def check_claim(request: Request):
         if claim_mentions_substanzen_cached(claim):
             tasks.append(cached("Substanzen-Konsens", search_substanzen, analysis))
             queried_names.append("Substanzen-Konsens (NIDA + EMCDDA + EFSA + WHO + Cochrane + FDA)")
+        # Digital-Familie-Pack (10 Topics: Bildschirmzeit-Hirnentwicklung,
+        # TikTok-Algorithmus, Smartphone-Brain-Drain, Kinderschutz-Filter,
+        # Online-Spiele-Aggression, iGen-Depression, Cyberbullying,
+        # Social-Media-Addiction, Lese-Apps-vs-Vorlesen, Smartphone-Alter).
+        # Quellen: AAP, APA, Orben Oxford, ABCD Study NIH, EU Kids Online,
+        # Common Sense Media, BzKJ, Hattie, EEF, Cochrane, NICE.
+        # Hohe Lehrer-/Eltern-Relevanz fuer Erziehungs-Kontext.
+        if claim_mentions_digital_familie_cached(claim):
+            tasks.append(cached("Digital-Familie-Konsens", search_digital_familie, analysis))
+            queried_names.append("Digital-Familie-Konsens (AAP + APA + Orben Oxford + ABCD Study + EU Kids Online + BzKJ)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
