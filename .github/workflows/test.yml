@@ -34,3 +34,43 @@ jobs:
       - name: Run topic_match unit tests
         working-directory: website/backend
         run: python -m pytest tests/test_topic_match.py -v
+
+  check-new-urls:
+    name: New URLs in data/*.json must work
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    # Diff-basierter URL-Check: nur die URLs prüfen, die in diesem PR
+    # neu hinzugekommen sind. Alte URLs werden vom periodischen Voll-
+    # Audit (cron-Job auf prod) gehandhabt — dieses Gate soll PRs nicht
+    # blockieren wegen Tot-Links, die schon vor dem PR existierten.
+    #
+    # Klassifizierung:
+    #   OK       2xx/3xx — alles gut
+    #   DEAD     404/410 — echt tot, Gate failed
+    #   BLOCKED  403 — Bot-Filter, Browser-OK probable, nur Warnung
+    #   TIMEOUT  transient, nur Warnung
+    # Exit-Code != 0 nur bei DEAD.
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # need full history for diff
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install httpx
+
+      - name: Check newly-added URLs in data/*.json
+        working-directory: website/backend
+        run: |
+          python3 tools/check_new_urls.py \
+            --base origin/${{ github.base_ref }} \
+            --head HEAD
