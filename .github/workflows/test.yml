@@ -21,7 +21,7 @@ jobs:
     # test for a PR check.
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -56,7 +56,7 @@ jobs:
     # Exit-Code != 0 nur bei DEAD.
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0  # need full history for diff
 
