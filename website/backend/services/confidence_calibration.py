@@ -64,6 +64,7 @@ AUTHORITATIVE_PACK_MARKERS = (
     "Reproduktions-Medizin-Konsens",
     "Onkologie-Konsens",
     "Mental-Health-Konsens",
+    "Substanzen-Konsens",
 )
 
 # Caps abhängig von Quellen-Anzahl (n_sources_with_results).

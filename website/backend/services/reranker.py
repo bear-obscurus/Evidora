@@ -160,6 +160,7 @@ _AUTHORITATIVE_INDICATORS = (
     "reproduktion_konsens_fact",         # Reproduktions-Pack (NEJM Wilcox + Cochrane + ACOG + AUA + NAMS + NIH + WHO)
     "onkologie_konsens_fact",            # Onkologie-Pack (NCI + DKFZ + Cochrane + Cancer Research UK + USPSTF + IARC)
     "mental_health_konsens_fact",        # Mental-Health-Pack (DGPPN + NIMH + Cochrane + APA + NICE + WHO)
+    "substanzen_konsens_fact",           # Substanzen-Pack (NIDA + EMCDDA + EFSA + WHO + Cochrane + FDA)
     "medlineplus_health_topic",          # NIH MedlinePlus Live (National Library of Medicine, US)
     "cdc_newsroom_item",                 # CDC Newsroom Live (Centers for Disease Control, US)
     "clinvar_variant",                   # NIH ClinVar Live (NCBI Genetic Variants, US)

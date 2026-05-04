@@ -89,6 +89,7 @@ from services.geschichts_mythen2_pack import search_geschichts_mythen2, claim_me
 from services.reproduktion_pack import search_reproduktion, claim_mentions_reproduktion_cached
 from services.onkologie_pack import search_onkologie, claim_mentions_onkologie_cached
 from services.mental_health_pack import search_mental_health, claim_mentions_mental_health_cached
+from services.substanzen_pack import search_substanzen, claim_mentions_substanzen_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.clinvar import search_clinvar
@@ -743,6 +744,16 @@ async def check_claim(request: Request):
         if claim_mentions_mental_health_cached(claim):
             tasks.append(cached("Mental-Health-Konsens", search_mental_health, analysis))
             queried_names.append("Mental-Health-Konsens (DGPPN + NIMH + Cochrane + APA + NICE + WHO)")
+        # Substanzen-Pack (10 Topics: Cannabis-Hirn-Adoleszenz, Mikrodosing-
+        # LSD/Psilocybin, Energy-Drinks-Herz, Alkohol-Rotwein-Herz, Vape-
+        # Sicherheit, Kratom-Natürlich-Mythos, Drogen-Test-Filter, CBD-
+        # Wundermittel, Cannabis-Legalisierung-Konsum, Detox-Drogen).
+        # Quellen: NIDA, EMCDDA, EFSA, WHO, Cochrane, FDA, CDC, AHA,
+        # AAP, NCCIH, BfR, RKI, NICE, peer-reviewed Studien (Meier PNAS,
+        # Szigeti eLife, Lancet GBD 2018, Sevigny 2024 Meta).
+        if claim_mentions_substanzen_cached(claim):
+            tasks.append(cached("Substanzen-Konsens", search_substanzen, analysis))
+            queried_names.append("Substanzen-Konsens (NIDA + EMCDDA + EFSA + WHO + Cochrane + FDA)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))
