@@ -88,6 +88,7 @@ from services.kunst_kultur_pack import search_kunst_kultur, claim_mentions_kunst
 from services.geschichts_mythen2_pack import search_geschichts_mythen2, claim_mentions_geschichts_mythen2_cached
 from services.reproduktion_pack import search_reproduktion, claim_mentions_reproduktion_cached
 from services.onkologie_pack import search_onkologie, claim_mentions_onkologie_cached
+from services.mental_health_pack import search_mental_health, claim_mentions_mental_health_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.clinvar import search_clinvar
@@ -729,6 +730,19 @@ async def check_claim(request: Request):
         if claim_mentions_onkologie_cached(claim):
             tasks.append(cached("Onkologie-Konsens", search_onkologie, analysis))
             queried_names.append("Onkologie-Konsens (NCI + DKFZ + Cochrane + Cancer Research UK + USPSTF + IARC)")
+        # Mental-Health-Pack (10 Topics: Depression-Charakterschwäche,
+        # Antidepressiva-Abhängigkeit, Psychotherapie-Wirkung, Werther/
+        # Papageno-Suizidberichterstattung, Borderline-Klischee, ADHS-
+        # Überdiagnose, Psychopharmaka-Persönlichkeit, Freud-Trauminter-
+        # pretation, Suizid-Ankündigung, Essstörung-Willens). Quellen:
+        # DGPPN S3-Leitlinien, NIMH, Cochrane Common Mental Disorders
+        # Group, APA DSM-5-TR, NICE Guidelines, Niederkrotenthaler,
+        # Faraone World Federation of ADHD, Bulik Lancet Psychiatry GWAS.
+        # Hoher Stigma-Reduktions-Wert + Lehrer-Relevanz Schul-/
+        # Erziehungs-Kontext.
+        if claim_mentions_mental_health_cached(claim):
+            tasks.append(cached("Mental-Health-Konsens", search_mental_health, analysis))
+            queried_names.append("Mental-Health-Konsens (DGPPN + NIMH + Cochrane + APA + NICE + WHO)")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

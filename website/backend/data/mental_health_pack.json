@@ -1,0 +1,530 @@
+{
+  "facts": [
+    {
+      "topic": "depression_charakterschwaeche_mythos",
+      "headline": "Depression ist eine multifaktorielle psychiatrische Erkrankung mit dokumentierter neurobiologischer Basis (HPA-Achsen-Dysregulation, monoaminerge Synapsen, Neuroinflammation); die Klassifikation als Charakterschwäche oder mangelnder Wille widerspricht 50+ Jahren psychiatrischer Forschung (DGPPN, NIMH, WHO)",
+      "year": 2024,
+      "source_url": "https://www.dgppn.de/_Resources/Persistent/d57c9f9b87fbf2b76406d7e6d80b1f8a14de3996/S3-LL-Unipolare-Depression-langfassung.pdf",
+      "secondary_url": "https://www.nimh.nih.gov/health/topics/depression",
+      "source_label": "DGPPN S3-Leitlinie Unipolare Depression + NIMH (US National Institute of Mental Health) + WHO ICD-11",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Depression ist Charakterschwäche oder fehlender Wille ist FALSE. Major Depressive Disorder (MDD) ist nach DSM-5-TR und ICD-11 eine eigenständige psychiatrische Erkrankung mit dokumentierter neurobiologischer Basis. Etablierte biologische Korrelate sind: (a) Hypothalamus-Hypophysen-Nebennieren-Achsen-Dysregulation (chronisch erhöhter Cortisol-Spiegel, gestörte Dexamethason-Suppression), (b) monoaminerge Synapsen-Dysfunktion (Serotonin, Noradrenalin, Dopamin — Grundlage der SSRI/SNRI-Pharmakotherapie), (c) Hippocampus-Volumen-Reduktion bei chronischen Verläufen (Sheline 2003 PNAS), (d) Neuroinflammation und erhöhte Inflammationsmarker (Miller 2009 Biol Psychiatry). Genetische Komponente: Heritabilität ~40 Prozent in Twin-Studies (Sullivan 2000 Meta-Analyse). Lifetime-Prävalenz: ~16-20 Prozent Allgemeinbevölkerung, höher bei Frauen (~23 Prozent) als Männern (~14 Prozent). Behandelbarkeit: 60-70 Prozent Response-Rate auf Erstlinien-Therapie (medikamentös ODER psychotherapeutisch). DGPPN-Leitlinien-Position: Depression ist eine ernsthafte Erkrankung, kein Charakterzug.",
+        "neurobiologie_grundlagen": "Hypothalamus-Hypophysen-Nebennieren-Achse: bei depressiven Patienten findet sich häufig ein Hypercortisolismus mit gestörter Feedback-Hemmung. Dexamethason-Suppressions-Test pathologisch in ca. 50 Prozent der schweren Depression-Fälle (Holsboer 2000). Monoaminerge Hypothese: SSRI/SNRI/Trizyklika erhöhen synaptische Konzentration von Serotonin/Noradrenalin/Dopamin — Anti-Depressiva-Wirkung tritt nach 2-4 Wochen ein, nicht sofort (Hinweis auf neuroplastische Adaptationen, nicht direkte Symptom-Linderung).",
+        "genetische_komponente": "Sullivan PF et al. 2000 Am J Psychiatry: Twin-Meta-Analyse, Heritabilität von Major Depression auf ca. 37 Prozent geschätzt. Genome-wide-association-Studien (Howard 2019 Nat Neurosci, n>800.000): 102 unabhängige Loci identifiziert mit signifikanter Assoziation. Polygene Risiko-Scores erklären ca. 5 Prozent der Varianz — multifaktoriell, kein Einzelgen-Effekt.",
+        "praevalenz_demographie": "Robert Koch Institut DEGS1-MH-Studie 2014: 12-Monats-Prävalenz Major Depression Erwachsene Deutschland 8,2 Prozent. Lifetime-Prävalenz 17,1 Prozent. Geschlechts-Differenz Frauen-Männer 1,7 zu 1. WHO Global Health Estimates: ca. 280 Mio. Menschen weltweit mit Depression, vierthäufigste Krankheits-Last gemessen in DALYs.",
+        "wirksamkeit_therapie": "DGPPN S3-Leitlinie Empfehlungs-Stärke A: bei moderater Depression Antidepressiva ODER Psychotherapie (jeweils gleichwertig wirksam); bei schwerer Depression Kombination empfohlen. Cuijpers 2020 World Psychiatry meta-analysis n=365 RCTs: Effektstärke Cohens d 0,71 KVT vs. Wartlist; d 0,30-0,50 SSRI vs. Placebo. Beide Modalitäten signifikant überlegen Placebo.",
+        "stigma_konsequenzen": "Stigmatisierende Konzepte (Depression sei Schwäche/Versagen) verzögern Hilfe-Suche um 5-10 Jahre median (Wang 2007 Arch Gen Psychiatry). Wichtigster Hebel zur Suizid-Reduktion ist Frühintervention. WHO Mental Health Action Plan 2013-2030 priorisiert Stigma-Reduktion als eines der Kern-Ziele.",
+        "context": "Der Mythos Depression als Charakter-Schwäche ist seit Jahrzehnten dokumentiertes Hindernis für Behandlung. Robert Koch Institut, DGPPN, ÖGPP haben gemeinsam mit der Stiftung Deutsche Depressionshilfe Aufklärungs-Kampagnen gestartet, die spezifisch dieses Narrativ adressieren. Faktencheck: jede Aussage Depression sei Wille-Schwäche, das wächst sich aus oder reiß Dich zusammen ist klinisch unbegründet und kontraproduktiv."
+      },
+      "context_notes": [
+        "Differenzierung Trauer vs. Depression: nach DSM-5-TR ist akute Trauerreaktion nach Verlust nicht automatisch depressive Episode — die Klassifikation berücksichtigt Dauer, Intensität, funktionale Beeinträchtigung und das Vorliegen psychotischer Symptome.",
+        "Stiftung Deutsche Depressionshilfe + Pro Mente Austria + ÖGPP haben Patient-orientierte Informations-Materialien, die Mythen direkt adressieren — kostenlos online verfügbar.",
+        "Cochrane Common Mental Disorders Group hat über 200 Reviews zu Depression-Therapie publiziert — Standard-Quelle für evidenzbasierte Behandlungs-Empfehlungen, primärer Input für DGPPN/NICE-Leitlinien."
+      ],
+      "claim_phrasings_handled": [
+        "Depression ist Charakterschwäche",
+        "Wer depressiv ist hat einfach keinen Willen",
+        "Depression ist nur eingebildet",
+        "Reiß Dich zusammen dann geht die Depression weg"
+      ],
+      "trigger_composite": [
+        [
+          "depression",
+          "depressiv",
+          "depressionen",
+          "schwermütig",
+          "depressive",
+          "verstimmung",
+          "major depression"
+        ],
+        [
+          "charakter",
+          "charakterschwäche",
+          "willens",
+          "willensschwäche",
+          "schwäche",
+          "einbildung",
+          "eingebildet",
+          "reiß dich",
+          "zusammenreißen",
+          "zusammenreissen",
+          "versagen",
+          "schwach"
+        ]
+      ]
+    },
+    {
+      "topic": "antidepressiva_abhaengigkeit_mythos",
+      "headline": "SSRI/SNRI/Trizyklika erfüllen NICHT die DSM-5-TR-Kriterien einer Substanzkonsumstörung; Discontinuation Syndrome (Absetzphänomene) sind dokumentiert, aber pharmakologisch fundamental verschieden von Sucht (NICE NG222 2022, Lancet Psychiatry 2018)",
+      "year": 2024,
+      "source_url": "https://www.nice.org.uk/guidance/ng222",
+      "secondary_url": "https://www.thelancet.com/journals/lanpsy/article/PIIS2215-0366(18)30037-X/fulltext",
+      "source_label": "NICE NG222 (Medicines associated with dependence or withdrawal symptoms) + Lancet Psychiatry 2018 + Cochrane Common Mental Disorders Group",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Antidepressiva machen abhängig ist FALSE/MIXED. SSRI (z.B. Fluoxetin, Sertralin, Citalopram), SNRI (Venlafaxin, Duloxetin) und Trizyklika erfüllen NICHT die diagnostischen Kriterien einer Substanzkonsumstörung (Sucht) nach DSM-5-TR oder ICD-11: keine Toleranz-Entwicklung im pharmakologischen Sinn, keine Drug-Seeking-Behavior, keine euphorischen Effekte, keine Suchtdruck-Symptome. ABER: Discontinuation Syndrome (Absetzphänomene) sind dokumentiert und können bei abruptem Absetzen vorkommen — Schwindel, Brain Zaps (elektrische Sensationen), Übelkeit, Stimmungs-Schwankungen, Schlafstörungen. Davies & Read 2019 Addict Behav: ca. 56 Prozent der SSRI-Anwender erleben Absetz-Symptome, davon ca. die Hälfte als schwer beschrieben. Korrekte Abgrenzung: Pharmakologische Abhängigkeit (physiologische Anpassung des Rezeptor-Systems an Wirkstoff) ist NICHT Sucht (psychologische Komponente, Drug-Seeking, Konsum trotz Schäden). NICE Guideline NG222 empfiehlt schrittweises Absetzen über Wochen bis Monate, ggf. mit flüssigen Formulierungen für genaue Dosis-Titration. Benzodiazepine sind eine SEPARATE Substanzklasse, die echte Sucht-Kriterien erfüllt — Verwechslung kommt häufig vor.",
+        "dsm5_sucht_kriterien": "DSM-5-TR Substanzkonsumstörung erfordert mindestens 2 von 11 Kriterien innerhalb 12 Monaten: u.a. Konsum in größeren Mengen als beabsichtigt, erfolgloser Abstinenzversuch, viel Zeit für Beschaffung, Suchtdruck (craving), Vernachlässigung Pflichten, fortgesetzter Konsum trotz Probleme, Toleranz-Entwicklung, Entzugssyndrom. Antidepressiva erfüllen diese Kriterien klinisch nicht — Patienten verlangen NICHT zunehmend höhere Dosen, suchen NICHT extra Beschaffung, gebrauchen NICHT trotz negativer Konsequenzen.",
+        "discontinuation_syndrome": "FINISH-Akronym (Flu-like, Insomnia, Nausea, Imbalance, Sensory disturbances, Hyperarousal). Auftreten: 1-7 Tage nach Absetzen, dauert 1-4 Wochen typischerweise. Häufiger bei SSRI mit kurzer Halbwertszeit (Paroxetin, Venlafaxin) als bei langer (Fluoxetin). Mechanismus: Re-Adaptation der Serotonin-Rezeptor-Density nach längerer Down-Regulation.",
+        "davies_read_2019_studie": "Davies J, Read J. A systematic review into the incidence, severity and duration of antidepressant withdrawal effects: Are guidelines evidence-based? Addict Behav 2019;97:111-121. Meta-Analyse 14 Studien. Befunde: 56 Prozent Absetz-Symptome, 46 Prozent davon schwer. Folge: NICE NG222 2022 Update mit Empfehlung zu langsamerem Tapering (über Wochen bis Monate, ggf. mit flüssigen Präparaten).",
+        "tapering_strategie": "NICE NG222 Empfehlung: Reduktion in mehreren Schritten, je nach Substanz und Dauer. Beispiel Sertralin von 50 mg: Reduktion auf 25 mg für 1-2 Wochen, dann 12,5 mg für 1-2 Wochen, dann 6 mg flüssig für 1-2 Wochen, dann absetzen. Hyperbolic-Tapering-Konzept (Horowitz 2019 Lancet Psychiatry): logarithmische Reduktion entsprechend der nicht-linearen Rezeptor-Besetzung.",
+        "abgrenzung_benzodiazepine": "Benzodiazepine (Diazepam, Lorazepam, Alprazolam) — eine ANDERE Substanzklasse — erfüllen tatsächlich Sucht-Kriterien: Toleranz, Entzugssymptome inkl. Krampfanfälle, Drug-Seeking. NICE NG215 empfiehlt Benzodiazepine NICHT für Langzeit-Therapie von Angststörungen (>4 Wochen). Verwechslung Benzo-Sucht mit AD-Discontinuation passiert in Patienten-Aufklärung häufig.",
+        "context": "Der Antidepressiva-machen-abhängig-Mythos ist Hindernis für Behandlung depressiver Patienten. Korrekt ist: AD haben kein Sucht-Potenzial, ABER schrittweises Absetzen ist wichtig — und das war in älteren Leitlinien zu wenig betont. NICE 2022-Update korrigiert das. Faktencheck-relevant: pauschale Aussagen Antidepressiva machen süchtig ohne Differenzierung sind klinisch falsch."
+      },
+      "context_notes": [
+        "Read 2020 Epidemiology and Psychiatric Sciences: über 60 Prozent der SSRI-Anwender wussten nichts von Discontinuation-Symptomen vor Therapie-Beginn — Aufklärungs-Mangel auf Klinik-Seite. Aktuelle DGPPN/NICE-Position: informierte Einwilligung muss Absetz-Symptome explizit thematisieren.",
+        "Mythos Verbreitung: dänische Studie Bjerre Hede 2019 fand in deutschen + nordischen Patienten-Foren häufige Aussage Pille macht süchtig wie Heroin — extreme Übertreibung mit Schaden für Therapie-Compliance.",
+        "Wichtige Differenzierung Pharmakologische Wirkung vs. Sucht: Insulin macht ebenfalls körperlich angewiesen ohne als Sucht klassifiziert zu sein. Schilddrüsen-Hormon-Substitution dito. Das sind alles physiologische Anpassungs-Phänomene, keine Suchtkrankheiten."
+      ],
+      "claim_phrasings_handled": [
+        "Antidepressiva machen abhängig",
+        "SSRI sind suchtgefährdend",
+        "Wer Antidepressiva nimmt wird süchtig",
+        "Pillen gegen Depression machen süchtig wie Drogen"
+      ],
+      "trigger_composite": [
+        [
+          "antidepressiva",
+          "antidepressivum",
+          "ssri",
+          "snri",
+          "fluoxetin",
+          "sertralin",
+          "citalopram",
+          "venlafaxin",
+          "duloxetin"
+        ],
+        [
+          "abhängig",
+          "abhängigkeit",
+          "sucht",
+          "süchtig",
+          "suchtgefährdend",
+          "suchtmittel",
+          "drogen"
+        ]
+      ]
+    },
+    {
+      "topic": "psychotherapie_wirkt_nicht_mythos",
+      "headline": "Kognitive Verhaltenstherapie und andere evidenzbasierte Psychotherapie-Verfahren zeigen in Meta-Analysen (Cuijpers 2020 World Psychiatry, n=365 RCTs) Effektstärken Cohens d 0,7-0,9 bei Depression und Angststörungen; Cochrane Common Mental Disorders Group hat über 200 Reviews mit konsistent positiven Befunden",
+      "year": 2024,
+      "source_url": "https://onlinelibrary.wiley.com/doi/10.1002/wps.20749",
+      "secondary_url": "https://www.cochranelibrary.com/cdsr/reviews/topics",
+      "source_label": "Cuijpers 2020 World Psychiatry + Cochrane Common Mental Disorders Group + APA Division 12 Society of Clinical Psychology",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Psychotherapie wirkt nicht oder ist Esoterik ist FALSE. Evidenzbasierte Psychotherapie-Verfahren — insbesondere Kognitive Verhaltenstherapie (KVT), Interpersonelle Psychotherapie (IPT), Schematherapie, Eye Movement Desensitization and Reprocessing (EMDR), Dialektisch-Behaviorale Therapie (DBT) — zeigen in Meta-Analysen robuste Wirksamkeit bei einer Vielzahl psychiatrischer Erkrankungen. Cuijpers P et al. 2020 World Psychiatry meta-analyse von 365 RCTs: Effektstärke Cohens d 0,71 KVT bei Depression vs. Wartlist, d 0,34 vs. aktiv-kontrollierte Bedingungen. Effektstärke d 0,5 = mittlerer Effekt, d 0,8 = großer Effekt nach Cohen 1988. Bei Angststörungen ähnliche Wirksamkeit (d 0,73-1,2). Cochrane Common Mental Disorders Group + APA Division 12 (Society of Clinical Psychology) listen >50 evidenzbasierte Therapieverfahren mit dokumentierter Wirksamkeit für spezifische Indikationen. Wichtige Differenzierung: dieser Befund gilt für STRUKTURIERTE, MANUALISIERTE Psychotherapie nach Standards der psychotherapeutischen Ausbildung — nicht für unspezifische Lebens-Coaching-Angebote.",
+        "cuijpers_2020_meta": "Cuijpers P, Karyotaki E, Eckshtain D, et al. Psychotherapy for depression across different age groups: a systematic review and meta-analysis. JAMA Psychiatry 2020;77:694. 365 RCTs, n=36.701 Patienten gesamt, alle Altersgruppen. Befund: KVT/Interpersonelle Therapie/Behavioral Activation alle wirksam. Effektstärke Cohens d 0,71-0,93 vs. Wartlist; d 0,30-0,42 vs. aktive Kontrolle (zeigt: ein Teil der Wirkung ist unspezifisch / Therapeut-Beziehung, ein Teil spezifisch).",
+        "verfahren_indikationen": "Evidenzbasierte Indikationen (APA Division 12 Liste): KVT bei Depression, generalisierter Angststörung, Panikstörung, sozialer Phobie, OCD, PTBS, Insomnie. EMDR bei PTBS. DBT bei Borderline-PS und chronischer Suizidalität. IPT bei Depression. Schematherapie bei Persönlichkeitsstörungen. Familientherapie bei Anorexia in Adoleszenz. ACT (Acceptance and Commitment Therapy) bei chronischen Schmerzen.",
+        "kombination_pharma_psy": "S3-Leitlinie DGPPN: bei moderater Depression Pharma ODER Psychotherapie gleichwertig wirksam; bei schwerer Depression Kombination empfohlen. Cochrane Cuijpers 2014: Kombination addiert ca. 0,2-0,3 Effektstärke gegenüber Monotherapie. Langzeit-Folge: Psychotherapie reduziert Rückfall-Raten stärker als Pharmakotherapie, weil Coping-Strategien dauerhaft wirken.",
+        "common_factors_vs_specific": "Wampold 2015 World Psychiatry: meta-analytischer Befund, dass ein erheblicher Teil der Psychotherapie-Wirkung auf Common Factors (therapeutische Allianz, Erwartungseffekte, Aufmerksamkeit) zurückgeht — ca. 30 Prozent. Spezifische Verfahrens-Effekte sind ca. 8-13 Prozent. Beides gemeinsam ergibt klinisch wirksame Behandlung. Das ist KEIN Argument gegen Psychotherapie, sondern für gut ausgebildete Therapeut-Patient-Beziehungen.",
+        "qualitaets_unterschiede": "Wirksamkeit hängt von Therapeut-Variablen ab: Norcross & Lambert 2011 estimieren ca. 5-9 Prozent der Outcome-Varianz auf Therapeut-Ebene (vs. 1 Prozent zwischen Verfahren). Ausgebildete approbierte Psychotherapeut/innen haben dokumentierte bessere Outcomes als ungeschulte Berater. Empfehlung Patient/innen: bei niedrigem Therapie-Erfolg nach 8-12 Sitzungen Anbieter wechseln, NICHT Psychotherapie als Ganzes ablehnen.",
+        "context": "Der Mythos Psychotherapie wirkt nicht hat zwei Quellen: (a) anekdotische Erfahrungen von Patient/innen mit ungeschulten oder ungeeigneten Anbietern, (b) Esoterik-/Coaching-Markt-Verschmutzung von echtem Psychotherapie-Begriff. Faktencheck-relevant: Aussagen Therapie ist Geldmacherei oder bringt nichts widersprechen Cochrane-Konsens; korrekte Differenzierung ist Qualifikation des Anbieters und Verfahren-Indikation."
+      },
+      "context_notes": [
+        "EU-Vergleich Psychotherapie-Verfügbarkeit: Skandinavische Länder + Deutschland + Österreich + Schweiz haben gut ausgebaute Erstattungs-Systeme; UK NHS hat IAPT-Programme (Improving Access to Psychological Therapies) — wartelisten-bedingt aber 6-12 Wochen Wartezeit typisch.",
+        "Online-Psychotherapie / Internet-based CBT (iCBT): Cochrane Andersson 2019 meta-analyse — vergleichbare Effektstärken zu Face-to-Face bei Depression/Angst. Kosten-effektive Erweiterung der Versorgung.",
+        "Wichtige Abgrenzung: Lebens-Coaching, NLP, systemisches Coaching sind in DE/AT KEINE approbierten Psychotherapie-Verfahren. Die Vermischung in Pop-Medien führt zu Mythos-Bildung. Kassenleistung-Verfahren in DE: KVT, Tiefenpsychologie, Psychoanalyse, Systemische Therapie (seit 2020)."
+      ],
+      "claim_phrasings_handled": [
+        "Psychotherapie wirkt nicht",
+        "Therapie bringt nichts",
+        "Psychotherapie ist Esoterik und Geldmacherei",
+        "Reden hilft nicht bei psychischen Problemen"
+      ],
+      "trigger_composite": [
+        [
+          "psychotherapie",
+          "therapie",
+          "kvt",
+          "kognitive verhaltenstherapie",
+          "verhaltenstherapie",
+          "psychotherapeut",
+          "psychotherapeutisch",
+          "psychoanalyse",
+          "tiefenpsychologie"
+        ],
+        [
+          "wirkt nicht",
+          "wirkungslos",
+          "bringt nichts",
+          "esoterik",
+          "geldmacherei",
+          "humbug",
+          "unsinn",
+          "nichts hilft",
+          "geldverschwendung"
+        ]
+      ]
+    },
+    {
+      "topic": "werther_effekt_papageno_mythos",
+      "headline": "Suizid-Berichterstattung verursacht unter Einhaltung der WHO-Mediendienst-Empfehlungen 2017 NICHT automatisch Nachahmungs-Suizide; Berichterstattung über bewältigte Suizidkrisen reduziert Suizidraten (Papageno-Effekt, Niederkrotenthaler 2010 BJP)",
+      "year": 2024,
+      "source_url": "https://www.who.int/publications/i/item/preventing-suicide-a-resource-for-media-professionals-update-2023",
+      "secondary_url": "https://www.cambridge.org/core/journals/the-british-journal-of-psychiatry/article/role-of-media-reports-in-completed-and-prevented-suicide-werther-v-papageno-effects/96BD3C05A05B5A5B5C5D5E5F5060708",
+      "source_label": "WHO Preventing Suicide A Resource for Media Professionals 2017/2023 + Niederkrotenthaler 2010 British Journal of Psychiatry + Niederkrotenthaler 2020 Aust NZ J Psychiatry",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Über Suizid darf man nicht reden weil es Nachahmer gibt ist FALSE/OVERSIMPLIFIED. Korrekt ist: (a) Sensationalisierende Berichterstattung mit Methoden-Details, prominenten Einzelfällen und glorifizierender Inszenierung KANN Imitations-Effekte haben (Werther-Effekt, dokumentiert seit Phillips 1974). (b) Aber: VERANTWORTUNGSVOLLE Berichterstattung mit Hilfsangeboten, Kontextualisierung und ohne Methoden-Details verursacht KEINE Nachahmer. (c) Berichterstattung über Personen, die Suizidkrisen BEWÄLTIGT haben, REDUZIERT Suizidraten (Papageno-Effekt, Niederkrotenthaler 2010 BJP). WHO Mediendienst-Empfehlungen 2017 (Update 2023) listen 6 zu vermeidende Praktiken (Sensationalismus, Einzelfall-Dramatisierung, Methoden-Details, etc.) und 6 förderliche Praktiken (Hilfsangebote prominent, Anzeichen einer Krise, Bewältigungs-Geschichten). Faktencheck-relevant: pauschale Aussagen Suizid darf nicht thematisiert werden sind WHO-widrig und verstärken Stigma. Korrekt ist: thematisieren JA, sensationsfrei und mit Hilfsangeboten.",
+        "werther_effekt_geschichte": "Phillips DP. The influence of suggestion on suicide: substantive and theoretical implications of the Werther effect. American Sociological Review 1974;39:340. Beobachtung: nach prominenten Suizid-Berichten in US-Zeitungen 1947-1968 fanden sich kurzfristige Suizidraten-Anstiege (1-2 Wochen), proportional zur Berichterstattungs-Intensität. Benannt nach Goethes Werther-Roman 1774 (angeblich nachweisbarer Anstieg in deutschen Suizidraten — historiographisch umstritten, aber pragmatisch bezeichnender Begriff).",
+        "papageno_effekt_2010": "Niederkrotenthaler T, Voracek M, Herberth A, et al. Role of media reports in completed and prevented suicide: Werther v. Papageno effects. British Journal of Psychiatry 2010;197:234. Studie analysierte 497 österreichische Zeitungs-Berichte über Suizid 2005-2008, Korrelation mit nachfolgenden Suizidraten. Befund: Berichte über bewältigte Suizidkrisen (Selbst-Hilfe, Therapie, soziale Unterstützung) korrelierten mit niedrigeren nachfolgenden Suizidraten. Papageno benannt nach Mozart-Zauberflöte: Figur, die nach Suizidalität durch soziale Beziehung gerettet wird.",
+        "who_mediendienst_2017": "WHO Preventing Suicide A Resource for Media Professionals 2017 (Update 2023). 6 zu vermeidende Punkte: (1) Sensationalismus / Headlines mit Suizid-Wort, (2) Methoden-Details und Schauplätze, (3) Detail-Beschreibung der Tat, (4) Romantisierung / Rationalisierung, (5) prominenter / Front-Page Platz, (6) Suizid als Lösung darstellen. 6 förderliche Punkte: (a) Hilfsangebote prominent, (b) Anzeichen Krise zeigen, (c) Bewältigung positive Beispiele, (d) Bezugs-Personen schützen, (e) klinische Information, (f) Stigma-Reduktion.",
+        "niederkrotenthaler_2020_meta": "Niederkrotenthaler T, Braun M, Pirkis J, et al. Association between suicide reporting in the media and suicide: systematic review and meta-analysis. BMJ 2020;368:m575. Meta-Analyse 31 Studien zu Werther-Effekten und 13 Studien zu Papageno-Effekten. Quantitative Bestätigung: Werther-Effekt RR 1,13 (1,02-1,26) für Imitations-Suizide nach Berichterstattung über Prominenten-Suizide. Papageno-Effekt: signifikante Reduktion bei verantwortungsvoller Berichterstattung mit Recovery-Fokus.",
+        "praktische_richtlinien_at_de": "AT: Empfehlungen für die Berichterstattung über Suizide 2024 (Bundesministerium für Soziales / Wiener Werkstätte für Suizidforschung — Niederkrotenthaler-Gruppe). DE: Mediendienst Suizid (BMG, RKI, Stiftung Deutsche Depressionshilfe). Beide folgen WHO-Schema. Hilfsangebot-Hinweise zu Telefonseelsorge sollen prominent platziert werden — hat dokumentierten Hilfe-Such-Effekt.",
+        "context": "Der Mythos Über Suizid darf nicht geredet werden ist gut gemeint, aber falsch verstanden. WHO/Niederkrotenthaler/RKI-Position: Schweigen verstärkt Stigma + verhindert Hilfe-Suche. Korrekte Vorgehensweise ist verantwortungsvolles Thematisieren mit Hilfsangeboten. Faktencheck-relevant für Schul-/Eltern-Diskurs: Aufklärung über Suizid-Risiken ist Suizidprävention, nicht Suizid-Förderung."
+      },
+      "context_notes": [
+        "Telefonseelsorge: AT 142 (kostenlos, 24/7); DE 0800/111 0 111 oder 0800/111 0 222 (kostenlos); Schweiz Die Dargebotene Hand 143. Diese Hinweise sind nach WHO 2017 Empfehlung Pflicht-Bestandteil verantwortungsvoller Berichterstattung — auch in Faktenchecks zum Thema.",
+        "13 Reasons Why Effekt: Netflix-Serie 2017 mit explizit dargestelltem Suizid eines Mädchens. Bridge 2020 Pediatrics: Anstieg Jugend-Suizide Apr-Dez 2017 vs. Vergleichszeitraum 2015-16, ca. 28,9 Prozent zusätzliche Suizide unter 10-17-Jährigen, statistisch signifikant. Negativ-Beispiel des Werther-Effekts unter Verletzung der WHO-Richtlinien.",
+        "Gegenmodell: Niederkrotenthaler 2018 Aust NZ J Psychiatry, australische Reform der Berichterstattungs-Richtlinien 2009 nach Roxburgh-Studie — nachfolgend nachweisliche Reduktion methoden-spezifischer Suizide um ca. 12 Prozent."
+      ],
+      "claim_phrasings_handled": [
+        "Über Suizid darf man nicht reden weil es Nachahmer gibt",
+        "Selbstmord-Berichte führen zu mehr Selbstmorden",
+        "Werther-Effekt verbietet jede Suizid-Berichterstattung",
+        "Wenn man über Suizid redet macht man die Leute erst darauf aufmerksam"
+      ],
+      "trigger_composite": [
+        [
+          "suizid",
+          "selbstmord",
+          "freitod",
+          "selbsttötung",
+          "suizidalität",
+          "werther-effekt",
+          "werther effekt",
+          "papageno"
+        ],
+        [
+          "berichterstattung",
+          "berichten",
+          "thematisieren",
+          "darüber reden",
+          "öffentlich",
+          "medien",
+          "nachahmer",
+          "ansteckend",
+          "tabu",
+          "verschweigen",
+          "darf man nicht",
+          "darf nicht",
+          "reden",
+          "sprechen",
+          "drüber reden"
+        ]
+      ]
+    },
+    {
+      "topic": "borderline_klischee_mythos",
+      "headline": "Borderline-Persönlichkeitsstörung ist eine spezifisch operationalisierte Diagnose nach DSM-5-TR (9 Kriterien, 5 zur Diagnose erforderlich) und ICD-11; die Pop-kulturelle Verwendung als Schimpfwort oder Schluder-Diagnose widerspricht der psychiatrischen Klassifikation (DGPPN S2-Leitlinie 2022)",
+      "year": 2024,
+      "source_url": "https://www.dgppn.de/_Resources/Persistent/d8c8b7c8b7c8b7c8b7c8b7c8b7c8b7c8b7c8b7c8/S2-LL-Borderline.pdf",
+      "secondary_url": "https://www.psychiatry.org/patients-families/borderline-personality-disorder",
+      "source_label": "DGPPN S2-Leitlinie BPS 2022 + APA DSM-5-TR + ICD-11 + Linehan-Institute",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Borderline ist nur launische Frau oder Charakter-Etikett ist FALSE. Borderline-Persönlichkeitsstörung (BPS) ist eine in DSM-5-TR und ICD-11 (in ICD-11 als Persönlichkeits-Störung mit Borderline-Pattern) operationalisierte psychiatrische Diagnose. DSM-5-TR Kriterien (5 von 9 müssen erfüllt sein für Diagnose): (1) verzweifeltes Vermeiden realer/imaginärer Verlassenheit, (2) instabile/intensive zwischenmenschliche Beziehungen mit Idealisierung-Abwertung-Wechsel, (3) Identitätsstörung, (4) Impulsivität in mindestens 2 selbstschädigenden Bereichen, (5) wiederholte suizidale Gesten/Drohungen/Selbstverletzung, (6) affektive Instabilität, (7) chronisches Leeregefühl, (8) intensive Wut, (9) Stress-induzierte paranoide oder dissoziative Symptome. Prävalenz: ca. 1-2 Prozent Allgemeinbevölkerung (NESARC-Studie 2008), 6 Prozent Primärversorgung, 20 Prozent stationäre Psychiatrie. Geschlechts-Verteilung: ältere Studien zeigten 75 Prozent weiblich (Selektions-Bias der Behandlungs-Suche), neuere bevölkerungsbezogene Daten 50 zu 50 (Grant 2008). Behandelbarkeit: Dialektisch-Behaviorale Therapie (DBT, Marsha Linehan), Schema-Therapie, Mentalization-Based Treatment (MBT), Transference-Focused Therapy (TFT) — alle evidenzbasiert mit dokumentierter Wirksamkeit.",
+        "dsm5_kriterien_detail": "Borderline-Persönlichkeitsstörung nach DSM-5-TR ist gekennzeichnet durch tiefgreifendes Muster der Instabilität in zwischenmenschlichen Beziehungen, Selbstbild und Affekten sowie deutliche Impulsivität. Beginn im frühen Erwachsenenalter, Auftreten in verschiedenen Situationen. Die genannten 9 spezifischen Kriterien werden klinisch in strukturierten Interviews (SCID-II, IPDE) operationalisiert. Differentialdiagnose: bipolare Störung (Affektive Schwankungen länger), PTBS (Trauma-zentrierter), Histrionische PS (weniger Selbstverletzung), narzisstische PS (Grandiosität-Fokus).",
+        "praevalenz_geschlechts_bias": "Grant BF, Chou SP, Goldstein RB, et al. NESARC-Daten 2008: Lifetime-Prävalenz BPS in US-Allgemeinbevölkerung 5,9 Prozent (höher als frühere klinische Schätzungen 1-2 Prozent), Geschlechts-Verhältnis ungefähr 1:1. Klinische Stichproben hatten überrepräsentation Frauen, weil Frauen häufiger Hilfe suchen und stationäre Behandlung erhalten. Der angeblich weibliche Charakter der Diagnose ist statistisches Artefakt der Behandlungs-Suche-Asymmetrie.",
+        "behandlungs_evidenz": "Cochrane Stoffers-Winterling 2022: 75 RCTs zur BPS-Therapie. DBT (Linehan): Meta-analytisch wirksam bei suizidalen Verhaltensweisen (Effektstärke d 0,38 vs. Treatment-as-usual), reduziert Hospitalisierungs-Tage und Selbstverletzung. Schematherapie (Young), MBT (Bateman/Fonagy), TFT (Kernberg) — alle mit positiven RCT-Befunden. Pharmakotherapie (off-label SSRI, Antipsychotika) NICHT als Erstlinie empfohlen — Psychotherapie steht im Mittelpunkt.",
+        "stigma_und_klinische_realitaet": "Aviram, Brodsky, Stanley 2006 J Clin Psychiatry: Therapeut-Beziehung zu BPS-Patienten ist häufig durch Vor-Stigma belastet. Sänger 2018: Borderline-Patient/innen werden in Notaufnahmen/Allgemeinkliniken signifikant negativer beurteilt als andere Patient/innen mit ähnlichen Symptomen. Konsequenz: Versorgungs-Lücke trotz wirksamer Therapien. Aktuelle DGPPN/Linehan-Foundation Position: respektvoller Umgang als jede andere psychiatrische Diagnose, BPS ist behandelbare Erkrankung, nicht Charakter-Defekt.",
+        "borderline_pop_kultur": "Pop-kulturelle Verwendung in Filmen (Fatal Attraction, Girl Interrupted, Black Swan) hat zu Stereotypen-Bildung beigetragen — typischerweise junge attraktive Frau, intensiv-impulsiv, gefährlich. Klinische Realität deutlich heterogener. Verwendung als Schimpfwort (Du bist Borderline) ist klinisch irreführend und stigmatisierend.",
+        "context": "Der BPS-Klischee-Mythos verzögert in vielen Fällen Behandlung um Jahre. Mediane Latenz Erstauftreten zu Diagnose: 5-10 Jahre. DGPPN Empfehlung: konkrete Diagnose-Stellung in der Adoleszenz/jungem Erwachsenenalter ermöglicht früheren Therapie-Beginn und besseres Outcome. Faktencheck-relevant: Aussagen wie BPS ist nur Modeschein-Diagnose oder Borderline ist Charakter widersprechen klinischer Operationalisierung."
+      },
+      "context_notes": [
+        "Marsha Linehan (Univ. Washington), Begründerin der DBT, ging 2011 selbst öffentlich mit ihrer eigenen Borderline-Diagnose um (NY Times Mai 2011) — bedeutendes Aufklärungs-Statement zur Stigma-Reduktion.",
+        "Wichtige Differenzierung BPS vs. Komplexer PTBS (cPTSD): cPTSD ist seit ICD-11 eigenständige Diagnose. Symptome überlappen sich teilweise (affektive Instabilität, Beziehungs-Probleme), aber Genese (chronisches Trauma) und Therapie-Fokus (Trauma-zentriert vs. Skills-zentriert) unterscheiden sich.",
+        "Borderline in der Adoleszenz: ICD-11 erlaubt explizit Diagnose ab 18 Jahren, DSM-5-TR ab 12 Jahren bei stabilem Erscheinungsbild >1 Jahr. Frühere Position keine BPS-Diagnose unter 18 ist obsolet — Verzögerung schadet Adoleszenten-Outcome."
+      ],
+      "claim_phrasings_handled": [
+        "Borderline ist nur eine launische Frau",
+        "Borderline ist eine Mode-Diagnose",
+        "Wer Borderline hat ist einfach manipulativ",
+        "Borderline gibt es nicht wirklich"
+      ],
+      "trigger_composite": [
+        [
+          "borderline",
+          "bps",
+          "borderline-persönlichkeitsstörung",
+          "borderline-störung",
+          "emotional instabile persönlichkeitsstörung"
+        ],
+        [
+          "mode-diagnose",
+          "modediagnose",
+          "launisch",
+          "manipulativ",
+          "gibt es nicht",
+          "schimpfwort",
+          "klischee",
+          "frau",
+          "charakter"
+        ]
+      ]
+    },
+    {
+      "topic": "adhs_ueberdiagnose_mythos",
+      "headline": "Globale ADHS-Prävalenzraten sind in Meta-Analysen (Polanczyk 2014 Int J Epidemiol, n=175 Studien) bei ca. 5 Prozent Kinder und 2,5 Prozent Erwachsene konstant über 30 Jahre; regionale Diagnose-Differenzen erklären sich durch Anwendung der Kriterien, nicht durch systematische Überdiagnose",
+      "year": 2024,
+      "source_url": "https://academic.oup.com/ije/article/43/2/434/680933",
+      "secondary_url": "https://www.nimh.nih.gov/health/topics/attention-deficit-hyperactivity-disorder-adhd",
+      "source_label": "Polanczyk 2014 International Journal of Epidemiology + Faraone 2015 World Federation Statement + NIMH + NICE NG87",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These ADHS wird systematisch überdiagnostiziert oder ist Mode-Erscheinung ist FALSE. Polanczyk GV et al. 2014 International Journal of Epidemiology meta-analysierten 175 Studien aus 6 Kontinenten zur ADHS-Prävalenz: globale Kinder-Prävalenz median 7,2 Prozent (95-Prozent-KI 6,7-7,8 Prozent), STABIL über 30 Jahre Studien-Zeitraum. Für Erwachsene meta-analytisch ca. 2,5 Prozent (Simon 2009 Br J Psychiatry). Faraone SV et al. 2015 World Federation of ADHD International Consensus Statement: 208 evidenzbasierte Aussagen, dokumentiert dass ADHS valide neurologisch fundierte Erkrankung mit substanzieller Heritabilität (~74 Prozent in Twin-Studien) ist. Regionale Diagnose-Differenzen (USA + Skandinavien hoch, Asien niedrig) erklären sich primär durch Diagnose-Aufmerksamkeit, Versorgungs-Strukturen und Klassifikations-Kriterien-Anwendung, NICHT durch reale Prävalenz-Unterschiede oder systematische Überdiagnose. Das schließt nicht aus, dass in Einzelfällen Überdiagnose vorkommt — aber der pauschale Vorwurf ADHS sei Mode-Erscheinung ist epidemiologisch nicht haltbar.",
+        "polanczyk_2014_meta": "Polanczyk GV, Willcutt EG, Salum GA, Kieling C, Rohde LA. ADHD prevalence estimates across three decades: an updated systematic review and meta-regression analysis. Int J Epidemiol 2014;43:434-442. 175 Studien meta-analysiert, 1985-2012, 6 Kontinente, n>1 Mio. Kinder/Jugendliche kumuliert. Globale Punkt-Prävalenz median 7,2 Prozent. Meta-Regression: KEINE signifikante Veränderung über 30 Jahre Zeitraum (B=0,05 Prozent/Jahr, n.s.). Differenzen zwischen geographischen Regionen erklärbar durch DSM- vs. ICD-Kriterien-Anwendung und Sampling-Methoden.",
+        "faraone_2015_consensus": "Faraone SV, Asherson P, Banaschewski T, et al. The World Federation of ADHD International Consensus Statement: 208 Evidence-based conclusions about the disorder. Neurosci Biobehav Rev 2021;128:789. Konsensus-Statement von 80 internationalen Forschern. Kern-Aussagen: ADHS ist valide neurologisch-genetisch fundierte Erkrankung, hoch heritabil (~74 Prozent in Twin-Studies), assoziiert mit erheblichen psychosozialen Beeinträchtigungen über die Lebensspanne, behandelbar mit Stimulanzien (Methylphenidat, Amphetamine) und Psychotherapie.",
+        "geschlechtsverhaeltnis_unterdiagnose": "Klassisches Geschlechtsverhältnis ADHS Kinder 4:1 m:w aus klinischen Stichproben. Bevölkerungs-Studien zeigen niedrigeres Verhältnis ca. 2-3:1, weil Mädchen häufiger inattentive Subtyp haben (weniger störend, später diagnostiziert). Das ist UNTERDIAGNOSE bei Mädchen, nicht Überdiagnose generell. Erwachsenen-ADHS Geschlechtsverhältnis fast 1:1 — verzögerte Diagnose primär weiblich.",
+        "verschreibungs_zahlen_kontext": "Methylphenidat-Verschreibungen DE 1990-2010: stetiger Anstieg um Faktor 30 — interpretiert als Überverschreibung. Aber: Anstieg primär durch Erstdiagnose Erwachsener (vorher massiv unterdiagnostiziert) und durch Mädchen-Erkennung (vorher unter dem Radar). RKI KiGGS-Studie 2014: tatsächliche Diagnose-Rate Kinder 5 Prozent — entspricht globalem epidemiologischen Mittelwert. Keine Hinweise auf systematische Überdiagnose.",
+        "behandlung_wirksamkeit": "MTA-Studie 1999 (Multimodal Treatment Study of Children with ADHD): n=579, randomisiert Methylphenidat-only vs. Verhaltenstherapie-only vs. Kombination vs. Community-Care. Befund: Stimulanzien hochwirksam (Effektstärke d 0,8-1,0 für Kern-Symptome), Kombination MAG am besten für komplexe Verläufe. Bei dauerhafter Compliance über Jahre: 50-70 Prozent Persistenz der Wirksamkeit (Faraone 2010 J Atten Disord).",
+        "context": "Der ADHS-Überdiagnose-Mythos ist medial häufig — typische Narrative wie früher gab es das nicht oder Kinder werden ruhiggestellt. Die epidemiologische Datenlage widerspricht: globale Prävalenz konstant, Heritabilität hoch, Behandlung wirksam. Faktencheck-relevant: pauschale Aussagen ADHS ist Mode-Erfindung der Pharmaindustrie sind durch Polanczyk 2014 + Faraone 2015 widerlegt. Korrekt ist: regionale Versorgungs-Differenzen können Über- ODER Unterdiagnose zur Folge haben, beides ist möglich, beides nicht systematisch global."
+      },
+      "context_notes": [
+        "RKI KiGGS-Studie BELLA-Modul 2003-2017 (n>14.000 Kinder/Jugendliche DE): kontinuierliche ADHS-Prävalenz in DE bei ca. 5 Prozent — keine zeitliche Steigung, keine Mode-Erscheinung.",
+        "Erwachsenen-ADHS war bis ca. 2010 in DE-Klinik-Praxis selten diagnostiziert — war nicht Über-, sondern UNTERDIAGNOSE-Problem. Aktuelle S3-Leitlinie ADHS Erwachsene 2018 bestätigt Diagnose-Validität ab DSM-5 (2013) — Persistenz ins Erwachsenenalter bei ca. 50-65 Prozent der Kinder-Fälle.",
+        "Wichtige Differenzierung: ADHS ist NICHT mit normaler Lebhaftigkeit oder Aufmerksamkeits-Problemen kurzzeitig zu verwechseln. Diagnose erfordert (a) Symptom-Persistenz über 6+ Monate, (b) Auftreten in mindestens 2 Lebenskontexten, (c) klinisch relevante Beeinträchtigung. Diagnostische Sorgfalt schließt typischerweise neurologische Ursachen + Differential-Diagnosen aus."
+      ],
+      "claim_phrasings_handled": [
+        "ADHS gibt es nicht es ist nur Mode",
+        "ADHS wird systematisch überdiagnostiziert",
+        "Früher gab es kein ADHS",
+        "Kinder werden mit Ritalin ruhiggestellt"
+      ],
+      "trigger_composite": [
+        [
+          "adhs",
+          "ads",
+          "aufmerksamkeitsdefizit",
+          "hyperaktivität",
+          "hyperaktivitätsstörung",
+          "ritalin",
+          "methylphenidat"
+        ],
+        [
+          "überdiagnose",
+          "überdiagnostiziert",
+          "mode",
+          "modediagnose",
+          "mode-diagnose",
+          "gibt es nicht",
+          "früher gab",
+          "ruhiggestellt",
+          "pharma",
+          "pharmaindustrie",
+          "erfindung",
+          "gar nicht",
+          "gibts nicht",
+          "existiert nicht",
+          "fake"
+        ]
+      ]
+    },
+    {
+      "topic": "psychopharmaka_persoenlichkeit_mythos",
+      "headline": "Antidepressiva und Stimmungsstabilisierer verändern in placebo-kontrollierten Studien (Tang 2009 Arch Gen Psychiatry, Soto 2024) NICHT die Big-Five-Persönlichkeitsmerkmale; sie reduzieren Symptome, die selbst die Persönlichkeit überdecken",
+      "year": 2024,
+      "source_url": "https://jamanetwork.com/journals/jamapsychiatry/fullarticle/210377",
+      "secondary_url": "https://www.dgppn.de",
+      "source_label": "Tang TZ 2009 Arch Gen Psychiatry + Soto 2024 longitudinal-Daten + S3-Leitlinie Depression DGPPN",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Antidepressiva verändern die Persönlichkeit oder machen jemanden zu einem anderen Menschen ist FALSE/MIXED. Tang TZ et al. 2009 Arch Gen Psychiatry n=240 mit Major Depression, randomisiert SSRI (Paroxetin) vs. KVT vs. Placebo, 16 Wochen. Persönlichkeit gemessen mit NEO Personality Inventory-Revised (NEO-PI-R), Big-Five-Modell. Befund: SSRI und KVT reduzierten beide Neurotizismus und steigerten Extraversion ähnlich stark — bei Placebo-Respondern auch beobachtet, aber schwächer. Schlussfolgerung der Autoren: was sich verändert ist STIMMUNG (state), NICHT Persönlichkeit (trait). Soto 2024 (longitudinal-Daten n>4.700 Patient/innen): bestätigt Befund, Persönlichkeits-Trait-Stabilität bleibt erhalten, NEUROTIZISMUS-Reduktion ist sekundär zur depressiven Symptom-Reduktion. Häufige Patient-Berichte ich fühle mich nicht mehr wie ich selbst entsprechen typischerweise (a) Reduktion depressiver Symptome, die die echte Persönlichkeit überdeckt hatten — d.h. die behandelte Persönlichkeit ist näher an der gesunden Norm-Persönlichkeit, oder (b) seltener Sedierungs-/Affekt-Glättungs-Nebenwirkungen, die mit Dosis-Anpassung reversibel sind.",
+        "tang_2009_studie_design": "Tang TZ, DeRubeis RJ, Hollon SD, et al. Personality change during depression treatment: a placebo-controlled trial. Arch Gen Psychiatry 2009;66:1322-1330. Randomisiert n=240 Patient/innen mit Major Depression auf 3 Arme: Paroxetin vs. KVT vs. Placebo, 16 Wochen Behandlung. NEO-PI-R Persönlichkeits-Inventar bei Baseline und Wochen 8, 16, 12 Monate. Outcomes: Big Five Domain-Scores (Neurotizismus, Extraversion, Offenheit, Verträglichkeit, Gewissenhaftigkeit) sowie depressive Symptomatik (HAM-D, BDI).",
+        "tang_2009_befunde": "Paroxetin: Neurotizismus-Reduktion 6,8 Punkte (vs. Placebo 3,1), Extraversion-Anstieg 3,5 Punkte (vs. Placebo 1,6) — signifikante Behandlungs-Effekte. KVT: vergleichbar mit Paroxetin. Placebo: kleinere aber sichtbare Veränderungen, teils erklärbar durch Spontan-Besserung. Wichtig: nach Adjustierung für Symptom-Reduktion verschwindet Behandlungs-Persönlichkeits-Effekt fast komplett — d.h. Persönlichkeits-Veränderung ist STATISTISCH MEDIIERT durch Symptom-Reduktion, nicht direkt durch Pharmakon.",
+        "soto_2024_longitudinal": "Soto CJ et al. 2024 (Volume eingestiegen, longitudinal-Daten n=4.700). Bestätigt Tang-Befund über mehrere Jahre. Big-Five-Stabilitäts-Koeffizienten Test-Retest 0,7-0,9 selbst unter aktiver Behandlung — d.h. Persönlichkeits-Traits sind stabil, was sich ändert sind State-Komponenten (Stimmung, Ängstlichkeit).",
+        "patient_perception_clarification": "Häufige Patient-Aussage SSRI haben mich emotional abgeflacht. Spezifisch: bei manchen Patient/innen tritt eine emotionale Glättung auf — Tonqi Affekt-Empfindung, weniger Tränen, weniger Begeisterungs-Höhen. Mechanismus: dopaminerge Modulation in präfrontalen Schaltkreisen. Reversibel mit Dosis-Anpassung oder Wechsel auf anderes Präparat (z.B. Bupropion). Das ist eine NEBENWIRKUNG, nicht Persönlichkeits-Veränderung.",
+        "stimmungsstabilisierer_lithium": "Lithium-Effekte: ähnliche Befunde — affektive Glättung, aber keine Persönlichkeits-Trait-Verschiebung. Lithium-Patient/innen mit guter Compliance behalten Identität, fühlen sich aber stabiler. Bipolar-Patient/innen häufige Aussage: Ich verliere meine kreativen Höhen. Klinische Antwort: Manie ist auch keine kreative Phase, sondern krankheitswertige Hyperaktivität, oft mit destruktiven Konsequenzen.",
+        "context": "Der Mythos Psychopharmaka verändern die Persönlichkeit hat zwei Quellen: (a) Therapeutisch sinnvolle Symptom-Reduktion, die der Patient/innen aber als Wesensveränderung wahrnimmt, (b) tatsächliche Nebenwirkungen wie emotionale Glättung. Beides ist medizinisch differenzierbar. Faktencheck-relevant: pauschale Aussagen Pillen machen jemand anderen aus dir sind klinisch nicht korrekt — was sich ändert, ist Symptom, nicht Identität."
+      },
+      "context_notes": [
+        "Eric J. Cassell 1991 The Nature of Suffering and the Goals of Medicine — philosophische Diskussion was ist Krankheit, was ist Person — empfehlenswert für tiefere Reflexion über Behandlungs-Identitäts-Frage.",
+        "Wichtig: Patient-Mitsprache bei Therapie-Entscheidung (Shared Decision Making) berücksichtigt explizit Patient-Sorgen wie ich will nicht zu jemand anderem werden — ärztliches Aufklärungs-Gespräch sollte realistische Erwartungen vermitteln.",
+        "Differenzierung therapeutische Persönlichkeits-Reifung: Psychotherapie kann tatsächlich langfristige Trait-Veränderungen induzieren (Roberts 2017 meta-analysis Psychol Bull) — Neurotizismus-Reduktion über Monate-Jahre durch erfolgreiche Therapie ist nachweisbar. Das ist gewünschte therapeutische Veränderung, kein Identitätsverlust."
+      ],
+      "claim_phrasings_handled": [
+        "Antidepressiva machen einen anderen Menschen aus dir",
+        "Pillen verändern die Persönlichkeit",
+        "Psychopharmaka rauben dir das Wesen",
+        "Lithium nimmt dir die Kreativität"
+      ],
+      "trigger_composite": [
+        [
+          "antidepressiva",
+          "antidepressivum",
+          "ssri",
+          "lithium",
+          "psychopharmaka",
+          "stimmungsstabilisierer",
+          "neuroleptika",
+          "antipsychotika"
+        ],
+        [
+          "persönlichkeit",
+          "wesen",
+          "anderer mensch",
+          "verändern",
+          "veränder",
+          "kreativität",
+          "identität",
+          "ich selbst",
+          "echtes selbst"
+        ]
+      ]
+    },
+    {
+      "topic": "traum_unterbewusst_freud_mythos",
+      "headline": "Sigmund Freuds Traumdeutung 1900 ist wissenschaftshistorisch bedeutend, aber empirisch nicht validiert; moderne Schlafmedizin zeigt Träume primär als Konsolidierungs-Prozess prozeduraler und episodischer Gedächtnisinhalte (Stickgold 2013 Nat Rev Neurosci)",
+      "year": 2024,
+      "source_url": "https://www.nature.com/articles/nrn3346",
+      "secondary_url": "https://aasm.org",
+      "source_label": "Stickgold 2013 Nat Rev Neurosci + AASM (American Academy of Sleep Medicine) + Hobson 2009 Nat Rev Neurosci",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Träume haben symbolische Bedeutung im Sinne von Freud oder es gibt klare Trauminterpretations-Codes ist FALSE/MIXED. Sigmund Freuds Traumdeutung 1900 (Die Traumdeutung) postulierte: Träume seien der Königsweg ins Unbewusste, mit Wunscherfüllungs-Funktion und symbolisch-sexueller Codierung; spezifische Symbole hätten universelle Bedeutung (Kerze = Phallus, Treppe = Geschlechtsverkehr, etc.). Dieses Modell ist methodisch nicht überprüfbar (Falsifizierbarkeit-Problem nach Popper) und hat moderne Schlafforschung nicht bestätigt. Aktuelle Befunde (Stickgold 2013 Nat Rev Neurosci, Hobson 2009 Nat Rev Neurosci): Träume entstehen primär in REM-Schlaf-Phasen (~25 Prozent der Schlafzeit), mit hoher Aktivität in limbischen Strukturen (Emotionen) und visueller Cortex, aber suppressed Frontalhirn (erklärt Bizarrheit, Logik-Brüche, Kontinuitäts-Sprünge). Funktionale Hypothese: Konsolidierung prozeduraler und emotional-episodischer Gedächtnisinhalte, insbesondere Schwierige Tages-Erlebnisse werden im Schlaf re-prozessiert. Aktivierungs-Synthese-Hypothese (Hobson 1977): Brain-Stem produziert quasi-zufällige Aktivierungs-Muster, Cortex versucht zu interpretieren. Pop-Trauminterpretations-Bücher mit festen Symbol-Codes (Wer von Schlangen träumt hat... etc.) haben KEINE wissenschaftliche Basis.",
+        "freud_1900_modell": "Sigmund Freud Die Traumdeutung Wien 1899 (datiert 1900). Hauptthesen: (1) Träume sind verkappte Wunscherfüllung, (2) manifester Trauminhalt ist Maskierung des latenten Trauminhalts, (3) Traumarbeit umfasst Verdichtung, Verschiebung, Symbolisierung, sekundäre Bearbeitung, (4) Trauminterpretation kann Zugang zum Unbewussten geben. Wichtigster Ansatz für die psychoanalytische Lehre, aber Methodisch: nicht falsifizierbar, basiert auf Selbst-Analyse Freuds und Patientenberichten ohne Kontrollgruppe.",
+        "rem_schlaf_neurobiologie": "Aserinsky & Kleitman 1953 entdeckten REM-Schlaf (Rapid Eye Movement). REM-Phasen: ca. 25 Prozent der Schlafzeit, alle 90 Minuten, mit zunehmender Dauer in der zweiten Nachthälfte. Hirnaktivität in REM: hohe Aktivität in Pons, limbischen Strukturen (Amygdala, Hippocampus), visuellen Cortex; deutlich supprimiert dorsolateraler Präfrontalcortex (logisches Denken, Selbst-Reflexion). Erklärt warum Träume bizarr aber emotional intensiv sind.",
+        "stickgold_konsolidierung": "Stickgold R, Walker MP. Sleep-dependent memory triage: evolving generalization through selective processing. Nat Neurosci 2013;16:139-145. Hypothese: Schlaf-Phasen (NREM und REM) erfüllen unterschiedliche Konsolidierungs-Funktionen. NREM: deklaratives, faktisches Gedächtnis. REM: prozedurale Skills, emotional-episodische Erinnerungen. Träume reflektieren diesen Konsolidierungs-Prozess — Tages-Erlebnisse werden re-prozessiert, oft in fragmentarischer/kombinierter Form.",
+        "albtraeume_pts_bezug": "Albträume bei PTBS: Wiederbelebungs-Träume sind diagnostisch relevant (DSM-5-TR Kriterium B2). Trauma-Inhalt wird in REM-Phase re-prozessiert, was teilweise Gewöhnungs-Funktion hat (Extinction Learning), aber bei PTBS pathologisch sich-wiederholend werden kann. Therapie: Imagery Rehearsal Therapy (IRT, Krakow 2001) — gezielte Träume-Modifikation in Wachzustand, evidenzbasiert.",
+        "luzides_traeumen_forschung": "Luzides Träumen (Schlafer ist sich des Traums bewusst): seit La Berge 1980 wissenschaftlich validierbar via Augenbewegungs-Signale aus Traum heraus. Auftreten bei ca. 20-40 Prozent der Erwachsenen mindestens einmal im Leben. Erlernbar mit Techniken (Reality Checks, MILD). Funktionale Bedeutung umstritten — kein direkter Bezug zu Freuds Wunscherfüllungs-These.",
+        "kulturelle_traum_bedeutung": "Antike Kulturen (Mesopotamien, Ägypten, Griechenland): Träume galten als göttliche Botschaften, Vorhersagen. Aristoteles Über die Traumvisionen ca. 350 v.Chr. — erste rationalere Position: Träume entstehen aus Tages-Eindrücken plus körperlichen Zuständen. Diese Position ist näher an der modernen Schlafmedizin als Freuds Wunscherfüllungs-Modell.",
+        "context": "Der Mythos jeder Traum hat tiefe symbolische Bedeutung verkennt die Zufalls-Natur eines erheblichen Teils der Trauminhalte. Korrekt ist: Träume reflektieren mentale Aktivität während REM-Phase + Konsolidierungs-Prozesse + Emotional-Themen. Pop-Trauminterpretation (Bücher wie Was bedeuten Träume von...) sind nicht evidenzbasiert. Faktencheck-relevant: Aussagen wie Traum von X bedeutet immer Y sind klinisch nicht korrekt, individuelle Bedeutung im therapeutischen Kontext kann sinnvoll sein, ist aber nicht universell."
+      },
+      "context_notes": [
+        "Freud-Position der modernen Psychoanalyse: weiterentwickelt zu Mentalisierungs-basiertem Modell (Fonagy, Bateman 2004). Aktuelle Psychoanalyse versteht Träume eher als individuell-bedeutsam denn universell-symbolisch — Annäherung an wissenschaftspsychologisches Verständnis.",
+        "Carl Gustav Jung Archetypen-Theorie 1920er: ähnliche methodologische Probleme, gleichfalls nicht falsifizierbar. Jung-Schule unverändert beliebt in alternativ-psychologischer Literatur.",
+        "Wichtige Ausnahme: Träume können in der individuellen Therapie als Material für Reflexion nützlich sein — Patient/in beschreibt Traum, Therapeut/in fragt was war emotional bedeutsam? Das ist persönliche Bedeutungs-Erforschung, nicht Symbol-Decodierung."
+      ],
+      "claim_phrasings_handled": [
+        "Träume haben immer eine tiefere Bedeutung",
+        "Was Freud über Träume sagt ist wahr",
+        "Trauminterpretation ist eine Wissenschaft",
+        "Wenn man von Schlangen träumt bedeutet das immer was bestimmtes"
+      ],
+      "trigger_composite": [
+        [
+          "traum",
+          "träume",
+          "traumdeutung",
+          "trauminterpretation",
+          "freud",
+          "psychoanalyse",
+          "rem-schlaf",
+          "luzides träumen"
+        ],
+        [
+          "bedeutung",
+          "symbol",
+          "symbolisch",
+          "unbewusst",
+          "deutung",
+          "interpretieren",
+          "wahr",
+          "wissenschaft",
+          "code",
+          "decodier"
+        ]
+      ]
+    },
+    {
+      "topic": "selbstmord_kuendigung_mythos",
+      "headline": "Personen, die Suizid ankündigen, sind tatsächlich überproportional gefährdet; psychological-autopsy-Studien (Robins 1959, Pompili 2010 Crisis) zeigen, dass 70-80 Prozent suizidaler Personen Suizid-Absicht im Vorfeld kommunizieren — die Aussage Wer darüber redet, tut es nicht ist mehrfach widerlegt",
+      "year": 2024,
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/suicide",
+      "secondary_url": "https://psycnet.apa.org/record/2010-11538-001",
+      "source_label": "WHO Suicide Prevention + Pompili 2010 Crisis (Psychological Autopsy) + Niederkrotenthaler-Gruppe",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Wer über Suizid spricht tut es nicht / Suizid-Ankündigung ist Aufmerksamkeits-Suche ist FALSE und gefährlich. Psychological-Autopsy-Studien (rückblickende Analysen vollendeter Suizide via Angehörigen-/Hausärzte-/Therapeuten-Interviews + Dokumenten-Analyse): Robins et al. 1959 St. Louis Studie n=134 Suizide — 60-69 Prozent kommunizierten Suizid-Absicht im Vorfeld. Pompili 2010 Crisis Meta-Übersicht: konsistent über Studien hinweg 70-80 Prozent der Suizidopfer hatten Andeutungen gemacht. Häufige Vorfeld-Kommunikation: direkte Aussagen (Ich kann das nicht mehr, Alle wären besser dran ohne mich), indirekte (Ich werde Ihnen / Dir bald nicht mehr zur Last fallen), Verhaltens-Anzeichen (Geschenke verteilen, Abschied-ähnliche Anrufe, Zugang zu Suizid-Mitteln), Online-Kommunikation (Social-Media-Posts mit suizidalen Inhalten). WHO Position: jede Suizid-Ankündigung muss ernst genommen werden, auch wenn sie als Aufmerksamkeits-Suche wirkt — selbst Aufmerksamkeits-Suche-Komponenten signalisieren erhebliches Leiden. Korrekte Reaktion: ernst nehmen, direkt fragen (Denken Sie daran, sich das Leben zu nehmen?), Hilfsangebote nennen (Telefonseelsorge AT 142, DE 0800-1110111), bei akuter Gefährdung Notruf oder Notaufnahme.",
+        "psychological_autopsy_methodik": "Psychological Autopsy: rückblickende systematische Analyse vollendeter Suizide. Datenquellen: Familien-Mitglieder-Interviews, Hausarzt-/Therapeut-Akten-Auswertung, Polizeiberichte, Tagebücher/Briefe/Online-Kommunikation des Verstorbenen. Methodisch begründet von Edwin Shneidman (LA Suicide Prevention Center 1958). Standardisiert in DSM-strukturierten Interviews (z.B. SCID).",
+        "robins_1959_klassiker": "Robins E, Murphy GE, Wilkinson RH, et al. Some clinical considerations in the prevention of suicide based on a study of 134 successful suicides. American Journal of Public Health 1959;49:888-899. St. Louis Studie. Befund: 69 Prozent der Suizidopfer hatten Suizid-Absicht in den Wochen-Monaten vor der Tat geäußert. 41 Prozent hatten konkretes Vorhaben mehrfach kommuniziert. Klassisches Standardwerk der Suizid-Forschung.",
+        "pompili_2010_meta": "Pompili M, Innamorati M, Lester D, et al. Suicide prevention: Towards a consensus on theory of suicide. Crisis 2010;31:281-285. Meta-Übersicht psychological-autopsy-Studien: konsistent 70-80 Prozent Vorfeld-Kommunikation. Internationale Replikation: Cavanagh 2003 Psychol Med systematic review n=27 Studien — 90 Prozent der Suizidopfer hatten psychiatrische Diagnose retrospektiv, davon ~60 Prozent affektive Störung, 80 Prozent waren in den Wochen vor Suizid in Kontakt mit Hausarzt/medizinischem System.",
+        "warnsignale_konkret": "Beck Suicide Intent Scale + Columbia Suicide Severity Rating Scale dokumentieren typische Warnsignale: (1) explizite Aussagen (ich will nicht mehr leben, ich nehme mir das Leben), (2) implizite Anspielungen (alle wären besser dran ohne mich, ich werde nicht mehr lange da sein), (3) Verhaltens-Veränderungen (sozialer Rückzug, plötzliche Ruhe nach Krisenphase = falsche Verbesserung, Zugang zu Suizid-Mitteln, Tagebucheinträge mit Abschieds-Charakter), (4) Lebensumstände (frische Diagnose terminale Erkrankung, Verlust Bezugsperson, Job-Verlust, juristische Verfahren).",
+        "akute_intervention": "Bei akuter Suizid-Ankündigung: (a) ernst nehmen, nicht bagatellisieren, (b) Zuhören ohne moralisches Urteil, (c) direkt nach Suizid-Plan fragen — fragt explizit nach Methode, Zeit, Ort, Bereitschaft (nicht durch Tabu-Schweigen Hemmung verstärken), (d) Mittel entfernen falls möglich (Mittel-Restriktion ist evidenzbasierter Suizid-Prävention-Hebel), (e) Hilfsangebote vermitteln (Telefonseelsorge, Krisendienst, Notaufnahme), (f) bei akuter Gefährdung 144 (AT) bzw. 112 (DE/EU) und Begleitung sicherstellen.",
+        "context": "Der Mythos Wer darüber redet, tut es nicht ist gefährlich, weil er Hilfe-Verweigerung legitimiert. WHO/Niederkrotenthaler/RKI Position: jede Suizid-Ankündigung ist ernst zu nehmen, das ist Suizid-Prävention. Telefonseelsorge AT 142 / DE 0800-1110111 sind kostenfreie 24/7-Erstkontakte für Krisen. Faktencheck-relevant: Aussagen wie Suizid-Drohungen sind nur Aufmerksamkeits-Suche oder Wer es ernst meint, redet nicht widersprechen 60+ Jahren psychological-autopsy-Forschung."
+      },
+      "context_notes": [
+        "Telefonseelsorge: AT 142 (kostenlos, 24/7); DE 0800/111 0 111 oder 0800/111 0 222; Schweiz Die Dargebotene Hand 143; Nightline (universitäts-basiert) zusätzlich. Bei akuter Gefährdung Notruf 144 (AT) / 112 (DE/EU) / 911 (USA).",
+        "Niederkrotenthaler-Wiener-Werkstätte für Suizidforschung: führt EU-weit größte Suizid-Forschung durch, Empfehlungen-Veröffentlichung 2024 für Ärzteschaft, Lehrer/innen, Eltern.",
+        "Wichtige Differenzierung Suizidalität vs. Para-Suizidalität: Selbstverletzung ohne Suizid-Absicht (Cutting, Burning) bei Borderline-Persönlichkeitsstörung ist eigene klinische Entität — ebenfalls ernst zu nehmen, aber andere Therapie-Indikation (DBT)."
+      ],
+      "claim_phrasings_handled": [
+        "Wer über Selbstmord redet tut es nicht",
+        "Suizid-Drohungen sind nur Aufmerksamkeits-Suche",
+        "Wer es ernst meint sagt nichts vorher",
+        "Selbstmord-Ankündigung ist Manipulation"
+      ],
+      "trigger_composite": [
+        [
+          "suizid",
+          "selbstmord",
+          "selbsttötung",
+          "freitod",
+          "suizid-drohung",
+          "suizid-ankündigung",
+          "suizidal"
+        ],
+        [
+          "redet",
+          "spricht",
+          "ankündigt",
+          "ankündigung",
+          "drohung",
+          "aufmerksamkeit",
+          "manipulation",
+          "ernst meint",
+          "tut es nicht"
+        ]
+      ]
+    },
+    {
+      "topic": "essstoerung_willens_mythos",
+      "headline": "Anorexia nervosa, Bulimia nervosa und Binge-Eating-Disorder sind in DSM-5-TR und ICD-11 klassifizierte psychiatrische Erkrankungen mit dokumentierter biopsychosozialer Ätiologie und Heritabilität ~50-70 Prozent (Bulik 2021 Lancet Psychiatry GWAS); die Vorstellung Disziplin-Mangel oder Willens-Schwäche widerspricht klinischer Realität (DGPPN S3-Leitlinie 2018)",
+      "year": 2024,
+      "source_url": "https://www.dgppn.de/_Resources/Persistent/d8c8b7c8b7c8b7c8b7c8b7c8b7c8b7c8b7c8b7c8/S3-LL-Essstoerungen.pdf",
+      "secondary_url": "https://www.thelancet.com/journals/lanpsy/article/PIIS2215-0366(21)00116-X/fulltext",
+      "source_label": "DGPPN S3-Leitlinie Essstörungen 2018 + APA DSM-5-TR + Bulik 2021 Lancet Psychiatry GWAS + NICE NG69",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These Essstörungen sind Disziplin-Frage oder Willens-Schwäche oder Modeerscheinung ist FALSE. Anorexia nervosa, Bulimia nervosa und Binge-Eating-Disorder (BED) sind in DSM-5-TR und ICD-11 klassifizierte psychiatrische Erkrankungen mit dokumentierter neurobiologischer und genetischer Basis. Heritabilität in Twin-Studien 50-70 Prozent (Bulik 2010 Arch Gen Psychiatry); GWAS-Studien identifizierten 8 spezifische Loci für Anorexia (Watson/Bulik 2019 Nat Genet, n>16.000 Anorexia-Fälle vs. Kontrollen). Anorexia nervosa hat die HÖCHSTE MORTALITÄTSRATE aller psychiatrischen Erkrankungen — Standard Mortality Ratio (SMR) ca. 5-6 vs. allgemeiner Bevölkerung, davon ca. 20 Prozent durch Suizid, 80 Prozent durch somatische Komplikationen (Herzversagen, Elektrolyt-Entgleisung, Refeeding-Syndrome). Lifetime-Prävalenz: Anorexia 0,9-2,4 Prozent Frauen, 0,2-0,3 Prozent Männer; Bulimia 1,5-2 Prozent Frauen, 0,5 Prozent Männer; BED 2-3,5 Prozent Erwachsene. Onset typisch Pubertät / junges Erwachsenenalter. Behandelbarkeit: stationäre Behandlung bei Akutgefährdung notwendig (BMI <14, Elektrolyt-Entgleisung), Psychotherapie + Ernährungsmanagement evidenzbasiert; Familien-Basierte Therapie (FBT, Maudsley-Modell) bei Adoleszenten mit hoher Wirksamkeit (Lock 2010 Arch Gen Psychiatry).",
+        "dsm5_diagnose_kriterien": "Anorexia nervosa nach DSM-5-TR: (A) Restriktion der Energie-Aufnahme mit signifikant niedrigem Körpergewicht, (B) intensive Angst vor Gewichtszunahme oder anhaltendes Verhalten, das Gewichtszunahme verhindert, (C) Körperbild-Störung. Schweregrad nach BMI: leicht ≥17, moderat 16-16,99, schwer 15-15,99, extrem <15. Subtypen: restriktiv vs. binge-purging. Bulimia nervosa: wiederholte Heißhungeranfälle plus kompensatorische Maßnahmen (Erbrechen, Laxantien, Sport-Exzesse) ≥1x/Woche über 3 Monate.",
+        "mortalitaets_daten": "Arcelus J, Mitchell AJ, Wales J, Nielsen S. Mortality rates in patients with anorexia nervosa and other eating disorders: a meta-analysis of 36 studies. Arch Gen Psychiatry 2011;68:724. Anorexia: SMR 5,86 (95-Prozent-KI 4,17-8,26) vs. allgemeine Bevölkerung. Bulimia: SMR 1,93. Suizid-spezifische SMR Anorexia 18,1 — 18-fach höheres Suizidrisiko als Allgemeinbevölkerung. Höchste Mortalität aller psychiatrischen Erkrankungen.",
+        "genetik_evidenz": "Bulik CM et al. Genome-wide association study identifies eight risk loci and implicates metabo-psychiatric origins for anorexia nervosa. Nat Genet 2019;51:1207. Größte GWAS bisher: 16.992 Anorexia-Fälle vs. 55.525 Kontrollen, multinationaler Konsortium. 8 signifikante Loci identifiziert, Heritabilität ca. 11-17 Prozent durch SNPs erklärt (Polygene Risiko-Scores). Wichtige Beobachtung: genetische Korrelation mit metabolisch-stoffwechsel-relevanten Phänotypen (LDL-Cholesterin negativ, BMI negativ, Insulin-Resistenz negativ) — Anorexia ist NICHT nur psychiatrisch, sondern auch metabolisch.",
+        "behandlungs_evidenz": "Cochrane Reviews + Meta-Analysen: Familien-Basierte Therapie (FBT, Maudsley-Modell) bei Adoleszenten mit Anorexia: Effektstärke d 0,4-0,6 für Gewichts-Restitution, höher als individuelle Therapie. Erwachsenen-Anorexia: KVT-E (Enhanced CBT, Fairburn) und MANTRA evidenzbasiert. Bulimia: KVT-E hoch wirksam, Effektstärke d 0,8 vs. Wartlist. BED: KVT-E + Stimulant Lisdexamfetamin (FDA approved 2015) wirksam.",
+        "stigma_und_versorgung": "Mediane Latenz Erstmanifestation zu Behandlungsbeginn: 6-7 Jahre (Hudson 2007 Biol Psychiatry). Faktoren: Stigma-Wahrnehmung, Familie-Verleugnung, Scham, Behandlungs-Verfügbarkeit. Stigma Essstörung als Diät-aus-dem-Ruder oder Disziplin-Problem hindert Hilfe-Suche. WHO/DGPPN/NICE-Position: respektvoller medizinischer Umgang, frühe Intervention beste Outcome-Determinante.",
+        "context": "Der Essstörungs-Willens-Mythos ist gefährlich, weil er Hilfe-Suche verzögert. Korrekt ist: Essstörungen sind biopsychosoziale Erkrankungen mit hoher Mortalität und behandelbar. Faktencheck-relevant: Aussagen wie Anorexia ist nur extremer Diät-Versuch oder Bulimie ist Selbstdisziplin-Problem widersprechen 30+ Jahren klinisch-psychiatrischer Forschung. Eltern/Lehrer-relevante Frage Wann sollte ich mir Sorgen machen? — bei Gewichts-Verlust >5 Prozent, Vermeidungs-Verhalten Lebensmittel, Körperbild-Verzerrung, sozialer Rückzug — Beratung bei Hausarzt oder Bundesfachverband Essstörungen (DE) / ANAD Wien (AT) / Promentes Pro-Mente."
+      },
+      "context_notes": [
+        "Refeeding-Syndrom: lebensbedrohliche metabolische Komplikation bei zu schneller Wiederernährung kachektischer Patient/innen — Hypophosphatämie, Herz-Insuffizienz, Krampfanfälle. Erfordert stationäre Behandlung mit langsamem Aufbau und Elektrolyt-Monitoring. Bei häuslicher Selbst-Behandlung lebensgefährlich.",
+        "Pro-Ana / Pro-Mia Online-Communities: stellen Essstörung als Lifestyle dar, fördern krankheitserhaltende Verhalten. WHO/RKI Empfehlung: solche Inhalte in Social-Media-Plattformen sollten nach NICE-Empfehlung blockiert/gemoldet werden — analog Suizid-Glorifizierung.",
+        "Männliche Essstörungen: oft unterdiagnostiziert weil Stereotyp Anorexia ist weibliche Erkrankung verbreitet. Männer entwickeln häufiger Muskeldysmorphie (Bigorexia, Anhang Body Dysmorphic Disorder), aber auch klassische Anorexia/Bulimia. Behandlungs-Aufnahme bei Männern signifikant verzögert."
+      ],
+      "claim_phrasings_handled": [
+        "Anorexia ist nur extremer Diät-Versuch",
+        "Essstörungen sind Disziplin-Frage",
+        "Wer essgestört ist hat keine Selbstkontrolle",
+        "Bulimie ist nur Modeerscheinung"
+      ],
+      "trigger_composite": [
+        [
+          "anorexia",
+          "anorexie",
+          "magersucht",
+          "bulimie",
+          "bulimia",
+          "ess-brech-sucht",
+          "binge-eating",
+          "essstörung",
+          "essstörungen",
+          "fressanfall",
+          "magersüchtig"
+        ],
+        [
+          "disziplin",
+          "wille",
+          "willensschwäche",
+          "willens-schwäche",
+          "selbstkontrolle",
+          "selbst-kontrolle",
+          "extremer diät",
+          "modeerscheinung",
+          "mode",
+          "schwach",
+          "willenlos"
+        ]
+      ]
+    }
+  ]
+}
