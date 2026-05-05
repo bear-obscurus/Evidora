@@ -99,6 +99,7 @@ from services.cybersecurity_pack import search_cybersecurity, claim_mentions_cyb
 from services.lebensmittel_pack import search_lebensmittel, claim_mentions_lebensmittel_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
+from services.cdc_open_data import search_cdc_open_data
 from services.clinvar import search_clinvar
 from services.snopes import search_snopes
 from services.correctiv import search_correctiv
@@ -853,6 +854,14 @@ async def check_claim(request: Request):
         if analysis.get("pubmed_queries") or analysis.get("ecdc_relevant"):
             tasks.append(cached("CDCNewsroom", search_cdc_newsroom, analysis))
             queried_names.append("CDC Newsroom")
+        # CDC Open Data (Socrata-Catalog data.cdc.gov): strukturierte
+        # Public-Health-Datasets — Vaccination, Surveillance, Mortality,
+        # BRFSS, Wastewater. Komplementär zu CDC Newsroom (News-Items).
+        # Service eigene Trigger-Heuristik (_relevant_query_for_cdc filtert
+        # auf Public-Health-Marker im Query).
+        if analysis.get("pubmed_queries"):
+            tasks.append(cached("CDCOpenData", search_cdc_open_data, analysis))
+            queried_names.append("CDC Open Data")
         # NIH ClinVar (NCBI Genetic Variant Database): variant-level
         # clinical significance. Komplementär zu PubMed (Forschung) +
         # MedlinePlus (Edukation). Service eigene Trigger-Logik:
