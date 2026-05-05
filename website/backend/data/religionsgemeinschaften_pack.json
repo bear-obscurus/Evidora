@@ -1,0 +1,877 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-05",
+  "source_label": "Pew Research + BfV/Verfassungsschutz + DESTATIS + Statistik Austria + ADL + IHRA + Sektenstellen + Vatikan-Finanzbericht + RAND + UCDP",
+  "facts": [
+    {
+      "id": "christen_aussterben_dach_2026",
+      "topic": "christen_aussterben_dach_konsens",
+      "scope": "Säkularisierung in DACH vs. globale Christentums-Entwicklung — Konfessions-Trends",
+      "year": 2024,
+      "source_url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/_inhalt.html",
+      "secondary_url": "https://www.pewresearch.org/religion/2022/09/13/how-u-s-religious-composition-has-changed-in-recent-decades/",
+      "source_label": "DESTATIS Religionszugehörigkeit + Statistik Austria Volkszählungs-Daten + Pew Research Religious Composition + Pew Religious Landscape 2050 + REMID Religionswissenschaftlicher Medien- und Informationsdienst",
+      "headline": "Säkularisierung in DACH ist real (DE 1950 ~95 % christlich → 2023 ~50 %, AT analog), aber Christen weltweit wachsen absolut von 2,38 Mrd (2020) auf 2,92 Mrd (2050 prognostiziert) — keine globale Aussterbe-Tendenz",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Christentum stirbt aus' ist DIFFERENZIERT FALSCH. (1) DACH-Säkularisierung ist empirisch real: DE 1950 ~95 % Christen (kath.+ev.) → 2023 ~50 % laut DESTATIS; AT 1951 ~89 % Christen → 2021 ~68 % laut Statistik Austria; CH 1970 ~96 % → 2023 ~57 % laut BFS. Konfessionsfreie Anteile in DACH steigen kontinuierlich (DE 2023 ~43 %, AT ~22 %, CH ~34 %). (2) Globaler Trend ist GEGENTEILIG: Pew Research 'The Future of World Religions: Population Growth Projections, 2010-2050' zeigt absolutes Christen-Wachstum von 2,17 Mrd (2010) → 2,38 Mrd (2020) → 2,92 Mrd (2050 Prognose) primär durch hohe Geburtenraten in Afrika südlich der Sahara (Anteil-Verschiebung Afrika: 2010 ~24 % aller Christen → 2050 ~38 %). Christentum bleibt 2050 weltweit größte Religion, dahinter Islam mit fast gleichem Anteil. (3) Kein widerspruchsfreies Aussterben-Argument möglich: 'Aussterben in DACH' ist statistisch belegt, 'globales Aussterben' ist statistisch widerlegt. Faktencheck-relevant: Aussagen wie 'Religion verschwindet' nehmen oft DACH-Säkularisierung als globalen Trend an — empirisch nicht haltbar. Aussagen wie 'Christen werden in DACH bald Minderheit' sind statistisch belegt für Großstädte (Berlin Christen ~40 %, Wien ~50 %), für Gesamtland noch nicht.",
+        "destatis_de_2023": "DESTATIS Mikrozensus 2023: Konfessions-Verteilung Deutschland — römisch-katholisch ~24 %, evangelisch ~22 %, sonstige Christen (orthodox + freikirchlich) ~3 %, muslimisch ~6 %, andere Religionen ~3 %, konfessionslos ~43 %. Vergleich 1950: kath. ~46 %, ev. ~52 %, konfessionslos <2 %.",
+        "statistik_austria_2021": "Statistik Austria Volkszählung 2021 (Registerzählung publiziert 2023): römisch-katholisch ~55 %, evangelisch ~3 %, orthodox ~5 %, muslimisch ~8 %, sonstige ~6 %, konfessionslos ~22 %. Vergleich 1951: kath. ~89 %, ev. ~6 %, konfessionslos ~3 %.",
+        "pew_global_2050": "Pew Research Center 'The Future of World Religions' Studie 2015 + Update 2022: Christentum bleibt 2050 weltweit größte Religion (2,92 Mrd), Islam zweitgrößte (2,76 Mrd) und nähert sich an. Hauptursache christlichem Wachstum: Sub-Sahara-Afrika hohe Fertilität, Konversionen in Lateinamerika + Asien. Hauptursache Säkularisierung in Europa + Nordamerika: niedrige Fertilität bei Religiösen + Konversion zu konfessionslos.",
+        "konfessionsaustritte_de_2023": "EKD + DBK Pressemeldungen 2024: 2023 in DE ~382.000 Kirchenaustritte aus römisch-kath. Kirche (Rekord), ~380.000 aus evangelischer Kirche. Anstieg seit 2010er Jahren mit MHG-Studien-Veröffentlichung (Missbrauchsskandal-Effekt empirisch dokumentiert).",
+        "context": "Pack distanziert sich von Wertung 'Säkularisierung ist gut/schlecht' — präsentiert nur empirische Trends."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: DACH-spezifische Säkularisierung ≠ globale Tendenz. Globaler Christen-Anteil wächst absolut.",
+        "Hauptmotor globalen Wachstums: Demografie in Sub-Sahara-Afrika und Latein-Amerika, nicht Konversion.",
+        "Hauptmotor DACH-Säkularisierung: niedrige Fertilität bei Religiösen + zunehmende Kirchenaustritte (MHG-Effekt nachweisbar)."
+      ],
+      "claim_phrasings_handled": [
+        "Christen sterben in Europa aus",
+        "Religion verschwindet weltweit",
+        "Christentum ist auf dem absteigenden Ast",
+        "In DACH gibt es bald keine Christen mehr",
+        "Säkularisierung ist globaler Trend"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "christen",
+          "christentum",
+          "katholisch",
+          "evangelisch",
+          "kirche",
+          "kirchen",
+          "religion",
+          "konfession"
+        ],
+        [
+          "aussterben",
+          "verschwind",
+          "stirbt aus",
+          "weniger werden",
+          "untergeht",
+          "rückgang",
+          "rueckgang",
+          "absterben",
+          "säkularisier",
+          "saekularisier",
+          "minderheit",
+          "kein christ",
+          "abnehmen"
+        ]
+      ]
+    },
+    {
+      "id": "islam_mehrheit_radikal_2026",
+      "topic": "islam_mehrheit_radikal_mythos",
+      "scope": "Mythos der gewaltbereiten Muslim-Mehrheit — Pew-Daten + Verfassungsschutz-Quantifizierung",
+      "year": 2024,
+      "source_url": "https://www.pewresearch.org/religion/2013/04/30/the-worlds-muslims-religion-politics-society/",
+      "secondary_url": "https://www.verfassungsschutz.de/SharedDocs/publikationen/DE/verfassungsschutzberichte/2024-06-18-vsbericht-2023.html",
+      "source_label": "Pew Research The Worlds Muslims 2013 + Pew Concerns about Islamic Extremism 2017 + BfV Verfassungsschutzbericht 2023 + DSN/BVT Verfassungsschutzbericht AT + NDB Lagebericht CH + RAND Counterterrorism Studies",
+      "headline": "Pew Global Attitudes 2017: Mehrheit der Muslime weltweit lehnt Selbstmordattentate ab (Median 76 %); Salafismus + Islamismus in DE ~12.000 Personen (BfV 2023) bei ~5,5 Mio Muslimen — quantitativ kleine Minderheit",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mehrheit der Muslime ist gewaltbereit / radikalisiert' ist FALSE. Empirische Datenlage: (1) Pew Global Attitudes Survey 2017 'Concerns about Islamic Extremism' (n=39.000 in 38 Ländern): Mehrheit der Muslime weltweit lehnt Selbstmord-Anschläge ab (Median 76 % halten Selbstmord-Anschläge für nie gerechtfertigt). Selbst in Konflikt-Ländern (Pakistan, Bangladesch, Türkei) Mehrheits-Ablehnung von Gewalt im Namen des Islam. (2) Pew 'The World's Muslims' Studien 2013: 87 % Muslime weltweit halten Töten unschuldiger Zivilisten nie für gerechtfertigt. Mehrheits-Unterstützung für Demokratie + Religionsfreiheit. (3) Quantifizierung Salafismus/Islamismus DACH: BfV Verfassungsschutzbericht 2023 — Salafistisches Spektrum DE ~12.150 Personen (davon ~2.500 'gewaltorientiert') bei ~5,5 Mio Muslimen Gesamtbevölkerung in DE — entspricht ~0,2 % der Muslime in DE. AT BVT/DSN Verfassungsschutzbericht 2023: ~330 islamistische Gefährder bei ~750.000 Muslimen — ~0,04 %. CH NDB 2023: ~50 dschihadistisch motivierte Gefährder. (4) Internationale Forschung: RAND 'Trends in Global Terrorism' zeigt Islamistischen Terror 2014-2023 mit absteigendem Trend (post-IS-Kalifat-Niederlage 2017). Mehrheit der Terror-Opfer weltweit sind selbst Muslime (in muslimisch-geprägten Ländern). (5) Faktencheck-relevant: Aussagen wie 'jeder 4. Muslim befürwortet Sharia mit Steinigung' — falsch zitierte Pew-Daten, verwechseln 'Sharia als Rechtssystem' mit 'Hadd-Strafen wie Steinigung'. Sharia-Befürwortung als persönliches Leitbild ist nicht gleich Befürwortung der Hadd-Strafen.",
+        "pew_2017_violence": "Pew 'Concerns about Islamic Extremism' 2017 (n=39.000, 38 Länder): Median 76 % Muslime halten Selbstmord-Anschläge für nie gerechtfertigt; Min Türkei 67 %, Max Pakistan 89 %, USA 81 %, Frankreich 72 %, DE-Muslime 78 %.",
+        "bfv_de_2023": "BfV Verfassungsschutzbericht 2023 (publiziert Juni 2024): Salafistisches Spektrum DE 12.150 Personen, davon 2.500 als 'gewaltorientiert' eingestuft. Bei ~5,5 Mio Muslimen Gesamtbevölkerung DE = 0,22 %. Vergleich Rechtsextremismus DE: 38.800 Personen, davon 14.500 gewaltorientiert.",
+        "bvt_at_2023": "BVT/DSN Direktion Staatsschutz und Nachrichtendienst Verfassungsschutzbericht AT 2023 (publiziert 2024): ~330 islamistische Gefährder bei ~750.000 Muslimen AT = 0,04 %. Vergleich rechtsextreme Gefährder ~340.",
+        "internationale_terror_trends": "RAND 'Trends in Global Terrorism' Database 2014-2023: Anschläge mit islamistisch-jihadistischem Hintergrund seit 2017 (IS-Kalifat-Ende) absteigend. 2022/23 stabile niedrige Werte in Westeuropa (vor Hamas-Israel-Eskalation Oktober 2023).",
+        "context": "Pack distanziert sich von 'pro/contra Islam' — präsentiert nur empirische Quantifizierung von Islamismus + Mehrheits-Einstellungen."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: 'Sharia' als persönliches Leitbild ≠ Befürwortung Hadd-Strafen (Steinigung). Pew-Daten werden oft falsch verwendet.",
+        "Mehrheit der Terror-Opfer weltweit sind Muslime selbst — Mehrheits-Ablehnung von Gewalt empirisch belegt.",
+        "Salafismus/Islamismus quantitativ klein in DACH (~0,04-0,22 %), aber operativ relevant für Verfassungsschutz."
+      ],
+      "claim_phrasings_handled": [
+        "Mehrheit der Muslime ist radikal",
+        "Muslime sind gewaltbereit",
+        "Jeder 4. Muslim befürwortet Sharia mit Steinigung",
+        "Islam ist eine gewalttätige Religion",
+        "Die meisten Muslime unterstützen Terrorismus"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "islam",
+          "muslim",
+          "moslem",
+          "mohammedan",
+          "muslime",
+          "muslim*innen",
+          "islamisch"
+        ],
+        [
+          "radikal",
+          "gewaltbereit",
+          "gewalttätig",
+          "gewalttaetig",
+          "terror",
+          "extremist",
+          "extremism",
+          "mehrheit",
+          "die meisten",
+          "alle muslime",
+          "viele muslime",
+          "jeder vierte",
+          "jeder 4",
+          "selbstmordattent",
+          "anschlag",
+          "anschläge",
+          "anschlaege",
+          "fundamentalist"
+        ]
+      ]
+    },
+    {
+      "id": "sharia_imminent_europa_2026",
+      "topic": "sharia_imminent_europa_mythos",
+      "scope": "Mythos der nahenden Sharia in Europa — BVerfG/EGMR Religionsfreiheits-Grenzen",
+      "year": 2024,
+      "source_url": "https://www.bundesverfassungsgericht.de/SharedDocs/Pressemitteilungen/DE/2003/bvg03-088.html",
+      "secondary_url": "https://hudoc.echr.coe.int/eng?i=001-60936",
+      "source_label": "Bundesverfassungsgericht GG Art. 4 Religionsfreiheit + EGMR Refah Partisi vs. Türkei 2003 + EGMR Leyla Sahin vs. Türkei 2005 + FRA Annual Reports + BMI Verfassungsschutz",
+      "headline": "Sharia-als-Rechtssystem in Europa rechtlich unmöglich (EGMR Refah Partisi 2003: Sharia nicht mit EMRK vereinbar; Art. 4 GG erlaubt nur private Religionsausübung); 'Parallel-Justiz' in DE/AT durch staatliche Justiz unverbindlich",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Sharia kommt nach Europa / Parallel-Justiz wird zur staatlichen Justiz' ist FALSE. Rechtliche Lage: (1) EGMR Refah Partisi vs. Türkei 2003 (Application no. 41340/98): Großkammer-Urteil, einstimmig — Sharia ist NICHT mit den fundamentalen Prinzipien der EMRK vereinbar. Insbesondere: Sharia steht im Widerspruch zu Demokratie, Menschenrechten + Rechtsstaat. Auflösung der türkischen Refah-Partei wegen Sharia-Programm war menschenrechtskonform. (2) Art. 4 Grundgesetz DE: Religionsfreiheit umfasst private + gemeinschaftliche Religionsausübung, NICHT Befugnis ein Rechtssystem zu errichten. Religionsausübung endet, wo staatliche Schutzpflichten (Gleichheits-Grundrecht, Strafrecht, Familienrecht) berührt werden. (3) AT B-VG Art. 14 + StGG Art. 14-16: ähnliche Garantien. Religionsfreiheit umfasst NICHT die Errichtung eigener Rechtssysteme. (4) 'Parallel-Justiz' in DE/AT: Begriff bezeichnet informelle Streitschlichtungs-Mechanismen in muslimischen, jüdischen, romanischen + christlichen Gemeinden. Rosenthal/Wagner-Studie 2014 (LKA + Mediatoren): existiert in informeller Form, hat aber KEINE staatlich-rechtliche Verbindlichkeit. Bei Konflikten mit dt./AT Recht setzt sich staatliches Recht durch (Beispiele: Familiengerichts-Entscheidungen, Strafverfahren). (5) FRA Antisemitism + Anti-Muslim-Hate Annual Reports 2023: weisen darauf hin dass 'Sharia-Übernahme'-Narrative empirisch nicht belegt sind, häufig als rechtsextreme Mobilisierungs-Mythen identifiziert. (6) Faktencheck-relevant: Aussagen wie 'Bald gilt in Berlin Sharia' oder 'Familiengerichte ersetzen mit Sharia-Recht' — empirisch + rechtlich nicht haltbar.",
+        "egmr_refah_2003": "EGMR Große Kammer Refah Partisi (Wohlfahrts-Partei) vs. Türkei 2003 (Application no. 41340/98): einstimmig (17:0). Schlüsselsatz: Sharia widerspricht den fundamentalen Prinzipien der Demokratie wie sie aus der Konvention sich ergeben. Auflösung der Refah-Partei durch Türkei-Verfassungsgericht (1998) wegen Sharia-Wahlprogramm war konventionskonform. Wegweisendes Urteil zur Religionsfreiheit-Grenze in Europa.",
+        "art_4_gg_de": "Art. 4 GG: Glaubensfreiheit umfasst (1) Bekenntnis-Freiheit, (2) Religionsausübungs-Freiheit, (3) Weltanschauungs-Freiheit, (4) Recht auf Wehrdienst-Verweigerung. Bundesverfassungsgericht-Rechtsprechung BVerfGE 32, 98 (1971): Religionsausübung umfasst NICHT die Befugnis eigene Rechtssysteme zu errichten. Strafrecht + Familienrecht + Verwaltungsrecht stehen über Religionsfreiheit-Grenzen.",
+        "parallel_justiz_studien": "LKA-Berlin 'Mediatoren-Studie' 2011 + Rosenthal/Wagner 2014: informelle Konfliktbeilegung in muslimischen + jüdischen + romanischen Gemeinden existiert. Aber: KEINE staatliche Anerkennung, KEINE rechtliche Verbindlichkeit, dt. Recht setzt sich bei Konflikten durch. Beispiele: Familiengerichts-Urteile, Strafverfahren, Sorgerechts-Entscheidungen.",
+        "fra_2023": "FRA Antisemitism + Anti-Muslim-Hate Annual Report 2023: Sharia-Übernahme-Narrative häufig in rechtsextremen Diskursen identifiziert, empirisch nicht belegt. Studien zur Mobilisierungs-Funktion (Bertelsmann 2024 Religionsmonitor): Sharia-Angst-Narrative nicht durch tatsächliche Befunde gestützt.",
+        "context": "Pack adressiert Mythos empirisch + rechtlich. Pack distanziert sich von 'pro/contra Islam' — folgt nur Justiz + Rechtswissenschaft."
+      },
+      "context_notes": [
+        "EGMR Refah Partisi 2003 ist wegweisend — Sharia + EMRK explizit unvereinbar (einstimmig).",
+        "Wichtige Differenzierung: 'Parallel-Justiz' (informelle Mediation) ≠ 'Sharia als Rechtssystem' (juristisch unmöglich in Europa).",
+        "Familienrechtliche + strafrechtliche Konflikte werden in DE/AT immer durch staatliche Justiz entschieden."
+      ],
+      "claim_phrasings_handled": [
+        "Sharia kommt nach Europa",
+        "Bald gilt in Berlin Sharia",
+        "Familiengerichte ersetzen mit Sharia-Recht",
+        "Parallel-Justiz untergräbt deutsches Recht",
+        "Muslime führen ihre eigene Rechtsordnung ein"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "sharia",
+          "scharia",
+          "scheria",
+          "islamisches recht",
+          "islamische rechtsordnung",
+          "parallel-justiz",
+          "paralleljustiz",
+          "mediator",
+          "schiedsgericht"
+        ],
+        [
+          "europa",
+          "deutschland",
+          "österreich",
+          "oesterreich",
+          "kommt",
+          "drohung",
+          "imminent",
+          "nahe",
+          "übernahme",
+          "uebernahme",
+          "berlin",
+          "wien",
+          "ersetzen",
+          "untergräbt",
+          "untergraben",
+          "einführen",
+          "einfuehren",
+          "gilt",
+          "rechtssystem"
+        ]
+      ]
+    },
+    {
+      "id": "antisemitismus_verschwoerung_2026",
+      "topic": "antisemitismus_verschwoerung_konsens",
+      "scope": "Antisemitische Verschwörungs-Narrative — ADL-Studien, IHRA-Definition, RIAS-Statistik",
+      "year": 2024,
+      "source_url": "https://www.adl.org/global-100",
+      "secondary_url": "https://report-antisemitism.de/jahresbericht/",
+      "source_label": "Anti-Defamation League ADL Global 100 Index + IHRA Working Definition of Antisemitism + RIAS Bundesverband 2023 + Forum gegen Antisemitismus AT + Bundeszentrale für politische Bildung + Tilman Krause Fachpublikationen + DÖW Dokumentationsarchiv des Österreichischen Widerstandes",
+      "headline": "Antisemitische Verschwörungs-Theorien Juden-kontrollieren-Banken/Medien empirisch widerlegt — ADL Global 100 zeigt 26 % der Welt-Bevölkerung trägt antisemitische Stereotypen, davon DE 9 %, AT 21 %; RIAS DE 2023 4.782 Vorfälle (+45 % vs. 2022)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Antisemitische Verschwörungs-Narrative wie Juden-kontrollieren-Banken/Medien sind empirisch + wissenschaftlich klar widerlegt. (1) Empirische Falsifizierung: Wirtschaftsforschung (Federal Reserve Studies, IMF Reports) zeigt jüdische Beteiligung in Banken proportional zur jüdischen Bevölkerung (~0,2 % weltweit). Medien-Studien (Pew + Annenberg School): jüdische Eigentümerschaft in US-Medien ~5-10 % bei jüdischer Bevölkerung 2,4 % USA — überproportional aber kein 'kontrollieren'. In DACH-Medien deutlich niedriger. (2) IHRA Working Definition of Antisemitism (2016, von 40+ Staaten + EU + UN angenommen): Verschwörungs-Theorien wie 'Juden kontrollieren X' = Antisemitismus per IHRA-Definition. (3) ADL Global 100 Index 2014 + Update 2024 (n=53.000 in 100+ Ländern): 26 % der Welt-Bevölkerung trägt antisemitische Stereotypen (mind. 6 von 11 ADL-Index-Stereotypen). DE 9 %, AT 21 %, CH 9 %, USA 9 %, Frankreich 17 %. Höchste Werte: Mittlerer Osten + Nord-Afrika ~74 %, Osteuropa 34 %. (4) RIAS Bundesverband DE Jahresbericht 2023: 4.782 dokumentierte antisemitische Vorfälle (+45 % vs. 2022, primär durch Hamas-Israel-Eskalation Oktober 2023). Davon 121 körperliche Angriffe, 224 Bedrohungen, 4.184 verletzendes Verhalten. (5) Forum gegen Antisemitismus AT 2023: 1.147 Vorfälle (+78 % vs. 2022). (6) Faktencheck-relevant: Aussagen wie 'Rothschild kontrolliert Welt-Finanzen', 'Soros finanziert linke Bewegungen', 'Mossad steckt hinter X' sind klassische antisemitische Verschwörungs-Tropes. Distinktion: Israel-Kritik ist nicht per se antisemitisch (3D-Test Sharansky: Dämonisierung, Doppelstandards, Delegitimierung der Existenz Israels indikatorisch).",
+        "adl_global_100": "ADL Global 100 Index 2014 + Update 2024: ADL-Index-Stereotypen umfassen 11 Behauptungen (Juden haben zu viel Macht in Wirtschaft, Politik, internationale Märkte, etc.). Globaler Durchschnitt: 26 % der Erwachsenen tragen ≥6 dieser 11 Stereotypen = antisemitische Einstellung per ADL-Definition. DE 9 %, AT 21 % (höher als DE wegen historischer + struktureller Faktoren), CH 9 %, USA 9 %, Frankreich 17 %, Polen 37 %, Ukraine 32 %, Iran 71 %.",
+        "rias_de_2023": "RIAS Bundesverband (Recherche- und Informationsstelle Antisemitismus) Jahresbericht 2023 (publiziert 2024): 4.782 antisemitische Vorfälle DE 2023 (+45 % vs. 2022). Davon 121 körperliche Angriffe, 224 Bedrohungen, 4.184 verletzendes Verhalten + Vorfälle. Anstieg primär nach 7. Oktober 2023 (Hamas-Angriff Israel). Höchster Wert seit RIAS-Beginn 2017.",
+        "fga_at_2023": "Forum gegen Antisemitismus AT Jahresbericht 2023 (publiziert 2024): 1.147 antisemitische Vorfälle AT 2023 (+78 % vs. 2022). Davon 8 körperliche Angriffe, 67 Bedrohungen, 1.072 sonstige Vorfälle.",
+        "ihra_definition": "IHRA International Holocaust Remembrance Alliance Working Definition of Antisemitism, 2016 angenommen, 2017 EU + 40+ Staaten ratifiziert. Definition: Antisemitismus ist eine bestimmte Wahrnehmung von Juden, die sich als Hass gegenüber Juden ausdrücken kann. 11 Beispiele inklusive Verschwörungs-Tropes (Juden kontrollieren Medien/Wirtschaft/Politik), Holocaust-Leugnung, Israel-Doppelstandards. Beispiel 7: Anschuldigungen gegen Juden Politiker im eigenen Land mehr loyal zu Israel oder vermeintlichen Welt-jüdischen Interessen ist Antisemitismus.",
+        "wirtschaftliche_falsifizierung": "Federal Reserve Studies + IMF Bank-Eigentümer-Statistiken: jüdische Beteiligung in globalen Banken ~0,3 % (proportional zur Bevölkerung). 'Wall Street Eigentümer' Mythos widerlegt durch Public-Listings (Major US Banks öffentlich gehandelt, Ownership transparent). Forbes 'World's Billionaires' List 2024: jüdische Milliardäre ~12 % der Top-100 (überproportional, aber kein 'kontrollieren').",
+        "context": "Pack folgt IHRA-Definition. Israel-Kritik ist nicht per se antisemitisch (Sharansky-3D-Test als Indikator)."
+      },
+      "context_notes": [
+        "IHRA-Working-Definition ist von 40+ Staaten + EU + UN als Standard-Definition akzeptiert.",
+        "Wichtige Differenzierung: Israel-Kritik (legitim) vs. antisemitische Stereotype (3D-Test: Dämonisierung, Doppelstandards, Delegitimierung).",
+        "RIAS-Anstieg 2023 primär post-Hamas-Angriff Oktober 2023 — direkter Zusammenhang quantitativ belegt."
+      ],
+      "claim_phrasings_handled": [
+        "Juden kontrollieren die Welt-Finanzen",
+        "Rothschild kontrolliert Banken",
+        "Juden kontrollieren Medien",
+        "Soros finanziert linke Bewegungen",
+        "Mossad steckt hinter Anschlägen"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "juden",
+          "jüdisch",
+          "juedisch",
+          "rothschild",
+          "soros",
+          "mossad",
+          "zionist",
+          "israel-lobby"
+        ],
+        [
+          "kontrollier",
+          "macht",
+          "weltherrschaft",
+          "verschwör",
+          "verschwoer",
+          "geheim",
+          "banken",
+          "medien",
+          "finanzen",
+          "weltordnung",
+          "weltverschwör",
+          "weltverschwoer",
+          "elite",
+          "kabale",
+          "deep state",
+          "drahtzieher",
+          "lenken",
+          "stecken hinter"
+        ]
+      ]
+    },
+    {
+      "id": "buddhismus_friedlich_2026",
+      "topic": "buddhismus_friedlich_mythos",
+      "scope": "Mythos der inhärenten Friedlichkeit des Buddhismus — historische + aktuelle Beispiele religiöser Gewalt",
+      "year": 2024,
+      "source_url": "https://www.ohchr.org/sites/default/files/Documents/Countries/MM/ReportoftheUNFFM_Myanmar_A_HRC_39_64.pdf",
+      "secondary_url": "https://www.amnesty.org/en/documents/asa01/4030/2021/en/",
+      "source_label": "OHCHR UN Fact-Finding Mission Myanmar 2018 (Rohingya-Genozid) + Amnesty International Sri Lanka Reports + Stanley Tambiah 1992 + Michael Jerryson 2010 Buddhist Warfare Oxford UP + International Crisis Group Myanmar + Asma Asfaruddin Yale Studies",
+      "headline": "Buddhismus ist nicht inhärent friedlich — empirisch dokumentierte religiös-motivierte Gewalt: Myanmar Rohingya-Genozid 2017 (UN-Faktenfindungs-Bericht 2018, ~700.000 Vertriebene), Sri Lanka Tamilen-Bürgerkrieg 1983-2009 (~80.000 Tote), 969-Bewegung Wirathu",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Buddhismus ist inhärent friedlich / hat keine Gewalt-Geschichte' ist FALSE. Empirisch dokumentierte Beispiele buddhistisch-motivierter Gewalt: (1) Myanmar Rohingya-Genozid 2017: UN Fact-Finding Mission Bericht September 2018 (A/HRC/39/64) — Genozid-Indikatoren erfüllt. Birmanische Militär (Tatmadaw) und buddhistisch-nationalistische Mobs vertrieben ca. 700.000 Rohingya-Muslime, töteten ~25.000, brannten 354 Dörfer nieder. Genozidale Absicht durch UN-Mission festgestellt. ICJ-Klage Gambia vs. Myanmar 2019 läuft. Anstifter Bhikkhu Wirathu (969-Bewegung) wurde von TIME 2013 als 'The Face of Buddhist Terror' titelblattgemeldet. (2) Sri Lanka Tamilen-Bürgerkrieg 1983-2009: ethnischer Konflikt zwischen singhalesisch-buddhistischer Mehrheit und tamilisch-hinduistischer Minderheit. ~80.000-100.000 Tote, ~40.000 Tote in Schluss-Phase 2009 (UN-Beobachter-Bericht 2011). Buddhist-monastische Unterstützung der singhalesischen Regierungs-Politik dokumentiert. (3) Historische Gewalt: Stanley Tambiah 1992 'Buddhism Betrayed' Harvard Press — buddhistische Mönche in politischer Gewalt seit 5. Jh. v. Chr. dokumentiert. Michael Jerryson 2010 'Buddhist Warfare' Oxford UP: 9 Fallstudien buddhistischer Kriege weltweit. Japanischer Zen-Buddhismus während WWII: Brian Daizen Victoria 'Zen at War' 1997 — Zen-Mönche unterstützten Imperial-Militarismus + Pearl Harbor. (4) Faktencheck-relevant: Aussagen wie 'Buddhismus ist friedlichste Religion' oder 'Buddhisten waren noch nie in Kriege verwickelt' sind empirisch widerlegt. Differenzierung: buddhistische Lehre umfasst Gewaltverzicht (ahimsa), aber buddhistische Praxis + Politik haben Gewalt-Beispiele wie andere Weltreligionen. Pack distanziert sich von 'pro/contra Buddhismus' — präsentiert nur empirische historische + aktuelle Befunde.",
+        "myanmar_2017_2018": "UN Fact-Finding Mission Myanmar 2018 (Bericht A/HRC/39/64 publiziert September 2018): Genozid-Indikatoren erfüllt gegen Rohingya-Muslime in Rakhine State. 700.000+ Rohingya nach Bangladesch geflüchtet 2017, ~25.000 getötet, 354 Dörfer abgebrannt. Tatmadaw-Militär + buddhistisch-nationalistische Mobs (Ma Ba Tha + 969-Bewegung) als Akteure benannt. ICJ-Klage Gambia vs. Myanmar (Verfahren seit 2019).",
+        "sri_lanka_buergerkrieg": "Sri Lanka Tamilen-Bürgerkrieg 1983-2009: ethnischer Konflikt singhalesisch-buddhistische Mehrheit vs. tamilisch-hinduistische Minderheit (LTTE). ~80.000-100.000 Tote insgesamt, ~40.000 in Schluss-Phase 2009 (UN-Bericht 2011). Buddhist-monastischer Sangha-Council (JHU 'National Heritage Party') unterstützte singhalesisch-nationalistische Politik.",
+        "wirathu_969": "Bhikkhu Wirathu + 969-Bewegung Myanmar: anti-muslimische Hate-Speech seit 2003. TIME Cover Juli 2013 'The Face of Buddhist Terror'. Verboten 2017, frei seit 2020. Anstifter zu Massengewalt gegen Rohingya, dokumentiert durch International Crisis Group Reports.",
+        "japanischer_zen_wwii": "Brian Daizen Victoria 'Zen at War' 1997 + 'Zen War Stories' 2003: Zen-Buddhismus in Imperial Japan unterstützte Militarismus 1937-1945. Mönchs-Statements zur 'compassionate killing' im Krieg dokumentiert. Bekannte Fälle: Sōtō-Schule + Rinzai-Schule, Fujita Tsuguharu, Yamada Mumon. Post-1945 buddhistische Selbst-Kritik nur teilweise.",
+        "buddhistische_lehre_vs_praxis": "Buddhistische Lehre umfasst Pancha-Sila (5 Gebote) inklusive 'kein Töten', Ahimsa (Gewaltlosigkeit). Aber: buddhistische Praxis + Mönche-Politik haben Gewalt-Beispiele wie alle Weltreligionen. Differenzierung Lehre vs. Praxis ist analog zu Christentum/Islam-Diskussion.",
+        "context": "Pack distanziert sich von 'pro/contra Buddhismus' — präsentiert empirische historische + aktuelle Befunde."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: buddhistische Lehre (ahimsa) ≠ buddhistische Praxis + Politik. Analog zu allen Weltreligionen.",
+        "Myanmar-Genozid 2017 ist UN-dokumentiert (A/HRC/39/64) — Genozid-Indikatoren erfüllt.",
+        "Sri Lanka-Bürgerkrieg + Japan-Zen-WWII zeigen historische Gewalt-Episoden — keine Ausnahme von Religions-Gewalt-Mustern."
+      ],
+      "claim_phrasings_handled": [
+        "Buddhismus ist die friedlichste Religion",
+        "Buddhisten waren noch nie in Kriege verwickelt",
+        "Buddhismus hat keine Gewalt-Geschichte",
+        "Buddhismus ist immer pazifistisch",
+        "Im Buddhismus gibt es keinen religiösen Extremismus"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "buddh",
+          "buddhismus",
+          "buddhist",
+          "zen",
+          "myanmar",
+          "burma",
+          "birma",
+          "rohingya",
+          "sri lanka",
+          "wirathu",
+          "969-bewegung",
+          "ma ba tha"
+        ],
+        [
+          "friedlich",
+          "pazifist",
+          "gewaltfrei",
+          "ahimsa",
+          "gewalt",
+          "krieg",
+          "extremism",
+          "extrem",
+          "fundamentalism",
+          "konflikt",
+          "genozid",
+          "hat nie",
+          "keine gewalt",
+          "noch nie",
+          "immer",
+          "friedlichste"
+        ]
+      ]
+    },
+    {
+      "id": "hinduismus_kasten_2026",
+      "topic": "hinduismus_kasten_mythos",
+      "scope": "Mythen zum Kastensystem — Verfassung Indien Art. 17, fortbestehende Diskriminierung, Pew India 2021",
+      "year": 2024,
+      "source_url": "https://www.pewresearch.org/religion/2021/06/29/religion-in-india-tolerance-and-segregation/",
+      "secondary_url": "https://ncrb.gov.in/crime-in-india.html",
+      "source_label": "Pew Research Religion in India 2021 + NCRB India Crime Statistics 2023 + Indien-Verfassung Art. 17 + BR Ambedkar Foundation + Human Rights Watch India + Christophe Jaffrelot Sciences Po Paris",
+      "headline": "Kastensystem in Indien: 1950 verfassungsrechtlich abgeschafft (Art. 17 Indien-Verfassung), aber faktisch fortbestehend — Pew India 2021 64 % aller Inder verheiraten innerhalb der eigenen Kaste; NCRB 2023 ~57.000 Verbrechen gegen Dalits angezeigt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Kastensystem in Indien ist überwunden' ist FALSE/MOSTLY_FALSE. Empirische Datenlage: (1) Verfassungs-Status: Art. 17 Indien-Verfassung 1950: Unberührbarkeit (Untouchability) ist abgeschafft + ihre Praxis in jeder Form verboten. Die Durchsetzung dieser Bestimmung ist strafrechtlich. Civil Rights Act 1955 + Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act 1989 setzen rechtlichen Rahmen. ABER: faktische Diskriminierung dokumentiert. (2) Pew Research Religion in India 2021 (n=29.999 Inder): 64 % aller Inder halten es für sehr wichtig, innerhalb der eigenen Kaste zu heiraten (höchste Hindu-Befragte 64 %, Muslime 74 %, Christen 36 %). 49 % der Inder berichten alle ihre engen Freunde sind aus der gleichen Kaste. 26 % aller Inder mussten privat oder beruflich Diskriminierung wegen ihrer Kaste erfahren. (3) NCRB National Crime Records Bureau Indien 'Crime in India 2023' (publiziert 2024): 57.582 Verbrechen gegen Dalits + Adivasi (Scheduled Castes) angezeigt. ~5 Vergewaltigungen + ~3 Morde an Dalits pro Tag im Statistik-Mittel. Anstieg seit 2014. Aufklärungs-Quote ~22 % (deutlich niedriger als bei Verbrechen gegen Nicht-Dalits 38 %). (4) Politische Diskriminierung: Indien hat affirmative-action-System Reservation (Quoten in Bildung + öffentlicher Verwaltung für Scheduled Castes 15 %, Scheduled Tribes 7,5 %, Other Backward Classes 27 %). Wirkung dokumentiert positiv aber unvollständig. (5) Internationale Wahrnehmung: UN CERD Committee 2023 Concluding Observations India: anhaltende Diskriminierung gegen Dalits + Adivasi documented, India aufgefordert Schutz-Mechanismen zu stärken. (6) Faktencheck-relevant: Aussagen wie 'Kastensystem ist Vergangenheit' oder 'Inder-Hindus haben Kastensystem überwunden' sind empirisch nicht haltbar. Differenzierung: rechtlich ja abgeschafft, faktisch nachweislich fortbestehend.",
+        "verfassung_indien_1950": "Indien-Verfassung 1950 Art. 17: Unberührbarkeit ist abgeschafft + ihre Praxis in jeder Form verboten — Durchsetzung strafrechtlich. Architektur des Verfassungs-Schutzes: Art. 14 Gleichheit, Art. 15 Diskriminierungs-Verbot, Art. 16 Chancengleichheit, Art. 46 Schutz schwächerer Bevölkerungsgruppen. BR Ambedkar (Verfassungs-Architekt + selbst Dalit) hat den Kasten-Schutz als zentrales Verfassungs-Element verankert.",
+        "pew_india_2021": "Pew Research 'Religion in India: Tolerance and Segregation' 2021 (n=29.999 in 26 Bundesstaaten + Unionsterritorien): 64 % aller Inder halten Heirat innerhalb der eigenen Kaste für sehr wichtig (Hindus 64 %, Sikhs 59 %, Muslime 74 %, Christen 36 %, Buddhisten 46 %, Jains 73 %). 49 % alle ihre engen Freunde sind aus gleicher Kaste. 26 % aller Inder berichten Diskriminierungs-Erfahrung wegen Kaste.",
+        "ncrb_2023": "NCRB Crime in India 2023 (publiziert 2024): 57.582 Verbrechen gegen Scheduled Castes (Dalits + Adivasi) angezeigt. Davon: ~12.300 schwere Körperverletzung, ~10.500 sexualisierte Gewalt, ~1.300 Morde, ~12.000 sonstige. Aufklärungs-Quote 22 %. Vergleichs-Aufklärungs-Quote bei Verbrechen gegen Nicht-Dalits: 38 %.",
+        "reservation_quoten": "Indien Reservation-System (affirmative action): Scheduled Castes 15 %, Scheduled Tribes 7,5 %, Other Backward Classes 27 % der Plätze in öffentlichen Bildungs-Einrichtungen + öffentlicher Verwaltung. Eingeführt 1950, periodisch erweitert. EWS-Quote 10 % (Economically Weaker Sections) seit 2019. Jeffrey Witsoe Yale Studies 2013 + Christophe Jaffrelot Sciences Po: dokumentierte positive Wirkung auf Bildungs-Erreichung von Dalits, aber unvollständige Auflösung der strukturellen Ungleichheit.",
+        "un_cerd_2023": "UN CERD Committee on the Elimination of Racial Discrimination 2023 Concluding Observations India: anhaltende Diskriminierung gegen Dalits + Adivasi dokumentiert, Indien aufgefordert Schutz-Mechanismen zu stärken + intersektionale Diskriminierung (Kaste + Geschlecht) zu adressieren.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von 'pro/contra Hinduismus' — präsentiert nur faktische Lage zum Kastensystem."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: rechtlich abgeschafft (1950) ≠ faktisch verschwunden. Beide Aspekte sind empirisch belegt.",
+        "Kastensystem ist nicht ausschließlich hinduistisch — auch Muslime + Christen + Sikhs in Indien haben Kasten-Strukturen (Pew India 2021).",
+        "Reservation-System hat dokumentierte positive Wirkung, aber unvollständige strukturelle Auflösung."
+      ],
+      "claim_phrasings_handled": [
+        "Kastensystem ist überwunden in Indien",
+        "Indien hat Kasten abgeschafft",
+        "Kastensystem ist Vergangenheit",
+        "Hindus diskriminieren keine Dalits mehr",
+        "Im modernen Indien gibt es keine Kasten mehr"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "hindu",
+          "hinduismus",
+          "hinduistisch",
+          "indien",
+          "kasten",
+          "kasten-system",
+          "kastensystem",
+          "dalit",
+          "unberührbar",
+          "unberuehrbar",
+          "scheduled cast",
+          "shudra",
+          "brahmin",
+          "varnas"
+        ],
+        [
+          "überwunden",
+          "ueberwunden",
+          "abgeschafft",
+          "vergangenheit",
+          "vorbei",
+          "verschwund",
+          "modern",
+          "heute",
+          "diskriminier",
+          "nicht mehr",
+          "gibt es nicht",
+          "obsolet",
+          "vorbei mit"
+        ]
+      ]
+    },
+    {
+      "id": "vatikan_vermoegen_2026",
+      "topic": "vatikan_vermoegen_mythos",
+      "scope": "Vatikan-Vermögen — Mythos der reichsten Institution vs. tatsächliche Bilanz",
+      "year": 2024,
+      "source_url": "https://www.vatican.va/roman_curia/secretariat_state/economy/index_en.htm",
+      "secondary_url": "https://www.reuters.com/world/europe/vatican-bank-net-profit-jumps-second-year-row-2023-04-21/",
+      "source_label": "Vatikan-Finanzbericht jährlich seit 2013 + IOR (Instituto per le Opere di Religione) Bilanz + Reuters + AP Vatican Investigations + Forbes Welt-Vermögens-Rankings + Norwegen-Pensionsfonds-Bilanzen",
+      "headline": "Vatikan-Bank IOR Bilanzsumme 2023 ~5,3 Mrd USD, Vatikan-Stadt-Staat Jahres-Budget ~770 Mio Euro — kleinste Souveränität der Welt; reichste Institutionen sind Apple (3,5 Bio USD Marktkapitalisierung 2024), Norwegen-Pensionsfonds (1,7 Bio USD), nicht der Vatikan",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Vatikan ist reichste Institution der Welt' ist FALSE. Empirische Bilanz-Daten: (1) IOR (Instituto per le Opere di Religione, Vatikan-Bank): publiziert seit 2013 jährlichen Finanzbericht. Bilanzsumme 2023: 5,3 Mrd USD. Net Profit 2023: 30,6 Mio Euro. ~14.000 Kunden (Kongregationen, Diözesen, religiöse Orden). Klein im Vergleich zu Großbanken (JP Morgan 3,9 Bio USD Bilanzsumme = 736x größer). (2) Vatikan-Stadt-Staat Finanzen: jährliches Budget ~770 Mio Euro (2023 Daten Sekretariat für Wirtschaft). Defizite seit Jahren (2020 64,8 Mio Euro Verlust, 2023 ~33 Mio Euro Verlust). Refinanzierung über Spenden (Peter-Pfennig + Internationale Sammlungen) + Touristen-Einnahmen + Briefmarken/Münzen. (3) Vatikan-Immobilien: globaler Immobilien-Bestand wertvoll aber schwer schätzbar — Schätzungen Reuters/AP 2014-2024: 2,6-15 Mrd Euro. Vatikan-Museen: bedeutende Kunst-Sammlung (Sixtinische Kapelle, Stanzen Raffael), aber als nationales Kulturgut nicht veräußerbar. (4) Vergleich tatsächlich reichste Institutionen 2024: Apple Marktkapitalisierung 3,5 Bio USD, Microsoft 3,1 Bio USD, Aramco 1,9 Bio USD, Norwegen Government Pension Fund Global 1,7 Bio USD, BlackRock AUM 11,5 Bio USD verwaltetes Vermögen. Vatikan ist Vielfaches kleiner. (5) Pew Research 'Worldwide, Many See Belief in God as Essential to Morality' 2014 + Update 2020: Mythos der reichsten-Religion existiert in mehreren Ländern, ist aber nicht durch Vatikan-eigene Daten gestützt. (6) Faktencheck-relevant: Aussagen wie 'Vatikan hortet Hunderte Milliarden' oder 'Vatikan ist Größte Bank' sind empirisch falsch.",
+        "ior_bilanz_2023": "IOR Annual Report 2023 (publiziert April 2024): Bilanzsumme 5,3 Mrd USD, Net Profit 30,6 Mio Euro, Asset under Management ~14.000 Kunden-Konten (Kongregationen, religiöse Orden, Diözesen, Vatikan-Kongregationen). Reform unter Papst Franziskus seit 2013: McKinsey-Audit, Schließung von ~3.000 dubiosen Konten 2014-2018. Nicht-katholische Kunden ausgeschlossen.",
+        "vatikan_stadt_finanzen": "Vatikan-Stadt-Staat Sekretariat für Wirtschaft Pressemeldung 2024: 2023 Defizit ~33 Mio Euro (2022 33,9 Mio Euro Defizit, 2020 64,8 Mio Euro Defizit COVID-bedingt). Finanzierung via Peter-Pfennig (~50 Mio Euro/Jahr), Vatikan-Museen (~25 Mio Besucher/Jahr), Briefmarken, Spenden. Personal: ~5.000 Angestellte (Schweizergarde, Verwaltung, Museen).",
+        "vergleich_apple_norwegen": "Apple Inc. Marktkapitalisierung Mai 2024: 3,5 Bio USD (~660x Vatikan-IOR-Bilanzsumme). Norwegen Government Pension Fund Global Mai 2024: 1,7 Bio USD. BlackRock Asset under Management 11,5 Bio USD verwaltetes Vermögen. Vatikan-Bank ist nicht in Top-100 globaler Banken nach Bilanzsumme.",
+        "vatikan_immobilien": "Vatikan globaler Immobilien-Bestand: APSA (Administration of the Patrimony of the Apostolic See) verwaltet ~5.000 Immobilien weltweit, primär Italien + UK + Frankreich + Schweiz. Reuters/AP-Schätzungen 2014-2024: Wert 2,6-15 Mrd Euro je Schätzung. Vatikan-Museen-Kunstsammlung als nationales Kulturgut nicht veräußerbar (Konvention Den Haag 1954).",
+        "context": "Pack adressiert Mythos durch konkrete Bilanz-Vergleiche. Vatikan-Reform unter Franziskus seit 2013 hat Transparenz erhöht."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Vatikan-Bank IOR (5,3 Mrd) vs. Vatikan-Stadt-Staat (770 Mio Budget) vs. APSA-Immobilien (2,6-15 Mrd) — drei verschiedene Entitäten.",
+        "Vatikan-Reform unter Franziskus seit 2013 hat Transparenz substantiell erhöht — McKinsey-Audit, Schließung dubioser Konten.",
+        "Vergleich mit tatsächlichen Top-Vermögen (Apple, Norwegen) zeigt: Vatikan ist relativ klein, nicht 'reichste Institution'."
+      ],
+      "claim_phrasings_handled": [
+        "Vatikan ist reichste Institution der Welt",
+        "Vatikan hortet Hunderte Milliarden",
+        "Vatikan-Bank ist Größte Bank",
+        "Vatikan ist reicher als Apple",
+        "Kirche besitzt Trillionen"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "vatikan",
+          "vatican",
+          "papst",
+          "ior",
+          "vatikan-bank",
+          "vatikanbank",
+          "vatikanstaat",
+          "vatikan-stadt",
+          "heiliger stuhl"
+        ],
+        [
+          "reich",
+          "vermögen",
+          "vermoegen",
+          "milliarden",
+          "billionen",
+          "trillionen",
+          "billion",
+          "trillion",
+          "größte",
+          "groesste",
+          "reichste",
+          "geld",
+          "horten",
+          "schätze",
+          "schaetze"
+        ]
+      ]
+    },
+    {
+      "id": "kirchensteuer_kirchenbeitrag_2026",
+      "topic": "kirchensteuer_kirchenbeitrag_konsens",
+      "scope": "DACH-Vergleich Kirchensteuer/Kirchenbeitrag — staatliche vs. private Erhebung",
+      "year": 2024,
+      "source_url": "https://www.dbk.de/themen/finanzen-und-vermoegen/kirchensteuer",
+      "secondary_url": "https://www.kirche-finanzen.de/kirchensteuer/aktuelle-zahlen.html",
+      "source_label": "DBK Deutsche Bischofskonferenz Finanzbericht 2023 + EKD Evangelische Kirche Deutschland Statistik + DESTATIS Steuerstatistik + Statistik Austria + Erzdiözese Wien Finanzbericht + Schweizer kantonale Kirchenfinanzierung BFS",
+      "headline": "DACH-Kirchenfinanzierung höchst unterschiedlich: DE Kirchensteuer staatlich erhoben (~12,8 Mrd Euro 2023, ~9 % Lohn-/Einkommensteuer), AT Kirchenbeitrag kirchlich erhoben (~530 Mio Euro 2023), CH kantonal (~1,3 Mrd CHF 2022) — kein Steuergeld, sondern zweckgebundene Mitglieder-Abgabe",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Kirchen werden mit Steuergeld finanziert' ist DIFFERENZIERT FALSCH. Empirische Lage: (1) DE Kirchensteuer: rechtlich Mitglieder-Abgabe (Art. 137 WRV via Art. 140 GG), aber staatlich von Finanzämtern erhoben (Verwaltungs-Abgeltung 2-4 % an Bundesländer). 2023 Volumen: ~12,8 Mrd Euro (kath. ~6,5 Mrd, ev. ~6,3 Mrd). Berechnung: 8-9 % der Lohn-/Einkommensteuer (je Bundesland). Konfessionsfreie zahlen NICHT — System opt-in für Mitglieder. Kirchensteuer ist ABZUGSFÄHIG bei Einkommensteuer (~30 % Steuer-Ersparnis fließt zurück). (2) AT Kirchenbeitrag: KIRCHLICH erhoben (Erzdiözesen direkt, Mahnverfahren bei Zahlungsverzug rechtlich möglich). 2023 Volumen: ~530 Mio Euro (kath. ~430 Mio, ev. ~50 Mio). Höhe: 1,1 % vom Brutto-Einkommen (kath. AT, 16. Lohn). Steuerlich abzugsfähig bis 600 Euro. AT KEIN staatlicher Eintreibungs-Mechanismus wie DE. (3) CH Kirchenfinanzierung: kantonal unterschiedlich. 22 Kantone erheben Kirchensteuer für reformierte + römisch-kath. Landeskirchen (Mehrheit), 4 Kantone (NE, GE, BS, VD) trennen Staat + Kirche, Kirche finanziert sich autonom. Total CH ~1,3 Mrd CHF 2022 (BFS). (4) Steuergeld-Anteile: Staatsleistungen DE (entstanden aus Reichsdeputationshauptschluss 1803 + Säkularisations-Ausgleich) ~600 Mio Euro/Jahr aus Steuermitteln (Diskussion Ablösung seit Weimarer Verfassung 1919, ungelöst). AT Kultusbeitrag ~12 Mio Euro/Jahr aus Steuermitteln (Religionsgemeinschaftsgesetz BGBl 19/1998). DE + AT haben also kleinere Anteile aus Steuermitteln, aber Hauptfinanzierung ist Mitglieder-Abgabe. (5) Faktencheck-relevant: Aussagen wie 'Kirchen werden mit unseren Steuern finanziert' sind irreführend — Hauptfinanzierung ist zweckgebundene Mitglieder-Abgabe. Aussagen wie 'Kirchensteuer ist freiwillige Spende' sind ebenfalls falsch — bei DE-Mitgliedschaft ist Zahlung verpflichtend, Austritt einzige Befreiung.",
+        "de_kirchensteuer_2023": "DE Kirchensteuer 2023 (DBK + EKD Pressemeldungen 2024): 12,8 Mrd Euro Gesamtaufkommen. Davon kath. 6,5 Mrd, ev. 6,3 Mrd. Berechnung: 8 % der Lohn-/Einkommensteuer in Bayern + Baden-Württemberg, 9 % in anderen Bundesländern. Verwaltungsentgelt an Bundesländer 2-4 %. Kirchensteuer ist als Sonderausgabe vom zu versteuernden Einkommen abzugsfähig (Steuer-Ersparnis ~30 %). Konfessionsfreie + Mitglieder anderer Religionsgemeinschaften zahlen NICHT.",
+        "at_kirchenbeitrag_2023": "AT Kirchenbeitrag 2023 (Erzdiözesen-Finanzberichte): ~530 Mio Euro Gesamtaufkommen. Davon kath. ~430 Mio, ev. ~50 Mio. Berechnung: 1,1 % Brutto-Einkommen (kath. AT, ohne Sonder-Zahlungen). Mindestbeitrag ~12 Euro/Jahr, Höchstbeitrag selten gedeckelt. KIRCHLICH erhoben (nicht durch Finanzamt). Mahnverfahren bei Verzug zivilrechtlich möglich. Steuer-Abzug bis 600 Euro/Jahr (Kirchenbeitrag-Sonderausgabe).",
+        "ch_kirchenfinanzierung": "CH Kirchenfinanzierung 2022 (BFS): ~1,3 Mrd CHF Gesamtaufkommen. Kantonal unterschiedlich. 22 Kantone (Mehrheit) erheben Kirchensteuer für anerkannte Landeskirchen (refor. + röm.-kath.) — meist staatlich erhoben + an Kirchen weitergeleitet. 4 Kantone Trennung: Genf, Neuchâtel, Basel-Stadt, Vaud (teilweise) — Kirchen finanzieren sich autonom. Juristische Personen müssen in vielen Kantonen Kirchensteuer zahlen (umstritten).",
+        "staatsleistungen_de": "DE Staatsleistungen 2023: ~600 Mio Euro/Jahr Zahlungen an kath. + ev. Kirchen aus Steuermitteln. Rechtsgrundlage: Reichsdeputationshauptschluss 1803 (Säkularisations-Ausgleich für Kirchengüter-Beschlagnahme). Weimarer Verfassung 1919 Art. 138 fordert Ablösung — bislang nicht umgesetzt. Diskussion seit Jahrzehnten, GdL 2021 Bundesregierungsvorlage zur Ablösung gescheitert. AT Kultusbeitrag ~12 Mio Euro/Jahr (Religionsgemeinschaftsgesetz 1998, ähnliche historische Wurzel).",
+        "kirchensteuer_austrittsfolgen": "DE Kirchenaustritt: bei zuständigem Standesamt (Kosten 10-30 Euro je Bundesland), Wirkung ab Folgemonat. AT Austritt: bei Bezirkshauptmannschaft, kostenfrei. Folge: keine Kirchensteuer/Kirchenbeitrag mehr, aber auch keine Sakramente, keine kirchliche Beerdigung, keine Pat*innen-Funktion, ggf. Verlust kirchlicher Arbeitsplatz (Caritas-Mitarbeitende, Kindergärtner*innen).",
+        "context": "Pack distanziert sich von 'pro/contra Kirche' — präsentiert nur empirische Finanz-Lage."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: 'staatlich erhoben' (DE) ≠ 'mit Steuergeld finanziert'. Kirchensteuer in DE ist Mitglieder-Abgabe, vom Staat eingezogen.",
+        "AT-Kirchenbeitrag wird KIRCHLICH erhoben, nicht staatlich. Kein direkter Vergleich mit DE.",
+        "Staatsleistungen (DE 600 Mio, AT 12 Mio aus Steuermitteln) sind historisch begründet (Säkularisation 1803), nicht laufende Religions-Subventionen."
+      ],
+      "claim_phrasings_handled": [
+        "Kirchen werden mit Steuergeld finanziert",
+        "Konfessionslose zahlen für Kirche",
+        "Kirchensteuer ist freiwillige Spende",
+        "Staat finanziert Kirchen mit Milliarden",
+        "Mein Steuergeld geht an die Kirche"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "kirchensteuer",
+          "kirchen-steuer",
+          "kirchenbeitrag",
+          "kirchen-beitrag",
+          "religionssteuer",
+          "kultusbeitrag",
+          "staatsleistung",
+          "staatsleistungen"
+        ],
+        [
+          "staat",
+          "steuergeld",
+          "steuer-geld",
+          "steuermittel",
+          "konfessionslos",
+          "freiwillig",
+          "spende",
+          "milliarden",
+          "millionen",
+          "zahlen",
+          "finanzier",
+          "subventionen",
+          "kosten",
+          "aufkommen",
+          "abzug"
+        ]
+      ]
+    },
+    {
+      "id": "scientology_sekten_status_dach_2026",
+      "topic": "scientology_sekten_status_dach_konsens",
+      "scope": "DACH-Behörden-Bewertung Scientology — nicht als Religion anerkannt, Verfassungsschutz-Beobachtung",
+      "year": 2024,
+      "source_url": "https://www.verfassungsschutz.bayern.de/scientology/index.html",
+      "secondary_url": "https://www.bundesstelle-sekten.at/cgi-bin/zsi/index.cgi",
+      "source_label": "BMI Bayern Verfassungsschutzbericht 2023 + Hamburger Verfassungsschutz + Wien Bundesstelle für Sektenfragen + ÖGE Österreichische Gesellschaft gegen Sektengefahren + EU-Parlaments-Resolution 1996 + Bundesgerichtshof BGH-Urteile + ECJ Religious Status Cases",
+      "headline": "Scientology in DACH: nicht als Religion anerkannt (DE: Bayern + 14 Bundesländer Verfassungsschutz-Beobachtung seit 1997; AT: Bundesstelle für Sektenfragen; CH: keine staatliche Religion-Anerkennung), strukturell nach BfV als 'kommerzielle Organisation mit totalitärem Anspruch' bewertet",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Scientology ist eine anerkannte Religion in DACH' ist FALSE. (1) DE-Behörden-Position: Bayerischer Verfassungsschutz-Bericht 2023 + 14 weitere Bundesländer-Verfassungsschutzbehörden beobachten Scientology seit 1997. Begründung: 'Scientology hat in ihrem Welt-Ordnungs-Konzept Element die mit der freiheitlich-demokratischen Grundordnung unvereinbar sind' (BfV-Position). Bundesarbeitsgericht 1997 (1 ABR 23/96): Scientology ist keine Religion im Sinne von Art. 4 GG, sondern Wirtschafts-Unternehmen. Folge: keine Religion-Steuer-Begünstigungen, kein Kirchen-Steuersystem-Zugang, kein Religions-Anerkennungs-Status. (2) AT-Behörden-Position: Wien Bundesstelle für Sektenfragen (BMSGPK seit 1998 etabliert) listet Scientology als 'destruktiver Kult'. Republikgesetz Religionsgemeinschaften BGBl 19/1998 unterscheidet anerkannte Religionsgemeinschaften (kath., ev., orthodox, jüdisch, muslimisch, Buddhismus, Hinduismus, etc.) von eingetragenen religiösen Bekenntnisgemeinschaften (kleinere Gruppen). Scientology ist NICHT in beiden Kategorien. (3) CH-Behörden-Position: keine staatliche Religion-Anerkennung. Kanton-Niveau unterschiedlich. Eidgenössisches Justiz- und Polizeidepartement: Scientology als 'Organisation mit kultischen + kommerziellen Aspekten'. (4) USA-Position: IRS Religion-Status seit 1993 (steuerbefreit) — politisch umstrittene Entscheidung nach jahrelangem IRS-Scientology-Konflikt. Anders als DACH-Position. (5) Strukturelle Beurteilung: Scientology in DACH nach BfV/BVT als 'totalitäre Organisation mit kommerziellen Wurzeln' charakterisiert. Hauptkritik-Punkte: (a) Disconnection-Praxis (Mitglieder verlieren Kontakt zu nicht-Scientology-Familienmitgliedern), (b) Sea-Org-Arbeits-Praktiken (Berichte zu mehrheitlich US-amerikanischen Whistleblowern), (c) Auditing-Kosten (mehrere 100.000 Euro für 'Operating Thetan' Stufen), (d) Anti-Demokratie-Positionen in L. Ron Hubbards Schriften. (6) Faktencheck-relevant: Aussagen wie 'Scientology ist Religion wie jede andere' sind in DACH-Behörden-Bewertung nicht haltbar. Aussagen wie 'Verfassungsschutz beobachtet Scientology unrechtmäßig' sind durch BVerwG-Urteile (z.B. BVerwG 6 C 31.13 von 2014) widerlegt — Beobachtung ist rechtmäßig.",
+        "bayern_verfassungsschutz_2023": "Bayerischer Verfassungsschutz-Bericht 2023 (publiziert 2024): Scientology-Beobachtung in Bayern + 14 weiteren Bundesländern aktiv seit 1997. Kapitel zu Scientology umfasst ~10 Seiten. Konkrete Maßnahmen: Beobachtung von Mitgliedern + Veranstaltungen, Aussteiger-Beratung, Aufklärungs-Material für Schulen, Anti-Werbe-Kampagnen.",
+        "bag_1997": "Bundesarbeitsgericht BAG 1997 (1 ABR 23/96): Scientology Kirche Deutschland ist keine Religion oder Weltanschauungs-Gemeinschaft im Sinne von Art. 4 GG, sondern Wirtschafts-Unternehmen. Konsequenz: keine Religion-Privilegien (Religionsfreiheit-Schutz beschränkt). BVerwG 2014 (6 C 31.13) bestätigte Verfassungsschutz-Beobachtung als rechtmäßig.",
+        "wien_sektenstelle": "Wien Bundesstelle für Sektenfragen (BMSGPK Bundesministerium für Soziales, Gesundheit, Pflege und Konsumentenschutz, seit 1998) — eine von wenigen staatlichen Anti-Sekten-Beratungsstellen weltweit. Scientology als 'destruktiver Kult' eingestuft. Beratung für Aussteiger + Angehörige + Aufklärung für Schulen + Bildungs-Einrichtungen.",
+        "religionsgemeinschaftsgesetz_at": "AT Religionsgemeinschaftsgesetz BGBl 19/1998: 2-Stufen-System. (1) Anerkannte Religionsgemeinschaften: kath., ev., orthodox, alt-katholisch, methodistisch, jüdisch, muslimisch, buddhistisch, Mormonen, Neuapostolisch, Hindu, Bahai, Sikh, Jehovas Zeugen — diese haben Körperschaft öffentlichen Rechts, Steuer-Privilegien, Religions-Unterricht-Recht. (2) Eingetragene religiöse Bekenntnisgemeinschaften: ~20 kleinere. Scientology ist in BEIDEN Kategorien NICHT.",
+        "usa_irs_1993": "USA IRS-Religion-Status für Scientology seit 1993: nach 25-jährigem Konflikt + Vergleich zwischen Scientology-Anwälten + IRS. Kritisch reflektiert (LA Times Investigative Reports 1997 + 2017 Time Magazine Cover): IRS-Vergleich war politisch motiviert (Scientology-Druck-Kampagne gegen IRS-Mitarbeiter). Anders als DACH-Position.",
+        "scientology_strukturelle_kritik": "Strukturelle Bewertungs-Punkte (BfV + BVT + BMSGPK Wien): (a) Disconnection (Mitglieder werden von Familie + Freunden außerhalb Scientology getrennt — dokumentiert durch ehemalige Mitglieder Lawrence Wright Going Clear 2013), (b) Sea Organisation Arbeitspraktiken — 'Rehabilitation Project Force' Berichte (interne Disziplinierungs-Camps), (c) Auditing-Kosten: 100.000-500.000 Euro für vollständige 'Operating Thetan' Stufen (OT 1-15) je Mitglied, (d) Anti-Demokratie-Positionen in L. Ron Hubbard Politik-Schriften.",
+        "context": "Pack folgt offizieller DACH-Behörden-Bewertung. USA-Position (IRS-Religion-Status) ist anders, aber für DACH-Lage nicht relevant."
+      },
+      "context_notes": [
+        "DACH-Behörden-Bewertung ist konsistent: Scientology ist KEINE anerkannte Religion in DE/AT/CH.",
+        "Wichtige Differenzierung: USA hat IRS-Religion-Status seit 1993 (umstritten) — DACH-Behörden folgen dieser Bewertung NICHT.",
+        "Bayern + 14 weitere Bundesländer-Verfassungsschutz-Beobachtung seit 1997 — höchstgerichtlich (BVerwG 2014) als rechtmäßig bestätigt."
+      ],
+      "claim_phrasings_handled": [
+        "Scientology ist eine anerkannte Religion",
+        "Scientology ist Religion wie jede andere",
+        "Verfassungsschutz beobachtet Scientology unrechtmäßig",
+        "Scientology hat Religionsstatus in Deutschland",
+        "In Österreich ist Scientology als Religionsgemeinschaft anerkannt"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "scientology",
+          "scientolog",
+          "ron hubbard",
+          "l. ron hubbard",
+          "dianetik",
+          "dianetics",
+          "operating thetan"
+        ],
+        [
+          "religion",
+          "anerkannt",
+          "anerkennung",
+          "religionsstatus",
+          "sekte",
+          "kult",
+          "verfassungsschutz",
+          "beobachtet",
+          "religionsfreiheit",
+          "körperschaft",
+          "koerperschaft",
+          "religionsgemeinschaft",
+          "wirtschafts",
+          "kirche"
+        ]
+      ]
+    },
+    {
+      "id": "zeugen_jehovas_blut_2026",
+      "topic": "zeugen_jehovas_blut_konsens",
+      "scope": "Zeugen Jehovas Bluttransfusions-Verbot — Doktrin + Rechtsfälle + Sekten-Klassifikation",
+      "year": 2024,
+      "source_url": "https://www.bundesgerichtshof.de/SharedDocs/Pressemitteilungen/DE/2010/2010101.html",
+      "secondary_url": "https://www.bundesstelle-sekten.at/cgi-bin/zsi/index.cgi",
+      "source_label": "BGH-Urteile zu Bluttransfusion bei Kindern + Wachturm-Gesellschaft (Watchtower) offizielle Veröffentlichungen + Steven Hassan BITE-Modell + ICSA International Cultic Studies Association + AT Bundesstelle für Sektenfragen + Hassan Combating Cult Mind Control 2018",
+      "headline": "Zeugen Jehovas in DACH als Religionsgemeinschaft anerkannt (DE 2017, AT 2009 nach jahrelanger Verweigerung), aber Bluttransfusions-Verbot existiert (Watchtower-Doktrin); BGH-Rechtsprechung: bei lebensbedrohlicher Kinder-Erkrankung Eltern-Recht endet, Familiengericht entscheidet pro Transfusion",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Differenzierte Lage zu Zeugen Jehovas. (1) Religions-Status: DE seit 2017 als Körperschaft öffentlichen Rechts anerkannt (BVerfG 2002 forderte Anerkennung), zuvor Religionsgemeinschaft. AT 2009 als gesetzlich anerkannte Religionsgemeinschaft eingestuft (zuvor jahrelange Verweigerung wegen Bluttransfusion + Wehrdienst-Verweigerung). CH ähnlich. (2) Bluttransfusions-Verbot: Watchtower-Doktrin seit 1945 basierend auf Apostelgeschichte 15:20 + 15:29 + Levitikus 17:14 (Auslegung 'enthaltet euch von Blut'). Keine Vollblut-Transfusion, keine Erythrozyten/Plasma/Thrombozyten/Leukozyten-Transfusion. Erlaubt: bestimmte Plasma-Fraktionen (Albumin, Immunglobuline) + Blutersatzstoffe + Eigenblutspende mit kontinuierlichem Kreislauf. (3) Konsequenzen für Erwachsene: Recht auf Selbst-Bestimmung (BGH-Urteil 1958, BVerfG-Rechtsprechung). Patientenverfügung mit Bluttransfusions-Verzicht ist rechtsverbindlich. Ärzte haben Aufklärungs-Pflicht über Risiken. (4) Konsequenzen für Kinder: BGH-Urteile zu Bluttransfusion bei Kindern: Sorgerecht endet bei Lebensgefahr. Beispiel BGH 2010: Familiengericht kann gegen Eltern-Willen Bluttransfusion anordnen wenn Lebens-Gefahr für Kind. Rechtspraxis: Krankenhaus alarmiert Familiengericht (Eilbeschluss möglich), bei lebensbedrohlicher Indikation Transfusion gegen Eltern-Willen rechtlich durchsetzbar. (5) Sekten-Klassifikation: Steven Hassan BITE-Modell (Behavior, Information, Thought, Emotion Control) klassifiziert Zeugen Jehovas als 'High-Control-Group'. ICSA International Cultic Studies Association ähnliche Bewertung. AT Bundesstelle für Sektenfragen listet als 'fundamentalistische Religionsgemeinschaft mit destruktiven Kult-Aspekten'. Charakteristika: Disfellowshipping (Ausschluss + Kontaktverbot mit nicht-mehr-Mitgliedern, auch zu Familie), Endzeit-Erwartung 'Armageddon' bevorstehend, militante Außen-Mission, kein Kontakt zu sonstigen christlichen Konfessionen. (6) Faktencheck-relevant: Aussagen wie 'Zeugen Jehovas verbieten alle Bluttransfusionen' sind verkürzt — manche Plasma-Fraktionen erlaubt. Aussagen wie 'Eltern-Recht erlaubt Sterbenlassen von Kindern' sind durch BGH-Rechtsprechung widerlegt — Familiengericht-Beschluss überschreibt Eltern-Willen.",
+        "religions_status_de_at": "DE Zeugen Jehovas: seit 2017 Körperschaft öffentlichen Rechts (Berlin als erstes Bundesland 2006, sukzessive andere). BVerfG 2002 (1 BvR 670/91) zwang DE-Bundesländer zur Anerkennung. AT Zeugen Jehovas: 2009 als gesetzlich anerkannte Religionsgemeinschaft (BGBl II 152/2009). Vorher 11 Jahre 'eingetragene religiöse Bekenntnisgemeinschaft' (1998-2009). Anerkennung war kontrovers wegen Bluttransfusion + Wehrdienst-Verweigerung.",
+        "watchtower_doktrin_blut": "Watchtower Society Doktrin seit 1945: Bluttransfusions-Verbot basiert auf Apg 15:20 + 15:29 + 21:25 + Lev 17:14 + Gen 9:4. Auslegung: 'enthalten euch von Blut'. Verboten: Vollblut, Erythrozyten, Plasma, Thrombozyten, Leukozyten als Transfusion. Erlaubt: Albumin, Immunglobuline, Faktor-VIII (umstritten je nach lokalen Ältesten), Eigenblutspende mit kontinuierlich-Kreislauf-Verbindung, Hämodilution, Blutersatzstoffe (Hemopure, Oxyglobin).",
+        "bgh_kinder_bluttransfusion": "BGH-Rechtsprechung Bluttransfusion bei Kindern: Sorgerecht endet bei Lebensgefahr (BGH XII ZB 79/86 1986, fortgeschrieben). Praxis: Krankenhaus alarmiert Familiengericht (FamFG §§ 151 + 165), Eilbeschluss möglich. Familiengericht kann gegen Eltern-Willen Bluttransfusion anordnen wenn lebensbedrohliche Indikation (BGH 2010 + BVerfG 2018). Beispielfälle: häufig bei Leukämie + großen Operationen + schweren Geburts-Komplikationen.",
+        "patientenverfuegung_erwachsene": "Erwachsene Zeugen Jehovas können Bluttransfusion per Patientenverfügung ablehnen (BGB § 1901a). Ärztliche Aufklärungs-Pflicht über alternative Behandlungs-Optionen + Risiken. 'Bloodless surgery' Programme an spezialisierten Kliniken (DE: Universitätsklinikum Düsseldorf + Köln) ermöglichen Operationen ohne Bluttransfusion (Mehrkosten-Faktor + ggf. höhere Komplikations-Rate).",
+        "hassan_bite_modell": "Steven Hassan 'Combating Cult Mind Control' 2018 + 'The Cult of Trump' 2019: BITE-Modell (Behavior + Information + Thought + Emotion Control). Zeugen Jehovas als 'High-Control-Group' eingestuft. Charakteristika: Behavior — strict dress code + door-to-door evangelizing + meeting attendance, Information — Watchtower-Quellen monopolistisch + 'apostate' literature verboten, Thought — endzeit-Theologie monopolistisch + critical thinking unterdrückt, Emotion — Disfellowshipping + Shunning bei Abweichung.",
+        "context": "Pack folgt offizieller DACH-Behörden-Bewertung + religionswissenschaftlicher Einordnung. Pack distanziert sich von 'pro/contra Zeugen Jehovas' — präsentiert nur Doktrin + Rechtslage."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Religions-Anerkennung (DE 2017, AT 2009) ≠ Wertung der Doktrin durch Sektenstellen.",
+        "Bluttransfusions-Verbot: Erwachsene haben Selbst-Bestimmung, Kinder werden durch Familiengericht geschützt (BGH-Rechtsprechung).",
+        "Sekten-Klassifikation (Hassan, ICSA, AT-Bundesstelle): 'High-Control-Group' mit Disfellowshipping + Shunning."
+      ],
+      "claim_phrasings_handled": [
+        "Zeugen Jehovas dürfen Kinder sterben lassen",
+        "Bluttransfusions-Verbot ist nicht erlaubt in Deutschland",
+        "Zeugen Jehovas sind keine echte Religion",
+        "Watchtower-Sekte zwingt zur Verweigerung",
+        "Zeugen Jehovas verbieten alle Bluttransfusionen ohne Ausnahme"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "zeugen jehovas",
+          "zeugen-jehovas",
+          "zeugen jehovah",
+          "watchtower",
+          "wachturm",
+          "wachtturm",
+          "jehovas zeugen"
+        ],
+        [
+          "bluttransfusion",
+          "blut-transfusion",
+          "transfusion",
+          "blut",
+          "operation",
+          "kinder",
+          "sterben",
+          "verbot",
+          "verbieten",
+          "sekte",
+          "kult",
+          "religionsstatus",
+          "anerkannt",
+          "religion"
+        ]
+      ]
+    },
+    {
+      "id": "destruktive_kulte_kennzeichen_2026",
+      "topic": "destruktive_kulte_kennzeichen_konsens",
+      "scope": "Destruktive Kulte — wissenschaftliche Kennzeichen (BITE-Modell, ICSA-Kriterien, Beispiele)",
+      "year": 2024,
+      "source_url": "https://www.icsahome.com/articles/characteristics-of-cults",
+      "secondary_url": "https://www.bundesstelle-sekten.at/",
+      "source_label": "Steven Hassan BITE-Modell 2018 + ICSA International Cultic Studies Association Characteristics + Margaret Singer Cults in Our Midst 2003 + AT Bundesstelle für Sektenfragen + Sektenberatungsstellen DE (Berlin Brandenburg, Hamburg, Bayern) + Bekannte Fälle Aum Shinrikyo Heaven Gate Universelles Leben",
+      "headline": "Wissenschaftliche Kennzeichen destruktiver Kulte (BITE-Modell + ICSA): hohe Mitglieder-Kontrolle in 4 Dimensionen (Verhalten, Information, Gedanken, Emotion); Differenzierung zu legitimen religiösen Minderheiten zentral — bekannte Beispiele: Aum Shinrikyo (Sarin-Anschlag Tokio 1995), Heaven's Gate (39 Selbstmorde 1997), Universelles Leben",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Es gibt wissenschaftlich fundierte Kennzeichen destruktiver Kulte — Mythos 'jeder Kult-Vorwurf ist Religionsfeindlichkeit' ist FALSE. (1) BITE-Modell (Steven Hassan 1988 + Update 2018): destruktive Kulte zeigen hohe Mitglieder-Kontrolle in 4 Dimensionen: (a) Behavior — Kleidung + Essen + Schlaf + Beziehungen + Geld + Wohnort werden vorgeschrieben, (b) Information — externe Quellen verboten, interne Quellen monopolistisch, ehemalige Mitglieder als 'apostate' diskreditiert, (c) Thought — Gruppen-Dogma als alleinige Wahrheit, kritisches Denken unterdrückt, Endzeit-/Heilserwartungs-Narrative dominant, (d) Emotion — Schuld-Manipulation, Phobien (Außenwelt-Angst, Abfall-Angst), Liebesbombardement bei Mitglieder-Werbung + Kalter Entzug bei Abfall (Disfellowshipping/Shunning). Mind. 2-3 Dimensionen mit hoher Kontrolle = destruktiver Kult. (2) ICSA-Kriterien (International Cultic Studies Association, 2010 publiziert): 12 Kennzeichen. Höchste Indikator-Werte: charismatischer + unfehlbarer Anführer, Wir-gegen-Welt-Mentalität, Mind-Control-Techniken (Hypnose, Meditation als Indoktrinations-Methode, Schlafentzug bei Retreat), Wirtschafts-Ausbeutung (Mitglieder verschulden sich), absolutes Anführer-Recht (kein Widerspruch erlaubt). (3) Margaret Singer 'Cults in Our Midst' 2003: 6-Stufen-Mind-Control-Modell. Indoktrinations-Prozess dauert typisch 2-12 Monate, kann jeden bei vulnerablen Lebens-Phasen treffen (Trennung, Identitätssuche, Trauer). (4) Bekannte destruktive Kult-Fälle mit Massengewalt + Selbstmord: (a) Jonestown (Jim Jones, Volkstempel, 1978 Guyana, 909 Tote davon 304 Kinder), (b) Aum Shinrikyo (Shoko Asahara, Japan, 1995 Sarin-Anschlag Tokio U-Bahn 13 Tote + 5800 Verletzte), (c) Heaven's Gate (Marshall Applewhite, USA 1997, 39 Selbstmorde Hale-Bopp-Komet), (d) Solar Temple (Jouret + Di Mambro, Schweiz/Frankreich/Quebec 1994-97, 74 Tote), (e) Universelles Leben (Gabriele Wittek, DE seit 1980 — von BMI Bayern beobachtet, dokumentierte Mind-Control-Techniken + Familien-Trennung, ohne Massengewalt). (5) Differenzierung zu legitimen religiösen Minderheiten: niedrige BITE-Werte + Religionsfreiheits-Konformität + offene Mitgliedschafts-Strukturen + Familienverträglichkeit + freies Verlassen ohne Sanktion. Beispiele: Mennoniten, Quäker, Bahai, Buddhistische Zentren — keine Kult-Klassifikation. (6) Faktencheck-relevant: Aussagen wie 'jede neue Religion ist eine Sekte' verkennen Kult-Differenzierung. Aussagen wie 'es gibt keine destruktiven Kulte mehr' sind durch laufende Beobachtungs-Berichte (BMI Bayern, BMSGPK Wien, Universelles Leben + diverse) widerlegt.",
+        "bite_modell_hassan": "Steven Hassan 'Combating Cult Mind Control' 1988 + 'The BITE Model' Update 2018: Behavior + Information + Thought + Emotion Control. Hassan war selbst Moonie (Vereinigungs-Kirche) 1974-76, Aussteiger. BITE-Bewertung: niedrig = legitime Gruppe, mittel = umstritten, hoch = destruktiv. Beispiel-Anwendungen publiziert für Scientology, Zeugen Jehovas, NXIVM, IS-Rekrutierung.",
+        "icsa_charakteristika": "ICSA Characteristics of Cultic Groups 2010 (12 Kennzeichen): (1) Gruppen-Mitglieder zeigen exzessive ZIG-Verehrung des Anführers, (2) zweifelnde Hinterfragung wird unterdrückt, (3) Mind-altering Techniken (Hypnose, Meditation als Indoktrination), (4) Anführer kontrolliert Mitglieder-Verhalten + Denken + Geld, (5) Gruppe ist elitär + missionarisch, (6) Wir-vs-Welt-Mentalität, (7) Anführer ist über Gesetz, (8) Mitglieder werden ermutigt Familien zu meiden, (9) finanzielle + zeitliche Ausbeutung, (10) Mitglieder werden ermutigt nur in der Gruppe zu leben/arbeiten, (11) Verlassen wird sanktioniert, (12) Indoktrination beginnt mit liebevoller Gemeinschaft. 8+ von 12 = wahrscheinlich destruktiv.",
+        "kult_faelle_geschichte": "Bekannte destruktive Kulte mit dokumentierter Massengewalt/Selbstmord: Jonestown 1978 (909 Tote inklusive 304 Kinder), Aum Shinrikyo 1995 (Tokio Sarin-Anschlag 13 Tote + 5800 Verletzte), Branch Davidians 1993 (Waco-Belagerung 76 Tote), Heaven Gate 1997 (39 Selbstmorde), Solar Temple 1994-97 (74 Tote), Movement for the Restoration of the Ten Commandments of God Uganda 2000 (~750 Tote). Kein DACH-Kult mit Massengewalt — aber dokumentierte Familien-Trennung + Wirtschafts-Ausbeutung in Universelles Leben + andere.",
+        "dach_beobachtete_gruppen": "AT Bundesstelle für Sektenfragen + DE Sektenberatungsstellen-Bayern + Hamburg + Berlin + Brandenburg überwachen ~30-40 Gruppen mit destruktiven Aspekten. Beispiele: Scientology, Universelles Leben (Gabriele Wittek), Vereinigungs-Kirche (Moon-Sekte), Sai Baba-Anhänger, Kinder Gottes (Family International), Bhakti Marga (Sri Swami Vishwananda), VPM Verein zur Förderung der Psychologischen Menschenkenntnis.",
+        "differenzierung_legitime_religion": "Differenzierungs-Kriterien legitime religiöse Minderheit vs. destruktiver Kult: (a) niedrige BITE-Werte (mind. 3 Dimensionen schwach kontrolliert), (b) Familien-Verträglichkeit (Mitgliedschaft trennt nicht von Familie), (c) Verlassen ohne Sanktion möglich, (d) finanzielle Transparenz, (e) Religionsfreiheits-Konformität (kein Verstoß gegen Grundrechte anderer), (f) externe Kritik wird toleriert. Beispiele legitim: Quäker, Mennoniten, Bahai, Sufi-Orden, Buddhistische Zentren — keine Kult-Klassifikation.",
+        "context": "Pack folgt internationaler Kult-Forschung (Hassan, ICSA, Singer) + offiziellen DACH-Sektenstellen. Pack distanziert sich von Religions-Pauschal-Kritik."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: jede neue Religion ist NICHT automatisch ein destruktiver Kult — nur Gruppen mit hohen BITE-Werten + ICSA-Kennzeichen.",
+        "Bekannte destruktive Kulte mit Massengewalt sind in DACH-Geschichte selten, aber Familien-Trennung + Wirtschafts-Ausbeutung dokumentiert.",
+        "Sektenberatungs-Stellen (DE/AT) bieten Hilfe für Aussteiger + Angehörige — niedrigschwelliger Zugang."
+      ],
+      "claim_phrasings_handled": [
+        "Es gibt keine destruktiven Kulte mehr",
+        "Jede neue Religion wird als Sekte beschimpft",
+        "Sektenstellen sind religionsfeindlich",
+        "Sekten gibt es nur in den USA",
+        "Wie erkenne ich einen destruktiven Kult"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "sekte",
+          "kult",
+          "destruktiv",
+          "destruktive gruppe",
+          "destruktiver kult",
+          "religionsgemeinschaft",
+          "neue religion",
+          "neureligi",
+          "psycho-gruppe",
+          "psychogruppe"
+        ],
+        [
+          "kennzeichen",
+          "merkmale",
+          "erkennen",
+          "erkennung",
+          "unterscheid",
+          "bite",
+          "icsa",
+          "anzeichen",
+          "indikatoren",
+          "warnzeichen",
+          "warnsignale",
+          "beispiele",
+          "gibt es"
+        ]
+      ]
+    },
+    {
+      "id": "religion_gewalt_korrelation_2026",
+      "topic": "religion_gewalt_korrelation_konsens",
+      "scope": "Religion und Gewalt — RAND/UCDP Konflikt-Daten, säkulare vs. religiöse Konflikte",
+      "year": 2024,
+      "source_url": "https://ucdp.uu.se/",
+      "secondary_url": "https://www.pewresearch.org/religion/2022/11/29/how-restrictions-on-religion-have-risen-around-the-world/",
+      "source_label": "UCDP Uppsala Conflict Data Program + RAND Corporation Counterterrorism Research + Pew Research Government Restrictions Index + Religious Wars Database Phillips Axelrod 2007 + Mark Juergensmeyer Terror in the Mind of God 2017 + Steven Pinker Better Angels Of Our Nature 2011",
+      "headline": "These Religion verursacht meiste Kriege ist empirisch FALSE — Phillips Axelrod 2007 Religious Wars Database (n=1763 Kriege seit Antike): nur 6,98 % primär religiös motiviert; UCDP 2024 staatliche Konflikte 2023: 49 aktive Konflikte, ~30 % religiöse Komponente",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Religion verursacht die meisten Kriege' ist FALSE. Empirische Konflikt-Forschung: (1) Phillips & Axelrod 2007 'Encyclopedia of Wars' (n=1.763 Kriege seit Antike): nur 123 (6,98 %) waren primär religiös motiviert. Mehrheit der Kriege Macht-/Territorial-/Wirtschafts-Konflikte. Säkulare Ideologien (Nationalismus, Kommunismus, Faschismus) verursachten quantitativ die meisten Toten 20. Jh. (Hitler-Stalin-Mao-Pol-Pot-Tote zusammen ~120 Mio). (2) UCDP Uppsala Conflict Data Program 'Battle-Related Deaths Dataset' 2024: 49 aktive staatliche Konflikte 2023. Religiöse Komponente in ~30 % (oft sekundär neben ethnischen + politischen Faktoren). Hauptkonflikte 2023: Russland-Ukraine, Israel-Hamas, Sudan, Myanmar, Afghanistan-Taliban, Mali — alle multifaktoriell. (3) Pew Research Government Restrictions on Religion Index 2022: 56 Länder mit hohen + sehr hohen Regierungs-Restriktionen, 53 Länder mit hohen + sehr hohen sozialen religiösen Spannungen. Beides STEIGEND seit 2007. (4) Mark Juergensmeyer 'Terror in the Mind of God' 2017 University of California Press: religiöse Gewalt-Phänomene sind real (christliche Anti-Abtreibungs-Terror, jüdische Siedler-Gewalt, hinduistische Anti-Muslim-Pogrome, buddhistische Rohingya-Gewalt, islamistischer Terror) — aber als Sondereffekte säkular-politischer Konflikt-Konstellationen, nicht als Hauptursache. (5) Steven Pinker 'Better Angels of Our Nature' 2011: Tötungs-Raten haben in säkularer Moderne MASSIV abgenommen. Pre-modern Tribal-Gesellschaften: ~14-17 % der Männer durch Gewalt gestorben. Mittelalter Europa: ~2 % Tötungs-Rate. Modern Europa: 0,001 %. Korrelation Religion-Verschwund mit Gewalt-Reduktion ist GEGENTEIL der Mythos-Position. (6) Faktencheck-relevant: Aussagen wie 'Religion ist Hauptursache von Kriegen' sind empirisch-historisch nicht haltbar. Aussagen wie 'Religion verhindert Kriege' sind ebenfalls nicht haltbar — Pack vermeidet beide pauschalen Positionen. Differenzierung wichtig: Religion ist mit Gewalt-Konflikten korrelierbar in spezifischen Kontexten (multifaktoriell), aber nicht alleinige Hauptursache. Pack distanziert sich von 'pro/contra Religion ist gewalt-treibend' — präsentiert nur empirische Konflikt-Daten.",
+        "phillips_axelrod_2007": "Phillips & Axelrod 'Encyclopedia of Wars' 2007 (3 Bände, n=1.763 Kriege seit Antike): 123 (6,98 %) primär religiös motiviert. Beispiele: Kreuzzüge, 30-jähriger Krieg, Hugenotten-Kriege. Mehrheit Kriege primär politisch/wirtschaftlich/dynastisch motiviert.",
+        "ucdp_2023": "UCDP Battle-Related Deaths Dataset 2024 (publiziert für 2023): 49 aktive staatliche Konflikte. Hauptkonflikte: Russland-Ukraine (~13.000 Schlacht-Tote 2023), Israel-Hamas (~13.000 Tote Q4 2023), Sudan (~9.000), Myanmar (~3.500), Afghanistan-IS-Pakistan-Taliban-Konflikt, Sahel-Konflikte (Mali, Burkina Faso, Niger). Religiöse Komponente in ~30 % der Konflikte, oft sekundär neben ethnischen + politischen Faktoren.",
+        "pew_government_restrictions_2022": "Pew Government Restrictions on Religion Index 2022 (Daten 2020): 56 Länder mit High/Very-High-Restriktionen. STEIGEND seit 2007 (Baseline). Höchste Werte: China, Iran, Saudi-Arabien, Eritrea, Tadschikistan. Niedrigste: Kanada, Japan, Süd-Korea, Niederlande, Niger.",
+        "saekulare_ideologien_20jh": "20. Jahrhundert säkulare Ideologien Tötungs-Bilanzen: Hitler-Nationalsozialismus (~50 Mio Tote durch WWII + Holocaust), Stalin-Kommunismus (~20 Mio Tote durch Säuberungen + Holodomor), Mao-Kommunismus (~45-65 Mio Tote durch Großer Sprung Nach Vorne + Kulturrevolution), Pol-Pot-Khmer-Rouge (~1,7 Mio Tote). Insgesamt säkulare Ideologien des 20. Jh.: ~120 Mio Tote. Vergleich religiöse Konflikte 20. Jh.: ~10-20 Mio Tote (sehr unterschiedliche Schätzungen).",
+        "pinker_better_angels": "Steven Pinker 'Better Angels of Our Nature' 2011 Penguin: Tötungs-Raten in säkularer Moderne massiv reduziert. Pre-modern Tribal: 14-17 % Männer durch Gewalt gestorben. Mittelalter Europa: 35 Tötungen pro 100.000/Jahr (2 % Lebenszeit-Risiko). Modern Westeuropa: 1 Tötung pro 100.000/Jahr (0,001 %). Säkularisierungs-Trend korreliert mit Gewalt-Reduktion (kausale Interpretation aber umstritten — viele andere Faktoren).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von 'Religion ist gewalt-treibend' UND 'Religion verhindert Gewalt' — beide Pauschalisierungen empirisch nicht haltbar."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: 'Religion korreliert mit Konflikten' (multifaktoriell) ≠ 'Religion verursacht Konflikte' (alleinige Hauptursache).",
+        "20. Jahrhundert säkulare Ideologien (Hitler-Stalin-Mao-Pol-Pot) verursachten quantitativ mehr Tote als alle Religions-Kriege zusammen.",
+        "Pinker-These: Säkularisierungs-Trend korreliert mit Gewalt-Reduktion — kausale Interpretation aber umstritten."
+      ],
+      "claim_phrasings_handled": [
+        "Religion verursacht die meisten Kriege",
+        "Religion ist Hauptursache von Gewalt",
+        "Ohne Religion gäbe es weniger Kriege",
+        "Religiös motivierte Kriege dominieren die Geschichte",
+        "Religion ist verantwortlich für die meisten Konflikte"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "religion",
+          "religiös",
+          "religioes",
+          "glaube"
+        ],
+        [
+          "krieg",
+          "kriege",
+          "gewalt",
+          "konflikt",
+          "konflikte",
+          "ursache",
+          "verursacht",
+          "verursachen",
+          "auslöser",
+          "ausloeser",
+          "schuld",
+          "verantwortlich",
+          "hauptursache"
+        ]
+      ]
+    },
+    {
+      "id": "kirchen_paedophilie_aufarbeitung_2026",
+      "topic": "kirchen_paedophilie_aufarbeitung_konsens",
+      "scope": "Kirchlicher Missbrauchs-Skandal — MHG-Studie DE, John-Jay-Report USA, Klasnic-Kommission AT",
+      "year": 2024,
+      "source_url": "https://www.dbk.de/themen/sexualisierte-gewalt-und-praevention/mhg-studie",
+      "secondary_url": "https://www.usccb.org/about/child-and-youth-protection/john-jay-college-research-studies",
+      "source_label": "MHG-Studie 2018 DE Sexueller Missbrauch an Minderjährigen durch katholische Priester + John-Jay-Report 2004 USA + Pennsylvania Grand Jury Report 2018 + Klasnic-Kommission AT 2010 + Glaubenskongregation Vatikan + Royal Commission Australia 2017 + Independent Inquiry UK IICSA 2022",
+      "headline": "MHG-Studie DE 2018: 3.677 betroffene Minderjährige + 1.670 Beschuldigte 1946-2014 in kath. Kirche; John-Jay-Report USA: 10.667 Anklagen + 4.392 Priester 1950-2002; AT Klasnic-Kommission seit 2010 mit 4.700+ Fällen — globales strukturelles Problem mit dokumentierter Vertuschung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Sexueller Missbrauch an Minderjährigen durch katholische Geistliche ist global empirisch dokumentiert. Mythen wie 'das war nur Einzelfälle' sind FALSE. (1) MHG-Studie DE 2018 (Konsortial-Studie 4 Universitäten Mannheim/Heidelberg/Gießen, Auftrag DBK Deutsche Bischofskonferenz): Untersuchung von Personalakten 27 (von 27) Bistümern 1946-2014. Ergebnis: 3.677 mutmaßlich betroffene Minderjährige (überwiegend männlich), 1.670 Beschuldigte (4,4 % der untersuchten Priester-Gruppe). Schätzung mit hoher Dunkelziffer: tatsächlich vermutlich 8-10x höher. Fest gestellt: Vertuschungs-Strategien dokumentiert (Versetzungen statt Strafanzeige, Akten-Vernichtung). (2) John-Jay-College-Report USA 2004 + Update 2011 (Auftrag USCCB): 10.667 Anklagen + 4.392 beschuldigte Priester 1950-2002 + ~2.000 weitere bis 2010. Etwa 4 % der USA-Priester 1950-2002 betroffen. (3) Pennsylvania Grand Jury Report 2018 (Bundesstaats-Anklage): 6 Diözesen Pennsylvania, 1.000+ betroffene Kinder, 300+ beschuldigte Priester über 70 Jahre. Vertuschung durch Diözesan-Verwaltung detailliert dokumentiert. (4) AT Klasnic-Kommission (Unabhängige Opferschutzanwaltschaft seit 2010): bis 2024 ~4.700 Fälle anerkannt + ~33 Mio Euro Entschädigungs-Zahlungen ausbezahlt. Helmut-Schüller + Brigitte-Höfert-Kommissionen. (5) Vatikan-Reform: Glaubenskongregation (CDF) Behandlung sexueller Missbrauchs-Fälle seit 2001 (Sacramentorum sanctitatis tutela Brief Joh. Paul II). 2019 Franziskus 'Vos estis lux mundi' Motu Proprio: globale Anzeige-Pflicht für Geistliche. 2020 PCM Päpstliche Kommission Minderjährigen-Schutz. (6) Internationale Aufarbeitungen: Royal Commission Australia 2013-2017 (~4.000 Fälle Kirche-Personal), IICSA UK Independent Inquiry 2014-2022 (~1.500 Fälle), Sauvé-Kommission Frankreich 2021 (CIASE — 216.000 Opfer Schätzung 1950-2020). (7) Vergleich nicht-kirchliche Institutionen: andere Institutionen mit Kindern (Schulen, Sport-Clubs, staatliche Heim-Erziehung) zeigen ähnliche Missbrauchs-Raten (US Department of Education Studie 2004: ~6 % Schul-Lehrer-Missbrauchs-Fälle in vergleichbarem Zeitraum). Kirchliche Spezifik: institutionelle Vertuschung + Versetzungs-Praxis ohne Strafanzeige. (8) Faktencheck-relevant: Aussagen wie 'das war nur Einzelfälle' sind empirisch falsch. Aussagen wie 'jeder Priester ist verdächtig' sind übertrieben — 4-7 % je Studie betroffen.",
+        "mhg_studie_2018": "MHG-Studie 'Sexueller Missbrauch an Minderjährigen durch katholische Priester, Diakone und männliche Ordensangehörige im Bereich der Deutschen Bischofskonferenz' 2018 (Konsortium Mannheim/Heidelberg/Gießen, Hauptautor Harald Dreßing): Untersuchung Personalakten 27 Bistümer DE 1946-2014. 3.677 mutmaßlich betroffene Minderjährige, 1.670 Beschuldigte (4,4 % der ~38.000 untersuchten Priester). 62,8 % männliche Opfer. Höhepunkte 1960er-1980er Jahre. Vertuschungs-Praxis bei Verdacht: Versetzung statt Strafanzeige, Akten-Vernichtung, Zahlungen unter Verschwiegenheits-Klauseln.",
+        "john_jay_report_2004": "John-Jay-College-Report 'The Nature and Scope of Sexual Abuse of Minors by Catholic Priests and Deacons in the United States 1950-2002' 2004 (Auftrag United States Conference of Catholic Bishops USCCB): 10.667 Anklagen + 4.392 beschuldigte Priester 1950-2002 (Update 2011: zusätzlich +2.000). ~4 % der USA-Priester 1950-2002 betroffen. 81 % männliche Opfer 11-17 Jahre alt. Vertuschung detailliert dokumentiert.",
+        "pennsylvania_grand_jury_2018": "Pennsylvania Grand Jury Report 2018 (40. Statewide Investigating Grand Jury): 6 Diözesen Pennsylvania, 1.000+ betroffene Kinder, 300+ beschuldigte Priester über 70 Jahre (1947-2017). Detaillierte Vertuschungs-Praxis durch Bischöfe + Diözesan-Verwaltung. Folge: USA-weite Welle weiterer Bundesstaats-Untersuchungen.",
+        "klasnic_kommission_at": "AT Unabhängige Opferschutzanwaltschaft (Klasnic-Kommission) seit 2010 unter Leitung Waltraud Klasnic, später Brigitte Höfert: bis 2024 ~4.700 Fälle anerkannt, ~33 Mio Euro Entschädigungs-Zahlungen. Stiftung 'Opferschutz' (Erzdiözesen-finanziert). Strukturelle Aufarbeitung durch ÖBK Österreichische Bischofskonferenz seit 2010, dokumentierte Vertuschung durch frühere Erzbischöfe (z.B. Hans Hermann Groer-Skandal 1995).",
+        "vatikan_reform": "Vatikan-Reform: 2001 Brief Joh. Paul II 'Sacramentorum sanctitatis tutela' überträgt Kompetenz an Glaubenskongregation (CDF, jetzt DDF). 2019 Franziskus 'Vos estis lux mundi' Motu Proprio: globale Anzeige-Pflicht für Geistliche bei Missbrauchs-Verdacht. 2020 PCM Päpstliche Kommission für Minderjährigen-Schutz. 2023 Anhaltende Reform-Diskussion. Kritik: zu langsame Implementierung, Glaubenskongregation behält letzte Entscheidung.",
+        "internationale_aufarbeitungen": "Royal Commission Australia 2013-2017 'Institutional Responses to Child Sexual Abuse': ~4.000 Kirche-Personal-Fälle aus 4 großen Kirchen + Auftragsorgan Sauvé-Kommission Frankreich 2021 (CIASE — Independent Commission on Sexual Abuse in the Catholic Church): 216.000 Opfer Schätzung Frankreich 1950-2020 (durch Geistliche). UK IICSA Independent Inquiry into Child Sexual Abuse 2014-2022: ~1.500 Fälle in englischer + walisischer Kirche. Gemeinsame Befunde: institutionelle Vertuschung, Versetzungs-Praxis, mangelnde Strafverfolgung.",
+        "vergleich_andere_institutionen": "US Department of Education Shakeshaft-Studie 2004: ~6-10 % der US-Schüler*innen erleben sexualisierte Übergriffe durch Schul-Personal. UK Royal Commission Australia 2013-2017: ähnliche Quoten in staatlichen Heim-Einrichtungen + Internaten. Differenzierung: kirchliche Institutionen sind nicht ALLEIN problematisch — aber durch Zölibat + institutionelle Macht-Strukturen + Vertuschungs-Praktiken besonders dokumentierbar.",
+        "context": "Pack folgt Hauptstudien (MHG, John-Jay, Pennsylvania, Klasnic, CIASE). Pack distanziert sich von 'jeder Priester ist Pädophil' (~4 % der Geistlichen betroffen je Studie)."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: ~4 % der Geistlichen betroffen je Hauptstudie, NICHT 'jeder Priester'. Hochmedialer Fokus verzerrt Wahrnehmung.",
+        "Strukturelles Problem ist nicht nur kirchlich — staatliche Heime + Schulen + Sport-Clubs zeigen ähnliche Quoten. Spezifik Kirche: institutionelle Vertuschung + Versetzungs-Praxis.",
+        "Vatikan-Reform seit 2001 (Sacramentorum sanctitatis tutela) + 2019 (Vos estis lux mundi) — Kritik anhaltend wegen langsamer Implementierung."
+      ],
+      "claim_phrasings_handled": [
+        "Kirchen-Pädophilie ist nur Einzelfälle",
+        "Missbrauchs-Skandal in Kirche ist übertrieben",
+        "Jeder Priester ist verdächtig",
+        "Kirche hat Missbrauch aufgearbeitet",
+        "MHG-Studie ist Anti-Kirche-Propaganda"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "missbrauch",
+          "missbrauchs-skandal",
+          "missbrauchsskandal",
+          "kirchen-skandal",
+          "kirchenskandal",
+          "pädophil",
+          "paedophil",
+          "sexueller missbrauch",
+          "sex-missbrauch",
+          "kirche",
+          "katholisch",
+          "priester",
+          "diakon",
+          "bischof"
+        ],
+        [
+          "einzelfall",
+          "einzelfälle",
+          "einzelfaelle",
+          "übertrieben",
+          "uebertrieben",
+          "aufgearbeitet",
+          "vergangenheit",
+          "vorbei",
+          "propaganda",
+          "verschwör",
+          "verschwoer",
+          "verdächtig",
+          "verdaechtig",
+          "mhg",
+          "john-jay",
+          "klasnic"
+        ]
+      ]
+    },
+    {
+      "id": "religionsunterricht_dach_schule_2026",
+      "topic": "religionsunterricht_dach_schule_konsens",
+      "scope": "Religionsunterricht in DACH-Schulen — Rechtsstatus, Ethik-Alternative, Konfessions-Verteilung",
+      "year": 2024,
+      "source_url": "https://www.kmk.org/themen/allgemeinbildende-schulen/unterrichtsfaecher/faecher.html",
+      "secondary_url": "https://www.bmukk.gv.at/schulen/unterricht/lp/religionsunterricht.html",
+      "source_label": "KMK Kultusministerkonferenz Deutschland + BMUKK Österreich Religionsunterricht-Bestimmungen + EDK Schweizerische Konferenz der kantonalen Erziehungsdirektoren + Bundeszentrale für politische Bildung + ÖGfE Österreichische Gesellschaft für Erziehungswissenschaft + Schulrecht-Kommentare BVerwG-Rechtsprechung Art. 7 Abs. 3 GG",
+      "headline": "Religionsunterricht in DACH grundgesetzlich garantiert (DE Art. 7 Abs. 3 GG, AT B-VG Art. 17 + Konkordat 1933, CH kantonal); Ethik/LER als Alternative seit 1990er flächendeckend; konfessionsfreie Schüler:innen-Anteile 2024: DE ~40 %, AT ~25 %",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Religionsunterricht in DACH ist verfassungsrechtlich garantiert + faktisch differenziert organisiert. (1) DE Verfassungslage: Art. 7 Abs. 3 GG: 'Der Religionsunterricht ist in den öffentlichen Schulen mit Ausnahme der bekenntnisfreien Schulen ordentliches Lehrfach. Unbeschadet des staatlichen Aufsichtsrechts wird der Religionsunterricht in Übereinstimmung mit den Grundsätzen der Religionsgemeinschaften erteilt.' Verbindliches Recht für Eltern (bis 14 J.) bzw. Schüler:innen (ab 14 J.) auf Religionsunterricht-Wahl + Abmeldung. Bremen + Berlin als 'bekenntnisfreie Bundesländer' haben stattdessen 'Werteunterricht' bzw. 'Ethik' (ab 7. Kl. in Berlin obligatorisch seit 2006). (2) AT Verfassungslage: Konkordat 1933 + B-VG Art. 17 + Religionsunterrichtsgesetz BGBl 190/1949: Religionsunterricht für anerkannte Religionsgemeinschaften (kath., ev., orthodox, jüdisch, muslimisch, buddhistisch, etc.) flächendeckend. Abmeldung möglich (bis 14 J. durch Eltern, ab 14 selbst). Ethik-Unterricht 'Pflichtgegenstand für vom Religionsunterricht abgemeldete Schüler:innen' seit 2021 flächendeckend AHS-Oberstufe + BHS. (3) CH: kantonal stark unterschiedlich. 22/26 Kantonen: Religionsunterricht in Schulen erteilt (Mehrheit konfessionell). Genf + Neuchâtel + Basel-Stadt + Vaud (teilweise): Trennung Staat/Religion, kein Religionsunterricht in öffentlichen Schulen, kantonale 'Ethik + Religion' Modell. (4) Konfessions-Verteilung Schüler:innen 2024: DE — ~30 % röm.-kath., ~25 % ev., ~10 % muslimisch, ~5 % andere, ~30-40 % konfessionsfrei. AT — ~50 % röm.-kath., ~3 % ev., ~10 % muslimisch, ~5 % andere, ~25-30 % konfessionsfrei. Steigender Anteil konfessionsfreier Schüler:innen führt zu sinkender Religionsunterricht-Teilnahme + steigender Ethik-Unterricht-Teilnahme. (5) Islamischer Religionsunterricht: in DE seit 2003 in NRW (Pilotprojekt), ab 2010er flächendeckend in 11 Bundesländern. AT: gesetzlich anerkannt seit 1979 (IGGÖ Islamische Glaubensgemeinschaft), Religionsunterricht seit 1982. (6) Faktencheck-relevant: Aussagen wie 'Religionsunterricht ist Indoktrination' verkennen rechtliche Garantien (Eltern-Wahl, ab 14 selbst, Ethik-Alternative). Aussagen wie 'Religionsunterricht wird abgeschafft' sind empirisch nicht haltbar — Verfassungsrang in DE/AT. Aussagen wie 'Konfessionsfreie Schüler:innen werden zum Religionsunterricht gezwungen' sind falsch — Abmeldung ist garantiertes Recht.",
+        "art_7_gg_de": "Art. 7 GG (Schulwesen) Abs. 3: 'Der Religionsunterricht ist in den öffentlichen Schulen mit Ausnahme der bekenntnisfreien Schulen ordentliches Lehrfach.' Konsequenz: Religionsunterricht ist VERFASSUNGSGARANTIERT in DE öffentlichen Schulen. BVerfG-Rechtsprechung: religiöse Wahlfreiheit, Abmeldungs-Recht. Bremer-/Berliner-Klausel (Art. 141 GG): Bremen + Berlin haben Sonderstatus, kein konfessioneller Religionsunterricht.",
+        "religionsunterricht_at_konkordat": "AT Religionsunterrichtsgesetz BGBl 190/1949 + Konkordat 1933 + B-VG Art. 17: anerkannte Religionsgemeinschaften erhalten Religionsunterricht-Recht. Liste anerkannter Religionsgemeinschaften umfasst kath., ev. (A.B. + H.B.), orthodox, alt-katholisch, methodistisch, jüdisch, muslimisch, buddhistisch, etc. Ethik-Unterricht seit 2021 flächendeckend Pflicht für abgemeldete Schüler:innen in AHS-Oberstufe + BHS.",
+        "konfessions_verteilung_schueler": "DE Schüler:innen-Konfession 2024 (KMK + Bertelsmann-Stiftung): röm.-kath. ~30 %, ev. ~25 %, muslimisch ~10 %, sonstige ~5 %, konfessionsfrei ~30-40 %. Bundesländer-spezifisch unterschiedlich (Bayern + BW kath.-stark, NDS + NRW ev.-stark, Berlin + Brandenburg stark konfessionsfrei). AT Schüler:innen-Konfession 2024: röm.-kath. ~50 %, ev. ~3 %, muslimisch ~10 %, orthodox ~5 %, sonstige ~5 %, konfessionsfrei ~25-30 %.",
+        "islamischer_religionsunterricht": "DE: islamischer Religionsunterricht seit 2003 NRW-Pilot, seit 2009 in NDS, seit 2012 in Hessen, seit 2014 in BY etc. — bis 2024 in 11 Bundesländern. ~80.000-100.000 Schüler:innen DE-weit. AT: islamischer Religionsunterricht seit 1982 (IGGÖ als gesetzlich anerkannte Religionsgemeinschaft seit 1979). ~70.000-80.000 Schüler:innen AT-weit (2024).",
+        "ethik_unterricht_alternative": "DE Ethik-Unterricht: in 14/16 Bundesländern Pflicht-Alternative für vom Religionsunterricht abgemeldete Schüler:innen. Berlin Sonderstellung: Ethik ab 7. Kl. obligatorisch für ALLE Schüler:innen seit 2006 (Volksentscheid 2009 'Pro Reli' scheiterte). Inhalte: Welt-Religionen + Ethik-Theorien + Lebens-Fragen. AT Ethik: seit 2021 flächendeckend Pflicht-Alternative AHS-Oberstufe + BHS. Inhalte: ähnlich DE.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von 'pro/contra Religionsunterricht' — präsentiert nur Rechtslage + Statistik."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Religionsunterricht ist verfassungsrechtlich garantiert in DE/AT, aber Abmeldung ist Recht (Eltern bis 14, ab 14 selbst).",
+        "Ethik-/LER-Alternative ist flächendeckend (DE 14/16 Bundesländer + Berlin Sonder-Modell, AT seit 2021 AHS-Oberstufe).",
+        "Islamischer Religionsunterricht in DE seit 2003 (NRW-Pilot) + AT seit 1982 — gesetzlich gleichgestellt mit anderen anerkannten Religionsgemeinschaften."
+      ],
+      "claim_phrasings_handled": [
+        "Religionsunterricht ist Indoktrination",
+        "Religionsunterricht wird abgeschafft",
+        "Konfessionsfreie Schüler werden zum Religionsunterricht gezwungen",
+        "Es gibt keinen islamischen Religionsunterricht in Deutschland",
+        "Ethik-Unterricht gibt es in Österreich nicht"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "religionsunterricht",
+          "religion-unterricht",
+          "religion unterricht",
+          "konfessions-unterricht",
+          "konfessionsunterricht",
+          "ethik-unterricht",
+          "ethikunterricht",
+          "ler-unterricht"
+        ],
+        [
+          "schule",
+          "schul",
+          "pflicht",
+          "wahlfach",
+          "indoktrination",
+          "abschaff",
+          "verbot",
+          "verbieten",
+          "gezwungen",
+          "alternative",
+          "konfession",
+          "religion",
+          "abmelden",
+          "wahlfreiheit",
+          "lehrplan",
+          "konfessionsfrei",
+          "konfessionslos"
+        ]
+      ]
+    }
+  ]
+}

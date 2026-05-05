@@ -99,6 +99,7 @@ from services.cybersecurity_pack import search_cybersecurity, claim_mentions_cyb
 from services.lebensmittel_pack import search_lebensmittel, claim_mentions_lebensmittel_cached
 from services.gleichstellung_pack import search_gleichstellung, claim_mentions_gleichstellung_cached
 from services.eige import search_eige
+from services.religionsgemeinschaften_pack import search_religionsgemeinschaften, claim_mentions_religionsgemeinschaften_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.cdc_open_data import search_cdc_open_data
@@ -836,6 +837,20 @@ async def check_claim(request: Request):
         if claim_mentions_gleichstellung_cached(claim):
             tasks.append(cached("Gleichstellung-Konsens", search_gleichstellung, analysis))
             queried_names.append("Gleichstellung-Konsens (EIGE + Eurostat + OECD + FRA + BMI/BKA + Statistik Austria + DESTATIS + UN Women)")
+        # Religionsgemeinschaften-Pack (14 Topics: Christen-Aussterben,
+        # Islam-Mehrheit-Radikal, Sharia-Imminent, Antisemitismus-
+        # Verschwörung, Buddhismus-Friedlich, Hinduismus-Kasten,
+        # Vatikan-Vermögen, Kirchensteuer-Kirchenbeitrag, Scientology-
+        # Sekten-Status, Zeugen-Jehovas-Blut, Destruktive-Kulte,
+        # Religion-Gewalt, Kirchen-Pädophilie, Religionsunterricht).
+        # Quellen: Pew Research, BfV/Verfassungsschutz, ADL, IHRA,
+        # RAND, UCDP, OHCHR, Sektenstellen DACH, MHG-Studie 2018,
+        # John-Jay-Report, Klasnic-Kommission AT, Vatikan-Finanzbericht.
+        # Politisch sensibles Thema — Pack distanziert sich von
+        # theologischen Wertungen, präsentiert nur empirische Lage.
+        if claim_mentions_religionsgemeinschaften_cached(claim):
+            tasks.append(cached("Religionsgemeinschaften-Konsens", search_religionsgemeinschaften, analysis))
+            queried_names.append("Religionsgemeinschaften-Konsens (Pew + BfV + ADL + IHRA + RAND + UCDP + Vatikan-Finanzbericht + DESTATIS + Statistik Austria + Sektenstellen)")
         # EIGE Live-RSS (European Institute for Gender Equality, Vilnius):
         # aktuelle Newsroom-Items zu Gleichstellung, EU-Direktiven, neue
         # EIGE-Berichte. Komplementär zum statischen gleichstellung_pack.

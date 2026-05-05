@@ -43,6 +43,7 @@ const AUTHORITATIVE_PACK_MARKERS = [
     "Cybersecurity-Konsens",
     "Lebensmittel-Sicherheit-Konsens",
     "Gleichstellung-Konsens",
+    "Religionsgemeinschaften-Konsens",
 ];
 
 function isAuthoritativePack(sourceName) {
