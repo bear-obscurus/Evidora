@@ -1,0 +1,16 @@
+{
+  "title": "Wohnen-Konsens",
+  "topic_count": "14 Topics (Mietregulierung-Investitionseffekt, Leerstand-Umverteilung, Sozialwohnungsbau, Frei-Markt-Mythos, AirBnB-Wirkung, Migration-Mietpreis, Eigentumsquote DACH-EU, Genossenschaftswohnen, Mietendeckel-Berlin-Bilanz, Wohnungs-Mangel-DE, Wohngeld-Faulenzer, Spekulations-Preistreiber, Wohnkosten-50-Prozent, Leerstandsabgabe-Wirkung)",
+  "description": "28 Claims (14 Topics × 2 Phrasings) zum 34. Static-First-Pack — Quellen-Mix DESTATIS Zensus 2022 + Statistik Austria + BMWSB DE + Wien-Wohnen + WIFO + IHS + DIW + IFO + Empirica + Pestel-Institut + IW Köln + Eurostat + OECD Housing + Mieterbund + AK Wien + GBV + BBU + BBSR + Bundesbank + Senatsverwaltung Berlin + Land Vorarlberg + Land Tirol + UN-Habitat World Habitat Award 2018 (Wien-Modell) + peer-reviewed Forschung (Glaeser/Gyourko 2018 NBER, Hilber LSE 2021, Diamond/McQuade/Qian 2019 AER, INSEE 2018 Frankreich Leerstandsabgabe, Edward Glaeser Triumph of the City 2011). Pack schließt die letzte Themen-Lücke der Roadmap-Liste — Themen-Pack-Roadmap KOMPLETT.",
+  "methodology": "Probe-Strategie: 14 Topic-Liste vor JSON-Schreiben mit User abgestimmt (initiale 10 + zusätzlich Wohngeld-Faulenzer + Spekulations-Preistreiber + Wohnkosten-50-Prozent + Leerstandsabgabe-Wirkung auf User-Wunsch). HOCH SENSIBLES THEMA — Pack hält strikt die 3 Tabus aus project_political_guardrails.md ein. Pack adressiert AUSSCHLIESSLICH empirisch falsifizierbare Mythen + Halbwahrheiten, NICHT normative Werte-Fragen ('Eigentum ist besser als Miete', 'Sozialwohnungsbau ist gerecht'). Pack erkennt empirische Forschungs-Streitigkeiten explizit an wo sie existieren (Mietregulierung-Wirksamkeit). Boundary-Cases im Stress-Test: #1+#2 Mietregulierung-Wirkung (Diamond SF 2019 zeigt strikte Regulierung kann Bestandsreduktion verursachen — mostly_true defensible), #11 Migration-Mietpreis (10-20 % Beitrag — 'treibt' literal teilweise korrekt), #18 Mietendeckel-BVerfG (literal 'grundgesetzwidrig erklärt' korrekt — BVerfG kippte ihn), #27 Leerstandsabgabe-Wirkung ('wirkt nicht' Übertreibung aber teilweise valid). #13 Eigentumsquote 'mietfaul' unverifiable (synthesizer-issue mit normativem Wert-Begriff).",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "14/14 Topics aktiv"},
+    {"label": "Verdict-Match (Toleranz):", "value": "27/28 (96 %)"},
+    {"label": "Source-Match:", "value": "27/28 (96 %)"},
+    {"label": "Boundary-Cases:", "value": "#1+#2 Mietregulierung (Diamond SF 2019), #11 Migration-Mietpreis literal-Beitrag, #18 Mietendeckel-BVerfG literal-Aufhebung, #27 Leerstandsabgabe-Wirkung Limits"},
+    {"label": "Synthesizer-Issue:", "value": "#13 Eigentumsquote-mietfaul unverifiable (normativer Wert-Begriff)"},
+    {"label": "Quellen-Konsens:", "value": "DESTATIS Zensus 2022, Statistik Austria, BMWSB, Wien-Wohnen, DIW, IFO, Pestel, IW Köln, Eurostat, Empirica, GBV, BBSR, peer-reviewed (Glaeser 2018 NBER, Hilber LSE, Diamond AER 2019, INSEE 2018), UN-Habitat 2018"},
+    {"label": "Politische Distanz:", "value": "Strikt empirisch — Pack adressiert AUSSCHLIESSLICH empirisch falsifizierbare Mythen, NICHT Werte-Fragen. Mietregulierung als ECHTER FORSCHUNGSSTREIT differenziert dargestellt"},
+    {"label": "Themen-Pack-Roadmap:", "value": "Wohnen ist letzter Themen-Pack der Liste — Themen-Pack-Roadmap KOMPLETT"}
+  ]
+}
