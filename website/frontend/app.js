@@ -5,6 +5,51 @@ const loading = document.getElementById("loading");
 const results = document.getElementById("results");
 const error = document.getElementById("error");
 
+// --- Authoritative-Pack-Marker (parallel to backend
+// services/confidence_calibration.py AUTHORITATIVE_PACK_MARKERS)
+// Substring-Match auf den Quellen-Namen — wenn ein Marker enthalten ist,
+// gilt der Treffer als kuratierter Konsens-Pack-Hit (Frontend-Polish:
+// dunkles-Blau-Badge statt generisches Grün).
+const AUTHORITATIVE_PACK_MARKERS = [
+    "Esoterik-Pack",
+    "Geschichts-Pack",
+    "Geschichte-Pack",
+    "Verschwoerungen",
+    "Tech-/KI-Faktencheck",
+    "Gesundheits-Autoritäten",
+    "Tier-/Natur-Mythen",
+    "Ernährungs-Mythen",
+    "Recht/Rechtsmythen",
+    "Energie/Klima-Politik",
+    "Migrations-Konsens",
+    "Geographie",
+    "Eurobarometer",
+    "Finanzen-Mythen",
+    "Bildungs-Mythen",
+    "Internationale Quellen",
+    "DESTATIS",
+    "Sport-/Fitness-Mythen",
+    "Kunst-/Kultur-Mythen",
+    "Geschichts-Mythen-2",
+    "Reproduktions-Medizin-Konsens",
+    "Onkologie-Konsens",
+    "Mental-Health-Konsens",
+    "Substanzen-Konsens",
+    "Digital-Familie-Konsens",
+    "Geldanlage-Konsens",
+    "Alltags-Mythen-Konsens",
+    "Verkehrssicherheit-Konsens",
+    "Tierhaltung-Konsens",
+    "Cybersecurity-Konsens",
+    "Lebensmittel-Sicherheit-Konsens",
+];
+
+function isAuthoritativePack(sourceName) {
+    if (!sourceName) return false;
+    const lc = sourceName.toLowerCase();
+    return AUTHORITATIVE_PACK_MARKERS.some((m) => lc.includes(m.toLowerCase()));
+}
+
 // --- Character counter ---
 const MAX_CLAIM = 500;
 const charsRemainingEl = document.getElementById("chars-remaining");
@@ -232,11 +277,17 @@ function buildConfidenceTooltip(data) {
     const moderate = evidence.filter(e => e.strength === "moderate").length;
     const weak = evidence.filter(e => e.strength === "weak").length;
 
+    // Anzahl kuratierter Konsens-Pack-Treffer (Frontend-Polish):
+    // signalisiert höhere methodische Sicherheit im Tooltip.
+    const namesWithResults = coverage.names || [];
+    const packHits = namesWithResults.filter((n) => isAuthoritativePack(n)).length;
+
     if (currentLang === "en") {
         if (withResults === 0) {
             return "No source returned relevant results — confidence 0% (unverifiable).";
         }
         const parts = [`${withResults} of ${queried} source${queried !== 1 ? "s" : ""} returned results.`];
+        if (packHits > 0) parts.push(t("confidence_pack_boost").replace("{packs}", packHits));
         if (strong > 0) parts.push(`${strong} strong piece${strong > 1 ? "s" : ""} of evidence.`);
         if (moderate > 0) parts.push(`${moderate} moderate piece${moderate > 1 ? "s" : ""} of evidence.`);
         if (weak > 0) parts.push(`${weak} weak piece${weak > 1 ? "s" : ""} of evidence.`);
@@ -249,6 +300,7 @@ function buildConfidenceTooltip(data) {
             return "Keine Quelle lieferte relevante Ergebnisse — Konfidenz 0% (nicht überprüfbar).";
         }
         const parts = [`${withResults} von ${queried} Quelle${queried !== 1 ? "n" : ""} lieferte${withResults !== 1 ? "n" : ""} Ergebnisse.`];
+        if (packHits > 0) parts.push(t("confidence_pack_boost").replace("{packs}", packHits));
         if (strong > 0) parts.push(`${strong} ${strong > 1 ? "starke Belege" : "starker Beleg"}.`);
         if (moderate > 0) parts.push(`${moderate} ${moderate > 1 ? "mittlere Belege" : "mittlerer Beleg"}.`);
         if (weak > 0) parts.push(`${weak} ${weak > 1 ? "schwache Belege" : "schwacher Beleg"}.`);
@@ -311,7 +363,18 @@ function renderVerdict(data) {
     const allNames = coverage.all_names || [];
     const sourceListHtml = allNames.map(n => {
         const has = namesWithResults.has(n);
-        return `<span class="source-tag ${has ? "source-hit" : "source-miss"}">${escapeHtml(n)}</span>`;
+        let cls, tooltip;
+        if (!has) {
+            cls = "source-miss";
+            tooltip = t("source_miss_tooltip");
+        } else if (isAuthoritativePack(n)) {
+            cls = "source-hit-pack";
+            tooltip = t("source_pack_tooltip");
+        } else {
+            cls = "source-hit-live";
+            tooltip = t("source_live_tooltip");
+        }
+        return `<span class="source-tag ${cls}" title="${escapeHtml(tooltip)}">${escapeHtml(n)}</span>`;
     }).join(" ");
 
     let coverageWarning = "";
@@ -383,11 +446,15 @@ function renderEvidence(evidence) {
     section.innerHTML = `
         <h2>${t("evidence_title")}</h2>
         ${evidence
-            .map(
-                (e) => `
-            <div class="evidence-card">
+            .map((e) => {
+                const isPack = isAuthoritativePack(e.source || "");
+                const packBadge = isPack
+                    ? `<span class="source-pack-badge" title="${escapeHtml(t("source_pack_tooltip"))}">${escapeHtml(t("source_pack_label"))}</span>`
+                    : "";
+                return `
+            <div class="evidence-card${isPack ? " evidence-card-pack" : ""}">
                 <div class="evidence-header">
-                    <span class="evidence-source">${escapeHtml(e.source || "")}</span>
+                    <span class="evidence-source">${escapeHtml(e.source || "")}${packBadge}</span>
                     <span class="evidence-strength strength-${e.strength || "weak"}">
                         ${getStrengthLabel(e.strength)}
                     </span>
@@ -395,8 +462,8 @@ function renderEvidence(evidence) {
                 <p class="evidence-finding">${renderInlineMarkdown(e.finding || "")}</p>
                 ${e.url && sanitizeUrl(e.url) ? `<a class="evidence-link" href="${sanitizeUrl(e.url)}" target="_blank" rel="noopener">${escapeHtml(e.url)}</a>` : ""}
             </div>
-        `
-            )
+        `;
+            })
             .join("")}
     `;
 }

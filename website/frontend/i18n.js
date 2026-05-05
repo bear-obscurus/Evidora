@@ -62,6 +62,11 @@ const TRANSLATIONS = {
         source_coverage_low: "Geringe Quellenabdeckung — Bewertung basiert auf wenigen Quellen. Ergebnis mit Vorsicht interpretieren.",
         source_coverage_single: "Nur eine einzige Quelle hat Ergebnisse geliefert. Die Bewertung ist daher wenig belastbar.",
         source_coverage_none: "Keine Quelle hat Ergebnisse geliefert. Die Behauptung konnte nicht überprüft werden.",
+        source_pack_tooltip: "Kuratierter Konsens-Pack — methodisch geprüfte Top-Quellen (Behörden, Cochrane-Reviews, peer-reviewed Studien)",
+        source_live_tooltip: "Live-API-Treffer — aktuelle Online-Suche in dieser Quelle",
+        source_miss_tooltip: "Quelle wurde befragt, lieferte aber keine relevanten Ergebnisse",
+        source_pack_label: "Kuratiert",
+        confidence_pack_boost: "{packs} kuratierte Konsens-Quelle(n) gefunden — erhöhte methodische Sicherheit.",
 
         // Evidence
         confidence: "Konfidenz:",
@@ -420,6 +425,11 @@ const TRANSLATIONS = {
         source_coverage_low: "Low source coverage — verdict is based on few sources. Interpret with caution.",
         source_coverage_single: "Only a single source returned results. The verdict is therefore not very robust.",
         source_coverage_none: "No source returned results. The claim could not be verified.",
+        source_pack_tooltip: "Curated consensus pack — methodologically vetted top sources (agencies, Cochrane reviews, peer-reviewed studies)",
+        source_live_tooltip: "Live-API hit — fresh online search in this source",
+        source_miss_tooltip: "Source was queried but returned no relevant results",
+        source_pack_label: "Curated",
+        confidence_pack_boost: "{packs} curated consensus source(s) found — elevated methodological certainty.",
 
         // Evidence
         confidence: "Confidence:",
@@ -772,6 +782,11 @@ const TRANSLATIONS = {
         source_coverage_low: "Faible couverture des sources — verdict basé sur peu de sources. À interpréter avec prudence.",
         source_coverage_single: "Une seule source a fourni des résultats. Le verdict est donc peu robuste.",
         source_coverage_none: "Aucune source n'a fourni de résultats. L'affirmation n'a pas pu être vérifiée.",
+        source_pack_tooltip: "Pack consensus curé — sources de référence vérifiées méthodologiquement (agences, revues Cochrane, études peer-reviewed)",
+        source_live_tooltip: "Résultat API en direct — recherche en ligne actuelle dans cette source",
+        source_miss_tooltip: "Source interrogée mais sans résultats pertinents",
+        source_pack_label: "Curé",
+        confidence_pack_boost: "{packs} source(s) consensus curée(s) trouvée(s) — certitude méthodologique renforcée.",
 
         // Preuves
         confidence: "Confiance :",
@@ -880,6 +895,11 @@ const TRANSLATIONS = {
         source_coverage_low: "Bassa copertura delle fonti — verdetto basato su poche fonti. Da interpretare con cautela.",
         source_coverage_single: "Solo una fonte ha restituito risultati. Il verdetto è quindi poco robusto.",
         source_coverage_none: "Nessuna fonte ha restituito risultati. L'affermazione non è stata verificabile.",
+        source_pack_tooltip: "Pack di consenso curato — fonti di riferimento verificate metodologicamente (agenzie, revisioni Cochrane, studi peer-reviewed)",
+        source_live_tooltip: "Risultato API in tempo reale — ricerca online attuale in questa fonte",
+        source_miss_tooltip: "Fonte interrogata ma senza risultati pertinenti",
+        source_pack_label: "Curato",
+        confidence_pack_boost: "{packs} fonte(i) di consenso curate trovate — certezza metodologica rafforzata.",
 
         // Prove
         confidence: "Affidabilità:",

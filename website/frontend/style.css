@@ -924,7 +924,33 @@ body {
     padding: 2px 8px;
     border-radius: 10px;
     font-size: 0.7rem;
+    /* Tooltips kommen via title-Attribut */
+    cursor: help;
 }
+.source-hit-live {
+    background: #d1fae5;
+    color: #065f46;
+}
+/* Kuratierter Konsens-Pack-Treffer — visuell-stärkstes Tag.
+   Dunkel-Petrol mit Häkchen-Marker um methodische Hierarchie zu
+   signalisieren (kuratierte Top-Quellen vs. generischer Live-Hit). */
+.source-hit-pack {
+    background: #1e3a5f;
+    color: #ffffff;
+    font-weight: 600;
+    padding-left: 18px;
+    position: relative;
+}
+.source-hit-pack::before {
+    content: "✓";
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    line-height: 1;
+}
+/* Backward-compat: alter source-hit selektor → live-Stil */
 .source-hit {
     background: #d1fae5;
     color: #065f46;
@@ -970,6 +996,12 @@ body {
     transition: box-shadow 0.2s;
 }
 
+/* Kuratierter Konsens-Pack im Evidence-Card-Header — linker Akzent-Rand
+   in Petrol als visuelle Konsistenz mit dem .source-hit-pack-Badge. */
+.evidence-card.evidence-card-pack {
+    border-left: 4px solid #1e3a5f;
+}
+
 .evidence-card:hover {
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
@@ -979,12 +1011,37 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
+    gap: 8px;
 }
 
 .evidence-source {
     font-weight: 600;
     font-size: 0.9rem;
     color: #0d9488;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Pack-Badge im Evidence-Card-Header — kompakter Kuratiert-Tag rechts
+   neben dem Quellen-Namen. */
+.source-pack-badge {
+    background: #1e3a5f;
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    cursor: help;
+    flex-shrink: 0;
+}
+.source-pack-badge::before {
+    content: "✓ ";
+    font-weight: 700;
 }
 
 .evidence-strength {
