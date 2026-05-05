@@ -1,0 +1,12 @@
+{
+  "title": "Sport-/Fitness-Mythen",
+  "topic_count": "10 Topics (Spot-Reduction, Muscle-Confusion, Knuckle-Cracking, No-Pain-No-Gain, Lactic-Acid-Soreness, Women-Bulky-Muscles, Stretching-Injury-Prevention, Fat-Burning-Zone, Abs-Kitchen, High-Protein-Kidneys)",
+  "description": "20 Claims aus klassischen Sport-/Fitness-Mythen-Repertoire: ACSM-, Cochrane-, AHA-, ISSN- und NSCA-/BJSM-Konsens-Themen. 16. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Themen-Lücken-Block A1-A10). Komplementär zum vorherigen Erkundungs-Test (commit 2026-05-02 ohne Pack) — der zeigte, dass Cochrane/PubMed allein die boulevardesken Phrasings nicht zuverlässig fangen.",
+  "methodology": "Probe-Strategie: 10 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2 Phrasings stress-getestet (klassisch + boulevardesk). Toleranz-Logik: Spot-Reduction/Muscle-Confusion/Knuckle-Cracking/No-Pain/Lactic-Acid/Women-Bulky/High-Protein erwarten false oder mostly_false. Stretching-vor-Training und Fat-Burning-Zone akzeptieren auch mixed (statisches Stretching VOR Training schädlich, NACH Training OK; Fat-Burning-Zone-Frage hängt von absoluten vs. relativen Fettkalorien ab). Abs-Kitchen ist TRUE-mit-Kontext (Ernährung primär aber Training nötig) — akzeptiert true/mostly_true/mixed.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "Quellen-Konsens:", "value": "ACSM, Cochrane, AHA, ISSN, NSCA, BJSM"},
+    {"label": "Trigger-Disziplin:", "value": "Composite-Trigger (Entity AND Theme), keine Genitiv-/Bindestrich-Lücken"},
+    {"label": "Konfidenz-Mittel:", "value": "0.86 (durch Hybrid-Kalibrierung kein 0.95-Cluster)"}
+  ]
+}

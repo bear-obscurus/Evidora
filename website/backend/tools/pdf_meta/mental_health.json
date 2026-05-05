@@ -1,0 +1,12 @@
+{
+  "title": "Mental-Health-Konsens",
+  "topic_count": "10 Topics (Depression-Charakterschwäche, Antidepressiva-Abhängigkeit, Psychotherapie-wirkt-nicht, Werther-Papageno-Effekt, Borderline-Klischee, ADHS-Überdiagnose, Psychopharmaka-Persönlichkeit, Traum-Freud, Selbstmord-Kündigung, Essstörung-Willens)",
+  "description": "20 Claims aus klassischen Mental-Health-Mythen — Quellen-Mix APA, DSM-5-TR, DGPPN, WHO, Lancet Psychiatry, JAMA Psychiatry, NIMH, Cochrane. 18. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Themen-Lücken-Block A2). Adressiert Stigma-fördernde Mythen (Depression als Schwäche, Borderline als 'launig', ADHS als 'Mode') durch evidenzbasierte Konsens-Statements aus Diagnose-Manualen.",
+  "methodology": "Probe-Strategie: 10 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2 Phrasings stress-getestet inkl. Boulevard-Variante. Boundary-Cases: Werther-Papageno (#8 'Selbstmord-Berichte führen zu mehr Selbstmorden' — synthesizer kann mostly_true zurückgeben weil Werther-Effekt für sensationelle Berichte tatsächlich existiert; Pack betont Differenzierung Werther vs. Papageno) und Psychopharmaka-Persönlichkeit (#14 'Pillen verändern die Persönlichkeit' — emotionale Stumpfheit als SSRI-Nebenwirkung kann subjektiv als Persönlichkeits-Veränderung erlebt werden, obwohl psychometrisch keine Persönlichkeits-Verschiebung).",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "Boundary-Cases:", "value": "2 Boundary (#8 Werther sensationell, #14 SSRI-Stumpfheit)"},
+    {"label": "Quellen-Konsens:", "value": "APA, DSM-5-TR, DGPPN, WHO, Lancet/JAMA Psychiatry, NIMH, Cochrane"},
+    {"label": "Trigger-Disziplin:", "value": "Composite-Trigger (Entity AND Theme), erweiterte Suizid-Trigger (drüber reden)"}
+  ]
+}

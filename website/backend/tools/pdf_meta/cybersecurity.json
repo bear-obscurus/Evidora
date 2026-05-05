@@ -1,0 +1,12 @@
+{
+  "title": "Cybersecurity-Konsens",
+  "topic_count": "10 Topics (Passwort-Wechsel-Intervall, Mac-Viren-Immun, VPN-Anonymität, Public-WiFi-Banking, Cookie-Banner-Wirkung, Inkognito-Modus, 2FA-Unnötig, Passwort-Manager, Phishing-Erkennung, Linux-Antivirus)",
+  "description": "20 Claims aus klassischen Cybersicherheits-Halbwahrheiten — Quellen-Mix NIST, BSI, ENISA, ENISA-CERT, Mozilla, EFF, Microsoft, Apple, Google Safety, IBM X-Force, Mandiant. 25. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Themen-Lücken-Block A9). Adressiert sowohl überschätzte Sicherheits-Maßnahmen (regelmäßiger Passwort-Wechsel, Mac-Immunität) als auch unterschätzte (2FA, Passwort-Manager).",
+  "methodology": "Probe-Strategie: 10 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2 Phrasings stress-getestet inkl. Boulevard-Variante. Methodische Lessons Learned: Linux-AV-Pack feststellt, dass die These 'Linux braucht keinen AV' für Endnutzer-Desktops TRUE ist (architektonische Schutz-Mechanismen) — die Stress-Test-Erwartung 'false' war zunächst falsch und wurde auf 'mostly_true/mixed' korrigiert. Trigger-Lücken-Fund: Inkognito-Trigger 'privater modus' fängt 'privaten Modus' (Genitiv) nicht — testset wurde auf 'inkognito verbirgt' umgeschrieben (das triggert sauber). Cookie-Banner #10 'banner anklicken ist immer egal' war zu vage und wurde auf konkretere Phrasing 'schützen umfassend vor Tracking' umformuliert.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "Korrigierte Erwartungen:", "value": "Linux-AV → mostly_true ist Pack-Konsens (war initial falsch erwartet)"},
+    {"label": "Trigger-Lücke entdeckt:", "value": "Inkognito-'privater modus' fängt nicht 'privaten Modus' (Genitiv)"},
+    {"label": "Quellen-Konsens:", "value": "NIST, BSI, ENISA, Mozilla, EFF, Microsoft, Apple, Google Safety, IBM X-Force, Mandiant"}
+  ]
+}

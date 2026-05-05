@@ -1,0 +1,12 @@
+{
+  "title": "Digital-Familie-Konsens",
+  "topic_count": "10 Topics (Bildschirmzeit-Hirnentwicklung, TikTok-Algorithmus, Smartphone-IQ, Kinderschutz-Filter, Gewalt-Videospiele, Gen-Z-Depression, Cyberbullying-vs-Offline, Social-Media-Addiction-Diagnose, Lese-Apps, Smartphone-Mindestalter)",
+  "description": "20 Claims aus klassischen Digital-Erziehungs-Mythen — Quellen-Mix AAP (American Academy of Pediatrics), RKI, WHO, Pew Research, Lancet Child Adolescent Health, JAMA Pediatrics, AAP Council on Communications and Media, APA. 20. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Themen-Lücken-Block A4). Hochrelevant für AT/DE Lehrer-Eltern-Kommunikation und Schulberatung.",
+  "methodology": "Probe-Strategie: 10 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2 Phrasings stress-getestet inkl. Boulevard-Variante. Pack achtet besonders auf nuancierte Verdicts: Bildschirmzeit/TikTok/Smartphone-IQ-Effekte sind mostly_false (existieren als kleine Effekte, aber 'zerstört' und 'macht dumm' überzeichnet). Gen-Z-Depression-These (Haidt) wird als 'Korrelation real, Kausalität schwach' eingeordnet. Smartphone-Mindestalter (#19+#20) explicit als NICHT-wissenschaftlicher-Konsens markiert (AAP empfiehlt individuelle Eltern-Kriterien statt fixed age).",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "Quellen-Konsens:", "value": "AAP, RKI, WHO, Pew Research, Lancet Child Adolescent Health, JAMA Pediatrics, APA"},
+    {"label": "Trigger-Disziplin:", "value": "Composite-Trigger flächendeckend; Bindestrich-Forms für 'social-media-sucht' explizit"},
+    {"label": "Konfidenz-Median:", "value": "0.85 (Hybrid-Kalibrierung wirksam — 18/20 mostly_false statt false respektiert Nuance)"}
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Alltags-Mythen-Konsens",
+  "topic_count": "10 Topics (8-Gläser-Wasser, Lesen-im-Dunkeln-Augen, 8-Stunden-Schlaf-zwingend, Kalter-Boden-Blasenentzündung, Linkshänder-Sterblichkeit, Kaffee-Dehydrierung, Nasse-Haare-Erkältung, 10-Prozent-Gehirn, Vollmond-Schlaf-Geburten, Jod-Wund-Desinfektion)",
+  "description": "20 Claims aus den klassischsten Alltags-Mythen, die Generationen von Eltern und Lehrern weitergegeben haben — Quellen-Mix Cochrane, WHO, AAO (American Academy of Ophthalmology), AAFP (Family Physicians), DGSM (Schlafmedizin), ÖGN (Österr. Ges. Neurologie), AAP, Mayo Clinic, AHA, Snopes-Recherchen. 22. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Themen-Lücken-Block A6).",
+  "methodology": "Probe-Strategie: 10 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2 Phrasings stress-getestet inkl. Boulevard-Variante. Lesen-im-Dunkeln-Trigger nach Selbstmatching erweitert ('kaputt' alleine, nicht nur 'macht kaputt'). Boundary-Case #6 8-Stunden-Schlaf ('weniger als 8h schadet') ist mostly_true defensibel — chronische Schlaf-Deprivation ist real schädlich, der spezifische Wert '8' ist aber nicht universell (Erwachsene 7-9h Spannweite normal).",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "Boundary-Case:", "value": "#6 'weniger als 8h schadet' (Schlaf-Deprivation ist real schädlich, '8' ist nur Median)"},
+    {"label": "Quellen-Konsens:", "value": "Cochrane, WHO, AAO, AAFP, DGSM, ÖGN, AAP, Mayo Clinic, AHA"},
+    {"label": "Schul-Relevanz:", "value": "Hoch (Eltern-Lehrer-Klassiker, AT-Kontext: Mütter-Großmütter-Weisheiten)"}
+  ]
+}

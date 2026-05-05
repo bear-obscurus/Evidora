@@ -1,0 +1,12 @@
+{
+  "title": "Tierhaltung-Konsens",
+  "topic_count": "10 Topics (Hund-Schokolade-Theobromin, Katze-Milch-Laktose, Veganer-Hund/Katze, Welpe-Schlafbedarf, Wildschwein-Tollwut, BARF-Rohfutter, Katzen-9-Leben, Hund-7-Jahre-Mensch, Katzen-Landung-Pfoten, Pferdefleisch-Konsum)",
+  "description": "20 Claims aus klassischen Haustier-/Tierhaltungs-Mythen — Quellen-Mix ÖTK (Österr. Tierärztekammer), DTSchG (Tierschutzgesetz), RKI, ECDC, WHO, AVMA (American Vet. Medical Assoc.), AAFCO (Pet Food Standards), DGE-Veterinär, ECVCN (Companion Animal Nutrition), KFV (Hunde-Bissrate). 24. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Themen-Lücken-Block A8). Adressiert lebensgefährliche Mythen (Hund-Schokolade, Katze-Milch) und tierschutz-relevante Halbwahrheiten (Vegane Katzen-Diät, BARF).",
+  "methodology": "Probe-Strategie: 10 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2 Phrasings stress-getestet inkl. Boulevard-Variante. Wildschwein-Tollwut ist NUANCE-Konsens (DE seit 2008 Tollwut-frei, AT seit 2002 — aber Bissverletzung trotzdem klinisch abklären). Pferdefleisch ist NUANCE (legal in EU, ethisches Urteil ist subjektive Werte-Frage — Pack distanziert von Wertung).",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "Quellen-Konsens:", "value": "ÖTK, DTSchG, RKI, ECDC, WHO, AVMA, AAFCO, DGE-Veterinär, ECVCN, KFV"},
+    {"label": "Trigger-Disziplin:", "value": "Composite-Trigger flächendeckend; Welpe/BARF/Katzen-Differenzierung sauber"},
+    {"label": "Schul-Relevanz:", "value": "Hoch (Bio Sek-1+2, Tierschutz-Bildung, Haustierhaltung-Aufklärung)"}
+  ]
+}

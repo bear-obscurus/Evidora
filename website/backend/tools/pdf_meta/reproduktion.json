@@ -1,0 +1,12 @@
+{
+  "title": "Reproduktions-Medizin-Konsens",
+  "topic_count": "8 Topics (Spermien-Lebensdauer, Fruchtbarstes-Fenster, Geschlecht-Vererbung-Mutter, Pille-Gewicht, Vasektomie-Libido, Menstruation-Synchronisation, Stillen-Verhütung, Wechseljahre-Alter)",
+  "description": "20 Claims aus Reproduktions-Medizin-Mythen — Quellen-Mix ASRM (American Society for Reproductive Medicine), ACOG (American College of Obstetricians and Gynecologists), WHO, RCOG (Royal College of Obstetricians and Gynaecologists), Cochrane, NEJM, JAMA, Nature. 13. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Phase 3d/Themen-Lücken-Block). Nüchtern-medizinische Headlines + Synthesizer-Kernsätze, ergänzt politische Guardrails (kein Reproduktions-Recht-Statement, nur biologische Fakten).",
+  "methodology": "Probe-Strategie: 8 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2-3 Phrasings stress-getestet inkl. Boulevard-Variante. Bei #19+#20 trat zunächst ReadError auf (Read-Timeout unter Concurrency=4) — Retry mit Concurrency=1 ergab 2/2 Match. Beobachtung: prod-Ressourcen werden bei 4 parallelen Reproduktions-Topics (lange Synthesizer-Antworten via Mistral-Cloud) bis 254s ausgereizt — daher gelegentlich Read-Timeout. Lösung: Concurrency-Reduktion oder Read-Timeout-Erhöhung in stress_test.py. Stillen-Verhütung wurde bewusst MIXED-toleriert (mostly_false akzeptiert) — unter strikten LAM-Kriterien zwar ~98% effektiv aber als 'sicher' irreführend.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "8/8 Topics aktiv"},
+    {"label": "Quellen-Konsens:", "value": "ASRM, ACOG, WHO, RCOG, Cochrane, NEJM, JAMA, Nature"},
+    {"label": "Trigger-Disziplin:", "value": "Composite-Trigger (Entity AND Theme), MIXED erlaubt für Stillen-Verhütung (LAM-Nuance)"},
+    {"label": "Technischer Befund:", "value": "Concurrency=4 zeigt 2/20 Read-Timeouts; Concurrency=1 stabil"}
+  ]
+}

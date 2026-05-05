@@ -1,0 +1,12 @@
+{
+  "title": "Kunst-/Kultur-Mythen",
+  "topic_count": "8 Topics (Pyramiden-Sklaven, Mozart-Armer-Tod, Napoleon-Klein, Wikinger-Hörner, Kolumbus-Erde-Rund, Salem-Hexen-Konsens, Great-Wall-Alter, Shakespeare-Autorenschaft)",
+  "description": "20 Claims aus klassischen Geschichts-, Kunst- und Kultur-Mythen — Quellen-Mix Smithsonian, Britannica, JSTOR, Egyptology Royal Society + UNESCO. 14. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Phase 3b/Themen-Lücken-Block). Ergänzt das ältere Geschichts-Pack um boulevardesque Schul-/Allgemeinwissen-Mythen.",
+  "methodology": "Probe-Strategie: 8 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2-3 Phrasings stress-getestet inkl. Boulevard-Variante (z.B. 'Hunderttausende Sklaven errichteten...', 'Im Mittelalter dachte man, die Erde sei eine Scheibe'). Mozart-Massengrab ist methodischer Boundary-Case: Wiens Schachtgrab-Praxis 1791 war STANDARD-Bestattung der Mittelschicht, nicht Armen-Grab — Synthesizer kann 'mostly_true' zurückgeben, wenn er die Schachtgrab-Definition annimmt; das Pack erklärt die Differenzierung explizit.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "8/8 Topics aktiv"},
+    {"label": "Boundary-Case:", "value": "#4 Mozart-Massengrab (Schachtgrab=Wien-Standard 1791, beide Verdikte vertretbar)"},
+    {"label": "Quellen-Konsens:", "value": "Mark Lehner Harvard, Otto Erich Deutsch, Roberta Frank Yale, Russell+Gettings Akademiker, Smithsonian, UNESCO"},
+    {"label": "Trigger-Disziplin:", "value": "Composite-Trigger (Entity AND Theme), MIXED erlaubt für Mozart/Great-Wall-Antike"}
+  ]
+}

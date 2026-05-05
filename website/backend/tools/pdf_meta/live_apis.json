@@ -1,0 +1,15 @@
+{
+  "title": "Live-API-Connectors-Smoke-Test",
+  "topic_count": "8 Connectors (NIH MedlinePlus, CDC Newsroom, Snopes, Correctiv, Full Fact, Bellingcat, FactCheck.org, NIH ClinVar) - 16 Claims (2 pro Connector)",
+  "description": "Smoke-Test der 8 Live-API-Connectors die im Sprint 2026-05-04 deployed wurden. Anders als bei Static-First-Packs ist hier die Trigger-Reliabilität die Mess-Größe, nicht Verdict-Genauigkeit — RSS-Feeds verändern sich täglich. Verdict-Match: 12/16 (75 %), Source-Match: 8/16 (50 %). Pro-Connector-Coverage zeigt heterogenes Bild: ClinVar + Correctiv + CDC Newsroom + Bellingcat sauber feuernd, Snopes/FullFact/FactCheck.org/MedlinePlus selektiv.",
+  "methodology": "Probe-Strategie: Claims gezielt designed, um jeden Connector zu triggern (Bill Gates → Snopes, MH17 → Bellingcat, BRCA1 → ClinVar). Jeder Connector mit 2 Phrasings probiert. Threshold auf 0.6 reduziert wegen RSS-Volatilität (Pack-Threshold ist 0.9). WICHTIG: niedrigere Source-Match-Rate ist KEIN Pack-Bug — RSS-Feeds enthalten nur die letzten ~50 Items. Beobachtung: CDC Newsroom feuert opportunistisch bei vielen englischen medizinischen Claims (Indikator-Index sehr breit). Lessons Learned: Pro-Connector-Trigger ist heterogen, eine 1-Iterations-Smoke-Test-PDF kann zukünftig mehrfach laufen, um RSS-Volatilität zu mitteln.",
+  "performance_extras": [
+    {"label": "Verdict-Match (Toleranz):", "value": "12/16 (75 %)"},
+    {"label": "Source-Match (Connector-Hit):", "value": "8/16 (50 %)"},
+    {"label": "ClinVar-Connector:", "value": "2/2 sauber (BRCA1, CFTR-Trigger funktional)"},
+    {"label": "Correctiv-Connector:", "value": "2/2 sauber (Bill-Gates-Acker + Migranten-Sozialleistungen)"},
+    {"label": "CDC-Newsroom-Connector:", "value": "Sehr breit triggernd, fired bei 13/16 Claims (möglicherweise zu generisch)"},
+    {"label": "Bellingcat-Connector:", "value": "1/2 (Wagner triggert, MH17 nicht im aktuellen Feed)"},
+    {"label": "Snopes/FullFact/FactCheck/MedlinePlus:", "value": "Selektiv — RSS-Feed-Inhalt täglich-volatil"}
+  ]
+}

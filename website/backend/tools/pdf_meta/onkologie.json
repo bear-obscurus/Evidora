@@ -1,0 +1,12 @@
+{
+  "title": "Onkologie-Konsens",
+  "topic_count": "10 Topics (Mikrowelle-Krebs, Zucker-füttert-Krebs, Säure-Basen-Diät, Aprikosenkerne-Laetril, Alkalisches-Wasser, Deo-Brustkrebs, BH-Brustkrebs, Mistel-Therapie, Vitamin-C-Hochdosis, Früherkennung-Übertherapie)",
+  "description": "20 Claims aus klassischen Onkologie-Mythen — Quellen-Mix WHO IARC, ASCO, ESMO, DKFZ, NIH NCI, Cochrane, NEJM, JAMA Oncology, Lancet Oncology. 17. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Themen-Lücken-Block A1). Adressiert lebensbedrohliche Mythen (Krebs-Heilungs-Versprechen alternativer Therapien) durch evidenz-basierte Konsens-Statements.",
+  "methodology": "Probe-Strategie: 10 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2 Phrasings stress-getestet inkl. Boulevard-Variante. Besondere Sorgfalt bei Mistel-Therapie (Lebensqualitäts-Differenzierung — kann subjektiv helfen, KEINE Tumor-Wirkung) und Früherkennung-Übertherapie (Pauschal-Aussage 'rettet IMMER Leben' fehl, aber Programme retten teils Leben). Kernsätze betonen Methodik (Cochrane-Reviews, RCTs vs. Single-Center-Studien) statt nur 'wirkt nicht'-Aussagen.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "Quellen-Konsens:", "value": "WHO IARC, ASCO, ESMO, DKFZ, NIH NCI, Cochrane, NEJM, JAMA Oncology, Lancet Oncology"},
+    {"label": "Trigger-Disziplin:", "value": "Composite-Trigger (Entity AND Theme), keine Cross-Topic-Verwirrung Zucker/Krebs vs. Diabetes"},
+    {"label": "Konfidenz-Median:", "value": "0.85 (Hybrid-Kalibrierung wirksam — kein 0.95-Cluster)"}
+  ]
+}

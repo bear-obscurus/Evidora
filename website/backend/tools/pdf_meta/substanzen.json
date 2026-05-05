@@ -1,0 +1,12 @@
+{
+  "title": "Substanzen-Konsens",
+  "topic_count": "10 Topics (Cannabis-Jugend-Hirn, Mikrodosing-LSD/Psilocybin, Energy-Drinks-Herz, Alkohol-Rotwein-Herz, E-Zigaretten-Sicherheit, Kratom-Sicherheit, Drogen-Test-Tricks, CBD-Wundermittel, Cannabis-Legalisierung-Jugend, Entgiftungs-Diäten)",
+  "description": "20 Claims aus klassischen Drogen-/Substanz-Mythen — Quellen-Mix WHO, EMCDDA (European Monitoring Centre Drugs and Drug Addiction), DAK-Forschung, DKFZ, NIH NIDA, JAMA, Lancet, NEJM. 19. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Themen-Lücken-Block A3). Fokussiert empirische Konsens-Lage statt politischer Wertung — kein 'pro-Cannabis' oder 'pro-Strafe', nur Studienlage zur Schädlichkeit + Wirkung.",
+  "methodology": "Probe-Strategie: 10 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2 Phrasings stress-getestet inkl. Boulevard-Variante. Boundary-Cases: #1 Cannabis-Jugendliche-Hirn ('zerstört' ist Hyperbel, aber adolescent neurodevelopmentale Risiken sind dokumentiert — synthesizer kann mostly_true zurückgeben) und #4 LSD-Mikrodosing-Stimmung (open-label Studien zeigen self-reported Mood-Improvements, placebo-kontrollierte RCTs nicht — mostly_true vertretbar). Pack betont jedoch Methodik (RCT vs. Anekdoten) und akzeptiert MIXED für #1.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "Boundary-Cases:", "value": "2 Boundary (#1 Cannabis 'zerstört' Hyperbel, #4 Mikrodosing-Selbstbericht vs. RCT)"},
+    {"label": "Quellen-Konsens:", "value": "WHO, EMCDDA, DAK-Forschung, DKFZ, NIH NIDA, JAMA, Lancet, NEJM"},
+    {"label": "Politische Distanz:", "value": "Empirische Konsens-Lage — keine pro/contra-Drogen-Politik"}
+  ]
+}

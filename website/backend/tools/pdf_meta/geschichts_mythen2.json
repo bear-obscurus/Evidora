@@ -1,0 +1,12 @@
+{
+  "title": "Geschichts-Mythen 2",
+  "topic_count": "8 Topics (Buddha-Hotei, Mittelalter-Dunkel, Galileo-Folter, Newton-Apfel, Marie-Antoinette-Kuchen, Einstein-Schulversager, Edison-Glühbirne, Napoleon-Sphinx-Nase)",
+  "description": "20 Claims aus klassischen Anekdoten-Mythen der Geschichte — Quellen-Mix Britannica, Smithsonian, Stanford Encyclopedia of Philosophy, Royal Society, Yale, Harvard. 15. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Phase 3c/Themen-Lücken-Block). Komplementär zu Pack #16 (Kunst/Kultur — Pyramiden, Wikinger, Salem, Shakespeare): wo Pack #16 Schul-/Allgemeinwissen-Mythen abdeckt, fokussiert dieses Pack auf Persönlichkeits-Anekdoten + Renaissance-/Aufklärungs-Mythen.",
+  "methodology": "Probe-Strategie: 8 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2-3 Phrasings stress-getestet inkl. Boulevard-Variante. trigger_composite-Konstrukt zum ersten Mal in einem reinen Geschichts-Pack flächendeckend eingesetzt: jedes Topic hat AND-of-OR Entity+Theme — z.B. Newton-Apfel triggert nur, wenn 'newton' UND 'apfel' UND ('kopf'/'fiel'/'fallen'/'gravitation') gemeinsam vorkommen. Edison-Glühbirne ist nuanciert (mostly_false akzeptabel — Edison verbesserte/kommerzialisierte das vorhandene Patent von Joseph Swan 1860, aber 'erfinden' ist umgangssprachlich vertretbar — daher MIXED-Toleranz im Stress-Test).",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "8/8 Topics aktiv"},
+    {"label": "Quellen-Konsens:", "value": "Britannica, Smithsonian, Stanford Encyclopedia, Royal Society, Yale, Harvard"},
+    {"label": "Trigger-Disziplin:", "value": "Composite-Trigger flächendeckend (Entity AND Theme), keine Cross-Topic-Spillover"},
+    {"label": "Konfidenz-Median:", "value": "0.85 (Hybrid-Kalibrierung wirksam — keine 0.95-Cluster)"}
+  ]
+}

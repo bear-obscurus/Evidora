@@ -1,0 +1,12 @@
+{
+  "title": "Geldanlage-Konsens",
+  "topic_count": "10 Topics (Krypto-Promi-Endorsements, Day-Trading-Erfolg, Garantierte-Rendite, Forex-CFD-Plattform, MLM-Pyramidensystem, Gold-Inflations-Schutz, Compound-Interest-24-Buffett, Kapital-Lebensversicherung, FOMO-Signal-Anlage, Bitcoin-Safe-Haven)",
+  "description": "20 Claims aus klassischen Anlage-Betrugs-Mustern und Halbwahrheiten — Quellen-Mix BaFin (Bundesanstalt für Finanzdienstleistungsaufsicht), FMA AT (Finanzmarktaufsicht), EZB, EBA, ESMA, Verbraucherzentrale, Stiftung Warentest, AK Wien, IWF. 21. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Themen-Lücken-Block A5). Zentral für Schul-Bildung (Konsumenten-Schutz, Finanz-Allgemeinbildung) — fast jede 'Reichmach-Plattform' im Internet ist Pyramidensystem oder unregulierter Hochrisiko-Handel.",
+  "methodology": "Probe-Strategie: 10 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2 Phrasings stress-getestet inkl. Boulevard-Variante. Trigger-Lücken bei zu kolloquialer Phrasing identifiziert: #4 ('5000 Euro im Schlaf' — pack triggert nicht, weil 'im Schlaf' nicht in trigger_keywords) → unverifiable; #17 ('Eilig handeln um Geld zu verdienen' — zu generisch, pack triggert ggf., synthesizer interpretiert als allgemeine Empfehlung). Lessons Learned: Trigger sollten umgangssprachliche Slogans abdecken ('reich werden', 'finanziell frei') ohne falsch positiv auf legitime Anlage-Fragen zu feuern.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "Trigger-Lücken:", "value": "#4 'im Schlaf' fehlt; #17 'eilig handeln' zu generisch (Boundary)"},
+    {"label": "Quellen-Konsens:", "value": "BaFin, FMA AT, EZB, EBA, ESMA, Verbraucherzentrale, Stiftung Warentest, AK Wien, IWF"},
+    {"label": "Schul-Relevanz:", "value": "Hoch (Konsumenten-Schutz, Finanz-Allgemeinbildung)"}
+  ]
+}

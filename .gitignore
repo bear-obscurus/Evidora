@@ -30,3 +30,11 @@ __pycache__/
 
 # OS
 Thumbs.db
+
+# Runtime-Caches (lokal aggregierte Indices, nicht versionieren)
+website/backend/data/claimreview_index.json
+
+# Lokale Test-Artefakte (alte Test-Skripte und Roh-Resultate)
+website/backend/test_claims.py
+website/backend/test_results*.json
+

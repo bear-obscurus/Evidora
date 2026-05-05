@@ -1,0 +1,12 @@
+{
+  "title": "Lebensmittel-Sicherheit-Konsens",
+  "topic_count": "10 Topics (Spinat-aufwärmen-Nitrit, Pilze-aufwärmen, Grüne-Kartoffel-Solanin, Mikrowelle-Ei-Explosion, Honig-Baby-Botulismus, Eier-Kühlschrank-Lagerung, MHD-Verbrauchsdatum, Würstchen-Kinder-Erstickungsrisiko, Kühlkette-Unterbrechung, Auftauen-Zimmertemperatur)",
+  "description": "20 Claims aus klassischen Lebensmittel-Sicherheits-Mythen — Quellen-Mix BfR (Bundesinstitut Risikobewertung DE), AGES (Agentur Ernährungssicherheit AT), EFSA, WHO, FAO, FDA, DGE (Deutsche Ges. Ernährung), ÖGE (Österr. Ges. Ernährung), Verbraucherzentrale, Stiftung Warentest, RKI. 26. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Themen-Lücken-Block A10). Adressiert sowohl überholte Großmutter-Mythen (Spinat-Aufwärmen tabu) als auch unterschätzte Risiken (Honig-Baby, Würstchen-Kinder).",
+  "methodology": "Probe-Strategie: 10 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2 Phrasings stress-getestet inkl. Boulevard-Variante. #11 Eier-Kühlung ('Eier brauchen gar keinen Kühlschrank') wurde mostly_true verdict-et — das ist in EU/AT korrekt (Eier werden ungekühlt verkauft, Cuticula-Schutzschicht erlaubt 2 Wochen Raumtemperatur), während US-Kontext mit gewaschenen Eiern Kühlschrank-Pflicht hat. Pack hat differenzierten Kontext, Synthesizer hat den EU-Konsens korrekt erkannt — die initial 'false'-Erwartung war US-zentrisch und wäre für EU-User irreführend. Trigger-Lücke: #18 'Wieder einfrieren ist immer OK' fängt nicht an Kühlkette-Trigger (zu generisch).",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "Korrigierte Erwartung:", "value": "#11 Eier-Kühlung EU-Kontext erfordert mostly_true (war initial false erwartet)"},
+    {"label": "Trigger-Lücke:", "value": "#18 'Wieder einfrieren' fehlt im Kühlkette-Composite"},
+    {"label": "Quellen-Konsens:", "value": "BfR, AGES, EFSA, WHO, FAO, FDA, DGE, ÖGE, RKI"}
+  ]
+}

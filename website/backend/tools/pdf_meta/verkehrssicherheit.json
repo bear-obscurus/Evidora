@@ -1,0 +1,12 @@
+{
+  "title": "Verkehrssicherheit-Konsens",
+  "topic_count": "10 Topics (Tempo-30-Kindersicherheit, Helmpflicht-Radfahrer, Kindersitz-Größe-Alter, Tagfahrlicht-Unfall, Promille-Grenze-Alkohol, Mobile-Telefon-Freisprech, Rote-Ampel-leerer-Verkehr, Müdes-Fahren-Promille-äquivalent, Bremsweg-quadratisch, Winterreifen-Pflicht)",
+  "description": "20 Claims aus klassischen Verkehrssicherheits-Mythen — Quellen-Mix ÖAMTC, ADAC, DVR (Deutscher Verkehrs-Sicherheits-Rat), KFV (AT Kuratorium für Verkehrssicherheit), UDV (Unfallforschung der Versicherer), Statistik Austria, WHO. 23. Static-First-Pack im Sprint 2026-05-04 Forward-Roadmap (Themen-Lücken-Block A7). Hochrelevant für AT/DE Schul-Kontext (Verkehrserziehung, Mobilitäts-Bildung).",
+  "methodology": "Probe-Strategie: 10 Topic-Liste vor JSON-Schreiben mit User abgestimmt, jedes Topic in 2 Phrasings stress-getestet inkl. Boulevard-Variante. Helmpflicht ist NUANCE (beide gegenseitige Übertreibungen 'bringt nichts' und 'verhindert 90 Prozent' false). Trigger-Lücke: #6 'Reboard-Sitz ist nicht nötig' triggert nicht, weil composite-trigger zweiten Bucket ('alter'/'größe'/'groß genug') verlangt — 'nicht nötig' nicht enthalten. Post-Test-Fix: 'nicht nötig'/'unnötig'/'überflüssig' zum zweiten Bucket hinzufügen.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "10/10 Topics aktiv"},
+    {"label": "Trigger-Lücke:", "value": "#6 'Reboard nicht nötig' triggert nicht (Bucket-2 zu eng)"},
+    {"label": "Quellen-Konsens:", "value": "ÖAMTC, ADAC, DVR, KFV, UDV, Statistik Austria, WHO"},
+    {"label": "Schul-Relevanz:", "value": "Hoch (Verkehrserziehung, Sek-1+2 Mobilitäts-Bildung)"}
+  ]
+}
