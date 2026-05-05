@@ -1,0 +1,669 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-05",
+  "source_label": "EIGE + Eurostat + OECD + FRA + BMI/BKA + Statistik Austria + DESTATIS + UN Women",
+  "facts": [
+    {
+      "id": "gender_pay_gap_2026",
+      "topic": "gender_pay_gap_konsens",
+      "scope": "Strukturelle vs. individuelle Erklärung des Gender Pay Gap (unbereinigt + bereinigt)",
+      "year": 2024,
+      "source_url": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20250304-1",
+      "secondary_url": "https://www.destatis.de/DE/Themen/Arbeit/Arbeitsmarkt/Verdienste/Verdienstunterschiede/_inhalt.html",
+      "source_label": "Eurostat Gender Pay Gap 2023 + DESTATIS Verdienste 2024 + Statistik Austria Gehälter 2024 + ILO + OECD",
+      "headline": "Gender Pay Gap unbereinigt EU-27 12,7 %, DE 18 %, AT 18,4 % (2023); bereinigt verbleiben ~6 % nach Kontrollvariablen — Lohnlücke ist überwiegend strukturell, nicht individuelle Wahl",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Gender Pay Gap ist nur Lifestyle-Choice der Frauen' ist FALSE/MOSTLY_FALSE. Eurostat-Daten 2023 (publiziert 2025): EU-27 unbereinigter Gender Pay Gap 12,7 %, DE 18,0 %, AT 18,4 %, Spitzen Lettland 20,9 %, Schluss Italien/Luxemburg ~3 %. Unbereinigt = Brutto-Stundenlohn-Differenz ohne Kontrollvariablen. Bereinigt (Verdienstrunde DESTATIS 2024): nach Kontrolle für Beruf, Branche, Bildung, Berufserfahrung, Arbeitszeit, Region, Betriebsgröße verbleiben in Deutschland ~6 % unerklärte Lücke. Diese 6 % sind NICHT 'die echte Diskriminierung' und 12 % 'individuelle Wahl' — die unbereinigte Lücke selbst ist überwiegend strukturell verursacht: (a) horizontale Segregation (Frauen in niedriger entlohnten Branchen — Care, Soziales, Erziehung), (b) vertikale Segregation (gläserne Decke — Frauen seltener in Führungs-/Top-Vergütungs-Positionen), (c) Teilzeit-Effekt (~50 % Frauen vs. ~12 % Männer in Teilzeit DE 2024 — geringere Stunden-Löhne in Teilzeit-Verträgen), (d) Karriereunterbrechung durch Care-Arbeit (Lohn-Knick 7-10 Jahre nach Geburt erstes Kind, BIB Wiesbaden + IAB-Studien). Faktencheck-relevant: 'Frauen verdienen weniger, weil sie schlechter verhandeln' ist nur Teil-Erklärung — Verhandlungs-Studien (Bowles 2007) zeigen Frauen verhandeln, werden aber für gleiches Verhandlungs-Verhalten anders bewertet (likeability-penalty). 'Equal Pay Day' (DE: 7. März 2024 = Tag bis zu dem Frauen 'umsonst' arbeiten) symbolisiert die unbereinigte Lücke.",
+        "eu_eurostat_2023": "EU-27 unbereinigter Gender Pay Gap 2023: 12,7 % (Vorjahr 12,7 %, langfristig 2010 16,4 % — Reduktion ~3,7 pp in 13 Jahren).",
+        "dach_zahlen_2024": "DE Statistisches Bundesamt 2023: unbereinigt 18,0 %, bereinigt ~6 % nach Kontrollvariablen. AT Statistik Austria 2023: unbereinigt 18,4 %, bereinigt ~12,1 % (höher als DE wegen unterschiedlicher Erfassungsmethodik). CH 2022: 18,0 % unbereinigt nach Lohnstrukturerhebung BFS.",
+        "branchen_segregation": "Horizontale Segregation: Frauen-Anteil in 'female-dominated occupations' (Care, Erziehung, Soziales) ~70-80 %, in 'male-dominated occupations' (Tech, Bau, Maschinenbau) ~10-20 % — Gehaltsniveau in 'female occupations' systematisch niedriger (Charles & Bradley 2009 sociological review).",
+        "context": "Mythen-Adressierung. Pack distanziert sich von normativen Wertungen, präsentiert nur empirische Konsens-Lage."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: unbereinigt ≠ bereinigt — beide Zahlen sind belastbar, beleuchten unterschiedliche Aspekte (Brutto-Lohnlücke vs. unerklärte Residual-Lücke).",
+        "Faktencheck-relevant: pauschale Zuordnung '12 % von 18 % sind freie Wahl der Frauen' ist NICHT korrekt — auch die unbereinigten 12 % gehen auf strukturelle Faktoren zurück (Branchen, Teilzeit, Karriere-Unterbrechung).",
+        "Pack vermeidet Wertung 'Lohnlücke ist gerecht/ungerecht' — präsentiert nur Studienlage."
+      ],
+      "claim_phrasings_handled": [
+        "Frauen verdienen 18 Prozent weniger als Männer",
+        "Gender Pay Gap ist nur Lifestyle-Choice",
+        "Frauen verhandeln einfach schlechter",
+        "Wenn man bereinigt ist Pay Gap nur 6 Prozent",
+        "Lohnlücke gibt es eigentlich gar nicht"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "pay gap",
+          "pay-gap",
+          "lohnlücke",
+          "lohnluecke",
+          "gehaltslücke",
+          "gehaltsluecke",
+          "lohnunterschied",
+          "gehaltsunterschied",
+          "verdienst",
+          "lohngleichheit",
+          "equal pay",
+          "gender pay gap",
+          "lohndiskriminierung",
+          "equal pay day"
+        ],
+        [
+          "frauen",
+          "männer",
+          "maenner",
+          "geschlecht",
+          "gender",
+          "weiblich",
+          "männlich",
+          "maennlich",
+          "diskriminier",
+          "lifestyle choice",
+          "lifestyle-choice",
+          "verhandeln",
+          "wählen",
+          "waehlen",
+          "wahl",
+          "branche",
+          "beruf",
+          "selber schuld"
+        ]
+      ]
+    },
+    {
+      "id": "frauenquote_wirksamkeit_2026",
+      "topic": "frauenquote_wirksamkeit_konsens",
+      "scope": "Empirische Wirksamkeit von Frauenquoten in Aufsichtsräten (NO seit 2003, DE FüPoG 2015, AT 2018)",
+      "year": 2024,
+      "source_url": "https://eige.europa.eu/gender-statistics/dgs/indicator/wmidm_bus_bus__wmid_comp_compbm",
+      "secondary_url": "https://www.bmfsfj.de/bmfsfj/themen/gleichstellung/frauen-in-fuehrungspositionen",
+      "source_label": "EIGE Gender Statistics + BMFSFJ Bilanz FüPoG + Norwegen-Studien (Ahern & Dittmar 2012, Nygaard 2011) + Bertelsmann-Studie 2024",
+      "headline": "Frauenquote für Aufsichtsräte: Norwegen 40 % seit 2003, DE FüPoG 30 % seit 2015, AT 30 % seit 2018 — empirisch wirksam beim Anteil-Anstieg, neutraler bis leicht-positiver Performance-Effekt (keine Wertung pro/contra)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Frauenquoten bringen statistisch nichts / führen zu schlechteren Entscheidungen' ist NUANCIERT FALSCH. Empirische Studienlage: (1) Anteils-Effekt: Norwegen seit 2003 (Allmennaksjeloven, 40 %-Quote für Aufsichtsräte börsennotierter ASA-Gesellschaften): Aufsichtsrats-Frauenanteil von 7 % (2003) auf 42 % (2008, Erfüllungs-Frist), seitdem stabil ~42 %. DE FüPoG seit 2015 (Gesetz für gleichberechtigte Teilhabe von Frauen und Männern, 30 %-Quote für Aufsichtsräte börsennotierter mitbestimmter Unternehmen): Frauenanteil DAX-Aufsichtsräte von 21 % (2015) auf 36 % (2024). FüPoG II seit 2021: für AGs mit 4+ Vorständen mind. 1 Frau im Vorstand. Frauenanteil DAX-Vorstände von 9 % (2020) auf 24 % (2024). AT Gleichstellungsgesetz seit 2018 (30 %-Quote ähnlich DE für börsennotierte + 1000+ Mitarbeiter): Frauenanteil ATX-Aufsichtsräte von 23 % (2017) auf 35 % (2024). (2) Performance-Effekt: Meta-Analyse Post & Byron 2015 (140 Studien, 90.000 Firmen): kein signifikanter NEGATIV-Effekt auf Firmen-Performance, in einigen Märkten leicht positiv. Ahern & Dittmar 2012 für Norwegen: kurzfristig Aktien-Kurs-Reaktion negativ (Markt-Erwartung), langfristig keine messbaren Performance-Unterschiede. (3) Spillover-Effekt: KEIN messbarer Trickle-Down auf mittlere Management-Ebenen — Quote wirkt primär auf die regulierte Ebene. WICHTIG: Pack distanziert sich von Wertung 'Quote ist gut/schlecht' — präsentiert empirische Wirksamkeits-Lage. Politische Bewertung obliegt Bürgern und Parlament.",
+        "norwegen_2003": "Norwegen Allmennaksjeloven 2003: 40 %-Quote für Aufsichtsräte börsennotierter ASA-Gesellschaften, gestaffelt mit Übergangsfrist bis 2008. Sanktion bei Nicht-Erfüllung: Auflösung der Gesellschaft. Erfüllungsquote 2008: 100 %. Frauenanteil 2003 7 % → 2008 42 % → 2024 ~42 % (stabil seit 2008).",
+        "de_fuepog_2015_2021": "DE FüPoG 2015 (Gesetz für die gleichberechtigte Teilhabe von Frauen und Männern an Führungspositionen): 30 %-Mindestquote für Aufsichtsräte ~100 mitbestimmter börsennotierter Unternehmen. FüPoG II 2021: für AGs mit 4+ Vorständen mind. 1 Frau im Vorstand. AllBright Stiftung Bilanz 2024: DAX 36 % Aufsichtsrats-Frauen, 24 % Vorstands-Frauen — Anstieg klar messbar.",
+        "at_quote_2018": "AT Gleichstellungsgesetz seit 2018: 30 %-Aufsichtsrats-Quote für börsennotierte Unternehmen + Unternehmen mit 1000+ Mitarbeitenden. ATX-Aufsichtsräte 2017 23 % → 2024 35 %.",
+        "performance_metaanalysen": "Post & Byron 2015 Academy of Management Journal Meta-Analyse (140 Studien, 90.000 Firmen): kein signifikanter Negativ-Effekt auf Firma-Performance (ROA, ROE, Tobin's Q), leicht positiv in einigen Märkten. Adams & Ferreira 2009: Frauen in Aufsichtsräten korreliert mit besserer Aufsichtsfunktion (mehr Audit-Komitee-Anwesenheit). Ahern & Dittmar 2012: Norwegen kurzfristig Aktien-Kurs-Drop (Markt-Erwartung), langfristig keine Performance-Unterschiede.",
+        "context": "Pack ist empirisch-deskriptiv. Politische Wertung der Quote (pro/contra) ist Werte-Frage und obliegt Bürgern."
+      },
+      "context_notes": [
+        "Pack vermeidet pro/contra-Wertung der Frauenquote — präsentiert nur Wirksamkeits-Studienlage.",
+        "Einschränkung: Daten zeigen Anteils-Effekt auf regulierter Ebene (Aufsichtsrat). Spillover auf mittlere Management-Ebenen NICHT empirisch belegt.",
+        "Faktencheck-relevant: Aussagen wie 'Quoten bringen nur Alibi-Frauen ohne Qualifikation' werden durch Performance-Studien NICHT gestützt."
+      ],
+      "claim_phrasings_handled": [
+        "Frauenquote bringt statistisch nichts",
+        "Quote führt zu Alibi-Frauen ohne Qualifikation",
+        "Frauenquote schadet Unternehmen",
+        "Quote ist eigentlich Diskriminierung der Männer",
+        "Norwegen-Quote hat zu schlechteren Firmen geführt"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "frauenquote",
+          "frauen-quote",
+          "geschlechterquote",
+          "gender quota",
+          "fuepog",
+          "füpog",
+          "aufsichtsratsquote",
+          "aufsichtsrat",
+          "vorstandsquote"
+        ],
+        [
+          "wirksam",
+          "wirkt",
+          "bringt",
+          "schadet",
+          "ergebnis",
+          "alibi",
+          "diskriminier",
+          "männer",
+          "performance",
+          "norwegen",
+          "quote",
+          "qualifikation",
+          "alibi-frau",
+          "alibifrau",
+          "gerecht",
+          "ungerecht"
+        ]
+      ]
+    },
+    {
+      "id": "mint_frauen_anteil_2026",
+      "topic": "mint_frauen_anteil_konsens",
+      "scope": "Frauen-Anteil in MINT-Studien und Berufen + Stereotype-Threat-Forschung",
+      "year": 2024,
+      "source_url": "https://eige.europa.eu/gender-equality-index/2024/domain/knowledge",
+      "secondary_url": "https://www.bmbf.de/SharedDocs/Publikationen/de/bmbf/3/31888_Bildung_in_Deutschland_2024.pdf",
+      "source_label": "EIGE Gender Equality Index 2024 Knowledge-Domain + Eurostat Education + Stereotype-Threat-Forschung (Steele 1995, Spencer Steele Quinn 1999) + Stoet Geary 2018",
+      "headline": "Frauen-Anteil in MINT-Studien EU-27 ~33 %, AT 32 %, DE 34 % — Lücke NICHT durch biologische 'Begabung' erklärbar; Stereotype-Threat-Forschung zeigt Aktivierung von Geschlechter-Stereotypen senkt Performance reproduzierbar",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Frauen sind biologisch weniger begabt für Mathematik / MINT-Fächer' ist FALSE. Empirische Befunde: (1) PISA-Daten: Mathematik-Score-Lücke zwischen Jungen und Mädchen variiert STARK nach Land (in einigen Ländern Mädchen besser, z.B. Island, Finnland, Singapur) — wäre der Grund biologisch, müsste die Lücke kulturell-konstant sein. (2) Stereotype-Threat-Forschung Steele & Aronson 1995, Spencer Steele Quinn 1999: Aktivierung von Geschlechter-Stereotypen (z.B. Hinweis 'Männer sind besser in Mathe' vor Test) senkt Frauen-Performance um 8-15 Perzentil-Punkte vs. Kontrollgruppe ohne Stereotype-Aktivierung. Gleicher Effekt bei Race-Stereotypen. (3) Internationale Vergleichsstudien: Frauen-MINT-Anteil EU-27 ~33 % (Studienanfänger-Innen-Anteil 2024), AT 32 %, DE 34 %. Spitzen: Algerien 56 %, Tunesien 56 %, BG 47 %, Schluss: NL 26 %, Schweiz 27 %. (4) Stoet & Geary 2018 'gender-equality paradox': in egalitäreren Ländern niedrigerer MINT-Frauen-Anteil. ABER: Interpretations-Streit. Stoet/Geary: 'Frauen wählen frei in egalitärer Gesellschaft'. Kritiker (Richardson 2020 Psychol Sci replication): wirtschaftliche Sicherheit in armen Ländern erzwingt MINT als 'sichere Karriere', nicht 'Wahlfreiheit'. (5) MINT-Berufseintritt: Anteil sinkt zwischen Studium und Berufseintritt durch 'leaky pipeline' — bekannter Effekt durch Diskriminierungs-Erfahrungen, mangelndes Mentoring, Inkompatibilität mit Familienplanung. WICHTIG: Pack distanziert sich von Wertung 'Frauen sollen MINT machen' — präsentiert empirische Lage zu Stereotype-Threat und Wahl-Verhalten.",
+        "eurostat_2024": "EU-27 MINT-Studienanfängerinnen-Anteil 2024: 33,1 % (Eurostat, Hochschulstatistik). EU-Spitzen: Algerien 56 % (Vergleichsdaten OECD), Tunesien 56 %, Bulgarien 47 %, Schluss: Niederlande 26 %, Schweiz 27 %. AT 32 %, DE 34 %, ES 30 %, FR 32 %.",
+        "stereotype_threat_studien": "Steele & Aronson 1995 J Pers Soc Psychol 'A Threat in the Air': Stereotype-Threat-Effekt für African-American-Studierende in standardisierten Tests. Spencer Steele Quinn 1999 J Exp Soc Psychol 'Stereotype Threat and Women's Math Performance': Aktivierung des Stereotyps 'Männer sind besser in Mathe' vor Test senkt Frauen-Performance um 8-15 Perzentil-Punkte. Replikationen (Picho et al. 2013 Meta-Analyse): Effekt reproduzierbar, kleinere Effektgrößen in neueren Studien aber nachweisbar.",
+        "gender_equality_paradox": "Stoet & Geary 2018 Psychol Sci 'The Gender-Equality Paradox in Science, Technology, Engineering, and Mathematics Education': je egalitärer das Land, desto niedriger der MINT-Frauen-Anteil. Interpretations-Streit: Stoet/Geary 'freie Wahl', Richardson 2020 Psychol Sci 'wirtschaftliche Sicherheit', Begley & Pinker debate ungelöst. PRÜFUNG: keine biologische Erklärung — kulturelle/sozioökonomische Faktoren.",
+        "leaky_pipeline_de_at": "DE Hochschulabsolventinnen MINT 2023: ~30 %, MINT-Berufstätige Frauen: ~17 % (BMBF Bildung in Deutschland 2024) — Lücke 13 pp zwischen Abschluss und Berufseintritt = 'leaky pipeline'. AT IFES-Studie 2023: ähnliche Lücke. Ursachen: Diskriminierungs-Erfahrungen (BMFSFJ 2024 Studie 38 % MINT-Frauen erleben Sexismus am Arbeitsplatz), Mentoring-Mangel, Inkompatibilität mit Familienplanung in Männer-dominierten Berufen.",
+        "context": "Pack adressiert biologische 'Begabungs'-Mythen explizit. Wahl-Verhaltens-Erklärungen werden differenziert behandelt."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: 'Wahlfreiheit' vs. 'Stereotype-Threat' sind beide empirisch belegt, aber unterschiedliche Mechanismen.",
+        "PISA-Daten zeigen Mädchen in einigen Ländern (Island, Finnland) Mathematik-Score-Lücke umkehren — widerlegt biologische Erklärung.",
+        "Pack vermeidet normativ 'Frauen sollen MINT machen' — präsentiert nur Lage zu Stereotype-Threat-Forschung."
+      ],
+      "claim_phrasings_handled": [
+        "Frauen sind biologisch weniger begabt für Mathematik",
+        "Männer sind einfach besser in Naturwissenschaften",
+        "Mädchen interessieren sich nicht für MINT",
+        "Mathematik-Begabung ist genetisch und männlich",
+        "Wenig Frauen in MINT ist freie Wahl"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "mint",
+          "stem",
+          "mathe",
+          "mathematik",
+          "naturwissenschaft",
+          "informatik",
+          "ingenieur",
+          "technik",
+          "physik"
+        ],
+        [
+          "frauen",
+          "mädchen",
+          "maedchen",
+          "männer",
+          "maenner",
+          "geschlecht",
+          "biologisch",
+          "begabung",
+          "begabt",
+          "stereotype",
+          "wahl",
+          "wählen",
+          "waehlen",
+          "interessier",
+          "anteil",
+          "quote",
+          "talent",
+          "genetisch"
+        ]
+      ]
+    },
+    {
+      "id": "femizide_at_de_2026",
+      "topic": "femizide_at_de_konsens",
+      "scope": "Femizid-Statistik AT/DE: BMI/BKA Bundeslagebild, Risikofaktor Trennung",
+      "year": 2024,
+      "source_url": "https://www.bmi.gv.at/cms/BMI_OeffentlicheSicherheit/2024/02/files/oeffentliche_sicherheit_02_2024.pdf",
+      "secondary_url": "https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/Lagebilder/Partnerschaftsgewalt/Partnerschaftsgewalt_node.html",
+      "source_label": "BMI Österreich Sicherheitsbericht 2023 + BKA Bundeslagebild Partnerschaftsgewalt 2024 + Bundesweiter Verein Autonomer Frauenhäuser AÖF + EIGE Femicide Watch + WHO Violence-Against-Women-Database",
+      "headline": "Femizide AT 2023 31 vollendete Tötungen (BMI), DE 2024 155 vollendete Femizide (BKA Bundeslagebild) — primärer Risikofaktor Trennung/Trennungs-Phase, ~85 % Täter Ex-Partner oder aktueller Partner",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Femizide sind seltene Einzelfälle / nicht systemisch' ist FALSE. Empirische Datenlage 2023/2024: (1) AT BMI Sicherheitsbericht 2023: 31 vollendete Femizide (Frauenmorde). 2024 vorläufig 36. Per Capita höhere Femizid-Rate als DE-Durchschnitt — AT-spezifisches Schwerpunkt-Thema. (2) DE BKA Bundeslagebild Partnerschaftsgewalt 2024: 155 vollendete Femizide im Partnerschafts-Kontext, 360 versuchte/vollendete. (3) EU-Vergleich EIGE Femicide Watch: AT/DE im EU-Mittel-Drittel; Spitzen Lettland, Litauen; niedrigste Raten Skandinavien (außer FI), Spanien (nach LO 1/2004 Reform). (4) Risiko-Profile: ~85 % Täter sind aktueller Partner oder Ex-Partner (BKA-Daten). Höchstes Risiko in Trennungs-/post-Trennungs-Phase erste 12 Monate (Campbell 2003 Lancet, replicated international). (5) Vorgeschichte: 70-90 % der vollendeten Femizide haben dokumentierte Vorgeschichte häuslicher Gewalt (Polizei-Akten, Schutz-Anordnungen, Frauenhaus-Kontakt). (6) Kategorisierung: Begriff 'Femizid' international UN/CEDAW/EIGE definiert — Tötung einer Frau wegen ihres Geschlechts oder im geschlechtsbezogenen Kontext. Pack folgt internationaler Definition, vermeidet Begriff 'Beziehungsdrama' der Tat-Schwere verharmlost. Faktencheck-relevant: Aussagen wie 'Männer werden auch ermordet, wo ist der Aufschrei' ignorieren strukturelle Asymmetrie — Frauen werden überproportional von Partnern getötet, Männer mehrheitlich von Fremden.",
+        "at_2023": "AT BMI Sicherheitsbericht 2023 + BMI 2024 Pressemeldungen: 2023 31 vollendete Femizide. 2024 vorläufig 36. Vergleichszahl Männer durch Frau getötet: 4-7 pro Jahr (intim-partner-Kontext). Per-Capita Rate AT 0,5-0,7 pro 100.000 weibliche Bevölkerung — höher als DE.",
+        "de_2024": "DE BKA Bundeslagebild Partnerschaftsgewalt 2024 (publiziert November 2024 für 2023): 155 vollendete Femizide im Partnerschafts-Kontext, 360 versuchte/vollendete. Dunkelfeld nicht erfasst. 80 % Täter männlich, 80 % Opfer weiblich. Bei vollendetem Tötungsdelikt 91 % Opfer weiblich, 91 % Täter männlich.",
+        "risikoprofil_trennung": "Campbell 2003 Lancet 'Risk Factors for Femicide in Abusive Relationships': retrospektive Studie 11 US-Städte, n=220 Femizid-Opfer + Kontrollgruppe. Höchstes Risiko in Trennungs-Phase, sex-trafficking-Faktor, Schusswaffen-Zugang, Drohungen. Replikationen Europa (Aldridge & Browne 2003 UK, Belfrage & Strand 2008 Schweden) bestätigen Befunde. AT BMI: 70 % der AT-Femizide 2023 in Trennungs- oder post-Trennungs-Kontext.",
+        "internationale_einordnung": "EIGE Femicide Watch 2024: EU-Femizid-Rate 0,5-1,5 pro 100.000 weibliche Bevölkerung. Spitzen: Lettland 1,8, Litauen 1,5. Niedrigste: Spanien 0,2 (nach LO 1/2004 Femizid-Reform), Schweden 0,3. AT 0,7, DE 0,4.",
+        "begriffs_klarheit": "UN/CEDAW/EIGE-Definition Femizid: Tötung einer Frau wegen ihres Geschlechts ODER im geschlechtsbezogenen Kontext (Partner-/Ex-Partner-Tötung, Hass-Verbrechen, Ehrenmord, etc.). DE BKA verwendet 'Tötung im Partnerschafts-Kontext'. AT BMI Sicherheitsbericht 2023 verwendet 'Frauenmorde' und 'Femizide' synonym. Begriff 'Beziehungsdrama' wird in Forschung + offizieller Statistik abgelehnt — verharmlost Tat-Schwere und individualisiert systemisches Problem.",
+        "context": "AT-spezifisches Schwerpunkt-Thema. Pack folgt international etablierter UN/CEDAW/EIGE-Definition."
+      },
+      "context_notes": [
+        "Trennungs-Phase ist quantitativ höchster Risikofaktor — internationale Replikation eindeutig.",
+        "Begriff 'Beziehungsdrama' wird in Forschung + offizieller AT/DE-Statistik abgelehnt, verharmlost.",
+        "Faktencheck-relevant: Männer werden zwar absolut häufiger ermordet als Frauen, aber überwiegend von Fremden — die Partner-Tötungs-Asymmetrie (Frauen 91 %) ist stabil seit Jahrzehnten."
+      ],
+      "claim_phrasings_handled": [
+        "Femizide sind seltene Einzelfälle",
+        "Beziehungsdrama statt Femizid",
+        "Männer werden auch ermordet, wo ist der Aufschrei",
+        "Femizid ist nur ein Modewort",
+        "Tötung in Partnerschaft ist nicht systemisch"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "femizid",
+          "frauenmord",
+          "frauenmorde",
+          "frauentötung",
+          "frauentoetung",
+          "tötung der frau",
+          "toetung der frau",
+          "partnerschaftsgewalt",
+          "häusliche gewalt",
+          "haeusliche gewalt",
+          "beziehungsdrama"
+        ],
+        [
+          "frau",
+          "frauen",
+          "ex-partner",
+          "ex partner",
+          "expartner",
+          "trennung",
+          "einzelfall",
+          "einzelfälle",
+          "einzelfaelle",
+          "drama",
+          "modewort",
+          "männer",
+          "maenner",
+          "auch",
+          "systemisch",
+          "systematisch",
+          "selten"
+        ]
+      ]
+    },
+    {
+      "id": "sexualisierte_gewalt_dunkelfeld_2026",
+      "topic": "sexualisierte_gewalt_dunkelfeld_konsens",
+      "scope": "Hellfeld:Dunkelfeld-Verhältnis bei sexualisierter Gewalt (FRA + BKA + Kriminologische Studien)",
+      "year": 2024,
+      "source_url": "https://fra.europa.eu/en/publications-and-resources/data-and-maps/survey-data-explorer-violence-against-women-survey",
+      "secondary_url": "https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/PolizeilicheKriminalstatistik/PKS2023/PKSJahrbuecher/pksJahrbuecher.html",
+      "source_label": "FRA EU-Survey on Violence Against Women 2024 + BKA PKS 2023 + Schröttle 2004 BMFSFJ-Studie + Lisak & Miller 2010 Violence and Victims (Falsch-Anzeigen-Rate)",
+      "headline": "FRA-EU-Studie 2024: 1 von 3 Frauen erlebt physische/sexualisierte Gewalt; Dunkelfeld:Hellfeld-Faktor 5-10 — Anzeigewahrscheinlichkeit nur 14 % bei Vergewaltigung; Falsch-Anzeigen-Rate <5 %",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Falsche Anschuldigungen sind das Hauptproblem bei sexualisierter Gewalt' ist FALSE. Empirische Datenlage: (1) FRA Fundamental Rights Agency EU-Survey 'Violence Against Women' 2024 (Folge-Erhebung 2014, n=42.000 Frauen EU-27): 33 % der Frauen ab 15 J. haben physische und/oder sexualisierte Gewalt erlebt. 12 % sexualisierte Gewalt durch Partner. 31 % nicht-Partner. AT-spezifisch: 35 %, DE 35 %, EU-Mittel 33 %. (2) Hellfeld:Dunkelfeld-Verhältnis: BKA PKS 2023 ~12.000 Sexualstraftaten gemeldet. Kriminologische Dunkelfeld-Studien (Schröttle 2004 BMFSFJ 'Lebenssituation, Sicherheit und Gesundheit von Frauen in Deutschland' n=10.000): nur 1 von 7 Vergewaltigungen wird angezeigt = Faktor 5-10. (3) Anzeige-Hürden: Scham, Angst vor Stigma, Misstrauen Polizei/Justiz, sekundäre Viktimisierung. Bei Anzeige: nur 8-15 % Verurteilungen (DE: ~13 %). (4) Falsch-Anzeigen-Rate: Lisak & Miller 2010 Violence and Victims Meta-Analyse 10 Studien: 2-10 % Falsch-Anzeigen-Rate. Polizeiliche und juristische Falsch-Identifikation überschätzt diese Rate (Confirmation Bias). (5) Faktencheck-relevant: Aussagen wie 'Frauen lügen häufig wegen Vergewaltigung' werden empirisch NICHT gestützt. Die Falsch-Anzeigen-Rate liegt im Bereich anderer Verbrechen (Diebstahl ~5 %, Versicherungsbetrug ~10 %). Umgekehrt: ~90 % der tatsächlichen Vergewaltigungen werden NICHT angezeigt = systemisches Dunkelfeld.",
+        "fra_2024": "FRA EU-Survey on Violence Against Women 2024 (Folge zu 2014, n=42.000 Frauen EU-27, repräsentativ): 33 % der Frauen ab 15 J. EU-weit physische und/oder sexualisierte Gewalt erlebt. 12 % sexualisierte Gewalt durch Partner. 31 % von nicht-Partnern. AT 35 %, DE 35 %, EU-Mittel 33 %. Anzeige-Quote bei sexualisierter Gewalt: 14 %.",
+        "bka_pks_2023": "BKA Polizeiliche Kriminalstatistik 2023: ~12.500 angezeigte Sexualdelikte gegen Frauen. Davon ~7.500 Vergewaltigungen. Verurteilungs-Quote ~13 %. Steigend seit 2017 wegen #MeToo + StGB-Reform §177 'Nein-heißt-Nein' (StGB-Reform 2016).",
+        "dunkelfeld_studien": "Schröttle 2004 BMFSFJ 'Lebenssituation, Sicherheit und Gesundheit von Frauen' (n=10.000 DE): 1 von 7 Vergewaltigungen wird angezeigt = Hellfeld:Dunkelfeld-Faktor ~7. Stadtler 2017 KFN-Forschungsbericht: Faktor 5-10 je nach Tat-Konstellation. Bekannte international: höchste Dunkelziffer bei Beziehungs-Vergewaltigungen.",
+        "falsche_anschuldigungen": "Lisak & Miller 2010 Violence and Victims 'False Allegations of Sexual Assault: An Analysis of Ten Years of Reported Cases' Meta-Analyse 10 Studien (Polizei-Akten USA + UK + AU): Falsch-Anzeigen-Rate 2-10 %. Saunders 2012 British Journal of Criminology: 4 %. Bezogen auf das Hellfeld (angezeigte Fälle), nicht das Dunkelfeld. Vergleich: Versicherungsbetrug ~10 % Falsch-Anzeigen, Diebstahl ~5 % — Vergewaltigung ist NICHT überdurchschnittlich falsch-angezeigt.",
+        "anzeige_huerden": "FRA 2024: Anzeige-Quote 14 % bei sexualisierter Gewalt. Hauptgründe NICHT-Anzeige: Scham (45 %), Angst vor Stigma (38 %), Misstrauen Polizei (32 %), Angst vor Täter (28 %). Sekundäre Viktimisierung (Re-Traumatisierung durch Verfahren) wird in 60 % der Anzeige-Verfahren berichtet (FRA-Daten).",
+        "context": "Pack adressiert konkret den Mythos 'Frauen lügen häufig'. Empirische Falsch-Anzeigen-Rate ist niedrig."
+      },
+      "context_notes": [
+        "Falsch-Anzeigen-Rate liegt im Bereich anderer Verbrechen — sexualisierte Gewalt ist NICHT überdurchschnittlich falsch-angezeigt.",
+        "Hellfeld:Dunkelfeld-Faktor 5-10 ist konsistent über mehrere Jahrzehnte und Länder.",
+        "Wichtige Differenzierung: 'Falsch-Anzeige' (juristisch widerlegt) ≠ 'Frei-Spruch' (nicht ausreichend Beweise) — Frei-Sprüche sind häufiger als Falsch-Anzeigen."
+      ],
+      "claim_phrasings_handled": [
+        "Falsche Vergewaltigungs-Anzeigen sind Hauptproblem",
+        "Frauen lügen oft bei sexualisierten Übergriffen",
+        "MeToo war eine Hexenjagd",
+        "Anzeigen wegen sexueller Gewalt sind oft erfunden",
+        "Bei Sexualstraftaten gibt es zu wenig Beweise"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "vergewaltigung",
+          "sexualisierte gewalt",
+          "sexual violence",
+          "sexueller übergriff",
+          "sexueller uebergriff",
+          "sexualstraftat",
+          "sexuelle belästigung",
+          "sexuelle belaestigung",
+          "metoo",
+          "me too",
+          "#metoo"
+        ],
+        [
+          "anzeige",
+          "falsch",
+          "lügen",
+          "luegen",
+          "erfunden",
+          "behauptung",
+          "behaupten",
+          "hexenjagd",
+          "verleumdung",
+          "denunziation",
+          "frauen",
+          "mann",
+          "männer",
+          "maenner",
+          "dunkelziffer",
+          "dunkelfeld",
+          "anzeigen"
+        ]
+      ]
+    },
+    {
+      "id": "gender_care_gap_2026",
+      "topic": "gender_care_gap_konsens",
+      "scope": "Unbezahlte Sorge-/Care-Arbeit nach Geschlecht (DE Zeitverwendungserhebung + AT + EU)",
+      "year": 2024,
+      "source_url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Einkommen-Konsum-Lebensbedingungen/Zeitverwendung/_inhalt.html",
+      "secondary_url": "https://eige.europa.eu/gender-equality-index/2024/domain/time",
+      "source_label": "DESTATIS Zeitverwendungserhebung 2022/23 + Statistik Austria Zeitverwendungserhebung 2008/09 + EIGE Gender Equality Index 2024 Time-Domain + Eurofound EWCS",
+      "headline": "DE Zeitverwendungserhebung 2022/23: Frauen leisten 52,4 % mehr unbezahlte Sorge-/Care-Arbeit als Männer (29h45min/Woche vs. 19h32min); Gender Care Gap stabil hoch trotz Generationenwechsel",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Sorge-Arbeit ist heute gleichmäßig verteilt' ist FALSE. Empirische Datenlage: (1) DE Zeitverwendungserhebung 2022/23 (DESTATIS, repräsentativ n=10.000 Haushalte): Frauen leisten durchschnittlich 29h45min unbezahlte Sorgearbeit/Woche (Haushalt + Erziehung + Pflege + Ehrenamt), Männer 19h32min — entspricht Gender Care Gap von 52,4 %. Bei Eltern-Paaren mit Kindern unter 6: Frauen 47h/Woche, Männer 23h/Woche → Gap 104 %. (2) AT Statistik Austria Zeitverwendungserhebung 2008/09 (letzte Erhebung): ähnlicher Gender Care Gap ~50 %. Neue AT-Erhebung 2024-2026 in Vorbereitung. (3) EIGE Gender Equality Index 2024 Time-Domain: 64,5 von 100 (EU-27 Durchschnitt) — Time ist zweitschlechteste Domain nach Power. DE 65,2, AT 60,4. (4) Generationen-Trend: zwischen 2001 und 2022 hat sich der Gender Care Gap in DE nur um ~5 pp reduziert — stabil hoch trotz steigender Frauen-Erwerbstätigkeit. (5) Bezahlte Care-Arbeit: 80-90 % weiblich (Pflege, Kindererziehung, Soziale Arbeit). (6) Ökonomische Bewertung: Würden unbezahlte Sorge-Stunden zu Mindestlohn-Niveau bezahlt, wäre der wirtschaftliche Beitrag der Frauen ~600 Mrd. Euro/Jahr in DE (DESTATIS-Schätzung 2024).",
+        "destatis_2022_23": "DESTATIS Zeitverwendungserhebung 2022/23 (Erhebungswelle 4, repräsentativ n=10.000 Haushalte, publiziert 2024): Frauen unbezahlte Sorgearbeit 29h45min/Woche, Männer 19h32min/Woche. Gender Care Gap 52,4 %. Bei Eltern-Paaren mit Kind <6 J.: F 47h, M 23h, Gap 104 %.",
+        "at_zve_2008_09": "AT Statistik Austria Zeitverwendungserhebung 2008/09 (letzte Erhebung): unbezahlte Arbeit Frauen 31h/Woche, Männer 14h/Woche, Gap 121 % (höher als DE). Neue Erhebung 2024-2026 in Planung.",
+        "eige_index_time": "EIGE Gender Equality Index 2024 Time-Domain (Care-Arbeit + Soziale Aktivitäten): EU-27 Durchschnitt 64,5 von 100. AT 60,4 (unter EU-Schnitt), DE 65,2 (etwa EU-Schnitt). Schweden Spitze 90,5, Bulgarien Schluss 38,5. Time-Domain ist EU-weit zweitschlechteste Equality-Domain nach Power.",
+        "generations_trend": "DE Zeitverwendungs-Vergleich 2001 vs. 2022/23: Frauen-Care-Stunden -3h, Männer-Care-Stunden +2h, Gender Care Gap -5 pp in 21 Jahren — stabil hoch trotz steigender Frauen-Erwerbstätigkeit (+10 pp im selben Zeitraum). Strukturell: 'Mehrfachbelastung' der Frauen statt Umverteilung der Sorge-Arbeit.",
+        "oekonomische_bewertung": "DESTATIS-Schätzung 2024: würden unbezahlte Sorge-Stunden zu Mindestlohn-Niveau (12 €/h) bewertet, entspräche der jährliche unbezahlte Frauen-Beitrag ~600 Mrd. Euro = ~14 % BIP. International (Oxfam-Schätzung 2020): unbezahlte Frauen-Sorge-Arbeit weltweit ~10,8 Bio. USD/Jahr = 13 % globales BIP.",
+        "context": "Wissenschaftlich konsensual und international belegt. Pack adressiert Mythos der gleichmäßigen Verteilung."
+      },
+      "context_notes": [
+        "Generationen-Trend: Gender Care Gap reduziert sich kaum trotz steigender Frauen-Erwerbstätigkeit — Mehrfachbelastung statt Umverteilung.",
+        "Bezahlte Care-Arbeit ist 80-90 % weiblich — Sorgesektor strukturell weiblich-dominiert.",
+        "Wichtige Differenzierung: 'gleichmäßig im Haushalt' ≠ 'gleichmäßig in Care-Verantwortung' — letztere oft bei Frauen auch wenn Tätigkeiten geteilt sind."
+      ],
+      "claim_phrasings_handled": [
+        "Sorge-Arbeit ist heute gleichmäßig verteilt",
+        "Junge Männer machen genauso viel Hausarbeit",
+        "Frauen leisten nicht mehr Care-Arbeit als Männer",
+        "Care-Arbeit ist Privatsache",
+        "Männer arbeiten genauso viel im Haushalt"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "sorgearbeit",
+          "sorge-arbeit",
+          "care-arbeit",
+          "care arbeit",
+          "carework",
+          "haus-arbeit",
+          "hausarbeit",
+          "kinderbetreuung",
+          "pflege-arbeit",
+          "pflegearbeit",
+          "gender care gap",
+          "care gap"
+        ],
+        [
+          "frauen",
+          "männer",
+          "maenner",
+          "geschlecht",
+          "verteilung",
+          "verteilt",
+          "gleichmäßig",
+          "gleichmaessig",
+          "gleich",
+          "anteil",
+          "leist",
+          "machen",
+          "arbeit",
+          "stunden",
+          "ungleich"
+        ]
+      ]
+    },
+    {
+      "id": "frauen_in_politik_2026",
+      "topic": "frauen_in_politik_konsens",
+      "scope": "Frauenanteile in Parlamenten + Glasdecke + Quoten-Wirksamkeit (EU + DACH)",
+      "year": 2024,
+      "source_url": "https://eige.europa.eu/gender-equality-index/2024/domain/power",
+      "secondary_url": "https://data.ipu.org/women-ranking/",
+      "source_label": "EIGE Gender Equality Index 2024 Power-Domain + IPU Inter-Parliamentary Union Women-Ranking 2024 + Bundestag-Statistik 2024 + Nationalrat-Statistik 2024",
+      "headline": "EU-Parlament 2024 39 % Frauen, Bundestag 35 %, Nationalrat AT 41 % — Anteile sinken mit Hierarchie-Stufe; EIGE Power-Domain ist EU-weit schlechteste Equality-Dimension (60,1 von 100)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Frauen sind in Politik gleich repräsentiert' ist FALSE. Empirische Datenlage: (1) Parlaments-Anteile 2024: EU-Parlament 39 %, Bundestag DE 35 % (2024 nach Wahl, vorher 36 %), Nationalrat AT 41 %, Schweizer Nationalrat 39 %. Internationale Spitzen: Ruanda 61 %, Mexiko 50 %, Schweden 47 %. Schluss: Ungarn 14 %, Japan 10 %. (2) Hierarchie-Effekt: Anteil sinkt scharf mit Position. Bundestag 35 % → BMFSFJ 60 % (Frau-geführt) aber andere Ressorts deutlich unter 35 %. AT Bundesregierung 2025: 7 von 17 Minister 41 %. EU-Kommission 2024: 15 von 27 Kommissar:innen 56 % (gesetzlich paritätsorientiert seit 2019). (3) Glasdecke: Anteil sinkt mit Hierarchie-Stufe — insbesondere bei nicht-quotierten Positionen. Bürgermeister:innen DE 2024: 11 % von 11.000 Kommunen. AT Bürgermeister:innen 2024: 9 % von 2.093 Gemeinden. (4) EIGE Gender Equality Index 2024 Power-Domain: EU-27 Durchschnitt 60,1 von 100 — schlechteste Equality-Dimension. AT 71,5, DE 71,1 (beide über Schnitt aber unter Skandinavien-Niveau ~85). Power-Domain misst Politik + Wirtschaft + Wissenschaft. (5) Quoten-Effekt: Länder mit Wahllisten-Quoten haben durchschnittlich 8-12 pp höheren Frauenanteil als Länder ohne (IPU Forschung 2023, Krook 2009 'Quotas for Women in Politics'). DE hat keine Wahllisten-Quote, AT auch nicht — beide unter Skandinavien-Niveau. WICHTIG: Pack distanziert sich von Wertung 'mehr Frauen in Politik wäre besser/schlechter' — präsentiert nur empirische Anteile + Quoten-Wirksamkeit.",
+        "parlaments_anteile_2024": "EU-Parlament 2024 (Wahl Juni 2024): 39 % Frauen-Anteil von 720 MdEP. Bundestag DE 2024 (nach Wahl 2025): 35 %, vorher 36 %. Nationalrat AT 2024 (Wahl September 2024): 41 % von 183 Abgeordneten. CH Nationalrat 2024: 39 %. International (IPU 2024): Spitzen Ruanda 61 %, Mexiko 50 %, Kuba 53 %, Schweden 47 %. Schluss: Ungarn 14 %, Japan 10 %, Iran 6 %.",
+        "regierungs_anteile": "EU-Kommission 2024 (von der Leyen II): 15 von 27 Kommissar:innen Frauen = 56 % (gesetzlich paritätsorientiert seit Lissabon-Vertrag 2009 + Kommissions-Empfehlung 2019). DE Bundesregierung 2025 (Merz/SPD-Kabinett): 9 von 18 Minister:innen 50 % — historischer Höchststand. AT Bundesregierung 2025 (Kickl-Stocker): 7 von 17 Minister:innen 41 %. Schweiz Bundesrat 2024: 4 von 7 = 57 %.",
+        "glasdecke_kommunal": "DE Bürgermeister:innen 2024: 11 % von ~11.000 Kommunen weiblich (Deutscher Städtetag 2024). AT Bürgermeister:innen 2024: 9 % von 2.093 Gemeinden weiblich (Gemeindebund 2024). Trend langsam steigend, aber unter Parlaments-Anteil. Wirtschafts-Top-Ebene: DAX-Vorstands-Frauen 24 % (2024) — Anstieg dank FüPoG II 2021.",
+        "eige_power_domain": "EIGE Gender Equality Index 2024 Power-Domain (Politik + Wirtschaft + Wissenschaft): EU-27 Durchschnitt 60,1 von 100 — schlechteste Equality-Dimension (von 6). Spitzen: Schweden 88,9, Frankreich 84,5, Norwegen 85,6 (Norwegen nicht in EIGE-EU-27). Schluss: Ungarn 27,4, Tschechien 31,2. AT 71,5, DE 71,1 — beide über EU-Schnitt aber Skandinavien deutlich vorn.",
+        "quoten_wirksamkeit": "IPU 'Women in Politics' 2023: Länder mit gesetzlichen Wahllisten-Quoten haben 8-12 pp höheren durchschnittlichen Frauenanteil im Parlament. Krook 2009 'Quotas for Women in Politics' Comparative Studies of 50 Ländern: gesetzliche Wahllisten-Quoten wirksamer als parteiinterne Selbstverpflichtungen. Beispiele: Frankreich 'Parité-Gesetz' 2000, Schweiz 'Helvetia ruft' 2019 (parteiintern), Norwegen 1993 reissverschluss-Quoten. Schwedische sozialdemokratische SAP-interne Quote seit 1972 hat Land über Jahrzehnte über 40 % gehalten.",
+        "context": "Pack ist empirisch-deskriptiv. Politische Wertung obliegt Bürgern."
+      },
+      "context_notes": [
+        "EU-Parlament + AT Nationalrat liegen über DE Bundestag — Quoten-Effekt zeigt sich.",
+        "Glasdecke deutlich stärker auf kommunaler Ebene (Bürgermeister:innen) als national.",
+        "Power-Domain EIGE-Index ist EU-weit schlechteste Equality-Dimension — strukturelle Lücke."
+      ],
+      "claim_phrasings_handled": [
+        "Frauen sind in Politik gleich repräsentiert",
+        "Es gibt schon genug Frauen im Parlament",
+        "Frauen-Anteil im Bundestag ist über 50 Prozent",
+        "Quoten in der Politik bringen nichts",
+        "Frauen wollen einfach nicht in die Politik"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "frauen in politik",
+          "frauen-anteil",
+          "frauenanteil",
+          "parlament",
+          "bundestag",
+          "nationalrat",
+          "regierung",
+          "minister",
+          "ministerinnen",
+          "abgeordnete",
+          "abgeordneten",
+          "wahllisten",
+          "bürgermeister",
+          "buergermeister",
+          "frauen in fuehrung",
+          "frauen in führung",
+          "glasdecke"
+        ],
+        [
+          "frauen",
+          "männer",
+          "maenner",
+          "anteil",
+          "vertret",
+          "repräsentier",
+          "repraesentier",
+          "quote",
+          "wollen",
+          "können",
+          "koennen",
+          "weniger",
+          "mehr",
+          "über 50",
+          "ueber 50",
+          "genug",
+          "wenig"
+        ]
+      ]
+    },
+    {
+      "id": "sexismus_erfahrungen_2026",
+      "topic": "sexismus_erfahrungen_konsens",
+      "scope": "Sexismus-Erfahrungen offline + online (FRA + Eurobarometer + Antidiskriminierungsstellen)",
+      "year": 2024,
+      "source_url": "https://fra.europa.eu/en/publications-and-resources/data-and-maps/survey-data-explorer-fundamental-rights-survey",
+      "secondary_url": "https://www.antidiskriminierungsstelle.de/DE/themen/datenundforschung/sexismus_erfahrungen.html",
+      "source_label": "FRA Fundamental Rights Survey 2024 + Eurobarometer 'Gender Stereotypes' 2024 + Antidiskriminierungsstelle DE 'Sexismus-Studie' 2023 + Plan International Online-Sexismus 2020",
+      "headline": "Sexismus-Erfahrungen Frauen EU 2024: 33 % sexualisierte Belästigung, 75 % halten Sexismus für ernstes Problem (Eurobarometer 2024); Online-Sexismus 70 % junger Frauen erlebt — empirisch nicht 'verschwunden'",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Sexismus ist heute kein Thema mehr / nur Eindrücke' ist FALSE. Empirische Datenlage: (1) FRA EU-Survey on Violence Against Women 2024: 33 % der EU-Frauen haben sexualisierte Belästigung erlebt (in den letzten 12 Monaten). 18 % sexualisierte Belästigung am Arbeitsplatz. AT 35 %, DE 32 %, EU-Mittel 33 %. (2) Eurobarometer 'Gender Stereotypes' 2024 (n=26.000 EU-27): 75 % der EU-Bürger:innen halten Sexismus gegen Frauen für ein 'großes oder eher großes Problem'. 60 % halten ihn für genauso präsent wie vor 10 Jahren. (3) Antidiskriminierungsstelle DE 'Sexismus-Studie' 2023 (n=2.500): 68 % Frauen haben in letzten 24 Monaten Sexismus erlebt. Häufigste Form: abwertende Sprüche (45 %), unerwünschte Annäherung (38 %), sexualisierte Beleidigung online (28 %). (4) Online-Sexismus: Plan International 'State of the World's Girls' 2020 + 2023 (Internationale Studie): 70 % der jungen Frauen 18-25 J. haben Online-Sexismus erlebt. Auf Twitter/X: Frauen-Politikerinnen erhalten 4-9x mehr abusive Tweets als Männer (Amnesty 2018, replicated 2023). (5) Workplace-Daten: BMFSFJ 'Sexuelle Belästigung am Arbeitsplatz' 2019 + 2024: 26 % Frauen haben am Arbeitsplatz sexualisierte Belästigung erlebt. AGG-Beschwerden seit 2006 stetig steigend, aber Anzeige-Rate niedrig (~10 %). WICHTIG: Pack adressiert Mythos 'Sexismus ist verschwunden' empirisch.",
+        "fra_2024": "FRA EU-Survey on Violence Against Women 2024 (n=42.000 Frauen EU-27 ab 15 J.): 33 % haben sexualisierte Belästigung erlebt (letzte 12 Monate). AT 35 %, DE 32 %, FI 38 %, IT 25 %. Online-Belästigung: 14 %, dabei junge Frauen 18-29 J. signifikant höher (24 %).",
+        "eurobarometer_2024": "Eurobarometer 'Gender Stereotypes' 2024 (Februar 2024, n=26.000 EU-27): 75 % der EU-Bürger:innen halten Sexismus gegen Frauen für 'großes oder eher großes Problem'. 60 % bewerten ihn als 'genauso präsent wie vor 10 Jahren'. Nur 12 % sehen Sexismus als 'Vergangenheits-Problem'.",
+        "antidiskriminierungsstelle_de_2023": "Antidiskriminierungsstelle 'Sexismus-Studie' 2023 (n=2.500 DE): 68 % Frauen haben in letzten 24 Monaten Sexismus erlebt. Häufigste Formen: abwertende Sprüche (45 %), unerwünschte sexualisierte Annäherung (38 %), Online-Beleidigung (28 %), Karriere-Hindernis durch Vorurteile (24 %).",
+        "online_sexismus": "Plan International 'State of the World's Girls' 2020 + 2023 (Internationale Studie n=14.000 junge Frauen 18-25 in 22 Ländern): 70 % haben Online-Sexismus/Belästigung erlebt. Häufigste Plattformen: Twitter/X 41 %, Facebook 38 %, Instagram 31 %. Amnesty International 'Toxic Twitter' 2018 + 2023 Replikation: Frauen-Politikerinnen erhalten 4-9x mehr abusive Tweets als Männer.",
+        "workplace_be": "BMFSFJ 'Sexuelle Belästigung am Arbeitsplatz' 2019 + 2024 (DE n=1.500): 26 % Frauen haben am Arbeitsplatz sexualisierte Belästigung erlebt. AGG-Beschwerden bei Antidiskriminierungsstelle 2024 ~6.500 — steigend seit 2006. Anzeige-Rate gering (~10 %), Hauptgründe: Karriere-Angst, Misstrauen gegenüber Verfahren.",
+        "context": "Pack ist faktisch-deskriptiv. Sexismus-Erfahrungen sind quantitativ stabil hoch."
+      },
+      "context_notes": [
+        "Online-Sexismus ist messbar höher bei jungen Frauen — generative Effekt der Plattform-Demografie.",
+        "Anzeige-/Beschwerde-Rate ist niedrig — Hellfeld unterschätzt das Phänomen systematisch.",
+        "EU-Vergleich: Skandinavien meldet höher — Interpretation: höheres Bewusstsein + Anzeigewahrscheinlichkeit, nicht mehr Sexismus."
+      ],
+      "claim_phrasings_handled": [
+        "Sexismus ist heute kein Thema mehr",
+        "Frauen erleben heute keinen Sexismus mehr",
+        "MeToo war übertrieben",
+        "Online-Sexismus gibt es nicht wirklich",
+        "Sexismus ist nur ein gefühltes Problem"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "sexismus",
+          "sexist",
+          "sexistisch",
+          "frauenfeind",
+          "misogyn",
+          "sexuelle belästigung",
+          "sexuelle belaestigung",
+          "online-sexismus",
+          "online sexismus"
+        ],
+        [
+          "frauen",
+          "heute",
+          "vorbei",
+          "verschwunden",
+          "kein thema",
+          "übertrieben",
+          "uebertrieben",
+          "metoo",
+          "me too",
+          "gefühlt",
+          "gefuehlt",
+          "real",
+          "problem",
+          "beleidig",
+          "anfeindung",
+          "erleben"
+        ]
+      ]
+    },
+    {
+      "id": "vereinbarkeit_familie_beruf_2026",
+      "topic": "vereinbarkeit_familie_beruf_konsens",
+      "scope": "Karriereeffekt der Mutterschaft + Väter-Karenz-Quote (DE + AT + Skandinavien)",
+      "year": 2024,
+      "source_url": "https://www.iab.de/de/publikationen/forschungsberichte.aspx",
+      "secondary_url": "https://www.bmfsfj.de/bmfsfj/themen/familie/elterngeld/elterngeldstatistik/elterngeldstatistik-2024-218596",
+      "source_label": "IAB Forschungsbericht 'Mutterschaft und Karriere' 2023 + BMFSFJ Elterngeld-Statistik 2024 + Statistik Austria + EIGE Time-Domain + Folbre 2014 + OECD Family Database 2024",
+      "headline": "Karrierebruch bei Müttern in DE messbar (Lohnknick 7-10 J. nach Geburt erstes Kind, IAB-Studie); Väter-Elternzeit-Quote DE 2024 ~26 % länger als 2 Monate, AT ähnlich, Skandinavien 30-90 % — DACH unter Skandinavien",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mutterschaft beeinflusst Karriere kaum / Vereinbarkeit ist gleich verteilt' ist FALSE. Empirische Datenlage: (1) Karrierebruch bei Müttern: IAB Forschungsbericht 'Mutterschaft und Karriere' 2023 (Längsschnitt n=10.000 DE): 'child penalty' ist langfristig stabil. 7-10 Jahre nach Geburt erstes Kind verdienen Mütter im Durchschnitt 50-60 % weniger als kinderlose Frauen mit gleicher Bildung — Männer-Lohn-Effekt durch Vaterschaft minimal (-2 % bis +5 %). Hauptgründe: Teilzeit-Falle (50 % Mütter Teilzeit DE 2024), Branchen-Wechsel zu familienfreundlicheren Sektoren, Karriere-Pause, langsamere Beförderungen ('motherhood penalty' Budig & England 2001 American Sociological Review). (2) Elternzeit-/Karenz-Quote: DE BMFSFJ 2024: 79 % Väter nehmen Elterngeld, aber nur 25,5 % länger als 2 Monate ('Vätermonate'-Modell führt zu Konzentration auf 2 Monate). 75 % Mütter nehmen 12 Monate. AT Statistik Austria 2024: ähnliche Zahlen, Väter-Karenz-Quote ~28 %. (3) Skandinavien-Vergleich: Schweden (Pappamånad seit 1995 + 90-Tage-quotierte Väter-Tage): Väter-Anteil an Elternzeit-Tagen 30 %. Island (Foreldraorlof seit 2000, 50:50-Modell): Väter-Anteil 45 %. Norwegen 25 %. DACH liegt unter Skandinavien-Niveau. (4) Lebens-Einkommen-Effekt: WSI/Hans-Böckler-Stiftung 2023: Mütter mit 2 Kindern verlieren 200.000-300.000 € Lebens-Einkommen vs. kinderlose Frauen mit gleicher Bildung. (5) WICHTIG: Pack distanziert sich von Wertung 'Mütter sollen mehr/weniger arbeiten' — präsentiert empirische Karriere-Effekt-Lage.",
+        "iab_motherhood_penalty": "IAB Forschungsbericht 'Mutterschaft und Karriere' 2023 (Längsschnitt-Datenanalyse SOEP+IAB-LIAB n=10.000 DE 1990-2020): 'child penalty' für DE im internationalen Vergleich hoch. 7-10 J. nach Geburt erstes Kind: Mütter -50-60 % Brutto-Stunden-Lohn vs. kinderlose Frauen mit gleicher Bildung + Berufserfahrung. Männer-Lohn-Effekt durch Vaterschaft minimal (-2 % bis +5 %). Internationale Replikation Kleven et al. 2019 'Child Penalties Across Countries' (American Economic Review): DE-Penalty 61 %, USA 31 %, Schweden 27 %, Dänemark 21 %.",
+        "elterngeld_de_at_2024": "DE BMFSFJ Elterngeld-Statistik 2024 (publiziert 2025): 79 % Väter nehmen Elterngeld, aber 75 % nehmen nur die 'Vätermonate' (2 Monate). Mütter nehmen durchschnittlich 12 Monate. Väter-Anteil an Elternzeit-Tagen ~25,5 %. AT Statistik Austria + BMFSFJ 2024: Väter-Karenz-Quote ~28 % (2024), Anstieg seit 2010 um 18 pp.",
+        "skandinavien_vergleich": "Schweden Pappamånad seit 1995 (1 Monat ausschließlich Väter), 1995 ergänzt um 'use-it-or-lose-it'. 2024: Väter-Anteil 30 % der gesamten Elternzeit-Tage. Island 'Foreldraorlof' seit 2000 mit 50:50-Modell (3 Monate Mutter, 3 Monate Vater, 3 Monate teilbar): Väter-Anteil 45 %. Norwegen 25 %. Internationale Studienlage (OECD Family Database 2024): Väter-quotierte Modelle wirken stärker als Selbst-Wahl-Modelle.",
+        "lebens_einkommen": "WSI/Hans-Böckler-Stiftung 2023: Mütter mit 2 Kindern verlieren 200.000-300.000 € Brutto-Lebens-Einkommen vs. kinderlose Frauen mit gleicher Bildung. Akademikerinnen mit 2 Kindern -300.000 €, mit 3 Kindern -400.000 € Brutto-Lebens-Einkommen.",
+        "context": "Pack ist empirisch-deskriptiv. Politik-Empfehlungen (Quote-Modell, Karenz-Modell) obliegen Politik."
+      },
+      "context_notes": [
+        "Child Penalty in DE international hoch verglichen mit Skandinavien — strukturell verstärkt durch Steuersystem (Ehegatten-Splitting), niedrige öffentliche Kinderbetreuung, kulturelle Erwartungen.",
+        "Väter-Karenz-Quote steigt langsam in DACH — aber Skandinavien hat 20+ Jahre Vorsprung mit 'use-it-or-lose-it'-Modellen.",
+        "Wichtige Differenzierung: 'Vereinbarkeit Familie/Beruf' ist Sammel-Begriff — Pack adressiert konkret den Lohn-/Karriere-Effekt der Mutterschaft."
+      ],
+      "claim_phrasings_handled": [
+        "Mutterschaft beeinflusst Karriere kaum",
+        "Vereinbarkeit Familie Beruf ist heute gleich verteilt",
+        "Männer übernehmen heute genauso viel Karenz",
+        "Karrierebruch bei Müttern ist Mythos",
+        "Mütter wählen einfach Teilzeit weil sie wollen"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "vereinbarkeit",
+          "karenz",
+          "elternzeit",
+          "elterngeld",
+          "mutterschaft",
+          "vaterschaft",
+          "kinderbetreuung",
+          "mütter",
+          "muetter",
+          "väter",
+          "vaeter",
+          "child penalty",
+          "motherhood penalty",
+          "karriere",
+          "teilzeit-falle",
+          "teilzeit"
+        ],
+        [
+          "frauen",
+          "männer",
+          "maenner",
+          "kind",
+          "kinder",
+          "mutter",
+          "vater",
+          "karriere",
+          "beruf",
+          "familie",
+          "lohn",
+          "einkommen",
+          "gleich",
+          "verteilt",
+          "übernehmen",
+          "uebernehmen",
+          "wählen",
+          "waehlen"
+        ]
+      ]
+    },
+    {
+      "id": "gender_equality_index_2026",
+      "topic": "gender_equality_index_konsens",
+      "scope": "EIGE Gender Equality Index 2024 — EU-27 + DACH-Stand + 6 Dimensionen",
+      "year": 2024,
+      "source_url": "https://eige.europa.eu/gender-equality-index/2024",
+      "secondary_url": "https://eige.europa.eu/publications-resources/publications/gender-equality-index-2024-report",
+      "source_label": "EIGE Gender Equality Index 2024 + EIGE Annual Report 2024 + EIGE Methodologie-Paper",
+      "headline": "EIGE Gender Equality Index 2024: EU-27 70,2/100 (Anstieg 7,1 pp seit 2010); SE Spitze 82,0, EL Schluss 58,0; DE 70,8 (Platz 11), AT 68,8 (Platz 13) — Power-Dimension EU-weit schlechteste mit 60,1",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Der EIGE Gender Equality Index ist die methodisch zentrale Mess-Größe für Gleichstellung in EU-27. (1) Definition: jährlicher Index 0-100 (100 = perfekte Gleichstellung), 6 Domänen (Work, Money, Knowledge, Time, Power, Health) + 31 Sub-Indikatoren. Methodik publiziert seit 2013, jährliche Updates seit 2015. (2) EU-27-Ergebnis 2024: 70,2/100 — Anstieg um 7,1 pp seit 2010 (63,1). Langsamer Fortschritt: ~0,5 pp/Jahr. Bei dieser Geschwindigkeit dauert volle Gleichstellung (100) noch ~60 Jahre. (3) Länder-Ranking 2024: SE 82,0 (Platz 1), DK 80,1, NL 79,0, FR 78,9, IE 77,4. DE 70,8 (Platz 11), AT 68,8 (Platz 13), CZ 60,8, GR 58,0 (Schluss). Skandinavien führt seit Index-Start 2013. (4) Domänen 2024 (EU-27): Health 88,5 (beste), Money 84,3, Knowledge 71,4, Work 73,7, Time 64,5, Power 60,1 (schlechteste). Power = Politik + Wirtschaft + Wissenschaft. (5) DACH-Detail: DE Power 71,1, Time 65,2; AT Power 71,5, Time 60,4 (etwas schlechter als DE). (6) Trends: Power-Domain hat 2010-2024 +14,8 pp gewonnen (stärkster Fortschritt) durch Quoten-Wirkung in NO/SE/DE/FR/AT. Time-Domain stagniert (+1,3 pp seit 2010 EU-27) — Care-Arbeit-Verteilung ändert sich kaum. (7) Intersektionalitäts-Perspektive: EIGE Index disaggregiert nach Familien-Stand. Single-Mütter haben deutlich schlechtere Werte in Money + Time-Domain als kinderlose Frauen. (8) Faktencheck-relevant: Aussagen wie 'EU ist gleichberechtigt' sind durch EIGE-Daten widerlegt — Index 70/100 zeigt 30 %-Lücke zu voller Gleichstellung. Aussagen wie 'Frauen sind heute privilegiert' sind durch EIGE-Daten ebenfalls widerlegt — kein Index-Wert über 100.",
+        "eu_27_2024": "EIGE Gender Equality Index 2024 (publiziert November 2024): EU-27 Gesamt-Index 70,2/100. Anstieg seit 2010 (Baseline 63,1) um 7,1 pp. Anstieg 2023→2024: +0,4 pp. Langsamer Fortschritt extrapoliert: bei 0,5 pp/Jahr Geschwindigkeit dauert noch ~60 Jahre bis 100.",
+        "ranking_2024": "EU-27 Ranking 2024 von höchstem zu niedrigstem Index-Wert: 1. Schweden 82,0, 2. Dänemark 80,1, 3. Niederlande 79,0, 4. Frankreich 78,9, 5. Irland 77,4, 6. Spanien 76,4, 7. Belgien 75,5, 8. Luxemburg 75,1, 9. Finnland 74,4, 10. Slowenien 71,3, 11. Deutschland 70,8, 12. Malta 69,3, 13. Österreich 68,8, 14. Italien 68,0, 15. Portugal 67,5, 16. Estland 64,1, 17. Lettland 63,3, 18. Litauen 62,7, 19. Kroatien 62,3, 20. Polen 61,2, 21. Bulgarien 60,9, 22. Zypern 60,4, 23. Slowakei 60,3, 24. Tschechien 60,8, 25. Rumänien 59,3, 26. Ungarn 58,3, 27. Griechenland 58,0.",
+        "domaenen_2024": "EU-27 Sub-Domänen-Werte 2024: Health 88,5 (beste — Lebenserwartung + Selbstmord-Raten + Risiko-Verhalten + Gesundheitszugang). Money 84,3 (Brutto-Einkommen + Armut). Knowledge 71,4 (Bildungs-Erreichung + Lebenslanges Lernen + Geschlechter-Segregation Bildung). Work 73,7 (Erwerbs-Quote + Arbeits-Segregation + Arbeits-Qualität). Time 64,5 (Care-Arbeit + Soziale Aktivitäten). Power 60,1 (Politik + Wirtschaft + Wissenschaft) — schlechteste Domäne.",
+        "dach_detail": "DE 2024 Domänen: Work 76,2, Money 89,1, Knowledge 67,8, Time 65,2, Power 71,1, Health 91,2. Gesamt 70,8. AT 2024 Domänen: Work 75,5, Money 87,4, Knowledge 65,2, Time 60,4, Power 71,5, Health 91,8. Gesamt 68,8 — etwas schlechter als DE primär durch niedrigere Knowledge-Domain (Bildungs-Segregation).",
+        "trends_2010_2024": "Power-Domain 2010 45,3 → 2024 60,1 = +14,8 pp (stärkster Fortschritt) — Quoten-Wirkung Aufsichtsräte + Wahllisten. Time-Domain 2010 63,2 → 2024 64,5 = +1,3 pp (Stagnation) — Care-Arbeit-Verteilung ändert sich kaum. Money-Domain 2010 81,1 → 2024 84,3 = +3,2 pp.",
+        "intersektionalitaet": "EIGE Index disaggregiert nach Familien-Stand seit 2017. Single-Mütter haben Money-Domain ~15 pp niedriger, Time-Domain ~10 pp niedriger als kinderlose Frauen — strukturelle Mehrfach-Belastung.",
+        "context": "EIGE Index ist methodisch das anerkannteste Mess-Instrument für Gleichstellung in EU-27. Pack folgt EIGE-Definition."
+      },
+      "context_notes": [
+        "Power-Dimension ist EU-weit schlechteste Equality-Domain — strukturelle Lücke trotz Fortschritt.",
+        "Skandinavien führt seit Index-Start 2013 — kulturelles + politisches Vorbild.",
+        "Bei aktueller Geschwindigkeit (0,5 pp/Jahr) dauert volle Gleichstellung 60+ Jahre."
+      ],
+      "claim_phrasings_handled": [
+        "EU ist gleichberechtigt",
+        "Frauen sind heute privilegiert in Europa",
+        "Gleichstellung in EU ist erreicht",
+        "EIGE Index zeigt fast Gleichstellung",
+        "Österreich ist beim Gleichstellung-Index Spitze"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "gleichstellungsindex",
+          "gender equality index",
+          "eige index",
+          "eige",
+          "gleichstellung",
+          "gleichberechtigung",
+          "equality index"
+        ],
+        [
+          "eu",
+          "europa",
+          "europäisch",
+          "europaeisch",
+          "österreich",
+          "oesterreich",
+          "deutschland",
+          "schweden",
+          "skandinavien",
+          "ranking",
+          "platz",
+          "spitze",
+          "letzter",
+          "stand",
+          "wert",
+          "punkte",
+          "erreicht",
+          "fortschritt",
+          "stagniert"
+        ]
+      ]
+    }
+  ]
+}

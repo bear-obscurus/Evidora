@@ -97,6 +97,8 @@ from services.verkehrssicherheit_pack import search_verkehrssicherheit, claim_me
 from services.tierhaltung_pack import search_tierhaltung, claim_mentions_tierhaltung_cached
 from services.cybersecurity_pack import search_cybersecurity, claim_mentions_cybersecurity_cached
 from services.lebensmittel_pack import search_lebensmittel, claim_mentions_lebensmittel_cached
+from services.gleichstellung_pack import search_gleichstellung, claim_mentions_gleichstellung_cached
+from services.eige import search_eige
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.cdc_open_data import search_cdc_open_data
@@ -824,6 +826,23 @@ async def check_claim(request: Request):
         if claim_mentions_lebensmittel_cached(claim):
             tasks.append(cached("Lebensmittel-Konsens", search_lebensmittel, analysis))
             queried_names.append("Lebensmittel-Sicherheit-Konsens (BfR + EFSA + FDA + RKI + AAP + ÖLMB)")
+        # Gleichstellung-Pack (10 Topics: Gender Pay Gap, Frauenquote-
+        # Wirksamkeit, MINT-Frauen-Anteil, Femizide AT/DE, sexualisierte
+        # Gewalt Dunkelziffer, Gender Care Gap, Frauen in Politik,
+        # Sexismus-Erfahrungen, Vereinbarkeit Familie/Beruf, EIGE Gender
+        # Equality Index 2024). Quellen: EIGE, Eurostat, OECD, FRA,
+        # BMI/BKA, Statistik Austria, DESTATIS, IPU, peer-reviewed
+        # Studien (Steele 1995, Spencer 1999, Stoet 2018, Kleven 2019).
+        if claim_mentions_gleichstellung_cached(claim):
+            tasks.append(cached("Gleichstellung-Konsens", search_gleichstellung, analysis))
+            queried_names.append("Gleichstellung-Konsens (EIGE + Eurostat + OECD + FRA + BMI/BKA + Statistik Austria + DESTATIS + UN Women)")
+        # EIGE Live-RSS (European Institute for Gender Equality, Vilnius):
+        # aktuelle Newsroom-Items zu Gleichstellung, EU-Direktiven, neue
+        # EIGE-Berichte. Komplementär zum statischen gleichstellung_pack.
+        # Service eigene Trigger-Logik (entity/query-match auf RSS-Items).
+        if analysis.get("entities") or analysis.get("factcheck_queries") or analysis.get("pubmed_queries"):
+            tasks.append(cached("EIGE", search_eige, analysis))
+            queried_names.append("EIGE")
         # OpenAlex covers all scientific disciplines — query for any claim with search terms
         if analysis.get("pubmed_queries"):
             tasks.append(cached("OpenAlex", search_openalex, analysis))

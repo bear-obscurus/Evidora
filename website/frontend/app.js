@@ -42,6 +42,7 @@ const AUTHORITATIVE_PACK_MARKERS = [
     "Tierhaltung-Konsens",
     "Cybersecurity-Konsens",
     "Lebensmittel-Sicherheit-Konsens",
+    "Gleichstellung-Konsens",
 ];
 
 function isAuthoritativePack(sourceName) {
