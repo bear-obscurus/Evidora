@@ -1,0 +1,914 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-05",
+  "source_label": "DESTATIS Zensus 2022 + Statistik Austria + BMWSB DE + Wien-Wohnen + WIFO + IHS + DIW + IFO + Empirica + Pestel-Institut + IW Köln + Eurostat + OECD Housing + Mieterbund + AK Wien + peer-reviewed Forschung",
+  "facts": [
+    {
+      "id": "mietregulierung_investitionseffekt_2026",
+      "topic": "mietregulierung_investitionseffekt_konsens",
+      "scope": "Mietpreisbremse + Mietendeckel — Wirksamkeit + Investitions-Effekt",
+      "year": 2024,
+      "source_url": "https://www.diw.de/de/diw_01.c.871832.de/publikationen/wochenberichte/2024_18_2/mietpreisbremse_in_deutschland.html",
+      "secondary_url": "https://www.bundesverfassungsgericht.de/SharedDocs/Pressemitteilungen/DE/2021/bvg21-028.html",
+      "source_label": "DIW Wochenbericht Mietpreisbremse 2019 + 2024 + IFO-Studien Mietregulierung + BVerfG Berlin Mietendeckel-Urteil 2 BvF 1/20 vom 25.3.2021 + Empirica Mietspiegel-Analysen + Statistisches Bundesamt Wohngeld-Statistik",
+      "headline": "Mietpreisbremse DE seit 2015 (BGB § 556d-g): DIW 2024 Bilanz — geringe Wirkung (Mietpreis-Reduktion 1-3 % in Boom-Städten); BVerfG kippte Berlin-Mietendeckel 2021 (Bundes-Kompetenz, kein materielles Urteil); Investitions-Effekt empirisch differenziert",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mietregulierung verhindert Wohnungsbau / Investitionen' ist DIFFERENZIERT FALSCH. Empirische Lage: (1) DE Mietpreisbremse seit 2015 (BGB § 556d-g): in angespannten Wohnungsmärkten begrenzt Neuvermietung-Mietpreis auf max. 10 % über ortsüblicher Vergleichsmiete. DIW Wochenbericht 2019 + 2024 Bilanz: Mietpreis-Reduktion 1-3 % in Boom-Städten (Berlin, München, Hamburg) — empirisch wirksam aber begrenzt. KEIN messbarer negativer Investitions-Effekt im Neubau (Neubau-Sektor von Mietpreisbremse ausgenommen — § 556f BGB). (2) Berlin-Mietendeckel 2020-21: 5-Jahres-Mietpreis-Stopp + Mietsenkung ab November 2020. BVerfG-Urteil 25.3.2021 (2 BvF 1/20 + 2 BvL 4/20 + 2 BvL 5/20): NICHTIG wegen fehlender Bundes-Gesetzgebungs-Kompetenz (Art. 74 Abs. 1 Nr. 1 GG). KEIN materielles Urteil zur Frage der Verfassungsmäßigkeit eines bundesweiten Mietendeckels. Bundesländer haben KEINE Kompetenz für Miet-Recht — nur Bund. (3) Internationale Empirie: Diamond/McQuade/Qian 2019 American Economic Review 'The Effects of Rent Control Expansion in San Francisco': SF Mietpreis-Regulierung 1994 reduzierte Mieten für betroffene Mieter, aber führte zu Reduktion der gesamten Mietwohnungs-Bestand um 15 % über 25 Jahre (Vermieter konvertierten Wohnungen zu Eigentum oder rissen ab). Vorsicht-Lehre: STRENGE + UNBEFRISTETE Mietregulierung kann Bestands-Reduktion verursachen. (4) DACH-Empirie ist unterschiedlich: DE Mietpreisbremse als BEGRENZUNG (kein Stopp), Wien Mietzinsbeschränkung-System seit 1922 (sehr alt, nicht reformiert). DIW 2024: 'DE Mietpreisbremse hat KEINE messbaren Investitions-Hemmnisse, vermutlich wegen Neubau-Ausnahme'. (5) Faktencheck-relevant: Aussagen wie 'Mietregulierung verhindert IMMER Investitionen' sind durch DE-Empirie widerlegt. Aussagen wie 'Mietregulierung hat KEINEN Effekt auf Markt' verkennen SF-Diamond-Studie. Pack distanziert sich von normativer Wertung 'Mietregulierung ist gut/schlecht' — präsentiert nur empirische Wirksamkeits-Lage.",
+        "diw_2024_mietpreisbremse_bilanz": "DIW Wochenbericht 18/2024 (Kholodilin/Mense): Mietpreisbremse-Bilanz 2015-2024. Mietpreis-Reduktion in betroffenen Bestands-Wohnungen Boom-Städten 1-3 % vs. Kontroll-Gruppe. Berlin: -2,5 %, München: -1,8 %, Hamburg: -1,2 %. Wirkung primär durch Klagen-Möglichkeit auf zu hohe Miete. Wirkungs-Schwäche durch viele Ausnahme-Gründe (Neubau ab 2014, Möbliert, Modernisierungs-Mietzuschlag, Härte-Klausel).",
+        "berlin_mietendeckel_bvfg": "Berlin-Mietendeckel: Gesetz vom 11.2.2020, 5-Jahres-Mietpreis-Stopp + Mietsenkung ab November 2020 (für Bestands-Wohnungen vor 2014). BVerfG-Urteil 25.3.2021 (Az. 2 BvF 1/20 + 2 BvL 4/20 + 2 BvL 5/20): nichtig wegen fehlender Landes-Gesetzgebungs-Kompetenz. Begründung Art. 74 Abs. 1 Nr. 1 GG: 'bürgerliches Recht' fällt unter Bundes-Kompetenz. Konsequenz: Mieter:innen mussten gestoppte Mietzahlungen mit Zins nachzahlen — viele Härte-Fälle. KEIN materielles Urteil zur Verfassungsmäßigkeit eines bundesweiten Mietendeckels.",
+        "diamond_san_francisco_2019": "Diamond/McQuade/Qian 2019 American Economic Review 'The Effects of Rent Control Expansion in San Francisco': SF erweitete 1994 Rent-Control auf weiter Gebäude. Difference-in-Differences-Analyse 1994-2019. Befund: Mieter in regulierten Wohnungen sparten 16 % Mietzahlungen kumuliert. ABER: Mietwohnungs-Bestand in SF schrumpfte um 15 % über 25 Jahre durch (a) Konversion zu Eigentumswohnungen, (b) Abriss + Neubau (Neubau ist regulierungs-frei). Lehre: STRIKTE + UNBEFRISTETE Mietregulierung kann Bestands-Reduktion verursachen.",
+        "wien_mietzinsbeschraenkung_1922": "Wien Mietzinsbeschränkung seit 1922 (Mietengesetz 1922, später MRG 1981 Mietrechtsgesetz): Richtwertmiete + Kategoriemieten + Friedenskronenzins. Eines der ältesten Mietregulierungs-Systeme weltweit. WIFO + IHS Studien: hohes Mieter-Schutz-Niveau, niedriger Investitions-Anreiz für Privat-Sektor (60 % der Wohnbau-Investitionen seit 1980 öffentlich + gemeinnützig). Wien als Sonderfall — KEIN direkter Vergleich mit DE.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Mietregulierung-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Mietpreisbremse DE (Begrenzung) ≠ Mietendeckel Berlin (Stopp + Senkung) ≠ Mietzinsbeschränkung Wien (sehr altes System).",
+        "Diamond-SF-Studie zeigt: STRIKTE + UNBEFRISTETE Regulierung kann Bestands-Reduktion verursachen — BEGRENZTE Regulierung wie DE-Mietpreisbremse hat diesen Effekt nicht.",
+        "BVerfG-Urteil 2021 zum Berlin-Mietendeckel war Kompetenz-Urteil (Bundes-Recht), KEIN materielles Urteil zur Verfassungsmäßigkeit."
+      ],
+      "claim_phrasings_handled": [
+        "Mietpreisbremse verhindert Wohnungsbau",
+        "Mietregulierung führt zu weniger Investitionen",
+        "Mietendeckel war verfassungswidrig",
+        "Mietregulierung schadet dem Wohnungsmarkt",
+        "Strikte Mietregulierung reduziert Wohnungs-Bestand"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "mietregulierung",
+          "miet-regulierung",
+          "mietpreisbremse",
+          "miet-preisbremse",
+          "mietendeckel",
+          "miet-deckel",
+          "mietpreis-stopp",
+          "mietzinsbeschränkung",
+          "mietzinsbeschraenkung",
+          "rent control",
+          "mietkappung"
+        ],
+        [
+          "investition",
+          "investitionen",
+          "wohnungsbau",
+          "wohnungs-bau",
+          "neubau",
+          "neu-bau",
+          "schadet",
+          "schädigt",
+          "schaedigt",
+          "verhindert",
+          "verhindern",
+          "reduziert",
+          "verfassungswidrig",
+          "verfassungs-widrig",
+          "wirkt",
+          "wirkung",
+          "wirksam",
+          "berlin",
+          "wien",
+          "vermieter",
+          "vermietern"
+        ]
+      ]
+    },
+    {
+      "id": "leerstand_umverteilung_2026",
+      "topic": "leerstand_umverteilung_mythos",
+      "scope": "Leerstand-Statistik DACH — strukturelle vs. friktionelle Leerstände, Umverteilungs-Grenzen",
+      "year": 2024,
+      "source_url": "https://www.zensus2022.de/DE/Was-ist-der-Zensus/Wohnungen/_inhalt.html",
+      "secondary_url": "https://www.bbsr.bund.de/BBSR/DE/forschung/programme/laufendeprogramme/wohnen/wohnen_node.html",
+      "source_label": "DESTATIS Zensus 2022 Wohnungs-Statistik + BBSR Bundesinstitut für Bau-, Stadt- und Raumforschung + Statistik Austria Wohnungs-Daten + BFS CH + Pestel-Institut Studien + DIW Wochenbericht zu Leerstand",
+      "headline": "DE Zensus 2022: 1,9 Mio leerstehende Wohnungen (4,3 % aller Wohnungen) — davon ~70 % friktionell + Sanierungs-bedingt + Vermarktungs-Phase, NUR ~500.000 strukturell langzeit-leer in Schrumpfungs-Regionen; Umverteilung in Ballungsräume praktisch unmöglich",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Genug Leerstand DE — einfach umverteilen statt neu bauen' ist FALSE. Empirische Lage: (1) DE Zensus 2022 (DESTATIS, publiziert Mai 2024): 41,5 Mio Wohnungen in DE total, davon 1,9 Mio leerstehend = 4,3 % Leerstand-Quote. KLINGT VIEL — aber: (2) Leerstands-Typen (BBSR + DESTATIS): (a) FRIKTIONELL ~600.000-800.000 (Wohnungen kurzzeitig zwischen Mietern leer — 2-6 Monate, gehören zum gesund-funktionierenden Markt, ~3 % Leerstand-Quote = sogar zu wenig in Boom-Städten), (b) SANIERUNGS-BEDINGT ~300.000-400.000 (Wohnungen werden saniert, kommen 1-2 Jahre auf den Markt zurück), (c) STRUKTURELL LANGZEIT-LEER ~500.000-600.000 (>1 Jahr leer, primär in Schrumpfungs-Regionen Sachsen-Anhalt + Mecklenburg-Vorpommern + Thüringen + Bayerischer-Wald + ländliches Saarland). (3) GEOGRAFIE-PROBLEM: strukturell leerstehende Wohnungen sind in NIEDER-NACHFRAGE-Regionen, Wohnungs-MANGEL in München + Berlin + Hamburg + Frankfurt + Stuttgart + Köln. Umverteilung physisch nicht möglich — Wohnungen sind ortsfest. Umzug von Erwerbstätigen aus Boom-Städten in Schrumpfungs-Regionen wirtschaftlich unattraktiv (Job-Markt). (4) AT Zensus 2024 (Statistik Austria): ~135.000 langzeit-leerstehende Wohnungen Wien-weit (8 % der Wohnungen), Wien hat 'Wiener Wohn-Ticket'-Reform 2024 + neue Leerstand-Abgabe-Diskussion. Wien Leerstand-Wirkung wenn aktiviert: ~30.000-50.000 zusätzliche Mietwohnungen schätzbar (Empirica 2024). (5) Internationale Studien: Leerstand-Quoten unter 3 % gelten als gefährlich-eng (zu wenig friktionelle Reserve), 3-5 % gesund, >7 % nur in Schrumpfungs-Regionen. (6) Faktencheck-relevant: Aussagen wie '1,9 Mio leere Wohnungen — Wohnungs-Mangel ist Lüge' verkennen geografische + funktionale Differenzierung. Pack distanziert sich von normativer Wertung — präsentiert nur empirische Leerstand-Statistik.",
+        "destatis_zensus_2022": "DESTATIS Zensus 2022 Wohnungs-Statistik (Stichtag 15.5.2022, publiziert Mai 2024): 41,5 Mio Wohnungen in DE total. 39,3 Mio bewohnt (94,7 %), 1,9 Mio leer (4,3 %), 0,3 Mio anderweitig (Ferien-/Zweitwohnungen). Aufgliederung leerstehender Wohnungen: <3 Monate ~580.000 (friktionell), 3-12 Monate ~480.000 (Sanierung/Vermarktung), >12 Monate ~840.000 (langzeit-leer, davon Großteil in Schrumpfungs-Regionen).",
+        "bbsr_leerstand_typen": "BBSR Bundesinstitut für Bau-, Stadt- und Raumforschung Leerstands-Typologie 2024: (a) FRIKTIONELL (2-3 % Quote als gesund-funktional), (b) SANIERUNGS-BEDINGT (Modernisierungs-Phase), (c) STRUKTURELL LANGZEIT-LEER (>1 Jahr, Schrumpfungs-Regionen). DE: Boom-Städte München/Berlin/Hamburg LEERSTANDS-QUOTE 0,5-1,2 % — UNTER friktionell-gesundem Bereich. Schrumpfungs-Regionen Sachsen-Anhalt/MV/Thüringen/Saarland LEERSTANDS-QUOTE 8-15 %.",
+        "boomstaedte_engpass": "Boom-Städte DE 2024 Leerstands-Quoten (BBSR + Empirica): München 0,5 %, Berlin 0,9 %, Hamburg 0,8 %, Frankfurt 0,6 %, Stuttgart 0,7 %, Köln 1,2 %, Düsseldorf 1,4 %. Alle UNTER friktionell-gesundem 3 % Niveau. Wohnungs-Mangel real + empirisch belegt.",
+        "schrumpfungs_regionen": "DE Schrumpfungs-Regionen 2024 Leerstands-Quoten: Sachsen-Anhalt-Land 12-15 %, Thüringen-Land 9-12 %, Mecklenburg-Vorpommern-Land 11-14 %, ländlicher Saarland 8-10 %, Bayerischer Wald + Oberpfalz 7-10 %. Strukturell leerstehende Wohnungen — physisch NICHT in Boom-Regionen umverteilbar. Lokale Job-Märkte machen Zuzug für Erwerbstätige unattraktiv.",
+        "wien_leerstand": "AT Statistik Austria Volkszählungs-Daten + Wien-Wohnen Leerstand 2024: ~135.000 langzeit-leerstehende Wohnungen Wien-weit (~8 % aller Wohnungen). Höher als DE-Großstädte. Wiener Wohn-Ticket-Reform 2024 + Leerstand-Abgabe-Diskussion (Vorarlberg + Tirol haben bereits Leerstand-Abgabe seit 2024). Empirica 2024 Schätzung: bei Aktivierung könnten ~30.000-50.000 Wohnungen zurück auf Markt — wäre quantitativ relevant.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: 1,9 Mio Leerstand-Wohnungen DE klingt viel, aber 70 % davon sind friktionell + Sanierungs-bedingt (gesunder Markt-Mechanismus) — nur ~500-600k strukturell langzeit-leer.",
+        "GEOGRAFIE-PROBLEM: strukturelle Leerstände sind in Schrumpfungs-Regionen, Wohnungs-Mangel in Boom-Städten — Umverteilung physisch unmöglich.",
+        "AT Wien hat höhere Leerstand-Quote (~8 %) als DE-Großstädte — Leerstand-Abgabe seit 2024 Vorarlberg + Tirol als Pilot-Projekte."
+      ],
+      "claim_phrasings_handled": [
+        "Genug Leerstand in Deutschland",
+        "Wohnungs-Mangel ist Lüge",
+        "1,9 Millionen leere Wohnungen — einfach umverteilen",
+        "Wir brauchen keinen Wohnungsbau, es gibt genug Leerstand",
+        "Leere Wohnungen sind die Lösung für Wohnungs-Mangel"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "leerstand",
+          "leer-stand",
+          "leerstehend",
+          "leer-stehend",
+          "leere wohnungen",
+          "leeren wohnungen",
+          "wohnungs-leerstand",
+          "wohnungsleerstand"
+        ],
+        [
+          "umverteilen",
+          "verteilen",
+          "lösung",
+          "loesung",
+          "lüge",
+          "luege",
+          "genug",
+          "ausreichend",
+          "reicht",
+          "wohnungsmangel",
+          "wohnungs-mangel",
+          "kein bedarf",
+          "kein neubau",
+          "keinen wohnungsbau",
+          "millionen",
+          "1,9",
+          "2 millionen",
+          "leer und keiner"
+        ]
+      ]
+    },
+    {
+      "id": "sozialwohnungsbau_konsens_2026",
+      "topic": "sozialwohnungsbau_konsens",
+      "scope": "Sozialwohnungs-Bestand DACH — DE-Verlust 1990-2024, Wiener Modell als Best-Practice",
+      "year": 2024,
+      "source_url": "https://www.bmwsb.bund.de/Webs/BMWSB/DE/themen/stadt-wohnen/wohnungswirtschaft/wohnraumfoerderung/wohnraumfoerderung-node.html",
+      "secondary_url": "https://www.wienwohnen.at/zahlen-und-fakten.html",
+      "source_label": "BMWSB Bundesministerium für Wohnen + Mieterbund DE + Statistisches Bundesamt + Wien-Wohnen Geschäftsbericht 2024 + GBV Gemeinnützige Bauvereinigungen AT + AK Wien Wohnstudien + IBA Hamburg Sozialwohnungs-Studien",
+      "headline": "DE Sozialwohnungs-Bestand 1990 ~4 Mio → 2024 ~1,1 Mio (-72 %): Massive Bestand-Reduktion durch Auslaufen Belegungs-Bindung; AT Wien-Modell mit ~220.000 Gemeindebau-Wohnungen + 200.000 gemeinnützige = ~60 % Wiener Mietwohnungen sozial gebunden",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'DE/AT haben genug Sozialwohnungen' ist DIFFERENZIERT FALSCH (DE ja, AT teilweise). Empirische Lage: (1) DE SOZIALWOHNUNGS-BESTAND-VERLUST: 1990 ~4 Mio sozialgebundene Wohnungen, 2024 ~1,1 Mio. = MINUS 72 % über 34 Jahre. Hauptursache: Auslaufen der Belegungs-Bindung nach 20-30 Jahren (Tilgung des Förder-Darlehens), Wohnungen werden frei vermietbar. NEUBAU sozialer Wohnungsbau seit 2007 ~25.000-50.000 pro Jahr — REICHT NICHT um Auslaufen auszugleichen (~80.000-120.000 Wohnungen verlieren jährlich Bindung). Pestel-Institut + Mieterbund-Schätzung 2024: tatsächlicher Bedarf ~3-4 Mio Sozialwohnungen (basierend auf Anspruchs-Berechtigten). (2) AT WIENER MODELL: ~220.000 Gemeindebau-Wohnungen (städtisch verwaltete Wohnhäuser, 25 % aller Wiener Wohnungen) + ~200.000 gemeinnützige Wohnungen GBV-Sektor = ~60 % der Wiener Mietwohnungen sozial gebunden. Bestand stabil seit 1980er, gemeinnütziger Sektor wächst sogar. Wien gilt international als Best-Practice (UN-Habitat 2018 Award + DGNB 2022 Award). (3) BAYERN-MODELL: ähnlich AT mit hoher Förder-Quote für gemeinnützigen Wohnbau (BayernHeim seit 2018). (4) HAMBURG/BERLIN: dazwischen — bauen sozialen Wohnbau, aber langsamer als Auslaufen-Tempo. (5) Faktencheck-relevant: Aussagen wie 'wir haben genug Sozialwohnungen' sind für DE empirisch widerlegt (Bestand schrumpft seit 1990 um 72 %). Aussagen wie 'Sozialwohnungsbau ist gescheitert' verkennen AT Wiener Modell + Hamburg/Berlin/München-Erfolge in Neubau. Pack distanziert sich von Pro/Contra-Sozialwohnungsbau-Wertung.",
+        "de_bestand_1990_2024": "DE Sozialwohnungs-Bestand-Entwicklung: 1990 ~4 Mio (Höchststand alte BRD + DDR-Wohnbau-Genossenschaften), 2000 ~2,8 Mio, 2010 ~1,7 Mio, 2020 ~1,3 Mio, 2024 ~1,1 Mio. Verlust 1990-2024: -72 %. Hauptursache Auslaufen der Belegungs-Bindung. BMWSB-Statistik 2024 + Pestel-Institut Bestand-Analyse 2024.",
+        "neubau_vs_auslaufen": "DE Sozialwohnungs-Neubau-vs-Auslaufen-Bilanz: jährlicher Neubau seit 2007 ~25.000-50.000, jährliches Bindungs-Auslaufen ~80.000-120.000 = Netto-Verlust ~50.000-70.000 pro Jahr. BMWSB-Daten 2024 + Pestel-Institut. Bestand-Schrumpfungs-Trend ohne deutliche Politik-Veränderung absehbar.",
+        "wiener_modell_220k": "Wien-Wohnen Geschäftsbericht 2024: ~220.000 Gemeindebau-Wohnungen (städtisch verwaltete Wohnhäuser, 25 % aller Wiener Wohnungen). Bewohner: ~500.000 Personen = ~25 % Wiener Bevölkerung. Mietpreis-Niveau ~5,5-7 Euro/m² netto vs. Wiener Markt-Median ~14 Euro/m² (2024). Bewerbungs-Liste 2024 ~25.000 Wartende.",
+        "gbv_gemeinnuetzig_at": "AT GBV Gemeinnützige Bauvereinigungen Geschäftsbericht 2024: ~200.000 gemeinnützige Wohnungen Wien-weit + ~750.000 in ganz Österreich. Mietpreis-Bindung. WGG (Wohnungsgemeinnützigkeitsgesetz) garantiert Kostenmiete. AT-weit ~25 % der Mietwohnungen GBV-gemeinnützig.",
+        "international_best_practice": "Wien als internationales Best-Practice: UN-Habitat World Habitat Award 2018, DGNB Award 2022, internationaler Vergleich (Hamburg 2019 Studie 'IBA Wien-Modell'). Hauptelemente: stabile Bestands-Politik, Kostenmiete + Belegungs-Bindung über Jahrzehnte, gemeinnützige Trägerschaft, soziale Mischung. Übertragung auf andere DACH-Großstädte limitiert wegen historisch-gewachsener Strukturen.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Sozialwohnungsbau-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: DE Bestand schrumpft seit 1990 dramatisch (-72 %), AT Wiener Modell hingegen stabil seit Jahrzehnten + wird sogar ausgebaut.",
+        "DE Hauptproblem: Belegungs-Bindung läuft nach 20-30 Jahren aus + Neubau zu langsam — strukturell nicht-nachhaltig ohne Reform.",
+        "Wien ist internationales Best-Practice (UN-Habitat 2018), aber Übertragung auf DE/CH limitiert wegen unterschiedlicher historisch-gewachsener Strukturen."
+      ],
+      "claim_phrasings_handled": [
+        "Wir haben genug Sozialwohnungen",
+        "Sozialwohnungsbau ist gescheitert",
+        "Sozialwohnungs-Bestand ist hoch genug",
+        "Wien-Modell ist nicht übertragbar",
+        "Soziale Wohnungsbau-Förderung bringt nichts"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "sozialwohnung",
+          "sozial-wohnung",
+          "sozialer wohnungsbau",
+          "sozialwohnungsbau",
+          "sozial-wohnungsbau",
+          "gemeindewohnung",
+          "gemeinde-wohnung",
+          "gemeindebau",
+          "gemeinde-bau",
+          "gemeinnützig",
+          "gemeinnuetzig",
+          "wohnraumförderung",
+          "wohnraum-förderung",
+          "wbk",
+          "geförderte wohnung",
+          "gefoerderte wohnung"
+        ],
+        [
+          "genug",
+          "ausreichend",
+          "reicht",
+          "gescheitert",
+          "bringt",
+          "wirkt",
+          "bestand",
+          "bauen",
+          "neubau",
+          "übertragbar",
+          "uebertragbar",
+          "modell",
+          "wien-modell",
+          "förderung",
+          "foerderung",
+          "ausläuft",
+          "auslaeuft",
+          "schrumpft"
+        ]
+      ]
+    },
+    {
+      "id": "wohnungsmarkt_freier_markt_2026",
+      "topic": "wohnungsmarkt_freier_markt_mythos",
+      "scope": "Frei-Markt-These — Glaeser/Gyourko, Hilber Bauleit-Planungs-Forschung",
+      "year": 2024,
+      "source_url": "https://www.nber.org/papers/w25060",
+      "secondary_url": "https://www.lse.ac.uk/granthaminstitute/people/christian-hilber/",
+      "source_label": "Glaeser/Gyourko 2018 NBER 25060 + Hilber LSE Housing Economics + Edward Glaeser Triumph of the City 2011 + LSE Spatial Economics Research Centre + Cambridge Centre for Housing Research + IFO Wohnungsmarkt-Studien",
+      "headline": "Frei-Markt-These bei Wohnen empirisch DIFFERENZIERT FALSCH: Glaeser/Gyourko 2018 + Hilber 2021 — Bauleit-Planung + Zoning sind ZENTRALER Engpass-Faktor, freier Markt allein löst Wohnungs-Mangel nicht; Wohnungsmarkt ist klassischer Markt-Versagens-Fall (Externalitäten + Liquiditäts-Probleme + Standort-Monopol)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Markt regelt Wohnungsmarkt' ist DIFFERENZIERT FALSCH. Empirische Lage: (1) GLAESER/GYOURKO 2018 NBER 25060 'The Economic Implications of Housing Supply': USA-Wohnungsmarkt-Analyse — restriktive Bauleit-Planung + Zoning-Regelungen sind ZENTRALER Engpass-Faktor in High-Demand-Cities (San Francisco, NYC, Boston). Schätzung: 36-50 % der städtischen Mietpreis-Erhöhungen 1980-2017 sind Folge von Bauleit-Planungs-Restriktionen, NICHT freie-Markt-Knappheit. (2) HILBER LSE 2021 'The Economic Implications of House Price Capitalisation': UK-Daten — Bauleit-Planung beschränkt Angebot, treibt Preise. Lehre: nicht 'mehr Markt' sondern 'mehr Bauleit-Planungs-Reform' ist Lösung. (3) WOHNUNGSMARKT IST KLASSISCHER MARKT-VERSAGENS-FALL: (a) EXTERNALITÄTEN — Wohngebäude beeinflussen Nachbarschaft (Lärm, Sicht, Verschattung) → Bauleit-Planung notwendig. (b) STANDORT-MONOPOL — Land ist nicht vermehrbar, Standort-Eigenschaften (S-Bahn, Schule) konzentrieren Nachfrage. (c) LIQUIDITÄTS-PROBLEME — Wohnung kaufen 100k-1Mio Euro für viele unerreichbar, Mietmarkt notwendig. (d) INFORMATIONS-ASYMMETRIE — Vermieter weiß mehr über Wohnung-Zustand als Mieter (Akerlof Lemons-Problem). (e) OBDACHLOSIGKEITS-EXTERNALITÄT — Markt-Versagen wenn Personen ohne ausreichendes Einkommen — sozialer Wohnbau notwendig. (4) DACH-EMPIRIE: DE Bauleit-Planung ist tatsächlich konservativ — Mörsdorf/Sebastian 2022 IFO 'Wohnungsbau-Hindernisse': 60-70 % der Bauleit-Verfahren über 5 Jahre, Anpassung an Bedarf träge. (5) FAKTENCHECK-RELEVANT: Aussagen wie 'der Markt regelt das ohne Politik' sind durch Glaeser/Hilber-Forschung empirisch widerlegt — Bauleit-Planung ist ZENTRAL. Aussagen wie 'Markt versagt komplett, nur Staat hilft' verkennen Markt-Mechanismen. Pack betont: Markt + Bauleit-Reform + sozialer Wohnbau zusammen.",
+        "glaeser_gyourko_2018": "Glaeser/Gyourko 2018 NBER 25060 'The Economic Implications of Housing Supply' (auch Journal of Economic Perspectives): USA-Wohnungsmarkt-Analyse 1980-2017. Schätzung: 36-50 % der städtischen Mietpreis-Erhöhungen sind Folge von Bauleit-Planungs-Restriktionen (Zoning-Regelungen, Höhen-Beschränkungen, Mindest-Lot-Sizes, NIMBY-Politik), NICHT freie-Markt-Knappheit. Spitze: San Francisco. Lehre: Reform der Bauleit-Planung ist effektivere Wohnungspreis-Senkung als Mietregulierung.",
+        "hilber_lse_2021": "Hilber LSE 'The Economic Implications of House Price Capitalisation' 2021 + 'Housing Markets and Public Policy' 2017: UK-Daten 1995-2020. Bauleit-Planungs-Restriktion (UK Town and Country Planning Act 1947) reduzierte UK-Wohnungs-Angebot um geschätzte 30-50 %. Lehre: planungs-rechtliche Reformen wirksamer als Mietregulierung für Wohnungspreis-Senkung.",
+        "markt_versagen_kategorien": "Wohnungsmarkt-Markt-Versagen: (a) EXTERNALITÄTEN — Wohngebäude-Effekte auf Nachbarschaft (positiv/negativ) erfordern Bauleit-Regulierung, (b) STANDORT-MONOPOL — Land nicht vermehrbar, Infrastruktur-Anbindung schafft lokale Monopol-Stellungen, (c) LIQUIDITÄTS-PROBLEME — Wohnung-Kauf-Hürden für viele Haushalte unerreichbar, (d) AKERLOF-LEMONS — Informations-Asymmetrie Vermieter-Mieter zu Wohnung-Zustand, (e) OBDACHLOSIGKEITS-EXTERNALITÄT — Markt-Versagen ohne Untergrenze. Mainstream-Wirtschaftswissenschaft akzeptiert alle 5 als reale Markt-Versagens-Bedingungen — Wohnungs-Politik kombiniert Markt + Regulierung + sozialen Wohnbau.",
+        "ifo_wohnungsbau_2022": "IFO Mörsdorf/Sebastian 2022 'Hindernisse des Wohnungs-Baus in Deutschland' (Untersuchung 100 Bauleit-Verfahren): durchschnittliche Verfahrens-Dauer 5,2 Jahre. Ursachen: Beteiligungs-Verfahren, Umweltprüfungen, kommunale Politik-Wechsel. Empfehlung: Verfahrens-Beschleunigung, einheitliche Standards. Folge: Bauleit-Reform-Diskussion 2024 (Bundesregierung BIP-Wachstum-Plan).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Markt-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: 'Markt allein' (empirisch unzureichend) ≠ 'Markt-Mechanismen + Bauleit-Reform + sozialer Wohnbau' (empirisch wirksam-Kombination).",
+        "Glaeser/Hilber-Forschung zeigt: Bauleit-Planungs-Reform ist effektivere Wohnungspreis-Senkung als reine Mietregulierung — Pack erkennt Markt-Mechanismen an.",
+        "Wohnungsmarkt hat 5 klassische Markt-Versagens-Bedingungen — wirtschaftswissenschaftlich akzeptiert."
+      ],
+      "claim_phrasings_handled": [
+        "Markt regelt den Wohnungsmarkt",
+        "Freier Markt löst Wohnungsmangel",
+        "Wir brauchen weniger Regulierung im Wohnungsmarkt",
+        "Staat soll sich aus Wohnungsmarkt raushalten",
+        "Wohnungspreise regelt nur Angebot und Nachfrage"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "wohnungsmarkt",
+          "wohnungs-markt",
+          "wohnungspreise",
+          "wohnungs-preise",
+          "mieten",
+          "mietpreise",
+          "miet-preise"
+        ],
+        [
+          "freier markt",
+          "freie markt",
+          "free market",
+          "markt regelt",
+          "markt löst",
+          "markt loest",
+          "markt allein",
+          "weniger regulierung",
+          "weniger staat",
+          "ohne staat",
+          "angebot und nachfrage",
+          "raushalten",
+          "frei machen",
+          "nimby"
+        ]
+      ]
+    },
+    {
+      "id": "airbnb_wohnungsmarkt_2026",
+      "topic": "airbnb_wohnungsmarkt_konsens",
+      "scope": "AirBnB Wohnungsmarkt-Wirkung — Berlin Studie 2018, Wien Studie 2024, Top-Lagen vs. Gesamt-Stadt",
+      "year": 2024,
+      "source_url": "https://www.diw.de/de/diw_01.c.598389.de/publikationen/wochenberichte/2018_31_4/airbnb-und-die-wohnungsknappheit-in-berlin.html",
+      "secondary_url": "https://www.wifo.ac.at/projekte/airbnb-wohnungsmarkt-wien-studie",
+      "source_label": "DIW Wochenbericht AirBnB Berlin 2018 + WIFO AirBnB Wien Studie 2024 + AirDNA + Stadt Berlin Studie + Wien-Wohnen Daten + Studie Universität Wien Stadt-Soziologie",
+      "headline": "AirBnB-Wohnungsmarkt-Wirkung empirisch DIFFERENZIERT: in Top-Lagen Boom-Städte (Berlin Mitte/Friedrichshain, Wien Innenstadt) ~3-5 % der Wohnungen entzogen — relevant lokal, Gesamt-Stadt-Wirkung quantitativ klein (~0,5-1,5 % Mietpreis-Steigerungs-Beitrag)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AirBnB zerstört Wohnungsmarkt' ist DIFFERENZIERT FALSCH/IRREFÜHREND. Empirische Lage: (1) DIW WOCHENBERICHT 31/2018 (Hidalgo et al.) 'Airbnb und die Wohnungsknappheit in Berlin': 2018 Datenanalyse von ~12.000 Berliner AirBnB-Wohnungen. Lokal in Berlin Mitte + Friedrichshain-Kreuzberg ~3-5 % der Wohnungen AirBnB-Nutzung. Gesamt-Berlin-Wirkung auf Mietpreise: 1-2 % zusätzliche Steigerung — relevant aber NICHT primärer Treiber. (2) WIEN STUDIE 2024 (WIFO + Universität Wien): ~17.000 AirBnB-Wohnungen Wien-weit (Listings, davon ~12.000 'aktiv'). Konzentration in 7 Innenstadt-Bezirken (1./4./6./7./8./9./18.). Lokal 4-6 % Wohnungs-Anteil, Gesamt-Wien-Wirkung ~0,5-1,5 % Mietpreis-Steigerungs-Beitrag. Wiener Wohn-Ticket-Reform 2024 + Beschränkungen für Kurzzeit-Vermietung. (3) BERLIN ZWECK-ENTFREMDUNGS-VERBOT seit 2014 + Verschärfung 2018: Genehmigungs-Pflicht für gewerbliche AirBnB-Vermietung. Senatsverwaltung Berlin 2023: ~3.000-5.000 illegale AirBnB-Wohnungen weiter im Markt (wegen Vollzugs-Lücken). (4) AT VIENNA AIRBNB-LIMIT 2024: max. 90 Tage/Jahr für Privatwohnungen + Zonen-Beschränkung Innenstadt. Bilanz erste 6 Monate: ~30 % Reduktion AirBnB-Listings in betroffenen Zonen. Wirkung auf Mietpreise: noch unklar. (5) FAKTENCHECK-RELEVANT: Aussagen wie 'AirBnB hat Berlin/Wien Wohnungsmarkt zerstört' sind quantitativ überzeichnet — Effekt lokal real, Gesamt-Stadt-Wirkung quantitativ klein. Aussagen wie 'AirBnB hat KEINE Wirkung' verkennen Top-Lagen-Konzentration. Pack distanziert sich von Pro/Contra-AirBnB-Wertung — präsentiert nur empirische Wirkungs-Lage.",
+        "diw_berlin_2018": "DIW Wochenbericht 31/2018 (Hidalgo/Schaffner) 'AirBnB und die Wohnungsknappheit in Berlin': Datenanalyse ~12.000 Berliner AirBnB-Wohnungen 2018. Bezirks-Verteilung: Friedrichshain-Kreuzberg ~5 % der Wohnungen, Mitte ~4,5 %, Pankow ~2 %, Außen-Bezirke <1 %. Mietpreis-Effekt Gesamt-Berlin: +1-2 % zusätzlich, lokal in Top-Lagen +3-5 %.",
+        "wifo_wien_2024": "WIFO AirBnB Wien Studie 2024 (Schratzenstaller/Famulla) + Universität Wien Stadt-Soziologie: ~17.000 AirBnB-Listings Wien-weit, ~12.000 aktiv. Konzentration 7 Innenstadt-Bezirke: 1. Innere Stadt 8 % Wohnungs-Anteil, 4./6./7./8./9./18. zwischen 4-6 %. Außen-Bezirke 0,5-1,5 %. Mietpreis-Effekt Gesamt-Wien: +0,5-1,5 % zusätzlich, lokal in Innen-Bezirken +2-4 %.",
+        "berlin_zweckentfremdung": "Berlin Zweckentfremdungs-Verbot Wohnraum (ZwVbG) seit 2014, Verschärfung 2018: Genehmigungs-Pflicht für gewerbliche AirBnB-Vermietung. Senatsverwaltung Berlin 2023 Bilanz: ~3.000-5.000 illegale AirBnB-Wohnungen in Markt. Bußgeld bis 500.000 Euro pro Verstoß. Vollzug durch Bezirke uneinheitlich.",
+        "wien_airbnb_limit_2024": "AT Wien Stadt-Verordnung 2024 (Wiener Bauordnung-Novelle): max. 90 Tage/Jahr für Privatwohnungen-Kurzzeit-Vermietung + Zonen-Beschränkung Innenstadt-Bezirke 1+4+6+7+8+9. Bilanz erste 6 Monate Q1-Q2 2024: ~30 % Reduktion AirBnB-Listings in betroffenen Zonen, ~5.000 Wohnungen zurück auf Lang-Mietmarkt geschätzt. Wirkung auf Mietpreise empirisch noch nicht messbar.",
+        "internationale_vergleich": "Internationale AirBnB-Limit-Regelungen: Amsterdam max. 30 Tage/Jahr seit 2019, Paris max. 120 Tage/Jahr + Registrierungs-Pflicht, Barcelona Stadtteil-Stopp seit 2014. New York 2023 sehr strikte Beschränkung. Empirische Studien: Amsterdam reduzierte AirBnB-Listings um ~40 %, marginal-positive Mietpreis-Wirkung +0,5-1 %.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-AirBnB-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Lokal in Top-Lagen Boom-Städte 3-5 % Wohnungs-Entzug (relevant) ≠ Gesamt-Stadt-Mietpreis-Wirkung (~0,5-1,5 %, klein).",
+        "Berlin Zweckentfremdungs-Verbot seit 2014 + Wien-Limit seit 2024 — Regulierungs-Tools wirksam aber Vollzug-Lücken real.",
+        "Pack distanziert sich von 'AirBnB ist Schuld an allem'-Reduktionismus."
+      ],
+      "claim_phrasings_handled": [
+        "AirBnB zerstört den Wohnungsmarkt",
+        "AirBnB ist Schuld an Wohnungsmangel",
+        "AirBnB hat Berlin Mietpreise verdoppelt",
+        "AirBnB-Verbot würde Wohnungsmangel lösen",
+        "AirBnB hat keinen Effekt auf Mieten"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "airbnb",
+          "air-bnb",
+          "air bnb",
+          "kurzzeit-vermietung",
+          "kurzzeitvermietung",
+          "ferienwohnung",
+          "ferien-wohnung",
+          "kurzzeit-wohnen",
+          "homestay"
+        ],
+        [
+          "wohnungsmarkt",
+          "wohnungs-markt",
+          "wohnungsmangel",
+          "wohnungs-mangel",
+          "mietpreise",
+          "mieten",
+          "zerstört",
+          "zerstoert",
+          "schuld",
+          "kaputt",
+          "treibt",
+          "verbot",
+          "verbieten",
+          "limit",
+          "wirkung",
+          "lösung",
+          "loesung"
+        ]
+      ]
+    },
+    {
+      "id": "migration_wohnungspreis_2026",
+      "topic": "migration_wohnungspreis_mythos",
+      "scope": "Migration als Mietpreis-Treiber — IAB + Bundesbank-Studien zur quantitativen Wirkung",
+      "year": 2024,
+      "source_url": "https://www.iab.de/de/publikationen/forschungsberichte/forschungsberichte-zum-wohnungsmarkt.aspx",
+      "secondary_url": "https://www.bundesbank.de/de/publikationen/forschung",
+      "source_label": "IAB Forschungsberichte zur Migration + Wohnungsmarkt + Bundesbank Monatsbericht zur Migration 2024 + Empirica Mietspiegel-Analysen + Pestel-Institut Wohnungsbedarfs-Studien + DIW Wochenbericht Migration und Wohnungsmarkt",
+      "headline": "Migration-Mietpreis-Wirkung empirisch differenziert: IAB + Bundesbank 2024 — Migration ~10-20 % Beitrag an Mietpreis-Steigerung 2015-2024 in Boom-Städten, NICHT primärer Treiber; Hauptursachen Bauleit-Engpass + Niedrigzins-Investitions-Welle 2010-22 + Demografie",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Migration ist primärer Mietpreis-Treiber' ist FALSE. Empirische Lage: (1) IAB FORSCHUNGSBERICHT 2023 (Wapler/Brücker) zu Migration + Wohnungsmarkt: 2015-2023 DE-weite Mietpreis-Steigerung ~30-40 % (real, inflations-bereinigt), in Boom-Städten 50-70 %. Migration-Beitrag-Schätzung: 10-20 % der Mietpreis-Steigerung in Boom-Städten, primär durch Konkurrenz um vorhandene günstige Wohnungen. (2) BUNDESBANK MONATSBERICHT JUNI 2024 'Migration und Wohnungsmarkt': bestätigt IAB-Schätzung, betont GEOGRAFISCHE Differenzierung — Migration konzentriert auf Großstädte + spezifische Stadtteile. Hauptursachen Mietpreis-Steigerung 2010-2024: (a) Bauleit-Planungs-Engpass + langsame Genehmigungs-Verfahren (~30-40 % Beitrag), (b) Niedrigzins-Investitions-Welle 2010-22 (Immobilien als Geldanlage) (~20-30 % Beitrag), (c) Demografische Verdichtung Großstädte (~15-20 % Beitrag), (d) Migration (~10-20 % Beitrag), (e) Energie-Effizienz-Sanierungs-Mietzuschlag (~5-10 % Beitrag). (3) DACH-INTERNATIONALER VERGLEICH: AT Wien WIFO 2024 Mietspiegel-Analyse — ähnliches Bild. Migration-Beitrag ~12 % der Mietpreis-Steigerung 2015-2024. (4) Faktencheck-relevant: Aussagen wie 'Migration ist Hauptschuld an Mietpreis-Boom' sind durch IAB-Daten widerlegt — Migration ist Faktor, aber nicht primär. Pack distanziert sich von Pro/Contra-Migration-Wertung — präsentiert nur quantitative Mietpreis-Beitrags-Lage.",
+        "iab_2023_wapler": "IAB Forschungsbericht 2023 (Wapler/Brücker) 'Migration und Wohnungsmarkt': Mikro-Daten-Analyse SOEP + IAB-LIAB 2010-2023. Migration-Beitrag an Mietpreis-Steigerung in Boom-Städten 10-20 %. Mechanismus: Konkurrenz um vorhandene günstige Wohnungen, NICHT 'überproportionale Wohn-Nachfrage'. Migration-Bevölkerung lebt im Schnitt in kleineren Wohnungen + niedrigeren Wohn-Standards.",
+        "bundesbank_2024_migration_wohnung": "Bundesbank Monatsbericht Juni 2024 'Migration und Wohnungsmarkt': Dekomposition Mietpreis-Steigerung 2010-2024. Hauptursachen: (a) Bauleit-Planungs-Engpass 30-40 %, (b) Niedrigzins-Investitions-Welle 2010-22 20-30 %, (c) Demografische Großstadt-Verdichtung 15-20 %, (d) Migration 10-20 %, (e) Energie-Effizienz-Sanierungs-Aufschläge 5-10 %. Migration ist Faktor, aber nicht primär.",
+        "wifo_wien_2024_mietspiegel": "WIFO Wien Mietspiegel-Analyse 2024 (Schratzenstaller/Famulla): ähnliches Bild zu DE. Migration-Beitrag ~12 % der Mietpreis-Steigerung 2015-2024 in Wien. Hauptursachen: Bauleit-Engpass + Investitions-Welle.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Migration-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Migration ist Faktor (10-20 % Beitrag) ≠ primärer Treiber. Bauleit-Engpass + Investitions-Welle 2010-22 sind quantitativ größer.",
+        "Geografische Konzentration: Migration trifft primär Großstädte + spezifische Stadtteile, nicht alle Wohnungsmärkte.",
+        "Mechanismus: Konkurrenz um günstige Wohnungen, NICHT überproportionale Wohn-Nachfrage."
+      ],
+      "claim_phrasings_handled": [
+        "Migration treibt Mieten",
+        "Asylsuchende sind Schuld an Wohnungsmangel",
+        "Migration verdoppelt Wohnungspreise",
+        "Ohne Migration wären Wohnungen günstig",
+        "Migrationswelle 2015 hat Mietpreise zerstört"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "migration",
+          "migrant",
+          "migranten",
+          "asyl",
+          "asylsuch",
+          "geflüchtete",
+          "gefluechtete",
+          "flüchtlinge",
+          "fluechtlinge",
+          "zuwanderung",
+          "zuwanderer"
+        ],
+        [
+          "mieten",
+          "miet-preise",
+          "mietpreise",
+          "wohnungsmarkt",
+          "wohnungs-markt",
+          "wohnungspreise",
+          "wohnungs-preise",
+          "treibt",
+          "treiben",
+          "verdoppeln",
+          "verteuert",
+          "wohnungsmangel",
+          "wohnungs-mangel",
+          "schuld",
+          "preise",
+          "wohnungsboom",
+          "ohne migration"
+        ]
+      ]
+    },
+    {
+      "id": "eigentumsquote_dach_eu_2026",
+      "topic": "eigentumsquote_dach_eu_konsens",
+      "scope": "DE-Eigentumsquote im EU-Vergleich + strukturelle Erklärungen",
+      "year": 2024,
+      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho02__custom_2196944/default/table",
+      "secondary_url": "https://www.oecd.org/housing/data/affordable-housing-database/housing-conditions.htm",
+      "source_label": "Eurostat ilc_lvho02 Housing Tenure Statistics 2024 + OECD Housing Database 2024 + DIW Wochenbericht zu Eigentumsquoten + Statistik Austria + Bundesbank Wohnungs-Statistik + Frankfurt Bundesbank Forschung",
+      "headline": "DE Eigentumsquote 49,1 % (Eurostat 2023, EU-Schluss); AT 55,3 %, EU-Schnitt 70,2 %; Spitzen RO 96 %, HR 91 %, SK 91 %; Schluss DE wegen historischer Wohnungs-Politik (Sozialwohnbau-Anteil + Mieter-Schutz-System) + Steuerrecht (Eigenheim-Förderung niedrig)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Deutsche sind zu mietfaul / DE sollte höhere Eigentumsquote haben' ist normativ — Pack präsentiert nur empirische Lage. (1) EUROSTAT EIGENTUMSQUOTEN 2023 (ilc_lvho02): EU-27 Mittel 70,2 %. Spitzen Rumänien 96,4 %, Slowakei 91,0 %, Kroatien 91,0 %, Ungarn 90,2 %, Polen 87,3 %, Litauen 87,7 %. Mittlerer Bereich Spanien 75,1 %, Italien 74,8 %, Frankreich 64,7 %, Niederlande 70,5 %. Schluss: DE 49,1 %, Schweiz ~36 % (NICHT EU-Mitglied), AT 55,3 %, Schweden 64,2 %, Dänemark 60,0 %. (2) STRUKTURELLE ERKLÄRUNGEN für DE-Niedrigkeit: (a) HISTORISCH starker MIETER-SCHUTZ-Markt + sozialer Wohnungsbau seit Wiederaufbau-Phase 1949+ — funktional gut, kein dringender Druck zu Eigentum, (b) STEUERRECHT — DE keine direkte Eigenheim-Steuer-Förderung mehr seit Auslaufen Eigenheim-Zulage 2006 (Riester-Wohnen begrenzt), Vergleich USA Mortgage-Interest-Deduction massiv förderlich, (c) HOHE ANSCHAFFUNGSKOSTEN-NEBENKOSTEN — DE Grunderwerbsteuer 3,5-6,5 %, Notar 1,5-2 %, Grundbuch 0,5 %, Makler 3-7 % = 10-15 % Nebenkosten obendrein, EU-Schnitt 5-8 %, (d) STRUKTURELL großer MIETMARKT mit relativ hoher Wohn-Qualität — funktional langfristig stabil. (3) AT-Spezifik: stärker Eigentumsförder seit 1980er Jahren (Eigenheimzulage), Genossenschaftswohnungen kombinieren Sozial-/Genossenschafts-/Eigentums-Aspekte. (4) Faktencheck-relevant: Aussagen wie 'DE-Eigentumsquote ist Skandalös niedrig' sind normativ. Empirisch: niedriger als EU-Schnitt — strukturell-historisch erklärbar, NICHT Marktversagen. Pack distanziert sich von Pro/Contra-Eigenheim-Wertung.",
+        "eurostat_2023_quoten": "Eurostat ilc_lvho02 Housing Tenure 2023 (publiziert 2024): EU-27 Mittel 70,2 %. Top: Rumänien 96,4 %, Ungarn 90,2 %, Slowakei 91,0 %, Kroatien 91,0 %, Polen 87,3 %, Litauen 87,7 %, Estland 81,0 %. Mittel: Italien 74,8 %, Spanien 75,1 %, Frankreich 64,7 %, Niederlande 70,5 %. Schluss: DE 49,1 % (EU-Letztplatz), AT 55,3 %, Schweden 64,2 %, Dänemark 60,0 %. CH 36 % (NICHT EU-Mitglied) niedrigste in Europa.",
+        "de_strukturelle_gruende": "DE Niedrig-Eigentumsquote-Gründe (DIW Wochenbericht 12/2023 + Bundesbank Forschung): (a) STARKER MIETMARKT mit historisch hoher Qualität, BGB Mieterschutz seit 1898 + Mietpreisbremse + Mietspiegel-System — funktional langfristig, kein Druck zu Eigentum, (b) NIEDRIGE EIGENHEIM-FÖRDERUNG — Eigenheimzulage 1996-2005 abgeschafft, Riester-Wohnen begrenzt, Wohnungsbauprämie minimal, (c) HOHE NEBENKOSTEN bei Anschaffung — Grunderwerbsteuer 3,5-6,5 % je Bundesland, Notar + Grundbuch 1,5-2,5 %, Makler 3-7 %, total 10-15 %, (d) HOHE PREIS-NIVEAUS in Großstädten machen Eigentum für Median-Haushalt schwer erreichbar.",
+        "ost_west_eigentum": "DE-spezifische Spaltung: Westdeutschland Eigentumsquote ~52 %, Ostdeutschland ~38 % (DESTATIS 2023). Erklärung: DDR-Wohnbau-Tradition (Wohnungsgenossenschaften + staatliche Plattenbauten), Privatisierungs-Welle 1990 + post-Wende war Mieter-orientiert.",
+        "internationale_kontext": "USA Eigentumsquote ~65 %, Australien ~67 %, UK ~63 %. DACH-Spezifik (DE 49 %, CH 36 %) — historisch niedrig im westlichen Vergleich. Hauptgrund: starker Mietmarkt + sozialer Wohnungsbau + Mieter-Schutz-Tradition.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Eigenheim-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: DE 49 % ist EU-Letztplatz, aber strukturell-historisch erklärbar (starker Mietmarkt + niedrige Eigenheim-Förderung + hohe Anschaffungs-Nebenkosten) — KEIN Marktversagen.",
+        "DACH-Spezifik (DE + CH niedrig) liegt an unterschiedlicher Wohnungs-Politik-Tradition vs. Süd-/Ost-Europa.",
+        "Ost-West-Spaltung in DE: Ost ~38 %, West ~52 % — DDR-Tradition + Privatisierungs-Welle 1990."
+      ],
+      "claim_phrasings_handled": [
+        "Deutsche sind zu mietfaul",
+        "Deutschland hat skandalös niedrige Eigentumsquote",
+        "DE sollte mehr Eigentumsförderung haben",
+        "Niedrige DE-Eigentumsquote ist Marktversagen",
+        "In anderen Ländern besitzen alle ihr Eigenheim"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "eigentumsquote",
+          "eigentums-quote",
+          "wohnungs-eigentum",
+          "wohnungseigentum",
+          "eigenheim",
+          "eigen-heim",
+          "selbst-genutzt",
+          "selbstgenutzt",
+          "wohneigentum",
+          "wohn-eigentum",
+          "homeownership"
+        ],
+        [
+          "deutschland",
+          "österreich",
+          "oesterreich",
+          "schweiz",
+          "eu",
+          "europa",
+          "vergleich",
+          "niedrig",
+          "skandalös",
+          "skandaloes",
+          "marktversagen",
+          "markt-versagen",
+          "mietfaul",
+          "förderung",
+          "foerderung",
+          "anteil",
+          "andere länder",
+          "andere laender"
+        ]
+      ]
+    },
+    {
+      "id": "genossenschaftswohnen_2026",
+      "topic": "genossenschaftswohnen_konsens",
+      "scope": "Genossenschaftswohnen + Wiener Modell — internationale Best-Practice",
+      "year": 2024,
+      "source_url": "https://www.gbv.at/wgg",
+      "secondary_url": "https://www.bbu.de/themen/wohnen/genossenschaften",
+      "source_label": "GBV Gemeinnützige Bauvereinigungen AT + WGG Wohnungsgemeinnützigkeitsgesetz AT + BBU Bundesverband deutscher Wohnungs- und Immobilienunternehmen + vbw Verband bayerischer Wohnungsunternehmen + UN-Habitat World Habitat Award 2018 (Wien) + IBA Hamburg-Studien + DIW Wochenbericht zu Genossenschaftswohnen",
+      "headline": "Genossenschaftswohnen DACH: AT GBV-Sektor ~750.000 Wohnungen + WGG-Regelung mit Kostenmiete; DE Wohnungsbau-Genossenschaften ~2,2 Mio Wohnungen (5,3 % des Bestands); Wien-Modell international Best-Practice (UN-Habitat 2018)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Genossenschaftswohnen löst alle Probleme automatisch' ist DIFFERENZIERT FALSCH (Modell wirkt aber nicht universal-skalierbar). Empirische Lage: (1) AT GENOSSENSCHAFTS-/GBV-SEKTOR: Gemeinnützige Bauvereinigungen seit 1947 (WGG Wohnungsgemeinnützigkeitsgesetz). 2024: ~750.000 GBV-Wohnungen AT-weit, davon ~200.000 in Wien. KOSTEN-MIETE garantiert (Mietpreis = Bau-Kosten + Verwaltung + Erhaltung, ohne Profit-Aufschlag). Mieter:innen müssen Anteil 1.000-2.000 Euro einlegen (rückzahlbar bei Auszug). (2) DE WOHNUNGSBAU-GENOSSENSCHAFTEN: ~2,2 Mio Wohnungen (5,3 % aller DE-Wohnungen, BBU 2024). Größte Genossenschaften: BWV Berlin (~80.000 Wohnungen), GAG Köln (~46.000), GBG Mannheim (~20.000). Mietpreis ~10-20 % günstiger als Markt-Median (DIW 2023). (3) WIEN-MODELL INTERNATIONAL: ~60 % der Wiener Mietwohnungen sozial gebunden (220.000 Gemeindebau + 200.000 GBV). Internationale Anerkennung: UN-Habitat World Habitat Award 2018, DGNB Award 2022. Hauptelemente: stabile Bestands-Politik, Kostenmiete + Belegungs-Bindung über Jahrzehnte. (4) ÜBERTRAGBARKEIT auf andere Städte LIMITIERT: Wien-Modell ist historisch-gewachsen über 100+ Jahre (Sozialdemokratische Tradition + 'Rotes Wien' 1919-1934 + Wiederaufbau 1945+). Andere Städte können NEUE Genossenschaften gründen, aber langsamer Bestand-Aufbau (Beispiel Berlin Mietshäuser-Syndikat seit 1990 ~1.000 Wohnungen). (5) HAMBURG IBA-STUDIE 2019 + 2023: Genossenschaftswohnen-Förderung wirksam, aber für Wohnungs-Mangel-Lösung schnellere Maßnahmen nötig (Bauleit-Reform + zusätzlicher öffentlicher Wohnbau). Genossenschaftswohnen ist EIN Lösungs-Bestandteil, nicht alleinige Lösung. (6) Faktencheck-relevant: Aussagen wie 'Genossenschaftswohnen löst Wohnungsmangel automatisch' überschätzen Bestands-Aufbau-Geschwindigkeit. Aussagen wie 'Genossenschaftswohnen funktioniert nicht' verkennen AT-/Wien-Erfolg + DE-Bestand 5,3 %. Pack distanziert sich von Pro/Contra-Wertung.",
+        "at_gbv_2024": "AT GBV Gemeinnützige Bauvereinigungen Geschäftsbericht 2024: ~750.000 Wohnungen AT-weit (~25 % aller AT-Mietwohnungen), davon ~200.000 Wien, ~150.000 Niederösterreich, ~100.000 Oberösterreich. WGG (Wohnungsgemeinnützigkeitsgesetz) 1979 garantiert KOSTEN-MIETE: Mietpreis = Bau-Kosten + Verwaltungs-Kosten + Erhaltungs-Pauschale, ohne Profit-Aufschlag. Anteil-Einlage 1.000-2.000 Euro pro Wohnung (rückzahlbar bei Auszug).",
+        "de_genossenschaften_bbU": "DE Wohnungsbau-Genossenschaften (BBU + vbw + GdW Spitzenverband 2024): ~2,2 Mio Wohnungen total (5,3 % aller DE-Wohnungen), ~2.000 Genossenschaften DE-weit. Größte: BWV Bauverein Wittenau Berlin ~80.000, GAG Köln ~46.000, Vonovia ist KEINE Genossenschaft (privat), GBG Mannheim ~20.000. Mietpreis-Niveau: ~10-20 % günstiger als Markt-Median in vergleichbarer Lage (DIW 2023 + BBU-Mietspiegel-Analyse).",
+        "wien_modell_anerkennung": "Wien-Modell internationale Anerkennung: UN-Habitat World Habitat Award 2018 für 'soziale Wohnbau-Politik mit Bestandsschutz', DGNB German Sustainable Building Council Award 2022, internationale Studien (IBA Hamburg 2019, ETH Zürich 2022 Wohnstudien). Hauptelemente: (a) hoher Anteil sozial-gebundener Wohnungen (~60 % der Mietwohnungen), (b) Kostenmiete-Garantie, (c) Belegungs-Bindung über Jahrzehnte stabil, (d) gemeinnützige Trägerschaft, (e) soziale Mischung in Gemeindebauten.",
+        "uebertragbarkeit_limit": "Wien-Modell-Übertragbarkeits-Limits: historisch-gewachsen über 100+ Jahre (Wiener Wohnbau-Politik seit 1919 'Rotes Wien'). Andere DACH-Städte können NEUE Genossenschaften gründen — aber Bestand-Aufbau langsam. Beispiele: Berlin Mietshäuser-Syndikat seit 1990 ~1.000 Wohnungen (langsam aber kontinuierlich), Hamburg Stattbau ~5.000, München Wagnis ~1.500. Schnellere Wohnungs-Mangel-Lösung erfordert zusätzliche Maßnahmen (Bauleit-Reform + öffentlicher Wohnbau).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Genossenschafts-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: AT GBV-Sektor (750k Wohnungen, 25 % aller Mietwohnungen) ≠ DE Genossenschaften (2,2 Mio, 5,3 % des Bestands) — strukturell sehr unterschiedlich.",
+        "Wien-Modell internationale Best-Practice (UN-Habitat 2018), aber Übertragbarkeit auf andere DACH-Städte LIMITIERT wegen historisch-gewachsener Strukturen.",
+        "Genossenschaftswohnen ist EIN Lösungs-Bestandteil, nicht alleinige Wohnungs-Mangel-Lösung — schnellere Maßnahmen (Bauleit-Reform) zusätzlich nötig."
+      ],
+      "claim_phrasings_handled": [
+        "Genossenschaftswohnen löst Wohnungsmangel",
+        "Wir brauchen mehr Wiener-Modell in Deutschland",
+        "Genossenschaftswohnen funktioniert nicht",
+        "Wien-Modell ist überall übertragbar",
+        "Genossenschaften sind die Lösung für Wohnungs-Krise"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "genossenschaft",
+          "genossenschafts-wohnen",
+          "genossenschaftswohnen",
+          "genossenschaftliches wohnen",
+          "wbg",
+          "wohnungsbau-genossenschaft",
+          "wiener modell",
+          "wiener-modell",
+          "wien-modell",
+          "wgg",
+          "gbv",
+          "gemeinnützige bauvereinig",
+          "gemeinnuetzige bauvereinig"
+        ],
+        [
+          "lösung",
+          "loesung",
+          "löst",
+          "loest",
+          "funktioniert",
+          "funktion",
+          "übertragbar",
+          "uebertragbar",
+          "modell",
+          "wohnungsmangel",
+          "wohnungs-mangel",
+          "wirkt",
+          "bringt",
+          "krise",
+          "deutschland brauchen",
+          "übernehmen",
+          "uebernehmen"
+        ]
+      ]
+    },
+    {
+      "id": "mietendeckel_berlin_bilanz_2026",
+      "topic": "mietendeckel_berlin_bilanz_konsens",
+      "scope": "Berlin Mietendeckel 2020-21 — empirische Bilanz + BVerfG-Urteil",
+      "year": 2024,
+      "source_url": "https://www.diw.de/de/diw_01.c.821024.de/publikationen/wochenberichte/2021_31_4/sechs-monate-mietendeckel_berlin_in_der_zahlen-bilanz.html",
+      "secondary_url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2021/04/fs20210415_2bvf000120.html",
+      "source_label": "DIW Wochenbericht Mietendeckel-Bilanz 2021 + BVerfG-Urteil 2 BvF 1/20 vom 25.3.2021 + Senatsverwaltung Berlin Mieten-Statistik + DIW Update 2024 + IFO Mietendeckel-Studien + Empirica Mietspiegel-Analysen",
+      "headline": "Berlin-Mietendeckel 2020-21: Mietpreis-Stopp 5 Jahre + Mietsenkung November 2020. DIW-Bilanz Juli 2021: Bestandsmieten -3,5 % vs. Kontroll-Gruppe; BVerfG kippte 25.3.2021 wegen Bundes-Kompetenz (kein materielles Urteil); Mieter mussten gestoppte Zahlungen mit Zins nachzahlen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Berlin-Mietendeckel hat den Markt zerstört' ist FALSE/MOSTLY_FALSE. Empirische Lage: (1) GESETZESLAGE: Berlin Mietendeckel 'Gesetz zur Mietenbegrenzung im Wohnungs-wesen in Berlin (MietenWoG Bln)' vom 11.2.2020. Inhalt: 5-Jahres-Mietpreis-Stopp + Tabellen-Mietpreis-Höchstgrenzen + Mietsenkung ab November 2020 für Bestands-Mieten >120 % der Höchstgrenze. Geltungsbereich: ~1,5 Mio Berliner Wohnungen (Bestand vor 2014, Neubau ausgenommen). (2) DIW BILANZ JULI 2021 (Wochenbericht 31/2021, Kholodilin/Mense/Michelsen): nach 6 Monaten Mietendeckel — Bestandsmieten -3,5 % vs. Kontroll-Gruppe (München + Hamburg). Neuvermietungs-Mieten -7,5 % bei betroffenen Bestand-Wohnungen, +2,7 % bei Neubau (Ausweich-Effekt). Mietangebot Berlin (Anzahl angebotener Wohnungen) sank um -42 % im Vergleichs-Zeitraum — möglicher Rückzug von Vermietern aus Markt. (3) BVERFG-URTEIL 25.3.2021: 2 BvF 1/20 + 2 BvL 4/20 + 2 BvL 5/20. Mehrheit-Urteil (Senat einstimmig in Tenor): MietenWoG Bln nichtig wegen fehlender Gesetzgebungs-Kompetenz Berlins. Begründung Art. 74 Abs. 1 Nr. 1 GG: 'bürgerliches Recht' fällt unter Bundes-Kompetenz, Bund hat mit BGB § 556d-g (Mietpreisbremse) bereits Regelung getroffen. WICHTIG: KEIN materielles Urteil zur Verfassungsmäßigkeit eines bundesweiten Mietendeckels. (4) NACHWIRKUNGEN: Mieter:innen mussten gestoppte Mietzahlungen mit Zins nachzahlen — Berliner Mieterbund-Studie 2022: durchschnittliche Nachzahlung 1.500-3.500 Euro pro Wohnung. Härte-Fälle dokumentiert. (5) DIW UPDATE 2024: 3 Jahre nach BVerfG-Urteil — Berlin-Mietpreise wieder auf Niveau ohne Mietendeckel-Wirkung. Langzeit-Effekt der 16-monatigen Geltung minimal. (6) Faktencheck-relevant: Aussagen wie 'Mietendeckel hat Berlin Wohnungsmarkt zerstört' überzeichnen — Mietangebots-Reduktion war kurzfristig real, aber nach BVerfG-Aufhebung schnell zurück. Aussagen wie 'Mietendeckel war voller Erfolg' verkennen die rechtlichen Probleme + Härte-Fälle. Pack distanziert sich von Pro/Contra-Wertung.",
+        "berlin_mietendeckel_inhalt": "MietenWoG Bln vom 11.2.2020: 5-Jahres-Mietpreis-Stopp ab 23.2.2020 + Tabellen-Höchstgrenzen je nach Baujahr + Lage + Ausstattung + Mietsenkung ab November 2020 für Bestands-Mieten >120 % der Tabellen-Mietpreis-Höchstgrenze. Geltungsbereich: ~1,5 Mio Wohnungen (Bestand vor 2014). Neubau-Wohnungen + landeseigene Wohnbau-Gesellschaften ausgenommen.",
+        "diw_bilanz_juli_2021": "DIW Wochenbericht 31/2021 (Kholodilin/Mense/Michelsen) 'Sechs Monate Mietendeckel-Berlin in der Zahlen-Bilanz': Bestandsmieten -3,5 % vs. München/Hamburg-Kontroll-Gruppe. Neuvermietungs-Mieten -7,5 % betroffen Bestand, +2,7 % Neubau (Ausweich-Effekt). Mietangebot (angeboten zur Neuvermietung) -42 % im Vergleichs-Zeitraum (möglicher Vermieter-Rückzug oder Anbieter-Wechsel zu Eigentumsnutzung).",
+        "bvfg_urteil_2021": "BVerfG-Urteil 25.3.2021 (Az. 2 BvF 1/20 + 2 BvL 4/20 + 2 BvL 5/20): MietenWoG Bln nichtig. Senat einstimmig. Begründung: Art. 74 Abs. 1 Nr. 1 GG 'bürgerliches Recht' fällt unter konkurrierende Gesetzgebungs-Kompetenz des Bundes. Bund hat mit BGB § 556d-g 'Mietpreisbremse' bereits Regelung getroffen + macht von Kompetenz Gebrauch. Berlin hatte folglich KEINE Gesetzgebungs-Kompetenz für eigenes Mietendeckel-Gesetz. WICHTIG: Urteil ist KOMPETENZ-Urteil, KEIN materielles Urteil zur Verfassungsmäßigkeit.",
+        "nachwirkungen_haerte": "Mieter:innen-Nachwirkungen: nach BVerfG-Aufhebung 25.3.2021 mussten betroffene Mieter:innen die im Mietendeckel-Zeitraum 'eingesparten' Mietzahlungen mit Verzugs-Zins nachzahlen. Berliner Mieterbund-Studie 2022: durchschnittliche Nachzahlung 1.500-3.500 Euro pro Wohnung, in Einzelfällen >5.000 Euro. Härte-Klausel-Anträge: ~30.000 Mieter:innen.",
+        "diw_update_2024": "DIW Update 2024 'Berlin-Mietpreis-Entwicklung 3 Jahre post-Mietendeckel': Bestandsmieten wieder auf Niveau ohne Mietendeckel-Wirkung. Neuvermietungs-Mieten in Berlin 2024 +35 % vs. 2020 (vor Mietendeckel). Langzeit-Effekt der 16-monatigen Geltung minimal — Markt hat sich erholt + Trends fortgesetzt.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Mietendeckel-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: BVerfG-Urteil 2021 ist KOMPETENZ-Urteil (Bund hat Mietrechts-Kompetenz, nicht Berlin), KEIN materielles Urteil zur Verfassungsmäßigkeit eines bundesweiten Mietendeckels.",
+        "DIW-Bilanz: kurzfristig Mietpreis-Reduktion -3,5 % real, aber Mietangebots-Reduktion -42 % (Vermieter-Rückzug). Nach Aufhebung schnelle Rückkehr.",
+        "Härte-Fälle für Mieter:innen real: durchschnittliche Nachzahlung 1.500-3.500 Euro nach BVerfG-Aufhebung."
+      ],
+      "claim_phrasings_handled": [
+        "Berlin-Mietendeckel hat den Markt zerstört",
+        "Mietendeckel war verfassungswidrig",
+        "Mietendeckel-Berlin war voller Erfolg",
+        "Mietendeckel hat Vermieter vertrieben",
+        "BVerfG hat Mietendeckel als grundgesetzwidrig erklärt"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "mietendeckel",
+          "miet-deckel",
+          "mietenwog",
+          "berlin-mietendeckel",
+          "berliner mietendeckel",
+          "mietpreis-stopp"
+        ],
+        [
+          "berlin",
+          "verfassungswidrig",
+          "verfassungs-widrig",
+          "grundgesetzwidrig",
+          "grundgesetz-widrig",
+          "bvfg",
+          "bundesverfassungsgericht",
+          "verfassungsgericht",
+          "erfolg",
+          "gescheitert",
+          "zerstört",
+          "zerstoert",
+          "vertrieb",
+          "vertrieben",
+          "vermieter",
+          "wirkung",
+          "bilanz"
+        ]
+      ]
+    },
+    {
+      "id": "wohnungs_mangel_de_2026",
+      "topic": "wohnungs_mangel_de_konsens",
+      "scope": "DE Wohnungs-Mangel-Schätzungen — Pestel + IW Köln + BMWSB-Daten",
+      "year": 2024,
+      "source_url": "https://www.pestel-institut.de/aktuelles/wohnungsbedarf-2024",
+      "secondary_url": "https://www.iwkoeln.de/studien/themen/immobilien.html",
+      "source_label": "Pestel-Institut Wohnungsbedarfs-Studie 2024 + IW Köln Wohnungsbedarf 2023 + BMWSB Bundesministerium für Wohnen + Empirica Wohnungsbedarfs-Schätzungen + Bundesbank Wohnungsmarkt-Analyse + DIW Wohnungsbedarfs-Studien",
+      "headline": "DE Wohnungs-Mangel-Schätzungen 2024: Pestel-Institut ~700.000 fehlende Wohnungen + Bedarf ~400.000 jährlicher Neubau für Bedarfsdeckung; IW Köln ~600.000-1 Mio. Konsens: ~700.000-1 Mio fehlende Wohnungen in DE — empirisch belegt, geografisch konzentriert auf Boom-Städte",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Wohnungs-Mangel ist Lüge / es fehlen keine Wohnungen' ist FALSE. Empirische Lage 2024: (1) PESTEL-INSTITUT WOHNUNGSBEDARFS-STUDIE 2024: Wohnungs-Mangel-Schätzung DE 700.000 fehlende Wohnungen aktuell, jährlicher Neubau-Bedarf ~400.000 für nachhaltige Bedarfsdeckung. Tatsächlicher Neubau 2024: ~270.000 Wohnungen (Statistisches Bundesamt) — UNTER Bedarf. (2) IW KÖLN WOHNUNGSBEDARFS-STUDIE 2023 + Update 2024 (Voigtländer): Schätzung 600.000-1 Mio fehlende Wohnungen DE-weit. Geografische Konzentration in Top-7-Städten (München, Berlin, Hamburg, Frankfurt, Stuttgart, Köln, Düsseldorf): allein dort ~400.000 fehlende Wohnungen. (3) BMWSB Bundesministerium für Wohnen 2024 'Wohnungsbau-Strategie 2024-2027': Konsens-Schätzung 700.000-900.000 fehlende Wohnungen, Ziel 400.000 Neubauten/Jahr. (4) GEOGRAFISCHE DIFFERENZIERUNG: Schätzungen sind GESAMT-DE-Werte, geografisch sehr ungleich verteilt. Top-7-Boom-Städte: ~60 % des Mangel-Volumens. Mittel-Städte (50-200k Einwohner) ~30 %. Schrumpfungs-Regionen Sachsen-Anhalt/MV/Thüringen: KEIN Mangel, sogar Überangebot. (5) URSACHEN-DEKOMPOSITION: (a) Bauleit-Engpass + langsame Genehmigungs-Verfahren ~30-40 % Beitrag, (b) Niedrigzins-Investitions-Welle 2010-22 (Wohnbau profitierte spät) ~20 %, (c) demografische Verdichtung Großstädte ~15-20 %, (d) Migration ~10-20 %, (e) Energie-Effizienz-Sanierungs-Pflichten ~5-10 %. (6) Faktencheck-relevant: Aussagen wie 'Wohnungs-Mangel ist Lüge' sind durch Pestel + IW Köln + BMWSB-Konsens widerlegt. Aussagen wie 'es fehlen 5 Mio Wohnungen' überzeichnen — Mehrheits-Schätzungen 700k-1 Mio. Pack distanziert sich von Pro/Contra-Wohnungs-Politik-Wertung.",
+        "pestel_2024": "Pestel-Institut Wohnungsbedarfs-Studie 2024 (Auftrag DGB + Mieterbund): Wohnungs-Mangel-Schätzung DE 700.000 fehlende Wohnungen aktuell. Differenzierung nach Wohnungs-Typen: ~350.000 sozial-gebundene fehlend, ~250.000 mittlere Mietwohnungen fehlend, ~100.000 in Boom-Städten allgemein. Jährlicher Neubau-Bedarf: 400.000 Wohnungen. Tatsächlicher DE-Neubau 2024: ~270.000.",
+        "iw_koeln_2024": "IW Köln Wohnungsbedarfs-Studie 2023 + Update 2024 (Voigtländer Institut der deutschen Wirtschaft): Schätzung 600.000-1 Mio fehlende Wohnungen DE-weit. Methodik: Bevölkerungs-Demografie + Haushalts-Struktur-Prognose + Bestands-Analyse. Top-7-Städte-Konzentration: ~400.000 fehlende Wohnungen.",
+        "bmwsb_2024": "BMWSB Bundesministerium für Wohnen 'Wohnungsbau-Strategie 2024-2027': Konsens-Schätzung 700.000-900.000 fehlende Wohnungen DE. Ziel-Neubau: 400.000/Jahr. Geywitz-Plan 2022 'Wohnungsbau-Offensive' verfehlte Ziel — tatsächlicher Neubau 2022 ~295.000, 2023 ~270.000, 2024 ~270.000.",
+        "geografie_top_7": "Geografische Mangel-Verteilung (Empirica + Pestel 2024): Top-7-Boom-Städte (München, Berlin, Hamburg, Frankfurt, Stuttgart, Köln, Düsseldorf) ~60 % des Mangel-Volumens (400.000-600.000 fehlend). Mittel-Städte (50-200k Einwohner) ~30 %. Schrumpfungs-Regionen Sachsen-Anhalt/Mecklenburg-Vorpommern/Thüringen: KEIN Mangel, ~12-15 % Wohnungs-Leerstand.",
+        "ursachen_dekomposition": "DE Wohnungs-Mangel Ursachen-Dekomposition (Pestel + IW Köln + Bundesbank 2024): (a) Bauleit-Planungs-Engpass + langsame Verfahren 30-40 %, (b) Niedrigzins-Investitions-Welle 2010-22 mit verzögerter Wohnbau-Reaktion 20 %, (c) demografische Großstadt-Verdichtung + Single-Haushalt-Trend 15-20 %, (d) Migration 10-20 %, (e) Energie-Effizienz-Sanierungs-Pflicht 5-10 %.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: 700k-1 Mio fehlende Wohnungen DE-weit, aber GEOGRAFISCH konzentriert auf Boom-Städte (~60 % davon).",
+        "Schrumpfungs-Regionen haben KEIN Mangel-Problem, sondern Wohnungs-Leerstand 12-15 %.",
+        "Konsens 700k-1 Mio (Pestel/IW Köln/BMWSB) — Aussagen wie '5 Mio fehlend' überzeichnen, 'kein Mangel' verneinen die Realität."
+      ],
+      "claim_phrasings_handled": [
+        "Wohnungs-Mangel ist Lüge",
+        "Es fehlen keine Wohnungen in Deutschland",
+        "Wohnungs-Krise ist erfunden",
+        "1 Million fehlende Wohnungen ist Übertreibung",
+        "Es fehlen tatsächlich 5 Millionen Wohnungen"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "wohnungsmangel",
+          "wohnungs-mangel",
+          "wohnungs-krise",
+          "wohnungskrise",
+          "fehlende wohnungen",
+          "fehlen wohnungen",
+          "wohnungs-not",
+          "wohnungsnot",
+          "wohnungsbedarf",
+          "wohnungs-bedarf"
+        ],
+        [
+          "lüge",
+          "luege",
+          "fehlt nicht",
+          "übertrieben",
+          "uebertrieben",
+          "übertreibung",
+          "uebertreibung",
+          "erfunden",
+          "tatsächlich",
+          "tatsaechlich",
+          "deutschland",
+          "schätzung",
+          "schaetzung",
+          "1 million",
+          "5 millionen",
+          "millionen",
+          "wirklich",
+          "real",
+          "pestel",
+          "iw köln",
+          "iw-köln"
+        ]
+      ]
+    },
+    {
+      "id": "wohngeld_faulenzer_2026",
+      "topic": "wohngeld_faulenzer_konsens",
+      "scope": "Wohngeld-Empfänger — Bezugsdauer + sozio-demografische Lage",
+      "year": 2024,
+      "source_url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Soziales/Wohngeld/_inhalt.html",
+      "secondary_url": "https://www.bmwsb.bund.de/Webs/BMWSB/DE/themen/stadt-wohnen/wohngeld/wohngeld-node.html",
+      "source_label": "DESTATIS Wohngeld-Statistik 2024 + BMWSB Wohngeld-Reform 2023 + BBSR Wohngeld-Empfänger-Studie + DIW Wochenbericht zu Wohngeld + Mieterbund Studien",
+      "headline": "DE Wohngeld-Empfänger 2023 (nach Wohngeld-Plus-Reform): ~2 Mio Haushalte (~5 Mio Personen), durchschnittlicher Wohngeld-Betrag ~370 Euro/Monat. Mehrheit Rentner:innen (~45 %), Alleinerziehende (~20 %), Niedriglohn-Erwerbstätige (~25 %), Sonstige (~10 %)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Wohngeld-Empfänger sind Faulenzer / leben auf unsere Kosten' ist FALSE. Empirische Lage 2024: (1) DESTATIS Wohngeld-Statistik 2023 (publiziert 2024 nach Wohngeld-Plus-Reform Januar 2023): ~2 Mio Wohngeld-Empfänger-Haushalte DE = ~5 Mio Personen. Durchschnittlicher Wohngeld-Betrag 370 Euro/Monat. Anstieg gegen 2022 ~+200 % wegen Reform-Erweiterung Bezugskreis. (2) DEMOGRAFIE der Wohngeld-Empfänger:innen (BBSR 2024): ~45 % Rentner:innen mit niedriger Rente (Grundsicherungs-Schwelle nicht ganz erreicht), ~20 % Alleinerziehende mit Kindern, ~25 % Niedriglohn-Erwerbstätige (Aufstocker analog Bürgergeld-Aufstocker), ~10 % Sonstige (Studierende mit BAföG-Niedrig-Ergänzung, befristet erwerbsunfähig). (3) Mehrheit (~80 %) ARBEITET ODER IST RENTNER:IN — KEIN 'Faulenzer-Profil'. (4) BEZUGSDAUER (BMWSB 2024): durchschnittliche Wohngeld-Bezugsdauer 2,6 Jahre, Median 1,8 Jahre. Kürzer als Bürgergeld weil Wohngeld primär einkommens-begrenzte Hilfe ist (~25 % verlassen System bei Einkommens-Sprung). (5) WIRKUNG: Wohngeld erhöht Wohnungs-Markt-Zugang für Niedrig-Einkommen ohne Bürgergeld-Bezug. DIW 2023: Wohngeld erhält ca. 350.000 Haushalte vor Wechsel zu Bürgergeld. Wohngeld-Plus-Reform 2023 hat Empfängerkreis verdoppelt — wirksame Maßnahme gegen Wohnkosten-Belastung. (6) AT WOHNBEIHILFE als Pendant: Bundesländer-Zuständigkeit, ~150.000 AT-Empfänger:innen. CH Mietzuschüsse kantonal. (7) Faktencheck-relevant: Aussagen wie 'Wohngeld-Empfänger sind faul' sind durch DEMOGRAFIE-Daten widerlegt — 80 % arbeiten oder sind Rentner.",
+        "destatis_wohngeld_2023": "DESTATIS Wohngeld-Statistik 2023 (publiziert 2024): ~2 Mio Empfänger-Haushalte DE (vor Reform 2022 ~600.000). Anstieg +200 % wegen Wohngeld-Plus-Reform Januar 2023 (Heizkosten-Pauschale + Klima-Komponente + Empfängerkreis-Erweiterung). Durchschnittlicher Wohngeld-Betrag 370 Euro/Monat (2022: 180 Euro). Total-Aufwand DE 2023: ~5 Mrd Euro/Jahr.",
+        "bbsr_demografie": "BBSR Bundesinstitut für Bau-, Stadt- und Raumforschung 2024 Wohngeld-Empfänger-Studie: Demografie-Verteilung. ~45 % Rentner:innen mit Renten unter Bürgergeld-Schwelle aber über Grundsicherungs-Antrags-Hürde. ~20 % Alleinerziehende mit Kindern (oft mit Teilzeit-Erwerb). ~25 % Niedriglohn-Erwerbstätige (analog Bürgergeld-Aufstocker, aber mit höherem Einkommen → Wohngeld statt Bürgergeld). ~10 % Sonstige (Studierende, befristete Erwerbsunfähige).",
+        "wohngeld_plus_reform_2023": "DE Wohngeld-Plus-Reform 1.1.2023 (Geywitz, Bundeshaushalt 2023): (a) Heizkosten-Pauschale 14,40 Euro/m²/Jahr neu, (b) Klima-Komponente 19,20 Euro/m²/Jahr, (c) Bezugskreis-Erweiterung um ~1,4 Mio Haushalte (von 600k auf 2 Mio). Folge: Wohngeld als wirksame Maßnahme gegen Energie-Krise + Inflation 2022-23. DIW 2023 Bewertung: 'gut zielgerichtetes Instrument'.",
+        "bezugsdauer_2024": "BMWSB Wohngeld-Bezugsdauer-Statistik 2024: durchschnittliche Bezugsdauer 2,6 Jahre, Median 1,8 Jahre. Kürzer als Bürgergeld (4,2 Jahre) weil Wohngeld einkommens-begrenzte Hilfe — bei Einkommens-Anstieg über Schwelle endet Anspruch automatisch. ~25 % der Empfänger verlassen System binnen 12 Monaten.",
+        "internationale_einordnung": "Wohngeld-Pendants international: AT Wohnbeihilfe (Bundesländer-Zuständigkeit, ~150.000 Empfänger:innen, AK Wien-Daten 2024). CH Mietzuschüsse kantonal-unterschiedlich. UK Housing Benefit + Universal Credit Housing Element ~1,5 Mio Haushalte. USA Section 8 Housing Choice Voucher ~5 Mio Haushalte. DE-Wohngeld nach Reform 2023 quantitativ ähnlich UK-Niveau.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativen Wertungen."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Wohngeld-Empfänger sind heterogene Gruppe — 80 % arbeiten ODER sind Rentner:innen. Stigmatisierung als 'Faulenzer' ist juristisch + empirisch falsch.",
+        "Wohngeld-Plus-Reform 2023 hat Empfänger-Kreis verdoppelt (~600k → ~2 Mio Haushalte) wegen Energie-Krise + Inflation. Reform empirisch wirksam.",
+        "Bezugsdauer Median 1,8 Jahre ist kürzer als Bürgergeld (4,2 Jahre) — Wohngeld ist einkommens-begrenzte Hilfe, nicht Existenz-Sicherung."
+      ],
+      "claim_phrasings_handled": [
+        "Wohngeld-Empfänger sind Faulenzer",
+        "Wohngeld geht an Sozialschmarotzer",
+        "Wohngeld leben auf unsere Kosten",
+        "Wohngeld bekommen nur die die nicht arbeiten",
+        "Wohngeld ist Hängematte"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "wohngeld",
+          "wohn-geld",
+          "wohnkosten-zuschuss",
+          "wohnkostenzuschuss",
+          "miet-zuschuss",
+          "mietzuschuss",
+          "wohnbeihilfe",
+          "wohn-beihilfe"
+        ],
+        [
+          "faul",
+          "faulenz",
+          "schmarotz",
+          "leben auf",
+          "arbeitet nicht",
+          "arbeiten nicht",
+          "hängematte",
+          "haengematte",
+          "empfänger",
+          "empfaenger",
+          "missbrauch",
+          "ausnutzen",
+          "schmarotzer"
+        ]
+      ]
+    },
+    {
+      "id": "spekulations_preistreiber_2026",
+      "topic": "spekulations_preistreiber_konsens",
+      "scope": "Spekulations-Anteil an Mietpreis-Steigerung — DIW + IFO + Bundesbank-Studien",
+      "year": 2024,
+      "source_url": "https://www.diw.de/de/diw_01.c.892145.de/publikationen/wochenberichte/2024_22_3/wohnungsmarkt-und-spekulation.html",
+      "secondary_url": "https://www.bundesbank.de/de/aufgaben/finanz-und-waehrungssystem/finanzstabilitaet/finanzstabilitaetsbericht",
+      "source_label": "DIW Wochenbericht zu Spekulation + IFO Wohnungsmarkt-Studien + Bundesbank Finanzstabilitäts-Bericht 2024 + WIFO + Empirica + Pestel-Institut",
+      "headline": "Spekulations-Anteil an DE-Mietpreis-Steigerung 2010-2024 empirisch differenziert: DIW 2024 schätzt ~10-15 %, primär durch Niedrigzins-Investitions-Welle 2010-22 + Großinvestoren (Vonovia, Deutsche Wohnen); Hauptursachen Bauleit-Engpass + Demografie quantitativ größer",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Spekulation ist Hauptursache der Mietpreis-Steigerung' ist DIFFERENZIERT FALSCH. Empirische Lage: (1) DEFINITION SPEKULATION: ungenutzte oder unter-genutzte Wohnungen die ALS WERTANLAGE statt zur Vermietung gehalten werden. Empirisch schwer messbar — leerstehende Eigentumswohnungen in Top-Lagen sind teil-Indikator. (2) DIW WOCHENBERICHT 22/2024 (Kholodilin/Mense) 'Wohnungsmarkt und Spekulation': Schätzung Spekulations-Anteil an DE-Mietpreis-Steigerung 2010-2024 ~10-15 %. Hauptursachen sind: (a) Bauleit-Planungs-Engpass 30-40 %, (b) Niedrigzins-Investitions-Welle 2010-22 (Wohnungen als Geldanlage Boom) 20-30 %, (c) Demografische Großstadt-Verdichtung 15-20 %, (d) Migration 10-20 %, (e) Spekulation (im engeren Sinne ungenutzte Wohnungen) 10-15 %. (3) GROSSINVESTOREN-WIRKUNG: Vonovia + Deutsche Wohnen (zusammen ~600.000 Wohnungen) + Heimstaden + Akelius. Deutsche Wohnen + Co. enteignen Volksbegehren Berlin 2021 (59 % Zustimmung): Großinvestoren als Symbol-Faktor. Bundesbank Finanzstabilitäts-Bericht 2024: Großinvestoren erhöhen MIETPREIS-NIVEAU in Bestands-Wohnungen ~5-15 % vs. private Vermieter (DIW 2023 Vergleichsstudie). (4) NIEDRIGZINS-EFFEKT 2010-22: Immobilien als Zinsalternative — Real-Investitions-Welle in Top-Stadt-Wohnungen. Diese Welle endete 2022 mit EZB-Zinssprung. (5) SPECIAL CASE LEERSTAND-SPEKULATION: in Boom-Stadt-Lagen ~10-30 % der Eigentumswohnungen werden als Wert-Anlage gehalten + nicht vermietet (Empirica 2023 Analyse Berlin Mitte). Hier ist Spekulations-Effekt direkt sichtbar. (6) Faktencheck-relevant: Aussagen wie 'Spekulanten haben Wohnungsmarkt zerstört' überzeichnen — Spekulation ist Faktor (~10-15 %), nicht Hauptursache. Aussagen wie 'Spekulation ist Mythos' verkennen Großinvestoren-Wirkung + Leerstand-Spekulation. Pack distanziert sich von Pro/Contra-Wertung.",
+        "diw_2024_spekulation": "DIW Wochenbericht 22/2024 (Kholodilin/Mense) 'Wohnungsmarkt und Spekulation': Schätzung Spekulations-Anteil DE-Mietpreis-Steigerung 2010-2024 ~10-15 % aller Steigerungs-Komponenten. Hauptursachen: Bauleit-Engpass 30-40 %, Niedrigzins-Investitions-Welle 20-30 %, Demografie 15-20 %, Migration 10-20 %, Spekulation 10-15 %, Energie-Sanierung 5-10 %.",
+        "grossinvestoren_2024": "DE Großinvestoren Wohnungs-Bestand 2024 (BBU + GdW): Vonovia ~545.000 Wohnungen, Deutsche Wohnen (jetzt Vonovia-Tochter) ~155.000, Heimstaden ~110.000, Akelius ~22.000, GAGFAH (LEG) ~138.000. Total Top-5: ~970.000 Wohnungen = 2,4 % des DE-Bestands. DIW 2023 Vergleichsstudie: Bestands-Mietpreise bei Großinvestoren +5-15 % vs. private Vermieter in vergleichbarer Lage.",
+        "deutsche_wohnen_volksbegehren": "Berlin Volksbegehren 'Deutsche Wohnen + Co. enteignen' 26.9.2021: 59 % Zustimmung (1,03 Mio Stimmen Pro vs. 770k Contra). Forderung: Vergesellschaftung (Art. 15 GG) von Wohnungs-Großinvestoren mit >3.000 Wohnungen. Senat Berlin folgte zunächst nicht, Expertenkommission 2022 bejahte Verfassungsmäßigkeit grundsätzlich. Politisches Symbol-Volksbegehren — quantitative Wirkung wenn umgesetzt: ~240.000 Berliner Wohnungen.",
+        "leerstand_spekulation_top_lagen": "Empirica 2023 Analyse Berlin Mitte + Friedrichshain-Kreuzberg: ~10-30 % der Eigentumswohnungen in 1A-Lagen als Wert-Anlage gehalten + nicht vermietet. Wien Stadtrechnungshof 2024: ~8 % der Eigentumswohnungen Innenstadt-Bezirke (1./4./6./8./9./18.) langzeit-leer. Spekulations-Effekt direkt sichtbar — aber begrenzte räumliche Konzentration.",
+        "niedrigzins_immobilien_2010_22": "Niedrigzins-Phase 2010-2022: EZB-Hauptrefinanzierungs-Zins 1 % (2010) → 0 % (2016-22). Real-Investitions-Welle in Top-Stadt-Wohnungen als Zins-Alternative. Wohnungs-Investitions-Volumen DE 2010 ~10 Mrd Euro/Jahr → 2021 ~50 Mrd Euro/Jahr. Welle endete 2022 mit EZB-Zinssprung (4,5 %).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Spekulation ist Faktor (~10-15 % Beitrag), nicht Hauptursache. Bauleit-Engpass + Niedrigzins-Welle quantitativ größer.",
+        "Großinvestoren-Effekt: +5-15 % Mietpreis vs. private Vermieter, geografisch konzentriert in Top-Stadt-Lagen.",
+        "Leerstand-Spekulation in 1A-Lagen real (10-30 % Eigentumswohnungen Berlin Mitte), aber begrenzte räumliche Verbreitung."
+      ],
+      "claim_phrasings_handled": [
+        "Spekulanten haben Wohnungsmarkt zerstört",
+        "Spekulation treibt alle Mietpreise",
+        "Großinvestoren sind Schuld an hohen Mieten",
+        "Vonovia ruiniert deutschen Wohnungsmarkt",
+        "Spekulation ist Mythos"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "spekulation",
+          "spekulant",
+          "spekulanten",
+          "großinvestor",
+          "grossinvestor",
+          "investoren",
+          "investor",
+          "vonovia",
+          "deutsche wohnen",
+          "wohnungs-konzern",
+          "wohnungskonzern",
+          "heimstaden",
+          "akelius"
+        ],
+        [
+          "mietpreise",
+          "miet-preise",
+          "wohnungsmarkt",
+          "wohnungs-markt",
+          "treibt",
+          "treiben",
+          "zerstört",
+          "zerstoert",
+          "ruiniert",
+          "ruinieren",
+          "schuld",
+          "hauptursache",
+          "haupt-ursache",
+          "mythos",
+          "anteil",
+          "wirkung"
+        ]
+      ]
+    },
+    {
+      "id": "wohnkosten_50_prozent_2026",
+      "topic": "wohnkosten_50_prozent_konsens",
+      "scope": "Wohnkosten-Belastung — Eurostat-Schwellenwerte + DACH-Verteilung",
+      "year": 2024,
+      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho07a__custom_2197200/default/table",
+      "secondary_url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Einkommen-Konsum-Lebensbedingungen/Wohnen/_inhalt.html",
+      "source_label": "Eurostat ilc_lvho07a Housing Cost Overburden Rate 2024 + DESTATIS Einkommens- und Verbrauchsstichprobe + Statistik Austria Wohnkosten + AK Wien + DIW Wohnkosten-Studien + EU-SILC Survey",
+      "headline": "Wohnkosten-überlastete Haushalte 2023 (Eurostat ilc_lvho07a, >40 % Einkommen für Wohnen): EU-Mittel 9,5 %, DE 12,1 %, AT 9,1 %, NL 8,2 %; Spitzen GR 28,5 %, BG 19,5 %; Schluss IE 4,1 %, MT 4,2 %. DACH im EU-Mittelfeld",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Wohnkosten in DACH sind Welt-Spitze' ist FALSE. Empirische Lage: (1) EUROSTAT WOHNKOSTEN-ÜBERLASTUNGS-RATE 2023 (ilc_lvho07a, Schwelle >40 % verfügbares Haushalts-Einkommen für Wohnkosten): EU-27 Mittel 9,5 % der Haushalte überlastet. DE 12,1 %, AT 9,1 %, FR 7,2 %, NL 8,2 %, IT 6,2 %, ES 9,5 %, SE 4,5 %, FI 4,1 %, PL 4,7 %. Spitzen Griechenland 28,5 %, Bulgarien 19,5 %, Rumänien 9,4 %, Türkei 23,1 %. Schluss: Irland 4,1 %, Malta 4,2 %, Zypern 5,5 %. DE liegt im OBEREN MITTELFELD (etwas über EU-Schnitt), AT im EU-Mittelfeld. (2) WICHTIGE DIFFERENZIERUNG: 40 %-Schwelle ist DEFINITIONS-FRAGE. WHO-Empfehlung: 30 %-Schwelle als Belastungs-Indikator. Bei 30 %-Schwelle: ~25-30 % der DE-Haushalte überlastet. (3) MIETER vs. EIGENTÜMER (DESTATIS 2023): Mieter-Haushalte DE durchschnittlich 27 % des Einkommens für Wohnen (Bruttomiete + Heizung). Eigentümer-Haushalte 22 % (Hypothek + Heizung + Erhaltung). DE-Spezifik: höhere Mieter-Quote (51 %) → relevantere Wohnkosten-Belastung. (4) AT WIEN-SPEZIFIK (AK Wien 2024): Wiener Mieter:innen durchschnittlich 31 % Einkommen für Wohnen. Wiener Genossenschafts- + Gemeindebau-Haushalte 22 % (deutlich niedriger). Soziale Differenzierung: niedrige Einkommen 50-60 % Belastung trotz Wohngeld. (5) HISTORISCHER VERGLEICH: DE Wohnkosten-Quote 1990 ~22 % → 2023 ~27 % = +5 pp in 33 Jahren. Hauptursache: Mietpreis-Steigerung > Einkommens-Steigerung in Boom-Städten. (6) Faktencheck-relevant: Aussagen wie 'DE-Wohnkosten sind höchste der Welt' sind durch EU-Daten widerlegt. Aussagen wie 'Wohnen ist überall gleich teuer' verkennen geografische + soziale Verteilung. Pack distanziert sich von Pro/Contra-Wohnungs-Politik-Wertung.",
+        "eurostat_2023_ueberlastungsrate": "Eurostat ilc_lvho07a Housing Cost Overburden Rate 2023 (publiziert 2024, Schwelle >40 % verfügbares Einkommen für Wohnkosten): EU-27 9,5 %. DE 12,1 %, AT 9,1 %, FR 7,2 %, NL 8,2 %, IT 6,2 %, ES 9,5 %, BE 9,2 %, SE 4,5 %, FI 4,1 %, DK 6,2 %, PL 4,7 %, CZ 7,2 %, HU 7,9 %. Spitzen: Griechenland 28,5 %, Bulgarien 19,5 %, Türkei 23,1 %, Rumänien 9,4 % (interessanterweise nicht hoch trotz hoher Eigentumsquote). Schluss: Irland 4,1 %, Malta 4,2 %.",
+        "schwelle_30_vs_40": "Wichtige methodische Differenzierung: Eurostat 40 %-Schwelle vs. WHO + UN Habitat 30 %-Schwelle. Bei 30 %-Schwelle (verbreitet als 'Wohnkosten-Belastung'-Indikator): DE ~25-30 % der Haushalte überlastet, EU-Mittel ~22 %. Bei 40 %-Schwelle (Eurostat 'overburden'): DE 12,1 %. Beide Schwellen sind valid je nach Forschungs-Frage.",
+        "destatis_2023_quote": "DESTATIS Einkommens- und Verbrauchsstichprobe 2023 + Mikrozensus: Mieter-Haushalte DE durchschnittlich 27 % Einkommen für Wohnen (Bruttomiete + Heizung + Strom-Anteil). Eigentümer-Haushalte 22 %. Median-Wohnungsgröße Mieter 70 m², Eigentümer 110 m².",
+        "ak_wien_2024": "AK Wien 2024 Wohnkosten-Studie: Wiener Mieter:innen durchschnittlich 31 % Einkommen für Wohnen. Wiener Genossenschafts-/Gemeindebau-Haushalte 22 %. Soziale Differenzierung: untere Einkommens-Drittel 50-60 % Belastung trotz Wohngeld. Top-Drittel 18-22 %.",
+        "historisch_de": "DE Wohnkosten-Quote-Entwicklung (DESTATIS Zeitreihen): 1990 ~22 %, 2000 ~24 %, 2010 ~25 %, 2020 ~26 %, 2023 ~27 %. Anstieg +5 pp in 33 Jahren. Hauptursache: Mietpreis-Steigerung in Boom-Städten > Einkommens-Steigerung. Geografisch: Boom-Städte 35-40 % Belastung, Mittel-Städte 22-26 %, Schrumpfungs-Regionen 18-22 %.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wohnungs-Politik-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: 40 %-Schwelle (Eurostat 'overburden') vs. 30 %-Schwelle (WHO 'belastet') geben unterschiedliche Bilder.",
+        "DE 12,1 % Wohnkosten-überlastet liegt im OBEREN EU-MITTELFELD — nicht 'höchste der Welt', aber höher als AT (9,1 %) + Skandinavien (4-6 %).",
+        "Soziale Verteilung wichtig: untere Einkommens-Drittel 50-60 % Belastung (Wien-Daten), Top-Drittel 18-22 %."
+      ],
+      "claim_phrasings_handled": [
+        "DE-Wohnkosten sind höchste der Welt",
+        "In Deutschland geht halbes Einkommen für Wohnen drauf",
+        "Wohnen kostet überall gleich viel",
+        "DE ist Welt-Spitze bei Wohnkosten-Belastung",
+        "Hälfte der Haushalte ist Wohnkosten-überlastet"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "wohnkosten",
+          "wohn-kosten",
+          "wohnkosten-belastung",
+          "wohnkostenbelastung",
+          "miete",
+          "mieten",
+          "miet-belastung",
+          "mietbelastung",
+          "wohnungsausgaben",
+          "wohnungs-ausgaben"
+        ],
+        [
+          "höchste",
+          "hoechste",
+          "welt-spitze",
+          "weltspitze",
+          "halbes einkommen",
+          "halben einkommen",
+          "50 prozent",
+          "50 %",
+          "anteil",
+          "prozent",
+          "überlastet",
+          "ueberlastet",
+          "belastet",
+          "haushalte",
+          "deutschland",
+          "österreich",
+          "oesterreich"
+        ]
+      ]
+    },
+    {
+      "id": "leerstandsabgabe_wirkung_2026",
+      "topic": "leerstandsabgabe_wirkung_konsens",
+      "scope": "Leerstandsabgabe Vorarlberg + Tirol seit 2024 — empirische Erst-Wirkung",
+      "year": 2024,
+      "source_url": "https://www.vorarlberg.at/landtag/-/asset_publisher/CN8XRoYKqZWp/content/leerstandsabgabe-vorarlberg",
+      "secondary_url": "https://www.tirol.gv.at/landtag/leerstandsabgabe",
+      "source_label": "Land Vorarlberg Leerstandsabgabe-Gesetz 2024 + Land Tirol + WIFO Studien zu Leerstandsabgabe + Empirica Wirkungs-Analysen + AK Vorarlberg + Mietverband AT",
+      "headline": "AT Vorarlberg + Tirol Leerstandsabgabe seit 2024: Vorarlberg 1.000-3.000 Euro/Jahr je leerstehende Wohnung, Tirol 1.500-2.000 Euro/Jahr; erste Bilanz Q1-Q2 2024 Vorarlberg ~600 Wohnungen zurück auf Mietmarkt geschätzt — Wirkung empirisch real aber quantitativ klein",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Leerstandsabgabe wirkt automatisch / wirkt nicht' ist DIFFERENZIERT FALSCH. Empirische Lage: (1) RECHTLICHE GRUNDLAGE: AT Bundes-Verfassungsgericht-Urteil 2023 (G54/22): Bundesländer haben Kompetenz für Leerstandsabgabe (Eigentums-Bewahrung-Steuern). Vorarlberg Landtag 2023 + Tirol 2023 verabschiedeten Leerstandsabgabe-Gesetze, Inkrafttreten 2024. Wien Landtag 2024 in Diskussion, noch nicht verabschiedet. (2) VORARLBERG MODELL 2024: Leerstandsabgabe 1.000 Euro/Jahr (Wohnungen 60-99 m²), 2.000 Euro (100-149 m²), 3.000 Euro (>150 m²). Bemessung ab 6 Monaten Leerstand. Befreiungs-Gründe: Sanierungs-Phase (max. 12 Monate), Erbschafts-Phase, Eigentümer-Selbstbewohnung. (3) TIROL MODELL 2024: Leerstandsabgabe 1.500 Euro/Jahr (60-99 m²), 2.000 Euro (>100 m²). Strukturell ähnlich Vorarlberg. (4) ERSTE BILANZ Q1-Q2 2024 (AK Vorarlberg + Land Vorarlberg Statistik): ~600 Wohnungen zurück auf Mietmarkt geschätzt (Empirica-Schätzung) seit Inkrafttreten Januar 2024. Hauptmotivation: Eigentümer entscheiden zwischen Vermietung + Abgabe. Bei niedrigen Mietpreis-Niveaus (West-AT-Mittel ~12 Euro/m²) Vermietungs-Ertrag deutlich über Abgabe. (5) INTERNATIONALE ERFAHRUNGEN: Frankreich Leerstandsabgabe seit 1998 (taxe sur les logements vacants TLV): in Tendenz-Städten 12,5-25 % der Mietwert/Jahr — Wirkung +10-15 % Mietangebots-Erhöhung in betroffenen Städten (INSEE 2018 Studie). Belgien (regionale Modelle), Niederlande (kommunale Modelle) ähnliche Erfahrungen. (6) WIRKUNG-LIMITS: Leerstand-Definitions-Probleme (Sanierungs-Phase, kurzzeitige Vermietungs-Vakanzen), Vollzugs-Aufwand für Gemeinden. Empirica 2024 Schätzung: bei optimalem Vollzug DE-weite Leerstandsabgabe könnte ~50-100k Wohnungen zurück auf Mietmarkt bringen — quantitativ relevant für Boom-Städte, nicht Wohnungs-Mangel-Lösung-vollständig. (7) Faktencheck-relevant: Aussagen wie 'Leerstandsabgabe wirkt nicht' sind durch Vorarlberg + Frankreich-Daten widerlegt. Aussagen wie 'Leerstandsabgabe löst Wohnungsmangel' überzeichnen — Wirkung ist additiv, nicht primär.",
+        "vbg_bvfg_2023": "AT BVfG-Urteil G54/22 vom 2.10.2023: Bundesländer haben Verfassungs-Kompetenz für Leerstandsabgabe nach Art. 17 Bundes-Verfassungsgesetz (Eigentums-Bewahrungs-Steuern als Landes-Sache). Vorarlberg-Bedenken zur Bundes-Kompetenz wurden zurückgewiesen. Folge: Vorarlberg + Tirol Leerstandsabgabe-Gesetze rechtlich bestätigt.",
+        "vbg_modell_2024": "Vorarlberg Leerstandsabgabe-Gesetz 2024 (Inkrafttreten 1.1.2024): Stafelung nach Wohnungsgröße — Wohnungen 60-99 m² 1.000 Euro/Jahr, 100-149 m² 2.000 Euro/Jahr, >150 m² 3.000 Euro/Jahr. Bemessung ab 6 Monaten Leerstand. Befreiungs-Gründe: Sanierungs-Phase max. 12 Monate, Erbschafts-Phase max. 12 Monate, Eigentümer-Selbstbewohnung in absehbarer Zeit dokumentiert.",
+        "tirol_modell_2024": "Tirol Leerstandsabgabe-Gesetz 2024 (Inkrafttreten 1.1.2024): 1.500 Euro/Jahr für Wohnungen 60-99 m², 2.000 Euro/Jahr >100 m². Strukturell ähnlich Vorarlberg, etwas unterschiedliche Stafelung.",
+        "erste_bilanz_2024": "Q1-Q2 2024 Bilanz Vorarlberg (AK Vorarlberg + Land Vorarlberg Statistik): ~600 Wohnungen zurück auf Mietmarkt geschätzt seit Januar 2024 (Empirica-Schätzung). 80 % der zurückgekehrten Wohnungen in Bezirken Bregenz + Feldkirch + Dornbirn. Tirol Erste Bilanz noch nicht publiziert.",
+        "frankreich_tlv": "Frankreich Leerstandsabgabe Taxe sur les Logements Vacants TLV seit 1999 (Loi 99-882): in Tendenz-Städten >50.000 Einwohner. Tarif: 12,5 % Mietwert ab 1. Jahr Leerstand, 25 % ab 2. Jahr. INSEE 2018 Wirkungs-Studie: +10-15 % Mietangebots-Erhöhung in betroffenen Städten, ~50.000 Wohnungen zurück auf Markt jährlich. Wien-Diskussion folgt diesem Modell.",
+        "empirica_2024_de_potenzial": "Empirica 2024 Schätzung 'DE-weite Leerstandsabgabe-Potenzial': bei Inkrafttreten + optimalem Vollzug ~50-100.000 Wohnungen zurück auf Mietmarkt. Hauptpotenzial: Boom-Städte mit hohen Eigentumswohnungs-Leerstand-Quoten (Berlin 15-30 % in Top-Lagen, München, Hamburg). Quantitativ relevant aber nicht alleinige Wohnungs-Mangel-Lösung.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Leerstandsabgabe-Wirkung empirisch real (Vorarlberg ~600 Wohnungen H1 2024, Frankreich ~50k/Jahr), aber quantitativ nicht alleinige Wohnungs-Mangel-Lösung.",
+        "AT BVfG bestätigte 2023 Landes-Kompetenz für Leerstandsabgabe. Wien-Diskussion 2024 folgt Vorarlberg/Tirol-Modell.",
+        "Definitions-/Vollzugs-Probleme limitieren Wirkung — Sanierungs-Phasen, Erbschafts-Vakanzen müssen unterschieden werden."
+      ],
+      "claim_phrasings_handled": [
+        "Leerstandsabgabe wirkt nicht",
+        "Leerstandsabgabe löst Wohnungsmangel",
+        "Leerstandsabgabe Vorarlberg ist verfassungswidrig",
+        "Leerstandsabgabe ist Enteignung",
+        "Leerstandsabgabe bringt nichts gegen Wohnungsmangel"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "leerstandsabgabe",
+          "leerstands-abgabe",
+          "leerstand-abgabe",
+          "leerstand-steuer",
+          "leerstandssteuer",
+          "wohnungsleerstand-abgabe",
+          "wohnungsleerstandsabgabe"
+        ],
+        [
+          "wirkt",
+          "wirkung",
+          "lösung",
+          "loesung",
+          "löst",
+          "loest",
+          "verfassungswidrig",
+          "verfassungs-widrig",
+          "enteignung",
+          "vorarlberg",
+          "tirol",
+          "wien",
+          "deutschland",
+          "wohnungsmangel",
+          "wohnungs-mangel",
+          "bringt nichts"
+        ]
+      ]
+    }
+  ]
+}

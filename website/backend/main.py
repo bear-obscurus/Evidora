@@ -101,6 +101,7 @@ from services.gleichstellung_pack import search_gleichstellung, claim_mentions_g
 from services.eige import search_eige
 from services.religionsgemeinschaften_pack import search_religionsgemeinschaften, claim_mentions_religionsgemeinschaften_cached
 from services.wirtschaftspolitik_pack import search_wirtschaftspolitik, claim_mentions_wirtschaftspolitik_cached
+from services.wohnen_pack import search_wohnen, claim_mentions_wohnen_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.cdc_open_data import search_cdc_open_data
@@ -866,6 +867,20 @@ async def check_claim(request: Request):
         if claim_mentions_wirtschaftspolitik_cached(claim):
             tasks.append(cached("Wirtschaftspolitik-Konsens", search_wirtschaftspolitik, analysis))
             queried_names.append("Wirtschaftspolitik-Konsens (WIFO + IHS + DIW + IFO + IWF + EZB + OECD + Sachverständigenrat + AK Wien + Bundesbank + IAB + BA-Statistik + DRV + DESTATIS)")
+        # Wohnen-Pack (14 Topics: Mietregulierung-Investitionseffekt,
+        # Leerstand-Umverteilung, Sozialwohnungsbau, Frei-Markt-Mythos,
+        # AirBnB-Wirkung, Migration-Mietpreis, Eigentumsquote DACH-EU,
+        # Genossenschaftswohnen, Mietendeckel-Berlin-Bilanz, Wohnungs-
+        # Mangel-DE, Wohngeld-Faulenzer, Spekulations-Preistreiber,
+        # Wohnkosten-50-Prozent, Leerstandsabgabe-Wirkung). Quellen:
+        # DESTATIS Zensus 2022, Statistik Austria, BMWSB, Wien-Wohnen,
+        # DIW, IFO, Pestel, IW Köln, Eurostat, Empirica, GBV, BBSR,
+        # peer-reviewed (Glaeser 2018, Hilber LSE, Diamond AER 2019).
+        # Politisch sensibles Thema — Pack distanziert sich von Werte-
+        # Fragen, präsentiert nur empirische Studienlage.
+        if claim_mentions_wohnen_cached(claim):
+            tasks.append(cached("Wohnen-Konsens", search_wohnen, analysis))
+            queried_names.append("Wohnen-Konsens (DESTATIS Zensus 2022 + Statistik Austria + BMWSB + Wien-Wohnen + DIW + IFO + Pestel + IW Köln + Eurostat + Empirica + GBV + AK Wien)")
         # EIGE Live-RSS (European Institute for Gender Equality, Vilnius):
         # aktuelle Newsroom-Items zu Gleichstellung, EU-Direktiven, neue
         # EIGE-Berichte. Komplementär zum statischen gleichstellung_pack.
