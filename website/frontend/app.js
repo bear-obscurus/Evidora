@@ -44,6 +44,7 @@ const AUTHORITATIVE_PACK_MARKERS = [
     "Lebensmittel-Sicherheit-Konsens",
     "Gleichstellung-Konsens",
     "Religionsgemeinschaften-Konsens",
+    "Wirtschaftspolitik-Konsens",
 ];
 
 function isAuthoritativePack(sourceName) {

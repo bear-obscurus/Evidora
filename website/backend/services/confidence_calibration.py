@@ -74,6 +74,7 @@ AUTHORITATIVE_PACK_MARKERS = (
     "Lebensmittel-Sicherheit-Konsens",
     "Gleichstellung-Konsens",
     "Religionsgemeinschaften-Konsens",
+    "Wirtschaftspolitik-Konsens",
 )
 
 # Caps abhängig von Quellen-Anzahl (n_sources_with_results).

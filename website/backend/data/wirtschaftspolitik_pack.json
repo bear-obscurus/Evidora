@@ -1,0 +1,847 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-05",
+  "source_label": "WIFO + IHS + DIW + IFO + IWF + EZB + OECD + Sachverständigenrat + AK Wien + Bundesbank + DESTATIS + Statistik Austria + peer-reviewed Forschung",
+  "facts": [
+    {
+      "id": "steuersenkung_selbstfinanzierung_2026",
+      "topic": "steuersenkung_selbstfinanzierung_konsens",
+      "scope": "Laffer-Kurve + Selbstfinanzierungs-These — empirische Evidenz aus Trump-Cuts 2017 + Reagan/Bush-Daten",
+      "year": 2024,
+      "source_url": "https://www.cbo.gov/publication/53651",
+      "secondary_url": "https://www.imf.org/en/Publications/WP/Issues/2018/04/18/Tax-Spillovers-from-US-Corporate-Income-Tax-Reform-45816",
+      "source_label": "CBO Congressional Budget Office Analysis Tax Cuts and Jobs Act 2017 + IWF Working Papers + OECD Tax Policy Reviews + Saez Zucman 2019 The Triumph of Injustice + Sachverständigenrat Jahresgutachten",
+      "headline": "Laffer-Selbstfinanzierungs-These empirisch FALSE: CBO 2018 prognostizierte 1,9 Bio USD Defizit-Erhöhung über 10 Jahre durch Trump-Tax-Cuts 2017; Reagan/Bush-Steuersenkungen erhöhten Defizit ebenfalls — Steuersenkungen finanzieren sich nicht selbst",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Steuersenkungen finanzieren sich selbst durch Wirtschaftswachstum' ist FALSE. Empirische Evidenz: (1) CBO Congressional Budget Office Analysis 2018 zu Tax Cuts and Jobs Act (TCJA) Trump 2017: prognostizierte Defizit-Erhöhung 1,9 Bio USD über 10 Jahre. Tatsächlicher Verlauf bis 2023: Steuereinnahmen waren niedriger als prä-Reform-Trend trotz starkem Wachstum 2017-19. CBO Update 2024: kumulative Defizit-Wirkung ~1,7 Bio USD bis 2027 bestätigt. (2) Reagan-Steuersenkungen 1981 (Economic Recovery Tax Act): Bundesschulden stiegen von 32 % BIP (1981) auf 51 % BIP (1988) — keine Selbstfinanzierung. Bush-Steuersenkungen 2001 + 2003: ähnliche Defizit-Wirkung dokumentiert. (3) Laffer-Kurve theoretisch: existiert (Steuerquote 0 % = 0 Einnahmen, 100 % = 0 Einnahmen). Optimaler Punkt empirisch unter realen Steuerquoten meist BEI 60-70 % — DACH-Länder weit darunter. Saez/Diamond NBER Paper 'The Case for a Progressive Tax' 2011: optimale Spitzensteuer-Quote ~73 % für USA. Folgerung: Steuersenkungen aus aktuellen DACH-Niveaus (Spitzensätze 42-55 %) erzeugen mehrheitlich nur Mehreinnahmen-Verluste, keine Selbstfinanzierung. (4) IWF Working Paper 2018 'Tax Spillovers from US Corporate Income Tax Reform': USA-Reform 2017 reduzierte Körperschaftsteuer-Einnahmen substantiell ohne Wachstum-Boost. (5) Sachverständigenrat DE Jahresgutachten 2018 + 2019: Steuersenkungen sind expansiv (positiver kurzfristiger Wachstums-Effekt), aber NICHT selbstfinanzierend in DACH-Steuerquoten-Bereichen. Rückfluss-Quote typisch 20-40 % der Steuer-Senkungs-Höhe. (6) Faktencheck-relevant: Aussagen wie 'jede Steuersenkung bringt mehr Einnahmen' oder 'Trump-Steuern haben sich selbst finanziert' sind empirisch widerlegt. Pack distanziert sich von normativer Wertung 'Steuersenkungen sind gut/schlecht' — präsentiert nur empirische Selbstfinanzierungs-Evidenz.",
+        "trump_tcja_2017": "TCJA Tax Cuts and Jobs Act Dezember 2017: Körperschaftsteuer 35 % auf 21 % gesenkt, Einkommensteuer-Senkungen für alle Stufen. CBO Februar 2018: Defizit-Wirkung 1,9 Bio USD über 10 Jahre (2018-27). Tax Foundation 2018: 1,5 Bio USD. CRFB 2024 Update: ~1,7 Bio USD kumulativ tatsächlich. Wirtschafts-Wachstum 2018 3,0 % (vs. 2,4 % 2017), 2019 2,3 %, 2020 -2,8 % (COVID) — kein nachhaltiger Boost messbar.",
+        "reagan_bush_historisch": "Reagan ERTA 1981 + TEFRA 1982: Bundesschulden-Quote 32 % BIP 1981 → 51 % BIP 1988. Reagan-Verteidiger argumentieren Wachstums-Boost, OECD-Ökonomen + Stockman (Reagan Budget-Direktor): Defizit war primär Steuersenkungs-Folge. Bush 2001 EGTRRA + 2003 JGTRRA: ~1,5 Bio USD kumulative Steuer-Senkungs-Volumen, CBO-Schätzung Defizit-Effekt ~1,3 Bio USD (Selbstfinanzierungs-Quote ~13 %).",
+        "saez_diamond_optimal": "Saez & Diamond 'The Case for a Progressive Tax' 2011 NBER + Saez/Zucman 'Triumph of Injustice' 2019: optimale Spitzensteuer-Quote für USA berechnet ~73 % (basierend auf Elastizität von High-Income-Steuerpflichtigen). DACH-Länder Spitzensätze: DE 45 % (Reichensteuer 47,5 %), AT 55 %, CH ~40 % (kantonal). Alle weit unter dem berechneten Laffer-Optimum — Selbstfinanzierungs-Argument empirisch nicht haltbar.",
+        "dach_steuer_studien": "Sachverständigenrat 'Den strukturellen Wandel meistern' 2019: Steuersenkungen wirken kurzfristig expansiv, aber Rückfluss-Quote ('self-financing rate') 20-40 % je nach Steuer-Art — KEINE 100 %-Selbstfinanzierung. WIFO + IHS Steuer-Reform-Studien AT 2020-23: Senkungs-Reformen ÖVP/Grüne 2022 (KÖSt 25 %→23 %, Tarif-Senkung) brachten ~6 Mrd Euro/Jahr Mindereinnahmen, kein selbstfinanzierender Effekt.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Normativ-Werturteilen — präsentiert nur Selbstfinanzierungs-Evidenz."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Steuersenkungen können kurzfristig expansiv wirken (positiver Wachstums-Effekt) — das ist NICHT identisch mit Selbstfinanzierung.",
+        "Laffer-Kurve theoretisch korrekt, aber optimaler Punkt empirisch bei 60-70 % Spitzensteuer — DACH-Länder weit darunter.",
+        "Pack vermeidet pro/contra-Wertung der Steuersenkungs-Politik — präsentiert nur empirische Selbstfinanzierungs-Lage."
+      ],
+      "claim_phrasings_handled": [
+        "Steuersenkungen finanzieren sich selbst",
+        "Niedrige Steuern bringen mehr Einnahmen",
+        "Trump-Steuern haben sich selbst finanziert",
+        "Laffer-Kurve beweist niedrige Steuern wirken",
+        "Steuern senken erhöht Einnahmen"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "steuersenkung",
+          "steuer-senkung",
+          "steuersenkungen",
+          "steuern senken",
+          "niedrige steuern",
+          "tax cuts",
+          "laffer",
+          "laffer-kurve",
+          "lafferkurve",
+          "selbstfinanz",
+          "self-financ",
+          "trump-steuer"
+        ],
+        [
+          "finanzier",
+          "selbst",
+          "mehr einnahmen",
+          "höhere einnahmen",
+          "wirken",
+          "bringen",
+          "rückfluss",
+          "rueckfluss",
+          "wachstum",
+          "boost",
+          "beweist",
+          "funktionier",
+          "lohnen",
+          "rechnen"
+        ]
+      ]
+    },
+    {
+      "id": "mindestlohn_beschaeftigung_2026",
+      "topic": "mindestlohn_beschaeftigung_konsens",
+      "scope": "Mindestlohn-Beschäftigungs-Effekt — Card/Krueger 1994, Cengiz 2019, IAB DE-Mindestlohn-Studie",
+      "year": 2024,
+      "source_url": "https://www.iab.de/de/publikationen/forschungsberichte/forschungsberichte-zum-mindestlohn.aspx",
+      "secondary_url": "https://www.nber.org/papers/w25434",
+      "source_label": "IAB Institut für Arbeitsmarkt- und Berufsforschung Mindestlohn-Studien 2015-2024 + Card Krueger 1994 + Cengiz Dube Lindner Zipperer 2019 NBER + Mindestlohnkommission DE + WIFO AT Studien + OECD Employment Outlook 2018",
+      "headline": "Empirische Mindestlohn-Forschung (Card/Krueger 1994 + Cengiz 2019 NBER + IAB DE 2015-24): KEINE signifikanten negativen Beschäftigungs-Effekte bei moderaten Erhöhungen; in DE Mindestlohn-Einführung 2015 + 12 €-Erhöhung 2022 ohne Job-Verluste",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mindestlohn vernichtet massiv Arbeitsplätze' ist FALSE. Empirische Evidenz seit 30 Jahren: (1) Card & Krueger 1994 American Economic Review 'Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania': Naturexperiment NJ-PA-Grenze nach NJ-Mindestlohn-Erhöhung 1992 — KEIN Beschäftigungs-Rückgang in NJ vs. PA-Kontroll-Gruppe. Wegweisende Studie, Card erhielt Nobelpreis 2021 teilweise hierfür. Replikationen: Dube/Lester/Reich 2010 Review of Economics and Statistics, Cengiz/Dube/Lindner/Zipperer 2019 NBER 'The Effect of Minimum Wages on Low-Wage Jobs' — Meta-Analyse 138 US-Bundesstaats-Mindestlohn-Erhöhungen, KEINE signifikanten Job-Verluste. (2) DE Mindestlohn-Einführung Januar 2015 (8,50 €): IAB-Forschungsberichte 2015-2018 — KEIN signifikanter Beschäftigungs-Rückgang im erwarteten 'Risiko-Sektor' Gastronomie. Mindestlohn-Kommission Bilanz 2020: 'beachtliche Lohn-Erhöhungen ohne nennenswerte Beschäftigungs-Effekte'. (3) DE Mindestlohn 12 € Oktober 2022 (Ampel-Koalition): IAB-Forschungsbericht 2024 — Beschäftigungs-Wirkung 'gering und nicht signifikant', stattdessen messbarer Anstieg der Mindestlohn-Empfänger:innen (~6,6 Mio betroffen). (4) AT keine flächendeckende gesetzliche Mindestlohn-Regelung (Kollektivverträge ÖGB-Sozialpartner), niedrigster KV-Lohn 2024 ~1.700 € brutto/Monat. (5) Mechanismus warum kein Job-Verlust: Effizienz-Lohn-Theorie (höhere Löhne → höhere Produktivität + niedrigere Fluktuation), Monopsonie-Theorie (Arbeitsmarkt-Macht-Asymmetrie zugunsten Arbeitgeber → Mindestlohn korrigiert), Kaufkraft-Effekt (Niedriglohn-Empfänger geben unmittelbar aus). (6) Differenzierung: bei EXTREM hohen Mindestlöhnen (>60 % Median-Lohn — Standard-Schwelle Cengiz) treten negative Effekte auf. DE 12 €-Mindestlohn liegt bei 51 % Median-Lohn (Niedriglohn-Schwelle). (7) Faktencheck-relevant: Aussagen wie 'Mindestlohn vernichtet Hunderttausende Jobs' sind durch IAB-Daten widerlegt. Pack distanziert sich von normativer Wertung 'Mindestlohn ist gerecht/ungerecht' — präsentiert nur empirische Beschäftigungs-Lage.",
+        "card_krueger_1994": "Card & Krueger 1994 American Economic Review 'Minimum Wages and Employment': Naturexperiment NJ-PA-Grenze nach NJ-Mindestlohn-Erhöhung von 4,25 USD auf 5,05 USD April 1992. Studie 410 Fast-Food-Restaurants, Vergleich pre/post: KEIN Beschäftigungs-Rückgang in NJ vs. PA-Kontroll-Gruppe. Methodisch wegweisend (Difference-in-Differences). David Card erhielt Wirtschafts-Nobelpreis 2021 (zusammen mit Angrist + Imbens) teilweise hierfür.",
+        "cengiz_2019_meta": "Cengiz Dube Lindner Zipperer 2019 NBER Working Paper 25434 + 2019 Quarterly Journal of Economics 'The Effect of Minimum Wages on Low-Wage Jobs': Meta-Analyse 138 US-Bundesstaats-Mindestlohn-Erhöhungen 1979-2016. Methodik: Bunching-Estimator (Lohn-Verteilungs-Verschiebungen). Befund: total wage bill stieg, KEINE signifikanten Job-Verluste insgesamt. Je nach Subgruppe leichte Heterogenität.",
+        "iab_de_2015_2024": "IAB Mindestlohn-Forschungs-Reihe 2015-2024 (10+ Forschungsberichte): nach DE-Mindestlohn-Einführung Januar 2015 KEIN signifikanter Beschäftigungs-Rückgang im Risiko-Sektor Gastronomie. Bonin/Isphording/Krause-Pilatus 2017 IZA + IAB: 'Beschäftigungs-Effekte der Mindestlohn-Einführung 2015 sehr klein, nicht signifikant von Null verschieden'. Mindestlohn-Kommission DE 2020 + 2024 Bilanz-Berichte folgen IAB-Befunden.",
+        "mindestlohn_12euro_2022": "DE Mindestlohn 12 € Oktober 2022 (Ampel-Koalition Erhöhung von 10,45 € auf 12 €): IAB-Forschungsbericht 6/2024 (Bossler/Caliendo/Schank): Beschäftigungs-Effekt nicht signifikant von Null. ~6,6 Mio Beschäftigte direkt betroffen (Lohnerhöhung von im Schnitt 22 %). Lohnsumme stieg um geschätzt ~12-14 Mrd Euro/Jahr, Beschäftigung stabil.",
+        "kaiteck_60_prozent_threshold": "Cengiz 2019 + OECD Employment Outlook 2018: Faustregel 'KEINE negativen Beschäftigungs-Effekte solange Mindestlohn unter 60 % des Median-Lohns'. DE Mindestlohn 12 € entspricht ~51 % Median (Niedriglohn-Schwelle). UK Mindestlohn 2024 ~62 % Median (am Limit, leichte negative Effekte gesichtet ab 65 %). Frankreich SMIC ~60 % Median.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung — präsentiert nur Beschäftigungs-Empirie."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: bei EXTREM hohen Mindestlöhnen (>60-65 % Median) treten negative Effekte auf — DE 12 € liegt bei 51 % Median, im sicheren Bereich.",
+        "Card erhielt Wirtschafts-Nobelpreis 2021 teilweise für die wegweisende 1994er Mindestlohn-Studie.",
+        "Mechanismus warum kein Job-Verlust: Monopsonie-Korrektur, Effizienz-Lohn, Kaufkraft-Effekt — alle empirisch unterstützt."
+      ],
+      "claim_phrasings_handled": [
+        "Mindestlohn vernichtet Arbeitsplätze",
+        "Mindestlohn-Erhöhung kostet Hunderttausende Jobs",
+        "12 Euro Mindestlohn führt zu Massenarbeitslosigkeit",
+        "Mindestlohn macht Niedriglohn-Sektor kaputt",
+        "Card-Krueger-Studie ist überholt"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "mindestlohn",
+          "mindest-lohn",
+          "minimum wage",
+          "lohnuntergrenze",
+          "12 euro",
+          "12-euro",
+          "mindestlohn-kommission",
+          "kollektivvertrag mindest"
+        ],
+        [
+          "arbeitsplätze",
+          "arbeits-plätze",
+          "arbeitsplaetze",
+          "jobs",
+          "beschäftigung",
+          "beschaeftigung",
+          "vernichten",
+          "kosten",
+          "verlieren",
+          "arbeitslos",
+          "massenarbeitslos",
+          "kaputt machen",
+          "schaden",
+          "wirken",
+          "bringen"
+        ]
+      ]
+    },
+    {
+      "id": "schuldenbremse_schwarze_null_2026",
+      "topic": "schuldenbremse_schwarze_null_konsens",
+      "scope": "Schwarze Null + Schuldenbremse — Forschungsstreit Pro/Contra ohne Wertung",
+      "year": 2024,
+      "source_url": "https://www.sachverstaendigenrat-wirtschaft.de/jahresgutachten-2024.html",
+      "secondary_url": "https://www.imf.org/en/Publications/FM",
+      "source_label": "Sachverständigenrat Jahresgutachten 2014-2024 + IWF Fiscal Monitor + DIW Wochenbericht + IFO Schnelldienst + Krugman New York Times Op-Eds + Blanchard PIIE 2019 + Fuest IFO + Bundesbank Monatsbericht",
+      "headline": "Schwarze Null DE 2014-2019 + Schuldenbremse seit 2009: REAL ECHTER FORSCHUNGSSTREIT. Pro (Sachverständigenrat-Mehrheit, IFO Fuest): Defizit-Disziplin verhindert Schuldenkrise. Contra (DIW Fratzscher, Blanchard PIIE): zu rigide bei Investitionsbedarf, kontrazyklische Wirkung verhindert. Pack präsentiert beide Seiten",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Schuldenbremse + Schwarze Null sind GENUINER WIRTSCHAFTSPOLITISCHER FORSCHUNGSSTREIT. Pack distanziert sich von Wertung 'Schuldenbremse ist gut/schlecht' — präsentiert beide Forschungs-Seiten. (1) FAKTEN-LAGE: Schuldenbremse Art. 109 + 115 GG seit 2009: Bundes-Defizit max. 0,35 % BIP strukturell, Länder ohne strukturelles Defizit ab 2020. Pandemie-Suspendierung 2020-22 + Sondervermögen 2024-29 (z.B. 100 Mrd Euro Bundeswehr 2022). Schwarze Null DE: 2014-19 sechs Bundeshaushalte ohne Neuverschuldung. AT-Pendant: Bundesfinanzrahmengesetz + Stabilitätspakt EU 3 %-Defizit-Grenze. (2) PRO-Position (Sachverständigenrat-Mehrheit + IFO Fuest + Bundesbank): (a) Demografische Last: alternde Bevölkerung erfordert Schuldenstand-Disziplin, (b) Generationen-Gerechtigkeit: heutige Schulden = Lasten morgen, (c) Krisen-Reserve: niedrige Schuldenstand-Quote ermöglicht Krisen-Investitionen (DE 2020-22 Pandemie-Pakete), (d) Marktvertrauen: AAA-Rating durch S&P/Moody's/Fitch sichert günstige Refinanzierung. Sachverständigenrat Jahresgutachten 2014-2024 verteidigt Bremse mehrheitlich (4 vs. 1 Stimme typischerweise). (3) CONTRA-Position (DIW Fratzscher + Blanchard PIIE 2019 + EZB Lagarde-Position 2023): (a) Investitionsstau: DE 600+ Mrd Euro Investitions-Bedarf Infrastruktur (DIW 2024 Wachstums-Studie), Schuldenbremse blockiert, (b) Niedrigzins-Regime 2010-22 macht Schulden günstig: Blanchard 2019 'Public Debt and Low Interest Rates' AEA Presidential Address — Schuldendienst-Quote sinkt bei r<g, (c) Kontrazyklische Wirkung: Schuldenbremse zwingt zu prozyklischer Sparpolitik in Rezessionen (Krugman, Stiglitz). DIW Fratzscher 2024: 'Schuldenbremse muss reformiert werden, sonst Wohlstands-Verluste'. (4) DACH-INTERNATIONALE EINORDNUNG: DE-Schuldenstand 2024 ~63 % BIP (im EU-Mittel), AT 76 %, CH 27 %, IT 137 %, USA 122 %, JP 254 %. DE liegt international im konservativen Bereich. (5) EMPIRISCHE BEFUNDE: IWF Fiscal Monitor 2023 + 2024: 'no clear evidence' für optimale Schuldenstand-Quote, Reinhart-Rogoff-Schwelle 90 % wurde 2013 widerlegt (Herndon-Replikations-Fehler). (6) Faktencheck-relevant: Aussagen wie 'Schuldenbremse ist alternativlos' sind reduktionistisch. Aussagen wie 'Schuldenbremse zerstört Wirtschaft' sind ebenfalls überzeichnet. Beide Positionen vereinfachen den Forschungsstreit.",
+        "schuldenbremse_de_rechtlich": "DE Schuldenbremse Art. 109 + 115 GG (Föderalismus-Reform II 2009): Bundes-Defizit max. 0,35 % BIP strukturell, Länder ab 2020 ohne strukturelles Defizit. Konjunktur-Komponente erlaubt zyklische Schwankungen. Suspendierung möglich bei 'außergewöhnlicher Notsituation' (Pandemie 2020-22, Energie-Krise 2022/23). Sondervermögen-Konstruktion 2024 (100 Mrd Euro Bundeswehr) umgeht Bremse formal-rechtlich.",
+        "schwarze_null_2014_2019": "Schwarze Null DE 2014-19: Bundeshaushalte ohne Neuverschuldung. Voraussetzungen: stark sinkende Arbeitslosigkeit + Niedrigzins-Phase + steigende Steuereinnahmen. CDU-SPD-Koalitionen 2013-2021 (Schäuble + Scholz Finanzminister). Politik-Symbolwert höher als rein fiskalische Wirkung — DE-Schuldenstand sank von 80 % BIP (2010) auf 60 % (2019).",
+        "blanchard_2019_low_rates": "Blanchard 2019 American Economic Association Presidential Address 'Public Debt and Low Interest Rates': bei r<g (Realzins niedriger als Wachstumsrate) wächst Schuldenstand-Quote selbst bei Defiziten nicht ungebremst. Politik-Folgerung: in Niedrigzins-Phase ist Schulden-Aufbau für Investitionen rational. Niedrigzins-Phase 2010-22 erfüllte r<g — Phase endete 2022/23 mit EZB-Zinssprung.",
+        "diw_investitionsbedarf": "DIW Fratzscher + Bardt + Bach 2024 Wachstums-Studie: DE braucht ~600 Mrd Euro Investitionen über 10 Jahre (Infrastruktur + Bildung + Klima). Schuldenbremse limitiert Investitions-Spielraum. Folge: Investitions-Stau dokumentiert (Brücken-Sanierung, Schul-Sanierung, Bahn-Netz). 2024 Bundesregierung-Sondervermögen-Diskussion. Krugman New York Times Op-Eds 2010-2024 ähnliche Argumentation für USA + Eurozone.",
+        "fuest_pro_position": "Clemens Fuest IFO 2014-2024: verteidigt Schuldenbremse mehrheitlich. Argumente: (a) Demografische Vorbelastung verschärft Schuldenstand-Druck, (b) Generationen-Gerechtigkeit, (c) AAA-Rating-Schutz, (d) Eurozone-Disziplin (DE als Anker). Sachverständigenrat-Position folgt Fuest-Linie mehrheitlich (Schnitzer + Truger uneins).",
+        "imf_fiscal_monitor": "IWF Fiscal Monitor 2023 + 2024: 'no clear evidence' für optimale Schuldenstand-Quote. Reinhart/Rogoff 2010 'This Time Is Different' Schwelle 90 % BIP wurde 2013 durch Herndon/Ash/Pollin Replikation widerlegt (Excel-Berechnungs-Fehler). IWF-Konsens 2023: Schuldenstand-Tragfähigkeit länderspezifisch (Wachstums-Rate, Zinssatz, Demografie).",
+        "context": "Pack präsentiert ECHTEN Forschungsstreit ohne Wertung — Pro UND Contra-Argumente faktisch dargestellt."
+      },
+      "context_notes": [
+        "Pack respektiert echten Forschungsstreit — präsentiert PRO-Position (Sachverständigenrat-Mehrheit) UND CONTRA-Position (DIW + Blanchard) ohne Wertung.",
+        "Wichtige Differenzierung: 'Schuldenbremse ist alternativlos' (Pro-Reduktion) ≠ 'Schuldenbremse zerstört Wirtschaft' (Contra-Reduktion). Beide Positionen vereinfachen.",
+        "Reinhart-Rogoff-Schwelle 90 % BIP wurde 2013 widerlegt (Herndon-Replikation) — keine empirische Schwelle für 'gefährliche' Schuldenstand-Quote."
+      ],
+      "claim_phrasings_handled": [
+        "Schuldenbremse ist alternativlos",
+        "Schwarze Null hat Deutschland kaputt gespart",
+        "Schuldenbremse zerstört Investitionen",
+        "Höhere Schulden sind immer gefährlich",
+        "Reinhart-Rogoff beweist 90 Prozent Schuldenstand"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "schuldenbremse",
+          "schulden-bremse",
+          "schwarze null",
+          "schwarze-null",
+          "haushaltsdefizit",
+          "staatsschulden",
+          "staats-schulden",
+          "schuldenstand",
+          "neuverschuldung",
+          "fiscal compact"
+        ],
+        [
+          "alternativlos",
+          "kaputt sparen",
+          "investitionen",
+          "investitionsstau",
+          "investitions-stau",
+          "rigide",
+          "reform",
+          "abschaffen",
+          "gefährlich",
+          "gefaehrlich",
+          "reinhart-rogoff",
+          "reinhart rogoff",
+          "90 prozent",
+          "90 %",
+          "blanchard",
+          "fratzscher",
+          "fuest",
+          "verschulden"
+        ]
+      ]
+    },
+    {
+      "id": "geldmenge_inflation_2026",
+      "topic": "geldmenge_inflation_konsens",
+      "scope": "EZB-Geldmengen-Wachstum vs. Inflations-Schub 2022/23 — Quantitäts-Theorie empirisch differenziert",
+      "year": 2024,
+      "source_url": "https://www.ecb.europa.eu/pub/economic-bulletin/html/index.en.html",
+      "secondary_url": "https://www.imf.org/en/Publications/WEO",
+      "source_label": "EZB Economic Bulletin 2022-2024 + Bundesbank Monatsbericht + IWF World Economic Outlook 2023 + Brookings Inflation Studies + Lagarde-Reden 2022 + Lane 2023 EZB Chefökonom + IfW Kiel + WIFO + AK Wien",
+      "headline": "Inflations-Schub 2022/23 (EU HVPI Höhepunkt 10,6 % Oktober 2022, AT 11,2 %): EZB + IWF + Bundesbank-Konsens — ~70 % der Inflation supply-side (Energie + Lieferketten Russland-Krieg-Effekt), nicht primär durch QE-Geldmenge verursacht",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'EZB-Geldmengen-Druckerei verursacht Inflation' ist FALSE/MOSTLY_FALSE. Empirische Lage: (1) EZB QE Quantitative Easing Phasen: APP 2015-2022 + PEPP 2020-22 (~5 Bio Euro Anleihen-Käufe). M3-Geldmenge stieg 2015-21 um ~50 %. ABER: HVPI-Inflation 2015-2021 lag im Schnitt bei 1,2 % — UNTER 2 %-Ziel der EZB. Geldmengen-Anstieg führte NICHT zu Inflation während QE-Phase. (2) Inflations-Schub 2022/23: EU HVPI Oktober 2022 10,6 % Höchststand. AT 11,2 % September 2022. UK 11,1 % Oktober 2022. Beginn März 2022 (Russland-Krieg + Energie-Preis-Schock). (3) Dekomposition der Inflations-Treiber durch EZB Lagarde-Rede November 2022 + Brookings Bernanke-Blanchard 2023 'What Caused the U.S. Pandemic-Era Inflation?': Energie-Preise (~30-40 % Beitrag), Lieferketten-Engpässe Post-COVID (~20-30 %), nachholende Konsum-Nachfrage post-Lockdown (~10-15 %), Lohn-Preis-Spirale (~5-10 % Beitrag, aber NICHT dominant). Geldmengen-Effekt-Komponente quantitativ klein (~5-10 %). (4) Bundesbank Monatsbericht August 2023 zur Inflations-Dekomposition Eurozone: ähnliches Bild — Energiepreise + Importpreise dominant. (5) Quantitäts-Theorie modern: M*V = P*Y. Aber V (Geld-Umlaufs-Geschwindigkeit) ist NICHT konstant. M-Anstieg ohne V-Anstieg → keine Inflation. Während QE 2015-22 sank V (höhere Sparquote), Y (BIP) wuchs moderat — P stabil. Friedman-Quantitäts-Theorie nicht empirisch direkt anwendbar. (6) Faktencheck-relevant: Aussagen wie 'EZB hat Inflation durch Geld-Drucken verursacht' oder 'Inflation 2022 ist Folge der QE-Politik' sind durch EZB + IWF + Bundesbank-Konsens widerlegt. Pack erkennt aber an: EZB-Politik-Verzögerung bei Inflations-Bekämpfung 2021/22 ist Kritik-Punkt (Lagarde-Selbstkritik 2023).",
+        "ezb_qe_2015_2022": "EZB QE Phasen: APP Asset Purchase Programme 2015-2022 (~3,3 Bio Euro), PEPP Pandemic Emergency Purchase Programme 2020-22 (~1,85 Bio Euro). Total ~5,1 Bio Euro Anleihen-Käufe. M3-Geldmenge Eurozone stieg 2015 (10,1 Bio Euro) → 2021 (15,6 Bio Euro) = +54 %. HVPI-Inflation 2015-21 Mittel: 1,2 %. Geldmengen-Wachstum führte NICHT zu Inflation — Quantitäts-Theorie nicht direkt anwendbar.",
+        "inflation_schub_2022": "EU HVPI Eurozone-Höhepunkt Oktober 2022: 10,6 %. Länder-Spitzen: Estland 22,5 %, Litauen 22,1 %, Lettland 21,7 %, Niederlande 16,8 %. AT September 2022: 11,2 %. DE Oktober 2022: 11,6 %. Auslöser: Russland-Krieg-Beginn 24. Februar 2022, Energie-Preis-Schock. Gas-Preis Dutch TTF im August 2022 312 Euro/MWh (vs. 17 Euro Pre-Krieg).",
+        "ezb_lagarde_dekomposition": "EZB Lagarde-Rede November 2022 + Lane 2023 ECB Chief Economist Speech: Dekomposition Eurozone-Inflation 2022. Energie + Lebensmittel-Importe ~50-60 % Beitrag, Lieferketten-Engpässe ~20 %, nachholende Konsum-Nachfrage ~10 %, Lohn-Preis-Spirale ~5-10 %, Geldmengen-Komponente nicht primär (~5-10 %). EZB-Selbstkritik: Inflations-Reaktions-Verzögerung 2021 (Lagarde 2023 'we need to react faster').",
+        "bernanke_blanchard_2023": "Bernanke & Blanchard 2023 Brookings 'What Caused the U.S. Pandemic-Era Inflation?': USA-Daten ähnliche Dekomposition. Energie + Lieferketten ~70 % der Inflation, Lohn-Preis-Spirale 10-15 % Sekundär-Effekt nach 2022. Ursprüngliche Inflation NICHT primär durch Fiscal-/Monetary-Stimulus, sondern durch Supply-Side-Schocks. USA-Reaktion (Powell-Fed) schneller als EZB.",
+        "quantitaets_theorie_modern": "Friedman Quantitäts-Theorie M*V=P*Y vorausgesetzt: V konstant. Empirisch ist V variabel. Eurozone-V 2015-22: gesunken (höhere Sparquote, niedrige Geld-Umlaufs-Geschwindigkeit). Folge: M-Anstieg ohne P-Anstieg möglich. Cagan-Inflation-Modell: nur extrem hohes M-Wachstum (>50 %/Jahr) führt direkt zu Inflation (Hyperinflations-Mechanismus, z.B. Weimar 1923 oder Simbabwe 2008).",
+        "context": "Pack ist empirisch-deskriptiv. Pack erkennt EZB-Selbstkritik 2023 zur verzögerten Reaktion an, distanziert sich aber von der Geld-Drucken-Inflation-Reduktions-These."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Geldmengen-Wachstum kann Inflation BEEINFLUSSEN, ist aber nicht ALLEINIGE Ursache (Quantitäts-Theorie modern modifiziert).",
+        "Inflations-Schub 2022/23: ~70 % supply-side (Energie + Lieferketten + Russland-Krieg), Geldmengen-Komponente ~5-10 %.",
+        "EZB-Selbstkritik 2023: Reaktions-Verzögerung 2021 ist legitime Kritik-Punkt — aber GRUNDURSACHE bleibt Energie-Preis-Schock."
+      ],
+      "claim_phrasings_handled": [
+        "EZB hat Inflation durch Geld-Drucken verursacht",
+        "Inflation 2022 ist Folge der QE-Politik",
+        "Mehr Geldmenge führt automatisch zu Inflation",
+        "EZB druckt Geld und macht uns ärmer",
+        "Quantitäts-Theorie beweist EZB-Schuld an Inflation"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "ezb",
+          "europäische zentralbank",
+          "europaeische zentralbank",
+          "zentralbank",
+          "ecb",
+          "fed",
+          "federal reserve",
+          "geldmenge",
+          "geld-menge",
+          "qe",
+          "quantitative easing",
+          "anleihenkäufe",
+          "anleihenkaeufe",
+          "geld druck",
+          "gelddruck"
+        ],
+        [
+          "inflation",
+          "preise",
+          "preissteigerung",
+          "preis-steigerung",
+          "geldwert",
+          "geld-wert",
+          "kaufkraft",
+          "verursach",
+          "schuld",
+          "macht",
+          "drucken",
+          "ärmer",
+          "aermer",
+          "verursacht"
+        ]
+      ]
+    },
+    {
+      "id": "migration_sozialsystem_2026",
+      "topic": "migration_sozialsystem_konsens",
+      "scope": "Migration und Sozialsystem — netto-fiskalischer Effekt, Bundesbank/IAB/OECD-Studien",
+      "year": 2024,
+      "source_url": "https://www.iab.de/de/publikationen/forschungsberichte/forschungsberichte-zur-migration.aspx",
+      "secondary_url": "https://www.oecd.org/migration/international-migration-outlook-1999124x.htm",
+      "source_label": "IAB Forschungsberichte zur Migration 2017-2024 + OECD International Migration Outlook 2023 + Bundesbank Monatsbericht zur Migration 2024 + Brücker IZA + Beitrag Migration zum öffentlichen Haushalt Bach DIW + WIFO Migration AT + Mediendienst Integration",
+      "headline": "Empirische Migration-Sozialsystem-Forschung (IAB Brücker, OECD, Bundesbank, DIW Bach): netto-fiskalischer Effekt langfristig POSITIV bei Arbeitsmarkt-Integration; Geflüchtete-Spezifik kurzfristig negativ (Integrations-Phase), nach 5-10 Jahren positiv",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Migranten kosten Sozialsystem netto / sind Belastung für DE/AT' ist DIFFERENZIERT FALSCH. Empirische Lage: (1) IAB Brücker-Studien 2017-2024: Migration-Nettobeitrag zum öffentlichen Haushalt langfristig POSITIV bei Arbeitsmarkt-Integration. Beispielstudie Bach/Brücker/Romiti 2017 DIW: durchschnittlicher Migrant in DE leistet Lebenszeit-fiskalischen Nettobeitrag von ~22.000-50.000 Euro (je Bildungs-Niveau). (2) OECD International Migration Outlook 2023: in den meisten OECD-Ländern positive Nettobeiträge von Migration (USA, UK, Schweden, Schweiz). DE Nettobeitrag: für gut-Qualifizierte deutlich positiv, für Geringqualifizierte schwach negativ (~-5.000 Euro Lebenszeit). Mix entscheidend. (3) Bundesbank Monatsbericht Mai 2024 zur Migration: 'Migration trägt langfristig positiv zur Tragfähigkeit des Sozialstaats bei, sofern Arbeitsmarkt-Integration gelingt'. Demografische Dividende durch Migration: ohne Zuwanderung würde DE-Erwerbsbevölkerung bis 2060 um 7 Mio Personen schrumpfen (DIW 2024). (4) Geflüchteten-Kontext (Sondergruppe): 2015 Welle DE: erste 5 Jahre Integrations-Kosten ~30 Mrd Euro/Jahr (IAB-Schätzung). Erwerbs-Beteiligung 5 Jahre nach Ankunft 2015: ~50 % (IAB-SOEP-Migration-Sample 2020). Nach 10 Jahren: ~65 %. Brücker 2024: 'positive fiskalische Wirkung der 2015er Welle ab Jahr 7-8 nach Ankunft'. (5) Sozialleistungen-Bezug-Realität: AT-spezifisch (BMI Asyl-Statistik 2023): ~80 % der Asyl-Anerkannten in den ersten 2 Jahren Mindestsicherungs-Bezug, danach absteigend. DE Bürgergeld-Bezugs-Quote bei Migration-Hintergrund höher als bei Einheimischen (~25 % vs. ~10 %), aber: Migration-Bevölkerung ist im Schnitt jünger + arbeitsfähiger, BEZIEHTSdauer im Schnitt kürzer. (6) Faktencheck-relevant: Aussagen wie 'Migranten kosten DE 50 Mrd/Jahr' sind ohne Differenzierung Migration-Typ + Integrations-Stand irreführend. Aussagen wie 'Migration ist immer Gewinn' überzeichnen positive Seite. Pack folgt empirischer Konsens-Lage: langfristig positiv bei Integration, kurzfristig kostenintensiv für Geflüchteten-Wellen.",
+        "iab_brücker_studien": "IAB Brücker-Forschungsreihe 2017-2024: Bach/Brücker/Romiti 2017 DIW Wochenbericht 'Public Finance Effects of Immigration': durchschnittlicher Migrant in DE leistet Lebenszeit-fiskalischen Nettobeitrag von 22.300 Euro (Single-Person-Median) bis 50.000 Euro (Hochqualifizierte). Niedrigqualifizierte: ~ -5.000 Euro. Generations-Effekt: Migrant-Kinder + Enkel haben ähnliche fiskalische Profile wie Einheimische der gleichen Bildung.",
+        "oecd_outlook_2023": "OECD International Migration Outlook 2023: 25 OECD-Länder, Vergleichs-Studie. Median-Nettobeitrag Migration: positiv. Spitzen-Beiträger: Schweiz, Luxemburg, Singapur (selektive Hochqualifizierten-Migration). Schwach-positive: DE, AT, FR. Negative: Frankreich (für Niedrigqualifizierte spezifisch), Spanien post-2008-Krise. Hauptdeterminante: Bildungs-Mix + Arbeitsmarkt-Integrations-Geschwindigkeit.",
+        "bundesbank_2024": "Bundesbank Monatsbericht Mai 2024 'Migration und öffentlicher Haushalt': 'Migration trägt langfristig positiv zur Tragfähigkeit des Sozialstaats bei, sofern Arbeitsmarkt-Integration gelingt'. Demografische Dividende: ohne Zuwanderung würde DE-Erwerbsbevölkerung bis 2060 um 7-8 Mio Personen schrumpfen. Renten-Versicherungs-Tragfähigkeit erfordert ~400.000 Netto-Zuwanderer/Jahr.",
+        "gefluechtete_2015_welle": "DE 2015 Geflüchteten-Welle (~1 Mio Asylsuchende): IAB-Schätzung erste 5 Jahre Integrations-Kosten ~30 Mrd Euro/Jahr (Sprachkurse, Unterbringung, Sozialleistungen). Erwerbs-Beteiligung Brücker 2020 IAB-SOEP-Migration-Sample: 5 Jahre nach Ankunft ~50 %, 10 Jahre nach Ankunft ~65 %. Brücker 2024 Update: 'positive fiskalische Wirkung der 2015er Welle ab Jahr 7-8 nach Ankunft'.",
+        "demografische_dividende": "DE Demografie-Studie DIW 2024: ohne Zuwanderung Erwerbsbevölkerung -7 Mio bis 2060 (von 47 Mio auf 40 Mio). Renten-Beitrag-Quote-Anstieg auf 22-23 % bis 2050 ohne Migration. Mit kontinuierlicher Migration ~400.000 Netto/Jahr: Beitrags-Quote stabil 19-20 %. Migration ist NOTWENDIG für Renten-Tragfähigkeit (Demografie-Modell-Konsens).",
+        "context": "Pack ist empirisch-deskriptiv. Pack folgt project_political_guardrails.md — keine Migration-pro-oder-contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Migration-Typ (Hochqualifiziert vs. Geflüchtete) + Integrations-Stand bestimmen fiskalischen Effekt — nicht Migration-pauschal.",
+        "Geflüchtete-Wellen kurzfristig kostenintensiv (Integrations-Phase 5-7 Jahre), danach positiver Nettobeitrag.",
+        "Demografische Dividende: Migration ist NOTWENDIG für DE-Renten-Tragfähigkeit (~400.000 Netto/Jahr nach Bundesbank-Berechnung)."
+      ],
+      "claim_phrasings_handled": [
+        "Migranten kosten das Sozialsystem netto",
+        "Migration ist Belastung für Deutschland",
+        "Asylsuchende leben auf unsere Kosten",
+        "Migranten sind Sozialschmarotzer",
+        "Migration ruiniert unser Sozialsystem"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "migration",
+          "migrant",
+          "migranten",
+          "zuwanderer",
+          "asyl",
+          "geflüchtete",
+          "gefluechtete",
+          "flüchtlinge",
+          "fluechtlinge",
+          "ausländer",
+          "auslaender"
+        ],
+        [
+          "sozialsystem",
+          "sozial-system",
+          "kosten",
+          "belastung",
+          "schmarotzer",
+          "sozial",
+          "leben auf",
+          "ruiniert",
+          "ruinieren",
+          "steuerzahler",
+          "haushalt",
+          "fiskal",
+          "leistung",
+          "leistungen",
+          "bürgergeld",
+          "buergergeld",
+          "mindestsicherung",
+          "sozialhilfe"
+        ]
+      ]
+    },
+    {
+      "id": "eu_netto_zahler_2026",
+      "topic": "eu_netto_zahler_konsens",
+      "scope": "DE als EU-Netto-Zahler — Brutto-Netto-Saldo vs. Binnenmarkt-Gewinn",
+      "year": 2024,
+      "source_url": "https://www.bertelsmann-stiftung.de/de/themen/aktuelle-meldungen/2019/januar/binnenmarkt-bringt-deutschland-86-milliarden-euro",
+      "secondary_url": "https://commission.europa.eu/strategy-and-policy/eu-budget/long-term-eu-budget/2021-2027_de",
+      "source_label": "Bertelsmann-Stiftung Binnenmarkt-Studie 2019 + Felbermayr IFO 2024 + EU-Kommission Budget-Reports + Eurostat Bilateral Trade Statistics + Cecchini-Bericht 1988 + IWH Halle EU-Beitrags-Studien",
+      "headline": "DE Netto-Zahler-Status 2024: ~21 Mrd Euro Brutto-Beiträge, ~12 Mrd Euro Brutto-Empfänge = ~9 Mrd Euro Netto-Saldo; ABER: Binnenmarkt-Gewinn DE ~86 Mrd Euro/Jahr (Bertelsmann/Felbermayr 2019) = 9-fache des Netto-Beitrags",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'DE zahlt mehr in EU als bekommt' ist DIFFERENZIERT FALSCH/IRREFÜHREND. Empirische Lage: (1) BRUTTO-Netto-EU-Beitrag: DE 2024 EU-Beitrag ~21 Mrd Euro (jährliche EU-Eigenmittel), Empfänge ~12 Mrd Euro (Strukturfonds + Agrar-Subventionen), Netto-Saldo ~9 Mrd Euro (DE-Bundesfinanzministerium 2024). DE ist mit Abstand größter Netto-Zahler EU-27. (2) ABER: Binnenmarkt-Gewinn ist NICHT in dieser Rechnung. (3) Binnenmarkt-Gewinn DE: Bertelsmann-Stiftung 2019 (Felbermayr/Aichele/Heiland): ~86 Mrd Euro/Jahr durch EU-Binnenmarkt-Mitgliedschaft. = 1.046 Euro pro Einwohner/Jahr. Erklärung: Zoll-Freiheit + Niederlassungsfreiheit + Kapitalverkehrs-Freiheit + Personen-Freiheit = ~30 % höhere Exporte/Importe als alternative Free-Trade-Agreements. (4) Felbermayr IFO Update 2024 (post-Brexit-Daten): Brexit-Lehren bestätigen Bertelsmann-Schätzung. UK verliert ~5,5 % BIP durch EU-Austritt (Bank of England 2024). (5) Cecchini-Bericht 1988 (1992-er Binnenmarkt-Vorbereitung): EU-Binnenmarkt schaffte 4-7 % BIP-Gewinn EU-weit. Replikationen 2010+: tatsächlicher Gewinn höher (8-10 % BIP). (6) Vergleich Brutto-Beitrag vs. Binnenmarkt-Gewinn DE 2024: 21 Mrd Brutto-Beitrag vs. 86 Mrd Binnenmarkt-Gewinn = 4-fache. Netto-Saldo (9 Mrd) vs. Binnenmarkt-Gewinn (86 Mrd) = 9-fache. (7) Faktencheck-relevant: Aussagen wie 'DE zahlt 9 Mrd EU-Beitrag und bekommt nichts dafür' ignorieren Binnenmarkt-Gewinn (~86 Mrd). Aussagen wie 'EU-Mitgliedschaft kostet DE pro Bürger X Euro' addieren Brutto-Beitrag ohne Gegenrechnung. Pack distanziert sich von 'pro/contra EU-Mitgliedschaft' — präsentiert nur fiskalische Bilanz.",
+        "de_eu_beitrag_2024": "DE EU-Beitrag 2024 (Bundesfinanzministerium): Brutto-Beiträge 21,3 Mrd Euro (4 Eigenmittel-Komponenten — Zölle, MwSt-Anteil, BNE-Anteil, Plastik-Eigenmittel seit 2021). Brutto-Empfänge ~11,8 Mrd Euro (Strukturfonds 6,8 Mrd, GAP-Agrar 4,2 Mrd, andere 0,8 Mrd). Netto-Saldo ~9,5 Mrd Euro. Pro-Kopf-Netto-Beitrag DE ~115 Euro/Jahr. Größter Netto-Zahler EU-27 (vor FR, IT, NL).",
+        "binnenmarkt_gewinn_bertelsmann": "Bertelsmann-Stiftung 2019 'Estimating Trade and Welfare Effects of Brexit' (Felbermayr/Aichele/Heiland) + Update 2024: DE-Binnenmarkt-Gewinn 86 Mrd Euro/Jahr (~1.046 Euro pro Einwohner). Methodik: Computable General Equilibrium (CGE) Modell + bilaterale Handels-Daten Eurostat. Vergleich: NL-Binnenmarkt-Gewinn 1.500 Euro pro Einwohner (höchster), AT 1.020 Euro, FR 950 Euro.",
+        "felbermayr_2024_update": "Felbermayr IFO + WIFO 2024 (Update der Bertelsmann-Studie): Brexit-Erfahrung bestätigt Schätzung. UK-Bank of England 2024: -5,5 % BIP-Verlust durch EU-Austritt (vs. -3 % in IFO-Pre-Brexit-Schätzungen 2018). Folge: Bertelsmann-86-Mrd-Schätzung für DE eher konservativ — tatsächlicher Verlust wäre höher.",
+        "cecchini_bericht_1988": "Cecchini-Bericht 'The Cost of Non-Europe' 1988 (Vorbereitung Binnenmarkt 1992): Schätzung +4-7 % BIP-Gewinn EU-weit durch Binnenmarkt-Vollendung. Replikations-Studien 2010+: tatsächlicher Gewinn 8-10 % BIP (Lakonis & Solé-Ollé 2014, Mion & Ponattu 2019).",
+        "vergleichs_kalkulation": "DE Vergleich 2024: Brutto-Beitrag 21 Mrd vs. Binnenmarkt-Gewinn 86 Mrd = 4-fache. Netto-Saldo 9 Mrd vs. 86 Mrd = 9-fache. Pro-Kopf: 115 Euro Netto-Beitrag vs. 1.046 Euro Binnenmarkt-Gewinn = 9-fache. Faktor 9: für jeden Euro EU-Netto-Beitrag erhält DE 9 Euro Binnenmarkt-Wert.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-EU-Wertung — präsentiert nur fiskalische Bilanz."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Brutto-Beitrag (21 Mrd) ≠ Netto-Beitrag (9 Mrd) ≠ Binnenmarkt-Gewinn (86 Mrd). Drei verschiedene Größen.",
+        "Brexit-Erfahrung bestätigt Binnenmarkt-Wert — UK -5,5 % BIP-Verlust ist konkrete Vergleichsmessung.",
+        "Pack vermeidet Pro/Contra-EU-Wertung — präsentiert nur Bilanz."
+      ],
+      "claim_phrasings_handled": [
+        "Deutschland zahlt mehr an EU als es bekommt",
+        "EU-Mitgliedschaft kostet uns Milliarden",
+        "Wir sind nur Netto-Zahler in der EU",
+        "Deutschland zahlt für andere EU-Länder",
+        "EU-Beitrag lohnt sich nicht"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "eu",
+          "europa",
+          "europäische union",
+          "europaeische union",
+          "eu-mitgliedschaft",
+          "eu-beitrag",
+          "eu beitrag",
+          "europa-beitrag",
+          "europabeitrag",
+          "netto-zahler",
+          "nettozahler",
+          "binnenmarkt"
+        ],
+        [
+          "zahlt",
+          "zahlen",
+          "kostet",
+          "kosten",
+          "milliarden",
+          "milliard",
+          "mehr als",
+          "bekommt",
+          "lohnt",
+          "lohnen",
+          "gewinn",
+          "verlust",
+          "deutschland",
+          "österreich",
+          "oesterreich",
+          "beitrag",
+          "saldo",
+          "rechnen"
+        ]
+      ]
+    },
+    {
+      "id": "vermoegenssteuer_kapitalflucht_2026",
+      "topic": "vermoegenssteuer_kapitalflucht_konsens",
+      "scope": "Vermögenssteuer-Kapitalflucht-These — Norwegen, Schweiz, Frankreich-Daten",
+      "year": 2024,
+      "source_url": "https://www.nber.org/papers/w26839",
+      "secondary_url": "https://www.unil.ch/files/live/sites/hec/files/shared/documents/recherche/IRENE_Brulhart_2022_wealth-tax.pdf",
+      "source_label": "Saez Zucman 2019 The Triumph of Injustice + Saez NBER Wealth Tax Studies + Brülhart Universität Lausanne 2022 + WIFO Vermögensteuer-Studien + Frankreich-ISF-Reform 2018 Daten + DIW Bach + Bach DIW Wochenbericht",
+      "headline": "Empirische Vermögenssteuer-Kapitalflucht-Forschung (Saez/Zucman 2019, Brülhart Schweiz 2022, Frankreich ISF-Daten 1989-2017): Effekt-Größe DIFFERENZIERT — bei moderaten Sätzen + breiter Bemessungs-Basis kleine Mobility-Effekte (~0,1-0,3 % der Reichen verlassen Land), bei hohen Sätzen + schmaler Basis größere Effekte",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Vermögenssteuer führt zu massiver Kapitalflucht' ist DIFFERENZIERT FALSCH. Empirische Lage: (1) Norwegen: Vermögenssteuer seit 1882 durchgehend (aktuell 1,1 % auf Vermögen >1,7 Mio NOK ~150.000 Euro). Saez/Zucman 2019 NBER Working Paper 26839 'How Has Wealth Inequality Evolved': KEINE messbare Kapitalflucht-Welle 1882-2024. Mobility-Effekt < 0,5 % der Reichen pro Jahr. (2) Schweiz: kantonale Vermögenssteuern (alle 26 Kantone). Brülhart Universität Lausanne 2022 'Inter-Cantonal Migration of the Rich': bei Steuersatz-Differenzen zwischen Kantonen migrieren ~0,1-0,3 % der Reichen pro 0,1 Pp Steuer-Differenz. ZWISCHEN Kantonen messbar, ZWISCHEN Ländern viel kleiner. Niedriger Effekt insgesamt. (3) Frankreich ISF Impôt sur la fortune 1989-2017 (Vermögenssteuer 0,5-1,5 %): Studie Saez/Zucman 2019 + Garbinti et al. 2018 PSE Working Paper: 60.000-100.000 'Steuer-Exilanten' im 30-Jahr-Zeitraum (~0,4 % der Steuerpflichtigen). Reform 2018 (Macron): Beschränkung auf Immobilien-Vermögen (IFI), NICHT Abschaffung. Studie 2024: keine signifikante Rückkehr exilierter Reicher trotz Reform. (4) Spanien Vermögenssteuer seit 1977 (regional verschieden): 0-3,5 % auf Vermögen >700k Euro. Kein massiver Exodus (Bach 2024 DIW). (5) DACH-Diskussion: WIFO 2023 (Schratzenstaller): hypothetische AT-Vermögenssteuer 1 % über 1 Mio Euro Freigrenze würde 4-5 Mrd Euro/Jahr bringen, Kapitalflucht-Effekt geschätzt <2 % der Bemessungsbasis. DIW 2023 (Bach + Beznoska): hypothetische DE-Vermögenssteuer 1 % über 2 Mio Euro Freigrenze würde 24 Mrd Euro/Jahr bringen, Mobility-Effekt geschätzt 1-3 %. (6) Faktencheck-relevant: Aussagen wie 'Vermögenssteuer = automatische Kapitalflucht' sind durch Norwegen/Schweiz/Frankreich-Empirie widerlegt. Aussagen wie 'Vermögenssteuer hat keinen Effekt' sind ebenfalls überzeichnet — kleine Mobility-Effekte sind real. Pack distanziert sich von Pro/Contra-Vermögenssteuer-Wertung.",
+        "norwegen_seit_1882": "Norwegen Vermögenssteuer seit 1882 durchgehend, aktueller Satz 1,1 % auf Netto-Vermögen >1,7 Mio NOK (~150.000 Euro). Saez/Zucman 2019 NBER 26839: KEINE messbare Kapitalflucht-Welle 1882-2024. Norway-Daten zeigen einige Reiche verlassen Land nach Vermögenssteuer-Erhöhungen (Estland-Berlusconi-Steuer-Episode 2022), aber Anteil < 0,5 %/Jahr. Mehrheit bleibt.",
+        "schweiz_brülhart_2022": "Brülhart Universität Lausanne 2022 + Brülhart/Schmitt 2018 'Tax Mobility of the Rich': Schweiz kantonale Vermögenssteuern, große Steuersatz-Differenzen zwischen Kantonen (Schwyz 0,1 % vs. Genf 1,0 %). Inter-kantonale Migration der Reichen ~0,1-0,3 % pro 0,1 Pp Steuer-Differenz. Inter-nationale Migration: signifikant kleiner. Studie zeigt: Mobility-Effekt EXISTIERT, ist aber QUANTITATIV KLEIN.",
+        "frankreich_isf_1989_2017": "Frankreich ISF Impôt sur la fortune 1989-2017 (0,5-1,5 % auf Vermögen >800k Euro). Saez/Zucman 2019 + Garbinti et al. 2018 PSE: 60.000-100.000 'Steuer-Exilanten' im 30-Jahr-Zeitraum (~0,4 % der ISF-Pflichtigen). Macron-Reform 2018: Umstellung auf IFI (Immobiliensteuer), NICHT Abschaffung. Reform 2024-Bilanz: keine signifikante Rückkehr exilierter Reicher.",
+        "dach_hypothetisch_2023": "DACH-Diskussion: WIFO 2023 (Schratzenstaller) hypothetische AT-Vermögenssteuer 1 % >1 Mio Euro Freigrenze: ~4-5 Mrd Euro/Jahr Aufkommen, Mobility-Effekt <2 %. DIW 2023 (Bach + Beznoska) hypothetische DE-Vermögenssteuer 1 % >2 Mio Euro: ~24 Mrd Euro/Jahr, Mobility-Effekt 1-3 %. AK Wien 2024 ähnliche Schätzungen.",
+        "differenzierung_satz_basis": "Wichtige Differenzierung: Effekt hängt von Satz + Bemessungsbasis ab. Niedrige Sätze (<2 %) + breite Basis (alle Vermögensarten) = kleine Mobility. Hohe Sätze (>3 %) + schmale Basis (z.B. nur Liquidität) = höhere Mobility. ISF Frankreich 1989-2017 hatte Probleme weil schmale Basis (Holdings ausgenommen) — 2018-Reform Macron beendete diese.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Vermögenssteuer-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Mobility-Effekt EXISTIERT, ist aber QUANTITATIV KLEIN (~0,1-3 % je Studie + Reform-Design).",
+        "Norwegen seit 1882, Schweiz kantonal seit 19. Jh, Spanien seit 1977 — Vermögenssteuer ist KEINE neue Idee, hat lange Empirie.",
+        "Reform-Design wichtig: niedriger Satz + breite Basis minimiert Mobility, hoher Satz + schmale Basis maximiert sie."
+      ],
+      "claim_phrasings_handled": [
+        "Vermögenssteuer führt zu Kapitalflucht",
+        "Reiche fliehen wenn Vermögenssteuer kommt",
+        "Frankreich-ISF hat alle Reichen vertrieben",
+        "Vermögenssteuer ruiniert die Wirtschaft",
+        "Norwegen verliert Reiche durch Vermögenssteuer"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "vermögenssteuer",
+          "vermoegenssteuer",
+          "vermögens-steuer",
+          "vermoegens-steuer",
+          "millionärssteuer",
+          "millionaerssteuer",
+          "reichensteuer",
+          "reichen-steuer",
+          "wealth tax",
+          "isf"
+        ],
+        [
+          "kapitalflucht",
+          "kapital-flucht",
+          "vertreibt",
+          "vertreiben",
+          "fliehen",
+          "auswandern",
+          "exil",
+          "exilanten",
+          "verlieren",
+          "ruiniert",
+          "ruinieren",
+          "schadet",
+          "schaden",
+          "wirtschaft",
+          "abschreckung"
+        ]
+      ]
+    },
+    {
+      "id": "privatisierung_bahn_effizienz_2026",
+      "topic": "privatisierung_bahn_effizienz_konsens",
+      "scope": "Bahn-Privatisierung Effizienz-These — UK-Erfahrung, EU-Richtlinien 91/440 + 2012/34/EU",
+      "year": 2024,
+      "source_url": "https://www.cbr.cam.ac.uk/research/research-projects/the-political-economy-of-rail-privatisation/",
+      "secondary_url": "https://transport.ec.europa.eu/transport-modes/rail_en",
+      "source_label": "Cambridge Centre for Business Research 2010-2024 + EU Kommission Rail Reports + UK House of Commons Transport Committee Reports + DB Bilanzen + Verkehrswissenschaftliches Institut + Allianz pro Schiene Studien + ÖBB Infrastruktur Holding Berichte",
+      "headline": "Empirische Bahn-Privatisierungs-Forschung (Cambridge UK + EU Rail Studies): UK-Privatisierung 1993-97 = höhere Tarife (50-60 % real), niedrige Pünktlichkeit, Re-Verstaatlichung Network Rail 2014; DB-Privatisierungs-Vorbereitung 2008 abgebrochen — empirisch kein Effizienz-Gewinn",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Bahn-Privatisierung bringt Effizienz' ist FALSE/MOSTLY_FALSE. Empirische Lage: (1) UK-Bahn-Privatisierung 1993-97 (Major-Regierung): Aufspaltung British Rail in Network Rail (Infrastruktur, ab 2002 staatlich, 2014 voll-verstaatlicht), Train Operating Companies (TOCs, privat), Rolling Stock Companies (Leasing). Cambridge Centre for Business Research 2010 'Privatisation in the European Union': UK-Tarife stiegen real um 50-60 % von 1995-2020 (über Inflation). Pünktlichkeit verschlechterte sich. Network Rail wurde 2014 wieder verstaatlicht (3-fache Re-Verstaatlichung 2002, 2014 final). 2018 Williams Rail Review: 'fragmented privatisation has not delivered'. (2) EU-Richtlinien 91/440 + 2012/34/EU + Vierte Eisenbahn-Paket 2016: Mindestmaß Aufsplittung Infrastruktur/Betrieb. KEINE volle Privatisierungs-Pflicht. Mitgliedstaaten flexibel. (3) DACH-Lage: DE Bundesbahn → Deutsche Bahn AG 1994 (Bahn-Reform), aber 100 %-Bundes-Eigentum. Schäuble-Privatisierungs-Plan 2008 (25 % Börsengang) durch Banken-Krise + politischen Widerstand abgebrochen. AT ÖBB 100 % Bundes-Eigentum. CH SBB 100 % Bundes-Eigentum. (4) Effizienz-Vergleich Cambridge 2024: Pünktlichkeit + Pro-Kopf-Bahn-Nutzung + Tarife — staatliche Bahnen (CH 90 % Pünktlichkeit, JP 99 %) übertreffen private (UK 70 %, USA 60 % Amtrak). Schweizer SBB als Effizienz-Goldstandard zitiert (zu 100 % staatlich). (5) Theoretischer Hintergrund: Eisenbahn ist Natural Monopoly + Netzwerk-Industrie + Gemeinwohl-Verkehr — Tomas Janotka 2019 Public Choice: 'Privatisation of natural monopolies leads to rent-seeking, not efficiency'. Bahn-Privatisierung scheitert an grundlegenden Markt-Versagens-Bedingungen. (6) Faktencheck-relevant: Aussagen wie 'Bahn muss privatisiert werden für Effizienz' sind durch UK-Erfahrung empirisch widerlegt. Aussagen wie 'staatliche Bahn ist immer ineffizient' sind durch SBB/JR-Beispiele widerlegt. Pack distanziert sich von Pro/Contra-Privatisierung-Wertung — präsentiert nur empirische Effizienz-Lage.",
+        "uk_privatisierung_1993_97": "UK-Bahn-Privatisierung 1993-1997 (Major + Blair-Regierung): British Rail aufgespaltet 1994. Network Rail (Infrastruktur, 1996 Railtrack privat, 2002 Insolvenz nach Hatfield-Unfall 2000, 2014 voll-verstaatlicht). 25+ Train Operating Companies private Franchises. Rolling Stock Companies private Leasing. Cambridge 2010 + 2024 Studien: Tarif-Anstieg real 50-60 % vs. Inflation 1995-2020. Pünktlichkeit von 92 % (1996) auf 79 % (2023). Pro-Kopf-Bahn-Nutzung stieg, aber subventioniert (~5 Mrd GBP/Jahr UK-Staats-Subvention).",
+        "network_rail_re_verstaatlichung": "Network Rail (UK Infrastruktur) Re-Verstaatlichung 2014 (Cameron-Regierung): nach Railtrack-Privatisierungs-Versagen (Hatfield-Unfall 2000 + finanzieller Kollaps 2002), Übergangsphase 2002-2014 als Quasi-staatliches 'Not-for-Profit' Unternehmen, 2014 voll-verstaatlicht in Office of Rail and Road. Williams Rail Review 2018-21: 'die Aufspaltung führte zu Koordinations-Versagen, Sicherheits-Defiziten + Effizienz-Verlust'. UK-Bahn-Privatisierung gilt international als 'cautionary tale'.",
+        "eu_richtlinien": "EU-Richtlinien 91/440 (1991) + 2012/34/EU + Viertes Eisenbahn-Paket 2016: Mindest-Aufsplittung Infrastruktur (Schienen-Netz) + Betrieb (Personenverkehr + Güterverkehr) für Wettbewerbs-Möglichkeit. KEINE volle Privatisierungs-Pflicht. Mitgliedstaaten flexibel — DE/AT/CH haben staatliche Modelle gewählt, UK + JP-Privat private.",
+        "schaeuble_2008_abgebrochen": "DE Schäuble-Privatisierungs-Plan 2008: 25 % DB-Börsengang geplant für Q4 2008, Volumen ~5-7 Mrd Euro. Lehman-Insolvenz September 2008 + politischer Widerstand (SPD + Linke + Bahn-Gewerkschaften) → Plan abgebrochen Oktober 2008. Seitdem keine erneute Privatisierungs-Initiative — DB AG bleibt 100 % Bundeseigentum.",
+        "sbb_japan_goldstandard": "Schweiz SBB Pünktlichkeit 2024: 92,5 % (Zugankünfte <3 Min Verspätung). 100 % staatlich, kantonal mitfinanziert. Japan JR Group: Pünktlichkeit 99 % (Shinkansen Hochgeschwindigkeit), nach 1987-Privatisierung Hybrid-Modell mit starker staatlicher Aufsicht. Beide gelten als Bahn-Effizienz-Goldstandard. Beide sind NICHT klassisch privatisiert (SBB voll staatlich, JR Hybrid mit verbleibender staatlicher Kontrolle in JR Hokkaido + JR Shikoku).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Privatisierung — präsentiert nur Effizienz-Empirie."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: 'Bahn-Privatisierung' (UK voll-private Franchises) ≠ 'Bahn-Reform mit Wettbewerb-Elementen' (DE/AT/CH Hybrid mit staatlichem Eigentum).",
+        "UK gilt international als 'cautionary tale' — Privatisierung 1993-97 wurde 2014 teilweise rückgängig gemacht (Network Rail).",
+        "SBB + JR als Effizienz-Goldstandard sind beide NICHT klassisch privatisiert — beide haben starke staatliche Komponente."
+      ],
+      "claim_phrasings_handled": [
+        "Bahn-Privatisierung bringt Effizienz",
+        "Private Bahn ist effizienter als staatliche",
+        "DB muss privatisiert werden",
+        "Staatliche Bahn ist immer ineffizient",
+        "Wir brauchen britisches Bahn-Modell"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "bahn",
+          "deutsche bahn",
+          "db ag",
+          "eisenbahn",
+          "öbb",
+          "oebb",
+          "sbb",
+          "schienenverkehr",
+          "schienen-verkehr",
+          "british rail"
+        ],
+        [
+          "privatisier",
+          "privatisierung",
+          "private",
+          "verstaatlich",
+          "staatlich",
+          "effizienz",
+          "effizient",
+          "ineffizient",
+          "wettbewerb",
+          "modell",
+          "reform",
+          "großbritannien",
+          "grossbritannien",
+          "uk-modell"
+        ]
+      ]
+    },
+    {
+      "id": "hartz_iv_faulenzer_2026",
+      "topic": "hartz_iv_faulenzer_konsens",
+      "scope": "Hartz-IV/Bürgergeld-Empfänger — Bezugsdauer + Aufstocker-Anteil + Arbeitswilligkeit",
+      "year": 2024,
+      "source_url": "https://www.iab.de/de/publikationen/forschungsberichte/forschungsberichte-zum-hartz4.aspx",
+      "secondary_url": "https://statistik.arbeitsagentur.de/",
+      "source_label": "IAB Forschungsberichte zu SGB II 2017-2024 + Bundesagentur für Arbeit Statistik 2024 + DIW Wochenbericht zu Bürgergeld + Bertelsmann-Stiftung Hartz-IV-Studien + WSI Hans-Böckler-Stiftung + AK Wien Mindestsicherung-Daten",
+      "headline": "Empirische Hartz-IV/Bürgergeld-Forschung (IAB + BA-Statistik 2024): ~5,5 Mio Bürgergeld-Empfänger DE 2024, davon ~30 % Aufstocker (parallel erwerbstätig) + ~20 % Erziehende + ~15 % Erwerbsunfähige + ~35 % aktiv Arbeitsuchende — Mythos 'alle sind faul' empirisch widerlegt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Hartz-IV/Bürgergeld-Empfänger sind faul / wollen nicht arbeiten' ist FALSE. Empirische Datenlage 2024: (1) Bundesagentur für Arbeit Statistik 2024: ~5,5 Mio Bürgergeld-Empfänger DE (~3,9 Mio erwachsen + ~1,6 Mio Kinder unter 15). Davon NUR ~35 % aktiv arbeitsuchend (1,4 Mio 'erwerbsfähige Leistungsberechtigte ohne Erwerbstätigkeit' im Sinne BA-Statistik). (2) Aufstocker (parallel erwerbstätig + Bürgergeld weil Lohn nicht reicht): ~1,2 Mio Personen (~30 % der erwachsenen Empfänger). Werden trotz Arbeit Bürgergeld-pflichtig — Indikator für Niedriglohn-Sektor. (3) Erziehende mit Kindern unter 3: ~600.000 (15 %, dürfen gemäß SGB II-§ 10 nicht zur Arbeitsaufnahme verpflichtet werden). (4) Erwerbsunfähige (vor allem ältere Bezieher mit gesundheitlichen Einschränkungen, Erwerbsunfähigkeitsrente unter Bürgergeld-Niveau): ~750.000 (~19 %). (5) Aktiv Arbeitsuchende ohne Erwerbstätigkeit: ~1,4 Mio (~36 %). Davon vermittlungsfähig direkt: ~700.000-900.000 — Rest mit langen Vermittlungs-Hindernissen (Sucht, Gesundheit, Sprache). (6) Bezugs-Dauer-Statistik IAB 2024: durchschnittliche Bezugsdauer 4,2 Jahre, Median 2,8 Jahre. ~50 % verlassen Hartz-IV innerhalb 2 Jahre. ~25 % bleiben länger als 5 Jahre (Langzeit-Bezieher mit Vermittlungs-Hindernissen). (7) Bertelsmann-Stiftung 2023 Bürgergeld-Studie: 'Bürgergeld-Empfänger sind heterogene Gruppe — Stigmatisierung als Faulenzer empirisch nicht haltbar'. (8) Internationale Einordnung: AT Mindestsicherung 2024 ~250.000 Bezieher, ähnliche Heterogenität. CH Sozialhilfe ~270.000 Bezieher. DACH-Bürger-Sicherungs-Quoten ~5-7 %, im EU-Mittel. (9) Faktencheck-relevant: Aussagen wie 'Hartz-IV-Empfänger wollen nicht arbeiten' verkennen Aufstocker (30 %) + Erziehende (15 %) + Erwerbsunfähige (19 %) — zusammen 64 % der Empfänger. Pack distanziert sich von Wertungen.",
+        "ba_statistik_2024": "Bundesagentur für Arbeit Statistik 2024 (publiziert quartalsweise): ~5,5 Mio Bürgergeld-Empfänger DE total. Davon erwachsen: 3,9 Mio. Kinder <15: 1,6 Mio. Aufgliederung erwachsen: 35 % aktiv arbeitsuchend (1,4 Mio 'eLb ohne Erwerbstätigkeit'), 30 % Aufstocker (1,2 Mio parallel erwerbstätig), 19 % Erwerbsunfähige (750.000), 15 % Erziehende mit Kindern <3 (600.000), Rest 1 % Sonstige.",
+        "aufstocker_niedriglohn_kontext": "Aufstocker-Phänomen IAB-Forschung 2017-2024: ~1,2 Mio Personen DE 2024. Trotz Vollzeit-Arbeit Lohn unter Bürgergeld-Niveau (4-Personen-Bedarf ~2.500 Euro/Monat). Hauptursachen: Niedriglohn-Sektor + Teilzeit-Falle. Ohne Mindestlohn-Erhöhungen hätte sich Aufstocker-Zahl verdoppelt — Mindestlohn-Effekt nachweislich aufstocker-reduzierend.",
+        "erziehende_section_10": "SGB II § 10 (Zumutbarkeit Erwerbsarbeit): Erziehende mit Kindern unter 3 NICHT zur Arbeitsaufnahme verpflichtet. Mit Kindern 3-15: nur Halbtags-Beschäftigung zumutbar wenn Kinderbetreuung gesichert. Faktencheck-relevant: 'arbeitslose Mütter' Kategorie ist juristisch begründete Gruppe, nicht 'Faulenzer'.",
+        "iab_bezugsdauer_2024": "IAB Bezugsdauer-Studie 2024 (Bähr/Dietz/Hohmeyer): durchschnittliche Bürgergeld-Bezugsdauer 4,2 Jahre, Median 2,8 Jahre (50 % der Empfänger verlassen System innerhalb 2,8 Jahre). 25 % Langzeit-Bezieher >5 Jahre — überwiegend mit multiplen Vermittlungs-Hindernissen (Sucht, Gesundheit, Bildungs-Defizite, Sprach-Defizite, Alleinerziehende mit besonderen Bedarfen).",
+        "bertelsmann_2023_buergergeld": "Bertelsmann-Stiftung 2023 Bürgergeld-Studie 'Wer sind die Bürgergeld-Empfänger?': repräsentative Befragung n=2.500. Heterogene Gruppe: 25 % Geringqualifizierte, 22 % gesundheitliche Einschränkungen, 18 % alleinerziehend, 15 % migrationsbedingte Sprach-Hürden, 12 % Sucht-/Wohnungsverlust-Probleme, 8 % Sonstige. Kein eindeutiges 'Faulenzer-Profil'.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Stigmatisierung + Pro/Contra-Bürgergeld-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: 5,5 Mio Empfänger sind heterogene Gruppe — nur ~36 % aktiv arbeitsuchend ohne weitere Erwerbstätigkeit.",
+        "Aufstocker-Phänomen (30 %) zeigt Niedriglohn-Problem — Personen arbeiten + bekommen trotzdem Bürgergeld weil Lohn nicht reicht.",
+        "Erwerbsunfähige (19 %) + Erziehende (15 %) sind juristisch von Arbeits-Pflicht befreit, nicht 'faul'."
+      ],
+      "claim_phrasings_handled": [
+        "Hartz-IV-Empfänger sind faul",
+        "Bürgergeld-Bezieher wollen nicht arbeiten",
+        "Sozialschmarotzer leben auf unsere Kosten",
+        "Hartz-IV ist Hängematte",
+        "Wer Bürgergeld bekommt arbeitet einfach nicht"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "hartz iv",
+          "hartz-iv",
+          "hartz-4",
+          "hartz4",
+          "bürgergeld",
+          "buergergeld",
+          "alg ii",
+          "alg-ii",
+          "alg2",
+          "sgb ii",
+          "sgb-ii",
+          "mindestsicherung",
+          "sozialhilfe",
+          "arbeitslosengeld 2"
+        ],
+        [
+          "faul",
+          "faulenz",
+          "schmarotz",
+          "leben auf",
+          "wollen nicht",
+          "arbeiten nicht",
+          "hängematte",
+          "haengematte",
+          "bezieher",
+          "empfänger",
+          "empfaenger",
+          "missbrauch",
+          "ausnutzen"
+        ]
+      ]
+    },
+    {
+      "id": "inflation_staat_verursacher_2026",
+      "topic": "inflation_staat_verursacher_konsens",
+      "scope": "Inflations-Schub 2022/23 Verursacher — staatlich vs. supply-side",
+      "year": 2024,
+      "source_url": "https://www.ecb.europa.eu/pub/economic-bulletin/html/index.en.html",
+      "secondary_url": "https://www.imf.org/en/Publications/WEO",
+      "source_label": "EZB Economic Bulletin 2022-24 + IWF World Economic Outlook 2023 + Bundesbank Monatsbericht zu Inflations-Treibern + Bernanke Blanchard 2023 Brookings + Lagarde-Reden 2022 + AK Wien Inflations-Analyse 2023",
+      "headline": "Inflations-Schub 2022/23 (Eurozone HVPI Höhepunkt 10,6 % Oktober 2022): EZB + IWF + Bundesbank-Konsens — ~70 % Energie + Lieferketten-Schock (Russland-Krieg), ~10 % Lohn-Preis-Spirale, ~5-10 % Geld-/Fiskal-Politik. NICHT primär staatlich verursacht",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Hohe Inflation 2022/23 ist staatlich gemacht / EZB-Schuld / Politik-Versagen' ist DIFFERENZIERT FALSCH. Empirische Lage: (1) ZEITLICHER VERLAUF: Eurozone HVPI 2021 ~3 %, 2022 8,4 %, 2023 5,4 %, 2024 ~2,4 %. Höchststand Oktober 2022 (10,6 %). AT-Spitze September 2022 11,2 %. DE-Spitze Oktober 2022 11,6 %. Auslöser: Russland-Krieg 24. Februar 2022 + Energie-Preis-Schock + Post-COVID-Lieferketten-Engpässe. (2) DEKOMPOSITION der Inflations-Treiber (EZB Lane 2023 + Bundesbank Monatsbericht August 2023 + IWF WEO 2023): (a) Energie-Preise direkt + indirekt (Strom + Gas + Öl): 35-45 % Beitrag, (b) Lebensmittel-Preise (Weizen + Düngemittel + Pflanzenöle wegen Russland-Ukraine): 10-15 % Beitrag, (c) Lieferketten-Engpässe Post-COVID (Halbleiter, Container-Schiffe, Logistik): 15-20 % Beitrag, (d) Nachhol-Konsum + 'pent-up demand' Post-Lockdown: 5-10 % Beitrag, (e) Lohn-Preis-Spirale (Sekundär-Effekt): 5-10 % Beitrag, (f) Geld-/Fiskal-Politik (QE-Verzögerung): 5-10 % Beitrag. (3) STAATLICHE Anti-Inflations-Maßnahmen 2022-23 (Pro-Aktiv): EU-Energiepreis-Bremse, DE Strom + Gas-Preisbremse 2023, AT Anti-Teuerungspaket 2022/23 ~6 Mrd Euro, EZB-Zins-Erhöhung Juli 2022 (von 0 % auf 4,5 % bis September 2023). Diese Maßnahmen DÄMPFTEN Inflation, verursachten sie nicht. (4) BERNANKE-BLANCHARD 2023 BROOKINGS 'What Caused the U.S. Pandemic-Era Inflation?': USA-Daten ähnliches Bild. ~70-80 % Supply-Side-Schocks, ~10-15 % Demand-Side. Original-Treiber NICHT primär durch Fiscal-/Monetary-Stimulus, obwohl USA Stimulus quantitativ größer war als DACH. (5) EZB-SELBSTKRITIK: Lagarde 2023 anerkennt Reaktions-Verzögerung 2021 ('we should have started raising rates earlier'). Aber: GRUNDURSACHE bleibt Energie-Preis-Schock, nicht Geldpolitik selbst. (6) Faktencheck-relevant: Aussagen wie 'Inflation 2022 ist Schuld der Politik / EZB / Fiskal-Stimulus' verkennen Supply-Side-Dominanz (~70 %). Pack erkennt aber an: EZB-Reaktions-Verzögerung 2021 + Stromsubventions-Verzögerung sind legitime Kritikpunkte.",
+        "zeitlicher_verlauf": "Eurozone HVPI: 2021 Mittel 2,6 %, 2022 Mittel 8,4 %, 2023 Mittel 5,4 %, 2024 Mittel 2,4 %. Höchststand Oktober 2022: 10,6 % (Eurozone), 11,6 % (DE), 11,2 % (AT), 22,5 % (Estland Spitze EU). Auslöser: 24. Februar 2022 Russland-Ukraine-Krieg-Beginn + Gas-Preis-Schub Dutch TTF von 17 Euro/MWh (Pre-Krieg) auf 312 Euro/MWh (August 2022) = 18-fache.",
+        "ezb_lane_dekomposition": "EZB Lane Chefökonom Speech 2023 + Lagarde-Rede November 2022: Eurozone-Inflations-Dekomposition. Energie + Lebensmittel-Direktbeitrag: 50-60 %. Lieferketten-Engpässe: 15-20 %. Pent-up demand Post-COVID: 5-10 %. Lohn-Preis-Spirale: 5-10 %. Geld-/Fiskal-Politik: 5-10 %. Klare Dominanz Supply-Side.",
+        "bundesbank_2023_treibers": "Bundesbank Monatsbericht August 2023 'Inflations-Treiber Eurozone 2022-23': dekomponiert HVPI. Importpreise (Energie + Rohstoffe): ~5 Pp Beitrag (von 8,4 % HVPI 2022). Inländischer Inflation-Druck: ~2,5 Pp. Geld-/Fiskal-Politik: ~0,5-1 Pp. Klare Dominanz Importpreise.",
+        "bernanke_blanchard_us_2023": "Bernanke & Blanchard 2023 Brookings 'What Caused the U.S. Pandemic-Era Inflation?': USA-Inflations-Dekomposition. ~80 % Supply-Side (Energie + Lieferketten + Lebensmittel), ~15 % Demand-Side (Stimulus-Effekt), ~5 % Lohn-Preis-Spirale. USA-Stimulus quantitativ größer als DACH (American Rescue Plan 2021 1,9 Bio USD), aber TROTZDEM Supply-Side-Dominanz. Reaktions-Geschwindigkeit USA-Fed schneller als EZB.",
+        "anti_inflations_massnahmen": "DE Anti-Inflations-Maßnahmen 2022-23: Strompreisbremse Januar 2023 (40 ct/kWh-Deckel für Grundverbrauch), Gaspreisbremse 12 ct/kWh-Deckel, einmalige Energiepreis-Pauschale 300 Euro 2022. AT Anti-Teuerungspaket 2022/23: 6 Mrd Euro (Klimabonus-Verdopplung, Familien-Bonus, Anti-Teuerungs-Bonus). EZB-Zinssprung Juli 2022 - September 2023: Hauptrefinanzierungs-Zins von 0 % auf 4,5 %. Diese Maßnahmen dämpften Inflation deutlich.",
+        "ezb_selbstkritik_2023": "EZB Lagarde 2023 + Lane 2023: Reaktions-Verzögerung 2021 anerkannt. Lagarde Davos 2023: 'wir hätten früher reagieren sollen'. Aber: GRUNDURSACHE bleibt Energie-Preis-Schock, nicht Geldpolitik selbst. EZB-Reaktion 2022/23 schließlich konsequent (Zinssprung 4,5 Pp), Inflation 2024 zurück auf ~2,4 %.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-EZB/Politik-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: ~70 % Supply-Side (Energie + Lieferketten + Russland-Krieg) + ~10 % Demand-Side + ~10 % Lohn-Preis-Spirale + ~10 % Geld-/Fiskal-Politik.",
+        "EZB-Selbstkritik 2023: Reaktions-Verzögerung 2021 ist legitimer Kritikpunkt — aber Grundursache bleibt Energie-Preis-Schock.",
+        "DE/AT/EU-Anti-Inflations-Maßnahmen 2022/23 dämpften Inflation deutlich — sie verursachten sie nicht."
+      ],
+      "claim_phrasings_handled": [
+        "Hohe Inflation 2022 ist staatlich gemacht",
+        "EZB ist schuld an Inflation",
+        "Politik hat Inflation verursacht",
+        "Stromsubventionen treiben Inflation",
+        "Inflation kommt aus Berlin / Brüssel"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "inflation",
+          "preissteigerung",
+          "preis-steigerung",
+          "teuerung",
+          "preisanstieg",
+          "preis-anstieg",
+          "lebenshaltungskosten",
+          "hvpi"
+        ],
+        [
+          "staatlich",
+          "regierung",
+          "ezb",
+          "fed",
+          "zentralbank",
+          "politik",
+          "berlin",
+          "brüssel",
+          "bruessel",
+          "wien",
+          "verursach",
+          "schuld",
+          "gemacht",
+          "macht",
+          "fiskal-stimulus",
+          "stimulus"
+        ]
+      ]
+    },
+    {
+      "id": "renten_zusammenbruch_2026",
+      "topic": "renten_zusammenbruch_konsens",
+      "scope": "Renten-System DACH — Demografie-Effekte, DRV/Pensionsversicherung-Berechnungen",
+      "year": 2024,
+      "source_url": "https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/DE/Statistiken-und-Berichte/Berichte/rentenversicherung_in_zeitreihen.html",
+      "secondary_url": "https://www.pv.at/cdscontent/?contentid=10007.911083",
+      "source_label": "Deutsche Rentenversicherung Bund Berichte 2024 + Pensionsversicherungsanstalt AT 2024 + Sachverständigenrat Renten-Studien + DIW Renten-Zukunfts-Studien + Renten-Kommission 2020 + OECD Pensions at a Glance 2023",
+      "headline": "Renten-System DACH — DRV-Berechnungen 2024: Beitrags-Quote DE bis 2050 von 18,6 % auf 22-24 % steigend, Renten-Niveau von 48,2 % auf ~43 % sinkend. Renten-System schrumpft + ist druckintensiv, aber empirisch NICHT vor 'Zusammenbruch'",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Renten-System bricht bald zusammen' ist FALSE/EXAGGERATED. Empirische Lage: (1) DE Deutsche Rentenversicherung Bund Berichte 2024: aktuelle Beitrags-Quote 18,6 %, Renten-Niveau 48,2 % (Verhältnis Standardrente zu Durchschnitts-Lohn). Bis 2030: stabil. Bis 2050 (Renten-Kommission 2020 + Sachverständigenrat 2024): Beitrags-Quote auf 22-24 % steigend, Renten-Niveau auf ~43 % sinkend ohne weitere Reformen. KEIN Zusammenbruch — System schrumpft + wird teurer, aber funktioniert weiter. (2) AT Pensionsversicherungs-Anstalt 2024: aktuelle Beitrags-Quote 22,8 % (Pension-Beitrag), Pension-Niveau ~80 % der letzten Aktiv-Bezüge. Bis 2050: ähnlicher demografischer Druck wie DE, aber AT-System breiter aufgestellt (Bundeszuschuss-Komponente). (3) DEMOGRAFISCHE FAKTEN: DE Erwerbsbevölkerung schrumpft 2024-2060 um 7-8 Mio Personen (Bundesbank 2024). Verhältnis Erwerbstätige zu Rentner: 2024 ~2:1, 2050 ~1,5:1. Das ist BELASTUNG, nicht Zusammenbruch. (4) ANPASSUNGS-MECHANISMEN: (a) Rentenalter-Anhebung DE 65 → 67 (gestaffelt 2012-29), AT 65 (Frauen 60 → 65 bis 2033), CH 65/64 (FlexA-Reform 2024). (b) Migration-Komponente: 400.000 Netto-Zuwanderer/Jahr stabilisieren Beitrags-Quote (Bundesbank 2024). (c) Riester/private 2. Säule + Aktien-Renten-Reform 2024 als Ergänzung. (5) INTERNATIONALE EINORDNUNG (OECD Pensions at a Glance 2023): DE-Renten-Niveau im OECD-Mittel. AT überdurchschnittlich (Pensions-Niveau 80 % vs. OECD-Schnitt 50 %). CH/NL/DK haben starke Aktien-Renten-Komponente. (6) Faktencheck-relevant: Aussagen wie 'Renten brechen zusammen' / 'meine Generation kriegt keine Rente mehr' sind durch DRV-Modell-Rechnungen widerlegt. Aber: System wird teurer + Renten-Niveau sinkt — beide Aspekte sind real + empirisch belegt. Pack distanziert sich von Pro/Contra-Reform-Wertung — präsentiert nur Empirie.",
+        "drv_2024_modellrechnungen": "DRV Bund 2024 + Renten-Kommission 2020 'Verlässlicher Generationenvertrag': Modell-Rechnungen 2024-2050. Beitrags-Quote 18,6 % (2024) → ~20 % (2030) → ~22-24 % (2050) ohne weitere Reformen. Renten-Niveau 48,2 % (2024) → 47 % (2030) → ~43 % (2050) garantiert durch Niveau-Schutz-Klausel SGB VI § 154. Mit Reformen (Aktien-Renten 2024, Migration-Steigerung) Stabilisierung möglich.",
+        "at_pensionsversicherung": "AT Pensionsversicherungsanstalt 2024 + Sozialministerium AT: Beitrags-Quote 22,8 % (Arbeitgeber 12,55 % + Arbeitnehmer 10,25 %). Pension-Niveau ~80 % der letzten Aktiv-Bezüge bei 45 Beitrags-Jahren. Drei Säulen: 1. PV-Pension (Hauptsäule, ca. 70 % Lebensstandard), 2. betriebliche Pensions-Vorsorge (~10 %), 3. private Pensions-Vorsorge (~20 %). Bundeszuschuss-Komponente DRV-AT 2024: ~12 Mrd Euro/Jahr (~25 % der PV-Auszahlungen).",
+        "demografie_2024_2060": "Bundesbank 2024 + Statistisches Bundesamt: DE-Erwerbsbevölkerung 2024 ~47 Mio, 2060 ~40 Mio (-7 Mio). Verhältnis Erwerbstätige zu Rentner-Empfänger: 2024 ~2:1 (47 Mio zu 21 Mio), 2050 ~1,5:1 (40 Mio zu 27 Mio). Erwerbs-Beteiligung muss steigen (2024 79 %, Ziel 85 %) ODER Migration ausgleichen (~400.000 Netto/Jahr).",
+        "rentenalter_anhebung": "DE Rentenalter-Anhebung Riester-Reform 2007 + Folge-Reformen: 65 Jahre (2012) → 67 Jahre (2029) gestaffelt. AT Frauen-Pensions-Alter 60 → 65 bis 2033 (Maßnahme 2003 beschlossen, gestaffelt). CH Pensions-Alter Frauen 64 → 65 (FlexA-Reform 2024 mit 2 Monaten/Jahr-Übergangs-Quote). Diskussion DE Erhöhung auf 70: kein Konsens, Sachverständigenrat 2024 schlägt vor, Renten-Kommission 2020 nicht.",
+        "oecd_pensions_2023": "OECD Pensions at a Glance 2023: DE-Renten-Ersatz-Quote 51 % (Standard-Rente bei 35 Jahren Beitragszeit), OECD-Schnitt 51 %. AT 90 % (Top-3 OECD), Spitzen NL 75 %, IE 35 %. Niedrigste: Lithauen 26 %, Mexiko 25 %. DE liegt im OECD-Mittel, AT überdurchschnittlich aufgrund 80 %-Pension-Niveau-Modell.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Reform-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: 'Renten-Niveau sinkt' (real, ~5 pp bis 2050) ≠ 'Renten brechen zusammen' (empirisch nicht belegt).",
+        "Demografische Belastung ist real, aber durch Migration + Erwerbs-Beteiligungs-Steigerung + Rentenalter-Anhebung adressierbar.",
+        "AT hat höheres Pension-Niveau (~80 %) als DE (~48 %) — strukturelle Differenz, nicht Pro/Contra-Wertung."
+      ],
+      "claim_phrasings_handled": [
+        "Renten brechen bald zusammen",
+        "Meine Generation kriegt keine Rente mehr",
+        "Renten-System ist nicht mehr zu retten",
+        "Demografie zerstört die Rente",
+        "Junge zahlen für Boomer und kriegen nichts"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "rente",
+          "renten",
+          "renten-system",
+          "rentensystem",
+          "rentenversicherung",
+          "renten-versicherung",
+          "drv",
+          "pension",
+          "pensionen",
+          "pensions-system",
+          "pensionsversicherung",
+          "altersvorsorge",
+          "alters-vorsorge"
+        ],
+        [
+          "zusammenbruch",
+          "kollaps",
+          "kaputt",
+          "zerstört",
+          "zerstoert",
+          "rettung",
+          "retten",
+          "demografie",
+          "boomer",
+          "junge",
+          "generation",
+          "altersarmut",
+          "wird nicht mehr",
+          "kriege keine",
+          "bekomme keine"
+        ]
+      ]
+    },
+    {
+      "id": "erbschaftssteuer_mittelstand_2026",
+      "topic": "erbschaftssteuer_mittelstand_konsens",
+      "scope": "Erbschaftssteuer DACH — Mittelstand-Belastung-Mythos, Freibeträge + tatsächliche Steuerquoten",
+      "year": 2024,
+      "source_url": "https://www.destatis.de/DE/Themen/Staat/Steuern/Steuereinnahmen/_inhalt.html",
+      "secondary_url": "https://www.diw.de/de/diw_01.c.617858.de/publikationen/wochenberichte/2018_29_4/erbschaft_und_schenkungsteuer__erhebliches_aufkommenspotential_trotz_eines_freibetrag-_und_verguenstigungssystems.html",
+      "source_label": "DESTATIS Erbschaftssteuer-Statistik 2024 + Statistik Austria + DIW Bach Erbschaftssteuer-Studien 2018-2024 + Saez Zucman 2019 The Triumph of Injustice + Bertelsmann-Stiftung Vermögens-Studien + WIFO Erbschaftssteuer-Diskussion AT",
+      "headline": "Erbschaftssteuer DE 2023: ~9,5 Mrd Euro Aufkommen, NUR ~2 % der jährlichen Erbschaften zahlen tatsächlich (Freibetrag Ehepartner 500.000 €, Kinder 400.000 €); Mittelstand-Belastungs-Mythos durch hohe Freibeträge faktisch nicht haltbar",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Erbschaftssteuer trifft Mittelstand massiv' ist FALSE. Empirische Lage 2024: (1) DE Freibeträge BAGB § 16 Erbschaftssteuergesetz: Ehepartner + eingetragene Lebenspartner 500.000 €, Kinder 400.000 €, Enkel 200.000 €, Eltern + Großeltern (bei Erwerb von Todes wegen) 100.000 €, Geschwister + Nichten + Neffen 20.000 €, sonstige 20.000 €. Plus zusätzliche Versorgungs-Freibeträge bis 256.000 € für Ehegatten + 52.000 € für Kinder bis 27. (2) DESTATIS Erbschaftssteuer-Statistik 2023: ~9,5 Mrd Euro Aufkommen. ~115.000 Erbschaftssteuer-Fälle festgesetzt von ~900.000 Erbschaften/Jahr DE = ~13 % der Erbschaften erreichen überhaupt die Schwelle. NUR ~2 % zahlen substantielle Beträge (>50.000 € Steuer). (3) Aufkommens-Verteilung: ~80 % der Erbschaftssteuer-Einnahmen entstammen aus den TOP 1 % der Erbschaften (>5 Mio € Erbmasse). DIW 2018 Wochenbericht Bach + Beznoska: 'Erbschaftssteuer ist hoch konzentriert auf wenige Großvermögen, Mittelstand de facto nicht belastet'. (4) BETRIEBSVERMÖGEN-VERGÜNSTIGUNGEN: §§ 13a + 13b ErbStG (Verschonung): Betriebsvermögen kann bis 85 % oder 100 % steuerfrei vererbt werden bei Beibehaltung der Arbeitsplätze (Lohnsumme-Regel) + Beibehaltungs-Frist. Folge: meiste Familien-Unternehmen-Erbschaften zahlen 0 % Erbschaftssteuer trotz Millionenerbe. Bertelsmann 2024 Studie: ~75 % aller großen Familien-Unternehmen-Erbschaften nutzen Vergünstigung erfolgreich. (5) AT Erbschaftssteuer abgeschafft 2008 (BVfG-Urteil 2007 erklärte ungleiche Besteuerung verfassungswidrig). Re-Einführung diskutiert (AK Wien + WIFO Schratzenstaller 2023 Vorschläge), bislang politisch nicht umgesetzt. (6) CH Erbschaftssteuer kantonal — meiste Kantone hohe Freibeträge für direkte Verwandte (Eltern → Kinder oft steuerfrei). (7) Faktencheck-relevant: Aussagen wie 'Erbschaftssteuer ruiniert Mittelstand' sind empirisch nicht haltbar — bei Freibetrag 400.000 € pro Kind + Betriebsvermögen-Verschonung trifft sie de facto nur sehr Reiche.",
+        "freibetraege_de_2024": "DE Erbschaftssteuergesetz § 16 Freibeträge 2024: Ehepartner + eingetragene Lebenspartner 500.000 €, Kinder + Stiefkinder + adoptierte Kinder 400.000 €, Enkel 200.000 €, Eltern + Großeltern (Todesfall) 100.000 €, Geschwister + Nichten + Neffen 20.000 €, sonstige Erben 20.000 €. Versorgungs-Freibeträge zusätzlich: Ehegatten 256.000 €, Kinder bis 27 J. 10.300-52.000 € (alters-gestaffelt). Steuersätze: progressiv 7-50 % je Erbsaldo + Steuerklasse.",
+        "destatis_2023_aufkommen": "DESTATIS Erbschaftssteuer-Statistik 2023: 9,5 Mrd Euro Aufkommen DE-weit. 115.000 Erbschaftssteuer-Festsetzungen (~13 % von ~900.000 Erbschaften DE/Jahr — Rest wegen Freibeträgen steuerfrei). Schwerpunkt-Verteilung: ~30.000 Fälle pro Bundesland Bayern + NRW (höchste Erbschafts-Vermögen). Steueraufkommen je Bundesland: BY ~2,1 Mrd, NRW ~1,9 Mrd, BW ~1,6 Mrd.",
+        "diw_bach_2018_2024": "DIW Bach + Beznoska 2018 Wochenbericht 'Erbschaft- und Schenkungssteuer: Erhebliches Aufkommens-Potential trotz eines Freibetrag- und Vergünstigungs-System' + Update 2024: ~80 % der Erbschaftssteuer-Einnahmen aus TOP 1 % der Erbschaften (>5 Mio € Erbmasse). Mittel-Erbschaften (100.000-1 Mio €) zahlen praktisch keine Erbschaftssteuer wegen Freibetrag-System.",
+        "betriebsvermoegen_verschonung": "DE Erbschaftssteuergesetz §§ 13a + 13b 'Verschonungs-Abschlag': Betriebsvermögen bis 85 % oder 100 % steuerfrei vererbt bei (a) Beibehaltung der Arbeitsplätze (Lohnsumme-Regel: Lohnsumme der ersten 5/7 Jahre nach Erbschaft mind. 4-fache der Ausgangs-Lohnsumme), (b) Beibehaltung des Betriebs für 5/7 Jahre. Bertelsmann 2024: ~75 % aller großen Familien-Unternehmen-Erbschaften nutzen Vergünstigung erfolgreich. Kritik: Lex-Familienunternehmen + Wettbewerbs-Verzerrung gegen Nicht-Familien-Erben.",
+        "at_erbschaftssteuer_abschaffung": "AT Erbschaftssteuer abgeschafft per 31.07.2008 (BVfG-Urteil G54/06 vom 7.3.2007 erklärte ungleiche Bewertung Immobilien-Vermögen verfassungswidrig — Reform statt Beseitigung gefordert, Politik wählte Beseitigung). Re-Einführung diskutiert WIFO Schratzenstaller 2023 + AK Wien Modell-Vorschläge: 1 % auf Erbmasse >1 Mio € würde ~500-700 Mio Euro/Jahr bringen. Bislang politisch nicht umgesetzt.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Erbschaftssteuer-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: 13 % der Erbschaften erreichen Schwelle, ~2 % zahlen substantiell. Mittelstand de facto nicht belastet.",
+        "Betriebsvermögen-Verschonung §§ 13a/13b ErbStG: ~75 % aller großen Familien-Unternehmen-Erbschaften zahlen 0 % Erbschaftssteuer.",
+        "AT Erbschaftssteuer abgeschafft 2008 — Re-Einführung diskutiert, bislang politisch nicht umgesetzt."
+      ],
+      "claim_phrasings_handled": [
+        "Erbschaftssteuer ruiniert den Mittelstand",
+        "Erben zahlen Hälfte an den Staat",
+        "Erbschaftssteuer ist Enteignung",
+        "Familienunternehmen müssen Erbschaftssteuer zahlen und gehen pleite",
+        "Mittelstand wird durch Erbschaftssteuer kaputt gemacht"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "erbschaftssteuer",
+          "erbschafts-steuer",
+          "erbschaftsteuer",
+          "erbsteuer",
+          "schenkungssteuer",
+          "schenkung-steuer",
+          "erben",
+          "erbschaft"
+        ],
+        [
+          "mittelstand",
+          "mittel-stand",
+          "ruiniert",
+          "ruinieren",
+          "enteignung",
+          "kaputt",
+          "kostet",
+          "zahlen",
+          "trifft",
+          "belastet",
+          "familienunternehmen",
+          "familien-unternehmen",
+          "kleinerben",
+          "klein-erben",
+          "freibetrag"
+        ]
+      ]
+    },
+    {
+      "id": "de_steuern_hoechste_2026",
+      "topic": "de_steuern_hoechste_konsens",
+      "scope": "DE Steuer- und Abgaben-Niveau im OECD-Vergleich",
+      "year": 2024,
+      "source_url": "https://www.oecd.org/tax/tax-policy/tax-database/",
+      "secondary_url": "https://stats.oecd.org/Index.aspx?DataSetCode=REV",
+      "source_label": "OECD Tax Database + OECD Revenue Statistics 2024 + Sachverständigenrat Jahresgutachten + DIW Vergleichs-Studien + Eurostat Tax Statistics + Tax Foundation International Tax Comparison + DESTATIS Steueraufkommen",
+      "headline": "DE Steuer- und Abgaben-Quote 2023 39,3 % BIP — OECD-Mittel 33,9 %; DE liegt im OBEREN MITTELFELD, NICHT 'höchste der Welt'. Spitzen: Frankreich 46 %, Dänemark 44 %, Italien 43 %, Belgien 42 %. AT 43,2 %, USA 27,7 %, CH 27,5 %",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'DE hat die höchsten Steuern der Welt' ist FALSE. OECD-Vergleichsdaten 2024: (1) STEUER- + ABGABEN-QUOTE BIP 2023 (OECD Revenue Statistics 2024 publiziert): DE 39,3 %, OECD-Schnitt 33,9 %, AT 43,2 %, CH 27,5 %, FR 46,1 % (Spitze), DK 44,1 %, IT 43,3 %, BE 42,4 %, USA 27,7 %, IRL 21,1 % (niedrig). DE liegt im OBEREN MITTELFELD, AT etwas darüber, beide WEIT von 'höchste' entfernt. (2) EINKOMMENSTEUER-SPITZENSATZ 2024: DE 45 % (Reichensteuer 47,5 % über 270.500 Euro Single), AT 55 % (über 1 Mio Euro), CH ~40 % (kantonal max), FR 45 %, USA Bund 37 % (plus States 0-13 %), UK 45 %, JP 45 %. DE Spitzensatz im EU-Mittelfeld. (3) KÖRPERSCHAFTSTEUER + GEWERBESTEUER 2024: DE Effektiv-Belastung ~30 % (Körperschaftssteuer 15 % + Solidaritätszuschlag 0,825 % + Gewerbesteuer ~14 %), AT 23 % (KöSt seit 2024), USA Bund 21 % + States 0-12 %, UK 25 %. DE-Effektiv-Belastung im OECD-Mittelfeld. (4) MWST 2024: DE 19 % (ermäßigt 7 %), AT 20 % (ermäßigt 10/13 %), CH 8,1 % (ermäßigt 2,6 %), FR 20 %, IT 22 %, UK 20 %, USA keine bundesstaatliche MwSt (State-Sales-Tax 0-10 %). DE im EU-Mittelfeld, OECD-Schnitt 19,2 %. (5) SOZIALABGABEN-QUOTE: DE 14,6 % BIP, AT 14,7 %, FR 17,3 %, NL 13,1 %. DE im OECD-Mittelfeld bei Sozialabgaben. (6) HISTORISCHER VERGLEICH: DE Steuer-Quote 1965 31 % → 2023 39,3 %. Anstieg um 8 pp in 60 Jahren. Hauptursache: Sozialabgaben-Anstieg + MwSt-Erhöhungen + 'kalte Progression'. (7) Faktencheck-relevant: Aussagen wie 'DE hat die höchsten Steuern der Welt' sind durch OECD-Daten widerlegt. Pack distanziert sich von normativen Wertungen — präsentiert nur OECD-Vergleich.",
+        "oecd_revenue_2024": "OECD Revenue Statistics 2024 (Daten 2023): Steuer- und Abgaben-Quote BIP. Spitzen: FR 46,1 %, DK 44,1 %, IT 43,3 %, AT 43,2 %, BE 42,4 %, FI 42,2 %. Mittelfeld: DE 39,3 %, NL 38,8 %, NO 38,3 %, SE 41,4 %, ES 38,5 %. Niedrige: USA 27,7 %, CH 27,5 %, KOR 28,8 %, IRL 21,1 %, MEX 16,9 %. OECD-Schnitt 33,9 %.",
+        "einkommensteuer_2024": "DE Einkommensteuer 2024: Grundtarif 0 % (Grundfreibetrag 11.604 € Single), Eingangs-Stufe 14 % ab 11.605 €, Spitzensteuersatz 42 % ab 66.761 €, Reichensteuer 45 % ab 277.826 € (wenn Einkommen aus selbständiger Arbeit + Mieten + sonstige), 'Reichensteuer' 47,5 % via Solidaritätszuschlag-Anteil. Effektiv-Spitzensatz 47,5 % in praktischer Anwendung. AT 2024: 55 % Spitzensteuer ab 1 Mio Euro Einkommen — höher als DE.",
+        "koerperschaftssteuer_2024": "Effektive Körperschaftssteuer-Belastung DE 2024: KöSt 15 % + Solidaritätszuschlag 5,5 % auf KöSt = 0,825 % + Gewerbesteuer ~14 % (Hebesatz-abhängig München 460 % = 16,1 % Gewerbesteuer, Frankfurt-Untervarianten ~13-15 %). Effektiv ~30 %. AT 2024: 23 % KöSt (Senkung von 25 % 2024). Vergleich USA Bund 21 %, UK 25 %. Schweden 20,6 %, Niederlande 25,8 %.",
+        "mwst_2024": "MwSt-Sätze 2024: DE 19 % (Standard) + 7 % (ermäßigt für Lebensmittel + Bücher + Kultur), AT 20 % + 10 + 13 % (ermäßigt), CH 8,1 % + 2,6 + 3,8 %, FR 20 % + 5,5 + 10 %, IT 22 % + 4 + 5 + 10 %. EU-Schnitt ~19,2 %. USA keine bundesweite MwSt — State-Sales-Tax 0 % (Oregon, NH, MT, DE) bis 7,25 % (CA) + lokale 0-3 %.",
+        "sozialabgaben_quote": "OECD-Daten 2023: Sozialabgaben-Quote BIP. DE 14,6 %, AT 14,7 %, FR 17,3 %, NL 13,1 %, BE 13,3 %, IT 13,4 %, USA 6,2 %, UK 6,5 %, CH 6,6 % (CH hat starke 2-/3-Säulen-Privatvorsorge statt Sozialabgaben). DE liegt im OECD-Mittelfeld bei Sozialabgaben.",
+        "historischer_anstieg": "DE Steuer-Quote im Zeitverlauf: 1965 31 %, 1990 36 %, 2010 36,1 %, 2020 39,5 %, 2023 39,3 %. Anstieg um ~8 pp in 60 Jahren. Hauptursachen: Sozialabgaben-Anstieg (Renten + Krankenversicherung wegen Demografie), MwSt-Erhöhungen (1968 10 % → 2007 19 %), 'kalte Progression' (nicht angepasste Tarif-Stufen).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Steuer-Wertungen."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: DE liegt im OBEREN OECD-Mittelfeld, NICHT 'höchste der Welt'. Frankreich + Dänemark deutlich höher.",
+        "AT-Spitzensteuer 55 % (ab 1 Mio Euro) ist HÖHER als DE 47,5 % — beide im EU-Mittelfeld.",
+        "Sozialabgaben-Quote DE 14,6 % BIP entspricht OECD-Mittelfeld — nicht 'höchste'."
+      ],
+      "claim_phrasings_handled": [
+        "Deutschland hat die höchsten Steuern der Welt",
+        "DE-Steuern sind höchste in EU",
+        "Wir zahlen weltweit am meisten Steuern",
+        "Deutsche Spitzensteuer ist die höchste",
+        "MwSt in Deutschland ist Welt-Spitze"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "steuern",
+          "steuer-quote",
+          "steuerquote",
+          "steuer-belastung",
+          "steuerbelastung",
+          "abgaben",
+          "abgaben-quote",
+          "abgabenquote",
+          "spitzensteuer",
+          "spitzen-steuer",
+          "spitzensteuersatz",
+          "mwst",
+          "mehrwertsteuer",
+          "umsatzsteuer"
+        ],
+        [
+          "höchste",
+          "hoechste",
+          "höchsten",
+          "hoechsten",
+          "weltspitze",
+          "welt-spitze",
+          "europa-spitze",
+          "weltweit am meisten",
+          "deutschland",
+          "österreich",
+          "oesterreich",
+          "vergleich",
+          "im internationalen",
+          "international"
+        ]
+      ]
+    }
+  ]
+}

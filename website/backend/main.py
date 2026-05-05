@@ -100,6 +100,7 @@ from services.lebensmittel_pack import search_lebensmittel, claim_mentions_leben
 from services.gleichstellung_pack import search_gleichstellung, claim_mentions_gleichstellung_cached
 from services.eige import search_eige
 from services.religionsgemeinschaften_pack import search_religionsgemeinschaften, claim_mentions_religionsgemeinschaften_cached
+from services.wirtschaftspolitik_pack import search_wirtschaftspolitik, claim_mentions_wirtschaftspolitik_cached
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.cdc_open_data import search_cdc_open_data
@@ -851,6 +852,20 @@ async def check_claim(request: Request):
         if claim_mentions_religionsgemeinschaften_cached(claim):
             tasks.append(cached("Religionsgemeinschaften-Konsens", search_religionsgemeinschaften, analysis))
             queried_names.append("Religionsgemeinschaften-Konsens (Pew + BfV + ADL + IHRA + RAND + UCDP + Vatikan-Finanzbericht + DESTATIS + Statistik Austria + Sektenstellen)")
+        # Wirtschaftspolitik-Pack (13 Topics: Steuersenkung-Selbst-
+        # finanzierung, Mindestlohn-Beschäftigung, Schuldenbremse-
+        # Schwarze-Null, Geldmenge-Inflation, Migration-Sozialsystem,
+        # EU-Netto-Zahler, Vermögenssteuer-Kapitalflucht, Privatisierung-
+        # Bahn, Hartz-IV-Faulenzer, Inflation-Staat-Verursacher, Renten-
+        # Zusammenbruch, Erbschaftssteuer-Mittelstand, DE-Steuern-Höchste).
+        # Quellen: WIFO, IHS, DIW, IFO, IWF, EZB, OECD, Sachverständigenrat,
+        # AK Wien, Bundesbank, IAB, BA-Statistik, DRV, DESTATIS, peer-
+        # reviewed (Card/Krueger, Cengiz, Saez/Zucman, Blanchard, Felbermayr).
+        # Politisch sensibles Thema — Pack distanziert sich von Partei-
+        # Positionen, präsentiert nur empirische Studienlage.
+        if claim_mentions_wirtschaftspolitik_cached(claim):
+            tasks.append(cached("Wirtschaftspolitik-Konsens", search_wirtschaftspolitik, analysis))
+            queried_names.append("Wirtschaftspolitik-Konsens (WIFO + IHS + DIW + IFO + IWF + EZB + OECD + Sachverständigenrat + AK Wien + Bundesbank + IAB + BA-Statistik + DRV + DESTATIS)")
         # EIGE Live-RSS (European Institute for Gender Equality, Vilnius):
         # aktuelle Newsroom-Items zu Gleichstellung, EU-Direktiven, neue
         # EIGE-Berichte. Komplementär zum statischen gleichstellung_pack.

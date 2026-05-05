@@ -170,6 +170,7 @@ _AUTHORITATIVE_INDICATORS = (
     "lebensmittel_konsens_fact",         # Lebensmittel-Sicherheit-Pack (BfR + EFSA + FDA + RKI + AAP + ÖLMB)
     "gleichstellung_konsens_fact",       # Gleichstellung-Pack (EIGE + Eurostat + OECD + FRA + BMI/BKA + Statistik Austria + DESTATIS)
     "religionsgemeinschaften_konsens_fact",  # Religionsgemeinschaften-Pack (Pew + BfV + ADL + IHRA + RAND + UCDP + Sektenstellen)
+    "wirtschaftspolitik_konsens_fact",       # Wirtschaftspolitik-Pack (WIFO + IHS + DIW + IFO + IWF + EZB + OECD + Sachverständigenrat + AK Wien + Bundesbank + IAB)
     "medlineplus_health_topic",          # NIH MedlinePlus Live (National Library of Medicine, US)
     "cdc_newsroom_item",                 # CDC Newsroom Live (Centers for Disease Control, US)
     "cdc_open_data_dataset",             # CDC Open Data Live (Socrata-Catalog data.cdc.gov, US)
