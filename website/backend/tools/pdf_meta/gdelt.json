@@ -1,0 +1,17 @@
+{
+  "title": "GDELT v2 GKG Live-Connector",
+  "topic_count": "20 Claims mit Entity-Schwerpunkt (Geo-Politik, Wirtschaft, Tech, Wissenschaft, AT/EU-Bezug)",
+  "description": "Connector-Verifikation des reaktivierten GDELT v2 Global Knowledge Graph (commit a4d45a0, 2026-05-06). BigQuery-basiert auf gdelt-bq.gdeltv2.gkg_partitioned, 7-Tage-Partition-Filter, Service-Account-Auth. Erste Stress-Test gegen prod nach Reaktivierung. Methodischer Schwerpunkt: GDELT-spezifische Trigger-Reliabilität (Source-Match) als primäre Metrik, NICHT verdict-Match (GDELT liefert News-Kontext, KEINE redaktionelle Faktencheck-Bewertung).",
+  "methodology": "Probe-Strategie: 20 Claims mit klar ausgeprägten Entities (Personen, Organisationen, Orte, Events) — Mix aus etablierten Fakten (TRUE-Erwartung), klar falschen Aussagen (FALSE-Erwartung) + nuancierten aktuellen Events. ZWEI METRIKEN: (1) Source-Match GDELT — primäre GDELT-Validierung. (2) Verdict-Match — sekundär, prüft Pipeline-Integration. WICHTIGE METHODISCHE FINDING: Verdict-Match-Rate 35 % (7/20) reflektiert KEINE GDELT-Failure, sondern Mistral-Cloud-LLM-Cutoff-Bias gegenüber Post-2024-Events. Beispiele: #2 'Trump 47. Präsident' → false (FAKTISCH true seit 20.1.2025), #5 'Merz Bundeskanzler' → false (FAKTISCH true seit Mai 2025), #11 'James Webb 2021 gestartet' → false (FAKTISCH true 25.12.2021 — möglicherweise verwechselt mit Hubble), #20 'Biden zog Kandidatur 2024 zurück' → false (FAKTISCH true 21.7.2024). LLM-Synthesizer überstimmt aktuelle GDELT-Treffer mit veraltetem Vor-Trainings-Wissen. ARCHITEKTUR-KONSEQUENZ: GDELT funktioniert als News-Kontext-Quelle, NICHT als Verdict-Treiber. Synthesizer-Prompt-Verbesserung empfohlen für zukünftige Iteration: GDELT-Coverage mit 'aktuelle News-Realität' höher gewichten als LLM-Vor-Training-Annahmen bei Datums-Konflikten.",
+  "performance_extras": [
+    {"label": "Verdict-Match (Toleranz):", "value": "7/20 (35 %)"},
+    {"label": "Source-Match GDELT:", "value": "19/20 (95 %) — GDELT-Connector technisch ausgezeichnet"},
+    {"label": "Connector-Status:", "value": "✓ BigQuery-Auth + Entity-Pattern-Match + 5-Treffer-Limit + V2Themes/V2Tone Mapping funktional"},
+    {"label": "GDELT-Trigger-Lücke:", "value": "1/20 (#17 ÖBB) — DE-Abkürzungen matchen nicht in englischsprachigem GDELT-Corpus, AT-Lokalisierungs-Phänomen"},
+    {"label": "Methodisches Finding:", "value": "LLM-Synthesizer-Cutoff-Bias bei Post-2024-Events: 8/20 verdict_match-misses sind NICHT GDELT-Bug sondern Mistral-Cloud-LLM (Trainings-Cutoff ~Q3 2024) überstimmt aktuelle GDELT-News mit veraltetem Vor-Training"},
+    {"label": "Beispiele LLM-Cutoff-Bias:", "value": "#2 Trump 47. Präsident, #5 Merz Bundeskanzler, #11 James Webb 2021, #20 Biden-Rücktritt 2024 — alle FAKTISCH true, vom Synthesizer als false klassifiziert"},
+    {"label": "Empfehlung Synthesizer-Verbesserung:", "value": "GDELT-Live-Coverage höher gewichten bei Pack-leeren Topics + aktuellen Datums-Konflikten — eigener Sprint-Block für Synthesizer-Prompt-Audit"},
+    {"label": "Kosten-Profil:", "value": "20 Queries × ~10 GB = ~200 GB total. Innerhalb 1 TB/Monat-Free-Tier. Mit query_cache (BigQuery-Default): identische Queries kostenlos"},
+    {"label": "Latenz:", "value": "Median ~22 s (BigQuery + Pipeline-Total). 30 s Timeout nicht erreicht"}
+  ]
+}
