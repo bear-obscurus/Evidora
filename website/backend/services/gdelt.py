@@ -84,14 +84,111 @@ def _get_client():
         return None
 
 
+# DE → EN Entity-Mapping für GDELT-GKG (überwiegend englischsprachiger Corpus).
+# Wenn Claim "Österreich"/"Russland"/"Wien" enthält, wird Pattern erweitert um
+# "Austria"/"Russia"/"Vienna" — sonst kein Treffer in EN-News-Artikeln.
+# Stress-Test PDF #46 zeigte AT-Lokalisierungs-Lücke ("ÖBB"-Claim → 0 Treffer
+# weil "Österreich" nicht zu "Austria" gemappt wurde).
+DE_EN_ENTITY_MAP = {
+    # Länder
+    "österreich": "Austria",
+    "deutschland": "Germany",
+    "schweiz": "Switzerland",
+    "russland": "Russia",
+    "türkei": "Turkey",
+    "frankreich": "France",
+    "italien": "Italy",
+    "spanien": "Spain",
+    "griechenland": "Greece",
+    "polen": "Poland",
+    "tschechien": "Czech Republic",
+    "ungarn": "Hungary",
+    "rumänien": "Romania",
+    "bulgarien": "Bulgaria",
+    "kroatien": "Croatia",
+    "schweden": "Sweden",
+    "norwegen": "Norway",
+    "dänemark": "Denmark",
+    "finnland": "Finland",
+    "niederlande": "Netherlands",
+    "belgien": "Belgium",
+    "großbritannien": "United Kingdom",
+    "grossbritannien": "United Kingdom",
+    "vereinigtes königreich": "United Kingdom",
+    "vereinigte staaten": "United States",
+    "indonesien": "Indonesia",
+    "japan": "Japan",
+    "südkorea": "South Korea",
+    "nordkorea": "North Korea",
+    "südafrika": "South Africa",
+    "ägypten": "Egypt",
+    "saudi-arabien": "Saudi Arabia",
+    "iran": "Iran",
+    "irak": "Iraq",
+    "syrien": "Syria",
+    "afghanistan": "Afghanistan",
+    "pakistan": "Pakistan",
+    "indien": "India",
+    "china": "China",
+    "ukraine": "Ukraine",
+    # Großstädte AT/DE/CH
+    "wien": "Vienna",
+    "salzburg": "Salzburg",
+    "graz": "Graz",
+    "innsbruck": "Innsbruck",
+    "linz": "Linz",
+    "münchen": "Munich",
+    "köln": "Cologne",
+    "berlin": "Berlin",
+    "hamburg": "Hamburg",
+    "frankfurt": "Frankfurt",
+    "düsseldorf": "Dusseldorf",
+    "zürich": "Zurich",
+    "genf": "Geneva",
+    "basel": "Basel",
+    "bern": "Bern",
+    # Internationale Großstädte
+    "moskau": "Moscow",
+    "peking": "Beijing",
+    "tokio": "Tokyo",
+    "neu-delhi": "New Delhi",
+    "kairo": "Cairo",
+    "rom": "Rome",
+    "athen": "Athens",
+    "warschau": "Warsaw",
+    "prag": "Prague",
+    "budapest": "Budapest",
+    "lissabon": "Lisbon",
+    # Politische Funktionen / Institutionen
+    "bundeskanzler": "Chancellor",
+    "bundespräsident": "Federal President",
+    "bundespraesident": "Federal President",
+    "bundestag": "Bundestag",
+    "nationalrat": "Nationalrat National Council",
+    "europäische union": "European Union",
+    "europaeische union": "European Union",
+    "europäische kommission": "European Commission",
+    "europäisches parlament": "European Parliament",
+    "vereinte nationen": "United Nations",
+    # Häufige Wirtschafts-/Tech-Begriffe
+    "weltbank": "World Bank",
+    "weltgesundheitsorganisation": "World Health Organization WHO",
+    "internationaler währungsfonds": "International Monetary Fund IMF",
+}
+
+
 def _sanitize_entities(entities: list[str]) -> list[str]:
-    """Filter Entities auf BigQuery-regex-sichere Strings.
+    """Filter Entities auf BigQuery-regex-sichere Strings + DE→EN-Expansion.
 
     - Entferne zu kurze (<3 Zeichen)
     - Entferne Sonderzeichen außer Buchstaben + Ziffern + Leerzeichen
-    - Limit auf 5 Entities (Regex-Komplexität)
+    - DE→EN-Expansion: bei bekannten DE-Entitäten wird das EN-Pendant als
+      zusätzlicher Pattern-Term hinzugefügt (z.B. "Österreich" → auch "Austria")
+    - Limit auf 8 Entities (Regex-Komplexität, mit EN-Expansion mehr Patterns nötig)
     """
     safe: list[str] = []
+    seen_lc: set[str] = set()  # avoid duplicates after expansion
+
     for e in entities[:10]:  # Pre-filter top 10
         if not e or len(e) < 3:
             continue
@@ -99,9 +196,20 @@ def _sanitize_entities(entities: list[str]) -> list[str]:
         cleaned = re.sub(r"[^\w\s\-]", "", e, flags=re.UNICODE).strip()
         if len(cleaned) < 3:
             continue
-        # Escape regex-special chars (Bindestrich + . + etc.)
+        cleaned_lc = cleaned.lower()
+        if cleaned_lc in seen_lc:
+            continue
+        seen_lc.add(cleaned_lc)
         safe.append(re.escape(cleaned))
-        if len(safe) >= 5:
+
+        # DE→EN-Expansion: wenn die DE-Form bekannt ist, EN-Form als
+        # zusätzliche Pattern-Variante hinzufügen (multi-word OK).
+        en_equivalent = DE_EN_ENTITY_MAP.get(cleaned_lc)
+        if en_equivalent and en_equivalent.lower() not in seen_lc:
+            seen_lc.add(en_equivalent.lower())
+            safe.append(re.escape(en_equivalent))
+
+        if len(safe) >= 8:  # Limit etwas erhöht wegen EN-Expansion
             break
     return safe
 
