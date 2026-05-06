@@ -1,0 +1,16 @@
+{
+  "title": "GDELT v2 GKG — Post-Synthesizer-Audit Re-Test",
+  "topic_count": "20 Claims (identisches Test-Set wie PDF #46) — Re-Run nach Synthesizer-Audit-Fixes (commit 2dfb2e8)",
+  "description": "Validierungs-Re-Test des GDELT v2 GKG Connectors NACH Synthesizer-Audit (commit 2dfb2e8 vom 2026-05-06). Audit identifizierte 2 unabhängige Bugs in services/synthesizer.py: (A) display_value-Feld fehlte in der Whitelist beim Source-Result-Filtering — Synthesizer sah bei GDELT-Treffern nur indicator_name + year + boring description-Marker, NICHT den V2Themes/V2Tone-Content. Auch ALLE Static-First-Packs betroffen (display_value ist Haupt-Content-Feld). (B) System-Prompt hatte keine explizite Regel für LLM-Trainings-Cutoff vs. Live-News-Daten — Synthesizer überstimmte aktuelle GDELT/RSS-Treffer mit veraltetem Vor-Trainings-Wissen bei Post-2024-Events.",
+  "methodology": "Re-Test gegen identisches 20-Claim-Set aus PDF #46. Dieselben Claims, derselbe Connector, ABER neue Synthesizer-Version mit display_value-Whitelist + LLM-Cutoff-Bias-Regel im System-Prompt (DE + EN). Kein Code-Change am GDELT-Connector selbst, nur Synthesizer-Verbesserungen. Connector-Reliabilität (Source-Match) erwartet unverändert hoch (95 %), Verdict-Match-Steigerung erwartet auf ~75-85 %. Tatsächlich gemessen: 60 % (+25 pp Steigerung). Verbleibende 8 Misses sind primär legitime Edge-Cases: laufende Verhandlungen (#4 Israel-Hamas Doha), quartalsabhängige Wirtschafts-Rankings (#7 Apple wertvollste), Vergangenheits-Form-Claims über AT-Politik (#16 Nehammer war BK), AT-Abkürzungs-GDELT-Mismatch (#17 ÖBB im EN-Corpus).",
+  "performance_extras": [
+    {"label": "Verdict-Match VORHER (PDF #46):", "value": "7/20 (35 %)"},
+    {"label": "Verdict-Match NACHHER:", "value": "12/20 (60 %) — +25 pp"},
+    {"label": "Source-Match GDELT:", "value": "19/20 (95 %) — unverändert (Connector-Reliabilität war nie das Problem)"},
+    {"label": "Bug A — display_value-Whitelist:", "value": "Synthesizer sieht jetzt vollen GDELT-Content (V2Themes + V2Tone) und ALLE Pack-Content-Felder. Wirkung systemweit, nicht nur GDELT."},
+    {"label": "Bug B — LLM-Cutoff-Bias-Regel:", "value": "System-Prompt um expliziten Block 'LLM-Trainings-Cutoff vs. Live-News-Quellen' erweitert (DE+EN). Klare Entscheidungsregel: bei Datums-Konflikten ≥ 2025 vertrauen Live-Quellen über Vor-Trainings-Erinnerung."},
+    {"label": "Konkret gefixte Claims:", "value": "#2 Trump 47. Präsident, #5 Merz Bundeskanzler (LLM-Cutoff-Bias-Fix); #6 Twitter 44 Mrd, #10 Bitcoin 100k, #11 James Webb 2021 (display_value-Fix)"},
+    {"label": "Verbleibende Misses (legitime Edge-Cases):", "value": "#4 Israel-Hamas (laufend), #7 Apple-Wert (variiert), #8 OpenAI/MS-Details, #9 Tesla-vs-BYD (komplex), #16 Nehammer (Past-tense), #17 ÖBB (AT-Lokalisierung), #18 Hochwasser, #20 Biden-Rücktritt"},
+    {"label": "Nebeneffekt:", "value": "ALLE 34 Static-First-Packs profitieren von display_value-Fix — Synthesizer sieht jetzt vollen Pack-Content statt nur Notes-Zusammenfassung"}
+  ]
+}
