@@ -175,6 +175,7 @@ _AUTHORITATIVE_INDICATORS = (
     "medlineplus_health_topic",          # NIH MedlinePlus Live (National Library of Medicine, US)
     "cdc_newsroom_item",                 # CDC Newsroom Live (Centers for Disease Control, US)
     "cdc_open_data_dataset",             # CDC Open Data Live (Socrata-Catalog data.cdc.gov, US)
+    "gdelt_gkg_article",                 # GDELT v2 Global Knowledge Graph Live (BigQuery, 100k+ News-Quellen weltweit)
     "eige_news_item",                    # EIGE Live (European Institute for Gender Equality, Vilnius)
     "clinvar_variant",                   # NIH ClinVar Live (NCBI Genetic Variants, US)
     "snopes_factcheck_item",             # Snopes Live (US, IFCN-zertifiziert)

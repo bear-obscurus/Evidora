@@ -102,6 +102,7 @@ from services.eige import search_eige
 from services.religionsgemeinschaften_pack import search_religionsgemeinschaften, claim_mentions_religionsgemeinschaften_cached
 from services.wirtschaftspolitik_pack import search_wirtschaftspolitik, claim_mentions_wirtschaftspolitik_cached
 from services.wohnen_pack import search_wohnen, claim_mentions_wohnen_cached
+from services.gdelt import search_gdelt
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.cdc_open_data import search_cdc_open_data
@@ -926,6 +927,16 @@ async def check_claim(request: Request):
         if analysis.get("pubmed_queries"):
             tasks.append(cached("CDCOpenData", search_cdc_open_data, analysis))
             queried_names.append("CDC Open Data")
+        # GDELT v2 Global Knowledge Graph (BigQuery, gdelt-bq.gdeltv2.gkg_partitioned):
+        # globale News-Knowledge-DB mit 15-min-Update, ~100k+ Quellen weltweit.
+        # Aggregiert Persons + Organizations + Locations + Themes + Tone aus
+        # globalen News. Komplementär zu Faktencheck-RSS (redaktionelle
+        # Bewertungen) + News-RSS (einzelne Quellen). Service skippt graceful
+        # wenn GOOGLE_APPLICATION_CREDENTIALS / GDELT_BIGQUERY_PROJECT fehlen.
+        # Trigger: claim hat ≥1 Entity (Persons/Orgs/Locations).
+        if analysis.get("entities"):
+            tasks.append(cached("GDELT", search_gdelt, analysis))
+            queried_names.append("GDELT v2 GKG")
         # NIH ClinVar (NCBI Genetic Variant Database): variant-level
         # clinical significance. Komplementär zu PubMed (Forschung) +
         # MedlinePlus (Edukation). Service eigene Trigger-Logik:

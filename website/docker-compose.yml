@@ -4,6 +4,11 @@ services:
   backend:
     build: ./backend
     env_file: .env
+    volumes:
+      # Read-only Mount des Service-Account-JSONs für GDELT BigQuery.
+      # Auf prod wird ./secrets/ mit chmod 600 gepflegt; in der lokalen
+      # Entwicklung kann das Verzeichnis leer sein (Service skippt dann).
+      - ./secrets:/app/secrets:ro
     ports:
       - "127.0.0.1:8000:8000"
     extra_hosts:

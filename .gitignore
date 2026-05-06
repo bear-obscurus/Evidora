@@ -38,3 +38,8 @@ website/backend/data/claimreview_index.json
 website/backend/test_claims.py
 website/backend/test_results*.json
 
+# Service-Account-JSON-Keys (NIEMALS committen!) — das Verzeichnis selbst
+# bleibt erhalten via .gitkeep, aber alle JSON-Keys sind ausgeschlossen.
+website/secrets/*.json
+!website/secrets/.gitkeep
+
