@@ -102,6 +102,9 @@ from services.eige import search_eige
 from services.religionsgemeinschaften_pack import search_religionsgemeinschaften, claim_mentions_religionsgemeinschaften_cached
 from services.wirtschaftspolitik_pack import search_wirtschaftspolitik, claim_mentions_wirtschaftspolitik_cached
 from services.wohnen_pack import search_wohnen, claim_mentions_wohnen_cached
+from services.arbeitsmarkt_pack import search_arbeitsmarkt, claim_mentions_arbeitsmarkt_cached
+from services.mobilitaet_pack import search_mobilitaet, claim_mentions_mobilitaet_cached
+from services.datenschutz_pack import search_datenschutz, claim_mentions_datenschutz_cached
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
@@ -883,6 +886,47 @@ async def check_claim(request: Request):
         if claim_mentions_wohnen_cached(claim):
             tasks.append(cached("Wohnen-Konsens", search_wohnen, analysis))
             queried_names.append("Wohnen-Konsens (DESTATIS Zensus 2022 + Statistik Austria + BMWSB + Wien-Wohnen + DIW + IFO + Pestel + IW Köln + Eurostat + Empirica + GBV + AK Wien)")
+        # Arbeitsmarkt-Pack (14 Topics: Mindestlohn-Beschäftigung, 4-Tage-
+        # Woche-Empirie, Homeoffice-Produktivität, Burnout-Prävalenz,
+        # Fachkräftemangel-Empirie, Gewerkschafts-Lohneffekt, KI-Job-
+        # Verdrängung, Migration-Arbeitsmarkt, Karenz-Lohnverlust,
+        # Generation-Z-Arbeit, AMS-Quote-Realität, Gender-Pay-Gap,
+        # Pflegekräftemangel, Scheinselbstständigkeit). Quellen: AMS, WIFO,
+        # IHS, IAB, DESTATIS, Statistik Austria, AK Wien, DGB, OECD,
+        # Eurostat, peer-reviewed (Card/Krueger 1994, Cengiz 2019 QJE,
+        # Bloom Stanford, Lalive/Zweimüller QJE 2009, Acemoglu/Restrepo
+        # 2024, Frey/Osborne, Dustmann/Frattini).
+        # Politisch sensibles Thema — Pack distanziert sich von normativen
+        # Wertungen, präsentiert nur empirische Studienlage.
+        if claim_mentions_arbeitsmarkt_cached(claim):
+            tasks.append(cached("Arbeitsmarkt-Konsens", search_arbeitsmarkt, analysis))
+            queried_names.append("Arbeitsmarkt-Konsens (AMS + WIFO + IHS + IAB + DESTATIS + Statistik Austria + AK Wien + DGB + OECD + Eurostat)")
+        # Mobilität-Pack (14 Topics: E-Auto-Reichweite, ÖBB-Pünktlichkeit,
+        # Tempolimit-130, Klimaticket-Bilanz, SUV-Sicherheit, Wasserstoff-
+        # PKW, ÖPNV-Ausbau, Diesel-Skandal-Kosten, Tempo-30-Wirkung,
+        # Auto-Subventionen, Lkw-Maut, Bahn-Investition DACH, Park-Mythen,
+        # Lade-Infrastruktur). Quellen: ADAC, ICCT, ÖBB, DB, UBA, Helmholtz,
+        # BMK, IIHS, BASt, Fraunhofer ISE, Agora Verkehrswende, VDV, KCW,
+        # FÖS, BAG, ASFINAG, BNetzA, EU AFIR, peer-reviewed Forschung.
+        # Politisch sensibles Thema — Pack distanziert sich von Werte-
+        # Fragen, präsentiert nur empirische Studienlage.
+        if claim_mentions_mobilitaet_cached(claim):
+            tasks.append(cached("Mobilität-Konsens", search_mobilitaet, analysis))
+            queried_names.append("Mobilität-Konsens (ADAC + ICCT + ÖBB + DB + UBA + Helmholtz + BMK + IIHS + BASt + Fraunhofer ISE + Agora Verkehrswende + VDV + FÖS + BAG + ASFINAG + BNetzA + EU AFIR)")
+        # Datenschutz-Pack (12 Topics: DSGVO-Bürokratie-Mythen, Cookie-
+        # Banner-Wirkung, Vorratsdatenspeicherung-Stand, Snowden-NSA-
+        # Faktoide, Massenüberwachung AT, Pegasus-Spyware, Klarnamen-
+        # Pflicht, Anonymität-im-Netz-Recht, Bestandsdaten-Auskunft,
+        # Bundestrojaner AT, Smartmeter-Datenschutz, Browser-Finger-
+        # printing). Quellen: EuGH, BVerfG, AT-VfGH, Datenschutz-Behörde
+        # AT, Bitkom, NOYB, LfM, BSI, Citizen Lab, Amnesty Tech, EFF,
+        # Mozilla, Snowden-Dokumente, DSN-Berichte, BVT-U-Ausschuss,
+        # peer-reviewed Forschung.
+        # Politisch sensibles Thema — Pack distanziert sich von Pro/
+        # Contra-Wertungen, präsentiert nur empirische + juristische Lage.
+        if claim_mentions_datenschutz_cached(claim):
+            tasks.append(cached("Datenschutz-Konsens", search_datenschutz, analysis))
+            queried_names.append("Datenschutz-Konsens (EuGH + BVerfG + AT-VfGH + Datenschutz-Behörde AT + Bitkom + NOYB + LfM + BSI + Citizen Lab + Amnesty Tech + EFF + Mozilla)")
         # EIGE Live-RSS (European Institute for Gender Equality, Vilnius):
         # aktuelle Newsroom-Items zu Gleichstellung, EU-Direktiven, neue
         # EIGE-Berichte. Komplementär zum statischen gleichstellung_pack.

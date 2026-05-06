@@ -1,0 +1,1006 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-06",
+  "source_label": "AMS + WIFO + IHS + IAB + DESTATIS + Statistik Austria + AK Wien + DGB + OECD + Eurostat + peer-reviewed Forschung",
+  "facts": [
+    {
+      "id": "mindestlohn_arbeitsplatzverlust_2026",
+      "topic": "mindestlohn_arbeitsplatzverlust_konsens",
+      "scope": "Mindestlohn-Beschaeftigungs-Effekt — Card/Krueger NJ-PA + Cengiz et al. 2019 QJE",
+      "year": 2024,
+      "source_url": "https://academic.oup.com/qje/article/134/3/1405/5484905",
+      "secondary_url": "https://www.aeaweb.org/articles?id=10.1257/aer.84.4.772",
+      "source_label": "Card/Krueger 1994 American Economic Review 84(4):772-793 'Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania' + Cengiz/Dube/Lindner/Zipperer 2019 Quarterly Journal of Economics 134(3):1405-1454 'The Effect of Minimum Wages on Low-Wage Jobs' + Dube 2019 Centre for Economic Policy Research Review + IAB DE Mindestlohn-Studien 2015-2024 + WIFO AT Mindestlohn-Analysen + DESTATIS DE-Mindestlohn-Statistik",
+      "headline": "Mindestlohn-Beschaeftigungs-Effekt empirisch nahe Null: Card/Krueger 1994 (NJ-Beschaeftigung +0,8 %) + Cengiz et al. 2019 QJE Bunching-Methode (138 US-Erhoehungen: keine Beschaeftigungs-Reduktion in low-wage sectors); DE-Mindestlohn 2015 (8,50 EUR) keine messbare Job-Verluste laut IAB; AT-System ueber Kollektiv-Vertraege (KV-Mindest-Loehne ~1.500 EUR netto 2024)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mindestlohn-Erhoehungen vernichten Jobs' ist empirisch DIFFERENZIERT FALSCH. Empirische Lage: (1) CARD/KRUEGER 1994 American Economic Review 84(4):772-793 'Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania': New Jersey erhoehte 1992 Mindestlohn 4,25 USD auf 5,05 USD, Pennsylvania blieb bei 4,25 USD. Differenz-in-Differenzen-Vergleich Fast-Food-Beschaeftigung: NJ-Beschaeftigung +0,8 % (statistisch nicht signifikant), KEIN Job-Verlust. Methodisch wegweisend, prompt Kontroversen ausgeloest, aber wiederholt repliziert. (2) CENGIZ/DUBE/LINDNER/ZIPPERER 2019 Quarterly Journal of Economics 134(3):1405-1454 'The Effect of Minimum Wages on Low-Wage Jobs': Bunching-Methode auf 138 US-Mindestlohn-Erhoehungen 1979-2016. Befund: keine messbaren Beschaeftigungs-Reduktionen in low-wage sectors, geringe Re-Allokation. Lohn-Erhoehungen werden weitgehend von Unternehmen absorbiert (Preis-Anpassung, Produktivitaets-Steigerung, geringere Fluktuation). (3) DE-MINDESTLOHN 2015 (8,50 EUR Bundesweit, MiLoG): IAB Mindestlohn-Bilanz 2016-2024 (Bossler et al. + Dustmann et al. 2022 Quarterly Journal of Economics 137(1):267-328 'Reallocation Effects of the Minimum Wage'): KEINE messbaren Beschaeftigungs-Verluste in betroffenen Sektoren. Re-Allokation von kleinen zu groesseren Betrieben, Lohn-Erhoehung um ~0,8-1,2 % im Durchschnitt. 2022 Erhoehung auf 12 EUR ebenfalls ohne signifikante Job-Verluste laut IAB-Monitor 2024. (4) AT-SYSTEM ueber KOLLEKTIV-VERTRAEGE: AT hat kein gesetzliches Mindestlohn-Gesetz, sondern Kollektivvertraege (KV) mit ~98 % Abdeckung. KV-Mindest-Loehne 2024 ~1.500 EUR netto je nach Branche. AK Wien + WIFO Studien: System wirkt aehnlich wie Mindestlohn, mit hoher Branchen-Differenzierung. (5) FORSCHUNGS-DEBATTE: Neumark/Wascher kritisieren Card/Krueger-Methodik, finden in eigenen Analysen kleine negative Effekte (-1 bis -3 %). Mainstream-Literatur 2019-2024 (Cengiz, Dustmann, Manning) bestaetigt aber: bis zu ~60 % des Median-Lohns sind Mindestlohn-Erhoehungen ohne signifikante Job-Verluste moeglich. (6) Faktencheck-relevant: Aussagen wie 'Mindestlohn vernichtet Jobs' sind durch Card/Krueger + Cengiz et al. + IAB-Daten empirisch widerlegt. Aussagen wie 'Mindestlohn hat KEINEN Effekt' sind ueberzeichnet — bei Erhoehungen >70 % Median-Lohn werden negative Effekte wahrscheinlicher. Pack distanziert sich von normativer Wertung — praesentiert nur empirische Lage.",
+        "card_krueger_1994": "Card/Krueger 1994 American Economic Review 84(4):772-793 'Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania': New Jersey 1992 Mindestlohn-Erhoehung 4,25 → 5,05 USD, Pennsylvania Kontroll-Gruppe. Differenz-in-Differenzen Fast-Food-Beschaeftigung: NJ +0,8 % (statistisch nicht signifikant). Klassische Studie, mehrfach repliziert (Card/Krueger 2000 AER follow-up).",
+        "cengiz_2019_qje": "Cengiz/Dube/Lindner/Zipperer 2019 Quarterly Journal of Economics 134(3):1405-1454 'The Effect of Minimum Wages on Low-Wage Jobs': Bunching-Methode auf 138 US-Mindestlohn-Erhoehungen 1979-2016. Beschaeftigungs-Effekt nahe Null in low-wage sectors, geringe Re-Allokation zwischen Sektoren.",
+        "iab_de_mindestlohn_2015_2024": "IAB Mindestlohn-Bilanz DE 2016-2024 (Bossler/Gerner et al. + Dustmann/Lindner/Schoenberg/Umkehrer/vom Berge 2022 Quarterly Journal of Economics 137(1):267-328 'Reallocation Effects of the Minimum Wage'): DE-Mindestlohn-Einfuehrung 1.1.2015 8,50 EUR + Erhoehungen bis 12 EUR 2022 + 12,82 EUR 2025. KEINE messbaren Beschaeftigungs-Verluste, Re-Allokation von kleineren zu groesseren Betrieben, durchschnittliche Lohn-Erhoehung ~0,8-1,2 %.",
+        "at_kv_system": "AT Kollektiv-Vertrags-System: kein gesetzlicher Mindestlohn, ~98 % der Beschaeftigten in KV-Bereichen. AK Wien + WIFO Statistik 2024: KV-Mindest-Loehne typischerweise 1.500-1.800 EUR netto je nach Branche. Empirisch aehnliche Wirkung wie gesetzlicher Mindestlohn, hoehere Branchen-Differenzierung.",
+        "neumark_kritik": "Neumark/Wascher 2007/2017 Foundations and Trends in Microeconomics + 2017 Annual Review of Economics: Kritik an Card/Krueger-Methodik, finden in eigenen US-Analysen kleine negative Effekte -1 bis -3 % Beschaeftigung. Forschungs-Debatte aktiv. Cengiz/Dube/Manning-Mainstream zeigt: bis ~60 % Median-Lohn keine signifikanten Effekte.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Mindestlohn-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: bis ~60 % Median-Lohn keine messbaren Beschaeftigungs-Verluste — bei extremen Erhoehungen (>70 % Median) werden Effekte wahrscheinlicher.",
+        "DE-Mindestlohn 2015 (8,50 EUR) + Erhoehungen bis 12,82 EUR 2025: IAB findet keine signifikanten Job-Verluste, sondern Re-Allokation zwischen Betrieben.",
+        "AT hat kein gesetzliches Mindestlohn-Gesetz — Kollektiv-Vertraege mit ~98 % Abdeckung wirken aehnlich, KV-Mindest-Loehne 2024 ~1.500 EUR netto."
+      ],
+      "claim_phrasings_handled": [
+        "Mindestlohn vernichtet Jobs",
+        "Mindestlohn-Erhoehung kostet Arbeitsplaetze",
+        "Mindestlohn fuehrt zu Arbeitslosigkeit",
+        "Hoeherer Mindestlohn vernichtet Beschaeftigung",
+        "Mindestlohn schadet kleinen Betrieben",
+        "12 Euro Mindestlohn vernichtet Stellen"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "mindestlohn",
+          "mindest-lohn",
+          "minimum wage",
+          "milog",
+          "12 euro",
+          "8,50 euro",
+          "12,82 euro",
+          "kollektivvertrag",
+          "kollektiv-vertrag",
+          "kv-lohn",
+          "lohnuntergrenze",
+          "lohn-untergrenze"
+        ],
+        [
+          "vernichtet",
+          "vernichten",
+          "kostet",
+          "arbeitsplatzverlust",
+          "arbeits-platzverlust",
+          "job-verluste",
+          "jobverluste",
+          "jobs vernichtet",
+          "stellen vernichtet",
+          "arbeitslosigkeit",
+          "arbeits-losigkeit",
+          "schadet",
+          "schaedigt",
+          "schaedlich",
+          "kostet jobs",
+          "fuehrt zu arbeitslosigkeit",
+          "beschaeftigungsverlust",
+          "beschaeftigungs-verlust"
+        ]
+      ]
+    },
+    {
+      "id": "vier_tage_woche_2026",
+      "topic": "vier_tage_woche_konsens",
+      "scope": "4-Tage-Woche bei gleichem Lohn — Iceland-Trial + UK-4Day-Week Cambridge",
+      "year": 2024,
+      "source_url": "https://autonomy.work/wp-content/uploads/2021/06/ICELAND_4DW.pdf",
+      "secondary_url": "https://www.cam.ac.uk/research/news/uks-largest-four-day-week-trial-finds-significant-drop-in-staff-turnover-and-sick-days",
+      "source_label": "Iceland 4-Day-Week Trial 2015-2019 (Reykjavik City + Icelandic National Government, Bericht Autonomy Institute + Alda Iceland 2021) + UK 4-Day-Week Pilot 2022 (Cambridge University + Boston College + Autonomy Institute + 4 Day Week Global, 61 Unternehmen 6 Monate) + Belgien 4-Tage-Woche-Reform 2022 + WIFO AT 4-Tage-Woche-Studie 2024 + Henley Business School UK 4-Day-Week Studien",
+      "headline": "4-Tage-Woche bei gleichem Lohn: Iceland-Trial 2015-2019 (2.500 Beschaeftigte) + UK-Pilot 2022 (61 Unternehmen, Cambridge/Boston-College Studie) — Produktivitaet konstant oder leicht positiv, Burnout-Symptome -71 %, Sick-Days -65 %, 92 % der UK-Pilot-Unternehmen behielten 4-Tage-Woche bei",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Vier-Tage-Woche bei gleichem Lohn ist unrealistisch / kostet Produktivitaet' ist empirisch FALSCH (mit Differenzierung). Empirische Lage: (1) ICELAND TRIAL 2015-2019 (groesster realer Versuch weltweit): Reykjavik Stadt + Icelandic Government testeten reduzierte Wochenarbeitszeit (35-36 statt 40 Stunden) bei gleichem Lohn mit ~2.500 Beschaeftigten in oeffentlichen Diensten. Bericht Autonomy Institute + Alda Iceland 2021: Produktivitaet blieb konstant oder stieg leicht, Wohlbefinden + Stress-Marker verbesserten sich signifikant. Folge: 86 % der islaendischen Arbeitnehmer:innen arbeiteten 2022 mit reduzierter Wochenarbeitszeit oder hatten Recht darauf. (2) UK 4-DAY-WEEK PILOT 2022 (groesster privater Pilot): 61 Unternehmen, ~2.900 Beschaeftigte, 6 Monate (Juni-Dezember 2022). Cambridge University + Boston College + Autonomy Institute + 4 Day Week Global. Methodik: 100-80-100-Modell (100 % Lohn, 80 % Stunden, 100 % Output-Erwartung). Befunde (Februar 2023 Bericht): Umsatz im Schnitt +1,4 % vs. Vergleichszeitraum, Burnout-Symptome -71 %, Sick-Days -65 %, Beschaeftigten-Fluktuation -57 %. 92 % der Unternehmen (56 von 61) behielten 4-Tage-Woche dauerhaft bei. (3) BELGIEN-REFORM 2022: Belgien fuehrte 2022 Recht auf 4-Tage-Woche ein (gleiche Wochenstunden, komprimiert auf 4 Tage). Andere Logik als Iceland/UK — keine Lohn-Erhaltung bei reduzierter Arbeitszeit, sondern Verteilungs-Reform. Empirische Wirkung noch in Auswertung. (4) AT WIFO STUDIE 2024 'Arbeitszeit-Verkuerzung in OEsterreich': empirisch-theoretische Analyse zur 4-Tage-Woche-Tauglichkeit fuer AT-Wirtschaft. Befund: in Branchen mit hoher Ablauf-Optimierung (Buero, Wissensarbeit) wirkungs-positiv moeglich, in Branchen mit Personal-Engpass (Pflege, Gastronomie) limitiert. (5) DIFFERENZIERUNG: Iceland/UK-Modelle funktionieren primaer in (a) Wissens-Arbeit + Buero-Berufen mit Optimierungs-Spielraum, (b) Bereichen mit hohen Burnout-Raten, (c) Unternehmen mit guter Vorbereitung. NICHT verallgemeinerbar auf alle Branchen ohne Anpassung. Pflege/Krankenhaus 4-Tage-Woche-Versuche zeigen gemischte Ergebnisse. (6) Faktencheck-relevant: Aussagen wie '4-Tage-Woche kostet Produktivitaet' sind durch Iceland + UK + Belgien-Daten empirisch widerlegt fuer geeignete Branchen. Aussagen wie '4-Tage-Woche funktioniert ueberall sofort' sind ueberzeichnet — Branchen-Differenzierung wichtig. Pack distanziert sich von normativer Wertung — praesentiert nur empirische Lage.",
+        "iceland_trial_2015_2019": "Iceland 4-Day-Week Trial 2015-2019: groesster realer Versuch weltweit. Reykjavik Stadt 2015-2019 + Icelandic National Government 2017-2021. ~2.500 Beschaeftigte, reduzierte Wochenarbeitszeit 35-36 statt 40 Stunden bei gleichem Lohn. Bericht Autonomy Institute + Alda Iceland 2021 'Going Public: Iceland's Journey to a Shorter Working Week'. Produktivitaet konstant/leicht positiv, Wohlbefinden + Stress-Marker signifikant verbessert. 2022 Folge: 86 % der islaendischen Arbeitnehmer:innen mit reduzierter Wochenarbeitszeit oder Recht darauf.",
+        "uk_pilot_2022": "UK 4-Day-Week Pilot Juni-Dezember 2022: 61 Unternehmen, ~2.900 Beschaeftigte, 6 Monate. Cambridge University + Boston College + Autonomy Institute + 4 Day Week Global. 100-80-100-Modell. Bericht Februar 2023: Umsatz +1,4 %, Burnout -71 %, Sick-Days -65 %, Fluktuation -57 %. 92 % der Unternehmen behielten 4-Tage-Woche dauerhaft bei (56 von 61, davon 18 dauerhaft, 38 verlaengert).",
+        "belgien_reform_2022": "Belgien Arbeits-Reform 2022 (Inkrafttreten November 2022): Recht auf 4-Tage-Woche bei Arbeitnehmer-Antrag. UNTERSCHIED zu Iceland/UK: gleiche Wochenstunden komprimiert auf 4 Tage (10h-Tage), nicht reduzierte Wochenstunden mit gleichem Lohn. Empirische Auswertung 2024 noch nicht abgeschlossen. Verteilungs-Reform, nicht Lohn-Erhaltung.",
+        "wifo_at_2024": "WIFO AT 'Arbeitszeit-Verkuerzung in OEsterreich' Studien-Reihe 2024: empirisch-theoretische Analyse zur Tauglichkeit von 4-Tage-Woche fuer AT-Wirtschaft. Befunde: in Branchen mit hoher Ablauf-Optimierung positiv moeglich, Pflege + Gastronomie + Bauwesen wegen Personal-Engpass limitiert. AK Wien Position 2024 unterstuetzt Branchen-spezifische Pilot-Versuche.",
+        "branchen_differenzierung": "Branchen-Differenzierung 4-Tage-Woche: GUT GEEIGNET — Wissens-Arbeit, Software-Entwicklung, Marketing, Verwaltung, Buchhaltung (Optimierungs-Spielraum hoch). MITTEL — Einzelhandel, Schule, Universitaet (Anpassungen moeglich). LIMITIERT — Pflege, Krankenhaus, Gastronomie, Polizei, Feuerwehr (Personal-Engpass strukturell). UK-Pilot zeigt: Branchen-Anpassung wichtiger als pauschale Modelle.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: 4-Tage-Woche-Modelle sind nicht uniform — Iceland/UK reduzieren Stunden bei gleichem Lohn, Belgien komprimiert gleiche Stunden auf 4 Tage.",
+        "Empirie 2015-2024 zeigt: in geeigneten Branchen Produktivitaet konstant oder leicht positiv, Wohlbefinden deutlich verbessert. Pflege/Gastronomie limitiert wegen Personal-Engpass.",
+        "UK-Pilot 2022 (61 Unternehmen): 92 % behielten 4-Tage-Woche dauerhaft bei. Burnout -71 %, Sick-Days -65 %, Umsatz +1,4 %."
+      ],
+      "claim_phrasings_handled": [
+        "Vier-Tage-Woche kostet Produktivitaet",
+        "4-Tage-Woche funktioniert nicht",
+        "Vier-Tage-Woche bei gleichem Lohn ist unrealistisch",
+        "4-Tage-Woche ist eine Illusion",
+        "Vier-Tage-Woche reduziert Wirtschaftsleistung",
+        "Iceland 4-Tage-Woche war kein Erfolg"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "vier-tage-woche",
+          "vier tage woche",
+          "4-tage-woche",
+          "4 tage woche",
+          "four-day week",
+          "four day week",
+          "viertagewoche",
+          "iceland trial",
+          "iceland 4-day",
+          "uk 4-day-week",
+          "arbeitszeitverkuerzung",
+          "arbeitszeit-verkuerzung",
+          "arbeitszeitreduktion",
+          "wochenarbeitszeit"
+        ],
+        [
+          "produktivitaet",
+          "produktivität",
+          "produktivitaets-",
+          "produktivitäts-",
+          "produktivitats-",
+          "leistung",
+          "senkt",
+          "wirtschaftsleistung",
+          "wirtschafts-leistung",
+          "kostet",
+          "unrealistisch",
+          "illusion",
+          "funktioniert nicht",
+          "reduziert",
+          "schadet",
+          "burnout",
+          "burn-out",
+          "krankenstand",
+          "sick days",
+          "fluktuation",
+          "umsatz",
+          "gleichem lohn",
+          "gleicher lohn",
+          "ohne lohnverlust"
+        ]
+      ]
+    },
+    {
+      "id": "homeoffice_produktivitaet_2026",
+      "topic": "homeoffice_produktivitaet_konsens",
+      "scope": "Homeoffice-Produktivitaet — Bloom/Han Stanford 2020 + 2024 Hybrid-Studie",
+      "year": 2024,
+      "source_url": "https://www.nature.com/articles/s41586-024-07500-2",
+      "secondary_url": "https://nbloom.people.stanford.edu/sites/g/files/sbiybj4746/f/wfh.pdf",
+      "source_label": "Bloom/Han/Liang 2024 Nature 630(8018):920-925 'Hybrid working from home improves retention without damaging performance' + Bloom et al. 2015 Quarterly Journal of Economics 130(1):165-218 'Does Working from Home Work? Evidence from a Chinese Experiment' + Stanford WFH Research (Bloom/Davis/Barrero) + IAB Homeoffice-Bilanz 2020-2024 + WIFO AT Homeoffice-Studie 2024 + ifo Homeoffice-Index 2024",
+      "headline": "Homeoffice-Produktivitaet empirisch positiv: Bloom Stanford 2015 (Ctrip 13 % Produktivitaets-Steigerung) + Bloom/Han/Liang 2024 Nature (Hybrid 2-3 Tage Homeoffice = Produktivitaet wie Office, Fluktuation -33 %); IAB DE 2024: ~25 % der Beschaeftigten regelmaessig Homeoffice (vor 2020: 5 %)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Homeoffice schadet der Produktivitaet' ist empirisch DIFFERENZIERT FALSCH. Empirische Lage: (1) BLOOM ET AL. 2015 Quarterly Journal of Economics 130(1):165-218 'Does Working from Home Work? Evidence from a Chinese Experiment': randomisiertes Experiment bei chinesischer Reise-Plattform Ctrip 2010-2011, ~250 Beschaeftigte. Vollzeit-Homeoffice (5 Tage/Woche) vs. Office-Kontroll-Gruppe. Befund: Homeoffice +13 % Produktivitaet (gemessen in Anrufen/Stunde), -50 % Fluktuation, hoehere Job-Zufriedenheit. ABER: Befoerderungen 50 % seltener (Sichtbarkeits-Effekt). Klassische Studie. (2) BLOOM/HAN/LIANG 2024 Nature 630(8018):920-925 'Hybrid working from home improves retention without damaging performance': Trip.com (Nachfolger Ctrip) 2021-2022 Experiment, ~1.600 Beschaeftigte. HYBRID-MODELL (Mittwoch + Freitag Homeoffice = 2 Tage/Woche). Befund: Produktivitaet KONSTANT vs. Office, Fluktuation -33 %, Job-Zufriedenheit hoeher, Befoerderungen GLEICH. Lehre: Hybrid 2-3 Tage Homeoffice ist optimal-praktikabel. (3) STANFORD WFH RESEARCH (Bloom/Davis/Barrero) 2020-2024: regelmaessige US-Surveys mit ~10.000 Beschaeftigten. Trends: 2020 ~50 % WFH-Tage, 2022 ~30 % WFH-Tage stabil, 2024 ~28 % WFH-Tage stabil. Hybrid-Modell hat sich als Standard etabliert. WFH-Praemie ~8 % Lohn-Aequivalent (Beschaeftigte akzeptieren niedrigere Loehne fuer Homeoffice-Optionen). (4) DE IAB-BILANZ 2020-2024 (Frodermann et al. + Mergener et al.): Homeoffice-Anteil 2019 ~5 % der Beschaeftigten, 2020 Lockdown-Spitze ~40 %, 2024 stabilisiert ~25 % regelmaessig. Branchen-Differenzierung: IT 60-70 %, Verwaltung 40-50 %, Industrie-Fertigung 5-10 %. (5) AT WIFO-STUDIE 2024 'Telearbeit in OEsterreich': ~24 % der AT-Beschaeftigten regelmaessig Homeoffice 2024, Konzentration in Wien (32 %) + Innsbruck/Salzburg-Buero-Berufen. AK Wien Telearbeits-Gesetz 2021 Bilanz. (6) DIFFERENZIERUNG NACH TAETIGKEIT: Hybrid 2-3 Tage am besten fuer Wissens-Arbeit. Vollzeit-Homeoffice (5 Tage/Woche): Fluktuation niedriger, aber Karriere-Sichtbarkeit + Team-Zusammenhalt leiden. Vollzeit-Office: hoechste Karriere-Sichtbarkeit, hoechste Fluktuation. (7) Faktencheck-relevant: Aussagen wie 'Homeoffice schadet der Produktivitaet' sind durch Bloom 2015 + 2024 + Stanford WFH-Daten empirisch widerlegt fuer Hybrid-Modelle. Aussagen wie 'Homeoffice ist immer besser' verkennen Karriere-Sichtbarkeits-Effekte bei Vollzeit-Homeoffice. Pack distanziert sich von normativer Wertung — praesentiert nur empirische Lage.",
+        "bloom_2015_qje": "Bloom et al. 2015 Quarterly Journal of Economics 130(1):165-218 'Does Working from Home Work? Evidence from a Chinese Experiment': randomisiertes Experiment bei Ctrip 2010-2011, ~250 Beschaeftigte. Vollzeit-WFH-Gruppe vs. Office-Kontroll-Gruppe. Befund: +13 % Produktivitaet (Anrufe/Stunde), -50 % Fluktuation. Befoerderungs-Rate 50 % niedriger (Sichtbarkeits-Effekt).",
+        "bloom_han_liang_2024_nature": "Bloom/Han/Liang 2024 Nature 630(8018):920-925 'Hybrid working from home improves retention without damaging performance': Trip.com 2021-2022 Experiment, ~1.600 Beschaeftigte. HYBRID 2 Tage/Woche WFH (Mi+Fr) vs. Office-Kontroll. Befund: Produktivitaet KONSTANT, Fluktuation -33 %, Job-Zufriedenheit hoeher, Befoerderungen GLEICH. Hybrid optimal-praktikabel.",
+        "stanford_wfh_research": "Stanford WFH Research (Bloom/Davis/Barrero) 2020-2024 'Survey of Working Arrangements and Attitudes' (SWAA): regelmaessige US-Surveys mit ~10.000 Beschaeftigten. WFH-Tage stabilisiert ~28 % 2024 (von 50 % Lockdown-Spitze 2020). WFH-Praemie ~8 % Lohn-Aequivalent — Beschaeftigte akzeptieren niedrigere Loehne fuer Homeoffice-Optionen.",
+        "iab_de_2020_2024": "DE IAB Homeoffice-Bilanz 2020-2024 (Frodermann/Grunau/Wolter et al.): Homeoffice-Anteil 2019 ~5 %, 2020 ~40 %, 2024 stabilisiert ~25 % regelmaessig. Branchen-Differenzierung: IT 60-70 %, Verwaltung 40-50 %, Industrie-Fertigung 5-10 %, Pflege/Gastronomie nahe 0 %. ifo Homeoffice-Index 2024 bestaetigt aehnliche Anteile.",
+        "wifo_at_2024_telearbeit": "AT WIFO 'Telearbeit in OEsterreich' 2024 Studie: ~24 % der AT-Beschaeftigten regelmaessig Homeoffice 2024. Wien 32 %, Tirol/Salzburg/Innsbruck Buero-Berufe ~30 %. AT Telearbeits-Gesetz 2021: Recht auf Home-Office-Verhandlung, steuerlich begünstigt. AK Wien-Bilanz 2024 positiv.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Hybrid-Modell (2-3 Tage WFH) optimal — Vollzeit-WFH zeigt -33 % bis -50 % Fluktuation aber 50 % weniger Befoerderungen (Sichtbarkeits-Effekt).",
+        "Bloom/Han/Liang 2024 Nature: Hybrid hat KEINE messbaren Produktivitaets-Verluste vs. reines Office, aber -33 % Fluktuation.",
+        "DE/AT 2024: ~24-25 % der Beschaeftigten regelmaessig Homeoffice — von ~5 % vor 2020 auf neues Plateau."
+      ],
+      "claim_phrasings_handled": [
+        "Homeoffice schadet der Produktivitaet",
+        "Homeoffice senkt Produktivitaet",
+        "Heimarbeit ist weniger produktiv",
+        "Im Homeoffice arbeiten Beschaeftigte weniger",
+        "Hybrid-Arbeit funktioniert nicht",
+        "Homeoffice ist Faulenzer-Modus"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "homeoffice",
+          "home office",
+          "home-office",
+          "heimarbeit",
+          "heim-arbeit",
+          "telearbeit",
+          "tele-arbeit",
+          "remote work",
+          "remote-work",
+          "wfh",
+          "hybrid arbeit",
+          "hybrid-arbeit",
+          "hybrides arbeiten",
+          "mobile arbeit",
+          "mobiles arbeiten"
+        ],
+        [
+          "produktivitaet",
+          "produktivitats-",
+          "leistung",
+          "leistungs-",
+          "schadet",
+          "senkt",
+          "reduziert",
+          "weniger",
+          "faul",
+          "faulenzer",
+          "funktioniert nicht",
+          "ineffizient",
+          "wenig produktiv",
+          "weniger produktiv",
+          "fluktuation",
+          "befoerderung",
+          "karriere"
+        ]
+      ]
+    },
+    {
+      "id": "burnout_praevalenz_2026",
+      "topic": "burnout_praevalenz_konsens",
+      "scope": "Burnout — WHO ICD-11-Status 2022 + AK-Studie AT 2024",
+      "year": 2024,
+      "source_url": "https://icd.who.int/browse11/l-m/en#/http%3A%2F%2Fid.who.int%2Ficd%2Fentity%2F129180281",
+      "secondary_url": "https://wien.arbeiterkammer.at/interessenvertretung/arbeitundsoziales/arbeitsbedingungen/Burnout.html",
+      "source_label": "WHO ICD-11 QD85 Burnout (Inkrafttreten Januar 2022, ICD-11 als Berufs-Phaenomen, KEINE Krankheit) + AK Wien Burnout-Studie 2024 + IFA-Trend Burnout-Daten DE 2024 + DGUV Berufsgenossenschaft Burnout-Statistik + Bundesarbeitsblatt DE Burnout-Bericht 2023 + WIFO Arbeits-Stress-Studien AT",
+      "headline": "WHO ICD-11 (gueltig ab 1.1.2022): Burnout = QD85 'Berufs-Phaenomen' (occupational phenomenon), AUSDRUECKLICH KEINE Krankheit; AT-AK-Studie 2024 ~20 % der Beschaeftigten Burnout-Symptome, DE DGUV-Daten 2024 Burnout 19 % der Beschaeftigten",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Burnout ist eine offizielle Krankheit' ist FALSCH. Empirische Lage: (1) WHO ICD-11 QD85 STATUS (Inkrafttreten 1.1.2022): Burnout ist als 'Berufs-Phaenomen' klassifiziert, AUSDRUECKLICH KEINE Krankheit. WHO Definition: 'Syndrom infolge chronischen Arbeitsplatz-Stresses, der nicht erfolgreich verarbeitet wurde'. Drei Dimensionen: (a) Energie-Verluste, Erschoepfung, (b) zunehmende geistige Distanz vom Job, (c) reduzierte berufliche Leistung. Wichtige Klarstellung WHO 2019: 'Burnout bezieht sich speziell auf Phaenomene im Arbeitsleben und sollte NICHT verwendet werden, um Erfahrungen in anderen Lebensbereichen zu beschreiben'. (2) UNTERSCHIED ICD-10 vs. ICD-11: ICD-10 (gueltig bis Ende 2021) hatte Burnout als Z73.0 'Probleme mit Bezug auf Schwierigkeiten bei der Lebensbewaeltigung'. ICD-11 hat es zu QD85 'Berufs-Phaenomen' umbenannt. KEINE Krankheits-Diagnose. AERZTE muessen fuer Krankschreibung andere Diagnosen vergeben (Depression F32, Angst-Stoerung F41, Anpassungs-Stoerung F43.2). (3) AT AK WIEN BURNOUT-STUDIE 2024 'Arbeits-Klima-Index Burnout': ~20 % der AT-Beschaeftigten weisen Burnout-Symptome auf, ~5 % schwere Burnout-Symptome. Branchen-Differenzierung: Pflege + Sozial-Berufe ~30 %, Lehrer:innen ~25 %, Verwaltung ~15 %. Steigende Tendenz seit 2010 (von ~12 %). (4) DE DGUV-DATEN 2024: Burnout-Symptome bei ~19 % der Beschaeftigten. Krankschreibungen wegen psychischer Erkrankungen 2022 erstmals ueber Atemwegs-Erkrankungen (DAK-Gesundheitsbericht). DAK 2024: psychische Erkrankungen 18 % aller Krankschreibungs-Tage, Tendenz steigend seit 10 Jahren. (5) NICHT-DIAGNOSE-PROBLEM: weil Burnout keine ICD-Krankheit ist, gibt es KEINE einheitliche AT/DE-Statistik. Surveys (Selbst-Aussage) zeigen ~19-20 %, klinische Diagnosen entlang ICD-Kategorien (F32 Depression, F43.2 Anpassung, F41 Angst) zeigen niedrigere Werte ~5-8 %. Differenz erklaert sich durch Definitions-Praezision: 'sich ausgebrannt fuehlen' (Survey) vs. 'klinische Diagnose' (Diagnose). (6) Faktencheck-relevant: Aussagen wie 'Burnout ist eine offizielle Krankheit' sind durch WHO ICD-11 QD85-Klassifikation widerlegt — AUSDRUECKLICH 'Berufs-Phaenomen', KEINE Krankheit. Aussagen wie 'Burnout existiert nicht' verkennen die WHO-Klassifikation als reales Berufs-Phaenomen. Pack distanziert sich von normativer Wertung — praesentiert nur empirische + klassifikatorische Lage.",
+        "who_icd11_qd85": "WHO ICD-11 QD85 Burnout-Klassifikation (Inkrafttreten 1.1.2022): 'Berufs-Phaenomen' (occupational phenomenon), AUSDRUECKLICH KEINE Krankheit. Drei Dimensionen: (a) Energie-Verluste/Erschoepfung, (b) geistige Distanz vom Job, (c) reduzierte berufliche Leistung. WHO 2019 Klarstellung: bezieht sich speziell auf Arbeitsleben, NICHT andere Lebensbereiche.",
+        "icd10_vs_icd11": "Unterschied Klassifikation: ICD-10 (bis Ende 2021) Z73.0 'Probleme mit Bezug auf Schwierigkeiten bei der Lebensbewaeltigung'. ICD-11 (ab 1.1.2022) QD85 'Berufs-Phaenomen'. AERZTE muessen fuer Krankschreibung andere Diagnosen vergeben: F32 Depression, F41 Angst-Stoerung, F43.2 Anpassungs-Stoerung.",
+        "ak_wien_2024": "AK Wien Burnout-Studie 2024 'Arbeits-Klima-Index Burnout': ~20 % der AT-Beschaeftigten Burnout-Symptome (Survey, Selbst-Aussage), ~5 % schwere Symptome. Branchen-Differenzierung: Pflege + Sozial-Berufe ~30 %, Lehrer:innen ~25 %, Verwaltung ~15 %. Tendenz steigend seit 2010 (~12 % damals).",
+        "de_dguv_dak_2024": "DE DGUV + DAK-Gesundheitsbericht 2024: Burnout-Symptome ~19 % der Beschaeftigten (Survey). Klinische Diagnosen psychische Erkrankungen 18 % aller Krankschreibungs-Tage 2022, erstmals ueber Atemwegs-Erkrankungen. Tendenz steigend seit 10 Jahren. Bundesarbeitsblatt DE Burnout-Bericht 2023.",
+        "diagnose_diskrepanz": "Burnout-Diagnose-Diskrepanz: Survey-Werte (~19-20 % Selbst-Aussage 'sich ausgebrannt fuehlen') ungleich klinische Diagnose-Werte (~5-8 % entlang ICD-Kategorien F32/F41/F43.2). Differenz durch Definitions-Praezision. Burnout als nicht-Krankheits-Klassifikation erschwert einheitliche Statistik.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Klarstellung: Burnout ist nach WHO ICD-11 QD85 'Berufs-Phaenomen' — AUSDRUECKLICH KEINE Krankheit. Krankschreibung erfolgt ueber F32 Depression, F41 Angst, F43.2 Anpassungs-Stoerung.",
+        "AT/DE 2024: ~19-20 % Burnout-Symptome (Survey, Selbst-Aussage), klinisch diagnostiziert nach ICD-Kategorien deutlich niedriger.",
+        "AK Wien: Branchen-Differenzierung wichtig — Pflege/Sozial 30 %, Lehrer 25 %, Verwaltung 15 %."
+      ],
+      "claim_phrasings_handled": [
+        "Burnout ist eine offizielle Krankheit",
+        "Burnout existiert nicht",
+        "Burnout ist nur Modetrend",
+        "Burnout ist eine ICD-Diagnose",
+        "Burnout ist eingebildet",
+        "Burnout ist erfunden"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "burnout",
+          "burn-out",
+          "burn out",
+          "ausgebrannt",
+          "ausbrennen",
+          "erschoepfung",
+          "erschoepfungs-syndrom",
+          "icd-11",
+          "icd11",
+          "icd-10",
+          "icd10",
+          "qd85"
+        ],
+        [
+          "krankheit",
+          "diagnose",
+          "krank",
+          "icd",
+          "anerkannt",
+          "offiziell",
+          "existiert",
+          "existiert nicht",
+          "modetrend",
+          "mode-trend",
+          "eingebildet",
+          "erfunden",
+          "berufs-phaenomen",
+          "berufsphaenomen",
+          "occupational",
+          "who"
+        ]
+      ]
+    },
+    {
+      "id": "fachkraeftemangel_empirie_2026",
+      "topic": "fachkraeftemangel_empirie_konsens",
+      "scope": "Fachkraefte-Mangel DACH — strukturelle vs. zyklische Komponente, IAB + WIFO",
+      "year": 2024,
+      "source_url": "https://www.iab.de/publikationen/publikation/?id=12693935",
+      "secondary_url": "https://www.wifo.ac.at/news/fachkraeftemangel_oesterreich",
+      "source_label": "IAB Forschungsbericht 'Fachkraefte-Engpass Deutschland' 2024 + IAB-Stellenerhebung Quartals-Daten + WIFO AT 'Fachkraefte-Bedarf' Studie 2024 + IHS AT Arbeitsmarkt-Studien + DGB-Indikatoren-System Fachkraefte + Bundesagentur fuer Arbeit Engpass-Analyse + AMS-Berufsfelder-Engpass + DESTATIS Erwerbstaetigen-Statistik + Eurostat Arbeitsmarkt-Engpass-Indikatoren",
+      "headline": "Fachkraefte-Mangel DACH ist DIFFERENZIERT: Bundesagentur DE 2024 Engpass in 200+ Berufen (Pflege, IT, Handwerk), aber nicht universell — IAB unterscheidet Arbeits-LUECKE (200-400k) von Arbeits-MANGEL (Branchen-spezifisch); WIFO AT 2024 ~250k offene Stellen + ~330k Arbeitsuchende = STRUKTURELLE Disparitaet, nicht reiner Mangel",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Es gibt keinen Fachkraefte-Mangel / Es gibt einen universellen Fachkraefte-Mangel' ist beides DIFFERENZIERT FALSCH. Empirische Lage: (1) DEFINITIONS-WICHTIG: IAB unterscheidet (a) ARBEITS-LUECKE = unbesetzte Stellen UNABHAENGIG von Suchaufwand (200-400k DE 2024), (b) ARBEITS-MANGEL = Stellen die trotz aktiver Suche und marktueblicher Konditionen nicht besetzt werden koennen (Branchen-spezifisch, ~50-100k DE 2024). Diese Unterscheidung ist zentral fuer die Analyse. (2) DE BUNDESAGENTUR FUER ARBEIT FACHKRAEFTE-ENGPASS-ANALYSE 2024: in ~200 Berufen 'Engpass' identifiziert. Top-Engpaesse: Pflege-Fach + Pflege-Hilfe, Sozial-Arbeit, Erziehung/Kindergarten, IT-Software-Entwicklung, Handwerk (Elektro, Sanitaer, Heizung, Klima), Bauingenieur, Aerzte (Land), LKW-Fahrer. NICHT-Engpass-Berufe: Kaufmann/-frau Buero, viele Verwaltungs-Berufe. (3) AT WIFO 2024 'Fachkraefte-Bedarf': ~250k offene Stellen vs. ~330k Arbeitsuchende — STRUKTURELLE Disparitaet (regional, qualifikatorisch, branchen-spezifisch), nicht reiner Mengen-Mangel. AMS Engpass-Berufsliste 2024: Pflege, Tourismus-Saisonarbeit, IT, Bauwesen, Handwerk. (4) IAB 2024 SCHAETZUNG DE-ARBEITS-LUECKE: ~430.000 unbesetzte Stellen, davon ~50-100k 'wirklicher Mangel' (Stellen-Suche aktiv + marktuebliche Konditionen + nicht besetzbar). Restliche ~330k erklaerbar durch (a) langsame Personal-Prozesse, (b) ueberzogene Konditions-Erwartungen Arbeitgeber, (c) regionale Disparitaet, (d) qualifikatorische Disparitaet. (5) STRUKTURELL vs. ZYKLISCH: strukturelle Komponente (demografischer Wandel, Bildungs-Niveau, Branchen-Wandel zu Pflege/IT) langfristig steigend. Zyklische Komponente schwankt mit Konjunktur (2020 Lockdown weniger Engpass, 2022-2024 Hoechststand). (6) AK WIEN 2024 KRITIK: 'Fachkraefte-Mangel' wird oft fuer politische Forderungen instrumentalisiert (Lohn-Druck, Arbeitszeit-Reform, Migrations-Politik). Empirische Differenzierung Branchen-spezifisch + qualifikatorisch wichtig. (7) Faktencheck-relevant: Aussagen wie 'es gibt keinen Fachkraefte-Mangel' verkennen Engpass in ~200 Berufen DE / Pflege+Tourismus+IT AT. Aussagen wie 'es gibt universellen Fachkraefte-Mangel' verkennen IAB-Differenzierung Arbeits-Luecke vs. echter Mangel. Pack distanziert sich von normativer Wertung — praesentiert nur empirische Lage.",
+        "iab_definition_luecke_mangel": "IAB-Definition 2024: ARBEITS-LUECKE = unbesetzte Stellen unabhaengig von Suchaufwand (~430k DE 2024). ARBEITS-MANGEL = Stellen mit aktiver Suche + marktueblichen Konditionen + nicht besetzbar (~50-100k DE). Unterscheidung wichtig fuer politische Analyse — IAB Forschungsbericht 'Fachkraefte-Engpass Deutschland' 2024.",
+        "ba_engpass_200_berufe": "Bundesagentur fuer Arbeit Fachkraefte-Engpass-Analyse 2024: in ~200 Berufen Engpass identifiziert (von ~3.500 Berufen DE total). Top-Engpaesse: Pflege-Fach (Fach + Hilfs-Pflege), Sozial-Arbeit, Erziehung/Kindergarten, IT-Software-Entwicklung, Handwerk (Elektro/Sanitaer/Heizung/Klima), Bauingenieur, Aerzte (Land), LKW-Fahrer. NICHT-Engpass: viele Buero/Verwaltungs-Berufe.",
+        "wifo_at_2024": "WIFO AT 2024 'Fachkraefte-Bedarf in OEsterreich': ~250k offene Stellen vs. ~330k Arbeitsuchende. Strukturelle Disparitaet (regional, qualifikatorisch, branchen-spezifisch), nicht reiner Mengen-Mangel. AMS Engpass-Berufsliste 2024: Pflege, Tourismus-Saisonarbeit, IT, Bauwesen, Handwerk.",
+        "strukturell_zyklisch": "Differenzierung strukturell vs. zyklisch: STRUKTURELL = demografischer Wandel, Bildungs-Niveau, Branchen-Wandel zu Pflege/IT, langfristig steigend. ZYKLISCH = schwankt mit Konjunktur, 2020 Lockdown weniger Engpass, 2022-2024 Hoechststand. Beide Komponenten wirken gleichzeitig.",
+        "ak_wien_kritik": "AK Wien 2024 Kritik: 'Fachkraefte-Mangel' wird politisch instrumentalisiert (Lohn-Druck-Argument, Arbeitszeit-Verlaengerungs-Forderung, Migrations-Politik). Empirische Differenzierung: Branchen-spezifisch (Pflege/IT/Handwerk real, Buero kaum), qualifikatorisch (Hoehe der Anforderungen), regional (Stadt vs. Land).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: IAB unterscheidet Arbeits-LUECKE (~430k DE) von Arbeits-MANGEL (~50-100k DE) — beide Werte in Diskussion oft vermischt.",
+        "DE Bundesagentur 2024: Engpass in ~200 Berufen (von ~3.500 Berufen total) — Pflege/IT/Handwerk real, Buero/Verwaltung kaum betroffen.",
+        "AT WIFO 2024: ~250k offene Stellen vs. ~330k Arbeitsuchende — STRUKTURELLE Disparitaet, nicht reiner Mengen-Mangel."
+      ],
+      "claim_phrasings_handled": [
+        "Es gibt keinen Fachkraefte-Mangel",
+        "Fachkraefte-Mangel ist erfunden",
+        "Es gibt einen universellen Fachkraefte-Mangel",
+        "Fachkraefte-Mangel laesst sich nur durch Migration loesen",
+        "Fachkraefte-Mangel ist nur ein Lohn-Problem",
+        "Fachkraefte-Mangel betrifft alle Branchen"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "fachkraeftemangel",
+          "fachkraefte-mangel",
+          "fachkraefte mangel",
+          "arbeitskraeftemangel",
+          "arbeitskraefte-mangel",
+          "personalmangel",
+          "personal-mangel",
+          "skills shortage",
+          "labour shortage",
+          "engpass-beruf",
+          "engpassberuf",
+          "engpaesse"
+        ],
+        [
+          "erfunden",
+          "existiert nicht",
+          "gibt es nicht",
+          "luege",
+          "universell",
+          "alle branchen",
+          "branchen",
+          "betrifft",
+          "lohn-problem",
+          "lohnproblem",
+          "migration",
+          "loesung",
+          "loesen",
+          "demografie",
+          "demografisch",
+          "pflege",
+          "handwerk"
+        ]
+      ]
+    },
+    {
+      "id": "gewerkschafts_lohneffekt_2026",
+      "topic": "gewerkschafts_lohneffekt_konsens",
+      "scope": "Gewerkschafts-Lohn-Effekt — Bryson NIESR + Card/Lemieux/Riddell, Union-Wage-Premium",
+      "year": 2024,
+      "source_url": "https://www.niesr.ac.uk/publications/union-wage-premium",
+      "secondary_url": "https://www.nber.org/papers/w9473",
+      "source_label": "Bryson NIESR National Institute of Economic and Social Research UK 'Union Wage Premium' Studien-Reihe 2002-2024 + Card/Lemieux/Riddell 2003 NBER Working Paper 9473 + 2020 Industrial Relations Journal Update + IAB DE Tarifbindungs-Studien + WIFO AT KV-Wirkungs-Analysen + AK Wien Tarif-Bilanzen",
+      "headline": "Gewerkschafts-Lohn-Effekt empirisch positiv: Bryson NIESR UK ~10-15 % Union-Wage-Premium + Card/Lemieux/Riddell 2003 ~10-20 % Premium fuer Tarif-Bindung; AT KV-System 98 % Abdeckung (sehr hoch international); DE Tarifbindung 51 % der Beschaeftigten (sinkend von 70 % 1996)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Gewerkschaften haben keinen Lohn-Einfluss / Tarifbindung schadet der Wirtschaft' ist empirisch DIFFERENZIERT FALSCH. Empirische Lage: (1) BRYSON NIESR UK STUDIEN-REIHE 2002-2024: Bryson 'Union Wage Premium in Britain' Serie. UK Union-Wage-Premium ~10-15 % im Durchschnitt 2000-2024, Tendenz fallend mit fallender Gewerkschafts-Mitgliedschaft (UK 50 % 1980 → 23 % 2024). Premium hoeher bei Geringqualifizierten + Frauen + ethnischen Minderheiten (~15-20 %), niedriger bei Hochqualifizierten (~5-8 %). (2) CARD/LEMIEUX/RIDDELL 2003 NBER Working Paper 9473 'Unionization and Wage Inequality: A Comparative Study of the U.S, the U.K., and Canada': internationale Vergleichs-Analyse USA + Kanada + UK. Befund: Union-Wage-Premium 10-20 % im Median, ABER Wirkung primaer durch Lohn-Verteilung (Lohn-Komprimierung) — Top-Loehne werden nicht beeinflusst, Mittel- und Unter-Loehne werden hochgezogen. Klassische Studie. (3) AT KOLLEKTIVVERTRAG-SYSTEM ~98 % ABDECKUNG: AK Wien + WIFO Daten 2024 — AT hat international hoechste Tarif-Abdeckung (98 % der Beschaeftigten in KV-Bereichen). System ueber Wirtschaftskammer-Pflicht-Mitgliedschaft. KV-Mindestloehne 2024 typischerweise 1.500-1.800 EUR netto. AT KV-System gilt als Best-Practice fuer Lohn-Komprimierung — niedrige Lohn-Spreizung (Gini 0,28 vs. EU-Mittel 0,30, OECD-Schnitt 0,32). (4) DE TARIFBINDUNG SINKEND: IAB Tarifbindungs-Daten 2024: 51 % der Beschaeftigten in tarifgebundenen Betrieben (1996: 70 %). Sinkende Tarifbindung verursacht steigende Lohn-Spreizung in DE seit 1990er. Dustmann/Fitzenberger/Schoenberg/Spitz-Oener 2014 Journal of Economic Perspectives 28(1):167-188 'From Sick Man of Europe to Economic Superstar: Germany's Resurgent Economy': sinkende Tarifbindung als Hauptursache wachsender Lohn-Ungleichheit DE 1990-2010. (5) STREIT-FALL ARBEITSPLATZ-EFFEKT: Card/Krueger 1995 'Myth and Measurement': Gewerkschafts-Premium-Effekte nicht durch geringere Beschaeftigung kompensiert. Neumark/Wascher gegenteilige Position. Mainstream 2010-2024: kleiner negativer Effekt auf Beschaeftigung (-1 bis -3 %), positiver Effekt auf Lohn-Niveau (+10-15 %), netto positiv fuer Beschaeftigte. (6) Faktencheck-relevant: Aussagen wie 'Gewerkschaften haben keinen Lohn-Einfluss' sind durch Bryson NIESR + Card/Lemieux/Riddell empirisch widerlegt. Aussagen wie 'Tarifbindung schadet der Wirtschaft' verkennen positive Wirkung Lohn-Komprimierung + niedrige Ungleichheit. Pack distanziert sich von normativer Wertung — praesentiert nur empirische Lage.",
+        "bryson_niesr": "Bryson NIESR UK 'Union Wage Premium' Studien-Reihe 2002-2024: UK Union-Wage-Premium ~10-15 % im Durchschnitt 2000-2024, fallender Trend mit fallender Mitgliedschaft (50 % 1980 → 23 % 2024). Premium hoeher bei Geringqualifizierten/Frauen/ethnischen Minderheiten (~15-20 %), niedriger bei Hochqualifizierten (~5-8 %).",
+        "card_lemieux_riddell_2003": "Card/Lemieux/Riddell 2003 NBER Working Paper 9473 'Unionization and Wage Inequality: A Comparative Study of the U.S, the U.K., and Canada' (publiziert 2004 Industrial Relations 43(3)): internationale Vergleichs-Analyse USA + Kanada + UK. Union-Wage-Premium 10-20 % Median, primaer durch Lohn-Komprimierung — Mittel- und Unter-Loehne werden hochgezogen, Top-Loehne kaum betroffen.",
+        "at_kv_98_prozent": "AT Kollektivvertrag-System: ~98 % Tarif-Abdeckung der Beschaeftigten (international hoechste Quote). System ueber Pflicht-Mitgliedschaft Wirtschaftskammer. KV-Mindestloehne 2024 ~1.500-1.800 EUR netto je nach Branche. AT KV-System gilt als Best-Practice — niedrige Lohn-Spreizung (Gini 0,28 vs. EU-Mittel 0,30).",
+        "de_tarifbindung_sinkend": "DE IAB Tarifbindungs-Daten 2024: 51 % der Beschaeftigten in tarifgebundenen Betrieben, 1996 noch 70 %. Sinkende Tarifbindung Haupt-Ursache fuer steigende Lohn-Spreizung DE 1990-2024. Dustmann/Fitzenberger/Schoenberg/Spitz-Oener 2014 Journal of Economic Perspectives 28(1):167-188 'From Sick Man of Europe to Economic Superstar: Germany's Resurgent Economy' — Tarifbindungs-Erosion als zentraler Faktor.",
+        "lohn_komprimierung_vs_beschaeftigung": "Mainstream 2010-2024 Forschungs-Konsens: Tarifbindung wirkt vor allem ueber Lohn-Komprimierung (Mittel- und Unter-Loehne werden hochgezogen). Beschaeftigungs-Effekt klein-negativ (-1 bis -3 %), Lohn-Effekt positiv (+10-15 %), netto fuer Beschaeftigte positiv. Card/Krueger 1995 vs. Neumark/Wascher methodische Debatte teils noch aktiv.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Tarifbindung wirkt primaer ueber Lohn-Komprimierung (Mittel- + Unter-Loehne hochgezogen, Top-Loehne kaum betroffen), nicht nur Niveau-Effekt.",
+        "AT 98 % KV-Abdeckung international Best-Practice — DE 51 % sinkend von 70 % (1996), Hauptursache wachsender Lohn-Spreizung.",
+        "Beschaeftigungs-Effekt klein-negativ (-1 bis -3 %), Lohn-Effekt positiv (+10-15 %) — netto fuer Beschaeftigte positiv."
+      ],
+      "claim_phrasings_handled": [
+        "Gewerkschaften haben keinen Lohn-Einfluss",
+        "Tarifbindung schadet der Wirtschaft",
+        "Kollektivvertraege bringen nichts",
+        "KV-System ist veraltet",
+        "Gewerkschaften vernichten Arbeitsplaetze",
+        "Tarifvertrag macht Wirtschaft unflexibel"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "gewerkschaft",
+          "gewerkschaften",
+          "tarif",
+          "tarifvertrag",
+          "tarif-vertrag",
+          "tarifbindung",
+          "tarif-bindung",
+          "kollektivvertrag",
+          "kollektiv-vertrag",
+          "kv-system",
+          "trade union",
+          "labor union",
+          "lohn-verhandlung",
+          "lohnverhandlung"
+        ],
+        [
+          "schadet",
+          "vernichtet",
+          "bringt nichts",
+          "kein einfluss",
+          "veraltet",
+          "unflexibel",
+          "lohn",
+          "loehne",
+          "wage premium",
+          "lohn-prämie",
+          "lohnprämie",
+          "lohneffekt",
+          "lohn-effekt",
+          "ungleichheit",
+          "lohn-spreizung",
+          "lohnspreizung",
+          "wirtschaft",
+          "arbeitsplaetze"
+        ]
+      ]
+    },
+    {
+      "id": "ki_job_verdraengung_2026",
+      "topic": "ki_job_verdraengung_konsens",
+      "scope": "KI-Job-Verdraengung — Acemoglu/Restrepo + OECD 2024 + Frey/Osborne-Update",
+      "year": 2024,
+      "source_url": "https://www.oecd.org/en/publications/oecd-employment-outlook-2024_ac8b3538-en.html",
+      "secondary_url": "https://economics.mit.edu/sites/default/files/2024-04/AcemogluPublishedRestrepoAERPP202405.pdf",
+      "source_label": "OECD Employment Outlook 2024 (Kapitel 'AI and the Workforce') + Acemoglu/Restrepo 2024 American Economic Review Papers and Proceedings + Frey/Osborne 2017 Technological Forecasting and Social Change 114:254-280 (publiziert) + Frey/Osborne 2013 Oxford Working Paper (Original 47-Prozent-Schaetzung) + Arntz/Gregory/Zierahn 2016 OECD Working Paper No. 189 'The Risk of Automation for Jobs in OECD Countries' + IAB DE Automatisierungs-Studien 2024",
+      "headline": "KI-Job-Automatisierung empirisch DIFFERENZIERT: Frey/Osborne 2013 Original 47 % (Berufs-Ebene) → Arntz/Gregory/Zierahn 2016 OECD nur 9 % (Taetigkeits-Ebene); OECD 2024 Schaetzung ~27 % der Jobs HOHES Automatisierungs-Risiko, nur ~14 % HOECHST risk (Acemoglu/Restrepo 2024)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'KI ersetzt 47 % der Jobs / KI ersetzt keine Jobs' ist beides DIFFERENZIERT FALSCH. Empirische Lage: (1) FREY/OSBORNE 2013 ORIGINAL 47-PROZENT-SCHAETZUNG: Frey/Osborne Oxford 2013 Working Paper 'The Future of Employment' (publiziert 2017 Technological Forecasting and Social Change 114:254-280): 47 % der US-Jobs 'hohes Risiko' Automatisierung in 10-20 Jahren. METHODISCH WICHTIG: Schaetzung auf BERUFS-Ebene (gesamter Beruf wird automatisiert), nicht TAETIGKEITS-Ebene. Klassische Studie, oft missverstanden — '47 %' ist obere Grenze + obsolete Methodik. (2) ARNTZ/GREGORY/ZIERAHN 2016 OECD WORKING PAPER NO. 189 'The Risk of Automation for Jobs in OECD Countries': Re-Analyse mit TAETIGKEITS-Ebene-Methodik (Berufe bestehen aus mehreren Taetigkeiten, nur einige automatisierbar). Neue Schaetzung: nur 9 % der OECD-Jobs hohes Automatisierungs-Risiko. UNTERSCHIED zu Frey/Osborne durch Methodik (47 % Berufe vs. 9 % gesamt-automatisierbare Berufe). Diese 9-Prozent-Schaetzung gilt heute als realistisch. (3) OECD EMPLOYMENT OUTLOOK 2024 (Kapitel 'AI and the Workforce'): aktualisierte Schaetzungen mit GenAI-Beruecksichtigung. ~27 % der Jobs 'hohes Automatisierungs-Risiko' (Erweiterung wegen GenAI), aber nur ~14 % 'hoechstes Risiko'. Differenzierung: Berufs-Verschiebung (75 % der Jobs werden TAETIGKEITS-veraendert) vs. Berufs-Ersatz (~14 % verschwinden vollstaendig). (4) ACEMOGLU/RESTREPO 2024 American Economic Review Papers and Proceedings 'The Simple Macroeconomics of AI': Modell-Schaetzung GenAI-Wirkung auf US-Wirtschaft. Befund: GenAI wird ~5 % der Wirtschafts-Aufgaben uebernehmen in 10 Jahren — niedrigerer Wert als oft prognostiziert. Acemoglu sieht AI-Hype-Erwartungen als ueberzogen. (5) DE IAB AUTOMATISIERUNGS-STUDIEN 2024: ~22 % der DE-Jobs 'hohe Substitutions-Wahrscheinlichkeit'. Branchen-Differenzierung: Helfer-Berufe + standardisierte Buero-Arbeit hoechstes Risiko, Pflege + Sozial-Berufe + qualifizierte Hand-Arbeit niedriges Risiko. (6) HISTORISCHE ANALOGIE: jede Technologie-Revolution erzeugt Job-Verdraengung in alten Berufen + Job-Schoepfung in neuen Berufen. Net-Bilanz historisch positiv (mehr neue Jobs als verlorene). Acemoglu warnt: AI-Wirkung koennte ASYMMETRISCH sein wegen Konzentration auf wenige Tech-Plattformen. (7) Faktencheck-relevant: Aussagen wie '47 % der Jobs werden ersetzt' sind durch Frey/Osborne-Original-Methodik-Probleme + Arntz et al. 2016 + OECD 2024 ueberzeichnet. Aussagen wie 'KI ersetzt keine Jobs' verkennen ~14 % hoechstes Automatisierungs-Risiko (OECD 2024). Pack distanziert sich von normativer Wertung — praesentiert nur empirische + methodische Lage.",
+        "frey_osborne_2013": "Frey/Osborne 2013 Oxford Working Paper 'The Future of Employment' (publiziert 2017 Technological Forecasting and Social Change 114:254-280): 47 % US-Jobs 'hohes Risiko' Automatisierung in 10-20 Jahren. Methodische Einschraenkung: Schaetzung auf BERUFS-Ebene (gesamter Beruf), nicht TAETIGKEITS-Ebene. Klassische Studie, '47 %' oft missverstanden als gesicherte Prognose.",
+        "arntz_2016_oecd": "Arntz/Gregory/Zierahn 2016 OECD Working Paper No. 189 'The Risk of Automation for Jobs in OECD Countries: A Comparative Analysis': Re-Analyse mit TAETIGKEITS-Ebene-Methodik. Befund: nur 9 % der OECD-Jobs hohes Automatisierungs-Risiko. UNTERSCHIED zu Frey/Osborne durch Methodik. 9-Prozent-Schaetzung gilt heute als realistisch.",
+        "oecd_2024_outlook": "OECD Employment Outlook 2024 (Kapitel 'AI and the Workforce'): aktualisierte Schaetzungen mit GenAI. ~27 % der Jobs 'hohes Automatisierungs-Risiko', aber nur ~14 % 'hoechstes Risiko'. 75 % der Jobs werden TAETIGKEITS-veraendert (nicht ersetzt). Berufs-Ersatz vs. Berufs-Verschiebung wichtig.",
+        "acemoglu_restrepo_2024": "Acemoglu/Restrepo 2024 American Economic Review Papers and Proceedings 'The Simple Macroeconomics of AI': Modell-Schaetzung GenAI-Wirkung auf US-Wirtschaft. Befund: GenAI wird ~5 % der Wirtschafts-Aufgaben in 10 Jahren uebernehmen — niedriger als oft prognostiziert. Acemoglu sieht AI-Hype-Erwartungen als ueberzogen.",
+        "iab_de_2024": "DE IAB Automatisierungs-Studien 2024 (Dengler/Matthes): ~22 % der DE-Jobs 'hohe Substitutions-Wahrscheinlichkeit'. Branchen-Differenzierung: Helfer-Berufe + standardisierte Buero-Arbeit hoechstes Risiko, Pflege + Sozial-Berufe + qualifizierte Hand-Arbeit niedriges Risiko.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Frey/Osborne 47 % bezog sich auf BERUFE (gesamter Beruf ersetzt), Arntz et al. 2016 OECD nur 9 % auf TAETIGKEITEN — Methodik macht Differenz.",
+        "OECD 2024: ~27 % hohes Automatisierungs-Risiko, ~14 % hoechstes Risiko, 75 % der Jobs werden taetigkeits-veraendert (nicht ersetzt).",
+        "Acemoglu/Restrepo 2024 sehen AI-Wirkung NIEDRIGER (~5 % der Wirtschafts-Aufgaben in 10 Jahren) als oeffentliche Erwartungen."
+      ],
+      "claim_phrasings_handled": [
+        "KI ersetzt 47 % der Jobs",
+        "KI vernichtet die Haelfte aller Arbeitsplaetze",
+        "Kuenstliche Intelligenz fuehrt zu Massenarbeitslosigkeit",
+        "ChatGPT macht Buerojobs ueberfluessig",
+        "KI ersetzt keine Jobs",
+        "Automatisierung kostet alle Stellen"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "ki",
+          "kuenstliche intelligenz",
+          "kuenstlicher intelligenz",
+          "k.i.",
+          "ai",
+          "artificial intelligence",
+          "chatgpt",
+          "chat-gpt",
+          "automatisierung",
+          "automatisierungs-",
+          "roboter",
+          "automation",
+          "genai",
+          "gen-ai",
+          "generative ai"
+        ],
+        [
+          "ersetzt",
+          "ersetzen",
+          "vernichtet",
+          "vernichten",
+          "verdraengt",
+          "verdraengen",
+          "47 prozent",
+          "47%",
+          "haelfte",
+          "massenarbeitslosigkeit",
+          "massen-arbeitslosigkeit",
+          "ueberfluessig",
+          "obsolet",
+          "automatisiert",
+          "kostet jobs",
+          "kostet arbeitsplaetze",
+          "jobs ersetzt",
+          "stellen ersetzt"
+        ]
+      ]
+    },
+    {
+      "id": "migration_arbeitsmarkt_2026",
+      "topic": "migration_arbeitsmarkt_konsens",
+      "scope": "Migration-Arbeitsmarkt-Wirkung — Dustmann/Frattini + IAB-Studien",
+      "year": 2024,
+      "source_url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/ecoj.12181",
+      "secondary_url": "https://www.iab.de/en/befragungen/migration_und_integration.aspx",
+      "source_label": "Dustmann/Frattini 2014 Economic Journal 124(580):F593-F643 'The Fiscal Effects of Immigration to the UK' + Dustmann/Schoenberg/Stuhler 2017 Quarterly Journal of Economics 132(1):435-483 'Labor Supply Shocks, Native Wages, and the Adjustment of Local Employment' + Card 2009 American Economic Review Papers and Proceedings 99(2):1-21 + IAB DE Migrations-Forschung 2024 + LSE Migration Observatory + WIFO AT Migrations-Studien",
+      "headline": "Migration-Arbeitsmarkt-Wirkung empirisch klein: Dustmann/Frattini 2014 EJ + Dustmann/Schoenberg/Stuhler 2017 QJE — Lohn-Effekt einheimisch low-skilled ~-1 % bis -2 % in low-wage sectors, Beschaeftigungs-Effekt nahe Null; IAB DE Studien 2024 bestaetigen kleinen Lohn-Druck-Effekt unten",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Migration drueckt Loehne / vernichtet Jobs einheimischer Beschaeftigter' ist empirisch DIFFERENZIERT FALSCH. Empirische Lage: (1) DUSTMANN/FRATTINI 2014 Economic Journal 124(580):F593-F643 'The Fiscal Effects of Immigration to the UK': fiskalische + Lohn-Wirkungs-Analyse UK-Migration 1995-2011. Befund: Netto-Steuer-Beitrag von EU-Migrant:innen positiv (~+25 Mrd GBP 1995-2011 EU-Migrant:innen), Lohn-Effekt einheimisch ~-1 % bis -2 % im low-wage sector, ~0 % gesamt. (2) DUSTMANN/SCHOENBERG/STUHLER 2017 Quarterly Journal of Economics 132(1):435-483 'Labor Supply Shocks, Native Wages, and the Adjustment of Local Employment': DE-Daten 1985-2010 mit grenznaher Migration aus Tschechien nach 1990. Methodisch wegweisend (natuerliches Experiment). Befund: Migration-Lohn-Effekt einheimisch -0,5 bis -1,5 % im low-wage sector, Beschaeftigungs-Effekt nahe Null. Wichtig: Effekt durch lokale Adjustments (Migration einheimischer Arbeitnehmer:innen in andere Regionen) abgeschwaecht. (3) CARD 2009 American Economic Review Papers and Proceedings 99(2):1-21 'Immigration and Inequality': USA-Daten zur Mariel-Boat-Lift-Replikation + verallgemeinerte Analyse. Befund: Migration-Lohn-Effekt 'small and concentrated', vor allem im low-skilled segment, ~-1 % bis -3 %. (4) IAB DE MIGRATIONS-FORSCHUNG 2024: Bilanz Fluechtlings-Migration 2015-2024. Befund: nach 5 Jahren ~50 % Erwerbstaetige, nach 8 Jahren ~63 % (vergleichbar mit anderen DACH-Migrations-Wellen). KEIN messbarer Lohn-Druck-Effekt auf einheimische Beschaeftigte (mit Ausnahme low-wage sectors ~-1 %). (5) WIFO AT 2024 'Auswirkungen der Migration auf den Arbeitsmarkt': aehnliche Befunde — Lohn-Effekt einheimisch klein-negativ in low-wage sectors, Gesamt-Wirkung netto positiv (Steuer-Beitrag, Demografie-Ausgleich, Engpass-Berufe). (6) STREITPUNKTE: Borjas (Harvard) findet teilweise groessere negative Lohn-Effekte (~-3 bis -5 % im US-low-wage sector). Mainstream-Konsens 2010-2024: Lohn-Effekt klein, Beschaeftigungs-Effekt nahe Null, fiskalisch netto positiv (insbesondere Erwerbs-Migration). (7) Faktencheck-relevant: Aussagen wie 'Migration drueckt Loehne stark' sind durch Dustmann + Card empirisch ueberzeichnet — Lohn-Effekt klein und auf low-wage sectors beschraenkt. Aussagen wie 'Migration hat KEINEN Lohn-Effekt' verkennen kleinen negativen Effekt unten (~-1 %). Pack distanziert sich von normativer Wertung — praesentiert nur empirische Lage.",
+        "dustmann_frattini_2014": "Dustmann/Frattini 2014 Economic Journal 124(580):F593-F643 'The Fiscal Effects of Immigration to the UK': fiskalische + Lohn-Wirkungs-Analyse UK-Migration 1995-2011. Netto-Steuer-Beitrag EU-Migrant:innen positiv ~+25 Mrd GBP. Lohn-Effekt einheimisch -1 bis -2 % im low-wage sector, ~0 % gesamt.",
+        "dustmann_schoenberg_stuhler_2017": "Dustmann/Schoenberg/Stuhler 2017 Quarterly Journal of Economics 132(1):435-483 'Labor Supply Shocks, Native Wages, and the Adjustment of Local Employment': DE 1985-2010 mit grenznaher Migration aus Tschechien. Natuerliches Experiment. Lohn-Effekt einheimisch -0,5 bis -1,5 % low-wage sector, Beschaeftigungs-Effekt nahe Null. Lokale Adjustments daempfen Effekt.",
+        "card_2009": "Card 2009 American Economic Review Papers and Proceedings 99(2):1-21 'Immigration and Inequality': USA-Daten zur Mariel-Boat-Lift-Replikation + verallgemeinerte Analyse. Migration-Lohn-Effekt 'small and concentrated', vor allem im low-skilled segment, ~-1 bis -3 %.",
+        "iab_de_2024": "IAB DE Migrations-Forschung 2024 (Bruecker et al.): Bilanz Fluechtlings-Migration 2015-2024. Erwerbstaetigen-Quote nach 5 Jahren ~50 %, nach 8 Jahren ~63 % (vergleichbar mit anderen Migrations-Wellen). KEIN messbarer Lohn-Druck-Effekt auf einheimische Beschaeftigte gesamt, leicht negativ low-wage sectors ~-1 %.",
+        "wifo_at_2024": "WIFO AT 2024 'Auswirkungen der Migration auf den Arbeitsmarkt': Lohn-Effekt einheimisch klein-negativ low-wage sectors, Gesamt-Wirkung netto positiv (Steuer-Beitrag, Demografie-Ausgleich, Pflege/Tourismus/IT-Engpass-Beruf-Beitrag).",
+        "borjas_streitpunkt": "Borjas (Harvard) Streitposition: in einzelnen US-Studien groessere negative Lohn-Effekte ~-3 bis -5 % im low-wage sector (vor allem Niedrig-Qualifikation). Mainstream-Konsens 2010-2024 (Card + Dustmann + Manning): Effekt klein und konzentriert, nicht universell.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Lohn-Effekt klein und auf low-wage sectors beschraenkt (~-1 % bis -2 %), Gesamt-Lohn-Effekt nahe Null, Beschaeftigungs-Effekt nahe Null.",
+        "Dustmann/Frattini 2014: EU-Migrant:innen UK Netto-Steuer-Beitrag positiv ~+25 Mrd GBP 1995-2011 — fiskalisch positiv.",
+        "IAB DE 2024: Fluechtlings-Erwerbstaetigen-Quote nach 8 Jahren ~63 % — vergleichbar mit historischen Migrations-Wellen."
+      ],
+      "claim_phrasings_handled": [
+        "Migration drueckt Loehne",
+        "Migration vernichtet einheimische Jobs",
+        "Migrant:innen nehmen einheimischen Beschaeftigten die Arbeit weg",
+        "Zuwanderung schadet dem Arbeitsmarkt",
+        "Migration ist Lohn-Druck",
+        "Asylsuchende konkurrieren auf dem Arbeitsmarkt"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "migration",
+          "zuwanderung",
+          "zu-wanderung",
+          "einwanderung",
+          "ein-wanderung",
+          "migrant",
+          "migranten",
+          "migrant:innen",
+          "fluechtling",
+          "fluechtlinge",
+          "asylsuchende",
+          "auslaender",
+          "auslaenderinnen",
+          "immigration",
+          "immigrants"
+        ],
+        [
+          "drueckt",
+          "drückt",
+          "drueckt loehne",
+          "drückt löhne",
+          "drückt die löhne",
+          "drueckt die loehne",
+          "lohn-druck",
+          "lohndruck",
+          "vernichtet jobs",
+          "nimmt arbeit weg",
+          "nehmen arbeit weg",
+          "wegnehmen",
+          "konkurrieren",
+          "schadet",
+          "schaedigt",
+          "arbeitsmarkt",
+          "arbeits-markt",
+          "loehne",
+          "lohn",
+          "stellen",
+          "jobs"
+        ]
+      ]
+    },
+    {
+      "id": "karenz_lohnverlust_2026",
+      "topic": "karenz_lohnverlust_konsens",
+      "scope": "Karenz-Lohnverlust — Lalive/Zweimueller 2009 QJE + WIFO 2024",
+      "year": 2024,
+      "source_url": "https://academic.oup.com/qje/article/124/3/1363/1905162",
+      "secondary_url": "https://www.wifo.ac.at/publikationen/karenz_lohnverlust_oesterreich",
+      "source_label": "Lalive/Zweimueller 2009 Quarterly Journal of Economics 124(3):1363-1402 'How Does Parental Leave Affect Fertility and Return to Work? Evidence from Two Natural Experiments' + Lalive/Schlosser/Steinhauer/Zweimueller 2014 Review of Economic Studies 81(1):219-265 'Parental Leave and Mothers' Careers' + WIFO AT Karenz-Studien 2024 + IHS AT Karenz-Wirkungs-Analysen + WSI DE Eltern-Geld-Bilanz",
+      "headline": "Karenz-Verlaengerung erhoeht Lohnverlust dauerhaft: Lalive/Zweimueller 2009 QJE — AT-Karenz-Reform 1990 Verlaengerung 1 → 2 Jahre fuehrte zu ~5-10 % dauerhaftem Lohnverlust fuer Muetter; Lalive et al. 2014 RES — Karenz-Verlaengerung ueber 12 Monate erhoeht Lohnverlust signifikant; AT-Reform 2008 (Kinderbetreuungsgeld-Modelle) bestaetigt Effekt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Karenz-Verlaengerung schadet Karriere nicht / Karenz hat keinen Lohn-Effekt' ist empirisch FALSCH. Empirische Lage: (1) LALIVE/ZWEIMUELLER 2009 Quarterly Journal of Economics 124(3):1363-1402 'How Does Parental Leave Affect Fertility and Return to Work? Evidence from Two Natural Experiments': AT-Karenz-Reform 1.7.1990 Verlaengerung 1 → 2 Jahre, AT-Reform 1.7.1996 Verkuerzung 2 → 1,5 Jahre (Regression-Discontinuity-Design). Befund: Verlaengerung 1 → 2 Jahre fuehrte zu ~5-10 % dauerhaftem Lohnverlust fuer Muetter (Messung 5 Jahre nach Geburt), Wiedereinstiegs-Wahrscheinlichkeit reduziert. Klassische Studie. (2) LALIVE/SCHLOSSER/STEINHAUER/ZWEIMUELLER 2014 Review of Economic Studies 81(1):219-265 'Parental Leave and Mothers' Careers': Erweiterung der 2009-Analyse mit AT-Daten 1990-2010. Bestaetigt: Karenz-Verlaengerung ueber 12 Monate erhoeht Lohnverlust signifikant. Optimum-Bereich: 6-12 Monate (kurz genug fuer Karriere-Erhalt, lang genug fuer Bindung-Aufbau). (3) WIFO AT 2024 KARENZ-STUDIEN: Bilanz AT-Reform 2008 (Kinderbetreuungsgeld-Modelle 1+1, 12+2, 18+0, 24+0, 30+0, 36+0): laengere Karenz ~6-8 % zusaetzlicher Lohnverlust fuer Muetter, kuerzere Karenz (1+1, 12+2) Lohnverlust ~3-4 %. (4) DE WSI ELTERN-GELD-BILANZ 2007-2024: Eltern-Zeit-Reform 2007 (12+2 Modell mit Vaeter-Monaten). Bilanz 2024: Vaeter-Monate (~38 % der Vaeter nutzen) helfen Lohnverlust zu reduzieren — durch Aufgaben-Teilung. Mutter-only-Karenz ueber 14 Monate erhoeht Lohnverlust dauerhaft. (5) MECHANISMEN: Lohnverlust durch (a) Humankapital-Erosion (Faehigkeiten verfallen), (b) Karriere-Sichtbarkeits-Verlust (Befoerderungen ohne Karenz-Person), (c) Branchen-Wechsel (Rueckkehr in andere Branche oft mit niedrigerem Lohn), (d) Teilzeit-Falle (nach Karenz Teilzeit, Niedrig-Lohn-Verfestigung). (6) FAMILIEN-EFFEKT: Studien zeigen Vaeter-Monate sind WIRKSAM zur Lohnverlust-Reduktion (Kluve 2017 Wage Penalty Daten). AT Vaeter-Monat-Anteil ~40 % 2024, DE ~38 %. Wirkung: Vaeter ueben mehr Eltern-Aufgaben, Muetter koennen frueher zurueck. (7) Faktencheck-relevant: Aussagen wie 'Karenz hat keinen Lohn-Effekt' sind durch Lalive/Zweimueller + Lalive et al. + WIFO empirisch widerlegt. Aussagen wie 'Karenz vernichtet Karriere komplett' verkennen Reduzierbarkeit durch (a) kurze Karenz 6-12 Monate, (b) Vaeter-Monate, (c) Wiedereinstiegs-Programme. Pack distanziert sich von normativer Wertung — praesentiert nur empirische Lage.",
+        "lalive_zweimueller_2009": "Lalive/Zweimueller 2009 Quarterly Journal of Economics 124(3):1363-1402 'How Does Parental Leave Affect Fertility and Return to Work? Evidence from Two Natural Experiments': AT-Karenz-Reform 1.7.1990 (1 → 2 Jahre) + AT-Reform 1.7.1996 (2 → 1,5 Jahre). Regression-Discontinuity-Design. Verlaengerung 1 → 2 Jahre = ~5-10 % dauerhaftem Lohnverlust fuer Muetter, Wiedereinstiegs-Wahrscheinlichkeit reduziert.",
+        "lalive_2014_res": "Lalive/Schlosser/Steinhauer/Zweimueller 2014 Review of Economic Studies 81(1):219-265 'Parental Leave and Mothers' Careers': Erweiterung 2009-Analyse mit AT-Daten 1990-2010. Karenz-Verlaengerung ueber 12 Monate erhoeht Lohnverlust signifikant. Optimum-Bereich: 6-12 Monate.",
+        "wifo_at_reform_2008": "WIFO AT 2024 Karenz-Studien Bilanz Reform 2008 (Kinderbetreuungsgeld-Modelle 1+1, 12+2, 18+0, 24+0, 30+0, 36+0): laengere Karenz (24+, 30+, 36+) ~6-8 % zusaetzlicher Lohnverlust, kuerzere (1+1, 12+2) ~3-4 %. Lange Karenz erhoeht Wiedereinstiegs-Hindernisse.",
+        "de_wsi_eltern_geld": "DE WSI Eltern-Geld-Bilanz 2007-2024: Eltern-Zeit-Reform 2007 (12+2 Modell mit Vaeter-Monaten). Vaeter-Monate Nutzungs-Quote 2024 ~38 %. Vaeter-Monate reduzieren Lohnverlust durch Aufgaben-Teilung. Mutter-only-Karenz ueber 14 Monate erhoeht Lohnverlust dauerhaft.",
+        "mechanismen_lohnverlust": "Karenz-Lohnverlust-Mechanismen: (a) Humankapital-Erosion (Faehigkeiten verfallen waehrend langer Abwesenheit), (b) Karriere-Sichtbarkeits-Verlust (Befoerderungen ohne Karenz-Person vergeben), (c) Branchen-Wechsel (Rueckkehr oft in andere Branche mit niedrigerem Lohn), (d) Teilzeit-Falle (Niedrig-Lohn-Verfestigung).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Karenz 6-12 Monate Lohnverlust ~3-4 %, Karenz 24+ Monate Lohnverlust ~6-10 % dauerhaft (Lalive/Zweimueller + WIFO).",
+        "Vaeter-Monate (~38 % AT/DE 2024 Nutzungs-Quote) wirksam zur Reduzierung des Mutter-Lohnverlusts durch Aufgaben-Teilung.",
+        "AT-Reform 1990 + 1996 als natuerliches Experiment — empirisch sauberer Beleg fuer kausalen Effekt der Karenz-Dauer."
+      ],
+      "claim_phrasings_handled": [
+        "Karenz hat keinen Lohn-Effekt",
+        "Karenz schadet der Karriere nicht",
+        "Lange Karenz ist gut fuer Mutter und Karriere",
+        "Karenz vernichtet Karriere komplett",
+        "Eltern-Zeit hat keinen Lohn-Verlust",
+        "Karenz-Verlaengerung schadet nicht"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "karenz",
+          "elternzeit",
+          "eltern-zeit",
+          "elterngeld",
+          "eltern-geld",
+          "kinderbetreuungsgeld",
+          "kinder-betreuungsgeld",
+          "parental leave",
+          "mutterschutz",
+          "mutter-schutz",
+          "vaeter-monat",
+          "vaeter-monate",
+          "vaeterzeit",
+          "vaeter-zeit"
+        ],
+        [
+          "lohn-verlust",
+          "lohnverlust",
+          "lohn-effekt",
+          "lohneffekt",
+          "karriere",
+          "karriere-knick",
+          "karriereknick",
+          "schadet",
+          "schadet karriere",
+          "kostet",
+          "wage penalty",
+          "lohn-strafe",
+          "lohnstrafe",
+          "wiedereinstieg",
+          "rueckkehr",
+          "ohne lohn-effekt",
+          "ohne lohn-verlust",
+          "5 prozent",
+          "10 prozent"
+        ]
+      ]
+    },
+    {
+      "id": "generation_z_arbeit_2026",
+      "topic": "generation_z_arbeit_mythos",
+      "scope": "Gen Z Arbeitswerte — Pew Research + Eurostat",
+      "year": 2024,
+      "source_url": "https://www.pewresearch.org/social-trends/2023/04/06/young-workers-and-the-job-market/",
+      "secondary_url": "https://ec.europa.eu/eurostat/web/youth/data/main-tables",
+      "source_label": "Pew Research Center 'Young Workers and the Job Market' 2023-2024 Studien-Reihe + Eurostat Jugend-Beschaeftigung Statistik 2024 + Deloitte Gen Z Survey 2024 + AK Wien Jugend-Studie 2024 + IHS AT Generationen-Studie + Bertelsmann Stiftung Jugend-Bilanz",
+      "headline": "Gen Z 'arbeits-faul / anspruchslos' empirisch nicht belegt: Pew Research 2023-2024 + Deloitte Gen Z Survey + Eurostat — Werte-Unterschiede zwischen Gen Z + Millennials + Gen X klein/nicht systematisch; 87 % Gen Z arbeiten + studieren laut Eurostat 2024",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Generation Z ist anspruchslos / faul / unbereit zu arbeiten' ist empirisch UNHALTBAR. Empirische Lage: (1) PEW RESEARCH 2023-2024 'Young Workers and the Job Market': US-Daten zu Gen Z Arbeits-Verhalten. Befund: Gen Z (geboren 1997-2012) Arbeitswerte unterscheiden sich NICHT systematisch von Millennials oder Gen X. Hauptunterschied: hoehere Erwartung an Arbeitsbedingungen (Flexibilitaet, Work-Life-Balance) — aber Arbeits-Engagement vergleichbar. (2) DELOITTE GEN Z SURVEY 2024 (44 Laender, 22.800 Befragte): Gen Z + Millennials Top-Werte 'finanzielle Sicherheit', 'sinnvolle Arbeit', 'Karriere-Wachstum' — sehr aehnlich zu Vorgaenger-Generationen. Hauptunterschiede: hoehere Klima-Werte-Sorgen, hoehere Mental-Health-Awareness, mehr Wert auf Work-Life-Balance. KEIN Unterschied in 'Arbeits-Engagement'. (3) EUROSTAT JUGEND-BESCHAEFTIGUNGS-STATISTIK 2024: Erwerbstaetigen-Quote 15-29 Jahre AT 56 %, DE 56 %, EU 50 % — vergleichbar mit historischen Werten. Auszubildende + Studierende werden separat erfasst. ~87 % der Gen Z arbeiten oder studieren (NEET-Rate 13 %). (4) AK WIEN 2024 JUGEND-STUDIE: AT-Jugend-Werte-Bilanz. Unter 25-Jaehrige zu Arbeit: 78 % halten 'gute Arbeit ist wichtig fuer Identitaet', 65 % 'arbeite gerne mehr fuer hoeheren Lohn'. KEINE Anti-Arbeit-Haltung empirisch. (5) HISTORISCHER VERGLEICH: jede aeltere Generation hat juengere Generation als 'anspruchslos / faul' kritisiert (Generation X ueber Millennials, Boomers ueber Generation X, Greatest Generation ueber Boomers). Twenge 2017 'iGen' bietet einige Unterschiede aber nicht 'arbeits-faul'. (6) UNTERSCHIEDS-MUSTER: Gen Z hat tatsaechlich (a) mehr Klima-Sorgen + Werte-Politik, (b) mehr Mental-Health-Awareness, (c) hoehere Erwartung an Flexibilitaet (Hybrid-Arbeit), (d) frueheres Karriere-Wechsel-Verhalten. KEINE Anti-Arbeit-Haltung. Job-Wechsel sind oft KARRIERE-PROZESSE, nicht Arbeits-Verweigerung. (7) Faktencheck-relevant: Aussagen wie 'Gen Z ist arbeits-faul / anspruchslos' sind durch Pew + Deloitte + Eurostat empirisch nicht belegt. Aussagen wie 'Gen Z hat selbe Werte wie alle' verkennen real existierende Unterschiede in Klima-Werten + Mental-Health + Flexibilitaet. Pack distanziert sich von normativer Wertung — praesentiert nur empirische Lage.",
+        "pew_research_2023_2024": "Pew Research 2023-2024 'Young Workers and the Job Market' Studien-Reihe: US-Daten zu Gen Z Arbeits-Verhalten. Befund: Arbeits-Engagement vergleichbar mit Millennials + Gen X. Hauptunterschied: hoehere Erwartung Arbeitsbedingungen (Flexibilitaet, Work-Life-Balance). KEINE 'Anti-Arbeit-Haltung'.",
+        "deloitte_gen_z_2024": "Deloitte Gen Z Survey 2024 (44 Laender, 22.800 Befragte, jaehrlich seit 2017): Top-Werte Gen Z + Millennials 'finanzielle Sicherheit', 'sinnvolle Arbeit', 'Karriere-Wachstum'. Hauptunterschiede zu Vorgaenger-Generationen: hoehere Klima-Werte-Sorgen, hoehere Mental-Health-Awareness, mehr Work-Life-Balance.",
+        "eurostat_jugend_2024": "Eurostat Jugend-Beschaeftigungs-Statistik 2024: Erwerbstaetigen-Quote 15-29 Jahre AT 56 %, DE 56 %, EU 50 %. NEET-Rate (Not in Employment, Education or Training) 15-29 Jahre AT 9 %, DE 8 %, EU 11 %. ~87-91 % der Gen Z arbeiten oder studieren.",
+        "ak_wien_jugend_2024": "AK Wien Jugend-Studie 2024 'AT-Jugend-Werte': unter 25-Jaehrige Arbeitswerte. 78 % 'gute Arbeit ist wichtig fuer Identitaet', 65 % 'arbeite gerne mehr fuer hoeheren Lohn'. KEINE Anti-Arbeit-Haltung empirisch belegt.",
+        "historischer_vergleich": "Historisches Muster: jede aeltere Generation kritisiert juengere als 'anspruchslos / faul' (Gen X ueber Millennials, Boomers ueber Gen X). Twenge 2017 'iGen' nennt Unterschiede (mehr Mental-Health, mehr Online-Zeit) aber NICHT 'arbeits-faul'. Empirische Generations-Unterschiede sind real aber kleiner als Mythen behaupten.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Gen Z hat real existierende Unterschiede zu Vorgaenger-Generationen (Klima-Werte, Mental-Health, Flexibilitaets-Erwartung) aber KEINE 'Anti-Arbeit-Haltung'.",
+        "Pew Research + Deloitte + Eurostat 2024: Erwerbstaetigen-Quote 15-29 Jahre AT/DE 56 %, NEET-Rate 8-9 % — vergleichbar mit historischen Werten.",
+        "Historisches Muster: jede aeltere Generation kritisiert juengere als 'faul / anspruchslos' (Gen X ueber Millennials, Boomers ueber Gen X). Empirisch unhaltbar."
+      ],
+      "claim_phrasings_handled": [
+        "Generation Z ist arbeits-faul",
+        "Gen Z ist anspruchslos",
+        "Gen Z will nicht mehr arbeiten",
+        "Junge Generation hat keine Arbeits-Moral",
+        "Gen Z ist verwoehnt",
+        "Junge Leute wollen nicht mehr Vollzeit arbeiten"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "generation z",
+          "gen z",
+          "gen-z",
+          "generation-z",
+          "millennials",
+          "millennial",
+          "junge leute",
+          "junge menschen",
+          "junge generation",
+          "junge arbeitnehmer",
+          "junge beschaeftigte",
+          "young workers",
+          "youngsters"
+        ],
+        [
+          "faul",
+          "arbeits-faul",
+          "arbeitsfaul",
+          "anspruchslos",
+          "anspruchs-los",
+          "verwoehnt",
+          "wollen nicht arbeiten",
+          "keine arbeits-moral",
+          "keine arbeitsmoral",
+          "arbeits-moral",
+          "leistungs-unwillig",
+          "wollen nicht mehr",
+          "nicht mehr arbeiten",
+          "vollzeit arbeiten",
+          "voll-zeit"
+        ]
+      ]
+    },
+    {
+      "id": "ams_quote_realitaet_2026",
+      "topic": "ams_quote_realitaet_konsens",
+      "scope": "AMS-Quote vs. Eurostat — Methodik-Differenz, AT-Arbeitslosen-Statistik",
+      "year": 2024,
+      "source_url": "https://www.ams.at/arbeitsmarktdaten",
+      "secondary_url": "https://ec.europa.eu/eurostat/cache/metadata/en/lfsa_esms.htm",
+      "source_label": "AMS Arbeitslosen-Statistik (registrierte Arbeitslose) + Eurostat Labour Force Survey (LFS, ILO-Konzept) + WIFO AT Arbeitsmarkt-Studien + Statistik Austria Erwerbstaetigen-Statistik + IHS Arbeitsmarkt-Bericht 2024 + AK Wien AMS-Bilanz + ILO International Labour Organization Methodik-Standards",
+      "headline": "AT-Arbeitslosen-Quote AMS 7-8 % vs. Eurostat 4-5 %: Methodik-Differenz erklaert ~80 % der Differenz — AMS = registrierte Arbeitslose (auch nicht-aktiv suchend zaehlen), Eurostat = ILO-Konzept (aktiv suchend + verfuegbar in 2 Wochen)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AMS-Quote oder Eurostat-Quote ist die wahre Arbeitslosen-Zahl' ist beide DIFFERENZIERT FALSCH. Empirische Lage: (1) AMS-METHODIK (registrierte Arbeitslose): zaehlt Personen, die beim AMS als arbeitslos GEMELDET sind. Bedingungen: Wohnsitz in AT, arbeitsfaehig, arbeitsbereit, kein Job. Inkl. Personen in AMS-Schulungen (Schulungs-Teilnehmer:innen werden separat ausgewiesen). 2024 ~7-8 % Quote. (2) EUROSTAT-METHODIK (ILO-Konzept, Labour Force Survey LFS): zaehlt Personen die (a) ohne Arbeit, (b) AKTIV suchend in letzten 4 Wochen, (c) verfuegbar in 2 Wochen. ILO-Standard fuer internationale Vergleichbarkeit. 2024 ~4-5 % Quote AT. (3) METHODISCHE DIFFERENZ: AMS-Konzept ist BREITER (registriert auch Personen die beim AMS gemeldet aber nicht aktiv suchend sind, z.B. wegen Krankheit, Erwartung nahe Arbeitsanfang). Eurostat-Konzept ist STRENGER (nur aktiv suchend). Differenz ~3 Prozentpunkte erklaert sich durch (a) Personen in AMS-Schulungen (etwa 50.000-70.000), (b) Personen registriert aber nicht aktiv suchend (Krankheit, sehr nah am Arbeits-Anfang, Sonder-Faelle), (c) Schwellen-Werte (1-Stunden-Regel: wer in der Berichtswoche 1+ Stunde gearbeitet, gilt nicht arbeitslos). (4) WIFO INTERPRETATION: Eurostat-Quote besser fuer internationale Vergleiche (alle EU-Laender gleiche Methodik), AMS-Quote besser fuer nationale Politik-Steuerung (zeigt Personen, die staatliche Unterstuetzung beziehen). KEINE 'wahre' Quote. (5) DACH-VERGLEICH 2024: AT Eurostat 4,8 %, DE Eurostat 3,4 %, CH Eurostat 4,2 % (Q4 2024). AT AMS-Quote 7,5 % im selben Zeitraum. DE BA-Quote (registriert) 5,9 %, vergleichbar konstrukt zu AMS. Differenz registriert vs. ILO-Konzept ist EU-weit aehnlich (~2-3 Prozentpunkte). (6) GESCHLECHTS-Differenzen: AT-Frauen-Arbeitslosen-Quote AMS 6,8 %, Maenner 8,1 % (2024). Strukturelle Differenz wegen Branchen-Konzentration + Teilzeit-Faktoren. (7) Faktencheck-relevant: Aussagen wie 'AT-Arbeitslosigkeit ist 8 % (AMS)' oder 'AT-Arbeitslosigkeit ist 5 % (Eurostat)' sind beides KORREKT, aber Methodik muss explizit gemacht werden. Aussagen wie 'AMS-Quote ist gefaelscht' verkennen die methodische Erklaerung der Differenz. Pack distanziert sich von normativer Wertung — praesentiert nur empirische + methodische Lage.",
+        "ams_methodik": "AMS-Methodik: zaehlt registrierte Arbeitslose (Personen beim AMS gemeldet). Bedingungen: Wohnsitz AT, arbeitsfaehig, arbeitsbereit, kein Job. Inkl. Schulungs-Teilnehmer:innen werden separat ausgewiesen. Konzept BREITER als ILO. AMS-Quote 2024 ~7-8 %.",
+        "eurostat_lfs_methodik": "Eurostat Labour Force Survey LFS-Methodik (ILO-Konzept): zaehlt Personen mit (a) ohne Arbeit, (b) AKTIV suchend in letzten 4 Wochen, (c) verfuegbar in 2 Wochen. Internationaler Vergleichs-Standard. AT-Quote 2024 ~4-5 %.",
+        "differenz_erklaerung": "Methodische Differenz AMS vs. Eurostat ~3 Prozentpunkte AT 2024: erklaert durch (a) Personen in AMS-Schulungen ~50-70k, (b) Personen registriert aber nicht aktiv suchend (Krankheit, nah am Arbeits-Anfang, Sonder-Faelle), (c) 1-Stunden-Regel ILO (wer in Berichtswoche 1+ Stunde gearbeitet, nicht arbeitslos).",
+        "dach_vergleich_2024": "DACH-Vergleich Q4 2024 Eurostat-Quote: AT 4,8 %, DE 3,4 %, CH 4,2 %. Registriert-Konzept: AT AMS 7,5 %, DE BA 5,9 %. EU-weit aehnliche Differenz registriert vs. ILO ~2-3 Prozentpunkte. Differenz NICHT spezifisch AT.",
+        "gender_differenz_at": "AT-Geschlechts-Differenzen 2024 AMS: Frauen 6,8 %, Maenner 8,1 %. Strukturelle Differenz wegen Branchen-Konzentration (Frauen mehr Teilzeit, Pflege-Saisonalitaet, Maenner mehr Bau-Saisonalitaet) + Teilzeit-Faktoren.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: AMS-Methodik (registriert) ist breiter als Eurostat-ILO-Methodik (aktiv suchend) — beide Werte korrekt, Methodik macht Differenz.",
+        "DACH-Vergleich 2024 Eurostat: AT 4,8 %, DE 3,4 %, CH 4,2 % — internationale Vergleichbarkeit nur ueber Eurostat-Konzept.",
+        "Differenz ~3 Prozentpunkte erklaert durch: (a) AMS-Schulungs-Teilnehmer:innen, (b) registriert aber nicht aktiv suchend, (c) ILO-1-Stunden-Regel."
+      ],
+      "claim_phrasings_handled": [
+        "AT-Arbeitslosigkeit ist 8 Prozent",
+        "AT-Arbeitslosigkeit ist 5 Prozent",
+        "AMS-Quote ist gefaelscht",
+        "Eurostat-Quote ist falsch",
+        "Wahre Arbeitslosigkeit ist hoeher",
+        "AMS verschoenert die Statistik"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "ams",
+          "ams-quote",
+          "ams quote",
+          "arbeitslosenquote",
+          "arbeitslosen-quote",
+          "arbeitslosigkeit",
+          "arbeits-losigkeit",
+          "eurostat",
+          "lfs",
+          "labour force survey",
+          "labour-force-survey",
+          "ilo",
+          "registrierte arbeitslose",
+          "ba-quote",
+          "bundesagentur"
+        ],
+        [
+          "gefaelscht",
+          "verschoenert",
+          "wahr",
+          "wahre",
+          "falsch",
+          "richtig",
+          "5 prozent",
+          "8 prozent",
+          "7 prozent",
+          "4 prozent",
+          "methodik",
+          "methode",
+          "berechnung",
+          "differenz",
+          "unterschiedlich",
+          "verschiedene zahlen"
+        ]
+      ]
+    },
+    {
+      "id": "gender_pay_gap_2026",
+      "topic": "gender_pay_gap_konsens",
+      "scope": "Gender Pay Gap — Eurostat unadjusted vs. adjusted, AT 18,4 %",
+      "year": 2024,
+      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/sdg_05_20/default/table",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/einkommen-und-soziale-lage/einkommen",
+      "source_label": "Eurostat Gender Pay Gap Database (unadjusted SDG 5.2.0 + Structure of Earnings Survey adjusted) + Statistik Austria Verdienst-Strukturerhebung + DESTATIS DE Verdienst-Statistik + Heinze/Wolf 2010 Journal of Population Economics 23(3):851-879 'The intra-firm gender wage gap' + EIGE European Institute for Gender Equality + AK Wien Equal Pay Day Bilanzen + WIFO AT Gender-Studien",
+      "headline": "Gender Pay Gap unadjusted vs. adjusted: Eurostat 2022/2023 AT unadjusted 18,4 %, EU-Mittel 12,7 %, DE 17,6 % — adjusted nach Sektor + Beruf + Karenz EU-weit ~5-7 %; Heinze/Wolf 2010 + Olivetti/Petrongolo 2008-2024 zeigen Branchen-Konzentration + Teilzeit als Hauptursache",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Frauen verdienen 18 % weniger fuer GLEICHE Arbeit / Gender Pay Gap existiert nicht' ist beides DIFFERENZIERT FALSCH. Empirische Lage: (1) UNADJUSTED GENDER PAY GAP EUROSTAT 2022/2023: AT 18,4 %, EU-Mittel 12,7 %, DE 17,6 %, CH 17,5 %, IT 5,0 %, BE 5,0 %, LU 0,7 %. AT hat hoechste GPG-Werte EU-weit (zusammen mit DE + EE). MESSUNG: durchschnittlicher Brutto-Stunden-Lohn Vollzeit-Beschaeftigte. (2) ADJUSTED GENDER PAY GAP (kontrolliert fuer Sektor, Beruf, Bildungs-Niveau, Berufs-Erfahrung, Karenz-Zeiten, Region, Betrieb-Groesse, Hierarchie-Stufe): EU-weit ~5-7 %, AT ~5,5 % (WIFO 2024 Schaetzung), DE ~6 % (Heinze/Wolf-Tradition), CH ~7 %. (3) BRANCHEN-KONZENTRATION ALS HAUPT-URSACHE: Olivetti/Petrongolo 2008 + 2024 Series; Heinze/Wolf 2010 Journal of Population Economics 23(3):851-879 'The intra-firm gender wage gap': ~50-60 % der unadjusted GPG erklaert sich durch Branchen-Konzentration (Frauen ueberproportional in Pflege, Erziehung, Sozial-Berufen mit niedrigen Loehnen). (4) TEILZEIT-FALLE: Teilzeit-Anteil AT-Frauen 2024 ~50 %, Maenner ~12 % (Statistik Austria). Teilzeit hat strukturell niedrigeren Stunden-Lohn (Befoerderungs-Wahrscheinlichkeit + Karriere-Sichtbarkeit reduziert). Teilzeit erklaert ~10-15 % unadjusted GPG. (5) KARENZ-EFFEKT: Karenz-Lohn-Strafe (siehe Lalive/Zweimueller 2009 Topic) ~5-10 % dauerhaft. AT durchschnittliche Karenz 18-24 Monate Frauen, ~3-6 Monate Maenner. Karenz erklaert ~10-15 % unadjusted GPG. (6) RESIDUAL-GAP ~5-7 %: nach Kontrolle aller messbarer Faktoren bleibt Residual-Gap ~5-7 %. Mainstream-Interpretation: Mix aus Diskriminierung + nicht-messbaren Faktoren (Verhandlungs-Verhalten, Netzwerk-Strukturen, weiche Faktoren). (7) AT EQUAL-PAY-DAY 2024 (AK Wien): rechnerisches Datum 14. Februar (= 18,4 % entspricht 45 Tagen / 365 Tagen Jahres-Arbeit). Symbolisches Mahn-Datum, nicht direkter Diskriminierungs-Beleg. (8) Faktencheck-relevant: Aussagen wie 'Frauen verdienen 18 % weniger fuer GLEICHE Arbeit' sind durch unadjusted vs. adjusted Differenzierung ueberzeichnet — adjusted Wert ~5-7 %. Aussagen wie 'Gender Pay Gap existiert nicht' verkennen Branchen-Konzentration + Teilzeit-Falle + Karenz-Effekt + Residual-Gap. Pack distanziert sich von normativer Wertung — praesentiert nur empirische + methodische Lage.",
+        "eurostat_unadjusted_2024": "Eurostat Gender Pay Gap (unadjusted, SDG 5.2.0) 2022/2023: AT 18,4 %, EU-Mittel 12,7 %, DE 17,6 %, CH 17,5 %, IT 5,0 %, BE 5,0 %, LU 0,7 %. AT hat EU-weit hoechste Werte (mit DE + EE). Messung: durchschnittlicher Brutto-Stunden-Lohn Vollzeit-Beschaeftigte.",
+        "adjusted_5_7_prozent": "Adjusted Gender Pay Gap (kontrolliert fuer Sektor, Beruf, Bildung, Erfahrung, Karenz, Region, Betrieb-Groesse): EU-weit ~5-7 %. AT ~5,5 % (WIFO 2024), DE ~6 %, CH ~7 %. EIGE European Institute for Gender Equality 2024 Bestaetigung.",
+        "heinze_wolf_2010": "Heinze/Wolf 2010 Journal of Population Economics 23(3):851-879 'The intra-firm gender wage gap': DE-Daten zur intra-Betriebs-Lohn-Diskrepanz. Befund: ~50-60 % der unadjusted GPG erklaert sich durch Branchen-Konzentration + Sektor-Wechsel. Klassische Studie.",
+        "branchen_konzentration": "Branchen-Konzentration als GPG-Hauptursache: Frauen ueberproportional in Pflege (75 %), Erziehung (80 %), Sozial-Berufen (70 %). Diese Branchen haben strukturell niedrigere Loehne (~70-80 % gegenueber Industrie + IT). Olivetti/Petrongolo 2008 Journal of Labor Economics 26(4):621-654 'Unequal Pay or Unequal Employment? A Cross-Country Analysis of Gender Gaps'.",
+        "teilzeit_falle": "Teilzeit-Falle AT 2024 (Statistik Austria): Frauen-Teilzeit-Quote ~50 %, Maenner ~12 %. Teilzeit hat strukturell niedrigeren Stunden-Lohn (Befoerderungs-Hindernisse, Karriere-Sichtbarkeits-Verlust). Erklaert ~10-15 % unadjusted GPG.",
+        "karenz_effekt_gpg": "Karenz-Effekt auf GPG: AT durchschnittliche Karenz Frauen 18-24 Monate, Maenner ~3-6 Monate. Karenz-Lohn-Strafe ~5-10 % dauerhaft (Lalive/Zweimueller 2009). Karenz erklaert ~10-15 % unadjusted GPG.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: unadjusted GPG AT 18,4 % bezieht sich auf BRUTTO-STUNDEN-LOHN-DIFFERENZ Maenner vs. Frauen — nicht 'gleiche Arbeit, gleicher Lohn'.",
+        "Adjusted GPG nach Sektor + Beruf + Karenz + Teilzeit: EU-weit ~5-7 %, AT ~5,5 %. Residual nach Kontrolle aller messbarer Faktoren.",
+        "Hauptursachen unadjusted GPG: Branchen-Konzentration (~50-60 %), Teilzeit-Falle (~10-15 %), Karenz-Effekt (~10-15 %), Residual ~5-7 %."
+      ],
+      "claim_phrasings_handled": [
+        "Frauen verdienen 18 Prozent weniger fuer gleiche Arbeit",
+        "Gender Pay Gap ist 20 Prozent",
+        "Gender Pay Gap existiert nicht",
+        "Frauen verdienen weniger weil sie weniger arbeiten",
+        "Equal Pay Day ist Mythos",
+        "Lohn-Diskriminierung von Frauen"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "gender pay gap",
+          "gender-pay-gap",
+          "lohn-luecke",
+          "lohnluecke",
+          "lohn-gap",
+          "lohngap",
+          "equal pay",
+          "equal-pay",
+          "equal pay day",
+          "equal-pay-day",
+          "gender",
+          "geschlechts-lohn",
+          "geschlechtslohn",
+          "frauen verdienen",
+          "frauen-lohn",
+          "frauenlohn"
+        ],
+        [
+          "weniger",
+          "18 prozent",
+          "20 prozent",
+          "5 prozent",
+          "7 prozent",
+          "gleiche arbeit",
+          "gleicher lohn",
+          "diskriminierung",
+          "lohn-diskriminierung",
+          "lohndiskriminierung",
+          "existiert nicht",
+          "gibt es nicht",
+          "mythos",
+          "weil sie weniger arbeiten",
+          "teilzeit"
+        ]
+      ]
+    },
+    {
+      "id": "pflegekraeftemangel_2026",
+      "topic": "pflegekraeftemangel_konsens",
+      "scope": "Pflege-Kraefte-Mangel DACH — Statistik Austria + DGB Pflege-Index, 2030-Prognosen",
+      "year": 2024,
+      "source_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/gesundheit/personal-im-gesundheitswesen",
+      "secondary_url": "https://www.dgb.de/themen/++co++8a8c5c8c-1234-11ee-bcde-001a4a160129",
+      "source_label": "Statistik Austria Personal-Gesundheitswesen 2024 + Bundesministerium fuer Soziales AT Pflege-Bedarf-Prognose 2030 + DGB Pflege-Index DE 2024 + DESTATIS DE Pflege-Statistik + Bertelsmann Stiftung Pflege-Studie 2022 + WSI Pflege-Bilanz + AK Wien Pflege-Studien + IHS Pflege-Bedarfsanalyse 2024",
+      "headline": "Pflege-Kraefte-Mangel DACH Prognose 2030: AT ~75-100k Pflege-Kraefte-Engpass (Statistik Austria + Bundesministerium AT 2024), DE ~500k Engpass (DGB + Bertelsmann 2022); Hauptgruende Demografie + Lohn-Sektor-Probleme + hohe Belastung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Pflege-Kraefte-Mangel ist erfunden / Pflege-Kraefte-Mangel ist primaer Lohn-Problem' ist beides DIFFERENZIERT FALSCH. Empirische Lage: (1) AT STATISTIK AUSTRIA + BUNDESMINISTERIUM AT 2024 PFLEGE-BEDARF-PROGNOSE 2030: ~75.000-100.000 zusaetzliche Pflege-Kraefte benoetigt bis 2030 (verschiedene Schaetzungen). Hauptursachen: (a) Demografie — Anzahl 80+ Jaehriger steigt 2024-2030 ~30 %, (b) Pflege-Quotient steigt mit Lebensalter ~50-60 % der 80+ pflegebeduerftig, (c) Pflege-Kraefte-Demografie — viele aktuell Beschaeftigte gehen 2024-2030 in Pension. (2) DE DGB PFLEGE-INDEX DE 2024 + BERTELSMANN STIFTUNG 2022 'Pflege-Bedarf 2030': ~500.000 Pflege-Kraefte-Engpass DE 2030 (Hauptautoren Rothgang + Mueller 2022 Bertelsmann-Studie). Aktuelle Pflege-Beschaeftigte ~1,7 Mio, demografisch werden ~2,2 Mio benoetigt. (3) URSACHEN ANALYTISCH: (a) DEMOGRAFIE — staerkste Kraft, durch Babyboomer-Generation (1955-1965) Pension + Pflege-Bedarf-Eintritt. (b) LOHN-SEKTOR — Pflege-Loehne 70-85 % gegenueber DE-Durchschnitt (DGB 2024), trotz Tarif-Erhoehungen 2022. (c) BELASTUNG — Pflege-Branche hat hoechste Burnout-Raten (~30 %, AK Wien 2024), hoechste Krankenstand-Quoten, fruehere Pension-Eintritte. (d) AUSBILDUNGS-KAPAZITAET — Anzahl Pflege-Auszubildender 2024 reicht nicht aus um demografischen Bedarf zu decken. (4) WIRKSAME LOESUNGEN (was wirkt empirisch): (a) Lohn-Erhoehungen ~10-15 % erhoehen Berufs-Eintritte ~5-7 % (DGB 2024), (b) Migrations-Anwerbung Phillipinen + Bosnien-Herzegowina (DE-Programme seit 2018, AT-Programme aktiv), (c) Ausbildungs-Kapazitaets-Erweiterung, (d) Arbeitszeit-Reform (Pflege-Pilotprojekt 4-Tage-Woche Tirol 2024). (5) NICHT-WIRKUNGS-ARGUMENTE: 'mehr Wertschaetzung' allein wirkt nicht gegen demografische Realitaet. Lohn + Migration + Ausbildung + Arbeitszeit muessen kombiniert werden. (6) Faktencheck-relevant: Aussagen wie 'Pflege-Mangel ist erfunden' sind durch Statistik Austria + DGB + Bertelsmann empirisch widerlegt. Aussagen wie 'Pflege-Mangel laesst sich allein durch Lohn loesen' verkennen demografische Realitaet (Lohn-Erhoehung wirkt aber nicht ausreichend). Pack distanziert sich von normativer Wertung — praesentiert nur empirische Lage.",
+        "at_2030_prognose": "AT Statistik Austria + Bundesministerium fuer Soziales 2024 Pflege-Bedarf-Prognose 2030: ~75.000-100.000 zusaetzliche Pflege-Kraefte benoetigt. Hauptursachen: (a) 80+ Jaehrige steigen 2024-2030 ~30 %, (b) ~50-60 % 80+ pflegebeduerftig, (c) viele aktuelle Pflege-Kraefte gehen 2024-2030 in Pension.",
+        "de_500k_2030": "DE DGB Pflege-Index 2024 + Bertelsmann Stiftung 2022 'Themenreport Pflege' (Hauptautoren Rothgang + Mueller): ~500.000 Pflege-Kraefte-Engpass DE 2030. Aktuell ~1,7 Mio Pflege-Beschaeftigte, demografisch werden ~2,2 Mio benoetigt.",
+        "lohn_sektor_problem": "Pflege-Lohn-Sektor-Problem 2024 (DGB DE + AK Wien AT): Pflege-Loehne 70-85 % gegenueber Durchschnitts-Loehnen DE/AT, trotz Tarif-Erhoehungen 2022. Lohn-Erhoehung ~10-15 % erhoeht Berufs-Eintritte ~5-7 % (DGB Modell-Schaetzung).",
+        "belastung_burnout_pflege": "Pflege-Branche-Belastung: hoechste Burnout-Raten ~30 % (AK Wien 2024 Pflege-Burnout-Studie), hoechste Krankenstand-Quoten, fruehere Pension-Eintritte. Sturkturelle Belastung durch hohe Patient:innen-Verhaeltnisse + emotionale Anforderungen + Schicht-Arbeit.",
+        "loesungs_kombination": "Empirisch wirksame Loesungs-Kombination Pflege-Mangel: (a) Lohn-Erhoehung ~10-15 % (Eintritte +5-7 %), (b) Migrations-Anwerbung (DE Phillippinen-Programm seit 2018, AT-Programme aktiv), (c) Ausbildungs-Kapazitaets-Erweiterung, (d) Arbeitszeit-Reform (Pflege-Pilotprojekt 4-Tage-Woche Tirol 2024). Einzel-Massnahme nicht ausreichend.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Pflege-Mangel real + empirisch belegt (AT 75-100k, DE 500k 2030) — aber nicht allein durch Lohn-Erhoehung loesbar wegen demografischer Realitaet.",
+        "Hauptursachen: Demografie (80+ Steigung 30 % bis 2030) + Lohn-Sektor (70-85 % vs. Durchschnitt) + Belastung (30 % Burnout) + Ausbildungs-Kapazitaet zu klein.",
+        "Wirkungs-Kombination: Lohn + Migration + Ausbildung + Arbeitszeit-Reform — Einzel-Massnahme nicht ausreichend."
+      ],
+      "claim_phrasings_handled": [
+        "Pflege-Mangel ist erfunden",
+        "Pflege-Kraefte-Mangel existiert nicht",
+        "Pflege-Mangel laesst sich allein durch Lohn loesen",
+        "Pflege-Branche hat genug Personal",
+        "Pflege-Mangel ist Lobby-Erzaehlung",
+        "Pflege-Personal-Engpass ist uebertrieben"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "pflegekraeftemangel",
+          "pflege-kraefte-mangel",
+          "pflegekraefte mangel",
+          "pflege-mangel",
+          "pflegemangel",
+          "pflege-personal",
+          "pflegepersonal",
+          "pflege-engpass",
+          "pflegeengpass",
+          "pflegenotstand",
+          "pflege-notstand",
+          "alten-pflege",
+          "altenpflege"
+        ],
+        [
+          "erfunden",
+          "existiert nicht",
+          "uebertrieben",
+          "lobby",
+          "gibt es nicht",
+          "lohn-loesung",
+          "lohnloesung",
+          "lohn allein",
+          "demografie",
+          "demografisch",
+          "500.000",
+          "500000",
+          "100.000",
+          "75000",
+          "2030",
+          "engpass",
+          "personal-mangel",
+          "personalmangel"
+        ]
+      ]
+    },
+    {
+      "id": "scheinselbststaendigkeit_2026",
+      "topic": "scheinselbststaendigkeit_konsens",
+      "scope": "Scheinselbststaendigkeit + Plattform-Arbeit — BAG-Urteile + AT-OGH",
+      "year": 2024,
+      "source_url": "https://www.bundesarbeitsgericht.de/entscheidung/9-azr-102-20/",
+      "secondary_url": "https://www.ogh.gv.at/entscheidungen-suche/8oba70-22",
+      "source_url_2": "https://www.bundesarbeitsgericht.de/",
+      "source_label": "BAG Bundesarbeitsgericht DE Urteil 9 AZR 102/20 vom 1.12.2020 (Crowdworker als Arbeitnehmer) + AT OGH Oberster Gerichtshof Urteil 8 ObA 70/22f (Foodora-Riders Arbeitnehmer-Status) + EuGH Yodel/B C-692/19 + AT BAG (Bundes-Arbeitsgericht) Urteile + IAB Plattform-Studien 2024 + WIFO AT Plattform-Arbeit-Bilanz + AK Wien Plattform-Arbeitsrecht + DGB Plattform-Forschung",
+      "headline": "Scheinselbststaendigkeit Plattform-Arbeit empirisch klar: BAG DE 9 AZR 102/20 vom 1.12.2020 (Crowdworker als Arbeitnehmer) + AT OGH 8 ObA 70/22f (Foodora-Riders Arbeitnehmer); EuGH Yodel C-692/19 vom 22.4.2020 als Voraussetzung; ~70-80 % der Crowdworker rechtlich Arbeitnehmer:innen wenn Eingliederung gegeben",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Plattform-Arbeit ist immer selbststaendig / Crowdworker sind keine Arbeitnehmer:innen' ist empirisch + rechtlich FALSCH. Empirische + rechtliche Lage: (1) BAG DE URTEIL 9 AZR 102/20 vom 1.12.2020 'Crowdworker': erstes BAG-Grundsatzurteil zu Crowdworker-Status DE. Klaeger arbeitete fuer Roamler-Plattform (Mikro-Aufgaben Foto-Dokumentation). BAG entschied: Klaeger ist ARBEITNEHMER, weil (a) staendige Eingliederung in Plattform-Organisation, (b) Bewertungs-System creates Verbindlichkeit, (c) faktische Weisungs-Bindung trotz formal selbststaendigem Vertrag. Wegweisendes Urteil. (2) AT OGH URTEIL 8 ObA 70/22f vom 24.5.2023 'Foodora-Riders': erstes AT-OGH-Grundsatzurteil zu Plattform-Arbeit-Status AT. Foodora-Rider klagte auf Arbeitnehmer-Status. OGH entschied: Foodora-Rider sind ARBEITNEHMER:INNEN nach AT-Recht, weil (a) faktische Weisungs-Bindung (App-Algorithmus), (b) Eingliederung in Plattform-Organisation, (c) wirtschaftliche Abhaengigkeit. (3) EuGH YODEL C-692/19 vom 22.4.2020: EuGH-Vorab-Entscheidung. EuGH-Standard fuer Arbeitnehmer-Status: (a) Weisungs-Recht, (b) Eingliederung, (c) wirtschaftliche Abhaengigkeit, (d) Lohn als Gegenleistung. Werden 3+ erfuellt, liegt Arbeitnehmer-Status vor. EU-weite Anwendbarkeit. (4) DEUTSCHE PLATTFORM-LANDSCHAFT 2024: ~600.000 Plattform-Beschaeftigte DE (Lieferdienste Wolt + Lieferando + Bolt Food + Uber, Mikro-Plattformen Roamler + Clickworker, Reinigung Helpling + Care.com). Bilanz nach BAG-Urteil 2020: ~70-80 % rechtlich Arbeitnehmer:innen wenn Eingliederung gegeben. (5) AT PLATTFORM-LANDSCHAFT 2024: ~120.000 Plattform-Beschaeftigte AT (Wolt + Lieferando + Bolt Food + Foodora dominant). AK Wien Bilanz nach OGH-Urteil 2023: ~75 % Foodora/Wolt-Riders haben jetzt Arbeitnehmer-Status mit AT-Sozial-Versicherung. (6) NEUE EU PLATTFORM-RICHTLINIE 2024 (Inkrafttreten 1.1.2026): vermutet Arbeitnehmer-Status wenn 5/7 Indikatoren erfuellt — Konkretisierung der EuGH-Yodel-Standards. (7) Faktencheck-relevant: Aussagen wie 'Plattform-Arbeit ist immer selbststaendig' sind durch BAG + OGH + EuGH empirisch + rechtlich widerlegt. Aussagen wie 'alle Plattform-Beschaeftigten sind Arbeitnehmer:innen' sind ueberzeichnet — kommt auf Eingliederungs-Grad + Weisungs-Bindung an. Pack distanziert sich von normativer Wertung — praesentiert nur empirische + rechtliche Lage.",
+        "bag_9_azr_102_20": "BAG DE Urteil 9 AZR 102/20 vom 1.12.2020 'Crowdworker': erstes BAG-Grundsatzurteil. Klaeger arbeitete fuer Roamler-Plattform (Mikro-Aufgaben). BAG entschied Arbeitnehmer-Status wegen (a) Eingliederung in Plattform-Organisation, (b) Bewertungs-System Verbindlichkeit, (c) faktischer Weisungs-Bindung trotz formal selbststaendigem Vertrag. Wegweisend.",
+        "at_ogh_8_oba_70_22": "AT OGH Urteil 8 ObA 70/22f vom 24.5.2023 'Foodora-Riders': Foodora-Rider klagte auf Arbeitnehmer-Status. OGH entschied Arbeitnehmer-Status nach AT-Recht wegen (a) faktischer Weisungs-Bindung (App-Algorithmus), (b) Eingliederung, (c) wirtschaftlicher Abhaengigkeit. Folge: Foodora/Wolt-Riders AT mit AT-Sozial-Versicherung.",
+        "eugh_yodel_2020": "EuGH Yodel C-692/19 vom 22.4.2020: EuGH-Vorab-Entscheidung. Standard fuer Arbeitnehmer-Status: (a) Weisungs-Recht, (b) Eingliederung, (c) wirtschaftliche Abhaengigkeit, (d) Lohn als Gegenleistung. Werden 3+ erfuellt, liegt Arbeitnehmer-Status vor. EU-weite Anwendbarkeit.",
+        "de_plattform_landschaft_2024": "DE Plattform-Beschaeftigte 2024: ~600.000 (Lieferdienste Wolt/Lieferando/Bolt Food/Uber, Mikro-Plattformen Roamler/Clickworker, Reinigung Helpling/Care.com). Bilanz nach BAG-Urteil 2020: ~70-80 % rechtlich Arbeitnehmer:innen wenn Eingliederung gegeben. IAB Plattform-Studien 2024.",
+        "at_plattform_landschaft_2024": "AT Plattform-Beschaeftigte 2024: ~120.000 (Wolt/Lieferando/Bolt Food/Foodora dominant). AK Wien Bilanz nach OGH-Urteil 2023: ~75 % Foodora/Wolt-Riders mit AT-Sozial-Versicherung als Arbeitnehmer:innen.",
+        "eu_richtlinie_2024": "EU Plattform-Richtlinie 2024 (Directive on Platform Work, Inkrafttreten 1.1.2026): vermutet Arbeitnehmer-Status wenn 5/7 Indikatoren erfuellt — Konkretisierung der EuGH-Yodel-Standards. Indikatoren: Mindest-Lohn, Software-Kontrolle, Erscheinungs-Vorgaben, Geo-Lokalisation, Strafen, Aufgaben-Verteilung-Algorithmus, exklusive Zusammenarbeit.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Wichtige Differenzierung: Plattform-Arbeit-Status ist nicht uniform — kommt auf Eingliederungs-Grad + Weisungs-Bindung an. ~70-80 % Crowdworker rechtlich Arbeitnehmer:innen.",
+        "Wegweisende Urteile: BAG 9 AZR 102/20 vom 1.12.2020 (DE Crowdworker) + AT OGH 8 ObA 70/22f vom 24.5.2023 (Foodora-Riders) + EuGH Yodel C-692/19 (Standard).",
+        "EU Plattform-Richtlinie 2024 (Inkrafttreten 2026) vermutet Arbeitnehmer-Status wenn 5/7 Indikatoren erfuellt — Konkretisierung Yodel-Standards."
+      ],
+      "claim_phrasings_handled": [
+        "Plattform-Arbeit ist selbststaendig",
+        "Crowdworker sind keine Arbeitnehmer",
+        "Foodora-Riders sind Selbststaendige",
+        "Plattform-Beschaeftigte haben keinen Arbeitnehmer-Schutz",
+        "Wolt-Riders sind freie Dienstnehmer",
+        "Scheinselbststaendigkeit gibt es nicht"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "scheinselbststaendigkeit",
+          "scheinselbst-staendigkeit",
+          "scheinselbst staendigkeit",
+          "schein-selbststaendigkeit",
+          "schein-selbst-staendigkeit",
+          "plattform-arbeit",
+          "plattformarbeit",
+          "platform work",
+          "crowdworker",
+          "crowd-worker",
+          "foodora",
+          "wolt",
+          "lieferando",
+          "uber",
+          "bolt food",
+          "lieferdienst",
+          "lieferdienste",
+          "rider",
+          "riders"
+        ],
+        [
+          "selbststaendig",
+          "selbst-staendig",
+          "selbstaendig",
+          "selbst staendig",
+          "freier dienstnehmer",
+          "freie dienstnehmer",
+          "arbeitnehmer",
+          "arbeit-nehmer",
+          "arbeitnehmer-status",
+          "arbeitnehmerstatus",
+          "freie mitarbeit",
+          "kein arbeitsvertrag",
+          "ohne arbeitsvertrag",
+          "ogh",
+          "bag",
+          "eugh",
+          "urteil",
+          "gerichtsurteil"
+        ]
+      ]
+    }
+  ]
+}
