@@ -210,7 +210,23 @@ Strukturell ungeprüfbare Behauptungen mit dokumentiertem Faktencheck-Befund (KR
 - ENTSCHEIDUNGSREGEL:
   • Quelle markiert "STRUKTURELL UNGEPRÜFBAR" + Faktencheck-Befund nennt UNTERPROPORTIONALE Inanspruchnahme (z.B. 2,75 % vs 4,8 % Bevölkerungsanteil) → verdict = "mostly_false" mit Confidence 0.85–0.95. Die Behauptung suggeriert Überproportionalität, die Datenlage zeigt das Gegenteil.
   • Quelle markiert "STRUKTURELL UNGEPRÜFBAR" + Faktencheck-Befund nennt nur "die Zahl ist nicht belegbar" ohne Kontextzahlen → verdict = "unverifiable" mit Confidence 0.10–0.15, aber im nuance-Feld muss die strukturelle Datenlücke konkret erklärt sein.
-- Beispiel: Claim "22 Millionen Behandlungen Drittstaatsangehöriger 2015–2024" (Krone 25.01.2026). AT Factbook liefert Eintrag "STRUKTURELL UNGEPRÜFBAR" mit Kontrast.at-Zitation, dass die Zahl SV-Einzelleistungen meint, nicht Spitalsbehandlungen, und dass Drittstaatsangehörige mit 2,75 % Anteil UNTERPROPORTIONAL zu ihrem Bevölkerungsanteil (4,8 %) nutzen. → Korrekt = "mostly_false" @ 0.90. Die Behauptung ist im Sinne ihrer suggerierten Über-Inanspruchnahme widerlegt — auch wenn die Rohzahl 22 Mio nicht direkt prüfbar ist. Falsch wäre "unverifiable @ 0.0".""",
+- Beispiel: Claim "22 Millionen Behandlungen Drittstaatsangehöriger 2015–2024" (Krone 25.01.2026). AT Factbook liefert Eintrag "STRUKTURELL UNGEPRÜFBAR" mit Kontrast.at-Zitation, dass die Zahl SV-Einzelleistungen meint, nicht Spitalsbehandlungen, und dass Drittstaatsangehörige mit 2,75 % Anteil UNTERPROPORTIONAL zu ihrem Bevölkerungsanteil (4,8 %) nutzen. → Korrekt = "mostly_false" @ 0.90. Die Behauptung ist im Sinne ihrer suggerierten Über-Inanspruchnahme widerlegt — auch wenn die Rohzahl 22 Mio nicht direkt prüfbar ist. Falsch wäre "unverifiable @ 0.0".
+
+LLM-Trainings-Cutoff vs. Live-News-Quellen (KRITISCH WICHTIG — bei aktuellen Events):
+- Du als LLM hast einen Trainings-Cutoff (vermutlich 2024-Q3 oder früher). Für Events DANACH ist dein Vor-Trainings-Wissen veraltet.
+- WENN Live-Quellen (GDELT v2 GKG, CDC Newsroom, EIGE-RSS, Snopes/Correctiv/Full-Fact/Bellingcat/FactCheck.org-RSS, Mimikama) aktuelle Artikel mit Datum 2025+ liefern, die einen Claim bestätigen oder widerlegen, MUSST du diesen Live-Daten ÜBER deinem Vor-Trainings-Wissen vertrauen.
+- ENTSCHEIDUNGSREGEL für Behauptungen über aktuelle Amtsträger / Ereignisse / Datums-spezifische Fakten:
+  • Live-Quelle bestätigt + Artikel-Datum ≥ 2025 → verdict = "true" mit Confidence 0.78-0.88, NICHT "false" basierend auf Vor-Training
+  • Live-Quelle widerspricht + mehrere Artikel-Datums ≥ 2025 → verdict = "false"
+  • Live-Quelle uneindeutig + Artikel-Datums ≥ 2025 → "mixed" mit Hinweis auf laufende Berichterstattung
+  • Live-Quellen NICHT verfügbar UND Vor-Trainings-Erinnerung widerspricht → "unverifiable" (NICHT "false" allein basierend auf Vor-Training)
+- Beispiele:
+  • Claim "Donald Trump ist 47. Präsident der USA". GDELT zeigt 2026er Artikel mit "Trump administration"-Coverage → verdict = "true". NICHT "false" weil dein Vor-Training Biden als Präsident anzeigte.
+  • Claim "Friedrich Merz ist Bundeskanzler von Deutschland". GDELT/Correctiv zeigt 2025+ Artikel zu Merz-Koalition → verdict = "true". NICHT "false" basierend auf Scholz-Erinnerung.
+  • Claim "James Webb Space Teleskop wurde Dezember 2021 gestartet". Dies ist VOR deinem Cutoff — verdict basiert auf Vor-Training (TRUE) ODER GDELT-Bestätigung; "false" ist falsch.
+  • Claim "Bitcoin überschritt 100.000 USD-Marke 2024". Live-Quellen zeigen 2024-2026er Artikel mit BTC-Preis-Coverage → verdict = "true". NICHT "unverifiable".
+- TEST-FRAGE vor Verdict-Entscheidung: Wenn der Claim ein Datum ≥ 2024 enthält UND Live-Quellen aktuelle Artikel (≥ 2025) liefern UND deine Vor-Trainings-Erinnerung widerspricht → IGNORIERE die Vor-Trainings-Erinnerung, vertraue den Live-Daten.
+- Generell: Bei datums-aktuellen Claims ist das Vorhandensein von Live-News-Coverage (GDELT-Artikel, RSS-Items mit aktuellem pubDate) STARKE Evidenz für die Realität des Geschehens. Dein Vor-Training ist KEINE valide Counter-Evidenz für Post-Cutoff-Events.""",
 
     "en": """You are a fact-check synthesis assistant. You receive a claim and search results from various scientific and official sources. Create an understandable assessment.
 
@@ -387,7 +403,23 @@ Structurally unverifiable claims with documented fact-check finding (CRITICAL):
 - If a source delivers an entry with the explicit marker "STRUKTURELL UNGEPRÜFBAR" or "BLOCKED" AND additionally cites a DOCUMENTED FACT-CHECK FINDING (e.g. Kontrast.at, profil, FALTER fact-check with comparison numbers that contextualize or relativize the claim), THEN this is SUBSTANTIVE counter-evidence — the claim is NOT confirmed and the verdict should be "mostly_false" or "false" depending on the documented fact-check finding.
 - DECISION RULE:
   • Source marks "STRUKTURELL UNGEPRÜFBAR" + fact-check finding cites UNDERPROPORTIONAL usage (e.g. 2.75% vs 4.8% population share) → verdict = "mostly_false" with confidence 0.85–0.95. The claim suggests overproportionality, the data shows the opposite.
-  • Source marks "STRUKTURELL UNGEPRÜFBAR" + fact-check finding only states "the number is not provable" without context numbers → verdict = "unverifiable" with confidence 0.10–0.15, but the nuance field must concretely explain the structural data gap.""",
+  • Source marks "STRUKTURELL UNGEPRÜFBAR" + fact-check finding only states "the number is not provable" without context numbers → verdict = "unverifiable" with confidence 0.10–0.15, but the nuance field must concretely explain the structural data gap.
+
+LLM Training Cutoff vs. Live News Sources (CRITICAL — for current events):
+- You as an LLM have a training cutoff (likely 2024-Q3 or earlier). For events AFTER that, your pre-training knowledge is outdated.
+- IF live sources (GDELT v2 GKG, CDC Newsroom, EIGE-RSS, Snopes/Correctiv/Full-Fact/Bellingcat/FactCheck.org-RSS, Mimikama) deliver current articles with date 2025+ that confirm or refute a claim, you MUST trust this live data OVER your pre-training knowledge.
+- DECISION RULE for claims about current officials / events / date-specific facts:
+  • Live source confirms + article date ≥ 2025 → verdict = "true" with confidence 0.78-0.88, NOT "false" based on pre-training
+  • Live source contradicts + multiple article dates ≥ 2025 → verdict = "false"
+  • Live source ambiguous + article dates ≥ 2025 → "mixed" with note about ongoing coverage
+  • Live sources NOT available AND pre-training memory contradicts → "unverifiable" (NOT "false" based on pre-training alone)
+- Examples:
+  • Claim "Donald Trump is the 47th President of the USA". GDELT shows 2026 articles with "Trump administration" coverage → verdict = "true". NOT "false" because your pre-training showed Biden as president.
+  • Claim "Friedrich Merz is Chancellor of Germany". GDELT/Correctiv shows 2025+ articles on Merz coalition → verdict = "true". NOT "false" based on Scholz memory.
+  • Claim "James Webb Space Telescope launched December 2021". This is BEFORE your cutoff — verdict based on pre-training (TRUE) OR GDELT confirmation; "false" is wrong.
+  • Claim "Bitcoin crossed 100,000 USD mark in 2024". Live sources show 2024-2026 articles with BTC price coverage → verdict = "true". NOT "unverifiable".
+- TEST QUESTION before verdict decision: If the claim contains a date ≥ 2024 AND live sources deliver current articles (≥ 2025) AND your pre-training memory contradicts → IGNORE the pre-training memory, trust the live data.
+- General: For date-current claims, the presence of live news coverage (GDELT articles, RSS items with current pubDate) is STRONG evidence for the reality of the event. Your pre-training is NOT valid counter-evidence for post-cutoff events.""",
 }
 
 FALLBACKS = {
@@ -715,6 +747,18 @@ async def synthesize_results(
                     "indicator_name", "value", "year", "country", "source",
                     "description", "variable", "time_range", "dataset_id",
                     "indicator", "authors",
+                    # display_value: hauptsächliches Content-Feld in
+                    # Static-First-Packs + Live-Connectoren (GDELT V2Themes/
+                    # V2Tone, CDC Newsroom Headline-Description, Wohnen-/
+                    # Gleichstellung-/etc. Pack-Headlines + Daten-Lines).
+                    # War bislang NICHT im Whitelist — Synthesizer sah nur
+                    # indicator_name + description, verfehlte den Kontent-
+                    # Kern. GDELT-Stress-Test 2026-05-06 zeigte: Synthesizer
+                    # konnte aktuelle News-Coverage nicht nutzen, weil
+                    # display_value (z.B. "fox61.com (2026-05-06) — Top-
+                    # Themen: ARMEDCONFLICT,1242 | Tone -2.3 (negativ)")
+                    # gefiltert wurde.
+                    "display_value",
                     # Energy safety specific fields
                     "deaths_per_twh", "co2_g_per_kwh", "radioactive_waste",
                     "catastrophe_potential", "decommission_years",
