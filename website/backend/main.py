@@ -103,6 +103,7 @@ from services.religionsgemeinschaften_pack import search_religionsgemeinschaften
 from services.wirtschaftspolitik_pack import search_wirtschaftspolitik, claim_mentions_wirtschaftspolitik_cached
 from services.wohnen_pack import search_wohnen, claim_mentions_wohnen_cached
 from services.gdelt import search_gdelt
+from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
 from services.cdc_newsroom import search_cdc_newsroom
 from services.cdc_open_data import search_cdc_open_data
@@ -937,6 +938,14 @@ async def check_claim(request: Request):
         if analysis.get("entities"):
             tasks.append(cached("GDELT", search_gdelt, analysis))
             queried_names.append("GDELT v2 GKG")
+        # Wikipedia (REST API, DE-first + EN-Fallback): enzyklopädische
+        # Definitionen + Mehrheits-Konsens-Zusammenfassungen. Komplementär
+        # zu PubMed (Forschung) + GDELT (News) + Faktencheck-RSS (Reviews).
+        # Trigger: claim hat ≥1 Entity. Lookup-Strategie: DE-direct →
+        # DE-search-fallback → EN-direct → EN-search-fallback.
+        if analysis.get("entities"):
+            tasks.append(cached("Wikipedia", search_wikipedia, analysis))
+            queried_names.append("Wikipedia")
         # NIH ClinVar (NCBI Genetic Variant Database): variant-level
         # clinical significance. Komplementär zu PubMed (Forschung) +
         # MedlinePlus (Edukation). Service eigene Trigger-Logik:
