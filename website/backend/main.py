@@ -108,6 +108,9 @@ from services.datenschutz_pack import search_datenschutz, claim_mentions_datensc
 from services.sozialstaat_pack import search_sozialstaat, claim_mentions_sozialstaat_cached
 from services.owid import search_owid
 from services.wayback import search_wayback, claim_has_url_cached
+from services.crossref import search_crossref, _claim_mentions_paper as _claim_mentions_crossref
+from services.openaq import search_openaq, claim_mentions_air_quality
+from services.wikidata import search_wikidata, claim_triggers_wikidata
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
@@ -961,6 +964,27 @@ async def check_claim(request: Request):
         if claim_has_url_cached(claim):
             tasks.append(cached("Wayback", search_wayback, analysis))
             queried_names.append("Wayback Machine (Internet Archive)")
+        # Crossref REST API (frei, mailto-polite-pool): DOI-Resolution
+        # + Paper-Search. Triggert wenn der Claim eine DOI enthält ODER
+        # paper-keywords (Studie/Forschung/Journal/etc.) + Search-Query.
+        if _claim_mentions_crossref(claim, analysis):
+            tasks.append(cached("Crossref", search_crossref, analysis))
+            queried_names.append("Crossref")
+        # OpenAQ v3 (Air-Quality-Sensor-Daten weltweit, CC-BY 4.0):
+        # ⚠ braucht OPENAQ_API_KEY env-var — graceful skip falls nicht
+        # gesetzt. Triggert wenn Luftqualitäts-Keyword (PM2.5/NO2/Smog/
+        # Feinstaub) + Stadt-Name aus 42-Cities-Whitelist im Claim.
+        if claim_mentions_air_quality(claim):
+            tasks.append(cached("OpenAQ", search_openaq, analysis))
+            queried_names.append("OpenAQ Air Quality")
+        # Wikidata SPARQL (CC0): strukturierte Faktenbasis via 10
+        # kuratierte SPARQL-Templates (Person-Lebensdaten, Politiker-
+        # Amtszeit, Land-Hauptstadt/Bevölkerung, Org-Gründung, Werk-
+        # Autor, Erfindung, Geographie, Person-Partei). Komplementär
+        # zu Wikipedia (unstrukturiert) — Wikidata ist maschinenlesbar.
+        if claim_triggers_wikidata(claim, analysis):
+            tasks.append(cached("Wikidata", search_wikidata, analysis))
+            queried_names.append("Wikidata SPARQL")
         # EIGE Live-RSS (European Institute for Gender Equality, Vilnius):
         # aktuelle Newsroom-Items zu Gleichstellung, EU-Direktiven, neue
         # EIGE-Berichte. Komplementär zum statischen gleichstellung_pack.
