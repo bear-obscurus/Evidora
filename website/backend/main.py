@@ -107,7 +107,6 @@ from services.mobilitaet_pack import search_mobilitaet, claim_mentions_mobilitae
 from services.datenschutz_pack import search_datenschutz, claim_mentions_datenschutz_cached
 from services.sozialstaat_pack import search_sozialstaat, claim_mentions_sozialstaat_cached
 from services.owid import search_owid
-from services.vdem import search_vdem, claim_mentions_vdem_cached
 from services.wayback import search_wayback, claim_has_url_cached
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
@@ -955,13 +954,8 @@ async def check_claim(request: Request):
                 or analysis.get("entities") or analysis.get("keywords")):
             tasks.append(cached("OurWorldInData", search_owid, analysis))
             queried_names.append("OurWorldInData (CC-BY 4.0)")
-        # V-Dem (Varieties of Democracy, University of Gothenburg):
-        # 11 Demokratie-Indizes × 32 Länder × 2019-2023, Static-First-JSON.
-        # ⚠ Werte aktuell LLM-Knowledge-Approximationen — Audit-Refresh aus
-        # offizieller V-Dem v14 CSV ausstehend (Audit-Flag im JSON).
-        if claim_mentions_vdem_cached(claim):
-            tasks.append(cached("V-Dem", search_vdem, analysis))
-            queried_names.append("V-Dem Institute (University of Gothenburg)")
+        # V-Dem (Varieties of Democracy) — siehe Block oben (Phase 4a)
+        # mit _claim_mentions_vdem als Trigger.
         # Wayback Machine CDX (Internet Archive): URL-Archiv-Lookup —
         # triggert wenn der Claim eine URL oder Domain enthält.
         if claim_has_url_cached(claim):

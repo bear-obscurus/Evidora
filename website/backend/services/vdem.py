@@ -162,6 +162,9 @@ def claim_mentions_vdem_cached(claim: str) -> bool:
 
     Returns True, wenn der Claim eine Land+Demokratie-Kombi enthält
     ODER eine generische Demokratie-Vokabel.
+
+    Der Alias ``_claim_mentions_vdem`` unten erhält Backward-Compat
+    für pre-Phase-4a-Imports in main.py.
     """
     if not claim:
         return False
@@ -420,3 +423,7 @@ async def search_vdem(analysis: dict) -> dict:
         "type": "democracy_index",
         "results": results,
     }
+
+
+# Backward-compat alias for pre-Phase-4a main.py imports.
+_claim_mentions_vdem = claim_mentions_vdem_cached
