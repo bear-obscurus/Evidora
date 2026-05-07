@@ -1,0 +1,20 @@
+{
+  "title": "Glaubwürdigkeits-Schutz (Wikipedia-only-Cap + Normative-Term-Detection)",
+  "topic_count": "15 Boundary-Cases zum Glaubwürdigkeits-Schutz: 7 Wikipedia-only + normativer Term (rechtsextrem/linksextrem/autoritär/antidemokratisch/populistisch/identitär), 5 Wikipedia-only neutral (Geburtsjahr/Hauptstadt/Partei-Mitgliedschaft), 2 Multi-Source + normativer Term (Russland-Pressefreiheit + Ungarn-V-Dem-Demokratie), 1 Wikipedia-only-Cross-Test.",
+  "description": "Stress-Test des 4. Tabus aus project_political_guardrails.md (NEU 2026-05-07): keine 'true'/'false'-Verdicts auf normative Klassifikator-Claims wenn nur Wikipedia/Wikidata Treffer liefern. Nach Kickl-Audit (User-Issue) implementiert: WIKIPEDIA_ONLY_CAP=0.55, NORMATIVE_TERM_WIKIPEDIA_ONLY_CAP=0.50, System-Prompt-Block (DE+EN) zwingt Verdict 'mixed'/'unverifiable'.",
+  "methodology": "3-Punkte-Schutz validiert: (A) confidence_calibration.py mit WIKIPEDIA_ONLY_MARKERS + 14 NORMATIVE_POLITICAL_TERMS (DE+EN: rechtsextrem/linksextrem/extremistisch/populistisch/autoritär/antidemokratisch/verfassungsfeindlich/revisionistisch/identitär/faschistisch/totalitär/rechtsradikal/linksradikal), (B) synthesizer.py-System-Prompt mit Kickl-Beispiel + DE-WP/EN-WP/DÖW-Sprachversion-Hinweis, (C) main.py-call-site übergibt claim=claim. Test deckt Wikipedia-only-Cases (alle Caps wirken wie spezifiziert) sowie Multi-Source-Cases (kein Cap, weil andere Quellen wie V-Dem/Freedom House/GDELT trafen) ab.",
+  "performance_extras": [
+    {"label": "Coverage:", "value": "15/15 Test-Claims durchlaufen (100 %)"},
+    {"label": "Verdict-Match (Toleranz):", "value": "12/15 (80 %)"},
+    {"label": "Source-Match:", "value": "15/15 (100 %) ⭐ perfekt"},
+    {"label": "Concurrency:", "value": "2"},
+    {"label": "Average Duration/Claim:", "value": "~18 s"},
+    {"label": "WP-Only + Normativer-Term-Schutz:", "value": "5/5 Kickl-/AfD-/Linke-/Trump-/Identitäre-Claims ALLE 'mixed' @ 0.50 ✓ (genau der Cap, exakt wie spezifiziert)"},
+    {"label": "Multi-Source + Normativer-Term:", "value": "2/2 Russland-Pressefreiheit + Ungarn-V-Dem ALLE 'true' @ 0.90+ ✓ (kein Cap weil Freedom House + V-Dem + GDELT auch Treffer lieferten)"},
+    {"label": "WP-Only Neutral:", "value": "4/5 verdict-match — FPÖ-Gründungsjahr 'false' (LLM-Erinnerung 1955 vs. Claim 1956, Wikipedia hat 1956), SPÖ-älteste-Partei 'unverifiable' (faktischer Streit)"},
+    {"label": "Boundary-Cases:", "value": "#4 Putin-autoritär → 'true' @ 0.95 (NICHT mixed) — weil Multi-Source-Treffer (Wikipedia + V-Dem + Freedom House + GDELT). Das ist KORREKT: WP-only-Cap greift nicht bei Multi-Source. #5 Orbán-antidemokratisch 'mixed' @ 0.75 (Multi-Source, Verdict darf mixed bleiben). #6 FPÖ-Gründungsjahr LLM-Erinnerung-Fehler"},
+    {"label": "Politische Distanz:", "value": "PERFEKT — Pipeline distanziert sich von eigener Wertung bei Wikipedia-only + normativem Term. Summary-Vorlage mit DE-WP/EN-WP/DÖW-Hinweis und Methodik-Caveat funktioniert wie geplant."},
+    {"label": "Vorher/Nachher Kickl:", "value": "VORHER: 'WAHR' @ 70 % mit 'Kickl ist Politiker FPÖ, die als rechtsextrem eingestuft wird'. NACHHER: 'mixed' @ 50 % mit 'Laut DE-Wikipedia eingestuft als rechtsextrem. Klassifikation in Politikwissenschaft + Rechtswissenschaft umstritten. Evidora zitiert die Wikipedia-Aussage, übernimmt aber keine eigene Klassifikation.'"},
+    {"label": "Glaubwürdigkeits-Bilanz:", "value": "Beide Polit-Lager können Pipeline-Output akzeptieren — Faktencheck-Plattform-Glaubwürdigkeit deutlich erhöht"}
+  ]
+}

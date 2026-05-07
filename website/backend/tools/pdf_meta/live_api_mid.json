@@ -1,0 +1,19 @@
+{
+  "title": "Live-API-Mid (Crossref + OpenAQ + Wikidata SPARQL)",
+  "topic_count": "20 Claims (~6 pro Connector) zum 3-Mid-Priority-API-Sprint: Crossref REST API (DOI-Resolution + Paper-Search via mailto-polite-pool), OpenAQ v3 (Air-Quality-Sensor-Daten, CC-BY 4.0, mit OPENAQ_API_KEY env-var), Wikidata SPARQL (CC0, 10 kuratierte Templates).",
+  "description": "20-Claim-Stress-Test gegen 3 mittel-priorisierte Live-API-Connectors aus dem 3-Mid-API-Sprint (commit 772347a, deployed 2026-05-07). Crossref-Fokus: DOI-Auflösung + Citation-Counts (Steffen 2015 Science, Bloom 2015 QJE, Bloom 2024 Nature). OpenAQ-Fokus: Wien/Berlin/Madrid/München PM2.5+NO2-Vergleiche mit WHO+EU-Limits. Wikidata-Fokus: Person-Lebensdaten (Nehammer/Einstein/Kurz/Faymann), Land-Hauptstadt, Bevölkerung, Werk-Autor (Goethe), Organisation (FPÖ-Gründung), Erfindung (Telefon), Geographie (Großglockner/Donau).",
+  "methodology": "Erste systematische Live-API-Mix-Validierung: Test der Pipeline mit gemischten Claims unterschiedlicher Domain pro Sprint, statt monokultureller Pack-Tests. Kontrasiert harte Fakten (Crossref-DOI-Metadata sind eindeutig) mit volatilen Sensor-Daten (OpenAQ-Werte schwanken saisonal) und unstrukturierten Wikidata-Queries (SPARQL-Templates müssen Entity-Match treffen).",
+  "performance_extras": [
+    {"label": "Connector-Coverage:", "value": "3/3 Connectors aktiv (Crossref + OpenAQ + Wikidata)"},
+    {"label": "Verdict-Match (Toleranz):", "value": "14/20 (70 %)"},
+    {"label": "Source-Match:", "value": "11/20 (55 %)"},
+    {"label": "Concurrency:", "value": "2 (sequenziell nach 502-Lehre)"},
+    {"label": "Average Duration/Claim:", "value": "~22 s"},
+    {"label": "Crossref-Performance:", "value": "5/5 DOI-Resolutions ✓ (Steffen Science 2015 + Bloom QJE 2015 + Bloom Nature 2024 + Lalive AER-vs-QJE-Test + Steffen-Citation-Count)"},
+    {"label": "OpenAQ-Performance:", "value": "1/4 verdict-match — drei City-Vergleiche unverifiable (Sensor-Volatilität + Vergleichs-Granularität + saisonale Streuung)"},
+    {"label": "Wikidata-Performance:", "value": "8/11 verdict-match — Person/Geographie/Werk/Organisation gut; Source-Match-Probleme bei Erfindung/Geographie weil Synthesizer auch Wikipedia-Pendant einbezieht"},
+    {"label": "Boundary-Cases:", "value": "#5 Steffen-Citation-Count unverifiable (LLM unsicher bei exakter Zahl), #14 Wien-Hauptstadt source-miss (Wikipedia statt Wikidata getriggert), #17 FPÖ-Gründungsjahr 1956 → false (LLM-Erinnerung 1955), #20 Donau-längster-Fluss DE → false (korrekt, der Rhein ist länger)"},
+    {"label": "Live-API-Live-Verifikation:", "value": "Alle 3 Connectors antworten Live, Wikidata SPARQL liefert strukturierte Person-/Geographie-Fakten"},
+    {"label": "Lessons:", "value": "OpenAQ-Vergleichs-Claims schwer zu verifizieren (Sensor-Daten zeitabhängig), Wikidata-SPARQL solide für klare Entity-Person-Claims, Crossref top für DOI-Resolution"}
+  ]
+}

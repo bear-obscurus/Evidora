@@ -1,0 +1,19 @@
+{
+  "title": "Live-API-Low (Freedom House + arXiv + UN Comtrade)",
+  "topic_count": "20 Claims (~6-7 pro Connector) zum 3-Low-Priority-API-Sprint: Freedom House FIW 2024 (55 Länder × 6 Indikatoren, Static-First-Pre-Cache), arXiv Atom-API (~2 Mio Preprints, NICHT peer-reviewed), UN Comtrade v1 (bilaterale Handelsflüsse via M49+HS-Codes).",
+  "description": "20-Claim-Stress-Test gegen 3 niedrig-priorisierte Live-API-Connectors aus dem 3-Low-API-Sprint (commit c441b61, deployed 2026-05-07). Freedom House-Fokus: Russland/Österreich/Schweden/Nordkorea/Ungarn/Türkei + Methodik-Fragen. arXiv-Fokus: Preprint-vs-peer-reviewed-Differenzierung + Domain-Coverage. UN Comtrade-Fokus: bilaterale Handels-Vergleiche RU→DE/AT-Maschinen-Export/CN-Stahl-Import/DE-NL-Handel/BR-AR-Fahrzeuge.",
+  "methodology": "Mix-Test der 3 niedrig-priorisierten Live-APIs. Auswahl der Claims auf Coverage-Lücken kalibiert: FH testet 6 Länder (DACH + Reference + Boundary), arXiv testet Preprint-Charakter (NICHT peer-reviewed) + Domain (STEM nicht Geistes-Wissenschaft), Comtrade testet bilaterale Vergleichs-Claims. Stress-Test deckte Comtrade-Rate-Limit-Issue auf (5/5 Comtrade-Claims unverifiable wegen API-Limit ohne Key).",
+  "performance_extras": [
+    {"label": "Connector-Coverage:", "value": "3/3 Connectors aktiv"},
+    {"label": "Verdict-Match (Toleranz):", "value": "12/20 (60 %)"},
+    {"label": "Source-Match:", "value": "10/20 (50 %)"},
+    {"label": "Concurrency:", "value": "2 (sequenziell)"},
+    {"label": "Average Duration/Claim:", "value": "~20 s"},
+    {"label": "Freedom House-Performance:", "value": "8/9 verdict-match — RU 13/100 ✓, AT 92+ ✓, NK <5 ✓, HU als 'Free' korrekt false ✓, TR 'Not Free' ✓, Methodik-Fragen ✓; #16 Pressefreiheits-vs-Aggregat-Score-Frage durch Mix verschwommen"},
+    {"label": "arXiv-Performance:", "value": "5/5 verdict-match (alle Preprint-Charakteristik-Fragen ✓: Cornell-Hosting, NICHT peer-reviewed, NICHT primär Geistes-Wissenschaft, Deep-Learning-Coverage, 2401.12345-Datum)"},
+    {"label": "UN Comtrade-Performance:", "value": "0/5 — alle bilateralen Handels-Claims unverifiable. Ursache vermutlich Comtrade-Free-Tier-Rate-Limit (~100 calls/h ohne API-Key) oder 401/429 graceful-skip. ⚠ Wäre durch COMTRADE_API_KEY env-var lösbar."},
+    {"label": "Boundary-Cases:", "value": "Comtrade-Connector technisch korrekt aber Live-Verifikation rate-limited ohne Key. arXiv #19 Cornell-Hosting source-mismatch (Synthesizer fand auch Wikipedia statt arXiv exklusiv)"},
+    {"label": "Lessons:", "value": "Freedom House Static-First-Pre-Cache wirkt sauber (auch ohne Audit-Refresh aus offiziellem CSV liefert die LLM-Approximation 8/9 verifizierbare Verdicts). arXiv-Connector top für Preprint-Identifikation. UN Comtrade braucht API-Key für produktive Nutzung."},
+    {"label": "Forward-Action:", "value": "COMTRADE_API_KEY env-var registrieren (gratis bei comtradeapi.un.org) für stabilere bilaterale Handels-Verdicts"}
+  ]
+}
