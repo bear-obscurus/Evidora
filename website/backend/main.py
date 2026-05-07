@@ -1215,6 +1215,7 @@ async def check_claim(request: Request):
                 source_coverage=synthesis["source_coverage"],
                 evidence=synthesis.get("evidence", []),
                 sources_used=hit_names,
+                claim=claim,
             )
             synthesis["confidence"] = calibrated
             synthesis["_confidence_calibration"] = cal_debug

@@ -212,6 +212,19 @@ Strukturell ungeprüfbare Behauptungen mit dokumentiertem Faktencheck-Befund (KR
   • Quelle markiert "STRUKTURELL UNGEPRÜFBAR" + Faktencheck-Befund nennt nur "die Zahl ist nicht belegbar" ohne Kontextzahlen → verdict = "unverifiable" mit Confidence 0.10–0.15, aber im nuance-Feld muss die strukturelle Datenlücke konkret erklärt sein.
 - Beispiel: Claim "22 Millionen Behandlungen Drittstaatsangehöriger 2015–2024" (Krone 25.01.2026). AT Factbook liefert Eintrag "STRUKTURELL UNGEPRÜFBAR" mit Kontrast.at-Zitation, dass die Zahl SV-Einzelleistungen meint, nicht Spitalsbehandlungen, und dass Drittstaatsangehörige mit 2,75 % Anteil UNTERPROPORTIONAL zu ihrem Bevölkerungsanteil (4,8 %) nutzen. → Korrekt = "mostly_false" @ 0.90. Die Behauptung ist im Sinne ihrer suggerierten Über-Inanspruchnahme widerlegt — auch wenn die Rohzahl 22 Mio nicht direkt prüfbar ist. Falsch wäre "unverifiable @ 0.0".
 
+Wikipedia/Wikidata-only-Quellen + politisch wertende Klassifikatoren (KRITISCH WICHTIG — Glaubwürdigkeits-Schutz):
+- Wenn ALLE Quellen mit Treffern AUSSCHLIESSLICH aus Wikipedia/Wikidata stammen (keine Static-First-Packs, keine Live-API-Quellen wie GDELT/CDC/EIGE/Faktencheck-RSS, keine peer-reviewed PubMed/Cochrane/OpenAlex/Crossref), gilt FOLGENDE besondere Sorgfaltspflicht:
+  1. Confidence-Cap 0.55 (wird automatisch in confidence_calibration.py erzwungen).
+  2. Wenn der Claim ZUSÄTZLICH einen politisch-wertenden Klassifikator-Term enthält ('rechtsextrem'/'linksextrem'/'extremistisch'/'populistisch'/'autoritär'/'antidemokratisch'/'verfassungsfeindlich'/'revisionistisch'/'identitär'/'faschistisch'/'totalitär'/'rechtsradikal'/'linksradikal'), MUSS das verdict 'mixed' oder 'unverifiable' sein — NIEMALS 'true'/'mostly_true'/'false'/'mostly_false'.
+- BEGRÜNDUNG: Wikipedia ist crowdsourced (kein peer-review, Mehrheits-Konsens). Politisch wertende Klassifikatoren wie 'rechtsextrem' sind in Politikwissenschaft + Rechtswissenschaft umstritten und je nach Sprachversion unterschiedlich (z.B. DE-WP nennt FPÖ 'rechtsextrem', EN-WP 'right-wing populist', DÖW 'rechtspopulistisch mit rechtsextremen Tendenzen'). Ohne ergänzende peer-reviewed Quelle (V-Dem, Chapel Hill Expert Survey, Manifesto Project) ist eine eigene Einstufung als 'true'/'false' methodisch nicht sauber und glaubwürdigkeits-gefährdend.
+- ENTSCHEIDUNGSREGEL bei Wikipedia-only + normativem Term:
+  • verdict = 'mixed' wenn Wikipedia eine klare Aussage liefert, die zitiert werden kann
+  • verdict = 'unverifiable' wenn Wikipedia widersprüchlich ist oder keine klare Klassifikation enthält
+  • Summary MUSS lauten: 'Laut [DE/EN]-Wikipedia wird X als [Term] eingestuft. Diese Klassifikation ist in Politikwissenschaft + Rechtswissenschaft umstritten — z.B. EN-Wikipedia bezeichnet [X] als [Y]. Evidora zitiert die Wikipedia-Aussage, übernimmt aber keine eigene Klassifikation.'
+  • nuance MUSS auf alternative Klassifikationen + auf die schwache Quellenlage hinweisen
+- BEISPIEL: Claim 'Herbert Kickl ist rechtsextrem' + nur Wikipedia/Wikidata-Treffer → verdict='mixed' @ 0.50, summary zitiert DE-WP-Klassifikation und weist auf Methodik-Begrenzung + Quellen-Schwäche + abweichende Klassifikationen anderer Quellen (EN-WP/DÖW) hin. NIEMALS 'true' @ 0.70.
+- Auch bei eindeutigen Wikipedia-Aussagen: Evidora ist KEIN Substitut für peer-reviewed politische Klassifikation. Bei 'Sind Erde rund?' (kein normativer Term) ist 'true' @ 0.55 erlaubt — Cap kommt von Quellen-Anzahl. Bei 'Ist Person X autoritär?' (normativer Term) MUSS 'mixed'/'unverifiable' kommen.
+
 LLM-Trainings-Cutoff vs. Live-News-Quellen (KRITISCH WICHTIG — bei aktuellen Events):
 - Du als LLM hast einen Trainings-Cutoff (vermutlich 2024-Q3 oder früher). Für Events DANACH ist dein Vor-Trainings-Wissen veraltet.
 - WENN Live-Quellen (GDELT v2 GKG, CDC Newsroom, EIGE-RSS, Snopes/Correctiv/Full-Fact/Bellingcat/FactCheck.org-RSS, Mimikama) aktuelle Artikel mit Datum 2025+ liefern, die einen Claim bestätigen oder widerlegen, MUSST du diesen Live-Daten ÜBER deinem Vor-Trainings-Wissen vertrauen.
@@ -404,6 +417,19 @@ Structurally unverifiable claims with documented fact-check finding (CRITICAL):
 - DECISION RULE:
   • Source marks "STRUKTURELL UNGEPRÜFBAR" + fact-check finding cites UNDERPROPORTIONAL usage (e.g. 2.75% vs 4.8% population share) → verdict = "mostly_false" with confidence 0.85–0.95. The claim suggests overproportionality, the data shows the opposite.
   • Source marks "STRUKTURELL UNGEPRÜFBAR" + fact-check finding only states "the number is not provable" without context numbers → verdict = "unverifiable" with confidence 0.10–0.15, but the nuance field must concretely explain the structural data gap.
+
+Wikipedia/Wikidata-only sources + politically loaded classifiers (CRITICAL — credibility protection):
+- If ALL sources with hits originate EXCLUSIVELY from Wikipedia/Wikidata (no Static-First-Packs, no live-API sources like GDELT/CDC/EIGE/factcheck-RSS, no peer-reviewed PubMed/Cochrane/OpenAlex/Crossref), special diligence applies:
+  1. Confidence cap 0.55 (enforced automatically in confidence_calibration.py).
+  2. If the claim ADDITIONALLY contains a politically loaded classifier term ('right-wing extremist'/'left-wing extremist'/'extremist'/'populist'/'authoritarian'/'anti-democratic'/'revisionist'/'identitarian'/'fascist'/'totalitarian'), the verdict MUST be 'mixed' or 'unverifiable' — NEVER 'true'/'mostly_true'/'false'/'mostly_false'.
+- REASONING: Wikipedia is crowdsourced (no peer-review, majority consensus). Politically loaded classifiers like 'right-wing extremist' are contested in political science + law, and differ across language versions (e.g. DE-WP labels FPÖ 'rechtsextrem', EN-WP 'right-wing populist'). Without complementary peer-reviewed sources (V-Dem, Chapel Hill Expert Survey, Manifesto Project), an own classification as 'true'/'false' is methodologically unsound and credibility-threatening.
+- DECISION RULE for Wikipedia-only + normative term:
+  • verdict = 'mixed' if Wikipedia delivers a clear quotable statement
+  • verdict = 'unverifiable' if Wikipedia is contradictory or has no clear classification
+  • Summary MUST state: 'According to [DE/EN]-Wikipedia, X is classified as [term]. This classification is contested in political science + law — e.g. [other-WP] labels X as [Y]. Evidora cites the Wikipedia statement but does not adopt its own classification.'
+  • nuance MUST point to alternative classifications + weak source coverage
+- EXAMPLE: Claim 'Herbert Kickl is right-wing extremist' + only Wikipedia/Wikidata hits → verdict='mixed' @ 0.50, summary cites DE-WP classification with methodology + source-thinness caveat + alternative classifications. NEVER 'true' @ 0.70.
+- Even with strong Wikipedia statements: Evidora is NOT a substitute for peer-reviewed political classification. For 'Is the Earth round?' (no normative term), 'true' @ 0.55 is allowed — cap comes from source-count. For 'Is person X authoritarian?' (normative term), MUST be 'mixed'/'unverifiable'.
 
 LLM Training Cutoff vs. Live News Sources (CRITICAL — for current events):
 - You as an LLM have a training cutoff (likely 2024-Q3 or earlier). For events AFTER that, your pre-training knowledge is outdated.

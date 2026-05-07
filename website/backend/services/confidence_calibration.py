@@ -101,6 +101,36 @@ SOURCE_COUNT_CAPS_WITH_PACK = {
     # 4+: kein Cap
 }
 
+# Quellen, die als "crowdsourced encyclopedia" gelten und keine
+# eigenständige peer-reviewed Verifikation darstellen. Bei AUSSCHLIESSLICH
+# diesen Quellen wird die Konfidenz auf 0.55 gecappt (Verdict bleibt
+# erlaubt, aber kommuniziert "weiche Quellenlage").
+WIKIPEDIA_ONLY_MARKERS = (
+    "Wikipedia",
+    "Wikidata",
+)
+WIKIPEDIA_ONLY_CAP = 0.55
+
+# Politisch normativ-wertende Klassifikatoren — bei Auftreten im Claim
+# UND nur Wikipedia/Wikidata-Treffern wird zusätzlich verschärft auf 0.50.
+# Diese Liste deckt die häufigsten umstrittenen Polit-Labels ab.
+NORMATIVE_POLITICAL_TERMS = (
+    "rechtsextrem", "rechts-extrem", "right-wing extremist",
+    "linksextrem", "links-extrem", "left-wing extremist",
+    "extremistisch", "extremist",
+    "populistisch", "populist", "populism",
+    "autoritär", "autoritaer", "authoritarian",
+    "antidemokratisch", "anti-demokratisch", "anti-democratic",
+    "verfassungsfeindlich", "verfassungs-feindlich",
+    "revisionistisch", "revisionist",
+    "identitär", "identitaer", "identitarian",
+    "faschistisch", "fascist",
+    "totalitär", "totalitaer", "totalitarian",
+    "rechtsradikal", "rechts-radikal",
+    "linksradikal", "links-radikal",
+)
+NORMATIVE_TERM_WIKIPEDIA_ONLY_CAP = 0.50
+
 
 def _has_authoritative_pack(sources_used: list[str]) -> bool:
     """Prüft, ob ein kuratierter Static-First-Pack unter den
@@ -111,6 +141,41 @@ def _has_authoritative_pack(sources_used: list[str]) -> bool:
         any(marker.lower() in src.lower() for marker in AUTHORITATIVE_PACK_MARKERS)
         for src in sources_used
     )
+
+
+def _is_wikipedia_only(sources_used: list[str]) -> bool:
+    """True wenn ALLE Quellen-mit-Treffern aus Wikipedia/Wikidata sind
+    (mindestens eine, und keine anderen).
+
+    Beispiele:
+        ["Wikipedia"] → True
+        ["Wikidata", "Wikipedia"] → True
+        ["Wikipedia", "GDELT v2 GKG"] → False (GDELT ist andere Quelle)
+        ["Wohnen-Konsens"] → False (Static-First-Pack ist andere Quelle)
+        [] → False (kein Source — kein Cap zu rechtfertigen)
+    """
+    if not sources_used:
+        return False
+    for src in sources_used:
+        is_wp = any(m.lower() in src.lower() for m in WIKIPEDIA_ONLY_MARKERS)
+        if not is_wp:
+            return False
+    return True  # alle sind Wikipedia/Wikidata
+
+
+def _claim_has_normative_term(claim: str | None) -> bool:
+    """True wenn der Claim einen politisch-wertenden Klassifikator-Term
+    enthält (rechtsextrem, populistisch, autoritär, etc.).
+
+    Diese Begriffe sind in Politikwissenschaft + Rechtswissenschaft
+    umstritten und sollten nicht als selbst-vergebene Wertungen
+    übernommen werden — nur als zitierte Beobachtung mit klarem Quellen-
+    Verweis. Substring-Match auf lowercased claim.
+    """
+    if not claim:
+        return False
+    claim_lc = claim.lower()
+    return any(t in claim_lc for t in NORMATIVE_POLITICAL_TERMS)
 
 
 def _evidence_strength_cap(evidence: list[dict]) -> float | None:
@@ -150,6 +215,7 @@ def calibrate_confidence(
     source_coverage: dict | None = None,
     evidence: list[dict] | None = None,
     sources_used: list[str] | None = None,
+    claim: str | None = None,
 ) -> tuple[float, dict]:
     """Kalibriert Konfidenz-Wert vom Synthesizer auf Basis objektiver
     Quellen-Metriken.
@@ -161,7 +227,11 @@ def calibrate_confidence(
         - raw_conf: Original-Wert
         - cap_source_count: Cap aus Quellen-Anzahl (None wenn kein Cap)
         - cap_evidence_strength: Cap aus Evidence-Strength (None wenn kein Cap)
+        - cap_wikipedia_only: 0.55 wenn nur Wikipedia/Wikidata, sonst None
+        - cap_normative_wikipedia: 0.50 wenn Wikipedia-only + normativer Term, sonst None
         - authoritative_pack: bool ob ein Pack gefeuert hat
+        - wikipedia_only: bool ob nur Wikipedia/Wikidata Treffer hatten
+        - normative_term: bool ob Claim einen politisch-wertenden Term enthält
         - n_sources_with_results: Anzahl der Quellen mit Treffern
         - applied_cap: der Cap-Wert, der finally angewandt wurde (None wenn kein Cap)
     """
@@ -169,7 +239,11 @@ def calibrate_confidence(
         "raw_conf": raw_conf,
         "cap_source_count": None,
         "cap_evidence_strength": None,
+        "cap_wikipedia_only": None,
+        "cap_normative_wikipedia": None,
         "authoritative_pack": False,
+        "wikipedia_only": False,
+        "normative_term": False,
         "n_sources_with_results": 0,
         "applied_cap": None,
     }
@@ -199,8 +273,30 @@ def calibrate_confidence(
     cap_evidence = _evidence_strength_cap(evidence or [])
     debug["cap_evidence_strength"] = cap_evidence
 
+    # Wikipedia-only-Cap (Crowdsourced-Quelle ist methodisch schwächer
+    # als peer-reviewed / behördlich kuratiert)
+    wp_only = _is_wikipedia_only(sources_used or [])
+    debug["wikipedia_only"] = wp_only
+    cap_wp = WIKIPEDIA_ONLY_CAP if wp_only else None
+    debug["cap_wikipedia_only"] = cap_wp
+
+    # Verschärfung: Wikipedia-only + normativer Term im Claim →
+    # zusätzlich auf 0.50, weil normativer Term + crowdsourced-Quelle
+    # = doppeltes Bias-Risiko
+    has_normative = _claim_has_normative_term(claim)
+    debug["normative_term"] = has_normative
+    cap_norm_wp = (
+        NORMATIVE_TERM_WIKIPEDIA_ONLY_CAP
+        if (wp_only and has_normative)
+        else None
+    )
+    debug["cap_normative_wikipedia"] = cap_norm_wp
+
     # Strengster Cap gewinnt
-    candidate_caps = [c for c in (cap_source, cap_evidence) if c is not None]
+    candidate_caps = [
+        c for c in (cap_source, cap_evidence, cap_wp, cap_norm_wp)
+        if c is not None
+    ]
     if not candidate_caps:
         return raw_conf, debug
     final_cap = min(candidate_caps)
@@ -209,8 +305,9 @@ def calibrate_confidence(
     if raw_conf > final_cap:
         logger.info(
             f"confidence_calibration: capped {raw_conf:.2f} → {final_cap:.2f} "
-            f"(n_sources={n_with_results}, pack={has_pack}, "
-            f"cap_src={cap_source}, cap_ev={cap_evidence})"
+            f"(n_sources={n_with_results}, pack={has_pack}, wp_only={wp_only}, "
+            f"normative={has_normative}, cap_src={cap_source}, "
+            f"cap_ev={cap_evidence}, cap_wp={cap_wp}, cap_norm_wp={cap_norm_wp})"
         )
         return final_cap, debug
 
