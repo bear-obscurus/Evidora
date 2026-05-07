@@ -110,10 +110,37 @@ def verdict_matches(verdict: str | None, expected: list[str]) -> bool:
     return False
 
 
-def source_matches(sources: list[str], expected: str | None) -> bool | None:
+def source_matches(
+    sources: list[str], expected: str | list[str] | None,
+) -> bool | None:
+    """Match expected source(s) against actual hit-source-list.
+
+    `expected` kann sein:
+      - None: keine Erwartung → returns None
+      - str: einzelner Substring-Match (z.B. "Wikidata")
+      - str mit "|": mehrere Alternativen (z.B. "Wikidata|Wikipedia")
+      - list[str]: explizite Alternativen-Liste
+
+    Substring-Match ist case-insensitive und matcht wenn mindestens
+    EINE der erwarteten Quellen in irgendeiner der actual-Sources
+    vorkommt — Multi-Source-tolerant.
+    """
     if not expected:
         return None  # n/a, no expectation
-    return any(expected in s for s in sources)
+    # Normalisiere zu Liste
+    if isinstance(expected, str):
+        candidates = [c.strip() for c in expected.split("|") if c.strip()]
+    elif isinstance(expected, list):
+        candidates = [str(c).strip() for c in expected if str(c).strip()]
+    else:
+        return None
+    if not candidates:
+        return None
+    sources_lc = [s.lower() for s in sources]
+    return any(
+        any(c.lower() in s for s in sources_lc)
+        for c in candidates
+    )
 
 
 async def main_async(args: argparse.Namespace) -> int:

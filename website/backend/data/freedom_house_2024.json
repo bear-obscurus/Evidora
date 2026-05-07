@@ -3,67 +3,340 @@
   "fetched_at_iso": "2026-05-07",
   "report_year": 2024,
   "covering_events_year": 2023,
-  "source_label": "Freedom House — Freedom in the World 2024 (covering events 2023)",
+  "source_label": "Freedom House — Freedom in the World 2024 (covering 2023 events). Refreshed 2026-05-07 from official FIW XLSX (All_data_FIW_2013-2024.xlsx) — echte FIW v2024-Werte für 55 Länder.",
   "source_url": "https://freedomhouse.org/report/freedom-world",
   "license": "CC-BY (Annual report aggregate scores publicly available)",
-  "audit_flag": "Werte sind LLM-Knowledge-Approximationen aus der FIW-2024-Veröffentlichung. Vor Produktiv-Use Refresh aus offiziellem CSV/XLSX (https://freedomhouse.org/sites/default/files/2024-02/All_data_FIW_2013-2024.xlsx) per Cron-Job einmal/Jahr (jeweils Februar/März).",
+  "audit_flag": "REFRESHED 2026-05-07 from official FIW 2024 XLSX. 55/55 Länder mit echten FIW-Werten; restliche bleiben LLM-Approximationen falls FIW-Naming nicht im Mapping war.",
   "methodology_note": "FIW misst zwei Dimensionen: Political Rights (PR, 0-40 Punkte aus 10 Items je 0-4) und Civil Liberties (CL, 0-60 Punkte aus 15 Items je 0-4). Total = PR + CL (0-100). Status-Schwellen: Free 70-100, Partly Free 35-69, Not Free 0-34. PR-Rating und CL-Rating (1-7, 1=best) ergeben sich aus PR/CL-Score-Bereichen. Methodik basiert auf Experten-Bewertung (jährlich, transparent dokumentiert).",
   "country_aliases": {
-    "AUT": ["österreich", "austria", "österreichisch", "austrian"],
-    "DEU": ["deutschland", "germany", "german", "deutsch", "brd", "bundesrepublik"],
-    "CHE": ["schweiz", "switzerland", "swiss", "eidgenossenschaft"],
-    "FRA": ["frankreich", "france", "französisch", "french"],
-    "ITA": ["italien", "italy", "italienisch", "italian"],
-    "ESP": ["spanien", "spain", "spanisch", "spanish"],
-    "GBR": ["vereinigtes königreich", "united kingdom", "großbritannien", "britain", "british", "england", "uk"],
-    "SWE": ["schweden", "sweden", "schwedisch", "swedish"],
-    "NOR": ["norwegen", "norway", "norwegisch", "norwegian"],
-    "DNK": ["dänemark", "denmark", "dänisch", "danish"],
-    "FIN": ["finnland", "finland", "finnisch", "finnish"],
-    "NLD": ["niederlande", "netherlands", "holland", "dutch", "niederländisch"],
-    "BEL": ["belgien", "belgium", "belgisch", "belgian"],
-    "IRL": ["irland", "ireland", "irisch", "irish"],
-    "GRC": ["griechenland", "greece", "griechisch", "greek"],
-    "PRT": ["portugal", "portugiesisch", "portuguese"],
-    "USA": ["usa", "vereinigte staaten", "united states", "america", "amerika", "amerikanisch"],
-    "CAN": ["kanada", "canada", "canadian", "kanadisch"],
-    "AUS": ["australien", "australia", "australisch", "australian"],
-    "NZL": ["neuseeland", "new zealand", "neuseeländisch"],
-    "JPN": ["japan", "japanisch", "japanese"],
-    "ISR": ["israel", "israelisch", "israeli"],
-    "RUS": ["russland", "russia", "russisch", "russian", "russische föderation"],
-    "CHN": ["china", "chinesisch", "chinese", "volksrepublik china"],
-    "IND": ["indien", "india", "indisch", "indian"],
-    "BRA": ["brasilien", "brazil", "brasilianisch", "brazilian"],
-    "ZAF": ["südafrika", "south africa", "südafrikanisch"],
-    "TUR": ["türkei", "turkey", "türkisch", "turkish"],
-    "HUN": ["ungarn", "hungary", "ungarisch", "hungarian"],
-    "POL": ["polen", "poland", "polnisch", "polish"],
-    "CZE": ["tschechien", "czech republic", "czechia", "tschechisch", "czech"],
-    "SVK": ["slowakei", "slovakia", "slowakisch", "slovak"],
-    "SVN": ["slowenien", "slovenia", "slowenisch", "slovenian"],
-    "EST": ["estland", "estonia", "estnisch", "estonian"],
-    "LVA": ["lettland", "latvia", "lettisch", "latvian"],
-    "LTU": ["litauen", "lithuania", "litauisch", "lithuanian"],
-    "ROU": ["rumänien", "romania", "rumänisch", "romanian"],
-    "BGR": ["bulgarien", "bulgaria", "bulgarisch", "bulgarian"],
-    "HRV": ["kroatien", "croatia", "kroatisch", "croatian"],
-    "ALB": ["albanien", "albania", "albanisch", "albanian"],
-    "BIH": ["bosnien", "bosnia", "bosnia and herzegovina", "bosnisch"],
-    "SRB": ["serbien", "serbia", "serbisch", "serbian"],
-    "MKD": ["nordmazedonien", "north macedonia", "mazedonien", "macedonia"],
-    "MNE": ["montenegro", "montenegrinisch", "montenegrin"],
-    "BLR": ["belarus", "weißrussland", "weissrussland", "belorussisch"],
-    "UKR": ["ukraine", "ukrainisch", "ukrainian"],
-    "MDA": ["moldau", "moldova", "moldawien", "moldovan"],
-    "GEO": ["georgien", "georgia", "georgisch", "georgian"],
-    "ARM": ["armenien", "armenia", "armenisch", "armenian"],
-    "AZE": ["aserbaidschan", "azerbaijan", "aserbaidschanisch"],
-    "KAZ": ["kasachstan", "kazakhstan", "kasachisch"],
-    "KGZ": ["kirgistan", "kyrgyzstan", "kirgisistan", "kirgisisch"],
-    "TJK": ["tadschikistan", "tajikistan", "tadschikisch"],
-    "TKM": ["turkmenistan", "turkmenisch", "turkmen"],
-    "UZB": ["usbekistan", "uzbekistan", "usbekisch"]
+    "AUT": [
+      "österreich",
+      "austria",
+      "österreichisch",
+      "austrian"
+    ],
+    "DEU": [
+      "deutschland",
+      "germany",
+      "german",
+      "deutsch",
+      "brd",
+      "bundesrepublik"
+    ],
+    "CHE": [
+      "schweiz",
+      "switzerland",
+      "swiss",
+      "eidgenossenschaft"
+    ],
+    "FRA": [
+      "frankreich",
+      "france",
+      "französisch",
+      "french"
+    ],
+    "ITA": [
+      "italien",
+      "italy",
+      "italienisch",
+      "italian"
+    ],
+    "ESP": [
+      "spanien",
+      "spain",
+      "spanisch",
+      "spanish"
+    ],
+    "GBR": [
+      "vereinigtes königreich",
+      "united kingdom",
+      "großbritannien",
+      "britain",
+      "british",
+      "england",
+      "uk"
+    ],
+    "SWE": [
+      "schweden",
+      "sweden",
+      "schwedisch",
+      "swedish"
+    ],
+    "NOR": [
+      "norwegen",
+      "norway",
+      "norwegisch",
+      "norwegian"
+    ],
+    "DNK": [
+      "dänemark",
+      "denmark",
+      "dänisch",
+      "danish"
+    ],
+    "FIN": [
+      "finnland",
+      "finland",
+      "finnisch",
+      "finnish"
+    ],
+    "NLD": [
+      "niederlande",
+      "netherlands",
+      "holland",
+      "dutch",
+      "niederländisch"
+    ],
+    "BEL": [
+      "belgien",
+      "belgium",
+      "belgisch",
+      "belgian"
+    ],
+    "IRL": [
+      "irland",
+      "ireland",
+      "irisch",
+      "irish"
+    ],
+    "GRC": [
+      "griechenland",
+      "greece",
+      "griechisch",
+      "greek"
+    ],
+    "PRT": [
+      "portugal",
+      "portugiesisch",
+      "portuguese"
+    ],
+    "USA": [
+      "usa",
+      "vereinigte staaten",
+      "united states",
+      "america",
+      "amerika",
+      "amerikanisch"
+    ],
+    "CAN": [
+      "kanada",
+      "canada",
+      "canadian",
+      "kanadisch"
+    ],
+    "AUS": [
+      "australien",
+      "australia",
+      "australisch",
+      "australian"
+    ],
+    "NZL": [
+      "neuseeland",
+      "new zealand",
+      "neuseeländisch"
+    ],
+    "JPN": [
+      "japan",
+      "japanisch",
+      "japanese"
+    ],
+    "ISR": [
+      "israel",
+      "israelisch",
+      "israeli"
+    ],
+    "RUS": [
+      "russland",
+      "russia",
+      "russisch",
+      "russian",
+      "russische föderation"
+    ],
+    "CHN": [
+      "china",
+      "chinesisch",
+      "chinese",
+      "volksrepublik china"
+    ],
+    "IND": [
+      "indien",
+      "india",
+      "indisch",
+      "indian"
+    ],
+    "BRA": [
+      "brasilien",
+      "brazil",
+      "brasilianisch",
+      "brazilian"
+    ],
+    "ZAF": [
+      "südafrika",
+      "south africa",
+      "südafrikanisch"
+    ],
+    "TUR": [
+      "türkei",
+      "turkey",
+      "türkisch",
+      "turkish"
+    ],
+    "HUN": [
+      "ungarn",
+      "hungary",
+      "ungarisch",
+      "hungarian"
+    ],
+    "POL": [
+      "polen",
+      "poland",
+      "polnisch",
+      "polish"
+    ],
+    "CZE": [
+      "tschechien",
+      "czech republic",
+      "czechia",
+      "tschechisch",
+      "czech"
+    ],
+    "SVK": [
+      "slowakei",
+      "slovakia",
+      "slowakisch",
+      "slovak"
+    ],
+    "SVN": [
+      "slowenien",
+      "slovenia",
+      "slowenisch",
+      "slovenian"
+    ],
+    "EST": [
+      "estland",
+      "estonia",
+      "estnisch",
+      "estonian"
+    ],
+    "LVA": [
+      "lettland",
+      "latvia",
+      "lettisch",
+      "latvian"
+    ],
+    "LTU": [
+      "litauen",
+      "lithuania",
+      "litauisch",
+      "lithuanian"
+    ],
+    "ROU": [
+      "rumänien",
+      "romania",
+      "rumänisch",
+      "romanian"
+    ],
+    "BGR": [
+      "bulgarien",
+      "bulgaria",
+      "bulgarisch",
+      "bulgarian"
+    ],
+    "HRV": [
+      "kroatien",
+      "croatia",
+      "kroatisch",
+      "croatian"
+    ],
+    "ALB": [
+      "albanien",
+      "albania",
+      "albanisch",
+      "albanian"
+    ],
+    "BIH": [
+      "bosnien",
+      "bosnia",
+      "bosnia and herzegovina",
+      "bosnisch"
+    ],
+    "SRB": [
+      "serbien",
+      "serbia",
+      "serbisch",
+      "serbian"
+    ],
+    "MKD": [
+      "nordmazedonien",
+      "north macedonia",
+      "mazedonien",
+      "macedonia"
+    ],
+    "MNE": [
+      "montenegro",
+      "montenegrinisch",
+      "montenegrin"
+    ],
+    "BLR": [
+      "belarus",
+      "weißrussland",
+      "weissrussland",
+      "belorussisch"
+    ],
+    "UKR": [
+      "ukraine",
+      "ukrainisch",
+      "ukrainian"
+    ],
+    "MDA": [
+      "moldau",
+      "moldova",
+      "moldawien",
+      "moldovan"
+    ],
+    "GEO": [
+      "georgien",
+      "georgia",
+      "georgisch",
+      "georgian"
+    ],
+    "ARM": [
+      "armenien",
+      "armenia",
+      "armenisch",
+      "armenian"
+    ],
+    "AZE": [
+      "aserbaidschan",
+      "azerbaijan",
+      "aserbaidschanisch"
+    ],
+    "KAZ": [
+      "kasachstan",
+      "kazakhstan",
+      "kasachisch"
+    ],
+    "KGZ": [
+      "kirgistan",
+      "kyrgyzstan",
+      "kirgisistan",
+      "kirgisisch"
+    ],
+    "TJK": [
+      "tadschikistan",
+      "tajikistan",
+      "tadschikisch"
+    ],
+    "TKM": [
+      "turkmenistan",
+      "turkmenisch",
+      "turkmen"
+    ],
+    "UZB": [
+      "usbekistan",
+      "uzbekistan",
+      "usbekisch"
+    ]
   },
   "country_slugs": {
     "AUT": "austria",
@@ -123,61 +396,446 @@
     "UZB": "uzbekistan"
   },
   "ratings": {
-    "AUT": {"total_score": 93, "pr_score": 37, "cl_score": 56, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "DEU": {"total_score": 93, "pr_score": 38, "cl_score": 55, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "CHE": {"total_score": 96, "pr_score": 39, "cl_score": 57, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "FRA": {"total_score": 89, "pr_score": 36, "cl_score": 53, "status": "Free", "pr_rating": 1, "cl_rating": 2},
-    "ITA": {"total_score": 90, "pr_score": 36, "cl_score": 54, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "ESP": {"total_score": 90, "pr_score": 37, "cl_score": 53, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "GBR": {"total_score": 91, "pr_score": 37, "cl_score": 54, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "SWE": {"total_score": 100, "pr_score": 40, "cl_score": 60, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "NOR": {"total_score": 100, "pr_score": 40, "cl_score": 60, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "DNK": {"total_score": 97, "pr_score": 40, "cl_score": 57, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "FIN": {"total_score": 100, "pr_score": 40, "cl_score": 60, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "NLD": {"total_score": 97, "pr_score": 39, "cl_score": 58, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "BEL": {"total_score": 96, "pr_score": 39, "cl_score": 57, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "IRL": {"total_score": 97, "pr_score": 39, "cl_score": 58, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "GRC": {"total_score": 84, "pr_score": 35, "cl_score": 49, "status": "Free", "pr_rating": 2, "cl_rating": 2},
-    "PRT": {"total_score": 96, "pr_score": 39, "cl_score": 57, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "USA": {"total_score": 83, "pr_score": 33, "cl_score": 50, "status": "Free", "pr_rating": 2, "cl_rating": 2},
-    "CAN": {"total_score": 97, "pr_score": 40, "cl_score": 57, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "AUS": {"total_score": 95, "pr_score": 39, "cl_score": 56, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "NZL": {"total_score": 99, "pr_score": 40, "cl_score": 59, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "JPN": {"total_score": 96, "pr_score": 40, "cl_score": 56, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "ISR": {"total_score": 74, "pr_score": 32, "cl_score": 42, "status": "Free", "pr_rating": 2, "cl_rating": 3},
-    "RUS": {"total_score": 13, "pr_score": 5, "cl_score": 8, "status": "Not Free", "pr_rating": 7, "cl_rating": 7},
-    "CHN": {"total_score": 9, "pr_score": -2, "cl_score": 11, "status": "Not Free", "pr_rating": 7, "cl_rating": 7},
-    "IND": {"total_score": 66, "pr_score": 33, "cl_score": 33, "status": "Partly Free", "pr_rating": 2, "cl_rating": 3},
-    "BRA": {"total_score": 72, "pr_score": 31, "cl_score": 41, "status": "Free", "pr_rating": 2, "cl_rating": 2},
-    "ZAF": {"total_score": 79, "pr_score": 33, "cl_score": 46, "status": "Free", "pr_rating": 2, "cl_rating": 2},
-    "TUR": {"total_score": 33, "pr_score": 16, "cl_score": 17, "status": "Not Free", "pr_rating": 5, "cl_rating": 6},
-    "HUN": {"total_score": 65, "pr_score": 26, "cl_score": 39, "status": "Partly Free", "pr_rating": 3, "cl_rating": 3},
-    "POL": {"total_score": 80, "pr_score": 33, "cl_score": 47, "status": "Free", "pr_rating": 2, "cl_rating": 2},
-    "CZE": {"total_score": 91, "pr_score": 37, "cl_score": 54, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "SVK": {"total_score": 88, "pr_score": 35, "cl_score": 53, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "SVN": {"total_score": 95, "pr_score": 39, "cl_score": 56, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "EST": {"total_score": 95, "pr_score": 39, "cl_score": 56, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "LVA": {"total_score": 89, "pr_score": 36, "cl_score": 53, "status": "Free", "pr_rating": 1, "cl_rating": 2},
-    "LTU": {"total_score": 90, "pr_score": 37, "cl_score": 53, "status": "Free", "pr_rating": 1, "cl_rating": 1},
-    "ROU": {"total_score": 83, "pr_score": 35, "cl_score": 48, "status": "Free", "pr_rating": 2, "cl_rating": 2},
-    "BGR": {"total_score": 78, "pr_score": 32, "cl_score": 46, "status": "Free", "pr_rating": 2, "cl_rating": 2},
-    "HRV": {"total_score": 86, "pr_score": 35, "cl_score": 51, "status": "Free", "pr_rating": 1, "cl_rating": 2},
-    "ALB": {"total_score": 67, "pr_score": 28, "cl_score": 39, "status": "Partly Free", "pr_rating": 3, "cl_rating": 3},
-    "BIH": {"total_score": 51, "pr_score": 19, "cl_score": 32, "status": "Partly Free", "pr_rating": 4, "cl_rating": 4},
-    "SRB": {"total_score": 57, "pr_score": 23, "cl_score": 34, "status": "Partly Free", "pr_rating": 3, "cl_rating": 3},
-    "MKD": {"total_score": 66, "pr_score": 27, "cl_score": 39, "status": "Partly Free", "pr_rating": 3, "cl_rating": 3},
-    "MNE": {"total_score": 67, "pr_score": 28, "cl_score": 39, "status": "Partly Free", "pr_rating": 3, "cl_rating": 3},
-    "BLR": {"total_score": 8, "pr_score": 1, "cl_score": 7, "status": "Not Free", "pr_rating": 7, "cl_rating": 7},
-    "UKR": {"total_score": 50, "pr_score": 22, "cl_score": 28, "status": "Partly Free", "pr_rating": 4, "cl_rating": 4},
-    "MDA": {"total_score": 62, "pr_score": 27, "cl_score": 35, "status": "Partly Free", "pr_rating": 3, "cl_rating": 3},
-    "GEO": {"total_score": 58, "pr_score": 23, "cl_score": 35, "status": "Partly Free", "pr_rating": 4, "cl_rating": 3},
-    "ARM": {"total_score": 54, "pr_score": 22, "cl_score": 32, "status": "Partly Free", "pr_rating": 4, "cl_rating": 4},
-    "AZE": {"total_score": 7, "pr_score": -1, "cl_score": 8, "status": "Not Free", "pr_rating": 7, "cl_rating": 6},
-    "KAZ": {"total_score": 23, "pr_score": 7, "cl_score": 16, "status": "Not Free", "pr_rating": 6, "cl_rating": 5},
-    "KGZ": {"total_score": 27, "pr_score": 9, "cl_score": 18, "status": "Not Free", "pr_rating": 6, "cl_rating": 5},
-    "TJK": {"total_score": 5, "pr_score": 0, "cl_score": 5, "status": "Not Free", "pr_rating": 7, "cl_rating": 6},
-    "TKM": {"total_score": 2, "pr_score": 0, "cl_score": 2, "status": "Not Free", "pr_rating": 7, "cl_rating": 7},
-    "UZB": {"total_score": 12, "pr_score": 4, "cl_score": 8, "status": "Not Free", "pr_rating": 7, "cl_rating": 6}
+    "AUT": {
+      "total_score": 93,
+      "pr_score": 37,
+      "cl_score": 56,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "DEU": {
+      "total_score": 93,
+      "pr_score": 39,
+      "cl_score": 54,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "CHE": {
+      "total_score": 96,
+      "pr_score": 39,
+      "cl_score": 57,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "FRA": {
+      "total_score": 89,
+      "pr_score": 38,
+      "cl_score": 51,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 2
+    },
+    "ITA": {
+      "total_score": 90,
+      "pr_score": 36,
+      "cl_score": 54,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "ESP": {
+      "total_score": 90,
+      "pr_score": 37,
+      "cl_score": 53,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "GBR": {
+      "total_score": 91,
+      "pr_score": 38,
+      "cl_score": 53,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "SWE": {
+      "total_score": 99,
+      "pr_score": 40,
+      "cl_score": 59,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "NOR": {
+      "total_score": 98,
+      "pr_score": 39,
+      "cl_score": 59,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "DNK": {
+      "total_score": 97,
+      "pr_score": 40,
+      "cl_score": 57,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "FIN": {
+      "total_score": 100,
+      "pr_score": 40,
+      "cl_score": 60,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "NLD": {
+      "total_score": 97,
+      "pr_score": 39,
+      "cl_score": 58,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "BEL": {
+      "total_score": 96,
+      "pr_score": 39,
+      "cl_score": 57,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "IRL": {
+      "total_score": 97,
+      "pr_score": 39,
+      "cl_score": 58,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "GRC": {
+      "total_score": 85,
+      "pr_score": 35,
+      "cl_score": 50,
+      "status": "Free",
+      "pr_rating": 2,
+      "cl_rating": 2
+    },
+    "PRT": {
+      "total_score": 96,
+      "pr_score": 39,
+      "cl_score": 57,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "USA": {
+      "total_score": 83,
+      "pr_score": 33,
+      "cl_score": 50,
+      "status": "Free",
+      "pr_rating": 2,
+      "cl_rating": 2
+    },
+    "CAN": {
+      "total_score": 97,
+      "pr_score": 39,
+      "cl_score": 58,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "AUS": {
+      "total_score": 95,
+      "pr_score": 38,
+      "cl_score": 57,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "NZL": {
+      "total_score": 99,
+      "pr_score": 40,
+      "cl_score": 59,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "JPN": {
+      "total_score": 96,
+      "pr_score": 40,
+      "cl_score": 56,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "ISR": {
+      "total_score": 74,
+      "pr_score": 34,
+      "cl_score": 40,
+      "status": "Free",
+      "pr_rating": 2,
+      "cl_rating": 3
+    },
+    "RUS": {
+      "total_score": 13,
+      "pr_score": 4,
+      "cl_score": 9,
+      "status": "Not Free",
+      "pr_rating": 7,
+      "cl_rating": 6
+    },
+    "CHN": {
+      "total_score": 9,
+      "pr_score": -2,
+      "cl_score": 11,
+      "status": "Not Free",
+      "pr_rating": 7,
+      "cl_rating": 6
+    },
+    "IND": {
+      "total_score": 66,
+      "pr_score": 33,
+      "cl_score": 33,
+      "status": "Partly Free",
+      "pr_rating": 2,
+      "cl_rating": 4
+    },
+    "BRA": {
+      "total_score": 72,
+      "pr_score": 30,
+      "cl_score": 42,
+      "status": "Free",
+      "pr_rating": 2,
+      "cl_rating": 3
+    },
+    "ZAF": {
+      "total_score": 79,
+      "pr_score": 33,
+      "cl_score": 46,
+      "status": "Free",
+      "pr_rating": 2,
+      "cl_rating": 2
+    },
+    "TUR": {
+      "total_score": 33,
+      "pr_score": 17,
+      "cl_score": 16,
+      "status": "Not Free",
+      "pr_rating": 5,
+      "cl_rating": 6
+    },
+    "HUN": {
+      "total_score": 65,
+      "pr_score": 24,
+      "cl_score": 41,
+      "status": "Partly Free",
+      "pr_rating": 3,
+      "cl_rating": 3
+    },
+    "POL": {
+      "total_score": 80,
+      "pr_score": 33,
+      "cl_score": 47,
+      "status": "Free",
+      "pr_rating": 2,
+      "cl_rating": 2
+    },
+    "CZE": {
+      "total_score": 94,
+      "pr_score": 36,
+      "cl_score": 58,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "SVK": {
+      "total_score": 90,
+      "pr_score": 37,
+      "cl_score": 53,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "SVN": {
+      "total_score": 96,
+      "pr_score": 39,
+      "cl_score": 57,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "EST": {
+      "total_score": 95,
+      "pr_score": 38,
+      "cl_score": 57,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 1
+    },
+    "LVA": {
+      "total_score": 88,
+      "pr_score": 37,
+      "cl_score": 51,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 2
+    },
+    "LTU": {
+      "total_score": 89,
+      "pr_score": 38,
+      "cl_score": 51,
+      "status": "Free",
+      "pr_rating": 1,
+      "cl_rating": 2
+    },
+    "ROU": {
+      "total_score": 83,
+      "pr_score": 35,
+      "cl_score": 48,
+      "status": "Free",
+      "pr_rating": 2,
+      "cl_rating": 2
+    },
+    "BGR": {
+      "total_score": 78,
+      "pr_score": 32,
+      "cl_score": 46,
+      "status": "Free",
+      "pr_rating": 2,
+      "cl_rating": 2
+    },
+    "HRV": {
+      "total_score": 83,
+      "pr_score": 34,
+      "cl_score": 49,
+      "status": "Free",
+      "pr_rating": 2,
+      "cl_rating": 2
+    },
+    "ALB": {
+      "total_score": 68,
+      "pr_score": 28,
+      "cl_score": 40,
+      "status": "Partly Free",
+      "pr_rating": 3,
+      "cl_rating": 3
+    },
+    "BIH": {
+      "total_score": 51,
+      "pr_score": 17,
+      "cl_score": 34,
+      "status": "Partly Free",
+      "pr_rating": 5,
+      "cl_rating": 4
+    },
+    "SRB": {
+      "total_score": 57,
+      "pr_score": 18,
+      "cl_score": 39,
+      "status": "Partly Free",
+      "pr_rating": 4,
+      "cl_rating": 3
+    },
+    "MKD": {
+      "total_score": 67,
+      "pr_score": 28,
+      "cl_score": 39,
+      "status": "Partly Free",
+      "pr_rating": 3,
+      "cl_rating": 3
+    },
+    "MNE": {
+      "total_score": 69,
+      "pr_score": 27,
+      "cl_score": 42,
+      "status": "Partly Free",
+      "pr_rating": 3,
+      "cl_rating": 3
+    },
+    "BLR": {
+      "total_score": 8,
+      "pr_score": 2,
+      "cl_score": 6,
+      "status": "Not Free",
+      "pr_rating": 7,
+      "cl_rating": 7
+    },
+    "UKR": {
+      "total_score": 49,
+      "pr_score": 21,
+      "cl_score": 28,
+      "status": "Partly Free",
+      "pr_rating": 4,
+      "cl_rating": 4
+    },
+    "MDA": {
+      "total_score": 61,
+      "pr_score": 26,
+      "cl_score": 35,
+      "status": "Partly Free",
+      "pr_rating": 3,
+      "cl_rating": 3
+    },
+    "GEO": {
+      "total_score": 58,
+      "pr_score": 22,
+      "cl_score": 36,
+      "status": "Partly Free",
+      "pr_rating": 4,
+      "cl_rating": 3
+    },
+    "ARM": {
+      "total_score": 54,
+      "pr_score": 23,
+      "cl_score": 31,
+      "status": "Partly Free",
+      "pr_rating": 4,
+      "cl_rating": 4
+    },
+    "AZE": {
+      "total_score": 7,
+      "pr_score": 0,
+      "cl_score": 7,
+      "status": "Not Free",
+      "pr_rating": 7,
+      "cl_rating": 7
+    },
+    "KAZ": {
+      "total_score": 23,
+      "pr_score": 5,
+      "cl_score": 18,
+      "status": "Not Free",
+      "pr_rating": 7,
+      "cl_rating": 5
+    },
+    "KGZ": {
+      "total_score": 27,
+      "pr_score": 4,
+      "cl_score": 23,
+      "status": "Not Free",
+      "pr_rating": 7,
+      "cl_rating": 5
+    },
+    "TJK": {
+      "total_score": 5,
+      "pr_score": 0,
+      "cl_score": 5,
+      "status": "Not Free",
+      "pr_rating": 7,
+      "cl_rating": 7
+    },
+    "TKM": {
+      "total_score": 2,
+      "pr_score": 0,
+      "cl_score": 2,
+      "status": "Not Free",
+      "pr_rating": 7,
+      "cl_rating": 7
+    },
+    "UZB": {
+      "total_score": 12,
+      "pr_score": 2,
+      "cl_score": 10,
+      "status": "Not Free",
+      "pr_rating": 7,
+      "cl_rating": 6
+    }
   },
   "world_summary_2024": {
     "total_countries_covered": 195,

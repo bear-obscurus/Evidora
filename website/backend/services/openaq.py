@@ -417,11 +417,21 @@ async def _process_city(
     Returns Liste von max 1 result-Dict pro Stadt (top-Sensor),
     leer bei keinen Treffern.
     """
+    # 25 km Radius reicht in der Regel für Stadt-Sensoren, aber Wien
+    # + andere AT-Städte haben schwächere Sensor-Dichte → 50 km
+    # Fallback wenn 25-km leer.
     locations = await _fetch_locations_near(
         client, api_key, lat, lon, radius_m=25000, params=DEFAULT_PARAMS,
     )
     if not locations:
-        logger.debug(f"OpenAQ: 0 locations für {city_label}")
+        logger.debug(
+            f"OpenAQ: 0 locations für {city_label} bei 25 km — versuche 50 km"
+        )
+        locations = await _fetch_locations_near(
+            client, api_key, lat, lon, radius_m=50000, params=DEFAULT_PARAMS,
+        )
+    if not locations:
+        logger.debug(f"OpenAQ: 0 locations für {city_label} auch bei 50 km")
         return []
 
     # Wähle erste Location mit ≥1 PM2.5-/NO2-Sensor

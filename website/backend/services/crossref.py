@@ -214,9 +214,15 @@ def _format_result(item: dict) -> dict | None:
         if pages:
             disp_loc += f":{pages}"
         disp_loc += "."
+    # Citation-Count an PROMINENTE Position (vorne nach Author/Jahr) damit
+    # Synthesizer Aussagen wie "die Studie wurde >5000 Mal zitiert" nicht
+    # übersieht. Format: "Cited 8903 times. Steffen, W. et al. (2015). ..."
+    cited_prefix = (
+        f"Cited {cited_by_str} times. " if cited_by_str != "n/a" else ""
+    )
     display_value = (
-        f"{name_author} ({year}). '{title}'.{disp_loc} "
-        f"DOI: {doi}. Cited by {cited_by_str} times."
+        f"{cited_prefix}{name_author} ({year}). '{title}'.{disp_loc} "
+        f"DOI: {doi}."
     )[:500]
 
     # description: Abstract-Preview (max 280 chars) oder Fallback
