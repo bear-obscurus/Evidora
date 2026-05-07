@@ -108,9 +108,12 @@ from services.datenschutz_pack import search_datenschutz, claim_mentions_datensc
 from services.sozialstaat_pack import search_sozialstaat, claim_mentions_sozialstaat_cached
 from services.owid import search_owid
 from services.wayback import search_wayback, claim_has_url_cached
-from services.crossref import search_crossref, _claim_mentions_paper as _claim_mentions_crossref
+from services.crossref import search_crossref, _claim_mentions_paper as _claim_mentions_crossref, _extract_dois
 from services.openaq import search_openaq, claim_mentions_air_quality
 from services.wikidata import search_wikidata, claim_triggers_wikidata
+from services.freedom_house import search_freedom_house, claim_mentions_freedom_house_cached
+from services.arxiv import search_arxiv, _claim_mentions_preprint_research, _extract_arxiv_ids
+from services.uncomtrade import search_uncomtrade, claim_mentions_trade
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
@@ -967,7 +970,7 @@ async def check_claim(request: Request):
         # Crossref REST API (frei, mailto-polite-pool): DOI-Resolution
         # + Paper-Search. Triggert wenn der Claim eine DOI enthält ODER
         # paper-keywords (Studie/Forschung/Journal/etc.) + Search-Query.
-        if _claim_mentions_crossref(claim, analysis):
+        if _extract_dois(claim) or _claim_mentions_crossref(claim, analysis):
             tasks.append(cached("Crossref", search_crossref, analysis))
             queried_names.append("Crossref")
         # OpenAQ v3 (Air-Quality-Sensor-Daten weltweit, CC-BY 4.0):
@@ -985,6 +988,29 @@ async def check_claim(request: Request):
         if claim_triggers_wikidata(claim, analysis):
             tasks.append(cached("Wikidata", search_wikidata, analysis))
             queried_names.append("Wikidata SPARQL")
+        # Freedom House FIW 2024 (Static-First-Pre-Cache wie V-Dem):
+        # 55 Länder × 6 Indikatoren (total_score 0-100, PR/CL-scores,
+        # status Free/Partly Free/Not Free). ⚠ Werte aktuell LLM-
+        # Approximationen — Refresh aus offiziellem CSV einmal/Jahr.
+        # Komplementär zu V-Dem (continuous 0-1) mit Schwellen-Status.
+        if claim_mentions_freedom_house_cached(claim):
+            tasks.append(cached("FreedomHouse", search_freedom_house, analysis))
+            queried_names.append("Freedom House FIW 2024")
+        # arXiv Preprint-API (frei, Cornell-Hosting, Atom-XML):
+        # ~2 Mio Preprints seit 1991. Triggert bei arXiv-ID im Claim
+        # (Regex 2401.12345 oder hep-th/9501001) ODER STEM-Research-
+        # Keyword + analysis-Queries. ⚠ Synthesizer behandelt Preprints
+        # als nicht-peer-reviewed.
+        if _extract_arxiv_ids(claim) or _claim_mentions_preprint_research(claim, analysis):
+            tasks.append(cached("arXiv", search_arxiv, analysis))
+            queried_names.append("arXiv (Preprints)")
+        # UN Comtrade (frei, M49-Codes + HS-Klassifikation): bilaterale
+        # Handelsflüsse Reporter↔Partner × HS-Chapter × Jahr. Triggert
+        # bei Trade-Keyword + ≥1 Land ODER ≥2 Länder. Optional API-Key
+        # via env-var COMTRADE_API_KEY für höhere Limits.
+        if claim_mentions_trade(claim, analysis):
+            tasks.append(cached("UNComtrade", search_uncomtrade, analysis))
+            queried_names.append("UN Comtrade")
         # EIGE Live-RSS (European Institute for Gender Equality, Vilnius):
         # aktuelle Newsroom-Items zu Gleichstellung, EU-Direktiven, neue
         # EIGE-Berichte. Komplementär zum statischen gleichstellung_pack.
