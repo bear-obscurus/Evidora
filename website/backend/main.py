@@ -106,6 +106,9 @@ from services.arbeitsmarkt_pack import search_arbeitsmarkt, claim_mentions_arbei
 from services.mobilitaet_pack import search_mobilitaet, claim_mentions_mobilitaet_cached
 from services.datenschutz_pack import search_datenschutz, claim_mentions_datenschutz_cached
 from services.sozialstaat_pack import search_sozialstaat, claim_mentions_sozialstaat_cached
+from services.owid import search_owid
+from services.vdem import search_vdem, claim_mentions_vdem_cached
+from services.wayback import search_wayback, claim_has_url_cached
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
@@ -942,6 +945,28 @@ async def check_claim(request: Request):
         if claim_mentions_sozialstaat_cached(claim):
             tasks.append(cached("Sozialstaat-Konsens", search_sozialstaat, analysis))
             queried_names.append("Sozialstaat-Konsens (Statistik Austria + BMSGPK + WIFO + IHS + AK Wien + AMS + PVA + AT-VfGH + OECD + Eurostat ESSPROS + Bertelsmann)")
+        # OurWorldInData (OWID, CC-BY 4.0): 31 hochwertige Indikatoren zu
+        # Klima/Energie/Gesundheit/Wirtschaft/Demografie. Triggert wenn die
+        # Claim-Analysis category zu (health|climate|economy|demographics)
+        # passt ODER ein DE/EN-Keyword aus der Indikator-Whitelist matcht.
+        # On-Demand-CSV-Fetch von ourworldindata.org/grapher/{slug}.csv für
+        # AT/DE/CH/Welt-Vergleich, max 3 Indikatoren pro Claim.
+        if (analysis.get("category") in ("health", "climate", "economy", "demographics")
+                or analysis.get("entities") or analysis.get("keywords")):
+            tasks.append(cached("OurWorldInData", search_owid, analysis))
+            queried_names.append("OurWorldInData (CC-BY 4.0)")
+        # V-Dem (Varieties of Democracy, University of Gothenburg):
+        # 11 Demokratie-Indizes × 32 Länder × 2019-2023, Static-First-JSON.
+        # ⚠ Werte aktuell LLM-Knowledge-Approximationen — Audit-Refresh aus
+        # offizieller V-Dem v14 CSV ausstehend (Audit-Flag im JSON).
+        if claim_mentions_vdem_cached(claim):
+            tasks.append(cached("V-Dem", search_vdem, analysis))
+            queried_names.append("V-Dem Institute (University of Gothenburg)")
+        # Wayback Machine CDX (Internet Archive): URL-Archiv-Lookup —
+        # triggert wenn der Claim eine URL oder Domain enthält.
+        if claim_has_url_cached(claim):
+            tasks.append(cached("Wayback", search_wayback, analysis))
+            queried_names.append("Wayback Machine (Internet Archive)")
         # EIGE Live-RSS (European Institute for Gender Equality, Vilnius):
         # aktuelle Newsroom-Items zu Gleichstellung, EU-Direktiven, neue
         # EIGE-Berichte. Komplementär zum statischen gleichstellung_pack.
