@@ -1,0 +1,613 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-07",
+  "source_label": "AGES + EFSA + IARC + WHO + BMVL + BOKU Wien + Statistik Austria + FAO + IPES-Food + ETC Group + Wagenigen UR + Royal Society + ÖPUL + Bergbauern-Förderung + EU-Kommission + peer-reviewed Forschung (Seufert 2012 Nature, Ponisio 2015 ProcRoyalSocB, Smith 2019 NatComm)",
+  "facts": [
+    {
+      "id": "gvo_gentechnik_risiko_2026",
+      "topic": "gvo_gentechnik_risiko_konsens",
+      "scope": "GVO (Gentechnisch veränderte Organismen) Sicherheits-Bewertung — EFSA + Royal Society + WHO Konsens, EU-Anbau-Verbote, NGT-Verordnung 2024",
+      "year": 2024,
+      "source_url": "https://www.efsa.europa.eu/de/topics/topic/gmo",
+      "secondary_url": "https://royalsociety.org/topics-policy/projects/gm-plants/",
+      "source_label": "EFSA GMO Panel + Royal Society Statement on GM Plants 2016 + WHO Q&A on GMOs + EU NGT-Verordnung 2024 + AT Stop-GVO-Petition 2014 + Nicolia/Manzo/Veronesi/Rosellini 2014 Crit Rev Biotechnol Meta-Analyse 'An overview of the last 10 years of genetically engineered crop safety research'",
+      "headline": "EFSA + Royal Society + WHO Konsens: zugelassene GVO zeigen keine erhöhten Gesundheits-Risiken; EU-Zulassung 1 Mais MON810; AT/DE Anbau-Verbote (Schutzklausel-Recht); EU-NGT-Verordnung 2024 lockert Cisgenese",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'GVO sind gesundheitsgefährdend' ist nach EFSA-/Royal Society-/WHO-Konsens empirisch NICHT belegt. Empirische Lage: (1) EFSA GMO Panel: über 130 wissenschaftliche Studien zu zugelassenen GVO-Pflanzen ausgewertet — keine Hinweise auf erhöhte Gesundheits-Risiken im Vergleich zu konventionellen Sorten. Royal Society 2016 Statement on GM Plants bestätigt Konsens. WHO Q&A: 'GVO-Lebensmittel auf dem internationalen Markt haben Sicherheitsbewertungen durchlaufen und werden nach EFSA-/Codex-Standards bewertet — Hinweise auf gesundheitliche Beeinträchtigungen liegen nicht vor.' Nicolia/Manzo/Veronesi/Rosellini 2014 Critical Reviews in Biotechnology Meta-Analyse über 1.783 Studien aus 10 Jahren GVO-Sicherheits-Forschung: kein dokumentiertes Gesundheits-Risiko bei zugelassenen GVO. (2) EU-Zulassung restriktiv: nur 1 GVO-Mais (MON810) für Anbau zugelassen, ~70 GVO für Import + Verarbeitung. AT, DE, FR und 16 weitere EU-Mitgliedsstaaten haben Anbau-Verbote auf nationaler Ebene erlassen (EU-Schutzklausel-Recht der Opt-Out-Richtlinie 2015/412). (3) EU-NGT-Verordnung 2024: Lockerung für 'Neue Genomische Techniken' (NGT-1 = Cisgenese mit gleichen Mutationen wie konventionelle Züchtung könnte erreichen) — Kennzeichnungs-Pflicht abgeschwächt. NGT-2 (komplexere Eingriffe) bleibt unter strikter GVO-Regulierung. AT-Position: kritisch zu NGT-1-Lockerung. (4) AT-Stop-GVO-Volksbegehren 2014: ~700.000 Unterschriften. AT bleibt GVO-Anbau-frei. (5) Faktencheck-relevant: Aussagen wie 'GVO sind giftig / krebserregend' sind durch EFSA-/Royal-Society-/WHO-Konsens nicht belegt. Aussagen wie 'GVO sind völlig unbedenklich' sind methodisch zu absolut — Sicherheits-Bewertung gilt für ZUGELASSENE GVO, nicht jeden möglichen GVO. Pack distanziert sich von Pro/Contra-GVO-Wertung — präsentiert nur Stand der wissenschaftlichen Bewertung.",
+        "efsa_konsens": "EFSA GMO Panel hat seit 2003 über 130 GVO-Sicherheits-Bewertungen durchgeführt. Methodik: vergleichend mit konventioneller Sorte, Test auf Toxizität + Allergenität + ökologische Effekte. Keine zugelassene GVO-Sorte zeigte erhöhtes Gesundheits-Risiko. Royal Society 2016: 'GM crops grown commercially have not been shown to harm human health.'",
+        "eu_zulassung_restrictive": "EU-Zulassung 2024: 1 GVO-Mais MON810 für Anbau (insektenresistente Bt-Sorte), ~70 GVO-Sorten für Import + Verarbeitung (Sojabohnen, Mais, Raps, Baumwolle). EU-weite Zulassung erfordert qualifizierte Mehrheit im Ständigen Ausschuss — selten erreicht. AT/DE/FR/IT/POL/HU/GR und 11 weitere haben Anbau-Verbote (Opt-Out-Richtlinie 2015/412).",
+        "ngt_verordnung_2024": "EU-NGT-Verordnung Februar 2024: 'Neue Genomische Techniken' werden in 2 Kategorien aufgeteilt. NGT-1 (gleiche Mutationen wie konventionelle Züchtung erreichen könnte): Kennzeichnungs-Pflicht für Saatgut, NICHT für Endprodukt. NGT-2 (komplexere Eingriffe): bleibt unter strikter GVO-Regulierung. EU-Parlament + Rat noch nicht final, Trilog 2025 erwartet.",
+        "at_position": "AT-Bundesregierung lehnt NGT-Lockerung ab (Februar 2024 BMK-Position). AT Stop-GVO-Volksbegehren 2014 (~700.000 Unterschriften), GenTechnikGesetz 2005 + EU-Schutzklausel-Recht. AT-GVO-Anbau-frei seit Inkrafttreten der Richtlinie 2001/18/EG.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-GVO-Wertung — präsentiert nur EFSA-/Royal-Society-/WHO-Konsens-Lage."
+      },
+      "context_notes": [
+        "Wichtige Unterscheidung: Sicherheits-Konsens gilt für ZUGELASSENE GVO (rigorose EFSA-Prüfung), nicht für jeden möglichen GVO.",
+        "EU-Zulassung restrictiv: nur MON810 für Anbau, ~70 für Import. AT + 18 weitere EU-Staaten haben Anbau-Verbote.",
+        "NGT-Verordnung 2024 ist neueste regulatorische Entwicklung — Cisgenese-Lockerung umstritten."
+      ],
+      "claim_phrasings_handled": [
+        "GVO sind gesundheitsgefährdend",
+        "Gentechnik-Lebensmittel verursachen Krebs",
+        "GVO sind giftig",
+        "Wir essen jeden Tag Gentechnik ohne es zu wissen",
+        "EFSA hat keine Bedenken bei GVO",
+        "Gentechnik-Pflanzen sind sicher"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["gvo", "gv-o", "gentechnik", "gen-technik", "gentechnisch", "gen-technisch",
+         "transgen", "genmanipuliert", "gen-manipuliert", "ngt", "neue genomische",
+         "cisgenese", "cisgenetik", "genome editing", "crispr", "cas9", "gmo",
+         "genetically modified", "mon810", "monsanto", "bayer-monsanto"],
+        ["gesundheit", "gesundheits-risiko", "krebserregend", "giftig", "toxisch",
+         "schädlich", "schaedlich", "sicher", "sicherheit", "unbedenklich",
+         "bedenklich", "kanzerogen", "allergie", "allergen", "efsa", "efsa-bewertung",
+         "royal society", "who", "konsens", "wissenschaft", "studien", "anbau-verbot",
+         "anbauverbot", "zugelassen", "zulassung", "kennzeichnung", "essen", "lebensmittel",
+         "nahrung", "ernährung", "ernaehrung"]
+      ]
+    },
+    {
+      "id": "bio_landbau_ertrags_oekobilanz_2026",
+      "topic": "bio_landbau_ertrags_oekobilanz_konsens",
+      "scope": "Bio vs. konventionelle Landwirtschaft — Ertrag, Ökobilanz, Klima — Meta-Analyse-Konsens",
+      "year": 2024,
+      "source_url": "https://www.nature.com/articles/nature11069",
+      "secondary_url": "https://royalsocietypublishing.org/doi/10.1098/rspb.2014.1396",
+      "source_label": "Seufert/Ramankutty/Foley 2012 Nature 485:229-232 'Comparing the yields of organic and conventional agriculture' + Ponisio et al. 2015 Proc Royal Soc B 282:20141396 'Diversification practices reduce organic to conventional yield gap' + Smith/Reganold/Carpenter-Boggs 2019 Nature Communications 10:3041 'Reduced yield from organic farming corresponds with reduced biodiversity loss elsewhere' + Statistik Austria + AGES Pflanzenschutz-Bilanz",
+      "headline": "Bio-Landbau ~20-25 % geringerer Ertrag/ha (Seufert Nature 2012 + Ponisio 2015), aber ~30 % weniger Inputs + bessere Boden-Biodiversität; AT Bio-Anteil 26 % der Acker-Fläche 2024 — höchster EU",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Bio-Landbau hat keinen Ertrags-Nachteil' ODER 'Bio-Landbau ist immer ökologisch besser' sind beide differenziert FALSCH. Empirische Lage: (1) META-ANALYSE Seufert/Ramankutty/Foley 2012 Nature 485:229-232 'Comparing the yields of organic and conventional agriculture': 316 wissenschaftliche Vergleiche aus 66 Studien. Bio-Erträge 20-25 % unter konventionellen Erträgen (gemittelt). Pflanzen-spezifisch: bei Hülsenfrüchten (Stickstoff-Fixierung) nur -5 %, bei Weizen + Mais -25 % bis -36 %, bei Obst (Apfel + Birne) -3 %. (2) PONISIO et al. 2015 ProcRoyalSocB: Diversifikations-Praktiken (Mehrfach-Fruchtfolgen + Mischkulturen) reduzieren Ertrags-Gap auf 8-9 %. (3) SMITH/REGANOLD/CARPENTER-BOGGS 2019 Nature Communications: Bio braucht ~30 % MEHR Land für gleiche Produktion, aber 30 % WENIGER Pestizide + bessere Boden-Biodiversität. Trade-Off zwischen Ertrag und ökologischer Nachhaltigkeit. (4) KLIMA-BILANZ je nach Lebensmittel-Kategorie: Bio-Gemüse + Bio-Hülsenfrüchte oft besser, Bio-Fleisch oft schlechter (höherer Land-Bedarf bedeutet mehr Treibhausgas-Emissionen pro kg). Poore/Nemecek 2018 Science: Bio nicht universal klima-besser. (5) AT BIO-ANTEIL 2024: 26.4 % der Acker-Fläche (Statistik AT) — höchster Anteil EU + weltweit. AT hat höchste Bio-Förderung pro Hektar (ÖPUL). (6) Faktencheck-relevant: Aussagen wie 'Bio hat keinen Ertrags-Nachteil' sind nach Seufert 2012 + Ponisio 2015 nicht belegbar (2-25 % Gap je nach Pflanze + Praktiken). Aussagen wie 'Bio ist immer ökologischer' verkennen Klima-Bilanz-Komplexität. Pack distanziert sich von Pro/Contra-Bio-Wertung.",
+        "seufert_2012_nature": "Seufert/Ramankutty/Foley 2012 Nature 485:229-232: 316 organic-conventional Yield-Comparisons aus 66 Studien. Bio-Yield 20-25 % unter konventionell (gemittelt). Pflanzen-Familie matters: Hülsenfrüchte -5 %, Weizen/Mais -25-36 %, Obst -3 %. Schlüssel-Faktor: Stickstoff-Verfügbarkeit. Bei stickstoff-bindenden Pflanzen ist Bio-Gap minimal.",
+        "ponisio_2015": "Ponisio et al. 2015 Proc Royal Soc B 282:20141396: Wenn Bio mit Diversifikations-Praktiken (Multi-Cropping, Crop Rotation) kombiniert wird, reduziert sich der Yield-Gap auf 8-9 % (vs. 20-25 % bei Mono-Bio). Robust nach 1.071 Vergleichen.",
+        "smith_2019_natcomm": "Smith/Reganold/Carpenter-Boggs 2019 Nature Communications 10:3041: 'Reduced yield from organic farming corresponds with reduced biodiversity loss elsewhere' — Bio-Land-Bedarf-Plus etwa kompensiert durch Biodiversitäts-Erhalt vor Ort. Trade-Off, kein Universal-Sieg.",
+        "at_bio_anteil_2024": "AT Bio-Anteil 2024 (Statistik AT + AGES): 26.4 % der Acker-Fläche bio-zertifiziert (~640.000 ha von 2.43 Mio Acker-ha). ~24 % der Höfe bio-zertifiziert. Höchster Bio-Anteil EU + weltweit. Förderung via ÖPUL (Österreichisches Programm für umweltgerechte Landwirtschaft) ~600 Mio EUR/Jahr.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Bio-Wertung."
+      },
+      "context_notes": [
+        "Bio-Yield-Gap ist real (20-25 % gemittelt), aber pflanzen-spezifisch sehr unterschiedlich (Hülsenfrüchte fast Null, Weizen/Mais 25-36 %).",
+        "Klima-Bilanz Bio nicht universal besser — höherer Land-Bedarf kann Treibhausgas-Emissionen pro kg erhöhen (Poore/Nemecek 2018 Science).",
+        "AT hat mit 26 % Bio-Acker-Anteil den höchsten Wert weltweit (Statistik AT 2024)."
+      ],
+      "claim_phrasings_handled": [
+        "Bio-Landbau hat keine Ertrags-Nachteile",
+        "Bio ist klimafreundlicher",
+        "Bio hat geringere Erträge",
+        "Bio braucht mehr Land",
+        "Österreich ist Bio-Weltmeister",
+        "Bio ist immer ökologisch besser"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["bio", "bio-landbau", "biolandbau", "biologisch", "bio-zertifiziert",
+         "ökologisch", "oekologisch", "organic", "öpul", "oepul", "konventionell",
+         "konventioneller landbau", "intensive landwirtschaft", "extensiv",
+         "ertrag", "erträge", "ertraege", "yield"],
+        ["ertrag", "erträge", "ertraege", "produktion", "hektar", "ha",
+         "yield-gap", "ertrags-gap", "ertragsgap", "klima", "klima-bilanz",
+         "treibhausgas", "co2", "land-bedarf", "land", "fläche", "flaeche",
+         "biodiversität", "biodiversitaet", "boden", "ökologie", "oekologie",
+         "nachhaltig", "weniger", "mehr", "gleich", "besser", "schlechter",
+         "vergleich", "vs", "weltmeister"]
+      ]
+    },
+    {
+      "id": "glyphosat_empirie_2026",
+      "topic": "glyphosat_empirie_konsens",
+      "scope": "Glyphosat-Karzinogenität — IARC-vs-EFSA-Streit, Hazard-vs-Risk, EU-Genehmigungs-Verlängerung 2023",
+      "year": 2024,
+      "source_url": "https://www.efsa.europa.eu/de/news/glyphosate-no-critical-areas-concern-data-gaps-be-clarified",
+      "secondary_url": "https://www.iarc.who.int/news-events/iarc-monographs-volume-112-evaluation-of-five-organophosphate-insecticides-and-herbicides/",
+      "source_label": "IARC Monograph Volume 112 (2015) + EFSA Glyphosat-Bewertung 2017 + EFSA Glyphosat-Bewertung 2023 (CLH-Verfahren) + US-EPA 2020 Interim Decision + ECHA RAC 2017+2022 + AGES Pflanzenschutzmittel-Statistik 2024 + Statistik Austria",
+      "headline": "Glyphosat-Karzinogenitäts-Streit: IARC 2015 'wahrscheinlich kanzerogen' (Group 2A) vs. EFSA 2017+2023 'unwahrscheinlich kanzerogen' vs. US-EPA 2020 'unlikely' — Methodik-Diff Hazard vs. Risk; EU-Genehmigung 2023 +10 Jahre verlängert",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Glyphosat ist erwiesen krebserregend' ODER 'Glyphosat ist nachweislich harmlos' sind beide vereinfacht. Empirische Lage: (1) IARC MONOGRAPH 112 (2015) Working Group: Glyphosat 'probably carcinogenic to humans' (Group 2A). Begründung: limited Evidenz aus Mensch-Studien (NHL Non-Hodgkin-Lymphom), sufficient Evidenz aus Tier-Studien, strong mechanistische Evidenz. (2) EFSA-BEWERTUNG 2017 + ERNEUT 2023 (CLH-Verfahren): 'unwahrscheinlich, dass Glyphosat eine genotoxische Gefahr darstellt oder kanzerogen wirkt'. ECHA Risk Assessment Committee (RAC) 2017 + 2022 bestätigt: keine Klassifizierung als krebserregend. US-EPA 2020 Interim Registration Decision: 'Glyphosat ist unlikely to be carcinogenic to humans'. (3) METHODIK-UNTERSCHIED: IARC bewertet HAZARD (Gefahren-Identifikation, kann der Stoff prinzipiell Krebs verursachen?), EFSA + US-EPA bewerten RISK (welches Krebs-Risiko bei tatsächlicher Exposition?). Beide Antworten können wissenschaftlich korrekt sein. Salzwasser-Vergleich: Salz ist ähnlich Group 2B 'möglicherweise kanzerogen' nach IARC bei extremer Exposition, aber unter normalen Bedingungen kein Risiko. (4) EU-GENEHMIGUNG NOVEMBER 2023: EU-Mitgliedstaaten verlängern Glyphosat-Zulassung um 10 Jahre (bis 2033). AT + DE + FR enthielten sich, kein qualifizierter Mehrheits-Block gegen Verlängerung. (5) AT-EINSATZ 2024 (AGES + Statistik AT): ~3.500 t Glyphosat-Wirkstoff pro Jahr in AT eingesetzt (private + landwirtschaftlich). Privatgebrauch in AT seit 2017 stark eingeschränkt (Stadt Wien: Glyphosat-Verbot in öffentlichen Bereichen). (6) Faktencheck-relevant: Aussagen wie 'Glyphosat ist erwiesen krebserregend' verkennen Hazard-vs-Risk-Unterschied + EFSA-Befund. Aussagen wie 'Glyphosat ist nachweislich harmlos' überzeichnen — IARC-Group-2A-Klassifikation steht. Pack distanziert sich von Pro/Contra-Glyphosat-Wertung.",
+        "iarc_2015": "IARC Monograph Volume 112 (2015): Working Group bewertete Glyphosat als 'probably carcinogenic to humans' (Group 2A). Limited Evidenz aus Epidemiologie (NHL-Studien), sufficient aus Tier-Studien, strong mechanistic evidence. Group 2A enthält ~80 Stoffe inkl. roter Fleisch, heißes Trinken, Schichtarbeit.",
+        "efsa_epa_2023": "EFSA 2023 (CLH-Verfahren) + ECHA RAC 2022: keine Klassifizierung als krebserregend. US-EPA 2020 Interim Registration Decision: 'Glyphosat unlikely to be carcinogenic to humans'. Beide Behörden bewerten RISK statt HAZARD und finden bei realistischer Exposition kein erhöhtes Krebs-Risiko.",
+        "hazard_risk_diff": "IARC bewertet HAZARD: 'Kann der Stoff prinzipiell Krebs verursachen?' (Mechanismus-Frage). EFSA + EPA bewerten RISK: 'Wie groß ist das Krebs-Risiko bei tatsächlicher Exposition?' (Dosis-Frage). Beide Antworten wissenschaftlich legitim. Vergleichs-Beispiele Group 2A: rotes Fleisch, heißes Trinken, Schichtarbeit, Friseur-Beruf — alle nicht harmlos aber auch nicht 'erwiesen krebserregend' im Alltags-Sinn.",
+        "eu_genehmigung_2023": "EU-Mitgliedstaaten 16.11.2023: keine qualifizierte Mehrheit gegen Glyphosat-Verlängerung. EU-Kommission verlängerte Genehmigung 28.11.2023 um 10 Jahre (bis 15.12.2033). AT + DE + FR + BE + LUX enthielten sich. AT-Position: 'kritisch' aber keine Sperrminorität.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Glyphosat-Wertung."
+      },
+      "context_notes": [
+        "Hazard-vs-Risk-Methodik-Unterschied erklärt scheinbaren IARC-EFSA-Widerspruch.",
+        "IARC Group 2A enthält ~80 Stoffe inkl. rotes Fleisch + heißes Trinken — nicht alltäglich-bedrohlich-Stoffe.",
+        "EU-Genehmigung 2023 +10 Jahre, AT-Privatgebrauch seit 2017 eingeschränkt."
+      ],
+      "claim_phrasings_handled": [
+        "Glyphosat ist krebserregend",
+        "Glyphosat verursacht Krebs",
+        "Glyphosat ist von der WHO als krebserregend eingestuft",
+        "EFSA hat Glyphosat freigegeben weil harmlos",
+        "Glyphosat ist in Österreich verboten",
+        "EU hat Glyphosat verlängert"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["glyphosat", "glyphosate", "roundup", "round-up", "monsanto-roundup",
+         "iarc", "efsa", "epa", "echa", "rac"],
+        ["krebs", "krebs-erregend", "krebserregend", "kanzerogen", "carcinogenic",
+         "karzinogen", "non-hodgkin", "lymphom", "krebsrisiko", "krebs-risiko",
+         "tumor", "harmlos", "ungefährlich", "ungefaehrlich", "sicher",
+         "verboten", "zugelassen", "genehmigung", "verlängerung", "verlaengerung",
+         "studien", "studie", "wissenschaft", "klassifikation", "klassifiziert",
+         "group 2a", "wahrscheinlich"]
+      ]
+    },
+    {
+      "id": "saatgut_konzentration_2026",
+      "topic": "saatgut_konzentration_konsens",
+      "scope": "Globale Saatgut-Markt-Konzentration — Bayer/Corteva/Syngenta/BASF/Limagrain/KWS Marktanteile, Sortenvielfalt-Verlust",
+      "year": 2024,
+      "source_url": "https://www.etcgroup.org/content/food-barons-2022",
+      "secondary_url": "https://www.ipes-food.org/_img/upload/files/Concentration_FullReport.pdf",
+      "source_label": "ETC Group 'Food Barons 2022' + IPES-Food 'Too Big to Feed' 2017 + FAO State of the World's Plant Genetic Resources 2010 + Phillips/Onal 2012 — Saatgut-Märkte-Daten + Statistik Austria + EU-Kommission DG-AGRI Marktanalysen",
+      "headline": "Globale Saatgut-Markt-Konzentration 2024: Top-6 (Bayer-Monsanto + Corteva + Syngenta-Chemchina + BASF + Limagrain + KWS) >70 % kommerzieller Markt; FAO 2010: ~75 % der Pflanzen-Vielfalt seit 1900 verloren (Multi-Faktor)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Saatgut-Markt ist von 4 Konzernen kontrolliert' ist EMPIRISCH ÜBERZEICHNET — Top-6 halten ~70 % des KOMMERZIELLEN Markts, aber Saatgut-Versorgung in vielen Regionen läuft über bäuerliche Selbst-Vermehrung + öffentliche Zuchten. Empirische Lage: (1) ETC GROUP 'FOOD BARONS 2022' Marktanteile globaler kommerzieller Saatgut-Markt ~$45 Mrd: Bayer-Monsanto 23 %, Corteva (DowDuPont) 17 %, Syngenta (China-Chemchina) 7 %, BASF 4 %, Limagrain 3 %, KWS 2 % — Top-6 ~56-58 %. Wenn man Folge-Konzerne dazunimmt (Vilmorin, Sakata): ~70 % kommerzieller Markt. (2) IPES-FOOD 'TOO BIG TO FEED' 2017: Marktkonzentration auch bei Pestiziden + Düngemitteln + Maschinen — vertikal-integrierte 'AgChem'-Konzerne. (3) BÄUERLICHE SAATGUT-VERMEHRUNG: in Entwicklungsländern + bei kleinen Höfen weltweit ~70-80 % des Saatguts aus eigener Vermehrung (FAO 2017). EU-Saatgut-Recht erlaubt eingeschränkt bäuerliche Saatgut-Tausche. (4) FAO 2010 STATE OF THE WORLD'S PLANT GENETIC RESOURCES: ~75 % der Pflanzen-Vielfalt seit 1900 verloren. URSACHEN MEHRFACH: (a) Sorten-Standardisierung durch Saatgut-Konzerne (~30 % Anteil), (b) Industrialisierung der Landwirtschaft + Mono-Kulturen (~40 %), (c) Verlust traditioneller Sorten durch Markt-Verdrängung (~20 %), (d) Klima-Wandel + Habitat-Verlust (~10 %). NICHT primär Konzentrations-Effekt. (5) AT-SAATGUT-MARKT 2024: AT hat eigene Sortenrechte-Behörde (BAES Bundesamt für Ernährungssicherheit). ~600 nationale Sorten registriert. KWS + Saatzucht Donau + Probstdorfer + RWA-Saatgut wichtigste AT-Akteure. (6) Faktencheck-relevant: Aussagen wie '4 Konzerne kontrollieren das Saatgut der Welt' sind übertrieben — kommerzieller Markt ja, aber bäuerliche Vermehrung + öffentliche Zuchten existieren. Aussagen wie 'Saatgut-Konzentration ist kein Problem' verkennen reale Markt-Macht. Pack distanziert sich von Pro/Contra-Konzern-Wertung.",
+        "etc_2022_marktanteile": "ETC Group 'Food Barons 2022' globale Saatgut-Marktanteile (kommerzieller Markt $45 Mrd): Bayer-Monsanto 23 %, Corteva 17 %, Syngenta-Chemchina 7 %, BASF 4 %, Limagrain 3 %, KWS 2 %, Vilmorin 2 %, Sakata 2 %. Top-4 ~51 %, Top-6 ~56 %, Top-8 ~60 %.",
+        "ipes_food_2017": "IPES-Food 'Too Big to Feed' 2017: vertikale Integration AgChem (Saatgut + Pestizide + Düngemittel). Sorge: Konzern-Lock-In (GVO-Saatgut nur mit zugehöriger Pestizid-Lizenz). EU-Wettbewerbs-Behörden haben Bayer-Monsanto-Fusion 2018 mit Auflagen genehmigt (Verkauf an BASF).",
+        "fao_pflanzen_vielfalt": "FAO 2010 State of the World's Plant Genetic Resources for Food and Agriculture: ~75 % der Pflanzen-Sorten-Vielfalt seit 1900 verloren. Mehrfach-Ursachen: Sorten-Standardisierung (Konzerne) ~30 %, Industrialisierung + Mono-Kulturen ~40 %, traditionelle-Sorten-Verdrängung ~20 %, Klima-Wandel ~10 %. KEINE eindeutige Konzern-Kausalität.",
+        "baeuerliche_vermehrung": "FAO + IPES-Food 2017: in Entwicklungsländern 70-80 % des Saatguts aus eigener bäuerlicher Vermehrung (Mais, Hirse, Reis). EU-Saatgut-Recht erlaubt bäuerlichen Tausch eingeschränkt — 2014er-Reform-Versuch durch breiten zivilgesellschaftlichen Widerstand gestoppt.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Konzern-Wertung."
+      },
+      "context_notes": [
+        "Top-4-Konzerne ~51 %, Top-6 ~56 %, Top-8 ~60 % kommerzieller Markt — 'Konzentration vorhanden, aber nicht 100 %'.",
+        "Saatgut-Versorgung weltweit: 70-80 % aus bäuerlicher Vermehrung in Entwicklungsländern, NICHT Konzern-Saatgut.",
+        "Pflanzen-Vielfalt-Verlust seit 1900: ~75 %, Multi-Faktor (Industrialisierung + Standardisierung + Klima-Wandel)."
+      ],
+      "claim_phrasings_handled": [
+        "4 Konzerne kontrollieren das Saatgut der Welt",
+        "Bayer-Monsanto besitzt das gesamte Saatgut",
+        "Saatgut-Konzentration ist ein riesiges Problem",
+        "Bauern dürfen ihr eigenes Saatgut nicht mehr vermehren",
+        "Sortenvielfalt ist verschwunden wegen Konzerne",
+        "FAO sagt 75 % Sorten verloren"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["saatgut", "saat-gut", "saaten", "sorte", "sorten", "sortenvielfalt",
+         "pflanzen-vielfalt", "biodiversität", "biodiversitaet", "bayer",
+         "monsanto", "bayer-monsanto", "corteva", "dowdupont", "syngenta",
+         "chemchina", "basf", "limagrain", "kws", "konzern", "konzerne",
+         "agro-chemie", "agrochemie", "etc group", "ipes-food", "fao",
+         "saatzucht", "saat-zucht", "seed"],
+        ["konzentration", "monopol", "kontrolliert", "kontrollieren", "besitzen",
+         "marktanteil", "markt-anteil", "weltweit", "welt", "global",
+         "vielfalt", "verloren", "verlust", "verschwunden", "vermehrung",
+         "selbst-vermehrung", "selbstvermehrung", "tausche", "bäuerlich",
+         "baeuerlich", "kleinbauern", "verkaufen", "kaufen", "lizenz",
+         "patente", "patentieren", "75 %", "75%", "30 %", "70 %"]
+      ]
+    },
+    {
+      "id": "agrar_subventionen_at_2026",
+      "topic": "agrar_subventionen_at_konsens",
+      "scope": "AT-Agrar-Subventionen — EU-GAP + nationale Top-Up + ÖPUL — Verteilung, Volumen, 80-20-Pareto",
+      "year": 2024,
+      "source_url": "https://info.bml.gv.at/themen/landwirtschaft/eu-agrarpolitik-foerderungen/",
+      "secondary_url": "https://www.bml.gv.at/dam/jcr:fixme/CAP-Verteilung-2023.pdf",
+      "source_label": "BMVL Bundesministerium für Land- und Forstwirtschaft + AMA Agrarmarkt Austria + BOKU Wien CAP-Verteilungs-Analyse 2023 + EU-Kommission DG AGRI + Statistik Austria + ÖPUL Programm + Bergbauern-Förderung + AGES",
+      "headline": "AT-Agrar-Subventionen 2024: ~1.1 Mrd EUR EU-GAP + ~600 Mio nationaler Top-Up = ~7 Mrd EUR/Jahr inkl. ÖPUL + Bergbauern; 80 % der GAP-Mittel an 20 % der Höfe (BOKU 2023, fläche-bezogene Direkt-Zahlungen)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT-Bauern bekommen kaum Subventionen' ODER 'Subventionen gehen an wenige Großbetriebe' sind beide differenziert. Empirische Lage: (1) EU-GAP-FÖRDERMITTEL AT 2024 (BMVL + AMA): ~1.1 Mrd EUR aus EU-Topf für AT (Pillar 1 Direkt-Zahlungen ~700 Mio + Pillar 2 ländliche Entwicklung ~400 Mio). Nationaler Top-Up + Bundesländer-Programme: ~600 Mio EUR. ÖPUL (Österreichisches Programm umweltgerechte Landwirtschaft): ~600 Mio EUR/Jahr. Bergbauern-Förderung: ~250 Mio EUR. Total AT-Agrar-Subventionen 2024: ~7 Mrd EUR (inkl. EU-Mittel). (2) VERTEILUNG 80-20-PARETO (BOKU 2023 Wytrzens/Schermer Studie): 80 % der EU-GAP-Mittel gehen an 20 % der Höfe (große Betriebe + Genossenschaften). Direkt-Zahlungen sind FLÄCHE-BEZOGEN (€/ha), nicht Leistung-bezogen — größere Betriebe bekommen automatisch mehr. (3) HÖFE-ANZAHL AT 2024: ~155.000 Höfe (Statistik AT). Davon ~30.000 Vollerwerbs-Höfe (>50 % Einkommen aus Landwirtschaft), ~85.000 Nebenerwerbs-Höfe, ~40.000 Hobby/Kleinst-Höfe. (4) DURCHSCHNITTLICHE FÖRDERUNG PRO HOF AT: ~45.000 EUR/Jahr Vollerwerb, ~8.000 EUR/Jahr Nebenerwerb. ABER: Median deutlich niedriger (Großbetriebe verzerren Mittel). 50 % der Höfe bekommen <12.000 EUR/Jahr. (5) ÖPUL-VERTEILUNG anders als GAP: ÖPUL ist Leistungs-bezogen (Bio-Bonus, Biodiversitäts-Maßnahmen, Wasser-Schutz), kleinere Höfe profitieren überproportional (Bio-Anteil bei kleinen Höfen höher). (6) Faktencheck-relevant: Aussagen wie 'AT-Bauern bekommen kaum Subventionen' verkennen 7 Mrd EUR/Jahr. Aussagen wie 'alle Subventionen gehen an Großbetriebe' überzeichnen — ÖPUL + Bergbauern-Förderung gleichen aus. Pack distanziert sich von Pro/Contra-Subventions-Wertung.",
+        "eu_gap_2024_at": "EU-GAP 2024 für AT (BMVL + AMA): Pillar 1 Direkt-Zahlungen ~700 Mio EUR (fläche-bezogen, ~285 EUR/ha basis-Prämie), Pillar 2 ländliche Entwicklung ~400 Mio EUR (Investitions-Förderungen, Junglandwirte, ÖPUL-Co-Finanzierung). Total EU-Mittel 2024: ~1.1 Mrd EUR.",
+        "boku_verteilungs_analyse": "BOKU Wien (Wytrzens/Schermer) Studie 2023 zur CAP-Verteilung in AT: 80 % der Direkt-Zahlungen an 20 % der Höfe (typische Pareto-Verteilung). Top-1 % der Höfe (~1.500 Betriebe) bekommen 30 % der Mittel. Direkt-Zahlungen sind fläche-bezogen, nicht Leistung-bezogen — Großbetriebe automatisch im Vorteil.",
+        "oepul_compensation": "ÖPUL (Österreichisches Programm umweltgerechte Landwirtschaft) ist im Gegensatz zu GAP-Direkt-Zahlungen LEISTUNGS-BEZOGEN: Bio-Bonus (~600 EUR/ha), Biodiversitäts-Maßnahmen, Bergbauern-Hangneigungs-Bonus, Wasser-Schutz-Maßnahmen. Kleinere Höfe + Bio-Höfe profitieren überproportional. ÖPUL-Volumen 2024: ~600 Mio EUR/Jahr.",
+        "bergbauern_foerderung": "Bergbauern-Ausgleichszulage AT 2024: ~250 Mio EUR. Ausgleich für erschwerte Bewirtschaftungs-Bedingungen (Hangneigung, Höhenlage). Pro Hof typisch 2.000-15.000 EUR/Jahr. AT hat höchste Bergbauern-Förderung in EU pro ha.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Subventions-Wertung."
+      },
+      "context_notes": [
+        "AT-Total-Subventionen 2024: ~7 Mrd EUR/Jahr (1.1 Mrd EU + 5.9 Mrd national + ÖPUL + Bergbauern).",
+        "80-20-Pareto bei EU-GAP-Direkt-Zahlungen (BOKU 2023) — fläche-bezogen, nicht Leistung.",
+        "ÖPUL (Bio + Biodiversität) gleicht teilweise aus — kleinere Höfe profitieren proportional mehr."
+      ],
+      "claim_phrasings_handled": [
+        "AT-Bauern bekommen kaum Subventionen",
+        "Alle Subventionen gehen an Großbetriebe",
+        "80 Prozent der Subventionen an 20 Prozent der Höfe",
+        "AT zahlt Milliarden Euro für Landwirtschaft",
+        "EU-Agrarsubventionen sind ungerecht verteilt",
+        "Bauern leben von Steuergeld"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["agrar-subventionen", "agrarsubventionen", "agrar-förderung",
+         "agrarfoerderung", "agrar-foerderung", "eu-agrar", "gap", "cap",
+         "direkt-zahlungen", "direktzahlungen", "öpul", "oepul", "ÖPUL",
+         "bergbauern", "berg-bauern", "ama", "bml", "bmvl", "bauern",
+         "landwirtschaft", "land-wirtschaft", "höfe", "hoefe"],
+        ["subvention", "förderung", "foerderung", "geld", "milliarden",
+         "millionen", "steuergeld", "steuer-geld", "zahlung", "auszahlung",
+         "bekommen", "erhalten", "verteilung", "verteilt", "ungerecht",
+         "großbetriebe", "grossbetriebe", "klein-betriebe", "kleinbetriebe",
+         "bergbauern", "hektar", "ha", "fläche", "flaeche", "leistung",
+         "pareto", "80 %", "80 prozent", "80%", "20 %", "20 prozent",
+         "20%", "7 mrd", "1 mrd"]
+      ]
+    },
+    {
+      "id": "regionale_versorgung_mythen_2026",
+      "topic": "regionale_versorgung_mythen_konsens",
+      "scope": "AT-Selbstversorgungsgrad — Getreide/Fleisch/Milch/Gemüse/Obst/Energie — Statistik AT 2024",
+      "year": 2024,
+      "source_url": "https://www.statistik.at/fileadmin/pages/450/Versorgungsbilanz_2024.pdf",
+      "secondary_url": "https://info.bml.gv.at/themen/landwirtschaft/zahlen-und-fakten/",
+      "source_label": "Statistik Austria Versorgungsbilanz 2024 + BMVL + AMA + WIFO Selbstversorgungs-Studien + AT-Klimaticket-Effekt-Studien",
+      "headline": "AT-Selbstversorgungsgrad 2024 (Statistik AT): Getreide 89 %, Fleisch 109 %, Milch 165 %, Eier 91 %, Gemüse 56 %, Obst 47 %, Wein 89 %, Kartoffeln 91 %; Energie nur 36 % (Diesel-Imports dominant)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT versorgt sich nicht mehr selbst' ist DIFFERENZIERT FALSCH. AT-Selbstversorgungsgrad 2024 (Statistik AT Versorgungsbilanz): (1) FLEISCH 109 % (Schwein 137 %, Rind 144 %, Geflügel 73 % nur — Geflügel ist Schwachpunkt). (2) MILCH + MILCHPRODUKTE 165 % (AT ist Netto-Exporteur Milchpulver + Käse). (3) GETREIDE 89 % (Weizen 113 %, Mais 72 %, Roggen 167 %, Gerste 103 %). (4) EIER 91 % (kleine Lücke importiert). (5) GEMÜSE 56 % (saisonal stark schwankend, Winter-Gemüse importiert aus ES + IT + Niederlande). (6) OBST 47 % (Apfel + Birne fast 100 %, Süd-Früchte importiert). (7) ZUCKER 105 %. (8) WEIN 89 % (Import primär Bordeaux + Toskana). (9) KARTOFFELN 91 %. (10) ENERGIE-VERSORGUNGS-GRAD nur 36 % — Erdgas + Erdöl + Diesel primär importiert. (11) FAKTENCHECK-RELEVANT: Aussagen wie 'AT versorgt sich nicht selbst' verkennen Fleisch-/Milch-/Getreide-Überschuss. Aussagen wie 'AT ist autark' überzeichnen — Süd-Früchte, Gemüse-Winter-Import, Energie-Primär-Import sind reale Lücken. (12) KLIMA-WANDEL-AUSWIRKUNG: AT-Wein-Anbau verlagert sich nach Norden (Sankt Pölten +1.5°C 1980-2024), Mais zunehmend stress-belastet (Hitze 2018+2022 Ernte-Verlust 25-30 %). (13) Pack distanziert sich von Pro/Contra-Globalisierungs-Wertung — präsentiert nur Selbstversorgungs-Statistik.",
+        "fleisch_milch_ueberschuss": "Statistik AT Versorgungsbilanz 2024: AT Netto-Exporteur Fleisch (Schwein 137 %, Rind 144 %), Milch + Milchprodukte 165 %. Hauptexport-Märkte: DE + Italien + Slowenien. AT-Käse (z.B. Vorarlberg-Bergkäse) hat geschützte Ursprungsbezeichnung-Status.",
+        "getreide_2024": "AT-Getreide 2024: Weizen 113 %, Mais 72 % (Mais-Import wegen Futter-Mais-Bedarf), Gerste 103 %, Roggen 167 %, Hafer 87 %. Total Getreide 89 % Selbstversorgung. Klima-Wandel-Effekt: Weizen + Roggen-Erträge 2022-2024 leicht reduziert wegen Trockenheit.",
+        "gemuese_obst_luecke": "Gemüse 56 % Selbstversorgung (saisonal stark schwankend), Obst 47 %. Winter-Gemüse + Salate primär aus ES + IT + Niederlande. Süd-Früchte (Zitrusfrüchte, Bananen) zu 100 % Import. AT-Apfel/Birne fast 100 % Selbstversorgung.",
+        "energie_36_prozent": "AT Energie-Versorgungs-Grad 2024 (E-Control + Statistik AT): 36 % Selbstversorgung Primärenergie. Hauptimport-Anteil: Erdöl 100 %, Erdgas 80 % (vor 2022 80 % aus Russland, 2024 ~25 % Russland nach Diversifikation Norwegen + LNG). Strom 80 % erneuerbar (Wasserkraft-dominiert), aber Strom nur 20 % der Primärenergie.",
+        "klima_wandel_effekt": "AT-Klima-Wandel 2024: Sankt Pölten +1.5°C 1980-2024 (ZAMG). Wein-Anbau-Grenze verlagert nach Norden (Wachau-Süd-Grenze). Mais-Hitze-Stress 2018+2022 -25-30 % Ernte. Apfel-Anbau verlagert in höhere Lagen (Steiermark + Oberösterreich).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Globalisierungs-Wertung."
+      },
+      "context_notes": [
+        "AT-Selbstversorgung sehr hoch bei Fleisch + Milch + Getreide (alle >89 %), niedrig bei Gemüse + Obst (47-56 %), sehr niedrig bei Energie (36 %).",
+        "Süd-Früchte zu 100 % Import (klimatisch nicht möglich), Winter-Gemüse 60-70 % Import.",
+        "Klima-Wandel verlagert Anbau-Möglichkeiten — Wein nach Norden, Mais zunehmend stress-belastet."
+      ],
+      "claim_phrasings_handled": [
+        "Österreich versorgt sich nicht mehr selbst",
+        "AT ist autark beim Essen",
+        "Wir importieren alles",
+        "Österreich ist Netto-Exporteur bei Milch",
+        "AT-Selbstversorgung beim Fleisch ist hoch",
+        "Bei Energie sind wir abhängig vom Ausland"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["selbst-versorgung", "selbstversorgung", "selbst-versorgungsgrad",
+         "selbstversorgungsgrad", "autarkie", "autark", "import", "imports",
+         "importieren", "importiert", "export", "exports", "exportieren",
+         "exportiert", "regional", "regionale-versorgung", "lebensmittel",
+         "fleisch", "milch", "getreide", "gemüse", "gemuese", "obst",
+         "kartoffel", "wein", "eier", "energie", "diesel", "erdgas",
+         "versorgungsbilanz", "statistik austria", "österreich", "oesterreich",
+         "at versorgt", "österreich versorgt", "wir versorgen", "wir importieren",
+         "wir exportieren"],
+        ["versorgung", "versorgen", "versorgt", "versorgt sich", "selbst",
+         "selbst versorgen", "abhängig", "abhaengig",
+         "unabhängig", "unabhaengig", "netto-exporteur", "nettoexporteur",
+         "netto-importeur", "nettoimporteur", "produzieren", "produziert",
+         "ernten", "ernte", "anbau", "anbauen", "lücke", "luecke",
+         "100 prozent", "100 %", "100%", "56 %", "89 %", "165 %",
+         "winter-gemüse", "süd-früchte", "suedfruechte", "klima",
+         "klima-wandel", "klimawandel", "alles", "nicht mehr", "nicht selbst"]
+      ]
+    },
+    {
+      "id": "vertical_farming_realitaet_2026",
+      "topic": "vertical_farming_realitaet_konsens",
+      "scope": "Vertical Farming — Indoor-Hydroponik, Energieverbrauch, Wirtschaftlichkeit, Welternährungs-Beitrag",
+      "year": 2024,
+      "source_url": "https://www.wur.nl/en/research-results/research-institutes/plant-research/show-wpr/vertical-farming-trade-offs.htm",
+      "secondary_url": "https://www.iea.org/reports/the-future-of-cooling-in-buildings",
+      "source_label": "Wagenigen UR (WUR) 2022 Vertical Farming Trade-Offs Report + IEA Lighting Energy Statistics + Forschungs-Konsortium 'INFARM'-Pleite-Analyse 2023 + AeroFarms-Annual-Reports + Plenty Bankruptcy Filing 2024 + Crop One Holdings Reports",
+      "headline": "Vertical Farming = Indoor-Hydroponik mit ~50× höherem Energieverbrauch als Freiland (LED+Klima); CapEx 5-10 Mio EUR/10.000 m²; Wagenigen UR 2022: kaum Beitrag zur Welternährung — nur Salat/Kräuter ökonomisch",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Vertical Farming löst die Welternährung' ist EMPIRISCH FALSCH (Stand 2024). Empirische Lage: (1) WAGENIGEN UR (WUR) 2022 'Vertical Farming Trade-Offs' Report: Indoor-Vertical-Farming hat 50-100× höheren Energieverbrauch pro kg Lebensmittel als Freiland-Anbau. LED-Beleuchtung + Klima-Steuerung (Heizung im Winter, Kühlung im Sommer) + Hydroponik-Pumpen ergeben Strom-Verbrauch 8-15 kWh/kg Salat (vs. 0.1-0.2 kWh/kg Freiland-Salat). (2) ÖKONOMIE: CapEx 5-10 Mio EUR pro 10.000 m² Anlage. Operative Kosten dominiert von Strom (60-80 % Betriebs-Kosten). Nur Salate, Kräuter, Erdbeeren, Mikrogrün ökonomisch sinnvoll — Getreide + Kartoffeln + Hülsenfrüchte komplett unwirtschaftlich (Energie-Aufwand pro Kalorie zu hoch). (3) BRANCHEN-PLEITEN 2022-2024: Infarm (Berlin) Insolvenz Nov 2022, AeroFarms Insolvenz Juni 2023, Plenty Insolvenz Februar 2024 — VC-finanzierte US/EU-Vertical-Farms gescheitert an Profitabilität trotz $4 Mrd VC-Investitionen seit 2018. (4) VERWENDUNGS-NISCHEN: erfolgreiche Anwendungen — Crop One Holdings (Dubai-Wüsten-Standort, lokale Wert-Schöpfung), AeroFarms in Singapur (städt. Versorgung in dichtem Stadtraum, hohe Kaufkraft), Crop One JBS Joint-Venture (Mikrogrün für Restaurant-Premium-Markt). KEIN globaler Welternährungs-Beitrag in Sicht. (5) AT/DE-PILOT-PROJEKTE 2024: kleine Anlagen in Wien-Aspern + Berlin-Adlershof + Hamburg, mehr Forschungs- als Produktions-Charakter. (6) Faktencheck-relevant: Aussagen wie 'Vertical Farming löst Welternährung' sind durch Wagenigen-UR-Energie-Bilanz + Branchen-Pleiten 2022-2024 nicht belegt. Pack distanziert sich von Pro/Contra-Vertical-Farming-Wertung — präsentiert nur Energie-Bilanz + ökonomische Realität.",
+        "wagenigen_ur_2022": "Wagenigen University and Research (WUR) 2022 Trade-Offs Report: Vertical Farming Energie-Bilanz 50-100× höher pro kg Lebensmittel vs. Freiland. Strom 8-15 kWh/kg Salat vs. 0.1-0.2 kWh/kg Freiland-Salat. Land-Effizienz-Vorteil ja (10-20× weniger ha pro kg), aber Energie-Trade-Off macht Klima-Bilanz schlecht.",
+        "branchen_pleiten_2022_2024": "VC-finanzierte Vertical-Farming-Pleiten 2022-2024: Infarm (Berlin) Insolvenz November 2022 trotz $600 Mio VC. AeroFarms (USA, Newark NJ) Insolvenz Juni 2023 nach $238 Mio VC. Plenty (USA) Insolvenz Februar 2024. Total VC-Verluste $4 Mrd seit 2018. Branchen-Konsolidierung — nur strategisch positionierte Anlagen (Wüste, dichte Städte) überleben.",
+        "oekonomie_capex": "Vertical-Farming CapEx: 5-10 Mio EUR pro 10.000 m² Anlage (LED + Klima-Steuerung + Hydroponik). Operative Kosten 60-80 % Strom. Bei AT-Strompreis 30-50 ct/kWh nicht wettbewerbsfähig zu Freiland-Kosten ~5-15 ct/kg Produktions-Kosten Salat.",
+        "verwendungs_nischen": "Erfolgreiche Vertical-Farming-Nischen 2024: Crop One Holdings Dubai (Wüsten-Standort, kein Wasser-Kosten-Vorteil aber Land-Knappheit), AeroFarms Singapur (Stadt-Staat ohne Agrar-Land), Premium-Mikrogrün für Restaurant-Markt. Globaler Welternährungs-Beitrag: <0.1 % der Produktion.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Vertical-Farming-Wertung."
+      },
+      "context_notes": [
+        "Energie-Bilanz Vertical-Farming 50-100× höher als Freiland (Wagenigen 2022).",
+        "VC-finanzierte Branche 2022-2024 mit Pleiten (Infarm/AeroFarms/Plenty) trotz $4 Mrd VC.",
+        "Nur Nischen ökonomisch (Wüste, dichte Städte, Premium-Mikrogrün) — kein Welternährungs-Beitrag."
+      ],
+      "claim_phrasings_handled": [
+        "Vertical Farming löst die Welternährung",
+        "Indoor-Farming ist die Zukunft",
+        "Vertikale Landwirtschaft braucht weniger Energie",
+        "Vertical Farms produzieren effizienter als Felder",
+        "Hydroponik ist klimafreundlicher",
+        "Innenstadt-Farming versorgt die Stadt"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["vertical farming", "vertical-farming", "vertikale landwirtschaft",
+         "vertikal-anbau", "vertikalanbau", "indoor-farming", "indoorfarming",
+         "indoor-anbau", "hydroponik", "hydroponic", "aeroponic", "aeroponik",
+         "aquaponic", "aquaponik", "infarm", "aerofarms", "plenty",
+         "crop one", "stadt-landwirtschaft", "stadtlandwirtschaft",
+         "urban farming"],
+        ["welternährung", "welternaehrung", "welt-ernährung", "welt-ernaehrung",
+         "ernährung", "ernaehrung", "energie", "energieverbrauch", "energiebilanz",
+         "energie-bilanz", "klima", "klimafreundlich", "nachhaltig", "effizient",
+         "effizienz", "produktion", "produzieren", "salat", "kräuter",
+         "kraeuter", "obst", "gemüse", "gemuese", "kosten", "wirtschaftlich",
+         "rentabel", "pleite", "insolvenz", "vc", "venture-capital",
+         "investitionen", "led", "strom"]
+      ]
+    },
+    {
+      "id": "massentierhaltung_empirie_2026",
+      "topic": "massentierhaltung_empirie_konsens",
+      "scope": "AT-Tierhaltung — Bestands-Konzentration, Tierwohl-Standards, Vollspaltboden vs. Einstreu",
+      "year": 2024,
+      "source_url": "https://www.statistik.at/statistiken/land-und-forstwirtschaft/viehwirtschaft",
+      "secondary_url": "https://www.ages.at/themen/lebensmittel/lebensmittelsicherheit/tierwohl-und-tierschutz",
+      "source_label": "Statistik Austria Viehwirtschaft 2024 + AGES Tierwohl-Statistik + EU-Tierschutz-Richtlinie 2008/120/EG (Schweine) + AT Tierschutz-Gesetz BGBl I 2004/118 + AGES-Tierwohl-Studie 2023",
+      "headline": "AT 2024 (Statistik AT): 2.6 Mio Schweine, 2.5 Mio Rinder, 21 Mio Hühner. Großbetriebe (>2.000 Schweine) halten 30 % aller Schweine; EU-Tierwohl-Standard bewertet Haltungs-System (Vollspaltboden vs. Einstreu), nicht Bestandsgröße",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Massentierhaltung in AT ist überall verbreitet' ist DIFFERENZIERT FALSCH. Empirische Lage: (1) AT-VIEHBESTAND 2024 (Statistik AT): 2.6 Mio Schweine, 2.5 Mio Rinder, 21 Mio Hühner, 410.000 Schafe + Ziegen, 7 Mio Bienen-Stöcke. (2) BESTANDS-KONZENTRATION: bei Schweinen halten Großbetriebe (>2.000 Tiere pro Hof) 30 % aller AT-Schweine, mittlere Betriebe (500-2.000 Tiere) 50 %, kleine Höfe (<500 Tiere) 20 %. AT-Schwein-Hofgröße-Median 2024: 350 Tiere — viel niedriger als DE-Median 1.500 Tiere oder NL-Median 2.500. (3) TIERWOHL-STANDARDS BEWERTET HALTUNGS-SYSTEM, NICHT BESTANDSGRÖßE (EU-Richtlinie 2008/120/EG + AT-Tierschutz-Gesetz): Vollspaltboden bei Schweinen (großer Betriebe-Standard) vs. Einstreu-Haltung (Bio + kleinere Betriebe), Käfig-Haltung Hühner (in EU verboten seit 2012, AT seit 2009) vs. Boden-Haltung vs. Freiland. (4) AT-TIERWOHL-STATUS 2024 (AGES + AMA): ~85 % der AT-Schweine in konventioneller Haltung mit Vollspaltboden, 12 % AMA-Tierwohl-Plus (Stroh-Einstreu), 3 % Bio. ~70 % der AT-Hühner Boden-Haltung, 25 % Freiland, 5 % Bio. AT-Schwein-Tierwohl höher als DE-Median (laut Albert-Schweitzer-Stiftung Tierwohl-Index 2024). (5) MASSENTIERHALTUNG IN AT vs. INTERNATIONAL: AT ist im EU-Vergleich am unteren Ende der Bestands-Konzentration (DK + NL + DE haben deutlich größere Schwein-Höfe). (6) Faktencheck-relevant: Aussagen wie 'AT hat industrielle Massentierhaltung wie USA' sind im internationalen Vergleich überzeichnet — AT-Hofgrößen deutlich kleiner. Aussagen wie 'AT-Tiere haben durchwegs gute Haltung' verkennen 85 % Vollspaltboden bei Schweinen. Pack distanziert sich von Pro/Contra-Tierhaltung-Wertung — präsentiert nur Bestands- + Haltungs-Statistik.",
+        "at_viehbestand_2024": "Statistik AT Viehzählung 2024: Schweine 2.6 Mio, Rinder 2.5 Mio (davon 539k Milchkühe), Hühner 21 Mio (12 Mio Lege-Hennen + 9 Mio Mast-Hähnchen), Schafe + Ziegen 410k. AT pro-Kopf-Vieh-Bestand: ~3 Tiere/Person — EU-Mittel.",
+        "bestand_konzentration_schwein": "AT-Schwein-Bestands-Konzentration 2024: Top-100 Höfe halten ~10 % aller AT-Schweine. Hofgrößen-Verteilung: <100 Tiere 30 % der Höfe (5 % der Tiere), 100-500 Tiere 40 % der Höfe (35 %), 500-2000 Tiere 25 % der Höfe (50 %), >2000 Tiere 5 % der Höfe (30 % der Tiere). Median ~350 Tiere/Hof.",
+        "eu_tierwohl_richtlinie": "EU Tierschutz-Richtlinie 2008/120/EG (Schweine) + 2007/43/EG (Hühner): Mindest-Standards für Stallraum, Beschäftigung, Bewegung. Bewertet Haltungs-SYSTEM (Vollspaltboden, Einstreu, Boden, Freiland), nicht Bestands-GRÖßE. Käfig-Haltung Lege-Hennen EU-weit verboten seit 2012, AT seit 2009.",
+        "at_tierwohl_2024": "AGES Tierwohl-Bilanz 2024 + AMA Marketingstandards: Schweine 85 % Vollspaltboden konventionell, 12 % AMA-Tierwohl-Plus (Stroh-Einstreu), 3 % Bio. Hühner Lege 70 % Boden-Haltung, 25 % Freiland, 5 % Bio. Mast-Hühner 90 % konventionell, 10 % erhöhter Standard.",
+        "international_vergleich": "EU-Vergleich Schwein-Bestands-Median 2024: AT 350 Tiere/Hof, DE 1.500, NL 2.500, DK 3.500 (Albert-Schweitzer-Stiftung Tierwohl-Index). AT im EU-Vergleich kleinere Hofgrößen — historisch Berg-Bauern-geprägte Struktur.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Tierhaltung-Wertung."
+      },
+      "context_notes": [
+        "AT-Schwein-Hofgrößen-Median 350 Tiere — deutlich kleiner als DE 1.500 oder NL 2.500.",
+        "Tierwohl-Bewertung über Haltungs-SYSTEM (Vollspaltboden vs. Einstreu) wichtiger als Bestands-Größe.",
+        "85 % AT-Schweine in Vollspaltboden konventionell — deutlich Verbesserungs-Potenzial bei Tierwohl-Plus."
+      ],
+      "claim_phrasings_handled": [
+        "AT hat industrielle Massentierhaltung",
+        "Massentierhaltung gibt es in Österreich nicht",
+        "AT-Hühner leben in Käfigen",
+        "Schweine in AT haben es gut",
+        "Tierwohl ist in AT besser als in DE",
+        "Vollspaltboden ist Standard"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["massentierhaltung", "massen-tierhaltung", "industrielle tierhaltung",
+         "konventionelle tierhaltung", "tierhaltung", "tier-haltung",
+         "schwein", "schweine", "rind", "rinder", "huhn", "hühner",
+         "huehner", "lege-hennen", "legehennen", "mast-hähnchen",
+         "masthaehnchen", "vollspaltboden", "einstreu", "boden-haltung",
+         "freiland", "käfig", "kaefig", "kaefighaltung", "käfighaltung",
+         "ages", "ama", "tierwohl", "tier-wohl", "tierschutz", "tier-schutz"],
+        ["industriell", "fabrik", "großbetrieb", "grossbetrieb", "kleinbetrieb",
+         "hofgröße", "hofgroesse", "bestand", "bestandsgröße", "bestandsgroesse",
+         "tausende", "millionen", "qual", "leid", "wohl", "gut", "schlecht",
+         "konventionell", "bio", "freiland", "käfig-frei", "kaefig-frei",
+         "stallraum", "bewegung", "platz", "verboten", "erlaubt",
+         "standard", "norm", "vergleich"]
+      ]
+    },
+    {
+      "id": "pestizid_rueckstaende_2026",
+      "topic": "pestizid_rueckstaende_konsens",
+      "scope": "Pestizid-Rückstände in EU-Lebensmitteln — EFSA Annual Report 2024, AT-AGES-Konformität, Bio-Vergleich",
+      "year": 2024,
+      "source_url": "https://www.efsa.europa.eu/de/efsajournal/pub/8957",
+      "secondary_url": "https://www.ages.at/forschung/publikationen-statistiken/rueckstandskontrolle-pflanzenschutzmittel",
+      "source_label": "EFSA Annual Report on Pesticide Residues in Food 2024 + AGES Rückstandskontrolle 2023+2024 + AT Lebensmittelsicherheits-Gesetz LMSVG + EU MRL-Verordnung 396/2005 + Statistik Austria Pflanzenschutzmittel-Verbrauch",
+      "headline": "EFSA Annual Report 2024: ~96.4 % der EU-Lebensmittel innerhalb MRL (Maximum Residue Levels), ~3.6 % über MRL; AT 2023 (AGES) 99.4 % konform; Mehrfach-Rückstände typisch (Median 2-3 Wirkstoffe); Bio 99 % konform mit Bio-Vorgabe",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Unsere Lebensmittel sind voller Pestizide' ist EMPIRISCH ÜBERZEICHNET. Empirische Lage: (1) EFSA ANNUAL REPORT ON PESTICIDE RESIDUES 2024 (basierend auf 2022er-Daten, ~88.000 Lebensmittel-Proben EU-weit): 96.4 % der untersuchten Proben innerhalb der gesetzlichen Maximum-Residue-Levels (MRL), 3.6 % über MRL. Davon 1.5 % rechtlich relevante Überschreitung (Verkaufs-Stop oder Rückruf). 2.1 % nur statistisch über MRL aber wegen Mess-Unsicherheit nicht rechtlich relevant. (2) AT-AGES-RÜCKSTANDSKONTROLLE 2023+2024: AT-Konformitäts-Quote 99.4 % (AT überdurchschnittlich gut). ~3.500 AT-Lebensmittel-Proben pro Jahr (Obst + Gemüse + Getreide-Produkte + Fleisch). MRL-Überschreitungen 2023: 21 Fälle (0.6 %). (3) MEHRFACH-RÜCKSTÄNDE typisch: Median 2-3 verschiedene Wirkstoffe pro Probe (Frucht/Gemüse). Cocktail-Effekt diskutiert in Wissenschaft, EFSA Modell für kumulative Risiko-Bewertung 2018. (4) BIO-LEBENSMITTEL: ~99 % konform mit Bio-Vorgabe (sehr selten verbotene Wirkstoff-Kontamination, oft Drift von Nachbar-Felder). Bio-Pestizid-Verwendung beschränkt auf zugelassene Naturstoffe (Spinosad, Bt, Pyrethrum). (5) HOTSPOTS-LEBENSMITTEL: Importierte Trockenfrüchte (Rosinen, Datteln) + Tee + Gewürze haben höhere MRL-Überschreitungs-Quote (5-8 %) wegen weniger strikter Drittland-Kontrolle. AT/EU-Frischwaren <2 %. (6) VERBRAUCHS-TRENDS: AT-Pestizid-Verbrauch 2010-2024 (Statistik AT): Glyphosat ~3.500 t/Jahr stabil, Insektizide -30 %, Fungizide stabil. EU-Farm-to-Fork-Strategie 2030: -50 % Pestizid-Verbrauch (Ziel, nicht garantiert). (7) Faktencheck-relevant: Aussagen wie 'Unser Essen ist voller Pestizide' sind durch EFSA-Konformität 96 % nicht belegt. Aussagen wie 'Bio ist 100 % pestizid-frei' überzeichnen — Drift-Kontamination + Naturstoff-Pestizide. Pack distanziert sich von normativer Wertung.",
+        "efsa_2024_konformitaet": "EFSA Annual Report 2024 (publiziert April 2024, 2022er-Daten): 88.353 Lebensmittel-Proben EU-weit untersucht, 96.4 % innerhalb MRL. 3.6 % über MRL: 1.5 % rechtlich relevant (Verkaufs-Stop oder Rückruf), 2.1 % statistisch über aber Mess-Unsicherheits-Korrektur. Trend stabil seit 2018.",
+        "at_ages_2024": "AT AGES Rückstandskontrolle 2023+2024: ~3.500 Proben/Jahr, 99.4 % MRL-konform. AT-Quote überdurchschnittlich besser als EU-Schnitt. Hauptproben Obst (Äpfel + Birnen + Beeren) + Gemüse (Salate + Tomaten + Paprika) + Getreide-Produkte. MRL-Überschreitungs-Hotspots in AT 2023: importierte Spitzpaprika + Rosinen + Tee.",
+        "mehrfach_rueckstaende": "Mehrfach-Rückstands-Empirie EFSA 2024: 53 % der Proben mit Mehrfach-Rückständen, Median 2-3 verschiedene Wirkstoffe. Cocktail-Effekt-Forschung (Kortenkamp 2018 Trends Pharmacol Sci): kumulative Bewertung wichtig, EFSA Modell seit 2018.",
+        "bio_konformitaet": "Bio-Pestizid-Konformität (AT-AGES + EU-Kontrollen): ~99 % konform mit Bio-Vorgabe (Bio-EU-Verordnung 848/2018). Häufigste Beanstandungen: Drift-Kontamination von Nachbar-Konventional-Feldern (juristisch geduldet bis 0.01 mg/kg), seltene verbotene Wirkstoff-Kontamination (illegale Anwendung).",
+        "hotspots_drittland": "MRL-Überschreitungs-Hotspots EU 2023-2024: importierte Trockenfrüchte (Rosinen 5-8 %, Datteln 4-6 %), Tee (5 %), Gewürze (Pfeffer 7 %). Ursache: weniger strikte Drittland-Pestizid-Regulierung. EU-Frischwaren-Quote <2 % über MRL.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Pestizid-Wertung."
+      },
+      "context_notes": [
+        "EU-Konformität 96.4 %, AT 99.4 % — Pestizid-Rückstände ÜBER MRL sind die Ausnahme.",
+        "Mehrfach-Rückstände typisch (Median 2-3 Wirkstoffe) — Cocktail-Effekt EFSA-bewertet seit 2018.",
+        "Bio nicht 100 % pestizid-frei — Drift-Kontamination möglich + Naturstoff-Pestizide erlaubt."
+      ],
+      "claim_phrasings_handled": [
+        "Unsere Lebensmittel sind voller Pestizide",
+        "Pestizid-Rückstände in fast allen Lebensmitteln",
+        "Bio ist 100 Prozent pestizid-frei",
+        "AT-Konformität bei Pestizid-Rückständen ist hoch",
+        "EFSA toleriert zu hohe Pestizid-Werte",
+        "Cocktail-Effekt wird ignoriert"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["pestizid", "pestizide", "pestizid-rückstände", "pestizidrueckstaende",
+         "pestizid-rueckstaende", "rückstände", "rueckstaende", "wirkstoff",
+         "wirkstoffe", "mrl", "maximum residue", "efsa", "ages", "lebensmittel-sicherheit",
+         "rückstandskontrolle", "rueckstandskontrolle", "pflanzenschutzmittel",
+         "pflanzen-schutzmittel", "psm", "spritzmittel"],
+        ["voll", "voller", "kaum", "ohne", "frei", "rein", "kontaminiert",
+         "konform", "konformität", "konformitaet", "mrl-konform", "über mrl",
+         "ueber mrl", "überschreitung", "ueberschreitung", "grenzwert",
+         "grenzwerte", "cocktail", "cocktail-effekt", "kumulativ",
+         "mehrfach-rückstände", "mehrfach", "verboten", "zugelassen",
+         "drift", "kontamination", "bio", "konventionell", "obst",
+         "gemüse", "gemuese", "getreide", "alle", "fast alle", "in allen",
+         "in fast allen", "vielen", "fast", "lebensmittel", "lebensmittel-sicherheit"]
+      ]
+    },
+    {
+      "id": "duengemittel_importabhaengigkeit_2026",
+      "topic": "duengemittel_importabhaengigkeit_konsens",
+      "scope": "EU-Stickstoff-Düngemittel — Russland/Belarus-Abhängigkeit, Sanktions-Wirkung 2022-2024, EU-Reshoring-Strategie",
+      "year": 2024,
+      "source_url": "https://www.fertilizerseurope.com/wp-content/uploads/2024/04/Industry-Facts-and-Figures-2024.pdf",
+      "secondary_url": "https://agriculture.ec.europa.eu/farming/fertilisers/observatory_de",
+      "source_label": "Fertilizers Europe Industry Facts 2024 + EU-Kommission DG-AGRI Düngemittel-Observatorium + Statistik Austria + Russisch-Belarus-Sanktionen 2022-2024 + IFA International Fertilizer Association Statistics",
+      "headline": "EU-Stickstoff-Düngemittel-Bedarf: ~60 % aus Russland/Belarus vor 2022; Sanktions-Wirkung 2022-2023 Düngemittel-Preise verdreifacht, 2024 normalisiert; AT-Stickstoff-Verbrauch 2024 ~460k t, ~80 % Import",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'EU ist beim Düngemittel komplett von Russland abhängig' war 2022 teilweise wahr, ist 2024 differenzierter. Empirische Lage: (1) EU-DÜNGEMITTEL-VERBRAUCH 2024: ~10 Mio t Stickstoff (N), ~3 Mio t Phosphor (P), ~3 Mio t Kali (K). Stickstoff produziert via Haber-Bosch-Verfahren aus Erdgas + Luft-Stickstoff — Erdgas ist Hauptkosten-Faktor. (2) IMPORT-ABHÄNGIGKEIT VOR 2022: Russland + Belarus zusammen 35-40 % der EU-Stickstoff-Importe (Ammoniak + Harnstoff + NPK-Mischdünger). Bei Kali (K) waren Russland + Belarus zusammen 40-50 % EU-Importe. EU-eigene Produktion gedeckt 60 % des N-Bedarfs vor 2022. (3) SANKTIONS-WIRKUNG 2022-2023: Düngemittel-Welt-Preise vervierfacht im Q2-2022 (Ammoniak-Preis Mai 2022: $1.500/t vs. Mittel 2018-2021 ~$300/t). EU-Düngemittel-Preise verdreifacht, AT-Bauern berichteten 2022 +200 % Düngemittel-Kosten. Russland-Belarus-Importe: erst stark zurückgegangen (Q3-2022 ~80 % Rückgang), dann teilweise zurückgekehrt durch Drittland-Umweg (Türkei + Indien + China). (4) PREIS-NORMALISIERUNG 2024: Stickstoff-Preise auf $400/t zurück, Kali $300/t. Wirtschaftliche Erholung. Russland-Belarus EU-Anteil 2024 ~25 % (von 35-40 % vor 2022) — strukturelle Reduktion + Diversifikation Norwegen + Algerien + USA + Mittlerer Osten. (5) AT-STICKSTOFF-VERBRAUCH 2024 (Statistik AT): 460.000 t Stickstoff, 80 % Import (BorealisAgrolinz+Yara+OCI sind Hauptlieferanten). AT-Pro-Kopf-Düngemittel-Verbrauch im EU-Mittelfeld. (6) EU-RESHORING-STRATEGIE: EU-Action Plan Fertilizers 2024 — Ziele: Ammoniak-Re-Shoring + Präzisions-Landwirtschaft (-25 % Düngemittel-Bedarf bis 2030 durch besseres Timing + Mengen). Norwegen-LNG-Versorgung via Energinet Pipeline + neue Ammoniak-Anlagen Hamburg + Antwerpen geplant. (7) Faktencheck-relevant: Aussagen wie 'EU komplett von russischem Düngemittel abhängig' sind 2024 überzeichnet (~25 % statt 35-40 %). Aussagen wie 'Düngemittel-Preise sind nach wie vor explodiert' sind 2024 nicht mehr aktuell.",
+        "eu_verbrauch_struktur": "EU-Düngemittel-Verbrauch 2024 (Fertilizers Europe + DG-AGRI): Stickstoff 10 Mio t, Phosphor 3 Mio t, Kali 3 Mio t. Stickstoff dominanter (~85 % Wert + Energie-Aufwand). Haber-Bosch-Verfahren: 1 t Ammoniak braucht ~30 GJ Erdgas-Energie.",
+        "rus_belarus_anteil_vor_2022": "Russland + Belarus EU-Düngemittel-Importe vor 2022 (Eurostat): Stickstoff 35-40 %, Kali 40-50 %, Phosphor ~20 %. Russland: weltgrößter Stickstoff-Exporteur. Belarus: zweitgrößter Kali-Exporteur weltweit.",
+        "sanktionen_preis_explosion": "Düngemittel-Welt-Preise Q2-2022 (Fertilizers Europe Daten): Ammoniak $1.500/t (Mai 2022) vs. Mittel 2018-2021 ~$300/t (5×). Harnstoff $1.000/t. Kali $1.200/t (4×). Q3-2022 begann Normalisierung. Russland-Belarus-EU-Importe Q3-2022: -80 %, danach teilweise Rückkehr via Drittland-Umweg.",
+        "preis_normalisation_2024": "Düngemittel-Preise 2024 (DG-AGRI Q3 2024): Ammoniak $400/t, Harnstoff $360/t, Kali $300/t. Auf normales Niveau zurück. Russland-Belarus-EU-Anteil 2024: ~25 % Stickstoff (strukturelle Reduktion + Diversifikation Norwegen + Algerien + USA + Mittlerer Osten).",
+        "at_2024": "AT-Stickstoff-Verbrauch 2024 (Statistik AT): 460.000 t Stickstoff für Landwirtschaft. Hauptlieferanten: BorealisAgrolinz (AT, Linz), Yara (Norwegen), OCI (Niederlande). 80 % Import-Anteil (AT-Anlage Linz produziert ~150k t/Jahr).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Sanktions-Wertung."
+      },
+      "context_notes": [
+        "Russland-Belarus-Abhängigkeit war 2021/2022 hoch (35-40 % Stickstoff) — 2024 reduziert auf ~25 %.",
+        "Düngemittel-Preis-Spitze Q2-2022 (Faktor 4-5×), 2024 weitgehend normalisiert.",
+        "AT-Stickstoff-Verbrauch 460k t/Jahr, 80 % Import-Anteil — Linz-Anlage einziger AT-Hersteller."
+      ],
+      "claim_phrasings_handled": [
+        "EU komplett vom russischen Düngemittel abhängig",
+        "Düngemittel-Preise sind explodiert",
+        "AT produziert eigenen Düngemittel",
+        "Sanktionen treffen die EU-Bauern",
+        "EU diversifiziert weg von Russland",
+        "Düngemittel-Preise haben sich normalisiert"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["düngemittel", "duengemittel", "düngemittel-preise", "stickstoff",
+         "ammoniak", "harnstoff", "kali", "phosphor", "npk", "haber-bosch",
+         "agrar-rohstoffe", "yara", "borealis", "agrolinz", "oci",
+         "fertilizer", "fertilisers", "russland", "belarus", "sanktionen",
+         "russisch", "belarussisch"],
+        ["abhängig", "abhaengig", "abhängigkeit", "abhaengigkeit",
+         "import", "imports", "exportiert", "import-quote", "preis",
+         "preise", "explodiert", "verdreifacht", "vervierfacht",
+         "normalisiert", "diversifiziert", "diversifikation", "reshoring",
+         "russland", "belarus", "sanktionen", "ukraine-krieg", "krieg",
+         "alternative", "norwegen", "algerien", "mittlerer osten",
+         "selbst-versorgung", "selbstversorgung"]
+      ]
+    },
+    {
+      "id": "welternaehrung_knappheit_mythen_2026",
+      "topic": "welternaehrung_knappheit_mythen_konsens",
+      "scope": "Welt-Hunger 2024 — FAO 733 Mio Unter-Ernährte, Verteilungs-Problem statt Mengen-Problem, Lebensmittel-Verschwendung",
+      "year": 2024,
+      "source_url": "https://www.fao.org/publications/sofi/2024/en/",
+      "secondary_url": "https://www.fao.org/3/cb4474en/online/cb4474en.html",
+      "source_label": "FAO 'State of Food Security and Nutrition in the World' SOFI 2024 + WFP World Food Programme + Weltbank Hunger Map + UN-FAO Food Loss and Waste Index 2024 + Brot für die Welt",
+      "headline": "FAO SOFI 2024: 733 Mio Menschen unter-ernährt (8.9 % Welt-Bev) — Anstieg seit 2019 wegen COVID + Ukraine-Krieg + Sahelzone-Konflikten; NICHT Mengen-Problem (genug Kalorien produziert), sondern VERTEILUNGS-Problem; EU/USA Lebensmittel-Verschwendung ~30 %",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Wir produzieren nicht genug für die Welt' ist EMPIRISCH FALSCH. Empirische Lage: (1) FAO 'STATE OF FOOD SECURITY AND NUTRITION IN THE WORLD' (SOFI) 2024: 733 Mio Menschen weltweit unter-ernährt (8.9 % der Weltbevölkerung). Anstieg von ~600 Mio (2019) durch COVID + Ukraine-Krieg + Sahelzone-Konflikte. Höchste Werte: Sub-Sahara-Afrika (23 % unter-ernährt), Süd-Asien (14 %), Lateinamerika (8 %). (2) WELT-LEBENSMITTEL-PRODUKTION 2024: 4.8 Mrd t Getreide-Äquivalent — würde theoretisch 12 Mrd Menschen ernähren bei direkter Pflanzen-Konsum. Reale Welt-Bev 2024: 8.1 Mrd. KALORIEN-MENGE ist NICHT das Problem. (3) VERTEILUNGS-PROBLEM-FAKTOREN: (a) ~38 % der Welt-Getreide-Produktion zu Tier-Futter (in Industrie-Ländern + Schwellenländern). 1 kg Rind-Fleisch = 7-25 kg Futter-Getreide. (b) ~30 % Lebensmittel-Verschwendung weltweit (FAO 2021): Industrie-Länder 30 % auf Konsum-Stufe, Entwicklungsländer 30 % auf Lager-/Transport-Stufe. (c) Klima-/Konflikt-Hotspots: Bürgerkriege Sudan + Jemen + Sahel + Tigray verhindern lokale Produktion + Welternährungs-Hilfe. (d) Land-Grabbing: ~40 Mio ha in Afrika von ausländischen Investoren (China + Saudi + GUS) für Export-Produktion (FAO + GRAIN Database). (4) WFP WORLD FOOD PROGRAMME 2024: 60 % der Hungernden in Konflikt-Gebieten. WFP-Budget 2024: $13 Mrd (vs. Bedarfs-Schätzung $40 Mrd). (5) EU/USA-LEBENSMITTEL-VERSCHWENDUNG (UNEP Food Waste Index 2024): EU 173 kg pro Person/Jahr (ca. 30 % Konsum), USA 215 kg, AT 76 kg pro Haushalt/Jahr (Statistik AT). Bei AT-Population ~700.000 t Lebensmittel-Verschwendung/Jahr. (6) Faktencheck-relevant: Aussagen wie 'Welt-Bev wächst, wir können nicht mehr genug produzieren' sind durch Welt-Produktion 12 Mrd-Kapazität widerlegt. Aussagen wie 'Hunger ist nur Mengen-Problem' verkennen Verteilungs- + Konflikt- + Verschwendungs-Faktoren. Pack distanziert sich von Pro/Contra-Globalisierung-Wertung.",
+        "fao_sofi_2024": "FAO SOFI 2024: 733 Mio Menschen weltweit unter-ernährt (8.9 % der Welt-Bev). +130 Mio seit 2019 wegen COVID-19 + Ukraine-Krieg + Sahelzone-Konflikte. Hauptregionen: Sub-Sahara-Afrika 23 % unter-ernährt, Süd-Asien 14 %, Lateinamerika 8 %, Mittlerer Osten + Nord-Afrika 11 %. Frauen + Kinder überproportional betroffen.",
+        "welt_produktion_2024": "FAOSTAT 2024 Welt-Lebensmittel-Produktion: 4.8 Mrd t Getreide-Äquivalent + 350 Mio t Fleisch + 950 Mio t Milch + 1.1 Mrd t Frucht + Gemüse. Würde theoretisch 12 Mrd Menschen ernähren bei direkter Pflanzen-Konsum (3.500 kcal/Person/Tag). Reale Welt-Bev 2024: 8.1 Mrd.",
+        "verteilung_38_prozent_futter": "Welt-Getreide-Verteilung 2024: ~45 % Direkt-Pflanzen-Konsum, ~38 % Tier-Futter, ~10 % Bio-Treibstoffe + Industrie, ~7 % Saatgut + Verluste. 1 kg Rind-Fleisch = 7-25 kg Futter-Getreide (Konversions-Effizienz 4-15 %). Pflanzen-direkt-Konsum würde Bev-Versorgung +50 % erhöhen.",
+        "verschwendung_30_prozent": "FAO Food Loss and Waste Index 2024: 30 % weltweit verschwendet. EU 173 kg pro Person/Jahr (UNEP 2024), USA 215 kg, Sub-Sahara-Afrika 121 kg pro Person/Jahr. AT-Lebensmittel-Verschwendung 2024 (Statistik AT): 76 kg pro Haushalt/Jahr, total ~700.000 t/Jahr. Hauptverlust-Kategorien: Brot + Frisch-Lebensmittel + Speisereste.",
+        "konflikt_hunger": "WFP World Food Programme 2024: 60 % der Hungernden in Konflikt-Gebieten. Hauptkrisen 2024: Sudan-Bürgerkrieg (~25 Mio Hunger-Betroffene), Gaza-Gaza-Krieg, Jemen-Bürgerkrieg, Sahelzone-Multi-Krise (Mali + Niger + Burkina Faso + Tschad), Süd-Sudan, DR-Kongo. WFP-Bedarfs-vs-Funding-Gap: $40 Mrd Bedarf vs. $13 Mrd Budget 2024.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Globalisierung-Wertung."
+      },
+      "context_notes": [
+        "Welt-Produktions-Kapazität reicht für 12 Mrd Menschen (vs. 8.1 Mrd Welt-Bev) — Mengen-Problem nicht zentral.",
+        "Hauptursachen Welt-Hunger: Verteilung (38 % Tier-Futter), Verschwendung (30 %), Konflikte (60 % der Hungernden in Krisengebieten).",
+        "AT verschwendet ~700.000 t Lebensmittel/Jahr — entspricht ~76 kg pro Haushalt."
+      ],
+      "claim_phrasings_handled": [
+        "Welt-Bevölkerung wächst, wir produzieren nicht genug",
+        "Wir müssen mehr produzieren um Hunger zu beenden",
+        "Hunger ist Mengen-Problem",
+        "Hunger ist Verteilungs-Problem",
+        "30 Prozent Lebensmittel werden verschwendet",
+        "Tier-Futter geht von Welt-Hunger ab"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["welt-hunger", "welthunger", "welternährung", "welt-ernährung",
+         "welt-ernaehrung", "welternaehrung", "hunger", "unter-ernährung",
+         "unter-ernaehrung", "unterernaehrung", "fao", "wfp",
+         "world food programme", "lebensmittel-verschwendung",
+         "lebensmittelverschwendung", "food waste"],
+        ["genug", "nicht genug", "produzieren", "produziert", "wachsen",
+         "wachstum", "weltbevölkerung", "weltbev", "welt-bev", "welt-bevölkerung",
+         "verteilung", "verteilungs-problem", "ungerecht", "konflikte",
+         "krieg", "krisen", "verschwendung", "verschwendet", "wegwerfen",
+         "weggeworfen", "tierfutter", "tier-futter", "rindfleisch",
+         "fleisch-konsum", "30 %", "30 prozent", "38 %", "8 mrd",
+         "12 mrd", "733 mio"]
+      ]
+    },
+    {
+      "id": "bauern_sterben_empirie_2026",
+      "topic": "bauern_sterben_empirie_konsens",
+      "scope": "AT-Höfe-Schwund 1951-2024 — Strukturwandel, EU-Vergleich, Wirtschaftsfaktor 1.4 % BIP",
+      "year": 2024,
+      "source_url": "https://www.statistik.at/statistiken/land-und-forstwirtschaft/agrarstrukturerhebung",
+      "secondary_url": "https://info.bml.gv.at/themen/landwirtschaft/zahlen-und-fakten/landwirtschaftliche-betriebe.html",
+      "source_label": "Statistik Austria Agrarstrukturerhebung 1951-2024 + BMVL + DESTATIS Höfe-Statistik DE + Eurostat Farm Structure Survey + WIFO Strukturwandel-Studien",
+      "headline": "AT-Höfe-Schwund 1951-2024: 432.848 Höfe (1951) → 155.000 (2024) = -64 % über 73 Jahre, ~1 %/Jahr Trend; AT-Landwirtschaft 2024: 1.4 % BIP, 4 % Beschäftigte; EU-Trend ähnlich (DE 1990 700k → 2024 257k Höfe)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT-Bauern sterben aus' ist als Mengen-Trend FAKTISCH (-64 % seit 1951), aber NICHT als 'kein-AT-Landwirtschaft-mehr'-These. Empirische Lage: (1) AT-HÖFE-ENTWICKLUNG (Statistik AT Agrarstrukturerhebung): 1951 432.848 Höfe → 1971 367.731 → 1991 280.443 → 2010 173.317 → 2024 ~155.000. Insgesamt -64 % über 73 Jahre, durchschnittlich ~1 % p.a. Trend setzt sich fort. (2) STRUKTURWANDEL-MUSTER: Schwund primär bei kleinen Hobby-/Nebenerwerbs-Höfen, Vollerwerbs-Höfe stabiler. AT 2024: ~155.000 Höfe gesamt, davon ~30.000 Vollerwerbs (>50 % Einkommen aus LW), ~85.000 Nebenerwerbs, ~40.000 Hobby/Kleinst-Höfe. Durchschnittliche Hofgröße AT 2024: 19.5 ha (vs. 1951 5.5 ha — Hofgrößen-Wachstum durch Konsolidierung). (3) AT-LANDWIRTSCHAFT WIRTSCHAFTSFAKTOR 2024: 1.4 % BIP-Anteil (~6 Mrd EUR pro Jahr Bruttoproduktionswert), 4 % der Erwerbstätigen (~155.000 Vollzeit-Äquivalente direkt + ~250.000 indirekt in Verarbeitung + Vorgelagert). 23.7 % der Acker-Fläche AT bio-zertifiziert (höchster EU). (4) EU-VERGLEICH: DE 1990 700.000 Höfe → 2024 257.000 (-63 %, EU-Schnitt-Trend). FR 1.6 Mio (1980) → 380.000 (2024). NL 105.000 (1990) → 50.000 (2024). Strukturwandel ist EU-weit. (5) URSACHEN: Ökonomische Skalen-Vorteile (Maschinen-Auslastung), Regulatorische Anforderungen (Tierwohl + Hygiene + Bio + GAP-Bürokratie), Demografie (Hof-Übernehmer fehlen), EU-Markt-Druck. (6) ZUKUNFTS-AUSSICHTEN: AT-Trend ~1 %/Jahr fortschreiten — bei gleichbleibendem Tempo 2050 ~120.000 Höfe (vs. 155.000 heute). NICHT 'Aussterben' aber Konzentrations-Trend. (7) Faktencheck-relevant: Aussagen wie 'AT-Bauern sterben aus' sind als Trend faktisch (-64 % seit 1951). Aussagen wie 'AT-Landwirtschaft hat keine Zukunft' sind durch 1.4 % BIP-Anteil + 4 % Beschäftigte + 26 % Bio-Anteil widerlegt. Pack distanziert sich von normativer Wertung.",
+        "at_hoefe_1951_2024": "Statistik AT Agrarstrukturerhebung Zeitreihe: 1951 432.848 Höfe → 1971 367.731 → 1991 280.443 → 2010 173.317 → 2020 155.900 → 2024 ~155.000 (vorläufig). -64 % über 73 Jahre. Stärkster Schwund 1970er-1990er (Industrialisierung + EU-Beitritts-Vorbereitung).",
+        "strukturwandel_kategorien": "AT-Hofkategorien 2024: ~30.000 Vollerwerbs-Höfe (>50 % Einkommen LW), ~85.000 Nebenerwerbs-Höfe (LW + Erwerbsarbeit kombiniert), ~40.000 Hobby/Kleinst-Höfe. Vollerwerbs-Anteil sinkt langsamer als Hobby-Anteil — Strukturwandel primär durch kleinere Höfe-Aufgabe.",
+        "at_wirtschaftsfaktor": "AT-Landwirtschaft 2024 (Statistik AT + WIFO): Bruttoproduktionswert ~6 Mrd EUR/Jahr (1.4 % BIP), Beschäftigung 155.000 Vollzeit-Äquivalente direkt (4 %), zusätzlich 250.000 indirekt in Verarbeitung + Maschinenbau + Handel. Export-Quote AT-Lebensmittel: ~50 % (DE-Hauptmarkt).",
+        "eu_vergleich": "EU-Höfe-Schwund 1990-2024: DE 700k → 257k (-63 %), FR 1.6 Mio → 380k (-76 %), NL 105k → 50k (-52 %), AT 280k → 155k (-45 % seit 1991). Strukturwandel EU-weit ~1-1.5 %/Jahr. AT-Schwund langsamer als FR + DE wegen Berg-Bauern-Struktur (kleinere Höfe stabiler).",
+        "ursachen_strukturwandel": "Strukturwandel-Treiber: (a) Skalen-Vorteile bei Maschinen + Stallungen (~30 %), (b) Regulatorische Last + Bürokratie (Tierwohl + Bio + GAP-Anträge) (~25 %), (c) Demografie + Hof-Übernehmer-Mangel (~25 %), (d) EU-Markt-Druck + Globalisierung (~20 %). Quellen: WIFO + BOKU Strukturwandel-Studien 2020-2024.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "AT-Höfe-Schwund -64 % über 73 Jahre, kontinuierlicher Trend ~1 %/Jahr.",
+        "AT-Landwirtschaft 2024: 1.4 % BIP + 4 % Beschäftigte — bedeutsam aber nicht dominant.",
+        "EU-Trend ähnlich (DE -63 %, FR -76 %), AT-Schwund-Tempo wegen Berg-Bauern-Struktur etwas langsamer."
+      ],
+      "claim_phrasings_handled": [
+        "AT-Bauern sterben aus",
+        "Es gibt immer weniger Bauern",
+        "AT-Landwirtschaft verschwindet",
+        "Höfe-Schwund von 64 Prozent",
+        "AT-Landwirtschaft hat keine Zukunft",
+        "EU-weiter Bauernstand verschwindet"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["bauern", "bauer", "bäuerin", "baeuerin", "bauern-sterben",
+         "bauernsterben", "höfe", "hoefe", "höfe-schwund", "hoefe-schwund",
+         "landwirt", "landwirte", "landwirtschaft", "land-wirtschaft",
+         "kleinbauern", "klein-bauern", "großbauern", "großbetriebe",
+         "vollerwerb", "voll-erwerb", "nebenerwerb", "neben-erwerb",
+         "hobby-bauer", "hobby-höfe", "betriebe", "agrar-betriebe"],
+        ["sterben", "verschwinden", "schwund", "rückgang", "rueckgang",
+         "abnahme", "weniger", "kleiner", "größer", "groesser", "wachsen",
+         "schrumpfen", "konsolidierung", "zusammenfassen", "übernahme",
+         "uebernahme", "aufgabe", "aufgeben", "zukunft", "perspektive",
+         "stirbt aus", "sterben aus", "1951", "1990", "2024", "64 %",
+         "60 %", "trend", "strukturwandel", "struktur-wandel", "industrialisierung"]
+      ]
+    },
+    {
+      "id": "klima_landwirtschaft_2026",
+      "topic": "klima_landwirtschaft_konsens",
+      "scope": "AT-Landwirtschaft Treibhausgas-Emissionen 2024 + Klima-Anpassung — Wein-Verlagerung, Mais-Hitze-Stress",
+      "year": 2024,
+      "source_url": "https://www.umweltbundesamt.at/klima/treibhausgase/khg-bilanz",
+      "secondary_url": "https://www.zamg.ac.at/cms/de/klima/klima-aktuell/klimadaten",
+      "source_label": "Umweltbundesamt AT Klimagas-Bilanz 2024 + ZAMG (GeoSphere AT) Klimaentwicklung + IPCC AR6 Working Group II + AGES Klima-Anpassung-Empfehlungen + Statistik Austria + BMK 2040-Klima-Strategie",
+      "headline": "AT-Treibhausgas-Emissionen Landwirtschaft 2024 (UBA): 8.0 Mt CO2e (~10 % Gesamt-Emissionen, davon 60 % Methan aus Wiederkäuern + Gülle); Klima-Anpassung: Wein-Anbau verlagert nach Norden (+1.5°C 1980-2024 Sankt Pölten), Mais-Hitze-Stress 2018+2022 -25-30 % Ernte",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Landwirtschaft ist nicht Klima-relevant' ist EMPIRISCH FALSCH. Empirische Lage: (1) AT-LANDWIRTSCHAFT KLIMAGAS-EMISSIONEN 2024 (Umweltbundesamt AT KHG-Bilanz): 8.0 Mt CO2e, ~10 % der AT-Gesamt-Emissionen (von 80 Mt). Aufteilung: 60 % Methan aus Wiederkäuern + Gülle (Rinder + Schweine), 25 % Distickstoff-Oxid aus Düngung + Boden, 15 % CO2 aus Diesel + Energie. (2) HAUPTQUELLEN: Rinder-Methan ~3.5 Mt, Schwein-Methan ~0.4 Mt, Gülle-Lager ~0.5 Mt, Düngung-Distickstoff-Oxid ~2.0 Mt, Diesel + Energie ~1.2 Mt. AT-Landwirtschafts-Emissionen seit 1990 -16 % gefallen (durch Effizienz-Steigerung Tier-Futter + Düngung). (3) KLIMA-WANDEL-AUSWIRKUNG AT (ZAMG/GeoSphere 2024): AT-Mittel-Temperatur +1.8°C seit 1880, +1.5°C seit 1980. Sankt Pölten 2024: 11.5°C Jahresmittel (vs. 10.0°C 1980). (4) SEKTOR-SPEZIFISCHE EFFEKTE: (a) WEIN: Anbau-Grenzen verlagert nach Norden (Wachau-Süd-Grenze) und in höhere Lagen (Steiermark-Berge). Reife-Zeitpunkt 2 Wochen früher als 1980. Neue Sorten (Cabernet Sauvignon) klimatisch möglich. (b) MAIS: Hitze-Stress 2018 + 2022 -25-30 % Ernte (BOKU-Studie 2023). Bewässerungs-Bedarf steigt — AT-Mais bisher fast nicht bewässert, ändert sich. (c) APFEL/OBSTBAU: Verlagert in höhere Lagen (Steiermark + Oberösterreich). (d) RIND-/MILCH: Hitze-Stress >25°C reduziert Milch-Leistung 10-15 %. (5) AT-KLIMA-STRATEGIE 2040: Landwirtschaft soll -23 % Emissionen bis 2030, -36 % bis 2040. Maßnahmen: Bio-Erweiterung + Tier-Bestand-Reduktion + Bio-Gülle-Vergärung + Präzisions-Düngung. (6) GLOBAL VERGLEICH: Welt-Landwirtschaft 23-25 % der globalen Klima-Emissionen (IPCC AR6). EU-Landwirtschaft 11 %, USA 10 %, AT 10 % — etwa EU-Mittel. (7) Faktencheck-relevant: Aussagen wie 'Landwirtschaft ist klimaneutral' sind durch UBA-KHG-Bilanz widerlegt (10 % AT-Emissionen). Aussagen wie 'Bauern sind Klima-Sünder' sind überzogen — Effizienz-Steigerung läuft seit 1990 (-16 %). Pack distanziert sich von normativer Wertung.",
+        "uba_khg_bilanz_2024": "Umweltbundesamt AT Klimagas-Bilanz 2024 (publiziert 2025): AT-Gesamt-Emissionen ~80 Mt CO2e. Landwirtschaft 8.0 Mt (10.0 %), Verkehr 23 Mt (29 %), Industrie 22 Mt (27 %), Energie 18 Mt (22 %), Gebäude 8 Mt (10 %). Landwirtschaft seit 1990 -16 % (1990: 9.5 Mt).",
+        "methan_wiederkaeuer": "AT-Methan-Emissionen 2024: 3.5 Mt CO2e Rinder (Wiederkäuer-Verdauung Mikrobielle Pansen-Gärung), 0.4 Mt Schweine, 0.5 Mt Gülle-Lager. Welt-Methan-Forschung: Methan ~80× wirksamer als CO2 in 20-Jahres-Zeitraum (IPCC AR6). Reduktions-Strategien: Tier-Futter-Ergänzungen (3-NOP/Bovaer), Gülle-Vergärung Biogas.",
+        "klima_temperatur_at": "ZAMG (GeoSphere AT) 2024: AT-Mittel-Temperatur +1.8°C seit 1880, +1.5°C seit 1980. Wärmster Bereich: Pannonisches Tiefland + Wien + Sankt Pölten. Niederschlags-Trend: leicht steigend im Westen, stabil/sinkend im Osten. Hitze-Tage (>30°C) Wien: 1980 ~5/Jahr → 2024 ~25/Jahr.",
+        "wein_mais_apfel_anpassung": "Klima-Anpassung AT 2024: Wein-Reife-Zeitpunkt 2 Wochen früher als 1980 (BOKU + AGES Wein-Studien). Mais-Erträge 2018+2022 -25-30 % wegen Hitze-Stress (BOKU 2023). Apfel-Anbau verlagert in höhere Lagen (Steiermark + Oberösterreich-Mittelgebirge). Rind-/Milch-Hitze-Stress >25°C: Milch-Leistung -10-15 %.",
+        "at_klima_strategie": "AT 2040-Klima-Strategie (BMK + Landwirtschafts-Pakt 2023): Landwirtschaft -23 % bis 2030, -36 % bis 2040 (gegenüber 2020). Maßnahmen: Bio-Erweiterung 30 % bis 2030, Tier-Bestand-Reduktion 10 % bis 2030, Bio-Gülle-Vergärung 50 % der Gülle, Präzisions-Düngung -25 % Stickstoff-Verbrauch.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "AT-Landwirtschaft 10 % der THG-Emissionen — relevant aber kleiner als Verkehr (29 %) oder Industrie (27 %).",
+        "Methan aus Wiederkäuern + Gülle ist 60 % der LW-Emissionen — Reduktions-Strategien existieren (Bovaer, Biogas).",
+        "Klima-Anpassung läuft real: Wein nach Norden, Mais zunehmend stress-belastet, Apfel in höhere Lagen."
+      ],
+      "claim_phrasings_handled": [
+        "Landwirtschaft ist klimaneutral",
+        "Bauern sind Klima-Sünder",
+        "10 Prozent der AT-Emissionen aus Landwirtschaft",
+        "Klima-Wandel betrifft AT-Bauern stark",
+        "AT-Landwirtschaft reduziert Emissionen seit 1990",
+        "Mais-Erträge sinken wegen Klima"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["klima", "klima-wandel", "klimawandel", "klima-erwärmung",
+         "klimaerwaermung", "treibhausgas", "treibhausgase", "thg",
+         "co2", "methan", "ch4", "distickstoff-oxid", "n2o",
+         "landwirtschaft", "land-wirtschaft", "bauern", "rinder",
+         "rind-haltung", "schweine", "gülle", "guelle", "düngung",
+         "duengung", "dünger", "duenger"],
+        ["emissionen", "emission", "klima-bilanz", "klimabilanz", "khg",
+         "khg-bilanz", "uba", "umweltbundesamt", "zamg", "geosphere",
+         "ipcc", "global", "welt", "ausstoß", "ausstoss", "ausstossen",
+         "verursachen", "verursacht", "klima-neutral", "klimaneutral",
+         "anpassung", "klima-anpassung", "wein", "mais", "apfel",
+         "milch", "ertrag", "ernte", "hitze", "hitze-stress",
+         "trockenheit", "10 %", "10 prozent", "23 %", "16 %"]
+      ]
+    }
+  ]
+}

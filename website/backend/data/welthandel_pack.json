@@ -1,0 +1,832 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-07",
+  "source_label": "Statistik Austria + WIFO + IFO + Bank of England + LSE Centre for Economic Performance + EU-Kommission + Weltbank + FAO + IEA + BNEF + WTO + UNCTAD + Boston Consulting Group + McKinsey + CSIS + peer-reviewed (Piketty + Saez + Krugman + Heckscher-Ohlin + Cecchini-Bericht)",
+  "facts": [
+    {
+      "id": "china_lieferketten_abhaengigkeit_2026",
+      "topic": "china_lieferketten_abhaengigkeit_konsens",
+      "scope": "DACH/EU-Importabhängigkeit von China — Reshoring-Empirie + De-Risking",
+      "year": 2024,
+      "source_url": "https://www.mckinsey.com/capabilities/operations/our-insights/the-resilience-of-global-supply-chains",
+      "secondary_url": "https://commission.europa.eu/strategy-and-policy/priorities-2019-2024/stronger-europe-world/eu-economic-security-strategy_en",
+      "source_label": "McKinsey Global Supply Chain Pulse Survey 2023 + Boston Consulting Group BCG 2024 Reshoring-Studie + EU-Kommission Economic Security Strategy 2023 + WIFO Außenhandelsstatistik AT 2024 + DESTATIS Außenhandelsstatistik DE 2024 + Eurostat Comext",
+      "headline": "AT-Importe aus China 2024 ~8 % gesamt-Importe (Statistik Austria), DE ~11 % (DESTATIS), EU gesamt ~21 % (Eurostat); strukturelle Komponenten-Abhängigkeit Solar-Module 80-95 %, Lithium-Batterie-Zellen 75 %, Seltene Erden 90 %; EU De-Risking-Strategie 2023+",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'EU/AT/DE sind komplett von China abhängig' ist DIFFERENZIERT TEILWEISE WAHR. Empirische Lage: (1) AGGREGIERTE IMPORTE-QUOTEN 2024 (Statistik Austria + DESTATIS + Eurostat Comext): AT-Importe aus China ~8 % der gesamten Waren-Importe (rund 14 Mrd EUR von ~180 Mrd EUR Gesamt-Import). DE-Importe aus China ~11 % (rund 156 Mrd EUR von ~1.430 Mrd EUR Gesamt-Import). EU-27 Importe aus China gesamt ~21 % (Eurostat 2024). Diese aggregierten Quoten sind moderat — die kritische Abhängigkeit ist KOMPONENTEN-spezifisch. (2) STRUKTURELLE KOMPONENTEN-ABHÄNGIGKEIT (BNEF + IEA Critical Minerals 2024): Solar-Photovoltaik-Module 80 % chinesischer Markt-Anteil global, Polysilizium 95 %, Wafer 96 %, Solar-Zellen 80 %. Lithium-Ionen-Batterie-Zellen 75 %, Anode-Material 80 %. Seltene Erden (Neodym, Dysprosium für Magneten/Wind-Turbinen): 90 % Verarbeitungs-Kapazität in China (USGS 2024). Diese Komponenten sind für Energie-Transformation zentral — Substitution kurzfristig nicht möglich. (3) RESHORING-EMPIRIE (McKinsey Global Supply Chain Pulse 2023 Befragung 113 Supply-Chain-Manager + BCG 2024): nach 2020-Pandemie-Schock Anteil Unternehmen, die Reshoring/Nearshoring planen, gestiegen von 14 % (2019) auf 67 % (2023). ABER tatsächliche Umsetzung modest — McKinsey 2023 Befund: nur 30 % der Unternehmen, die Reshoring planten, haben es tatsächlich realisiert. Hauptgründe für Nicht-Umsetzung: Kosten-Differential 2-3x, Skill-Engpass in DE/EU, Lieferanten-Netzwerk-Komplexität. (4) EU-DE-RISKING-STRATEGIE: EU-Kommission Economic Security Strategy Juni 2023 + Critical Raw Materials Act März 2024 + Net-Zero Industry Act Februar 2024. Ziel: bis 2030 maximal 65 % einer kritischen Rohstoff-Lieferung von einem einzigen Drittland (= China-Exposition reduzieren). Net-Zero Industry Act: Ziel 40 % EU-eigene Produktion strategischer Net-Zero-Technologien bis 2030. (5) UNTERSCHEIDUNG: Aussage 'AT-Wirtschaft hängt zu 70 % von China ab' ist AGGREGAT-FALSCH (~8 % Importe). Aussage 'Solar-Modul-Beschaffung hängt zu 80 % von China ab' ist KOMPONENTEN-RICHTIG. Pack distanziert sich von Pro/Contra-De-Risking-Wertung — präsentiert nur empirische Lage.",
+        "at_importe_china": "AT-Importe aus China 2024 (Statistik Austria Außenhandelsstatistik): ca. 14 Mrd EUR = 8 % der ~180 Mrd EUR Gesamt-Waren-Importe. Top-China-Import-Kategorien AT: Maschinen + Elektronik 45 %, Textilien 12 %, Chemie 10 %. AT-Exporte nach China: ca. 5 Mrd EUR (3 % Gesamt-Export) — STRUKTUR-Defizit ~9 Mrd EUR.",
+        "de_importe_china": "DE-Importe aus China 2024 (DESTATIS): ca. 156 Mrd EUR = 11 % der ~1.430 Mrd EUR Gesamt-Waren-Importe. China ist DE-Top-Import-Land seit 2015. DE-Exporte nach China 2024: ~95 Mrd EUR (-7 % vs. 2023, schwächer als globaler Trend) — strukturelles Handels-Defizit ~61 Mrd EUR.",
+        "komponenten_abhaengigkeit": "Strukturelle Komponenten-Abhängigkeit EU-China 2024 (BNEF + IEA Critical Minerals + USGS): Solar-Module 80 % global, Polysilizium 95 %, Lithium-Batterie-Zellen 75 %, Anode-Material 80 %, Seltene Erden Verarbeitung 90 %, Permanent-Magneten 90 %, Wind-Turbinen-Komponenten 60 %. Diese Konzentration ist FOLGE chinesischer Industrie-Politik 2010-2020 (Subventionen + Skalen-Ökonomie).",
+        "mckinsey_bcg_reshoring": "McKinsey Global Supply Chain Pulse Survey 2023 (113 Supply-Chain-Manager weltweit): 67 % planen Reshoring/Nearshoring, nur 30 % der Planenden haben umgesetzt. Hauptgründe: Kosten-Differential 2-3x, Skill-Engpass, Lieferanten-Netzwerk. BCG Reshoring-Studie 2024: bis 2030 ~$3 Bio Investitionen weltweit für Lieferketten-Diversifikation prognostiziert.",
+        "eu_de_risking_strategie": "EU-Kommission Economic Security Strategy Juni 2023: 'De-Risking, not De-Coupling' Doktrin. Critical Raw Materials Act März 2024: bis 2030 max. 65 % einer kritischen Rohstoff-Lieferung von einem Drittland, 10 % EU-eigene Förderung, 40 % EU-Verarbeitung, 25 % Recycling. Net-Zero Industry Act Feb 2024: Ziel 40 % EU-eigene Produktion strategischer Net-Zero-Technologien bis 2030.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Pro/Contra-China-Wertung."
+      },
+      "context_notes": [
+        "AGGREGAT vs. KOMPONENTEN: Aggregate Importquoten moderat (AT 8 %, DE 11 %), Komponenten-Abhängigkeit kritisch (Solar 80 %, Seltene Erden 90 %).",
+        "Reshoring-Empirie: 67 % planen, nur 30 % der Planenden setzen tatsächlich um — Kosten-Differential 2-3x bremst Umsetzung.",
+        "EU De-Risking-Strategie 2023+ hat 'Diversifikation, nicht Entkopplung' als Doktrin — Pack distanziert sich von Wertung."
+      ],
+      "claim_phrasings_handled": [
+        "Wir hängen komplett von China ab",
+        "AT/DE-Wirtschaft ist von China abhängig",
+        "Wir importieren alles aus China",
+        "China hat das Solar-Monopol",
+        "EU braucht De-Risking von China",
+        "Reshoring funktioniert nicht"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "china",
+          "lieferkette",
+          "lieferketten",
+          "supply chain",
+          "supply-chain",
+          "reshoring",
+          "re-shoring",
+          "nearshoring",
+          "near-shoring",
+          "de-risking",
+          "derisking",
+          "seltene erden",
+          "rare earth",
+          "polysilizium",
+          "lithium",
+          "batterie-zellen",
+          "solar-module"
+        ],
+        [
+          "abhängig",
+          "abhaengig",
+          "abhängigkeit",
+          "abhaengigkeit",
+          "importiert",
+          "importe",
+          "monopol",
+          "dominanz",
+          "70 %",
+          "80 %",
+          "90 %",
+          "alles",
+          "komplett",
+          "verlieren",
+          "diversifikation",
+          "diversifizieren"
+        ]
+      ]
+    },
+    {
+      "id": "made_in_germany_realitaet_2026",
+      "topic": "made_in_germany_realitaet_konsens",
+      "scope": "DE-Auto-Wertschöpfung — VW Tiguan Mecklenburg-Hochmuth 2023 IFO + Made-in-Germany 45 %-Regel",
+      "year": 2024,
+      "source_url": "https://www.ifo.de/publikationen/2023/aufsatz-zeitschrift/wertschoepfungsanteile-deutscher-automobilhersteller",
+      "secondary_url": "https://www.dihk.de/de/themen-und-positionen/recht-steuern/internationales-wirtschaftsrecht/made-in-germany",
+      "source_label": "IFO Schnelldienst Mecklenburg/Hochmuth 2023 'Wertschöpfungsanteile deutscher Automobilhersteller' + DIHK Made-in-Germany Leitfaden + Bundesgerichtshof BGH-Rechtsprechung zu Herkunfts-Bezeichnungen + WTO Rules of Origin + EU Customs Code",
+      "headline": "DE-Auto-Wertschöpfung VW Tiguan (IFO 2023): ~30 % deutsch, ~30 % Süd/Osteuropa (Tschechien + Polen + Ungarn + Slowakei), ~25 % Asien (China + Japan + Korea), ~15 % Rest; Made-in-Germany Label nach BGH/DIHK fordert ~45 % Wertschöpfung in DE",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Made in Germany bedeutet alles in DE produziert' ist FALSCH — empirisch wie rechtlich. Empirische Lage: (1) IFO-STUDIE 2023 (Mecklenburg/Hochmuth, Schnelldienst): Wertschöpfungs-Aufgliederung VW Tiguan als typisches DE-Auto-Modell: ~30 % Wertschöpfung in DE (Endmontage Wolfsburg + Motoren-Komponenten + Forschung), ~30 % Süd/Osteuropa (Tschechien-Werk Mladá Boleslav, Polen-Werke, Ungarn Audi-Werk, Slowakei Bratislava), ~25 % Asien (China-Komponenten + Japan-Elektronik + Korea-Halbleiter), ~15 % Rest (USA + Türkei + Marokko). Andere DE-Hersteller (BMW, Mercedes, Audi) ähnliche Verteilung — DE-Wertschöpfungs-Anteil typisch 25-40 %, je nach Modell. (2) RECHTLICHER MADE-IN-GERMANY-RAHMEN: BGH-Rechtsprechung (2003 BGHZ 153, 351) + DIHK-Leitfaden 2024: 'Made in Germany' setzt voraus, dass die WESENTLICHEN HERSTELLUNGS-SCHRITTE in DE erfolgen. DIHK-Faustregel: ~45 % Wertschöpfung in DE als Schwelle. KEINE festgesetzte Prozent-Schwelle in EU-Recht (EU Customs Code: 'last substantial transformation') — Streit-Fälle vor Gerichten. (3) GLOBAL VALUE CHAINS (OECD TiVA 2024): nahezu KEIN modernes Industrie-Produkt zu 100 % in einem Land hergestellt. iPhone (Beispiel): Design USA, Halbleiter Korea/Taiwan, Display Japan/Korea, Akku China, Endmontage China — Apple definiert ALS 'Designed by Apple in California, Assembled in China'. Auto-Industrie strukturell ähnlich. (4) ÖKONOMISCHE LOGIK (Krugman New Trade Theory): geografische Wertschöpfungs-Verteilung folgt komparative Kosten-Vorteile + Skalen-Effekte + Cluster-Bildung. Tschechien/Polen produzieren Komponenten ~40 % günstiger als DE bei ähnlicher Qualität — Auswanderung von Komponenten-Produktion ist ökonomisch erwartbar. (5) FAKTENCHECK-RELEVANT: Aussagen wie 'VW Tiguan ist 100 % deutsch' empirisch falsch (~30 % deutsche Wertschöpfung). Aussagen wie 'Made in Germany ist Lüge' verkennen rechtliche 45 %-Schwelle und Marken-Vertrauen. Pack distanziert sich von Pro/Contra-Globalisierung-Wertung.",
+        "ifo_tiguan_aufgliederung": "IFO Schnelldienst Mecklenburg/Hochmuth 2023 'Wertschöpfungsanteile deutscher Automobilhersteller' (basierend auf Input-Output-Tabelle 2018 + Welt-Input-Output-Datenbank): VW Tiguan Wertschöpfungs-Verteilung: DE ~30 %, Tschechien 8 %, Polen 7 %, Ungarn 6 %, Slowakei 4 %, China 12 %, Japan 6 %, Korea 5 %, USA 3 %, Türkei 4 %, Marokko 3 %, Rest 12 %.",
+        "made_in_germany_recht": "BGH 'Made in Germany'-Rechtsprechung (BGHZ 153, 351 vom 2003): wesentliche Herstellungs-Schritte müssen in DE erfolgen. DIHK-Leitfaden 2024: ~45 % Wertschöpfung in DE als Faustregel. EU Customs Code (UCC Art. 60 Abs. 2): 'last substantial economically justified processing' — keine feste Prozent-Schwelle. Verbraucherschutz-Gesetzgebung schützt vor irreführender Verwendung.",
+        "oecd_tiva_global": "OECD Trade in Value Added (TiVA) Datenbank 2024: globale Wertschöpfungs-Ketten erfassen ~70 % des Welt-Handels. Foreign Value Added in Exports: DE 27 %, AT 32 %, CH 30 %, USA 13 % (USA strukturell weniger fragmentiert). Bedeutet: 27 % der DE-Exporte ist Wertschöpfung aus dem Ausland.",
+        "global_value_chains": "Beispiel iPhone (Tim Cook Quote 2014 + Apple Disclosures): Design California, Halbleiter Korea/Taiwan, Display Japan/Korea, Akku China, Endmontage China (Foxconn), Lithium Argentinien/Bolivien. Apple-Marketing 'Designed by Apple in California, Assembled in China'. Globale Wertschöpfungs-Verteilung ist die NORM für komplexe Industrie-Produkte.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Globalisierung-Wertung."
+      },
+      "context_notes": [
+        "DE-Wertschöpfungs-Anteil VW Tiguan ~30 % — ist typischer DE-Auto-Wert, NICHT Ausreißer-Niedrig.",
+        "Made-in-Germany Rechts-Rahmen: ~45 % Wertschöpfungs-Faustregel (DIHK), keine feste EU-Schwelle.",
+        "Globale Wertschöpfungs-Ketten erfassen ~70 % Welt-Handel (OECD TiVA) — Fragmentierung ist die NORM."
+      ],
+      "claim_phrasings_handled": [
+        "Made in Germany ist eine Lüge",
+        "VW ist deutsch",
+        "Deutsche Autos sind komplett deutsch produziert",
+        "DE-Auto-Wertschöpfung ist nur 30 %",
+        "Made-in-Germany Label braucht 45 % Wertschöpfung",
+        "Es gibt keine deutsche Industrie mehr"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "made in germany",
+          "made-in-germany",
+          "deutsche industrie",
+          "deutsch produziert",
+          "deutsche wertschöpfung",
+          "deutsche wertschoepfung",
+          "vw tiguan",
+          "deutsches auto",
+          "deutsche autos",
+          "global value chain",
+          "wertschöpfungs-kette",
+          "wertschoepfungs-kette",
+          "lieferketten-tiefe"
+        ],
+        [
+          "lüge",
+          "luege",
+          "produziert",
+          "wertschöpfung",
+          "wertschoepfung",
+          "anteil",
+          "30 %",
+          "45 %",
+          "komplett",
+          "alles",
+          "label",
+          "lüge",
+          "deutsch",
+          "ausland",
+          "fragmentiert"
+        ]
+      ]
+    },
+    {
+      "id": "trips_pharma_patente_2026",
+      "topic": "trips_pharma_patente_konsens",
+      "scope": "TRIPS 1995 + Doha 2001 + COVID-Vakzin-Patent-Waiver Mai 2022",
+      "year": 2024,
+      "source_url": "https://www.wto.org/english/tratop_e/trips_e/trips_e.htm",
+      "secondary_url": "https://www.wto.org/english/tratop_e/trips_e/intel2_e.htm",
+      "source_label": "WTO TRIPS Agreement 1995 + Doha Declaration on TRIPS and Public Health 2001 + WTO Decision on TRIPS Waiver MC12 Juni 2022 + WHO + UNCTAD + Médecins Sans Frontières MSF Access Campaign + peer-reviewed (Kapczynski + Sell + Reichman)",
+      "headline": "TRIPS 1995 (WTO-Gründungs-Vertrag): 20-Jahre-Patentschutz für Pharma; Doha 2001 Public-Health-Klausel; COVID-Vakzin-Patent-Waiver SA+IND-Vorschlag Okt 2020 → MC12-Kompromiss Juni 2022 (minimal — nur Vakzine, nicht Therapeutika); Generika-Markteintritt reduziert Pharma-Preise typisch 60-80 %",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: TRIPS-Pharma-Patent-Debatte ist TECHNISCH komplex. Empirische Lage: (1) TRIPS 1995 (Trade-Related Aspects of Intellectual Property Rights, WTO-Gründungs-Annex): Mindest-Patentschutz für Pharma 20 Jahre ab Anmeldung. WTO-Beitritt setzt TRIPS-Implementierung voraus — alle 164 WTO-Mitglieder gebunden. Vor TRIPS hatten viele Länder (Indien, Brasilien) KEIN Pharma-Patent — TRIPS hat dies global vereinheitlicht. (2) DOHA 2001 (Doha Declaration on TRIPS and Public Health): WTO-Mitglieder bestätigten 'TRIPS soll Mitglieder nicht daran hindern, Maßnahmen zum Schutz der öffentlichen Gesundheit zu treffen'. Konkrete Flexibilitäten: (a) COMPULSORY LICENSING (Art. 31) — Staat kann ohne Patentinhaber-Zustimmung Lizenz erteilen für Public-Health-Notlagen (Beispiele: Brasilien HIV-Medikamente 2007, Thailand Effavirenz 2006), (b) PARALLEL IMPORTS — günstigere Originals aus anderen Märkten importierbar, (c) 30 AUGUST 2003 DECISION — Staaten ohne eigene Pharma-Produktion können Generika-Importe organisieren. (3) COVID-VAKZIN-PATENT-WAIVER 2020-2022: Südafrika + Indien stellten Oktober 2020 Antrag auf umfassendes TRIPS-Waiver für COVID-Medizin-Produkte (Vakzine + Therapeutika + Diagnostika). 18 Monate Verhandlungen, Hauptgegner EU + UK + CH. MC12 (12. WTO-Ministerial-Konferenz) Juni 2022: Kompromiss — 5-Jahres-Waiver NUR für VAKZINE (Therapeutika + Diagnostika ausgeklammert), nur für Entwicklungsländer, mit komplexen prozeduralen Anforderungen. Public-Health-Aktivisten (MSF, Oxfam) bezeichneten das als 'minimaler Kompromiss'. Bis 2024 keine signifikante Generika-Vakzin-Produktion über Waiver realisiert. (4) GENERIKA-PREIS-EFFEKT: WHO + Hudson 2017 Pharmacoeconomics: nach Patent-Auslauf reduzieren Generika typische Pharma-Preise um 60-80 % innerhalb 1-2 Jahre. Beispiele: Hepatitis-C-Medikament Sofosbuvir Original 84.000 USD pro Behandlung 2014, Generika in Indien <100 USD. HIV-Medikamente: Original-Cocktail >10.000 USD/Jahr, Generika <100 USD. (5) PATENT-WIRKUNG vs. DRUG-DEVELOPMENT (Reichman/Sell-Debatte): Pharma-Industrie argumentiert R&D-Anreize benötigen Patent-Schutz. Kritiker (MSF + Kapczynski Yale Law) argumentieren öffentliche Forschung trägt 30-50 % der Pharma-R&D bei. Empirie unklar. Pack distanziert sich von Pro/Contra-Patent-Wertung — präsentiert nur empirische Lage.",
+        "trips_1995": "TRIPS Agreement Annex 1C zum WTO-Gründungs-Vertrag von 1994/1995 (Inkrafttreten 1.1.1995). Mindest-Patentschutz 20 Jahre ab Anmeldung (Art. 33). Compulsory Licensing-Möglichkeit Art. 31 — restriktive Bedingungen. Implementierungs-Frist für Entwicklungsländer bis 2005, für LDCs bis 2016 (verlängert 2033 für Pharma).",
+        "doha_2001": "Doha Declaration on TRIPS and Public Health (Punkt 4-7 der Doha-Ministerial-Erklärung November 2001): bestätigt explizit, dass TRIPS Public-Health-Maßnahmen nicht hindert. Erweiterte Definition 'national emergency' für Compulsory Licensing. 30. August 2003 Decision (paragraph 6 implementation): Staaten ohne Pharma-Produktion können Generika importieren — komplexe Anti-Diversion-Anforderungen.",
+        "covid_waiver_mc12": "TRIPS-Waiver-Verhandlungen 2020-2022: Südafrika + Indien Antrag 2.10.2020 auf umfassendes Waiver. EU + UK + CH + Norwegen Hauptgegner. MC12 Juni 2022 (Genf): 5-Jahres-Waiver nur für Vakzine, nicht Therapeutika/Diagnostika. Beobachter-Bilanz 2024: kein signifikanter Generika-Vakzin-Markteintritt — Waiver bleibt kontrovers diskutiert.",
+        "generika_preis_reduktion": "Generika-Preis-Effekt nach Patent-Auslauf (WHO Generic Drug Policy 2017 + Hudson 2017 Pharmacoeconomics): typisch 60-80 % Preis-Reduktion innerhalb 1-2 Jahre. Sofosbuvir-Beispiel: Original 84.000 USD pro Behandlung 2014, indische Generika <100 USD ab 2017. HIV-Cocktail: Original >10.000 USD/Jahr, Generika <100 USD. Voraussetzung: Patent-Auslauf + Compulsory Licensing + funktionierende Generika-Industrie.",
+        "compulsory_licensing_examples": "Compulsory Licensing-Beispiele: Brasilien HIV-Medikament Efavirenz 2007 (Senkung Preis 60 %), Thailand Efavirenz 2006-2007, Südafrika 1997-2001 Treatment Action Campaign-Kampagne (gegen Anti-Retrovirale Hochpreise), Kanada Tamiflu 2005 (H5N1-Vorsorge). Compulsory Licensing rechtlich möglich, politisch konfliktbehaftet (US/EU üben Druck aus).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Patent-Wertung."
+      },
+      "context_notes": [
+        "TRIPS 1995 setzt 20-Jahre-Patentschutz, Doha 2001 + Compulsory Licensing als Public-Health-Flexibilität.",
+        "COVID-Waiver MC12 Juni 2022 ist minimaler Kompromiss — nur Vakzine, nicht Therapeutika.",
+        "Generika-Markt-Eintritt reduziert Pharma-Preise typisch 60-80 % — empirisch belegt für HIV/Hepatitis-C."
+      ],
+      "claim_phrasings_handled": [
+        "Pharma-Patente verhindern günstige Medikamente",
+        "TRIPS schützt Big Pharma",
+        "COVID-Vakzin-Patent-Waiver ist gescheitert",
+        "Generika senken Preise um 60-80 %",
+        "Doha-Erklärung erlaubt Compulsory Licensing",
+        "Patent-Schutz ist 20 Jahre"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "trips",
+          "patent",
+          "patente",
+          "patent-schutz",
+          "patentschutz",
+          "pharma-patent",
+          "doha",
+          "compulsory licensing",
+          "zwangslizenz",
+          "generika",
+          "vakzin-waiver",
+          "patent-waiver",
+          "covid-vakzin"
+        ],
+        [
+          "verhindert",
+          "blockiert",
+          "schützt",
+          "schuetzt",
+          "20 jahre",
+          "60 %",
+          "80 %",
+          "reduziert",
+          "günstig",
+          "guenstig",
+          "günstigere",
+          "guenstigere",
+          "big pharma",
+          "medikamente",
+          "vakzine",
+          "armut"
+        ]
+      ]
+    },
+    {
+      "id": "welthandel_gewinner_2026",
+      "topic": "welthandel_gewinner_konsens",
+      "scope": "Globalisierung 1990-2024 — Weltbank-Armut + Piketty/Saez US-Real-Lohn + EU-Mittelschicht",
+      "year": 2024,
+      "source_url": "https://www.worldbank.org/en/topic/poverty/overview",
+      "secondary_url": "https://wid.world/document/the-elephant-curve-of-global-inequality-and-growth-wid-world-working-paper-2017-20/",
+      "source_label": "Weltbank Poverty and Shared Prosperity Report 2022/2024 + FAO Hunger-Report 2024 + WID World Inequality Database (Piketty/Saez/Zucman/Chancel) + Lakner/Milanovic 2016 'Global Income Distribution' Elephant Curve + WIFO + DIW + peer-reviewed",
+      "headline": "Globalisierung 1990-2024 Bilanz: ~1 Mrd Menschen aus extremer Armut (<2,15 USD/Tag) nach Weltbank/FAO; US-Real-Lohn untere 50 % stagniert seit 1980 (Piketty/Saez WID); EU/DE/AT-Mittelschicht-Real-Einkommen +0,5-1,0 % p.a. 2000-2024",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Globalisierung-Bilanz ist DIFFERENZIERT — Gewinner UND Verlierer. Empirische Lage: (1) WELTBANK-EXTREME-ARMUT: Weltbank Poverty and Shared Prosperity Report 2022/2024: extreme Armut (<2,15 USD/Tag PPP) global 1990 ~1,9 Mrd Menschen (36 % Welt-Bevölkerung) → 2019 ~650 Mio (8 %) → 2022 ~700 Mio (8,5 %, COVID-Rückschlag). REDUKTION ~1 Mrd Menschen 1990-2024. Hauptursachen: China + Indien Wachstum + Welthandel-Integration (China WTO-Beitritt 2001 entscheidend). FAO 2024 Hunger-Report: 735 Mio chronisch unterernährt 2023 (vs. 1 Mrd 1990) — auch Reduktion, aber langsamer. (2) US-REAL-LOHN-STAGNATION (Piketty/Saez/Zucman WID + Pew Research 2023): US-Median-Real-Lohn untere 50 % der Einkommens-Verteilung 1979-2024 STAGNIERT bis leicht-rückläufig (Inflations-bereinigt -2 % bis +5 % über 45 Jahre). Top 10 % Real-Einkommen +90 % im selben Zeitraum, Top 1 % +250 %. Pew 2023: 'lower-income tier' Real-Einkommen 2021 minimal höher als 1980. Zusammenhang mit Welthandel-Liberalisierung kontrovers (Autor/Dorn/Hanson 2013 'China Shock'). (3) EU-MITTELSCHICHT (Eurostat + WIFO + DIW 2024): EU-Median-Real-Einkommen 2000-2024 +0,5-1,0 % pro Jahr. DE-Median-Real-Einkommen 2000-2024 ähnlich +0,7 % p.a. (DIW SOEP). AT etwas stärker +0,9 % p.a. (Statistik Austria EU-SILC). UK Brexit-Effekt: Stagnation seit 2016. EU-Mittelschicht ist GLOBALISIERUNGS-MODERATER-GEWINNER. (4) ELEPHANT-CURVE (Lakner/Milanovic 2016 'Global Income Distribution: From the Fall of the Berlin Wall to the Great Recession'): globale Einkommens-Verteilung 1988-2008. China + Indien-Mittelschicht (50.-70.-Perzentil global) Real-Einkommens-Wachstum +60-90 %. OECD-Mittelschicht (80.-90.-Perzentil global) Real-Wachstum nahe 0. Top 1 % global +60 %. 'Elephant'-Form mit 'Trunk' bei Top + 'Body' bei Asien-Mittelschicht + 'Valley' bei OECD-Mittelschicht. (5) AUTOR/DORN/HANSON 'CHINA SHOCK' 2013: US-Industrie-Regionen mit hoher China-Import-Exposition (Furniture, Textiles, Electronics) verloren ~2-2,4 Mio Industrie-Arbeitsplätze 1999-2011, Real-Lohn-Rückgang 1-2 %. Kausal-Studie. Politische Folge: 2016 Trump-Wahl-Erfolg in betroffenen Regionen korreliert. (6) FAKTENCHECK-RELEVANT: Aussage 'Globalisierung hat alle reicher gemacht' verkennt Verteilungs-Effekte. Aussage 'Globalisierung hat alle ärmer gemacht' verkennt China/Indien-Aufstieg + Armuts-Reduktion. Pack distanziert sich von Pro/Contra-Globalisierung-Wertung.",
+        "weltbank_armut_reduktion": "Weltbank Poverty and Shared Prosperity Report 2022 + Update 2024: extreme Armut <2,15 USD/Tag PPP 1990 ~1,9 Mrd (36 % Welt-Bevölkerung), 2019 ~650 Mio (8 %), 2022 ~700 Mio (8,5 % nach COVID-Rückschlag). 1 Mrd Reduktion. Hauptbeitrag China (1990 60 % unter Armut → 2019 unter 1 %) + Indien-Wachstum.",
+        "piketty_saez_us_lohn": "Piketty/Saez/Zucman World Inequality Database (WID) Update 2024: US Bottom 50 % Pre-Tax Real Income 1980-2024 von $19.000 (2024 USD) auf $20.500 = +8 % über 44 Jahre = ~0,2 % p.a. Top 10 % von $138.000 auf $263.000 = +90 %. Top 1 % von $375.000 auf $1.300.000 = +250 %. Welthandel-Liberalisierung als ein Faktor (Autor/Dorn/Hanson 'China Shock' 2013).",
+        "eu_mittelschicht": "EU + DE + AT Mittelschicht-Real-Einkommens-Entwicklung 2000-2024 (Eurostat EU-SILC + WIFO + DIW SOEP): EU-Median +0,5-1,0 % p.a., DE-Median +0,7 % p.a., AT-Median +0,9 % p.a. Mittlere Quintile 2-4 stärker als oberes/unteres. UK seit Brexit 2016 stagnierend. Politisches Bild moderat-positiv für EU-Mittelschicht.",
+        "elephant_curve": "Lakner/Milanovic 2016 'Global Income Distribution' (World Bank Economic Review). Globale Einkommens-Verteilungs-Wachstum 1988-2008: China/Indien-Mittelschicht +60-90 %, OECD-Mittelschicht ~0 %, Top 1 % global +60 %. Form: Elefant mit 'Trunk' (Top) + 'Body' (Asien-Mittelschicht). Politische Implikation: Globalisierung hat OECD-Mittelschicht-Verlierer.",
+        "china_shock_autor": "Autor/Dorn/Hanson 2013 American Economic Review 'The China Syndrome: Local Labor Market Effects of Import Competition in the United States'. US-Industrie-Regionen mit hoher China-Import-Exposition verloren 2,0-2,4 Mio Industrie-Arbeitsplätze 1999-2011, Real-Lohn-Rückgang 1-2 % in betroffenen Regionen. Folge-Studien (2016+): kausaler Beitrag zu 2016-Trump-Wahl-Erfolg in 'Rust Belt'.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Globalisierung-Wertung."
+      },
+      "context_notes": [
+        "Globalisierung 1990-2024: ~1 Mrd Menschen aus extremer Armut, primär China + Indien.",
+        "US-Bottom-50-Real-Lohn stagniert seit 1980 (Piketty/Saez WID) — Welthandel ein Faktor (Autor 'China Shock').",
+        "EU-Mittelschicht moderater Globalisierungs-Gewinner +0,5-1,0 % Real p.a."
+      ],
+      "claim_phrasings_handled": [
+        "Globalisierung hat alle reicher gemacht",
+        "Globalisierung hat die Mittelschicht zerstört",
+        "Welthandel hilft nur den Reichen",
+        "1 Milliarde aus extremer Armut",
+        "US-Mittelschicht stagniert seit 1980",
+        "China Shock kostete 2 Millionen Jobs"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "globalisierung",
+          "welthandel",
+          "world trade",
+          "elephant curve",
+          "china shock",
+          "extreme armut",
+          "extremer armut",
+          "welt-armut",
+          "weltbank",
+          "world bank",
+          "fao",
+          "piketty",
+          "saez",
+          "milanovic",
+          "lakner"
+        ],
+        [
+          "alle",
+          "reicher",
+          "ärmer",
+          "aermer",
+          "reichen",
+          "armen",
+          "mittelschicht",
+          "verlierer",
+          "gewinner",
+          "stagniert",
+          "wachstum",
+          "milliarde",
+          "millionen",
+          "jobs",
+          "real-lohn",
+          "real lohn"
+        ]
+      ]
+    },
+    {
+      "id": "at_export_quote_2026",
+      "topic": "at_export_quote_konsens",
+      "scope": "AT-Export 2024 — 58 % BIP, Top-Märkte, Top-Branchen, höher als DE",
+      "year": 2024,
+      "source_url": "https://www.statistik.at/statistiken/wirtschaft/aussenhandel",
+      "secondary_url": "https://www.wko.at/statistik/extranet/aussenhandel/aussenhandel.pdf",
+      "source_label": "Statistik Austria Außenhandelsstatistik 2024 + WKO Wirtschaftskammer Österreich Außenhandelsstatistik + WIFO Außenhandelsanalyse 2024 + DESTATIS DE-Vergleichszahlen + Eurostat Comext + OECD",
+      "headline": "AT-Export 2024 (Statistik Austria): ~58 % BIP (Waren + Dienstleistungen), Top-Märkte DE 28 %, Italien 6 %, USA 6 %, CH 5 %, Frankreich 4 %; Top-Branchen Maschinen 22 %, Auto-Komponenten 11 %, Pharma 10 %; höhere Export-Quote als DE (~47 %)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: AT-Wirtschaft ist EXTREM exportorientiert — empirische Basis. Empirische Lage: (1) AT-EXPORT-QUOTE 2024 (Statistik Austria + WIFO): Waren-Export ~190 Mrd EUR + Dienstleistungs-Export ~85 Mrd EUR = ~275 Mrd EUR, BIP ~470 Mrd EUR → Export-Quote ~58 %. AT gehört zu den export-intensivsten OECD-Ländern, höher als DE (47 %), USA (12 %), Frankreich (32 %), Italien (33 %). Vergleichbar mit Niederlanden (83 %), Belgien (85 %), Tschechien (78 %). Klein-offene-Volkswirtschaft als strukturelles Modell. (2) TOP-MÄRKTE 2024 (Statistik Austria): DE 28 % (~53 Mrd EUR Waren), Italien 6 %, USA 6 %, CH 5 %, Frankreich 4 %, Polen 3 %, Tschechien 3 %, UK 3 %, China 2 %. EU-27 gesamt: ~70 % der AT-Exporte. DE als dominanter Markt = STRUKTURELLE Abhängigkeit von DE-Konjunktur. (3) TOP-BRANCHEN 2024: Maschinen + Anlagenbau 22 % (Andritz, Voestalpine, Wienerberger), Auto-Komponenten 11 % (Magna Steyr Graz, AVL Graz, BRP-Rotax), Pharma + Bio 10 % (Boehringer Ingelheim Wien, Sandoz Kundl), Metallindustrie 9 % (Voestalpine Linz), Holz/Papier 7 %, Lebensmittel 6 %, Chemie 5 %, Tourismus-Dienstleistungen ~10 % der DL-Exporte. (4) AT vs. DE EXPORT-QUOTE: AT 58 %, DE 47 %. AT höher trotz kleinerer Wirtschaft — typisches Klein-Land-Muster (Skalen-Defizit kompensiert durch Welthandel-Integration). DE-Industrie hat größeren BinnenMarkt + größere Branchenheterogenität (Automotive-Komplex 13 % BIP). (5) WIFO-VOLATILITÄTS-PROBLEM: hohe Export-Quote = hohe Konjunktur-Sensitivität gegenüber Welt-Konjunktur. AT-BIP-Wachstum 2009 -3,8 % (Welt-Krise), 2020 -6,7 % (COVID), 2024 +0,7 % (DE-Industrie-Schwäche). Diversifikations-Diskurs WIFO 2024: stärker EU-CEE + AT-Mittelstand. (6) FAKTENCHECK-RELEVANT: Aussage 'AT-Wirtschaft hängt total an China' falsch (China nur 2 % AT-Exporte). Aussage 'AT-Wirtschaft hängt total an DE' empirisch belegbar — DE-Konjunktur erklärt ~25-30 % AT-BIP-Volatilität (WIFO 2023). Pack distanziert sich von Pro/Contra-Globalisierung-Wertung.",
+        "at_export_quote_2024": "AT-Export 2024 (Statistik Austria Außenhandelsstatistik): Waren-Export ~190 Mrd EUR, Dienstleistungs-Export ~85 Mrd EUR. BIP ~470 Mrd EUR. Export-Quote (Waren + Dienstleistungen) ~58 %. Import-Quote ~57 %, Saldo leicht positiv. Im OECD-Vergleich oberes Drittel der export-intensiven Klein-Länder.",
+        "top_maerkte": "AT-Top-Export-Märkte 2024 (Statistik Austria): DE 28 % (53 Mrd EUR Waren), Italien 6 %, USA 6 %, CH 5 %, Frankreich 4 %, Polen 3 %, Tschechien 3 %, UK 3 %, China 2 %, Slowakei 2 %, Ungarn 2 %, Türkei 1,5 %. EU-27 gesamt: ~70 % der AT-Waren-Exporte. EU + EFTA + UK: ~76 %.",
+        "top_branchen": "AT-Top-Branchen Waren-Export 2024 (Statistik Austria + WIFO): Maschinen 22 % (Andritz, Voestalpine Tubulars, Wienerberger), Auto-Komponenten 11 % (Magna Steyr, AVL, BRP-Rotax, KTM), Pharma 10 % (Boehringer, Sandoz Kundl, Octapharma), Metall 9 % (Voestalpine), Holz/Papier 7 %, Lebensmittel 6 %, Chemie 5 %, Elektrotechnik 4 %.",
+        "at_de_export_vergleich": "Export-Quote-Vergleich (OECD 2024): AT 58 %, DE 47 %, Niederlande 83 %, Belgien 85 %, Tschechien 78 %, Slowakei 89 %, Frankreich 32 %, Italien 33 %, Spanien 39 %, USA 12 %, Japan 22 %. Klein-Land-Muster: AT, NL, BE, CH, CZ, SK alle >50 %.",
+        "wifo_volatilitaet": "WIFO Konjunktur-Analyse 2024: AT-BIP-Wachstum 1990-2024 mittelwert ~2,0 % p.a., aber hohe Volatilität. Stärkste Einbrüche: 2009 -3,8 % (Welt-Finanz-Krise), 2020 -6,7 % (COVID), 2024 +0,7 % (DE-Industrie-Schwäche). DE-Konjunktur erklärt ~25-30 % AT-BIP-Volatilität (WIFO Working Paper 2023). Strukturell hohe Welt-Konjunktur-Sensitivität.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Globalisierung-Wertung."
+      },
+      "context_notes": [
+        "AT-Export-Quote 58 % vs. DE 47 % — AT ist export-intensiver als DE.",
+        "DE als 28 % AT-Top-Markt = strukturelle Abhängigkeit von DE-Konjunktur (~25-30 % BIP-Volatilität-Beitrag).",
+        "China nur 2 % AT-Exporte — Aussage 'AT hängt von China ab' bezieht sich auf Komponenten, nicht Aggregat."
+      ],
+      "claim_phrasings_handled": [
+        "AT-Export-Quote ist 58 %",
+        "AT hängt von Deutschland ab",
+        "Österreich exportiert zu wenig",
+        "AT-Wirtschaft ist sehr abhängig vom Ausland",
+        "AT exportiert mehr als Deutschland",
+        "Welt-Konjunktur trifft AT besonders"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "österreich exportiert",
+          "oesterreich exportiert",
+          "at-export",
+          "at export",
+          "austria export",
+          "export-quote",
+          "exportquote",
+          "österreichs export",
+          "oesterreichs export",
+          "export-anteil",
+          "ausfuhr",
+          "ausfuhrquote",
+          "ausfuhren"
+        ],
+        [
+          "abhängig",
+          "abhaengig",
+          "deutschland",
+          "klein-land",
+          "klein land",
+          "58 %",
+          "47 %",
+          "bip",
+          "bruttoinlandsprodukt",
+          "ausland",
+          "konjunktur",
+          "exportiert",
+          "exportintensiv",
+          "export-intensiv"
+        ]
+      ]
+    },
+    {
+      "id": "eu_binnenmarkt_wirkung_2026",
+      "topic": "eu_binnenmarkt_wirkung_konsens",
+      "scope": "EU-Binnenmarkt seit 1992/93 — Cecchini 1988 vs. reale Wirkung; AT-Beitritt 1995",
+      "year": 2024,
+      "source_url": "https://commission.europa.eu/strategy-and-policy/policies/single-market_en",
+      "secondary_url": "https://www.wifo.ac.at/jart/prj3/wifo/main.jart?rel=de&content-id=1454619331110&publikation_id=66932",
+      "source_label": "EU-Kommission Single Market Report 2022/2024 + Cecchini-Bericht 1988 'The Cost of Non-Europe' + in den-Bos 2009 'Reflections on the Single European Market 1992' + WIFO AT-EU-Beitritts-Studien (Aiginger, Breuss) + IFO + DIW + peer-reviewed",
+      "headline": "EU-Binnenmarkt seit 1992/93: Cecchini-Bericht 1988 prognostizierte +4-7 % BIP; reale Effekte 1992-2024 ~+1,5-2 % BIP (in den-Bos 2009 + EU-Kommission 2022); AT-Beitritt 1995 brachte ~+0,6 %/Jahr Boost in ersten 10 Jahren (WIFO Aiginger/Breuss)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: EU-Binnenmarkt-Wirkung ist DIFFERENZIERT. Empirische Lage: (1) CECCHINI-BERICHT 1988 (Paolo Cecchini, EU-Kommission Auftrags-Studie 'The Cost of Non-Europe'): prognostizierte Wirtschafts-Effekte des Binnenmarkt-Programms 1992 (1985 Weißbuch zur Vollendung des Binnenmarktes mit 282 Maßnahmen): EG-12-BIP-Effekt +4,3-6,5 % über mittelfristige Periode. Begründung: Skalen-Effekte, Wettbewerb-Verstärkung, technische Norm-Konvergenz, Grenz-Wartezeiten-Eliminierung. (2) REALE EFFEKTE 1992-2024 (in den-Bos 2009 'Reflections on the Single European Market' + EU-Kommission Single Market Report 2022 'Single Market at 30'): ex-post-Schätzungen ~+1,5-2 % BIP-Effekt für EU-Mitglieder gegenüber Nicht-Beitritts-Szenarien. DEUTLICH UNTER Cecchini-Prognose. Hauptgründe für Diskrepanz: (a) Implementierungs-Defizite (Dienstleistungs-Richtlinie 2006 Bolkenstein abgeschwächt — Dienstleistungs-Markt ~50 % integriert), (b) Sprachen-Barriere (psychologisch, rechtlich), (c) langsamere Norm-Konvergenz als erwartet. (3) AT-EU-BEITRITT 1995 (WIFO Aiginger/Breuss 2003 + 2015 retrospektive Studien): AT-BIP-Effekt 1995-2005 ~+0,6 % p.a. zusätzliches Wachstum vs. Nicht-Beitritts-Szenario. AT-Export-Anteil EU stieg von 1995 ~62 % auf 2005 ~73 %. Strukturwandel: AT-Industrie integrierte sich stärker in DE-Wertschöpfungs-Ketten. Ost-Erweiterung 2004 brachte AT zusätzliches Wachstum durch CEE-Markt-Öffnung (~+0,3 % p.a. 2004-2010 zusätzlich, WIFO Breuss 2015). (4) WAREN-vs-DIENSTLEISTUNGS-MARKT: Waren-Markt 1992-2024 weitgehend integriert (Zoll-frei + harmonisierte Normen). Dienstleistungs-Markt nur ~50 % integriert (Bolkenstein-Richtlinie 2006 abgeschwächt — Herkunfts-Land-Prinzip nicht durchgesetzt). Capital-Market-Union nur teilweise. Arbeitsmarkt formell offen, faktisch durch Sprache + Anerkennungs-Probleme begrenzt. (5) BREXIT-COUNTERFACTUAL: UK-Verlust durch Brexit (Bank of England 2024 + LSE 2024): ~-4 % bis -5,5 % BIP vs. counterfactual EU-Mitgliedschaft — passt zur ex-post-Schätzung 1,5-2 % EU-BIP-Effekt + zusätzliche UK-spezifische Anpassungs-Kosten. (6) FAKTENCHECK-RELEVANT: Aussage 'EU-Binnenmarkt brachte +5 % BIP wie Cecchini sagte' empirisch widerlegt. Aussage 'EU-Binnenmarkt brachte gar nichts' empirisch widerlegt — ~+1,5-2 % BIP ist substantiell. Pack distanziert sich von Pro/Contra-EU-Wertung.",
+        "cecchini_1988": "Cecchini-Bericht 1988 'The Cost of Non-Europe' (Paolo Cecchini, EU-Kommission): prognostizierte EG-12-BIP-Effekt +4,3-6,5 % durch Vollendung des Binnenmarktes 1992. Begründung: Skalen-Effekte 30 %, Wettbewerb-Verstärkung 30 %, Norm-Konvergenz 20 %, Grenz-Eliminierung 20 %. Bilanz ex-post: zu optimistisch.",
+        "reale_effekte_2022": "EU-Kommission Single Market Report 2022 'Single Market at 30' + in den-Bos 2009 'Reflections on the Single European Market' (Maastricht Univ.): ex-post-Schätzung +1,5-2 % BIP-Effekt 1992-2022 für EU-Mitglieder. Diskrepanz zu Cecchini durch Implementierungs-Defizite + Sprachen-Barriere + langsamere Norm-Konvergenz.",
+        "at_beitritt_1995": "WIFO AT-EU-Beitritts-Studien (Aiginger/Breuss 2003 + Breuss 2015 retrospektiv): AT-BIP-Effekt 1995-2005 +0,6 % p.a. zusätzliches Wachstum. Export-Anteil EU 1995 62 % → 2005 73 %. Ost-Erweiterung 2004 zusätzlich +0,3 % p.a. 2004-2010 (CEE-Markt-Öffnung). Strukturwandel: stärkere Integration in DE-Wertschöpfungs-Ketten.",
+        "waren_dienstleistung_unterschied": "Waren-Markt 1992-2024 weitgehend integriert (Zoll-frei + harmonisierte technische Normen). Dienstleistungs-Markt 50 % integriert (Bolkenstein-Richtlinie 2006 abgeschwächt — Herkunfts-Land-Prinzip nicht durchgesetzt). Capital-Market-Union nur teilweise. Arbeitsmarkt formell offen, faktisch durch Sprache + Berufs-Anerkennung begrenzt.",
+        "brexit_counterfactual": "UK-Brexit-Verlust (Bank of England 2024 + LSE Centre for Economic Performance 2024): -4 % bis -5,5 % BIP vs. counterfactual EU-Mitgliedschaft. Konsistent mit ex-post-Binnenmarkt-Effekt-Schätzung 1,5-2 % + UK-spezifische Anpassungs-Kosten.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-EU-Wertung."
+      },
+      "context_notes": [
+        "Cecchini 1988 prognostizierte +4-7 % BIP, real ~+1,5-2 % — Cecchini war zu optimistisch.",
+        "AT-EU-Beitritt 1995 +0,6 %/Jahr Boost (WIFO Aiginger/Breuss) + Ost-Erweiterung 2004 +0,3 % zusätzlich.",
+        "Dienstleistungs-Markt nur ~50 % integriert (Bolkenstein-Schwäche) — Vollendung des Binnenmarktes nicht abgeschlossen."
+      ],
+      "claim_phrasings_handled": [
+        "EU-Binnenmarkt brachte 5 % BIP",
+        "EU-Binnenmarkt brachte gar nichts",
+        "Cecchini-Prognose ist eingetreten",
+        "AT hat von EU-Beitritt profitiert",
+        "Brexit kostet UK 4 % BIP",
+        "Dienstleistungs-Markt ist nicht integriert"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "eu-binnenmarkt",
+          "eu binnenmarkt",
+          "binnenmarkt",
+          "single market",
+          "cecchini",
+          "cecchini-bericht",
+          "at-beitritt",
+          "eu-beitritt",
+          "eu beitritt",
+          "ost-erweiterung",
+          "osterweiterung",
+          "bolkenstein",
+          "dienstleistungs-richtlinie"
+        ],
+        [
+          "brachte",
+          "wirkung",
+          "wachstum",
+          "bip",
+          "5 %",
+          "4 %",
+          "0,6 %",
+          "profitiert",
+          "verdient",
+          "verloren",
+          "1995",
+          "2004",
+          "integriert",
+          "1992"
+        ]
+      ]
+    },
+    {
+      "id": "handelsbilanz_defizit_mythen_2026",
+      "topic": "handelsbilanz_defizit_mythen_konsens",
+      "scope": "USA Handelsdefizit 2024 + Trump-Argumente — ökonomische Realität (Krugman/Heckscher-Ohlin)",
+      "year": 2024,
+      "source_url": "https://www.bea.gov/data/intl-trade-investment/international-trade-goods-and-services",
+      "secondary_url": "https://www.cepr.org/publications/dp-by-jel/F",
+      "source_label": "US Bureau of Economic Analysis BEA 2024 Trade Statistics + IMF Balance of Payments Manual + Krugman 'Pop Internationalism' 1996 + Heckscher-Ohlin Trade Theory + CEPR Trade Papers + WTO Statistics + peer-reviewed (Feenstra, Bernanke, Bernhardt)",
+      "headline": "USA Handelsdefizit 2024 (BEA): -$1,06 Bio Waren-Defizit (~3,8 % BIP), Saldo Waren + Dienstleistungen -$773 Mrd (~2,8 % BIP); Trump-Argument 'Defizit ist Geld verloren' ökonomisch falsch (Krugman + Heckscher-Ohlin); Handelsbilanz reflektiert Sparquote-Investitions-Differential, NICHT Wettbewerbsfähigkeit",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: 'Handelsdefizit = Verlust' ist ökonomisch FALSCH — empirischer Konsens. Empirische Lage: (1) USA HANDELSBILANZ 2024 (BEA Bureau of Economic Analysis): Waren-Handelsdefizit -$1.060 Mrd (~3,8 % BIP). Dienstleistungs-Überschuss +$287 Mrd (USA exportiert mehr Dienstleistungen — Tech, Finanz, Bildung — als sie importiert). Saldo Waren + Dienstleistungen -$773 Mrd (~2,8 % BIP). USA hat seit 1976 kontinuierliche Handelsdefizite (Waren). (2) ÖKONOMISCHE BUCHUNGS-IDENTITÄT (Krugman 'Pop Internationalism' 1996, fundamentale Lehrbuch-Wahrheit): Handelsbilanz = Sparquote - Investitionsquote. USA-Handelsdefizit reflektiert: USA spart national 17 % BIP, investiert 21 % BIP → Differential 4 % BIP, das durch Kapital-Importe ausgeglichen wird → spiegelbildlich Handelsdefizit. NICHT 'Wettbewerbsfähigkeit'-Frage. Mathematisch gilt: Current Account = (S - I) + (T - G) wo S Sparquote, I Investitionsquote, T Steuern, G Staatsausgaben. (3) HECKSCHER-OHLIN MODELL: Länder exportieren Güter, die ihre relativ-reichliche Faktor-Ausstattung nutzen, importieren Güter, die andere Faktor-Ausstattungen nutzen. USA mit hoher Bildungs-+Kapital-Ausstattung exportiert Tech-Dienstleistungen + Software, importiert arbeitsintensive Konsumgüter aus China/Vietnam. Bilateraler Handelsdefizit gegenüber China oder Vietnam ist ÖKONOMISCH SINNVOLL — beide Länder gewinnen. (4) TRUMP-ARGUMENT 'CHINA NIMMT UNS GELD': ökonomischer Konsens (Krugman, Mankiw, Lawrence Summers, Ben Bernanke): bilaterale Handelsbilanzen sind ökonomisch NICHT aussagekräftig. USA hat Handelsdefizit gegenüber China, Handelsüberschuss gegenüber NL. Multilateral muss Saldo gegenüber Welt zur Sparquote-Investition-Differential passen — nicht bilateral. USA-Handelsdefizit verschwindet NICHT durch China-Zölle, sondern verschiebt sich auf andere Länder (Vietnam, Mexiko, Indien) — empirisch belegt 2018-2024 (Trump-Zölle 2018+). (5) ZÖLLE-EMPIRIE 2018-2024 (Amiti/Redding/Weinstein 2019 + Fajgelbaum/Khandelwal 2021 'The Return of the Policy That Shall Not Be Named'): Trump-China-Zölle 2018-2019 wurden zu ~95 % auf US-Konsumenten + US-Importeure übertragen, NICHT auf chinesische Exporteure. US-Wohlfahrts-Verlust 2018-2019 ~$50 Mrd p.a. Bilaterales US-China-Defizit 2018 -$419 Mrd → 2024 -$295 Mrd, aber GESAMTES US-Handelsdefizit STIEG 2018 -$580 Mrd → 2024 -$773 Mrd. (6) FAKTENCHECK-RELEVANT: Aussage 'USA verliert Geld an China durch Defizit' ökonomisch falsch — Krugman/Mankiw-Konsens. Aussage 'Zölle senken Defizit' empirisch widerlegt 2018-2024. Pack distanziert sich von Trump-Pro/Contra-Wertung — präsentiert nur ökonomische Lehrbuch-Lage.",
+        "us_handelsbilanz_2024": "USA Handelsbilanz 2024 (US BEA International Trade): Waren-Defizit -$1.060 Mrd (~3,8 % BIP), Dienstleistungs-Überschuss +$287 Mrd, Saldo Waren+Dienstleistungen -$773 Mrd (~2,8 % BIP). Hauptdefizite-Bilateral: China -$295 Mrd, Mexiko -$155 Mrd, Vietnam -$118 Mrd, Deutschland -$75 Mrd, Japan -$67 Mrd. USA seit 1976 kontinuierlich Waren-Defizit.",
+        "krugman_pop_internationalism": "Krugman 'Pop Internationalism' 1996 + 'The Conscience of a Liberal' 2007: fundamentale Lehrbuch-Wahrheit Current Account = (S - I) + (T - G). Handelsbilanz spiegelt national Sparquote vs. Investitions-Differential, NICHT Wettbewerbsfähigkeit. Krugman 1996: 'A trade deficit is not in itself an indication of poor competitiveness'. Konsens unter US-Mainstream-Ökonomen (Mankiw, Summers, Bernanke).",
+        "heckscher_ohlin": "Heckscher-Ohlin-Modell (Heckscher 1919 + Ohlin 1933, Nobel-Preis Ohlin 1977): Länder exportieren Güter, die ihre relativ-reichliche Faktor-Ausstattung nutzen, importieren Güter mit anderer Faktor-Ausstattung. USA mit hoher Bildungs+Kapital-Ausstattung exportiert Tech-Dienstleistungen, importiert arbeitsintensive Güter. Bilaterale Handelsdefizite ÖKONOMISCH NORMAL.",
+        "trump_zoelle_empirie": "Amiti/Redding/Weinstein 2019 Journal of Economic Perspectives 'The Impact of the 2018 Trade War' + Fajgelbaum/Khandelwal 2021 NBER 'The Return of the Policy That Shall Not Be Named': Trump-China-Zölle 2018-2019 zu ~95 % auf US-Konsumenten + US-Importeure übertragen, US-Wohlfahrts-Verlust ~$50 Mrd p.a. Gesamtes US-Handelsdefizit STIEG 2018 $580 Mrd → 2024 $773 Mrd, bilaterales US-China-Defizit nur teilweise reduziert (Verschiebung auf Vietnam, Mexiko).",
+        "bilateral_vs_multilateral": "Ökonomische Klarstellung: bilaterale Handelsbilanzen ökonomisch NICHT aussagekräftig. USA Handelsdefizit China -$295 Mrd, Handelsüberschuss Niederlande +$36 Mrd. Total-Saldo zur Welt durch Spar-Investitions-Differential bestimmt. Zölle gegen ein Land verschieben Defizit auf andere Länder, beseitigen Total-Saldo nicht.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Trump-Pro/Contra-Wertung."
+      },
+      "context_notes": [
+        "Handelsbilanz = Sparquote - Investitionsquote (Krugman fundamentale Identität) — NICHT Wettbewerbsfähigkeit.",
+        "Trump-Zölle 2018-2024: Gesamtdefizit STIEG $580 Mrd → $773 Mrd, nur Verschiebung auf Vietnam/Mexiko.",
+        "Bilaterale Handelsbilanzen ökonomisch nicht aussagekräftig (Heckscher-Ohlin) — Pack distanziert sich von Trump-Wertung."
+      ],
+      "claim_phrasings_handled": [
+        "USA verliert Geld durch Handelsdefizit",
+        "China nimmt uns Geld",
+        "Handelsdefizit zeigt Wettbewerbsfähigkeit",
+        "Zölle senken Handelsdefizit",
+        "Trump hat das Defizit reduziert",
+        "Handelsbilanz reflektiert Sparquote"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "handelsdefizit",
+          "handelsbilanz",
+          "trade deficit",
+          "trade balance",
+          "current account",
+          "leistungsbilanz",
+          "trump-zölle",
+          "trump zoelle",
+          "trump-tariffs",
+          "us-china-handel",
+          "krugman",
+          "heckscher-ohlin"
+        ],
+        [
+          "verliert",
+          "verlieren",
+          "geld",
+          "nimmt",
+          "stiehlt",
+          "zölle",
+          "zoelle",
+          "tariffs",
+          "wettbewerb",
+          "wettbewerbsfähig",
+          "wettbewerbsfaehig",
+          "sparquote",
+          "investition",
+          "reduziert",
+          "1 billion",
+          "1 bio",
+          "773 mrd",
+          "wachstum"
+        ]
+      ]
+    },
+    {
+      "id": "brexit_folge_handel_2026",
+      "topic": "brexit_folge_handel_konsens",
+      "scope": "UK-Brexit 2020-2024 — Bank of England + LSE Trade-Daten",
+      "year": 2024,
+      "source_url": "https://www.bankofengland.co.uk/monetary-policy-report",
+      "secondary_url": "https://cep.lse.ac.uk/_NEW/PUBLICATIONS/abstract.asp?index=10075",
+      "source_label": "Bank of England Monetary Policy Report 2024 + LSE Centre for Economic Performance 'Brexit Trade-Off' Reports 2022/2024 (Dhingra/Sampson) + UK Office for Budget Responsibility OBR + ONS Office for National Statistics + Centre for European Reform CER + EU-UK TCA Dec 2020",
+      "headline": "UK-Handel mit EU 2024 vs. 2019: -10 % bis -15 % real (Bank of England + LSE Dhingra 2024); UK-BIP -4 % bis -5,5 % vs. counterfactual EU-Mitgliedschaft (LSE-Tradeoff); Hauptfaktor: Zoll-frei aber Regulierungs-Reibung + Rules-of-Origin-Komplexität; FTA Dec 2020 ist zoll-frei aber NICHT reibungs-frei",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Brexit-Folgen sind empirisch belegt — DIFFERENZIERT mit weitgehendem Forschungs-Konsens. Empirische Lage: (1) UK-EU-HANDELS-RÜCKGANG 2020-2024 (Bank of England 2024 + LSE Centre for Economic Performance Dhingra/Sampson 2024 'The Trade and Investment Effects of Brexit' + UK ONS): UK-Waren-Handel mit EU 2024 vs. 2019 (Pre-Brexit): -10 % bis -15 % real (inflations-bereinigt). UK-Exporte in EU stärker rückläufig als Importe — UK verliert Markt-Anteil im EU-Markt. UK-Dienstleistungs-Handel weniger betroffen, da TCA Dienstleistungs-Markt-Zugang minimal regelt. (2) UK-BIP-EFFEKT (LSE-Tradeoff 2024 + UK Office for Budget Responsibility OBR 2024): -4 % bis -5,5 % UK-BIP-Verlust vs. counterfactual EU-Mitgliedschaft. OBR offizielle Schätzung: -4 % bis -5 % langfristig. Implementierung über 10-15 Jahre, bisher ~50-70 % der Anpassung realisiert. Pro Kopf 2.300-2.900 GBP weniger jährlich (CER 2024). (3) HAUPT-FAKTOREN: (a) Trade and Cooperation Agreement (TCA, Dezember 2020): zoll-frei für Waren mit EU-Ursprung, ABER neue Anforderungen: Rules of Origin (Komponenten-Tracking), Customs Declarations (Bürokratie), Sanitäre und Phytosanitäre Kontrollen für Lebensmittel (Veterinärs-Zertifikate), Regulierungs-Divergenz (UK kann Regeln divergieren). (b) Service-Markt-Zugang stark eingeschränkt (Finanz-Pass weg, Anwalts-Pass weg, Architekten-Anerkennung weg). (c) UK-Investitionen: -11 % vs. counterfactual (LSE 2024). (4) NORTHERN-IRELAND-PROTOCOL/WINDSOR-FRAMEWORK 2023: Northern Ireland bleibt im EU-Single-Market für Waren — Sonderregelung. Verhinderte harte Grenze auf irischer Insel. UK-NI-Handel mit Großbritannien wird teilweise als 'Inlands-Handel' verbürokratisiert. (5) UK-WIRTSCHAFTLICHE LANGZEIT-FOLGEN: Bank of England 2024: niedrigere Investitionen + niedrigere Migration + niedrigere Welt-Handels-Integration → strukturell niedrigere Produktivität. UK-Produktivität-Wachstum 2010-2024 langsamer als EU-Durchschnitt — Brexit-Faktor + 2008-Krise-Hangover. (6) BREXIT-VOTERS: Pew Research 2024: 55 % der UK-Bevölkerung halten 'Brexit war Fehler' (Re-Joiner-Mehrheit), aber kein politischer Wille zu EU-Wiederbeitritt. Politik-Realität: niemand will Brexit-Debatte 2024+ wieder eröffnen. (7) FAKTENCHECK-RELEVANT: Aussage 'Brexit hatte keine Folgen' empirisch widerlegt. Aussage 'Brexit kostet 10 % BIP' überzeichnet — Konsens 4-5,5 %. Pack distanziert sich von Pro/Contra-Brexit-Wertung.",
+        "uk_eu_handel_rueckgang": "UK-EU Handels-Rückgang 2020-2024 (Bank of England Monetary Policy Report 2024 + LSE CEP 'Brexit Trade-Off' 2024 + UK ONS): Waren-Handel UK-EU -10 % bis -15 % real vs. 2019. UK-Exporte in EU stärker betroffen als Importe. UK verliert Markt-Anteil. Service-Handel weniger betroffen aber Finanz-Service-Pass-Verlust kostet ~30.000 City-Jobs.",
+        "uk_bip_effekt": "UK-BIP-Effekt Brexit (LSE Centre for Economic Performance Dhingra/Sampson 2024 + UK OBR Office for Budget Responsibility 2024): -4 % bis -5,5 % UK-BIP vs. counterfactual EU-Mitgliedschaft langfristig. OBR offiziell: -4 % bis -5 %. Pro-Kopf-Verlust 2.300-2.900 GBP/Jahr (Centre for European Reform 2024). Bisher ~50-70 % der Anpassung realisiert (Implementierung 10-15 Jahre).",
+        "tca_factors": "Trade and Cooperation Agreement (TCA) Dezember 2020: zoll-frei für EU-Ursprung-Waren, ABER neue Anforderungen: Rules of Origin (Komponenten-Tracking — Auto-Komponenten zwischen UK + EU werden problematisch), Customs Declarations (Bürokratie), SPS-Kontrollen Lebensmittel (Veterinärs-Zertifikate, Lieferketten-Reibung), Regulierungs-Divergenz-Risiko. KEIN Service-Markt-Zugang.",
+        "windsor_framework": "Northern-Ireland-Protocol Dec 2020 / Windsor-Framework 2023: NI bleibt im EU-Single-Market für Waren. Verhinderte harte Grenze auf irischer Insel. UK-NI-Handel teilweise als 'Inlands-Handel' verbürokratisiert. Politische Folge: NI-Sonder-Status, kontroverse Debatte mit DUP.",
+        "bevoelkerung_view": "Pew Research UK-Brexit-Sentiment 2024: 55 % halten 'Brexit war Fehler' (Re-Joiner-Mehrheit), aber kein politischer Wille zu EU-Wiederbeitritt — Brexit-Debatte 2024+ politisch geschlossen. Labour-Partei-Position 2024: 'closer relationship aber kein Wieder-Beitritt'.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Brexit-Wertung."
+      },
+      "context_notes": [
+        "UK-EU-Handel -10-15 % real seit Brexit (Bank of England + LSE) — empirisch belegt.",
+        "UK-BIP-Verlust 4-5,5 % vs. counterfactual EU-Mitgliedschaft (OBR offiziell + LSE) — Konsens-Spanne.",
+        "TCA ist zoll-frei aber NICHT reibungs-frei — Rules of Origin + SPS-Kontrollen + Regulierungs-Divergenz."
+      ],
+      "claim_phrasings_handled": [
+        "Brexit hatte keine Folgen",
+        "UK profitiert von Brexit",
+        "UK-Handel ist eingebrochen",
+        "Brexit kostet UK 10 % BIP",
+        "TCA ist nicht reibungs-frei",
+        "Mehrheit Briten will Brexit zurück"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "brexit",
+          "uk-handel",
+          "uk handel",
+          "uk eu handel",
+          "tca",
+          "trade and cooperation agreement",
+          "northern-ireland-protocol",
+          "windsor-framework",
+          "windsor framework",
+          "rules of origin"
+        ],
+        [
+          "folgen",
+          "kostet",
+          "verlust",
+          "einbruch",
+          "eingebrochen",
+          "rückgang",
+          "rueckgang",
+          "10 %",
+          "15 %",
+          "4 %",
+          "5 %",
+          "bip",
+          "profitiert",
+          "schadet",
+          "schadete",
+          "mistake",
+          "fehler"
+        ]
+      ]
+    },
+    {
+      "id": "russland_sanktionen_wirkung_2026",
+      "topic": "russland_sanktionen_wirkung_2022_2024_konsens",
+      "scope": "EU-Sanktionspakete 2022-2024 + RUS-Öl-Erlöse + RUS-BIP + EU-Gas-Diversifikation",
+      "year": 2024,
+      "source_url": "https://www.consilium.europa.eu/en/policies/sanctions/restrictive-measures-against-russia-over-ukraine/",
+      "secondary_url": "https://www.iea.org/reports/oil-market-report",
+      "source_label": "EU-Rat Sanktions-Pakete 2022-2024 (1.-14. Paket) + IEA Oil Market Report 2024 + IEA Gas Tracker 2024 + Eurostat Gas-Import-Statistik + CREA Centre for Research on Energy and Clean Air + IfW Kiel Russland-Studien + Bruegel Sanctions-Tracker",
+      "headline": "EU-Sanktions-Pakete 2022-2024: 14 Pakete (Stand 2024); RUS-Öl-Export-Erlöse 2022 -8 %, 2023 -27 %, 2024 -15 % (IEA + CREA, G7-Preisdeckel ab Dezember 2022); RUS-BIP 2022 -2,1 %, 2023 +3,6 % (russ. Statistik) vs. internationale Schätzung +1,5 %, 2024 ~+3 %; EU-Gas-Importe RUS 40 %→8 % (2021→2024)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: RUS-Sanktionen-Wirkung ist DIFFERENZIERT — empirisch belegt aber moderat. Empirische Lage: (1) EU-SANKTIONS-PAKETE 2022-2024 (EU-Rat): 14 Pakete bis 2024 (Stand Mai 2024), Bezeichnung 'restrictive measures against Russia'. Hauptbestandteile: Öl-Embargo (Juni 2022 + Preisdeckel Dezember 2022 G7+EU $60/Barrel), Gas-Importe-Reduktion (de facto, kein totales Embargo), SWIFT-Ausschluss von 7 RUS-Banken (März 2022), Tech-Export-Verbot (Halbleiter, Drohnen-Komponenten), Vermögens-Einfrieren ~300 Mrd EUR Zentralbank-Reserven. (2) RUS-ÖL-EXPORT-ERLÖSE (IEA + CREA Centre for Research on Energy and Clean Air, monthly tracking): 2021 ~$190 Mrd RUS-Öl-Export-Erlöse → 2022 ~$175 Mrd (-8 %, hohe Welt-Preise kompensierten Mengen-Rückgang) → 2023 ~$130 Mrd (-27 %, G7-Preisdeckel + Indien/China-Discount) → 2024 ~$110 Mrd (-15 % vs. 2023, weiter sinkend). G7-PREISDECKEL Dec 2022 wirksam — RUS muss Öl unter $60/Barrel verkaufen, mit Discount typisch $20-30/Barrel unter Brent. (3) RUS-BIP-WACHSTUM (heftig kontrovers): 2022 -2,1 % (russ. Statistik Rosstat) — manche internationale Quellen 2,5-3 %. 2023 +3,6 % (Rosstat) — IfW Kiel + Bruegel-Schätzung +1,5-2 %. 2024 ~+3 % (Rosstat) — internationale Schätzung +1,5-2 %. RUS-Wirtschaft wandelte sich zur Kriegs-Wirtschaft mit hohem Staats-Konsum (Rüstung), aber Privat-Konsum + Investitions-Klima geschwächt. RUS-Inflation 2024 ~9 % offiziell, real höher. (4) EU-GAS-DIVERSIFIKATION (Eurostat 2024 + Bruegel 2024): EU-Gas-Importe aus RUS 2021 ~40 % gesamt → 2022 ~25 % → 2023 ~15 % → 2024 ~8 %. Ersatz: Norwegen +50 % (Pipeline + LNG), USA-LNG +200 %, Katar-LNG +50 %. EU-Gas-Verbrauch SANK 2022-2024 ~15 % durch Energiesparen + Industrie-Drosselung. AT-Gas-Importe RUS 2021 ~80 % → 2024 ~25 % (Diversifikation Norwegen via DE + LNG-Importe). (5) IfW KIEL + BRUEGEL-BILANZ 2024: Sanktionen WIRKEN moderat — RUS-Wirtschaft erleidet langfristig strukturellen Schaden (Kapital-Abwanderung + Tech-Engpass + Brain-Drain), kurzfristig durch Kriegs-Wirtschaft + China/Indien-Markt-Diversifikation kompensiert. (6) FAKTENCHECK-RELEVANT: Aussage 'Sanktionen wirken nicht — RUS-Wirtschaft wächst' verkennt Rosstat-vs-International-Diskrepanz + Inflations-Effekt + langfristige Schäden. Aussage 'Sanktionen brachten RUS in Knie' empirisch nicht belegt — RUS-BIP wächst nominal. Pack distanziert sich von Pro/Contra-Sanktions-Wertung.",
+        "eu_sanktions_pakete": "EU-Sanktions-Pakete 2022-2024 (EU-Rat 'restrictive measures against Russia'): 14 Pakete bis Mai 2024. Hauptbestandteile: Öl-Embargo Juni 2022 + Preisdeckel Dec 2022 G7+EU $60/Barrel, Gas-de facto-Reduktion (kein totales Embargo), SWIFT-Ausschluss 7 RUS-Banken März 2022, Tech-Export-Verbot, RUS-Zentralbank-Reserven $300 Mrd eingefroren.",
+        "rus_oel_erloese": "RUS-Öl-Export-Erlöse Entwicklung (IEA Oil Market Report 2024 + CREA Centre for Research on Energy and Clean Air monthly tracking): 2021 $190 Mrd, 2022 $175 Mrd (-8 %, hohe Welt-Preise), 2023 $130 Mrd (-27 %, G7-Preisdeckel), 2024 $110 Mrd (-15 % vs. 2023). G7-Preisdeckel Dec 2022 wirksam — RUS verkauft mit $20-30/Barrel Discount unter Brent.",
+        "rus_bip_kontrovers": "RUS-BIP 2022-2024 (kontrovers): 2022 -2,1 % Rosstat (intern. -2,5-3 %), 2023 +3,6 % Rosstat (IfW Kiel + Bruegel +1,5-2 %), 2024 ~+3 % Rosstat (intern. +1,5-2 %). RUS-Inflation 2024 ~9 % offiziell. RUS-Wirtschaft als Kriegs-Wirtschaft mit hohem Staats-Konsum, Privat-Konsum geschwächt, langfristig strukturell schadhaft (Kapital-Abwanderung + Brain-Drain + Tech-Engpass).",
+        "eu_gas_diversifikation": "EU-Gas-Importe aus Russland (Eurostat + Bruegel): 2021 ~40 %, 2022 ~25 %, 2023 ~15 %, 2024 ~8 %. Ersatz: Norwegen +50 %, USA-LNG +200 %, Katar +50 %. EU-Gas-Verbrauch sank 2022-2024 ~15 % (Sparen + Industrie-Drosselung). AT-Gas-Importe RUS 2021 ~80 % → 2024 ~25 % (Diversifikation Norwegen via DE + LNG).",
+        "ifw_bruegel_bilanz": "IfW Kiel + Bruegel-Bilanz 2024: Sanktionen WIRKEN moderat. RUS-Wirtschaft erleidet langfristig strukturellen Schaden (Kapital-Abwanderung ~$200 Mrd seit 2022, Tech-Engpass Halbleiter/Drohnen-Komponenten, Brain-Drain ~700.000 Hochqualifizierte ausgewandert), kurzfristig durch Kriegs-Wirtschafts-Stimulus + China/Indien-Markt-Diversifikation maskiert.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Sanktions-Wertung."
+      },
+      "context_notes": [
+        "RUS-Öl-Erlöse 2023 -27 %, 2024 -15 % (IEA + CREA) — G7-Preisdeckel ab Dezember 2022 wirksam.",
+        "RUS-BIP-Wachstum 2023/2024 kontrovers: Rosstat +3,6 % vs. internationale Schätzung +1,5-2 %.",
+        "EU-Gas RUS-Anteil 40 %→8 % (2021→2024), AT 80 %→25 % — Diversifikation real."
+      ],
+      "claim_phrasings_handled": [
+        "Sanktionen wirken nicht",
+        "RUS-Wirtschaft wächst trotz Sanktionen",
+        "EU hängt immer noch von russischem Gas",
+        "Sanktionen kosten EU mehr als Russland",
+        "RUS-Öl-Erlöse sind nicht gesunken",
+        "G7-Preisdeckel ist wirksam"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "russland-sanktionen",
+          "russland sanktionen",
+          "rus-sanktionen",
+          "russia sanctions",
+          "sanktionen",
+          "öl-embargo",
+          "oel-embargo",
+          "preisdeckel",
+          "g7-preisdeckel",
+          "swift",
+          "rus-gas",
+          "russisches gas",
+          "russische gas-importe",
+          "ifw kiel",
+          "bruegel",
+          "crea"
+        ],
+        [
+          "wirken",
+          "wirkt",
+          "nicht wirksam",
+          "wirkungslos",
+          "wachstum",
+          "bip",
+          "wächst",
+          "waechst",
+          "schrumpft",
+          "russland",
+          "putin",
+          "russisch",
+          "27 %",
+          "15 %",
+          "8 %",
+          "40 %",
+          "rückgang"
+        ]
+      ]
+    },
+    {
+      "id": "subventions_kriege_2026",
+      "topic": "subventions_kriege_konsens",
+      "scope": "USA IRA 2022 + EU NZIA 2024 + Critical Raw Materials Act + Investitions-Verschiebung",
+      "year": 2024,
+      "source_url": "https://www.whitehouse.gov/cleanenergy/inflation-reduction-act-guidebook/",
+      "secondary_url": "https://commission.europa.eu/strategy-and-policy/priorities-2019-2024/european-green-deal/green-deal-industrial-plan_en",
+      "source_label": "US Inflation Reduction Act IRA Aug 2022 + EU Net-Zero Industry Act NZIA Feb 2024 + Critical Raw Materials Act CRMA März 2024 + CSIS Center for Strategic and International Studies 2024 + IRA Tracker Rhodium Group + IFO + WIFO",
+      "headline": "USA IRA Aug 2022: $369 Mrd Klima-Subventionen über 10 Jahre (Production Tax Credits + Domestic Content); EU-Antwort Net-Zero Industry Act Feb 2024 + CRMA März 2024; CSIS 2024 Schätzung: ~$50 Mrd EU-Investitions-Verschiebung in Richtung USA seit 2022",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: 'Subventions-Krieg' USA-EU 2022-2024 ist EMPIRISCH belegt mit moderater Wirkung. Empirische Lage: (1) US-INFLATION REDUCTION ACT (IRA) August 2022: $369 Mrd Klima-Subventionen über 10 Jahre. Hauptbestandteile: Production Tax Credits (PTC) für US-Produktion grüner Tech (Solar, Wind, Batterien, Wasserstoff), Domestic Content Requirements (50-100 % US-Inhalt für volle Subvention), Investment Tax Credits ITC, Direct Pay für gemeinnützige Empfänger. Volumen: pro tonne CO2-Vermeidung ~$200-400 Förderung (sehr generös). Rhodium Group Tracking 2024: $283 Mrd Investitionen seit IRA-Verkündung angekündigt, davon ~$140 Mrd ausgeführt. (2) EU-ANTWORT — NET-ZERO INDUSTRY ACT (NZIA) Februar 2024 + Critical Raw Materials Act (CRMA) März 2024: NZIA Ziel 40 % EU-eigene Produktion strategischer Net-Zero-Tech bis 2030. CRMA Ziele für kritische Rohstoffe: 10 % EU-Förderung, 40 % EU-Verarbeitung, 25 % Recycling, max. 65 % von einem Drittland. EU-Volumen-Vergleich: ZUSÄTZLICHE EU-Mittel begrenzt (~50-100 Mrd EUR über 10 Jahre via Innovation Fund + Just Transition Fund), Hauptmechanismus: schnellere Genehmigungen + State-Aid-Lockerung. (3) INVESTITIONS-VERSCHIEBUNG (CSIS Center for Strategic and International Studies 2024 + Rhodium Group): geschätzte ~$50 Mrd EU-Unternehmens-Investitionen 2022-2024 in Richtung USA verschoben (vs. counterfactual EU-Investition). Beispiele: VW Battery-Plant Tennessee statt Niedersachsen, Northvolt zog Schleswig-Holstein-Plant (Auf-Wiedersehen-Drohung 2023, dann doch DE-Standort 2024 mit Bundes-Förderung), BASF-Investitionen China-Verlagerung (Ludwigshafen-Reduktion). EU-Industrie-Verbände (BDI Deutschland, Mediobanca Italien) drängen auf 'Made-in-EU'-Politik. (4) DOMESTIC CONTENT-PROBLEMATIK: IRA $7.500 Steuer-Credit für E-Autos nur bei 50 % US-Battery-Komponenten (steigend bis 100 % bis 2029). EU-Auto-Hersteller (VW, BMW, Mercedes) qualifizieren sich nicht — entweder US-Werks-Errichtung oder Markt-Verlust. WTO-Vereinbarkeit umstritten (EU-Beschwerde-Drohung, kein Verfahren). (5) HISTORISCHE EINORDNUNG: 'Subventions-Krieg' nicht neu — USA-EU-Stahl 1970er-1990er, Boeing-Airbus 1990er-2010er. Critical Strategic Sectors haben seit 2010er-Jahren intensivere Industrie-Politik global. Pack distanziert sich von Pro/Contra-IRA-Wertung — präsentiert nur empirische Lage.",
+        "ira_2022": "US-Inflation Reduction Act August 2022 (IRA): $369 Mrd Klima-Subventionen über 10 Jahre. Production Tax Credits + Investment Tax Credits + Domestic Content Requirements (50-100 %). Rhodium Group Tracking 2024: $283 Mrd Investitionen angekündigt, $140 Mrd ausgeführt. Förder-Volumen pro tonne CO2-Vermeidung $200-400 (international großzügig).",
+        "eu_nzia_crma": "EU-Antwort Februar/März 2024: Net-Zero Industry Act NZIA Feb 2024 (40 % EU-eigene strategische Net-Zero-Tech-Produktion bis 2030) + Critical Raw Materials Act CRMA März 2024 (10 % EU-Förderung kritische Rohstoffe, 40 % EU-Verarbeitung, 25 % Recycling, max. 65 % von einem Drittland). Volumen-Vergleich: EU ~50-100 Mrd EUR zusätzlich + State-Aid-Lockerung, USA $369 Mrd direkt.",
+        "csis_investitions_verschiebung": "CSIS Center for Strategic and International Studies 2024 + Rhodium Group: ~$50 Mrd EU-Unternehmens-Investitionen 2022-2024 in Richtung USA verschoben vs. counterfactual EU-Investition. Beispiele: VW Battery-Plant Tennessee, BASF China-Verlagerung, Northvolt Schleswig-Holstein nur durch Bundes-Förderung 2024 EU-gehalten. EU-Industrie-Verbände drängen auf 'Made-in-EU'-Politik.",
+        "domestic_content_problem": "IRA Domestic Content für E-Auto-$7.500-Steuer-Credit: 50 % US-Battery-Komponenten (steigend 100 % bis 2029) + Endmontage in Nordamerika. EU-Auto-Hersteller (VW Group, Stellantis, BMW, Mercedes) qualifizieren sich nicht ohne US-Werk. WTO-Vereinbarkeit umstritten — EU-Beschwerde-Drohung, kein offizielles Verfahren bisher.",
+        "historische_einordnung": "Subventions-Konflikte USA-EU sind historisch: 1970er-1990er Stahl + Schiffbau, 1990er-2010er Boeing-Airbus (WTO-Verfahren beidseitig). 2010er+ Industrie-Politik intensiver global (China Made-in-China-2025 als Auslöser). Critical Strategic Sectors (Halbleiter, Batterien, Pharma, Wind/Solar) im Fokus seit Pandemie 2020.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-IRA-Wertung."
+      },
+      "context_notes": [
+        "USA IRA $369 Mrd Klima-Subventionen 2022 vs. EU NZIA + CRMA Feb/März 2024 — Volumen-Asymmetrie klar.",
+        "CSIS 2024: ~$50 Mrd EU-Investitionen 2022-2024 in Richtung USA verschoben — empirisch belegt.",
+        "Domestic Content im IRA $7.500 E-Auto-Credit ist WTO-umstritten — EU-Beschwerde-Drohung."
+      ],
+      "claim_phrasings_handled": [
+        "USA IRA ist Subventions-Krieg gegen EU",
+        "EU verliert Investitionen an USA",
+        "EU NZIA ist EU-Antwort auf IRA",
+        "Domestic Content ist WTO-Verstoß",
+        "VW investiert in USA wegen IRA",
+        "EU hat keine Antwort auf IRA"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "ira",
+          "inflation reduction act",
+          "us-subventionen",
+          "us subventionen",
+          "subventions-krieg",
+          "subventionskrieg",
+          "nzia",
+          "net-zero industry act",
+          "crma",
+          "critical raw materials act",
+          "domestic content",
+          "csis",
+          "rhodium"
+        ],
+        [
+          "verliert",
+          "investitionen",
+          "verschiebung",
+          "abwandert",
+          "abwanderung",
+          "subventionen",
+          "antwort",
+          "369 mrd",
+          "50 mrd",
+          "us-werk",
+          "us werk",
+          "wto",
+          "wto-verstoß",
+          "verfahren"
+        ]
+      ]
+    },
+    {
+      "id": "at_energie_importabhaengigkeit_2026",
+      "topic": "at_energie_importabhaengigkeit_konsens",
+      "scope": "AT-Primärenergie-Importe 2024 + Gas-Diversifikation seit 2022",
+      "year": 2024,
+      "source_url": "https://www.e-control.at/statistik",
+      "secondary_url": "https://www.statistik.at/statistiken/energie-und-umwelt/energie",
+      "source_label": "E-Control Energie-Statistik 2024 + Statistik Austria Energie-Bilanz 2024 + IEA Austria Energy Profile 2024 + AGGM Austrian Gas Grid Management AG + Bundes-Energie-Effizienz-Gesetz + Eurostat Energy Statistics",
+      "headline": "AT-Primärenergie 2024 (E-Control + Statistik Austria): Import-Quote ~73 % gesamt-Primärenergie; Erdgas-Versorgungs-Anteil 2022 ~80 % Russland → 2024 ~25 % (Diversifikation Norwegen + LNG via Deutschland); Strom 80 % erneuerbar (Wasserkraft) ABER nur 20 % Gesamt-Primärenergie",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: AT-Energie-Lage hat zwei Gesichter — saubere Strom-Bilanz UND hohe fossile Importabhängigkeit. Empirische Lage: (1) AT-PRIMÄRENERGIE-VERBRAUCH 2024 (Statistik Austria + E-Control): ~330-350 TWh pro Jahr. Aufgliederung Energie-Träger: Erdöl ~36 % (Verkehr + Heizen), Erdgas ~22 % (Heizen + Industrie + Strom), Erneuerbare ~32 % (Wasserkraft + Biomasse + Wind/Solar), Kohle ~6 %, Atom 0 % (AT-Volksabstimmung 1978 gegen Zwentendorf). (2) IMPORT-QUOTE: AT importiert ~73 % der Gesamt-Primärenergie. Hauptimporte: Erdöl 100 % (kein eigenes signifikantes Vorkommen), Erdgas ~80 % (kleines OMV-Vorkommen Niederösterreich/Burgenland), Steinkohle 100 %. Eigene Energie-Quellen: Wasserkraft (Inn, Donau, Kleinwasserkraft) + Biomasse (Holz) + Wind (NÖ + Burgenland) + Solar. (3) ERDGAS-DIVERSIFIKATION 2022-2024 (E-Control + AGGM Austrian Gas Grid): AT Gas-Importe aus Russland 2021 ~80 % gesamt-Gas-Verbrauch (lange OMV-Liefer-Vertrag bis 2040 mit Gazprom — Vertrag besteht weiter, Liefer-Mengen reduziert). 2022 ~70 %, 2023 ~50 %, 2024 ~25 %. Ersatz: Norwegen via DE-Pipeline ~40 %, LNG-Importe via Wilhelmshaven DE ~25 %, Vorrats-Befüllung 2024 ~95 % (gesetzlich vorgeschrieben). Klage-Risiko: OMV könnte $$$$$ Anspruch gegen Gazprom haben falls Vertrag-Beendigung politisch verfügt wird. (4) STROM-MIX 2024 (E-Control): ~75-80 % erneuerbar (60 % Wasserkraft, 12 % Wind, 4 % Solar, 5 % Biomasse), ~15 % Erdgas-Strom (Kraftwerks-Betrieb), 4 % Kohle, 2 % Sonstige. AT ist STROMexportland in nassen Jahren, STROMimportland in trockenen Jahren (Wasserkraft-Volatilität). (5) WICHTIGE DIFFERENZIERUNG: 80 % erneuerbarer Strom-Anteil ≠ 80 % erneuerbar gesamt-Energie. Strom ist nur ~20 % der AT-Primärenergie — Heizen + Verkehr + Industrie-Prozesse sind größer und überwiegend fossil. AT-Gesamt-Erneuerbare-Anteil 2024 ~32 % Primärenergie. (6) FAKTENCHECK-RELEVANT: Aussage 'AT ist energie-autark' empirisch falsch (~73 % Import). Aussage 'AT hat nur 8 % aus Russland' verkennt OMV-Gas-Vertrag-Komplexität. Pack distanziert sich von Pro/Contra-Energie-Politik-Wertung.",
+        "at_primaerenergie_2024": "AT-Primärenergie 2024 (Statistik Austria Energie-Bilanz + E-Control): ~330-350 TWh. Aufgliederung Energie-Träger: Erdöl ~36 % (Verkehr 80 % + Heizen 20 %), Erdgas ~22 % (Heizen 50 % + Industrie 30 % + Strom 20 %), Erneuerbare ~32 % (Wasserkraft 18 % + Biomasse 8 % + Wind 4 % + Solar 2 %), Kohle ~6 %, Atom 0 %.",
+        "import_quote": "AT-Energie-Import-Quote 2024 (E-Control + Eurostat): ~73 % der Primärenergie importiert. Erdöl 100 % Import (kein signifikantes AT-Vorkommen), Erdgas ~80 % Import (kleines OMV-Vorkommen NÖ/Burgenland), Steinkohle 100 %, Uran 0 % (kein AKW). Eigen-Quellen: Wasserkraft + Biomasse + Wind + Solar.",
+        "gas_diversifikation": "AT-Gas-Importe-Diversifikation (E-Control + AGGM 2024): 2021 ~80 % aus RUS via Gazprom-Pipeline + langfristiger OMV-Liefer-Vertrag bis 2040. 2022 ~70 %, 2023 ~50 %, 2024 ~25 %. Ersatz: Norwegen via DE ~40 %, LNG via Wilhelmshaven DE ~25 %, Vorrats-Befüllung 95 % (gesetzlich vorgeschrieben). OMV-Gazprom-Vertrag besteht weiter — Beendigungs-Risiken finanziell + rechtlich.",
+        "at_strom_mix": "AT-Strom-Mix 2024 (E-Control): ~75-80 % erneuerbar (Wasserkraft 60 %, Wind 12 %, Solar 4 %, Biomasse 5 %), Erdgas-Strom ~15 %, Kohle 4 %, Sonstige 2 %. AT exportiert Strom in nassen Jahren, importiert in trockenen (Wasserkraft-Volatilität). EU-Strom-Markt-Integration verstärkt Im-/Exporte.",
+        "strom_vs_primaerenergie_klarstellung": "Wichtige Differenzierung: Strom-Mix 80 % erneuerbar ≠ Gesamt-Energie 80 % erneuerbar. AT-Strom-Verbrauch ~70 TWh = nur 20 % der ~340 TWh Primärenergie. Heizen (140 TWh) + Verkehr (90 TWh) + Industrie-Prozesse (40 TWh) sind größer und überwiegend fossil. Gesamt-Erneuerbare-Anteil 2024: ~32 %.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Energie-Politik-Wertung."
+      },
+      "context_notes": [
+        "AT-Energie-Import-Quote 73 % — Erdöl 100 %, Erdgas 80 %, Steinkohle 100 %.",
+        "AT-Gas RUS-Anteil 80 % (2021) → 25 % (2024) — Diversifikation Norwegen + LNG via DE.",
+        "Strom 80 % erneuerbar ≠ Gesamt-Energie 80 % erneuerbar — Strom nur 20 % AT-Primärenergie."
+      ],
+      "claim_phrasings_handled": [
+        "AT ist energie-autark",
+        "Österreich ist unabhängig von Russland-Gas",
+        "AT hat 80 % erneuerbare Energie",
+        "Wir importieren 73 % unserer Energie",
+        "OMV-Gas-Vertrag mit Gazprom läuft weiter",
+        "Strom-Mix vs. Gesamt-Energie sind unterschiedlich"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "at-energie",
+          "at energie",
+          "österreich-energie",
+          "oesterreich-energie",
+          "primärenergie",
+          "primaerenergie",
+          "import-quote",
+          "import quote",
+          "energie-autark",
+          "energie autark",
+          "russland-gas",
+          "russisches gas",
+          "omv",
+          "gazprom",
+          "lng",
+          "wasserkraft",
+          "stromexport",
+          "stromimport"
+        ],
+        [
+          "73 %",
+          "80 %",
+          "25 %",
+          "energie-import",
+          "energie import",
+          "abhängig",
+          "abhaengig",
+          "unabhängig",
+          "unabhaengig",
+          "autark",
+          "autarkie",
+          "erneuerbar",
+          "fossile",
+          "fossiles",
+          "russland"
+        ]
+      ]
+    },
+    {
+      "id": "china_solar_markt_dominanz_2026",
+      "topic": "china_solar_markt_dominanz_konsens",
+      "scope": "Globaler Solar-Markt 2024 — China Modul + Polysilizium + EU NZIA-Ziel",
+      "year": 2024,
+      "source_url": "https://about.bnef.com/blog/clean-energy-investment-trend/",
+      "secondary_url": "https://www.iea.org/reports/solar-pv-global-supply-chains",
+      "source_label": "BloombergNEF BNEF Clean Energy Investment Trend 2024 + IEA Solar PV Global Supply Chains Report 2022/2024 + Wood Mackenzie Solar Market Insight 2024 + EU-Kommission Net-Zero Industry Act 2024 + USGS Mineral Commodity Summaries",
+      "headline": "Globaler Solar-Markt 2024 (BNEF + IEA): China 80 % Modul-Produktion, 95 % Polysilizium, 96 % Wafer; EU <3 %, USA <5 %; Modul-Preise -90 % seit 2010 (Skalen + Subventionen); EU NZIA 2024 Ziel 40 % EU-eigene Produktion bis 2030",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: China-Dominanz in Solar-Lieferkette ist EXTREM — empirisch eindeutig. Empirische Lage: (1) GLOBALE SOLAR-MODUL-PRODUKTION 2024 (BNEF + IEA Solar PV Global Supply Chains 2024 + Wood Mackenzie): China ~80 % global, Vietnam + Malaysia ~10 % (oft chinesisch besessen), Indien ~3 %, EU <3 %, USA ~3-5 % (steigt durch IRA), Rest <2 %. China-Anteil bei VOR-PROZESS-Stufen sogar höher: Polysilizium 95 %, Ingot/Wafer 96 %, Solar-Zellen 80 %. ABHÄNGIGKEIT IST STRUKTURELL durch komplette Lieferkette. (2) PREIS-ENTWICKLUNG (BNEF + IEA): Solar-Modul-Preise Welt-Spot 2010 ~$2.000/kW → 2024 ~$130/kW = -94 % über 14 Jahre. Hauptursachen: (a) Skalen-Effekte (chinesische Werke 100 GW/Jahr-Skala, EU/US-Werke <5 GW), (b) Lern-Kurve Wright's Law ~25 % Preis-Reduktion pro Verdoppelung kumulierter Produktion, (c) Subventionen + China-Industrie-Politik (Made-in-China-2025 + Province-Subsidies), (d) Produktivitäts-Steigerungen + Material-Effizienz. (3) EU + USA REAKTION: EU Net-Zero Industry Act Februar 2024: Ziel 40 % EU-eigene Produktion strategischer Net-Zero-Technologien bis 2030 (inkl. Solar-Module + Batterien + Wind + Wasserstoff-Elektrolyseure). NZIA enthält Genehmigungs-Beschleunigung + State-Aid-Lockerung + Public Procurement-Bevorzugung. USA IRA + Tariffs: 50 % Anti-Dumping-Zoll auf chinesische Module (von Vietnam/Malaysia routed), Domestic Content für Steuer-Credits. EU-Solar-Module-Industrie hatte 2007-2014 ~25 % Welt-Markt-Anteil (Q-Cells, Solarworld, Schott Solar) — meist insolvent durch chinesische Konkurrenz. (4) PERSPEKTIVE 2030: Wood Mackenzie 2024 Forecast: China-Modul-Markt-Anteil bleibt 70-80 % bis 2030, EU + USA wachsen langsam von <5 % auf 10-15 % je. Polysilizium-Anteil schwerer zu rückgewinnen (kapitalintensiv, lange Bauzeiten). (5) UMWELT-NEBEN-EFFEKT: chinesische Solar-Produktion in Xinjiang teilweise mit Zwangsarbeit-Vorwürfen verbunden (US-Uyghur Forced Labor Prevention Act 2022 — verbietet Importe ohne Nachweis). EU-Forced-Labor-Regulation 2024 ähnlich. China-Polysilizium hat hohen Strom-Verbrauch (oft Kohle-basiert in China-West) — embodied emissions debattiert. (6) FAKTENCHECK-RELEVANT: Aussage 'EU produziert ihre eigenen Solar-Module' empirisch widerlegt (<3 %). Aussage 'China-Solar-Dominanz ist Verschwörung' falsch — empirisch durch Industrie-Politik + Skalen + Lern-Kurve erklärbar. Pack distanziert sich von Pro/Contra-China-Wertung.",
+        "globale_modul_produktion": "Globale Solar-Modul-Produktion 2024 (BNEF + IEA + Wood Mackenzie): China ~80 % (Top-Hersteller LONGi, JinkoSolar, Trina, JA Solar, Canadian Solar — meist chin. besessen), Vietnam + Malaysia ~10 % (oft chin. besessen), Indien ~3 %, EU <3 %, USA ~3-5 %.",
+        "polysilizium_wafer_zellen": "Solar-Vorprozess-Anteile China (BNEF + IEA Solar PV Supply Chains 2024): Polysilizium 95 % global (Top: Tongwei, GCL, Daqo — alle China). Ingot 96 %, Wafer 96 %, Solar-Zellen 80 %. EU-Polysilizium-Hersteller Wacker (Burghausen) ~3 % global. STRUKTURELLE Abhängigkeit komplette Lieferkette.",
+        "preis_entwicklung": "Solar-Modul-Preis-Entwicklung Welt-Spot (BNEF + IEA): 2010 ~$2.000/kW, 2015 ~$650/kW, 2020 ~$210/kW, 2024 ~$130/kW. -94 % über 14 Jahre. Lern-Kurve Wright's Law ~25 % Preis-Reduktion pro Verdoppelung kumulierte Produktion. Skalen-Effekte chinesische 100 GW/Jahr-Werke vs. EU 5 GW.",
+        "eu_nzia_ziel": "EU Net-Zero Industry Act NZIA Februar 2024: Ziel 40 % EU-eigene Produktion strategischer Net-Zero-Tech bis 2030. Mechanismen: Genehmigungs-Beschleunigung + State-Aid-Lockerung + Public Procurement-Bevorzugung. Strategische Net-Zero-Tech: Solar PV, Batterien, Wind, Wärmepumpen, Wasserstoff-Elektrolyseure, Carbon Capture, Grid-Tech.",
+        "ehemalige_eu_industrie": "EU-Solar-Modul-Industrie 2007-2014: ~25 % Welt-Markt-Anteil (Q-Cells, Solarworld, Schott Solar, Conergy, REC, Yingli — letztere chin.). Insolvenz-Welle 2012-2017 durch chinesische Anti-Dumping-Vorwürfe + Skalen-Defizit + EU-Förder-Reformen. Wachstum-Wiederbeginn ab 2023 (Meyer Burger CH/DE, andere) durch NZIA + Anti-Dumping-Zölle.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-China-Wertung."
+      },
+      "context_notes": [
+        "China 80 % Solar-Module + 95 % Polysilizium + 96 % Wafer — STRUKTURELLE Lieferketten-Dominanz.",
+        "Modul-Preise -94 % seit 2010 — Lern-Kurve + Skalen + Subventionen China.",
+        "EU NZIA 2024 Ziel 40 % EU-Produktion bis 2030 — Wood Mackenzie Forecast 10-15 % realistisch."
+      ],
+      "claim_phrasings_handled": [
+        "China hat das Solar-Monopol",
+        "EU produziert ihre eigenen Solar-Module",
+        "Solar-Preise sind seit 2010 um 90 % gefallen",
+        "EU NZIA 2024 zielt 40 % bis 2030",
+        "China-Solar-Dominanz ist strategisch",
+        "Q-Cells und Solarworld sind insolvent"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "china-solar",
+          "china solar",
+          "solar-module",
+          "solarmodule",
+          "polysilizium",
+          "wafer",
+          "solar-zelle",
+          "solarzellen",
+          "longi",
+          "jinkosolar",
+          "trina",
+          "wacker",
+          "q-cells",
+          "solarworld",
+          "meyer burger",
+          "bnef",
+          "wood mackenzie"
+        ],
+        [
+          "monopol",
+          "dominanz",
+          "marktanteil",
+          "markt-anteil",
+          "80 %",
+          "95 %",
+          "96 %",
+          "90 %",
+          "40 %",
+          "preis",
+          "preise",
+          "gefallen",
+          "produziert",
+          "produktion",
+          "lieferkette",
+          "import"
+        ]
+      ]
+    }
+  ]
+}

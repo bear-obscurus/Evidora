@@ -106,6 +106,9 @@ from services.arbeitsmarkt_pack import search_arbeitsmarkt, claim_mentions_arbei
 from services.mobilitaet_pack import search_mobilitaet, claim_mentions_mobilitaet_cached
 from services.datenschutz_pack import search_datenschutz, claim_mentions_datenschutz_cached
 from services.sozialstaat_pack import search_sozialstaat, claim_mentions_sozialstaat_cached
+from services.demokratie_pack import search_demokratie, claim_mentions_demokratie_cached
+from services.landwirtschaft_pack import search_landwirtschaft, claim_mentions_landwirtschaft_cached
+from services.welthandel_pack import search_welthandel, claim_mentions_welthandel_cached
 from services.owid import search_owid
 from services.wayback import search_wayback, claim_has_url_cached
 from services.crossref import search_crossref, _claim_mentions_paper as _claim_mentions_crossref, _extract_dois
@@ -950,6 +953,41 @@ async def check_claim(request: Request):
         if claim_mentions_sozialstaat_cached(claim):
             tasks.append(cached("Sozialstaat-Konsens", search_sozialstaat, analysis))
             queried_names.append("Sozialstaat-Konsens (Statistik Austria + BMSGPK + WIFO + IHS + AK Wien + AMS + PVA + AT-VfGH + OECD + Eurostat ESSPROS + Bertelsmann)")
+        # Demokratie-Pack (12 AT-/EU-/Welt-Topics: Wahlbeteiligung,
+        # Briefwahl-Manipulation, Volksbegehren, Bundesrat, Wahlfälschung,
+        # Verhältnis-vs-Mehrheitswahl, ePartizipation, Demokratie-Verfall,
+        # Pressefreiheit, Korruption, US-Wahlsystem, Demokratie-
+        # Zufriedenheit). Quellen: V-Dem + Freedom House + Transparency CPI
+        # + RSF + IDEA + BMI + Statistik Austria + AT-VfGH + Eurobarometer.
+        # HOCH SENSIBLES THEMA — Pack zitiert externe Indizes, übernimmt
+        # KEINE eigene Klassifikation.
+        if claim_mentions_demokratie_cached(claim):
+            tasks.append(cached("Demokratie-Konsens", search_demokratie, analysis))
+            queried_names.append("Demokratie-Konsens (V-Dem + Freedom House + Transparency CPI + RSF + IDEA + BMI + Statistik Austria + Eurobarometer)")
+        # Landwirtschaft-Pack (13 Topics: GVO/Gentechnik, Bio-Landbau-
+        # Erträge, Glyphosat-IARC-vs-EFSA, Saatgut-Konzentration, AT-Agrar-
+        # Subventionen, Selbstversorgung, Vertical Farming, Massentierhaltung,
+        # Pestizid-Rückstände, Düngemittel-Importabhängigkeit, Welternährung,
+        # Bauern-Sterben, Klima-Landwirtschaft). Quellen: AGES + EFSA +
+        # IARC + WHO + BMVL + BOKU + Statistik Austria + FAO + IPES-Food
+        # + Wagenigen UR + peer-reviewed (Seufert 2012 Nature, Ponisio 2015,
+        # Smith 2019 NatComm). MITTEL SENSIBLES THEMA — Pack distanziert
+        # sich von Pro/Contra-Bio-/Konventional-/GVO-Wertung.
+        if claim_mentions_landwirtschaft_cached(claim):
+            tasks.append(cached("Landwirtschaft-Konsens", search_landwirtschaft, analysis))
+            queried_names.append("Landwirtschaft-Konsens (AGES + EFSA + IARC + WHO + BMVL + BOKU + Statistik Austria + FAO + IPES-Food + Wagenigen UR)")
+        # Welthandel-Pack (12 Topics: China-Lieferketten, Made-in-Germany,
+        # TRIPS-Pharma, Welthandel-Gewinner, AT-Export-Quote, EU-Binnenmarkt,
+        # Handelsbilanz-Defizit, Brexit-Folgen, Russland-Sanktionen,
+        # Subventions-Kriege IRA, AT-Energie-Importabhängigkeit, China-Solar-
+        # Dominanz). Quellen: Statistik Austria + WIFO + IFO + Bank of England
+        # + LSE Centre for Economic Performance + Weltbank + IEA + BNEF +
+        # WTO + UNCTAD + BCG + McKinsey + CSIS + peer-reviewed (Piketty +
+        # Saez + Krugman + Heckscher-Ohlin + Cecchini-Bericht). HOCH SENSIBLES
+        # THEMA Globalisierung — Pack distanziert sich von Pro/Contra-Wertung.
+        if claim_mentions_welthandel_cached(claim):
+            tasks.append(cached("Welthandel-Konsens", search_welthandel, analysis))
+            queried_names.append("Welthandel-Konsens (Statistik Austria + WIFO + IFO + Bank of England + LSE + Weltbank + IEA + BNEF + WTO + UNCTAD)")
         # OurWorldInData (OWID, CC-BY 4.0): 31 hochwertige Indikatoren zu
         # Klima/Energie/Gesundheit/Wirtschaft/Demografie. Triggert wenn die
         # Claim-Analysis category zu (health|climate|economy|demographics)

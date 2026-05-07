@@ -80,6 +80,9 @@ AUTHORITATIVE_PACK_MARKERS = (
     "Mobilität-Konsens",
     "Datenschutz-Konsens",
     "Sozialstaat-Konsens",
+    "Demokratie-Konsens",
+    "Landwirtschaft-Konsens",
+    "Welthandel-Konsens",
 )
 
 # Caps abhängig von Quellen-Anzahl (n_sources_with_results).

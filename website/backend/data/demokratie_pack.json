@@ -1,0 +1,538 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-07",
+  "source_label": "V-Dem Institute (University of Gothenburg) + Freedom House Freedom in the World 2024 + Transparency International CPI 2024 + Reporters Without Borders RSF 2024 + IDEA Voter Turnout Database + BMI AT Statistik + Statistik Austria + AT-VfGH + Eurobarometer + Bertelsmann + peer-reviewed (Duverger Law, Lijphart Patterns of Democracy)",
+  "facts": [
+    {
+      "id": "wahlbeteiligung_at_trends_2026",
+      "topic": "wahlbeteiligung_at_trends_konsens",
+      "scope": "AT-Wahlbeteiligung Nationalrat seit 1945 + EU-Wahl 2024",
+      "year": 2024,
+      "source_url": "https://www.bmi.gv.at/412/Nationalratswahlen/start.aspx",
+      "secondary_url": "https://www.idea.int/data-tools/data/voter-turnout",
+      "source_label": "BMI Statistik Nationalratswahlen 1945-2024 + Statistik Austria + IDEA Voter Turnout Database",
+      "headline": "AT NR-Wahl-Beteiligung 96 % (1949) → 77.5 % (2024); EU-Wahl 2024 ~57 %; AT EU-Mittelfeld",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT-Wahlbeteiligung sinkt dramatisch' ist DIFFERENZIERT. Empirische Lage: (1) AT-NR-WAHL-BETEILIGUNG (BMI 1945-2024): 1949 96.0 %, 1959 94.2 %, 1979 92.2 %, 1990 86.1 %, 2002 84.3 %, 2013 74.9 %, 2017 80.0 %, 2019 75.6 %, 2024 77.5 %. Trend: leichter Rückgang seit 1980er, aber Stabilisierung bei ~75-80 %. (2) EU-WAHL-BETEILIGUNG AT: 1996 67.7 % → 2014 45.4 % → 2019 59.8 % → 2024 ~57 %. Niedriger als NR-Wahl, aber im EU-Mittelfeld (EU-Schnitt 51 % 2024). (3) INTERNATIONALER VERGLEICH 2024 (IDEA Voter Turnout): AT 77 % NR-Wahl im OECD-Vergleich überdurchschnittlich. CH 45 % (Direkt-Demokratie reduziert wahlmotivation), DE 76 %, USA 66 % (Präsidentschaftswahl 2020), Skandinavien 80-87 %. (4) Faktencheck: 'Wahlbeteiligung sinkt dramatisch' überzeichnet — Stabilisierung bei 75-80 % seit 2010. 'AT-Wahlbeteiligung schlecht' verkennt OECD-Vergleich. Pack distanziert sich von normativer Wertung.",
+        "at_nr_wahl_zeitreihe": "BMI Statistik AT-Nationalratswahl-Beteiligung: 1949 96.0 %, 1959 94.2 %, 1970 91.8 %, 1979 92.2 %, 1986 90.5 %, 1990 86.1 %, 1995 86.0 %, 2002 84.3 %, 2008 78.8 %, 2013 74.9 %, 2017 80.0 %, 2019 75.6 %, 2024 77.5 %. Median seit 2010: ~77 %.",
+        "eu_wahl_at": "AT-EU-Wahl-Beteiligung: 1996 (Erste EU-Wahl AT) 67.7 %, 1999 49.4 %, 2004 42.4 %, 2009 46.0 %, 2014 45.4 %, 2019 59.8 %, 2024 56.5 %. EU-Schnitt 2024: 51 %. AT-EU-Wahl-Beteiligung im EU-Mittelfeld.",
+        "international_idea": "IDEA Voter Turnout Database 2024 (OECD-Schnitt nationaler Wahlen): AT 77 %, DE 76 %, FR 67 %, NL 78 %, SE 87 %, NO 80 %, DK 84 %, CH 45 % (Direkt-Demokratie-Effekt), USA 66 %, AU 90 % (Wahlpflicht).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "AT-NR-Wahl-Beteiligung 75-80 % seit 2010 stabil — sinkt nicht weiter dramatisch.",
+        "EU-Wahl deutlich niedriger (~57 %) — EU-Mittelfeld-Wert.",
+        "OECD-Vergleich: AT überdurchschnittlich, vergleichbar mit DE + Niederlande."
+      ],
+      "claim_phrasings_handled": [
+        "Wahlbeteiligung in Österreich sinkt dramatisch",
+        "Bei EU-Wahlen geht kaum noch jemand wählen",
+        "AT hat hohe Wahlbeteiligung",
+        "Demokratie-Müdigkeit in Österreich",
+        "Wahlbeteiligung war früher viel höher"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["wahlbeteiligung", "wahl-beteiligung", "wahlteilnahme", "wahl-teilnahme",
+         "voter turnout", "nationalratswahl", "nationalrats-wahl", "nrw",
+         "eu-wahl", "europawahl", "europa-wahl", "bundespraesidentenwahl",
+         "bundespräsidentenwahl", "stimmabgabe", "wählen", "waehlen",
+         "wahlurne", "wahllokal"],
+        ["sinkt", "sinkend", "steigt", "steigend", "niedrig", "hoch",
+         "dramatisch", "rückläufig", "ruecklaeufig", "trend", "stabil",
+         "vergleich", "international", "europa", "österreich", "oesterreich",
+         "at", "deutschland", "schweiz", "1949", "1990", "2024", "77 %",
+         "57 %", "eu-mittel", "demokratie-müdigkeit", "demokratie-muedigkeit"]
+      ]
+    },
+    {
+      "id": "briefwahl_manipulation_mythen_2026",
+      "topic": "briefwahl_manipulation_mythen",
+      "scope": "AT-Briefwahl seit 2007, VfGH G203/2016 BPräs-Stichwahl-Wiederholung, Manipulations-Hypothese",
+      "year": 2024,
+      "source_url": "https://www.vfgh.gv.at/medien/Bundespraesidentenstichwahl_aufgehoben.de.php",
+      "secondary_url": "https://www.idea.int/news-media/news/postal-voting-democracy",
+      "source_label": "VfGH-Erkenntnis G203/2016 vom 1.7.2016 + BMI Wahlrechts-Reform 2007 + IDEA Postal Voting Studies + Wikipedia/Wikidata",
+      "headline": "AT-Briefwahl seit 2007 (Verfassungsrang Art. 26 B-VG); VfGH G203/2016 hob BPräs-Stichwahl-Wiederholung auf wegen FORMFEHLER (verfrühte Briefwahl-Auszählung), KEIN Manipulations-Beweis",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Briefwahl ist manipulationsanfällig' ist EMPIRISCH NICHT BELEGT in AT/DE/EU. Empirische Lage: (1) AT-BRIEFWAHL-EINFÜHRUNG: Verfassungs-Reform 2007, BGBl I 2007/28 — Art. 26 B-VG Verfassungsrang. (2) VFGH G203/2016 vom 1.7.2016 (BPräs-Stichwahl 2016): Verfassungsgerichtshof hob Bundespräsidenten-Stichwahl 22.5.2016 auf. Begründung KEIN Wahlbetrug, sondern FORMFEHLER: in 14 Wahlkreisen wurden Briefwahlstimmen vor 17 Uhr (Wahlende) ausgezählt. VfGH: 'kein konkreter Manipulations-Verdacht, aber Verfahrens-Verstoß bedeutsam genug'. Wiederholungs-Stichwahl 4.12.2016 mit deutlichem Abstand für Van der Bellen. (3) BRIEFWAHL-MANIPULATIONS-EMPIRIE: keine dokumentierten Fälle in AT-Wahlen seit 2007. International (IDEA Postal Voting Studies + Heritage Foundation US-Election-Fraud-Database): vereinzelte Einzelfälle in den USA (~1.500 Fälle in 40 Jahren bei Hunderten Millionen Stimmen, 0.0001 %). Skala: irrelevant für Wahl-Ausgang. (4) US-2020-WAHL: Trump-Klagen 60+ Court Cases nach November 2020 alle abgelehnt. FBI + DOJ + CISA Statement November 2020: 'most secure election in American history'. KEIN Beleg für Briefwahl-Manipulation. (5) Faktencheck: 'Briefwahl ist Manipulation-anfällig' empirisch nicht belegt. 'VfGH 2016 stellte Wahlbetrug fest' faktisch falsch — VfGH stellte FORMFEHLER fest. Pack distanziert sich von normativer Wertung.",
+        "vfgh_g203_2016": "VfGH-Erkenntnis G203/2016 vom 1.7.2016 (Bundespräsidenten-Stichwahl 22.5.2016): Aufhebung wegen Formfehlern — vorzeitige Briefwahl-Auszählung in 14 Wahlkreisen vor 17 Uhr-Schluss + nicht ordnungsgemäßes Verfahren bei Beisitzer-Anwesenheit. VfGH explizit: 'kein konkreter Manipulations-Verdacht, aber Verfahrens-Verstoß'. Wiederholungs-Stichwahl 4.12.2016: Van der Bellen 53.79 % vs. Hofer 46.21 %.",
+        "at_briefwahl_einfuehrung": "AT-Briefwahl-Reform 2007 (BGBl I 2007/28): Verfassungs-Reform Art. 26 B-VG. Vorher seit 1990 nur eingeschränkte Briefwahl-Möglichkeit. 2007er-Reform: jeder Wahlberechtigte kann ohne Begründung Briefwahl nutzen. Briefwahl-Anteil 2024: ~30 % aller Stimmen.",
+        "us_2020_court_cases": "US-2020-Wahl-Anfechtungen: 60+ Court Cases von Trump-Wahlkampf-Team in 9 Bundesstaaten + Bundes-Court. Alle 60+ Cases abgelehnt (auch von Trump-ernannten Richtern wie Justice Barrett). FBI + DOJ + Cybersecurity and Infrastructure Security Agency CISA Statement 12.11.2020: 'most secure election in American history; no evidence that any voting system deleted or lost votes, changed votes, or was compromised'.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "VfGH G203/2016 hob BPräs-Stichwahl wegen FORMFEHLER auf, NICHT Wahlbetrug.",
+        "Keine dokumentierten Briefwahl-Manipulationen in AT seit 2007-Einführung.",
+        "US-2020 60+ Court Cases gegen Wahl-Ausgang alle abgelehnt + FBI/DOJ/CISA-Statement gegen Manipulations-These."
+      ],
+      "claim_phrasings_handled": [
+        "Briefwahl ist manipulationsanfällig",
+        "VfGH hat Wahlbetrug 2016 festgestellt",
+        "Briefwahl wird gefälscht",
+        "Trump hatte Recht mit Wahl-Manipulations-Vorwurf",
+        "AT-Briefwahl ist sicher"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["briefwahl", "brief-wahl", "postal vote", "postal-vote", "stichwahl",
+         "bpraes-stichwahl", "bundespräsidenten-stichwahl",
+         "bundespraesidentenstichwahl", "vfgh", "verfassungs-gerichtshof",
+         "verfassungsgerichtshof", "g203/2016", "g 203/2016",
+         "van der bellen", "hofer", "trump-wahl", "us-wahl",
+         "us-2020", "us-präsidentschaft", "us-praesidentschaft"],
+        ["manipulation", "manipuliert", "wahlbetrug", "wahl-betrug",
+         "betrug", "fälschung", "faelschung", "gefälscht", "gefaelscht",
+         "verfassungswidrig", "verfassungs-widrig", "formfehler",
+         "form-fehler", "wahlfehler", "wahl-fehler", "verfahrensverstoß",
+         "court cases", "klagen", "abgelehnt", "anfechtung",
+         "wiederholungswahl", "wiederholungs-wahl", "fbi", "doj", "cisa",
+         "secure election", "anfechtbar", "manipulationsanfällig"]
+      ]
+    },
+    {
+      "id": "volksbegehren_wirkung_empirie_2026",
+      "topic": "volksbegehren_wirkung_empirie_konsens",
+      "scope": "AT-Volksbegehren seit 1964 — Verbindlichkeit, parlamentarische Behandlung, Erfolg-Empirie",
+      "year": 2024,
+      "source_url": "https://www.parlament.gv.at/gegenstand/XXVI/Volksbegehren/",
+      "secondary_url": "https://www.bmi.gv.at/411/Alle_Volksbegehren_der_zweiten_Republik.aspx",
+      "source_label": "Parlament Austria Volksbegehren-Datenbank + BMI AT Statistik + Wikipedia AT-Volksbegehren-Liste + Hopp/Plasser AT-Demokratie-Forschung",
+      "headline": "AT-Volksbegehren seit 1964: parlamentarische Behandlungs-Pflicht ab 100k Unterschriften, KEIN bindender legislativer Effekt; ~50 % der erfolgreichen VB führten zu legislativen Änderungen (z.B. Don't Smoke 2018, Frauen-VB 1997+2018)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT-Volksbegehren werden ignoriert' ist DIFFERENZIERT. Empirische Lage: (1) AT-VOLKSBEGEHREN-INSTITUT (Art. 41 Abs 2 B-VG): Bürger-Initiative für Bundesgesetz-Vorschläge. Quorum: 100.000 Unterschriften (oder 1/6 der Wahlberechtigten in 3 Bundesländern) — danach parlamentarische Behandlungs-Pflicht. KEIN bindender Effekt — Parlament kann VB ablehnen. (2) HISTORISCHE BILANZ (BMI + Parlament Austria): seit 1964 (Erstes VB) ~52 erfolgreiche VB (>100k Unterschriften), davon ~26 (50 %) führten zu legislativen Änderungen. Klassiker: 1964 Konferenz-VB, 1969 Rundfunk-VB, 1997 Gentechnik-Frei-VB (~1.2 Mio Unterschriften), 1997 Frauen-VB, 2018 Don't Smoke-VB (881k Unterschriften, führte zu Kompromiss-Gesetz Tabak-Werbeverbot 2019). (3) ERFOLGS-EMPIRIE: hohe Unterschriften-Zahl korreliert NICHT mit legislativem Erfolg. Beispiel Anti-CETA-VB 2017 (562k Unterschriften) — kein legislativer Effekt. Frauen-VB 2018 (482k) — partial Erfolg (50/50-Klausel-Plan ÖBB). (4) VOLKSBEFRAGUNG vs. VOLKSBEGEHREN: AT hat 3 verbindliche Volksabstimmungen (Zwentendorf 1978, EU-Beitritt 1994, geplante Wehrpflicht-Volksbefragung 2013 nicht-bindend). Volksbegehren rein konsultativ. (5) Faktencheck: 'Volksbegehren werden ignoriert' überzeichnet (50 % Erfolgs-Quote). 'Volksbegehren sind bindend' faktisch falsch (nur parlamentarische Behandlungs-Pflicht). Pack distanziert sich von normativer Wertung.",
+        "verfassungs_grundlage": "Art. 41 Abs 2 B-VG + Volksbegehrengesetz 1973 (zuletzt geändert 2017): Bundesweit 100.000 Unterschriften nötig oder 1/6 der Wahlberechtigten in 3 Bundesländern. Behandlungs-Pflicht im Nationalrat ('Behandlungsausschuss'), KEIN bindender Effekt.",
+        "historische_bilanz": "BMI + Parlament Austria seit 1964: ~52 erfolgreiche VB (>100k Unterschriften). Top-VB nach Unterschriften: 1997 Gentechnik-Frei (1.225.790 Unterschriften), 2018 Don't Smoke (881.692), 2002 Frauen-VB (645k), 1969 Rundfunk-VB (832k). Erfolgs-Quote (legislative Änderung) ~50 %.",
+        "klassiker_2018_dont_smoke": "Don't Smoke-VB 2018: 881.692 Unterschriften (~13.5 % der Wahlberechtigten). Führte zu politischem Kompromiss: Tabak-Werbeverbot + Verkaufsverbot an unter-18-Jährige (Gesetz 2019). Vollständiges Rauchverbot in Gastronomie wurde NICHT umgesetzt (FPÖ-ÖVP-Koalition lehnte ab) — partial Erfolg.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "Volksbegehren ist parlamentarische Behandlungs-Pflicht, KEIN bindender legislativer Effekt.",
+        "~50 % Erfolgs-Quote (legislative Änderung) seit 1964 — höher als oft angenommen.",
+        "Volksabstimmung ist anders: bindend (z.B. EU-Beitritt 1994), VB nur konsultativ."
+      ],
+      "claim_phrasings_handled": [
+        "Volksbegehren werden in Österreich ignoriert",
+        "Don't Smoke-Volksbegehren wurde umgesetzt",
+        "AT hat direkte Demokratie",
+        "Volksbegehren sind nicht bindend",
+        "Frauen-Volksbegehren hat nichts gebracht"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["volksbegehren", "volks-begehren", "vb", "bürger-initiative",
+         "buergerinitiative", "buerger-initiative", "direkte demokratie",
+         "direkte-demokratie", "volksabstimmung", "volks-abstimmung",
+         "volksbefragung", "volks-befragung", "don't smoke", "dontsmoke",
+         "dont-smoke", "rauchverbot", "frauen-volksbegehren",
+         "frauen-vb", "gentechnik-frei", "anti-ceta", "ceta", "100.000",
+         "100k unterschriften"],
+        ["bindend", "verbindlich", "ignoriert", "ignorieren", "umgesetzt",
+         "umsetzen", "behandelt", "behandlung", "parlament", "abgelehnt",
+         "ablehnen", "erfolg", "erfolgreich", "wirksam", "wirkung",
+         "demokratie", "art. 41", "bgbl", "konsultativ", "100.000 unterschriften",
+         "100k", "881k", "kompromiss", "tabak", "rauchen"]
+      ]
+    },
+    {
+      "id": "at_bundesrat_funktion_2026",
+      "topic": "at_bundesrat_funktion_konsens",
+      "scope": "AT-Bundesrat (62 Mitglieder von Landtagen entsandt), suspensives + absolutes Veto",
+      "year": 2024,
+      "source_url": "https://www.parlament.gv.at/PERK/RGES/BR/index.shtml",
+      "secondary_url": "https://www.bundesrat.de/DE/funktionen/funktionen-node.html",
+      "source_label": "Parlament Austria Bundesrat + AT B-VG Art. 34-37 + Vergleich DE-Bundesrat (DE-Grundgesetz Art. 50)",
+      "headline": "AT-Bundesrat 62 Mitglieder von Landtagen entsandt; suspensives Veto bei einfachen Gesetzen, absolutes Veto nur bei Verfassungsgesetzen mit Bundesländer-Kompetenz-Beschränkung; vs. DE-Bundesrat (deutlich mächtiger durch Zustimmungs-Pflicht)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT-Bundesrat ist wirkungslos' ist DIFFERENZIERT. Empirische Lage: (1) AT-BUNDESRAT (B-VG Art. 34-37): 62 Mitglieder, von 9 Landtagen entsandt (Mandatsverteilung nach Bevölkerung — Wien 12, Niederösterreich 12, Oberösterreich 11, Steiermark 9, Tirol 5, Kärnten 4, Salzburg 4, Vorarlberg 3, Burgenland 3). Mandatsdauer abhängig von jeweiliger Landtags-Periode. (2) GESETZGEBUNGS-FUNKTION: SUSPENSIVES VETO bei einfachen Bundesgesetzen — Bundesrat kann Einspruch einlegen, NR kann mit gleichem Mehrheits-Beschluss ('Beharrungs-Beschluss') überstimmen. ABSOLUTES VETO nur bei Verfassungsgesetzen die Bundesländer-Kompetenzen einschränken (sehr selten). (3) IM VERGLEICH zum DE-Bundesrat (Art. 50-53 GG): DE-Bundesrat ist deutlich mächtiger — bei Zustimmungs-Gesetzen (~40 % aller Bundesgesetze) ist DE-Bundesrat-Zustimmung notwendig, kein Beharrungs-Beschluss möglich. AT-Bundesrat hingegen kann praktisch immer überstimmt werden. (4) FAKTISCHE WIRKSAMKEIT (Parlament Austria Statistik 2010-2024): von ~1.200 verabschiedeten Bundesgesetzen wurden ~12 vom Bundesrat mit Einspruch belegt (1 %), alle 12 vom NR mit Beharrungs-Beschluss überstimmt. Praktisch kein Veto-Effekt. (5) REFORMVORSCHLÄGE (Bertelsmann + Robert-Schuman-Stiftung): AT-Bundesrat-Abschaffung-Plädoyers seit 1990er — keine Mehrheit. Alternative Reform-Vorschläge: Bundesrat-Stärkung wie DE-Modell. (6) Faktencheck: 'Bundesrat ist wirkungslos' praktisch korrekt (Beharrungs-Beschluss-Möglichkeit). 'Bundesrat hat starke Macht' faktisch falsch (vs. DE-Bundesrat). Pack distanziert sich von normativer Wertung.",
+        "at_bundesrat_struktur": "AT-Bundesrat 62 Mitglieder, Mandatsverteilung nach Bundesländer-Bevölkerung: Wien 12, Niederösterreich 12, Oberösterreich 11, Steiermark 9, Tirol 5, Kärnten 4, Salzburg 4, Vorarlberg 3, Burgenland 3. Mandatsdauer = Landtags-Periode. Vorsitz rotiert halbjährlich zwischen Bundesländern.",
+        "veto_logik": "AT-Bundesrat-Veto-Logik (B-VG): SUSPENSIVES Veto bei einfachen BG → NR kann mit gleichem Mehrheits-Beschluss überstimmen ('Beharrungs-Beschluss'). ABSOLUTES Veto nur bei Verfassungsgesetzen die Bundesländer-Kompetenzen einschränken (Art. 44 Abs 2 B-VG) — sehr selten. Faktisch: AT-Bundesrat kann praktisch immer überstimmt werden.",
+        "de_bundesrat_vergleich": "DE-Bundesrat (Art. 50-53 GG): Mitglieder von Landesregierungen, nicht Landtagen. Bei ~40 % der Bundesgesetze ('Zustimmungs-Gesetze') ist DE-Bundesrat-Zustimmung NOTWENDIG — kein Beharrungs-Beschluss möglich. DE-Bundesrat-Veto stoppt Gesetz definitiv (oder Vermittlungs-Ausschuss). AT-Bundesrat deutlich schwächer.",
+        "praktische_wirksamkeit": "Parlament Austria Statistik 2010-2024: ~1.200 Bundesgesetze verabschiedet, davon ~12 vom Bundesrat mit Einspruch belegt (~1 %). Alle 12 mit Beharrungs-Beschluss überstimmt. Praktisch kein Veto-Effekt — Bundesrat eher Diskussions- + Bundesländer-Vertretungs-Forum.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "AT-Bundesrat: suspensives Veto, NR kann praktisch immer überstimmen — schwach.",
+        "DE-Bundesrat: bei 40 % Zustimmungs-Gesetzen NOTWENDIG — deutlich mächtiger.",
+        "Praktisch keine Veto-Wirkung in AT (1 % der Gesetze, 100 % überstimmt)."
+      ],
+      "claim_phrasings_handled": [
+        "AT-Bundesrat ist wirkungslos",
+        "Bundesrat hat starke Macht",
+        "AT-Bundesrat sollte abgeschafft werden",
+        "DE-Bundesrat und AT-Bundesrat sind gleich",
+        "Bundesrat blockiert Gesetze"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["bundesrat", "bundes-rat", "länderkammer", "laenderkammer",
+         "zweite kammer", "zweiter parlamentskammer", "länderkonferenz",
+         "laenderkonferenz", "bundesländer-kammer", "bundeslaenderkammer",
+         "b-vg art. 34", "b-vg art. 35", "b-vg art. 37"],
+        ["wirkungslos", "wirksam", "macht", "stark", "schwach", "veto",
+         "vetorecht", "veto-recht", "einspruch", "blockieren",
+         "blockiert", "abschaffen", "reform", "zustimmungs-gesetze",
+         "beharrungs-beschluss", "beharrungs-besch", "deutschland", "vergleich",
+         "länder", "laender", "bundesländer", "bundeslaender", "parlament",
+         "gesetz", "gesetze", "verabschieden", "verabschiedet"]
+      ]
+    },
+    {
+      "id": "wahlfaelschungs_mythen_2026",
+      "topic": "wahlfaelschungs_mythen_konsens",
+      "scope": "Wahlbetrugs-Mythen — AT BPräs 2016 (Formfehler) vs. US 2020 (60+ Court Cases) — empirische Lage",
+      "year": 2024,
+      "source_url": "https://www.cisa.gov/news-events/news/joint-statement-elections-infrastructure-government-coordinating-council-election",
+      "secondary_url": "https://www.heritage.org/voterfraud",
+      "source_label": "VfGH G203/2016 + AT-BMI Wahlrechts-Statistik + FBI/DOJ/CISA US-2020-Statement Nov 2020 + Heritage Foundation Election Fraud Database + Brennan Center for Justice Studien",
+      "headline": "Wahlbetrugs-Mythen empirisch nicht belegbar: AT BPräs 2016 wegen FORMFEHLER aufgehoben (kein Manipulations-Beweis); US-2020 60+ Court Cases von Trump-Team alle abgelehnt + FBI/DOJ/CISA Statement 'most secure election in American history'",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Wahlen werden manipuliert' ist EMPIRISCH NICHT BELEGT in westlichen Demokratien. Empirische Lage: (1) AT BPRÄS-STICHWAHL 2016 (siehe Briefwahl-Manipulation-Mythen-Topic): VfGH G203/2016 — FORMFEHLER (verfrühte Briefwahl-Auszählung), KEIN Wahlbetrug. (2) US 2020 BIG LIE: Trump-Wahlkampf-Team hat 60+ Court Cases in 9 Bundesstaaten + Bundes-Court eingereicht. ALLE 60+ Cases wurden abgelehnt (auch von Trump-ernannten Bundesrichtern + Bundesverfassungs-Richtern wie Justice Barrett). FBI + DOJ + Cybersecurity and Infrastructure Security Agency (CISA) Joint Statement 12.11.2020: 'most secure election in American history; no evidence that any voting system deleted or lost votes, changed votes, or was compromised'. (3) HERITAGE FOUNDATION ELECTION FRAUD DATABASE: konservativ-orientierte US-NGO dokumentiert ~1.500 Fälle Wahl-Manipulation in 40 Jahren bei Hunderten Millionen US-Stimmen. Skala: 0.0001 % Anteil — irrelevant für Wahl-Ausgänge. (4) BRENNAN CENTER FOR JUSTICE 2024 (NYU): Wahl-Manipulations-Empirie über 30 Jahre — 'incident rate of voter fraud is between 0.00004 % and 0.0009 %'. Statistisch nicht relevant für Wahl-Ergebnisse. (5) AUSNAHMEN: vereinzelte Einzel-Fälle (z.B. NC-Wahlbezirk-Manipulation 2018 zugunsten R-Kandidat — Wiederholungswahl angeordnet). NICHT systemisch. (6) Faktencheck: 'Wahlen werden manipuliert' empirisch nicht belegbar in AT/DE/USA. 'Trump 2020 hatte Recht' faktisch falsch — 60+ Court Cases abgelehnt + FBI/DOJ/CISA-Statement gegen Manipulations-These. Pack distanziert sich von normativer Wertung.",
+        "us_2020_court_cases": "US-2020-Wahl-Anfechtungen Trump-Team November 2020 - Januar 2021: 60+ Court Cases in 9 Bundesstaaten (PA, GA, AZ, NV, WI, MI, MN, NH, NM) + Bundes-Court. Alle abgelehnt mangels Beweis. Bemerkenswert: viele Klagen wurden von Trump-ernannten Bundesrichtern abgelehnt (z.B. Judge Brann 21.11.2020 PA: 'haphazard, unhinged'). SCOTUS lehnte Texas v. Pennsylvania 11.12.2020 ohne Anhörung ab.",
+        "fbi_doj_cisa_statement": "Joint Statement Elections Infrastructure Government Coordinating Council 12.11.2020: 'The November 3rd election was the most secure in American history. There is no evidence that any voting system deleted or lost votes, changed votes, or was in any way compromised.' Unterzeichner: CISA Director Krebs (von Trump entlassen 17.11.2020 wegen dieses Statements), FBI, DOJ Election Crimes Branch.",
+        "heritage_foundation_db": "Heritage Foundation Election Fraud Database (konservativ-orientierte NGO): ~1.500 dokumentierte Fälle Wahl-Manipulation USA 1982-2024 bei mehreren Hundert Millionen US-Stimmen pro Wahl. Anteil 0.0001 %. Häufigste Form: einzelne Bürger registrieren in 2 Bundesstaaten (Doppel-Registrierung). KEINE systemischen Manipulationen dokumentiert.",
+        "brennan_center_2024": "Brennan Center for Justice 2024 (NYU School of Law): 'Voter Fraud Studies' Meta-Analyse 30 Jahre US-Daten. Inzidenz 0.00004 % - 0.0009 %. Wahrscheinlicher als Wahl-Manipulation: vom Blitz getroffen werden (1 zu 1.222.000) oder von Hai gefressen werden.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "AT-BPräs 2016 wurde wegen FORMFEHLER aufgehoben, nicht wegen Wahlbetrug.",
+        "US-2020 60+ Court Cases gegen Wahl-Ausgang ALLE abgelehnt + FBI/DOJ/CISA-Statement.",
+        "Heritage + Brennan Center Daten: Wahl-Manipulations-Inzidenz 0.0001 % bis 0.0009 % — irrelevant für Ergebnisse."
+      ],
+      "claim_phrasings_handled": [
+        "Wahlen werden manipuliert",
+        "Trump hatte Recht mit Wahl-Manipulation 2020",
+        "Briefwahl ist anfällig für Betrug",
+        "AT-Bundespräsidenten-Wahl 2016 war manipuliert",
+        "Wahlbetrug ist weit verbreitet"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["wahlbetrug", "wahl-betrug", "wahlfälschung", "wahlfaelschung",
+         "wahl-manipulation", "wahlmanipulation", "trump-wahl",
+         "us-wahl 2020", "us 2020", "biden", "election fraud",
+         "voter fraud", "court cases", "klagen", "anfechtung",
+         "fbi", "doj", "cisa", "heritage foundation", "brennan center"],
+        ["manipuliert", "manipulieren", "betrug", "betrogen", "fälschung",
+         "faelschung", "gefälscht", "gefaelscht", "abgelehnt", "abgewiesen",
+         "abgelehnte klagen", "ungültig", "ungueltig", "secure election",
+         "secure", "evidence", "beweise", "belege", "incident rate",
+         "0.0001", "60+ cases", "trump", "biden", "demokraten",
+         "republikaner"]
+      ]
+    },
+    {
+      "id": "mehrheits_verhaeltniswahl_2026",
+      "topic": "mehrheits_verhaeltniswahl_konsens",
+      "scope": "Wahlsystem-Vergleich — Verhältniswahl (AT/DE/EU) vs. Mehrheitswahl (UK/USA), Duverger's Law, Lijphart",
+      "year": 2024,
+      "source_url": "https://www.idea.int/data-tools/data/electoral-system-design",
+      "secondary_url": "https://en.wikipedia.org/wiki/Duverger%27s_law",
+      "source_label": "IDEA Electoral System Design Database + Duverger 1951 'Political Parties' + Lijphart 2012 'Patterns of Democracy' + Wikipedia + peer-reviewed Comparative Politics",
+      "headline": "Wahlsystem-Effekte (Duverger's Law + Lijphart): Verhältniswahl AT/DE/EU → mehr Parteien-Vielfalt + Koalitions-Regierungen; Mehrheitswahl UK/USA → Zweiparteien-System; Empirie über >150 Demokratien",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mehrheitswahl ist demokratischer als Verhältniswahl' ODER umgekehrt ist NORMATIV — beide Systeme haben unterschiedliche Effekte, kein 'demokratischer'. Empirische Lage: (1) DUVERGER'S LAW (Maurice Duverger 1951 'Political Parties'): Wahlsysteme haben starken Effekt auf Parteien-System. Mehrheits-Wahl (First-Past-The-Post, FPTP) → Tendenz zu Zweiparteien-System (UK 2 Großparteien, USA 2 Großparteien). Verhältnis-Wahl (Proportional Representation, PR) → Tendenz zu Mehrparteien-System mit Koalitionen (AT, DE, NL, BE, IT, ES). Empirisch über >150 Demokratien bestätigt. (2) AREND LIJPHART 2012 'Patterns of Democracy' (3rd edition Yale UP): Vergleich von 36 Demokratien — 'Konsens-Demokratien' (PR-Systeme + Föderalismus + starke Verfassungs-Gerichte) vs. 'Mehrheits-Demokratien' (FPTP + Zentralismus + parlamentarische Souveränität). Lijphart-Befund: Konsens-Demokratien bessere Performance bei Wirtschaft + Wohlfahrt + Frauen-Repräsentation, ähnliche Performance bei Demokratie-Qualität. (3) AT-VERHÄLTNISWAHLRECHT: Hare-Niemeyer-Quote, Bundesländer als Wahlkreise, 4 %-Hürde für Zugang zu Nationalrat. NR 2024 ÖVP 26.3 %, SPÖ 21.1 %, FPÖ 28.8 %, Grüne 8.2 %, NEOS 9.1 %, andere 6.5 % → Mehrparteien-System mit Koalitions-Pflicht. (4) UK-MEHRHEITSWAHL FPTP: Single-Member-Districts, Sieger pro Bezirk gewinnt Mandat. UK-2024: Labour 35 % Stimmen → 64 % Sitze (Disproportionalität-Faktor 1.83). Reform UK 14 % Stimmen → 1 % Sitze. Disproportionalitäts-Indices Gallagher: AT 4.5, UK 23.7, USA 6.5. (5) Faktencheck: 'Mehrheitswahl ist demokratischer' verkennt Disproportionalitäts-Effekt (UK Reform-Partei). 'Verhältniswahl ist demokratischer' verkennt Mehr-Mehrparteien-Komplexität. Pack distanziert sich von normativer Wertung — präsentiert Empirie + Theorie.",
+        "duverger_law": "Maurice Duverger 1951 'Les Partis Politiques' (engl. 'Political Parties'): Wahlsysteme haben deterministische Effekte auf Parteien-Systeme. FPTP-Mehrheits-Wahl → Zweiparteien-System (psychologischer + mechanischer Effekt: kleine Parteien werden 'verschwendete Stimmen', strategisches Wählen). PR-Verhältnis-Wahl → Mehrparteien-System (alle Parteien proportional repräsentiert, kein strategisches Wählen).",
+        "lijphart_konsens_mehrheit": "Arend Lijphart 2012 'Patterns of Democracy' (Yale UP, 3rd ed.): 36-Demokratien-Vergleich 1945-2010. Konsens-Demokratien (NL, BE, AT, DE) vs. Mehrheits-Demokratien (UK, NZ pre-1996, AU). Befund: Konsens-Demokratien bessere Performance bei Wohlfahrt + Frauen-Politik (Frauen-Anteil im Parlament 28 % vs. 18 % bei Mehrheits-Demokratien) + Korruption. Ähnliche Demokratie-Qualität.",
+        "at_verhaeltniswahl_2024": "AT NR-Wahl 2024 (BMI): ÖVP 26.3 % (51 Sitze), SPÖ 21.1 % (41 Sitze), FPÖ 28.8 % (57 Sitze), Grüne 8.2 % (16 Sitze), NEOS 9.1 % (18 Sitze), andere 6.5 % (Hürde verfehlt). 4 %-Hürde, Hare-Niemeyer-Quote, Bundesländer-Wahlkreise. Disproportionalitäts-Index Gallagher AT 4.5 (sehr proportional).",
+        "uk_fptp_2024": "UK Allg. Wahl 4.7.2024 (FPTP): Labour 33.7 % Stimmen → 411 von 650 Sitzen (63.2 %). Reform UK 14.3 % Stimmen → 5 Sitze (0.8 %). LibDem 12.2 % Stimmen → 72 Sitze (11.1 %). Disproportionalitäts-Index Gallagher 23.7 (höchster in westlichen Demokratien).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "Duverger's Law ist empirisch über >150 Demokratien bestätigt — Wahlsystem hat deterministischen Effekt auf Parteien-System.",
+        "AT-Verhältniswahl Disproportionalität sehr niedrig (Gallagher 4.5), UK-FPTP sehr hoch (23.7).",
+        "Lijphart: Konsens-Demokratien (PR) bessere Wohlfahrts-/Frauen-Politik-Performance, ähnliche Demokratie-Qualität."
+      ],
+      "claim_phrasings_handled": [
+        "Mehrheitswahl ist demokratischer",
+        "Verhältniswahl bringt zu viele Parteien",
+        "UK-Wahlsystem ist ungerecht",
+        "AT-Verhältniswahlrecht ist gerecht",
+        "Zweiparteien-System ist stabiler"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["mehrheits-wahl", "mehrheitswahl", "fptp", "first-past-the-post",
+         "verhältnis-wahl", "verhaeltnis-wahl", "verhältniswahl",
+         "verhaeltniswahl", "proportional representation", "pr-wahl",
+         "wahlsystem", "wahl-system", "duverger", "lijphart",
+         "konsens-demokratie", "mehrheits-demokratie", "patterns of democracy",
+         "uk-wahl", "us-wahl", "at-wahl", "deutsche wahl", "nationalratswahl"],
+        ["demokratisch", "demokratischer", "gerecht", "ungerecht", "fair",
+         "unfair", "stabil", "instabil", "zweiparteien", "zwei-parteien",
+         "mehrparteien", "mehr-parteien", "koalition", "koalitionsregierung",
+         "minderheit", "mehrheit", "disproportional", "proportional",
+         "gallagher", "wahlkreise", "wahl-kreise", "hürde", "huerde",
+         "4 prozent", "5 prozent", "duverger's law"]
+      ]
+    },
+    {
+      "id": "epartizipation_wirkung_2026",
+      "topic": "epartizipation_wirkung_konsens",
+      "scope": "Online-Petitionen + EU-Bürger-Initiative + ePartizipation — Mobilisierungs-Empirie",
+      "year": 2024,
+      "source_url": "https://citizens-initiative.europa.eu/_de",
+      "secondary_url": "https://www.idea.int/news-media/news/digital-democracy",
+      "source_label": "EU Bürgerinitiative-Register + IDEA Digital Democracy Studies + Bertelsmann ePartizipation-Forschung 2020 + Hindman 2009 'The Myth of Digital Democracy'",
+      "headline": "ePartizipation (Online-Petitionen + EU-Bürgerinitiative seit 2012, 1 Mio Unterschriften aus mind. 7 Mitgliedsstaaten): niedrige Mobilisierung außerhalb Krisen-Themen; Bertelsmann + IDEA Studien — kein Substitut für klassische Partizipation",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Internet-Demokratie löst Repräsentations-Krise' ist EMPIRISCH NICHT BELEGT. Empirische Lage: (1) EU-BÜRGERINITIATIVE seit Lissabon-Vertrag 2009/Lissabon-EU-Vertrag-Reform 2012: 1 Mio Unterschriften aus mind. 7 EU-Mitgliedsstaaten in 12 Monaten Sammel-Periode für legislative-Behandlungs-Pflicht durch EU-Kommission. (2) BILANZ 2012-2024: ~120 Bürger-Initiativen registriert, davon ~10 erfolgreich (>1 Mio Unterschriften erreicht). Erfolgreiche Initiativen: 'Right2Water' 2013 (1.9 Mio Unterschriften), 'Stop Glyphosat' 2017 (1.3 Mio), 'Plastic Tax' 2018, 'End the Cage Age' 2018-2020 (1.4 Mio), 'Fridays for Future' Klima-Initiativen 2019+. (3) KOMMISSIONS-WIRKUNG: bei 4 erfolgreichen EU-BIs hat EU-Kommission legislativ reagiert (z.B. 'End the Cage Age' → EU-Tierwohl-Reform-Plan 2026). 6 weitere wurden zwar formell behandelt aber ohne legislativen Effekt. Erfolgs-Quote ~40 %. (4) BERTELSMANN STIFTUNG ePartizipation-Forschung 2020: niedrige Mobilisierung außerhalb von Krisen-Themen (Klima + Tierwohl + Datenschutz mobilisieren am meisten). Bürger-Beteiligung-Anteil: ~3-5 % der Bevölkerung beteiligt sich aktiv an Online-Petitionen. (5) HINDMAN 2009 'The Myth of Digital Democracy' (Princeton UP): Internet-Demokratie verstärkt Stimmen-Konzentration eher als Beteiligung — Top-1 % der Online-Aktiven dominieren ~50 % der Online-Polit-Beteiligung. (6) AT-EPARTIZIPATION: Online-Volksbegehrens-Unterschriften seit 2017 möglich (vorher nur Magistrats-Eintragung). Anteil Online vs. Magistrat 2018+: ~70/30. Don't Smoke-VB 2018: ~600k von 880k via Online. (7) Faktencheck: 'Internet löst Demokratie-Krise' empirisch nicht belegt (3-5 % aktive Beteiligung). 'EU-Bürgerinitiative ist wirkungslos' überzeichnet (40 % legislativer Erfolg). Pack distanziert sich von normativer Wertung.",
+        "eu_buergerinitiative_quorum": "EU-Bürgerinitiative-Quorum (Verordnung 211/2011, Reform 2019/788): 1 Mio Unterschriften aus mind. 7 von 27 EU-Mitgliedsstaaten innerhalb 12 Monaten. Pro Land Mindest-Quorum (z.B. AT 13.500, DE 67.500). Kommissions-Behandlungs-Pflicht — kein bindender legislativer Effekt.",
+        "bilanz_2012_2024": "EU-Bürgerinitiative-Bilanz 2012-2024 (EU-Bürgerinitiative-Register): ~120 registriert, ~10 erfolgreich (1 Mio erreicht). Erfolgreich: Right2Water 2013, Stop Glyphosat 2017, End the Cage Age 2018-2020, Fridays for Future 2019, Save the Bees 2019. Kommissions-Reaktion: 4/10 mit legislativem Effekt.",
+        "bertelsmann_epartizipation": "Bertelsmann Stiftung 2020 'Online-Beteiligung in Deutschland': 3-5 % der Bevölkerung aktiv beteiligt an Online-Petitionen. Demografisch: über-proportional Akademiker, urbane Bevölkerung, junge Erwachsene 25-40 J. Krisen-Themen (Klima + Tierwohl + Datenschutz) mobilisieren am meisten.",
+        "hindman_2009": "Matthew Hindman 2009 'The Myth of Digital Democracy' (Princeton UP): Internet-Politik-Beteiligung-Empirie — Top-1 % der aktiven Online-Politik-Nutzer produzieren ~50 % der Online-Polit-Inhalte (Power-Law-Distribution). Internet verstärkt Stimmen-Konzentration eher als Demokratie-Beteiligung.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "EU-Bürgerinitiative seit 2012: ~10 erfolgreich (1 Mio Unterschriften), 40 % legislativer Erfolg.",
+        "Online-Beteiligung 3-5 % aktiv (Bertelsmann 2020) — kein Massen-Phänomen.",
+        "Hindman 2009: Internet-Demokratie verstärkt Stimmen-Konzentration eher als Beteiligung."
+      ],
+      "claim_phrasings_handled": [
+        "EU-Bürgerinitiativen werden ignoriert",
+        "Internet-Demokratie löst Repräsentations-Krise",
+        "Online-Petitionen sind wirkungslos",
+        "End the Cage Age war erfolgreich",
+        "ePartizipation mobilisiert Bürger"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["epartizipation", "e-partizipation", "online-petition", "onlinepetition",
+         "online-beteiligung", "internet-demokratie", "digitale-demokratie",
+         "eu-bürgerinitiative", "eu-buergerinitiative", "bürgerinitiative",
+         "buergerinitiative", "right2water", "stop glyphosat",
+         "end the cage age", "fridays for future", "save the bees",
+         "petition", "petitionen", "online-volksbegehren",
+         "online-volks-begehren"],
+        ["wirksam", "wirkungslos", "erfolgreich", "ignoriert", "ignorieren",
+         "umgesetzt", "behandelt", "kommission", "eu-kommission",
+         "millionen unterschriften", "1 mio", "mio unterschriften",
+         "mobilisiert", "mobilisierung", "demokratie-krise", "krise",
+         "repräsentation", "repraesentation", "beteiligung", "aktiv",
+         "passiv", "online", "internet", "digital", "bertelsmann", "hindman"]
+      ]
+    },
+    {
+      "id": "demokratie_verfall_empirie_2026",
+      "topic": "demokratie_verfall_empirie_konsens",
+      "scope": "Demokratie-Rückgang seit 2010 — V-Dem v14 Liberal Democracy Index, Freedom House FIW 2024, Länder-Vergleich",
+      "year": 2024,
+      "source_url": "https://www.v-dem.net/data/the-v-dem-dataset/",
+      "secondary_url": "https://freedomhouse.org/report/freedom-world/2024",
+      "source_label": "V-Dem Institute (University of Gothenburg) Varieties of Democracy v14 (2024) + Freedom House Freedom in the World 2024 + V-Dem Democracy Report 2024 + Bertelsmann Transformation Index BTI 2024",
+      "headline": "V-Dem v14 (2024) Liberal Democracy Index: AT 0.78, DE 0.81, USA 0.79, HU 0.32, RU 0.07; Demokratie-Rückgang seit 2010 in HU/PL/TR/IN/USA empirisch belegt; AT/DE im EU-Vergleich stabil",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Demokratie-Verfall ist global' ist empirisch DIFFERENZIERT. Empirische Lage: (1) V-DEM v14 (2024) LIBERAL DEMOCRACY INDEX (Skala 0-1, höher = mehr Demokratie): AT 0.775, DE 0.812, CH 0.838, SE 0.849, NO 0.86, USA 0.789, HU 0.323, RU 0.065, CN 0.037, NK <0.05. (2) V-DEM DEMOCRACY REPORT 2024 'Defiance in the Face of Autocratization': Demokratie-Rückgang seit 2010 in 42 Ländern (vs. 28 Ländern Demokratie-Fortschritt). HÖCHSTE RÜCKGÄNGE: HU 2010 0.78 → 2023 0.32, PL 2015 0.83 → 2023 0.59, TR 2010 0.46 → 2023 0.06, IN 2010 0.57 → 2023 0.36, USA 2010 0.84 → 2023 0.79 (leichter Rückgang). (3) FREEDOM HOUSE FIW 2024: 'Freedom in the World retreated for the 18th consecutive year'. AT 92/100 (Free), DE 94/100 (Free), USA 83 (Free), HU 65 (Partly Free, von 90 in 2010 abgestiegen), RU 13 (Not Free), CN 9 (Not Free). (4) AT/DE-STABILITÄT: V-Dem Liberal Democracy 2010 vs. 2023: AT -0.05 (0.83→0.78), DE -0.02 (0.83→0.81). Im EU-Vergleich stabil — kein dramatischer Verfall. (5) URSACHEN-FORSCHUNG (V-Dem 2024 + Bertelsmann BTI 2024): (a) Populistische Anti-Establishment-Bewegungen, (b) Schwächung von Justiz-Unabhängigkeit + Medien-Pluralismus, (c) Polarisierung + Vertrauens-Verlust, (d) Russlands + Chinas Einfluss-Strategien. (6) Faktencheck: 'Demokratie ist global im Verfall' empirisch differenziert (42 Rückgang vs. 28 Fortschritt). 'AT-/DE-Demokratie verfällt' überzeichnet (-0.02 bis -0.05 im V-Dem-Index 2010-2023). Pack distanziert sich von normativer Wertung — präsentiert nur V-Dem + Freedom-House-Indizes.",
+        "v_dem_v14_2024": "V-Dem v14 Liberal Democracy Index (höher = mehr Demokratie): SE 0.849, NO 0.86, DK 0.86, CH 0.838, NL 0.84, DE 0.812, AT 0.775, USA 0.789, FR 0.78, IT 0.74, ES 0.78, CZ 0.83, HU 0.32, PL 0.59, TR 0.06, RU 0.07, CN 0.04, NK <0.05.",
+        "v_dem_report_2024": "V-Dem Democracy Report 2024 'Defiance in the Face of Autocratization': 42 Länder mit Demokratie-Rückgang seit 2013, 28 Länder mit Fortschritt. Länder-Population in Demokratien sinkt von 47 % (2013) auf 31 % (2023). Hauptregionen Rückgang: Osteuropa (HU + PL + RU), Süd-Asien (IN + Pak), Nahost (TR), Lateinamerika (BR + Venezuela), USA (leichter Rückgang).",
+        "freedom_house_fiw_2024": "Freedom House Freedom in the World 2024 (covering 2023): 'Global freedom declined for the 18th consecutive year'. Klassifikationen: Free 84 Länder (43 %), Partly Free 53 (27 %), Not Free 58 (30 %). DACH-Werte: AT 92, DE 94, CH 96. Hauptverschlechterungen: AR -3, MD -3, EL Salvador -2.",
+        "at_de_stabilitaet": "V-Dem v14 AT-/DE-Werte 2010-2023: AT 0.83 (2010) → 0.78 (2023) = -0.05. DE 0.83 (2010) → 0.81 (2023) = -0.02. Beide leichter Rückgang, aber im EU-Vergleich sehr stabil. AT-Rückgang vor allem im Korruptions-Index (CPI) sichtbar (siehe korruption_index_konsens-Topic).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "V-Dem 2024 Liberal Democracy: AT 0.78, DE 0.81 — leichter Rückgang seit 2010 (-0.02 bis -0.05).",
+        "Globaler Demokratie-Rückgang real (42 Länder Rückgang vs. 28 Fortschritt seit 2013).",
+        "Hauptverschlechterungen: HU (0.78→0.32), PL (0.83→0.59), TR (0.46→0.06), USA leichter Rückgang."
+      ],
+      "claim_phrasings_handled": [
+        "Demokratie ist global im Verfall",
+        "AT-Demokratie verfällt dramatisch",
+        "Ungarn ist keine Demokratie mehr",
+        "USA-Demokratie ist im Niedergang",
+        "Demokratie-Index zeigt Verbesserung"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["demokratie", "demokratie-verfall", "demokratieverfall",
+         "demokratie-rückgang", "demokratierueckgang", "v-dem", "vdem",
+         "varieties of democracy", "freedom house", "fiw", "demokratie-index",
+         "liberal democracy index", "ungarn", "polen", "türkei", "tuerkei",
+         "russland", "china", "usa", "österreich", "oesterreich",
+         "demokratie-niveau", "demokratie-status"],
+        ["verfall", "verfällt", "verfaellt", "rückgang", "rueckgang",
+         "rückläufig", "ruecklaeufig", "abgestiegen", "abgestürzt",
+         "abgestuerzt", "stabil", "verbesserung", "fortschritt",
+         "autokratisierung", "autoritärer", "autoritaer", "diktatur",
+         "demokratisch", "frei", "partly free", "not free", "free",
+         "92/100", "0.78", "0.81", "0.32"]
+      ]
+    },
+    {
+      "id": "pressefreiheit_trends_2026",
+      "topic": "pressefreiheit_trends_konsens",
+      "scope": "RSF Pressefreiheits-Index 2024 — AT 32. Platz (Verschlechterung), DE 10., USA 55., RUS 162., NK 180.",
+      "year": 2024,
+      "source_url": "https://rsf.org/en/index",
+      "secondary_url": "https://rsf.org/en/austria",
+      "source_label": "Reporters Without Borders RSF World Press Freedom Index 2024 + RSF Methodology + AT-Inseraten-Affäre + ÖVP-Chats",
+      "headline": "RSF Pressefreiheits-Index 2024: AT 32. Platz (vs. 16. 2019, Verschlechterung wegen Inseraten-Affäre + ÖVP-Chats); DE 10., USA 55., RUS 162., NK 180. — Methodik: Experten-Befragung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT-Pressefreiheit ist hervorragend' ist DIFFERENZIERT FALSCH. Empirische Lage: (1) RSF WORLD PRESS FREEDOM INDEX 2024 (180 Länder bewertet): NORWEGEN 1. Platz 91.89 P., DK 2., SE 3., NL 4., FI 5., AT 32. Platz 78.81 P. (Status 'gute Lage'), DE 10. Platz, CH 9. Platz, FR 21., USA 55., HU 67., TR 158., RUS 162., CN 172., NK 180. (2) AT-VERSCHLECHTERUNG: AT war 2019 noch auf Platz 16 (über 88 P.). Hauptursachen seit 2020: (a) Inseraten-Affäre (ÖVP-/Krone-Inseraten-Verträge, $4.6 Mio Inseraten 2017-2019 staatsanwaltschaftlich untersucht), (b) ÖVP-Chats-Affäre 2021-2022 (E-Mails Schmid/Wolf), (c) Concentration Boulevard-Medien (~50 % Krone + Heute + ÖSTERREICH), (d) Verfassungs-Schutz-Razzien gegen Journalist:innen (Bundesheer-Erlässe). (3) RSF-METHODIK: 5 Sub-Kategorien — Politik, Recht, Wirtschaft, Soziokulturelles, Sicherheit. Experten-Befragung von ~150 Korrespondenten + NGO-Mitgliedern + Wissenschaftlern pro Land. Kein Quantitativ-Index direkt aus Statistik, sondern qualitative Bewertung. (4) USA 55. PLATZ: Trump-administration-Konflikte mit Mainstream-Medien (CNN/NYT/WaPo Klagen), Polarisierung, Insolvenzen Lokal-Zeitungen, Fox News + Nachrichten-Bias. (5) DACHS-VERGLEICH: AT 32. (78.81 P.), DE 10. (87.6 P.), CH 9. (88.05 P.) — DE/CH deutlich besser als AT. (6) Faktencheck: 'AT hat hervorragende Pressefreiheit' überzeichnet (Platz 32 ist 'gute Lage' aber verschlechtert). 'AT ist Pressefreiheits-Notstand' faktisch falsch (Status 'gute Lage'). Pack distanziert sich von normativer Wertung — präsentiert RSF-Index-Daten.",
+        "rsf_2024_top": "RSF World Press Freedom Index 2024 Top-10: NO 1. (91.89), DK 2. (89.6), SE 3. (88.32), NL 4. (87.7), FI 5. (87.27), EE 6. (86.4), PT 7. (87.07), IE 8. (86.85), CH 9. (88.05), DE 10. (87.59).",
+        "at_verschlechterung_2019_2024": "AT-RSF-Index Zeitreihe: 2019 16. Platz (88.95 P.), 2020 18. (87.06), 2021 17. (88.06), 2022 31. (78.74), 2023 29. (78.96), 2024 32. (78.81). Stürzte 2022 von Platz 17 auf 31 ab nach Veröffentlichung der ÖVP-Chats + Inseraten-Affäre + Concentration-Beanstandungen.",
+        "rsf_methodik": "RSF-Methodik: 5 Sub-Kategorien (Politik 30 %, Recht 25 %, Wirtschaft 15 %, Soziokulturell 15 %, Sicherheit 15 %). Bewertung durch ~150 Korrespondenten/Land. Kein Pure-Statistik-Index. Pro-Sub-Kategorie 1-100 Punkte, gewichteter Durchschnitt.",
+        "weltvergleich_extreme": "RSF 2024 Weltvergleich: NO 1. (91.89, beste Pressefreiheit), DE 10., AT 32., USA 55. (62.1 P.), HU 67., TR 158. (33.9), RUS 162. (29.86), CN 172. (23.0), NK 180. (15.32, schlechteste).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "AT 2024 RSF Platz 32 von 180 — 'gute Lage' aber Verschlechterung von Platz 16 (2019).",
+        "Hauptursachen AT-Verschlechterung: Inseraten-Affäre + ÖVP-Chats + Boulevard-Konzentration.",
+        "DACH-Vergleich: CH 9., DE 10., AT 32. — DE/CH deutlich besser als AT."
+      ],
+      "claim_phrasings_handled": [
+        "AT hat hervorragende Pressefreiheit",
+        "Pressefreiheit in Österreich ist gefährdet",
+        "Russland hat keine Pressefreiheit",
+        "Norwegen ist Spitzenreiter bei Pressefreiheit",
+        "RSF-Index zeigt AT-Verschlechterung"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["pressefreiheit", "presse-freiheit", "press freedom", "rsf",
+         "reporters without borders", "reporter ohne grenzen", "media freedom",
+         "medien-freiheit", "medienfreiheit", "rsf-index", "rsf 2024",
+         "world press freedom index", "wpfi"],
+        ["hervorragend", "gefährdet", "gefaehrdet", "verschlechtert",
+         "verbessert", "platz", "rang", "ranking", "spitzenreiter",
+         "schlecht", "gut", "norwegen", "schweden", "finnland", "deutschland",
+         "schweiz", "österreich", "oesterreich", "usa", "russland",
+         "china", "ungarn", "türkei", "tuerkei", "30 platz", "32 platz",
+         "16 platz", "180 länder", "inseraten-affäre", "övp-chats",
+         "oevp-chats"]
+      ]
+    },
+    {
+      "id": "korruption_index_2026",
+      "topic": "korruption_index_konsens",
+      "scope": "Transparency International Corruption Perceptions Index CPI 2024 — AT 71/100 (Rang 20), Verschlechterung 2019-2024",
+      "year": 2024,
+      "source_url": "https://www.transparency.org/en/cpi/2024",
+      "secondary_url": "https://www.transparency.de/cpi/cpi-2024",
+      "source_label": "Transparency International Corruption Perceptions Index 2024 + AT-Casinos-Affäre + ÖVP-Chats + Ibiza-Folgen-Aufarbeitung",
+      "headline": "Transparency CPI 2024: DK 90/100 (Rang 1), CH 81/100 (6.), DE 75 (15.), AT 71/100 (Rang 20, vs. 77/100 Rang 12 2019); RUS 26 (154.); AT-Verschlechterung wegen ÖVP-Chats + Casinos-Affäre + Ibiza",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT ist Korruptions-Land' ist DIFFERENZIERT. Empirische Lage: (1) TRANSPARENCY INTERNATIONAL CPI 2024 (Skala 0-100, höher = weniger wahrgenommene Korruption): 1. DK 90/100, 2. NZ 87, 3. NO 84, 4. SG 84, 5. FI 84, 6. CH 81, 7. NL 79, ..., 15. DE 75, 20. AT 71, ..., 154. RUS 26. (2) AT-VERSCHLECHTERUNG 2019-2024: AT 2019 77/100 (Rang 12) → 2020 76 (15) → 2022 71 (22) → 2024 71 (20). Hauptursachen: (a) Casinos-Affäre 2019-2021 (Sidlo/Schmid + Glücksspiel-Lizenzen), (b) ÖVP-Chats 2021-2022 (Inseraten-Verträge gegen Wahl-Berichterstattung), (c) Ibiza-Affäre 2019 (Strache-Video, FPÖ-Kompromittierung), (d) BVT-Affäre 2018-2019 (Korruptions-Ermittlungs-Behinderung). (3) CPI-METHODIK: Aggregat aus 13 Datenquellen (World Bank Governance, World Justice Project Rule of Law Index, IMD World Competitiveness, Bertelsmann Sustainable Governance, etc.). Kein direkter Korruptions-Mess-Wert, sondern WAHRGENOMMENE Korruption durch Experten + Geschäftsleute. (4) DACH-VERGLEICH: CH 6. (81 P.), DE 15. (75), AT 20. (71) — AT deutlich schlechter als CH/DE. AT-Verschlechterung am stärksten in Westeuropa seit 2019. (5) GLOBAL EXTREME: NK + Somalia + Süd-Sudan teilen Schlusslicht (8-13 P.), Skandinavien dominiert Top-10. (6) Faktencheck: 'AT ist Korruptions-Land' überzeichnet (CPI 71/100 = OECD-Mittelfeld). 'AT-Korruption hat zugenommen' faktisch korrekt (-6 P. seit 2019). Pack distanziert sich von normativer Wertung.",
+        "cpi_2024_top": "Transparency CPI 2024 Top-10: 1. DK 90, 2. NZ 87, 3. NO 84, 4. SG 84, 5. FI 84, 6. CH 81, 7. NL 79, 8. SE 78, 9. LU 78, 10. CA 76, 11. AU 75, 12. DE 75, 13. UK 73, ..., 20. AT 71, ..., 154. RUS 26.",
+        "at_verschlechterung_zeitreihe": "AT-CPI-Zeitreihe: 2019 77 P. (Rang 12), 2020 76 (15), 2021 74 (13), 2022 71 (22), 2023 71 (20), 2024 71 (20). Verschlechterung -6 P. seit 2019 (stärkste Verschlechterung in Westeuropa). Hauptursachen: Casinos-Affäre, ÖVP-Chats, Ibiza, BVT-Affäre.",
+        "cpi_methodik": "CPI-Methodik: Aggregat aus 13 Datenquellen — World Bank Governance, World Justice Project Rule of Law, IMD World Competitiveness, Bertelsmann Sustainable Governance Indicators, IDEA, Economist Intelligence Unit. Skala 0-100 (höher = weniger wahrgenommene Korruption). Kein direkter Mess-Wert, sondern WAHRGENOMMENE Korruption durch Experten/Geschäftsleute.",
+        "at_affaeren_2019_2024": "AT-Korruptions-Affären 2019-2024: (a) Casinos-Affäre 2019-2021 (Schmid/Sidlo + Casinos-Glücksspiel-Lizenz, Sebastian Kurz im Verfahren), (b) Ibiza-Affäre Mai 2019 (Strache-Video Flugzeug-Sequenz), (c) ÖVP-Chats 2021-2022 (Inseraten-Verträge mit Krone gegen Wahl-Berichterstattung, $4.6 Mio Volumen), (d) BVT-Affäre 2018-2019 (Verfassungs-Schutz-Behörde Razzien + Untersuchungs-Ausschuss).",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "AT-CPI 71/100 (Rang 20) ist OECD-Mittelfeld — nicht 'Korruptions-Land' aber verschlechtert.",
+        "Verschlechterung -6 P. 2019-2024 — stärkste in Westeuropa.",
+        "Hauptursachen: Casinos-Affäre + ÖVP-Chats + Ibiza + BVT — alle 2019-2022."
+      ],
+      "claim_phrasings_handled": [
+        "AT ist Korruptions-Land",
+        "Korruption hat in Österreich zugenommen",
+        "Skandinavien hat keine Korruption",
+        "Russland ist sehr korrupt",
+        "AT ist im internationalen Vergleich gut"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["korruption", "corruption", "cpi", "transparency", "transparency international",
+         "corruption perceptions index", "korruptions-index", "ibiza-affäre",
+         "ibiza-affaere", "ÖVP-chats", "oevp-chats", "casinos-affäre",
+         "casinos-affaere", "bvt-affäre", "bvt-affaere", "schmid", "kurz",
+         "strache", "ti-cpi"],
+        ["korrupt", "korruptions-land", "skandinavien", "dänemark", "daenemark",
+         "schweden", "russland", "china", "usa", "deutschland", "schweiz",
+         "österreich", "oesterreich", "rang", "platz", "ranking",
+         "verschlechtert", "verbessert", "wahrgenommene", "experten",
+         "71", "75", "90", "rang 20", "platz 20", "platz 12", "stark",
+         "schwach", "weltweit", "international", "vergleich"]
+      ]
+    },
+    {
+      "id": "us_wahl_system_faktoide_2026",
+      "topic": "us_wahl_system_faktoide_konsens",
+      "scope": "US-Wahlsystem — Electoral College, Swing States, Popular vs. Electoral Vote, Voter-ID-Gesetze",
+      "year": 2024,
+      "source_url": "https://www.archives.gov/electoral-college",
+      "secondary_url": "https://www.heritage.org/voterfraud",
+      "source_label": "US National Archives Electoral College + Heritage Foundation Election Fraud Database + Brennan Center for Justice + FairVote Voter Turnout Studies",
+      "headline": "US-Electoral College: 538 Electors, 270 für Sieg; Swing-States entscheiden faktisch (PA/MI/WI/AZ/GA/NV); Popular Vote ≠ Electoral Vote (2000 Bush-Gore, 2016 Trump-Clinton); Voter-ID-Gesetze in 36 Bundesstaaten",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'US-Wahlsystem ist undemokratisch' ist NORMATIV — System ist verfassungsrechtlich legitim, aber empirisch hat strukturelle Eigenheiten. Empirische Lage: (1) ELECTORAL COLLEGE (US-Verfassung Art. 2 + 12. Amendment): 538 Electors, 270 nötig für Präsidentschaft. Verteilung pro Bundesstaat = Anzahl Senatoren (2) + Repräsentanten (population-basiert). California 54 Electors (größter Staat), Wyoming 3 (kleinster). 'Winner-Take-All' in 48 Staaten + DC, ME + NE proportional verteilt. (2) SWING-STATES 2024-Wahl: Pennsylvania 19, Georgia 16, Michigan 15, Wisconsin 10, Arizona 11, Nevada 6, North Carolina 16. Total Swing-State-Electors ~93 — entscheiden Wahl. Strukturell höhere Wahlkampf-Präsenz dort. (3) POPULAR VS. ELECTORAL VOTE Disconnect: 2000 Bush 47.87 % Popular vs. Gore 48.38 % — Bush gewann Electoral 271-266. 2016 Trump 46.1 % vs. Clinton 48.2 % — Trump gewann Electoral 304-227. Empirisch in 5 von 60 US-Präsidentschaftswahlen Popular ≠ Electoral. (4) VOTER-ID-GESETZE: 36 Bundesstaaten haben Voter-ID-Gesetze (strict 9, non-strict 27), 14+DC haben keine ID-Pflicht. Heritage Foundation: ID-Gesetze reduzieren angeblichen Wahlbetrug (NICHT empirisch belegt für signifikanten Effekt). Brennan Center: ID-Gesetze reduzieren Wahlbeteiligung minimal (~1-2 % bei niedriger Bildung + Minoritäten). (5) MAIL-IN-VOTING: deutlich erweitert seit COVID-19 2020. 2020: 65 Mio Briefwahl-Stimmen (43 % aller Stimmen), 2024 ähnlicher Anteil. (6) WAHLBEZIRK-GERRYMANDERING: politisch-strategisches Bezirks-Zuschnitt — Probleme in Texas, Florida, Wisconsin, Maryland (Sup. Court Rucho v. Common Cause 2019: Bundes-Court darf nicht eingreifen). (7) Faktencheck: 'US-Wahlsystem ist undemokratisch' normativ. 'Popular Winner gewinnt immer' empirisch falsch (5 von 60 Wahlen Disconnect). Pack distanziert sich von normativer Wertung.",
+        "electoral_college_struktur": "Electoral College (US-Verfassung): 538 Electors total. Pro Bundesstaat = Anzahl Senatoren (immer 2) + Anzahl House-Repräsentanten (population-proportional). California 54 (größter), Wyoming 3 (kleinster). Plus DC 3. 270 für Sieg nötig. 'Winner-Take-All' in 48 Staaten + DC. ME + NE proportional.",
+        "swing_states_2024": "Swing-States 2024 (entscheidende Bundesstaaten): Pennsylvania 19 Electors, Georgia 16, Michigan 15, North Carolina 16, Wisconsin 10, Arizona 11, Nevada 6 — total ~93 Electors. Wahlkampf-Konzentration auf diese 7 Staaten, ~85 % der TV-Werbe-Ausgaben.",
+        "popular_electoral_disconnect": "5 von 60 US-Präsidentschaftswahlen Popular ≠ Electoral: 1824 Adams (PV-Verlust), 1876 Hayes, 1888 Harrison, 2000 Bush (47.87 % vs. Gore 48.38 %), 2016 Trump (46.1 % vs. Clinton 48.2 %, -2.86 Mio Stimmen). 2024 Trump 49.8 % vs. Harris 48.3 % — Trump gewann Popular UND Electoral (312-226).",
+        "voter_id_gesetze": "Voter-ID-Gesetze 2024: 36 Bundesstaaten + DC verlangen ID. Davon 9 strict ID (Foto-ID nötig, kein Provisional Ballot). 27 non-strict (ID hilfreich, Alternativen erlaubt). 14 Bundesstaaten + DC haben keine Voter-ID-Pflicht. Brennan Center 2014: ID-Gesetze reduzieren Wahlbeteiligung 1-2 % bei niedriger Bildung + ethnischen Minoritäten.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "Electoral College 538/270: Struktur-bedingte Swing-State-Wahlkampf-Konzentration.",
+        "Popular vs. Electoral Disconnect: 5 von 60 Wahlen — strukturelles Phänomen, nicht Manipulation.",
+        "Voter-ID-Gesetze in 36 Staaten — empirisch minimaler Wirkungs-Effekt auf Wahlausgang."
+      ],
+      "claim_phrasings_handled": [
+        "US-Wahlsystem ist undemokratisch",
+        "Electoral College ist veraltet",
+        "Trump gewann 2016 trotz Popular-Vote-Verlust",
+        "Voter-ID-Gesetze sind Wahl-Unterdrückung",
+        "Swing States entscheiden alles"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["electoral college", "electoral-college", "us-wahlsystem",
+         "us wahl-system", "us-präsidentschaftswahl", "us-praesidentschaftswahl",
+         "swing states", "swing-states", "popular vote", "electoral vote",
+         "voter-id", "voter id", "voter-id-gesetze", "voter id law",
+         "gerrymandering", "wahlkreis-zuschnitt", "trump", "biden", "harris",
+         "clinton", "obama", "bush"],
+        ["undemokratisch", "demokratisch", "veraltet", "modern", "fair",
+         "unfair", "270", "538", "electors", "wahlmänner", "wahlmaenner",
+         "popular winner", "electoral winner", "disconnect", "manipulation",
+         "wahl-unterdrückung", "wahlunterdrueckung", "minderheit", "mehrheit",
+         "swing", "republikaner", "demokraten", "kalifornien", "wyoming"]
+      ]
+    },
+    {
+      "id": "at_demokratie_zufriedenheit_2026",
+      "topic": "at_demokratie_zufriedenheit_konsens",
+      "scope": "Eurobarometer 2024 — AT-Demokratie-Zufriedenheit 67 % (EU-Mittel 53 %), AT relativ stabil",
+      "year": 2024,
+      "source_url": "https://europa.eu/eurobarometer/surveys/browse/all",
+      "secondary_url": "https://www.bundeskanzleramt.gv.at/themen/oea/eurobarometer.html",
+      "source_label": "Eurobarometer Standard 101 + 102 + 103 (2024) + AT-Bundeskanzleramt Eurobarometer-Auswertung + IFES AT-Demokratie-Monitor",
+      "headline": "Eurobarometer 2024: AT-Demokratie-Zufriedenheit 67 % (EU-Mittel 53 %), höher als DE 59 % oder FR 47 %; Vertrauen ins Parlament AT 38 % (EU-Mittel 33 %); AT relativ stabil im EU-Vergleich",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT-Demokratie-Vertrauen ist im freien Fall' ist EMPIRISCH NICHT BELEGT. Empirische Lage: (1) EUROBAROMETER 2024 (Standard 101+102+103, Frühjahr/Sommer/Herbst): AT-Demokratie-Zufriedenheit 67 % (EU-Mittel 53 %). Höher als DE 59 %, FR 47 %, IT 41 %, ES 53 %. Skandinavien-Spitze: DK 87 %, SE 79 %, FI 78 %. (2) VERTRAUEN INSTITUTIONELL: AT-Vertrauen ins Parlament 38 % (EU-Mittel 33 %), Vertrauen in Regierung 32 % (EU-Mittel 32 %), Vertrauen in EU-Kommission 47 % (EU-Mittel 42 %). AT-Werte über EU-Mittel. (3) VERTRAUEN PERSONELL: AT-Vertrauen in Politiker:innen 26 % (EU-Mittel 23 %), Vertrauen in Justiz 71 % (EU-Mittel 53 %), Vertrauen in Medien 35 % (EU-Mittel 36 %). Justiz-Vertrauen besonders hoch in AT. (4) AT-DEMOKRATIE-MONITOR (IFES Institut für Politische Studien Wien) 2024: ähnliche Befunde — Demokratie-Zufriedenheit 65 %, Vertrauen Polit-Institutionen Bandbreite 25-50 %. (5) ZEITREIHE AT-DEMOKRATIE-ZUFRIEDENHEIT (Eurobarometer): 2014 76 %, 2017 73 %, 2019 71 %, 2021 70 % (Pandemie-Tief 65 %), 2023 67 %, 2024 67 %. Leichter Rückgang seit 2014 (-9 P.) aber Stabilisierung seit 2021. (6) Faktencheck: 'AT-Demokratie-Vertrauen ist im freien Fall' empirisch nicht belegt (-9 P. seit 2014, Stabilisierung). 'AT hat höchste Demokratie-Zufriedenheit' überzeichnet (DK + SE + FI sind höher). Pack distanziert sich von normativer Wertung.",
+        "eurobarometer_2024_demokratie": "Eurobarometer 2024 (101+102+103): AT-Demokratie-Zufriedenheit 67 % vs. EU-Mittel 53 %. Spitze: DK 87 %, SE 79 %, FI 78 %, NL 76 %. AT 6.-7. Platz EU-weit. Schluss-Licht: GR 24 %, RO 38 %, BG 39 %, IT 41 %.",
+        "vertrauen_institutionen": "Eurobarometer 2024 AT-Vertrauen-Werte: Parlament 38 % (EU-Mittel 33 %), Regierung 32 % (32 %), EU-Kommission 47 % (42 %), EU-Parlament 49 % (45 %), Justiz 71 % (53 %), Medien 35 % (36 %), Politiker:innen 26 % (23 %). AT-Werte konsistent über EU-Mittel.",
+        "ifes_demokratie_monitor": "IFES AT-Demokratie-Monitor 2024: ähnliche Befunde. Demokratie-Zufriedenheit 65 %, Vertrauen Bundesregierung 28 %, Bundespräsident 64 %, Parlament 35 %, Justiz 70 %. Konsistenz mit Eurobarometer. Trends: Bundespräsidenten-Vertrauen hoch trotz Politik-Verdrossenheit insgesamt.",
+        "at_zeitreihe_2014_2024": "AT-Demokratie-Zufriedenheit Eurobarometer 2014-2024: 2014 76 %, 2017 73 %, 2019 71 %, 2021 70 % (Pandemie 65 %), 2023 67 %, 2024 67 %. Trend -9 P. seit 2014, aber Stabilisierung seit 2021 — kein 'freier Fall'.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+      },
+      "context_notes": [
+        "AT 67 % Demokratie-Zufriedenheit ist EU-Mittelspitze (vs. EU-Mittel 53 %).",
+        "Vertrauen in Justiz besonders hoch (71 %), in Politiker:innen niedrig (26 %).",
+        "Trend -9 P. seit 2014 aber Stabilisierung seit 2021 — kein 'freier Fall'."
+      ],
+      "claim_phrasings_handled": [
+        "AT-Demokratie-Vertrauen ist im freien Fall",
+        "Demokratie-Zufriedenheit in Österreich sinkt dramatisch",
+        "AT hat höchste Demokratie-Zufriedenheit",
+        "Politiker werden in AT verachtet",
+        "Justiz-Vertrauen ist in AT hoch"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        ["demokratie-zufriedenheit", "demokratie-vertrauen", "demokratiezufriedenheit",
+         "demokratievertrauen", "eurobarometer", "ifes", "demokratie-monitor",
+         "vertrauen", "politik-vertrauen", "politiker-vertrauen", "polit-verdrossen",
+         "polit-verdrossenheit", "demokratie-müdigkeit", "demokratiemüdigkeit",
+         "demokratiemuedigkeit", "regierungs-vertrauen", "regierungsvertrauen",
+         "parlament", "justiz-vertrauen"],
+        ["zufrieden", "unzufrieden", "vertrauen", "vertrauenswürdig",
+         "vertrauenswuerdig", "freier fall", "sinkt", "steigt", "stabil",
+         "67 %", "53 %", "33 %", "26 %", "71 %", "rang", "platz",
+         "eu-mittel", "eu-vergleich", "skandinavien", "österreich",
+         "oesterreich", "deutschland", "frankreich", "italien", "verfall",
+         "stabilisierung", "trend", "zeitreihe"]
+      ]
+    }
+  ]
+}
