@@ -109,6 +109,8 @@ from services.sozialstaat_pack import search_sozialstaat, claim_mentions_sozials
 from services.demokratie_pack import search_demokratie, claim_mentions_demokratie_cached
 from services.landwirtschaft_pack import search_landwirtschaft, claim_mentions_landwirtschaft_cached
 from services.welthandel_pack import search_welthandel, claim_mentions_welthandel_cached
+from services.inklusion_pack import search_inklusion, claim_mentions_inklusion_cached
+from services.sicherheitspolitik_pack import search_sicherheitspolitik, claim_mentions_sicherheitspolitik_cached
 from services.owid import search_owid
 from services.wayback import search_wayback, claim_has_url_cached
 from services.crossref import search_crossref, _claim_mentions_paper as _claim_mentions_crossref, _extract_dois
@@ -988,6 +990,34 @@ async def check_claim(request: Request):
         if claim_mentions_welthandel_cached(claim):
             tasks.append(cached("Welthandel-Konsens", search_welthandel, analysis))
             queried_names.append("Welthandel-Konsens (Statistik Austria + WIFO + IFO + Bank of England + LSE + Weltbank + IEA + BNEF + WTO + UNCTAD)")
+        # Inklusion-Pack (12 Topics: Autismus-/ADHS-/Down-Syndrom-Mythen,
+        # IQ-Förderung, Inklusions-Quoten-Effekte, Pflegeheim-Realität AT,
+        # ICF vs medizinisches Modell, UN-BRK 2006, Autismus-Therapien,
+        # Hochsensibilität/Hochbegabung, Barrierefreiheit AT, Schule-vs-
+        # Sonderschule). Quellen: DSM-5 + ICD-11 + UN-BRK CRPD 2006 + WHO
+        # ICF 2001 + CDC + DKHWB + Cochrane + Hattie 2009/2023 + Flynn 1987
+        # + Heckman NBER + Aron 1996 + Greven 2019 + Lovaas 1987 + Dawson
+        # 2010 + TEACCH + ASAN + Statistik Austria + BMSGPK + AT BGStG +
+        # EU EAA + ÖAR + peer-reviewed. HOCH SENSIBLES THEMA Behinderung —
+        # Pack distanziert sich von Defizit-orientiertem medizinischem
+        # Modell zugunsten bio-psycho-sozialem ICF/UN-BRK-Modell.
+        if claim_mentions_inklusion_cached(claim):
+            tasks.append(cached("Inklusion-Konsens", search_inklusion, analysis))
+            queried_names.append("Inklusion-Konsens (DSM-5 + ICD-11 + UN-BRK 2006 + WHO ICF 2001 + CDC + DKHWB + Cochrane + Hattie + Flynn + Heckman + Aron + Lovaas + TEACCH + Statistik Austria + BMSGPK + AT BGStG + EU EAA + ASAN + ÖAR)")
+        # Sicherheitspolitik-Pack (12 Topics: AT-Neutralität BVG 1955,
+        # Wehrpflicht-Reform 2013, NATO-Diskurs, EU-Militärfonds PESCO,
+        # Drohnen-Krieg-Empirie, Atomwaffen, Bundesheer-Personal-Krise,
+        # Sky Shield, Russland-Bedrohung, Krim/Donbas-Völkerrecht, Cyber-
+        # Verteidigung, Hybrid-Krieg). Quellen: AT BVG 1955 + AT-VfGH +
+        # B-VG + UN-Resolutionen 68/262 + ES-11/4 + ICJ + EuGH + BVerwG +
+        # NATO Strategic Concept 2022 + EU PESCO + EU Strategic Compass +
+        # EU Hybrid Toolbox + SIPRI + RAND + DSN + BMLV + BMI + Hybrid CoE
+        # Helsinki + peer-reviewed. SEHR HOCH SENSIBLES THEMA — Pack
+        # zitiert NUR völker-/verfassungs-/rechtliche Fakten, KEINE
+        # Pro/Contra-NATO/Russland/Aufrüstungs-Wertung.
+        if claim_mentions_sicherheitspolitik_cached(claim):
+            tasks.append(cached("Sicherheitspolitik-Konsens", search_sicherheitspolitik, analysis))
+            queried_names.append("Sicherheitspolitik-Konsens (AT BVG 1955 + AT-VfGH + B-VG + UN-Resolutionen + ICJ + EuGH + NATO Strategic Concept 2022 + EU PESCO + EU Strategic Compass + EU Hybrid Toolbox + SIPRI + RAND + DSN + BMLV + BMI + Eurobarometer)")
         # OurWorldInData (OWID, CC-BY 4.0): 31 hochwertige Indikatoren zu
         # Klima/Energie/Gesundheit/Wirtschaft/Demografie. Triggert wenn die
         # Claim-Analysis category zu (health|climate|economy|demographics)

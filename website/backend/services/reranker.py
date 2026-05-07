@@ -179,6 +179,8 @@ _AUTHORITATIVE_INDICATORS = (
     "demokratie_konsens_fact",               # Demokratie-Pack (V-Dem + Freedom House + Transparency CPI + RSF + IDEA + BMI + Statistik Austria + AT-VfGH + Eurobarometer + Bertelsmann + Duverger + Lijphart)
     "landwirtschaft_konsens_fact",           # Landwirtschaft-Pack (AGES + EFSA + IARC + WHO + BMVL + BOKU + Statistik Austria + FAO + IPES-Food + Wagenigen UR + Seufert 2012 Nature + Ponisio 2015 + Smith 2019 NatComm)
     "welthandel_konsens_fact",               # Welthandel-Pack (Statistik Austria + WIFO + IFO + Bank of England + LSE + Weltbank + IEA + BNEF + WTO + UNCTAD + Piketty + Saez + Krugman + Cecchini-Bericht)
+    "inklusion_konsens_fact",                # Inklusion-Pack (DSM-5 + ICD-11 + UN-BRK 2006 + WHO ICF 2001 + CDC + DKHWB + Cochrane + Hattie 2009/2023 + Flynn 1987 + Heckman NBER + Aron 1996 + Greven 2019 + Lovaas 1987 + Dawson 2010 + TEACCH + ASAN + Statistik Austria + BMSGPK + AT BGStG + EU EAA + ÖAR)
+    "sicherheitspolitik_konsens_fact",       # Sicherheitspolitik-Pack (AT BVG 1955 + AT-VfGH + B-VG + UN-Resolutionen 68/262 + ES-11/4 + ICJ + EuGH + BVerwG + NATO Strategic Concept 2022 + EU PESCO + EU Strategic Compass + EU Hybrid Toolbox + SIPRI + RAND + DSN + BMLV + BMI + Hybrid CoE Helsinki)
     "medlineplus_health_topic",          # NIH MedlinePlus Live (National Library of Medicine, US)
     "cdc_newsroom_item",                 # CDC Newsroom Live (Centers for Disease Control, US)
     "cdc_open_data_dataset",             # CDC Open Data Live (Socrata-Catalog data.cdc.gov, US)
