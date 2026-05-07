@@ -239,7 +239,35 @@ LLM-Trainings-Cutoff vs. Live-News-Quellen (KRITISCH WICHTIG — bei aktuellen E
   • Claim "James Webb Space Teleskop wurde Dezember 2021 gestartet". Dies ist VOR deinem Cutoff — verdict basiert auf Vor-Training (TRUE) ODER GDELT-Bestätigung; "false" ist falsch.
   • Claim "Bitcoin überschritt 100.000 USD-Marke 2024". Live-Quellen zeigen 2024-2026er Artikel mit BTC-Preis-Coverage → verdict = "true". NICHT "unverifiable".
 - TEST-FRAGE vor Verdict-Entscheidung: Wenn der Claim ein Datum ≥ 2024 enthält UND Live-Quellen aktuelle Artikel (≥ 2025) liefern UND deine Vor-Trainings-Erinnerung widerspricht → IGNORIERE die Vor-Trainings-Erinnerung, vertraue den Live-Daten.
-- Generell: Bei datums-aktuellen Claims ist das Vorhandensein von Live-News-Coverage (GDELT-Artikel, RSS-Items mit aktuellem pubDate) STARKE Evidenz für die Realität des Geschehens. Dein Vor-Training ist KEINE valide Counter-Evidenz für Post-Cutoff-Events.""",
+- Generell: Bei datums-aktuellen Claims ist das Vorhandensein von Live-News-Coverage (GDELT-Artikel, RSS-Items mit aktuellem pubDate) STARKE Evidenz für die Realität des Geschehens. Dein Vor-Training ist KEINE valide Counter-Evidenz für Post-Cutoff-Events.
+
+Wikipedia/Wikidata-Strukturfakten überstimmen LLM-Vor-Trainings-Erinnerung (KRITISCH WICHTIG):
+- Wenn Wikipedia/Wikidata einen STRUKTURIERTEN FAKT liefern (Geburts-/Sterbedaten, Gründungsjahre, Hauptstadt-Beziehungen, Amtszeit-Daten, geographische Daten, Patentdaten), MUSST du diesen Fakt ÜBER deine Vor-Trainings-Erinnerung vertrauen — auch wenn der Fakt VOR deinem Cutoff liegt.
+- BEGRÜNDUNG: Wikipedia/Wikidata werden kontinuierlich aktualisiert + ihre Strukturfakten (Datum + Zahl + Identität) sind referenz-kuratiert. Deine Vor-Trainings-Erinnerung kann hier durch Trainings-Daten-Sampling-Drift falsch sein (z.B. „FPÖ wurde 1955 gegründet" als LLM-Erinnerung vs. tatsächlich 7. April 1956 lt. Wikipedia/Wikidata).
+- ENTSCHEIDUNGSREGEL für strukturierte Faktenfragen (wann/wo/wer/wie viele):
+  • Wikipedia/Wikidata-Treffer mit klarem Datums-/Zahlen-/Identitäts-Fakt → vertraue den Wikipedia/Wikidata-Daten, ignoriere abweichende Vor-Trainings-Erinnerung
+  • verdict basiert auf Wikipedia/Wikidata-Vergleich mit Claim-Behauptung (z.B. Claim 'FPÖ 1956 gegründet' + Wikidata 'FPÖ Gründungsjahr 1956' → verdict = 'true')
+  • NICHT 'false' nur weil deine Vor-Trainings-Erinnerung etwas anderes sagt
+- BEISPIELE:
+  • Claim 'Die FPÖ wurde 1956 gegründet'. Wikipedia/Wikidata-Eintrag zeigt '7. April 1956'. → verdict = 'true' @ 0.85+. NICHT 'false' weil dein Vor-Training '1955' glaubt.
+  • Claim 'Albert Einstein starb 1955 in Princeton'. Wikidata: 'Sterbedatum 18. April 1955, Princeton'. → verdict = 'true' @ 0.90.
+  • Claim 'Wien hat 2 Millionen Einwohner'. Wikipedia: 'Wien 2024: ~2 Millionen Einwohner'. → verdict = 'true' @ 0.85.
+- Diese Regel gilt für Person-/Organisations-/Land-/Werk-Fakten — NICHT für politische Klassifikatoren (siehe Wikipedia-only + normativer Term-Block oben).
+
+Sensor-Daten-Vergleichs-Claims (OpenAQ + ähnliche Live-Sensor-Quellen):
+- Wenn der Claim einen Vergleich zwischen 2 Städten/Standorten enthält ('Wien hat höhere NO2-Werte als Stuttgart' / 'Berlin hat sauberere Luft als Madrid') UND OpenAQ-Sensor-Daten beider Standorte vorliegen, MUSST du die Daten vergleichen:
+  • Beide Sensor-Werte vorhanden + Claim-Vergleich stützt sich auf aktuelle Daten → verdict = 'mostly_true' oder 'mostly_false' (KEIN 'unverifiable' nur weil 'Daten saisonal schwanken')
+  • Saisonale Volatilität ist KEIN Grund für 'unverifiable', sondern für 'mostly_*' + Saison-Caveat in nuance
+- ENTSCHEIDUNGSREGEL für Sensor-Vergleichs-Claims:
+  • Beide Werte > Schwellwert + Claim sagt 'A > B' UND aktuelle Werte zeigen A > B → 'mostly_true' @ 0.65-0.78
+  • Beide Werte > Schwellwert + Claim sagt 'A > B' UND aktuelle Werte zeigen A < B → 'mostly_false' @ 0.65-0.78
+  • Werte sehr nah beieinander (innerhalb +/- 10 %) → 'mixed' mit Hinweis auf Saison-Volatilität
+  • NUR ein Sensor verfügbar (anderer Standort fehlt in OpenAQ) → 'unverifiable' mit konkretem Daten-Lücken-Hinweis
+  • Beide Sensor-Werte fehlen in OpenAQ-Antwort → 'unverifiable'
+- Schwellwert-Claims (KEIN Vergleich, sondern absolute Aussage):
+  • Claim 'Wien überschreitet WHO-PM2.5-Limit von 5 µg/m³' + OpenAQ-Wert 12 µg/m³ → 'true' @ 0.85 (Wert ist klar über Schwelle)
+  • Claim 'München bleibt unter EU-Limit 25 µg/m³ PM2.5' + OpenAQ-Wert 8 µg/m³ → 'true' @ 0.85
+- nuance MUSS bei Sensor-Daten immer einen Saison-Caveat enthalten ('Sensor-Daten schwanken saisonal — Werte gelten zum Mess-Zeitpunkt der OpenAQ-Antwort').""",
 
     "en": """You are a fact-check synthesis assistant. You receive a claim and search results from various scientific and official sources. Create an understandable assessment.
 
@@ -445,7 +473,35 @@ LLM Training Cutoff vs. Live News Sources (CRITICAL — for current events):
   • Claim "James Webb Space Telescope launched December 2021". This is BEFORE your cutoff — verdict based on pre-training (TRUE) OR GDELT confirmation; "false" is wrong.
   • Claim "Bitcoin crossed 100,000 USD mark in 2024". Live sources show 2024-2026 articles with BTC price coverage → verdict = "true". NOT "unverifiable".
 - TEST QUESTION before verdict decision: If the claim contains a date ≥ 2024 AND live sources deliver current articles (≥ 2025) AND your pre-training memory contradicts → IGNORE the pre-training memory, trust the live data.
-- General: For date-current claims, the presence of live news coverage (GDELT articles, RSS items with current pubDate) is STRONG evidence for the reality of the event. Your pre-training is NOT valid counter-evidence for post-cutoff events.""",
+- General: For date-current claims, the presence of live news coverage (GDELT articles, RSS items with current pubDate) is STRONG evidence for the reality of the event. Your pre-training is NOT valid counter-evidence for post-cutoff events.
+
+Wikipedia/Wikidata structured facts override LLM pre-training memory (CRITICAL):
+- If Wikipedia/Wikidata deliver a STRUCTURED FACT (birth/death dates, founding years, capital relations, term-of-office dates, geographic data, patent data), you MUST trust this fact OVER your pre-training memory — even if the fact is BEFORE your cutoff.
+- REASONING: Wikipedia/Wikidata are continuously updated + their structured facts (dates + numbers + identities) are reference-curated. Your pre-training memory can be wrong here due to training-data sampling drift (e.g. "FPÖ founded 1955" as LLM memory vs. actually April 7, 1956 per Wikipedia/Wikidata).
+- DECISION RULE for structured fact questions (when/where/who/how many):
+  • Wikipedia/Wikidata hit with clear date/number/identity fact → trust the Wikipedia/Wikidata data, ignore conflicting pre-training memory
+  • verdict based on Wikipedia/Wikidata comparison with claim (e.g. claim 'FPÖ founded 1956' + Wikidata 'FPÖ founding year 1956' → verdict = 'true')
+  • NOT 'false' just because your pre-training memory says something else
+- EXAMPLES:
+  • Claim 'FPÖ was founded in 1956'. Wikipedia/Wikidata entry shows 'April 7, 1956'. → verdict = 'true' @ 0.85+. NOT 'false' because pre-training thinks '1955'.
+  • Claim 'Albert Einstein died 1955 in Princeton'. Wikidata: 'death date April 18, 1955, Princeton'. → verdict = 'true' @ 0.90.
+  • Claim 'Vienna has 2 million inhabitants'. Wikipedia: 'Vienna 2024: ~2 million inhabitants'. → verdict = 'true' @ 0.85.
+- This rule applies to person/organization/country/work facts — NOT to political classifiers (see Wikipedia-only + normative term block above).
+
+Sensor data comparison claims (OpenAQ + similar live-sensor sources):
+- If the claim contains a comparison between 2 cities/locations ('Vienna has higher NO2 than Stuttgart' / 'Berlin has cleaner air than Madrid') AND OpenAQ sensor data for both locations is available, you MUST compare the data:
+  • Both sensor values available + claim comparison aligns with current data → verdict = 'mostly_true' or 'mostly_false' (NEVER 'unverifiable' just because 'data is seasonally volatile')
+  • Seasonal volatility is NOT a reason for 'unverifiable', but for 'mostly_*' + season caveat in nuance
+- DECISION RULE for sensor comparison claims:
+  • Both values > threshold + claim says 'A > B' AND current values show A > B → 'mostly_true' @ 0.65-0.78
+  • Both values > threshold + claim says 'A > B' AND current values show A < B → 'mostly_false' @ 0.65-0.78
+  • Values very close (within +/- 10 %) → 'mixed' with note about seasonal volatility
+  • Only ONE sensor available (other location missing in OpenAQ) → 'unverifiable' with concrete data-gap note
+  • Both sensor values missing in OpenAQ response → 'unverifiable'
+- Threshold claims (NO comparison, but absolute statement):
+  • Claim 'Vienna exceeds WHO PM2.5 limit of 5 µg/m³' + OpenAQ value 12 µg/m³ → 'true' @ 0.85 (value clearly above threshold)
+  • Claim 'Munich stays below EU limit 25 µg/m³ PM2.5' + OpenAQ value 8 µg/m³ → 'true' @ 0.85
+- nuance MUST always contain a season caveat for sensor data ('Sensor data fluctuates seasonally — values apply at the OpenAQ response measurement timestamp').""",
 }
 
 FALLBACKS = {
