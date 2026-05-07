@@ -175,6 +175,7 @@ _AUTHORITATIVE_INDICATORS = (
     "arbeitsmarkt_konsens_fact",             # Arbeitsmarkt-Pack (AMS + WIFO + IHS + IAB + DESTATIS + Statistik Austria + AK Wien + DGB + OECD + Eurostat + Card/Krueger + Cengiz QJE + Bloom Stanford + Lalive/Zweimüller)
     "mobilitaet_konsens_fact",               # Mobilität-Pack (ADAC + ICCT + ÖBB + DB + UBA + Helmholtz + BMK + IIHS + BASt + Fraunhofer ISE + Agora Verkehrswende + VDV + FÖS + BAG + ASFINAG + BNetzA)
     "datenschutz_konsens_fact",              # Datenschutz-Pack (EuGH + BVerfG + AT-VfGH + Datenschutz-Behörde AT + Bitkom + NOYB + LfM + BSI + Citizen Lab + Amnesty Tech + EFF + Mozilla)
+    "sozialstaat_konsens_fact",              # Sozialstaat-Pack AT-Spezial (Statistik Austria + BMSGPK + WIFO + IHS + AK Wien + AMS + PVA + AT-VfGH + OECD + Eurostat ESSPROS + Bertelsmann + Lalive/Zweimüller AER 2009)
     "medlineplus_health_topic",          # NIH MedlinePlus Live (National Library of Medicine, US)
     "cdc_newsroom_item",                 # CDC Newsroom Live (Centers for Disease Control, US)
     "cdc_open_data_dataset",             # CDC Open Data Live (Socrata-Catalog data.cdc.gov, US)

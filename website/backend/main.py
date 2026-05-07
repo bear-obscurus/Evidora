@@ -105,6 +105,7 @@ from services.wohnen_pack import search_wohnen, claim_mentions_wohnen_cached
 from services.arbeitsmarkt_pack import search_arbeitsmarkt, claim_mentions_arbeitsmarkt_cached
 from services.mobilitaet_pack import search_mobilitaet, claim_mentions_mobilitaet_cached
 from services.datenschutz_pack import search_datenschutz, claim_mentions_datenschutz_cached
+from services.sozialstaat_pack import search_sozialstaat, claim_mentions_sozialstaat_cached
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
@@ -927,6 +928,20 @@ async def check_claim(request: Request):
         if claim_mentions_datenschutz_cached(claim):
             tasks.append(cached("Datenschutz-Konsens", search_datenschutz, analysis))
             queried_names.append("Datenschutz-Konsens (EuGH + BVerfG + AT-VfGH + Datenschutz-Behörde AT + Bitkom + NOYB + LfM + BSI + Citizen Lab + Amnesty Tech + EFF + Mozilla)")
+        # Sozialstaat-Pack (13 AT-spezifische Topics: Mindestsicherung-
+        # Trittbrett-Mythos, Familienbeihilfe-Wirkung, Pflegegeld-7-Stufen,
+        # Kinderbetreuungsgeld, Pension-Generationen, Wohnbeihilfe, Sozial-
+        # hilfe-Reform-2019 (VfGH G164/2019), Notstandshilfe-Streichungs-
+        # Diskurs, Studienbeihilfe, Bildungskarenz, Reha-Geld, Pflegende-
+        # Angehörige, Familienbonus-Plus). Quellen: Statistik Austria +
+        # BMSGPK Sozialministerium + WIFO + IHS + AK Wien + AMS + PVA +
+        # AT-VfGH + OECD Social Indicators + Eurostat ESSPROS + Bertels-
+        # mann + peer-reviewed Forschung (Lalive/Zweimüller AER 2009).
+        # Politisch sensibles Thema — Pack distanziert sich von normativen
+        # Wertungen, präsentiert nur empirische Lage + AT-Statistik.
+        if claim_mentions_sozialstaat_cached(claim):
+            tasks.append(cached("Sozialstaat-Konsens", search_sozialstaat, analysis))
+            queried_names.append("Sozialstaat-Konsens (Statistik Austria + BMSGPK + WIFO + IHS + AK Wien + AMS + PVA + AT-VfGH + OECD + Eurostat ESSPROS + Bertelsmann)")
         # EIGE Live-RSS (European Institute for Gender Equality, Vilnius):
         # aktuelle Newsroom-Items zu Gleichstellung, EU-Direktiven, neue
         # EIGE-Berichte. Komplementär zum statischen gleichstellung_pack.

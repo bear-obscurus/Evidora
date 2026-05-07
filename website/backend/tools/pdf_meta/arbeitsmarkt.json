@@ -1,0 +1,16 @@
+{
+  "title": "Arbeitsmarkt-Konsens",
+  "topic_count": "14 Topics (Mindestlohn-Beschäftigung, 4-Tage-Woche, Homeoffice-Produktivität, Burnout-Prävalenz, Fachkräftemangel, Gewerkschafts-Lohneffekt, KI-Job-Verdrängung, Migration-Arbeitsmarkt, Karenz-Lohnverlust, Generation-Z-Arbeit, AMS-Quote-Realität, Gender-Pay-Gap, Pflegekräftemangel, Scheinselbstständigkeit)",
+  "description": "20 Claims (14 Topics × 1-2 Phrasings) zum 35. Static-First-Pack — Quellen-Mix AMS + WIFO + IHS + IAB + DESTATIS + Statistik Austria + AK Wien + DGB + OECD + Eurostat + peer-reviewed Forschung (Card/Krueger 1994 AER 84(4), Cengiz/Dube/Lindner/Zipperer 2019 QJE 134(3), Bloom et al. 2015 QJE 130(1) Ctrip-Experiment, Bloom/Han/Liang 2024 Nature 630(8018) Trip.com Hybrid-Studie, Lalive/Zweimüller 2009 QJE 124(3) Karenz-Effekt, Dustmann/Frattini 2014 EJ + Dustmann/Schoenberg/Stuhler 2017 QJE Migration-Arbeitsmarkt, Heinze/Wolf 2010 J Pop Econ Gender-Pay-Gap, Olivetti/Petrongolo 2008 J Lab Econ 26(4), Frey/Osborne 2017 + Arntz/Gregory/Zierahn 2016 OECD WP 189 KI-Job-Verdrängung, Acemoglu/Restrepo 2024, Card/Lemieux/Riddell 2003 NBER 9473, BAG 9 AZR 102/20 Crowdworker-Roamler, EuGH Yodel C-692/19 Plattform-Arbeit). Pack adressiert Studien-zentrierte Kontroversen sowie AT-spezifische Statistik-Methodik-Diskussionen.",
+  "methodology": "Probe-Strategie: 14-Topic-Liste vor JSON-Schreiben mit User abgestimmt (3-Pack-Parallel-Sprint mit arbeitsmarkt + mobilitaet + datenschutz). Quality-Audit-Phase nach Pack-Erstellung über 3 parallele WebSearch-Audit-Agents — 4 Citation-Korrekturen für arbeitsmarkt angewandt: (1) Bloom/Han/Liang Nature 628(8009)→630(8018):920-925, (2) Card/Lemieux/Riddell NBER 9473 Titel von 'Unions and the Wage Distribution' → 'Unionization and Wage Inequality: A Comparative Study of the U.S, the U.K., and Canada', (3) Olivetti/Petrongolo 2008 von AER P&P 98(2) → Journal of Labor Economics 26(4):621-654, (4) Dustmann 'Sick Man of Europe' QJE 129(2)→JEP 28(1):167-188 (Dustmann/Fitzenberger/Schoenberg/Spitz-Oener). HOCH SENSIBLES THEMA — Pack hält strikt die 3 Tabus aus project_political_guardrails.md ein. Boundary-Cases: #15 AMS-Quote-Methodik (vs. Eurostat), #17 Gender-Pay-Gap-Bereinigung (unadjusted vs. adjusted), #20 Scheinselbstständigkeit-Plattform-Arbeit (BAG-Roamler-Linie).",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "14/14 Topics aktiv"},
+    {"label": "Verdict-Match (Toleranz):", "value": "20/20 (100 %) ✓"},
+    {"label": "Source-Match:", "value": "16/20 (80 %)"},
+    {"label": "Concurrency:", "value": "4 (initial); kein HTTP-Fehler trotz 3-Pack-Parallel-Run"},
+    {"label": "Average Duration/Claim:", "value": "~30 s"},
+    {"label": "Quellen-Konsens:", "value": "Card/Krueger AER 1994, Cengiz QJE 2019, Bloom Stanford QJE+Nature, Lalive/Zweimüller QJE 2009, Dustmann LSE/EJ/QJE/JEP, Heinze/Wolf JPE 2010, Olivetti JOLE 2008, Frey/Osborne 2017, Arntz OECD 2016, BAG 9 AZR 102/20, EuGH Yodel"},
+    {"label": "Politische Distanz:", "value": "Strikt empirisch — Pack adressiert Studien-Kontroversen ohne normative Wertung. Pack-distanziert-sich-Block in jedem kernsatz_fuer_synthesizer"},
+    {"label": "Quality-Audit:", "value": "4 Citation-Korrekturen via WebSearch-Agent (Bloom Nature Vol/Issue, NBER-Titel, Olivetti Journal, Dustmann JEP statt QJE)"}
+  ]
+}

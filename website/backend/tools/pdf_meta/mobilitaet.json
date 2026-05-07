@@ -1,0 +1,17 @@
+{
+  "title": "Mobilität-Konsens",
+  "topic_count": "14 Topics (E-Auto-Reichweite, ÖBB-Pünktlichkeit 2024, Tempolimit-130, Klimaticket-Bilanz, SUV-Sicherheit, Wasserstoff-PKW, ÖPNV-Ausbau, Diesel-Skandal-Kosten, Tempo-30-Wirkung, Auto-Subventionen, Lkw-Maut, Bahn-Investition DACH, Park-Mythen, Lade-Infrastruktur)",
+  "description": "20 Claims (14 Topics × 1-2 Phrasings) zum 36. Static-First-Pack — Quellen-Mix ADAC + ICCT + ÖBB + DB + UBA + Universität Stuttgart Friedrich + BMK + IIHS + Justin Tyndall (University of Hawaii UHERO) + BASt + Fraunhofer ISE + Agora Verkehrswende + VDV + Hauptverband der Deutschen Bauindustrie + ADAC + Difu Deutsches Institut für Urbanistik + FÖS + BAG + ASFINAG + Allianz pro Schiene 2024 + BNetzA + EU AFIR-Verordnung 2023/1804 + peer-reviewed Forschung. Pack adressiert Verkehrswende-Mythen + AT-/DE-Bahn-Pünktlichkeits-Vergleiche + EU-AFIR-Lade-Infrastruktur-Stand 2024.",
+  "methodology": "Probe-Strategie: 14-Topic-Liste vor JSON-Schreiben mit User abgestimmt. Quality-Audit-Phase nach Pack-Erstellung über parallele WebSearch-Agents — 11 Citation-Korrekturen angewandt: (1) ÖBB-Quoten 2024 95,1→93,6 % gesamt, 89,7→78,2 % Fernverkehr (wegen Hochwasser + Bauprojekte), (2) DB Fernverkehr 2024 64,0→62,5 % (21-Jahres-Tief), (3) Allianz pro Schiene 2024 DACH-Werte CH 440→480 / AT 270→352 / DE 120→198 EUR/Person/Jahr (DE-Rekord-Anstieg +70 %), (4) AFIR PKW-Deadline Dezember 2026→Dezember 2025, (5) Helmholtz/DLR (Lange/Gorisch) → Universität Stuttgart Friedrich (UBA-Studie 2023), (6) Tyndall Manchester (Anderson/Newman) → Justin Tyndall, University of Hawaii UHERO (Pedestrian Deaths and Large Vehicles 2021), (7) VDV + KCW 64 Mrd → VDV + Hauptverband Bauindustrie + ADAC, durchgeführt von Difu, (8) WIFO Köppl/Schratzenstaller-Studie ist Inaction-Costs-Studie (KEINE Klimaticket-Wirkungs-Studie — Quelle korrigiert auf BMK + VCÖ), (9) UBA-Tempolimit-CO2-Quote 1,5→1,2 % Verkehrs-Sektor 2018, (10) NO2-Tote 6.000-10.000 → ~6.000 (Bezugsjahr 2014), (11) Helmholtz-Studie 2017 Max-Planck-Institut → Schneider et al. 2018 Helmholtz Zentrum München. HOCH SENSIBLES THEMA Verkehrswende — Pack distanziert sich strikt von Pro/Contra-Auto-Wertungen.",
+  "performance_extras": [
+    {"label": "Pack-Coverage:", "value": "14/14 Topics aktiv"},
+    {"label": "Verdict-Match (Toleranz):", "value": "18/20 (90 %) ✓"},
+    {"label": "Source-Match:", "value": "19/20 (95 %)"},
+    {"label": "Concurrency:", "value": "2 (Re-run; initial 4 → 502-Fehler beim 3-Pack-Parallel-Run)"},
+    {"label": "Average Duration/Claim:", "value": "~22 s"},
+    {"label": "Quellen-Konsens:", "value": "ADAC, ICCT, ÖBB-Geschäftsbericht 2024, DB-Konzernbericht, UBA + Universität Stuttgart Friedrich, BMK Klimaticket-Bilanz, IIHS, Justin Tyndall Hawaii, BASt, Fraunhofer ISE, Agora Verkehrswende, VDV/Bauindustrie/ADAC/Difu, FÖS, Allianz pro Schiene 2024, BNetzA, EU AFIR 2023/1804"},
+    {"label": "Boundary-Cases:", "value": "#17+#18 Bahn-Investition DACH-Vergleich (synthesizer markierte unverifiable obwohl audit-fixed Werte CH 480/AT 352/DE 198 vorliegen — möglicherweise Comparative-Wording-Confusion)"},
+    {"label": "Politische Distanz:", "value": "Strikt empirisch — Pack distanziert sich von Pro/Contra-Auto-Wertung + Pro/Contra-Verkehrswende-Wertung"},
+    {"label": "Quality-Audit:", "value": "11 Citation-Korrekturen via WebSearch-Agent (alle ÖBB/DB-2024-Werte aktualisiert, Helmholtz/DLR + Tyndall + KCW Misattributions korrigiert)"}
+  ]
+}
