@@ -4,19 +4,19 @@
 
 A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
-Evidora automatically verifies claims against **50+ scientific and institutional sources** spanning research databases, EU/UN/OECD statistics, climate data, disease surveillance, courts, parliaments, electoral records, fact-checker databases, and curated topic packs for Austria and the DACH region.
+Evidora automatically verifies claims against **60+ scientific and institutional sources**: **21 live-API connectors** (PubMed, Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, GADMO/Snopes/Correctiv/Full Fact/Bellingcat/FactCheck.org, NIH MedlinePlus, NCBI ClinVar, CDC Newsroom + Open Data, GDELT v2 GKG via BigQuery, Wikipedia, OurWorldInData, V-Dem v14, Wayback Machine CDX, Crossref REST, OpenAQ v3, Wikidata SPARQL, Freedom House FIW 2024, arXiv Atom, UN Comtrade) plus **40 curated static-first topic packs** (~430 topics) covering Austria/DACH-specific domains: science consensus, energy, medicine, climate, mental health, oncology, addiction, digital family, finance/investments, everyday myths, traffic safety, animal welfare, cybersecurity, food safety, gender equality, religious communities, economic policy, housing, labor market, mobility, data protection, social state, democracy, agriculture, world trade, inclusion, and security policy.
 
 **Live Demo:** [https://evidora.eu](https://evidora.eu)
 
-**Quality assurance:** 8 structured stress-tests run since project start, **160+ claims**, **0 false-positives, 0 false-negatives** (state 2026-04-30). See [ARCHITECTURE.md §4.4](ARCHITECTURE.md) for the methodology.
+**Quality assurance:** 53+ structured stress-test PDFs since project start, **1000+ curated claims**, aggregate verdict-match consistently above 90 %. Latest 5-block bilance: 376/398 (94.5 %). See [ARCHITECTURE.md §4.4](ARCHITECTURE.md) for the methodology.
 
 > ⚠️ This project is under active development. The online version uses the Mistral Cloud API (EU servers, Paris) for AI analysis.
 
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **50+ data sources** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD/Austrian statistics, climate data, disease surveillance, court rulings, parliamentary records, electoral data, disinformation databases, and curated topic packs (see table below)
-- **Static-first topic services** — Curated facts (`data/*.json`) with substring/composite triggers and a cosine-similarity backup, so well-known claims hit deterministic answers without an extra API roundtrip. ~25 topic services cover Austrian/DACH-specific questions (housing, education, transport, courts, electoral data, etc.). See [ARCHITECTURE.md §3](ARCHITECTURE.md)
+- **60+ data sources** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD/Austrian statistics, climate data, disease surveillance, court rulings, parliamentary records, electoral data, disinformation databases, and curated topic packs (see table below)
+- **Static-first topic services** — Curated facts (`data/*.json`) with substring/composite triggers and a cosine-similarity backup, so well-known claims hit deterministic answers without an extra API roundtrip. **40 topic packs (~430 topics)** cover Austrian/DACH-specific questions across science, medicine, climate, economy, politics, justice, social state, agriculture, security policy, inclusion, and more. See [ARCHITECTURE.md §3](ARCHITECTURE.md)
 - **Hot-reload of static data** — Edits to `data/*.json` go live without a backend restart (mtime-aware cache + verdict-cache version-suffix)
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Multi-country ranking** — Superlative claims ("highest", "most") automatically query all EU-27 countries for a full ranking
@@ -96,14 +96,24 @@ Open `website/.env` and replace the placeholders:
 | `CDS_API_KEY` | For Copernicus climate data (catalogue works without) | [Copernicus CDS](https://cds.climate.copernicus.eu/how-to-api) |
 | `MISTRAL_API_KEY` | Use Mistral Cloud API instead of local Ollama (optional) | [Mistral Console](https://console.mistral.ai/api-keys) |
 | `MISTRAL_MODEL` | Cloud model to use (default: `mistral-small-latest`) | — |
+| `S2_API_KEY` | Semantic Scholar API key (optional, higher rate limits) | [Semantic Scholar API](https://www.semanticscholar.org/product/api#api-key) |
+| `COMTRADE_API_KEY` | UN Comtrade — bilateral trade flows by HS chapter/country (optional, free tier needs key for stable rate limits) | [comtradedeveloper.un.org](https://comtradedeveloper.un.org/) — register, then subscribe to the free "Free APIs" plan |
+| `OPENAQ_API_KEY` | OpenAQ v3 — air-quality measurements for 42 EU/AT/DE/CH cities (required, graceful skip if absent) | [OpenAQ Explorer](https://explore.openaq.org/) — register, generate API key |
+| `GOOGLE_APPLICATION_CREDENTIALS` | Path to a Google Cloud service-account JSON for GDELT v2 GKG via BigQuery (optional, enables 100k+ news sources). Mount the JSON into the container as read-only at `/secrets/gdelt-key.json`. | [Google Cloud BigQuery Setup](https://cloud.google.com/bigquery/docs/authentication/service-account-file) — create a service account, grant `roles/bigquery.dataViewer` on `gdelt-bq.gdeltv2`, download key JSON |
 | `IMPRESSUM_NAME` | Your name for the legal notice | — |
 | `IMPRESSUM_EMAIL` | Contact email (displayed as text, no mailto link) | — |
 | `IMPRESSUM_LOCATION` | Your location for the legal notice | — |
-| `S2_API_KEY` | Semantic Scholar API key (optional, higher rate limits) | [Semantic Scholar API](https://www.semanticscholar.org/product/api#api-key) |
 | `RATE_LIMIT` | Max requests per window per IP (default: `10`) | — |
 | `RATE_WINDOW` | Rate limit window in seconds (default: `60`) | — |
 
-> **Note:** PubMed works without an API key but with lower rate limits (3 instead of 10 requests/second). Without `GOOGLE_FACTCHECK_API_KEY`, the fact-checker search is skipped. If `MISTRAL_API_KEY` is set, Evidora uses the Mistral Cloud API (EU servers, Paris) instead of a local Ollama instance — no GPU required.
+> **Notes:**
+> - **PubMed** works without an API key but with lower rate limits (3 instead of 10 requests/second). Without `GOOGLE_FACTCHECK_API_KEY`, the fact-checker search is skipped.
+> - **MISTRAL_API_KEY** when set, Evidora uses the Mistral Cloud API (EU servers, Paris) instead of a local Ollama instance — no GPU required.
+> - **UN Comtrade** without a key, the connector falls into anonymous-tier (heavily rate-limited, frequent 401s on bilateral multi-country queries). With a free key you get stable verdicts on bilateral trade flows.
+> - **OpenAQ** without a key, the connector logs a warning and skips silently — air-quality claims are routed to other connectors (e.g. EEA via Eurostat).
+> - **GDELT** without service-account credentials, the connector skips silently. With credentials, every check can hit ~100k+ news sources via the GDELT v2 Global Knowledge Graph (BigQuery, 7-day partition filter, ~10 GB scanned per query). Free BigQuery sandbox quota is 1 TB/month — Evidora's typical use stays well under that.
+>
+> **Docker note:** When you change `.env` values, restart with `docker compose up -d --force-recreate backend` — `docker compose restart` does NOT reload env-vars.
 
 ### 3. Start
 
@@ -133,23 +143,37 @@ Sources are grouped by domain. Each lives in its own service module
 during analysis. For implementation patterns (live-API vs. static-first
 topic vs. hybrid), see [ARCHITECTURE.md §2](ARCHITECTURE.md).
 
+### Live-API Connectors (21)
+
 | Domain | Sources |
 |---|---|
-| **Science & medicine** | PubMed, Cochrane (via PubMed), Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, Retraction Watch, bioRxiv / medRxiv |
-| **Climate & environment** | NASA GISS, Berkeley Earth, Copernicus CDS, EEA (via Eurostat), GeoSphere AT, Skeptical Science, Energy-Charts |
-| **Economy & finance** | Eurostat, OECD (PISA + SDMX), World Bank, ECB, Statistik Austria, WIFO + IHS forecasts, OeNB |
-| **Politics & democracy** | V-Dem, Transparency International, RSF, SIPRI, IDEA, Parlament.gv.at, BMI Wahlen + Volksbegehren, MedienTransparenz (KommAustria) |
+| **Science & medicine** | PubMed, Cochrane (via PubMed), Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, Retraction Watch, bioRxiv / medRxiv, NIH MedlinePlus, NCBI ClinVar, Crossref REST (DOI resolution + paper search), arXiv Atom (preprints) |
+| **Climate & environment** | NASA GISS, Berkeley Earth, Copernicus CDS, EEA (via Eurostat), GeoSphere AT, Skeptical Science, Energy-Charts, OurWorldInData (CC-BY 4.0, ~31 indicators climate/energy/health/economy/demographics), OpenAQ v3 (air-quality, 42 EU/AT/DE/CH cities) |
+| **Economy & finance** | Eurostat, OECD (PISA + SDMX), World Bank, ECB, Statistik Austria, WIFO + IHS forecasts, OeNB, UN Comtrade (bilateral trade flows by HS chapter/country) |
+| **Politics & democracy** | V-Dem v14 (32 countries × 11 indices), Freedom House FIW 2024 (55 countries × 6 indicators, refreshed yearly from official XLSX), Transparency International CPI, RSF, SIPRI, IDEA, Parlament.gv.at, BMI Wahlen + Volksbegehren, MedienTransparenz (KommAustria), Wikidata SPARQL (10 curated templates) |
 | **Justice & courts** | RIS (Austrian legal information), EuGH + EGMR (EU & ECHR rulings), VfGH + VwGH (Austrian constitutional + administrative courts) |
-| **Health & disease surveillance** | WHO GHO, WHO Europe (HFA Gateway), ECDC (via OWID), EMA, EFSA, RKI SurvStat, OECD Health, BASG |
+| **Health & disease surveillance** | WHO GHO, WHO Europe (HFA Gateway), ECDC (via OWID), EMA, EFSA, RKI SurvStat, OECD Health, BASG, CDC Newsroom, CDC Open Data |
 | **Migration** | UNHCR, Frontex |
-| **Energy** | OWID Energy Safety (9 sources × 7 dimensions), Energy-Charts |
-| **Fact-checker databases** | GADMO (APA + Correctiv), Google Fact Check API (EFCSN), DataCommons ClaimReview, EUvsDisinfo, Mimikama, AT-Faktencheck-RSS |
-| **Austria-specific topic packs** | AT Factbook (18 topics), DACH Factbook (11 topics), BKA PKS (police crime statistics), Bildung DACH, Wohnen AT, Verkehr AT, AT Courts |
+| **Energy** | OWID Energy Safety (9 sources × 7 dimensions), Energy-Charts, OWID climate/energy indicators |
+| **Fact-checker databases** | GADMO (APA + Correctiv), Google Fact Check API (EFCSN), DataCommons ClaimReview, EUvsDisinfo, Mimikama, AT-Faktencheck-RSS, Snopes, Full Fact, Bellingcat, FactCheck.org |
+| **News & encyclopedia** | GDELT v2 GKG via BigQuery (100k+ sources worldwide, 7-day partition filter), Wikipedia (DE-first + EN-fallback + Search-fallback) |
+| **Archive** | Wayback Machine CDX (Internet Archive — URL snapshot lookup) |
 
-Each curated topic pack is a `data/*.json` file with substring +
-composite triggers. The pattern is documented in
-[ARCHITECTURE.md §3](ARCHITECTURE.md). To contribute a new topic,
-follow the anatomy in §3.5.
+### Static-First Topic Packs (40, ~430 topics)
+
+Each pack is a `data/*.json` file with substring + composite triggers, plus a cosine-similarity backup-trigger. The pattern is documented in [ARCHITECTURE.md §3.5](ARCHITECTURE.md).
+
+| Domain | Packs |
+|---|---|
+| **Austria/DACH baseline** | AT Factbook (18), DACH Factbook (11), BKA PKS (police crime statistics) |
+| **Education & social** | Bildung DACH, Schule, Sozialstaat (13 AT-specific topics: Mindestsicherung, Pension, Familienbeihilfe, Pflegegeld, GuKG, etc.), Inklusion (12 topics: autism/ADHD/Down syndrome/IQ/inclusion/care home AT/ICF/UN-CRPD/ABA therapy/HSP/accessibility/special school) |
+| **Housing & mobility** | Wohnen AT (14 topics: rent regulation, vacancy, social housing, Berlin Mietendeckel, AirBnB, Eigentumsquote, etc.), Mobilität (14 topics: ADAC/ICCT/ÖBB/DB/UBA, EV myths, AFIR, Autobahn-Tempo) |
+| **Health & medicine** | Onkologie, Mental-Health, Substanzen, Reproduktions-Medizin, Lebensmittel-Sicherheit, Verkehrssicherheit |
+| **Politics & society** | Migrations-Konsens, Gleichstellung, Religionsgemeinschaften, Wirtschaftspolitik, Demokratie (12 topics: Wahlbeteiligung/Briefwahl/V-Dem/CPI/RSF), Welthandel (12 topics: Lieferketten, TRIPS, Brexit, Sanctions, IRA), Sicherheitspolitik (12 topics: AT-Neutralität BVG 1955/Wehrpflicht/NATO/PESCO/Drohnen/Atomwaffen/Bundesheer/Sky Shield/Krim-Donbas-Völkerrecht/Cyber/Hybrid) |
+| **Markets & infrastructure** | Geldanlage, Finanzen, Energy-Charts AT, Cybersecurity, Datenschutz (12 topics: EuGH/BVerfG/AT-VfGH/NOYB/EFF), Arbeitsmarkt (14 topics: Mindestlohn/Card-Krueger/Bloom/Lalive), Landwirtschaft (13 topics: GVO/EFSA/Bio/Glyphosat/IARC) |
+| **Special** | Tierhaltung, Digital-Familie, Alltags-Mythen, EU-Courts, AT-Courts, Education-DACH, Tech/KI |
+
+To contribute a new topic, follow the anatomy in [ARCHITECTURE.md §3.5](ARCHITECTURE.md).
 
 ## Security
 
@@ -278,8 +302,8 @@ python3 tools/stress_test.py --claims tools/stress_tests/lehrer.json \
 Bundled claim sets live under `tools/stress_tests/`. Methodology
 (four measurement points: verdict-match, source-match, trigger gaps,
 hot-reload) is documented in [ARCHITECTURE.md §4.4](ARCHITECTURE.md).
-Cumulative result across 10 stress tests, 200 curated claims:
-**0 false-positives, 0 false-negatives** (state 2026-05-01).
+Cumulative result across 53+ stress-test PDFs, **1000+ curated claims**:
+aggregate verdict-match consistently above 90 % (latest 5-block: 376/398 = 94.5 %), 0 systematic false-positives detected. Per-pack stress-tests live in `tools/pdf_meta/`.
 
 A latency profiler complements this:
 
@@ -315,8 +339,8 @@ stress-tests** to catch trigger gaps and verdict regressions. Each test
 measures verdict-match, expected-source coverage, trigger gaps, and live
 hot-reload behavior. The full methodology lives in
 `memory/stress_test_method.md` and [ARCHITECTURE.md §4.4](ARCHITECTURE.md);
-cumulative balance across 8 tests: **160+ claims, 0 false-positives,
-0 false-negatives** (state 2026-04-30).
+cumulative balance across 53+ tests: **1000+ claims**, aggregate
+verdict-match above 90 % (latest 5-block: 376/398 = 94.5 %), 0 systematic false-positives detected (state 2026-05-08).
 
 ## Troubleshooting
 
