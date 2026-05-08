@@ -596,10 +596,10 @@ function renderHistory() {
             <button class="history-clear" onclick="clearHistory()">${t("history_clear")}</button>
         </div>
         ${history.map(h => `
-            <div class="history-item" onclick="useHistoryItem('${escapeHtml(h.claim).replace(/'/g, "\\'")}')">
+            <button type="button" class="history-item" onclick="useHistoryItem('${escapeHtml(h.claim).replace(/'/g, "\\'")}')">
                 <span class="history-verdict hv-${h.verdict}">${getVerdictLabels()[h.verdict] || "?"}</span>
-                <span>${escapeHtml(h.claim)}</span>
-            </div>
+                <span class="history-claim">${escapeHtml(h.claim)}</span>
+            </button>
         `).join("")}
     `;
 }
@@ -719,6 +719,25 @@ function checkUrlParams() {
 // Legal modals (Privacy, Imprint, Disclaimer)
 let imprintData = null;
 
+// A11Y: focus-trap state for modal — stores element to restore focus to on close.
+let modalLastFocused = null;
+let modalKeydownHandler = null;
+
+// CSS selectors that count as "tabbable" for the focus trap.
+const FOCUSABLE_SELECTOR = [
+    "a[href]",
+    "button:not([disabled])",
+    "input:not([disabled])",
+    "select:not([disabled])",
+    "textarea:not([disabled])",
+    "[tabindex]:not([tabindex='-1'])"
+].join(",");
+
+function getFocusableElements(container) {
+    return Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR))
+        .filter(el => el.offsetWidth > 0 || el.offsetHeight > 0 || el.getClientRects().length > 0);
+}
+
 async function openModal(type, e) {
     e.preventDefault();
     const body = document.getElementById("legal-body");
@@ -750,14 +769,65 @@ async function openModal(type, e) {
         }
     }
 
-    document.getElementById("legal-modal").classList.remove("hidden");
+    const modal = document.getElementById("legal-modal");
+    modal.classList.remove("hidden");
     document.body.style.overflow = "hidden";
+
+    // A11Y: store element to restore focus to (the trigger link/button)
+    modalLastFocused = document.activeElement;
+
+    // A11Y: hide background content from assistive tech
+    document.querySelectorAll("main, footer, nav.lang-toggle").forEach(el => {
+        el.setAttribute("inert", "");
+        el.setAttribute("aria-hidden", "true");
+    });
+
+    // A11Y: move focus into the modal (close-button is the safe default)
+    const closeBtn = modal.querySelector(".modal-close");
+    if (closeBtn) closeBtn.focus();
+
+    // A11Y: install Tab focus-trap (cycles between first/last focusable in modal)
+    modalKeydownHandler = (ev) => {
+        if (ev.key !== "Tab") return;
+        const content = modal.querySelector(".modal-content");
+        const focusable = getFocusableElements(content);
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (ev.shiftKey && document.activeElement === first) {
+            ev.preventDefault();
+            last.focus();
+        } else if (!ev.shiftKey && document.activeElement === last) {
+            ev.preventDefault();
+            first.focus();
+        }
+    };
+    modal.addEventListener("keydown", modalKeydownHandler);
 }
 
 function closeModal(e) {
-    e.preventDefault();
-    document.getElementById("legal-modal").classList.add("hidden");
+    if (e) e.preventDefault();
+    const modal = document.getElementById("legal-modal");
+    modal.classList.add("hidden");
     document.body.style.overflow = "";
+
+    // A11Y: remove keydown trap
+    if (modalKeydownHandler) {
+        modal.removeEventListener("keydown", modalKeydownHandler);
+        modalKeydownHandler = null;
+    }
+
+    // A11Y: re-expose background content to assistive tech
+    document.querySelectorAll("main, footer, nav.lang-toggle").forEach(el => {
+        el.removeAttribute("inert");
+        el.removeAttribute("aria-hidden");
+    });
+
+    // A11Y: restore focus to the element that opened the modal
+    if (modalLastFocused && typeof modalLastFocused.focus === "function") {
+        modalLastFocused.focus();
+        modalLastFocused = null;
+    }
 }
 
 document.addEventListener("keydown", (e) => {

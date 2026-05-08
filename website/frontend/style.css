@@ -137,12 +137,12 @@ body {
 
 .logo .domain-suffix {
     font-weight: 300;
-    color: #9ca3af;
+    color: #6b7280;
     font-size: 0.6em;
 }
 
 .slogan-etymology {
-    color: #9ca3af;
+    color: #6b7280;
     font-size: 0.8rem;
     font-style: italic;
     letter-spacing: 0.5px;
@@ -238,6 +238,8 @@ body {
     padding: 10px 0;
     background: transparent;
 }
+#claim-input::placeholder { color: #6b7280; opacity: 1; }
+
 
 #search-btn {
     flex-shrink: 0;
@@ -278,7 +280,7 @@ body {
     border: none;
     cursor: pointer;
     font-size: 0.75rem;
-    color: #9ca3af;
+    color: #6b7280;
     padding: 2px 0;
     transition: color 0.2s;
 }
@@ -336,7 +338,7 @@ body {
 /* Character counter */
 .char-counter {
     font-size: 0.75rem;
-    color: #9ca3af;
+    color: #6b7280;
     transition: color 0.2s;
 }
 
@@ -375,7 +377,7 @@ body {
 
 .example-claims-label {
     font-size: 0.8rem;
-    color: #9ca3af;
+    color: #6b7280;
     margin-bottom: 10px;
     font-weight: 500;
 }
@@ -461,13 +463,13 @@ body {
     padding: 10px 16px;
     border-bottom: 1px solid #f3f4f6;
     font-size: 0.8rem;
-    color: #9ca3af;
+    color: #6b7280;
 }
 
 .history-clear {
     border: none;
     background: none;
-    color: #9ca3af;
+    color: #6b7280;
     cursor: pointer;
     font-size: 0.75rem;
     padding: 2px 6px;
@@ -487,8 +489,25 @@ body {
     cursor: pointer;
     font-size: 0.9rem;
     color: #374151;
+    border: none;
     border-bottom: 1px solid #f9fafb;
+    background: transparent;
+    text-align: left;
+    width: 100%;
+    font-family: inherit;
     transition: background 0.15s;
+}
+
+.history-item:focus-visible {
+    outline: 2px solid #0d9488;
+    outline-offset: -2px;
+}
+
+.history-claim {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .history-item:last-child {
@@ -508,10 +527,10 @@ body {
     flex-shrink: 0;
 }
 
-.history-verdict.hv-true, .history-verdict.hv-mostly_true { background: #dcfce7; color: #16a34a; }
-.history-verdict.hv-mixed { background: #fef3c7; color: #d97706; }
+.history-verdict.hv-true, .history-verdict.hv-mostly_true { background: #dcfce7; color: #15803d; }
+.history-verdict.hv-mixed { background: #fef3c7; color: #b45309; }
 .history-verdict.hv-mostly_false, .history-verdict.hv-false { background: #fee2e2; color: #dc2626; }
-.history-verdict.hv-unverifiable { background: #f3f4f6; color: #6b7280; }
+.history-verdict.hv-unverifiable { background: #f3f4f6; color: #4b5563; }
 
 /* Result Actions */
 .result-actions {
@@ -548,7 +567,7 @@ body {
 }
 
 .action-btn-report {
-    color: #9ca3af;
+    color: #6b7280;
     border-color: #e5e7eb;
 }
 
@@ -599,7 +618,7 @@ body {
 */
 .step {
     font-size: 0.85rem;
-    color: #9ca3af;
+    color: #6b7280;
     padding: 6px 14px 6px 12px;
     border-radius: 16px;
     background: #f9fafb;
@@ -676,7 +695,7 @@ body {
 .dev-notice {
     text-align: center;
     font-size: 0.8rem;
-    color: #9ca3af;
+    color: #6b7280;
     margin: 0 0 12px 0;
     font-style: italic;
 }
@@ -687,7 +706,7 @@ body {
 }
 .claim-display-label {
     font-size: 0.75rem;
-    color: #9ca3af;
+    color: #6b7280;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin: 0 0 4px 0;
@@ -695,7 +714,7 @@ body {
 .claim-display-text {
     margin: 0;
     padding: 10px 14px;
-    border-left: 3px solid #9ca3af;
+    border-left: 3px solid #6b7280;
     background: #f9fafb;
     border-radius: 0 8px 8px 0;
     font-size: 0.95rem;
@@ -834,7 +853,7 @@ body {
     display: inline-flex;
     align-items: center;
     cursor: help;
-    color: #9ca3af;
+    color: #6b7280;
 }
 
 .tooltip-anchor:hover,
@@ -957,7 +976,7 @@ body {
 }
 .source-miss {
     background: #f3f4f6;
-    color: #9ca3af;
+    color: #6b7280;
 }
 
 .coverage-warning {
@@ -1127,7 +1146,7 @@ body {
 
 .source-meta {
     font-size: 0.8rem;
-    color: #9ca3af;
+    color: #6b7280;
     margin-top: 4px;
 }
 
@@ -1140,7 +1159,7 @@ body {
 
 .source-attribution {
     font-size: 0.75rem;
-    color: #9ca3af;
+    color: #6b7280;
     font-style: italic;
     margin-top: 8px;
     padding-top: 8px;
@@ -1281,7 +1300,7 @@ footer {
     text-align: center;
     padding: 24px 20px;
     border-top: 1px solid #f3f4f6;
-    color: #9ca3af;
+    color: #6b7280;
     font-size: 0.8rem;
 }
 
@@ -1372,7 +1391,7 @@ footer {
     border: none;
     background: none;
     font-size: 1.5rem;
-    color: #9ca3af;
+    color: #6b7280;
     cursor: pointer;
     width: 36px;
     height: 36px;
