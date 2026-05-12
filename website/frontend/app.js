@@ -386,7 +386,11 @@ function renderVerdict(data) {
         coverageWarning = `<div class="coverage-warning coverage-none">${t("source_coverage_none")}</div>`;
     } else if (withResults === 1) {
         coverageWarning = `<div class="coverage-warning coverage-low">${t("source_coverage_single")}</div>`;
-    } else if (queried > 0 && withResults <= Math.floor(queried / 3)) {
+    } else if (queried > 0 && withResults < 3) {
+        // 0/1 sind schon oben abgedeckt — hier nur withResults === 2.
+        // Absolute Schwelle statt Verhältnis: 3+ unabhängige Quellen
+        // gelten als ausreichend, egal wie breit der Fan-Out war.
+        // (Vorher: queried/3 — bei 21 Live-API + 40 Packs zu strikt.)
         coverageWarning = `<div class="coverage-warning coverage-low">${t("source_coverage_low")}</div>`;
     }
 
