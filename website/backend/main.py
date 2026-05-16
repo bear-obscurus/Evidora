@@ -121,6 +121,7 @@ from services.arxiv import search_arxiv, _claim_mentions_preprint_research, _ext
 from services.uncomtrade import search_uncomtrade, claim_mentions_trade
 from services.dbnomics import search_dbnomics, claim_mentions_dbnomics_cached
 from services.osv import search_osv, claim_mentions_osv_cached
+from services.nvd import search_nvd, claim_mentions_nvd_cached
 from services.eric import search_eric, claim_mentions_eric_cached
 from services.faostat import search_faostat, claim_mentions_faostat_cached
 from services.gdelt import search_gdelt
@@ -596,6 +597,13 @@ async def check_claim(request: Request):
         if claim_mentions_osv_cached(claim):
             tasks.append(cached("OSV.dev", search_osv, analysis))
             queried_names.append("OSV.dev")
+        # NIST NVD — US National Vulnerability Database, komplementär zu
+        # OSV.dev. NVD liefert CVSS v3.1/v4.0-Severity-Scores + KEV-Status
+        # (CISA Known Exploited Vulnerabilities), die OSV oft fehlen.
+        # Beide Services dürfen parallel feuern — Reranker entscheidet.
+        if claim_mentions_nvd_cached(claim):
+            tasks.append(cached("NIST NVD", search_nvd, analysis))
+            queried_names.append("NIST NVD")
         # ERIC — Education Resources Information Center (US IES);
         # 1,6 Mio. Bildungs-Forschungs-Records seit 1966, peer-reviewed-
         # Filter, für „Studienlage zu X"-Bildungs-Claims. Komplementär
