@@ -129,6 +129,11 @@ from services.getty import search_getty, claim_mentions_getty_cached
 from services.mitre_attack import search_mitre_attack, claim_mentions_mitre_cached
 from services.aiid import search_aiid, claim_mentions_aiid_cached
 from services.edpb import search_edpb, claim_mentions_edpb_cached
+from services.wgi import search_wgi, claim_mentions_wgi_cached
+from services.imf import search_imf, claim_mentions_imf_cached
+from services.bis import search_bis, claim_mentions_bis_cached
+from services.ilostat import search_ilostat, claim_mentions_ilostat_cached
+from services.irena import search_irena, claim_mentions_irena_cached
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
@@ -640,6 +645,39 @@ async def check_claim(request: Request):
         if claim_mentions_getty_cached(claim):
             tasks.append(cached("Getty Vocabularies", search_getty, analysis))
             queried_names.append("Getty Vocabularies")
+        # WGI — World Bank Worldwide Governance Indicators (6 Dimensionen
+        # Voice/Stability/Effectiveness/RegQuality/RoL/Corruption für 200+
+        # Länder seit 1996). Komplementär zu Transparency CPI + worldbank.py
+        # (Development-Indicators). Aggregat aus 35 Cross-Country-Quellen.
+        if claim_mentions_wgi_cached(claim):
+            tasks.append(cached("WGI", search_wgi, analysis))
+            queried_names.append("WGI (World Bank Governance)")
+        # IMF — World Economic Outlook + Financial Soundness Indicators.
+        # Globale BIP/Inflation/Arbeitslosigkeit-Prognosen, Article-IV-
+        # Reports. DBnomics-Fallback bei IMF-API-Fehlern (404 nach 2024
+        # URN-Restructure).
+        if claim_mentions_imf_cached(claim):
+            tasks.append(cached("IMF", search_imf, analysis))
+            queried_names.append("IMF (WEO + FSI)")
+        # BIS — Bank for International Settlements. Cross-Border-Banking,
+        # Property Prices international, Schuldverschreibungen, Policy
+        # Rates. DBnomics-Aggregator-Pfad (BIS-direct gibt 406/500).
+        if claim_mentions_bis_cached(claim):
+            tasks.append(cached("BIS", search_bis, analysis))
+            queried_names.append("BIS")
+        # ILOSTAT — International Labour Organization Statistics. Globale
+        # Arbeitslosigkeit, Working Poor, Kinderarbeit, Gender Pay Gap.
+        # DBnomics-Pfad (ILO-direct zu träge); AT/DE-Hard-Skip mit
+        # Vergleichs-Composite-Schutz.
+        if claim_mentions_ilostat_cached(claim):
+            tasks.append(cached("ILOSTAT", search_ilostat, analysis))
+            queried_names.append("ILOSTAT")
+        # IRENA — International Renewable Energy Agency. Solar/Wind/Hydro/
+        # Bio/Geo-Kapazität + Generation für 200+ Länder. PxWeb-API direkt.
+        # Komplementär zu Energy-Charts (DACH-Strom-Mix) + EEA (EU-Emissionen).
+        if claim_mentions_irena_cached(claim):
+            tasks.append(cached("IRENA", search_irena, analysis))
+            queried_names.append("IRENA")
         # ERIC — Education Resources Information Center (US IES);
         # 1,6 Mio. Bildungs-Forschungs-Records seit 1966, peer-reviewed-
         # Filter, für „Studienlage zu X"-Bildungs-Claims. Komplementär
