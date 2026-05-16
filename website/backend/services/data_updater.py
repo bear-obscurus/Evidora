@@ -69,6 +69,8 @@ from services.at_courts import fetch_at_courts
 from services.oecd_health import fetch_oecd_health
 from services.housing_at import fetch_housing
 from services.transport_at import fetch_transport
+from services.mitre_attack import fetch_mitre_attack
+from services.edpb import fetch_edpb
 
 logger = logging.getLogger("evidora")
 
@@ -127,6 +129,8 @@ async def prefetch_all():
             fetch_oecd_health(client),
             fetch_housing(client),
             fetch_transport(client),
+            fetch_mitre_attack(client),
+            fetch_edpb(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "OWID Measles", "OWID Vaccination (WUENIC)",
@@ -153,7 +157,9 @@ async def prefetch_all():
                  "VfGH + VwGH Schlüsselerkenntnisse",
                  "OECD Health (DACH)",
                  "Wohnen Österreich (OeNB + EU-SILC)",
-                 "Verkehr Österreich (ÖBB + UBA + KlimaTicket)"]
+                 "Verkehr Österreich (ÖBB + UBA + KlimaTicket)",
+                 "MITRE ATT&CK (STIX-Bundle)",
+                 "EDPB (Guidelines+News)"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")

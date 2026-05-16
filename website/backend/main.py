@@ -124,6 +124,11 @@ from services.osv import search_osv, claim_mentions_osv_cached
 from services.nvd import search_nvd, claim_mentions_nvd_cached
 from services.eric import search_eric, claim_mentions_eric_cached
 from services.faostat import search_faostat, claim_mentions_faostat_cached
+from services.doab import search_doab, claim_mentions_doab_cached
+from services.getty import search_getty, claim_mentions_getty_cached
+from services.mitre_attack import search_mitre_attack, claim_mentions_mitre_cached
+from services.aiid import search_aiid, claim_mentions_aiid_cached
+from services.edpb import search_edpb, claim_mentions_edpb_cached
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
@@ -604,6 +609,37 @@ async def check_claim(request: Request):
         if claim_mentions_nvd_cached(claim):
             tasks.append(cached("NIST NVD", search_nvd, analysis))
             queried_names.append("NIST NVD")
+        # MITRE ATT&CK — globaler Standard für Adversary-TTPs + APT-Gruppen-
+        # Attribution (royalty-free Lizenz). Komplementär zu OSV/NVD:
+        # OSV/NVD = Vulnerabilities, MITRE = Threat-Actors + Techniques.
+        # Hard-Skip wenn nur CVE-Claim ohne APT/TTP-Bezug.
+        if claim_mentions_mitre_cached(claim):
+            tasks.append(cached("MITRE ATT&CK", search_mitre_attack, analysis))
+            queried_names.append("MITRE ATT&CK")
+        # AI Incident Database (AIID) — 3.500+ dokumentierte KI-Schadens-
+        # fälle weltweit (Responsible AI Collaborative, OECD-anerkannt).
+        # KI-Bias, autonomes Fahren, Gesichtserkennung-Fehler etc.
+        if claim_mentions_aiid_cached(claim):
+            tasks.append(cached("AIID", search_aiid, analysis))
+            queried_names.append("AI Incident Database")
+        # EDPB — European Data Protection Board (offizielle GDPR-Auslegung
+        # für alle 27 EU-Staaten). 83+ verbindliche Guidelines.
+        # Komplementär zu NOYB-Pack (Enforcement vs. Guidance).
+        if claim_mentions_edpb_cached(claim):
+            tasks.append(cached("EDPB", search_edpb, analysis))
+            queried_names.append("EDPB")
+        # DOAB — Directory of Open Access Books. 70k+ peer-reviewed OA-
+        # Bücher von 600+ Verlagen, Schwerpunkt Geistes-/Sozialwissen-
+        # schaften. Buch-/Monographie-Claims, OA-Verlage.
+        if claim_mentions_doab_cached(claim):
+            tasks.append(cached("DOAB", search_doab, analysis))
+            queried_names.append("DOAB")
+        # Getty Vocabularies (AAT/TGN/ULAN) — kunsthistorische
+        # Terminologie, geographische Orte, Künstler-Namen (ODC-By 1.0).
+        # Komplementär zu Wikidata bei Kunst/Geschichts-Claims.
+        if claim_mentions_getty_cached(claim):
+            tasks.append(cached("Getty Vocabularies", search_getty, analysis))
+            queried_names.append("Getty Vocabularies")
         # ERIC — Education Resources Information Center (US IES);
         # 1,6 Mio. Bildungs-Forschungs-Records seit 1966, peer-reviewed-
         # Filter, für „Studienlage zu X"-Bildungs-Claims. Komplementär
