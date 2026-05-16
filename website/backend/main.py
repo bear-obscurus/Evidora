@@ -119,6 +119,10 @@ from services.wikidata import search_wikidata, claim_triggers_wikidata
 from services.freedom_house import search_freedom_house, claim_mentions_freedom_house_cached
 from services.arxiv import search_arxiv, _claim_mentions_preprint_research, _extract_arxiv_ids
 from services.uncomtrade import search_uncomtrade, claim_mentions_trade
+from services.dbnomics import search_dbnomics, claim_mentions_dbnomics_cached
+from services.osv import search_osv, claim_mentions_osv_cached
+from services.eric import search_eric, claim_mentions_eric_cached
+from services.faostat import search_faostat, claim_mentions_faostat_cached
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
@@ -577,6 +581,34 @@ async def check_claim(request: Request):
         if claim_mentions_transport_cached(claim):
             tasks.append(cached("Verkehr AT", search_transport, analysis))
             queried_names.append("Verkehr Österreich (ÖBB + UBA + KlimaTicket)")
+        # DBnomics — Meta-Aggregator für 50k+ Wirtschafts-Zeitreihen von
+        # ECB/IMF/OECD/BIS/Worldbank/FRED/OeNB/WIFO/CEPII/INSEE; ergänzt
+        # bestehende AT/DE-Wirtschafts-Quellen mit globaler Coverage
+        # (Hard-Skip bei rein AT/DE-Claims, dort sind dedizierte Quellen
+        # zuständig).
+        if claim_mentions_dbnomics_cached(claim):
+            tasks.append(cached("DBnomics", search_dbnomics, analysis))
+            queried_names.append("DBnomics")
+        # OSV.dev — Open Source Vulnerabilities Aggregator (GitHub Advisory
+        # + PyPA + RustSec + Maven + npm); CVE-Direct-Resolution + Package-
+        # Vulnerability-Lookup für Tech/Cybersecurity-Claims. Schließt
+        # NVD-CVSS-Lücke seit 04/2026 (65% OSS-CVEs ohne CVSS).
+        if claim_mentions_osv_cached(claim):
+            tasks.append(cached("OSV.dev", search_osv, analysis))
+            queried_names.append("OSV.dev")
+        # ERIC — Education Resources Information Center (US IES);
+        # 1,6 Mio. Bildungs-Forschungs-Records seit 1966, peer-reviewed-
+        # Filter, für „Studienlage zu X"-Bildungs-Claims. Komplementär
+        # zu Hattie-Pack + EEF + Bildung-DACH-Pack.
+        if claim_mentions_eric_cached(claim):
+            tasks.append(cached("ERIC", search_eric, analysis))
+            queried_names.append("ERIC")
+        # FAOSTAT — UN Food and Agriculture Organization Statistik;
+        # 245+ Länder, 60+ Jahre Zeitreihen (Crops/Food-Balance/Pesticides/
+        # Emissions/Trade). Globaler Komplement zu AT-AMA + Grüner Bericht.
+        if claim_mentions_faostat_cached(claim):
+            tasks.append(cached("FAOSTAT", search_faostat, analysis))
+            queried_names.append("FAOSTAT")
         # Esoterik / Pseudowissenschaft — kuratierte Skeptiker-Konsens-
         # Daten (GWUP, Cochrane, NHMRC, BfArM) für Themen, zu denen
         # mainstream-DBs entweder nichts oder thematisch unrelevante
