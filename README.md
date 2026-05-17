@@ -4,7 +4,7 @@
 
 A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
-Evidora automatically verifies claims against **60+ scientific and institutional sources**: **21 live-API connectors** (PubMed, Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, GADMO/Snopes/Correctiv/Full Fact/Bellingcat/FactCheck.org, NIH MedlinePlus, NCBI ClinVar, CDC Newsroom + Open Data, GDELT v2 GKG via BigQuery, Wikipedia, OurWorldInData, V-Dem v14, Wayback Machine CDX, Crossref REST, OpenAQ v3, Wikidata SPARQL, Freedom House FIW 2024, arXiv Atom, UN Comtrade) plus **40 curated static-first topic packs** (~430 topics) covering Austria/DACH-specific domains: science consensus, energy, medicine, climate, mental health, oncology, addiction, digital family, finance/investments, everyday myths, traffic safety, animal welfare, cybersecurity, food safety, gender equality, religious communities, economic policy, housing, labor market, mobility, data protection, social state, democracy, agriculture, world trade, inclusion, and security policy.
+Evidora automatically verifies claims against **80+ scientific and institutional sources**: **41 live-API connectors** (PubMed, Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, GADMO/Snopes/Correctiv/Full Fact/Bellingcat/FactCheck.org, NIH MedlinePlus, NCBI ClinVar, CDC Newsroom + Open Data, GDELT v2 GKG via BigQuery, Wikipedia, OurWorldInData, V-Dem v14, Wayback Machine CDX, Crossref REST, OpenAQ v3, Wikidata SPARQL, Freedom House FIW 2024, arXiv Atom, UN Comtrade, **DBnomics** (50k+ economic series aggregator), **OSV.dev** (open-source vulnerabilities), **NIST NVD** (CVE database + CVSS scores), **ERIC** (1.6M education research records), **FAOSTAT** (food + agriculture statistics), **DOAB** (70k+ open-access academic books), **Getty Vocabularies** (art/geography LOD), **MITRE ATT&CK** (threat actor TTPs), **AI Incident Database**, **EDPB** (EU data protection guidelines), **WGI** (World Bank Governance Indicators), **IMF** (WEO + financial statistics), **BIS** (banking statistics), **ILOSTAT** (global labor data), **IRENA** (renewable energy capacity), **UNECE** (transport statistics), **OSM Nominatim** (geocoding), **Mozilla HTTP Observatory** (web security), **DeFiLlama** (DeFi/crypto TVL), **OECD SDMX** (TALIS + SOCX + Family + Affordable Housing)) plus **40 curated static-first topic packs** (~430 topics) covering Austria/DACH-specific domains: science consensus, energy, medicine, climate, mental health, oncology, addiction, digital family, finance/investments, everyday myths, traffic safety, animal welfare, cybersecurity, food safety, gender equality, religious communities, economic policy, housing, labor market, mobility, data protection, social state, democracy, agriculture, world trade, inclusion, and security policy.
 
 **Live Demo:** [https://evidora.eu](https://evidora.eu)
 
@@ -15,7 +15,7 @@ Evidora automatically verifies claims against **60+ scientific and institutional
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **60+ data sources** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD/Austrian statistics, climate data, disease surveillance, court rulings, parliamentary records, electoral data, disinformation databases, and curated topic packs (see table below)
+- **80+ data sources** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD/Austrian statistics, climate data, disease surveillance, court rulings, parliamentary records, electoral data, disinformation databases, vulnerability databases (NVD + OSV), governance + economic aggregators (WGI/IMF/BIS/DBnomics), AI-incident reports, geocoding + cultural heritage, and curated topic packs (see table below)
 - **Static-first topic services** — Curated facts (`data/*.json`) with substring/composite triggers and a cosine-similarity backup, so well-known claims hit deterministic answers without an extra API roundtrip. **40 topic packs (~430 topics)** cover Austrian/DACH-specific questions across science, medicine, climate, economy, politics, justice, social state, agriculture, security policy, inclusion, and more. See [ARCHITECTURE.md §3](ARCHITECTURE.md)
 - **Hot-reload of static data** — Edits to `data/*.json` go live without a backend restart (mtime-aware cache + verdict-cache version-suffix)
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
@@ -143,21 +143,24 @@ Sources are grouped by domain. Each lives in its own service module
 during analysis. For implementation patterns (live-API vs. static-first
 topic vs. hybrid), see [ARCHITECTURE.md §2](ARCHITECTURE.md).
 
-### Live-API Connectors (21)
+### Live-API Connectors (41)
 
 | Domain | Sources |
 |---|---|
-| **Science & medicine** | PubMed, Cochrane (via PubMed), Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, Retraction Watch, bioRxiv / medRxiv, NIH MedlinePlus, NCBI ClinVar, Crossref REST (DOI resolution + paper search), arXiv Atom (preprints) |
-| **Climate & environment** | NASA GISS, Berkeley Earth, Copernicus CDS, EEA (via Eurostat), GeoSphere AT, Skeptical Science, Energy-Charts, OurWorldInData (CC-BY 4.0, ~31 indicators climate/energy/health/economy/demographics), OpenAQ v3 (air-quality, 42 EU/AT/DE/CH cities) |
-| **Economy & finance** | Eurostat, OECD (PISA + SDMX), World Bank, ECB, Statistik Austria, WIFO + IHS forecasts, OeNB, UN Comtrade (bilateral trade flows by HS chapter/country) |
-| **Politics & democracy** | V-Dem v14 (32 countries × 11 indices), Freedom House FIW 2024 (55 countries × 6 indicators, refreshed yearly from official XLSX), Transparency International CPI, RSF, SIPRI, IDEA, Parlament.gv.at, BMI Wahlen + Volksbegehren, MedienTransparenz (KommAustria), Wikidata SPARQL (10 curated templates) |
-| **Justice & courts** | RIS (Austrian legal information), EuGH + EGMR (EU & ECHR rulings), VfGH + VwGH (Austrian constitutional + administrative courts) |
+| **Science & medicine** | PubMed, Cochrane (via PubMed), Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, Retraction Watch, bioRxiv / medRxiv, NIH MedlinePlus, NCBI ClinVar, Crossref REST (DOI resolution + paper search), arXiv Atom (preprints), **ERIC** (1.6M IES education research records since 1966), **FAOSTAT** (UN FAO food + agriculture, 245+ countries) |
+| **Climate & environment** | NASA GISS, Berkeley Earth, Copernicus CDS, EEA (via Eurostat), GeoSphere AT, Skeptical Science, Energy-Charts, OurWorldInData (CC-BY 4.0, ~31 indicators climate/energy/health/economy/demographics), OpenAQ v3 (air-quality, 42 EU/AT/DE/CH cities), **IRENA** (renewable energy capacity + generation, 200+ countries) |
+| **Economy & finance** | Eurostat, OECD (PISA + SDMX), World Bank, ECB, Statistik Austria, WIFO + IHS forecasts, OeNB, UN Comtrade (bilateral trade flows), **DBnomics** (50k+ time-series aggregator from ECB/IMF/OECD/BIS/Worldbank/FRED/OeNB/CEPII/INSEE), **IMF** (World Economic Outlook + Financial Soundness Indicators), **BIS** (Bank for International Settlements — cross-border banking, property prices, policy rates), **ILOSTAT** (global labor data, ILO), **OECD SDMX** (TALIS + SOCX + Family + Affordable Housing) |
+| **Politics & democracy** | V-Dem v14 (32 countries × 11 indices), Freedom House FIW 2024 (55 countries × 6 indicators), Transparency International CPI, RSF, SIPRI, IDEA, Parlament.gv.at, BMI Wahlen + Volksbegehren, MedienTransparenz (KommAustria), Wikidata SPARQL (10 curated templates), **WGI** (World Bank Worldwide Governance Indicators — 6 dimensions × 200+ countries since 1996) |
+| **Justice & courts** | RIS (Austrian legal information), EuGH + EGMR (EU & ECHR rulings), VfGH + VwGH (Austrian constitutional + administrative courts), **EDPB** (European Data Protection Board guidelines) |
 | **Health & disease surveillance** | WHO GHO, WHO Europe (HFA Gateway), ECDC (via OWID), EMA, EFSA, RKI SurvStat, OECD Health, BASG, CDC Newsroom, CDC Open Data |
 | **Migration** | UNHCR, Frontex |
-| **Energy** | OWID Energy Safety (9 sources × 7 dimensions), Energy-Charts, OWID climate/energy indicators |
+| **Energy** | OWID Energy Safety (9 sources × 7 dimensions), Energy-Charts, OWID climate/energy indicators, IRENA |
+| **Cybersecurity & AI** | **OSV.dev** (Open Source Vulnerabilities aggregator — GitHub/PyPA/RustSec/Maven/npm), **NIST NVD** (CVE + CVSS scoring + CISA KEV), **MITRE ATT&CK** (TTP framework + APT attribution, royalty-free), **AI Incident Database** (3.500+ AI harm cases, Responsible AI Collaborative), **Mozilla HTTP Observatory** (web security headers) |
+| **Culture & geography** | **DOAB** (70k+ OA books, 600+ publishers), **Getty Vocabularies** (AAT/TGN/ULAN art + geo LOD), **OSM Nominatim** (global gazetteer), **UNECE** (transport statistics 56 countries), Wikidata SPARQL |
 | **Fact-checker databases** | GADMO (APA + Correctiv), Google Fact Check API (EFCSN), DataCommons ClaimReview, EUvsDisinfo, Mimikama, AT-Faktencheck-RSS, Snopes, Full Fact, Bellingcat, FactCheck.org |
 | **News & encyclopedia** | GDELT v2 GKG via BigQuery (100k+ sources worldwide, 7-day partition filter), Wikipedia (DE-first + EN-fallback + Search-fallback) |
 | **Archive** | Wayback Machine CDX (Internet Archive — URL snapshot lookup) |
+| **Crypto/DeFi (niche)** | **DeFiLlama** (350+ chains, 5.000+ protocols — TVL/stablecoins/yields) |
 
 ### Static-First Topic Packs (40, ~430 topics)
 
