@@ -134,6 +134,10 @@ from services.imf import search_imf, claim_mentions_imf_cached
 from services.bis import search_bis, claim_mentions_bis_cached
 from services.ilostat import search_ilostat, claim_mentions_ilostat_cached
 from services.irena import search_irena, claim_mentions_irena_cached
+from services.unece import search_unece, claim_mentions_unece_cached
+from services.nominatim import search_nominatim, claim_mentions_nominatim_cached
+from services.observatory import search_observatory, claim_mentions_observatory_cached
+from services.defillama import search_defillama, claim_mentions_defillama_cached
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
@@ -678,6 +682,30 @@ async def check_claim(request: Request):
         if claim_mentions_irena_cached(claim):
             tasks.append(cached("IRENA", search_irena, analysis))
             queried_names.append("IRENA")
+        # UNECE Transport Statistics — 56 UNECE-Länder, Schiene/Straße/
+        # Binnenwasser/Tram-Metro. Komplementär zu transport_at.py (AT) +
+        # ITF (OECD). PxWeb-API direkt.
+        if claim_mentions_unece_cached(claim):
+            tasks.append(cached("UNECE", search_unece, analysis))
+            queried_names.append("UNECE")
+        # OpenStreetMap Nominatim — globales Gazetteer. Verifikation von
+        # Ortsnamen/Koordinaten/Adressen (ODbL). Rate-Limit 1 req/s,
+        # 24h-Cache obligatorisch. Komplementär zu Wikidata (Wikidata =
+        # Personen, Nominatim = Orte).
+        if claim_mentions_nominatim_cached(claim):
+            tasks.append(cached("OSM Nominatim", search_nominatim, analysis))
+            queried_names.append("OSM Nominatim")
+        # Mozilla HTTP Observatory — Web-Security-Header-Audit (CSP/HSTS/
+        # X-Frame etc.). Verifiziert Tech-Claims über konkrete Domains
+        # (z.B. "Domain X hat keine HSTS").
+        if claim_mentions_observatory_cached(claim):
+            tasks.append(cached("Mozilla Observatory", search_observatory, analysis))
+            queried_names.append("Mozilla Observatory")
+        # DeFiLlama — DeFi/Crypto-TVL-Aggregator. 350+ Chains, 5000+
+        # Protokolle. Niche-Use-Case für Crypto-Marktdaten (MIT-Lizenz).
+        if claim_mentions_defillama_cached(claim):
+            tasks.append(cached("DeFiLlama", search_defillama, analysis))
+            queried_names.append("DeFiLlama")
         # ERIC — Education Resources Information Center (US IES);
         # 1,6 Mio. Bildungs-Forschungs-Records seit 1966, peer-reviewed-
         # Filter, für „Studienlage zu X"-Bildungs-Claims. Komplementär

@@ -550,6 +550,37 @@ DATASET_MAP = {
         "params": {"purchase": "TOTAL", "unit": "I15_Q", "lastTimePeriod": "8"},
         "unit": "Index (2015=100)",
     },
+    # Wohnkostenbelastung (Housing Cost Overburden — Anteil Haushalte mit
+    # Wohnkosten > 40% des Einkommens). Eurostat tespm140 / SDG_01_50.
+    # EU-27 + EFTA seit 2009. Komplementär zu Wohnen-AT-Pack (OeNB+EU-SILC).
+    "wohnkostenbelastung": {
+        "dataset": "tespm140",
+        "label": "Wohnkostenüberlastung",
+        "label_en": "Housing Cost Overburden Rate",
+        "params": {"unit": "PC", "lastTimePeriod": "5"},
+        "unit": "% der Haushalte",
+    },
+    "housing cost overburden": {
+        "dataset": "tespm140",
+        "label": "Wohnkostenüberlastung",
+        "label_en": "Housing Cost Overburden Rate",
+        "params": {"unit": "PC", "lastTimePeriod": "5"},
+        "unit": "% der Haushalte",
+    },
+    "wohnkosten überlastung": {
+        "dataset": "tespm140",
+        "label": "Wohnkostenüberlastung",
+        "label_en": "Housing Cost Overburden Rate",
+        "params": {"unit": "PC", "lastTimePeriod": "5"},
+        "unit": "% der Haushalte",
+    },
+    "mietkosten anteil": {
+        "dataset": "tespm140",
+        "label": "Wohnkostenüberlastung",
+        "label_en": "Housing Cost Overburden Rate",
+        "params": {"unit": "PC", "lastTimePeriod": "5"},
+        "unit": "% der Haushalte",
+    },
     # Mindestlohn
     "mindestlohn": {
         "dataset": "earn_mw_cur",
