@@ -169,6 +169,11 @@ def claim_mentions_vdem_cached(claim: str) -> bool:
     """
     if not claim:
         return False
+    # Politik-Tabu-Guard 2.0: Partei + Korruption + Superlativ ohne Anker → block
+    # V-Dem misst Länder-Demokratie, Partei-Werturteile sind Kategorienfehler.
+    from services._topic_match import is_party_corruption_superlative_claim
+    if is_party_corruption_superlative_claim(claim.lower()):
+        return False
     data = _load_data()
     if not data:
         return False

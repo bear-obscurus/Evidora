@@ -209,24 +209,13 @@ _DEFAULT_YEAR_RANGE = "2020:2024"
 def _claim_mentions_wgi(claim_lc: str) -> bool:
     """Pure-string Trigger-Test gegen die WGI-Themenkeywords.
 
-    Politik-Guardrail (Tabu #1 — keine Partei-Bewertung): Wenn der Claim
-    eine Partei-/Politiker-Bezeichnung mit Korruptions-Begriff kombiniert,
-    NICHT triggern — das wäre eine Partei-Wertung. Wikipedia-only-Cap-
-    Pattern: solche Claims gehen nur über Wikipedia + Faktencheck-RSS.
+    Politik-Guardrail (Tabu #1): Partei + Korruption mit Superlativ-Anspruch
+    → KEIN Trigger. Konkrete Affären-/Personen-/Zahlen-Anker hingegen
+    → durchlassen. Zentrale 2.0-Guard via _topic_match.politik_guard_action.
     """
-    # 0) Politik-Guardrail: Partei/Politiker + Korruption/Skandal → KEIN Trigger
-    _PARTY_TOKENS = (
-        "fpö", "fpoe", "spö", "spoe", "övp", "oevp", "neos", "grüne ", "gruene ",
-        "kpö", "kpoe", "afd", "cdu", "csu", "spd", "fdp", "linke", "republikaner",
-        "kickl", "babler", "stocker", "kogler", "meinl-reisinger",
-    )
-    _CORRUPT_TOKENS = (
-        "korruption", "korrupt", "skandal", "bestechung", "geldwäsche",
-        "schmiergeld", "kickback",
-    )
-    has_party = any(p in claim_lc for p in _PARTY_TOKENS)
-    has_corrupt = any(c in claim_lc for c in _CORRUPT_TOKENS)
-    if has_party and has_corrupt:
+    from services._topic_match import is_party_corruption_superlative_claim
+    # 0) Politik-Tabu-Guard 2.0: Partei + Korruption + Superlativ ohne Anker → blockieren
+    if is_party_corruption_superlative_claim(claim_lc):
         return False
     # 1) Generelle WGI-Begriffe
     if any(t in claim_lc for t in _GENERAL_TRIGGERS):

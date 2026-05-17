@@ -187,6 +187,10 @@ def claim_mentions_freedom_house_cached(claim: str) -> bool:
     """
     if not claim:
         return False
+    # Politik-Tabu-Guard 2.0: FH misst Länder-Freedom, nicht Parteien.
+    from services._topic_match import is_party_corruption_superlative_claim
+    if is_party_corruption_superlative_claim(claim.lower()):
+        return False
     data = _load_data()
     if not data:
         return False

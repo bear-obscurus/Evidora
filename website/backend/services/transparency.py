@@ -195,7 +195,13 @@ def _find_countries(analysis: dict, max_n: int = 3) -> list[str]:
 
 
 def _claim_mentions_cpi(claim: str) -> bool:
+    from services._topic_match import is_party_corruption_superlative_claim
     claim_lower = claim.lower()
+    # Politik-Tabu-Guard 2.0 (Lehrgeld 2026-05-17): Bei Partei+Korruption+
+    # Superlativ ohne konkreten Anker NICHT triggern — Country-Level-CPI
+    # taugt nicht zur Partei-Bewertung (Kategorienfehler).
+    if is_party_corruption_superlative_claim(claim_lower):
+        return False
     return any(kw in claim_lower for kw in CPI_KEYWORDS)
 
 

@@ -86,6 +86,13 @@ def _claim_matches_facts(claim_lc: str, full_claim: str | None = None) -> list[d
 def claim_mentions_demokratie_cached(claim: str) -> bool:
     if not claim:
         return False
+    # Politik-Tabu-Guard 2.0 (Lehrgeld 2026-05-17): Demokratie-Konsens-Pack
+    # aggregiert V-Dem + FH + CPI + RSF + IDEA + Eurobarometer — alle
+    # Country-Level. Bei Partei+Korruption+Superlativ ohne Anker blockieren,
+    # weil Country-Daten dann Partei-Wertung implizieren würden.
+    from services._topic_match import is_party_corruption_superlative_claim
+    if is_party_corruption_superlative_claim(claim.lower()):
+        return False
     return bool(_claim_matches_facts(claim.lower(), full_claim=claim))
 
 

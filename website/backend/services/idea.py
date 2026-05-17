@@ -198,7 +198,12 @@ def _find_countries(analysis: dict, max_n: int = 3) -> list[str]:
 
 def _claim_mentions_idea(claim: str) -> bool:
     """Check if claim mentions voter-turnout-relevant keywords."""
+    from services._topic_match import is_party_corruption_superlative_claim
     claim_lower = claim.lower()
+    # Politik-Tabu-Guard 2.0: IDEA Voter-Turnout misst Wahlen, nicht
+    # Partei-Korruption — solche Claims dürfen IDEA nicht aktivieren.
+    if is_party_corruption_superlative_claim(claim_lower):
+        return False
     return any(kw in claim_lower for kw in IDEA_KEYWORDS)
 
 
