@@ -108,13 +108,22 @@ def _claim_mentions_nominatim(claim_lc: str) -> bool:
     Strategie:
     - Wenn der Claim klar Personen-Lebensdaten-Bezug hat ("geboren in"),
       Trigger ablehnen → Wikidata-Domäne.
-    - Ansonsten: Substring-Match auf geographische Trigger-Terme.
+    - Substring-Match auf geographische Trigger-Terme.
+    - Regex-Fallback für Verb-getrennte Patterns wie "Liegt X (wirklich)
+      am/an/in Y" — häufige Form bei Frage-Claims.
     """
     if not claim_lc:
         return False
     if any(t in claim_lc for t in _PERSON_CONTEXT_TERMS):
         return False
-    return any(t in claim_lc for t in _NOMINATIM_TRIGGER_TERMS)
+    if any(t in claim_lc for t in _NOMINATIM_TRIGGER_TERMS):
+        return True
+    # Fallback-Regex: "liegt … am/an/in/im" mit 1-3 Wörtern dazwischen
+    # (verifiziert „Liegt Bregenz wirklich am Bodensee" etc.)
+    import re
+    if re.search(r"\bliegt\b[^.?!]{1,30}\b(?:am|an der|im|in)\b", claim_lc):
+        return True
+    return False
 
 
 def claim_mentions_nominatim_cached(claim: str) -> bool:

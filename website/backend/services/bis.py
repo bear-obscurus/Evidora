@@ -205,6 +205,7 @@ _TOPIC_TERMS = (
     "globale liquidität", "global liquidity",
     "internationale liquidität",
     "wohnimmobilienpreise international",
+    "wohnimmobilienpreise", "wohnimmobilien-preise",
     "residential property prices",
     "property price index", "international property prices",
     "international house prices",
@@ -266,10 +267,15 @@ def _claim_mentions_bis(claim_lc: str) -> bool:
         if t in claim_lc:
             # nur "bis" allein ist mehrdeutig — andere Terme sind eindeutig
             if t.strip() == "bis":
-                # Mehrdeutig: nur akzeptieren wenn parallel Banken-Kontext
+                # Mehrdeutig: nur akzeptieren wenn parallel BIS-Themenkontext
+                # (Banken, Statistik, Property-Prices, RPP, Cross-Border, …)
                 if any(b in claim_lc for b in (
                     "bank", "banken", "banking",
                     "statistik", "zahlungsausgleich",
+                    "wohnimmobilien", "property prices", "rpp",
+                    "cross-border", "cross border",
+                    "international liquidity", "globale liquidität",
+                    "leitzins", "policy rate",
                 )):
                     has_bis_word = True
             else:

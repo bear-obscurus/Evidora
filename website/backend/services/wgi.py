@@ -207,7 +207,27 @@ _DEFAULT_YEAR_RANGE = "2020:2024"
 # Trigger
 # ---------------------------------------------------------------------------
 def _claim_mentions_wgi(claim_lc: str) -> bool:
-    """Pure-string Trigger-Test gegen die WGI-Themenkeywords."""
+    """Pure-string Trigger-Test gegen die WGI-Themenkeywords.
+
+    Politik-Guardrail (Tabu #1 — keine Partei-Bewertung): Wenn der Claim
+    eine Partei-/Politiker-Bezeichnung mit Korruptions-Begriff kombiniert,
+    NICHT triggern — das wäre eine Partei-Wertung. Wikipedia-only-Cap-
+    Pattern: solche Claims gehen nur über Wikipedia + Faktencheck-RSS.
+    """
+    # 0) Politik-Guardrail: Partei/Politiker + Korruption/Skandal → KEIN Trigger
+    _PARTY_TOKENS = (
+        "fpö", "fpoe", "spö", "spoe", "övp", "oevp", "neos", "grüne ", "gruene ",
+        "kpö", "kpoe", "afd", "cdu", "csu", "spd", "fdp", "linke", "republikaner",
+        "kickl", "babler", "stocker", "kogler", "meinl-reisinger",
+    )
+    _CORRUPT_TOKENS = (
+        "korruption", "korrupt", "skandal", "bestechung", "geldwäsche",
+        "schmiergeld", "kickback",
+    )
+    has_party = any(p in claim_lc for p in _PARTY_TOKENS)
+    has_corrupt = any(c in claim_lc for c in _CORRUPT_TOKENS)
+    if has_party and has_corrupt:
+        return False
     # 1) Generelle WGI-Begriffe
     if any(t in claim_lc for t in _GENERAL_TRIGGERS):
         return True

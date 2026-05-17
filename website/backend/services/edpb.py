@@ -203,6 +203,7 @@ _EDPB_TERMS = (
     "europäischer datenschutzausschuss",
     "europaeischer datenschutzausschuss",
     "datenschutzausschuss eu",
+    "datenschutzausschuss",  # standalone — EU-Behörde, semantisch eindeutig
     "dsgvo-leitlinie", "dsgvo leitlinie",
     "gdpr-guideline", "gdpr guideline",
     "datenschutz-beschluss eu",
@@ -210,6 +211,8 @@ _EDPB_TERMS = (
     "privacy-by-design leitlinie", "privacy by design leitlinie",
     "auftragsverarbeitung leitlinie",
     "drittlandsübermittlung leitlinie", "drittlandsuebermittlung leitlinie",
+    "drittlandsübermittlung empfehlung", "drittlandsuebermittlung empfehlung",
+    "drittlandsübermittlung", "drittlandsuebermittlung",
     "article 29 working party", "art-29-gruppe", "art. 29 working party",
     "wp29",
 )
