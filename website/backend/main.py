@@ -138,6 +138,7 @@ from services.unece import search_unece, claim_mentions_unece_cached
 from services.nominatim import search_nominatim, claim_mentions_nominatim_cached
 from services.observatory import search_observatory, claim_mentions_observatory_cached
 from services.defillama import search_defillama, claim_mentions_defillama_cached
+from services.oecd_sdmx import search_oecd_sdmx, claim_mentions_oecd_sdmx_cached
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
@@ -706,6 +707,15 @@ async def check_claim(request: Request):
         if claim_mentions_defillama_cached(claim):
             tasks.append(cached("DeFiLlama", search_defillama, analysis))
             queried_names.append("DeFiLlama")
+        # OECD SDMX Multi-Domain — TALIS (Lehrer), SOCX (Sozialausgaben),
+        # Family Database, Affordable Housing, PIAAC (Erwachsenenbildung).
+        # Komplementär zu oecd.py (Health/Wirtschaft) mit Hard-Skip-Schutz
+        # gegen Doppel-Trigger. Boundary: Dataflow-IDs zur Initial-
+        # Deploy-Zeit nicht 100% verifizierbar (OECD Data Explorer
+        # Restructure 2026 möglich) — Service degradiert sauber (404→[]).
+        if claim_mentions_oecd_sdmx_cached(claim):
+            tasks.append(cached("OECD SDMX", search_oecd_sdmx, analysis))
+            queried_names.append("OECD SDMX (TALIS+SOCX+Family+Housing+PIAAC)")
         # ERIC — Education Resources Information Center (US IES);
         # 1,6 Mio. Bildungs-Forschungs-Records seit 1966, peer-reviewed-
         # Filter, für „Studienlage zu X"-Bildungs-Claims. Komplementär
