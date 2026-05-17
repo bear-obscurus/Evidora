@@ -144,7 +144,7 @@ _OECD_COUNTRIES: dict[str, tuple[str, str]] = {
 # Dataflow-IDs aus OECD Data Explorer
 _DOMAINS: dict[str, dict] = {
     "talis": {
-        "flow": "OECD.EDU.IMEP,DSD_TALIS_TEACHERS@DF_TEACHERS,1.0",
+        "flow": "OECD.EDU.ECS,DSD_TALIS@DF_TALIS,1.0",
         "label": "TALIS 2024 — Lehrkräfte",
         "label_short": "TALIS",
         "url": "https://www.oecd.org/en/about/programmes/talis.html",
@@ -161,7 +161,7 @@ _DOMAINS: dict[str, dict] = {
         ),
     },
     "socx": {
-        "flow": "OECD.ELS.SAE,DSD_SOCX_AGG@DF_SOCX_AGG,1.0",
+        "flow": "OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_PRV,1.0",
         "label": "SOCX — Public Social Expenditure",
         "label_short": "SOCX",
         "url": "https://www.oecd.org/social/expenditure.htm",
@@ -177,7 +177,7 @@ _DOMAINS: dict[str, dict] = {
         ),
     },
     "family": {
-        "flow": "OECD.ELS.FAM,DSD_FAMILY@DF_FAMILY,1.0",
+        "flow": "OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_FAM,1.0",
         "label": "OECD Family Database",
         "label_short": "Family DB",
         "url": "https://www.oecd.org/els/family/database.htm",
@@ -196,7 +196,7 @@ _DOMAINS: dict[str, dict] = {
         ),
     },
     "housing": {
-        "flow": "OECD.ELS.HOU,DSD_AFFORDABLE_HOUSING@DF_AHD_GENERAL,1.0",
+        "flow": "OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0",
         "label": "OECD Affordable Housing Database",
         "label_short": "Affordable Housing DB",
         "url": "https://www.oecd.org/housing/data/affordable-housing-database/",
@@ -214,7 +214,7 @@ _DOMAINS: dict[str, dict] = {
         ),
     },
     "piaac": {
-        "flow": "OECD.EDU.SKILL,DSD_PIAAC2023@DF_PIAAC_RESULTS,1.0",
+        "flow": "OECD.CFE.EDS,DSD_REG_EDU@DF_TRAINING,2.5",
         "label": "PIAAC 2023 — Adult Skills",
         "label_short": "PIAAC",
         "url": "https://www.oecd.org/en/about/programmes/piaac.html",
