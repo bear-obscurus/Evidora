@@ -139,6 +139,18 @@ from services.nominatim import search_nominatim, claim_mentions_nominatim_cached
 from services.observatory import search_observatory, claim_mentions_observatory_cached
 from services.defillama import search_defillama, claim_mentions_defillama_cached
 from services.oecd_sdmx import search_oecd_sdmx, claim_mentions_oecd_sdmx_cached
+from services.spartacus import search_spartacus, claim_mentions_spartacus_cached
+from services.uba_klima import search_uba_klima, claim_mentions_uba_cached
+from services.oenb_sdmx import search_oenb_sdmx, claim_mentions_oenb_sdmx_cached
+from services.wits import search_wits, claim_mentions_wits_cached
+from services.cams import search_cams, claim_mentions_cams_cached
+from services.era5 import search_era5, claim_mentions_era5_cached
+from services.cepii import search_cepii, claim_mentions_cepii_cached
+from services.ucdp import search_ucdp, claim_mentions_ucdp_cached
+from services.unesco_uis import search_unesco_uis, claim_mentions_unesco_uis_cached
+from services.openfda import search_openfda, claim_mentions_openfda_cached
+from services.iucn import search_iucn, claim_mentions_iucn_cached
+from services.europeana import search_europeana, claim_mentions_europeana_cached
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
@@ -716,6 +728,57 @@ async def check_claim(request: Request):
         if claim_mentions_oecd_sdmx_cached(claim):
             tasks.append(cached("OECD SDMX", search_oecd_sdmx, analysis))
             queried_names.append("OECD SDMX (TALIS+SOCX+Family+Housing+PIAAC)")
+        # ─── Phase 1 (Welle D + B-Top-5, 2026-05-18) ─────────────────────
+        # Welle D — Stack-Erweiterungen (7):
+        # GeoSphere SPARTACUS (1km AT-Klima-Grid)
+        if claim_mentions_spartacus_cached(claim):
+            tasks.append(cached("GeoSphere SPARTACUS", search_spartacus, analysis))
+            queried_names.append("GeoSphere SPARTACUS")
+        # UBA Österreich (AT-Treibhausgas-Bilanz nach Sektor)
+        if claim_mentions_uba_cached(claim):
+            tasks.append(cached("UBA Österreich", search_uba_klima, analysis))
+            queried_names.append("UBA Österreich")
+        # OeNB SDMX (via ECB MFI-Reporting für AT-Banken-Statistik)
+        if claim_mentions_oenb_sdmx_cached(claim):
+            tasks.append(cached("OeNB SDMX", search_oenb_sdmx, analysis))
+            queried_names.append("OeNB SDMX")
+        # WITS World Bank (Zoll-Tarife + Handelsabkommen)
+        if claim_mentions_wits_cached(claim):
+            tasks.append(cached("WITS", search_wits, analysis))
+            queried_names.append("WITS (World Bank Tariffs)")
+        # Copernicus CAMS (Atmosphäre/Luftqualität-Modell, Pack+Live)
+        if claim_mentions_cams_cached(claim):
+            tasks.append(cached("Copernicus CAMS", search_cams, analysis))
+            queried_names.append("Copernicus CAMS")
+        # ECMWF ERA5 (Klima-Reanalyse, Pack+Live)
+        if claim_mentions_era5_cached(claim):
+            tasks.append(cached("ECMWF ERA5", search_era5, analysis))
+            queried_names.append("ECMWF ERA5")
+        # CEPII BACI (bilateraler Handel via DBnomics)
+        if claim_mentions_cepii_cached(claim):
+            tasks.append(cached("CEPII BACI", search_cepii, analysis))
+            queried_names.append("CEPII BACI")
+        # Welle B Top-5 — Live-APIs mit Token (5):
+        # UCDP Uppsala (Konflikt-Events, CC-BY 4.0, Token optional)
+        if claim_mentions_ucdp_cached(claim):
+            tasks.append(cached("UCDP", search_ucdp, analysis))
+            queried_names.append("UCDP")
+        # UNESCO UIS (SDG-4 Bildungs-Indikatoren global)
+        if claim_mentions_unesco_uis_cached(claim):
+            tasks.append(cached("UNESCO UIS", search_unesco_uis, analysis))
+            queried_names.append("UNESCO UIS")
+        # openFDA (FDA Drug-Labels + FAERS + Recalls)
+        if claim_mentions_openfda_cached(claim):
+            tasks.append(cached("openFDA", search_openfda, analysis))
+            queried_names.append("openFDA")
+        # IUCN Red List (Spezies-Gefährdungsstatus, Fallback bei Cloudflare-Block)
+        if claim_mentions_iucn_cached(claim):
+            tasks.append(cached("IUCN Red List", search_iucn, analysis))
+            queried_names.append("IUCN Red List")
+        # Europeana (50M EU-Kulturerbe-Objekte, AT-Institutionen)
+        if claim_mentions_europeana_cached(claim):
+            tasks.append(cached("Europeana", search_europeana, analysis))
+            queried_names.append("Europeana")
         # ERIC — Education Resources Information Center (US IES);
         # 1,6 Mio. Bildungs-Forschungs-Records seit 1966, peer-reviewed-
         # Filter, für „Studienlage zu X"-Bildungs-Claims. Komplementär
