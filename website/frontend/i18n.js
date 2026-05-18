@@ -173,28 +173,47 @@ const TRANSLATIONS = {
                 <li><a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament.gv.at</a> — Österreichisches Parlament Open Data (Nationalrats-Klubstärken)</li>
             </ul>
             <h3>Erweiterte Live-API-Quellen (2026)</h3>
-            <p style="font-size: 0.9rem; color: #6b7280;">2026 wurden 20 zusätzliche Live-API-Quellen integriert (vom Metastudien-Quellen-Inventar) — von 21 auf 41 Live-API-Connectors.</p>
+            <p style="font-size: 0.9rem; color: #6b7280;">2026 wurden zusätzliche Live-API-Quellen integriert (aus dem Metastudien-Quellen-Inventar): 60+ verifizierte production-ready Live-API-Connectors.</p>
             <ul>
                 <li><a href="https://db.nomics.world/" target="_blank" rel="noopener">DBnomics</a> — Meta-Aggregator für 50.000+ Wirtschafts-Zeitreihen von ECB, IMF, OECD, BIS, World Bank, FRED, OeNB, CEPII, INSEE etc. (AGPL/ODbL)</li>
-                <li><a href="https://osv.dev/" target="_blank" rel="noopener">OSV.dev</a> — Open-Source-Vulnerabilities Aggregator (GitHub Advisory + PyPA + RustSec + Maven + npm; Apache 2.0)</li>
                 <li><a href="https://nvd.nist.gov/" target="_blank" rel="noopener">NIST NVD</a> — US National Vulnerability Database: 351k+ CVEs mit CVSS-Scores + CISA KEV-Status (Public Domain)</li>
                 <li><a href="https://eric.ed.gov/" target="_blank" rel="noopener">ERIC</a> — Education Resources Information Center: 1,6 Mio. peer-reviewed Bildungs-Forschungs-Records seit 1966 (US-IES, Public Domain)</li>
-                <li><a href="https://www.fao.org/faostat/" target="_blank" rel="noopener">FAOSTAT</a> — UN Food and Agriculture Organization: globale Agrar-/Lebensmittel-Statistiken 245+ Länder seit 1961 (CC BY-NC-SA 3.0 IGO)</li>
                 <li><a href="https://www.doabooks.org/" target="_blank" rel="noopener">DOAB</a> — Directory of Open Access Books: 70.000+ peer-reviewed OA-Bücher von 600+ Verlagen, Schwerpunkt Geistes-/Sozialwissenschaften</li>
-                <li><a href="https://www.getty.edu/research/tools/vocabularies/" target="_blank" rel="noopener">Getty Vocabularies</a> — AAT/TGN/ULAN: kunsthistorische Terminologie, geographische Orte, Künstler-Namen als Linked Open Data (ODC-By 1.0)</li>
                 <li><a href="https://attack.mitre.org/" target="_blank" rel="noopener">MITRE ATT&CK</a> — globaler Standard für Adversary-Tactics/Techniques/Procedures (TTPs) + APT-Gruppen-Attribution (royalty-free)</li>
                 <li><a href="https://incidentdatabase.ai/" target="_blank" rel="noopener">AI Incident Database</a> — 3.500+ dokumentierte KI-Schadensfälle weltweit (Responsible AI Collaborative, OECD-anerkannt, Apache 2.0)</li>
                 <li><a href="https://www.edpb.europa.eu/" target="_blank" rel="noopener">EDPB</a> — European Data Protection Board: 83+ verbindliche GDPR-Auslegungs-Guidelines für alle 27 EU-Staaten</li>
-                <li><a href="https://www.worldbank.org/en/publication/worldwide-governance-indicators" target="_blank" rel="noopener">WGI</a> — Worldwide Governance Indicators: 6 Dimensionen × 200+ Länder seit 1996 (Voice/Stability/Effectiveness/RoL/Corruption — Aggregat aus 35 Quellen, CC BY 4.0)</li>
-                <li><a href="https://www.imf.org/en/Data" target="_blank" rel="noopener">IMF</a> — World Economic Outlook + Financial Soundness Indicators (Internationaler Währungsfonds)</li>
-                <li><a href="https://www.bis.org/statistics/" target="_blank" rel="noopener">BIS</a> — Bank for International Settlements: Cross-Border-Banking, Property Prices, Policy Rates (Bank für Internationalen Zahlungsausgleich)</li>
-                <li><a href="https://ilostat.ilo.org/" target="_blank" rel="noopener">ILOSTAT</a> — International Labour Organization: globale Arbeitsmarkt-Daten (Working Poor, Kinderarbeit, Gender Pay Gap, CC BY 4.0)</li>
+                <li><a href="https://www.worldbank.org/en/publication/worldwide-governance-indicators" target="_blank" rel="noopener">WGI</a> — Worldwide Governance Indicators: 6 Dimensionen × 200+ Länder seit 1996 (Voice/Stability/Effectiveness/RoL/Corruption, CC BY 4.0)</li>
+                <li><a href="https://www.bis.org/statistics/" target="_blank" rel="noopener">BIS</a> — Bank for International Settlements: Cross-Border-Banking, Property Prices, Policy Rates</li>
                 <li><a href="https://www.irena.org/Data" target="_blank" rel="noopener">IRENA</a> — International Renewable Energy Agency: Solar/Wind/Hydro/Bio/Geo-Kapazität für 200+ Länder seit 2000 (CC BY 4.0)</li>
                 <li><a href="https://unece.org/transport/transport-statistics" target="_blank" rel="noopener">UNECE Transport</a> — 56 UNECE-Länder: Schienen-/Straßen-/Binnenwasser-/Tram-Statistik (UN Public Domain)</li>
                 <li><a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap Nominatim</a> — globales Gazetteer für Ortsnamen-Verifikation + Geokoordinaten (ODbL)</li>
                 <li><a href="https://developer.mozilla.org/en-US/observatory" target="_blank" rel="noopener">Mozilla HTTP Observatory</a> — Web-Security-Header-Audit (CSP/HSTS/X-Frame etc.) (MPL 2.0)</li>
                 <li><a href="https://defillama.com/" target="_blank" rel="noopener">DeFiLlama</a> — DeFi/Crypto-TVL-Aggregator: 350+ Chains, 5.000+ Protokolle (MIT-Lizenz, niche)</li>
-                <li><a href="https://data-explorer.oecd.org/" target="_blank" rel="noopener">OECD SDMX Multi-Domain</a> — TALIS (Lehrkräfte) + SOCX (Sozialausgaben) + Family Database + Affordable Housing (komplementär zur bestehenden OECD-Integration)</li>
+                <li><a href="https://data-explorer.oecd.org/" target="_blank" rel="noopener">OECD SDMX Multi-Domain</a> — TALIS (Lehrkräfte) + SOCX (Sozialausgaben) + Family Database + Affordable Housing</li>
+                <li><a href="https://data.hub.geosphere.at/dataset/" target="_blank" rel="noopener">GeoSphere SPARTACUS</a> — 1km AT-Klima-Grid (1961-heute), Tag/Monat/Jahr-Aggregate (CC BY 4.0)</li>
+                <li><a href="https://www.umweltbundesamt.at/klima/" target="_blank" rel="noopener">UBA Österreich</a> — Treibhausgas-Bilanz nach Sektor (Verkehr/Industrie/Gebäude/Landwirtschaft) (CC BY 4.0)</li>
+                <li><a href="https://wits.worldbank.org/" target="_blank" rel="noopener">WITS</a> — World Integrated Trade Solution: Zoll-Tarife + Handelsabkommen (MFN/Applied) für 200+ Länder (Open Data)</li>
+                <li><a href="https://ads.atmosphere.copernicus.eu/" target="_blank" rel="noopener">Copernicus CAMS</a> — Atmosphere Monitoring: globale Luftqualität (O3/NO2/PM/CO/Staub) (CC BY 4.0)</li>
+                <li><a href="https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5" target="_blank" rel="noopener">ECMWF ERA5</a> — Klima-Reanalyse 1940-heute, stündliche atmosphärische Variablen (CC BY 4.0)</li>
+                <li><a href="https://databrowser.uis.unesco.org/" target="_blank" rel="noopener">UNESCO UIS</a> — 4.000+ Bildungs-Indikatoren, SDG-4-Custodian, 200+ Länder (CC BY-SA 3.0 IGO)</li>
+                <li><a href="https://open.fda.gov/" target="_blank" rel="noopener">openFDA</a> — FDA Drug-Labels + FAERS Adverse-Event-Reports + Recalls (Public Domain)</li>
+                <li><a href="https://api.iucnredlist.org/" target="_blank" rel="noopener">IUCN Red List</a> — 157.000+ Spezies-Gefährdungsstatus (regional + global Assessments)</li>
+                <li><a href="https://www.europeana.eu/" target="_blank" rel="noopener">Europeana</a> — 50+ Mio. digitalisierte EU-Kulturerbe-Objekte aus 4.000+ Institutionen inkl. ÖNB/KHM/Albertina (EUPL v1.2)</li>
+                <li><a href="https://www.ncei.noaa.gov/" target="_blank" rel="noopener">NOAA NCEI</a> — Historische Wetter-/Klimadaten weltweit (Stationen, Storm Events, Klima-Normale) (US Public Domain)</li>
+                <li><a href="https://www.uspreventiveservicestaskforce.org/" target="_blank" rel="noopener">USPSTF</a> — US Preventive Services Task Force Grade-A/B/C/D-Empfehlungen (Screening, Supplemente) (Public Domain)</li>
+                <li><a href="https://api.speciesplus.net/" target="_blank" rel="noopener">CITES Species+</a> — Internationaler Artenhandel-Schutz, 20+ Mio. Handels-Records seit 1975 (UNEP-WCMC)</li>
+                <li><a href="https://effectivehealthcare.ahrq.gov/" target="_blank" rel="noopener">AHRQ EPC</a> — US Evidence-based Practice Center Reports (via PubMed-Publisher-Filter) (Public Domain)</li>
+                <li><a href="https://whc.unesco.org/" target="_blank" rel="noopener">UNESCO World Heritage</a> — 1.200+ Welterbe-Stätten weltweit inkl. AT (Hallstatt, Schönbrunn, Wien, Wachau)</li>
+                <li><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">WCAG 2.2</a> — W3C Web Content Accessibility Guidelines 2.2 (87 Success Criteria, maschinenlesbar) (W3C Document License)</li>
+                <li><a href="https://globalcarbonbudget.org/" target="_blank" rel="noopener">Global Carbon Budget</a> — Jährlicher globaler CO2-Budget-Konsens (Global Carbon Project, CC-BY 4.0)</li>
+                <li><a href="https://edgar.jrc.ec.europa.eu/" target="_blank" rel="noopener">EDGAR JRC</a> — Emissions Database for Global Atmospheric Research (EU Commission Joint Research Centre, frei für Wiederverwendung)</li>
+                <li><a href="https://bti-project.org/" target="_blank" rel="noopener">BTI</a> — Bertelsmann Transformation Index: 137 Transformations-Länder, Demokratie/Marktwirtschaft/Governance (CC-BY 4.0)</li>
+                <li><a href="https://worldjusticeproject.org/rule-of-law-index/" target="_blank" rel="noopener">WJP Rule of Law</a> — 143 Länder × 8 Faktoren (Grundrechte, Justiz, Korruption) mit Bürger-Surveys (CC-BY)</li>
+                <li><a href="https://www.constituteproject.org/" target="_blank" rel="noopener">Constitute Project</a> — Volltext aller Verfassungen weltweit, REST + RDF (UT Austin, frei)</li>
+                <li><a href="https://webaim.org/projects/million/" target="_blank" rel="noopener">WebAIM Million</a> — Jährliches Accessibility-Audit der Top-1M-Websites (WAVE-Engine, Free for Research)</li>
+                <li><a href="https://database.espon.eu/" target="_blank" rel="noopener">ESPON</a> — EU territoriale Indikatoren, NUTS-2-Stadt-Land-Vergleiche (frei, ESPON-Programm)</li>
+                <li><a href="https://thearda.com/" target="_blank" rel="noopener">ARDA</a> — Association of Religion Data Archives: 1.400+ quantitative Religionsstatistik-Datensätze (Public-Use)</li>
+                <li><a href="https://epub.oeaw.ac.at/" target="_blank" rel="noopener">ÖAW EPUB.OEAW</a> — Österreichische Akademie der Wissenschaften Open-Access-Forschungspublikationen seit 2006, OAI-PMH-Standard</li>
             </ul>
             <h3>Faktencheck-Netzwerke</h3>
             <ul>
@@ -560,28 +579,47 @@ const TRANSLATIONS = {
                 <li><a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament.gv.at</a> — Austrian Parliament Open Data (Nationalrat seat shares)</li>
             </ul>
             <h3>Extended Live-API Sources (2026)</h3>
-            <p style="font-size: 0.9rem; color: #6b7280;">In 2026, 20 additional live-API sources were integrated (from the Metastudien-Quellen-Inventar) — growing from 21 to 41 live-API connectors.</p>
+            <p style="font-size: 0.9rem; color: #6b7280;">In 2026, additional live-API sources were integrated (from the Metastudien-Quellen-Inventar): 60+ verified production-ready live-API connectors.</p>
             <ul>
                 <li><a href="https://db.nomics.world/" target="_blank" rel="noopener">DBnomics</a> — Meta-aggregator for 50,000+ economic time-series from ECB, IMF, OECD, BIS, World Bank, FRED, OeNB, CEPII, INSEE etc. (AGPL/ODbL)</li>
-                <li><a href="https://osv.dev/" target="_blank" rel="noopener">OSV.dev</a> — Open Source Vulnerabilities aggregator (GitHub Advisory + PyPA + RustSec + Maven + npm; Apache 2.0)</li>
                 <li><a href="https://nvd.nist.gov/" target="_blank" rel="noopener">NIST NVD</a> — US National Vulnerability Database: 351k+ CVEs with CVSS scores + CISA KEV status (Public Domain)</li>
                 <li><a href="https://eric.ed.gov/" target="_blank" rel="noopener">ERIC</a> — Education Resources Information Center: 1.6M peer-reviewed education research records since 1966 (US IES, Public Domain)</li>
-                <li><a href="https://www.fao.org/faostat/" target="_blank" rel="noopener">FAOSTAT</a> — UN Food and Agriculture Organization: global agriculture/food statistics, 245+ countries since 1961 (CC BY-NC-SA 3.0 IGO)</li>
                 <li><a href="https://www.doabooks.org/" target="_blank" rel="noopener">DOAB</a> — Directory of Open Access Books: 70,000+ peer-reviewed OA books from 600+ publishers, focus on humanities/social sciences</li>
-                <li><a href="https://www.getty.edu/research/tools/vocabularies/" target="_blank" rel="noopener">Getty Vocabularies</a> — AAT/TGN/ULAN: art history terminology, geographic places, artist names as Linked Open Data (ODC-By 1.0)</li>
                 <li><a href="https://attack.mitre.org/" target="_blank" rel="noopener">MITRE ATT&CK</a> — global standard for adversary tactics/techniques/procedures (TTPs) + APT group attribution (royalty-free)</li>
                 <li><a href="https://incidentdatabase.ai/" target="_blank" rel="noopener">AI Incident Database</a> — 3,500+ documented AI harm cases worldwide (Responsible AI Collaborative, OECD-recognized, Apache 2.0)</li>
                 <li><a href="https://www.edpb.europa.eu/" target="_blank" rel="noopener">EDPB</a> — European Data Protection Board: 83+ binding GDPR interpretation guidelines for all 27 EU member states</li>
-                <li><a href="https://www.worldbank.org/en/publication/worldwide-governance-indicators" target="_blank" rel="noopener">WGI</a> — Worldwide Governance Indicators: 6 dimensions × 200+ countries since 1996 (Voice/Stability/Effectiveness/RoL/Corruption — aggregate of 35 sources, CC BY 4.0)</li>
-                <li><a href="https://www.imf.org/en/Data" target="_blank" rel="noopener">IMF</a> — World Economic Outlook + Financial Soundness Indicators (International Monetary Fund)</li>
+                <li><a href="https://www.worldbank.org/en/publication/worldwide-governance-indicators" target="_blank" rel="noopener">WGI</a> — Worldwide Governance Indicators: 6 dimensions × 200+ countries since 1996 (CC BY 4.0)</li>
                 <li><a href="https://www.bis.org/statistics/" target="_blank" rel="noopener">BIS</a> — Bank for International Settlements: cross-border banking, property prices, policy rates</li>
-                <li><a href="https://ilostat.ilo.org/" target="_blank" rel="noopener">ILOSTAT</a> — International Labour Organization: global labor market data (working poor, child labor, gender pay gap, CC BY 4.0)</li>
                 <li><a href="https://www.irena.org/Data" target="_blank" rel="noopener">IRENA</a> — International Renewable Energy Agency: solar/wind/hydro/bio/geo capacity for 200+ countries since 2000 (CC BY 4.0)</li>
                 <li><a href="https://unece.org/transport/transport-statistics" target="_blank" rel="noopener">UNECE Transport</a> — 56 UNECE countries: rail/road/inland-water/tram statistics (UN Public Domain)</li>
                 <li><a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap Nominatim</a> — global gazetteer for place-name verification + geocoordinates (ODbL)</li>
                 <li><a href="https://developer.mozilla.org/en-US/observatory" target="_blank" rel="noopener">Mozilla HTTP Observatory</a> — web security header audit (CSP/HSTS/X-Frame etc.) (MPL 2.0)</li>
                 <li><a href="https://defillama.com/" target="_blank" rel="noopener">DeFiLlama</a> — DeFi/crypto TVL aggregator: 350+ chains, 5,000+ protocols (MIT licence, niche)</li>
-                <li><a href="https://data-explorer.oecd.org/" target="_blank" rel="noopener">OECD SDMX Multi-Domain</a> — TALIS (teachers) + SOCX (social expenditure) + Family Database + Affordable Housing (complementary to existing OECD integration)</li>
+                <li><a href="https://data-explorer.oecd.org/" target="_blank" rel="noopener">OECD SDMX Multi-Domain</a> — TALIS (teachers) + SOCX (social expenditure) + Family Database + Affordable Housing</li>
+                <li><a href="https://data.hub.geosphere.at/dataset/" target="_blank" rel="noopener">GeoSphere SPARTACUS</a> — 1km Austrian climate grid (1961-present), daily/monthly/yearly aggregates (CC BY 4.0)</li>
+                <li><a href="https://www.umweltbundesamt.at/klima/" target="_blank" rel="noopener">UBA Austria</a> — Austrian GHG inventory by sector (transport/industry/buildings/agriculture) (CC BY 4.0)</li>
+                <li><a href="https://wits.worldbank.org/" target="_blank" rel="noopener">WITS</a> — World Integrated Trade Solution: tariffs + trade agreements (MFN/Applied) for 200+ countries (Open Data)</li>
+                <li><a href="https://ads.atmosphere.copernicus.eu/" target="_blank" rel="noopener">Copernicus CAMS</a> — Atmosphere Monitoring: global air quality (O3/NO2/PM/CO/dust) (CC BY 4.0)</li>
+                <li><a href="https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5" target="_blank" rel="noopener">ECMWF ERA5</a> — Climate reanalysis 1940-present, hourly atmospheric variables (CC BY 4.0)</li>
+                <li><a href="https://databrowser.uis.unesco.org/" target="_blank" rel="noopener">UNESCO UIS</a> — 4,000+ education indicators, SDG-4 custodian, 200+ countries (CC BY-SA 3.0 IGO)</li>
+                <li><a href="https://open.fda.gov/" target="_blank" rel="noopener">openFDA</a> — FDA Drug Labels + FAERS Adverse Event Reports + Recalls (Public Domain)</li>
+                <li><a href="https://api.iucnredlist.org/" target="_blank" rel="noopener">IUCN Red List</a> — 157,000+ species conservation status (regional + global assessments)</li>
+                <li><a href="https://www.europeana.eu/" target="_blank" rel="noopener">Europeana</a> — 50+ million digitised EU cultural heritage objects from 4,000+ institutions incl. ÖNB/KHM/Albertina (EUPL v1.2)</li>
+                <li><a href="https://www.ncei.noaa.gov/" target="_blank" rel="noopener">NOAA NCEI</a> — Historical weather/climate data worldwide (stations, storm events, climate normals) (US Public Domain)</li>
+                <li><a href="https://www.uspreventiveservicestaskforce.org/" target="_blank" rel="noopener">USPSTF</a> — US Preventive Services Task Force Grade A/B/C/D recommendations (screening, supplements) (Public Domain)</li>
+                <li><a href="https://api.speciesplus.net/" target="_blank" rel="noopener">CITES Species+</a> — International wildlife trade regulation, 20+ million trade records since 1975 (UNEP-WCMC)</li>
+                <li><a href="https://effectivehealthcare.ahrq.gov/" target="_blank" rel="noopener">AHRQ EPC</a> — US Evidence-based Practice Center Reports (via PubMed publisher filter) (Public Domain)</li>
+                <li><a href="https://whc.unesco.org/" target="_blank" rel="noopener">UNESCO World Heritage</a> — 1,200+ world heritage sites worldwide including AT (Hallstatt, Schönbrunn, Vienna, Wachau)</li>
+                <li><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">WCAG 2.2</a> — W3C Web Content Accessibility Guidelines 2.2 (87 Success Criteria, machine-readable) (W3C Document License)</li>
+                <li><a href="https://globalcarbonbudget.org/" target="_blank" rel="noopener">Global Carbon Budget</a> — Annual global CO2 budget consensus (Global Carbon Project, CC-BY 4.0)</li>
+                <li><a href="https://edgar.jrc.ec.europa.eu/" target="_blank" rel="noopener">EDGAR JRC</a> — Emissions Database for Global Atmospheric Research (EU Commission Joint Research Centre, free reuse)</li>
+                <li><a href="https://bti-project.org/" target="_blank" rel="noopener">BTI</a> — Bertelsmann Transformation Index: 137 transformation countries, Democracy/Market Economy/Governance (CC-BY 4.0)</li>
+                <li><a href="https://worldjusticeproject.org/rule-of-law-index/" target="_blank" rel="noopener">WJP Rule of Law</a> — 143 countries × 8 factors (Fundamental Rights, Justice, Corruption) with citizen surveys (CC-BY)</li>
+                <li><a href="https://www.constituteproject.org/" target="_blank" rel="noopener">Constitute Project</a> — Full text of all constitutions worldwide, REST + RDF (UT Austin, free)</li>
+                <li><a href="https://webaim.org/projects/million/" target="_blank" rel="noopener">WebAIM Million</a> — Annual accessibility audit of Top-1M websites (WAVE engine, Free for Research)</li>
+                <li><a href="https://database.espon.eu/" target="_blank" rel="noopener">ESPON</a> — EU territorial indicators, NUTS-2 urban/rural comparisons (free, ESPON programme)</li>
+                <li><a href="https://thearda.com/" target="_blank" rel="noopener">ARDA</a> — Association of Religion Data Archives: 1,400+ quantitative religion statistics datasets (Public-Use)</li>
+                <li><a href="https://epub.oeaw.ac.at/" target="_blank" rel="noopener">ÖAW EPUB.OEAW</a> — Austrian Academy of Sciences Open-Access research publications since 2006, OAI-PMH standard</li>
             </ul>
             <h3>Fact-Checking Networks</h3>
             <ul>
