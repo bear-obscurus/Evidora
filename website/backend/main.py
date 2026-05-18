@@ -151,6 +151,14 @@ from services.unesco_uis import search_unesco_uis, claim_mentions_unesco_uis_cac
 from services.openfda import search_openfda, claim_mentions_openfda_cached
 from services.iucn import search_iucn, claim_mentions_iucn_cached
 from services.europeana import search_europeana, claim_mentions_europeana_cached
+from services.fred import search_fred, claim_mentions_fred_cached
+from services.noaa import search_noaa, claim_mentions_noaa_cached
+from services.geonames import search_geonames, claim_mentions_geonames_cached
+from services.uspstf import search_uspstf, claim_mentions_uspstf_cached
+from services.dpla import search_dpla, claim_mentions_dpla_cached
+from services.cites import search_cites, claim_mentions_cites_cached
+from services.ahrq import search_ahrq, claim_mentions_ahrq_cached
+from services.world_heritage import search_world_heritage, claim_mentions_world_heritage_cached
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
@@ -779,6 +787,41 @@ async def check_claim(request: Request):
         if claim_mentions_europeana_cached(claim):
             tasks.append(cached("Europeana", search_europeana, analysis))
             queried_names.append("Europeana")
+        # ─── Welle B Rest (2026-05-18, ohne ECDC) ─────────────────────────
+        # FRED (Federal Reserve St. Louis) — 800k+ US-Wirtschafts-Zeitreihen,
+        # CSV-Fallback ohne Key + Live mit FRED_API_KEY
+        if claim_mentions_fred_cached(claim):
+            tasks.append(cached("FRED", search_fred, analysis))
+            queried_names.append("FRED")
+        # NOAA NCEI Climate Data Online — Globale Wetter-/Klima-Daten
+        if claim_mentions_noaa_cached(claim):
+            tasks.append(cached("NOAA", search_noaa, analysis))
+            queried_names.append("NOAA")
+        # GeoNames — 11M+ geographische Namen + PLZ + Wikipedia-Verknüpfung
+        # (komplementär zu OSM Nominatim, beide dürfen parallel feuern)
+        if claim_mentions_geonames_cached(claim):
+            tasks.append(cached("GeoNames", search_geonames, analysis))
+            queried_names.append("GeoNames")
+        # USPSTF — US Preventive Services Task Force Grade-A/B/C/D-Empfehlungen
+        if claim_mentions_uspstf_cached(claim):
+            tasks.append(cached("USPSTF", search_uspstf, analysis))
+            queried_names.append("USPSTF")
+        # DPLA — Digital Public Library of America (50M US-Kulturerbe-Items)
+        if claim_mentions_dpla_cached(claim):
+            tasks.append(cached("DPLA", search_dpla, analysis))
+            queried_names.append("DPLA")
+        # CITES Species+ — Internationaler Artenhandel (komplementär zu IUCN)
+        if claim_mentions_cites_cached(claim):
+            tasks.append(cached("CITES Species+", search_cites, analysis))
+            queried_names.append("CITES Species+")
+        # AHRQ EPC — US Evidence-based Practice Center Reports (PubMed-Filter)
+        if claim_mentions_ahrq_cached(claim):
+            tasks.append(cached("AHRQ", search_ahrq, analysis))
+            queried_names.append("AHRQ")
+        # UNESCO World Heritage — 1.200+ Welterbe-Stätten weltweit
+        if claim_mentions_world_heritage_cached(claim):
+            tasks.append(cached("UNESCO World Heritage", search_world_heritage, analysis))
+            queried_names.append("UNESCO World Heritage")
         # ERIC — Education Resources Information Center (US IES);
         # 1,6 Mio. Bildungs-Forschungs-Records seit 1966, peer-reviewed-
         # Filter, für „Studienlage zu X"-Bildungs-Claims. Komplementär
