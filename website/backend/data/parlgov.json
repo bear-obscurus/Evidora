@@ -1,0 +1,382 @@
+{
+  "source": "ParlGov (Parliaments and Governments Database, Univ. Bremen)",
+  "source_root": "https://www.parlgov.org/",
+  "data_info_url": "https://www.parlgov.org/data-info/",
+  "harvard_dataverse_url": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/Q6CVHX",
+  "version": "ParlGov 2024 (Stand: Frühjahr 2024)",
+  "coverage": "EU + OECD-Demokratien, 1900-2023 (~1700 Parteien, ~1000 Wahlen, ~1600 Kabinette)",
+  "license": "Permissive Open-Source (CC-Attribution / Daring/Hellström/Manow)",
+  "citation": "Doring, H. & Manow, P. (2024). ParlGov 2024 Release. Harvard Dataverse, doi:10.7910/DVN/Q6CVHX",
+  "fetched_at_iso": "2026-05-18",
+  "note": "Kuratierter Auszug AT/DE-Schwerpunkt + EU-Wichtige (UK, FR, IT, ES). ParlGov-Quelldatei ist eine relationale CSV-Sammlung (parties, elections, cabinets, election_results) — wir hinterlegen die wichtigsten Wahlergebnisse + Kabinette als JSON. Keine eigene Partei-/Koalitions-Bewertung (Politik-Tabu-Guard).",
+  "countries": {
+    "AUT": {
+      "name": "Österreich",
+      "parliament": "Nationalrat",
+      "seats_total": 183,
+      "elections": [
+        {
+          "year": 1986, "date": "1986-11-23", "type": "NRW",
+          "winner": "SPÖ", "winner_pct": 43.1, "winner_seats": 80,
+          "cabinet": "Vranitzky II (SPÖ-ÖVP Große Koalition)", "cabinet_start": "1987-01-21"
+        },
+        {
+          "year": 1990, "date": "1990-10-07", "type": "NRW",
+          "winner": "SPÖ", "winner_pct": 42.8, "winner_seats": 80,
+          "cabinet": "Vranitzky III (SPÖ-ÖVP)", "cabinet_start": "1990-12-17"
+        },
+        {
+          "year": 1994, "date": "1994-10-09", "type": "NRW",
+          "winner": "SPÖ", "winner_pct": 34.9, "winner_seats": 65,
+          "cabinet": "Vranitzky IV (SPÖ-ÖVP)", "cabinet_start": "1994-11-29"
+        },
+        {
+          "year": 1995, "date": "1995-12-17", "type": "NRW (Neuwahl)",
+          "winner": "SPÖ", "winner_pct": 38.1, "winner_seats": 71,
+          "cabinet": "Vranitzky V (SPÖ-ÖVP)", "cabinet_start": "1996-03-12"
+        },
+        {
+          "year": 1999, "date": "1999-10-03", "type": "NRW",
+          "winner": "SPÖ", "winner_pct": 33.1, "winner_seats": 65,
+          "cabinet": "Schüssel I (ÖVP-FPÖ, Bildung 2000-02-04)",
+          "cabinet_start": "2000-02-04",
+          "note": "SPÖ stärkste Partei, aber Koalition aus ÖVP+FPÖ — international viel beachtet (EU-14-Sanktionen)."
+        },
+        {
+          "year": 2002, "date": "2002-11-24", "type": "NRW",
+          "winner": "ÖVP", "winner_pct": 42.3, "winner_seats": 79,
+          "cabinet": "Schüssel II (ÖVP-FPÖ/BZÖ)", "cabinet_start": "2003-02-28"
+        },
+        {
+          "year": 2006, "date": "2006-10-01", "type": "NRW",
+          "winner": "SPÖ", "winner_pct": 35.3, "winner_seats": 68,
+          "cabinet": "Gusenbauer (SPÖ-ÖVP)", "cabinet_start": "2007-01-11"
+        },
+        {
+          "year": 2008, "date": "2008-09-28", "type": "NRW",
+          "winner": "SPÖ", "winner_pct": 29.3, "winner_seats": 57,
+          "cabinet": "Faymann I (SPÖ-ÖVP)", "cabinet_start": "2008-12-02"
+        },
+        {
+          "year": 2013, "date": "2013-09-29", "type": "NRW",
+          "winner": "SPÖ", "winner_pct": 26.8, "winner_seats": 52,
+          "cabinet": "Faymann II (SPÖ-ÖVP)", "cabinet_start": "2013-12-16"
+        },
+        {
+          "year": 2017, "date": "2017-10-15", "type": "NRW",
+          "winner": "ÖVP", "winner_pct": 31.5, "winner_seats": 62,
+          "cabinet": "Kurz I (ÖVP-FPÖ)", "cabinet_start": "2017-12-18",
+          "note": "Bruch der Koalition Mai 2019 nach Ibiza-Affäre."
+        },
+        {
+          "year": 2019, "date": "2019-09-29", "type": "NRW",
+          "winner": "ÖVP", "winner_pct": 37.5, "winner_seats": 71,
+          "cabinet": "Kurz II / Schallenberg / Nehammer (ÖVP-Grüne)", "cabinet_start": "2020-01-07",
+          "note": "Erste ÖVP-Grünen-Koalition auf Bundesebene."
+        },
+        {
+          "year": 2024, "date": "2024-09-29", "type": "NRW",
+          "winner": "FPÖ", "winner_pct": 28.8, "winner_seats": 57,
+          "cabinet": "Stocker (ÖVP-SPÖ-NEOS, ab 2025-03-03)", "cabinet_start": "2025-03-03",
+          "note": "FPÖ erstmals stärkste Partei einer Nationalratswahl. Koalitionsverhandlungen FPÖ-ÖVP scheiterten Anfang 2025; Dreier-Koalition ÖVP-SPÖ-NEOS (Stocker I) folgte."
+        }
+      ]
+    },
+    "DEU": {
+      "name": "Deutschland",
+      "parliament": "Bundestag",
+      "seats_total_2025": 630,
+      "elections": [
+        {
+          "year": 1949, "date": "1949-08-14", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 31.0,
+          "cabinet": "Adenauer I (CDU/CSU-FDP-DP)", "cabinet_start": "1949-09-20"
+        },
+        {
+          "year": 1953, "date": "1953-09-06", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 45.2,
+          "cabinet": "Adenauer II", "cabinet_start": "1953-10-20"
+        },
+        {
+          "year": 1957, "date": "1957-09-15", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 50.2,
+          "cabinet": "Adenauer III", "cabinet_start": "1957-10-29",
+          "note": "Einzige Bundestagswahl mit absoluter CDU/CSU-Mehrheit."
+        },
+        {
+          "year": 1961, "date": "1961-09-17", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 45.3,
+          "cabinet": "Adenauer IV / Erhard I (CDU/CSU-FDP)", "cabinet_start": "1961-11-07"
+        },
+        {
+          "year": 1965, "date": "1965-09-19", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 47.6,
+          "cabinet": "Erhard II / Kiesinger (Große Koalition CDU/CSU-SPD)", "cabinet_start": "1965-10-26"
+        },
+        {
+          "year": 1969, "date": "1969-09-28", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 46.1,
+          "cabinet": "Brandt I (SPD-FDP)", "cabinet_start": "1969-10-21",
+          "note": "Sozialliberale Wende: SPD+FDP stellen Regierung trotz schwächerer CDU/CSU-Mehrheit."
+        },
+        {
+          "year": 1972, "date": "1972-11-19", "type": "Bundestagswahl",
+          "winner": "SPD", "winner_pct": 45.8,
+          "cabinet": "Brandt II / Schmidt I (SPD-FDP)", "cabinet_start": "1972-12-15"
+        },
+        {
+          "year": 1976, "date": "1976-10-03", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 48.6,
+          "cabinet": "Schmidt II (SPD-FDP)", "cabinet_start": "1976-12-15"
+        },
+        {
+          "year": 1980, "date": "1980-10-05", "type": "Bundestagswahl",
+          "winner": "SPD", "winner_pct": 42.9,
+          "cabinet": "Schmidt III (SPD-FDP)", "cabinet_start": "1980-11-05"
+        },
+        {
+          "year": 1983, "date": "1983-03-06", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 48.8,
+          "cabinet": "Kohl II (CDU/CSU-FDP)", "cabinet_start": "1983-03-29"
+        },
+        {
+          "year": 1987, "date": "1987-01-25", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 44.3,
+          "cabinet": "Kohl III (CDU/CSU-FDP)", "cabinet_start": "1987-03-11"
+        },
+        {
+          "year": 1990, "date": "1990-12-02", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 43.8,
+          "cabinet": "Kohl IV (CDU/CSU-FDP)", "cabinet_start": "1991-01-17",
+          "note": "Erste gesamtdeutsche Bundestagswahl nach Wiedervereinigung."
+        },
+        {
+          "year": 1994, "date": "1994-10-16", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 41.5,
+          "cabinet": "Kohl V (CDU/CSU-FDP)", "cabinet_start": "1994-11-17"
+        },
+        {
+          "year": 1998, "date": "1998-09-27", "type": "Bundestagswahl",
+          "winner": "SPD", "winner_pct": 40.9,
+          "cabinet": "Schröder I (SPD-Grüne)", "cabinet_start": "1998-10-27",
+          "note": "Erstes rot-grünes Bundeskabinett."
+        },
+        {
+          "year": 2002, "date": "2002-09-22", "type": "Bundestagswahl",
+          "winner": "SPD", "winner_pct": 38.5,
+          "cabinet": "Schröder II (SPD-Grüne)", "cabinet_start": "2002-10-22"
+        },
+        {
+          "year": 2005, "date": "2005-09-18", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 35.2,
+          "cabinet": "Merkel I (Große Koalition CDU/CSU-SPD)", "cabinet_start": "2005-11-22"
+        },
+        {
+          "year": 2009, "date": "2009-09-27", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 33.8,
+          "cabinet": "Merkel II (CDU/CSU-FDP)", "cabinet_start": "2009-10-28"
+        },
+        {
+          "year": 2013, "date": "2013-09-22", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 41.5,
+          "cabinet": "Merkel III (Große Koalition CDU/CSU-SPD)", "cabinet_start": "2013-12-17"
+        },
+        {
+          "year": 2017, "date": "2017-09-24", "type": "Bundestagswahl",
+          "winner": "CDU/CSU", "winner_pct": 32.9,
+          "cabinet": "Merkel IV (Große Koalition CDU/CSU-SPD)", "cabinet_start": "2018-03-14",
+          "note": "AfD erstmals als drittstärkste Kraft im Bundestag (12,6 %)."
+        },
+        {
+          "year": 2021, "date": "2021-09-26", "type": "Bundestagswahl",
+          "winner": "SPD", "winner_pct": 25.7,
+          "cabinet": "Scholz (Ampel SPD-Grüne-FDP)", "cabinet_start": "2021-12-08",
+          "note": "Erste Drei-Parteien-Koalition auf Bundesebene seit 1953."
+        },
+        {
+          "year": 2025, "date": "2025-02-23", "type": "Bundestagswahl (Neuwahl)",
+          "winner": "CDU/CSU", "winner_pct": 28.5,
+          "cabinet": "Merz (CDU/CSU-SPD)", "cabinet_start": "2025-05-06",
+          "note": "Vorgezogene Neuwahl nach Ampel-Bruch November 2024."
+        }
+      ]
+    },
+    "GBR": {
+      "name": "Vereinigtes Königreich",
+      "parliament": "House of Commons",
+      "seats_total": 650,
+      "elections": [
+        {
+          "year": 1997, "date": "1997-05-01", "type": "General Election",
+          "winner": "Labour", "winner_pct": 43.2, "winner_seats": 418,
+          "cabinet": "Blair I", "cabinet_start": "1997-05-02",
+          "note": "Labour-Erdrutsch nach 18 Jahren Konservativer Regierung."
+        },
+        {
+          "year": 2001, "date": "2001-06-07", "type": "General Election",
+          "winner": "Labour", "winner_pct": 40.7, "winner_seats": 412,
+          "cabinet": "Blair II", "cabinet_start": "2001-06-08"
+        },
+        {
+          "year": 2005, "date": "2005-05-05", "type": "General Election",
+          "winner": "Labour", "winner_pct": 35.2, "winner_seats": 355,
+          "cabinet": "Blair III / Brown", "cabinet_start": "2005-05-06"
+        },
+        {
+          "year": 2010, "date": "2010-05-06", "type": "General Election",
+          "winner": "Conservative", "winner_pct": 36.1, "winner_seats": 306,
+          "cabinet": "Cameron I (Conservative-LibDem-Koalition)", "cabinet_start": "2010-05-11",
+          "note": "Erste Koalitions-Regierung im UK seit dem 2. Weltkrieg (Hung Parliament)."
+        },
+        {
+          "year": 2015, "date": "2015-05-07", "type": "General Election",
+          "winner": "Conservative", "winner_pct": 36.9, "winner_seats": 330,
+          "cabinet": "Cameron II", "cabinet_start": "2015-05-08"
+        },
+        {
+          "year": 2017, "date": "2017-06-08", "type": "General Election",
+          "winner": "Conservative", "winner_pct": 42.4, "winner_seats": 317,
+          "cabinet": "May II (Minderheitsregierung mit DUP-Confidence-and-Supply)", "cabinet_start": "2017-06-11"
+        },
+        {
+          "year": 2019, "date": "2019-12-12", "type": "General Election",
+          "winner": "Conservative", "winner_pct": 43.6, "winner_seats": 365,
+          "cabinet": "Johnson II", "cabinet_start": "2019-12-13",
+          "note": "Brexit-Wahlkampf: 'Get Brexit Done'. Größte Tory-Mehrheit seit 1987."
+        },
+        {
+          "year": 2024, "date": "2024-07-04", "type": "General Election",
+          "winner": "Labour", "winner_pct": 33.7, "winner_seats": 411,
+          "cabinet": "Starmer", "cabinet_start": "2024-07-05",
+          "note": "Labour-Erdrutsch trotz nur 33,7 % Stimmen (FPTP-Effekt). Reform UK 14,3 %."
+        }
+      ]
+    },
+    "FRA": {
+      "name": "Frankreich",
+      "parliament": "Assemblée nationale (Présidentielle separat)",
+      "seats_total": 577,
+      "elections": [
+        {
+          "year": 2002, "date": "2002-04-21", "type": "Présidentielle (1. Wahlgang)",
+          "winner": "Jacques Chirac (RPR/UMP)", "winner_pct": 19.9,
+          "cabinet": "Raffarin", "cabinet_start": "2002-05-07",
+          "note": "Le Pen (Front National) im 2. Wahlgang — politisches Beben in der V. Republik."
+        },
+        {
+          "year": 2007, "date": "2007-05-06", "type": "Présidentielle (Stichwahl)",
+          "winner": "Nicolas Sarkozy (UMP)", "winner_pct": 53.1,
+          "cabinet": "Fillon", "cabinet_start": "2007-05-17"
+        },
+        {
+          "year": 2012, "date": "2012-05-06", "type": "Présidentielle (Stichwahl)",
+          "winner": "François Hollande (PS)", "winner_pct": 51.6,
+          "cabinet": "Ayrault", "cabinet_start": "2012-05-15"
+        },
+        {
+          "year": 2017, "date": "2017-05-07", "type": "Présidentielle (Stichwahl)",
+          "winner": "Emmanuel Macron (LREM/Renaissance)", "winner_pct": 66.1,
+          "cabinet": "Philippe", "cabinet_start": "2017-05-15",
+          "note": "Erstmals Präsident ohne klassisch-etablierte Partei (LREM neu gegründet 2016)."
+        },
+        {
+          "year": 2022, "date": "2022-04-24", "type": "Présidentielle (Stichwahl)",
+          "winner": "Emmanuel Macron (Renaissance)", "winner_pct": 58.5,
+          "cabinet": "Borne / Attal", "cabinet_start": "2022-05-16",
+          "note": "Le Pen (RN) im 2. Wahlgang erneut unterlegen. Parlamentswahl Juni 2022 ohne Macron-Mehrheit."
+        },
+        {
+          "year": 2024, "date": "2024-07-07", "type": "Législatives (Stichwahl, Neuwahl)",
+          "winner": "NFP (Nouveau Front populaire)", "winner_pct": 25.7, "winner_seats": 180,
+          "cabinet": "Barnier / Bayrou", "cabinet_start": "2024-09-21",
+          "note": "Aufgelöste Nationalversammlung nach EU-Wahlerfolg des RN. Hung Parliament — kein Bündnis mit Mehrheit."
+        }
+      ]
+    },
+    "ITA": {
+      "name": "Italien",
+      "parliament": "Camera dei Deputati",
+      "seats_total_2022": 400,
+      "elections": [
+        {
+          "year": 2006, "date": "2006-04-10", "type": "Camera",
+          "winner": "L'Unione (Mitte-Links)", "winner_pct": 49.8,
+          "cabinet": "Prodi II", "cabinet_start": "2006-05-17"
+        },
+        {
+          "year": 2008, "date": "2008-04-14", "type": "Camera",
+          "winner": "PdL+Lega (Mitte-Rechts)", "winner_pct": 46.8,
+          "cabinet": "Berlusconi IV", "cabinet_start": "2008-05-08"
+        },
+        {
+          "year": 2013, "date": "2013-02-25", "type": "Camera",
+          "winner": "Coalizione Italia Bene Comune (PD)", "winner_pct": 29.5,
+          "cabinet": "Letta / Renzi / Gentiloni", "cabinet_start": "2013-04-28",
+          "note": "M5S erstmals zweitstärkste Kraft (25,6 %). Patt-Situation, Letta-Regierung."
+        },
+        {
+          "year": 2018, "date": "2018-03-04", "type": "Camera",
+          "winner": "M5S (Movimento 5 Stelle)", "winner_pct": 32.7,
+          "cabinet": "Conte I (M5S-Lega) / Conte II (M5S-PD) / Draghi", "cabinet_start": "2018-06-01"
+        },
+        {
+          "year": 2022, "date": "2022-09-25", "type": "Camera",
+          "winner": "FdI (Fratelli d'Italia)", "winner_pct": 26.0,
+          "cabinet": "Meloni (FdI-Lega-FI Mitte-Rechts-Koalition)", "cabinet_start": "2022-10-22",
+          "note": "Erste rechtsstaatliche Ministerpräsidentin Italiens. Wahlbeteiligung 63,9 % (historischer Tiefstand)."
+        }
+      ]
+    },
+    "ESP": {
+      "name": "Spanien",
+      "parliament": "Congreso de los Diputados",
+      "seats_total": 350,
+      "elections": [
+        {
+          "year": 2004, "date": "2004-03-14", "type": "Generales",
+          "winner": "PSOE", "winner_pct": 42.6, "winner_seats": 164,
+          "cabinet": "Zapatero I", "cabinet_start": "2004-04-17",
+          "note": "Wahl 3 Tage nach Madrid-Anschlägen 11-M."
+        },
+        {
+          "year": 2008, "date": "2008-03-09", "type": "Generales",
+          "winner": "PSOE", "winner_pct": 43.9, "winner_seats": 169,
+          "cabinet": "Zapatero II", "cabinet_start": "2008-04-12"
+        },
+        {
+          "year": 2011, "date": "2011-11-20", "type": "Generales",
+          "winner": "PP", "winner_pct": 44.6, "winner_seats": 186,
+          "cabinet": "Rajoy I", "cabinet_start": "2011-12-21"
+        },
+        {
+          "year": 2015, "date": "2015-12-20", "type": "Generales",
+          "winner": "PP", "winner_pct": 28.7, "winner_seats": 123,
+          "cabinet": "Keine Regierungsbildung — Neuwahl Juni 2016", "cabinet_start": null,
+          "note": "Aufstieg von Podemos + Ciudadanos: Ende des Zwei-Parteien-Systems PP/PSOE."
+        },
+        {
+          "year": 2016, "date": "2016-06-26", "type": "Generales (Neuwahl)",
+          "winner": "PP", "winner_pct": 33.0, "winner_seats": 137,
+          "cabinet": "Rajoy II", "cabinet_start": "2016-10-31"
+        },
+        {
+          "year": 2019, "date": "2019-04-28", "type": "Generales (April)",
+          "winner": "PSOE", "winner_pct": 28.7, "winner_seats": 123,
+          "cabinet": "Keine Regierungsbildung — Neuwahl November 2019", "cabinet_start": null
+        },
+        {
+          "year": 2019, "date": "2019-11-10", "type": "Generales (November)",
+          "winner": "PSOE", "winner_pct": 28.0, "winner_seats": 120,
+          "cabinet": "Sánchez II (PSOE-UP)", "cabinet_start": "2020-01-13",
+          "note": "Erste Koalitionsregierung Spaniens seit 1978."
+        },
+        {
+          "year": 2023, "date": "2023-07-23", "type": "Generales",
+          "winner": "PP", "winner_pct": 33.1, "winner_seats": 137,
+          "cabinet": "Sánchez III (PSOE + Sumar + Regional)", "cabinet_start": "2023-11-17",
+          "note": "PP stärkste Partei, aber keine Mehrheit. PSOE bildete Regierung mit linken+regionalistischen Partnern."
+        }
+      ]
+    }
+  }
+}

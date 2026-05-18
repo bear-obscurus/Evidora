@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-18",
+  "source_label": "ARDA — Association of Religion Data Archives (Penn State / Pew Research Center / WCD World Christian Database / Statistik Austria / DESTATIS / U.S. Religion Census)",
+  "source_url": "https://thearda.com/",
+  "secondary_url": "https://www.pewresearch.org/religion/feature/the-global-religious-landscape/",
+  "facts": [
+    {
+      "id": "arda_global_landscape_2020",
+      "topic": "global_religious_landscape",
+      "scope": "Globale Religionsverteilung — Anteile aller Welt-Religionen",
+      "year": 2020,
+      "country": "WORLD",
+      "country_name": "Welt",
+      "headline": "ARDA / Pew-Aggregat Globale Religionsverteilung 2020: Christen ~31,1 %, Muslime ~24,9 %, Konfessionslos ~15,6 %, Hindus ~15,2 %, Buddhisten ~6,6 %, Volksreligionen ~5,6 %, Juden ~0,2 %, sonstige ~0,8 %",
+      "data": {
+        "christen_pct": 31.1,
+        "christen_absolut_mrd": 2.38,
+        "muslime_pct": 24.9,
+        "muslime_absolut_mrd": 1.91,
+        "konfessionslos_pct": 15.6,
+        "konfessionslos_absolut_mrd": 1.19,
+        "hindus_pct": 15.2,
+        "hindus_absolut_mrd": 1.16,
+        "buddhisten_pct": 6.6,
+        "buddhisten_absolut_mio": 506,
+        "volksreligionen_pct": 5.6,
+        "volksreligionen_absolut_mio": 429,
+        "juden_pct": 0.2,
+        "juden_absolut_mio": 15,
+        "sonstige_pct": 0.8,
+        "kontext": "Quelle: Pew Research Center 'Global Religious Landscape 2020' (ARDA spiegelt die Pew-Aggregate). 2050-Prognose Pew: Christen 31,4 %, Muslime 29,7 % — Annäherung der beiden größten Religionen. Hauptmotor: hohe Fertilität in Sub-Sahara-Afrika (Christen) + Naher Osten/Nordafrika (Muslime)."
+      },
+      "context_notes": [
+        "ARDA aggregiert Pew Research, WCD World Christian Database, US Religion Census und 250+ Survey-Datensätze.",
+        "Konfessionslos = atheist + agnostisch + 'keine Religion' — schließt spirituelle Selbst-Identifikation NICHT aus.",
+        "Volksreligionen umfasst afrikanische, chinesische, indianische und australische traditionelle Religionen."
+      ],
+      "trigger_terms": [
+        "global religious landscape", "globale religionsverteilung",
+        "weltreligionen anteile", "religionen weltweit anteile",
+        "anteil christen weltweit", "anteil muslime weltweit",
+        "religious demographics", "religions-anteile global"
+      ]
+    },
+    {
+      "id": "arda_austria_religion_2021",
+      "topic": "austria_religions",
+      "scope": "Religionszugehörigkeit Österreich",
+      "year": 2021,
+      "country": "AUT",
+      "country_name": "Österreich",
+      "headline": "ARDA / Statistik Austria Registerzählung 2021: röm.-kath. ~55 %, muslimisch ~8 %, orthodox ~5 %, evangelisch ~3 %, sonstige christlich ~3 %, andere Religionen ~3 %, konfessionslos ~22 %",
+      "data": {
+        "roemisch_katholisch_pct": 55,
+        "muslimisch_pct": 8,
+        "orthodox_pct": 5,
+        "evangelisch_pct": 3,
+        "sonstige_christlich_pct": 3,
+        "andere_religionen_pct": 3,
+        "konfessionslos_pct": 22,
+        "vergleich_1951": "1951: röm.-kath. ~89 %, evangelisch ~6 %, konfessionslos ~3 %",
+        "kontext": "Statistik Austria Registerzählung 2021 (publiziert 2023). ARDA aggregiert die offizielle Volkszählung. Trend: Säkularisierung + wachsender Islam-Anteil durch Zuwanderung (1971 ~0,3 %, 2001 ~4,2 %, 2021 ~8 %)."
+      },
+      "context_notes": [
+        "Trend seit 1951: röm.-kath. Anteil halbiert, konfessionslos +19 Prozentpunkte.",
+        "Wien hat höchsten konfessionslosen Anteil DACH-weit (>30 %)."
+      ],
+      "trigger_terms": [
+        "religionsstatistik österreich", "konfession österreich",
+        "religionen in österreich", "religionen österreich",
+        "katholiken österreich", "muslime österreich"
+      ]
+    },
+    {
+      "id": "arda_germany_religion_2023",
+      "topic": "germany_religions",
+      "scope": "Religionszugehörigkeit Deutschland",
+      "year": 2023,
+      "country": "DEU",
+      "country_name": "Deutschland",
+      "headline": "ARDA / DESTATIS Mikrozensus 2023: röm.-kath. ~24 %, evangelisch ~22 %, sonstige Christen ~3 %, muslimisch ~6 %, andere Religionen ~3 %, konfessionslos ~43 %",
+      "data": {
+        "roemisch_katholisch_pct": 24,
+        "evangelisch_pct": 22,
+        "sonstige_christen_pct": 3,
+        "muslimisch_pct": 6,
+        "andere_religionen_pct": 3,
+        "konfessionslos_pct": 43,
+        "vergleich_1950": "1950: röm.-kath. ~46 %, evangelisch ~52 %, konfessionslos <2 %",
+        "austritte_2023": "~382.000 Kirchenaustritte römisch-kath., ~380.000 evangelisch (EKD + DBK)",
+        "kontext": "DESTATIS Mikrozensus 2023 + EKD/DBK-Jahresberichte. ARDA spiegelt die deutsche Konfessionsstatistik. Konfessionslose erstmals 2022 absolute Mehrheit (>50 % wenn Ost-/Westdeutschland zusammen)."
+      },
+      "context_notes": [
+        "Ostdeutschland >70 % konfessionslos; Westdeutschland <40 %.",
+        "Anstieg Austritte seit MHG-Studie 2018 (Missbrauchs-Aufarbeitung) empirisch dokumentiert."
+      ],
+      "trigger_terms": [
+        "religionsstatistik deutschland", "konfession deutschland",
+        "religionen deutschland", "katholiken deutschland",
+        "evangelische deutschland", "muslime deutschland"
+      ]
+    },
+    {
+      "id": "arda_usa_denominations_2020",
+      "topic": "usa_denominations",
+      "scope": "US-Konfessionen — protestantische Vielfalt + Anteile",
+      "year": 2020,
+      "country": "USA",
+      "country_name": "USA",
+      "headline": "ARDA / U.S. Religion Census 2020 + Pew RLS: Protestanten ~40 %, röm.-kath. ~21 %, mormonisch (LDS) ~2 %, jüdisch ~2 %, muslimisch ~1 %, hinduistisch ~1 %, buddhistisch ~1 %, konfessionslos ~28 %",
+      "data": {
+        "protestanten_pct": 40,
+        "evangelikal_protestant_pct": 25,
+        "mainline_protestant_pct": 14,
+        "historically_black_protestant_pct": 6,
+        "roemisch_katholisch_pct": 21,
+        "mormonisch_lds_pct": 2,
+        "juedisch_pct": 2,
+        "muslimisch_pct": 1,
+        "hinduistisch_pct": 1,
+        "buddhistisch_pct": 1,
+        "konfessionslos_pct": 28,
+        "groesste_protestant_denominationen": "Southern Baptist Convention (~13 Mio), United Methodist Church (~5,7 Mio), National Baptist Convention USA (~5 Mio), Assemblies of God (~3 Mio), Lutheran Church-Missouri Synod (~1,8 Mio)",
+        "kontext": "U.S. Religion Census 2020 (ARDA-kuratiert) + Pew Religious Landscape Study 2014/2020 Update. Konfessionslose ('Nones') von 16 % (2007) auf 28 % (2020) gestiegen — größter Trend US-Religionssoziologie."
+      },
+      "context_notes": [
+        "USA hat über 200 christliche Denominationen — ARDA listet 236 mit Mitgliederzahlen.",
+        "Evangelikal-protestantisch ist mit ~25 % größte Einzelgruppe, NICHT 'die Mehrheit der Amerikaner'.",
+        "'Nones'-Gruppe = 28 % ist seit 2007 fast doppelt so groß geworden (PEW-Trend)."
+      ],
+      "trigger_terms": [
+        "konfession usa", "religionen usa", "denominations usa",
+        "us religion census", "evangelikale usa",
+        "protestanten usa", "katholiken usa",
+        "religionsstatistik usa"
+      ]
+    },
+    {
+      "id": "arda_growth_projections_2050",
+      "topic": "religion_growth_2050",
+      "scope": "Wachstums-Projektionen bis 2050 (Pew via ARDA)",
+      "year": 2050,
+      "country": "WORLD",
+      "country_name": "Welt",
+      "headline": "ARDA / Pew 'Future of World Religions' 2050: Christen ~31,4 % (2,92 Mrd), Muslime ~29,7 % (2,76 Mrd) — Annäherung; Konfessionslose Anteil weltweit SINKT von 16 % (2010) auf 13 % (2050) trotz westlicher Säkularisierung",
+      "data": {
+        "christen_2050_pct": 31.4,
+        "christen_2050_absolut_mrd": 2.92,
+        "muslime_2050_pct": 29.7,
+        "muslime_2050_absolut_mrd": 2.76,
+        "hindus_2050_pct": 14.9,
+        "buddhisten_2050_pct": 5.2,
+        "juden_2050_pct": 0.2,
+        "konfessionslos_2050_pct": 13.2,
+        "kontext": "Pew Research Center 'The Future of World Religions: Population Growth Projections 2010-2050' (2015, ARDA-archiviert). Hauptmotor: Fertilität, NICHT Konversion. Sub-Sahara-Afrika 2050: ~38 % aller Christen weltweit (2010: ~24 %). MENA-Region: Islam-Wachstum durch Bevölkerungsdynamik. Westliche Säkularisierung wird global durch demografisches Wachstum religiöser Regionen ÜBERKOMPENSIERT."
+      },
+      "context_notes": [
+        "WICHTIG: 'Religion verschwindet weltweit' ist Pew-belegt FALSCH.",
+        "Konfessionslose schrumpfen anteilig trotz westlichem Anstieg — Demografie-Effekt.",
+        "ARDA-Projektion ist deterministische Demografie-Hochrechnung, KEIN Politik-Forecast."
+      ],
+      "trigger_terms": [
+        "religion 2050", "religionen prognose 2050",
+        "religion 2050 prognose",
+        "future of world religions",
+        "religionen wachstum prognose",
+        "christen muslime 2050"
+      ]
+    }
+  ]
+}

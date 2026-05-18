@@ -71,6 +71,7 @@ from services.housing_at import fetch_housing
 from services.transport_at import fetch_transport
 from services.mitre_attack import fetch_mitre_attack
 from services.edpb import fetch_edpb
+from services.wcag22 import fetch_wcag22
 
 logger = logging.getLogger("evidora")
 
@@ -131,6 +132,7 @@ async def prefetch_all():
             fetch_transport(client),
             fetch_mitre_attack(client),
             fetch_edpb(client),
+            fetch_wcag22(client),
             return_exceptions=True,
         )
         names = ["OWID COVID", "OWID Measles", "OWID Vaccination (WUENIC)",
@@ -159,7 +161,8 @@ async def prefetch_all():
                  "Wohnen Österreich (OeNB + EU-SILC)",
                  "Verkehr Österreich (ÖBB + UBA + KlimaTicket)",
                  "MITRE ATT&CK (STIX-Bundle)",
-                 "EDPB (Guidelines+News)"]
+                 "EDPB (Guidelines+News)",
+                 "WCAG 2.2 (W3C ACT-Rules)"]
         for i, name in enumerate(names):
             if isinstance(results[i], Exception):
                 logger.warning(f"Startup prefetch {name} failed: {results[i]}")

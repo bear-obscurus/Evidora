@@ -1,0 +1,483 @@
+"""ParlGov — Parliaments and Governments Database (Univ. Bremen / Harvard Dataverse).
+
+Datenquelle: ParlGov 2024 (Doring & Manow), EU+OECD-Demokratien, 1900-2023.
+URL:    https://www.parlgov.org/data-info/
+Bulk:   CSV-Downloads (parties.csv, elections.csv, cabinets.csv)
+Dataverse: doi:10.7910/DVN/Q6CVHX
+Lizenz: Permissive Open-Source (CC-Attribution).
+Coverage: ~1700 Parteien / ~1000 Wahlen / ~1600 Kabinette / 37 Länder.
+
+Architektur: Static-First-Hybrid (wie wahlen.py / volksbegehren.py).
+ParlGov ist eine relationale CSV-Sammlung ohne Query-API — wir hinterlegen
+einen kuratierten AT/DE-Schwerpunkt + EU-Wichtige (UK, FR, IT, ES) als
+JSON unter ``data/parlgov.json``. Bulk-Refresh via Script (out-of-scope
+hier, optionaler Stub mit polite_client für späteres data_updater-Wiring).
+
+Use-Case:
+- "Wahlergebnis Deutschland 2021"
+- "Kabinett-Bildung Italien 2022"
+- "Koalition Spanien Sánchez"
+- "ParlGov sagt Schröder I war SPD-Grüne"
+
+GUARDRAILS (siehe project_political_guardrails.md, Tabu-Guard 2.0):
+- ParlGov ist Country-Level-Wahldata — **keine** Partei-Wertung.
+- Wir zitieren Stimmen/Sitze/Koalitionen, ohne politische Einordnung.
+- Politik-Tabu-Guard 2.0: Partei + Korruption + Superlativ ohne Anker
+  → kein Trigger (siehe services/_topic_match.politik_guard_action).
+- Keine Wahlprognosen — nur historisch abgeschlossene Wahlen.
+- Komplementär zu services/wahlen.py (BMI-AT-Wahlen detail) und
+  services/parlament_at.py (AT-Parlament Live-Status). ParlGov ergänzt
+  um DE/UK/FR/IT/ES + Kabinettsbildung.
+
+Wiring (NICHT in dieser Datei):
+  # from services.parlgov import search_parlgov, claim_mentions_parlgov_cached
+  # if claim_mentions_parlgov_cached(claim):
+  #     tasks.append(cached("ParlGov", search_parlgov, analysis))
+  #     queried_names.append("ParlGov (Univ. Bremen Election Database)")
+  #
+  # reranker.py Whitelist:
+  #     "ParlGov": "elections_data",
+  #
+  # data_updater.py Prefetch (optional, Static-Load only):
+  #     from services.parlgov import fetch_parlgov
+  #     await fetch_parlgov()
+"""
+
+from __future__ import annotations
+
+import json
+import logging
+import os
+import time
+
+import httpx
+
+from services._http_polite import polite_client
+from services._topic_match import is_party_corruption_superlative_claim
+
+logger = logging.getLogger("evidora")
+
+STATIC_JSON_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "data",
+    "parlgov.json",
+)
+
+# 24h cache TTL — ParlGov ist jährliches Release, intraday-Cache reicht.
+CACHE_TTL = 86400
+
+_cache: dict | None = None
+_cache_time: float = 0.0
+
+
+# ---------------------------------------------------------------------------
+# Trigger vocabulary
+# ---------------------------------------------------------------------------
+_PARLGOV_TERMS = (
+    "parlgov", "parl gov",
+    "parliaments and governments",
+    "doring manow", "döring manow",
+    "harvard dataverse election",
+    "kabinettsbildung", "kabinett-bildung", "kabinett bildung",
+    "regierungsbildung",
+    "koalitionsbildung", "koalitions-bildung",
+)
+
+# Land-spezifische Wahl-Begriffe (allein-genügend, ohne Land-Token)
+_COUNTRY_ELECTION_TERMS = (
+    "bundestagswahl", "bundestags-wahl", "bundestags wahl",
+    "nationalratswahl", "nationalrats-wahl", "nationalrats wahl",
+    "präsidentschaftswahl", "praesidentschaftswahl",
+    "présidentielle", "presidentielle",
+    "elezioni politiche", "elecciones generales",
+    "general election",
+)
+
+# Generelle Wahl-/Koalitions-Trigger (composite: brauchen Land-Token)
+_ELECTION_TERMS = (
+    "wahlergebnis", "wahlergebnisse", "wahl-ergebnis",
+    "kabinett ", "regierung ",
+    "koalition", "koalitions",
+    "regierungskoalition", "regierungs-koalition",
+    "mehrheitsregierung", "minderheitsregierung",
+    "hung parliament",
+)
+
+# Composite-Trigger: Wahl-/Regierungs-Begriff + EU-/Land-Token
+_LAND_TOKENS = (
+    # DE
+    "deutschland", "germany", "bundesrepublik",
+    # UK
+    "großbritannien", "grossbritannien", "uk ", " uk", "united kingdom",
+    "vereinigtes königreich", "vereinigtes koenigreich",
+    # FR
+    "frankreich", "france", "französisch", "franzoesisch",
+    # IT
+    "italien", "italy", "italia", "italienisch",
+    # ES
+    "spanien", "spain", "españa", "espana", "spanisch",
+    # AT (komplementär zu wahlen.py)
+    "österreich", "oesterreich", "austria",
+)
+
+# Spezifische bekannte Wahlen / Kabinette (Composite-Anker)
+_FAMOUS_CABINETS = (
+    "adenauer", "brandt", "schmidt ", "kohl", "schröder", "schroeder",
+    "merkel", "scholz", "merz",
+    "blair", "cameron", "may regierung", "johnson regierung", "starmer",
+    "chirac", "sarkozy", "hollande", "macron",
+    "berlusconi", "prodi", "renzi", "conte regierung", "draghi", "meloni",
+    "zapatero", "rajoy", "sánchez", "sanchez",
+    "vranitzky", "schüssel", "schuessel", "gusenbauer", "faymann",
+    "kurz regierung", "kurz i", "kurz ii",
+    "nehammer", "stocker regierung",
+    "ampel-koalition", "ampel koalition", "große koalition", "grosse koalition",
+    "rot-grün", "rot grün", "rot-gruen", "rot gruen",
+    "schwarz-grün", "schwarz grün", "schwarz-gruen", "schwarz gruen",
+    "schwarz-blau", "schwarz blau",
+    "schwarz-rot", "schwarz rot",
+)
+
+
+def _claim_mentions_parlgov(claim_lc: str) -> bool:
+    """Pure-string Trigger-Test gegen ParlGov-Themenkeywords.
+
+    Politik-Tabu-Guard 2.0: Partei + Korruption + Superlativ ohne Anker
+    → kein Trigger (Country-Level-Quellen würden Kategorienfehler erzeugen).
+    """
+    if not claim_lc:
+        return False
+    # 0) Politik-Tabu-Guard 2.0
+    if is_party_corruption_superlative_claim(claim_lc):
+        return False
+    # 1) Direkte ParlGov-Begriffe
+    if any(t in claim_lc for t in _PARLGOV_TERMS):
+        return True
+    # 2) Land-spezifische Wahl-Begriffe (Bundestagswahl/Nationalratswahl/...)
+    if any(t in claim_lc for t in _COUNTRY_ELECTION_TERMS):
+        return True
+    # 3) Bekannte Kabinette / Koalitions-Muster
+    if any(t in claim_lc for t in _FAMOUS_CABINETS):
+        return True
+    # 4) Composite: Wahl-/Regierungs-Begriff + Land-Token
+    has_election = any(t in claim_lc for t in _ELECTION_TERMS)
+    has_country = any(t in claim_lc for t in _LAND_TOKENS)
+    if has_election and has_country:
+        return True
+    # 5) Composite: Person-Anker (Regierungschef) + Wahl-/Jahr-Begriff
+    has_person = any(p in claim_lc for p in PERSON_TO_COUNTRY)
+    has_year_or_wahl = (
+        bool(_YEAR_RE.search(claim_lc))
+        or "wahl" in claim_lc
+        or "election" in claim_lc
+    )
+    if has_person and has_year_or_wahl:
+        return True
+    return False
+
+
+def claim_mentions_parlgov_cached(claim: str) -> bool:
+    """Public-API: lowercase + Trigger-Test."""
+    return _claim_mentions_parlgov((claim or "").lower())
+
+
+# ---------------------------------------------------------------------------
+# Static load
+# ---------------------------------------------------------------------------
+def _load_static_json() -> dict | None:
+    """Lade ``data/parlgov.json`` mit 24h-Memory-Cache."""
+    global _cache, _cache_time
+    now = time.time()
+    if _cache is not None and (now - _cache_time) < CACHE_TTL:
+        return _cache
+    try:
+        with open(STATIC_JSON_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if not isinstance(data, dict) or "countries" not in data:
+            logger.warning("parlgov.json missing 'countries' key")
+            return None
+        _cache = data
+        _cache_time = now
+        n_countries = len(data.get("countries") or {})
+        n_elections = sum(
+            len((c or {}).get("elections") or [])
+            for c in (data.get("countries") or {}).values()
+        )
+        logger.info(
+            "ParlGov data loaded: %d countries, %d elections",
+            n_countries, n_elections,
+        )
+        return _cache
+    except FileNotFoundError:
+        logger.warning("parlgov.json not found at %s", STATIC_JSON_PATH)
+        return None
+    except Exception as e:  # noqa: BLE001
+        logger.warning("parlgov.json load failed: %s", e)
+        return None
+
+
+async def fetch_parlgov(client: httpx.AsyncClient | None = None) -> list[dict]:
+    """Optionaler Bulk-Refresh-Hook für data_updater (NICHT in main.py wired).
+
+    Aktuell: Static-Load. Bei späterer Bulk-CSV-Integration würde hier
+    ``polite_client`` (s. _http_polite) die ParlGov-CSVs holen und in
+    JSON konvertieren. Aktuell nur ein Cache-Warmup.
+    """
+    _ = polite_client  # noqa: F841 — Marker für späteres Bulk-Refresh
+    data = _load_static_json()
+    if not data:
+        return []
+    return [data]
+
+
+# ---------------------------------------------------------------------------
+# Country detection
+# ---------------------------------------------------------------------------
+COUNTRY_KEYWORDS: dict[str, str] = {
+    # AT
+    "österreich": "AUT", "oesterreich": "AUT", "austria": "AUT",
+    "nationalratswahl": "AUT", "nationalrat ": "AUT",
+    # DE
+    "deutschland": "DEU", "germany": "DEU", "bundesrepublik": "DEU",
+    "bundestagswahl": "DEU", "bundestag ": "DEU",
+    # UK
+    "großbritannien": "GBR", "grossbritannien": "GBR",
+    "united kingdom": "GBR", "vereinigtes königreich": "GBR",
+    "vereinigtes koenigreich": "GBR", " uk ": "GBR",
+    # FR
+    "frankreich": "FRA", "france": "FRA", "französisch": "FRA",
+    "franzoesisch": "FRA", "présidentielle": "FRA", "presidentielle": "FRA",
+    # IT
+    "italien": "ITA", "italy": "ITA", "italia": "ITA", "italienisch": "ITA",
+    "elezioni": "ITA",
+    # ES
+    "spanien": "ESP", "spain": "ESP", "españa": "ESP", "espana": "ESP",
+    "spanisch": "ESP", "generales": "ESP",
+}
+
+# Person-Anker → Land (für Kabinette/Regierungschefs)
+PERSON_TO_COUNTRY: dict[str, str] = {
+    "adenauer": "DEU", "brandt": "DEU", "schmidt": "DEU", "kohl": "DEU",
+    "schröder": "DEU", "schroeder": "DEU", "merkel": "DEU",
+    "scholz": "DEU", "merz": "DEU",
+    "blair": "GBR", "brown": "GBR", "cameron": "GBR", "may": "GBR",
+    "johnson": "GBR", "truss": "GBR", "sunak": "GBR", "starmer": "GBR",
+    "chirac": "FRA", "sarkozy": "FRA", "hollande": "FRA", "macron": "FRA",
+    "berlusconi": "ITA", "prodi": "ITA", "letta": "ITA", "renzi": "ITA",
+    "gentiloni": "ITA", "conte": "ITA", "draghi": "ITA", "meloni": "ITA",
+    "zapatero": "ESP", "rajoy": "ESP", "sánchez": "ESP", "sanchez": "ESP",
+    "vranitzky": "AUT", "schüssel": "AUT", "schuessel": "AUT",
+    "gusenbauer": "AUT", "faymann": "AUT", "kern": "AUT",
+    "kurz": "AUT", "schallenberg": "AUT", "nehammer": "AUT",
+    "stocker": "AUT",
+}
+
+
+def _find_countries(claim_lc: str) -> list[str]:
+    """Extract ISO-3-Codes aus dem Claim."""
+    found: list[str] = []
+    seen: set[str] = set()
+    # längste Keys zuerst (z.B. "österreich" vor "rosa")
+    for key in sorted(COUNTRY_KEYWORDS.keys(), key=len, reverse=True):
+        if key in claim_lc:
+            code = COUNTRY_KEYWORDS[key]
+            if code not in seen:
+                found.append(code)
+                seen.add(code)
+    # Person-Anker
+    for person, code in PERSON_TO_COUNTRY.items():
+        if person in claim_lc and code not in seen:
+            found.append(code)
+            seen.add(code)
+    return found[:3]
+
+
+# ---------------------------------------------------------------------------
+# Year detection
+# ---------------------------------------------------------------------------
+import re as _re
+_YEAR_RE = _re.compile(r"\b(19\d{2}|20\d{2})\b")
+
+
+def _find_years(claim_lc: str) -> list[int]:
+    """Extract years 1900-2099 aus dem Claim."""
+    matches = _YEAR_RE.findall(claim_lc)
+    seen: set[int] = set()
+    years: list[int] = []
+    for m in matches:
+        y = int(m)
+        if 1949 <= y <= 2030 and y not in seen:
+            seen.add(y)
+            years.append(y)
+    return years[:3]
+
+
+# ---------------------------------------------------------------------------
+# Result-Builder
+# ---------------------------------------------------------------------------
+def _de_pct(v) -> str:
+    if v is None:
+        return "k. A."
+    return f"{v}".replace(".", ",")
+
+
+def _build_election_result(
+    country_code: str,
+    country: dict,
+    election: dict,
+) -> dict:
+    """Baue ein Result-Dict für eine einzelne Wahl."""
+    cname = country.get("name") or country_code
+    parliament = country.get("parliament") or "Parlament"
+    year = election.get("year")
+    date = election.get("date") or ""
+    etype = election.get("type") or "Wahl"
+    winner = election.get("winner") or "k. A."
+    winner_pct = election.get("winner_pct")
+    winner_seats = election.get("winner_seats")
+    cabinet = election.get("cabinet") or "k. A."
+    cabinet_start = election.get("cabinet_start") or ""
+    note = election.get("note") or ""
+
+    seats_str = (
+        f", {winner_seats} Sitze" if winner_seats is not None else ""
+    )
+    headline = (
+        f"{cname} {etype} {year} (Datum: {date}): "
+        f"Stärkste Kraft = {winner} mit {_de_pct(winner_pct)} %"
+        f"{seats_str}. "
+        f"Folgekabinett: {cabinet}"
+        f"{f' (ab {cabinet_start})' if cabinet_start else ''}."
+    )
+
+    description_parts = [
+        f"ParlGov-Eintrag für die {etype} {year} in {cname} "
+        f"({parliament}). Ergebnis: {winner} = {_de_pct(winner_pct)} % "
+        f"der Stimmen{seats_str}. "
+        f"Regierungsbildung: {cabinet}.",
+    ]
+    if note:
+        description_parts.append(f"Kontext: {note}")
+    description_parts.append(
+        "Methodik: ParlGov 2024 aggregiert offizielle Wahlergebnisse und "
+        "Kabinetts-Daten aus 37 EU+OECD-Demokratien (Doring & Manow, "
+        "Univ. Bremen / Harvard Dataverse). Lizenz: permissive Open-Source. "
+        "Zitiert werden Stimmen, Sitze, Koalitionen — keine eigene "
+        "politische Bewertung."
+    )
+
+    return {
+        "indicator_name": f"ParlGov {cname} {etype} {year}",
+        "indicator": f"parlgov_{country_code.lower()}_{year}",
+        "country": country_code,
+        "country_name": cname,
+        "year": str(year) if year is not None else "",
+        "value": winner_pct,
+        "display_value": headline,
+        "description": " ".join(p for p in description_parts if p),
+        "url": "https://www.parlgov.org/data-info/",
+        "source": "ParlGov (Univ. Bremen / Harvard Dataverse)",
+    }
+
+
+def _select_elections(
+    country_code: str,
+    country: dict,
+    years: list[int],
+    claim_lc: str,
+) -> list[dict]:
+    """Wähle relevante Wahlen für ein Land aus.
+
+    - Jahresangaben im Claim haben Priorität.
+    - Person-Anker → Wahlen, deren Kabinett den Namen enthält.
+    - Sonst: jüngste 2 Wahlen.
+    """
+    elections = country.get("elections") or []
+    if not elections:
+        return []
+
+    matched: list[dict] = []
+    seen_keys: set[tuple] = set()
+
+    # 1) Jahre
+    for y in years:
+        for e in elections:
+            if e.get("year") == y and (country_code, y, e.get("date")) not in seen_keys:
+                matched.append(e)
+                seen_keys.add((country_code, y, e.get("date")))
+
+    # 2) Person-Anker → Kabinett-Match
+    for person in PERSON_TO_COUNTRY:
+        if PERSON_TO_COUNTRY[person] != country_code:
+            continue
+        if person not in claim_lc:
+            continue
+        for e in elections:
+            cab = (e.get("cabinet") or "").lower()
+            if person in cab:
+                key = (country_code, e.get("year"), e.get("date"))
+                if key not in seen_keys:
+                    matched.append(e)
+                    seen_keys.add(key)
+
+    # 3) Fallback: jüngste 2
+    if not matched:
+        elections_sorted = sorted(
+            elections,
+            key=lambda e: e.get("year") or 0,
+            reverse=True,
+        )
+        matched = elections_sorted[:2]
+
+    return matched[:3]
+
+
+# ---------------------------------------------------------------------------
+# Public search
+# ---------------------------------------------------------------------------
+async def search_parlgov(analysis: dict) -> dict:
+    """Static-First-Search gegen die ParlGov-Election-Database."""
+    empty = {"source": "ParlGov", "type": "elections_data", "results": []}
+
+    claim = (analysis or {}).get("claim", "") or ""
+    original = (analysis or {}).get("original_claim") or claim
+    matchable = f"{original} {claim}".lower()
+
+    if not _claim_mentions_parlgov(matchable):
+        return empty
+
+    data = _load_static_json()
+    if not data:
+        return empty
+
+    countries_data = data.get("countries") or {}
+
+    # Welche Länder?
+    iso_codes = _find_countries(matchable)
+    if not iso_codes:
+        # Kein Land genannt — Default AT+DE (Schwerpunkt der Pack-Kuration)
+        iso_codes = ["AUT", "DEU"]
+
+    years = _find_years(matchable)
+
+    results: list[dict] = []
+    for code in iso_codes:
+        country = countries_data.get(code)
+        if not country:
+            continue
+        elections = _select_elections(code, country, years, matchable)
+        for e in elections:
+            results.append(_build_election_result(code, country, e))
+
+    # Maximal 6 Results (i.d.R. 2 Länder × ≤ 3 Wahlen)
+    results = results[:6]
+
+    logger.info(
+        "ParlGov: %d results for countries=%s years=%s",
+        len(results), iso_codes, years,
+    )
+    return {
+        "source": "ParlGov",
+        "type": "elections_data",
+        "results": results,
+    }

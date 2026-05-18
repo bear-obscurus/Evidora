@@ -1,0 +1,147 @@
+{
+  "source_label": "ESPON Database Portal (European Observation Network for Territorial Development and Cohesion)",
+  "source_url": "https://database.espon.eu/",
+  "license": "Frei nutzbar im Rahmen des ESPON-2030-Programms (EU-Förderung, Interreg)",
+  "last_updated_local": "2026-05-18",
+  "program_note": "ESPON ist ein EU-Programm (Interreg) mit Sitz in Luxemburg. Es publiziert vergleichende NUTS-2/NUTS-3-Daten zu territorialer Kohäsion, Stadt-Land-Disparitäten, Demografie und Wirtschafts-Performance für EU-27 + EFTA + Kandidatenländer. Daten werden im 'ESPON Database Portal' als CSV/XLSX und teils als Tile-Maps publiziert — kein klassischer JSON-REST-Endpoint, daher hier kuratierte Aggregate.",
+  "data": {
+    "nuts2_regions": {
+      "AT11": {
+        "name": "Burgenland",
+        "country": "AT",
+        "population_thousand": 296.0,
+        "gdp_per_capita_pps_eu27_100": 96,
+        "category": "AT-NUTS-2",
+        "note": "Burgenland war historisch Ziel-1-Förderregion bis 2007; heute knapp unter EU-27-Schnitt, aber ESPON-COHES-Cluster 'Catching-Up Region Central-East'."
+      },
+      "AT12": {
+        "name": "Niederösterreich",
+        "country": "AT",
+        "population_thousand": 1715.0,
+        "gdp_per_capita_pps_eu27_100": 113,
+        "category": "AT-NUTS-2",
+        "note": "Größte AT-NUTS-2-Region; ESPON-Klassifikation 'Mostly Urban' (Wien-Umland) + 'Predominantly Rural' (Waldviertel/Mostviertel)."
+      },
+      "AT13": {
+        "name": "Wien",
+        "country": "AT",
+        "population_thousand": 2005.0,
+        "gdp_per_capita_pps_eu27_100": 156,
+        "category": "AT-NUTS-2",
+        "note": "Metropolregion; ESPON-FUA (Functional Urban Area) Wien hat ~2,9 Mio. Einwohner inkl. Pendler-Einzugsgebiet. Top-10 EU-Metropolen nach BIP/Kopf-PPS."
+      },
+      "AT21": {
+        "name": "Kärnten",
+        "country": "AT",
+        "population_thousand": 564.0,
+        "gdp_per_capita_pps_eu27_100": 109,
+        "category": "AT-NUTS-2",
+        "note": "ESPON-Cluster 'Border-Adjacent Region' (Slowenien/Italien); abnehmende Demografie laut ESPON DEMIFER-Projektion."
+      },
+      "AT22": {
+        "name": "Steiermark",
+        "country": "AT",
+        "population_thousand": 1264.0,
+        "gdp_per_capita_pps_eu27_100": 117,
+        "category": "AT-NUTS-2",
+        "note": "Industrie-NUTS-2 (Automotive Cluster Graz); ESPON-LOCATE-Indikator 'Manufacturing-Intensive Region'."
+      },
+      "AT31": {
+        "name": "Oberösterreich",
+        "country": "AT",
+        "population_thousand": 1517.0,
+        "gdp_per_capita_pps_eu27_100": 132,
+        "category": "AT-NUTS-2",
+        "note": "Höchstes BIP/Kopf-PPS in AT nach Wien; Industrieller Schwerpunkt (Linz-Stahlring); ESPON-Cluster 'Strong Manufacturing'."
+      },
+      "AT32": {
+        "name": "Salzburg",
+        "country": "AT",
+        "population_thousand": 567.0,
+        "gdp_per_capita_pps_eu27_100": 148,
+        "category": "AT-NUTS-2",
+        "note": "Tourismus + Logistik-Drehscheibe; ESPON-FUA Salzburg cross-Border mit Bayern."
+      },
+      "AT33": {
+        "name": "Tirol",
+        "country": "AT",
+        "population_thousand": 770.0,
+        "gdp_per_capita_pps_eu27_100": 138,
+        "category": "AT-NUTS-2",
+        "note": "Berg-/Tourismusregion; ESPON-ESCAPE-Projekt klassifiziert Tirol als 'Inner Periphery in parts' (Hochtäler abgehängt vom Inntal-Korridor)."
+      },
+      "AT34": {
+        "name": "Vorarlberg",
+        "country": "AT",
+        "population_thousand": 405.0,
+        "gdp_per_capita_pps_eu27_100": 137,
+        "category": "AT-NUTS-2",
+        "note": "Kleinste AT-NUTS-2 nach Einwohnerzahl; ESPON-Cluster 'Bodensee-Region' grenzübergreifend mit CH/DE/LI."
+      },
+      "DE21": {
+        "name": "Oberbayern",
+        "country": "DE",
+        "population_thousand": 4855.0,
+        "gdp_per_capita_pps_eu27_100": 175,
+        "category": "DE-NUTS-2-Vergleich",
+        "note": "Wirtschaftsstärkste NUTS-2 in DE; FUA München; ESPON 'Capital-Like Metro Region'."
+      },
+      "DEA1": {
+        "name": "Düsseldorf",
+        "country": "DE",
+        "population_thousand": 5240.0,
+        "gdp_per_capita_pps_eu27_100": 128,
+        "category": "DE-NUTS-2-Vergleich",
+        "note": "Polyzentrische Metropolregion Rhein-Ruhr (Teil-NUTS-2 NRW); ESPON 'Post-Industrial Cluster'."
+      },
+      "DEA2": {
+        "name": "Köln",
+        "country": "DE",
+        "population_thousand": 4470.0,
+        "gdp_per_capita_pps_eu27_100": 138,
+        "category": "DE-NUTS-2-Vergleich",
+        "note": "Teil-NUTS-2 NRW; FUA Köln-Bonn."
+      },
+      "EU27": {
+        "name": "EU-27 Durchschnitt (Referenz)",
+        "country": "EU",
+        "population_thousand": 449200.0,
+        "gdp_per_capita_pps_eu27_100": 100,
+        "category": "EU-Referenz",
+        "note": "Referenzwert (PPS, EU-27 = 100). ESPON nutzt diesen Index in nahezu allen COHES-Indikator-Reports."
+      }
+    },
+    "espon_projects_brief": [
+      {
+        "code": "ESPON COHES (2021-2027)",
+        "topic": "Territorial Cohesion Monitoring",
+        "headline": "Zentrales Mess-Instrument für EU-Kohäsionspolitik; misst regionale Disparitäten in BIP/Kopf, Beschäftigung, Bildung, Gesundheit, Digitalisierung über NUTS-2/NUTS-3.",
+        "url": "https://www.espon.eu/topics/territorial-cohesion"
+      },
+      {
+        "code": "ESPON ESCAPE",
+        "topic": "Shrinking Rural Regions",
+        "headline": "Klassifiziert demografisch schrumpfende Regionen; AT: Waldviertel, Mühlviertel, Lungau identifiziert als 'Inner Periphery'.",
+        "url": "https://www.espon.eu/escape"
+      },
+      {
+        "code": "ESPON DEMIFER",
+        "topic": "Demographic Projections",
+        "headline": "NUTS-2-Bevölkerungsprojektionen 2030/2050 mit Migrations-Szenarien.",
+        "url": "https://www.espon.eu/demifer"
+      },
+      {
+        "code": "ESPON LOCATE",
+        "topic": "Industrial Location",
+        "headline": "Identifiziert Manufacturing-Intensive Regions in der EU.",
+        "url": "https://www.espon.eu/locate"
+      }
+    ],
+    "important_caveats": [
+      "ESPON publiziert Daten mit 2-3 Jahren Lag (typisch Eurostat-Basisjahre). Aktuellster verfügbarer COHES-Bericht: 2024 mit Bezugsjahren 2021/2022.",
+      "BIP/Kopf-PPS-Index (EU-27 = 100) ist kein Wohlstands-Maß für Individuen — er bildet regionale Wirtschaftsleistung pro Kopf in Kaufkraftparitäten ab. Hohe Werte können von Pendler-Effekten getrieben sein (z.B. Wien zieht Einkommen aus Niederösterreich-Bewohnern hinein, ohne sie zu zählen).",
+      "NUTS-2-Grenzen sind administrativ — sie spiegeln nicht zwingend funktionale Wirtschaftsräume. ESPON arbeitet daher mit FUA (Functional Urban Areas) als ergänzendem Konzept.",
+      "ESPON bewertet KEINE einzelnen Politiken oder Parteien — die Daten sind deskriptive Territorialstatistik im Auftrag der EU-Mitgliedstaaten + EFTA-Beobachter."
+    ]
+  }
+}

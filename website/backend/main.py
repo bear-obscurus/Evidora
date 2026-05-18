@@ -159,6 +159,23 @@ from services.dpla import search_dpla, claim_mentions_dpla_cached
 from services.cites import search_cites, claim_mentions_cites_cached
 from services.ahrq import search_ahrq, claim_mentions_ahrq_cached
 from services.world_heritage import search_world_heritage, claim_mentions_world_heritage_cached
+from services.wcag22 import search_wcag22, claim_mentions_wcag22_cached, fetch_wcag22
+from services.global_carbon_budget import search_global_carbon_budget, claim_mentions_gcb_cached
+from services.edgar import search_edgar, claim_mentions_edgar_cached
+from services.polity5 import search_polity5, claim_mentions_polity5_cached
+from services.bti import search_bti, claim_mentions_bti_cached
+from services.wjp_rol import search_wjp_rol, claim_mentions_wjp_cached
+from services.constitute import search_constitute, claim_mentions_constitute_cached
+from services.parlgov import search_parlgov, claim_mentions_parlgov_cached
+from services.wid import search_wid, claim_mentions_wid_cached
+from services.eba import search_eba, claim_mentions_eba_cached
+from services.nber import search_nber, claim_mentions_nber_cached
+from services.webaim import search_webaim, claim_mentions_webaim_cached
+from services.espon import search_espon, claim_mentions_espon_cached
+from services.arda import search_arda, claim_mentions_arda_cached
+from services.cara import search_cara, claim_mentions_cara_cached
+from services.oeaw_epub import search_oeaw_epub, claim_mentions_oeaw_cached
+from services.idmc import search_idmc, claim_mentions_idmc_cached
 from services.gdelt import search_gdelt
 from services.wikipedia import search_wikipedia
 from services.medlineplus import search_medlineplus
@@ -822,6 +839,58 @@ async def check_claim(request: Request):
         if claim_mentions_world_heritage_cached(claim):
             tasks.append(cached("UNESCO World Heritage", search_world_heritage, analysis))
             queried_names.append("UNESCO World Heritage")
+        # ─── Welle C — 17 Bulk/Pack-Services (2026-05-18) ─────────────────
+        if claim_mentions_wcag22_cached(claim):
+            tasks.append(cached("WCAG 2.2", search_wcag22, analysis))
+            queried_names.append("WCAG 2.2")
+        if claim_mentions_gcb_cached(claim):
+            tasks.append(cached("Global Carbon Budget", search_global_carbon_budget, analysis))
+            queried_names.append("Global Carbon Budget")
+        if claim_mentions_edgar_cached(claim):
+            tasks.append(cached("EDGAR JRC", search_edgar, analysis))
+            queried_names.append("EDGAR JRC")
+        if claim_mentions_polity5_cached(claim):
+            tasks.append(cached("Polity 5", search_polity5, analysis))
+            queried_names.append("Polity 5")
+        if claim_mentions_bti_cached(claim):
+            tasks.append(cached("BTI", search_bti, analysis))
+            queried_names.append("BTI")
+        if claim_mentions_wjp_cached(claim):
+            tasks.append(cached("WJP Rule of Law", search_wjp_rol, analysis))
+            queried_names.append("WJP Rule of Law")
+        if claim_mentions_constitute_cached(claim):
+            tasks.append(cached("Constitute", search_constitute, analysis))
+            queried_names.append("Constitute Project")
+        if claim_mentions_parlgov_cached(claim):
+            tasks.append(cached("ParlGov", search_parlgov, analysis))
+            queried_names.append("ParlGov")
+        if claim_mentions_wid_cached(claim):
+            tasks.append(cached("WID.world", search_wid, analysis))
+            queried_names.append("WID.world")
+        if claim_mentions_eba_cached(claim):
+            tasks.append(cached("EBA Risk Dashboard", search_eba, analysis))
+            queried_names.append("EBA Risk Dashboard")
+        if claim_mentions_nber_cached(claim):
+            tasks.append(cached("NBER", search_nber, analysis))
+            queried_names.append("NBER")
+        if claim_mentions_webaim_cached(claim):
+            tasks.append(cached("WebAIM Million", search_webaim, analysis))
+            queried_names.append("WebAIM Million")
+        if claim_mentions_espon_cached(claim):
+            tasks.append(cached("ESPON", search_espon, analysis))
+            queried_names.append("ESPON")
+        if claim_mentions_arda_cached(claim):
+            tasks.append(cached("ARDA", search_arda, analysis))
+            queried_names.append("ARDA")
+        if claim_mentions_cara_cached(claim):
+            tasks.append(cached("CARA", search_cara, analysis))
+            queried_names.append("CARA")
+        if claim_mentions_oeaw_cached(claim):
+            tasks.append(cached("ÖAW EPUB", search_oeaw_epub, analysis))
+            queried_names.append("ÖAW EPUB.OEAW")
+        if claim_mentions_idmc_cached(claim):
+            tasks.append(cached("IDMC", search_idmc, analysis))
+            queried_names.append("IDMC")
         # ERIC — Education Resources Information Center (US IES);
         # 1,6 Mio. Bildungs-Forschungs-Records seit 1966, peer-reviewed-
         # Filter, für „Studienlage zu X"-Bildungs-Claims. Komplementär

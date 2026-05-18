@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-18",
+  "source_label": "Polity 5 — Center for Systemic Peace (CSP), Marshall/Gurr (2020). Annual Polity-Scores -10 (full autocracy) to +10 (full democracy) for 167 states since 1800. Public-Domain.",
+  "source_url": "http://www.systemicpeace.org/inscrdata.html",
+  "secondary_url": "https://en.wikipedia.org/wiki/Polity_data_series",
+  "version_note": "Polity 5 (Annual Time Series 1800-2018) deckt 167 unabhängige Staaten ab. Aktuelles letztes Coverage-Jahr: 2018 (letzter offizieller CSP-Release). Werte sind kuratierte Punkt-Auszüge aus der offiziellen p5v2018-CSV — für rigorose Verwendung sollte die Originaldatei (p5v2018.xls, p5v2018.csv) konsultiert werden.",
+  "audit_flag": "STATIC v1 (2026-05-18). Kuratierter Auszug aus Polity-5-Annual-Series. Letztes Coverage-Jahr 2018 (letzter offizieller Release CSP). Historische Highlights manuell kuratiert. Wenn CSP einen v2019+ veröffentlicht, JSON komplett neu generieren.",
+  "regime_categories": {
+    "full_democracy": {
+      "range": "+10",
+      "label_de": "Volle Demokratie",
+      "label_en": "Full Democracy"
+    },
+    "democracy": {
+      "range": "+6 bis +9",
+      "label_de": "Demokratie",
+      "label_en": "Democracy"
+    },
+    "open_anocracy": {
+      "range": "+1 bis +5",
+      "label_de": "Offene Anokratie",
+      "label_en": "Open Anocracy"
+    },
+    "closed_anocracy": {
+      "range": "-5 bis 0",
+      "label_de": "Geschlossene Anokratie",
+      "label_en": "Closed Anocracy"
+    },
+    "autocracy": {
+      "range": "-10 bis -6",
+      "label_de": "Autokratie",
+      "label_en": "Autocracy"
+    }
+  },
+  "country_codes": {
+    "AUT": "Österreich",
+    "DEU": "Deutschland",
+    "CHE": "Schweiz",
+    "FRA": "Frankreich",
+    "ITA": "Italien",
+    "ESP": "Spanien",
+    "GBR": "Vereinigtes Königreich",
+    "SWE": "Schweden",
+    "NOR": "Norwegen",
+    "DNK": "Dänemark",
+    "FIN": "Finnland",
+    "NLD": "Niederlande",
+    "BEL": "Belgien",
+    "IRL": "Irland",
+    "USA": "Vereinigte Staaten",
+    "CAN": "Kanada",
+    "AUS": "Australien",
+    "NZL": "Neuseeland",
+    "JPN": "Japan",
+    "ISR": "Israel",
+    "RUS": "Russland",
+    "CHN": "China",
+    "IND": "Indien",
+    "BRA": "Brasilien",
+    "MEX": "Mexiko",
+    "ARG": "Argentinien",
+    "ZAF": "Südafrika",
+    "TUR": "Türkei",
+    "HUN": "Ungarn",
+    "POL": "Polen",
+    "CZE": "Tschechien",
+    "SVK": "Slowakei",
+    "ROU": "Rumänien",
+    "BGR": "Bulgarien",
+    "GRC": "Griechenland",
+    "UKR": "Ukraine",
+    "BLR": "Weißrussland",
+    "EGY": "Ägypten",
+    "IRN": "Iran",
+    "SAU": "Saudi-Arabien",
+    "PRK": "Nordkorea",
+    "KOR": "Südkorea",
+    "VEN": "Venezuela"
+  },
+  "country_aliases": {
+    "AUT": ["österreich", "oesterreich", "austria", "österreichisch", "austrian"],
+    "DEU": ["deutschland", "germany", "german", "deutsch", "brd", "bundesrepublik"],
+    "CHE": ["schweiz", "switzerland", "swiss", "eidgenossenschaft"],
+    "FRA": ["frankreich", "france", "französisch", "franzoesisch", "french"],
+    "ITA": ["italien", "italy", "italienisch", "italian"],
+    "ESP": ["spanien", "spain", "spanisch", "spanish"],
+    "GBR": ["vereinigtes königreich", "united kingdom", "großbritannien", "grossbritannien", "britain", "british", "england", "uk"],
+    "SWE": ["schweden", "sweden", "schwedisch", "swedish"],
+    "NOR": ["norwegen", "norway", "norwegisch", "norwegian"],
+    "DNK": ["dänemark", "daenemark", "denmark", "dänisch", "daenisch", "danish"],
+    "FIN": ["finnland", "finland", "finnisch", "finnish"],
+    "NLD": ["niederlande", "netherlands", "holland", "dutch"],
+    "BEL": ["belgien", "belgium", "belgisch", "belgian"],
+    "IRL": ["irland", "ireland", "irisch", "irish"],
+    "USA": ["vereinigte staaten", "united states", "amerika", "usa", "us-amerikanisch", "american"],
+    "CAN": ["kanada", "canada", "kanadisch", "canadian"],
+    "AUS": ["australien", "australia", "australisch", "australian"],
+    "NZL": ["neuseeland", "new zealand"],
+    "JPN": ["japan", "japanisch", "japanese"],
+    "ISR": ["israel", "israelisch", "israeli"],
+    "RUS": ["russland", "russia", "russisch", "russian", "rußland"],
+    "CHN": ["china", "chinesisch", "chinese", "vr china", "volksrepublik china"],
+    "IND": ["indien", "india", "indisch", "indian"],
+    "BRA": ["brasilien", "brazil", "brasilianisch", "brazilian"],
+    "MEX": ["mexiko", "mexico", "mexikanisch", "mexican"],
+    "ARG": ["argentinien", "argentina", "argentinisch", "argentine"],
+    "ZAF": ["südafrika", "suedafrika", "south africa", "südafrikanisch", "suedafrikanisch"],
+    "TUR": ["türkei", "tuerkei", "turkey", "türkisch", "tuerkisch", "turkish"],
+    "HUN": ["ungarn", "hungary", "ungarisch", "hungarian"],
+    "POL": ["polen", "poland", "polnisch", "polish"],
+    "CZE": ["tschechien", "czech republic", "czechia", "tschechisch", "czech"],
+    "SVK": ["slowakei", "slovakia", "slowakisch", "slovak"],
+    "ROU": ["rumänien", "rumaenien", "romania", "rumänisch", "rumaenisch", "romanian"],
+    "BGR": ["bulgarien", "bulgaria", "bulgarisch", "bulgarian"],
+    "GRC": ["griechenland", "greece", "griechisch", "greek"],
+    "UKR": ["ukraine", "ukrainisch", "ukrainian"],
+    "BLR": ["weißrussland", "weissrussland", "belarus", "weißrussisch", "weissrussisch", "belarusian"],
+    "EGY": ["ägypten", "aegypten", "egypt", "ägyptisch", "aegyptisch", "egyptian"],
+    "IRN": ["iran", "iranisch", "iranian", "persien"],
+    "SAU": ["saudi-arabien", "saudi arabien", "saudi arabia", "saudi"],
+    "PRK": ["nordkorea", "north korea", "dpr korea", "dvr korea"],
+    "KOR": ["südkorea", "suedkorea", "south korea", "südkoreanisch", "suedkoreanisch", "republic of korea"],
+    "VEN": ["venezuela", "venezolanisch", "venezuelan"]
+  },
+  "scores_2018": {
+    "AUT": {"score": 10, "category": "full_democracy"},
+    "DEU": {"score": 10, "category": "full_democracy"},
+    "CHE": {"score": 10, "category": "full_democracy"},
+    "FRA": {"score": 9, "category": "democracy"},
+    "ITA": {"score": 10, "category": "full_democracy"},
+    "ESP": {"score": 10, "category": "full_democracy"},
+    "GBR": {"score": 8, "category": "democracy"},
+    "SWE": {"score": 10, "category": "full_democracy"},
+    "NOR": {"score": 10, "category": "full_democracy"},
+    "DNK": {"score": 10, "category": "full_democracy"},
+    "FIN": {"score": 10, "category": "full_democracy"},
+    "NLD": {"score": 10, "category": "full_democracy"},
+    "BEL": {"score": 8, "category": "democracy"},
+    "IRL": {"score": 10, "category": "full_democracy"},
+    "USA": {"score": 8, "category": "democracy"},
+    "CAN": {"score": 10, "category": "full_democracy"},
+    "AUS": {"score": 10, "category": "full_democracy"},
+    "NZL": {"score": 10, "category": "full_democracy"},
+    "JPN": {"score": 10, "category": "full_democracy"},
+    "ISR": {"score": 6, "category": "democracy"},
+    "RUS": {"score": 4, "category": "open_anocracy"},
+    "CHN": {"score": -7, "category": "autocracy"},
+    "IND": {"score": 9, "category": "democracy"},
+    "BRA": {"score": 8, "category": "democracy"},
+    "MEX": {"score": 8, "category": "democracy"},
+    "ARG": {"score": 9, "category": "democracy"},
+    "ZAF": {"score": 9, "category": "democracy"},
+    "TUR": {"score": -4, "category": "closed_anocracy"},
+    "HUN": {"score": 10, "category": "full_democracy"},
+    "POL": {"score": 10, "category": "full_democracy"},
+    "CZE": {"score": 9, "category": "democracy"},
+    "SVK": {"score": 10, "category": "full_democracy"},
+    "ROU": {"score": 9, "category": "democracy"},
+    "BGR": {"score": 9, "category": "democracy"},
+    "GRC": {"score": 10, "category": "full_democracy"},
+    "UKR": {"score": 4, "category": "open_anocracy"},
+    "BLR": {"score": -7, "category": "autocracy"},
+    "EGY": {"score": -4, "category": "closed_anocracy"},
+    "IRN": {"score": -7, "category": "autocracy"},
+    "SAU": {"score": -10, "category": "autocracy"},
+    "PRK": {"score": -10, "category": "autocracy"},
+    "KOR": {"score": 8, "category": "democracy"},
+    "VEN": {"score": -3, "category": "closed_anocracy"}
+  },
+  "history_highlights": [
+    {
+      "country": "DEU",
+      "label_de": "DDR-Auflösung & Wiedervereinigung",
+      "label_en": "GDR dissolution & German reunification",
+      "transitions": [
+        {"year": 1989, "score": -9, "note_de": "DDR autokratisch (vor Mauerfall)"},
+        {"year": 1990, "score": 10, "note_de": "Wiedervereinigung — sprunghaft +19 Punkte"}
+      ]
+    },
+    {
+      "country": "ESP",
+      "label_de": "Spanische Demokratisierung (Transición)",
+      "label_en": "Spanish democratic transition",
+      "transitions": [
+        {"year": 1975, "score": -7, "note_de": "Franco-Diktatur (Tod Francos November 1975)"},
+        {"year": 1977, "score": 9, "note_de": "Erste freie Wahlen nach 1936"},
+        {"year": 1978, "score": 10, "note_de": "Verfassung 1978 — Vollendung Demokratie"}
+      ]
+    },
+    {
+      "country": "AUT",
+      "label_de": "Österreichs Staatsvertrag-Phase",
+      "label_en": "Austria's State Treaty era",
+      "transitions": [
+        {"year": 1945, "score": 0, "note_de": "Übergangsregierung (alliierte Besatzung)"},
+        {"year": 1946, "score": 10, "note_de": "Vollendung Demokratie ab Nationalratswahl 1945"}
+      ]
+    },
+    {
+      "country": "HUN",
+      "label_de": "Ungarn — Übergang zur Demokratie",
+      "label_en": "Hungarian democratic transition",
+      "transitions": [
+        {"year": 1988, "score": -7, "note_de": "Spätsozialismus unter Kádár-Erbe"},
+        {"year": 1990, "score": 10, "note_de": "Erste freie Wahlen März 1990"}
+      ]
+    },
+    {
+      "country": "POL",
+      "label_de": "Polen — Solidarność & Demokratisierung",
+      "label_en": "Poland — Solidarity & democratisation",
+      "transitions": [
+        {"year": 1988, "score": -6, "note_de": "Volksrepublik kurz vor Round-Table"},
+        {"year": 1989, "score": 5, "note_de": "Halbfreie Wahlen Juni 1989"},
+        {"year": 1991, "score": 8, "note_de": "Vollständig demokratische Wahlen"}
+      ]
+    },
+    {
+      "country": "RUS",
+      "label_de": "Russland — Demokratie-Erosion",
+      "label_en": "Russia — democratic erosion",
+      "transitions": [
+        {"year": 1992, "score": 5, "note_de": "Jelzin-Ära Anfangsphase"},
+        {"year": 2000, "score": 6, "note_de": "Putin Amtsantritt"},
+        {"year": 2007, "score": 4, "note_de": "Anokratisierung (NGO-Restriktionen)"},
+        {"year": 2018, "score": 4, "note_de": "offene Anokratie"}
+      ]
+    },
+    {
+      "country": "TUR",
+      "label_de": "Türkei — Demokratie-Abbau",
+      "label_en": "Turkey — democratic backsliding",
+      "transitions": [
+        {"year": 2010, "score": 7, "note_de": "Erdoğan-AKP-Konsolidierung (Verfassungsreferendum)"},
+        {"year": 2014, "score": 9, "note_de": "Letzter Höhepunkt vor Erosion"},
+        {"year": 2016, "score": -4, "note_de": "Nach Putschversuch — geschlossene Anokratie"},
+        {"year": 2018, "score": -4, "note_de": "Präsidialsystem-Übergang"}
+      ]
+    },
+    {
+      "country": "ZAF",
+      "label_de": "Südafrika — Ende der Apartheid",
+      "label_en": "South Africa — end of apartheid",
+      "transitions": [
+        {"year": 1993, "score": 5, "note_de": "Verhandlungen / Übergang"},
+        {"year": 1994, "score": 9, "note_de": "Erste freie Wahlen unter Mandela"}
+      ]
+    }
+  ]
+}
