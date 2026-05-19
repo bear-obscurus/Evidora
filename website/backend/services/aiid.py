@@ -118,16 +118,27 @@ _AI_MODEL_TOKENS = (
     "tesla autopilot", "tesla fsd", "waymo", "cruise",
     "compas algorithmus", "compas score",
     "amazon rekognition", "clearview ai", "palantir",
+    # KI-Anwendungs-Kategorien (Folge-Sprint 2026-05-20):
+    # Gesichtserkennung ist eine KI-Anwendung und sollte als AI-Context
+    # ausreichen, um zusammen mit Incident-Keywords zu triggern.
+    "gesichtserkennung", "facial recognition",
+    "predictive policing", "predictive-policing",
 )
 
 _INCIDENT_KEYWORDS = (
     "vorfall", "skandal", "diskriminierung", "fehler", "fehlalarm",
     "unfall", "verurteilt", "klage", "lawsuit", "schadensfall",
-    "bias", "vorurteil", "rassismus", "geschlechter-bias",
+    "bias", "vorurteil", "rassismus", "rassistisch", "geschlechter-bias",
     "halluzination", "halluziniert", "ausgegeben",
     "falsch identifiziert", "wrongful arrest", "false match",
     "false positive", "hat falsch", "hat menschen", "ausgespuckt",
     "menschen geschädigt", "geschädigt", "diskriminiert",
+    # Diskriminierungs-Erweiterungen (Folge-Sprint 2026-05-20)
+    "falsch-identifikation", "falsche identifikation",
+    "wrongful identification", "misidentification",
+    "racial bias", "ethnic bias", "gender bias", "frauen-bias",
+    "schwarze menschen", "schwarze", "people of color", "poc",
+    "stereotypisierung", "stereotyp", "stereotype",
 )
 
 # Direkte Incident-ID-Erkennung: "AIID-Incident #123" oder "Incident #123"

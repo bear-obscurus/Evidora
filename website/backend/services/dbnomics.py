@@ -84,6 +84,18 @@ _DIRECT_TERMS = (
     "dbnomics", "db.nomics", "db nomics",
 )
 
+# Meta-Hub-Trigger (Folge-Sprint 2026-05-20): Wenn der Claim explizit
+# Aggregator-/Meta-Hub-Sprache verwendet, ist DBnomics IMMER ein passender
+# Cross-Validation-Layer — unabhängig von dedizierten Service-Tokens.
+_META_HUB_TERMS = (
+    "meta-hub", "meta hub", "metahub",
+    "aggregator", "aggregierte zeitreihen",
+    "zeitreihen", "time series", "time-series",
+    "macroeconomic data", "macroeconomic indicators",
+    "makrooekonomische daten", "makroökonomische daten",
+    "cross-validation", "cross validation",
+)
+
 # Wirtschafts-Indikator-Begriffe (DE/EN) — Composite-Trigger-Teil 1
 _INDICATOR_TERMS = (
     "bip", "bruttoinlandsprodukt", "gdp",
@@ -96,6 +108,9 @@ _INDICATOR_TERMS = (
     "industrieproduktion", "industrial production",
     "einzelhandel", "retail sales",
     "exporte", "importe", "exports", "imports",
+    # Folge-Sprint 2026-05-20: Fed-Bilanzsumme + WB-Tariff
+    "bilanzsumme", "balance sheet", "total assets",
+    "tariff", "tariffs", "zoll", "zölle",
 )
 
 # International-Kontext (NICHT AT/DE — sonst eigene Quellen)
@@ -143,42 +158,60 @@ _COUNTRY_MAP: dict[str, tuple[str, str]] = {
 # Trigger
 # ---------------------------------------------------------------------------
 def _claim_mentions_dbnomics(claim_lc: str) -> bool:
-    """Conservative Trigger:
-    1. Direkter Term ("dbnomics") → True
-    2. Provider + Indikator → True
-    3. Indikator + International-Kontext (NICHT AT/DE) → True
+    """Conservative Trigger mit Meta-Hub-Routing (Folge-Sprint 2026-05-20):
+    1. Direkter Term ("dbnomics") → True (IMMER)
+    2. Meta-Hub-Sprache (aggregator/zeitreihen/macroeconomic) → True
+    3. Provider + Indikator → True
+    4. Provider-als-Meta-Hub (Cross-Validation parallel zu FRED/WB/etc.) →
+       True — WENN dedizierter Provider (Federal Reserve, World Bank, FRED,
+       IMF, OECD, BIS, …) mit thematischem Kontext erwähnt wird UND
+       Claim nicht DACH-spezifisch ist.
+    5. Indikator + International-Kontext (NICHT AT/DE) → True
     """
     if not claim_lc:
         return False
 
-    # 1. Direkt
+    # Hard-Skip: AT/DE-spezifische Wirtschafts-Claims gehören zu OeNB /
+    # Statistik Austria / destatis — DBnomics ist hier nur Noise.
+    has_at_de = any(t in claim_lc for t in (
+        "österreich", "austria", "deutschland", "germany",
+        "statistik austria", "destatis", "oenb",
+    ))
+    non_at_de_intl_present = any(
+        t in claim_lc for t in _INTL_TERMS
+        if t not in ("österreich", "austria", "deutschland", "germany")
+    )
+
+    # 1. Direkt — überstimmt sogar den DACH-Skip
     if any(t in claim_lc for t in _DIRECT_TERMS):
+        return True
+
+    # DACH-Hard-Skip (nach Direkt-Trigger): wenn AT/DE OHNE Drittland-Kontext,
+    # bleibt der Claim bei den dedizierten DACH-Quellen.
+    if has_at_de and not non_at_de_intl_present:
+        return False
+
+    # 2. Meta-Hub-Sprache → IMMER triggern (Aggregator-Cross-Validation)
+    if any(t in claim_lc for t in _META_HUB_TERMS):
         return True
 
     has_indicator = any(t in claim_lc for t in _INDICATOR_TERMS)
     has_provider = any(t in claim_lc for t in _PROVIDER_HINTS.keys())
     has_intl = any(t in claim_lc for t in _INTL_TERMS)
 
-    # 2. Provider + Indikator (z.B. "IMF Inflation")
+    # 3. Provider + Indikator (z.B. "IMF Inflation")
     if has_provider and has_indicator:
         return True
 
-    # 3. Indikator + International — aber NUR wenn klar nicht AT/DE-fokussiert.
-    # Ausschluss: explizite AT/DE-Erwähnung ohne weiteren Vergleichs-Kontext.
+    # 4. Provider-als-Meta-Hub: dedizierter Provider explizit genannt
+    # (Federal Reserve / World Bank / FRED / IMF / OECD / BIS / …) →
+    # DBnomics feuert PARALLEL zum dedizierten Service als Cross-
+    # Validation. DACH-Hard-Skip oben filtert AT/DE-Claims bereits raus.
+    if has_provider:
+        return True
+
+    # 5. Indikator + International — Land != AT/DE
     if has_indicator and has_intl:
-        # Wenn AT/DE im Claim, nur triggern wenn auch ein Drittland genannt
-        has_at_de = any(t in claim_lc for t in (
-            "österreich", "austria", "deutschland", "germany",
-        ))
-        if has_at_de:
-            # Vergleichende Aussage: AT/DE vs anderes Land
-            non_at_de_intl = [
-                t for t in _INTL_TERMS
-                if t in claim_lc and t not in (
-                    "österreich", "austria", "deutschland", "germany",
-                )
-            ]
-            return bool(non_at_de_intl)
         return True
 
     return False

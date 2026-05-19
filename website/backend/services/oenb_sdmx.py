@@ -173,12 +173,20 @@ _TERM_TO_INDICATOR: dict[str, str] = {
     "konsumkredite": "konsumkredite",
     "verbraucherkredit": "konsumkredite",
     "at-konsumkredite": "konsumkredite",
-    # Hypothekardarlehen / Wohnbau
+    # Hypothekardarlehen / Wohnbau (DE + EN)
     "hypothekardarlehen": "hypothekardarlehen",
     "hypothekarkredit": "hypothekardarlehen",
     "hypothek": "hypothekardarlehen",
     "wohnbaukredit": "hypothekardarlehen",
+    "wohnbaudarlehen": "hypothekardarlehen",
+    "wohnbaufinanzierung": "hypothekardarlehen",
+    "immobilienkredit": "hypothekardarlehen",
     "at-hypothekardarlehen": "hypothekardarlehen",
+    "mortgage": "hypothekardarlehen",
+    "mortgages": "hypothekardarlehen",
+    "housing loan": "hypothekardarlehen",
+    "housing loans": "hypothekardarlehen",
+    "home loan": "hypothekardarlehen",
     # Einlagen
     "einlagen-volumen": "einlagen",
     "einlagenvolumen": "einlagen",
@@ -253,7 +261,10 @@ def _claim_mentions_oenb_sdmx(claim_lc: str) -> bool:
     has_indicator = any(t in claim_lc for t in _TERM_TO_INDICATOR.keys())
     # AT-Kontext: Wortteile + trailing " at" am Satzende mitnehmen
     has_at = (
-        any(t in claim_lc for t in ("österreich", "austria", "at-", " at "))
+        any(
+            t in claim_lc
+            for t in ("österreich", "oesterreich", "austria", "at-", " at ")
+        )
         or claim_lc.rstrip(" .!?,").endswith(" at")
         or claim_lc.startswith("at ")
     )
