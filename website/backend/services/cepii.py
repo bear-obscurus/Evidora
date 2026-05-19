@@ -57,6 +57,7 @@ Limitations:
 from __future__ import annotations
 
 import logging
+import re
 import time
 from urllib.parse import quote_plus
 
@@ -254,18 +255,32 @@ def _cache_put(key: str, value: list[dict]) -> None:
 def _detect_countries(claim_lc: str) -> list[str]:
     """Detect ISO-3-Codes mentioned in claim (longest-alias-first).
     Returns up to 3 ISO-3-Codes in order of first occurrence.
+
+    Akzeptiert auch nackte ISO-3-Codes (DEU/FRA/AUT…) wenn als
+    Wort-Token im Claim. Wortgrenze verhindert False-Positives
+    wie "ind" in "individuell" oder "che" in "Recherche".
     """
     if not claim_lc:
         return []
     found: list[tuple[int, str]] = []
     seen: set[str] = set()
     for iso3, aliases in _COUNTRY_ALIASES.items():
+        # Longest-alias-first verhindert dass kurzer Alias (z.B. "uk")
+        # einen längeren Alias maskiert.
         for alias in sorted(aliases, key=len, reverse=True):
             idx = claim_lc.find(alias)
             if idx >= 0 and iso3 not in seen:
                 found.append((idx, iso3))
                 seen.add(iso3)
                 break
+        if iso3 in seen:
+            continue
+        # ISO-3-Code als nacktes Token mit Wortgrenze (\b…\b).
+        # Beispiel: "DEU FRA" / "BACI DEU AUT" / "Export DEU→FRA".
+        m = re.search(rf"\b{iso3.lower()}\b", claim_lc)
+        if m is not None:
+            found.append((m.start(), iso3))
+            seen.add(iso3)
     found.sort(key=lambda t: t[0])
     return [iso for _, iso in found[:3]]
 

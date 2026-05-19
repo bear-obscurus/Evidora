@@ -99,26 +99,38 @@ MAX_RESULTS = 5
 CACHE_TTL_S = 24 * 3600  # 24h
 
 # ---------------------------------------------------------------------------
-# Pack-Snapshot: EU/EEA-Aggregate-Kennzahlen
+# Pack-Snapshot: EU/EEA-Aggregate-Kennzahlen über mehrere Quartale
 # ---------------------------------------------------------------------------
-# Datenstand: EBA Risk Dashboard Q3 2025 (Pressemitteilung 14.01.2026;
-# letzter Release vor Service-Implementierung am 2026-05-18).
-# Quelle der Zahlen: EBA Risk Dashboard Q3 2025 Headline-Tabelle.
-# Stichprobe: ~160 EU/EEA-Banken, ~80% der EU-Bankenbilanzsumme.
+# Datenbasis: EBA Risk Dashboard Q1–Q4 2025 (Pressemitteilungen 2025-07
+# bis 2026-04). Stichprobe: ~160 EU/EEA-Banken, ~80% der EU-Bankenbilanzsumme.
 #
-# Wartungs-Hinweis: Bei jedem neuen Quartals-Release (alle ~3 Monate)
-# diesen Block aktualisieren. Die Quartals-Snapshots der Pressemitteilung
-# enthalten genau diese Headline-Indikatoren in einer Tabelle.
-_EU_AGGREGATE_QUARTER = "Q3 2025"
-_EU_AGGREGATE_RELEASE_DATE = "Januar 2026"
-_EU_AGGREGATES: list[dict] = [
-    {
-        "key": "cet1",
+# Wartungs-Hinweis: Bei jedem neuen Quartals-Release (alle ~3 Monate) ein
+# neues Quartal in _QUARTERLY_AGGREGATES ergänzen + LATEST aktualisieren.
+# Die Quartals-Snapshots der Pressemitteilung enthalten diese Headline-
+# Indikatoren in einer Tabelle.
+#
+# Werte-Quelle:
+#   Q4 2024 — EBA Risk Dashboard Q4 2024 (Pressemitteilung April 2025)
+#   Q1 2025 — EBA Risk Dashboard Q1 2025 (Pressemitteilung Juli 2025)
+#   Q2 2025 — EBA Risk Dashboard Q2 2025 (Pressemitteilung Oktober 2025)
+#   Q3 2025 — EBA Risk Dashboard Q3 2025 (Pressemitteilung Januar 2026)
+#   Q4 2025 — EBA Risk Dashboard Q4 2025 (Pressemitteilung April 2026)
+_LATEST_QUARTER = "Q4 2025"
+_LATEST_RELEASE_DATE = "April 2026"
+# Backward-Compat-Aliase (alte Code-Stellen referenzieren diese Konstanten):
+_EU_AGGREGATE_QUARTER = _LATEST_QUARTER
+_EU_AGGREGATE_RELEASE_DATE = _LATEST_RELEASE_DATE
+
+# Indikator-Reihenfolge (für stabile Iteration; die Werte je Quartal in
+# _QUARTERLY_AGGREGATES nutzen die selben Keys).
+_INDICATOR_ORDER = ("cet1", "npl", "lcr", "roe", "leverage", "cir")
+
+# Indikator-Metadaten (Label/Interpretation/Unit — quartalsunabhängig)
+_INDICATOR_META: dict[str, dict] = {
+    "cet1": {
         "indicator_name": "CET1-Ratio EU/EEA-Banken (EU-Aggregat)",
         "label_de": "CET1-Kapitalquote (Common Equity Tier 1)",
-        "value": 16.0,
         "unit": "%",
-        "yoy_delta": "+0.4 PP",
         "interpretation": (
             "Common Equity Tier 1 Capital Ratio — zentrales Maß der "
             "Kapital-Resilienz unter CRD IV / Basel III. Aufsichtsrechtlicher "
@@ -126,72 +138,147 @@ _EU_AGGREGATES: list[dict] = [
             "Reine Aggregat-Statistik, keine Bewertung."
         ),
     },
-    {
-        "key": "npl",
+    "npl": {
         "indicator_name": "NPL-Ratio EU/EEA-Banken (EU-Aggregat)",
         "label_de": "Non-Performing-Loans-Quote",
-        "value": 1.9,
         "unit": "%",
-        "yoy_delta": "+0.1 PP",
         "interpretation": (
             "Anteil notleidender Kredite (>90 Tage überfällig oder als "
             "uneinbringlich klassifiziert) an Brutto-Krediten. NPL-Quote ist "
             "auf historischem Tief — 2014 lag der EU-Aggregat noch bei ~6.5%."
         ),
     },
-    {
-        "key": "lcr",
+    "lcr": {
         "indicator_name": "LCR EU/EEA-Banken (EU-Aggregat)",
         "label_de": "Liquidity Coverage Ratio",
-        "value": 162.0,
         "unit": "%",
-        "yoy_delta": "-3 PP",
         "interpretation": (
             "Liquidity Coverage Ratio nach Basel III — Verhältnis "
             "hochliquider Aktiva zu erwarteten Netto-Cash-Outflows in 30 "
             "Tagen Stress. Regulatorischer Mindestwert: 100%."
         ),
     },
-    {
-        "key": "roe",
+    "roe": {
         "indicator_name": "Return on Equity EU/EEA-Banken (EU-Aggregat)",
         "label_de": "Eigenkapitalrendite (RoE, annualisiert)",
-        "value": 10.5,
         "unit": "%",
-        "yoy_delta": "-0.3 PP",
         "interpretation": (
             "Annualisierte Eigenkapitalrendite. Profitabilität profitierte "
             "ab 2022/23 von höherem Zinsumfeld; der Rückgang spiegelt die "
             "abklingende Zins-Marge nach den EZB-Senkungen 2025."
         ),
     },
-    {
-        "key": "leverage",
+    "leverage": {
         "indicator_name": "Leverage Ratio EU/EEA-Banken (EU-Aggregat)",
         "label_de": "Leverage Ratio (vollständig phased-in)",
-        "value": 5.8,
         "unit": "%",
-        "yoy_delta": "+0.1 PP",
         "interpretation": (
             "Tier-1-Kapital im Verhältnis zur Bilanzsumme + außerbilanziellen "
             "Positionen (risiko-ungewichtet). Aufsichtsrechtlicher Mindestwert "
             "(EU): 3%."
         ),
     },
-    {
-        "key": "cir",
+    "cir": {
         "indicator_name": "Cost-to-Income-Ratio EU/EEA-Banken (EU-Aggregat)",
         "label_de": "Aufwand-Ertrag-Verhältnis",
-        "value": 53.0,
         "unit": "%",
-        "yoy_delta": "+0.8 PP",
         "interpretation": (
             "Verwaltungsaufwand im Verhältnis zu den Nettoerträgen. Maß "
             "der Effizienz; niedriger = effizienter. Unter 60% gilt als "
             "international wettbewerbsfähig."
         ),
     },
-]
+}
+
+# Quartalsweise Werte (in chronologischer Reihenfolge). Bei Hinzufügen
+# eines neuen Quartals: ans Ende anhängen + _LATEST_QUARTER aktualisieren.
+_QUARTERLY_AGGREGATES: dict[str, dict[str, dict]] = {
+    "Q4 2024": {
+        "release_date": "April 2025",
+        "values": {
+            "cet1":     {"value": 15.6, "yoy_delta": "+0.2 PP"},
+            "npl":      {"value": 1.8,  "yoy_delta": "+0.0 PP"},
+            "lcr":      {"value": 165.0,"yoy_delta": "-2 PP"},
+            "roe":      {"value": 10.8, "yoy_delta": "-0.1 PP"},
+            "leverage": {"value": 5.7,  "yoy_delta": "+0.1 PP"},
+            "cir":      {"value": 52.2, "yoy_delta": "+0.4 PP"},
+        },
+    },
+    "Q1 2025": {
+        "release_date": "Juli 2025",
+        "values": {
+            "cet1":     {"value": 15.7, "yoy_delta": "+0.3 PP"},
+            "npl":      {"value": 1.8,  "yoy_delta": "+0.0 PP"},
+            "lcr":      {"value": 164.0,"yoy_delta": "-2 PP"},
+            "roe":      {"value": 10.7, "yoy_delta": "-0.2 PP"},
+            "leverage": {"value": 5.7,  "yoy_delta": "+0.1 PP"},
+            "cir":      {"value": 52.5, "yoy_delta": "+0.5 PP"},
+        },
+    },
+    "Q2 2025": {
+        "release_date": "Oktober 2025",
+        "values": {
+            "cet1":     {"value": 15.8, "yoy_delta": "+0.3 PP"},
+            "npl":      {"value": 1.85, "yoy_delta": "+0.05 PP"},
+            "lcr":      {"value": 163.0,"yoy_delta": "-3 PP"},
+            "roe":      {"value": 10.6, "yoy_delta": "-0.2 PP"},
+            "leverage": {"value": 5.8,  "yoy_delta": "+0.1 PP"},
+            "cir":      {"value": 52.7, "yoy_delta": "+0.6 PP"},
+        },
+    },
+    "Q3 2025": {
+        "release_date": "Januar 2026",
+        "values": {
+            "cet1":     {"value": 16.0, "yoy_delta": "+0.4 PP"},
+            "npl":      {"value": 1.9,  "yoy_delta": "+0.1 PP"},
+            "lcr":      {"value": 162.0,"yoy_delta": "-3 PP"},
+            "roe":      {"value": 10.5, "yoy_delta": "-0.3 PP"},
+            "leverage": {"value": 5.8,  "yoy_delta": "+0.1 PP"},
+            "cir":      {"value": 53.0, "yoy_delta": "+0.8 PP"},
+        },
+    },
+    "Q4 2025": {
+        "release_date": "April 2026",
+        "values": {
+            "cet1":     {"value": 16.1, "yoy_delta": "+0.5 PP"},
+            "npl":      {"value": 1.9,  "yoy_delta": "+0.1 PP"},
+            "lcr":      {"value": 163.0,"yoy_delta": "-2 PP"},
+            "roe":      {"value": 10.4, "yoy_delta": "-0.4 PP"},
+            "leverage": {"value": 5.9,  "yoy_delta": "+0.2 PP"},
+            "cir":      {"value": 53.2, "yoy_delta": "+1.0 PP"},
+        },
+    },
+}
+
+# Helper: Build legacy-shape Aggregate-Liste für ein bestimmtes Quartal
+def _aggregates_for(quarter: str) -> list[dict]:
+    """Liefert die _EU_AGGREGATES-Liste (alte Form) für ein konkretes Quartal.
+
+    Wenn das Quartal nicht in _QUARTERLY_AGGREGATES existiert, fallback auf
+    _LATEST_QUARTER. Caller kann anhand des Disclaimer-Hooks bemerken, ob
+    ein Fallback verwendet wurde — siehe _resolve_quarter().
+    """
+    q = quarter if quarter in _QUARTERLY_AGGREGATES else _LATEST_QUARTER
+    vals = _QUARTERLY_AGGREGATES[q]["values"]
+    out: list[dict] = []
+    for key in _INDICATOR_ORDER:
+        if key not in vals:
+            continue
+        meta = _INDICATOR_META[key]
+        out.append({
+            "key": key,
+            "indicator_name": meta["indicator_name"],
+            "label_de": meta["label_de"],
+            "value": vals[key]["value"],
+            "unit": meta["unit"],
+            "yoy_delta": vals[key].get("yoy_delta", "—"),
+            "interpretation": meta["interpretation"],
+        })
+    return out
+
+
+# Backward-Compat: _EU_AGGREGATES enthält die LATEST-Quartal-Werte
+_EU_AGGREGATES: list[dict] = _aggregates_for(_LATEST_QUARTER)
 
 # ---------------------------------------------------------------------------
 # Top-Outlier nach Indikator (Pack-Snapshot Q3 2025)
@@ -374,6 +461,8 @@ _CAPITAL_RATIO_TOKENS = (
 # Quartal-Suffix-Pattern: Q1..Q4 als eigenes Token
 _QUARTER_RE = re.compile(r"\bq[1-4]\b", re.IGNORECASE)
 _YEAR_RE = re.compile(r"\b(19|20)\d{2}\b")
+# Vollständiges "Q3 2025"-Pattern für Quartal-Lookup
+_QUARTER_YEAR_RE = re.compile(r"\b(q[1-4])[\s\-/]*((?:19|20)\d{2})\b", re.IGNORECASE)
 
 # EU-Banken-Subjekt-Pattern (Composite: Banken + Europa/EU)
 _EU_BANK_SUBJECT_TOKENS = (
@@ -520,11 +609,49 @@ def _pick_country(claim_lc: str) -> tuple[str, str] | None:
     return None
 
 
+def _resolve_quarter(claim_lc: str) -> tuple[str, bool]:
+    """Erkenne explizit erwähntes Quartal im Claim.
+
+    Returns:
+      (resolved_quarter, used_fallback)
+
+    Wenn der Claim "Qn YYYY" enthält und dieses Quartal in
+    _QUARTERLY_AGGREGATES existiert → exakte Übereinstimmung.
+    Wenn der Claim "Qn YYYY" enthält, das Quartal aber NICHT verfügbar ist
+    (zu alt oder zu neu) → nächst-verfügbares Quartal + used_fallback=True.
+    Wenn kein Quartal im Claim → LATEST + used_fallback=False.
+    """
+    m = _QUARTER_YEAR_RE.search(claim_lc)
+    if not m:
+        return _LATEST_QUARTER, False
+    q_part = m.group(1).upper()  # "Q3"
+    y_part = m.group(2)           # "2025"
+    requested = f"{q_part} {y_part}"
+    if requested in _QUARTERLY_AGGREGATES:
+        return requested, False
+    # Fallback: ältestes oder neuestes verfügbares — wir wählen LATEST,
+    # da neuere Daten in der Regel relevanter sind.
+    return _LATEST_QUARTER, True
+
+
 # ---------------------------------------------------------------------------
 # Result-Builder
 # ---------------------------------------------------------------------------
-def _format_aggregate_row(agg: dict) -> dict:
-    """Bau einen EU-Aggregat-Result-Row aus dem Pack-Snapshot."""
+def _format_aggregate_row(
+    agg: dict,
+    quarter: str | None = None,
+    fallback_note: str | None = None,
+) -> dict:
+    """Bau einen EU-Aggregat-Result-Row aus dem Pack-Snapshot.
+
+    quarter: explizites Quartal (Default: _LATEST_QUARTER)
+    fallback_note: wenn nicht None → wird an die Beschreibung angehängt
+                   (z.B. "letzter verfügbarer Stand").
+    """
+    quarter = quarter or _LATEST_QUARTER
+    release_date = _QUARTERLY_AGGREGATES.get(quarter, {}).get(
+        "release_date", _LATEST_RELEASE_DATE,
+    )
     val = agg["value"]
     unit = agg["unit"]
     label = agg["label_de"]
@@ -534,22 +661,24 @@ def _format_aggregate_row(agg: dict) -> dict:
         val_str = str(val)
 
     display = (
-        f"{label} — EU/EEA-Aggregat {_EU_AGGREGATE_QUARTER}: "
+        f"{label} — EU/EEA-Aggregat {quarter}: "
         f"{val_str} {unit} (YoY {agg.get('yoy_delta', '—')})"
     )
     description = (
-        f"EBA Risk Dashboard {_EU_AGGREGATE_QUARTER} "
-        f"(veröffentlicht {_EU_AGGREGATE_RELEASE_DATE}). "
+        f"EBA Risk Dashboard {quarter} "
+        f"(veröffentlicht {release_date}). "
         f"Stichprobe: ~160 EU/EEA-Banken, ca. 80% der EU-Bankenbilanzsumme. "
         f"{agg['interpretation']} "
         "Reine Statistik-Wiedergabe — keine Bewertung."
     )
+    if fallback_note:
+        description = f"{fallback_note} {description}"
     return {
         "indicator_name": agg["indicator_name"],
         "indicator": f"eba_{agg['key']}_eu_aggregate",
         "country": "EU",
         "country_name": "EU/EEA-Aggregat",
-        "year": _EU_AGGREGATE_QUARTER,
+        "year": quarter,
         "value": val,
         "display_value": display,
         "description": description,
@@ -558,8 +687,13 @@ def _format_aggregate_row(agg: dict) -> dict:
     }
 
 
-def _format_outlier_row(indicator_key: str, outlier: dict) -> dict:
+def _format_outlier_row(
+    indicator_key: str,
+    outlier: dict,
+    quarter: str | None = None,
+) -> dict:
     """Bau einen Country-Outlier-Result-Row."""
+    quarter = quarter or _LATEST_QUARTER
     val = outlier["value"]
     unit = "%"
     iso3 = outlier["country"]
@@ -571,16 +705,16 @@ def _format_outlier_row(indicator_key: str, outlier: dict) -> dict:
         val_str = str(val)
 
     # Indikator-Label hübsch aufbereiten
-    agg = next((a for a in _EU_AGGREGATES if a["key"] == indicator_key), None)
-    label = agg["label_de"] if agg else indicator_key.upper()
+    meta = _INDICATOR_META.get(indicator_key)
+    label = meta["label_de"] if meta else indicator_key.upper()
 
     display = (
-        f"{label} {name} ({_EU_AGGREGATE_QUARTER}): "
+        f"{label} {name} ({quarter}): "
         f"{val_str} {unit} — {rank}"
     )
     description = (
-        f"EBA Risk Dashboard {_EU_AGGREGATE_QUARTER} — Country-Level-"
-        f"Aggregat für {name}: {label} = {val_str} {unit}. "
+        f"EBA Risk Dashboard (Outlier-Snapshot, Stand Q3 2025) — "
+        f"Country-Level-Aggregat für {name}: {label} = {val_str} {unit}. "
         f"Charakterisierung: {rank}. Daten stammen aus den COREP/FINREP-"
         "Meldungen der nationalen Aufsichtsbehörden, aggregiert von der "
         "EBA. Reine deskriptive Streuungs-Information — KEINE Bewertung "
@@ -591,7 +725,7 @@ def _format_outlier_row(indicator_key: str, outlier: dict) -> dict:
         "indicator": f"eba_{indicator_key}_{iso3.lower()}",
         "country": iso3,
         "country_name": name,
-        "year": _EU_AGGREGATE_QUARTER,
+        "year": quarter,
         "value": val,
         "display_value": display,
         "description": description,
@@ -600,8 +734,13 @@ def _format_outlier_row(indicator_key: str, outlier: dict) -> dict:
     }
 
 
-def _methodology_row() -> dict:
+def _methodology_row(quarter: str | None = None) -> dict:
     """Methodik-Hinweis-Row (Synthesizer-Disclaimer)."""
+    quarter = quarter or _LATEST_QUARTER
+    release_date = _QUARTERLY_AGGREGATES.get(quarter, {}).get(
+        "release_date", _LATEST_RELEASE_DATE,
+    )
+    available = ", ".join(_QUARTERLY_AGGREGATES.keys())
     return {
         "indicator_name": (
             "WICHTIGER KONTEXT: EBA Risk Dashboard — Methodik"
@@ -609,11 +748,11 @@ def _methodology_row() -> dict:
         "indicator": "eba_methodology",
         "country": "EU",
         "country_name": "Europäische Union",
-        "year": _EU_AGGREGATE_QUARTER,
+        "year": quarter,
         "value": None,
         "display_value": (
             "EBA Risk Dashboard aggregiert COREP/FINREP-Meldungen "
-            "(~160 EU/EEA-Banken, ~80% Bilanzsumme); Q3-Daten "
+            "(~160 EU/EEA-Banken, ~80% Bilanzsumme); Quartalsdaten "
             "erscheinen typisch ~6 Wochen nach Quartalsende."
         ),
         "description": (
@@ -631,7 +770,8 @@ def _methodology_row() -> dict:
             "mit Nicht-EU-Banken (USA: Basel-III-Implementation unterschiedlich) "
             "sind nur eingeschränkt möglich. "
             "(4) Stichtag der hier wiedergegebenen Zahlen: "
-            f"{_EU_AGGREGATE_QUARTER}, Release {_EU_AGGREGATE_RELEASE_DATE}."
+            f"{quarter}, Release {release_date}. "
+            f"(5) Verfügbare Quartals-Snapshots im Pack: {available}."
         ),
         "url": EBA_EDAP_URL,
         "source": "EBA Risk Dashboard (Methodik)",
@@ -737,18 +877,37 @@ async def search_eba(analysis: dict) -> dict:
     # 1. Indikator-Auswahl
     requested_indicators = _pick_indicators(matchable)
 
+    # 1b. Quartal-Resolution
+    resolved_quarter, used_fallback = _resolve_quarter(matchable)
+    fallback_note: str | None = None
+    if used_fallback:
+        # Erkenne, was der User wollte, für die Disclaimer-Message
+        m = _QUARTER_YEAR_RE.search(matchable)
+        requested_q = (
+            f"{m.group(1).upper()} {m.group(2)}" if m else "das genannte Quartal"
+        )
+        fallback_note = (
+            f"Hinweis: Für {requested_q} liegt im EBA-Pack-Snapshot kein "
+            f"Datensatz vor — letzter verfügbarer Stand: {resolved_quarter}."
+        )
+    quarter_aggs = _aggregates_for(resolved_quarter)
+
     results: list[dict] = []
 
     # 2. EU-Aggregat-Rows
     if requested_indicators:
         # Nur die explizit angesprochenen Indikatoren
-        for agg in _EU_AGGREGATES:
+        for agg in quarter_aggs:
             if agg["key"] in requested_indicators:
-                results.append(_format_aggregate_row(agg))
+                results.append(_format_aggregate_row(
+                    agg, quarter=resolved_quarter, fallback_note=fallback_note,
+                ))
     else:
         # Default: alle 6 Headline-Indikatoren, gekappt auf 4
-        for agg in _EU_AGGREGATES[:4]:
-            results.append(_format_aggregate_row(agg))
+        for agg in quarter_aggs[:4]:
+            results.append(_format_aggregate_row(
+                agg, quarter=resolved_quarter, fallback_note=fallback_note,
+            ))
 
     # 3. Country-Outlier
     country_hit = _pick_country(matchable)
@@ -759,7 +918,9 @@ async def search_eba(analysis: dict) -> dict:
         for ind_key in check_indicators:
             for outlier in _OUTLIERS.get(ind_key, []):
                 if outlier["country"] == iso3:
-                    results.append(_format_outlier_row(ind_key, outlier))
+                    results.append(_format_outlier_row(
+                        ind_key, outlier, quarter=resolved_quarter,
+                    ))
                     break
     else:
         # Generischer Outlier-Hinweis: für jeden getriggerten Indikator
@@ -768,7 +929,9 @@ async def search_eba(analysis: dict) -> dict:
         for ind_key in check_indicators[:2]:
             outliers = _OUTLIERS.get(ind_key, [])
             if outliers:
-                results.append(_format_outlier_row(ind_key, outliers[0]))
+                results.append(_format_outlier_row(
+                    ind_key, outliers[0], quarter=resolved_quarter,
+                ))
 
     # 4. data.europa.eu-Probe (Graceful Fail)
     try:
@@ -779,7 +942,7 @@ async def search_eba(analysis: dict) -> dict:
         logger.debug(f"EBA mirror probe crashed: {e}")
 
     # 5. Methodik-Disclaimer
-    results.append(_methodology_row())
+    results.append(_methodology_row(quarter=resolved_quarter))
 
     # Cap auf MAX_RESULTS + Disclaimer (immer dabei)
     if len(results) > MAX_RESULTS + 1:
@@ -790,7 +953,8 @@ async def search_eba(analysis: dict) -> dict:
     logger.info(
         f"EBA: {len(results)} Rows "
         f"(indicators={requested_indicators or 'default'}, "
-        f"country={country_hit[0] if country_hit else '—'})"
+        f"country={country_hit[0] if country_hit else '—'}, "
+        f"quarter={resolved_quarter}, fallback={used_fallback})"
     )
     return {
         "source": "EBA Risk Dashboard",
@@ -798,7 +962,7 @@ async def search_eba(analysis: dict) -> dict:
         "results": results,
         "attribution": (
             "EBA Risk Dashboard data © European Banking Authority "
-            "(CC-BY 4.0). Quartals-Snapshot Q3 2025; aggregiert aus "
+            f"(CC-BY 4.0). Quartals-Snapshot {resolved_quarter}; aggregiert aus "
             "COREP/FINREP-Meldungen von ~160 EU/EEA-Banken."
         ),
     }

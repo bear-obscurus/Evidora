@@ -134,26 +134,28 @@ _DACH_TERMS = (
 #       "ref_areas": [(ISO/Code, Anzeige-Name)],
 #       "dim_filters": {dim_name: code},  # weitere Dimensionen
 #   }
+# Dataset-Wahl: UNE_2EAP_SEX_AGE_RT (Nov. 2023 modelled estimates) liefert
+# X01-Welt-Aggregate und Daten bis 2025 (Forecast). Das ältere
+# UNE_2EAP_SEX_AGE_GEO_RT endete in 2020 — daher Welle-2-Tests auf
+# Hetzner 0 Results bei Claims mit Jahr 2023/2024.
 _ILO_INDICATORS: dict[str, dict] = {
     "arbeitslosigkeit": {
-        "dataset": "UNE_2EAP_SEX_AGE_GEO_RT",
+        "dataset": "UNE_2EAP_SEX_AGE_RT",
         "label_de": "Arbeitslosenquote (ILO-Schätzung, 15+, %)",
         "indicator_id": "ilo_unemp_15plus",
         "dim_filters": {
             "sex": "SEX_T",
             "classif1": "AGE_YTHADULT_YGE15",
-            "classif2": "GEO_COV_NAT",
         },
         "default_ref_areas": [("X01", "Welt")],
     },
     "jugendarbeitslosigkeit": {
-        "dataset": "UNE_2EAP_SEX_AGE_GEO_RT",
+        "dataset": "UNE_2EAP_SEX_AGE_RT",
         "label_de": "Jugend-Arbeitslosenquote (ILO-Schätzung, 15–24, %)",
         "indicator_id": "ilo_youth_unemp",
         "dim_filters": {
             "sex": "SEX_T",
             "classif1": "AGE_YTHADULT_Y15-24",
-            "classif2": "GEO_COV_NAT",
         },
         "default_ref_areas": [("X01", "Welt")],
     },
@@ -163,6 +165,8 @@ _ILO_INDICATORS: dict[str, dict] = {
         "indicator_id": "ilo_child_labour_count",
         "dim_filters": {
             "sex": "SEX_T",
+            "classif1": "AGE_CLDVERSION_Y5-17",
+            "classif2": "STE_ICSE93_TOTAL",
         },
         "default_ref_areas": [("X01", "Welt")],
     },
@@ -316,13 +320,20 @@ def _pick_indicator(claim_lc: str) -> tuple[str, dict] | None:
 _INDICATOR_SYNONYMS: dict[str, str] = {
     "arbeitslosenquote": "arbeitslosigkeit",
     "arbeitslosenrate": "arbeitslosigkeit",
+    "globale arbeitslosenquote": "arbeitslosigkeit",
+    "weltweite arbeitslosenquote": "arbeitslosigkeit",
     "unemployment rate": "arbeitslosigkeit",
     "unemployment": "arbeitslosigkeit",
+    "world unemployment": "arbeitslosigkeit",
+    "global unemployment": "arbeitslosigkeit",
     "youth unemployment": "jugendarbeitslosigkeit",
     "jugend-arbeitslosigkeit": "jugendarbeitslosigkeit",
+    "welt-jugendarbeitslosigkeit": "jugendarbeitslosigkeit",
+    "jugendarbeitslosenquote": "jugendarbeitslosigkeit",
     "child labour": "kinderarbeit",
     "child labor": "kinderarbeit",
     "child workers": "kinderarbeit",
+    "welt-kinderarbeit": "kinderarbeit",
 }
 
 

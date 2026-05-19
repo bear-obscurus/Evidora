@@ -227,6 +227,7 @@ _DIRECT_TERMS = (
     "fred", "stlouisfed", "st. louis fed", "st louis fed",
     "federal reserve bank of st. louis",
     "federal reserve bank of st louis",
+    "federal reserve",  # generisch "Federal Reserve" → klar US-Kontext
 )
 
 # US-Markierungen (Composite-Trigger Voraussetzung)
@@ -235,6 +236,9 @@ _US_TERMS = (
     "amerikanisch", "amerikanische", "amerikanischer",
     "vereinigte staaten", "united states",
     "us-", "us ",  # erlaubt "US-Inflation" / "US Inflation" generisch
+    # Institutionen / Indikatoren mit klarem US-Kontext (DACH-Skip-Override)
+    "federal reserve", "fed ", "fed-", "stlouisfed",
+    "st louis", "st. louis",
 )
 
 # Allgemeine US-Wirtschafts-Indikator-Worte (für Composite ohne explizite
@@ -367,7 +371,11 @@ def _default_series_for_us_term(claim_lc: str) -> list[tuple[str, str, str, str]
         out.append(_SERIES_MAP["us bip"])
     if any(t in claim_lc for t in (
         "leitzins", "fed funds", "federal funds",
+        "interest rate", "interest rates", "rate decision",
     )):
+        out.append(_SERIES_MAP["fed-leitzins"])
+    # Fallback: "Federal Reserve" alleine ohne weiteren Indikator-Hint → DFF
+    if "federal reserve" in claim_lc and not out:
         out.append(_SERIES_MAP["fed-leitzins"])
     if any(t in claim_lc for t in ("treasury", "staatsanleihe")):
         out.append(_SERIES_MAP["10y treasury"])

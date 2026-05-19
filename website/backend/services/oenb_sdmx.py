@@ -9,17 +9,21 @@ Komplementär zu `services/oenb.py` (kuratiertes Pack mit EZB-Leitzins +
 Kommunikations-Hinweisen) — dieser Service liefert LIVE-Zahlen.
 
 API-Strategie:
-1. PRIMÄR: DBnomics-Mirror (analog IMF/BIS).
+1. PRIMÄR: ECB Direct SDMX 2.1 JSON
+       https://data-api.ecb.europa.eu/service/data/{dataset}/{series_key}
+   Stabil, schnell, eigene ECB-Infrastruktur (kein DBnomics-Single-Point-of-
+   Failure). Series-Key wird vollständig konstruiert. REF_AREA=AT-Daten sind
+   die OeNB-Meldedaten der österreichischen MFIs — semantisch identisch
+   mit dem, was die OeNB national publiziert.
+2. FALLBACK: DBnomics-Mirror (analog IMF/BIS).
        https://api.db.nomics.world/v22/series/{provider}/{dataset}/...
    ⚠ DBnomics indexiert KEINEN "OeNB"-Provider (Stand 2026-05). Wir nutzen
-   daher den ECB-Mirror (BSI / MIR) mit REF_AREA=AT — die ECB aggregiert
-   OeNB-Meldedaten der österreichischen MFIs (Monetary Financial Institutions);
-   semantisch sind das die gleichen Zahlen, die die OeNB national veröffentlicht.
-   Quellenangabe bleibt deshalb "OeNB-Daten via ECB MFI Reporting".
-2. FALLBACK: OeNB Direct-SDMX (ISAweb).
+   daher denselben ECB-Mirror als Backup, falls die ECB-API kurz aussetzt.
+3. NICHT IM EINSATZ: OeNB Direct-SDMX (ISAweb).
        https://www.oenb.at/isaweb/webservice/services/Catalogue
    Der OeNB-Direct-Endpoint wirft Cloudflare-503/Session-Redirects bei
-   anonymem Zugriff; daher nur als zweiter Versuch mit kurzem Timeout.
+   anonymem Zugriff. Da die ECB-Aggregate REF_AREA=AT die identischen
+   Meldedaten enthalten, ist OeNB-Direct nicht mehr nötig.
 
 Beispiel-Indikatoren (über ECB-BSI-Aggregat):
 - Konsumkredite (BS_ITEM=A21 oder A20-Subset, BS_COUNT_SECTOR=2250 Haushalte)
@@ -62,33 +66,55 @@ logger = logging.getLogger("evidora")
 # ---------------------------------------------------------------------------
 # Endpoints & Konfiguration
 # ---------------------------------------------------------------------------
+ECB_DIRECT_API = "https://data-api.ecb.europa.eu/service/data"
 DBNOMICS_API = "https://api.db.nomics.world/v22"
 OENB_DIRECT_API = "https://www.oenb.at/isaweb/spec_sdw/datacollection"
 TIMEOUT_S = 12.0
+TIMEOUT_ECB_S = 10.0
 TIMEOUT_DIRECT_S = 5.0   # OeNB-Direkt blockt oft → kurz halten
 MAX_RESULTS = 3
 CACHE_TTL_S = 24 * 3600  # 24h
 
 # ---------------------------------------------------------------------------
-# Indikator-Definition: (Trigger-Begriff → ECB-Dataset + Dimension-Filter)
+# Indikator-Definition: (Trigger-Begriff → ECB-Dataset + Series-Key)
 #
-# ECB-BSI = Balance Sheet Items (Mengen, monatlich)
-# ECB-MIR = MFI Interest Rates (Zinssätze, monatlich)
-# REF_AREA=AT → Österreich
-# BS_COUNT_SECTOR=2250 → Haushalte
-# BS_COUNT_SECTOR=2240 → Nichtfinanzielle Kapitalgesellschaften (NFC)
-# BS_ITEM:
+# ECB-BSI Series-Key Aufbau (11 Dimensionen, in fester Reihenfolge):
+#   FREQ.REF_AREA.ADJUSTMENT.BS_REP_SECTOR.BS_ITEM.MATURITY_ORIG.
+#   DATA_TYPE.COUNT_AREA.BS_COUNT_SECTOR.CURRENCY_TRANS.BS_SUFFIX
+#
+# Standardwerte für unsere Lookups:
+#   FREQ=M (monatlich)
+#   REF_AREA=AT (Österreich) — semantisch OeNB-Meldedaten
+#   ADJUSTMENT=N (nicht saisonbereinigt)
+#   BS_REP_SECTOR=A (MFIs ohne ESCB = Banken-Sektor)
+#   MATURITY_ORIG=A (alle Laufzeiten)
+#   DATA_TYPE=1 (Stocks / Outstanding amounts End of Period)
+#   COUNT_AREA=U2 (Euro-Area Counterpart, includes resident AT)
+#   CURRENCY_TRANS=Z01 (alle Währungen kombiniert)
+#   BS_SUFFIX=E (Euro)
+#
+# BS_ITEM-Tabelle (nur die hier benutzten):
 #   A20 = Loans, total
-#   A22 = Lending for house purchase (Hypothekardarlehen)
-#   A21 = Consumer credit (Konsumkredite)
-#   L20 = Deposits, total (Einlagen gesamt)
+#   A21 = Credit for consumption (Konsumkredite)
+#   A22 = Lending for house purchase (Wohnbau-/Hypothekarkredite)
+#   L20 = Deposits, total (Einlagen)
+#
+# BS_COUNT_SECTOR:
+#   2250 = Households + NPISH (private Haushalte + private Org.)
+#   2240 = Non-financial corporations (Unternehmen, NFC)
 # ---------------------------------------------------------------------------
+def _bsi_key(*, bs_item: str, bs_count_sector: str) -> str:
+    """Vollständiger ECB-BSI-Series-Key mit allen 11 Dimensionen."""
+    return f"M.AT.N.A.{bs_item}.A.1.U2.{bs_count_sector}.Z01.E"
+
+
 _INDICATORS: dict[str, dict] = {
     # Konsumkredite an Haushalte (Volumen, EUR Mio.)
     "konsumkredite": {
         "dataset": "BSI",
         "label_de": "Konsumkredite an Haushalte (AT)",
         "unit": "Mio. EUR",
+        "series_key": _bsi_key(bs_item="A21", bs_count_sector="2250"),
         "filters": {
             "REF_AREA": "AT", "BS_ITEM": "A21",
             "BS_COUNT_SECTOR": "2250", "FREQ": "M",
@@ -99,6 +125,7 @@ _INDICATORS: dict[str, dict] = {
         "dataset": "BSI",
         "label_de": "Wohnbaukredite an Haushalte (AT)",
         "unit": "Mio. EUR",
+        "series_key": _bsi_key(bs_item="A22", bs_count_sector="2250"),
         "filters": {
             "REF_AREA": "AT", "BS_ITEM": "A22",
             "BS_COUNT_SECTOR": "2250", "FREQ": "M",
@@ -109,6 +136,7 @@ _INDICATORS: dict[str, dict] = {
         "dataset": "BSI",
         "label_de": "Kredite an Haushalte gesamt (AT)",
         "unit": "Mio. EUR",
+        "series_key": _bsi_key(bs_item="A20", bs_count_sector="2250"),
         "filters": {
             "REF_AREA": "AT", "BS_ITEM": "A20",
             "BS_COUNT_SECTOR": "2250", "FREQ": "M",
@@ -119,6 +147,7 @@ _INDICATORS: dict[str, dict] = {
         "dataset": "BSI",
         "label_de": "Einlagen privater Haushalte (AT)",
         "unit": "Mio. EUR",
+        "series_key": _bsi_key(bs_item="L20", bs_count_sector="2250"),
         "filters": {
             "REF_AREA": "AT", "BS_ITEM": "L20",
             "BS_COUNT_SECTOR": "2250", "FREQ": "M",
@@ -129,6 +158,7 @@ _INDICATORS: dict[str, dict] = {
         "dataset": "BSI",
         "label_de": "Kredite an Unternehmen (AT, NFC)",
         "unit": "Mio. EUR",
+        "series_key": _bsi_key(bs_item="A20", bs_count_sector="2240"),
         "filters": {
             "REF_AREA": "AT", "BS_ITEM": "A20",
             "BS_COUNT_SECTOR": "2240", "FREQ": "M",
@@ -154,6 +184,11 @@ _TERM_TO_INDICATOR: dict[str, str] = {
     "einlagenvolumen": "einlagen",
     "spareinlagen": "einlagen",
     "at-einlagen": "einlagen",
+    "einlagen haushalte": "einlagen",
+    "einlagen privater haushalte": "einlagen",
+    "einlagen der haushalte": "einlagen",
+    "haushaltsersparnis": "einlagen",
+    "ersparnisse haushalte": "einlagen",
     # Unternehmenskredite
     "unternehmenskredit": "unternehmenskredite",
     "firmenkredit": "unternehmenskredite",
@@ -378,7 +413,89 @@ def _format_observation(
 
 
 # ---------------------------------------------------------------------------
-# DBnomics ECB-Mirror Fetch (Primary)
+# ECB Direct SDMX 2.1 Fetch (Primary)
+# ---------------------------------------------------------------------------
+async def _fetch_ecb_direct(
+    client,
+    *,
+    dataset: str,
+    series_key: str,
+    last_n: int = 6,
+) -> tuple[str, float, str] | None:
+    """GET https://data-api.ecb.europa.eu/service/data/{dataset}/{series_key}
+    ?lastNObservations={N}&format=jsondata
+
+    Returns (period, value, series_key) für die jüngste, nicht-leere
+    Beobachtung. Robust gegen 404 / Timeouts / leere Datasets → None.
+    """
+    url = (
+        f"{ECB_DIRECT_API}/{dataset}/{series_key}"
+        f"?lastNObservations={last_n}&format=jsondata"
+    )
+    try:
+        resp = await client.get(
+            url,
+            timeout=TIMEOUT_ECB_S,
+            follow_redirects=True,
+            headers={"Accept": "application/json"},
+        )
+        if resp.status_code != 200:
+            logger.debug(
+                f"OeNB-SDMX→ECB-Direct HTTP {resp.status_code} "
+                f"for {dataset}/{series_key}"
+            )
+            return None
+        data = resp.json()
+    except Exception as e:
+        logger.debug(
+            f"OeNB-SDMX→ECB-Direct fetch failed {dataset}/{series_key}: {e}"
+        )
+        return None
+
+    try:
+        # Periodenliste aus structure.dimensions.observation[0].values
+        obs_dim = (
+            data.get("structure", {})
+            .get("dimensions", {})
+            .get("observation", [])
+        )
+        if not obs_dim:
+            return None
+        periods = [v.get("id") for v in (obs_dim[0].get("values") or [])]
+
+        # Observations aus dataSets[0].series.{first_key}.observations
+        datasets = data.get("dataSets") or []
+        if not datasets:
+            return None
+        series_dict = datasets[0].get("series") or {}
+        if not series_dict:
+            return None
+        # nimm die erste Serie (sollte bei vollem Series-Key genau eine sein)
+        _, sdata = next(iter(series_dict.items()))
+        obs_map = sdata.get("observations") or {}
+        if not obs_map:
+            return None
+
+        # Indizes → Werte; späteste nicht-None bevorzugen
+        for idx_str in sorted(obs_map.keys(), key=int, reverse=True):
+            obs_arr = obs_map.get(idx_str) or []
+            if not obs_arr or obs_arr[0] is None:
+                continue
+            try:
+                idx = int(idx_str)
+                period = periods[idx]
+                value = float(obs_arr[0])
+            except (TypeError, ValueError, IndexError):
+                continue
+            return period, value, series_key
+    except Exception as e:
+        logger.debug(f"OeNB-SDMX→ECB-Direct parse failed: {e}")
+        return None
+    return None
+
+
+# ---------------------------------------------------------------------------
+# DBnomics ECB-Mirror Fetch (Fallback)
 # ---------------------------------------------------------------------------
 async def _fetch_dbnomics_filtered(
     client,
@@ -448,7 +565,13 @@ async def _fetch_oenb_direct_ping(client) -> bool:
 # Per-Indicator Lookup
 # ---------------------------------------------------------------------------
 async def _lookup_indicator(client, key: str) -> dict | None:
-    """Cached pro Indikator-Key für 24h."""
+    """Cached pro Indikator-Key für 24h.
+
+    Reihenfolge:
+    1. ECB Direct SDMX (data-api.ecb.europa.eu) — eigene ECB-Infrastruktur,
+       frische Daten, expliziter Series-Key.
+    2. DBnomics-Mirror als Fallback (gleicher Datenstand, andere Infrastruktur).
+    """
     cache_key = f"oenb_sdmx::{key}"
     cached = _cache_get(cache_key)
     if cached is not None:
@@ -458,7 +581,31 @@ async def _lookup_indicator(client, key: str) -> dict | None:
     if not definition:
         return None
 
-    # Primary: DBnomics ECB-Mirror mit REF_AREA=AT (= OeNB-Meldedaten)
+    # Primary: ECB Direct SDMX
+    series_key = definition.get("series_key")
+    if series_key:
+        ecb = await _fetch_ecb_direct(
+            client,
+            dataset=definition["dataset"],
+            series_key=series_key,
+        )
+        if ecb:
+            period, value, sk = ecb
+            result = _format_observation(
+                indicator_key=key,
+                indicator_def=definition,
+                period=period,
+                value=value,
+                source_path=(
+                    f"ECB Direct SDMX {definition['dataset']}/{sk} "
+                    "(REF_AREA=AT = OeNB-Meldedaten der österr. MFIs)"
+                ),
+                series_code=sk,
+            )
+            _cache_put(cache_key, [result])
+            return result
+
+    # Fallback: DBnomics ECB-Mirror
     doc = await _fetch_dbnomics_filtered(
         client,
         provider="ECB",
@@ -478,7 +625,7 @@ async def _lookup_indicator(client, key: str) -> dict | None:
                 value=value,
                 source_path=(
                     f"DBnomics-Mirror ECB/{definition['dataset']} "
-                    "(REF_AREA=AT = OeNB-Meldedaten)"
+                    "(REF_AREA=AT = OeNB-Meldedaten, Fallback)"
                 ),
                 series_code=doc.get("series_code", ""),
             )
