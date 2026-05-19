@@ -390,7 +390,7 @@ function renderVerdict(data) {
         // 0/1 sind schon oben abgedeckt — hier nur withResults === 2.
         // Absolute Schwelle statt Verhältnis: 3+ unabhängige Quellen
         // gelten als ausreichend, egal wie breit der Fan-Out war.
-        // (Vorher: queried/3 — bei 60+ Live-API + 40 Packs zu strikt.)
+        // (Vorher: queried/3 — bei 75+ Live-API + 40 Packs zu strikt.)
         coverageWarning = `<div class="coverage-warning coverage-low">${t("source_coverage_low")}</div>`;
     }
 

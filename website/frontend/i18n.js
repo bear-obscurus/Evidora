@@ -217,6 +217,18 @@ const TRANSLATIONS = {
                 <li><a href="https://ucdp.uu.se/" target="_blank" rel="noopener">UCDP</a> — Uppsala Conflict Data Program (GED v25.1 Geo-Events + UCDP/PRIO Armed Conflict Dataset); akademischer Goldstandard für Battle-Deaths-Statistik (CC-BY 4.0)</li>
                 <li><a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames</a> — 11+ Mio. geographische Namen weltweit (Wikipedia-Verknüpfung, Postal-Codes, Geokoordinaten); komplementär zu OSM Nominatim (CC-BY 4.0)</li>
                 <li><a href="https://dp.la/" target="_blank" rel="noopener">DPLA</a> — Digital Public Library of America: 50+ Mio. Items (Manuskripte, Bilder, Bücher, Audio/Video) aus US-Bibliotheken/Museen/Archiven (DPLA-permissive)</li>
+                <li><a href="https://fred.stlouisfed.org/" target="_blank" rel="noopener">FRED</a> — Federal Reserve Bank of St. Louis: 800.000+ US-Wirtschafts-Zeitreihen (CPI, UNRATE, GDP, Fed Funds Rate); kostenlos via API-Key (Public Domain)</li>
+                <li><a href="https://www.imf.org/en/Data" target="_blank" rel="noopener">IMF</a> — International Monetary Fund: World Economic Outlook (WEO) + Financial Soundness Indicators; via DBnomics-Mirror als robuster Primary-Pfad nach 2024-URN-Restructure</li>
+                <li><a href="https://ilostat.ilo.org/" target="_blank" rel="noopener">ILOSTAT</a> — International Labour Organization Statistics: globale Arbeitsmarkt-Daten (Welt-Arbeitslosenquote, Kinderarbeit, Gender Pay Gap, Working Poor) (CC BY 4.0)</li>
+                <li><a href="https://www.eba.europa.eu/risk-and-data-analysis/risk-analysis/risk-dashboard" target="_blank" rel="noopener">EBA Risk Dashboard</a> — European Banking Authority: Quartals-Kennzahlen EU/EEA-Bankensektor (CET1, NPL, Tier-1/2-Ratio, Liquidität) Q4 2024 – Q4 2025</li>
+                <li><a href="https://www.internal-displacement.org/" target="_blank" rel="noopener">IDMC</a> — Internal Displacement Monitoring Centre: globale Binnenvertreibung 200+ Länder (Konflikt + Klima), tägliche Updates (CC BY 4.0)</li>
+                <li><a href="https://www.cepii.fr/CEPII/en/bdd_modele/" target="_blank" rel="noopener">CEPII BACI</a> — bilateraler Handel auf HS-6-Produktebene, ~200 Länder seit 1995 (via DBnomics-Mirror, Etalab Open Licence 2.0)</li>
+                <li><a href="https://www.oenb.at/en/Statistics/" target="_blank" rel="noopener">OeNB SDMX</a> — Österreichische Nationalbank Banken-Statistik (Konsumkredite, Wohnbaudarlehen, Einlagen) via ECB-Direct-SDMX (Mar-2026-Aktualität)</li>
+                <li><a href="https://www.parlgov.org/" target="_blank" rel="noopener">ParlGov</a> — Parliaments & Governments Database (EU + OECD 1900-2024): Wahlergebnisse + Regierungs-Koalitionen + Parteien-Positionen</li>
+                <li><a href="https://wid.world/" target="_blank" rel="noopener">WID.world</a> — World Inequality Database: Top-1%/10%/Bottom-50%-Vermögens-/Einkommens-Shares, 175+ Länder seit 1980 (Piketty/Saez/Zucman)</li>
+                <li><a href="https://www.systemicpeace.org/polityproject.html" target="_blank" rel="noopener">Polity 5</a> — Center for Systemic Peace: 167 Länder Regime-Typologie (-10 bis +10) seit 1800; klassischer Demokratie-Index-Komplement zu V-Dem</li>
+                <li><a href="https://www.nber.org/papers" target="_blank" rel="noopener">NBER</a> — National Bureau of Economic Research: Working Papers in Labor / Macro / Finance / Public-Economics, RSS + JSON-API, höchster Akademiker-Standard</li>
+                <li><a href="https://cara.georgetown.edu/" target="_blank" rel="noopener">CARA</a> — Center for Applied Research in the Apostolate (Georgetown): Katholische Demografie weltweit (Berufungen, Pfarrei-Daten, Vatikan-Annuarium-Statistik)</li>
             </ul>
             <h3>Faktencheck-Netzwerke</h3>
             <ul>
@@ -582,7 +594,7 @@ const TRANSLATIONS = {
                 <li><a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament.gv.at</a> — Austrian Parliament Open Data (Nationalrat seat shares)</li>
             </ul>
             <h3>Extended Live-API Sources (2026)</h3>
-            <p style="font-size: 0.9rem; color: #6b7280;">In 2026, additional live-API sources were integrated (from the Metastudien-Quellen-Inventar): 60+ verified production-ready live-API connectors.</p>
+            <p style="font-size: 0.9rem; color: #6b7280;">In 2026, additional live-API sources were integrated (from the Metastudien-Quellen-Inventar): <strong>75+ verified production-ready live-API connectors</strong> with a 97% Hard-PASS rate in the 101-Claim Comprehensive Test (2026-05-20).</p>
             <ul>
                 <li><a href="https://db.nomics.world/" target="_blank" rel="noopener">DBnomics</a> — Meta-aggregator for 50,000+ economic time-series from ECB, IMF, OECD, BIS, World Bank, FRED, OeNB, CEPII, INSEE etc. (AGPL/ODbL)</li>
                 <li><a href="https://nvd.nist.gov/" target="_blank" rel="noopener">NIST NVD</a> — US National Vulnerability Database: 351k+ CVEs with CVSS scores + CISA KEV status (Public Domain)</li>
@@ -626,6 +638,18 @@ const TRANSLATIONS = {
                 <li><a href="https://ucdp.uu.se/" target="_blank" rel="noopener">UCDP</a> — Uppsala Conflict Data Program (GED v25.1 Geo-Events + UCDP/PRIO Armed Conflict Dataset); academic gold standard for battle-deaths statistics (CC-BY 4.0)</li>
                 <li><a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames</a> — 11+ million geographic names worldwide (Wikipedia linking, postal codes, geocoordinates); complementary to OSM Nominatim (CC-BY 4.0)</li>
                 <li><a href="https://dp.la/" target="_blank" rel="noopener">DPLA</a> — Digital Public Library of America: 50+ million items (manuscripts, images, books, audio/video) from US libraries/museums/archives (DPLA-permissive)</li>
+                <li><a href="https://fred.stlouisfed.org/" target="_blank" rel="noopener">FRED</a> — Federal Reserve Bank of St. Louis: 800,000+ US economic time series (CPI, UNRATE, GDP, Fed Funds Rate); free API key (Public Domain)</li>
+                <li><a href="https://www.imf.org/en/Data" target="_blank" rel="noopener">IMF</a> — International Monetary Fund: World Economic Outlook (WEO) + Financial Soundness Indicators; via DBnomics mirror as robust primary path after 2024 URN restructure</li>
+                <li><a href="https://ilostat.ilo.org/" target="_blank" rel="noopener">ILOSTAT</a> — International Labour Organization Statistics: global labour market data (world unemployment rate, child labour, gender pay gap, working poor) (CC BY 4.0)</li>
+                <li><a href="https://www.eba.europa.eu/risk-and-data-analysis/risk-analysis/risk-dashboard" target="_blank" rel="noopener">EBA Risk Dashboard</a> — European Banking Authority: quarterly EU/EEA banking-sector indicators (CET1, NPL, Tier-1/2 ratio, liquidity) Q4 2024 – Q4 2025</li>
+                <li><a href="https://www.internal-displacement.org/" target="_blank" rel="noopener">IDMC</a> — Internal Displacement Monitoring Centre: global internal displacement 200+ countries (conflict + climate), daily updates (CC BY 4.0)</li>
+                <li><a href="https://www.cepii.fr/CEPII/en/bdd_modele/" target="_blank" rel="noopener">CEPII BACI</a> — bilateral trade at HS-6 product level, ~200 countries since 1995 (via DBnomics mirror, Etalab Open Licence 2.0)</li>
+                <li><a href="https://www.oenb.at/en/Statistics/" target="_blank" rel="noopener">OeNB SDMX</a> — Austrian National Bank banking statistics (consumer credit, housing loans, deposits) via ECB-Direct SDMX (March 2026 freshness)</li>
+                <li><a href="https://www.parlgov.org/" target="_blank" rel="noopener">ParlGov</a> — Parliaments & Governments Database (EU + OECD 1900-2024): election results + government coalitions + party positions</li>
+                <li><a href="https://wid.world/" target="_blank" rel="noopener">WID.world</a> — World Inequality Database: top-1%/10%/bottom-50% wealth/income shares, 175+ countries since 1980 (Piketty/Saez/Zucman)</li>
+                <li><a href="https://www.systemicpeace.org/polityproject.html" target="_blank" rel="noopener">Polity 5</a> — Center for Systemic Peace: 167 countries regime typology (-10 to +10) since 1800; classic democracy index complementing V-Dem</li>
+                <li><a href="https://www.nber.org/papers" target="_blank" rel="noopener">NBER</a> — National Bureau of Economic Research: Working Papers in Labor / Macro / Finance / Public Economics, RSS + JSON API, highest academic standard</li>
+                <li><a href="https://cara.georgetown.edu/" target="_blank" rel="noopener">CARA</a> — Center for Applied Research in the Apostolate (Georgetown): global Catholic demographics (vocations, parish data, Vatican Annuarium statistics)</li>
             </ul>
             <h3>Fact-Checking Networks</h3>
             <ul>
