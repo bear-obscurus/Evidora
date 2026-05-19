@@ -61,6 +61,24 @@ _DOMAIN_REGEX = re.compile(
     re.IGNORECASE,
 )
 
+# Fallback-Pattern für häufige TLDs (greift auch in ungewöhnlichen Kontexten).
+_COMMON_TLD_REGEX = re.compile(
+    r"\b([a-z0-9-]+\.(?:com|org|net|eu|at|de|io|dev))\b",
+    re.IGNORECASE,
+)
+
+# Explizite Security-Phrase-Patterns: "Sicherheitsbewertung <DOMAIN>" + "<DOMAIN> Security"
+_SECURITY_PHRASE_PATTERNS = (
+    re.compile(
+        r"sicherheitsbewertung\s+(?:von\s+|der\s+|für\s+)?([a-z0-9-]+\.[a-z0-9.-]+)",
+        re.IGNORECASE,
+    ),
+    re.compile(
+        r"\b([a-z0-9-]+\.[a-z0-9.-]+)\s+security\b",
+        re.IGNORECASE,
+    ),
+)
+
 # TLDs/Suffixe, die KEINE Domains sind (Datei-Extensions, Versionen).
 _NON_DOMAIN_TLDS = {
     "txt", "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx",
@@ -133,19 +151,43 @@ def _normalize_domain(raw: str) -> str | None:
 
 
 def _extract_domains(text: str) -> list[str]:
-    """Extrahiere bis zu MAX_DOMAINS valide Domains aus Claim-Text."""
+    """Extrahiere bis zu MAX_DOMAINS valide Domains aus Claim-Text.
+
+    Reihenfolge der Extraktion:
+      1. Explizite Security-Phrase-Patterns ("Sicherheitsbewertung <X>" / "<X> Security")
+      2. Common-TLD-Fallback (.com/.org/.net/.eu/.at/.de/.io/.dev)
+      3. Konservatives Wort-Domain-Pattern
+    """
     if not text:
         return []
     out: list[str] = []
     seen: set[str] = set()
-    for m in _DOMAIN_REGEX.findall(text):
-        d = _normalize_domain(m)
+
+    def _add(candidate: str) -> None:
+        d = _normalize_domain(candidate)
         if not d or d in seen:
-            continue
+            return
         seen.add(d)
         out.append(d)
+
+    # 1) Explizite Phrase-Patterns zuerst (höchste Priorität)
+    for pat in _SECURITY_PHRASE_PATTERNS:
+        for m in pat.findall(text):
+            _add(m)
+            if len(out) >= MAX_DOMAINS:
+                return out
+
+    # 2) Common-TLD-Fallback
+    for m in _COMMON_TLD_REGEX.findall(text):
+        _add(m)
         if len(out) >= MAX_DOMAINS:
-            break
+            return out
+
+    # 3) Allgemeines Wort-Domain-Pattern
+    for m in _DOMAIN_REGEX.findall(text):
+        _add(m)
+        if len(out) >= MAX_DOMAINS:
+            return out
     return out
 
 
@@ -155,7 +197,8 @@ def _claim_mentions_observatory(claim_lc: str) -> bool:
     True wenn:
       - Explizite Observatory-Erwähnung, ODER
       - Security-Header-Term + Domain im Claim, ODER
-      - Generischer Security-Begriff + Domain im Claim.
+      - Generischer Security-Begriff + Domain im Claim, ODER
+      - Explizites "Sicherheitsbewertung <DOMAIN>" / "<DOMAIN> Security"-Pattern.
     """
     if not claim_lc:
         return False
@@ -171,6 +214,10 @@ def _claim_mentions_observatory(claim_lc: str) -> bool:
     has_generic = any(t in claim_lc for t in _SECURITY_GENERIC_TERMS)
     if has_generic and has_domain:
         return True
+    # 4) Explizite Phrase-Patterns ("Sicherheitsbewertung <DOMAIN>" / "<DOMAIN> Security")
+    for pat in _SECURITY_PHRASE_PATTERNS:
+        if pat.search(claim_lc):
+            return True
     return False
 
 

@@ -188,54 +188,149 @@ _STOP_WORDS = frozenset((
     # Buch-Begriffe selbst (zu generisch fuer Boolean)
     "buch", "buecher", "bücher", "werk", "werke",
     "book", "books", "volume", "monograph",
-    "monographie", "monografie", "sammelband",
-    "fachbuch", "lehrbuch",
+    "monographie", "monografie", "sammelband", "tagungsband",
+    "fachbuch", "fachbuecher", "fachbücher",
+    "lehrbuch", "lehrbücher", "lehrbuecher",
     "studie", "studien", "study", "studies",
     "forschung", "research", "untersuchung",
     "geschrieben", "veroeffentlicht", "veröffentlicht",
     "wrote", "written", "published",
     "his", "her", "their", "seinem", "ihrem", "seinen", "ihren",
+    # Quellen-/Meta-Begriffe (Service-Name + OA-Adjektive verfaelschen die Lucene-Suche)
+    "doab", "oapen", "openedition",
+    "open-access-buch", "open-access-bücher", "open-access-buecher",
+    "oa-buch", "oa-monographie", "oa-monografie",
+    "open-access", "open", "access", "oa",
+    "peer-reviewed", "peer", "reviewed",
+    "wissenschaftliches", "wissenschaftliche", "wissenschaftlicher",
+    "scholarly", "scientific", "academic",
+    "edited", "collection",
 )
 )
 
 
-def _build_doab_query(claim: str, analysis: dict | None = None) -> str:
-    """Baue eine DOAB-Suche aus Claim + optionalen Analysis-Queries.
+# DE→EN Topic-Translation-Map. DOAB-Metadata ist mehrheitlich Englisch;
+# deutsche Themen-Begriffe greifen nicht zuverlaessig. Bei Match wird die
+# EN-Variante ALS ZUSAETZLICHE Fallback-Query getriggert (siehe _fetch_doab).
+# Schluessel sind normalisiert (lowercase, mit + ohne Umlaut-Variante).
+_DE_EN_TOPICS: dict[str, str] = {
+    # Geschichte / Politische Geschichte
+    "habsburgermonarchie": "habsburg monarchy",
+    "habsburg": "habsburg monarchy",
+    "habsburger": "habsburg monarchy",
+    "doppelmonarchie": "habsburg monarchy",
+    "k.u.k.": "habsburg monarchy",
+    "oesterreich-ungarn": "austria-hungary",
+    "österreich-ungarn": "austria-hungary",
+    "kaiserreich": "empire history",
+    "weimarer": "weimar republic",
+    "ddr": "east germany history",
+    "brd": "west germany history",
+    "kalter krieg": "cold war",
+    # Religions-/Geistesgeschichte
+    "reformation": "reformation",
+    "gegenreformation": "counter-reformation",
+    "aufklaerung": "enlightenment",
+    "aufklärung": "enlightenment",
+    "romantik": "romanticism",
+    "renaissance": "renaissance",
+    "barock": "baroque",
+    "mittelalter": "middle ages",
+    "fruehe neuzeit": "early modern period",
+    "frühe neuzeit": "early modern period",
+    "neuzeit": "modern period",
+    "antike": "antiquity",
+    # Philosophie / Theorie
+    "philosophie": "philosophy",
+    "phaenomenologie": "phenomenology",
+    "phänomenologie": "phenomenology",
+    "hermeneutik": "hermeneutics",
+    "idealismus": "idealism",
+    "marxismus": "marxism",
+    # Sozialwissenschaft
+    "soziologie": "sociology",
+    "anthropologie": "anthropology",
+    "ethnologie": "ethnology",
+    "paedagogik": "pedagogy",
+    "pädagogik": "pedagogy",
+    "bildungswissenschaft": "education research",
+    "rechtswissenschaft": "jurisprudence",
+    "politikwissenschaft": "political science",
+    # Literatur / Kultur
+    "literaturwissenschaft": "literary studies",
+    "kulturwissenschaft": "cultural studies",
+    "religionswissenschaft": "religious studies",
+    "kunstgeschichte": "art history",
+    "musikwissenschaft": "musicology",
+    # Allgemein-Schluesselwoerter Geschichte
+    "geschichte": "history",
+    "historisch": "history",
+}
 
-    Strategie:
-    1. Wenn analysis.factcheck_queries non-empty, die erste nehmen (clean).
-    2. Sonst: Claim normalisieren, Stop-Words filtern,
-       Top-3-5 Keywords als Plus-getrennte Query bauen (impliziert AND).
 
-    DOAB nutzt Apache-Lucene-Syntax — Plus-getrennte Tokens funktionieren
-    als implizites AND. Wir verzichten auf field-qualifizierte Queries
-    (`keywords:` lieferte 0 Treffer im Live-Test), nutzen die default
-    Multi-Field-Suche ueber alle DC-Felder.
+def _translate_topic(token: str) -> str | None:
+    """Liefere EN-Aequivalent fuer einen DE-Themen-Token (oder None).
+
+    Beruecksichtigt Umlaut-Variante (aufklärung == aufklaerung).
+    """
+    if not token:
+        return None
+    tl = token.lower()
+    if tl in _DE_EN_TOPICS:
+        return _DE_EN_TOPICS[tl]
+    # Umlaut-Variante zurueck pruefen (ae→ä, ue→ü, oe→ö, ss→ß).
+    variants = []
+    if "ae" in tl:
+        variants.append(tl.replace("ae", "ä"))
+    if "ue" in tl:
+        variants.append(tl.replace("ue", "ü"))
+    if "oe" in tl:
+        variants.append(tl.replace("oe", "ö"))
+    for v in variants:
+        if v in _DE_EN_TOPICS:
+            return _DE_EN_TOPICS[v]
+    return None
+
+
+def _build_doab_queries(claim: str, analysis: dict | None = None) -> list[str]:
+    """Baue 1-3 DOAB-Such-Queries aus Claim + optionalen Analysis-Queries.
+
+    Strategie (Multi-Query mit Fallback-Reihenfolge):
+    1. Wenn analysis.factcheck_queries non-empty, die erste verwenden (clean).
+    2. Claim normalisieren, Stop-Words filtern (Meta-Begriffe wie 'doab',
+       'open-access-buch', 'oa-monographie' bereits entfernt).
+    3. Falls DE-Themen-Token im Claim erkannt → EN-Variante als Fallback-Query.
+    4. Falls Umlaute im Token → Umlaut-Variante zusaetzlich.
+
+    DOAB nutzt Apache-Lucene-Syntax; Tokens sind durch Whitespace getrennt
+    (implizites AND). Multi-Query: erste non-empty Result-Liste gewinnt.
     """
     analysis = analysis or {}
+    queries: list[str] = []
 
-    # Bevorzuge bereits aufbereitete Such-Queries aus dem ClaimAnalyzer.
+    # 1. Vorrang fuer bereits aufbereitete ClaimAnalyzer-Queries.
     fc_queries = analysis.get("factcheck_queries") or []
     if isinstance(fc_queries, list) and fc_queries:
         q = str(fc_queries[0] or "").strip()
         if len(q) >= 3:
-            return q
+            queries.append(q)
 
     if not claim:
-        return ""
+        return queries
 
     text = claim.lower()
 
-    # DOI-Direkt-Resolution: wenn ein DOI im Claim ist, daraus die Query bauen.
+    # 2. DOI-Direkt-Resolution: wenn ein DOI im Claim ist, daraus die Query bauen.
     doi_match = _DOI_RE.search(text)
     if doi_match:
-        return doi_match.group(0)
+        queries.append(doi_match.group(0))
+        return queries
 
-    # Tokenisierung: alphanumerisch + Bindestrich (min. 3 Zeichen).
+    # 3. Tokenisierung: alphanumerisch + Bindestrich (min. 3 Zeichen).
     tokens = re.findall(r"[a-zA-ZäöüÄÖÜß][a-zA-ZäöüÄÖÜß\-]{2,}", text)
 
-    # Filter Stop-Words + Dedup.
     keywords: list[str] = []
+    en_translations: list[str] = []
     seen: set[str] = set()
     for tok in tokens:
         tl = tok.lower()
@@ -244,14 +339,53 @@ def _build_doab_query(claim: str, analysis: dict | None = None) -> str:
         if tl in seen:
             continue
         seen.add(tl)
+
+        # DE→EN-Topic-Match? Bevorzuge EN-Variante (DOAB-Korpus mehrheitlich Englisch).
+        en = _translate_topic(tl)
+        if en and en not in en_translations:
+            en_translations.append(en)
+
+        # Originalwort behalten (Umlaut-restauriert wenn moeglich) — DOAB hat
+        # auch deutsche Buecher; "aufklärung" liefert 5 Hits, "aufklaerung" nur 1.
         keywords.append(tl)
         if len(keywords) >= 4:
             break
 
-    if not keywords:
-        return ""
+    # 4. Primary-Query: EN-Translations bevorzugt (DOAB-Index meist Englisch),
+    #    sonst DE-Keywords. Sekundaer das Komplement als Fallback.
+    if en_translations:
+        primary = " ".join(en_translations[:3])
+        if primary and primary not in queries:
+            queries.append(primary)
 
-    return " ".join(keywords)
+    if keywords:
+        secondary = " ".join(keywords[:3])
+        if secondary and secondary not in queries:
+            queries.append(secondary)
+
+        # 5. Umlaut-restaurierte DE-Variante als zusaetzlicher Fallback
+        #    (aufklaerung → aufklärung liefert 5x so viele Treffer).
+        umlauted: list[str] = []
+        for k in keywords[:3]:
+            u = k
+            if "ae" in u:
+                u = u.replace("ae", "ä")
+            if "ue" in u:
+                u = u.replace("ue", "ü")
+            if "oe" in u:
+                u = u.replace("oe", "ö")
+            umlauted.append(u)
+        umlaut_q = " ".join(umlauted)
+        if umlaut_q and umlaut_q != secondary and umlaut_q not in queries:
+            queries.append(umlaut_q)
+
+    return queries
+
+
+def _build_doab_query(claim: str, analysis: dict | None = None) -> str:
+    """Backward-kompatibler Single-Query-Wrapper (erste Query der Multi-Liste)."""
+    qs = _build_doab_queries(claim, analysis)
+    return qs[0] if qs else ""
 
 
 # ---------------------------------------------------------------------------
@@ -511,15 +645,26 @@ async def search_doab(analysis: dict) -> dict:
     if not _claim_mentions_doab(matchable):
         return empty
 
-    query = _build_doab_query(claim or original, analysis)
-    if not query:
+    queries = _build_doab_queries(claim or original, analysis)
+    if not queries:
         logger.debug("DOAB: keine brauchbare Query aus Claim ableitbar")
         return empty
 
-    items = await _fetch_doab(query)
+    # Multi-Query-Fallback: erste non-empty Result-Liste gewinnt.
+    # Reihenfolge in queries: analyzer → EN-Translation → DE-Keywords → Umlaut-Variante.
+    items: list[dict] = []
+    used_query = ""
+    for q in queries:
+        items = await _fetch_doab(q)
+        if items:
+            used_query = q
+            break
     if not items:
-        logger.info(f"DOAB: 0 Treffer fuer '{query[:40]}'")
+        logger.info(
+            f"DOAB: 0 Treffer fuer Queries {[q[:40] for q in queries]}"
+        )
         return empty
+    query = used_query
 
     results: list[dict] = []
     for item in items[:MAX_RESULTS]:

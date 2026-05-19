@@ -275,8 +275,10 @@ _TOPIC_KEYWORDS: dict[str, list[str]] = {
 
     # Nutrition / supplements
     "vitamin_d": [
-        "vitamin d", "vitamin-d", "vitamin-d-supplement",
-        "vitamin d supplementation",
+        "vitamin d", "vitamin-d", "vitamin d3", "vitamin-d3",
+        "vitamin-d-supplement", "vitamin-d-supplementierung",
+        "vitamin d supplementation", "cholecalciferol",
+        "colecalciferol", "25-oh-vitamin d", "25(oh)d",
     ],
     "vitamin_supplements": [
         "multivitamin", "vitaminpräparat", "vitaminpraeparat",
@@ -468,6 +470,129 @@ _GRADE_DESCRIPTION = {
     "I": ("Unzureichende Evidenz: aktueller Forschungsstand erlaubt keine "
           "Empfehlung FÜR oder GEGEN."),
 }
+
+
+# ---------------------------------------------------------------------------
+# Statisches Recommendations-Pack (No-API-Key-Fallback)
+# ---------------------------------------------------------------------------
+# Kleines kuratiertes Pack mit hochrelevanten USPSTF-Empfehlungen, das auch
+# OHNE API-Key bedient werden kann (öffentlich publizierte Final-Recommendation-
+# Statements). Verbatim-Texte bewusst kurz gehalten + Original-URL prominent.
+# Stand-Datum jeder Empfehlung explizit, damit User selbst nach Update suchen
+# kann. Mapping topic_key → list[record]; Records sind 1:1 kompatibel zum
+# `_build_result`-Format.
+_STATIC_PACK: dict[str, list[dict]] = {
+    "vitamin_d": [
+        {
+            "_id": "static:vitd-deficiency-screening-2021",
+            "title": (
+                "Vitamin D Deficiency in Adults: Screening"
+            ),
+            "grade": "I",
+            "grade_raw": "I",
+            "text": (
+                "The USPSTF concludes that the current evidence is "
+                "insufficient to assess the balance of benefits and harms "
+                "of screening for vitamin D deficiency in asymptomatic "
+                "adults."
+            ),
+            "rationale": (
+                "Studien zeigen keine konsistenten klinischen Vorteile durch "
+                "Screening asymptomatischer Erwachsener auf Vitamin-D-Mangel; "
+                "optimale Serumspiegel sind nicht eindeutig definiert."
+            ),
+            "riskName": "",
+            "gender": "both",
+            "ageRange": [18, 100],
+            "servFreq": "",
+            "uspstfAlias": "screening-for-vitamin-d-deficiency-in-adults",
+            "pubDate": "2021-04-13",
+            "topic": "Vitamin D Deficiency Screening",
+            "_type": "static",
+        },
+        {
+            "_id": "static:vitd-fracture-prevention-2018",
+            "title": (
+                "Vitamin D, Calcium, or Combined Supplementation for the "
+                "Primary Prevention of Fractures in Community-Dwelling "
+                "Adults"
+            ),
+            "grade": "I",
+            "grade_raw": "I",
+            "text": (
+                "The USPSTF concludes that the current evidence is "
+                "insufficient to assess the balance of benefits and harms "
+                "of vitamin D and calcium supplementation, alone or "
+                "combined, for the primary prevention of fractures in "
+                "men and premenopausal women. The USPSTF concludes that "
+                "the current evidence is insufficient to assess the "
+                "balance of benefits and harms of daily supplementation "
+                "with doses greater than 400 IU of vitamin D and greater "
+                "than 1,000 mg of calcium for the primary prevention of "
+                "fractures in community-dwelling, postmenopausal women."
+            ),
+            "rationale": (
+                "Für höhere Dosen liegen keine ausreichenden Daten zur "
+                "Frakturprävention vor; Empfehlung adressiert Primär-"
+                "Prävention bei gesunden, nicht-institutionalisierten "
+                "Erwachsenen ohne Osteoporose oder Vit-D-Mangel-Diagnose."
+            ),
+            "riskName": "",
+            "gender": "both",
+            "ageRange": [18, 100],
+            "servFreq": "",
+            "uspstfAlias": (
+                "vitamin-d-calcium-or-combined-supplementation-for-the-"
+                "primary-prevention-of-fractures-in-adults-preventive-"
+                "medication"
+            ),
+            "pubDate": "2018-04-17",
+            "topic": "Vitamin D / Calcium Supplementation (Fracture Prevention)",
+            "_type": "static",
+        },
+        {
+            "_id": "static:vitd-fracture-postmenopausal-low-dose-2018",
+            "title": (
+                "Vitamin D and Calcium Supplementation to Prevent "
+                "Fractures: Postmenopausal Women, Low-Dose"
+            ),
+            "grade": "D",
+            "grade_raw": "D",
+            "text": (
+                "The USPSTF recommends against daily supplementation with "
+                "400 IU or less of vitamin D and 1,000 mg or less of "
+                "calcium for the primary prevention of fractures in "
+                "community-dwelling, postmenopausal women."
+            ),
+            "rationale": (
+                "Niedrigdosierte Vitamin-D-/Calcium-Supplementierung zeigt "
+                "in dieser Population keinen Nutzen für Frakturprävention "
+                "und ist mit erhöhtem Nierenstein-Risiko assoziiert."
+            ),
+            "riskName": "Postmenopausale Frauen, community-dwelling",
+            "gender": "female",
+            "ageRange": [50, 100],
+            "servFreq": "",
+            "uspstfAlias": (
+                "vitamin-d-calcium-or-combined-supplementation-for-the-"
+                "primary-prevention-of-fractures-in-adults-preventive-"
+                "medication"
+            ),
+            "pubDate": "2018-04-17",
+            "topic": "Vitamin D / Calcium Supplementation (Fracture Prevention)",
+            "_type": "static",
+        },
+    ],
+}
+
+
+def _static_records_for_topics(topics: list[str]) -> list[dict]:
+    """Liefere statische Fallback-Records für die ermittelten Topic-Keys."""
+    out: list[dict] = []
+    for t in topics:
+        for rec in _STATIC_PACK.get(t, []):
+            out.append(rec)
+    return out
 
 
 def _normalize_grade(raw: object) -> str:
@@ -750,12 +875,18 @@ async def search_uspstf(analysis: dict) -> dict:
     async with polite_client(timeout=TIMEOUT_S) as client:
         dump = await _fetch_dump(client)
 
-    # Ohne API-Key (oder leerer Dump) → meta-result + caveat
+    # Ohne API-Key (oder leerer Dump) → statisches Pack + meta-result + caveat
     if not dump or not _has_real_data(dump):
-        results = [_no_api_key_result(), _caveat_result()]
+        static_recs = _static_records_for_topics(topics)
+        results: list[dict] = []
+        if static_recs:
+            results.extend(_build_result(r) for r in static_recs[:MAX_RESULTS])
+        results.append(_no_api_key_result())
+        results.append(_caveat_result())
         _query_cache[cache_key] = (now, results)
         logger.info(
-            f"USPSTF: meta-result (api_key={'yes' if USPSTF_API_KEY else 'no'}, "
+            f"USPSTF: meta-result + {len(static_recs)} static-pack-hits "
+            f"(api_key={'yes' if USPSTF_API_KEY else 'no'}, "
             f"dump={'ok' if dump else 'fail'}, topics={topics})"
         )
         return {

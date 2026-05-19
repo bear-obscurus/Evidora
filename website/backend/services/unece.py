@@ -203,6 +203,43 @@ _COUNTRY_MAP: dict[str, tuple[str, str, str]] = {
 }
 
 
+# City → Country-Fallback (UNECE liefert ausschließlich Landes-Aggregate,
+# keine Stadt-Granularität. Wenn ein Claim eine Stadt nennt, fällt der
+# Service auf das jeweilige Land zurück — die Description weist auf
+# fehlende Stadt-Granularität hin).
+_CITY_TO_COUNTRY: dict[str, tuple[str, str, str]] = {
+    # AT
+    "wien": ("040", "AUT", "Österreich"),
+    "vienna": ("040", "AUT", "Österreich"),
+    "graz": ("040", "AUT", "Österreich"),
+    "linz": ("040", "AUT", "Österreich"),
+    "salzburg": ("040", "AUT", "Österreich"),
+    "innsbruck": ("040", "AUT", "Österreich"),
+    "klagenfurt": ("040", "AUT", "Österreich"),
+    # DE (Top-Städte mit Tram-/Verkehrs-Bezug)
+    "berlin": ("276", "DEU", "Deutschland"),
+    "münchen": ("276", "DEU", "Deutschland"),
+    "muenchen": ("276", "DEU", "Deutschland"),
+    "munich": ("276", "DEU", "Deutschland"),
+    "hamburg": ("276", "DEU", "Deutschland"),
+    "köln": ("276", "DEU", "Deutschland"),
+    "koeln": ("276", "DEU", "Deutschland"),
+    "cologne": ("276", "DEU", "Deutschland"),
+    "frankfurt": ("276", "DEU", "Deutschland"),
+    "leipzig": ("276", "DEU", "Deutschland"),
+    "dresden": ("276", "DEU", "Deutschland"),
+    "stuttgart": ("276", "DEU", "Deutschland"),
+    # CH
+    "zürich": ("756", "CHE", "Schweiz"),
+    "zuerich": ("756", "CHE", "Schweiz"),
+    "zurich": ("756", "CHE", "Schweiz"),
+    "basel": ("756", "CHE", "Schweiz"),
+    "bern": ("756", "CHE", "Schweiz"),
+    "genf": ("756", "CHE", "Schweiz"),
+    "geneva": ("756", "CHE", "Schweiz"),
+}
+
+
 # ---------------------------------------------------------------------------
 # Tabellen-Konfiguration: Mapping von Indikator → PxWeb-Variablen
 # ---------------------------------------------------------------------------
@@ -359,6 +396,8 @@ def _detect_country(claim_lc: str) -> tuple[str, str, str] | None:
     2. Häufige 2-Letter-Suffixe (-AT, -DE, -CH, -FR, -IT, -ES, -GB, -US)
        mit Trennzeichen (Bindestrich oder Leerzeichen) erkennen — vermeidet
        false-positives wie "bewertet" für "at".
+    3. Städte-Fallback (Wien → AT, München → DE, …) — UNECE liefert nur
+       Landes-Aggregate, daher Stadt → Land-Mapping als Last Resort.
     """
     for term in sorted(_COUNTRY_MAP.keys(), key=len, reverse=True):
         if term in claim_lc:
@@ -401,6 +440,11 @@ def _detect_country(claim_lc: str) -> tuple[str, str, str] | None:
         # Bindestrich-Suffix oder isoliertes Token am Anfang/Ende/eingerahmt
         if re.search(rf"[\-\s,]({iso2})\b", claim_lc):
             return info
+    # 3) Städte-Fallback — UNECE hat KEINE Stadt-Granularität, aber wenn der
+    #    Claim "Tram Wien" sagt, ist offensichtlich AT-Aggregat gemeint.
+    for city in sorted(_CITY_TO_COUNTRY.keys(), key=len, reverse=True):
+        if city in claim_lc:
+            return _CITY_TO_COUNTRY[city]
     return None
 
 
@@ -612,12 +656,24 @@ def _format_value(v: float, unit_de: str) -> str:
     return f"{_format_de_int(v)} {unit_de}"
 
 
+def _detect_city_hint(claim_lc: str) -> str | None:
+    """Liefert den Stadt-Namen (Original-Casing), falls eine Stadt aus
+    `_CITY_TO_COUNTRY` im Claim vorkommt. Wird für die Description genutzt,
+    um darauf hinzuweisen, dass UNECE Landes-Aggregate liefert, keine Stadt.
+    """
+    for city in sorted(_CITY_TO_COUNTRY.keys(), key=len, reverse=True):
+        if city in claim_lc:
+            return city.title()
+    return None
+
+
 def _build_result(
     indicator_key: str,
     country_m49: str,
     country_iso3: str,
     country_name: str,
     rows: list[tuple[str, float]],
+    city_hint: str | None = None,
 ) -> dict | None:
     if not rows:
         return None
@@ -656,6 +712,13 @@ def _build_result(
                 f"Langfristig seit {first_year}: {_format_value(first_val, unit_de)} "
                 f"→ {_format_value(latest_val, unit_de)} (Faktor {factor_str}x)."
             )
+
+    if city_hint:
+        description_parts.append(
+            f"Hinweis: UNECE liefert nur Landes-Aggregate, keine Stadt-Daten "
+            f"für {city_hint}. Für Stadt-Details siehe Statistik Austria / "
+            f"Wiener Linien / lokale Verkehrsverbund-Statistiken."
+        )
 
     description_parts.append(
         f"Quelle: {SOURCE_LABEL} — Sustainable Transport Division. "
@@ -702,6 +765,7 @@ async def search_unece(analysis: dict) -> dict:
 
     country = _detect_country(matchable)
     indicators = _detect_indicators(matchable)
+    city_hint = _detect_city_hint(matchable)
 
     if not country:
         logger.debug("UNECE: no country detected, skipping")
@@ -726,7 +790,8 @@ async def search_unece(analysis: dict) -> dict:
                 continue
             rows = rows_or_err or []
             r = _build_result(
-                ind_key, country_m49, country_iso3, country_name, rows
+                ind_key, country_m49, country_iso3, country_name, rows,
+                city_hint=city_hint,
             )
             if r is not None:
                 results.append(r)

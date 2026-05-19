@@ -191,7 +191,14 @@ def claim_mentions_constitute_cached(claim: str) -> bool:
 # ---------------------------------------------------------------------------
 # Country-Detection
 # ---------------------------------------------------------------------------
-# Mapping: claim-lc-Token → Constitute country-Parameter
+# Mapping: claim-lc-Token → Constitute country-Parameter.
+#
+# WICHTIG: Die Constitute-API erwartet den `country_id`-Wert (mit Unter-
+# strichen, ggf. `__the`-Suffix). Frühere Versionen nutzten die Anzeige-
+# Variante "United States of America" (mit Leerzeichen) — das liefert
+# 0 Treffer (verifiziert 2026-05-20). Korrekt: "United_States_of_America"
+# bzw. "Russian_Federation__the". Single-Word-Länder (Austria, Germany,
+# France, …) sind in beiden Schreibweisen identisch.
 _COUNTRY_MAP: tuple[tuple[tuple[str, ...], str], ...] = (
     (("österreich", "austria", "österreichisch",
       "b-vg", "bundesverfassungsgesetz", "staatsgrundgesetz", "stgg"),
@@ -202,8 +209,10 @@ _COUNTRY_MAP: tuple[tuple[tuple[str, ...], str], ...] = (
       "bundesverfassung schweiz"),
      "Switzerland"),
     (("usa", "united states", "us-verfassung", "amerikanische verfassung",
-      "us constitution", "u.s. constitution"),
-     "United States of America"),
+      "us constitution", "u.s. constitution",
+      "bill of rights", "first amendment", "second amendment",
+      "fourteenth amendment", "fifth amendment"),
+     "United_States_of_America"),
     (("frankreich", "france", "französisch"), "France"),
     (("italien", "italy", "italienisch"), "Italy"),
     (("spanien", "spain"), "Spain"),
@@ -211,7 +220,7 @@ _COUNTRY_MAP: tuple[tuple[tuple[str, ...], str], ...] = (
     (("ungarn", "hungary"), "Hungary"),
     (("türkei", "turkey"), "Turkey"),
     (("ukraine",), "Ukraine"),
-    (("russland", "russia"), "Russian Federation"),
+    (("russland", "russia"), "Russian_Federation__the"),
     (("china",), "China"),
     (("japan",), "Japan"),
     (("indien", "india"), "India"),
@@ -341,6 +350,69 @@ def _build_result_row(item: dict) -> dict | None:
     }
 
 
+# ---------------------------------------------------------------------------
+# Kuratierte Sub-Topics (Bill of Rights & Co.)
+# ---------------------------------------------------------------------------
+# Konstellation: Claim erwähnt eine bekannte Verfassungs-Teilmenge (z. B.
+# „Bill of Rights" = 1.–10. Amendment der US-Verfassung von 1791). Die
+# Constitute-API liefert immer nur die aktuell konsolidierte Fassung, in
+# der die Bill of Rights bereits als Amendments I–X eingebaut ist. Damit
+# der Faktencheck den Sub-Topic-Treffer sichtbar macht, prependen wir bei
+# Match eine kuratierte Referenz-Zeile (Quelle: NARA / Constitute, beide
+# frei). Keine eigene normative Wertung — reine Metadaten + Quell-Link.
+_SUBTOPIC_BILL_OF_RIGHTS_TERMS = (
+    "bill of rights", "first amendment", "second amendment",
+    "fourth amendment", "fifth amendment", "sixth amendment",
+    "eighth amendment", "tenth amendment", "fourteenth amendment",
+    "amendment i", "amendment ii", "amendment iv", "amendment v",
+)
+
+
+def _bill_of_rights_enrichment(matchable_lc: str) -> dict | None:
+    """Erzeugt einen kuratierten Sub-Topic-Eintrag für die US-Bill-of-Rights,
+    wenn der Claim einen einschlägigen Term enthält. Sonst None."""
+    if not _has_any(matchable_lc, _SUBTOPIC_BILL_OF_RIGHTS_TERMS):
+        return None
+    display_value = _trim(
+        "US Bill of Rights — Amendments I–X zur US-Verfassung von 1789, "
+        "in Kraft seit 15.12.1791. Enthält u. a. Religions-/Rede-/Presse-"
+        "/Versammlungs-Freiheit (I), Recht auf Waffenbesitz (II), Schutz "
+        "vor unangemessenen Durchsuchungen (IV), Selbstbelastungs-Verbot "
+        "und Due-Process (V), faires Verfahren (VI), Verbot grausamer "
+        "Strafen (VIII), Vorbehalt nicht-aufgezählter Rechte beim Volk/"
+        "den Staaten (IX/X). Vollständig in der konsolidierten Fassung "
+        "der Constitute-Project-Version 1789 (rev. 1992) enthalten.",
+        500,
+    )
+    description = _trim(
+        "Sub-Topic-Referenz auf die ersten zehn Amendments der US-"
+        "Verfassung (ratifiziert 15.12.1791). Die Constitute-API gibt "
+        "die konsolidierte Fassung mit allen 27 Amendments aus — die "
+        "Bill of Rights bildet darin Amendments I–X. Primärquelle (offiziell, "
+        "frei): National Archives (NARA). Sekundär: Constitute Project (UT "
+        "Austin, frei zur Weiternutzung).",
+        500,
+    )
+    return {
+        "indicator_name": "Verfassung: US Bill of Rights (Amendments I–X)",
+        "indicator": "constitute_us_bill_of_rights",
+        "country": "United States of America",
+        "country_name": "United States of America",
+        "year": "1791",
+        "value": 10,
+        "display_value": display_value,
+        "description": description,
+        "url": (
+            "https://www.constituteproject.org/constitution/"
+            "United_States_of_America_1992"
+        ),
+        "pdf_url": (
+            "https://www.archives.gov/founding-docs/bill-of-rights-transcript"
+        ),
+        "source": "Constitute Project + NARA (US Bill of Rights, frei)",
+    }
+
+
 def _select_top_constitutions(items: list[dict]) -> list[dict]:
     """Bevorzuge in-force-Verfassung, danach 2 zeitgeschichtlich
     interessante (neueste historische)."""
@@ -397,7 +469,14 @@ async def search_constitute(analysis: dict) -> dict:
         logger.info("Constitute: kein Land im Claim erkannt — skip")
         return empty
 
-    cache_key = f"cons::{country.lower()}"
+    # Cache-Key inkl. Bill-of-Rights-Suffix, damit der enrich-Pfad nicht
+    # durch einen früheren Cache-Eintrag ohne Sub-Topic verdeckt wird.
+    bor_suffix = (
+        "+bor" if (country == "United_States_of_America"
+                   and _has_any(matchable, _SUBTOPIC_BILL_OF_RIGHTS_TERMS))
+        else ""
+    )
+    cache_key = f"cons::{country.lower()}{bor_suffix}"
     now = time.time()
     cached = _CACHE.get(cache_key)
     if cached and (now - cached[0] < _CACHE_TTL_S):
@@ -422,6 +501,14 @@ async def search_constitute(analysis: dict) -> dict:
     selected = _select_top_constitutions(items)
     results: list[dict] = []
     seen_ids: set[str] = set()
+
+    # Sub-Topic-Enrichment: Bill of Rights (US) — prepend, wenn passend.
+    if country == "United_States_of_America":
+        enrich = _bill_of_rights_enrichment(matchable)
+        if enrich:
+            results.append(enrich)
+            seen_ids.add(enrich["indicator"])
+
     for item in selected:
         try:
             built = _build_result_row(item)
@@ -435,6 +522,8 @@ async def search_constitute(analysis: dict) -> dict:
             continue
         seen_ids.add(ind)
         results.append(built)
+        if len(results) >= RESULT_LIMIT:
+            break
 
     out = {
         "source": "Constitute",

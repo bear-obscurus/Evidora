@@ -100,6 +100,27 @@ _OPENFDA_TERMS = (
     "indications and usage",
 )
 
+# Medizinprodukt-Schlüsselbegriffe (DE+EN) — direkter Device-Bezug, der einen
+# Recall-Lookup im /device/enforcement.json-Endpoint rechtfertigt. Wird zusätzlich
+# zur Trigger-Logik als Routing-Signal verwendet (Drug- vs. Device-Endpoint).
+_DEVICE_TERMS = (
+    # Generisch
+    "device", "medical device", "medizinprodukt", "medizinprodukte",
+    "implant", "implants", "implantat", "implantate",
+    # Konkrete Geräte-Klassen
+    "insulin pump", "insulin pumps", "insulinpumpe", "insulinpumpen",
+    "pacemaker", "pacemakers", "herzschrittmacher", "schrittmacher",
+    "defibrillator", "defibrillators", "icd",
+    "stent", "stents",
+    "catheter", "catheters", "katheter",
+    "ventilator", "ventilators", "beatmungsgerät", "beatmungsgeraet",
+    "infusion pump", "infusion pumps", "infusionspumpe", "infusionspumpen",
+    "hip implant", "knee implant", "hüftimplantat", "hueftimplantat",
+    "knieimplantat", "breast implant", "brustimplantat",
+    "glucose monitor", "glucose monitors", "blutzuckermessgerät",
+    "blutzuckermessgeraet", "cgm",
+)
+
 # Symptom-/Reaction-Pattern (DE+EN) — wenn diese ZUSAMMEN mit einem
 # Medikamenten-Namen auftreten, ist FAERS sinnvoll.
 _SYMPTOM_TERMS = (
@@ -135,6 +156,16 @@ def _claim_mentions_openfda(claim_lc: str) -> bool:
     has_symptom = any(t in claim_lc for t in _SYMPTOM_TERMS)
     has_pharma = any(t in claim_lc for t in _PHARMA_CONTEXT)
     if has_symptom and has_pharma:
+        return True
+    # 3) Device-Schlüsselbegriff + Recall/Warning-Kontext → Device-Recall-Use-Case
+    has_device = any(t in claim_lc for t in _DEVICE_TERMS)
+    has_recall_ctx = any(
+        t in claim_lc for t in (
+            "recall", "rückruf", "rueckruf", "withdrawal", "warning",
+            "warnung", "alert", "fda",
+        )
+    )
+    if has_device and has_recall_ctx:
         return True
     return False
 
@@ -205,6 +236,56 @@ def _extract_drug_names(analysis: dict) -> list[str]:
         cleaned.append(c)
 
     return cleaned[:3]  # max. 3 Drug-Namen pro Claim
+
+
+def _extract_device_terms(claim_lc: str) -> list[str]:
+    """Extrahiere Medizinprodukt-Begriffe für /device/enforcement.json.
+
+    Liefert englische Begriffe (openFDA-Index ist englisch) und mappt
+    deutsche Synonyme entsprechend.
+    """
+    de_to_en = {
+        "insulinpumpe": "insulin pump",
+        "insulinpumpen": "insulin pumps",
+        "herzschrittmacher": "pacemaker",
+        "schrittmacher": "pacemaker",
+        "katheter": "catheter",
+        "beatmungsgerät": "ventilator",
+        "beatmungsgeraet": "ventilator",
+        "infusionspumpe": "infusion pump",
+        "infusionspumpen": "infusion pumps",
+        "hüftimplantat": "hip implant",
+        "hueftimplantat": "hip implant",
+        "knieimplantat": "knee implant",
+        "brustimplantat": "breast implant",
+        "blutzuckermessgerät": "glucose monitor",
+        "blutzuckermessgeraet": "glucose monitor",
+        "implantat": "implant",
+        "implantate": "implant",
+        "medizinprodukt": "device",
+        "medizinprodukte": "device",
+    }
+    found: list[str] = []
+    for de, en in de_to_en.items():
+        if de in claim_lc and en not in found:
+            found.append(en)
+    # Englische Begriffe direkt aus Vokabular abgleichen (länger zuerst, damit
+    # "insulin pumps" vor "pump" gefunden wird)
+    english_terms = sorted(
+        (t for t in _DEVICE_TERMS if t.isascii() and " " in t or t in (
+            "pacemaker", "pacemakers", "defibrillator", "defibrillators",
+            "stent", "stents", "catheter", "catheters", "ventilator",
+            "ventilators", "implant", "implants", "icd", "cgm",
+        )),
+        key=len,
+        reverse=True,
+    )
+    for en in english_terms:
+        if en in claim_lc and en not in found:
+            # Vermeide Doppel-Matches (z. B. "insulin pump" + "insulin pumps")
+            if not any(en in existing or existing in en for existing in found):
+                found.append(en)
+    return found[:3]
 
 
 def _extract_symptoms(claim_lc: str) -> list[str]:
@@ -510,25 +591,32 @@ async def search_openfda(analysis: dict) -> dict:
         return empty
 
     drugs = _extract_drug_names(analysis)
-    if not drugs:
-        logger.info("openFDA: trigger matched but no drug names extracted")
+    devices = _extract_device_terms(matchable)
+
+    if not drugs and not devices:
+        logger.info(
+            "openFDA: trigger matched but no drug or device terms extracted"
+        )
         return empty
 
-    # Cache-Lookup
-    cache_key = f"openfda::{','.join(sorted(d.lower() for d in drugs))}"
+    # Cache-Lookup (Devices und Drugs separat keyen)
+    cache_key = (
+        "openfda::"
+        + ",".join(sorted(d.lower() for d in drugs))
+        + "::dev="
+        + ",".join(sorted(d.lower() for d in devices))
+    )
     now = time.time()
     cached = _search_cache.get(cache_key)
     if cached and (now - cached[0]) < CACHE_TTL_S:
         return cached[1]
 
     symptoms = _extract_symptoms(matchable)
-    explicit_device_terms = ("device", "medical device", "medizinprodukt",
-                             "medizinprodukte")
-    query_devices = any(t in matchable for t in explicit_device_terms)
 
     all_results: list[dict] = []
 
     async with polite_client(timeout=TIMEOUT_S) as client:
+        # Drug-Pfad: FAERS + Label + Drug-Recalls
         for drug in drugs:
             faers = await _fetch_faers(client, drug, symptoms)
             all_results.extend(faers)
@@ -539,13 +627,15 @@ async def search_openfda(analysis: dict) -> dict:
             recalls = await _fetch_recalls(client, drug)
             all_results.extend(recalls)
 
-            if query_devices:
-                devs = await _fetch_device_recalls(client, drug)
-                all_results.extend(devs)
+        # Device-Pfad: /device/enforcement.json
+        for device in devices:
+            devs = await _fetch_device_recalls(client, device)
+            all_results.extend(devs)
 
     if not all_results:
         logger.info(
-            f"openFDA: drugs={drugs} symptoms={symptoms} → 0 hits"
+            f"openFDA: drugs={drugs} devices={devices} symptoms={symptoms} "
+            f"→ 0 hits"
         )
         result = empty
     else:
@@ -558,7 +648,7 @@ async def search_openfda(analysis: dict) -> dict:
         }
         logger.info(
             f"openFDA: {len(all_results) - 1} matches, drugs={drugs}, "
-            f"symptoms={symptoms}, devices={query_devices}, "
+            f"devices={devices}, symptoms={symptoms}, "
             f"api_key={'yes' if OPENFDA_API_KEY else 'no'}"
         )
 

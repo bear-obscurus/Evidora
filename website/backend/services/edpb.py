@@ -62,6 +62,81 @@ _cache_time: float = 0.0
 
 
 # ---------------------------------------------------------------------------
+# Kuratierte EDPB-AI-Guidelines (Fallback / Coverage-Anker)
+# ---------------------------------------------------------------------------
+# Hintergrund: Die EDPB-Listing-Seiten (News + Publications) zeigen nur die
+# jeweils neuesten 30 Einträge. Für AI/GDPR-Claims sind die zentralen
+# EDPB-AI-Veröffentlichungen aus 2023-2024 oft nicht mehr in der Live-Liste
+# enthalten. Diese kuratierten Einträge werden zusätzlich in den Cache
+# gemerged und nur dann ausgeliefert, wenn das Scoring sie über AI-Keywords
+# selektiert. Quelle: edpb.europa.eu, manuell geprüft 2026-05-20.
+_CURATED_AI_GUIDELINES: tuple[dict, ...] = (
+    {
+        "title": (
+            "Opinion 28/2024 on certain data protection aspects related to "
+            "the processing of personal data in the context of AI models"
+        ),
+        "url": (
+            "https://www.edpb.europa.eu/our-work-tools/our-documents/"
+            "opinion-board-art-64/opinion-282024-certain-data-protection-aspects_en"
+        ),
+        "date": "17 December 2024",
+        "year": "2024",
+        "publication_type": "Opinion Art. 64",
+        "topics": [
+            "Artificial Intelligence",
+            "AI Models",
+            "Legitimate Interest",
+            "GDPR",
+        ],
+        "kind": "publication",
+        "source": "EDPB Publications",
+    },
+    {
+        "title": (
+            "Report of the work undertaken by the ChatGPT Taskforce"
+        ),
+        "url": (
+            "https://www.edpb.europa.eu/our-work-tools/our-documents/other/"
+            "report-work-undertaken-chatgpt-taskforce_en"
+        ),
+        "date": "23 May 2024",
+        "year": "2024",
+        "publication_type": "Report",
+        "topics": [
+            "ChatGPT",
+            "Generative AI",
+            "GDPR Enforcement",
+            "Large Language Models",
+        ],
+        "kind": "publication",
+        "source": "EDPB Publications",
+    },
+    {
+        "title": (
+            "Guidelines 02/2023 on Technical Scope of Art. 5(3) of ePrivacy "
+            "Directive — including AI-tracking-techniques"
+        ),
+        "url": (
+            "https://www.edpb.europa.eu/our-work-tools/documents/public-consultations/"
+            "2023/guidelines-022023-technical-scope-art-53-eprivacy_en"
+        ),
+        "date": "14 November 2023",
+        "year": "2023",
+        "publication_type": "Guidelines",
+        "topics": [
+            "ePrivacy",
+            "Tracking",
+            "AI",
+            "Cookies",
+        ],
+        "kind": "publication",
+        "source": "EDPB Publications",
+    },
+)
+
+
+# ---------------------------------------------------------------------------
 # HTML-Parsing
 # ---------------------------------------------------------------------------
 # Drupal-10-Listings auf edpb.europa.eu nutzen für jedes Item ein konstantes
@@ -185,6 +260,14 @@ async def fetch_edpb(client=None) -> list:
             if isinstance(r, list):
                 merged.extend(r)
 
+        # Curated AI-Guidelines: nur ergänzen, falls Live-Listings sie nicht
+        # bereits enthalten (Dedup über URL). Ohne Duplikat-Risiko, da Live-
+        # Listings nur die jüngsten ~30 Items zeigen.
+        live_urls = {it.get("url") for it in merged}
+        for ai_item in _CURATED_AI_GUIDELINES:
+            if ai_item["url"] not in live_urls:
+                merged.append(dict(ai_item))
+
         _cache = merged
         _cache_time = now
         logger.info(f"EDPB prefetch: {len(merged)} items total")
@@ -226,6 +309,22 @@ _EDPB_COMPOSITE_EU_TERMS = (
     "europäische datenschutz", "european data protection",
 )
 
+# AI-related composite trigger: AI/KI/ChatGPT/Generative AI + GDPR/Datenschutz
+# Captures claims like "EDPB Leitlinie zu KI-Datenschutz Generative AI 2024",
+# "EDPB Opinion 28/2024 AI Models GDPR", "ChatGPT Task Force EDPB".
+_EDPB_COMPOSITE_AI_TERMS = (
+    "ki-datenschutz", "ki datenschutz",
+    "ai-datenschutz", "ai datenschutz",
+    "generative ai", "generative ki",
+    "ai model", "ai models", "ki-modell", "ki modell", "ki-modelle",
+    "chatgpt", "llm-datenschutz", "llm datenschutz",
+    "künstliche intelligenz datenschutz",
+    "kuenstliche intelligenz datenschutz",
+    "artificial intelligence privacy",
+    "opinion 28/2024", "opinion 28 2024",
+    "chatgpt task force",
+)
+
 
 def _claim_mentions_edpb(claim_lc: str) -> bool:
     if any(t in claim_lc for t in _EDPB_TERMS):
@@ -233,6 +332,10 @@ def _claim_mentions_edpb(claim_lc: str) -> bool:
     has_dp = any(t in claim_lc for t in _EDPB_COMPOSITE_DP_TERMS)
     has_eu = any(t in claim_lc for t in _EDPB_COMPOSITE_EU_TERMS)
     if has_dp and has_eu:
+        return True
+    # AI-related: GDPR/Datenschutz + AI/KI/ChatGPT/Generative
+    has_ai = any(t in claim_lc for t in _EDPB_COMPOSITE_AI_TERMS)
+    if has_dp and has_ai:
         return True
     return False
 
