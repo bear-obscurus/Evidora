@@ -216,6 +216,7 @@ const TRANSLATIONS = {
                 <li><a href="https://epub.oeaw.ac.at/" target="_blank" rel="noopener">ÖAW EPUB.OEAW</a> — Österreichische Akademie der Wissenschaften Open-Access-Forschungspublikationen seit 2006, OAI-PMH-Standard</li>
                 <li><a href="https://ucdp.uu.se/" target="_blank" rel="noopener">UCDP</a> — Uppsala Conflict Data Program (GED v25.1 Geo-Events + UCDP/PRIO Armed Conflict Dataset); akademischer Goldstandard für Battle-Deaths-Statistik (CC-BY 4.0)</li>
                 <li><a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames</a> — 11+ Mio. geographische Namen weltweit (Wikipedia-Verknüpfung, Postal-Codes, Geokoordinaten); komplementär zu OSM Nominatim (CC-BY 4.0)</li>
+                <li><a href="https://dp.la/" target="_blank" rel="noopener">DPLA</a> — Digital Public Library of America: 50+ Mio. Items (Manuskripte, Bilder, Bücher, Audio/Video) aus US-Bibliotheken/Museen/Archiven (DPLA-permissive)</li>
             </ul>
             <h3>Faktencheck-Netzwerke</h3>
             <ul>
@@ -624,6 +625,7 @@ const TRANSLATIONS = {
                 <li><a href="https://epub.oeaw.ac.at/" target="_blank" rel="noopener">ÖAW EPUB.OEAW</a> — Austrian Academy of Sciences Open-Access research publications since 2006, OAI-PMH standard</li>
                 <li><a href="https://ucdp.uu.se/" target="_blank" rel="noopener">UCDP</a> — Uppsala Conflict Data Program (GED v25.1 Geo-Events + UCDP/PRIO Armed Conflict Dataset); academic gold standard for battle-deaths statistics (CC-BY 4.0)</li>
                 <li><a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames</a> — 11+ million geographic names worldwide (Wikipedia linking, postal codes, geocoordinates); complementary to OSM Nominatim (CC-BY 4.0)</li>
+                <li><a href="https://dp.la/" target="_blank" rel="noopener">DPLA</a> — Digital Public Library of America: 50+ million items (manuscripts, images, books, audio/video) from US libraries/museums/archives (DPLA-permissive)</li>
             </ul>
             <h3>Fact-Checking Networks</h3>
             <ul>
