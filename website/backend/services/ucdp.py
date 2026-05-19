@@ -23,8 +23,8 @@ Ohne Token liefert die API 401. Wir lesen den Token aus
 No-Op (loggt Warnung beim ersten Aufruf, returnt leere Result-Liste).
 
 Lizenz: CC-BY 4.0 — Evidora-tauglich (Attribution Pflicht).
-Zitation: UCDP Georeferenced Event Dataset (GED) Global version 24.1 /
-          UCDP/PRIO Armed Conflict Dataset version 24.1.
+Zitation: UCDP Georeferenced Event Dataset (GED) Global version 25.1 /
+          UCDP/PRIO Armed Conflict Dataset version 25.1.
 
 GUARDRAILS (siehe project_political_guardrails.md):
 - Wir zitieren UCDP-Event-Zählungen und Battle-Death-Schätzungen, KEINE
@@ -289,10 +289,10 @@ async def _fetch_ged_for_country(client, country: str) -> list[dict]:
     if cached and (time.time() - cached[0]) < CACHE_TTL_S:
         return cached[1].get("Result") or []
 
-    # Letzte 2 Kalenderjahre — deckt aktuelle Konflikte ab
+    # Letzte 3 Kalenderjahre — deckt aktuelle Konflikte + Ukraine-Krieg ab
     import datetime as _dt
     today = _dt.date.today()
-    start = f"{today.year - 1}-01-01"
+    start = f"{today.year - 3}-01-01"
     end = f"{today.year}-12-31"
 
     url = f"{UCDP_API_BASE}/gedevents/{UCDP_GED_VERSION}"
@@ -489,7 +489,7 @@ def _format_country_result(country: str, ged_agg: dict,
         "display_value": display,
         "description": description,
         "url": "https://ucdp.uu.se/",
-        "source": "UCDP Georeferenced Event Dataset v24.1 (CC-BY 4.0)",
+        "source": "UCDP Georeferenced Event Dataset v25.1 (CC-BY 4.0)",
     }
 
 
