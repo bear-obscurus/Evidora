@@ -59,13 +59,18 @@ from services._http_polite import polite_client
 logger = logging.getLogger("evidora")
 
 UCDP_API_BASE = "https://ucdpapi.pcr.uu.se/api"
-UCDP_GED_VERSION = "24.1"
-UCDP_CONFLICT_VERSION = "24.1"
+UCDP_GED_VERSION = "25.1"  # 2026-05-19: war 24.1, nach Token-Setup auf aktuell upgegradet
+UCDP_CONFLICT_VERSION = "25.1"
 
 TIMEOUT_S = 20.0
 CACHE_TTL_S = 24 * 60 * 60  # 24 h
 MAX_RESULTS = 5
 MAX_EVENTS_PER_COUNTRY = 50  # Sample-Größe für Aggregation pro Land
+# UCDP-API hat SQL-Injection-Vulnerabilität bei Country= Filter mit Spaces/
+# Parens (Strings wie "Russia (Soviet Union)" brechen SQL). Fix: Date-Range-
+# Filter (StartDate/EndDate funktionieren zuverlässig) + Client-Side
+# Country-Filter über `country`-Field im Event.
+UCDP_FETCH_LIMIT = 500  # Events pro Date-Range-Fetch (Client-Side gefiltert)
 
 # Modul-Level Cache: cache-key → (ts, payload)
 _query_cache: dict[str, tuple[float, dict]] = {}
@@ -246,52 +251,111 @@ async def _get_json(client, url: str, params: dict) -> dict | None:
         return None
 
 
+def _country_matches(event_country: str, target_country: str) -> bool:
+    """Match UCDP `country`-Field gegen unser COUNTRY_MAP-Target.
+
+    UCDP nutzt verbose Namen wie 'Russia (Soviet Union)', 'Yemen (North Yemen)',
+    'Myanmar (Burma)', 'DR Congo (Zaire)'. Match-Strategy:
+    1. Exact match (z.B. target='Ukraine' == event.country='Ukraine')
+    2. Prefix-Match auf Wortgrenze (target='Russia' matches 'Russia (...)')
+    """
+    if not event_country or not target_country:
+        return False
+    if event_country == target_country:
+        return True
+    # Prefix-Match: target ist Anfang von event.country, gefolgt von Space/Paren
+    if event_country.startswith(target_country):
+        rest = event_country[len(target_country):]
+        if not rest or rest[0] in (" ", "(", ",", "/"):
+            return True
+    # Inverse: target enthält event.country als Substring (Mapping zur
+    # langen Form kann auch andersrum passen)
+    if target_country.startswith(event_country):
+        rest = target_country[len(event_country):]
+        if not rest or rest[0] in (" ", "(", ",", "/"):
+            return True
+    return False
+
+
 async def _fetch_ged_for_country(client, country: str) -> list[dict]:
-    """Hole Sample der jüngsten GED-Events für ein Land (24h-Cache)."""
+    """Hole jüngste GED-Events für ein Land via Date-Range-Filter + Client-
+    Side-Country-Filter (24h-Cache).
+
+    UCDP-API-Country-Filter ist broken bei Spaces/Parens (SQL-Injection-Bug),
+    daher StartDate/EndDate-Filter + lokales Country-Matching.
+    """
     cache_key = f"ged|{country}"
     cached = _query_cache.get(cache_key)
     if cached and (time.time() - cached[0]) < CACHE_TTL_S:
         return cached[1].get("Result") or []
 
+    # Letzte 2 Kalenderjahre — deckt aktuelle Konflikte ab
+    import datetime as _dt
+    today = _dt.date.today()
+    start = f"{today.year - 1}-01-01"
+    end = f"{today.year}-12-31"
+
     url = f"{UCDP_API_BASE}/gedevents/{UCDP_GED_VERSION}"
     params = {
-        "Country": country,
-        "pagesize": MAX_EVENTS_PER_COUNTRY,
+        "StartDate": start,
+        "EndDate": end,
+        "pagesize": UCDP_FETCH_LIMIT,
     }
     data = await _get_json(client, url, params)
-    if not data:
+    if not data or not isinstance(data, dict):
         _query_cache[cache_key] = (time.time(), {"Result": []})
         return []
-    if not isinstance(data, dict):
+    all_events = data.get("Result") or []
+    if not isinstance(all_events, list):
         _query_cache[cache_key] = (time.time(), {"Result": []})
         return []
-    _query_cache[cache_key] = (time.time(), data)
-    results = data.get("Result")
-    return results if isinstance(results, list) else []
+    # Client-Side Filter nach country-Field
+    filtered = [
+        ev for ev in all_events
+        if _country_matches(ev.get("country") or "", country)
+    ][:MAX_EVENTS_PER_COUNTRY]
+    _query_cache[cache_key] = (time.time(), {"Result": filtered})
+    return filtered
 
 
 async def _fetch_conflict_for_country(client, country: str) -> list[dict]:
-    """Hole aktive Konflikte für ein Land (UCDP/PRIO Armed Conflict)."""
+    """Hole aktive Konflikte für ein Land via Year-Filter + Client-Side
+    Country-Match (UCDP/PRIO Armed Conflict). Date-Range-Filter ist robust;
+    Country= ist API-broken (SQL-Injection-Quirk)."""
     cache_key = f"conflict|{country}"
     cached = _query_cache.get(cache_key)
     if cached and (time.time() - cached[0]) < CACHE_TTL_S:
         return cached[1].get("Result") or []
 
+    # Aktive Konflikte: letzte 5 Jahre
+    import datetime as _dt
+    today = _dt.date.today()
+    start = f"{today.year - 5}-01-01"
+    end = f"{today.year}-12-31"
+
     url = f"{UCDP_API_BASE}/ucdpprioconflict/{UCDP_CONFLICT_VERSION}"
     params = {
-        "Country": country,
-        "pagesize": 30,
+        "StartDate": start,
+        "EndDate": end,
+        "pagesize": UCDP_FETCH_LIMIT,
     }
     data = await _get_json(client, url, params)
-    if not data:
+    if not data or not isinstance(data, dict):
         _query_cache[cache_key] = (time.time(), {"Result": []})
         return []
-    if not isinstance(data, dict):
+    all_conflicts = data.get("Result") or []
+    if not isinstance(all_conflicts, list):
         _query_cache[cache_key] = (time.time(), {"Result": []})
         return []
-    _query_cache[cache_key] = (time.time(), data)
-    results = data.get("Result")
-    return results if isinstance(results, list) else []
+    # Client-Side-Filter via location-Field (UCDP/PRIO Format)
+    # Location-Field z.B. "Ukraine" oder "Russia (Soviet Union), Ukraine"
+    filtered = [
+        c for c in all_conflicts
+        if any(_country_matches(loc.strip(), country)
+               for loc in (c.get("location") or "").split(","))
+    ][:30]
+    _query_cache[cache_key] = (time.time(), {"Result": filtered})
+    return filtered
 
 
 # ---------------------------------------------------------------------------
