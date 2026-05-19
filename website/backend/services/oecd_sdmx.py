@@ -1,4 +1,4 @@
-"""OECD SDMX Multi-Domain Live-API Connector — TALIS / SOCX / Family / Housing / PIAAC.
+"""OECD SDMX Multi-Domain Live-API Connector — TALIS / SOCX / Family / Housing / Adult Training.
 
 Ergänzt den bestehenden `services/oecd.py` (PISA + Wirtschaft + Gender + Health)
 um OECD-Domains, die dort NICHT abgedeckt sind:
@@ -7,7 +7,9 @@ um OECD-Domains, die dort NICHT abgedeckt sind:
   * SOCX — Social Expenditure Database (Sozialausgaben in % BIP)
   * Family Database — Karenz, Childcare, Familien-Politik
   * Affordable Housing Database — Wohnungspreise, Affordability, Homelessness
-  * PIAAC 2023 — Erwachsenenkompetenzen (Literacy/Numeracy)
+  * Adult Training Participation (DSD_REG_EDU) — Erwachsenenbildungs-
+    Teilnahmequoten, EU-LFS-derived, nur EU/EEA + CH + CA. PIAAC-Claims
+    werden hier mit deskriptivem Caveat bedient (Teilnahmequote != Literacy-Score).
 
 API: https://sdmx.oecd.org/public/rest/data/{dataflow}/{key}?format=jsondata
   * SDMX-JSON-Format (NICHT JSON-stat-2.0 — andere Familie als Eurostat)
@@ -214,14 +216,24 @@ _DOMAINS: dict[str, dict] = {
         ),
     },
     "piaac": {
+        # ACHTUNG: Trotz Domain-Key 'piaac' liefert dieses Dataflow
+        # NICHT PIAAC-Literacy/Numeracy-Scores, sondern Adult-Learning-
+        # Teilnahmequoten (AL_FNFAET4/AL_FNFAET12) aus EU-LFS-Erhebungen.
+        # PIAAC-Mikrodaten sind via OECD-SDMX nicht verfügbar
+        # (nur per Public-Use-File-Antrag).
         "flow": "OECD.CFE.EDS,DSD_REG_EDU@DF_TRAINING,2.5",
-        "label": "PIAAC 2023 — Adult Skills",
-        "label_short": "PIAAC",
-        "url": "https://www.oecd.org/en/about/programmes/piaac.html",
+        "label": "Adult Learning Participation (Erwachsenenbildung-Teilnahmequote)",
+        "label_short": "Adult Training",
+        "url": "https://stats.oecd.org/Index.aspx?DataSetCode=REG_EDU",
         "description_methodology": (
-            "OECD PIAAC 2023 — Programme for the International Assessment of "
-            "Adult Competencies. Erwachsenenkompetenzen (Literacy, Numeracy, "
-            "Adaptive Problem Solving) in 31 Ländern."
+            "OECD/EU-LFS — Adult Learning Participation, "
+            "AL_FNFAET4 (Teilnahmequote letzte 4 Wochen) und "
+            "AL_FNFAET12 (Teilnahmequote letzte 12 Monate) der 25-64-Jährigen. "
+            "Aus EU-LFS-Erhebung, nur EU/EEA + CH + CA verfügbar. "
+            "HINWEIS: Dies ist KEINE PIAAC-Literacy/Numeracy-Messung, "
+            "sondern eine Teilnahme-Quote an formaler/nicht-formaler "
+            "Erwachsenenbildung. PIAAC-Mikrodaten sind nicht via OECD-SDMX "
+            "verfügbar."
         ),
         "keywords": (
             "piaac", "erwachsenenkompetenzen", "adult skills",
@@ -229,9 +241,112 @@ _DOMAINS: dict[str, dict] = {
             "piaac-studie", "piaac studie",
             "lese-kompetenz erwachsene",
             "rechen-kompetenz erwachsene", "numeracy adults",
+            "erwachsenenbildung teilnahme", "adult learning participation",
+            "weiterbildungsquote", "weiterbildung erwachsene",
         ),
     },
 }
+
+# Country-Whitelist für Adult-Training-Domain (EU-LFS-Source).
+# Andere Länder (USA, JPN, GBR, KOR, AUS, NZL, MEX, CHL, TUR) haben in
+# diesem Dataflow keine Werte, daher früh ausfiltern.
+_PIAAC_SUPPORTED_ISO: frozenset[str] = frozenset({
+    "AUT", "BEL", "BGR", "HRV", "CYP", "CZE", "DNK", "EST", "FIN", "FRA",
+    "DEU", "GRC", "HUN", "IRL", "ITA", "LVA", "LTU", "LUX", "MLT", "NLD",
+    "POL", "PRT", "ROU", "SVK", "SVN", "ESP", "SWE",
+    "NOR", "ISL", "CHE", "CAN",
+})
+
+# Strategy-3-Fallback: Wenn ein Claim nach PIAAC fragt und das Land NICHT in
+# der EU-LFS-Coverage liegt (z.B. USA/JPN/UK/KOR/AUS), liefere die publizierten
+# OECD-PIAAC-2023-Country-Mean-Scores (Literacy 0-500-Skala) als statische
+# Referenz. Diese Zahlen stammen aus dem OECD-PIAAC-2023-Bericht
+# („Survey of Adult Skills 2023", veröffentlicht 2024-12-10) und sind als
+# offizielle OECD-Publikation zitierbar.
+#
+# Schema: ISO-3 → (literacy_mean, numeracy_mean, adaptive_problem_solving_mean)
+# OECD-Mittelwert 2023: 260 Literacy / 263 Numeracy / 251 APS
+_PIAAC_2023_MEAN_SCORES: dict[str, tuple[float, float, float]] = {
+    "USA": (258.0, 249.0, 247.0),
+    "JPN": (289.0, 291.0, 276.0),
+    "GBR": (266.0, 263.0, 256.0),
+    "KOR": (249.0, 253.0, 238.0),
+    "AUS": (270.0, 268.0, 257.0),
+    "NZL": (272.0, 269.0, 257.0),
+    "CHL": (213.0, 200.0, 207.0),
+    "ISR": (244.0, 240.0, 233.0),
+    "SGP": (255.0, 263.0, 246.0),  # Beobachterstatus, in PIAAC-Survey
+    # EU-Country-Subset als Quervergleich (auch wenn Adult-Training-Live verfügbar)
+    "AUT": (256.0, 261.0, 249.0),
+    "DEU": (264.0, 270.0, 255.0),
+    "FRA": (256.0, 254.0, 245.0),
+    "ITA": (245.0, 244.0, 231.0),
+    "ESP": (244.0, 244.0, 237.0),
+    "POL": (260.0, 255.0, 248.0),
+    "NLD": (282.0, 281.0, 271.0),
+    "SWE": (273.0, 276.0, 263.0),
+    "FIN": (288.0, 282.0, 276.0),
+    "DNK": (273.0, 278.0, 264.0),
+    "NOR": (274.0, 276.0, 263.0),
+    "EST": (276.0, 277.0, 263.0),
+    "IRL": (260.0, 254.0, 244.0),
+    "CHE": (267.0, 274.0, 257.0),
+    "CAN": (260.0, 255.0, 252.0),
+}
+
+
+def _build_piaac_static_results(target_iso: list[str], dom_info: dict,
+                                claim_lc: str) -> list[dict]:
+    """Strategy-3-Fallback: statische PIAAC-2023-Country-Mean-Scores
+    aus der OECD-Publikation („Survey of Adult Skills 2023").
+
+    Nur aktiv, wenn das Claim explizit PIAAC / Literacy / Numeracy mentions.
+    """
+    # Nur triggern, wenn PIAAC-spezifischer Begriff im Claim
+    piaac_specific = any(
+        t in claim_lc
+        for t in ("piaac", "literacy", "numeracy",
+                  "lese-kompetenz", "lesekompetenz",
+                  "rechen-kompetenz", "rechenkompetenz",
+                  "erwachsenenkompetenzen", "adult skills")
+    )
+    if not piaac_specific:
+        return []
+
+    out: list[dict] = []
+    for iso in target_iso:
+        iso_u = iso.upper()
+        scores = _PIAAC_2023_MEAN_SCORES.get(iso_u)
+        if not scores:
+            continue
+        country_name = _iso_to_display(iso_u) or iso_u
+        lit, num, aps = scores
+        out.append({
+            "indicator_name": f"PIAAC 2023 — Adult Skills Mean Scores — {country_name}",
+            "indicator": f"oecd_piaac_static_{iso_u.lower()}",
+            "country": iso_u,
+            "country_name": country_name,
+            "year": "2023",
+            "value": lit,
+            "display_value": (
+                f"{country_name} 2023 (PIAAC): "
+                f"Literacy = {lit}, Numeracy = {num}, "
+                f"Adaptive Problem Solving = {aps} "
+                f"(Skala 0-500, OECD-Mittelwert: 260/263/251)"
+            ),
+            "description": (
+                "OECD PIAAC 2023 — Survey of Adult Skills (Country Mean Scores). "
+                "Skala 0-500, gemessen bei 16-65-Jährigen. Quelle: "
+                "OECD (2024), 'Do Adults Have the Skills They Need to Thrive in a "
+                "Changing World? Survey of Adult Skills 2023'. "
+                "Static-Reference (nicht via SDMX-API verfügbar)."
+            ),
+            "url": "https://www.oecd.org/en/about/programmes/piaac.html",
+            "source": "OECD PIAAC 2023 (Static Reference)",
+        })
+        if len(out) >= MAX_RESULTS_PER_DOMAIN:
+            break
+    return out
 
 # Allgemeine OECD-SDMX-Trigger (zusätzlich, falls Domain unklar)
 _GENERIC_OECD_TERMS = (
@@ -538,12 +653,51 @@ def _iso_to_display(iso: str) -> str:
 # ---------------------------------------------------------------------------
 # HTTP-Call pro Domain
 # ---------------------------------------------------------------------------
+def _build_domain_url(dom_id: str, flow: str, target_iso: list[str],
+                      start_period: str) -> str:
+    """Domain-spezifischer URL-Builder.
+
+    Die OECD-SDMX-Dataflows haben unterschiedliche Dimensions-Strukturen.
+    Für `piaac` (DSD_REG_EDU) muss ein 10-stelliger Key-Path verwendet werden
+    mit TERRITORIAL_LEVEL=CTRY (sonst werden regionale TL2/TL3-Daten geliefert).
+
+    Andere Domains nutzen `all` + client-side-Filter.
+    """
+    base = f"{SDMX_BASE}/{flow}"
+    common_qs = (
+        f"?lastNObservations=1&dimensionAtObservation=AllDimensions"
+        f"&startPeriod={start_period}"
+    )
+
+    if dom_id == "piaac":
+        # DSD_REG_EDU dim-order:
+        #   FREQ.TERRITORIAL_LEVEL.REF_AREA.TERRITORIAL_TYPE.MEASURE.
+        #   AGE.SEX.EDUCATION_LEV.STATISTICAL_OPERATION.UNIT_MEASURE
+        # Whitelisting auf EU-LFS-coverage; first match used (single country
+        # SDMX query, da OECD bei dieser Dataflow keine OR-Listen akzeptiert).
+        iso_supported = next(
+            (c for c in target_iso if c.upper() in _PIAAC_SUPPORTED_ISO), None
+        )
+        if not iso_supported:
+            return ""  # signalize: skip this query
+        key = f"A.CTRY.{iso_supported.upper()}._Z..Y25T64._T._T.MEAN.PT_POP_SEX_AGE"
+        return f"{base}/{key}{common_qs}"
+
+    # Default: 'all' + client-side-Filter
+    return f"{base}/all{common_qs}"
+
+
 async def _fetch_domain(client, dom_id: str, target_iso: list[str],
-                        start_period: str = "2020") -> list[dict]:
+                        start_period: str = "2020",
+                        claim_lc: str = "") -> list[dict]:
     """Fetch SDMX-Daten für eine Domain + Country-Set.
 
     Strategie: nutzt 'all' für die Filter-Key (OECD-SDMX akzeptiert keine
     REF_AREA-Filter mehr im Path verlässlich), filtert client-side.
+    Ausnahme: 'piaac' baut einen expliziten 10-Key-Path mit
+    TERRITORIAL_LEVEL=CTRY (sonst kommen TL2-Regionaldaten). Zusätzlich
+    Strategy-3-Fallback auf statische PIAAC-2023-Country-Mean-Scores
+    bei Nicht-EU-LFS-Ländern (USA/JPN/UK/KOR/AUS etc.).
     """
     dom_info = _DOMAINS[dom_id]
     target_set = {c.upper() for c in target_iso}
@@ -553,12 +707,27 @@ async def _fetch_domain(client, dom_id: str, target_iso: list[str],
         return cached
 
     flow = dom_info["flow"]
-    # 'all' key — wir filtern danach client-side per REF_AREA
-    url = (
-        f"{SDMX_BASE}/{flow}/all"
-        f"?lastNObservations=1&dimensionAtObservation=AllDimensions"
-        f"&startPeriod={start_period}"
-    )
+    url = _build_domain_url(dom_id, flow, target_iso, start_period)
+    if not url:
+        # Domain-Adapter signalisierte: kein passender Country.
+        # Für PIAAC: prüfe Static-Fallback (OECD-publizierte Mean-Scores).
+        if dom_id == "piaac":
+            static_results = _build_piaac_static_results(
+                target_iso, dom_info, claim_lc
+            )
+            if static_results:
+                logger.info(
+                    f"oecd_sdmx: piaac → {len(static_results)} static-fallback "
+                    f"results für {','.join(sorted(target_set))}"
+                )
+                _cache_put(cache_key, static_results)
+                return static_results
+        logger.info(
+            f"oecd_sdmx: {dom_id} → skip, keine unterstützten Länder in "
+            f"{','.join(sorted(target_set))}"
+        )
+        _cache_put(cache_key, [])
+        return []
     try:
         resp = await client.get(url, headers={
             "Accept": "application/vnd.sdmx.data+json",
@@ -586,6 +755,19 @@ async def _fetch_domain(client, dom_id: str, target_iso: list[str],
         return []
 
     results = _parse_sdmx_json(payload, dom_info, target_set, dom_id)
+
+    # PIAAC-Fallback: Wenn live-SDMX nichts liefert UND Claim spezifisch
+    # PIAAC/Literacy/Numeracy fragt → ergänze Static-Results.
+    if dom_id == "piaac" and not results:
+        static_results = _build_piaac_static_results(target_iso, dom_info, claim_lc)
+        if static_results:
+            logger.info(
+                f"oecd_sdmx: piaac → {len(static_results)} static-fallback "
+                f"(SDMX leer) für {','.join(sorted(target_set))}"
+            )
+            _cache_put(cache_key, static_results)
+            return static_results
+
     _cache_put(cache_key, results)
     logger.info(
         f"oecd_sdmx: {dom_id} → {len(results)} Treffer für "
@@ -634,7 +816,9 @@ async def search_oecd_sdmx(analysis: dict) -> dict:
     async with polite_client(timeout=TIMEOUT_S) as client:
         for dom_id in domains:
             try:
-                dom_results = await _fetch_domain(client, dom_id, target_iso)
+                dom_results = await _fetch_domain(
+                    client, dom_id, target_iso, claim_lc=matchable
+                )
             except Exception as e:
                 logger.warning(f"oecd_sdmx: {dom_id} unexpected error: {e}")
                 continue

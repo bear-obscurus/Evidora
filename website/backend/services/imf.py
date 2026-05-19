@@ -4,17 +4,22 @@ Quelle: International Monetary Fund (https://www.imf.org/) — World Economic
 Outlook (WEO, halbjährlich), Financial Soundness Indicators (FSI) und
 International Financial Statistics (IFS).
 
-API-Strategie:
-1. PRIMARY: IMF Direct-SDMX-API
-       https://api.imf.org/external/sdmx/2.1/data/{dataflow}/{key}?format=jsondata
-   Hinweis: IMF hat 2024/2025 die Endpoint-Struktur und URNs umgebaut;
-   intensive Nutzung verlangt seitdem API-Key. Für leichte Nutzung quota-
-   frei, aber wir implementieren defensiv mit kurzem Timeout und silentem
-   Failover — Dataflow-URNs ändern sich saisonal (z.B. WEO:2024-10 → 2025-04).
-2. FALLBACK: DBnomics-IMF-Mirror (kein Auth, höhere Verfügbarkeit)
+API-Strategie (analog zum OeNB-SDMX-Pattern: stabiler Mirror als PRIMARY):
+1. PRIMARY: DBnomics-IMF-Mirror (kein Auth, höhere Verfügbarkeit, tagesaktuell)
        https://api.db.nomics.world/v22/series/IMF/{dataset}/{key}
    DBnomics spiegelt WEO + IFS + FSI mit ~tagesaktuellem Stand und
-   konsistentem JSON-Schema (siehe services/dbnomics.py).
+   konsistentem JSON-Schema. WEO-Datasets sind versioniert mit
+   `WEO:JJJJ-MM` (z.B. `WEO:2025-04`). Series-Keys folgen dem 2-Teile-Format
+   `{ISO3}.{INDICATOR}` (z.B. `AUT.NGDP_RPCH`) und werden serverseitig zur
+   3-Teile-Form mit Einheits-Suffix aufgelöst.
+2. FALLBACK (silent): IMF Direct-SDMX-API
+       https://api.imf.org/external/sdmx/2.1/data/{dataflow}/{key}?format=jsondata
+   IMF hat 2024/2025 die Endpoint-Struktur und URNs umgebaut; das alte URN-
+   Format (IMF.RES,WEO,1.0 / IMF.STA,WEO,1.0) ist post-2024 weitgehend tot.
+   Wir behalten den Fetcher als feature-flag-gesteuerten Best-Effort-Fallback
+   für den Fall, dass IMF ein stabiles URN-Schema wieder publiziert; per
+   Default ist er DEAKTIVIERT (siehe `_TRY_IMF_DIRECT_FALLBACK`), damit der
+   Service nicht in jedem Request 2x404 fängt.
 
 Wir liefern semantisch IMF-Daten (Provenance bleibt IMF), egal über
 welchen Pfad sie kamen — die source-Spalte zeigt das via Suffix an.
@@ -59,10 +64,20 @@ MAX_RESULTS = 3
 CACHE_TTL_S = 24 * 3600  # 24h
 
 # Aktuelle WEO-Vintage in DBnomics. IMF veröffentlicht zweimal jährlich
-# (April + Oktober). Hier konservativ auf Oktober 2024; falls neuere
-# Vintage existiert, fällt der Code auf Trefferloses Result-Set zurück.
+# (April + Oktober). Liste in Reihenfolge: neueste zuerst, dann Fallback
+# auf vorherige Ausgaben. Die "WEO"-Variante ohne Vintage-Suffix existiert
+# bei DBnomics NICHT (nur versionierte Datasets), daher entfernt.
 # Hot-fix: tools/refresh_imf_weo_vintage.py kann das saisonal aktualisieren.
-_WEO_VINTAGE_CANDIDATES = ("WEO:2025-04", "WEO:2024-10", "WEO")
+_WEO_VINTAGE_CANDIDATES = (
+    "WEO:2025-04",
+    "WEO:2024-10",
+    "WEO:2024-04",
+)
+
+# Feature-Flag: IMF-Direkt-SDMX als Best-Effort-Fallback probieren.
+# Post-2024 sind die alten URN-Pfade tot (0 Results), daher per Default OFF.
+# Sobald IMF ein neues stabiles URN-Schema veröffentlicht, hier aktivieren.
+_TRY_IMF_DIRECT_FALLBACK = False
 
 # ---------------------------------------------------------------------------
 # Country-ISO-3-Mapping (Trigger-Wort → ISO3 + AnzeigeName-DE)
@@ -537,9 +552,9 @@ async def _lookup_one(
     indicator_name_de: str,
     unit: str,
 ) -> dict | None:
-    """Versuch in Reihenfolge:
-       (a) IMF-Direkt-SDMX (kurzes Timeout)
-       (b) DBnomics-IMF-Mirror mit jeder Vintage-Variante
+    """Versuch in Reihenfolge (Pattern analog OeNB-SDMX: Mirror primary):
+       (a) DBnomics-IMF-Mirror mit jeder Vintage-Variante (PRIMARY)
+       (b) IMF-Direkt-SDMX als Best-Effort-Fallback (nur wenn Feature-Flag on)
     Cached pro (iso3, indicator_code) für 24h.
     """
     cache_key = f"weo::{iso3}::{indicator_code}"
@@ -547,30 +562,7 @@ async def _lookup_one(
     if cached is not None:
         return cached[0] if cached else None
 
-    # (a) IMF Direct
-    direct = await _fetch_imf_direct_weo(
-        client, iso3=iso3, indicator_code=indicator_code,
-    )
-    if direct:
-        latest = _pick_latest_value(direct.get("period", []),
-                                    direct.get("value", []))
-        if latest:
-            year, value = latest
-            result = _format_observation(
-                iso3=iso3,
-                country_name=country_name,
-                indicator_code=indicator_code,
-                indicator_name_de=indicator_name_de,
-                unit=unit,
-                year=year,
-                value=value,
-                vintage=direct.get("vintage"),
-                source_path="IMF Direct SDMX",
-            )
-            _cache_put(cache_key, [result])
-            return result
-
-    # (b) DBnomics-Fallback (probiere Vintages der Reihe nach)
+    # (a) DBnomics PRIMARY — probiere Vintages der Reihe nach (neueste zuerst)
     for vintage in _WEO_VINTAGE_CANDIDATES:
         series_code = f"{iso3}.{indicator_code}"
         doc = await _fetch_dbnomics_series(
@@ -592,11 +584,36 @@ async def _lookup_one(
             unit=unit,
             year=year,
             value=value,
-            vintage=vintage.replace("WEO:", "").replace("WEO", ""),
+            vintage=vintage.replace("WEO:", ""),
             source_path=f"DBnomics-Mirror IMF/{vintage}",
         )
         _cache_put(cache_key, [result])
         return result
+
+    # (b) IMF Direct FALLBACK — nur wenn Feature-Flag on; post-2024 URN-Restructure
+    # macht alte Pfade meist nutzlos. Behalten für Forward-Kompatibilität.
+    if _TRY_IMF_DIRECT_FALLBACK:
+        direct = await _fetch_imf_direct_weo(
+            client, iso3=iso3, indicator_code=indicator_code,
+        )
+        if direct:
+            latest = _pick_latest_value(direct.get("period", []),
+                                        direct.get("value", []))
+            if latest:
+                year, value = latest
+                result = _format_observation(
+                    iso3=iso3,
+                    country_name=country_name,
+                    indicator_code=indicator_code,
+                    indicator_name_de=indicator_name_de,
+                    unit=unit,
+                    year=year,
+                    value=value,
+                    vintage=direct.get("vintage"),
+                    source_path="IMF Direct SDMX",
+                )
+                _cache_put(cache_key, [result])
+                return result
 
     _cache_put(cache_key, [])
     return None
