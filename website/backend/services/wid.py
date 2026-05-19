@@ -102,23 +102,34 @@ _ISO3_TO_ISO2 = {
 # Direkt-Trigger: Claim erwaehnt WID/Piketty namentlich.
 _DIRECT_TRIGGERS = (
     "wid.world", "wid world", "world inequality database",
-    "world inequality report", "weltungleichheits-bericht",
+    "world inequality report", "world inequality lab",
+    "weltungleichheits-bericht",
     "weltungleichheitsreport", "piketty-daten", "piketty daten",
     "saez-zucman", "saez zucman", "thomas piketty",
     "lucas chancel", "gabriel zucman", "emmanuel saez",
     "distributional national accounts", "dina",
 )
 
+# Author-Trigger: Nur Nachnamen — gelten erst in Kombination mit
+# Top-Share/Inequality/Income/Wealth-Hint oder Land (vermeidet False-Positives
+# fuer zufaellige Namens-Erwaehnungen).
+_AUTHOR_TOKENS = (
+    "piketty", "saez", "zucman", "chancel",
+)
+
 # Top-Share-Trigger (Income oder Wealth — qualifizieren ueber _SHARE_TYPE_HINTS).
 _SHARE_TRIGGERS = (
     "top-1%", "top 1%", "top-1 %", "top 1 %",
     "top-1-prozent", "top 1 prozent", "top 1-prozent",
+    "top 1 percent", "top-1 percent", "top-1-percent",
     "top-10%", "top 10%", "top-10 %", "top 10 %",
     "top-10-prozent", "top 10 prozent", "top 10-prozent",
+    "top 10 percent", "top-10 percent", "top-10-percent",
     "obere 1%", "obere 1 %", "obersten 1%", "obersten 1 %",
     "obere 10%", "obere 10 %", "obersten 10%", "obersten 10 %",
     "unteren 50%", "unteren 50 %", "untere 50%", "untere 50 %",
     "bottom-50%", "bottom 50%", "bottom 50 %", "bottom-50 %",
+    "bottom 50 prozent", "bottom-50-prozent", "bottom 50 percent",
     "ärmste hälfte", "aermste haelfte", "untere hälfte", "untere haelfte",
 )
 
@@ -200,6 +211,17 @@ def _has_inequality_trigger(claim_lc: str) -> bool:
     return any(t in claim_lc for t in _INEQUALITY_TRIGGERS)
 
 
+def _has_author_token(claim_lc: str) -> bool:
+    """Erkenne Piketty/Saez/Zucman/Chancel als impliziten WID-Trigger.
+
+    Nur Author-Nachname allein triggert NICHT — kombiniert mit
+    Share/Inequality/Income/Wealth-Hint oder Land-Alias gilt es als
+    impliziter WID-Verweis (vermeidet False-Positives durch zufaellige
+    Namensnennungen ohne Inequality-Kontext).
+    """
+    return any(t in claim_lc for t in _AUTHOR_TOKENS)
+
+
 def _share_types(claim_lc: str) -> list[str]:
     """Wahle Share-Typen (income / wealth) basierend auf Claim-Hinweisen."""
     has_income = any(t in claim_lc for t in _INCOME_HINTS)
@@ -217,16 +239,21 @@ def _share_buckets(claim_lc: str) -> list[str]:
     buckets: list[str] = []
     if any(t in claim_lc for t in (
         "top-1%", "top 1%", "top-1 %", "top 1 %",
-        "top-1-prozent", "top 1 prozent", "obere 1", "obersten 1",
+        "top-1-prozent", "top 1 prozent",
+        "top 1 percent", "top-1 percent", "top-1-percent",
+        "obere 1", "obersten 1",
     )):
         buckets.append("top1")
     if any(t in claim_lc for t in (
         "top-10%", "top 10%", "top-10 %", "top 10 %",
-        "top-10-prozent", "top 10 prozent", "obere 10", "obersten 10",
+        "top-10-prozent", "top 10 prozent",
+        "top 10 percent", "top-10 percent", "top-10-percent",
+        "obere 10", "obersten 10",
     )):
         buckets.append("top10")
     if any(t in claim_lc for t in (
         "bottom-50%", "bottom 50%", "bottom 50 %", "bottom-50 %",
+        "bottom 50 prozent", "bottom-50-prozent", "bottom 50 percent",
         "unteren 50%", "unteren 50 %", "untere 50%", "untere 50 %",
         "untere hälfte", "untere haelfte",
         "ärmste hälfte", "aermste haelfte",
@@ -251,15 +278,21 @@ def _claim_mentions_wid(claim_lc: str) -> bool:
     """Pure-String-Trigger-Test gegen die WID-Themenkeywords.
 
     Logik:
-      1. Direkt-Trigger (WID/Piketty namentlich) -> True
-      2. Top-Share-Trigger + Income/Wealth-Hint -> True
-      3. Inequality-Trigger + Land oder Income/Wealth-Hint -> True
-      4. Politik-Tabu-Guard 2.0: Partei+Korruption+Superlativ -> False
+      1. Politik-Tabu-Guard 2.0: Partei+Korruption+Superlativ -> False
+      2. Direkt-Trigger (WID/World Inequality Database namentlich) -> True
+      3. Top-Share-Trigger + Income/Wealth-Hint -> True
+      4. Top-Share-Trigger + Land-Alias -> True
+         (z. B. "Top 1 Prozent USA" — Wealth-Default ueber Share-Logic)
+      5. Inequality-Trigger + Income/Wealth-Hint -> True
+      6. Inequality-Trigger + Land-Alias -> True
+      7. Author-Token (Piketty/Saez/Zucman/Chancel) + Share/Inequality/
+         Income/Wealth/Land -> True
     """
     if not claim_lc:
         return False
 
-    # Politik-Tabu-Guard 2.0
+    # 1) Politik-Tabu-Guard 2.0 (Vermoegensungleichheit ist politisch sensibel —
+    # Partei-Wertung + Korruption + Superlativ blocken).
     try:
         from services._topic_match import is_party_corruption_superlative_claim
         if is_party_corruption_superlative_claim(claim_lc):
@@ -267,7 +300,7 @@ def _claim_mentions_wid(claim_lc: str) -> bool:
     except Exception:  # noqa: BLE001
         pass
 
-    # 1) Direkt
+    # 2) Direkt-Trigger (WID/World Inequality Database namentlich)
     if _has_direct_trigger(claim_lc):
         return True
 
@@ -275,22 +308,36 @@ def _claim_mentions_wid(claim_lc: str) -> bool:
     has_ineq = _has_inequality_trigger(claim_lc)
     has_income = any(t in claim_lc for t in _INCOME_HINTS)
     has_wealth = any(t in claim_lc for t in _WEALTH_HINTS)
+    has_author = _has_author_token(claim_lc)
 
-    # 2) Top-Share + Income/Wealth-Hint -> WID
+    # 3) Top-Share + Income/Wealth-Hint -> WID
     if has_share and (has_income or has_wealth):
         return True
 
-    # 3) Inequality-Term + Income/Wealth-Hint -> WID
+    # 5) Inequality-Term + Income/Wealth-Hint -> WID
     if has_ineq and (has_income or has_wealth):
         return True
 
-    # 4) Inequality-Term + Land-Alias -> WID (z. B. "Einkommensungleichheit USA")
-    if has_ineq:
+    # Land-Detection (fuer Cases 4, 6, 7-Land).
+    countries: list[str] = []
+    if has_share or has_ineq or has_author:
         data = _load_data()
         if data:
             countries = _detect_countries_in_claim(claim_lc, data)
-            if countries:
-                return True
+
+    # 4) Top-Share-Trigger + Land-Alias -> WID
+    if has_share and countries:
+        return True
+
+    # 6) Inequality-Term + Land-Alias -> WID (z. B. "Einkommensungleichheit USA")
+    if has_ineq and countries:
+        return True
+
+    # 7) Author-Token + (Share/Inequality/Income/Wealth/Land) -> WID
+    if has_author and (
+        has_share or has_ineq or has_income or has_wealth or countries
+    ):
+        return True
 
     return False
 

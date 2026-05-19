@@ -123,10 +123,15 @@ _DEFAULT_COUNTRIES_FOR_DACH_CLAIMS = ("AUT", "DEU", "CHE")
 # Bei Match ohne Land → DACH-Default.
 _POLITY_KEYWORDS = (
     "polity 5", "polity5", "polity-5",
+    "polity 4", "polity4", "polity-4",
     "polity score", "polity-score", "polityscore",
     "polity index", "polity-index", "polityindex",
     "polity-typologie", "polity typology",
+    "polity-skala", "polity skala",
+    "polity project", "polity-project", "polity projekt",
     "regime-typologie", "regimetypologie", "regime typology",
+    "demokratie-autokratie-skala", "demokratie autokratie skala",
+    "demokratie-autokratie skala",
     "anokratie", "anokratien", "anocracy", "anocracies",
     "offene anokratie", "geschlossene anokratie",
     "open anocracy", "closed anocracy",
@@ -134,6 +139,43 @@ _POLITY_KEYWORDS = (
     "center for systemic peace", "systemic peace",
     "csp polity",
 )
+
+# Composite-Trigger: 20-30 wichtige Country-Tokens (DE + EN).
+# Wird zusammen mit Polity-Keywords zu Composite-Triggern verknüpft,
+# damit "Polity 5 Russland …" / "Regime-Typologie China" robust greift,
+# auch wenn die data/polity5.json gerade nicht ladbar ist.
+_COUNTRY_TOKENS: tuple[str, ...] = (
+    "österreich", "oesterreich", "austria",
+    "deutschland", "germany",
+    "schweiz", "switzerland",
+    "russland", "russia", "russland", "russische föderation",
+    "usa", "vereinigte staaten", "united states",
+    "china", "volksrepublik china",
+    "türkei", "tuerkei", "turkey",
+    "ungarn", "hungary",
+    "polen", "poland",
+    "frankreich", "france",
+    "italien", "italy",
+    "spanien", "spain",
+    "schweden", "sweden",
+    "ukraine",
+    "belarus", "weißrussland", "weissrussland",
+    "iran",
+    "saudi-arabien", "saudi arabien", "saudi arabia",
+    "nordkorea", "north korea",
+    "südkorea", "suedkorea", "south korea",
+    "venezuela",
+    "südafrika", "suedafrika", "south africa",
+    "indien", "india",
+    "japan",
+    "brasilien", "brazil",
+    "großbritannien", "grossbritannien", "vereinigtes königreich",
+    "united kingdom",
+)
+
+# Year-Pattern: 4-stellige Jahreszahl 19xx oder 20xx (1800-2099 grob).
+import re as _re  # noqa: E402  (local import to keep top section tidy)
+_YEAR_PATTERN = _re.compile(r"\b(1[89]\d{2}|20\d{2})\b")
 
 # Reference-Länder für display_value Multi-Country-Comparison.
 # AT-Bias: AT zuerst, dann DE/CH, dann Demokratie-/Autokratie-Kontrast.
@@ -189,29 +231,49 @@ def _has_polity_keyword(claim_lc: str) -> bool:
     return any(kw in claim_lc for kw in _POLITY_KEYWORDS)
 
 
+def _has_country_token(claim_lc: str) -> bool:
+    """Trifft mindestens einen der hartcodierten Country-Tokens?
+
+    Unabhängig von ``data/polity5.json`` — damit der Trigger auch bei
+    Static-JSON-Reload-Pausen / fehlender Datei robust bleibt.
+    """
+    return any(tok in claim_lc for tok in _COUNTRY_TOKENS)
+
+
+def _has_year_pattern(claim_lc: str) -> bool:
+    """Trifft eine 4-stellige Jahreszahl (1800-2099)?"""
+    return bool(_YEAR_PATTERN.search(claim_lc))
+
+
 def _claim_mentions_polity5(claim: str) -> bool:
     """Trigger-Pre-Check für main.py-Pipeline-Routing.
 
-    Returns True, wenn der Claim ein Polity-Keyword enthält UND der
-    Politik-Tabu-Guard 2.0 nichts blockt (Partei + Korruption +
-    Superlativ ohne empirischen Anker → block, weil Polity Country-
-    Daten, nicht Partei-Daten misst).
+    Composite-Trigger-Logik:
+      1. Politik-Tabu-Guard 2.0 (Partei+Korruption+Superlativ) → block.
+      2. Polity-Keyword + Country-Token (+ optional Year) → trigger.
+      3. Polity-Keyword allein → trigger mit DACH-Default.
+      4. Country-Token + Year ohne Polity-Keyword → KEIN Trigger
+         (verhindert False-Positives bei generischen Länder-Claims).
     """
     if not claim:
         return False
-    # Politik-Tabu-Guard 2.0: Country-Level-Demokratie-Daten dürfen
-    # NICHT für Partei-Werturteile missbraucht werden.
+    claim_lc = claim.lower()
+    # Politik-Tabu-Guard 2.0 ZUERST — Country-Level-Demokratie-Daten
+    # dürfen NICHT für Partei-Werturteile missbraucht werden.
     from services._topic_match import is_party_corruption_superlative_claim
-    if is_party_corruption_superlative_claim(claim.lower()):
+    if is_party_corruption_superlative_claim(claim_lc):
         return False
+    if not _has_polity_keyword(claim_lc):
+        return False
+    # Composite-Bonus: Polity-Keyword + Country (+ optional Year) → trigger
+    # auch ohne data-Load (Static-JSON-Reload-Robustheit).
+    if _has_country_token(claim_lc):
+        # Year-Pattern ist optional, dient nur Logging/Boost.
+        return True
+    # Polity-Keyword alleine: Data muss laden, sonst kein DACH-Fallback.
     data = _load_data()
     if not data:
         return False
-    claim_lc = claim.lower()
-    if not _has_polity_keyword(claim_lc):
-        return False
-    # Wenn Polity-Keyword + Land → trigger.
-    # Wenn Polity-Keyword ohne Land → trigger mit DACH-Default.
     return True
 
 

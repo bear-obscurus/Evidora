@@ -173,6 +173,14 @@ def _claim_mentions_parlgov(claim_lc: str) -> bool:
     )
     if has_person and has_year_or_wahl:
         return True
+    # 6) Composite: Generic Wahl-Token + (Year-Pattern oder Land-Token)
+    #    Wahl-Tokens decken Wahl, Europawahl, Parlamentswahl, Wahlumfrage,
+    #    election etc. via Substring "wahl"/"election" ab.
+    has_generic_wahl = ("wahl" in claim_lc) or ("election" in claim_lc)
+    has_year = bool(_YEAR_RE.search(claim_lc))
+    has_country = any(t in claim_lc for t in _LAND_TOKENS)
+    if has_generic_wahl and (has_year or has_country):
+        return True
     return False
 
 

@@ -116,7 +116,7 @@ _search_cache: dict[str, tuple[float, list[dict]]] = {}
 # ---------------------------------------------------------------------------
 # Trigger
 # ---------------------------------------------------------------------------
-# Direkte NBER-Marker (single-word/-phrase ausreichend)
+# Direkte NBER-Marker (single-word/-phrase ausreichend — "nber" allein reicht)
 _NBER_DIRECT_TRIGGERS = (
     "nber",
     "national bureau of economic research",
@@ -136,25 +136,41 @@ _NBER_DIRECT_TRIGGERS = (
     "working-paper trade",
 )
 
-# Composite-Trigger: Working-Paper-Marker UND Econ-Topic
+# Composite-Trigger: Paper-Token UND Wirtschaftsthema
 _WORKING_PAPER_TERMS = (
-    "working paper", "working-paper",
+    "working paper", "working papers", "working-paper", "working-papers",
+    "arbeitspapier", "arbeitspapiere",
+    "research paper", "research papers", "research-paper",
     "diskussionspapier", "discussion paper", "discussion-paper",
     "preprint econ", "econ preprint",
 )
 _ECON_TOPIC_TERMS = (
-    "makroökonom", "makrooekonom", "macro economics", "macroeconomic",
-    "geldpolitik", "monetary policy", "fed policy", "federal reserve",
-    "fiskalpolitik", "fiscal policy", "fiscal stimulus",
-    "arbeitsmarkt", "labor market", "labour market",
-    "lohnentwicklung", "wage growth", "wage dynamics",
-    "handelspolitik", "trade policy", "tariff", "trade war",
-    "trade deficit", "handelsbilanz",
-    "produktivität", "produktivitaet", "productivity growth",
+    # Inflation & Preisniveau
     "inflation", "deflation", "stagflation",
-    "rezession", "recession",
-    "ungleichheit", "inequality", "income inequality",
+    # Arbeitsmarkt / Labor
+    "labor market", "labour market", "labor economics", "labour economics",
+    "arbeitsmarkt", "arbeitsoekonomik", "arbeitsökonomik",
+    "lohnentwicklung", "wage growth", "wage dynamics",
+    "unemployment", "arbeitslosigkeit",
+    # Macro / Makro
+    "macro", "macroeconomics", "macroeconomic",
+    "makroökonom", "makrooekonom", "macro economics",
     "konjunktur", "business cycle",
+    # Geldpolitik / Monetary
+    "monetary policy", "geldpolitik", "fed policy", "federal reserve",
+    "interest rates", "interest rate", "zinspolitik", "leitzins",
+    # Fiskalpolitik
+    "fiscal policy", "fiskalpolitik", "fiscal stimulus",
+    # Trade
+    "trade", "handelspolitik", "trade policy",
+    "tariff", "trade war", "trade deficit", "handelsbilanz",
+    # Finance
+    "finance", "financial economics", "finanzökonomik", "finanzoekonomik",
+    # Growth & Productivity
+    "growth", "wirtschaftswachstum", "economic growth",
+    "produktivität", "produktivitaet", "productivity growth",
+    # Sonstiges
+    "ungleichheit", "inequality", "income inequality",
     "humankapital", "human capital",
     "innovation policy", "r&d policy",
     "industrial organization", "industrieökonomik", "industrieoekonomik",

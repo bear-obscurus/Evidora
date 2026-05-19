@@ -117,8 +117,11 @@ _CARA_TERMS = (
     "annuario pontificio statistico", "statistik des heiligen stuhls",
     "vatikan-statistik", "vatikan statistik", "vatican statistics",
     "vatican statistical yearbook", "statistical yearbook of the church",
+    "heiliger stuhl statistik", "heiligen stuhl statistik",
+    "heiliger-stuhl-statistik", "holy see statistics",
     # Weltweite Katholiken-Eckwerte
     "katholiken weltweit", "katholiken global",
+    "katholische kirche weltweit", "katholische kirche global",
     "anzahl der katholiken", "anzahl katholiken",
     "wie viele katholiken", "wieviele katholiken",
     "catholics worldwide", "catholics globally", "number of catholics",
@@ -131,6 +134,26 @@ _CARA_TERMS = (
     "messbesuch katholisch", "sonntagsmesse besucher",
     "sonntagsmesse besucherzahlen", "katholiken kirchgang",
     "mass attendance catholic",
+)
+
+
+# Quantifier-Composite-Vokabular (Zahl-/Mengen-Indikatoren)
+_QUANTIFIER_TERMS = (
+    " mio", " mio.", " mrd", " mrd.",
+    "million", "millionen", "milliard", "milliarden",
+    "billion", "billions",
+    "prozent", " % ", "% ", " %", "percent",
+    "anzahl", "zahl der", "zahl an ",
+    " mitglieder", " gläubige", " glaeubige",
+    "bevölkerung", "bevoelkerung", "population",
+)
+
+# Katholik-Token (fuer Quantifier-Composite)
+_CATHOLIC_TOKENS = (
+    "katholik", "katholiken",  # Substantiv-Plural inkl. Beugung
+    "katholisch", "katholische", "katholischen",
+    "römisch-katholisch", "roemisch-katholisch",
+    "catholic", "catholics",
 )
 
 
@@ -185,6 +208,25 @@ def _claim_mentions_cara(claim_lc: str) -> bool:
             " statistik", "-statistik",
             "anzahl der", "anzahl an ",
             "zahl der ", " mitglieder ", " gläubige", " glaeubige",
+        )):
+            return True
+
+    # Quantifier-Composite: Zahl-/Mengen-Begriff + Katholik-Token
+    # ("1,39 Mrd Katholiken", "17 Prozent Katholiken", "Anzahl Katholiken").
+    if _has_any(claim_lc, _CATHOLIC_TOKENS) and _has_any(
+        claim_lc, _QUANTIFIER_TERMS
+    ):
+        return True
+
+    # Vatikan / Heiliger Stuhl als impliziter Trigger ZUSAMMEN mit
+    # Katholik-Bezug oder Statistik-Begriff.
+    if _has_any(claim_lc, (
+        "vatikan", "vatican", "heiliger stuhl", "heiligen stuhl",
+        "holy see",
+    )):
+        if _has_any(claim_lc, _CATHOLIC_TOKENS) or _has_any(claim_lc, (
+            " statistik", "-statistik", "annuarium",
+            "anzahl", "zahl der", "kirchen-statistik",
         )):
             return True
 

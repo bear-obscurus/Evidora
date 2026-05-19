@@ -358,12 +358,41 @@ _INDICATOR_HINTS: dict[str, str] = {
 # ---------------------------------------------------------------------------
 _WORD_RE = re.compile(r"\beba\b", re.IGNORECASE)
 
+# Capital-Ratio / Banken-Kennzahl-Tokens (für Composite-Trigger)
+_CAPITAL_RATIO_TOKENS = (
+    "cet1", "cet 1", "common equity tier 1",
+    "tier 1 ratio", "tier 1 kapital", "tier 1-kapital",
+    "tier 2",
+    "kapitalquote", "kernkapitalquote",
+    "leverage ratio", "leverage-ratio",
+    "npl", "non-performing loans", "non performing loans",
+    "notleidende kredite", "notleidender kredit",
+    "liquidity coverage ratio", "lcr",
+    "bankenkennzahl", "bankenkennzahlen",
+)
+
+# Quartal-Suffix-Pattern: Q1..Q4 als eigenes Token
+_QUARTER_RE = re.compile(r"\bq[1-4]\b", re.IGNORECASE)
+_YEAR_RE = re.compile(r"\b(19|20)\d{2}\b")
+
+# EU-Banken-Subjekt-Pattern (Composite: Banken + Europa/EU)
+_EU_BANK_SUBJECT_TOKENS = (
+    "eu-banken", "eu banken",
+    "europäische banken", "europaeische banken",
+    "eu banks", "european banks",
+    "banken eu", "banken europa",
+    "banken in europa", "banken in der eu",
+    "europa banken", "europäische bankenaufsicht",
+)
+
 
 def _claim_mentions_eba(claim_lc: str) -> bool:
     """Conservative Trigger:
     1. Direkter EBA-Term → True
     2. EBA-Indikator-Begriff (CET1/NPL/LCR/...) → True
-    3. Composite: Banken-Begriff + EU-Bezug → True
+    3. Composite Capital-Ratio + (Quartal ODER Year ODER EU-Banken-Subjekt) → True
+    4. EU-Banken-Subjekt allein (z.B. "NPL-Statistik Europa") → True
+    5. Composite: Banken-Begriff + EU-Bezug + Risiko-/Aufsichts-Kontext → True
 
     Hinweis: "eba" als Substring ist nicht eindeutig (z.B. "Sebastian Kurz",
     "Liebe ba…"). Für den nackten Term nutzen wir daher eine Wort-Grenzen-
@@ -384,7 +413,29 @@ def _claim_mentions_eba(claim_lc: str) -> bool:
     if any(t in claim_lc for t in _TOPIC_TERMS):
         return True
 
-    # 3. Composite: Banken + EU
+    # 3. Composite: Capital-Ratio-Token + (Quartal/Year ODER EU-Banken-Subjekt)
+    has_capital_ratio = any(t in claim_lc for t in _CAPITAL_RATIO_TOKENS)
+    has_quarter = bool(_QUARTER_RE.search(claim_lc)) or "quartal" in claim_lc
+    has_year = bool(_YEAR_RE.search(claim_lc))
+    has_eu_bank_subject = any(t in claim_lc for t in _EU_BANK_SUBJECT_TOKENS)
+
+    if has_capital_ratio and (has_quarter or has_year or has_eu_bank_subject):
+        return True
+
+    # 3b. EU-Banken-Subjekt + irgendwo Banken-/Statistik-/Risiko-Kontext
+    # ("NPL-Statistik Europa", "Tier-1-Quote EU Banken", ...)
+    has_europe_anywhere = (
+        "europa" in claim_lc
+        or "europe" in claim_lc
+        or any(t in claim_lc for t in _COMPOSITE_EU_TERMS)
+    )
+    if has_capital_ratio and has_europe_anywhere:
+        return True
+
+    if has_eu_bank_subject:
+        return True
+
+    # 4. Composite: Banken + EU + Risiko-/Aufsichts-Kontext (alt)
     has_bank = any(t in claim_lc for t in _COMPOSITE_BANK_TERMS)
     has_eu = any(t in claim_lc for t in _COMPOSITE_EU_TERMS)
     if has_bank and has_eu:
