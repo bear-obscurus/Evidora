@@ -92,6 +92,7 @@ _IDMC_DIRECT_TERMS = (
     "im eigenen land vertrieben", "im eigenen land geflohen",
     "im land geflohen", "intern vertrieben", "intern vertriebene",
     "vertriebene im eigenen land",
+    "vertreibung im land", "vertreibung im eigenen land",
     "klima-vertreibung", "klimavertreibung",
     "klima-vertriebene", "klimavertriebene",
     "katastrophen-vertreibung", "katastrophenvertreibung",
