@@ -214,6 +214,7 @@ const TRANSLATIONS = {
                 <li><a href="https://database.espon.eu/" target="_blank" rel="noopener">ESPON</a> — EU territoriale Indikatoren, NUTS-2-Stadt-Land-Vergleiche (frei, ESPON-Programm)</li>
                 <li><a href="https://thearda.com/" target="_blank" rel="noopener">ARDA</a> — Association of Religion Data Archives: 1.400+ quantitative Religionsstatistik-Datensätze (Public-Use)</li>
                 <li><a href="https://epub.oeaw.ac.at/" target="_blank" rel="noopener">ÖAW EPUB.OEAW</a> — Österreichische Akademie der Wissenschaften Open-Access-Forschungspublikationen seit 2006, OAI-PMH-Standard</li>
+                <li><a href="https://ucdp.uu.se/" target="_blank" rel="noopener">UCDP</a> — Uppsala Conflict Data Program (GED v25.1 Geo-Events + UCDP/PRIO Armed Conflict Dataset); akademischer Goldstandard für Battle-Deaths-Statistik (CC-BY 4.0)</li>
             </ul>
             <h3>Faktencheck-Netzwerke</h3>
             <ul>
@@ -620,6 +621,7 @@ const TRANSLATIONS = {
                 <li><a href="https://database.espon.eu/" target="_blank" rel="noopener">ESPON</a> — EU territorial indicators, NUTS-2 urban/rural comparisons (free, ESPON programme)</li>
                 <li><a href="https://thearda.com/" target="_blank" rel="noopener">ARDA</a> — Association of Religion Data Archives: 1,400+ quantitative religion statistics datasets (Public-Use)</li>
                 <li><a href="https://epub.oeaw.ac.at/" target="_blank" rel="noopener">ÖAW EPUB.OEAW</a> — Austrian Academy of Sciences Open-Access research publications since 2006, OAI-PMH standard</li>
+                <li><a href="https://ucdp.uu.se/" target="_blank" rel="noopener">UCDP</a> — Uppsala Conflict Data Program (GED v25.1 Geo-Events + UCDP/PRIO Armed Conflict Dataset); academic gold standard for battle-deaths statistics (CC-BY 4.0)</li>
             </ul>
             <h3>Fact-Checking Networks</h3>
             <ul>
