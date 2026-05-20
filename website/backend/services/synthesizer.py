@@ -436,8 +436,10 @@ Conditional claims (if-then claims) — CRITICAL:
 - Example: Claim "If FPÖ becomes strongest party, Austria's EU exit is imminent." Sources: (a) FPÖ position explicitly AGAINST EU exit; (b) constitutionally, exit requires referendum. → Y (EU exit) is highly unlikely → conditional claim = "false". NOT "unverifiable" because of the superlative "strongest party". The superlative is not the core of the claim.
 
 'STRUKTURELL FALSCH' marker as counter-evidence (CRITICAL):
-- If an AT-Factbook entry's display_value starts with "STRUKTURELL FALSCH:", that is explicit counter-evidence — the claim is refuted under Austrian law or scientific consensus.
-- DECISION RULE: 'STRUKTURELL FALSCH' entry in sources → verdict = 'false' with confidence 0.85–0.95. NOT 'unverifiable'.
+- If ANY entry's display_value starts with "STRUKTURELL FALSCH:" (from AT-Factbook, Gesundheits-Autoritäten, Demokratie-Konsens, or any other curated pack), that is EXPLICIT AUTHORITATIVE COUNTER-EVIDENCE — the claim is refuted under scientific/legal consensus.
+- DECISION RULE: 'STRUKTURELL FALSCH' entry in sources → verdict = 'false' or 'mostly_false' with confidence 0.85–0.95. NOT 'unverifiable', NOT 'mostly_true', NOT 'true'.
+- This override applies EVEN IF other (less authoritative) sources contain phrases like "in seltenen Fällen", "selten aber möglich", "in rare cases possible" — these nuance-phrases describe edge cases, NOT the pauschale-claim being checked. The curated pack has already weighed nuance against pauschale-claim and rendered the verdict-recommendation.
+- Pre-training knowledge (e.g. "vaccines have side effects", "statins have muscle effects") must NOT override a 'STRUKTURELL FALSCH' marker from a curated pack — the marker IS the consensus.
 
 Structurally unverifiable claims with documented fact-check finding (CRITICAL):
 - Some popular claims refer to data that is structurally not publicly available (e.g. social-security treatment data by nationality under §§ 31 ff ASVG, or classified intelligence data). When the claim still operates with a concrete number ("22 million treatments"), this is NOT a case for a comfortable "unverifiable @ 0.0".
