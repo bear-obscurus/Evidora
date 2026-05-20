@@ -45,6 +45,7 @@ import asyncio
 import logging
 import re
 import time
+from datetime import date as _date
 from urllib.parse import quote
 
 from services._http_polite import polite_client
@@ -369,6 +370,32 @@ def _date_to_year(iso_date: str | None) -> str:
     return f"{day}.{month}.{year}"
 
 
+def _is_office_term_ended(end_iso: str | None) -> bool:
+    """True wenn ``end_iso`` ein vollständiges, parsbares Datum ≤ heute ist.
+
+    Wird in ``_format_row`` für ``politiker_amtszeit`` /
+    ``person_partei`` genutzt, um Stichtagsbezug-Inversionen zu verhindern
+    (Pattern aus lessons_learned.md: Synthesizer-Inversions-Falle bei
+    "X ist aktuell Amts-Inhaber" — Wikidata liefert end-Datum, aber LLM
+    interpretiert "2010 bis 2026" als noch-amtierend, obwohl 09.05.2026
+    bereits in der Vergangenheit liegt).
+
+    Konservativ: Nur bei klar parsbarem ISO-Datum ≤ heute True.
+    Bei leerem / unparsbarem ``end`` (= noch amtierend laut Wikidata) False.
+    """
+    if not end_iso:
+        return False
+    m = re.match(r"^(-?\d{4})-(\d{2})-(\d{2})", end_iso)
+    if not m:
+        return False
+    try:
+        y, mo, da = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        end_d = _date(y, mo, da)
+    except (ValueError, TypeError):
+        return False
+    return end_d <= _date.today()
+
+
 def _format_row(template_name: str, row: dict) -> tuple[str, str, str]:
     """Wikidata-SPARQL-Result-Row → (display_value, entity_qid, label).
 
@@ -409,15 +436,34 @@ def _format_row(template_name: str, row: dict) -> tuple[str, str, str]:
     if template_name == "politiker_amtszeit":
         label = v("personLabel") or "Person"
         pos = v("positionLabel") or "Amt"
+        end_iso = v("end")
         start = _date_to_year(v("start"))
-        end = _date_to_year(v("end")) or "heute"
+        end = _date_to_year(end_iso) or "heute"
         party = v("partyLabel")
         bits = [pos]
         if start:
             bits.append(f"({start} – {end})")
         if party:
             bits.append(f"[{party}]")
-        return f"{label}: " + " ".join(bits), qid, label
+        body = f"{label}: " + " ".join(bits)
+        # Stichtagsbezug-Schutz: Wenn end-Datum < heute, dann ist die
+        # Amtszeit beendet. Synthesizer-Prompt erkennt "STRUKTURELL FALSCH:"
+        # Prefix als authoritative Counter-Evidenz und korrigiert
+        # Präsens-Aussagen ("X ist amtierend") zu mostly_false/false.
+        # Pattern: lessons_learned.md, Synthesizer-Inversions-Falle.
+        if _is_office_term_ended(end_iso):
+            today_iso = _date.today().isoformat()
+            return (
+                f"STRUKTURELL FALSCH: {label} hatte die Position "
+                f"'{pos}' nur bis {end} (heute: {today_iso}) — "
+                f"laut Wikidata seitdem NICHT MEHR in dieser Funktion. "
+                f"Präsens-Aussagen 'ist {pos}' / 'ist amtierender …' "
+                f"sind ohne neuere Quelle nicht mehr zutreffend. "
+                f"Roh-Daten: {body}",
+                qid,
+                label,
+            )
+        return body, qid, label
 
     if template_name == "land_hauptstadt":
         label = v("countryLabel") or "Land"
@@ -512,12 +558,30 @@ def _format_row(template_name: str, row: dict) -> tuple[str, str, str]:
     if template_name == "person_partei":
         label = v("personLabel") or "Person"
         party = v("partyLabel") or "?"
+        end_iso = v("end")
         start = _date_to_year(v("start"))
-        end = _date_to_year(v("end")) or "heute"
+        end = _date_to_year(end_iso) or "heute"
         bits = [f"{label}: Partei {party}"]
         if start:
             bits.append(f"({start} – {end})")
-        return " ".join(bits), qid, label
+        body = " ".join(bits)
+        # Wie bei politiker_amtszeit — Stichtagsbezug-Schutz für
+        # Partei-Mitgliedschafts-Claims. Bei mehrfachen Rows (LIMIT 5)
+        # wird das pro Row entschieden; nur die abgeschlossene Mitgliedschaft
+        # bekommt den Marker.
+        if _is_office_term_ended(end_iso):
+            today_iso = _date.today().isoformat()
+            return (
+                f"STRUKTURELL FALSCH: {label} war bei Partei "
+                f"'{party}' nur bis {end} (heute: {today_iso}) — "
+                f"laut Wikidata seitdem KEINE laufende Mitgliedschaft "
+                f"in dieser Partei. Präsens-Aussagen 'ist Mitglied …' "
+                f"sind ohne neuere Quelle nicht mehr zutreffend. "
+                f"Roh-Daten: {body}",
+                qid,
+                label,
+            )
+        return body, qid, label
 
     # Fallback
     return str(row)[:200], qid, ""

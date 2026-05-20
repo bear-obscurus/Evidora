@@ -410,6 +410,49 @@
       "source_label": "Andersen 2020 (Nature Med) + Worobey 2022 (Science) + US IC Assessment 2021 + WHO + Mimikama",
       "source_url": "https://www.nature.com/articles/s41591-020-0820-9",
       "secondary_url": "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters"
+    },
+    {
+      "id": "deep_state_konspiration_2026",
+      "topic": "deep_state_konspirations_mythos",
+      "scope": "'Deep State' als Verschwörungs-Narrativ (geheime Schatten-Regierung, koordiniertes Sabotage-Netzwerk)",
+      "year": 2024,
+      "headline": "'Deep State' als koordinierte Schatten-Regierung — akademisch als Verschwörungs-Trope eingeordnet, ohne empirische Belege",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Die Behauptung, dass es einen 'Deep State' im Sinne einer koordinierten geheimen Schatten-Regierung gibt, die demokratisch gewählte Politiker sabotiert oder steuert, ist UNBELEGT und in der peer-reviewed Politikwissenschaft als Verschwörungs-Narrativ widerlegt. Aussagen wie 'Es gibt einen Deep State' (im Sinne einer Verschwörung) sind FALSCH UND UNBELEGT — Verdict mostly_false bei 0.85-0.90 Konfidenz. Wichtige Abgrenzung: Der Begriff hat im politikwissenschaftlichen Sinn (vgl. türkisch 'derin devlet') eine ANDERE, neutrale Bedeutung als 'verankerte Bürokratie / institutionelle Trägheit / Sicherheitsapparat' — das ist ein analytisches Konzept, KEIN Verschwörungs-Vorwurf und sollte nicht mit dem US-rechtspopulistischen Deep-State-Narrativ verwechselt werden.",
+        "akademischer_konsens": "Peer-reviewed Studien (Berg, 'Origins of the Deep State Trope', Critical Review 2023; Kelley, 'Phantoms of a Beleaguered Republic', Congress & the Presidency 2022; Willmetts, 'Forbidden History', Intelligence and National Security 2024) ordnen das US-rechtspopulistische 'Deep State'-Narrativ als Verschwörungs-Trope ein. Der Begriff wurde in seiner aktuellen US-politischen Form ab 2016/2017 von Trump-nahen Medien populär gemacht — die Forschung dokumentiert seine Genese, nicht seine Existenz.",
+        "fehlende_belege": "Es gibt keine empirischen Belege für eine koordinierte 'Schatten-Regierung' oder ein zentral gesteuertes Netzwerk innerhalb der US- oder europäischen Bürokratie. Beobachtbare Phänomene (langsame Behörden-Reaktionen, Beamte mit eigenen Überzeugungen, parteiübergreifende institutionelle Kontinuität) lassen sich vollständig durch die normale Soziologie öffentlicher Verwaltungen erklären — ohne Verschwörungs-Hypothese.",
+        "qanon_kontext": "Das 'Deep State'-Narrativ ist eng mit QAnon-nahen Verschwörungs-Komplexen verflochten (vgl. qanon_pizzagate_mythos). Mehrere 'Deep State'-Behauptungen wurden in QAnon-Anklageschriften des US-Justizministeriums (DOJ) als Motiv-Hintergrund von Straftaten dokumentiert.",
+        "abgrenzung_politikwissenschaft": "WICHTIG: Im politikwissenschaftlichen Fachsprachgebrauch (Originalbegriff türkisch 'derin devlet', 1996+) bezeichnet 'Deep State' eine VERANKERTE Bürokratie und Sicherheits-Apparate, die parteipolitischen Wechseln widerstehen — das ist KEIN Verschwörungs-Vorwurf, sondern ein analytisches Konzept zur Bürokratie-Trägheit. Dieses Konzept ist NICHT identisch mit dem US-amerikanisch-rechtspopulistischen Deep-State-Narrativ. Aussagen über 'institutionelle Trägheit' oder 'Behörden-Kontinuität' sind nicht falsch, aber das ist auch nicht die Frage, die mit 'gibt es einen Deep State' meist gemeint ist.",
+        "faktencheck_dokumentation": "Mehrere etablierte Faktencheck-Organisationen (Snopes, FactCheck.org, Mimikama, Correctiv) haben spezifische 'Deep State'-Behauptungen (z.B. Wahl-Sabotage, Pandemie-Inszenierung, geheime Pläne) geprüft und als unbelegt oder erfunden eingestuft. Die Bundeszentrale für politische Bildung (bpb) ordnet 'Deep State' im Dossier zu Verschwörungstheorien als rechtspopulistisches Narrativ ein.",
+        "context": "Die Frage 'gibt es einen Deep State' ist semantisch zweideutig — meist gemeint ist die Verschwörungs-Variante (geheime Schatten-Regierung), die unbelegt ist. Eine analytisch-neutrale Lesart (verankerte Bürokratie) ist möglich, aber wenig informativ und nicht das, was die populäre Behauptung meint. Der Faktencheck folgt der populären Lesart."
+      },
+      "context_notes": [
+        "Akademisch dokumentiert: Berg 2023 (Critical Review), Kelley 2022 (Congress & the Presidency), Willmetts 2024 (Intelligence and National Security) ordnen 'Deep State' als Verschwörungs-Trope ein.",
+        "Eng mit QAnon-Komplex verflochten (siehe qanon_pizzagate_mythos) — das DOJ hat 'Deep State'-Bezüge in Anklageschriften dokumentiert.",
+        "Wir bewerten die populäre Verschwörungs-Lesart — die politikwissenschaftliche Fachlesart (verankerte Bürokratie) ist NICHT Gegenstand des Faktenchecks.",
+        "Keine politische Bewertung von Personen oder Bewegungen — der Faktencheck bezieht sich auf die Belegbarkeit der konkreten Behauptung."
+      ],
+      "claim_phrasings_handled": [
+        "Es gibt einen Deep State",
+        "Der Deep State steuert die Politik",
+        "Eine geheime Schatten-Regierung kontrolliert die USA",
+        "Der Deep State sabotiert die Demokratie",
+        "Behörden sind Teil einer geheimen Kabale"
+      ],
+      "trigger_keywords": [
+        "deep state", "deep-state", "deepstate",
+        "schatten-regierung", "schattenregierung", "schatten regierung",
+        "geheime regierung", "tiefer staat", "derin devlet",
+        "kabale steuert", "kabale regiert",
+        "schatten-elite", "schatten elite", "schattenelite", "geheime elite"
+      ],
+      "trigger_composite": [
+        ["deep state", "deepstate", "deep-state", "schatten-regierung", "schattenregierung", "tiefer staat", "geheime regierung", "schatten elite", "schattenelite"],
+        ["gibt", "existiert", "real", "echt", "steuert", "regiert", "kontrolliert", "sabotiert", "lenkt", "ist", "wahr", "stimmt", "beweis", "belegt"]
+      ],
+      "source_label": "Berg 2023 + Kelley 2022 + Willmetts 2024 + Snopes + FactCheck.org + Mimikama + bpb",
+      "source_url": "https://doi.org/10.1080/08913811.2023.2305537",
+      "secondary_url": "https://www.bpb.de/themen/rechtsextremismus/dossier-rechtsextremismus/"
     }
   ]
 }
