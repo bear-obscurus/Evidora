@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "fetched_at_iso": "2026-05-03",
+  "fetched_at_iso": "2026-05-20T00:00:00Z",
   "source_label": "NIH (NIDA, NCI, NCCIH) + CDC + BfR + WHO IARC",
   "facts": [
     {
@@ -27,14 +27,32 @@
         "Thiomersal in Impfstoffen verursacht Autismus bei Kindern"
       ],
       "trigger_keywords": [
-        "impfung autismus", "impfen autismus",
-        "mmr autismus", "thiomersal autismus",
-        "vaccine autism", "vaccines cause autism",
+        "impfung autismus",
+        "impfen autismus",
+        "mmr autismus",
+        "thiomersal autismus",
+        "vaccine autism",
+        "vaccines cause autism",
         "impfen verursacht autismus"
       ],
       "trigger_composite": [
-        ["impfung", "impfen", "vakzin", "vaccine", "mmr", "masern-impfung", "thiomersal", "quecksilber"],
-        ["autismus", "autism", "asd", "autismus-spektrum", "autistisch"]
+        [
+          "impfung",
+          "impfen",
+          "vakzin",
+          "vaccine",
+          "mmr",
+          "masern-impfung",
+          "thiomersal",
+          "quecksilber"
+        ],
+        [
+          "autismus",
+          "autism",
+          "asd",
+          "autismus-spektrum",
+          "autistisch"
+        ]
       ],
       "source_label": "CDC Vaccine Safety + IOM Reviews",
       "source_url": "https://www.cdc.gov/vaccine-safety/about/autism.html",
@@ -64,13 +82,32 @@
         "Fluorid macht dumm"
       ],
       "trigger_keywords": [
-        "fluorid trinkwasser", "fluoride wasser",
-        "fluoridierung", "trinkwasser fluorid",
-        "fluorid gefaehrlich", "fluorid gefährlich"
+        "fluorid trinkwasser",
+        "fluoride wasser",
+        "fluoridierung",
+        "trinkwasser fluorid",
+        "fluorid gefaehrlich",
+        "fluorid gefährlich"
       ],
       "trigger_composite": [
-        ["fluorid", "fluoride", "fluoridierung"],
-        ["trinkwasser", "wasser", "leitungswasser", "leitung", "schaedlich", "schädlich", "gefaehrlich", "gefährlich", "vergiftung", "macht dumm", "iq"]
+        [
+          "fluorid",
+          "fluoride",
+          "fluoridierung"
+        ],
+        [
+          "trinkwasser",
+          "wasser",
+          "leitungswasser",
+          "leitung",
+          "schaedlich",
+          "schädlich",
+          "gefaehrlich",
+          "gefährlich",
+          "vergiftung",
+          "macht dumm",
+          "iq"
+        ]
       ],
       "source_label": "CDC Community Water Fluoridation + ADA + WHO",
       "source_url": "https://www.cdc.gov/fluoridation/about/index.html",
@@ -102,14 +139,45 @@
         "Cannabis hat keine medizinischen Anwendungen"
       ],
       "trigger_keywords": [
-        "cannabis harmlos", "cannabis gefahr",
-        "marihuana gateway", "cannabis sucht", "cannabis suechtig",
-        "cannabis medizin", "cbd thc",
-        "cannabis psychose", "cannabis schizophrenie"
+        "cannabis harmlos",
+        "cannabis gefahr",
+        "marihuana gateway",
+        "cannabis sucht",
+        "cannabis suechtig",
+        "cannabis medizin",
+        "cbd thc",
+        "cannabis psychose",
+        "cannabis schizophrenie"
       ],
       "trigger_composite": [
-        ["cannabis", "marihuana", "thc", "marijuana", "weed"],
-        ["harmlos", "gefahr", "gefährlich", "gefaehrlich", "gateway", "einstieg", "sucht", "süchtig", "suechtig", "abhaeng", "abhäng", "psychose", "schizophrenie", "iq", "gehirn", "hirn", "medizin", "heilung", "therap"]
+        [
+          "cannabis",
+          "marihuana",
+          "thc",
+          "marijuana",
+          "weed"
+        ],
+        [
+          "harmlos",
+          "gefahr",
+          "gefährlich",
+          "gefaehrlich",
+          "gateway",
+          "einstieg",
+          "sucht",
+          "süchtig",
+          "suechtig",
+          "abhaeng",
+          "abhäng",
+          "psychose",
+          "schizophrenie",
+          "iq",
+          "gehirn",
+          "hirn",
+          "medizin",
+          "heilung",
+          "therap"
+        ]
       ],
       "source_label": "NIH NIDA Cannabis Research",
       "source_url": "https://nida.nih.gov/research-topics/cannabis-marijuana",
@@ -140,13 +208,34 @@
         "Fleisch erhöht Krebsrisiko"
       ],
       "trigger_keywords": [
-        "rotes fleisch krebs", "wurst krebs",
-        "fleisch krebsrisiko", "verarbeitetes fleisch krebs",
-        "schinken speck krebs", "wurst krebserregend"
+        "rotes fleisch krebs",
+        "wurst krebs",
+        "fleisch krebsrisiko",
+        "verarbeitetes fleisch krebs",
+        "schinken speck krebs",
+        "wurst krebserregend"
       ],
       "trigger_composite": [
-        ["rotes fleisch", "rindfleisch", "schweinefleisch", "wurst", "speck", "schinken", "verarbeitetes fleisch", "salami", "fleisch"],
-        ["krebs", "tumor", "karzinom", "darmkrebs", "krebserregend", "krebs-risiko", "krebsrisiko"]
+        [
+          "rotes fleisch",
+          "rindfleisch",
+          "schweinefleisch",
+          "wurst",
+          "speck",
+          "schinken",
+          "verarbeitetes fleisch",
+          "salami",
+          "fleisch"
+        ],
+        [
+          "krebs",
+          "tumor",
+          "karzinom",
+          "darmkrebs",
+          "krebserregend",
+          "krebs-risiko",
+          "krebsrisiko"
+        ]
       ],
       "source_label": "WHO IARC Monograph Vol. 114 + NCI Progress Report",
       "source_url": "https://www.cancer.gov/about-cancer/causes-prevention/risk/diet/cooked-meats-fact-sheet",
@@ -176,14 +265,38 @@
         "Verbrannte Lebensmittel sind giftig"
       ],
       "trigger_keywords": [
-        "acrylamid krebs", "acrylamid lebensmittel",
-        "pommes krebs", "chips acrylamid",
-        "pommes verursachen krebs", "verbrannte lebensmittel",
-        "verkohlt krebs", "kruste krebs"
+        "acrylamid krebs",
+        "acrylamid lebensmittel",
+        "pommes krebs",
+        "chips acrylamid",
+        "pommes verursachen krebs",
+        "verbrannte lebensmittel",
+        "verkohlt krebs",
+        "kruste krebs"
       ],
       "trigger_composite": [
-        ["acrylamid", "acrylamide", "pommes", "kartoffelchips", "verbrannt", "verkohlt", "kruste", "verbrennen", "verbrannte lebensmittel"],
-        ["krebs", "krebserregend", "tumor", "karzinom", "giftig", "schaedlich", "schädlich", "gefaehrlich", "gefährlich"]
+        [
+          "acrylamid",
+          "acrylamide",
+          "pommes",
+          "kartoffelchips",
+          "verbrannt",
+          "verkohlt",
+          "kruste",
+          "verbrennen",
+          "verbrannte lebensmittel"
+        ],
+        [
+          "krebs",
+          "krebserregend",
+          "tumor",
+          "karzinom",
+          "giftig",
+          "schaedlich",
+          "schädlich",
+          "gefaehrlich",
+          "gefährlich"
+        ]
       ],
       "source_label": "BfR Stellungnahme + IARC Monograph",
       "source_url": "https://www.bfr.bund.de/de/a-z_index/acrylamid-4185.html",
@@ -214,15 +327,36 @@
         "Mikroplastik im Trinkwasser schadet"
       ],
       "trigger_keywords": [
-        "mikroplastik essen", "mikroplastik gesund",
-        "mikroplastik schaedlich", "mikroplastik schädlich",
-        "kreditkarte plastik woche", "kreditkarte plastik",
+        "mikroplastik essen",
+        "mikroplastik gesund",
+        "mikroplastik schaedlich",
+        "mikroplastik schädlich",
+        "kreditkarte plastik woche",
+        "kreditkarte plastik",
         "mikroplastik trinkwasser",
-        "wir essen plastik", "plastik im essen"
+        "wir essen plastik",
+        "plastik im essen"
       ],
       "trigger_composite": [
-        ["mikroplastik", "microplastik", "microplastics", "nanoplastik"],
-        ["essen", "lebensmittel", "trinkwasser", "wasser", "gesund", "schaedlich", "schädlich", "krank", "kreditkarte", "darm", "gehirn"]
+        [
+          "mikroplastik",
+          "microplastik",
+          "microplastics",
+          "nanoplastik"
+        ],
+        [
+          "essen",
+          "lebensmittel",
+          "trinkwasser",
+          "wasser",
+          "gesund",
+          "schaedlich",
+          "schädlich",
+          "krank",
+          "kreditkarte",
+          "darm",
+          "gehirn"
+        ]
       ],
       "source_label": "BfR FAQ Mikroplastik 2024",
       "source_url": "https://www.bfr.bund.de/de/a-z_index/mikroplastik-192184.html",
@@ -235,7 +369,7 @@
       "year": 2023,
       "headline": "Glyphosat-Krebs-Frage MIXED: WHO IARC Group 2A (wahrscheinlich), aber EFSA/BfR/EPA: kein Krebsrisiko bei sachgemäßer Anwendung",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die Glyphosat-Krebs-Frage ist MIXED — Bewertungs-Uneinigkeit zwischen WHO IARC und EU/US-Regulatoren ist FAKTISCH. WHO IARC (2015): Glyphosat als Group 2A 'wahrscheinlich krebserregend für Menschen' eingestuft. EFSA (2015 + 2023), BfR und US EPA: kein Krebsrisiko bei sachgemäßer Anwendung. Uneinigkeit kommt aus unterschiedlicher Methodik (IARC bewertet Gefahr, Regulatoren bewerten Risiko) und Daten-Selektion.",
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die Glyphosat-Krebs-Frage ist MIXED — Bewertungs-Uneinigkeit zwischen WHO IARC und EU/US-Regulatoren ist FAKTISCH. WHO IARC (2015): Glyphosat als Group 2A 'wahrscheinlich krebserregend für Menschen' eingestuft. EFSA (2015 + 2023), BfR und US EPA: kein Krebsrisiko bei sachgemäßer Anwendung. Uneinigkeit kommt aus unterschiedlicher Methodik (IARC bewertet Gefahr, Regulatoren bewerten Risiko) und Daten-Selektion. VERDICT-LEITLINIE: Bei pauschalem 'Glyphosat ist krebserregend' / 'Glyphosat verursacht erwiesen Krebs' ist Verdict NICHT MOSTLY_TRUE, sondern MIXED/UNCLEAR — IARC Group 2A misst Hazard (mögliche Gefahr), nicht Risk (reales Risiko bei realistischer Exposition). EFSA/BfR/EPA-Bewertungen kommen zu anderem Schluss. Bei Aussagen mit 'erwiesen krebserregend', 'sicher krebserregend', 'verursacht Krebs' o.ä. ist Verdict MOSTLY_FALSE — das Wort 'erwiesen' überdehnt die wissenschaftliche Bewertungs-Realität.",
         "iarc_position": "WHO IARC Monograph Vol. 112 (2015): Glyphosat als Group 2A 'probably carcinogenic to humans' eingestuft. Hauptgrundlage: 'limited evidence' beim Menschen (Non-Hodgkin-Lymphom in einigen Studien) + 'sufficient evidence' bei Versuchstieren. Methodik: hazard-based.",
         "efsa_bfr_position": "EFSA (Europ. Lebensmittel-Sicherheits-Behörde) 2015 + 2023: 'Unlikely to pose a carcinogenic hazard to humans.' BfR-Position 2017 (Bewertungsbericht für EU-Wiederzulassung) folgt EFSA. Methodik: risk-based (= bei realistischer Exposition).",
         "us_epa_position": "US EPA (2020): 'Glyphosate is not likely to be carcinogenic to humans.' Trotzdem: zahlreiche US-Bürger-Klagen gegen Bayer-Monsanto erfolgreich (Roundup-Vergleiche, ca. 11 Mrd USD seit 2020) — bewertet Mitschuld an Erkrankungen einzelner Kläger, nicht generelles Krebsrisiko.",
@@ -253,13 +387,31 @@
         "Glyphosat ist sicher"
       ],
       "trigger_keywords": [
-        "glyphosat krebs", "glyphosate cancer",
-        "roundup krebs", "monsanto krebs",
-        "glyphosat sicher", "glyphosat gefahr"
+        "glyphosat krebs",
+        "glyphosate cancer",
+        "roundup krebs",
+        "monsanto krebs",
+        "glyphosat sicher",
+        "glyphosat gefahr"
       ],
       "trigger_composite": [
-        ["glyphosat", "glyphosate", "roundup", "monsanto"],
-        ["krebs", "cancer", "krebserregend", "sicher", "gefahr", "gefährlich", "gefaehrlich", "schaedlich", "schädlich"]
+        [
+          "glyphosat",
+          "glyphosate",
+          "roundup",
+          "monsanto"
+        ],
+        [
+          "krebs",
+          "cancer",
+          "krebserregend",
+          "sicher",
+          "gefahr",
+          "gefährlich",
+          "gefaehrlich",
+          "schaedlich",
+          "schädlich"
+        ]
       ],
       "source_label": "WHO IARC vs EFSA + BfR + US EPA — Bewertungs-Uneinigkeit",
       "source_url": "https://www.bfr.bund.de/de/a-z_index/glyphosat-126638.html",
@@ -272,7 +424,7 @@
       "year": 2024,
       "headline": "Aspartam-Krebs-Frage MIXED: WHO IARC Group 2B (möglich) seit 2023, aber JECFA/BfR/EFSA: sicher in empfohlenen Mengen (40 mg/kg/Tag)",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Aspartam-Krebs-Frage ist MIXED — IARC (Juli 2023) stufte Aspartam als Group 2B 'möglicherweise krebserregend' ein, aber JECFA (Joint FAO/WHO Expert Committee on Food Additives) und EFSA und BfR haben gleichzeitig die akzeptable tägliche Aufnahmemenge (ADI) bei 40 mg/kg Körpergewicht/Tag bestätigt. Bei dieser Dosis ist Aspartam als sicher eingestuft. Group 2B ist die schwächste 'möglich krebserregend'-Kategorie und enthält auch z.B. Aloe vera und Petergeräusche.",
+        "kernsatz_fuer_synthesizer": "WICHTIG: Aspartam-Krebs-Frage ist MIXED — IARC (Juli 2023) stufte Aspartam als Group 2B 'möglicherweise krebserregend' ein, aber JECFA (Joint FAO/WHO Expert Committee on Food Additives) und EFSA und BfR haben gleichzeitig die akzeptable tägliche Aufnahmemenge (ADI) bei 40 mg/kg Körpergewicht/Tag bestätigt. Bei dieser Dosis ist Aspartam als sicher eingestuft. Group 2B ist die schwächste 'möglich krebserregend'-Kategorie und enthält auch z.B. Aloe vera und Petergeräusche. VERDICT-LEITLINIE: Pauschale Behauptung 'Aspartam ist (sicher/erwiesen) krebserregend' ist FALSCH. IARC 2B bedeutet 'limited evidence in humans' + bei Aspartam 'sufficient evidence in animals' — das ist die SCHWÄCHSTE 'möglich'-Kategorie, NICHT 'wahrscheinlich' (das wäre 2A) und NICHT 'erwiesen' (das wäre 1). Aktuelle ADI (Acceptable Daily Intake) bleibt nach IARC-Bewertung 2023 UNVERÄNDERT bei 40 mg/kg KG/Tag (EFSA/JECFA/BfR). Bei pauschalem 'Aspartam = Krebs' / 'Süßstoff macht Krebs' / 'Diät-Cola ist krebserregend' ist Verdict MOSTLY_FALSE — Synthesizer darf 2B NICHT als 'wahrscheinlich krebserregend' (das ist 2A!) missinterpretieren.",
         "iarc_einstufung_2023": "IARC Monograph 134 (Juli 2023): Aspartam in Group 2B ('möglicherweise krebserregend'). Begründung: 'limited evidence' für Hepatokarzinome in einer ostasiatischen Studie. JECFA bewertete dieselben Daten und kam zu keinem geänderten ADI.",
         "bfr_position": "BfR 2024: 'Aspartam ist eines der am besten untersuchten und von internationalen Expertengremien wiederholt bewerteten Süßungsmittel; das BfR hat keine Bedenken bei Konsum innerhalb des ADI von 40 mg/kg/Tag.'",
         "praktische_groessenordnung": "ADI 40 mg/kg/Tag — für 70-kg-Person: 2,8 g Aspartam/Tag = ca. 14 Dosen Diät-Cola pro Tag. Realistischer Konsum liegt typischerweise bei <5 % des ADI. WHO/JECFA-Position: Bei realistischer Exposition besteht kein erhöhtes Krebs-Risiko.",
@@ -290,15 +442,41 @@
         "Diät-Cola macht krank"
       ],
       "trigger_keywords": [
-        "aspartam krebs", "aspartame cancer",
-        "suessstoff krebs", "süßstoff krebs",
-        "diaet-cola krebs", "diät-cola krebs",
-        "diaet-cola macht krank", "diät-cola macht krank",
-        "cola light krebs", "cola light krank"
+        "aspartam krebs",
+        "aspartame cancer",
+        "suessstoff krebs",
+        "süßstoff krebs",
+        "diaet-cola krebs",
+        "diät-cola krebs",
+        "diaet-cola macht krank",
+        "diät-cola macht krank",
+        "cola light krebs",
+        "cola light krank"
       ],
       "trigger_composite": [
-        ["aspartam", "aspartame", "suessstoff", "süßstoff", "süssstoff", "suessungsmittel", "süßungsmittel", "diaet-cola", "diät-cola", "cola light", "zero cola", "light-getraenk"],
-        ["krebs", "cancer", "krebserregend", "tumor", "krank", "schaedlich", "schädlich"]
+        [
+          "aspartam",
+          "aspartame",
+          "suessstoff",
+          "süßstoff",
+          "süssstoff",
+          "suessungsmittel",
+          "süßungsmittel",
+          "diaet-cola",
+          "diät-cola",
+          "cola light",
+          "zero cola",
+          "light-getraenk"
+        ],
+        [
+          "krebs",
+          "cancer",
+          "krebserregend",
+          "tumor",
+          "krank",
+          "schaedlich",
+          "schädlich"
+        ]
       ],
       "source_label": "BfR + JECFA vs WHO IARC 2B-Klassifikation",
       "source_url": "https://www.bfr.bund.de/de/aspartam.html",
@@ -329,15 +507,45 @@
         "Plastikflaschen geben Hormone ab"
       ],
       "trigger_keywords": [
-        "bpa babyflasche", "bisphenol babyflasche",
-        "bpa plastik gefaehrlich", "bpa plastik gefährlich",
-        "bisphenol a krebs", "bpa hormon",
-        "plastikflaschen hormone", "plastikflasche hormon",
+        "bpa babyflasche",
+        "bisphenol babyflasche",
+        "bpa plastik gefaehrlich",
+        "bpa plastik gefährlich",
+        "bisphenol a krebs",
+        "bpa hormon",
+        "plastikflaschen hormone",
+        "plastikflasche hormon",
         "weichmacher hormone"
       ],
       "trigger_composite": [
-        ["bpa", "bisphenol", "bisphenol a", "bisphenol-a", "plastikflasche", "plastikflaschen", "weichmacher", "polycarbonat"],
-        ["babyflasche", "saeugling", "säugling", "baby", "plastik", "konserven", "konservendose", "schaedlich", "schädlich", "gefährlich", "gefaehrlich", "hormon", "hormone", "endokrin", "geben ab", "gibt ab"]
+        [
+          "bpa",
+          "bisphenol",
+          "bisphenol a",
+          "bisphenol-a",
+          "plastikflasche",
+          "plastikflaschen",
+          "weichmacher",
+          "polycarbonat"
+        ],
+        [
+          "babyflasche",
+          "saeugling",
+          "säugling",
+          "baby",
+          "plastik",
+          "konserven",
+          "konservendose",
+          "schaedlich",
+          "schädlich",
+          "gefährlich",
+          "gefaehrlich",
+          "hormon",
+          "hormone",
+          "endokrin",
+          "geben ab",
+          "gibt ab"
+        ]
       ],
       "source_label": "BfR + EFSA TDI-Absenkung 2023 + EU-Kommissionsverbot 2011",
       "source_url": "https://www.bfr.bund.de/de/a-z_index/bpa_bisphenol_a-7806.html",
@@ -368,20 +576,561 @@
         "Antioxidantien schützen vor Krebs"
       ],
       "trigger_keywords": [
-        "multivitamin krankheit", "vitamin krebs",
-        "vitamin c erkaeltung", "vitamin c erkältung",
+        "multivitamin krankheit",
+        "vitamin krebs",
+        "vitamin c erkaeltung",
+        "vitamin c erkältung",
         "antioxidantien krebs",
-        "vitaminpraeparate gesund", "vitaminpräparate gesund",
-        "nahrungsergaenzung", "nahrungsergänzung",
+        "vitaminpraeparate gesund",
+        "vitaminpräparate gesund",
+        "nahrungsergaenzung",
+        "nahrungsergänzung",
         "supplemente"
       ],
       "trigger_composite": [
-        ["multivitamin", "vitamin", "antioxidantien", "antioxidans", "nahrungsergaenz", "nahrungsergänz", "supplement", "supplemente"],
-        ["krankheit", "krebs", "herzkrank", "vorbeugen", "praevention", "prävention", "erkaeltung", "erkältung", "gesund", "schuetzen", "schützen", "stark"]
+        [
+          "multivitamin",
+          "vitamin",
+          "antioxidantien",
+          "antioxidans",
+          "nahrungsergaenz",
+          "nahrungsergänz",
+          "supplement",
+          "supplemente"
+        ],
+        [
+          "krankheit",
+          "krebs",
+          "herzkrank",
+          "vorbeugen",
+          "praevention",
+          "prävention",
+          "erkaeltung",
+          "erkältung",
+          "gesund",
+          "schuetzen",
+          "schützen",
+          "stark"
+        ]
       ],
       "source_label": "NIH NCCIH + USPSTF Recommendations + ATBC/CARET Studies",
       "source_url": "https://www.nccih.nih.gov/health/multivitamin-mineral-supplements",
       "secondary_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/vitamin-supplementation-to-prevent-cancer-and-cvd-counseling"
+    },
+    {
+      "id": "mrna_impfstoff_sicherheit_konsens_2026",
+      "topic": "mrna_impfstoff_sicherheit_konsens",
+      "scope": "Pauschale Behauptung, mRNA-Impfstoffe verursachen (regelmäßig/breit) Impfschäden",
+      "year": 2024,
+      "headline": "PEI + RKI + EMA + CDC: mRNA-Impfstoffe haben dokumentierte seltene Nebenwirkungen — pauschale Behauptung 'mRNA-Impfstoffe verursachen Impfschäden' ist MOSTLY_FALSE",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für Synthesizer: Die pauschale Behauptung 'mRNA-Impfstoffe verursachen Impfschäden' ohne Qualifier ('selten', 'in Einzelfällen', 'vereinzelt') ist MOSTLY_FALSE — Verdict darf NICHT true oder mostly_true sein. Die Aussage suggeriert eine systematische, regelmäßige oder breite Schädigung — das ist faktisch nicht zutreffend. Echte seltene Nebenwirkungen sind DOKUMENTIERT (Myokarditis ~1-19 pro 100.000 bei jungen Männern nach 2. Dosis, anaphylaktische Reaktion ca. 2-5 pro 1.000.000 Dosen), aber diese sind in offiziellen Risk-Benefit-Bilanzen von PEI/EMA/CDC/FDA berücksichtigt und das Nutzen-Risiko-Verhältnis ist eindeutig positiv. Aus vereinzelten seltenen Ereignissen folgt NICHT die Verallgemeinerung 'mRNA verursacht Impfschäden'. Pre-Trainings-Wissen 'Myokarditis ist dokumentiert' ist gegen die EIGENTLICHE Aussage-Intention (systematische Gefahr) zu überstimmen — Verdict MOSTLY_FALSE oder UNVERIFIABLE mit klarer Differenzierung im Summary.",
+        "pei_position": "Paul-Ehrlich-Institut (PEI, deutsche Bundesoberbehörde für Impfstoffe): 'Die Sicherheit der COVID-19-Impfstoffe wird kontinuierlich überwacht. Schwere Nebenwirkungen sind selten. Das Nutzen-Risiko-Verhältnis bleibt positiv.' Im Sicherheitsbericht (Stand 2024) wurden ~330.000 Verdachtsfallmeldungen erfasst — bei ~190 Mio verabreichten Dosen entspricht das einer Melderate von 1,7 pro 1.000 Dosen, davon die Mehrzahl mild und vorübergehend.",
+        "myokarditis_evidenz": "Myokarditis nach mRNA-Impfung: erhöhtes Risiko v.a. bei männlichen Jugendlichen/jungen Erwachsenen 12-29 Jahre nach 2. Dosis. Häufigkeit ca. 1-19 pro 100.000 (CDC, EMA-Daten). Klinischer Verlauf in den meisten Fällen mild, Erholung innerhalb Tage. WICHTIG: Myokarditis nach COVID-Infektion ist häufiger und schwerer als nach Impfung (RR ~7x höher).",
+        "kausalitaet_vs_korrelation": "Verdachtsfallmeldung ≠ kausaler Impfschaden. Bei Massen-Impfungen (>5 Mrd Dosen weltweit) treten zufällige Erkrankungen mit zeitlicher Nähe zur Impfung statistisch erwartbar auf. Echte anerkannte Impfschäden sind im PEI-Sicherheitsbericht detailliert getrennt von Verdachtsfällen. Anti-Vax-Narrative gleichen Verdachtsfälle pauschal mit 'Impfschäden' aus — methodisch unzulässig.",
+        "context": "Anti-Vax-Mythen mit ähnlichem Muster: 'Mehr Tote durch Impfung als durch COVID' (FALSCH, Übersterblichkeits-Studien zeigen Gegenteil), 'mRNA verändert Erbgut' (FALSCH, mRNA wird nicht in DNA integriert), 'Spike-Protein verbleibt im Körper' (FALSCH, Halbwertszeit Wochen). Diese Claims hängen oft zusammen — wenn ein Anker fehlt, dreht der Synthesizer."
+      },
+      "context_notes": [
+        "Differenzierung: Aussagen über SELTENE dokumentierte Nebenwirkungen (z.B. 'mRNA-Impfung kann in seltenen Fällen Myokarditis verursachen') sind TRUE — bei der pauschalen Variante OHNE Qualifier ist Verdict MOSTLY_FALSE.",
+        "Methodische Norm: Nutzen-Risiko-Verhältnis ist Maßstab. Bei mRNA-Impfstoffen klar positiv: Studien zeigen Schutz vor schwerem COVID-Verlauf, Hospitalisierung, Tod.",
+        "Bei Synthesizer-Output IMMER Risk-Benefit-Kontext erwähnen, nicht nur Einzelrisiko zitieren."
+      ],
+      "claim_phrasings_handled": [
+        "mRNA Impfstoffe verursachen Impfschäden",
+        "mRNA-Impfstoffe machen krank",
+        "Corona-Impfung verursacht Impfschäden",
+        "Impfschäden durch mRNA-Vakzine sind häufig",
+        "Die mRNA-Impfung ist gefährlich"
+      ],
+      "trigger_keywords": [
+        "mrna impfschäden",
+        "mrna-impfschäden",
+        "corona-impfung impfschäden",
+        "covid-impfung impfschäden",
+        "mrna verursacht impfschäden",
+        "impfschäden durch mrna",
+        "mrna-impfstoff gefährlich",
+        "mrna impfstoffe sind gefährlich"
+      ],
+      "trigger_composite": [
+        [
+          "mrna",
+          "mrna-impfstoff",
+          "mrna-impfstoffe",
+          "corona-impfung",
+          "covid-impfung",
+          "covid-19-impfung",
+          "biontech",
+          "pfizer",
+          "moderna",
+          "spikevax",
+          "comirnaty"
+        ],
+        [
+          "impfschäden",
+          "impfschaden",
+          "schäden",
+          "nebenwirkungen",
+          "gefährlich",
+          "schädlich",
+          "krank macht",
+          "verursacht impfschäden",
+          "schädigen"
+        ]
+      ],
+      "source_label": "PEI Sicherheitsbericht + RKI + EMA + CDC Vaccine Safety",
+      "source_url": "https://www.pei.de/DE/newsroom/dossier/coronavirus/coronavirus-inhalt.html",
+      "secondary_url": "https://www.cdc.gov/vaccine-safety/vaccines/covid-19.html"
+    },
+    {
+      "id": "mrna_erbgut_spike_protein_konsens_2026",
+      "topic": "mrna_erbgut_spike_protein_konsens",
+      "scope": "Behauptungen, mRNA-Impfstoffe verändern das Erbgut oder das Spike-Protein verbleibt dauerhaft im Körper",
+      "year": 2024,
+      "headline": "BfArM + EMA + PEI: mRNA wird NICHT in das Genom integriert; Spike-Protein wird innerhalb Wochen abgebaut",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für Synthesizer: Die Thesen 'mRNA-Impfstoffe verändern das Erbgut/die DNA' und 'das Spike-Protein verbleibt dauerhaft im Körper' sind FALSCH. Verdict MOSTLY_FALSE oder FALSE. Molekularbiologische Begründung: (1) mRNA wird im Zytoplasma translatiert und nach wenigen Tagen durch zelluläre RNase abgebaut — sie gelangt NICHT in den Zellkern und integriert NICHT ins Genom. (2) Spike-Protein-Produktion endet, wenn mRNA abgebaut ist (~Tage). Spike-Protein selbst hat Halbwertszeit von Stunden bis wenigen Wochen. (3) Reverse-Transkription wurde in einer Lin et al.-Studie 2022 in Krebszellen-Linie diskutiert, aber NICHT in normalen Körperzellen und NICHT mit Genom-Integration belegt. Pre-Trainings-Wissen 'Mythen kursieren' bestätigt NICHT die Behauptung — Konsens-Aussage von PEI/EMA/BfArM/WHO ist eindeutig FALSCH.",
+        "molekularbiologie": "mRNA-Impfstoffe (BioNTech/Pfizer, Moderna) enthalten Boten-RNA, die in das Zytoplasma der Muskelzelle aufgenommen wird. Ribosomen translatieren die mRNA in Spike-Protein. Nach Stunden bis wenigen Tagen wird die mRNA durch zelluläre Ribonukleasen abgebaut. mRNA gelangt nicht in den Zellkern — dafür fehlt das Transport-Signal.",
+        "spike_protein_abbau": "Spike-Protein wird vom Immunsystem als Antigen erkannt, von dendritischen Zellen präsentiert und gegen Antikörper + T-Zellen mobilisiert. Studien (Bansal et al. 2021, Cognetti & Miller 2021) zeigen: Spike-Protein im Blut ist nach wenigen Tagen nicht mehr nachweisbar; in Lymphknoten ggf. bis zu 60 Tage. Keine evidenzbasierte Persistenz darüber hinaus.",
+        "reverse_transkription_diskussion": "Aldén et al. (2022, Curr. Issues Mol. Biol.) zeigten in HuH7-Krebszellen-Linie (in-vitro) Reverse-Transkription von mRNA zu DNA. Aber: (a) Krebszellen-Linie, nicht normale Körperzellen, (b) kein Beweis für Genom-Integration, (c) WHO/EMA-Bewertung: keine klinische Relevanz. Anti-Vax-Narrative zitieren diese Studie oft fälschlich als 'Beweis' der Erbgut-Veränderung.",
+        "context": "Diese Mythen sind hartnäckig wegen Verwechslung mit echten Gentherapien (z.B. CRISPR, AAV-Vektoren), die tatsächlich DNA verändern können. mRNA-Impfstoffe arbeiten fundamental anders."
+      },
+      "context_notes": [
+        "Differenzierung: 'Vektor-basierte Impfstoffe' (z.B. AstraZeneca, Janssen) nutzen Adenovirus-DNA — diese gelangt in den Zellkern, aber integriert nicht ins Genom (Adenovirus-DNA bleibt episomal). Auch hier KEINE Erbgut-Veränderung.",
+        "Methodenkritik: Aldén-Studie wurde verbreitet missinterpretiert — in vitro ≠ in vivo, Krebszellen ≠ normale Zellen.",
+        "WHO + EMA + CDC + PEI bestätigen einheitlich: keine Genom-Integration, kein dauerhafter Spike-Protein-Verbleib."
+      ],
+      "claim_phrasings_handled": [
+        "mRNA Impfstoffe verändern das Erbgut",
+        "Die mRNA-Impfung verändert die DNA",
+        "Das Spike-Protein bleibt im Körper",
+        "Spike-Protein lagert sich im Körper ab",
+        "mRNA wird in DNA umgeschrieben"
+      ],
+      "trigger_keywords": [
+        "mrna erbgut",
+        "mrna verändert dna",
+        "spike-protein verbleibt",
+        "spike-protein im körper",
+        "mrna-impfung dna",
+        "mrna umgeschrieben",
+        "reverse transkription impfung"
+      ],
+      "trigger_composite": [
+        [
+          "mrna",
+          "mrna-impfung",
+          "mrna-impfstoff",
+          "biontech",
+          "pfizer",
+          "moderna",
+          "spike-protein",
+          "spike protein"
+        ],
+        [
+          "erbgut",
+          "dna",
+          "genom",
+          "chromosomen",
+          "verändert",
+          "umschreibt",
+          "integriert",
+          "verbleibt",
+          "lagert sich",
+          "bleibt im körper"
+        ]
+      ],
+      "source_label": "PEI + EMA + BfArM + WHO mRNA-Vaccine-Mechanismus",
+      "source_url": "https://www.pei.de/SharedDocs/FAQs/DE/coronavirus/mrna-impfstoffe-veraendern-erbgut.html",
+      "secondary_url": "https://www.ema.europa.eu/en/human-regulatory-overview/public-health-threats/coronavirus-disease-covid-19/treatments-vaccines/vaccines-covid-19/covid-19-vaccines-key-facts"
+    },
+    {
+      "id": "uebersterblichkeit_impfung_konsens_2026",
+      "topic": "uebersterblichkeit_impfung_konsens",
+      "scope": "Behauptung, mRNA-Impfungen verursachen Übersterblichkeit oder mehr Tote als COVID",
+      "year": 2024,
+      "headline": "Statistik Austria + Destatis + ONS UK + CDC: Übersterblichkeit korrelliert mit COVID-Wellen, NICHT mit Impfkampagnen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für Synthesizer: Die Behauptung 'mehr Tote durch Impfung als durch COVID' oder 'Impfkampagne verursacht Übersterblichkeit' ist FALSCH. Verdict MOSTLY_FALSE oder FALSE. Empirische Lage: Übersterblichkeit-Daten von Statistik Austria, Destatis, ONS UK, CDC zeigen klare Korrelation mit COVID-Wellen (2020 Welle 1, Winter 2020/21, Delta-Welle 2021, Omikron 2022) — NICHT mit Impfkampagnen-Beginn (Januar 2021 für Risikogruppen, Sommer 2021 für Allgemeinbevölkerung). Länder mit hoher Impfquote (Portugal, Spanien, Dänemark) haben NIEDRIGERE Übersterblichkeit 2021-2023 als Länder mit niedrigerer Impfquote (Bulgarien, Rumänien). Pre-Trainings-Wissen 'Übersterblichkeit ist erhöht' bestätigt NICHT die Kausalattribution zur Impfung.",
+        "statistik_austria_data": "Statistik Austria Übersterblichkeit AT 2020-2023: 2020 = +9,8% (COVID-Welle), 2021 = +7,3% (Welle 4 Herbst/Winter), 2022 = +4,5% (Omikron + sekundäre COVID-Effekte), 2023 = -0,2% (zurück Richtung Baseline). Korrelation mit Impfquote: AT-Impfquote 2021 ~74% Erwachsene; ÜS-Spitze fiel im Herbst 2021 zusammen mit Welle 4 (Vor-Boosterung), nicht mit Impfkampagne Sommer 2021.",
+        "destatis_data": "Destatis Übersterblichkeit DE 2020-2023: 2020 = +5%, 2021 = +6%, 2022 = +8% (post-Lockdown-Welle), 2023 = +2%. Statistisches Bundesamt + RKI: 'Ein kausaler Zusammenhang zwischen Übersterblichkeit und COVID-Impfung ist nicht belastbar herstellbar; die zeitliche und regionale Verteilung folgt COVID-Wellen.'",
+        "ons_uk_studien": "ONS UK Studie 2023: 'Vaccinated and unvaccinated mortality rates' zeigt, dass Geimpfte während COVID-Wellen ein NIEDRIGERES Mortalitätsrisiko hatten als Ungeimpfte — sowohl an COVID-Tod als auch an Gesamtmortalität. Die behauptete 'Impf-Übersterblichkeit' findet sich in keinen offiziellen Mortalitätsstatistiken.",
+        "fehlinterpretation_durch_anti_vax": "Anti-Vax-Narrative wie Bhakdi/Reiss, Mörl-Kommentare nutzen oft (a) Ausschnitte aus Roh-VAERS-Daten (Self-Reports, NICHT kausal verifiziert), (b) regionale Übersterblichkeits-Peaks (z.B. Norddeutschland 2022, in Wirklichkeit Omikron + nachgeholte Tumor-Operationen), oder (c) Fehler-Studien (z.B. Bhakdi-Burkhardt-'Pathology Conference'). Keine dieser Quellen erfüllt epidemiologische Mindeststandards.",
+        "context": "Übersterblichkeit ist real und multifaktoriell: COVID-Welleneffekte direkt, indirekte Effekte (verschobene Tumor-Operationen, psychische Belastung, Long-COVID-Folgen). Aber NICHT durch Impfungen — diese reduzieren COVID-Tote und damit Gesamtübersterblichkeit."
+      },
+      "context_notes": [
+        "Differenzierung: Übersterblichkeit ist seit 2020 real erhöht, aber die Kausalattribution zur Impfung ist falsch. Korrekte Erklärung: COVID-direkt + indirekte Folgen (verschobene OPs, psychische Belastung).",
+        "VAERS-Daten (US) sind Self-Reports von Verdachtsfällen — keine kausalen Impfschäden. Anti-Vax-Statistiken zitieren oft VAERS-Rohzahlen ohne Kausalitäts-Filter.",
+        "Vergleich Länder mit hoher vs. niedriger Impfquote zeigt KEIN Anti-Vax-konsistentes Muster."
+      ],
+      "claim_phrasings_handled": [
+        "Mehr Tote durch Impfung als durch COVID",
+        "Die Impfung verursacht Übersterblichkeit",
+        "Übersterblichkeit kommt von der Impfung",
+        "Impfkampagne hat Tote verursacht",
+        "Geimpfte sterben häufiger"
+      ],
+      "trigger_keywords": [
+        "tote durch impfung",
+        "tote durch corona-impfung",
+        "übersterblichkeit impfung",
+        "uebersterblichkeit impfung",
+        "impfung tote",
+        "geimpfte sterben",
+        "impfkampagne tote",
+        "mehr tote durch impfung als covid"
+      ],
+      "trigger_composite": [
+        [
+          "impfung",
+          "corona-impfung",
+          "covid-impfung",
+          "mrna-impfung",
+          "geimpfte",
+          "impfquote",
+          "impfkampagne"
+        ],
+        [
+          "tote",
+          "übersterblichkeit",
+          "uebersterblichkeit",
+          "sterben",
+          "sterblichkeit",
+          "mortalität",
+          "todesfälle",
+          "exzess-mortalität"
+        ]
+      ],
+      "source_label": "Statistik Austria + Destatis + RKI + ONS UK + CDC",
+      "source_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/gestorbene/uebersterblichkeit",
+      "secondary_url": "https://www.destatis.de/DE/Themen/Querschnitt/Corona/Gesellschaft/kontextinformationen-gesellschaft.html"
+    },
+    {
+      "id": "booster_sicherheit_konsens_2026",
+      "topic": "booster_sicherheit_konsens",
+      "scope": "Behauptung, COVID-Booster sind gefährlich oder nutzlos",
+      "year": 2024,
+      "headline": "RKI + EMA + STIKO + CDC: Booster sind sicher und reduzieren schwere Verläufe — empfohlen für Risikogruppen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für Synthesizer: Pauschal-Aussagen 'Booster sind gefährlich' oder 'Booster sind nutzlos' sind FALSCH. Verdict MOSTLY_FALSE. STIKO + EMA + RKI + CDC empfehlen Booster für Risikogruppen (ältere, immungeschwächte Personen, medizinisches Personal). Wirksamkeit gegen schweren Verlauf, Hospitalisierung, Tod ist in zahlreichen Studien belegt (Cochrane 2023, ONS UK, Israeli Gertner Institute). Sicherheitsprofil ist vergleichbar mit der Grundimmunisierung — Myokarditis-Risiko bei jüngeren Männern bleibt selten, aber dokumentiert. Verdict darf NICHT MOSTLY_TRUE oder TRUE für solche pauschalen Anti-Booster-Aussagen sein.",
+        "stiko_empfehlung": "STIKO (Ständige Impfkommission, RKI): Empfehlung 2024: COVID-19-Booster-Impfung für Personen ≥60 Jahre, Schwangere, Personen mit immungeschwächter Grunderkrankung, medizinisches Personal. Für andere Erwachsene optional. Begründung: Wirksamkeit gegen schwere COVID-Verläufe + geringes Nebenwirkungsprofil.",
+        "wirksamkeit_studien": "Cochrane-Review 2023 + UK ONS Daten: Booster reduzieren das Risiko für Hospitalisierung während Omikron-Welle um 60-80% (Personen ≥65 Jahre), Sterblichkeitsrisiko um 40-90% (je nach Variante + Boosterzeitpunkt). Effekt nimmt nach 3-6 Monaten ab — daher Wiederauffrischung.",
+        "sicherheitsprofil": "Sicherheitsdaten der 4. + 5. Dosis (PEI + EMA Tracking): keine neuen Sicherheitssignale gegenüber Grundimmunisierung. Myokarditis-Risiko bei jungen Männern bleibt selten (1-19/100.000), Risiko-Benefit-Verhältnis positiv.",
+        "context": "Anti-Booster-Narrative behaupten oft (a) 'Booster schwächen Immunsystem' (FALSCH, keine klinische Evidenz), (b) 'Boostern fördert Varianten' (FALSCH, Antigen-Drift folgt nicht Boosterzeitpunkten), (c) 'Booster sind überflüssig nach Erkrankung' (DIFFERENZIERT, hybrid immunity ist real, aber Booster für Risikogruppen weiter empfohlen)."
+      },
+      "context_notes": [
+        "Differenzierung: Für GESUNDE jüngere Erwachsene mit hybrider Immunität (Impfung + durchgemachte COVID-Infektion) ist Booster optional, KEIN Routine-Standard mehr. Aber 'nutzlos' ist die falsche Beschreibung.",
+        "Booster-Schemata unterscheiden sich zwischen Ländern (z.B. AT-NIG, DE-STIKO, US-ACIP) — Verdict immer auf STIKO/EMA-Konsens-Basis.",
+        "Hybrid-Immunität: Studien zeigen, dass durchgemachte Infektion + Impfung den stärksten Schutz bietet — aber das ist keine Anti-Booster-Aussage."
+      ],
+      "claim_phrasings_handled": [
+        "Booster sind gefährlich",
+        "Booster sind nutzlos",
+        "COVID-Booster sind unnötig",
+        "Booster schwächen das Immunsystem",
+        "Mehrfach-Boostern schadet"
+      ],
+      "trigger_keywords": [
+        "booster gefährlich",
+        "booster nutzlos",
+        "booster unnötig",
+        "booster schaden",
+        "booster impfung gefährlich",
+        "covid-booster",
+        "4. impfung gefährlich",
+        "5. impfung gefährlich"
+      ],
+      "trigger_composite": [
+        [
+          "booster",
+          "auffrischung",
+          "auffrischungsimpfung",
+          "covid-booster",
+          "corona-booster",
+          "3. impfung",
+          "4. impfung",
+          "5. impfung"
+        ],
+        [
+          "gefährlich",
+          "nutzlos",
+          "unnötig",
+          "schaden",
+          "schwächt",
+          "macht krank",
+          "schädlich"
+        ]
+      ],
+      "source_label": "STIKO + RKI + EMA + Cochrane 2023 + ONS UK",
+      "source_url": "https://www.rki.de/DE/Content/Infekt/Impfen/ImpfungenAZ/COVID-19/COVID-19.html",
+      "secondary_url": "https://www.ema.europa.eu/en/news/comirnaty-spikevax-ema-recommendations-additional-booster-doses"
+    },
+    {
+      "id": "statine_ldl_konsens_2026",
+      "topic": "statine_ldl_konsens",
+      "scope": "Pauschale Behauptung, Statine seien gefährlich oder unnötig",
+      "year": 2024,
+      "headline": "AHA + ESC + USPSTF + Cochrane: Statine sind in Sekundärprävention nach Herzinfarkt klar wirksam und sicher — pauschale 'Statine sind gefährlich' MOSTLY_FALSE",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für Synthesizer: Die pauschale Behauptung 'Statine sind gefährlich' oder 'Statine sind unnötig/wirkungslos' ist MOSTLY_FALSE — Verdict darf NICHT true oder mostly_true sein. Konsens von AHA (American Heart Association), ESC (European Society of Cardiology), USPSTF (US Preventive Services Task Force) und Cochrane-Reviews: Statine sind in der SEKUNDÄRPRÄVENTION (nach Herzinfarkt, Schlaganfall, dokumentierter koronarer Herzkrankheit) eindeutig wirksam — relative Risikoreduktion ~25-30% für kardiovaskuläre Ereignisse. In der PRIMÄRPRÄVENTION bei Hochrisiko-Patienten (10-Jahres-Risiko ≥7,5-10%) ebenfalls von USPSTF (2022) empfohlen. Die LDL-Hypothese (LDL-Cholesterin ist kausal an Atherosklerose beteiligt) wurde durch Mendelian-Randomization-Studien (genetische Varianten mit lebenslang niedrigem LDL = niedrigeres kardiovaskuläres Risiko) bestätigt. Muskel-Nebenwirkungen (Myalgien) sind real, aber in RCT mit Placebo-Kontrolle deutlich seltener als in Beobachtungsstudien (Nocebo-Effekt). Schwere Rhabdomyolyse tritt sehr selten auf (~1-2 pro 10.000 Patientenjahre). Pre-Trainings-Wissen 'Statine haben Nebenwirkungen' ist gegen die EIGENTLICHE Aussage-Intention (pauschale Verteufelung) zu überstimmen — Verdict MOSTLY_FALSE mit Differenzierung Sekundär- vs. Primärprävention.",
+        "aha_esc_position": "AHA/ACC-Leitlinie 2018 + ESC/EAS-Dyslipidämie-Leitlinie 2019/2023: Statine sind First-Line-Therapie bei Sekundärprävention nach atherosklerotischem kardiovaskulärem Ereignis (ASCVD). Ziel-LDL <70 mg/dl (1,8 mmol/l) bei sehr hohem Risiko, <55 mg/dl (1,4 mmol/l) nach ESC 2019. Cholesterol Treatment Trialists (CTT) Meta-Analyse von >170.000 Patienten in RCTs: Pro 1 mmol/l LDL-Senkung ~22% relative Risikoreduktion für schwere kardiovaskuläre Ereignisse, ~10% Reduktion der Gesamtsterblichkeit.",
+        "uspstf_primaerpraevention_2022": "USPSTF 2022 Recommendation: Erwachsene 40-75 Jahre mit ≥1 kardiovaskulären Risikofaktor (Dyslipidämie, Diabetes, Hypertonie, Rauchen) UND 10-Jahres-ASCVD-Risiko ≥10% — Empfehlung B (moderater Nettonutzen). Bei 10-Jahres-Risiko 7,5-10% — Empfehlung C (individuelle Entscheidung). USPSTF lehnt also gerade NICHT 'Statine für alle' ab, sondern empfiehlt risiko-stratifiziertes Vorgehen.",
+        "ldl_kausalitaet_mendelian": "Mendelian-Randomization-Studien (genetische Varianten als 'natürliche Randomisierung'): Menschen mit lebenslang niedrigem LDL (z.B. PCSK9-Loss-of-Function-Varianten) haben deutlich niedrigeres Herzinfarkt-Risiko — kausaler Beleg für LDL-Hypothese unabhängig von Statin-RCTs. Cochrane-Review 2013 (Taylor et al.): Statine reduzieren in Primär-prävention bei Erhöhtem Risiko Gesamtmortalität (RR 0,86) und kardiovaskuläre Ereignisse. Cochrane-Update 2024 bestätigt Befunde.",
+        "context": "Anti-Statin-Mythen mit ähnlichem Muster: 'Cholesterin ist harmlos' (FALSCH, LDL kausal an Atherosklerose beteiligt), 'Statine verursachen Demenz' (FALSCH, große Studien zeigen keine erhöhte Inzidenz, eher protektive Tendenz), 'Statin-Industrie verschweigt Risiken' (Verschwörungs-Narrativ — Nebenwirkungen sind in Beipackzettel/Fachinfo transparent dokumentiert). Reale Differenzierung gehört in Summary."
+      },
+      "context_notes": [
+        "Differenzierung: Aussagen über SPEZIFISCHE Nebenwirkungen (z.B. 'Statine können Muskelschmerzen verursachen') sind TRUE — pauschale 'Statine sind gefährlich' ohne Risiko-Nutzen-Kontext ist MOSTLY_FALSE.",
+        "Sekundärprävention (nach Herzinfarkt/Schlaganfall) hat höchste Evidenz-Stufe — hier ist Nutzen klar dokumentiert. Primärprävention bei niedrigem Risiko nicht generell empfohlen.",
+        "Bei Synthesizer-Output IMMER Sekundär- vs. Primärprävention unterscheiden, nicht generalisieren.",
+        "Reale Nebenwirkungs-Häufigkeit aus RCT (mit Placebo-Kontrolle) ist deutlich niedriger als aus Beobachtungsstudien (Nocebo-Effekt belegt in SAMSON-Trial 2020)."
+      ],
+      "claim_phrasings_handled": [
+        "Statine sind gefährlich",
+        "Statine sind unnötig",
+        "Cholesterinsenker schaden mehr als sie nutzen",
+        "Statine bringen nichts gegen Herzinfarkt",
+        "Cholesterin-Hypothese ist widerlegt"
+      ],
+      "trigger_keywords": [
+        "statine gefährlich",
+        "statine nebenwirkungen",
+        "statine unnötig",
+        "cholesterinsenker schädlich",
+        "ldl senker risiko",
+        "statin wirksamkeit",
+        "cholesterin hypothese widerlegt",
+        "statine pharma lüge",
+        "atorvastatin gefahr",
+        "simvastatin schaden"
+      ],
+      "trigger_composite": [
+        [
+          "statin",
+          "statine",
+          "cholesterinsenker",
+          "ldl-senker",
+          "atorvastatin",
+          "simvastatin",
+          "rosuvastatin",
+          "pravastatin",
+          "cholesterin"
+        ],
+        [
+          "gefährlich",
+          "schädlich",
+          "unnötig",
+          "wirkungslos",
+          "widerlegt",
+          "lüge",
+          "betrug",
+          "schaden",
+          "bringt nichts",
+          "verursacht"
+        ]
+      ],
+      "source_label": "AHA + ESC + USPSTF + Cochrane Statine-Konsens",
+      "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/statin-use-in-adults-preventive-medication",
+      "secondary_url": "https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Dyslipidaemias-Management-of"
+    },
+    {
+      "id": "antibiotika_resistenz_konsens_2026",
+      "topic": "antibiotika_resistenz_konsens",
+      "scope": "Pauschale Behauptung, Antibiotika seien nutzlos oder Resistenzen kämen ausschließlich aus Massentierhaltung",
+      "year": 2024,
+      "headline": "WHO + CDC + ECDC + RKI: Antibiotika sind lebensrettend bei bakteriellen Infektionen — Resistenz ist real, aber Multi-Faktor (nicht nur Massentierhaltung)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für Synthesizer: Die pauschale Behauptung 'Antibiotika sind nutzlos' ist MOSTLY_FALSE — Verdict darf NICHT true oder mostly_true sein. Antibiotika sind bei bakteriellen Infektionen (Sepsis, Pneumonie, Meningitis, Endokarditis, post-operative Wundinfektion) weiterhin LEBENSRETTEND und unverzichtbar — Konsens von WHO, CDC, ECDC (European Centre for Disease Prevention and Control) und RKI (Robert Koch-Institut). Die ebenfalls häufige Behauptung 'alle Resistenzen kommen aus Massentierhaltung' ist MIXED bis MOSTLY_FALSE — Antibiotika-Resistenz ist ein MULTI-FAKTOR-Problem: (a) Übergebrauch und Fehlanwendung in der Humanmedizin (auch bei viralen Infekten — wo Antibiotika WIRKUNGSLOS sind), (b) Antibiotika-Einsatz in Tierhaltung (Mastbetriebe, Aquakultur, Wachstumsförderer in einigen Ländern), (c) globaler Handel und Reisen (Transfer resistenter Stämme), (d) unzureichende Krankenhaushygiene und Sanitärinfrastruktur. Die EINZIGE pauschale Aussage, die TRUE ist: 'Antibiotika wirken nicht gegen Viren' — aber das ist eine ANDERE Aussage als 'Antibiotika sind nutzlos'. Pre-Trainings-Wissen 'Resistenzen sind ein Problem' ist gegen die EIGENTLICHE Aussage-Intention (Antibiotika generell wertlos / Schuld liegt monokausal bei Tierhaltung) zu überstimmen — Verdict MOSTLY_FALSE mit klarer Multi-Faktor-Differenzierung.",
+        "who_position": "WHO Antimicrobial Resistance (AMR) Position 2024: Antibiotika-Resistenz ist 'eine der größten Bedrohungen für die globale Gesundheit, Ernährungssicherheit und Entwicklung'. Schätzung: 2019 weltweit ca. 1,27 Mio direkt durch resistente Bakterien verursachte Tote (GBD-AMR-Studie, Lancet 2022). Gleichzeitig betont WHO: Antibiotika bleiben essenziell — Ziel ist NICHT Verzicht, sondern RATIONALER Einsatz ('antimicrobial stewardship'). One-Health-Ansatz: Mensch + Tier + Umwelt gemeinsam adressieren.",
+        "multi_faktor_evidenz": "CDC AR Threats Report 2019/2022 + ECDC Surveillance Atlas: In der EU werden ca. 33% der ambulant verordneten Antibiotika als 'unnötig' eingestuft (häufig bei viralen Atemwegs-infekten). Tierhaltung trägt ebenfalls bei — in Deutschland Antibiotika-Einsatz in Tiermedizin ca. 540 t (2022) vs. Humanmedizin ca. 700 t (BVL/PEI). EU-Verbot von Antibiotika als Wachstumsförderer seit 2006, Reserve-Antibiotika in Tierhaltung weiter kontrovers. Studien zeigen Resistenz-Transfer in beide Richtungen (Stall → Mensch und umgekehrt) — also nicht monokausal Massentierhaltung.",
+        "antibiotika_gegen_viren": "Antibiotika wirken NICHT gegen Viren (Erkältung, Grippe, COVID-19, RSV, Influenza). Verordnung bei viraler Bronchitis, Halsschmerzen ohne Streptokokken-Nachweis oder einfacher Otitis ist Beispiel für Übergebrauch. Diese Aussage ist konsensual TRUE. Sie ist aber NICHT gleichbedeutend mit 'Antibiotika sind generell nutzlos' — bei bakteriellen Infektionen bleiben sie unverzichtbar (Sepsis-Mortalität ohne adäquate antibiotische Therapie ~30-50%).",
+        "context": "Anti-Antibiotika-Mythen mit ähnlichem Muster: 'Pharma will nur Antibiotika verkaufen' (FALSCH — Neuentwicklung stagniert wegen geringer Rendite), 'Probiotika ersetzen Antibiotika' (FALSCH bei schweren bakteriellen Infektionen), 'Natürliche Antibiotika (Knoblauch, Honig) sind ausreichend' (FALSCH bei systemischen Infektionen). Differenzierung: Diskussion über RATIONALEN Einsatz (Stewardship) ist berechtigt — pauschale Verteufelung nicht."
+      },
+      "context_notes": [
+        "Differenzierung: 'Antibiotika werden zu häufig verschrieben' ist TRUE in vielen Ländern; 'Antibiotika sind nutzlos' ist MOSTLY_FALSE.",
+        "Multi-Faktor-Ursachen für Resistenz: Humanmedizin (Übergebrauch + Fehlanwendung bei Viren) + Tierhaltung + Hygiene + globaler Handel — keine monokausale Schuldzuweisung.",
+        "Antibiotika gegen Viren wirkungslos — getrennte Aussage von 'Antibiotika generell nutzlos'.",
+        "Bei Synthesizer-Output IMMER One-Health-Multi-Faktor-Kontext erwähnen, nicht monokausale Erklärung übernehmen."
+      ],
+      "claim_phrasings_handled": [
+        "Antibiotika sind nutzlos",
+        "Antibiotika wirken nicht mehr",
+        "Resistenzen kommen alle aus der Massentierhaltung",
+        "Pharma verschweigt dass Antibiotika nichts bringen",
+        "Antibiotika gegen Erkältung helfen nicht"
+      ],
+      "trigger_keywords": [
+        "antibiotika nutzlos",
+        "antibiotika wirken nicht",
+        "antibiotika resistenz",
+        "massentierhaltung resistenz",
+        "antibiotika schuld tierhaltung",
+        "antibiotika erkältung",
+        "antimicrobial resistance",
+        "amr",
+        "antibiotika übergebrauch",
+        "antibiotika bringen nichts"
+      ],
+      "trigger_composite": [
+        [
+          "antibiotika",
+          "antibiotikum",
+          "antibiotic",
+          "antimicrobial",
+          "amr",
+          "resistenz",
+          "resistenzen",
+          "penicillin"
+        ],
+        [
+          "nutzlos",
+          "wirken nicht",
+          "bringen nichts",
+          "schädlich",
+          "massentierhaltung",
+          "tierhaltung",
+          "monokausal",
+          "schuld",
+          "übergebrauch",
+          "pharma lüge"
+        ]
+      ],
+      "source_label": "WHO + CDC + ECDC + RKI Antibiotika-Resistenz-Konsens",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/antimicrobial-resistance",
+      "secondary_url": "https://www.cdc.gov/antimicrobial-resistance/data-research/threats/index.html"
+    },
+    {
+      "id": "aspirin_primaerpraevention_konsens_2026",
+      "topic": "aspirin_primaerpraevention_konsens",
+      "scope": "Behauptung, tägliches Aspirin schütze gesunde Erwachsene vor Herzinfarkt",
+      "year": 2024,
+      "headline": "USPSTF 2022 + AHA + ESC: Tägliches Aspirin in PRIMÄRPRÄVENTION nicht mehr empfohlen für gesunde Erwachsene — Blutungsrisiko > Nutzen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für Synthesizer: Die pauschale Behauptung 'Aspirin täglich schützt vor Herzinfarkt' (für gesunde Erwachsene als Primärprävention) ist MOSTLY_FALSE — Verdict darf NICHT true oder mostly_true sein. Die USPSTF (US Preventive Services Task Force) hat im April 2022 ihre frühere Empfehlung ZURÜCKGEZOGEN: Für Erwachsene ≥60 Jahre wird Beginn einer Aspirin-Primärprävention NICHT mehr empfohlen (Empfehlung D — Nutzen geringer oder kein Nettonutzen wegen Blutungsrisiko). Für 40-59 Jahre mit ≥10% 10-Jahres-ASCVD-Risiko nur noch individuelle Entscheidung (Empfehlung C — geringer Nettonutzen). Hintergrund: Drei große RCTs (ARRIVE 2018, ASPREE 2018, ASCEND 2018) zeigten dass bei gesunden Erwachsenen das Blutungsrisiko (gastrointestinale Blutungen, intrakranielle Blutungen) den potenziellen Schutz vor kardiovaskulären Ereignissen AUFHEBT oder ÜBERSTEIGT. WICHTIG: Bei SEKUNDÄRPRÄVENTION (nach Herzinfarkt, Schlaganfall, Stent-Implantation) bleibt Aspirin (oder DAPT) klar empfohlen — das ist eine andere klinische Situation. Pre-Trainings-Wissen 'Aspirin verdünnt Blut und schützt Herz' ist gegen die EIGENTLICHE Aussage-Intention (generelle Primärprävention für Gesunde) zu überstimmen — Verdict MOSTLY_FALSE mit klarer Differenzierung Sekundär- vs. Primärprävention.",
+        "uspstf_2022_zurueckziehung": "USPSTF Recommendation Statement April 2022 (JAMA 327(16):1577-1584): (1) Erwachsene ≥60 Jahre: Empfehlung D (Beginn einer Aspirin-Primärprävention wird NICHT empfohlen — Nettoschaden durch Blutungsrisiko). (2) Erwachsene 40-59 Jahre mit ≥10% 10-Jahres-ASCVD-Risiko: Empfehlung C (individuelle Entscheidung, kleiner Nettonutzen). Vorherige USPSTF-Empfehlung von 2016 (B für 50-59 Jahre mit erhöhtem Risiko) wurde explizit zurückgezogen.",
+        "rct_evidenz_arrive_aspree_ascend": "ARRIVE-Trial 2018 (Lancet, n=12.546, moderates Risiko): Kein signifikanter Unterschied in kardiovaskulären Ereignissen vs. Placebo, aber doppeltes GI-Blutungsrisiko. ASPREE-Trial 2018 (NEJM, n=19.114, ältere gesunde Erwachsene ≥70 J): Kein Nutzen, erhöhte Mortalität und Blutungen. ASCEND-Trial 2018 (NEJM, n=15.480, Diabetes): Kleine kardiovaskuläre Risikoreduktion, aber durch erhöhtes Blutungsrisiko neutralisiert. Konsistente Botschaft: Bei gesunden Erwachsenen ohne ASCVD ist Aspirin-Primärprävention nicht netto-nutzbringend.",
+        "sekundaerpraevention_unverändert": "Bei SEKUNDÄRPRÄVENTION (nach Myokardinfarkt, ischämischem Schlaganfall, TIA, koronar-arterieller Stentimplantation, peripherer arterieller Verschlusskrankheit) bleibt Aspirin (75-100 mg/Tag) Standard-Therapie laut AHA, ESC, ACC/AHA-Leitlinie 2023. Hier ist das Nutzen-Risiko-Verhältnis klar positiv. WICHTIG: Patienten, die bereits Aspirin-Primärprävention vertragen, sollen NICHT pauschal abgesetzt werden — individuelle ärztliche Entscheidung erforderlich.",
+        "context": "Aspirin-Mythen mit ähnlichem Muster: 'Aspirin täglich schützt vor Krebs' (MIXED — möglicherweise Reduktion kolorektales Karzinom, aber USPSTF 2022 zog auch diese Empfehlung zurück), 'Aspirin schützt vor Demenz' (FALSCH, ASPREE zeigte keinen Schutz), 'Aspirin ist harmlos weil rezeptfrei' (FALSCH — GI-Blutungen, intrakranielle Blutungen sind reale Risiken). Differenzierung gehört in Summary."
+      },
+      "context_notes": [
+        "Differenzierung: Sekundärprävention (nach kardiovaskulärem Ereignis) — Aspirin weiter klar empfohlen. Primärprävention bei Gesunden — USPSTF 2022 zurückgezogen.",
+        "Patienten, die bereits Aspirin-Primärprävention vertragen, sollen individuelle ärztliche Entscheidung treffen — NICHT pauschal absetzen.",
+        "Blutungsrisiko (GI, intrakraniell) steigt mit Alter — daher Empfehlung D für ≥60 Jahre.",
+        "Bei Synthesizer-Output IMMER USPSTF 2022 Zurückziehung explizit erwähnen, nicht alte Empfehlungen zitieren."
+      ],
+      "claim_phrasings_handled": [
+        "Aspirin täglich schützt vor Herzinfarkt",
+        "Tägliches Aspirin ist gut fürs Herz",
+        "Aspirin als Prävention nehmen",
+        "ASS täglich beugt Schlaganfall vor",
+        "Acetylsalicylsäure schützt das Herz"
+      ],
+      "trigger_keywords": [
+        "aspirin täglich",
+        "aspirin primärprävention",
+        "aspirin herzinfarkt schutz",
+        "ass primärprävention",
+        "acetylsalicylsäure prävention",
+        "aspirin gesund",
+        "aspirin vorbeugung",
+        "aspirin uspstf",
+        "tägliches aspirin",
+        "low dose aspirin"
+      ],
+      "trigger_composite": [
+        [
+          "aspirin",
+          "ass",
+          "acetylsalicylsäure",
+          "acetylsalicylic",
+          "asa",
+          "100 mg ass",
+          "aspirin protect"
+        ],
+        [
+          "täglich",
+          "primärprävention",
+          "vorbeugung",
+          "schützt",
+          "prävention",
+          "schutz vor herzinfarkt",
+          "schlaganfall vorbeugen",
+          "gesund",
+          "vorsorge",
+          "kardiovaskulär"
+        ]
+      ],
+      "source_label": "USPSTF 2022 + AHA Aspirin-Primärprävention-Konsens",
+      "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/aspirin-use-to-prevent-cardiovascular-disease-preventive-medication",
+      "secondary_url": "https://jamanetwork.com/journals/jama/fullarticle/2791399"
+    },
+    {
+      "id": "omega_3_supplemente_konsens_2026",
+      "topic": "omega_3_supplemente_konsens",
+      "scope": "Behauptung, Omega-3-Fischöl-Supplemente schützen gesunde Erwachsene vor Herzinfarkt",
+      "year": 2024,
+      "headline": "USPSTF + JAMA-Meta-Analyse + Cochrane 2020: Omega-3-Fischöl-Supplemente zeigen MINIMALEN bis KEINEN Effekt auf kardiovaskuläre Primärprävention bei Gesunden",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für Synthesizer: Die pauschale Behauptung 'Omega-3-Fischöl schützt vor Herzinfarkt' (für gesunde Erwachsene als Supplement zur Primärprävention) ist MOSTLY_FALSE — Verdict darf NICHT true oder mostly_true sein. Die Evidenz aus großen RCTs der letzten Jahre — insbesondere VITAL-Trial 2018 (Manson et al., NEJM, n=25.871) und Cochrane-Review 2020 (Abdelhamid et al., 86 RCTs, n=162.796) — zeigt: Omega-3-Supplemente haben MINIMALEN bis KEINEN Effekt auf primäre kardiovaskuläre Ereignisse (Herzinfarkt, Schlaganfall, kardiovaskuläre Mortalität) bei gesunden Erwachsenen. JAMA-Meta-Analyse (Aung et al. 2018, JAMA Cardiology, n=77.917): RR für kardiovaskuläre Mortalität 0,93 (95% CI 0,83-1,03 — nicht signifikant). Die frühere Annahme (basierend auf älteren Beobachtungsstudien und Fischverzehr-Studien) wurde durch RCT-Evidenz nicht bestätigt. WICHTIGE AUSNAHME: Hochpotentes ICOSAPENT-ETHYL (Vascepa, EPA-Konzentrat) zeigte im REDUCE-IT-Trial 2018 (Bhatt et al., NEJM, n=8.179) signifikante Reduktion kardiovaskulärer Ereignisse — aber NUR als Prescription-Drug bei Patienten mit ERHÖHTEN TRIGLYZERIDEN (≥150 mg/dl) UND begleitender STATIN-THERAPIE. Das ist NICHT vergleichbar mit OTC-Fischöl-Kapseln für gesunde Erwachsene. Pre-Trainings-Wissen 'Omega-3 ist gesund für Herz' (alte Daten) ist gegen aktuelle RCT-Evidenz zu überstimmen — Verdict MOSTLY_FALSE mit klarer Differenzierung Supplement (kein Effekt) vs. Icosapent-Ethyl (Prescription, spezifische Indikation).",
+        "vital_trial_2018": "VITAL-Trial (VITamin D and OmegA-3 TriaL) 2018, Manson et al., NEJM: n=25.871 Erwachsene ≥50 Jahre, 5,3 Jahre Follow-up, 1 g/Tag Omega-3 (EPA+DHA 840 mg) vs. Placebo. Primärer Endpunkt (major cardiovascular events): HR 0,92 (95% CI 0,80-1,06 — nicht signifikant). Sekundär: leichte nicht-signifikante Reduktion von Herzinfarkt (HR 0,72), aber kein Effekt auf Schlaganfall oder kardiovaskuläre Mortalität. Schlussfolgerung der Autoren: Omega-3-Supplementation reduzierte das primäre Endpunkt-Risiko NICHT signifikant.",
+        "cochrane_review_2020": "Cochrane-Review 2020 (Abdelhamid et al., 'Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease'): 86 RCTs, n=162.796. Erhöhung der Omega-3-Aufnahme (langkettige EPA/DHA) zeigte WENIG bis KEINEN Effekt auf Gesamt-mortalität (RR 0,97), kardiovaskuläre Mortalität (RR 0,92), kardiovaskuläre Ereignisse (RR 0,96), Schlaganfall oder unregelmäßigen Herzschlag. Evidenzqualität: hoch bis moderat. Klare Schlussfolgerung: Routine-Supplementation für Primärprävention NICHT evidenzbasiert empfohlen.",
+        "icosapent_ethyl_ausnahme": "REDUCE-IT-Trial 2018, Bhatt et al., NEJM: n=8.179 Patienten mit Statin-Therapie und Triglyzeriden 135-499 mg/dl, 4,9 Jahre Follow-up, Icosapent-Ethyl (2x2g/Tag, reines EPA-Konzentrat) vs. Placebo. Primärer Endpunkt (composite cardiovascular events): HR 0,75 (95% CI 0,68-0,83, p<0,001) — signifikante 25% relative Risikoreduktion. FDA-Approval 2019, EMA-Approval 2021 für diese spezifische Indikation. WICHTIG: (1) Icosapent-Ethyl ist Prescription-Drug, KEIN OTC-Fischöl. (2) Indikation ist eng: erhöhte Triglyzeride + Statin-Begleittherapie. (3) Mechanismus möglicherweise nicht nur 'mehr EPA', sondern Mineralöl-Placebo-Kontrolle wird kontrovers diskutiert. Diese Ergebnisse sind NICHT auf gewöhnliches OTC-Fischöl übertragbar.",
+        "context": "Omega-3-Mythen mit ähnlichem Muster: 'Fischöl ist gut für Gehirn/Demenz' (MIXED — VITAL-Studie zeigte keinen kognitiven Schutz), 'Fischöl beugt Krebs vor' (FALSCH laut VITAL-Daten — kein Effekt auf invasive Krebs-Inzidenz), 'Fischöl ist harmlos weil natürlich' (Differenzierung: GI-Beschwerden, leicht erhöhtes Vorhofflimmern-Risiko in einigen Studien, Vitamin-A-Toxizität bei Lebertran). Differenzierung: Fischverzehr (nicht Supplement) ist Teil mediterraner Ernährung und kann sinnvoll sein."
+      },
+      "context_notes": [
+        "Differenzierung: Fischverzehr (1-2 Portionen/Woche) im Rahmen ausgewogener Ernährung ist sinnvoll. Supplement-Kapseln für Primärprävention zeigen RCT-Daten nicht.",
+        "Icosapent-Ethyl (Vascepa) ist Prescription-Drug bei spezifischer Indikation (erhöhte Triglyzeride + Statin) — NICHT mit OTC-Fischöl gleichsetzen.",
+        "Aktuelle RCT-Evidenz (VITAL 2018, Cochrane 2020) überstimmt ältere Beobachtungsdaten — Pre-Trainings-Wissen ist veraltet.",
+        "Bei Synthesizer-Output IMMER unterscheiden zwischen Supplement (kein Effekt) und Icosapent-Ethyl (spezifische Prescription-Indikation)."
+      ],
+      "claim_phrasings_handled": [
+        "Omega-3 schützt vor Herzinfarkt",
+        "Fischöl ist gut fürs Herz",
+        "Fischöl-Kapseln beugen Herzkrankheiten vor",
+        "Omega-3 Supplemente sind essentiell",
+        "EPA DHA schützen das Herz"
+      ],
+      "trigger_keywords": [
+        "omega-3 herz",
+        "omega 3 herzinfarkt",
+        "fischöl herzschutz",
+        "fischöl kapseln gesund",
+        "epa dha herz",
+        "omega-3 prävention",
+        "fischöl supplement",
+        "omega-3 wirkung",
+        "fish oil cardiovascular",
+        "vital studie omega"
+      ],
+      "trigger_composite": [
+        [
+          "omega-3",
+          "omega 3",
+          "omega3",
+          "fischöl",
+          "fish oil",
+          "epa",
+          "dha",
+          "epa+dha",
+          "fischöl-kapseln",
+          "icosapent"
+        ],
+        [
+          "herz",
+          "herzinfarkt",
+          "kardiovaskulär",
+          "schützt",
+          "prävention",
+          "vorbeugung",
+          "schutz",
+          "gesund",
+          "hilft gegen",
+          "wirkung",
+          "wirksam"
+        ]
+      ],
+      "source_label": "USPSTF + Cochrane 2020 + VITAL-Trial Omega-3-Konsens",
+      "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003177.pub5/full",
+      "secondary_url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1811403"
     }
   ]
 }
