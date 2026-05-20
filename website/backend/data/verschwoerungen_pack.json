@@ -225,6 +225,7 @@
       "year": 2025,
       "headline": "'Chemtrails' — sind atmosphärisch gut erklärte Kondensstreifen (contrails)",
       "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG für die Bewertung: Die These, Flugzeuge versprühten gezielt Chemikalien als 'Chemtrails', ist FALSCH und wissenschaftlich widerlegt. Was am Himmel als Sprühstreifen sichtbar ist, sind Kondensstreifen (contrails) — atmosphärisch erklärtes Phänomen von Wasserdampf-Kondensation an Triebwerks-Rußpartikeln in Reiseflughöhe. Die größte wissenschaftliche Untersuchung (Shearer et al. 2016, 77 Atmosphären-/Geochemiker:innen) fand keine Evidenz für ein Sprüh-Programm. DLR, DWD, AMS Position-Statement 2017 widerlegen den Mythos. Logistisch wäre ein verdeckter Sprüh-Betrieb über Kontinente nicht möglich. Differenzierung: Geo-Engineering (Stratospheric Aerosol Injection) als hypothetische Klima-Maßnahme ist eine offene wissenschaftliche Debatte, KEINE geheime Umsetzung — von der Chemtrails-Verschwörungs-These zu trennen.",
         "physik_kondensstreifen": "Kondensstreifen ('contrails', condensation trails) entstehen, wenn heiße, wasserdampfreiche Triebwerksabgase auf kalte, feuchte Luft in Reiseflughöhe (~9–12 km) treffen. Wasserdampf kondensiert an Rußpartikeln und gefriert zu Eiskristallen. Je nach atmosphärischer Übersättigung lösen sich Kondensstreifen schnell auf oder breiten sich zu Cirrus-Wolken aus.",
         "shearer_2016_studie": "Shearer, West, Caldeira & Davis (2016, Environ. Res. Lett.): Anonyme Befragung von 77 atmosphären- und geochemischen Wissenschaftler:innen — 76 von 77 fanden keine Evidenz für ein Sprüh-Programm. Der eine fand ein Element (Aluminium), das durch normale Industrie-Emissionen erklärbar ist. Die Studie ist die größte wissenschaftliche Untersuchung des Chemtrails-Mythos.",
         "dlr_dwd_konsens": "Deutsches Zentrum für Luft- und Raumfahrt (DLR) und Deutscher Wetterdienst (DWD) haben Chemtrails-Mythen mehrfach in öffentlichen Stellungnahmen widerlegt. American Meteorological Society (AMS) hat 2017 ein Position-Statement zu Chemtrails veröffentlicht — keine Evidenz für ein Sprüh-Programm.",
@@ -248,7 +249,7 @@
       ],
       "trigger_composite": [
         ["chemtrails", "chemtrail", "kondensstreifen", "contrails"],
-        ["echt", "real", "wahr", "absicht", "gezielt", "chemikali", "spruehung", "sprühung", "vergift", "geo-engineering geheim"]
+        ["echt", "real", "wahr", "absicht", "gezielt", "chemikali", "spruehung", "sprühung", "versprüh", "verspruehen", "versprüht", "verspruehte", "vergift", "geo-engineering geheim"]
       ],
       "trigger_all": [
         [["flugzeug", "flugzeuge"], ["spruehen", "sprühen", "versprueh", "verspruehe", "versprüh", "verspruehe"], ["chemikali", "gift", "vergift", "bevölkerungs", "bevoelkerungs"]]
