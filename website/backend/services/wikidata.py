@@ -396,10 +396,22 @@ def _is_office_term_ended(end_iso: str | None) -> bool:
     return end_d <= _date.today()
 
 
-def _format_row(template_name: str, row: dict) -> tuple[str, str, str]:
+def _format_row(
+    template_name: str,
+    row: dict,
+    active_positions: set[tuple[str, str]] | None = None,
+) -> tuple[str, str, str]:
     """Wikidata-SPARQL-Result-Row → (display_value, entity_qid, label).
 
     Greift auf die rohen ``{var: {value: ...}}``-Strukturen zurück.
+
+    ``active_positions``: optional, set von ``(qid, positionLabel)``-Paaren
+    für aktuell laufende Ämter — wird bei ``politiker_amtszeit`` /
+    ``person_partei`` genutzt, um STRUKTURELL-FALSCH-Marker zu unterdrücken,
+    wenn die Person dieselbe Position aktuell wieder innehat (z.B. Donald
+    Trump 2017-2021 + 2025-heute → der STRUKTURELL-Marker für 2017-2021
+    würde sonst suggerieren, Trump sei nicht US-Präsident, obwohl er es
+    aktuell wieder ist).
     """
     def v(key: str) -> str:
         cell = row.get(key) or {}
@@ -451,7 +463,15 @@ def _format_row(template_name: str, row: dict) -> tuple[str, str, str]:
         # Prefix als authoritative Counter-Evidenz und korrigiert
         # Präsens-Aussagen ("X ist amtierend") zu mostly_false/false.
         # Pattern: lessons_learned.md, Synthesizer-Inversions-Falle.
-        if _is_office_term_ended(end_iso):
+        # Wiederholungs-Schutz: Wenn die Person DIESELBE Position aktuell
+        # wieder innehat (z.B. Trump 2017-2021 + 2025-heute), nur eine
+        # neutrale "war"-Notiz, KEIN STRUKTURELL-FALSCH-Marker. Sonst
+        # würde der Marker für die alte Amtszeit den Synthesizer in die
+        # Irre führen.
+        position_currently_active = bool(
+            active_positions and (qid, pos) in active_positions
+        )
+        if _is_office_term_ended(end_iso) and not position_currently_active:
             today_iso = _date.today().isoformat()
             return (
                 f"STRUKTURELL FALSCH: {label} hatte die Position "
@@ -568,8 +588,13 @@ def _format_row(template_name: str, row: dict) -> tuple[str, str, str]:
         # Wie bei politiker_amtszeit — Stichtagsbezug-Schutz für
         # Partei-Mitgliedschafts-Claims. Bei mehrfachen Rows (LIMIT 5)
         # wird das pro Row entschieden; nur die abgeschlossene Mitgliedschaft
-        # bekommt den Marker.
-        if _is_office_term_ended(end_iso):
+        # bekommt den Marker. Wiederholungs-Schutz: KEIN Marker, wenn
+        # dieselbe Partei aktuell wieder in einer aktiven Mitgliedschaft
+        # vorkommt (Politiker:innen, die wieder eintreten).
+        membership_currently_active = bool(
+            active_positions and (qid, party) in active_positions
+        )
+        if _is_office_term_ended(end_iso) and not membership_currently_active:
             today_iso = _date.today().isoformat()
             return (
                 f"STRUKTURELL FALSCH: {label} war bei Partei "
@@ -758,11 +783,44 @@ async def search_wikidata(analysis: dict) -> dict:
         "politiker_amtszeit", "person_partei",
     )
 
+    # Pre-pass: für politiker_amtszeit/person_partei erkennen, welche
+    # ``(qid, position/party)``-Paare aktuell noch aktiv sind (kein
+    # end-Datum oder end-Datum in der Zukunft). Damit unterdrücken wir den
+    # STRUKTURELL-FALSCH-Marker für historische Ämter, die die Person
+    # später wieder innehat — Bug 2026-05-22: Donald Trump 1. Amt
+    # 2017-2021 löste sonst STRUKTURELL-Marker aus, obwohl er aktuell
+    # wieder 47. US-Präsident ist.
+    active_positions: set[tuple[str, str]] = set()
+    if template_name == "politiker_amtszeit":
+        for row in rows:
+            end_v = (row.get("end") or {}).get("value") or ""
+            if not _is_office_term_ended(end_v):
+                qid_p = _qid_from_uri(
+                    (row.get("person") or {}).get("value") or ""
+                ) or ""
+                pos_label = (
+                    (row.get("positionLabel") or {}).get("value") or ""
+                ).strip() or "Amt"
+                active_positions.add((qid_p, pos_label))
+    elif template_name == "person_partei":
+        for row in rows:
+            end_v = (row.get("end") or {}).get("value") or ""
+            if not _is_office_term_ended(end_v):
+                qid_p = _qid_from_uri(
+                    (row.get("person") or {}).get("value") or ""
+                ) or ""
+                party_label = (
+                    (row.get("partyLabel") or {}).get("value") or ""
+                ).strip() or "?"
+                active_positions.add((qid_p, party_label))
+
     results: list[dict] = []
     seen_qids: set[str] = set()
     for row in rows:
         try:
-            display, qid, label = _format_row(template_name, row)
+            display, qid, label = _format_row(
+                template_name, row, active_positions=active_positions
+            )
         except Exception as e:
             logger.debug(
                 f"Wikidata: Format-Fehler bei row "
