@@ -735,8 +735,28 @@ async def search_wikidata(analysis: dict) -> dict:
         _CACHE[cache_key] = (now, empty)
         return empty
 
-    # Max 3 Rows verwerten — auch wenn LIMIT 5 in SPARQL
-    rows = rows[:3]
+    # Row-Cap nach Template wählen:
+    # - Politiker:innen haben oft >5 Ämter — bei strengem ``rows[:3]`` fiel
+    #   z.B. Rishi Sunaks Prime-Minister-Amt 2022-2024 raus (Position #4 in
+    #   DESC(start)-Order hinter Trustee/Oppositionsführer/Mitglied 59. Parl.)
+    #   → STRUKTURELL-FALSCH-Marker griff nicht. Wir lassen daher alle 5
+    #   SPARQL-Rows durch, damit historische Ämter sichtbar bleiben.
+    # - Andere Templates bleiben bei :3 (kürzere Display-Listen).
+    if template_name in ("politiker_amtszeit", "person_partei"):
+        rows = rows[:5]
+    else:
+        rows = rows[:3]
+
+    # Templates, bei denen mehrere Rows derselben Person/Entity erwünscht
+    # sind — z.B. mehrere politische Ämter oder Partei-Mitgliedschaften
+    # pro Politiker:in. Sonst dedupliziert die qid-Schutzklausel unten
+    # alle bis auf das jüngste Amt weg (Bug 2026-05-22: Rishi Sunak's
+    # PM-Amt 2022-2024 verschwand hinter seinem aktuellen Trustee-Amt
+    # 2025-heute, weil ``ORDER BY DESC(?start)`` das Trustee-Amt zuerst
+    # zurückgab und alle weiteren Sunak-Rows verworfen wurden).
+    _allow_multi_row_per_qid = template_name in (
+        "politiker_amtszeit", "person_partei",
+    )
 
     results: list[dict] = []
     seen_qids: set[str] = set()
@@ -750,10 +770,11 @@ async def search_wikidata(analysis: dict) -> dict:
             )
             continue
 
-        if qid and qid in seen_qids:
-            continue
-        if qid:
-            seen_qids.add(qid)
+        if not _allow_multi_row_per_qid:
+            if qid and qid in seen_qids:
+                continue
+            if qid:
+                seen_qids.add(qid)
 
         url = WIKIDATA_ENTITY_URL.format(qid=qid) if qid else (
             "https://query.wikidata.org/"
