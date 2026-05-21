@@ -468,9 +468,28 @@ def _format_row(
         # neutrale "war"-Notiz, KEIN STRUKTURELL-FALSCH-Marker. Sonst
         # würde der Marker für die alte Amtszeit den Synthesizer in die
         # Irre führen.
-        position_currently_active = bool(
-            active_positions and (qid, pos) in active_positions
-        )
+        # Substring-Schutz: Wikidata führt für dieselbe Funktion teils
+        # mehrere Position-Items (z.B. Trump hat "Präsident der USA"
+        # (aktuell), "Präsident" (allein, historisch), "Gewählter
+        # Präsident der USA" (Übergang)). Wenn Position-Label-Stem
+        # gegenseitig substring ist (≥8 chars Schutz vor zu lockerem
+        # Match), unterdrücken wir STRUKT.
+        position_currently_active = False
+        if active_positions:
+            pos_lc = pos.lower()
+            for active_qid, active_pos in active_positions:
+                if active_qid != qid:
+                    continue
+                active_pos_lc = active_pos.lower()
+                if active_pos_lc == pos_lc:
+                    position_currently_active = True
+                    break
+                if len(pos_lc) >= 8 and pos_lc in active_pos_lc:
+                    position_currently_active = True
+                    break
+                if len(active_pos_lc) >= 8 and active_pos_lc in pos_lc:
+                    position_currently_active = True
+                    break
         if _is_office_term_ended(end_iso) and not position_currently_active:
             today_iso = _date.today().isoformat()
             return (
