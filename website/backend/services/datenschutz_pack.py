@@ -89,14 +89,13 @@ async def fetch_datenschutz(client=None):
 
 
 def _data_lines(d: dict) -> str:
-    parts: list[str] = []
-    for key, val in d.items():
-        if key == "context":
-            continue
-        if isinstance(val, str) and val.strip():
-            label = key.replace("_", " ").strip()
-            parts.append(f"{label.capitalize()}: {val}")
-    return " | ".join(parts)
+    """Render data-dict via geteilten STRUKTURELL-Marker-Helper.
+
+    Aktiviert STRUKTURELL-FALSCH-Prefix bei kernsatz_fuer_synthesizer
+    mit Override-Token (siehe services/_struct_marker.py).
+    """
+    from services._struct_marker import render_data_with_marker
+    return render_data_with_marker(d)
 
 
 async def search_datenschutz(analysis: dict) -> dict:

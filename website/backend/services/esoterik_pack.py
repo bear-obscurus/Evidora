@@ -60,18 +60,14 @@ async def fetch_esoterik(client=None):
 
 
 def _data_lines(d: dict) -> str:
-    """Concat all string-valued data fields except 'context' (kept separate
-    in description) into a compact display value."""
-    parts: list[str] = []
-    for key, val in d.items():
-        if key == "context":
-            continue
-        if isinstance(val, str) and val.strip():
-            # Use the field-name as a short label (e.g. cochrane_review →
-            # 'Cochrane Review'). Replaces underscore with space, title-cases.
-            label = key.replace("_", " ").strip()
-            parts.append(f"{label.capitalize()}: {val}")
-    return " | ".join(parts)
+    """Render data-dict via geteilten STRUKTURELL-Marker-Helper.
+
+    Aktiviert STRUKTURELL-FALSCH-Prefix bei kernsatz_fuer_synthesizer
+    mit Override-Token (siehe services/_struct_marker.py). 16 facts
+    haben seit 2026-05-22 kernsätze (Agent-A-Audit).
+    """
+    from services._struct_marker import render_data_with_marker
+    return render_data_with_marker(d)
 
 
 async def search_esoterik(analysis: dict) -> dict:

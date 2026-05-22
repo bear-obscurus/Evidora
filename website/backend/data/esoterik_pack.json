@@ -10,6 +10,7 @@
       "year": 2025,
       "headline": "Heilsteine — kein nachweisbarer Effekt jenseits Placebo",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Heilsteine oder Kristalle hätten eine heilende oder energetische Wirkung, IST FALSCH/NICHT BELEGT — doppelblinde Studien (French 1989/2001) zeigen keinen Unterschied zwischen echten Quarzen und Plastik-Imitaten, es existiert kein physikalischer Wirkmechanismus. VERDICT-LEITLINIE: MOSTLY_FALSE bei Heil- oder Energie-Versprechen.",
         "wissenschaftlicher_konsens": "Kein bekannter physikalischer oder biologischer Wirkmechanismus.",
         "klinische_evidenz": "Keine kontrollierte Studie zeigt einen Effekt von Heilsteinen über Placebo hinaus.",
         "typische_studie": "French (1989, 2001) — Mood-Effekte unterscheiden sich nicht zwischen echten Quarzen und identisch aussehenden Plastik-Imitaten (doppelblind).",
@@ -27,13 +28,35 @@
         "Bergkristall hat eine Schutzwirkung"
       ],
       "trigger_keywords": [
-        "heilstein", "heilsteine", "edelstein-therapie", "edelsteintherapie",
-        "kristalltherapie", "kristall-therapie", "rosenquarz", "amethyst",
-        "bergkristall", "heilkristall"
+        "heilstein",
+        "heilsteine",
+        "edelstein-therapie",
+        "edelsteintherapie",
+        "kristalltherapie",
+        "kristall-therapie",
+        "rosenquarz",
+        "amethyst",
+        "bergkristall",
+        "heilkristall"
       ],
       "trigger_composite": [
-        ["heilstein", "edelstein", "kristall", "rosenquarz", "amethyst", "bergkristall"],
-        ["heil", "wirk", "energie", "schwingung", "schutz", "kraft", "aura"]
+        [
+          "heilstein",
+          "edelstein",
+          "kristall",
+          "rosenquarz",
+          "amethyst",
+          "bergkristall"
+        ],
+        [
+          "heil",
+          "wirk",
+          "energie",
+          "schwingung",
+          "schutz",
+          "kraft",
+          "aura"
+        ]
       ],
       "source_label": "GWUP Skeptiker-Faktencheck + Stiftung Warentest",
       "source_url": "https://www.gwup.org/themen/esoterik/",
@@ -46,6 +69,7 @@
       "year": 2025,
       "headline": "Astrologie — wissenschaftlich widerlegt",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Astrologie oder Sternzeichen könnten Charakter oder Zukunft vorhersagen, IST FALSCH UND WISSENSCHAFTLICH WIDERLEGT — Carlson 1985 (Nature) zeigt im Doppelblind-Test bei 28 Astrologen Trefferquote auf Zufallsniveau, Meta-Analysen (Dean & Kelly 2003) bestätigen Null-Effekt. VERDICT-LEITLINIE: MOSTLY_FALSE.",
         "schluesselstudie": "Carlson 1985 (Nature 318, 419-425): doppelblinder Test mit 28 erfahrenen Astrologen — die Trefferquote bei der Zuordnung von Persönlichkeitsprofilen zu Geburtsdaten lag im Zufallsbereich.",
         "barnum_forer_effekt": "Forer 1949 (J. Abnorm. Soc. Psychol.) — Personen akzeptieren vage, allgemeine Aussagen als persönlich zutreffend, wenn sie als individuelle Analyse präsentiert werden.",
         "astronomische_basis": "Die astrologischen Tierkreiszeichen entsprechen aufgrund der Präzession der Erdachse heute nicht mehr den realen Sternkonstellationen zur Geburtszeit. Es existiert kein bekannter Mechanismus, durch den Planetenpositionen Charakterzüge beeinflussen könnten.",
@@ -63,13 +87,32 @@
         "Mein Aszendent erklärt mein Verhalten"
       ],
       "trigger_keywords": [
-        "astrologie", "horoskop", "sternzeichen", "tierkreiszeichen",
-        "aszendent", "geburtshoroskop", "deszendent"
+        "astrologie",
+        "horoskop",
+        "sternzeichen",
+        "tierkreiszeichen",
+        "aszendent",
+        "geburtshoroskop",
+        "deszendent"
       ],
       "trigger_composite": [
-        ["astrolog", "horoskop", "sternzeichen", "tierkreis", "aszendent"],
-        ["charakter", "persönlich", "verhalten", "vorhersag", "beeinfluss",
-         "stimmt", "wirk", "wahr"]
+        [
+          "astrolog",
+          "horoskop",
+          "sternzeichen",
+          "tierkreis",
+          "aszendent"
+        ],
+        [
+          "charakter",
+          "persönlich",
+          "verhalten",
+          "vorhersag",
+          "beeinfluss",
+          "stimmt",
+          "wirk",
+          "wahr"
+        ]
       ],
       "source_label": "Carlson 1985 (Nature) + GWUP-Skeptiker-Konsens",
       "source_url": "https://www.nature.com/articles/318419a0",
@@ -82,6 +125,7 @@
       "year": 2010,
       "headline": "Bach-Blüten — Cochrane: kein Effekt über Placebo",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Bach-Blüten oder Rescue-Tropfen hätten eine Wirkung über Placebo hinaus, IST FALSCH/NICHT BELEGT — Cochrane-Review (Ernst 2002/2010, CD003974) findet keinen Wirksamkeitsnachweis, die Verdünnungen enthalten pharmakologisch keine wirksame Konzentration. VERDICT-LEITLINIE: MOSTLY_FALSE bei Wirk- oder Therapie-Aussagen.",
         "cochrane_review": "Ernst (Cochrane 2010, CD003974 / Verfügbare Reviews 2002, 2010) — Systematische Auswertung kontrollierter Studien zu Bach-Blüten findet keinen Wirksamkeitsnachweis über Placebo hinaus.",
         "wirkmechanismus": "Bach-Blüten enthalten in der vermarkteten Form keinerlei pharmakologisch wirksame Konzentrationen pflanzlicher Wirkstoffe (Wasser-Brandy-Verdünnung).",
         "context": "Bach-Blüten basieren auf der Idee, dass Pflanzen-Essenzen seelische Disharmonien ausgleichen. Wissenschaftlich gibt es weder einen Wirkmechanismus noch klinische Evidenz für Effekte über Placebo. Bei akuten Belastungssymptomen wird zu evidenzbasierter Hilfe geraten."
@@ -97,12 +141,31 @@
         "Bach-Blüten sind besser als Placebo"
       ],
       "trigger_keywords": [
-        "bach-blüten", "bachblüten", "bach-blueten", "bachblueten",
-        "rescue tropfen", "rescue-tropfen", "bach-tropfen"
+        "bach-blüten",
+        "bachblüten",
+        "bach-blueten",
+        "bachblueten",
+        "rescue tropfen",
+        "rescue-tropfen",
+        "bach-tropfen"
       ],
       "trigger_composite": [
-        ["bach-blüt", "bachblüt", "bach-bluet", "bachbluet", "rescue tropfen"],
-        ["wirk", "hilf", "effekt", "stress", "angst", "panik", "beruhig"]
+        [
+          "bach-blüt",
+          "bachblüt",
+          "bach-bluet",
+          "bachbluet",
+          "rescue tropfen"
+        ],
+        [
+          "wirk",
+          "hilf",
+          "effekt",
+          "stress",
+          "angst",
+          "panik",
+          "beruhig"
+        ]
       ],
       "source_label": "Cochrane Review (Ernst 2002/2010)",
       "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003974.pub2/full",
@@ -115,6 +178,7 @@
       "year": 2008,
       "headline": "Reiki — Cochrane: keine spezifische Wirkung über Placebo",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Reiki oder energetisches Handauflegen hätten eine spezifische Heilwirkung über Placebo hinaus, IST NICHT DURCH WISSENSCHAFTLICHE EVIDENZ GESTÜTZT — vanderVaart 2009 (12 RCTs) und Cochrane (Joyce & Herbison 2015, CD006535) finden keinen konsistenten Effekt; postulierte 'Lebensenergie' ist physikalisch nicht messbar. VERDICT-LEITLINIE: MOSTLY_FALSE.",
         "cochrane_review": "vanderVaart et al. (2009, J Altern Complement Med 15:1157-69) — systematic review, 12 RCTs, kein konsistenter Effekt über Placebo.",
         "cochrane_anxiety": "Cochrane (Joyce & Herbison 2015, CD006535) zu Reiki bei Angst/Depression: Evidenz unzureichend für eine Aussage zugunsten oder gegen Reiki.",
         "wirkmechanismus": "Postulierte 'Lebensenergie' (Ki/Qi/Prana) ist physikalisch nicht messbar. Doppelblinde Studien (Therapeut-blinded) finden keine spezifischen Effekte.",
@@ -131,12 +195,32 @@
         "Energieheilung wirkt"
       ],
       "trigger_keywords": [
-        "reiki", "energieheilung", "energetisches handauflegen",
-        "lebensenergie", "qi-fluss", "prana"
+        "reiki",
+        "energieheilung",
+        "energetisches handauflegen",
+        "lebensenergie",
+        "qi-fluss",
+        "prana"
       ],
       "trigger_composite": [
-        ["reiki", "energieheil", "energetisch", "lebensenergie", "qi-fluss", "prana"],
-        ["wirk", "heil", "lindern", "linder", "hilf", "behandl", "über placebo", "ueber placebo"]
+        [
+          "reiki",
+          "energieheil",
+          "energetisch",
+          "lebensenergie",
+          "qi-fluss",
+          "prana"
+        ],
+        [
+          "wirk",
+          "heil",
+          "lindern",
+          "linder",
+          "hilf",
+          "behandl",
+          "über placebo",
+          "ueber placebo"
+        ]
       ],
       "source_label": "Cochrane (Joyce & Herbison 2015) + vanderVaart 2009",
       "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006535.pub3/full",
@@ -149,6 +233,7 @@
       "year": 2025,
       "headline": "Aura-Lesen — keine empirische Basis, keine diagnostische Validität",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Aura-Lesen oder Kirlian-Fotografie könnten Krankheiten oder seelische Zustände diagnostizieren, IST FALSCH UND WISSENSCHAFTLICH WIDERLEGT — kontrollierte Doppelblind-Tests (Loftin 1990, Schwartz 2002) scheitern auf Zufallsniveau, Kirlian-Bilder sind klassische Korona-Entladungen. VERDICT-LEITLINIE: MOSTLY_FALSE.",
         "kontrollierte_studien": "Loftin (Skeptical Inquirer 1990) und Schwartz et al. (J. Sci. Explor. 2002) — Aura-Reader können in doppelblinden Tests keine Personen anhand ihrer angeblich sichtbaren Aura identifizieren.",
         "kirlian_aufklarung": "Kirlian-'Aura'-Fotografien zeigen Korona-Entladungen unter Hochspannung — abhängig von Hautfeuchtigkeit, Druck, Temperatur, nicht von 'Lebensenergie'.",
         "diagnostischer_wert": "Keine Studie weist diagnostische Validität von Aura-Lesen für Krankheiten nach. Falsch-positive und falsch-negative Befunde liegen im Zufallsbereich.",
@@ -165,12 +250,29 @@
         "Kirlian-Fotografie macht die Aura sichtbar"
       ],
       "trigger_keywords": [
-        "aura-lesen", "aura lesen", "aura-diagnose", "aura diagnose",
-        "kirlian-fotografie", "kirlianfotografie", "energiefeld körper"
+        "aura-lesen",
+        "aura lesen",
+        "aura-diagnose",
+        "aura diagnose",
+        "kirlian-fotografie",
+        "kirlianfotografie",
+        "energiefeld körper"
       ],
       "trigger_composite": [
-        ["aura", "kirlian", "energiefeld"],
-        ["lesen", "diagnose", "erkennen", "sichtbar", "zeigt", "krankheit", "wirk"]
+        [
+          "aura",
+          "kirlian",
+          "energiefeld"
+        ],
+        [
+          "lesen",
+          "diagnose",
+          "erkennen",
+          "sichtbar",
+          "zeigt",
+          "krankheit",
+          "wirk"
+        ]
       ],
       "source_label": "GWUP-Aura-Tests + Skeptical Inquirer",
       "source_url": "https://www.gwup.org/themen/esoterik/",
@@ -183,6 +285,7 @@
       "year": 2025,
       "headline": "Chakren — religiös-spirituelles Konzept, kein anatomisches Korrelat",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Chakren seien anatomische oder medizinisch wirksame Energiezentren, IST DIFFERENZIERT FALSCH — als religiös-spirituelles Konzept (Hinduismus/Buddhismus) legitim, aber anatomisch existiert kein Korrelat, 'Chakra-Energie' ist physikalisch nicht messbar. VERDICT-LEITLINIE: MOSTLY_FALSE bei medizinischen Heilversprechen.",
         "anatomische_basis": "In der Anatomie existieren keine Chakren als physische Strukturen. Die postulierten Energiezentren überlappen nicht mit Nerven-Plexi, Drüsen oder definierbaren Organen in einer reproduzierbaren Weise.",
         "messung": "Es existiert keine Methode, 'Chakra-Energie' physikalisch zu messen. Behauptungen über Chakra-Frequenzen sind ohne Bezug zu messbaren elektromagnetischen oder anderen physikalischen Größen.",
         "context": "Das Chakra-Konzept stammt aus der hinduistisch-tantrischen und buddhistischen Tradition und beschreibt feinstoffliche Energiezentren. Als religiös-spirituelles Konzept ist es legitim; als anatomische oder medizinische Aussage nicht haltbar."
@@ -198,11 +301,27 @@
         "Chakra-Heilung wirkt"
       ],
       "trigger_keywords": [
-        "chakren", "chakra", "energiezentr", "feinstoffliche zentren"
+        "chakren",
+        "chakra",
+        "energiezentr",
+        "feinstoffliche zentren"
       ],
       "trigger_composite": [
-        ["chakra", "chakren", "energiezentr"],
-        ["körper", "anatomi", "energetisch", "gesund", "heil", "zentr", "wirk", "öffnen"]
+        [
+          "chakra",
+          "chakren",
+          "energiezentr"
+        ],
+        [
+          "körper",
+          "anatomi",
+          "energetisch",
+          "gesund",
+          "heil",
+          "zentr",
+          "wirk",
+          "öffnen"
+        ]
       ],
       "source_label": "GWUP + medizinische Anatomie-Lehrbücher",
       "source_url": "https://www.gwup.org/themen/esoterik/",
@@ -215,6 +334,7 @@
       "year": 2014,
       "headline": "Mondphasen-Effekte auf Schlaf — meta-analytisch nicht reproduzierbar",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Vollmond oder Mondphasen würden den menschlichen Schlaf beeinflussen, IST EMPIRISCH WIDERLEGT — Cordi, Ackermann & Rasch 2014 (Current Biology) finden bei 2125 Schlafnächten von 319 Probanden keine Korrelation, Foster & Roenneberg 2008 bestätigen Null-Effekt. VERDICT-LEITLINIE: MOSTLY_FALSE.",
         "cordi_2014": "Cordi, Ackermann & Rasch (Current Biology 2014) — Re-Analyse von 2125 Schlafnächten von 319 Probanden: keine reproduzierbare Mondphasen-Korrelation gefunden.",
         "cajochen_2013_kontext": "Die Studie von Cajochen et al. 2013, die einen Effekt suggerierte, war eine retrospektive Sekundär-Analyse alter Daten (n=33) — methodisch schwach und in größeren Stichproben nicht replizierbar.",
         "meta_analyse": "Foster & Roenneberg (2008, Curr Biol 18:R784) — keine konsistenten lunaren Zyklen in Schlaf, Geburten oder psychiatrischen Notfällen über große Stichproben.",
@@ -231,12 +351,25 @@
         "Bei Vollmond kann ich nicht schlafen"
       ],
       "trigger_keywords": [
-        "vollmond schlaf", "mondphase schlaf", "mondphasen schlaf",
-        "mond schlaf", "vollmond störung"
+        "vollmond schlaf",
+        "mondphase schlaf",
+        "mondphasen schlaf",
+        "mond schlaf",
+        "vollmond störung"
       ],
       "trigger_composite": [
-        ["vollmond", "mondphas", "mond"],
-        ["schlaf", "schlafstörung", "schlafqualität", "ein-schlafen", "wachsein"]
+        [
+          "vollmond",
+          "mondphas",
+          "mond"
+        ],
+        [
+          "schlaf",
+          "schlafstörung",
+          "schlafqualität",
+          "ein-schlafen",
+          "wachsein"
+        ]
       ],
       "source_label": "Cordi et al. 2014 (Current Biology)",
       "source_url": "https://www.cell.com/current-biology/fulltext/S0960-9822(14)00770-9",
@@ -249,6 +382,7 @@
       "year": 1990,
       "headline": "Wünschelrute — kein Effekt über Zufall in kontrollierten Studien",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Wünschelrutengänger oder Radiästheten könnten Wasseradern oder Erdstrahlen zuverlässig orten, IST FALSCH/NICHT BELEGT — die GSF-Betz-Studie 1990 (n≈500) und die Randi-Challenge (30+ Tests) finden Trefferquoten auf Zufallsniveau, der Rutenausschlag ist ideomotorisch. VERDICT-LEITLINIE: MOSTLY_FALSE.",
         "betz_studie_1990": "Betz (1990, GSF/BMFT) — etwa 500 Versuchspersonen, kontrollierte Doppelblind-Tests in Scheunen-Setup. Wenige Outlier-Treffer, aber Gesamtbild auf Zufallsniveau. Vom BMFT initiierter Folge-Test (Wagner, Betz, König) bestätigte das Null-Resultat.",
         "randi_challenge": "James-Randi-1-Million-Dollar-Challenge — 30+ Wünschelrutengänger getestet, keiner bestand den vorab definierten statistischen Test.",
         "physikalischer_mechanismus": "Es existiert keine bekannte Methode, durch die ein Mensch über muskulär gehaltene Drähte unterirdische Wasseradern detektieren könnte. Der Rutenausschlag ist ideomotorisch.",
@@ -265,13 +399,34 @@
         "Radiästhesie ist wissenschaftlich"
       ],
       "trigger_keywords": [
-        "wünschelrute", "wuenschelrute", "wünschelrutengehen",
-        "rutengänger", "rutengaenger", "radiästhesie", "radiaesthesie",
-        "geomantie", "wasseradern finden"
+        "wünschelrute",
+        "wuenschelrute",
+        "wünschelrutengehen",
+        "rutengänger",
+        "rutengaenger",
+        "radiästhesie",
+        "radiaesthesie",
+        "geomantie",
+        "wasseradern finden"
       ],
       "trigger_composite": [
-        ["wünschelrute", "wuenschelrute", "rutengäng", "rutengaeng", "radiästhesie", "radiaesthesie"],
-        ["wirk", "funktion", "find", "zuverlässig", "zuverlaess", "wissenschaft", "wasserader"]
+        [
+          "wünschelrute",
+          "wuenschelrute",
+          "rutengäng",
+          "rutengaeng",
+          "radiästhesie",
+          "radiaesthesie"
+        ],
+        [
+          "wirk",
+          "funktion",
+          "find",
+          "zuverlässig",
+          "zuverlaess",
+          "wissenschaft",
+          "wasserader"
+        ]
       ],
       "source_label": "Betz/GSF 1990 + Randi-Challenge",
       "source_url": "https://www.gwup.org/themen/esoterik/",
@@ -284,6 +439,7 @@
       "year": 2009,
       "headline": "Geistheilung — Cochrane: kein nachweisbarer Effekt auf medizinische Outcomes",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Geistheilung, Fernheilung oder Fürbittegebet hätten einen medizinischen Heilungs-Effekt, IST NICHT DURCH WISSENSCHAFTLICHE EVIDENZ GESTÜTZT — Cochrane-Review Roberts et al. 2009 (10 RCTs, n=7646) und STEP-Studie Benson 2006 (n=1802) finden keinen Effekt auf Mortalität oder Genesung. VERDICT-LEITLINIE: MOSTLY_FALSE.",
         "cochrane_review": "Roberts et al. (Cochrane 2009, CD000368) zu intercessory prayer — 10 RCTs, n=7646: kein klarer Effekt auf medizinische Outcomes (Mortalität, Genesungsdauer).",
         "step_studie": "Benson et al. 2006 (American Heart J) — STEP-Studie zu Fürbittegebet bei Bypass-Patienten (n=1802, randomisiert): kein signifikanter Vorteil; Patienten, die wussten dass für sie gebetet wurde, hatten leicht mehr Komplikationen.",
         "context": "Geistheilung und Fernheilung postulieren eine über räumliche Distanz wirkende heilende Energie. In gut kontrollierten Studien zeigt sich kein Effekt über Erwartung und Aufmerksamkeit hinaus. Bei schwerwiegenden Erkrankungen ist das gefährlich, wenn evidenzbasierte Therapie deshalb verzögert wird."
@@ -299,13 +455,33 @@
         "Gebete heilen Krankheiten"
       ],
       "trigger_keywords": [
-        "geistheilung", "geistheiler", "geistheilerin", "fernheilung",
-        "fernheiler", "wunderheilung", "handauflegen heilung",
-        "gebet heilung", "intercessory prayer"
+        "geistheilung",
+        "geistheiler",
+        "geistheilerin",
+        "fernheilung",
+        "fernheiler",
+        "wunderheilung",
+        "handauflegen heilung",
+        "gebet heilung",
+        "intercessory prayer"
       ],
       "trigger_composite": [
-        ["geistheil", "fernheil", "wunderheil", "gebetsheil", "prayer healing"],
-        ["wirk", "heil", "krebs", "krank", "genes", "lindern", "linder"]
+        [
+          "geistheil",
+          "fernheil",
+          "wunderheil",
+          "gebetsheil",
+          "prayer healing"
+        ],
+        [
+          "wirk",
+          "heil",
+          "krebs",
+          "krank",
+          "genes",
+          "lindern",
+          "linder"
+        ]
       ],
       "source_label": "Cochrane Review (Roberts et al. 2009)",
       "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD000368.pub3/full",
@@ -318,6 +494,7 @@
       "year": 2025,
       "headline": "Schüssler-Salze — homöopathisch verdünnt, kein Mineralstoff-Therapie",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Schüssler-Salze oder 'Biochemie nach Schüßler' wirkten gegen Mineralstoffmangel oder Erkrankungen, IST FALSCH/NICHT BELEGT — die homöopathischen Verdünnungen D6/D12 enthalten Größenordnungen weniger Mineralstoffe als eine normale Mahlzeit, keine klinische Studie zeigt Effekt über Placebo. VERDICT-LEITLINIE: MOSTLY_FALSE.",
         "konzentration": "Schüssler-Salze werden in homöopathischen Verdünnungen (D6, D12) hergestellt. Bei D6 sind ca. 0,001 % Wirkstoff, bei D12 nur noch Spuren — therapeutisch irrelevant.",
         "vergleich_arzneimittel": "Eine Tagesdosis Schüssler-Salze enthält Größenordnungen weniger Mineralstoffe als ein normales Glas Wasser oder eine Mahlzeit.",
         "evidenz": "Keine klinischen Studien zeigen einen Effekt von Schüssler-Salzen über Placebo hinaus. Die theoretische Grundlage (Schüsslers Mineralien-Mangel-Hypothese) wurde von der modernen Medizin nicht bestätigt.",
@@ -334,12 +511,26 @@
         "Biochemie nach Schüßler funktioniert"
       ],
       "trigger_keywords": [
-        "schüssler-salze", "schüsslersalze", "schuessler-salze", "schuesslersalze",
-        "biochemie nach schüßler", "biochemie nach schuessler"
+        "schüssler-salze",
+        "schüsslersalze",
+        "schuessler-salze",
+        "schuesslersalze",
+        "biochemie nach schüßler",
+        "biochemie nach schuessler"
       ],
       "trigger_composite": [
-        ["schüssler", "schuessler"],
-        ["salz", "biochemi", "wirk", "hilf", "mineral", "therapi"]
+        [
+          "schüssler",
+          "schuessler"
+        ],
+        [
+          "salz",
+          "biochemi",
+          "wirk",
+          "hilf",
+          "mineral",
+          "therapi"
+        ]
       ],
       "source_label": "BfArM + Stiftung Warentest + GWUP",
       "source_url": "https://www.gwup.org/themen/esoterik/",
@@ -352,6 +543,7 @@
       "year": 2025,
       "headline": "Bioresonanz — kein Wirknachweis, BfArM verweigert Zulassung",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Bioresonanz-Therapie könne Krankheiten oder Allergien diagnostizieren oder heilen, IST FALSCH UND WISSENSCHAFTLICH WIDERLEGT — Systematic Reviews (Niggemann & Grüber 2002, Wüthrich 2005) finden keine Wirksamkeit, BfArM und Stiftung Warentest warnen vor Heilversprechen. VERDICT-LEITLINIE: MOSTLY_FALSE.",
         "klinische_evidenz": "Systematic Reviews (Niggemann & Grüber 2002 J Allergy Clin Immunol; Wüthrich 2005 Allergy 60) — keine Wirksamkeit der Bioresonanz bei Allergien.",
         "physikalischer_mechanismus": "Es existiert kein bekannter Mechanismus, durch den körpereigene 'Frequenzen' diagnostisch oder therapeutisch genutzt werden könnten. Die Geräte produzieren keine messbaren physiologisch relevanten Signale.",
         "regulatorischer_status": "BfArM und Verbraucherzentralen warnen vor Heilversprechen mit Bioresonanz. In DE/AT keine Anerkennung als Heilverfahren.",
@@ -368,12 +560,27 @@
         "Bioresonanz erkennt Krankheiten"
       ],
       "trigger_keywords": [
-        "bioresonanz", "bioresonanztherapie", "bioresonanz-therapie",
-        "frequenztherapie körper", "morell-therapie"
+        "bioresonanz",
+        "bioresonanztherapie",
+        "bioresonanz-therapie",
+        "frequenztherapie körper",
+        "morell-therapie"
       ],
       "trigger_composite": [
-        ["bioresonanz", "frequenztherapie", "morell-therapie"],
-        ["wirk", "heil", "behandl", "allergi", "krank", "diagnose", "dauerhaft"]
+        [
+          "bioresonanz",
+          "frequenztherapie",
+          "morell-therapie"
+        ],
+        [
+          "wirk",
+          "heil",
+          "behandl",
+          "allergi",
+          "krank",
+          "diagnose",
+          "dauerhaft"
+        ]
       ],
       "source_label": "Niggemann & Grüber 2002 + Stiftung Warentest + BfArM",
       "source_url": "https://www.test.de/",
@@ -386,6 +593,7 @@
       "year": 2025,
       "headline": "Hellsehen — kontrollierte Tests scheitern an Zufallsniveau",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Hellseher, Wahrsager oder Kartenleger könnten zuverlässig Zukünftiges oder Verborgenes erkennen, IST FALSCH/NICHT BELEGT — die Randi-Paranormal-Challenge (1996-2015) ist an Tausenden Tests gescheitert, vor-registrierte Replikationen finden keinen Effekt über Zufall. VERDICT-LEITLINIE: MOSTLY_FALSE.",
         "ganzfeld_meta": "Storm, Tressoldi & Di Risio (2010, Psychol Bull 136) — Meta-Analyse parapsychologischer Ganzfeld-Studien zeigt schwachen Effekt; spätere Replikations-Versuche und Vor-Registrierungen (Bem 2011 Replikationen) waren überwiegend erfolglos.",
         "randi_challenge": "James-Randi-1-Million-Dollar-Paranormal-Challenge (1996-2015) — kein einziger Hellseher hat den vor-definierten statistischen Test bestanden, trotz tausender Bewerbungen.",
         "barnum_forer": "Wahrgenommene Trefferquote bei Wahrsage-Sitzungen erklärt sich durch Cold-Reading (Beobachtung, allgemeine Aussagen, Forer-Effekt) und post-hoc-Selektion erinnerter Treffer.",
@@ -402,13 +610,37 @@
         "Kartenlegen funktioniert"
       ],
       "trigger_keywords": [
-        "hellsehen", "hellseher", "hellseherin", "wahrsager",
-        "wahrsagerin", "wahrsage", "präkognition", "praekognition",
-        "kartenlegen", "kartenleger", "kartenlegerin"
+        "hellsehen",
+        "hellseher",
+        "hellseherin",
+        "wahrsager",
+        "wahrsagerin",
+        "wahrsage",
+        "präkognition",
+        "praekognition",
+        "kartenlegen",
+        "kartenleger",
+        "kartenlegerin"
       ],
       "trigger_composite": [
-        ["hellseh", "wahrsage", "wahrsager", "präkognit", "praekognit", "kartenleg", "ganzfeld"],
-        ["zukunft", "vorhersag", "erkenn", "wirk", "stimm", "treff", "funktion"]
+        [
+          "hellseh",
+          "wahrsage",
+          "wahrsager",
+          "präkognit",
+          "praekognit",
+          "kartenleg",
+          "ganzfeld"
+        ],
+        [
+          "zukunft",
+          "vorhersag",
+          "erkenn",
+          "wirk",
+          "stimm",
+          "treff",
+          "funktion"
+        ]
       ],
       "source_label": "Randi-Challenge + GWUP-Hellseh-Tests",
       "source_url": "https://blog.gwup.net/themen/esoterik/hellsehen/",
@@ -421,6 +653,7 @@
       "year": 2025,
       "headline": "Rückführungs-Therapie — keine Beweise für frühere Leben, Risiko falscher Erinnerungen",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Rückführungs-Therapien würden frühere Leben beweisen oder echte Erinnerungen aufdecken, IST FALSCH/NICHT BELEGT — Spanos 1991 und Loftus & Ketcham 1994 zeigen, dass hypnotische 'Erinnerungen' suggestiv induzierte Konstruktionen sind (False-Memory-Forschung). VERDICT-LEITLINIE: MOSTLY_FALSE bei therapeutischen Beweis-Aussagen.",
         "stevenson_kontroverse": "Ian Stevenson (Univ. Virginia) sammelte über 40 Jahre Fall-Studien angeblicher Reinkarnations-Erinnerungen. Methodisch sind das Anekdoten und Interviews, keine kontrollierten Tests; die Skeptiker-Community (CSICOP, GWUP) bestreitet die Beweiskraft.",
         "false_memory": "Spanos et al. (1991, J Pers Soc Psychol 61), Loftus & Ketcham (1994) — hypnotische Rückführungen erzeugen unter Suggestion 'Erinnerungen', deren Inhalt mit den Erwartungen des Therapeuten korreliert. Klassische False-Memory-Forschung.",
         "klinische_warnung": "American Psychological Association und Bundespsychotherapeutenkammer warnen vor 'Rückführungs'-Therapien als Risiko für induzierte Pseudo-Erinnerungen, mit potenziell traumatischen Folgen.",
@@ -437,13 +670,32 @@
         "Frühere Leben sind nachgewiesen"
       ],
       "trigger_keywords": [
-        "rückführung", "rueckfuehrung", "rückführungs-therapie",
-        "rueckfuehrungs-therapie", "rückführungstherapie", "rueckfuehrungstherapie",
-        "frühere leben", "fruehere leben", "reinkarnation"
+        "rückführung",
+        "rueckfuehrung",
+        "rückführungs-therapie",
+        "rueckfuehrungs-therapie",
+        "rückführungstherapie",
+        "rueckfuehrungstherapie",
+        "frühere leben",
+        "fruehere leben",
+        "reinkarnation"
       ],
       "trigger_composite": [
-        ["rückführ", "rueckfuehr", "reinkarnat", "frühere leben", "fruehere leben"],
-        ["beweis", "therapi", "funktion", "wirk", "nachweis", "erinner"]
+        [
+          "rückführ",
+          "rueckfuehr",
+          "reinkarnat",
+          "frühere leben",
+          "fruehere leben"
+        ],
+        [
+          "beweis",
+          "therapi",
+          "funktion",
+          "wirk",
+          "nachweis",
+          "erinner"
+        ]
       ],
       "source_label": "Loftus 1994 (False Memory) + GWUP",
       "source_url": "https://blog.gwup.net/themen/esoterik/reinkarnation/",
@@ -456,6 +708,7 @@
       "year": 2005,
       "headline": "Iris-Diagnose — kontrollierte Studien negativ, kein diagnostischer Wert",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Iris-Diagnose oder Iridologie könne Krankheiten zuverlässig erkennen, IST FALSCH UND WISSENSCHAFTLICH WIDERLEGT — Knipschild 1988 (BMJ) zeigt im Doppelblind-Test Trefferquote auf Zufallsniveau bei Gallenblasen-Patienten, Ernst 2000 (review) bestätigt: kein diagnostischer Wert für irgendeine Erkrankung. VERDICT-LEITLINIE: MOSTLY_FALSE.",
         "knipschild_1988": "Knipschild (BMJ 1988, 297:1578) — Iridologen können in einer kontrollierten Doppelblind-Studie Patienten mit/ohne Gallenblasen-Erkrankung nicht über Zufall hinaus zuordnen.",
         "ernst_2000": "Ernst (Forsch Komplementärmed Klass Naturheilkd 2000) — systematic review: keine kontrollierte Studie zeigt diagnostischen Wert der Iridologie für irgendeine Erkrankung.",
         "mechanismus": "Anatomisch besteht keine plausible Verbindung zwischen Iris-Pigmentierung und inneren Organen. Iris-Muster sind genetisch festgelegt und altersstabil — nicht reaktiv auf Krankheiten.",
@@ -472,12 +725,30 @@
         "Iridologie ist zuverlässig"
       ],
       "trigger_keywords": [
-        "iris-diagnose", "irisdiagnose", "iridologie",
-        "augendiagnose", "augen-diagnose", "augendiagnostik"
+        "iris-diagnose",
+        "irisdiagnose",
+        "iridologie",
+        "augendiagnose",
+        "augen-diagnose",
+        "augendiagnostik"
       ],
       "trigger_composite": [
-        ["iris-diagnose", "irisdiagnose", "iridologie", "augendiagnose", "augendiagnost"],
-        ["erkenn", "diagnost", "zuverläss", "zuverlaess", "wirk", "funktion", "krankheit"]
+        [
+          "iris-diagnose",
+          "irisdiagnose",
+          "iridologie",
+          "augendiagnose",
+          "augendiagnost"
+        ],
+        [
+          "erkenn",
+          "diagnost",
+          "zuverläss",
+          "zuverlaess",
+          "wirk",
+          "funktion",
+          "krankheit"
+        ]
       ],
       "source_label": "Knipschild 1988 (BMJ) + Ernst 2000 (review)",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/3147065/",
@@ -490,6 +761,7 @@
       "year": 2025,
       "headline": "Belebtes Wasser — kein physikalisch-chemischer Unterschied nachweisbar",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, belebtes/verwirbeltes oder 'informiertes' Wasser (z.B. Grander) habe gesundheitliche Vorteile gegenüber unbehandeltem Wasser, IST FALSCH/NICHT BELEGT — Wasserstoffbrücken-Strukturen sind im Sub-Pikosekunden-Bereich dynamisch, VKI und Stiftung Warentest finden keinen physikalisch-chemischen Unterschied. VERDICT-LEITLINIE: MOSTLY_FALSE.",
         "physikalische_messung": "Wasserstruktur in flüssigem H2O ist durch Wasserstoffbrücken im Sub-Pikosekunden-Bereich dynamisch. 'Strukturierungseffekte' durch mechanische Wirbel oder 'Information' lassen sich nach Wegfall der mechanischen Einwirkung nicht nachweisen.",
         "klinische_studien": "Keine reproduzierbaren Studien zeigen physiologische Effekte von belebtem/verwirbeltem Wasser über Placebo hinaus.",
         "grander_konsumentenschutz": "Der österreichische Verein für Konsumenteninformation (VKI) hat 'Grander-Wasser' kritisch bewertet; gerichtliche Auseinandersetzungen bestätigten den fehlenden wissenschaftlichen Beleg.",
@@ -506,14 +778,29 @@
         "Grander-Wasser wirkt"
       ],
       "trigger_keywords": [
-        "verwirbeltes wasser", "belebtes wasser", "grander-wasser",
-        "granderwasser", "wasserbelebung", "wasserbeleber",
-        "wasser-information", "informiertes wasser"
+        "verwirbeltes wasser",
+        "belebtes wasser",
+        "grander-wasser",
+        "granderwasser",
+        "wasserbelebung",
+        "wasserbeleber",
+        "wasser-information",
+        "informiertes wasser"
       ],
       "trigger_composite": [
-        ["verwirbel", "belebt", "grander", "wasserbeleb", "wasserbeleber",
-         "informiertes wasser", "wasser-information"],
-        ["wasser", "h2o"]
+        [
+          "verwirbel",
+          "belebt",
+          "grander",
+          "wasserbeleb",
+          "wasserbeleber",
+          "informiertes wasser",
+          "wasser-information"
+        ],
+        [
+          "wasser",
+          "h2o"
+        ]
       ],
       "source_label": "VKI Konsumenteninformation + GWUP + Stiftung Warentest",
       "source_url": "https://blog.gwup.net/themen/esoterik/wasserbelebung/",
@@ -526,6 +813,7 @@
       "year": 2025,
       "headline": "Schwitzen — Thermoregulation, kein nennenswerter Detox-Effekt",
       "data": {
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Schwitzen, Sauna oder Sport würden den Körper 'entgiften', IST DIFFERENZIERT FALSCH — Schweiß ist primär Thermoregulation, Entgiftung erfolgt um Größenordnungen leistungsfähiger über Leber und Nieren; American Academy of Dermatology widerspricht dem Detox-Mythos klar. VERDICT-LEITLINIE: MOSTLY_FALSE bei Detox-Aussagen.",
         "physiologische_funktion": "Schweiß besteht zu ca. 99 % aus Wasser, Salzen, Harnstoff und Spuren organischer Verbindungen. Hauptfunktion ist Thermoregulation durch Verdunstungskühlung — nicht Entgiftung.",
         "echte_entgiftung": "Die Entgiftung des Körpers erfolgt fast ausschließlich über Leber (Phase-I/II-Biotransformation) und Nieren (renale Clearance). Hepato-renale Clearance ist um Größenordnungen leistungsfähiger als die Schweißdrüsen.",
         "studienlage_kritik": "Genuis et al. 2011 (Blood, Urine, and Sweat / BUS Study) und ähnliche Untersuchungen finden zwar Spuren von Schwermetallen, BPA und Phthalaten im Schweiß. Die quantitativen Mengen sind jedoch klinisch irrelevant verglichen mit Urin- und Stuhl-Ausscheidung. Die Studien werden in der Wellness-Industrie selektiv zitiert, ohne den quantitativen Kontext.",
@@ -545,13 +833,32 @@
         "Beim Schwitzen werden Toxine ausgeschieden"
       ],
       "trigger_keywords": [
-        "schwitzen detox", "schwitzen entgiftung", "sauna detox",
-        "sauna entgiftung", "schweiß giftstoffe", "schweiss giftstoffe",
-        "schwitzen reinigt", "schwitzen entgiftet"
+        "schwitzen detox",
+        "schwitzen entgiftung",
+        "sauna detox",
+        "sauna entgiftung",
+        "schweiß giftstoffe",
+        "schweiss giftstoffe",
+        "schwitzen reinigt",
+        "schwitzen entgiftet"
       ],
       "trigger_composite": [
-        ["schwitz", "schweiß", "schweiss", "sauna"],
-        ["detox", "entgift", "giftstoff", "toxin", "ausgeschied", "ausscheid", "reinig", "gift aus"]
+        [
+          "schwitz",
+          "schweiß",
+          "schweiss",
+          "sauna"
+        ],
+        [
+          "detox",
+          "entgift",
+          "giftstoff",
+          "toxin",
+          "ausgeschied",
+          "ausscheid",
+          "reinig",
+          "gift aus"
+        ]
       ],
       "source_label": "American Academy of Dermatology + medizinischer Konsens (Leber/Nieren-Clearance)",
       "source_url": "https://www.aad.org/public/",
