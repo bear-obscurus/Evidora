@@ -176,13 +176,15 @@ LIMIT 3
         "triggers": [
             "gegründet", "gründung", "gründungsjahr",
             "founded", "etabliert",
+            "aufgelöst", "aufloesung", "existiert", "gibt es",
         ],
         "sparql": """
-SELECT ?org ?orgLabel ?inception ?countryLabel ?founderLabel
+SELECT ?org ?orgLabel ?inception ?dissolved ?countryLabel ?founderLabel
 WHERE {{
   ?org rdfs:label "{name}"@de.
   ?org wdt:P31/wdt:P279* wd:Q43229.
   OPTIONAL {{ ?org wdt:P571 ?inception. }}
+  OPTIONAL {{ ?org wdt:P576 ?dissolved. }}
   OPTIONAL {{ ?org wdt:P17 ?country. }}
   OPTIONAL {{ ?org wdt:P112 ?founder. }}
   SERVICE wikibase:label {{ bd:serviceParam wikibase:language "de,en". }}
@@ -370,6 +372,133 @@ def _date_to_year(iso_date: str | None) -> str:
     return f"{day}.{month}.{year}"
 
 
+# --- Claim-Anchored Position-Filter (Phase A) -------------------------
+#
+# Politiker:innen haben oft viele Junior-Ämter (Mitglied Parlament,
+# Trustee, Kommissions-Vorsitz). Bei einem Claim wie "X ist Präsident
+# der USA" sollte nur Position-Label mit dem Stem aus dem Claim
+# durchgelassen werden (hier: "präsident") — sonst fluteten Junior-
+# Ämter wie "Trustee" oder "Mitglied des 59. Parlaments" den
+# Synthesizer-Input und der STRUKTURELL-Marker griff für sekundäre
+# Positionen.
+#
+# Stems sind Substring-Match in Position-Label (lowercased). Zielt
+# auf Spitzen-Ämter ab. Falls keiner der Stems im Claim vorkommt,
+# wird KEIN Filter angewandt (Fallback: alle Rows durchlassen).
+_POSITION_CLAIM_STEMS: tuple[str, ...] = (
+    "präsident", "praesident",
+    "premier", "premierminister", "premier minister",
+    "kanzler", "kanzlerin", "bundeskanzler",
+    "ministerpräsident", "ministerpraesident",
+    "ministerin", "minister",
+    "bürgermeister", "buergermeister",
+    "gouverneur", "governor",
+    "regierungschef",
+)
+
+
+def _claim_position_stems(claim: str) -> set[str]:
+    """Set der Position-Stems, die im Claim als Substring vorkommen.
+
+    Wird im ``politiker_amtszeit``-Pfad verwendet, um SPARQL-Rows
+    nach Position-Relevanz zu filtern.
+    """
+    if not claim:
+        return set()
+    lc = claim.lower()
+    return {stem for stem in _POSITION_CLAIM_STEMS if stem in lc}
+
+
+def _row_position_matches_stems(
+    row: dict, stems: set[str]
+) -> bool:
+    """True wenn Position-Label der Row mind. einen Stem enthält."""
+    if not stems:
+        return True
+    pos = ((row.get("positionLabel") or {}).get("value") or "").lower()
+    return any(stem in pos for stem in stems)
+
+
+# --- Generic End-Date Awareness (Phase B) -----------------------------
+#
+# Uniformer STRUKTURELL-FALSCH-Marker für alle Templates, deren
+# Statements ein End-/Auflösungs-Datum tragen können. ``kind`` formuliert
+# das spezifische Verb für die Marker-Phrase. Pattern lessons_learned.md
+# (Synthesizer-Inversions-Falle, Stichtagsbezug-Schutz).
+def _struct_marker(
+    label: str, what: str, end_human: str, today_iso: str,
+    kind: str, body: str,
+) -> str:
+    """STRUKTURELL FALSCH:-Prefix für historische/aufgelöste Statements.
+
+    ``kind``:
+      - "amt": Politiker:innen-Amt beendet
+      - "mitgliedschaft": Partei-Mitgliedschaft beendet
+      - "aufloesung": Organisation aufgelöst
+      - "hauptstadt": Hauptstadt-Beziehung beendet
+    """
+    if kind == "amt":
+        return (
+            f"STRUKTURELL FALSCH: {label} hatte die Position "
+            f"'{what}' nur bis {end_human} (heute: {today_iso}) — "
+            f"laut Wikidata seitdem NICHT MEHR in dieser Funktion. "
+            f"Präsens-Aussagen 'ist {what}' / 'ist amtierender …' "
+            f"sind ohne neuere Quelle nicht mehr zutreffend. "
+            f"Roh-Daten: {body}"
+        )
+    if kind == "mitgliedschaft":
+        return (
+            f"STRUKTURELL FALSCH: {label} war bei Partei "
+            f"'{what}' nur bis {end_human} (heute: {today_iso}) — "
+            f"laut Wikidata seitdem KEINE laufende Mitgliedschaft "
+            f"in dieser Partei. Präsens-Aussagen 'ist Mitglied …' "
+            f"sind ohne neuere Quelle nicht mehr zutreffend. "
+            f"Roh-Daten: {body}"
+        )
+    if kind == "aufloesung":
+        return (
+            f"STRUKTURELL FALSCH: {label} wurde {end_human} "
+            f"aufgelöst (heute: {today_iso}) — laut Wikidata "
+            f"existiert die Organisation seitdem NICHT MEHR. "
+            f"Präsens-Aussagen 'ist eine Organisation …' / 'gibt es' "
+            f"sind ohne neuere Quelle nicht mehr zutreffend. "
+            f"Roh-Daten: {body}"
+        )
+    if kind == "hauptstadt":
+        return (
+            f"STRUKTURELL FALSCH: {label} war Hauptstadt von "
+            f"'{what}' nur bis {end_human} (heute: {today_iso}) — "
+            f"laut Wikidata seitdem KEINE Hauptstadt-Funktion in "
+            f"diesem Land. Präsens-Aussagen 'ist Hauptstadt von …' "
+            f"sind ohne neuere Quelle nicht mehr zutreffend. "
+            f"Roh-Daten: {body}"
+        )
+    # Fallback — generisch
+    return f"STRUKTURELL FALSCH: {label} — {what} nur bis {end_human}. Roh-Daten: {body}"
+
+
+def _position_label_overlaps_active(
+    qid: str, pos_label: str,
+    active_positions: set[tuple[str, str]] | None,
+) -> bool:
+    """True wenn Position-Label gegenseitig substring-match mit
+    irgendeinem aktiven Label desselben qid ist (≥8-char-Schutz)."""
+    if not active_positions or not pos_label:
+        return False
+    pos_lc = pos_label.lower()
+    for active_qid, active_pos in active_positions:
+        if active_qid != qid:
+            continue
+        active_pos_lc = (active_pos or "").lower()
+        if active_pos_lc == pos_lc:
+            return True
+        if len(pos_lc) >= 8 and pos_lc in active_pos_lc:
+            return True
+        if len(active_pos_lc) >= 8 and active_pos_lc in pos_lc:
+            return True
+    return False
+
+
 def _is_office_term_ended(end_iso: str | None) -> bool:
     """True wenn ``end_iso`` ein vollständiges, parsbares Datum ≤ heute ist.
 
@@ -463,44 +592,17 @@ def _format_row(
         # Prefix als authoritative Counter-Evidenz und korrigiert
         # Präsens-Aussagen ("X ist amtierend") zu mostly_false/false.
         # Pattern: lessons_learned.md, Synthesizer-Inversions-Falle.
-        # Wiederholungs-Schutz: Wenn die Person DIESELBE Position aktuell
-        # wieder innehat (z.B. Trump 2017-2021 + 2025-heute), nur eine
-        # neutrale "war"-Notiz, KEIN STRUKTURELL-FALSCH-Marker. Sonst
-        # würde der Marker für die alte Amtszeit den Synthesizer in die
-        # Irre führen.
-        # Substring-Schutz: Wikidata führt für dieselbe Funktion teils
-        # mehrere Position-Items (z.B. Trump hat "Präsident der USA"
-        # (aktuell), "Präsident" (allein, historisch), "Gewählter
-        # Präsident der USA" (Übergang)). Wenn Position-Label-Stem
-        # gegenseitig substring ist (≥8 chars Schutz vor zu lockerem
-        # Match), unterdrücken wir STRUKT.
-        position_currently_active = False
-        if active_positions:
-            pos_lc = pos.lower()
-            for active_qid, active_pos in active_positions:
-                if active_qid != qid:
-                    continue
-                active_pos_lc = active_pos.lower()
-                if active_pos_lc == pos_lc:
-                    position_currently_active = True
-                    break
-                if len(pos_lc) >= 8 and pos_lc in active_pos_lc:
-                    position_currently_active = True
-                    break
-                if len(active_pos_lc) >= 8 and active_pos_lc in pos_lc:
-                    position_currently_active = True
-                    break
+        position_currently_active = _position_label_overlaps_active(
+            qid, pos, active_positions
+        )
         if _is_office_term_ended(end_iso) and not position_currently_active:
-            today_iso = _date.today().isoformat()
             return (
-                f"STRUKTURELL FALSCH: {label} hatte die Position "
-                f"'{pos}' nur bis {end} (heute: {today_iso}) — "
-                f"laut Wikidata seitdem NICHT MEHR in dieser Funktion. "
-                f"Präsens-Aussagen 'ist {pos}' / 'ist amtierender …' "
-                f"sind ohne neuere Quelle nicht mehr zutreffend. "
-                f"Roh-Daten: {body}",
-                qid,
-                label,
+                _struct_marker(
+                    label=label, what=pos, end_human=end,
+                    today_iso=_date.today().isoformat(),
+                    kind="amt", body=body,
+                ),
+                qid, label,
             )
         return body, qid, label
 
@@ -529,16 +631,34 @@ def _format_row(
     if template_name == "organisation_gruendung":
         label = v("orgLabel") or "Organisation"
         inc = _date_to_year(v("inception"))
+        dissolved_iso = v("dissolved")
+        dissolved = _date_to_year(dissolved_iso)
         country = v("countryLabel")
         founder = v("founderLabel")
         bits = [label]
         if inc:
             bits.append(f"gegründet {inc}")
+        if dissolved:
+            bits.append(f"aufgelöst {dissolved}")
         if country:
             bits.append(f"({country})")
         if founder:
             bits.append(f"durch {founder}")
-        return ", ".join(bits), qid, label
+        body = ", ".join(bits)
+        # Stichtagsbezug-Schutz: aufgelöste Organisation → STRUKTURELL.
+        # P576 (dissolved date) ≤ heute markiert die Organisation als
+        # nicht mehr existent. Präsens-Aussagen "X ist eine Org" /
+        # "X gibt es" sind dann mostly_false/false.
+        if _is_office_term_ended(dissolved_iso):
+            return (
+                _struct_marker(
+                    label=label, what="", end_human=dissolved,
+                    today_iso=_date.today().isoformat(),
+                    kind="aufloesung", body=body,
+                ),
+                qid, label,
+            )
+        return body, qid, label
 
     if template_name == "werk_autor":
         label = v("workLabel") or "Werk"
@@ -604,26 +724,17 @@ def _format_row(
         if start:
             bits.append(f"({start} – {end})")
         body = " ".join(bits)
-        # Wie bei politiker_amtszeit — Stichtagsbezug-Schutz für
-        # Partei-Mitgliedschafts-Claims. Bei mehrfachen Rows (LIMIT 5)
-        # wird das pro Row entschieden; nur die abgeschlossene Mitgliedschaft
-        # bekommt den Marker. Wiederholungs-Schutz: KEIN Marker, wenn
-        # dieselbe Partei aktuell wieder in einer aktiven Mitgliedschaft
-        # vorkommt (Politiker:innen, die wieder eintreten).
-        membership_currently_active = bool(
-            active_positions and (qid, party) in active_positions
+        membership_currently_active = _position_label_overlaps_active(
+            qid, party, active_positions
         )
         if _is_office_term_ended(end_iso) and not membership_currently_active:
-            today_iso = _date.today().isoformat()
             return (
-                f"STRUKTURELL FALSCH: {label} war bei Partei "
-                f"'{party}' nur bis {end} (heute: {today_iso}) — "
-                f"laut Wikidata seitdem KEINE laufende Mitgliedschaft "
-                f"in dieser Partei. Präsens-Aussagen 'ist Mitglied …' "
-                f"sind ohne neuere Quelle nicht mehr zutreffend. "
-                f"Roh-Daten: {body}",
-                qid,
-                label,
+                _struct_marker(
+                    label=label, what=party, end_human=end,
+                    today_iso=_date.today().isoformat(),
+                    kind="mitgliedschaft", body=body,
+                ),
+                qid, label,
             )
         return body, qid, label
 
@@ -778,6 +889,20 @@ async def search_wikidata(analysis: dict) -> dict:
         # Negativ-Cache hilft Wiederholungen
         _CACHE[cache_key] = (now, empty)
         return empty
+
+    # Phase A — Claim-Anchored Position-Filter:
+    # Bei politiker_amtszeit zuerst nach Position-Label-Stem aus dem
+    # Claim filtern. Bei z.B. "Trump ist Präsident der USA" werden so
+    # Junior-Ämter (Trustee, Mitglied Parlament, Schatzkanzler) aus dem
+    # Synthesizer-Input gehalten — er sieht nur die relevanten Präsident-
+    # Varianten. Fallback: wenn kein Stem im Claim ist (z.B. ambiguer
+    # Claim "Was hat Sunak gemacht?"), filtern wir nicht.
+    if template_name == "politiker_amtszeit":
+        stems = _claim_position_stems(claim)
+        if stems:
+            filtered = [r for r in rows if _row_position_matches_stems(r, stems)]
+            if filtered:
+                rows = filtered
 
     # Row-Cap nach Template wählen:
     # - Politiker:innen haben oft >5 Ämter — bei strengem ``rows[:3]`` fiel
