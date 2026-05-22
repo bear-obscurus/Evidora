@@ -79,6 +79,13 @@ FALSE_VERDICT_OVERRIDE_TOKENS: tuple[str, ...] = (
     "IST EINZUORDNEN ALS FALSCH/IRREFUEHREND",
     # --- Evidenz-Lücke ---
     "KEINE EVIDENZ FÜR", "KEINE EVIDENZ FUER",
+    # --- Harte "ist FALSCH."-Pattern (tech_ki Audit 2026-05-22) ---
+    # Mit Punkt am Ende, um differenzierte "ist falsch, weil"-Phrasen
+    # NICHT zu matchen. Leading space verhindert false positives
+    # wie "kontrastistfalschformulierungen".
+    " IST FALSCH.", " SIND FALSCH.",
+    "IST FALSCH/MOSTLY_FALSE",
+    "FALSCH/MOSTLY_FALSE.",
 )
 
 
