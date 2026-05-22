@@ -72,59 +72,14 @@ async def fetch_verschwoerungen(client=None):
 
 
 def _data_lines(d: dict) -> str:
-    """Concat all string-valued data fields except 'context' (kept separate
-    in description) into a compact display value.
+    """Render data-dict zu Synthesizer-tauglichem Text.
 
-    Wenn der Fact ein ``kernsatz_fuer_synthesizer`` enthält und dieser eine
-    FALSE/MOSTLY_FALSE-Verdict-Empfehlung formuliert (oder ein Verschwörungs-
-    Narrativ explizit als unbelegt / widerlegt markiert), wird der
-    display_value mit dem expliziten Marker ``STRUKTURELL FALSCH:`` geprefixt.
-    Der Synthesizer-Prompt (services/synthesizer.py) erkennt diesen Marker
-    und überstimmt Pre-Trainings-Wissen-basierte Verdict-Vorschläge
-    entsprechend. Pattern aus lessons_learned.md (Synthesizer-Inversions-
-    Falle), analog zu gesundheits_autoritaeten_pack.py.
+    Wrapper um ``services._struct_marker.render_data_with_marker``.
+    Marker-Logik + Token-Liste sind dort zentralisiert (geteilt mit
+    ``gesundheits_autoritaeten_pack`` und künftigen Packs).
     """
-    parts: list[str] = []
-    kernsatz = d.get("kernsatz_fuer_synthesizer", "")
-
-    # Detect harten Verdict-Override im kernsatz
-    kernsatz_upper = (kernsatz or "").upper()
-    is_false_verdict_override = bool(kernsatz) and any(token in kernsatz_upper for token in (
-        "VERDICT MOSTLY_FALSE", "VERDICT IS MOSTLY_FALSE", "VERDICT MUSS MOSTLY_FALSE",
-        "VERDICT MOSTLY_FALSE SEIN", "MOSTLY_FALSE — VERDICT", "VERDICT MOSTLY_FALSE.",
-        "VERDICT DARF NICHT MOSTLY_TRUE", "VERDICT DARF NICHT TRUE",
-        "VERDICT-LEITLINIE", "VERDICT MUSS FALSE",
-        "IST FALSCH. VERDICT", "IST FALSE. VERDICT",
-        " IST FALSE", " IST MOSTLY_FALSE",
-        "MOSTLY_FALSE BEI", "VERDICT MOSTLY_FALSE OR FALSE",
-        "SIND FALSCH UND UNBELEGT", "IST UNBELEGT UND WIDERLEGT",
-        "VERSCHWÖRUNGS-NARRATIV OHNE BELEG", "VERSCHWOERUNGS-NARRATIV OHNE BELEG",
-        "IST FALSCH UND WISSENSCHAFTLICH WIDERLEGT", "FALSCH UND WISSENSCHAFTLICH WIDERLEGT",
-        "PHYSIKALISCH UNMÖGLICH UND FALSCH", "PHYSIKALISCH UNMOEGLICH UND FALSCH",
-        "TECHNISCH UNMÖGLICH UND FALSCH", "TECHNISCH UNMOEGLICH UND FALSCH",
-        "IST FALSCH UND TECHNISCH UNMÖGLICH", "IST FALSCH UND TECHNISCH UNMOEGLICH",
-        "IST FALSCH/NICHT BELEGT", "SIND FALSCH/NICHT BELEGT",
-        "IST NICHT DURCH WISSENSCHAFTLICHE EVIDENZ GESTÜTZT",
-        "IST NICHT DURCH WISSENSCHAFTLICHE EVIDENZ GESTUETZT",
-        "IST ALS FALSCH EINZUORDNEN", "ALS FALSCH EINZUORDNEN",
-    ))
-
-    if is_false_verdict_override:
-        parts.append(f"STRUKTURELL FALSCH: {kernsatz}")
-        for key, val in d.items():
-            if key in ("context", "kernsatz_fuer_synthesizer"):
-                continue
-            if isinstance(val, str) and val.strip():
-                label = key.replace("_", " ").strip()
-                parts.append(f"{label.capitalize()}: {val}")
-    else:
-        for key, val in d.items():
-            if key == "context":
-                continue
-            if isinstance(val, str) and val.strip():
-                label = key.replace("_", " ").strip()
-                parts.append(f"{label.capitalize()}: {val}")
-    return " | ".join(parts)
+    from services._struct_marker import render_data_with_marker
+    return render_data_with_marker(d)
 
 
 async def search_verschwoerungen(analysis: dict) -> dict:

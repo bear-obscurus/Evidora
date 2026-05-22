@@ -84,44 +84,14 @@ async def fetch_gesundheits_autoritaeten(client=None):
 def _data_lines(d: dict) -> str:
     """Render data-dict zu Synthesizer-tauglichem Text.
 
-    Wichtig: Wenn der Fact ein ``kernsatz_fuer_synthesizer`` enthält und dieser
-    eine FALSE/MOSTLY_FALSE-Verdict-Empfehlung formuliert, wird display_value
-    mit dem expliziten Marker ``STRUKTURELL FALSCH:`` geprefixt. Der
-    Synthesizer-Prompt (services/synthesizer.py) erkennt dieses Marker und
-    überstimmt Pre-Trainings-Wissen-basierte Verdict-Vorschläge entsprechend.
-    Pattern aus lessons_learned.md (Synthesizer-Inversions-Falle).
+    Wrapper um ``services._struct_marker.render_data_with_marker``.
+    STRUKTURELL-FALSCH-Marker-Logik + vereinigte Token-Liste sind
+    dort zentralisiert (geteilt mit ``verschwoerungen_pack`` und
+    künftigen Packs). Pattern lessons_learned.md (Synthesizer-
+    Inversions-Falle).
     """
-    parts: list[str] = []
-    kernsatz = d.get("kernsatz_fuer_synthesizer", "")
-
-    # Detect harten Verdict-Override im kernsatz
-    kernsatz_upper = (kernsatz or "").upper()
-    is_false_verdict_override = bool(kernsatz) and any(token in kernsatz_upper for token in (
-        "VERDICT MOSTLY_FALSE", "VERDICT IS MOSTLY_FALSE", "VERDICT MUSS MOSTLY_FALSE",
-        "VERDICT MOSTLY_FALSE SEIN", "MOSTLY_FALSE — VERDICT", "VERDICT MOSTLY_FALSE.",
-        "VERDICT DARF NICHT MOSTLY_TRUE", "VERDICT DARF NICHT TRUE",
-        "VERDICT-LEITLINIE", "VERDICT MUSS FALSE",
-        "IST FALSCH. VERDICT", "IST FALSE. VERDICT",
-        " IST FALSE", " IST MOSTLY_FALSE",
-        "MOSTLY_FALSE BEI", "VERDICT MOSTLY_FALSE OR FALSE",
-    ))
-
-    if is_false_verdict_override:
-        parts.append(f"STRUKTURELL FALSCH: {kernsatz}")
-        for key, val in d.items():
-            if key in ("context", "kernsatz_fuer_synthesizer"):
-                continue
-            if isinstance(val, str) and val.strip():
-                label = key.replace("_", " ").strip()
-                parts.append(f"{label.capitalize()}: {val}")
-    else:
-        for key, val in d.items():
-            if key == "context":
-                continue
-            if isinstance(val, str) and val.strip():
-                label = key.replace("_", " ").strip()
-                parts.append(f"{label.capitalize()}: {val}")
-    return " | ".join(parts)
+    from services._struct_marker import render_data_with_marker
+    return render_data_with_marker(d)
 
 
 async def search_gesundheits_autoritaeten(analysis: dict) -> dict:
