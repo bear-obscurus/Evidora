@@ -45,9 +45,11 @@ Wiring (NICHT in dieser Datei):
 
 from __future__ import annotations
 
+import datetime as _dt
 import json
 import logging
 import os
+import re
 import time
 
 import httpx
@@ -329,6 +331,136 @@ def _de_pct(v) -> str:
     return f"{v}".replace(".", ",")
 
 
+# --- Stichtagsbezug-Schutz (Phase 4 ParlGov) -------------------------------
+#
+# Daten-Schema-Boundary: ``data/parlgov.json`` hinterlegt NUR
+# ``cabinet_start``, kein ``cabinet_end``. Das implizite Ende eines
+# Kabinetts ist der ``cabinet_start`` des nächsten Kabinetts desselben
+# Landes. Wir berechnen Supersession aus der Nachbarliste statt aus einem
+# Feld, das im Datensatz nicht existiert.
+#
+# Pattern: lessons_learned.md Synthesizer-Inversions-Falle (Stichtagsbezug-
+# Schutz) — analog services/wikidata.py _struct_marker(kind="amt") und
+# services/ema.py.
+_ISO_DATE_RE = re.compile(r"^(-?\d{4})-(\d{2})-(\d{2})")
+
+
+def _parse_iso_date(d_iso: str | None) -> _dt.date | None:
+    """ISO-Date-String → datetime.date oder None bei unparsbarem Wert."""
+    if not d_iso:
+        return None
+    m = _ISO_DATE_RE.match(d_iso.strip())
+    if not m:
+        return None
+    try:
+        return _dt.date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+    except (ValueError, TypeError):
+        return None
+
+
+def _is_cabinet_superseded(
+    country_elections: list[dict],
+    current_election: dict,
+    today: _dt.date,
+) -> tuple[bool, str | None]:
+    """True wenn ein NEUERES Kabinett im selben Land existiert, dessen
+    ``cabinet_start`` ≤ heute liegt.
+
+    Returns ``(is_superseded, successor_start_iso)``. successor_start_iso
+    ist das früheste Kabinetts-Start-Datum, das größer als das aktuelle
+    ist und ≤ heute liegt (= effektives implizites End-Datum). Wenn nicht
+    superseded, ist successor_start_iso None.
+    """
+    current_start = _parse_iso_date(current_election.get("cabinet_start"))
+    if current_start is None:
+        return False, None
+    successor_start: _dt.date | None = None
+    for e in country_elections:
+        if e is current_election:
+            continue
+        cs = _parse_iso_date(e.get("cabinet_start"))
+        if cs is None:
+            continue
+        if cs <= current_start:
+            continue
+        if cs > today:
+            continue
+        if successor_start is None or cs < successor_start:
+            successor_start = cs
+    if successor_start is None:
+        return False, None
+    return True, successor_start.isoformat()
+
+
+def _is_stale_cabinet_status(
+    election: dict,
+    is_superseded: bool,
+    today: _dt.date,
+    months: int = 36,
+) -> tuple[bool, str | None]:
+    """Soft-Caveat-Trigger: jüngstes Kabinett seines Landes (kein
+    Nachfolger gefunden), aber ``cabinet_start`` deutlich älter als
+    ``months`` Monate → mögliche Daten-Refresh-Lücke.
+
+    Returns ``(is_stale, since_iso)``. Wenn nicht stale, since_iso None.
+
+    Hinweis: KEIN harter STRUKTURELL-Marker — das ist ein Daten-Caveat,
+    kein Faktenfehler. Synthesizer soll wissen, dass die ParlGov-Daten
+    möglicherweise nicht aktuell sind.
+
+    Daten-Schema-Boundary: data/parlgov.json hinterlegt NIE ein
+    ``cabinet_end``-Feld. Daher kann die Spec-Variante "start älter als 6
+    Monate UND end leer" nicht angewendet werden (würde auf jedes aktuelle
+    Kabinett feuern). Stattdessen: Schwelle gegen ParlGov-Release-Cadence
+    (jährlich) — ein "latest" Kabinett, das ≥ 3 Jahre alt ist und keinen
+    Nachfolger im Datensatz hat, ist verdächtig für eine Daten-Lücke,
+    während Kabinette aus den letzten 1-2 Jahren als plausibel-aktuell
+    durchgehen.
+    """
+    if is_superseded:
+        return False, None
+    cs = _parse_iso_date(election.get("cabinet_start"))
+    if cs is None:
+        return False, None
+    # Threshold ≈ months × 30 Tage. Default 36 Monate (3 Jahre) > typische
+    # Legislaturperiode-Hälfte, < kurze EU-Legislatur 5 Jahre.
+    delta_days = (today - cs).days
+    if delta_days < months * 30:
+        return False, None
+    return True, cs.isoformat()
+
+
+def _struct_marker_parlgov(
+    cname: str,
+    etype: str,
+    year: int | None,
+    cabinet: str,
+    cabinet_start: str,
+    successor_start_iso: str,
+    today_iso: str,
+    base_headline: str,
+) -> str:
+    """STRUKTURELL FALSCH:-Prefix für superseded Kabinette.
+
+    Pattern analog services/wikidata.py _struct_marker(kind="amt") /
+    services/ema.py: explizites Marker-Prefix mit Verweis auf nachfolgendes
+    Kabinett, damit der Synthesizer "X ist aktuell Regierungschef" /
+    "X ist Bundeskanzler" / "Koalition Y regiert" gegen ein abgelöstes
+    Kabinett korrekt als mostly_false/false verdicted.
+    """
+    year_str = f" {year}" if year is not None else ""
+    return (
+        f"STRUKTURELL FALSCH: Das Kabinett '{cabinet}' "
+        f"({cname}, nach {etype}{year_str}, gebildet ab {cabinet_start}) "
+        f"wurde laut ParlGov spätestens am {successor_start_iso} durch "
+        f"ein nachfolgendes Kabinett abgelöst (heute: {today_iso}) — "
+        f"es ist NICHT mehr die amtierende Regierung. Präsens-Aussagen "
+        f"'X ist Regierungschef:in von {cname}' / 'Y-Koalition regiert "
+        f"{cname}' sind für dieses historische Kabinett ohne neuere "
+        f"Quelle nicht mehr zutreffend. Roh-Daten: {base_headline}"
+    )
+
+
 def _build_election_result(
     country_code: str,
     country: dict,
@@ -358,6 +490,41 @@ def _build_election_result(
         f"{f' (ab {cabinet_start})' if cabinet_start else ''}."
     )
 
+    # Stichtagsbezug-Schutz: superseded → harter STRUKTURELL-Marker.
+    # Stale (latest + ≥ 36 Monate alt + kein Nachfolger) → soft-Caveat.
+    today = _dt.date.today()
+    today_iso = today.isoformat()
+    country_elections = country.get("elections") or []
+    is_superseded, successor_start_iso = _is_cabinet_superseded(
+        country_elections, election, today,
+    )
+    is_stale, stale_since_iso = _is_stale_cabinet_status(
+        election, is_superseded, today, months=36,
+    )
+
+    if is_superseded and successor_start_iso and cabinet_start:
+        display_value = _struct_marker_parlgov(
+            cname=cname,
+            etype=etype,
+            year=year,
+            cabinet=cabinet,
+            cabinet_start=cabinet_start,
+            successor_start_iso=successor_start_iso,
+            today_iso=today_iso,
+            base_headline=headline,
+        )
+    elif is_stale and stale_since_iso:
+        # Daten-Caveat, KEIN STRUKTURELL-Marker — Kabinett ist laut
+        # ParlGov-Snapshot das jüngste, aber ParlGov-Refresh-Boundary
+        # könnte einen Nachfolger verpasst haben.
+        display_value = (
+            f"{headline} [Hinweis: ParlGov-Daten zu diesem Kabinett "
+            f"nicht aktualisiert seit {stale_since_iso} — bei sehr "
+            f"aktuellen Regierungswechseln ggf. eigene Recherche prüfen]"
+        )
+    else:
+        display_value = headline
+
     description_parts = [
         f"ParlGov-Eintrag für die {etype} {year} in {cname} "
         f"({parliament}). Ergebnis: {winner} = {_de_pct(winner_pct)} % "
@@ -381,7 +548,7 @@ def _build_election_result(
         "country_name": cname,
         "year": str(year) if year is not None else "",
         "value": winner_pct,
-        "display_value": headline,
+        "display_value": display_value,
         "description": " ".join(p for p in description_parts if p),
         "url": "https://www.parlgov.org/data-info/",
         "source": "ParlGov (Univ. Bremen / Harvard Dataverse)",

@@ -455,6 +455,35 @@ def _format_country_result(country: str, ged_agg: dict,
 
     display = headline + " — " + " | ".join(parts) if parts else headline
 
+    # Stichtagsbezug-Caveat (UCDP-Phase 4):
+    # Wenn das letzte aktive Konflikt-Jahr ≥ 3 Jahre zurückliegt,
+    # hängen wir ein soft-Caveat-Suffix an den display_value. KEIN
+    # harter STRUKTURELL-Marker — eingefrorene Konflikte sind NICHT
+    # "nicht-existent", aber sie sind auch nicht mehr aktiv kämpfend.
+    # Das Caveat hilft dem Synthesizer, "X ist ein laufender Konflikt"-
+    # Claims differenziert zu beurteilen (Bergkarabach 2020 vs. 2024:
+    # Konflikt existiert, aber seit Aserbaidschans Sieg 2023 keine
+    # aktiven Events). Pattern: lessons_learned.md, Stichtagsbezug-
+    # Schutz, soft-Variant analog parlgov.py is_stale.
+    import datetime as _dt_local
+    today_year = _dt_local.date.today().year
+    last_event_year = headline_year if headline_year else 0
+    for c in conflicts:
+        if not isinstance(c, dict):
+            continue
+        try:
+            cy = int(c.get("year") or 0)
+        except (TypeError, ValueError):
+            cy = 0
+        if cy > last_event_year:
+            last_event_year = cy
+    if last_event_year and last_event_year < today_year - 3:
+        display = (
+            f"{display} [zuletzt aktive Events: {last_event_year} — "
+            f"seit {today_year - last_event_year} Jahren keine neuen "
+            f"UCDP-Events; Konflikt ggf. eingefroren/de-eskaliert]"
+        )
+
     # Längere description: alle Jahres-Buckets + Caveat
     year_lines = []
     for y in sorted(by_year.keys(), reverse=True)[:5]:
