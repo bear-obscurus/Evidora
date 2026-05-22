@@ -103,6 +103,33 @@ async def search_clinicaltrials(analysis: dict) -> dict:
         if sponsor:
             meta_parts.append(sponsor)
 
+        # Stichtagsbezug-Schutz: TERMINATED/WITHDRAWN/SUSPENDED-Studien
+        # sind kein Beleg für Wirksamkeit — sie wurden abgebrochen, oft
+        # wegen fehlender Wirkung oder Sicherheits-Bedenken. Health-
+        # Misinformation-Risiko (HCQ/Ivermectin: viele Phase-3-Trials
+        # wurden terminiert). STRUKTURELL-FALSCH-Marker, damit der
+        # Synthesizer "Studie zeigt Wirksamkeit"-Claims gegen
+        # abgebrochene Trials korrekt mostly_false/false verdicted.
+        # Pattern: lessons_learned.md Synthesizer-Inversions-Falle.
+        is_negative_status = status in {"TERMINATED", "WITHDRAWN", "SUSPENDED"}
+        base_body = (
+            f"{title} ({nct_id}). Status: {status_display}. "
+            f"Phase: {phase}. Intervention: {intervention_names}. "
+            f"Bedingung: {condition_str}. Zeitraum: "
+            f"{start or '?'} – {completion or '?'}"
+        )
+        if is_negative_status:
+            display_value = (
+                f"STRUKTURELL FALSCH: Studie {nct_id} '{title}' wurde "
+                f"laut ClinicalTrials.gov '{status_display}' — die "
+                f"Studie liefert KEIN Wirksamkeits-Beleg. Claims, die "
+                f"diese Studie als Evidenz für 'X wirkt' anführen, "
+                f"sind ohne neuere abgeschlossene Replikation nicht "
+                f"belastbar. Roh-Daten: {base_body}"
+            )
+        else:
+            display_value = base_body
+
         results.append({
             "title": title,
             "nct_id": nct_id,
@@ -114,6 +141,7 @@ async def search_clinicaltrials(analysis: dict) -> dict:
             "date": f"{start} – {completion}" if start else "",
             "url": f"https://clinicaltrials.gov/study/{nct_id}",
             "meta": " | ".join(meta_parts),
+            "display_value": display_value,
         })
 
     logger.info(f"ClinicalTrials.gov: {len(results)} studies for '{search_term[:80]}'")

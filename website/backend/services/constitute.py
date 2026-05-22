@@ -315,12 +315,28 @@ def _build_result_row(item: dict) -> dict | None:
         year_bits.append(f"revidiert {year_revised}")
     year_str = ", ".join(year_bits) or "—"
 
-    display_value = _trim(
+    base_display = (
         f"{title_long or title} — {country}; {year_str}; "
         f"{status_label}; {word_length:,} Wörter; "
-        f"{years_amended} Änderungs-Jahre.",
-        320,
+        f"{years_amended} Änderungs-Jahre."
     )
+    # Stichtagsbezug-Schutz: historische / nicht mehr in Kraft befindliche
+    # Verfassungen (z.B. Weimarer RV, DDR-Verfassung, UdSSR-Verfassung)
+    # dürfen nicht als aktuell gültige Rechtsgrundlage vom Synthesizer
+    # zitiert werden. STRUKTURELL-FALSCH-Marker bei is_historic / not
+    # in_force. Pattern: lessons_learned.md Synthesizer-Inversions-Falle.
+    if is_historic or not in_force:
+        display_value = _trim(
+            f"STRUKTURELL FALSCH: Die Verfassung '{title}' ({country}) "
+            f"ist '{status_label}' — sie ist NICHT die aktuell gültige "
+            f"Verfassung dieses Landes. Präsens-Aussagen 'X ist die "
+            f"Verfassung von {country}' / 'Y gilt in {country}' sind "
+            f"für diesen Verfassungstext nicht zutreffend. "
+            f"Roh-Daten: {base_display}",
+            500,
+        )
+    else:
+        display_value = _trim(base_display, 320)
 
     description = _trim(
         f"Constitute-Project-Eintrag (Comparative Constitutions Project, "

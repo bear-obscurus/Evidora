@@ -151,12 +151,46 @@ async def search_ema(analysis: dict) -> dict:
             best_score = max(best_score, score)
 
         if best_score > 0:
+            title = f"{med['name']} ({med['inn']})" if med['inn'] and med['inn'] != med['name'] else med['name']
+            status = (med.get("status") or "").strip()
+            # Stichtagsbezug-Schutz: nur "Authorised"/"Authorized" sind
+            # aktuell zugelassen. Withdrawn/Refused/Suspended sind nicht
+            # mehr (oder nie) gültige EU-Zulassungen → STRUKTURELL-FALSCH-
+            # Marker, damit Claims wie "X ist EU-zugelassen" auch bei
+            # historisch zugelassenen, später entzogenen Medikamenten
+            # mostly_false/false verdicted werden.
+            # Pattern: lessons_learned.md, Synthesizer-Inversions-Falle
+            # (Stichtagsbezug). Analog services/wikidata.py
+            # _struct_marker(kind="amt").
+            status_lc = status.lower()
+            is_not_active = bool(status) and not (
+                "authorised" in status_lc or "authorized" in status_lc
+            )
+            base_body = (
+                f"{title} — Status: {status}. "
+                f"Wirkstoff: {med['active_substance']}. "
+                f"Bereich: {med['therapeutic_area']}. "
+                f"Indikation: {med['indication']}"
+            )
+            if is_not_active:
+                display_value = (
+                    f"STRUKTURELL FALSCH: {title} ist laut EMA "
+                    f"NICHT (mehr) zugelassen — aktueller EMA-Status: "
+                    f"'{status}'. Präsens-Aussagen "
+                    f"'{med['name']} ist EU-zugelassen' / "
+                    f"'wird in der EU verschrieben' sind ohne "
+                    f"neuere Quelle nicht mehr zutreffend. "
+                    f"Roh-Daten: {base_body}"
+                )
+            else:
+                display_value = base_body
             result = {
-                "title": f"{med['name']} ({med['inn']})" if med['inn'] and med['inn'] != med['name'] else med['name'],
+                "title": title,
                 "active_substance": med["active_substance"],
-                "status": med["status"],
+                "status": status,
                 "therapeutic_area": med["therapeutic_area"],
                 "indication": med["indication"],
+                "display_value": display_value,
                 "url": med["url"] if med["url"] else f"https://www.ema.europa.eu/en/search?search_api_fulltext={med['name']}",
             }
             scored_results.append((best_score, result))
