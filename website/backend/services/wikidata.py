@@ -394,6 +394,12 @@ _POSITION_CLAIM_STEMS: tuple[str, ...] = (
     "bürgermeister", "buergermeister",
     "gouverneur", "governor",
     "regierungschef",
+    # Agent-4-Audit (2026-05-22) Erweiterungen:
+    "generalsekretär", "generalsekretaer",  # UN/NATO/OECD/OSCE/EU-Rat
+    "landeshauptmann", "landeshauptfrau",   # AT-Bundesländer
+    # Bewusst NICHT aufgenommen (Politik-Tabu-1+3-Zone):
+    # "vorsitzender" — Partei-Vorsitz → Wikipedia-only-Cap + 4-Tabu
+    # Pipeline-Routing greift, Filter darf hier nicht aktiv werden.
 )
 
 
