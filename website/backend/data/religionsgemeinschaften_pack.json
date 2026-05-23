@@ -882,6 +882,83 @@
           "konfessionslos"
         ]
       ]
+    },
+    {
+      "id": "theologische_aussagen_kategorie_2026",
+      "topic": "theologische_aussagen_unprüfbar_konsens",
+      "scope": "Theologisch-weltanschauliche Behauptungen sind keine faktischen Aussagen — können weder bewiesen noch widerlegt werden. Pipeline-Direktive für Kategorienfehler-Detection.",
+      "year": 2026,
+      "headline": "Theologisch-philosophische Aussagen ('Gott ist tot', 'Es gibt Gott', 'Es gibt ein Leben nach dem Tod', 'Die Seele existiert') sind KEINE Faktenfragen — Verdict 'unverifiable' statt true/false",
+      "data": {
+        "kernsatz_fuer_synthesizer": "PIPELINE-HINWEIS für den Synthesizer: Behauptungen über transzendente Realitäten — 'Gott existiert', 'Gott ist tot', 'Es gibt ein Leben nach dem Tod', 'Die Seele ist unsterblich', 'Reinkarnation gibt es wirklich', 'Engel existieren', 'Der Teufel existiert' — sind KEINE empirisch entscheidbaren Behauptungen. Sie gehören in den Bereich der THEOLOGIE / PHILOSOPHIE / WELTANSCHAUUNG. Eine Faktencheck-Pipeline kann sie weder bestätigen noch widerlegen. SYNTHESIZER-DIREKTIVE: verdict 'unverifiable' mit niedriger Konfidenz (0.10-0.20), nuance-Erklärung 'Aussage ist nicht empirisch prüfbar, sondern theologisch-philosophischer Natur'. WICHTIG: bitte KEIN Verdict 'true' oder 'false' geben — auch wenn eine Faktencheck-Quelle zufällig den Wortlaut enthält (z.B. Klaus-Schwab-Faktencheck enthält Wortlaut 'Gott ist tot' aber prüft einen ANDEREN Claim, das ist ein Quellen-Mismatch). 'Gott ist tot' ist ein berühmtes Nietzsche-Zitat ('Die fröhliche Wissenschaft' 1882, Aphorismus 125 'Der tolle Mensch') und gehört zur philosophischen Säkularisierungs-Debatte — kein WEF-Verschwörungs-Claim. ABGRENZUNG zu (a) empirisch prüfbaren Religions-Statistiken (Konfessionsloser-Anteil etc. — diese liefern andere Pack-Treffer in religionsgemeinschaften_pack mit fester Daten-Grundlage); (b) Verschwörungs-Narrativen mit theologischer Sprache ('WEF will Gott durch KI ersetzen' → verschwoerungen_pack); (c) wissenschaftlich widerlegter Pseudo-Wissenschaft (Reinkarnations-Rückführungs-Therapie → esoterik_pack).",
+        "nietzsche_zitat_kontext": "'Gott ist tot' ist ein berühmtes philosophisches Zitat von Friedrich Nietzsche aus 'Die fröhliche Wissenschaft' (1882, Aphorismus 125 'Der tolle Mensch') und Zarathustra (1883-1885). Es ist KEINE Aussage über den ontologischen Tod eines metaphysischen Wesens, sondern eine philosophisch-kulturkritische Metapher für den Verfall des religiösen Glaubens und der traditionellen christlichen Werte im modernen Westen. Nietzsche-Forschung (Heidegger, Kaufmann, Safranski, Sloterdijk) sieht es als Diagnose der Säkularisierung. Eine Faktencheck-Pipeline kann WEDER bestätigen NOCH widerlegen, dass 'Gott tot ist' — das ist eine theologisch-philosophische Frage.",
+        "abgrenzung_empirisch_pruefbar": "Empirisch prüfbare RELIGIONS-Statistiken (anders als die Theologie-Frage selbst): Anteil Konfessionsloser in DACH, Religionszugehörigkeits-Trends, Kirchen-Austritts-Statistiken, Glaubens-Praxis-Umfragen (Bertelsmann Religionsmonitor, ÖFI-Studien, Pew Global Attitudes). Diese Daten existieren in `religionsgemeinschaften_pack` und sind faktisch entscheidbar. NICHT entscheidbar sind ontologische Wahrheits-Aussagen über religiöse Inhalte (Existenz Gottes, Wahrheit einer Heiligen Schrift, Wirksamkeit von Gebet, Existenz übernatürlicher Wesen etc.).",
+        "verschwoerungs_abgrenzung": "Wenn der Claim explizit ein KONKRETES VERSCHWÖRUNGS-NARRATIV enthält ('WEF/Schwab/Gates plant Gott durch KI zu ersetzen', 'Religion wird durch Algorithmen abgeschafft', 'NWO bekämpft Christentum'), dann gehört das in das `verschwoerungen_pack` (Verschwörungs-Narrativ ohne Beleg → false) — NICHT in diesen Theologie-Kategorienfehler-Anker.",
+        "context": "Topic ist ein META-Anker für Kategorienfehler-Detection. Politik-Tabu-Compliance: keine theologische Wertung (keine Aussage 'Gott existiert ja/nein'), keine Religions-Bewertung, nur deskriptive Pipeline-Direktive."
+      },
+      "context_notes": [
+        "Bei Claims wie 'Gott ist tot' / 'Es gibt einen Gott' / 'Die Seele existiert' soll der Synthesizer KEINEN harten Verdict 'true'/'false' liefern, sondern 'unverifiable' mit Erklärung des Kategorien-Charakters.",
+        "Pack respektiert religiöse + nicht-religiöse Weltanschauungen gleichermaßen. KEINE Position pro/contra Religion.",
+        "Wichtige Differenzierung: religionspraxis-Statistik (entscheidbar) ≠ Theologie-Wahrheit (nicht entscheidbar)."
+      ],
+      "claim_phrasings_handled": [
+        "Gott ist tot",
+        "Es gibt einen Gott",
+        "Gott existiert",
+        "Gott existiert nicht",
+        "Es gibt ein Leben nach dem Tod",
+        "Die Seele ist unsterblich",
+        "Reinkarnation gibt es wirklich",
+        "Engel existieren",
+        "Der Teufel existiert",
+        "Jesus ist der Sohn Gottes",
+        "Mohammed war der letzte Prophet",
+        "Buddha hat die Wahrheit erkannt"
+      ],
+      "trigger_keywords": [
+        "gott ist tot",
+        "es gibt gott",
+        "gott existiert",
+        "gott existiert nicht",
+        "leben nach dem tod",
+        "seele unsterblich",
+        "reinkarnation gibt es",
+        "engel existieren",
+        "teufel existiert"
+      ],
+      "trigger_composite": [
+        [
+          "gott",
+          "götter",
+          "allah",
+          "jahwe",
+          "seele",
+          "engel",
+          "teufel",
+          "reinkarnation",
+          "leben nach dem tod",
+          "wiedergeburt",
+          "auferstehung",
+          "schöpfer",
+          "jenseits",
+          "paradies",
+          "hölle"
+        ],
+        [
+          "existier",
+          "tot",
+          "gibt es",
+          "ist real",
+          "ist wahr",
+          "ist wirklich",
+          "lebt",
+          "lebendig",
+          "gestorben"
+        ]
+      ],
+      "source_label": "Nietzsche-Philosophie (Die fröhliche Wissenschaft 1882) + Religions-Wissenschaft (Bertelsmann Religionsmonitor + Pew Global Attitudes) + Politik-Guardrails Evidora",
+      "source_url": "https://www.gutenberg.org/cache/epub/7203/pg7203-images.html",
+      "secondary_url": "https://www.bertelsmann-stiftung.de/de/unsere-projekte/religionsmonitor"
     }
   ]
 }

@@ -84,6 +84,13 @@ Thematische Relevanz (SEHR WICHTIG):
 - Lieber WENIGER aber relevante Evidenz als MEHR aber thematisch falsche Evidenz
 - Wenn nach dem Relevanzfilter keine Evidenz übrig bleibt, setze verdict auf "unverifiable"
 
+Kategorienfehler-Detection (WICHTIG — NICHT mit verdict 'true'/'false' beantworten):
+- THEOLOGISCH-WELTANSCHAULICHE Behauptungen über transzendente Realitäten ("Gott existiert", "Gott ist tot", "Es gibt ein Leben nach dem Tod", "Die Seele ist unsterblich", "Engel existieren", "Reinkarnation gibt es wirklich", "Jesus ist der Sohn Gottes", "Mohammed war Prophet") sind KEINE empirisch entscheidbaren Faktenaussagen — verdict MUSS "unverifiable" sein, Konfidenz 0.10-0.20, nuance mit Erklärung "theologisch-philosophischer Charakter, nicht empirisch prüfbar".
+- PHILOSOPHISCHE Behauptungen über Sinn / freien Willen / Bewusstsein ("Das Leben hat einen Sinn", "Der freie Wille existiert", "Bewusstsein ist materiell reduzierbar") sind philosophische Positionen — verdict "unverifiable" mit Hinweis "philosophische Streitfrage".
+- ÄSTHETISCHE/GESCHMACKLICHE Bewertungen ("Mozart ist besser als Beethoven", "Modernismus ist schöne Kunst") sind Geschmacksurteile — verdict "unverifiable" mit Hinweis "ästhetisches Urteil, kein Faktum".
+- NORMATIV-MORALISCHE Behauptungen ohne deskriptiven Anker ("Töten ist immer falsch", "X-Praxis ist moralisch verwerflich") — verdict "unverifiable" mit Hinweis "moralische Wertungsfrage, kein Faktencheck-Gegenstand". ABGRENZUNG: deskriptive Moral-Statistik-Aussagen ("In Land X ist die Todesstrafe rechtlich abgeschafft") sind empirisch prüfbar — diese Regel betrifft nur normative Aussagen.
+- WICHTIG: Bei diesen Claim-Klassen IGNORIERE oberflächlich relevante Faktencheck-Quellen, die zufällig den Wortlaut enthalten (z.B. dpa-Faktencheck zu Klaus Schwab enthält "Gott ist tot" — prüft aber ein anderes Verschwörungs-Narrativ, nicht die theologische Aussage). Erkennbar an semantischer Distanz zwischen Original-Claim und Quellen-Titel/Description.
+
 Quellengewichtung (WICHTIG):
 - Wissenschaftliche Primärquellen (PubMed, WHO, EMA, Eurostat, Copernicus, EEA) haben HÖHERE Glaubwürdigkeit als Sekundärquellen
 - Faktenchecker-Ergebnisse (ClaimReview/Google Fact Check) sind Sekundärquellen — sie fassen bestehende Erkenntnisse zusammen
