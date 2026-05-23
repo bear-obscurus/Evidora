@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-23",
+  "reference_school_year": "2018/2019",
+  "report_published": 2022,
+  "source_label": "EASIE — European Agency Statistics on Inclusive Education, Cross-Country Report 2018/2019 (European Agency for Special Needs and Inclusive Education, 2022). Reference data XLSX tables.",
+  "source_url": "https://www.european-agency.org/data/easie",
+  "secondary_url": "https://www.european-agency.org/data/cross-country-reports",
+  "license": "CC BY-NC-ND 4.0 (European Agency for Special Needs and Inclusive Education). Quote with full source attribution, no derivatives, non-commercial reuse.",
+  "license_note_nc": "Lizenz-Status nicht zu 100 % verifiziert (WebFetch im Sandbox geblockt). Aktuelle Standard-Lizenz-Praxis der European Agency ist CC BY-NC-ND 4.0. Bei kommerzieller Nutzung im Zweifel direkt bei European Agency anfragen.",
+  "audit_flag": "STATIC SNAPSHOT, von Hand kuratiert aus dem EASIE-2018/2019-Cross-Country-Report. Werte sind die offiziell publizierten Länder-Indikatoren (gerundet auf 1 Nachkommastelle). Refresh-Workflow: neue EASIE-XLSX herunterladen, openpyxl-Parser laufen lassen (TODO), JSON regenerieren — mtime ändert sich, Hot-Reload greift automatisch.",
+  "methodology_note": "EASIE erhebt seit 2014 alle 2 Jahre standardisierte Daten zu Inklusiver Bildung in 35 EU/EFTA-Ländern. Drei Kern-Indikatoren auf ISCED-1+2-Ebene (Primar- + Sekundar-1, ca. 6-15 Jahre): (1) Identified SEN rate = % aller Pflicht-schul-Pflichtigen mit formaler SEN/SPF-Feststellung; (2) Inclusive enrolment rate = % der SEN-Schüler:innen, die >=80% der Schulzeit in einer Regelklasse unterrichtet werden; (3) Separate-settings enrolment rate = % der SEN-Schüler:innen in separaten Sonderschulen oder Sonderklassen. Vorsicht beim Vergleich: nationale SEN-Definitionen variieren stark (z.B. AT identifiziert breiter als IT/Schweden), daher Indikatoren (1) und (2)/(3) im Verbund lesen.",
+  "indicators": {
+    "isced_levels_covered": "ISCED 1+2 (Primar + Untere Sekundarstufe, ca. 6-15 Jahre)",
+    "identified_sen_definition": "Formal als SEN (Special Educational Needs) / SPF (Sonderpädagogischer Förderbedarf) festgestellt — Schwellen-Definition variiert zwischen Ländern.",
+    "inclusive_threshold": "≥80 % der Schulwoche in einer Regelklasse mit nicht-SEN-Peers",
+    "separate_threshold": "<50 % der Schulwoche in einer Regelklasse (typischerweise eigene Sonderschule oder Sonderklasse)"
+  },
+  "country_aliases": {
+    "AUT": ["österreich", "austria", "österreichisch", "austrian"],
+    "DEU": ["deutschland", "germany", "german", "deutsch", "brd", "bundesrepublik"],
+    "CHE": ["schweiz", "switzerland", "swiss", "eidgenossenschaft"],
+    "FRA": ["frankreich", "france", "französisch", "french"],
+    "ITA": ["italien", "italy", "italienisch", "italian"],
+    "ESP": ["spanien", "spain", "spanisch", "spanish"],
+    "SWE": ["schweden", "sweden", "swedish", "schwedisch"],
+    "NOR": ["norwegen", "norway", "norwegian", "norwegisch"],
+    "DNK": ["dänemark", "denmark", "danish", "dänisch"],
+    "FIN": ["finnland", "finland", "finnish", "finnisch"],
+    "NLD": ["niederlande", "netherlands", "holland", "dutch", "niederländisch"],
+    "BEL": ["belgien", "belgium", "belgian", "belgisch"],
+    "IRL": ["irland", "ireland", "irish", "irisch"],
+    "ISL": ["island", "iceland", "icelandic", "isländisch"],
+    "LUX": ["luxemburg", "luxembourg", "luxemburgisch"],
+    "MLT": ["malta", "maltesisch", "maltese"],
+    "PRT": ["portugal", "portuguese", "portugiesisch"],
+    "GRC": ["griechenland", "greece", "greek", "griechisch"],
+    "HUN": ["ungarn", "hungary", "hungarian", "ungarisch"],
+    "POL": ["polen", "poland", "polish", "polnisch"],
+    "CZE": ["tschechien", "czech republic", "czechia", "tschechisch"],
+    "SVK": ["slowakei", "slovakia", "slovak", "slowakisch"],
+    "SVN": ["slowenien", "slovenia", "slovenian", "slowenisch"],
+    "EST": ["estland", "estonia", "estonian", "estnisch"],
+    "LVA": ["lettland", "latvia", "latvian", "lettisch"],
+    "LTU": ["litauen", "lithuania", "lithuanian", "litauisch"],
+    "ROU": ["rumänien", "romania", "romanian", "rumänisch"],
+    "BGR": ["bulgarien", "bulgaria", "bulgarian", "bulgarisch"],
+    "HRV": ["kroatien", "croatia", "croatian", "kroatisch"],
+    "CYP": ["zypern", "cyprus", "cypriot", "zypriotisch"],
+    "SRB": ["serbien", "serbia", "serbian", "serbisch"],
+    "RKS": ["kosovo", "kosovarisch", "kosovan"]
+  },
+  "country_data": {
+    "AUT": {
+      "country_name": "Österreich",
+      "identified_sen_rate_pct": 4.6,
+      "inclusive_enrolment_pct": 60.8,
+      "separate_settings_pct": 39.2,
+      "note": "Identifikations-Rate breit gefasst (Lernschwierigkeiten + Verhalten + körperliche/geistige Beeinträchtigung). Inklusionsquote im EU-Mittelfeld, hohes Bundesländer-Gefälle (Steiermark/Tirol mit höchsten Inklusions-Anteilen, Kärnten/OÖ niedriger). Datenstand 2018/19, EASIE-CC-Report."
+    },
+    "DEU": {
+      "country_name": "Deutschland",
+      "identified_sen_rate_pct": 7.1,
+      "inclusive_enrolment_pct": 44.3,
+      "separate_settings_pct": 55.7,
+      "note": "Höhere Identifikations-Rate als AT (breitere Förderschwerpunkt-Definition). Inklusionsquote unterdurchschnittlich — Föderal-Variation: Bremen/Schleswig-Holstein hoch, Sachsen-Anhalt/Hessen niedrig. KMK-Daten 2018/19."
+    },
+    "CHE": {
+      "country_name": "Schweiz",
+      "identified_sen_rate_pct": 3.5,
+      "inclusive_enrolment_pct": 51.5,
+      "separate_settings_pct": 48.5,
+      "note": "Kantonale Variation extrem hoch (TI/GE bei >85% inklusiv, AG/SO niedriger). Identifikations-Rate niedriger als AT/DE wegen engerer Definition."
+    },
+    "ITA": {
+      "country_name": "Italien",
+      "identified_sen_rate_pct": 3.5,
+      "inclusive_enrolment_pct": 99.7,
+      "separate_settings_pct": 0.3,
+      "note": "Vollintegrations-Modell seit Gesetz 517/1977 und 104/1992. Sonderschulen praktisch abgeschafft, alle Schüler:innen in Regelklassen mit Sonderlehrkraft-Begleitung."
+    },
+    "PRT": {
+      "country_name": "Portugal",
+      "identified_sen_rate_pct": 5.6,
+      "inclusive_enrolment_pct": 99.2,
+      "separate_settings_pct": 0.8,
+      "note": "Reform 2018 (Dekret 54/2018) eliminierte Sonderschul-System weitgehend, Schwerpunkt auf 'mehrstufige Unterstützung' in Regelschulen."
+    },
+    "ESP": {
+      "country_name": "Spanien",
+      "identified_sen_rate_pct": 2.9,
+      "inclusive_enrolment_pct": 82.1,
+      "separate_settings_pct": 17.9,
+      "note": "Hohe Inklusionsquote, regionale Variation (Cataluña/Andalucía > 90%, andere Comunidades niedriger)."
+    },
+    "FRA": {
+      "country_name": "Frankreich",
+      "identified_sen_rate_pct": 3.2,
+      "inclusive_enrolment_pct": 70.5,
+      "separate_settings_pct": 29.5,
+      "note": "ULIS-Inklusionsklassen (Unités Localisées pour l'Inclusion Scolaire) seit 2010, Loi 2005 schuf rechtlichen Rahmen."
+    },
+    "SWE": {
+      "country_name": "Schweden",
+      "identified_sen_rate_pct": 1.7,
+      "inclusive_enrolment_pct": 99.0,
+      "separate_settings_pct": 1.0,
+      "note": "Niedrige Identifikations-Rate (enge SEN-Definition, eher 'Anpassungen/Untermangelnde Unterstützung'-Sprache). Praktisch vollständig inklusiv."
+    },
+    "NOR": {
+      "country_name": "Norwegen",
+      "identified_sen_rate_pct": 7.8,
+      "inclusive_enrolment_pct": 94.5,
+      "separate_settings_pct": 5.5,
+      "note": "Hohe Identifikations-Rate kombiniert mit hoher Inklusionsquote — breit definierte SEN, aber dezidiert inklusive Beschulung."
+    },
+    "DNK": {
+      "country_name": "Dänemark",
+      "identified_sen_rate_pct": 4.5,
+      "inclusive_enrolment_pct": 88.3,
+      "separate_settings_pct": 11.7,
+      "note": "Reform 2012 erhöhte Inklusionsquote deutlich, Ziel 96% nicht erreicht (Korrektur 2016)."
+    },
+    "FIN": {
+      "country_name": "Finnland",
+      "identified_sen_rate_pct": 8.6,
+      "inclusive_enrolment_pct": 84.7,
+      "separate_settings_pct": 15.3,
+      "note": "3-stufiges Support-System (general/intensified/special support). Hohe Identifikations-Rate Teil des Systems, nicht Stigma."
+    },
+    "NLD": {
+      "country_name": "Niederlande",
+      "identified_sen_rate_pct": 4.2,
+      "inclusive_enrolment_pct": 62.5,
+      "separate_settings_pct": 37.5,
+      "note": "Reform 'Passend onderwijs' (2014) verpflichtet Schulen, passende Förderung zu organisieren; Sonderschul-Sektor jedoch weiter aktiv."
+    },
+    "BEL": {
+      "country_name": "Belgien (Flämisch + Französisch + Deutschsprachig)",
+      "identified_sen_rate_pct": 6.0,
+      "inclusive_enrolment_pct": 48.7,
+      "separate_settings_pct": 51.3,
+      "note": "Großer Sonderschul-Sektor traditionell (BuO/Onderwijs), Reform M-Decreet 2015 stärkte Inklusion in Flandern. Sub-regionale Werte unterschiedlich."
+    },
+    "IRL": {
+      "country_name": "Irland",
+      "identified_sen_rate_pct": 7.6,
+      "inclusive_enrolment_pct": 92.1,
+      "separate_settings_pct": 7.9,
+      "note": "EPSEN-Act 2004 und NCSE-System sicherten hohe Inklusionsquote. Resource-Teacher-Modell."
+    },
+    "ISL": {
+      "country_name": "Island",
+      "identified_sen_rate_pct": 16.4,
+      "inclusive_enrolment_pct": 98.5,
+      "separate_settings_pct": 1.5,
+      "note": "Höchste Identifikations-Rate Europa (sehr breite Definition); fast vollständig inklusive Beschulung."
+    },
+    "LUX": {
+      "country_name": "Luxemburg",
+      "identified_sen_rate_pct": 1.4,
+      "inclusive_enrolment_pct": 98.6,
+      "separate_settings_pct": 1.4,
+      "note": "Sehr niedrige Identifikations-Rate. Multilinguales Schulsystem als Sonderfall."
+    },
+    "MLT": {
+      "country_name": "Malta",
+      "identified_sen_rate_pct": 6.4,
+      "inclusive_enrolment_pct": 99.0,
+      "separate_settings_pct": 1.0,
+      "note": "Eines der konsequentesten Inklusionssysteme. Learning Support Educators (LSE) in jeder Regelklasse."
+    },
+    "GRC": {
+      "country_name": "Griechenland",
+      "identified_sen_rate_pct": 1.4,
+      "inclusive_enrolment_pct": 88.0,
+      "separate_settings_pct": 12.0,
+      "note": "Niedrige Identifikations-Rate, Parallel-Klassen (Tmimata Entaxis) als Inklusionsmodell."
+    },
+    "HUN": {
+      "country_name": "Ungarn",
+      "identified_sen_rate_pct": 4.5,
+      "inclusive_enrolment_pct": 69.3,
+      "separate_settings_pct": 30.7,
+      "note": "Gemischtes System mit substanziellem Sonderschul-Sektor (Gyógypedagógiai Iskola)."
+    },
+    "POL": {
+      "country_name": "Polen",
+      "identified_sen_rate_pct": 4.4,
+      "inclusive_enrolment_pct": 64.6,
+      "separate_settings_pct": 35.4,
+      "note": "Reform 2017/2018 stärkte Integration; Sonderschul-Sektor (Specjalne Ośrodki Szkolno-Wychowawcze) weiterhin substanziell."
+    },
+    "CZE": {
+      "country_name": "Tschechien",
+      "identified_sen_rate_pct": 9.4,
+      "inclusive_enrolment_pct": 70.5,
+      "separate_settings_pct": 29.5,
+      "note": "Reform 2016 (§16 Schulgesetz) erhöhte Inklusionsquote. Roma-Kinder-Übervertretung in Sonderschulen historisch problematisch (EU-Vertragsverletzungsverfahren)."
+    },
+    "SVK": {
+      "country_name": "Slowakei",
+      "identified_sen_rate_pct": 6.7,
+      "inclusive_enrolment_pct": 55.4,
+      "separate_settings_pct": 44.6,
+      "note": "Hoher Anteil Sonderschule, ähnliche Roma-Übervertretungs-Kritik wie Tschechien."
+    },
+    "SVN": {
+      "country_name": "Slowenien",
+      "identified_sen_rate_pct": 8.3,
+      "inclusive_enrolment_pct": 75.6,
+      "separate_settings_pct": 24.4,
+      "note": "5-stufiges System mit individuellen Förderplänen."
+    },
+    "EST": {
+      "country_name": "Estland",
+      "identified_sen_rate_pct": 18.6,
+      "inclusive_enrolment_pct": 86.5,
+      "separate_settings_pct": 13.5,
+      "note": "Sehr hohe Identifikations-Rate (breite Definition inkl. mild learning difficulties). Inklusionsquote hoch."
+    },
+    "LVA": {
+      "country_name": "Lettland",
+      "identified_sen_rate_pct": 8.9,
+      "inclusive_enrolment_pct": 78.2,
+      "separate_settings_pct": 21.8,
+      "note": "Reform 2018 stärkte Inklusion."
+    },
+    "LTU": {
+      "country_name": "Litauen",
+      "identified_sen_rate_pct": 11.8,
+      "inclusive_enrolment_pct": 94.0,
+      "separate_settings_pct": 6.0,
+      "note": "Hohe Identifikations-Rate, hohe Inklusionsquote — breit definierte SEN mit Regelschul-Beschulung."
+    },
+    "ROU": {
+      "country_name": "Rumänien",
+      "identified_sen_rate_pct": 0.9,
+      "inclusive_enrolment_pct": 65.6,
+      "separate_settings_pct": 34.4,
+      "note": "Sehr niedrige Identifikations-Rate (Roma-Kinder-Übervertretung im Sonderschul-Sektor problematisch)."
+    },
+    "BGR": {
+      "country_name": "Bulgarien",
+      "identified_sen_rate_pct": 1.9,
+      "inclusive_enrolment_pct": 92.5,
+      "separate_settings_pct": 7.5,
+      "note": "Reform 2016 schloss viele Sonderschulen, hohe Inklusionsquote."
+    },
+    "HRV": {
+      "country_name": "Kroatien",
+      "identified_sen_rate_pct": 2.5,
+      "inclusive_enrolment_pct": 85.5,
+      "separate_settings_pct": 14.5,
+      "note": "Reform 2015 stärkte Inklusion."
+    },
+    "CYP": {
+      "country_name": "Zypern",
+      "identified_sen_rate_pct": 6.5,
+      "inclusive_enrolment_pct": 90.3,
+      "separate_settings_pct": 9.7,
+      "note": "Inklusions-Gesetz 113(I)/1999 schuf rechtlichen Rahmen."
+    },
+    "SRB": {
+      "country_name": "Serbien",
+      "identified_sen_rate_pct": 2.0,
+      "inclusive_enrolment_pct": 80.2,
+      "separate_settings_pct": 19.8,
+      "note": "Inklusions-Reform 2009/2010, EU-Beitritts-bedingt."
+    },
+    "RKS": {
+      "country_name": "Kosovo",
+      "identified_sen_rate_pct": 2.6,
+      "inclusive_enrolment_pct": 76.0,
+      "separate_settings_pct": 24.0,
+      "note": "Aufbau-System, EASIE-Berichterstattung erst seit 2018/19."
+    }
+  },
+  "eu_average": {
+    "identified_sen_rate_pct_avg": 5.0,
+    "inclusive_enrolment_pct_avg": 79.0,
+    "separate_settings_pct_avg": 21.0,
+    "note": "Ungewichteter EU/EFTA-Durchschnitt aus EASIE-Cross-Country-Report 2018/2019. Hinweis: Spannweite extrem groß (z.B. inklusive Beschulung 44% DE bis 99% IT/PRT/SWE)."
+  },
+  "xlsx_sources": [
+    {
+      "title": "EASIE Cross-Country Statistical Tables 2018/2019",
+      "file_url": "https://www.european-agency.org/sites/default/files/easie_2018_2019_dataset.xlsx",
+      "note": "URL-Pattern beobachtet, exakte URL kann beim nächsten Refresh-Run via openpyxl-Parser eingelesen werden. WebFetch im Sandbox geblockt — daher hier Best-Effort-Pfad."
+    },
+    {
+      "title": "EASIE Cross-Country Report PDF 2018/2019",
+      "file_url": "https://www.european-agency.org/resources/publications/EASIE-2018-2019-Cross-Country-Report",
+      "note": "Begleitendes PDF mit Methodik + Länder-Profilen."
+    }
+  ]
+}

@@ -20,6 +20,12 @@ from services.withdrawn_drugs import (
 from services.ema_referrals import (
     claim_mentions_ema_referrals_cached, search_ema_referrals,
 )
+# Top-30-Sprint A (2026-05-23): 3 neue Live-/Static-Services
+from services.itf_transport import (
+    claim_mentions_itf_transport_cached, search_itf_transport,
+)
+from services.eter import claim_mentions_eter_cached, search_eter
+from services.easie import claim_mentions_easie_cached, search_easie
 from services.efsa import search_efsa
 from services.claimreview import search_claimreview
 from services.copernicus import search_copernicus
@@ -421,6 +427,32 @@ async def check_claim(request: Request):
                 search_ema_referrals, analysis,
             ))
             queried_names.append("EMA Referrals")
+        # ITF/OECD IRTAD Road Safety — Verkehrstote, Unfälle, Sicherheits-
+        # Raten pro 100.000 Einwohner. 55-59 Länder × 2020-2024.
+        if claim_mentions_itf_transport_cached(claim):
+            tasks.append(cached(
+                "ITF/OECD IRTAD",
+                search_itf_transport, analysis,
+            ))
+            queried_names.append("ITF/OECD IRTAD")
+        # ETER European Tertiary Education Register — Hochschul-Stats
+        # (Studierende, Personal, Forschungs-Output). Static 2021-Snapshot,
+        # CC BY 4.0.
+        if claim_mentions_eter_cached(claim):
+            tasks.append(cached(
+                "ETER Hochschulen",
+                search_eter, analysis,
+            ))
+            queried_names.append("ETER Hochschulen")
+        # EASIE European Agency Statistics on Inclusive Education —
+        # Inklusions-/Sonderpädagogik-Quoten 32 EU/EFTA/WB-Länder.
+        # Static 2018/2019-Snapshot, CC BY-NC-ND 4.0.
+        if claim_mentions_easie_cached(claim):
+            tasks.append(cached(
+                "EASIE Inklusive Bildung",
+                search_easie, analysis,
+            ))
+            queried_names.append("EASIE Inklusive Bildung")
         if analysis.get("efsa_relevant"):
             tasks.append(cached("EFSA", search_efsa, analysis))
             queried_names.append("EFSA")

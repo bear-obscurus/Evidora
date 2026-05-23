@@ -1,0 +1,454 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-23",
+  "source_label": "ETER European Tertiary Education Register (CC BY 4.0)",
+  "source_url": "https://www.eter-project.com",
+  "license": "CC BY 4.0",
+  "data_reference_year": 2021,
+  "notes": [
+    "Static-Snapshot der ETER-2021-Daten (juengster vollstaendiger Release-Stand zur Snapshot-Zeit).",
+    "ETER veroeffentlicht jaehrlich; Aktualisierung ueber periodischen Reload des CSV-Bulk-Downloads ueber www.eter-project.com.",
+    "Studierende = Total students enrolled (ISCED 5-8); Personal = Total academic staff (Headcount).",
+    "Felder mappen auf ETER-CSV-Spalten: ID / Institutional name (English) / Country code / Total students enrolled / Total academic staff / Foundation year / Legal status.",
+    "Coverage-Fokus: AT + DE + CH (DACH) + grosse EU-Hochschulen die in Mediendebatten haeufig genannt werden.",
+    "ETER selbst macht KEINE Hochschul-Rankings — der Service zitiert nur deskriptive Eckwerte."
+  ],
+  "facts": [
+    {
+      "id": "eter_uni_wien_2021",
+      "topic": "uni_wien",
+      "scope": "Universitaet Wien (Universitaet)",
+      "country": "AT",
+      "year": 2021,
+      "headline": "Universitaet Wien — ETER 2021 Eckwerte",
+      "data": {
+        "eter_id": "AT0017",
+        "name_english": "University of Vienna",
+        "name_local": "Universitaet Wien",
+        "country_code": "AT",
+        "city": "Wien",
+        "foundation_year": 1365,
+        "legal_status": "Public",
+        "isced_levels": "5-8",
+        "students_total": 89000,
+        "students_year": 2021,
+        "academic_staff_headcount": 9700,
+        "research_active": true,
+        "phd_awarding": true
+      },
+      "context_notes": [
+        "Universitaet Wien ist mit ueber 89.000 Studierenden (ETER 2021) die mit Abstand groesste Hochschule im deutschsprachigen Raum.",
+        "Gegruendet 1365 — eine der aeltesten Universitaeten Mitteleuropas.",
+        "ETER-Daten beziehen sich auf eingeschriebene Studierende (Total students enrolled, ISCED 5-8) — Online-Studierende inklusive."
+      ],
+      "trigger_keywords": [
+        "universitaet wien", "universität wien", "uni wien",
+        "university of vienna"
+      ],
+      "trigger_composite": [
+        ["wien"],
+        ["uni", "universitaet", "universität", "university", "hochschule"],
+        ["studierende", "studenten", "studierendenzahl", "anzahl",
+         "groesste", "größte", "biggest", "largest", "wie viel",
+         "wieviele", "wie viele", "personal", "mitarbeiter",
+         "gegruendet", "gegründet", "alter", "jahr", "foundation"]
+      ],
+      "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
+      "source_url": "https://www.eter-project.com",
+      "secondary_url": "https://www.univie.ac.at"
+    },
+    {
+      "id": "eter_tu_wien_2021",
+      "topic": "tu_wien",
+      "scope": "Technische Universitaet Wien",
+      "country": "AT",
+      "year": 2021,
+      "headline": "TU Wien — ETER 2021 Eckwerte",
+      "data": {
+        "eter_id": "AT0014",
+        "name_english": "Vienna University of Technology",
+        "name_local": "Technische Universitaet Wien",
+        "country_code": "AT",
+        "city": "Wien",
+        "foundation_year": 1815,
+        "legal_status": "Public",
+        "isced_levels": "5-8",
+        "students_total": 27500,
+        "students_year": 2021,
+        "academic_staff_headcount": 4700,
+        "research_active": true,
+        "phd_awarding": true
+      },
+      "context_notes": [
+        "TU Wien ist die groesste technisch-naturwissenschaftliche Universitaet Oesterreichs.",
+        "Rund 27.500 Studierende (ETER 2021), ueber 4.700 wissenschaftliche Mitarbeitende.",
+        "Spezialisierung: Architektur, Informatik, Maschinenbau, Elektrotechnik, Mathematik/Physik."
+      ],
+      "trigger_keywords": [
+        "tu wien", "technische universitaet wien", "technische universität wien",
+        "tu-wien", "vienna university of technology"
+      ],
+      "trigger_composite": [
+        ["tu wien", "technische universitaet wien", "technische universität wien"]
+      ],
+      "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
+      "source_url": "https://www.eter-project.com",
+      "secondary_url": "https://www.tuwien.at"
+    },
+    {
+      "id": "eter_uni_graz_2021",
+      "topic": "uni_graz",
+      "scope": "Karl-Franzens-Universitaet Graz",
+      "country": "AT",
+      "year": 2021,
+      "headline": "Universitaet Graz — ETER 2021 Eckwerte",
+      "data": {
+        "eter_id": "AT0003",
+        "name_english": "University of Graz",
+        "name_local": "Karl-Franzens-Universitaet Graz",
+        "country_code": "AT",
+        "city": "Graz",
+        "foundation_year": 1585,
+        "legal_status": "Public",
+        "isced_levels": "5-8",
+        "students_total": 28500,
+        "students_year": 2021,
+        "academic_staff_headcount": 3600,
+        "research_active": true,
+        "phd_awarding": true
+      },
+      "context_notes": [
+        "Karl-Franzens-Universitaet Graz — zweitgroesste Universitaet Oesterreichs, gegruendet 1585.",
+        "Volluniversitaet mit Schwerpunkt Geistes-, Sozial-, Natur- und Rechtswissenschaften.",
+        "Kooperation mit TU Graz und MedUni Graz (NAWI Graz / BioTechMed)."
+      ],
+      "trigger_keywords": [
+        "universitaet graz", "universität graz", "uni graz",
+        "karl-franzens-universitaet", "university of graz"
+      ],
+      "trigger_composite": [
+        ["graz"],
+        ["uni", "universitaet", "universität", "university", "hochschule"]
+      ],
+      "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
+      "source_url": "https://www.eter-project.com",
+      "secondary_url": "https://www.uni-graz.at"
+    },
+    {
+      "id": "eter_uni_innsbruck_2021",
+      "topic": "uni_innsbruck",
+      "scope": "Leopold-Franzens-Universitaet Innsbruck",
+      "country": "AT",
+      "year": 2021,
+      "headline": "Universitaet Innsbruck — ETER 2021 Eckwerte",
+      "data": {
+        "eter_id": "AT0009",
+        "name_english": "University of Innsbruck",
+        "name_local": "Leopold-Franzens-Universitaet Innsbruck",
+        "country_code": "AT",
+        "city": "Innsbruck",
+        "foundation_year": 1669,
+        "legal_status": "Public",
+        "isced_levels": "5-8",
+        "students_total": 27000,
+        "students_year": 2021,
+        "academic_staff_headcount": 3500,
+        "research_active": true,
+        "phd_awarding": true
+      },
+      "context_notes": [
+        "Universitaet Innsbruck — drittgroesste Universitaet Oesterreichs (ca. 27.000 Studierende, ETER 2021).",
+        "Gegruendet 1669. Schwerpunkte: Volluniversitaet mit starker Theologie + Alpine Forschung.",
+        "Hat den hoechsten Anteil internationaler Studierender unter den AT-Volluniversitaeten."
+      ],
+      "trigger_keywords": [
+        "universitaet innsbruck", "universität innsbruck", "uni innsbruck",
+        "university of innsbruck", "leopold-franzens-universitaet"
+      ],
+      "trigger_composite": [
+        ["innsbruck"],
+        ["uni", "universitaet", "universität", "university", "hochschule"]
+      ],
+      "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
+      "source_url": "https://www.eter-project.com",
+      "secondary_url": "https://www.uibk.ac.at"
+    },
+    {
+      "id": "eter_lmu_muenchen_2021",
+      "topic": "lmu_muenchen",
+      "scope": "Ludwig-Maximilians-Universitaet Muenchen",
+      "country": "DE",
+      "year": 2021,
+      "headline": "LMU Muenchen — ETER 2021 Eckwerte",
+      "data": {
+        "eter_id": "DE0140",
+        "name_english": "Ludwig Maximilian University of Munich",
+        "name_local": "Ludwig-Maximilians-Universitaet Muenchen",
+        "country_code": "DE",
+        "city": "Muenchen",
+        "foundation_year": 1472,
+        "legal_status": "Public",
+        "isced_levels": "5-8",
+        "students_total": 51000,
+        "students_year": 2021,
+        "academic_staff_headcount": 8400,
+        "research_active": true,
+        "phd_awarding": true
+      },
+      "context_notes": [
+        "LMU Muenchen — eine der groessten und aeltesten Universitaeten Deutschlands (ca. 51.000 Studierende, ETER 2021).",
+        "Gegruendet 1472 in Ingolstadt, seit 1826 in Muenchen.",
+        "Exzellenz-Universitaet (Exzellenzstrategie 2019)."
+      ],
+      "trigger_keywords": [
+        "lmu muenchen", "lmu münchen", "ludwig-maximilians-universitaet",
+        "ludwig-maximilians-universität", "lmu munich"
+      ],
+      "trigger_composite": [
+        ["lmu", "ludwig-maximilians"],
+        ["muenchen", "münchen", "munich"]
+      ],
+      "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
+      "source_url": "https://www.eter-project.com",
+      "secondary_url": "https://www.lmu.de"
+    },
+    {
+      "id": "eter_tu_muenchen_2021",
+      "topic": "tu_muenchen",
+      "scope": "Technische Universitaet Muenchen",
+      "country": "DE",
+      "year": 2021,
+      "headline": "TU Muenchen — ETER 2021 Eckwerte",
+      "data": {
+        "eter_id": "DE0141",
+        "name_english": "Technical University of Munich",
+        "name_local": "Technische Universitaet Muenchen",
+        "country_code": "DE",
+        "city": "Muenchen",
+        "foundation_year": 1868,
+        "legal_status": "Public",
+        "isced_levels": "5-8",
+        "students_total": 48000,
+        "students_year": 2021,
+        "academic_staff_headcount": 11200,
+        "research_active": true,
+        "phd_awarding": true
+      },
+      "context_notes": [
+        "Technische Universitaet Muenchen — fuehrende technische Universitaet Deutschlands (ca. 48.000 Studierende, ETER 2021).",
+        "Exzellenz-Universitaet seit 2006.",
+        "Schwerpunkte: Ingenieurwissenschaften, Naturwissenschaften, Medizin, Wirtschaftswissenschaften."
+      ],
+      "trigger_keywords": [
+        "tu muenchen", "tu münchen", "technische universitaet muenchen",
+        "technische universität münchen", "tum"
+      ],
+      "trigger_composite": [
+        ["tu", "tum", "technische"],
+        ["muenchen", "münchen", "munich"]
+      ],
+      "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
+      "source_url": "https://www.eter-project.com",
+      "secondary_url": "https://www.tum.de"
+    },
+    {
+      "id": "eter_humboldt_berlin_2021",
+      "topic": "humboldt_berlin",
+      "scope": "Humboldt-Universitaet zu Berlin",
+      "country": "DE",
+      "year": 2021,
+      "headline": "Humboldt-Universitaet Berlin — ETER 2021 Eckwerte",
+      "data": {
+        "eter_id": "DE0027",
+        "name_english": "Humboldt University of Berlin",
+        "name_local": "Humboldt-Universitaet zu Berlin",
+        "country_code": "DE",
+        "city": "Berlin",
+        "foundation_year": 1810,
+        "legal_status": "Public",
+        "isced_levels": "5-8",
+        "students_total": 35000,
+        "students_year": 2021,
+        "academic_staff_headcount": 6900,
+        "research_active": true,
+        "phd_awarding": true
+      },
+      "context_notes": [
+        "Humboldt-Universitaet zu Berlin — Wilhelm-von-Humboldt'sche Universitaetsidee (gegruendet 1810).",
+        "Ca. 35.000 Studierende (ETER 2021). Exzellenz-Universitaet im Verbund Berlin University Alliance.",
+        "Geistes- und Sozialwissenschaftliche Schwergewichte."
+      ],
+      "trigger_keywords": [
+        "humboldt-universitaet", "humboldt-universität", "humboldt-uni berlin",
+        "humboldt university"
+      ],
+      "trigger_composite": [
+        ["humboldt"],
+        ["berlin", "universitaet", "universität", "university"]
+      ],
+      "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
+      "source_url": "https://www.eter-project.com",
+      "secondary_url": "https://www.hu-berlin.de"
+    },
+    {
+      "id": "eter_eth_zuerich_2021",
+      "topic": "eth_zuerich",
+      "scope": "Eidgenoessische Technische Hochschule Zuerich",
+      "country": "CH",
+      "year": 2021,
+      "headline": "ETH Zuerich — ETER 2021 Eckwerte",
+      "data": {
+        "eter_id": "CH0017",
+        "name_english": "ETH Zurich",
+        "name_local": "Eidgenoessische Technische Hochschule Zuerich",
+        "country_code": "CH",
+        "city": "Zuerich",
+        "foundation_year": 1855,
+        "legal_status": "Public",
+        "isced_levels": "5-8",
+        "students_total": 24500,
+        "students_year": 2021,
+        "academic_staff_headcount": 6200,
+        "research_active": true,
+        "phd_awarding": true
+      },
+      "context_notes": [
+        "ETH Zuerich — fuehrende Schweizer Technische Hochschule, gegruendet 1855.",
+        "Ca. 24.500 Studierende (ETER 2021), aber ungewoehnlich hohe Drittmittel-Quote.",
+        "Im European University Association als forschungsstaerkste kontinentaleuropaeische Technik-Hochschule referenziert."
+      ],
+      "trigger_keywords": [
+        "eth zuerich", "eth zürich", "eth zurich",
+        "eidgenoessische technische hochschule"
+      ],
+      "trigger_composite": [
+        ["eth"],
+        ["zuerich", "zürich", "zurich"]
+      ],
+      "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
+      "source_url": "https://www.eter-project.com",
+      "secondary_url": "https://ethz.ch"
+    },
+    {
+      "id": "eter_overview_at_2021",
+      "topic": "overview_at",
+      "scope": "ETER-Coverage Oesterreich 2021",
+      "country": "AT",
+      "year": 2021,
+      "headline": "Hochschullandschaft Oesterreich — ETER 2021",
+      "data": {
+        "hei_count_at_2021": 75,
+        "public_universities_at_count": 22,
+        "fachhochschulen_at_count": 21,
+        "private_universities_at_count": 16,
+        "paedagogische_hochschulen_at_count": 14,
+        "students_total_at_2021": 384000,
+        "students_total_at_year": 2021,
+        "academic_staff_total_at_2021": 56000,
+        "share_female_students_at_pct": 53.1,
+        "share_international_students_at_pct": 23.5
+      },
+      "context_notes": [
+        "ETER listet rund 75 oesterreichische Hochschulen (Universitaeten, FHs, PHs, Privatunis) fuer das Referenzjahr 2021.",
+        "Insgesamt rund 384.000 Studierende — knapp ueber 53 % weiblich, gut 23 % internationale Studierende.",
+        "ETER versucht institutionelle Daten EU-weit vergleichbar zu machen; nationale Statistiken (Statistik Austria, uni:data) koennen abweichen wegen Stichtags-Unterschieden."
+      ],
+      "trigger_keywords": [
+        "studierende oesterreich", "studierende österreich",
+        "studierende at", "studentenzahl oesterreich",
+        "studentenzahl österreich", "hochschullandschaft oesterreich",
+        "hochschullandschaft österreich",
+        "anzahl hochschulen oesterreich",
+        "anzahl hochschulen österreich",
+        "fachhochschulen oesterreich",
+        "fachhochschulen österreich",
+        "paedagogische hochschule", "pädagogische hochschule"
+      ],
+      "trigger_composite": [
+        ["oesterreich", "österreich", "at "],
+        ["studierende", "studenten", "hochschulen", "universitaeten", "universitäten",
+         "tertiaere", "tertiäre", "tertiaerbildung", "tertiärbildung", "hochschullandschaft"]
+      ],
+      "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
+      "source_url": "https://www.eter-project.com",
+      "secondary_url": "https://www.bmbwf.gv.at/Themen/HS-Uni/Studium/Studienstatistiken.html"
+    },
+    {
+      "id": "eter_overview_de_2021",
+      "topic": "overview_de",
+      "scope": "ETER-Coverage Deutschland 2021",
+      "country": "DE",
+      "year": 2021,
+      "headline": "Hochschullandschaft Deutschland — ETER 2021",
+      "data": {
+        "hei_count_de_2021": 425,
+        "public_universities_de_count": 110,
+        "fachhochschulen_de_count": 220,
+        "private_universities_de_count": 95,
+        "students_total_de_2021": 2900000,
+        "students_total_de_year": 2021,
+        "academic_staff_total_de_2021": 410000,
+        "share_female_students_de_pct": 49.6,
+        "share_international_students_de_pct": 12.8
+      },
+      "context_notes": [
+        "ETER listet rund 425 deutsche Hochschulen fuer 2021 (Universitaeten, Fachhochschulen, private Hochschulen, Kunsthochschulen).",
+        "Insgesamt ca. 2,9 Mio. Studierende. International ca. 12,8 % (DE-spezifisch niedriger Anteil als AT wegen groesserer Inlandsnachfrage).",
+        "ETER fokussiert ISCED 5-8 (Tertiaerbildung); duale Berufsbildung NICHT inkludiert."
+      ],
+      "trigger_keywords": [
+        "studierende deutschland", "studentenzahl deutschland",
+        "studentenzahl de", "hochschullandschaft deutschland",
+        "anzahl hochschulen deutschland",
+        "fachhochschulen deutschland", "private hochschulen deutschland"
+      ],
+      "trigger_composite": [
+        ["deutschland", "germany", "de "],
+        ["studierende", "studenten", "hochschulen", "universitaeten", "universitäten",
+         "tertiaere", "tertiäre", "hochschullandschaft"]
+      ],
+      "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
+      "source_url": "https://www.eter-project.com",
+      "secondary_url": "https://www.destatis.de"
+    },
+    {
+      "id": "eter_overview_eu_2021",
+      "topic": "overview_eu",
+      "scope": "ETER-Gesamt-Coverage 2021",
+      "country": "EU",
+      "year": 2021,
+      "headline": "Europaeische Hochschullandschaft — ETER 2021",
+      "data": {
+        "hei_count_eu_total_2021": 3461,
+        "countries_covered_2021": 38,
+        "students_total_eu_2021": 19500000,
+        "students_total_eu_year": 2021,
+        "academic_staff_total_eu_2021": 1850000,
+        "share_phd_awarding_pct": 51.0,
+        "share_research_active_pct": 65.0,
+        "bologna_signatory_share_pct": 100.0
+      },
+      "context_notes": [
+        "ETER erfasst rund 3.461 Hochschulen aus 38 europaeischen Laendern (alle EU + EWR + Westbalkan + Tuerkei + Schweiz + UK).",
+        "Insgesamt rund 19,5 Mio. Studierende und 1,85 Mio. wissenschaftliches Personal (ETER 2021).",
+        "Bologna-System gilt fuer alle ETER-Laender (100 % der Reference Group).",
+        "ETER ist die EINZIGE Quelle, die institutionelle Mikrodaten EU-weit vergleichbar fuer alle Hochschulen liefert."
+      ],
+      "trigger_keywords": [
+        "eter", "european tertiary education register",
+        "bologna-system", "bologna system", "bologna-prozess", "bologna prozess",
+        "europaeische hochschulen", "europäische hochschulen",
+        "hochschulen europa", "tertiaerbildung europa", "tertiärbildung europa",
+        "forschungs-output europa", "forschungsoutput europa"
+      ],
+      "trigger_composite": [
+        ["europa", "eu", "europe", "europaeisch", "europäisch"],
+        ["hochschulen", "universitaeten", "universitäten", "tertiaere", "tertiäre",
+         "tertiaerbildung", "tertiärbildung", "studierende", "students"]
+      ],
+      "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
+      "source_url": "https://www.eter-project.com",
+      "secondary_url": "https://www.eter-project.com/data-for-research"
+    }
+  ]
+}
