@@ -251,7 +251,7 @@ def _has_entity_overlap(entry: dict, entities: list[str]) -> bool:
     return any(e.lower() in text for e in entities if len(e) >= 3)
 
 
-def _semantic_search(claim: str, entries: list[dict], entities: list[str] | None = None, top_k: int = 5) -> list[dict]:
+def _semantic_search(claim: str, entries: list[dict], entities: list[str] | None = None, top_k: int = 3) -> list[dict]:
     """Search entries by semantic similarity with entity overlap requirement.
 
     Requires that results both score above the similarity threshold AND
@@ -276,10 +276,17 @@ def _semantic_search(claim: str, entries: list[dict], entities: list[str] | None
         scores = util.cos_sim(claim_embedding, entry_embeddings)[0]
         scored = sorted(zip(entries, scores.tolist()), key=lambda x: x[1], reverse=True)
 
-        # Require both semantic similarity AND entity overlap
+        # Require both semantic similarity AND entity overlap.
+        # 2026-05-24: Threshold von 0.35 → 0.55 (= FACTCHECK_THRESHOLD aus
+        # services/reranker.py). Vorher kamen themenfremde Treffer durch,
+        # die nur ein Entity teilten ('Migration' / 'Österreich') — z.B.
+        # 'Wien Hochburg der Kriminalität' bei Asyl-Claim oder 'BR24
+        # Wahlarena-Faktencheck' bei Migrations-Claim (User-Report
+        # 2026-05-24). Top-K von 5 auf 3 reduziert, damit nur die
+        # relevantesten Treffer durchkommen.
         kept = [
             e for e, score in scored[:top_k * 3]
-            if score > 0.35 and _has_entity_overlap(e, entities or [])
+            if score > 0.55 and _has_entity_overlap(e, entities or [])
         ][:top_k]
 
         if scored:
