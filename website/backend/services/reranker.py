@@ -361,7 +361,16 @@ def rerank_results(claim: str, source_results: list) -> list:
                     f"(removed {removed} below threshold {threshold}, top score: {top_score:.3f})"
                 )
             else:
-                logger.debug(f"Reranked {len(results)} results for {source_name} (top score: {top_score:.3f})")
+                # 2026-05-24 Debug-Verbose: bisher debug-only, jetzt info,
+                # damit wir bei Defense-in-Depth-Audit den Pfad sehen,
+                # ob ein Source wirklich durch den Reranker geht.
+                # Bei Verdacht auf Reranker-Skip einer Source kann man
+                # diesen Log nutzen, um zu verifizieren ob die Source
+                # die Reranker-Routine erreicht.
+                logger.info(
+                    f"Reranked {source_name}: kept {len(results)}/{len(results)} "
+                    f"(no removal, top score: {top_score:.3f}, threshold: {threshold})"
+                )
 
         if total_removed:
             logger.info(f"Relevance filter: removed {total_removed} off-topic results total")
