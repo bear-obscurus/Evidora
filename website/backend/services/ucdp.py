@@ -120,21 +120,40 @@ _REGION_HINTS = (
     "in chechnya", "in tschetschenien",
 )
 
+# Konflikt-Land-Stems für Komposita-Match (Ukraine-Konflikt, Sudan-Krieg,
+# Syrien-Bürgerkrieg etc.). 2026-05-23 Trigger-Lücken-Fix: ``_REGION_HINTS``
+# erkannte nur Präpositional-Konstruktionen "in der Ukraine", aber nicht
+# Bindestrich-Komposita "Ukraine-Konflikt". Stems werden ALS WORT geprüft
+# (word-boundary substring), damit "DR Kongo"/"Republik Kongo" auch matchen.
+_REGION_STEMS = (
+    "ukraine", "russland", "syrien", "libyen", "sudan", "myanmar",
+    "äthiopien", "aethiopien", "nigeria", "jemen", "yemen", "mali",
+    "afghanistan", "irak", "palästina", "palaestina", "gaza",
+    "nahost", "sahel", "kongo", "drk", "zentralafrika",
+    "somalia", "mosambik", "kamerun", "burkina faso",
+    "armenia", "armenien", "aserbaidschan", "azerbaijan",
+    "bergkarabach", "tschetschenien",
+)
+
 
 def _claim_mentions_ucdp(claim_lc: str) -> bool:
     """Trigger-Pre-Check.
 
     True wenn:
       1. Direkter UCDP-/Konflikt-Term im Claim
-      2. Generisches "Konflikt"/"Krieg" + Regionshinweis
+      2. Generisches "Konflikt"/"Krieg" + Regionshinweis (präpositional
+         z.B. "in der Ukraine") ODER Region-Stem als Wort/Kompositum-Bestandteil
+         (z.B. "Ukraine-Konflikt", "Sudan-Krieg")
     """
     if not claim_lc:
         return False
     if any(t in claim_lc for t in _UCDP_DIRECT_TERMS):
         return True
-    # Composite: Konflikt + Region
+    # Composite: Konflikt + Region (präpositional ODER Stem-Kompositum)
     if any(g in claim_lc for g in _CONFLICT_GENERIC):
         if any(r in claim_lc for r in _REGION_HINTS):
+            return True
+        if any(s in claim_lc for s in _REGION_STEMS):
             return True
     return False
 

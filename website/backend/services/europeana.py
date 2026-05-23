@@ -114,7 +114,7 @@ _AT_ARTISTS = (
 
 # Generische Werk-/Objekt-Trigger (nur in Kombination mit Entity-Hint)
 _WORK_OBJECT_TRIGGERS = (
-    "gemälde", "ölgemälde",
+    "gemälde", "ölgemälde", "gemalt",  # 2026-05-23: Verb-Form "gemalt"
     "kunstwerk", "kunstwerke", "artwork",
     "skulptur",
     "manuskript", "handschrift",
