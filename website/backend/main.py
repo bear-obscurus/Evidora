@@ -17,6 +17,9 @@ from services.ema import search_ema
 from services.withdrawn_drugs import (
     claim_mentions_withdrawn_drugs_cached, search_withdrawn_drugs,
 )
+from services.ema_referrals import (
+    claim_mentions_ema_referrals_cached, search_ema_referrals,
+)
 from services.efsa import search_efsa
 from services.claimreview import search_claimreview
 from services.copernicus import search_copernicus
@@ -407,6 +410,17 @@ async def check_claim(request: Request):
                 search_withdrawn_drugs, analysis,
             ))
             queried_names.append("Wikipedia: Withdrawn Drugs")
+        # EMA-Referrals (Art. 20/30/31/107i): laufende und abgeschlossene
+        # Sicherheits-Bewertungs-Verfahren — Caveat-Counter-Evidence bei
+        # "X ist sicher"-Claims über Wirkstoffe mit bekannter
+        # Sicherheits-Historie (Valproat-Schwangerschaft, Topiramat,
+        # Pseudoephedrin, Diane-35, Hydroxyzin-QT etc.).
+        if claim_mentions_ema_referrals_cached(claim):
+            tasks.append(cached(
+                "EMA Referrals",
+                search_ema_referrals, analysis,
+            ))
+            queried_names.append("EMA Referrals")
         if analysis.get("efsa_relevant"):
             tasks.append(cached("EFSA", search_efsa, analysis))
             queried_names.append("EFSA")

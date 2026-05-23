@@ -4,7 +4,7 @@
   "license": "CC-BY-SA 4.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
   "fetched_at_iso": "2026-05-23",
-  "note": "Statischer Snapshot der Wikipedia-Tabelle. Die Liste deckt vor allem Medikamente ab, deren Marktzulassung wegen Sicherheits-Bedenken (Hepatotoxizität, kardiovaskuläre Risiken, etc.) entzogen oder ausgesetzt wurde. Diese ergänzt das EMA-CSV (centralized procedure), das national-zugelassene Medikamente wie Mediator/Vioxx/Avandia nicht vollständig erfasst.",
+  "note": "Statischer Snapshot der Wikipedia-Tabelle. Die Liste deckt vor allem Medikamente ab, deren Marktzulassung wegen Sicherheits-Bedenken (Hepatotoxizität, kardiovaskuläre Risiken, etc.) entzogen oder ausgesetzt wurde. Diese ergänzt das EMA-CSV (centralized procedure), das national-zugelassene Medikamente wie Mediator/Vioxx/Avandia nicht vollständig erfasst. Hand-curated additions 2026-05-23: Mediator/Benfluorex (FR 2009), Tegaserod/Zelnorm (US 2007), Sibutramine/Reductil (Worldwide 2010).",
   "items": [
     {
       "inn": "Amphetamine",
@@ -1437,6 +1437,14 @@
       "withdrawal_year_raw": "1983",
       "country": "UK, Germany, Spain, US",
       "reason": "Anaphylactic reactions and non-fatal allergic reactions; kidney failure"
+    },
+    {
+      "inn": "Benfluorex",
+      "trade_name": "Mediator",
+      "withdrawal_year": 2009,
+      "withdrawal_year_raw": "2009",
+      "country": "France",
+      "reason": "Herzklappen-Schäden (valvulopathy) und pulmonale Hypertonie; FR Marktrückzug 2009 nach Servier-Skandal; geschätzte ~500-2.000 Tote in FR; LIBÉ 2010, BMJ 2011."
     }
   ]
 }
