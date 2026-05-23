@@ -1,0 +1,490 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-24",
+  "source_label": "Rechnungshof Österreich (Parteispenden-Veröffentlichung) + Bundeskanzleramt (PartFörG-Vollzug) + Parlament Österreich (Fachinfos) + Parteiengesetz 2012 (PartG, BGBl I 56/2012) + Parteien-Förderungsgesetz 2012 (PartFörG)",
+  "source_url_root": "https://www.rechnungshof.gv.at/rh/home/was-wir-tun/was-wir-tun_5/Kontrolle_der_Parteien.html",
+  "license_note": "Rechtsnormen (PartG, PartFörG) sind gemeinfrei (BGBl). Behörden-Veröffentlichungen (Rechnungshof Parteispenden-Liste, Bundeskanzleramt Parteienförderung-Übersicht, Parlamentskorrespondenz) sind staatliche Information und für Faktencheck-Zitate frei nutzbar bei vollständiger Quellenangabe. Pack-Snapshot 2026-05-24: ergänzt fehlende Rechnungshof-Primärquelle (PDF-only, kein API) durch Sekundär-Aggregation aus drei staatlichen Veröffentlichungs-Strängen. Pack hält die 4 Politik-Tabus strikt ein (keine Partei-Bewertung, keine Wertung der Förderhöhe, keine Links/Rechts-Klassifikation, keine spekulative Spender-Liste).",
+  "facts": [
+    {
+      "id": "partg_2012_rechtsgrundlage",
+      "topic": "parteiengesetz_partg_2012_rechtsgrundlage",
+      "scope": "Rechtsgrundlage Parteienfinanzierung Österreich — PartG 2012 (BGBl I 56/2012) + PartFörG 2012 + UPTS-Zuständigkeit",
+      "year": 2024,
+      "source_url": "https://www.parlament.gv.at/fachinfos/rlw/Was-ist-neu-im-Bereich-der-Parteienfinanzierung/",
+      "secondary_url": "https://www.jusline.at/gesetz/partg/paragraf/3",
+      "source_label": "Parlament Österreich Fachinfos Rechtswissenschaft + JUSLINE Österreich (PartG 2012 Volltext) + BGBl I 56/2012",
+      "headline": "Parteienfinanzierung AT wird durch Parteiengesetz 2012 (PartG, BGBl I 56/2012) + Parteien-Förderungsgesetz 2012 (PartFörG) geregelt — Vollzug durch Bundeskanzleramt + Rechnungshof + Unabhängiger Parteien-Transparenz-Senat (UPTS)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Rechtsgrundlagen-Übersicht (Parlament-Fachinfos + JUSLINE-Volltext): Die Parteienfinanzierung in Österreich wird durch zwei Bundesgesetze geregelt: (1) Parteiengesetz 2012 (PartG, BGBl I Nr 56/2012) — Grundsatz-Bestimmungen zu Förderung, Spenden, Rechenschaftspflicht; (2) Parteien-Förderungsgesetz 2012 (PartFörG) — konkrete Berechnung der jährlichen Bundes-Parteienförderung. Vollzug erfolgt durch drei Institutionen: Bundeskanzleramt (Auszahlung Bundes-Parteienförderung + Parteiakademienförderung), Rechnungshof (Kontrolle Rechenschaftsberichte, Empfang Spenden-Meldungen, Veröffentlichung), Unabhängiger Parteien-Transparenz-Senat UPTS (Verwaltungsstrafen bei Verstößen). Pack zitiert nur Rechtsnormen + behördliche Vollzugs-Daten, keine Wertung über Angemessenheit der Höhe.",
+        "partg_2012": "Parteiengesetz 2012, BGBl I Nr 56/2012 (Stammfassung 2012, mehrfach novelliert — relevante Novellen 2019 BGBl I 38/2019 + 2022 BGBl I 56/2022). Regelt: § 2 Parteistatuten, § 3 Grundsatz Parteienförderung (Rahmen 3,10-11 EUR pro Wahlberechtigtem), § 4 Wahlwerbungsausgaben-Grenze, § 6 Spenden, § 8 Rechenschaftsbericht, § 10 Strafbestimmungen.",
+        "partfoerg_2012": "Parteien-Förderungsgesetz 2012 (PartFörG) — separates Bundesgesetz, das § 3 PartG-Rahmen konkretisiert. Berechnet jährliche Bundes-Parteienförderung pro Wahlberechtigtem, Klubförderung, Parteiakademienförderung. Wird laufend an Inflation angepasst (Valorisierung).",
+        "vollzugs_institutionen": "Drei Vollzugsstellen — (1) Bundeskanzleramt zahlt Bundes-Parteienförderung + Parteiakademienförderung jährlich aus (Transparenzportal 1002815). (2) Rechnungshof prüft Rechenschaftsberichte + nimmt Spenden-Meldungen entgegen + veröffentlicht Spenden über 540 EUR. (3) Unabhängiger Parteien-Transparenz-Senat (UPTS) — beim BMI angesiedelt, verhängt Verwaltungsstrafen bei Verstößen.",
+        "context": "Pack stellt nur Rechtsrahmen + Zuständigkeiten dar. Inhaltliche Reform-Debatten (Transparency International + Forum Informationsfreiheit fordern z.B. Schwellen-Senkung) werden nicht bewertet."
+      },
+      "context_notes": [
+        "Quellen-Stack: Primär Parlament-Fachinfos + JUSLINE-PartG-Volltext + Bundeskanzleramt-Vollzugs-Dokumentation. Originaltext PartG/PartFörG auf RIS (Rechtsinformationssystem des Bundes).",
+        "Pack-Abgrenzung: Static-First-Snapshot 2026-05-24. Bei spezifischen Spenden-Einzelfällen ist immer die aktuelle Rechnungshof-Liste auf rechnungshof.gv.at die Primärquelle.",
+        "UPTS-Hinweis: Senat besteht aus 3 vom Bundespräsident bestellten Mitgliedern. Entscheidungen unter GZ-Nummern wie 2025-0.112.077/UPTS publiziert."
+      ],
+      "claim_phrasings_handled": [
+        "Wie ist Parteienfinanzierung in Österreich gesetzlich geregelt?",
+        "Was steht im Parteiengesetz?",
+        "PartG 2012 Bestimmungen",
+        "Welche Behörde kontrolliert Parteienfinanzierung in AT?"
+      ],
+      "trigger_keywords": [
+        "parteiengesetz", "partg", "partg 2012", "partg2012",
+        "parteien-förderungsgesetz", "parteienförderungsgesetz", "partförg", "partfoerg",
+        "parteienfinanzierung gesetz", "parteienfinanzierung österreich",
+        "parteienfinanzierung oesterreich", "upts", "transparenz-senat"
+      ],
+      "trigger_composite": [
+        ["parteien", "parteiengesetz", "parteienfinanzierung", "parteienförderung", "parteienfoerderung", "partg", "partförg", "partfoerg", "upts"],
+        ["österreich", "oesterreich", "at ", " at,", " at.", "bgbl", "gesetz", "rechtsgrundlage", "regelung"],
+        ["regelt", "geregelt", "rechtsgrundlage", "gesetzlich", "grundlage", "2012", "bgbl", "novelle", "rahmen", "behörde", "vollzug", "kontrolle"]
+      ]
+    },
+    {
+      "id": "bundes_parteienfoerderung_2024",
+      "topic": "bundes_parteienfoerderung_2024_konsens",
+      "scope": "Bundes-Parteienförderung 2024 Gesamthöhe + Aufschlüsselung nach Parlamentspartei (PartFörG-Auszahlung BKA)",
+      "year": 2024,
+      "source_url": "https://www.bundeskanzleramt.gv.at/agenda/parteienfinanzierung/parteien-und-parteiakademienforderung.html",
+      "secondary_url": "https://orf.at/stories/3345968/",
+      "source_label": "Bundeskanzleramt Österreich (Parteien- und Parteiakademienförderung) + ORF.at Berichterstattung 'Parteienförderung steigt auf 37,2 Millionen Euro' + Transparenzportal 1002815",
+      "headline": "Bundes-Parteienförderung 2024: 37,2 Mio EUR Bundesförderung gesamt (+7,8 % vs 2023) — ÖVP 26,4 Mio (inkl. Klub/Akademie), SPÖ 17 Mio, FPÖ 13,6 Mio, Grüne 12,3 Mio, NEOS 8,6 Mio EUR; mit EU-Wahl-Sonderförderung + Landes-/Klub-Beträgen ca. 273 Mio EUR Jahressumme",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Bundes-Parteienförderung-Werte 2024 (BKA-Vollzugsdaten + ORF-Berichterstattung Jänner 2024): Reine Bundes-Parteienförderung (PartFörG) stieg 2024 von 34,5 auf 37,2 Mio EUR (+7,8 % gegenüber 2023). Aufschlüsselung gemäß Wahlberechtigten-Schlüssel + Mandatszahl an die 5 Parlamentsparteien für das Jahr 2024 (gerundet, inklusive Klubförderung 28,6 Mio EUR + Parteiakademienförderung 12 Mio EUR — Gesamtbetrag pro Partei): ÖVP rund 26,4 Mio EUR, SPÖ rund 17 Mio EUR, FPÖ rund 13,6 Mio EUR, Grüne rund 12,3 Mio EUR, NEOS rund 8,6 Mio EUR. Mit EU-Wahl-Sonderförderung 2024 (16 Mio EUR) + Landes-Parteienförderung kommt der österreichische Gesamtbetrag 2024 auf ca. 273 Mio EUR. Pack vermeidet Wertung 'zu viel/zu wenig' — präsentiert nur veröffentlichte BKA-Vollzugsdaten.",
+        "bundes_parteienfoerderung_gesamt_2024": "Bundes-Parteienförderung gesamt 2024: 37,2 Mio EUR (Steigerung +7,8 % gegenüber 2023: 34,5 Mio EUR). Wird vom Bundeskanzleramt aufgrund PartFörG-Berechnung an die im Nationalrat vertretenen Parteien ausgezahlt.",
+        "klubfoerderung_2024": "Klubförderung im Parlament 2024: 28,6 Mio EUR (an Beamtengehälter-Entwicklung gekoppelt, +9,15 % gegenüber 2023). Separater Topf nach Klubfinanzierungsgesetz (KFG) für die Parlamentsklubs.",
+        "parteiakademien_2024": "Parteiakademienförderung 2024: 12 Mio EUR (+14 % gegenüber 2023, erste Anhebung seit 2014). Aufteilung auf 5 Akademien: Politische Akademie der ÖVP, Karl-Renner-Institut (SPÖ), Freiheitliches Bildungsinstitut (FPÖ), Grüne Akademie FREDA, NEOS Lab.",
+        "aufschluesselung_5_parteien_2024": "Förderung pro Parlamentspartei 2024 (gerundet, inkl. anteiliger Klub-/Akademie-Förderung): ÖVP ~26,4 Mio EUR, SPÖ ~17 Mio EUR, FPÖ ~13,6 Mio EUR, Grüne ~12,3 Mio EUR, NEOS ~8,6 Mio EUR.",
+        "eu_wahl_sonderfoerderung_2024": "EU-Wahl 2024 Sonderförderung: ca. 16 Mio EUR zusätzlich an die antretenden Parteien (separater PartFörG-Topf, Auszahlung nach EU-Wahl 9.6.2024).",
+        "context": "Verteilungsschlüssel folgt PartFörG: anteilig nach Mandatsstärke im Nationalrat + EU-Parlament + Wahlberechtigten-Zahl. Auszahlung jährlich durch Bundeskanzleramt. Daten dokumentiert auf Transparenzportal (Leistung 1002815) + ORF-Berichterstattung der jährlichen Auszahlungs-Bekanntgabe."
+      },
+      "context_notes": [
+        "Zahlen-Aggregation: Pack-Beträge sind gerundete BKA-Vollzugsdaten — exakte EUR-Cent-Werte über Transparenzportal abrufbar.",
+        "Politik-Tabu-Compliance: Pack zitiert nur die veröffentlichten Auszahlungs-Beträge. Pack vermeidet Wertung ('zu hoch' / 'angemessen') und benennt keine politische Klassifikation der Empfänger-Parteien.",
+        "Methodik-Hinweis: Verteilungs-Schlüssel ist objektiv normiert (PartFörG-Formel basierend auf Mandaten + Wahlberechtigten) — Pack zeigt nur Resultat, nicht die Formel selbst."
+      ],
+      "claim_phrasings_handled": [
+        "Wie viel Parteienförderung bekam die ÖVP 2024?",
+        "Parteienförderung Österreich 2024 Aufschlüsselung",
+        "Wie viel bekommt SPÖ vom Staat?",
+        "FPÖ Bundes-Parteienförderung 2024",
+        "Wieviel Geld bekommen österreichische Parteien"
+      ],
+      "trigger_keywords": [
+        "parteienförderung 2024", "parteienfoerderung 2024",
+        "parteienförderung österreich", "parteienfoerderung oesterreich",
+        "parteienförderung höhe", "parteienfoerderung hoehe",
+        "öv parteienförderung", "spö parteienförderung",
+        "fpö parteienförderung", "grüne parteienförderung",
+        "neos parteienförderung",
+        "öv parteienfoerderung", "spö parteienfoerderung",
+        "fpö parteienfoerderung", "gruene parteienfoerderung", "neos parteienfoerderung",
+        "klubförderung", "klubfoerderung",
+        "parteiakademie förderung", "parteiakademie foerderung"
+      ],
+      "trigger_composite": [
+        ["parteienförderung", "parteienfoerderung", "parteienfinanzierung", "klubförderung", "klubfoerderung", "parteiakademie", "akademienförderung", "subvention"],
+        ["övp", "spö", "fpö", "grüne", "gruene", "neos", "österreich", "oesterreich", "at ", " at,", " at.", "bundes", "alle parteien"],
+        ["höhe", "hoehe", "wie viel", "wieviel", "betrag", "mio", "millionen", "37", "26", "17", "13", "12", "8", "2023", "2024", "aufschlüsselung", "aufschluesselung", "vom staat", "bekommt", "erhalten", "ausgezahlt"]
+      ]
+    },
+    {
+      "id": "partg_par3_rahmen_pro_wahlberechtigtem",
+      "topic": "partg_par3_pro_wahlberechtigtem_rahmen",
+      "scope": "§ 3 PartG 2012 — Rahmen für Parteienförderung pro Wahlberechtigtem (3,10 EUR bis 11 EUR)",
+      "year": 2024,
+      "source_url": "https://www.jusline.at/gesetz/partg/paragraf/3",
+      "secondary_url": "https://www.parlament.gv.at/fachinfos/rlw/Wie-sind-die-Gruendung-und-Finanzierung-von-Parteien-geregelt",
+      "source_label": "JUSLINE Österreich § 3 PartG Volltext + Parlament Österreich Fachinfos Rechtswissenschaft",
+      "headline": "§ 3 PartG: Rahmen-Bandbreite für Parteienförderung pro Wahlberechtigtem = mindestens 3,10 EUR, höchstens 11 EUR (Bundes- und Landesebene) — konkreter Auszahlungsbetrag im PartFörG geregelt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Rahmen-Angabe aus § 3 Parteiengesetz 2012 (JUSLINE-Volltext + Parlament-Fachinfos): Politischen Parteien, die im Nationalrat oder in einem Landtag vertreten sind, ist eine jährliche Parteienförderung pro Wahlberechtigtem im Rahmen von mindestens 3,10 EUR und höchstens 11 EUR zu gewähren. Diese Rahmen-Grenze ist die Grundsatz-Norm; die exakte Höhe pro Jahr wird im Parteien-Förderungsgesetz (PartFörG) jeweils konkretisiert und unterliegt seit 2020 jährlicher Inflations-Anpassung (Valorisierung). Pack zitiert nur den Gesetzes-Rahmen ohne Wertung, ob diese Höhe angemessen ist.",
+        "rahmen_min": "Mindest-Förderung gemäß § 3 PartG: 3,10 EUR pro Wahlberechtigtem pro Jahr.",
+        "rahmen_max": "Höchst-Förderung gemäß § 3 PartG: 11 EUR pro Wahlberechtigtem pro Jahr.",
+        "anwendung_bund_und_laender": "Rahmen gilt sowohl für Bundes-Parteienförderung (in Nationalrat vertretene Parteien) als auch für Landes-Parteienförderung (in Landtagen vertretene Parteien). Bundesländer setzen innerhalb dieses Rahmens eigene Beträge fest.",
+        "valorisierung_seit_2020": "Seit 2020 jährliche Inflations-Anpassung. Konkrete Auszahlungs-Beträge variieren von Jahr zu Jahr je nach Wahlberechtigten-Zahl und Inflations-Index. 2024-Bundes-Anteil ca. 5,50-6 EUR pro Wahlberechtigtem (Größenordnung, abhängig von genauer Berechnung).",
+        "context": "Rahmen wurde mit PartG 2012 eingeführt und ist seither unverändert. Reform-Debatten existieren, sind aber außerhalb des Scope dieses Packs."
+      },
+      "context_notes": [
+        "Wichtige Abgrenzung: § 3 PartG nennt nur den RAHMEN (3,10-11 EUR). Der KONKRETE Auszahlungsbetrag pro Jahr wird durch PartFörG festgelegt und unterliegt Valorisierung.",
+        "Bei Claims wie 'jede Partei bekommt 11 EUR pro Wahlberechtigtem': nur teilweise korrekt — das ist nur die OBERGRENZE des Rahmens, nicht der tatsächlich ausgezahlte Wert.",
+        "Pack-Snapshot 2026-05-24: Rahmenwerte 3,10/11 EUR sind seit PartG-Beschluss 2012 unverändert (keine Inflations-Anpassung des RAHMENS selbst)."
+      ],
+      "claim_phrasings_handled": [
+        "Wie viel Parteienförderung pro Wahlberechtigtem in Österreich?",
+        "PartG § 3 Höchstgrenze",
+        "Maximum Parteienförderung pro Bürger AT"
+      ],
+      "trigger_keywords": [
+        "pro wahlberechtigtem", "pro wahlberechtigter",
+        "höchstgrenze parteienförderung", "hoechstgrenze parteienfoerderung",
+        "11 euro parteienförderung", "11 euro parteienfoerderung",
+        "3,10 euro", "3.10 euro",
+        "rahmen parteienförderung", "rahmen parteienfoerderung",
+        "§ 3 partg", "par 3 partg", "paragraph 3 partg"
+      ],
+      "trigger_composite": [
+        ["parteienförderung", "parteienfoerderung", "parteienfinanzierung", "förderung", "foerderung"],
+        ["pro wahlberechtig", "wahlberechtigt", "pro bürger", "pro buerger", "pro kopf", "pro person", "11 euro", "11 eur", "3,10", "3.10", "höchstgrenze", "hoechstgrenze", "obergrenze", "maximum", "rahmen"],
+        ["österreich", "oesterreich", "at ", " at.", " at,", "partg", "§ 3", "par 3", "paragraph 3"]
+      ]
+    },
+    {
+      "id": "wahlkampfkosten_grenze_nrw_2024",
+      "topic": "wahlkampfkostengrenze_nationalratswahl_konsens",
+      "scope": "Wahlkampfkostengrenze Nationalratswahl gemäß § 4 PartG — 7 Mio EUR Basis + jährliche Valorisierung seit 2020",
+      "year": 2024,
+      "source_url": "https://www.rechnungshof.gv.at/rh/home/was-wir-tun/was-wir-tun_5/was_wir_tun_14/Nationalratswahl_2024.html",
+      "secondary_url": "https://www.tt.com/artikel/30862496/wahlkampfkosten-grenze-steigt-bis-2024-deutlich-ueber-8-mio-euro",
+      "source_label": "Rechnungshof Österreich (Nationalratswahl 2024 Kontrolle) + Tiroler Tageszeitung + meinbezirk.at (Valorisierung der Kostengrenze)",
+      "headline": "Wahlkampfkostengrenze NR-Wahl 2024: 8,66 Mio EUR pro Partei (Basis 7 Mio EUR von 2012, valorisiert seit 2020 — Stand 2024: 8.662.515 EUR)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Wahlkampfkostengrenze gemäß § 4 PartG 2012 (Rechnungshof + Berichterstattung): Für jede Partei, die an der Nationalratswahl teilnimmt, gilt eine Höchstgrenze für Wahlwerbungsausgaben zwischen Wahl-Stichtag und Wahltag. Ursprünglich 7 Mio EUR (PartG 2012), seit 2020 jährlich an die Teuerung angepasst (Valorisierung). Für die Nationalratswahl 2024 (29.9.2024) lag die valorisierte Höchstgrenze bei 8.662.515 EUR pro Partei (Stand 2023: 7,4 Mio EUR). Pack zitiert nur normierte Grenze + Rechnungshof-Kontrollpraxis ohne Wertung, ob diese Höhe angemessen ist.",
+        "grenze_2024": "Wahlkampfkostengrenze für Nationalratswahl 2024: 8.662.515 EUR pro Partei (gerundet 8,66 Mio EUR). Valorisierter Betrag des PartG-Basis-Werts von 7 Mio EUR (2012) an den Stand 2024.",
+        "grenze_2023": "Wahlkampfkostengrenze 2023 (vor NR-Wahl-Anlassfall): 7,4 Mio EUR pro Partei.",
+        "rechtsgrundlage": "§ 4 PartG 2012. Geltung: Zeitraum zwischen Stichtag der Nationalratswahl und Wahltag.",
+        "was_zaehlt_als_wahlwerbungsausgabe": "Plakate, Postwurfsendungen, Folder, Wahlkampfgeschenke, Inserate, Werbespots, Werbe-/Eventagentur-Kosten, zusätzliche Personalkosten für den Wahlkampf, Personenkomitee-Ausgaben, Veranstaltungen (Quelle: § 4 PartG-Definition).",
+        "valorisierung_basis": "Bis 2019 starre 7-Mio-EUR-Grenze. 2019-Novelle (BGBl I 38/2019) etablierte ab 2020 jährliche Anpassung an Verbraucherpreisindex.",
+        "context": "Bei Überschreitung gestaffelte Geldbußen bis zum Doppelten des Überschreitungsbetrags (Verwaltungsstrafe durch UPTS, siehe Fact 'sanktionen_partg')."
+      },
+      "context_notes": [
+        "Häufiges Missverständnis: 7 Mio EUR ist nur der BASIS-Wert von 2012, der inzwischen durch Valorisierung erhöht ist.",
+        "Pack-Daten: Stand 2024 (NR-Wahl 29.9.2024). Bei NR-Wahl 2025 oder später anderer valorisierter Wert.",
+        "Grenze gilt PRO PARTEI — nicht Summe über alle Parteien."
+      ],
+      "claim_phrasings_handled": [
+        "Wahlkampfkostengrenze Österreich 2024",
+        "Wie viel darf eine Partei im Wahlkampf ausgeben?",
+        "7 Millionen Wahlkampfkosten Österreich",
+        "Wahlkampf Kosten Höchstgrenze AT"
+      ],
+      "trigger_keywords": [
+        "wahlkampfkosten", "wahlkampfkostengrenze", "wahlkampfkostenobergrenze",
+        "wahlkampfkosten-grenze", "wahlkampfkosten-obergrenze",
+        "wahlwerbungsausgaben", "wahlkampfausgaben",
+        "7 millionen wahlkampf", "7 mio wahlkampf",
+        "8,6 millionen wahlkampf", "8 mio wahlkampf",
+        "§ 4 partg", "paragraph 4 partg", "par 4 partg"
+      ],
+      "trigger_composite": [
+        ["wahlkampf", "wahlwerbungsausgab", "wahlkampfkosten", "wahlkampfkost", "wahlwerbung"],
+        ["österreich", "oesterreich", "at ", " at,", " at.", "nationalratswahl", "nr-wahl", "nrw", "grenze", "obergrenze", "höchstgrenze", "hoechstgrenze", "limit", "deckel"],
+        ["wie viel", "höchstens", "hoechstens", "maximum", "mio", "millionen", "7 mio", "8 mio", "8,6", "8.6", "7 millionen", "8 millionen", "ausgeben", "ausgaben", "kosten", "valorisierung"]
+      ]
+    },
+    {
+      "id": "spenden_meldeschwelle_partg_par6",
+      "topic": "spenden_meldeschwelle_partg_par6",
+      "scope": "§ 6 PartG — Spenden-Meldeschwellen + Veröffentlichungs-Schwelle (165/540/2.500 EUR)",
+      "year": 2024,
+      "source_url": "https://www.jusline.at/gesetz/partg/paragraf/6",
+      "secondary_url": "https://www.rechnungshof.gv.at/rh/home/was-wir-tun/was-wir-tun_5/Kontrolle_der_Parteien.html",
+      "source_label": "JUSLINE Österreich § 6 PartG Volltext + Rechnungshof Österreich (Kontrolle der Parteien)",
+      "headline": "§ 6 PartG: Spenden über 165 EUR meldepflichtig an Rechnungshof (quartalsweise), Veröffentlichung durch Rechnungshof bei Spenden über 540 EUR — Spenden-Höchstgrenze 7.500 EUR pro Einzelspender/Jahr + 750.000 EUR Gesamt-Cap pro Partei/Jahr",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Spenden-Regelungen gemäß § 6 PartG 2012 (JUSLINE-Volltext + Rechnungshof Kontroll-Praxis): Parteien müssen Spenden über 165 EUR vier Wochen nach Ablauf eines Kalendervierteljahres dem Rechnungshof melden (Meldeschwelle). Spenden über 540 EUR werden vom Rechnungshof unverzüglich auf der Behörden-Website veröffentlicht (Veröffentlichungs-Schwelle). Höchstgrenze pro Einzelspender + Kalenderjahr: 7.500 EUR (über alle Gliederungen einer Partei zusammen). Gesamt-Spenden-Cap pro Partei + Kalenderjahr: 750.000 EUR. Pack zitiert nur Schwellen-Werte aus § 6 PartG, keine spekulativen Spender-Listen.",
+        "meldeschwelle_165_eur": "Meldepflicht an Rechnungshof: Spenden über 165 EUR pro Einzelspender + Kalenderjahr-Quartal müssen vier Wochen nach Quartal-Ende dem Rechnungshof gemeldet werden. Mehrere Spenden desselben Spenders im selben Jahr werden kumuliert.",
+        "veroeffentlichungs_schwelle_540_eur": "Veröffentlichungspflicht durch Rechnungshof: Spenden über 540 EUR werden vom Rechnungshof unverzüglich auf rechnungshof.gv.at veröffentlicht (mit Spender-Name).",
+        "spenden_obergrenze_7500_eur": "Höchstgrenze pro Einzelspender + Kalenderjahr: 7.500 EUR (kumulativ über alle Partei-Gliederungen). Über diese Grenze hinausgehende Spenden sind unzulässig und müssen an den Spender zurückgegeben oder andernfalls an den Rechnungshof abgeführt werden.",
+        "spenden_gesamtcap_750000_eur": "Gesamt-Spenden-Cap pro Partei + Kalenderjahr: 750.000 EUR (Summe aller akzeptierten Spenden über alle Spender:innen).",
+        "anonyme_spenden_unzulaessig": "Anonyme Spenden über 500 EUR pro Kalenderjahr sind verboten (Spender-Identifikation erforderlich).",
+        "spenden_verbote": "Verbotene Spender (unabhängig von Höhe): juristische Personen öffentlichen Rechts, Unternehmen mit Staatsbeteiligung über 25 %, ausländische Spender (mit Ausnahmen für EWR-Bürger:innen), Berufsverbände bestimmter Art.",
+        "context": "Schwellen sind seit der 2019-Novelle (BGBl I 38/2019) so geregelt — Verschärfung gegenüber PartG-Stammfassung 2012, die niedrigere Transparenz hatte."
+      },
+      "context_notes": [
+        "Kombinations-Klarheit: Meldeschwelle (165 EUR) und Veröffentlichungs-Schwelle (540 EUR) sind unterschiedliche Schwellen. Spenden 165-540 EUR werden zwar dem Rechnungshof gemeldet, aber nicht öffentlich publiziert.",
+        "Politik-Tabu-Schutz: Pack nennt KEINE konkreten Spender-Personen-Listen — diese sind direkt auf rechnungshof.gv.at abrufbar und für Faktencheck-Recherche zu nutzen. Pack zitiert nur die normierten Schwellen.",
+        "Kasuistik-Hinweis: Stückelung von Spenden zur Umgehung der Schwellen ist explizit verboten und mit Geldstrafe bis 15.000 EUR für Spender bewehrt (siehe Sanktions-Fact)."
+      ],
+      "claim_phrasings_handled": [
+        "Spenden-Veröffentlichungsschwelle Österreich",
+        "Wie viel Spende muss veröffentlicht werden?",
+        "PartG § 6 Spenden",
+        "Maximale Parteispende Österreich 7500 EUR"
+      ],
+      "trigger_keywords": [
+        "spenden-schwelle", "spendenschwelle",
+        "veröffentlichungsschwelle", "veroeffentlichungsschwelle",
+        "veröffentlichungs-schwelle", "veroeffentlichungs-schwelle",
+        "165 euro spende", "540 euro spende",
+        "7500 euro spende", "7.500 euro spende",
+        "750.000 euro spende",
+        "parteispende meldung", "parteispenden meldung",
+        "spenden meldung rechnungshof",
+        "§ 6 partg", "par 6 partg", "paragraph 6 partg",
+        "spendenobergrenze", "spenden-obergrenze"
+      ],
+      "trigger_composite": [
+        ["spende", "spenden", "parteispende", "parteispenden"],
+        ["österreich", "oesterreich", "at ", " at,", " at.", "rechnungshof", "partg", "§ 6", "par 6", "paragraph 6"],
+        ["schwelle", "veröffentlich", "veroeffentlich", "meldung", "melden", "obergrenze", "höchstgrenze", "hoechstgrenze", "165", "540", "7500", "7.500", "750000", "750.000", "transparenz", "publiz"]
+      ]
+    },
+    {
+      "id": "sanktionen_partg_par10",
+      "topic": "sanktionen_partg_par10",
+      "scope": "§ 10 PartG — Verwaltungsstrafen durch UPTS bei Verstößen (Spendenobergrenze + Wahlkampfkosten + Rechenschaftsbericht)",
+      "year": 2024,
+      "source_url": "https://www.parlament.gv.at/fachinfos/rlw/Was-ist-neu-im-Bereich-der-Parteienfinanzierung/",
+      "secondary_url": "https://www.rechnungshof.gv.at/rh/home/was-wir-tun/was-wir-tun_5/Kontrolle_der_Parteien.html",
+      "source_label": "Parlament Österreich Fachinfos Rechtswissenschaft + Rechnungshof Österreich (UPTS-Entscheidungen)",
+      "headline": "§ 10 PartG Sanktionen: Geldbußen bis 3-faches der unzulässigen Spende (mindestens Spenden-Höhe); 50.000 EUR Geldbuße für Partei bei Rechenschafts-Verstoß; bis 50.000 EUR für Partei-Manager bei Falschangaben; 15.000 EUR für Spender bei Spenden-Stückelung — entschieden durch Unabhängigen Parteien-Transparenz-Senat (UPTS)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Sanktions-Übersicht gemäß § 10 PartG 2012 (Parlament-Fachinfos + Rechnungshof-Praxis): Verstöße werden vom Unabhängigen Parteien-Transparenz-Senat (UPTS) als Verwaltungsbehörde geahndet. Sanktionen-Schema: (1) Unzulässige Spende (z.B. über 7.500-EUR-Pro-Spender-Grenze) — Geldbuße bis zum 3-fachen des erlangten Betrags, mindestens in Höhe der unzulässig angenommenen Spende. (2) Wahlkampfkosten-Überschreitung — gestaffelte Geldbußen bis zum Doppelten des Überschreitungsbetrags. (3) Nicht-Abgabe oder fehlerhafter Rechenschaftsbericht — bis 50.000 EUR Geldbuße für die Partei; bei Nichtabgabe kann zusätzlich Parteienförderung ausgesetzt werden. (4) Partei-Manager:innen bei nicht korrekt gemeldeten Spenden / Falschangaben — bis 50.000 EUR persönliche Geldstrafe. (5) Spender bei Stückelung zur Umgehung der Obergrenzen — bis 15.000 EUR. Pack zitiert nur die normierten Sanktions-Höhen, nicht spezifische Fall-Entscheidungen.",
+        "sanktion_unzulaessige_spende": "Geldbuße für Partei bei unzulässiger Spende: bis 3-faches des erlangten Betrags, mindestens in Höhe der unzulässig angenommenen Spende. Außerdem: Partei muss Spende an Spender zurückgeben oder, falls unmöglich, an Rechnungshof abführen.",
+        "sanktion_wahlkampf_ueberschreitung": "Wahlkampfkosten-Überschreitung über § 4-PartG-Grenze (2024: 8,66 Mio EUR): gestaffelte Geldbußen bis zum Doppelten des Überschreitungsbetrags.",
+        "sanktion_rechenschaftsbericht": "Bei nicht gesetzeskonformem oder nicht abgegebenem Rechenschaftsbericht: bis 50.000 EUR Geldbuße für die Partei. Zusätzlich kann die Auszahlung der Bundes-Parteienförderung ausgesetzt werden.",
+        "sanktion_partei_manager": "Persönliche Sanktionen gegen Partei-Funktionär:innen bei nicht korrekt gemeldeten Spenden + unrichtigen Angaben in Rechenschaftsberichten: bis 50.000 EUR.",
+        "sanktion_spender_stueckelung": "Spender, die Spenden stückeln um Obergrenzen zu umgehen: bis 15.000 EUR Geldstrafe.",
+        "verfahren_upts": "Unabhängiger Parteien-Transparenz-Senat (UPTS, beim BMI angesiedelt): 3 vom Bundespräsident bestellte Mitglieder. Entscheidet als Verwaltungsbehörde über Verstöße + Geldbußen. Entscheidungen unter GZ-Nummern wie 'GZ 2025-0.112.077/UPTS' publiziert. Rechtsmittel zum Bundesverwaltungsgericht.",
+        "context": "Sanktions-Verschärfung erfolgte mit 2019-Novelle (BGBl I 38/2019) + 2022-Transparenz-Paket (BGBl I 56/2022). Vor 2019 deutlich niedrigere Strafen + weniger Vollzugs-Werkzeug."
+      },
+      "context_notes": [
+        "UPTS-Hinweis: Bürger:innen können bei vermuteten Verstößen nicht direkt Anzeige beim UPTS erstatten — Verfahren werden über den Rechnungshof eingeleitet.",
+        "Strafrechtliche Dimension separat: Bei Untreue / Bestechung kommen zusätzlich StGB-Tatbestände (§ 153 StGB, § 304 StGB) in Betracht — Pack behandelt nur Verwaltungs-Sanktions-Schiene aus PartG.",
+        "Geld-Weitergabe: Bei unzulässigen Spenden, die nicht an Spender zurückgegeben werden können, leitet Rechnungshof das Geld weiter — meist an karitative Zwecke (jüngste UPTS-Entscheidung 2025 dokumentiert auf rechnungshof.gv.at)."
+      ],
+      "claim_phrasings_handled": [
+        "Welche Strafe gibt es für unzulässige Parteispenden in Österreich?",
+        "Sanktionen Parteiengesetz",
+        "UPTS Geldbuße Höhe",
+        "Wahlkampfkosten-Überschreitung Strafe AT"
+      ],
+      "trigger_keywords": [
+        "sanktion parteienfinanzierung", "sanktion parteiengesetz",
+        "strafe parteispende", "strafe parteispenden", "strafe parteienfinanzierung",
+        "upts geldbuße", "upts geldbusse",
+        "upts strafe", "upts entscheidung",
+        "geldbuße parteien", "geldbusse parteien",
+        "geldstrafe parteienfinanzierung",
+        "§ 10 partg", "par 10 partg", "paragraph 10 partg"
+      ],
+      "trigger_composite": [
+        ["sanktion", "strafe", "geldstrafe", "geldbuße", "geldbusse", "bestraf", "bußgeld", "bussgeld"],
+        ["parteispende", "parteispenden", "parteienfinanzierung", "parteienförderung", "parteienfoerderung", "parteiengesetz", "wahlkampfkosten", "rechenschaftsbericht", "upts"],
+        ["höhe", "hoehe", "wie viel", "welche", "verstoß", "verstoss", "überschreitung", "ueberschreitung", "50000", "50.000", "15000", "15.000", "3-fach", "doppelt"]
+      ]
+    },
+    {
+      "id": "rechenschaftsbericht_pflicht_partg_par8",
+      "topic": "rechenschaftsbericht_pflicht_partg_par8",
+      "scope": "§ 8 PartG — Rechenschaftsbericht-Pflicht jährlich an Rechnungshof + Veröffentlichung",
+      "year": 2024,
+      "source_url": "https://www.rechnungshof.gv.at/rh/home/was-wir-tun/was-wir-tun_5/Kontrolle_der_Parteien.html",
+      "secondary_url": "https://www.rechnungshof.gv.at/rh/home/news/Meldungen_2024/Rechenschaftsbericht_SPOe_2022_veroeffentlicht.html",
+      "source_label": "Rechnungshof Österreich (Kontrolle der Parteien — Rechenschaftsbericht-Übersicht + SPÖ-Beispiel-Veröffentlichung 2022)",
+      "headline": "§ 8 PartG: Politische Parteien müssen jährlich Rechenschaftsbericht an Rechnungshof übermitteln (bis 30.9. des Folgejahres) — Rechnungshof prüft + veröffentlicht auf rechnungshof.gv.at; Wirtschaftsprüfer-Testat erforderlich",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Rechenschaftsbericht-Pflicht gemäß § 8 PartG 2012 (Rechnungshof-Vollzugs-Dokumentation): Politische Parteien, die im Nationalrat, Landtag oder EU-Parlament vertreten sind, müssen jährlich einen Rechenschaftsbericht an den Rechnungshof übermitteln (Frist: bis 30. September des dem Berichtsjahr folgenden Kalenderjahres). Bericht enthält: Einnahmen + Ausgaben der Partei (inkl. aller Gliederungen Bundes-/Landes-/Bezirks-Ebene), Spenden-Übersicht, Wahlkampfkosten-Übersicht, Beteiligungs-Übersicht. Wirtschaftsprüfer-Testat erforderlich. Rechnungshof prüft, verlangt ggf. Ergänzungen, und veröffentlicht den Bericht (mit Datum-Versatz) auf rechnungshof.gv.at. Pack zitiert nur das normierte Verfahren ohne Inhaltliche-Wertung individueller Berichte.",
+        "frist": "Frist Rechenschaftsbericht: bis 30. September des dem Berichtsjahr folgenden Kalenderjahres. Beispiel: Bericht 2024 muss bis 30.9.2025 beim Rechnungshof eingelangt sein.",
+        "umfang": "Bericht-Umfang: Einnahmen + Ausgaben aller Partei-Gliederungen (Bund + Bundesländer + Bezirke), Spenden-Übersicht (mit Spender:innen oberhalb der Veröffentlichungs-Schwelle), Wahlkampfkosten-Übersicht, Beteiligungs-Übersicht (Unternehmen + Vereine, an denen die Partei beteiligt ist).",
+        "wirtschaftspruefer_testat": "Bericht muss vor Übermittlung von Wirtschaftsprüfer:in geprüft + testiert werden.",
+        "rechnungshof_pruefung": "Rechnungshof prüft Bericht auf Vollständigkeit + Plausibilität, verlangt bei Mängeln Ergänzungen, kann eigene Erhebungen anstellen. Bei Verstößen Meldung an UPTS für Verwaltungsstraf-Verfahren.",
+        "veroeffentlichung": "Geprüfte Rechenschaftsberichte werden auf rechnungshof.gv.at als PDF publiziert (mit zeitlichem Versatz, da Prüfung mehrere Monate dauern kann). Beispiel: SPÖ-Bericht 2022 wurde 2024 veröffentlicht.",
+        "context": "Berichtspflicht gilt nicht nur für Parlamentsparteien, sondern für alle Parteien, die eine Bundes- oder Landes-Parteienförderung beziehen. Außerdem 'wahlwerbende Parteien' bei NR-Wahl + EU-Wahl."
+      },
+      "context_notes": [
+        "Zeitlicher Versatz typisch: Rechenschaftsbericht 2022 wird üblicherweise 2024 publiziert (Übermittlung bis 30.9.2023, Prüfung + Veröffentlichung 2023-2024).",
+        "Pack-Abgrenzung: Bei spezifischen Berichts-Inhalten ist die rechnungshof.gv.at-Liste die Primärquelle. Pack beschreibt nur das normierte Verfahren.",
+        "Wirtschaftsprüfer-Pflicht ist seit 2019-Novelle verschärft (BGBl I 38/2019) — vor 2019 weniger formalisiert."
+      ],
+      "claim_phrasings_handled": [
+        "Wann müssen Parteien Rechenschaftsbericht abgeben?",
+        "Rechenschaftspflicht Parteien Österreich",
+        "PartG § 8 Bericht",
+        "Wer prüft die Parteifinanzen in AT?"
+      ],
+      "trigger_keywords": [
+        "rechenschaftsbericht", "rechenschaftsberichte",
+        "rechenschaftspflicht parteien",
+        "parteienbericht rechnungshof",
+        "parteien rechenschaft",
+        "rechnungshof parteien prüfung",
+        "rechnungshof parteien pruefung",
+        "§ 8 partg", "par 8 partg", "paragraph 8 partg",
+        "wirtschaftsprüfer partei", "wirtschaftspruefer partei"
+      ],
+      "trigger_composite": [
+        ["rechenschaftsbericht", "rechenschaftspflicht", "rechenschaft", "parteienbericht", "parteibericht"],
+        ["partei", "parteien", "österreich", "oesterreich", "at ", " at,", " at.", "rechnungshof", "partg", "§ 8", "par 8", "paragraph 8"],
+        ["abgeben", "prüfen", "pruefen", "veröffentlich", "veroeffentlich", "frist", "wann", "wer", "pflicht", "kontrolle"]
+      ]
+    },
+    {
+      "id": "rechnungshof_kontrolle_parteien",
+      "topic": "rechnungshof_kontrolle_parteien",
+      "scope": "Rechnungshof Österreich als Kontroll-Behörde für Parteienfinanzierung (PartG-Vollzug + Spenden-Empfang + Rechenschaftsberichts-Prüfung)",
+      "year": 2024,
+      "source_url": "https://www.rechnungshof.gv.at/rh/home/was-wir-tun/was-wir-tun_5/Kontrolle_der_Parteien.html",
+      "secondary_url": "https://www.rechnungshof.gv.at/rh/home/was-wir-tun/was-wir-tun_5/was-wir-tun_5/Parteispenden/Parteispenden_2024.html",
+      "source_label": "Rechnungshof Österreich (Kontrolle der Parteien — Übersichtsseite + Parteispenden-2024-Liste)",
+      "headline": "Rechnungshof Österreich übt PartG-Kontrolle aus: Empfang Spenden-Meldungen (>165 EUR), Veröffentlichung Spenden >540 EUR, Prüfung Rechenschaftsberichte, Vorbereitung UPTS-Verfahren — Kontrolle nur formal-rechtlich, keine inhaltliche Partei-Bewertung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Rechnungshof-Rollen-Beschreibung (Rechnungshof-Eigendokumentation 'Kontrolle der Parteien'): Der Österreichische Rechnungshof ist Kontroll-Behörde für die Parteienfinanzierung gemäß PartG 2012. Aufgaben: (1) Empfang quartalsweiser Spenden-Meldungen oberhalb 165 EUR, (2) Veröffentlichung von Einzelspenden über 540 EUR auf rechnungshof.gv.at, (3) Empfang + Prüfung jährlicher Rechenschaftsberichte, (4) Aufdecken unzulässiger Spenden + Weiterleitung an UPTS zur Sanktions-Entscheidung, (5) Empfang + Weitergabe unzulässiger Spenden-Gelder (bei nicht-Rückgabe an Spender). Wichtig: Rechnungshof prüft NUR formal-rechtlich (Vollständigkeit, Schwellen-Einhaltung) — KEINE inhaltliche Wertung über 'angemessene' Höhe der Förderung oder Spenden. Politik-Tabu-Compliance: Pack zitiert nur formale Rolle ohne Wertung des Kontroll-Systems selbst.",
+        "rolle_spenden_empfaenger": "Rechnungshof als zentrale Spenden-Meldestelle: Parteien melden Spenden über 165 EUR quartalsweise (4 Wochen Frist nach Quartalsende). Rechnungshof prüft + publiziert Einzelspenden über 540 EUR.",
+        "rolle_rechenschaftsberichts_pruefer": "Empfang + Prüfung jährlicher Rechenschaftsberichte (Frist 30.9. des Folgejahres). Prüfung auf Vollständigkeit + Plausibilität. Bei Mängeln: Ergänzungsverlangen, ggf. Meldung an UPTS.",
+        "rolle_upts_vorbereitung": "Bei festgestelltem Verstoß: Rechnungshof leitet Verfahren bei Unabhängigem Parteien-Transparenz-Senat (UPTS) ein. UPTS entscheidet über Verwaltungsstrafe.",
+        "rolle_geld_weitergabe": "Bei unzulässigen Spenden, die nicht an den Spender zurückgegeben werden können: Rechnungshof nimmt das Geld entgegen und entscheidet jährlich über die Weitergabe (üblicherweise an karitative Empfänger).",
+        "grenzen_der_kontrolle": "Rechnungshof prüft NICHT: 'angemessene Förderhöhe', 'politische Ausrichtung der Empfänger-Partei', 'Inhalt von Wahlkampagnen'. Reine Compliance-Kontrolle nach PartG/PartFörG.",
+        "context": "Diese Rolle des Rechnungshofs in der Parteien-Kontrolle existiert seit der PartG-Stammfassung 2012. Vor 2012 war die Kontrolle deutlich schwächer (Kontrollkommission ohne Veröffentlichungs-Pflicht)."
+      },
+      "context_notes": [
+        "Politik-Tabu-Compliance: Pack stellt den Rechnungshof NUR als formale Kontroll-Behörde dar. Pack vermeidet jede Wertung über Wirksamkeit des Kontroll-Systems.",
+        "Klassischer Faktencheck-Use: 'Rechnungshof hat ÖVP-Spende geprüft' — Pack kann den formalen Prozess erklären, aber Aussagen über konkrete Fall-Outcomes sollten direkt auf rechnungshof.gv.at-Veröffentlichungen verweisen.",
+        "Aktuelle Daten: Spenden-Listen pro Partei + Jahr unter rechnungshof.gv.at > Was wir tun > Kontrolle der Parteien > Parteispenden YYYY."
+      ],
+      "claim_phrasings_handled": [
+        "Wer kontrolliert Parteienfinanzierung in Österreich?",
+        "Rechnungshof Parteien Aufgabe",
+        "Wer prüft Parteispenden in AT?",
+        "Rolle Rechnungshof Parteienfinanzierung"
+      ],
+      "trigger_keywords": [
+        "rechnungshof parteien", "rechnungshof parteienfinanzierung",
+        "rechnungshof parteispenden", "rechnungshof spenden parteien",
+        "rechnungshof kontrolle parteien",
+        "rh parteien", "rh parteienfinanzierung",
+        "parteien kontrolle österreich", "parteien kontrolle oesterreich"
+      ],
+      "trigger_composite": [
+        ["rechnungshof", "rh österreich", "rh oesterreich"],
+        ["partei", "parteien", "parteienfinanzierung", "parteispende", "parteispenden", "parteienförderung", "parteienfoerderung"],
+        ["kontroll", "prüf", "pruef", "rolle", "aufgabe", "zuständig", "zustaendig", "wer prüft", "wer pruef", "wer kontroll"]
+      ]
+    },
+    {
+      "id": "klubfoerderung_kfg_2024",
+      "topic": "klubfoerderung_kfg_2024",
+      "scope": "Klubfinanzierungsgesetz (KFG) — Klubförderung der Parlamentsklubs (separat von PartFörG-Parteienförderung)",
+      "year": 2024,
+      "source_url": "https://www.bundeskanzleramt.gv.at/agenda/parteienfinanzierung.html",
+      "secondary_url": "https://orf.at/stories/3345968/",
+      "source_label": "Bundeskanzleramt Österreich (Parteienfinanzierung-Übersicht) + ORF.at Berichterstattung Klubförderung 2024",
+      "headline": "Klubförderung im Parlament 2024: 28,6 Mio EUR gesamt für die 5 Nationalrats-Klubs — gekoppelt an Beamtengehälter-Entwicklung (KFG), +9,15 % gegenüber 2023; separater Topf von PartFörG-Parteienförderung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Klubförderung-Werte 2024 (Bundeskanzleramt-Vollzug + ORF-Berichterstattung): Zusätzlich zur PartFörG-Parteienförderung erhalten die Parlamentsklubs (Fraktionen im Nationalrat) eine separate Klubförderung auf Basis des Klubfinanzierungsgesetzes (KFG). Klubförderung 2024 Gesamt: 28,6 Mio EUR (Steigerung +9,15 % gegenüber 2023, gekoppelt an Entwicklung der Beamten-Gehälter). Aufteilung erfolgt nach Sockelbetrag pro Klub + Mandats-Anteil. Zweck: Personal- + Sachkosten der Klub-Geschäftsstellen im Parlament. Wichtige Abgrenzung: Klubförderung ≠ Parteienförderung. Klubförderung darf NICHT für Wahlkampf oder allgemeine Parteiarbeit verwendet werden — nur für Klub-/Fraktions-Arbeit im Parlament. Pack zitiert nur veröffentlichte Beträge ohne Wertung.",
+        "klubfoerderung_2024_gesamt": "Klubförderung 2024 gesamt für alle 5 Nationalrats-Klubs: 28,6 Mio EUR (gerundet). Anstieg +9,15 % gegenüber 2023.",
+        "rechtsgrundlage_kfg": "Klubfinanzierungsgesetz (KFG) — separates Bundesgesetz von PartG/PartFörG. Regelt Förderung der Parlamentsklubs (parlamentarische Fraktionen).",
+        "valorisierung_kfg": "KFG-Beträge sind an die Entwicklung der Beamtengehälter gekoppelt (lineare Anpassung). Daher 2024-Anstieg von +9,15 %.",
+        "verwendungszweck": "Zweckgebundene Mittel: Personal + Sachkosten der Klub-Geschäftsstellen im Parlament (Klubsekretariate, parlamentarische Mitarbeiter:innen, Klub-Räumlichkeiten). Verwendung für Wahlkampf oder allgemeine Parteiarbeit unzulässig.",
+        "abgrenzung_parteienfoerderung": "Klubförderung (KFG) ≠ Parteienförderung (PartFörG) ≠ Parteiakademienförderung (eigener Topf, 12 Mio EUR 2024). Drei separate Töpfe mit unterschiedlichen Zweckbindungen.",
+        "context": "5 Klubs im Nationalrat (Stand nach NR-Wahl 2024): ÖVP-Klub, SPÖ-Klub, FPÖ-Klub, Grüner Klub, NEOS-Klub. Plus ggf. wilde Abgeordnete ohne Klub-Status."
+      },
+      "context_notes": [
+        "Häufiges Missverständnis: Medien fassen oft 'Parteienförderung gesamt' inkl. Klubförderung zusammen — exakte rechtliche Unterscheidung wichtig.",
+        "Verwendungs-Kontrolle: Klub-Ausgaben werden im Klub-Rechenschaftsbericht ausgewiesen, der ebenfalls dem Rechnungshof zur Prüfung vorgelegt wird.",
+        "Pack-Abgrenzung: Konkrete Aufteilung pro Klub variiert nach Mandatszahl + Sockelbetrag; detaillierte Aufteilung in der Klubförderung-Tabelle des Parlaments."
+      ],
+      "claim_phrasings_handled": [
+        "Klubförderung Österreich 2024",
+        "Was ist Klubfinanzierungsgesetz?",
+        "Klubförderung vs Parteienförderung",
+        "Wie viel kostet ein Parlamentsklub?"
+      ],
+      "trigger_keywords": [
+        "klubförderung", "klubfoerderung",
+        "klubfinanzierungsgesetz", "kfg",
+        "klubförderung 2024", "klubfoerderung 2024",
+        "fraktionsförderung", "fraktionsfoerderung",
+        "parlamentsklub finanzierung", "parlamentsklub foerderung"
+      ],
+      "trigger_composite": [
+        ["klubförderung", "klubfoerderung", "klubfinanzierung", "fraktionsförderung", "fraktionsfoerderung", "klubfinanzierungsgesetz", "kfg"],
+        ["österreich", "oesterreich", "at ", " at,", " at.", "parlament", "nationalrat", "klub", "fraktion"],
+        ["höhe", "hoehe", "wie viel", "wieviel", "betrag", "28", "mio", "2024", "kosten", "förderung", "foerderung"]
+      ]
+    },
+    {
+      "id": "parteiakademien_partakadg_2024",
+      "topic": "parteiakademien_partakadg_2024",
+      "scope": "Parteiakademienförderung 2024 — Politische Akademie ÖVP / Karl-Renner-Institut SPÖ / FBI FPÖ / FREDA Grüne / NEOS Lab",
+      "year": 2024,
+      "source_url": "https://www.bundeskanzleramt.gv.at/agenda/parteienfinanzierung/parteien-und-parteiakademienforderung.html",
+      "secondary_url": "https://www.meinbezirk.at/c-politik/372-mio-foerderung-gibt-es-2024-fuer-die-parteien_a6481006",
+      "source_label": "Bundeskanzleramt Österreich (Parteien- und Parteiakademienförderung-Übersicht) + meinbezirk.at-Berichterstattung 'Plus von 7,8 Prozent'",
+      "headline": "Parteiakademienförderung 2024: 12 Mio EUR Gesamt-Topf für 5 Parteiakademien — erste Anhebung seit 2014 (+14 %); rechtlich getrennt von PartFörG-Parteienförderung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Parteiakademien-Förderung 2024 (Bundeskanzleramt-Vollzug + meinbezirk.at-Berichterstattung): Zusätzlich zur PartFörG-Parteienförderung erhalten die parteinahen politischen Bildungsakademien eine separate Förderung. 2024 wurde der Topf erstmals seit 2014 angehoben (+14 %) auf insgesamt 12 Mio EUR. Empfänger sind die 5 anerkannten Parteiakademien der Parlamentsparteien: Politische Akademie der ÖVP, Karl-Renner-Institut (SPÖ), Freiheitliches Bildungsinstitut FBI (FPÖ), Grüne Akademie FREDA, NEOS Lab. Aufteilung erfolgt nach Verteilungsschlüssel im Publizistikförderungsgesetz / Parteiakademiengesetz. Zweckbindung: politische Bildungsarbeit, Publikationen, Veranstaltungen. Pack zitiert nur Gesamt-Topf-Höhe ohne Wertung des Verteilungs-Systems.",
+        "parteiakademien_gesamt_2024": "Parteiakademienförderung 2024 gesamt: 12 Mio EUR. Anstieg +14 % gegenüber 2023 (erste Anhebung seit 2014).",
+        "fuenf_akademien": "5 Parteiakademien der Parlamentsparteien: (1) Politische Akademie der ÖVP, (2) Karl-Renner-Institut (SPÖ), (3) Freiheitliches Bildungsinstitut FBI (FPÖ), (4) Grüne Akademie FREDA, (5) NEOS Lab.",
+        "rechtsgrundlage": "Parteiakademiengesetz — separates Bundesgesetz. Anerkennung erfolgt formal durch BKA bei Erfüllung der Kriterien (parteinahe politische Bildungsarbeit, Mindest-Programm-Umfang).",
+        "zweckbindung": "Mittel sind zweckgebunden für politische Bildungsarbeit, Publikationen, Veranstaltungen, Forschungs-Stipendien. Verwendung für Wahlkampf-Werbung ist unzulässig.",
+        "verteilungsschluessel": "Verteilung nach Mandatszahl der Träger-Partei im Nationalrat + Sockelbetrag pro anerkannter Akademie.",
+        "context": "Parteiakademien sind eigenständige Vereine mit eigener Rechenschaftspflicht. Berichts-Veröffentlichung ebenfalls beim Rechnungshof."
+      },
+      "context_notes": [
+        "Verteilungsschlüssel + Auszahlung erfolgt durch BKA. Detaillierte Pro-Akademie-Aufteilung in BKA-Transparenz-Berichten.",
+        "Pack-Abgrenzung: Pack zitiert keine inhaltliche Bewertung der einzelnen Akademien (Politik-Tabu).",
+        "Häufige Missverständnis-Quelle: Manchmal werden Parteiakademien-Beträge fälschlich als 'normale Parteienförderung' bezeichnet."
+      ],
+      "claim_phrasings_handled": [
+        "Parteiakademien Österreich Förderung",
+        "Was bekommt Karl-Renner-Institut?",
+        "Parteiakademienförderung 2024 Höhe",
+        "Politische Akademie ÖVP Finanzierung"
+      ],
+      "trigger_keywords": [
+        "parteiakademie", "parteiakademien",
+        "parteiakademienförderung", "parteiakademienfoerderung",
+        "parteiakademie förderung", "parteiakademie foerderung",
+        "akademienförderung", "akademienfoerderung",
+        "karl-renner-institut", "karl renner institut",
+        "freda", "neos lab", "freiheitliches bildungsinstitut",
+        "politische akademie övp"
+      ],
+      "trigger_composite": [
+        ["parteiakademie", "parteiakademien", "akademienförderung", "akademienfoerderung", "karl-renner-institut", "renner-institut", "freda", "neos lab", "freiheitliches bildungsinstitut", "politische akademie"],
+        ["österreich", "oesterreich", "at ", " at,", " at.", "förderung", "foerderung", "finanzierung", "bildungsarbeit"],
+        ["höhe", "hoehe", "wie viel", "wieviel", "betrag", "12 mio", "millionen", "2024", "topf", "anteil", "gesamt"]
+      ]
+    },
+    {
+      "id": "parteienfin_total_2024_kontext",
+      "topic": "parteienfin_total_2024_kontext",
+      "scope": "Gesamt-Kontext öffentliche Parteienfinanzierung Österreich 2024 — ca. 273 Mio EUR inkl. Bund + Länder + Klub + Parteiakademien + EU-Wahl-Sonder",
+      "year": 2024,
+      "source_url": "https://www.bundeskanzleramt.gv.at/agenda/parteienfinanzierung.html",
+      "secondary_url": "https://oesterreich.orf.at/stories/3151408/",
+      "source_label": "Bundeskanzleramt Österreich (Parteienfinanzierung-Übersicht) + ORF.at Berichterstattung Parteienförderung-Aggregate",
+      "headline": "Öffentliche Parteienfinanzierung Österreich gesamt 2024: ca. 273 Mio EUR Aggregat-Schätzung (Bundes-Parteienförderung 37,2 Mio + Landes-Parteienförderung in 9 Bundesländern + Klub 28,6 Mio + Parteiakademien 12 Mio + EU-Wahl-Sonderförderung 16 Mio + Nationalratswahl-Spezial-Topf 2024)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Aggregat-Schätzung öffentlicher Parteienfinanzierung AT 2024 (Bundeskanzleramt-Übersicht + ORF-Berichterstattung): Gesamt-Aggregat öffentlicher Mittel für Parteien in Österreich 2024: ca. 273 Mio EUR. Zusammensetzung: (a) Bundes-Parteienförderung (PartFörG, Bund): 37,2 Mio EUR; (b) Klubförderung (KFG, Bund): 28,6 Mio EUR; (c) Parteiakademienförderung (Bund): 12 Mio EUR; (d) Landes-Parteienförderung in 9 Bundesländern (Länder-eigene Gesetze, innerhalb des § 3 PartG-Rahmens 3,10-11 EUR pro Wahlberechtigtem): zusammen ca. 150-170 Mio EUR (variierende Landes-Schlüssel); (e) Sonderförderung EU-Wahl 2024: ca. 16 Mio EUR; (f) Nationalratswahl 2024 Wahlkampfkosten-Erstattung gemäß § 4 PartG. Pack zitiert nur Aggregat-Größenordnung ohne Wertung 'zu hoch/niedrig'. Diese Höhe ist im EU-Vergleich pro Kopf im oberen Mittelfeld — etablierte vergleichende Studie OSCE / Council of Europe GRECO. Pack macht keine eigene Einordnung.",
+        "aggregat_2024": "Gesamt-Aggregat 2024: ca. 273 Mio EUR. Hinweis: Genaue Summe ist Schätzung — Landes-Anteile schwanken je nach Berechnungs-Methode (Pflichtleistung + Klub-Förderung + sonstige Zuwendungen).",
+        "anteil_bund_partfoerg": "Bundes-Parteienförderung (PartFörG): 37,2 Mio EUR (~14 % des Gesamt-Aggregats).",
+        "anteil_klub_kfg": "Klubförderung (KFG, Bund): 28,6 Mio EUR (~10 %).",
+        "anteil_parteiakademien": "Parteiakademienförderung: 12 Mio EUR (~4 %).",
+        "anteil_laender": "Landes-Parteienförderung (9 Bundesländer kumuliert): ca. 150-170 Mio EUR (~55-62 % des Aggregats — größter Einzelposten!).",
+        "anteil_eu_wahl_sonder": "EU-Wahl-Sonderförderung 2024: ca. 16 Mio EUR (~6 %).",
+        "context": "Hoher Anteil Landes-Förderung resultiert aus 9 Bundesländer-Schlüsseln. Wien hat den höchsten Pro-Kopf-Satz, ländliche Bundesländer geringer. Genaue Landes-Beträge in Landtags-Budgets ausgewiesen."
+      },
+      "context_notes": [
+        "Aggregat-Wert 273 Mio EUR ist gerundete Mittel-Schätzung — abhängig von Inklusions-Kriterien (z.B. ob Wahlkampfkosten-Erstattung als 'Förderung' zählt) variiert dieser Wert ±10 %.",
+        "Pack-Abgrenzung: Pack vermeidet absichtlich die Wertung 'pro Kopf X EUR ist hoch/niedrig im EU-Vergleich' — solche Wertungen sind Politik-Tabu.",
+        "Landes-Detail-Daten ergänzend bei den jeweiligen Landes-Rechnungshöfen + Landtagen abrufbar — nicht im Bundes-Rechnungshof gebündelt."
+      ],
+      "claim_phrasings_handled": [
+        "Wie viel Geld bekommen österreichische Parteien insgesamt?",
+        "Parteienfinanzierung Österreich gesamt 2024",
+        "Höhe öffentliche Parteienförderung AT total",
+        "273 Millionen Parteienförderung"
+      ],
+      "trigger_keywords": [
+        "parteienfinanzierung gesamt",
+        "parteienförderung gesamt", "parteienfoerderung gesamt",
+        "273 mio parteien", "273 millionen parteien",
+        "öffentliche parteien gelder", "oeffentliche parteien gelder",
+        "parteien staat gesamt", "parteien österreich gesamt",
+        "parteien oesterreich gesamt", "parteien total"
+      ],
+      "trigger_composite": [
+        ["parteienfinanzierung", "parteienförderung", "parteienfoerderung", "parteien finanzierung", "parteien förderung"],
+        ["österreich", "oesterreich", "at ", " at,", " at.", "gesamt", "total", "aggregat", "summe", "insgesamt", "alle"],
+        ["wie viel", "wieviel", "höhe", "hoehe", "betrag", "millionen", "mio", "273", "270", "300", "öffentlich", "oeffentlich", "vom staat", "staat"]
+      ]
+    }
+  ]
+}

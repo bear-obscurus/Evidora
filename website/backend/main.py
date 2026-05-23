@@ -39,9 +39,13 @@ from services.iqs_bildung import (
 from services.who_hearing import (
     claim_mentions_who_hearing_cached, search_who_hearing,
 )
-# Hard-to-Implement Quick-Win (2026-05-23): AMS via WIFO-Sekundär-Quelle
+# Hard-to-Implement Quick-Wins (2026-05-23/24)
 from services.ams_wifo import (
     claim_mentions_ams_wifo_cached, search_ams_wifo,
+)
+from services.rechnungshof_parteienfin import (
+    claim_mentions_rechnungshof_parteienfin_cached,
+    search_rechnungshof_parteienfin,
 )
 from services.efsa import search_efsa
 from services.claimreview import search_claimreview
@@ -524,6 +528,15 @@ async def check_claim(request: Request):
                 "AMS via WIFO", search_ams_wifo, analysis,
             ))
             queried_names.append("AMS via WIFO")
+        # Rechnungshof Parteienfinanzierung AT — 11 facts: Bundes-Parteien-
+        # förderung 2024 (37,2 Mio EUR), Wahlkampfkosten-Grenze, Spenden-
+        # Schwellen § 6 PartG, Sanktionen. Deskriptiv-only, kein STRUKT.
+        if claim_mentions_rechnungshof_parteienfin_cached(claim):
+            tasks.append(cached(
+                "Rechnungshof Parteienfinanzierung",
+                search_rechnungshof_parteienfin, analysis,
+            ))
+            queried_names.append("Rechnungshof Parteienfinanzierung")
         if analysis.get("efsa_relevant"):
             tasks.append(cached("EFSA", search_efsa, analysis))
             queried_names.append("EFSA")
