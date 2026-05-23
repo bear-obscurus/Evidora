@@ -14,6 +14,9 @@ from services.claim_analyzer import analyze_claim
 from services.pubmed import search_pubmed
 from services.who import search_who
 from services.ema import search_ema
+from services.withdrawn_drugs import (
+    claim_mentions_withdrawn_drugs_cached, search_withdrawn_drugs,
+)
 from services.efsa import search_efsa
 from services.claimreview import search_claimreview
 from services.copernicus import search_copernicus
@@ -393,6 +396,17 @@ async def check_claim(request: Request):
         if analysis.get("ema_relevant"):
             tasks.append(cached("EMA", search_ema, analysis))
             queried_names.append("EMA")
+        # Wikipedia withdrawn-drugs ergänzt EMA bei national-zugelassenen
+        # historischen Rückzügen (Vioxx 2004 worldwide, Avandia 2010 EU,
+        # Trasylol 2008 US). Trigger durch claim-mentions-cached, nicht
+        # analyzer-flag, weil viele Withdrawn-Claims (z.B. "Vioxx ist
+        # zugelassen") nicht über ema_relevant=true gehen.
+        if claim_mentions_withdrawn_drugs_cached(claim):
+            tasks.append(cached(
+                "Wikipedia: Withdrawn Drugs",
+                search_withdrawn_drugs, analysis,
+            ))
+            queried_names.append("Wikipedia: Withdrawn Drugs")
         if analysis.get("efsa_relevant"):
             tasks.append(cached("EFSA", search_efsa, analysis))
             queried_names.append("EFSA")

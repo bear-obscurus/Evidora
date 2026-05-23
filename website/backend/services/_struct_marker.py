@@ -86,6 +86,18 @@ FALSE_VERDICT_OVERRIDE_TOKENS: tuple[str, ...] = (
     " IST FALSCH.", " SIND FALSCH.",
     "IST FALSCH/MOSTLY_FALSE",
     "FALSCH/MOSTLY_FALSE.",
+    # --- Quote-Genitiv-Pattern (welthandel-Audit 2026-05-23) ---
+    # Erkennt Konstruktionen wie "'Behauptung X' empirisch falsch"
+    # oder "'X ist autark' empirisch widerlegt", typisch in
+    # ökonomisch-deskriptiven Packs (welthandel, wirtschaftspolitik).
+    # Beide Quote-Varianten (typografisch U+2019 + ASCII U+0027).
+    "' EMPIRISCH FALSCH", '" EMPIRISCH FALSCH',
+    "’ EMPIRISCH FALSCH",
+    "' EMPIRISCH WIDERLEGT", '" EMPIRISCH WIDERLEGT',
+    "’ EMPIRISCH WIDERLEGT",
+    "' ÖKONOMISCH FALSCH", '" ÖKONOMISCH FALSCH',
+    "' OEKONOMISCH FALSCH", '" OEKONOMISCH FALSCH',
+    "’ ÖKONOMISCH FALSCH",
 )
 
 

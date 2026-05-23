@@ -1,0 +1,1442 @@
+{
+  "source": "Wikipedia (EN): List of withdrawn drugs",
+  "source_url": "https://en.wikipedia.org/wiki/List_of_withdrawn_drugs",
+  "license": "CC-BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "fetched_at_iso": "2026-05-23",
+  "note": "Statischer Snapshot der Wikipedia-Tabelle. Die Liste deckt vor allem Medikamente ab, deren Marktzulassung wegen Sicherheits-Bedenken (Hepatotoxizität, kardiovaskuläre Risiken, etc.) entzogen oder ausgesetzt wurde. Diese ergänzt das EMA-CSV (centralized procedure), das national-zugelassene Medikamente wie Mediator/Vioxx/Avandia nicht vollständig erfasst.",
+  "items": [
+    {
+      "inn": "Amphetamine",
+      "trade_name": "Adderall XR",
+      "withdrawal_year": 2005,
+      "withdrawal_year_raw": "2005",
+      "country": "Canada",
+      "reason": "Withdrawn after reports of increased risk of stroke; reinstated after increased risk not found"
+    },
+    {
+      "inn": "Alatrofloxacin",
+      "trade_name": "",
+      "withdrawal_year": 2006,
+      "withdrawal_year_raw": "2006",
+      "country": "Worldwide",
+      "reason": "Serious hepatotoxicity leading to liver transplant or death"
+    },
+    {
+      "inn": "Alclofenac",
+      "trade_name": "",
+      "withdrawal_year": 1979,
+      "withdrawal_year_raw": "1979",
+      "country": "UK",
+      "reason": "Vasculitis"
+    },
+    {
+      "inn": "Alpidem",
+      "trade_name": "Ananxyl",
+      "withdrawal_year": 1995,
+      "withdrawal_year_raw": "1995",
+      "country": "Worldwide",
+      "reason": "Not approved in the US; withdrawn in France in 1994 and the rest of the world in 1995 because of rare but serious hepatotoxicity"
+    },
+    {
+      "inn": "Alosetron",
+      "trade_name": "Lotronex",
+      "withdrawal_year": 2000,
+      "withdrawal_year_raw": "2000",
+      "country": "US",
+      "reason": "Serious gastrointestinal adverse events; ischaemic colitis; severe constipation; reintroduced in 2002 with restricted indications and new controls"
+    },
+    {
+      "inn": "Alphaxolone/Alphadolone",
+      "trade_name": "Althesin",
+      "withdrawal_year": 1984,
+      "withdrawal_year_raw": "1984",
+      "country": "France, Germany, UK",
+      "reason": "Anaphylaxis, possibly due to the carrier oil (Cremophor EL)"
+    },
+    {
+      "inn": "Amineptine",
+      "trade_name": "Survector",
+      "withdrawal_year": 1999,
+      "withdrawal_year_raw": "1999",
+      "country": "France, US",
+      "reason": "Hepatotoxicity, dermatological adverse effects, and abuse potential"
+    },
+    {
+      "inn": "Aminophenazone",
+      "trade_name": "aminopyrine",
+      "withdrawal_year": 1999,
+      "withdrawal_year_raw": "1999",
+      "country": "France, Thailand",
+      "reason": "Risk of agranulocytosis and severe acne"
+    },
+    {
+      "inn": "Amobarbital",
+      "trade_name": "",
+      "withdrawal_year": 1980,
+      "withdrawal_year_raw": "1980",
+      "country": "Norway",
+      "reason": "Risk of barbiturate toxicity"
+    },
+    {
+      "inn": "Amoproxan",
+      "trade_name": "",
+      "withdrawal_year": 1970,
+      "withdrawal_year_raw": "1970",
+      "country": "France",
+      "reason": "Dermatological and ophthalmic toxicity"
+    },
+    {
+      "inn": "Anagestone acetate",
+      "trade_name": "",
+      "withdrawal_year": 1969,
+      "withdrawal_year_raw": "1969",
+      "country": "Germany",
+      "reason": "Animal carcinogenicity"
+    },
+    {
+      "inn": "Antrafenine",
+      "trade_name": "",
+      "withdrawal_year": 1984,
+      "withdrawal_year_raw": "1984",
+      "country": "France",
+      "reason": "Unspecific experimental toxicity"
+    },
+    {
+      "inn": "Aprotinin",
+      "trade_name": "Trasylol",
+      "withdrawal_year": 2008,
+      "withdrawal_year_raw": "2008",
+      "country": "US",
+      "reason": "Increased risk of death"
+    },
+    {
+      "inn": "Ardeparin",
+      "trade_name": "Normiflo",
+      "withdrawal_year": 2001,
+      "withdrawal_year_raw": "2001",
+      "country": "US",
+      "reason": "Withdrawn at the request of the NDA originator, \"not for reason of safety or efficacy\""
+    },
+    {
+      "inn": "Astemizole",
+      "trade_name": "Hismanal",
+      "withdrawal_year": 1999,
+      "withdrawal_year_raw": "1999",
+      "country": "US, Malaysia, several nonspecified markets",
+      "reason": "Fatal arrhythmia"
+    },
+    {
+      "inn": "Azaribine",
+      "trade_name": "",
+      "withdrawal_year": 1976,
+      "withdrawal_year_raw": "1976",
+      "country": "US",
+      "reason": "Thromboembolism"
+    },
+    {
+      "inn": "Bendazac",
+      "trade_name": "",
+      "withdrawal_year": 1993,
+      "withdrawal_year_raw": "1993",
+      "country": "Spain",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Benoxaprofen",
+      "trade_name": "Oraflex, Opren",
+      "withdrawal_year": 1982,
+      "withdrawal_year_raw": "1982",
+      "country": "Germany, Spain, UK, US",
+      "reason": "Liver and kidney failure; gastrointestinal bleeding; ulcers"
+    },
+    {
+      "inn": "Benzarone",
+      "trade_name": "",
+      "withdrawal_year": 1992,
+      "withdrawal_year_raw": "1992",
+      "country": "Germany",
+      "reason": "Hepatitis"
+    },
+    {
+      "inn": "Benzbromarone",
+      "trade_name": "",
+      "withdrawal_year": 2003,
+      "withdrawal_year_raw": "2003",
+      "country": "European Union, UK",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Benziodarone",
+      "trade_name": "",
+      "withdrawal_year": 1964,
+      "withdrawal_year_raw": "1964",
+      "country": "France, UK",
+      "reason": "Jaundice"
+    },
+    {
+      "inn": "Beta-ethoxy-lacetanilanide",
+      "trade_name": "",
+      "withdrawal_year": 1986,
+      "withdrawal_year_raw": "1986",
+      "country": "Germany",
+      "reason": "Renal toxicity, animal carcinogenicity"
+    },
+    {
+      "inn": "Bezitramide",
+      "trade_name": "",
+      "withdrawal_year": 2004,
+      "withdrawal_year_raw": "2004",
+      "country": "Netherlands",
+      "reason": "Risk of fatal overdose"
+    },
+    {
+      "inn": "Bithionol",
+      "trade_name": "",
+      "withdrawal_year": 1967,
+      "withdrawal_year_raw": "1967",
+      "country": "US",
+      "reason": "Dermatological toxicity"
+    },
+    {
+      "inn": "Brotizolam",
+      "trade_name": "",
+      "withdrawal_year": 1989,
+      "withdrawal_year_raw": "1989",
+      "country": "UK",
+      "reason": "Animal carcinogenicity"
+    },
+    {
+      "inn": "Bromfenac",
+      "trade_name": "",
+      "withdrawal_year": 1998,
+      "withdrawal_year_raw": "1998",
+      "country": "US",
+      "reason": "Severe hepatitis and liver failure (requiring transplantation)"
+    },
+    {
+      "inn": "Bucetin",
+      "trade_name": "",
+      "withdrawal_year": 1986,
+      "withdrawal_year_raw": "1986",
+      "country": "Germany",
+      "reason": "Kidney damage"
+    },
+    {
+      "inn": "Buformin",
+      "trade_name": "",
+      "withdrawal_year": 1978,
+      "withdrawal_year_raw": "1978",
+      "country": "Germany",
+      "reason": "Metabolic toxicity"
+    },
+    {
+      "inn": "Bunamiodyl",
+      "trade_name": "",
+      "withdrawal_year": 1963,
+      "withdrawal_year_raw": "1963",
+      "country": "Canada, UK, US",
+      "reason": "Nephropathy"
+    },
+    {
+      "inn": "Butamben",
+      "trade_name": "Efocaine",
+      "withdrawal_year": 1964,
+      "withdrawal_year_raw": "1964",
+      "country": "US",
+      "reason": "Dermatological toxicity; psychiatric reactions"
+    },
+    {
+      "inn": "Canrenone",
+      "trade_name": "",
+      "withdrawal_year": 1986,
+      "withdrawal_year_raw": "1986",
+      "country": "Germany",
+      "reason": "Animal carcinogenicity"
+    },
+    {
+      "inn": "Cerivastatin",
+      "trade_name": "Baycol, Lipobay",
+      "withdrawal_year": 2001,
+      "withdrawal_year_raw": "2001",
+      "country": "US",
+      "reason": "Risk of rhabdomyolysis"
+    },
+    {
+      "inn": "Chlormadinone",
+      "trade_name": "Chlormenadione",
+      "withdrawal_year": 1970,
+      "withdrawal_year_raw": "1970",
+      "country": "UK, US",
+      "reason": "Animal carcinogenicity"
+    },
+    {
+      "inn": "Chlormezanone",
+      "trade_name": "Trancopal",
+      "withdrawal_year": 1996,
+      "withdrawal_year_raw": "1996",
+      "country": "European Union, US, South Africa, Japan",
+      "reason": "Hepatotoxicity and Stevens–Johnson Syndrome"
+    },
+    {
+      "inn": "Chlorphentermine",
+      "trade_name": "",
+      "withdrawal_year": 1969,
+      "withdrawal_year_raw": "1969",
+      "country": "Germany",
+      "reason": "Cardiovascular toxicity"
+    },
+    {
+      "inn": "Cianidanol",
+      "trade_name": "",
+      "withdrawal_year": 1985,
+      "withdrawal_year_raw": "1985",
+      "country": "France, Germany, Spain, Sweden",
+      "reason": "Haemolytic anaemia"
+    },
+    {
+      "inn": "Cinepazide",
+      "trade_name": "",
+      "withdrawal_year": 1988,
+      "withdrawal_year_raw": "1988",
+      "country": "Spain",
+      "reason": "Agranulocytosis"
+    },
+    {
+      "inn": "Cisapride",
+      "trade_name": "Propulsid",
+      "withdrawal_year": 2000,
+      "withdrawal_year_raw": "2000",
+      "country": "US",
+      "reason": "Risk of fatal cardiac arrhythmias"
+    },
+    {
+      "inn": "Clioquinol",
+      "trade_name": "",
+      "withdrawal_year": 1973,
+      "withdrawal_year_raw": "1973",
+      "country": "France, Germany, UK, US",
+      "reason": "Neurotoxicity"
+    },
+    {
+      "inn": "Clobutinol",
+      "trade_name": "",
+      "withdrawal_year": 2007,
+      "withdrawal_year_raw": "2007",
+      "country": "Germany",
+      "reason": "Ventricular arrhythmias, QT-interval prolongation"
+    },
+    {
+      "inn": "Cloforex",
+      "trade_name": "",
+      "withdrawal_year": 1969,
+      "withdrawal_year_raw": "1969",
+      "country": "Germany",
+      "reason": "Cardiovascular toxicity"
+    },
+    {
+      "inn": "Clomacran",
+      "trade_name": "",
+      "withdrawal_year": 1982,
+      "withdrawal_year_raw": "1982",
+      "country": "UK",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Clometacin",
+      "trade_name": "",
+      "withdrawal_year": 1987,
+      "withdrawal_year_raw": "1987",
+      "country": "France",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Co-proxamol",
+      "trade_name": "codeine + paracetamol; Distalgesic",
+      "withdrawal_year": 2004,
+      "withdrawal_year_raw": "2004",
+      "country": "UK",
+      "reason": "Risk of overdose"
+    },
+    {
+      "inn": "Cyclobarbital",
+      "trade_name": "",
+      "withdrawal_year": 1980,
+      "withdrawal_year_raw": "1980",
+      "country": "Norway",
+      "reason": "Risk of overdose"
+    },
+    {
+      "inn": "Cyclofenil",
+      "trade_name": "",
+      "withdrawal_year": 1987,
+      "withdrawal_year_raw": "1987",
+      "country": "France",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Dantron",
+      "trade_name": "",
+      "withdrawal_year": 1963,
+      "withdrawal_year_raw": "1963",
+      "country": "Canada, UK, US",
+      "reason": "Mutagenic; withdrawn from general use in the UK but permitted in terminal patients"
+    },
+    {
+      "inn": "Dexfenfluramine",
+      "trade_name": "",
+      "withdrawal_year": 1997,
+      "withdrawal_year_raw": "1997",
+      "country": "European Union, UK, US",
+      "reason": "Cardiotoxic"
+    },
+    {
+      "inn": "Propoxyphene",
+      "trade_name": "Darvocet/Darvon",
+      "withdrawal_year": 2010,
+      "withdrawal_year_raw": "2010",
+      "country": "Worldwide",
+      "reason": "Increased risk of heart attacks and stroke"
+    },
+    {
+      "inn": "Diacetoxydiphenolisatin",
+      "trade_name": "",
+      "withdrawal_year": 1971,
+      "withdrawal_year_raw": "1971",
+      "country": "Australia",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Diethylstilbestrol",
+      "trade_name": "",
+      "withdrawal_year": 1970,
+      "withdrawal_year_raw": "1970s",
+      "country": "US",
+      "reason": "Carcinogen"
+    },
+    {
+      "inn": "Difemerine",
+      "trade_name": "",
+      "withdrawal_year": 1986,
+      "withdrawal_year_raw": "1986",
+      "country": "Germany",
+      "reason": "Multi-organ toxicities"
+    },
+    {
+      "inn": "Dihydrostreptomycin",
+      "trade_name": "",
+      "withdrawal_year": 1970,
+      "withdrawal_year_raw": "1970",
+      "country": "US",
+      "reason": "Neuropsychiatric reactions"
+    },
+    {
+      "inn": "Dilevalol",
+      "trade_name": "",
+      "withdrawal_year": 1990,
+      "withdrawal_year_raw": "1990",
+      "country": "UK",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Dimazole",
+      "trade_name": "Diamthazole",
+      "withdrawal_year": 1972,
+      "withdrawal_year_raw": "1972",
+      "country": "France, US",
+      "reason": "Neuropsychiatric reactions"
+    },
+    {
+      "inn": "Dimethylamylamine",
+      "trade_name": "DMAA",
+      "withdrawal_year": 1983,
+      "withdrawal_year_raw": "1983",
+      "country": "US",
+      "reason": "Voluntarily withdrawn from market by Lilly; reintroduced as a dietary supplement in 2006; in 2013 the FDA started work to ban it because of cardiovascular problems"
+    },
+    {
+      "inn": "Dinoprostone",
+      "trade_name": "",
+      "withdrawal_year": 1990,
+      "withdrawal_year_raw": "1990",
+      "country": "UK",
+      "reason": "Uterine hypotonus, fetal distress"
+    },
+    {
+      "inn": "Dipyrone",
+      "trade_name": "Metamizole",
+      "withdrawal_year": 1975,
+      "withdrawal_year_raw": "1975",
+      "country": "UK, US, others",
+      "reason": "Agranulocytosis, anaphylactic reactions"
+    },
+    {
+      "inn": "Dithiazanine iodide",
+      "trade_name": "",
+      "withdrawal_year": 1964,
+      "withdrawal_year_raw": "1964",
+      "country": "France, US",
+      "reason": "Cardiovascular and metabolic reactions"
+    },
+    {
+      "inn": "Dofetilide",
+      "trade_name": "",
+      "withdrawal_year": 2004,
+      "withdrawal_year_raw": "2004",
+      "country": "Germany",
+      "reason": "Drug-drug interactions, prolonged QT"
+    },
+    {
+      "inn": "Drotrecogin alfa",
+      "trade_name": "Xigris",
+      "withdrawal_year": 2011,
+      "withdrawal_year_raw": "2011",
+      "country": "Worldwide",
+      "reason": "Lack of efficacy as shown in the PROWESS-SHOCK study"
+    },
+    {
+      "inn": "Ebrotidine",
+      "trade_name": "",
+      "withdrawal_year": 1998,
+      "withdrawal_year_raw": "1998",
+      "country": "Spain",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Efalizumab",
+      "trade_name": "Raptiva",
+      "withdrawal_year": 2009,
+      "withdrawal_year_raw": "2009",
+      "country": "Germany",
+      "reason": "Increased risk of progressive multifocal leukoencephalopathy"
+    },
+    {
+      "inn": "Encainide",
+      "trade_name": "",
+      "withdrawal_year": 1991,
+      "withdrawal_year_raw": "1991",
+      "country": "UK, US",
+      "reason": "Ventricular arrhythmias"
+    },
+    {
+      "inn": "Ethyl carbamate",
+      "trade_name": "",
+      "withdrawal_year": 1963,
+      "withdrawal_year_raw": "1963",
+      "country": "Canada, UK, US",
+      "reason": "Carcinogen"
+    },
+    {
+      "inn": "Etretinate",
+      "trade_name": "",
+      "withdrawal_year": 1989,
+      "withdrawal_year_raw": "1989",
+      "country": "France",
+      "reason": "Teratogen"
+    },
+    {
+      "inn": "Exifone",
+      "trade_name": "",
+      "withdrawal_year": 1989,
+      "withdrawal_year_raw": "1989",
+      "country": "France",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Fen-phen",
+      "trade_name": "combination of fenfluramine + phentermine",
+      "withdrawal_year": 1997,
+      "withdrawal_year_raw": "1997",
+      "country": "Cardiotoxicity",
+      "reason": ""
+    },
+    {
+      "inn": "Fenclofenac",
+      "trade_name": "",
+      "withdrawal_year": 1984,
+      "withdrawal_year_raw": "1984",
+      "country": "UK",
+      "reason": "Cutaneous reactions; animal carcinogenicity"
+    },
+    {
+      "inn": "Fenfluramine",
+      "trade_name": "",
+      "withdrawal_year": 1997,
+      "withdrawal_year_raw": "1997",
+      "country": "European Union, UK, US, India, South Africa, others",
+      "reason": "Cardiac valvular disease, pulmonary hypertension, cardiac fibrosis; re-approved in June 2020 for treatment of seizures associated with Dravet syndrome, under FDA orphan drug rules"
+    },
+    {
+      "inn": "Fenoterol",
+      "trade_name": "",
+      "withdrawal_year": 1990,
+      "withdrawal_year_raw": "1990",
+      "country": "New Zealand",
+      "reason": "Increased asthma mortality"
+    },
+    {
+      "inn": "Feprazone",
+      "trade_name": "",
+      "withdrawal_year": 1984,
+      "withdrawal_year_raw": "1984",
+      "country": "Germany, UK",
+      "reason": "Cutaneous reactions, multiorgan toxicity"
+    },
+    {
+      "inn": "Fipexide",
+      "trade_name": "",
+      "withdrawal_year": 1991,
+      "withdrawal_year_raw": "1991",
+      "country": "France",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Flosequinan",
+      "trade_name": "Manoplax",
+      "withdrawal_year": 1993,
+      "withdrawal_year_raw": "1993",
+      "country": "UK, US",
+      "reason": "Increased mortality at higher doses; increased hospitalizations"
+    },
+    {
+      "inn": "Flunitrazepam",
+      "trade_name": "",
+      "withdrawal_year": 1991,
+      "withdrawal_year_raw": "1991",
+      "country": "France",
+      "reason": "Abuse"
+    },
+    {
+      "inn": "Flupirtine",
+      "trade_name": "",
+      "withdrawal_year": 2018,
+      "withdrawal_year_raw": "2018",
+      "country": "European Union",
+      "reason": "Liver toxicity"
+    },
+    {
+      "inn": "Gatifloxacin",
+      "trade_name": "",
+      "withdrawal_year": 2006,
+      "withdrawal_year_raw": "2006",
+      "country": "US",
+      "reason": "Increased risk of dysglycaemia"
+    },
+    {
+      "inn": "Gemtuzumab ozogamicin",
+      "trade_name": "Mylotarg",
+      "withdrawal_year": 2010,
+      "withdrawal_year_raw": "2010",
+      "country": "US",
+      "reason": "No improvement in clinical benefit; risk for death; returned to market in 2017"
+    },
+    {
+      "inn": "Glafenine",
+      "trade_name": "",
+      "withdrawal_year": 1984,
+      "withdrawal_year_raw": "1984",
+      "country": "France, Germany",
+      "reason": "Anaphylaxis"
+    },
+    {
+      "inn": "Grepafloxacin",
+      "trade_name": "Raxar",
+      "withdrawal_year": 1999,
+      "withdrawal_year_raw": "1999",
+      "country": "Germany, UK, US, others",
+      "reason": "Cardiac repolarization; QT interval prolongation"
+    },
+    {
+      "inn": "Hydromorphone",
+      "trade_name": "Palladone, extended release version",
+      "withdrawal_year": 2005,
+      "withdrawal_year_raw": "2005",
+      "country": "High risk of accidental overdose when extended release version (Palladone) administered with alcohol; standard hydromorphone is sold in most of the world, including the US",
+      "reason": ""
+    },
+    {
+      "inn": "Ibufenac",
+      "trade_name": "",
+      "withdrawal_year": 1968,
+      "withdrawal_year_raw": "1968",
+      "country": "UK",
+      "reason": "Hepatotoxicity, jaundice"
+    },
+    {
+      "inn": "Indalpine",
+      "trade_name": "",
+      "withdrawal_year": 1985,
+      "withdrawal_year_raw": "1985",
+      "country": "France",
+      "reason": "Agranulocytosis"
+    },
+    {
+      "inn": "Indoprofen",
+      "trade_name": "",
+      "withdrawal_year": 1983,
+      "withdrawal_year_raw": "1983",
+      "country": "Germany, Spain, UK",
+      "reason": "Animal carcinogenicity, gastrointestinal toxicity"
+    },
+    {
+      "inn": "Ingenol mebutate gel",
+      "trade_name": "",
+      "withdrawal_year": 2020,
+      "withdrawal_year_raw": "2020",
+      "country": "Suspended in Europe",
+      "reason": "Increased risk of skin cancers"
+    },
+    {
+      "inn": "Iodinated casein strophantin",
+      "trade_name": "",
+      "withdrawal_year": 1964,
+      "withdrawal_year_raw": "1964",
+      "country": "US",
+      "reason": "Metabolic reactions"
+    },
+    {
+      "inn": "Iproniazid",
+      "trade_name": "",
+      "withdrawal_year": 1964,
+      "withdrawal_year_raw": "1964",
+      "country": "Canada",
+      "reason": "Interactions with food products containing tyrosine"
+    },
+    {
+      "inn": "Isaxonine phosphate",
+      "trade_name": "",
+      "withdrawal_year": 1984,
+      "withdrawal_year_raw": "1984",
+      "country": "France",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Isoxicam",
+      "trade_name": "",
+      "withdrawal_year": 1983,
+      "withdrawal_year_raw": "1983",
+      "country": "France, Germany, Spain, others",
+      "reason": "Stevens–Johnson syndrome"
+    },
+    {
+      "inn": "Kava kava",
+      "trade_name": "Piper methysticum",
+      "withdrawal_year": 2002,
+      "withdrawal_year_raw": "2002",
+      "country": "Germany",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Ketorolac",
+      "trade_name": "",
+      "withdrawal_year": 1993,
+      "withdrawal_year_raw": "1993",
+      "country": "France, Germany, others",
+      "reason": "Haemorrhage, Kidney Failure"
+    },
+    {
+      "inn": "L-tryptophan",
+      "trade_name": "",
+      "withdrawal_year": 1989,
+      "withdrawal_year_raw": "1989",
+      "country": "Germany, UK",
+      "reason": "Eosinophilic myalgia syndrome; still sold in the US"
+    },
+    {
+      "inn": "Levamisole",
+      "trade_name": "Ergamisol",
+      "withdrawal_year": 1999,
+      "withdrawal_year_raw": "1999",
+      "country": "US",
+      "reason": "Still used as veterinary drug and as a human antihelminthic in many markets; listed on the WHO's List of Essential Medicines; in humans, it was used to treat melanoma before it was withdrawn because of agranulocytosis"
+    },
+    {
+      "inn": "Levomethadyl acetate",
+      "trade_name": "",
+      "withdrawal_year": 2003,
+      "withdrawal_year_raw": "2003",
+      "country": "US",
+      "reason": "Cardiac arrhythmias and cardiac arrest"
+    },
+    {
+      "inn": "Lorcaserin",
+      "trade_name": "Belviq",
+      "withdrawal_year": 2020,
+      "withdrawal_year_raw": "2020",
+      "country": "US",
+      "reason": "Increased risk of cancer"
+    },
+    {
+      "inn": "Lumiracoxib",
+      "trade_name": "Prexige",
+      "withdrawal_year": 2007,
+      "withdrawal_year_raw": "2007–2008",
+      "country": "Worldwide",
+      "reason": "Liver damage"
+    },
+    {
+      "inn": "Lysergic acid diethylamide",
+      "trade_name": "LSD",
+      "withdrawal_year": 1950,
+      "withdrawal_year_raw": "1950s–1960s",
+      "country": "Marketed as a psychiatric drug; withdrawn after it became widely used recreationally; now illegal in most of the world",
+      "reason": ""
+    },
+    {
+      "inn": "Mebanazine",
+      "trade_name": "",
+      "withdrawal_year": 1975,
+      "withdrawal_year_raw": "1975",
+      "country": "UK",
+      "reason": "Hepatotoxicity, drug-drug interactions"
+    },
+    {
+      "inn": "Methandrostenolone",
+      "trade_name": "",
+      "withdrawal_year": 1982,
+      "withdrawal_year_raw": "1982",
+      "country": "France, Germany, UK, US, others",
+      "reason": "Off-label abuse"
+    },
+    {
+      "inn": "Methapyrilene",
+      "trade_name": "",
+      "withdrawal_year": 1979,
+      "withdrawal_year_raw": "1979",
+      "country": "Germany, UK, US",
+      "reason": "Animal carcinogenicity"
+    },
+    {
+      "inn": "Methaqualone",
+      "trade_name": "",
+      "withdrawal_year": 1984,
+      "withdrawal_year_raw": "1984",
+      "country": "South Africa (1971), India (1984), United Nations (1971–1988)",
+      "reason": "Withdrawn because of risk of addiction and overdose"
+    },
+    {
+      "inn": "Metipranolol",
+      "trade_name": "",
+      "withdrawal_year": 1990,
+      "withdrawal_year_raw": "1990",
+      "country": "UK, others",
+      "reason": "Uveitis"
+    },
+    {
+      "inn": "Metofoline",
+      "trade_name": "",
+      "withdrawal_year": 1965,
+      "withdrawal_year_raw": "1965",
+      "country": "US",
+      "reason": "Unspecific experimental toxicity"
+    },
+    {
+      "inn": "Mibefradil",
+      "trade_name": "",
+      "withdrawal_year": 1998,
+      "withdrawal_year_raw": "1998",
+      "country": "European Union, Malaysia, US, others",
+      "reason": "Fatal arrhythmias, drug-drug interactions"
+    },
+    {
+      "inn": "Minaprine",
+      "trade_name": "",
+      "withdrawal_year": 1996,
+      "withdrawal_year_raw": "1996",
+      "country": "France",
+      "reason": "Convulsions"
+    },
+    {
+      "inn": "Moxisylyte",
+      "trade_name": "",
+      "withdrawal_year": 1993,
+      "withdrawal_year_raw": "1993",
+      "country": "France",
+      "reason": "Necrotic hepatitis"
+    },
+    {
+      "inn": "Muzolimine",
+      "trade_name": "",
+      "withdrawal_year": 1987,
+      "withdrawal_year_raw": "1987",
+      "country": "France, Germany, European Union",
+      "reason": "Polyneuropathy"
+    },
+    {
+      "inn": "Natalizumab",
+      "trade_name": "Tysabri",
+      "withdrawal_year": 2005,
+      "withdrawal_year_raw": "2005–2006",
+      "country": "US",
+      "reason": "Voluntarily withdrawn from the US market because of a risk of Progressive multifocal leukoencephalopathy (PML); returned to the market in July 2006"
+    },
+    {
+      "inn": "Nefazodone",
+      "trade_name": "",
+      "withdrawal_year": 2004,
+      "withdrawal_year_raw": "2004",
+      "country": "Europe, Australia, New Zealand, Canada",
+      "reason": "Branded version withdrawn by the originator in several countries in 2007 because of hepatotoxicity; generic versions available; still available in the US"
+    },
+    {
+      "inn": "Nialamide",
+      "trade_name": "",
+      "withdrawal_year": 1974,
+      "withdrawal_year_raw": "1974",
+      "country": "UK, US",
+      "reason": "Hepatotoxicity, drug -drug interactions"
+    },
+    {
+      "inn": "Nikethamide",
+      "trade_name": "",
+      "withdrawal_year": 1988,
+      "withdrawal_year_raw": "1988",
+      "country": "Multiple markets",
+      "reason": "CNS stimulation"
+    },
+    {
+      "inn": "Nitrefazole",
+      "trade_name": "",
+      "withdrawal_year": 1984,
+      "withdrawal_year_raw": "1984",
+      "country": "Germany",
+      "reason": "Hepatic and haematological toxicity"
+    },
+    {
+      "inn": "Nomifensine",
+      "trade_name": "",
+      "withdrawal_year": 1981,
+      "withdrawal_year_raw": "1981–1986",
+      "country": "France, Germany, Spain, UK, US, others",
+      "reason": "Haemolytic anaemia, hepatotoxicity, serious hypersensitivity reactions"
+    },
+    {
+      "inn": "Oxeladin",
+      "trade_name": "",
+      "withdrawal_year": 1976,
+      "withdrawal_year_raw": "1976",
+      "country": "Canada, UK, US (1976)",
+      "reason": "Carcinogen"
+    },
+    {
+      "inn": "Oxyphenbutazone",
+      "trade_name": "",
+      "withdrawal_year": 1984,
+      "withdrawal_year_raw": "1984–1985",
+      "country": "UK, US, Germany, France, Canada",
+      "reason": "Bone marrow suppression, Stevens–Johnson syndrome"
+    },
+    {
+      "inn": "Oxyphenisatin",
+      "trade_name": "Phenisatin",
+      "withdrawal_year": 1970,
+      "withdrawal_year_raw": "1970s",
+      "country": "Australia, France, Germany, UK, US",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Ozogamicin",
+      "trade_name": "",
+      "withdrawal_year": 2010,
+      "withdrawal_year_raw": "2010",
+      "country": "US",
+      "reason": "No improvement in clinical benefit; risk of death; veno-occlusive disease"
+    },
+    {
+      "inn": "Pemoline",
+      "trade_name": "Cylert",
+      "withdrawal_year": 1997,
+      "withdrawal_year_raw": "1997",
+      "country": "Canada, UK",
+      "reason": "Withdrawn in the US in 2005 because of hepatotoxicity"
+    },
+    {
+      "inn": "Pentobarbital",
+      "trade_name": "",
+      "withdrawal_year": 1980,
+      "withdrawal_year_raw": "1980",
+      "country": "Norway",
+      "reason": "Risk of fatal overdose"
+    },
+    {
+      "inn": "Pentylenetetrazol",
+      "trade_name": "",
+      "withdrawal_year": 1982,
+      "withdrawal_year_raw": "1982",
+      "country": "US",
+      "reason": "Withdrawn because of inability to produce effective convulsive therapy, and because it caused seizures"
+    },
+    {
+      "inn": "Pergolide",
+      "trade_name": "Permax",
+      "withdrawal_year": 2007,
+      "withdrawal_year_raw": "2007",
+      "country": "US",
+      "reason": "Risk of heart valve damage"
+    },
+    {
+      "inn": "Perhexiline",
+      "trade_name": "",
+      "withdrawal_year": 1985,
+      "withdrawal_year_raw": "1985",
+      "country": "UK, Spain",
+      "reason": "Neurological and hepatic toxicity"
+    },
+    {
+      "inn": "Phenacetin",
+      "trade_name": "",
+      "withdrawal_year": 1975,
+      "withdrawal_year_raw": "1975",
+      "country": "Canada",
+      "reason": "An ingredient in \"APC\" tablets (aspirin + phenacetin + caffeine); withdrawn because of risks of cancer and kidney disease in Germany, Denmark, UK, US, and in others because of nephropathy"
+    },
+    {
+      "inn": "Phenformin and Buformin",
+      "trade_name": "",
+      "withdrawal_year": 1977,
+      "withdrawal_year_raw": "1977",
+      "country": "France, Germany, US",
+      "reason": "Severe lactic acidosis"
+    },
+    {
+      "inn": "Phenolphthalein",
+      "trade_name": "",
+      "withdrawal_year": 1997,
+      "withdrawal_year_raw": "1997",
+      "country": "US",
+      "reason": "Possible carcinogen"
+    },
+    {
+      "inn": "Phenoxypropazine",
+      "trade_name": "",
+      "withdrawal_year": 1966,
+      "withdrawal_year_raw": "1966",
+      "country": "UK",
+      "reason": "Hepatotoxicity, drug-drug interactions"
+    },
+    {
+      "inn": "Phenylbutazone",
+      "trade_name": "",
+      "withdrawal_year": 1985,
+      "withdrawal_year_raw": "1985",
+      "country": "Germany",
+      "reason": "Off-label abuse, haematological toxicity"
+    },
+    {
+      "inn": "Phenylpropanolamine",
+      "trade_name": "Propagest, Dexatrim",
+      "withdrawal_year": 2000,
+      "withdrawal_year_raw": "2000",
+      "country": "Canada, US",
+      "reason": "Haemorrhagic stroke"
+    },
+    {
+      "inn": "Pifoxime",
+      "trade_name": "=Pixifenide",
+      "withdrawal_year": 1976,
+      "withdrawal_year_raw": "1976",
+      "country": "France",
+      "reason": "Neuropsychiatric reactions"
+    },
+    {
+      "inn": "Pirprofen",
+      "trade_name": "",
+      "withdrawal_year": 1990,
+      "withdrawal_year_raw": "1990",
+      "country": "France, Germany, Spain",
+      "reason": "Liver toxicity."
+    },
+    {
+      "inn": "Prenylamine",
+      "trade_name": "",
+      "withdrawal_year": 1988,
+      "withdrawal_year_raw": "1988",
+      "country": "Canada, France, Germany, UK, US, others",
+      "reason": "Cardiac arrhythmias and death"
+    },
+    {
+      "inn": "Proglumide",
+      "trade_name": "",
+      "withdrawal_year": 1989,
+      "withdrawal_year_raw": "1989",
+      "country": "Germany",
+      "reason": "Respiratory reactions"
+    },
+    {
+      "inn": "Pronethalol",
+      "trade_name": "",
+      "withdrawal_year": 1965,
+      "withdrawal_year_raw": "1965",
+      "country": "UK",
+      "reason": "Animal carcinogenicity"
+    },
+    {
+      "inn": "Propanidid",
+      "trade_name": "",
+      "withdrawal_year": 1983,
+      "withdrawal_year_raw": "1983",
+      "country": "UK",
+      "reason": "Allergy"
+    },
+    {
+      "inn": "Proxibarbal",
+      "trade_name": "",
+      "withdrawal_year": 1998,
+      "withdrawal_year_raw": "1998",
+      "country": "Spain, France, Italy, Portugal, Turkey",
+      "reason": "Immunoallergic, thrombocytopenia"
+    },
+    {
+      "inn": "Pyrovalerone",
+      "trade_name": "",
+      "withdrawal_year": 1979,
+      "withdrawal_year_raw": "1979",
+      "country": "France",
+      "reason": "Abuse"
+    },
+    {
+      "inn": "Ranitidine",
+      "trade_name": "Zantac",
+      "withdrawal_year": 2020,
+      "withdrawal_year_raw": "2020",
+      "country": "Worldwide",
+      "reason": "Found to spontaneously break down into the carcinogen ''N''-nitrosodimethylamine"
+    },
+    {
+      "inn": "Rapacuronium",
+      "trade_name": "Raplon",
+      "withdrawal_year": 2001,
+      "withdrawal_year_raw": "2001",
+      "country": "US, multiple markets",
+      "reason": "Withdrawn in many countries because of the risk of fatal bronchospasm"
+    },
+    {
+      "inn": "Remoxipride",
+      "trade_name": "",
+      "withdrawal_year": 1993,
+      "withdrawal_year_raw": "1993",
+      "country": "UK, others",
+      "reason": "Aplastic anaemia"
+    },
+    {
+      "inn": "Rhesus rotavirus vaccine-tetravalent",
+      "trade_name": "RotaShield",
+      "withdrawal_year": 1999,
+      "withdrawal_year_raw": "1999",
+      "country": "US",
+      "reason": "Withdrawn because of a risk of intussusception"
+    },
+    {
+      "inn": "Rimonabant",
+      "trade_name": "Acomplia",
+      "withdrawal_year": 2008,
+      "withdrawal_year_raw": "2008",
+      "country": "Worldwide",
+      "reason": "Risk of severe depression and suicide"
+    },
+    {
+      "inn": "Rofecoxib",
+      "trade_name": "Vioxx",
+      "withdrawal_year": 2004,
+      "withdrawal_year_raw": "2004",
+      "country": "Worldwide",
+      "reason": "Withdrawn by Merck & Co. because of the risks of myocardial infarction and stroke"
+    },
+    {
+      "inn": "Rosiglitazone",
+      "trade_name": "Avandia",
+      "withdrawal_year": 2010,
+      "withdrawal_year_raw": "2010",
+      "country": "Europe",
+      "reason": "Risk of heart attacks and death; still available in the US"
+    },
+    {
+      "inn": "Secobarbital",
+      "trade_name": "",
+      "withdrawal_year": 1990,
+      "withdrawal_year_raw": "1990",
+      "country": "France, Norway, others",
+      "reason": "Risk of overdose"
+    },
+    {
+      "inn": "Sertindole",
+      "trade_name": "",
+      "withdrawal_year": 1998,
+      "withdrawal_year_raw": "1998",
+      "country": "European Union",
+      "reason": "Arrhythmias and sudden cardiac death"
+    },
+    {
+      "inn": "Sibutramine",
+      "trade_name": "Reductil/Meridia",
+      "withdrawal_year": 2010,
+      "withdrawal_year_raw": "2010",
+      "country": "Australia, Canada, China, the European Union (EU), Hong Kong, India, Mexico, New Zealand, the Philippines, Thailand, the United Kingdom, US",
+      "reason": "Increased risk of heart attack and stroke"
+    },
+    {
+      "inn": "Sitaxentan",
+      "trade_name": "",
+      "withdrawal_year": 2010,
+      "withdrawal_year_raw": "2010",
+      "country": "Germany",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Sorivudine",
+      "trade_name": "",
+      "withdrawal_year": 1993,
+      "withdrawal_year_raw": "1993",
+      "country": "Japan",
+      "reason": "Drug-drug interactions and deaths"
+    },
+    {
+      "inn": "Sparfloxacin",
+      "trade_name": "",
+      "withdrawal_year": 2001,
+      "withdrawal_year_raw": "2001",
+      "country": "US",
+      "reason": "QT interval prolongation and phototoxicity"
+    },
+    {
+      "inn": "Sulfacarbamide",
+      "trade_name": "",
+      "withdrawal_year": 1988,
+      "withdrawal_year_raw": "1988",
+      "country": "Germany",
+      "reason": "Dermatological, hematological, and hepatic reactions"
+    },
+    {
+      "inn": "Sulfamethoxydiazine",
+      "trade_name": "",
+      "withdrawal_year": 1988,
+      "withdrawal_year_raw": "1988",
+      "country": "Germany",
+      "reason": "Dermatological reactions"
+    },
+    {
+      "inn": "Sulfamethoxypyridazine",
+      "trade_name": "",
+      "withdrawal_year": 1986,
+      "withdrawal_year_raw": "1986",
+      "country": "UK",
+      "reason": "Dermatological and haematological reactions"
+    },
+    {
+      "inn": "Suloctidil",
+      "trade_name": "",
+      "withdrawal_year": 1985,
+      "withdrawal_year_raw": "1985",
+      "country": "Germany, France, Spain",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Suprofen",
+      "trade_name": "",
+      "withdrawal_year": 1986,
+      "withdrawal_year_raw": "1986–1987",
+      "country": "UK, Spain, US",
+      "reason": "Kidney damage"
+    },
+    {
+      "inn": "Tegaserod",
+      "trade_name": "Zelnorm",
+      "withdrawal_year": 2007,
+      "withdrawal_year_raw": "2007",
+      "country": "US",
+      "reason": "Risks of heart attack, stroke, and unstable angina; was available through a restricted access programme until April 2008; returned to the market in 2019"
+    },
+    {
+      "inn": "Temafloxacin",
+      "trade_name": "",
+      "withdrawal_year": 1992,
+      "withdrawal_year_raw": "1992",
+      "country": "Germany, UK, US, others",
+      "reason": "Low blood sugar; haemolytic anaemia; kidney, liver dysfunction; allergic reactions"
+    },
+    {
+      "inn": "Temafloxacin",
+      "trade_name": "",
+      "withdrawal_year": 1992,
+      "withdrawal_year_raw": "1992",
+      "country": "US",
+      "reason": "Allergic reactions and cases of haemolytic anaemia, leading to three deaths[https://archive.today/19970506052743/http://www.fda.gov/bbs/topics/NEWS/NEW00279.html]"
+    },
+    {
+      "inn": "Temazepam",
+      "trade_name": "Restoril, Euhypnos, Normison, Remestan, Tenox, Norkotral",
+      "withdrawal_year": 1999,
+      "withdrawal_year_raw": "1999",
+      "country": "Sweden, Norway",
+      "reason": "Diversion, abuse, and a relatively high rate of overdose deaths compared with other drugs of its group; it is still available in most of the world, including the US, but under strict controls"
+    },
+    {
+      "inn": "Terfenadine",
+      "trade_name": "Seldane, Triludan",
+      "withdrawal_year": 1997,
+      "withdrawal_year_raw": "1997–1998",
+      "country": "France, South Africa, Oman, US, others",
+      "reason": "Prolonged QT interval; ventricular tachycardia"
+    },
+    {
+      "inn": "Terodiline",
+      "trade_name": "Micturin",
+      "withdrawal_year": 1991,
+      "withdrawal_year_raw": "1991",
+      "country": "Germany, UK, Spain, others",
+      "reason": "Prolonged QT interval, ventricular tachycardia, and other arrhythmias"
+    },
+    {
+      "inn": "Tetrazepam",
+      "trade_name": "",
+      "withdrawal_year": 2013,
+      "withdrawal_year_raw": "2013",
+      "country": "European Union",
+      "reason": "Serious cutaneous reactions"
+    },
+    {
+      "inn": "Thalidomide",
+      "trade_name": "",
+      "withdrawal_year": 1961,
+      "withdrawal_year_raw": "1961",
+      "country": "Germany",
+      "reason": "Withdrawn because of risk of teratogenicity; returned to the market for use in leprosy and multiple myeloma under FDA orphan drug rules"
+    },
+    {
+      "inn": "Thenalidine",
+      "trade_name": "",
+      "withdrawal_year": 1963,
+      "withdrawal_year_raw": "1963",
+      "country": "Canada, UK, US",
+      "reason": "Neutropenia"
+    },
+    {
+      "inn": "Thiobutabarbital",
+      "trade_name": "",
+      "withdrawal_year": 1993,
+      "withdrawal_year_raw": "1993",
+      "country": "Germany",
+      "reason": "Kidney damage"
+    },
+    {
+      "inn": "Thioridazine",
+      "trade_name": "Melleril",
+      "withdrawal_year": 2005,
+      "withdrawal_year_raw": "2005",
+      "country": "Germany, UK",
+      "reason": "Withdrawn worldwide because of severe cardiac arrhythmias; still available in Russia"
+    },
+    {
+      "inn": "Ticrynafen",
+      "trade_name": "Tienilic acid",
+      "withdrawal_year": 1980,
+      "withdrawal_year_raw": "1980",
+      "country": "Germany, France, UK, US, others",
+      "reason": "Liver toxicity and death"
+    },
+    {
+      "inn": "Tolcapone",
+      "trade_name": "Tasmar",
+      "withdrawal_year": 1998,
+      "withdrawal_year_raw": "1998",
+      "country": "European Union, Canada, Australia",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Tolrestat",
+      "trade_name": "Alredase",
+      "withdrawal_year": 1996,
+      "withdrawal_year_raw": "1996",
+      "country": "Argentina, Canada, Italy, others",
+      "reason": "Severe hepatotoxicity"
+    },
+    {
+      "inn": "Triacetyldiphenolisatin",
+      "trade_name": "",
+      "withdrawal_year": 1971,
+      "withdrawal_year_raw": "1971",
+      "country": "Australia",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Triazolam",
+      "trade_name": "",
+      "withdrawal_year": 1991,
+      "withdrawal_year_raw": "1991",
+      "country": "France, Netherlands, Finland, Argentina, UK, others",
+      "reason": "Psychiatric adverse drug reactions, amnesia"
+    },
+    {
+      "inn": "Triparanol",
+      "trade_name": "",
+      "withdrawal_year": 1962,
+      "withdrawal_year_raw": "1962",
+      "country": "France, US",
+      "reason": "Cataracts, alopecia, ichthyosis"
+    },
+    {
+      "inn": "Troglitazone",
+      "trade_name": "Rezulin",
+      "withdrawal_year": 2000,
+      "withdrawal_year_raw": "2000",
+      "country": "Germany, US",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Trovafloxacin",
+      "trade_name": "Trovan",
+      "withdrawal_year": 1999,
+      "withdrawal_year_raw": "1999–2001",
+      "country": "European Union, US",
+      "reason": "Withdrawn because of risk of liver failure"
+    },
+    {
+      "inn": "Valdecoxib",
+      "trade_name": "Bextra",
+      "withdrawal_year": 2004,
+      "withdrawal_year_raw": "2004",
+      "country": "US",
+      "reason": "Risk of heart attack and stroke"
+    },
+    {
+      "inn": "Vincamine",
+      "trade_name": "",
+      "withdrawal_year": 1987,
+      "withdrawal_year_raw": "1987",
+      "country": "Germany",
+      "reason": "Haematological toxicity"
+    },
+    {
+      "inn": "Xenazoic acid",
+      "trade_name": "",
+      "withdrawal_year": 1965,
+      "withdrawal_year_raw": "1965",
+      "country": "France",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Ximelagatran",
+      "trade_name": "Exanta",
+      "withdrawal_year": 2006,
+      "withdrawal_year_raw": "2006",
+      "country": "Germany",
+      "reason": "Hepatotoxicity"
+    },
+    {
+      "inn": "Zimeldine",
+      "trade_name": "",
+      "withdrawal_year": 1983,
+      "withdrawal_year_raw": "1983",
+      "country": "Worldwide",
+      "reason": "Risk of Guillain–Barré syndrome, hypersensitivity reactions, hepatotoxicity; banned worldwide."
+    },
+    {
+      "inn": "Zomepirac",
+      "trade_name": "",
+      "withdrawal_year": 1983,
+      "withdrawal_year_raw": "1983",
+      "country": "UK, Germany, Spain, US",
+      "reason": "Anaphylactic reactions and non-fatal allergic reactions; kidney failure"
+    }
+  ]
+}
