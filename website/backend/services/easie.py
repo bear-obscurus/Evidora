@@ -128,6 +128,9 @@ _EASIE_KEYWORDS = (
     "inklusion schule", "inklusion in schulen", "inklusion in regelschule",
     "inklusiv beschult", "regelschul-inklusion", "regelschulinklusion",
     "inclusive education", "inclusive schooling", "inclusive enrolment",
+    # 2026-05-23: Schul-/Klassen-Komposita ergänzt
+    "inklusive schul", "inklusive klasse", "inklusive klassen",
+    "inklusionsrate", "inklusions-rate", "inclusion rate",
     # Sonderpädagogik + SEN
     "sonderpädagogisch", "sonderpädagogischer förderbedarf", "spf",
     "sonderschule", "sonderschulen", "sonderschul-quote",
