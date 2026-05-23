@@ -39,6 +39,10 @@ from services.iqs_bildung import (
 from services.who_hearing import (
     claim_mentions_who_hearing_cached, search_who_hearing,
 )
+# Hard-to-Implement Quick-Win (2026-05-23): AMS via WIFO-Sekundär-Quelle
+from services.ams_wifo import (
+    claim_mentions_ams_wifo_cached, search_ams_wifo,
+)
 from services.efsa import search_efsa
 from services.claimreview import search_claimreview
 from services.copernicus import search_copernicus
@@ -512,6 +516,14 @@ async def check_claim(request: Request):
                 "WHO Hearing", search_who_hearing, analysis,
             ))
             queried_names.append("WHO Hearing")
+        # AMS via WIFO/Jahresbericht — AT-Arbeitslosenquote nach AMS-Methodik
+        # (national), inkl. Bundesland-Spread + ILO/Eurostat-Vergleich.
+        # Quick-Win für Hard-to-Implement-AMS-Lücke (Static-Snapshot 2024).
+        if claim_mentions_ams_wifo_cached(claim):
+            tasks.append(cached(
+                "AMS via WIFO", search_ams_wifo, analysis,
+            ))
+            queried_names.append("AMS via WIFO")
         if analysis.get("efsa_relevant"):
             tasks.append(cached("EFSA", search_efsa, analysis))
             queried_names.append("EFSA")

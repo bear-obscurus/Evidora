@@ -28,14 +28,41 @@
         "AT-Asylzahlen 2023 sind gesunken"
       ],
       "trigger_keywords": [
-        "asylanträge österreich", "asylantraege oesterreich",
-        "asylanträge at", "asyl statistik at",
-        "österreich asyl 2023", "oesterreich asyl 2023",
+        "asylanträge österreich",
+        "asylantraege oesterreich",
+        "asylanträge at",
+        "asyl statistik at",
+        "österreich asyl 2023",
+        "oesterreich asyl 2023",
         "asylanträge 2023 österreich"
       ],
       "trigger_composite": [
-        ["asyl", "asylantrag", "asylanträge", "asylantraege", "asylantrage", "asylbewerb", "schutzsuchend"],
-        ["österreich", "oesterreich", "osterreich", "at ", " at,", "wien", "bundesland", "burgenland", "kärnten", "niederösterreich", "oberösterreich", "salzburg", "steiermark", "tirol", "vorarlberg"]
+        [
+          "asyl",
+          "asylantrag",
+          "asylanträge",
+          "asylantraege",
+          "asylantrage",
+          "asylbewerb",
+          "schutzsuchend"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          "osterreich",
+          "at ",
+          " at,",
+          "wien",
+          "bundesland",
+          "burgenland",
+          "kärnten",
+          "niederösterreich",
+          "oberösterreich",
+          "salzburg",
+          "steiermark",
+          "tirol",
+          "vorarlberg"
+        ]
       ],
       "source_label": "ÖIF Integrationsbericht / BMI Asyl-Statistik",
       "source_url": "https://www.integrationsfonds.at/mediathek/publikationen/",
@@ -65,14 +92,34 @@
         "Ohne Migration würde AT schrumpfen"
       ],
       "trigger_keywords": [
-        "wanderungssaldo", "migrationssaldo",
-        "netto-zuwanderung", "nettozuwanderung",
-        "bevölkerungsbewegung at", "bevoelkerungsbewegung at",
-        "zuwanderung österreich", "zuwanderung oesterreich"
+        "wanderungssaldo",
+        "migrationssaldo",
+        "netto-zuwanderung",
+        "nettozuwanderung",
+        "bevölkerungsbewegung at",
+        "bevoelkerungsbewegung at",
+        "zuwanderung österreich",
+        "zuwanderung oesterreich"
       ],
       "trigger_composite": [
-        ["wanderungssaldo", "migrationssaldo", "nettozuwanderung", "netto-zuwanderung", "netto zuwanderung", "zuwanderung", "einwanderung", "migration"],
-        ["österreich", "oesterreich", " at ", "österreichisch", "oesterreichisch", "wien"]
+        [
+          "wanderungssaldo",
+          "migrationssaldo",
+          "nettozuwanderung",
+          "netto-zuwanderung",
+          "netto zuwanderung",
+          "zuwanderung",
+          "einwanderung",
+          "migration"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          "österreichisch",
+          "oesterreichisch",
+          "wien"
+        ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria Bevölkerungsbewegung",
       "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
@@ -102,14 +149,33 @@
         "In AT muss man 10 Jahre für Einbürgerung warten"
       ],
       "trigger_keywords": [
-        "einbürgerung österreich", "einbuergerung oesterreich",
-        "einbürgerungsquote", "einbuergerungsquote",
-        "staatsbürgerschaft at", "staatsbuergerschaft at",
-        "einbürgerungsstatistik", "einbuergerungsstatistik"
+        "einbürgerung österreich",
+        "einbuergerung oesterreich",
+        "einbürgerungsquote",
+        "einbuergerungsquote",
+        "staatsbürgerschaft at",
+        "staatsbuergerschaft at",
+        "einbürgerungsstatistik",
+        "einbuergerungsstatistik"
       ],
       "trigger_composite": [
-        ["einbürgerung", "einbuergerung", "naturalisation", "staatsbürgerschaft", "staatsbuergerschaft", "naturalisierung"],
-        ["österreich", "oesterreich", " at ", " at,", "österreichisch", "oesterreichisch", "wien"]
+        [
+          "einbürgerung",
+          "einbuergerung",
+          "naturalisation",
+          "staatsbürgerschaft",
+          "staatsbuergerschaft",
+          "naturalisierung"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          " at,",
+          "österreichisch",
+          "oesterreichisch",
+          "wien"
+        ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria Einbürgerungen / Eurostat",
       "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
@@ -139,15 +205,42 @@
         "B1-Deutsch ist Voraussetzung für Einbürgerung"
       ],
       "trigger_keywords": [
-        "öif sprachkurs", "oeif sprachkurs",
-        "deutschkurs öif", "deutschkurs oeif",
-        "wertekurs", "werte-und-orientierungs-kurs", "werte und orientierungs-kurs",
-        "integrationsvereinbarung", "integrationsprüfung", "integrationspruefung",
-        "öif deutschprüfung", "oeif deutschpruefung"
+        "öif sprachkurs",
+        "oeif sprachkurs",
+        "deutschkurs öif",
+        "deutschkurs oeif",
+        "wertekurs",
+        "werte-und-orientierungs-kurs",
+        "werte und orientierungs-kurs",
+        "integrationsvereinbarung",
+        "integrationsprüfung",
+        "integrationspruefung",
+        "öif deutschprüfung",
+        "oeif deutschpruefung"
       ],
       "trigger_composite": [
-        ["öif", "oeif", "integrationsfonds", "sprachkurs", "deutschkurs", "wertekurs", "integrationsprüfung", "integrationspruefung"],
-        ["österreich", "oesterreich", "at ", "wien", "asyl", "integration", "deutsch", "b1", "a2", "ger"]
+        [
+          "öif",
+          "oeif",
+          "integrationsfonds",
+          "sprachkurs",
+          "deutschkurs",
+          "wertekurs",
+          "integrationsprüfung",
+          "integrationspruefung"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          "at ",
+          "wien",
+          "asyl",
+          "integration",
+          "deutsch",
+          "b1",
+          "a2",
+          "ger"
+        ]
       ],
       "source_label": "ÖIF Integrationsbericht — Sprachkurs- und Prüfungsstatistik",
       "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
@@ -177,14 +270,35 @@
         "Integrationsmonitor stammt von ÖIF"
       ],
       "trigger_keywords": [
-        "integrationsmonitor", "integrations-monitor",
-        "integrationsbericht", "integrations-bericht",
-        "öif bericht", "oeif bericht",
-        "öif indikatoren", "oeif indikatoren"
+        "integrationsmonitor",
+        "integrations-monitor",
+        "integrationsbericht",
+        "integrations-bericht",
+        "öif bericht",
+        "oeif bericht",
+        "öif indikatoren",
+        "oeif indikatoren"
       ],
       "trigger_composite": [
-        ["integrationsmonitor", "integrationsbericht", "integrations-monitor", "integrations-bericht", "öif bericht", "oeif bericht", "öif statistik", "oeif statistik"],
-        ["österreich", "oesterreich", " at ", "öif", "oeif", "integration", "integrationsfonds"]
+        [
+          "integrationsmonitor",
+          "integrationsbericht",
+          "integrations-monitor",
+          "integrations-bericht",
+          "öif bericht",
+          "oeif bericht",
+          "öif statistik",
+          "oeif statistik"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          "öif",
+          "oeif",
+          "integration",
+          "integrationsfonds"
+        ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria / Eurostat",
       "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
@@ -215,14 +329,39 @@
         "AT hat höchsten Migrationsanteil EU"
       ],
       "trigger_keywords": [
-        "migrationshintergrund österreich", "migrationshintergrund oesterreich",
+        "migrationshintergrund österreich",
+        "migrationshintergrund oesterreich",
         "migrationshintergrund at",
-        "anteil migration at", "ausländeranteil at", "auslaenderanteil at",
-        "bevölkerung migrationshintergrund", "bevoelkerung migrationshintergrund"
+        "anteil migration at",
+        "ausländeranteil at",
+        "auslaenderanteil at",
+        "bevölkerung migrationshintergrund",
+        "bevoelkerung migrationshintergrund"
       ],
       "trigger_composite": [
-        ["migrationshintergrund", "ausländeranteil", "auslaenderanteil", "anteil ausländer", "anteil auslaender", "bevölkerung mit migration", "bevoelkerung mit migration"],
-        ["österreich", "oesterreich", " at ", "wien", "burgenland", "kärnten", "niederösterreich", "oberösterreich", "salzburg", "steiermark", "tirol", "vorarlberg"]
+        [
+          "migrationshintergrund",
+          "ausländeranteil",
+          "auslaenderanteil",
+          "anteil ausländer",
+          "anteil auslaender",
+          "bevölkerung mit migration",
+          "bevoelkerung mit migration"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          "wien",
+          "burgenland",
+          "kärnten",
+          "niederösterreich",
+          "oberösterreich",
+          "salzburg",
+          "steiermark",
+          "tirol",
+          "vorarlberg"
+        ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria — Migration & Integration",
       "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
@@ -253,16 +392,55 @@
         "Integration im Arbeitsmarkt klappt nicht"
       ],
       "trigger_keywords": [
-        "beschäftigung migration at", "beschaeftigung migration at",
+        "beschäftigung migration at",
+        "beschaeftigung migration at",
         "arbeitslosigkeit migration at",
         "arbeitsmarkt integration",
-        "beschäftigungsquote drittstaat", "beschaeftigungsquote drittstaat",
-        "erwerbsquote ausländer", "erwerbsquote auslaender"
+        "beschäftigungsquote drittstaat",
+        "beschaeftigungsquote drittstaat",
+        "erwerbsquote ausländer",
+        "erwerbsquote auslaender"
       ],
       "trigger_composite": [
-        ["beschäftigung", "beschaeftigung", "erwerbsquote", "arbeitslos", "arbeitsmarkt", "beschäftigungsquote", "beschaeftigungsquote", "erwerbstätigenquote", "erwerbstaetigenquote", "job"],
-        ["migration", "migrant", "drittstaat", "ausländer", "auslaender", "geflüchtet", "gefluechtet", "asylberechtig", "subsidiär", "subsidiaer", "migrationshintergrund"],
-        ["österreich", "oesterreich", "osterreich", " at ", " at.", " at,", " at;", " at:", " at)", "wien", "österreichisch", "oesterreichisch"]
+        [
+          "beschäftigung",
+          "beschaeftigung",
+          "erwerbsquote",
+          "arbeitslos",
+          "arbeitsmarkt",
+          "beschäftigungsquote",
+          "beschaeftigungsquote",
+          "erwerbstätigenquote",
+          "erwerbstaetigenquote",
+          "job"
+        ],
+        [
+          "migration",
+          "migrant",
+          "drittstaat",
+          "ausländer",
+          "auslaender",
+          "geflüchtet",
+          "gefluechtet",
+          "asylberechtig",
+          "subsidiär",
+          "subsidiaer",
+          "migrationshintergrund"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          "osterreich",
+          " at ",
+          " at.",
+          " at,",
+          " at;",
+          " at:",
+          " at)",
+          "wien",
+          "österreichisch",
+          "oesterreichisch"
+        ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria LFS / AMS",
       "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
@@ -293,15 +471,41 @@
         "Bei PISA liegen Migrationskinder 2 Jahre zurück"
       ],
       "trigger_keywords": [
-        "pisa migration", "pisa migrationshintergrund",
-        "pisa österreich migration", "pisa oesterreich migration",
+        "pisa migration",
+        "pisa migrationshintergrund",
+        "pisa österreich migration",
+        "pisa oesterreich migration",
         "schulleistung migration at",
         "bildungserfolg migration"
       ],
       "trigger_composite": [
-        ["pisa", "schulleistung", "bildungserfolg", "lesekompetenz", "mathematikkompetenz", "schulnoten"],
-        ["migration", "migrant", "migrationshintergrund", "ausländer", "auslaender", "drittstaat", "geflüchtet", "gefluechtet"],
-        ["österreich", "oesterreich", " at ", "wien", "schule", "schüler", "schueler"]
+        [
+          "pisa",
+          "schulleistung",
+          "bildungserfolg",
+          "lesekompetenz",
+          "mathematikkompetenz",
+          "schulnoten"
+        ],
+        [
+          "migration",
+          "migrant",
+          "migrationshintergrund",
+          "ausländer",
+          "auslaender",
+          "drittstaat",
+          "geflüchtet",
+          "gefluechtet"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          "wien",
+          "schule",
+          "schüler",
+          "schueler"
+        ]
       ],
       "source_label": "OECD PISA 2022 / ÖIF Integrationsbericht / Statistik Austria Bildungsstatistik",
       "source_url": "https://www.oecd.org/pisa/publications/pisa-2022-results.htm",
@@ -331,14 +535,39 @@
         "Deutsche sind die größte Ausländergruppe in Österreich"
       ],
       "trigger_keywords": [
-        "ausländer österreich", "auslaender oesterreich",
-        "ausländische bevölkerung at", "auslaendische bevoelkerung at",
-        "drittstaatsangehörige at", "drittstaatsangehoerige at",
-        "eu-bürger österreich", "eu-buerger oesterreich"
+        "ausländer österreich",
+        "auslaender oesterreich",
+        "ausländische bevölkerung at",
+        "auslaendische bevoelkerung at",
+        "drittstaatsangehörige at",
+        "drittstaatsangehoerige at",
+        "eu-bürger österreich",
+        "eu-buerger oesterreich"
       ],
       "trigger_composite": [
-        ["ausländer", "auslaender", "ausländisch", "auslaendisch", "drittstaat", "eu-bürger", "eu-buerger", "nicht-österreicher", "nicht-oesterreicher", "ohne staatsbürgerschaft", "ohne staatsbuergerschaft"],
-        ["österreich", "oesterreich", " at ", "wien", "anteil", "zahl", "millionen", "tausend"]
+        [
+          "ausländer",
+          "auslaender",
+          "ausländisch",
+          "auslaendisch",
+          "drittstaat",
+          "eu-bürger",
+          "eu-buerger",
+          "nicht-österreicher",
+          "nicht-oesterreicher",
+          "ohne staatsbürgerschaft",
+          "ohne staatsbuergerschaft"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          "wien",
+          "anteil",
+          "zahl",
+          "millionen",
+          "tausend"
+        ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria Bevölkerungsfortschreibung",
       "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
@@ -371,14 +600,40 @@
         "ZARA-Bericht zeigt Anstieg von Rassismus"
       ],
       "trigger_keywords": [
-        "zara", "zara report", "rassismus report",
-        "rassismusbericht", "rassismus-bericht",
-        "zara-vorfälle", "zara-vorfaelle",
-        "rassismus-meldestelle", "zara meldestelle"
+        "zara",
+        "zara report",
+        "rassismus report",
+        "rassismusbericht",
+        "rassismus-bericht",
+        "zara-vorfälle",
+        "zara-vorfaelle",
+        "rassismus-meldestelle",
+        "zara meldestelle"
       ],
       "trigger_composite": [
-        ["zara", "rassismus report", "rassismus-bericht", "rassismusbericht", "rassismus-vorfälle", "rassismus-vorfaelle", "rassismusvorfälle", "rassismusvorfaelle"],
-        ["österreich", "oesterreich", " at ", "wien", "ngo", "bericht", "statistik", "zahl", "dokumentiert", "gemeldet", "meldestelle"]
+        [
+          "zara",
+          "rassismus report",
+          "rassismus-bericht",
+          "rassismusbericht",
+          "rassismus-vorfälle",
+          "rassismus-vorfaelle",
+          "rassismusvorfälle",
+          "rassismusvorfaelle"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          "wien",
+          "ngo",
+          "bericht",
+          "statistik",
+          "zahl",
+          "dokumentiert",
+          "gemeldet",
+          "meldestelle"
+        ]
       ],
       "source_label": "ZARA Rassismus Report (NGO-Quelle, Selbstmeldung) — methodische Differenzierung gegenüber Polizei-/Gerichtsstatistik",
       "source_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report",
@@ -409,16 +664,41 @@
         "AT hatte 2022 1900 Verhetzungs-Anzeigen"
       ],
       "trigger_keywords": [
-        "hate speech österreich", "hate speech oesterreich",
-        "hass im netz", "hass-im-netz",
-        "online-rassismus", "online rassismus",
-        "verhetzung anzeigen", "verhetzung at",
-        "hassrede österreich", "hassrede oesterreich",
-        "zara counter-act", "zara online"
+        "hate speech österreich",
+        "hate speech oesterreich",
+        "hass im netz",
+        "hass-im-netz",
+        "online-rassismus",
+        "online rassismus",
+        "verhetzung anzeigen",
+        "verhetzung at",
+        "hassrede österreich",
+        "hassrede oesterreich",
+        "zara counter-act",
+        "zara online"
       ],
       "trigger_composite": [
-        ["hate speech", "hate-speech", "hassrede", "verhetzung", "hass im netz", "hass-im-netz", "online-hass", "online hass", "online-rassismus"],
-        ["österreich", "oesterreich", " at ", "wien", "internet", "online", "social media", "plattform"]
+        [
+          "hate speech",
+          "hate-speech",
+          "hassrede",
+          "verhetzung",
+          "hass im netz",
+          "hass-im-netz",
+          "online-hass",
+          "online hass",
+          "online-rassismus"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          "wien",
+          "internet",
+          "online",
+          "social media",
+          "plattform"
+        ]
       ],
       "source_label": "ZARA Counter-Act / BMI Polizei-Kriminalstatistik § 283 / EU-FRA EU-MIDIS-II",
       "source_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report",
@@ -449,15 +729,37 @@
         "Syrier bekommen automatisch Asyl in AT"
       ],
       "trigger_keywords": [
-        "subsidiärer schutz", "subsidiaerer schutz",
-        "subsidiär schutzberechtigt", "subsidiaer schutzberechtigt",
-        "asylberechtigte at", "asylberechtigte österreich",
-        "anerkennungsquote at", "schutzquote at",
-        "schutzberechtigte österreich", "schutzberechtigte oesterreich"
+        "subsidiärer schutz",
+        "subsidiaerer schutz",
+        "subsidiär schutzberechtigt",
+        "subsidiaer schutzberechtigt",
+        "asylberechtigte at",
+        "asylberechtigte österreich",
+        "anerkennungsquote at",
+        "schutzquote at",
+        "schutzberechtigte österreich",
+        "schutzberechtigte oesterreich"
       ],
       "trigger_composite": [
-        ["subsidiär", "subsidiaer", "asylberechtigt", "schutzberechtigt", "anerkennungsquote", "schutzquote"],
-        ["österreich", "oesterreich", " at ", "wien", "asyl", "afghan", "syri", "ukrain", "westbalkan"]
+        [
+          "subsidiär",
+          "subsidiaer",
+          "asylberechtigt",
+          "schutzberechtigt",
+          "anerkennungsquote",
+          "schutzquote"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          "wien",
+          "asyl",
+          "afghan",
+          "syri",
+          "ukrain",
+          "westbalkan"
+        ]
       ],
       "source_label": "ÖIF Integrationsbericht / BMI Asyl-Statistik / BFA Anerkennungsstatistik",
       "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
@@ -489,16 +791,41 @@
         "Gleichbehandlungsanwaltschaft hatte X Fälle 2023"
       ],
       "trigger_keywords": [
-        "arbeitsmarkt-diskriminierung", "arbeitsplatz-diskriminierung",
-        "gleichbehandlungsanwaltschaft", "gleichbehandlungsgesetz",
+        "arbeitsmarkt-diskriminierung",
+        "arbeitsplatz-diskriminierung",
+        "gleichbehandlungsanwaltschaft",
+        "gleichbehandlungsgesetz",
         "diskriminierung arbeit",
-        "bewerbungs-diskriminierung", "bewerbungsdiskriminierung",
-        "rassismus arbeitswelt", "rassismus arbeitsplatz"
+        "bewerbungs-diskriminierung",
+        "bewerbungsdiskriminierung",
+        "rassismus arbeitswelt",
+        "rassismus arbeitsplatz"
       ],
       "trigger_composite": [
-        ["diskriminier", "rassismus", "benachteilig"],
-        ["arbeitsmarkt", "arbeitsplatz", "arbeitswelt", "bewerbung", "anstellung", "job"],
-        ["österreich", "oesterreich", " at ", "wien", "migrant", "migration", "name", "ausländisch", "auslaendisch"]
+        [
+          "diskriminier",
+          "rassismus",
+          "benachteilig"
+        ],
+        [
+          "arbeitsmarkt",
+          "arbeitsplatz",
+          "arbeitswelt",
+          "bewerbung",
+          "anstellung",
+          "job"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          "wien",
+          "migrant",
+          "migration",
+          "name",
+          "ausländisch",
+          "auslaendisch"
+        ]
       ],
       "source_label": "ZARA Rassismus Report + Gleichbehandlungsanwaltschaft (BMAW) + WIFO/IZA Audit-Studien",
       "source_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report",
@@ -530,16 +857,41 @@
         "Drittstaatsangehörige beziehen häufiger Sozialhilfe"
       ],
       "trigger_keywords": [
-        "mindestsicherung migration", "sozialhilfe migration",
-        "bms ausländer", "bms auslaender",
+        "mindestsicherung migration",
+        "sozialhilfe migration",
+        "bms ausländer",
+        "bms auslaender",
         "sozialleistung migrant",
-        "sozialmagnet", "sozial-magnet",
+        "sozialmagnet",
+        "sozial-magnet",
         "asyl sozialhilfe"
       ],
       "trigger_composite": [
-        ["mindestsicherung", "sozialhilfe", "bms", "sozialleistung", "grundversorgung", "sozial-magnet", "sozialmagnet"],
-        ["migration", "migrant", "ausländer", "auslaender", "drittstaat", "asyl", "geflüchtet", "gefluechtet"],
-        ["österreich", "oesterreich", " at ", "wien"]
+        [
+          "mindestsicherung",
+          "sozialhilfe",
+          "bms",
+          "sozialleistung",
+          "grundversorgung",
+          "sozial-magnet",
+          "sozialmagnet"
+        ],
+        [
+          "migration",
+          "migrant",
+          "ausländer",
+          "auslaender",
+          "drittstaat",
+          "asyl",
+          "geflüchtet",
+          "gefluechtet"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          "wien"
+        ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria / IAB-BAMF-SOEP-Konsens",
       "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
@@ -570,14 +922,34 @@
         "Familiennachzug zu Asyl ist unbegrenzt"
       ],
       "trigger_keywords": [
-        "familiennachzug at", "familiennachzug österreich", "familiennachzug oesterreich",
-        "familienzusammenführung at", "familienzusammenfuehrung at",
+        "familiennachzug at",
+        "familiennachzug österreich",
+        "familiennachzug oesterreich",
+        "familienzusammenführung at",
+        "familienzusammenfuehrung at",
         "familien-nachzug",
         "asyl familie nachholen"
       ],
       "trigger_composite": [
-        ["familiennachzug", "familienzusammenführung", "familienzusammenfuehrung", "familien-nachzug", "ehegatten-nachzug", "kinder nachholen", "familie nachholen"],
-        ["österreich", "oesterreich", " at ", "wien", "asyl", "subsidiär", "subsidiaer", "schutzberechtigt"]
+        [
+          "familiennachzug",
+          "familienzusammenführung",
+          "familienzusammenfuehrung",
+          "familien-nachzug",
+          "ehegatten-nachzug",
+          "kinder nachholen",
+          "familie nachholen"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          "wien",
+          "asyl",
+          "subsidiär",
+          "subsidiaer",
+          "schutzberechtigt"
+        ]
       ],
       "source_label": "ÖIF Integrationsbericht / BMI / AsylG § 35 + FrÄG 2018",
       "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
@@ -608,15 +980,64 @@
         "Brain Waste ist ein Problem in AT"
       ],
       "trigger_keywords": [
-        "anerkennung berufsabschluss", "anerkennung qualifikation",
-        "brain waste", "de-qualifizierung", "dequalifizierung",
-        "enic naric at", "ast österreich", "ast oesterreich",
-        "nostrifizierung", "berufsanerkennung at"
+        "anerkennung berufsabschluss",
+        "anerkennung qualifikation",
+        "brain waste",
+        "de-qualifizierung",
+        "dequalifizierung",
+        "enic naric at",
+        "ast österreich",
+        "ast oesterreich",
+        "nostrifizierung",
+        "berufsanerkennung at"
       ],
       "trigger_composite": [
-        ["anerkennung", "nostrifizierung", "nostrifikation", "berufsanerkennung", "brain waste", "brain-waste", "dequalifikation", "de-qualifikation", "dequalifizierung", "de-qualifizierung", "anerkennen", "anerkannt", "erkennt an", "erkennt aus", "erkenntan"],
-        ["abschluss", "abschluesse", "abschlüsse", "qualifikation", "diplom", "zeugnis", "ausbildung", "berufstitel", "berufsabschluss", "berufsabschluesse", "berufsabschlüsse"],
-        ["österreich", "oesterreich", "osterreich", " at ", " at.", " at,", " at;", " at:", " at)", "wien", "ausländisch", "auslaendisch", "auslandisch", "migration"]
+        [
+          "anerkennung",
+          "nostrifizierung",
+          "nostrifikation",
+          "berufsanerkennung",
+          "brain waste",
+          "brain-waste",
+          "dequalifikation",
+          "de-qualifikation",
+          "dequalifizierung",
+          "de-qualifizierung",
+          "anerkennen",
+          "anerkannt",
+          "erkennt an",
+          "erkennt aus",
+          "erkenntan"
+        ],
+        [
+          "abschluss",
+          "abschluesse",
+          "abschlüsse",
+          "qualifikation",
+          "diplom",
+          "zeugnis",
+          "ausbildung",
+          "berufstitel",
+          "berufsabschluss",
+          "berufsabschluesse",
+          "berufsabschlüsse"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          "osterreich",
+          " at ",
+          " at.",
+          " at,",
+          " at;",
+          " at:",
+          " at)",
+          "wien",
+          "ausländisch",
+          "auslaendisch",
+          "auslandisch",
+          "migration"
+        ]
       ],
       "source_label": "ÖIF Integrationsbericht / OECD Settling-In / Rechnungshof 2020",
       "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
@@ -647,15 +1068,42 @@
         "ÖIF-Wertekurs dauert 8 Stunden"
       ],
       "trigger_keywords": [
-        "wertekurs", "werte-kurs",
-        "werteorientierungskurs", "werte-orientierungs-kurs",
+        "wertekurs",
+        "werte-kurs",
+        "werteorientierungskurs",
+        "werte-orientierungs-kurs",
         "wok integration",
-        "integrationserklärung", "integrationserklaerung",
-        "öif wertekurs", "oeif wertekurs"
+        "integrationserklärung",
+        "integrationserklaerung",
+        "öif wertekurs",
+        "oeif wertekurs"
       ],
       "trigger_composite": [
-        ["wertekurs", "werte-kurs", "werte und orientierungs", "werte- und orientierungs", "wok ", "integrationserklärung", "integrationserklaerung", "werte-orientierungs", "wertekurs-"],
-        ["österreich", "oesterreich", "osterreich", " at ", " at.", "öif", "oeif", "integrationsgesetz", "asyl", "schutzberechtigt", "verpflichtung", "verpflichtend"]
+        [
+          "wertekurs",
+          "werte-kurs",
+          "werte und orientierungs",
+          "werte- und orientierungs",
+          "wok ",
+          "integrationserklärung",
+          "integrationserklaerung",
+          "werte-orientierungs",
+          "wertekurs-"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          "osterreich",
+          " at ",
+          " at.",
+          "öif",
+          "oeif",
+          "integrationsgesetz",
+          "asyl",
+          "schutzberechtigt",
+          "verpflichtung",
+          "verpflichtend"
+        ]
       ],
       "source_label": "ÖIF / Integrationsgesetz IntG §§ 5–6 / IGAusbV",
       "source_url": "https://www.integrationsfonds.at/themen/werte-und-orientierungskurse/",
@@ -686,15 +1134,40 @@
         "Diskriminierung kann in AT geklagt werden"
       ],
       "trigger_keywords": [
-        "diskriminierungs-beratung", "diskriminierungsberatung",
-        "gleichbehandlungskommission", "gleichbehandlungsanwaltschaft",
-        "antidiskriminierung at", "antidiskriminierungsstelle",
-        "diskriminierung klagen", "diskriminierung verfahren"
+        "diskriminierungs-beratung",
+        "diskriminierungsberatung",
+        "gleichbehandlungskommission",
+        "gleichbehandlungsanwaltschaft",
+        "antidiskriminierung at",
+        "antidiskriminierungsstelle",
+        "diskriminierung klagen",
+        "diskriminierung verfahren"
       ],
       "trigger_composite": [
-        ["diskriminierung", "antidiskriminierung", "anti-diskriminierung", "gleichbehandlung"],
-        ["beratung", "klage", "verfahren", "rechtsschutz", "anwaltschaft", "kommission", "anlaufstelle"],
-        ["österreich", "oesterreich", " at ", "wien", "zara", "ngo", "gleichbehandlungsanwaltschaft"]
+        [
+          "diskriminierung",
+          "antidiskriminierung",
+          "anti-diskriminierung",
+          "gleichbehandlung"
+        ],
+        [
+          "beratung",
+          "klage",
+          "verfahren",
+          "rechtsschutz",
+          "anwaltschaft",
+          "kommission",
+          "anlaufstelle"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          "wien",
+          "zara",
+          "ngo",
+          "gleichbehandlungsanwaltschaft"
+        ]
       ],
       "source_label": "ZARA Rassismus Report / Gleichbehandlungsanwaltschaft / GlBG",
       "source_url": "https://www.zara.or.at/de/beratung/",
@@ -727,13 +1200,33 @@
       "trigger_keywords": [
         "grundversorgung asyl",
         "asyl sozialhilfe",
-        "asylwerber leistung", "asylwerber unterbringung",
+        "asylwerber leistung",
+        "asylwerber unterbringung",
         "asyl taschengeld",
-        "asyl arbeitserlaubnis", "asyl arbeitsverbot"
+        "asyl arbeitserlaubnis",
+        "asyl arbeitsverbot"
       ],
       "trigger_composite": [
-        ["grundversorgung", "asyl-leistung", "asylwerber-leistung", "asyl unterbringung", "asyl taschengeld", "asyl-taschengeld", "asyl arbeitserlaubnis", "asyl arbeitsverbot", "beschäftigungsbewilligung asyl", "beschaeftigungsbewilligung asyl"],
-        ["österreich", "oesterreich", " at ", "wien", "asyl", "asylwerber"]
+        [
+          "grundversorgung",
+          "asyl-leistung",
+          "asylwerber-leistung",
+          "asyl unterbringung",
+          "asyl taschengeld",
+          "asyl-taschengeld",
+          "asyl arbeitserlaubnis",
+          "asyl arbeitsverbot",
+          "beschäftigungsbewilligung asyl",
+          "beschaeftigungsbewilligung asyl"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          " at ",
+          "wien",
+          "asyl",
+          "asylwerber"
+        ]
       ],
       "source_label": "ÖIF Integrationsbericht / Grundversorgungs-Vereinbarung 2004 / BMI",
       "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
@@ -764,18 +1257,96 @@
         "ZARA macht Anti-Rassismus-Arbeit"
       ],
       "trigger_keywords": [
-        "zara verein", "zara ngo", "zara organisation",
-        "zara mission", "zara gegründet", "zara gegruendet",
+        "zara verein",
+        "zara ngo",
+        "zara organisation",
+        "zara mission",
+        "zara gegründet",
+        "zara gegruendet",
         "zara wien",
         "zivilcourage anti-rassismus"
       ],
       "trigger_composite": [
-        ["zara", "zivilcourage und anti-rassismus", "zivilcourage anti-rassismus", "anti-rassismus-arbeit"],
-        ["ngo", "verein", "organisation", "stelle", "wien", "gegründet", "gegruendet", "mission", "förderung", "foerderung"]
+        [
+          "zara",
+          "zivilcourage und anti-rassismus",
+          "zivilcourage anti-rassismus",
+          "anti-rassismus-arbeit"
+        ],
+        [
+          "ngo",
+          "verein",
+          "organisation",
+          "stelle",
+          "wien",
+          "gegründet",
+          "gegruendet",
+          "mission",
+          "förderung",
+          "foerderung"
+        ]
       ],
       "source_label": "ZARA (Eigenauskunft) / Vereinsregister / Stadt Wien Förderdoku",
       "source_url": "https://www.zara.or.at/de/ueber-uns",
       "secondary_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report"
+    },
+    {
+      "id": "behandlungszahlen_drittstaat_at_ungepruefbar_2026",
+      "topic": "behandlungszahlen_drittstaatsangehörige_at_ungeprüfbar",
+      "scope": "Faktenchecks zu Claims der Form 'X Mio. Behandlungen pro Jahr durch Drittstaatsangehörige in AT/Wien'. Strukturell unprüfbar — Datenschutz + SV-Hoheit.",
+      "year": 2024,
+      "headline": "Claims wie '22 Mio. Behandlungen durch Drittstaatsangehörige in Wien' sind STRUKTURELL UNGEPRÜFBAR — Sozialversicherungsdaten werden nach §§ 31 ff ASVG nicht öffentlich nach Staatsangehörigkeit aufgeschlüsselt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Behauptungen der Form 'X Mio. Behandlungen / Arztbesuche / Spitals-Aufenthalte pro Jahr durch Drittstaatsangehörige / Migranten / Ausländer in AT/Wien' SIND STRUKTURELL UNGEPRÜFBAR. Begründung: (1) Sozialversicherungs-Behandlungsdaten werden nach §§ 31 ff ASVG zweckgebunden geführt und werden NICHT öffentlich nach Staatsangehörigkeit aufgeschlüsselt publiziert — weder ÖGK noch Dachverband der SV-Träger noch Statistik Austria publizieren solche Aufschlüsselungen. (2) Stadt Wien Open Data publiziert Krankenanstalten-Statistik aggregiert nach Anstalt, NICHT nach Patient:innen-Staatsangehörigkeit. (3) profil-Faktencheck (4/2024) hat exakt dieselben Daten gesucht und ist zu demselben Befund gekommen: 'Zahl ist nicht überprüfbar, stammt aus Pressekonferenz ohne nachvollziehbare Quelle'. (4) Datenschutz-Hürde: Aufschlüsselung 'Behandlungen nach Staatsbürgerschaft' wäre auch datenschutzrechtlich problematisch (Diskriminierungsverbot, kleine Fallzahlen bei seltenen Staatsbürgerschaften). VERDICT-LEITLINIE: 'unverifiable' (NICHT 'false' — wir können die Zahl nicht widerlegen, aber auch nicht bestätigen; sie ist objektiv NICHT aus öffentlichen Daten ableitbar). Wichtig für Synthese: EXPLIZIT erklären, warum die Daten nicht öffentlich sind (SV-Hoheit, Datenschutz), nicht den Eindruck erwecken, wir hätten 'nur nicht gefunden'. Andernfalls wirkt es so, als wäre die Behauptung nur unzureichend recherchiert statt strukturell ungeprüfbar.",
+        "asvg_rechtsgrundlage": "§§ 31 ff ASVG regeln Zweckbindung der SV-Daten. Daten dürfen nur für SV-Zwecke (Leistungserbringung, Beitragsfeststellung, Statistik der SV-Träger) verwendet werden, NICHT für stratifizierte Veröffentlichung nach Staatsangehörigkeit.",
+        "profil_faktencheck_2024": "profil-Magazin (Ausgabe 4/2024) hat den 22-Mio-Claim faktengeprüft und ist zu folgendem Schluss gekommen: Die Zahl ist nicht aus öffentlichen Quellen reproduzierbar; sie stammt aus einer Pressekonferenz ohne nachvollziehbare Quellenangabe. profil hat ÖGK + Dachverband + Stadt Wien angefragt — keine Quelle konnte die Zahl validieren.",
+        "verfuegbare_aggregate": "Was DOCH öffentlich ist: (a) Gesamt-Behandlungsfälle in AT (ohne Staatsangehörigkeits-Aufschlüsselung), (b) Versicherten-Zahlen nach Versicherungs-Typ (Arbeiter/Angestellte/Pensionisten/Sonstige), (c) ÖGK Leistungs-Aggregate pro Jahr. Eine Aussage 'X% aller Behandlungen werden durch Y verursacht' ist daher nur möglich, wenn Y eine SV-Kategorie ist (nicht Staatsangehörigkeit).",
+        "kreuzkonsens_quellen": "Gesundheit Österreich GmbH (GÖG) publiziert manchmal aggregierte Gesundheits-System-Analysen zu Migrant:innen-Gesundheit (aber methodisch anders: Survey-basiert, nicht administrative Daten). Bei seriösen Studien zu Gesundheits-Inanspruchnahme nach Migrationshintergrund: GÖG, OECD Migration Outlook, EU-MIDIS.",
+        "context": "Topic ist EXPLIZIT ein 'unverifiable'-Fact-Anker für eine politisch häufig zitierte Zahl. Politik-Tabu-Compliance: keine Partei-Schuld-Zuweisung (die Zahl wurde in FPÖ-Pressekonferenz genutzt, aber das Pack zitiert das nur als Quellen-Kontext); keine Gegenposition zur Asyl-/Migrations-Politik."
+      },
+      "context_notes": [
+        "Häufiges politisches Claim-Muster: 'Migranten verursachen X Mio. Behandlungen' — gehört zu strukturell ungeprüfbaren Behauptungen, NICHT zu widerlegbaren.",
+        "Wenn die SV-Träger eines Tages stratifizierte Daten publizieren würden (politisch unwahrscheinlich, datenschutzrechtlich problematisch), wäre dieser Fact zu überarbeiten.",
+        "Pack-Glaubwürdigkeit-Schutz: Synthesizer soll den Datenlücken-Grund explizit nennen, nicht implizieren, dass die Pipeline 'unzureichend recherchiert' hätte."
+      ],
+      "claim_phrasings_handled": [
+        "22 Millionen Behandlungen durch Drittstaatsangehörige in Wien",
+        "Migranten verursachen Millionen Behandlungen pro Jahr",
+        "Ausländer-Behandlungszahlen in Österreich",
+        "Drittstaatsangehörige Krankenhausbehandlungen AT",
+        "Wie viele Arztbesuche durch Migranten in AT"
+      ],
+      "trigger_keywords": [
+        "drittstaatsangehörige behandlungen",
+        "drittstaat behandlung",
+        "migranten behandlungen",
+        "migranten arztbesuche",
+        "ausländer behandlungen österreich",
+        "22 mio behandlungen",
+        "22 millionen behandlungen",
+        "behandlungsfälle staatsangehörigkeit"
+      ],
+      "trigger_composite": [
+        [
+          "behandlung",
+          "arztbesuch",
+          "spital",
+          "krankenversicherung",
+          "ögk"
+        ],
+        [
+          "drittstaat",
+          "migration",
+          "migrant",
+          "ausländer",
+          "asyl",
+          "staatsangehörig",
+          "nationalität"
+        ]
+      ],
+      "source_label": "profil-Faktencheck 4/2024 + ASVG §§ 31 ff + Dachverband Sozialversicherung Statistisches Handbuch",
+      "source_url": "https://www.profil.at/oesterreich/fpoe-22-millionen-behandlungen-drittstaatsangehoerige-faktencheck",
+      "secondary_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008147"
     }
   ]
 }

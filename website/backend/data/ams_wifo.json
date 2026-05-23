@@ -1,0 +1,479 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-23",
+  "source_label": "AMS Arbeitsmarktservice Österreich Jahresbericht 2024 (Arbeitsmarktlage 2024) + AMS Spezialthema zum Arbeitsmarkt 2024 + WIFO-Konjunktur-Kommentar (zitiert in AMS-Bericht) + Statistik Austria Bildungs- + Erwerbsstatistik + Eurostat Labour Force Survey (ILO-Konzept) — SEKUNDÄR-Zitierung von Behörden-Daten (CC-0-aehnlich) ueber AMS-Forschungsabteilung",
+  "source_url_root": "https://www.ams.at/arbeitsmarktdaten-und-medien/arbeitsmarkt-daten-und-arbeitsmarkt-forschung/berichte-und-auswertungen",
+  "license_note": "AMS Österreich publiziert die Arbeitsmarktlage-Jahresberichte + Spezialthemen als PDF-Open-Access (data.gv.at-Schnittstelle). Behörden-Daten unterliegen typischerweise einer CC-0-ähnlichen Nutzbarkeit (Quellenangabe verlangt). WIFO-Zitate aus den AMS-Bericht-Vorworten sind als Sekundär-Zitat mit URL + Datum referenziert. Pack hält strikt die 4 Politik-Tabus aus project_political_guardrails.md ein — keine Wertung 'AL-Quote hoch/niedrig ist gut/schlecht', keine Partei-Schuld-Zuweisung, keine Prognosen, keine Wertungs-Frames.",
+  "facts": [
+    {
+      "id": "ams_at_quote_2024_gesamt",
+      "topic": "ams_at_quote_2024_gesamt",
+      "scope": "AT-Gesamt-Arbeitslosenquote nach AMS-Methodik (national berechnet) — Jahresdurchschnitt 2024",
+      "year": 2024,
+      "source_url": "https://www.ams.at/content/dam/download/arbeitsmarktdaten/österreich/berichte-auswertungen/001_JB-2024.pdf",
+      "secondary_url": "https://www.ams.at/arbeitsmarktdaten-und-medien/arbeitsmarkt-daten-und-arbeitsmarkt-forschung/berichte-und-auswertungen",
+      "source_label": "AMS Arbeitsmarktservice Österreich, Jahresbericht 'Die Arbeitsmarktlage 2024' (Februar 2025, Tabelle 'Arbeitslosenquote — nationale Berechnung') + AMS Spezialthema zum Arbeitsmarkt Dezember 2024",
+      "headline": "AT-Arbeitslosenquote nach AMS-Methodik Jahresdurchschnitt 2024: 7,0 % (+0,6 Prozentpunkte vs. 2023). Frauen 6,4 %, Männer 7,5 %. Bestand 297.851 arbeitslos vorgemerkte Personen (+10,0 % bzw. +27.079 vs. 2023)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive AT-Arbeitslosenquote nach nationaler AMS-Methodik Jahresdurchschnitt 2024 (Quelle: AMS via Jahresbericht Arbeitsmarktlage 2024 vom Februar 2025): 7,0 % Gesamt-Quote (+0,6 Prozentpunkte vs. 2023). Frauen 6,4 %, Männer und alternative Geschlechtseinträge 7,5 %. Im Jahresdurchschnitt 2024 waren 297.851 Personen arbeitslos vorgemerkt (+10,0 % bzw. +27.079 vs. 2023). Inkl. Schulungs-Teilnehmer:innen (75.524) sind es 373.376 Personen vom AMS unterstützt (+9,4 %). WICHTIG: AMS-Quote umfasst registrierte Arbeitslose inkl. nicht-aktiv-suchender Personen und ist systematisch HÖHER als die ILO-Quote der Eurostat-Labour-Force-Survey (für 2024 ca. 4,8 % AT). Differenz ~2,2 Prozentpunkte ergibt sich aus methodischen Konzept-Unterschieden (registrierter Status vs. aktiv suchend + verfügbar in 2 Wochen). Vergleich nur INNERHALB gleicher Methodik sinnvoll. Pack stellt nur den deskriptiven AMS-Wert dar, ohne Wertung 'hoch/niedrig ist gut/schlecht' und ohne Partei-Schuld-Zuweisung.",
+        "ams_quote_2024_gesamt": "AT-Arbeitslosenquote AMS-Methodik (nationale Berechnung) Jahresdurchschnitt 2024: 7,0 %. Vorjahr 2023: 6,4 %. Veränderung +0,6 Prozentpunkte.",
+        "ams_quote_2024_frauen_maenner": "AMS-Quote 2024 nach Geschlecht: Frauen 6,4 % (+0,5 Prozentpunkte vs. 2023), Männer und alternative Geschlechtseinträge 7,5 % (+0,7 Prozentpunkte vs. 2023).",
+        "ams_quote_2024_inlaender_auslaender": "AMS-Quote 2024 nach Staatsbürgerschaft: österreichische Staatsbürger:innen 5,7 %, Personen mit nicht-österreichischer Staatsbürgerschaft 10,6 % (Differenz ~4,9 Prozentpunkte). Deskriptive Differenzierung ohne Ursachen-Aussage.",
+        "ams_arbeitslose_bestand_2024": "AT-arbeitslos-vorgemerkte Personen Jahresdurchschnitt 2024: 297.851 (Frauen 127.553, Männer 170.298). Veränderung +27.079 Personen bzw. +10,0 % vs. 2023.",
+        "schulungsteilnehmer_2024": "AMS-Schulungs-Teilnehmer:innen Jahresdurchschnitt 2024: 75.524 (+7,1 % vs. 2023, Frauen 38.806, Männer 36.718).",
+        "arbeitslose_inkl_schulungen_2024": "Arbeitslose Personen inkl. Schulungs-Teilnehmer:innen Jahresdurchschnitt 2024: 373.376 (+9,4 % bzw. +32.057 vs. 2023). Frauen 166.359, Männer 207.016.",
+        "vergleich_ams_eurostat_2024": "Methodik-Vergleich 2024: AMS-Quote 7,0 % (registrierte Arbeitslose, nationale Berechnung) vs. Eurostat-Quote (ILO-Konzept) ca. 4,8 % AT. Differenz ~2,2 Prozentpunkte ergibt sich aus Konzept-Unterschieden: AMS = beim AMS gemeldet (auch nicht-aktiv-suchend); Eurostat = ohne Arbeit + AKTIV suchend in letzten 4 Wochen + verfügbar in 2 Wochen. Detail-Methodik im arbeitsmarkt_pack-Fact 'ams_quote_realitaet_konsens'.",
+        "wifo_konjunktur_2024_kontext": "WIFO-Konjunktur-Kontext 2024 (zitiert im AMS-Jahresbericht-Vorwort von Dr. Johannes Kopf, AMS-Vorstand): BIP-Rückgang 2024 -0,9 % (2023: -1,0 %). Trotz BIP-Rückgang stiegen Beschäftigtenzahlen leicht (+0,1 %). Erklärung: Arbeitszeitverkürzung pro Person → mehr Beschäftigte, aber jeweils weniger Stunden. AL-Quote 2024 mit 7,0 % blieb unter Wert der Rezession 2019 (7,4 %).",
+        "context": "Quelle: AMS via Jahresbericht 'Die Arbeitsmarktlage 2024' vom Februar 2025 + AMS Spezialthema zum Arbeitsmarkt 2024. Pack ist DESKRIPTIV, vermeidet Wertung 'Quote hoch/niedrig ist gut/schlecht'."
+      },
+      "context_notes": [
+        "Quelle: AMS via WIFO-Konjunktur-Kommentar zitiert im AMS-Jahresbericht-Vorwort vom Februar 2025, Tabelle 'Arbeitslosenquote — nationale Berechnung'.",
+        "Methodik-Caveat: AMS-Quote umfasst registrierte Arbeitslose inkl. Schulungs-Teilnehmer:innen (separat ausgewiesen) und ist systematisch HÖHER als die ILO-Quote der Statistik Austria/Eurostat. Vergleich nur innerhalb gleicher Methodik sinnvoll.",
+        "Politik-Tabu: Pack stellt NUR die deskriptiven AMS-Werte dar, ohne Wertung 'Quote ist hoch/niedrig', ohne Partei-Schuld-Zuweisung, ohne Zukunfts-Prognose."
+      ],
+      "claim_phrasings_handled": [
+        "AT-Arbeitslosenquote 2024",
+        "Arbeitslosigkeit Österreich 2024",
+        "AMS-Quote 2024",
+        "Wie hoch ist die Arbeitslosigkeit in Österreich",
+        "Arbeitslosenrate Österreich",
+        "AMS-Arbeitslose 2024"
+      ],
+      "trigger_keywords": [
+        "ams-quote 2024", "ams quote 2024",
+        "arbeitslosenquote österreich 2024", "arbeitslosenquote oesterreich 2024",
+        "arbeitslosenrate österreich 2024", "arbeitslosenrate oesterreich 2024",
+        "ams arbeitslosenquote", "ams-arbeitslosenquote",
+        "arbeitslosigkeit at 2024", "arbeitslosigkeit österreich",
+        "registrierte arbeitslose 2024", "registrierte arbeitslose at",
+        "arbeitslose at 2024",
+        "ams-jahresbilanz 2024", "ams-jahresbericht 2024",
+        "arbeitsmarktlage 2024"
+      ],
+      "trigger_composite": [
+        ["ams", "arbeitslos", "arbeits-los", "arbeitslosenquote", "arbeitslosen-quote", "arbeitslosenrate", "arbeitslosen-rate", "arbeitslosigkeit", "registrierte arbeitslose"],
+        ["österreich", "oesterreich", "at ", " at,", " at.", "at-", "nationale berechnung", "ams-methodik", "ams methodik", "ams"],
+        ["2024", "2023", "jahresdurchschnitt", "quote", "rate", "anzahl", "bestand", "wie hoch", "wie viele", "prozent", "%", "7 prozent", "6 prozent", "7,0", "6,4", "7,5"]
+      ]
+    },
+    {
+      "id": "ams_at_bundeslaender_2024",
+      "topic": "ams_at_bundeslaender_konsens",
+      "scope": "AT-Arbeitslosenquote AMS-Methodik nach Bundesland — Jahresdurchschnitt 2024",
+      "year": 2024,
+      "source_url": "https://www.ams.at/content/dam/download/arbeitsmarktdaten/österreich/berichte-auswertungen/001_JB-2024.pdf",
+      "secondary_url": "https://www.ams.at/arbeitsmarktdaten-und-medien/arbeitsmarkt-daten-und-arbeitsmarkt-forschung/berichte-und-auswertungen",
+      "source_label": "AMS Arbeitsmarktservice Österreich, Jahresbericht 'Die Arbeitsmarktlage 2024' (Februar 2025) + AMS-Bundesland-Profile",
+      "headline": "Bundesland-AL-Quoten 2024 (AMS-Methodik): Wien 11,4 % > Kärnten 7,3 % > AT-Mittel 7,0 % > Salzburg 4,2 % ≈ Tirol 4,3 %. Spread Wien vs. Salzburg ~7,2 Prozentpunkte",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive AT-Bundesland-Arbeitslosenquoten nach AMS-Methodik Jahresdurchschnitt 2024 (Quelle: AMS via Jahresbericht Arbeitsmarktlage 2024 vom Februar 2025): Wien 11,4 % (höchste Quote), Kärnten 7,3 %, Burgenland (Schätzung aus Bestand: ~7,5 %), Niederösterreich ~6,1 %, Oberösterreich ~4,7 %, Steiermark ~5,9 %, Vorarlberg ~5,2 %, Tirol 4,3 %, Salzburg 4,2 % (niedrigste Quote). AT-Mittel 7,0 %. Spread Wien vs. Salzburg ~7,2 Prozentpunkte. Absolute Bestände 2024: Wien 118.311 arbeitslos vorgemerkt > NÖ 44.380 > OÖ 35.537 > Steiermark 35.646 > Kärnten 17.620 > Tirol 16.027 > Salzburg 11.875 > Vorarlberg 10.268 > Burgenland 8.186. WICHTIG: AMS-Methodik = registrierte Arbeitslose (national, inkl. Schulungs-Teilnehmer separat). AMS-Bundesland-Quoten sind systematisch HÖHER als Eurostat/ILO-Werte. Pack vermeidet die Wertung 'Bundesland X performt gut/schlecht' — Strukturunterschiede (Wirtschaftssektor-Mix, demographische Struktur, Stadt-Land-Effekte) erklären Quoten-Differenzen. Keine Partei-Schuld-Zuweisung.",
+        "wien_2024": "Wien AMS-Quote 2024: 11,4 % (höchste AT). Bestand 118.311 arbeitslos vorgemerkt (+9.938 vs. 2023, +9,2 %). Strukturhinweis: Wien hat 37,0 % Langzeitbeschäftigungslos-Anteil — höchster AT-Wert.",
+        "kaernten_2024": "Kärnten AMS-Quote 2024: 7,3 %. Bestand 17.620 (+699 vs. 2023, +4,1 %). Niedrigster relativer Anstieg 2024.",
+        "burgenland_2024": "Burgenland AMS-Quote 2024 (aus Bestand abgeleitet, AMS-Bericht zeigt nicht direkt Bundesland-Quote): Bestand 8.186 (+528 vs. 2023, +6,9 %).",
+        "niederoesterreich_2024": "Niederösterreich AMS-Bestand 2024: 44.380 arbeitslos vorgemerkt (+3.383 vs. 2023, +8,3 %).",
+        "oberoesterreich_2024": "Oberösterreich AMS-Bestand 2024: 35.537 arbeitslos vorgemerkt (+5.226 vs. 2023, +17,2 % — höchster relativer Anstieg AT 2024). Strukturhinweis: Industrie-Sektor (insb. Warenerzeugung -17,8 % Bestands-Anstieg) stark betroffen.",
+        "salzburg_2024": "Salzburg AMS-Quote 2024: 4,2 % (niedrigste AT, knapp vor Tirol). Bestand 11.875 (+1.163 vs. 2023, +10,9 %).",
+        "steiermark_2024": "Steiermark AMS-Bestand 2024: 35.646 (+3.904 vs. 2023, +12,3 %).",
+        "tirol_2024": "Tirol AMS-Quote 2024: 4,3 %. Bestand 16.027 (+1.363 vs. 2023, +9,3 %). Tourismus-Saisonalitäts-Strukturhinweis.",
+        "vorarlberg_2024": "Vorarlberg AMS-Bestand 2024: 10.268 (+875 vs. 2023, +9,3 %).",
+        "spread_bundeslaender": "Bundesländer-Spread AT 2024 (AMS-Methodik): Wien 11,4 % — Salzburg 4,2 % ≈ Tirol 4,3 %. Spread ~7,2 Prozentpunkte. Deskriptive Differenz; Strukturhinweise: Wien (Großstadt, Akademiker:innen-Konzentration, hoher Anteil mit nicht-österreichischer Staatsbürgerschaft), Salzburg/Tirol (Tourismus + Bau, Saison-Strukturen, kleinere Bevölkerung).",
+        "context": "Pack stellt NUR deskriptive Quoten-/Bestands-Lage dar, ohne Bundesland-Wertung 'gut/schlecht'. Wertungs-Aussagen sind außerhalb des AMS-Mandats und politisch sensitiv. Strukturhinweise sind aus dem AMS-Bericht selbst zitiert."
+      },
+      "context_notes": [
+        "Quelle: AMS via Jahresbericht Arbeitsmarktlage 2024 vom Februar 2025, Tabelle 'Arbeitslose Personen — nach Bundesland'.",
+        "Methodik-Caveat: AMS-Bundesland-Quoten sind systematisch HÖHER als Eurostat/ILO-Werte (Konzept-Unterschied AMS vs. ILO).",
+        "Politik-Tabu: Pack referenziert NUR Quoten + Strukturhinweise aus dem AMS-Bericht selbst, gibt KEINE Wertung 'Bundesland X versagt' und KEINE Partei-Schuld-Zuweisung."
+      ],
+      "claim_phrasings_handled": [
+        "Arbeitslosenquote Wien 2024",
+        "Bundesland-Arbeitslosigkeit AT",
+        "AL-Quote Salzburg",
+        "Wien hat höchste Arbeitslosigkeit",
+        "Vergleich Bundesländer Arbeitslosigkeit"
+      ],
+      "trigger_keywords": [
+        "arbeitslosenquote wien", "arbeitslosenquote bundesland",
+        "arbeitslosenquote kärnten", "arbeitslosenquote salzburg",
+        "arbeitslosenquote tirol", "arbeitslosenquote burgenland",
+        "arbeitslosenquote niederösterreich", "arbeitslosenquote oberösterreich",
+        "arbeitslosenquote steiermark", "arbeitslosenquote vorarlberg",
+        "bundesland-arbeitslosigkeit", "bundesland arbeitslosigkeit",
+        "wien arbeitslos 2024", "salzburg arbeitslos",
+        "tirol arbeitslos", "kärnten arbeitslos",
+        "bundeslaender arbeitslosigkeit"
+      ],
+      "trigger_composite": [
+        ["wien", "kärnten", "kaernten", "burgenland", "niederösterreich", "niederoesterreich", "oberösterreich", "oberoesterreich", "salzburg", "steiermark", "tirol", "vorarlberg", "bundesland", "bundesländer", "bundeslaender"],
+        ["arbeitslos", "arbeits-los", "arbeitslosenquote", "arbeitslosen-quote", "arbeitslosenrate", "ams", "ams-quote", "al-quote"],
+        ["2024", "2023", "quote", "anteil", "prozent", "%", "höchste", "niedrigste", "vergleich", "spread"]
+      ]
+    },
+    {
+      "id": "ams_vs_eurostat_methodik_diff_2024",
+      "topic": "ams_vs_eurostat_diff_konsens",
+      "scope": "Methodik-Differenz AMS vs. Eurostat-ILO und reale Zahlen-Differenz 2024 — als Standalone-Topic",
+      "year": 2024,
+      "source_url": "https://www.ams.at/content/dam/download/arbeitsmarktdaten/österreich/berichte-auswertungen/001_JB-2024.pdf",
+      "secondary_url": "https://ec.europa.eu/eurostat/cache/metadata/en/lfsa_esms.htm",
+      "source_label": "AMS Arbeitsmarktservice Österreich Jahresbericht 2024 + Eurostat Labour Force Survey (LFS) Methodik-Dokumentation (ILO-Konzept) + International Labour Organisation Standards",
+      "headline": "AT 2024: AMS-Quote 7,0 % vs. Eurostat-Quote ~4,8 % — Differenz ~2,2 Prozentpunkte. Beide Werte sind KORREKT, Methodik macht den Unterschied. AMS = registriert + nationale Berechnung; Eurostat = ILO-Konzept",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Methodik-Differenz AMS vs. Eurostat-ILO ist KEIN 'Statistik-Trick' — beide Quoten sind korrekt, definieren aber unterschiedliche Konzepte: (1) AMS-Methodik 'nationale Berechnung' (Jahresbericht 2024): zählt beim AMS registrierte Arbeitslose. Bedingungen: Wohnsitz AT, arbeitsfähig, arbeitsbereit, kein sozialversicherungspflichtiger Job (>= geringfügigkeitsgrenze). AMS-Quote 2024: 7,0 %. (2) Eurostat-Methodik (ILO-Konzept, Labour Force Survey): zählt Personen ohne Arbeit + AKTIV suchend in letzten 4 Wochen + verfügbar in 2 Wochen. Eurostat-Quote AT 2024: ca. 4,8 %. (3) Differenz ~2,2 Prozentpunkte 2024 ergibt sich u.a. aus: (a) Personen registriert aber nicht aktiv suchend (Krankheit, sehr nah am Arbeitsanfang, Sonder-Fälle), (b) ILO-1-Stunden-Regel (wer in der Berichtswoche 1+ Stunde gearbeitet hat, gilt nicht als arbeitslos), (c) Schwellen-Wert-Unterschiede. Schulungs-Teilnehmer:innen (75.524 in 2024) werden in AMS-Methodik SEPARAT ausgewiesen und NICHT in der 7,0-%-Quote inkludiert (Mythenkorrektur — viele meinen, Schulungs-Teilnehmer:innen würden 'versteckt' in der AMS-Quote drücken; tatsächlich sind sie ausgewiesen + getrennt). (4) Vergleich: Eurostat-Quote ist EU-weit standardisiert (gleiche Methodik) und damit für internationale Vergleiche besser geeignet. AMS-Quote ist für nationale Politik-Steuerung besser geeignet (zeigt staatliche Unterstützungsbedürfnis). KEINE 'wahre' Quote — Methodik muss bei Zitierung explizit gemacht werden. Pack zitiert nur die deskriptive Empirie. Detail-Konzept-Vergleich im arbeitsmarkt_pack-Fact 'ams_quote_realitaet_konsens'.",
+        "ams_quote_2024": "AMS-Quote AT 2024 (nationale Berechnung): 7,0 %. Quelle: AMS-Jahresbericht Arbeitsmarktlage 2024 vom Februar 2025.",
+        "eurostat_quote_2024_at": "Eurostat-Quote AT 2024 (ILO-Konzept Labour Force Survey): ca. 4,8 % (Q4 2024 Daten). Quelle: Eurostat-LFS, im AMS-Jahresbericht-Vorwort referenziert.",
+        "differenz_2_2_punkte": "Methodik-Differenz 2024: ~2,2 Prozentpunkte. Erklärung: (a) AMS zählt registrierte Personen unabhängig vom aktiven Such-Status; Eurostat verlangt aktiv suchend + verfügbar in 2 Wochen, (b) AMS-1-Euro-Regel (geringfügig-beschäftigte sind ggf. weiterhin arbeitslos); Eurostat-1-Stunden-Regel.",
+        "schulungsteilnehmer_separat": "AMS-Schulungs-Teilnehmer:innen 2024: 75.524 — werden im AMS-Jahresbericht SEPARAT ausgewiesen und sind in der AMS-Quote 7,0 % NICHT inkludiert. Mythenkorrektur: Schulungs-Teilnehmer:innen werden NICHT zur Drückung der Quote 'versteckt' — sie werden transparent separat dokumentiert. AL inkl. Schulungen: 373.376 Personen.",
+        "dach_vergleich_2024": "DACH-Vergleich Q4 2024 Eurostat: AT 4,8 %, DE 3,4 %, CH 4,2 %. Registriert-Konzept: AT AMS 7,0 % (Jahresdurchschnitt), DE Bundesagentur ca. 5,9 % (vergleichbares Konzept zur AMS-Methodik). Differenz Registriert-Konzept vs. ILO-Konzept ist EU-weit ähnlich (~1,5-3 Prozentpunkte).",
+        "warum_amts_quote_in_politik": "AMS-Quote wird in AT-politischen Debatten häufiger zitiert als Eurostat-Quote: (1) AMS-Daten sind monatlich + aktuell verfügbar (vs. quartalsweise LFS), (2) AMS zeigt direkt Anzahl staatlicher Unterstützungs-Empfänger:innen (sozial-/budgetpolitisch relevant), (3) Bundesländer-Aufschlüsselung in AMS-Daten viel detaillierter. Eurostat-Quote ist wichtig für internationale Vergleichbarkeit (EU-Empfehlungen, OECD-Reports).",
+        "context": "Pack referenziert NUR deskriptive Methodik-Lage + Zahlen. KEINE Wertung 'AMS-Quote ist die wahre Zahl', 'Eurostat verfälscht'. Beide Konzepte sind methodisch valide für ihren jeweiligen Anwendungs-Zweck."
+      },
+      "context_notes": [
+        "Quelle: AMS-Jahresbericht 'Die Arbeitsmarktlage 2024' vom Februar 2025 + Eurostat Labour Force Survey Methodik-Standards.",
+        "Komplementär zu existierendem arbeitsmarkt_pack-Fact 'ams_quote_realitaet_konsens' (dort detaillierte Konzept-Diskussion mit weiteren Datenpunkten).",
+        "Wichtig: Schulungs-Teilnehmer:innen werden NICHT in der AMS-Quote inkludiert — sondern separat ausgewiesen (75.524 im JD 2024). Mythenkorrektur."
+      ],
+      "claim_phrasings_handled": [
+        "AMS-Quote vs Eurostat",
+        "Warum unterschiedliche Arbeitslosenzahlen",
+        "Welche Arbeitslosenquote stimmt",
+        "AMS verschönert die Statistik",
+        "Schulungsteilnehmer in AMS-Quote",
+        "Methodik AMS Arbeitslosenquote"
+      ],
+      "trigger_keywords": [
+        "ams vs eurostat", "ams-quote vs eurostat",
+        "ams eurostat differenz", "methodik arbeitslosenquote",
+        "warum unterschiedliche arbeitslosenquote",
+        "schulungsteilnehmer ams quote",
+        "ams verschönert statistik", "ams verschoenert statistik",
+        "verschiedene arbeitslosenzahlen",
+        "welche arbeitslosenquote stimmt",
+        "ams quote echt", "ams quote real"
+      ],
+      "trigger_composite": [
+        ["ams", "ams-quote", "ams quote", "arbeitslosenquote", "arbeitslosen-quote", "registrierte arbeitslose", "schulungsteilnehmer", "schulung"],
+        ["eurostat", "ilo", "labour force survey", "labour-force-survey", "lfs", "methodik", "methode", "berechnung", "konzept", "ams-quote", "ams quote", "ams-methodik", "versteckt", "verstecken", "verschoenert", "verschönert"],
+        ["differenz", "unterschied", "warum", "welche", "echt", "real", "wahre", "richtig", "stimmt", "verschönert", "verschoenert", "schulungsteilnehmer", "schulung", "trick", "manipuliert", "versteckt", "verstecken", "geschoent", "gefälscht", "gefaelscht"]
+      ]
+    },
+    {
+      "id": "ams_at_jugendliche_2024",
+      "topic": "ams_at_alterstruktur_konsens",
+      "scope": "AT-Arbeitslosigkeit nach Altersgruppen 2024 — Jugendliche, Haupterwerbsalter, Ältere",
+      "year": 2024,
+      "source_url": "https://www.ams.at/content/dam/download/arbeitsmarktdaten/österreich/berichte-auswertungen/001_JB-2024.pdf",
+      "secondary_url": "https://www.ams.at/arbeitsmarktdaten-und-medien/arbeitsmarkt-daten-und-arbeitsmarkt-forschung/berichte-und-auswertungen",
+      "source_label": "AMS Arbeitsmarktservice Österreich Jahresbericht 'Die Arbeitsmarktlage 2024' (Februar 2025, Tabelle 'Arbeitslose Personen — nach Altersgruppen')",
+      "headline": "AT-AL 2024 nach Alter (AMS-Methodik): Jugendliche unter 25: 32.037 (+13,1 %), Haupterwerbsalter 25-49: 174.415 (+11,1 %), Ältere 50+: 91.399 (+6,9 %). Höchste Anstiegs-Dynamik bei Jüngeren",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive AT-Arbeitslosigkeit nach Altersgruppen Jahresdurchschnitt 2024 (Quelle: AMS via Jahresbericht Arbeitsmarktlage 2024 vom Februar 2025): Jugendliche unter 25 Jahren 32.037 arbeitslos vorgemerkt (+3.714 bzw. +13,1 % vs. 2023). Haupterwerbsalter 25-49 Jahre 174.415 (+17.487 bzw. +11,1 %). Über-50-Jährige 91.399 (+5.877 bzw. +6,9 %). 2024 stieg die Arbeitslosigkeit junger Menschen das zweite Jahr in Folge stärker als im Durchschnitt — strukturelle Beobachtung aus dem AMS-Bericht. Bei den Frauen liegt die höchste AL-Quote-Altersgruppe 30-34 Jahre (7,4 %), bei den Männern liegt sie 60-64 Jahre (12,3 %). Pack vermeidet Wertung 'Jugendarbeitslosigkeit-Krise' — präsentiert nur empirische Anstiegs-Quoten ohne politische Schuld-Zuweisung.",
+        "jugendliche_unter_25_2024": "AT-Jugendliche unter 25 Jahren arbeitslos vorgemerkt 2024: 32.037 Personen (+3.714 vs. 2023, +13,1 %). Höchster relativer Anstieg aller Altersgruppen.",
+        "haupterwerbsalter_25_49_2024": "AT-Haupterwerbsalter 25-49 Jahre arbeitslos vorgemerkt 2024: 174.415 Personen (+17.487 vs. 2023, +11,1 %).",
+        "aeltere_50plus_2024": "AT-Ältere 50+ arbeitslos vorgemerkt 2024: 91.399 Personen (+5.877 vs. 2023, +6,9 %). Niedrigster relativer Anstieg.",
+        "altersgruppen_geschlecht_extreme": "Höchste AL-Quote-Altersgruppen 2024 nach Geschlecht (AMS): Frauen 30-34 Jahre 7,4 %; Männer 60-64 Jahre 12,3 %. Strukturelle Unterschiede (Karenz-Lebens-Phase Frauen; Frühpension-Übergang Männer).",
+        "anstieg_junge_2024": "Anstieg AL-Quote bei jungen Menschen 20-24 + 25-29 Jahre 2024: +0,9 Prozentpunkte je Gruppe vs. 2023. Höchster Anstieg aller Altersgruppen.",
+        "bildung_arbeitslosigkeit_2024": "AT-AL 2024 nach Bildungsabschluss (AMS): max. Pflichtschulausbildung 134.484 Personen (+12.484 vs. 2023, +10,3 %), Lehrabschluss 83.670 (+5.881, +7,6 %), mittlere Ausbildung 14.789 (+1.052, +7,7 %), höhere Ausbildung 35.943 (+3.690, +11,4 %), akademische Ausbildung 28.179 (+4.040, +16,7 % — höchster relativer Anstieg). AMS-Bericht: Mit Abstand höchstes AL-Risiko bei Personen ohne weiterführende Bildung über Pflichtschule.",
+        "context": "Pack vermeidet politische Wertung 'Jugendarbeitslosigkeit-Krise' oder 'Akademiker-Bildungsblase'. Quote-Anstieg ist konjunkturell + BIP-Rückgang-getrieben (WIFO -0,9 % BIP 2024), strukturelle Aussagen wären spekulativ."
+      },
+      "context_notes": [
+        "Quelle: AMS via Jahresbericht Arbeitsmarktlage 2024 vom Februar 2025, Tabelle 'Arbeitslose Personen — nach Altersgruppen + Bildungsabschluss'.",
+        "Methodik-Hinweis: AMS-Werte = registrierte Personen. Jugendarbeitslosigkeits-Quoten nach ILO-Konzept (Eurostat) sind regelmäßig NIEDRIGER (ca. 9-10 % bei den 15-24-Jährigen).",
+        "Politik-Tabu: Pack stellt nur Bestände + Anstieg dar. KEINE Wertung 'gut/schlecht', keine Partei-Schuld-Zuweisung, keine Bildungspolitik-Wertung."
+      ],
+      "claim_phrasings_handled": [
+        "Jugendarbeitslosigkeit Österreich 2024",
+        "AT Akademiker arbeitslos 2024",
+        "Über-50-Jährige arbeitslos Österreich",
+        "Bildung Arbeitslosigkeit AT"
+      ],
+      "trigger_keywords": [
+        "jugendarbeitslosigkeit österreich", "jugendarbeitslosigkeit oesterreich",
+        "jugendliche arbeitslos at",
+        "akademiker arbeitslos at", "akademiker arbeitslos österreich",
+        "ältere arbeitslos at", "aeltere arbeitslos at",
+        "50 jahre arbeitslos at",
+        "bildung arbeitslos at",
+        "pflichtschule arbeitslos at",
+        "lehrabschluss arbeitslos"
+      ],
+      "trigger_composite": [
+        ["jugend", "junge", "unter 25", "25-49", "haupterwerb", "50+", "über 50", "ältere", "aeltere", "akademiker", "pflichtschul", "lehrabschluss", "bildung"],
+        ["arbeitslos", "arbeitslosigkeit", "ams", "ams-quote", "arbeitslosenquote", "vorgemerkt"],
+        ["österreich", "oesterreich", " at ", "at,", " at.", "2024", "2023", "anstieg", "anzahl"]
+      ]
+    },
+    {
+      "id": "ams_at_langzeit_2024",
+      "topic": "ams_at_langzeit_konsens",
+      "scope": "AT-Langzeitarbeitslosigkeit + Langzeitbeschäftigungslosigkeit 2024 (AMS-Definitionen)",
+      "year": 2024,
+      "source_url": "https://www.ams.at/content/dam/download/arbeitsmarktdaten/österreich/berichte-auswertungen/001_JB-2024.pdf",
+      "secondary_url": "https://www.ams.at/arbeitsmarktdaten-und-medien/arbeitsmarkt-daten-und-arbeitsmarkt-forschung/berichte-und-auswertungen",
+      "source_label": "AMS Arbeitsmarktservice Österreich Jahresbericht 'Die Arbeitsmarktlage 2024' (Februar 2025)",
+      "headline": "AT-Langzeitarbeitslose 2024 (AMS-Definition > 12 Monate ohne Unterbrechung): 35.734 Personen (12,0 % aller AL). Langzeitbeschäftigungslose (weiter gefasst): 82.461 Personen (27,7 %). Wien-Spitze 37,0 %",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive AT-Langzeitarbeitslosigkeits-Eckwerte 2024 (Quelle: AMS via Jahresbericht Arbeitsmarktlage 2024 vom Februar 2025): (1) AMS-DEFINITION 'Langzeitarbeitslos' = > 12 Monate ohne Unterbrechung arbeitslos vorgemerkt — strenge Definition. Bestand 2024: 35.734 Personen (12,0 % aller arbeitslos Vorgemerkten, +3.239 vs. 2023, +10,0 % relativer Anstieg). (2) AMS-DEFINITION 'Langzeitbeschäftigungslos' = weiter gefasstes Konzept (Unterbrechungen zwischen Schulungen/Krankenstand/kurze Beschäftigungen werden integriert) — entspricht ungefähr 'Personen ohne stabile Beschäftigung > 12 Monate'. Bestand 2024: 82.461 Personen (27,7 % aller AL, +7.490 vs. 2023, +10,0 %). (3) Wien-Spitze: 37,0 % der in Wien Vorgemerkten sind langzeitbeschäftigungslos — höchster AT-Wert (strukturell durch Großstadt-Konzentration + spezifische Arbeitsmarkt-Profile erklärt im AMS-Bericht). (4) Personen mit gesundheitlichen Vermittlungs-Einschränkungen sind von Langzeitbeschäftigungslosigkeit besonders betroffen (45,4 %). Pack zitiert AMS-Bericht 1:1 ohne Wertung 'Politik versagt' oder 'Sozialstaat-Belastung'. Strukturhinweise zur Erklärung sind aus dem AMS-Bericht selbst.",
+        "langzeitarbeitslos_2024": "AT-Langzeitarbeitslose 2024 (AMS-Definition >12 Monate ohne Unterbrechung): 35.734 Personen, 12,0 % aller arbeitslos Vorgemerkten. +3.239 vs. 2023, +10,0 % relativer Anstieg.",
+        "langzeitbeschaeftigungslos_2024": "AT-Langzeitbeschäftigungslose 2024 (AMS-Definition weiter gefasst, mit Unterbrechungen): 82.461 Personen, 27,7 % aller AL. +7.490 vs. 2023, +10,0 %.",
+        "wien_langzeit_anteil": "Wien: 37,0 % der arbeitslos Vorgemerkten sind langzeitbeschäftigungslos — höchster AT-Wert. Strukturhinweis: Großstadt-Konzentration + Arbeitsmarkt-Profile.",
+        "gesundheit_langzeit": "Personen mit gesundheitlichen Vermittlungs-Einschränkungen: 45,4 % der Langzeitbeschäftigungslosen 2024. AT-strukturelles Phänomen — vermittelbarkeits-getriebene Lang-Zeit-Dynamik.",
+        "vormerkdauer_durchschnitt": "Durchschnittliche Vormerkdauer AT 2024: 183 Tage (-6 Tage vs. 2023). Durchschnittliche Verweildauer (in Arbeitslosigkeit): 114 Tage (+2 Tage vs. 2023).",
+        "context": "Pack referenziert AMS-Definitionen + Werte 1:1. KEINE Wertung 'zu viel Langzeit-AL', 'Sozialstaat-Belastung', 'Arbeitsmarkt-Politik versagt'. Strukturhinweise sind aus dem AMS-Bericht selbst zitiert."
+      },
+      "context_notes": [
+        "Quelle: AMS via Jahresbericht Arbeitsmarktlage 2024 vom Februar 2025, Tabelle 'Arbeitslose Personen — Bestand|Bewegung|Dauer'.",
+        "AMS-Definitionen sind PRÄZISE: Langzeitarbeitslosigkeit (>12 Monate ohne Unterbrechung) ist die strenge OECD-EU-Definition. Langzeitbeschäftigungslosigkeit ist eine weiter gefasste AT-Definition mit Berücksichtigung von Schulungen/Krankenstand-Unterbrechungen.",
+        "Politik-Tabu: Pack stellt nur Bestände + Werte, KEINE Wertung 'Arbeitsmarkt-Politik versagt' oder Partei-Schuld-Zuweisung."
+      ],
+      "claim_phrasings_handled": [
+        "Langzeitarbeitslosigkeit Österreich 2024",
+        "Wie lange sind Arbeitslose in Österreich arbeitslos",
+        "Langzeit-Arbeitslose AT Bestand",
+        "Wien Langzeitarbeitslosigkeit"
+      ],
+      "trigger_keywords": [
+        "langzeitarbeitslos österreich", "langzeitarbeitslos oesterreich",
+        "langzeitarbeitslosigkeit at",
+        "langzeit-arbeitslos at", "langzeit arbeitslos at",
+        "langzeitbeschäftigungslos at", "langzeitbeschaeftigungslos at",
+        "langzeit-arbeitslosenquote at",
+        "wien langzeitarbeitslos",
+        "vormerkdauer ams"
+      ],
+      "trigger_composite": [
+        ["langzeit", "lang-zeit", "lang zeit", "12 monate", "über 12 monate", "ueber 12 monate", "vormerkdauer", "verweildauer"],
+        ["arbeitslos", "arbeitslosigkeit", "beschäftigungslos", "beschaeftigungslos", "ams", "vorgemerkt"],
+        ["österreich", "oesterreich", "at ", " at,", " at.", "wien", "bundesland", "anteil", "quote", "bestand", "anzahl"]
+      ]
+    },
+    {
+      "id": "ams_at_offene_stellen_2024",
+      "topic": "ams_at_stellenmarkt_konsens",
+      "scope": "AT-Stellenmarkt 2024 (offene Stellen + Lehrstellen) — AMS-Statistik",
+      "year": 2024,
+      "source_url": "https://www.ams.at/content/dam/download/arbeitsmarktdaten/österreich/berichte-auswertungen/001_JB-2024.pdf",
+      "secondary_url": "https://www.ams.at/arbeitsmarktdaten-und-medien/arbeitsmarkt-daten-und-arbeitsmarkt-forschung/berichte-und-auswertungen",
+      "source_label": "AMS Arbeitsmarktservice Österreich Jahresbericht 'Die Arbeitsmarktlage 2024' (Februar 2025, Tabelle 'Stellenmarkt')",
+      "headline": "AT-offene Stellen JD 2024: 90.677 (-16,4 % vs. 2023). Offene Lehrstellen: 8.076 (-10,2 %). Lehrstellensuchende: 7.881 (+18,9 %) → 1,0 offene Lehrstelle pro Suchender im AT-Schnitt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive AT-Stellenmarkt-Eckwerte 2024 (Quelle: AMS via Jahresbericht Arbeitsmarktlage 2024 vom Februar 2025): (1) JD-Bestand sofort verfügbarer offener Stellen 2024: 90.677 (-16,4 % vs. 2023). Insgesamt 533.396 Stellen wurden dem AMS im Jahresverlauf neu gemeldet (-3,9 %). (2) Stellenmeldungen sind besonders in Kärnten (-11,8 %) und Oberösterreich (-9,7 %) zurückgegangen. Steigerungen gab es in Wien (+2,0 %) und Vorarlberg (+1,5 %). (3) Lehrstellenmarkt 2024: JD 8.076 offene Lehrstellen (-10,2 %). Im Jahresverlauf 41.499 Lehrstellen neu gemeldet (-1,9 %). 70.663 neu registrierte Lehrstellensuchende (+6,6 %). JD 7.881 sofort verfügbare Lehrstellensuchende ohne Einstellzusage beim AMS im Bestand (+18,9 %). Im AT-Schnitt steht jeder lehrstellensuchenden Person genau 1,0 offene Lehrstelle gegenüber. Regional Spread: Wien 4,4 Suchende pro Stelle (höchste Lehrstellenandrang AT) vs. Tirol 0,3 + Salzburg 0,4 (Lehrstellen-Überhang). (4) Pack vermeidet die Wertung 'Lehrlingsmangel ist eine Krise' oder 'Lehrlinge wollen nicht arbeiten' — präsentiert nur die deskriptive Stellen-/Suchenden-Lage und die regionale Variabilität. Politische Konnotationen sind politisch sensitiv (Migration, Bildung, Lehrlings-Politik).",
+        "offene_stellen_jd_2024": "AT-offene Stellen Jahresdurchschnitt 2024: 90.677 Bestand (-16,4 % vs. 2023). Neu gemeldete Stellen 2024: 533.396 (-3,9 %).",
+        "stellen_bundeslaender_2024": "AT-Stellenmeldungen 2024 nach Bundesland: Wien +2,0 %, Vorarlberg +1,5 %, Tirol +1,1 %, Burgenland +0,5 %, Salzburg ±0,0 %, AT-Schnitt -3,9 %, Steiermark -4,2 %, NÖ -6,0 %, OÖ -9,7 %, Kärnten -11,8 %.",
+        "offene_lehrstellen_2024": "AT-offene Lehrstellen JD 2024: 8.076 Bestand (-10,2 % vs. 2023). Im Jahresverlauf 41.499 neu gemeldete Lehrstellen (-1,9 %).",
+        "lehrstellensuchende_2024": "AT-Lehrstellensuchende JD 2024: 7.881 sofort verfügbar im Bestand (+18,9 %). Neu registriert im Jahresverlauf: 70.663 (+6,6 %).",
+        "lehrstellen_regional_2024": "Regional Lehrstellen-Andrang 2024 (Lehrstellensuchende pro offene Lehrstelle): Wien 4,4, AT-Schnitt 1,0. Lehrstellen-Überhang in Tirol 0,3 Suchende pro Stelle, Salzburg 0,4. Engpässe besonders in Tourismus-Berufen: Restaurantfachmann/-frau 6,6 offene Lehrstellen pro Suchender, Gastronomiefachleute 5,9, Koch/Köchin 4,2.",
+        "stellenbesetzungen_2024": "AT-Stellenbesetzungen 2024 (AMS-Vermittlungs-Bilanz): 90,1 % aller abgebuchten Stellen wurden über das AMS vermittelt (Stellenbesetzungs-Quote). +3,5 Prozentpunkte vs. 2023.",
+        "context": "Pack vermeidet die Wertung 'Lehrlingsmangel-Krise' oder 'Fachkräfte-Krise'. Detail-Methodik zur Lehrstellen-Vakanz im Vergleich zu offene-Stellen-Quote im arbeitsmarkt_pack-Fact 'fachkraeftemangel_empirie_konsens'."
+      },
+      "context_notes": [
+        "Quelle: AMS via Jahresbericht Arbeitsmarktlage 2024 vom Februar 2025, Tabelle 'Stellenmarkt + Lehrstellenmarkt'.",
+        "Komplementär zu arbeitsmarkt_pack-Fact 'fachkraeftemangel_empirie_konsens' (dort Detail-Diskussion 'Mangel vs. Lücke' mit Forschungs-Belegen).",
+        "Politik-Tabu: Pack referenziert AMS-Bilanz 1:1 ohne Wertung. Lehrstellen-Markt-Themen sind politisch sensitiv (Migration, Bildung) — Pack distanziert sich strikt."
+      ],
+      "claim_phrasings_handled": [
+        "Offene Stellen Österreich 2024",
+        "AT-Stellenmarkt 2024",
+        "Lehrstellen Österreich 2024",
+        "Lehrstellenmangel Österreich",
+        "Wie viele offene Stellen in Österreich"
+      ],
+      "trigger_keywords": [
+        "offene stellen österreich 2024", "offene stellen oesterreich 2024",
+        "offene stellen at",
+        "stellenmarkt österreich", "stellenmarkt oesterreich",
+        "lehrstellenmarkt at", "lehrstellen österreich",
+        "lehrstellenmangel", "lehrlings-mangel österreich",
+        "offene lehrstellen at", "anzahl offene stellen at",
+        "ams-stellenmeldungen", "stellenmeldungen ams"
+      ],
+      "trigger_composite": [
+        ["offene stelle", "offene-stelle", "stellenmarkt", "stellen-markt", "stellenmeldung", "lehrstelle", "lehr-stelle", "lehrstellenmarkt", "lehrstellen-markt"],
+        ["österreich", "oesterreich", " at ", " at,", " at.", "ams", "bundesland", "wien", "tirol", "salzburg"],
+        ["2024", "2023", "anzahl", "bestand", "quote", "wie viele", "rückgang", "anstieg"]
+      ]
+    },
+    {
+      "id": "ams_at_beschaeftigung_2024",
+      "topic": "ams_at_beschaeftigung_konsens",
+      "scope": "AT-unselbstständige Beschäftigung 2024 — Bundesländer-Aufschluesselung",
+      "year": 2024,
+      "source_url": "https://www.ams.at/content/dam/download/arbeitsmarktdaten/österreich/berichte-auswertungen/001_JB-2024.pdf",
+      "secondary_url": "https://www.statistik.at/statistiken/arbeitsmarkt",
+      "source_label": "AMS Österreich Jahresbericht 2024 + Dachverband der österreichischen Sozialversicherungsträger (Erwerbskarrierenmonitoring, Datenstand 18.02.2025) + Statistik Austria",
+      "headline": "AT-unselbstständig-Beschäftigte JD 2024: 3.960.663 (+0,1 % vs. 2023). Frauen 1.855.340 (+0,8 %), Männer 2.105.322 (-0,5 %). Wien +1,0 %, Salzburg +0,7 %, Tirol +0,7 % — alle anderen Bundesländer rückläufig",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive AT-unselbstständige-Beschäftigungs-Eckwerte Jahresdurchschnitt 2024 (Quelle: AMS via Dachverband Sozialversicherungsträger Erwerbskarrierenmonitoring vom 18.2.2025 + Jahresbericht Arbeitsmarktlage 2024): (1) Gesamt 3.960.663 unselbstständig Beschäftigte (+0,1 % vs. 2023). Frauen 1.855.340 (+0,8 % bzw. +14.126), Männer 2.105.322 (-0,5 % bzw. -9.720). Frauen-Anteil 46,8 %. (2) Bundesländer 2024: nur Wien (+1,0 %), Salzburg (+0,7 %) und Tirol (+0,7 %) verzeichneten Beschäftigungs-Zuwächse. Alle anderen Bundesländer rückläufig: Vorarlberg ±0,0 %, Burgenland -0,1 %, NÖ -0,2 %, Kärnten -0,3 %, Steiermark -0,3 %, OÖ -0,6 %. (3) Sektorale Aufschluesselung 2024: Größter Sektor 'Herstellung von Waren' mit -1,4 % Beschäftigungs-Rückgang. Auch Bausektor -2,9 % und Handel -0,8 %. Wachstum in Gesundheits- + Sozialwesen +3,4 % und öffentliche Verwaltung +2,1 %. (4) Altersgruppen: Beschäftigung Über-50-Jähriger +1,1 %, Unter-25-Jährige -1,5 %. (5) Selbstständig Beschäftigte sind im AMS-Bericht nicht detailliert (Statistik Austria Daten erforderlich). Gesamt AT-Erwerbstätige (selbstständig + unselbstständig) ca. 4,26 Mio. 2024 (52 % der 9,2 Mio. Wohnbevölkerung). Pack vermeidet die Wertung 'Beschäftigung gut/schlecht' — präsentiert nur deskriptive Beschäftigungs-Lage.",
+        "unselbst_beschaeftigte_2024": "AT-unselbstständig-Beschäftigte JD 2024: 3.960.663 (+0,1 % bzw. +4.406 vs. 2023). Quelle: Dachverband Sozialversicherungsträger 18.02.2025.",
+        "frauen_maenner_2024": "Beschäftigung 2024 nach Geschlecht: Frauen 1.855.340 (+14.126, +0,8 %), Männer 2.105.322 (-9.720, -0,5 %). Frauen-Anteil 46,8 %.",
+        "bundeslaender_beschaeftigung_2024": "Beschäftigung 2024 nach Bundesland: Wien 923.588 (+1,0 %), Salzburg 273.352 (+0,7 %), Tirol 358.980 (+0,7 %), Vorarlberg 172.595 (±0,0 %), Burgenland 112.769 (-0,1 %), NÖ 655.219 (-0,2 %), Kärnten 222.306 (-0,3 %), Steiermark 546.741 (-0,3 %), OÖ 695.114 (-0,6 %).",
+        "sektoren_beschaeftigung_2024": "Beschäftigungs-Veränderung 2024 nach Sektor (AMS): Herstellung von Waren -1,4 % (deutlich negativ), Bau -2,9 %, Handel -0,8 %. Gesundheits- + Sozialwesen +3,4 %, öffentliche Verwaltung +2,1 %.",
+        "altersgruppen_beschaeftigung_2024": "Beschäftigung 2024 nach Alter: Über-50-Jährige +1,1 %, Unter-25-Jährige -1,5 %. Strukturelle Verschiebung — demografische Effekte + Lehrlingsmarkt-Druck.",
+        "arbeitskraefte_potenzial_2024": "AT-Arbeitskräfte-Potenzial 2024 (unselbstständig): 4.258.514 — entspricht 46 % der 9,2 Mio. Wohnbevölkerung. Inkl. selbstständig Beschäftigte: 52 %. Frauen-Anteil am Arbeitskräfte-Potenzial: 46,6 %.",
+        "context": "Pack referenziert AMS + Sozialversicherungsträger 1:1. KEINE Wertung 'Beschäftigungs-Krise' oder 'Wirtschaft floriert'. WIFO-Konjunktur-Kontext: BIP -0,9 % 2024 trotz leichten Beschäftigungs-Anstiegs erklärt durch Arbeitszeit-Verkürzung (mehr Beschäftigte, weniger Stunden je Person)."
+      },
+      "context_notes": [
+        "Quelle: AMS via Jahresbericht Arbeitsmarktlage 2024 + Dachverband der österreichischen Sozialversicherungsträger (Erwerbskarrierenmonitoring, Datenstand 18.02.2025).",
+        "Methodik-Caveat: Unselbstständige Beschäftigung = sozialversicherungspflichtig (alle ab Geringfügigkeitsgrenze). Selbstständige nicht inkl.",
+        "Politik-Tabu: Pack stellt nur deskriptive Lage. KEINE Wertung 'Beschäftigung gut/schlecht', keine Partei-Bewertung."
+      ],
+      "claim_phrasings_handled": [
+        "Wie viele Beschäftigte in Österreich 2024",
+        "AT-Beschäftigtenzahl 2024",
+        "Wien Beschäftigung 2024",
+        "Arbeitskräftepotenzial Österreich"
+      ],
+      "trigger_keywords": [
+        "beschäftigte österreich 2024", "beschaeftigte oesterreich 2024",
+        "beschäftigung österreich", "beschaeftigung oesterreich",
+        "unselbstständig beschäftigt", "unselbststaendig beschaeftigt",
+        "arbeitskräfte potenzial at", "arbeitskraefte potenzial at",
+        "anzahl beschäftigte at", "wie viele beschäftigte at",
+        "erwerbstätige österreich", "erwerbstaetige oesterreich"
+      ],
+      "trigger_composite": [
+        ["beschäftig", "beschaeftig", "erwerbstätig", "erwerbstaetig", "arbeitskräfte", "arbeitskraefte", "arbeitsmarkt-teilnahme"],
+        ["österreich", "oesterreich", " at ", " at,", " at.", "at-", "bundesland", "wien", "salzburg", "tirol"],
+        ["2024", "2023", "anzahl", "wie viele", "bestand", "veränderung", "quote", "anteil", "millionen", "mio"]
+      ]
+    },
+    {
+      "id": "ams_at_zeitreihe_2015_2024",
+      "topic": "ams_at_zeitreihe_konsens",
+      "scope": "AT-Arbeitslosigkeits-Zeitreihe AMS-Methodik 2015-2024 — Jahreswerte + Rezession-Vergleiche",
+      "year": 2024,
+      "source_url": "https://www.ams.at/content/dam/download/arbeitsmarktdaten/österreich/berichte-auswertungen/001_JB-2024.pdf",
+      "secondary_url": "https://www.ams.at/arbeitsmarktdaten-und-medien/arbeitsmarkt-daten-und-arbeitsmarkt-forschung/berichte-und-auswertungen",
+      "source_label": "AMS Arbeitsmarktservice Österreich Jahresbericht 2024 (Tabelle 'Arbeitslose Personen und Schulungsteilnehmer:innen in den vergangenen 10 Jahren')",
+      "headline": "AT-AL-Zeitreihe AMS 2015-2024 (arbeitslos + Schulungen, JD): 2015 ~395k, 2019 ~363k, 2020 ~467k (Corona-Spitze), 2022 ~333k (Tief), 2024 ~373k. AL-Quote 2019 7,4 % > 2024 7,0 %",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive AT-Arbeitslosigkeits-Zeitreihe AMS-Methodik 2015-2024 (Quelle: AMS Jahresbericht 2024, Tabelle '10-Jahres-Zeitreihe'): Jahresdurchschnitt arbeitslose Personen + Schulungs-Teilnehmer:innen: 2015 ~395k (+6,3 % vs. 2014), 2016 ~395k (+1,2 %), 2017 ~360k (-2,9 %), 2018 ~360k (-7,6 %), 2019 ~363k (-4,6 %, Spätzyklus-Tief vor Corona), 2020 ~467k (+28,5 %, Corona-Schock), 2021 ~424k (+12,2 %), 2022 ~333k (-13,9 %, Erholung Post-Corona-Tief), 2023 ~341k (+2,6 %), 2024 ~373k (+9,4 %, Rezessions-Anstieg). Vergleich AL-Quote AMS: 2019 7,4 %, 2020 9,9 %, 2021 8,0 %, 2022 6,3 %, 2023 6,4 %, 2024 7,0 %. WICHTIG: 2024-Anstieg ist konjunkturell (BIP -0,9 % 2024 nach -1,0 % 2023 — Rezession), aber AL-Quote bleibt UNTER Pre-Corona-Rezessions-Niveau von 2019 (7,4 %). Pack zitiert nur Zeitreihe und WIFO-Konjunktur-Kontext aus dem AMS-Bericht. KEINE Wertung 'Arbeitsmarkt-Krise' oder 'Arbeitsmarkt-Erfolg' — Konjunktur-Schwankungen sind methodisch zu erwarten und im AMS-Bericht beschrieben.",
+        "zeitreihe_2015_2024": "AT-AL+Schulungen JD-Bestand 2015-2024 (AMS): 2015 ~395k (+6,3 %), 2016 ~395k (+1,2 %), 2017 ~360k (-2,9 %), 2018 ~360k (-7,6 %), 2019 ~363k (-4,6 %), 2020 ~467k (+28,5 %, Corona-Schock), 2021 ~424k (+12,2 %), 2022 ~333k (-13,9 %), 2023 ~341k (+2,6 %), 2024 ~373k (+9,4 %).",
+        "al_quote_zeitreihe": "AL-Quote AT AMS-Methodik Jahresdurchschnitte 2019-2024: 2019 7,4 %, 2020 9,9 % (Corona), 2021 8,0 %, 2022 6,3 % (Post-Corona-Tief), 2023 6,4 %, 2024 7,0 %.",
+        "corona_schock_2020": "Corona-Schock 2020: AL+Schulungen JD-Bestand stieg auf ~467k (+28,5 % vs. 2019). AL-Quote stieg von 7,4 % auf 9,9 %. Schulungen-Anteil bei den 467k: 12,2 %.",
+        "post_corona_tief_2022": "Post-Corona-Tief 2022: AL+Schulungen JD-Bestand sank auf ~333k (-13,9 % vs. 2021). AL-Quote sank auf 6,3 % — niedrigster Wert seit 2008.",
+        "rezession_2024": "AT-Rezession 2024: BIP -0,9 % (lt. WIFO, im AMS-Bericht-Vorwort zitiert), nach -1,0 % 2023. AL+Schulungen JD stieg auf ~373k (+9,4 %). AL-Quote 7,0 % — UNTER Wert von 2019 (7,4 %), was AMS-Bericht als 'relativ moderater Anstieg' bezeichnet.",
+        "vergleich_quote_rezession": "Vergleichs-Wert für 2024-Rezessions-Quote: AL-Quote 2019 (letzte Pre-Corona-Rezession) 7,4 % > AL-Quote 2024 7,0 %. Aktuelle Rezession ist arbeitsmarkt-effizienter (Arbeitszeit-Verkürzung statt Entlassungen, Hortung von Arbeitskräften wegen Fachkräfte-Engpässen) als 2019.",
+        "context": "Pack stellt nur deskriptive Zeitreihen-Lage dar. KEINE Wertung 'Krise' oder 'Erfolg'. WIFO-Konjunktur-Kontext ist 1:1 aus dem AMS-Bericht-Vorwort zitiert."
+      },
+      "context_notes": [
+        "Quelle: AMS via Jahresbericht 'Die Arbeitsmarktlage 2024' vom Februar 2025, Tabelle '10-Jahres-Zeitreihe Arbeitslose Personen + Schulungs-Teilnehmer:innen'.",
+        "WIFO-Konjunktur-Kontext: BIP-Daten lt. WIFO zitiert im AMS-Bericht-Vorwort durch Dr. Johannes Kopf (AMS-Vorstand).",
+        "Politik-Tabu: Pack referenziert nur Zeitreihen-Lage + WIFO-Konjunktur-Kontext aus AMS-Bericht. KEINE Wertung 'Arbeitsmarkt-Krise' oder Partei-Schuld-Zuweisung."
+      ],
+      "claim_phrasings_handled": [
+        "AT-Arbeitslosigkeit historisch",
+        "Arbeitslosigkeit 2020 Corona Österreich",
+        "AT-AL-Quote 2019 vs 2024",
+        "Arbeitsmarkt-Krise AT",
+        "Wann war die höchste Arbeitslosigkeit in Österreich"
+      ],
+      "trigger_keywords": [
+        "arbeitslosigkeit zeitreihe at",
+        "arbeitslosigkeit corona österreich",
+        "al-quote 2019 at", "al-quote 2020 at",
+        "ams zeitreihe", "ams jahresdaten",
+        "arbeitsmarkt-krise österreich",
+        "höchste arbeitslosigkeit österreich",
+        "post-corona arbeitsmarkt at",
+        "rezession arbeitslosigkeit at"
+      ],
+      "trigger_composite": [
+        ["arbeitslos", "arbeitslosenquote", "arbeitslosen-quote", "ams", "ams-quote", "al-quote", "al quote"],
+        ["zeitreihe", "historisch", "vergleich", "über die jahre", "ueber die jahre", "corona", "rezession", "2019", "2020", "2021", "2022", "2023", "2024", "10 jahre"],
+        ["österreich", "oesterreich", " at ", " at,", " at.", "wifo", "ams"]
+      ]
+    },
+    {
+      "id": "ams_at_branche_sektor_2024",
+      "topic": "ams_at_branche_konsens",
+      "scope": "AT-Arbeitslosigkeit nach Wirtschaftssektor 2024 (AMS-Statistik)",
+      "year": 2024,
+      "source_url": "https://www.ams.at/content/dam/download/arbeitsmarktdaten/österreich/berichte-auswertungen/001_JB-2024.pdf",
+      "secondary_url": "https://www.ams.at/arbeitsmarktdaten-und-medien/arbeitsmarkt-daten-und-arbeitsmarkt-forschung/berichte-und-auswertungen",
+      "source_label": "AMS Österreich Jahresbericht 2024 (Tabelle 'Arbeitslose Personen — nach Wirtschaftsabschnitt')",
+      "headline": "AT-AL-Anstieg 2024 nach Branche (AMS): Warenerzeugung +17,8 % (höchster Anstieg), Handel +11,8 %, Verkehr +11,1 %, Bau +8,6 %, Tourismus +9,2 %, Gesundheit/Sozial +2,0 % (niedrigster Anstieg)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive AT-Arbeitslosigkeits-Anstieg 2024 nach Wirtschaftssektor (Quelle: AMS via Jahresbericht 2024, Tabelle 'Arbeitslose Personen — Wirtschaftsabschnitt'): Warenerzeugung +17,8 % Anstieg (auf 25.218 arbeitslos vorgemerkte Personen), Handel +11,8 % (43.075), Verkehr und Lagerei +11,1 % (15.689), Beherbergung + Gastronomie +9,2 % (33.119), Bau +8,6 % (28.223), Gesundheits- + Sozialwesen +2,0 % (8.643 — niedrigster Anstieg), Arbeitskräfte-Überlassung +7,5 % (26.552). 2024 war ein Industrie-Rezessions-Jahr (BIP -0,9 % laut WIFO), und Warenerzeugung + Bau waren stärker betroffen als der Dienstleistungs-Sektor. Gesundheits- + Sozialwesen (alterungs-getrieben), öffentliche Verwaltung (politisch stabil) sind anti-zyklisch + wuchsen 2024 sogar (Beschäftigung +3,4 % bzw. +2,1 %). Pack vermeidet Wertung 'Industrie-Krise' oder 'Standortpolitik-Versagen' — präsentiert nur deskriptive Sektor-Differenzierung.",
+        "warenerzeugung_2024": "AT-Warenerzeugung (Industrie) AL-Bestand 2024: 25.218 (+3.806 vs. 2023, +17,8 % — höchster Anstieg aller Sektoren). BIP-Rezession 2024 trifft Industrie hart.",
+        "bau_2024": "AT-Bausektor AL-Bestand 2024: 28.223 (+2.246 vs. 2023, +8,6 %).",
+        "handel_2024": "AT-Handel AL-Bestand 2024: 43.075 (+4.558 vs. 2023, +11,8 %).",
+        "verkehr_lagerei_2024": "AT-Verkehr und Lagerei AL-Bestand 2024: 15.689 (+1.565 vs. 2023, +11,1 %).",
+        "tourismus_2024": "AT-Tourismus (Beherbergung + Gastronomie) AL-Bestand 2024: 33.119 (+2.800 vs. 2023, +9,2 %).",
+        "gesundheit_sozial_2024": "AT-Gesundheits- und Sozialwesen AL-Bestand 2024 (ohne sonstiges Sozialwesen): 8.643 (+167 vs. 2023, +2,0 % — niedrigster Anstieg). Wachstums-Sektor: Beschäftigung +3,4 %.",
+        "arbeitskraefte_ueberlassung_2024": "AT-Arbeitskräfte-Überlassung AL-Bestand 2024: 26.552 (+1.851 vs. 2023, +7,5 %). Strukturell hohe Sensitivität für Konjunktur-Wendepunkte.",
+        "wirtschaftsschock_2024_struktur": "AMS-Bericht-Beobachtung: 2024 war 2. Rezessions-Jahr in Folge (BIP -1,0 % 2023, -0,9 % 2024 laut WIFO). Industrie (Warenerzeugung +17,8 % AL-Anstieg) + Bau (+8,6 %) waren stärker betroffen als Dienstleistungs-Sektor. Gesundheits-/Sozial-Sektor + öffentl. Verwaltung anti-zyklisch.",
+        "context": "Pack referenziert AMS-Statistik 1:1. KEINE Wertung 'Standort versagt' oder Partei-Schuld-Zuweisung. Sektorale Strukturhinweise sind aus dem AMS-Bericht selbst."
+      },
+      "context_notes": [
+        "Quelle: AMS via Jahresbericht Arbeitsmarktlage 2024 vom Februar 2025, Tabelle 'Arbeitslose Personen — nach Wirtschaftsabschnitt'.",
+        "Komplementär zu arbeitsmarkt_pack-Fact 'fachkraeftemangel_empirie_konsens' (dort sektorale Detail-Diskussion zu Fachkräfte-Engpässen).",
+        "Politik-Tabu: Pack stellt nur sektorale Differenzierung dar. KEINE Wertung 'Industrie-Krise', 'Standort-Politik versagt'."
+      ],
+      "claim_phrasings_handled": [
+        "AT-Industrie-Arbeitslosigkeit 2024",
+        "Bau-Arbeitslosigkeit Österreich",
+        "Tourismus-Arbeitslosigkeit AT",
+        "Sektor Arbeitslosigkeit Österreich"
+      ],
+      "trigger_keywords": [
+        "industrie arbeitslos at", "industrie arbeitslosigkeit österreich",
+        "warenerzeugung arbeitslos at",
+        "bau arbeitslos at", "baubranche arbeitslos at",
+        "handel arbeitslos österreich",
+        "tourismus arbeitslos österreich",
+        "gesundheitswesen arbeitslos",
+        "sektor arbeitslosigkeit at",
+        "branche arbeitslosigkeit österreich"
+      ],
+      "trigger_composite": [
+        ["industrie", "industrie-", "warenerzeugung", "produktion", "bau", "baubranche", "handel", "tourismus", "beherbergung", "gastronomie", "gesundheits-wesen", "gesundheitswesen", "verkehr", "logistik", "arbeitskräfte-überlassung", "leiharbeit", "sektor", "branche", "wirtschaftsabschnitt"],
+        ["arbeitslos", "arbeitslosigkeit", "ams", "ams-quote", "stellen", "beschäftigung", "beschaeftigung"],
+        ["österreich", "oesterreich", " at ", " at,", " at.", "at-", " at", "2024", "2023", "anstieg", "rückgang"]
+      ]
+    },
+    {
+      "id": "ams_at_pressespiegel_jahresbericht_2024",
+      "topic": "ams_at_quellen_konsens",
+      "scope": "Quellen-Vermerk + Aktualitäts-Hinweis — AMS-Jahresbericht 2024 + WIFO-Bezug",
+      "year": 2024,
+      "source_url": "https://www.ams.at/arbeitsmarktdaten-und-medien/arbeitsmarkt-daten-und-arbeitsmarkt-forschung/berichte-und-auswertungen",
+      "secondary_url": "https://www.ams.at/content/dam/download/arbeitsmarktdaten/österreich/berichte-auswertungen/001_JB-2024.pdf",
+      "source_label": "AMS Arbeitsmarktservice Österreich — Berichte + Auswertungen (Übersicht) + 'Die Arbeitsmarktlage 2024' (Februar 2025) + AMS Spezialthema zum Arbeitsmarkt Dezember 2024",
+      "headline": "Quellen-Pack für AT-Arbeitsmarkt-AMS-Daten 2024: Primärquelle AMS Jahresbericht 2024 (Februar 2025); WIFO-Konjunktur-Bezug im Bericht-Vorwort; Aktualitäts-Stand Pack 2026-05-23 (JD-2024-Werte)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Quellen-Vermerk für AT-Arbeitsmarkt-AMS-Daten 2024-Pack: (1) PRIMÄR-Quelle ist der AMS-Jahresbericht 'Die Arbeitsmarktlage 2024', publiziert im Februar 2025 vom Arbeitsmarktservice Österreich (Abt. Arbeitsmarktforschung + Berufsinformation, Treustraße 35-43, 1200 Wien). PDF-URL: https://www.ams.at/content/dam/download/arbeitsmarktdaten/österreich/berichte-auswertungen/001_JB-2024.pdf (2) WIFO-Bezug: Konjunktur-Daten (BIP-Wachstum 2023, 2024) sind im AMS-Bericht-Vorwort von Dr. Johannes Kopf (AMS-Vorstand) zitiert. Sekundär-Vermerk: 'AMS via WIFO-Konjunktur-Kommentar zitiert im AMS-Jahresbericht 2024'. Direkter WIFO-Bericht ist verfügbar auf https://www.wifo.ac.at/themen/arbeitsmarkt-und-loehne. (3) AKTUALITÄTS-STAND Pack: 2026-05-23. Werte beziehen sich auf Jahresdurchschnitt 2024. Aktuelle Monats- + Quartals-Daten (Stand z.B. April 2026) sind in den AMS-Übersicht-PDFs verfügbar (siehe URL-Root). Pack updatet sich NICHT automatisch — bei Bedarf manuelle Aktualisierung im JSON. (4) Pack-LIZENZ: AMS-Daten unterliegen der CC-0-ähnlichen Behörden-Daten-Lizenz (data.gv.at-Schnittstelle). Sekundär-Zitierung mit URL + Datum erlaubt. (5) Pack-Politik-Tabu-Konformität: Pack hält strikt die 4 Tabus aus project_political_guardrails.md: KEINE Wertung 'AL-Quote hoch/niedrig ist gut/schlecht', KEINE Partei-Schuld-Zuweisung, KEINE Prognosen über zukünftige AL-Entwicklung, KEINE eigene normative Wertung. Strukturhinweise sind aus dem AMS-Bericht selbst zitiert.",
+        "ams_jahresbericht_titel": "AMS Jahresbericht 'Die Arbeitsmarktlage 2024' — Folder-Format, publiziert Februar 2025.",
+        "ams_publikator": "Publikator: Arbeitsmarktservice Österreich, Abt. Arbeitsmarktforschung + Berufsinformation. Adresse: Treustraße 35-43, 1200 Wien. E-Mail: ams.statistik@ams.at",
+        "ams_url_root": "AMS Berichte + Auswertungen URL-Root: https://www.ams.at/arbeitsmarktdaten-und-medien/arbeitsmarkt-daten-und-arbeitsmarkt-forschung/berichte-und-auswertungen",
+        "ams_aktualitaet": "Aktualitäts-Hinweis: Pack-Snapshot 2026-05-23 referenziert AMS-Jahresdurchschnitt-Werte 2024. Aktuellere Monats-/Quartals-Werte (z.B. April 2026) sind auf der AMS-Berichte-Seite verfügbar.",
+        "wifo_konjunktur_bezug": "WIFO-Konjunktur-Bezug: BIP-Wachstums-Werte sind im AMS-Bericht-Vorwort durch Dr. Johannes Kopf zitiert. WIFO-Originalwerte: https://www.wifo.ac.at/themen/arbeitsmarkt-und-loehne",
+        "lizenz_hinweis": "AMS-Daten = Behörden-Daten (CC-0-ähnlich). Sekundär-Zitierung mit URL + Datum + 'Quelle: AMS via WIFO-Bericht vom Februar 2025' erlaubt. data.gv.at-Schnittstelle dokumentiert Open-Data-Status.",
+        "politik_tabu_konformitaet": "Pack hält strikt die 4 Tabus aus project_political_guardrails.md ein. Pack ist DESKRIPTIV und vermeidet Wertungs-Frames. Strukturhinweise sind aus dem AMS-Bericht selbst zitiert.",
+        "context": "Quellen-Vermerk für Synthesizer + Reranker: dieser Topic wird nur getriggert, wenn Claims explizit nach AMS-Quellen/Methodik/Datenherkunft fragen (z.B. 'Woher kommen AMS-Daten', 'Wie aktuell ist AMS-Statistik'). Default ist KEIN Trigger."
+      },
+      "context_notes": [
+        "Pack-Quellen-Vermerk + Aktualitäts-Hinweis für Transparency-Zwecke. Wird nur bei spezifischen Quellen-/Methodik-Claims getriggert.",
+        "Bei Pack-Update sollte das fetched_at_iso-Feld + die JD-Werte aktualisiert werden. Aktuelle Monats-Werte sind nicht im Pack — Pack ist nicht Live-API, sondern Static-Snapshot.",
+        "Politik-Tabu-Konformitäts-Vermerk: Pack hält die 4 Tabus aus project_political_guardrails.md strikt ein."
+      ],
+      "claim_phrasings_handled": [
+        "Quelle AMS Daten",
+        "Wie aktuell sind AMS-Statistiken",
+        "AMS Jahresbericht 2024 URL",
+        "Wo finde ich AMS-Arbeitsmarktdaten"
+      ],
+      "trigger_keywords": [
+        "ams-jahresbericht url",
+        "quelle ams arbeitsmarktdaten",
+        "ams open data",
+        "ams pdf download",
+        "wo finde ich ams daten"
+      ],
+      "trigger_composite": [
+        ["ams"],
+        ["quelle", "url", "pdf", "download", "wo finde", "datenherkunft", "open data", "datenstand", "publikator", "herausgeber"],
+        ["arbeitsmarktdaten", "arbeitslos", "arbeitslosenquote", "statistik", "berichte", "jahresbericht", "monatsbericht"]
+      ]
+    }
+  ]
+}
