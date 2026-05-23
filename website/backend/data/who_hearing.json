@@ -1,0 +1,911 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-23",
+  "source_label": "WHO World Report on Hearing 2021 + WHO Safe Listening Standard + WHO Environmental Noise Guidelines 2018",
+  "license_note": "WHO-Publikationen sind unter CC BY-NC-SA 3.0 IGO veroeffentlicht (Wiederverwendung mit Quellenangabe und identischer Lizenz, nicht-kommerziell). Faktischer Inhalt (Zahlen) ist nicht urheberrechtlich geschuetzt.",
+  "facts": [
+    {
+      "id": "global_prevalence_2026",
+      "topic": "hoerverlust_globale_praevalenz",
+      "scope": "Globale Schaetzung der Menschen mit Hoerverlust laut WHO World Report on Hearing 2021",
+      "year": 2021,
+      "headline": "Weltweit haben 1,5 Mrd. Menschen Hoerverlust, davon ~430 Mio. mit behindernder Auspraegung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Laut WHO World Report on Hearing 2021 leben weltweit rund 1,5 Mrd. Menschen mit irgendeiner Form von Hoerverlust und ~430 Mio. (vorher 466 Mio. in WHO-2019-Schaetzung) mit 'disabling hearing loss' (>35 dB im besseren Ohr bei Erwachsenen). Bis 2050 prognostiziert die WHO ~2,5 Mrd. Menschen mit Hoerverlust und ~700 Mio. mit behindernder Form. Wichtig: Definitionen schwanken zwischen 25-dB- und 35-dB-Schwelle, Aelteste Erhebungen nutzten 40 dB; Vergleiche ueber Reports daher mit Caveat.",
+        "globale_zahl_jegliche_hoerminderung": "~1,5 Mrd. Menschen weltweit (alle Schweregrade, WHO 2021).",
+        "globale_zahl_behindernd": "~430 Mio. Menschen mit behinderndem Hoerverlust (>35 dB besseres Ohr, Erwachsene; >30 dB Kinder).",
+        "projektion_2050": "~2,5 Mrd. Menschen werden bis 2050 mit irgendeiner Form von Hoerverlust leben, davon ~700 Mio. behindernd (WHO-Projektion, Demografie- und Risikofaktor-getrieben).",
+        "methodisch_caveat": "WHO-2019/2021-Zahlen beruhen auf Global-Burden-of-Disease-Modellierung; aeltere Schaetzungen (466 Mio.) nutzten andere Schwelle. Definition 'disabling' = >35 dB im besseren Ohr (frueher 40 dB).",
+        "context": "Der Hoerverlust ist eine der weltweit haeufigsten chronischen Gesundheitsbeeintraechtigungen. Demografie (Alterung) und Laermbelastung treiben die Praevalenz."
+      },
+      "context_notes": [
+        "Frueh-Schaetzung WHO 2019: 466 Mio. behindernd; neuere Modellierung 2021 senkt auf ~430 Mio. wegen aktualisierter Schwellen-Definition.",
+        "Global Burden of Disease (GBD)-Daten sind Modellschaetzungen, keine direkten Erhebungen; Unsicherheits-Intervalle teils 20-30%.",
+        "WHO-Definition 'disabling hearing loss' aenderte sich 2021 von 40 dB auf 35 dB im besseren Ohr (Erwachsene)."
+      ],
+      "claim_phrasings_handled": [
+        "Weltweit haben ueber 400 Millionen Menschen einen behindernden Hoerverlust",
+        "1,5 Milliarden Menschen sind schwerhoerig",
+        "Bis 2050 wird sich die Zahl der Schwerhoerigen verdoppeln"
+      ],
+      "trigger_keywords": [
+        "globaler hoerverlust",
+        "weltweit schwerhoerig",
+        "hoerverlust weltweit",
+        "disabling hearing loss",
+        "1,5 milliarden hoerverlust",
+        "466 millionen hoerverlust",
+        "430 millionen hoerverlust",
+        "who world report on hearing",
+        "world report on hearing"
+      ],
+      "trigger_composite": [
+        [
+          "hoerverlust",
+          "schwerhoerig",
+          "hearing loss",
+          "schwerhoerigkeit"
+        ],
+        [
+          "weltweit",
+          "global",
+          "millionen",
+          "milliarden",
+          "praevalenz",
+          "betroffen",
+          "menschen"
+        ]
+      ],
+      "source_label": "WHO World Report on Hearing 2021",
+      "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
+      "secondary_url": "https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss"
+    },
+    {
+      "id": "phl_jugend_risiko_2026",
+      "topic": "phl_jugend_audio_devices",
+      "scope": "Risiko durch Personal Audio Devices und Freizeitlaerm bei jungen Menschen",
+      "year": 2021,
+      "headline": "Rund 1 Mrd. junge Menschen weltweit haben Risiko fuer dauerhaften Hoerverlust durch laute Musik / Freizeitlaerm",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Laut WHO World Report on Hearing 2021 sind weltweit rund 1 Mrd. junge Menschen (12-35 Jahre) durch unsichere Hoer-Praktiken (Kopfhoerer/Smartphone bei zu hoher Lautstaerke, Musikclubs/Konzerte) gefaehrdet, dauerhaften Hoerverlust zu entwickeln (PHL = Permanent Hearing Loss). Der WHO Safe-Listening-Standard fuer Personal Audio Devices definiert 80 dB(A) maximal 40 h pro Woche (Erwachsene) bzw. 75 dB / 40 h fuer Kinder. WICHTIG: Die Zahl bezeichnet Risiko-Exposition, nicht bereits eingetretenen Schaden.",
+        "betroffene_gruppe": "Junge Menschen (12-35 Jahre), die Kopfhoerer oder Konzert-/Club-Audio bei unsicheren Pegeln konsumieren.",
+        "phl_definition": "PHL = Permanent Hearing Loss durch Laermbelastung (Recreational Noise Exposure), gemessen als Innenohr-Schaden ueber 25-30 dB.",
+        "safe_listening_standard": "WHO/ITU H.870 (2019, aktualisiert 2022): max. 80 dB(A) ueber 40 h/Woche Erwachsene; max. 75 dB(A) ueber 40 h/Woche Kinder. Faktor 3 dB doppelt = halbe Erlaubt-Zeit.",
+        "context": "Die 1-Mrd.-Zahl steht fuer Risiko-Exposition, nicht fuer bereits manifesten Schaden. Sie wurde auf Basis von Smartphone-Penetrations- und Audio-Nutzungs-Daten modelliert und ist eine WHO-Awareness-Kennzahl. PHL durch Recreational Noise ist progressiv und meist irreversibel."
+      },
+      "context_notes": [
+        "Die 1-Mrd.-Zahl ist eine Risiko-Modellierung, keine epidemiologische Inzidenz.",
+        "WHO Make-Listening-Safe-Kampagne und H.870-Standard wurden 2019 etabliert; viele Smartphone-Hersteller (Apple, Samsung) haben Safe-Listening-Indikatoren integriert.",
+        "Recreational Noise gilt als wachsendes Public-Health-Problem in High-Income- und Middle-Income-Countries."
+      ],
+      "claim_phrasings_handled": [
+        "Eine Milliarde junge Menschen sind durch laute Musik gefaehrdet",
+        "Kopfhoerer machen taub",
+        "PHL durch Smartphone-Musik"
+      ],
+      "trigger_keywords": [
+        "personal audio device",
+        "personal audio devices",
+        "phl",
+        "permanent hearing loss",
+        "freizeitlaerm",
+        "recreational noise",
+        "kopfhoerer-laerm",
+        "kopfhoerer laut",
+        "musik laut hoerverlust",
+        "laute musik hoerverlust"
+      ],
+      "trigger_composite": [
+        [
+          "kopfhoerer",
+          "smartphone",
+          "musik",
+          "club",
+          "konzert",
+          "audio"
+        ],
+        [
+          "hoerverlust",
+          "schwerhoerig",
+          "taub",
+          "phl",
+          "hearing loss",
+          "schaden",
+          "gefaehrdet"
+        ]
+      ],
+      "source_label": "WHO World Report on Hearing 2021 + WHO Make Listening Safe",
+      "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
+      "secondary_url": "https://www.who.int/activities/making-listening-safe"
+    },
+    {
+      "id": "lmic_anteil_2026",
+      "topic": "hoerverlust_lmic_verteilung",
+      "scope": "Geografische Verteilung der Schwerhoerigen weltweit",
+      "year": 2021,
+      "headline": "~80% der weltweit Schwerhoerigen leben in Low- und Middle-Income-Countries (LMIC)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Laut WHO World Report on Hearing 2021 leben etwa 80% der Menschen mit behinderndem Hoerverlust weltweit in Low- und Middle-Income-Countries (LMIC). Gleichzeitig ist die Versorgung dort extrem unzureichend (Hoergeraete-Coverage <10%, oft <3%). Der Bericht spricht von einem 'access gap' in Diagnose, Geraeten und Rehabilitation.",
+        "lmic_anteil": "~80% der behindernd Schwerhoerigen weltweit leben in Laendern mit niedrigem oder mittlerem Einkommen.",
+        "access_gap": "In LMIC sind <10% (vielfach <3%) der Betroffenen mit Hoergeraeten versorgt, im Vergleich zu 17% globaler Schnitt und 30-50% in High-Income-Countries.",
+        "ursachen_lmic": "Hoehere Anteil unbehandelter Otitis media (chronische Mittelohr-Entzuendung), Rubella-Geburtsschaden vor Impfung, Laerm-Exposition Arbeit/Verkehr, fehlende Neugeborenen-Screening-Programme.",
+        "context": "Die WHO empfiehlt LMIC-fokussierte Investitionen in Primary-Ear-Care, Personal-Schulung (Audiologen, Ear-Health-Worker) und Geraete-Subvention."
+      },
+      "context_notes": [
+        "Die 80%-Zahl beruht auf GBD-Modellschaetzungen, nicht auf direkten Erhebungen in allen Laendern.",
+        "Der WHO-Bericht macht Politikempfehlungen zu Investitionen, keine bindende Vorgabe.",
+        "Otitis media gilt als haeufigste vermeidbare Ursache fuer kindlichen Hoerverlust in LMIC."
+      ],
+      "claim_phrasings_handled": [
+        "80% der Schwerhoerigen leben in armen Laendern",
+        "Hoerverlust ist ein LMIC-Problem",
+        "Die meisten Schwerhoerigen leben im globalen Sueden"
+      ],
+      "trigger_keywords": [
+        "lmic hoerverlust",
+        "low-income hoerverlust",
+        "hoerverlust entwicklungslaender",
+        "schwerhoerig globaler sueden",
+        "schwerhoerig armer laender",
+        "schwerhoerig arme laender"
+      ],
+      "trigger_composite": [
+        [
+          "hoerverlust",
+          "schwerhoerig",
+          "hearing loss"
+        ],
+        [
+          "lmic",
+          "entwicklungsland",
+          "entwicklungslaender",
+          "arme laender",
+          "globaler sueden",
+          "low income",
+          "low-income",
+          "middle income"
+        ]
+      ],
+      "source_label": "WHO World Report on Hearing 2021",
+      "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
+      "secondary_url": "https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss"
+    },
+    {
+      "id": "saeuglings_screening_2026",
+      "topic": "saeuglings_screening_coverage",
+      "scope": "Coverage von Neugeborenen-Hoerscreening-Programmen weltweit",
+      "year": 2021,
+      "headline": "Neugeborenen-Hoerscreening: hohe Coverage in Hocheinkommens-Laendern, marginal in LMIC",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Laut WHO World Report on Hearing 2021 erreicht das Neugeborenen-Hoerscreening (Universal Newborn Hearing Screening, UNHS) in Hocheinkommens-Laendern Coverage-Raten von typisch 70-95%, in vielen LMIC dagegen nur <5%. In DACH ist UNHS gesetzlich verankert: Deutschland seit 2009, Oesterreich Empfehlung seit 2003. Frueh-Diagnose vor dem 6. Lebensmonat verbessert Sprach- und Lern-Outcomes deutlich.",
+        "hic_coverage": "Hocheinkommens-Laender (z.B. DE, AT, USA, UK, Skandinavien): ~70-95% Coverage durch UNHS-Programme; AT konkrete Zahl ~95% via OAE/AABR-Pflicht-Screening.",
+        "lmic_coverage": "In vielen LMIC: <5% Coverage; in einigen Sub-Sahara-Laendern noch tiefer.",
+        "uhns_de_at": "Deutschland: UNHS gesetzlich seit 2009 (G-BA-Beschluss). Oesterreich: Empfehlung Mutter-Kind-Pass seit 2003, breite Umsetzung in Geburtskliniken.",
+        "outcome_evidenz": "Frueh-Diagnose vor 6 Monaten + frueh-Intervention (Hoergeraet/CI ab 6 Monaten) verbessert Sprach- und Lernentwicklung signifikant (Yoshinaga-Itano et al. 1998, JCIH 2019).",
+        "context": "UNHS-Programme nutzen OAE (Otoakustische Emissionen) oder AABR (Automated Auditory Brainstem Response). Die Methode ist nicht-invasiv und kosteneffektiv."
+      },
+      "context_notes": [
+        "Die genannten Coverage-Raten sind WHO-2021-Schaetzungen, koennten regional schwanken.",
+        "UNHS-Empfehlung weltweit: Joint Committee on Infant Hearing (JCIH) Position Statement 2019.",
+        "Schweiz: Universelles Screening seit 1999 (Pionier-Programm)."
+      ],
+      "claim_phrasings_handled": [
+        "Hoerscreening bei Neugeborenen ist Pflicht",
+        "Neugeborenen-Hoertest deckt alle Faelle ab",
+        "Saeuglings-Hoertest in Oesterreich ist gesetzlich"
+      ],
+      "trigger_keywords": [
+        "neugeborenen-hoerscreening",
+        "neugeborenen hoerscreening",
+        "saeuglings-hoertest",
+        "saeuglings-screening",
+        "unhs",
+        "universal newborn hearing screening",
+        "hoertest baby",
+        "newborn hearing screening"
+      ],
+      "trigger_composite": [
+        [
+          "neugeboren",
+          "saeugling",
+          "baby",
+          "kind",
+          "infant",
+          "newborn"
+        ],
+        [
+          "hoer",
+          "hearing",
+          "screening",
+          "test",
+          "diagnos"
+        ]
+      ],
+      "source_label": "WHO World Report on Hearing 2021 + G-BA + JCIH 2019",
+      "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
+      "secondary_url": "https://www.g-ba.de/themen/methodenbewertung/ambulant/frueherkennung/"
+    },
+    {
+      "id": "safe_listening_standard_2026",
+      "topic": "who_safe_listening_h870",
+      "scope": "WHO/ITU Safe-Listening-Standard fuer Personal Audio Devices",
+      "year": 2019,
+      "headline": "WHO Safe Listening Standard (H.870): 80 dB ueber 40 Stunden/Woche maximal",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Der WHO/ITU-Standard H.870 (2019, aktualisiert 2022) definiert die sichere Hoer-Dosis fuer Personal Audio Devices: max. 80 dB(A) ueber 40 Stunden pro Woche bei Erwachsenen, max. 75 dB(A) ueber 40 Stunden pro Woche bei Kindern. Die zugrundeliegende Regel: jede Verdoppelung der Lautstaerke (3 dB) halbiert die zulaessige Expositions-Zeit. Bei 100 dB sind nur ~10 Minuten/Woche sicher.",
+        "standard_referenz": "WHO/ITU H.870 (2019, Revisionen 2022).",
+        "erwachsenen_dosis": "Max. 80 dB(A) gemittelt ueber 40 Stunden/Woche; Equivalent zu ~25 mal Vakuum-Reiniger-Geraeusch.",
+        "kinder_dosis": "Max. 75 dB(A) gemittelt ueber 40 Stunden/Woche.",
+        "3db_regel": "Pro 3 dB Lautstaerke-Erhoehung halbiert sich die sichere Expositions-Zeit: 80 dB / 40 h --> 85 dB / ~12,5 h --> 90 dB / ~4 h --> 100 dB / ~ 10 min.",
+        "context": "Der Standard adressiert vor allem Kopfhoerer- und Smartphone-Nutzung. Viele moderne Smartphones (Apple iOS Hearing-Health, Samsung Hearing-Volume-Limiter) integrieren Safe-Listening-Indikatoren basierend auf H.870."
+      },
+      "context_notes": [
+        "Der Standard ist freiwillig, keine bindende Regulierung; EU-Regulation 2009/22/EG begrenzt PAD-Output auf 100 dB Hoechst-Pegel.",
+        "Industrie-Laerm-Standards (ISO 1999) gelten fuer Arbeitsplaetze, sind strenger fuer 8-h-Schicht.",
+        "Standard fokussiert auf TWA (Time-Weighted Average), nicht Peak-Pegel."
+      ],
+      "claim_phrasings_handled": [
+        "WHO empfiehlt max. 80 dB",
+        "Safe Listening Standard liegt bei 80 dB",
+        "Kopfhoerer max. 40 Stunden pro Woche"
+      ],
+      "trigger_keywords": [
+        "safe listening",
+        "safe-listening",
+        "h.870",
+        "h870",
+        "who 80 db",
+        "who safe listening standard",
+        "make listening safe"
+      ],
+      "trigger_composite": [
+        [
+          "safe listening",
+          "h.870",
+          "80 db",
+          "75 db",
+          "kopfhoerer",
+          "personal audio"
+        ],
+        [
+          "standard",
+          "grenzwert",
+          "regel",
+          "empfehlung",
+          "who",
+          "itu",
+          "norm"
+        ]
+      ],
+      "source_label": "WHO/ITU H.870 + WHO Make Listening Safe",
+      "source_url": "https://www.who.int/activities/making-listening-safe",
+      "secondary_url": "https://www.itu.int/rec/T-REC-H.870"
+    },
+    {
+      "id": "environmental_noise_2026",
+      "topic": "who_environmental_noise_guidelines",
+      "scope": "WHO Environmental Noise Guidelines (2018) — Schwellwerte fuer Umgebungslaerm",
+      "year": 2018,
+      "headline": "WHO Environmental Noise Guidelines 2018: 53 dB Strassenlaerm tags / 45 dB nachts als Gesundheits-Schwelle",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die WHO Environmental Noise Guidelines for the European Region (2018) empfehlen als Gesundheits-Schwelle: Strassen-Verkehrslaerm <53 dB Lden (Tag-Abend-Nacht-Mittel) und <45 dB Lnight (nachts), Schienenlaerm <54 dB Lden / <44 dB Lnight, Fluglaerm <45 dB Lden / <40 dB Lnight, Windkraft <45 dB Lden. Oberhalb dieser Schwellen steigt das Risiko fuer kardiovaskulaere Erkrankungen, Schlafstoerungen und kognitive Beeintraechtigung bei Kindern signifikant.",
+        "strassenlaerm_lden": "<53 dB Lden tags-abends, <45 dB Lnight nachts.",
+        "schienenlaerm_lden": "<54 dB Lden, <44 dB Lnight.",
+        "fluglaerm_lden": "<45 dB Lden, <40 dB Lnight.",
+        "windkraft_lden": "<45 dB Lden.",
+        "freizeitlaerm": "<70 dB LAeq,24h (chronisch) zur Vermeidung von Hoerverlust.",
+        "context": "Die Guidelines sind WHO-Europa-Empfehlungen, keine EU-Direktiven. EU-Umgebungslaerm-Richtlinie 2002/49/EG verpflichtet zu Strategischen Laermkarten, setzt aber keine bindenden Schwellen."
+      },
+      "context_notes": [
+        "Lden = Day-Evening-Night-Schalldruckpegel mit 5 dB Aufschlag fuer Abend, 10 dB fuer Nacht (gewichtet).",
+        "Die Schwellen basieren auf systematischen Reviews zu kardio-vaskulaerer Inzidenz, Schlaf und Lern-Effekten bei Kindern.",
+        "Oesterreichische Umgebungslaerm-Verordnung setzt zwar EU-Direktive um, ohne bindende Aktionsschwellen."
+      ],
+      "claim_phrasings_handled": [
+        "WHO-Grenzwert Strassenlaerm 53 dB",
+        "WHO empfiehlt 45 dB nachts",
+        "Laermrichtwert WHO"
+      ],
+      "trigger_keywords": [
+        "environmental noise",
+        "umgebungslaerm",
+        "laerm-grenzwert",
+        "laerm grenzwert",
+        "verkehrslaerm grenzwert",
+        "who laerm",
+        "lden",
+        "lnight",
+        "noise guidelines",
+        "strassenlaerm grenzwert"
+      ],
+      "trigger_composite": [
+        [
+          "laerm",
+          "noise",
+          "verkehr",
+          "fluglaerm",
+          "strassenlaerm",
+          "schienenlaerm",
+          "windkraft"
+        ],
+        [
+          "grenzwert",
+          "schwelle",
+          "richtwert",
+          "empfehlung",
+          "guideline",
+          "schwellwert",
+          "norm",
+          "who",
+          "db"
+        ]
+      ],
+      "source_label": "WHO Environmental Noise Guidelines for the European Region 2018",
+      "source_url": "https://www.who.int/europe/publications/i/item/9789289053563",
+      "secondary_url": "https://www.eea.europa.eu/themes/human/noise"
+    },
+    {
+      "id": "tinnitus_praevalenz_2026",
+      "topic": "tinnitus_praevalenz",
+      "scope": "Globale und DACH-Praevalenz von Tinnitus",
+      "year": 2022,
+      "headline": "Tinnitus-Praevalenz bei Erwachsenen: ~14% weltweit (Jarach et al. 2022 Meta-Analyse)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Tinnitus ist eine haeufige auditive Wahrnehmungsstoerung. Eine grosse Meta-Analyse (Jarach et al. 2022, JAMA Neurology, 113 Studien) schaetzt die globale Lebenszeit-Praevalenz auf ~14% der Erwachsenen, mit hoher Heterogenitaet (Schwankung 4-43% je nach Definition). Chronischer/belastender Tinnitus (>3 Monate, Lebensbeeintraechtigung) liegt bei ~2-4%. In DACH-Erhebungen (DEGS-1 / Deutsche Tinnitus-Liga) liegen die Werte aehnlich: ~11-15% irgendwann, ~3% chronisch-belastend.",
+        "globale_lebenszeit": "~14% Erwachsene (Jarach et al. 2022 Meta-Analyse, JAMA Neurology, 113 Studien aus 53 Laendern).",
+        "chronisch_belastend": "~2-4% Erwachsene mit chronisch-belastendem Tinnitus (Lebensqualitaets-Einschraenkung).",
+        "dach_zahlen": "Deutschland (DEGS-1): ~11-15% Lebenszeit-Praevalenz, ~3% chronisch-belastend (Deutsche Tinnitus-Liga). Oesterreich: aehnliche Groessenordnung, keine eigenstaendige Repraesentativ-Erhebung.",
+        "methodisches_caveat": "Die hohe Streuung 4-43% reflektiert unterschiedliche Definitionen ('mindestens einmal in den letzten 12 Monaten' vs. 'andauernd >3 Monate' vs. 'belastend') — Vergleiche ueber Studien hinweg sind nur mit Caveat moeglich.",
+        "context": "Tinnitus ist keine eigene Krankheit, sondern ein Symptom mit vielen moeglichen Ursachen (Hoerverlust, Laermschaden, Medikamente, Kiefer/HWS, idiopathisch). Heilung im Sinne 'Geraeusch weg' ist beim chronischen Tinnitus selten; etablierte Therapien zielen auf Habituation und Belastungs-Reduktion (TRT, kognitive Verhaltens-Therapie)."
+      },
+      "context_notes": [
+        "Jarach et al. 2022 (JAMA Neurology) ist die methodisch bisher beste Meta-Analyse mit 113 eingeschlossenen Studien.",
+        "Die Variabilitaet 4-43% mahnt zur Vorsicht bei punktuellen Behauptungen wie 'jeder dritte hat Tinnitus'.",
+        "Chronischer Tinnitus korreliert stark mit Hoerverlust (~80% der Tinnitus-Betroffenen haben auch Hoerverlust)."
+      ],
+      "claim_phrasings_handled": [
+        "10-15% aller Erwachsenen haben Tinnitus",
+        "Tinnitus ist heilbar",
+        "Jeder dritte hat Tinnitus"
+      ],
+      "trigger_keywords": [
+        "tinnitus",
+        "ohrgeraeusch",
+        "ohrgeraeusche",
+        "ohrenklingen",
+        "klingeln im ohr",
+        "tinnitus praevalenz",
+        "tinnitus haeufigkeit"
+      ],
+      "trigger_composite": [
+        [
+          "tinnitus",
+          "ohrgeraeusch",
+          "klingeln"
+        ],
+        [
+          "praevalenz",
+          "haeufigkeit",
+          "anteil",
+          "betroffen",
+          "verbreitet",
+          "millionen",
+          "prozent",
+          "%",
+          "heilbar",
+          "ursache"
+        ]
+      ],
+      "source_label": "Jarach et al. 2022 JAMA Neurology + Deutsche Tinnitus-Liga + WHO 2021",
+      "source_url": "https://jamanetwork.com/journals/jamaneurology/fullarticle/2795391",
+      "secondary_url": "https://www.tinnitus-liga.de/"
+    },
+    {
+      "id": "hoergeraet_versorgung_2026",
+      "topic": "hoergeraet_versorgungsquote",
+      "scope": "Globale und DACH-Versorgungsquote mit Hoergeraeten",
+      "year": 2021,
+      "headline": "Hoergeraet-Versorgung: ~17% global, ~30-50% in DACH (zunehmend)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Laut WHO World Report on Hearing 2021 nutzen weltweit nur etwa 17% der Menschen mit behandlungsbeduerftigem Hoerverlust ein Hoergeraet. In DACH liegen die Quoten deutlich hoeher (DE/AT/CH ~30-50%, je nach Erhebung und Schweregrad), aber selbst hier bleibt eine grosse Versorgungsluecke. Haupt-Barrieren: Kosten, Stigma, mangelhafte Beratung, lange Eingewoehnung. Cochlea-Implantate kommen erst bei schwerstem Hoerverlust in Frage.",
+        "globale_quote": "~17% der behandlungsbeduerftig Hoergeschaedigten weltweit nutzen ein Hoergeraet (WHO 2021).",
+        "dach_quote": "Deutschland und Oesterreich: ~30-50% je nach Erhebungs-Methode und definiertem Schweregrad. EuroTrak/JAPAN-Trak-Studien (EHIMA) sind die Referenz; DACH zaehlt zu den am besten versorgten Maerkten Europas.",
+        "barrieren": "Kosten (auch trotz Krankenkassen-Zuschuss), Stigma (Hoergeraet = 'alt'), mangelnde Beratung, lange Eingewoehnungs-Zeit (3-6 Monate), unzureichend angepasste Geraete.",
+        "ci_abgrenzung": "Cochlea-Implantate sind keine Hoergeraete im klassischen Sinn, sondern chirurgisch implantierte Hoerprothesen fuer hochgradigen bis voelligen Hoerverlust, wenn konventionelle Hoergeraete nicht ausreichen.",
+        "context": "Die deutliche DACH-LMIC-Spreizung spiegelt Krankenversicherungs-Systeme, Einkommens-Niveau und Audiologen-Verfuegbarkeit wider."
+      },
+      "context_notes": [
+        "Die ~17%-Zahl ist eine WHO-Modellschaetzung; einzelne Laender-Erhebungen koennen hoeher oder tiefer liegen.",
+        "EuroTrak (EHIMA-Studien) ist die wichtigste DACH-Referenz fuer Versorgungs-Quoten.",
+        "In Deutschland uebernehmen Krankenkassen einen Festbetrag (ab 2018: ~733 EUR pro Ohr); Premium-Geraete kosten Zuzahlung."
+      ],
+      "claim_phrasings_handled": [
+        "Nur 17% der Schwerhoerigen haben ein Hoergeraet",
+        "Hoergeraete-Versorgung in Deutschland 40%",
+        "Hoergeraete sind weltweit unterversorgt"
+      ],
+      "trigger_keywords": [
+        "hoergeraet versorgung",
+        "hoergeraete versorgung",
+        "hoergeraet quote",
+        "hoergeraete-quote",
+        "hoergeraet anteil",
+        "hoergeraet-anteil",
+        "hearing aid coverage",
+        "hoergeraet verbreitet"
+      ],
+      "trigger_composite": [
+        [
+          "hoergeraet",
+          "hoergeraete",
+          "hearing aid"
+        ],
+        [
+          "versorgung",
+          "quote",
+          "anteil",
+          "verbreitet",
+          "%",
+          "prozent",
+          "millionen",
+          "nutzen",
+          "tragen",
+          "versorgt"
+        ]
+      ],
+      "source_label": "WHO World Report on Hearing 2021 + EHIMA EuroTrak",
+      "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
+      "secondary_url": "https://www.ehima.com/eurotrak/"
+    },
+    {
+      "id": "cochlea_implantat_at_2026",
+      "topic": "cochlea_implantat_at_versorgung",
+      "scope": "Cochlea-Implantat-Versorgung in Oesterreich",
+      "year": 2024,
+      "headline": "Cochlea-Implantate in Oesterreich: ~2.500-3.500 implantierte Personen lebend",
+      "data": {
+        "kernsatz_fuer_synthesizer": "In Oesterreich tragen schaetzungsweise 2.500-3.500 Menschen ein Cochlea-Implantat (CI). Die Implantation erfolgt an spezialisierten Zentren (Wien AKH, Innsbruck, Graz, Linz, Salzburg). Indikation: hochgradiger bis vollstaendiger Hoerverlust, bei dem konventionelle Hoergeraete unzureichend sind. Saeuglinge werden im Idealfall ab 6-12 Lebensmonaten implantiert. Die Krankenkasse uebernimmt OP und Geraet bei Erfuellung der Indikation. WICHTIG: Die genaue Zahl liegt nicht in einem zentralen Register vor; die Schaetzung beruht auf Implantations-Zahlen der CI-Zentren.",
+        "geschaetzte_anzahl": "~2.500-3.500 Menschen in Oesterreich lebend mit CI (keine zentrale Registerzahl, Schaetzung aus Zentrums-Statistiken).",
+        "ci_zentren_at": "Wien AKH (groesstes Zentrum), Innsbruck, Graz LKH-Univ.Klinik, Linz Kepler-Universitaetsklinikum, Salzburg Uniklinikum.",
+        "indikation": "Hochgradiger bilateraler Hoerverlust (>70-90 dB), bei dem Hoergeraete keinen ausreichenden Sprachgewinn bringen. Bei Saeuglingen idealerweise vor dem 12. Lebensmonat.",
+        "kosten_deckung": "OeGK uebernimmt OP und Geraet bei medizinischer Indikation; ergaenzende Privat-Optionen fuer Premium-Sprachprozessoren existieren.",
+        "context": "CI ist eine etablierte Therapie seit den 1980ern; aktuelle Sprachprozessoren ermoeglichen Sprach-Verstaendnis-Quoten von 70-95% bei optimaler Anpassung. CI ersetzt nicht das natuerliche Hoeren, sondern stimuliert den Hoernerven elektrisch."
+      },
+      "context_notes": [
+        "Oesterreich hat kein zentrales CI-Register; die Zahl basiert auf Implantations-Zahlen der CI-Zentren.",
+        "Internationale Vergleichszahlen: Deutschland ~50.000 lebend mit CI, USA ~150.000+.",
+        "MED-EL (Innsbruck) ist einer der weltweit groessten CI-Hersteller; AT spielt in diesem Markt eine fuehrende Rolle."
+      ],
+      "claim_phrasings_handled": [
+        "2.500 Oesterreicher tragen Cochlea-Implantate",
+        "CI-Versorgung in Oesterreich",
+        "Cochlea-Implantat Wien"
+      ],
+      "trigger_keywords": [
+        "cochlea-implantat",
+        "cochlea implantat",
+        "ci-versorgung",
+        "ci versorgung",
+        "cochlea oesterreich",
+        "ci oesterreich",
+        "ci-zentrum",
+        "ci zentrum"
+      ],
+      "trigger_composite": [
+        [
+          "cochlea",
+          "ci-implantat",
+          "ci-versorgung",
+          "cochlea-implantat"
+        ],
+        [
+          "oesterreich",
+          "wien",
+          "innsbruck",
+          "graz",
+          "linz",
+          "salzburg",
+          "at",
+          "anzahl",
+          "zahl",
+          "versorgung",
+          "zentrum",
+          "implant"
+        ]
+      ],
+      "source_label": "MED-EL + CI-Zentren AT + Schaetzungen Hoer-Selbsthilfe Oesterreich",
+      "source_url": "https://www.medel.com/de-at",
+      "secondary_url": "https://www.hoer-selbsthilfe.at/"
+    },
+    {
+      "id": "cost_of_inaction_2026",
+      "topic": "hoerverlust_oekonomische_kosten",
+      "scope": "Globale oekonomische Kosten unbehandelten Hoerverlusts",
+      "year": 2021,
+      "headline": "Unbehandelter Hoerverlust: ~USD 980 Mrd. globale Kosten pro Jahr (WHO 2021)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die WHO schaetzt die globalen Kosten des unbehandelten Hoerverlusts auf ~USD 980 Mrd. pro Jahr (World Report on Hearing 2021). Diese Zahl enthaelt direkte Gesundheitskosten, Produktivitaets-Verluste, Bildungs-Defizite und gesellschaftliche Kosten. Sie ist eine Modellschaetzung mit grossem Unsicherheits-Intervall — methodisch beruht sie auf DALY-basierten Berechnungen (Disability-Adjusted Life Years) und Cost-of-Illness-Studien. Investition in Praevention und Versorgung gilt als hoch kosten-effektiv (WHO: jeder USD 1 ergibt ~USD 16 Return).",
+        "globale_kosten_usd": "~USD 980 Mrd. pro Jahr (WHO World Report on Hearing 2021).",
+        "komponenten": "Direkte Gesundheitskosten (Diagnostik, Geraete, OP) + Produktivitaets-Verluste (Arbeitsunfaehigkeit, Praesentismus) + Bildungs-Defizite (Kinder mit unbehandeltem Hoerverlust) + gesellschaftliche Kosten (Sozial-Isolation, Demenz-Risiko erhoeht).",
+        "return_on_investment": "WHO schaetzt: jeder USD 1 fuer Hoer-Praevention/-Versorgung ergibt ~USD 16 oekonomischer Return.",
+        "methodisches_caveat": "Die Zahl ist eine Modellschaetzung mit grossem Unsicherheits-Intervall. Sie beruht auf DALY-Berechnungen und Cost-of-Illness-Studien aus Industrie-Laendern, hochgerechnet auf globale Praevalenz-Daten.",
+        "context": "Die Kostenzahl ist eine WHO-Advocacy-Kennzahl, um Investitionen in Hoer-Praevention zu argumentieren. Sie sollte nicht als praezise Buchhaltung gelesen werden."
+      },
+      "context_notes": [
+        "Die USD 980 Mrd. sind eine WHO-Schaetzung 2021, andere Quellen geben USD 750 Mrd. bis 1 Bio. an (je nach Berechnungsmethode).",
+        "DALY = Disability-Adjusted Life Year: Mass fuer durch Krankheit verlorene gesunde Lebenszeit.",
+        "Die ROI-1:16-Zahl ist eine WHO-Behauptung ohne breit-publizierte Peer-Review-Modellierung im selben Detailgrad."
+      ],
+      "claim_phrasings_handled": [
+        "Hoerverlust kostet 980 Milliarden Dollar im Jahr",
+        "WHO-Schaetzung Hoer-Kosten",
+        "Schwerhoerigkeit kostet Milliarden"
+      ],
+      "trigger_keywords": [
+        "kosten hoerverlust",
+        "hoerverlust kosten",
+        "hoerverlust 980 milliarden",
+        "cost of hearing loss",
+        "schwerhoerig kosten",
+        "schwerhoerigkeit kosten"
+      ],
+      "trigger_composite": [
+        [
+          "hoerverlust",
+          "schwerhoerig",
+          "schwerhoerigkeit",
+          "hearing loss"
+        ],
+        [
+          "kosten",
+          "milliarden",
+          "billion",
+          "usd",
+          "dollar",
+          "oekonom",
+          "wirtschaft"
+        ]
+      ],
+      "source_label": "WHO World Report on Hearing 2021",
+      "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
+      "secondary_url": "https://www.who.int/news/item/03-03-2021-1-in-4-people-projected-to-have-hearing-problems-by-2050"
+    },
+    {
+      "id": "demenz_risiko_2026",
+      "topic": "hoerverlust_demenz_risiko",
+      "scope": "Hoerverlust als modifizierbarer Demenz-Risikofaktor",
+      "year": 2024,
+      "headline": "Unbehandelter Hoerverlust gilt als groesster modifizierbarer Demenz-Risikofaktor (Lancet Commission 2024)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Lancet Commission on Dementia Prevention (Livingston et al. 2024, Update der 2020-Analyse) listet 14 modifizierbare Demenz-Risikofaktoren. Unbehandelter Hoerverlust im mittleren Lebensalter (40-65 Jahre) ist mit einer Population Attributable Fraction (PAF) von ~7% der wichtigste einzelne modifizierbare Faktor. Die Mechanismen sind nicht abschliessend geklaert (kognitive Last, soziale Isolation, gemeinsame Pathologie). WICHTIG: Korrelation ist robust, Kausalitaet plausibel aber noch nicht final bewiesen — und Hoergeraet-Nutzung scheint das Risiko zu reduzieren (Lin et al. 2023, ACHIEVE-Studie).",
+        "lancet_commission_2024": "Livingston et al. 2024 (Lancet Commission Update), 14 modifizierbare Risikofaktoren identifiziert, davon Hoerverlust mit PAF ~7% (mittleres Lebensalter).",
+        "achieve_studie": "Lin et al. 2023 (Lancet 402, ACHIEVE Trial): randomisierte Studie zeigte bei aelteren Erwachsenen mit erhoehtem kognitivem Risiko 48% weniger 3-Jahres-Kognitions-Decline unter Hoergeraet-Versorgung vs. Health-Education-Kontrolle. WICHTIG: Effekt nur in der hoch-risiko-Subgruppe signifikant, nicht in Gesamt-Stichprobe.",
+        "mechanismen_unklar": "Diskutierte Mechanismen: erhoehte kognitive Last (mehr Hirn-Ressourcen fuer Hoeren = weniger fuer Gedaechtnis), soziale Isolation, atrophische Veraenderungen im Hoer-Kortex, gemeinsame mikrovaskulaere Pathologie. Kausal-Beweis steht aus.",
+        "context": "Die Lancet-Commission-Einordnung hat zu einer starken Public-Health-Botschaft 'Hoergeraet hilft gegen Demenz' gefuehrt. Wissenschaftlich vorsichtig formuliert: Hoerverlust ist mit erhoehtem Demenz-Risiko assoziiert, Hoergeraet-Nutzung koennte das Risiko reduzieren — finale RCT-Evidenz fuer breite Population steht aus."
+      },
+      "context_notes": [
+        "Livingston et al. 2024 ist die aktuelle Lancet-Commission-Update; vorige Version 2020 hatte 12 Faktoren.",
+        "ACHIEVE Trial 2023 ist die bisher beste randomisierte Evidenz, aber nur in Risiko-Subgruppe positiv.",
+        "Vorsicht vor Verallgemeinerung: 'Hoergeraet schuetzt vor Demenz' ist eine Vereinfachung — die Evidenz ist robuster fuer Hoch-Risiko-Personen."
+      ],
+      "claim_phrasings_handled": [
+        "Hoerverlust verursacht Demenz",
+        "Hoergeraete schuetzen vor Demenz",
+        "Schwerhoerigkeit groesster Demenz-Risikofaktor"
+      ],
+      "trigger_keywords": [
+        "hoerverlust demenz",
+        "schwerhoerigkeit demenz",
+        "hoergeraet demenz",
+        "lancet commission dementia",
+        "achieve studie",
+        "hearing dementia"
+      ],
+      "trigger_composite": [
+        [
+          "hoerverlust",
+          "schwerhoerig",
+          "schwerhoerigkeit",
+          "hoergeraet",
+          "hearing"
+        ],
+        [
+          "demenz",
+          "alzheimer",
+          "kognition",
+          "dementia",
+          "gedaechtnis",
+          "kognitiv"
+        ]
+      ],
+      "source_label": "Lancet Commission on Dementia Prevention (Livingston et al. 2024) + ACHIEVE Trial (Lin et al. 2023)",
+      "source_url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(24)01296-0/fulltext",
+      "secondary_url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(23)01406-X/fulltext"
+    },
+    {
+      "id": "otitis_media_kinder_2026",
+      "topic": "otitis_media_kinder",
+      "scope": "Chronische Mittelohr-Entzuendung als Ursache kindlichen Hoerverlusts",
+      "year": 2021,
+      "headline": "Chronische Otitis media: vermeidbare Hauptursache kindlichen Hoerverlusts global",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Laut WHO World Report on Hearing 2021 ist chronische eitrige Mittelohr-Entzuendung (Chronic Suppurative Otitis Media, CSOM) die haeufigste vermeidbare Ursache kindlichen Hoerverlusts global. ~330 Mio. Menschen weltweit leben mit Otitis-Folgen, davon ~60% mit messbarem Hoerverlust. CSOM ist durch fruehe antibiotische Behandlung und sauberes Wasser/Hygiene weitgehend vermeidbar.",
+        "globale_zahl": "~330 Mio. Menschen weltweit leben mit CSOM (Chronic Suppurative Otitis Media) oder ihren Folgen (WHO 2021).",
+        "lmic_belastung": "CSOM ist in LMIC um Faktor 5-10 haeufiger als in High-Income-Laendern; korreliert mit fehlender Antibiotika-Versorgung, mangelnder Hygiene, unbehandelten Atemwegs-Infekten.",
+        "praevention": "Frueh-Diagnostik, Antibiotika bei akuter Mittelohr-Entzuendung, Pneumokokken-Impfung, sauberes Wasser, Stillen (schuetzt vor Otitis im Saeuglingsalter).",
+        "context": "Otitis media ist ein klassisches Beispiel fuer praeventivierbaren Hoerverlust — die WHO empfiehlt verstaerkte Primary-Ear-Care-Programme in LMIC."
+      },
+      "context_notes": [
+        "CSOM = Chronic Suppurative Otitis Media (chronisch eitrige Mittelohr-Entzuendung).",
+        "Akute Otitis media (AOM) ist in DACH die haeufigste Saeuglings-/Kleinkind-Infektion mit Antibiotika-Indikation; sie ist meist selbst-limitierend, aber Hoerverlust-Risiko besteht.",
+        "Pneumokokken-Impfung (PCV13) senkt die AOM-Inzidenz nachweislich (Cochrane Review 2019)."
+      ],
+      "claim_phrasings_handled": [
+        "Mittelohr-Entzuendung verursacht Hoerverlust bei Kindern",
+        "Otitis ist haeufigste Ursache kindlicher Schwerhoerigkeit",
+        "330 Millionen leiden an Otitis-Folgen"
+      ],
+      "trigger_keywords": [
+        "otitis media",
+        "mittelohr-entzuendung",
+        "mittelohrentzuendung",
+        "csom",
+        "chronic suppurative otitis",
+        "ohrenentzuendung kind",
+        "ohren-entzuendung kind"
+      ],
+      "trigger_composite": [
+        [
+          "otitis",
+          "mittelohr",
+          "mittelohrentzuendung",
+          "ohrenentzuendung"
+        ],
+        [
+          "kind",
+          "kinder",
+          "saeugling",
+          "baby",
+          "hoerverlust",
+          "schwerhoerig",
+          "ursache",
+          "praevention",
+          "verbreit",
+          "anteil"
+        ]
+      ],
+      "source_label": "WHO World Report on Hearing 2021",
+      "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
+      "secondary_url": "https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss"
+    },
+    {
+      "id": "altersbedingt_praevalenz_2026",
+      "topic": "presbyakusis_altersbedingt",
+      "scope": "Altersbedingter Hoerverlust (Presbyakusis)",
+      "year": 2021,
+      "headline": "Altersbedingter Hoerverlust (Presbyakusis): ~65% der Ueber-65-Jaehrigen betroffen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Presbyakusis (altersbedingter Hoerverlust) betrifft laut WHO ~65% der Menschen ueber 65 Jahre und steigt auf ~80% der Ueber-75-Jaehrigen. Maenner sind frueher und staerker betroffen als Frauen (Laerm-Exposition-Geschichte). Die Praevalenz wird durch demografische Alterung weltweit steigen — bis 2050 werden 25% der Weltbevoelkerung irgendeine Form von Hoerverlust haben.",
+        "ueber_65": "~65% der Menschen ueber 65 Jahre haben altersbedingten Hoerverlust (WHO).",
+        "ueber_75": "~80% der Menschen ueber 75 Jahre.",
+        "geschlechts_unterschied": "Maenner staerker und frueher betroffen — Lebenszeit-Laermbelastung in Arbeit (Industrie, Bau, Verkehr) ist ein Treiber.",
+        "demografischer_treiber": "Bis 2050 wird laut WHO ~25% der Weltbevoelkerung mit irgendeiner Form von Hoerverlust leben (gegenueber ~20% 2021).",
+        "context": "Presbyakusis ist nicht heilbar, aber mit Hoergeraeten gut versorgbar. Frueh-Versorgung (in den ersten Jahren des Hoerverlust-Auftretens) hat bessere Outcomes als spaete Versorgung (Eingewoehnungs-Effekt)."
+      },
+      "context_notes": [
+        "Die Praevalenz-Zahlen 65%/80% beruhen auf systematischen Reviews der WHO und nationalen Surveys (z.B. NHANES USA, DEGS DE).",
+        "Geschlechts-Unterschied ist robust, Mechanismus eher Expositions- als Hormon-getrieben.",
+        "Demografische Projektion fuer 2050 stammt aus WHO World Report on Hearing 2021."
+      ],
+      "claim_phrasings_handled": [
+        "Jeder zweite ueber 65 ist schwerhoerig",
+        "Altersbedingter Hoerverlust trifft fast alle",
+        "Presbyakusis Praevalenz"
+      ],
+      "trigger_keywords": [
+        "presbyakusis",
+        "altersbedingter hoerverlust",
+        "altersschwerhoerigkeit",
+        "altersbedingte schwerhoerigkeit",
+        "schwerhoerig im alter",
+        "schwerhoerig senioren",
+        "schwerhoerig aelter"
+      ],
+      "trigger_composite": [
+        [
+          "presbyakusis",
+          "altersbedingt",
+          "altersschwerhoerig",
+          "altersschwerhoerigkeit"
+        ],
+        [
+          "hoerverlust",
+          "schwerhoerig",
+          "betroffen",
+          "praevalenz",
+          "anteil",
+          "%",
+          "prozent",
+          "hearing",
+          "alter"
+        ]
+      ],
+      "source_label": "WHO World Report on Hearing 2021 + NHANES + DEGS",
+      "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
+      "secondary_url": "https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss"
+    },
+    {
+      "id": "laerm_arbeit_2026",
+      "topic": "arbeitsplatz_laerm_hoerverlust",
+      "scope": "Arbeitsplatz-Laerm als Hoerverlust-Ursache (NIHL)",
+      "year": 2021,
+      "headline": "Arbeitsplatz-Laerm (NIHL): ~16% des Erwachsenen-Hoerverlusts weltweit",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Laermbedingter Hoerverlust (Noise-Induced Hearing Loss, NIHL) durch Arbeitsplatz-Belastung erklaert laut WHO ~16% des Erwachsenen-Hoerverlusts weltweit. In Industrie, Bau, Bergbau und Verkehr ist Laerm der wichtigste vermeidbare Risikofaktor. Die EU-Arbeitsschutz-Richtlinie 2003/10/EG begrenzt den Tages-Expositions-Pegel auf 87 dB(A) bei verpflichtendem Gehoer-Schutz ab 85 dB(A). Trotz Regulierung bleibt NIHL ein Hauptthema der Arbeitsmedizin.",
+        "anteil_globaler_hoerverlust": "~16% des Erwachsenen-Hoerverlusts global ist Laermbedingt (WHO).",
+        "eu_arbeitsschutz": "EU-Richtlinie 2003/10/EG: Tages-Expositions-Grenze 87 dB(A), Aktions-Schwelle 85 dB(A) (Gehoer-Schutz verpflichtend), unteres Aktions-Niveau 80 dB(A) (Gehoer-Schutz angeboten + Schulung).",
+        "iso_1999": "ISO 1999:2013 modelliert NIHL-Risiko als Funktion von Pegel + Dauer + Lebensalter; Basis fuer Arbeits-Risikobewertung.",
+        "hoch_risiko_branchen": "Bauwesen, Industrie (Metall, Holz), Bergbau, Verkehr (LKW, Flughafen), Militaer, Landwirtschaft, Musikindustrie (Buehne).",
+        "context": "NIHL ist ein progressiver, irreversibler Hoerverlust, der durch Praevention (Gehoer-Schutz, Laerm-Minderung an der Quelle) vermeidbar ist."
+      },
+      "context_notes": [
+        "Die ~16%-Zahl ist eine WHO-Schaetzung; in industrialisierten Laendern liegen NIHL-Schaeden anteilig hoeher.",
+        "AUVA (AT) und BAuA (DE) sind die nationalen Arbeitsschutz-Behoerden mit eigenen NIHL-Surveillance-Programmen.",
+        "NIHL betrifft typisch hohe Frequenzen zuerst (4 kHz-Senke im Audiogramm = 'noise notch')."
+      ],
+      "claim_phrasings_handled": [
+        "Arbeitsplatz-Laerm verursacht Hoerverlust",
+        "Bau-Arbeiter werden taub",
+        "NIHL durch Arbeit"
+      ],
+      "trigger_keywords": [
+        "nihl",
+        "noise-induced hearing loss",
+        "laermbedingter hoerverlust",
+        "laerm-hoerverlust",
+        "arbeitsplatz-laerm",
+        "arbeitsplatzlaerm",
+        "berufslaerm",
+        "laermschwerhoerig",
+        "laerm-schwerhoerigkeit"
+      ],
+      "trigger_composite": [
+        [
+          "laerm",
+          "noise",
+          "nihl"
+        ],
+        [
+          "arbeit",
+          "beruf",
+          "industrie",
+          "bau",
+          "bergbau",
+          "arbeitsplatz",
+          "schaden",
+          "hoerverlust",
+          "schwerhoerig",
+          "schutz",
+          "auva"
+        ]
+      ],
+      "source_label": "WHO World Report on Hearing 2021 + EU-Richtlinie 2003/10/EG + ISO 1999",
+      "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
+      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32003L0010"
+    },
+    {
+      "id": "praevention_kosten_effekt_2026",
+      "topic": "praevention_hoerverlust_intervention",
+      "scope": "Kosten-Effektivitaet von Hoerverlust-Praevention und -Versorgung",
+      "year": 2021,
+      "headline": "Hoer-Praevention und -Versorgung gelten als hoch kosteneffektive Public-Health-Interventionen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Laut WHO World Report on Hearing 2021 gelten Investitionen in Hoer-Praevention (Laerm-Reduktion, Impfungen gegen Meningitis/Roeteln/Pneumokokken) und Hoer-Versorgung (Screening, Hoergeraete, Cochlea-Implantate) als hoch kosteneffektive Public-Health-Interventionen. WHO schaetzt: jeder USD 1 Investition ergibt ~USD 16 oekonomischer Return. Einzelne Massnahmen rangieren bei <USD 100 pro DALY-vermieden — das ist weltweit zu den kosteneffektivsten Gesundheits-Interventionen zaehlend.",
+        "roi_who": "WHO-Schaetzung: USD 1 Hoer-Investition --> USD 16 oekonomischer Return.",
+        "daly_kosten": "Einzelne Hoer-Interventionen liegen bei <USD 100 pro DALY-vermieden (Hoergeraete, CI, Screening).",
+        "intervention_paket": "WHO-empfohlenes Paket: (1) UNHS Neugeborenen-Screening, (2) Primary-Ear-Care + Impfungen, (3) Arbeitsplatz-Laermschutz, (4) Hoergeraet-Versorgung subventioniert, (5) Safe-Listening-Kampagnen.",
+        "context": "Vergleich: HIV-Behandlung mit antiretroviralen Medikamenten kostet etwa USD 200-600 pro DALY-vermieden — Hoer-Interventionen liegen also in einer aehnlich guenstigen Range."
+      },
+      "context_notes": [
+        "Die WHO-ROI-Zahl 1:16 ist eine Modell-Schaetzung mit grossem Unsicherheits-Intervall.",
+        "DALY = Disability-Adjusted Life Year; Standard-Mass fuer Gesundheits-Oekonomie.",
+        "Die Kosten-Effektivitaet variiert stark zwischen LMIC und HIC; in LMIC sind UNHS und Otitis-Praevention besonders effizient."
+      ],
+      "claim_phrasings_handled": [
+        "Hoer-Praevention ist kosteneffektiv",
+        "WHO empfiehlt Hoer-Investitionen",
+        "Hoergeraet-Subvention lohnt sich"
+      ],
+      "trigger_keywords": [
+        "hoer-praevention",
+        "hoerverlust praevention",
+        "hoerverlust-praevention",
+        "hoer-investition",
+        "hoer-versorgung kosten",
+        "ear care investment",
+        "primary ear care"
+      ],
+      "trigger_composite": [
+        [
+          "hoerverlust",
+          "schwerhoerig",
+          "hearing",
+          "hoer-",
+          "hoer "
+        ],
+        [
+          "praevention",
+          "investition",
+          "kosten-effektiv",
+          "kosteneffektiv",
+          "roi",
+          "return",
+          "lohnt",
+          "kosten"
+        ]
+      ],
+      "source_label": "WHO World Report on Hearing 2021",
+      "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
+      "secondary_url": "https://www.who.int/news/item/03-03-2021-1-in-4-people-projected-to-have-hearing-problems-by-2050"
+    },
+    {
+      "id": "ototoxische_medikamente_2026",
+      "topic": "ototoxizitaet_medikamente",
+      "scope": "Ototoxische Medikamente als Hoerverlust-Ursache",
+      "year": 2021,
+      "headline": "Ototoxische Medikamente: 200+ bekannte Wirkstoffe koennen das Innenohr schaedigen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Ueber 200 bekannte Medikamenten-Wirkstoffe sind ototoxisch — d.h. sie koennen das Innenohr schaedigen und zu Hoerverlust und/oder Tinnitus fuehren. Klinisch wichtig: Aminoglykosid-Antibiotika (Gentamicin, Streptomycin), Platin-Chemotherapeutika (Cisplatin), Schleifendiuretika (Furosemid in hohen Dosen), bestimmte Salicylate (ASS in Mega-Dosen). Der Schaden ist oft irreversibel; bei lebensnotwendigen Therapien (Tuberkulose, Krebs) muss zwischen Nutzen und Hoer-Risiko abgewogen werden. WHO empfiehlt routinemaessiges Audiometrie-Monitoring bei Risiko-Therapien.",
+        "wichtigste_klassen": "Aminoglykoside (Gentamicin, Tobramycin, Streptomycin, Amikacin), Platin-Chemo (Cisplatin, Carboplatin), Schleifendiuretika (Furosemid bei Niereninsuffizienz), Salicylate (ASS-Mega-Dosen, reversibel), bestimmte Makrolide (Erythromycin), Chinin/Hydroxychloroquin (selten).",
+        "mechanismus": "Schaedigung der aeusseren Haarzellen im Innenohr (Cochlea), teils auch vestibulaer (Gleichgewichts-System). Mechanismen variieren: oxidativer Stress, Apoptose-Induktion, Calcium-Dysregulation.",
+        "klinische_relevanz": "Aminoglykoside: lebenswichtig fuer Tuberkulose- und MDR-Bakterien-Therapie, aber ~25% Innenohr-Schaden bei Langzeit-Anwendung. Cisplatin: dosisabhaengige Schaedigung in 40-60% der behandelten Patient:innen.",
+        "monitoring": "WHO empfiehlt Audiometrie-Baseline + serielles Monitoring bei Aminoglykosid- oder Platin-Therapie; alternative Wirkstoffe pruefen, wenn moeglich.",
+        "context": "Die Liste der ototoxischen Medikamente ist umfangreich; viele Wirkungen sind selten und individual variabel. Patient:innen mit bestehender Hoerschaedigung sind besonders gefaehrdet."
+      },
+      "context_notes": [
+        "Die Zahl '200+ Wirkstoffe' stammt aus pharmakologischen Datenbanken und WHO-Pharmacovigilance-Berichten.",
+        "Aspirin in normaler Dosis (75-300 mg/Tag) ist nicht ototoxisch; nur bei Salicylat-Vergiftung treten reversible Symptome auf.",
+        "Bei Tuberkulose-MDR ist die Aminoglykosid-Therapie oft alternativlos — Hoer-Schaeden sind ein wichtiger Faktor in der WHO-MDR-Strategie."
+      ],
+      "claim_phrasings_handled": [
+        "Antibiotika koennen taub machen",
+        "Chemotherapie verursacht Hoerverlust",
+        "Aspirin schadet dem Gehoer"
+      ],
+      "trigger_keywords": [
+        "ototoxisch",
+        "ototoxizitaet",
+        "ototoxic",
+        "aminoglykosid hoerverlust",
+        "cisplatin hoerverlust",
+        "chemotherapie hoerverlust",
+        "antibiotika hoerverlust",
+        "medikament hoerverlust",
+        "medikament-hoerverlust",
+        "medikament hoerschaden"
+      ],
+      "trigger_composite": [
+        [
+          "ototoxisch",
+          "ototox",
+          "aminoglykosid",
+          "cisplatin",
+          "gentamicin",
+          "streptomycin"
+        ],
+        [
+          "hoerverlust",
+          "hoer-",
+          "schwerhoerig",
+          "gehoer",
+          "tinnitus",
+          "schaden",
+          "innenohr"
+        ]
+      ],
+      "source_label": "WHO World Report on Hearing 2021 + WHO Pharmacovigilance",
+      "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
+      "secondary_url": "https://www.who.int/teams/regulation-prequalification/regulation-and-safety/pharmacovigilance"
+    }
+  ]
+}

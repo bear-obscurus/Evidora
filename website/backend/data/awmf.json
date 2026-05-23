@@ -1,0 +1,2118 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-23",
+  "source_label": "AWMF Leitlinienregister (Arbeitsgemeinschaft der Wissenschaftlichen Medizinischen Fachgesellschaften e.V.)",
+  "source_url": "https://register.awmf.org",
+  "license": "Leitlinien-Texte unterliegen den Urheberrechten der jeweiligen Fachgesellschaften; bibliographische Metadaten + Empfehlungs-Kernaussagen zitierfaehig nach wissenschaftlicher Standardpraxis. AWMF-Register selbst ist oeffentlich zugaengliches deutsches Leitlinien-Verzeichnis ohne Login-Sperre.",
+  "data_reference_year": 2024,
+  "notes": [
+    "AWMF (Arbeitsgemeinschaft der Wissenschaftlichen Medizinischen Fachgesellschaften e.V.) fuehrt das deutsche Leitlinien-Register fuer Medizin (~800 Leitlinien, 180+ Fachgesellschaften).",
+    "S-Klassifikation: S1 = Handlungsempfehlung Experten (niedrig), S2k = konsensbasiert (formaler Konsens, keine systematische Recherche), S2e = evidenzbasiert (systematische Recherche, kein Konsens), S3 = evidenz- UND konsensbasiert (hoechster Grad).",
+    "Static-Snapshot der wichtigsten S3-Leitlinien zu Volkskrankheiten (Kardiologie, Onkologie, Psychiatrie, Endokrinologie, Pneumologie, Neurologie). Aktualisierung quartalsweise per Re-Snapshot.",
+    "NVL = Nationale VersorgungsLeitlinie (gemeinsame AWMF + Bundesaerztekammer + KBV Publikation, hoechste Versorgungs-Relevanz).",
+    "Politik-Tabu-Achtung: bei kontroversen Themen (Cannabis-Verordnung, Adipositas-Chirurgie, Sterbehilfe) bleibt der Service deskriptiv — nur Leitlinie sagt X, nicht X ist gut/richtig.",
+    "Trigger-Strategie: Krankheits-Keywords ODER Leitlinien-Bezug (S3-Leitlinie, AWMF, Leitlinie) loesen Pack aus. Composite-Trigger verbindet Krankheit + Therapie/Empfehlung/Diagnose."
+  ],
+  "facts": [
+    {
+      "id": "awmf_nvl_diabetes_typ2",
+      "topic": "diabetes_typ2",
+      "scope": "Nationale VersorgungsLeitlinie Typ-2-Diabetes",
+      "country": "DE",
+      "year": 2023,
+      "headline": "NVL Typ-2-Diabetes — S3-Leitlinie zur Versorgung von Patienten mit Diabetes mellitus Typ 2 (BAEK / KBV / AWMF)",
+      "data": {
+        "awmf_register_nummer": "nvl-001",
+        "s_level": "S3",
+        "fachgesellschaft": "Bundesaerztekammer (BAEK) + Kassenaerztliche Bundesvereinigung (KBV) + AWMF (Deutsche Diabetes Gesellschaft DDG, Deutsche Gesellschaft fuer Allgemeinmedizin DEGAM u.a.)",
+        "publication_year": 2013,
+        "last_revision": 2023,
+        "guideline_version": "3.0",
+        "kernempfehlung": "Stufentherapie: zuerst nicht-medikamentoese Basistherapie (Ernaehrung, Bewegung, Schulung); bei unzureichender Stoffwechselkontrolle Metformin als Erstlinien-Pharmakotherapie (sofern keine Kontraindikationen). HbA1c-Zielkorridor individualisiert 6,5-7,5 Prozent. Bei kardiovaskulaeren Hochrisiko-Patienten SGLT-2-Hemmer oder GLP-1-Rezeptoragonisten praeferiert (Evidenz fuer Mortalitaets-Reduktion).",
+        "geltungsbereich": "Erwachsene mit Diabetes mellitus Typ 2 in der ambulanten Versorgung (Hausarzt + Diabetologe + Schwerpunktpraxis). KEINE Empfehlung fuer Typ-1-Diabetes oder Schwangerschafts-Diabetes."
+      },
+      "context_notes": [
+        "Nationale VersorgungsLeitlinien (NVL) sind die formale Sonderform: gemeinsam vom Aerztlichen Zentrum fuer Qualitaet in der Medizin (AeZQ) koordiniert, BAEK + KBV + AWMF-Traegerschaft, hoechste Versorgungs-Verbindlichkeit in DE.",
+        "Die NVL Typ-2-Diabetes ersetzt eine fruehere DDG-S3-Leitlinie aus 2009; konsolidiert die Empfehlungen mehrerer Fachgesellschaften (Diabetologie + Allgemeinmedizin + Innere Medizin + Ophthalmologie + Nephrologie + Kardiologie).",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/nvl-001"
+      ],
+      "claim_phrasings_handled": [
+        "Bei Typ-2-Diabetes ist Metformin Erstlinien-Therapie",
+        "Die deutsche Leitlinie empfiehlt bei Diabetes zuerst Bewegung und Ernaehrung",
+        "HbA1c-Ziel sollte bei jedem Diabetiker unter 6,5 liegen",
+        "SGLT-2-Hemmer sind bei Diabetes ohne Herzerkrankung Erstlinien-Therapie"
+      ],
+      "trigger_keywords": [
+        "nvl typ-2-diabetes",
+        "nvl diabetes",
+        "s3-leitlinie diabetes",
+        "awmf diabetes",
+        "leitlinie diabetes typ 2"
+      ],
+      "trigger_composite": [
+        [
+          "diabetes",
+          "diabetiker",
+          "diabetisch",
+          "typ-2",
+          "typ 2",
+          "type 2",
+          "t2dm",
+          "zuckerkrank",
+          "blutzucker",
+          "hba1c"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "behandlung",
+          "metformin",
+          "sglt-2",
+          "glp-1",
+          "insulin",
+          "nvl",
+          "awmf",
+          "ddg",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "Nationale VersorgungsLeitlinie Typ-2-Diabetes (BAEK / KBV / AWMF, Stand 2023)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/nvl-001",
+      "secondary_url": "https://www.leitlinien.de/themen/diabetes"
+    },
+    {
+      "id": "awmf_nvl_hypertonie",
+      "topic": "hypertonie",
+      "scope": "Nationale VersorgungsLeitlinie Hypertonie",
+      "country": "DE",
+      "year": 2023,
+      "headline": "NVL Hypertonie — S3-Leitlinie zur Behandlung der arteriellen Hypertonie bei Erwachsenen (BAEK / KBV / AWMF)",
+      "data": {
+        "awmf_register_nummer": "nvl-009",
+        "s_level": "S3",
+        "fachgesellschaft": "Bundesaerztekammer + KBV + AWMF (Deutsche Hochdruckliga DHL / Deutsche Gesellschaft fuer Kardiologie DGK / Deutsche Gesellschaft fuer Allgemeinmedizin DEGAM u.a.)",
+        "publication_year": 2023,
+        "last_revision": 2023,
+        "guideline_version": "1.0",
+        "kernempfehlung": "Blutdruck-Zielwert generell unter 140/90 mmHg, bei den meisten Patienten unter 130/80 mmHg wenn vertraeglich (analog ESC/ESH 2018). Lebensstil-Massnahmen (Salzreduktion, Gewichtsmanagement, Bewegung, Alkoholreduktion) als Basis. Pharmakotherapie: 5 Hauptklassen mit gleicher Erstlinien-Eignung — ACE-Hemmer, AT1-Blocker (ARB), Calciumkanal-Blocker, Thiazid-Diuretika, Betablocker (letzteres v.a. bei spezifischer Indikation). Kombinations-Therapie bei Bedarf, Single-Pill-Kombinationen praeferiert (Adhaerenz).",
+        "geltungsbereich": "Erwachsene mit arterieller Hypertonie in der hausaerztlichen + fachaerztlichen Versorgung. KEINE Empfehlungen fuer Schwangerschafts-Hypertonie oder paediatrische Hypertonie."
+      },
+      "context_notes": [
+        "Die DEGAM-Empfehlung favorisiert generell etwas zurueckhaltendere Zielwerte als die DGK/ESC-Empfehlung — die NVL traegt diesen Dissens explizit, finalen Empfehlungs-Korridor individualisiert.",
+        "ESC/ESH 2018 (European Society of Cardiology / European Society of Hypertension) ist die international relevante Referenz-Leitlinie; NVL ueberfuehrt diese in deutschen Versorgungs-Kontext.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/nvl-009"
+      ],
+      "claim_phrasings_handled": [
+        "Bei Hypertonie ist ACE-Hemmer Erstlinien-Therapie",
+        "Blutdruck-Ziel sollte unter 130/80 sein",
+        "Betablocker sind nicht mehr Erstlinien-Therapie bei Bluthochdruck",
+        "Salzreduktion senkt den Blutdruck nachweislich"
+      ],
+      "trigger_keywords": [
+        "nvl hypertonie",
+        "leitlinie hypertonie",
+        "s3-leitlinie bluthochdruck",
+        "awmf bluthochdruck",
+        "ace-hemmer leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "hypertonie",
+          "bluthochdruck",
+          "blutdruck",
+          "hochdruck",
+          "hypertensiv",
+          "systolisch",
+          "diastolisch"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "behandlung",
+          "ace-hemmer",
+          "ace hemmer",
+          "arb",
+          "at1",
+          "calciumkanal",
+          "betablocker",
+          "thiazid",
+          "awmf",
+          "dhl",
+          "dgk",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "Nationale VersorgungsLeitlinie Hypertonie (BAEK / KBV / AWMF, Stand 2023)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/nvl-009",
+      "secondary_url": "https://www.hochdruckliga.de"
+    },
+    {
+      "id": "awmf_nvl_khk",
+      "topic": "khk",
+      "scope": "Nationale VersorgungsLeitlinie Chronische KHK",
+      "country": "DE",
+      "year": 2022,
+      "headline": "NVL Chronische KHK — S3-Leitlinie zur Behandlung der koronaren Herzkrankheit (BAEK / KBV / AWMF / DGK)",
+      "data": {
+        "awmf_register_nummer": "nvl-004",
+        "s_level": "S3",
+        "fachgesellschaft": "Bundesaerztekammer + KBV + AWMF (Deutsche Gesellschaft fuer Kardiologie DGK, DEGAM u.a.)",
+        "publication_year": 2006,
+        "last_revision": 2022,
+        "guideline_version": "6.0",
+        "kernempfehlung": "Antithrombozytaere Therapie (ASS 100 mg/d als Dauertherapie bei chronischer KHK), Statin-Therapie zur LDL-Senkung mit Zielwert unter 1,4 mmol/l (55 mg/dl) bei sehr hohem Risiko, Lifestyle-Modifikation (Nichtrauchen + Bewegung + Mittelmeer-Kost). Bei symptomatischer KHK: Antianginosa (Betablocker, Calciumantagonisten, langwirksame Nitrate). Revaskularisation (PCI oder Bypass) bei refraktaerer Angina oder prognostischer Indikation. Kein routinemaessiges Screening per CT-Koronarangiographie bei Asymptomatischen.",
+        "geltungsbereich": "Erwachsene mit chronischer koronarer Herzkrankheit (Z.n. Infarkt, stabile Angina pectoris, asymptomatische KHK). KEINE akute Koronarsyndrom-Versorgung (separate ESC-Leitlinien)."
+      },
+      "context_notes": [
+        "ESC 2019 Chronic Coronary Syndromes Guideline ist die internationale Schwesterpublikation.",
+        "Die NVL betont evidenzbasierte LDL-Zielwerte gemaess Risikostratifizierung (sehr hohes Risiko Zielwert kleiner 1,4 mmol/l).",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/nvl-004"
+      ],
+      "claim_phrasings_handled": [
+        "Bei KHK soll LDL unter 1,4 mmol/l gesenkt werden",
+        "ASS ist Standard bei chronischer KHK",
+        "Bypass-Operation ist immer besser als Stent bei KHK"
+      ],
+      "trigger_keywords": [
+        "nvl khk",
+        "leitlinie khk",
+        "s3-leitlinie koronare herzkrankheit",
+        "awmf koronar",
+        "khk leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "khk",
+          "koronare herzkrankheit",
+          "koronar",
+          "angina pectoris",
+          "stenokardie",
+          "herzinfarkt",
+          "myokardinfarkt",
+          "ldl"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "ass",
+          "statin",
+          "stent",
+          "bypass",
+          "pci",
+          "revaskularisation",
+          "nvl",
+          "awmf",
+          "dgk",
+          "ldl",
+          "gesenkt",
+          "senken",
+          "zielwert",
+          "erstlinien",
+          "standard",
+          "behandlung",
+          "indiziert",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "Nationale VersorgungsLeitlinie Chronische KHK (BAEK / KBV / AWMF, Stand 2022)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/nvl-004",
+      "secondary_url": "https://leitlinien.dgk.org"
+    },
+    {
+      "id": "awmf_nvl_herzinsuffizienz",
+      "topic": "herzinsuffizienz",
+      "scope": "Nationale VersorgungsLeitlinie Chronische Herzinsuffizienz",
+      "country": "DE",
+      "year": 2023,
+      "headline": "NVL Chronische Herzinsuffizienz — S3-Leitlinie (BAEK / KBV / AWMF / DGK)",
+      "data": {
+        "awmf_register_nummer": "nvl-006",
+        "s_level": "S3",
+        "fachgesellschaft": "Bundesaerztekammer + KBV + AWMF (DGK, DEGAM u.a.)",
+        "publication_year": 2009,
+        "last_revision": 2023,
+        "guideline_version": "4.0",
+        "kernempfehlung": "Bei HFrEF (Herzinsuffizienz mit reduzierter Ejektionsfraktion, LVEF unter 40 Prozent) Vierfach-Pharmakotherapie als Saeulen-Therapie: (1) ACE-Hemmer/ARB oder ARNI (Sacubitril/Valsartan), (2) Betablocker, (3) Mineralokortikoid-Rezeptor-Antagonist (MRA, Spironolacton/Eplerenon), (4) SGLT-2-Hemmer (Dapagliflozin/Empagliflozin). Bei symptomatischer Persistenz CRT (kardiale Resynchronisation) oder ICD (Defibrillator) erwaegen.",
+        "geltungsbereich": "Erwachsene mit chronischer Herzinsuffizienz (HFrEF, HFmrEF, HFpEF). Differenzierung nach LVEF-Wert."
+      },
+      "context_notes": [
+        "Die SGLT-2-Hemmer-Aufnahme als 4. Saeule ist eine der wichtigsten Updates der letzten 5 Jahre (basierend auf DAPA-HF + EMPEROR-Reduced Studien).",
+        "Bei HFpEF (preserved EF) ist die Evidenzlage schwaecher; SGLT-2-Hemmer haben hier ebenfalls Evidenz (EMPEROR-Preserved).",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/nvl-006"
+      ],
+      "claim_phrasings_handled": [
+        "SGLT-2-Hemmer sind bei Herzinsuffizienz Standard",
+        "Bei Herzinsuffizienz wird Vierfach-Therapie empfohlen",
+        "ARNI ist bei reduzierter Pumpfunktion besser als ACE-Hemmer"
+      ],
+      "trigger_keywords": [
+        "nvl herzinsuffizienz",
+        "leitlinie herzinsuffizienz",
+        "s3-leitlinie herzschwaeche",
+        "awmf herzinsuffizienz",
+        "hfref leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "herzinsuffizienz",
+          "herzschwaeche",
+          "herzschwäche",
+          "hfref",
+          "hfpef",
+          "hfmref",
+          "pumpfunktion",
+          "ejektionsfraktion"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "arni",
+          "sacubitril",
+          "betablocker",
+          "sglt-2",
+          "spironolacton",
+          "dapagliflozin",
+          "empagliflozin",
+          "nvl",
+          "awmf",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "Nationale VersorgungsLeitlinie Chronische Herzinsuffizienz (BAEK / KBV / AWMF, Stand 2023)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/nvl-006",
+      "secondary_url": "https://leitlinien.dgk.org"
+    },
+    {
+      "id": "awmf_schlaganfall_akut",
+      "topic": "schlaganfall",
+      "scope": "S2e-Leitlinie Akuttherapie ischaemischer Schlaganfall",
+      "country": "DE",
+      "year": 2021,
+      "headline": "S2e-Leitlinie Akuttherapie ischaemischer Schlaganfall (Deutsche Schlaganfall-Gesellschaft DSG + DGN)",
+      "data": {
+        "awmf_register_nummer": "030-046",
+        "s_level": "S2e",
+        "fachgesellschaft": "Deutsche Schlaganfall-Gesellschaft (DSG) + Deutsche Gesellschaft fuer Neurologie (DGN)",
+        "publication_year": 2012,
+        "last_revision": 2021,
+        "guideline_version": "5.0",
+        "kernempfehlung": "Intravenoese Thrombolyse mit Alteplase im Zeitfenster bis 4,5 Stunden nach Symptombeginn (off-label bis 9 Stunden bei MRT-Mismatch). Mechanische Thrombektomie bei grossen Gefaessverschluessen (Carotis-T, M1, Basilaris) bis 6 Stunden, in selektierten Faellen bis 24 Stunden (DAWN/DEFUSE-3). Stroke-Unit-Versorgung als Goldstandard (reduziert Mortalitaet und Behinderung um ca. 20 Prozent).",
+        "geltungsbereich": "Akuter ischaemischer Schlaganfall (etwa 85 Prozent aller Schlaganfaelle); separate Empfehlungen fuer intrazerebrale Blutung und Subarachnoidalblutung."
+      },
+      "context_notes": [
+        "ESO 2021 Guidelines (European Stroke Organisation) und AHA/ASA 2019 sind die internationalen Schwesterpublikationen.",
+        "Stroke-Unit-Evidenz: Cochrane Review (Langhorne 2020) zeigt 20 Prozent relative Reduktion fuer Tod/Pflegeabhaengigkeit.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/030-046"
+      ],
+      "claim_phrasings_handled": [
+        "Bei Schlaganfall ist Lyse-Therapie bis 4,5 Stunden moeglich",
+        "Stroke-Unit verbessert das Outcome nach Schlaganfall",
+        "Thrombektomie ist bei grossen Gefaessverschluessen Standard"
+      ],
+      "trigger_keywords": [
+        "leitlinie schlaganfall",
+        "s3-leitlinie schlaganfall",
+        "s2e-leitlinie schlaganfall",
+        "awmf schlaganfall",
+        "stroke-unit leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "schlaganfall",
+          "stroke",
+          "hirninfarkt",
+          "ischaemisch",
+          "ischämisch",
+          "thrombolyse",
+          "thrombektomie"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "akuttherapie",
+          "lyse",
+          "alteplase",
+          "stroke-unit",
+          "dsg",
+          "dgn",
+          "awmf",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S2e-Leitlinie Akuttherapie ischaemischer Schlaganfall (DSG / DGN, 2021)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/030-046",
+      "secondary_url": "https://www.dsg-info.de"
+    },
+    {
+      "id": "awmf_mammakarzinom",
+      "topic": "mammakarzinom",
+      "scope": "S3-Leitlinie Mammakarzinom",
+      "country": "DE",
+      "year": 2021,
+      "headline": "S3-Leitlinie Frueherkennung, Diagnose, Therapie und Nachsorge des Mammakarzinoms (DKG, DGGG, DGS, AWMF)",
+      "data": {
+        "awmf_register_nummer": "032-045OL",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Krebsgesellschaft (DKG) + Deutsche Gesellschaft fuer Gynaekologie und Geburtshilfe (DGGG) + Deutsche Gesellschaft fuer Senologie (DGS) + AWMF — Leitlinienprogramm Onkologie",
+        "publication_year": 2003,
+        "last_revision": 2021,
+        "guideline_version": "4.4",
+        "kernempfehlung": "Screening per Mammographie ab 50 Jahre (Mammographie-Screening-Programm DE, bis 75 Jahre). Diagnostik: Triple-Assessment (Klinik + Bildgebung + Biopsie). Therapie nach intrinsischem Subtyp (Luminal A/B, HER2-positiv, Triple-negativ). Operative Therapie: brusterhaltend wo moeglich (mit obligater postoperativer Bestrahlung), sonst Mastektomie. Adjuvante Systemtherapie: endokrin (Tamoxifen/Aromatase-Inhibitor) bei HR-positiv, anti-HER2 (Trastuzumab) bei HER2-positiv, Chemotherapie risikoadaptiert.",
+        "geltungsbereich": "Mammakarzinom bei Frauen (und seltener Maennern) — Frueherkennung, Diagnostik, primaere Therapie, adjuvante Therapie, metastasierte Therapie, Nachsorge."
+      },
+      "context_notes": [
+        "Leitlinienprogramm Onkologie (DKG + DKH + AWMF) ist die deutsche Dach-Initiative fuer onkologische S3-Leitlinien.",
+        "Aenderung 2021: Erweiterung des Mammographie-Screening-Programms in DE auf 70-75 Jahre (Indikation ab Mitte 2024).",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/032-045OL"
+      ],
+      "claim_phrasings_handled": [
+        "Brusterhaltende Therapie ist Standard beim Mammakarzinom",
+        "Mammographie-Screening senkt die Brustkrebs-Sterblichkeit",
+        "Tamoxifen ist Standard bei HR-positivem Brustkrebs"
+      ],
+      "trigger_keywords": [
+        "leitlinie mammakarzinom",
+        "s3-leitlinie brustkrebs",
+        "awmf brustkrebs",
+        "leitlinienprogramm onkologie mamma",
+        "brustkrebs leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "mammakarzinom",
+          "brustkrebs",
+          "mammacarcinom",
+          "brust-krebs",
+          "mammographie",
+          "her2",
+          "tamoxifen",
+          "trastuzumab"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "screening",
+          "frueherkennung",
+          "diagnose",
+          "nachsorge",
+          "dkg",
+          "dggg",
+          "awmf",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie Mammakarzinom (DKG / DGGG / DGS / AWMF, Stand 2021)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/032-045OL",
+      "secondary_url": "https://www.leitlinienprogramm-onkologie.de"
+    },
+    {
+      "id": "awmf_kolorektales_karzinom",
+      "topic": "kolorektales_karzinom",
+      "scope": "S3-Leitlinie Kolorektales Karzinom",
+      "country": "DE",
+      "year": 2019,
+      "headline": "S3-Leitlinie Kolorektales Karzinom (DKG / DGVS / DGAV / AWMF — Leitlinienprogramm Onkologie)",
+      "data": {
+        "awmf_register_nummer": "021-007OL",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Krebsgesellschaft (DKG) + Deutsche Gesellschaft fuer Gastroenterologie (DGVS) + Deutsche Gesellschaft fuer Allgemein- und Viszeralchirurgie (DGAV) + AWMF",
+        "publication_year": 2014,
+        "last_revision": 2019,
+        "guideline_version": "2.1",
+        "kernempfehlung": "Screening-Empfehlung: ab 50 Jahre fuer Maenner / ab 55 Jahre fuer Frauen iFOBT (immunologischer Stuhltest) jaehrlich oder Koloskopie alle 10 Jahre (in Deutschland gesetzliches Krebsfrueherkennungsprogramm). Therapie: stadienadaptiert. UICC I-III: kurative Operation + adjuvante Chemotherapie (Stadium III obligat: FOLFOX oder CAPOX). UICC IV (metastasiert): palliative Systemtherapie nach RAS/BRAF/MSI-Status, ggf. metastasenchirurgische Resektion bei oligometastasierter Krankheit.",
+        "geltungsbereich": "Kolorektales Karzinom (Kolon- und Rektumkarzinom) — Praevention, Diagnostik, Therapie, Nachsorge."
+      },
+      "context_notes": [
+        "DE-spezifische Screening-Altersgrenzen: gesetzliche Krebsfrueherkennung deckt Koloskopie ab Alter 50 (Maenner) / 55 (Frauen) ab.",
+        "RAS/BRAF/MSI-Mutations-Testing ist Standard bei metastasiertem CRC — Anti-EGFR-Therapie nur bei RAS-Wildtyp.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/021-007OL"
+      ],
+      "claim_phrasings_handled": [
+        "Koloskopie ab 50 wird empfohlen",
+        "Bei kolorektalem Karzinom Stadium III ist Chemotherapie obligat",
+        "Anti-EGFR-Therapie wirkt nur bei RAS-Wildtyp"
+      ],
+      "trigger_keywords": [
+        "leitlinie kolorektales karzinom",
+        "s3-leitlinie darmkrebs",
+        "awmf darmkrebs",
+        "leitlinie koloskopie",
+        "darmkrebs leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "kolorektal",
+          "kolorektales karzinom",
+          "darmkrebs",
+          "kolonkarzinom",
+          "rektumkarzinom",
+          "koloskopie",
+          "crc"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "screening",
+          "frueherkennung",
+          "folfox",
+          "capox",
+          "dkg",
+          "dgvs",
+          "awmf",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie Kolorektales Karzinom (DKG / DGVS / DGAV / AWMF, Stand 2019)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/021-007OL",
+      "secondary_url": "https://www.leitlinienprogramm-onkologie.de"
+    },
+    {
+      "id": "awmf_prostatakarzinom",
+      "topic": "prostatakarzinom",
+      "scope": "S3-Leitlinie Prostatakarzinom",
+      "country": "DE",
+      "year": 2024,
+      "headline": "S3-Leitlinie Prostatakarzinom — Frueherkennung, Diagnose, Therapie und Nachsorge (DGU / DKG / AWMF)",
+      "data": {
+        "awmf_register_nummer": "043-022OL",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Urologie (DGU) + Deutsche Krebsgesellschaft (DKG) + AWMF",
+        "publication_year": 2009,
+        "last_revision": 2024,
+        "guideline_version": "7.0",
+        "kernempfehlung": "PSA-Screening: keine Empfehlung fuer flaechendeckendes Screening, aber informierte Entscheidung ab 45 Jahre auf Patientenwunsch. Diagnostik: MRT-gestuetzte Biopsie statt klassischer transrektaler Stanzbiopsie. Therapie nach Risikogruppe (D'Amico): Niedrigrisiko Active Surveillance (Beobachten), Intermediaer/Hochrisiko Prostatektomie oder Bestrahlung. Hormontherapie + Bestrahlung bei lokal fortgeschrittenem Stadium. Bei kastrationsresistentem metastasiertem PCa: Abirateron, Enzalutamid, Docetaxel, Lu-PSMA-177.",
+        "geltungsbereich": "Prostatakarzinom in allen Stadien — von Frueherkennung bis metastasierte Krankheit."
+      },
+      "context_notes": [
+        "Active Surveillance fuer Niedrigrisiko-PCa ist eine wichtige Innovation der letzten Dekade — vermeidet Ueberbehandlung bei langsam wachsenden Karzinomen.",
+        "Lu-PSMA-177 (Lutetium-PSMA Radioligand-Therapie) ist seit ~2022 in der Leitlinie fuer metastasiertes kastrationsresistentes PCa verankert.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/043-022OL"
+      ],
+      "claim_phrasings_handled": [
+        "Active Surveillance ist bei Niedrigrisiko-Prostatakrebs Standard",
+        "PSA-Screening ist nicht generell empfohlen",
+        "MRT-gestuetzte Biopsie ist Standard bei Prostatakarzinom"
+      ],
+      "trigger_keywords": [
+        "leitlinie prostatakarzinom",
+        "s3-leitlinie prostatakrebs",
+        "awmf prostatakrebs",
+        "active surveillance prostata",
+        "prostatakrebs leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "prostatakarzinom",
+          "prostatakrebs",
+          "prostata-karzinom",
+          "psa",
+          "psma",
+          "active surveillance"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "screening",
+          "biopsie",
+          "abirateron",
+          "enzalutamid",
+          "dgu",
+          "dkg",
+          "awmf",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie Prostatakarzinom (DGU / DKG / AWMF, Stand 2024)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/043-022OL",
+      "secondary_url": "https://www.leitlinienprogramm-onkologie.de"
+    },
+    {
+      "id": "awmf_lungenkarzinom",
+      "topic": "lungenkarzinom",
+      "scope": "S3-Leitlinie Lungenkarzinom",
+      "country": "DE",
+      "year": 2022,
+      "headline": "S3-Leitlinie Praevention, Diagnostik, Therapie und Nachsorge des Lungenkarzinoms (DGP / DKG / AWMF)",
+      "data": {
+        "awmf_register_nummer": "020-007OL",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Pneumologie (DGP) + Deutsche Krebsgesellschaft (DKG) + AWMF",
+        "publication_year": 2010,
+        "last_revision": 2022,
+        "guideline_version": "2.0",
+        "kernempfehlung": "Tabakentwoehnung als wichtigste Praevention. Frueherkennung per Low-Dose-CT bei Risikogruppen (Raucher 50-75 Jahre mit hoher Pack-Year-Anamnese, NLST-Studie). Diagnostik: histologische Sicherung obligat, molekulare Testung (EGFR, ALK, ROS1, KRAS, BRAF, MET, RET, NTRK, PD-L1) fuer Therapieplanung. Therapie stadienadaptiert: NSCLC Stadium I-II Operation; III multimodal (Chemoradiotherapie); IV systemisch (zielgerichtet, Immuncheckpoint-Inhibitoren, Chemotherapie).",
+        "geltungsbereich": "Bronchialkarzinom (NSCLC + SCLC) — Praevention, Frueherkennung, Diagnostik, Therapie, Nachsorge."
+      },
+      "context_notes": [
+        "Immuncheckpoint-Inhibitoren (Pembrolizumab, Nivolumab, Atezolizumab) haben die NSCLC-Therapie revolutioniert seit ~2016.",
+        "EU/DE-Diskussion ueber Einfuehrung von strukturiertem Low-Dose-CT-Screening fuer Hochrisiko-Raucher ist aktiv (Stand 2024).",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/020-007OL"
+      ],
+      "claim_phrasings_handled": [
+        "Bei Lungenkrebs ist molekulare Testung Standard",
+        "Pembrolizumab ist bei PD-L1-positivem NSCLC Erstlinien-Therapie",
+        "Low-Dose-CT-Screening senkt Lungenkrebs-Sterblichkeit bei Rauchern"
+      ],
+      "trigger_keywords": [
+        "leitlinie lungenkarzinom",
+        "s3-leitlinie lungenkrebs",
+        "awmf lungenkrebs",
+        "leitlinie bronchialkarzinom",
+        "nsclc leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "lungenkarzinom",
+          "lungenkrebs",
+          "bronchialkarzinom",
+          "nsclc",
+          "sclc",
+          "lungen-krebs"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "screening",
+          "pembrolizumab",
+          "nivolumab",
+          "egfr",
+          "alk",
+          "dgp",
+          "dkg",
+          "awmf",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie Lungenkarzinom (DGP / DKG / AWMF, Stand 2022)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/020-007OL",
+      "secondary_url": "https://www.leitlinienprogramm-onkologie.de"
+    },
+    {
+      "id": "awmf_copd",
+      "topic": "copd",
+      "scope": "S2k-Leitlinie COPD",
+      "country": "DE",
+      "year": 2018,
+      "headline": "S2k-Leitlinie COPD — Diagnostik und Therapie von Patienten mit chronisch obstruktiver Bronchitis und Lungenemphysem (DGP)",
+      "data": {
+        "awmf_register_nummer": "020-006",
+        "s_level": "S2k",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Pneumologie und Beatmungsmedizin (DGP) + Deutsche Atemwegsliga + AWMF",
+        "publication_year": 2007,
+        "last_revision": 2018,
+        "guideline_version": "2.0",
+        "kernempfehlung": "Diagnose: Spirometrie obligat (FEV1/FVC unter 0,7 post-Bronchodilatator). Tabakentwoehnung als wichtigste Massnahme (verlangsamt FEV1-Abnahme). Pharmakotherapie nach GOLD-Klassifikation: Stufentherapie mit langwirksamen Bronchodilatatoren (LAMA + LABA), inhalative Steroide (ICS) selektiv bei haeufigen Exazerbationen + Eosinophilen-Anstieg. Lungenrehabilitation evidenzbasiert. Sauerstoff-Langzeittherapie bei chronischer respiratorischer Insuffizienz.",
+        "geltungsbereich": "Chronisch obstruktive Lungenerkrankung (COPD) im stabilen Verlauf und bei Exazerbationen."
+      },
+      "context_notes": [
+        "GOLD Report (Global Initiative for Chronic Obstructive Lung Disease) ist die international fuehrende COPD-Klassifikation; die deutsche S2k uebernimmt die Grundstruktur.",
+        "Triple-Therapie (LAMA + LABA + ICS) hat Evidenz aus IMPACT-Studie 2018 — Reduktion von Exazerbationen.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/020-006"
+      ],
+      "claim_phrasings_handled": [
+        "Tabakentwoehnung ist die wichtigste COPD-Therapie",
+        "Bei COPD wird Triple-Therapie nur bei haeufigen Exazerbationen empfohlen",
+        "Lungenrehabilitation ist bei COPD evidenzbasiert"
+      ],
+      "trigger_keywords": [
+        "leitlinie copd",
+        "s2k-leitlinie copd",
+        "awmf copd",
+        "leitlinie chronisch obstruktiv",
+        "gold leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "copd",
+          "chronisch obstruktiv",
+          "lungenemphysem",
+          "raucherlunge",
+          "fev1"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "bronchodilatator",
+          "lama",
+          "laba",
+          "ics",
+          "spirometrie",
+          "dgp",
+          "awmf",
+          "gold",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S2k-Leitlinie COPD (DGP / Deutsche Atemwegsliga / AWMF, Stand 2018)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/020-006",
+      "secondary_url": "https://www.atemwegsliga.de"
+    },
+    {
+      "id": "awmf_asthma",
+      "topic": "asthma",
+      "scope": "Nationale VersorgungsLeitlinie Asthma",
+      "country": "DE",
+      "year": 2024,
+      "headline": "NVL Asthma — S3-Leitlinie zur Behandlung des Asthma bronchiale (BAEK / KBV / AWMF / DGP)",
+      "data": {
+        "awmf_register_nummer": "nvl-002",
+        "s_level": "S3",
+        "fachgesellschaft": "Bundesaerztekammer + KBV + AWMF (DGP, DEGAM, Deutsche Gesellschaft fuer Allergologie u.a.)",
+        "publication_year": 2005,
+        "last_revision": 2024,
+        "guideline_version": "5.0",
+        "kernempfehlung": "Stufentherapie nach Asthma-Kontrolle: ICS-Formoterol-Bedarfstherapie (statt SABA-Monotherapie) als Erstlinien bei mildem Asthma (GINA 2019+ Paradigmenwechsel, in NVL 2024 uebernommen). Bei persistierendem Asthma: regulaere ICS-LABA-Kombination. Biologika (Omalizumab, Mepolizumab, Benralizumab, Dupilumab) bei schwerem unkontrolliertem Asthma mit entsprechenden Endotypen (allergisch / eosinophil / Type 2-high).",
+        "geltungsbereich": "Asthma bronchiale bei Kindern, Jugendlichen und Erwachsenen."
+      },
+      "context_notes": [
+        "Wichtigste Aenderung der letzten 5 Jahre: SABA-Monotherapie wird in der Bedarfstherapie nicht mehr empfohlen (Schaden-Nutzen-Bilanz negativ, SABA-Uebergebrauch erhoeht Exazerbations-Risiko).",
+        "GINA (Global Initiative for Asthma) Report ist die international fuehrende Asthma-Leitlinie.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/nvl-002"
+      ],
+      "claim_phrasings_handled": [
+        "SABA-Monotherapie ist bei Asthma nicht mehr Standard",
+        "ICS-Formoterol-Bedarfstherapie ist neuer Asthma-Standard",
+        "Biologika sind bei schwerem Asthma Standardtherapie"
+      ],
+      "trigger_keywords": [
+        "nvl asthma",
+        "leitlinie asthma",
+        "s3-leitlinie asthma",
+        "awmf asthma",
+        "asthma leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "asthma",
+          "asthma bronchiale",
+          "bronchialasthma",
+          "saba",
+          "ics-formoterol"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "bronchodilatator",
+          "biologika",
+          "omalizumab",
+          "mepolizumab",
+          "dupilumab",
+          "nvl",
+          "awmf",
+          "gina",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "Nationale VersorgungsLeitlinie Asthma (BAEK / KBV / AWMF, Stand 2024)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/nvl-002",
+      "secondary_url": "https://www.leitlinien.de/themen/asthma"
+    },
+    {
+      "id": "awmf_unipolare_depression",
+      "topic": "depression",
+      "scope": "NVL Unipolare Depression",
+      "country": "DE",
+      "year": 2022,
+      "headline": "NVL Unipolare Depression — S3-Leitlinie zur Diagnostik und Therapie depressiver Erkrankungen (DGPPN / BAEK / KBV / AWMF)",
+      "data": {
+        "awmf_register_nummer": "nvl-005",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Psychiatrie und Psychotherapie, Psychosomatik und Nervenheilkunde (DGPPN) + BAEK + KBV + AWMF",
+        "publication_year": 2009,
+        "last_revision": 2022,
+        "guideline_version": "3.0",
+        "kernempfehlung": "Schweregradabhaengige Therapie: bei leichter Depression aktives Beobachten + niedrigschwellige Interventionen (Psychoedukation, Bewegung); bei mittelschwerer Depression Psychotherapie ODER Pharmakotherapie (gleichwertig wirksam); bei schwerer Depression Kombinationstherapie. Pharmakotherapie-Erstlinien: SSRI/SNRI. Psychotherapie-Erstlinien: KVT, IPT, psychodynamische Verfahren. Bei therapieresistenter Depression: Augmentation, ECT (Elektrokonvulsionstherapie), Ketamin (off-label / Esketamin zugelassen).",
+        "geltungsbereich": "Unipolare depressive Episoden und rezidivierende depressive Stoerung (F32, F33) bei Erwachsenen. KEINE bipolare Stoerung, KEINE Adoleszentenpsychiatrie."
+      },
+      "context_notes": [
+        "Esketamin-Nasenspray ist seit 2019 zugelassen fuer therapieresistente Depression.",
+        "ECT (Elektrokonvulsionstherapie) ist bei schwerer therapieresistenter Depression eines der wirksamsten Verfahren (Response-Rate 60-80 Prozent) — Stigma in der Bevoelkerung kontrastiert klare wissenschaftliche Evidenz.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/nvl-005"
+      ],
+      "claim_phrasings_handled": [
+        "Bei leichter Depression ist Psychotherapie Erstlinien-Therapie",
+        "ECT ist bei therapieresistenter Depression wirksam",
+        "SSRI sind Erstlinien-Antidepressiva"
+      ],
+      "trigger_keywords": [
+        "nvl depression",
+        "leitlinie depression",
+        "s3-leitlinie depression",
+        "awmf depression",
+        "unipolare depression leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "depression",
+          "depressiv",
+          "depressive episode",
+          "depressive stoerung",
+          "depressionen",
+          "mdd",
+          "major depression"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "ssri",
+          "snri",
+          "psychotherapie",
+          "ect",
+          "ketamin",
+          "nvl",
+          "awmf",
+          "dgppn",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "Nationale VersorgungsLeitlinie Unipolare Depression (DGPPN / BAEK / KBV / AWMF, Stand 2022)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/nvl-005",
+      "secondary_url": "https://www.leitlinien.de/themen/depression"
+    },
+    {
+      "id": "awmf_schizophrenie",
+      "topic": "schizophrenie",
+      "scope": "S3-Leitlinie Schizophrenie",
+      "country": "DE",
+      "year": 2019,
+      "headline": "S3-Leitlinie Schizophrenie (DGPPN / AWMF)",
+      "data": {
+        "awmf_register_nummer": "038-009",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Psychiatrie und Psychotherapie, Psychosomatik und Nervenheilkunde (DGPPN) + AWMF",
+        "publication_year": 1998,
+        "last_revision": 2019,
+        "guideline_version": "2.0",
+        "kernempfehlung": "Antipsychotika-Therapie als Grundlage; Atypika (Risperidon, Olanzapin, Aripiprazol, Quetiapin) wegen guenstigerem Nebenwirkungsprofil meist Erstlinien-Wahl. Clozapin bei Therapieresistenz (zwei vorausgegangene erfolglose Antipsychotika-Versuche). Psychotherapeutische Verfahren obligat: KVT bei Positivsymptomatik, Familienintervention bei Rueckfallpraevention, Sozialberufliches Training. Aktive Mitwirkung der Patienten und Angehoerigen (Shared-Decision-Making).",
+        "geltungsbereich": "Schizophrenie (F20), schizoaffektive Stoerung — akute und Erhaltungstherapie."
+      },
+      "context_notes": [
+        "Clozapin bleibt das wirksamste Antipsychotikum bei Therapieresistenz, ist aber aufgrund des Agranulozytose-Risikos an strenges Monitoring gebunden.",
+        "Long-acting-Injectables (Depot-Antipsychotika) verbessern Adhaerenz und reduzieren Rueckfaelle in der Erhaltungstherapie.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/038-009"
+      ],
+      "claim_phrasings_handled": [
+        "Atypika sind Erstlinien bei Schizophrenie",
+        "Clozapin ist bei therapieresistenter Schizophrenie wirksamstes Antipsychotikum",
+        "Familienintervention wird bei Schizophrenie empfohlen"
+      ],
+      "trigger_keywords": [
+        "leitlinie schizophrenie",
+        "s3-leitlinie schizophrenie",
+        "awmf schizophrenie",
+        "schizophrenie leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "schizophrenie",
+          "schizoaffektiv",
+          "psychose",
+          "psychotisch"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "antipsychotika",
+          "antipsychotikum",
+          "clozapin",
+          "risperidon",
+          "olanzapin",
+          "aripiprazol",
+          "quetiapin",
+          "awmf",
+          "dgppn",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie Schizophrenie (DGPPN / AWMF, Stand 2019)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/038-009",
+      "secondary_url": "https://www.dgppn.de"
+    },
+    {
+      "id": "awmf_adhs",
+      "topic": "adhs",
+      "scope": "S3-Leitlinie ADHS",
+      "country": "DE",
+      "year": 2018,
+      "headline": "S3-Leitlinie ADHS bei Kindern, Jugendlichen und Erwachsenen (DGKJP / DGPPN / DGSPJ / AWMF)",
+      "data": {
+        "awmf_register_nummer": "028-045",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Kinder- und Jugendpsychiatrie und Psychotherapie (DGKJP) + DGPPN + DGSPJ + AWMF",
+        "publication_year": 2017,
+        "last_revision": 2018,
+        "guideline_version": "1.5",
+        "kernempfehlung": "Multimodale Therapie: Pharmakotherapie (Methylphenidat als Erstlinie, Atomoxetin/Guanfacin Zweitlinie), Psychotherapie/Verhaltenstherapie, Psychoedukation der Familie, Elterntraining, schulische Interventionen. Diagnose nach ICD-11/DSM-5-TR mit Symptomen vor dem 12. Lebensjahr und Funktionseinschraenkung in mehreren Lebensbereichen. KEINE Pharmakotherapie ohne psychotherapeutische/paedagogische Begleitintervention.",
+        "geltungsbereich": "ADHS (Aufmerksamkeits-/Hyperaktivitaetsstoerung) bei Kindern, Jugendlichen und Erwachsenen."
+      },
+      "context_notes": [
+        "Methylphenidat (Ritalin) bleibt Erstlinien-Pharmakotherapie mit dokumentiert besten Effektstaerken (Cohens d ~ 0,7-0,9 fuer Kernsymptome).",
+        "Polanczyk 2014 Meta-Analyse n=175 Studien: ADHS-Praevalenz weltweit ueber 30 Jahre stabil bei ~5 Prozent (Kinder/Jugendliche), keine epidemiologische Inflation.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/028-045"
+      ],
+      "claim_phrasings_handled": [
+        "Methylphenidat ist Erstlinien-Therapie bei ADHS",
+        "ADHS-Diagnose erfordert Symptome vor dem 12. Lebensjahr",
+        "ADHS-Therapie soll multimodal sein"
+      ],
+      "trigger_keywords": [
+        "leitlinie adhs",
+        "s3-leitlinie adhs",
+        "awmf adhs",
+        "leitlinie aufmerksamkeitsstoerung",
+        "adhs leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "adhs",
+          "adhd",
+          "aufmerksamkeitsstoerung",
+          "hyperaktivitaet",
+          "hyperaktivität",
+          "methylphenidat",
+          "ritalin"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "atomoxetin",
+          "guanfacin",
+          "verhaltenstherapie",
+          "dgkjp",
+          "dgppn",
+          "awmf",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie ADHS (DGKJP / DGPPN / DGSPJ / AWMF, Stand 2018)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/028-045",
+      "secondary_url": "https://www.dgkjp.de"
+    },
+    {
+      "id": "awmf_rueckenschmerz",
+      "topic": "rueckenschmerz",
+      "scope": "Nationale VersorgungsLeitlinie Nicht-spezifischer Kreuzschmerz",
+      "country": "DE",
+      "year": 2017,
+      "headline": "NVL Nicht-spezifischer Kreuzschmerz — S3-Leitlinie (BAEK / KBV / AWMF / DEGAM / DGOOC)",
+      "data": {
+        "awmf_register_nummer": "nvl-007",
+        "s_level": "S3",
+        "fachgesellschaft": "Bundesaerztekammer + KBV + AWMF (DEGAM, Deutsche Gesellschaft fuer Orthopaedie und Orthopaedische Chirurgie DGOOC, Deutsche Schmerzgesellschaft u.a.)",
+        "publication_year": 2010,
+        "last_revision": 2017,
+        "guideline_version": "2.0",
+        "kernempfehlung": "Bei akutem nicht-spezifischem Kreuzschmerz (ohne Red Flags): keine routinemaessige Bildgebung in den ersten 4-6 Wochen. Aktivierungs-Empfehlung (Bettruhe NICHT empfohlen), NSAR kurzfristig, Aufklaerung ueber guenstige Prognose. Bei chronischem (>12 Wochen) Kreuzschmerz multimodale Schmerztherapie (MMS) — Kombination aus Bewegungstherapie, Verhaltenstherapie, Schmerzedukation. KEINE Opioid-Dauertherapie bei nicht-spezifischem Kreuzschmerz. Operative Indikationen sehr restriktiv.",
+        "geltungsbereich": "Nicht-spezifischer Kreuzschmerz (ohne identifizierbare Pathologie). KEIN Bandscheibenvorfall mit Radikulopathie, KEINE Spinalkanalstenose, KEINE Tumor/Infekt-bedingten Rueckenschmerzen."
+      },
+      "context_notes": [
+        "Red Flags: ungewollter Gewichtsverlust, Fieber, Tumor-Anamnese, Trauma, neurologische Ausfaelle, Steroid-Therapie — diese Patienten brauchen umgehende Bildgebung.",
+        "Die Empfehlung gegen routinemaessige Bildgebung ist eine der wichtigsten Choosing-Wisely-Empfehlungen (Vermeidung von ueberfluessigen MRTs).",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/nvl-007"
+      ],
+      "claim_phrasings_handled": [
+        "Bei Rueckenschmerz ist Bettruhe nicht empfohlen",
+        "Bei akutem Kreuzschmerz keine routinemaessige Bildgebung in den ersten 4-6 Wochen",
+        "Multimodale Schmerztherapie ist Standard bei chronischem Kreuzschmerz"
+      ],
+      "trigger_keywords": [
+        "nvl kreuzschmerz",
+        "leitlinie rueckenschmerz",
+        "s3-leitlinie rueckenschmerz",
+        "awmf kreuzschmerz",
+        "kreuzschmerz leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "kreuzschmerz",
+          "rueckenschmerz",
+          "rückenschmerz",
+          "lumbago",
+          "lwbs",
+          "lumbale rueckenschmerzen"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "bildgebung",
+          "mrt",
+          "bettruhe",
+          "schmerztherapie",
+          "nvl",
+          "awmf",
+          "degam",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "Nationale VersorgungsLeitlinie Nicht-spezifischer Kreuzschmerz (BAEK / KBV / AWMF, Stand 2017)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/nvl-007",
+      "secondary_url": "https://www.leitlinien.de/themen/kreuzschmerz"
+    },
+    {
+      "id": "awmf_adipositas",
+      "topic": "adipositas",
+      "scope": "S3-Leitlinie Adipositas",
+      "country": "DE",
+      "year": 2024,
+      "headline": "S3-Leitlinie Praevention und Therapie der Adipositas (DAG / AWMF)",
+      "data": {
+        "awmf_register_nummer": "050-001",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Adipositas-Gesellschaft (DAG) + Deutsche Diabetes Gesellschaft (DDG) + DGEM + DGPM + AWMF",
+        "publication_year": 2007,
+        "last_revision": 2024,
+        "guideline_version": "5.0",
+        "kernempfehlung": "Basistherapie als Voraussetzung: Lebensstil-Intervention (Ernaehrung + Bewegung + Verhaltenstherapie) ueber mind. 6-12 Monate. Pharmakotherapie zusaetzlich bei BMI >= 30 kg/m2 oder BMI >= 27 mit Komorbiditaeten: GLP-1-Agonisten (Liraglutid, Semaglutid hochdosiert) als wirksamste pharmakologische Option (10-15 Prozent Gewichtsreduktion). Adipositas-chirurgische Intervention (Bariatrische Chirurgie) bei BMI >= 40 (oder >= 35 mit Komorbiditaeten) nach Versagen konservativer Therapie.",
+        "geltungsbereich": "Adipositas (BMI >= 30 kg/m2) bei Erwachsenen — Praevention, konservative und chirurgische Therapie."
+      },
+      "context_notes": [
+        "GLP-1-Agonisten (insbesondere Semaglutid 2,4 mg woechentlich, Markenname Wegovy) sind seit ~2022 in DE zugelassen und in der Leitlinie verankert — bisher wirksamste pharmakologische Adipositas-Therapie.",
+        "Bariatrische Chirurgie reduziert Mortalitaet bei schwer Adipoesen langfristig (SOS-Studie Sjoestroem, Schweden) — Roux-en-Y-Bypass und Sleeve-Gastrektomie sind Standardverfahren.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/050-001"
+      ],
+      "claim_phrasings_handled": [
+        "Semaglutid ist wirksamste pharmakologische Adipositas-Therapie",
+        "Bariatrische Chirurgie ist ab BMI 40 indiziert",
+        "Lebensstil-Intervention ist Voraussetzung jeder Adipositas-Therapie"
+      ],
+      "trigger_keywords": [
+        "leitlinie adipositas",
+        "s3-leitlinie adipositas",
+        "awmf adipositas",
+        "leitlinie bariatrische chirurgie",
+        "adipositas leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "adipositas",
+          "fettleibig",
+          "uebergewicht",
+          "übergewicht",
+          "bmi",
+          "fettleibigkeit"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "semaglutid",
+          "liraglutid",
+          "wegovy",
+          "ozempic",
+          "bariatrisch",
+          "bariatrische",
+          "magenbypass",
+          "magenband",
+          "schlauchmagen",
+          "awmf",
+          "dag",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie Adipositas (DAG / DDG / AWMF, Stand 2024)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/050-001",
+      "secondary_url": "https://adipositas-gesellschaft.de"
+    },
+    {
+      "id": "awmf_demenz",
+      "topic": "demenz",
+      "scope": "S3-Leitlinie Demenzen",
+      "country": "DE",
+      "year": 2023,
+      "headline": "S3-Leitlinie Demenzen (DGPPN / DGN / AWMF)",
+      "data": {
+        "awmf_register_nummer": "038-013",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Psychiatrie und Psychotherapie, Psychosomatik und Nervenheilkunde (DGPPN) + Deutsche Gesellschaft fuer Neurologie (DGN) + AWMF",
+        "publication_year": 2009,
+        "last_revision": 2023,
+        "guideline_version": "4.0",
+        "kernempfehlung": "Diagnostik: strukturiertes Anamnesegespraech + Neuropsychologie + Bildgebung (MRT) + ggf. Liquordiagnostik (Amyloid + Tau). Bei Alzheimer-Demenz Cholinesterase-Hemmer (Donepezil, Galantamin, Rivastigmin) bei leichter bis mittelschwerer Demenz; Memantin bei mittelschwerer bis schwerer Demenz. Nicht-medikamentoese Massnahmen obligat: Kognitive Stimulation, koerperliche Aktivitaet, Ergotherapie, Angehoerigen-Beratung. Bei Verhaltenssymptomen (BPSD) nicht-pharmakologische Interventionen vor Pharmakotherapie.",
+        "geltungsbereich": "Demenzen aller Aetiologien (Alzheimer-Krankheit, vaskulaere Demenz, frontotemporale Demenz, Lewy-Koerper-Demenz, gemischte Demenz)."
+      },
+      "context_notes": [
+        "Anti-Amyloid-Antikoerper (Lecanemab, Donanemab) sind seit ~2024 in den USA zugelassen, in DE/EU noch in Evaluation — werden voraussichtlich in zukuenftiger Leitlinien-Revision verankert.",
+        "Wichtige Botschaft: Demenz-Therapie ist symptomatisch, NICHT kurativ. Erwartungsmanagement im Patient-/Angehoerigen-Gespraech ist Teil der Leitlinien-Empfehlung.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/038-013"
+      ],
+      "claim_phrasings_handled": [
+        "Cholinesterase-Hemmer sind bei leichter bis mittelschwerer Alzheimer-Demenz Standard",
+        "Memantin ist bei mittelschwerer bis schwerer Demenz indiziert",
+        "Nicht-pharmakologische Interventionen sind bei BPSD erste Wahl"
+      ],
+      "trigger_keywords": [
+        "leitlinie demenz",
+        "s3-leitlinie demenz",
+        "awmf demenz",
+        "leitlinie alzheimer",
+        "demenz leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "demenz",
+          "alzheimer",
+          "alzheimer-demenz",
+          "vaskulaere demenz",
+          "frontotemporale demenz",
+          "lewy-koerper",
+          "lewy körper"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "donepezil",
+          "galantamin",
+          "rivastigmin",
+          "memantin",
+          "lecanemab",
+          "awmf",
+          "dgppn",
+          "dgn",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie Demenzen (DGPPN / DGN / AWMF, Stand 2023)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/038-013",
+      "secondary_url": "https://www.dgn.org"
+    },
+    {
+      "id": "awmf_migraene",
+      "topic": "migraene",
+      "scope": "S1-Leitlinie Therapie der Migraeneattacke",
+      "country": "DE",
+      "year": 2022,
+      "headline": "S1-Leitlinie Therapie der Migraeneattacke und Prophylaxe (DGN / Deutsche Migraene- und Kopfschmerzgesellschaft DMKG)",
+      "data": {
+        "awmf_register_nummer": "030-057",
+        "s_level": "S1",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Neurologie (DGN) + Deutsche Migraene- und Kopfschmerzgesellschaft (DMKG) + AWMF",
+        "publication_year": 2008,
+        "last_revision": 2022,
+        "guideline_version": "5.0",
+        "kernempfehlung": "Akuttherapie: Triptane (Sumatriptan, Rizatriptan, Almotriptan u.a.) als Erstlinie bei moderater bis schwerer Migraene; NSAR (Ibuprofen, ASS) bei leichten bis moderaten Attacken; Antiemetika (Metoclopramid, Domperidon) adjuvant. Prophylaxe ab 3+ Attacken pro Monat: Betablocker (Metoprolol, Propranolol), Topiramat, Amitriptylin als Erstlinien-Optionen. CGRP-Antikoerper (Erenumab, Galcanezumab, Fremanezumab, Eptinezumab) bei therapierefraktaerer Migraene oder Unvertraeglichkeit klassischer Prophylaxe.",
+        "geltungsbereich": "Migraene mit und ohne Aura, chronische Migraene."
+      },
+      "context_notes": [
+        "CGRP-Antikoerper sind seit 2018 in DE/EU zugelassen und ein erheblicher Therapie-Fortschritt fuer Patienten mit Migraene-Refraktaeritaet.",
+        "Gepant-Klasse (Rimegepant, Atogepant) ist seit 2023 in EU/DE neu — alternative orale CGRP-Antagonisten fuer Akut + Prophylaxe.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/030-057"
+      ],
+      "claim_phrasings_handled": [
+        "Triptane sind Erstlinien bei mittelschwerer Migraene",
+        "CGRP-Antikoerper wirken bei Migraene-Prophylaxe",
+        "Migraene-Prophylaxe ist ab 3 Attacken pro Monat indiziert"
+      ],
+      "trigger_keywords": [
+        "leitlinie migraene",
+        "s1-leitlinie migraene",
+        "awmf migraene",
+        "leitlinie kopfschmerz",
+        "migraene leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "migraene",
+          "migräne",
+          "migraine",
+          "kopfschmerz",
+          "kopfschmerzen",
+          "triptan",
+          "triptane",
+          "cgrp"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "prophylaxe",
+          "sumatriptan",
+          "rizatriptan",
+          "erenumab",
+          "galcanezumab",
+          "topiramat",
+          "awmf",
+          "dgn",
+          "dmkg",
+          "erstlinien",
+          "standard",
+          "akuttherapie",
+          "akut",
+          "indiziert",
+          "behandlung",
+          "wirken",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S1-Leitlinie Therapie der Migraeneattacke und Prophylaxe (DGN / DMKG, Stand 2022)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/030-057",
+      "secondary_url": "https://www.dmkg.de"
+    },
+    {
+      "id": "awmf_epilepsie",
+      "topic": "epilepsie",
+      "scope": "S2k-Leitlinie Erster epileptischer Anfall und Epilepsien im Erwachsenenalter",
+      "country": "DE",
+      "year": 2023,
+      "headline": "S2k-Leitlinie Erster epileptischer Anfall und Epilepsien im Erwachsenenalter (DGN / Deutsche Gesellschaft fuer Epileptologie DGfE)",
+      "data": {
+        "awmf_register_nummer": "030-041",
+        "s_level": "S2k",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Neurologie (DGN) + Deutsche Gesellschaft fuer Epileptologie (DGfE) + AWMF",
+        "publication_year": 2017,
+        "last_revision": 2023,
+        "guideline_version": "2.0",
+        "kernempfehlung": "Diagnostik: EEG + MRT obligat nach erstem Anfall. Behandlungsbeginn nach erstem unprovoziertem Anfall nur bei hohem Rezidiv-Risiko (z.B. strukturelle Laesion, pathologisches EEG). Antiepileptika nach Anfallstyp: bei fokaler Epilepsie Lamotrigin, Levetiracetam, Lacosamid; bei generalisierter Epilepsie Valproat (Maenner) bzw. Lamotrigin / Levetiracetam (Frauen im gebaerfaehigen Alter). Bei Pharmakoresistenz (2+ erfolglose Antiepileptika) praechirurgische Diagnostik fuer Epilepsie-Chirurgie.",
+        "geltungsbereich": "Erster unprovozierter epileptischer Anfall + chronische Epilepsie bei Erwachsenen."
+      },
+      "context_notes": [
+        "Valproat ist bei Frauen im gebaerfaehigen Alter relativ kontraindiziert wegen hohem teratogenen Risiko (BfArM Warnung 2018, EMA Restriktion).",
+        "Epilepsie-Chirurgie kann bei richtig selektierten Patienten kuratives Verfahren sein (Anfallsfreiheit in 60-80 Prozent der Temporallappen-Epilepsien).",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/030-041"
+      ],
+      "claim_phrasings_handled": [
+        "Lamotrigin und Levetiracetam sind Erstlinien-Antiepileptika",
+        "Valproat ist bei Frauen im gebaerfaehigen Alter relativ kontraindiziert",
+        "Bei pharmakoresistenter Epilepsie sollte Epilepsie-Chirurgie geprueft werden"
+      ],
+      "trigger_keywords": [
+        "leitlinie epilepsie",
+        "s2k-leitlinie epilepsie",
+        "awmf epilepsie",
+        "leitlinie epileptischer anfall"
+      ],
+      "trigger_composite": [
+        [
+          "epilepsie",
+          "epileptisch",
+          "epileptischer anfall",
+          "krampfanfall",
+          "anfall"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "lamotrigin",
+          "levetiracetam",
+          "lacosamid",
+          "valproat",
+          "antiepileptikum",
+          "awmf",
+          "dgn",
+          "dgfe",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S2k-Leitlinie Epilepsie (DGN / DGfE / AWMF, Stand 2023)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/030-041",
+      "secondary_url": "https://dgfe.org"
+    },
+    {
+      "id": "awmf_parkinson",
+      "topic": "parkinson",
+      "scope": "S2k-Leitlinie Parkinson-Krankheit",
+      "country": "DE",
+      "year": 2023,
+      "headline": "S2k-Leitlinie Idiopathisches Parkinson-Syndrom (DGN / AWMF)",
+      "data": {
+        "awmf_register_nummer": "030-010",
+        "s_level": "S2k",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Neurologie (DGN) + AWMF",
+        "publication_year": 2012,
+        "last_revision": 2023,
+        "guideline_version": "2.0",
+        "kernempfehlung": "Pharmakotherapie: Levodopa bleibt wirksamstes Praeparat. Bei jungen Patienten (unter 70 Jahre) ggf. Beginn mit Dopaminagonisten oder MAO-B-Hemmern, um Levodopa-induzierte Spaetkomplikationen (Dyskinesien) hinauszuzoegern. Tiefe Hirnstimulation (DBS) bei motorischen Fluktuationen / Dyskinesien nach 5+ Jahren L-Dopa-Therapie. Physiotherapie + Ergotherapie + Logopaedie evidenzbasiert.",
+        "geltungsbereich": "Idiopathisches Parkinson-Syndrom (Morbus Parkinson). KEINE atypischen Parkinson-Syndrome (MSA, PSP, CBD)."
+      },
+      "context_notes": [
+        "Tiefe Hirnstimulation (DBS, Deep Brain Stimulation) am Nucleus subthalamicus ist ein Goldstandard-Verfahren fuer motorisch fluktuierende Patienten.",
+        "Levodopa-Aequivalent-Dosis (LED) ist die wichtigste klinische Mess-Groesse fuer die individuelle Therapieanpassung.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/030-010"
+      ],
+      "claim_phrasings_handled": [
+        "Levodopa ist wirksamstes Parkinson-Medikament",
+        "Tiefe Hirnstimulation ist bei motorischen Fluktuationen indiziert",
+        "Bei jungen Parkinson-Patienten zuerst Dopaminagonisten"
+      ],
+      "trigger_keywords": [
+        "leitlinie parkinson",
+        "s2k-leitlinie parkinson",
+        "awmf parkinson",
+        "morbus parkinson leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "parkinson",
+          "morbus parkinson",
+          "ipd",
+          "parkinson-syndrom",
+          "parkinson-krankheit"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "levodopa",
+          "l-dopa",
+          "dopaminagonist",
+          "mao-b",
+          "dbs",
+          "tiefe hirnstimulation",
+          "awmf",
+          "dgn",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S2k-Leitlinie Parkinson-Krankheit (DGN / AWMF, Stand 2023)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/030-010",
+      "secondary_url": "https://www.dgn.org"
+    },
+    {
+      "id": "awmf_multiple_sklerose",
+      "topic": "multiple_sklerose",
+      "scope": "S2k-Leitlinie Multiple Sklerose",
+      "country": "DE",
+      "year": 2023,
+      "headline": "S2k-Leitlinie Diagnose und Therapie der Multiplen Sklerose (DGN / Krankheitsbezogenes Kompetenznetz Multiple Sklerose KKNMS / AWMF)",
+      "data": {
+        "awmf_register_nummer": "030-050",
+        "s_level": "S2k",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Neurologie (DGN) + KKNMS + AWMF",
+        "publication_year": 2014,
+        "last_revision": 2023,
+        "guideline_version": "5.0",
+        "kernempfehlung": "Diagnose nach McDonald-Kriterien 2017 (raumzeitliche Dissemination im MRT + ggf. Liquor-spezifische oligoklonale Banden). Verlaufsmodifizierende Therapie (DMT) abhaengig von Krankheits-Aktivitaet: bei milder schubfoermiger MS Interferon-beta / Glatirameracetat / Teriflunomid / Dimethylfumarat; bei aktiver schubfoermiger MS Fingolimod / Cladribin / Ocrelizumab / Natalizumab. Akute Schub-Therapie mit Hochdosis-Methylprednisolon (Cortison-Pulstherapie).",
+        "geltungsbereich": "Multiple Sklerose (schubfoermig und progredient) bei Erwachsenen."
+      },
+      "context_notes": [
+        "Ocrelizumab (anti-CD20-Antikoerper) ist seit 2018 zugelassen — wirksam bei schubfoermiger und primaer-progredienter MS.",
+        "Wichtige Neuerung der letzten Jahre: hochwirksame DMTs (Ocrelizumab, Natalizumab) werden vermehrt frueh eingesetzt (Early-Highly-Effective-Therapy-Strategie statt klassischer Eskalation).",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/030-050"
+      ],
+      "claim_phrasings_handled": [
+        "Ocrelizumab ist wirksam bei schubfoermiger und primaer-progredienter MS",
+        "Schub-Therapie der MS erfolgt mit Hochdosis-Methylprednisolon",
+        "Verlaufsmodifizierende Therapie bei aktiver MS frueh einsetzen"
+      ],
+      "trigger_keywords": [
+        "leitlinie multiple sklerose",
+        "s2k-leitlinie ms",
+        "awmf multiple sklerose",
+        "ms leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "multiple sklerose",
+          "ms ",
+          " ms.",
+          "ms-",
+          "encephalomyelitis disseminata",
+          "ed"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "interferon",
+          "glatiramer",
+          "ocrelizumab",
+          "natalizumab",
+          "fingolimod",
+          "cladribin",
+          "awmf",
+          "dgn",
+          "kknms",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S2k-Leitlinie Multiple Sklerose (DGN / KKNMS / AWMF, Stand 2023)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/030-050",
+      "secondary_url": "https://www.kompetenznetz-multiplesklerose.de"
+    },
+    {
+      "id": "awmf_covid19",
+      "topic": "covid19",
+      "scope": "S3-Leitlinie Empfehlungen zur Therapie von Patienten mit COVID-19",
+      "country": "DE",
+      "year": 2024,
+      "headline": "S3-Leitlinie Empfehlungen zur Therapie von Patienten mit COVID-19 (DGI / DGP / DIVI / AWMF)",
+      "data": {
+        "awmf_register_nummer": "113-001LG",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Infektiologie (DGI) + Deutsche Gesellschaft fuer Pneumologie (DGP) + Deutsche Interdisziplinaere Vereinigung fuer Intensiv- und Notfallmedizin (DIVI) + AWMF",
+        "publication_year": 2020,
+        "last_revision": 2024,
+        "guideline_version": "8.0 (living guideline)",
+        "kernempfehlung": "Antivirale Therapie: Nirmatrelvir/Ritonavir (Paxlovid) bei Risiko-Patienten ohne Hospitalisierung innerhalb 5 Tagen nach Symptombeginn; Remdesivir bei hospitalisierten Patienten mit Sauerstoff-Bedarf (ohne Beatmung). Antiinflammatorische Therapie bei schwerem COVID-19: Dexamethason 6 mg/d bei Sauerstoff-Bedarf, Tocilizumab oder Baricitinib bei Progression. Immunglobuline NICHT empfohlen. Ivermectin NICHT empfohlen (kein Wirksamkeitsnachweis). Hydroxychloroquin NICHT empfohlen (Schaden uebertrifft Nutzen).",
+        "geltungsbereich": "Akut-COVID-19 — ambulante und stationaere Versorgung. KEINE Long-COVID-Empfehlungen (separate Leitlinie)."
+      },
+      "context_notes": [
+        "Living Guideline: laufende Aktualisierung gemaess neuer Evidenz, ungewoehnliches Format fuer AWMF-Leitlinien.",
+        "Die Anti-COVID-Therapie hat sich seit 2020 mehrfach geaendert; heute Standard sind Paxlovid (ambulant) + Dexamethason (stationaer mit O2-Bedarf).",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/113-001LG"
+      ],
+      "claim_phrasings_handled": [
+        "Paxlovid ist bei COVID-19-Risiko-Patienten innerhalb 5 Tagen indiziert",
+        "Dexamethason ist Standard bei COVID-19 mit Sauerstoff-Bedarf",
+        "Ivermectin ist NICHT zur COVID-19-Therapie empfohlen"
+      ],
+      "trigger_keywords": [
+        "leitlinie covid-19",
+        "leitlinie covid",
+        "s3-leitlinie corona",
+        "awmf covid",
+        "covid leitlinie",
+        "paxlovid leitlinie",
+        "covid-19 therapie leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "covid",
+          "covid-19",
+          "sars-cov-2",
+          "corona",
+          "coronavirus"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "paxlovid",
+          "remdesivir",
+          "dexamethason",
+          "tocilizumab",
+          "ivermectin",
+          "hydroxychloroquin",
+          "awmf",
+          "dgi",
+          "divi",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie COVID-19-Therapie (DGI / DGP / DIVI / AWMF, Stand 2024, Living Guideline)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/113-001LG",
+      "secondary_url": "https://www.awmf.org"
+    },
+    {
+      "id": "awmf_long_covid",
+      "topic": "long_covid",
+      "scope": "S1-Leitlinie Long/Post-COVID",
+      "country": "DE",
+      "year": 2024,
+      "headline": "S1-Leitlinie Long/Post-COVID (DGP + zahlreiche Fachgesellschaften)",
+      "data": {
+        "awmf_register_nummer": "020-027",
+        "s_level": "S1",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Pneumologie (DGP) als Federfuehrend + DGI + DGN + DGPPN + DGAUM u.v.a. + AWMF",
+        "publication_year": 2021,
+        "last_revision": 2024,
+        "guideline_version": "4.0",
+        "kernempfehlung": "Diagnose-Kriterium: Symptome >4 Wochen nach Akut-COVID-19 (Post-COVID >12 Wochen). Symptomspektrum sehr breit: Fatigue, Belastungsintoleranz (PEM), Dyspnoe, kognitive Stoerungen (Brain Fog), Schmerzen, Geruchsstoerung. Diagnostik: ausschluss-orientiert, individualisierte Stufendiagnostik. Therapie: NICHT-pharmakologisch dominiert — Pacing bei Fatigue/PEM, schrittweises Belastungsmanagement, Rehabilitation. KEINE empfohlene kausale Pharmakotherapie; symptomatische Behandlung. ME/CFS-Komponente: striktes Pacing, KEIN graded exercise.",
+        "geltungsbereich": "Long-COVID (>4 Wochen) und Post-COVID-Syndrom (>12 Wochen) — alle Altersgruppen."
+      },
+      "context_notes": [
+        "ME/CFS-Komponente: bei Patienten mit Post-Exertional Malaise (PEM) wird abgestuftes Belastungstraining (GET, Graded Exercise Therapy) explizit NICHT empfohlen — Risiko der Symptom-Verschlechterung.",
+        "Long-COVID-Forschung ist sehr dynamisch; Leitlinie wird regelmaessig aktualisiert.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/020-027"
+      ],
+      "claim_phrasings_handled": [
+        "Long-COVID-Therapie ist primaer nicht-pharmakologisch",
+        "Bei Post-Exertional Malaise wird Pacing statt GET empfohlen",
+        "Es gibt keine zugelassene kausale Long-COVID-Therapie"
+      ],
+      "trigger_keywords": [
+        "leitlinie long covid",
+        "leitlinie long-covid",
+        "leitlinie post covid",
+        "leitlinie post-covid",
+        "long-covid leitlinie",
+        "awmf long covid"
+      ],
+      "trigger_composite": [
+        [
+          "long covid",
+          "long-covid",
+          "post covid",
+          "post-covid",
+          "longcovid",
+          "postcovid"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "pacing",
+          "pem",
+          "post-exertional",
+          "fatigue",
+          "brain fog",
+          "me/cfs",
+          "rehabilitation",
+          "awmf",
+          "dgp",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S1-Leitlinie Long/Post-COVID (DGP u.v.a. / AWMF, Stand 2024)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/020-027",
+      "secondary_url": "https://www.awmf.org"
+    },
+    {
+      "id": "awmf_palliativmedizin",
+      "topic": "palliativmedizin",
+      "scope": "S3-Leitlinie Palliativmedizin",
+      "country": "DE",
+      "year": 2020,
+      "headline": "S3-Leitlinie Palliativmedizin fuer Patienten mit einer nicht-heilbaren Krebserkrankung (DGP / DKG / AWMF — Leitlinienprogramm Onkologie)",
+      "data": {
+        "awmf_register_nummer": "128-001OL",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Palliativmedizin (DGP) + Deutsche Krebsgesellschaft (DKG) + AWMF — Leitlinienprogramm Onkologie",
+        "publication_year": 2015,
+        "last_revision": 2020,
+        "guideline_version": "2.2",
+        "kernempfehlung": "Fruehe Integration palliativmedizinischer Versorgung bei nicht-heilbarer Krebserkrankung (gemaess Temel 2010 NEJM bessere Lebensqualitaet UND laengeres Ueberleben). Schmerztherapie nach WHO-Stufenschema (Nicht-Opioid -> schwaches Opioid -> starkes Opioid). Bei Dyspnoe: niedrigdosierte Opioide. Atemwegssekret (Death Rattle): zurueckhaltend mit Anticholinergika (Evidenz limitiert). Familiengespraeche und Advance Care Planning. Trauerbegleitung Angehoerige.",
+        "geltungsbereich": "Palliativversorgung bei nicht-heilbarer Krebserkrankung — somatische, psychische, soziale, spirituelle Dimensionen."
+      },
+      "context_notes": [
+        "Temel 2010 NEJM Studie ist Schluessel-Evidenz: bei Lungenkarzinom Stadium IV verbesserte fruehe Palliativ-Integration sowohl Lebensqualitaet als auch Ueberleben.",
+        "Die Leitlinie ist explizit deskriptiv und vermeidet Stellungnahme zu Sterbehilfe-Debatte — Politik-Tabu-Beachtung wichtig.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/128-001OL"
+      ],
+      "claim_phrasings_handled": [
+        "Fruehe Palliativ-Integration verbessert Lebensqualitaet und Ueberleben",
+        "Schmerztherapie folgt WHO-Stufenschema",
+        "Niedrigdosierte Opioide sind bei Dyspnoe in Palliativsituation empfohlen"
+      ],
+      "trigger_keywords": [
+        "leitlinie palliativmedizin",
+        "s3-leitlinie palliativ",
+        "awmf palliativ",
+        "palliativ leitlinie",
+        "leitlinie palliative care"
+      ],
+      "trigger_composite": [
+        [
+          "palliativ",
+          "palliativmedizin",
+          "palliative care",
+          "sterbephase",
+          "end of life"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "schmerztherapie",
+          "who-stufenschema",
+          "opioid",
+          "dyspnoe",
+          "advance care planning",
+          "dgp",
+          "dkg",
+          "awmf",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie Palliativmedizin (DGP / DKG / AWMF, Stand 2020)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/128-001OL",
+      "secondary_url": "https://www.leitlinienprogramm-onkologie.de"
+    },
+    {
+      "id": "awmf_osteoporose",
+      "topic": "osteoporose",
+      "scope": "S3-Leitlinie Osteoporose",
+      "country": "DE",
+      "year": 2023,
+      "headline": "S3-Leitlinie Prophylaxe, Diagnostik und Therapie der Osteoporose (DVO Dachverband Osteologie / AWMF)",
+      "data": {
+        "awmf_register_nummer": "183-001",
+        "s_level": "S3",
+        "fachgesellschaft": "Dachverband Osteologie (DVO) + Deutsche Gesellschaft fuer Geriatrie (DGG) + AWMF",
+        "publication_year": 2003,
+        "last_revision": 2023,
+        "guideline_version": "5.0",
+        "kernempfehlung": "Risiko-Assessment (FRAX-Score, DVO-Risiko-Score) bei Frauen ab 70 / Maennern ab 80 oder bei Risikofaktoren frueher. Diagnostik: DXA (Dual-Energy-X-Ray-Absorptiometrie) als Goldstandard. Therapie bei T-Score unter -2,5 oder vorausgegangener Fraktur: Bisphosphonate (Alendronat, Risedronat, Zoledronat) oder Denosumab als Erstlinien; bei sehr hohem Risiko Romosozumab oder Teriparatid (anabol). Calcium + Vitamin-D-Substitution. Sturzpraevention obligat.",
+        "geltungsbereich": "Osteoporose bei Frauen und Maennern, primaer und sekundaer."
+      },
+      "context_notes": [
+        "Bisphosphonate haben dokumentierte Reduktion vertebraler und huefter Frakturen (HR ~ 0,5-0,7).",
+        "Denosumab erfordert konsequente Anschluss-Therapie wegen Rebound-Effekt nach Absetzen (multiple Wirbelfrakturen-Risiko).",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/183-001"
+      ],
+      "claim_phrasings_handled": [
+        "Bisphosphonate sind Erstlinien-Therapie bei Osteoporose",
+        "DXA ist Goldstandard fuer Osteoporose-Diagnostik",
+        "Calcium + Vitamin D bei Osteoporose-Therapie"
+      ],
+      "trigger_keywords": [
+        "leitlinie osteoporose",
+        "s3-leitlinie osteoporose",
+        "awmf osteoporose",
+        "osteoporose leitlinie",
+        "dvo leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "osteoporose",
+          "knochenschwund",
+          "knochendichte",
+          "frax",
+          "t-score"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "diagnostik",
+          "bisphosphonat",
+          "alendronat",
+          "denosumab",
+          "zoledronat",
+          "dxa",
+          "vitamin d",
+          "awmf",
+          "dvo",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie Osteoporose (DVO / DGG / AWMF, Stand 2023)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/183-001",
+      "secondary_url": "https://www.dv-osteologie.org"
+    },
+    {
+      "id": "awmf_chronische_niereninsuffizienz",
+      "topic": "niereninsuffizienz",
+      "scope": "Nationale VersorgungsLeitlinie Nierenerkrankungen bei Diabetes",
+      "country": "DE",
+      "year": 2023,
+      "headline": "NVL Nierenerkrankungen bei Diabetes im Erwachsenenalter (BAEK / KBV / AWMF / DGfN / DDG)",
+      "data": {
+        "awmf_register_nummer": "nvl-001f",
+        "s_level": "S3",
+        "fachgesellschaft": "Bundesaerztekammer + KBV + AWMF (Deutsche Gesellschaft fuer Nephrologie DGfN, Deutsche Diabetes Gesellschaft DDG u.a.)",
+        "publication_year": 2010,
+        "last_revision": 2023,
+        "guideline_version": "2.0",
+        "kernempfehlung": "Bei diabetischer Nephropathie: ACE-Hemmer oder ARB Erstlinien zur Renoprotektion (RAAS-Blockade). SGLT-2-Hemmer haben dokumentierte renoprotektive Wirkung (CREDENCE, DAPA-CKD Studien) — bei CKD-Stadium 2-4 mit Albuminurie indiziert. Finerenon (nichtsteroidaler MRA) als Add-on bei persistierender Albuminurie unter optimaler RAAS-Blockade. Blutdruck-Zielwert mit Albuminurie unter 130/80 mmHg.",
+        "geltungsbereich": "Chronische Niereninsuffizienz bei Diabetes mellitus Typ 1 und 2."
+      },
+      "context_notes": [
+        "SGLT-2-Hemmer-Renoprotektion ist seit ca. 2020 in den Leitlinien fest verankert — eine der wichtigsten Therapie-Innovationen der Nephrologie.",
+        "KDIGO 2024 Guidelines (Kidney Disease: Improving Global Outcomes) ist die internationale Referenz.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/nvl-001f"
+      ],
+      "claim_phrasings_handled": [
+        "ACE-Hemmer/ARB sind bei diabetischer Nephropathie Erstlinien",
+        "SGLT-2-Hemmer wirken renoprotektiv bei diabetischer Nierenerkrankung",
+        "Finerenon ist Add-on bei persistierender Albuminurie"
+      ],
+      "trigger_keywords": [
+        "leitlinie niereninsuffizienz",
+        "nvl nierenerkrankungen",
+        "leitlinie nephropathie",
+        "awmf niere",
+        "diabetische nephropathie leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "niereninsuffizienz",
+          "nephropathie",
+          "ckd",
+          "chronic kidney disease",
+          "albuminurie",
+          "nierenversagen",
+          "nephrologie"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "ace-hemmer",
+          "ace hemmer",
+          "arb",
+          "sglt-2",
+          "finerenon",
+          "nvl",
+          "awmf",
+          "dgfn",
+          "raas",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "NVL Nierenerkrankungen bei Diabetes (BAEK / KBV / AWMF, Stand 2023)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/nvl-001f",
+      "secondary_url": "https://www.leitlinien.de/themen/diabetes"
+    },
+    {
+      "id": "awmf_hashimoto_thyreoiditis",
+      "topic": "schilddruese",
+      "scope": "S2k-Leitlinie Erhoehter TSH-Wert",
+      "country": "DE",
+      "year": 2023,
+      "headline": "S2k-Leitlinie Erhoehter TSH-Wert in der Hausarztpraxis (DEGAM)",
+      "data": {
+        "awmf_register_nummer": "053-046",
+        "s_level": "S2k",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Allgemeinmedizin und Familienmedizin (DEGAM) + AWMF",
+        "publication_year": 2016,
+        "last_revision": 2023,
+        "guideline_version": "2.0",
+        "kernempfehlung": "Bei isoliert erhoehtem TSH (subklinische Hypothyreose, TSH 4-10 mIU/l) bei asymptomatischen Patienten: kein routinemaessiger Therapiebeginn. Verlaufskontrolle nach 2-3 Monaten. L-Thyroxin-Substitution erst bei TSH ueber 10 mIU/l, bei Symptomen, bei Schwangerschaft/Schwangerschaftswunsch, bei Struma. Bei Aelteren ueber 70 Jahre Zurueckhaltung mit L-Thyroxin-Therapie (geringer Nutzen, Risiko Tachyarrhythmien).",
+        "geltungsbereich": "Erhoehter TSH-Wert in der Hausarztpraxis, primaer subklinische Hypothyreose."
+      },
+      "context_notes": [
+        "Wichtige Choosing-Wisely-Botschaft: subklinische Hypothyreose wird haeufig ueberbehandelt; viele Patienten brauchen KEIN L-Thyroxin.",
+        "Bei Hashimoto-Thyreoiditis ohne Hypothyreose generell kein Therapie-Indikation.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/053-046"
+      ],
+      "claim_phrasings_handled": [
+        "Subklinische Hypothyreose erfordert nicht immer L-Thyroxin",
+        "Bei TSH 4-10 mIU/l erst Verlaufskontrolle ohne Therapie",
+        "Hashimoto ohne Hypothyreose braucht keine Therapie"
+      ],
+      "trigger_keywords": [
+        "leitlinie schilddruese",
+        "leitlinie hypothyreose",
+        "leitlinie hashimoto",
+        "leitlinie tsh",
+        "awmf schilddruese"
+      ],
+      "trigger_composite": [
+        [
+          "schilddruese",
+          "schilddrüse",
+          "tsh",
+          "hypothyreose",
+          "hashimoto",
+          "thyreoiditis",
+          "schilddruesenunterfunktion",
+          "l-thyroxin",
+          "levothyroxin"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "diagnostik",
+          "verlaufskontrolle",
+          "substitution",
+          "degam",
+          "awmf",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S2k-Leitlinie Erhoehter TSH-Wert (DEGAM / AWMF, Stand 2023)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/053-046",
+      "secondary_url": "https://www.degam.de"
+    },
+    {
+      "id": "awmf_atopische_dermatitis",
+      "topic": "atopische_dermatitis",
+      "scope": "S3-Leitlinie Atopische Dermatitis",
+      "country": "DE",
+      "year": 2023,
+      "headline": "S3-Leitlinie Atopische Dermatitis (Neurodermitis) (DDG / DGAKI / AWMF)",
+      "data": {
+        "awmf_register_nummer": "013-027",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Dermatologische Gesellschaft (DDG) + Deutsche Gesellschaft fuer Allergologie und klinische Immunologie (DGAKI) + AWMF",
+        "publication_year": 2008,
+        "last_revision": 2023,
+        "guideline_version": "3.0",
+        "kernempfehlung": "Basistherapie: tägliche Anwendung rueckfettender Externa (Emollients). Stufentherapie: topische Glukokortikoide oder topische Calcineurininhibitoren (Tacrolimus, Pimecrolimus) bei akuten Schueben. Bei moderat bis schwerer AD systemische Therapie: Dupilumab (IL-4/IL-13-Antagonist), Tralokinumab oder JAK-Inhibitoren (Upadacitinib, Baricitinib, Abrocitinib). Phototherapie als Option.",
+        "geltungsbereich": "Atopische Dermatitis (Neurodermitis) bei Kindern und Erwachsenen."
+      },
+      "context_notes": [
+        "Dupilumab ist seit 2017 zugelassen und hat das Spektrum systemischer AD-Therapie revolutioniert.",
+        "JAK-Inhibitoren (oral) sind seit ~2021 neue systemische Option mit hoher Effektstaerke.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/013-027"
+      ],
+      "claim_phrasings_handled": [
+        "Dupilumab ist wirksam bei moderat bis schwerer atopischer Dermatitis",
+        "Basistherapie der Neurodermitis sind taegliche Emollients",
+        "JAK-Inhibitoren sind systemische Option bei AD"
+      ],
+      "trigger_keywords": [
+        "leitlinie atopische dermatitis",
+        "s3-leitlinie neurodermitis",
+        "awmf neurodermitis",
+        "neurodermitis leitlinie",
+        "dupilumab leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "neurodermitis",
+          "atopische dermatitis",
+          "atopisches ekzem",
+          "ekzem"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "dupilumab",
+          "tralokinumab",
+          "tacrolimus",
+          "pimecrolimus",
+          "jak-inhibitor",
+          "ddg",
+          "dgaki",
+          "awmf",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie Atopische Dermatitis (DDG / DGAKI / AWMF, Stand 2023)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/013-027",
+      "secondary_url": "https://derma.de"
+    },
+    {
+      "id": "awmf_rheumatoide_arthritis",
+      "topic": "rheumatoide_arthritis",
+      "scope": "S3-Leitlinie Rheumatoide Arthritis",
+      "country": "DE",
+      "year": 2019,
+      "headline": "S3-Leitlinie Therapie der rheumatoiden Arthritis mit krankheitsmodifizierenden Antirheumatika (DGRh / AWMF)",
+      "data": {
+        "awmf_register_nummer": "060-004",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Rheumatologie (DGRh) + AWMF",
+        "publication_year": 2009,
+        "last_revision": 2019,
+        "guideline_version": "3.0",
+        "kernempfehlung": "Treat-to-Target-Strategie: Therapieziel ist klinische Remission (oder mindestens niedrige Krankheitsaktivitaet) innerhalb 3-6 Monate. Erstlinien-DMARD: Methotrexat (MTX) als Ankertherapie, oral oder s.c. Bei MTX-Versagen Eskalation zu Biologika (TNF-Inhibitoren, IL-6-Inhibitor Tocilizumab, B-Zell-Depletion Rituximab) oder JAK-Inhibitoren (Tofacitinib, Baricitinib, Upadacitinib). Bei Hochdosis-Cortison nur kurzfristige Ueberbrueckung — Langzeitanwendung minimieren.",
+        "geltungsbereich": "Rheumatoide Arthritis bei Erwachsenen (RA, ehemals chronische Polyarthritis)."
+      },
+      "context_notes": [
+        "Treat-to-Target-Konzept (T2T) ist evidenzbasiertes Paradigma seit ~2010.",
+        "JAK-Inhibitoren stehen aufgrund EMA-Warnung 2022 (PRAC, Risiko Thromboembolien + MACE bei Risiko-Patienten) unter restriktiver Verschreibung.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/060-004"
+      ],
+      "claim_phrasings_handled": [
+        "Methotrexat ist Ankertherapie bei rheumatoider Arthritis",
+        "Treat-to-Target ist Standard-Strategie bei RA",
+        "Biologika sind bei MTX-Versagen indiziert"
+      ],
+      "trigger_keywords": [
+        "leitlinie rheumatoide arthritis",
+        "s3-leitlinie ra",
+        "awmf rheuma",
+        "rheuma leitlinie",
+        "methotrexat leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "rheumatoide arthritis",
+          " ra ",
+          " ra.",
+          "rheuma",
+          "polyarthritis"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "methotrexat",
+          "mtx",
+          "biologika",
+          "tnf-inhibitor",
+          "rituximab",
+          "tocilizumab",
+          "jak-inhibitor",
+          "treat-to-target",
+          "dgrh",
+          "awmf",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie Rheumatoide Arthritis (DGRh / AWMF, Stand 2019)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/060-004",
+      "secondary_url": "https://dgrh.de"
+    },
+    {
+      "id": "awmf_suizidpraevention",
+      "topic": "suizidpraevention",
+      "scope": "S3-Leitlinie Suizidpraevention",
+      "country": "DE",
+      "year": 2024,
+      "headline": "S3-Leitlinie Suizidalitaet im Erwachsenenalter (DGPPN / DGS / AWMF)",
+      "data": {
+        "awmf_register_nummer": "038-022",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Gesellschaft fuer Psychiatrie und Psychotherapie, Psychosomatik und Nervenheilkunde (DGPPN) + Deutsche Gesellschaft fuer Suizidpraevention (DGS) + AWMF",
+        "publication_year": 2024,
+        "last_revision": 2024,
+        "guideline_version": "1.0",
+        "kernempfehlung": "Risiko-Einschaetzung als strukturiertes Klinik-Gespraech (nicht als isoliertes Screening-Instrument). Bei akuter Suizidalitaet stationaere Versorgung pruefen. Pharmakotherapie: Behandlung der zugrundeliegenden Grunderkrankung (Antidepressiva bei Depression, Lithium bei bipolarer Stoerung — Lithium hat Anti-Suizid-Effekt). Bei chronischer Suizidalitaet (z.B. Borderline-PS): Dialektisch-Behaviorale Therapie (DBT). Mediendienst-Empfehlungen WHO 2017 beachten (siehe Werther/Papageno).",
+        "geltungsbereich": "Suizidalitaet bei Erwachsenen — Diagnostik, Krisenintervention, Therapie, Praevention."
+      },
+      "context_notes": [
+        "Lithium hat dokumentierten Anti-Suizid-Effekt unabhaengig von Stimmungsstabilisator-Wirkung (Cipriani 2013 BMJ Meta-Analyse).",
+        "WHO Mediendienst-Empfehlungen 2017 sind Pflicht-Bestandteil verantwortungsvoller Suizid-Kommunikation. Hilfsangebot-Telefonnummern siehe NVL Depression.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/038-022"
+      ],
+      "claim_phrasings_handled": [
+        "Lithium hat dokumentierten Anti-Suizid-Effekt",
+        "DBT ist bei chronischer Suizidalitaet bei Borderline indiziert",
+        "Suizid-Risiko-Einschaetzung ist strukturiertes Klinik-Gespraech"
+      ],
+      "trigger_keywords": [
+        "leitlinie suizid",
+        "leitlinie suizidpraevention",
+        "s3-leitlinie suizidalitaet",
+        "awmf suizid",
+        "suizidpraevention leitlinie"
+      ],
+      "trigger_composite": [
+        [
+          "suizid",
+          "suizidalitaet",
+          "suizidalität",
+          "selbstmord",
+          "selbsttötung",
+          "freitod"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "praevention",
+          "therapie",
+          "lithium",
+          "dbt",
+          "dialektisch-behavioral",
+          "krisenintervention",
+          "dgppn",
+          "dgs",
+          "awmf",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie Suizidpraevention (DGPPN / DGS / AWMF, Stand 2024)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/038-022",
+      "secondary_url": "https://www.suizidpraevention.de"
+    },
+    {
+      "id": "awmf_chronischer_schmerz",
+      "topic": "chronischer_schmerz",
+      "scope": "S3-Leitlinie Langzeitanwendung Opioide bei chronischen Nicht-Tumorschmerzen",
+      "country": "DE",
+      "year": 2020,
+      "headline": "S3-Leitlinie LONTS — Langzeitanwendung von Opioiden bei chronischen Nicht-Tumorschmerzen (DGSS / AWMF)",
+      "data": {
+        "awmf_register_nummer": "145-003",
+        "s_level": "S3",
+        "fachgesellschaft": "Deutsche Schmerzgesellschaft (DGSS) + AWMF",
+        "publication_year": 2009,
+        "last_revision": 2020,
+        "guideline_version": "3.0",
+        "kernempfehlung": "Opioide bei chronischen Nicht-Tumorschmerzen NUR nach gestufter Indikationspruefung: konservative Therapien ausgeschoepft, multimodale Schmerztherapie versucht, klares Therapieziel, regelmaessige Wirksamkeitspruefung nach 4-12 Wochen. Bei fehlender Wirksamkeit (Schmerzreduktion mind. 30 Prozent ODER Funktionsverbesserung) Ausschleichen. NICHT empfohlen bei primaerer Fibromyalgie, primaerem Kopfschmerz, psychischen Stoerungen ohne klare Schmerz-Indikation. KEINE Dosis-Steigerung ohne Wirksamkeitsnachweis.",
+        "geltungsbereich": "Langzeitanwendung von Opioiden bei chronischen NICHT-Tumorschmerzen. Andere Empfehlung fuer Tumorschmerz (siehe Palliativ-Leitlinie WHO-Stufenschema)."
+      },
+      "context_notes": [
+        "LONTS-Leitlinie reagiert auf die US-Opioid-Krise — Praevention von Opioid-Uebergebrauch + iatrogener Abhaengigkeit.",
+        "Wichtige Differenzierung: Opioide bei TUMORschmerz sind nach WHO-Stufenschema indiziert; LONTS gilt fuer NICHT-Tumorschmerz.",
+        "AWMF-Register-URL: https://register.awmf.org/de/leitlinien/detail/145-003"
+      ],
+      "claim_phrasings_handled": [
+        "Opioide bei chronischen Nicht-Tumorschmerzen nur gestuft",
+        "Opioide sind bei Fibromyalgie nicht empfohlen",
+        "Opioid-Therapie braucht regelmaessige Wirksamkeitspruefung"
+      ],
+      "trigger_keywords": [
+        "lonts leitlinie",
+        "leitlinie opioide",
+        "awmf opioide",
+        "s3-leitlinie opioide",
+        "leitlinie chronischer schmerz opioide"
+      ],
+      "trigger_composite": [
+        [
+          "opioid",
+          "opioide",
+          "opiate",
+          "morphin",
+          "oxycodon",
+          "fentanyl",
+          "tilidin",
+          "tramadol",
+          "nicht-tumorschmerz"
+        ],
+        [
+          "leitlinie",
+          "empfehlung",
+          "therapie",
+          "schmerztherapie",
+          "lonts",
+          "dauertherapie",
+          "ausschleichen",
+          "dgss",
+          "awmf",
+          "erstlinien",
+          "standard",
+          "indiziert",
+          "behandlung",
+          "wirksam",
+          "empfohlen"
+        ]
+      ],
+      "source_label": "S3-Leitlinie LONTS — Opioide bei chronischen Nicht-Tumorschmerzen (DGSS / AWMF, Stand 2020)",
+      "source_url": "https://register.awmf.org/de/leitlinien/detail/145-003",
+      "secondary_url": "https://www.dgss.org"
+    }
+  ]
+}

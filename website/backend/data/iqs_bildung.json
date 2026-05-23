@@ -1,0 +1,452 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-23",
+  "source_label": "IQS Nationaler Bildungsbericht 2024 (Bände Indikatoren + Controlling + Wissenschaft) + Statistik Austria Bildung in Zahlen + BMBWF + OECD Education at a Glance 2024",
+  "source_url_root": "https://www.iqs.gv.at/themen/nationaler-bildungsbericht",
+  "license_note": "IQS-Bundesinstitut. NBB-Bände werden als PDF-Open-Access publiziert; Daten + Indikatoren sind staatliche Bildungsstatistik (i.d.R. CC-by-Standard). Bei direkter Zitation aus Bänden vollständige Quellenangabe inkl. Band-Nummer + Seitenzahl. Pack-Snapshot 2026-05-23 referenziert NBB-2024-Daten als Sekundär-Aggregation.",
+  "facts": [
+    {
+      "id": "nbb_2024_schueler_eckwerte",
+      "topic": "schueler_eckwerte_at_konsens",
+      "scope": "Gesamt-Schüler:innen-Zahlen Österreich Pflichtschule + AHS + BMS + BHS + BS — NBB 2024 Band Indikatoren",
+      "year": 2024,
+      "source_url": "https://www.iqs.gv.at/themen/nationaler-bildungsbericht",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bildung",
+      "source_label": "IQS Nationaler Bildungsbericht 2024 (Band Indikatoren) + Statistik Austria Bildung in Zahlen 2023/24",
+      "headline": "Österreich hat ~1,15 Mio Schüler:innen 2023/24 (Volksschule + Sek-I + Sek-II), davon ~340.000 Volksschule, ~330.000 Sek-I, ~480.000 Sek-II — Snapshot aus NBB 2024",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Schüler:innen-Eckwerte AT 2023/24 (NBB 2024 + Statistik Austria Bildung in Zahlen): Pflichtschulen (Volksschule + Sek-I: NMS/MS, AHS-Unterstufe, Sonderschule) ~670.000 Schüler:innen; Sek-II (AHS-Oberstufe + BMHS + BS Berufsschule) ~480.000. Insgesamt ~1,15 Mio Schüler:innen im allgemeinbildenden + berufsbildenden Schulwesen. Pack vermeidet Wertung 'zu viele/zu wenige' — präsentiert nur empirische Bestands-Zahlen.",
+        "volksschule_2023_24": "Volksschule (1.-4. Klasse): ca. 340.000 Schüler:innen 2023/24 (Statistik Austria). Trend 2014-2024: leicht steigend (+5 % seit 2014, demografische Erholung).",
+        "sek_i_2023_24": "Sekundarstufe I (5.-8. Schulstufe — NMS/MS + AHS-Unterstufe + Sonderschule): ca. 330.000 Schüler:innen 2023/24. Anteil AHS-Unterstufe an Sek-I steigt seit 2010 (in Wien >60 %, ländlich ~30 %).",
+        "sek_ii_2023_24": "Sekundarstufe II (9.-13. Schulstufe — AHS-Oberstufe + BMS + BHS + Berufsschule): ca. 480.000 Schüler:innen 2023/24. AHS-Oberstufe ~110.000, BMHS ~210.000, Berufsschule (Lehre) ~110.000, sonstige ~50.000.",
+        "schulen_anzahl_at": "Anzahl Schulen AT 2023/24: ca. 5.700 Schulstandorte (inkl. Privatschulen). Davon ~2.900 Volksschulen, ~1.100 NMS/MS, ~340 AHS, ~720 BMHS, ~440 Berufsschulen, ~310 Sonderschulen + Heilpädagogische Stationen.",
+        "privatschul_anteil": "Privatschul-Anteil 2023/24 deskriptiv (Statistik Austria): ~9 % aller Schüler:innen besuchen eine private Schule mit oder ohne Öffentlichkeitsrecht. Höchster Anteil in Wien (~14 %), niedrigster in Niederösterreich/Burgenland (~5 %). Pack vermeidet Wertung Privat vs. Öffentlich.",
+        "context": "Pack referenziert NBB-2024-Band-Indikatoren-Aggregation der Statistik-Austria-Schulstatistik. Detail-Tabellen pro Bundesland + Schultyp im Original-Band."
+      },
+      "context_notes": [
+        "Quellen-Hinweis: NBB-Indikatoren-Band aggregiert Statistik-Austria-Daten (Bildungsdokumentation) plus BMBWF-Lehrer:innen-Statistik. Pack-Werte sind gerundet.",
+        "Demographie-Hinweis: Volksschüler-Zahlen steigen leicht (Geburten-Erholung), Sek-II-Zahlen stabil. Prognose 2030: Volksschulen +3 %, Sek-II -2 %.",
+        "Privatschul-Quote deskriptiv ohne Bewertung — IQS/NBB stellt nur Zahlen, keine Werte-Frage 'gut/schlecht'."
+      ],
+      "claim_phrasings_handled": [
+        "Wie viele Schüler hat Österreich?",
+        "Anzahl Volksschüler Österreich",
+        "Schüler in Österreich 2024",
+        "Wie viele Schulen gibt es in Österreich",
+        "Privatschul-Anteil Österreich"
+      ],
+      "trigger_keywords": [
+        "anzahl schüler österreich", "anzahl schueler oesterreich",
+        "schüler österreich 2024", "schueler oesterreich 2024",
+        "wie viele schüler", "wie viele schueler",
+        "schüler at gesamt", "anzahl schulen österreich",
+        "schulen österreich gesamt", "schulen oesterreich gesamt",
+        "privatschule österreich anteil", "privatschul-quote"
+      ],
+      "trigger_composite": [
+        ["schüler", "schueler", "volksschüler", "volksschueler", "schulen", "privatschule", "privatschul"],
+        ["österreich", "oesterreich", "at ", " at,", " at.", "wien", "bundesland"],
+        ["anzahl", "wie viele", "gesamt", "millionen", "1,1", "1.150.000", "1,15", "quote", "anteil", "bestand"]
+      ]
+    },
+    {
+      "id": "nbb_2024_pisa_2022_at_results",
+      "topic": "pisa_2022_at_konsens",
+      "scope": "PISA 2022 Österreich — Mathematik / Lesen / Naturwissenschaft (NBB 2024 Bezug)",
+      "year": 2022,
+      "source_url": "https://www.iqs.gv.at/themen/nationaler-bildungsbericht",
+      "secondary_url": "https://www.oecd.org/pisa/publications/pisa-2022-results.htm",
+      "source_label": "IQS Nationaler Bildungsbericht 2024 + OECD PISA 2022 Volume I",
+      "headline": "PISA 2022 AT: Mathematik 487, Lesen 480, Naturwissenschaft 491 — OECD-Schnitt 472/476/485; AT leicht über OECD in allen 3 Domänen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive PISA-Werte AT 2022 (OECD-Publikation Dezember 2023, NBB-2024-Band-Indikatoren-Aggregation): Mathematik 487 Punkte (OECD-Schnitt 472), Lesen 480 (OECD 476), Naturwissenschaft 491 (OECD 485). AT liegt in allen 3 Domänen leicht über OECD-Schnitt. Vergleich nur mit gleicher PISA-Erhebung sinnvoll: PISA 2022 vs. PISA 2018 zeigt Mathematik-Rückgang um ~12 Punkte (499→487), Lesen -4 Punkte (484→480), Naturwissenschaft -1 (492→491) — der Mathematik-Rückgang ist OECD-weit messbar (Pandemie-Effekt). Pack vermeidet Wertung 'Schulsystem versagt' — präsentiert nur OECD-konforme Messwerte.",
+        "mathematik_at_2022": "PISA 2022 Mathematik AT: 487 Punkte. OECD-Schnitt 472. Rang AT in OECD-37: ~14. Trend 2018-2022: -12 Punkte (Pandemie-Effekt OECD-weit dokumentiert, AT im OECD-Mittel).",
+        "lesen_at_2022": "PISA 2022 Lesen AT: 480 Punkte. OECD-Schnitt 476. Rang AT in OECD-37: ~19. Trend 2018-2022: -4 Punkte (geringer Rückgang).",
+        "naturwissenschaft_at_2022": "PISA 2022 Naturwissenschaft AT: 491 Punkte. OECD-Schnitt 485. Rang AT in OECD-37: ~19. Trend stabil (-1 Punkte seit 2018).",
+        "risikoschueler_at_2022": "Anteil PISA-Risikoschüler:innen (unter Niveau 2) AT 2022: Mathematik ~25 %, Lesen ~25 %, Naturwissenschaft ~21 %. OECD-Schnitt jeweils ~26 %. AT bei Risikoschüler:innen-Anteil im OECD-Mittel.",
+        "stichprobe_at": "PISA 2022 Stichprobe AT: ca. 6.150 15-jährige Schüler:innen aus 290 Schulen. Repräsentative Erhebung nach OECD-Standard.",
+        "context": "PISA misst Anwendungs-/Transferkompetenzen (im Gegensatz zu TIMSS curricular). 15-jährige Schüler:innen schul-typ-übergreifend (AHS + BMS + BHS + Berufsschule)."
+      },
+      "context_notes": [
+        "PISA-Schock-Erzählung: 2000-Pressekampagne hat den damaligen 'PISA-Schock' geprägt. AT-Werte 2022 sind in allen 3 Domänen über OECD-Schnitt — eine 'Bildungs-Katastrophe' lässt sich aus PISA 2022 statistisch nicht ableiten.",
+        "Mathematik-Rückgang 2018-2022 ist OECD-weit messbar — wird in OECD-Auswertungen primär als Pandemie-Effekt (Schul-Schließungen, Distance-Learning-Defizit) interpretiert.",
+        "PISA 2022 wurde wegen Pandemie um 1 Jahr verschoben (ursprünglich 2021 geplant). Nächste Erhebung PISA 2025 (Publikation 2026)."
+      ],
+      "claim_phrasings_handled": [
+        "PISA 2022 Österreich Ergebnisse",
+        "PISA AT Mathematik 487",
+        "Österreich PISA Naturwissenschaft",
+        "PISA-Schock Österreich",
+        "Bildungs-Krise PISA",
+        "Wie schlecht ist Österreich bei PISA"
+      ],
+      "trigger_keywords": [
+        "pisa 2022 at", "pisa 2022 österreich", "pisa 2022 oesterreich",
+        "pisa at mathematik", "pisa at lesen", "pisa at naturwiss",
+        "pisa-schock österreich", "pisa schock österreich",
+        "pisa schock oesterreich", "pisa-schock oesterreich",
+        "österreich pisa", "oesterreich pisa", "at pisa"
+      ],
+      "trigger_composite": [
+        ["pisa"],
+        ["österreich", "oesterreich", "at ", " at.", " at,", "iqs", "nbb"],
+        ["mathematik", "lesen", "naturwiss", "ergebnis", "punkte", "rang", "schock", "486", "487", "480", "491", "krise", "katastroph", "versagt", "schlecht", "wie gut"]
+      ]
+    },
+    {
+      "id": "nbb_2024_lehrkraefte_pensionierung",
+      "topic": "lehrkraefte_pensionierung_at_konsens",
+      "scope": "Lehrkräfte-Bestand + Pensionierungs-Welle AT 2024-2030 (NBB 2024 Band Controlling)",
+      "year": 2024,
+      "source_url": "https://www.iqs.gv.at/themen/nationaler-bildungsbericht",
+      "secondary_url": "https://www.bmbwf.gv.at/Themen/schule/lehr.html",
+      "source_label": "IQS Nationaler Bildungsbericht 2024 (Band Controlling) + BMBWF Lehrer:innen-Bedarfsprognose 2024 + Statistik Austria",
+      "headline": "AT-Lehrkräfte 2024 ~132.000 Vollzeit-Äquivalent; bis 2030 gehen ~32.000 in Pension (24 %), nur ~5.400 Lehramts-Studienanfänger:innen 2024 (vs. 8.200 in 2014, -34 %) — strukturelle Bedarfs-Lücke absehbar",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Lehrkräfte-Bestand AT 2024 (NBB-Band-Controlling + BMBWF + Statistik Austria): Gesamt-Bestand ~132.000 Vollzeit-Äquivalent (2014: ~122.000, +10.000 in 10 Jahren). Pensionierungs-Welle 2024-2030: ca. 32.000 Lehrkräfte gehen in Pension (~24 % des heutigen Bestands). Studienanfänger:innen Lehramt 2024: ca. 5.400 (2014: ~8.200, -34 % in 10 Jahren). Vakanzquote 2024 ~0,5 % — KEIN flächendeckender akuter Lehrermangel 2024, aber strukturelle Bedarfs-Lücke 2025-2030 absehbar. Engpässe sind REGIONAL (Wien, Wiener Neustadt) und FACH-spezifisch (Mathematik, Physik, Informatik, technische Fachgegenstände). Pack vermeidet politische Wertung 'Schulsystem versagt' — referenziert nur empirische Bestands- und Prognose-Zahlen.",
+        "bestand_2024_vae": "Lehrkräfte-Bestand AT 2024 (Vollzeit-Äquivalent, alle Schulformen): ~132.000 (BMBWF). Davon Pflichtschule ~85.000, Sek-II AHS ~21.000, BMHS ~22.000, Berufsschule ~4.000.",
+        "pensionierungswelle_2024_2030": "Prognose Pensionierungen 2024-2030: ~32.000 Lehrkräfte (Quelle BMBWF Lehrer:innen-Bedarfsprognose). Entspricht ~24 % des heutigen Bestands. Pflichtschule-Bereich besonders betroffen (~22.000), Sek-II ~10.000.",
+        "studienanfaenger_lehramt": "Studienanfänger:innen Lehramt AT: 2014: ~8.200, 2024: ~5.400 (Statistik Austria). Rückgang -34 % in 10 Jahren. Kombination Pensionierungs-Welle + Studien-Rückgang ergibt strukturelle Lücke 2025-2030.",
+        "vakanzquote_2024": "Vakanzquote 2024 AT (gemeldete unbesetzte Stellen / Soll-Stellen): ~0,5 %. KEIN flächendeckender akuter Mangel — Engpässe sind regional und fach-spezifisch.",
+        "engpass_faecher": "Engpass-Fächer 2024 (BMBWF + Bildungsdirektionen): Mathematik, Physik, Informatik, technische Fachgegenstände (Bautechnik, Maschinenbau), Bewegung+Sport (Männer), Werken. Geistes-/Gesellschafts-Fächer + Religionen: ausreichend bis überschüssig.",
+        "engpass_regionen": "Engpass-Regionen 2024: Wien (Bezirke mit hohem Schüler:innen-Wachstum: 10., 15., 16., 21., 22. Bezirk), Wiener Neustadt, Linz/Wels. Ländliches NÖ/Burgenland teilweise sogar Lehrer-Überhang in bestimmten Fächern.",
+        "context": "Pack distanziert sich von Wertung 'Bildungssystem im Notstand' — präsentiert Bestand + Prognose deskriptiv. Wertungs-Aussagen sind außerhalb des IQS-Mandats."
+      },
+      "context_notes": [
+        "Quellen-Hinweis: NBB-Band-Controlling integriert BMBWF-Bedarfsprognose mit Statistik-Austria-Bestands-Daten. Pack-Werte sind 2024-Stand.",
+        "Strukturelle Lücke = 32.000 Pensionierungen - 5.400 x 4 Jahre Anfänger-Zahl × Abschluss-Quote ~70 % = ~15.000 Anfänger zu wenig bis 2030 (vereinfachte Rechnung).",
+        "Quereinsteiger:innen-Programm: BMBWF hat 2022 Quereinsteiger-Programm intensiviert. Bisherige Erfahrung: deckt ~10-15 % der jährlichen Neueinstellungen."
+      ],
+      "claim_phrasings_handled": [
+        "Lehrermangel Österreich 2024",
+        "Pensionierungswelle Lehrer Österreich",
+        "Wie viele Lehrer in Österreich",
+        "Lehrkräfte Bedarf AT",
+        "Lehramt Studienanfänger Rückgang"
+      ],
+      "trigger_keywords": [
+        "lehrermangel österreich", "lehrermangel oesterreich",
+        "lehrer-mangel at", "lehrer mangel at",
+        "lehrkräfte österreich", "lehrkraefte oesterreich",
+        "lehrkräfte mangel", "lehrkraefte mangel",
+        "pensionierungswelle lehrer", "pensionswelle lehrer",
+        "lehramt studienanfänger", "lehramt studienanfaenger",
+        "lehrer-bedarf österreich", "lehrer bedarf oesterreich",
+        "anzahl lehrer at", "anzahl lehrkräfte österreich"
+      ],
+      "trigger_composite": [
+        ["lehrer", "lehrkraft", "lehrkräfte", "lehrkraefte", "lehramt", "pädagog", "paedagog"],
+        ["mangel", "fehlend", "zu wenig", "engpass", "pensionier", "ruhestand", "anzahl", "bestand", "studienanfänger", "studienanfaenger"],
+        ["österreich", "oesterreich", "at ", "wien", "bundesland", " at."]
+      ]
+    },
+    {
+      "id": "nbb_2024_bildungsausgaben_bip",
+      "topic": "bildungsausgaben_at_konsens",
+      "scope": "Öffentliche Bildungs-Ausgaben Österreich %BIP (OECD Education at a Glance + NBB)",
+      "year": 2024,
+      "source_url": "https://www.oecd.org/education/education-at-a-glance/",
+      "secondary_url": "https://www.iqs.gv.at/themen/nationaler-bildungsbericht",
+      "source_label": "OECD Education at a Glance 2024 + IQS Nationaler Bildungsbericht 2024 (Band Indikatoren) + Statistik Austria Bildungsfinanzstatistik",
+      "headline": "AT öffentliche Bildungs-Ausgaben 2024 ~5,2 % BIP, OECD-Schnitt ~4,9 % — AT etwas über OECD-Mittel; pro Schüler:in Primar/Sek-I AT ~14.000 USD KKP (OECD-Top-5)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Bildungs-Ausgaben-Eckwerte AT (OECD Education at a Glance 2024 + Statistik Austria Bildungsfinanzstatistik 2023, NBB-Bezug): öffentliche Bildungs-Ausgaben ca. 5,2 % des BIP (OECD-Schnitt 4,9 %, AT leicht über Mittel). Ausgaben pro Schüler:in Primarstufe + Sek-I: ca. 14.000 USD KKP (OECD-Top-5, OECD-Schnitt ~11.000 USD). Pro Tertiär-Student:in: ca. 19.000 USD KKP (OECD-Schnitt ~17.000). AT ist im OECD-Vergleich HOCH-Bildungs-Ausgaben-Land. Pack vermeidet Wertung 'zu viel/zu wenig' — präsentiert nur OECD-konforme Werte.",
+        "ausgaben_bip_at_2024": "AT öffentliche Bildungs-Ausgaben %BIP 2023 (Statistik Austria Bildungsfinanzstatistik): ~5,2 %. Inkl. private Anteile (Schulgeld + Stipendien-Refundierung): ~5,6 %. OECD-Vergleich: AT-Wert über OECD-Schnitt 4,9 %.",
+        "pro_schueler_primar_sek_i": "Ausgaben pro Schüler:in Primar + Sek-I AT 2023 (OECD KKP-bereinigt): ~14.000 USD. OECD-Schnitt ~11.000 USD. AT ist in der OECD-Top-5 (vor DE ~13.500, hinter Norwegen + Luxemburg + Schweiz + Island).",
+        "pro_student_tertiaer": "Ausgaben pro Tertiär-Student:in AT 2023: ~19.000 USD KKP. OECD-Schnitt ~17.000 USD. AT etwas über OECD-Mittel.",
+        "anteil_lehrkraefte_gehaelter": "Anteil Lehrkräfte-Gehälter an Bildungs-Ausgaben AT: ~75-80 % (Primar/Sek). OECD-Schnitt ~70-75 %. Strukturell viel Personal-Ausgaben + relativ wenig für Infrastruktur/Material.",
+        "lehrer_gehalt_durchschnitt_at": "Durchschnittliches Bruttogehalt Pflichtschullehrer:in nach 15 Jahren Dienstzeit AT 2023 (OECD): ca. 65.000 USD KKP. OECD-Schnitt ~52.000 USD. AT-Lehrkräfte gehören zu OECD-Höher-Verdienenden.",
+        "context": "Pack referenziert OECD-Education-at-a-Glance-Standardisierung (KKP-bereinigt) + NBB-Band-Indikatoren-Aggregation. Detailtabellen pro Schultyp im Original-Band."
+      },
+      "context_notes": [
+        "Methodik: OECD bereinigt USD-Werte für Kaufkraftparität (KKP). Direkte Euro-Werte AT-spezifisch ohne KKP wären verzerrt.",
+        "Boulevard-Behauptungen 'AT gibt zu wenig für Bildung aus' sind im OECD-Vergleich statistisch nicht haltbar — AT ist im oberen Drittel.",
+        "Anteil Bildungs-Ausgaben am Gesamt-Budget AT 2024: ~10,5 % aller staatlichen Ausgaben (4,9 % Sozial-Schutz, 5,3 % Verteidigung, 7,1 % Gesundheit, 10,5 % Bildung — laut COFOG-Klassifikation)."
+      ],
+      "claim_phrasings_handled": [
+        "Wie viel gibt Österreich für Bildung aus",
+        "Bildungs-Ausgaben Österreich %BIP",
+        "Österreich gibt 5% des BIP für Bildung aus",
+        "AT zu wenig für Bildung",
+        "Lehrer-Gehalt Österreich OECD"
+      ],
+      "trigger_keywords": [
+        "bildungsausgaben österreich", "bildungsausgaben oesterreich",
+        "bildungs-ausgaben at", "bildung ausgaben at",
+        "bildungs-budget österreich", "bildungs budget oesterreich",
+        "bildung %bip österreich", "bildung anteil bip",
+        "lehrer gehalt österreich oecd", "lehrkräfte verdienst at",
+        "ausgaben pro schüler", "ausgaben pro schueler"
+      ],
+      "trigger_composite": [
+        ["bildung", "bildungs", "schul", "lehrer", "lehrkraft", "lehrkräfte", "lehrkraefte"],
+        ["ausgaben", "budget", "kosten", "investition", "gehalt", "verdienst", "%bip", "% bip", "prozent bip", "anteil bip", "pro schüler", "pro schueler"],
+        ["österreich", "oesterreich", "at ", "oecd", "europa", "vergleich"]
+      ]
+    },
+    {
+      "id": "nbb_2024_ganztagsschule_quote",
+      "topic": "ganztagsschule_at_konsens",
+      "scope": "Ganztagsschul-Quote Österreich (NBB 2024 Band Indikatoren + BMBWF Ganztagsschul-Statistik)",
+      "year": 2023,
+      "source_url": "https://www.iqs.gv.at/themen/nationaler-bildungsbericht",
+      "secondary_url": "https://www.bmbwf.gv.at/Themen/schule/zrp/gts.html",
+      "source_label": "IQS Nationaler Bildungsbericht 2024 + BMBWF Ganztagsschul-Statistik 2023/24 + Statistik Austria",
+      "headline": "AT-Ganztagsschul-Quote 2023/24 ~33 % der Pflichtschüler:innen (NMS/MS + Volksschule); Wien-Spitze ~70 %, Vorarlberg/Tirol Schluss ~10-15 %",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Ganztagsschul-Quote AT 2023/24 (BMBWF + NBB-Band-Indikatoren): ca. 33 % der Pflichtschüler:innen (Volksschule + Sek-I) nutzen ganztägige Schulform. Wien-Spitze ~70 %, Vorarlberg/Tirol Schluss ~10-15 %. Bundesländer-Spread ist groß (~60 Punkte). Pack vermeidet Wertung 'Ganztagsschule gut/schlecht' — referenziert nur die Quoten-Lage und das Bundesländer-Variabilität-Faktum.",
+        "ganztagsschul_quote_at_pflicht": "AT-Ganztagsschul-Quote Pflichtschule 2023/24 (BMBWF): ~33 %. Trend 2010-2024: deutlich ansteigend (2010 ~17 %, 2020 ~28 %, 2024 ~33 %).",
+        "bundeslaender_spread": "Bundesländer-Spread Ganztagsschul-Quote 2023/24: Wien ~70 %, Burgenland ~45 %, Niederösterreich ~32 %, Oberösterreich ~28 %, Steiermark ~28 %, Kärnten ~25 %, Salzburg ~22 %, Tirol ~15 %, Vorarlberg ~12 % (Quellen: BMBWF + Bildungsdirektionen).",
+        "verschraenkt_vs_offen": "Form-Unterscheidung: 'verschränkte' Ganztagsschule (Unterricht + Freizeit verschränkt über den Tag verteilt) vs. 'offene' Ganztagsschule (Unterricht vormittags + Nachmittags-Betreuung getrennt). AT 2024: ~25 % verschränkt, ~75 % offen. Verschränkte Form pädagogisch wirksamer (OECD-Studien), in AT politisch kontroversiell.",
+        "ozeanik_eu_vergleich": "EU-Vergleich Ganztagsschul-Quote (Eurydice 2023): NL/SE/FI/EE ~100 % strukturell Ganztagsschule, DE ~50 %, AT ~33 % (Mittelfeld), Südeuropa ITA/PRT ~20-30 %.",
+        "context": "Pack distanziert sich von Pro/Contra-Ganztagsschul-Wertung. Ganztagsschul-Debatte ist politisch sensitiv (Familien-Modell, Konservatismus vs. moderne Vereinbarkeit Beruf/Familie). IQS/NBB stellt nur Quoten, keine Wertung."
+      },
+      "context_notes": [
+        "BMBWF unterscheidet 'GTS' (Ganztagsschule) von 'Nachmittagsbetreuung in der Volksschule' — Statistik kann je nach Definition leicht abweichen.",
+        "EU-Vergleich: NL/SE/FI/EE haben strukturell ~100 % Ganztagsschule (alle Schüler:innen ganztägig). AT 33 % ist im EU-Mittelfeld.",
+        "Verschränkte vs. offene Form ist pädagogisch + politisch ein eigenes Thema — Pack stellt nur die deskriptive Quote, keine Wertung."
+      ],
+      "claim_phrasings_handled": [
+        "Ganztagsschul-Quote Österreich",
+        "Wie viele Ganztagsschulen AT",
+        "Ganztagsschule Anteil Wien",
+        "GTS Österreich Statistik"
+      ],
+      "trigger_keywords": [
+        "ganztagsschule österreich", "ganztagsschule oesterreich",
+        "ganztagsschul-quote", "ganztagsschul quote",
+        "gts österreich", "gts oesterreich",
+        "ganztägige schul", "ganztaegige schul",
+        "verschränkte schule", "verschraenkte schule",
+        "nachmittagsbetreuung schule"
+      ],
+      "trigger_composite": [
+        ["ganztag", "ganztags", "gts ", "verschränkt", "verschraenkt", "nachmittagsbetreuung"],
+        ["schul", "schüler", "schueler", "klasse", "wien", "vorarlberg", "tirol", "quote", "anteil", "prozent"],
+        ["österreich", "oesterreich", "at ", " at,", " at."]
+      ]
+    },
+    {
+      "id": "nbb_2024_klassengroesse_dach",
+      "topic": "klassengroesse_dach_konsens",
+      "scope": "Klassen-Größen DACH-Vergleich (OECD Education at a Glance 2024)",
+      "year": 2024,
+      "source_url": "https://www.oecd.org/education/education-at-a-glance/",
+      "secondary_url": "https://www.iqs.gv.at/themen/nationaler-bildungsbericht",
+      "source_label": "OECD Education at a Glance 2024 (Indikator D2) + IQS Nationaler Bildungsbericht 2024 (Band Controlling) + Statistik Austria",
+      "headline": "Klassen-Größe DACH: AT Volksschule ~19, Sek-I ~22 Schüler:innen; DE Volksschule ~21, Sek-I ~24; CH Volksschule ~19, Sek-I ~19 — AT/CH unter OECD-Schnitt (~21/~23)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Klassen-Größen-Werte DACH (OECD Education at a Glance 2024, Indikator D2): AT Volksschule (Primar) ~19 Schüler:innen pro Klasse, AT Sek-I ~22. DE Volksschule ~21, DE Sek-I ~24. CH Volksschule ~19, CH Sek-I ~19. OECD-Schnitt Volksschule ~21, OECD Sek-I ~23. AT + CH liegen UNTER OECD-Schnitt. DE liegt nahe OECD-Schnitt. Pack vermeidet Wertung 'zu groß/zu klein' — präsentiert nur OECD-konforme Werte.",
+        "at_volksschule_klassengr": "AT Volksschule Klassen-Größe Mittelwert 2023/24: ~19 Schüler:innen pro Klasse (OECD-Schnitt ~21). Max gemäß Schulorganisationsgesetz: 25.",
+        "at_sek_i_klassengr": "AT Sek-I (NMS/MS + AHS-Unterstufe) Klassen-Größe Mittelwert 2023/24: ~22 Schüler:innen pro Klasse (OECD-Schnitt ~23). Max ~30.",
+        "de_klassengr": "DE Volksschule (Grundschule) Klassen-Größe Mittelwert 2023/24: ~21. DE Sek-I ~24. DE liegt nahe OECD-Schnitt.",
+        "ch_klassengr": "CH Volksschule Klassen-Größe Mittelwert 2023/24: ~19. CH Sek-I ~19. CH ist im DACH-Vergleich KLEIN-Klassen-Land.",
+        "oecd_top_klein": "OECD-Top-Klein-Klassen-Länder 2024: Lettland ~16, Slowenien ~17, Estland ~17, Litauen ~18. OECD-Top-Groß-Klassen-Länder: Costa Rica ~30, Chile ~28, Türkei ~27, Korea ~24 Sek-I.",
+        "schueler_lehrer_verhaeltnis": "Schüler:innen-Lehrer:innen-Verhältnis AT 2023 (OECD Indikator D2): Primarstufe 12,4, Sek-I 9,8, Sek-II 9,2. OECD-Schnitt Primar 14,5, Sek-I 13,1. AT-Werte deutlich unter OECD-Schnitt (mehr Lehrkräfte pro Schüler:in).",
+        "context": "Klassen-Größe ist Boulevard-Thema; OECD-Empirie zeigt: Klassen-Größen-Effekt auf Lern-Erfolg ist statistisch klein (Hattie d ~0,21), wesentlich kleiner als Lehrer-Qualität (d ~0,30-0,40). Pack präsentiert Quoten ohne Wirksamkeits-Wertung."
+      },
+      "context_notes": [
+        "Klassen-Größen-Effekt: Hattie-Megastudie zeigt d=0,21 — statistisch messbar aber gering. Lehrer-Qualität (d=0,30-0,40) und Feedback (d=0,70) sind weitaus wirksamer.",
+        "AT-Reduktion Klassen-Größe: politisch seit 2007 Kontroverse. Wirksamkeit umstritten, Personal-Kosten hoch.",
+        "Schüler:innen-Lehrer:innen-Verhältnis ist NICHT identisch mit Klassen-Größe (Teilungsstunden, Förderkurse senken Verhältnis, Klassen bleiben aber gleich)."
+      ],
+      "claim_phrasings_handled": [
+        "Klassen-Größe Österreich",
+        "Wie groß sind Klassen in AT",
+        "Klassen DACH-Vergleich",
+        "Schüler-Lehrer-Verhältnis AT"
+      ],
+      "trigger_keywords": [
+        "klassengröße österreich", "klassengroesse oesterreich",
+        "klassen-größe at", "klasse groesse at",
+        "schüler pro klasse", "schueler pro klasse",
+        "schüler-lehrer-verhältnis", "schueler-lehrer-verhaeltnis",
+        "klassen at oecd"
+      ],
+      "trigger_composite": [
+        ["klasse", "klassen", "klassengröße", "klassengroesse", "klassen-größe", "schüler pro", "schueler pro", "schüler-lehrer", "schueler-lehrer"],
+        ["größe", "groesse", "anzahl", "verhältnis", "verhaeltnis", "durchschnitt", "mittel", "oecd"],
+        ["österreich", "oesterreich", "at ", "deutschland", "schweiz", "dach", "vergleich"]
+      ]
+    },
+    {
+      "id": "nbb_2024_migrant_leistungs_spread",
+      "topic": "migrant_leistungs_spread_at_konsens",
+      "scope": "Migrant:innen-Leistungs-Spread in PISA — deskriptive Quote ohne Ursachen-Statement",
+      "year": 2022,
+      "source_url": "https://www.iqs.gv.at/themen/nationaler-bildungsbericht",
+      "secondary_url": "https://www.oecd.org/pisa/publications/pisa-2022-results.htm",
+      "source_label": "IQS Nationaler Bildungsbericht 2024 + OECD PISA 2022 Volume II (Equity in Education)",
+      "headline": "PISA 2022 AT Mathematik-Spread Schüler:innen ohne vs. mit Migrationshintergrund: ca. 60-70 Punkte; OECD-Mittel ~30-50 Punkte — empirisch deskriptiv, IQS/Pack stellt keine Ursachen-Aussage",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Empirisch deskriptiv (OECD PISA 2022 Volume II Equity in Education + NBB-Band-Wissenschaft): Punkte-Differenz Mathematik PISA 2022 AT zwischen Schüler:innen OHNE Migrationshintergrund (~510 Punkte) und Schüler:innen MIT Migrationshintergrund 1. Generation (~435 Punkte) ist ca. 75 Punkte. 2. Generation (in AT geboren, Eltern aus Ausland): ~460 Punkte, Differenz ~50 Punkte. OECD-Mittel-Differenz: ~30-50 Punkte. WICHTIG: Diese Spread-Werte sind DESKRIPTIVE Empirie ohne IQS/Pack-Ursachen-Aussage. Sozio-ökonomische Faktoren, Schul-System-Faktoren, Sprach-Faktoren werden in der OECD-Wissenschaft kontroversiell diskutiert. Pack stellt KEINE eigene Ursachen-Hypothese — referenziert nur die OECD-Spread-Empirie und verweist auf NBB-Band-Wissenschaft für Detail-Analyse.",
+        "pisa_2022_at_ohne_migrationshintergrund_mathematik": "PISA 2022 AT Mathematik Schüler:innen ohne Migrationshintergrund (Schüler:in + beide Eltern in AT geboren): ~510 Punkte.",
+        "pisa_2022_at_mit_migrationshintergrund_1gen_mathematik": "PISA 2022 AT Mathematik 1. Generation Migrationshintergrund (Schüler:in im Ausland geboren): ~435 Punkte. Differenz zu ohne-Migrationshintergrund: ~75 Punkte.",
+        "pisa_2022_at_mit_migrationshintergrund_2gen_mathematik": "PISA 2022 AT Mathematik 2. Generation Migrationshintergrund (Schüler:in in AT geboren, Eltern aus Ausland): ~460 Punkte. Differenz: ~50 Punkte.",
+        "oecd_mittel_spread": "OECD-Mittel-Spread Schüler:innen ohne vs. mit Migrationshintergrund Mathematik PISA 2022: ~30-50 Punkte (je nach 1./2. Generation).",
+        "sprache_zu_hause_anteil": "Anteil Schüler:innen mit nicht-deutscher Familiensprache in AT 2023/24 (Statistik Austria): ~28 % aller Pflichtschüler:innen (Wien ~52 %, ländlich ~10-15 %).",
+        "pack_haltung": "WICHTIG: Pack zitiert Spread deskriptiv, gibt KEINE Ursachen-Aussage. Sozio-ökonomische, Schul-System-, Sprach- und Integrations-Faktoren sind in der OECD-Wissenschaft (z.B. Coleman-Report-Tradition vs. Schul-System-Tradition vs. Sprachen-Erwerbs-Tradition) kontroversiell diskutiert. NBB-Band-Wissenschaft enthält Detail-Analyse pro Land — Empfehlung: dort nachlesen.",
+        "context": "Pack hält strikt Politik-Tabu: keine eigene Wertung zur Migrations-Frage, keine eigene Wertung zum Schul-System, keine eigene Wertung zu Integrations-Politik. NUR empirische OECD-Spread-Werte."
+      },
+      "context_notes": [
+        "POLITIK-TABU-HINWEIS: Pack zitiert deskriptive Spread-Werte aus OECD-PISA-Daten, gibt aber KEINE eigene Ursachen-Aussage. Konkrete Ursachen-Aussagen sollten aus der NBB-Band-Wissenschaft + peer-reviewed Bildungs-Soziologie kommen.",
+        "Methodisch: PISA-Migrationshintergrund-Definition basiert auf Geburtsland Schüler:in + Eltern (OECD-Standard). Sprache zu Hause ist eigene Variable.",
+        "Vergleichbarkeit: Spread-Werte sind methodisch zwischen Ländern vergleichbar (OECD-Standardisierung), aber NICHT eindeutig auf eine Ursache rückführbar. Sozio-ökonomischer Status korreliert stark mit Migrationshintergrund — Verwechslung der Ursache ist häufiger Methodik-Fehler."
+      ],
+      "claim_phrasings_handled": [
+        "Migrationshintergrund schlechtere PISA",
+        "PISA AT Migrant Spread",
+        "Schüler mit Migrationshintergrund Bildung",
+        "Bildungsschere Migrant Österreich"
+      ],
+      "trigger_keywords": [
+        "migrationshintergrund pisa", "migrations-hintergrund pisa",
+        "migranten pisa österreich", "migranten pisa oesterreich",
+        "migrationshintergrund schule at",
+        "migrant leistung schule",
+        "pisa spread migrant",
+        "bildungsschere migrant"
+      ],
+      "trigger_composite": [
+        ["migrationshintergrund", "migrations-hintergrund", "migrationshintergründ", "migrant", "migranten", "zuwander", "ausländ", "auslaend", "nicht-deutsch"],
+        ["pisa", "schul", "schüler", "schueler", "bildung", "leistung", "spread", "differenz", "schere", "lücke", "luecke"],
+        ["österreich", "oesterreich", "at ", " at.", "iqs", "nbb"]
+      ]
+    },
+    {
+      "id": "nbb_2024_tertiaer_quote_25_34",
+      "topic": "tertiaer_quote_at_konsens",
+      "scope": "Tertiär-Bildungs-Quote AT 25-34 Jahre (OECD Education at a Glance 2024)",
+      "year": 2024,
+      "source_url": "https://www.oecd.org/education/education-at-a-glance/",
+      "secondary_url": "https://www.iqs.gv.at/themen/nationaler-bildungsbericht",
+      "source_label": "OECD Education at a Glance 2024 (Indikator A1) + IQS Nationaler Bildungsbericht 2024 (Band Indikatoren) + Statistik Austria",
+      "headline": "AT Tertiär-Quote 25-34 Jahre 2023: ~42 % (OECD-Schnitt ~47 %); AT-Wert unter OECD-Mittel, aber duale Lehrlings-Ausbildung erklärt Strukturunterschied",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Tertiär-Bildungs-Quote AT 25-34-Jährige 2023 (OECD Education at a Glance 2024, Indikator A1): ca. 42 %. OECD-Schnitt ~47 %. AT-Wert unter OECD-Mittel. ABER: AT hat ausgeprägte duale Berufsausbildung (Lehre + BHS-Matura mit beruflicher Qualifikation), die in OECD-Klassifikation oft als 'oberer Sekundarbereich + Post-sek-Bereich' eingestuft wird, NICHT als Tertiärstufe. Bei einer kombinierten Mess-Größe 'Tertiär + Höhere berufliche Bildung 25-34' liegt AT bei ~70 % — über OECD-Schnitt. Pack vermeidet die Wertung 'AT hat zu wenig Studierende' — verweist auf duale-System-Strukturunterschied.",
+        "tertiaer_25_34_at": "AT Tertiär-Quote 25-34 (ISCED 5-8: Bachelor + Master + Doktorat + Höhere Berufsausbildung) 2023: ~42 %. OECD-Schnitt ~47 %. EU-Schnitt ~44 %.",
+        "tertiaer_55_64_at": "AT Tertiär-Quote 55-64 (Vergleichs-Generation 2023): ~25 %. Generationen-Differenz +17 Punkte in 30 Jahren — Tertiär-Expansion deutlich messbar.",
+        "duale_lehre_at": "AT-Lehrlingsbildung 2023: ca. 100.000 Lehrlinge in Berufsschule + Lehrbetrieb. Klassifizierung OECD: post-sekundär, NICHT Tertiärstufe. Strukturell ein AT/DE/CH-Besonderheit.",
+        "bhs_matura_at": "AT BHS-Matura (HTL, HAK, HBLA, etc.) 2023: ~25.000 Absolventen pro Jahr. OECD klassifiziert BHS-Matura grenzwertig — manche Studien als 'Sek-II abgeschlossen', manche als 'Post-sek-Bildung'.",
+        "kombinierte_tertiaer_post_sek_at": "Kombiniert 'Tertiär + Post-sek-berufliche-Bildung' AT 25-34 2023: ~70 %. Über OECD-Schnitt (das nicht direkt vergleichbar berechnet werden kann, da die meisten OECD-Länder keine duale Lehrlingsbildung haben).",
+        "context": "Tertiär-Quote ist Boulevard-Thema; Strukturunterschied DACH (duale Lehrlingsbildung) erklärt einen Großteil der OECD-Differenz."
+      },
+      "context_notes": [
+        "OECD-ISCED-2011-Klassifikation: ISCED 3 (oberer Sek-Bereich), ISCED 4 (post-sek nicht-tertiär — z.B. AT BHS-Matura grenzwertig), ISCED 5 (kurze Hochschulausbildung), ISCED 6 (Bachelor), ISCED 7 (Master), ISCED 8 (Doktorat). AT-Lehre = ISCED 3-4 (NICHT tertiär).",
+        "EU-2030-Ziel: 45 % Tertiär-Quote 25-34 (EU-Bildungsraumziel) — AT bei 42 % knapp unter Ziel.",
+        "Hochschul-Standorte AT 2024: ~22 öffentliche Universitäten + ~22 Fachhochschulen + ~11 Pädagogische Hochschulen + ~14 Privatuniversitäten."
+      ],
+      "claim_phrasings_handled": [
+        "Tertiär-Quote Österreich",
+        "Studierende Quote AT",
+        "Akademiker-Quote 25-34 Österreich",
+        "Bildungsexpansion Österreich"
+      ],
+      "trigger_keywords": [
+        "tertiärquote österreich", "tertiaerquote oesterreich",
+        "tertiär-quote at", "tertiaer-quote at",
+        "akademikerquote österreich", "akademiker-quote oesterreich",
+        "akademikerquote at",
+        "studierende quote at",
+        "hochschulquote österreich", "hochschul-quote oesterreich",
+        "isced 5-8 österreich", "isced 6 at"
+      ],
+      "trigger_composite": [
+        ["tertiär", "tertiaer", "tertiar-", "hochschul", "akademiker", "studierende", "isced 5", "isced 6", "isced 7", "isced 8"],
+        ["quote", "anteil", "prozent", "25-34", "anzahl"],
+        ["österreich", "oesterreich", "at ", " at,", " at.", "oecd", "europa"]
+      ]
+    },
+    {
+      "id": "nbb_2024_lehrplan_reform_2023",
+      "topic": "lehrplan_reform_2023_at_konsens",
+      "scope": "Lehrplan-Reform 2023 Volksschule + Sek-I — kompetenzorientierte Reform (NBB 2024 Band Wissenschaft)",
+      "year": 2023,
+      "source_url": "https://www.bmbwf.gv.at/Themen/schule/schulpraxis/lp/lp_neu_2023.html",
+      "secondary_url": "https://www.iqs.gv.at/themen/nationaler-bildungsbericht",
+      "source_label": "BMBWF Lehrplan 2023 + IQS Nationaler Bildungsbericht 2024 (Band Wissenschaft Beitrag zur Lehrplan-Reform)",
+      "headline": "Lehrplan-Reform AT 2023: kompetenzorientierte Curricula Volksschule + Sek-I in Kraft seit Schuljahr 2023/24; Fokus Grundkompetenzen + 'übergreifende Themen' (Demokratie, Digital, Gesundheit, Umwelt)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Lehrplan-Reform AT 2023 (BMBWF + NBB-Band-Wissenschaft): neue Lehrpläne Volksschule + Sek-I (NMS/MS + AHS-Unterstufe) traten am 1.9.2023 in Kraft. Kompetenzorientiert (Anwendung von Wissen, nicht nur Faktenwissen). Acht 'übergreifende Themen' verpflichtend: Bildungs-, Berufs- und Lebensorientierung; Entrepreneurship Education; Informatische Bildung; Interkulturelle Bildung; Medienbildung; Politische Bildung; Reflexive Geschlechterpädagogik; Umweltbildung. Pack vermeidet Wertung 'Reform gut/schlecht' — präsentiert nur den deskriptiven Reform-Inhalt.",
+        "inkrafttreten_2023_24": "Inkrafttreten: 1.9.2023 für Volksschule + Sek-I (NMS/MS + AHS-Unterstufe). Sek-II AHS-Oberstufe: 1.9.2024 (für 9. Schulstufe), schrittweise Aufwuchs.",
+        "kompetenzorientierung": "Kompetenzorientierung: Lehrpläne fokussieren auf 'was Schüler:innen am Ende einer Schulstufe KÖNNEN' (Kompetenzen), nicht auf inhaltliche Lerngegenstands-Liste. Anknüpfung an Bildungsstandards (8. Schulstufe Deutsch/Mathematik/Englisch).",
+        "uebergreifende_themen": "8 übergreifende Themen verpflichtend (in allen Fächern zu integrieren): Bildungs-/Berufs-/Lebensorientierung, Entrepreneurship Education, Informatische Bildung, Interkulturelle Bildung, Medienbildung, Politische Bildung, Reflexive Geschlechterpädagogik, Umweltbildung. Quelle: Lehrplan 2023 § 2 Allgemeine Bildungsziele.",
+        "digitale_grundbildung": "'Digitale Grundbildung' als verpflichtendes Fach Sek-I (5.-8. Schulstufe) ab 2022/23 etabliert (vor Lehrplan-Reform). 4 Wochenstunden über 4 Jahre verteilt.",
+        "evaluation_geplant": "Wissenschaftliche Evaluation der Reform-Wirkung geplant für 2027-2028 (durch IQS + Universitäten in Auftrag des BMBWF). Erste Beobachtungs-Studien NBB-Band-Wissenschaft 2024.",
+        "context": "Pack stellt NUR deskriptiv die Reform-Inhalte dar. Wirksamkeits-Aussagen sind außerhalb des Pack-Mandats — werden 2027-2028 nach Evaluation in NBB-Bänden verfügbar."
+      },
+      "context_notes": [
+        "Lehrplan-Reform 2023 ist die größte AT-Curriculum-Reform seit 2000 (Sek-I-Reform).",
+        "Kontroverse: Genderpädagogik + Klimabildung politisch kontrovers debattiert. Pack referenziert NUR den ministerial-festgelegten Lehrplan-Text, keine politische Wertung.",
+        "Politische Bildung als eigenes Schulfach existiert in der AHS-Oberstufe + BHS; in Sek-I als 'übergreifendes Thema' in mehreren Fächern integriert."
+      ],
+      "claim_phrasings_handled": [
+        "Lehrplan-Reform 2023 Österreich",
+        "Neuer Lehrplan AT",
+        "Kompetenzorientierter Lehrplan AT",
+        "Lehrplan Volksschule 2023"
+      ],
+      "trigger_keywords": [
+        "lehrplan-reform 2023", "lehrplan reform 2023",
+        "neuer lehrplan österreich", "neuer lehrplan oesterreich",
+        "neuer lehrplan at",
+        "kompetenzorientierter lehrplan",
+        "lehrplan volksschule 2023",
+        "übergreifende themen lehrplan", "uebergreifende themen lehrplan",
+        "digitale grundbildung at",
+        "lehrplan 2023 24"
+      ],
+      "trigger_composite": [
+        ["lehrplan", "curriculum", "schulplan", "schulreform"],
+        ["2023", "2024", "neu", "reform", "kompetenz", "umstellung", "in kraft"],
+        ["österreich", "oesterreich", "at ", "volksschule", "ms ", "nms", "ahs", "sek-i", "sek 1"]
+      ]
+    },
+    {
+      "id": "nbb_2024_spf_bestand_at",
+      "topic": "spf_bestand_at_konsens",
+      "scope": "Sonderpädagogischer Förderbedarf (SPF) AT Bestand 2023/24 — komplementär zu EASIE-Cross-Country-Daten",
+      "year": 2024,
+      "source_url": "https://www.iqs.gv.at/themen/nationaler-bildungsbericht",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bildung",
+      "source_label": "IQS Nationaler Bildungsbericht 2024 (Band Indikatoren) + Statistik Austria Bildung in Zahlen 2023/24 + BMBWF Inklusions-Statistik",
+      "headline": "AT-SPF-Quote 2023/24: ~5,0 % aller Pflichtschüler:innen (~33.500 Schüler:innen mit SPF-Bescheid); Inklusions-Anteil ~62 % (in Regelklasse), Sonderschule ~38 %",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Sonderpädagogischer-Förderbedarf-Eckwerte AT 2023/24 (NBB-Band-Indikatoren + Statistik Austria + BMBWF): SPF-Quote ~5,0 % aller Pflichtschüler:innen, entspricht ca. 33.500 Schüler:innen mit formalem SPF-Bescheid. Inklusions-Anteil: ~62 % in Regelklasse, ~38 % in Sonderschule oder Sonderklasse. Bundesländer-Spread groß: Steiermark Inklusion ~85 %, Niederösterreich ~45 %. Komplementär zu EASIE-Cross-Country-Daten (Europäische Agentur Inklusive Bildung) — dort ist AT mit 60,8 % Inklusion im Referenzjahr 2018/19 dokumentiert; NBB 2024 zeigt leichten Anstieg auf ~62 %. Pack vermeidet Wertung 'Inklusion gut/schlecht' — referenziert deskriptive Quoten + verweist auf systemtypische Variabilität.",
+        "spf_quote_at_pflicht": "SPF-Quote AT 2023/24 (Pflichtschule): ~5,0 % der Pflichtschüler:innen mit formalem SPF-Bescheid (ca. 33.500 von ~670.000 Pflichtschüler:innen). Trend stabil seit 2018.",
+        "inklusions_anteil_at": "Inklusions-Anteil AT 2023/24 (SPF-Schüler:innen in Regelklasse, >50 % der Schulwoche): ~62 %. NBB-2024-Update gegenüber EASIE 2018/19 (60,8 %).",
+        "sonderschul_anteil_at": "Sonderschul-Anteil AT 2023/24 (SPF-Schüler:innen in Sonderschule oder Sonderklasse): ~38 %. AT hat ein zweigleisiges System Regelklasse + Sonderschule.",
+        "bundeslaender_inklusions_spread": "Bundesländer-Spread Inklusions-Anteil 2023/24 (NBB + Bildungsdirektionen): Steiermark ~85 %, Burgenland ~75 %, Tirol ~70 %, Wien ~65 %, Salzburg ~60 %, Oberösterreich ~55 %, Vorarlberg ~50 %, Niederösterreich ~45 %, Kärnten ~50 %. Spread ~40 Punkte zwischen Steiermark und Niederösterreich.",
+        "spf_kategorien": "SPF-Kategorien AT (BMBWF-Erlass): Lernen, Verhalten, Sprache, geistige Behinderung, körperliche/motorische Behinderung, Sinnesbehinderung (Sehen + Hören), Autismus-Spektrum, schwerste Behinderung, mehrfache Behinderung. Kategorie 'Lernen' am häufigsten (~60 % aller SPF-Bescheide).",
+        "lehrkraefte_sonderpaed": "Sonderpädagog:innen + Beratungs-Lehrer:innen AT 2023/24: ca. 6.500 in spezifischen Funktionen (Statistik Austria). Plus integrative Stunden in Regelklassen.",
+        "context": "Pack ist komplementär zu EASIE (services/easie.py): EASIE liefert Cross-Country-Quotient AT vs. DE/IT/SE, NBB 2024 liefert AT-Detail (Bundesländer + SPF-Kategorien). Pack distanziert sich von Wertung 'Inklusion ist gut/schlecht' — präsentiert nur Quoten + Bundesländer-Variabilität-Faktum."
+      },
+      "context_notes": [
+        "Komplementarität: EASIE für AT vs. EU-Vergleich (services/easie.py), NBB 2024 für AT-interne Bundesländer + SPF-Kategorien (dieser Pack).",
+        "Methodik-Hinweis: SPF-Bescheid in AT ist formaler Verwaltungsakt; nicht jedes Kind mit Förderbedarf hat formalen Bescheid. Quote-Werte basieren auf bescheid-führenden Schülern.",
+        "Inklusions-Debatte AT: politisch kontroversiell (Sonderschulen vs. Volle Inklusion). Pack stellt nur Quoten, keine Pro/Contra-Wertung."
+      ],
+      "claim_phrasings_handled": [
+        "SPF-Quote Österreich",
+        "Inklusion Schule Österreich",
+        "Sonderschüler AT Anzahl",
+        "Inklusions-Anteil Bundesländer AT"
+      ],
+      "trigger_keywords": [
+        "spf österreich", "spf oesterreich",
+        "sonderpädagogischer förderbedarf at",
+        "sonderpaedagogischer foerderbedarf at",
+        "sonderschule österreich anteil",
+        "sonderschuelerzahl österreich",
+        "inklusions-anteil at",
+        "inklusion at quote",
+        "förderschule at quote", "foerderschule at quote"
+      ],
+      "trigger_composite": [
+        ["spf", "sonderpädagog", "sonderpaedagog", "sonderschul", "sonderklasse", "förderbedarf", "foerderbedarf", "inklusion", "inklusiv"],
+        ["quote", "anteil", "prozent", "anzahl", "bestand", "bundesländer", "spread", "regelklasse", "förderschule", "foerderschule"],
+        ["österreich", "oesterreich", "at ", " at,", " at."]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,781 @@
+{
+  "schema_version": 1,
+  "fetched_at_iso": "2026-05-23",
+  "source_label": "ÖIF (Österreichischer Integrationsfonds) + ZARA (Zivilcourage und Anti-Rassismus-Arbeit) + BMI + Statistik Austria — Migration/Integration AT",
+  "scope_note": "Pack kombiniert zwei methodisch sehr unterschiedliche Quellen: (a) ÖIF — BMI-nahe NGO mit amtlich-statistik-orientierten Integrationsberichten (deskriptiv, geringer Bias-Risiko, aber Klage-Vorsicht bei sensiblen Aussagen). (b) ZARA — NGO mit klarer Anti-Rassismus-Position; ZARA-Vorfallszahlen sind SELBSTMELDUNGS-BASIERT (Meldestellen, nicht Gerichtsstand) und NICHT repräsentativ. Bei jedem ZARA-Fact ist der methodische Caveat explizit im kernsatz_fuer_synthesizer angelegt; Pipeline soll nicht über ZARA-Zahlen ein hartes 'true/false' liefern, sondern den Methodik-Kontext mitliefern. Politik-Guardrails (project_political_guardrails.md): keine Partei-Bewertung, keine Prognosen, keine eigene Links/Rechts-Klassifikation; bei normativen Klassifikator-Termen Wikipedia-only-Cap. Diese Datei ist KEIN Werkzeug für Aussagen über die politische Migrations-Debatte, sondern ein deskriptiv-statistischer Kontext-Pack.",
+  "facts": [
+    {
+      "id": "oeif_asylantraege_at_2023",
+      "topic": "asylantraege_at_konsens",
+      "scope": "AT-Asylantragszahlen Jahr 2023 (BMI/Statistik Austria) als deskriptive Zahl, ohne politische Bewertung",
+      "year": 2023,
+      "headline": "AT-Asylanträge 2023: BMI-Statistik dokumentiert rund 58.700 Erstanträge; Rückgang gegenüber Höchststand 2022 (~112.000)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Zahl-Aussage zu AT-Asylantragsstatistik 2023, keine politische Wertung. VERDICT-LEITLINIE: bei konkreten Zahlenangaben (50.000–65.000 Erstanträge 2023) ist die Aussage 'mostly_true' einzuordnen; bei Pauschal-Behauptungen ohne Zahlenanker ('Massenzustrom', 'Rekordzahlen 2023') ist 'mixed/unverifiable' angemessen, weil 2023 NICHT der Rekord-Wert war. Quelle: BMI-Statistik Asyl (Jahresstatistik), ÖIF Integrationsmonitor. KEINE Bewertung der Asylpolitik selbst — nur die Faktenaussage zur Zahl.",
+        "amtliche_zahlen_kontext": "BMI veröffentlicht monatlich + jährlich die Asyl-Statistik (Erstanträge, Folgeanträge, Entscheidungen). Höchststände in der jüngeren AT-Geschichte: 2015 ~88.000 Erstanträge (Syrien-Welle), 2022 ~112.000 (Ukraine-Sondereffekt + erhöhte irreguläre Migration über Westbalkan-Route). 2023 deutlicher Rückgang auf ~58.700 Erstanträge; 2024 weiterer Rückgang erwartet (BMI Q1/Q2-Vorabzahlen).",
+        "anerkennungsquoten_kontext": "Anerkennungsquoten variieren STARK nach Herkunftsland: Syrien/Afghanistan typischerweise >70-80 % Schutzstatus (in EU-Vergleich AT etwas niedriger als DE), Westbalkan-Staaten <5 %. Pauschale Behauptungen 'alle werden anerkannt' oder 'niemand wird anerkannt' sind irreführend — die Quote ist herkunftslandabhängig.",
+        "ukraine_sonderregelung": "Personen mit ukrainischer Staatsbürgerschaft fallen NICHT unter die regulären Asylantragszahlen, sondern unter den temporären Schutz nach Richtlinie 2001/55/EG (AT: Vertriebenen-VO 2022, verlängert bis März 2026). Vermischung der beiden Zahlen führt regelmäßig zu Faktencheck-Fehlern.",
+        "context": "Topic prüft ausschließlich die Zahl der Asylanträge, NICHT die politische Bewertung der Asylpolitik. Politik-Guardrail #1: keine Partei-Bewertung, #2: keine Prognosen."
+      },
+      "context_notes": [
+        "ÖIF veröffentlicht den jährlichen Integrationsbericht (vormals 'Integrationsmonitor'). Zahlen werden aus BMI- und Statistik-Austria-Quellen aggregiert — ÖIF ist keine Primärquelle für Asyl-Statistik.",
+        "BMI ist die offizielle Asyl-Statistik-Quelle in AT; Statistik Austria ergänzt mit Bevölkerungs- und Migrations-Salden (siehe statistik_austria.py).",
+        "Bei Faktenchecks zu konkreten Zahlen IMMER auf das Bezugsjahr achten — 2022 (Rekord) ≠ 2023 (Rückgang) ≠ 2015 (Syrien-Welle)."
+      ],
+      "claim_phrasings_handled": [
+        "2023 wurden in Österreich 58.000 Asylanträge gestellt",
+        "Österreich hatte 2023 Rekord-Asylanträge",
+        "AT-Asylzahlen 2023 sind gesunken"
+      ],
+      "trigger_keywords": [
+        "asylanträge österreich", "asylantraege oesterreich",
+        "asylanträge at", "asyl statistik at",
+        "österreich asyl 2023", "oesterreich asyl 2023",
+        "asylanträge 2023 österreich"
+      ],
+      "trigger_composite": [
+        ["asyl", "asylantrag", "asylanträge", "asylantraege", "asylantrage", "asylbewerb", "schutzsuchend"],
+        ["österreich", "oesterreich", "osterreich", "at ", " at,", "wien", "bundesland", "burgenland", "kärnten", "niederösterreich", "oberösterreich", "salzburg", "steiermark", "tirol", "vorarlberg"]
+      ],
+      "source_label": "ÖIF Integrationsbericht / BMI Asyl-Statistik",
+      "source_url": "https://www.integrationsfonds.at/mediathek/publikationen/",
+      "secondary_url": "https://www.bmi.gv.at/301/Statistiken/start.aspx"
+    },
+    {
+      "id": "oeif_migrationssaldo_at_2023",
+      "topic": "migrationssaldo_at_konsens",
+      "scope": "AT-Wanderungssaldo (internationale Zu-/Abwanderung) — deskriptive Zahl",
+      "year": 2023,
+      "headline": "AT-Wanderungssaldo 2023: rund +75.000 Personen Netto-Zuwanderung laut Statistik Austria (Rückgang gegenüber 2022 mit Ukraine-Sondereffekt von ~125.000)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Statistik-Aussage zu AT-Wanderungssaldo 2023, ohne politische Wertung. VERDICT-LEITLINIE: Faktenaussagen zu konkreten Salden im Bereich +60.000 bis +90.000 für 2023 sind 'mostly_true'; pauschale 'Massenzuwanderung'/'leere Land'-Aussagen sind 'mixed' (normativ, ohne Zahlenanker). Quelle: Statistik Austria Bevölkerungsbewegung. KEINE Bewertung der Migrations-Politik — nur die Faktenaussage zur Zahl.",
+        "saldo_komponenten": "Wanderungssaldo = Internationale Zuwanderung minus internationale Abwanderung. AT-Werte: 2021 ~46.000, 2022 ~125.000 (Ukraine-Spitze), 2023 ~75.000, 2024 vorläufig ~65.000. Innerhalb der EU haben Deutsche, Rumäninnen, Ungarn, Kroatinnen die größten Zuwanderungs-Gruppen; außerhalb der EU Syrer:innen, Afghan:innen, Türk:innen, Ukrainer:innen.",
+        "bevoelkerungsentwicklung": "AT-Bevölkerung: 8,93 Mio (2020) → 9,16 Mio (2024). Wachstum nahezu ausschließlich durch Wanderungssaldo (Geburten-Sterbe-Saldo seit 2017 negativ). Sachverhalt unstrittig in der demografischen Forschung (Statistik Austria, ÖROK, WIFO).",
+        "ukraine_separate_kategorie": "Ukrainer:innen unter temporärem Schutz erscheinen in der Bevölkerungsstatistik als zugewandert, NICHT in der Asyl-Statistik. Dies erklärt 2022-Spitze (+125.000 Saldo, davon ca. 60.000 Ukrainer:innen).",
+        "context": "Topic adressiert die deskriptive Migrationsstatistik. Politische Bewertung ist NICHT Gegenstand."
+      },
+      "context_notes": [
+        "Statistik Austria ist die amtliche Primärquelle; ÖIF aggregiert + kontextualisiert für den Integrationsbericht.",
+        "Der Wanderungssaldo ist NICHT identisch mit Asylantragszahlen — der Saldo erfasst ALLE Zu-/Abwanderungen (auch EU-Binnenmigration, Studierende, Arbeitskräfte).",
+        "Demografische Konsens-Lage (Statistik Austria, ÖROK): ohne Zuwanderung würde AT-Bevölkerung schrumpfen."
+      ],
+      "claim_phrasings_handled": [
+        "Österreich hatte 2023 75.000 Netto-Zuwanderung",
+        "AT-Wanderungssaldo war 2022 am höchsten",
+        "Ohne Migration würde AT schrumpfen"
+      ],
+      "trigger_keywords": [
+        "wanderungssaldo", "migrationssaldo",
+        "netto-zuwanderung", "nettozuwanderung",
+        "bevölkerungsbewegung at", "bevoelkerungsbewegung at",
+        "zuwanderung österreich", "zuwanderung oesterreich"
+      ],
+      "trigger_composite": [
+        ["wanderungssaldo", "migrationssaldo", "nettozuwanderung", "netto-zuwanderung", "netto zuwanderung", "zuwanderung", "einwanderung", "migration"],
+        ["österreich", "oesterreich", " at ", "österreichisch", "oesterreichisch", "wien"]
+      ],
+      "source_label": "ÖIF Integrationsbericht / Statistik Austria Bevölkerungsbewegung",
+      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/wanderungen"
+    },
+    {
+      "id": "oeif_einbuergerung_at_2023",
+      "topic": "einbuergerung_at_konsens",
+      "scope": "Einbürgerungsstatistik AT, Quote im EU-Vergleich (deskriptiv)",
+      "year": 2023,
+      "headline": "AT-Einbürgerungen 2023: rund 21.300 Verleihungen — Einbürgerungsquote (relativ zur ausländischen Wohnbevölkerung) zählt zu den niedrigsten in der EU",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Aussage zur AT-Einbürgerungsstatistik. VERDICT-LEITLINIE: konkrete Zahlen 2023 zwischen 18.000–24.000 Verleihungen sind 'mostly_true'; die Aussage 'AT hat eine der niedrigsten Einbürgerungsquoten der EU' ist in der demografischen Forschung gut belegt und 'true/mostly_true'. KEINE Bewertung des Staatsbürgerschaftsgesetzes selbst — nur die statistische Faktenaussage. Politik-Guardrail #1: keine Partei-Bewertung der Reformdebatte.",
+        "amtliche_zahlen": "Statistik Austria Einbürgerungen: 2020 ~9.000, 2021 ~12.000, 2022 ~17.000, 2023 ~21.300. Steigerung primär durch Anspruchs-Einbürgerungen (10/15-Jahres-Frist erfüllt) sowie Folge-Effekt der Syrien-Anerkennungen 2015.",
+        "eu_vergleich_kontext": "EU-Vergleich Einbürgerungsquote (Eurostat 'naturalisation rate'): AT-Quote liegt im EU-27-Schnitt unten — Schweden, Niederlande, Portugal haben deutlich höhere Quoten; Estland, Lettland, AT zählen zu den niedrigsten. Hintergrund: lange Mindest-Aufenthaltsdauer (10 Jahre Regelfall, 6 Jahre bei Anerkennung, bei Eheschluss 6 Jahre), Doppelstaatsbürgerschaft nur in eingeschränkten Ausnahmen.",
+        "voraussetzungen_kontext": "Voraussetzungen Anspruchs-Einbürgerung AT: 10 Jahre legaler Aufenthalt, davon 5 Jahre Niederlassung, Selbsterhaltungsfähigkeit, Deutschkenntnisse B1, bestandene Werte-/Integrations-Prüfung (ÖIF), unbescholtenes Vorleben, kein laufender Bezug bestimmter Sozialleistungen über bestimmte Zeiträume. Die Hürden sind im EU-Vergleich hoch.",
+        "context": "Topic ist deskriptiv-statistisch. Reformdebatten (z.B. Erleichterung Doppelstaatsbürgerschaft, Reduktion auf 5 Jahre) sind politische Diskussion — nicht Gegenstand des Faktenchecks."
+      },
+      "context_notes": [
+        "Eurostat publiziert Einbürgerungsquoten EU-weit vergleichbar; ÖIF nutzt diese im Integrationsbericht.",
+        "Statistik Austria Einbürgerungs-CSV ist im statistik_austria.py-Service bereits integriert — dieser Pack ergänzt nur die kontextuelle ÖIF-Einordnung.",
+        "Bei Aussagen 'AT hat die niedrigste Einbürgerungsquote' Vorsicht: meist EU-Top-3-niedrig, aber nicht zwingend Schlusslicht — Estland/Lettland teils niedriger."
+      ],
+      "claim_phrasings_handled": [
+        "AT hatte 2023 21.000 Einbürgerungen",
+        "Österreich hat eine der niedrigsten Einbürgerungsquoten EU",
+        "In AT muss man 10 Jahre für Einbürgerung warten"
+      ],
+      "trigger_keywords": [
+        "einbürgerung österreich", "einbuergerung oesterreich",
+        "einbürgerungsquote", "einbuergerungsquote",
+        "staatsbürgerschaft at", "staatsbuergerschaft at",
+        "einbürgerungsstatistik", "einbuergerungsstatistik"
+      ],
+      "trigger_composite": [
+        ["einbürgerung", "einbuergerung", "naturalisation", "staatsbürgerschaft", "staatsbuergerschaft", "naturalisierung"],
+        ["österreich", "oesterreich", " at ", " at,", "österreichisch", "oesterreichisch", "wien"]
+      ],
+      "source_label": "ÖIF Integrationsbericht / Statistik Austria Einbürgerungen / Eurostat",
+      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/einbuergerungen"
+    },
+    {
+      "id": "oeif_sprachkurse_2023",
+      "topic": "sprachkurse_oeif_konsens",
+      "scope": "ÖIF-Sprachkurs-Teilnahme + Deutschprüfungen (deskriptiv)",
+      "year": 2023,
+      "headline": "ÖIF-Sprachkurse 2023: rund 22.000 Teilnehmer:innen an ÖIF-geförderten Deutschkursen; ~58.000 ÖIF-Deutschprüfungen abgelegt",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Aussage zur ÖIF-Sprachkurs-Statistik. VERDICT-LEITLINIE: konkrete Zahlen im Bereich 18.000–25.000 Sprachkursteilnehmende 2023 sind 'mostly_true'; pauschale 'niemand lernt Deutsch'/'alle lernen perfekt Deutsch'-Aussagen sind 'mostly_false' bzw. 'mixed' (Selektionseffekte, Niveau-Differenzierung). KEINE Bewertung der Integrations-Effektivität — nur die Teilnahme-Statistik.",
+        "kursangebot_struktur": "ÖIF bietet Deutschkurse von A1 bis C1 (GER-Niveau) an, partiell kostenlos für Anspruchsberechtigte (Asyl-/subsidiär-Schutzberechtigte), partiell mit Kostenbeitrag. Pflicht zur Sprachkurs-Teilnahme im Rahmen Integrationsvereinbarung (§ 9 IntG). Niveau A2 ist Mindest-Anforderung für unbefristeten Aufenthaltstitel, B1 für Einbürgerung.",
+        "pruefungs_statistik": "ÖIF-Sprachprüfungen werden auch von externen Teilnehmenden abgelegt (z.B. Personen die einen Aufenthaltstitel verlängern wollen). Die Prüfungszahlen sind daher höher als die Kursteilnehmerzahlen.",
+        "wertekurs_kontext": "Werte- und Orientierungskurs (WOK): seit 2017 verpflichtend für Asyl-/subsidiär-Schutzberechtigte; behandelt verfassungsrechtliche Grundwerte, Geschlechter-Gleichberechtigung, Rechtsstaat. Teilnahme als Voraussetzung für die Integrationserklärung. Statistik 2023: ÖIF dokumentiert mehrere zehntausend Teilnehmende — konkrete Zahlen schwanken jährlich.",
+        "context": "Topic bewertet KEINE Aussagen wie 'Wertekurs ist überflüssig/wirksam'. Empirische Evaluations-Studien zur Wirksamkeit sind methodisch umstritten — Pack zitiert nur die Teilnahme-Statistik."
+      },
+      "context_notes": [
+        "ÖIF ist Primärquelle für die eigenen Kurs- und Prüfungsstatistiken (Eigenbericht); externe Plausibilisierung durch Rechnungshof-Berichte und Eurostat-Integrationsindikatoren.",
+        "Vorsicht bei Wirksamkeits-Aussagen — A2/B1-Abschluss heißt nicht zwingend 'integriert', integrationsbiografisch zählen Arbeitsmarkt-Status, soziale Netzwerke, langfristige Sprachkompetenz.",
+        "Wertekurs-Diskussionen sind politisch sensitiv — Pack zitiert nur die Teilnahmestatistik, KEINE Evaluation der inhaltlichen Wirksamkeit."
+      ],
+      "claim_phrasings_handled": [
+        "ÖIF hatte 2023 22.000 Sprachkursteilnehmer",
+        "Asylsuchende müssen Wertekurs absolvieren",
+        "B1-Deutsch ist Voraussetzung für Einbürgerung"
+      ],
+      "trigger_keywords": [
+        "öif sprachkurs", "oeif sprachkurs",
+        "deutschkurs öif", "deutschkurs oeif",
+        "wertekurs", "werte-und-orientierungs-kurs", "werte und orientierungs-kurs",
+        "integrationsvereinbarung", "integrationsprüfung", "integrationspruefung",
+        "öif deutschprüfung", "oeif deutschpruefung"
+      ],
+      "trigger_composite": [
+        ["öif", "oeif", "integrationsfonds", "sprachkurs", "deutschkurs", "wertekurs", "integrationsprüfung", "integrationspruefung"],
+        ["österreich", "oesterreich", "at ", "wien", "asyl", "integration", "deutsch", "b1", "a2", "ger"]
+      ],
+      "source_label": "ÖIF Integrationsbericht — Sprachkurs- und Prüfungsstatistik",
+      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "secondary_url": "https://sprachportal.integrationsfonds.at/"
+    },
+    {
+      "id": "oeif_integrationsmonitor_indikatoren_2023",
+      "topic": "integrationsmonitor_indikatoren_konsens",
+      "scope": "ÖIF-Integrationsmonitor-Indikatoren (Bildung, Arbeitsmarkt, Wohnen, Sprache) — deskriptive Indikatorenstruktur",
+      "year": 2023,
+      "headline": "ÖIF-Integrationsmonitor: ~25 Indikatoren in 8 Bereichen (Sprache/Bildung/Arbeit/Soziales/Gesundheit/Wohnen/Sicherheit/Identifikation) — Daten primär aus Statistik Austria + Eurostat",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Aussage zur ÖIF-Indikatorenstruktur. VERDICT-LEITLINIE: Aussagen zur Existenz und groben Struktur des Integrationsmonitors sind 'true'; einzelne Indikatorwerte (z.B. 'Beschäftigungsquote Drittstaatsangehörige 2023 = 62%') brauchen jeweils Verifikation am konkreten Jahresbericht — bei Abweichung ±2pp 'mostly_true', größere Abweichung 'mostly_false'. KEINE Bewertung 'Integration funktioniert/scheitert' — der Monitor ist deskriptives Instrument, kein Werturteil. Politik-Guardrail #2: keine Prognosen zur Integrations-Entwicklung.",
+        "bereichs_struktur": "Acht Themenbereiche (Stand Integrationsbericht): (1) Sprache & Bildung (Schulleistungen, ÖIF-Sprachprüfungen), (2) Arbeit & Beruf (Beschäftigung, Selbständigkeit), (3) Soziales & Gesundheit (Sozialleistungsbezug, Lebenserwartung), (4) Wohnen & räumlicher Kontext (Wohnsituation, Region), (5) Sicherheit (Kriminalitätsbeteiligung), (6) Identifikation & Zusammenleben (Werte-Survey, Einbürgerung), (7) Subjektive Indikatoren (Diskriminierungs-Erfahrung), (8) Internationale Vergleichsdaten (Eurostat MIPEX-Annäherung).",
+        "datenherkunft_kontext": "Indikatoren basieren auf Statistik Austria (Mikrozensus, Bevölkerungsfortschreibung, Bildungsstatistik), Eurostat (EU-SILC, LFS), BMI (Asyl-/Polizei-Statistik), AMS (Arbeitsmarkt-Daten). ÖIF aggregiert + visualisiert, ist KEINE eigene Primärquelle für die meisten Indikatoren.",
+        "methodik_caveat": "Differenzierung Migrationshintergrund: ÖIF nutzt die Statistik-Austria-Definition (1. Generation: im Ausland geboren; 2. Generation: in AT geboren, beide Elternteile im Ausland). Bei Faktenchecks mit Aussagen über 'Migrationshintergrund' WICHTIG zu prüfen, welche Definition gemeint ist (Statistik-Austria-Standard vs. medien-übliche Erweiterung).",
+        "context": "Topic ist Meta-Information zum Integrationsmonitor. Einzelne Indikatorwerte müssen claim-spezifisch am Jahresbericht verifiziert werden."
+      },
+      "context_notes": [
+        "Der Integrationsbericht wird jährlich vom ÖIF veröffentlicht (zuletzt 2024 für Berichtsjahr 2023, Stand Mai 2026); Migrations- + Integrationsbeirat begleitet die Indikatoren-Auswahl.",
+        "ÖIF-Indikatoren werden im EU-Vergleich an MIPEX (Migrant Integration Policy Index) und Eurostat-Integrations-Indikatoren angelehnt — internationale Vergleichbarkeit ist gegeben.",
+        "Pack ist deskriptiv: die Frage 'ist Integration in AT gelungen?' ist normativ und NICHT Gegenstand."
+      ],
+      "claim_phrasings_handled": [
+        "ÖIF-Integrationsmonitor hat 25 Indikatoren",
+        "ÖIF nutzt 8 Themenbereiche für Integrationsmonitor",
+        "Integrationsmonitor stammt von ÖIF"
+      ],
+      "trigger_keywords": [
+        "integrationsmonitor", "integrations-monitor",
+        "integrationsbericht", "integrations-bericht",
+        "öif bericht", "oeif bericht",
+        "öif indikatoren", "oeif indikatoren"
+      ],
+      "trigger_composite": [
+        ["integrationsmonitor", "integrationsbericht", "integrations-monitor", "integrations-bericht", "öif bericht", "oeif bericht", "öif statistik", "oeif statistik"],
+        ["österreich", "oesterreich", " at ", "öif", "oeif", "integration", "integrationsfonds"]
+      ],
+      "source_label": "ÖIF Integrationsbericht / Statistik Austria / Eurostat",
+      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/migration-und-integration"
+    },
+    {
+      "id": "oeif_migrationshintergrund_at_2023",
+      "topic": "migrationshintergrund_at_konsens",
+      "scope": "Anteil Bevölkerung mit Migrationshintergrund AT (deskriptiv, Statistik-Austria-Definition)",
+      "year": 2023,
+      "headline": "AT 2023: ~26 % der Bevölkerung mit Migrationshintergrund (Statistik-Austria-Definition: 1. + 2. Generation); deutlich höher in Wien (~50 %)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Bevölkerungsstatistik. VERDICT-LEITLINIE: Aussagen 'AT hat ~25–28 % Bevölkerung mit Migrationshintergrund' sind 'mostly_true'; Wien-spezifische Aussagen '~50 %' sind 'mostly_true'. Aussagen mit DEUTLICH abweichenden Zahlen ('40 % AT-weit', '70 % Wien') sind 'mostly_false'. KEINE Bewertung 'zu viele/zu wenige' — deskriptive Aussage. Bei der Definition ist Vorsicht geboten — die offizielle Statistik-Austria-Definition (1. + 2. Generation) unterscheidet sich von weitergehenden Definitionen.",
+        "definition_statistik_austria": "Statistik-Austria-Definition: Personen mit Migrationshintergrund = beide Eltern im Ausland geboren (umfasst 1. Generation = Person selbst im Ausland geboren + 2. Generation = Person in AT geboren). 3. Generation zählt definitionsgemäß NICHT mehr dazu.",
+        "anteile_2023": "Statistik Austria 2023: ~26 % der Wohnbevölkerung (8,93 Mio) hat Migrationshintergrund — davon ~19 % im Ausland geboren (1. Gen), ~7 % in AT geboren mit ausländischen Eltern (2. Gen). Differenzierung nach Herkunft: ~10 % aus EU, ~9 % aus Drittstaaten (insb. Türkei, Westbalkan, Syrien), ~7 % aus sonstigen Regionen.",
+        "wien_anteil": "Wien hat den höchsten Anteil: ~50 % der Wohnbevölkerung mit Migrationshintergrund (2023). Burgenland am niedrigsten mit <15 %. Verteilung nicht zufällig — Großstadt-Effekt (Arbeitsmarkt, Diaspora-Netzwerke).",
+        "international_einordnung": "AT-Anteil ~26 % liegt im oberen EU-Drittel; vergleichbar mit DE (~28 %), höher als FR (~13 % nach INSEE-Definition, allerdings methodisch nicht direkt vergleichbar — FR erfasst kein 'Migrationshintergrund' im AT/DE-Sinn).",
+        "context": "Topic prüft die Faktenaussage zum Anteil. Politik-Guardrail: KEINE Wertung 'gut/schlecht' — empirisch-deskriptive Information."
+      },
+      "context_notes": [
+        "Die Definition 'Migrationshintergrund' ist methodisch wichtig — beim Faktencheck ZUERST klären, welche Definition der Claim meint. Statistik-Austria-Definition (1.+2. Gen) ist Standard.",
+        "Wien als Großstadt-Outlier — pauschale 'AT-weit'-Zahlen treffen für Wien nicht zu, und umgekehrt.",
+        "Beim Vergleich mit Frankreich/UK NICHT direkt 1:1 — andere Statistik-Traditionen (FR: keine ethnischen Statistiken aus republikanischer Tradition)."
+      ],
+      "claim_phrasings_handled": [
+        "26 % der Österreicher haben Migrationshintergrund",
+        "Wien hat 50 % Bevölkerung mit Migrationshintergrund",
+        "AT hat höchsten Migrationsanteil EU"
+      ],
+      "trigger_keywords": [
+        "migrationshintergrund österreich", "migrationshintergrund oesterreich",
+        "migrationshintergrund at",
+        "anteil migration at", "ausländeranteil at", "auslaenderanteil at",
+        "bevölkerung migrationshintergrund", "bevoelkerung migrationshintergrund"
+      ],
+      "trigger_composite": [
+        ["migrationshintergrund", "ausländeranteil", "auslaenderanteil", "anteil ausländer", "anteil auslaender", "bevölkerung mit migration", "bevoelkerung mit migration"],
+        ["österreich", "oesterreich", " at ", "wien", "burgenland", "kärnten", "niederösterreich", "oberösterreich", "salzburg", "steiermark", "tirol", "vorarlberg"]
+      ],
+      "source_label": "ÖIF Integrationsbericht / Statistik Austria — Migration & Integration",
+      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/migration-und-integration"
+    },
+    {
+      "id": "oeif_arbeitsmarkt_integration_2023",
+      "topic": "arbeitsmarkt_integration_at_konsens",
+      "scope": "Beschäftigungs- und Arbeitslosenquoten nach Migrationshintergrund AT (deskriptiv)",
+      "year": 2023,
+      "headline": "AT-Arbeitsmarkt 2023: Beschäftigungsquote Drittstaatsangehörige liegt ~10–15 Prozentpunkte unter AT-Staatsbürgerschaft; Differenz schließt sich mit Aufenthaltsdauer",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Arbeitsmarkt-Statistik nach Migrationshintergrund. VERDICT-LEITLINIE: Aussagen 'Beschäftigungsquote Drittstaatsangehöriger ist niedriger als AT-StaatsbürgerInnen' sind 'mostly_true' (Konsens aller Statistik-Austria-/AMS-/ÖIF-Quellen). Konkrete Zahlen im Bereich ±5pp sind 'mostly_true'. Aussagen 'alle Drittstaatsangehörigen sind arbeitslos' sind 'mostly_false'. Aussagen 'Integration im Arbeitsmarkt ist gescheitert' sind 'mixed' (Methodik-abhängig — schließt sich mit Aufenthaltsdauer). KEINE pauschale Wertung der Integrationspolitik.",
+        "amtliche_kennzahlen": "AT-Arbeitskräfteerhebung (LFS) 2023: Beschäftigungsquote (20–64) AT-Staatsbürgerschaft ~78 %, EU-Staatsbürger:innen ~76 %, Drittstaatsangehörige ~62 %. Arbeitslosenquote (ILO) AT-StaatsbürgerInnen ~3,5 %, Drittstaat ~10 %. Differenz ist konsistent über Erhebungsjahre.",
+        "aufenthaltsdauer_effekt": "ÖIF Integrationsbericht: Beschäftigungsquote von Geflüchteten (Syrien-Anerkennungen 2015) steigt deutlich mit Aufenthaltsdauer — nach 7–10 Jahren Annäherung an AT-Schnitt (ÖIF + IAB-Studien DE bestätigen dasselbe Pattern). Eine 'Momentaufnahme'-Quote unterschätzt den Integrationsverlauf systematisch.",
+        "geschlechter_differenz": "Bei Drittstaatsangehörigen ist die Geschlechter-Differenz größer als bei AT-StaatsbürgerInnen: Männer ~72 %, Frauen ~52 % Beschäftigungsquote (2023). Ursachen multifaktoriell: traditionelle Rollenmuster in einzelnen Herkunftsgruppen, Sprachkurs-Zugang, Kinderbetreuungs-Ressourcen, Anerkennung ausländischer Qualifikationen.",
+        "qualifikations_anerkennung": "Berufsanerkennung als strukturelle Hürde: ~60 % der Drittstaatsangehörigen mit Hochschulabschluss arbeiten in AT in Berufen unter ihrem Qualifikationsniveau ('De-Qualifizierung'/'Brain Waste'). ENIC-NARIC und AST sind die offiziellen Anerkennungs-Stellen.",
+        "context": "Topic ist deskriptiv. Bewertungs-Aussagen wie 'Integration funktioniert (nicht)' fallen NICHT unter dieses Pack — sind politische Diskussion."
+      },
+      "context_notes": [
+        "Statistik Austria + AMS sind die amtlichen Primärquellen; ÖIF aggregiert. Bei konkreten Zahlen-Claims am Original-LFS-Datensatz verifizieren (siehe statistik_austria.py al-Datenstruktur).",
+        "Geflüchtete sind eine SUB-Gruppe der Drittstaatsangehörigen — pauschale Aussagen über 'Drittstaatsangehörige' treffen nicht zwingend auf Geflüchtete zu (anderes Niveau Sprachkenntnisse, Bildungsabschluss, Aufenthaltsdauer).",
+        "Konsens-Befund (ÖIF + IAB + OECD Settling-In-Reports): Arbeitsmarkt-Integration ist ein langfristiger Prozess; eine Querschnitt-Statistik unterschätzt Verlauf."
+      ],
+      "claim_phrasings_handled": [
+        "Drittstaatsangehörige sind häufiger arbeitslos in AT",
+        "Beschäftigungsquote von Migranten ist niedriger",
+        "Integration im Arbeitsmarkt klappt nicht"
+      ],
+      "trigger_keywords": [
+        "beschäftigung migration at", "beschaeftigung migration at",
+        "arbeitslosigkeit migration at",
+        "arbeitsmarkt integration",
+        "beschäftigungsquote drittstaat", "beschaeftigungsquote drittstaat",
+        "erwerbsquote ausländer", "erwerbsquote auslaender"
+      ],
+      "trigger_composite": [
+        ["beschäftigung", "beschaeftigung", "erwerbsquote", "arbeitslos", "arbeitsmarkt", "beschäftigungsquote", "beschaeftigungsquote", "erwerbstätigenquote", "erwerbstaetigenquote", "job"],
+        ["migration", "migrant", "drittstaat", "ausländer", "auslaender", "geflüchtet", "gefluechtet", "asylberechtig", "subsidiär", "subsidiaer", "migrationshintergrund"],
+        ["österreich", "oesterreich", "osterreich", " at ", " at.", " at,", " at;", " at:", " at)", "wien", "österreichisch", "oesterreichisch"]
+      ],
+      "source_label": "ÖIF Integrationsbericht / Statistik Austria LFS / AMS",
+      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "secondary_url": "https://www.statistik.at/statistiken/arbeitsmarkt/arbeitskraefteerhebung"
+    },
+    {
+      "id": "oeif_pisa_migrationshintergrund_2022",
+      "topic": "pisa_migrationshintergrund_at_konsens",
+      "scope": "PISA-Leistung von SchülerInnen mit Migrationshintergrund AT (deskriptiv, OECD)",
+      "year": 2022,
+      "headline": "PISA 2022 AT: SchülerInnen mit Migrationshintergrund liegen ~70 Punkte (etwa 2 Schuljahre) hinter SchülerInnen ohne Migrationshintergrund — größte Differenz im EU-Vergleich",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Bildungsstatistik. VERDICT-LEITLINIE: Aussagen 'PISA-Leistung von SchülerInnen mit Migrationshintergrund liegt unter Schnitt ohne Migration' sind 'mostly_true' (OECD-Befund konsistent seit PISA 2000). Konkrete Punktdifferenzen 50–90 Punkte sind 'mostly_true'. Aussagen 'AT-Schulsystem versagt komplett bei Migration' sind 'mixed' (Methodik-abhängig, sozio-ökonomischer Status interagiert stark). KEINE Bewertung der Schulpolitik selbst — nur die OECD-Faktenaussage.",
+        "pisa_2022_zahlen": "PISA 2022 (OECD, publiziert Dezember 2023): AT-SchülerInnen ohne Migrationshintergrund Mathematik ~497 Punkte, mit Migrationshintergrund ~417 Punkte — Differenz ~80 Punkte (entspricht ca. 2 Schuljahren). Vergleichbare Differenz in Lesen + Naturwissenschaften. AT zählt zu den EU-Ländern mit der GRÖSSTEN Migration-Differenz (zusammen mit DE).",
+        "soes_interaktion": "OECD-PISA-Analyse: ~60 % der Migration-Differenz erklärt sich durch sozio-ökonomischen Status (ESCS-Index), Bildungsstand der Eltern und Erstsprache zu Hause. Nach Bereinigung verbleibt eine 'unerklärte' Differenz von ~30 Punkten. AT-Schulsystem ist STÄRKER sozio-ökonomisch selektiv als z.B. Schweden, Estland, Kanada.",
+        "zweite_generation_kontext": "Differenzierung: 2. Generation (in AT geboren) hat im OECD-Schnitt geringere Differenz zur Mehrheitsbevölkerung als 1. Generation; in AT bleibt aber auch in 2. Generation eine signifikante Differenz — ein Indiz, dass strukturelle Faktoren (frühe Trennung Gymnasium/Mittelschule mit 10 Jahren, Sprache zu Hause) eine Rolle spielen.",
+        "pisa_ranking_kontext": "AT-PISA-Gesamt-Schnitt 2022: Mathematik 487 (OECD-Schnitt 472), Lesen 480 (476), Naturwissenschaften 491 (485). AT liegt im OECD-Mittelfeld; AT-spezifischer Befund: höhere Streuung als OECD-Schnitt durch starke Schichtungs-Effekte.",
+        "context": "Topic ist deskriptiv. Reform-Debatten (Gesamtschule, Sprachförderung, Deutschförderklassen-Diskussion) sind politische Diskussion — NICHT Gegenstand."
+      },
+      "context_notes": [
+        "OECD-PISA ist methodisch belastbare Primärquelle; ÖIF zitiert PISA-Ergebnisse im Integrationsbericht.",
+        "WICHTIG: PISA misst Kompetenzen von 15-Jährigen — Aussagen zur 'Bildungslaufbahn' insgesamt (Schulabschluss, tertiäre Bildung) brauchen separate Statistik Austria-Daten.",
+        "Bei Faktencheck-Aussagen zu Schul-Performance niemals den OECD-Befund ohne den sozio-ökonomischen Kontext zitieren — beides gemeinsam ist methodisch korrekt."
+      ],
+      "claim_phrasings_handled": [
+        "Migranten-Kinder schneiden bei PISA schlechter ab",
+        "AT hat die größte PISA-Differenz nach Migration EU",
+        "Bei PISA liegen Migrationskinder 2 Jahre zurück"
+      ],
+      "trigger_keywords": [
+        "pisa migration", "pisa migrationshintergrund",
+        "pisa österreich migration", "pisa oesterreich migration",
+        "schulleistung migration at",
+        "bildungserfolg migration"
+      ],
+      "trigger_composite": [
+        ["pisa", "schulleistung", "bildungserfolg", "lesekompetenz", "mathematikkompetenz", "schulnoten"],
+        ["migration", "migrant", "migrationshintergrund", "ausländer", "auslaender", "drittstaat", "geflüchtet", "gefluechtet"],
+        ["österreich", "oesterreich", " at ", "wien", "schule", "schüler", "schueler"]
+      ],
+      "source_label": "OECD PISA 2022 / ÖIF Integrationsbericht / Statistik Austria Bildungsstatistik",
+      "source_url": "https://www.oecd.org/pisa/publications/pisa-2022-results.htm",
+      "secondary_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/"
+    },
+    {
+      "id": "oeif_eu_drittstaat_struktur_2023",
+      "topic": "eu_drittstaat_struktur_at_konsens",
+      "scope": "Struktur der ausländischen Wohnbevölkerung AT nach Herkunft (EU vs. Drittstaat) — deskriptiv",
+      "year": 2023,
+      "headline": "AT-AusländerInnen 2023: ~1,79 Mio Personen, davon ~55 % EU-/EWR-/CH, ~45 % Drittstaatsangehörige (insb. Türkei, Westbalkan, Syrien, Ukraine, Afghanistan)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Aussage zur Herkunfts-Struktur. VERDICT-LEITLINIE: Aussagen 'mehr als die Hälfte der AusländerInnen in AT kommen aus EU' sind 'mostly_true'; pauschale 'fast alle AusländerInnen kommen aus Nicht-EU' sind 'mostly_false'. Aussagen zu einzelnen Herkunftsländern (z.B. 'Deutsche sind die größte Gruppe') sind im Detail zu prüfen — Deutsche sind tatsächlich die größte EU-Gruppe in AT. KEINE Bewertung 'gute/schlechte' Migration nach Herkunft — politische Wertung.",
+        "amtliche_zahlen": "Statistik Austria Bevölkerungsfortschreibung 2023: ~1,79 Mio Personen ohne AT-Staatsbürgerschaft (~20 % der Wohnbevölkerung). Größte Einzelgruppen: Deutsche ~225.000, Rumäninnen/Rumänen ~145.000, Türk:innen ~120.000, Serb:innen ~125.000, Syrer:innen ~80.000, Ukrainer:innen ~80.000.",
+        "eu_drittstaat_split": "EU-/EWR-/CH-Bürger:innen: ~55 % aller ausländischen Personen (davon Deutsche größte Einzelgruppe, gefolgt von Rumäninnen, Ungar:innen, Kroat:innen, Polnischen Staatsangehörigen). Drittstaat: ~45 % — historisch geprägt durch Gastarbeiter-Migration (Türkei, Ex-Jugoslawien) und jüngere Flucht-Migration (Syrien 2015-, Afghanistan, Ukraine 2022-).",
+        "kontext_aufenthaltstitel": "EU-Bürger:innen genießen Freizügigkeit (Art. 21 AEUV); Drittstaatsangehörige brauchen Aufenthaltstitel nach NAG / FPG. Pauschal-Aussagen 'AusländerInnen brauchen Visum' treffen nur auf Drittstaatsangehörige zu.",
+        "context": "Topic ist Bevölkerungsstatistik — bewertet KEINE Aussagen über 'Wert' oder 'Belastung' bestimmter Migrationsgruppen."
+      },
+      "context_notes": [
+        "Statistik Austria ist Primärquelle; ÖIF zitiert.",
+        "Bei Faktenchecks darauf achten: 'ausländisch' (Staatsbürgerschaft) ≠ 'Migrationshintergrund' (Geburtsort der Eltern). AT-StaatsbürgerInnen mit Migrationshintergrund werden in der 'AusländerInnen-Statistik' NICHT erfasst.",
+        "Ukrainer:innen unter temporärem Schutz sind im Wohnregister erfasst und somit in der Ausländerstatistik enthalten — das erklärt den Anstieg 2022/23."
+      ],
+      "claim_phrasings_handled": [
+        "AT hat 1,8 Mio Ausländer",
+        "Die meisten Ausländer in AT kommen aus EU",
+        "Deutsche sind die größte Ausländergruppe in Österreich"
+      ],
+      "trigger_keywords": [
+        "ausländer österreich", "auslaender oesterreich",
+        "ausländische bevölkerung at", "auslaendische bevoelkerung at",
+        "drittstaatsangehörige at", "drittstaatsangehoerige at",
+        "eu-bürger österreich", "eu-buerger oesterreich"
+      ],
+      "trigger_composite": [
+        ["ausländer", "auslaender", "ausländisch", "auslaendisch", "drittstaat", "eu-bürger", "eu-buerger", "nicht-österreicher", "nicht-oesterreicher", "ohne staatsbürgerschaft", "ohne staatsbuergerschaft"],
+        ["österreich", "oesterreich", " at ", "wien", "anteil", "zahl", "millionen", "tausend"]
+      ],
+      "source_label": "ÖIF Integrationsbericht / Statistik Austria Bevölkerungsfortschreibung",
+      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/bevoelkerungsstand"
+    },
+    {
+      "id": "zara_rassismus_report_2023",
+      "topic": "zara_rassismus_report_methodik",
+      "scope": "ZARA Rassismus Report Jahreszahlen (Selbstmeldung) — MIT explizitem Methodik-Disclaimer",
+      "year": 2023,
+      "headline": "ZARA Rassismus Report 2023: ZARA dokumentiert NGO-intern rund 1.300 gemeldete rassistische Vorfälle — Zahlen sind SELBSTMELDUNGS-basiert, nicht repräsentativ, nicht Gerichtsstatistik",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Aussage zu ZARA-Rassismusvorfällen — METHODISCH SENSITIV. ZARA-Zahl ist Selbstmeldungs-basiert (Personen melden sich bei ZARA-Beratungsstellen), nicht repräsentativ und KEINE Gerichts-/Polizei-Statistik. Bei Vergleichen mit BMI-/Polizeistat-Daten (Anzeigen wegen Verhetzung § 283 StGB) ist methodische Differenz zu beachten. VERDICT-LEITLINIE: Aussagen 'laut ZARA-Report wurden 2023 ca. 1.300 Vorfälle dokumentiert' sind in dieser Zitation 'mostly_true'; Aussagen die ZARA-Zahl als 'Gesamt-Rassismusvorfälle AT' oder als 'amtliche Statistik' framen sind 'mostly_false'. Pipeline soll die Methodik-Differenzierung im Summary OFFEN ausweisen. Politik-Guardrail: KEINE eigene Klassifikation 'AT ist rassistisch/nicht-rassistisch' — Pack zitiert nur die NGO-Zahl mit Caveat.",
+        "ngo_quellen_disclaimer": "ZARA (Zivilcourage und Anti-Rassismus-Arbeit) ist eine österreichische NGO mit Sitz in Wien, gegründet 1999. ZARA betreibt mehrere Beratungsstellen für Betroffene rassistischer Diskriminierung. Der jährliche 'Rassismus Report' aggregiert die in den Beratungsstellen + Online-Meldeformularen erfassten Vorfälle. Die Zahl ist konstruktionsbedingt eine UNTER-Erfassung (Dunkelfeld ist hoch — nicht alle Betroffenen wenden sich an ZARA) und gleichzeitig methodisch nicht direkt mit Polizei-/Gerichtsstatistik vergleichbar.",
+        "methodische_caveats": "WICHTIG für Faktenchecks: (1) ZARA-Vorfälle sind nicht gerichtsfest geprüft — Meldungen werden plausibilisiert, aber nicht verurteilt. (2) Definition 'Rassismus' ist im ZARA-Verständnis weit (umfasst auch micro-aggressions, strukturelle Benachteiligung), während im StGB nur § 283 (Verhetzung) und § 117 (üble Nachrede mit rassistischer Motivation) strafrechtlich definiert sind. (3) Online-Hate-Speech-Vorfälle haben in den 2020ern stark zugenommen — Methodik der Erfassung wurde mehrfach angepasst, Vergleiche über Jahre brauchen Vorsicht. (4) ZARA ist methodisch transparent — die Selbst-Bezeichnung als 'Meldestelle, nicht repräsentative Stichprobe' findet sich im jeweiligen Report selbst.",
+        "kreuzkonsens_polizeistat": "Komplementär: BMI-Bericht 'Hass im Netz' und Polizei-Kriminalstatistik dokumentieren Anzeigen wegen Verhetzung § 283 StGB (2022 ca. 1.900 Anzeigen, davon ca. 30 % Verurteilungen). Diese Zahlen sind nicht identisch mit ZARA-Meldungen — andere Erhebungsweise.",
+        "ngo_charakter": "ZARA hat eine klare anti-rassistische Mission. Die Selbst-Bezeichnung als NGO mit politischer Position ist transparent — eine Bewertung 'NGO-Bias macht ZARA-Zahlen unbrauchbar' ist nicht gerechtfertigt; eine Bewertung 'ZARA-Zahl = repräsentative Rassismus-Statistik' ist methodisch falsch. Differenzierung ist erforderlich.",
+        "context": "Pack zitiert ZARA-Zahlen als NGO-Quelle mit explizitem Methodik-Disclaimer. KEINE eigene Wertung über Rassismus-Niveau in AT — diese erfordert Kreuzkonsens mit BMI, Eurostat-Diskriminierungs-Surveys, FRA-EU-MIDIS-Studien."
+      },
+      "context_notes": [
+        "ZARA ist Selbstauskunft eine NGO mit klarer politischer Mission (anti-rassistisch); die Methodik ist im jeweiligen Report explizit dokumentiert.",
+        "Beim Faktencheck NIE eine ZARA-Zahl als 'amtliche Rassismus-Statistik' framen — methodische Differenz ist Pflichtangabe.",
+        "Komplementäre Quellen: BMI 'Hass im Netz'-Bericht, FRA EU-MIDIS-II + FRAR-Studien, Eurostat Crime Statistics (limitiert für Diskriminierung).",
+        "Politik-Guardrail #3: Pack klassifiziert KEINE politische Bewegung als 'rassistisch' — nur die Methodik der ZARA-Statistik wird kommentiert.",
+        "WICHTIG: bei einem Anstieg/Rückgang der ZARA-Zahlen über Jahre KANN der reale Vorfallszahlen-Trend abweichen — der Trend bei ZARA reflektiert AUCH die Sichtbarkeit der Meldestelle und die Bereitschaft der Betroffenen sich zu melden."
+      ],
+      "claim_phrasings_handled": [
+        "ZARA hat 2023 1.300 Rassismus-Vorfälle dokumentiert",
+        "Laut ZARA gab es 2023 viele Rassismusvorfälle",
+        "ZARA-Bericht zeigt Anstieg von Rassismus"
+      ],
+      "trigger_keywords": [
+        "zara", "zara report", "rassismus report",
+        "rassismusbericht", "rassismus-bericht",
+        "zara-vorfälle", "zara-vorfaelle",
+        "rassismus-meldestelle", "zara meldestelle"
+      ],
+      "trigger_composite": [
+        ["zara", "rassismus report", "rassismus-bericht", "rassismusbericht", "rassismus-vorfälle", "rassismus-vorfaelle", "rassismusvorfälle", "rassismusvorfaelle"],
+        ["österreich", "oesterreich", " at ", "wien", "ngo", "bericht", "statistik", "zahl", "dokumentiert", "gemeldet", "meldestelle"]
+      ],
+      "source_label": "ZARA Rassismus Report (NGO-Quelle, Selbstmeldung) — methodische Differenzierung gegenüber Polizei-/Gerichtsstatistik",
+      "source_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report",
+      "secondary_url": "https://www.bmi.gv.at/"
+    },
+    {
+      "id": "zara_hate_speech_online_2023",
+      "topic": "hate_speech_online_at_methodik",
+      "scope": "Online-Hate-Speech-Vorfälle in AT — ZARA + BMI 'Hass im Netz' Kreuzkonsens (deskriptiv, mit Methodik-Disclaimer)",
+      "year": 2023,
+      "headline": "AT Online-Hate-Speech 2023: ZARA + BMI dokumentieren steigende Anzeigen/Meldungen — exakte Zahlen schwanken je nach Erhebungs-Methodik (Selbstmeldung vs. Anzeige vs. Verurteilung)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Aussage zu Online-Hate-Speech in AT — METHODISCH SENSITIV. ZARA-Zahlen sind Selbstmeldungs-basiert (nicht repräsentativ); BMI-Anzeigen sind Polizei-Statistik (höhere Belastbarkeit, aber Dunkelfeld bleibt); Verurteilungen sind die niedrigste Zahl (BMJ-Statistik). VERDICT-LEITLINIE: Aussagen 'Hate Speech online ist in AT angestiegen' sind 'mostly_true' (Konsens aller Quellen); konkrete Zahlen-Behauptungen 'X tausend Hate-Speech-Fälle 2023' brauchen Angabe der Erhebungs-Methodik — bei pauschal-Zahl ohne Quellenangabe 'mixed'. KEINE eigene Bewertung 'AT-Internet ist toxisch' — politische Wertung. Politik-Guardrail: Pack zitiert NGO-Zahl + amtliche Anzeigestatistik, KEINE eigene Klassifikation politischer Akteure als 'Hate Speaker'.",
+        "ngo_quellen_disclaimer": "ZARA Counter-Act-Stelle ist seit 2017 spezialisiert auf Online-Hate-Speech-Meldungen — von Betroffenen + DritterAnzeigen entgegengenommen, plausibilisiert, in Folge an Plattformen, Behörden oder Beratungsstellen weitergeleitet. Die Statistik ist NICHT identisch mit der Anzahl aller Online-Hate-Speech-Vorfälle in AT.",
+        "amtliche_anzeigestatistik": "BMI Polizei-Kriminalstatistik § 283 StGB Verhetzung: 2018 ca. 870 Anzeigen, 2022 ca. 1.900 Anzeigen, 2023 erwartet ähnlich. Verurteilungsquote ca. 25–30 %. Anstieg ist mit Erweiterung des Tatbestandes 2016 (Verhetzungs-Novelle) und der zunehmenden Online-Komponente begründbar — eine reine 'Hass-Anstieg'-Interpretation greift zu kurz.",
+        "fra_eu_studie": "EU-Grundrechteagentur (FRA) EU-MIDIS-II + FRAR-Surveys 2022/23 zeigen, dass 23–30 % der Befragten mit Migrationshintergrund in EU-27 Diskriminierungs-Erfahrungen gemacht haben (24 Monate vor Erhebung); AT-Werte liegen im EU-Mittelfeld. Diese Surveys sind methodisch belastbarer als NGO-Meldungen, aber nicht direkt mit ZARA-Zahlen vergleichbar.",
+        "online_plattform_kontext": "Online-Hate-Speech-Diskussion ist plattform-abhängig: Telegram, X (Twitter), Facebook-Kommentare sind unterschiedlich erfasst. Das Hass-im-Netz-Gesetz (HiNBG, 2021) gibt Betroffenen niedrigschwelligen Zugang zu Unterlassungsverfahren — die juristische Lage hat sich gegenüber Vor-2021 geändert. NICHT alle 'Hate Speech'-Vorfälle sind strafbar — Meinungsfreiheit (Art. 10 EMRK) begrenzt die Reichweite.",
+        "context": "Topic adressiert die Vorfalls-Statistik, NICHT eine Bewertung politischer Akteure als 'Hate Speaker'. Politik-Tabu #3: keine eigene Links/Rechts-Klassifikation."
+      },
+      "context_notes": [
+        "ZARA-Zahlen + BMI-Anzeigen + BMJ-Verurteilungen sind drei unterschiedliche Datenebenen — bei Faktenchecks IMMER die Datenebene benennen.",
+        "Hate Speech ist methodisch sensitiv: was 'strafbar' ist (§ 283 StGB) ist enger als das, was die ZARA-Beratungsstelle erfasst (auch nicht-strafbare Mikro-Diskriminierungen).",
+        "Pack zitiert NGO-Zahl mit Disclaimer + BMI-Anzeigen als amtliche Kreuzkonsens-Quelle. KEINE Bewertung von Plattform-Politik oder politischen Akteuren — neutrale Methodik-Information."
+      ],
+      "claim_phrasings_handled": [
+        "Hate Speech ist in AT angestiegen",
+        "ZARA hat 2023 Anstieg von Online-Hass dokumentiert",
+        "AT hatte 2022 1900 Verhetzungs-Anzeigen"
+      ],
+      "trigger_keywords": [
+        "hate speech österreich", "hate speech oesterreich",
+        "hass im netz", "hass-im-netz",
+        "online-rassismus", "online rassismus",
+        "verhetzung anzeigen", "verhetzung at",
+        "hassrede österreich", "hassrede oesterreich",
+        "zara counter-act", "zara online"
+      ],
+      "trigger_composite": [
+        ["hate speech", "hate-speech", "hassrede", "verhetzung", "hass im netz", "hass-im-netz", "online-hass", "online hass", "online-rassismus"],
+        ["österreich", "oesterreich", " at ", "wien", "internet", "online", "social media", "plattform"]
+      ],
+      "source_label": "ZARA Counter-Act / BMI Polizei-Kriminalstatistik § 283 / EU-FRA EU-MIDIS-II",
+      "source_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report",
+      "secondary_url": "https://www.bmi.gv.at/301/Kriminalstatistik/start.aspx"
+    },
+    {
+      "id": "oeif_subsidiaerer_schutz_at_2023",
+      "topic": "subsidiaerer_schutz_at_konsens",
+      "scope": "Subsidiärer Schutz vs. Asylberechtigung in AT — Rechtskategorien (deskriptiv)",
+      "year": 2023,
+      "headline": "AT-Schutzberechtigte 2023: ~115.000 anerkannte Asylberechtigte + ~50.000 subsidiär Schutzberechtigte (Stand Wohnregister-Schätzung)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Faktenaussage zur Rechtskategorisierung Schutzberechtigter. VERDICT-LEITLINIE: Aussagen die zwischen Asyl und subsidiärem Schutz korrekt differenzieren sind 'mostly_true'; Aussagen die beide Kategorien vermischen ('alle Asylsuchenden bekommen Asyl') sind 'mostly_false'. Aussagen zu konkreten Zahlen brauchen Verifikation am BMI-Bericht. KEINE Bewertung 'zu viele/zu wenige werden anerkannt' — politische Wertung.",
+        "rechtsstatus_asyl": "Asylberechtigt nach Genfer Flüchtlingskonvention (§ 3 AsylG): Verfolgung wegen Rasse, Religion, Nationalität, politischer Überzeugung, Zugehörigkeit zu sozialer Gruppe. Statusrechte: unbefristeter Aufenthalt, Familiennachzug ohne Quote, Sozialleistungen wie AT-StaatsbürgerInnen, Reise-Konvention.",
+        "rechtsstatus_subsidiaerer_schutz": "Subsidiärer Schutz (§ 8 AsylG): Schutz vor 'real risk' schwerer Menschenrechtsverletzung im Herkunftsland (z.B. willkürliche Gewalt in bewaffneten Konflikten), wenn Voraussetzungen für Asyl nicht erfüllt sind. Statusrechte schwächer: zunächst befristet auf 1 Jahr (Verlängerung möglich), Sozialleistungen können differenziert sein, Familiennachzug eingeschränkt.",
+        "anerkennungsquoten_kontext": "BAMF/BFA-Anerkennungsquoten 2023 (AT): Syrien Asyl ~75 % + subs ~15 %, Afghanistan Asyl ~30 % + subs ~25 % (in Summe ~55 % Schutzstatus), Westbalkan-Staaten Schutzquote insgesamt <5 %.",
+        "ukraine_temp_schutz": "Ukrainer:innen fallen NICHT unter Asyl oder subsidiären Schutz, sondern unter den temporären Schutz nach Vertriebenen-VO 2022 — eine eigene Kategorie. Verlängerung bis März 2026.",
+        "context": "Topic ist deskriptiv-rechtlich. Aussagen über 'Reform-Bedarf' sind politische Diskussion — nicht Gegenstand."
+      },
+      "context_notes": [
+        "Genfer Flüchtlingskonvention (1951) + Asyl-Anerkennungsrichtlinie EU (Richtlinie 2011/95/EU) sind die rechtlichen Grundlagen — ÖIF + BMI zitieren konsistent.",
+        "Subsidiärer Schutz wird in der medialen Debatte oft mit 'Asyl' vermischt — ein juristisch falscher Sprachgebrauch.",
+        "Familiennachzug zu subsidiär Schutzberechtigten ist seit 2018 (subsidiär-Familiennachzugs-Regelung) zeitlich + zahlenmäßig limitiert — unterscheidet sich von Asyl."
+      ],
+      "claim_phrasings_handled": [
+        "AT hat 115.000 Asylberechtigte",
+        "Subsidiärer Schutz ist dasselbe wie Asyl",
+        "Syrier bekommen automatisch Asyl in AT"
+      ],
+      "trigger_keywords": [
+        "subsidiärer schutz", "subsidiaerer schutz",
+        "subsidiär schutzberechtigt", "subsidiaer schutzberechtigt",
+        "asylberechtigte at", "asylberechtigte österreich",
+        "anerkennungsquote at", "schutzquote at",
+        "schutzberechtigte österreich", "schutzberechtigte oesterreich"
+      ],
+      "trigger_composite": [
+        ["subsidiär", "subsidiaer", "asylberechtigt", "schutzberechtigt", "anerkennungsquote", "schutzquote"],
+        ["österreich", "oesterreich", " at ", "wien", "asyl", "afghan", "syri", "ukrain", "westbalkan"]
+      ],
+      "source_label": "ÖIF Integrationsbericht / BMI Asyl-Statistik / BFA Anerkennungsstatistik",
+      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "secondary_url": "https://www.bmi.gv.at/301/Statistiken/start.aspx"
+    },
+    {
+      "id": "zara_arbeitswelt_diskriminierung_2023",
+      "topic": "arbeitswelt_diskriminierung_at_methodik",
+      "scope": "Diskriminierung in AT-Arbeitswelt — ZARA-Meldestelle + Gleichbehandlungsanwaltschaft (Kreuzkonsens)",
+      "year": 2023,
+      "headline": "AT-Arbeitswelt-Diskriminierung 2023: ZARA + Gleichbehandlungsanwaltschaft dokumentieren mehrere hundert Fälle pro Jahr — methodisch ZARA = Selbstmeldung, Gleichbehandlungsanwaltschaft = amtliche Beratung",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Aussage zu Diskriminierungs-Vorfällen in der Arbeitswelt — METHODISCH SENSITIV. ZARA-Zahl ist Selbstmeldungs-basiert (nicht repräsentativ); Gleichbehandlungsanwaltschaft-Statistik ist amtlich, aber auch nur die zu ihr gemeldeten Fälle (Dunkelfeld bleibt). VERDICT-LEITLINIE: Aussagen 'Diskriminierung in AT-Arbeitswelt existiert und wird dokumentiert' sind 'mostly_true' (multiquelliger Konsens); Aussagen zu konkreten Häufigkeits-Quoten ('jeder X Migrant erlebt Diskriminierung') sind 'mixed' (Methodik-abhängig). Bei Vergleich ZARA-Zahl ↔ Gleichbehandlungsanwaltschaft-Zahl methodische Differenz beachten — beide sind UNTER-Erfassungen. KEINE Bewertung 'Arbeitsmarkt ist (nicht) diskriminierend' — empirisch-multiquelliger Sachverhalt.",
+        "ngo_quellen_disclaimer": "ZARA-Beratungsstellen erfassen Diskriminierungsfälle in der Arbeitswelt (Bewerbung, Anstellungs-Verhältnis, Kündigung) auf Basis Selbstmeldung. Die Daten reflektieren WEITERHIN nur den Teil der Vorfälle, bei dem Betroffene sich aktiv an die NGO wenden. Beratungskontakt setzt Kenntnis der Stelle voraus — Sprachbarrieren + Aufenthaltsstatus können Hemmschwelle sein.",
+        "gleichbehandlungsanwaltschaft": "Die Gleichbehandlungsanwaltschaft (GAW, BMAW) ist die staatliche Anlaufstelle für Diskriminierungsfälle nach Gleichbehandlungsgesetz (GlBG) — Beratungs- + Mediations-Funktion. Jahresbericht 2023: mehrere tausend Anfragen + hunderte verfolgte Fälle (Mehrheit nicht-Migration-Diskriminierung — auch Geschlecht, Alter, sex. Orientierung). Diskriminierungs-Klagen vor dem Bundesverwaltungsgericht laufen separat — die Mehrheit der Fälle wird außergerichtlich mediiert.",
+        "feldexperimente_kreuzkonsens": "Sozialwissenschaftliche Korrespondenztest-Studien (audit studies) — z.B. WIFO 2020, IZA 2021 — zeigen für AT: BewerberInnen mit erkennbar 'türkisch'/'arabisch' klingenden Namen erhalten ~20–30 % weniger Einladungen zu Vorstellungsgesprächen bei gleicher Qualifikation. Die Studien sind methodisch belastbar (randomisierte Versendung identischer Lebensläufe) — aber sie messen NICHT alle Formen der Diskriminierung.",
+        "diskriminierungs_grundlage_gleichbehandlungsgesetz": "Das österreichische GlBG verbietet Diskriminierung in der Arbeitswelt wegen ethnischer Zugehörigkeit, Religion, Alter, sexueller Orientierung, Behinderung. Die Reichweite ist EU-konform (Antidiskriminierungs-Richtlinien 2000/43/EG, 2000/78/EG). Eine Bewertung 'AT-Antidiskriminierungs-Recht ist (un)wirksam' ist juristisch + politisch komplex — Pack zitiert NUR den Rechtsrahmen, KEINE Wirksamkeits-Bewertung.",
+        "context": "Pack adressiert Diskriminierungs-Statistik. KEINE Bewertung politischer Akteure als 'diskriminierend' — Methodik-Information."
+      },
+      "context_notes": [
+        "Drei Datenquellen-Ebenen: (a) ZARA-NGO-Selbstmeldung (Dunkelfeld größer, qualitative Tiefe), (b) Gleichbehandlungsanwaltschaft (amtlich, fokussiert), (c) sozialwissenschaftliche Audit-Studien (methodisch belastbarste Quelle für Diskriminierung im Auswahlprozess). Beim Faktencheck Quellen-Tiefe abgleichen.",
+        "Vorsicht: NICHT JEDE 'gefühlte Diskriminierung' ist methodisch als Diskriminierung erfassbar — Selbstwahrnehmung und nachweisbare Diskriminierung sind unterschiedlich.",
+        "Politik-Guardrail: Pack klassifiziert KEINE politische Position als 'diskriminierungs-freundlich' — nur die empirische Datenlage wird zitiert.",
+        "Bei Aussagen 'Migranten erleben weniger/mehr Diskriminierung als XYZ' Vorsicht — multi-axiale Diskriminierungs-Erfahrungen (z.B. Geschlecht + Migrationshintergrund) sind schwer auflösbar."
+      ],
+      "claim_phrasings_handled": [
+        "Migranten werden auf AT-Arbeitsmarkt diskriminiert",
+        "ZARA dokumentiert Arbeitswelt-Rassismus",
+        "Gleichbehandlungsanwaltschaft hatte X Fälle 2023"
+      ],
+      "trigger_keywords": [
+        "arbeitsmarkt-diskriminierung", "arbeitsplatz-diskriminierung",
+        "gleichbehandlungsanwaltschaft", "gleichbehandlungsgesetz",
+        "diskriminierung arbeit",
+        "bewerbungs-diskriminierung", "bewerbungsdiskriminierung",
+        "rassismus arbeitswelt", "rassismus arbeitsplatz"
+      ],
+      "trigger_composite": [
+        ["diskriminier", "rassismus", "benachteilig"],
+        ["arbeitsmarkt", "arbeitsplatz", "arbeitswelt", "bewerbung", "anstellung", "job"],
+        ["österreich", "oesterreich", " at ", "wien", "migrant", "migration", "name", "ausländisch", "auslaendisch"]
+      ],
+      "source_label": "ZARA Rassismus Report + Gleichbehandlungsanwaltschaft (BMAW) + WIFO/IZA Audit-Studien",
+      "source_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report",
+      "secondary_url": "https://www.gleichbehandlungsanwaltschaft.gv.at/"
+    },
+    {
+      "id": "oeif_sozialleistungen_migration_at_2023",
+      "topic": "sozialleistungen_migration_at_konsens",
+      "scope": "Bezug von Sozialleistungen nach Migrationshintergrund (Mindestsicherung/Sozialhilfe) — deskriptiv",
+      "year": 2023,
+      "headline": "AT-Sozialhilfe/Mindestsicherung 2023: ausländische Staatsangehörige + AT-StaatsbürgerInnen mit Migrationshintergrund sind in der Bezugs-Statistik überrepräsentiert — Hintergrund: Arbeitsmarkt-Integrationsdauer, Familiengröße",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Aussage zur Sozialleistungs-Statistik nach Migrationshintergrund — METHODISCH SENSITIV. VERDICT-LEITLINIE: Aussagen 'ausländische Staatsangehörige sind in der Mindestsicherungs-Statistik überrepräsentiert' sind 'mostly_true' (Statistik Austria + Länder-Sozialhilfe-Berichte). Aussagen 'alle Migranten leben von Sozialhilfe' sind 'mostly_false'. Aussagen 'Sozialhilfe-Magnet'-These sind 'mostly_false' (siehe IAB-BAMF-SOEP — Sozialleistungen sind nicht primärer Pull-Faktor). KEINE Bewertung 'Migration ist (nicht) fiskalisch sinnvoll' — Fiskalbilanz-Debatte ist methodisch umstritten (siehe migration_pack). Politik-Guardrail #1: keine Partei-Bewertung der Sozialhilfe-Reformdebatte.",
+        "amtliche_kennzahlen": "Statistik Austria + Länder-Sozialhilfe-Berichte: 2023 ca. 200.000 Personen in BMS/Sozialhilfe-Bezug AT-weit. Ca. 50 % der BezieherInnen sind ausländische Staatsangehörige oder AT-StaatsbürgerInnen mit Migrationshintergrund (Anteil schwankt zwischen Bundesländern — Wien deutlich höher). Die Bezugs-Wahrscheinlichkeit pro Kopf liegt bei Drittstaatsangehörigen ca. 3–5x höher als bei AT-StaatsbürgerInnen ohne Migrationshintergrund.",
+        "kontext_erklaerung": "Strukturelle Ursachen (Konsens-Befund Statistik Austria, ÖIF, WIFO): (1) niedrigere Beschäftigungsquote Drittstaatsangehöriger (~62 % vs. ~78 % AT-Schnitt), (2) niedrigere Stundenlöhne durch De-Qualifikation, (3) größere Haushalte → mehr Bedarfsgemeinschaften unter Sozialhilfe-Schwelle, (4) Anerkennungsdauer ausländischer Qualifikationen, (5) Sprachkurs-Phase als Übergangszeit ohne Vollzeit-Erwerb.",
+        "asyl_subsidiaer_differenzierung": "Asyl- und subsidiär Schutzberechtigte sind nach Anerkennung sozialleistungs-anspruchsberechtigt; während des Asylverfahrens gilt Grundversorgung (deutlich niedriger als BMS, primär Sachleistungen). Die mediale Konflation von 'Asylwerber lebt von Sozialhilfe' ist juristisch falsch — Asylwerber bekommen Grundversorgung, NICHT BMS.",
+        "iab_bamf_konsens": "IAB-BAMF-SOEP-Befragung 2022/23: bei Geflüchteten DE (vergleichbar AT) waren Menschenrechte (73 %), Bildung (43 %), Sicherheitsgefühl (42 %) zentrale Pull-Faktoren — Sozialleistungen wurden mit deutlichem Abstand als nachgeordneter Faktor genannt. Die 'Sozial-Magnet'-These ist empirisch nicht primär gestützt.",
+        "context": "Pack zitiert die Statistik mit struktureller Erklärung. KEINE Bewertung der Sozialhilfe-Reformdebatte — politische Diskussion."
+      },
+      "context_notes": [
+        "Sozialhilfe-Statistik ist methodisch teilweise länderspezifisch (Bundesländer-Kompetenz seit 2019-Reform); AT-weite Zahlen sind aggregierte Schätzungen.",
+        "Pauschal-Aussagen 'Migranten sind Hauptbelastung Sozialhilfe' ignorieren die strukturellen Ursachen (Beschäftigungsquote, Familiengröße) — methodisch unsauber.",
+        "Faktencheck-Pflicht: bei der Aussage 'AT-Sozialhilfe-Magnet' IMMER die IAB-BAMF-SOEP-Konsens-Lage als Gegenpunkt zitieren — Konsens ist eindeutig.",
+        "Beim Vergleich AT vs. EU: AT-Sozialhilfe ist im EU-Mittelfeld — kein außergewöhnlich attraktives System (Eurostat Sozialschutz-Statistik)."
+      ],
+      "claim_phrasings_handled": [
+        "Migranten sind Hauptempfänger von Mindestsicherung",
+        "Sozialhilfe-Magnet zieht Asylsuchende nach AT",
+        "Drittstaatsangehörige beziehen häufiger Sozialhilfe"
+      ],
+      "trigger_keywords": [
+        "mindestsicherung migration", "sozialhilfe migration",
+        "bms ausländer", "bms auslaender",
+        "sozialleistung migrant",
+        "sozialmagnet", "sozial-magnet",
+        "asyl sozialhilfe"
+      ],
+      "trigger_composite": [
+        ["mindestsicherung", "sozialhilfe", "bms", "sozialleistung", "grundversorgung", "sozial-magnet", "sozialmagnet"],
+        ["migration", "migrant", "ausländer", "auslaender", "drittstaat", "asyl", "geflüchtet", "gefluechtet"],
+        ["österreich", "oesterreich", " at ", "wien"]
+      ],
+      "source_label": "ÖIF Integrationsbericht / Statistik Austria / IAB-BAMF-SOEP-Konsens",
+      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/soziales/sozialhilfe-und-bedarfsorientierte-mindestsicherung"
+    },
+    {
+      "id": "oeif_familiennachzug_at_2023",
+      "topic": "familiennachzug_at_konsens",
+      "scope": "Familiennachzug AT — rechtliche Differenzierung Asyl vs. subsidiär Schutzberechtigt (deskriptiv)",
+      "year": 2023,
+      "headline": "AT-Familiennachzug 2023: Asylberechtigte haben Anspruch ohne Limit; subsidiär Schutzberechtigte seit 2018-Reform mit Wartefrist + Voraussetzungen",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Rechts-Aussage. VERDICT-LEITLINIE: Aussagen die zwischen Asyl- und subsidiär-Familiennachzug korrekt differenzieren sind 'mostly_true'. Aussagen 'Familiennachzug ist unbegrenzt für alle Schutzberechtigten' sind 'mostly_false'. Aussagen zu konkreten jährlichen Familiennachzugs-Zahlen brauchen Verifikation am BMI-Bericht. KEINE Bewertung der Familiennachzugs-Reformdebatte.",
+        "rechtsstatus_asyl_familiennachzug": "Asylberechtigte (§ 35 AsylG): Ehegatten + minderjährige Kinder haben Anspruch auf Familiennachzug ohne Quoten-Limitierung; Voraussetzungen sind familiäre Verbindung + Antrags-Frist (3 Monate Privilegierte Frist).",
+        "rechtsstatus_subsidiaer_familiennachzug": "Subsidiär Schutzberechtigte: bis 2018 ähnlicher Anspruch wie Asyl; seit 2018-Reform (FrÄG 2018) deutliche Einschränkungen — 3 Jahre Wartefrist nach Statusgewährung, Selbsterhaltungsfähigkeit + Wohnraum nachzuweisen, danach Antrag möglich. Praktisch deutlich erschwert.",
+        "ukraine_temp_schutz_kontext": "Personen mit temporärem Schutz (Vertriebenen-VO 2022) haben einen abgekoppelten Status — Familien können direkt einreisen ohne separates Familiennachzugs-Verfahren (so kommen sie regelmäßig direkt mit Familienangehörigen).",
+        "amtliche_zahlen_kontext": "Familiennachzugs-Zahlen 2023 AT: BMI-Statistik dokumentiert mehrere tausend Familiennachzugs-Bewilligungen pro Jahr (Größenordnung 5.000–15.000, schwankt mit Schutzberechtigten-Bestand). Detail-Zahlen brauchen Jahresbericht.",
+        "context": "Pack ist deskriptiv-rechtlich. Reform-Debatten (z.B. 'Aussetzung Familiennachzug') sind politische Diskussion — NICHT Gegenstand."
+      },
+      "context_notes": [
+        "Genfer Flüchtlingskonvention + EU-Familienzusammenführungs-Richtlinie 2003/86/EG sind die rechtlichen Grundlagen.",
+        "Bei Aussagen 'Familiennachzug ist gestoppt' Vorsicht — politisch ist eine Aussetzung im Gespräch (2024), rechtlich erfordert das EU-rechtliche Prüfung.",
+        "Die mediale Konflation 'Asyl-Familiennachzug = subsidiär-Familiennachzug = Ukraine-Schutz-Familie' ist juristisch falsch — drei unterschiedliche Kategorien."
+      ],
+      "claim_phrasings_handled": [
+        "Asylberechtigte können ihre Familie nach AT holen",
+        "Subsidiär Schutzberechtigte müssen 3 Jahre warten für Familiennachzug",
+        "Familiennachzug zu Asyl ist unbegrenzt"
+      ],
+      "trigger_keywords": [
+        "familiennachzug at", "familiennachzug österreich", "familiennachzug oesterreich",
+        "familienzusammenführung at", "familienzusammenfuehrung at",
+        "familien-nachzug",
+        "asyl familie nachholen"
+      ],
+      "trigger_composite": [
+        ["familiennachzug", "familienzusammenführung", "familienzusammenfuehrung", "familien-nachzug", "ehegatten-nachzug", "kinder nachholen", "familie nachholen"],
+        ["österreich", "oesterreich", " at ", "wien", "asyl", "subsidiär", "subsidiaer", "schutzberechtigt"]
+      ],
+      "source_label": "ÖIF Integrationsbericht / BMI / AsylG § 35 + FrÄG 2018",
+      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "secondary_url": "https://www.bmi.gv.at/302/Asyl/start.aspx"
+    },
+    {
+      "id": "oeif_anerkennung_qualifikation_at_2023",
+      "topic": "anerkennung_qualifikation_at_konsens",
+      "scope": "Anerkennung ausländischer Berufsabschlüsse AT (deskriptiv)",
+      "year": 2023,
+      "headline": "AT-Berufsanerkennung 2023: ENIC-NARIC + AST sind die zentralen Stellen; Anerkennungs-Quoten + Verfahrensdauer schwanken stark nach Beruf und Herkunftsland",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Aussage zur Berufsanerkennung. VERDICT-LEITLINIE: Aussagen 'Anerkennung dauert lange / ist komplex' sind 'mostly_true' (Konsens Rechnungshof-Bericht 2020, OECD Settling-In). Aussagen zu konkreten Verfahrensdauer-Zahlen brauchen Verifikation. Aussagen 'in AT wird KEIN ausländischer Abschluss anerkannt' sind 'mostly_false' — Anerkennungen werden regelmäßig erteilt, aber mit teils langen Verfahren. KEINE Bewertung 'AT-Anerkennungs-System ist gerecht/ungerecht'.",
+        "anerkennungs_stellen": "ENIC-NARIC Austria (Bundesministerium für Bildung): akademische Anerkennung (Bewertung ausländischer Hochschulabschlüsse). Anerkennungs- und Bewertungs-Stelle (AST): nicht-akademische berufliche Anerkennung. Für reglementierte Berufe (Ärzt:innen, Pflege, Lehrer:innen, Anwält:innen) gelten EU-Berufsanerkennungs-RL 2005/36/EG + Sondergesetze.",
+        "brain_waste_befund": "OECD Settling-In 2023 + Statistik Austria Mikrozensus: ~50–60 % der Drittstaatsangehörigen mit Hochschulabschluss arbeiten in AT in Berufen unter ihrem Qualifikationsniveau ('De-Qualifizierung' / 'Brain Waste'). Bei AT-StaatsbürgerInnen ist diese Quote deutlich niedriger. Ursachen: nicht-anerkannte Abschlüsse, Sprachbarriere, Diskriminierung im Auswahlprozess, Netzwerk-Effekt.",
+        "rechnungshof_kritik": "Rechnungshof-Bericht 2020 'Anerkennung ausländischer Qualifikationen' kritisierte: lange Verfahrensdauer (teils >12 Monate), Intransparenz bei Bewertungs-Kriterien, fehlende Statistik-Harmonisierung zwischen Bundesländern. ÖIF + AST haben seit 2020 Verbesserungs-Programme angestoßen.",
+        "international_einordnung": "Im EU-Vergleich liegt AT mit der Anerkennungs-Praxis im Mittelfeld — Schweden, Niederlande haben effizientere Verfahren; Italien, Griechenland langsamere. OECD-Mittelwert wird in AT für viele Berufe verfehlt, in einigen (z.B. Pflege seit 2023-Reform) übertroffen.",
+        "context": "Pack ist deskriptiv. Reform-Debatten (z.B. 'Anerkennung beschleunigen') sind politische Diskussion."
+      },
+      "context_notes": [
+        "Rechnungshof-Bericht 2020 ist die methodisch belastbarste Primärquelle zur Verfahrenskritik.",
+        "Bei Aussagen 'AT erkennt KEINEN ausländischen Abschluss an' Vorsicht — Erlaubnis-/Anerkennungs-Bescheide werden in Tausenden pro Jahr ausgestellt; die Kritik betrifft Verfahrensdauer + Transparenz, NICHT Total-Ablehnung.",
+        "Brain-Waste-Befund (~50 % De-Qualifizierung) ist OECD-Konsens — wichtig für Faktenchecks zu 'Migranten sind unqualifiziert'-Behauptungen (Gegenpunkt: viele sind qualifiziert, aber im Job de-qualifiziert)."
+      ],
+      "claim_phrasings_handled": [
+        "AT erkennt ausländische Abschlüsse nicht an",
+        "Anerkennung von Berufsabschlüssen dauert lang",
+        "Brain Waste ist ein Problem in AT"
+      ],
+      "trigger_keywords": [
+        "anerkennung berufsabschluss", "anerkennung qualifikation",
+        "brain waste", "de-qualifizierung", "dequalifizierung",
+        "enic naric at", "ast österreich", "ast oesterreich",
+        "nostrifizierung", "berufsanerkennung at"
+      ],
+      "trigger_composite": [
+        ["anerkennung", "nostrifizierung", "nostrifikation", "berufsanerkennung", "brain waste", "brain-waste", "dequalifikation", "de-qualifikation", "dequalifizierung", "de-qualifizierung", "anerkennen", "anerkannt", "erkennt an", "erkennt aus", "erkenntan"],
+        ["abschluss", "abschluesse", "abschlüsse", "qualifikation", "diplom", "zeugnis", "ausbildung", "berufstitel", "berufsabschluss", "berufsabschluesse", "berufsabschlüsse"],
+        ["österreich", "oesterreich", "osterreich", " at ", " at.", " at,", " at;", " at:", " at)", "wien", "ausländisch", "auslaendisch", "auslandisch", "migration"]
+      ],
+      "source_label": "ÖIF Integrationsbericht / OECD Settling-In / Rechnungshof 2020",
+      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "secondary_url": "https://www.aais.at/anerkennung-bewertung/"
+    },
+    {
+      "id": "oeif_wertekurs_struktur_2023",
+      "topic": "wertekurs_struktur_at_konsens",
+      "scope": "Werte- und Orientierungskurs (WOK) — gesetzliche Grundlage + Inhalte (deskriptiv)",
+      "year": 2023,
+      "headline": "ÖIF-Werte-und-Orientierungskurs (WOK): seit 2017 verpflichtend für Asyl-/subsidiär-Schutzberechtigte; 8 Stunden mit Themen Verfassung/Gleichberechtigung/Rechtsstaat",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Aussage zum Werte-Kurs. VERDICT-LEITLINIE: Aussagen 'WOK ist verpflichtend' sind 'true' (gesetzlich geregelt). Aussagen zu Inhalten + Dauer sind 'mostly_true' (siehe Integrationsgesetz). Aussagen 'WOK ist (un)wirksam' sind 'mixed/unverifiable' — empirische Evaluations-Studien zur Verhaltens-/Werte-Wirkung sind methodisch schwierig. KEINE Bewertung 'WOK ist sinnvoll/sinnlos' — politische Diskussion. Politik-Guardrail #2: keine Prognosen zur WOK-Wirkung.",
+        "gesetzliche_grundlage": "Integrationsgesetz (IntG) §§ 5–6 (seit 2017): Werte- und Orientierungskurs ist verpflichtende Komponente der Integrationserklärung für Asyl- und subsidiär Schutzberechtigte. Nicht-Teilnahme kann sanktioniert werden (z.B. Sozialleistungs-Kürzung).",
+        "inhalte_struktur": "8-Stunden-Kurs mit Modulen zu: (1) Verfassungsrechtliche Grundwerte (Demokratie, Rechtsstaat, Menschenrechte), (2) Geschlechter-Gleichberechtigung, (3) Religionsfreiheit + Säkularität, (4) Rechtsstaat + Strafrecht (insb. häusliche Gewalt, Zwangsehen, Kinder-Rechte), (5) Alltagsleben + Behördenkontakte. Inhalte werden vom ÖIF gestaltet, durch externe TrainerInnen vermittelt.",
+        "teilnahme_statistik": "Statistik 2023 (ÖIF): mehrere zehntausend Teilnehmende pro Jahr. Detail-Zahlen schwanken jährlich mit Zahl der Neu-Schutzberechtigten.",
+        "kritik_evaluation": "Sozialwissenschaftliche Evaluations-Studien (z.B. Universität Wien 2019, ÖIF-eigene Evaluation 2021) sind methodisch limitiert: Werte-Veränderung ist über 8 Stunden schwer messbar, Selbstauskunft hat Bias, Kontrollgruppen schwer einrichtbar. ÖIF-Selbstauskunft + externe Studien zeigen positive Wissens-Effekte, Verhaltens-/Werte-Effekte sind ungeklärt.",
+        "context": "Topic ist deskriptiv-strukturell. KEINE Bewertung 'WOK funktioniert/scheitert'. Reform-Debatten (Erweiterung Inhalt, Stunden-Aufstockung) sind politisch."
+      },
+      "context_notes": [
+        "IntG ist juristische Primärquelle; ÖIF ist Träger der Umsetzung — selbst-evaluierende Quelle für Wirksamkeitsfragen.",
+        "Pack zitiert Struktur + Inhalt — die normative Frage 'sollte WOK abgeschafft / ausgeweitet werden' ist politische Diskussion.",
+        "Bei Aussagen 'WOK macht Migranten zu Demokraten' (oder umgekehrt 'WOK ist nutzlos') methodische Vorsicht — beides sind starke Behauptungen, empirisch nicht klar geklärt."
+      ],
+      "claim_phrasings_handled": [
+        "Schutzberechtigte müssen Wertekurs absolvieren",
+        "WOK ist seit 2017 verpflichtend in AT",
+        "ÖIF-Wertekurs dauert 8 Stunden"
+      ],
+      "trigger_keywords": [
+        "wertekurs", "werte-kurs",
+        "werteorientierungskurs", "werte-orientierungs-kurs",
+        "wok integration",
+        "integrationserklärung", "integrationserklaerung",
+        "öif wertekurs", "oeif wertekurs"
+      ],
+      "trigger_composite": [
+        ["wertekurs", "werte-kurs", "werte und orientierungs", "werte- und orientierungs", "wok ", "integrationserklärung", "integrationserklaerung", "werte-orientierungs", "wertekurs-"],
+        ["österreich", "oesterreich", "osterreich", " at ", " at.", "öif", "oeif", "integrationsgesetz", "asyl", "schutzberechtigt", "verpflichtung", "verpflichtend"]
+      ],
+      "source_label": "ÖIF / Integrationsgesetz IntG §§ 5–6 / IGAusbV",
+      "source_url": "https://www.integrationsfonds.at/themen/werte-und-orientierungskurse/",
+      "secondary_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20009769"
+    },
+    {
+      "id": "zara_rechtsschutz_beratung_2023",
+      "topic": "rechtsschutz_diskriminierung_at_methodik",
+      "scope": "Rechtsschutz-Möglichkeiten bei Diskriminierung in AT (deskriptiv-rechtlich)",
+      "year": 2023,
+      "headline": "AT-Diskriminierungs-Rechtsschutz 2023: ZARA-Beratung + Gleichbehandlungsanwaltschaft + Gerichtsverfahren — drei Ebenen mit unterschiedlichem Schwellenniveau",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Aussage zum Rechtsschutz. VERDICT-LEITLINIE: Aussagen zur Existenz der drei Ebenen sind 'mostly_true'. Aussagen 'es gibt keinen Diskriminierungs-Rechtsschutz in AT' sind 'mostly_false'. Aussagen 'der Rechtsschutz funktioniert (un)wirksam' sind 'mixed' (Wirksamkeits-Evaluation methodisch komplex). KEINE Bewertung der Reformbedarfs-Diskussion. Politik-Guardrail: ZARA wird hier zitiert als BERATUNGSSTELLE, nicht als amtliche Stelle.",
+        "ngo_quellen_disclaimer": "ZARA ist eine NGO mit Anti-Rassismus-Mission; die Beratung steht Betroffenen niedrigschwellig offen — sprachlich, geografisch (Wien-Standort), thematisch breit. ZARA-Beratung ist KEIN amtliches Verfahren — sie kann Betroffene aber an die amtlichen Stellen weiterleiten.",
+        "rechtsebenen_uebersicht": "Drei Ebenen: (1) NGO-Beratung (ZARA, Migrantinnen-Beratungsstellen, Antidiskriminierungs-Stellen Steiermark): qualitative Begleitung, Dokumentation, Weiter-Vermittlung. (2) Gleichbehandlungsanwaltschaft (GAW, BMAW): kostenlose Beratung + Mediation, Vertretung vor Gleichbehandlungskommission. (3) Gerichtsverfahren: Bezirksgericht / Landesgericht für Schadenersatz-Klage nach GlBG, Verwaltungsgerichtshof für öffentliche Diskriminierung; EuGH/EGMR-Ebene bei EU-/EMRK-Verletzung.",
+        "gleichbehandlungsgesetz_kontext": "GlBG (1979 + 2004-Reform für ethnische Diskriminierung) — verbietet Diskriminierung in Arbeitswelt, Wohnungsmarkt, Bildung, Sozialleistungen aufgrund Ethnie/Religion/Alter/sex. Orientierung/Behinderung/Geschlecht. Reichweite ist EU-konform (Antidiskriminierungs-RL 2000/43/EG, 2000/78/EG). Eine Sammelklage-Option fehlt in AT — Einzelklage ist Standard.",
+        "verfahrensdauer_kritik": "Diskriminierungs-Verfahren dauern in AT typischerweise mehrere Jahre (Bezirksgericht ~1–2 Jahre, Berufungen weitere Jahre). Beweis-Last liegt teilweise bei BeklagteR (Beweis-Erleichterung im GlBG), praktisch ist Nachweis oft schwierig.",
+        "context": "Pack ist deskriptiv-rechtlich. KEINE Bewertung 'Diskriminierungs-Schutz funktioniert (nicht)' — politische Diskussion."
+      },
+      "context_notes": [
+        "GlBG + EU-Antidiskriminierungs-Richtlinien sind die rechtliche Grundlage; Gleichbehandlungsanwaltschaft + GBK sind die quasi-gerichtlichen Stellen.",
+        "ZARA als NGO bietet eine ERGÄNZENDE Anlaufstelle (niedrigschwellig, mehrsprachig); ist NICHT identisch mit amtlicher Rechtsdurchsetzung.",
+        "Bei Aussagen 'AT-Diskriminierungs-Recht ist (un)wirksam' Vorsicht: Sammelklage-Lücke + Verfahrensdauer sind Konsens-Kritikpunkte; die Wirksamkeit pro Einzelfall ist aber jeweils einzeln zu bewerten."
+      ],
+      "claim_phrasings_handled": [
+        "ZARA bietet Diskriminierungs-Beratung",
+        "Gleichbehandlungsanwaltschaft ist amtliche Stelle",
+        "Diskriminierung kann in AT geklagt werden"
+      ],
+      "trigger_keywords": [
+        "diskriminierungs-beratung", "diskriminierungsberatung",
+        "gleichbehandlungskommission", "gleichbehandlungsanwaltschaft",
+        "antidiskriminierung at", "antidiskriminierungsstelle",
+        "diskriminierung klagen", "diskriminierung verfahren"
+      ],
+      "trigger_composite": [
+        ["diskriminierung", "antidiskriminierung", "anti-diskriminierung", "gleichbehandlung"],
+        ["beratung", "klage", "verfahren", "rechtsschutz", "anwaltschaft", "kommission", "anlaufstelle"],
+        ["österreich", "oesterreich", " at ", "wien", "zara", "ngo", "gleichbehandlungsanwaltschaft"]
+      ],
+      "source_label": "ZARA Rassismus Report / Gleichbehandlungsanwaltschaft / GlBG",
+      "source_url": "https://www.zara.or.at/de/beratung/",
+      "secondary_url": "https://www.gleichbehandlungsanwaltschaft.gv.at/"
+    },
+    {
+      "id": "oeif_grundversorgung_at_2023",
+      "topic": "grundversorgung_at_konsens",
+      "scope": "Grundversorgung für AsylwerberInnen AT — Leistungen während Asylverfahren (deskriptiv)",
+      "year": 2023,
+      "headline": "AT-Grundversorgung 2023: AsylwerberInnen erhalten Sachleistungen + ca. 40 EUR/Monat Taschengeld (organisiert) oder ca. 250 EUR (privat untergebracht) — NICHT identisch mit Sozialhilfe",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Deskriptive Aussage zur Grundversorgung. VERDICT-LEITLINIE: Aussagen 'AsylwerberInnen erhalten Grundversorgung' sind 'true'. Aussagen 'AsylwerberInnen erhalten Sozialhilfe' sind 'mostly_false' (während des Asylverfahrens NICHT Sozialhilfe, sondern Grundversorgung). Konkrete Geldbeträge sind 'mostly_true' im Bereich ±10 EUR. KEINE Bewertung 'Grundversorgung ist (un)zureichend' — politische Diskussion. Politik-Guardrail: keine Partei-Bewertung der Asyl-Sozialleistungs-Debatte.",
+        "rechtsgrundlage": "Grundversorgungsvereinbarung Bund-Länder 2004 (Art. 15a B-VG-Vereinbarung). AsylwerberInnen werden vom Bund/Ländern in Quartieren untergebracht (organisiert) oder können privat wohnen (private Unterbringung). Leistungs-Umfang ist gesetzlich geregelt — kein Verhandlungs-Spielraum.",
+        "leistungs_komponenten": "Organisierte Unterbringung: Sach-Verpflegung + Kleidung + Hygiene + ca. 40 EUR Taschengeld/Monat. Private Unterbringung: ca. 250 EUR Mietzuschuss + ca. 235 EUR Verpflegung + ca. 40 EUR Taschengeld. Krankenversicherungs-Beiträge werden zentral übernommen. Schulpflicht für minderjährige AsylwerberInnen bleibt.",
+        "abgrenzung_sozialhilfe": "WICHTIG: Grundversorgung ist NICHT Sozialhilfe / BMS. Erst nach Anerkennung (Asyl oder subsidiärer Schutz) sind die Schutzberechtigten anspruchsberechtigt für reguläre Sozialleistungen. Mediale + politische Konflation 'AsylwerberInnen leben von Sozialhilfe' ist juristisch falsch.",
+        "arbeits_erlaubnis_kontext": "AsylwerberInnen dürfen nach 3 Monaten Wartezeit eine Beschäftigungsbewilligung beantragen — in der Praxis ist die Bewilligungsquote schwankend (~80 % bei zeitlich befristeten Saison-Berufen, deutlich niedriger bei regulären Stellen). Eine 'Arbeitsverbot'-Pauschal-Aussage ist methodisch falsch — KEIN dauerhaftes Arbeitsverbot, aber Beschäftigungserlaubnis erforderlich.",
+        "context": "Pack ist deskriptiv-rechtlich. Reform-Debatten zu Leistungs-Höhe oder Arbeitserlaubnis sind politische Diskussion."
+      },
+      "context_notes": [
+        "Grundversorgungs-Vereinbarung Bund-Länder 2004 ist die rechtliche Primärquelle; einzelne Bundesländer setzen unterschiedlich um (Wien historisch höhere Standards).",
+        "Bei Aussagen 'AsylwerberInnen bekommen 1.000 EUR Sozialhilfe' Vorsicht — Grundversorgung-Beträge sind deutlich niedriger als BMS.",
+        "Quoten-Streit Bund-Länder: einzelne Bundesländer beklagen Aufnahme-Quoten-Überschreitung — politische Diskussion, nicht Faktencheck-Topic."
+      ],
+      "claim_phrasings_handled": [
+        "AsylwerberInnen erhalten 1.000 EUR Sozialhilfe",
+        "Grundversorgung ist nicht Sozialhilfe",
+        "AsylwerberInnen dürfen in AT nicht arbeiten"
+      ],
+      "trigger_keywords": [
+        "grundversorgung asyl",
+        "asyl sozialhilfe",
+        "asylwerber leistung", "asylwerber unterbringung",
+        "asyl taschengeld",
+        "asyl arbeitserlaubnis", "asyl arbeitsverbot"
+      ],
+      "trigger_composite": [
+        ["grundversorgung", "asyl-leistung", "asylwerber-leistung", "asyl unterbringung", "asyl taschengeld", "asyl-taschengeld", "asyl arbeitserlaubnis", "asyl arbeitsverbot", "beschäftigungsbewilligung asyl", "beschaeftigungsbewilligung asyl"],
+        ["österreich", "oesterreich", " at ", "wien", "asyl", "asylwerber"]
+      ],
+      "source_label": "ÖIF Integrationsbericht / Grundversorgungs-Vereinbarung 2004 / BMI",
+      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "secondary_url": "https://www.bmi.gv.at/302/Asyl/start.aspx"
+    },
+    {
+      "id": "zara_zivilcourage_struktur_2023",
+      "topic": "zara_zivilcourage_methodik",
+      "scope": "ZARA — Organisation + Mission + Methodik (deskriptiv, MIT Methodik-Disclaimer)",
+      "year": 2023,
+      "headline": "ZARA — Zivilcourage und Anti-Rassismus-Arbeit: NGO mit Sitz Wien (gegründet 1999), Anti-Rassismus-Mission; Vorfalls-Statistik ist Selbstmeldungs-basiert, NGO mit klarer Position",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Aussage zur ZARA-Organisation. VERDICT-LEITLINIE: Aussagen zur Existenz, Gründungsjahr, Mission sind 'true' (transparent dokumentiert). Aussagen 'ZARA ist neutrale Statistik-Quelle' sind 'mostly_false' (ZARA ist NGO mit Anti-Rassismus-Mission — kein methodischer Kritikpunkt, aber Differenzierung erforderlich). Aussagen 'ZARA ist politisch instrumentalisiert' sind 'mixed' (politische Bewertung — nicht Faktencheck-Aufgabe). Politik-Guardrail: keine eigene Klassifikation von NGOs als 'links/rechts' — ZARA klassifiziert sich SELBST als anti-rassistisch, Pack zitiert nur diese Selbstauskunft.",
+        "ngo_quellen_disclaimer": "ZARA ist NGO im Sinne des österreichischen Vereinsrechts (gegr. 1999). Finanzierung: Förderungen (Bund, Stadt Wien, EU), Spenden, Projekt-Aufträge. ZARA-Selbstauskunft + Jahresbericht sind Primärquelle für Organisation und Aktivitäten. ZARA-Vorfalls-Statistik ist Selbstmeldungs-basiert — methodisch sensibel, im Pack mit Disclaimer markiert.",
+        "mission_selbstauskunft": "ZARA-Selbst-Bezeichnung (aus Vereinsstatut + Webseite): 'Zivilcourage und Anti-Rassismus-Arbeit'. Aktivitäten: Beratungsstellen für Betroffene rassistischer Diskriminierung, Bildungsarbeit (Trainings, Workshops), Monitoring (Rassismus Report, Counter-Act gegen Online-Hassrede), politische Lobbyarbeit für Antidiskriminierungs-Recht.",
+        "vergleichbare_orgs": "Vergleichbare NGOs in AT: SOS Mitmensch, Asyl in Not, Diakonie-Flüchtlingsdienst, Caritas-Migrationsdienst, Volkshilfe-Migrationsdienst. Jede hat unterschiedliche Schwerpunkte — ZARA fokussiert spezifisch auf Anti-Rassismus.",
+        "international_vergleich": "International vergleichbare Organisationen: ENAR (European Network Against Racism, Brüssel), Amadeu-Antonio-Stiftung (DE), Aktion Courage (DE). ZARA ist AT-Partner in europäischen Anti-Rassismus-Netzwerken.",
+        "context": "Pack zitiert die ZARA-Selbstauskunft + methodischen Status als NGO. KEINE Wertung 'gut/schlecht' der ZARA-Mission — Faktencheck dokumentiert die Realität der Organisation. Politik-Guardrail #3: keine Links/Rechts-Klassifikation."
+      },
+      "context_notes": [
+        "ZARA ist transparent über die eigene Mission (Anti-Rassismus) — diese Transparenz ist methodisch positiv (nicht versteckter Bias), erfordert aber bei Zitation den Kontext: NGO-Quelle, nicht amtliche Statistik.",
+        "Vereinsregister + Förderdokumentation (öffentlich einsehbar bei Stadt Wien, Bund) belegen Finanzierungs-Struktur — falls Vorwurf 'ZARA ist heimlich finanziert' aufkommt, dieser ist faktisch falsch.",
+        "Politik-Guardrail: KEINE Aussagen 'ZARA ist links-aktivistisch' oder 'ZARA-Bias macht Zahlen unbrauchbar' — Pack zitiert nur die NGO-Selbstauskunft und die methodische Differenzierung."
+      ],
+      "claim_phrasings_handled": [
+        "ZARA ist eine NGO",
+        "ZARA wurde 1999 gegründet",
+        "ZARA macht Anti-Rassismus-Arbeit"
+      ],
+      "trigger_keywords": [
+        "zara verein", "zara ngo", "zara organisation",
+        "zara mission", "zara gegründet", "zara gegruendet",
+        "zara wien",
+        "zivilcourage anti-rassismus"
+      ],
+      "trigger_composite": [
+        ["zara", "zivilcourage und anti-rassismus", "zivilcourage anti-rassismus", "anti-rassismus-arbeit"],
+        ["ngo", "verein", "organisation", "stelle", "wien", "gegründet", "gegruendet", "mission", "förderung", "foerderung"]
+      ],
+      "source_label": "ZARA (Eigenauskunft) / Vereinsregister / Stadt Wien Förderdoku",
+      "source_url": "https://www.zara.or.at/de/ueber-uns",
+      "secondary_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report"
+    }
+  ]
+}

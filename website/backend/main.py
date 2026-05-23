@@ -26,6 +26,19 @@ from services.itf_transport import (
 )
 from services.eter import claim_mentions_eter_cached, search_eter
 from services.easie import claim_mentions_easie_cached, search_easie
+# Top-30-Sprint B (2026-05-23): 6 neue Pack-Services
+from services.awmf import claim_mentions_awmf_cached, search_awmf
+from services.oeif_zara import claim_mentions_oeif_zara_cached, search_oeif_zara
+from services.mipex import claim_mentions_mipex_cached, search_mipex
+from services.climate_action_tracker import (
+    claim_mentions_cat_cached, search_cat,
+)
+from services.iqs_bildung import (
+    claim_mentions_iqs_bildung_cached, search_iqs_bildung,
+)
+from services.who_hearing import (
+    claim_mentions_who_hearing_cached, search_who_hearing,
+)
 from services.efsa import search_efsa
 from services.claimreview import search_claimreview
 from services.copernicus import search_copernicus
@@ -453,6 +466,52 @@ async def check_claim(request: Request):
                 search_easie, analysis,
             ))
             queried_names.append("EASIE Inklusive Bildung")
+        # AWMF Leitlinienregister (DE) — 31 medizinische S1/S2/S3-Leitlinien
+        # (Diabetes, Hypertonie, Onkologie, Psychiatrie etc.).
+        if claim_mentions_awmf_cached(claim):
+            tasks.append(cached(
+                "AWMF Leitlinien", search_awmf, analysis,
+            ))
+            queried_names.append("AWMF Leitlinien")
+        # ÖIF + ZARA (AT) — Migration/Integration: 15 ÖIF-Statistik-facts
+        # + 5 ZARA-Methodik-facts mit NGO-Bias-Disclaimer.
+        if claim_mentions_oeif_zara_cached(claim):
+            tasks.append(cached(
+                "ÖIF/ZARA Migration", search_oeif_zara, analysis,
+            ))
+            queried_names.append("ÖIF/ZARA Migration")
+        # MIPEX Migrant Integration Policy Index — 22 Länder × 8 Politik-
+        # bereiche (2020). DESKRIPTIV-only, kein STRUKT-Override. AUDIT-FLAG
+        # für LLM-Approximation (Sprint-B-Followup: offizielles Excel
+        # gegenchecken).
+        if claim_mentions_mipex_cached(claim):
+            tasks.append(cached(
+                "MIPEX", search_mipex, analysis,
+            ))
+            queried_names.append("MIPEX")
+        # Climate Action Tracker — 41 Länder × 4 Bewertungs-Dimensionen
+        # (Overall/Targets/Policies/Fair Share). CAT-Skala wortwörtlich,
+        # KEIN eigenes Custom-Label. AUDIT-FLAG für LLM-Approximation.
+        if claim_mentions_cat_cached(claim):
+            tasks.append(cached(
+                "Climate Action Tracker", search_cat, analysis,
+            ))
+            queried_names.append("Climate Action Tracker")
+        # IQS Nationaler Bildungsbericht AT (2024) — 10 facts: PISA,
+        # Bildungsausgaben, Ganztagsschule, Lehrer-Mangel, SPF-Bestand,
+        # komplementär zu education_dach (TIMSS/PIRLS).
+        if claim_mentions_iqs_bildung_cached(claim):
+            tasks.append(cached(
+                "IQS Bildung AT", search_iqs_bildung, analysis,
+            ))
+            queried_names.append("IQS Bildung AT")
+        # WHO World Report on Hearing 2021 — 16 facts: globale Hörverlust-
+        # Prävalenz, PHL, Tinnitus, Cochlea-Implantate, Demenz-Risiko.
+        if claim_mentions_who_hearing_cached(claim):
+            tasks.append(cached(
+                "WHO Hearing", search_who_hearing, analysis,
+            ))
+            queried_names.append("WHO Hearing")
         if analysis.get("efsa_relevant"):
             tasks.append(cached("EFSA", search_efsa, analysis))
             queried_names.append("EFSA")
