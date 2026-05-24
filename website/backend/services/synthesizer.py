@@ -860,8 +860,17 @@ async def synthesize_results(
                     # EMA
                     "active_substance", "therapeutic_area", "indication",
                 )}
-                # Truncate long string values to keep prompt small
-                compact = {k: _truncate_str(v) for k, v in compact.items()}
+                # Truncate long string values to keep prompt small.
+                # EXCEPTION: display_value fields starting with "STRUKTURELL FALSCH:"
+                # are verdict-critical directives and must NOT be truncated —
+                # the LLM needs the full context to follow the override rule.
+                compact = {
+                    k: (v if k == "display_value"
+                        and isinstance(v, str)
+                        and v.startswith("STRUKTURELL FALSCH:")
+                        else _truncate_str(v))
+                    for k, v in compact.items()
+                }
                 context_parts.append(json.dumps(compact, ensure_ascii=False))
             context_parts.append("")
 
@@ -969,6 +978,34 @@ async def synthesize_results(
                 result["nuance"] = (
                     "Evidora checks claims against scientific databases and official "
                     "statistics. Topics outside this source spectrum cannot be assessed."
+                )
+
+        # STRUKTURELL FALSCH post-processing override (Defense-in-Depth):
+        # If curated packs delivered a STRUKTURELL FALSCH marker but the LLM
+        # returned true/mostly_true anyway, enforce mostly_false programmatically.
+        # This catches cases where the LLM ignores the prompt rule despite seeing
+        # the marker — known Mistral behavioral issue for nuanced legal/factual claims.
+        if result.get("verdict") in ("true", "mostly_true"):
+            has_struct_marker = False
+            for source_data in source_results:
+                if not isinstance(source_data, dict):
+                    continue
+                for r in source_data.get("results", []):
+                    dv = r.get("display_value", "")
+                    if isinstance(dv, str) and dv.startswith("STRUKTURELL FALSCH:"):
+                        has_struct_marker = True
+                        break
+                if has_struct_marker:
+                    break
+            if has_struct_marker:
+                old_verdict = result["verdict"]
+                old_conf = result.get("confidence", 0)
+                result["verdict"] = "mostly_false"
+                result["confidence"] = 0.85
+                logger.warning(
+                    f"STRUKTURELL FALSCH override: LLM returned '{old_verdict}' @ {old_conf} "
+                    f"despite STRUKTURELL FALSCH marker in sources. "
+                    f"Enforcing 'mostly_false' @ 0.85."
                 )
 
         # Cap confidence for unverifiable verdicts
