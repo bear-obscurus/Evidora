@@ -212,6 +212,29 @@ async def search_medientransparenz(analysis: dict) -> dict:
                     url=url, source=label,
                 )
 
+            # Sub-Result D: STRUKTURELL-FALSCH-Marker für Verwechslungs-Claims
+            # (z. B. "Bundesregierung gibt über 100 Mio. aus")
+            kernsatz = d.get("kernsatz_fuer_synthesizer", "")
+            if kernsatz:
+                from services._struct_marker import has_false_verdict_override
+                if has_false_verdict_override(kernsatz):
+                    _emit(
+                        topic=topic,
+                        name="VERDICT-DIREKTIVE: Bundesregierung ≠ öffentliche Hand",
+                        year=year,
+                        display=(
+                            f"STRUKTURELL FALSCH: {kernsatz}"
+                        ),
+                        description=(
+                            "Dieser Eintrag ist eine explizite Verdict-Direktive. "
+                            "Bundesministerien (= 'die Bundesregierung') geben 33,7 Mio. EUR "
+                            "für Inserate aus. Das Gesamtvolumen aller öffentlichen "
+                            "Auftraggeber (234,5 Mio.) darf NICHT der Bundesregierung "
+                            "zugerechnet werden."
+                        ),
+                        url=url, source=label,
+                    )
+
         elif topic == "medientransparenz_kurz_aera":
             # Sub-Result A: BKA-Verlauf
             _emit(
