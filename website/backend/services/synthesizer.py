@@ -861,13 +861,13 @@ async def synthesize_results(
                     "active_substance", "therapeutic_area", "indication",
                 )}
                 # Truncate long string values to keep prompt small.
-                # EXCEPTION: display_value fields starting with "STRUKTURELL FALSCH:"
+                # EXCEPTION: display_value fields containing "STRUKTURELL FALSCH:"
                 # are verdict-critical directives and must NOT be truncated —
                 # the LLM needs the full context to follow the override rule.
                 compact = {
                     k: (v if k == "display_value"
                         and isinstance(v, str)
-                        and v.startswith("STRUKTURELL FALSCH:")
+                        and "STRUKTURELL FALSCH:" in v
                         else _truncate_str(v))
                     for k, v in compact.items()
                 }
@@ -992,7 +992,7 @@ async def synthesize_results(
                     continue
                 for r in source_data.get("results", []):
                     dv = r.get("display_value", "")
-                    if isinstance(dv, str) and dv.startswith("STRUKTURELL FALSCH:"):
+                    if isinstance(dv, str) and "STRUKTURELL FALSCH:" in dv:
                         has_struct_marker = True
                         break
                 if has_struct_marker:
