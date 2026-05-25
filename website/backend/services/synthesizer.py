@@ -985,28 +985,71 @@ async def synthesize_results(
         # returned true/mostly_true anyway, enforce mostly_false programmatically.
         # This catches cases where the LLM ignores the prompt rule despite seeing
         # the marker — known Mistral behavioral issue for nuanced legal/factual claims.
+        #
+        # RELEVANCE GUARD (2026-05-25): The override must NOT fire when the
+        # STRUKTURELL source addresses a DIFFERENT sub-claim than the user asked.
+        # Example: User asks "Werther-Effekt führt zu Suiziden" (TRUE) but
+        # mental_health_pack's "Über Suizid darf man nicht reden ist FALSE"
+        # marker fires because it matches via cosine — false positive.
+        # Guard: If LLM summary CONFIRMS the claim (using broader detection),
+        # the STRUKTURELL source is likely a topic-mismatch → skip override.
         if result.get("verdict") in ("true", "mostly_true"):
             has_struct_marker = False
+            struct_sources_count = 0
+            total_results_count = 0
             for source_data in source_results:
                 if not isinstance(source_data, dict):
                     continue
                 for r in source_data.get("results", []):
+                    total_results_count += 1
                     dv = r.get("display_value", "")
                     if isinstance(dv, str) and "STRUKTURELL FALSCH:" in dv:
                         has_struct_marker = True
-                        break
-                if has_struct_marker:
-                    break
+                        struct_sources_count += 1
             if has_struct_marker:
-                old_verdict = result["verdict"]
-                old_conf = result.get("confidence", 0)
-                result["verdict"] = "mostly_false"
-                result["confidence"] = 0.85
-                logger.warning(
-                    f"STRUKTURELL FALSCH override: LLM returned '{old_verdict}' @ {old_conf} "
-                    f"despite STRUKTURELL FALSCH marker in sources. "
-                    f"Enforcing 'mostly_false' @ 0.85."
-                )
+                # Relevance guard: check if LLM summary confirms the claim.
+                # If yes, the STRUKTURELL source likely addresses a different
+                # sub-claim (topic mismatch via cosine similarity).
+                summary_lc = result.get("summary", "").lower()
+                summary_confirms_claim = any(p in summary_lc for p in (
+                    "ist korrekt", "trifft zu", "ist zutreffend",
+                    "ist richtig", "tatsächlich", "wird bestätigt",
+                    "bestätigt dies", "stimmt", "ist belegt",
+                    "ist faktisch korrekt", "faktisch richtig",
+                    "ist wissenschaftlich belegt",
+                ))
+                # Also detect "Behauptung, dass ..., ist korrekt" patterns
+                # where comma-separated clauses interrupt the match
+                import re
+                if not summary_confirms_claim:
+                    summary_confirms_claim = bool(re.search(
+                        r"behauptung.{0,120}ist (korrekt|richtig|zutreffend|wahr|belegt)",
+                        summary_lc
+                    ))
+                # Dominance check: STRUKTURELL source must be dominant (≥50%
+                # of all results) OR summary must NOT confirm the claim.
+                # If STRUKTURELL is a minority source AND summary confirms,
+                # it's almost certainly a topic mismatch.
+                struct_ratio = struct_sources_count / max(total_results_count, 1)
+                if summary_confirms_claim and struct_ratio < 0.5:
+                    logger.warning(
+                        f"STRUKTURELL FALSCH override SKIPPED: LLM summary "
+                        f"confirms claim + STRUKTURELL ratio {struct_sources_count}/"
+                        f"{total_results_count} = {struct_ratio:.0%} < 50%. "
+                        f"Likely topic mismatch. Keeping LLM verdict "
+                        f"'{result.get('verdict')}' @ {result.get('confidence')}."
+                    )
+                else:
+                    old_verdict = result["verdict"]
+                    old_conf = result.get("confidence", 0)
+                    result["verdict"] = "mostly_false"
+                    result["confidence"] = 0.85
+                    logger.warning(
+                        f"STRUKTURELL FALSCH override: LLM returned "
+                        f"'{old_verdict}' @ {old_conf} despite STRUKTURELL "
+                        f"FALSCH marker in sources (ratio {struct_sources_count}/"
+                        f"{total_results_count}). Enforcing 'mostly_false' @ 0.85."
+                    )
 
         # Cap confidence for unverifiable verdicts
         if result.get("verdict") == "unverifiable" and result.get("confidence", 0) > 0.15:
@@ -1015,7 +1058,10 @@ async def synthesize_results(
             )
             result["confidence"] = 0.15
 
-        # Consistency check: detect when summary text contradicts verdict
+        # Consistency check: detect when summary text contradicts verdict.
+        # Extended 2026-05-25: broader pattern detection including comma-
+        # separated clauses ("Behauptung, dass X, ist korrekt") and
+        # German indirect-speech patterns.
         summary_lower = result.get("summary", "").lower()
         verdict = result.get("verdict", "")
         verdict_from_summary = None
@@ -1025,11 +1071,16 @@ async def synthesize_results(
             "behauptung ist daher wahr", "behauptung ist wahr",
             "behauptung ist korrekt", "behauptung ist richtig",
             "claim is true", "claim is correct", "therefore true",
+            # Extended: direct confirmation without "Behauptung" prefix
+            "ist faktisch korrekt", "ist faktisch richtig",
+            "ist sachlich korrekt", "ist sachlich richtig",
         ]
         false_patterns = [
             "behauptung ist daher falsch", "behauptung ist falsch",
             "behauptung ist nicht korrekt", "behauptung ist nicht richtig",
             "claim is false", "claim is incorrect", "therefore false",
+            "ist faktisch falsch", "ist sachlich falsch",
+            "ist größtenteils falsch", "ist überwiegend falsch",
         ]
 
         if any(p in summary_lower for p in true_patterns):
@@ -1037,13 +1088,43 @@ async def synthesize_results(
         elif any(p in summary_lower for p in false_patterns):
             verdict_from_summary = "false"
 
+        # Extended regex: "Behauptung, dass ..., ist korrekt/wahr/richtig"
+        if not verdict_from_summary:
+            import re
+            if re.search(
+                r"behauptung.{0,150}ist (korrekt|richtig|zutreffend|wahr|belegt)",
+                summary_lower
+            ):
+                verdict_from_summary = "true"
+            elif re.search(
+                r"behauptung.{0,150}ist (falsch|inkorrekt|nicht korrekt|nicht richtig|widerlegt)",
+                summary_lower
+            ):
+                verdict_from_summary = "false"
+
         if verdict_from_summary and verdict_from_summary != verdict:
-            logger.warning(
-                f"Verdict consistency fix: JSON verdict='{verdict}' "
-                f"contradicts summary (detected '{verdict_from_summary}'). "
-                f"Correcting to '{verdict_from_summary}'."
+            # Don't override if the STRUKTURELL override just fired
+            # (that was a deliberate programmatic decision, not an LLM error).
+            # Only correct pure LLM self-contradictions.
+            struct_override_just_fired = (
+                verdict == "mostly_false"
+                and result.get("confidence") == 0.85
+                and verdict_from_summary == "true"
             )
-            result["verdict"] = verdict_from_summary
+            if not struct_override_just_fired:
+                logger.warning(
+                    f"Verdict consistency fix: JSON verdict='{verdict}' "
+                    f"contradicts summary (detected '{verdict_from_summary}'). "
+                    f"Correcting to '{verdict_from_summary}'."
+                )
+                result["verdict"] = verdict_from_summary
+            else:
+                logger.info(
+                    f"Verdict consistency: summary says 'true' but STRUKTURELL "
+                    f"override active — keeping 'mostly_false'. "
+                    f"(If this fires repeatedly for the same claim, review "
+                    f"whether the STRUKTURELL source is a topic mismatch.)"
+                )
 
         return result
     except httpx.TimeoutException:
