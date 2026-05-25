@@ -1026,17 +1026,32 @@ async def synthesize_results(
                         r"behauptung.{0,120}ist (korrekt|richtig|zutreffend|wahr|belegt)",
                         summary_lc
                     ))
-                # Dominance check: STRUKTURELL source must be dominant (≥50%
-                # of all results) OR summary must NOT confirm the claim.
-                # If STRUKTURELL is a minority source AND summary confirms,
-                # it's almost certainly a topic mismatch.
+                # Dominance check (2026-05-25 v2): Two-tier guard:
+                # Tier 1: If STRUKTURELL ratio < 15%, this is ALWAYS a
+                #   topic mismatch (e.g., 1/58 = 1.7% — one unrelated
+                #   pack matched via cosine). Skip override unconditionally.
+                # Tier 2: If ratio 15-50% AND summary confirms claim,
+                #   likely topic mismatch. Skip override.
+                # Override fires when: ratio ≥ 50% (dominant) OR
+                #   ratio 15-50% but summary doesn't confirm.
                 struct_ratio = struct_sources_count / max(total_results_count, 1)
-                if summary_confirms_claim and struct_ratio < 0.5:
+                if struct_ratio < 0.15:
+                    # Tier 1: extremely low ratio — certainly a mismatch
                     logger.warning(
-                        f"STRUKTURELL FALSCH override SKIPPED: LLM summary "
-                        f"confirms claim + STRUKTURELL ratio {struct_sources_count}/"
-                        f"{total_results_count} = {struct_ratio:.0%} < 50%. "
-                        f"Likely topic mismatch. Keeping LLM verdict "
+                        f"STRUKTURELL FALSCH override SKIPPED (Tier 1): "
+                        f"ratio {struct_sources_count}/{total_results_count} "
+                        f"= {struct_ratio:.1%} < 15%. Almost certainly a "
+                        f"topic mismatch via cosine. Keeping LLM verdict "
+                        f"'{result.get('verdict')}' @ {result.get('confidence')}."
+                    )
+                elif summary_confirms_claim and struct_ratio < 0.5:
+                    # Tier 2: low ratio + summary confirms → mismatch
+                    logger.warning(
+                        f"STRUKTURELL FALSCH override SKIPPED (Tier 2): "
+                        f"LLM summary confirms claim + ratio "
+                        f"{struct_sources_count}/{total_results_count} "
+                        f"= {struct_ratio:.0%} < 50%. Likely topic mismatch. "
+                        f"Keeping LLM verdict "
                         f"'{result.get('verdict')}' @ {result.get('confidence')}."
                     )
                 else:
@@ -1048,7 +1063,8 @@ async def synthesize_results(
                         f"STRUKTURELL FALSCH override: LLM returned "
                         f"'{old_verdict}' @ {old_conf} despite STRUKTURELL "
                         f"FALSCH marker in sources (ratio {struct_sources_count}/"
-                        f"{total_results_count}). Enforcing 'mostly_false' @ 0.85."
+                        f"{total_results_count} = {struct_ratio:.0%}). "
+                        f"Enforcing 'mostly_false' @ 0.85."
                     )
 
         # Cap confidence for unverifiable verdicts
