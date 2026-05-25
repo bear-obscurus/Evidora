@@ -29,15 +29,38 @@
         "Die EU steuert eine Umvolkung"
       ],
       "trigger_keywords": [
-        "grosser austausch", "großer austausch",
-        "bevoelkerungsaustausch", "bevölkerungsaustausch",
+        "grosser austausch",
+        "großer austausch",
+        "bevoelkerungsaustausch",
+        "bevölkerungsaustausch",
         "umvolkung",
-        "migrant ersetz", "weisse ersetz", "weiße ersetz",
-        "bevoelkerung ausgetauscht", "bevölkerung ausgetauscht"
+        "migrant ersetz",
+        "weisse ersetz",
+        "weiße ersetz",
+        "bevoelkerung ausgetauscht",
+        "bevölkerung ausgetauscht"
       ],
       "trigger_composite": [
-        ["austausch", "umvolkung", "ausgetauscht", "ersetzt", "ersetzen", "auswechs"],
-        ["bevoelkerung", "bevölkerung", "deutsche", "europaeer", "europäer", "weisse", "weiße", "elite", "globalist", "eu"]
+        [
+          "austausch",
+          "umvolkung",
+          "ausgetauscht",
+          "ersetzt",
+          "ersetzen",
+          "auswechs"
+        ],
+        [
+          "bevoelkerung",
+          "bevölkerung",
+          "deutsche",
+          "europaeer",
+          "europäer",
+          "weisse",
+          "weiße",
+          "elite",
+          "globalist",
+          "eu"
+        ]
       ],
       "source_label": "Bundesamt für Verfassungsschutz (BfV) + bpb + IDZ Jena",
       "source_url": "https://www.bpb.de/themen/rechtsextremismus/dossier-rechtsextremismus/549525/die-erzaehlung-vom-grossen-austausch/",
@@ -70,13 +93,43 @@
         "Geflüchtete sind eine Sicherheitsgefahr"
       ],
       "trigger_keywords": [
-        "migranten krimineller", "auslaender kriminalitaet", "ausländer kriminalität",
-        "fluechtlinge kriminell", "flüchtlinge kriminell",
-        "asyl krimineller", "auslaender straftaten", "ausländer straftaten"
+        "migranten krimineller",
+        "auslaender kriminalitaet",
+        "ausländer kriminalität",
+        "fluechtlinge kriminell",
+        "flüchtlinge kriminell",
+        "asyl krimineller",
+        "auslaender straftaten",
+        "ausländer straftaten"
       ],
       "trigger_composite": [
-        ["migrant", "migranten", "auslaender", "ausländer", "auslaend", "ausländ", "fluechtling", "flüchtling", "asyl", "geflüchtete", "gefluechtete", "zuwanderer"],
-        ["kriminell", "kriminalitaet", "kriminalität", "straftaten", "straftat", "verbrechen", "delikt", "gefahr", "gefährlich", "gefaehrlich", "krimineller"]
+        [
+          "migrant",
+          "migranten",
+          "auslaender",
+          "ausländer",
+          "auslaend",
+          "ausländ",
+          "fluechtling",
+          "flüchtling",
+          "asyl",
+          "geflüchtete",
+          "gefluechtete",
+          "zuwanderer"
+        ],
+        [
+          "kriminell",
+          "kriminalitaet",
+          "kriminalität",
+          "straftaten",
+          "straftat",
+          "verbrechen",
+          "delikt",
+          "gefahr",
+          "gefährlich",
+          "gefaehrlich",
+          "krimineller"
+        ]
       ],
       "source_label": "BKA-PKS Methodik + Feltes Univ. Bochum + KFN Hannover + LTO + correctiv",
       "source_url": "https://wr-magazin.de/themen/polizeiliche-kriminalstatistik-gewalt-migration/",
@@ -110,13 +163,41 @@
       "trigger_keywords": [
         "asyl sozialleistung pull",
         "asyl sozialleistung magnet",
-        "fluechtlinge sozialleistung magnet", "flüchtlinge sozialleistung magnet",
+        "fluechtlinge sozialleistung magnet",
+        "flüchtlinge sozialleistung magnet",
         "asyl deutschland sozialgeld",
         "sozialmagnet"
       ],
       "trigger_composite": [
-        ["asyl", "asylsuchende", "fluechtling", "flüchtling", "geflüchtete", "gefluechtete", "migration", "migrant", "zuwanderer"],
-        ["sozialleistung", "sozialgeld", "sozialhilfe", "sozialsystem", "sozialstaat", "buergergeld", "bürgergeld", "alg", "pull-faktor", "pullfaktor", "pull faktor", "magnet", "sozialmagnet", "wegen geld", "wegen sozial", "wegen dem"]
+        [
+          "asyl",
+          "asylsuchende",
+          "fluechtling",
+          "flüchtling",
+          "geflüchtete",
+          "gefluechtete",
+          "migration",
+          "migrant",
+          "zuwanderer"
+        ],
+        [
+          "sozialleistung",
+          "sozialgeld",
+          "sozialhilfe",
+          "sozialsystem",
+          "sozialstaat",
+          "buergergeld",
+          "bürgergeld",
+          "alg",
+          "pull-faktor",
+          "pullfaktor",
+          "pull faktor",
+          "magnet",
+          "sozialmagnet",
+          "wegen geld",
+          "wegen sozial",
+          "wegen dem"
+        ]
       ],
       "source_label": "IAB-BAMF-SOEP-Befragung 2016 + DIW-Meta-Analyse + Brücker et al.",
       "source_url": "https://mediendienst-integration.de/fluechtlinge/sozialleistungen/sind-sozialleistungen-ein-pull-faktor/",
@@ -156,8 +237,28 @@
         "abschiebung verhindert"
       ],
       "trigger_composite": [
-        ["abschiebung", "abschiebungen", "ausreisepflicht", "duldung", "ausreis"],
-        ["einfach", "moeglich", "möglich", "politik", "wille", "blockier", "verhindert", "scheitert", "scheitern", "gescheitert", "will nicht", "untaetig", "untätig"]
+        [
+          "abschiebung",
+          "abschiebungen",
+          "ausreisepflicht",
+          "duldung",
+          "ausreis"
+        ],
+        [
+          "einfach",
+          "moeglich",
+          "möglich",
+          "politik",
+          "wille",
+          "blockier",
+          "verhindert",
+          "scheitert",
+          "scheitern",
+          "gescheitert",
+          "will nicht",
+          "untaetig",
+          "untätig"
+        ]
       ],
       "source_label": "BT-Drucksache 21/1532 + bpb Migration + BAMF Bundesamt in Zahlen 2024",
       "source_url": "https://www.bpb.de/themen/migration-integration/zahlen-zu-asyl/265765/abschiebungen-in-deutschland/",
@@ -196,8 +297,22 @@
         "migranten integrieren sich nicht"
       ],
       "trigger_composite": [
-        ["integration", "integriert", "integrieren"],
-        ["gescheitert", "scheitert", "misserfolg", "funktioniert nicht", "klappt nicht", "katastrophe", "fehlgeschlagen", "kollabiert", "versagt"]
+        [
+          "integration",
+          "integriert",
+          "integrieren"
+        ],
+        [
+          "gescheitert",
+          "scheitert",
+          "misserfolg",
+          "funktioniert nicht",
+          "klappt nicht",
+          "katastrophe",
+          "fehlgeschlagen",
+          "kollabiert",
+          "versagt"
+        ]
       ],
       "source_label": "IAB Kurzbericht 17/2025 + OECD International Migration Outlook 2025",
       "source_url": "https://iab.de/presseinfo/10-jahre-fluchtmigration-beschaeftigungsquote-von-gefluechteten-naehert-sich-dem-durchschnitt-in-deutschland-an/",
@@ -231,13 +346,38 @@
       ],
       "trigger_keywords": [
         "asyl arbeitsverbot",
-        "fluechtlinge arbeit verboten", "flüchtlinge arbeit verboten",
+        "fluechtlinge arbeit verboten",
+        "flüchtlinge arbeit verboten",
         "asyl darf nicht arbeiten",
-        "asyl beschaeftigungsverbot", "asyl beschäftigungsverbot"
+        "asyl beschaeftigungsverbot",
+        "asyl beschäftigungsverbot"
       ],
       "trigger_composite": [
-        ["asyl", "asylsuchende", "asylbewerber", "fluechtling", "flüchtling", "geflüchtete", "gefluechtete"],
-        ["arbeitsverbot", "arbeit verboten", "darf nicht arbeit", "duerfen nicht arbeit", "dürfen nicht arbeit", "duerfen nicht in", "dürfen nicht in", "nicht arbeit", "beschaeftigungsverbot", "beschäftigungsverbot", "kein arbeit", "sitzen herum", "untaetig", "untätig"]
+        [
+          "asyl",
+          "asylsuchende",
+          "asylbewerber",
+          "fluechtling",
+          "flüchtling",
+          "geflüchtete",
+          "gefluechtete"
+        ],
+        [
+          "arbeitsverbot",
+          "arbeit verboten",
+          "darf nicht arbeit",
+          "duerfen nicht arbeit",
+          "dürfen nicht arbeit",
+          "duerfen nicht in",
+          "dürfen nicht in",
+          "nicht arbeit",
+          "beschaeftigungsverbot",
+          "beschäftigungsverbot",
+          "kein arbeit",
+          "sitzen herum",
+          "untaetig",
+          "untätig"
+        ]
       ],
       "source_label": "§ 61 AsylG + Informationsverbund Asyl & Migration + BMAS",
       "source_url": "https://www.gesetze-im-internet.de/asylvfg_1992/__61.html",
@@ -269,14 +409,45 @@
         "Deutschland braucht keine Migration für den Arbeitsmarkt"
       ],
       "trigger_keywords": [
-        "migration fachkraeftemangel", "migration fachkräftemangel",
+        "migration fachkraeftemangel",
+        "migration fachkräftemangel",
         "migration arbeitsmarkt",
         "migration sozialsystem nicht arbeitsmarkt",
-        "migration demografie", "migration demographischer wandel"
+        "migration demografie",
+        "migration demographischer wandel"
       ],
       "trigger_composite": [
-        ["migration", "migrant", "migranten", "auslaender", "ausländer", "zuwanderer", "zuwanderung", "fachkraefte", "fachkräfte", "ausländisch", "auslaendisch"],
-        ["arbeitsmarkt", "fachkraeftemangel", "fachkräftemangel", "demografie", "demographie", "demographischer wandel", "renten", "beschaeftigte", "beschäftigte", "erwerbstaetig", "erwerbstätig", "wirtschaft", "lohnt sich", "loest", "löst", "bringt nichts"]
+        [
+          "migration",
+          "migrant",
+          "migranten",
+          "auslaender",
+          "ausländer",
+          "zuwanderer",
+          "zuwanderung",
+          "fachkraefte",
+          "fachkräfte",
+          "ausländisch",
+          "auslaendisch"
+        ],
+        [
+          "arbeitsmarkt",
+          "fachkraeftemangel",
+          "fachkräftemangel",
+          "demografie",
+          "demographie",
+          "demographischer wandel",
+          "renten",
+          "beschaeftigte",
+          "beschäftigte",
+          "erwerbstaetig",
+          "erwerbstätig",
+          "wirtschaft",
+          "lohnt sich",
+          "loest",
+          "löst",
+          "bringt nichts"
+        ]
       ],
       "source_label": "IAB Kurzbericht + IAB IMPa-Studie 2024 + Bertelsmann Fachkräftemigrationsmonitor",
       "source_url": "https://iab-forum.de/ohne-auslaendische-beschaeftigte-wird-es-in-vielen-berufen-eng/",
@@ -310,33 +481,62 @@
       "trigger_keywords": [
         "migration kosten staat",
         "migration milliarden",
-        "migration fiskal", "migration kostet",
+        "migration fiskal",
+        "migration kostet",
         "asyl kosten steuerzahler",
-        "fluechtlinge milliarden", "flüchtlinge milliarden"
+        "fluechtlinge milliarden",
+        "flüchtlinge milliarden"
       ],
       "trigger_composite": [
-        ["migration", "migrant", "migranten", "asyl", "asylsuchende", "fluechtling", "flüchtling", "geflüchtete", "gefluechtete", "zuwander"],
-        ["kosten", "kostet", "milliarden", "milliarde", "fiskal", "steuerzahler", "haushalt", "belastung", "rechnen sich", "zahlt sich", "lohnt sich", "wirtschaft", "geld", "staat"]
+        [
+          "migration",
+          "migrant",
+          "migranten",
+          "asyl",
+          "asylsuchende",
+          "fluechtling",
+          "flüchtling",
+          "geflüchtete",
+          "gefluechtete",
+          "zuwander"
+        ],
+        [
+          "kosten",
+          "kostet",
+          "milliarden",
+          "milliarde",
+          "fiskal",
+          "steuerzahler",
+          "haushalt",
+          "belastung",
+          "rechnen sich",
+          "zahlt sich",
+          "lohnt sich",
+          "wirtschaft",
+          "geld",
+          "staat"
+        ]
       ],
       "source_label": "Sachverständigenrat 2023 + Stiftung Marktwirtschaft 2024 + KAS + IW + IZA — Methodik-Pluralität",
       "source_url": "https://www.svr-migration.de/publikationen/jahresbericht/jahresbericht-2024/",
       "secondary_url": "https://www.stiftung-marktwirtschaft.de/inhalte/publikationen/detailansicht/ehrbarer-staat-fokus-migration-zur-fiskalischen-bilanz-der-zuwanderung/"
     },
     {
-      "id": "migration_anerkennungsquoten_2026",
+      "id": "migration_anerkennungsquoten_2026_aktuell",
       "topic": "migration_anerkennungsquoten_konsens",
       "scope": "Asyl-Anerkennungs-Quoten in Deutschland — Verteilung nach Herkunftsland",
-      "year": 2024,
-      "headline": "BAMF Anerkennungs-Quoten 2024 stark variabel: ~75 % Schutzquote bei Syrien, ~30 % Afghanistan, <5 % Westbalkan-Staaten — keine pauschale '90 % werden anerkannt'-Aussage",
+      "year": 2026,
+      "headline": "BAMF Anerkennungs-Quoten 2025/2026 nach Assad-Sturz grundlegend verändert: Syrien-Schutzquote von ~75 % (2024) auf ~5 % (2025) eingebrochen — Entscheidungsstopp Dez. 2024 bis Sep. 2025",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Pauschale Aussagen 'fast alle Asylanträge werden anerkannt' oder 'Asylanträge werden alle abgelehnt' sind beide FALSE. BAMF-Statistik 2024: Bereinigte Schutzquote (alle Schutzformen, ohne formale Erledigung) liegt bei ~45-50 %. Nach Herkunftsland stark differenziert: Syrien ~75 %, Eritrea ~85 %, Afghanistan ~30-40 %, Türkei ~10-15 %, Westbalkan-Staaten <5 %, Georgia <2 %. Schutzquote variiert auch über Zeit (politische Lage Herkunftsland).",
-        "bamf_2024_overall": "BAMF Bundesamt in Zahlen 2024: ~230.000 Asylanträge erstmals in DE 2024 (Rückgang von 330k 2023). Bereinigte Gesamt-Schutzquote ~45-50 % (Schutzformen: Asylberechtigte Art. 16a GG, Flüchtlingsstatus § 3, subsidiärer Schutz § 4, Abschiebungsverbote).",
-        "syrien_quote": "Syrien-Antragsteller 2024: Schutzquote ~75 %. Hohe Quote durch ungeklärte humanitäre Lage + Auswirkungen Bürgerkrieg.",
+        "kernsatz_fuer_synthesizer": "WICHTIG — STICHTAGSBEZUG KRITISCH: Die syrische Asyl-Schutzquote hat sich nach dem Sturz des Assad-Regimes (8. Dezember 2024) FUNDAMENTAL geändert. Pauschale Aussagen 'Syrer haben hohe Anerkennungsquoten' sind seit Anfang 2025 VERALTET UND ALS FALSCH EINZUORDNEN. CHRONOLOGIE: (1) BAMF setzte am 9.12.2024 ALLE Entscheidungen zu syrischen Asylanträgen aus (>50.000 Personen im Schwebezustand). (2) Ab September 2025 schrittweise Wiederaufnahme. (3) Schutzquote 2025 (Gesamtjahr): ~5,3 % (bereinigt). (4) Q1 2026: leichter Anstieg auf ~14-16 % (bereinigt). BEGRÜNDUNG BAMF: Gefahr von Folter/unmenschlicher Behandlung durch das alte Regime besteht nicht mehr flächendeckend, Lage aber 'dynamisch und unübersichtlich'. WIDERRUFSPRÜFUNGEN: 17.767 Prüfungen bestehender Schutz-Titel 2025 — davon nur 659 tatsächliche Widerrufe (~3,7 %). Über 96 % der bestehenden Schutzstatus wurden bestätigt. Weitere ~20.000 Verfahren anhängig. GESAMT-SCHUTZQUOTE DE 2025: ~35-40 % (bereinigt, alle Herkunftsländer). VERDICT-REGEL: Claims wie 'Syrer haben hohe/sehr hohe Anerkennungsquoten' → MOSTLY_FALSE seit 2025 (historisch war es true bis Dez. 2024). Claims über 'bestehende Schutzstatus werden entzogen' → MOSTLY_FALSE (nur 3,7 % Widerruf).",
+        "bamf_2024_overall": "BAMF 2024 (VOR Assad-Sturz): ~230.000 Asylanträge erstmals in DE. Bereinigte Gesamt-Schutzquote ~45-50 %. BAMF 2025 (NACH Assad-Sturz): Entscheidungsstopp für Syrer 9.12.2024 bis Sep. 2025. Gesamtjahr 2025: bereinigte Schutzquote ~35-40 % (alle Herkunftsländer).",
+        "syrien_quote": "Syrien-Antragsteller: Schutzquote 2024 (vor Sturz): ~75 %. Schutzquote 2025 (nach Sturz): ~5,3 % (bereinigt). Q1 2026: ~14-16 % (bereinigt, leichter Anstieg). BAMF-Begründung: Foltergefahr durch Assad-Regime nicht mehr flächendeckend. Verwaltungsgerichte (u.a. VG Karlsruhe) haben in Einzelfällen Klagen stattgegeben und Schutzstatus zugesprochen — Rechtslage uneinheitlich. Widerrufsprüfungen bestehender Titel: 17.767 geprüft, nur 659 widerrufen (3,7 %).",
         "afghanistan_quote": "Afghanistan-Antragsteller 2024: Schutzquote ~30-40 % je Untergruppe. Differenzierte Bewertung nach Herkunftsregion + Verfolgungsgrund.",
         "westbalkan_quote": "Westbalkan-Staaten (Albanien, Kosovo, Bosnien, Nordmazedonien, Serbien, Montenegro) sind als 'sichere Herkunftsstaaten' (§ 29a AsylG) eingestuft — Schutzquoten <5 %, oft <1 %. Schnellverfahren in vielen Bundesländern.",
         "georgia_moldova": "Georgia + Moldavien 2023 als sichere Herkunftsstaaten erweitert — Quoten unter 2 %. Asyl-Anträge dieser Staaten gehen seither stark zurück.",
         "subsidiaere_form": "Subsidiärer Schutz (§ 4 AsylG): bei Bürgerkriegs-Situationen ohne individuelle Verfolgung, aber Lebensgefahr durch Konflikt. Bei Syrien + Afghanistan oft die Mehrheit der Schutzgewährungen.",
-        "context": "Die Aussage 'fast alle Asylanträge werden anerkannt' ist FALSE — sie verkennt die starke Differenzierung nach Herkunftsland. Aussagen 'Asylanträge werden alle abgelehnt' sind ebenso FALSE. Korrekter Faktencheck: Quoten nach Herkunftsland zitieren + Methodik-Caveats (bereinigt vs unbereinigt, Schutzform-Differenzierung)."
+        "context": "Die Aussage 'fast alle Asylanträge werden anerkannt' ist FALSE — sie verkennt die starke Differenzierung nach Herkunftsland. Aussagen 'Asylanträge werden alle abgelehnt' sind ebenso FALSE. Korrekter Faktencheck: Quoten nach Herkunftsland zitieren + Methodik-Caveats (bereinigt vs unbereinigt, Schutzform-Differenzierung).",
+        "stichtagsbezug_warnung": "ACHTUNG STICHTAGSBEZUG: Alle Daten VOR Dezember 2024 zur syrischen Schutzquote sind HISTORISCH und gelten NICHT mehr. Der Assad-Sturz am 8.12.2024 ist eine Zäsur. Claims die 'hohe Anerkennungsquoten' behaupten ohne Zeitbezug sind seit 2025 als VERALTET einzuordnen."
       },
       "context_notes": [
         "Bereinigte vs unbereinigte Schutzquote: bereinigt rechnet formale Erledigungen (z.B. Antragsrücknahme, Anerkennungs-Verschiebung) heraus — sonst wären Quoten künstlich niedriger.",
@@ -356,10 +556,28 @@
         "asyl bewilligungsquote"
       ],
       "trigger_composite": [
-        ["asyl", "asylantrag", "asylantraege", "asylanträge", "schutzquote", "anerkennung"],
-        ["quote", "prozent", "anerkannt", "anerkennen", "abgelehnt", "ablehnung", "vergeben", "bewilligt", "fast alle", "kaum"]
+        [
+          "asyl",
+          "asylantrag",
+          "asylantraege",
+          "asylanträge",
+          "schutzquote",
+          "anerkennung"
+        ],
+        [
+          "quote",
+          "prozent",
+          "anerkannt",
+          "anerkennen",
+          "abgelehnt",
+          "ablehnung",
+          "vergeben",
+          "bewilligt",
+          "fast alle",
+          "kaum"
+        ]
       ],
-      "source_label": "BAMF Bundesamt in Zahlen 2024 + bpb Migration",
+      "source_label": "BAMF Bundesamt in Zahlen 2024/2025 + BAMF Aktuelle Zahlen Feb. 2026 + PRO ASYL + Mediendienst Integration + BMI Syrien-Lagebewertung 2025",
       "source_url": "https://www.bamf.de/SharedDocs/Anlagen/DE/Statistik/BundesamtinZahlen/bundesamt-in-zahlen-2024.html",
       "secondary_url": "https://www.bpb.de/themen/migration-integration/zahlen-zu-asyl/"
     },
@@ -390,13 +608,41 @@
       ],
       "trigger_keywords": [
         "familiennachzug unkontrolliert",
-        "familienzusammenfuehrung", "familienzusammenführung",
-        "familiennachzug masse", "familiennachzug lawine",
+        "familienzusammenfuehrung",
+        "familienzusammenführung",
+        "familiennachzug masse",
+        "familiennachzug lawine",
         "familie nachholen asyl"
       ],
       "trigger_composite": [
-        ["familiennachzug", "familienzusammenfuehrung", "familienzusammenführung", "familie nachhol", "familienangehoerige", "familienangehörige", "angehoerige nachhol", "angehörige nachhol", "angehoerige nach", "angehörige nach"],
-        ["unkontrolliert", "masse", "massen", "lawine", "unbegrenzt", "verstaerkt", "verstärkt", "kettenmigration", "asyl", "asylberechtigt", "fluechtling", "flüchtling", "schutzsuchend", "jeder"]
+        [
+          "familiennachzug",
+          "familienzusammenfuehrung",
+          "familienzusammenführung",
+          "familie nachhol",
+          "familienangehoerige",
+          "familienangehörige",
+          "angehoerige nachhol",
+          "angehörige nachhol",
+          "angehoerige nach",
+          "angehörige nach"
+        ],
+        [
+          "unkontrolliert",
+          "masse",
+          "massen",
+          "lawine",
+          "unbegrenzt",
+          "verstaerkt",
+          "verstärkt",
+          "kettenmigration",
+          "asyl",
+          "asylberechtigt",
+          "fluechtling",
+          "flüchtling",
+          "schutzsuchend",
+          "jeder"
+        ]
       ],
       "source_label": "§ 36a AufenthG + Auswärtiges Amt + BMI-Statistik",
       "source_url": "https://www.gesetze-im-internet.de/aufenthg_2004/__36a.html",
