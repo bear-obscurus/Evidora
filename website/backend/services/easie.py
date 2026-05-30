@@ -138,9 +138,9 @@ _EASIE_KEYWORDS = (
     "sonderpädagogische förderung", "sonderpaedagogik",
     "special educational needs", "special needs education",
     "sen-quote", "sen quote", "sen rate", "sen-rate",
-    "förderschule", "förderschulen", "förderquote",
+    "förderschule", "förderschulen", "förderschulquot", "förderquote",
     "förderschwerpunkt", "förder-schwerpunkt", "förderbedarf",
-    "foerderbedarf", "foerderschule", "foerderschulen",
+    "foerderbedarf", "foerderschule", "foerderschulen", "foerderschulquot",
     "separate beschulung", "separate setting", "separate settings",
     # Statistik-Marker (wenn mit Inklusions-Kontext)
     "isced 1", "isced 2", "isced-1", "isced-2",
