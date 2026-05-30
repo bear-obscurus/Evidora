@@ -153,12 +153,16 @@ def claim_mentions_ema_referrals_cached(claim: str) -> bool:
     """Trigger-Check für EMA-Referrals-Lookup.
 
     True wenn:
-    1. Claim enthält Pharma-/Sicherheits-Kontext-Term, und
-    2. mindestens ein INN/referral_name/associated_name matcht
-       als word-boundary.
+    1a. Claim ist ein Meta-Claim ueber die Gesamtzahl der Verfahren, ODER
+    1b. Claim enthält Pharma-/Sicherheits-Kontext-Term, und
+    2.  mindestens ein INN/referral_name/associated_name matcht
+        als word-boundary.
     """
     if not claim:
         return False
+    # Meta-Claims ueber Gesamtzahl der Referral-Verfahren
+    if _is_meta_referral_claim(claim):
+        return True
     if not _PHARMA_CONTEXT.search(claim):
         return False
     items = _load().get("items", [])
