@@ -150,6 +150,8 @@ from services.crossref import search_crossref, _claim_mentions_paper as _claim_m
 from services.openaq import search_openaq, claim_mentions_air_quality
 from services.wikidata import search_wikidata, claim_triggers_wikidata
 from services.freedom_house import search_freedom_house, claim_mentions_freedom_house_cached
+from services.gbif import search_gbif, claim_triggers_gbif
+from services.cordis import search_cordis, claim_triggers_cordis
 from services.arxiv import search_arxiv, _claim_mentions_preprint_research, _extract_arxiv_ids
 from services.uncomtrade import search_uncomtrade, claim_mentions_trade
 from services.dbnomics import search_dbnomics, claim_mentions_dbnomics_cached
@@ -1512,6 +1514,20 @@ async def check_claim(request: Request):
         if _extract_dois(claim) or _claim_mentions_crossref(claim, analysis):
             tasks.append(cached("Crossref", search_crossref, analysis))
             queried_names.append("Crossref")
+        # GBIF Biodiversity API (frei, kein Token): Tier-/Pflanzen-Vorkommen
+        # in AT via Beobachtungs-Counts. Triggert wenn Spezies-Keyword
+        # (Wolf/Luchs/Bär/...) + Geo-Bezug (Österreich/Alpen/...) ODER
+        # Population-Marker (Vorkommen/Bestand/Sichtung/...).
+        if claim_triggers_gbif(claim):
+            tasks.append(cached("GBIF", search_gbif, analysis))
+            queried_names.append("GBIF Biodiversity")
+        # CORDIS Bulk-Cache (CC-BY 4.0): EU-Forschungsprojekte aus
+        # Horizon Europe + Horizon 2020 (~56k Projekte, Slim-Cache).
+        # Triggert wenn Claim Horizon/CORDIS/ERC/Marie-Curie/MSCA-Keyword
+        # enthält ODER „EU" + Forschungs-Marker.
+        if claim_triggers_cordis(claim):
+            tasks.append(cached("CORDIS", search_cordis, analysis))
+            queried_names.append("CORDIS EU Research")
         # OpenAQ v3 (Air-Quality-Sensor-Daten weltweit, CC-BY 4.0):
         # ⚠ braucht OPENAQ_API_KEY env-var — graceful skip falls nicht
         # gesetzt. Triggert wenn Luftqualitäts-Keyword (PM2.5/NO2/Smog/
