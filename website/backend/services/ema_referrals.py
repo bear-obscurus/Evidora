@@ -214,12 +214,75 @@ def _build_display(it: dict) -> str:
     return body
 
 
+def _is_meta_referral_claim(claim: str) -> bool:
+    """Erkennt Claims ueber die Gesamtzahl der EMA-Referral-Verfahren,
+    z.B. 'Die EMA hat ueber 500 Ueberpruefungsverfahren durchgefuehrt'."""
+    cl = claim.lower()
+    has_ema = "ema" in cl or "europäische arzneimittel" in cl or "european medicines" in cl
+    has_quant = any(t in cl for t in (
+        "referral", "überprüfung", "ueberpruefung",
+        "verfahren", "bewertungsverfahren", "sicherheitsverfahren",
+        "procedures", "evaluations",
+    ))
+    has_number = bool(re.search(r"\b\d{2,}\b", cl))
+    return has_ema and (has_quant or has_number)
+
+
+def _build_meta_result() -> dict:
+    """Liefert einen Meta-Fact ueber die Gesamtzahl aller EMA-Referrals."""
+    items = _load().get("items", [])
+    total = len(items)
+    safety_count = sum(1 for it in items if it.get("safety_referral"))
+    art31 = sum(1 for it in items if "Article 31" in (it.get("referral_type") or ""))
+    art20 = sum(1 for it in items if "Article 20" in (it.get("referral_type") or ""))
+    art30 = sum(1 for it in items if "Article 30" in (it.get("referral_type") or ""))
+    art107i = sum(1 for it in items if "107i" in (it.get("referral_type") or ""))
+    payload = _load()
+    return {
+        "indicator_name": "EMA Referrals — Gesamtbestand",
+        "indicator": "ema_referrals_meta",
+        "country": "EU",
+        "year": payload.get("snapshot_date", "2023"),
+        "topic": "ema_drug_safety_referral",
+        "display_value": (
+            f"EMA-Referral-Verfahren Gesamtbestand: {total} Verfahren "
+            f"(Stand Snapshot {payload.get('snapshot_date', '?')}). "
+            f"Davon {safety_count} Sicherheits-Referrals. "
+            f"Aufschluesselung: Art. 31: {art31}, Art. 20: {art20}, "
+            f"Art. 30: {art30}, Art. 107i: {art107i}. "
+            f"Die EMA fuehrt regelmaessig Bewertungs-Verfahren fuer "
+            f"zugelassene Arzneimittel durch — sowohl bei Sicherheits-"
+            f"bedenken (Art. 31, 107i) als auch bei technischen Fragen "
+            f"(Art. 20, 30). Outcomes reichen von 'Maintained without "
+            f"changes' bis 'Suspended/Withdrawn'."
+        ),
+        "description": (
+            f"Quelle: EMA-Referrals-XLSX (EU PSI / CC-BY 4.0). "
+            f"Snapshot vom {payload.get('snapshot_date', '?')}. "
+            f"Insgesamt {total} Verfahren seit EMA-Gruendung."
+        ),
+        "url": payload.get("source_url",
+                           "https://www.ema.europa.eu/en/medicines/human/referrals"),
+        "source": "EMA Referrals (Art. 20/30/31/107i, CC-BY 4.0)",
+    }
+
+
 async def search_ema_referrals(analysis: dict) -> dict:
     empty = {
         "source": "EMA Referrals (Art. 20/30/31/107i, CC-BY 4.0)",
         "type": "drug_safety_referral",
         "results": [],
     }
+
+    # Meta-Claim-Check: quantitative Claims ueber die Gesamtzahl
+    original_claim = (analysis or {}).get("original_claim", "")
+    if _is_meta_referral_claim(original_claim):
+        return {
+            "source": "EMA Referrals (Art. 20/30/31/107i, CC-BY 4.0)",
+            "type": "drug_safety_referral",
+            "results": [_build_meta_result()],
+        }
+
     entities = (analysis or {}).get("entities") or []
     if not entities:
         return empty

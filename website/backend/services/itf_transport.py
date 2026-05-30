@@ -527,6 +527,7 @@ def _select_domains(claim_lc: str) -> list[str]:
         if any(t in claim_lc for t in (
             "pro 100", "per 100", "rate", "vergleich", "ranking",
             "höchste", "niedrigste", "highest", "lowest",
+            "pro einwohner", "pro kopf", "per capita",
         )):
             domains.append("safety_rate")
 

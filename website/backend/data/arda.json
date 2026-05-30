@@ -98,8 +98,11 @@
       "trigger_terms": [
         "religionsstatistik deutschland", "konfession deutschland",
         "religionen deutschland", "katholiken deutschland",
-        "evangelische deutschland", "muslime deutschland"
-      ]
+        "evangelische deutschland", "muslime deutschland",
+        "evangelisch katholisch deutschland", "mehr evangelisch als katholisch",
+        "mehr katholisch als evangelisch", "konfessionsvergleich deutschland"
+      ],
+      "kernsatz_fuer_synthesizer": "In Deutschland sind 2023 mehr Menschen roemisch-katholisch (~24 %) als evangelisch (~22 %). Die Differenz betraegt rund 2 Prozentpunkte (DESTATIS Mikrozensus 2023 + EKD/DBK-Jahresberichte). Historisch war das Verhaeltnis umgekehrt: 1950 waren ~52 % evangelisch und ~46 % katholisch. Die groesste Gruppe sind heute Konfessionslose mit ~43 %. Beide Grosskirchen verlieren jaehrlich je ~380.000 Mitglieder durch Austritte."
     },
     {
       "id": "arda_usa_denominations_2020",

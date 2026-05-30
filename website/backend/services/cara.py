@@ -350,15 +350,40 @@ _CARA_FACTS: tuple[dict, ...] = (
         "url": CARA_FAQ_URL,
     },
     {
+        "key": "cara_us_denomination_ranking",
+        "scope": "us",
+        "year": "2023",
+        "value_num": None,
+        "headline": (
+            "US-Religionsgemeinschaften nach Mitgliederzahl (CARA / "
+            "Pew / U.S. Religion Census 2020): Roemisch-katholische "
+            "Kirche ~73 Mio ist die GROESSTE einzelne Denomination "
+            "in den USA. Dahinter: Southern Baptist Convention ~13 Mio, "
+            "United Methodist Church ~5,7 Mio, National Baptist Convention "
+            "~5 Mio, Church of God in Christ ~4,7 Mio, Assemblies of God "
+            "~3 Mio. Evangelikale Protestanten sind als GRUPPE (~25 %) "
+            "groesser, bestehen aber aus Dutzenden eigenstaendiger "
+            "Denominationen."
+        ),
+        "description": (
+            "Die katholische Kirche ist die groesste EINZELNE "
+            "Religionsgemeinschaft der USA — nicht die groesste "
+            "konfessionelle Tradition (das waere protestantisch "
+            "insgesamt ~40 %). CARA-FAQ unterscheidet 'denomination' "
+            "vs. 'tradition'. U.S. Religion Census 2020 listet 236 "
+            "christliche Denominationen in den USA."
+        ),
+        "url": CARA_FAQ_URL,
+    },
+    {
         "key": "cara_us_catholics",
         "scope": "us",
         "year": "2023",
         "value_num": 73_000_000,
         "headline": (
             "US-Katholiken (CARA-Schaetzung 2023): rund 73 Millionen "
-            "(ca. 22 % der US-Bevoelkerung). Damit zweitgroesste "
-            "konfessionelle Gruppe in den USA nach evangelikalen "
-            "Protestanten."
+            "(ca. 22 % der US-Bevoelkerung). Damit groesste einzelne "
+            "Religionsgemeinschaft in den USA."
         ),
         "description": (
             "CARA verwendet Self-Identification (z. B. Pew-Surveys, "

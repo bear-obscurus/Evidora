@@ -458,6 +458,58 @@ async def search_easie(analysis: dict) -> dict:
         if row:
             results.append(row)
 
+    # Ranking-Claim: wenn nach "höchste/niedrigste/vergleich/ranking"
+    # gefragt wird, EU-Ranking-Benchmark mitliefern.
+    is_ranking = any(t in combined_lc for t in (
+        "höchste", "hoechste", "niedrigste", "ranking", "vergleich",
+        "meisten", "wenigsten", "spitze", "spitzenreiter",
+        "förderschulquote", "foerderschulquote", "segregation",
+        "sonderschulquote", "exklusion",
+    ))
+    if is_ranking and len(results) < 5:
+        # Ranking der separate_settings_pct: top-5 höchste
+        ranked = sorted(
+            [(iso3, cd.get("separate_settings_pct", 0), cd.get("country_name", iso3))
+             for iso3, cd in country_data.items()
+             if cd.get("separate_settings_pct") is not None],
+            key=lambda x: x[1], reverse=True,
+        )
+        if ranked:
+            ref_year = data.get("reference_school_year") or "2018/2019"
+            top5 = ", ".join(
+                f"{r[2]} {r[1]:.1f}%".replace(".", ",")
+                for r in ranked[:5]
+            )
+            bottom3 = ", ".join(
+                f"{r[2]} {r[1]:.1f}%".replace(".", ",")
+                for r in ranked[-3:]
+            )
+            results.append({
+                "indicator_name": f"EASIE {ref_year} — EU-Ranking Separate Settings",
+                "indicator": "easie_separate_ranking",
+                "country": "EU",
+                "country_name": "EU/EFTA Ranking",
+                "year": str(ref_year),
+                "topic": "inclusive_education_stats",
+                "value": None,
+                "display_value": (
+                    f"EASIE {ref_year} EU-Ranking Foerderschul-/Sonderschulquote "
+                    f"(separate settings): Hoechste Quoten: {top5}. "
+                    f"Niedrigste: {bottom3}. "
+                    f"Deutschland hat mit {ranked[0][1] if ranked[0][0] == 'DEU' else [r[1] for r in ranked if r[0] == 'DEU'][0] if any(r[0] == 'DEU' for r in ranked) else '?'}% "
+                    f"eine der hoechsten Separationsraten in Europa."
+                )[:480],
+                "description": (
+                    f"Ranking basiert auf EASIE separate_settings_pct "
+                    f"(Anteil SEN-Schueler in separaten Sonderschulen/Klassen). "
+                    f"Vergleichs-Caveat: nationale SEN-Definitionen variieren. "
+                    f"Lizenz: CC BY-NC-ND 4.0."
+                ),
+                "url": data.get("source_url") or "https://www.european-agency.org/data/easie",
+                "source": data.get("source_label")
+                    or "EASIE European Agency Statistics on Inclusive Education",
+            })
+
     # Wenn weniger als MAX_PRIMARY_COUNTRIES Treffer und der Claim
     # generischen EU-Bezug hat → EU-Average als zusätzlicher Treffer.
     if len(results) < 5 and any(t in combined_lc for t in (
