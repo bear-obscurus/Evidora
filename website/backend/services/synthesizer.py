@@ -1156,7 +1156,7 @@ async def synthesize_results(
             # the claimed year IS the record year
             if not factual_confirms:
                 record_match = re.search(
-                    r"wärmstes jahr[^.]{0,30}?(\d{4})", summary_lower
+                    r"wärmst\w* jahr[^.]{0,40}?(\d{4})", summary_lower
                 )
                 if record_match:
                     record_year = record_match.group(1)
