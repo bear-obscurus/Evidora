@@ -14,12 +14,28 @@
       "topic": "ehe_fuer_alle",
       "kerninhalt": "Der VfGH hob die Beschränkung der Ehe auf verschiedengeschlechtliche Paare als verfassungswidrig auf. Das Erkenntnis trat mit 1.1.2019 in Kraft, sodass gleichgeschlechtliche Paare seitdem heiraten können.",
       "boulevard_falschmeldung": "Die Ehe für alle wurde von der Regierung beschlossen / nicht der VfGH hat das durchgesetzt.",
-      "trigger_keywords": ["g 258/2017", "ehe für alle erkenntnis", "ehe-für-alle erkenntnis",
-                           "ehe öffnung gleichgeschlechtlich", "vfgh ehe für alle"],
+      "trigger_keywords": [
+        "g 258/2017",
+        "ehe für alle erkenntnis",
+        "ehe-für-alle erkenntnis",
+        "ehe öffnung gleichgeschlechtlich",
+        "vfgh ehe für alle"
+      ],
       "trigger_composite": [
-        ["vfgh", "verfassungsgerichtshof"],
-        ["ehe", "heirat"],
-        ["alle", "gleichgeschlechtlich", "homosexuell", "lgbt"]
+        [
+          "vfgh",
+          "verfassungsgerichtshof"
+        ],
+        [
+          "ehe",
+          "heirat"
+        ],
+        [
+          "alle",
+          "gleichgeschlechtlich",
+          "homosexuell",
+          "lgbt"
+        ]
       ]
     },
     {
@@ -33,13 +49,24 @@
       "topic": "sterbehilfe",
       "kerninhalt": "Der VfGH hob § 78 StGB (Mitwirkung am Selbstmord) als verfassungswidrig auf — das absolute Verbot widerspricht dem Recht auf Selbstbestimmung. Mit Wirkung ab 1.1.2022 hat der Nationalrat das Sterbeverfügungsgesetz erlassen, das assistierten Suizid unter strengen Voraussetzungen erlaubt.",
       "boulevard_falschmeldung": "Sterbehilfe wurde komplett legalisiert / es gibt keine Schranken mehr.",
-      "trigger_keywords": ["g 139/2019", "sterbehilfe-erkenntnis", "vfgh sterbehilfe",
-                           "assistierter suizid österreich erkenntnis",
-                           "sterbeverfügung erkenntnis"],
+      "trigger_keywords": [
+        "g 139/2019",
+        "sterbehilfe-erkenntnis",
+        "vfgh sterbehilfe",
+        "assistierter suizid österreich erkenntnis",
+        "sterbeverfügung erkenntnis"
+      ],
       "trigger_composite": [
-        ["vfgh", "verfassungsgerichtshof"],
-        ["sterbehilfe", "assistierter suizid", "sterbeverfügung",
-         "selbstmord-mitwirkung"]
+        [
+          "vfgh",
+          "verfassungsgerichtshof"
+        ],
+        [
+          "sterbehilfe",
+          "assistierter suizid",
+          "sterbeverfügung",
+          "selbstmord-mitwirkung"
+        ]
       ]
     },
     {
@@ -53,13 +80,25 @@
       "topic": "covid_lockdown",
       "kerninhalt": "Der VfGH hob mehrere COVID-19-Verordnungen (u. a. § 1 COVID-19-MaßnahmenG-Betretungsverbote) wegen unzureichender gesetzlicher Determinierung als verfassungswidrig auf — die Eingriffe waren grundsätzlich zulässig, mussten aber präziser im Gesetz verankert werden. Der Lockdown wurde NICHT als 'verboten' bezeichnet; Folgegesetzgebung war möglich.",
       "boulevard_falschmeldung": "Der VfGH hat die Lockdowns als illegal erklärt / Ausgangsbeschränkungen waren nie zulässig.",
-      "trigger_keywords": ["vfgh lockdown", "vfgh covid-verordnung",
-                           "lockdown verfassungswidrig", "lockdown rechtswidrig",
-                           "v 363/2020"],
+      "trigger_keywords": [
+        "vfgh lockdown",
+        "vfgh covid-verordnung",
+        "lockdown verfassungswidrig",
+        "lockdown rechtswidrig",
+        "v 363/2020"
+      ],
       "trigger_composite": [
-        ["vfgh", "verfassungsgerichtshof"],
-        ["lockdown", "ausgangsbeschränkung", "covid-verordnung",
-         "covid verordnung", "betretungsverbot"]
+        [
+          "vfgh",
+          "verfassungsgerichtshof"
+        ],
+        [
+          "lockdown",
+          "ausgangsbeschränkung",
+          "covid-verordnung",
+          "covid verordnung",
+          "betretungsverbot"
+        ]
       ]
     },
     {
@@ -73,11 +112,22 @@
       "topic": "impfpflicht",
       "kerninhalt": "Der VfGH wies eine Beschwerde gegen das COVID-19-Impfpflichtgesetz ab — die Impfpflicht war verfassungsrechtlich zulässig (verhältnismäßiger Grundrechtseingriff zur Pandemie-Bekämpfung). Das Gesetz wurde später vom Nationalrat ausgesetzt und schließlich aufgehoben — politische Entscheidung, keine VfGH-Aufhebung.",
       "boulevard_falschmeldung": "Der VfGH hat die Impfpflicht für verfassungswidrig erklärt.",
-      "trigger_keywords": ["vfgh impfpflicht", "g 412/2022",
-                           "impfpflicht verfassungswidrig", "impfpflicht-erkenntnis"],
+      "trigger_keywords": [
+        "vfgh impfpflicht",
+        "g 412/2022",
+        "impfpflicht verfassungswidrig",
+        "impfpflicht-erkenntnis"
+      ],
       "trigger_composite": [
-        ["vfgh", "verfassungsgerichtshof"],
-        ["impfpflicht", "covid-impfpflicht", "corona-impfpflicht"]
+        [
+          "vfgh",
+          "verfassungsgerichtshof"
+        ],
+        [
+          "impfpflicht",
+          "covid-impfpflicht",
+          "corona-impfpflicht"
+        ]
       ]
     },
     {
@@ -91,12 +141,27 @@
       "topic": "orf_finanzierung",
       "kerninhalt": "Der VfGH hob die GIS-Gebühren-Bemessung (Programmentgelt nur bei Rundfunk-Empfang) als verfassungswidrig auf — sie widerspräche dem Gleichheitsgrundsatz, weil Streaming-Nutzer:innen ohne Empfangsgerät nicht erfasst wurden. Folge: Haushaltsabgabe (ORF-Beitrag) seit 1.1.2024.",
       "boulevard_falschmeldung": "Der VfGH hat den ORF-Beitrag eingeführt / hat die Haushaltsabgabe verlangt.",
-      "trigger_keywords": ["vfgh orf-beitrag", "vfgh gis-gebühr",
-                           "orf-finanzierung erkenntnis", "g 226/2022"],
+      "trigger_keywords": [
+        "vfgh orf-beitrag",
+        "vfgh gis-gebühr",
+        "orf-finanzierung erkenntnis",
+        "g 226/2022"
+      ],
       "trigger_composite": [
-        ["vfgh", "verfassungsgerichtshof"],
-        ["orf", "gis"],
-        ["beitrag", "gebühr", "finanzierung", "haushaltsabgabe"]
+        [
+          "vfgh",
+          "verfassungsgerichtshof"
+        ],
+        [
+          "orf",
+          "gis"
+        ],
+        [
+          "beitrag",
+          "gebühr",
+          "finanzierung",
+          "haushaltsabgabe"
+        ]
       ]
     },
     {
@@ -110,12 +175,25 @@
       "topic": "asyl_drittstaat",
       "kerninhalt": "Der VwGH stellte fest, dass die Vermutung eines 'sicheren Drittstaats' (z.B. Serbien) nicht generell, sondern im Einzelfall geprüft werden muss. Schutzsuchende, die plausibel machen, dass sie im Drittstaat keinen Schutz erhalten, können nicht pauschal abgewiesen werden.",
       "boulevard_falschmeldung": "Der VwGH zwingt Österreich, alle Asyl-Anträge zu akzeptieren / kein Drittstaaten-Verfahren mehr möglich.",
-      "trigger_keywords": ["vwgh ra 2018/19/0444", "vwgh sicherer drittstaat",
-                           "vwgh asyl serbien"],
+      "trigger_keywords": [
+        "vwgh ra 2018/19/0444",
+        "vwgh sicherer drittstaat",
+        "vwgh asyl serbien"
+      ],
       "trigger_composite": [
-        ["vwgh", "verwaltungsgerichtshof"],
-        ["asyl", "schutz"],
-        ["drittstaat", "serbien", "sicher"]
+        [
+          "vwgh",
+          "verwaltungsgerichtshof"
+        ],
+        [
+          "asyl",
+          "schutz"
+        ],
+        [
+          "drittstaat",
+          "serbien",
+          "sicher"
+        ]
       ]
     },
     {
@@ -129,24 +207,80 @@
       "topic": "wahlanfechtung",
       "kerninhalt": "Der VfGH hob die Bundespräsidenten-Stichwahl vom Mai 2016 (Hofer/Van der Bellen) wegen Mangelhaftigkeiten in der Briefwahl-Auszählung auf und ordnete eine Wiederholung an. Die Wiederholungswahl im Dezember 2016 führte zum selben Ergebnis — Van der Bellen.",
       "boulevard_falschmeldung": "Der VfGH hat das Wahlergebnis manipuliert / Hofer wurde betrogen.",
-      "trigger_keywords": ["bundespräsidenten-stichwahl 2016 aufhebung",
-                           "vfgh hofer van der bellen", "wahlaufhebung 2016",
-                           "wahlanfechtung 2016",
-                           "stichwahl 2016 manipuliert",
-                           "stichwahl manipuliert",
-                           "stichwahl 2016 war manipuliert",
-                           "stichwahl 2016 betrog",
-                           "stichwahl 2016 gefälscht",
-                           "bundespräsidenten-stichwahl 2016 manipuliert",
-                           "bp-wahl 2016 manipuliert", "bp wahl 2016"],
+      "trigger_keywords": [
+        "bundespräsidenten-stichwahl 2016 aufhebung",
+        "vfgh hofer van der bellen",
+        "wahlaufhebung 2016",
+        "wahlanfechtung 2016",
+        "stichwahl 2016 manipuliert",
+        "stichwahl manipuliert",
+        "stichwahl 2016 war manipuliert",
+        "stichwahl 2016 betrog",
+        "stichwahl 2016 gefälscht",
+        "bundespräsidenten-stichwahl 2016 manipuliert",
+        "bp-wahl 2016 manipuliert",
+        "bp wahl 2016"
+      ],
       "trigger_composite": [
-        ["vfgh", "verfassungsgerichtshof",
-         "hofer", "van der bellen", "bp-wahl", "bp wahl",
-         "bundespräsidenten-stichwahl",
-         "bundespräsidentenwahl"],
-        ["wahl", "stichwahl"],
-        ["aufgehoben", "wiederholt", "manipuliert", "betrog", "ungültig",
-         "manipulation", "fälschung", "gefälscht"]
+        [
+          "vfgh",
+          "verfassungsgerichtshof",
+          "hofer",
+          "van der bellen",
+          "bp-wahl",
+          "bp wahl",
+          "bundespräsidenten-stichwahl",
+          "bundespräsidentenwahl"
+        ],
+        [
+          "wahl",
+          "stichwahl"
+        ],
+        [
+          "aufgehoben",
+          "wiederholt",
+          "manipuliert",
+          "betrog",
+          "ungültig",
+          "manipulation",
+          "fälschung",
+          "gefälscht"
+        ]
+      ]
+    },
+    {
+      "id": "vfgh_g_4_2020_kopftuchverbot",
+      "court": "VfGH",
+      "case_number": "G 4/2020",
+      "case_name": "Kopftuchverbot an Volksschulen — verfassungswidrig aufgehoben",
+      "year": 2020,
+      "decided_iso": "2020-12-11",
+      "url": "https://www.ris.bka.gv.at/Dokument.wxe?Abfrage=Vfgh&Dokumentnummer=JFT_20201211_20G00004_00",
+      "topic": "kopftuchverbot_schulen",
+      "kerninhalt": "Der VfGH hob § 43a SchUG (Verbot des Tragens weltanschaulich oder religiös geprägter Bekleidung, die mit der Verhüllung des Hauptes verbunden ist, für Kinder bis 10 Jahre) als verfassungswidrig auf. Begründung: Das Verbot richtete sich faktisch nur gegen muslimische Mädchen (Kopftuch/Hijab), während jüdische Kippa, Sikh-Patka oder christliche Ordenstracht nicht erfasst waren. Dies verletzte den Gleichheitsgrundsatz (Art. 7 B-VG) und die Religionsfreiheit (Art. 14 StGG, Art. 9 EMRK). Das Gesetz war 2019 von der Regierung Kurz II beschlossen worden.",
+      "boulevard_falschmeldung": "Das Kopftuchverbot gilt immer noch / Es gibt ein generelles Kopftuchverbot an österreichischen Schulen.",
+      "trigger_keywords": [
+        "g 4/2020",
+        "kopftuchverbot erkenntnis",
+        "vfgh kopftuch",
+        "kopftuch schule österreich aufgehoben",
+        "kopftuchverbot verfassungswidrig",
+        "kopftuchverbot volksschule"
+      ],
+      "trigger_composite": [
+        [
+          "vfgh",
+          "verfassungsgerichtshof",
+          "aufgehoben",
+          "verfassungswidrig"
+        ],
+        [
+          "kopftuch",
+          "kopftuchverbot",
+          "hijab",
+          "verschleierung",
+          "verhüllung"
+        ]
       ]
     }
   ]

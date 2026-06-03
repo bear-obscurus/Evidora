@@ -348,6 +348,14 @@ def _format_station_entry(city_key: str, info: dict, series: dict[int, float]) -
         f"(Station {info['state']}, {info['alt']:.0f} m)"
     )
 
+    # Include record-year in display_value so the LLM cannot miss it
+    # when evaluating record-claims (Bug #51, 2026-06-03).
+    display = (
+        f"Jahresmittel {latest_year}: {latest_val:.1f}°C | "
+        f"Wärmstes Jahr: {warmest_year} ({series[warmest_year]:.1f}°C) | "
+        f"Kältestes Jahr: {coldest_year} ({series[coldest_year]:.1f}°C)"
+    )
+
     return {
         "indicator_name": title,
         "indicator": "tl_mittel",
@@ -355,7 +363,7 @@ def _format_station_entry(city_key: str, info: dict, series: dict[int, float]) -
         "country_name": "Austria",
         "year": str(latest_year),
         "value": latest_val,
-        "display_value": f"{latest_val:.1f}°C",
+        "display_value": display,
         "url": (
             "https://data.hub.geosphere.at/dataset/klima-v2-1y"
         ),

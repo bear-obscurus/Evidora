@@ -214,8 +214,18 @@ async def search_medientransparenz(analysis: dict) -> dict:
 
             # Sub-Result D: STRUKTURELL-FALSCH-Marker für Verwechslungs-Claims
             # (z. B. "Bundesregierung gibt über 100 Mio. aus")
+            # Guard: Nur emittieren wenn der Claim tatsächlich
+            # "Bundesregierung"/"Regierung" + Inserate anspricht —
+            # sonst feuert der Marker auf themenfremde Claims wie
+            # "Krone bekommt die meisten Inserate" (Bug #47, 2026-06-03).
+            claim_lc = claim.lower()
+            _regierung_tokens = (
+                "bundesregierung", "regierung gibt", "regierung zahlt",
+                "regierung ausgab", "ministerien",
+            )
+            claim_targets_regierung = any(t in claim_lc for t in _regierung_tokens)
             kernsatz = d.get("kernsatz_fuer_synthesizer", "")
-            if kernsatz:
+            if kernsatz and claim_targets_regierung:
                 from services._struct_marker import has_false_verdict_override
                 if has_false_verdict_override(kernsatz):
                     _emit(

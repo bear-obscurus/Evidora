@@ -539,6 +539,52 @@
           "stabil"
         ]
       ]
+    },
+    {
+      "topic": "bitcoin_preis_meilensteine",
+      "headline": "Bitcoin-Kurs überschritt am 5. Dezember 2024 erstmals die 100.000-US-Dollar-Marke (CoinMarketCap, Coinbase, Binance übereinstimmend); vorheriger Rekord war 69.000 USD im November 2021; Kursverlauf 2024: ~42.000 USD (Jan) → ~100.000 USD (Dez) = Verdoppelung; Haupttreiber: Bitcoin-Spot-ETFs (BlackRock iShares IBIT + Fidelity FBTC, SEC-Zulassung 10. Januar 2024) + Halving Mai 2024",
+      "year": 2024,
+      "source_url": "https://coinmarketcap.com/currencies/bitcoin/",
+      "secondary_url": "https://www.sec.gov/news/statement/gensler-statement-spot-bitcoin-011023",
+      "source_label": "CoinMarketCap + Coinbase + SEC Filing (Bitcoin Spot ETF Approval 2024-01-10) + CoinGecko",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Bitcoin-Kurs-Meilensteine: (1) Am 5. Dezember 2024 überschritt Bitcoin erstmals die 100.000-US-Dollar-Marke (CoinMarketCap/Coinbase/Binance übereinstimmend). (2) Vorheriger Allzeit-Rekord: ~69.000 USD im November 2021. (3) Kursverlauf 2024: ~42.000 USD (Januar) → ~73.000 USD (März, neues ATH) → Konsolidierung → ~100.000 USD (Dezember). (4) Haupttreiber: SEC-Zulassung von 11 Bitcoin-Spot-ETFs am 10. Januar 2024 (inkl. BlackRock iShares IBIT, Fidelity FBTC), diese zogen innerhalb von 11 Monaten >30 Mrd USD Netto-Zuflüsse an. (5) Bitcoin-Halving im April 2024 (Block-Reward 6,25 → 3,125 BTC) reduzierte Angebots-Wachstum.",
+        "context": "Bitcoin-Preis ist hoch-volatil (>60% Jahres-Volatilität). Die 100.000-USD-Marke ist ein nominaler Meilenstein ohne fundamentale Bedeutung. Historische Drawdowns nach Allzeit-Hochs: 2018 -84%, 2022 -77%. CoinMarketCap und CoinGecko sind die Standard-Referenz-Quellen für Krypto-Preisdaten."
+      },
+      "context_notes": [
+        "Bitcoin-Spot-ETF-Zulassung (SEC, 10.01.2024) war das regulatorische Schlüsselereignis — erstmals konnten institutionelle Anleger über regulierte US-Börsen (NYSE, CBOE) in Bitcoin investieren.",
+        "Marktkapitalisierung Bitcoin bei 100.000 USD: ~2 Billionen USD (~2 Trillion USD), vergleichbar mit Apple oder Microsoft als Einzelwert."
+      ],
+      "claim_phrasings_handled": [
+        "Bitcoin hat 2024 die 100.000-Dollar-Marke überschritten",
+        "Bitcoin ist 2024 auf über 100.000 Dollar gestiegen",
+        "Bitcoin-Kurs hat sich 2024 verdoppelt",
+        "Bitcoin hat ein neues Allzeithoch erreicht",
+        "Bitcoin Spot ETF wurde 2024 zugelassen"
+      ],
+      "trigger_composite": [
+        [
+          "bitcoin",
+          "btc",
+          "kryptowährung",
+          "krypto"
+        ],
+        [
+          "100.000",
+          "100000",
+          "hunderttausend",
+          "kurs",
+          "preis",
+          "marke",
+          "dollar",
+          "allzeithoch",
+          "ath",
+          "rekord",
+          "etf",
+          "halving",
+          "verdoppelt"
+        ]
+      ]
     }
   ]
 }
