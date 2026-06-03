@@ -1078,7 +1078,10 @@ async def synthesize_results(
         # Extended 2026-05-25: broader pattern detection including comma-
         # separated clauses ("Behauptung, dass X, ist korrekt") and
         # German indirect-speech patterns.
+        # Extended 2026-06-04: detect factual-content-confirms-claim even
+        # when LLM conclusion says "falsch" (Bug #47 Krone, #51 Wien).
         summary_lower = result.get("summary", "").lower()
+        claim_lower = (original_claim or "").lower()
         verdict = result.get("verdict", "")
         verdict_from_summary = None
 
@@ -1117,6 +1120,56 @@ async def synthesize_results(
                 summary_lower
             ):
                 verdict_from_summary = "false"
+
+        # Factual-content consistency (2026-06-04, Bugs #47 + #51):
+        # Detect when summary factual content CONFIRMS the claim but
+        # verdict is false/mostly_false. This catches cases where the
+        # LLM cites correct data ("Krone erhält die meisten", "wärmstes
+        # Jahr 2024") but arrives at the wrong conclusion — often caused
+        # by unrelated STRUKTURELL markers from other packs pulled in
+        # via cosine-similarity.
+        if verdict in ("false", "mostly_false") and not verdict_from_summary:
+            import re
+            factual_confirms = False
+
+            # Pattern A: Superlative/ranking claims where summary
+            # explicitly confirms the ranking ("erhält die meisten",
+            # "hat die höchste", "ist Spitzenreiter")
+            superlative_claim = any(t in claim_lower for t in (
+                "meisten", "höchste", "größte", "stärkste",
+                "niedrigste", "geringste", "spitzenreiter",
+            ))
+            if superlative_claim:
+                superlative_confirmed = any(t in summary_lower for t in (
+                    "die meisten", "die höchste", "der größte",
+                    "die stärkste", "spitzenreiter", "rang #1",
+                    "an erster stelle", "die niedrigste",
+                ))
+                if superlative_confirmed:
+                    factual_confirms = True
+                    logger.info(
+                        f"Factual-content consistency: superlative claim "
+                        f"confirmed in summary but verdict='{verdict}'"
+                    )
+
+            # Pattern B: Record-year claims where summary confirms
+            # the claimed year IS the record year
+            if not factual_confirms:
+                record_match = re.search(
+                    r"wärmstes jahr[^.]{0,30}?(\d{4})", summary_lower
+                )
+                if record_match:
+                    record_year = record_match.group(1)
+                    if record_year in claim_lower:
+                        factual_confirms = True
+                        logger.info(
+                            f"Factual-content consistency: record year "
+                            f"{record_year} confirmed in summary but "
+                            f"verdict='{verdict}'"
+                        )
+
+            if factual_confirms:
+                verdict_from_summary = "true"
 
         if verdict_from_summary and verdict_from_summary != verdict:
             # Don't override if the STRUKTURELL override just fired
