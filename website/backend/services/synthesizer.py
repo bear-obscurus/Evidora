@@ -1064,6 +1064,7 @@ async def synthesize_results(
                     old_conf = result.get("confidence", 0)
                     result["verdict"] = "mostly_false"
                     result["confidence"] = 0.85
+                    result["_struct_override_fired"] = True  # explicit flag
                     logger.warning(
                         f"STRUKTURELL FALSCH override: LLM returned "
                         f"'{old_verdict}' @ {old_conf} despite STRUKTURELL "
@@ -1110,46 +1111,12 @@ async def synthesize_results(
                 result["verdict"] = "mixed"
                 result["confidence"] = 0.50
 
-        # --- Wahlprognose-Guard (Politik-Tabu #2, Bug #38, 2026-06-04) ---
-        # Claims der Form "Partei X wird die nächste Wahl gewinnen" sind
-        # PROGNOSEN, keine Fakten. Das LLM bewertet sie fälschlich als
-        # false/mostly_false basierend auf aktuellen Mandatszahlen.
-        # Fix: Erkennung + Override zu unverifiable.
-        import re
-        _claim_lc = (original_claim or "").lower()
-        _PROGNOSE_PATTERNS = (
-            r"\b(wird|werden|dürfte|könnte|soll)\b.{0,30}\bwahl\b.{0,20}\b(gewinnen|verlieren|siegen)",
-            r"\b(wird|werden|dürfte|könnte|soll)\b.{0,30}\b(stärkste|stärkster|schwächste|erste|erster)\b.{0,20}\b(partei|kraft|fraktion)",
-            r"\bwahl\b.{0,20}\b(gewinnen|verlieren|siegen)\b.{0,20}\b(wird|werden|dürfte)",
-            r"\bnächste\w*\b.{0,20}\b(wahl|nationalratswahl|landtagswahl|europawahl|bundestag)",
-        )
-        _PARTY_TOKENS_SHORT = (
-            "fpö", "fpoe", "spö", "spoe", "övp", "oevp", "neos",
-            "grüne", "gruene", "afd", "cdu", "csu", "spd", "linke",
-        )
-        is_prognose = (
-            any(re.search(p, _claim_lc) for p in _PROGNOSE_PATTERNS)
-            and any(t in _claim_lc for t in _PARTY_TOKENS_SHORT)
-        )
-        if is_prognose and result.get("verdict") not in ("unverifiable",):
-            old_v = result["verdict"]
-            old_c = result.get("confidence", 0)
-            result["verdict"] = "unverifiable"
-            result["confidence"] = 0.10
-            result["nuance"] = (
-                "Wahlprognosen sind keine überprüfbaren Fakten. "
-                "Evidora bewertet nur abgeschlossene Wahlergebnisse, "
-                "keine Vorhersagen über zukünftige Wahlen."
-            )
-            logger.warning(
-                f"Wahlprognose-Guard: overriding '{old_v}' @ {old_c} → "
-                f"'unverifiable' @ 0.10 for prediction claim."
-            )
-
         # --- AMS/ILO Dual-Methodik-Guard (Bug #63, 2026-06-04) ---
         # AT-Arbeitslosigkeit hat zwei Methoden: ILO (~5%) und AMS (~7%).
         # Wenn der Claim einen ILO-nahen Wert nennt UND die Summary die
         # AMS-Methodik erwähnt, ist "mixed" korrekt — nicht mostly_false.
+        import re
+        _claim_lc = (original_claim or "").lower()
         if (result.get("verdict") in ("mostly_false", "false")
                 and any(t in _claim_lc for t in ("arbeitslos", "arbeitslosenquote",
                                                   "arbeitslosigkeit"))
@@ -1279,28 +1246,64 @@ async def synthesize_results(
                 verdict_from_summary = "true"
 
         if verdict_from_summary and verdict_from_summary != verdict:
-            # Don't override if the STRUKTURELL override just fired
-            # (that was a deliberate programmatic decision, not an LLM error).
-            # Only correct pure LLM self-contradictions.
-            struct_override_just_fired = (
-                verdict == "mostly_false"
-                and result.get("confidence") == 0.85
-                and verdict_from_summary == "true"
-            )
-            if not struct_override_just_fired:
+            # Don't override if the STRUKTURELL override ACTUALLY fired
+            # (explicit flag set in the override block above). This prevents
+            # the consistency check from undoing a legitimate STRUKTURELL
+            # override. Uses explicit flag instead of heuristic
+            # (verdict==mostly_false@0.85) which caused false positives
+            # on unrelated claims (Bug #48 Griechenland, 2026-06-04).
+            if result.get("_struct_override_fired") and verdict_from_summary == "true":
+                logger.info(
+                    f"Verdict consistency: summary says 'true' but STRUKTURELL "
+                    f"override active — keeping '{verdict}'. "
+                    f"(If this fires repeatedly for the same claim, review "
+                    f"whether the STRUKTURELL source is a topic mismatch.)"
+                )
+            else:
                 logger.warning(
                     f"Verdict consistency fix: JSON verdict='{verdict}' "
                     f"contradicts summary (detected '{verdict_from_summary}'). "
                     f"Correcting to '{verdict_from_summary}'."
                 )
                 result["verdict"] = verdict_from_summary
-            else:
-                logger.info(
-                    f"Verdict consistency: summary says 'true' but STRUKTURELL "
-                    f"override active — keeping 'mostly_false'. "
-                    f"(If this fires repeatedly for the same claim, review "
-                    f"whether the STRUKTURELL source is a topic mismatch.)"
-                )
+
+        # --- Wahlprognose-Guard (Politik-Tabu #2, Bug #38, 2026-06-04) ---
+        # MUST run AFTER the consistency check, otherwise the consistency
+        # check detects "überwiegend falsch" in the summary and overrides
+        # unverifiable back to false. This guard has final authority.
+        import re
+        _claim_lc = (original_claim or "").lower()
+        _PROGNOSE_PATTERNS = (
+            r"\b(wird|werden|dürfte|könnte|soll)\b.{0,40}\bwahl\w*\b.{0,20}\b(gewinnen|verlieren|siegen)",
+            r"\b(wird|werden|dürfte|könnte|soll)\b.{0,30}\b(stärkste|stärkster|schwächste|erste|erster)\b.{0,20}\b(partei|kraft|fraktion)",
+            r"\bwahl\w*\b.{0,20}\b(gewinnen|verlieren|siegen)\b.{0,20}\b(wird|werden|dürfte)",
+            r"\bnächste\w*\b.{0,20}\b(wahl|nationalratswahl|landtagswahl|europawahl|bundestag)",
+        )
+        _PARTY_TOKENS_SHORT = (
+            "fpö", "fpoe", "spö", "spoe", "övp", "oevp", "neos",
+            "grüne", "gruene", "afd", "cdu", "csu", "spd", "linke",
+        )
+        is_prognose = (
+            any(re.search(p, _claim_lc) for p in _PROGNOSE_PATTERNS)
+            and any(t in _claim_lc for t in _PARTY_TOKENS_SHORT)
+        )
+        if is_prognose and result.get("verdict") != "unverifiable":
+            old_v = result["verdict"]
+            old_c = result.get("confidence", 0)
+            result["verdict"] = "unverifiable"
+            result["confidence"] = 0.10
+            result["nuance"] = (
+                "Wahlprognosen sind keine überprüfbaren Fakten. "
+                "Evidora bewertet nur abgeschlossene Wahlergebnisse, "
+                "keine Vorhersagen über zukünftige Wahlen."
+            )
+            logger.warning(
+                f"Wahlprognose-Guard: overriding '{old_v}' @ {old_c} → "
+                f"'unverifiable' @ 0.10 for prediction claim."
+            )
+
+        # Clean up internal flags before returning
+        result.pop("_struct_override_fired", None)
 
         return result
     except httpx.TimeoutException:
