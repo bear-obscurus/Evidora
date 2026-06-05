@@ -1247,17 +1247,21 @@ async def synthesize_results(
 
         if verdict_from_summary and verdict_from_summary != verdict:
             # Don't override if the STRUKTURELL override ACTUALLY fired
-            # (explicit flag set in the override block above). This prevents
-            # the consistency check from undoing a legitimate STRUKTURELL
-            # override. Uses explicit flag instead of heuristic
-            # (verdict==mostly_false@0.85) which caused false positives
-            # on unrelated claims (Bug #48 Griechenland, 2026-06-04).
-            if result.get("_struct_override_fired") and verdict_from_summary == "true":
+            # (explicit flag set in the override block above) — UNLESS
+            # the factual-content check confirmed the claim via high-
+            # confidence patterns (superlative/record). These patterns
+            # indicate a STRUKTURELL topic-mismatch, not a legitimate
+            # override (Bug #48 Griechenland regression, 2026-06-04).
+            struct_fired = result.get("_struct_override_fired", False)
+            factual_content_confirmed = (factual_confirms
+                                         if "factual_confirms" in dir()
+                                         else False)
+            if (struct_fired and verdict_from_summary == "true"
+                    and not factual_content_confirmed):
                 logger.info(
                     f"Verdict consistency: summary says 'true' but STRUKTURELL "
-                    f"override active — keeping '{verdict}'. "
-                    f"(If this fires repeatedly for the same claim, review "
-                    f"whether the STRUKTURELL source is a topic mismatch.)"
+                    f"override active (no factual-content match) — keeping "
+                    f"'{verdict}'."
                 )
             else:
                 logger.warning(

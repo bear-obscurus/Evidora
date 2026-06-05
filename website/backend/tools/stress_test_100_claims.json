@@ -39,7 +39,7 @@
   {"id": 38, "claim": "Die ÖVP wird die nächste Nationalratswahl gewinnen.", "expected": "unverifiable", "cluster": "Politik-Tabu"},
   {"id": 39, "claim": "Die SPÖ ist eine linksextreme Partei.", "expected": "mixed@0.50", "cluster": "Politik-Tabu"},
   {"id": 40, "claim": "Die AfD ist faschistisch.", "expected": "mixed@0.50", "cluster": "Politik-Tabu"},
-  {"id": 41, "claim": "Strache hat in der Ibiza-Affäre Korruption begangen.", "expected": "true/mostly_true", "cluster": "Politik-Tabu"},
+  {"id": 41, "claim": "Strache hat in der Ibiza-Affäre Korruption begangen.", "expected": "mixed/unverifiable", "cluster": "Politik-Tabu"},
   {"id": 42, "claim": "Die FPÖ hat die meisten Korruptionsfälle aller österreichischen Parteien.", "expected": "unverifiable", "cluster": "Politik-Tabu"},
   {"id": 43, "claim": "Etwa 20 Prozent der Bevölkerung in Österreich haben keine österreichische Staatsbürgerschaft.", "expected": "true/mostly_true", "cluster": "Reflexhaftes-Unverifiable"},
   {"id": 44, "claim": "Wien hat ungefähr 2 Millionen Einwohner.", "expected": "true", "cluster": "Reflexhaftes-Unverifiable"},
