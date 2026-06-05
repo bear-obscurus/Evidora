@@ -1194,6 +1194,8 @@ async def synthesize_results(
             # Medical wirksamkeit denial (Bug #82)
             "heilt krebs aber nicht", "heilt krebs jedoch nicht",
             "keine eigenständige heilmethode", "kein heilmittel",
+            "keine ausreichende wirksamkeit",
+            "bisher keine ausreichende", "nicht nachgewiesen am menschen",
         ]
 
         if any(p in summary_lower for p in true_patterns):
