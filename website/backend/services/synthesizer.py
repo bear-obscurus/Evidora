@@ -1112,51 +1112,9 @@ async def synthesize_results(
                 result["confidence"] = 0.50
 
         # --- AMS/ILO Dual-Methodik-Guard (Bug #63, 2026-06-04) ---
-        # AT-Arbeitslosigkeit hat zwei Methoden: ILO (~5%) und AMS (~7%).
-        # Wenn der Claim einen ILO-nahen Wert nennt UND die Summary die
-        # AMS-Methodik erwähnt, ist "mixed" korrekt — nicht mostly_false.
+        # AMS/ILO guard moved to AFTER consistency check (see below line ~1380).
         import re
         _claim_lc = (original_claim or "").lower()
-        if (result.get("verdict") in ("mostly_false", "false")
-                and any(t in _claim_lc for t in ("arbeitslos", "arbeitslosenquote",
-                                                  "arbeitslosigkeit"))
-                and any(t in _claim_lc for t in ("österreich", "austria", " at "))
-                and result.get("summary", "")):
-            summary_lc = result["summary"].lower()
-            has_ams_mention = any(t in summary_lc for t in (
-                "ams-methodik", "ams methodik", "ams-quote", "nach ams",
-                "nationale definition", "registerarbeitslosigkeit",
-            ))
-            has_ilo_mention = any(t in summary_lc for t in (
-                "ilo", "eurostat", "internationale", "labour force",
-            ))
-            # Auch Claim-Text prüfen: "nach ILO-Methode", "ILO-Quote"
-            has_ilo_in_claim = any(t in _claim_lc for t in (
-                "ilo", "nach ilo", "ilo-methode", "ilo-quote",
-                "eurostat-methode", "labour force",
-            ))
-            has_ams_in_claim = any(t in _claim_lc for t in (
-                "ams-methode", "ams-quote", "nach ams",
-                "nationale berechnung", "registerarbeitslos",
-            ))
-            # Check if claimed value is close to ILO rate (~4.5-5.5%)
-            claim_pct_match = re.search(r"(\d+(?:[.,]\d+)?)\s*(?:prozent|%)", _claim_lc)
-            if claim_pct_match and (has_ams_mention or has_ilo_mention
-                                    or has_ilo_in_claim or has_ams_in_claim):
-                try:
-                    claimed_val = float(claim_pct_match.group(1).replace(",", "."))
-                    if 4.0 <= claimed_val <= 6.0:  # ILO-Bereich
-                        old_v = result["verdict"]
-                        result["verdict"] = "mixed"
-                        result["confidence"] = min(result.get("confidence", 0.7), 0.65)
-                        logger.warning(
-                            f"AMS/ILO dual-method guard: claim value "
-                            f"{claimed_val}% is in ILO range. Overriding "
-                            f"'{old_v}' → 'mixed' @ {result['confidence']:.2f}. "
-                            f"Both AMS (~7%) and ILO (~5%) are valid."
-                        )
-                except ValueError:
-                    pass
 
         # Consistency check: detect when summary text contradicts verdict.
         # Extended 2026-05-25: broader pattern detection including comma-
@@ -1372,6 +1330,49 @@ async def synthesize_results(
                     f"Correcting to '{verdict_from_summary}'."
                 )
                 result["verdict"] = verdict_from_summary
+
+        # --- AMS/ILO Dual-Methodik-Guard (NACH Consistency-Check, 2026-06-05) ---
+        # MUST run AFTER consistency check, otherwise it gets overridden
+        # by "größtenteils falsch" detection in the summary.
+        if (result.get("verdict") in ("mostly_false", "false")
+                and any(t in _claim_lc for t in ("arbeitslos", "arbeitslosenquote",
+                                                  "arbeitslosigkeit"))
+                and any(t in _claim_lc for t in ("österreich", "oesterreich",
+                                                  "austria", " at "))
+                and result.get("summary", "")):
+            summary_lc = result["summary"].lower()
+            has_ams_mention = any(t in summary_lc for t in (
+                "ams-methodik", "ams methodik", "ams-quote", "nach ams",
+                "nationale definition", "registerarbeitslosigkeit",
+            ))
+            has_ilo_mention = any(t in summary_lc for t in (
+                "ilo", "eurostat", "internationale", "labour force",
+            ))
+            has_ilo_in_claim = any(t in _claim_lc for t in (
+                "ilo", "nach ilo", "ilo-methode", "ilo-quote",
+                "eurostat-methode", "labour force",
+            ))
+            has_ams_in_claim = any(t in _claim_lc for t in (
+                "ams-methode", "ams-quote", "nach ams",
+                "nationale berechnung", "registerarbeitslos",
+            ))
+            claim_pct_match = re.search(r"(\d+(?:[.,]\d+)?)\s*(?:prozent|%)", _claim_lc)
+            if claim_pct_match and (has_ams_mention or has_ilo_mention
+                                    or has_ilo_in_claim or has_ams_in_claim):
+                try:
+                    claimed_val = float(claim_pct_match.group(1).replace(",", "."))
+                    if 4.0 <= claimed_val <= 6.0:  # ILO-Bereich
+                        old_v = result["verdict"]
+                        result["verdict"] = "mixed"
+                        result["confidence"] = min(result.get("confidence", 0.7), 0.65)
+                        logger.warning(
+                            f"AMS/ILO dual-method guard: claim value "
+                            f"{claimed_val}% is in ILO range. Overriding "
+                            f"'{old_v}' → 'mixed' @ {result['confidence']:.2f}. "
+                            f"Both AMS (~7%) and ILO (~5%) are valid."
+                        )
+                except ValueError:
+                    pass
 
         # --- Wahlprognose-Guard (Politik-Tabu #2, Bug #38, 2026-06-04) ---
         # MUST run AFTER the consistency check, otherwise the consistency
