@@ -225,11 +225,16 @@ Wikipedia/Wikidata-only-Quellen + politisch wertende Klassifikatoren (KRITISCH W
   2. Wenn der Claim ZUSÄTZLICH einen politisch-wertenden Klassifikator-Term enthält ('rechtsextrem'/'linksextrem'/'extremistisch'/'populistisch'/'autoritär'/'antidemokratisch'/'verfassungsfeindlich'/'revisionistisch'/'identitär'/'faschistisch'/'totalitär'/'rechtsradikal'/'linksradikal'), MUSS das verdict 'mixed' oder 'unverifiable' sein — NIEMALS 'true'/'mostly_true'/'false'/'mostly_false'.
 - BEGRÜNDUNG: Wikipedia ist crowdsourced (kein peer-review, Mehrheits-Konsens). Politisch wertende Klassifikatoren wie 'rechtsextrem' sind in Politikwissenschaft + Rechtswissenschaft umstritten und je nach Sprachversion unterschiedlich (z.B. DE-WP nennt FPÖ 'rechtsextrem', EN-WP 'right-wing populist', DÖW 'rechtspopulistisch mit rechtsextremen Tendenzen'). Ohne ergänzende peer-reviewed Quelle (V-Dem, Chapel Hill Expert Survey, Manifesto Project) ist eine eigene Einstufung als 'true'/'false' methodisch nicht sauber und glaubwürdigkeits-gefährdend.
 - ENTSCHEIDUNGSREGEL bei Wikipedia-only + normativem Term:
-  • verdict = 'mixed' wenn Wikipedia eine klare Aussage liefert, die zitiert werden kann
-  • verdict = 'unverifiable' wenn Wikipedia widersprüchlich ist oder keine klare Klassifikation enthält
+  • verdict = 'mixed' wenn Wikipedia eine klare Aussage liefert, die zitiert werden kann — auch wenn Wikipedia der Behauptung WIDERSPRICHT (z.B. Claim 'SPÖ ist linksextrem', Wikipedia sagt 'sozialdemokratisch' → verdict='mixed', NICHT 'unverifiable')
+  • verdict = 'mixed' wenn Wikipedia eine ANDERE Klassifikation liefert als im Claim behauptet (z.B. Claim 'AfD ist faschistisch', Wikipedia sagt 'rechtsextrem und rechtspopulistisch' → verdict='mixed' mit Erklärung 'Wikipedia klassifiziert die AfD als rechtsextrem/rechtspopulistisch, nicht als faschistisch')
+  • verdict = 'unverifiable' NUR wenn Wikipedia GAR KEINE Klassifikation zum Thema enthält oder die Quellen vollständig leer sind
   • Summary MUSS lauten: 'Laut [DE/EN]-Wikipedia wird X als [Term] eingestuft. Diese Klassifikation ist in Politikwissenschaft + Rechtswissenschaft umstritten — z.B. EN-Wikipedia bezeichnet [X] als [Y]. Evidora zitiert die Wikipedia-Aussage, übernimmt aber keine eigene Klassifikation.'
   • nuance MUSS auf alternative Klassifikationen + auf die schwache Quellenlage hinweisen
-- BEISPIEL: Claim 'Herbert Kickl ist rechtsextrem' + nur Wikipedia/Wikidata-Treffer → verdict='mixed' @ 0.50, summary zitiert DE-WP-Klassifikation und weist auf Methodik-Begrenzung + Quellen-Schwäche + abweichende Klassifikationen anderer Quellen (EN-WP/DÖW) hin. NIEMALS 'true' @ 0.70.
+- BEISPIELE:
+  • Claim 'Herbert Kickl ist rechtsextrem' + Wikipedia sagt 'rechtsextremer Politiker' → verdict='mixed' @ 0.50 (Wikipedia BESTÄTIGT den Term, aber nur crowdsourced)
+  • Claim 'SPÖ ist linksextrem' + Wikipedia sagt 'sozialdemokratisch' → verdict='mixed' @ 0.50 (Wikipedia WIDERSPRICHT dem Term — Zitat: 'Wikipedia klassifiziert die SPÖ als sozialdemokratisch, nicht als linksextrem')
+  • Claim 'AfD ist faschistisch' + Wikipedia sagt 'rechtsextrem und rechtspopulistisch' → verdict='mixed' @ 0.50 (Wikipedia liefert ANDERE Klassifikation als behauptet — Zitat: 'Wikipedia klassifiziert die AfD als rechtsextrem/rechtspopulistisch, nicht als faschistisch')
+  • Claim 'Partei X ist extremistisch' + Wikipedia enthält KEINE Klassifikation → verdict='unverifiable' @ 0.10
 - Auch bei eindeutigen Wikipedia-Aussagen: Evidora ist KEIN Substitut für peer-reviewed politische Klassifikation. Bei 'Sind Erde rund?' (kein normativer Term) ist 'true' @ 0.55 erlaubt — Cap kommt von Quellen-Anzahl. Bei 'Ist Person X autoritär?' (normativer Term) MUSS 'mixed'/'unverifiable' kommen.
 
 LLM-Trainings-Cutoff vs. Live-News-Quellen (KRITISCH WICHTIG — bei aktuellen Events):
@@ -1073,6 +1078,108 @@ async def synthesize_results(
                 f"Capping confidence from {result['confidence']} to 0.15 for unverifiable verdict"
             )
             result["confidence"] = 0.15
+
+        # --- Wikipedia-only + normativer Term → mixed statt unverifiable ---
+        # (Bugs #39/#40, 2026-06-04)
+        # Wenn das LLM "unverifiable" sagt, aber Wikipedia eine klare
+        # Klassifikation liefert (sichtbar in der Summary), sollte das
+        # Verdict "mixed" sein — Wikipedia liefert ja Kontext zum Zitieren.
+        from services.confidence_calibration import (
+            _is_wikipedia_only, _claim_has_normative_term,
+            NORMATIVE_POLITICAL_TERMS,
+        )
+        if (result.get("verdict") == "unverifiable"
+                and _claim_has_normative_term(original_claim)):
+            # Check if summary contains a Wikipedia classification
+            _summary_lc = result.get("summary", "").lower()
+            _has_wp_classification = any(t in _summary_lc for t in (
+                "wikipedia", "laut de-wikipedia", "laut en-wikipedia",
+                "wikipedia bezeichnet", "wikipedia klassifiziert",
+                "wikipedia sagt", "wikipedia beschreibt",
+                "sozialdemokrati", "rechtsextrem", "rechtspopulist",
+                "linksextrem", "populistisch", "faschistisch",
+                "konservativ", "liberal", "christdemokrat",
+            ))
+            if _has_wp_classification:
+                logger.warning(
+                    f"Wikipedia-normative-term guard: LLM returned "
+                    f"'unverifiable' for normative-term claim, but "
+                    f"summary contains Wikipedia classification. "
+                    f"Overriding to 'mixed' @ 0.50."
+                )
+                result["verdict"] = "mixed"
+                result["confidence"] = 0.50
+
+        # --- Wahlprognose-Guard (Politik-Tabu #2, Bug #38, 2026-06-04) ---
+        # Claims der Form "Partei X wird die nächste Wahl gewinnen" sind
+        # PROGNOSEN, keine Fakten. Das LLM bewertet sie fälschlich als
+        # false/mostly_false basierend auf aktuellen Mandatszahlen.
+        # Fix: Erkennung + Override zu unverifiable.
+        import re
+        _claim_lc = (original_claim or "").lower()
+        _PROGNOSE_PATTERNS = (
+            r"\b(wird|werden|dürfte|könnte|soll)\b.{0,30}\bwahl\b.{0,20}\b(gewinnen|verlieren|siegen)",
+            r"\b(wird|werden|dürfte|könnte|soll)\b.{0,30}\b(stärkste|stärkster|schwächste|erste|erster)\b.{0,20}\b(partei|kraft|fraktion)",
+            r"\bwahl\b.{0,20}\b(gewinnen|verlieren|siegen)\b.{0,20}\b(wird|werden|dürfte)",
+            r"\bnächste\w*\b.{0,20}\b(wahl|nationalratswahl|landtagswahl|europawahl|bundestag)",
+        )
+        _PARTY_TOKENS_SHORT = (
+            "fpö", "fpoe", "spö", "spoe", "övp", "oevp", "neos",
+            "grüne", "gruene", "afd", "cdu", "csu", "spd", "linke",
+        )
+        is_prognose = (
+            any(re.search(p, _claim_lc) for p in _PROGNOSE_PATTERNS)
+            and any(t in _claim_lc for t in _PARTY_TOKENS_SHORT)
+        )
+        if is_prognose and result.get("verdict") not in ("unverifiable",):
+            old_v = result["verdict"]
+            old_c = result.get("confidence", 0)
+            result["verdict"] = "unverifiable"
+            result["confidence"] = 0.10
+            result["nuance"] = (
+                "Wahlprognosen sind keine überprüfbaren Fakten. "
+                "Evidora bewertet nur abgeschlossene Wahlergebnisse, "
+                "keine Vorhersagen über zukünftige Wahlen."
+            )
+            logger.warning(
+                f"Wahlprognose-Guard: overriding '{old_v}' @ {old_c} → "
+                f"'unverifiable' @ 0.10 for prediction claim."
+            )
+
+        # --- AMS/ILO Dual-Methodik-Guard (Bug #63, 2026-06-04) ---
+        # AT-Arbeitslosigkeit hat zwei Methoden: ILO (~5%) und AMS (~7%).
+        # Wenn der Claim einen ILO-nahen Wert nennt UND die Summary die
+        # AMS-Methodik erwähnt, ist "mixed" korrekt — nicht mostly_false.
+        if (result.get("verdict") in ("mostly_false", "false")
+                and any(t in _claim_lc for t in ("arbeitslos", "arbeitslosenquote",
+                                                  "arbeitslosigkeit"))
+                and any(t in _claim_lc for t in ("österreich", "austria", " at "))
+                and result.get("summary", "")):
+            summary_lc = result["summary"].lower()
+            has_ams_mention = any(t in summary_lc for t in (
+                "ams-methodik", "ams methodik", "ams-quote", "nach ams",
+                "nationale definition", "registerarbeitslosigkeit",
+            ))
+            has_ilo_mention = any(t in summary_lc for t in (
+                "ilo", "eurostat", "internationale", "labour force",
+            ))
+            # Check if claimed value is close to ILO rate (~4.5-5.5%)
+            claim_pct_match = re.search(r"(\d+(?:[.,]\d+)?)\s*(?:prozent|%)", _claim_lc)
+            if claim_pct_match and (has_ams_mention or has_ilo_mention):
+                try:
+                    claimed_val = float(claim_pct_match.group(1).replace(",", "."))
+                    if 4.0 <= claimed_val <= 6.0:  # ILO-Bereich
+                        old_v = result["verdict"]
+                        result["verdict"] = "mixed"
+                        result["confidence"] = min(result.get("confidence", 0.7), 0.65)
+                        logger.warning(
+                            f"AMS/ILO dual-method guard: claim value "
+                            f"{claimed_val}% is in ILO range. Overriding "
+                            f"'{old_v}' → 'mixed' @ {result['confidence']:.2f}. "
+                            f"Both AMS (~7%) and ILO (~5%) are valid."
+                        )
+                except ValueError:
+                    pass
 
         # Consistency check: detect when summary text contradicts verdict.
         # Extended 2026-05-25: broader pattern detection including comma-

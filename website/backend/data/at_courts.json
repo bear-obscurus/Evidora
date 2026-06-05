@@ -282,6 +282,44 @@
           "verhüllung"
         ]
       ]
+    },
+    {
+      "id": "wksta_ibiza_strache_2019_2023",
+      "court": "WKStA / LG Wien",
+      "case_number": "WKStA 13 St 12/19d",
+      "case_name": "Ibiza-Affäre — Strache/Gudenus Korruptionsermittlungen",
+      "year": 2019,
+      "decided_iso": "2023-06-14",
+      "url": "https://de.wikipedia.org/wiki/Ibiza-Aff%C3%A4re",
+      "topic": "ibiza_affaere_strache",
+      "kerninhalt": "Am 17. Mai 2019 veröffentlichten Spiegel und SZ ein verdeckt aufgenommenes Video aus einer Villa auf Ibiza (Sommer 2017), in dem der damalige FPÖ-Obmann HC Strache und Johann Gudenus einer vermeintlichen russischen Oligarchen-Nichte Staatsaufträge und Medien-Einfluss im Austausch für Parteispenden in Aussicht stellten. Folgen: Rücktritt Straches als Vizekanzler und FPÖ-Obmann (18.05.2019), Ende der Koalition Kurz I (ÖVP-FPÖ), Neuwahl September 2019. WKStA ermittelte wegen Bestechlichkeit (§ 304 StGB) und Untreue. Ergebnis: Das Landesgericht Wien sprach Strache im Juni 2023 vom Vorwurf der Bestechlichkeit im Zusammenhang mit der Ibiza-Affäre frei (Freispruch erster Instanz). Ein separates Verfahren wegen Untreue im Kontext einer Spende an einen privaten Tierschutzverein führte zu einer Verurteilung (nicht rechtskräftig, Berufung anhängig). Die Kernfrage 'Hat Strache Korruption begangen?' ist rechtlich NICHT eindeutig mit Ja oder Nein zu beantworten — Freispruch vom Bestechlichkeits-Vorwurf, aber Video zeigt nachweislich die Bereitschaft zu korruptem Handeln.",
+      "boulevard_falschmeldung": "Strache wurde wegen der Ibiza-Affäre verurteilt / Strache ist ein verurteilter Korruptionist.",
+      "trigger_keywords": [
+        "ibiza",
+        "ibiza-affäre",
+        "ibiza affäre",
+        "ibizagate",
+        "strache ibiza",
+        "strache korruption",
+        "strache video",
+        "strache rücktritt"
+      ],
+      "trigger_composite": [
+        [
+          "strache",
+          "ibiza",
+          "gudenus"
+        ],
+        [
+          "korruption",
+          "bestechung",
+          "affäre",
+          "video",
+          "rücktritt",
+          "skandal",
+          "untreue"
+        ]
+      ]
     }
   ]
 }
