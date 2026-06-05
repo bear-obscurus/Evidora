@@ -1160,26 +1160,50 @@ async def synthesize_results(
         verdict_from_summary = None
 
         # Check for explicit verdict statements in summary
+        # (2026-06-04: split into 4 tiers: true, mostly_true, mostly_false, false)
         true_patterns = [
             "behauptung ist daher wahr", "behauptung ist wahr",
             "behauptung ist korrekt", "behauptung ist richtig",
             "claim is true", "claim is correct", "therefore true",
-            # Extended: direct confirmation without "Behauptung" prefix
             "ist faktisch korrekt", "ist faktisch richtig",
             "ist sachlich korrekt", "ist sachlich richtig",
+        ]
+        mostly_true_patterns = [
+            "ist größtenteils richtig", "ist überwiegend richtig",
+            "ist größtenteils korrekt", "ist überwiegend korrekt",
+            "ist größtenteils wahr", "ist überwiegend wahr",
+            "ist im wesentlichen korrekt", "ist im kern richtig",
+        ]
+        mostly_false_patterns = [
+            # "größtenteils falsch" = mostly_false, NOT false!
+            # Bug #60/#69: these were in false_patterns, causing
+            # false@0.85 when the LLM actually said "mostly false".
+            "ist größtenteils falsch", "ist überwiegend falsch",
+            "größtenteils nicht korrekt", "überwiegend nicht korrekt",
+            "ist größtenteils nicht richtig",
         ]
         false_patterns = [
             "behauptung ist daher falsch", "behauptung ist falsch",
             "behauptung ist nicht korrekt", "behauptung ist nicht richtig",
             "claim is false", "claim is incorrect", "therefore false",
             "ist faktisch falsch", "ist sachlich falsch",
-            "ist größtenteils falsch", "ist überwiegend falsch",
+            # Conspiracy-specific strong-false signals (Bug #72)
+            "verschwörungsnarrativ ohne", "verschwörungstheorie ohne",
+            "unbelegtes verschwörungsnarrativ", "unbelegte verschwörungstheorie",
+            "ohne empirische belege",
+            # Medical wirksamkeit denial (Bug #82)
+            "heilt krebs aber nicht", "heilt krebs jedoch nicht",
+            "keine eigenständige heilmethode", "kein heilmittel",
         ]
 
         if any(p in summary_lower for p in true_patterns):
             verdict_from_summary = "true"
+        elif any(p in summary_lower for p in mostly_true_patterns):
+            verdict_from_summary = "mostly_true"
         elif any(p in summary_lower for p in false_patterns):
             verdict_from_summary = "false"
+        elif any(p in summary_lower for p in mostly_false_patterns):
+            verdict_from_summary = "mostly_false"
 
         # Extended regex: "Behauptung, dass ..., ist korrekt/wahr/richtig"
         if not verdict_from_summary:
@@ -1244,6 +1268,51 @@ async def synthesize_results(
 
             if factual_confirms:
                 verdict_from_summary = "true"
+
+        # Pattern C (Bug #6): Competence rulings — when a court struck
+        # down a law on COMPETENCE grounds (not substance), the claim
+        # "X war verfassungskonform" is mostly_false (not false), because
+        # the policy content itself wasn't ruled unconstitutional.
+        if (verdict in ("false",) and not verdict_from_summary
+                and any(t in claim_lower for t in (
+                    "verfassungskonform", "verfassungsmäßig",
+                    "grundgesetzkonform", "grundgesetzmäßig",
+                ))
+                and any(t in summary_lower for t in (
+                    "gesetzgebungskompetenz", "kompetenz",
+                    "zuständigkeit", "föderale",
+                ))):
+            verdict_from_summary = "mostly_false"
+            logger.info(
+                f"Competence-ruling pattern: claim about "
+                f"constitutionality + summary mentions competence "
+                f"→ mostly_false (nuance: substance not ruled on)"
+            )
+
+        # Pattern D (Bug #97): Trend claims with "kaum" where data
+        # shows modest but non-zero reduction → mostly_true (not true).
+        # "kaum gesenkt" + data shows e.g. 16% reduction = mostly_true.
+        if (verdict in ("true",) and not verdict_from_summary
+                and any(t in claim_lower for t in (
+                    "kaum", "wenig", "minimal", "geringfügig",
+                    "kaum gesenkt", "kaum reduziert",
+                ))):
+            pct_match = re.search(
+                r"(\d+(?:[.,]\d+)?)\s*(?:prozent|%|indexpunkt)",
+                summary_lower,
+            )
+            if pct_match:
+                try:
+                    pct_val = float(pct_match.group(1).replace(",", "."))
+                    if 5.0 < pct_val < 30.0:
+                        verdict_from_summary = "mostly_true"
+                        logger.info(
+                            f"Trend-kaum pattern: claim says 'kaum' + "
+                            f"data shows {pct_val}% change → mostly_true "
+                            f"(non-trivial reduction, not 'kaum' = 0)"
+                        )
+                except ValueError:
+                    pass
 
         if verdict_from_summary and verdict_from_summary != verdict:
             # Don't override if the STRUKTURELL override ACTUALLY fired
