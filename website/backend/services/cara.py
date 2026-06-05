@@ -218,6 +218,26 @@ def _claim_mentions_cara(claim_lc: str) -> bool:
     ):
         return True
 
+    # Denomination-Vergleichs-Composite: Katholik + Denomination +
+    # Vergleichswort ("mehr Katholiken als Baptisten", "größte
+    # Religionsgemeinschaft", "meisten Gläubigen").
+    _DENOMINATION_TOKENS = (
+        "baptist", "protestant", "evangelisch", "evangelikal",
+        "methodist", "lutheran", "lutherisch", "anglikan",
+        "denomination", "religionsgemeinschaft", "konfession",
+        "kirche in den usa", "kirche in amerika",
+    )
+    _COMPARISON_TOKENS = (
+        " mehr ", " weniger ", "größte", "groesste", "kleinste",
+        "meisten", "wenigsten", "ranking", "größer als", "grösser als",
+        "groesser als", "kleiner als",
+    )
+    if _has_any(claim_lc, _CATHOLIC_TOKENS) and (
+        _has_any(claim_lc, _DENOMINATION_TOKENS)
+        or _has_any(claim_lc, _COMPARISON_TOKENS)
+    ):
+        return True
+
     # Vatikan / Heiliger Stuhl als impliziter Trigger ZUSAMMEN mit
     # Katholik-Bezug oder Statistik-Begriff.
     if _has_any(claim_lc, (

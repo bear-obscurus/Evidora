@@ -1130,9 +1130,19 @@ async def synthesize_results(
             has_ilo_mention = any(t in summary_lc for t in (
                 "ilo", "eurostat", "internationale", "labour force",
             ))
+            # Auch Claim-Text prüfen: "nach ILO-Methode", "ILO-Quote"
+            has_ilo_in_claim = any(t in _claim_lc for t in (
+                "ilo", "nach ilo", "ilo-methode", "ilo-quote",
+                "eurostat-methode", "labour force",
+            ))
+            has_ams_in_claim = any(t in _claim_lc for t in (
+                "ams-methode", "ams-quote", "nach ams",
+                "nationale berechnung", "registerarbeitslos",
+            ))
             # Check if claimed value is close to ILO rate (~4.5-5.5%)
             claim_pct_match = re.search(r"(\d+(?:[.,]\d+)?)\s*(?:prozent|%)", _claim_lc)
-            if claim_pct_match and (has_ams_mention or has_ilo_mention):
+            if claim_pct_match and (has_ams_mention or has_ilo_mention
+                                    or has_ilo_in_claim or has_ams_in_claim):
                 try:
                     claimed_val = float(claim_pct_match.group(1).replace(",", "."))
                     if 4.0 <= claimed_val <= 6.0:  # ILO-Bereich
