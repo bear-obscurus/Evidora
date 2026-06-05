@@ -1271,6 +1271,27 @@ async def synthesize_results(
             if factual_confirms:
                 verdict_from_summary = "true"
 
+        # Pattern C-med (Bug #82): Medical healing claims where summary
+        # denies efficacy. Claim says "heilt/heilen/heilung" but summary
+        # says "keine ... evidenz/wirksamkeit/belege" → false.
+        # Uses regex to handle LLM phrasing variance.
+        if (verdict in ("mostly_false",) and not verdict_from_summary
+                and any(t in claim_lower for t in (
+                    "heilt", "heilen", "heilung", "heilmittel", "cures",
+                ))):
+            if re.search(
+                r"keine\w?\s+ausreichende?\w?\s+\w*(?:evidenz|wirksamkeit|belege|nachweise)",
+                summary_lower
+            ) or re.search(
+                r"(?:heilt|heilung).{0,30}(?:nicht|keine|kein)",
+                summary_lower
+            ):
+                verdict_from_summary = "false"
+                logger.info(
+                    f"Medical-healing-denial pattern: claim contains "
+                    f"healing term + summary denies efficacy → false"
+                )
+
         # Pattern C (Bug #6): Competence rulings — when a court struck
         # down a law on COMPETENCE grounds (not substance), the claim
         # "X war verfassungskonform" is mostly_false (not false), because
