@@ -1236,6 +1236,95 @@ async def synthesize_results(
                             f"verdict='{verdict}'"
                         )
 
+            # Pattern E (Bug #79 + #82): "über X" / "mehr als X" threshold
+            # claims where the summary cites a concrete number that exceeds
+            # the claimed threshold.
+            # Examples:
+            #   Claim: "kostet über 1000 Euro" + Summary: "1.095 €" → 1095>1000 → true
+            #   Claim: "über eine Million Wohnungen" + Summary: "1,9 Mio" → 1.9M>1M → true
+            if not factual_confirms:
+                _WORD_NUMBERS = {
+                    "eine million": 1_000_000, "einer million": 1_000_000,
+                    "1 million": 1_000_000,
+                    "zwei millionen": 2_000_000, "drei millionen": 3_000_000,
+                    "eine milliarde": 1_000_000_000,
+                    "einer milliarde": 1_000_000_000,
+                    "hundert": 100, "tausend": 1_000,
+                    "zehntausend": 10_000, "hunderttausend": 100_000,
+                }
+                threshold_val = None
+                threshold_unit = None  # None, "mio", "mrd"
+
+                # Step 1: extract threshold from claim
+                # Try word-based numbers first ("über eine Million")
+                for word, val in _WORD_NUMBERS.items():
+                    pattern_w = rf"(?:über|ueber|mehr\s+als|mindestens)\s+{re.escape(word)}"
+                    if re.search(pattern_w, claim_lower):
+                        threshold_val = val
+                        break
+
+                # Try digit-based thresholds ("über 1000", "über 1.000")
+                if threshold_val is None:
+                    thr_match = re.search(
+                        r"(?:über|ueber|mehr\s+als|mindestens)\s+"
+                        r"(\d{1,3}(?:[. ]\d{3})+(?:,\d+)?|\d+(?:,\d+)?)"
+                        r"(?:\s*(?:mio\.?|millionen?|mrd\.?|milliarden?))?",
+                        claim_lower,
+                    )
+                    if thr_match:
+                        raw = thr_match.group(1)
+                        # German: dots as thousand separator, comma as decimal
+                        cleaned = raw.replace(" ", "").replace(".", "")
+                        cleaned = cleaned.replace(",", ".")
+                        try:
+                            threshold_val = float(cleaned)
+                        except ValueError:
+                            pass
+                        # Check for Mio/Mrd multiplier
+                        after_num = claim_lower[thr_match.end():]
+                        if re.match(r"\s*(?:mio\.?|millionen?)", after_num):
+                            threshold_val = (threshold_val or 0) * 1_000_000
+                            threshold_unit = "mio"
+                        elif re.match(r"\s*(?:mrd\.?|milliarden?)", after_num):
+                            threshold_val = (threshold_val or 0) * 1_000_000_000
+                            threshold_unit = "mrd"
+
+                if threshold_val is not None and threshold_val > 0:
+                    # Step 2: extract candidate numbers from summary
+                    # Match patterns like "1.095 €", "1,9 Mio.", "286.000"
+                    # Only capture the number — do NOT consume
+                    # mio/€ suffixes, so after_s can detect them.
+                    num_candidates = re.finditer(
+                        r"(\d{1,3}(?:[.\xa0]\d{3})+(?:,\d+)?|\d+(?:,\d+)?)",
+                        summary_lower,
+                    )
+                    for nm in num_candidates:
+                        raw_s = nm.group(1)
+                        cleaned_s = raw_s.replace(" ", "").replace(".", "")
+                        cleaned_s = cleaned_s.replace(",", ".")
+                        try:
+                            summary_num = float(cleaned_s)
+                        except ValueError:
+                            continue
+                        after_s = summary_lower[nm.end():]
+                        if re.match(r"\s*(?:mio\.?|millionen?)", after_s):
+                            summary_num *= 1_000_000
+                        elif re.match(r"\s*(?:mrd\.?|milliarden?)", after_s):
+                            summary_num *= 1_000_000_000
+
+                        # Step 3: compare — summary number must plausibly
+                        # relate to same domain (within 100x of threshold)
+                        if (summary_num > threshold_val
+                                and summary_num < threshold_val * 100):
+                            factual_confirms = True
+                            logger.info(
+                                f"Factual-content consistency: threshold "
+                                f"claim 'über {threshold_val}' confirmed "
+                                f"by summary value {summary_num} "
+                                f"(verdict was '{verdict}')"
+                            )
+                            break
+
             if factual_confirms:
                 verdict_from_summary = "true"
 
