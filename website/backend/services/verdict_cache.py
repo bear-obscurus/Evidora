@@ -33,11 +33,14 @@ Sicherheit gegen False-Positives:
 """
 
 import logging
+import re
 import time
 from typing import Optional
 
-import numpy as np
-
+# numpy wird nur im semantischen Pfad (np.dot) gebraucht und lazy in get()
+# importiert. So bleibt das Modul auch ohne ML-Stack importierbar — die
+# reine Guard-Logik (_polarity_mismatch) ist dadurch ohne numpy/torch
+# unit-testbar.
 from services._reranker_backup import _get_model as _get_st_model
 from services._static_cache import get_data_version
 
@@ -55,6 +58,63 @@ MAX_STORE_SIZE = 500  # FIFO-Limit, damit Memory nicht unbegrenzt wächst
 def _normalize(claim: str) -> str:
     """Trim + lowercase claim für Exact-Match-Lookup."""
     return claim.strip().lower()
+
+
+# --- Negations-/Polaritäts-Guard für den semantischen Cache ---------------
+# MiniLM-Embeddings sind NEGATIONS-BLIND: "Spinat ist eisenreich" und
+# "Spinat ist NICHT eisenreich" liegen auf paraphrase-multilingual-MiniLM
+# häufig > 0.92 Cosine, haben aber gegenteilige Bedeutung. Ohne diesen
+# Guard würde der semantische Cache für einen negierten Claim das
+# invertierte Verdict des Gegenteils ausliefern — die gefährlichste
+# Fehlerklasse, weil sie mit Confidence ≥ 0.8 daherkommt und im Log nur
+# als harmloser "SEMANTIC HIT" sichtbar ist.
+_NEGATION_TOKENS = frozenset({
+    # Deutsch
+    "nicht", "kein", "keine", "keinen", "keiner", "keinem", "keines",
+    "nie", "niemals", "nichts", "niemand", "ohne", "weder", "kaum",
+    # Englisch
+    "not", "no", "never", "none", "without", "neither", "nor",
+})
+
+_NUMBER_RE = re.compile(r"\d[\d.,]*")
+
+
+def _negation_present(tokens: set[str]) -> bool:
+    return bool(tokens & _NEGATION_TOKENS)
+
+
+def _extract_numbers(text: str) -> set[str]:
+    """Signifikante Zahlen aus dem Claim (Tausender-Punkte/Dezimal-Kommata
+    entfernt). 'über 1.000' → {'1000'}, 'PISA 2018' → {'2018'}."""
+    out: set[str] = set()
+    for raw in _NUMBER_RE.findall(text):
+        cleaned = raw.replace(".", "").replace(",", "")
+        if cleaned.isdigit():
+            out.add(cleaned)
+    return out
+
+
+def _polarity_mismatch(a: str, b: str) -> bool:
+    """Heuristik gegen die Negations-Blindheit des semantischen Caches.
+
+    Returns True, wenn a und b wahrscheinlich GEGENTEILIGE Aussagen sind:
+      (1) eine Negation steht nur auf EINER der beiden Seiten, ODER
+      (2) beide nennen Zahlen, die disjunkt sind (z.B. Jahr 2018 vs. 2022,
+          'über 1000' vs. 'über 2000').
+
+    Bewusst konservativ in die SICHERE Richtung: ein False-Positive bewirkt
+    nur einen Cache-Miss (die volle Pipeline läuft und liefert ein korrektes
+    Ergebnis), während ein False-Negative das invertierte Verdict liefern
+    würde — genau der Bug, den dieser Guard schließt.
+    """
+    ta = set(re.findall(r"\w+", a.lower()))
+    tb = set(re.findall(r"\w+", b.lower()))
+    if _negation_present(ta) != _negation_present(tb):
+        return True
+    na, nb = _extract_numbers(a), _extract_numbers(b)
+    if na and nb and na.isdisjoint(nb):
+        return True
+    return False
 
 
 def _purge_expired() -> None:
@@ -121,6 +181,8 @@ def get(claim: str) -> Optional[dict]:
     if query_emb is None:
         return None  # st-Modell nicht verfügbar — semantic-Pfad deaktiviert
 
+    import numpy as np  # lazy: nur der semantische Pfad braucht numpy
+
     best_score = 0.0
     best_key = None
     best_result = None
@@ -128,6 +190,12 @@ def get(claim: str) -> Optional[dict]:
         if emb is None or dv != current_dv:
             continue
         if time.time() - ts > DEFAULT_TTL:
+            continue
+        # Negations-/Polaritäts-Guard: MiniLM ist negations-blind, ein
+        # semantischer Treffer auf eine GEGENTEILIGE Aussage würde das
+        # invertierte Verdict liefern. Solche Kandidaten überspringen —
+        # der Claim läuft dann durch die volle Pipeline (sicher).
+        if _polarity_mismatch(claim, key):
             continue
         # Cosine: beide normalisiert -> Skalarprodukt
         score = float(np.dot(query_emb, emb))

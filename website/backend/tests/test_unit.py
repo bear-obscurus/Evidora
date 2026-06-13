@@ -355,3 +355,76 @@ class TestRateLimiter:
         assert check("1.2.3.4") is True
         assert check("1.2.3.4") is False  # 4th request blocked
         assert check("5.6.7.8") is True   # different IP ok
+
+
+# ===================================================================
+# Verdict-Cache — Negations-/Polaritäts-Guard (Fix #1, 2026-06-13)
+# ===================================================================
+# Schützt den semantischen Cache vor der Negations-Blindheit von MiniLM:
+# "X" und "nicht X" liegen > 0.92 Cosine, dürfen aber NICHT denselben
+# Cache-Eintrag treffen, sonst liefert der Cache das invertierte Verdict.
+# Imports sind funktions-lokal, damit die Datei auch ohne ML-Stack
+# (numpy/torch) collected werden kann.
+
+class TestVerdictCacheNegationGuard:
+    def test_polarity_mismatch_negation_one_sided(self):
+        from services.verdict_cache import _polarity_mismatch
+        assert _polarity_mismatch("Spinat ist eisenreich",
+                                  "Spinat ist nicht eisenreich") is True
+        assert _polarity_mismatch("Atomkraft ist sicher",
+                                  "Atomkraft ist nicht sicher") is True
+        assert _polarity_mismatch("Kurkuma heilt Krebs",
+                                  "Kurkuma heilt keinen Krebs") is True
+
+    def test_polarity_mismatch_paraphrase_no_flip(self):
+        from services.verdict_cache import _polarity_mismatch
+        # Echte Umformulierung ohne Bedeutungs-Flip → kein Mismatch
+        assert _polarity_mismatch("Spinat ist eisenreich",
+                                  "Hat Spinat viel Eisen") is False
+        assert _polarity_mismatch("Es gibt über 1.000 Fälle",
+                                  "Es gibt mehr als 1000 Fälle") is False
+        assert _polarity_mismatch("Österreich hat 9 Mio Einwohner",
+                                  "Österreich hat rund 9 Millionen Einwohner") is False
+
+    def test_polarity_mismatch_disjoint_numbers(self):
+        from services.verdict_cache import _polarity_mismatch
+        # Gleiche Struktur, andere Jahre/Schwellen → Mismatch
+        assert _polarity_mismatch("PISA-Schnitt 2018 über OECD",
+                                  "PISA-Schnitt 2022 über OECD") is True
+        assert _polarity_mismatch("Miete kostet über 1.000 Euro",
+                                  "Miete kostet über 2.000 Euro") is True
+
+    def test_polarity_mismatch_both_negated_no_flip(self):
+        from services.verdict_cache import _polarity_mismatch
+        # Negation auf BEIDEN Seiten → kein Polaritäts-Flip
+        assert _polarity_mismatch("Spinat ist nicht eisenreich",
+                                  "Spinat enthält nicht viel Eisen") is False
+
+    def test_semantic_hit_blocked_for_negated_claim(self):
+        """End-to-End: ein negierter Claim darf NICHT den gespeicherten
+        Verdict des Gegenteils per semantischem Treffer zurückbekommen,
+        selbst wenn das Embedding identisch ist (Cosine = 1.0)."""
+        pytest.importorskip("numpy")
+        import numpy as np
+        from services import verdict_cache as vc
+
+        vc.clear()
+        # _embed deterministisch: identischer (normalisierter) Vektor für
+        # JEDEN Text → Cosine immer 1.0 ≥ Threshold. Nur der Guard kann
+        # den Treffer dann noch verhindern.
+        fixed = np.ones(8, dtype=float) / np.sqrt(8)
+        original_embed = vc._embed
+        vc._embed = lambda _text: fixed
+        try:
+            vc.put("Spinat ist eisenreich",
+                   {"verdict": "true", "confidence": 0.9, "summary": "x"})
+            # Negierter Claim: Embedding identisch, aber Guard greift → None
+            assert vc.get("Spinat ist nicht eisenreich") is None
+            # Echte Umformulierung ohne Flip: semantischer Treffer erlaubt
+            hit = vc.get("Spinat ist sehr eisenreich")
+            assert hit is not None
+            assert hit["verdict"] == "true"
+            assert hit["_cache_hit"]["type"] == "semantic"
+        finally:
+            vc._embed = original_embed
+            vc.clear()
