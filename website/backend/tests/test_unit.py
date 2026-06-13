@@ -534,3 +534,65 @@ class TestSharedSentenceTransformer:
         finally:
             reranker._model = None
             reranker._available = None
+
+
+# ===================================================================
+# Verdict-Post-Processing-Kaskade (Fix #3 Phase A, 2026-06-14)
+# ===================================================================
+# Die ~515-Zeilen-Override-Kaskade wurde aus synthesize_results in
+# services/verdict_postprocess.apply_verdict_postprocessing ausgelagert
+# (verbatim, verhaltens-erhaltend). Diese Tests sichern jeden Override-
+# Zweig EINZELN ab — vorher nur durch langsame E2E-Stress-Tests prüfbar.
+
+class TestVerdictPostprocessing:
+    def _P(self):
+        from services.verdict_postprocess import apply_verdict_postprocessing
+        return apply_verdict_postprocessing
+
+    def test_strukturell_override_fires(self):
+        P = self._P()
+        r = P({"verdict": "true", "confidence": 0.9, "summary": "Die Behauptung trifft zu."},
+              [{"source": "Pack", "results": [{"display_value": "STRUKTURELL FALSCH: widerlegt."}]}],
+              "irgendein claim")
+        assert r["verdict"] == "mostly_false"
+        assert r["confidence"] == 0.85
+
+    def test_strukturell_tier1_skip_keeps_verdict(self):
+        P = self._P()
+        res = [{"display_value": "STRUKTURELL FALSCH: x"}] + \
+              [{"display_value": f"normal {i}"} for i in range(9)]  # ratio 1/10 < 15%
+        r = P({"verdict": "true", "confidence": 0.9, "summary": "bestätigt."},
+              [{"source": "Pack", "results": res}], "claim")
+        assert r["verdict"] == "true"  # Topic-Mismatch → Override übersprungen
+
+    def test_wikipedia_normative_term_to_mixed(self):
+        P = self._P()
+        r = P({"verdict": "unverifiable", "confidence": 0.1,
+               "summary": "Laut Wikipedia wird die Partei als rechtsextrem klassifiziert."},
+              [{"source": "Wikipedia", "results": [{"display_value": "..."}]}],
+              "Die Partei XY ist rechtsextrem")
+        assert r["verdict"] == "mixed"
+        assert r["confidence"] == 0.50
+
+    def test_consistency_false_to_mostly_false(self):
+        P = self._P()
+        r = P({"verdict": "false", "confidence": 0.8,
+               "summary": "Die Behauptung ist größtenteils falsch."},
+              [{"source": "X", "results": [{"display_value": "d"}]}], "claim")
+        assert r["verdict"] == "mostly_false"  # 4-Tier: nicht 'false'
+
+    def test_wahlprognose_guard_to_unverifiable(self):
+        P = self._P()
+        r = P({"verdict": "mostly_false", "confidence": 0.7, "summary": "..."},
+              [{"source": "X", "results": [{"display_value": "d"}]}],
+              "Die FPÖ wird die nächste Nationalratswahl gewinnen")
+        assert r["verdict"] == "unverifiable"
+        assert r["confidence"] == 0.10
+
+    def test_ams_ilo_dual_method_to_mixed(self):
+        P = self._P()
+        r = P({"verdict": "mostly_false", "confidence": 0.8,
+               "summary": "Nach ILO-Methodik liegt die Quote bei 4,9%."},
+              [{"source": "X", "results": [{"display_value": "d"}]}],
+              "Die Arbeitslosenquote in Österreich beträgt 5 Prozent")
+        assert r["verdict"] == "mixed"
