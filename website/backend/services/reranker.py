@@ -14,26 +14,27 @@ _available = None
 
 
 def _load_model():
-    """Lazy-load the sentence transformer model."""
+    """Bind the module-global ``_model`` to the shared SentenceTransformer.
+
+    The model itself lives in ``services._st_model`` so that the reranker and
+    the backup-trigger/verdict-cache path share ONE instance instead of each
+    loading its own (~250 MB saved). ``_model`` stays a module attribute here
+    because several services import it directly
+    (``from services.reranker import _load_model, _model``).
+    """
     global _model, _available
     if _available is not None:
         return _available
 
-    try:
-        from sentence_transformers import SentenceTransformer
+    from services._st_model import get_model
 
-        _model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
-        _available = True
-        logger.info("Sentence Transformer model loaded (paraphrase-multilingual-MiniLM-L12-v2)")
-        return True
-    except ImportError:
-        _available = False
-        logger.info("sentence-transformers not installed — semantic re-ranking disabled")
-        return False
-    except Exception as e:
-        _available = False
-        logger.warning(f"Failed to load Sentence Transformer: {e}")
-        return False
+    _model = get_model()
+    _available = _model is not None
+    if _available:
+        logger.info("Reranker using shared Sentence Transformer instance")
+    else:
+        logger.info("sentence-transformers unavailable — semantic re-ranking disabled")
+    return _available
 
 
 def _result_text(result: dict) -> str:

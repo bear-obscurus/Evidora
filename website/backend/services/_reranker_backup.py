@@ -36,8 +36,6 @@ from collections import OrderedDict
 
 logger = logging.getLogger("evidora")
 
-_model = None
-_model_unavailable = False
 _topic_embedding_cache: dict[tuple, "torch.Tensor"] = {}  # noqa: F821 — lazy import
 
 # Claim-Embedding-Cache (Key = exakter Claim-String).
@@ -53,24 +51,11 @@ _claim_emb_cache: "OrderedDict[str, object]" = OrderedDict()
 
 
 def _get_model():
-    global _model, _model_unavailable
-    if _model is not None:
-        return _model
-    if _model_unavailable:
-        return None
-    try:
-        from sentence_transformers import SentenceTransformer
-        _model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
-        logger.info("reranker_backup: model loaded")
-        return _model
-    except ImportError:
-        _model_unavailable = True
-        logger.info("reranker_backup: sentence-transformers not installed — backup-trigger disabled")
-        return None
-    except Exception as e:
-        _model_unavailable = True
-        logger.warning(f"reranker_backup: failed to load model: {e}")
-        return None
+    """Return the shared SentenceTransformer instance (or None if
+    unavailable). Delegates to ``services._st_model`` so reranker.py and
+    this module share ONE model instance instead of loading two."""
+    from services._st_model import get_model
+    return get_model()
 
 
 def _encode_claim_cached(model, claim: str):

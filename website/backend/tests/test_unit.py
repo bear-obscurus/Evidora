@@ -484,3 +484,53 @@ class TestClaimEmbeddingCache:
         calls_before = fm.calls
         rb._encode_claim_cached(fm, "Claim 0")
         assert fm.calls == calls_before + 1
+
+
+# ===================================================================
+# Geteilte SentenceTransformer-Instanz (Fix #4, 2026-06-14)
+# ===================================================================
+# reranker.py und _reranker_backup.py luden je ihre EIGENE MiniLM-Instanz
+# (~250 MB doppelt). Jetzt beziehen beide das Modell aus services._st_model
+# → genau EINE Instanz im RAM. Imports funktions-lokal (ohne ML-Stack
+# collectbar); Modell-Loader wird gemockt, kein torch nötig.
+
+class TestSharedSentenceTransformer:
+    def test_st_model_is_singleton(self):
+        from services import _st_model
+        sentinel = object()
+        _st_model._model = sentinel
+        _st_model._unavailable = False
+        try:
+            assert _st_model.get_model() is sentinel
+            assert _st_model.get_model() is sentinel  # idempotent
+        finally:
+            _st_model._model = None
+            _st_model._unavailable = False
+
+    def test_st_model_returns_none_when_unavailable(self):
+        from services import _st_model
+        _st_model._model = None
+        _st_model._unavailable = True
+        try:
+            assert _st_model.get_model() is None
+        finally:
+            _st_model._unavailable = False
+
+    def test_both_consumers_share_one_instance(self, monkeypatch):
+        """reranker._load_model() und _reranker_backup._get_model() müssen
+        DIESELBE Instanz aus dem geteilten Loader beziehen."""
+        from services import _st_model, reranker
+        from services import _reranker_backup as rb
+        sentinel = object()
+        monkeypatch.setattr(_st_model, "get_model", lambda: sentinel)
+        # reranker-Cache zurücksetzen, damit _load_model neu bindet
+        reranker._model = None
+        reranker._available = None
+        try:
+            assert reranker._load_model() is True
+            assert reranker._model is sentinel          # reranker bindet shared
+            assert rb._get_model() is sentinel           # backup delegiert
+            assert reranker._model is rb._get_model()    # EINE Instanz
+        finally:
+            reranker._model = None
+            reranker._available = None
