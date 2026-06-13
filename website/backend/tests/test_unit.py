@@ -428,3 +428,59 @@ class TestVerdictCacheNegationGuard:
         finally:
             vc._embed = original_embed
             vc.clear()
+
+
+# ===================================================================
+# Reranker-Backup — Claim-Embedding-Cache (Fix #2, 2026-06-14)
+# ===================================================================
+# Der Trigger-Gate-Sweep in main.py ruft best_matches() pro Request bis zu
+# ~60× mit DEMSELBEN Claim auf. Ohne Cache wird der Claim dutzendfach neu
+# encodet (~30 ms je Encode, synchron im Event-Loop). Der Cache muss den
+# Encode auf 1× pro Claim-String kollabieren. Imports funktions-lokal,
+# damit die Datei auch ohne ML-Stack collected werden kann.
+
+class _CountingFakeModel:
+    """Minimal-Stub: zählt encode()-Aufrufe, gibt ein Sentinel zurück.
+    Kein torch/sentence-transformers nötig — testet nur die Cache-Logik."""
+    def __init__(self):
+        self.calls = 0
+
+    def encode(self, text, **kwargs):
+        self.calls += 1
+        return ("EMB", text)
+
+
+class TestClaimEmbeddingCache:
+    def test_same_claim_encoded_only_once(self):
+        from services import _reranker_backup as rb
+        rb._claim_emb_cache.clear()
+        fm = _CountingFakeModel()
+        claim = "Österreich hat die höchste Steuerquote der EU"
+        results = [rb._encode_claim_cached(fm, claim) for _ in range(60)]
+        # 60 Aufrufe, aber nur EIN Encode
+        assert fm.calls == 1
+        # alle Rückgaben sind dasselbe (gecachte) Embedding
+        assert all(r == ("EMB", claim) for r in results)
+
+    def test_distinct_claims_each_encoded(self):
+        from services import _reranker_backup as rb
+        rb._claim_emb_cache.clear()
+        fm = _CountingFakeModel()
+        rb._encode_claim_cached(fm, "Claim A")
+        rb._encode_claim_cached(fm, "Claim B")
+        rb._encode_claim_cached(fm, "Claim A")  # wieder gecacht
+        assert fm.calls == 2  # nur A und B encodet, nicht A zweimal
+
+    def test_lru_bound_enforced(self):
+        from services import _reranker_backup as rb
+        rb._claim_emb_cache.clear()
+        fm = _CountingFakeModel()
+        n = rb._CLAIM_EMB_CACHE_MAX + 10
+        for i in range(n):
+            rb._encode_claim_cached(fm, f"Claim {i}")
+        # Store wächst nicht über das Limit
+        assert len(rb._claim_emb_cache) <= rb._CLAIM_EMB_CACHE_MAX
+        # ältester Eintrag (Claim 0) wurde verdrängt → Re-Encode nötig
+        calls_before = fm.calls
+        rb._encode_claim_cached(fm, "Claim 0")
+        assert fm.calls == calls_before + 1

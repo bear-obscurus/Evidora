@@ -32,12 +32,24 @@ intakt.
 """
 
 import logging
+from collections import OrderedDict
 
 logger = logging.getLogger("evidora")
 
 _model = None
 _model_unavailable = False
 _topic_embedding_cache: dict[tuple, "torch.Tensor"] = {}  # noqa: F821 — lazy import
+
+# Claim-Embedding-Cache (Key = exakter Claim-String).
+# Der Trigger-Gate-Sweep in main.py ruft best_matches() pro Request bis zu
+# ~60× mit demselben Claim auf (jedes Static-First-Pack, dessen Substring-/
+# Composite-Trigger nicht zündet, fällt auf den Cosine-Backup zurück). Ohne
+# diesen Cache wird DERSELBE Claim dutzendfach neu encodet (~30 ms/Encode,
+# synchron im Event-Loop → bis ~1,8 s blockierende CPU pro Request). Mit
+# Cache kollabiert das auf 1 Encode pro Claim-String. Bounded LRU, damit
+# der Store über viele verschiedene Claims nicht unbegrenzt wächst.
+_CLAIM_EMB_CACHE_MAX = 128
+_claim_emb_cache: "OrderedDict[str, object]" = OrderedDict()
 
 
 def _get_model():
@@ -59,6 +71,26 @@ def _get_model():
         _model_unavailable = True
         logger.warning(f"reranker_backup: failed to load model: {e}")
         return None
+
+
+def _encode_claim_cached(model, claim: str):
+    """Encode ``claim`` once und cache das Embedding (bounded LRU).
+
+    Wiederholte best_matches()-Aufrufe mit demselben Claim-String (der
+    Trigger-Gate-Sweep tut das ~60×/Request) liefern danach das gecachte
+    Embedding statt neu zu encodieren. Key ist der exakte Claim-String —
+    das Embedding ist für ein festes Modell deterministisch, also kein
+    Staleness-Risiko.
+    """
+    cached = _claim_emb_cache.get(claim)
+    if cached is not None:
+        _claim_emb_cache.move_to_end(claim)  # LRU-Touch
+        return cached
+    emb = model.encode(claim, convert_to_tensor=True)
+    _claim_emb_cache[claim] = emb
+    if len(_claim_emb_cache) > _CLAIM_EMB_CACHE_MAX:
+        _claim_emb_cache.popitem(last=False)  # ältesten Eintrag verdrängen
+    return emb
 
 
 def claim_might_be_about(
@@ -107,7 +139,7 @@ def best_matches(
             topic_emb = model.encode(list(descriptions), convert_to_tensor=True)
             _topic_embedding_cache[descriptions] = topic_emb
 
-        claim_emb = model.encode(claim, convert_to_tensor=True)
+        claim_emb = _encode_claim_cached(model, claim)
         scores = util.cos_sim(claim_emb, topic_emb)[0].tolist()
 
         scored = [
