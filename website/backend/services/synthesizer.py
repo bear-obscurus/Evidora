@@ -6,7 +6,7 @@ import re
 import httpx
 
 from services.ollama import chat_completion, chat_completion_streaming
-from services.reranker import rerank_results
+from services.reranker import rerank_results, resolve_struct_marker_provenance
 from services.verdict_postprocess import apply_verdict_postprocessing
 
 logger = logging.getLogger("evidora")
@@ -735,6 +735,11 @@ async def synthesize_results(
 
     # Re-rank results by semantic similarity to the claim
     source_results = rerank_results(original_claim, source_results)
+    # Bug #47 Wurzel-Fix: themenfremde STRUKTURELL-Marker, die nur via
+    # Cosine-Backup reingezogen wurden, entschärfen wenn ein exakter Anker
+    # existiert (siehe reranker.resolve_struct_marker_provenance). MUSS vor
+    # dem Prompt-Build + Postprocess laufen.
+    source_results = resolve_struct_marker_provenance(source_results)
 
     # Detect superlative claims that need multi-country comparison
     SUPERLATIVE_KEYWORDS = [

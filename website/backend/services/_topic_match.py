@@ -110,12 +110,39 @@ def find_matching_items(
     items = data.get(items_key) or []
     matches = [it for it in items if substring_or_composite_match(it, claim_lc)]
     if matches:
-        return matches
+        return _tag_provenance(matches, exact=True)
     if not full_claim or descriptor_fn is None:
         return []
     pairs = [descriptor_fn(it) for it in items]
-    return _backup_best_matches(full_claim, pairs,
-                                threshold=threshold, top_n=top_n)
+    backup = _backup_best_matches(full_claim, pairs,
+                                  threshold=threshold, top_n=top_n)
+    return _tag_provenance(backup, exact=False)
+
+
+def _tag_provenance(items: list, *, exact: bool) -> list:
+    """Tag Match-Provenance in ``data._matched_exact`` (Bug #47 Wurzel-Fix).
+
+    ``exact=True``  → via Substring/Composite-Trigger gematcht.
+    ``exact=False`` → nur via Cosine-Backup-Fallback gematcht (schwaches
+    Signal — taugt nicht, um „strukturell falsch" zu behaupten, wenn ein
+    anderer Pack denselben Claim exakt ankert; siehe
+    ``services/_struct_marker.render_data_with_marker`` +
+    ``services/reranker.resolve_struct_marker_provenance``).
+
+    Gibt SHALLOW COPIES zurück (data eigene Kopie) — die mtime-gecachten
+    Quell-Dicts dürfen NICHT mutiert werden.
+    """
+    out: list = []
+    for it in items:
+        if not isinstance(it, dict):
+            out.append(it)
+            continue
+        it2 = dict(it)
+        d = dict(it2.get("data") or {})
+        d["_matched_exact"] = exact
+        it2["data"] = d
+        out.append(it2)
+    return out
 
 
 def load_items(static_path: str, items_key: str) -> list[dict]:

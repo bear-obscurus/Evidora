@@ -381,3 +381,70 @@ def rerank_results(claim: str, source_results: list) -> list:
     except Exception as e:
         logger.warning(f"Semantic re-ranking failed: {e}")
         return source_results
+
+
+# Sentinel-Prefixe gespiegelt aus services/_struct_marker.py (dort die
+# Quelle der Wahrheit). Hier dupliziert, um einen Import-Zyklus
+# reranker↔_struct_marker zu vermeiden.
+_STRUCT_EXACT = "STRUKTURELL FALSCH:"
+_STRUCT_COSINE = "STRUKTURELL_COSINE_FALSCH:"
+
+
+def resolve_struct_marker_provenance(source_results: list) -> list:
+    """Bug #47 Wurzel-Fix (Safe-Subset) — Cosine-Kontamination entschärfen.
+
+    Pack-Services emittieren STRUKTURELL-Marker, die via schwachem Cosine-
+    Backup (statt exaktem Trigger) gematcht wurden, mit dem auflösbaren
+    Prefix ``STRUKTURELL_COSINE_FALSCH:``. Dieser Pass löst sie auf:
+
+      • Existiert IRGENDWO ein exakter Anker (``STRUKTURELL FALSCH:``) für
+        denselben Claim → die Cosine-Marker sind mit hoher Sicherheit
+        themenfremde Kontamination (per find_matching_items über geteilte
+        AT-/DE-Vokabeln reingezogen) → zu Klartext degradieren (Prefix weg,
+        Inhalt bleibt als schwache Info erhalten).
+      • KEIN exakter Anker → der Cosine-Marker ist das einzige strukturelle
+        Signal (z.B. adjazente Medizin-Mythen bei „Kurkuma heilt Krebs") →
+        zu normalem ``STRUKTURELL FALSCH:`` restaurieren (Verhalten wie vor
+        dem Fix, keine Regression).
+
+    Läuft NACH rerank_results, VOR dem Prompt-Build — Prompt UND
+    Postprocess-Override sehen damit nur die aufgelösten Marker. Mutiert
+    display_values in place.
+    """
+    has_exact = False
+    cosine_results: list = []
+    for sd in source_results:
+        if not isinstance(sd, dict):
+            continue
+        for r in sd.get("results", []):
+            dv = r.get("display_value", "")
+            if not isinstance(dv, str):
+                continue
+            if _STRUCT_EXACT in dv:
+                has_exact = True
+            if _STRUCT_COSINE in dv:
+                cosine_results.append(r)
+
+    if not cosine_results:
+        return source_results
+
+    if has_exact:
+        for r in cosine_results:
+            r["display_value"] = (r["display_value"]
+                                  .replace(_STRUCT_COSINE + " ", "")
+                                  .replace(_STRUCT_COSINE, ""))
+        logger.info(
+            f"STRUKTURELL provenance: exakter Anker vorhanden → "
+            f"{len(cosine_results)} Cosine-Backup-Marker zu Klartext "
+            f"degradiert (Bug #47 Kontaminations-Filter)."
+        )
+    else:
+        for r in cosine_results:
+            r["display_value"] = r["display_value"].replace(
+                _STRUCT_COSINE, _STRUCT_EXACT)
+        logger.debug(
+            f"STRUKTURELL provenance: kein exakter Anker → "
+            f"{len(cosine_results)} Cosine-Marker zu normalem "
+            f"STRUKTURELL FALSCH: restauriert."
+        )
+    return source_results

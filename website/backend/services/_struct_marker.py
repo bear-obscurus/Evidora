@@ -101,6 +101,15 @@ FALSE_VERDICT_OVERRIDE_TOKENS: tuple[str, ...] = (
 )
 
 
+# Marker-Prefixe. Der Cosine-Variant enthält BEWUSST NICHT den Substring
+# "STRUKTURELL FALSCH:" — so behandeln Synthesizer-Prompt UND Postprocess-
+# Override ihn NICHT als autoritativ, bis ``reranker.resolve_struct_marker_
+# provenance`` ihn auflöst (Bug #47 Safe-Subset): bei vorhandenem exaktem
+# Anker → zu Klartext degradiert, sonst → zu "STRUKTURELL FALSCH:" restauriert.
+STRUCT_EXACT_PREFIX = "STRUKTURELL FALSCH:"
+STRUCT_COSINE_PREFIX = "STRUKTURELL_COSINE_FALSCH:"
+
+
 def has_false_verdict_override(kernsatz: str | None) -> bool:
     """True wenn der kernsatz_fuer_synthesizer einen harten Verdict-
     Override-Token enthält (case-insensitive). Bei leerem kernsatz False.
@@ -129,9 +138,15 @@ def render_data_with_marker(
     """
     kernsatz = d.get("kernsatz_fuer_synthesizer", "")
     is_override = has_false_verdict_override(kernsatz)
+    # Provenance (Bug #47): default True = Aufrufer ohne find_matching_items
+    # (z.B. Wikidata) + exakte Trigger-Matches → unverändertes Verhalten.
+    # Nur Cosine-Backup-Matches (False) bekommen den auflösbaren Variant.
+    matched_exact = d.get("_matched_exact", True)
     parts: list[str] = []
+    skip_keys = tuple(set(skip_keys) | {"_matched_exact"})
     if is_override:
-        parts.append(f"STRUKTURELL FALSCH: {kernsatz}")
+        prefix = STRUCT_EXACT_PREFIX if matched_exact else STRUCT_COSINE_PREFIX
+        parts.append(f"{prefix} {kernsatz}")
         skip_keys = tuple(set(skip_keys) | {"kernsatz_fuer_synthesizer"})
     for key, val in d.items():
         if key in skip_keys:
