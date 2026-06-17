@@ -396,6 +396,21 @@ async def search_vdem(analysis: dict) -> dict:
             f"{primary_value:.2f} (V-Dem)"
         )
 
+        # Transparenz-Marker für nicht-v14-verifizierte Indizes. 4 Indikatoren
+        # (deliberativ/egalitär/Ressourcen-Gleichverteilung/Gewaltschutz) sind
+        # noch LLM-Approximationen, weil OWID sie nicht syndiziert. Bis zum
+        # v14-CSV-Refresh gekennzeichnet — der Caveat steht NACH dem [:300]-Cut,
+        # damit er nie abgeschnitten wird und nie unbemerkt ein Verdict trägt.
+        desc_out = (
+            f"{description} ({scale})" if scale else description
+        )[:300]
+        if ind.get("v14_verified", True) is False:
+            desc_out = (
+                f"{desc_out} ⚠ Hinweis: Dieser Indikator-Wert ist eine "
+                "LLM-Approximation und noch nicht gegen das offizielle "
+                "V-Dem-v14-CSV verifiziert."
+            ).strip()
+
         results.append({
             "indicator_name": indicator_name,
             "indicator": "vdem_index",
@@ -403,9 +418,7 @@ async def search_vdem(analysis: dict) -> dict:
             "year": str(year),
             "topic": "vdem_democracy",
             "display_value": display_value[:480],
-            "description": (
-                f"{description} ({scale})" if scale else description
-            )[:300],
+            "description": desc_out,
             "url": source_url,
             "secondary_url": secondary_url,
             "source": source_label,

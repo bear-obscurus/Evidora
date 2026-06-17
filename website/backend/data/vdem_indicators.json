@@ -4181,6 +4181,7 @@
     },
     {
       "code": "v2x_delibdem",
+      "v14_verified": false,
       "label_de": "Deliberative-Demokratie-Index",
       "label_en": "Deliberative Democracy Index",
       "scale": "0-1 (höher = mehr deliberativ-rationaler Diskurs)",
@@ -4431,6 +4432,7 @@
     },
     {
       "code": "v2x_egaldem",
+      "v14_verified": false,
       "label_de": "Egalitäre-Demokratie-Index",
       "label_en": "Egalitarian Democracy Index",
       "scale": "0-1 (höher = gleichere politische Teilhabe)",
@@ -8608,6 +8610,7 @@
     },
     {
       "code": "v2xeg_eqdr",
+      "v14_verified": false,
       "label_de": "Gleichverteilung der Ressourcen",
       "label_en": "Equal Distribution of Resources",
       "scale": "0-1 (höher = gleichere Ressourcen-Verteilung)",
@@ -10163,6 +10166,7 @@
     },
     {
       "code": "v2x_clphy",
+      "v14_verified": false,
       "label_de": "Schutz vor körperlicher Gewalt durch den Staat",
       "label_en": "Physical Violence Index",
       "scale": "0-1 (höher = besserer Schutz vor Folter/Tötung durch Staat)",
