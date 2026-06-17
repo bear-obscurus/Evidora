@@ -544,3 +544,56 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     result.pop("_struct_override_fired", None)
 
     return result
+
+
+# Confidence-Ceiling, wenn die Claim-Analyse auf den _fallback degradiert ist.
+# Bewusst moderat (nicht 0.0): viele Static-First-Packs + Faktencheck-RSS
+# triggern auf dem Roh-Claim-Text und liefern auch ohne Analyzer-JSON solide
+# Belege. Der Cap verhindert nur das selbstsichere Verdict auf reduzierter
+# Quellen-Basis — er nullt eine gut belegte Bewertung nicht.
+ANALYSIS_FALLBACK_CONFIDENCE_CAP = 0.5
+
+
+def apply_analysis_fallback_cap(synthesis, analysis, lang="de", cap=ANALYSIS_FALLBACK_CONFIDENCE_CAP):
+    """Quick-Win #5 — Degraded-Analysis-Guard.
+
+    Wenn ``claim_analyzer.analyze_claim`` nach dem Retry nur den
+    ``_fallback_analysis``-Stub liefern konnte (unparsebares Mistral-JSON),
+    sind alle wiss./med./klima-/wirtschafts-Quellen-Flags auf False gesetzt —
+    der med./wiss. Pipeline-Zweig faellt weg, das Verdict steht auf duennerer
+    Basis als normal. Diese Funktion cappt dann die Konfidenz und haengt einen
+    transparenten Hinweis an (analog zur Motivation von Fix #1: kein
+    selbstsicheres Verdict auf degradierter Analyse ausliefern).
+
+    Mutiert ``synthesis`` und gibt es zurueck. No-op, wenn kein ``_fallback``
+    vorliegt. Bei bereits ``unverifiable``-Verdict nur Observability-Flag, kein
+    Cap (Konfidenz ist dort schon 0.0).
+    """
+    if not (analysis or {}).get("_fallback"):
+        return synthesis
+
+    synthesis["_analysis_fallback"] = True
+
+    if synthesis.get("verdict") == "unverifiable":
+        return synthesis
+
+    orig_conf = synthesis.get("confidence") or 0.0
+    if orig_conf > cap:
+        synthesis["confidence"] = cap
+
+    caveat = (
+        "Hinweis: Die automatische Claim-Analyse war eingeschraenkt — diese "
+        "Bewertung stuetzt sich auf eine reduzierte Quellenauswahl und ist "
+        "entsprechend vorsichtig zu interpretieren."
+        if lang == "de" else
+        "Note: Automated claim analysis was degraded — this verdict draws on a "
+        "reduced set of sources and should be read with caution."
+    )
+    existing = synthesis.get("nuance")
+    synthesis["nuance"] = f"{existing} {caveat}".strip() if existing else caveat
+
+    logger.warning(
+        "Analysis fallback active — confidence capped %.2f→%.2f, caveat added",
+        orig_conf, synthesis.get("confidence") or 0.0,
+    )
+    return synthesis

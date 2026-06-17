@@ -1777,6 +1777,18 @@ async def check_claim(request: Request):
         except Exception as e:
             logger.warning(f"confidence_calibration failed (non-blocking): {e}")
 
+        # Quick-Win #5: Degraded-Analysis-Guard. Wenn der Claim-Analyzer nur
+        # den _fallback liefern konnte (unparsebares Mistral-JSON), cap die
+        # Konfidenz + transparenter Hinweis statt selbstsicheres Verdict auf
+        # reduzierter Quellen-Basis. Lauft NACH der Kalibrierung, damit der
+        # Cap auch den kalibrierten Wert begrenzt. Capped <0.8 verhindert
+        # zugleich, dass der verdict_cache den degradierten Lauf speichert.
+        try:
+            from services.verdict_postprocess import apply_analysis_fallback_cap
+            apply_analysis_fallback_cap(synthesis, analysis, lang)
+        except Exception as e:
+            logger.warning(f"analysis_fallback_cap failed (non-blocking): {e}")
+
         # Hebel #4: Verdict in den Semantic-Cache schreiben (TTL 30 Min,
         # nur wenn Confidence ≥ 0.8 + Verdict != unverifiable). Filtert
         # Stream-Loss-Artefakte aus.

@@ -596,3 +596,61 @@ class TestVerdictPostprocessing:
               [{"source": "X", "results": [{"display_value": "d"}]}],
               "Die Arbeitslosenquote in Österreich beträgt 5 Prozent")
         assert r["verdict"] == "mixed"
+
+
+# Quick-Win #5 — Degraded-Analysis-Guard. Cap + Caveat wenn der Claim-Analyzer
+# nur den _fallback-Stub liefern konnte (unparsebares Mistral-JSON).
+
+class TestAnalysisFallbackCap:
+    def _F(self):
+        from services.verdict_postprocess import apply_analysis_fallback_cap
+        return apply_analysis_fallback_cap
+
+    def test_no_fallback_is_noop(self):
+        F = self._F()
+        s = {"verdict": "true", "confidence": 0.95, "nuance": None}
+        F(s, {"_fallback": False}, "de")
+        assert s["confidence"] == 0.95          # unveraendert
+        assert "_analysis_fallback" not in s
+        assert s["nuance"] is None
+
+    def test_missing_analysis_is_noop(self):
+        F = self._F()
+        s = {"verdict": "true", "confidence": 0.95}
+        F(s, None, "de")
+        assert s["confidence"] == 0.95
+
+    def test_fallback_caps_high_confidence(self):
+        F = self._F()
+        s = {"verdict": "mostly_true", "confidence": 0.9, "nuance": None}
+        F(s, {"_fallback": True}, "de")
+        assert s["confidence"] == 0.5
+        assert s["_analysis_fallback"] is True
+        assert "eingeschraenkt" in s["nuance"]
+
+    def test_fallback_does_not_raise_low_confidence(self):
+        F = self._F()
+        s = {"verdict": "mixed", "confidence": 0.3, "nuance": None}
+        F(s, {"_fallback": True}, "de")
+        assert s["confidence"] == 0.3           # kein Anheben, nur Deckel
+
+    def test_fallback_preserves_existing_nuance(self):
+        F = self._F()
+        s = {"verdict": "true", "confidence": 0.8, "nuance": "Bestehende Nuance."}
+        F(s, {"_fallback": True}, "de")
+        assert s["nuance"].startswith("Bestehende Nuance.")
+        assert "eingeschraenkt" in s["nuance"]
+
+    def test_fallback_unverifiable_marks_but_no_caveat(self):
+        F = self._F()
+        s = {"verdict": "unverifiable", "confidence": 0.0, "nuance": None}
+        F(s, {"_fallback": True}, "de")
+        assert s["_analysis_fallback"] is True
+        assert s["confidence"] == 0.0
+        assert s["nuance"] is None              # kein doppelter Hinweis
+
+    def test_fallback_english_caveat(self):
+        F = self._F()
+        s = {"verdict": "true", "confidence": 0.9, "nuance": None}
+        F(s, {"_fallback": True}, "en")
+        assert "degraded" in s["nuance"]
