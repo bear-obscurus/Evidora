@@ -654,3 +654,46 @@ class TestAnalysisFallbackCap:
         s = {"verdict": "true", "confidence": 0.9, "nuance": None}
         F(s, {"_fallback": True}, "en")
         assert "degraded" in s["nuance"]
+
+
+# ===================================================================
+# Fan-out-Budget für den Synthesizer-Prompt (Fix #7, 2026-06-14)
+# ===================================================================
+# Begrenzt, wie viele Quellen-mit-Treffern in den LLM-Prompt gehen
+# (autoritative/STRUKTURELL immer behalten), ohne source_coverage/raw_sources
+# zu verändern. Imports funktions-lokal (synthesizer braucht httpx).
+
+class TestFanoutBudget:
+    def _sources(self):
+        return [
+            {"source": "S0", "results": [{"display_value": "plain a"}]},
+            {"source": "S1", "results": [{"indicator": "esoterik_skeptic_fact", "display_value": "auth"}]},
+            {"source": "S2", "results": [{"display_value": f"r{i}"} for i in range(5)]},
+            {"source": "S3", "results": [{"display_value": "STRUKTURELL FALSCH: widerlegt"}]},
+            {"source": "S4", "results": [{"display_value": "x"}, {"display_value": "y"}]},
+            {"source": "S5", "results": []},
+        ]
+
+    def test_budget_keeps_top_and_authoritative(self):
+        from services.synthesizer import _budget_prompt_sources
+        src = self._sources()
+        out = _budget_prompt_sources(src, 3)
+        with_data = [d for d in out if d.get("results")]
+        assert len(with_data) == 3
+        assert src[1] in out and src[3] in out      # auth + STRUKTURELL immer behalten
+        assert src[5] in out                          # leere Quelle bleibt (Schleife skippt sie)
+        names = [d["source"] for d in out]
+        assert names.index("S1") < names.index("S2") < names.index("S3")  # Original-Reihenfolge
+        assert len(src) == 6 and src[0] in src        # Eingabe NICHT mutiert
+
+    def test_no_budget_when_under_limit(self):
+        from services.synthesizer import _budget_prompt_sources
+        src = self._sources()
+        assert _budget_prompt_sources(src, 10) is src  # unverändert, identisches Objekt
+
+    def test_priority_tiers(self):
+        from services.synthesizer import _source_prompt_priority
+        src = self._sources()
+        assert _source_prompt_priority(src[1])[0] == 2  # authoritative
+        assert _source_prompt_priority(src[3])[0] == 2  # STRUKTURELL
+        assert _source_prompt_priority(src[2])[0] == 0  # plain

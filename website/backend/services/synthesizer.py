@@ -6,10 +6,68 @@ import re
 import httpx
 
 from services.ollama import chat_completion, chat_completion_streaming
-from services.reranker import rerank_results, resolve_struct_marker_provenance
+from services.reranker import (
+    rerank_results, resolve_struct_marker_provenance, _AUTHORITATIVE_INDICATORS,
+)
 from services.verdict_postprocess import apply_verdict_postprocessing
 
 logger = logging.getLogger("evidora")
+
+# Fix #7 — Fan-out-Budget für den Synthesizer-PROMPT.
+# Breite Claims feuern 20–28 Quellen-mit-Treffern (gemessen 2026-06-14);
+# bei je bis zu 3 Results pro Quelle bläht das den Prompt stark auf.
+# Dieses Budget begrenzt NUR, wie viele Quellen in den LLM-Prompt gehen —
+# source_coverage/raw_sources bleiben vollständig (ehrliche Berichterstattung).
+# 16 lässt alle ≤16-Quellen-Claims (= die meisten) komplett unberührt und
+# trimmt nur den Long-Tail breiter Claims. Ranking: autoritative + STRUKTURELL-
+# tragende Quellen werden IMMER behalten (verdict-entscheidend), dann nach
+# Treffer-Anzahl. Env-Override via SYNTH_SOURCE_BUDGET.
+import os as _os
+SYNTH_SOURCE_BUDGET = int(_os.getenv("SYNTH_SOURCE_BUDGET", "16"))
+
+
+def _source_prompt_priority(source_data: dict) -> tuple:
+    """Priorität einer Quelle für die Prompt-Budget-Auswahl (höher = wichtiger).
+    Autoritative/STRUKTURELL-tragende Quellen ranken oben (immer behalten),
+    Tie-Break über Treffer-Anzahl."""
+    results = source_data.get("results", []) or []
+    has_auth = any(r.get("indicator") in _AUTHORITATIVE_INDICATORS for r in results)
+    has_struct = any(
+        isinstance(r.get("display_value"), str)
+        and "STRUKTURELL FALSCH:" in r["display_value"]
+        for r in results
+    )
+    tier = 2 if (has_auth or has_struct) else 0
+    return (tier, len(results))
+
+
+def _budget_prompt_sources(source_results: list, budget: int) -> list:
+    """Wähle die Top-``budget`` Quellen-mit-Treffern für den Prompt aus
+    (autoritative/STRUKTURELL immer behalten), in ORIGINAL-Reihenfolge.
+    Quellen ohne Treffer bleiben drin (die Prompt-Schleife überspringt sie).
+    Bei ≤ budget Quellen-mit-Treffern: unverändert (kein Eingriff).
+
+    Mutiert ``source_results`` NICHT — gibt eine gefilterte Sicht zurück, damit
+    source_coverage/raw_sources in main.py vollständig bleiben."""
+    sources_with_data = [
+        sd for sd in source_results
+        if isinstance(sd, dict) and sd.get("results")
+    ]
+    if len(sources_with_data) <= budget:
+        return source_results
+    ranked = sorted(sources_with_data, key=_source_prompt_priority, reverse=True)
+    keep_ids = {id(sd) for sd in ranked[:budget]}
+    logger.info(
+        f"Fan-out budget: {len(sources_with_data)} sources-with-results → "
+        f"prompt uses top {budget} (dropped "
+        f"{len(sources_with_data) - budget} low-priority from PROMPT only; "
+        f"source_coverage unchanged)"
+    )
+    return [
+        sd for sd in source_results
+        if not (isinstance(sd, dict) and sd.get("results"))
+        or id(sd) in keep_ids
+    ]
 
 SYSTEM_PROMPTS = {
     "de": """Du bist ein Faktencheck-Synthese-Assistent. Du erhältst eine Behauptung und Suchergebnisse aus verschiedenen wissenschaftlichen und offiziellen Quellen. Erstelle eine verständliche Bewertung.
@@ -827,7 +885,12 @@ async def synthesize_results(
             return s
         return s[:MAX_STR].rsplit(" ", 1)[0] + " […]"
 
-    for source_data in source_results:
+    # Fix #7 — Fan-out-Budget: nur die Top-N Quellen-mit-Treffern in den
+    # Prompt aufnehmen (autoritative/STRUKTURELL immer behalten). Ändert NUR
+    # den Prompt, NICHT source_coverage/raw_sources (die bleiben vollständig).
+    prompt_sources = _budget_prompt_sources(source_results, SYNTH_SOURCE_BUDGET)
+
+    for source_data in prompt_sources:
         if not isinstance(source_data, dict):
             continue
         source_name = source_data.get("source", "Unknown")
