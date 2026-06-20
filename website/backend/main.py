@@ -1637,6 +1637,19 @@ async def check_claim(request: Request):
             tasks.append(cached("ClinVar", search_clinvar, analysis))
             queried_names.append("NIH ClinVar")
 
+        # Fix #6 (Minimal-Absicherung): `tasks` und `queried_names` werden in
+        # ~191 Dispatch-Stellen von Hand parallel gepflegt und sind weiter
+        # unten index-aligned (queried_names[i] gehört zu task_objects[i]).
+        # Diese Invariante MUSS halten — ein vergessenes/zusätzliches .append()
+        # beim Hinzufügen einer neuen Quelle verschiebt sonst alle Quellen-
+        # Namen. Die Assertion fängt das beim ersten Request in Dev/Test/CI,
+        # bevor es zu falscher Quellen-Attribution in Production führt.
+        assert len(tasks) == len(queried_names), (
+            f"Dispatch-Misalignment: {len(tasks)} tasks vs "
+            f"{len(queried_names)} queried_names — ein .append()-Paar ist "
+            f"unvollständig (siehe Dispatch-Block oben)."
+        )
+
         # Use asyncio.wait so completed tasks return results even if others time out
         valid_results = []
         valid_names: list[str] = []  # index-aligned with valid_results
