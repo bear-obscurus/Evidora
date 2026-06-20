@@ -965,7 +965,12 @@ async def synthesize_results(
         if result.get("evidence"):
             result["evidence"] = await _validate_urls(result["evidence"])
 
-        # No real sources → override verdict and suppress LLM opinion
+        # No real sources → override verdict and suppress LLM opinion.
+        # NB: Dies prüft das Vorhandensein verwertbarer Evidenz-URLs
+        # (Evidenz-Integrität). Das ist NICHT dasselbe wie der Check in
+        # main.py (`not sources_with_results`, post-rerank Treffer-Präsenz) —
+        # beide sind absichtlich getrennt und können bei URL-losen Pack-
+        # Treffern divergieren. Nicht naiv zusammenführen (Verhaltensänderung).
         if not real_urls:
             logger.warning("No sources returned results — overriding verdict and suppressing LLM opinion")
             result["verdict"] = "unverifiable"

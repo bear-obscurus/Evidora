@@ -1739,7 +1739,11 @@ async def check_claim(request: Request):
                 f"{pre_rerank_hits - post_rerank_hits} source(s) as off-topic)"
             )
 
-        # If no source returned results, override verdict and suppress LLM opinion
+        # If no source returned results, override verdict and suppress LLM opinion.
+        # NB: prüft post-rerank Treffer-Präsenz (Relevanz) und läuft NACH dem
+        # synthesizer-internen `not real_urls`-Check (Evidenz-URL-Präsenz).
+        # Beide sind absichtlich getrennte Bedingungen (können bei URL-losen
+        # Pack-Treffern divergieren) — kein Dedup ohne Verhaltens-Re-Test.
         if not sources_with_results:
             synthesis["verdict"] = "unverifiable"
             synthesis["confidence"] = 0.0
