@@ -50,6 +50,18 @@ the project. For installation and end-user documentation, see
 The whole pipeline streams via Server-Sent Events. Each stage emits
 progress events so the frontend can show a live timeline.
 
+The diagram is simplified. Two stages sit between the reranker and the
+synthesizer prompt: a STRUKTURELL **provenance gate**
+(`resolve_struct_marker_provenance`, neutralizes off-topic cosine-
+contamination markers before they reach the LLM) and a **fan-out prompt
+budget** (`_budget_prompt_sources`, caps how many sources enter the prompt
+on broad claims while keeping `source_coverage` complete). The
+"hallucination filter / verdict-consistency check" box is now a dedicated,
+unit-tested module — `verdict_postprocess.apply_verdict_postprocessing`,
+the override cascade described in §5. A semantic verdict cache
+(`verdict_cache.py`, with a negation guard) can short-circuit the whole
+pipeline for near-identical repeat claims.
+
 ---
 
 ## 2. Three service patterns
@@ -360,6 +372,17 @@ etappes:
 | Prompt-injection delimiters | `claim_analyzer.py` | User claims wrapped in `<claim>` XML to neutralize embedded instructions |
 | Input hardening | `main.py` | Unicode tricks, control chars, OData injection |
 | Per-IP rate limit | `main.py` | Abuse, with bypass-key for stress-testing |
+| Verdict post-processing module | `verdict_postprocess.py` | The ~515-line override cascade (STRUKTURELL override + relevance guards, Wikipedia-normative-term, 4-tier consistency check, factual-content patterns, AMS/ILO + electoral-forecast guards) extracted out of `synthesize_results` so the execution order is explicit and each override is unit-testable (`tests/test_verdict_postprocess_golden.py`, `tests/test_unit.py::TestVerdictPostprocessing`) |
+| STRUKTURELL provenance gate | `_topic_match.py` + `_struct_marker.py` + `reranker.py` | Off-topic cosine-contamination: packs matched only via the cosine backup (not an exact trigger) emit a resolvable `STRUKTURELL_COSINE_FALSCH:` marker; `resolve_struct_marker_provenance` (after rerank, before prompt) degrades it to plaintext when an exact anchor exists, else restores it. The categorical discriminator is match **provenance**, not a cosine threshold (which does not separate). Tests: `tests/test_struct_provenance.py` |
+| Semantic-cache negation guard | `verdict_cache.py` | Inverted cached verdicts: MiniLM is negation-blind (cos ≥ 0.92 for "X" vs "not X"), so `_polarity_mismatch` skips a semantic cache hit when negation appears on only one side or the claims cite disjoint numbers |
+| Degraded-analysis confidence cap | `verdict_postprocess.py` (`apply_analysis_fallback_cap`) | Silent high-confidence verdicts when the analyzer fell back to raw-claim-only analysis (`_fallback`): caps confidence + adds a transparency caveat |
+| Fan-out prompt budget | `synthesizer.py` (`_budget_prompt_sources`) | Oversized prompts on broad claims (20–28 sources): only the top-N sources go into the prompt (authoritative + STRUKTURELL always kept), `source_coverage`/`raw_sources` stay complete |
+
+**Performance (not robustness, but pipeline-relevant):** the claim embedding
+is memoized per request (`_reranker_backup._encode_claim_cached`, bounded LRU)
+instead of being recomputed for every static-first trigger, and the MiniLM
+model lives in a single shared instance (`_st_model.py`) used by both the
+reranker and the backup-trigger/verdict-cache path.
 
 ---
 
