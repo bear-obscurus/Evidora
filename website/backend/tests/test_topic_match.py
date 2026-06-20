@@ -303,8 +303,12 @@ class TestFindMatchingItems:
         assert captured["threshold"] == 0.42
         assert captured["top_n"] == 2
         assert len(captured["pairs"]) == 2
-        # Returned list is the items, not the (item, descriptor) tuples
-        assert result == [{"id": "a", "trigger_keywords": ["foo"]}]
+        # Returned list is the items, not the (item, descriptor) tuples.
+        # Backup-Pfad-Items werden seit Bug-#47-Fix (0bb0f48) mit
+        # data._matched_exact=False getaggt (Cosine-Provenance) — auf einer
+        # Shallow-Copy, daher das zusätzliche data-Feld.
+        assert result == [{"id": "a", "trigger_keywords": ["foo"],
+                           "data": {"_matched_exact": False}}]
 
     def test_substring_match_skips_backup(self, tmp_path, monkeypatch):
         """When substring matches, reranker-backup must NOT be called —
