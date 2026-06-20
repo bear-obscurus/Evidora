@@ -25,8 +25,8 @@ the project. For installation and end-user documentation, see
               ┌─────────────────────────────┐
               │   Source fan-out (async)    │
               │  ─────────────────────────  │
-              │  ~30 live-API services      │
-              │  ~25 static-first topics    │
+              │  ~93 live-API connectors    │
+              │  40 static-first packs      │
               └─────────────┬───────────────┘
                             ▼
               ┌─────────────────────────────┐
