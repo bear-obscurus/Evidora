@@ -308,6 +308,51 @@ CASES = [
      [_src(_NRM)],
      "unverifiable", 0.10),
 
+    # --- Pattern F: superlative/threshold REFUTED by summary, verdict=true ---
+    # (Bugs #52/#74/#81 aus dem 100-Gap-Claim-Lauf 2026-06-27)
+    ("patternF_super_counterleader_single",   # #52
+     "Österreich hat unter allen EU-Staaten die niedrigste Wohneigentumsquote.",
+     _r("true", 0.90,
+        "Österreich hat eine Wohneigentumsquote von 55,3 % (Eurostat 2023), "
+        "während Deutschland mit 49,1 % die niedrigste Quote aller EU-Staaten "
+        "aufweist."),
+     [_src(_NRM)],
+     "false", 0.90),
+
+    ("patternF_threshold_refuted",            # #74
+     "Elektroautos haben in Österreich im Mittel eine Reichweite von über "
+     "500 km unter realen Winterbedingungen.",
+     _r("true", 0.70,
+        "ADAC-Wintertests 2024 zeigen, dass die Real-Reichweite typischerweise "
+        "250–420 km beträgt, also deutlich unter 500 km liegt."),
+     [_src(_NRM)],
+     "false", 0.70),
+
+    ("patternF_super_counterleader_multi",    # #81
+     "Österreich hat in Europa die höchsten Pro-Kopf-Gesundheitsausgaben, die "
+     "höchste Lebenserwartung und die niedrigste Arbeitslosigkeit zugleich.",
+     _r("true", 0.70,
+        "Österreich hat 2024 hohe Pro-Kopf-Gesundheitsausgaben, aber die "
+        "höchste Lebenserwartung in Europa hat die Schweiz mit 83,7 Jahren."),
+     [_src(_NRM)],
+     "mostly_false", 0.70),
+
+    # Kontrolle: legitim wahre Superlative/Schwellen dürfen NICHT kippen.
+    ("patternF_control_super_legit_true",
+     "Rumänien hat die höchste Wohneigentumsquote der EU.",
+     _r("true", 0.90,
+        "Rumänien weist mit 96 % die höchste Wohneigentumsquote aller "
+        "EU-Staaten auf, gefolgt von Kroatien und der Slowakei."),
+     [_src(_NRM)],
+     "true", 0.90),
+
+    ("patternF_control_threshold_legit_true",
+     "Der ID.7 hat über 600 km WLTP-Reichweite.",
+     _r("true", 0.85,
+        "Mit 615 km WLTP-Reichweite liegt der ID.7 klar über 600 km."),
+     [_src(_NRM)],
+     "true", 0.85),
+
     # --- Pure No-Op-Baselines ---
     ("clean_true_noop",
      "ein gut belegter claim",
