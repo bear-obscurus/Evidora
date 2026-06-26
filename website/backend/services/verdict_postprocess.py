@@ -436,6 +436,87 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
             except ValueError:
                 pass
 
+    # Pattern F (Bugs #52/#74/#81, 2026-06-27): the INVERSE of Pattern A/E.
+    # A superlative / "über X" comparison claim that the summary REFUTES,
+    # while the verdict still says true/mostly_true. The LLM researches and
+    # states the refutation correctly ("Deutschland ist mit 49,1 % die
+    # niedrigste", "deutlich unter 500 km", "die höchste ... hat die
+    # Schweiz") but leaves verdict=true. Pattern A/E only handle the
+    # confirm-direction, so these self-contradictions slip through.
+    # → push to false / mostly_false.
+    if verdict in ("true", "mostly_true") and not verdict_from_summary:
+        _SUPER_TERMS = ("niedrigste", "geringste", "höchste", "größte",
+                        "meisten", "stärkste")
+        superlative_claim = any(t in claim_lower for t in _SUPER_TERMS)
+        refuted = False
+        target_refute = "false"
+
+        # F-1: threshold refuted — claim "über/mehr als X", summary "unter X".
+        thr = re.search(
+            r"(?:über|ueber|mehr\s+als|mindestens)\s+"
+            r"(\d{1,3}(?:[. ]\d{3})*(?:,\d+)?|\d+(?:,\d+)?)", claim_lower)
+        if thr:
+            cleaned_t = (thr.group(1).replace(" ", "")
+                         .replace(".", "").replace(",", "."))
+            try:
+                tv = float(cleaned_t)
+            except ValueError:
+                tv = None
+            if tv is not None:
+                num_variants = [re.escape(thr.group(1))]
+                if tv == int(tv):
+                    num_variants.append(str(int(tv)))
+                num_re = "|".join(num_variants)
+                if re.search(
+                    r"(?:unter|weniger\s+als|nicht\s+über|nicht\s+mehr\s+als)\s+"
+                    r"(?:rund\s+|ca\.?\s*|etwa\s+|knapp\s+|deutlich\s+)?"
+                    rf"(?:{num_re})\b", summary_lower):
+                    refuted = True
+                    target_refute = "false"
+
+        # F-2: counter-leader — summary attributes the superlative to a
+        # DIFFERENT country than the claim's subject, flagged by an
+        # adversative ("aber", "während", "jedoch"). Requires the claim to
+        # name its own subject country, so we only fire on genuine
+        # cross-country comparisons (avoids flipping legit-true claims).
+        if not refuted and superlative_claim:
+            _COUNTRIES = (
+                "deutschland", "schweiz", "niederlande", "frankreich",
+                "italien", "rumänien", "kroatien", "slowakei", "tschechien",
+                "ungarn", "polen", "spanien", "schweden", "dänemark",
+                "norwegen", "belgien", "österreich", "luxemburg", "portugal",
+                "griechenland", "finnland", "irland", "bulgarien", "slowenien",
+                "estland", "lettland", "litauen", "malta", "zypern")
+            claim_countries = {c for c in _COUNTRIES if c in claim_lower}
+            adversative = any(a in summary_lower for a in (
+                "aber ", "jedoch", "allerdings", "während ", "hingegen",
+                " sondern ", "tatsächlich", "in wirklichkeit"))
+            if claim_countries and adversative:
+                sp = (r"(?:(?:die|der|das)\s+(?:höchste|niedrigste|geringste|"
+                      r"größte|meiste\w*|stärkste)\w*|spitzenreiter|"
+                      r"an erster stelle|an der spitze|schlusslicht)")
+                for c in _COUNTRIES:
+                    if c in claim_countries or c not in summary_lower:
+                        continue
+                    if (re.search(sp + r"[^.]{0,70}" + re.escape(c),
+                                  summary_lower)
+                            or re.search(re.escape(c) + r"[^.]{0,70}" + sp,
+                                         summary_lower)):
+                        refuted = True
+                        multi = ("zugleich" in claim_lower
+                                 or "gleichzeitig" in claim_lower
+                                 or sum(claim_lower.count(t)
+                                        for t in _SUPER_TERMS) >= 2)
+                        target_refute = "mostly_false" if multi else "false"
+                        break
+
+        if refuted:
+            verdict_from_summary = target_refute
+            logger.info(
+                f"Factual-content consistency (Pattern F): superlative/"
+                f"threshold claim REFUTED by summary but verdict='{verdict}' "
+                f"→ {target_refute}")
+
     if verdict_from_summary and verdict_from_summary != verdict:
         # Don't override if the STRUKTURELL override ACTUALLY fired
         # (explicit flag set in the override block above) — UNLESS
