@@ -4,7 +4,7 @@
 
 A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
-Evidora automatically verifies claims against **120+ scientific and institutional sources** — **93+ verified live-API connectors** (96.9% verdict-match in our 100-Claim Stress-Test across 15 vulnerability clusters, 2026-06-04) spanning science (PubMed, Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, Crossref, arXiv, **ERIC**, **AHRQ**, **USPSTF**, **NBER**), fact-checkers (GADMO, Snopes, Correctiv, Full Fact, Bellingcat, FactCheck.org), health authorities (WHO, EMA, EFSA, ECDC, NIH MedlinePlus, NCBI ClinVar, CDC×2, **openFDA**), climate (Copernicus, EEA, NASA GISS, Berkeley Earth, **CAMS**, **ERA5**, **NOAA**, **GeoSphere SPARTACUS**, **UBA-AT**, **Global Carbon Budget**, **EDGAR JRC**, **IRENA**), economy/finance (Eurostat, OECD, World Bank, ECB, OeNB, Statistik Austria, WIFO+IHS, UN Comtrade, **DBnomics** Meta-Hub, **IMF** WEO, **BIS**, **WITS**, **WGI**, **OECD SDMX**, **OeNB SDMX**, **CEPII** BACI, **EBA** Risk Dashboard, **ILOSTAT**, **FRED**, **WID.world**), democracy/rule-of-law (V-Dem, Freedom House, Transparency CPI, RSF, IDEA, SIPRI, **BTI**, **WJP Rule of Law**, **Constitute** + Bill-of-Rights-Enrichment, **Polity 5**, **ParlGov**), security/tech (**NIST NVD**, **MITRE ATT&CK**, **AI Incident Database**, **EDPB**, **Mozilla Observatory**), culture/geography (Wikipedia, Wikidata, **OSM Nominatim**, **GeoNames**, **DOAB** + DE-EN-Topic-Map, **Europeana**, **DPLA**, **UNECE** + City-Detection, **UNESCO World Heritage**, **UNESCO UIS**, **ÖAW EPUB**, **ESPON**, **Getty**), migration/displacement (UNHCR, Frontex, **UCDP** Uppsala Conflict Data, **IDMC**), wildlife (**IUCN Red List**, **CITES**), accessibility (**WCAG 2.2**, **WebAIM Million**), religion (**ARDA**, **CARA**), news (GDELT v2 GKG via BigQuery, Wayback Machine CDX) plus **40 curated static-first topic packs** (~430 topics) covering Austria/DACH-specific domains: science consensus, energy, medicine, climate, mental health, oncology, addiction, digital family, finance/investments, everyday myths, traffic safety, animal welfare, cybersecurity, food safety, gender equality, religious communities, economic policy, housing, labor market, mobility, data protection, social state, democracy, agriculture, world trade, inclusion, and security policy.
+Evidora automatically verifies claims against **120+ scientific and institutional sources** — **107 live-API connectors** (96.9% verdict-match in our 100-Claim Stress-Test across 15 vulnerability clusters, 2026-06-04) spanning science (PubMed, Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, Crossref, arXiv, **ERIC**, **AHRQ**, **USPSTF**, **NBER**), fact-checkers (GADMO, Snopes, Correctiv, Full Fact, Bellingcat, FactCheck.org), health authorities (WHO, EMA, EFSA, ECDC, NIH MedlinePlus, NCBI ClinVar, CDC×2, **openFDA**), climate (Copernicus, EEA, NASA GISS, Berkeley Earth, **CAMS**, **ERA5**, **NOAA**, **GeoSphere SPARTACUS**, **UBA-AT**, **Global Carbon Budget**, **EDGAR JRC**, **IRENA**), economy/finance (Eurostat, OECD, World Bank, ECB, OeNB, Statistik Austria, WIFO+IHS, UN Comtrade, **DBnomics** Meta-Hub, **IMF** WEO, **BIS**, **WITS**, **WGI**, **OECD SDMX**, **OeNB SDMX**, **CEPII** BACI, **EBA** Risk Dashboard, **ILOSTAT**, **FRED**, **WID.world**), democracy/rule-of-law (V-Dem, Freedom House, Transparency CPI, RSF, IDEA, SIPRI, **BTI**, **WJP Rule of Law**, **Constitute** + Bill-of-Rights-Enrichment, **Polity 5**, **ParlGov**), security/tech (**NIST NVD**, **MITRE ATT&CK**, **AI Incident Database**, **EDPB**, **Mozilla Observatory**), culture/geography (Wikipedia, Wikidata, **OSM Nominatim**, **GeoNames**, **DOAB** + DE-EN-Topic-Map, **Europeana**, **DPLA**, **UNECE** + City-Detection, **UNESCO World Heritage**, **UNESCO UIS**, **ÖAW EPUB**, **ESPON**, **Getty**), migration/displacement (UNHCR, Frontex, **UCDP** Uppsala Conflict Data, **IDMC**), wildlife (**IUCN Red List**, **CITES**), accessibility (**WCAG 2.2**, **WebAIM Million**), religion (**ARDA**, **CARA**), news (GDELT v2 GKG via BigQuery, Wayback Machine CDX) plus **40 curated static-first topic packs** (~430 topics) covering Austria/DACH-specific domains: science consensus, energy, medicine, climate, mental health, oncology, addiction, digital family, finance/investments, everyday myths, traffic safety, animal welfare, cybersecurity, food safety, gender equality, religious communities, economic policy, housing, labor market, mobility, data protection, social state, democracy, agriculture, world trade, inclusion, and security policy.
 
 **Live Demo:** [https://evidora.eu](https://evidora.eu)
 
@@ -15,8 +15,8 @@ Evidora automatically verifies claims against **120+ scientific and institutiona
 ## Features
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
-- **80+ data sources** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD/Austrian statistics, climate data, disease surveillance, court rulings, parliamentary records, electoral data, disinformation databases, vulnerability databases (NVD + OSV), governance + economic aggregators (WGI/IMF/BIS/DBnomics), AI-incident reports, geocoding + cultural heritage, and curated topic packs (see table below)
-- **Static-first topic services** — Curated facts (`data/*.json`) with substring/composite triggers and a cosine-similarity backup, so well-known claims hit deterministic answers without an extra API roundtrip. **40 topic packs (~430 topics)** cover Austrian/DACH-specific questions across science, medicine, climate, economy, politics, justice, social state, agriculture, security policy, inclusion, and more. See [ARCHITECTURE.md §3](ARCHITECTURE.md)
+- **190+ source connectors** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD/Austrian statistics, climate data, disease surveillance, court rulings, parliamentary records, electoral data, disinformation databases, vulnerability databases (NVD + OSV), governance + economic aggregators (WGI/IMF/BIS/DBnomics), AI-incident reports, geocoding + cultural heritage, and curated topic packs (see table below)
+- **Static-first topic services** — Curated facts (`data/*.json`) with substring/composite triggers and a cosine-similarity backup, so well-known claims hit deterministic answers without an extra API roundtrip. **40 thematic packs (~430 topics)** — part of **78 static-first services** total — cover Austrian/DACH-specific questions across science, medicine, climate, economy, politics, justice, social state, agriculture, security policy, inclusion, and more. See [ARCHITECTURE.md §3](ARCHITECTURE.md)
 - **Hot-reload of static data** — Edits to `data/*.json` go live without a backend restart (mtime-aware cache + verdict-cache version-suffix)
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Multi-country ranking** — Superlative claims ("highest", "most") automatically query all EU-27 countries for a full ranking
@@ -143,7 +143,17 @@ Sources are grouped by domain. Each lives in its own service module
 during analysis. For implementation patterns (live-API vs. static-first
 topic vs. hybrid), see [ARCHITECTURE.md §2](ARCHITECTURE.md).
 
-### Live-API Connectors (93+ verified production-ready, 96.9% verdict-match in 100-Claim-Stress-Test)
+**Inventory at a glance** (counted from the `main.py` fan-out dispatch, verified 2026-06-27):
+
+| | Count |
+|---|---|
+| Distinct dispatched sources | **190** (191 dispatch points) |
+| Live-API connectors | **107** |
+| Static-first topic services | **78** (incl. 40 thematic `*_pack.json` packs, ~430 topics) |
+| Hybrid (static core + live refresh) | **6** |
+| Connector service files | **191** of 210 `services/*.py` (19 are pipeline/helper modules) |
+
+### Live-API Connectors (107 wired into the fan-out, 96.9% verdict-match in 100-Claim-Stress-Test)
 
 | Domain | Sources |
 |---|---|
@@ -166,7 +176,7 @@ topic vs. hybrid), see [ARCHITECTURE.md §2](ARCHITECTURE.md).
 
 *Additional in-development / refinement-pending sources (currently in pipeline but selectively triggering): OSV.dev, FAOSTAT, Getty Vocabularies, IMF, ILOSTAT, FRED, GeoNames, DPLA, UCDP, Polity 5, ParlGov, WID.world, EBA Risk Dashboard, NBER, CARA, IDMC, OeNB SDMX, CEPII BACI. Refinement targets documented in `memory/pending_action_items_2026_05_18.md`.*
 
-### Static-First Topic Packs (40, ~430 topics)
+### Static-First Topic Packs (40 thematic packs, ~430 topics — part of 78 static-first services)
 
 Each pack is a `data/*.json` file with substring + composite triggers, plus a cosine-similarity backup-trigger. The pattern is documented in [ARCHITECTURE.md §3.5](ARCHITECTURE.md).
 
