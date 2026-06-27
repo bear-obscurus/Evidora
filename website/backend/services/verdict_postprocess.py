@@ -326,6 +326,41 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                         f"verdict='{verdict}'"
                     )
 
+        # Pattern B2 (Bug #96, EBA-Inversion): record-LOW claims confirmed
+        # by the summary asserting a historical/record low ("ist auf einem
+        # historischen Tiefstand", "Rekordtief", "so niedrig wie nie").
+        # Mirror of the record-year pattern. Keyword-based, but with a
+        # verb-prefix requirement (the low must be ASSERTED of the subject,
+        # not just a past record mentioned) plus a contradiction guard,
+        # because a false→true override is the most credibility-damaging
+        # error class — stay narrow.
+        if not factual_confirms:
+            record_low_claim = any(t in claim_lower for t in (
+                "niedrigste seit", "niedrigsten seit", "niedrigster seit",
+                "rekordtief", "tiefstand", "so niedrig wie nie",
+                "so wenig wie nie", "allzeittief", "niedrigste je",
+            ))
+            record_low_confirmed = re.search(
+                r"(?:liegt|liege|ist|sind|lag|lagen|befindet sich|erreicht\w*)"
+                r"[^.]{0,40}?(?:historische\w*\s+)?"
+                r"(?:tiefstand|tiefststand|rekordtief|allzeittief)"
+                r"|so niedrig wie nie|niedrigste seit|niedrigsten seit",
+                summary_lower,
+            )
+            record_low_contradicted = any(t in summary_lower for t in (
+                "höchststand", "höchster stand", "rekordhoch", "allzeithoch",
+                "gestiegen", "angestiegen", "kein tiefstand",
+                "nicht der niedrigste", "nicht die niedrigste",
+                "nicht auf einem tiefstand",
+            ))
+            if (record_low_claim and record_low_confirmed
+                    and not record_low_contradicted):
+                factual_confirms = True
+                logger.info(
+                    f"Factual-content consistency: record-low claim "
+                    f"confirmed in summary but verdict='{verdict}'"
+                )
+
         # Pattern E (Bug #79 + #82): "über X" / "mehr als X" threshold
         # claims where the summary cites a concrete number that exceeds
         # the claimed threshold.
