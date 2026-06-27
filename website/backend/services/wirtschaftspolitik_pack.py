@@ -69,7 +69,7 @@ ohne Wertung.
 import logging
 import os
 
-from services._topic_match import find_matching_items, load_items
+from services._topic_match import find_matching_items, load_items, stamp_provenance
 
 logger = logging.getLogger("evidora")
 
@@ -159,5 +159,5 @@ async def search_wirtschaftspolitik(analysis: dict) -> dict:
     return {
         "source": "Wirtschaftspolitik-Konsens (WIFO + IHS + DIW + IFO + IWF + EZB + OECD + Sachverständigenrat + AK Wien + Bundesbank + IAB + BA-Statistik + DRV + DESTATIS)",
         "type": "economic_policy_consensus",
-        "results": results,
+        "results": stamp_provenance(results, matches),
     }

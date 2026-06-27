@@ -58,7 +58,7 @@ explizit von Pro/Contra-Reform-Bewertungen am Ende jedes Kernsatzes.
 import logging
 import os
 
-from services._topic_match import find_matching_items, load_items
+from services._topic_match import find_matching_items, load_items, stamp_provenance
 
 logger = logging.getLogger("evidora")
 
@@ -148,5 +148,5 @@ async def search_sozialstaat(analysis: dict) -> dict:
     return {
         "source": "Sozialstaat-Konsens (Statistik Austria + BMSGPK + WIFO + IHS + AK Wien + AMS + PVA + AT-VfGH + OECD + Eurostat ESSPROS + Bertelsmann)",
         "type": "welfare_state_consensus",
-        "results": results,
+        "results": stamp_provenance(results, matches),
     }

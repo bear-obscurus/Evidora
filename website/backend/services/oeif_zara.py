@@ -57,7 +57,7 @@ Komplementär zu:
 import logging
 import os
 
-from services._topic_match import find_matching_items, load_items
+from services._topic_match import find_matching_items, load_items, stamp_provenance
 
 logger = logging.getLogger("evidora")
 
@@ -186,5 +186,5 @@ async def search_oeif_zara(analysis: dict) -> dict:
     return {
         "source": "ÖIF Integrationsbericht + ZARA Rassismus Report — AT Migration/Integration",
         "type": "oeif_zara_konsens",
-        "results": results,
+        "results": stamp_provenance(results, matches),
     }

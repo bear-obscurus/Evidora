@@ -80,7 +80,7 @@ services/_topic_match.py) mit Reranker-Backup-Fallback.
 import logging
 import os
 
-from services._topic_match import find_matching_items, load_items
+from services._topic_match import find_matching_items, load_items, stamp_provenance
 
 logger = logging.getLogger("evidora")
 
@@ -176,5 +176,5 @@ async def search_rechnungshof_parteienfin(analysis: dict) -> dict:
     return {
         "source": "Rechnungshof Österreich (Parteispenden + Rechenschaftsberichts-Veröffentlichung) + Bundeskanzleramt (PartFörG-Vollzug) + Parlament Österreich (Fachinfos) + PartG/PartFörG 2012",
         "type": "parteienfinanzierung_at",
-        "results": results,
+        "results": stamp_provenance(results, matches),
     }
