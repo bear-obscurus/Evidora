@@ -384,6 +384,34 @@ CASES = [
      [_src(_NRM)],
      "mostly_false", 0.70),
 
+    # --- Pattern B2: Rekordtief-Claim implizit von Summary bestätigt ---
+    # (EBA-Inversion #96, 2026-06-27). LLM gibt fälschlich mostly_false,
+    # obwohl die Summary den historischen Tiefstand bestätigt.
+    ("patternB2_recordlow_confirmed",   # #96
+     "Laut EBA Risk Dashboard sind die notleidenden Kredite europäischer "
+     "Banken 2025 auf einem Rekordtief von unter 2 Prozent.",
+     _r("mostly_false", 0.85,
+        "Laut EBA Risk Dashboard Q4 2025 liegt die NPL-Quote europäischer "
+        "Banken bei 1,9 % und ist damit auf einem historischen Tiefstand "
+        "(2014: ~6,5 %)."),
+     [_src(_NRM)],
+     "true", 0.85),
+
+    # Kontrolle: Rekordtief-Claim, aber Summary widerspricht → bleibt false.
+    ("patternB2_contradicted_keeps_false",
+     "Die Arbeitslosigkeit in Österreich ist auf einem Rekordtief.",
+     _r("false", 0.85,
+        "Die Arbeitslosigkeit ist gestiegen und liegt über dem Vorjahreswert."),
+     [_src(_NRM)],
+     "false", 0.85),
+
+    ("patternB2_rekordhoch_keeps_false",
+     "Die Staatsverschuldung ist auf einem Rekordtief.",
+     _r("false", 0.85,
+        "Die Staatsverschuldung ist auf einem Rekordhoch von 95 % des BIP."),
+     [_src(_NRM)],
+     "false", 0.85),
+
     # --- Pure No-Op-Baselines ---
     ("clean_true_noop",
      "ein gut belegter claim",
