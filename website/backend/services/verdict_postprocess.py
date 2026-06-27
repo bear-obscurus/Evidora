@@ -26,6 +26,48 @@ import re
 logger = logging.getLogger("evidora")
 
 
+_COMPARISON_COUNTRIES = (
+    "deutschland", "schweiz", "niederlande", "frankreich", "italien",
+    "rumänien", "kroatien", "slowakei", "tschechien", "ungarn", "polen",
+    "spanien", "schweden", "dänemark", "norwegen", "belgien", "österreich",
+    "luxemburg", "portugal", "griechenland", "finnland", "irland",
+    "bulgarien", "slowenien", "estland", "lettland", "litauen", "malta",
+    "zypern",
+)
+
+_SUPERLATIVE_PHRASE = (
+    r"(?:(?:die|der|das)\s+"
+    r"(?:höchste|niedrigste|geringste|größte|meiste\w*|stärkste)\w*"
+    r"|spitzenreiter|an erster stelle|an der spitze|schlusslicht)"
+)
+
+
+def _summary_refutes_superlative(claim_lower, summary_lower):
+    """True, wenn die Summary den Superlativ einem ANDEREN Land als dem
+    Claim-Subjekt zuschreibt oder ihn fürs Claim-Subjekt explizit verneint
+    ("… nicht Österreich"). Verhindert, dass Pattern A/E ein korrektes
+    false/mostly_false fälschlich auf true flippen, nur weil die
+    Superlativ-Phrase ("die niedrigste") irgendwo in der Summary vorkommt
+    (Bug #52/#81, aufgedeckt im 100-Gap-Claim-Lauf 2026-06-27)."""
+    claim_countries = {c for c in _COMPARISON_COUNTRIES if c in claim_lower}
+    if not claim_countries:
+        return False
+    # Explizite Verneinung fürs Claim-Subjekt: "… nicht Österreich"
+    for c in claim_countries:
+        if re.search(r"nicht\s+(?:das\s+|die\s+)?" + re.escape(c), summary_lower):
+            return True
+    # Counter-Leader: Superlativ-Phrase nahe einem ANDEREN Land
+    for c in _COMPARISON_COUNTRIES:
+        if c in claim_countries or c not in summary_lower:
+            continue
+        if (re.search(_SUPERLATIVE_PHRASE + r"[^.]{0,70}" + re.escape(c),
+                      summary_lower)
+                or re.search(re.escape(c) + r"[^.]{0,70}" + _SUPERLATIVE_PHRASE,
+                             summary_lower)):
+            return True
+    return False
+
+
 def apply_verdict_postprocessing(result, source_results, original_claim):
     # STRUKTURELL FALSCH post-processing override (Defense-in-Depth):
     # If curated packs delivered a STRUKTURELL FALSCH marker but the LLM
@@ -255,7 +297,13 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                 "die stärkste", "spitzenreiter", "rang #1",
                 "an erster stelle", "die niedrigste",
             ))
-            if superlative_confirmed:
+            # Guard (Bug #52/#81): the superlative phrase appearing in the
+            # summary is NOT a confirmation if it is attributed to a
+            # different country ("die niedrigste … hat Deutschland") or
+            # negated for the claim subject ("nicht Österreich"). Only then
+            # does the LLM's correct false/mostly_false survive.
+            if superlative_confirmed and not _summary_refutes_superlative(
+                    claim_lower, summary_lower):
                 factual_confirms = True
                 logger.info(
                     f"Factual-content consistency: superlative claim "
@@ -331,7 +379,21 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                         threshold_val = (threshold_val or 0) * 1_000_000_000
                         threshold_unit = "mrd"
 
-            if threshold_val is not None and threshold_val > 0:
+            # Refutation guard (Bug #74): if the summary explicitly states
+            # the value is BELOW the threshold ("deutlich unter 500"), the
+            # "über X" claim is refuted — do NOT treat it as confirmed.
+            _threshold_refuted = False
+            if threshold_val is not None and threshold_val == int(threshold_val):
+                if re.search(
+                    r"(?:unter|weniger\s+als|nicht\s+über|nicht\s+mehr\s+als)\s+"
+                    r"(?:rund\s+|ca\.?\s*|etwa\s+|knapp\s+|deutlich\s+)?"
+                    + re.escape(str(int(threshold_val))) + r"\b",
+                    summary_lower,
+                ):
+                    _threshold_refuted = True
+
+            if (threshold_val is not None and threshold_val > 0
+                    and not _threshold_refuted):
                 # Step 2: extract candidate numbers from summary
                 # Match patterns like "1.095 €", "1,9 Mio.", "286.000"
                 # Only capture the number — do NOT consume
@@ -353,6 +415,14 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                         summary_num *= 1_000_000
                     elif re.match(r"\s*(?:mrd\.?|milliarden?)", after_s):
                         summary_num *= 1_000_000_000
+
+                    # Skip bare year-like numbers (Bug #74): "ADAC-Tests
+                    # 2024" must not count as a confirming value for an
+                    # "über 500"-style threshold.
+                    if (1900 <= summary_num <= 2100 and not re.match(
+                            r"\s*(?:mio|mrd|millionen|milliarden|€|euro|eur)",
+                            after_s)):
+                        continue
 
                     # Step 3: compare — summary number must plausibly
                     # relate to same domain (within 100x of threshold)

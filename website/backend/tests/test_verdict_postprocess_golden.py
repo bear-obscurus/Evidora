@@ -353,6 +353,37 @@ CASES = [
      [_src(_NRM)],
      "true", 0.85),
 
+    # --- Pattern A/E REFUTATION-Guard: LLM-Verdict darf NICHT auf true ---
+    # flippen, nur weil die Superlativ-Phrase / "über X" in der Summary
+    # vorkommt (Wurzel-Fix Bug #52/#74/#81, 2026-06-27). Eingang = das vom
+    # LLM gelieferte korrekte false/mostly_false.
+    ("guardA_counterleader_single_keeps_false",   # #52
+     "Österreich hat unter allen EU-Staaten die niedrigste Wohneigentumsquote.",
+     _r("false", 0.90,
+        "Österreich hat eine Wohneigentumsquote von 55,3 %, während der "
+        "EU-Schnitt bei 70,2 % liegt. Die niedrigste Quote in der EU hat "
+        "Deutschland mit 49,1 %, nicht Österreich."),
+     [_src(_NRM)],
+     "false", 0.90),
+
+    ("guardE_threshold_refuted_keeps_false",      # #74
+     "Elektroautos haben in Österreich im Mittel eine Reichweite von über "
+     "500 km unter realen Winterbedingungen.",
+     _r("false", 0.70,
+        "ADAC-Wintertests 2024 zeigen, dass die Real-Reichweite typischerweise "
+        "250–420 km beträgt, also deutlich unter 500 km liegt."),
+     [_src(_NRM)],
+     "false", 0.70),
+
+    ("guardA_counterleader_multi_keeps_mostly_false",   # #81
+     "Österreich hat in Europa die höchsten Pro-Kopf-Gesundheitsausgaben, die "
+     "höchste Lebenserwartung und die niedrigste Arbeitslosigkeit zugleich.",
+     _r("mostly_false", 0.70,
+        "Österreich hat hohe Pro-Kopf-Gesundheitsausgaben, aber die höchste "
+        "Lebenserwartung in Europa hat die Schweiz mit 83,7 Jahren."),
+     [_src(_NRM)],
+     "mostly_false", 0.70),
+
     # --- Pure No-Op-Baselines ---
     ("clean_true_noop",
      "ein gut belegter claim",
