@@ -67,7 +67,7 @@ Card/Dustmann zum Migrations-Lohn-Effekt).
 import logging
 import os
 
-from services._topic_match import find_matching_items, load_items
+from services._topic_match import find_matching_items, load_items, stamp_provenance
 
 logger = logging.getLogger("evidora")
 
@@ -157,5 +157,5 @@ async def search_arbeitsmarkt(analysis: dict) -> dict:
     return {
         "source": "Arbeitsmarkt-Konsens (AMS + WIFO + IHS + IAB + DESTATIS + Statistik Austria + AK Wien + DGB + OECD + Eurostat + peer-reviewed Forschung)",
         "type": "labor_market_consensus",
-        "results": results,
+        "results": stamp_provenance(results, matches),
     }

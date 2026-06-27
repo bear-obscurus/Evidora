@@ -145,6 +145,27 @@ def _tag_provenance(items: list, *, exact: bool) -> list:
     return out
 
 
+def stamp_provenance(results: list, facts: list) -> list:
+    """Trage die Match-Provenance (``data._matched_exact``) von ``facts`` auf
+    die per Position zugehörigen Result-Dicts. Lässt den Reranker eine
+    strengere Schwelle auf Cosine-Backup-Treffer anwenden, ohne dass jeder
+    Pack das Flag manuell durchreichen muss.
+
+    Sicheres No-op, wenn ``results`` und ``facts`` nicht 1:1 sind (manche
+    Packs filtern) — dann bleibt das aktuelle Reranker-Verhalten erhalten.
+    Aufruf am Pack-Ende:  ``"results": stamp_provenance(results, matches)``.
+    """
+    if not results or len(results) != len(facts):
+        return results
+    for res, fact in zip(results, facts):
+        if isinstance(res, dict) and isinstance(fact, dict):
+            res.setdefault(
+                "_matched_exact",
+                (fact.get("data") or {}).get("_matched_exact", True),
+            )
+    return results
+
+
 def load_items(static_path: str, items_key: str) -> list[dict]:
     """Convenience: lade items aus dem Static-JSON. Für `fetch_X`-Funktionen."""
     data = load_json_mtime_aware(static_path)

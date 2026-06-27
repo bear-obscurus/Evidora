@@ -234,6 +234,17 @@ FACTCHECK_THRESHOLD = 0.55
 _FACTCHECK_SOURCES = {"GADMO", "DataCommons", "ClaimReview", "Faktenchecker", "Fact Check",
                        "AT-Faktencheck-RSS", "Mimikama"}
 
+# Static-first pack results that entered via the cosine-BACKUP fallback
+# (provenance ``_matched_exact == False``) are a weak signal — no exact
+# substring/composite trigger fired, the pack was only "maybe relevant" by
+# semantic proximity. On Austria-flavoured claims that pulls thematically
+# distant packs (Rechnungshof/Sozialstaat/Mobilität on a SIPRI claim) via
+# shared "Österreich + Ausgaben" vocabulary. Such backup matches must clear
+# a stricter bar than the lax RELEVANCE_THRESHOLD. Exact-trigger matches and
+# untagged results are unaffected (provenance is the discriminator, not the
+# score — same principle as the STRUKTURELL provenance gate, 0bb0f48).
+BACKUP_THRESHOLD = 0.55
+
 # Academic databases (OpenAlex, Semantic Scholar) return papers whose titles
 # often share keywords with the claim without being topically relevant
 # ("ESG Reporting", "Green Growth", "Food Self-Sufficiency" matched a
@@ -345,9 +356,20 @@ def rerank_results(claim: str, source_results: list) -> list:
             else:
                 threshold = RELEVANCE_THRESHOLD
 
-            # Filter out off-topic results below threshold
+            # Filter out off-topic results below threshold. Cosine-backup
+            # pack matches (provenance _matched_exact == False) only entered
+            # because no exact trigger fired, so they must clear the stricter
+            # BACKUP_THRESHOLD. Exact-trigger / untagged results keep the
+            # source threshold (safe default → no change for unmigrated packs).
             before_count = len(scored)
-            scored = [(r, s) for r, s in scored if s >= threshold]
+
+            def _eff_threshold(r):
+                if (threshold < BACKUP_THRESHOLD
+                        and r.get("_matched_exact") is False):
+                    return BACKUP_THRESHOLD
+                return threshold
+
+            scored = [(r, s) for r, s in scored if s >= _eff_threshold(r)]
             removed = before_count - len(scored)
             total_removed += removed
 

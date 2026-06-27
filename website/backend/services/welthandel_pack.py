@@ -66,7 +66,7 @@ empirische Forschungs-Streitigkeiten explizit an wo sie existieren.
 import logging
 import os
 
-from services._topic_match import find_matching_items, load_items
+from services._topic_match import find_matching_items, load_items, stamp_provenance
 
 logger = logging.getLogger("evidora")
 
@@ -156,5 +156,5 @@ async def search_welthandel(analysis: dict) -> dict:
     return {
         "source": "Welthandel-Konsens (Statistik Austria + WIFO + IFO + Bank of England + LSE CEP + EU-Kommission + Weltbank + IEA + BNEF + WTO + UNCTAD + McKinsey + BCG + CSIS)",
         "type": "world_trade_consensus",
-        "results": results,
+        "results": stamp_provenance(results, matches),
     }

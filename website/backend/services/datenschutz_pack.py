@@ -53,7 +53,7 @@ Erkenntnisse — KEINE Spekulation oder ungeprüfte Behauptung.
 import logging
 import os
 
-from services._topic_match import find_matching_items, load_items
+from services._topic_match import find_matching_items, load_items, stamp_provenance
 
 logger = logging.getLogger("evidora")
 
@@ -143,5 +143,5 @@ async def search_datenschutz(analysis: dict) -> dict:
     return {
         "source": "Datenschutz-Konsens (EuGH + BVerfG + AT-VfGH + DSB AT + Bitkom + NOYB + BSI + Citizen Lab + Amnesty Tech + EFF + Mozilla + Snowden-Dokumente + DSN/BVT-U-Ausschuss + peer-reviewed Forschung)",
         "type": "data_protection_consensus",
-        "results": results,
+        "results": stamp_provenance(results, matches),
     }

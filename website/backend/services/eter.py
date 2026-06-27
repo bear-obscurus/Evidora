@@ -54,7 +54,7 @@ from __future__ import annotations
 import logging
 import os
 
-from services._topic_match import find_matching_items, load_items
+from services._topic_match import find_matching_items, load_items, stamp_provenance
 
 logger = logging.getLogger("evidora")
 
@@ -291,5 +291,5 @@ async def search_eter(analysis: dict) -> dict:
     return {
         "source": "ETER European Tertiary Education Register (CC-BY 4.0)",
         "type": "higher_education_register",
-        "results": results,
+        "results": stamp_provenance(results, matches),
     }

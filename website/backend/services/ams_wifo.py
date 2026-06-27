@@ -68,7 +68,7 @@ Zitierung mit URL + Datum erlaubt. In jedem result-display_value wird
 import logging
 import os
 
-from services._topic_match import find_matching_items, load_items
+from services._topic_match import find_matching_items, load_items, stamp_provenance
 
 logger = logging.getLogger("evidora")
 
@@ -161,5 +161,5 @@ async def search_ams_wifo(analysis: dict) -> dict:
     return {
         "source": "AMS Arbeitsmarktservice Österreich Jahresbericht 2024 + AMS Spezialthema zum Arbeitsmarkt + WIFO-Konjunktur-Bezug + Eurostat Labour Force Survey",
         "type": "labor_market_at_ams_methodik",
-        "results": results,
+        "results": stamp_provenance(results, matches),
     }

@@ -52,7 +52,7 @@ services/_topic_match.py) mit Reranker-Backup-Fallback.
 import logging
 import os
 
-from services._topic_match import find_matching_items, load_items
+from services._topic_match import find_matching_items, load_items, stamp_provenance
 
 logger = logging.getLogger("evidora")
 
@@ -145,5 +145,5 @@ async def search_iqs_bildung(analysis: dict) -> dict:
     return {
         "source": "IQS Nationaler Bildungsbericht 2024 (Indikatoren + Controlling + Wissenschaft) + OECD Education at a Glance + Statistik Austria",
         "type": "education_indicators_at",
-        "results": results,
+        "results": stamp_provenance(results, matches),
     }

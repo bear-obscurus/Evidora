@@ -32,7 +32,7 @@ Perspektive.
 import logging
 import os
 
-from services._topic_match import find_matching_items, load_items
+from services._topic_match import find_matching_items, load_items, stamp_provenance
 
 logger = logging.getLogger("evidora")
 
@@ -122,5 +122,5 @@ async def search_internationale_quellen(analysis: dict) -> dict:
     return {
         "source": "Internationale Quellen (Pew + WMO + IMF + WTO)",
         "type": "international_organisations",
-        "results": results,
+        "results": stamp_provenance(results, matches),
     }

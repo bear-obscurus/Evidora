@@ -6,7 +6,7 @@ unerreichbar')."""
 import logging
 import os
 
-from services._topic_match import find_matching_items, load_items
+from services._topic_match import find_matching_items, load_items, stamp_provenance
 
 logger = logging.getLogger("evidora")
 
@@ -108,5 +108,5 @@ async def search_housing(analysis: dict) -> dict:
     return {
         "source": "Wohnen Österreich (OeNB + EU-SILC)",
         "type": "official_data",
-        "results": results,
+        "results": stamp_provenance(results, matches),
     }

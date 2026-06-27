@@ -61,7 +61,7 @@ existieren (IARC vs. EFSA Glyphosat-Bewertung).
 import logging
 import os
 
-from services._topic_match import find_matching_items, load_items
+from services._topic_match import find_matching_items, load_items, stamp_provenance
 
 logger = logging.getLogger("evidora")
 
@@ -151,5 +151,5 @@ async def search_landwirtschaft(analysis: dict) -> dict:
     return {
         "source": "Landwirtschaft-Konsens (AGES + EFSA + IARC + WHO + BMVL + BOKU + Statistik Austria + FAO + IPES-Food + ETC Group + Wagenigen UR + Royal Society)",
         "type": "agriculture_consensus",
-        "results": results,
+        "results": stamp_provenance(results, matches),
     }
