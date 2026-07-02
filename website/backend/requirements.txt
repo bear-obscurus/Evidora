@@ -1,16 +1,25 @@
+# Exakt gepinnt am 2026-07-02 auf den damaligen Prod-Stand — gegen diese
+# Versionen sind alle Kalibrierungen validiert (Cosine-Thresholds 0.45/0.55,
+# Reranker-Scores, Verdict-Battery). Upgrades bewusst + mit Stress-Test,
+# nie als Rebuild-Nebenwirkung (sentence-transformers/spacy-Drift ändert
+# Embedding-Scores still).
 fastapi==0.115.6
 uvicorn==0.34.0
 httpx==0.28.1
 sse-starlette==2.2.1
-sentence-transformers>=3.0.0
-spacy>=3.7.0,<4.0.0
-openpyxl>=3.1.0
+sentence-transformers==5.6.0
+spacy==3.8.14
+openpyxl==3.1.5
+
+# Behavior-kritische Transitive explizit gepinnt (Embeddings + verdict_cache)
+transformers==5.12.1
+numpy==2.5.0
 
 # GDELT v2 GKG Connector — BigQuery-basiert (statt 5s-Rate-Limit DOC API).
 # Auth via GOOGLE_APPLICATION_CREDENTIALS env-var (Service-Account-JSON).
-google-cloud-bigquery>=3.25.0
+google-cloud-bigquery==3.42.1
 
 # Testing
-pytest>=8.0.0
-pytest-asyncio>=0.24.0
-pytest-timeout>=2.3.0
+pytest==9.1.1
+pytest-asyncio==1.4.0
+pytest-timeout==2.4.0
