@@ -276,6 +276,15 @@ server, edit `data/*.json` in-place, the next claim hits the new
 content. Verified in stress-test methodology step 4
 (`memory/stress_test_method.md`).
 
+> **Prerequisite (restored 2026-07-02):** hot-reload only works because
+> `docker-compose.yml` mounts `./backend/data` into the container. If
+> that mount is ever removed, the data files are baked into the image
+> at build time — host-side edits and `git pull` then never reach the
+> running container, and every `data/*.json` change silently requires
+> `docker compose up -d --build backend`. The mount also makes
+> generated caches (`cordis_projects_slim.json`,
+> `claimreview_index.json`) and the cron refresh tools survive rebuilds.
+
 #### Deploy decision table
 
 The hot-reload behavior interacts with the deployment workflow. After
