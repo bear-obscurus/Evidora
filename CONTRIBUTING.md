@@ -23,8 +23,11 @@ If you're new, read in this order:
 - Open a feature branch for any change: `feat/<short-name>`,
   `fix/<short-name>`, `docs/<short-name>`.
 - Open a Pull Request against `main`. Direct pushes to `main` are
-  discouraged.
-- Squash-merge or rebase-merge — keep the history clean.
+  **blocked by branch protection** (since 2026-07-02, enforced for
+  admins too) — both CI checks (unit suites + URL gate) must pass
+  before a PR can be merged. A red check now actually blocks the
+  merge instead of just warning.
+- Squash-merge — required linear history keeps `main` clean.
 
 ### Commit message style
 
