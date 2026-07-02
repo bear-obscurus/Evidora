@@ -43,3 +43,9 @@ website/backend/test_results*.json
 website/secrets/*.json
 !website/secrets/.gitkeep
 
+
+# Generierte Laufzeit-Caches (von Services/Cron geschrieben, nie committen —
+# seit dem data/-Mount 2026-07-02 landen sie im Host-Git-Tree)
+website/backend/data/claimreview_index.json
+website/backend/data/cordis_projects_slim.json
+website/backend/data/mitre_attack.json

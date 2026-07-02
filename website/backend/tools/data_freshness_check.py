@@ -34,6 +34,7 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 GENERATED_CACHES = {
     "cordis_projects_slim.json": (50_000_000, 100),   # Quartals-Cron + Puffer
     "claimreview_index.json": (1_000_000, None),      # beim Backend-Start neu gebaut
+    "mitre_attack.json": (1_000_000, None),           # STIX-Prefetch beim Backend-Start
 }
 
 
