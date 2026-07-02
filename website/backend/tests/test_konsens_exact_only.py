@@ -31,9 +31,36 @@ KONSENS_PACKS = [
     "wirtschaftspolitik_pack", "internationale_quellen",
 ]
 
+# Welle 2 (2026-07-02): die Mythen-Pack-Familie — alle Facts tragen
+# kernsatz (STRUKTURELL-Marker-fähig), Cosine-Kontamination hier ist die
+# gefährlichste Klasse. Noise-Probe ist der Mindestsicherungs-Claim
+# (nicht SIPRI: der wäre für sicherheitspolitik_pack thematisch legitim).
+MYTHOS_PACKS = [
+    "alltags_mythen_pack", "bildung_pack", "cybersecurity_pack",
+    "demokratie_pack", "digital_familie_pack", "energie_klima_pack",
+    "ernaehrungs_pack", "esoterik_pack", "finanzen_pack",
+    "geldanlage_pack", "geographie_pack", "geschichte_pack",
+    "geschichts_mythen2_pack", "gesundheits_autoritaeten_pack",
+    "gleichstellung_pack", "inklusion_pack", "kunst_kultur_pack",
+    "lebensmittel_pack", "mental_health_pack", "migration_pack",
+    "onkologie_pack", "recht_pack", "religionsgemeinschaften_pack",
+    "reproduktion_pack", "sicherheitspolitik_pack", "sport_fitness_pack",
+    "substanzen_pack", "tech_ki_pack", "tier_natur_pack",
+    "tierhaltung_pack", "verkehrssicherheit_pack", "verschwoerungen_pack",
+]
+
+ALL_EXACT_ONLY_PACKS = KONSENS_PACKS + MYTHOS_PACKS
+
 SIPRI_NOISE_CLAIM = (
     "Laut SIPRI-Jahrbuch 2024 liegt Österreich bei den "
     "Pro-Kopf-Rüstungsausgaben über dem NATO-Durchschnitt."
+)
+
+# Fängt sowohl die alte Cosine-Kontamination als auch Substring-Trigger-
+# Fallen ("ei" ⊂ Österreich + "sicher" ⊂ Mindestsicherung, Eier-Fact-Bug;
+# "frei" ⊂ rezeptfrei, Demokratie-Verfall-Bug — beide 2026-07-02 gefixt).
+MINDESTSICHERUNG_NOISE_CLAIM = (
+    "Die Mindestsicherung in Österreich beträgt rund 1000 Euro pro Monat."
 )
 
 
@@ -43,7 +70,7 @@ def _facts(pack_name):
         return json.load(fh).get("facts", [])
 
 
-@pytest.mark.parametrize("pack", KONSENS_PACKS)
+@pytest.mark.parametrize("pack", ALL_EXACT_ONLY_PACKS)
 def test_phrasings_battery_full_exact_coverage(pack):
     """Jede claim_phrasing des Packs muss EXAKT (Substring/Composite)
     matchen — sonst verliert sie durch den Backup-Disable ihren Treffer."""
@@ -68,7 +95,7 @@ def test_sipri_noise_claim_matches_nothing(pack):
     assert not hits, f"{pack}: SIPRI-Claim matcht {hits}"
 
 
-@pytest.mark.parametrize("pack", KONSENS_PACKS)
+@pytest.mark.parametrize("pack", ALL_EXACT_ONLY_PACKS)
 def test_cosine_backup_disabled(pack):
     """Die Service-Gates dürfen den Cosine-Backup nicht mehr nutzen —
     descriptor_fn=None ist der Kontrakt dieses Umbaus."""
@@ -78,3 +105,13 @@ def test_cosine_backup_disabled(pack):
         f"{pack}: Cosine-Backup wieder aktiv? descriptor_fn=None fehlt."
     )
     assert "descriptor_fn=_descriptor" not in src
+
+
+@pytest.mark.parametrize("pack", MYTHOS_PACKS)
+def test_mindestsicherung_noise_claim_matches_nothing(pack):
+    """Der Betrags-Claim (sozialstaat-Thema) darf keinen Mythen-Pack exakt
+    treffen — Referenz-Probe der Welle 2 gegen Substring-Trigger-Fallen."""
+    cl = MINDESTSICHERUNG_NOISE_CLAIM.lower()
+    hits = [f.get("id") or f.get("topic") for f in _facts(pack)
+            if substring_or_composite_match(f, cl)]
+    assert not hits, f"{pack}: Mindestsicherung-Claim matcht {hits}"

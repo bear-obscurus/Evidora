@@ -46,6 +46,22 @@
           "intervall",
           "zwingend"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "arbeitgeb"
+          ],
+          [
+            "zwingt"
+          ],
+          [
+            "monatlichem"
+          ],
+          [
+            "wechsel"
+          ]
+        ]
       ]
     },
     {
@@ -141,6 +157,37 @@
           "niemand sieht",
           "privatsphäre",
           "anonymisier"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "niemand"
+          ],
+          [
+            "mein"
+          ],
+          [
+            "surf-verhalt"
+          ],
+          [
+            "sehe"
+          ]
+        ],
+        [
+          [
+            "vpn-anbiet"
+          ],
+          [
+            "sehe"
+          ],
+          [
+            "mein"
+          ],
+          [
+            "aktivitaet",
+            "aktivität"
+          ]
         ]
       ]
     },
@@ -245,6 +292,22 @@
           "egal",
           "wichtig",
           "umfassend"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "bann"
+          ],
+          [
+            "anklick"
+          ],
+          [
+            "immer"
+          ],
+          [
+            "egal"
+          ]
         ]
       ]
     },
@@ -357,6 +420,31 @@
           "schikane",
           "lästig"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "passwort"
+          ],
+          [
+            "stark"
+          ],
+          [
+            "genug"
+          ],
+          [
+            "brauch"
+          ]
+        ],
+        [
+          [
+            "problem"
+          ],
+          [
+            "geraete-wechsel",
+            "geräte-wechsel"
+          ]
+        ]
       ]
     },
     {
@@ -407,6 +495,31 @@
           "alternative",
           "vertrauen"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "bewahr"
+          ],
+          [
+            "passwoert",
+            "passwört"
+          ],
+          [
+            "zettel"
+          ],
+          [
+            "bess"
+          ]
+        ],
+        [
+          [
+            "browser-passwort-speich"
+          ],
+          [
+            "reicht"
+          ]
+        ]
       ]
     },
     {
@@ -455,6 +568,33 @@
           "formulier",
           "schlecht",
           "korrekt"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "mail"
+          ],
+          [
+            "formuliert"
+          ],
+          [
+            "echt"
+          ]
+        ],
+        [
+          [
+            "grammatikalisch"
+          ],
+          [
+            "korrekt"
+          ],
+          [
+            "nicht"
+          ],
+          [
+            "auszusetz"
+          ]
         ]
       ]
     },

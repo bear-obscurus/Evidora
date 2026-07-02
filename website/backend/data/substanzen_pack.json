@@ -28,8 +28,33 @@
         "Frühzeitiger Cannabis-Konsum macht dumm"
       ],
       "trigger_composite": [
-        ["cannabis", "marihuana", "joint", "kiffen", "thc", "haschisch", "weed", "gras", "kifft", "kiffer"],
-        ["jugend", "jugendlich", "teenager", "adoleszenz", "kind", "hirn", "gehirn", "iq", "intelligenz", "dumm", "hirnschaden", "hirnschäden", "hirn-schaden"]
+        [
+          "cannabis",
+          "marihuana",
+          "joint",
+          "kiffen",
+          "thc",
+          "haschisch",
+          "weed",
+          "gras",
+          "kifft",
+          "kiffer"
+        ],
+        [
+          "jugend",
+          "jugendlich",
+          "teenager",
+          "adoleszenz",
+          "kind",
+          "hirn",
+          "gehirn",
+          "iq",
+          "intelligenz",
+          "dumm",
+          "hirnschaden",
+          "hirnschäden",
+          "hirn-schaden"
+        ]
       ]
     },
     {
@@ -60,8 +85,44 @@
         "Mikrodosing ist die neue Entdeckung der Forschung"
       ],
       "trigger_composite": [
-        ["mikrodosing", "microdose", "microdosing", "lsd", "psilocybin", "magic mushrooms", "psychedelika"],
-        ["kreativ", "produktiv", "stimmung", "wirkt", "wirksam", "verbessert", "performance", "kognition", "klüger", "fokus"]
+        [
+          "mikrodosing",
+          "microdose",
+          "microdosing",
+          "lsd",
+          "psilocybin",
+          "magic mushrooms",
+          "psychedelika"
+        ],
+        [
+          "kreativ",
+          "produktiv",
+          "stimmung",
+          "wirkt",
+          "wirksam",
+          "verbessert",
+          "performance",
+          "kognition",
+          "klüger",
+          "fokus"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "mikrodosing"
+          ],
+          [
+            "neue",
+            "neü"
+          ],
+          [
+            "entdeckung"
+          ],
+          [
+            "forschung"
+          ]
+        ]
       ]
     },
     {
@@ -92,8 +153,45 @@
         "Monster Energy ist schlechter als Kaffee"
       ],
       "trigger_composite": [
-        ["energy-drink", "energy drink", "energydrink", "red bull", "monster energy", "rockstar energy", "koffein", "taurin"],
-        ["herz", "herzinfarkt", "harmlos", "schädlich", "gefährlich", "gesundheit", "tod", "todesfall", "rhythmus", "arrhythmie", "blutdruck"]
+        [
+          "energy-drink",
+          "energy drink",
+          "energydrink",
+          "red bull",
+          "monster energy",
+          "rockstar energy",
+          "koffein",
+          "taurin"
+        ],
+        [
+          "herz",
+          "herzinfarkt",
+          "harmlos",
+          "schädlich",
+          "gefährlich",
+          "gesundheit",
+          "tod",
+          "todesfall",
+          "rhythmus",
+          "arrhythmie",
+          "blutdruck"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "monst"
+          ],
+          [
+            "energy"
+          ],
+          [
+            "schlecht"
+          ],
+          [
+            "kaffe"
+          ]
+        ]
       ]
     },
     {
@@ -124,8 +222,45 @@
         "Resveratrol im Rotwein ist gesund"
       ],
       "trigger_composite": [
-        ["alkohol", "rotwein", "wein", "bier", "spirituose", "schnaps", "französisches paradox", "resveratrol"],
-        ["herz", "herzgesund", "kardio", "gesund", "schützt", "moderat", "in maßen", "ein glas", "täglich", "trinken"]
+        [
+          "alkohol",
+          "rotwein",
+          "wein",
+          "bier",
+          "spirituose",
+          "schnaps",
+          "französisches paradox",
+          "resveratrol"
+        ],
+        [
+          "herz",
+          "herzgesund",
+          "kardio",
+          "gesund",
+          "schützt",
+          "moderat",
+          "in maßen",
+          "ein glas",
+          "täglich",
+          "trinken"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "franzoesisch",
+            "französisch"
+          ],
+          [
+            "paradox"
+          ],
+          [
+            "beweist"
+          ],
+          [
+            "wein"
+          ]
+        ]
       ]
     },
     {
@@ -157,8 +292,32 @@
         "Vape-Pen ist sichere Alternative zum Rauchen"
       ],
       "trigger_composite": [
-        ["e-zigarette", "e-zigaretten", "vape", "vapen", "vaping", "elektronische zigarette", "vape-pen", "e-zig", "iqos", "elf bar", "disposable"],
-        ["harmlos", "sicher", "schädlich", "gefährlich", "genauso", "alternative", "lunge", "lungenkrankheit", "krebs", "evali", "abhängig"]
+        [
+          "e-zigarette",
+          "e-zigaretten",
+          "vape",
+          "vapen",
+          "vaping",
+          "elektronische zigarette",
+          "vape-pen",
+          "e-zig",
+          "iqos",
+          "elf bar",
+          "disposable"
+        ],
+        [
+          "harmlos",
+          "sicher",
+          "schädlich",
+          "gefährlich",
+          "genauso",
+          "alternative",
+          "lunge",
+          "lungenkrankheit",
+          "krebs",
+          "evali",
+          "abhängig"
+        ]
       ]
     },
     {
@@ -189,8 +348,25 @@
         "Mitragyna speciosa ist nicht süchtig machend"
       ],
       "trigger_composite": [
-        ["kratom", "mitragyna", "mitragynin", "kratom-pulver", "kratom-tee"],
-        ["natürlich", "alternative", "harmlos", "sicher", "sucht", "süchtig", "schmerzmittel", "entzug", "opioid", "ohne risiko"]
+        [
+          "kratom",
+          "mitragyna",
+          "mitragynin",
+          "kratom-pulver",
+          "kratom-tee"
+        ],
+        [
+          "natürlich",
+          "alternative",
+          "harmlos",
+          "sicher",
+          "sucht",
+          "süchtig",
+          "schmerzmittel",
+          "entzug",
+          "opioid",
+          "ohne risiko"
+        ]
       ]
     },
     {
@@ -221,8 +397,46 @@
         "Sauna entgiftet Drogen aus dem Körper"
       ],
       "trigger_composite": [
-        ["drogen-test", "drogentest", "urintest", "haar-test", "haartest", "thc-test", "kokain-test", "blut-test"],
-        ["wasser", "kaffee", "sport", "schwitzen", "sauna", "cranberry", "detox", "negativ", "filter", "neutralisier", "verdünn"]
+        [
+          "drogen-test",
+          "drogentest",
+          "urintest",
+          "haar-test",
+          "haartest",
+          "thc-test",
+          "kokain-test",
+          "blut-test"
+        ],
+        [
+          "wasser",
+          "kaffee",
+          "sport",
+          "schwitzen",
+          "sauna",
+          "cranberry",
+          "detox",
+          "negativ",
+          "filter",
+          "neutralisier",
+          "verdünn"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "sauna"
+          ],
+          [
+            "entgiftet"
+          ],
+          [
+            "drog"
+          ],
+          [
+            "koerp",
+            "körp"
+          ]
+        ]
       ]
     },
     {
@@ -254,8 +468,31 @@
         "CBD ist immer sicher und natürlich"
       ],
       "trigger_composite": [
-        ["cbd", "cannabidiol", "cbd-öl", "cbd-oil", "hanftropfen"],
-        ["wundermittel", "heilt", "alles", "wirkt", "schmerzen", "schlaf", "angst", "krebs", "natürlich", "sicher", "harmlos", "ohne nebenwirkung", "wundermedizin"]
+        [
+          "cbd",
+          "cannabidiol",
+          "cbd-öl",
+          "cbd-oil",
+          "hanftropfen"
+        ],
+        [
+          "wundermittel",
+          "heilt",
+          "alles",
+          "wirkt",
+          "schmerzen",
+          "schlaf",
+          "angst",
+          "krebs",
+          "natürlich",
+          "sicher",
+          "harmlos",
+          "ohne nebenwirkung",
+          "wundermedizin"
+        ]
+      ],
+      "trigger_keywords": [
+        "cbd hat keine nebenwirkungen"
       ]
     },
     {
@@ -286,8 +523,31 @@
         "Cannabis-Legalisierung ist eine Drogen-Katastrophe"
       ],
       "trigger_composite": [
-        ["cannabis", "marihuana", "kiffen", "weed", "thc", "haschisch", "legalisierung", "legalisier", "cang", "konsumgesetz"],
-        ["jugend", "jugendlich", "teenager", "kinder", "schüler", "anstieg", "steigt", "epidemie", "katastrophe", "konsum", "verdoppelt"]
+        [
+          "cannabis",
+          "marihuana",
+          "kiffen",
+          "weed",
+          "thc",
+          "haschisch",
+          "legalisierung",
+          "legalisier",
+          "cang",
+          "konsumgesetz"
+        ],
+        [
+          "jugend",
+          "jugendlich",
+          "teenager",
+          "kinder",
+          "schüler",
+          "anstieg",
+          "steigt",
+          "epidemie",
+          "katastrophe",
+          "konsum",
+          "verdoppelt"
+        ]
       ]
     },
     {
@@ -318,8 +578,61 @@
         "Smoothies entfernen Schadstoffe aus dem Körper"
       ],
       "trigger_composite": [
-        ["detox", "entgiftung", "entgiften", "cleanse", "reinigung", "saftkur", "saftfasten", "juicing"],
-        ["drogen", "alkohol", "leber", "körper", "schadstoffe", "toxine", "gifte", "schwermetall", "reinigt", "entfernt", "ausschwemmen"]
+        [
+          "detox",
+          "entgiftung",
+          "entgiften",
+          "cleanse",
+          "reinigung",
+          "saftkur",
+          "saftfasten",
+          "juicing"
+        ],
+        [
+          "drogen",
+          "alkohol",
+          "leber",
+          "körper",
+          "schadstoffe",
+          "toxine",
+          "gifte",
+          "schwermetall",
+          "reinigt",
+          "entfernt",
+          "ausschwemmen"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "saeft",
+            "säft"
+          ],
+          [
+            "reinig"
+          ],
+          [
+            "leber"
+          ],
+          [
+            "drog"
+          ]
+        ],
+        [
+          [
+            "smoothi"
+          ],
+          [
+            "entfern"
+          ],
+          [
+            "schadstoff"
+          ],
+          [
+            "koerp",
+            "körp"
+          ]
+        ]
       ]
     }
   ]

@@ -28,8 +28,25 @@
         "Dunkle Schokolade ist toxisch für Hunde"
       ],
       "trigger_composite": [
-        ["hund", "hunde", "welpe", "haustier"],
-        ["schokolade", "kakao", "kakao-pulver", "theobromin", "süß", "naschen", "essen", "fressen", "toxisch", "giftig", "gefährlich"]
+        [
+          "hund",
+          "hunde",
+          "welpe",
+          "haustier"
+        ],
+        [
+          "schokolade",
+          "kakao",
+          "kakao-pulver",
+          "theobromin",
+          "süß",
+          "naschen",
+          "essen",
+          "fressen",
+          "toxisch",
+          "giftig",
+          "gefährlich"
+        ]
       ]
     },
     {
@@ -60,8 +77,23 @@
         "Erwachsene Katzen brauchen Milch"
       ],
       "trigger_composite": [
-        ["katze", "katzen", "kätzchen", "kater"],
-        ["milch", "kuhmilch", "schale milch", "trinken", "lieben", "artgerecht", "gut für", "gesund", "brauchen"]
+        [
+          "katze",
+          "katzen",
+          "kätzchen",
+          "kater"
+        ],
+        [
+          "milch",
+          "kuhmilch",
+          "schale milch",
+          "trinken",
+          "lieben",
+          "artgerecht",
+          "gut für",
+          "gesund",
+          "brauchen"
+        ]
       ]
     },
     {
@@ -92,8 +124,43 @@
         "Katzen können vegan ernährt werden ohne Probleme"
       ],
       "trigger_composite": [
-        ["vegan", "vegane ernährung", "vegetarisch", "pflanzlich", "fleischlos"],
-        ["hund", "hunde", "welpe", "katze", "katzen", "kätzchen", "haustier", "ernährung", "futter", "diet"]
+        [
+          "vegan",
+          "vegane ernährung",
+          "vegetarisch",
+          "pflanzlich",
+          "fleischlos"
+        ],
+        [
+          "hund",
+          "hunde",
+          "welpe",
+          "katze",
+          "katzen",
+          "kätzchen",
+          "haustier",
+          "ernährung",
+          "futter",
+          "diet"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "sollt"
+          ],
+          [
+            "ausschliesslich",
+            "ausschließlich"
+          ],
+          [
+            "tierisch"
+          ],
+          [
+            "ernaehrt",
+            "ernährt"
+          ]
+        ]
       ]
     },
     {
@@ -125,8 +192,26 @@
         "Welpen brauchen viel Spielzeit"
       ],
       "trigger_composite": [
-        ["welpe", "welpen", "junghund", "kätzchen", "junges tier"],
-        ["schlaf", "schlafen", "schläft", "stunden", "viel", "wenig", "faul", "aktiv", "müde", "ruhe", "wach"]
+        [
+          "welpe",
+          "welpen",
+          "junghund",
+          "kätzchen",
+          "junges tier"
+        ],
+        [
+          "schlaf",
+          "schlafen",
+          "schläft",
+          "stunden",
+          "viel",
+          "wenig",
+          "faul",
+          "aktiv",
+          "müde",
+          "ruhe",
+          "wach"
+        ]
       ]
     },
     {
@@ -157,8 +242,20 @@
         "Wildschweine sind Tollwut-Träger"
       ],
       "trigger_composite": [
-        ["wildschwein", "wildschweine", "schwarzwild"],
-        ["tollwut", "rabies", "lyssavirus", "biss", "übertragen", "krankheit", "infektion"]
+        [
+          "wildschwein",
+          "wildschweine",
+          "schwarzwild"
+        ],
+        [
+          "tollwut",
+          "rabies",
+          "lyssavirus",
+          "biss",
+          "übertragen",
+          "krankheit",
+          "infektion"
+        ]
       ]
     },
     {
@@ -189,8 +286,25 @@
         "Rohes Fleisch füttern ist natürliche Ernährung"
       ],
       "trigger_composite": [
-        ["barf", "rohfütterung", "rohfutter", "rohes fleisch", "rohfleisch"],
-        ["hund", "katze", "haustier", "ernährung", "futter", "gesund", "artgerecht", "gefährlich", "salmonellen", "natürlich"]
+        [
+          "barf",
+          "rohfütterung",
+          "rohfutter",
+          "rohes fleisch",
+          "rohfleisch"
+        ],
+        [
+          "hund",
+          "katze",
+          "haustier",
+          "ernährung",
+          "futter",
+          "gesund",
+          "artgerecht",
+          "gefährlich",
+          "salmonellen",
+          "natürlich"
+        ]
       ]
     },
     {
@@ -220,8 +334,23 @@
         "Sieben Leben einer Katze"
       ],
       "trigger_composite": [
-        ["katze", "katzen", "kater", "kätzchen"],
-        ["neun leben", "9 leben", "sieben leben", "7 leben", "leben", "überleben", "passiert nichts", "magisch", "widerstandsfähig"]
+        [
+          "katze",
+          "katzen",
+          "kater",
+          "kätzchen"
+        ],
+        [
+          "neun leben",
+          "9 leben",
+          "sieben leben",
+          "7 leben",
+          "leben",
+          "überleben",
+          "passiert nichts",
+          "magisch",
+          "widerstandsfähig"
+        ]
       ]
     },
     {
@@ -252,8 +381,40 @@
         "1:7-Regel für Hund-Alter ist korrekt"
       ],
       "trigger_composite": [
-        ["hund", "hunde", "hundejahr", "hundealter", "hundejahre"],
-        ["sieben menschenjahre", "7 menschenjahre", "sieben jahre", "1:7", "menschenjahre", "altern", "alter umrechnen", "umrechnung"]
+        [
+          "hund",
+          "hunde",
+          "hundejahr",
+          "hundealter",
+          "hundejahre"
+        ],
+        [
+          "sieben menschenjahre",
+          "7 menschenjahre",
+          "sieben jahre",
+          "1:7",
+          "menschenjahre",
+          "altern",
+          "alter umrechnen",
+          "umrechnung"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "mein"
+          ],
+          [
+            "5-jaehrig",
+            "5-jährig"
+          ],
+          [
+            "hund"
+          ],
+          [
+            "menschen-jahr"
+          ]
+        ]
       ]
     },
     {
@@ -284,8 +445,41 @@
         "Eine Katze kann aus dem 5. Stock fallen ohne Schaden"
       ],
       "trigger_composite": [
-        ["katze", "katzen", "kätzchen"],
-        ["pfoten landen", "auf pfoten", "drehreflex", "righting", "sturz", "stürzen", "fallen", "höhe", "stock", "fenster", "balkon", "springen"]
+        [
+          "katze",
+          "katzen",
+          "kätzchen"
+        ],
+        [
+          "pfoten landen",
+          "auf pfoten",
+          "drehreflex",
+          "righting",
+          "sturz",
+          "stürzen",
+          "fallen",
+          "höhe",
+          "stock",
+          "fenster",
+          "balkon",
+          "springen"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "katz"
+          ],
+          [
+            "land"
+          ],
+          [
+            "immer"
+          ],
+          [
+            "pfot"
+          ]
+        ]
       ]
     },
     {
@@ -316,8 +510,26 @@
         "Pferdefleisch zu essen ist gesund und akzeptiert"
       ],
       "trigger_composite": [
-        ["pferdefleisch", "pferd-fleisch", "pferd essen", "schlacht-pferd", "boucherie chevaline"],
-        ["essen", "konsum", "gefährlich", "ungesund", "gesund", "legal", "illegal", "tabu", "ethisch", "unethisch", "verboten"]
+        [
+          "pferdefleisch",
+          "pferd-fleisch",
+          "pferd essen",
+          "schlacht-pferd",
+          "boucherie chevaline"
+        ],
+        [
+          "essen",
+          "konsum",
+          "gefährlich",
+          "ungesund",
+          "gesund",
+          "legal",
+          "illegal",
+          "tabu",
+          "ethisch",
+          "unethisch",
+          "verboten"
+        ]
       ]
     }
   ]

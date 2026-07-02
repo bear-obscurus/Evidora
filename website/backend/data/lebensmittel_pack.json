@@ -28,8 +28,25 @@
         "Aufwärmen von Spinat ist gefährlich"
       ],
       "trigger_composite": [
-        ["spinat", "spinat-gemüse", "spinats", "blattgemüse"],
-        ["aufwärmen", "aufgewärmt", "wieder erhitzen", "nochmal", "giftig", "gefährlich", "nitrit", "nitrat", "vergiftung", "darf nicht", "darf nie"]
+        [
+          "spinat",
+          "spinat-gemüse",
+          "spinats",
+          "blattgemüse"
+        ],
+        [
+          "aufwärmen",
+          "aufgewärmt",
+          "wieder erhitzen",
+          "nochmal",
+          "giftig",
+          "gefährlich",
+          "nitrit",
+          "nitrat",
+          "vergiftung",
+          "darf nicht",
+          "darf nie"
+        ]
       ]
     },
     {
@@ -60,8 +77,28 @@
         "Pilz-Reste muss man wegwerfen"
       ],
       "trigger_composite": [
-        ["pilz", "pilze", "champignon", "champignons", "steinpilz", "pfifferling", "austernpilz", "pilzgericht"],
-        ["aufwärmen", "aufgewärmt", "wieder erhitzen", "nochmal", "giftig", "gefährlich", "vergiftung", "darf nicht", "darf nie", "wegwerfen"]
+        [
+          "pilz",
+          "pilze",
+          "champignon",
+          "champignons",
+          "steinpilz",
+          "pfifferling",
+          "austernpilz",
+          "pilzgericht"
+        ],
+        [
+          "aufwärmen",
+          "aufgewärmt",
+          "wieder erhitzen",
+          "nochmal",
+          "giftig",
+          "gefährlich",
+          "vergiftung",
+          "darf nicht",
+          "darf nie",
+          "wegwerfen"
+        ]
       ]
     },
     {
@@ -92,8 +129,44 @@
         "Solanin in Kartoffeln ist hochtoxisch"
       ],
       "trigger_composite": [
-        ["kartoffel", "kartoffeln", "kartoffel-keime", "kartoffeln keimen", "potato"],
-        ["grün", "grüne stellen", "keime", "keimen", "ausgekeimt", "solanin", "glycoalkaloid", "tödlich", "giftig", "wegwerfen", "ungefährlich"]
+        [
+          "kartoffel",
+          "kartoffeln",
+          "kartoffel-keime",
+          "kartoffeln keimen",
+          "potato"
+        ],
+        [
+          "grün",
+          "grüne stellen",
+          "keime",
+          "keimen",
+          "ausgekeimt",
+          "solanin",
+          "glycoalkaloid",
+          "tödlich",
+          "giftig",
+          "wegwerfen",
+          "ungefährlich"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "klein"
+          ],
+          [
+            "gruen",
+            "grün"
+          ],
+          [
+            "stell"
+          ],
+          [
+            "ungefaehrlich",
+            "ungefährlich"
+          ]
+        ]
       ]
     },
     {
@@ -124,8 +197,28 @@
         "Eier in Schale in der Mikrowelle ist nicht gefährlich"
       ],
       "trigger_composite": [
-        ["ei", "eier", "eier-schale", "ei kochen", "eier kochen"],
-        ["mikrowelle", "mikrowellen", "explodier", "explosion", "platzen", "anstechen", "schale", "sicher", "problemlos"]
+        [
+          "eier",
+          "eier-schale",
+          "ei kochen",
+          "eier kochen",
+          "ei in der mikrowelle",
+          " ei ",
+          "eigelb",
+          "rohes ei",
+          "gekochtes ei"
+        ],
+        [
+          "mikrowelle",
+          "mikrowellen",
+          "explodier",
+          "explosion",
+          "platzen",
+          "anstechen",
+          "schale",
+          "sicher",
+          "problemlos"
+        ]
       ]
     },
     {
@@ -156,8 +249,25 @@
         "Honig vor 12 Monaten ist kein Problem"
       ],
       "trigger_composite": [
-        ["honig", "honig-aufstrich", "honey", "bienenhonig"],
-        ["baby", "babys", "säugling", "säuglinge", "kleinkind", "12 monate", "12 monaten", "vor jahr", "geben", "sicher", "unbedenklich"]
+        [
+          "honig",
+          "honig-aufstrich",
+          "honey",
+          "bienenhonig"
+        ],
+        [
+          "baby",
+          "babys",
+          "säugling",
+          "säuglinge",
+          "kleinkind",
+          "12 monate",
+          "12 monaten",
+          "vor jahr",
+          "geben",
+          "sicher",
+          "unbedenklich"
+        ]
       ]
     },
     {
@@ -188,8 +298,25 @@
         "Eier in der Küche zu lagern ist gefährlich"
       ],
       "trigger_composite": [
-        ["eier", "ei lagerung", "ei lagern", "egg", "eggs"],
-        ["kühlschrank", "kühlung", "raumtemperatur", "kühlen", "lagerung", "lagern", "müssen", "zwingend", "ungesund", "gefährlich"]
+        [
+          "eier",
+          "ei lagerung",
+          "ei lagern",
+          "egg",
+          "eggs"
+        ],
+        [
+          "kühlschrank",
+          "kühlung",
+          "raumtemperatur",
+          "kühlen",
+          "lagerung",
+          "lagern",
+          "müssen",
+          "zwingend",
+          "ungesund",
+          "gefährlich"
+        ]
       ]
     },
     {
@@ -220,8 +347,25 @@
         "Verbrauchsdatum überschritten ist nicht so schlimm"
       ],
       "trigger_composite": [
-        ["mhd", "mindesthaltbarkeitsdatum", "mindesthaltbar", "verbrauchsdatum", "haltbarkeitsdatum", "ablaufdatum"],
-        ["abgelaufen", "wegwerfen", "ungenießbar", "giftig", "schlecht", "gefährlich", "überschritten", "pflicht", "nach"]
+        [
+          "mhd",
+          "mindesthaltbarkeitsdatum",
+          "mindesthaltbar",
+          "verbrauchsdatum",
+          "haltbarkeitsdatum",
+          "ablaufdatum"
+        ],
+        [
+          "abgelaufen",
+          "wegwerfen",
+          "ungenießbar",
+          "giftig",
+          "schlecht",
+          "gefährlich",
+          "überschritten",
+          "pflicht",
+          "nach"
+        ]
       ]
     },
     {
@@ -252,8 +396,38 @@
         "Würstchen-Schnitt-Empfehlung ist überzogen"
       ],
       "trigger_composite": [
-        ["würstchen", "hot dog", "wiener", "frankfurter", "wurst kinder", "wurst-brot"],
-        ["kinder", "kleinkind", "baby", "klein", "ersticken", "erstickung", "harmlos", "sicher", "schlucken", "verschlucken"]
+        [
+          "würstchen",
+          "hot dog",
+          "wiener",
+          "frankfurter",
+          "wurst kinder",
+          "wurst-brot"
+        ],
+        [
+          "kinder",
+          "kleinkind",
+          "baby",
+          "klein",
+          "ersticken",
+          "erstickung",
+          "harmlos",
+          "sicher",
+          "schlucken",
+          "verschlucken"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "wuerstchen-schnitt-empfehlung",
+            "würstchen-schnitt-empfehlung"
+          ],
+          [
+            "ueberzog",
+            "überzog"
+          ]
+        ]
       ]
     },
     {
@@ -284,8 +458,40 @@
         "Kühlkette-Unterbrechung ist überbewertet"
       ],
       "trigger_composite": [
-        ["kühlkette", "kühlung", "kühlketten-unterbrechung", "raumtemperatur", "ungekühlt", "buffet", "picknick"],
-        ["unterbrochen", "unterbrechung", "stunden", "egal", "essbar", "verzehrbar", "wegwerfen", "danger zone", "bakterien", "verderblich"]
+        [
+          "kühlkette",
+          "kühlung",
+          "kühlketten-unterbrechung",
+          "raumtemperatur",
+          "ungekühlt",
+          "buffet",
+          "picknick"
+        ],
+        [
+          "unterbrochen",
+          "unterbrechung",
+          "stunden",
+          "egal",
+          "essbar",
+          "verzehrbar",
+          "wegwerfen",
+          "danger zone",
+          "bakterien",
+          "verderblich"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "wied"
+          ],
+          [
+            "einfrier"
+          ],
+          [
+            "immer"
+          ]
+        ]
       ]
     },
     {
@@ -316,8 +522,27 @@
         "Im warmen Wasser-Bad auftauen ist schnell und sicher"
       ],
       "trigger_composite": [
-        ["auftauen", "auftauung", "tauen", "defrosten", "gefrorenes", "tiefkühl", "tiefgefroren"],
-        ["zimmertemperatur", "raumtemperatur", "theke", "küchen-theke", "warmes wasser", "über nacht", "ok", "sicher", "egal", "standard"]
+        [
+          "auftauen",
+          "auftauung",
+          "tauen",
+          "defrosten",
+          "gefrorenes",
+          "tiefkühl",
+          "tiefgefroren"
+        ],
+        [
+          "zimmertemperatur",
+          "raumtemperatur",
+          "theke",
+          "küchen-theke",
+          "warmes wasser",
+          "über nacht",
+          "ok",
+          "sicher",
+          "egal",
+          "standard"
+        ]
       ]
     }
   ]

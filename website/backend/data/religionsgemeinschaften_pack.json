@@ -59,6 +59,50 @@
           "kein christ",
           "abnehmen"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "christ"
+          ],
+          [
+            "sterb"
+          ],
+          [
+            "europa"
+          ]
+        ],
+        [
+          [
+            "christentum"
+          ],
+          [
+            "absteigend"
+          ]
+        ],
+        [
+          [
+            "dach"
+          ],
+          [
+            "bald"
+          ],
+          [
+            "christ"
+          ]
+        ],
+        [
+          [
+            "saekularisierung",
+            "säkularisierung"
+          ],
+          [
+            "global"
+          ],
+          [
+            "trend"
+          ]
+        ]
       ]
     },
     {
@@ -186,6 +230,23 @@
           "gilt",
           "rechtssystem"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "muslim"
+          ],
+          [
+            "fuehr",
+            "führ"
+          ],
+          [
+            "eigen"
+          ],
+          [
+            "rechtsordnung"
+          ]
+        ]
       ]
     },
     {
@@ -249,6 +310,37 @@
           "drahtzieher",
           "lenken",
           "stecken hinter"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "soro"
+          ],
+          [
+            "finanziert"
+          ],
+          [
+            "link"
+          ],
+          [
+            "beweg"
+          ]
+        ],
+        [
+          [
+            "mossad"
+          ],
+          [
+            "steckt"
+          ],
+          [
+            "hint"
+          ],
+          [
+            "anschlaeg",
+            "anschläg"
+          ]
         ]
       ]
     },
@@ -442,6 +534,19 @@
           "schätze",
           "schaetze"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "kirch"
+          ],
+          [
+            "besitzt"
+          ],
+          [
+            "trill"
+          ]
+        ]
       ]
     },
     {
@@ -502,6 +607,57 @@
           "kosten",
           "aufkommen",
           "abzug"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "kirch"
+          ],
+          [
+            "steuergeld",
+            "steürgeld"
+          ],
+          [
+            "finanziert"
+          ]
+        ],
+        [
+          [
+            "konfessionslos"
+          ],
+          [
+            "zahl"
+          ],
+          [
+            "kirch"
+          ]
+        ],
+        [
+          [
+            "staat"
+          ],
+          [
+            "finanziert"
+          ],
+          [
+            "kirch"
+          ],
+          [
+            "milliard"
+          ]
+        ],
+        [
+          [
+            "mein"
+          ],
+          [
+            "steuergeld",
+            "steürgeld"
+          ],
+          [
+            "kirch"
+          ]
         ]
       ]
     },
@@ -622,6 +778,19 @@
           "anerkannt",
           "religion"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "bluttransfusions-verbot"
+          ],
+          [
+            "erlaubt"
+          ],
+          [
+            "deutschland"
+          ]
+        ]
       ]
     },
     {
@@ -692,6 +861,34 @@
           "feindlich",
           "beratung",
           "beratungsstell"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "neue",
+            "neü"
+          ],
+          [
+            "religio"
+          ],
+          [
+            "sekt"
+          ],
+          [
+            "beschimpft"
+          ]
+        ],
+        [
+          [
+            "erkenn"
+          ],
+          [
+            "destruktiv"
+          ],
+          [
+            "kult"
+          ]
         ]
       ]
     },
@@ -881,6 +1078,17 @@
           "konfessionsfrei",
           "konfessionslos"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "ethik-unterricht"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ]
+        ]
       ]
     },
     {
@@ -924,7 +1132,8 @@
         "seele unsterblich",
         "reinkarnation gibt es",
         "engel existieren",
-        "teufel existiert"
+        "teufel existiert",
+        "es gibt einen gott"
       ],
       "trigger_composite": [
         [
@@ -958,7 +1167,50 @@
       ],
       "source_label": "Nietzsche-Philosophie (Die fröhliche Wissenschaft 1882) + Religions-Wissenschaft (Bertelsmann Religionsmonitor + Pew Global Attitudes) + Politik-Guardrails Evidora",
       "source_url": "https://www.gutenberg.org/cache/epub/7203/pg7203-images.html",
-      "secondary_url": "https://www.bertelsmann-stiftung.de/de/unsere-projekte/religionsmonitor"
+      "secondary_url": "https://www.bertelsmann-stiftung.de/de/unsere-projekte/religionsmonitor",
+      "trigger_all": [
+        [
+          [
+            "seel"
+          ],
+          [
+            "unsterblich"
+          ]
+        ],
+        [
+          [
+            "jesu"
+          ],
+          [
+            "sohn"
+          ],
+          [
+            "gott"
+          ]
+        ],
+        [
+          [
+            "mohammed"
+          ],
+          [
+            "letzt"
+          ],
+          [
+            "prophet"
+          ]
+        ],
+        [
+          [
+            "buddha"
+          ],
+          [
+            "wahrheit"
+          ],
+          [
+            "erkannt"
+          ]
+        ]
+      ]
     }
   ]
 }

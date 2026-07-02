@@ -51,6 +51,19 @@
           "versagen",
           "schwach"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "depressiv"
+          ],
+          [
+            "einfach"
+          ],
+          [
+            "will"
+          ]
+        ]
       ]
     },
     {
@@ -100,6 +113,23 @@
           "suchtgefährdend",
           "suchtmittel",
           "drogen"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "pill"
+          ],
+          [
+            "depressio"
+          ],
+          [
+            "suechtig",
+            "süchtig"
+          ],
+          [
+            "drog"
+          ]
         ]
       ]
     },
@@ -152,6 +182,22 @@
           "unsinn",
           "nichts hilft",
           "geldverschwendung"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "rede"
+          ],
+          [
+            "hilft"
+          ],
+          [
+            "psychisch"
+          ],
+          [
+            "problem"
+          ]
         ]
       ]
     },
@@ -209,6 +255,34 @@
           "reden",
           "sprechen",
           "drüber reden"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "selbstmord-bericht"
+          ],
+          [
+            "fuehr",
+            "führ"
+          ],
+          [
+            "selbstmord"
+          ]
+        ],
+        [
+          [
+            "suizid"
+          ],
+          [
+            "redet"
+          ],
+          [
+            "darauf"
+          ],
+          [
+            "aufmerksam"
+          ]
         ]
       ]
     },
@@ -365,6 +439,32 @@
           "ich selbst",
           "echtes selbst"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "antidepressiva"
+          ],
+          [
+            "ander"
+          ],
+          [
+            "mensch"
+          ]
+        ],
+        [
+          [
+            "pill"
+          ],
+          [
+            "veraender",
+            "veränder"
+          ],
+          [
+            "persoenlichkeit",
+            "persönlichkeit"
+          ]
+        ]
       ]
     },
     {
@@ -418,6 +518,23 @@
           "code",
           "decodier"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "schlang"
+          ],
+          [
+            "traeumt",
+            "träumt"
+          ],
+          [
+            "bedeutet"
+          ],
+          [
+            "bestimmt"
+          ]
+        ]
       ]
     },
     {
@@ -467,6 +584,22 @@
           "manipulation",
           "ernst meint",
           "tut es nicht"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "ernst"
+          ],
+          [
+            "meint"
+          ],
+          [
+            "nicht"
+          ],
+          [
+            "vorh"
+          ]
         ]
       ]
     },
@@ -523,6 +656,17 @@
           "mode",
           "schwach",
           "willenlos"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "essgestoert",
+            "essgestört"
+          ],
+          [
+            "selbstkontroll"
+          ]
         ]
       ]
     }

@@ -87,7 +87,7 @@ def _claim_matches_facts(claim_lc: str, full_claim: str | None = None) -> list[d
     return find_matching_items(
         STATIC_JSON_PATH, "facts",
         claim_lc=claim_lc, full_claim=full_claim,
-        descriptor_fn=_descriptor,
+        descriptor_fn=None,  # Cosine-Backup deaktiviert (Mythen-Pack-Welle 2026-07-02, analog #41): Marker-Packs kontaminieren via Cosine; Battery 100%
     )
 
 

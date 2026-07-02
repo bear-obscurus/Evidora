@@ -28,14 +28,45 @@
         "AI ist sentient"
       ],
       "trigger_keywords": [
-        "ki bewusst", "ki ist bewusst", "ki hat bewusstsein",
-        "chatgpt bewusst", "chatgpt fuehlt", "chatgpt fühlt",
-        "sprachmodell bewusst", "llm bewusst",
-        "ai sentient", "ai conscious", "ki sentient"
+        "ki bewusst",
+        "ki ist bewusst",
+        "ki hat bewusstsein",
+        "chatgpt bewusst",
+        "chatgpt fuehlt",
+        "chatgpt fühlt",
+        "sprachmodell bewusst",
+        "llm bewusst",
+        "ai sentient",
+        "ai conscious",
+        "ki sentient"
       ],
       "trigger_composite": [
-        ["ki", "ai", "chatgpt", "claude", "gemini", "llm", "sprachmodell", "kuenstliche intelligenz"],
-        ["bewusst", "sentient", "selbstbewusst", "selbst-bewusst", "fuehlt", "fühlt", "gefühl", "gefuehl", "gefuehle", "gefühle", "hat gefühle", "denkt selbst", "consciousness", "empfindet"]
+        [
+          "ki",
+          "ai",
+          "chatgpt",
+          "claude",
+          "gemini",
+          "llm",
+          "sprachmodell",
+          "kuenstliche intelligenz"
+        ],
+        [
+          "bewusst",
+          "sentient",
+          "selbstbewusst",
+          "selbst-bewusst",
+          "fuehlt",
+          "fühlt",
+          "gefühl",
+          "gefuehl",
+          "gefuehle",
+          "gefühle",
+          "hat gefühle",
+          "denkt selbst",
+          "consciousness",
+          "empfindet"
+        ]
       ],
       "source_label": "Bender et al. 2021 (FAccT) + LeCun + ML-Forschungs-Konsens",
       "source_url": "https://dl.acm.org/doi/10.1145/3442188.3445922",
@@ -65,13 +96,36 @@
         "Bitcoin schützt vor Strafverfolgung"
       ],
       "trigger_keywords": [
-        "bitcoin anonym", "bitcoin nicht nachverfolgbar",
-        "krypto anonym", "kryptowaehrung anonym", "kryptowährung anonym",
-        "krypto nicht nachverfolgbar", "btc anonym"
+        "bitcoin anonym",
+        "bitcoin nicht nachverfolgbar",
+        "krypto anonym",
+        "kryptowaehrung anonym",
+        "kryptowährung anonym",
+        "krypto nicht nachverfolgbar",
+        "btc anonym"
       ],
       "trigger_composite": [
-        ["bitcoin", "btc", "krypto", "kryptowaehrung", "kryptowährung", "blockchain"],
-        ["anonym", "nicht nachverfolg", "nicht zurückverfolg", "nicht zurueckverfolg", "nicht identifizier", "geheim", "untraceable", "schuetzt vor", "schützt vor", "strafverfolg", "verfolgung"]
+        [
+          "bitcoin",
+          "btc",
+          "krypto",
+          "kryptowaehrung",
+          "kryptowährung",
+          "blockchain"
+        ],
+        [
+          "anonym",
+          "nicht nachverfolg",
+          "nicht zurückverfolg",
+          "nicht zurueckverfolg",
+          "nicht identifizier",
+          "geheim",
+          "untraceable",
+          "schuetzt vor",
+          "schützt vor",
+          "strafverfolg",
+          "verfolgung"
+        ]
       ],
       "source_label": "Chainalysis Crypto Crime Report + DOJ-Cases + Meiklejohn 2013",
       "source_url": "https://www.chainalysis.com/blog/2024-crypto-crime-trends/",
@@ -102,14 +156,42 @@
         "Krypto-Stromverbrauch ist enorm"
       ],
       "trigger_keywords": [
-        "bitcoin stromverbrauch", "bitcoin energie",
-        "bitcoin twh", "bitcoin mining strom",
-        "bitcoin mining energie", "bitcoin klimawandel",
-        "krypto stromverbrauch", "krypto-stromverbrauch"
+        "bitcoin stromverbrauch",
+        "bitcoin energie",
+        "bitcoin twh",
+        "bitcoin mining strom",
+        "bitcoin mining energie",
+        "bitcoin klimawandel",
+        "krypto stromverbrauch",
+        "krypto-stromverbrauch"
       ],
       "trigger_composite": [
-        ["bitcoin", "btc", "krypto", "kryptowaehrung", "kryptowährung", "blockchain", "mining"],
-        ["strom", "energie", "verbrauch", "twh", "kohle", "co2", "umwelt", "klima", "klimawandel", "klimaschäd", "klimaschaed", "nachhaltigkeit", "kwh", "megawatt", "gigawatt"]
+        [
+          "bitcoin",
+          "btc",
+          "krypto",
+          "kryptowaehrung",
+          "kryptowährung",
+          "blockchain",
+          "mining"
+        ],
+        [
+          "strom",
+          "energie",
+          "verbrauch",
+          "twh",
+          "kohle",
+          "co2",
+          "umwelt",
+          "klima",
+          "klimawandel",
+          "klimaschäd",
+          "klimaschaed",
+          "nachhaltigkeit",
+          "kwh",
+          "megawatt",
+          "gigawatt"
+        ]
       ],
       "source_label": "Cambridge CBECI + IEA Electricity 2024",
       "source_url": "https://ccaf.io/cbnsi/cbeci",
@@ -139,18 +221,49 @@
         "Quantencomputer kommen 2025"
       ],
       "trigger_keywords": [
-        "quantencomputer verschluesselung", "quantencomputer verschlüsselung",
-        "quantencomputer rsa", "quantum decryption",
+        "quantencomputer verschluesselung",
+        "quantencomputer verschlüsselung",
+        "quantencomputer rsa",
+        "quantum decryption",
         "quantum computer break encryption",
-        "quantum krypto apokalypse"
+        "quantum krypto apokalypse",
+        "rsa ist nicht mehr sicher"
       ],
       "trigger_composite": [
-        ["quantencomputer", "quantum computer", "quanten-computer", "quantum"],
-        ["verschluessel", "verschlüssel", "rsa", "encryption", "kryptografie", "kryptographie", "brechen", "knack", "break"]
+        [
+          "quantencomputer",
+          "quantum computer",
+          "quanten-computer",
+          "quantum"
+        ],
+        [
+          "verschluessel",
+          "verschlüssel",
+          "rsa",
+          "encryption",
+          "kryptografie",
+          "kryptographie",
+          "brechen",
+          "knack",
+          "break"
+        ]
       ],
       "source_label": "NIST PQC FIPS 203/204/205 + Gidney & Ekerå 2021",
       "source_url": "https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards",
-      "secondary_url": "https://en.wikipedia.org/wiki/Post-quantum_cryptography"
+      "secondary_url": "https://en.wikipedia.org/wiki/Post-quantum_cryptography",
+      "trigger_all": [
+        [
+          [
+            "quantencomput"
+          ],
+          [
+            "komm"
+          ],
+          [
+            "2025"
+          ]
+        ]
+      ]
     },
     {
       "id": "anonymisierung_2026",
@@ -176,18 +289,48 @@
         "Datenschutz durch Anonymisierung"
       ],
       "trigger_keywords": [
-        "anonymisierte daten sicher", "anonymisierte daten nicht",
-        "anonyme daten zurueck", "anonyme daten zurück",
-        "re-identifikation", "reidentifikation",
-        "anonymisierung schuetzt", "anonymisierung schützt"
+        "anonymisierte daten sicher",
+        "anonymisierte daten nicht",
+        "anonyme daten zurueck",
+        "anonyme daten zurück",
+        "re-identifikation",
+        "reidentifikation",
+        "anonymisierung schuetzt",
+        "anonymisierung schützt"
       ],
       "trigger_composite": [
-        ["anonymis", "anonym daten", "anonyme daten", "pseudonymis"],
-        ["sicher", "schuetz", "schütz", "zurueckverfolg", "zurückverfolg", "identifizier", "geheim", "unverfolgbar", "rueckverfolg", "rückverfolg"]
+        [
+          "anonymis",
+          "anonym daten",
+          "anonyme daten",
+          "pseudonymis"
+        ],
+        [
+          "sicher",
+          "schuetz",
+          "schütz",
+          "zurueckverfolg",
+          "zurückverfolg",
+          "identifizier",
+          "geheim",
+          "unverfolgbar",
+          "rueckverfolg",
+          "rückverfolg"
+        ]
       ],
       "source_label": "Sweeney 1997 + Narayanan 2008 + de Montjoye 2013",
       "source_url": "https://dataprivacylab.org/projects/identifiability/paper1.pdf",
-      "secondary_url": "https://en.wikipedia.org/wiki/Data_re-identification"
+      "secondary_url": "https://en.wikipedia.org/wiki/Data_re-identification",
+      "trigger_all": [
+        [
+          [
+            "datenschutz"
+          ],
+          [
+            "anonymisierung"
+          ]
+        ]
+      ]
     },
     {
       "id": "vpn_anonymitaet_2026",
@@ -213,13 +356,26 @@
         "VPN schützt vor allem im Internet"
       ],
       "trigger_keywords": [
-        "vpn anonym", "vpn macht anonym",
-        "vpn unsichtbar", "vpn vollstaendig anonym",
+        "vpn anonym",
+        "vpn macht anonym",
+        "vpn unsichtbar",
+        "vpn vollstaendig anonym",
         "vpn vollständig anonym"
       ],
       "trigger_composite": [
-        ["vpn", "virtual private network"],
-        ["anonym", "unsichtbar", "spurlos", "nicht verfolgbar", "schuetzt vor", "schützt vor", "macht anonym"]
+        [
+          "vpn",
+          "virtual private network"
+        ],
+        [
+          "anonym",
+          "unsichtbar",
+          "spurlos",
+          "nicht verfolgbar",
+          "schuetzt vor",
+          "schützt vor",
+          "macht anonym"
+        ]
       ],
       "source_label": "EFF + Mullvad/ProtonVPN-Audits + Tor Project",
       "source_url": "https://www.eff.org/issues/vpn",
@@ -251,16 +407,47 @@
         "Cyber-Kriminalität wächst exponentiell"
       ],
       "trigger_keywords": [
-        "cyberangriff", "cyber-angriff",
-        "cyberkriminalitaet", "cyber-kriminalitaet",
-        "cyberkriminalität", "cyber-kriminalität",
-        "ransomware", "ddos",
-        "phishing welle", "hacker eu",
+        "cyberangriff",
+        "cyber-angriff",
+        "cyberkriminalitaet",
+        "cyber-kriminalitaet",
+        "cyberkriminalität",
+        "cyber-kriminalität",
+        "ransomware",
+        "ddos",
+        "phishing welle",
+        "hacker eu",
         "enisa cybersecurity"
       ],
       "trigger_composite": [
-        ["cyber", "ransomware", "ddos", "hacker", "phishing", "malware", "cybersecurity", "datenangriff", "datenleck"],
-        ["eu", "europa", "europaeisch", "europäisch", "deutschland", "österreich", "oesterreich", "zunehmen", "wachsen", "groesser werden", "größer werden", "bedrohung", "attacke", "angriff", "incident"]
+        [
+          "cyber",
+          "ransomware",
+          "ddos",
+          "hacker",
+          "phishing",
+          "malware",
+          "cybersecurity",
+          "datenangriff",
+          "datenleck"
+        ],
+        [
+          "eu",
+          "europa",
+          "europaeisch",
+          "europäisch",
+          "deutschland",
+          "österreich",
+          "oesterreich",
+          "zunehmen",
+          "wachsen",
+          "groesser werden",
+          "größer werden",
+          "bedrohung",
+          "attacke",
+          "angriff",
+          "incident"
+        ]
       ],
       "source_label": "ENISA Threat Landscape 2024",
       "source_url": "https://www.enisa.europa.eu/publications/enisa-threat-landscape-2024",
@@ -293,14 +480,45 @@
         "5G hat schlechtere Coverage als 4G"
       ],
       "trigger_keywords": [
-        "5g eu zurueck", "5g eu zurück",
-        "5g europa schlecht", "5g langsam",
-        "5g coverage", "5g ausbau",
-        "5g vs 4g speed", "5g langsamer 4g"
+        "5g eu zurueck",
+        "5g eu zurück",
+        "5g europa schlecht",
+        "5g langsam",
+        "5g coverage",
+        "5g ausbau",
+        "5g vs 4g speed",
+        "5g langsamer 4g"
       ],
       "trigger_composite": [
-        ["5g", "5g-mobilfunk", "5g-ausbau", "5g-netz", "5g-coverage", "5g-network"],
-        ["4g", "lte", "speed", "geschwindigkeit", "schnell", "schnellig", "schnelle", "langsam", "langsamer", "ausbau", "ausgebaut", "ausgebaute", "coverage", "abdeckung", "schlecht", "zurück", "zurueck", "hinter", "alltag"]
+        [
+          "5g",
+          "5g-mobilfunk",
+          "5g-ausbau",
+          "5g-netz",
+          "5g-coverage",
+          "5g-network"
+        ],
+        [
+          "4g",
+          "lte",
+          "speed",
+          "geschwindigkeit",
+          "schnell",
+          "schnellig",
+          "schnelle",
+          "langsam",
+          "langsamer",
+          "ausbau",
+          "ausgebaut",
+          "ausgebaute",
+          "coverage",
+          "abdeckung",
+          "schlecht",
+          "zurück",
+          "zurueck",
+          "hinter",
+          "alltag"
+        ]
       ],
       "source_label": "BEREC Telecom Reality Check 2024 + EU Broadband Coverage Report",
       "source_url": "https://www.berec.europa.eu/en/document-categories/berec/reports/berec-report-on-the-5g-ecosystem",
@@ -331,17 +549,38 @@
         "Android ist unsicher"
       ],
       "trigger_keywords": [
-        "iphone sicherer android", "apple sicherer android",
-        "ios sicherer android", "android unsicher",
+        "iphone sicherer android",
+        "apple sicherer android",
+        "ios sicherer android",
+        "android unsicher",
         "android nicht sicher"
       ],
       "trigger_composite": [
-        ["apple", "iphone", "ios"],
-        ["sicherer", "sicherer als android", "besser als android", "android unsicher"]
+        [
+          "apple",
+          "iphone",
+          "ios"
+        ],
+        [
+          "sicherer",
+          "sicherer als android",
+          "besser als android",
+          "android unsicher"
+        ]
       ],
       "source_label": "NIST CVE-Datenbank + Lookout Threat Reports + Cellebrite-Forensik",
       "source_url": "https://nvd.nist.gov/vuln/search",
-      "secondary_url": "https://en.wikipedia.org/wiki/Mobile_security"
+      "secondary_url": "https://en.wikipedia.org/wiki/Mobile_security",
+      "trigger_all": [
+        [
+          [
+            "android"
+          ],
+          [
+            "unsich"
+          ]
+        ]
+      ]
     }
   ]
 }

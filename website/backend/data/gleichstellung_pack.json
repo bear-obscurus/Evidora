@@ -69,6 +69,54 @@
           "beruf",
           "selber schuld"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "frau"
+          ],
+          [
+            "verdien"
+          ],
+          [
+            "prozent"
+          ],
+          [
+            "maenn",
+            "männ"
+          ]
+        ],
+        [
+          [
+            "frau"
+          ],
+          [
+            "verhandel"
+          ],
+          [
+            "einfach"
+          ],
+          [
+            "schlecht"
+          ]
+        ],
+        [
+          [
+            "bereinigt"
+          ],
+          [
+            "prozent"
+          ]
+        ],
+        [
+          [
+            "lohnlueck",
+            "lohnlück"
+          ],
+          [
+            "eigentlich"
+          ]
+        ]
       ]
     },
     {
@@ -130,6 +178,53 @@
           "alibifrau",
           "gerecht",
           "ungerecht"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "quot"
+          ],
+          [
+            "fuehrt",
+            "führt"
+          ],
+          [
+            "alibi-frau"
+          ],
+          [
+            "qualifikatio"
+          ]
+        ],
+        [
+          [
+            "quot"
+          ],
+          [
+            "eigentlich"
+          ],
+          [
+            "diskriminierung"
+          ],
+          [
+            "maenn",
+            "männ"
+          ]
+        ],
+        [
+          [
+            "norwegen-quot"
+          ],
+          [
+            "schlechter"
+          ],
+          [
+            "firm"
+          ],
+          [
+            "gefuehrt",
+            "geführt"
+          ]
         ]
       ]
     },
@@ -261,6 +356,32 @@
           "systematisch",
           "selten"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "maenn",
+            "männ"
+          ],
+          [
+            "ermordet"
+          ],
+          [
+            "aufschrei"
+          ]
+        ],
+        [
+          [
+            "toetung",
+            "tötung"
+          ],
+          [
+            "partnerschaft"
+          ],
+          [
+            "systemisch"
+          ]
+        ]
       ]
     },
     {
@@ -327,6 +448,50 @@
           "dunkelfeld",
           "anzeigen"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "frau"
+          ],
+          [
+            "luege",
+            "lüge"
+          ],
+          [
+            "sexualisiert"
+          ],
+          [
+            "uebergriff",
+            "übergriff"
+          ]
+        ],
+        [
+          [
+            "anzeig"
+          ],
+          [
+            "sexuell",
+            "sexüll"
+          ],
+          [
+            "gewalt"
+          ],
+          [
+            "erfund"
+          ]
+        ],
+        [
+          [
+            "sexualstraftat"
+          ],
+          [
+            "wenig"
+          ],
+          [
+            "beweis"
+          ]
+        ]
       ]
     },
     {
@@ -391,6 +556,23 @@
           "arbeit",
           "stunden",
           "ungleich"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "maenn",
+            "männ"
+          ],
+          [
+            "arbeit"
+          ],
+          [
+            "genauso"
+          ],
+          [
+            "haushalt"
+          ]
         ]
       ]
     },
@@ -464,6 +646,48 @@
           "genug",
           "wenig"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "frau"
+          ],
+          [
+            "politik"
+          ],
+          [
+            "gleich"
+          ],
+          [
+            "repraesentiert",
+            "repräsentiert"
+          ]
+        ],
+        [
+          [
+            "quot"
+          ],
+          [
+            "politik"
+          ],
+          [
+            "nicht"
+          ]
+        ],
+        [
+          [
+            "frau"
+          ],
+          [
+            "woll"
+          ],
+          [
+            "einfach"
+          ],
+          [
+            "politik"
+          ]
+        ]
       ]
     },
     {
@@ -526,6 +750,25 @@
           "beleidig",
           "anfeindung",
           "erleben"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "metoo"
+          ],
+          [
+            "uebertrieb",
+            "übertrieb"
+          ]
+        ],
+        [
+          [
+            "online-sexismu"
+          ],
+          [
+            "wirklich"
+          ]
         ]
       ]
     },
@@ -631,7 +874,9 @@
         "EIGE Index zeigt fast Gleichstellung",
         "Österreich ist beim Gleichstellung-Index Spitze"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "eu ist gleichberechtigt"
+      ],
       "trigger_composite": [
         [
           "gleichstellungsindex",
@@ -662,6 +907,36 @@
           "erreicht",
           "fortschritt",
           "stagniert"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "frau"
+          ],
+          [
+            "heut"
+          ],
+          [
+            "privilegiert"
+          ],
+          [
+            "europa"
+          ]
+        ],
+        [
+          [
+            "eige"
+          ],
+          [
+            "index"
+          ],
+          [
+            "zeigt"
+          ],
+          [
+            "gleichstellung"
+          ]
         ]
       ]
     }

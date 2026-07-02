@@ -255,7 +255,9 @@
         "Strategic Compass ist von 2022",
         "Österreich macht bei EU-Verteidigung nichts mit"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "eu hat schon eine armee"
+      ],
       "trigger_composite": [
         [
           "pesco",
@@ -296,6 +298,20 @@
           "mitwirken",
           "60 projekte",
           "9 projekten"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "oesterreich",
+            "österreich"
+          ],
+          [
+            "eu-verteidigung"
+          ],
+          [
+            "nicht"
+          ]
         ]
       ]
     },
@@ -375,6 +391,33 @@
           "kaum opfer",
           "keine opfer",
           "wenig opfer"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "ramstei"
+          ],
+          [
+            "verbindung"
+          ],
+          [
+            "us-drohn"
+          ]
+        ],
+        [
+          [
+            "bverwg"
+          ],
+          [
+            "abgewies"
+          ],
+          [
+            "de-mit-verantwortung"
+          ],
+          [
+            "anerkannt"
+          ]
         ]
       ]
     },
@@ -540,6 +583,39 @@
           "miliz",
           "wehrdienst"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "prozent"
+          ],
+          [
+            "verteidigung"
+          ]
+        ],
+        [
+          [
+            "soll-staerk",
+            "soll-stärk"
+          ],
+          [
+            "55000"
+          ]
+        ],
+        [
+          [
+            "aufbaupla"
+          ],
+          [
+            "2032"
+          ],
+          [
+            "plant"
+          ],
+          [
+            "prozent"
+          ]
+        ]
       ]
     },
     {
@@ -689,6 +765,27 @@
           "ott-affäre",
           "ott-affaere",
           "egisto-ott"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "dsn-bericht"
+          ],
+          [
+            "warnt"
+          ],
+          [
+            "russland-spionag"
+          ]
+        ],
+        [
+          [
+            "cyber-angriff"
+          ],
+          [
+            "russland"
+          ]
         ]
       ]
     },
@@ -868,6 +965,19 @@
           "cyberangriff",
           "ransomware",
           "ransom-ware"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "2000"
+          ],
+          [
+            "cyberangriff"
+          ],
+          [
+            "jahr"
+          ]
         ]
       ]
     },

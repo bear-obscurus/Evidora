@@ -680,7 +680,17 @@
       ],
       "source_label": "PEI Sicherheitsbericht + RKI + EMA + CDC Vaccine Safety",
       "source_url": "https://www.pei.de/DE/newsroom/dossier/coronavirus/coronavirus-inhalt.html",
-      "secondary_url": "https://www.cdc.gov/vaccine-safety/vaccines/covid-19.html"
+      "secondary_url": "https://www.cdc.gov/vaccine-safety/vaccines/covid-19.html",
+      "trigger_all": [
+        [
+          [
+            "mrna-impfstoff"
+          ],
+          [
+            "krank"
+          ]
+        ]
+      ]
     },
     {
       "id": "mrna_erbgut_spike_protein_konsens_2026",
@@ -863,7 +873,29 @@
       ],
       "source_label": "STIKO + RKI + EMA + Cochrane 2023 + ONS UK",
       "source_url": "https://www.rki.de/DE/Content/Infekt/Impfen/ImpfungenAZ/COVID-19/COVID-19.html",
-      "secondary_url": "https://www.ema.europa.eu/en/news/comirnaty-spikevax-ema-recommendations-additional-booster-doses"
+      "secondary_url": "https://www.ema.europa.eu/en/news/comirnaty-spikevax-ema-recommendations-additional-booster-doses",
+      "trigger_all": [
+        [
+          [
+            "boost"
+          ],
+          [
+            "schwaech",
+            "schwäch"
+          ],
+          [
+            "immunsystem"
+          ]
+        ],
+        [
+          [
+            "mehrfach-booster"
+          ],
+          [
+            "schadet"
+          ]
+        ]
+      ]
     },
     {
       "id": "statine_ldl_konsens_2026",
@@ -930,7 +962,20 @@
       ],
       "source_label": "AHA + ESC + USPSTF + Cochrane Statine-Konsens",
       "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/statin-use-in-adults-preventive-medication",
-      "secondary_url": "https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Dyslipidaemias-Management-of"
+      "secondary_url": "https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Dyslipidaemias-Management-of",
+      "trigger_all": [
+        [
+          [
+            "statin"
+          ],
+          [
+            "nicht"
+          ],
+          [
+            "herzinfarkt"
+          ]
+        ]
+      ]
     },
     {
       "id": "antibiotika_resistenz_konsens_2026",
@@ -996,7 +1041,35 @@
       ],
       "source_label": "WHO + CDC + ECDC + RKI Antibiotika-Resistenz-Konsens",
       "source_url": "https://www.who.int/news-room/fact-sheets/detail/antimicrobial-resistance",
-      "secondary_url": "https://www.cdc.gov/antimicrobial-resistance/data-research/threats/index.html"
+      "secondary_url": "https://www.cdc.gov/antimicrobial-resistance/data-research/threats/index.html",
+      "trigger_all": [
+        [
+          [
+            "pharma"
+          ],
+          [
+            "verschweigt"
+          ],
+          [
+            "antibiotika"
+          ],
+          [
+            "nicht"
+          ]
+        ],
+        [
+          [
+            "antibiotika"
+          ],
+          [
+            "erkaeltung",
+            "erkältung"
+          ],
+          [
+            "helf"
+          ]
+        ]
+      ]
     },
     {
       "id": "aspirin_primaerpraevention_konsens_2026",
@@ -1130,7 +1203,20 @@
       ],
       "source_label": "USPSTF + Cochrane 2020 + VITAL-Trial Omega-3-Konsens",
       "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003177.pub5/full",
-      "secondary_url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1811403"
+      "secondary_url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1811403",
+      "trigger_all": [
+        [
+          [
+            "omega-3"
+          ],
+          [
+            "supplement"
+          ],
+          [
+            "essentiell"
+          ]
+        ]
+      ]
     }
   ]
 }

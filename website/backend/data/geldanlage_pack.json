@@ -111,6 +111,37 @@
           "von zuhause",
           "freiheit"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "trad"
+          ],
+          [
+            "verdien"
+          ],
+          [
+            "monat"
+          ],
+          [
+            "schlaf"
+          ]
+        ],
+        [
+          [
+            "uebung",
+            "übung"
+          ],
+          [
+            "immer"
+          ],
+          [
+            "bess"
+          ],
+          [
+            "trading"
+          ]
+        ]
       ]
     },
     {
@@ -163,6 +194,35 @@
           "5 prozent",
           "10 prozent",
           "50 prozent"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "risiko-frei"
+          ],
+          [
+            "prozent"
+          ],
+          [
+            "jaehrlich",
+            "jährlich"
+          ]
+        ],
+        [
+          [
+            "plattform"
+          ],
+          [
+            "garantiert"
+          ],
+          [
+            "dauerhaft",
+            "daürhaft"
+          ],
+          [
+            "gewinn"
+          ]
         ]
       ]
     },
@@ -379,6 +439,23 @@
           "schaffen",
           "reich werden"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "privat-anleg"
+          ],
+          [
+            "schaff"
+          ],
+          [
+            "problemlo"
+          ],
+          [
+            "jaehrlich",
+            "jährlich"
+          ]
+        ]
       ]
     },
     {
@@ -487,6 +564,48 @@
           "noch heute",
           "letzte chance"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "geheim"
+          ],
+          [
+            "insider-tipp"
+          ],
+          [
+            "erfolgsgeheimni"
+          ]
+        ],
+        [
+          [
+            "hochdruck-stil"
+          ],
+          [
+            "zeigt"
+          ],
+          [
+            "serioes",
+            "seriös"
+          ],
+          [
+            "investment"
+          ]
+        ],
+        [
+          [
+            "stund"
+          ],
+          [
+            "dies"
+          ],
+          [
+            "einmalig"
+          ],
+          [
+            "chanc"
+          ]
+        ]
       ]
     },
     {
@@ -537,6 +656,19 @@
           "verhindert verlust",
           "wertaufbewahrung",
           "stabil"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "bitcoi"
+          ],
+          [
+            "digital"
+          ],
+          [
+            "gold"
+          ]
         ]
       ]
     },
