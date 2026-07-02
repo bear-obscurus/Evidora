@@ -73,6 +73,27 @@
           "diversifikation",
           "diversifizieren"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "braucht"
+          ],
+          [
+            "de-risking"
+          ],
+          [
+            "china"
+          ]
+        ],
+        [
+          [
+            "reshoring"
+          ],
+          [
+            "funktioniert"
+          ]
+        ]
       ]
     },
     {
@@ -105,7 +126,10 @@
         "Made-in-Germany Label braucht 45 % Wertschöpfung",
         "Es gibt keine deutsche Industrie mehr"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "vw ist deutsch",
+        "de-auto-wertschöpfung ist nur 30 %"
+      ],
       "trigger_composite": [
         [
           "made in germany",
@@ -207,6 +231,31 @@
           "vakzine",
           "armut"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "covid-vakzin-patent-waiv"
+          ],
+          [
+            "gescheitert"
+          ]
+        ],
+        [
+          [
+            "doha-erklaerung",
+            "doha-erklärung"
+          ],
+          [
+            "erlaubt"
+          ],
+          [
+            "compulsory"
+          ],
+          [
+            "licensing"
+          ]
+        ]
       ]
     },
     {
@@ -277,6 +326,19 @@
           "real-lohn",
           "real lohn"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "us-mittelschicht"
+          ],
+          [
+            "stagniert"
+          ],
+          [
+            "1980"
+          ]
+        ]
       ]
     },
     {
@@ -343,6 +405,43 @@
           "exportintensiv",
           "export-intensiv"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "haengt",
+            "hängt"
+          ],
+          [
+            "deutschland"
+          ]
+        ],
+        [
+          [
+            "at-wirtschaft"
+          ],
+          [
+            "sehr"
+          ],
+          [
+            "abhaengig",
+            "abhängig"
+          ],
+          [
+            "ausland"
+          ]
+        ],
+        [
+          [
+            "welt-konjunktur"
+          ],
+          [
+            "trifft"
+          ],
+          [
+            "besonder"
+          ]
+        ]
       ]
     },
     {
@@ -408,6 +507,32 @@
           "2004",
           "integriert",
           "1992"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "cecchini-prognos"
+          ],
+          [
+            "eingetret"
+          ]
+        ],
+        [
+          [
+            "brexit"
+          ],
+          [
+            "kostet"
+          ]
+        ],
+        [
+          [
+            "dienstleistungs-markt"
+          ],
+          [
+            "integriert"
+          ]
         ]
       ]
     },
@@ -478,6 +603,30 @@
           "773 mrd",
           "wachstum"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "china"
+          ],
+          [
+            "nimmt"
+          ],
+          [
+            "geld"
+          ]
+        ],
+        [
+          [
+            "trump"
+          ],
+          [
+            "defizit"
+          ],
+          [
+            "reduziert"
+          ]
+        ]
       ]
     },
     {
@@ -511,7 +660,9 @@
         "TCA ist nicht reibungs-frei",
         "Mehrheit Briten will Brexit zurück"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "tca ist nicht reibungs-frei"
+      ],
       "trigger_composite": [
         [
           "brexit",
@@ -543,6 +694,40 @@
           "schadete",
           "mistake",
           "fehler"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "mehrheit"
+          ],
+          [
+            "brit"
+          ],
+          [
+            "brexit"
+          ],
+          [
+            "zurueck",
+            "zurück"
+          ]
+        ],
+        [
+          [
+            "brexit"
+          ],
+          [
+            "handel",
+            "export",
+            "import",
+            "zoll",
+            "zölle",
+            "tca",
+            "wirtschaft",
+            "bip",
+            "reduziert",
+            "gesunken"
+          ]
         ]
       ]
     },
@@ -616,6 +801,37 @@
           "40 %",
           "rückgang"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "haengt",
+            "hängt"
+          ],
+          [
+            "immer"
+          ],
+          [
+            "russischem"
+          ]
+        ],
+        [
+          [
+            "rus-oel-erloes",
+            "rus-öl-erlös"
+          ],
+          [
+            "gesunk"
+          ]
+        ],
+        [
+          [
+            "g7-preisdeckel"
+          ],
+          [
+            "wirksam"
+          ]
+        ]
       ]
     },
     {
@@ -649,7 +865,9 @@
         "VW investiert in USA wegen IRA",
         "EU hat keine Antwort auf IRA"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "usa ira ist subventions-krieg gegen eu"
+      ],
       "trigger_composite": [
         [
           "ira",
@@ -681,6 +899,24 @@
           "wto",
           "wto-verstoß",
           "verfahren"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "verliert"
+          ],
+          [
+            "investit"
+          ]
+        ],
+        [
+          [
+            "investiert"
+          ],
+          [
+            "wege"
+          ]
         ]
       ]
     },
@@ -754,6 +990,54 @@
           "fossiles",
           "russland"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "erneuerbar",
+            "erneürbar"
+          ],
+          [
+            "energi"
+          ]
+        ],
+        [
+          [
+            "importier"
+          ],
+          [
+            "unser"
+          ],
+          [
+            "energi"
+          ]
+        ],
+        [
+          [
+            "omv-gas-vertrag"
+          ],
+          [
+            "gazprom"
+          ],
+          [
+            "laeuft",
+            "läuft"
+          ],
+          [
+            "weit"
+          ]
+        ],
+        [
+          [
+            "strom-mix"
+          ],
+          [
+            "gesamt-energi"
+          ],
+          [
+            "unterschiedlich"
+          ]
+        ]
       ]
     },
     {
@@ -825,6 +1109,52 @@
           "produktion",
           "lieferkette",
           "import"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "china"
+          ],
+          [
+            "solar-monopol"
+          ]
+        ],
+        [
+          [
+            "solar-preis"
+          ],
+          [
+            "2010"
+          ],
+          [
+            "gefall"
+          ]
+        ],
+        [
+          [
+            "nzia"
+          ],
+          [
+            "2024"
+          ],
+          [
+            "zielt"
+          ],
+          [
+            "2030"
+          ]
+        ],
+        [
+          [
+            "q-cell"
+          ],
+          [
+            "solarworld"
+          ],
+          [
+            "insolvent"
+          ]
         ]
       ]
     }

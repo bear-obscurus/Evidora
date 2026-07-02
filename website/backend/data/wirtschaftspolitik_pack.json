@@ -64,6 +64,24 @@
           "lohnen",
           "rechnen"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "steuer",
+            "steür"
+          ],
+          [
+            "senk"
+          ],
+          [
+            "erhoeht",
+            "erhöht"
+          ],
+          [
+            "einnahm"
+          ]
+        ]
       ]
     },
     {
@@ -124,6 +142,29 @@
           "schaden",
           "wirken",
           "bringen"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "mindestloh"
+          ],
+          [
+            "niedriglohn-sektor"
+          ],
+          [
+            "kaputt"
+          ]
+        ],
+        [
+          [
+            "card-krueger-studi",
+            "card-krüger-studi"
+          ],
+          [
+            "ueberholt",
+            "überholt"
+          ]
         ]
       ]
     },
@@ -191,6 +232,38 @@
           "fratzscher",
           "fuest",
           "verschulden"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "schwarz"
+          ],
+          [
+            "deutschland"
+          ],
+          [
+            "kaputt"
+          ],
+          [
+            "gespart"
+          ]
+        ],
+        [
+          [
+            "hoeher",
+            "höher"
+          ],
+          [
+            "schuld"
+          ],
+          [
+            "immer"
+          ],
+          [
+            "gefaehrlich",
+            "gefährlich"
+          ]
         ]
       ]
     },
@@ -358,7 +431,9 @@
         "Deutschland zahlt für andere EU-Länder",
         "EU-Beitrag lohnt sich nicht"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "wir sind nur netto-zahler in der eu"
+      ],
       "trigger_composite": [
         [
           "eu",
@@ -497,7 +572,9 @@
         "Staatliche Bahn ist immer ineffizient",
         "Wir brauchen britisches Bahn-Modell"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "db muss privatisiert werden"
+      ],
       "trigger_composite": [
         [
           "bahn",
@@ -592,6 +669,37 @@
           "missbrauch",
           "ausnutzen"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "sozialschmarotz"
+          ],
+          [
+            "lebe"
+          ],
+          [
+            "unser"
+          ],
+          [
+            "kost"
+          ]
+        ],
+        [
+          [
+            "buergergeld",
+            "bürgergeld"
+          ],
+          [
+            "bekommt"
+          ],
+          [
+            "arbeitet"
+          ],
+          [
+            "einfach"
+          ]
+        ]
       ]
     },
     {
@@ -654,6 +762,19 @@
           "macht",
           "fiskal-stimulus",
           "stimulus"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "stromsubvent"
+          ],
+          [
+            "treib"
+          ],
+          [
+            "inflatio"
+          ]
         ]
       ]
     },
@@ -720,6 +841,36 @@
           "wird nicht mehr",
           "kriege keine",
           "bekomme keine"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "rent"
+          ],
+          [
+            "brech"
+          ],
+          [
+            "bald"
+          ],
+          [
+            "zusamm"
+          ]
+        ],
+        [
+          [
+            "zahl"
+          ],
+          [
+            "boom"
+          ],
+          [
+            "krieg"
+          ],
+          [
+            "nicht"
+          ]
         ]
       ]
     },

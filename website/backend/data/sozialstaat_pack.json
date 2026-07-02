@@ -86,6 +86,27 @@
           "ausgenutzt",
           "ausnutzen"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "mindestsicherung",
+            "bedarfsorientierte mindestsicherung",
+            "sozialhilfe neu"
+          ],
+          [
+            "euro",
+            "höhe",
+            "hoehe",
+            "beträgt",
+            "betraegt",
+            "betrag",
+            "monat",
+            "hoch",
+            "wieviel",
+            "wie viel"
+          ]
+        ]
       ]
     },
     {
@@ -157,6 +178,19 @@
           "bringt nichts",
           "kinderwunsch",
           "kinder-wunsch"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "geld"
+          ],
+          [
+            "kind"
+          ],
+          [
+            "kind"
+          ]
         ]
       ]
     },
@@ -268,7 +302,9 @@
         "Wieviel KBG in Oesterreich",
         "Karenz-Geld in Oesterreich"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "at kbg ist zu niedrig"
+      ],
       "trigger_composite": [
         [
           "kinderbetreuungsgeld",
@@ -314,6 +350,28 @@
           "eltern faul",
           "macht eltern"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "kinderbetreuungsgeld"
+          ],
+          [
+            "bekomm"
+          ],
+          [
+            "frau"
+          ]
+        ],
+        [
+          [
+            "karenz-geld"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ]
+        ]
       ]
     },
     {
@@ -349,7 +407,9 @@
         "Wieviel kostet Pensionssystem",
         "Pensions-Generationen-Vertrag"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "pensions-generationen-vertrag"
+      ],
       "trigger_composite": [
         [
           "pension",
@@ -393,6 +453,19 @@
           "wirtschaftlich",
           "kostet",
           "finanzierung"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "jung"
+          ],
+          [
+            "zahl"
+          ],
+          [
+            "alte"
+          ]
         ]
       ]
     },
@@ -477,6 +550,16 @@
           "wird missbraucht",
           "fake"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "wohnbeihilf"
+          ],
+          [
+            "niedrig"
+          ]
+        ]
       ]
     },
     {
@@ -548,6 +631,16 @@
           "diff-erenzierung",
           "2019",
           "2020"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "sozialhilfe-grundsatzgesetz"
+          ],
+          [
+            "erfolgreich"
+          ]
         ]
       ]
     },
@@ -704,6 +797,33 @@
           "unnötig",
           "ist verschwendung",
           "sinnlos"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "studierend"
+          ],
+          [
+            "erwerbstaetigkeit",
+            "erwerbstätigkeit"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ]
+        ],
+        [
+          [
+            "stipendium"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ],
+          [
+            "wien"
+          ]
         ]
       ]
     },
@@ -869,6 +989,27 @@
           "gibt es nicht",
           "ausgedacht"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "invaliditaetspensio",
+            "invaliditätspensio"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ]
+        ],
+        [
+          [
+            "reha-pflicht"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ]
+        ]
       ]
     },
     {
@@ -961,6 +1102,70 @@
           "gut bezahlt",
           "schlecht bezahlt"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "pflegend"
+          ],
+          [
+            "angehoerig",
+            "angehörig"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ]
+        ],
+        [
+          [
+            "pfleg"
+          ],
+          [
+            "elter"
+          ]
+        ],
+        [
+          [
+            "familien-pfleg"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ]
+        ],
+        [
+          [
+            "pfleg"
+          ],
+          [
+            "angehoerig",
+            "angehörig"
+          ],
+          [
+            "statistik"
+          ]
+        ],
+        [
+          [
+            "frau"
+          ],
+          [
+            "pfleg"
+          ],
+          [
+            "last"
+          ]
+        ],
+        [
+          [
+            "pflegt"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ]
+        ]
       ]
     },
     {
@@ -1045,6 +1250,33 @@
           "ist nur",
           "ist es",
           "wirkt"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "familienbonu"
+          ],
+          [
+            "hilft"
+          ],
+          [
+            "famili"
+          ],
+          [
+            "gleich"
+          ]
+        ],
+        [
+          [
+            "familienbonu"
+          ],
+          [
+            "plus"
+          ],
+          [
+            "mechanik"
+          ]
         ]
       ]
     }

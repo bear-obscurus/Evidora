@@ -66,7 +66,20 @@
       ],
       "source_label": "ÖIF Integrationsbericht / BMI Asyl-Statistik",
       "source_url": "https://www.integrationsfonds.at/mediathek/publikationen/",
-      "secondary_url": "https://www.bmi.gv.at/301/Statistiken/start.aspx"
+      "secondary_url": "https://www.bmi.gv.at/301/Statistiken/start.aspx",
+      "trigger_all": [
+        [
+          [
+            "at-asylzahl"
+          ],
+          [
+            "2023"
+          ],
+          [
+            "gesunk"
+          ]
+        ]
+      ]
     },
     {
       "id": "oeif_migrationssaldo_at_2023",
@@ -122,7 +135,7 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria Bevölkerungsbewegung",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
       "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/wanderungen"
     },
     {
@@ -178,8 +191,22 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria Einbürgerungen / Eurostat",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/einbuergerungen"
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales",
+      "trigger_all": [
+        [
+          [
+            "2023"
+          ],
+          [
+            "21.000"
+          ],
+          [
+            "einbuerger",
+            "einbürger"
+          ]
+        ]
+      ]
     },
     {
       "id": "oeif_sprachkurse_2023",
@@ -243,8 +270,37 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht — Sprachkurs- und Prüfungsstatistik",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://sprachportal.integrationsfonds.at/"
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://sprachportal.integrationsfonds.at/",
+      "trigger_all": [
+        [
+          [
+            "oeif",
+            "öif"
+          ],
+          [
+            "2023"
+          ],
+          [
+            "22.000"
+          ],
+          [
+            "sprachkursteilnehm"
+          ]
+        ],
+        [
+          [
+            "b1-deutsch"
+          ],
+          [
+            "voraussetzung"
+          ],
+          [
+            "einbuergerung",
+            "einbürgerung"
+          ]
+        ]
+      ]
     },
     {
       "id": "oeif_integrationsmonitor_indikatoren_2023",
@@ -301,8 +357,8 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria / Eurostat",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/migration-und-integration"
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales"
     },
     {
       "id": "oeif_migrationshintergrund_at_2023",
@@ -364,8 +420,19 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria — Migration & Integration",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/migration-und-integration"
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales",
+      "trigger_all": [
+        [
+          [
+            "hoechst",
+            "höchst"
+          ],
+          [
+            "migrationsanteil"
+          ]
+        ]
+      ]
     },
     {
       "id": "oeif_arbeitsmarkt_integration_2023",
@@ -443,8 +510,60 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria LFS / AMS",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.statistik.at/statistiken/arbeitsmarkt/arbeitskraefteerhebung"
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.statistik.at/statistiken/arbeitsmarkt",
+      "trigger_all": [
+        [
+          [
+            "drittstaatsangehoerig",
+            "drittstaatsangehörig"
+          ],
+          [
+            "haeufig",
+            "häufig"
+          ],
+          [
+            "arbeitslo"
+          ]
+        ],
+        [
+          [
+            "beschaeftigungsquot",
+            "beschäftigungsquot"
+          ],
+          [
+            "migrant"
+          ],
+          [
+            "niedrig"
+          ]
+        ],
+        [
+          [
+            "integratio"
+          ],
+          [
+            "arbeitsmarkt"
+          ],
+          [
+            "klappt"
+          ]
+        ],
+        [
+          [
+            "integration"
+          ],
+          [
+            "gescheitert",
+            "funktioniert nicht",
+            "klappt nicht",
+            "misslungen",
+            "versagt",
+            "erfolgreich",
+            "gelungen"
+          ]
+        ]
+      ]
     },
     {
       "id": "oeif_pisa_migrationshintergrund_2022",
@@ -509,7 +628,50 @@
       ],
       "source_label": "OECD PISA 2022 / ÖIF Integrationsbericht / Statistik Austria Bildungsstatistik",
       "source_url": "https://www.oecd.org/pisa/publications/pisa-2022-results.htm",
-      "secondary_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/"
+      "secondary_url": "https://www.integrationsfonds.at/publikationen/",
+      "trigger_all": [
+        [
+          [
+            "migranten-kind"
+          ],
+          [
+            "schneid"
+          ],
+          [
+            "pisa"
+          ],
+          [
+            "schlecht"
+          ]
+        ],
+        [
+          [
+            "groesst",
+            "größt"
+          ],
+          [
+            "pisa-differenz"
+          ],
+          [
+            "migratio"
+          ]
+        ],
+        [
+          [
+            "lieg"
+          ],
+          [
+            "migrationskind"
+          ],
+          [
+            "jahr"
+          ],
+          [
+            "zurueck",
+            "zurück"
+          ]
+        ]
+      ]
     },
     {
       "id": "oeif_eu_drittstaat_struktur_2023",
@@ -542,7 +704,8 @@
         "drittstaatsangehörige at",
         "drittstaatsangehoerige at",
         "eu-bürger österreich",
-        "eu-buerger oesterreich"
+        "eu-buerger oesterreich",
+        "at hat 1,8 mio ausländer"
       ],
       "trigger_composite": [
         [
@@ -570,7 +733,7 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria Bevölkerungsfortschreibung",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
       "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/bevoelkerungsstand"
     },
     {
@@ -636,7 +799,7 @@
         ]
       ],
       "source_label": "ZARA Rassismus Report (NGO-Quelle, Selbstmeldung) — methodische Differenzierung gegenüber Polizei-/Gerichtsstatistik",
-      "source_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report",
+      "source_url": "https://zara.or.at/de/wissen",
       "secondary_url": "https://www.bmi.gv.at/"
     },
     {
@@ -701,8 +864,21 @@
         ]
       ],
       "source_label": "ZARA Counter-Act / BMI Polizei-Kriminalstatistik § 283 / EU-FRA EU-MIDIS-II",
-      "source_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report",
-      "secondary_url": "https://www.bmi.gv.at/301/Kriminalstatistik/start.aspx"
+      "source_url": "https://zara.or.at/de/wissen",
+      "secondary_url": "https://www.bundeskriminalamt.at/501/start.aspx",
+      "trigger_all": [
+        [
+          [
+            "2022"
+          ],
+          [
+            "1900"
+          ],
+          [
+            "verhetzungs-anzeig"
+          ]
+        ]
+      ]
     },
     {
       "id": "oeif_subsidiaerer_schutz_at_2023",
@@ -762,8 +938,24 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / BMI Asyl-Statistik / BFA Anerkennungsstatistik",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.bmi.gv.at/301/Statistiken/start.aspx"
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.bmi.gv.at/301/Statistiken/start.aspx",
+      "trigger_all": [
+        [
+          [
+            "syri"
+          ],
+          [
+            "bekomm"
+          ],
+          [
+            "automatisch"
+          ],
+          [
+            "asyl"
+          ]
+        ]
+      ]
     },
     {
       "id": "zara_arbeitswelt_diskriminierung_2023",
@@ -828,8 +1020,21 @@
         ]
       ],
       "source_label": "ZARA Rassismus Report + Gleichbehandlungsanwaltschaft (BMAW) + WIFO/IZA Audit-Studien",
-      "source_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report",
-      "secondary_url": "https://www.gleichbehandlungsanwaltschaft.gv.at/"
+      "source_url": "https://zara.or.at/de/wissen",
+      "secondary_url": "https://www.gleichbehandlungsanwaltschaft.gv.at/",
+      "trigger_all": [
+        [
+          [
+            "zara"
+          ],
+          [
+            "dokumentiert"
+          ],
+          [
+            "arbeitswelt-rassismu"
+          ]
+        ]
+      ]
     },
     {
       "id": "oeif_sozialleistungen_migration_at_2023",
@@ -894,8 +1099,49 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria / IAB-BAMF-SOEP-Konsens",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/soziales/sozialhilfe-und-bedarfsorientierte-mindestsicherung"
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales",
+      "trigger_all": [
+        [
+          [
+            "migrant"
+          ],
+          [
+            "hauptempfaeng",
+            "hauptempfäng"
+          ],
+          [
+            "mindestsicherung"
+          ]
+        ],
+        [
+          [
+            "sozialhilfe-magnet"
+          ],
+          [
+            "zieht"
+          ],
+          [
+            "asylsuchend"
+          ]
+        ],
+        [
+          [
+            "drittstaatsangehoerig",
+            "drittstaatsangehörig"
+          ],
+          [
+            "bezieh"
+          ],
+          [
+            "haeufig",
+            "häufig"
+          ],
+          [
+            "sozialhilf"
+          ]
+        ]
+      ]
     },
     {
       "id": "oeif_familiennachzug_at_2023",
@@ -952,8 +1198,21 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / BMI / AsylG § 35 + FrÄG 2018",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.bmi.gv.at/302/Asyl/start.aspx"
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.bmi.gv.at/301/Statistiken/start.aspx",
+      "trigger_all": [
+        [
+          [
+            "asylberechtigt"
+          ],
+          [
+            "famili"
+          ],
+          [
+            "hole"
+          ]
+        ]
+      ]
     },
     {
       "id": "oeif_anerkennung_qualifikation_at_2023",
@@ -1040,8 +1299,26 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / OECD Settling-In / Rechnungshof 2020",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.aais.at/anerkennung-bewertung/"
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.aais.at/anerkennung-bewertung/",
+      "trigger_all": [
+        [
+          [
+            "anerkennung"
+          ],
+          [
+            "berufsabschluess",
+            "berufsabschlüss"
+          ],
+          [
+            "dauert",
+            "daürt"
+          ],
+          [
+            "lang"
+          ]
+        ]
+      ]
     },
     {
       "id": "oeif_wertekurs_struktur_2023",
@@ -1171,7 +1448,17 @@
       ],
       "source_label": "ZARA Rassismus Report / Gleichbehandlungsanwaltschaft / GlBG",
       "source_url": "https://www.zara.or.at/de/beratung/",
-      "secondary_url": "https://www.gleichbehandlungsanwaltschaft.gv.at/"
+      "secondary_url": "https://www.gleichbehandlungsanwaltschaft.gv.at/",
+      "trigger_all": [
+        [
+          [
+            "diskriminierung"
+          ],
+          [
+            "geklagt"
+          ]
+        ]
+      ]
     },
     {
       "id": "oeif_grundversorgung_at_2023",
@@ -1229,8 +1516,40 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Grundversorgungs-Vereinbarung 2004 / BMI",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.bmi.gv.at/302/Asyl/start.aspx"
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.bmi.gv.at/301/Statistiken/start.aspx",
+      "trigger_all": [
+        [
+          [
+            "asylwerber"
+          ],
+          [
+            "erhalt"
+          ],
+          [
+            "1.000"
+          ],
+          [
+            "sozialhilf"
+          ]
+        ],
+        [
+          [
+            "grundversorgung"
+          ],
+          [
+            "sozialhilf"
+          ]
+        ],
+        [
+          [
+            "asylwerber"
+          ],
+          [
+            "arbeit"
+          ]
+        ]
+      ]
     },
     {
       "id": "zara_zivilcourage_struktur_2023",
@@ -1288,7 +1607,17 @@
       ],
       "source_label": "ZARA (Eigenauskunft) / Vereinsregister / Stadt Wien Förderdoku",
       "source_url": "https://www.zara.or.at/de/ueber-uns",
-      "secondary_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report"
+      "secondary_url": "https://zara.or.at/de/wissen",
+      "trigger_all": [
+        [
+          [
+            "zara"
+          ],
+          [
+            "anti-rassismus-arbeit"
+          ]
+        ]
+      ]
     },
     {
       "id": "behandlungszahlen_drittstaat_at_ungepruefbar_2026",

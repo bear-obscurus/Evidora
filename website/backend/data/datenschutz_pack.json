@@ -141,6 +141,27 @@
           "noyb",
           "schrems"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "cookie-bann"
+          ],
+          [
+            "dsgvo-konform"
+          ]
+        ],
+        [
+          [
+            "eugh"
+          ],
+          [
+            "planet49"
+          ],
+          [
+            "auswirk"
+          ]
+        ]
       ]
     },
     {
@@ -290,6 +311,25 @@
           "section 702",
           "fisa"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "spioniert"
+          ],
+          [
+            "us-buerg",
+            "us-bürg"
+          ]
+        ],
+        [
+          [
+            "xkeyscor"
+          ],
+          [
+            "existiert"
+          ]
+        ]
       ]
     },
     {
@@ -370,6 +410,44 @@
           "u-ausschuss",
           "untersuchungs-ausschuss",
           "untersuchungsausschuss"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "ueberwacht",
+            "überwacht"
+          ],
+          [
+            "buerg",
+            "bürg"
+          ],
+          [
+            "flaechendeckend",
+            "flächendeckend"
+          ]
+        ],
+        [
+          [
+            "problem"
+          ],
+          [
+            "dienst"
+          ]
+        ],
+        [
+          [
+            "massen-ueberwachung",
+            "massen-überwachung"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ],
+          [
+            "realitaet",
+            "realität"
+          ]
         ]
       ]
     },
@@ -453,6 +531,32 @@
           "wird eingesetzt",
           "wird nur"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "group"
+          ],
+          [
+            "verklagt"
+          ]
+        ],
+        [
+          [
+            "pegasu"
+          ],
+          [
+            "ueberwacht",
+            "überwacht"
+          ],
+          [
+            "jede"
+          ],
+          [
+            "buerg",
+            "bürg"
+          ]
+        ]
       ]
     },
     {
@@ -530,6 +634,22 @@
           "netzdg",
           "netz-dg"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "real-nam"
+          ],
+          [
+            "policy"
+          ],
+          [
+            "onlin"
+          ],
+          [
+            "hate"
+          ]
+        ]
       ]
     },
     {
@@ -600,6 +720,30 @@
           "polizei",
           "bverfg",
           "verfassungsgericht"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "bestandsdat"
+          ],
+          [
+            "schrank"
+          ],
+          [
+            "abgeruf"
+          ]
+        ],
+        [
+          [
+            "bverfg"
+          ],
+          [
+            "bestandsdaten-auskunft"
+          ],
+          [
+            "verbot"
+          ]
         ]
       ]
     },
@@ -674,6 +818,39 @@
           "verfassungsgericht",
           "reform 2021"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "behoerd",
+            "behörd"
+          ],
+          [
+            "ip-adress"
+          ],
+          [
+            "jederzeit"
+          ],
+          [
+            "aufloes",
+            "auflös"
+          ]
+        ],
+        [
+          [
+            "subscrib"
+          ],
+          [
+            "request",
+            "reqüst"
+          ],
+          [
+            "illegal"
+          ],
+          [
+            "germany"
+          ]
+        ]
       ]
     },
     {
@@ -707,7 +884,9 @@
         "Online-Durchsuchung in AT ist Routine",
         "AT-VfGH hat Bundestrojaner nie verboten"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "in at gibt es keinen bundestrojaner"
+      ],
       "trigger_composite": [
         [
           "bundestrojaner",
@@ -747,6 +926,16 @@
           "sicherheitspaket",
           "sicherheits-paket",
           "dsn"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "online-durchsuchung"
+          ],
+          [
+            "routin"
+          ]
         ]
       ]
     },
@@ -893,6 +1082,19 @@
           "edsa",
           "eff",
           "panopticlick"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "mozilla"
+          ],
+          [
+            "block"
+          ],
+          [
+            "fingerprinting"
+          ]
         ]
       ]
     }

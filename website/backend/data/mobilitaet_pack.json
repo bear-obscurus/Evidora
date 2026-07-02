@@ -78,6 +78,42 @@
           "200 km",
           "100 km"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "schnelllader-netz"
+          ],
+          [
+            "fehlt"
+          ],
+          [
+            "komplett"
+          ]
+        ],
+        [
+          [
+            "wltp"
+          ],
+          [
+            "entspricht"
+          ],
+          [
+            "echt"
+          ],
+          [
+            "reichweit"
+          ]
+        ],
+        [
+          [
+            "lademoeglichkeit",
+            "lademöglichkeit"
+          ],
+          [
+            "autobah"
+          ]
+        ]
       ]
     },
     {
@@ -151,6 +187,32 @@
           "95 prozent",
           "schweiz",
           "sbb"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "oebb",
+            "öbb"
+          ],
+          [
+            "bess"
+          ]
+        ],
+        [
+          [
+            "bahn"
+          ],
+          [
+            "deutschland"
+          ],
+          [
+            "genauso"
+          ],
+          [
+            "puenktlich",
+            "pünktlich"
+          ]
         ]
       ]
     },
@@ -230,6 +292,31 @@
           "laerm",
           "autobahn",
           "auto-bahn"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "autobah"
+          ],
+          [
+            "co2-wirkung"
+          ]
+        ],
+        [
+          [
+            "tempolimit"
+          ],
+          [
+            "verlaengert",
+            "verlängert"
+          ],
+          [
+            "reis"
+          ],
+          [
+            "massiv"
+          ]
         ]
       ]
     },
@@ -472,6 +559,32 @@
           "tank-stelle",
           "alternativ"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "wasserstoff"
+          ],
+          [
+            "anwendung"
+          ]
+        ],
+        [
+          [
+            "h2-pkw"
+          ],
+          [
+            "loest",
+            "löst"
+          ],
+          [
+            "problem"
+          ],
+          [
+            "e-mobilitaet",
+            "e-mobilität"
+          ]
+        ]
       ]
     },
     {
@@ -555,6 +668,46 @@
           "überfüllt",
           "ueberfuellt"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "deutschland-ticket"
+          ],
+          [
+            "nicht"
+          ],
+          [
+            "ausbau"
+          ]
+        ],
+        [
+          [
+            "bahn"
+          ],
+          [
+            "ueberfuellt",
+            "überfüllt"
+          ],
+          [
+            "viel"
+          ],
+          [
+            "fahr"
+          ]
+        ],
+        [
+          [
+            "oepnv",
+            "öpnv"
+          ],
+          [
+            "deutschland"
+          ],
+          [
+            "gutem"
+          ]
+        ]
       ]
     },
     {
@@ -634,6 +787,25 @@
           "bmw",
           "diesel-ban",
           "fahrverbot"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "stickoxid"
+          ],
+          [
+            "gefaehrlich",
+            "gefährlich"
+          ]
+        ],
+        [
+          [
+            "diesel-skandal"
+          ],
+          [
+            "hexenjagd"
+          ]
         ]
       ]
     },
@@ -802,6 +974,41 @@
           "oesterreich",
           "mythos"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "auto"
+          ],
+          [
+            "massiv"
+          ],
+          [
+            "besteuert",
+            "besteürt"
+          ],
+          [
+            "subventioniert"
+          ]
+        ],
+        [
+          [
+            "autofahr"
+          ],
+          [
+            "abkassiert"
+          ]
+        ],
+        [
+          [
+            "diesel"
+          ],
+          [
+            "steuer-beguenstigt",
+            "steuer-begünstigt",
+            "steür-begünstigt"
+          ]
+        ]
       ]
     },
     {
@@ -884,6 +1091,34 @@
           "lkw",
           "lastwagen"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "maut"
+          ],
+          [
+            "fuehrt",
+            "führt"
+          ],
+          [
+            "kein"
+          ],
+          [
+            "bahn-verlagerung"
+          ]
+        ],
+        [
+          [
+            "co2-aufschlag"
+          ],
+          [
+            "maut"
+          ],
+          [
+            "symbol-politik"
+          ]
+        ]
       ]
     },
     {
@@ -964,6 +1199,45 @@
           "oebb",
           "db",
           "sbb"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "bahn"
+          ],
+          [
+            "deutschland"
+          ],
+          [
+            "ausreichend"
+          ],
+          [
+            "finanziert"
+          ]
+        ],
+        [
+          [
+            "oesterreich",
+            "österreich"
+          ],
+          [
+            "investiert"
+          ],
+          [
+            "bahn"
+          ]
+        ],
+        [
+          [
+            "schweiz"
+          ],
+          [
+            "vorsprung"
+          ],
+          [
+            "bahn"
+          ]
         ]
       ]
     },
@@ -1055,6 +1329,78 @@
           "verkehrsberuhigung",
           "verkehrs-beruhigung"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "auto-verkehr"
+          ],
+          [
+            "stadt"
+          ],
+          [
+            "hauptsaechlich",
+            "hauptsächlich"
+          ],
+          [
+            "bewegung"
+          ]
+        ],
+        [
+          [
+            "park-suchverkehr"
+          ],
+          [
+            "marginal"
+          ]
+        ],
+        [
+          [
+            "auto"
+          ],
+          [
+            "staendig",
+            "ständig"
+          ],
+          [
+            "genutzt"
+          ]
+        ],
+        [
+          [
+            "park-reduktio"
+          ],
+          [
+            "zerstoert",
+            "zerstört"
+          ],
+          [
+            "geschaeft",
+            "geschäft"
+          ],
+          [
+            "innenstadt"
+          ]
+        ],
+        [
+          [
+            "verkehrsberuhigung"
+          ],
+          [
+            "schadet"
+          ],
+          [
+            "wirtschaft"
+          ]
+        ],
+        [
+          [
+            "auto-stillstand-statistik"
+          ],
+          [
+            "mytho"
+          ]
+        ]
       ]
     },
     {
@@ -1088,7 +1434,9 @@
         "EU hat keine Lade-Vorgaben",
         "Wallbox zu Hause ist nicht möglich"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "eu hat keine lade-vorgaben"
+      ],
       "trigger_composite": [
         [
           "ladeinfrastruktur",
@@ -1145,6 +1493,16 @@
           "privat",
           "zu hause",
           "bnetza"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "ladestat"
+          ],
+          [
+            "e-auto"
+          ]
         ]
       ]
     }
