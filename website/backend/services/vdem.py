@@ -17,7 +17,7 @@ Subset in ``data/vdem_indicators.json``:
   - ~32 Länder (DACH + EU + globale Referenz: USA, RUS, CHN, ...)
   - 5 Jahre (2019-2023)
 
-Bei Bedarf kann der JSON via Cron-Job aus dem offiziellen V-Dem v14
+Bei Bedarf kann der JSON via tools/refresh_vdem.py aus dem offiziellen
 CSV-Release neu generiert werden.
 
 Trigger:
@@ -31,9 +31,11 @@ Limitations:
   - V-Dem-Daten sind 1-2 Jahre alt (jährlicher Release-Zyklus).
   - V-Dem-Aggregat-Indizes haben methodische Konfidenzintervalle
     (typisch +/- 0.05 auf 0-1-Skala).
-  - Aktuelle Werte basieren auf V-Dem v14 (März 2024). Werte sind
+  - Aktuelle Werte: offizielles V-Dem-Core-CSV (Version + Jahre siehe
+    dataset_version/version_note im JSON; seit 2026-07-02 alle 11
+    Indikatoren dataset_verified, keine LLM-Approximationen mehr). Werte sind
     LLM-Wissens-Approximationen — vor produktivem Einsatz mit den
-    offiziellen v14-CSVs gegenchecken (audit_flag im JSON).
+    offiziellen CSVs gegenchecken (audit_flag im JSON).
   - Aktuelle Version 14 (Stand März 2024), nächste v15 Frühjahr 2025.
 
 GUARDRAILS (siehe project_political_guardrails.md):
@@ -219,9 +221,10 @@ def _build_display_value(
     countries_in_display: list[str],
     year: str,
     data_block: dict,
+    version_tag: str = "v16",
 ) -> str:
     """Build display_value: 'AT 0.85 / DE 0.85 / SE 0.92 / HU 0.34 / RU 0.07
-    / WORLD median ~0.40 (V-Dem v14, 2023)'."""
+    / WORLD median ~0.40 (V-Dem v16, 2023)'."""
     parts: list[str] = []
     for iso3 in countries_in_display:
         country_data = data_block.get(iso3) or {}
@@ -233,7 +236,7 @@ def _build_display_value(
         f" / WORLD median ~{median:.2f}" if isinstance(median, (int, float)) else ""
     )
     return (
-        f"{' / '.join(parts)}{median_str} (V-Dem v14, {year})"
+        f"{' / '.join(parts)}{median_str} (V-Dem {version_tag}, {year})"
     )
 
 
@@ -381,7 +384,8 @@ async def search_vdem(analysis: dict) -> dict:
             requested_countries, ind_data
         )
         display_value = _build_display_value(
-            ind, display_countries, year, ind_data
+            ind, display_countries, year, ind_data,
+            version_tag=data.get("dataset_version", "v16"),
         )
 
         label_de = ind.get("label_de") or ind.get("code") or ""
@@ -404,11 +408,12 @@ async def search_vdem(analysis: dict) -> dict:
         desc_out = (
             f"{description} ({scale})" if scale else description
         )[:300]
-        if ind.get("v14_verified", True) is False:
+        if (ind.get("dataset_verified") is False
+                or ind.get("v14_verified") is False):
             desc_out = (
                 f"{desc_out} ⚠ Hinweis: Dieser Indikator-Wert ist eine "
                 "LLM-Approximation und noch nicht gegen das offizielle "
-                "V-Dem-v14-CSV verifiziert."
+                "offiziellen V-Dem-CSV verifiziert."
             ).strip()
 
         results.append({

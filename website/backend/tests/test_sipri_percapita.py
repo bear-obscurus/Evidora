@@ -26,7 +26,11 @@ def _synthetic_data():
                        "govt_share": 1.5, "entity": "Austria",
                        "population": 9_100_000}},
     }
-    nato = list(sipri.NATO_MEMBERS)[:22]
+    # Deterministisch: sortiert + USA erzwungen (Set-Iterationsreihenfolge
+    # ist PYTHONHASHSEED-abhängig — ohne USA kippt die Gewichts-Assertion;
+    # genau so flakte der Test beim ersten Suite-Lauf).
+    nato = ["USA"] + [c for c in sorted(sipri.NATO_MEMBERS) if c != "USA"]
+    nato = nato[:22]
     for i, code in enumerate(nato):
         # USA dominiert absichtlich (gewichteter Schnitt)
         exp = 900e9 if code == "USA" else 20e9 + i * 1e9
