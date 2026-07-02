@@ -196,7 +196,8 @@
         "haeusliche_pflege_anteil": "Statistik Austria + BMSGPK 2024: ~80 % der Pflege findet daheim statt (in der eigenen Wohnung oder Wohnung von Angehoerigen). Nur ~20 % der Pflegegeld-Bezieher leben in Pflegeheimen. Pflegende Angehoerige (~947.000 Personen, oft mehrere pro Person mit Pflegebedarf): ~69 % Frauen lt. BMASGK 2018-Studie, primaer Toechter + Ehefrauen.",
         "oecd_volumen_vergleich": "OECD Long-Term-Care Spending 2023: AT 0,7 % des BIP fuer Pflegegeld + Pflegeleistungen, EU-Mittel ca. 1,2 % (mit DE-Pflegeversicherung 1,5 % drueber). AT relativ Geldleistungs-zentriert (Pflegegeld als universelles Geld), DE Sach-/Geldleistungs-Mix, CH kantonal verschieden. AT-Modell wird international als 'cash-for-care' klassifiziert.",
         "novelle_2015_2024": "BPGG-Novelle 2015 (Stufen-Erhoehung) + 2024 (jaehrliche Valorisierung mit Inflation): seit 2024 jaehrlich automatisch valorisiert. Vorher waren Saetze ueber lange Zeitraeume gleich (Reallohn-Verlust wegen Inflation). Aktuelle Reform-Diskussion: weitere Anhebung Stufe 1-2 (Politik-Diskussion ab 2025).",
-        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Wertung 'Pflegegeld ist hoch/niedrig' — die Frage ist eine politische Werte-Frage."
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Wertung 'Pflegegeld ist hoch/niedrig' — die Frage ist eine politische Werte-Frage.",
+        "valorisierung_seit_2020": "Seit 1.1.2020 wird das Pflegegeld GESETZLICH JÄHRLICH mit dem Anpassungsfaktor (§ 108f ASVG, derselbe wie bei Pensionen) valorisiert — ein gesetzlicher Automatismus, KEINE fallweise politische Einzelentscheidung. 2024: +9,7 %. Vor 2020 gab es nur sporadische Erhöhungen (letzte davor 2009→2016 Teilstufen)."
       },
       "context_notes": [
         "AT-Pflegegeld ist universelle Geldleistung ohne Einkommens-Bedarfspruefung — Anspruch nur durch pflegerischen Bedarf bestimmt.",
@@ -210,7 +211,9 @@
         "AT-Pflegegeld 7 Stufen wie hoch",
         "Wer bekommt Pflegegeld",
         "Pflegegeld ist gross-zuegig",
-        "Wieviele Bezieher Pflegegeld AT"
+        "Wieviele Bezieher Pflegegeld AT",
+        "Das Pflegegeld wird nicht automatisch an die Inflation angepasst",
+        "Pflegegeld wird jaehrlich automatisch valorisiert"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
@@ -253,6 +256,21 @@
           "pflege",
           "altenpflege",
           "alten-pflege"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "pflegegeld"
+          ],
+          [
+            "valorisier",
+            "angepasst",
+            "anpassung",
+            "inflation",
+            "erhöht",
+            "erhoeht"
+          ]
         ]
       ]
     },
