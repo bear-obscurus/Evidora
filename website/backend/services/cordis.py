@@ -243,14 +243,21 @@ async def _download_and_extract(
     return records
 
 
-async def prefetch_cordis(client: httpx.AsyncClient | None = None) -> int:
+async def prefetch_cordis(
+    client: httpx.AsyncClient | None = None, force: bool = False
+) -> int:
     """Download Horizon Europe + Horizon 2020 ZIPs, Slim, Cache schreiben.
+
+    ``force=True`` überspringt nur den Frische-Skip — der bestehende Cache
+    bleibt bis zum erfolgreichen Download unangetastet (ein fehlgeschlagener
+    Refresh darf einen guten Cache nie zerstören; bei 0 Records wird unten
+    ohnehin nicht geschrieben).
 
     Returns: Anzahl der gecachten Records (Slim).
     """
     # Conditional Skip: Cache ist frisch (<90 Tage) → kein Refresh
     import time as _time
-    if os.path.exists(SLIM_CACHE_PATH):
+    if not force and os.path.exists(SLIM_CACHE_PATH):
         age_days = (_time.time() - os.path.getmtime(SLIM_CACHE_PATH)) / 86400
         if age_days < 90:
             try:
