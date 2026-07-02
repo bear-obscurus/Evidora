@@ -9,6 +9,15 @@ services:
       # Auf prod wird ./secrets/ mit chmod 600 gepflegt; in der lokalen
       # Entwicklung kann das Verzeichnis leer sein (Service skippt dann).
       - ./secrets:/app/secrets:ro
+      # Static-First-Daten als rw-Mount (wiederhergestellt 2026-07-02):
+      # (1) Hot-Reload — data/*.json-Edits + git pull wirken ohne Rebuild
+      #     (mtime-aware Cache, ARCHITECTURE §4.1); ohne Mount sind die
+      #     Daten ins Image eingebacken und Pull-Änderungen erreichen den
+      #     Container nie. (2) Generierte Caches (cordis_projects_slim,
+      #     claimreview_index) + Cron-Refreshes (refresh_cordis,
+      #     refresh_eurostat_crime via run_evidora_tool.sh) überleben
+      #     Rebuilds, statt bei jedem --build verloren zu gehen.
+      - ./backend/data:/app/data
     ports:
       - "127.0.0.1:8000:8000"
     extra_hosts:
