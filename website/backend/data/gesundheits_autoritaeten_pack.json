@@ -873,7 +873,7 @@
       ],
       "source_label": "STIKO + RKI + EMA + Cochrane 2023 + ONS UK",
       "source_url": "https://www.rki.de/DE/Content/Infekt/Impfen/ImpfungenAZ/COVID-19/COVID-19.html",
-      "secondary_url": "https://www.ema.europa.eu/en/news/comirnaty-spikevax-ema-recommendations-additional-booster-doses",
+      "secondary_url": "https://www.ema.europa.eu/en/medicines/human/EPAR/comirnaty",
       "trigger_all": [
         [
           [
@@ -962,7 +962,7 @@
       ],
       "source_label": "AHA + ESC + USPSTF + Cochrane Statine-Konsens",
       "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/statin-use-in-adults-preventive-medication",
-      "secondary_url": "https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Dyslipidaemias-Management-of",
+      "secondary_url": "https://doi.org/10.1093/eurheartj/ehz455",
       "trigger_all": [
         [
           [
