@@ -32,6 +32,9 @@ logger = logging.getLogger("evidora")
 SIPRI_TOTAL_URL = "https://ourworldindata.org/grapher/military-spending-sipri.csv"
 SIPRI_GDP_URL = "https://ourworldindata.org/grapher/military-spending-as-a-share-of-gdp-sipri.csv"
 SIPRI_GOVT_URL = "https://ourworldindata.org/grapher/military-expenditure-as-a-share-of-government-spending.csv"
+# Bevölkerung (OWID, gleiche Entity/Code/Year-Konvention) — nur zur
+# Anreicherung bestehender Milex-Jahre (Pro-Kopf-Ableitung, #41-Data-Miss)
+SIPRI_POP_URL = "https://ourworldindata.org/grapher/population.csv"
 
 SIPRI_CACHE_TTL = 86400  # 24h
 
@@ -179,6 +182,25 @@ async def fetch_sipri(client: httpx.AsyncClient | None = None) -> dict:
             if country_entries:
                 merged[code] = country_entries
 
+        try:
+            pops = await _fetch_one(client, SIPRI_POP_URL, "Population")
+            for code, years in merged.items():
+                pop_years = pops.get(code, {})
+                for year, entry in years.items():
+                    p_entry = pop_years.get(year)
+                    if not p_entry:
+                        # OWID-Population hinkt den Milex-Jahren oft 1-2
+                        # Jahre hinterher — nächstjüngeres Jahr genügt
+                        # (Bevölkerung bewegt sich <1 %/Jahr).
+                        for back in (1, 2, 3):
+                            p_entry = pop_years.get(year - back)
+                            if p_entry:
+                                break
+                    entry["population"] = p_entry[0] if p_entry else None
+        except Exception as e:
+            logger.warning(f"SIPRI: population enrichment failed ({e}) — "
+                           f"Pro-Kopf-Werte entfallen, Rest unverändert")
+
         _sipri_cache = merged
         _sipri_cache_time = now
         total_points = sum(len(y) for y in merged.values())
@@ -222,6 +244,38 @@ def _format_usd(value: float) -> str:
     if value >= 1e6:
         return f"{value / 1e6:.0f} Mio. USD"
     return f"{value:.0f} USD"
+
+
+def _per_capita_usd(exp_usd, population):
+    """Militärausgaben pro Kopf in USD (None wenn nicht berechenbar)."""
+    if not exp_usd or not population or population <= 0:
+        return None
+    return exp_usd / population
+
+
+def _nato_avg_per_capita(data: dict, year: int):
+    """Bevölkerungsgewichteter NATO-Pro-Kopf-Schnitt (Summe Ausgaben /
+    Summe Bevölkerung) für ein Jahr. Returns (usd_pro_kopf, n_staaten)
+    oder None, wenn <20 NATO-Staaten beide Werte haben."""
+    total_exp = total_pop = 0.0
+    n = 0
+    for code in NATO_MEMBERS:
+        entry = (data.get(code) or {}).get(year)
+        if not entry:
+            continue
+        exp = entry.get("expenditure_usd")
+        pop = entry.get("population")
+        if exp and pop:
+            total_exp += exp
+            total_pop += pop
+            n += 1
+    if n >= 20 and total_pop > 0:
+        return total_exp / total_pop, n
+    return None
+
+
+_PER_CAPITA_TERMS = ("pro kopf", "pro-kopf", "per capita", "pro einwohner",
+                     "je einwohner", "pro bürger", "pro buerger")
 
 
 async def search_sipri(analysis: dict) -> dict:
@@ -269,6 +323,9 @@ async def search_sipri(analysis: dict) -> dict:
         parts = []
         if exp_usd is not None:
             parts.append(_format_usd(exp_usd))
+        pc = _per_capita_usd(exp_usd, entry.get("population"))
+        if pc is not None:
+            parts.append(f"{pc:,.0f} USD/Kopf".replace(",", "."))
         if gdp_share is not None:
             parts.append(f"{gdp_share:.2f}% BIP".replace(".", ","))
         if govt_share is not None:
@@ -295,6 +352,33 @@ async def search_sipri(analysis: dict) -> dict:
             "url": "https://www.sipri.org/databases/milex",
         })
 
+    claim_lower = analysis.get("claim", "").lower()
+    if results and (any(t in claim_lower for t in _PER_CAPITA_TERMS)
+                    or "nato" in claim_lower):
+        ref_years = [int(r["year"]) for r in results if r.get("year")]
+        for ref_year in sorted({y for y in ref_years} | {max(ref_years) - 1}
+                               if ref_years else set(), reverse=True):
+            avg = _nato_avg_per_capita(data, ref_year)
+            if avg:
+                avg_usd, n = avg
+                results.append({
+                    "indicator_name": (
+                        f"SIPRI NATO-Durchschnitt {ref_year}: "
+                        f"{avg_usd:,.0f} USD/Kopf Militärausgaben".replace(",", ".")
+                        + f" (bevölkerungsgewichtet: Summe Ausgaben / Summe "
+                          f"Bevölkerung der {n} erfassten NATO-Staaten; der "
+                          f"US-Anteil dominiert diesen Schnitt)"
+                    ),
+                    "indicator": "sipri_nato_avg_per_capita",
+                    "country": "NATO",
+                    "country_name": "NATO (aggregiert)",
+                    "year": str(ref_year),
+                    "value": round(avg_usd, 2),
+                    "display_value": f"{avg_usd:,.0f} USD/Kopf".replace(",", "."),
+                    "url": "https://www.sipri.org/databases/milex",
+                })
+                break
+
     if results:
         results.append({
             "indicator_name": "WICHTIGER KONTEXT: SIPRI-Methodik und NATO-2%-Ziel",
@@ -319,7 +403,11 @@ async def search_sipri(analysis: dict) -> dict:
                 "rechtliche Verpflichtung — das Erreichen oder Verfehlen ist kein Faktencheck-Urteil, "
                 "sondern eine Referenzgröße. "
                 "(4) Kaufkraft-Vergleiche zwischen Ländern sind mit Vorsicht zu interpretieren — 1 Mrd. USD "
-                "kauft in unterschiedlichen Volkswirtschaften unterschiedlich viel Militärkapazität."
+                "kauft in unterschiedlichen Volkswirtschaften unterschiedlich viel Militärkapazität. "
+                "(5) Pro-Kopf-Werte sind aus SIPRI-Ausgaben und OWID-Bevölkerungszahlen abgeleitet "
+                "(Bevölkerungsstand ggf. bis zu 3 Jahre älter als das Ausgabenjahr) "
+                "(Ausgaben ÷ Einwohner); der NATO-Durchschnitt ist bevölkerungsgewichtet und wird "
+                "vom US-Wert dominiert — ein ungewichteter Länder-Mittelwert läge deutlich niedriger."
             ),
         })
 

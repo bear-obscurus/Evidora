@@ -49,7 +49,9 @@ jobs:
             tests/test_verdict_postprocess_golden.py \
             tests/test_struct_provenance.py \
             tests/test_konsens_exact_only.py \
-            tests/test_cordis_zip_formats.py
+            tests/test_cordis_zip_formats.py \
+            tests/test_freshness_cache_health.py \
+            tests/test_sipri_percapita.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
