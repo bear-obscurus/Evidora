@@ -8,4 +8,5 @@ shift
 cd /opt/Evidora/website
 exec docker compose exec -T \
   -e EVIDORA_TEST_API_KEY="$(grep ^EVIDORA_TEST_API_KEY .env | cut -d= -f2-)" \
+  -e EVIDORA_ALERT_WEBHOOK="$(grep ^EVIDORA_ALERT_WEBHOOK .env | cut -d= -f2-)" \
   backend python3 /app/tools/"$TOOL" "$@"
