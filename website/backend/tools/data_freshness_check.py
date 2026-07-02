@@ -160,12 +160,18 @@ def main():
     if (stale_files or cache_problems) and args.alert_webhook:
         try:
             import httpx
-            httpx.post(args.alert_webhook, json={
-                "source": "evidora data_freshness_check",
-                "date": today.isoformat(),
-                "stale_files": [f"{n}: {a} d" for n, a in stale_files],
-                "cache_problems": cache_problems,
-            }, timeout=15)
+            # Klartext-Body statt JSON: ntfy.sh zeigt ihn direkt als
+            # Push-Nachricht an (Title/Priority/Tags via Header).
+            lines = ([f"Cache: {p}" for p in cache_problems]
+                     + [f"Stale: {n} ({a} d)" for n, a in stale_files])
+            httpx.post(
+                args.alert_webhook,
+                content=("data_freshness_check "
+                         f"{today.isoformat()}\n" + "\n".join(lines))[:3800],
+                headers={"Title": "Evidora Data-Freshness ALERT",
+                         "Priority": "high", "Tags": "warning"},
+                timeout=15,
+            )
             print(f"  alert webhook posted to {args.alert_webhook}")
         except Exception as e:
             print(f"  alert webhook failed: {e}")
