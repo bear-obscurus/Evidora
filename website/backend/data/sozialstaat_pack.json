@@ -33,7 +33,8 @@
         "Mindestsicherung ist hoeher als Mindestlohn",
         "Sozialhilfe-Empfaenger sind alle arbeitsunwillig",
         "Mindestsicherung ist zu hoch in Oesterreich",
-        "Auslaender bekommen mehr Mindestsicherung"
+        "Auslaender bekommen mehr Mindestsicherung",
+        "Mit der Mindestsicherung lohnt es sich in Oesterreich nicht mehr zu arbeiten"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
@@ -84,7 +85,12 @@
           "profitieren",
           "profitiert",
           "ausgenutzt",
-          "ausnutzen"
+          "ausnutzen",
+          "lohnt es sich",
+          "lohnt es nicht",
+          "arbeit lohnt",
+          "arbeiten lohnt",
+          "nicht mehr zu arbeiten"
         ]
       ],
       "trigger_all": []
