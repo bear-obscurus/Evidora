@@ -32,6 +32,13 @@ services:
       - ALL
     # (cap_add: DAC_OVERRIDE entfernt 2026-07-02 — H4e non-root uid 1000
     # hat native Schreibrechte auf den burrito-owned data-Mount.)
+    # H4d (2026-07-02): unveränderliches Root-FS. Verifiziert: der Prozess
+    # schreibt zur Laufzeit ausschließlich nach /app/data (rw-Mount);
+    # tmpfs nur als Sicherheitsnetz für Temp-/Home-Pfade.
+    read_only: true
+    tmpfs:
+      - /tmp:size=128m,mode=1777
+      - /home/evidora:size=16m,uid=1000,gid=1000
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/legal')"]
       interval: 30s
@@ -59,6 +66,12 @@ services:
       - SETUID           # nginx master → worker privilege drop
       - SETGID           # nginx master → worker privilege drop
       - NET_BIND_SERVICE # bind to port 80
+    # H4d (2026-07-02): Root-FS read-only; nginx braucht nur Cache/PID/Temp.
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx:size=64m
+      - /var/run:size=8m
+      - /tmp:size=16m
     healthcheck:
       test: ["CMD", "curl", "-sf", "http://localhost:80"]
       interval: 30s

@@ -127,8 +127,11 @@ if [ "$build_frontend" -eq 1 ]; then
   log "docker compose up -d --build frontend…"
   docker compose up -d --build frontend || fail "frontend-Build fehlgeschlagen"
 fi
-if [ "$recreate" -eq 1 ] && [ "$build_backend" -eq 0 ]; then
-  log "docker compose up -d (Compose-Änderung -> Recreate)…"
+if [ "$recreate" -eq 1 ]; then
+  # Läuft auch NACH einem Backend-Build: compose up -d ist dann für das
+  # Backend ein No-op, wendet aber Compose-Änderungen an ALLEN Services an
+  # (vorher wurden z.B. Frontend-Änderungen verschluckt).
+  log "docker compose up -d (Compose-Änderung -> Recreate aller Services)…"
   docker compose up -d || fail "compose up fehlgeschlagen"
   backend_restart_expected=1
 fi
