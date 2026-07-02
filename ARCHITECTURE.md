@@ -308,6 +308,14 @@ ssh <host> 'docker exec evidora-backend-1 ls /app/services/<new_file>.py'
 If the new file isn't there, the build was skipped and you're running
 the old image. `up -d --build` fixes it.
 
+> **On prod, don't decide by hand:** `website/deploy.sh` codifies this
+> table — it pulls, derives the right action from the changed files
+> (build / recreate / hot-reload-nothing, incl. a mount sanity-check for
+> data-only changes), waits for healthy, and then *proves* the deploy:
+> container StartedAt must reset, changed backend files must be
+> hash-identical host vs. container, `/api/legal` must return 200.
+> Failures push an ntfy alert. `--dry-run` shows the decision only.
+
 ### 4.2 Cron-jobs on production
 
 Two cron-jobs run on the Hetzner host:
