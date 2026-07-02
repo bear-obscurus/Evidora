@@ -35,16 +35,62 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["gvo", "gv-o", "gentechnik", "gen-technik", "gentechnisch", "gen-technisch",
-         "transgen", "genmanipuliert", "gen-manipuliert", "ngt", "neue genomische",
-         "cisgenese", "cisgenetik", "genome editing", "crispr", "cas9", "gmo",
-         "genetically modified", "mon810", "monsanto", "bayer-monsanto"],
-        ["gesundheit", "gesundheits-risiko", "krebserregend", "giftig", "toxisch",
-         "schädlich", "schaedlich", "sicher", "sicherheit", "unbedenklich",
-         "bedenklich", "kanzerogen", "allergie", "allergen", "efsa", "efsa-bewertung",
-         "royal society", "who", "konsens", "wissenschaft", "studien", "anbau-verbot",
-         "anbauverbot", "zugelassen", "zulassung", "kennzeichnung", "essen", "lebensmittel",
-         "nahrung", "ernährung", "ernaehrung"]
+        [
+          "gvo",
+          "gv-o",
+          "gentechnik",
+          "gen-technik",
+          "gentechnisch",
+          "gen-technisch",
+          "transgen",
+          "genmanipuliert",
+          "gen-manipuliert",
+          "ngt",
+          "neue genomische",
+          "cisgenese",
+          "cisgenetik",
+          "genome editing",
+          "crispr",
+          "cas9",
+          "gmo",
+          "genetically modified",
+          "mon810",
+          "monsanto",
+          "bayer-monsanto"
+        ],
+        [
+          "gesundheit",
+          "gesundheits-risiko",
+          "krebserregend",
+          "giftig",
+          "toxisch",
+          "schädlich",
+          "schaedlich",
+          "sicher",
+          "sicherheit",
+          "unbedenklich",
+          "bedenklich",
+          "kanzerogen",
+          "allergie",
+          "allergen",
+          "efsa",
+          "efsa-bewertung",
+          "royal society",
+          "who",
+          "konsens",
+          "wissenschaft",
+          "studien",
+          "anbau-verbot",
+          "anbauverbot",
+          "zugelassen",
+          "zulassung",
+          "kennzeichnung",
+          "essen",
+          "lebensmittel",
+          "nahrung",
+          "ernährung",
+          "ernaehrung"
+        ]
       ]
     },
     {
@@ -79,16 +125,59 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["bio", "bio-landbau", "biolandbau", "biologisch", "bio-zertifiziert",
-         "ökologisch", "oekologisch", "organic", "öpul", "oepul", "konventionell",
-         "konventioneller landbau", "intensive landwirtschaft", "extensiv",
-         "ertrag", "erträge", "ertraege", "yield"],
-        ["ertrag", "erträge", "ertraege", "produktion", "hektar", "ha",
-         "yield-gap", "ertrags-gap", "ertragsgap", "klima", "klima-bilanz",
-         "treibhausgas", "co2", "land-bedarf", "land", "fläche", "flaeche",
-         "biodiversität", "biodiversitaet", "boden", "ökologie", "oekologie",
-         "nachhaltig", "weniger", "mehr", "gleich", "besser", "schlechter",
-         "vergleich", "vs", "weltmeister"]
+        [
+          "bio",
+          "bio-landbau",
+          "biolandbau",
+          "biologisch",
+          "bio-zertifiziert",
+          "ökologisch",
+          "oekologisch",
+          "organic",
+          "öpul",
+          "oepul",
+          "konventionell",
+          "konventioneller landbau",
+          "intensive landwirtschaft",
+          "extensiv",
+          "ertrag",
+          "erträge",
+          "ertraege",
+          "yield"
+        ],
+        [
+          "ertrag",
+          "erträge",
+          "ertraege",
+          "produktion",
+          "hektar",
+          "ha",
+          "yield-gap",
+          "ertrags-gap",
+          "ertragsgap",
+          "klima",
+          "klima-bilanz",
+          "treibhausgas",
+          "co2",
+          "land-bedarf",
+          "land",
+          "fläche",
+          "flaeche",
+          "biodiversität",
+          "biodiversitaet",
+          "boden",
+          "ökologie",
+          "oekologie",
+          "nachhaltig",
+          "weniger",
+          "mehr",
+          "gleich",
+          "besser",
+          "schlechter",
+          "vergleich",
+          "vs",
+          "weltmeister"
+        ]
       ]
     },
     {
@@ -123,14 +212,58 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["glyphosat", "glyphosate", "roundup", "round-up", "monsanto-roundup",
-         "iarc", "efsa", "epa", "echa", "rac"],
-        ["krebs", "krebs-erregend", "krebserregend", "kanzerogen", "carcinogenic",
-         "karzinogen", "non-hodgkin", "lymphom", "krebsrisiko", "krebs-risiko",
-         "tumor", "harmlos", "ungefährlich", "ungefaehrlich", "sicher",
-         "verboten", "zugelassen", "genehmigung", "verlängerung", "verlaengerung",
-         "studien", "studie", "wissenschaft", "klassifikation", "klassifiziert",
-         "group 2a", "wahrscheinlich"]
+        [
+          "glyphosat",
+          "glyphosate",
+          "roundup",
+          "round-up",
+          "monsanto-roundup",
+          "iarc",
+          "efsa",
+          "epa",
+          "echa",
+          "rac"
+        ],
+        [
+          "krebs",
+          "krebs-erregend",
+          "krebserregend",
+          "kanzerogen",
+          "carcinogenic",
+          "karzinogen",
+          "non-hodgkin",
+          "lymphom",
+          "krebsrisiko",
+          "krebs-risiko",
+          "tumor",
+          "harmlos",
+          "ungefährlich",
+          "ungefaehrlich",
+          "sicher",
+          "verboten",
+          "zugelassen",
+          "genehmigung",
+          "verlängerung",
+          "verlaengerung",
+          "studien",
+          "studie",
+          "wissenschaft",
+          "klassifikation",
+          "klassifiziert",
+          "group 2a",
+          "wahrscheinlich"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "glyphosat"
+          ],
+          [
+            "verlaengert",
+            "verlängert"
+          ]
+        ]
       ]
     },
     {
@@ -165,18 +298,100 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["saatgut", "saat-gut", "saaten", "sorte", "sorten", "sortenvielfalt",
-         "pflanzen-vielfalt", "biodiversität", "biodiversitaet", "bayer",
-         "monsanto", "bayer-monsanto", "corteva", "dowdupont", "syngenta",
-         "chemchina", "basf", "limagrain", "kws", "konzern", "konzerne",
-         "agro-chemie", "agrochemie", "etc group", "ipes-food", "fao",
-         "saatzucht", "saat-zucht", "seed"],
-        ["konzentration", "monopol", "kontrolliert", "kontrollieren", "besitzen",
-         "marktanteil", "markt-anteil", "weltweit", "welt", "global",
-         "vielfalt", "verloren", "verlust", "verschwunden", "vermehrung",
-         "selbst-vermehrung", "selbstvermehrung", "tausche", "bäuerlich",
-         "baeuerlich", "kleinbauern", "verkaufen", "kaufen", "lizenz",
-         "patente", "patentieren", "75 %", "75%", "30 %", "70 %"]
+        [
+          "saatgut",
+          "saat-gut",
+          "saaten",
+          "sorte",
+          "sorten",
+          "sortenvielfalt",
+          "pflanzen-vielfalt",
+          "biodiversität",
+          "biodiversitaet",
+          "bayer",
+          "monsanto",
+          "bayer-monsanto",
+          "corteva",
+          "dowdupont",
+          "syngenta",
+          "chemchina",
+          "basf",
+          "limagrain",
+          "kws",
+          "konzern",
+          "konzerne",
+          "agro-chemie",
+          "agrochemie",
+          "etc group",
+          "ipes-food",
+          "fao",
+          "saatzucht",
+          "saat-zucht",
+          "seed"
+        ],
+        [
+          "konzentration",
+          "monopol",
+          "kontrolliert",
+          "kontrollieren",
+          "besitzen",
+          "marktanteil",
+          "markt-anteil",
+          "weltweit",
+          "welt",
+          "global",
+          "vielfalt",
+          "verloren",
+          "verlust",
+          "verschwunden",
+          "vermehrung",
+          "selbst-vermehrung",
+          "selbstvermehrung",
+          "tausche",
+          "bäuerlich",
+          "baeuerlich",
+          "kleinbauern",
+          "verkaufen",
+          "kaufen",
+          "lizenz",
+          "patente",
+          "patentieren",
+          "75 %",
+          "75%",
+          "30 %",
+          "70 %"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "bayer-monsanto"
+          ],
+          [
+            "besitzt"
+          ],
+          [
+            "gesamt"
+          ],
+          [
+            "saatgut"
+          ]
+        ],
+        [
+          [
+            "bauer",
+            "baür"
+          ],
+          [
+            "eigen"
+          ],
+          [
+            "saatgut"
+          ],
+          [
+            "vermehr"
+          ]
+        ]
       ]
     },
     {
@@ -211,18 +426,81 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["agrar-subventionen", "agrarsubventionen", "agrar-förderung",
-         "agrarfoerderung", "agrar-foerderung", "eu-agrar", "gap", "cap",
-         "direkt-zahlungen", "direktzahlungen", "öpul", "oepul", "ÖPUL",
-         "bergbauern", "berg-bauern", "ama", "bml", "bmvl", "bauern",
-         "landwirtschaft", "land-wirtschaft", "höfe", "hoefe"],
-        ["subvention", "förderung", "foerderung", "geld", "milliarden",
-         "millionen", "steuergeld", "steuer-geld", "zahlung", "auszahlung",
-         "bekommen", "erhalten", "verteilung", "verteilt", "ungerecht",
-         "großbetriebe", "grossbetriebe", "klein-betriebe", "kleinbetriebe",
-         "bergbauern", "hektar", "ha", "fläche", "flaeche", "leistung",
-         "pareto", "80 %", "80 prozent", "80%", "20 %", "20 prozent",
-         "20%", "7 mrd", "1 mrd"]
+        [
+          "agrar-subventionen",
+          "agrarsubventionen",
+          "agrar-förderung",
+          "agrarfoerderung",
+          "agrar-foerderung",
+          "eu-agrar",
+          "gap",
+          "cap",
+          "direkt-zahlungen",
+          "direktzahlungen",
+          "öpul",
+          "oepul",
+          "ÖPUL",
+          "bergbauern",
+          "berg-bauern",
+          "ama",
+          "bml",
+          "bmvl",
+          "bauern",
+          "landwirtschaft",
+          "land-wirtschaft",
+          "höfe",
+          "hoefe"
+        ],
+        [
+          "subvention",
+          "förderung",
+          "foerderung",
+          "geld",
+          "milliarden",
+          "millionen",
+          "steuergeld",
+          "steuer-geld",
+          "zahlung",
+          "auszahlung",
+          "bekommen",
+          "erhalten",
+          "verteilung",
+          "verteilt",
+          "ungerecht",
+          "großbetriebe",
+          "grossbetriebe",
+          "klein-betriebe",
+          "kleinbetriebe",
+          "bergbauern",
+          "hektar",
+          "ha",
+          "fläche",
+          "flaeche",
+          "leistung",
+          "pareto",
+          "80 %",
+          "80 prozent",
+          "80%",
+          "20 %",
+          "20 prozent",
+          "20%",
+          "7 mrd",
+          "1 mrd"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "subvent"
+          ],
+          [
+            "gehe"
+          ],
+          [
+            "grossbetrieb",
+            "großbetrieb"
+          ]
+        ]
       ]
     },
     {
@@ -258,23 +536,98 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["selbst-versorgung", "selbstversorgung", "selbst-versorgungsgrad",
-         "selbstversorgungsgrad", "autarkie", "autark", "import", "imports",
-         "importieren", "importiert", "export", "exports", "exportieren",
-         "exportiert", "regional", "regionale-versorgung", "lebensmittel",
-         "fleisch", "milch", "getreide", "gemüse", "gemuese", "obst",
-         "kartoffel", "wein", "eier", "energie", "diesel", "erdgas",
-         "versorgungsbilanz", "statistik austria", "österreich", "oesterreich",
-         "at versorgt", "österreich versorgt", "wir versorgen", "wir importieren",
-         "wir exportieren"],
-        ["versorgung", "versorgen", "versorgt", "versorgt sich", "selbst",
-         "selbst versorgen", "abhängig", "abhaengig",
-         "unabhängig", "unabhaengig", "netto-exporteur", "nettoexporteur",
-         "netto-importeur", "nettoimporteur", "produzieren", "produziert",
-         "ernten", "ernte", "anbau", "anbauen", "lücke", "luecke",
-         "100 prozent", "100 %", "100%", "56 %", "89 %", "165 %",
-         "winter-gemüse", "süd-früchte", "suedfruechte", "klima",
-         "klima-wandel", "klimawandel", "alles", "nicht mehr", "nicht selbst"]
+        [
+          "selbst-versorgung",
+          "selbstversorgung",
+          "selbst-versorgungsgrad",
+          "selbstversorgungsgrad",
+          "autarkie",
+          "autark",
+          "import",
+          "imports",
+          "importieren",
+          "importiert",
+          "export",
+          "exports",
+          "exportieren",
+          "exportiert",
+          "regional",
+          "regionale-versorgung",
+          "lebensmittel",
+          "fleisch",
+          "milch",
+          "getreide",
+          "gemüse",
+          "gemuese",
+          "obst",
+          "kartoffel",
+          "wein",
+          "eier",
+          "energie",
+          "diesel",
+          "erdgas",
+          "versorgungsbilanz",
+          "statistik austria",
+          "österreich",
+          "oesterreich",
+          "at versorgt",
+          "österreich versorgt",
+          "wir versorgen",
+          "wir importieren",
+          "wir exportieren"
+        ],
+        [
+          "versorgung",
+          "versorgen",
+          "versorgt",
+          "versorgt sich",
+          "selbst",
+          "selbst versorgen",
+          "abhängig",
+          "abhaengig",
+          "unabhängig",
+          "unabhaengig",
+          "netto-exporteur",
+          "nettoexporteur",
+          "netto-importeur",
+          "nettoimporteur",
+          "produzieren",
+          "produziert",
+          "ernten",
+          "ernte",
+          "anbau",
+          "anbauen",
+          "lücke",
+          "luecke",
+          "100 prozent",
+          "100 %",
+          "100%",
+          "56 %",
+          "89 %",
+          "165 %",
+          "winter-gemüse",
+          "süd-früchte",
+          "suedfruechte",
+          "klima",
+          "klima-wandel",
+          "klimawandel",
+          "alles",
+          "nicht mehr",
+          "nicht selbst"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "autark"
+          ],
+          [
+            "beim"
+          ],
+          [
+            "esse"
+          ]
+        ]
       ]
     },
     {
@@ -309,19 +662,99 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["vertical farming", "vertical-farming", "vertikale landwirtschaft",
-         "vertikal-anbau", "vertikalanbau", "indoor-farming", "indoorfarming",
-         "indoor-anbau", "hydroponik", "hydroponic", "aeroponic", "aeroponik",
-         "aquaponic", "aquaponik", "infarm", "aerofarms", "plenty",
-         "crop one", "stadt-landwirtschaft", "stadtlandwirtschaft",
-         "urban farming"],
-        ["welternährung", "welternaehrung", "welt-ernährung", "welt-ernaehrung",
-         "ernährung", "ernaehrung", "energie", "energieverbrauch", "energiebilanz",
-         "energie-bilanz", "klima", "klimafreundlich", "nachhaltig", "effizient",
-         "effizienz", "produktion", "produzieren", "salat", "kräuter",
-         "kraeuter", "obst", "gemüse", "gemuese", "kosten", "wirtschaftlich",
-         "rentabel", "pleite", "insolvenz", "vc", "venture-capital",
-         "investitionen", "led", "strom"]
+        [
+          "vertical farming",
+          "vertical-farming",
+          "vertikale landwirtschaft",
+          "vertikal-anbau",
+          "vertikalanbau",
+          "indoor-farming",
+          "indoorfarming",
+          "indoor-anbau",
+          "hydroponik",
+          "hydroponic",
+          "aeroponic",
+          "aeroponik",
+          "aquaponic",
+          "aquaponik",
+          "infarm",
+          "aerofarms",
+          "plenty",
+          "crop one",
+          "stadt-landwirtschaft",
+          "stadtlandwirtschaft",
+          "urban farming"
+        ],
+        [
+          "welternährung",
+          "welternaehrung",
+          "welt-ernährung",
+          "welt-ernaehrung",
+          "ernährung",
+          "ernaehrung",
+          "energie",
+          "energieverbrauch",
+          "energiebilanz",
+          "energie-bilanz",
+          "klima",
+          "klimafreundlich",
+          "nachhaltig",
+          "effizient",
+          "effizienz",
+          "produktion",
+          "produzieren",
+          "salat",
+          "kräuter",
+          "kraeuter",
+          "obst",
+          "gemüse",
+          "gemuese",
+          "kosten",
+          "wirtschaftlich",
+          "rentabel",
+          "pleite",
+          "insolvenz",
+          "vc",
+          "venture-capital",
+          "investitionen",
+          "led",
+          "strom"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "indoor-farming"
+          ],
+          [
+            "zukunft"
+          ]
+        ],
+        [
+          [
+            "vertical"
+          ],
+          [
+            "produzier"
+          ],
+          [
+            "effizient"
+          ],
+          [
+            "feld"
+          ]
+        ],
+        [
+          [
+            "innenstadt-farming"
+          ],
+          [
+            "versorgt"
+          ],
+          [
+            "stadt"
+          ]
+        ]
       ]
     },
     {
@@ -357,19 +790,95 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["massentierhaltung", "massen-tierhaltung", "industrielle tierhaltung",
-         "konventionelle tierhaltung", "tierhaltung", "tier-haltung",
-         "schwein", "schweine", "rind", "rinder", "huhn", "hühner",
-         "huehner", "lege-hennen", "legehennen", "mast-hähnchen",
-         "masthaehnchen", "vollspaltboden", "einstreu", "boden-haltung",
-         "freiland", "käfig", "kaefig", "kaefighaltung", "käfighaltung",
-         "ages", "ama", "tierwohl", "tier-wohl", "tierschutz", "tier-schutz"],
-        ["industriell", "fabrik", "großbetrieb", "grossbetrieb", "kleinbetrieb",
-         "hofgröße", "hofgroesse", "bestand", "bestandsgröße", "bestandsgroesse",
-         "tausende", "millionen", "qual", "leid", "wohl", "gut", "schlecht",
-         "konventionell", "bio", "freiland", "käfig-frei", "kaefig-frei",
-         "stallraum", "bewegung", "platz", "verboten", "erlaubt",
-         "standard", "norm", "vergleich"]
+        [
+          "massentierhaltung",
+          "massen-tierhaltung",
+          "industrielle tierhaltung",
+          "konventionelle tierhaltung",
+          "tierhaltung",
+          "tier-haltung",
+          "schwein",
+          "schweine",
+          "rind",
+          "rinder",
+          "huhn",
+          "hühner",
+          "huehner",
+          "lege-hennen",
+          "legehennen",
+          "mast-hähnchen",
+          "masthaehnchen",
+          "vollspaltboden",
+          "einstreu",
+          "boden-haltung",
+          "freiland",
+          "käfig",
+          "kaefig",
+          "kaefighaltung",
+          "käfighaltung",
+          "ages",
+          "ama",
+          "tierwohl",
+          "tier-wohl",
+          "tierschutz",
+          "tier-schutz"
+        ],
+        [
+          "industriell",
+          "fabrik",
+          "großbetrieb",
+          "grossbetrieb",
+          "kleinbetrieb",
+          "hofgröße",
+          "hofgroesse",
+          "bestand",
+          "bestandsgröße",
+          "bestandsgroesse",
+          "tausende",
+          "millionen",
+          "qual",
+          "leid",
+          "wohl",
+          "gut",
+          "schlecht",
+          "konventionell",
+          "bio",
+          "freiland",
+          "käfig-frei",
+          "kaefig-frei",
+          "stallraum",
+          "bewegung",
+          "platz",
+          "verboten",
+          "erlaubt",
+          "standard",
+          "norm",
+          "vergleich"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "massentierhaltung"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ]
+        ],
+        [
+          [
+            "at-huehn",
+            "at-hühn"
+          ],
+          [
+            "lebe"
+          ],
+          [
+            "kaefig",
+            "käfig"
+          ]
+        ]
       ]
     },
     {
@@ -405,19 +914,94 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["pestizid", "pestizide", "pestizid-rückstände", "pestizidrueckstaende",
-         "pestizid-rueckstaende", "rückstände", "rueckstaende", "wirkstoff",
-         "wirkstoffe", "mrl", "maximum residue", "efsa", "ages", "lebensmittel-sicherheit",
-         "rückstandskontrolle", "rueckstandskontrolle", "pflanzenschutzmittel",
-         "pflanzen-schutzmittel", "psm", "spritzmittel"],
-        ["voll", "voller", "kaum", "ohne", "frei", "rein", "kontaminiert",
-         "konform", "konformität", "konformitaet", "mrl-konform", "über mrl",
-         "ueber mrl", "überschreitung", "ueberschreitung", "grenzwert",
-         "grenzwerte", "cocktail", "cocktail-effekt", "kumulativ",
-         "mehrfach-rückstände", "mehrfach", "verboten", "zugelassen",
-         "drift", "kontamination", "bio", "konventionell", "obst",
-         "gemüse", "gemuese", "getreide", "alle", "fast alle", "in allen",
-         "in fast allen", "vielen", "fast", "lebensmittel", "lebensmittel-sicherheit"]
+        [
+          "pestizid",
+          "pestizide",
+          "pestizid-rückstände",
+          "pestizidrueckstaende",
+          "pestizid-rueckstaende",
+          "rückstände",
+          "rueckstaende",
+          "wirkstoff",
+          "wirkstoffe",
+          "mrl",
+          "maximum residue",
+          "efsa",
+          "ages",
+          "lebensmittel-sicherheit",
+          "rückstandskontrolle",
+          "rueckstandskontrolle",
+          "pflanzenschutzmittel",
+          "pflanzen-schutzmittel",
+          "psm",
+          "spritzmittel"
+        ],
+        [
+          "voll",
+          "voller",
+          "kaum",
+          "ohne",
+          "frei",
+          "rein",
+          "kontaminiert",
+          "konform",
+          "konformität",
+          "konformitaet",
+          "mrl-konform",
+          "über mrl",
+          "ueber mrl",
+          "überschreitung",
+          "ueberschreitung",
+          "grenzwert",
+          "grenzwerte",
+          "cocktail",
+          "cocktail-effekt",
+          "kumulativ",
+          "mehrfach-rückstände",
+          "mehrfach",
+          "verboten",
+          "zugelassen",
+          "drift",
+          "kontamination",
+          "bio",
+          "konventionell",
+          "obst",
+          "gemüse",
+          "gemuese",
+          "getreide",
+          "alle",
+          "fast alle",
+          "in allen",
+          "in fast allen",
+          "vielen",
+          "fast",
+          "lebensmittel",
+          "lebensmittel-sicherheit"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "efsa"
+          ],
+          [
+            "toleriert"
+          ],
+          [
+            "hohe"
+          ],
+          [
+            "pestizid-wert"
+          ]
+        ],
+        [
+          [
+            "cocktail-effekt"
+          ],
+          [
+            "ignoriert"
+          ]
+        ]
       ]
     },
     {
@@ -453,18 +1037,74 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["düngemittel", "duengemittel", "düngemittel-preise", "stickstoff",
-         "ammoniak", "harnstoff", "kali", "phosphor", "npk", "haber-bosch",
-         "agrar-rohstoffe", "yara", "borealis", "agrolinz", "oci",
-         "fertilizer", "fertilisers", "russland", "belarus", "sanktionen",
-         "russisch", "belarussisch"],
-        ["abhängig", "abhaengig", "abhängigkeit", "abhaengigkeit",
-         "import", "imports", "exportiert", "import-quote", "preis",
-         "preise", "explodiert", "verdreifacht", "vervierfacht",
-         "normalisiert", "diversifiziert", "diversifikation", "reshoring",
-         "russland", "belarus", "sanktionen", "ukraine-krieg", "krieg",
-         "alternative", "norwegen", "algerien", "mittlerer osten",
-         "selbst-versorgung", "selbstversorgung"]
+        [
+          "düngemittel",
+          "duengemittel",
+          "düngemittel-preise",
+          "stickstoff",
+          "ammoniak",
+          "harnstoff",
+          "kali",
+          "phosphor",
+          "npk",
+          "haber-bosch",
+          "agrar-rohstoffe",
+          "yara",
+          "borealis",
+          "agrolinz",
+          "oci",
+          "fertilizer",
+          "fertilisers",
+          "russland",
+          "belarus",
+          "sanktionen",
+          "russisch",
+          "belarussisch"
+        ],
+        [
+          "abhängig",
+          "abhaengig",
+          "abhängigkeit",
+          "abhaengigkeit",
+          "import",
+          "imports",
+          "exportiert",
+          "import-quote",
+          "preis",
+          "preise",
+          "explodiert",
+          "verdreifacht",
+          "vervierfacht",
+          "normalisiert",
+          "diversifiziert",
+          "diversifikation",
+          "reshoring",
+          "russland",
+          "belarus",
+          "sanktionen",
+          "ukraine-krieg",
+          "krieg",
+          "alternative",
+          "norwegen",
+          "algerien",
+          "mittlerer osten",
+          "selbst-versorgung",
+          "selbstversorgung"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "produziert"
+          ],
+          [
+            "eigen"
+          ],
+          [
+            "duengemittel",
+            "düngemittel"
+          ]
+        ]
       ]
     },
     {
@@ -500,18 +1140,93 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["welt-hunger", "welthunger", "welternährung", "welt-ernährung",
-         "welt-ernaehrung", "welternaehrung", "hunger", "unter-ernährung",
-         "unter-ernaehrung", "unterernaehrung", "fao", "wfp",
-         "world food programme", "lebensmittel-verschwendung",
-         "lebensmittelverschwendung", "food waste"],
-        ["genug", "nicht genug", "produzieren", "produziert", "wachsen",
-         "wachstum", "weltbevölkerung", "weltbev", "welt-bev", "welt-bevölkerung",
-         "verteilung", "verteilungs-problem", "ungerecht", "konflikte",
-         "krieg", "krisen", "verschwendung", "verschwendet", "wegwerfen",
-         "weggeworfen", "tierfutter", "tier-futter", "rindfleisch",
-         "fleisch-konsum", "30 %", "30 prozent", "38 %", "8 mrd",
-         "12 mrd", "733 mio"]
+        [
+          "welt-hunger",
+          "welthunger",
+          "welternährung",
+          "welt-ernährung",
+          "welt-ernaehrung",
+          "welternaehrung",
+          "hunger",
+          "unter-ernährung",
+          "unter-ernaehrung",
+          "unterernaehrung",
+          "fao",
+          "wfp",
+          "world food programme",
+          "lebensmittel-verschwendung",
+          "lebensmittelverschwendung",
+          "food waste"
+        ],
+        [
+          "genug",
+          "nicht genug",
+          "produzieren",
+          "produziert",
+          "wachsen",
+          "wachstum",
+          "weltbevölkerung",
+          "weltbev",
+          "welt-bev",
+          "welt-bevölkerung",
+          "verteilung",
+          "verteilungs-problem",
+          "ungerecht",
+          "konflikte",
+          "krieg",
+          "krisen",
+          "verschwendung",
+          "verschwendet",
+          "wegwerfen",
+          "weggeworfen",
+          "tierfutter",
+          "tier-futter",
+          "rindfleisch",
+          "fleisch-konsum",
+          "30 %",
+          "30 prozent",
+          "38 %",
+          "8 mrd",
+          "12 mrd",
+          "733 mio"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "welt-bevoelkerung",
+            "welt-bevölkerung"
+          ],
+          [
+            "waechst",
+            "wächst"
+          ],
+          [
+            "produzier"
+          ],
+          [
+            "genug"
+          ]
+        ],
+        [
+          [
+            "hung"
+          ],
+          [
+            "mengen-problem"
+          ]
+        ],
+        [
+          [
+            "prozent"
+          ],
+          [
+            "lebensmittel"
+          ],
+          [
+            "verschwendet"
+          ]
+        ]
       ]
     },
     {
@@ -547,18 +1262,89 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["bauern", "bauer", "bäuerin", "baeuerin", "bauern-sterben",
-         "bauernsterben", "höfe", "hoefe", "höfe-schwund", "hoefe-schwund",
-         "landwirt", "landwirte", "landwirtschaft", "land-wirtschaft",
-         "kleinbauern", "klein-bauern", "großbauern", "großbetriebe",
-         "vollerwerb", "voll-erwerb", "nebenerwerb", "neben-erwerb",
-         "hobby-bauer", "hobby-höfe", "betriebe", "agrar-betriebe"],
-        ["sterben", "verschwinden", "schwund", "rückgang", "rueckgang",
-         "abnahme", "weniger", "kleiner", "größer", "groesser", "wachsen",
-         "schrumpfen", "konsolidierung", "zusammenfassen", "übernahme",
-         "uebernahme", "aufgabe", "aufgeben", "zukunft", "perspektive",
-         "stirbt aus", "sterben aus", "1951", "1990", "2024", "64 %",
-         "60 %", "trend", "strukturwandel", "struktur-wandel", "industrialisierung"]
+        [
+          "bauern",
+          "bauer",
+          "bäuerin",
+          "baeuerin",
+          "bauern-sterben",
+          "bauernsterben",
+          "höfe",
+          "hoefe",
+          "höfe-schwund",
+          "hoefe-schwund",
+          "landwirt",
+          "landwirte",
+          "landwirtschaft",
+          "land-wirtschaft",
+          "kleinbauern",
+          "klein-bauern",
+          "großbauern",
+          "großbetriebe",
+          "vollerwerb",
+          "voll-erwerb",
+          "nebenerwerb",
+          "neben-erwerb",
+          "hobby-bauer",
+          "hobby-höfe",
+          "betriebe",
+          "agrar-betriebe"
+        ],
+        [
+          "sterben",
+          "verschwinden",
+          "schwund",
+          "rückgang",
+          "rueckgang",
+          "abnahme",
+          "weniger",
+          "kleiner",
+          "größer",
+          "groesser",
+          "wachsen",
+          "schrumpfen",
+          "konsolidierung",
+          "zusammenfassen",
+          "übernahme",
+          "uebernahme",
+          "aufgabe",
+          "aufgeben",
+          "zukunft",
+          "perspektive",
+          "stirbt aus",
+          "sterben aus",
+          "1951",
+          "1990",
+          "2024",
+          "64 %",
+          "60 %",
+          "trend",
+          "strukturwandel",
+          "struktur-wandel",
+          "industrialisierung"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "at-landwirtschaft"
+          ],
+          [
+            "verschwindet"
+          ]
+        ],
+        [
+          [
+            "eu-weit"
+          ],
+          [
+            "bauernstand",
+            "baürnstand"
+          ],
+          [
+            "verschwindet"
+          ]
+        ]
       ]
     },
     {
@@ -594,19 +1380,97 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["klima", "klima-wandel", "klimawandel", "klima-erwärmung",
-         "klimaerwaermung", "treibhausgas", "treibhausgase", "thg",
-         "co2", "methan", "ch4", "distickstoff-oxid", "n2o",
-         "landwirtschaft", "land-wirtschaft", "bauern", "rinder",
-         "rind-haltung", "schweine", "gülle", "guelle", "düngung",
-         "duengung", "dünger", "duenger"],
-        ["emissionen", "emission", "klima-bilanz", "klimabilanz", "khg",
-         "khg-bilanz", "uba", "umweltbundesamt", "zamg", "geosphere",
-         "ipcc", "global", "welt", "ausstoß", "ausstoss", "ausstossen",
-         "verursachen", "verursacht", "klima-neutral", "klimaneutral",
-         "anpassung", "klima-anpassung", "wein", "mais", "apfel",
-         "milch", "ertrag", "ernte", "hitze", "hitze-stress",
-         "trockenheit", "10 %", "10 prozent", "23 %", "16 %"]
+        [
+          "klima",
+          "klima-wandel",
+          "klimawandel",
+          "klima-erwärmung",
+          "klimaerwaermung",
+          "treibhausgas",
+          "treibhausgase",
+          "thg",
+          "co2",
+          "methan",
+          "ch4",
+          "distickstoff-oxid",
+          "n2o",
+          "landwirtschaft",
+          "land-wirtschaft",
+          "bauern",
+          "rinder",
+          "rind-haltung",
+          "schweine",
+          "gülle",
+          "guelle",
+          "düngung",
+          "duengung",
+          "dünger",
+          "duenger"
+        ],
+        [
+          "emissionen",
+          "emission",
+          "klima-bilanz",
+          "klimabilanz",
+          "khg",
+          "khg-bilanz",
+          "uba",
+          "umweltbundesamt",
+          "zamg",
+          "geosphere",
+          "ipcc",
+          "global",
+          "welt",
+          "ausstoß",
+          "ausstoss",
+          "ausstossen",
+          "verursachen",
+          "verursacht",
+          "klima-neutral",
+          "klimaneutral",
+          "anpassung",
+          "klima-anpassung",
+          "wein",
+          "mais",
+          "apfel",
+          "milch",
+          "ertrag",
+          "ernte",
+          "hitze",
+          "hitze-stress",
+          "trockenheit",
+          "10 %",
+          "10 prozent",
+          "23 %",
+          "16 %"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "bauer",
+            "baür"
+          ],
+          [
+            "klima-suend",
+            "klima-sünd"
+          ]
+        ],
+        [
+          [
+            "klima-wandel"
+          ],
+          [
+            "betrifft"
+          ],
+          [
+            "at-bauer",
+            "at-baür"
+          ],
+          [
+            "stark"
+          ]
+        ]
       ]
     }
   ]

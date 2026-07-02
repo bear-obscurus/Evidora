@@ -147,6 +147,19 @@
           "gleicher lohn",
           "ohne lohnverlust"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "iceland"
+          ],
+          [
+            "4-tage-woch"
+          ],
+          [
+            "erfolg"
+          ]
+        ]
       ]
     },
     {
@@ -318,7 +331,9 @@
         "Fachkraefte-Mangel ist nur ein Lohn-Problem",
         "Fachkraefte-Mangel betrifft alle Branchen"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "es gibt keinen fachkraefte-mangel"
+      ],
       "trigger_composite": [
         [
           "fachkraeftemangel",
@@ -424,6 +439,17 @@
           "wirtschaft",
           "arbeitsplaetze"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "kollektivvertraeg",
+            "kollektivverträg"
+          ],
+          [
+            "nicht"
+          ]
+        ]
       ]
     },
     {
@@ -495,6 +521,19 @@
           "kostet arbeitsplaetze",
           "jobs ersetzt",
           "stellen ersetzt"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "automatisierung"
+          ],
+          [
+            "kostet"
+          ],
+          [
+            "stell"
+          ]
         ]
       ]
     },
@@ -571,6 +610,23 @@
           "lohn",
           "stellen",
           "jobs"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "migrant"
+          ],
+          [
+            "nehm"
+          ],
+          [
+            "einheimisch"
+          ],
+          [
+            "beschaeftigt",
+            "beschäftigt"
+          ]
         ]
       ]
     },
@@ -852,6 +908,16 @@
           "weil sie weniger arbeiten",
           "teilzeit"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "lohn-diskriminierung"
+          ],
+          [
+            "frau"
+          ]
+        ]
       ]
     },
     {
@@ -921,6 +987,34 @@
           "engpass",
           "personal-mangel",
           "personalmangel"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "pflege-mangel"
+          ],
+          [
+            "allei"
+          ],
+          [
+            "lohn"
+          ],
+          [
+            "loes",
+            "lös"
+          ]
+        ],
+        [
+          [
+            "pflege-branch"
+          ],
+          [
+            "genug"
+          ],
+          [
+            "personal"
+          ]
         ]
       ]
     },
@@ -999,6 +1093,17 @@
           "eugh",
           "urteil",
           "gerichtsurteil"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "plattform-beschaeftigt",
+            "plattform-beschäftigt"
+          ],
+          [
+            "arbeitnehmer-schutz"
+          ]
         ]
       ]
     }

@@ -33,15 +33,71 @@
         "Welche Behörde kontrolliert Parteienfinanzierung in AT?"
       ],
       "trigger_keywords": [
-        "parteiengesetz", "partg", "partg 2012", "partg2012",
-        "parteien-förderungsgesetz", "parteienförderungsgesetz", "partförg", "partfoerg",
-        "parteienfinanzierung gesetz", "parteienfinanzierung österreich",
-        "parteienfinanzierung oesterreich", "upts", "transparenz-senat"
+        "parteiengesetz",
+        "partg",
+        "partg 2012",
+        "partg2012",
+        "parteien-förderungsgesetz",
+        "parteienförderungsgesetz",
+        "partförg",
+        "partfoerg",
+        "parteienfinanzierung gesetz",
+        "parteienfinanzierung österreich",
+        "parteienfinanzierung oesterreich",
+        "upts",
+        "transparenz-senat"
       ],
       "trigger_composite": [
-        ["parteien", "parteiengesetz", "parteienfinanzierung", "parteienförderung", "parteienfoerderung", "partg", "partförg", "partfoerg", "upts"],
-        ["österreich", "oesterreich", "at ", " at,", " at.", "bgbl", "gesetz", "rechtsgrundlage", "regelung"],
-        ["regelt", "geregelt", "rechtsgrundlage", "gesetzlich", "grundlage", "2012", "bgbl", "novelle", "rahmen", "behörde", "vollzug", "kontrolle"]
+        [
+          "parteien",
+          "parteiengesetz",
+          "parteienfinanzierung",
+          "parteienförderung",
+          "parteienfoerderung",
+          "partg",
+          "partförg",
+          "partfoerg",
+          "upts"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          "at ",
+          " at,",
+          " at.",
+          "bgbl",
+          "gesetz",
+          "rechtsgrundlage",
+          "regelung"
+        ],
+        [
+          "regelt",
+          "geregelt",
+          "rechtsgrundlage",
+          "gesetzlich",
+          "grundlage",
+          "2012",
+          "bgbl",
+          "novelle",
+          "rahmen",
+          "behörde",
+          "vollzug",
+          "kontrolle"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "behoerd",
+            "behörd"
+          ],
+          [
+            "kontrolliert"
+          ],
+          [
+            "parteienfinanzierung"
+          ]
+        ]
       ]
     },
     {
@@ -75,21 +131,105 @@
         "Wieviel Geld bekommen österreichische Parteien"
       ],
       "trigger_keywords": [
-        "parteienförderung 2024", "parteienfoerderung 2024",
-        "parteienförderung österreich", "parteienfoerderung oesterreich",
-        "parteienförderung höhe", "parteienfoerderung hoehe",
-        "öv parteienförderung", "spö parteienförderung",
-        "fpö parteienförderung", "grüne parteienförderung",
+        "parteienförderung 2024",
+        "parteienfoerderung 2024",
+        "parteienförderung österreich",
+        "parteienfoerderung oesterreich",
+        "parteienförderung höhe",
+        "parteienfoerderung hoehe",
+        "öv parteienförderung",
+        "spö parteienförderung",
+        "fpö parteienförderung",
+        "grüne parteienförderung",
         "neos parteienförderung",
-        "öv parteienfoerderung", "spö parteienfoerderung",
-        "fpö parteienfoerderung", "gruene parteienfoerderung", "neos parteienfoerderung",
-        "klubförderung", "klubfoerderung",
-        "parteiakademie förderung", "parteiakademie foerderung"
+        "öv parteienfoerderung",
+        "spö parteienfoerderung",
+        "fpö parteienfoerderung",
+        "gruene parteienfoerderung",
+        "neos parteienfoerderung",
+        "klubförderung",
+        "klubfoerderung",
+        "parteiakademie förderung",
+        "parteiakademie foerderung"
       ],
       "trigger_composite": [
-        ["parteienförderung", "parteienfoerderung", "parteienfinanzierung", "klubförderung", "klubfoerderung", "parteiakademie", "akademienförderung", "subvention"],
-        ["övp", "spö", "fpö", "grüne", "gruene", "neos", "österreich", "oesterreich", "at ", " at,", " at.", "bundes", "alle parteien"],
-        ["höhe", "hoehe", "wie viel", "wieviel", "betrag", "mio", "millionen", "37", "26", "17", "13", "12", "8", "2023", "2024", "aufschlüsselung", "aufschluesselung", "vom staat", "bekommt", "erhalten", "ausgezahlt"]
+        [
+          "parteienförderung",
+          "parteienfoerderung",
+          "parteienfinanzierung",
+          "klubförderung",
+          "klubfoerderung",
+          "parteiakademie",
+          "akademienförderung",
+          "subvention"
+        ],
+        [
+          "övp",
+          "spö",
+          "fpö",
+          "grüne",
+          "gruene",
+          "neos",
+          "österreich",
+          "oesterreich",
+          "at ",
+          " at,",
+          " at.",
+          "bundes",
+          "alle parteien"
+        ],
+        [
+          "höhe",
+          "hoehe",
+          "wie viel",
+          "wieviel",
+          "betrag",
+          "mio",
+          "millionen",
+          "37",
+          "26",
+          "17",
+          "13",
+          "12",
+          "8",
+          "2023",
+          "2024",
+          "aufschlüsselung",
+          "aufschluesselung",
+          "vom staat",
+          "bekommt",
+          "erhalten",
+          "ausgezahlt"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "bekommt"
+          ],
+          [
+            "spoe",
+            "spö"
+          ],
+          [
+            "staat"
+          ]
+        ],
+        [
+          [
+            "geld"
+          ],
+          [
+            "bekomm"
+          ],
+          [
+            "oesterreichisch",
+            "österreichisch"
+          ],
+          [
+            "partei"
+          ]
+        ]
       ]
     },
     {
@@ -120,17 +260,80 @@
         "Maximum Parteienförderung pro Bürger AT"
       ],
       "trigger_keywords": [
-        "pro wahlberechtigtem", "pro wahlberechtigter",
-        "höchstgrenze parteienförderung", "hoechstgrenze parteienfoerderung",
-        "11 euro parteienförderung", "11 euro parteienfoerderung",
-        "3,10 euro", "3.10 euro",
-        "rahmen parteienförderung", "rahmen parteienfoerderung",
-        "§ 3 partg", "par 3 partg", "paragraph 3 partg"
+        "pro wahlberechtigtem",
+        "pro wahlberechtigter",
+        "höchstgrenze parteienförderung",
+        "hoechstgrenze parteienfoerderung",
+        "11 euro parteienförderung",
+        "11 euro parteienfoerderung",
+        "3,10 euro",
+        "3.10 euro",
+        "rahmen parteienförderung",
+        "rahmen parteienfoerderung",
+        "§ 3 partg",
+        "par 3 partg",
+        "paragraph 3 partg"
       ],
       "trigger_composite": [
-        ["parteienförderung", "parteienfoerderung", "parteienfinanzierung", "förderung", "foerderung"],
-        ["pro wahlberechtig", "wahlberechtigt", "pro bürger", "pro buerger", "pro kopf", "pro person", "11 euro", "11 eur", "3,10", "3.10", "höchstgrenze", "hoechstgrenze", "obergrenze", "maximum", "rahmen"],
-        ["österreich", "oesterreich", "at ", " at.", " at,", "partg", "§ 3", "par 3", "paragraph 3"]
+        [
+          "parteienförderung",
+          "parteienfoerderung",
+          "parteienfinanzierung",
+          "förderung",
+          "foerderung"
+        ],
+        [
+          "pro wahlberechtig",
+          "wahlberechtigt",
+          "pro bürger",
+          "pro buerger",
+          "pro kopf",
+          "pro person",
+          "11 euro",
+          "11 eur",
+          "3,10",
+          "3.10",
+          "höchstgrenze",
+          "hoechstgrenze",
+          "obergrenze",
+          "maximum",
+          "rahmen"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          "at ",
+          " at.",
+          " at,",
+          "partg",
+          "§ 3",
+          "par 3",
+          "paragraph 3"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "partg"
+          ],
+          [
+            "hoechstgrenz",
+            "höchstgrenz"
+          ]
+        ],
+        [
+          [
+            "maximum"
+          ],
+          [
+            "parteienfoerderung",
+            "parteienförderung"
+          ],
+          [
+            "buerg",
+            "bürg"
+          ]
+        ]
       ]
     },
     {
@@ -163,17 +366,76 @@
         "Wahlkampf Kosten Höchstgrenze AT"
       ],
       "trigger_keywords": [
-        "wahlkampfkosten", "wahlkampfkostengrenze", "wahlkampfkostenobergrenze",
-        "wahlkampfkosten-grenze", "wahlkampfkosten-obergrenze",
-        "wahlwerbungsausgaben", "wahlkampfausgaben",
-        "7 millionen wahlkampf", "7 mio wahlkampf",
-        "8,6 millionen wahlkampf", "8 mio wahlkampf",
-        "§ 4 partg", "paragraph 4 partg", "par 4 partg"
+        "wahlkampfkosten",
+        "wahlkampfkostengrenze",
+        "wahlkampfkostenobergrenze",
+        "wahlkampfkosten-grenze",
+        "wahlkampfkosten-obergrenze",
+        "wahlwerbungsausgaben",
+        "wahlkampfausgaben",
+        "7 millionen wahlkampf",
+        "7 mio wahlkampf",
+        "8,6 millionen wahlkampf",
+        "8 mio wahlkampf",
+        "§ 4 partg",
+        "paragraph 4 partg",
+        "par 4 partg"
       ],
       "trigger_composite": [
-        ["wahlkampf", "wahlwerbungsausgab", "wahlkampfkosten", "wahlkampfkost", "wahlwerbung"],
-        ["österreich", "oesterreich", "at ", " at,", " at.", "nationalratswahl", "nr-wahl", "nrw", "grenze", "obergrenze", "höchstgrenze", "hoechstgrenze", "limit", "deckel"],
-        ["wie viel", "höchstens", "hoechstens", "maximum", "mio", "millionen", "7 mio", "8 mio", "8,6", "8.6", "7 millionen", "8 millionen", "ausgeben", "ausgaben", "kosten", "valorisierung"]
+        [
+          "wahlkampf",
+          "wahlwerbungsausgab",
+          "wahlkampfkosten",
+          "wahlkampfkost",
+          "wahlwerbung"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          "at ",
+          " at,",
+          " at.",
+          "nationalratswahl",
+          "nr-wahl",
+          "nrw",
+          "grenze",
+          "obergrenze",
+          "höchstgrenze",
+          "hoechstgrenze",
+          "limit",
+          "deckel"
+        ],
+        [
+          "wie viel",
+          "höchstens",
+          "hoechstens",
+          "maximum",
+          "mio",
+          "millionen",
+          "7 mio",
+          "8 mio",
+          "8,6",
+          "8.6",
+          "7 millionen",
+          "8 millionen",
+          "ausgeben",
+          "ausgaben",
+          "kosten",
+          "valorisierung"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "partei"
+          ],
+          [
+            "wahlkampf"
+          ],
+          [
+            "ausgeb"
+          ]
+        ]
       ]
     },
     {
@@ -207,21 +469,82 @@
         "Maximale Parteispende Österreich 7500 EUR"
       ],
       "trigger_keywords": [
-        "spenden-schwelle", "spendenschwelle",
-        "veröffentlichungsschwelle", "veroeffentlichungsschwelle",
-        "veröffentlichungs-schwelle", "veroeffentlichungs-schwelle",
-        "165 euro spende", "540 euro spende",
-        "7500 euro spende", "7.500 euro spende",
+        "spenden-schwelle",
+        "spendenschwelle",
+        "veröffentlichungsschwelle",
+        "veroeffentlichungsschwelle",
+        "veröffentlichungs-schwelle",
+        "veroeffentlichungs-schwelle",
+        "165 euro spende",
+        "540 euro spende",
+        "7500 euro spende",
+        "7.500 euro spende",
         "750.000 euro spende",
-        "parteispende meldung", "parteispenden meldung",
+        "parteispende meldung",
+        "parteispenden meldung",
         "spenden meldung rechnungshof",
-        "§ 6 partg", "par 6 partg", "paragraph 6 partg",
-        "spendenobergrenze", "spenden-obergrenze"
+        "§ 6 partg",
+        "par 6 partg",
+        "paragraph 6 partg",
+        "spendenobergrenze",
+        "spenden-obergrenze"
       ],
       "trigger_composite": [
-        ["spende", "spenden", "parteispende", "parteispenden"],
-        ["österreich", "oesterreich", "at ", " at,", " at.", "rechnungshof", "partg", "§ 6", "par 6", "paragraph 6"],
-        ["schwelle", "veröffentlich", "veroeffentlich", "meldung", "melden", "obergrenze", "höchstgrenze", "hoechstgrenze", "165", "540", "7500", "7.500", "750000", "750.000", "transparenz", "publiz"]
+        [
+          "spende",
+          "spenden",
+          "parteispende",
+          "parteispenden"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          "at ",
+          " at,",
+          " at.",
+          "rechnungshof",
+          "partg",
+          "§ 6",
+          "par 6",
+          "paragraph 6"
+        ],
+        [
+          "schwelle",
+          "veröffentlich",
+          "veroeffentlich",
+          "meldung",
+          "melden",
+          "obergrenze",
+          "höchstgrenze",
+          "hoechstgrenze",
+          "165",
+          "540",
+          "7500",
+          "7.500",
+          "750000",
+          "750.000",
+          "transparenz",
+          "publiz"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "spend"
+          ],
+          [
+            "veroeffentlicht",
+            "veröffentlicht"
+          ]
+        ],
+        [
+          [
+            "partg"
+          ],
+          [
+            "spend"
+          ]
+        ]
       ]
     },
     {
@@ -255,18 +578,70 @@
         "Wahlkampfkosten-Überschreitung Strafe AT"
       ],
       "trigger_keywords": [
-        "sanktion parteienfinanzierung", "sanktion parteiengesetz",
-        "strafe parteispende", "strafe parteispenden", "strafe parteienfinanzierung",
-        "upts geldbuße", "upts geldbusse",
-        "upts strafe", "upts entscheidung",
-        "geldbuße parteien", "geldbusse parteien",
+        "sanktion parteienfinanzierung",
+        "sanktion parteiengesetz",
+        "strafe parteispende",
+        "strafe parteispenden",
+        "strafe parteienfinanzierung",
+        "upts geldbuße",
+        "upts geldbusse",
+        "upts strafe",
+        "upts entscheidung",
+        "geldbuße parteien",
+        "geldbusse parteien",
         "geldstrafe parteienfinanzierung",
-        "§ 10 partg", "par 10 partg", "paragraph 10 partg"
+        "§ 10 partg",
+        "par 10 partg",
+        "paragraph 10 partg"
       ],
       "trigger_composite": [
-        ["sanktion", "strafe", "geldstrafe", "geldbuße", "geldbusse", "bestraf", "bußgeld", "bussgeld"],
-        ["parteispende", "parteispenden", "parteienfinanzierung", "parteienförderung", "parteienfoerderung", "parteiengesetz", "wahlkampfkosten", "rechenschaftsbericht", "upts"],
-        ["höhe", "hoehe", "wie viel", "welche", "verstoß", "verstoss", "überschreitung", "ueberschreitung", "50000", "50.000", "15000", "15.000", "3-fach", "doppelt"]
+        [
+          "sanktion",
+          "strafe",
+          "geldstrafe",
+          "geldbuße",
+          "geldbusse",
+          "bestraf",
+          "bußgeld",
+          "bussgeld"
+        ],
+        [
+          "parteispende",
+          "parteispenden",
+          "parteienfinanzierung",
+          "parteienförderung",
+          "parteienfoerderung",
+          "parteiengesetz",
+          "wahlkampfkosten",
+          "rechenschaftsbericht",
+          "upts"
+        ],
+        [
+          "höhe",
+          "hoehe",
+          "wie viel",
+          "welche",
+          "verstoß",
+          "verstoss",
+          "überschreitung",
+          "ueberschreitung",
+          "50000",
+          "50.000",
+          "15000",
+          "15.000",
+          "3-fach",
+          "doppelt"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "sankt"
+          ],
+          [
+            "parteiengesetz"
+          ]
+        ]
       ]
     },
     {
@@ -299,19 +674,72 @@
         "Wer prüft die Parteifinanzen in AT?"
       ],
       "trigger_keywords": [
-        "rechenschaftsbericht", "rechenschaftsberichte",
+        "rechenschaftsbericht",
+        "rechenschaftsberichte",
         "rechenschaftspflicht parteien",
         "parteienbericht rechnungshof",
         "parteien rechenschaft",
         "rechnungshof parteien prüfung",
         "rechnungshof parteien pruefung",
-        "§ 8 partg", "par 8 partg", "paragraph 8 partg",
-        "wirtschaftsprüfer partei", "wirtschaftspruefer partei"
+        "§ 8 partg",
+        "par 8 partg",
+        "paragraph 8 partg",
+        "wirtschaftsprüfer partei",
+        "wirtschaftspruefer partei"
       ],
       "trigger_composite": [
-        ["rechenschaftsbericht", "rechenschaftspflicht", "rechenschaft", "parteienbericht", "parteibericht"],
-        ["partei", "parteien", "österreich", "oesterreich", "at ", " at,", " at.", "rechnungshof", "partg", "§ 8", "par 8", "paragraph 8"],
-        ["abgeben", "prüfen", "pruefen", "veröffentlich", "veroeffentlich", "frist", "wann", "wer", "pflicht", "kontrolle"]
+        [
+          "rechenschaftsbericht",
+          "rechenschaftspflicht",
+          "rechenschaft",
+          "parteienbericht",
+          "parteibericht"
+        ],
+        [
+          "partei",
+          "parteien",
+          "österreich",
+          "oesterreich",
+          "at ",
+          " at,",
+          " at.",
+          "rechnungshof",
+          "partg",
+          "§ 8",
+          "par 8",
+          "paragraph 8"
+        ],
+        [
+          "abgeben",
+          "prüfen",
+          "pruefen",
+          "veröffentlich",
+          "veroeffentlich",
+          "frist",
+          "wann",
+          "wer",
+          "pflicht",
+          "kontrolle"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "partg"
+          ],
+          [
+            "bericht"
+          ]
+        ],
+        [
+          [
+            "prueft",
+            "prüft"
+          ],
+          [
+            "parteifinanz"
+          ]
+        ]
       ]
     },
     {
@@ -344,16 +772,66 @@
         "Rolle Rechnungshof Parteienfinanzierung"
       ],
       "trigger_keywords": [
-        "rechnungshof parteien", "rechnungshof parteienfinanzierung",
-        "rechnungshof parteispenden", "rechnungshof spenden parteien",
+        "rechnungshof parteien",
+        "rechnungshof parteienfinanzierung",
+        "rechnungshof parteispenden",
+        "rechnungshof spenden parteien",
         "rechnungshof kontrolle parteien",
-        "rh parteien", "rh parteienfinanzierung",
-        "parteien kontrolle österreich", "parteien kontrolle oesterreich"
+        "rh parteien",
+        "rh parteienfinanzierung",
+        "parteien kontrolle österreich",
+        "parteien kontrolle oesterreich"
       ],
       "trigger_composite": [
-        ["rechnungshof", "rh österreich", "rh oesterreich"],
-        ["partei", "parteien", "parteienfinanzierung", "parteispende", "parteispenden", "parteienförderung", "parteienfoerderung"],
-        ["kontroll", "prüf", "pruef", "rolle", "aufgabe", "zuständig", "zustaendig", "wer prüft", "wer pruef", "wer kontroll"]
+        [
+          "rechnungshof",
+          "rh österreich",
+          "rh oesterreich"
+        ],
+        [
+          "partei",
+          "parteien",
+          "parteienfinanzierung",
+          "parteispende",
+          "parteispenden",
+          "parteienförderung",
+          "parteienfoerderung"
+        ],
+        [
+          "kontroll",
+          "prüf",
+          "pruef",
+          "rolle",
+          "aufgabe",
+          "zuständig",
+          "zustaendig",
+          "wer prüft",
+          "wer pruef",
+          "wer kontroll"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "kontrolliert"
+          ],
+          [
+            "parteienfinanzierung"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ]
+        ],
+        [
+          [
+            "prueft",
+            "prüft"
+          ],
+          [
+            "parteispend"
+          ]
+        ]
       ]
     },
     {
@@ -386,16 +864,61 @@
         "Wie viel kostet ein Parlamentsklub?"
       ],
       "trigger_keywords": [
-        "klubförderung", "klubfoerderung",
-        "klubfinanzierungsgesetz", "kfg",
-        "klubförderung 2024", "klubfoerderung 2024",
-        "fraktionsförderung", "fraktionsfoerderung",
-        "parlamentsklub finanzierung", "parlamentsklub foerderung"
+        "klubförderung",
+        "klubfoerderung",
+        "klubfinanzierungsgesetz",
+        "kfg",
+        "klubförderung 2024",
+        "klubfoerderung 2024",
+        "fraktionsförderung",
+        "fraktionsfoerderung",
+        "parlamentsklub finanzierung",
+        "parlamentsklub foerderung"
       ],
       "trigger_composite": [
-        ["klubförderung", "klubfoerderung", "klubfinanzierung", "fraktionsförderung", "fraktionsfoerderung", "klubfinanzierungsgesetz", "kfg"],
-        ["österreich", "oesterreich", "at ", " at,", " at.", "parlament", "nationalrat", "klub", "fraktion"],
-        ["höhe", "hoehe", "wie viel", "wieviel", "betrag", "28", "mio", "2024", "kosten", "förderung", "foerderung"]
+        [
+          "klubförderung",
+          "klubfoerderung",
+          "klubfinanzierung",
+          "fraktionsförderung",
+          "fraktionsfoerderung",
+          "klubfinanzierungsgesetz",
+          "kfg"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          "at ",
+          " at,",
+          " at.",
+          "parlament",
+          "nationalrat",
+          "klub",
+          "fraktion"
+        ],
+        [
+          "höhe",
+          "hoehe",
+          "wie viel",
+          "wieviel",
+          "betrag",
+          "28",
+          "mio",
+          "2024",
+          "kosten",
+          "förderung",
+          "foerderung"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "kostet"
+          ],
+          [
+            "parlamentsklub"
+          ]
+        ]
       ]
     },
     {
@@ -428,18 +951,58 @@
         "Politische Akademie ÖVP Finanzierung"
       ],
       "trigger_keywords": [
-        "parteiakademie", "parteiakademien",
-        "parteiakademienförderung", "parteiakademienfoerderung",
-        "parteiakademie förderung", "parteiakademie foerderung",
-        "akademienförderung", "akademienfoerderung",
-        "karl-renner-institut", "karl renner institut",
-        "freda", "neos lab", "freiheitliches bildungsinstitut",
+        "parteiakademie",
+        "parteiakademien",
+        "parteiakademienförderung",
+        "parteiakademienfoerderung",
+        "parteiakademie förderung",
+        "parteiakademie foerderung",
+        "akademienförderung",
+        "akademienfoerderung",
+        "karl-renner-institut",
+        "karl renner institut",
+        "freda",
+        "neos lab",
+        "freiheitliches bildungsinstitut",
         "politische akademie övp"
       ],
       "trigger_composite": [
-        ["parteiakademie", "parteiakademien", "akademienförderung", "akademienfoerderung", "karl-renner-institut", "renner-institut", "freda", "neos lab", "freiheitliches bildungsinstitut", "politische akademie"],
-        ["österreich", "oesterreich", "at ", " at,", " at.", "förderung", "foerderung", "finanzierung", "bildungsarbeit"],
-        ["höhe", "hoehe", "wie viel", "wieviel", "betrag", "12 mio", "millionen", "2024", "topf", "anteil", "gesamt"]
+        [
+          "parteiakademie",
+          "parteiakademien",
+          "akademienförderung",
+          "akademienfoerderung",
+          "karl-renner-institut",
+          "renner-institut",
+          "freda",
+          "neos lab",
+          "freiheitliches bildungsinstitut",
+          "politische akademie"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          "at ",
+          " at,",
+          " at.",
+          "förderung",
+          "foerderung",
+          "finanzierung",
+          "bildungsarbeit"
+        ],
+        [
+          "höhe",
+          "hoehe",
+          "wie viel",
+          "wieviel",
+          "betrag",
+          "12 mio",
+          "millionen",
+          "2024",
+          "topf",
+          "anteil",
+          "gesamt"
+        ]
       ]
     },
     {
@@ -474,16 +1037,86 @@
       ],
       "trigger_keywords": [
         "parteienfinanzierung gesamt",
-        "parteienförderung gesamt", "parteienfoerderung gesamt",
-        "273 mio parteien", "273 millionen parteien",
-        "öffentliche parteien gelder", "oeffentliche parteien gelder",
-        "parteien staat gesamt", "parteien österreich gesamt",
-        "parteien oesterreich gesamt", "parteien total"
+        "parteienförderung gesamt",
+        "parteienfoerderung gesamt",
+        "273 mio parteien",
+        "273 millionen parteien",
+        "öffentliche parteien gelder",
+        "oeffentliche parteien gelder",
+        "parteien staat gesamt",
+        "parteien österreich gesamt",
+        "parteien oesterreich gesamt",
+        "parteien total"
       ],
       "trigger_composite": [
-        ["parteienfinanzierung", "parteienförderung", "parteienfoerderung", "parteien finanzierung", "parteien förderung"],
-        ["österreich", "oesterreich", "at ", " at,", " at.", "gesamt", "total", "aggregat", "summe", "insgesamt", "alle"],
-        ["wie viel", "wieviel", "höhe", "hoehe", "betrag", "millionen", "mio", "273", "270", "300", "öffentlich", "oeffentlich", "vom staat", "staat"]
+        [
+          "parteienfinanzierung",
+          "parteienförderung",
+          "parteienfoerderung",
+          "parteien finanzierung",
+          "parteien förderung"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          "at ",
+          " at,",
+          " at.",
+          "gesamt",
+          "total",
+          "aggregat",
+          "summe",
+          "insgesamt",
+          "alle"
+        ],
+        [
+          "wie viel",
+          "wieviel",
+          "höhe",
+          "hoehe",
+          "betrag",
+          "millionen",
+          "mio",
+          "273",
+          "270",
+          "300",
+          "öffentlich",
+          "oeffentlich",
+          "vom staat",
+          "staat"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "bekomm"
+          ],
+          [
+            "oesterreichisch",
+            "österreichisch"
+          ],
+          [
+            "partei"
+          ],
+          [
+            "insgesamt"
+          ]
+        ],
+        [
+          [
+            "parteienfinanzierung"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ],
+          [
+            "gesamt"
+          ],
+          [
+            "2024"
+          ]
+        ]
       ]
     }
   ]

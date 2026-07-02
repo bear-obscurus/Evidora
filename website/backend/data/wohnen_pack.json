@@ -134,6 +134,17 @@
           "2 millionen",
           "leer und keiner"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "wohnungs-mangel"
+          ],
+          [
+            "luege",
+            "lüge"
+          ]
+        ]
       ]
     },
     {
@@ -206,6 +217,29 @@
           "auslaeuft",
           "schrumpft"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "wien-modell"
+          ],
+          [
+            "uebertragbar",
+            "übertragbar"
+          ]
+        ],
+        [
+          [
+            "sozial"
+          ],
+          [
+            "wohnungsbau-foerderung",
+            "wohnungsbau-förderung"
+          ],
+          [
+            "nicht"
+          ]
+        ]
       ]
     },
     {
@@ -263,6 +297,23 @@
           "raushalten",
           "frei machen",
           "nimby"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "frei"
+          ],
+          [
+            "markt"
+          ],
+          [
+            "loest",
+            "löst"
+          ],
+          [
+            "wohnungsmangel"
+          ]
         ]
       ]
     },
@@ -423,7 +474,9 @@
         "Niedrige DE-Eigentumsquote ist Marktversagen",
         "In anderen Ländern besitzen alle ihr Eigenheim"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "de sollte mehr eigentumsförderung haben"
+      ],
       "trigger_composite": [
         [
           "eigentumsquote",
@@ -457,6 +510,31 @@
           "anteil",
           "andere länder",
           "andere laender"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "deutsch"
+          ],
+          [
+            "mietfaul"
+          ]
+        ],
+        [
+          [
+            "ander"
+          ],
+          [
+            "laender",
+            "länder"
+          ],
+          [
+            "besitz"
+          ],
+          [
+            "eigenheim"
+          ]
         ]
       ]
     },
@@ -664,6 +742,34 @@
           "iw köln",
           "iw-köln"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "fehl"
+          ],
+          [
+            "wohn"
+          ],
+          [
+            "deutschland"
+          ]
+        ],
+        [
+          [
+            "fehl"
+          ],
+          [
+            "tatsaechlich",
+            "tatsächlich"
+          ],
+          [
+            "mill"
+          ],
+          [
+            "wohn"
+          ]
+        ]
       ]
     },
     {
@@ -722,6 +828,19 @@
           "missbrauch",
           "ausnutzen",
           "schmarotzer"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "wohngeld"
+          ],
+          [
+            "bekomm"
+          ],
+          [
+            "arbeit"
+          ]
         ]
       ]
     },
@@ -854,6 +973,37 @@
           "deutschland",
           "österreich",
           "oesterreich"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "deutschland"
+          ],
+          [
+            "halb"
+          ],
+          [
+            "einkomm"
+          ],
+          [
+            "wohn"
+          ]
+        ],
+        [
+          [
+            "wohn"
+          ],
+          [
+            "kostet"
+          ],
+          [
+            "ueberall",
+            "überall"
+          ],
+          [
+            "gleich"
+          ]
         ]
       ]
     },
