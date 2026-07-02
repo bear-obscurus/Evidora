@@ -30,11 +30,13 @@ def _make_cache(tmp_path, name, size_bytes, age_days=0):
 def test_healthy_caches_no_problems(tmp_path):
     _make_cache(tmp_path, "cordis_projects_slim.json", 60_000_000, age_days=10)
     _make_cache(tmp_path, "claimreview_index.json", 5_000_000)
+    _make_cache(tmp_path, "mitre_attack.json", 8_000_000)
     assert dfc.check_generated_caches(tmp_path) == []
 
 
 def test_missing_cache_flagged(tmp_path):
     _make_cache(tmp_path, "claimreview_index.json", 5_000_000)
+    _make_cache(tmp_path, "mitre_attack.json", 8_000_000)
     problems = dfc.check_generated_caches(tmp_path)
     assert len(problems) == 1
     assert "cordis_projects_slim.json" in problems[0]
@@ -45,6 +47,7 @@ def test_too_small_cache_flagged(tmp_path):
     # Der reale Fehlerfall: Refresh schrieb (fast) nichts
     _make_cache(tmp_path, "cordis_projects_slim.json", 1_000, age_days=1)
     _make_cache(tmp_path, "claimreview_index.json", 5_000_000)
+    _make_cache(tmp_path, "mitre_attack.json", 8_000_000)
     problems = dfc.check_generated_caches(tmp_path)
     assert len(problems) == 1
     assert "MB Minimum" in problems[0]
@@ -53,6 +56,7 @@ def test_too_small_cache_flagged(tmp_path):
 def test_too_old_cache_flagged(tmp_path):
     _make_cache(tmp_path, "cordis_projects_slim.json", 60_000_000, age_days=150)
     _make_cache(tmp_path, "claimreview_index.json", 5_000_000)
+    _make_cache(tmp_path, "mitre_attack.json", 8_000_000)
     problems = dfc.check_generated_caches(tmp_path)
     assert len(problems) == 1
     assert "Refresh-Cron" in problems[0]
@@ -62,4 +66,5 @@ def test_age_ignored_when_none(tmp_path):
     # claimreview_index hat max_age_days=None — Alter darf nicht alarmieren
     _make_cache(tmp_path, "cordis_projects_slim.json", 60_000_000, age_days=5)
     _make_cache(tmp_path, "claimreview_index.json", 5_000_000, age_days=400)
+    _make_cache(tmp_path, "mitre_attack.json", 8_000_000, age_days=200)
     assert dfc.check_generated_caches(tmp_path) == []
