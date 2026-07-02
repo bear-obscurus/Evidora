@@ -9,16 +9,23 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  topic-match-unit-tests:
-    name: Unit tests (topic_match helper)
+  light-unit-tests:
+    name: Unit tests (dependency-light suites)
     runs-on: ubuntu-latest
 
     # The full pytest suite needs SpaCy models + sentence-transformers
-    # (~500 MB of downloads). For CI we run the topic_match unit tests
-    # only — they're standalone, ~2 s, and pin the central helper that
-    # ten static-first services delegate to. A regression there breaks
-    # every static-first topic at once, so this is the highest-value
-    # test for a PR check.
+    # (~500 MB of downloads). For CI we run every suite that works with
+    # just pytest + httpx — no models, no network, <2 s total:
+    #   - test_topic_match            (trigger helper, 10+ services)
+    #   - test_verdict_postprocess_golden  (override cascade, 54 cases)
+    #   - test_struct_provenance      (STRUKTURELL provenance gate)
+    #   - test_konsens_exact_only     (pack trigger battery + exact-only
+    #                                  contract, #41)
+    #   - test_cordis_zip_formats     (CORDIS bulk-ZIP parser)
+    # Together these pin the trigger logic AND the verdict pipeline —
+    # a regression in either breaks many claims at once, so this is
+    # the highest-value coverage a PR check can buy at this cost.
+    # (Extended 2026-07-02 from topic_match-only, 36 → ~140 tests.)
 
     steps:
       - uses: actions/checkout@v6
@@ -34,9 +41,15 @@ jobs:
           pip install --upgrade pip
           pip install pytest pytest-asyncio pytest-timeout httpx
 
-      - name: Run topic_match unit tests
+      - name: Run dependency-light unit suites
         working-directory: website/backend
-        run: python -m pytest tests/test_topic_match.py -v
+        run: |
+          python -m pytest \
+            tests/test_topic_match.py \
+            tests/test_verdict_postprocess_golden.py \
+            tests/test_struct_provenance.py \
+            tests/test_konsens_exact_only.py \
+            tests/test_cordis_zip_formats.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
