@@ -32,4 +32,12 @@ COPY --chown=evidora:evidora . .
 
 USER evidora
 
+# H4d-Ergänzungen (Runtime-only, bewusst NACH dem Model-Bake-Layer):
+# - HF_HUB_OFFLINE: Modell kommt aus dem Image — kein Remote-Ping beim Load
+#   (unter read_only ohnehin nicht beschreibbar, Warnung entfällt).
+# - PYTHONDONTWRITEBYTECODE: keine __pycache__-Schreibversuche auf dem
+#   read-only Root-FS.
+ENV HF_HUB_OFFLINE=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
