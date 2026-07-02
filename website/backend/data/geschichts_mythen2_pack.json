@@ -99,6 +99,19 @@
           "barbarisch",
           "primitiv"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "mittelalt"
+          ],
+          [
+            "dunkl"
+          ],
+          [
+            "zeitalt"
+          ]
+        ]
       ]
     },
     {

@@ -29,13 +29,28 @@
         "Hunderttausende Sklaven errichteten die Pyramiden von Gizeh"
       ],
       "trigger_keywords": [
-        "pyramiden sklaven", "sklaven pyramiden",
-        "aegypten sklaven pyramide", "ägypten sklaven pyramide",
+        "pyramiden sklaven",
+        "sklaven pyramiden",
+        "aegypten sklaven pyramide",
+        "ägypten sklaven pyramide",
         "gizeh sklaven"
       ],
       "trigger_composite": [
-        ["pyramide", "pyramiden", "gizeh", "ägyptisch", "aegyptisch"],
-        ["sklaven", "sklave", "zwangsarbeit", "gefangene", "unterdrueck", "unterdrück"]
+        [
+          "pyramide",
+          "pyramiden",
+          "gizeh",
+          "ägyptisch",
+          "aegyptisch"
+        ],
+        [
+          "sklaven",
+          "sklave",
+          "zwangsarbeit",
+          "gefangene",
+          "unterdrueck",
+          "unterdrück"
+        ]
       ],
       "source_label": "Mark Lehner Harvard + Zahi Hawass + Smithsonian + Egyptology Royal Society",
       "source_url": "https://www.smithsonianmag.com/travel/the-pyramid-builders-130984123/",
@@ -67,13 +82,26 @@
         "Mozart hatte am Lebensende kein Geld mehr"
       ],
       "trigger_keywords": [
-        "mozart arm gestorben", "mozart in armut",
+        "mozart arm gestorben",
+        "mozart in armut",
         "mozart massengrab",
         "mozart armer tod"
       ],
       "trigger_composite": [
-        ["mozart", "amadeus"],
-        ["arm", "armut", "massengrab", "kein geld", "starb arm", "gestorben arm", "schachtgrab", "anonyme bestattung"]
+        [
+          "mozart",
+          "amadeus"
+        ],
+        [
+          "arm",
+          "armut",
+          "massengrab",
+          "kein geld",
+          "starb arm",
+          "gestorben arm",
+          "schachtgrab",
+          "anonyme bestattung"
+        ]
       ],
       "source_label": "Otto Erich Deutsch 'Mozart Documentary Biography' + Walter Brauneis + Maynard Solomon",
       "source_url": "https://en.wikipedia.org/wiki/Death_of_Wolfgang_Amadeus_Mozart",
@@ -105,13 +133,28 @@
         "Napoleon Bonaparte hatte einen Komplex wegen seiner geringen Körpergröße"
       ],
       "trigger_keywords": [
-        "napoleon klein", "napoleon groesse", "napoleon größe",
+        "napoleon klein",
+        "napoleon groesse",
+        "napoleon größe",
         "napoleon zwerg",
         "napoleon komplex"
       ],
       "trigger_composite": [
-        ["napoleon", "bonaparte", "le petit caporal"],
-        ["klein", "kurz", "groesse", "größe", "zwerg", "komplex", "ueberkompensation", "überkompensation"]
+        [
+          "napoleon",
+          "bonaparte",
+          "le petit caporal"
+        ],
+        [
+          "klein",
+          "kurz",
+          "groesse",
+          "größe",
+          "zwerg",
+          "komplex",
+          "ueberkompensation",
+          "überkompensation"
+        ]
       ],
       "source_label": "Autopsie-Bericht 1821 + Floud Anthropometrie-Studien + Gillray-Karikaturen",
       "source_url": "https://en.wikipedia.org/wiki/Napoleon",
@@ -143,12 +186,23 @@
         "Die typische Wikinger-Helm-Form hat Hörner"
       ],
       "trigger_keywords": [
-        "wikinger hoerner", "wikinger hörner",
-        "wikinger helm hoerner", "wikinger helm hörner"
+        "wikinger hoerner",
+        "wikinger hörner",
+        "wikinger helm hoerner",
+        "wikinger helm hörner"
       ],
       "trigger_composite": [
-        ["wikinger", "viking"],
-        ["hoerner", "hörner", "horn", "helm", "kopfschmuck"]
+        [
+          "wikinger",
+          "viking"
+        ],
+        [
+          "hoerner",
+          "hörner",
+          "horn",
+          "helm",
+          "kopfschmuck"
+        ]
       ],
       "source_label": "Smithsonian + Gjermundbu-Helm-Forschung + Wagner/Doepler Theatergeschichte",
       "source_url": "https://www.smithsonianmag.com/history/did-vikings-really-wear-horned-helmets-180978311/",
@@ -180,14 +234,28 @@
         "Im Mittelalter dachte man, die Erde sei eine Scheibe"
       ],
       "trigger_keywords": [
-        "kolumbus erde rund", "kolumbus flache erde",
+        "kolumbus erde rund",
+        "kolumbus flache erde",
         "mittelalter erde flach",
         "vor kolumbus erde",
         "scheibe erde mittelalter"
       ],
       "trigger_composite": [
-        ["kolumbus", "columbus", "vor kolumbus", "mittelalter", "vor 1492"],
-        ["erde", "flach", "rund", "scheibe", "kugel", "form"]
+        [
+          "kolumbus",
+          "columbus",
+          "vor kolumbus",
+          "mittelalter",
+          "vor 1492"
+        ],
+        [
+          "erde",
+          "flach",
+          "rund",
+          "scheibe",
+          "kugel",
+          "form"
+        ]
       ],
       "source_label": "Stephen Jay Gould 1995 + Eratosthenes-Quellen + Salamanca-Universität",
       "source_url": "https://en.wikipedia.org/wiki/Myth_of_the_flat_Earth",
@@ -219,12 +287,24 @@
         "In Salem wurden hunderte Hexen verbrannt"
       ],
       "trigger_keywords": [
-        "salem hexen", "salem hexenprozess",
-        "salem witches", "salem hinrichtung"
+        "salem hexen",
+        "salem hexenprozess",
+        "salem witches",
+        "salem hinrichtung"
       ],
       "trigger_composite": [
-        ["salem"],
-        ["hexen", "hexenprozess", "verbrennung", "hinrichtung", "witches", "hexen verbren", "hexenverbrennung"]
+        [
+          "salem"
+        ],
+        [
+          "hexen",
+          "hexenprozess",
+          "verbrennung",
+          "hinrichtung",
+          "witches",
+          "hexen verbren",
+          "hexenverbrennung"
+        ]
       ],
       "source_label": "Salem Witch Trials Documentary Archive (Univ. Virginia) + Behringer + Levack",
       "source_url": "https://salem.lib.virginia.edu/home.html",
@@ -256,17 +336,50 @@
         "Die Mauer ist seit der Antike das gleiche Bauwerk"
       ],
       "trigger_keywords": [
-        "grosse mauer china alter", "große mauer china alter",
+        "grosse mauer china alter",
+        "große mauer china alter",
         "chinesische mauer alter",
         "china mauer 2300 jahre"
       ],
       "trigger_composite": [
-        ["chinesische mauer", "grosse mauer", "große mauer", "great wall", "mauer china"],
-        ["alter", "alt", "jahre", "2300", "antike", "qin", "ming", "antik"]
+        [
+          "chinesische mauer",
+          "grosse mauer",
+          "große mauer",
+          "great wall",
+          "mauer china"
+        ],
+        [
+          "alter",
+          "alt",
+          "jahre",
+          "2300",
+          "antike",
+          "qin",
+          "ming",
+          "antik"
+        ]
       ],
       "source_label": "UNESCO World Heritage + Chinesische Akademie der Wissenschaften + Britannica",
       "source_url": "https://whc.unesco.org/en/list/438",
-      "secondary_url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+      "secondary_url": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+      "trigger_all": [
+        [
+          [
+            "mauer",
+            "maür"
+          ],
+          [
+            "antik"
+          ],
+          [
+            "gleich"
+          ],
+          [
+            "bauwerk"
+          ]
+        ]
+      ]
     },
     {
       "id": "shakespeare_autorenschaft_2026",
@@ -294,13 +407,30 @@
         "Edward de Vere hat als Earl of Oxford die Shakespeare-Stücke verfasst"
       ],
       "trigger_keywords": [
-        "shakespeare autor", "shakespeare echt",
-        "shakespeare bacon", "shakespeare oxford",
+        "shakespeare autor",
+        "shakespeare echt",
+        "shakespeare bacon",
+        "shakespeare oxford",
         "shakespeare wahre autor"
       ],
       "trigger_composite": [
-        ["shakespeare", "stratford", "shakespeare-werke", "shakespeare's"],
-        ["autor", "geschrieben", "verfasst", "wahre", "echt", "bacon", "oxford", "marlowe", "verfasser"]
+        [
+          "shakespeare",
+          "stratford",
+          "shakespeare-werke",
+          "shakespeare's"
+        ],
+        [
+          "autor",
+          "geschrieben",
+          "verfasst",
+          "wahre",
+          "echt",
+          "bacon",
+          "oxford",
+          "marlowe",
+          "verfasser"
+        ]
       ],
       "source_label": "James Shapiro 'Contested Will' 2010 + Folger Shakespeare Library + Stilometrie 2006-2024",
       "source_url": "https://www.folger.edu/explore/shakespeares-life/shakespeare-authorship-question/",

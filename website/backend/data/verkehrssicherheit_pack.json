@@ -51,6 +51,34 @@
           "blödsinn",
           "unfall"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "geschwindigkeits-limit"
+          ],
+          [
+            "messbar"
+          ],
+          [
+            "effekt"
+          ]
+        ],
+        [
+          [
+            "tempo"
+          ],
+          [
+            "verlaengert",
+            "verlängert"
+          ],
+          [
+            "reisezeit"
+          ],
+          [
+            "erheblich"
+          ]
+        ]
       ]
     },
     {
@@ -103,6 +131,24 @@
           "schützt",
           "schaden",
           "sicher"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "traegt",
+            "trägt"
+          ],
+          [
+            "ueberlebt",
+            "überlebt"
+          ],
+          [
+            "jede"
+          ],
+          [
+            "unfall"
+          ]
         ]
       ]
     },
@@ -162,6 +208,19 @@
           "überflüssig",
           "braucht man nicht",
           "egal welcher"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "erwachsenen-gurt"
+          ],
+          [
+            "reicht"
+          ],
+          [
+            "schul-kind"
+          ]
         ]
       ]
     },
@@ -265,6 +324,22 @@
           "vertrage",
           "schikane",
           "gefahrlos"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "bier"
+          ],
+          [
+            "unterschied"
+          ],
+          [
+            "beim"
+          ],
+          [
+            "fahr"
+          ]
         ]
       ]
     },
@@ -467,6 +542,16 @@
           "50 km/h",
           "vervierfacht",
           "vierfach"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "weit"
+          ],
+          [
+            "rechn"
+          ]
         ]
       ]
     },

@@ -485,7 +485,20 @@
       ],
       "source_label": "Cochrane Review (Roberts et al. 2009)",
       "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD000368.pub3/full",
-      "secondary_url": "https://www.gwup.org/themen/esoterik/"
+      "secondary_url": "https://www.gwup.org/themen/esoterik/",
+      "trigger_all": [
+        [
+          [
+            "gebet"
+          ],
+          [
+            "heil"
+          ],
+          [
+            "krankheit"
+          ]
+        ]
+      ]
     },
     {
       "id": "schuessler_salze_2026",

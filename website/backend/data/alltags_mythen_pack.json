@@ -49,6 +49,20 @@
           "trinken",
           "braucht"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "glaes",
+            "gläs"
+          ],
+          [
+            "trinkt"
+          ],
+          [
+            "dehydriert"
+          ]
+        ]
       ]
     },
     {
@@ -149,6 +163,34 @@
           "pflicht",
           "jede nacht",
           "braucht"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "stund"
+          ],
+          [
+            "schlaeft",
+            "schläft"
+          ],
+          [
+            "schadet"
+          ],
+          [
+            "seinem"
+          ]
+        ],
+        [
+          [
+            "stund"
+          ],
+          [
+            "schlaf"
+          ],
+          [
+            "krank"
+          ]
         ]
       ]
     },
@@ -344,6 +386,32 @@
           "frieren",
           "winter"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "muetz",
+            "mütz"
+          ],
+          [
+            "rausgeh"
+          ],
+          [
+            "erkaeltet",
+            "erkältet"
+          ]
+        ],
+        [
+          [
+            "wint"
+          ],
+          [
+            "friert"
+          ],
+          [
+            "krank"
+          ]
+        ]
       ]
     },
     {
@@ -390,6 +458,22 @@
           "aktivieren",
           "potenzial",
           "kapazität"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "einstei"
+          ],
+          [
+            "gesagt"
+          ],
+          [
+            "nutz"
+          ],
+          [
+            "prozent"
+          ]
         ]
       ]
     },
@@ -491,6 +575,19 @@
           "desinfizier",
           "wasserstoffperoxid",
           "h2o2"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "alkohol"
+          ],
+          [
+            "best"
+          ],
+          [
+            "wund-desinfektio"
+          ]
         ]
       ]
     }

@@ -27,8 +27,25 @@
         "Spermien leben nur Stunden in der Frau"
       ],
       "trigger_composite": [
-        ["sperm", "spermien", "spermium", "samenzelle", "samenzellen"],
-        ["lebensdauer", "überleben", "stunden", "tage", "leben", "sterben", "tot", "zeit", "frauenkörper", "weiblich"]
+        [
+          "sperm",
+          "spermien",
+          "spermium",
+          "samenzelle",
+          "samenzellen"
+        ],
+        [
+          "lebensdauer",
+          "überleben",
+          "stunden",
+          "tage",
+          "leben",
+          "sterben",
+          "tot",
+          "zeit",
+          "frauenkörper",
+          "weiblich"
+        ]
       ]
     },
     {
@@ -58,8 +75,29 @@
         "Vor dem Eisprung kann man nicht schwanger werden"
       ],
       "trigger_composite": [
-        ["ovulation", "eisprung", "fruchtbar", "fertil", "konzeption", "schwanger werden", "befruchtung"],
-        ["tag", "tage", "fenster", "zeitpunkt", "zeit", "stunden", "möglich", "kann nur", "geht nur", "vor", "nach", "nur am"]
+        [
+          "ovulation",
+          "eisprung",
+          "fruchtbar",
+          "fertil",
+          "konzeption",
+          "schwanger werden",
+          "befruchtung"
+        ],
+        [
+          "tag",
+          "tage",
+          "fenster",
+          "zeitpunkt",
+          "zeit",
+          "stunden",
+          "möglich",
+          "kann nur",
+          "geht nur",
+          "vor",
+          "nach",
+          "nur am"
+        ]
       ]
     },
     {
@@ -90,8 +128,29 @@
         "Das Geschlecht des Babys hängt von der Mutter ab"
       ],
       "trigger_composite": [
-        ["geschlecht", "geschlechts", "junge oder mädchen", "x-chromosom", "y-chromosom", "chromosom"],
-        ["mutter", "mütterlich", "frau", "eizelle", "vater", "väterlich", "mann", "spermium", "bestimmt", "vererb", "kind", "baby", "embryo"]
+        [
+          "geschlecht",
+          "geschlechts",
+          "junge oder mädchen",
+          "x-chromosom",
+          "y-chromosom",
+          "chromosom"
+        ],
+        [
+          "mutter",
+          "mütterlich",
+          "frau",
+          "eizelle",
+          "vater",
+          "väterlich",
+          "mann",
+          "spermium",
+          "bestimmt",
+          "vererb",
+          "kind",
+          "baby",
+          "embryo"
+        ]
       ]
     },
     {
@@ -121,8 +180,40 @@
         "Hormonelle Verhütung lässt einen zunehmen"
       ],
       "trigger_composite": [
-        ["pille", "antibabypille", "verhütung", "verhütungspille", "hormonelle verhütung", "kombinationspille", "östrogen", "progestin", "gestagen"],
-        ["dick", "gewicht", "zunahme", "zunehmen", "zugenommen", "abnehmen", "fett", "kilo"]
+        [
+          "pille",
+          "antibabypille",
+          "verhütung",
+          "verhütungspille",
+          "hormonelle verhütung",
+          "kombinationspille",
+          "östrogen",
+          "progestin",
+          "gestagen"
+        ],
+        [
+          "dick",
+          "gewicht",
+          "zunahme",
+          "zunehmen",
+          "zugenommen",
+          "abnehmen",
+          "fett",
+          "kilo"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "frau"
+          ],
+          [
+            "nehm"
+          ],
+          [
+            "pill"
+          ]
+        ]
       ]
     },
     {
@@ -154,8 +245,23 @@
         "Vasektomie reduziert Testosteron"
       ],
       "trigger_composite": [
-        ["vasektomie", "vasectomie", "samenleiter", "sterilisation mann", "sterilisation männlich"],
-        ["impotent", "potenz", "libido", "lust", "erektion", "testosteron", "männlichkeit", "wirkt sich"]
+        [
+          "vasektomie",
+          "vasectomie",
+          "samenleiter",
+          "sterilisation mann",
+          "sterilisation männlich"
+        ],
+        [
+          "impotent",
+          "potenz",
+          "libido",
+          "lust",
+          "erektion",
+          "testosteron",
+          "männlichkeit",
+          "wirkt sich"
+        ]
       ]
     },
     {
@@ -186,8 +292,27 @@
         "Menstruationszyklus synchronisiert sich"
       ],
       "trigger_composite": [
-        ["menstruation", "menstruations", "regelblutung", "periode", "zyklus", "menstruationszyklus"],
-        ["synchron", "synchronisier", "gleichzeitig", "angleich", "anpass", "wohnen", "leben", "mitbewohner", "frauen", "wg", "wohngemeinschaft"]
+        [
+          "menstruation",
+          "menstruations",
+          "regelblutung",
+          "periode",
+          "zyklus",
+          "menstruationszyklus"
+        ],
+        [
+          "synchron",
+          "synchronisier",
+          "gleichzeitig",
+          "angleich",
+          "anpass",
+          "wohnen",
+          "leben",
+          "mitbewohner",
+          "frauen",
+          "wg",
+          "wohngemeinschaft"
+        ]
       ]
     },
     {
@@ -218,8 +343,26 @@
         "Mütter werden während Stillzeit nicht schwanger"
       ],
       "trigger_composite": [
-        ["stillen", "stillzeit", "stillende", "stille", "lactation", "muttermilch"],
-        ["verhütung", "schwanger", "schwangerschaft", "kontrazeption", "lam", "schützt", "kein schutz", "amenorrhö", "amenorrhoe", "nicht schwanger"]
+        [
+          "stillen",
+          "stillzeit",
+          "stillende",
+          "stille",
+          "lactation",
+          "muttermilch"
+        ],
+        [
+          "verhütung",
+          "schwanger",
+          "schwangerschaft",
+          "kontrazeption",
+          "lam",
+          "schützt",
+          "kein schutz",
+          "amenorrhö",
+          "amenorrhoe",
+          "nicht schwanger"
+        ]
       ]
     },
     {
@@ -250,8 +393,27 @@
         "Frauen sind erst ab 50 in den Wechseljahren"
       ],
       "trigger_composite": [
-        ["menopause", "wechseljahre", "klimakterium", "perimenopause"],
-        ["50", "fünfzig", "alter", "frauen", "mit 40", "mit 45", "mit 50", "mit 55", "ab 50", "ab 45", "beginn", "anfang", "bekommen"]
+        [
+          "menopause",
+          "wechseljahre",
+          "klimakterium",
+          "perimenopause"
+        ],
+        [
+          "50",
+          "fünfzig",
+          "alter",
+          "frauen",
+          "mit 40",
+          "mit 45",
+          "mit 50",
+          "mit 55",
+          "ab 50",
+          "ab 45",
+          "beginn",
+          "anfang",
+          "bekommen"
+        ]
       ]
     }
   ]

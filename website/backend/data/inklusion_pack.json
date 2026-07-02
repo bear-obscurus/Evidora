@@ -82,6 +82,16 @@
           "genetisch",
           "vererbt"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "wakefield"
+          ],
+          [
+            "recht"
+          ]
+        ]
       ]
     },
     {
@@ -167,6 +177,21 @@
           "reine erfindung",
           "modekrankheit",
           "mode-krankheit"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "adhs"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ],
+          [
+            "ueberdiagnostiziert",
+            "überdiagnostiziert"
+          ]
         ]
       ]
     },
@@ -328,6 +353,25 @@
           "roi",
           "ertrag"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "flynn-effekt"
+          ],
+          [
+            "statistik"
+          ]
+        ],
+        [
+          [
+            "foerderprogramm",
+            "förderprogramm"
+          ],
+          [
+            "nutzlo"
+          ]
+        ]
       ]
     },
     {
@@ -411,6 +455,30 @@
           "bundesländer",
           "bundeslaender"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "sonderschul"
+          ],
+          [
+            "sollt"
+          ],
+          [
+            "abgeschafft"
+          ]
+        ],
+        [
+          [
+            "hatti"
+          ],
+          [
+            "zeigt"
+          ],
+          [
+            "inklusio"
+          ]
+        ]
       ]
     },
     {
@@ -492,6 +560,40 @@
           "80 plus",
           "burnout",
           "belastung"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "pflegekraefte-mangel",
+            "pflegekräfte-mangel"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ]
+        ],
+        [
+          [
+            "at-pfleg"
+          ],
+          [
+            "zusammenbrech"
+          ]
+        ],
+        [
+          [
+            "gukg-novell"
+          ],
+          [
+            "2022"
+          ],
+          [
+            "nicht"
+          ],
+          [
+            "gebracht"
+          ]
         ]
       ]
     },
@@ -575,6 +677,22 @@
           "überholt",
           "wissenschaftlich"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "un-brk"
+          ],
+          [
+            "folgt"
+          ],
+          [
+            "sozialem"
+          ],
+          [
+            "modell"
+          ]
+        ]
       ]
     },
     {
@@ -653,6 +771,28 @@
           "rechte",
           "anti-diskriminierung",
           "diskriminierung"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "setzt"
+          ],
+          [
+            "un-behindertenrechtskonventio"
+          ],
+          [
+            "voll"
+          ]
+        ],
+        [
+          [
+            "persoenlich",
+            "persönlich"
+          ],
+          [
+            "assistenz"
+          ]
         ]
       ]
     },
@@ -736,6 +876,32 @@
           "alter 2",
           "alter 5"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "standard-therapi"
+          ],
+          [
+            "autismu"
+          ]
+        ],
+        [
+          [
+            "teacch"
+          ],
+          [
+            "bess"
+          ]
+        ],
+        [
+          [
+            "esdm"
+          ],
+          [
+            "ersetzt"
+          ]
+        ]
       ]
     },
     {
@@ -767,7 +933,9 @@
         "IQ über 130 ist hochbegabt",
         "Hochbegabte haben soziale Probleme"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "iq über 130 ist hochbegabt"
+      ],
       "trigger_composite": [
         [
           "hochsensibilität",
@@ -816,6 +984,19 @@
           "foerderung",
           "schule",
           "gymnasium"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "prozent"
+          ],
+          [
+            "mensch"
+          ],
+          [
+            "hochsensibel"
+          ]
         ]
       ]
     },
@@ -897,6 +1078,38 @@
           "leitsystem",
           "leichte sprache",
           "leichte-sprache"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "bgstg"
+          ],
+          [
+            "nicht"
+          ],
+          [
+            "gebracht"
+          ]
+        ],
+        [
+          [
+            "tritt"
+          ],
+          [
+            "2025"
+          ],
+          [
+            "kraft"
+          ]
+        ],
+        [
+          [
+            "web-accessibility"
+          ],
+          [
+            "ignoriert"
+          ]
         ]
       ]
     },
@@ -986,6 +1199,16 @@
           "finnland",
           "bundesländer",
           "bundeslaender"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "hohe"
+          ],
+          [
+            "inklusions-quot"
+          ]
         ]
       ]
     }

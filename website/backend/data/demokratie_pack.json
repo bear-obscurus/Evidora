@@ -33,16 +33,95 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["wahlbeteiligung", "wahl-beteiligung", "wahlteilnahme", "wahl-teilnahme",
-         "voter turnout", "nationalratswahl", "nationalrats-wahl", "nrw",
-         "eu-wahl", "europawahl", "europa-wahl", "bundespraesidentenwahl",
-         "bundespräsidentenwahl", "stimmabgabe", "wählen", "waehlen",
-         "wahlurne", "wahllokal"],
-        ["sinkt", "sinkend", "steigt", "steigend", "niedrig", "hoch",
-         "dramatisch", "rückläufig", "ruecklaeufig", "trend", "stabil",
-         "vergleich", "international", "europa", "österreich", "oesterreich",
-         "at", "deutschland", "schweiz", "1949", "1990", "2024", "77 %",
-         "57 %", "eu-mittel", "demokratie-müdigkeit", "demokratie-muedigkeit"]
+        [
+          "wahlbeteiligung",
+          "wahl-beteiligung",
+          "wahlteilnahme",
+          "wahl-teilnahme",
+          "voter turnout",
+          "nationalratswahl",
+          "nationalrats-wahl",
+          "nrw",
+          "eu-wahl",
+          "europawahl",
+          "europa-wahl",
+          "bundespraesidentenwahl",
+          "bundespräsidentenwahl",
+          "stimmabgabe",
+          "wählen",
+          "waehlen",
+          "wahlurne",
+          "wahllokal"
+        ],
+        [
+          "sinkt",
+          "sinkend",
+          "steigt",
+          "steigend",
+          "niedrig",
+          "hoch",
+          "dramatisch",
+          "rückläufig",
+          "ruecklaeufig",
+          "trend",
+          "stabil",
+          "vergleich",
+          "international",
+          "europa",
+          "österreich",
+          "oesterreich",
+          "at",
+          "deutschland",
+          "schweiz",
+          "1949",
+          "1990",
+          "2024",
+          "77 %",
+          "57 %",
+          "eu-mittel",
+          "demokratie-müdigkeit",
+          "demokratie-muedigkeit"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "eu-wahl"
+          ],
+          [
+            "kaum"
+          ],
+          [
+            "jemand"
+          ],
+          [
+            "waehl",
+            "wähl"
+          ]
+        ],
+        [
+          [
+            "demokratie-muedigkeit",
+            "demokratie-müdigkeit"
+          ],
+          [
+            "oesterreich",
+            "österreich"
+          ]
+        ],
+        [
+          [
+            "wahlbeteiligung"
+          ],
+          [
+            "frueh",
+            "früh"
+          ],
+          [
+            "hoeher",
+            "höher"
+          ]
+        ]
       ]
     },
     {
@@ -75,19 +154,79 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["briefwahl", "brief-wahl", "postal vote", "postal-vote", "stichwahl",
-         "bpraes-stichwahl", "bundespräsidenten-stichwahl",
-         "bundespraesidentenstichwahl", "vfgh", "verfassungs-gerichtshof",
-         "verfassungsgerichtshof", "g203/2016", "g 203/2016",
-         "van der bellen", "hofer", "trump-wahl", "us-wahl",
-         "us-2020", "us-präsidentschaft", "us-praesidentschaft"],
-        ["manipulation", "manipuliert", "wahlbetrug", "wahl-betrug",
-         "betrug", "fälschung", "faelschung", "gefälscht", "gefaelscht",
-         "verfassungswidrig", "verfassungs-widrig", "formfehler",
-         "form-fehler", "wahlfehler", "wahl-fehler", "verfahrensverstoß",
-         "court cases", "klagen", "abgelehnt", "anfechtung",
-         "wiederholungswahl", "wiederholungs-wahl", "fbi", "doj", "cisa",
-         "secure election", "anfechtbar", "manipulationsanfällig"]
+        [
+          "briefwahl",
+          "brief-wahl",
+          "postal vote",
+          "postal-vote",
+          "stichwahl",
+          "bpraes-stichwahl",
+          "bundespräsidenten-stichwahl",
+          "bundespraesidentenstichwahl",
+          "vfgh",
+          "verfassungs-gerichtshof",
+          "verfassungsgerichtshof",
+          "g203/2016",
+          "g 203/2016",
+          "van der bellen",
+          "hofer",
+          "trump-wahl",
+          "us-wahl",
+          "us-2020",
+          "us-präsidentschaft",
+          "us-praesidentschaft"
+        ],
+        [
+          "manipulation",
+          "manipuliert",
+          "wahlbetrug",
+          "wahl-betrug",
+          "betrug",
+          "fälschung",
+          "faelschung",
+          "gefälscht",
+          "gefaelscht",
+          "verfassungswidrig",
+          "verfassungs-widrig",
+          "formfehler",
+          "form-fehler",
+          "wahlfehler",
+          "wahl-fehler",
+          "verfahrensverstoß",
+          "court cases",
+          "klagen",
+          "abgelehnt",
+          "anfechtung",
+          "wiederholungswahl",
+          "wiederholungs-wahl",
+          "fbi",
+          "doj",
+          "cisa",
+          "secure election",
+          "anfechtbar",
+          "manipulationsanfällig"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "trump"
+          ],
+          [
+            "recht"
+          ],
+          [
+            "wahl-manipulations-vorwurf"
+          ]
+        ],
+        [
+          [
+            "at-briefwahl"
+          ],
+          [
+            "sich"
+          ]
+        ]
       ]
     },
     {
@@ -120,18 +259,72 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["volksbegehren", "volks-begehren", "vb", "bürger-initiative",
-         "buergerinitiative", "buerger-initiative", "direkte demokratie",
-         "direkte-demokratie", "volksabstimmung", "volks-abstimmung",
-         "volksbefragung", "volks-befragung", "don't smoke", "dontsmoke",
-         "dont-smoke", "rauchverbot", "frauen-volksbegehren",
-         "frauen-vb", "gentechnik-frei", "anti-ceta", "ceta", "100.000",
-         "100k unterschriften"],
-        ["bindend", "verbindlich", "ignoriert", "ignorieren", "umgesetzt",
-         "umsetzen", "behandelt", "behandlung", "parlament", "abgelehnt",
-         "ablehnen", "erfolg", "erfolgreich", "wirksam", "wirkung",
-         "demokratie", "art. 41", "bgbl", "konsultativ", "100.000 unterschriften",
-         "100k", "881k", "kompromiss", "tabak", "rauchen"]
+        [
+          "volksbegehren",
+          "volks-begehren",
+          "vb",
+          "bürger-initiative",
+          "buergerinitiative",
+          "buerger-initiative",
+          "direkte demokratie",
+          "direkte-demokratie",
+          "volksabstimmung",
+          "volks-abstimmung",
+          "volksbefragung",
+          "volks-befragung",
+          "don't smoke",
+          "dontsmoke",
+          "dont-smoke",
+          "rauchverbot",
+          "frauen-volksbegehren",
+          "frauen-vb",
+          "gentechnik-frei",
+          "anti-ceta",
+          "ceta",
+          "100.000",
+          "100k unterschriften"
+        ],
+        [
+          "bindend",
+          "verbindlich",
+          "ignoriert",
+          "ignorieren",
+          "umgesetzt",
+          "umsetzen",
+          "behandelt",
+          "behandlung",
+          "parlament",
+          "abgelehnt",
+          "ablehnen",
+          "erfolg",
+          "erfolgreich",
+          "wirksam",
+          "wirkung",
+          "demokratie",
+          "art. 41",
+          "bgbl",
+          "konsultativ",
+          "100.000 unterschriften",
+          "100k",
+          "881k",
+          "kompromiss",
+          "tabak",
+          "rauchen"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "frauen-volksbegehr",
+            "fraün-volksbegehr"
+          ],
+          [
+            "nicht"
+          ],
+          [
+            "gebracht"
+          ]
+        ]
       ]
     },
     {
@@ -165,16 +358,71 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["bundesrat", "bundes-rat", "länderkammer", "laenderkammer",
-         "zweite kammer", "zweiter parlamentskammer", "länderkonferenz",
-         "laenderkonferenz", "bundesländer-kammer", "bundeslaenderkammer",
-         "b-vg art. 34", "b-vg art. 35", "b-vg art. 37"],
-        ["wirkungslos", "wirksam", "macht", "stark", "schwach", "veto",
-         "vetorecht", "veto-recht", "einspruch", "blockieren",
-         "blockiert", "abschaffen", "reform", "zustimmungs-gesetze",
-         "beharrungs-beschluss", "beharrungs-besch", "deutschland", "vergleich",
-         "länder", "laender", "bundesländer", "bundeslaender", "parlament",
-         "gesetz", "gesetze", "verabschieden", "verabschiedet"]
+        [
+          "bundesrat",
+          "bundes-rat",
+          "länderkammer",
+          "laenderkammer",
+          "zweite kammer",
+          "zweiter parlamentskammer",
+          "länderkonferenz",
+          "laenderkonferenz",
+          "bundesländer-kammer",
+          "bundeslaenderkammer",
+          "b-vg art. 34",
+          "b-vg art. 35",
+          "b-vg art. 37"
+        ],
+        [
+          "wirkungslos",
+          "wirksam",
+          "macht",
+          "stark",
+          "schwach",
+          "veto",
+          "vetorecht",
+          "veto-recht",
+          "einspruch",
+          "blockieren",
+          "blockiert",
+          "abschaffen",
+          "reform",
+          "zustimmungs-gesetze",
+          "beharrungs-beschluss",
+          "beharrungs-besch",
+          "deutschland",
+          "vergleich",
+          "länder",
+          "laender",
+          "bundesländer",
+          "bundeslaender",
+          "parlament",
+          "gesetz",
+          "gesetze",
+          "verabschieden",
+          "verabschiedet"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "at-bundesrat"
+          ],
+          [
+            "abgeschafft"
+          ]
+        ],
+        [
+          [
+            "de-bundesrat"
+          ],
+          [
+            "at-bundesrat"
+          ],
+          [
+            "gleich"
+          ]
+        ]
       ]
     },
     {
@@ -208,17 +456,77 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["wahlbetrug", "wahl-betrug", "wahlfälschung", "wahlfaelschung",
-         "wahl-manipulation", "wahlmanipulation", "trump-wahl",
-         "us-wahl 2020", "us 2020", "biden", "election fraud",
-         "voter fraud", "court cases", "klagen", "anfechtung",
-         "fbi", "doj", "cisa", "heritage foundation", "brennan center"],
-        ["manipuliert", "manipulieren", "betrug", "betrogen", "fälschung",
-         "faelschung", "gefälscht", "gefaelscht", "abgelehnt", "abgewiesen",
-         "abgelehnte klagen", "ungültig", "ungueltig", "secure election",
-         "secure", "evidence", "beweise", "belege", "incident rate",
-         "0.0001", "60+ cases", "trump", "biden", "demokraten",
-         "republikaner"]
+        [
+          "wahlbetrug",
+          "wahl-betrug",
+          "wahlfälschung",
+          "wahlfaelschung",
+          "wahl-manipulation",
+          "wahlmanipulation",
+          "trump-wahl",
+          "us-wahl 2020",
+          "us 2020",
+          "biden",
+          "election fraud",
+          "voter fraud",
+          "court cases",
+          "klagen",
+          "anfechtung",
+          "fbi",
+          "doj",
+          "cisa",
+          "heritage foundation",
+          "brennan center"
+        ],
+        [
+          "manipuliert",
+          "manipulieren",
+          "betrug",
+          "betrogen",
+          "fälschung",
+          "faelschung",
+          "gefälscht",
+          "gefaelscht",
+          "abgelehnt",
+          "abgewiesen",
+          "abgelehnte klagen",
+          "ungültig",
+          "ungueltig",
+          "secure election",
+          "secure",
+          "evidence",
+          "beweise",
+          "belege",
+          "incident rate",
+          "0.0001",
+          "60+ cases",
+          "trump",
+          "biden",
+          "demokraten",
+          "republikaner"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "wahl"
+          ],
+          [
+            "manipuliert"
+          ]
+        ],
+        [
+          [
+            "briefwahl"
+          ],
+          [
+            "anfaellig",
+            "anfällig"
+          ],
+          [
+            "betrug"
+          ]
+        ]
       ]
     },
     {
@@ -252,18 +560,80 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["mehrheits-wahl", "mehrheitswahl", "fptp", "first-past-the-post",
-         "verhältnis-wahl", "verhaeltnis-wahl", "verhältniswahl",
-         "verhaeltniswahl", "proportional representation", "pr-wahl",
-         "wahlsystem", "wahl-system", "duverger", "lijphart",
-         "konsens-demokratie", "mehrheits-demokratie", "patterns of democracy",
-         "uk-wahl", "us-wahl", "at-wahl", "deutsche wahl", "nationalratswahl"],
-        ["demokratisch", "demokratischer", "gerecht", "ungerecht", "fair",
-         "unfair", "stabil", "instabil", "zweiparteien", "zwei-parteien",
-         "mehrparteien", "mehr-parteien", "koalition", "koalitionsregierung",
-         "minderheit", "mehrheit", "disproportional", "proportional",
-         "gallagher", "wahlkreise", "wahl-kreise", "hürde", "huerde",
-         "4 prozent", "5 prozent", "duverger's law"]
+        [
+          "mehrheits-wahl",
+          "mehrheitswahl",
+          "fptp",
+          "first-past-the-post",
+          "verhältnis-wahl",
+          "verhaeltnis-wahl",
+          "verhältniswahl",
+          "verhaeltniswahl",
+          "proportional representation",
+          "pr-wahl",
+          "wahlsystem",
+          "wahl-system",
+          "duverger",
+          "lijphart",
+          "konsens-demokratie",
+          "mehrheits-demokratie",
+          "patterns of democracy",
+          "uk-wahl",
+          "us-wahl",
+          "at-wahl",
+          "deutsche wahl",
+          "nationalratswahl"
+        ],
+        [
+          "demokratisch",
+          "demokratischer",
+          "gerecht",
+          "ungerecht",
+          "fair",
+          "unfair",
+          "stabil",
+          "instabil",
+          "zweiparteien",
+          "zwei-parteien",
+          "mehrparteien",
+          "mehr-parteien",
+          "koalition",
+          "koalitionsregierung",
+          "minderheit",
+          "mehrheit",
+          "disproportional",
+          "proportional",
+          "gallagher",
+          "wahlkreise",
+          "wahl-kreise",
+          "hürde",
+          "huerde",
+          "4 prozent",
+          "5 prozent",
+          "duverger's law"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "verhaeltniswahl",
+            "verhältniswahl"
+          ],
+          [
+            "viel"
+          ],
+          [
+            "partei"
+          ]
+        ],
+        [
+          [
+            "zweiparteien-system"
+          ],
+          [
+            "stabil"
+          ]
+        ]
       ]
     },
     {
@@ -297,19 +667,56 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["epartizipation", "e-partizipation", "online-petition", "onlinepetition",
-         "online-beteiligung", "internet-demokratie", "digitale-demokratie",
-         "eu-bürgerinitiative", "eu-buergerinitiative", "bürgerinitiative",
-         "buergerinitiative", "right2water", "stop glyphosat",
-         "end the cage age", "fridays for future", "save the bees",
-         "petition", "petitionen", "online-volksbegehren",
-         "online-volks-begehren"],
-        ["wirksam", "wirkungslos", "erfolgreich", "ignoriert", "ignorieren",
-         "umgesetzt", "behandelt", "kommission", "eu-kommission",
-         "millionen unterschriften", "1 mio", "mio unterschriften",
-         "mobilisiert", "mobilisierung", "demokratie-krise", "krise",
-         "repräsentation", "repraesentation", "beteiligung", "aktiv",
-         "passiv", "online", "internet", "digital", "bertelsmann", "hindman"]
+        [
+          "epartizipation",
+          "e-partizipation",
+          "online-petition",
+          "onlinepetition",
+          "online-beteiligung",
+          "internet-demokratie",
+          "digitale-demokratie",
+          "eu-bürgerinitiative",
+          "eu-buergerinitiative",
+          "bürgerinitiative",
+          "buergerinitiative",
+          "right2water",
+          "stop glyphosat",
+          "end the cage age",
+          "fridays for future",
+          "save the bees",
+          "petition",
+          "petitionen",
+          "online-volksbegehren",
+          "online-volks-begehren"
+        ],
+        [
+          "wirksam",
+          "wirkungslos",
+          "erfolgreich",
+          "ignoriert",
+          "ignorieren",
+          "umgesetzt",
+          "behandelt",
+          "kommission",
+          "eu-kommission",
+          "millionen unterschriften",
+          "1 mio",
+          "mio unterschriften",
+          "mobilisiert",
+          "mobilisierung",
+          "demokratie-krise",
+          "krise",
+          "repräsentation",
+          "repraesentation",
+          "beteiligung",
+          "aktiv",
+          "passiv",
+          "online",
+          "internet",
+          "digital",
+          "bertelsmann",
+          "hindman"
+        ]
       ]
     },
     {
@@ -343,18 +750,81 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["demokratie", "demokratie-verfall", "demokratieverfall",
-         "demokratie-rückgang", "demokratierueckgang", "v-dem", "vdem",
-         "varieties of democracy", "freedom house", "fiw", "demokratie-index",
-         "liberal democracy index", "ungarn", "polen", "türkei", "tuerkei",
-         "russland", "china", "usa", "österreich", "oesterreich",
-         "demokratie-niveau", "demokratie-status"],
-        ["verfall", "verfällt", "verfaellt", "rückgang", "rueckgang",
-         "rückläufig", "ruecklaeufig", "abgestiegen", "abgestürzt",
-         "abgestuerzt", "stabil", "verbesserung", "fortschritt",
-         "autokratisierung", "autoritärer", "autoritaer", "diktatur",
-         "demokratisch", "frei", "partly free", "not free", "free",
-         "92/100", "0.78", "0.81", "0.32"]
+        [
+          "demokratie",
+          "demokratie-verfall",
+          "demokratieverfall",
+          "demokratie-rückgang",
+          "demokratierueckgang",
+          "v-dem",
+          "vdem",
+          "varieties of democracy",
+          "freedom house",
+          "fiw",
+          "demokratie-index",
+          "liberal democracy index",
+          "ungarn",
+          "polen",
+          "türkei",
+          "tuerkei",
+          "russland",
+          "china",
+          "usa",
+          "österreich",
+          "oesterreich",
+          "demokratie-niveau",
+          "demokratie-status"
+        ],
+        [
+          "verfall",
+          "verfällt",
+          "verfaellt",
+          "rückgang",
+          "rueckgang",
+          "rückläufig",
+          "ruecklaeufig",
+          "abgestiegen",
+          "abgestürzt",
+          "abgestuerzt",
+          "stabil",
+          "verbesserung",
+          "fortschritt",
+          "autokratisierung",
+          "autoritärer",
+          "autoritaer",
+          "diktatur",
+          "demokratisch",
+          "partly free",
+          "not free",
+          "free",
+          "92/100",
+          "0.78",
+          "0.81",
+          "0.32",
+          "freiheit",
+          "unfrei",
+          "freie wahlen",
+          "freiheits",
+          "freedom"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "ungar"
+          ],
+          [
+            "demokrati"
+          ]
+        ],
+        [
+          [
+            "usa-demokrati"
+          ],
+          [
+            "niedergang"
+          ]
+        ]
       ]
     },
     {
@@ -388,17 +858,54 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["pressefreiheit", "presse-freiheit", "press freedom", "rsf",
-         "reporters without borders", "reporter ohne grenzen", "media freedom",
-         "medien-freiheit", "medienfreiheit", "rsf-index", "rsf 2024",
-         "world press freedom index", "wpfi"],
-        ["hervorragend", "gefährdet", "gefaehrdet", "verschlechtert",
-         "verbessert", "platz", "rang", "ranking", "spitzenreiter",
-         "schlecht", "gut", "norwegen", "schweden", "finnland", "deutschland",
-         "schweiz", "österreich", "oesterreich", "usa", "russland",
-         "china", "ungarn", "türkei", "tuerkei", "30 platz", "32 platz",
-         "16 platz", "180 länder", "inseraten-affäre", "övp-chats",
-         "oevp-chats"]
+        [
+          "pressefreiheit",
+          "presse-freiheit",
+          "press freedom",
+          "rsf",
+          "reporters without borders",
+          "reporter ohne grenzen",
+          "media freedom",
+          "medien-freiheit",
+          "medienfreiheit",
+          "rsf-index",
+          "rsf 2024",
+          "world press freedom index",
+          "wpfi"
+        ],
+        [
+          "hervorragend",
+          "gefährdet",
+          "gefaehrdet",
+          "verschlechtert",
+          "verbessert",
+          "platz",
+          "rang",
+          "ranking",
+          "spitzenreiter",
+          "schlecht",
+          "gut",
+          "norwegen",
+          "schweden",
+          "finnland",
+          "deutschland",
+          "schweiz",
+          "österreich",
+          "oesterreich",
+          "usa",
+          "russland",
+          "china",
+          "ungarn",
+          "türkei",
+          "tuerkei",
+          "30 platz",
+          "32 platz",
+          "16 platz",
+          "180 länder",
+          "inseraten-affäre",
+          "övp-chats",
+          "oevp-chats"
+        ]
       ]
     },
     {
@@ -432,17 +939,81 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["korruption", "corruption", "cpi", "transparency", "transparency international",
-         "corruption perceptions index", "korruptions-index", "ibiza-affäre",
-         "ibiza-affaere", "ÖVP-chats", "oevp-chats", "casinos-affäre",
-         "casinos-affaere", "bvt-affäre", "bvt-affaere", "schmid", "kurz",
-         "strache", "ti-cpi"],
-        ["korrupt", "korruptions-land", "skandinavien", "dänemark", "daenemark",
-         "schweden", "russland", "china", "usa", "deutschland", "schweiz",
-         "österreich", "oesterreich", "rang", "platz", "ranking",
-         "verschlechtert", "verbessert", "wahrgenommene", "experten",
-         "71", "75", "90", "rang 20", "platz 20", "platz 12", "stark",
-         "schwach", "weltweit", "international", "vergleich"]
+        [
+          "korruption",
+          "corruption",
+          "cpi",
+          "transparency",
+          "transparency international",
+          "corruption perceptions index",
+          "korruptions-index",
+          "ibiza-affäre",
+          "ibiza-affaere",
+          "ÖVP-chats",
+          "oevp-chats",
+          "casinos-affäre",
+          "casinos-affaere",
+          "bvt-affäre",
+          "bvt-affaere",
+          "schmid",
+          "kurz",
+          "strache",
+          "ti-cpi"
+        ],
+        [
+          "korrupt",
+          "korruptions-land",
+          "skandinavien",
+          "dänemark",
+          "daenemark",
+          "schweden",
+          "russland",
+          "china",
+          "usa",
+          "deutschland",
+          "schweiz",
+          "österreich",
+          "oesterreich",
+          "rang",
+          "platz",
+          "ranking",
+          "verschlechtert",
+          "verbessert",
+          "wahrgenommene",
+          "experten",
+          "71",
+          "75",
+          "90",
+          "rang 20",
+          "platz 20",
+          "platz 12",
+          "stark",
+          "schwach",
+          "weltweit",
+          "international",
+          "vergleich"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "russland"
+          ],
+          [
+            "sehr"
+          ],
+          [
+            "korrupt"
+          ]
+        ],
+        [
+          [
+            "international"
+          ],
+          [
+            "vergleich"
+          ]
+        ]
       ]
     },
     {
@@ -476,17 +1047,72 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["electoral college", "electoral-college", "us-wahlsystem",
-         "us wahl-system", "us-präsidentschaftswahl", "us-praesidentschaftswahl",
-         "swing states", "swing-states", "popular vote", "electoral vote",
-         "voter-id", "voter id", "voter-id-gesetze", "voter id law",
-         "gerrymandering", "wahlkreis-zuschnitt", "trump", "biden", "harris",
-         "clinton", "obama", "bush"],
-        ["undemokratisch", "demokratisch", "veraltet", "modern", "fair",
-         "unfair", "270", "538", "electors", "wahlmänner", "wahlmaenner",
-         "popular winner", "electoral winner", "disconnect", "manipulation",
-         "wahl-unterdrückung", "wahlunterdrueckung", "minderheit", "mehrheit",
-         "swing", "republikaner", "demokraten", "kalifornien", "wyoming"]
+        [
+          "electoral college",
+          "electoral-college",
+          "us-wahlsystem",
+          "us wahl-system",
+          "us-präsidentschaftswahl",
+          "us-praesidentschaftswahl",
+          "swing states",
+          "swing-states",
+          "popular vote",
+          "electoral vote",
+          "voter-id",
+          "voter id",
+          "voter-id-gesetze",
+          "voter id law",
+          "gerrymandering",
+          "wahlkreis-zuschnitt",
+          "trump",
+          "biden",
+          "harris",
+          "clinton",
+          "obama",
+          "bush"
+        ],
+        [
+          "undemokratisch",
+          "demokratisch",
+          "veraltet",
+          "modern",
+          "fair",
+          "unfair",
+          "270",
+          "538",
+          "electors",
+          "wahlmänner",
+          "wahlmaenner",
+          "popular winner",
+          "electoral winner",
+          "disconnect",
+          "manipulation",
+          "wahl-unterdrückung",
+          "wahlunterdrueckung",
+          "minderheit",
+          "mehrheit",
+          "swing",
+          "republikaner",
+          "demokraten",
+          "kalifornien",
+          "wyoming"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "trump"
+          ],
+          [
+            "gewan"
+          ],
+          [
+            "trotz"
+          ],
+          [
+            "popular-vote-verlust"
+          ]
+        ]
       ]
     },
     {
@@ -520,18 +1146,67 @@
       ],
       "trigger_keywords": [],
       "trigger_composite": [
-        ["demokratie-zufriedenheit", "demokratie-vertrauen", "demokratiezufriedenheit",
-         "demokratievertrauen", "eurobarometer", "ifes", "demokratie-monitor",
-         "vertrauen", "politik-vertrauen", "politiker-vertrauen", "polit-verdrossen",
-         "polit-verdrossenheit", "demokratie-müdigkeit", "demokratiemüdigkeit",
-         "demokratiemuedigkeit", "regierungs-vertrauen", "regierungsvertrauen",
-         "parlament", "justiz-vertrauen"],
-        ["zufrieden", "unzufrieden", "vertrauen", "vertrauenswürdig",
-         "vertrauenswuerdig", "freier fall", "sinkt", "steigt", "stabil",
-         "67 %", "53 %", "33 %", "26 %", "71 %", "rang", "platz",
-         "eu-mittel", "eu-vergleich", "skandinavien", "österreich",
-         "oesterreich", "deutschland", "frankreich", "italien", "verfall",
-         "stabilisierung", "trend", "zeitreihe"]
+        [
+          "demokratie-zufriedenheit",
+          "demokratie-vertrauen",
+          "demokratiezufriedenheit",
+          "demokratievertrauen",
+          "eurobarometer",
+          "ifes",
+          "demokratie-monitor",
+          "vertrauen",
+          "politik-vertrauen",
+          "politiker-vertrauen",
+          "polit-verdrossen",
+          "polit-verdrossenheit",
+          "demokratie-müdigkeit",
+          "demokratiemüdigkeit",
+          "demokratiemuedigkeit",
+          "regierungs-vertrauen",
+          "regierungsvertrauen",
+          "parlament",
+          "justiz-vertrauen"
+        ],
+        [
+          "zufrieden",
+          "unzufrieden",
+          "vertrauen",
+          "vertrauenswürdig",
+          "vertrauenswuerdig",
+          "freier fall",
+          "sinkt",
+          "steigt",
+          "stabil",
+          "67 %",
+          "53 %",
+          "33 %",
+          "26 %",
+          "71 %",
+          "rang",
+          "platz",
+          "eu-mittel",
+          "eu-vergleich",
+          "skandinavien",
+          "österreich",
+          "oesterreich",
+          "deutschland",
+          "frankreich",
+          "italien",
+          "verfall",
+          "stabilisierung",
+          "trend",
+          "zeitreihe"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "politik"
+          ],
+          [
+            "verachtet"
+          ]
+        ]
       ]
     }
   ]

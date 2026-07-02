@@ -308,7 +308,17 @@
       ],
       "source_label": "Bracher + Wehler + Totalitarismus-Forschung",
       "source_url": "https://www.bpb.de/themen/zeit-kulturgeschichte/",
-      "secondary_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/"
+      "secondary_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/",
+      "trigger_all": [
+        [
+          [
+            "sozialismu"
+          ],
+          [
+            "nationalsozialismu"
+          ]
+        ]
+      ]
     },
     {
       "id": "versailles_2wk_2026",
@@ -358,7 +368,20 @@
       ],
       "source_label": "Tooze 2006 + Mazower 2008 + Kershaw",
       "source_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/dossier-nationalsozialismus/",
-      "secondary_url": "https://www.bpb.de/"
+      "secondary_url": "https://www.bpb.de/",
+      "trigger_all": [
+        [
+          [
+            "versaill"
+          ],
+          [
+            "vertrag"
+          ],
+          [
+            "schuld"
+          ]
+        ]
+      ]
     },
     {
       "id": "ddr_mauer_tote_2026",
@@ -463,7 +486,20 @@
       ],
       "source_label": "Hogan 'The Marshall Plan' 1987 + Eichengreen + bpb",
       "source_url": "https://www.bpb.de/kurz-knapp/lexika/das-junge-politik-lexikon/319912/marshall-plan/",
-      "secondary_url": "https://history.state.gov/milestones/1945-1952/marshall-plan"
+      "secondary_url": "https://history.state.gov/milestones/1945-1952/marshall-plan",
+      "trigger_all": [
+        [
+          [
+            "marshall-pla"
+          ],
+          [
+            "rein"
+          ],
+          [
+            "wirtschaftshilf"
+          ]
+        ]
+      ]
     },
     {
       "id": "hiroshima_2026",
@@ -565,7 +601,20 @@
       ],
       "source_label": "Iraq Survey Group / Duelfer Report 2004 + Chilcot Inquiry 2016",
       "source_url": "https://www.govinfo.gov/app/details/GPO-CRPT-IRAQ_WMD_2004",
-      "secondary_url": "https://en.wikipedia.org/wiki/Chilcot_Inquiry"
+      "secondary_url": "https://en.wikipedia.org/wiki/Chilcot_Inquiry",
+      "trigger_all": [
+        [
+          [
+            "irak"
+          ],
+          [
+            "massenvernichtungswaff"
+          ],
+          [
+            "2003"
+          ]
+        ]
+      ]
     },
     {
       "id": "nato_osterweiterung_2026",
@@ -663,7 +712,35 @@
       ],
       "source_label": "EUvsDisinfo + NATO-Briefings + BBC/NYT-Archiv",
       "source_url": "https://euvsdisinfo.eu/disinformation-cases/?text=ukraine",
-      "secondary_url": "https://www.bbc.com/news/world-europe-60506682"
+      "secondary_url": "https://www.bbc.com/news/world-europe-60506682",
+      "trigger_all": [
+        [
+          [
+            "puti"
+          ],
+          [
+            "krieg"
+          ],
+          [
+            "ukrain"
+          ],
+          [
+            "geplant"
+          ]
+        ],
+        [
+          [
+            "russland"
+          ],
+          [
+            "kriegsplaen",
+            "kriegsplän"
+          ],
+          [
+            "2022"
+          ]
+        ]
+      ]
     },
     {
       "id": "mondlandung_2026",

@@ -101,6 +101,19 @@
           "süchtig",
           "abhängig"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "tiktok"
+          ],
+          [
+            "drog"
+          ],
+          [
+            "gehir"
+          ]
+        ]
       ]
     },
     {
@@ -472,6 +485,23 @@
           "kompetenz",
           "lernen"
         ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "khan"
+          ],
+          [
+            "academy"
+          ],
+          [
+            "vorles"
+          ],
+          [
+            "unnoetig",
+            "unnötig"
+          ]
+        ]
       ]
     },
     {
@@ -522,6 +552,22 @@
           "schadet",
           "wissenschaftlich erwiesen",
           "darf nicht"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "until"
+          ],
+          [
+            "basiert"
+          ],
+          [
+            "wissenschaftlich"
+          ],
+          [
+            "evidenz"
+          ]
         ]
       ]
     }
