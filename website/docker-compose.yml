@@ -30,13 +30,8 @@ services:
       - no-new-privileges:true
     cap_drop:
       - ALL
-    cap_add:
-      # Nötig für Schreibzugriffe auf den ./backend/data-Mount (Host-Dir
-      # gehört dem Deploy-User, nicht Container-root; ohne DAC_OVERRIDE
-      # gelten für root die normalen Dateirechte -> PermissionError beim
-      # Cache-Schreiben, z.B. refresh_cordis). Delta minimal: Container-FS
-      # ist ohnehin root-owned, einzige weitere Mounts sind secrets:ro.
-      - DAC_OVERRIDE
+    # (cap_add: DAC_OVERRIDE entfernt 2026-07-02 — H4e non-root uid 1000
+    # hat native Schreibrechte auf den burrito-owned data-Mount.)
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/legal')"]
       interval: 30s
