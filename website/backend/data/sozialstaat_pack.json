@@ -8,7 +8,7 @@
       "topic": "mindestsicherung_trittbrett_mythos",
       "scope": "AT-Mindestsicherung / Sozialhilfe-Neu — Trittbrett-Hypothese empirisch geprueft",
       "year": 2024,
-      "source_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/sozialleistungen-auf-bundes-und-landesebene/sozialhilfe-mindestsicherung",
+      "source_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/sozialleistungen",
       "secondary_url": "https://www.wifo.ac.at/publikationen/wifo-monatsberichte/",
       "source_label": "Statistik Austria Mindestsicherungs-Statistik 2024 + WIFO Monatsberichte 2023-2024 + AK Wien Sozial-Studien + BMSGPK Sozialbericht 2024 + IHS Studien zu Erwerbsarbeit-Anreize",
       "headline": "AT-Mindestsicherung 2024: ~1.000 EUR/Monat 12x (Alleinstehend), ~206.000 Bezieher (Statistik Austria 205.781 Jahres-Schnitt 2024, ~2,3 % der Bevoelkerung), ~25 % Aufstocker (mit Erwerbseinkommen) — Trittbrett-Hypothese empirisch nicht belegt",
@@ -87,27 +87,7 @@
           "ausnutzen"
         ]
       ],
-      "trigger_all": [
-        [
-          [
-            "mindestsicherung",
-            "bedarfsorientierte mindestsicherung",
-            "sozialhilfe neu"
-          ],
-          [
-            "euro",
-            "höhe",
-            "hoehe",
-            "beträgt",
-            "betraegt",
-            "betrag",
-            "monat",
-            "hoch",
-            "wieviel",
-            "wie viel"
-          ]
-        ]
-      ]
+      "trigger_all": []
     },
     {
       "id": "familienbeihilfe_wirkung_2026",
@@ -1276,6 +1256,54 @@
           ],
           [
             "mechanik"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "mindestsicherung_hoehe_2026",
+      "topic": "mindestsicherung_hoehe",
+      "scope": "AT",
+      "year": 2024,
+      "source_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/sozialleistungen",
+      "secondary_url": "https://www.wifo.ac.at/publikationen/wifo-monatsberichte/",
+      "source_label": "Statistik Austria Mindestsicherungs-Statistik 2024 + BMSGPK Sozialbericht 2024",
+      "headline": "AT-Mindestsicherung Höhe 2024: Alleinstehende ~1.000 EUR/Monat (12x jährlich), Paare ~1.500 EUR, Kinder-Zuschlag 200–300 EUR je Bundesland",
+      "data": {
+        "richtsatz_alleinstehend_2024_eur_monat": 1000,
+        "richtsatz_paare_2024_eur_monat": 1500,
+        "kinder_zuschlag_eur": "200–300 je Bundesland",
+        "auszahlungen_pro_jahr": 12,
+        "context": "Deskriptive Richtsatz-Übersicht ohne Wertung. Beträge variieren je Bundesland (Sozialhilfe-Ausführungsgesetze); ~1.000 EUR/Monat für Alleinstehende ist der Richtwert 2024 laut Statistik Austria/BMSGPK. Bewusst OHNE Verdict-Leitlinie — reine Betrags-Claims sollen nicht vom Trittbrett-Mythos-Marker erfasst werden (Lehrgeld 2026-07-02)."
+      },
+      "context_notes": [
+        "Quelle: Statistik Austria Sozialhilfe/Mindestsicherung + BMSGPK Sozialbericht 2024 — dieselbe Datenbasis wie mindestsicherung_trittbrett_2026, aber ohne Mythos-Kontext.",
+        "Für Mythos-Claims (Trittbrettfahrer, 'lohnt sich nicht') ist mindestsicherung_trittbrett_2026 zuständig."
+      ],
+      "claim_phrasings_handled": [
+        "Die Mindestsicherung in Österreich beträgt rund 1000 Euro pro Monat",
+        "Wie hoch ist die Mindestsicherung in Österreich"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [],
+      "trigger_all": [
+        [
+          [
+            "mindestsicherung",
+            "bedarfsorientierte mindestsicherung",
+            "sozialhilfe neu"
+          ],
+          [
+            "euro",
+            "höhe",
+            "hoehe",
+            "beträgt",
+            "betraegt",
+            "betrag",
+            "monat",
+            "hoch",
+            "wieviel",
+            "wie viel"
           ]
         ]
       ]
