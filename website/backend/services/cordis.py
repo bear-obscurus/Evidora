@@ -187,25 +187,60 @@ def _slim_record(rec: dict) -> dict:
     return out
 
 
+def _records_from_zip(zf: zipfile.ZipFile, framework_label: str) -> list[dict]:
+    """Extrahiere Projekt-Records aus einem CORDIS-ZIP — beide Formate:
+
+    - Legacy (bis ~Mitte 2026): eine ``project.json`` mit einem Array.
+    - Aktuell (Upstream-Umstellung, entdeckt 2026-07-02): eine Datei pro
+      Projekt (``project-rcn-<rcn>_en.json``), Felder flach und
+      SLIM_FIELDS-kompatibel; ``frameworkProgramme`` fehlt dort und wird
+      aus der ZIP-Herkunft gesetzt.
+    """
+    names = zf.namelist()
+    if "project.json" in names:
+        with zf.open("project.json") as f:
+            data = json.load(f)
+        if not isinstance(data, list):
+            logger.warning("CORDIS prefetch: project.json not a list")
+            return []
+        return [_slim_record(r) for r in data]
+
+    per_project = [n for n in names
+                   if n.startswith("project-") and n.endswith(".json")]
+    if not per_project:
+        logger.warning(
+            "CORDIS prefetch: weder project.json noch project-*.json im ZIP"
+        )
+        return []
+    out: list[dict] = []
+    for name in per_project:
+        try:
+            with zf.open(name) as f:
+                rec = json.load(f)
+        except (json.JSONDecodeError, KeyError):
+            continue
+        if not isinstance(rec, dict):
+            continue
+        slim = _slim_record(rec)
+        if not slim.get("frameworkProgramme"):
+            slim["frameworkProgramme"] = framework_label
+        out.append(slim)
+    return out
+
+
 async def _download_and_extract(
     client: httpx.AsyncClient, url: str
 ) -> list[dict]:
-    """Lädt ein CORDIS-ZIP, extrahiert project.json, returns list of dicts."""
+    """Lädt ein CORDIS-ZIP und extrahiert die Projekt-Records."""
     logger.info(f"CORDIS prefetch: downloading {url}")
     r = await client.get(url, timeout=TIMEOUT_S, follow_redirects=True)
     r.raise_for_status()
     zf = zipfile.ZipFile(io.BytesIO(r.content))
-    if "project.json" not in zf.namelist():
-        logger.warning(
-            f"CORDIS prefetch: project.json missing in {url}"
-        )
-        return []
-    with zf.open("project.json") as f:
-        data = json.load(f)
-    if not isinstance(data, list):
-        logger.warning(f"CORDIS prefetch: project.json not a list in {url}")
-        return []
-    return [_slim_record(r) for r in data]
+    framework = "HORIZON" if "HORIZON" in url else "H2020"
+    records = _records_from_zip(zf, framework)
+    if not records:
+        logger.warning(f"CORDIS prefetch: 0 records aus {url}")
+    return records
 
 
 async def prefetch_cordis(client: httpx.AsyncClient | None = None) -> int:
