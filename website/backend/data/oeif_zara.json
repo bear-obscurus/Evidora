@@ -135,7 +135,7 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria Bevölkerungsbewegung",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
       "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/wanderungen"
     },
     {
@@ -191,8 +191,8 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria Einbürgerungen / Eurostat",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/einbuergerungen",
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales",
       "trigger_all": [
         [
           [
@@ -270,7 +270,7 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht — Sprachkurs- und Prüfungsstatistik",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
       "secondary_url": "https://sprachportal.integrationsfonds.at/",
       "trigger_all": [
         [
@@ -357,8 +357,8 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria / Eurostat",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/migration-und-integration"
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales"
     },
     {
       "id": "oeif_migrationshintergrund_at_2023",
@@ -420,8 +420,8 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria — Migration & Integration",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/migration-und-integration",
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales",
       "trigger_all": [
         [
           [
@@ -510,8 +510,8 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria LFS / AMS",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.statistik.at/statistiken/arbeitsmarkt/arbeitskraefteerhebung",
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.statistik.at/statistiken/arbeitsmarkt",
       "trigger_all": [
         [
           [
@@ -628,7 +628,7 @@
       ],
       "source_label": "OECD PISA 2022 / ÖIF Integrationsbericht / Statistik Austria Bildungsstatistik",
       "source_url": "https://www.oecd.org/pisa/publications/pisa-2022-results.htm",
-      "secondary_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "secondary_url": "https://www.integrationsfonds.at/publikationen/",
       "trigger_all": [
         [
           [
@@ -733,7 +733,7 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria Bevölkerungsfortschreibung",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
       "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/bevoelkerungsstand"
     },
     {
@@ -799,7 +799,7 @@
         ]
       ],
       "source_label": "ZARA Rassismus Report (NGO-Quelle, Selbstmeldung) — methodische Differenzierung gegenüber Polizei-/Gerichtsstatistik",
-      "source_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report",
+      "source_url": "https://zara.or.at/de/wissen",
       "secondary_url": "https://www.bmi.gv.at/"
     },
     {
@@ -864,8 +864,8 @@
         ]
       ],
       "source_label": "ZARA Counter-Act / BMI Polizei-Kriminalstatistik § 283 / EU-FRA EU-MIDIS-II",
-      "source_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report",
-      "secondary_url": "https://www.bmi.gv.at/301/Kriminalstatistik/start.aspx",
+      "source_url": "https://zara.or.at/de/wissen",
+      "secondary_url": "https://www.bundeskriminalamt.at/501/start.aspx",
       "trigger_all": [
         [
           [
@@ -938,7 +938,7 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / BMI Asyl-Statistik / BFA Anerkennungsstatistik",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
       "secondary_url": "https://www.bmi.gv.at/301/Statistiken/start.aspx",
       "trigger_all": [
         [
@@ -1020,7 +1020,7 @@
         ]
       ],
       "source_label": "ZARA Rassismus Report + Gleichbehandlungsanwaltschaft (BMAW) + WIFO/IZA Audit-Studien",
-      "source_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report",
+      "source_url": "https://zara.or.at/de/wissen",
       "secondary_url": "https://www.gleichbehandlungsanwaltschaft.gv.at/",
       "trigger_all": [
         [
@@ -1099,8 +1099,8 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria / IAB-BAMF-SOEP-Konsens",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/soziales/sozialhilfe-und-bedarfsorientierte-mindestsicherung",
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales",
       "trigger_all": [
         [
           [
@@ -1198,8 +1198,8 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / BMI / AsylG § 35 + FrÄG 2018",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.bmi.gv.at/302/Asyl/start.aspx",
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.bmi.gv.at/301/Statistiken/start.aspx",
       "trigger_all": [
         [
           [
@@ -1299,7 +1299,7 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / OECD Settling-In / Rechnungshof 2020",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
       "secondary_url": "https://www.aais.at/anerkennung-bewertung/",
       "trigger_all": [
         [
@@ -1516,8 +1516,8 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / Grundversorgungs-Vereinbarung 2004 / BMI",
-      "source_url": "https://www.integrationsfonds.at/mediathek/integrationsbericht/",
-      "secondary_url": "https://www.bmi.gv.at/302/Asyl/start.aspx",
+      "source_url": "https://www.integrationsfonds.at/publikationen/",
+      "secondary_url": "https://www.bmi.gv.at/301/Statistiken/start.aspx",
       "trigger_all": [
         [
           [
@@ -1607,7 +1607,7 @@
       ],
       "source_label": "ZARA (Eigenauskunft) / Vereinsregister / Stadt Wien Förderdoku",
       "source_url": "https://www.zara.or.at/de/ueber-uns",
-      "secondary_url": "https://www.zara.or.at/de/wissen/publikationen/rassismus-report",
+      "secondary_url": "https://zara.or.at/de/wissen",
       "trigger_all": [
         [
           [
