@@ -5186,13 +5186,16 @@
         "diskursqualität",
         "diskursqualitaet",
         "politischer diskurs",
-        "argumente begründung"
+        "argumente begründung",
+        "deliberativ"
       ],
       "keywords_en": [
         "deliberative democracy",
         "public reasoning",
         "discourse quality",
-        "political discourse"
+        "political discourse",
+        "deliberative-democracy",
+        "delibdem"
       ],
       "data": {
         "AFG": {
@@ -6823,13 +6826,17 @@
         "politische gleichheit",
         "politische teilhabe",
         "soziale ungleichheit politik",
-        "ungleichheit politische beteiligung"
+        "ungleichheit politische beteiligung",
+        "egalitär",
+        "egalitaer"
       ],
       "keywords_en": [
         "egalitarian democracy",
         "political equality",
         "political inclusion",
-        "social inequality politics"
+        "social inequality politics",
+        "egalitarian-democracy",
+        "egaldem"
       ],
       "data": {
         "AFG": {
@@ -13381,13 +13388,16 @@
         "soziale ungleichheit",
         "einkommensverteilung",
         "bildungs-zugang",
-        "gesundheits-zugang"
+        "gesundheits-zugang",
+        "gleiche verteilung"
       ],
       "keywords_en": [
         "resource distribution",
         "income inequality",
         "education access",
-        "health access"
+        "health access",
+        "equal-distribution",
+        "eqdr"
       ],
       "data": {
         "AFG": {
@@ -16655,13 +16665,18 @@
         "polizeigewalt",
         "staatsgewalt",
         "menschenrechte körperlich",
-        "extralegal exekution"
+        "extralegal exekution",
+        "körperliche unversehrtheit",
+        "koerperliche unversehrtheit",
+        "physische gewalt"
       ],
       "keywords_en": [
         "torture",
         "arbitrary execution",
         "state violence",
-        "physical integrity rights"
+        "physical integrity rights",
+        "physical-violence",
+        "clphy"
       ],
       "data": {
         "AFG": {
