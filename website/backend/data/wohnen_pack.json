@@ -800,7 +800,8 @@
         "Wohngeld geht an Sozialschmarotzer",
         "Wohngeld leben auf unsere Kosten",
         "Wohngeld bekommen nur die die nicht arbeiten",
-        "Wohngeld ist Hängematte"
+        "Wohngeld ist Hängematte",
+        "Wer in Oesterreich Wohngeld bezieht arbeitet in der Mehrheit nicht"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
@@ -841,6 +842,26 @@
           [
             "arbeit"
           ]
+        ],
+        [
+          [
+            "wohngeld",
+            "wohnbeihilfe",
+            "mietzuschuss"
+          ],
+          [
+            "bezieh",
+            "bekomm",
+            "empfäng",
+            "empfaeng",
+            "erhält",
+            "erhaelt",
+            "empfänger",
+            "empfaenger"
+          ],
+          [
+            "arbeit"
+          ]
         ]
       ]
     },
@@ -872,7 +893,8 @@
         "Spekulation treibt alle Mietpreise",
         "Großinvestoren sind Schuld an hohen Mieten",
         "Vonovia ruiniert deutschen Wohnungsmarkt",
-        "Spekulation ist Mythos"
+        "Spekulation ist Mythos",
+        "In Deutschland besitzen Investoren wie Vonovia und Deutsche Wohnen mehr als die Haelfte aller Mietwohnungen"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
@@ -908,6 +930,31 @@
           "mythos",
           "anteil",
           "wirkung"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "vonovia",
+            "deutsche wohnen",
+            "großinvestor",
+            "grossinvestor",
+            "investoren",
+            "wohnungskonzern",
+            "wohnungs-konzern",
+            "heimstaden",
+            "akelius"
+          ],
+          [
+            "besitz",
+            "hälfte",
+            "haelfte",
+            "mehrheit der wohnung",
+            "anteil der wohnung",
+            "gehören",
+            "gehoeren",
+            "mietwohnungen"
+          ]
         ]
       ]
     },
