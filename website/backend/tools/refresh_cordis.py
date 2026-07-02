@@ -17,7 +17,6 @@ from __future__ import annotations
 
 import argparse
 import asyncio
-import os
 import sys
 import time
 
@@ -35,21 +34,20 @@ def main():
     )
     args = parser.parse_args()
 
-    if args.force:
-        from services.cordis import SLIM_CACHE_PATH
-        if os.path.exists(SLIM_CACHE_PATH):
-            os.remove(SLIM_CACHE_PATH)
-            print(f"Cache {SLIM_CACHE_PATH} entfernt (--force).")
-
     from services.cordis import prefetch_cordis
 
     print("Starte CORDIS-Refresh (kann 30-60s dauern)…")
     t0 = time.time()
-    n = asyncio.run(prefetch_cordis())
+    # --force überspringt nur den Frische-Skip in prefetch_cordis. Der
+    # alte Cache wird NICHT vorab gelöscht (Lehrgeld 2026-07-02: das
+    # frühere pre-delete hätte bei fehlgeschlagenem Download einen guten
+    # Cache zerstört; bei 0 Records schreibt prefetch_cordis nicht).
+    n = asyncio.run(prefetch_cordis(force=args.force))
     elapsed = time.time() - t0
     print(f"\nFertig in {elapsed:.1f}s: {n} Projekte cached")
     if n <= 0:
-        print("WARNUNG: 0 Records — Refresh fehlgeschlagen.")
+        print("ALERT: 0 Records — CORDIS-Refresh fehlgeschlagen "
+              "(Upstream-Format? Download?). Cache unverändert.")
         sys.exit(1)
 
 

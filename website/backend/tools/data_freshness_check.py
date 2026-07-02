@@ -28,6 +28,45 @@ from pathlib import Path
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
+# Generierte Caches: kein fetched_at_iso, werden separat auf Gesundheit
+# geprüft (Existenz/Größe/Alter) statt json-geladen — cordis ist ~110 MB.
+# Format: name -> (min_bytes, max_age_days | None = Alter egal)
+GENERATED_CACHES = {
+    "cordis_projects_slim.json": (50_000_000, 100),   # Quartals-Cron + Puffer
+    "claimreview_index.json": (1_000_000, None),      # beim Backend-Start neu gebaut
+}
+
+
+def check_generated_caches(data_dir: Path) -> list[str]:
+    """Gesundheits-Check der generierten Cache-Dateien.
+
+    Fängt stille Refresh-Fehlschläge (Lehrgeld 2026-07-02: der CORDIS-
+    Quartals-Cron lief nach einer Upstream-Format-Umstellung unbemerkt
+    auf 0 Records). Returns: Liste menschenlesbarer Probleme (leer = ok).
+    """
+    problems = []
+    for name, (min_bytes, max_age_days) in GENERATED_CACHES.items():
+        p = data_dir / name
+        if not p.exists():
+            problems.append(
+                f"{name}: FEHLT (Refresh nie gelaufen oder fehlgeschlagen?)"
+            )
+            continue
+        size = p.stat().st_size
+        if size < min_bytes:
+            problems.append(
+                f"{name}: nur {size/1e6:.1f} MB (< {min_bytes/1e6:.0f} MB "
+                f"Minimum) — Refresh lieferte vermutlich leere/kaputte Daten"
+            )
+        if max_age_days is not None:
+            age_days = (datetime.now().timestamp() - p.stat().st_mtime) / 86400
+            if age_days > max_age_days:
+                problems.append(
+                    f"{name}: {age_days:.0f} d alt (> {max_age_days} d) — "
+                    f"Refresh-Cron läuft nicht mehr durch"
+                )
+    return problems
+
 
 def _parse_iso_date(s: str) -> date | None:
     if not s:
@@ -62,7 +101,12 @@ def main():
     parser.add_argument("--max-age-days", type=int, default=120,
         help="Schwellwert in Tagen (default: 120)")
     parser.add_argument("--strict", action="store_true",
-        help="Exit code 1 wenn Schwellwert überschritten")
+        help="Exit code 1 wenn Schwellwert überschritten oder ein "
+             "generierter Cache fehlt/zu klein/zu alt ist")
+    parser.add_argument("--alert-webhook", default=os.getenv("EVIDORA_ALERT_WEBHOOK", ""),
+        help="Optional URL für Alert-POST (JSON) bei Problemen — "
+             "gleiche Mechanik wie weekly_phrasing_check; Default aus "
+             "env EVIDORA_ALERT_WEBHOOK")
     args = parser.parse_args()
 
     if not DATA_DIR.exists():
@@ -72,6 +116,8 @@ def main():
     today = date.today()
     rows = []
     for path in sorted(DATA_DIR.glob("*.json")):
+        if path.name in GENERATED_CACHES:
+            continue  # separat geprüft; cordis (~110 MB) nicht json-laden
         fetched_at, label = _scan_json(path)
         if fetched_at is None:
             rows.append((path.name, None, label, "—"))
@@ -94,14 +140,38 @@ def main():
             stale_files.append((name, age))
 
     print()
+    cache_problems = check_generated_caches(DATA_DIR)
+    if cache_problems:
+        print(f"ALERT — {len(cache_problems)} generierte Caches ungesund:")
+        for pr in cache_problems:
+            print(f"  - {pr}")
+    else:
+        print(f"OK — {len(GENERATED_CACHES)} generierte Caches gesund "
+              f"(Existenz/Größe/Alter).")
+
+    print()
     if stale_files:
         print(f"⚠ {len(stale_files)} files stale (> {args.max_age_days} d):")
         for name, age in stale_files:
             print(f"  - {name}: {age} d alt")
-        if args.strict:
-            sys.exit(1)
     else:
         print(f"OK — alle {len(rows)} files sind frisch (< {args.max_age_days} d).")
+
+    if (stale_files or cache_problems) and args.alert_webhook:
+        try:
+            import httpx
+            httpx.post(args.alert_webhook, json={
+                "source": "evidora data_freshness_check",
+                "date": today.isoformat(),
+                "stale_files": [f"{n}: {a} d" for n, a in stale_files],
+                "cache_problems": cache_problems,
+            }, timeout=15)
+            print(f"  alert webhook posted to {args.alert_webhook}")
+        except Exception as e:
+            print(f"  alert webhook failed: {e}")
+
+    if (stale_files or cache_problems) and args.strict:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
