@@ -72,13 +72,18 @@ async def search_energy_charts(analysis: dict) -> dict:
         notes = fact.get("context_notes") or []
 
         if topic == "de_atomausstieg_atomstrom_import":
+            # Korrektur ZUERST (400-Zeichen-Regel): nur bestätigende
+            # Handels-Zahlen vorne führten zur Inversion 'mostly_true'
+            # beim Atomstrom-Frankreich-Mythos (Drift-Fix 2026-07-06).
             display = (
-                f"DE Stromsaldo 2024: {d.get('de_stromsaldo_2024_twh')} TWh "
-                f"(Netto-Importeur). Import netto aus Frankreich: "
+                f"DE-Stromimporte seit Atomausstieg sind preisgetrieben "
+                f"(Merit-Order), nicht kapazitätsgetrieben — 'kauft billigen "
+                f"Atomstrom aus Frankreich' ist irreführend. Saldo 2024: "
+                f"{d.get('de_stromsaldo_2024_twh')} TWh, netto aus Frankreich "
                 f"{d.get('de_nettoimport_aus_frankreich_2024_twh')} TWh "
-                f"(FR-Strom 2024 zu {d.get('fr_kernkraft_anteil_2024_pct')} % "
-                f"aus Kernenergie). DE-EE-Anteil 2024: "
-                f"{d.get('de_erneuerbare_anteil_2024_pct')} %."
+                f"(FR-Strom zu {d.get('fr_kernkraft_anteil_2024_pct')} % "
+                f"Kernenergie); zugleich Netto-Export nach AT/PL. "
+                f"DE-EE-Anteil 2024: {d.get('de_erneuerbare_anteil_2024_pct')} %."
             )
             description = d.get("context_kontextualisiert", "")
         elif topic == "ee_anteil_de":

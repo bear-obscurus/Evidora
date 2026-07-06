@@ -307,6 +307,45 @@
       "source_label": "ICCT RDE Reports + EEA + EPA-Untersuchungen",
       "source_url": "https://theicct.org/research-area/passenger-cars/",
       "secondary_url": "https://www.umweltbundesamt.de/themen/luft/emissionen-von-luftschadstoffen/spezifische-emissionen-des-verkehrs"
+    },
+    {
+      "id": "atomstrom_frankreich_import_2026",
+      "topic": "atomstrom_frankreich_import_mythos",
+      "scope": "Behauptung, Deutschland kaufe seit dem Atomausstieg billigen Atomstrom aus Frankreich",
+      "year": 2025,
+      "headline": "DE-Stromimporte seit Atomausstieg: preisgetrieben statt kapazitätsgetrieben — 2025 nur ~23 % Atomstrom-Anteil an den Importen (~55 % erneuerbar), größter Lieferant Dänemark, Saldo −21,9 TWh (unter 5 % des Verbrauchs)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die Behauptung 'Deutschland kauft seit dem Atomausstieg billigen Atomstrom aus Frankreich' ist FALSCH/IRREFÜHREND — Verdict mostly_false oder false. Wahrer Kern (NICHT invertieren!): Deutschland ist seit April 2023 Netto-Stromimporteur (2024: ca. −25 TWh; 2025: −21,9 TWh, rückläufig), Frankreich war 2024 größter Netto-Lieferant. Die Framing-Aussagen sind aber empirisch widerlegt: (1) Importe sind PREISGETRIEBEN, nicht kapazitätsgetrieben — Deutschland kann seine Nachfrage jederzeit selbst decken (Fraunhofer ISE, BNetzA); importiert wird, wenn ausländischer Strom billiger ist als deutsche Gas-/Kohlekraftwerke (Merit-Order). (2) 2025 waren nur ~23 % der deutschen Stromimporte Atomstrom, ~55 % erneuerbar; größter Netto-Lieferant war Dänemark (Windstrom), Frankreich Nr. 2 (11,2 TWh). (3) Der Nettoimport entspricht unter 5 % des deutschen Stromverbrauchs. (4) 'Atomstrom' ist im EU-Verbundnetz physikalisch nicht zuordenbar, nur bilanziell.",
+        "importsaldo_2025": "Energy-Charts/Fraunhofer ISE Jahresauswertung 2025: Import 76,2 TWh, Export 54,3 TWh, Saldo −21,9 TWh (−6,4 TWh gegenüber 2024).",
+        "importmix_2025": "Importmix 2025: ~23 % Atomstrom (~5,1 TWh netto), ~55 % erneuerbar, ~13 % fossil. Größte Netto-Lieferanten: Dänemark 12,4 TWh (überwiegend Windstrom), Frankreich 11,2 TWh, Niederlande 8,4 TWh, Norwegen 7,0 TWh.",
+        "preislogik": "Fraunhofer ISE (Bruno Burger): Importe erfolgen aus Preisgründen, nicht wegen fehlender Kraftwerkskapazität; der Importsaldo ist rechnerisch allein durch den EE-Zubau 2025 ausgleichbar.",
+        "einordnung_faktenchecks": "BR24 #Faktenfuchs, correctiv, dpa und Volksverpetzer bewerten 'Atomstrom-Abhängigkeits'-Narrative als falsch/irreführend; 2022 exportierte DE Strom nach Frankreich, als dortige AKW ausfielen; 2023 war über die Hälfte der DE-Importe erneuerbar, nur ~1/4 Atomstrom.",
+        "context": "Der wahre Kern (Netto-Import seit 2023) macht den Claim nicht mostly_true — die widerlegte Kernaussage ist das Kausal-Framing 'Atomausstieg → Abhängigkeit von billigem französischem Atomstrom'. 'Billig' ist gerade das Gegenargument: Importiert wird aus Preisgründen (Merit-Order), das senkt deutsche Strompreise."
+      },
+      "context_notes": [
+        "Komplementär zu energy_charts.json (de_atomausstieg_atomstrom_import), das die Handels-Rohzahlen liefert — dieses Fact trägt die Faktencheck-Einordnung des Framings.",
+        "Zahlen jährlich mit der Energy-Charts-Jahresauswertung (Januar) aktualisieren; 2025er-Werte aus der Fraunhofer-ISE-Jahresauswertung Jan. 2026."
+      ],
+      "claim_phrasings_handled": [
+        "Deutschland kauft seit Atomausstieg billigen Atomstrom aus Frankreich",
+        "Deutschland ist seit dem Atomausstieg von französischem Atomstrom abhängig",
+        "Deutschland importiert seit dem Atomausstieg Atomstrom aus Frankreich"
+      ],
+      "trigger_keywords": [
+        "atomstrom aus frankreich", "billigen atomstrom", "billiger atomstrom",
+        "billigem atomstrom", "französischen atomstrom", "französischer atomstrom",
+        "französischem atomstrom", "franzoesischem atomstrom",
+        "importiert atomstrom", "kauft atomstrom",
+        "atomstrom abhängig", "atomstrom abhaengig"
+      ],
+      "trigger_composite": [
+        ["atomstrom", "kernkraftstrom", "nuklearstrom", "kernenergie", "atomenergie"],
+        ["frankreich", "französisch", "franzoesisch"],
+        ["import", "kauf", "abhängig", "abhaengig", "bezieh", "zukauf", "angewiesen", "bettel"]
+      ],
+      "source_label": "Fraunhofer ISE Energy-Charts Jahresauswertung 2025 + BR24/correctiv/dpa-Faktenchecks",
+      "source_url": "https://www.energy-charts.info/",
+      "secondary_url": "https://www.ise.fraunhofer.de/de/presse-und-medien/presseinformationen.html"
     }
   ]
 }

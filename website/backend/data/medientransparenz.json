@@ -187,11 +187,11 @@
         "bmf_inserate_2021_mio_eur": 7.94,
         "bmlrt_inserate_2019_mio_eur": 1.75,
         "bmlrt_inserate_2021_mio_eur": 6.38,
-        "kontext_pilnacek_wkstaat_ermittlung": "WKStA-Ermittlungen 2021–2025 zur 'Inseratenaffäre' (Vorwurf: Inserate als verdeckte Parteienfinanzierung über Beinschab-Studien). Anklage gegen Sebastian Kurz im Herbst 2024 — Verfahren laufend; Unschuldsvermutung gilt."
+        "kontext_pilnacek_wkstaat_ermittlung": "WKStA-Ermittlungen seit 2021 zur 'Inseratenaffäre' (Vorwurf: Inserate als verdeckte Parteienfinanzierung über Beinschab-Studien) — keine Anklage in diesem Komplex (Stand 07/2026), Verfahren laufend; Unschuldsvermutung gilt. Beinschab (Aug. 2022) und Schmid (Nov. 2024) kooperieren als Kronzeugen. Im separaten Falschaussage-Verfahren wurde Kurz am 26.5.2025 vom OLG Wien rechtskräftig freigesprochen."
       },
       "context_notes": [
         "Die Inserate-Ausgaben einzelner ÖVP-geführter Ministerien stiegen 2017→2021 zwischen 280 % (BKA) und 365 % (BMLRT) — überproportional zum Gesamttrend (+18 %).",
-        "Diese Größenordnungen waren Auslöser der WKStA-Ermittlungen ('Inseratenaffäre'). Die strafrechtliche Bewertung steht (Anklage gegen Kurz, Schmid u. a.) noch aus.",
+        "Diese Größenordnungen waren Auslöser der WKStA-Ermittlungen ('Inseratenaffäre'). Die strafrechtliche Bewertung steht aus — keine Anklage in diesem Komplex (Stand 07/2026); Beinschab und Schmid kooperieren als Kronzeugen.",
         "Die Daten stammen aus der RTR-Medientransparenz-Datenbank — das ist die OFFIZIELLE Quelle, die auch von Anklage und Verteidigung verwendet wird."
       ],
       "claim_phrasings_handled": [
@@ -231,6 +231,69 @@
       ],
       "source_label": "RTR / KommAustria — MedienTransparenz § 2 (Daten 2017–2021)",
       "source_url": "https://www.rtr.at/"
+    },
+    {
+      "id": "medientransparenz_beinschab_gestaendnis",
+      "topic": "medientransparenz_beinschab_gestaendnis",
+      "scope": "Beinschab-Studien: Manipulations-Geständnisse (Kronzeugen-Status Beinschab/Schmid)",
+      "year": "2021-2024",
+      "headline": "Beinschab-Studien: Manipulation durch Geständnisse belegt — Sabine Beinschab gestand 2022, Umfragen zugunsten der ÖVP frisiert und Scheinrechnungen gelegt zu haben (Kronzeuginnen-Status Aug. 2022, § 209a StPO); auch Kronzeuge Thomas Schmid (Nov. 2024) gestand das 'Beinschab-Österreich-Tool'. Kein Urteil dazu; gegen Kurz u. a. laufen WKStA-Ermittlungen — Unschuldsvermutung gilt.",
+      "data": {
+        "beinschab_kronzeugin_seit": "2022-08",
+        "schmid_kronzeuge_seit": "2024-11-28",
+        "urteil_zur_studienmanipulation": "keines (Stand 07/2026)"
+      },
+      "context_notes": [
+        "Einordnung für Faktenchecks: 'Die Studien wurden gefälscht/frisiert/manipuliert' ist durch die behördlich geprüften Kronzeugen-Geständnisse belegt (kein Urteil — daher eher mostly_true als true). Schuld-Zuschreibungen an Beschuldigte (z. B. 'Kurz hat fälschen lassen') bleiben dagegen offen — laufendes Verfahren, Unschuldsvermutung.",
+        "Kronzeugen-Status nach § 209a StPO setzt ein reumütiges, vollständiges Geständnis voraus — Beinschab: Anfang Aug. 2022; Schmid: 28.11.2024 (Auflagen: 60.000 EUR Geldbuße + 200.000 EUR Teilschadenersatz).",
+        "Sophie Karmasin wurde 2023 rechtskräftig verurteilt (OGH-Bestätigung 2024) — wegen Absprachen/Betrug, nicht wegen der Studien-Manipulation selbst.",
+        "Im separaten Falschaussage-Verfahren wurde Sebastian Kurz am 26.5.2025 vom OLG Wien rechtskräftig freigesprochen."
+      ],
+      "claim_phrasings_handled": [
+        "In der Inseratenaffäre Kurz wurden Beinschab-Studien gefälscht",
+        "Die Beinschab-Umfragen wurden zugunsten der ÖVP frisiert",
+        "Beinschab hat manipulierte Studien geliefert"
+      ],
+      "trigger_keywords": [
+        "beinschab",
+        "beinschab-studie",
+        "beinschab-studien",
+        "beinschab-tool",
+        "umfrageaffäre",
+        "umfrage-affäre",
+        "frisierte umfragen",
+        "gefälschte umfragen",
+        "manipulierte umfragen",
+        "gefälschte studien",
+        "manipulierte studien"
+      ],
+      "trigger_composite": [
+        [
+          "umfrage",
+          "umfragen",
+          "studie",
+          "studien"
+        ],
+        [
+          "gefälscht",
+          "gefaelscht",
+          "frisiert",
+          "manipul",
+          "geschönt",
+          "geschoent"
+        ],
+        [
+          "beinschab",
+          "kurz",
+          "övp",
+          "oevp",
+          "schmid",
+          "inseraten"
+        ]
+      ],
+      "source_label": "WKStA / Justiz (Kronzeugen-Status) + ORF",
+      "source_url": "https://www.justiz.gv.at/",
+      "secondary_url": "https://orf.at/stories/3377322/"
     }
   ]
 }

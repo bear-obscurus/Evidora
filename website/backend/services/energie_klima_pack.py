@@ -37,6 +37,9 @@ Topics:
   - windkraft_voegel_konsens (Vergleichsmortalität deutlich)
   - erneuerbare_versorgungssicher_mythos (DE-SAIDI bleibt niedrig)
   - diesel_emissionen_konsens (MIXED — sauberer aber nicht 'sauber')
+  - atomstrom_frankreich_import_mythos ('kauft billigen Atomstrom aus
+    Frankreich' — Framing widerlegt: preisgetrieben, ~23 % Atomstrom-
+    Anteil an Importen 2025, größter Lieferant Dänemark)
 
 Politische Sensibilität: mittel. Themen sind politisch aufgeladen,
 aber faktisch gut belegbar. Pack zitiert Zahlen, nimmt keine politischen

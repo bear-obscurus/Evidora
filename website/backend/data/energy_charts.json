@@ -8,7 +8,7 @@
       "topic": "de_atomausstieg_atomstrom_import",
       "scope": "Stromhandelsbilanz Deutschland ↔ Frankreich nach Atomausstieg",
       "year": 2024,
-      "headline": "Hat Deutschland nach dem Atomausstieg 2023 Atomstrom aus Frankreich importiert?",
+      "headline": "DE-Stromimporte seit Atomausstieg 2023: preisgetrieben (Merit-Order), Saldo 2024 −24,9 TWh ≈ 1/15 der DE-Produktion — 'Deutschland kauft billigen Atomstrom aus Frankreich' ist irreführend",
       "data": {
         "de_stromsaldo_2024_twh": -24.9,
         "de_export_an_frankreich_2024_twh": 5.2,
@@ -22,7 +22,7 @@
         "de_braunkohle_anteil_2024_pct": 16.5,
         "de_gas_anteil_2024_pct": 13.5,
         "fr_kernkraft_anteil_2024_pct": 65.5,
-        "context_kontextualisiert": "Deutschland war 2024 Netto-STROMimport-Land (−24,9 TWh) und importierte gegen 9 TWh netto aus Frankreich. Frankreich produziert ~65 % Kernenergie, also ist ein nennenswerter Anteil dieses Imports tatsächlich Atomstrom. ABER: Deutschland exportiert gleichzeitig ~3,3 TWh netto nach Österreich und 4,0 TWh netto nach Polen — der Atomstrom-Import ist KEINE Folge des Atomausstiegs allein, sondern Resultat des EU-weiten Strommarkts (Merit-Order, billigster grenzüberschreitender Strom)."
+        "context_kontextualisiert": "Die Boulevard-Behauptung 'Deutschland kauft jetzt billigen französischen Atomstrom' ist irreführend: Importe sind Resultat des EU-weiten Strommarkts (Merit-Order — importiert wird, wenn Auslandsstrom billiger ist als deutsche Gas-/Kohlekraftwerke), keine Versorgungslücke; 'Atomstrom' ist physikalisch nicht zuordenbar; DE exportiert zugleich netto nach Österreich (3,3 TWh) und Polen (4,0 TWh). Wahrer Kern: Deutschland war 2024 Netto-Importeur (−24,9 TWh) mit ~9 TWh netto aus Frankreich (FR-Mix ~65 % Kernenergie); der Saldo entspricht ~1/15 der DE-Stromproduktion."
       },
       "context_notes": [
         "Vor dem Atomausstieg 2023 war Deutschland Netto-EXPORTeur (+33 TWh in 2017). 2023 erstmals Netto-Importeur — direkter Effekt des Atomausstiegs (8,4 TWh Stilllegung) UND des hohen Gaspreises 2022/23.",
