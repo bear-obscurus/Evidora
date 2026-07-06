@@ -1347,9 +1347,13 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
         f"Wohnbevölkerung Österreich 1.1.2026: {_de(data.get('bevoelkerung_gesamt'))} "
         f"insgesamt, davon {_de(data.get('bevoelkerung_nicht_at_staatsbuerger'))} "
         f"OHNE österreichische Staatsbürgerschaft = "
-        f"{data.get('anteil_nicht_at_pct')} %. "
-        f"Eine Behauptung von '20 %' rundet korrekt — wahr."
+        f"{data.get('anteil_nicht_at_pct')} %."
     )
+    # Verdict-Hint nur, wenn der Claim tatsächlich auf '20 %' zielt —
+    # als unbedingter Anker verzerrte er Wien-/Bundesländer-Claims auf
+    # den falschen Bezugswert (Drift-Fix 2026-07-06).
+    if any(t in claim_lc for t in ("20 prozent", "20 %", "20%", "zwanzig prozent")):
+        headline += " Eine Behauptung von '20 %' rundet korrekt — wahr."
 
     description_parts = [
         data.get("trend_text", ""),
@@ -1455,6 +1459,40 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
         if burgenland:
             head_parts.append(f"Burgenland {burgenland['anteil_pct']} % (niedrigster)")
         head_parts.append(f"Bundesschnitt {data.get('anteil_nicht_at_pct')} %")
+        # Drittel-Claims kriegen die 1/3-Arithmetik explizit ins
+        # display_value (400-Zeichen-Regel) — der Synthesizer soll bei
+        # 'mehr als jeder dritte Wiener' nicht selbst rechnen müssen
+        # (Grenzwert-Flip-Flops, Drift-Fix 2026-07-06). Datengetrieben,
+        # damit die Aussage künftige Werte-Updates überlebt.
+        drittel_claim = any(t in claim_lc for t in
+                            ("drittel", "jeder dritte", "jede dritte",
+                             "jeder 3.", "1/3"))
+        if drittel_claim and wien:
+            above = wien["anteil_pct"] > 100 / 3
+            rel = "MEHR als ein Drittel" if above else "WENIGER als ein Drittel"
+            korr = "korrekt" if above else "nicht korrekt"
+            wien_abs = (
+                f" ({_de(wien['absolut'])} von {_de(wien['einwohner_gesamt'])} "
+                f"Einwohnern)" if wien.get("absolut") and wien.get("einwohner_gesamt")
+                else ""
+            )
+            display = (
+                f"Wien: {wien['anteil_pct']} % der Einwohner ohne "
+                f"österreichische Staatsbürgerschaft{wien_abs}, Stichtag "
+                f"1.1.2026 (Statistik Austria) — das ist {rel} (33,3 %). "
+                f"'Mehr als jeder dritte Wiener ist Ausländer' ist damit "
+                f"{korr}. Bundesschnitt: {data.get('anteil_nicht_at_pct')} %."
+            )
+        else:
+            display = (
+                f"Bundesländer-Spannweite Nicht-AT-Anteil: "
+                + " · ".join(head_parts) + "."
+            )
+        spannweite = (
+            f" Spannweite zwischen Wien und Burgenland: Faktor "
+            f"{round(wien['anteil_pct'] / burgenland['anteil_pct'], 1)}."
+            if wien and burgenland and burgenland.get("anteil_pct") else ""
+        )
         out.append({
             "indicator_name": "Anteil Nicht-AT-Staatsbürger nach Bundesland (2026)",
             "indicator": "factbook_citizenship_at",
@@ -1462,13 +1500,10 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
             "country_name": "Österreich",
             "year": "2026",
             "value": wien["anteil_pct"] if wien else None,
-            "display_value": (
-                f"Bundesländer-Spannweite Nicht-AT-Anteil: "
-                + " · ".join(head_parts) + "."
-            ),
+            "display_value": display,
             "description": (
-                f"Vollständige Liste (Statistik Austria, 1.1.2026): {ranking}. "
-                f"Spannweite zwischen Wien und Burgenland: Faktor 2,7."
+                f"Vollständige Liste (Statistik Austria, 1.1.2026): "
+                f"{ranking}.{spannweite}"
             ),
             "url": src,
             "source": label,

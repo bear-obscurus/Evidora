@@ -275,16 +275,21 @@ async def search_medientransparenz(analysis: dict) -> dict:
                 url=url, source=label,
             )
             # Sub-Result C: BMLRT-Verlauf + WKStA-Kontext
+            # (Sachfehler-Fix 2026-07-06: In der Inseratenaffäre gibt es
+            # KEINE Anklage — Schmid/Beinschab sind Kronzeugen, kein
+            # Angeklagter; Kurz wurde im separaten Falschaussage-Verfahren
+            # 2025 rechtskräftig freigesprochen.)
             _emit(
                 topic=topic,
-                name="BMLRT-Inserate-Verlauf 2019–2021 + WKStA-Anklage",
-                year="2019-2024",
+                name="BMLRT-Inserate-Verlauf 2019–2021 + WKStA-Ermittlungsstand",
+                year="2019-2026",
                 display=(
                     f"Landwirtschafts-/Regionen-Ministerium-Inserate: "
                     f"2019 = {d.get('bmlrt_inserate_2019_mio_eur')} Mio. €, "
                     f"2021 = {d.get('bmlrt_inserate_2021_mio_eur')} Mio. € (+264 %). "
-                    f"WKStA-Anklage gegen Sebastian Kurz, Thomas Schmid u. a. "
-                    f"seit Herbst 2024 — Verfahren laufend, Unschuldsvermutung gilt."
+                    f"WKStA-Ermittlungen gegen Kurz u. a. laufen (keine Anklage, "
+                    f"Stand 2026); Schmid und Beinschab kooperieren als "
+                    f"Kronzeugen. Unschuldsvermutung gilt."
                 ),
                 description=d.get("kontext_pilnacek_wkstaat_ermittlung", ""),
                 url=url, source=label,

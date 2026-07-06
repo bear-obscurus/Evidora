@@ -342,23 +342,24 @@
           {"rang": 10, "land": "Afghanistan", "anzahl": 50000, "anteil_pct_an_nicht_at": 2.6}
         ],
         "bundeslaender_anteil_nicht_at_pct": [
-          {"land": "Wien", "anteil_pct": 33.4, "rang": 1},
-          {"land": "Vorarlberg", "anteil_pct": 19.8, "rang": 2},
-          {"land": "Salzburg", "anteil_pct": 19.6, "rang": 3},
-          {"land": "Tirol", "anteil_pct": 19.0, "rang": 4},
-          {"land": "Oberösterreich", "anteil_pct": 17.0, "rang": 5},
-          {"land": "Niederösterreich", "anteil_pct": 15.8, "rang": 6},
-          {"land": "Steiermark", "anteil_pct": 14.4, "rang": 7},
-          {"land": "Kärnten", "anteil_pct": 13.0, "rang": 8},
-          {"land": "Burgenland", "anteil_pct": 12.5, "rang": 9}
+          {"land": "Wien", "anteil_pct": 37.0, "absolut": 754635, "einwohner_gesamt": 2042036, "rang": 1},
+          {"land": "Salzburg", "anteil_pct": 21.1, "absolut": 120965, "rang": 2},
+          {"land": "Vorarlberg", "anteil_pct": 21.0, "absolut": 86711, "rang": 3},
+          {"land": "Tirol", "anteil_pct": 19.3, "absolut": 150227, "rang": 4},
+          {"land": "Oberösterreich", "anteil_pct": 16.6, "absolut": 255138, "rang": 5},
+          {"land": "Steiermark", "anteil_pct": 14.8, "absolut": 188731, "rang": 6},
+          {"land": "Kärnten", "anteil_pct": 14.0, "absolut": 79853, "rang": 7},
+          {"land": "Niederösterreich", "anteil_pct": 12.7, "absolut": 219066, "rang": 8},
+          {"land": "Burgenland", "anteil_pct": 11.7, "absolut": 35414, "rang": 9}
         ]
       },
       "context_notes": [
         "WICHTIG: 'Anteil ohne AT-Staatsbürgerschaft' (20,5 %) ≠ 'Migrationshintergrund' (deutlich höher, ca. 27 %). Migrationshintergrund umfasst auch eingebürgerte Personen + im Inland Geborene mit ausländischen Eltern.",
         "Größte Gruppen Nicht-AT-Staatsbürger 2026: deutsche (224 k), rumänische (147 k), serbische (124 k), syrische (112 k), türkische (105 k), ungarische (96 k), bosnische (94 k), kroatische (87 k), polnische (71 k), afghanische (50 k) Staatsbürger.",
-        "Wien hat mit 33,4 % den höchsten Anteil Nicht-AT-Staatsbürger; Burgenland mit 12,5 % den niedrigsten — Spannweite: Faktor 2,7.",
+        "Wien hat mit 37,0 % (754.635 von 2.042.036 Einwohnern, Stichtag 1.1.2026) den höchsten Anteil Nicht-AT-Staatsbürger — das ist MEHR als ein Drittel (33,3 %): 'Mehr als jeder dritte Wiener ist Ausländer (Staatsbürgerschaft)' ist korrekt. Burgenland mit 11,7 % der niedrigste — Spannweite: Faktor 3,2.",
         "Trend 2010 → 2026: Verdopplung des Anteils von 11,3 % auf 20,5 % (+9,2 Prozentpunkte in 16 Jahren).",
-        "Eine Behauptung wie '20 Prozent in Österreich haben keine AT-Staatsbürgerschaft' ist faktisch korrekt (20,5 %) — Rundung ist im Boulevard-Journalismus akzeptabel."
+        "Eine Behauptung wie '20 Prozent in Österreich haben keine AT-Staatsbürgerschaft' ist faktisch korrekt (20,5 %) — Rundung ist im Boulevard-Journalismus akzeptabel.",
+        "Bundesländer-Werte: vorläufige Ergebnisse (Statistik Austria PM 09.02.2026); endgültige 1.1.2026-Zahlen erscheinen Ende Juli 2026 — dann Refresh."
       ],
       "claim_phrasings_handled": [
         "20 Prozent ohne österreichische Staatsbürgerschaft",
