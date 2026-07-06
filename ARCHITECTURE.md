@@ -354,8 +354,8 @@ scripts to fire 4 claims in parallel without throttling.
 Standardized 20-claim battery, four measurement points:
 
 1. **Verdict match** — synthesizer verdict against expected
-   (`true`/`false`/`mostly_false`/`misleading`/`unverifiable`),
-   target ≥ 18/20.
+   (`true`/`mostly_true`/`mixed`/`mostly_false`/`false`/`unverifiable` —
+   the only labels the pipeline can emit), target ≥ 18/20.
 2. **Source match** — expected primary source in
    `source_coverage.names`, target ≥ 18/20.
 3. **Trigger-gap log** — every miss documented with which trigger

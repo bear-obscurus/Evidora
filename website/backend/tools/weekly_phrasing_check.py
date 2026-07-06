@@ -29,7 +29,7 @@ import json
 import os
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 
 import httpx
 
@@ -49,8 +49,10 @@ CLAIMS = [
     ("Deutschland hat die niedrigste Mordrate aller EU-Staaten.",
      ["false", "mostly_false"], "Eurostat Crime"),
     # Energy-Charts
+    # ("misleading" war ein totes Label — kein gültiges Pipeline-Verdict;
+    #  "mixed" ist das nächstliegende gültige Äquivalent. Fix 2026-07-06.)
     ("Deutschland kauft seit Atomausstieg billigen Atomstrom aus Frankreich.",
-     ["false", "mostly_false", "misleading"], "Energy-Charts"),
+     ["false", "mostly_false", "mixed"], "Energy-Charts"),
     ("Erneuerbare decken nur 10 Prozent des deutschen Stromverbrauchs.",
      ["false", "mostly_false"], "Energy-Charts"),
     # MedienTransparenz
@@ -148,7 +150,7 @@ async def main():
         print("ERROR: kein API-Key (--api-key oder EVIDORA_TEST_API_KEY env)")
         sys.exit(2)
 
-    timestamp = datetime.utcnow().isoformat() + "Z"
+    timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     print(f"=== Evidora weekly phrasing check {timestamp} ===")
     sem = asyncio.Semaphore(3)
 
@@ -194,13 +196,30 @@ async def main():
                     print(f"      sources={r['sources_with_results']!s}")
         if args.alert_webhook:
             try:
+                # Klartext-Body + ntfy-Header statt Roh-JSON (analog
+                # data_freshness_check) — das JSON landete 1:1 als
+                # unlesbarer Blob in der Push-Nachricht. Die gefailten
+                # Claims stehen jetzt direkt in der Notification
+                # (Fix 2026-07-06 nach dem ersten Live-Push vom 05.07.).
+                fail_lines = []
+                for r in results:
+                    v_ok = r["verdict"] in r["expected_verdicts"]
+                    s_ok = any(r["expected_src"] in s
+                               for s in r["sources_with_results"])
+                    if not (v_ok and s_ok):
+                        fail_lines.append(
+                            f"- {r['claim'][:70]}: {r['verdict']} "
+                            f"(erwartet {'/'.join(r['expected_verdicts'])})"
+                        )
+                body = (f"{msg}\n" + "\n".join(fail_lines))[:3800]
                 async with httpx.AsyncClient() as c:
-                    await c.post(args.alert_webhook,
-                                 json={"timestamp": timestamp,
-                                       "verdict_match": v_match,
-                                       "source_match": s_match,
-                                       "n_claims": n,
-                                       "message": msg})
+                    await c.post(
+                        args.alert_webhook,
+                        content=body,
+                        headers={"Title": "Evidora Drift ALERT",
+                                 "Priority": "high", "Tags": "warning"},
+                        timeout=15,
+                    )
                 print(f"  alert webhook posted to {args.alert_webhook}")
             except Exception as e:
                 print(f"  alert webhook failed: {e}")
