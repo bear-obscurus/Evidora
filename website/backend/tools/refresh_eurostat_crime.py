@@ -2,15 +2,19 @@
 """Refresh-Skript für eu_crime.json — holt aktuelle Eurostat-Werte
 für den homicide_eu_compare-Topic via Live-API.
 
-Showcase-Implementation für den Live-API-Refresh-Pfad. Pattern kann
-auf weitere Eurostat-basierte Topics ausgerollt werden.
+eu_crime.json ist eine KURATIERTE, git-getrackte Datei (Facts, Trigger,
+context_notes) — dieses Skript aktualisiert darin nur die Zahlenwerte
+und fetched_at_iso. Deshalb läuft der Refresh wie bei refresh_vdem.py
+MANUELL lokal + Commit, NICHT als Server-Cron: Seit dem data/-Mount
+würde ein In-Container-Write die getrackte Datei im Server-Worktree
+ändern und jeden weiteren Deploy blockieren (deploy.sh Dirty-Guard;
+Lehrgeld 2026-07-06 — der Quartals-Cron wurde dazu entfernt).
 
-Aufruf:
-  python3 tools/refresh_eurostat_crime.py [--dry-run]
-
-Cron (alle 3 Monate, 1. Tag des Monats 02:00 UTC):
-  0 2 1 */3 * /opt/Evidora/website/run_evidora_tool.sh \\
-      refresh_eurostat_crime.py >> /home/burrito/evidora-logs/eurostat_refresh.log 2>&1
+Workflow (Eurostat aktualisiert crim_hom_soff jährlich; der wöchentliche
+Freshness-Check mahnt via ntfy, sobald fetched_at_iso > 120 d alt ist):
+  python3 tools/refresh_eurostat_crime.py --dry-run   # Werte prüfen
+  python3 tools/refresh_eurostat_crime.py             # schreiben
+  git commit + PR + deploy.sh (data-only -> Hot-Reload via Mount)
 """
 import argparse
 import asyncio

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "fetched_at_iso": "2026-04-30",
+  "fetched_at_iso": "2026-07-06",
   "source_label": "Eurostat (crim_off_cat, crim_hom_*) + BKA-DE PKS + BMI-AT PKS",
   "facts": [
     {
@@ -87,7 +87,7 @@
       "source_label": "Eurostat (crim_hom_soff) + BMI Österreich PKS 2024",
       "source_url": "https://ec.europa.eu/eurostat/databrowser/view/crim_hom_soff",
       "secondary_url": "https://www.bmi.gv.at/",
-      "fetched_at_iso": "2026-04-30"
+      "fetched_at_iso": "2026-07-06"
     },
     {
       "id": "auslander_kriminalitaet_at_2024",
