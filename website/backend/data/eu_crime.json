@@ -30,15 +30,15 @@
         "homicide_eu_bottom_3": [
           {
             "land": "Italien",
-            "wert": 0.5
+            "wert": 0.57
           },
           {
-            "land": "Liechtenstein",
-            "wert": 0.5
+            "land": "Portugal",
+            "wert": 0.7
           },
           {
             "land": "Spanien",
-            "wert": 0.6
+            "wert": 0.72
           }
         ],
         "trend_at": "Tötungsdelikte in Österreich seit 2010 (~1,0/100 k) tendenziell rückläufig auf 0,7/100 k 2024.",

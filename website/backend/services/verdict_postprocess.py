@@ -36,34 +36,54 @@ _COMPARISON_COUNTRIES = (
 )
 
 _SUPERLATIVE_PHRASE = (
-    r"(?:(?:die|der|das)\s+"
+    r"(?:(?:die|der|das|den)\s+"
     r"(?:höchste|niedrigste|geringste|größte|meiste\w*|stärkste)\w*"
     r"|spitzenreiter|an erster stelle|an der spitze|schlusslicht)"
+)
+
+# Adjektive für den Verneinungs-Zweig — muss dasselbe Adjektiv wie im
+# Claim sein, damit "nicht die höchste" einen "niedrigste"-Claim nicht
+# fälschlich als widerlegt markiert.
+_SUPERLATIVE_ADJECTIVES = (
+    "höchste", "niedrigste", "geringste", "größte", "meisten", "stärkste",
 )
 
 
 def _summary_refutes_superlative(claim_lower, summary_lower):
     """True, wenn die Summary den Superlativ einem ANDEREN Land als dem
     Claim-Subjekt zuschreibt oder ihn fürs Claim-Subjekt explizit verneint
-    ("… nicht Österreich"). Verhindert, dass Pattern A/E ein korrektes
-    false/mostly_false fälschlich auf true flippen, nur weil die
-    Superlativ-Phrase ("die niedrigste") irgendwo in der Summary vorkommt
-    (Bug #52/#81, aufgedeckt im 100-Gap-Claim-Lauf 2026-06-27)."""
+    ("… nicht Österreich", "hat nicht die niedrigste …"). Verhindert, dass
+    Pattern A/E ein korrektes false/mostly_false fälschlich auf true
+    flippen, nur weil die Superlativ-Phrase ("die niedrigste") irgendwo in
+    der Summary vorkommt (Bug #52/#81, aufgedeckt im 100-Gap-Claim-Lauf
+    2026-06-27; Wortstellungs-/Tausenderpunkt-Lücken gefixt 2026-07-06
+    nach dem Mordraten-Drift)."""
     claim_countries = {c for c in _COMPARISON_COUNTRIES if c in claim_lower}
     if not claim_countries:
         return False
+    # Tausender-Punkte neutralisieren ("100.000" -> "100000"), damit die
+    # [^.]{0,70}-Fenster unten nicht an Zahlen-Punkten abbrechen.
+    summary_norm = re.sub(r"(?<=\d)\.(?=\d)", "", summary_lower)
+    # Verneinter Claim-Superlativ in deutscher Wortstellung: die Negation
+    # steht am Superlativ, nicht am Land ("Deutschland hat NICHT die
+    # niedrigste Mordrate"). Eng gefasst auf dasselbe Adjektiv wie im Claim.
+    for adj in _SUPERLATIVE_ADJECTIVES:
+        if adj in claim_lower and re.search(
+                r"\b(?:nicht|keineswegs)\s+(?:die|der|das|den)\s+" + adj,
+                summary_norm):
+            return True
     # Explizite Verneinung fürs Claim-Subjekt: "… nicht Österreich"
     for c in claim_countries:
-        if re.search(r"nicht\s+(?:das\s+|die\s+)?" + re.escape(c), summary_lower):
+        if re.search(r"nicht\s+(?:das\s+|die\s+)?" + re.escape(c), summary_norm):
             return True
     # Counter-Leader: Superlativ-Phrase nahe einem ANDEREN Land
     for c in _COMPARISON_COUNTRIES:
-        if c in claim_countries or c not in summary_lower:
+        if c in claim_countries or c not in summary_norm:
             continue
         if (re.search(_SUPERLATIVE_PHRASE + r"[^.]{0,70}" + re.escape(c),
-                      summary_lower)
+                      summary_norm)
                 or re.search(re.escape(c) + r"[^.]{0,70}" + _SUPERLATIVE_PHRASE,
-                             summary_lower)):
+                             summary_norm)):
             return True
     return False
 
@@ -269,6 +289,22 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
             verdict_from_summary = "true"
         elif re.search(
             r"behauptung.{0,150}ist (falsch|inkorrekt|nicht korrekt|nicht richtig|widerlegt)",
+            summary_lower
+        ):
+            verdict_from_summary = "false"
+        # Invertierte Wortstellung: "Damit/Daher/Somit ist die Behauptung
+        # falsch" — Verb vor dem Subjekt (2026-07-06, Mordraten-Drift:
+        # ohne diesen Zweig blieb verdict_from_summary leer und Pattern A
+        # konnte ein korrektes false auf true flippen).
+        elif re.search(
+            r"ist die behauptung\s+(?:daher\s+|damit\s+|somit\s+|also\s+)?"
+            r"(korrekt|richtig|zutreffend|wahr|belegt)",
+            summary_lower
+        ):
+            verdict_from_summary = "true"
+        elif re.search(
+            r"ist die behauptung\s+(?:daher\s+|damit\s+|somit\s+|also\s+)?"
+            r"(falsch|inkorrekt|nicht korrekt|nicht richtig|widerlegt)",
             summary_lower
         ):
             verdict_from_summary = "false"
