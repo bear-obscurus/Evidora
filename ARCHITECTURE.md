@@ -318,15 +318,30 @@ the old image. `up -d --build` fixes it.
 
 ### 4.2 Cron-jobs on production
 
-Two cron-jobs run on the Hetzner host:
+Seven cron-jobs run on the Hetzner host (verified 2026-07-06):
 
 | Time | Job | Purpose |
 |---|---|---|
-| Sun 03:00 | `tools/weekly_phrasing_check.py` | Re-runs a 20-claim phrasing-drift battery; emails maintainer if pass-rate < 18/20 |
-| Mon 04:00 | `tools/data_freshness_check.py` | Walks `data/*.json`, alerts if any `fetched_at_iso` > 120 days old |
+| Sun 03:00 | `tools/weekly_phrasing_check.py` | Re-runs a 20-claim phrasing-drift battery; pushes an ntfy alert if verdict- or source-match < 18/20 |
+| Mon 04:00 | `tools/data_freshness_check.py --max-age-days 120 --strict` | Walks `data/*.json` (`fetched_at_iso` > 120 d) + health-checks the generated caches; ntfy alert on problems |
+| Mon 04:00 | `tools/check_urls.py --live 30` | URL health check over the Tier-1 source links |
+| daily 02:30 | `evidora-restic-backup.sh` | restic backup (`.env` + `data/`) to the Hetzner volume |
+| Sun 03:30 | `evidora-restic-prune.sh` | restic retention (keep-daily 7 / keep-weekly 4) |
+| monthly 1st 03:00 | `docker builder/image/container prune` | Reclaims Docker build cache and dangling images |
+| quarterly 1st 03:00 | `tools/refresh_cordis.py` | Rebuilds the CORDIS slim cache (generated, untracked) |
 
-Both jobs go through `run_evidora_tool.sh`, which loads the prod env
-file and the bypass API key. See `memory/deployment_hetzner.md`.
+Tool jobs go through `run_evidora_tool.sh`, which loads the prod env
+file and the bypass API key; failures append to `ALERTS.log` and push
+ntfy. See `memory/deployment_hetzner.md`.
+
+**No cron may write a git-tracked file.** Since `data/` is host-mounted,
+an in-container write to a tracked file dirties the server worktree and
+blocks every following deploy (`deploy.sh` dirty-guard). Curated files
+with refreshable values (`eu_crime.json`, `vdem_indicators.json`) are
+refreshed manually — run the matching `tools/refresh_*.py` locally,
+commit, deploy; the freshness cron nags via ntfy when they age past
+120 d. The former quarterly `refresh_eurostat_crime.py` cron was removed
+for exactly this reason (2026-07-06).
 
 ### 4.3 Bypass key for stress tests
 
