@@ -296,6 +296,23 @@ CASES = [
      [_src(_NRM)],
      "false", 0.90),
 
+    # Invertierte deutsche Wortstellung (2026-07-06, Mordraten-Drift):
+    # "Damit ist die Behauptung falsch" — Verb vor Subjekt. Ohne den
+    # Regex-Zweig blieb verdict_from_summary leer und Pattern A konnte
+    # das Verdict flippen.
+    ("consistency_inverted_wordorder_false",
+     "a claim",
+     _r("true", 0.90,
+        "Die Daten zeigen das Gegenteil. Damit ist die Behauptung falsch."),
+     [_src(_NRM)],
+     "false", 0.90),
+
+    ("consistency_inverted_wordorder_true",
+     "a claim",
+     _r("false", 0.85, "Somit ist die Behauptung korrekt."),
+     [_src(_NRM)],
+     "true", 0.85),
+
     ("factual_niedrigste_to_true",
      "Österreich hat die niedrigste Quote im Vergleich",
      _r("false", 0.85, "Österreich hat die niedrigste Quote im Vergleich."),
@@ -383,6 +400,40 @@ CASES = [
         "Lebenserwartung in Europa hat die Schweiz mit 83,7 Jahren."),
      [_src(_NRM)],
      "mostly_false", 0.70),
+
+    # --- Guard-Härtung 2026-07-06 (Mordraten-Drift, Cron 14.06.–05.07.):
+    # Deutsche Wortstellung negiert am Superlativ, nicht am Land — der
+    # Guard kannte nur "nicht <Land>" und flippte das korrekte LLM-false
+    # auf true, sobald "die niedrigste" in der Refutation vorkam.
+    ("guardA_negated_superlative_keeps_false",
+     "Deutschland hat die niedrigste Mordrate aller EU-Staaten.",
+     _r("false", 0.90,
+        "Deutschland hat nicht die niedrigste Mordrate der EU: Mit 0,93 "
+        "Tötungsdelikten pro 100.000 Einwohner liegt Deutschland über dem "
+        "EU-Schnitt von 0,9."),
+     [_src(_NRM)],
+     "false", 0.90),
+
+    # Counter-Leader hinter Tausenderpunkt: "100.000" brach das
+    # [^.]{0,70}-Fenster, der Counter-Leader Italien wurde nicht erkannt.
+    ("guardA_counterleader_tausenderpunkt_keeps_false",
+     "Österreich hat die niedrigste Mordrate der EU.",
+     _r("false", 0.85,
+        "Die niedrigste Rate der EU verzeichnet mit 0,57 Tötungsdelikten "
+        "je 100.000 Einwohner Italien."),
+     [_src(_NRM)],
+     "false", 0.85),
+
+    # Kontrolle: bestätigter Superlativ fürs Claim-Subjekt OHNE Negation
+    # flippt weiterhin auf true — der Verneinungs-Zweig darf keine
+    # False-Positives erzeugen.
+    ("guardA_control_confirmed_superlative_flips",
+     "Deutschland hat die niedrigste Mordrate aller EU-Staaten.",
+     _r("false", 0.90,
+        "Deutschland hat mit 0,53 Tötungsdelikten pro 100.000 Einwohner "
+        "die niedrigste Mordrate aller EU-Staaten."),
+     [_src(_NRM)],
+     "true", 0.90),
 
     # --- Pattern B2: Rekordtief-Claim implizit von Summary bestätigt ---
     # (EBA-Inversion #96, 2026-06-27). LLM gibt fälschlich mostly_false,

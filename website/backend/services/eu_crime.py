@@ -74,12 +74,21 @@ async def search_eu_crime(analysis: dict) -> dict:
 
         # Build a structured display
         if topic == "homicide_eu_compare":
+            # Verdict-kritische Einordnung gehört ins display_value
+            # (400-Zeichen-Regel): "niedrigste Mordrate"-Superlativ-Claims
+            # brauchen die Bottom-Länder explizit im Prompt.
+            bottom = data.get("homicide_eu_bottom_3") or []
+            bottom_txt = ", ".join(
+                f"{b.get('land')} ({b.get('wert')})" for b in bottom
+            )
             display = (
                 f"Tötungsdelikte pro 100.000 Einwohner 2024: "
                 f"AT = {data.get('homicide_at_per_100k')}, "
                 f"DE = {data.get('homicide_de_per_100k')}, "
                 f"EU-Schnitt = {data.get('homicide_eu_avg_per_100k')}. "
-                f"Österreich liegt unter dem EU-Schnitt."
+                f"Die niedrigsten EU-Raten haben {bottom_txt} — "
+                f"weder Deutschland noch Österreich haben die niedrigste "
+                f"Mordrate der EU."
             )
             description = data.get("trend_at", "") + " " + data.get("context", "")
         elif topic == "migrant_crime_at":
