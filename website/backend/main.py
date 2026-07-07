@@ -7,9 +7,9 @@ import json
 import logging
 import os
 import re
-import time
 import unicodedata
 
+from services.ratelimit import get_client_ip, RateLimiter
 from services.claim_analyzer import analyze_claim
 from services.pubmed import search_pubmed
 from services.who import search_who
@@ -289,16 +289,11 @@ RATE_WINDOW = int(os.getenv("RATE_WINDOW", "60"))  # seconds
 # per-IP rate limit. The key is treated as a server-side secret; if the env
 # is unset/empty, NO bypass is possible.
 TEST_API_KEY = os.getenv("EVIDORA_TEST_API_KEY", "").strip()
-_rate_store: dict[str, list[float]] = {}
 
-
-def _get_client_ip(request: Request) -> str:
-    """Extract real client IP, respecting X-Forwarded-For behind reverse proxy."""
-    forwarded = request.headers.get("x-forwarded-for", "")
-    if forwarded:
-        # First IP in the chain is the original client
-        return forwarded.split(",")[0].strip()
-    return request.client.host if request.client else "unknown"
+# Rate-Limit-Keying über X-Real-IP (vom Trusted-Host-nginx gesetzt,
+# nicht fälschbar) statt über den client-kontrollierten X-Forwarded-For.
+# Logik + Trust-Modell in services/ratelimit.py (Audit-Befunde #2/#4).
+_rate_limiter = RateLimiter(RATE_LIMIT, RATE_WINDOW)
 
 
 def _has_test_bypass(request: Request) -> bool:
@@ -315,21 +310,11 @@ def _has_test_bypass(request: Request) -> bool:
     return diff == 0
 
 
-def _check_rate_limit(ip: str) -> bool:
-    now = time.time()
-    timestamps = _rate_store.get(ip, [])
-    timestamps = [t for t in timestamps if now - t < RATE_WINDOW]
-    _rate_store[ip] = timestamps
-    if len(timestamps) >= RATE_LIMIT:
-        return False
-    timestamps.append(now)
-    return True
-
-
 @app.post("/api/check")
 async def check_claim(request: Request):
-    client_ip = _get_client_ip(request)
-    if not _has_test_bypass(request) and not _check_rate_limit(client_ip):
+    client_ip = get_client_ip(
+        request.headers, request.client.host if request.client else None)
+    if not _has_test_bypass(request) and not _rate_limiter.allow(client_ip):
         raise HTTPException(status_code=429, detail="Zu viele Anfragen. Bitte warte einen Moment.")
 
     body = await request.json()

@@ -335,26 +335,16 @@ class TestOECD:
 
 class TestRateLimiter:
     def test_rate_limit_logic(self):
-        """Simulate the rate limit logic from main.py."""
-        store: dict[str, list[float]] = {}
-        limit = 3
-        window = 60
-
-        def check(ip: str) -> bool:
-            now = time.time()
-            timestamps = store.get(ip, [])
-            timestamps = [t for t in timestamps if now - t < window]
-            store[ip] = timestamps
-            if len(timestamps) >= limit:
-                return False
-            timestamps.append(now)
-            return True
-
-        assert check("1.2.3.4") is True
-        assert check("1.2.3.4") is True
-        assert check("1.2.3.4") is True
-        assert check("1.2.3.4") is False  # 4th request blocked
-        assert check("5.6.7.8") is True   # different IP ok
+        """Nutzt den ECHTEN Limiter aus services.ratelimit (früher eine
+        lokale Kopie, die von der Produktion driften konnte). Vollständige
+        Abdeckung inkl. X-Real-IP-Keying + Eviction in test_ratelimit.py."""
+        from services.ratelimit import RateLimiter
+        rl = RateLimiter(limit=3, window=60)
+        assert rl.allow("1.2.3.4", now=100.0) is True
+        assert rl.allow("1.2.3.4", now=100.0) is True
+        assert rl.allow("1.2.3.4", now=100.0) is True
+        assert rl.allow("1.2.3.4", now=100.0) is False  # 4th request blocked
+        assert rl.allow("5.6.7.8", now=100.0) is True   # different IP ok
 
 
 # ===================================================================
