@@ -77,6 +77,119 @@ def _entity_or_query_match(text: str, entities: list[str], queries: list[str]) -
     return hits >= 2
 
 
+# ---------------------------------------------------------------------------
+# Claim-Relevanz-Filter für Live-Feed-Items (Audit 2026-07-07)
+# ---------------------------------------------------------------------------
+# Der nachgelagerte Reranker (FACTCHECK_THRESHOLD) filtert NUR den
+# Synthesizer-Prompt. SSE-Stream, PDF-Export und die "X von Y Quellen
+# lieferten Ergebnisse"-Zählung sehen die rohen Service-Results. Feed-
+# Services, die ihren ganzen Feed zurückgeben (Mimikama, AT-Faktencheck-RSS),
+# kippten dadurch 20 themenfremde Items in jeden Export. Dieser Filter läuft
+# deshalb IN den Services, bevor Ergebnisse den Stream erreichen.
+
+# Embedding-Cache pro Item-URL — Feeds rotieren langsam (1h-TTL), das
+# Encoding von ~40 Kurztexten pro Request wäre sonst doppelte Arbeit
+# zusätzlich zum Reranker. Bounded, FIFO-Eviction.
+_ITEM_EMB_CACHE: dict[str, object] = {}
+_ITEM_EMB_CACHE_MAX = 512
+
+_FALLBACK_FACTCHECK_THRESHOLD = 0.55
+
+
+def _item_text(item: dict) -> str:
+    return f"{item.get('title', '')} {item.get('description', '')}".strip()
+
+
+def _has_entity_overlap(item: dict, entities: list[str]) -> bool:
+    """GADMO-Pattern: mind. eine NER-Entity muss im Item-Text vorkommen.
+    Ohne Entities keine Anforderung (dann trägt der Cosine-Threshold allein)."""
+    if not entities:
+        return True
+    text_lc = _item_text(item).lower()
+    return any(e.lower() in text_lc for e in entities if len(e) >= 3)
+
+
+def filter_items_for_claim(
+    claim: str,
+    items: list[dict],
+    *,
+    entities: list[str],
+    queries: list[str],
+    top_k: int = 5,
+) -> list[dict]:
+    """Filtert Live-Feed-Items auf Claim-Relevanz VOR Stream/Export/Zählung.
+
+    Semantischer Pfad: geteilte MiniLM-Instanz, Cosine >= FACTCHECK_THRESHOLD
+    des Rerankers + Entity-Overlap (identische Messlatte wie die Prompt-
+    Filterung — was hier durchkommt, käme auch dort durch). Ist das Modell
+    nicht verfügbar (z. B. CI), greift der strenge Keyword-Fallback
+    ``_entity_or_query_match`` — niemals Durchwinken des ganzen Feeds.
+    """
+    if not items or not claim:
+        return []
+
+    try:
+        from services import _st_model
+
+        model = _st_model.get_model()
+        if model is not None:
+            from sentence_transformers import util
+
+            from services._reranker_backup import _encode_claim_cached
+
+            try:
+                from services.reranker import FACTCHECK_THRESHOLD as _thr
+            except Exception:
+                _thr = _FALLBACK_FACTCHECK_THRESHOLD
+
+            claim_emb = _encode_claim_cached(model, claim)
+
+            # nur uncachte Items encodieren
+            to_encode = [
+                it for it in items
+                if (it.get("url") or _item_text(it)) not in _ITEM_EMB_CACHE
+            ]
+            if to_encode:
+                embs = model.encode(
+                    [_item_text(it) for it in to_encode], convert_to_tensor=True
+                )
+                for it, emb in zip(to_encode, embs):
+                    key = it.get("url") or _item_text(it)
+                    _ITEM_EMB_CACHE[key] = emb
+                    if len(_ITEM_EMB_CACHE) > _ITEM_EMB_CACHE_MAX:
+                        _ITEM_EMB_CACHE.pop(next(iter(_ITEM_EMB_CACHE)))
+
+            scored = []
+            for it in items:
+                emb = _ITEM_EMB_CACHE.get(it.get("url") or _item_text(it))
+                if emb is None:
+                    continue
+                score = float(util.cos_sim(claim_emb, emb)[0][0])
+                scored.append((it, score))
+            scored.sort(key=lambda x: x[1], reverse=True)
+
+            kept = [
+                it for it, score in scored
+                if score >= _thr and _has_entity_overlap(it, entities)
+            ][:top_k]
+            if scored:
+                logger.info(
+                    f"feed-claim-filter: top {scored[0][1]:.3f}, "
+                    f"kept {len(kept)}/{len(items)}"
+                )
+            return kept
+    except Exception as e:
+        logger.debug(f"feed-claim-filter semantic path failed: {e}")
+
+    # Keyword-Fallback (CI / Modell nicht verfügbar): strenger Match
+    # statt Feed-Dump — Entity-Treffer ODER >=2 Query-Wörter.
+    kept = [
+        it for it in items
+        if _entity_or_query_match(_item_text(it).lower(), entities, queries)
+    ]
+    return kept[:top_k]
+
+
 async def search_factcheck_rss(
     *,
     feed_url: str,
