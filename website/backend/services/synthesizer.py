@@ -41,6 +41,128 @@ def _source_prompt_priority(source_data: dict) -> tuple:
     return (tier, len(results))
 
 
+# Deutsche + englische Stoppwörter, die als „Claim-Term" nichts zur
+# Relevanz-Ankerung beitragen (kämen sonst in fast jedem Feld vor).
+_SNIPPET_STOPWORDS = frozenset({
+    "eine", "einen", "einer", "eines", "der", "die", "das", "den", "dem",
+    "und", "oder", "aber", "nicht", "mehr", "sich", "sind", "wird", "werden",
+    "haben", "hat", "ist", "war", "war", "als", "auf", "für", "mit", "von",
+    "über", "unter", "durch", "gegen", "ohne", "bei", "vom", "zum", "zur",
+    "dass", "wenn", "weil", "auch", "noch", "nur", "sehr", "beim", "einem",
+    "this", "that", "with", "from", "have", "were", "been", "they", "their",
+    "which", "about", "than", "then", "there", "these", "those", "such",
+})
+
+
+def _prompt_claim_terms(analysis: dict, original_claim: str) -> list[str]:
+    """Signifikante Claim-Terme (lowercase) für die claim-zentrierte
+    Feld-Trunkierung: NER-Entities + Content-Wörter des Original-Claims,
+    Stoppwörter entfernt. Deterministisch, kein Modell (CI-tauglich)."""
+    import re as _re
+
+    terms: list[str] = []
+    seen: set[str] = set()
+
+    def _add(t: str):
+        t = t.strip().lower()
+        if len(t) >= 4 and t not in seen and t not in _SNIPPET_STOPWORDS:
+            seen.add(t)
+            terms.append(t)
+
+    for e in (analysis or {}).get("entities", []) or []:
+        if isinstance(e, str):
+            _add(e)
+    for w in _re.findall(r"\w{4,}", (original_claim or "").lower()):
+        _add(w)
+    return terms
+
+
+def _snippet_head(s: str, max_str: int) -> str:
+    """Alt-Verhalten: die ersten ``max_str`` Zeichen an einer Wortgrenze."""
+    return s[:max_str].rsplit(" ", 1)[0] + " […]"
+
+
+def _claim_centered_truncate(s: str, terms: list[str], max_str: int) -> str:
+    """Trunkiere ``s`` auf ~``max_str`` Zeichen, aber wähle die claim-
+    relevantesten Sätze statt stumpf den Textanfang.
+
+    Warum satzweise + IDF: ein einzelnes Zeichenfenster scheitert am Kickl/
+    „Volkskanzler"-Fall — der häufige Term „Volkskanzler" steht auch am
+    Artikelanfang, der SELTENE, claim-tragende Term „Kickl" nur hinten. Wir
+    gewichten jeden Term-Treffer daher mit 1/Häufigkeit-im-Feld: seltene,
+    spezifische Terme (die Person) schlagen häufige Topic-Wörter. So landet
+    der Satz „… Herbert Kickl bezeichnet sich selbst so …" im Snippet.
+
+    Kein Claim-Term im Feld → altes Head-Verhalten (keine Regression für die
+    vielen Nicht-Treffer-Felder). Rein string-basiert, kein Modell."""
+    import re as _re
+
+    if len(s) <= max_str:
+        return s
+    if not terms:
+        return _snippet_head(s, max_str)
+
+    s_lc = s.lower()
+    freq = {t: s_lc.count(t) for t in terms}
+    present = {t: f for t, f in freq.items() if f > 0}
+    if not present:
+        return _snippet_head(s, max_str)
+
+    # Sätze inkl. Trenner erhalten (Split an .!? + Whitespace/Zeilenumbruch).
+    raw = _re.split(r"(?<=[.!?])\s+|\n+", s)
+    sentences = [seg.strip() for seg in raw if seg and seg.strip()]
+    if len(sentences) <= 1:
+        # Ein einziger Riesensatz → hartes Fenster um den seltensten Term.
+        rarest = min(present, key=lambda t: present[t])
+        anchor = s_lc.find(rarest)
+        start = max(0, anchor - 120)
+        window = s[start:start + max_str]
+        if start > 0:
+            window = window.split(" ", 1)[-1]
+        if start + max_str < len(s):
+            window = window.rsplit(" ", 1)[0]
+        return (("[…] " if start > 0 else "") + window.strip()
+                + (" […]" if start + max_str < len(s) else ""))
+
+    def _score(sent_lc: str) -> float:
+        return sum(1.0 / present[t] for t in present if t in sent_lc)
+
+    scored = [(i, sent, _score(sent.lower())) for i, sent in enumerate(sentences)]
+    candidates = [x for x in scored if x[2] > 0]
+    if not candidates:
+        return _snippet_head(s, max_str)
+
+    # Gierig nach IDF-Score, bis das Zeichenbudget erschöpft ist.
+    chosen: list[int] = []
+    used = 0
+    for i, sent, _sc in sorted(candidates, key=lambda x: (-x[2], x[0])):
+        if chosen and used + len(sent) + 1 > max_str:
+            continue
+        chosen.append(i)
+        used += len(sent) + 1
+        if used >= max_str:
+            break
+
+    chosen.sort()
+    parts: list[str] = []
+    if chosen[0] != 0:
+        parts.append("[…]")
+    prev = -1
+    for i in chosen:
+        if prev != -1 and i != prev + 1:
+            parts.append("[…]")
+        parts.append(sentences[i])
+        prev = i
+    if chosen[-1] != len(sentences) - 1:
+        parts.append("[…]")
+
+    result = " ".join(parts)
+    # Sicherheitsnetz: falls ein einzelner gewählter Satz das Budget sprengt.
+    if len(result) > max_str + 60:
+        result = result[:max_str].rsplit(" ", 1)[0] + " […]"
+    return result
+
+
 def _budget_prompt_sources(source_results: list, budget: int) -> list:
     """Wähle die Top-``budget`` Quellen-mit-Treffern für den Prompt aus
     (autoritative/STRUKTURELL immer behalten), in ORIGINAL-Reihenfolge.
@@ -954,10 +1076,20 @@ async def synthesize_results(
     # while reducing prompt size by ~30-40 %.
     MAX_STR = 400
 
+    # Claim-zentriertes Fenster (Audit 2026-07-07): die alte Trunkierung nahm
+    # stumpf s[:400] = den Textanfang. Beim Kickl/„Volkskanzler"-Claim war die
+    # entscheidende Wikipedia-Passage („… Herbert Kickl bezeichnet sich selbst
+    # so …") weiter hinten im Artikel — der Anfang beschrieb die NS-Begriffs-
+    # geschichte, und das claim-relevante Ende fiel weg → „nicht überprüfbar"
+    # trotz vorhandener Quelle. Jetzt: enthält ein langes Feld einen Claim-Term
+    # erst nach dem Anfangsfenster, wird das Fenster UM diesen Term extrahiert
+    # (mit etwas Kontext davor). Kein Term getroffen → altes Head-Verhalten.
+    _claim_terms = _prompt_claim_terms(analysis, original_claim)
+
     def _truncate_str(s: str) -> str:
         if not isinstance(s, str) or len(s) <= MAX_STR:
             return s
-        return s[:MAX_STR].rsplit(" ", 1)[0] + " […]"
+        return _claim_centered_truncate(s, _claim_terms, MAX_STR)
 
     # Fix #7 — Fan-out-Budget: nur die Top-N Quellen-mit-Treffern in den
     # Prompt aufnehmen (autoritative/STRUKTURELL immer behalten). Ändert NUR
