@@ -24,6 +24,7 @@ jobs:
     #   - test_cordis_zip_formats     (CORDIS bulk-ZIP parser)
     #   - test_prompt_injection       (Synthesizer <claim>-Injection-Guard)
     #   - test_ratelimit              (X-Real-IP-Keying + Store-Eviction)
+    #   - test_eurostat_fertility     (demo_find/TOTFERRT, kein demo_frate)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -56,6 +57,7 @@ jobs:
             tests/test_sipri_percapita.py \
             tests/test_prompt_injection.py \
             tests/test_ratelimit.py \
+            tests/test_eurostat_fertility.py \
             tests/test_fmt.py
 
   check-new-urls:

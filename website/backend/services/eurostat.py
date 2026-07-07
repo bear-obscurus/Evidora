@@ -64,18 +64,24 @@ DATASET_MAP = {
         "params": {"sex": "T", "age": "TOTAL", "lastTimePeriod": "5"},
         "unit": "Personen",
     },
+    # Gesamt-Fertilitätsrate (TFR): demo_find/TOTFERRT liefert den bekannten
+    # "Kinder je Frau"-Wert (~1,3). NICHT demo_frate — das ist die
+    # ALTERSSPEZIFISCHE Rate pro einzelnem Altersjahr (winzige ~0,00X-Werte);
+    # ohne Alters-Filter überschreibt der Parser pro (geo,time) mit einem
+    # willkürlichen Altersband → unsinnige Zahlen + invertiertes Ranking
+    # (Bug, 2026-07-07: AT wurde als "0,0001 Kinder/Frau" ausgegeben).
     "geburtenrate": {
-        "dataset": "demo_frate",
-        "label": "Fertilitätsrate",
-        "label_en": "Fertility Rate",
-        "params": {"lastTimePeriod": "5"},
+        "dataset": "demo_find",
+        "label": "Fertilitätsrate (Kinder je Frau)",
+        "label_en": "Total Fertility Rate",
+        "params": {"freq": "A", "indic_de": "TOTFERRT", "lastTimePeriod": "5"},
         "unit": "Kinder/Frau",
     },
     "fertility": {
-        "dataset": "demo_frate",
-        "label": "Fertilitätsrate",
-        "label_en": "Fertility Rate",
-        "params": {"lastTimePeriod": "5"},
+        "dataset": "demo_find",
+        "label": "Fertilitätsrate (Kinder je Frau)",
+        "label_en": "Total Fertility Rate",
+        "params": {"freq": "A", "indic_de": "TOTFERRT", "lastTimePeriod": "5"},
         "unit": "Kinder/Frau",
     },
     # Migration — politische Behauptungen meinen meist Asyl/Flucht
