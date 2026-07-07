@@ -803,6 +803,15 @@ async function openModal(type, e) {
         }
     }
 
+    // Rechtstexte sind nur auf Deutsch verfügbar (rechtlich maßgebliche
+    // Fassung, AT). Für FR/IT einen sichtbaren Hinweis voranstellen, statt
+    // still auf Deutsch zurückzufallen (Audit #7).
+    if (currentLang === "fr" || currentLang === "it") {
+        body.innerHTML =
+            `<p class="legal-lang-notice">${escapeHtml(t("legal_lang_notice"))}</p>`
+            + body.innerHTML;
+    }
+
     const modal = document.getElementById("legal-modal");
     modal.classList.remove("hidden");
     document.body.style.overflow = "hidden";

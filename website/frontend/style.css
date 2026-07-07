@@ -1438,6 +1438,17 @@ footer {
     margin-bottom: 8px;
 }
 
+/* Hinweis für FR/IT: Rechtstexte sind nur auf Deutsch verfügbar (Audit #7) */
+.legal-lang-notice {
+    background: #fef3c7;
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+    color: #78350f;
+}
+
 .modal-content ul {
     margin: 8px 0 12px 20px;
     font-size: 0.9rem;
