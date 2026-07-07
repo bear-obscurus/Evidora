@@ -147,7 +147,7 @@ topic vs. hybrid), see [ARCHITECTURE.md §2](ARCHITECTURE.md).
 
 | | Count |
 |---|---|
-| Distinct dispatched sources | **190** (191 dispatch points) |
+| Distinct dispatched sources | **191** (191 dispatch points, 0 duplicates) |
 | Live-API connectors | **107** |
 | Static-first topic services | **78** (incl. 40 thematic `*_pack.json` packs, ~430 topics) |
 | Hybrid (static core + live refresh) | **6** |
