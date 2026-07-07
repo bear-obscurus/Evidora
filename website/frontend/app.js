@@ -1,9 +1,19 @@
 const form = document.getElementById("search-form");
 const input = document.getElementById("claim-input");
+const searchBtn = document.getElementById("search-btn");
 const searchSection = document.getElementById("search-section");
 const loading = document.getElementById("loading");
 const results = document.getElementById("results");
 const error = document.getElementById("error");
+
+// Guard gegen Doppel-Submit (Audit #6): blockiert eine zweite Prüfung
+// während eine läuft — verhindert parallele teure Requests und dass ein
+// spät eintreffendes Stale-Result das UI überschreibt.
+let isLoading = false;
+// Der tatsächlich geprüfte Claim (Audit #5): NICHT input.value zum
+// Render-/Share-Zeitpunkt lesen, sonst wird bei Weitertippen während des
+// ~10-30 s-Streams das Verdict der falschen Behauptung zugeordnet.
+let lastCheckedClaim = "";
 
 // --- Authoritative-Pack-Marker (parallel to backend
 // services/confidence_calibration.py AUTHORITATIVE_PACK_MARKERS)
@@ -81,6 +91,7 @@ tipsBtn.addEventListener("click", () => {
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    if (isLoading) return;   // Doppel-Submit-Guard (Audit #6)
     const claim = input.value.trim();
     if (!claim) return;
     if (claim.length < 10 || claim.split(/\s+/).filter(Boolean).length < 2) {
@@ -94,6 +105,8 @@ form.addEventListener("submit", async (e) => {
         return;
     }
 
+    isLoading = true;
+    if (searchBtn) searchBtn.disabled = true;
     showLoading();
 
     try {
@@ -173,7 +186,7 @@ form.addEventListener("submit", async (e) => {
                             throw new Error(data.detail);
                         } else if (eventType === "result") {
                             gotResult = true;
-                            showResults(data);
+                            showResults(data, claim);
                         } else if (eventType === "done") {
                             streamDone = true;
                             reader.cancel();
@@ -194,6 +207,9 @@ form.addEventListener("submit", async (e) => {
         }
     } catch (err) {
         showError(err.message);
+    } finally {
+        isLoading = false;
+        if (searchBtn) searchBtn.disabled = false;
     }
 });
 
@@ -234,11 +250,16 @@ function updateSynthProgress(totalChars) {
     text.textContent = `${base} (${totalChars} Zeichen)`;
 }
 
-function showResults(data) {
+function showResults(data, submittedClaim) {
     loading.classList.add("hidden");
     results.classList.remove("hidden");
 
-    const claim = input.value.trim();
+    // Den TATSÄCHLICH geprüften Claim verwenden (Audit #5), nicht das
+    // Eingabefeld — sonst wird bei Weitertippen während des Streams das
+    // Verdict der falschen Behauptung zugeordnet (Anzeige + Verlauf +
+    // Teilen-Link). Fallback auf input.value für Alt-Aufrufe.
+    const claim = (submittedClaim !== undefined ? submittedClaim : input.value).trim();
+    lastCheckedClaim = claim;
     const claimDisplay = document.getElementById("claim-display");
     if (claim) {
         claimDisplay.innerHTML = `<p class="claim-display-label">${t("claim_display_label")}</p><blockquote class="claim-display-text">${escapeHtml(claim)}</blockquote>`;
@@ -693,7 +714,8 @@ function copyToClipboard(text) {
 }
 
 function shareResult() {
-    const claim = input.value.trim();
+    // geprüften Claim teilen, nicht das evtl. weiterbearbeitete Feld (Audit #5)
+    const claim = lastCheckedClaim || input.value.trim();
     const url = `${window.location.origin}?claim=${encodeURIComponent(claim)}`;
 
     copyToClipboard(url).then(() => {
@@ -704,7 +726,7 @@ function shareResult() {
 }
 
 function reportResult() {
-    const claim = input.value.trim();
+    const claim = lastCheckedClaim || input.value.trim();
     const verdictEl = document.querySelector(".verdict-badge");
     const verdict = verdictEl ? verdictEl.textContent.trim() : "?";
     const summaryEl = document.querySelector(".verdict-summary");
