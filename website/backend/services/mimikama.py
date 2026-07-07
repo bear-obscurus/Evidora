@@ -275,8 +275,22 @@ async def search_mimikama(analysis: dict) -> dict:
     if not items and not authoritative_results:
         return empty
 
+    # Claim-Relevanz-Filter VOR Stream/Export (Audit 2026-07-07): der
+    # Reranker filtert nur den Synthesizer-Prompt — ohne diesen Filter
+    # landeten die 20 neuesten Feed-Items ungefiltert in jedem Export
+    # und zählten als "lieferte Ergebnisse".
+    from services._factcheck_rss import filter_items_for_claim
+
+    entities = (analysis or {}).get("entities", []) or []
+    queries: list[str] = []
+    queries.extend((analysis or {}).get("pubmed_queries", []) or [])
+    queries.extend((analysis or {}).get("factcheck_queries", []) or [])
+    matched = filter_items_for_claim(
+        claim, items, entities=entities, queries=queries,
+    )
+
     rerankable = []
-    for it in items:
+    for it in matched:
         rerankable.append({
             "title": it["title"],
             "url": it["url"],
