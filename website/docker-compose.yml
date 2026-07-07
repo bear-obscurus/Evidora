@@ -23,6 +23,15 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
+    # Log-Rotation (Audit R2-4): ohne Limit wächst der json-file-Log
+    # unbegrenzt -> Disk-Fraß (Prod hatte schon Disk-Druck, M1). Der
+    # monatliche prune-Cron räumt Running-Container-Logs NICHT. 20m×5 =
+    # max. 100 MB pro Service.
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"
     # Security hardening (H4a-c, 2026-05-08)
     mem_limit: 4g
     memswap_limit: 4g
@@ -54,6 +63,12 @@ services:
       backend:
         condition: service_healthy
     restart: unless-stopped
+    # Log-Rotation (Audit R2-4) — siehe backend.
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"
     # Security hardening (H4a-c, 2026-05-08)
     mem_limit: 512m
     memswap_limit: 512m
