@@ -35,6 +35,31 @@ def test_struktrurell_prefix_stripped_but_facts_kept():
     assert "Quelle: bpb" in out
 
 
+def test_inline_kernsatz_in_flowing_text_removed():
+    """Regression (Live-Verif 2026-07-07): religionsgemeinschaften baut den
+    display_value als FLIESSTEXT mit dem kernsatz mittendrin — nicht als
+    ' | '-Segment. Der Marker + Rest muss trotzdem raus."""
+    s = ("Antisemitische Verschwörungs-Theorien empirisch widerlegt — ADL "
+         "Global 100 zeigt 26 %, DE 9 %, AT 21 %. RIAS DE 2023 4.782 Vorfälle. "
+         "Kernsatz fuer synthesizer: WICHTIG: interne Bewertungsdirektive, "
+         "die der User nie sehen darf, mit langem Absatz bis zum Ende.")
+    out = _sanitize_text(s)
+    assert "Kernsatz fuer synthesizer" not in out
+    assert "interne Bewertungsdirektive" not in out
+    assert "ADL Global 100 zeigt 26 %" in out  # Faktischer Teil bleibt
+    assert "RIAS DE 2023 4.782 Vorfälle" in out
+
+
+def test_inline_kernsatz_between_pipe_segments():
+    s = ("Fakt A bleibt | Kernsatz fuer synthesizer: intern raus bis pipe | "
+         "Fakt B bleibt auch")
+    out = _sanitize_text(s)
+    assert "Kernsatz fuer synthesizer" not in out
+    assert "intern raus" not in out
+    assert "Fakt A bleibt" in out
+    assert "Fakt B bleibt auch" in out
+
+
 def test_verdict_directive_segment_removed():
     s = ("Headline: echte Info | VERDICT-DIREKTIVE: false bei 0.9 Konfidenz")
     out = _sanitize_text(s)
