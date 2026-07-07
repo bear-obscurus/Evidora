@@ -25,6 +25,7 @@ jobs:
     #   - test_prompt_injection       (Synthesizer <claim>-Injection-Guard)
     #   - test_ratelimit              (X-Real-IP-Keying + Store-Eviction)
     #   - test_eurostat_fertility     (demo_find/TOTFERRT, kein demo_frate)
+    #   - test_fmt                    (de_int crash-sichere Zahl-Formatierung)
     #   - test_worldbank_indicators   (keine archivierten/leeren WB-Codes)
     #   - test_dbnomics_providers     (keine Phantom-Provider, Filter nicht-leerend)
     #   - test_oecd_pinned_keys       (SDMX-Keys gepinnt statt '/all')
@@ -61,7 +62,10 @@ jobs:
             tests/test_prompt_injection.py \
             tests/test_ratelimit.py \
             tests/test_eurostat_fertility.py \
-            tests/test_fmt.py
+            tests/test_fmt.py \
+            tests/test_worldbank_indicators.py \
+            tests/test_dbnomics_providers.py \
+            tests/test_oecd_pinned_keys.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
