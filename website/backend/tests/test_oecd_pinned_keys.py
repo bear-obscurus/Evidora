@@ -44,3 +44,6 @@ def test_oecd_sdmx_domains_use_pinned_keys_not_all():
         key_seg = url.split(flow + "/", 1)[1].split("?", 1)[0]
         assert key_seg != "all", f"'{dom_id}' nutzt wieder '/all'"
         assert key_seg.startswith("."), f"'{dom_id}'-Key lässt REF_AREA nicht offen"
+
+# CI-Verifikation: dieser PR bestätigt, dass alle 14 dependency-light-Suiten
+# im pull_request-Kontext laufen (Log-geprüft, danach geschlossen).
