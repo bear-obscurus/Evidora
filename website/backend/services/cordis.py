@@ -50,6 +50,8 @@ import zipfile
 
 import httpx
 
+from services._atomic import atomic_write_json
+
 logger = logging.getLogger("evidora")
 
 CORDIS_HORIZON_EUROPE_ZIP = (
@@ -293,10 +295,10 @@ async def prefetch_cordis(
             logger.warning("CORDIS prefetch: 0 records (both downloads failed?)")
             return 0
 
-        # Schreibe Slim-Cache
+        # Schreibe Slim-Cache (atomar: 50-MB-Schreibfenster, sonst kann ein
+        # Abbruch eine truncierte Datei hinterlassen)
         os.makedirs(os.path.dirname(SLIM_CACHE_PATH), exist_ok=True)
-        with open(SLIM_CACHE_PATH, "w", encoding="utf-8") as f:
-            json.dump(all_records, f, ensure_ascii=False)
+        atomic_write_json(SLIM_CACHE_PATH, all_records, ensure_ascii=False)
 
         # Reset In-Memory-Cache damit nächster Load die neue Datei sieht
         global _MEMORY_CACHE

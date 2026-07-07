@@ -27,6 +27,9 @@ import urllib.request
 from datetime import date
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from services._atomic import atomic_write_json  # noqa: E402
+
 LOG = logging.getLogger("refresh_drug_data")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 
@@ -129,7 +132,7 @@ def refresh_withdrawn_drugs() -> int:
         ),
         "items": items,
     }
-    WD_OUT.write_text(json.dumps(output, ensure_ascii=False, indent=2))
+    atomic_write_json(WD_OUT, output, ensure_ascii=False, indent=2)
     LOG.info(f"withdrawn_drugs: wrote {len(items)} items → {WD_OUT}")
     return 0
 
@@ -218,7 +221,7 @@ def refresh_ema_referrals() -> int:
         ),
         "items": items,
     }
-    EMA_OUT.write_text(json.dumps(output, ensure_ascii=False, indent=2))
+    atomic_write_json(EMA_OUT, output, ensure_ascii=False, indent=2)
     LOG.info(f"ema_referrals: wrote {len(items)} items → {EMA_OUT}")
     return 0
 

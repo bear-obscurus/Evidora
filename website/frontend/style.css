@@ -857,8 +857,18 @@ body {
 }
 
 .tooltip-anchor:hover,
+.tooltip-anchor:focus,
 .tooltip-anchor:focus-within {
     color: #6b7280;
+}
+
+/* Sichtbarer Fokus-Ring (AA): der Anchor ist jetzt tastatur-fokussierbar
+   (tabindex/role=button), damit der Konfidenz-Aufbau auch ohne Maus
+   zugänglich ist (Audit #8). */
+.tooltip-anchor:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+    border-radius: 3px;
 }
 
 .info-icon {
@@ -895,6 +905,7 @@ body {
 }
 
 .tooltip-anchor:hover .tooltip-text,
+.tooltip-anchor:focus .tooltip-text,
 .tooltip-anchor:focus-within .tooltip-text {
     display: block;
 }

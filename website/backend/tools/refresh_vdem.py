@@ -26,6 +26,8 @@ from datetime import date
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from services._atomic import atomic_write_json  # noqa: E402
+
 DEFAULT_URL = "https://www.v-dem.net/media/datasets/V-Dem-CY-Core-v16_csv.zip"
 JSON_PATH = os.path.join(os.path.dirname(__file__), "..", "data",
                          "vdem_indicators.json")
@@ -127,9 +129,8 @@ def main() -> None:
         f"alle 11/11 Indikatoren dataset_verified (die früheren 4 "
         f"LLM-Approximationen delibdem/egaldem/eqdr/clphy sind ersetzt)."
     )
-    json.dump(doc, open(JSON_PATH, "w", encoding="utf-8"),
-              ensure_ascii=False, indent=2)
-    open(JSON_PATH, "a", encoding="utf-8").write("\n")
+    atomic_write_json(JSON_PATH, doc, ensure_ascii=False, indent=2,
+                      trailing_newline=True)
     print(f"\nOK: {version}, Jahre bis {max_year}, {total_points} Datenpunkte "
           f"-> {os.path.normpath(JSON_PATH)}")
 

@@ -821,6 +821,26 @@ async def _validate_urls(evidence: list[dict]) -> list[dict]:
     return validated
 
 
+def _synth_result_complete(result) -> bool:
+    """True, wenn der geparste Synthesizer-Response die verdict-tragenden
+    Felder enthält (Audit R2-14).
+
+    Ein an einer Feld-/Komma-Grenze abgeschnittener Response (z.B. nur
+    `{"verdict": "false", "confidence": 0.9,`) parst via _balance_brackets
+    zu gültigem JSON, liefert dem Nutzer aber ein selbstsicheres Verdict
+    OHNE Begründung/Evidenz — und der Retry (`if result is None`) greift
+    nicht. Als unvollständig behandeln, damit der Retry-Pfad feuert."""
+    if not isinstance(result, dict):
+        return False
+    if not str(result.get("summary") or "").strip():
+        return False
+    # evidence darf bei 'unverifiable' fehlen/leer sein; sonst muss das
+    # Feld vorhanden sein (der Abschnitt-Fall verliert es typischerweise).
+    if result.get("verdict") != "unverifiable" and "evidence" not in result:
+        return False
+    return True
+
+
 async def synthesize_results(
     original_claim: str, analysis: dict, source_results: list, lang: str = "de",
     on_chunk=None,
@@ -1026,6 +1046,15 @@ async def synthesize_results(
         result = _extract_json(content)
         last_content = content
 
+        # R2-14: unvollständiger (abgeschnittener) Response -> wie Parse-
+        # Fehler behandeln, damit der Retry greift statt ein verdict ohne
+        # Summary/Evidenz mit Fallback-Text zu maskieren.
+        if result is not None and not _synth_result_complete(result):
+            logger.warning(
+                "Synthesizer response parsed but incomplete (missing "
+                "summary/evidence) — treating as failure to trigger retry.")
+            result = None
+
         # Retry once if the first response was unparseable even after cleanup.
         if result is None:
             logger.warning(
@@ -1045,6 +1074,10 @@ async def synthesize_results(
             )
             last_content = retry_content
             result = _extract_json(retry_content)
+            # Auch der Retry unvollständig -> ehrlicher Fallback (unverifiable)
+            # statt eines evidenzlosen Verdicts.
+            if result is not None and not _synth_result_complete(result):
+                result = None
 
         if result is None:
             logger.error(

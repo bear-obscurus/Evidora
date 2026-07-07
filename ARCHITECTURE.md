@@ -177,8 +177,11 @@ If neither substring nor composite trigger fires, but the service was
 plausibly relevant, `_topic_match.find_matching_items` falls back to a
 cosine-similarity match between the claim and a per-fact descriptor
 string, using the multilingual MiniLM model already loaded for the
-top-level reranker. Threshold: **0.45** (configurable per call).
-Implementation: `services/_reranker_backup.py`.
+top-level reranker. The descriptor-match threshold **0.45** lives in
+`_topic_match.py` (`DEFAULT_BACKUP_THRESHOLD`, passed into
+`_backup_best_matches`); `services/_reranker_backup.py` provides the
+underlying cosine engine (`best_matches`, own default 0.65 for the
+boolean `claim_might_be_about` callers).
 
 This catches phrasings that are semantically clear but lexically
 distant from the curated triggers — the typical "long-tail" failure
@@ -364,8 +367,10 @@ Standardized 20-claim battery, four measurement points:
    ssh + sed, fire the same claim, expect the new value in the
    response without docker restart.
 
-Eight stress tests have been run since the project started; cumulative
-balance: **160+ claims, 0 false-positives, 0 false-negatives**.
+58+ structured stress-test PDFs have been run since the project started;
+cumulative **1100+ curated claims**, aggregate verdict-match consistently
+above 90 %. Latest systematic run: 100-claim stress test across 15
+vulnerability clusters, 96.9 % (93/96) after three fix-sprints.
 
 Full methodology in `memory/stress_test_method.md`.
 
@@ -404,7 +409,7 @@ etappes:
 | Prompt-injection delimiters | `claim_analyzer.py` | User claims wrapped in `<claim>` XML to neutralize embedded instructions |
 | Input hardening | `main.py` | Unicode tricks, control chars, OData injection |
 | Per-IP rate limit | `main.py` | Abuse, with bypass-key for stress-testing |
-| Verdict post-processing module | `verdict_postprocess.py` | The ~515-line override cascade (STRUKTURELL override + relevance guards, Wikipedia-normative-term, 4-tier consistency check, factual-content patterns, AMS/ILO + electoral-forecast guards) extracted out of `synthesize_results` so the execution order is explicit and each override is unit-testable (`tests/test_verdict_postprocess_golden.py`, `tests/test_unit.py::TestVerdictPostprocessing`) |
+| Verdict post-processing module | `verdict_postprocess.py` | The ~820-line override cascade (STRUKTURELL override + relevance guards, Wikipedia-normative-term, 4-tier consistency check, factual-content patterns, AMS/ILO + electoral-forecast guards) extracted out of `synthesize_results` so the execution order is explicit and each override is unit-testable (`tests/test_verdict_postprocess_golden.py`, `tests/test_unit.py::TestVerdictPostprocessing`) |
 | STRUKTURELL provenance gate | `_topic_match.py` + `_struct_marker.py` + `reranker.py` | Off-topic cosine-contamination: packs matched only via the cosine backup (not an exact trigger) emit a resolvable `STRUKTURELL_COSINE_FALSCH:` marker; `resolve_struct_marker_provenance` (after rerank, before prompt) degrades it to plaintext when an exact anchor exists, else restores it. The categorical discriminator is match **provenance**, not a cosine threshold (which does not separate). Tests: `tests/test_struct_provenance.py` |
 | Semantic-cache negation guard | `verdict_cache.py` | Inverted cached verdicts: MiniLM is negation-blind (cos ≥ 0.92 for "X" vs "not X"), so `_polarity_mismatch` skips a semantic cache hit when negation appears on only one side or the claims cite disjoint numbers |
 | Degraded-analysis confidence cap | `verdict_postprocess.py` (`apply_analysis_fallback_cap`) | Silent high-confidence verdicts when the analyzer fell back to raw-claim-only analysis (`_fallback`): caps confidence + adds a transparency caveat |
