@@ -22,6 +22,7 @@ jobs:
     #   - test_konsens_exact_only     (pack trigger battery + exact-only
     #                                  contract, #41)
     #   - test_cordis_zip_formats     (CORDIS bulk-ZIP parser)
+    #   - test_prompt_injection       (Synthesizer <claim>-Injection-Guard)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -51,7 +52,8 @@ jobs:
             tests/test_konsens_exact_only.py \
             tests/test_cordis_zip_formats.py \
             tests/test_freshness_cache_health.py \
-            tests/test_sipri_percapita.py
+            tests/test_sipri_percapita.py \
+            tests/test_prompt_injection.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
