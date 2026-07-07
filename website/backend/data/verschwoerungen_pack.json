@@ -787,7 +787,13 @@
         "schatten-elite",
         "schatten elite",
         "schattenelite",
-        "geheime elite"
+        "geheime elite",
+        "strippenzieher",
+        "zieht die fäden",
+        "ziehen die fäden",
+        "zieht die faeden",
+        "die fäden im hintergrund",
+        "im hintergrund die fäden"
       ],
       "trigger_composite": [
         [
@@ -835,6 +841,53 @@
           ],
           [
             "kabal"
+          ]
+        ],
+        [
+          [
+            "regierung",
+            "regime",
+            "macht",
+            "mächte",
+            "maechte",
+            "elite",
+            "eliten",
+            "kräfte",
+            "kraefte",
+            "gruppe",
+            "clique",
+            "kabale",
+            "organisation",
+            "hintermänner",
+            "hintermaenner",
+            "wenige leute",
+            "geheimbund"
+          ],
+          [
+            "hintergrund",
+            "kulissen",
+            "verborgen",
+            "verdeckt",
+            "heimlich",
+            "unsichtbar",
+            "geheim",
+            "im geheimen",
+            "im verborgenen"
+          ],
+          [
+            "fäden",
+            "faeden",
+            "zieht",
+            "ziehen",
+            "steuert",
+            "steuern",
+            "lenkt",
+            "lenken",
+            "kontrolliert",
+            "kontrollieren",
+            "regiert",
+            "bestimmt",
+            "strippen"
           ]
         ]
       ]
