@@ -8,7 +8,11 @@
 #   - unbelegte Deploys: "Container-Uptime-Reset ist der einzige
 #     verlässliche Deploy-Beleg" (Lehrgeld 2026-06-14) — das Skript
 #     prüft StartedAt vorher/nachher UND vergleicht die Hashes geänderter
-#     Backend-Dateien Host vs. Container.
+#     Backend-Dateien Host vs. Container. Seit Audit #3 (2026-07-07) gilt
+#     dasselbe fürs Frontend: bei Frontend-Build/Recreate wird auf
+#     frontend healthy gewartet (Healthcheck via busybox-wget, R2-3) +
+#     StartedAt-Reset + Smoke http://127.0.0.1:3000 -> 200 geprüft. Vorher
+#     druckte das Skript "OK" auch bei einem still gecrashten Frontend.
 #
 # Nutzung (auf dem Server):
 #   /opt/Evidora/website/deploy.sh [--dry-run] [--force-build]
@@ -28,7 +32,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 COMPOSE_DIR="$SCRIPT_DIR"
 CONTAINER=evidora-backend-1
+FRONTEND_CONTAINER=evidora-frontend-1
 HEALTH_TIMEOUT_S=420
+FRONTEND_HEALTH_TIMEOUT_S=60   # nginx startet schnell, kein Model-Prefetch
 
 DRY_RUN=0
 FORCE_BUILD=0
@@ -62,6 +68,7 @@ if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
 fi
 
 STARTED_BEFORE=$(docker inspect -f '{{.State.StartedAt}}' "$CONTAINER" 2>/dev/null || echo "n/a")
+FE_STARTED_BEFORE=$(docker inspect -f '{{.State.StartedAt}}' "$FRONTEND_CONTAINER" 2>/dev/null || echo "n/a")
 OLD_REV=$(git rev-parse --short HEAD)
 
 # --- 1) Pull ----------------------------------------------------------------
@@ -118,6 +125,7 @@ fi
 # --- 3) Ausführen -------------------------------------------------------------
 cd "$COMPOSE_DIR"
 backend_restart_expected=0
+frontend_restart_expected=0
 if [ "$build_backend" -eq 1 ]; then
   log "docker compose up -d --build backend…"
   docker compose up -d --build backend || fail "backend-Build fehlgeschlagen"
@@ -126,6 +134,7 @@ fi
 if [ "$build_frontend" -eq 1 ]; then
   log "docker compose up -d --build frontend…"
   docker compose up -d --build frontend || fail "frontend-Build fehlgeschlagen"
+  frontend_restart_expected=1
 fi
 if [ "$recreate" -eq 1 ]; then
   # Läuft auch NACH einem Backend-Build: compose up -d ist dann für das
@@ -134,17 +143,28 @@ if [ "$recreate" -eq 1 ]; then
   log "docker compose up -d (Compose-Änderung -> Recreate aller Services)…"
   docker compose up -d || fail "compose up fehlgeschlagen"
   backend_restart_expected=1
+  frontend_restart_expected=1
 fi
 
 # --- 4) Health-Wait -----------------------------------------------------------
 if [ "$backend_restart_expected" -eq 1 ]; then
-  log "Warte auf healthy (Timeout ${HEALTH_TIMEOUT_S}s — Model-Prefetch dauert ~5 min)…"
+  log "Warte auf backend healthy (Timeout ${HEALTH_TIMEOUT_S}s — Model-Prefetch dauert ~5 min)…"
   waited=0
   while true; do
     st=$(docker inspect -f '{{.State.Health.Status}}' "$CONTAINER" 2>/dev/null || echo "missing")
-    [ "$st" = "healthy" ] && { log "healthy nach ~${waited}s."; break; }
+    [ "$st" = "healthy" ] && { log "backend healthy nach ~${waited}s."; break; }
     [ "$waited" -ge "$HEALTH_TIMEOUT_S" ] && fail "Backend nach ${HEALTH_TIMEOUT_S}s nicht healthy (Status: $st)"
     sleep 5; waited=$((waited + 5))
+  done
+fi
+if [ "$frontend_restart_expected" -eq 1 ]; then
+  log "Warte auf frontend healthy (Timeout ${FRONTEND_HEALTH_TIMEOUT_S}s)…"
+  waited=0
+  while true; do
+    st=$(docker inspect -f '{{.State.Health.Status}}' "$FRONTEND_CONTAINER" 2>/dev/null || echo "missing")
+    [ "$st" = "healthy" ] && { log "frontend healthy nach ~${waited}s."; break; }
+    [ "$waited" -ge "$FRONTEND_HEALTH_TIMEOUT_S" ] && fail "Frontend nach ${FRONTEND_HEALTH_TIMEOUT_S}s nicht healthy (Status: $st) — nginx-Config kaputt?"
+    sleep 3; waited=$((waited + 3))
   done
 fi
 
@@ -178,9 +198,27 @@ else
   log "Kein Backend-Neustart nötig (StartedAt: $STARTED_AFTER)."
 fi
 
+# Beleg 1b: Frontend-Container tatsächlich neu gestartet?
+if [ "$frontend_restart_expected" -eq 1 ]; then
+  FE_STARTED_AFTER=$(docker inspect -f '{{.State.StartedAt}}' "$FRONTEND_CONTAINER" 2>/dev/null || echo "n/a")
+  if [ "$FE_STARTED_BEFORE" = "$FE_STARTED_AFTER" ]; then
+    fail "Frontend-StartedAt unverändert ($FE_STARTED_AFTER) — Frontend-Deploy hat NICHT stattgefunden!"
+  fi
+  log "Beleg 1b: Frontend neu gestartet ($FE_STARTED_BEFORE -> $FE_STARTED_AFTER)."
+fi
+
 # --- 6) Smoke -------------------------------------------------------------------
 code=$(curl -s -o /dev/null -w '%{http_code}' -m 15 http://127.0.0.1:8000/api/legal || echo "000")
-[ "$code" = "200" ] || fail "Smoke-Check /api/legal -> HTTP $code"
+[ "$code" = "200" ] || fail "Smoke-Check backend /api/legal -> HTTP $code"
 log "Beleg 3: /api/legal -> 200."
+
+# Frontend-Smoke direkt gegen den Container-Port (nur wenn das Frontand
+# angefasst wurde) — fängt eine kaputte nginx.conf, die der Build nicht
+# bemerkt (Audit #3: vorher druckte das Skript OK trotz Site-Ausfall).
+if [ "$frontend_restart_expected" -eq 1 ]; then
+  fe_code=$(curl -s -o /dev/null -w '%{http_code}' -m 15 http://127.0.0.1:3000/ || echo "000")
+  [ "$fe_code" = "200" ] || fail "Smoke-Check frontend http://127.0.0.1:3000/ -> HTTP $fe_code"
+  log "Beleg 3b: frontend :3000 -> 200."
+fi
 
 log "OK — Deploy $OLD_REV -> $NEW_REV abgeschlossen."
