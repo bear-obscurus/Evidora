@@ -236,6 +236,12 @@ async def analyze_claim(claim_text: str) -> dict:
                         cleaned.append(q)
             result["pubmed_queries"] = cleaned
 
+        # Marken→Wirkstoff-Expansion (Audit 2026-07-07): bekannte AT/DACH-
+        # Markennamen (Voltadol → Diclofenac …) deterministisch um ihren INN
+        # ergänzen, damit die Fachquellen (EMA/MedlinePlus/EuropePMC/…) feuern.
+        from services._drug_synonyms import apply_brand_expansion
+        apply_brand_expansion(claim_text, result)
+
         return result
 
     # Repair failed — try one retry with a stricter "ONLY valid JSON"
@@ -279,6 +285,8 @@ async def analyze_claim(claim_text: str) -> dict:
                 else:
                     flat.append(str(e))
             retry_result["entities"] = flat
+        from services._drug_synonyms import apply_brand_expansion
+        apply_brand_expansion(claim_text, retry_result)
         return retry_result
 
     # Final fallback: log and degrade gracefully so the request does
