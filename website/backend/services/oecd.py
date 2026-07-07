@@ -93,22 +93,36 @@ SDMX_BASE = "https://sdmx.oecd.org/public/rest/data"
 SDMX_TIMEOUT = 15.0
 
 # Dataflows we support
+# WICHTIG (Audit 2026-07-07): Jeder Eintrag pinnt einen SDMX-'key', der ALLE
+# Dimensionen außer REF_AREA/TIME_PERIOD festlegt. REF_AREA bleibt leer
+# (führender Punkt) → die Query holt alle Länder, _search_sdmx filtert
+# clientseitig auf REF_AREA (OECD-SDMX akzeptiert keine REF_AREA-OR-Listen).
+# Vorher stand hier '/all' hardcodiert → ALLE Dims (SEX/AGE/UNIT/MEASURE/…)
+# ungefiltert → der Parser zeigte 3-5 ZUFALLSZEILEN (z.B. Arbeitslosenquote =
+# ein beliebiges Alters-/Geschlechts-Subgroup, CPI = Index-Level statt YoY-%,
+# Sterblichkeit = absolute Tote statt Rate). Dim-Order + Codes live gegen
+# sdmx.oecd.org verifiziert (jeweils genau 1 Serie/Land, plausible Magnitude).
 OECD_DATASETS = {
     "gender_wage_gap": {
         "flow": "OECD.ELS.SAE,DSD_EARNINGS@GENDER_WAGE_GAP,",
+        "key": ".GWP.PT_WG_SAL_M_D._Z._Z.MEDIAN._T",  # Median-Gender-Wage-Gap %
         "label": "Gender Wage Gap",
         "keywords": ["lohnunterschied", "lohnlücke", "gehalt", "verdien", "gender pay gap",
                       "wage gap", "einkommen", "gehaltsunterschied", "equal pay",
                       "lohngleichheit", "pay gap", "gender gap gehalt"],
     },
     "employment_gender": {
-        "flow": "OECD.ELS.SAE,DSD_LFS_EMP@DF_LFS_EMPSTAT_GENDER,",
-        "label": "Employment by Gender",
+        # DSD_LFS_EMP@DF_LFS_EMPSTAT_GENDER war TOT (HTTP 404) → Erwerbstätigen-
+        # quote 15-64 (quartalsweise, saisonbereinigt, Total; SEX=F für Frauen).
+        "flow": "OECD.SDD.TPS,DSD_LFS@DF_IALFS_EMP_WAP_Q,",
+        "key": ".EMP_WAP.PT_WAP_SUB._Z.Y._T.Y15T64._Z.Q",
+        "label": "Erwerbstätigenquote (OECD)",
         "keywords": ["beschäftigung", "erwerbstätig", "employment", "arbeitsmarkt",
                       "frauenanteil", "erwerbsquote", "labor market"],
     },
     "education_gender": {
         "flow": "OECD.EDU.IMEP,DSD_EAG_UOE_NON_FIN_STUD@DF_UOE_NF_SHARE_GENDER,",
+        "key": ".ISCED11_6.ENRL.FE._T._T._T.A._Z._Z.INST_EDU._T.PT_ST.F._T",  # Frauenanteil Bachelor-Einschreibung
         "label": "Education by Gender",
         "keywords": ["studium", "universität", "hochschule", "studieren", "absolventen",
                       "university", "graduates", "tertiary", "higher education",
@@ -117,6 +131,7 @@ OECD_DATASETS = {
     },
     "unemployment": {
         "flow": "OECD.SDD.TPS,DSD_LFS@DF_IALFS_UNE_M,",
+        "key": ".UNE_LF_M.PT_LF_SUB._Z.Y._T.Y_GE15._Z.M",  # Arbeitslosenquote 15+, saisonber., monatlich
         "label": "Arbeitslosenquote (OECD)",
         "label_en": "Unemployment Rate (OECD)",
         "keywords": ["arbeitslosigkeit", "arbeitslose", "arbeitslosenquote",
@@ -125,6 +140,7 @@ OECD_DATASETS = {
     },
     "cpi": {
         "flow": "OECD.SDD.TPS,DSD_PRICES@DF_PRICES_ALL,",
+        "key": ".M.N.CPI.PA._T.N.GY",  # CPI all-items, Jahresrate (YoY %), monatlich
         "label": "Verbraucherpreisindex (OECD)",
         "label_en": "Consumer Price Index (OECD)",
         "keywords": ["verbraucherpreis", "consumer price", "cpi", "teuerungsrate",
@@ -133,6 +149,7 @@ OECD_DATASETS = {
     },
     "avoidable_mortality": {
         "flow": "OECD.ELS.HD,DSD_HEALTH_STAT@DF_AM,",
+        "key": ".A.AVM.DT_10P5HB._T._T._Z._Z.STANDARD._Z._Z._Z._Z",  # vermeidbare Sterblichkeit, Tote/100k, altersstd.
         "label": "Vermeidbare Sterblichkeit (OECD)",
         "label_en": "Avoidable Mortality (OECD)",
         "keywords": ["sterblichkeit", "mortality", "vermeidbare tode",
@@ -403,9 +420,12 @@ async def _search_sdmx(claim: str, analysis: dict) -> list[dict]:
         try:
             flow = ds_info["flow"]
             # Note: c[REF_AREA] filter is NOT supported by OECD SDMX API,
-            # so we fetch all countries and filter client-side by REF_AREA ID.
+            # so we fetch all countries (REF_AREA leer im key) and filter
+            # client-side by REF_AREA ID. Der 'key' pinnt ALLE anderen
+            # Dimensionen (Audit 2026-07-07 — vorher '/all' → Zufallszeilen).
+            key = ds_info.get("key", "all")
             url = (
-                f"{SDMX_BASE}/{flow}/all"
+                f"{SDMX_BASE}/{flow}/{key}"
                 f"?lastNObservations=1"
                 f"&dimensionAtObservation=AllDimensions"
             )
