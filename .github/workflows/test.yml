@@ -39,6 +39,8 @@ jobs:
     #                                  Antisemitismus false@0.9-Direktive)
     #   - test_export_sanitize        (interne Marker/Direktiven raus aus
     #                                  user-sichtbarem Quellen-Export)
+    #   - test_confidence_pack_cap    (Evidence-Strength-Cap pack-bewusst —
+    #                                  Pack-Direktive false@0.9 kommt durch)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -80,7 +82,8 @@ jobs:
             tests/test_claim_centered_snippet.py \
             tests/test_drug_synonyms.py \
             tests/test_conspiracy_triggers.py \
-            tests/test_export_sanitize.py
+            tests/test_export_sanitize.py \
+            tests/test_confidence_pack_cap.py
 
   check-new-urls:
     name: New URLs in data/*.json must work

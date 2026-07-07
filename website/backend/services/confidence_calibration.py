@@ -183,14 +183,24 @@ def _claim_has_normative_term(claim: str | None) -> bool:
     return any(t in claim_lc for t in NORMATIVE_POLITICAL_TERMS)
 
 
-def _evidence_strength_cap(evidence: list[dict]) -> float | None:
+def _evidence_strength_cap(
+    evidence: list[dict], has_pack: bool = False
+) -> float | None:
     """Cap basierend auf Mix der evidence[].strength-Werte.
 
     Returns ein Cap-Wert (z.B. 0.75) oder None wenn kein zusätzlicher
     Cap nötig ist.
+
+    ``has_pack``: Ein AUTHORITATIVE-Static-First-Pack hat gefeuert. Dann sind
+    die Caps milder — analog zu SOURCE_COUNT_CAPS_WITH_PACK. Grund (Live-
+    Verif 2026-07-07): Der LLM taggt Pack-„finding"-Zeilen häufig als „weak"
+    (sie sind keine klassischen Studien-Zitate), obwohl die kuratierte,
+    behördlich/wissenschaftlich belegte Pack-Quelle selbst methodisch STARK
+    ist. Ohne diese Lockerung deckelte der weak-Cap (0.70) die explizite
+    Pack-Verdict-Direktive (z.B. Antisemitismus false@0.9) künstlich.
     """
     if not evidence:
-        return 0.70  # keine Evidenz-Items → niedrig
+        return 0.85 if has_pack else 0.70  # keine Evidenz-Items → niedrig
     strong = sum(1 for e in evidence if isinstance(e, dict)
                  and e.get("strength") == "strong")
     moderate = sum(1 for e in evidence if isinstance(e, dict)
@@ -204,11 +214,11 @@ def _evidence_strength_cap(evidence: list[dict]) -> float | None:
         return None
 
     if strong == 0 and moderate == 0:
-        return 0.70  # nur weak
+        return 0.90 if has_pack else 0.70  # nur weak
     if strong == 0 and moderate < 2:
-        return 0.78  # 1 moderate, kein strong
+        return 0.92 if has_pack else 0.78  # 1 moderate, kein strong
     if strong == 0:
-        return 0.85  # 2+ moderate, kein strong
+        return None if has_pack else 0.85  # 2+ moderate, kein strong
     if strong < 2:
         return 0.90  # 1 strong + Begleit
     # 2+ strong → kein zusätzlicher Cap
@@ -274,8 +284,9 @@ def calibrate_confidence(
     cap_source = caps_table.get(n_with_results)
     debug["cap_source_count"] = cap_source
 
-    # Evidence-Strength-Cap
-    cap_evidence = _evidence_strength_cap(evidence or [])
+    # Evidence-Strength-Cap (pack-bewusst: milder, wenn ein AUTHORITATIVE-
+    # Pack gefeuert hat — die kuratierte Pack-Quelle trägt die Stärke)
+    cap_evidence = _evidence_strength_cap(evidence or [], has_pack=has_pack)
     debug["cap_evidence_strength"] = cap_evidence
 
     # Wikipedia-only-Cap (Crowdsourced-Quelle ist methodisch schwächer
