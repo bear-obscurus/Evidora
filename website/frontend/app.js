@@ -534,7 +534,10 @@ function renderDisclaimer(text) {
 function escapeHtml(str) {
     const div = document.createElement("div");
     div.textContent = str;
-    return div.innerHTML;
+    // textContent→innerHTML escaped & < >, aber NICHT " oder ' — die aber in
+    // doppelt-gequoteten Attributen (title="…", href="…") ausbrechen könnten.
+    // Attribut-sicher nachkodieren (in Text-Kontext rendern die Entities korrekt).
+    return div.innerHTML.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
 function renderInlineMarkdown(str) {
@@ -599,17 +602,22 @@ function renderHistory() {
             <span>${t("history_title")}</span>
             <button class="history-clear" onclick="clearHistory()">${t("history_clear")}</button>
         </div>
-        ${history.map(h => `
-            <button type="button" class="history-item" onclick="useHistoryItem('${escapeHtml(h.claim).replace(/'/g, "\\'")}')">
-                <span class="history-verdict hv-${h.verdict}">${getVerdictLabels()[h.verdict] || "?"}</span>
+        ${history.map((h, i) => `
+            <button type="button" class="history-item" onclick="useHistoryItem(${i})">
+                <span class="history-verdict hv-${sanitizeVerdict(h.verdict)}">${getVerdictLabels()[h.verdict] || "?"}</span>
                 <span class="history-claim">${escapeHtml(h.claim)}</span>
             </button>
         `).join("")}
     `;
 }
 
-function useHistoryItem(claim) {
-    input.value = claim;
+function useHistoryItem(idx) {
+    // Index-Lookup statt interpoliertem Claim-Text im onclick-Attribut
+    // (kein User-Text mehr im inline-Handler → Attribut-XSS strukturell
+    // ausgeschlossen; spiegelt useExampleClaim).
+    const h = getHistory()[idx];
+    if (!h) return;
+    input.value = h.claim;
     document.getElementById("search-history").classList.add("hidden");
     form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
 }
