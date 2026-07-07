@@ -26,8 +26,11 @@ import re
 
 from services._struct_marker import STRUCT_COSINE_PREFIX, STRUCT_EXACT_PREFIX
 
-# Feld-Labels (aus render_data_with_marker: "Label: wert", " | "-getrennt),
-# die interne Synthesizer-Hinweise sind und nie im Export erscheinen dürfen.
+# Interne Synthesizer-Hinweis-Marker, die nie im Export erscheinen dürfen.
+# Manche Services bauen den display_value als " | "-getrennte Felder
+# (render_data_with_marker), ANDERE (z.B. religionsgemeinschaften) als
+# Fließtext mit "… . Kernsatz fuer synthesizer: WICHTIG: …" MITTEN im String.
+# Darum zwei Ebenen: (a) Segment-Match am Anfang, (b) Inline-Block-Removal.
 _INTERNAL_LABEL_RE = re.compile(
     r"^\s*(?:kernsatz f(?:ue|ü)r synthesizer|verdict-direktive)\s*:",
     re.IGNORECASE,
@@ -36,6 +39,13 @@ _INTERNAL_LABEL_RE = re.compile(
 _INTERNAL_SEGMENT_RE = re.compile(
     r"^\s*(?:WICHTIG f(?:ue|ü)r die Bewertung|VERDICT-DIREKTIVE)\s*:",
     re.IGNORECASE,
+)
+# Inline-Block: interner Marker (irgendwo im Text) bis zum nächsten " | "
+# ODER Stringende. DOTALL, damit auch mehrzeilige kernsätze erfasst werden.
+_INTERNAL_INLINE_RE = re.compile(
+    r"(?:kernsatz f(?:ue|ü)r synthesizer|verdict-direktive|"
+    r"wichtig f(?:ue|ü)r die bewertung)\s*:.*?(?=\s\|\s|$)",
+    re.IGNORECASE | re.DOTALL,
 )
 # GDELT-GKG-Tag mit Character-Offset: THEMA_NAME,12345 → THEMA_NAME
 _GKG_OFFSET_RE = re.compile(r"\b([A-Z][A-Z0-9_]{2,}),\d{1,6}\b")
@@ -59,18 +69,24 @@ def _sanitize_text(s: str) -> str:
             s = after.split(" | ", 1)[1] if " | " in after else ""
             break
 
-    # 2) " | "-Segmente filtern, die interne Labels/Direktiven tragen.
+    # 2a) Inline-Blöcke entfernen (interner Marker mitten im Fließtext bis
+    #     zum nächsten " | " oder Stringende) — fängt den Fließtext-Fall
+    #     (religionsgemeinschaften: "… . Kernsatz fuer synthesizer: …").
+    s = _INTERNAL_INLINE_RE.sub("", s)
+
+    # 2b) " | "-Segmente filtern, die (nach 2a) noch mit internen Labels
+    #     beginnen ODER leer wurden.
     if " | " in s:
         segments = s.split(" | ")
         kept = [
             seg for seg in segments
-            if not _INTERNAL_LABEL_RE.match(seg)
+            if seg.strip()
+            and not _INTERNAL_LABEL_RE.match(seg)
             and not _INTERNAL_SEGMENT_RE.match(seg)
         ]
         s = " | ".join(kept)
-    else:
-        if _INTERNAL_LABEL_RE.match(s) or _INTERNAL_SEGMENT_RE.match(s):
-            s = ""
+    elif _INTERNAL_LABEL_RE.match(s) or _INTERNAL_SEGMENT_RE.match(s):
+        s = ""
 
     # 3) GKG-Character-Offsets entfernen (nur die ,NNN-Suffixe).
     s = _GKG_OFFSET_RE.sub(r"\1", s)
