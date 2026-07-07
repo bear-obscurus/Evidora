@@ -16,6 +16,7 @@ import logging
 import os
 
 from services._topic_match import find_matching_items, load_items
+from services._fmt import de_int
 
 logger = logging.getLogger("evidora")
 
@@ -116,10 +117,10 @@ async def search_eu_crime(analysis: dict) -> dict:
         elif topic == "crime_trend_at":
             display = (
                 f"Gesamtkriminalität Österreich: 2010 = "
-                f"{data.get('angezeigte_straftaten_2010'):,}".replace(",", ".") + ", "
-                f"2024 = "
-                f"{data.get('angezeigte_straftaten_2024'):,}".replace(",", ".") + " "
-                f"angezeigte Straftaten. Trend leicht rückläufig — "
+                + de_int(data.get('angezeigte_straftaten_2010')) + ", "
+                + f"2024 = "
+                + de_int(data.get('angezeigte_straftaten_2024')) + " "
+                + f"angezeigte Straftaten. Trend leicht rückläufig — "
                 f"keine 'Kriminalitätsexplosion' erkennbar."
             )
             description = (

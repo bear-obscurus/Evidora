@@ -16,6 +16,7 @@ import logging
 import os
 
 from services._topic_match import find_matching_items, load_items
+from services._fmt import de_int
 
 logger = logging.getLogger("evidora")
 
@@ -97,9 +98,9 @@ async def search_rki_surveillance(analysis: dict) -> dict:
             display = (
                 f"Atemwegsinfekt-Welle Winter 2024/25 (DE): "
                 f"Peak ARI in KW 5/2025 = "
-                f"{d.get('rki_ari_inzidenz_peak_woche_5_2025_pro_100k'):,}/100 k".replace(",", ".")
+                f"{de_int(d.get('rki_ari_inzidenz_peak_woche_5_2025_pro_100k'))}/100 k"
                 + f" (typischer Vor-Pandemie-Peak ~"
-                f"{d.get('rki_ari_inzidenz_typischer_winterpeak_pro_100k'):,}/100 k".replace(",", ".")
+                f"{de_int(d.get('rki_ari_inzidenz_typischer_winterpeak_pro_100k'))}/100 k"
                 + f"). Influenza dominant ({d.get('rki_influenza_anteil_an_ari_peak_pct')} %), "
                 f"COVID nur {d.get('rki_covid_anteil_an_ari_peak_pct')} %, "
                 f"RSV {d.get('rki_rsv_anteil_an_ari_peak_pct')} %."

@@ -10,6 +10,7 @@ from services._topic_match import (
     find_matching_items,
     load_items,
 )
+from services._fmt import de_int
 
 logger = logging.getLogger("evidora")
 
@@ -98,8 +99,8 @@ async def search_oecd_health(analysis: dict) -> dict:
                 f"{d.get('gesundheitsausgaben_de_pct_bip_2024')} %, CH = "
                 f"{d.get('gesundheitsausgaben_ch_pct_bip_2024')} % "
                 f"(EU-Schnitt: {d.get('gesundheitsausgaben_eu_avg_pct_bip_2024')} %). "
-                f"Pro Kopf: AT {d.get('gesundheitsausgaben_at_pro_kopf_eur_2024'):,} € ".replace(",", ".")
-                + f"(EU-Schnitt {d.get('gesundheitsausgaben_eu_avg_pro_kopf_eur_2024'):,} €). ".replace(",", ".")
+                f"Pro Kopf: AT {de_int(d.get('gesundheitsausgaben_at_pro_kopf_eur_2024'))} € "
+                + f"(EU-Schnitt {de_int(d.get('gesundheitsausgaben_eu_avg_pro_kopf_eur_2024'))} €). "
                 + f"Öffentlicher Anteil AT: "
                 f"{d.get('anteil_oeffentlich_at_pct_2024')} % "
                 f"(EU-Schnitt {d.get('anteil_oeffentlich_eu_avg_pct_2024')} %)."

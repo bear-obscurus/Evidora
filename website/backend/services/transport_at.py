@@ -6,6 +6,7 @@ import logging
 import os
 
 from services._topic_match import find_matching_items, load_items
+from services._fmt import de_int
 
 logger = logging.getLogger("evidora")
 
@@ -93,10 +94,10 @@ async def search_transport(analysis: dict) -> dict:
         elif topic == "klimaticket":
             display = (
                 f"KlimaTicket Österreich: "
-                f"{d.get('klimaticket_inhaber_2024'):,} Inhaber:innen 2024 ".replace(",", ".")
-                + f"(Start 10/2021: {d.get('klimaticket_inhaber_2022_start'):,}, ".replace(",", ".")
-                + f"+83 %). Vollpreis {d.get('klimaticket_kosten_2024_eur'):,} €/Jahr; ".replace(",", ".")
-                + f"Jugend/Senior {d.get('klimaticket_kosten_jugend_2024_eur'):,} €. ".replace(",", ".")
+                f"{de_int(d.get('klimaticket_inhaber_2024'))} Inhaber:innen 2024 "
+                + f"(Start 10/2021: {de_int(d.get('klimaticket_inhaber_2022_start'))}, "
+                + f"+83 %). Vollpreis {de_int(d.get('klimaticket_kosten_2024_eur'))} €/Jahr; "
+                + f"Jugend/Senior {de_int(d.get('klimaticket_kosten_jugend_2024_eur'))} €. "
                 + f"Geschätzter Modal-Shift "
                 f"{d.get('modal_shift_pkw_zu_oeffi_pct_geschaetzt')} % der Inhaber:innen "
                 f"vom Auto zum ÖV; CO2-Einsparung "
