@@ -8,7 +8,7 @@ Für Evidora ergänzt der Service die bestehenden AT/DE-Quellen (OeNB,
 Statistik Austria, destatis, Eurostat-Light) mit INTERNATIONALEN
 Wirtschafts-Indikatoren:
 - BIP/Inflation/Arbeitslosigkeit außerhalb AT-/DE-Bestand
-- Leitzinsen Fed/BoE/BoJ/SNB (NICHT EZB — die kommt aus OeNB)
+- Leitzinsen Fed/BoE/BoJ (NICHT EZB — die kommt aus OeNB; Schweiz via BIS)
 - Wechselkurse exotischer Währungen
 - Provider-spezifische Lookups ("ECB-Daten X", "Worldbank Y")
 
@@ -71,12 +71,12 @@ _PROVIDER_HINTS: dict[str, str] = {
     "federal reserve": "FED",
     "bank of england": "BOE",
     "bank of japan": "BOJ",
-    "swiss national bank": "SNB",
-    "schweizerische nationalbank": "SNB",
     "ins ee": "INSEE",
     "insee": "INSEE",
     "cepii": "CEPII",
-    "wifo": "WIFO",
+    # SNB + WIFO ENTFERNT 2026-07-07 (Audit): diese Provider-Codes existieren
+    # NICHT in DBnomics (Registry-Check), der Exact-Match-Filter lieferte damit
+    # garantiert 0 Ergebnisse. Schweizer Geldpolitik deckt services/bis.py ab.
 }
 
 # Direkt-Trigger: Claim erwähnt DBnomics namentlich
@@ -464,8 +464,17 @@ async def _search_api(client, query: str, provider: str | None) -> list[dict]:
 
     docs = (data.get("results") or {}).get("docs") or []
     if provider:
-        # Provider-Filter
-        docs = [d for d in docs if (d.get("provider_code") or "") == provider]
+        # Provider-Filter — aber NICHT leerend (Audit 2026-07-07): die
+        # DBnomics-/search ist global (Top-10 über 93 Provider) und bietet
+        # KEIN serverseitiges Provider-Scoping (providers=/filters[] → HTTP 400).
+        # Der frühere harte Drop verwarf ALLE Docs, sobald der genannte Provider
+        # nicht zufällig in den Top-10 lag (Normalfall) → still 0 Ergebnisse.
+        # Jetzt: bevorzuge Provider-Treffer, falls vorhanden, sonst behalte die
+        # on-topic Ergebnisse. (Der Ziel-Provider wird zusätzlich in die Query
+        # geprependet, damit er überhaupt in die Top-10 rankt — siehe
+        # search_dbnomics.)
+        matched = [d for d in docs if (d.get("provider_code") or "") == provider]
+        docs = matched or docs
     docs = docs[:MAX_RESULTS]
     _cache_put(cache_key, docs)
     return docs
@@ -543,6 +552,11 @@ async def search_dbnomics(analysis: dict) -> dict:
         query = claim[:80] if claim else ""
     if not query:
         return empty
+    # Provider-Code in die Query prependen, damit der Ziel-Provider in die
+    # Top-10 der globalen /search rankt (Audit 2026-07-07 — sonst kein
+    # Provider-Scoping möglich).
+    if provider:
+        query = f"{provider} {query}"
 
     results: list[dict] = []
     async with polite_client(timeout=TIMEOUT_S) as client:
