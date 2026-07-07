@@ -661,7 +661,14 @@ def _build_domain_url(dom_id: str, flow: str, target_iso: list[str],
     Für `piaac` (DSD_REG_EDU) muss ein 10-stelliger Key-Path verwendet werden
     mit TERRITORIAL_LEVEL=CTRY (sonst werden regionale TL2/TL3-Daten geliefert).
 
-    Andere Domains nutzen `all` + client-side-Filter.
+    talis/socx/family/housing nutzen ebenfalls gepinnte Keys (Audit
+    2026-07-07): vorher stand hier '/all', wodurch ALLE Dimensionen außer
+    REF_AREA ungefiltert blieben (MEASURE/UNIT_MEASURE/SPENDING_TYPE/…) und
+    der Parser 3 ZUFALLSZEILEN pro Query zeigte — z.B. Familienausgaben in
+    'National currency' statt % BIP, Miet-Index statt Hauspreis, oder eine
+    beliebige TALIS-Survey-Antwortkategorie. Die Keys lassen REF_AREA leer
+    (führender Punkt) → alle Länder, Client-Filter auf REF_AREA. Dim-Order +
+    Codes live gegen sdmx.oecd.org verifiziert (1 Serie/Land, plausibel).
     """
     base = f"{SDMX_BASE}/{flow}"
     common_qs = (
@@ -683,7 +690,18 @@ def _build_domain_url(dom_id: str, flow: str, target_iso: list[str],
         key = f"A.CTRY.{iso_supported.upper()}._Z..Y25T64._T._T.MEAN.PT_POP_SEX_AGE"
         return f"{base}/{key}{common_qs}"
 
-    # Default: 'all' + client-side-Filter
+    # Gepinnte Keys pro Domain (Audit 2026-07-07 — siehe Docstring).
+    _PINNED_KEYS = {
+        "talis":   "._Z.Q14_1.H.MEAN.ISCED11_2._T._T._T._T._T._T",  # Lehrer-Wochenarbeitszeit (h)
+        "socx":    ".A.SOCX.PT_B1GQ.ES10._T._T._Z",                  # öffentl. Sozialausgaben, % BIP
+        "family":  ".A.SOCX.PT_B1GQ.ES10._T.TP51._Z",               # Familienausgaben, % BIP
+        "housing": ".A.HPI.IX",                                       # nominaler Hauspreisindex
+    }
+    key = _PINNED_KEYS.get(dom_id)
+    if key:
+        return f"{base}/{key}{common_qs}"
+
+    # Fallback (unbekannte Domain): 'all' + client-side-Filter
     return f"{base}/all{common_qs}"
 
 
