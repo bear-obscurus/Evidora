@@ -25,6 +25,7 @@ jobs:
     #   - test_prompt_injection       (Synthesizer <claim>-Injection-Guard)
     #   - test_ratelimit              (X-Real-IP-Keying + Store-Eviction)
     #   - test_eurostat_fertility     (demo_find/TOTFERRT, kein demo_frate)
+    #   - test_worldbank_indicators   (keine archivierten/leeren WB-Codes)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.

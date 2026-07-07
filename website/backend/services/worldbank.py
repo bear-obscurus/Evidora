@@ -46,10 +46,10 @@ INDICATOR_MAP = {
     "teuerung": "FP.CPI.TOTL.ZG",
     "verbraucherpreise": "FP.CPI.TOTL.ZG",
     # CO2
-    "co2": "EN.ATM.CO2E.PC",
-    "kohlendioxid": "EN.ATM.CO2E.PC",
-    "carbon emissions": "EN.ATM.CO2E.PC",
-    "co2 emissions": "EN.ATM.CO2E.PC",
+    "co2": "EN.GHG.CO2.PC.CE.AR5",
+    "kohlendioxid": "EN.GHG.CO2.PC.CE.AR5",
+    "carbon emissions": "EN.GHG.CO2.PC.CE.AR5",
+    "co2 emissions": "EN.GHG.CO2.PC.CE.AR5",
     # Renewable energy
     "erneuerbare energie": "EG.FEC.RNEW.ZS",
     "renewable energy": "EG.FEC.RNEW.ZS",
@@ -77,9 +77,9 @@ INDICATOR_MAP = {
     "military spending": "MS.MIL.XPND.GD.ZS",
     "military expenditure": "MS.MIL.XPND.GD.ZS",
     # Government debt
-    "staatsschulden": "GC.DOD.TOTL.GD.ZS",
-    "staatsverschuldung": "GC.DOD.TOTL.GD.ZS",
-    "government debt": "GC.DOD.TOTL.GD.ZS",
+    "staatsschulden": "DP.DOD.DLD2A.CR.GG.Z1",
+    "staatsverschuldung": "DP.DOD.DLD2A.CR.GG.Z1",
+    "government debt": "DP.DOD.DLD2A.CR.GG.Z1",
     # Internet
     "internetnutzung": "IT.NET.USER.ZS",
     "internet users": "IT.NET.USER.ZS",
@@ -88,8 +88,8 @@ INDICATOR_MAP = {
     "trade": "NE.TRD.GNFS.ZS",
     "außenhandel": "NE.TRD.GNFS.ZS",
     # Refugees
-    "flüchtlinge": "SM.POP.REFG",
-    "refugees": "SM.POP.REFG",
+    "flüchtlinge": "SM.POP.RHCR.EA",
+    "refugees": "SM.POP.RHCR.EA",
 }
 
 # Country name → ISO 3-letter code
@@ -308,7 +308,7 @@ async def search_worldbank(analysis: dict) -> dict:
             })
 
         # Add migration multi-dimensional context caveat
-        migration_indicators = {"SM.POP.REFG"}
+        migration_indicators = {"SM.POP.RHCR.EA"}
         if indicator in migration_indicators and results:
             results.append({
                 "indicator_name": "WICHTIGER KONTEXT: Flüchtlingszahlen sind mehrdimensional",
@@ -318,23 +318,23 @@ async def search_worldbank(analysis: dict) -> dict:
                 "year": "",
                 "value": "",
                 "display_value": "",
-                "url": "https://data.worldbank.org/indicator/SM.POP.REFG",
+                "url": "https://data.worldbank.org/indicator/SM.POP.RHCR.EA",
                 "description": (
-                    "Der World-Bank-Indikator SM.POP.REFG zählt die Gesamtzahl der Flüchtlinge "
-                    "nach Herkunftsland. Einschränkungen: "
+                    "Der World-Bank-Indikator SM.POP.RHCR.EA zählt die von UNHCR anerkannten "
+                    "Flüchtlinge nach AUFNAHMELAND (country of asylum). Einschränkungen: "
                     "(1) Nur anerkannte Flüchtlinge — Asylsuchende, Binnenvertriebene (IDPs) und "
                     "irreguläre Migration fehlen. "
                     "(2) Absolut vs. Pro-Kopf — kleine Aufnahmeländer (Libanon, Jordanien) tragen "
                     "relativ zur Bevölkerung eine viel höhere Last als große Länder. "
-                    "(3) Herkunft vs. Aufnahme — dieser Indikator zählt nach Herkunftsland; für "
-                    "Aufnahmezahlen ist SM.POP.REFG.OR aussagekräftiger. "
+                    "(3) Aufnahme vs. Herkunft — dieser Indikator zählt nach Aufnahmeland; für "
+                    "Herkunftszahlen ist SM.POP.RHCR.EO aussagekräftiger. "
                     "(4) Keine Integration — Beschäftigung, Bildungszugang und soziale Teilhabe "
                     "erfordern andere Datenquellen."
                 ),
             })
 
         # Add CO₂ multi-dimensional context caveat
-        co2_indicators = {"EN.ATM.CO2E.PC"}
+        co2_indicators = {"EN.GHG.CO2.PC.CE.AR5"}
         if indicator in co2_indicators and results:
             results.append({
                 "indicator_name": "WICHTIGER KONTEXT: CO₂ pro Kopf ist nur eine Dimension",
@@ -344,9 +344,9 @@ async def search_worldbank(analysis: dict) -> dict:
                 "year": "",
                 "value": "",
                 "display_value": "",
-                "url": "https://data.worldbank.org/indicator/EN.ATM.CO2E.PC",
+                "url": "https://data.worldbank.org/indicator/EN.GHG.CO2.PC.CE.AR5",
                 "description": (
-                    "CO₂-Emissionen pro Kopf (World Bank EN.ATM.CO2E.PC) messen nur die "
+                    "CO₂-Emissionen pro Kopf (World Bank EN.GHG.CO2.PC.CE.AR5) messen nur die "
                     "territorialen, produktionsbasierten Emissionen geteilt durch die Bevölkerung. "
                     "Sie erfassen NICHT: "
                     "(1) Konsumbasierte Emissionen — in importierten Gütern enthaltenes CO₂ wird dem "
