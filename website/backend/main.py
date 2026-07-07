@@ -1754,7 +1754,17 @@ async def check_claim(request: Request):
             synthesis["evidence"] = []
 
         synthesis["analysis"] = analysis
-        synthesis["raw_sources"] = valid_results
+        # Export-Sanitization (Audit 2026-07-07): interne Pipeline-Marker
+        # (STRUKTURELL-FALSCH-Prefix, "Kernsatz fuer synthesizer:", GKG-
+        # Offsets, HTML-Entities) aus der user-sichtbaren Quellen-Kopie
+        # strippen. Der Synthesizer-Prompt wurde oben bereits gebaut und
+        # bleibt unangetastet.
+        try:
+            from services._export_sanitize import sanitize_sources_for_export
+            synthesis["raw_sources"] = sanitize_sources_for_export(valid_results)
+        except Exception as e:
+            logger.warning(f"export sanitization failed (non-blocking): {e}")
+            synthesis["raw_sources"] = valid_results
         synthesis["source_coverage"] = {
             "queried": len(tasks),
             "with_results": len(sources_with_results),
