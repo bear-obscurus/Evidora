@@ -124,30 +124,31 @@ fi
 
 # --- 3) Ausführen -------------------------------------------------------------
 cd "$COMPOSE_DIR"
-backend_restart_expected=0
-frontend_restart_expected=0
 if [ "$build_backend" -eq 1 ]; then
   log "docker compose up -d --build backend…"
   docker compose up -d --build backend || fail "backend-Build fehlgeschlagen"
-  backend_restart_expected=1
 fi
 if [ "$build_frontend" -eq 1 ]; then
   log "docker compose up -d --build frontend…"
   docker compose up -d --build frontend || fail "frontend-Build fehlgeschlagen"
-  frontend_restart_expected=1
 fi
 if [ "$recreate" -eq 1 ]; then
-  # Läuft auch NACH einem Backend-Build: compose up -d ist dann für das
-  # Backend ein No-op, wendet aber Compose-Änderungen an ALLEN Services an
-  # (vorher wurden z.B. Frontend-Änderungen verschluckt).
-  log "docker compose up -d (Compose-Änderung -> Recreate aller Services)…"
+  # compose up -d erstellt NUR Services mit geänderter Config neu (NICHT
+  # zwingend beide!) — läuft auch nach einem Build (dann No-op fürs
+  # Gebaute) und wendet Compose-Änderungen an allen betroffenen Services an.
+  log "docker compose up -d (Compose-Änderung -> Recreate geänderter Services)…"
   docker compose up -d || fail "compose up fehlgeschlagen"
-  backend_restart_expected=1
-  frontend_restart_expected=1
 fi
 
+# Welche Container sollen jetzt laufen/healthy sein? Ein Build betrifft
+# genau seinen Service; ein Recreate potenziell beide (welche, hängt von
+# der geänderten Config ab — daher beide prüfen).
+check_backend=0; check_frontend=0
+[ "$build_backend" -eq 1 ] || [ "$recreate" -eq 1 ] && check_backend=1
+[ "$build_frontend" -eq 1 ] || [ "$recreate" -eq 1 ] && check_frontend=1
+
 # --- 4) Health-Wait -----------------------------------------------------------
-if [ "$backend_restart_expected" -eq 1 ]; then
+if [ "$check_backend" -eq 1 ]; then
   log "Warte auf backend healthy (Timeout ${HEALTH_TIMEOUT_S}s — Model-Prefetch dauert ~5 min)…"
   waited=0
   while true; do
@@ -157,7 +158,7 @@ if [ "$backend_restart_expected" -eq 1 ]; then
     sleep 5; waited=$((waited + 5))
   done
 fi
-if [ "$frontend_restart_expected" -eq 1 ]; then
+if [ "$check_frontend" -eq 1 ]; then
   log "Warte auf frontend healthy (Timeout ${FRONTEND_HEALTH_TIMEOUT_S}s)…"
   waited=0
   while true; do
@@ -170,12 +171,29 @@ fi
 
 # --- 5) Belege ------------------------------------------------------------------
 STARTED_AFTER=$(docker inspect -f '{{.State.StartedAt}}' "$CONTAINER" 2>/dev/null || echo "n/a")
-if [ "$backend_restart_expected" -eq 1 ]; then
-  if [ "$STARTED_BEFORE" = "$STARTED_AFTER" ]; then
-    fail "Container-StartedAt unverändert ($STARTED_AFTER) — Deploy hat NICHT stattgefunden!"
-  fi
-  log "Beleg 1: Container neu gestartet ($STARTED_BEFORE -> $STARTED_AFTER)."
-  # Beleg 2: geänderte Backend-Dateien im Container identisch mit Host?
+FE_STARTED_AFTER=$(docker inspect -f '{{.State.StartedAt}}' "$FRONTEND_CONTAINER" 2>/dev/null || echo "n/a")
+backend_restarted=0;  [ "$STARTED_BEFORE" != "$STARTED_AFTER" ] && backend_restarted=1
+frontend_restarted=0; [ "$FE_STARTED_BEFORE" != "$FE_STARTED_AFTER" ] && frontend_restarted=1
+
+# Ein Build MUSS seinen Container neu gestartet haben (sonst altes Image).
+if [ "$build_backend" -eq 1 ] && [ "$backend_restarted" -eq 0 ]; then
+  fail "Backend-StartedAt unverändert ($STARTED_AFTER) — Backend-Build hat nichts neu gestartet!"
+fi
+if [ "$build_frontend" -eq 1 ] && [ "$frontend_restarted" -eq 0 ]; then
+  fail "Frontend-StartedAt unverändert ($FE_STARTED_AFTER) — Frontend-Build hat nichts neu gestartet!"
+fi
+# Reine Compose-Änderung (ohne Build): mindestens EIN Service muss neu
+# erstellt worden sein — sonst wirkte die Änderung nicht zur Laufzeit.
+if [ "$recreate" -eq 1 ] && [ "$build_backend" -eq 0 ] && [ "$build_frontend" -eq 0 ] \
+   && [ "$backend_restarted" -eq 0 ] && [ "$frontend_restarted" -eq 0 ]; then
+  fail "Compose-Recreate hat KEINEN Container neu gestartet — Änderung ohne Laufzeit-Wirkung?"
+fi
+[ "$backend_restarted" -eq 1 ]  && log "Beleg 1: Backend neu gestartet ($STARTED_BEFORE -> $STARTED_AFTER)."
+[ "$frontend_restarted" -eq 1 ] && log "Beleg 1b: Frontend neu gestartet ($FE_STARTED_BEFORE -> $FE_STARTED_AFTER)."
+
+# Beleg 2: geänderte Backend-Dateien im Container identisch mit Host?
+# (nur nach einem Backend-Build sinnvoll)
+if [ "$build_backend" -eq 1 ]; then
   checked=0
   while IFS= read -r f; do
     [ -z "$f" ] && continue
@@ -194,28 +212,18 @@ if [ "$backend_restart_expected" -eq 1 ]; then
     checked=$((checked + 1)); [ "$checked" -ge 3 ] && break
   done <<< "$CHANGED"
   [ "$checked" -gt 0 ] && log "Beleg 2: $checked geänderte Backend-Datei(en) im Container hash-identisch."
-else
-  log "Kein Backend-Neustart nötig (StartedAt: $STARTED_AFTER)."
-fi
-
-# Beleg 1b: Frontend-Container tatsächlich neu gestartet?
-if [ "$frontend_restart_expected" -eq 1 ]; then
-  FE_STARTED_AFTER=$(docker inspect -f '{{.State.StartedAt}}' "$FRONTEND_CONTAINER" 2>/dev/null || echo "n/a")
-  if [ "$FE_STARTED_BEFORE" = "$FE_STARTED_AFTER" ]; then
-    fail "Frontend-StartedAt unverändert ($FE_STARTED_AFTER) — Frontend-Deploy hat NICHT stattgefunden!"
-  fi
-  log "Beleg 1b: Frontend neu gestartet ($FE_STARTED_BEFORE -> $FE_STARTED_AFTER)."
 fi
 
 # --- 6) Smoke -------------------------------------------------------------------
-code=$(curl -s -o /dev/null -w '%{http_code}' -m 15 http://127.0.0.1:8000/api/legal || echo "000")
-[ "$code" = "200" ] || fail "Smoke-Check backend /api/legal -> HTTP $code"
-log "Beleg 3: /api/legal -> 200."
-
-# Frontend-Smoke direkt gegen den Container-Port (nur wenn das Frontand
-# angefasst wurde) — fängt eine kaputte nginx.conf, die der Build nicht
-# bemerkt (Audit #3: vorher druckte das Skript OK trotz Site-Ausfall).
-if [ "$frontend_restart_expected" -eq 1 ]; then
+if [ "$check_backend" -eq 1 ]; then
+  code=$(curl -s -o /dev/null -w '%{http_code}' -m 15 http://127.0.0.1:8000/api/legal || echo "000")
+  [ "$code" = "200" ] || fail "Smoke-Check backend /api/legal -> HTTP $code"
+  log "Beleg 3: backend /api/legal -> 200."
+fi
+# Frontend-Smoke direkt gegen den Container-Port — fängt eine kaputte
+# nginx.conf, die der Build nicht bemerkt (Audit #3: vorher druckte das
+# Skript OK trotz Site-Ausfall).
+if [ "$check_frontend" -eq 1 ]; then
   fe_code=$(curl -s -o /dev/null -w '%{http_code}' -m 15 http://127.0.0.1:3000/ || echo "000")
   [ "$fe_code" = "200" ] || fail "Smoke-Check frontend http://127.0.0.1:3000/ -> HTTP $fe_code"
   log "Beleg 3b: frontend :3000 -> 200."
