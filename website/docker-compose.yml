@@ -73,7 +73,11 @@ services:
       - /var/run:size=8m
       - /tmp:size=16m
     healthcheck:
-      test: ["CMD", "curl", "-sf", "http://localhost:80"]
+      # nginx:alpine bringt KEIN curl mit, nur busybox-wget (Audit R2-3:
+      # der curl-Check schlug immer fehl -> Container dauerhaft "unhealthy"
+      # trotz laufendem nginx -> Alarm-Blindheit + Deploy-Health-Wait hing).
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:80/"]
       interval: 30s
       timeout: 5s
       retries: 3
+      start_period: 10s
