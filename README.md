@@ -151,7 +151,7 @@ topic vs. hybrid), see [ARCHITECTURE.md §2](ARCHITECTURE.md).
 | Live-API connectors | **107** |
 | Static-first topic services | **78** (incl. 40 thematic `*_pack.json` packs, ~430 topics) |
 | Hybrid (static core + live refresh) | **6** |
-| Connector service files | **191** of 210 `services/*.py` (19 are pipeline/helper modules) |
+| Connector service files | **191** of 213 `services/*.py` (22 are pipeline/helper modules, incl. `ratelimit.py`, `_atomic.py`, `_fmt.py`) |
 
 ### Live-API Connectors (107 wired into the fan-out, 96.9% verdict-match in 100-Claim-Stress-Test)
 
