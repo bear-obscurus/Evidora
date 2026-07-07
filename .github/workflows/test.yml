@@ -33,6 +33,8 @@ jobs:
     #                                  in Stream/Export, Klassiker bleiben)
     #   - test_claim_centered_snippet (claim-relevanteste Sätze statt
     #                                  Textanfang beim 400-Zeichen-Cap)
+    #   - test_drug_synonyms          (Marken→INN-Expansion Voltadol→
+    #                                  Diclofenac für Medizin-Fachquellen)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -71,7 +73,8 @@ jobs:
             tests/test_dbnomics_providers.py \
             tests/test_oecd_pinned_keys.py \
             tests/test_feed_claim_filter.py \
-            tests/test_claim_centered_snippet.py
+            tests/test_claim_centered_snippet.py \
+            tests/test_drug_synonyms.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
