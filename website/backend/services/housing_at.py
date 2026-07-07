@@ -7,6 +7,7 @@ import logging
 import os
 
 from services._topic_match import find_matching_items, load_items, stamp_provenance
+from services._fmt import de_int
 
 logger = logging.getLogger("evidora")
 
@@ -71,8 +72,8 @@ async def search_housing(analysis: dict) -> dict:
                 f"2020={d.get('wohnimmo_index_at_2020')}, "
                 f"2022 (Peak)={d.get('wohnimmo_index_at_2022_peak')}, "
                 f"2024={d.get('wohnimmo_index_at_2024')} (+107 % seit 2010). "
-                f"Eigentumswohnung Wien {d.get('preis_pro_m2_eigentumswohnung_wien_2024'):,} €/m², ".replace(",", ".")
-                + f"AT-Schnitt {d.get('preis_pro_m2_eigentumswohnung_at_2024'):,} €/m². ".replace(",", ".")
+                f"Eigentumswohnung Wien {de_int(d.get('preis_pro_m2_eigentumswohnung_wien_2024'))} €/m², "
+                + f"AT-Schnitt {de_int(d.get('preis_pro_m2_eigentumswohnung_at_2024'))} €/m². "
                 + f"Miete Wien Neuvermietung {d.get('miete_pro_m2_wien_neuvermietung_2024')} €/m², "
                 f"Altmietverhältnis Schnitt {d.get('miete_pro_m2_wien_altmietverhaeltnis_durchschnitt_2024')} €/m²."
             )

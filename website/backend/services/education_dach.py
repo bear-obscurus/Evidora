@@ -13,6 +13,7 @@ import logging
 import os
 
 from services._topic_match import find_matching_items, load_items
+from services._fmt import de_int
 
 logger = logging.getLogger("evidora")
 
@@ -96,15 +97,15 @@ async def search_education(analysis: dict) -> dict:
         elif topic == "lehrermangel_at":
             display = (
                 f"Lehrer:innen-Bedarf Österreich 2024: "
-                f"{d.get('anzahl_lehrkraefte_at_2024'):,} Lehrkräfte ".replace(",", ".")
-                + f"(2014: {d.get('anzahl_lehrkraefte_at_2014'):,} ".replace(",", ".")
+                f"{de_int(d.get('anzahl_lehrkraefte_at_2024'))} Lehrkräfte "
+                + f"(2014: {de_int(d.get('anzahl_lehrkraefte_at_2014'))} "
                 + "— +10.000 in 10 Jahren). "
                 f"Vakanzquote 2024 ~{d.get('vakanzquote_2024_pct')} % — KEIN flächendeckender "
                 f"Mangel. ABER: Studienanfänger Lehramt sanken um "
                 f"{d.get('rueckgang_studienanfaenger_pct_2014_2024')} % in 10 Jahren "
-                f"({d.get('studienanfaenger_lehramt_at_2014'):,} → ".replace(",", ".")
-                + f"{d.get('studienanfaenger_lehramt_at_2024'):,}). ".replace(",", ".")
-                + f"Bis 2030 gehen {d.get('prognose_pensionierungen_bis_2030'):,} ".replace(",", ".")
+                f"({de_int(d.get('studienanfaenger_lehramt_at_2014'))} → "
+                + f"{de_int(d.get('studienanfaenger_lehramt_at_2024'))}). "
+                + f"Bis 2030 gehen {de_int(d.get('prognose_pensionierungen_bis_2030'))} "
                 + f"Lehrkräfte in Pension ({d.get('prognose_pensionierungen_bis_2030_anteil_pct')} %)."
             )
             description = d.get("context", "") + " " + notes_joined

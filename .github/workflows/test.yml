@@ -55,7 +55,8 @@ jobs:
             tests/test_freshness_cache_health.py \
             tests/test_sipri_percapita.py \
             tests/test_prompt_injection.py \
-            tests/test_ratelimit.py
+            tests/test_ratelimit.py \
+            tests/test_fmt.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
