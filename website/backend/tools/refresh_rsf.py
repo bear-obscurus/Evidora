@@ -29,6 +29,9 @@ from datetime import date, datetime
 
 import httpx
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from services._atomic import atomic_write_json  # noqa: E402
+
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger("refresh_rsf")
 
@@ -197,8 +200,7 @@ async def main():
     if not by_country:
         sys.exit("no data")
     pack = build_pack(by_country, year)
-    with open(OUT_PATH, "w", encoding="utf-8") as f:
-        json.dump(pack, f, ensure_ascii=False, indent=2)
+    atomic_write_json(OUT_PATH, pack, ensure_ascii=False, indent=2)
     print(f"Wrote {OUT_PATH}: {len(by_country)} countries, year {year}")
 
 

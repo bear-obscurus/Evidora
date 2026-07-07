@@ -27,6 +27,7 @@ sys.path.insert(0, "/app")
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from services._eurostat_live import fetch_eurostat_dataset, filter_rows
+from services._atomic import atomic_write_json
 
 
 JSON_PATH = Path(__file__).resolve().parent.parent / "data" / "eu_crime.json"
@@ -123,8 +124,7 @@ async def main():
     target["fetched_at_iso"] = date.today().isoformat()
     data["fetched_at_iso"] = date.today().isoformat()
 
-    with JSON_PATH.open("w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    atomic_write_json(JSON_PATH, data, ensure_ascii=False, indent=2)
     print(f"\nWrote {JSON_PATH}")
 
 

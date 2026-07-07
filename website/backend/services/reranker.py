@@ -188,7 +188,7 @@ _AUTHORITATIVE_INDICATORS = (
     "gdelt_gkg_article",                 # GDELT v2 Global Knowledge Graph Live (BigQuery, 100k+ News-Quellen weltweit)
     "wikipedia_article",                 # Wikipedia Live (REST API, DE-first + EN-Fallback)
     "owid_indicator",                    # OurWorldInData Live (CC-BY 4.0, ~31 Indikatoren Klima/Health/Economy/Demographics)
-    "vdem_index",                        # V-Dem Live (University of Gothenburg, Varieties of Democracy v14, 11 Indizes × 32 Länder)
+    "vdem_index",                        # V-Dem Live (University of Gothenburg, Varieties of Democracy v16, 11 Indizes)
     "wayback_archive",                   # Internet Archive Wayback Machine CDX (URL-Archiv-Snapshots)
     "crossref_paper",                    # Crossref REST API (DOI-Resolution + Paper-Metadata, polite-pool)
     "openaq_measurement",                # OpenAQ v3 Live (Air Quality Sensor-Daten, CC-BY 4.0, requires API-key)

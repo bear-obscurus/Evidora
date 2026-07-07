@@ -161,7 +161,7 @@ topic vs. hybrid), see [ARCHITECTURE.md §2](ARCHITECTURE.md).
 | **Health authorities** | WHO GHO, WHO Europe (HFA), EMA, EFSA, ECDC, RKI SurvStat, OECD Health, BASG, CDC Newsroom, CDC Open Data, **openFDA** (FDA drug labels + FAERS + recalls), **MITRE ATT&CK** (threat actor TTPs) |
 | **Climate & environment** | NASA GISS, Berkeley Earth, Copernicus CDS, EEA, **Copernicus CAMS** (atmosphere monitoring), **ECMWF ERA5** (climate reanalysis), **NOAA NCEI** (climate data online), GeoSphere AT, **GeoSphere SPARTACUS** (1km AT climate grid), **UBA Österreich** (Austrian GHG inventory), **Global Carbon Budget** (annual CO2 budget), **EDGAR JRC** (EU emissions database), **IRENA** (renewable energy, 200+ countries), Skeptical Science, Energy-Charts, OurWorldInData, OpenAQ v3 |
 | **Economy & finance** | Eurostat (incl. **Housing Cost Overburden** extension), OECD (PISA + SDMX), **OECD SDMX Multi-Domain** (TALIS + SOCX + Family + Housing), World Bank, ECB, OeNB, Statistik Austria, WIFO + IHS, UN Comtrade, **DBnomics** (50k+ aggregator), **BIS** (international banking), **WITS** (World Bank tariffs + trade agreements), **WGI** (Worldwide Governance Indicators) |
-| **Democracy & rule of law** | V-Dem v14, Freedom House FIW 2024, Transparency CPI, RSF, IDEA, SIPRI, **BTI** (Bertelsmann Transformation Index), **WJP Rule of Law Index** (143 countries × 8 factors), **Constitute Project** (constitutional texts worldwide), Parlament.gv.at, BMI Wahlen + Volksbegehren, MedienTransparenz, Wikidata SPARQL |
+| **Democracy & rule of law** | V-Dem v16, Freedom House FIW 2024, Transparency CPI, RSF, IDEA, SIPRI, **BTI** (Bertelsmann Transformation Index), **WJP Rule of Law Index** (143 countries × 8 factors), **Constitute Project** (constitutional texts worldwide), Parlament.gv.at, BMI Wahlen + Volksbegehren, MedienTransparenz, Wikidata SPARQL |
 | **Justice & courts** | RIS (Austrian legal), EuGH + EGMR (EU & ECHR), VfGH + VwGH (Austrian high courts), **EDPB** (EU data protection guidelines) |
 | **Cybersecurity & data protection** | **NIST NVD** (CVE database + CVSS), **MITRE ATT&CK**, **Mozilla HTTP Observatory** (web security headers), **EDPB** |
 | **Migration & displacement** | UNHCR, Frontex |
@@ -281,7 +281,7 @@ Evidora/
 
 ## Tech Stack
 
-- **Backend:** Python 3.14, FastAPI, SSE streaming
+- **Backend:** Python 3.12, FastAPI, SSE streaming
 - **Frontend:** Vanilla JS, CSS (no frameworks)
 - **LLM:** Mistral 7B via Ollama (local) or Mistral Cloud API (EU servers, Paris)
 - **NLP:** SpaCy (de_core_news_lg + en_core_web_sm) for named entity recognition

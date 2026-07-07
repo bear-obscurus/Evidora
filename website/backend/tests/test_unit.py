@@ -241,6 +241,13 @@ class TestNER:
         assert _detect_language("Unemployment in Spain has increased") == "en"
 
     def test_enrich_adds_countries(self):
+        # Braucht die SpaCy-Modelle (~500 MB, nur im Docker-Image). Lokal
+        # ohne Modelle sauber SKIPpen statt mit AssertionError rot werden
+        # (Audit R2-11) — der Graceful-Pfad ist separat abgedeckt.
+        import services.ner as _ner
+        _ner._load_models()
+        if _ner._nlp_de is None:
+            pytest.skip("SpaCy-Modelle nicht installiert — NER-Anreicherung deaktiviert")
         analysis = {"entities": ["Arbeitslosigkeit"], "category": "economy"}
         result = enrich_entities("Die Arbeitslosigkeit in Österreich ist hoch", analysis)
         # SpaCy should detect Österreich as GPE
@@ -529,7 +536,7 @@ class TestSharedSentenceTransformer:
 # ===================================================================
 # Verdict-Post-Processing-Kaskade (Fix #3 Phase A, 2026-06-14)
 # ===================================================================
-# Die ~515-Zeilen-Override-Kaskade wurde aus synthesize_results in
+# Die ~820-Zeilen-Override-Kaskade wurde aus synthesize_results in
 # services/verdict_postprocess.apply_verdict_postprocessing ausgelagert
 # (verbatim, verhaltens-erhaltend). Diese Tests sichern jeden Override-
 # Zweig EINZELN ab — vorher nur durch langsame E2E-Stress-Tests prüfbar.

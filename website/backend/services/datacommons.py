@@ -17,6 +17,7 @@ from pathlib import Path
 
 import httpx
 from services._http_polite import polite_client
+from services._atomic import atomic_write_json
 
 logger = logging.getLogger("evidora")
 
@@ -205,8 +206,7 @@ async def update_index():
     # Save locally
     try:
         DATA_DIR.mkdir(parents=True, exist_ok=True)
-        with open(LOCAL_INDEX, "w", encoding="utf-8") as f:
-            json.dump(entries, f, ensure_ascii=False, indent=None)
+        atomic_write_json(LOCAL_INDEX, entries, ensure_ascii=False)
         logger.info(f"DataCommons: saved {len(entries)} entries to {LOCAL_INDEX}")
     except Exception as e:
         logger.warning(f"DataCommons: failed to save local index: {e}")

@@ -33,10 +33,10 @@ Limitations:
     (typisch +/- 0.05 auf 0-1-Skala).
   - Aktuelle Werte: offizielles V-Dem-Core-CSV (Version + Jahre siehe
     dataset_version/version_note im JSON; seit 2026-07-02 alle 11
-    Indikatoren dataset_verified, keine LLM-Approximationen mehr). Werte sind
-    LLM-Wissens-Approximationen — vor produktivem Einsatz mit den
-    offiziellen CSVs gegenchecken (audit_flag im JSON).
-  - Aktuelle Version 14 (Stand März 2024), nächste v15 Frühjahr 2025.
+    Indikatoren dataset_verified aus derselben Vintage, keine
+    LLM-Approximationen mehr).
+  - Aktuelle Vintage: v16 (Jahre 2019–2025). Jährlicher Refresh via
+    tools/refresh_vdem.py nach dem V-Dem-Release im März.
 
 GUARDRAILS (siehe project_political_guardrails.md):
   - Wir zitieren V-Dem-Scores, wir bewerten sie nicht.

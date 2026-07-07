@@ -429,7 +429,7 @@ function renderVerdict(data) {
             ${data.nuance ? `<p class="verdict-nuance">${renderInlineMarkdown(data.nuance)}</p>` : ""}
             <div class="metrics-grid">
                 <span class="metric-label">
-                    <span class="tooltip-anchor" aria-label="${buildConfidenceTooltip(data)}">
+                    <span class="tooltip-anchor" tabindex="0" role="button" aria-label="${buildConfidenceTooltip(data)}">
                         <svg class="info-icon" viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><circle cx="8" cy="8" r="7.5" stroke="currentColor" stroke-width="1" fill="none"/><text x="8" y="12" text-anchor="middle" font-size="10" fill="currentColor" font-family="serif" font-style="italic">i</text></svg>
                         <span class="tooltip-text">${escapeHtml(buildConfidenceTooltip(data))}</span>
                     </span>

@@ -13,11 +13,13 @@ erzeugen, wird das nach spätestens einer Woche sichtbar.
 Aufruf:
   python3 tools/weekly_phrasing_check.py [--alert-webhook URL] [--api-key KEY]
 
-Cron-Eintrag (auf prod, in burrito-crontab):
+Cron-Eintrag (auf prod, in burrito-crontab) — läuft IM Backend-Container
+über run_evidora_tool.sh (injiziert EVIDORA_TEST_API_KEY + Webhook aus
+.env; ein direkter Host-python3-Aufruf umginge Container-venv + /var/log
+ist für burrito nicht beschreibbar):
   # jeden Sonntag 03:00
-  0 3 * * 0 cd /opt/Evidora/website/backend && \
-    EVIDORA_TEST_API_KEY=<key> python3 tools/weekly_phrasing_check.py \
-    >> /var/log/evidora_phrasing_check.log 2>&1
+  0 3 * * 0 /opt/Evidora/website/run_evidora_tool.sh weekly_phrasing_check.py \
+    >> /home/burrito/evidora-logs/phrasing_check.log 2>&1
 
 Schwellwerte:
   - VERDICT_THRESHOLD = 18 / 20 (90 %)

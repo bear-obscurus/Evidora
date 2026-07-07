@@ -43,6 +43,7 @@ import time
 from pathlib import Path
 
 from services._http_polite import polite_client
+from services._atomic import atomic_write_json
 
 logger = logging.getLogger("evidora")
 
@@ -257,8 +258,7 @@ def _save_local(filtered: list[dict]) -> None:
             "object_count": len(filtered),
             "objects": filtered,
         }
-        with open(LOCAL_PATH, "w", encoding="utf-8") as f:
-            json.dump(payload, f, ensure_ascii=False)
+        atomic_write_json(LOCAL_PATH, payload, ensure_ascii=False)
         logger.info(
             f"MITRE ATT&CK: saved {len(filtered)} objects to {LOCAL_PATH} "
             f"({os.path.getsize(LOCAL_PATH)//1024} KB)"

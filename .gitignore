@@ -49,3 +49,7 @@ website/secrets/*.json
 website/backend/data/claimreview_index.json
 website/backend/data/cordis_projects_slim.json
 website/backend/data/mitre_attack.json
+
+# Temp-Dateien des atomaren Writes (services/_atomic.py) — transient, aber
+# ein Hard-Kill mitten im Schreiben könnte einen Rest hinterlassen.
+website/backend/data/.tmp-*.part

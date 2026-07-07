@@ -14,10 +14,12 @@ ist genug.
 Aufruf:
   python3 tools/data_freshness_check.py [--max-age-days N] [--strict]
 
-Cron (auf prod):
-  0 4 * * 1   cd /opt/Evidora/website/backend && \
-              python3 tools/data_freshness_check.py --max-age-days 120 \
-              >> /var/log/evidora_data_freshness.log 2>&1
+Cron (auf prod) — über run_evidora_tool.sh im Backend-Container (reicht
+EVIDORA_ALERT_WEBHOOK aus .env für den ntfy-Push durch; /var/log ist für
+burrito nicht beschreibbar, daher evidora-logs/):
+  0 4 * * 1 /opt/Evidora/website/run_evidora_tool.sh data_freshness_check.py \
+            --max-age-days 120 --strict \
+            >> /home/burrito/evidora-logs/data_freshness.log 2>&1
 """
 import argparse
 import json
