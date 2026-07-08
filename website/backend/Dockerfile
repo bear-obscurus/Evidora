@@ -24,9 +24,20 @@ RUN useradd --create-home --uid 1000 --user-group evidora
 # schneller und unabhängig von huggingface.co-Verfügbarkeit.
 ENV HF_HOME=/opt/hf-cache \
     SENTENCE_TRANSFORMERS_HOME=/opt/hf-cache
+# HF_HUB_DISABLE_XET=1 beim Bake ERZWINGT echte Blob-Downloads statt Xet-
+# Pointer. Ohne das lud der neuere huggingface_hub das Modell via Xet-
+# Backend nur als Pointer in den Cache — die zur LAUFZEIT (HF_HUB_OFFLINE=1)
+# nicht auflösbar sind. Folge (Audit 2026-07-08): Startup-Log "Failed to
+# load shared SentenceTransformer ... couldn't find them in the cached files"
+# -> "semantic re-ranking disabled". Der semantische Reranker + der Feed-
+# Claim-Filter liefen prod-weit degradiert (Keyword-Fallback), themenfremde
+# Feed-Items kamen durch.
 RUN mkdir -p /opt/hf-cache \
- && python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2', revision='e8f8c211226b894fcb81acc59f3b34ba3efd5f42')" \
+ && HF_HUB_DISABLE_XET=1 python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2', revision='e8f8c211226b894fcb81acc59f3b34ba3efd5f42')" \
  && chown -R evidora:evidora /opt/hf-cache
+# BUILD-GATE: Modell OFFLINE laden (wie zur Laufzeit) + encode testen —
+# schlägt der Build fehl, statt still mit totem Reranker zu deployen.
+RUN HF_HUB_OFFLINE=1 python -c "from sentence_transformers import SentenceTransformer; m = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2', revision='e8f8c211226b894fcb81acc59f3b34ba3efd5f42'); v = m.encode('Offline-Ladecheck'); assert v is not None and len(v) > 0, 'Modell offline nicht ladbar'; print('BUILD-GATE ok: Modell offline ladbar + encode funktioniert')"
 
 COPY --chown=evidora:evidora . .
 

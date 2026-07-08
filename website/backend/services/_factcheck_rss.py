@@ -43,29 +43,35 @@ def _parse_rss_year(pub_date: str) -> str:
         return "—"
 
 
+def _word_hit(term: str, text_lc: str) -> bool:
+    """Wortgrenzen-Match statt Substring (Audit 2026-07-08). Verhindert
+    Fehltreffer wie 'Kinder' ⊂ 'Kinderhandel' / 'Kindern' — genau die, die
+    im Prod-Keyword-Fallback themenfremde Feed-Items durchließen. ``term``
+    bereits lowercase; Mehrwort-Terme werden als ganze Sequenz gematcht."""
+    return re.search(r"\b" + re.escape(term) + r"\b", text_lc) is not None
+
+
 def _entity_or_query_match(text: str, entities: list[str], queries: list[str]) -> bool:
-    """Stricter match (Pattern aus europe_pmc.py):
+    """Strenger Match (Pattern aus europe_pmc.py), jetzt WORTGRENZEN-basiert:
 
     EITHER:
-      (a) mindestens eine Entity (>=3 chars, multi-word also möglich)
-          appears in text — single hit reicht, weil Entities aus NER
+      (a) mindestens eine Entity (>=3 chars, multi-word möglich) kommt als
+          GANZES WORT im Text vor — single hit reicht, weil NER-Entities
           spezifisch sind ('Mozart', 'Salmonella', 'Vasektomie')
       OR:
-      (b) mindestens 2 verschiedene Query-Wörter (>=4 chars) aus
-          pubmed/factcheck_queries appears in text — verhindert
-          Single-Word-False-Positives bei generischen Begriffen wie
-          'document', 'study', 'effect'
+      (b) mindestens 2 verschiedene Query-Wörter (>=4 chars) als ganze Wörter
+          — verhindert Single-Word-False-Positives bei generischen Begriffen
 
     Falls beide Listen leer → False.
     """
     text_lc = text.lower()
 
-    # (a) Entity-Match — single hit reicht
+    # (a) Entity-Match — single hit reicht, Wortgrenze statt Substring
     entity_terms = [e.lower() for e in entities if len(e) >= 3]
-    if any(e in text_lc for e in entity_terms):
+    if any(_word_hit(e, text_lc) for e in entity_terms):
         return True
 
-    # (b) Query-Word-Match — mindestens 2 verschiedene Wörter
+    # (b) Query-Word-Match — mindestens 2 verschiedene Wörter (Wortgrenze)
     query_words: set[str] = set()
     for q in queries[:4]:
         for w in q.split():
@@ -73,7 +79,7 @@ def _entity_or_query_match(text: str, entities: list[str], queries: list[str]) -
                 query_words.add(w.lower())
     if not query_words:
         return False
-    hits = sum(1 for w in query_words if w in text_lc)
+    hits = sum(1 for w in query_words if _word_hit(w, text_lc))
     return hits >= 2
 
 
@@ -102,11 +108,28 @@ def _item_text(item: dict) -> str:
 
 def _has_entity_overlap(item: dict, entities: list[str]) -> bool:
     """GADMO-Pattern: mind. eine NER-Entity muss im Item-Text vorkommen.
-    Ohne Entities keine Anforderung (dann trägt der Cosine-Threshold allein)."""
+    Ohne Entities keine Anforderung (dann trägt der Cosine-Threshold allein).
+    Wortgrenzen-Match (Audit 2026-07-08) statt Substring."""
     if not entities:
         return True
     text_lc = _item_text(item).lower()
-    return any(e.lower() in text_lc for e in entities if len(e) >= 3)
+    return any(_word_hit(e.lower(), text_lc) for e in entities if len(e) >= 3)
+
+
+# Einmalige Warnung, wenn der semantische Filter-Pfad im Prod ausfällt —
+# der Keyword-Fallback ist gröber; ein stiller Ausfall (Audit 2026-07-08:
+# toter Reranker durch Xet-Bake) soll künftig im Log sichtbar sein.
+_semantic_unavailable_warned = False
+
+
+def _warn_semantic_unavailable(reason: str) -> None:
+    global _semantic_unavailable_warned
+    if not _semantic_unavailable_warned:
+        logger.warning(
+            f"feed-claim-filter: semantischer Pfad NICHT verfügbar "
+            f"({reason}) — Keyword-Fallback aktiv (gröber)."
+        )
+        _semantic_unavailable_warned = True
 
 
 def filter_items_for_claim(
@@ -132,6 +155,8 @@ def filter_items_for_claim(
         from services import _st_model
 
         model = _st_model.get_model()
+        if model is None:
+            _warn_semantic_unavailable("SentenceTransformer nicht geladen")
         if model is not None:
             from sentence_transformers import util
 
@@ -179,10 +204,10 @@ def filter_items_for_claim(
                 )
             return kept
     except Exception as e:
-        logger.debug(f"feed-claim-filter semantic path failed: {e}")
+        _warn_semantic_unavailable(f"Exception: {e}")
 
     # Keyword-Fallback (CI / Modell nicht verfügbar): strenger Match
-    # statt Feed-Dump — Entity-Treffer ODER >=2 Query-Wörter.
+    # statt Feed-Dump — Entity-Treffer (Wortgrenze) ODER >=2 Query-Wörter.
     kept = [
         it for it in items
         if _entity_or_query_match(_item_text(it).lower(), entities, queries)
