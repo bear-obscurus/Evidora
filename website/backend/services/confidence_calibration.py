@@ -42,6 +42,7 @@ logger = logging.getLogger("evidora")
 # Top-Quellen aggregieren.
 AUTHORITATIVE_PACK_MARKERS = (
     "Esoterik-Pack",
+    "AT Factbook",
     "Geschichts-Pack",
     "Geschichte-Pack",
     "Verschwörungen",

@@ -830,6 +830,39 @@
       "source_url": "https://www.e-control.at/preismonitor",
       "secondary_url": "https://www.klimaticket.at/",
       "fetched_at_iso": "2026-04-27"
+    },
+    {
+      "id": "volkskanzler_kickl_at",
+      "topic": "volkskanzler_kickl_at",
+      "scope": "Politischer Sprachgebrauch: 'Volkskanzler' als Bezeichnung für FPÖ-Obmann Herbert Kickl (2023–2024)",
+      "year": "2023-2024",
+      "headline": "'Volkskanzler' ist eine seit 2023 dokumentierte Selbst- und Fremdbezeichnung für Herbert Kickl (FPÖ) — die Behauptung, er habe sich so bezeichnen lassen, ist zutreffend",
+      "data": {
+        "faktenlage": "Fremdbezeichnung durch die FPÖ ab März 2023 ('Volkskanzler Kickl' in Presseaussendungen), Eigenverwendung durch Kickl im Nationalratswahlkampf 2024; 'Volkskanzler' war zentrales Plakat- und Kampagnenmotiv der FPÖ zur Nationalratswahl 2024.",
+        "historischer_kontext": "Der Begriff 'Volkskanzler' wurde in der NS-Propaganda für Adolf Hitler verwendet; diese historische Konnotation ist in der deutschsprachigen Nachschlagewerk-Literatur (u. a. DE-Wikipedia-Lemma 'Volkskanzler') dokumentiert. Die Nennung dieses Kontexts ist deskriptiv und beinhaltet keine Gleichsetzung und keine Bewertung.",
+        "context": "Der Faktencheck bezieht sich ausschließlich auf die belegbare Aussage über den Sprachgebrauch (wurde der Begriff für bzw. von Kickl verwendet), nicht auf eine politische Bewertung.",
+        "kernsatz_fuer_synthesizer": "Die Behauptung, Herbert Kickl habe sich als 'Volkskanzler' bezeichnen lassen, ist ZUTREFFEND und gut dokumentiert — Verdict true bei 0.9 Konfidenz. Sowohl die Fremdbezeichnung durch die FPÖ (seit März 2023) als auch die Eigenverwendung durch Kickl (NR-Wahlkampf 2024) sind belegt; die Claim-Formulierung 'bezeichnen lassen' trifft zu. Dies ist eine rein deskriptive Feststellung des dokumentierten Sprachgebrauchs, KEINE Bewertung der FPÖ oder ihrer Politik."
+      },
+      "context_notes": [
+        "Rein deskriptive Feststellung des dokumentierten Sprachgebrauchs — keine Partei- oder Personenbewertung (project_political_guardrails.md).",
+        "Sowohl Fremdbezeichnung (FPÖ) als auch Eigenverwendung (Kickl) sind belegt; die Claim-Formulierung 'bezeichnen lassen' trifft beide Varianten.",
+        "Historische NS-Konnotation nur als belegter Kontext genannt, nicht als Gleichsetzung."
+      ],
+      "claim_phrasings_handled": [
+        "Herbert Kickl hat sich als Volkskanzler bezeichnen lassen",
+        "Kickl nennt sich Volkskanzler",
+        "Die FPÖ bezeichnet Kickl als Volkskanzler",
+        "Kickl Volkskanzler"
+      ],
+      "source_label": "FPÖ-Presseaussendungen (OTS) 2023–2024; Berichterstattung zur Nationalratswahl 2024; DE-Wikipedia-Lemma 'Volkskanzler'",
+      "source_url": "https://de.wikipedia.org/wiki/Volkskanzler",
+      "secondary_url": "https://www.ots.at/",
+      "fetched_at_iso": "2026-07-07",
+      "guardrails": [
+        "Rein deskriptive Feststellung des dokumentierten Sprachgebrauchs.",
+        "Keine Bewertung von Partei oder Person, keine eigene Links-Rechts-Einstufung.",
+        "Historische NS-Konnotation nur als belegter, deskriptiver Kontext — keine Gleichsetzung."
+      ]
     }
   ],
   "fetched_at_iso": "2026-04-27",
