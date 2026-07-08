@@ -35,11 +35,16 @@ ENV HF_HOME=/opt/hf-cache \
 RUN mkdir -p /opt/hf-cache \
  && HF_HUB_DISABLE_XET=1 python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2', revision='e8f8c211226b894fcb81acc59f3b34ba3efd5f42')" \
  && chown -R evidora:evidora /opt/hf-cache
-# BUILD-GATE: Modell OFFLINE laden (wie zur Laufzeit) + encode testen —
-# schlägt der Build fehl, statt still mit totem Reranker zu deployen.
-RUN HF_HUB_OFFLINE=1 python -c "from sentence_transformers import SentenceTransformer; m = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2', revision='e8f8c211226b894fcb81acc59f3b34ba3efd5f42'); v = m.encode('Offline-Ladecheck'); assert v is not None and len(v) > 0, 'Modell offline nicht ladbar'; print('BUILD-GATE ok: Modell offline ladbar + encode funktioniert')"
 
 COPY --chown=evidora:evidora . .
+
+# BUILD-GATE (NACH COPY, damit der ECHTE Runtime-Ladepfad getestet wird):
+# services._st_model.get_model() offline laden + encode. Das erste Build-Gate
+# testete versehentlich einen ANDEREN Pfad (direkter SentenceTransformer-Call
+# mit revision) als der Runtime (_st_model, der 'main' lud) — es gab grünes
+# Licht, obwohl der Reranker im Prod tot war (Audit 2026-07-08, Lehre aus #54:
+# ein Guard muss den ECHTEN Pfad testen). Jetzt exakt der Laufzeit-Code.
+RUN HF_HUB_OFFLINE=1 python -c "from services._st_model import get_model; m = get_model(); assert m is not None, 'ECHTER Ladepfad _st_model.get_model() lieferte None — Reranker waere im Prod tot'; v = m.encode('Offline-Ladecheck'); assert v is not None and len(v) > 0, 'encode fehlgeschlagen'; print('BUILD-GATE ok: _st_model.get_model() offline ladbar + encode funktioniert')"
 
 USER evidora
 

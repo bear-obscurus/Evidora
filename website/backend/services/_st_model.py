@@ -19,6 +19,13 @@ import logging
 logger = logging.getLogger("evidora")
 
 _MODEL_NAME = "paraphrase-multilingual-MiniLM-L12-v2"
+# Revision MUSS mit dem Docker-Model-Bake übereinstimmen (Dockerfile +
+# requirements-Pin). Ohne den Pin lud get_model() den 'main'-Ref — im
+# Offline-Image (HF_HUB_OFFLINE=1) ist aber NUR dieser Snapshot materialisiert.
+# Folge (Audit 2026-07-08): Bake lud revision=e8f8…, Runtime lud 'main' →
+# „couldn't find them in the cached files" → „semantic re-ranking disabled",
+# obwohl das Modell im Image lag. Beide Pfade jetzt auf dieselbe Revision.
+_MODEL_REVISION = "e8f8c211226b894fcb81acc59f3b34ba3efd5f42"
 
 _model = None
 _unavailable = False
@@ -35,8 +42,11 @@ def get_model():
     try:
         from sentence_transformers import SentenceTransformer
 
-        _model = SentenceTransformer(_MODEL_NAME)
-        logger.info(f"Shared SentenceTransformer loaded once ({_MODEL_NAME})")
+        _model = SentenceTransformer(_MODEL_NAME, revision=_MODEL_REVISION)
+        logger.info(
+            f"Shared SentenceTransformer loaded once "
+            f"({_MODEL_NAME}@{_MODEL_REVISION[:8]})"
+        )
         return _model
     except ImportError:
         _unavailable = True
