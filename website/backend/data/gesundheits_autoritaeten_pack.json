@@ -1217,6 +1217,56 @@
           ]
         ]
       ]
+    },
+    {
+      "id": "diclofenac_niere_konsens_2026",
+      "topic": "diclofenac_niere_konsens",
+      "scope": "Voltadol/Diclofenac und Nierenschädigung — Differenzierung systemisch (oral) vs. topisch (Gel)",
+      "year": 2024,
+      "headline": "Voltadol/Diclofenac & Nieren NUANCIERT: orales/systemisches Diclofenac (NSAR) hat ein reales, gut belegtes Nierenrisiko (v. a. bei Vorerkrankung/Dehydratation); TOPISCHES Diclofenac-Gel (in Österreich die Voltadol-Hauptform) hat nur ~6 % systemische Resorption und bei bestimmungsgemäßem Gebrauch ein sehr geringes Nierenrisiko",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG — Darreichungsform entscheidet: Der Claim 'Voltadol schädigt die Nieren' ist OHNE Angabe der Darreichungsform nur TEILS-TEILS zutreffend. (1) SYSTEMISCH/ORAL (Diclofenac-Tabletten, auch Voltadol Filmtabletten): NSAR hemmen die Prostaglandin-Synthese → renale Minderperfusion; ein akutes Nierenversagen (AKI) ist ein reales, in der Fachinformation dokumentiertes Risiko, besonders bei Vorerkrankung, Dehydratation, hoher/längerer Dosis oder der 'Triple Whammy' (NSAR + ACE-Hemmer/Sartan + Diuretikum). (2) TOPISCH (Voltadol/Voltaren Schmerzgel — in AT die typische OTC-Form): nur ~6 % systemische Resorption gegenüber oraler Gabe → bei bestimmungsgemäßer Anwendung ist das Nierenrisiko sehr gering. VERDICT-LEITLINIE: Pauschal 'Voltadol schädigt die Nieren' → mixed (teils-teils), Konfidenz ~0.6, mit expliziter Nennung der Gel-vs-Tabletten-Differenzierung. NUR wenn der Claim klar die orale/hochdosierte Form oder Risikopatient:innen meint → mostly_true. Wenn klar das Gel bei normalem Gebrauch gemeint ist → mostly_false. Ein pauschales 'wahr' ohne Darreichungsform-Nuance ist irreführend-alarmistisch, ein pauschales 'falsch' verharmlost das reale orale Risiko.",
+        "systemisch_oral": "Orales Diclofenac (NSAR): Prostaglandin-Hemmung reduziert die renale Durchblutung. Dokumentierte Risiken laut Fach-/Gebrauchsinformation: akute Nierenschädigung, Flüssigkeitsretention, selten interstitielle Nephritis; Risiko erhöht bei bestehender Nieren-/Herzinsuffizienz, Volumenmangel, älteren Patient:innen und Kombination mit ACE-Hemmern/Sartanen + Diuretika (Triple Whammy).",
+        "topisch_gel": "Topisches Diclofenac (Gel) hat eine systemische Bioverfügbarkeit von nur etwa 6 % im Vergleich zur oralen Gabe (etablierte pharmakokinetische Angabe). Dadurch sind systemische Nebenwirkungen inkl. Nierenrisiko bei bestimmungsgemäßer Anwendung deutlich seltener; Vorsicht dennoch bei großflächiger/langdauernder Anwendung und bekannter Nierenerkrankung.",
+        "marken_kontext": "'Voltadol' ist die österreichische OTC-Marke für Diclofenac (Haleon/GSK); am Markt v. a. als Schmerzgel (Voltadol/Voltadol Forte), daneben Filmtabletten. 'Voltaren' ist die international bekanntere Schwestermarke desselben Wirkstoffs.",
+        "context": "Der Faktencheck differenziert nach Darreichungsform; ohne diese Angabe ist die pauschale Behauptung nicht eindeutig wahr oder falsch."
+      },
+      "context_notes": [
+        "Kernaussage: Darreichungsform (oral vs. Gel) entscheidet über das Nierenrisiko — pauschale Aussage ohne diese Angabe ist teils-teils.",
+        "Orales Diclofenac: reales, dokumentiertes AKI-Risiko, dosisabhängig und bei Risikofaktoren erhöht.",
+        "Topisches Gel (in AT die Voltadol-Hauptform): ~6 % Resorption, bei bestimmungsgemäßem Gebrauch geringes Risiko.",
+        "Keine Anwendungsempfehlung; bei Nierenvorerkrankung ärztliche Rücksprache."
+      ],
+      "claim_phrasings_handled": [
+        "Voltadol schädigt die Nieren",
+        "Voltadol ist schlecht für die Nieren",
+        "Diclofenac schädigt die Nieren",
+        "Voltaren Gel schadet den Nieren"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "voltadol",
+          "voltaren",
+          "diclofenac",
+          "diclobene",
+          "deflamat"
+        ],
+        [
+          "niere",
+          "nieren",
+          "nephro",
+          "nephrotox",
+          "renal",
+          "nierenschäd",
+          "nierenschad",
+          "nierenversagen"
+        ]
+      ],
+      "source_label": "MedlinePlus Diclofenac-Arzneimittelinformation (NIH/NLM) + NSAR-Nephrotoxizität-Fachliteratur (Triple-Whammy)",
+      "source_url": "https://medlineplus.gov/druginfo/meds/a689002.html",
+      "secondary_url": "",
+      "fetched_at_iso": "2026-07-08"
     }
   ]
 }
