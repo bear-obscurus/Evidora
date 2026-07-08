@@ -114,6 +114,24 @@ def test_filter_returns_empty_for_unrelated_claim():
         f"themenfremder Claim darf KEINE Feed-Items durchlassen: {kept}"
 
 
+def test_keyword_fallback_word_boundary_no_substring_hit():
+    """Regression (Live-Diagnose 2026-07-08): im Prod lief der Keyword-
+    Fallback (toter Reranker), und die Entity 'Kinder' matchte als Substring
+    'Kinderhandel'/'Kindern' → themenfremde Feed-Items kamen durch. Jetzt
+    Wortgrenzen-Match."""
+    from services._factcheck_rss import _entity_or_query_match, _word_hit
+    # Substring-Fehltreffer, die NICHT mehr matchen dürfen
+    assert not _word_hit("kinder", "keine belege für kinderhandel auf vinted")
+    assert not _word_hit("kinder", "instagram-anzeigen zu missbrauchsaufnahmen von kindern")
+    # echtes ganzes Wort matcht weiterhin
+    assert _word_hit("kinder", "die unterschicht bekommt mehr kinder")
+    # End-to-End über _entity_or_query_match
+    assert not _entity_or_query_match(
+        "keine belege für kinderhandel auf vinted", ["Kinder"], [])
+    assert _entity_or_query_match(
+        "die unterschicht bekommt mehr kinder", ["Kinder"], [])
+
+
 def test_filter_never_passes_whole_feed():
     """Regression gegen den Feed-Dump: selbst generische Claims dürfen
     nicht den kompletten Feed zurückbekommen."""
