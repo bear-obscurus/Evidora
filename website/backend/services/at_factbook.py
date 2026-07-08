@@ -703,6 +703,19 @@ def _claim_mentions_pension_adjustment(claim_lc: str) -> bool:
     return _has_at_context(claim_lc)
 
 
+def _claim_mentions_volkskanzler(claim_lc: str) -> bool:
+    """'Volkskanzler'-Sprachgebrauch-Claim mit Bezug auf Kickl/FPÖ.
+
+    Eng gefasst: 'volkskanzler' MUSS vorkommen UND ein Kickl-/FPÖ-Bezug —
+    so triggert ein rein historischer NS-'Volkskanzler'-Claim (anderes Thema)
+    NICHT auf diesen deskriptiven AT-Zeitgeschichte-Fakt."""
+    if "volkskanzler" not in claim_lc:
+        return False
+    return any(t in claim_lc for t in (
+        "kickl", "fpö", "fpoe", "freiheitlich",
+    ))
+
+
 # ---------------------------------------------------------------------------
 # Public trigger
 # ---------------------------------------------------------------------------
@@ -748,6 +761,8 @@ def _claim_matches_any_topic(claim: str) -> list[str]:
         matched.append("bmf_tax_plans_at")
     if _claim_mentions_vegan(cl):
         matched.append("vegan_ernaehrung_counter")
+    if _claim_mentions_volkskanzler(cl):
+        matched.append("volkskanzler_kickl_at")
     return matched
 
 
@@ -2225,6 +2240,38 @@ def _build_vegan_results(fact: dict, claim_lc: str) -> list[dict]:
     }]
 
 
+def _build_volkskanzler_results(fact: dict, claim_lc: str) -> list[dict]:
+    """Deskriptiver Zeitgeschichte-Fakt: 'Volkskanzler' für Kickl.
+
+    display_value = user-sichtbarer Faktentext (headline + Faktenlage). Die
+    explizite Verdict-Direktive steht als 'Kernsatz fuer synthesizer: …' am
+    ENDE der description — im Synthesizer-Prompt sichtbar, aber durch die
+    Export-Sanitization (_export_sanitize) aus der user-sichtbaren Kopie
+    entfernt. Guardrail-konform: rein deskriptiv, keine Partei-Bewertung."""
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "FPÖ-OTS / DE-Wikipedia 'Volkskanzler'"
+
+    display = f"{fact.get('headline', '?')}. {data.get('faktenlage', '')}".strip()
+    desc_parts = [
+        data.get("historischer_kontext", ""),
+        " ".join(fact.get("context_notes") or []),
+        # Verdict-Direktive ans Ende — wird für den Export gestrippt.
+        f"Kernsatz fuer synthesizer: {data.get('kernsatz_fuer_synthesizer', '')}",
+    ]
+    return [{
+        "indicator_name": "'Volkskanzler' als Bezeichnung für Herbert Kickl (dokumentiert seit 2023)",
+        "indicator": "factbook_volkskanzler",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": fact.get("year", ""),
+        "display_value": display,
+        "description": " ".join(p for p in desc_parts if p.strip()),
+        "url": src,
+        "source": label,
+    }]
+
+
 # ---------------------------------------------------------------------------
 # Public search
 # ---------------------------------------------------------------------------
@@ -2293,6 +2340,8 @@ async def search_at_factbook(analysis: dict) -> dict:
                 results.extend(_build_bmf_steuer_results(fact, cl))
             elif topic == "vegan_ernaehrung_counter":
                 results.extend(_build_vegan_results(fact, cl))
+            elif topic == "volkskanzler_kickl_at":
+                results.extend(_build_volkskanzler_results(fact, cl))
 
     return {
         "source": "AT Factbook",
