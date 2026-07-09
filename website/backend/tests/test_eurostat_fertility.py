@@ -28,7 +28,6 @@ def test_no_known_broken_dataset_params():
     # (bad_code, warum) — darf in KEINEM params-Dict mehr vorkommen
     forbidden = {
         "demo_frate": "altersspezifisch statt TFR → 0,0001 Kinder/Frau",
-        "E7000": "siec=E7000 mit GEP → leere Stromproduktion",
         "CP_PPS_HAB": "ungültige Unit für BIP/Kopf → leer",
         "LI_R_MD60": "indic_il existiert nicht in ilc_li02 → HTTP 400",
         "BAL": "flow=BAL existiert nicht in ext_lt_maineu → HTTP 400",
@@ -40,6 +39,28 @@ def test_no_known_broken_dataset_params():
         blob = f"{ds['dataset']} {ds['params']}"
         for bad, why in forbidden.items():
             assert bad not in blob, f"'{kw}' nutzt wieder '{bad}' ({why})"
+    # E7000 ist dataset-abhängig: in nrg_bal_c (Energiebilanz/GEP) lieferte
+    # es LEERE Antworten (Bug 2026-07-07) — in nrg_pc_204 (Strompreise) ist
+    # es der KORREKTE siec-Code (live verifiziert 2026-07-09).
+    for kw, ds in DATASET_MAP.items():
+        if ds["dataset"] == "nrg_bal_c":
+            assert ds["params"].get("siec") != "E7000", \
+                f"'{kw}': E7000 in nrg_bal_c → leere Stromproduktion"
+
+
+def test_electricity_price_config_pinned():
+    """Strompreis-Config (50-Claim-Test #22): nrg_pc_204 mit ALLEN
+    Nicht-geo/time-Dims gepinnt — live verifiziert (DE 0,39 / AT 0,33 /
+    EU27 0,29 EUR/kWh, 2025-S2)."""
+    price_entries = [v for v in DATASET_MAP.values()
+                     if v["dataset"] == "nrg_pc_204"]
+    assert price_entries, "Strompreis-Eintrag (nrg_pc_204) fehlt"
+    for p in (e["params"] for e in price_entries):
+        assert p.get("freq") == "S", "nrg_pc_204 ist HALBJÄHRLICH (freq=S)"
+        assert p.get("siec") == "E7000"
+        assert p.get("nrg_cons") == "KWH2500-4999"   # Standard-Haushaltsband
+        assert p.get("tax") == "I_TAX"               # inkl. aller Steuern
+        assert p.get("currency") == "EUR"
 
 
 def test_migration_and_gini_and_students_are_filtered():
