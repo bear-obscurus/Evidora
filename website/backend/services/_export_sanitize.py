@@ -42,9 +42,13 @@ _INTERNAL_SEGMENT_RE = re.compile(
 )
 # Inline-Block: interner Marker (irgendwo im Text) bis zum nächsten " | "
 # ODER Stringende. DOTALL, damit auch mehrzeilige kernsätze erfasst werden.
+# STRUKTURELL-Prefixe hier ebenfalls (Audit 2026-07-09, 50-Claim-Test):
+# 12/50 Exporte zeigten "… Headline. STRUKTURELL FALSCH: WICHTIG: …" MITTEN
+# im display_value — der Prefix-Strip oben greift nur am String-ANFANG.
 _INTERNAL_INLINE_RE = re.compile(
     r"(?:kernsatz f(?:ue|ü)r synthesizer|verdict-direktive|"
-    r"wichtig f(?:ue|ü)r die bewertung)\s*:.*?(?=\s\|\s|$)",
+    r"wichtig f(?:ue|ü)r die bewertung|"
+    r"strukturell falsch|strukturell_cosine_falsch)\s*:.*?(?=\s\|\s|$)",
     re.IGNORECASE | re.DOTALL,
 )
 # GDELT-GKG-Tag mit Character-Offset: THEMA_NAME,12345 → THEMA_NAME
