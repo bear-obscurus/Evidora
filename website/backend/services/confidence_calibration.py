@@ -33,6 +33,7 @@ Verwendung in main.py:
 from __future__ import annotations
 
 import logging
+import re
 
 logger = logging.getLogger("evidora")
 
@@ -45,6 +46,14 @@ AUTHORITATIVE_PACK_MARKERS = (
     "AT Factbook",
     "Geschichts-Pack",
     "Geschichte-Pack",
+    # Marker-Drift-Fix 2026-07-09: die REALEN source-Namen der Services
+    # wichen von den Markern ab — geschichte_pack sendet "Geschichts-
+    # Faktencheck (DÖW + …)", verschwoerungen_pack "Verschwoerungen-…"
+    # (oe statt ö), at_courts "VfGH + VwGH Schlüsselerkenntnisse". Diese
+    # drei kuratierten Packs bekamen dadurch NIE die milderen Pack-Caps.
+    "Geschichts-Faktencheck",
+    "Verschwoerungen-Faktencheck",
+    "Schlüsselerkenntnisse",
     "Verschwörungen",
     "Tech-/KI-Faktencheck",
     "Gesundheits-Autoritäten",
@@ -149,6 +158,73 @@ def _has_authoritative_pack(sources_used: list[str]) -> bool:
     )
 
 
+# --------------------------------------------------------------------------
+# Pack-Direktiven-Floor (50-Claim-QA 2026-07-09)
+# --------------------------------------------------------------------------
+# Kuratierte kernsätze tragen explizite Konfidenz-Direktiven ("Verdict false
+# bei 0.95 Konfidenz", "mixed@~0.6", "(mostly_false, Konfidenz 0.85-0.9)").
+# Der LLM blieb wiederholt DARUNTER (Holocaust: 0.8 trotz 0.95-Direktive;
+# Schattenregierung: false@0.15) und die generischen Caps können kuratierte
+# Klarfälle zusätzlich deckeln. Der Floor hebt die kalibrierte Konfidenz auf
+# die Direktive an — NUR wenn (a) die Quelle ein AUTHORITATIVE-Pack ist,
+# (b) der Text erkennbar eine Verdict-Direktive trägt und (c) das FINALE
+# Verdict-Label exakt dem Direktiven-Label entspricht (sonst hat z.B. eine
+# Differenzierungs-Klausel gegriffen — dann kein Floor). Range → untere
+# Grenze (konservativ). Senkt NIE, hebt maximal auf DIRECTIVE_FLOOR_MAX.
+
+DIRECTIVE_FLOOR_MAX = 0.95
+
+# Formate (real in Packs): "Verdict false bei 0.95 Konfidenz" /
+# "FALSCH (false, Konfidenz 0.85-0.9)" / "(mixed@~0.6)" /
+# "'mostly_false' mit Confidence 0.85-0.9". Zwischenraum ohne Ziffern/
+# Punkte hält den Match innerhalb einer Direktive (keine Satz-Sprünge).
+_DIRECTIVE_RE = re.compile(
+    r"\b(true|mostly_true|mixed|mostly_false|false)\b"
+    r"[^.0-9]{0,30}?"
+    r"(?:@~?|bei\s+|konfidenz\s+|confidence\s+)"
+    r"~?\s*(0[.,]\d{1,2})"
+    r"(?:\s*[-–]\s*(0[.,]\d{1,2}))?",
+    re.IGNORECASE,
+)
+
+
+def extract_pack_directive_floor(
+    source_results: list, verdict: str | None
+) -> float | None:
+    """Höchster Direktiven-Floor aus AUTHORITATIVE-Pack-Ergebnissen, dessen
+    Label dem finalen ``verdict`` entspricht. None wenn keiner passt."""
+    if not verdict or verdict == "unverifiable" or not source_results:
+        return None
+    best: float | None = None
+    for sd in source_results:
+        if not isinstance(sd, dict):
+            continue
+        src = sd.get("source", "") or ""
+        if not _has_authoritative_pack([src]):
+            continue
+        for r in sd.get("results", []) or []:
+            if not isinstance(r, dict):
+                continue
+            for field in ("display_value", "description"):
+                text = r.get(field)
+                if not isinstance(text, str) or "verdict" not in text.lower():
+                    continue
+                for m in _DIRECTIVE_RE.finditer(text):
+                    label, lo, hi = m.group(1).lower(), m.group(2), m.group(3)
+                    if label != verdict:
+                        continue
+                    # Range → untere Grenze; Komma-Dezimal normalisieren
+                    val = float(lo.replace(",", "."))
+                    if hi:
+                        val = min(val, float(hi.replace(",", ".")))
+                    if val < 0.5 or val > 1.0:
+                        continue  # implausible Direktive ignorieren
+                    val = min(val, DIRECTIVE_FLOOR_MAX)
+                    if best is None or val > best:
+                        best = val
+    return best
+
+
 def _is_wikipedia_only(sources_used: list[str]) -> bool:
     """True wenn ALLE Quellen-mit-Treffern aus Wikipedia/Wikidata sind
     (mindestens eine, und keine anderen).
@@ -232,6 +308,7 @@ def calibrate_confidence(
     evidence: list[dict] | None = None,
     sources_used: list[str] | None = None,
     claim: str | None = None,
+    directive_floor: float | None = None,
 ) -> tuple[float, dict]:
     """Kalibriert Konfidenz-Wert vom Synthesizer auf Basis objektiver
     Quellen-Metriken.
@@ -262,14 +339,32 @@ def calibrate_confidence(
         "normative_term": False,
         "n_sources_with_results": 0,
         "applied_cap": None,
+        "directive_floor": directive_floor,
+        "floor_applied": False,
     }
+
+    def _apply_floor(value: float) -> float:
+        """Pack-Direktiven-Floor: hebt auf die kuratierte Direktive an,
+        senkt NIE. Der Caller (extract_pack_directive_floor) hat Label-
+        Match + AUTHORITATIVE-Pack-Herkunft bereits sichergestellt."""
+        if directive_floor is not None and value < directive_floor:
+            debug["floor_applied"] = True
+            logger.info(
+                f"confidence_calibration: pack-directive floor "
+                f"{value:.2f} → {directive_floor:.2f}"
+            )
+            return directive_floor
+        return value
 
     if raw_conf is None:
         return 0.0, debug
 
-    # Edge-Case: very-low conf für 'unverifiable' bleibt unverändert
+    # Edge-Case: very-low conf für 'unverifiable' bleibt unverändert.
+    # AUSNAHME: eine Pack-Direktive mit Label-Match hebt auch inkohärent-
+    # niedrige LLM-Konfidenzen (beobachtet: false@0.15 trotz kuratiertem
+    # Klarfall-Fakt — Schattenregierungs-Claim).
     if raw_conf <= 0.15:
-        return raw_conf, debug
+        return _apply_floor(raw_conf), debug
 
     # Source-Coverage extrahieren
     source_coverage = source_coverage or {}
@@ -315,7 +410,7 @@ def calibrate_confidence(
         if c is not None
     ]
     if not candidate_caps:
-        return raw_conf, debug
+        return _apply_floor(raw_conf), debug
     final_cap = min(candidate_caps)
     debug["applied_cap"] = final_cap
 
@@ -326,6 +421,10 @@ def calibrate_confidence(
             f"normative={has_normative}, cap_src={cap_source}, "
             f"cap_ev={cap_evidence}, cap_wp={cap_wp}, cap_norm_wp={cap_norm_wp})"
         )
-        return final_cap, debug
+        # Direktiven-Floor schlägt die generischen Caps: eine kuratierte
+        # Pack-Direktive ist ein stärkeres Signal als Count-/Strength-
+        # Heuristiken (Wikipedia-only-Fall kann hier nicht auftreten —
+        # das Pack selbst ist eine Nicht-Wikipedia-Quelle).
+        return _apply_floor(final_cap), debug
 
-    return raw_conf, debug
+    return _apply_floor(raw_conf), debug
