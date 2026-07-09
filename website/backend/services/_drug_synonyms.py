@@ -66,6 +66,16 @@ _BRAND_TO_INN: dict[str, str] = {
     "thyrex": "Levothyroxin",
     # Muskelrelaxans
     "sirdalud": "Tizanidin",
+    # Antihistaminika (50-Claim-Test 2026-07-09 #5: Zyrtec fehlte im
+    # Mapping → unverifiable). Nur eindeutige Mono-Wirkstoff-Marken.
+    "zyrtec": "Cetirizin",
+    "cetebe allergie": "Cetirizin",
+    "aerius": "Desloratadin",
+    "lorano": "Loratadin",
+    "claritine": "Loratadin",
+    "fenistil": "Dimetinden",
+    "xyzall": "Levocetirizin",
+    "telfast": "Fexofenadin",
 }
 
 # Vorkompilierte Wortgrenzen-Pattern pro Marke (Mehrwort-Marken erlaubt).
