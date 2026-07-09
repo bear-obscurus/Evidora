@@ -1001,6 +1001,144 @@
           "international"
         ]
       ]
+    },
+    {
+      "id": "effektive_steuerlast_reiche_mittelschicht_2026",
+      "topic": "effektive_steuerlast_reiche_mittelschicht_konsens",
+      "scope": "Effektive Gesamt-Steuerlast Reiche/Superreiche vs. Mittelschicht (AT/DE/CH) — Erwerbseinkommen progressiv vs. Kapital/Vermögen niedrig besteuert",
+      "year": 2024,
+      "source_url": "https://www.momentum-institut.at/publikation/effektive-steuerbeitraege-von-superreichen-in-der-schweiz-oesterreich-und-deutschland/",
+      "secondary_url": "https://taxobservatory.world/publication/global-tax-evasion-report-2024/",
+      "source_label": "Momentum Institut / Oxfam / Netzwerk Steuergerechtigkeit 'Die Steuerschere' 2024 + EU Tax Observatory 'Global Tax Evasion Report 2024' (Zucman et al.) + OECD Taxing Wages + Statistik Austria",
+      "headline": "Steuerlast Reiche vs. Mittelschicht ist MIXED: Auf ERWERBSEINKOMMEN progressiv (AT-Abgabenkeil 47,0 % 2024, 5.-höchster OECD-Wert); bei der EFFEKTIVEN GESAMTLAST inkl. flach besteuerter Kapitalerträge (KESt 27,5 %) und unbesteuerten Vermögens zahlen SUPERREICHE laut Momentum/Oxfam 2024 nur ~26 % vs. ~42 % einer Durchschnittsfamilie",
+      "data": {
+        "kernsatz_fuer_synthesizer": "VERDICT-LEITLINIE: Der Claim 'Reiche zahlen prozentual weniger Steuern als die Mittelschicht' ist MIXED/teils-teils (mixed@~0.6), weil er von der Bezugsgröße abhängt. UNTERSCHEIDUNG ist Pflicht: (A) ERWERBSEINKOMMEN (Lohn-/Einkommensteuer): Das System ist PROGRESSIV — wer mehr Erwerbseinkommen bezieht, zahlt prozentual MEHR. AT-Tarif bis 55 % Spitzensteuersatz; OECD-Abgabenkeil (tax wedge) für den durchschnittlichen Single-Beschäftigten 2024 bei 47,0 % (OECD Taxing Wages), 5.-höchster Wert der 38 OECD-Länder (OECD-Schnitt 34,9 %). Auf reine Erwerbsarbeit ist der Claim also FALSCH. (B) EFFEKTIVE GESAMTLAST inkl. Kapital + Vermögen: Hier kippt das Bild bei den SEHR Vermögenden. Kapitalerträge werden in AT mit FLAT-KESt 27,5 % besteuert (Zinsen 25 %) — nicht progressiv. Große Vermögen und Erbschaften sind in AT praktisch unbesteuert; nur ~4 von 100 Euro Steueraufkommen stammen aus vermögensbezogenen Steuern. Da Superreiche ihr ökonomisches Einkommen überwiegend aus Kapital beziehen, sinkt ihre EFFEKTIVE Gesamt-Abgabenquote unter die der Mittelschicht. (C) KONKRETE ZAHLEN — Momentum Institut / Oxfam / Netzwerk Steuergerechtigkeit, 'Die Steuerschere' (April 2024): österreichische Durchschnittsfamilie effektiv ~42 % des Bruttoeinkommens an Steuern/Abgaben, Muster-Millionärshaushalt ~30 %, Milliardär ~26 % — weit unter dem nominalen Spitzensatz 55 %. DE: Milliardäre effektiv ~26 % (nominal 47,5 %), CH ~32 % (nominal 41,5 %). (D) INTERNATIONAL — EU Tax Observatory, 'Global Tax Evasion Report 2024' (Zucman et al.): globale Milliardäre zahlen effektiv 0 bis 0,5 % — GEMESSEN AM VERMÖGEN (nicht am Einkommen; anderer Maßstab als Punkt C, NICHT vermischen). (E) VERDICT-ANWENDUNG: 'Reiche zahlen prozentual weniger als die Mittelschicht' (pauschal) → MIXED@~0.6. 'Superreiche/Milliardäre zahlen effektiv weniger als die Mittelschicht' → MOSTLY_TRUE@~0.8. 'Das Steuersystem ist progressiv' → auf Erwerbseinkommen MOSTLY_TRUE, auf die effektive Gesamtlast der Spitzenvermögen MIXED. 'Milliardäre zahlen fast keine Steuern' → MIXED (nur vermögensbezogen korrekt). GUARDRAILS: rein deskriptiv-empirisch; KEINE steuerpolitische Empfehlung (die Vermögenssteuer-Vorschläge der Studienautoren werden nur attribuiert, nicht übernommen); KEINE Partei-Zuordnung; Quellen-Charakter transparent (Momentum/Oxfam = Think-Tank-Studie, EU Tax Observatory = akademisch, OECD = amtlich).",
+        "erwerbseinkommen_progressiv": "Lohn-/Einkommensteuer progressiv: AT-Tarif 0-55 %. OECD Taxing Wages (Daten 2024): Abgabenkeil Single-Beschäftigter AT 47,0 %, 5.-höchster der 38 OECD-Länder (nach BE 52,6 %, DE 47,9 %, FR 47,2 %, IT 47,1 %); OECD-Schnitt 34,9 %.",
+        "effektive_gesamtlast_momentum_2024": "Momentum Institut / Oxfam / Netzwerk Steuergerechtigkeit, 'Die Steuerschere' (19.04.2024, AT-Berechnungen Barbara Schuster): effektive Gesamt-Abgabenquote am Bruttoeinkommen — Durchschnittsfamilie ~42 %, Muster-Millionärshaushalt ~30 %, Milliardär ~26 %. Ländervergleich Milliardäre: AT ~26 % (nominal 55 %), DE ~26 % (47,5 %), CH ~32 % (41,5 %).",
+        "kapital_vermoegen_flat": "KESt in AT: 27,5 % flat auf Dividenden/Aktiengewinne, 25 % auf Zinsen — nicht progressiv. Keine Vermögen-, Erbschafts- oder Schenkungssteuer; nur ~4 von 100 Euro des Steueraufkommens aus vermögensbezogenen Steuern.",
+        "zucman_wealth_2024": "EU Tax Observatory, 'Global Tax Evasion Report 2024' (Alstadsæter/Godar/Nicolaides/Zucman): globale Milliardäre effektiv 0-0,5 % — gemessen am VERMÖGEN (~2.700 Milliardäre, ~13 Bio USD). Vermögens-Metrik ist NICHT mit der Einkommens-Metrik aus der Momentum-Studie vermischbar.",
+        "context": "Empirisch-deskriptiv: für Erwerbseinkommen progressiv (Claim falsch), für die effektive Gesamtlast der Superreichen regressiv (Claim zutreffend) — klassisches teils-teils. Keine steuerpolitische Empfehlung."
+      },
+      "context_notes": [
+        "Zentrale Differenzierung: 'Reiche' ist nicht gleich 'Superreiche'. Auf Erwerbseinkommen zahlen Höherverdiener prozentual MEHR; erst bei kapital-/vermögensdominierten Superreichen sinkt die EFFEKTIVE Gesamtlast unter die der Mittelschicht.",
+        "Zwei getrennte Metriken NICHT vermischen: Momentum/Oxfam misst in % des EINKOMMENS (~26 % vs. ~42 %); EU Tax Observatory misst 0-0,5 % in % des VERMÖGENS.",
+        "Quellen-Transparenz: Momentum/Oxfam-Studie ist zivilgesellschaftlich beauftragt — daher mit amtlicher OECD-Struktur und akademischem EU-Tax-Observatory-Befund gepaart; Vermögenssteuer-Empfehlung der Autoren nur attribuiert, nicht übernommen. Keine Partei-Zuordnung (project_political_guardrails.md)."
+      ],
+      "claim_phrasings_handled": [
+        "Reiche zahlen prozentual weniger Steuern als die Mittelschicht",
+        "Superreiche zahlen weniger Steuern als normale Arbeitnehmer",
+        "Milliardäre zahlen kaum Steuern",
+        "Vermögende zahlen anteilig weniger als der Mittelstand",
+        "Das Steuersystem ist gar nicht progressiv",
+        "Der Mittelstand zahlt mehr Steuern als die Reichen"
+      ],
+      "trigger_keywords": [
+        "steuersystem ist gar nicht progressiv",
+        "steuersystem ist nicht progressiv",
+        "steuersystem gar nicht progressiv"
+      ],
+      "trigger_composite": [
+        [
+          "reiche",
+          "reichen",
+          "superreiche",
+          "superreichen",
+          "millionär",
+          "millionaer",
+          "millionäre",
+          "millionaere",
+          "milliardär",
+          "milliardaer",
+          "milliardäre",
+          "milliardaere",
+          "vermögende",
+          "vermoegende",
+          "wohlhabende",
+          "spitzenverdiener",
+          "besitzende"
+        ],
+        [
+          "steuer",
+          "steuern",
+          "steuerlast",
+          "steuersatz",
+          "abgaben",
+          "abgabenquote",
+          "besteuer",
+          "steuerbeitrag"
+        ],
+        [
+          "weniger",
+          "mehr",
+          "geringer",
+          "niedriger",
+          "prozentual",
+          "anteilig",
+          "effektiv",
+          "mittelschicht",
+          "mittelstand",
+          "mittelklasse",
+          "arbeitnehmer",
+          "kaum",
+          "progressiv"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "wer arbeitet"
+          ],
+          [
+            "wer besitzt"
+          ]
+        ],
+        [
+          [
+            "superreich",
+            "milliardär",
+            "milliardaer"
+          ],
+          [
+            "kaum",
+            "keine",
+            "fast keine"
+          ],
+          [
+            "steuer"
+          ]
+        ],
+        [
+          [
+            "reiche",
+            "superreiche",
+            "vermögende",
+            "vermoegende",
+            "wohlhabende",
+            "millionär",
+            "millionaer",
+            "milliardär",
+            "milliardaer"
+          ],
+          [
+            "zahlen",
+            "zahlt"
+          ],
+          [
+            "anteilig",
+            "prozentual",
+            "weniger",
+            "geringer"
+          ],
+          [
+            "mittelstand",
+            "mittelschicht",
+            "mittelklasse",
+            "arbeitnehmer",
+            "normalverdiener",
+            "durchschnitt"
+          ]
+        ]
+      ]
     }
   ]
 }
