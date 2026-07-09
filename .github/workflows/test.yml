@@ -49,6 +49,8 @@ jobs:
     #                                  Build-Gate testet echten Ladepfad)
     #   - test_kurz_orf_facts         (Kurz-Freispruch + ORF-Beitrag-Fakten,
     #                                  Adverb-Falle 'kurz nach' gebannt)
+    #   - test_holocaust_denial_fact  (Leugnungs-Fakt false@0.95 + § 3h,
+    #                                  legitime Geschichtsforschung leakt nicht)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -95,7 +97,8 @@ jobs:
             tests/test_volkskanzler_fact.py \
             tests/test_diclofenac_niere_fact.py \
             tests/test_st_model_revision.py \
-            tests/test_kurz_orf_facts.py
+            tests/test_kurz_orf_facts.py \
+            tests/test_holocaust_denial_fact.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
