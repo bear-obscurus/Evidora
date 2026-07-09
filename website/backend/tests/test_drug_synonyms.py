@@ -82,3 +82,15 @@ def test_apply_expansion_handles_missing_fields():
 ])
 def test_selected_at_brands(brand, inn):
     assert inn in brand_inns_in_claim(f"Ich habe {brand} genommen")
+
+
+@pytest.mark.parametrize("brand,inn", [
+    # Antihistaminika (50-Claim-Test 2026-07-09 #5)
+    ("Zyrtec", "Cetirizin"),
+    ("Aerius", "Desloratadin"),
+    ("Fenistil", "Dimetinden"),
+    ("Xyzall", "Levocetirizin"),
+    ("Telfast", "Fexofenadin"),
+])
+def test_antihistamine_brands(brand, inn):
+    assert inn in brand_inns_in_claim(f"Macht {brand} schläfrig?")
