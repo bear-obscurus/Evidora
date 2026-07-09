@@ -863,6 +863,48 @@
         "Keine Bewertung von Partei oder Person, keine eigene Links-Rechts-Einstufung.",
         "Historische NS-Konnotation nur als belegter, deskriptiver Kontext — keine Gleichsetzung."
       ]
+    },
+    {
+      "id": "orf_beitrag_finanzierung_2024",
+      "topic": "orf_finanzierung_at",
+      "scope": "ORF-Finanzierung: geräteunabhängiger ORF-Beitrag (Haushaltsabgabe) statt GIS-Gebühr seit 1.1.2024",
+      "year": "seit 2024",
+      "headline": "Der ORF finanziert sich seit 1.1.2024 über den ORF-Beitrag (Haushaltsabgabe), nicht mehr über die GIS-Gebühr",
+      "data": {
+        "orf_beitrag_basisbetrag_eur_pro_monat": 15.30,
+        "in_kraft_seit_iso": "2024-01-01",
+        "ersetzt": "GIS-Gebühr (endete mit 31.12.2023)",
+        "rechtsgrundlage": "ORF-Beitragsgesetz 2024 (ORF-BeitragsG 2024), BGBl. I Nr. 112/2023; Nationalrats-Beschluss 05.07.2023",
+        "einhebende_stelle": "ORF-Beitrags Service GmbH (OBS), Nachfolgerin der GIS Gebühren Info Service GmbH",
+        "charakter": "Geräteunabhängige Haushaltsabgabe — knüpft an den Hauptwohnsitz-Haushalt, nicht mehr an das Vorhandensein eines Rundfunk-Empfangsgeräts. In Bundesländern mit Landesabgabe kommt diese zum Basisbetrag hinzu; Nebenwohnsitze und bisher Befreite bleiben ausgenommen.",
+        "ausloeser_vfgh": "VfGH-Erkenntnis G 226/2022 vom 04.07.2022: Die alte GIS-Regelung (Programmentgelt nur bei Rundfunk-Empfang) wurde als gleichheitswidrig aufgehoben, weil Online-/Streaming-Nutzer:innen ohne Empfangsgerät nicht erfasst waren; Reparaturfrist bis Ende 2023.",
+        "kernsatz_fuer_synthesizer": "Seit 1.1.2024 finanziert sich der ORF NICHT mehr über die GIS-Gebühr, sondern über den geräteunabhängigen ORF-Beitrag (Haushaltsabgabe, Basisbetrag 15,30 EUR/Monat). VERDICT-LEITLINIE: (a) 'Der ORF finanziert sich über die GIS-Gebühr' = GRÖSSTENTEILS FALSCH / VERALTET seit 1.1.2024 (mostly_false, Konfidenz 0.85-0.9) — die GIS-Gebühr wurde mit 31.12.2023 abgeschafft, der Begriff beschreibt einen überholten Zustand. NICHT als schlicht 'true' bewerten. (b) 'Der ORF finanziert sich über den ORF-Beitrag / die Haushaltsabgabe' = WAHR. (c) Zusatz-Nuance: Der ORF finanziert sich überwiegend, aber nicht ausschließlich aus dem ORF-Beitrag — daneben aus Werbeeinnahmen und sonstigen Erlösen; 'ausschließlich über den Beitrag' wäre daher nur teilweise richtig. Rein deskriptive Finanzierungs-Faktenlage, KEINE Bewertung des ORF, der Beitragshöhe oder der öffentlich-rechtlichen Finanzierung."
+      },
+      "context_notes": [
+        "Zeitliche Differenzierung ist der Kern: bis 31.12.2023 GIS-Gebühr (gerätegebunden), ab 1.1.2024 ORF-Beitrag (geräteunabhängige Haushaltsabgabe). Ein Claim 'ORF finanziert sich über die GIS' ist damit seit 2024 veraltet.",
+        "Rechtsgrundlage: ORF-Beitragsgesetz 2024 (BGBl. I Nr. 112/2023); Nationalrats-Beschluss 5.7.2023, in Kraft seit 1.1.2024.",
+        "Auslöser der Reform war das VfGH-Erkenntnis G 226/2022 (4.7.2022): Bindung des Programmentgelts an ein Empfangsgerät war gleichheitswidrig.",
+        "Höhe: Basisbetrag 15,30 EUR/Monat, zzgl. allfälliger Landesabgaben in einzelnen Bundesländern.",
+        "Eingehoben durch die ORF-Beitrags Service GmbH (OBS), Nachfolgerin der GIS.",
+        "Der VfGH hat den ORF-Beitrag NICHT selbst eingeführt — er hob nur die alte Regelung auf; die Haushaltsabgabe ist eine Entscheidung des Gesetzgebers."
+      ],
+      "claim_phrasings_handled": [
+        "ORF finanziert sich über die GIS-Gebühr",
+        "ORF wird über GIS finanziert",
+        "GIS-Gebühr für den ORF",
+        "ORF-Beitrag Höhe pro Monat",
+        "Haushaltsabgabe ORF 15,30 Euro",
+        "GIS abgeschafft ORF-Beitrag",
+        "Rundfunkgebühr Österreich ORF"
+      ],
+      "source_label": "ORF-Beitragsgesetz 2024 (BGBl. I Nr. 112/2023); ORF-Beitrags Service GmbH (OBS); news.ORF.at Parlamentsbericht 5.7.2023; WKO",
+      "source_url": "https://www.wko.at/oe/tourismus-freizeitwirtschaft/orf-beitragsgesetz-2024-haushaltsabgabe",
+      "secondary_url": "https://orf.at/stories/3322828/",
+      "fetched_at_iso": "2026-07-09",
+      "guardrails": [
+        "Rein deskriptive Feststellung der Finanzierungs-Rechtslage — keine Bewertung des ORF, seiner Beitragshöhe oder der öffentlich-rechtlichen Finanzierung.",
+        "Zeitliche Differenzierung (bis 2023 GIS, ab 2024 ORF-Beitrag) statt pauschal wahr oder falsch."
+      ]
     }
   ],
   "fetched_at_iso": "2026-04-27",
