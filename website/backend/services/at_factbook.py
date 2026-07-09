@@ -703,6 +703,31 @@ def _claim_mentions_pension_adjustment(claim_lc: str) -> bool:
     return _has_at_context(claim_lc)
 
 
+def _claim_mentions_orf_finanzierung(claim_lc: str) -> bool:
+    """ORF-Finanzierungs-Claims (GIS vs. ORF-Beitrag, 50-Claim-Test #29).
+
+    Feuert bei: orf+gis | orf+finanzier+(gebühr|beitrag|abgabe) |
+    orf+(beitrag|haushaltsabgabe)+(höhe|euro|monat) | gis+(abgeschafft|…).
+    NICHT bei VfGH-Erkenntnungs-Claims — die gehören zum at_courts-Eintrag
+    (dort mit vfgh/erkenntnis-Kontext); hier nur Finanzierungs-/Höhe-Claims."""
+    has_orf = "orf" in claim_lc
+    if has_orf and "gis" in claim_lc:
+        return True
+    if has_orf and "finanzier" in claim_lc and any(
+            t in claim_lc for t in ("gebühr", "gebuehr", "beitrag",
+                                    "abgabe", "haushaltsabgabe")):
+        return True
+    if has_orf and any(t in claim_lc for t in ("beitrag", "haushaltsabgabe")) \
+            and any(t in claim_lc for t in ("höhe", "hoehe", "euro", "monat",
+                                            "15,30", "15.30")):
+        return True
+    if "gis" in claim_lc and any(
+            t in claim_lc for t in ("abgeschafft", "ersetzt", "veraltet",
+                                    "gibt es nicht mehr", "gibt es noch")):
+        return True
+    return False
+
+
 def _claim_mentions_volkskanzler(claim_lc: str) -> bool:
     """'Volkskanzler'-Sprachgebrauch-Claim mit Bezug auf Kickl/FPÖ.
 
@@ -763,6 +788,8 @@ def _claim_matches_any_topic(claim: str) -> list[str]:
         matched.append("vegan_ernaehrung_counter")
     if _claim_mentions_volkskanzler(cl):
         matched.append("volkskanzler_kickl_at")
+    if _claim_mentions_orf_finanzierung(cl):
+        matched.append("orf_finanzierung_at")
     return matched
 
 
@@ -2272,6 +2299,41 @@ def _build_volkskanzler_results(fact: dict, claim_lc: str) -> list[dict]:
     }]
 
 
+def _build_orf_finanzierung_results(fact: dict, claim_lc: str) -> list[dict]:
+    """ORF-Finanzierungs-Fakt (GIS → ORF-Beitrag seit 1.1.2024).
+
+    display_value = deskriptiver Faktentext; Verdict-Leitlinie als 'Kernsatz
+    fuer synthesizer: …' am description-Ende (Prompt sieht sie, Export-
+    Sanitization strippt sie aus der User-Kopie — Muster wie Volkskanzler)."""
+    data = fact.get("data") or {}
+    src = fact.get("source_url") or ""
+    label = fact.get("source_label") or "ORF-BeitragsG 2024 / OBS"
+
+    display = (
+        f"{fact.get('headline', '?')}. Basisbetrag "
+        f"{str(data.get('orf_beitrag_basisbetrag_eur_pro_monat', '?')).replace('.', ',')} "
+        f"EUR/Monat, geräteunabhängig ({data.get('rechtsgrundlage', '')}). "
+        f"{data.get('ersetzt', '')}."
+    )
+    desc_parts = [
+        data.get("charakter", ""),
+        data.get("ausloeser_vfgh", ""),
+        " ".join(fact.get("context_notes") or []),
+        f"Kernsatz fuer synthesizer: {data.get('kernsatz_fuer_synthesizer', '')}",
+    ]
+    return [{
+        "indicator_name": "ORF-Finanzierung: ORF-Beitrag statt GIS-Gebühr (seit 1.1.2024)",
+        "indicator": "factbook_orf_finanzierung",
+        "country": "AUT",
+        "country_name": "Österreich",
+        "year": fact.get("year", ""),
+        "display_value": display,
+        "description": " ".join(p for p in desc_parts if p.strip()),
+        "url": src,
+        "source": label,
+    }]
+
+
 # ---------------------------------------------------------------------------
 # Public search
 # ---------------------------------------------------------------------------
@@ -2342,6 +2404,8 @@ async def search_at_factbook(analysis: dict) -> dict:
                 results.extend(_build_vegan_results(fact, cl))
             elif topic == "volkskanzler_kickl_at":
                 results.extend(_build_volkskanzler_results(fact, cl))
+            elif topic == "orf_finanzierung_at":
+                results.extend(_build_orf_finanzierung_results(fact, cl))
 
     return {
         "source": "AT Factbook",

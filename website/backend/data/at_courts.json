@@ -320,6 +320,67 @@
           "untreue"
         ]
       ]
+    },
+    {
+      "id": "olg_wien_kurz_falschaussage_freispruch_2025",
+      "court": "OLG Wien (Berufung) / LG für Strafsachen Wien (Erstinstanz)",
+      "case_number": "OLG Wien, Berufungsentscheidung 26.05.2025 (LG Wien Ersturteil 23.02.2024); Aktenzahl nicht öffentlich publiziert",
+      "case_name": "Sebastian Kurz — Freispruch vom Vorwurf der falschen Beweisaussage vor dem Ibiza-Untersuchungsausschuss",
+      "year": 2025,
+      "decided_iso": "2025-05-26",
+      "url": "https://orf.at/stories/3394931/",
+      "topic": "kurz_falschaussage_freispruch",
+      "kerninhalt": "Chronologie: Am 23.02.2024 verurteilte das Landesgericht für Strafsachen Wien (Erstinstanz) Sebastian Kurz wegen falscher Beweisaussage vor dem Ibiza-Untersuchungsausschuss des Nationalrats (§ 288 Abs. 1 iVm Abs. 3 StGB) zu acht Monaten bedingter Freiheitsstrafe; der Mitangeklagte Bernhard Bonelli erhielt sechs Monate bedingt. Gegenstand war die Frage, welchen Einfluss Kurz 2020 auf die Bestellung des ÖBAG-Aufsichtsrats hatte. Kurz erhob Berufung. Am 26.05.2025 gab das Oberlandesgericht (OLG) Wien der Berufung Folge, hob die erstinstanzliche Verurteilung auf und sprach Kurz frei — das Gericht sah den objektiven Tatbestand der falschen Beweisaussage als nicht erfüllt an. Dieser Freispruch ist rechtskräftig. Die Verurteilung des Mitangeklagten Bonelli wurde vom OLG hingegen bestätigt. VERDICT-LEITLINIE (rein deskriptiv, keine Bewertung von Person oder Partei, Unschuldsvermutung gewahrt — Endstand ist ein rechtskräftiger Freispruch): (a) 'Kurz wurde rechtskräftig wegen Falschaussage verurteilt' = FALSCH (false, Konfidenz 0.85-0.9), weil die rechtskräftige Endentscheidung ein Freispruch ist. (b) 'Kurz wurde freigesprochen' / 'ist rechtskräftig freigesprochen' = WAHR. (c) 'Kurz wurde erstinstanzlich / in erster Instanz / 2024 wegen Falschaussage verurteilt' = WAHR, solange der aufgehobene, nicht-rechtskräftige Charakter nicht als endgültig dargestellt wird. (d) Unspezifisches 'Kurz wurde verurteilt' ohne Instanz-Angabe: als irreführend/veraltet einordnen und auf den rechtskräftigen Freispruch verweisen.",
+      "boulevard_falschmeldung": "Sebastian Kurz wurde rechtskräftig wegen Falschaussage verurteilt / Kurz ist ein verurteilter Straftäter.",
+      "trigger_keywords": [
+        "sebastian kurz falschaussage",
+        "kurz falschaussage",
+        "kurz falsche beweisaussage",
+        "kurz verurteilt",
+        "kurz rechtskräftig",
+        "kurz freispruch",
+        "kurz freigesprochen",
+        "kurz untersuchungsausschuss",
+        "kurz öbag",
+        "kurz oebag",
+        "kurz meineid"
+      ],
+      "trigger_composite": [
+        [
+          "sebastian kurz",
+          "ex-kanzler kurz",
+          "exkanzler kurz",
+          "altkanzler kurz"
+        ],
+        [
+          "falschaussage",
+          "falsche beweisaussage",
+          "falsch ausgesagt",
+          "meineid",
+          "verurteilt",
+          "verurteilung",
+          "schuldspruch",
+          "freispruch",
+          "freigesprochen",
+          "untersuchungsausschuss"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "kurz"
+          ],
+          [
+            "falschaussage",
+            "falsche beweisaussage",
+            "freispruch",
+            "freigesprochen",
+            "meineid",
+            "öbag",
+            "oebag"
+          ]
+        ]
+      ]
     }
   ]
 }
