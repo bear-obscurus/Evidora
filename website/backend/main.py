@@ -1776,13 +1776,24 @@ async def check_claim(request: Request):
         # Authoritative-Pack-Boost: kuratierte Static-First-Packs zaehlen
         # als methodisch starke Quellen (mildere Caps).
         try:
-            from services.confidence_calibration import calibrate_confidence
+            from services.confidence_calibration import (
+                calibrate_confidence,
+                extract_pack_directive_floor,
+            )
+            # Pack-Direktiven-Floor (50-Claim-QA 2026-07-09): explizite
+            # Konfidenz-Direktiven kuratierter Packs ("Verdict false bei
+            # 0.95") heben die Kalibrierung an, wenn das finale Label der
+            # Direktive entspricht. Aus den UN-sanitisierten Ergebnissen
+            # extrahiert (valid_results — die Direktiven stehen dort).
+            _floor = extract_pack_directive_floor(
+                valid_results, synthesis.get("verdict"))
             calibrated, cal_debug = calibrate_confidence(
                 raw_conf=synthesis.get("confidence"),
                 source_coverage=synthesis["source_coverage"],
                 evidence=synthesis.get("evidence", []),
                 sources_used=hit_names,
                 claim=claim,
+                directive_floor=_floor,
             )
             synthesis["confidence"] = calibrated
             synthesis["_confidence_calibration"] = cal_debug
