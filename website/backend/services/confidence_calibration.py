@@ -41,20 +41,27 @@ logger = logging.getLogger("evidora")
 # Source-Names. Diese Packs zählen als methodisch starke Einzelquellen
 # weil sie hand-kuratierte Inhalte aus behördlichen / akademischen
 # Top-Quellen aggregieren.
+#
+# KONTRAKT (tests/test_pack_marker_drift.py): Jeder Marker muss dem
+# REALEN Top-Level-source-Namen des Services bzw. seinem main.py-
+# Dispatch-Label entsprechen — beide Namensräume laufen durch
+# _has_authoritative_pack() (Label → Pack-Caps, source → Direktiven-
+# Floor). Marker, die auf nichts zeigen, sind wartende Drifts:
+# #73 fand drei kuratierte Packs (geschichte_pack, verschwoerungen_pack,
+# at_courts), die still die STRENGEN Caps bekamen; die Bestandsaufnahme
+# 2026-07-09 drei weitere (esoterik_pack seit 2026-05-03, dach_factbook
+# mit 9 toten Verdict-Direktiven, medientransparenz mit toter
+# false@0.85-Direktive im Kernsatz). Tote Marker "Esoterik-Pack",
+# "Geschichts-Pack", "Geschichte-Pack", "Verschwörungen" (ö statt oe)
+# wurden dabei entfernt.
 AUTHORITATIVE_PACK_MARKERS = (
-    "Esoterik-Pack",
+    "Esoterik-Faktencheck",
     "AT Factbook",
-    "Geschichts-Pack",
-    "Geschichte-Pack",
-    # Marker-Drift-Fix 2026-07-09: die REALEN source-Namen der Services
-    # wichen von den Markern ab — geschichte_pack sendet "Geschichts-
-    # Faktencheck (DÖW + …)", verschwoerungen_pack "Verschwoerungen-…"
-    # (oe statt ö), at_courts "VfGH + VwGH Schlüsselerkenntnisse". Diese
-    # drei kuratierten Packs bekamen dadurch NIE die milderen Pack-Caps.
+    "DACH Factbook",
+    "MedienTransparenz",
     "Geschichts-Faktencheck",
     "Verschwoerungen-Faktencheck",
     "Schlüsselerkenntnisse",
-    "Verschwörungen",
     "Tech-/KI-Faktencheck",
     "Gesundheits-Autoritäten",
     "Tier-/Natur-Mythen",
