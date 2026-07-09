@@ -50,6 +50,30 @@ def test_inline_kernsatz_in_flowing_text_removed():
     assert "RIAS DE 2023 4.782 Vorfälle" in out
 
 
+def test_inline_struktrurell_in_flowing_text_removed():
+    """Regression (50-Claim-Test 2026-07-09, 12/50 Exporte betroffen):
+    'STRUKTURELL FALSCH: WICHTIG: …' stand MITTEN im display_value (nach der
+    Headline) — der Prefix-Strip greift nur am String-Anfang. Realer Fall:
+    Linkshänder-Lebenserwartung (Alltags-Mythen-Konsens)."""
+    s = ("Linkshänder-Studie von 1991 war Selektions-Bias-Artefakt. "
+         "STRUKTURELL FALSCH: WICHTIG: Die These Linkshänder sterben "
+         "durchschnittlich 9 Jahre früher ist widerlegt — Verdict false.")
+    out = _sanitize_text(s)
+    assert "STRUKTURELL FALSCH" not in out
+    assert "Verdict false" not in out
+    assert "Selektions-Bias-Artefakt" in out  # Faktentext davor bleibt
+
+
+def test_inline_struktrurell_cosine_variant_removed():
+    s = ("Fakt bleibt hier | STRUKTURELL_COSINE_FALSCH: interne Direktive "
+         "bis zur Pipe | Noch ein Fakt")
+    out = _sanitize_text(s)
+    assert "STRUKTURELL_COSINE_FALSCH" not in out
+    assert "interne Direktive" not in out
+    assert "Fakt bleibt hier" in out
+    assert "Noch ein Fakt" in out
+
+
 def test_inline_kernsatz_between_pipe_segments():
     s = ("Fakt A bleibt | Kernsatz fuer synthesizer: intern raus bis pipe | "
          "Fakt B bleibt auch")
