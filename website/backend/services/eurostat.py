@@ -192,6 +192,29 @@ DATASET_MAP = {
         "params": {"nrg_bal": "GEP", "siec": "TOTAL", "unit": "GWH", "lastTimePeriod": "5"},
         "unit": "GWh",
     },
+    # Haushalts-Strompreise (50-Claim-Test 2026-07-09 #22: „DE teuerste
+    # Strompreise Europas" lief auf unverifiable — Preis-Daten fehlten).
+    # Config live verifiziert (Audit-Methodik): freq=S (halbjährlich!),
+    # Produkt-Dim heißt siec, Band KWH2500-4999 = Standard-Haushalt,
+    # I_TAX = inkl. aller Steuern/Abgaben. Alle Nicht-geo/time-Dims gepinnt.
+    "strompreis": {
+        "dataset": "nrg_pc_204",
+        "label": "Haushalts-Strompreis (inkl. Steuern, 2.500–4.999 kWh)",
+        "label_en": "Household Electricity Price (all taxes incl.)",
+        "params": {"freq": "S", "siec": "E7000", "nrg_cons": "KWH2500-4999",
+                   "unit": "KWH", "tax": "I_TAX", "currency": "EUR",
+                   "lastTimePeriod": "2"},
+        "unit": "EUR/kWh",
+    },
+    "stromkosten": {
+        "dataset": "nrg_pc_204",
+        "label": "Haushalts-Strompreis (inkl. Steuern, 2.500–4.999 kWh)",
+        "label_en": "Household Electricity Price (all taxes incl.)",
+        "params": {"freq": "S", "siec": "E7000", "nrg_cons": "KWH2500-4999",
+                   "unit": "KWH", "tax": "I_TAX", "currency": "EUR",
+                   "lastTimePeriod": "2"},
+        "unit": "EUR/kWh",
+    },
     "erneuerbare": {
         "dataset": "nrg_ind_ren",
         "label": "Anteil erneuerbarer Energien",
