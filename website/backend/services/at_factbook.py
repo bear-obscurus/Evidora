@@ -1562,6 +1562,41 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
                 f"Bundesländer-Spannweite Nicht-AT-Anteil: "
                 + " · ".join(head_parts) + "."
             )
+        # Claim nennt ein konkretes Bundesland (außer Wien)? Dann den Rang
+        # als FERTIGEN SATZ ins display — der Synthesizer vergleicht zweite
+        # Dezimalstellen sonst falsch (Live-Befund 2026-07-11: Summary las
+        # korrekt "Salzburg 20,95 / Vorarlberg 20,93", folgerte trotzdem
+        # "Vorarlberg knapp vor Salzburg"). Analog zur Drittel-Arithmetik:
+        # der LLM soll die Rang-Aussage lesen, nicht selbst rechnen.
+        def _pct2(x: float) -> str:
+            return f"{x:.2f} %".replace(".", ",")
+
+        def _lc_variants(name: str) -> set:
+            lc = name.lower()
+            return {lc, lc.replace("ö", "oe"), lc.replace("ä", "ae")}
+
+        named_states = [
+            s for s in sorted_states
+            if s["land"] != "Wien"
+            and any(v in claim_lc for v in _lc_variants(s["land"]))
+        ]
+        for s in named_states[:2]:
+            if not (s.get("absolut") and s.get("einwohner_gesamt")):
+                continue
+            exakt_s = s["absolut"] / s["einwohner_gesamt"] * 100
+            satz = (f" {s['land']} liegt auf Rang {s.get('rang')} von 9 "
+                    f"({_pct2(exakt_s)}).")
+            tie_mates = [p for p in rounded_groups.get(s.get("anteil_pct"), [])
+                         if p is not s and p.get("absolut")
+                         and p.get("einwohner_gesamt")]
+            for p in tie_mates:
+                exakt_p = p["absolut"] / p["einwohner_gesamt"] * 100
+                rel = "knapp VOR" if exakt_s > exakt_p else "knapp HINTER"
+                satz = (f" {s['land']} liegt auf Rang {s.get('rang')} von 9 "
+                        f"({_pct2(exakt_s)}) — {rel} {p['land']} "
+                        f"(Rang {p.get('rang')}, {_pct2(exakt_p)}); beide "
+                        f"runden auf {s['anteil_pct']} %.")
+            display += satz
         spannweite = (
             f" Spannweite zwischen Wien und Burgenland: Faktor "
             f"{round(wien['anteil_pct'] / burgenland['anteil_pct'], 1)}."
