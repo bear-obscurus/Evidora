@@ -312,54 +312,54 @@
       "topic": "citizenship_population_at",
       "scope": "Bevölkerungsstand nach Staatsbürgerschaft Österreich",
       "year": "1.1.2026",
-      "headline": "Wohnbevölkerung Österreich nach Staatsbürgerschaft (Stichtag 1.1.2026)",
+      "headline": "Wohnbevölkerung Österreich nach Staatsbürgerschaft (Stichtag 1.1.2026, endgültige Ergebnisse)",
       "data": {
-        "bevoelkerung_gesamt": 9220000,
-        "bevoelkerung_at_staatsbuerger": 7330000,
-        "bevoelkerung_nicht_at_staatsbuerger": 1890740,
-        "anteil_nicht_at_pct": 20.5,
-        "anteil_at_pct": 79.5,
+        "bevoelkerung_gesamt": 9215956,
+        "bevoelkerung_at_staatsbuerger": 7334647,
+        "bevoelkerung_nicht_at_staatsbuerger": 1881309,
+        "anteil_nicht_at_pct": 20.4,
+        "anteil_at_pct": 79.6,
         "wachstum_2025_pct": 0.2,
-        "trend_text": "Anteil Nicht-AT-Staatsbürger steigt seit 2010 kontinuierlich (2010: 11,3 %; 2020: 17,1 %; 2026: 20,5 %).",
+        "trend_text": "Anteil Nicht-AT-Staatsbürger steigt seit 2010 kontinuierlich (2010: 10,6 %; 2020: 16,7 %; 2026: 20,4 % — endgültige Ergebnisse, eine Vintage: Zeitreihe Statistik des Bevölkerungsstandes).",
         "historical_trend_anteil_nicht_at_pct": [
-          {"jahr": 2010, "anteil_pct": 11.3, "absolut": 938000},
-          {"jahr": 2015, "anteil_pct": 14.6, "absolut": 1268000},
-          {"jahr": 2020, "anteil_pct": 17.1, "absolut": 1531000},
-          {"jahr": 2024, "anteil_pct": 19.7, "absolut": 1780500},
-          {"jahr": 2025, "anteil_pct": 20.2, "absolut": 1850000},
-          {"jahr": 2026, "anteil_pct": 20.5, "absolut": 1890740}
+          {"jahr": 2010, "anteil_pct": 10.6, "absolut": 883579},
+          {"jahr": 2015, "anteil_pct": 13.3, "absolut": 1146078},
+          {"jahr": 2020, "anteil_pct": 16.7, "absolut": 1486223},
+          {"jahr": 2024, "anteil_pct": 19.7, "absolut": 1800866},
+          {"jahr": 2025, "anteil_pct": 20.2, "absolut": 1855419},
+          {"jahr": 2026, "anteil_pct": 20.4, "absolut": 1881309}
         ],
         "top_10_herkunftslaender_nicht_at_2026": [
-          {"rang": 1, "land": "Deutschland", "anzahl": 224000, "anteil_pct_an_nicht_at": 11.8},
-          {"rang": 2, "land": "Rumänien", "anzahl": 147000, "anteil_pct_an_nicht_at": 7.8},
-          {"rang": 3, "land": "Serbien", "anzahl": 124000, "anteil_pct_an_nicht_at": 6.6},
-          {"rang": 4, "land": "Syrien", "anzahl": 112000, "anteil_pct_an_nicht_at": 5.9},
-          {"rang": 5, "land": "Türkei", "anzahl": 105000, "anteil_pct_an_nicht_at": 5.6},
-          {"rang": 6, "land": "Ungarn", "anzahl": 96000, "anteil_pct_an_nicht_at": 5.1},
-          {"rang": 7, "land": "Bosnien-Herzegowina", "anzahl": 94000, "anteil_pct_an_nicht_at": 5.0},
-          {"rang": 8, "land": "Polen", "anzahl": 71000, "anteil_pct_an_nicht_at": 3.8},
-          {"rang": 9, "land": "Kroatien", "anzahl": 87000, "anteil_pct_an_nicht_at": 4.6},
-          {"rang": 10, "land": "Afghanistan", "anzahl": 50000, "anteil_pct_an_nicht_at": 2.6}
+          {"rang": 1, "land": "Deutschland", "anzahl": 242272, "anteil_pct_an_nicht_at": 12.9},
+          {"rang": 2, "land": "Rumänien", "anzahl": 157663, "anteil_pct_an_nicht_at": 8.4},
+          {"rang": 3, "land": "Türkei", "anzahl": 123391, "anteil_pct_an_nicht_at": 6.6},
+          {"rang": 4, "land": "Serbien", "anzahl": 122527, "anteil_pct_an_nicht_at": 6.5},
+          {"rang": 5, "land": "Ungarn", "anzahl": 115178, "anteil_pct_an_nicht_at": 6.1},
+          {"rang": 6, "land": "Syrien", "anzahl": 113705, "anteil_pct_an_nicht_at": 6.0},
+          {"rang": 7, "land": "Kroatien", "anzahl": 108754, "anteil_pct_an_nicht_at": 5.8},
+          {"rang": 8, "land": "Bosnien-Herzegowina", "anzahl": 102105, "anteil_pct_an_nicht_at": 5.4},
+          {"rang": 9, "land": "Ukraine", "anzahl": 94030, "anteil_pct_an_nicht_at": 5.0},
+          {"rang": 10, "land": "Polen", "anzahl": 66561, "anteil_pct_an_nicht_at": 3.5}
         ],
         "bundeslaender_anteil_nicht_at_pct": [
-          {"land": "Wien", "anteil_pct": 37.0, "absolut": 754635, "einwohner_gesamt": 2042036, "rang": 1},
-          {"land": "Salzburg", "anteil_pct": 21.1, "absolut": 120965, "rang": 2},
-          {"land": "Vorarlberg", "anteil_pct": 21.0, "absolut": 86711, "rang": 3},
-          {"land": "Tirol", "anteil_pct": 19.3, "absolut": 150227, "rang": 4},
-          {"land": "Oberösterreich", "anteil_pct": 16.6, "absolut": 255138, "rang": 5},
-          {"land": "Steiermark", "anteil_pct": 14.8, "absolut": 188731, "rang": 6},
-          {"land": "Kärnten", "anteil_pct": 14.0, "absolut": 79853, "rang": 7},
-          {"land": "Niederösterreich", "anteil_pct": 12.7, "absolut": 219066, "rang": 8},
-          {"land": "Burgenland", "anteil_pct": 11.7, "absolut": 35414, "rang": 9}
+          {"land": "Wien", "anteil_pct": 36.8, "absolut": 751778, "einwohner_gesamt": 2040914, "rang": 1},
+          {"land": "Salzburg", "anteil_pct": 20.9, "absolut": 120135, "einwohner_gesamt": 573526, "rang": 2},
+          {"land": "Vorarlberg", "anteil_pct": 20.9, "absolut": 86297, "einwohner_gesamt": 412307, "rang": 3},
+          {"land": "Tirol", "anteil_pct": 19.2, "absolut": 149237, "einwohner_gesamt": 779060, "rang": 4},
+          {"land": "Oberösterreich", "anteil_pct": 16.5, "absolut": 253827, "einwohner_gesamt": 1537159, "rang": 5},
+          {"land": "Steiermark", "anteil_pct": 14.8, "absolut": 187840, "einwohner_gesamt": 1271764, "rang": 6},
+          {"land": "Kärnten", "anteil_pct": 13.9, "absolut": 79454, "einwohner_gesamt": 569990, "rang": 7},
+          {"land": "Niederösterreich", "anteil_pct": 12.6, "absolut": 217452, "einwohner_gesamt": 1729541, "rang": 8},
+          {"land": "Burgenland", "anteil_pct": 11.7, "absolut": 35289, "einwohner_gesamt": 301695, "rang": 9}
         ]
       },
       "context_notes": [
-        "WICHTIG: 'Anteil ohne AT-Staatsbürgerschaft' (20,5 %) ≠ 'Migrationshintergrund' (deutlich höher, ca. 27 %). Migrationshintergrund umfasst auch eingebürgerte Personen + im Inland Geborene mit ausländischen Eltern.",
-        "Größte Gruppen Nicht-AT-Staatsbürger 2026: deutsche (224 k), rumänische (147 k), serbische (124 k), syrische (112 k), türkische (105 k), ungarische (96 k), bosnische (94 k), kroatische (87 k), polnische (71 k), afghanische (50 k) Staatsbürger.",
-        "Wien hat mit 37,0 % (754.635 von 2.042.036 Einwohnern, Stichtag 1.1.2026) den höchsten Anteil Nicht-AT-Staatsbürger — das ist MEHR als ein Drittel (33,3 %): 'Mehr als jeder dritte Wiener ist Ausländer (Staatsbürgerschaft)' ist korrekt. Burgenland mit 11,7 % der niedrigste — Spannweite: Faktor 3,2.",
-        "Trend 2010 → 2026: Verdopplung des Anteils von 11,3 % auf 20,5 % (+9,2 Prozentpunkte in 16 Jahren).",
-        "Eine Behauptung wie '20 Prozent in Österreich haben keine AT-Staatsbürgerschaft' ist faktisch korrekt (20,5 %) — Rundung ist im Boulevard-Journalismus akzeptabel.",
-        "Bundesländer-Werte: vorläufige Ergebnisse (Statistik Austria PM 09.02.2026); endgültige 1.1.2026-Zahlen erscheinen Ende Juli 2026 — dann Refresh."
+        "WICHTIG: 'Anteil ohne AT-Staatsbürgerschaft' (20,4 %) ≠ 'Migrationshintergrund' (deutlich höher, ca. 27 %). Migrationshintergrund umfasst auch eingebürgerte Personen + im Inland Geborene mit ausländischen Eltern.",
+        "Größte Gruppen Nicht-AT-Staatsbürger 1.1.2026 (endgültig): deutsche (242.272), rumänische (157.663), türkische (123.391), serbische (122.527), ungarische (115.178), syrische (113.705), kroatische (108.754), bosnische (102.105), ukrainische (94.030), polnische (66.561) Staatsbürger:innen. Afghanistan (55.116) liegt auf Rang 11, knapp außerhalb der Top-10.",
+        "Wien hat mit 36,8 % (751.778 von 2.040.914 Einwohnern, Stichtag 1.1.2026, endgültig) den höchsten Anteil Nicht-AT-Staatsbürger — das ist MEHR als ein Drittel (33,3 %): 'Mehr als jeder dritte Wiener ist Ausländer (Staatsbürgerschaft)' ist korrekt. Burgenland mit 11,7 % der niedrigste — Spannweite: Faktor 3,1. Salzburg (20,947 %) und Vorarlberg (20,930 %) runden beide auf 20,9 % — Rangfolge aus den Absolutwerten.",
+        "Trend 2010 → 2026: Anteil von 10,6 % auf 20,4 % nahezu verdoppelt (Faktor 1,9; +9,8 Prozentpunkte in 16 Jahren). 'Der Ausländeranteil hat sich seit 2010 verdoppelt' ist damit GRÖSSTENTEILS korrekt (knapp unter Verdopplung). Ältere vorläufige Fassungen dieser Reihe nannten 2010 noch 11,3 % — die endgültige Zeitreihe (eine Vintage) weist 10,6 % aus.",
+        "Eine Behauptung wie '20 Prozent in Österreich haben keine AT-Staatsbürgerschaft' ist faktisch korrekt (20,4 %) — Rundung ist im Boulevard-Journalismus akzeptabel.",
+        "Datenstand: ENDGÜLTIGE Ergebnisse zum Stichtag 1.1.2026 (Statistik Austria PM 14 212-131/26 vom 29.06.2026, inkl. FAG-Bereinigungen; Revision ggü. vorläufig minimal: Gesamt −0,03 %, Wien-Anteil 37,0 → 36,8 %). Nächster endgültiger Bevölkerungsstand (1.1.2027) laut Statistik Austria: 22.06.2027 — dann Refresh."
       ],
       "claim_phrasings_handled": [
         "20 Prozent ohne österreichische Staatsbürgerschaft",
@@ -371,12 +371,13 @@
         "Wien ein Drittel Ausländer",
         "Verdopplung Ausländeranteil seit 2010",
         "Top Herkunftsländer Österreich",
-        "größte Migrantengruppe Österreich"
+        "größte Migrantengruppe Österreich",
+        "Wie viele Ukrainer leben in Österreich"
       ],
-      "source_label": "Statistik Austria — Bevölkerungsstand 1.1.2026 (POPREG)",
+      "source_label": "Statistik Austria — Bevölkerungsstand 1.1.2026, endgültige Ergebnisse (POPREG)",
       "source_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/bevoelkerungsstand/bevoelkerung-zu-jahres-/-quartalsanfang",
-      "secondary_url": "https://www.statistik.at/fileadmin/announcement/2026/02/20260209Bevoelkerung1.1.2026.pdf",
-      "fetched_at_iso": "2026-04-29"
+      "secondary_url": "https://www.statistik.at/fileadmin/announcement/2026/06/20260629Demographie.pdf",
+      "fetched_at_iso": "2026-07-11"
     },
     {
       "id": "asyl_eu_ranking_2025",
