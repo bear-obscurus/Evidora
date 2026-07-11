@@ -45,6 +45,8 @@ jobs:
     #                                  Guardrails, Direktive nur im Prompt)
     #   - test_diclofenac_niere_fact  (Voltadol/Diclofenac-Nieren: mixed +
     #                                  Gel-vs-Tabletten-Nuance, kein pauschal true)
+    #   - test_cetirizin_sedierung_fact (Zyrtec/Cetirizin-Schläfrigkeit: mixed,
+    #                                  Headline trägt teils-teils, kein Override-Token)
     #   - test_st_model_revision      (ST-Revision-Pin Code==Dockerfile-Bake,
     #                                  Build-Gate testet echten Ladepfad)
     #   - test_kurz_orf_facts         (Kurz-Freispruch + ORF-Beitrag-Fakten,
@@ -102,6 +104,7 @@ jobs:
             tests/test_confidence_pack_cap.py \
             tests/test_volkskanzler_fact.py \
             tests/test_diclofenac_niere_fact.py \
+            tests/test_cetirizin_sedierung_fact.py \
             tests/test_st_model_revision.py \
             tests/test_kurz_orf_facts.py \
             tests/test_holocaust_denial_fact.py \
