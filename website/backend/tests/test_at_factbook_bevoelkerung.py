@@ -187,3 +187,28 @@ def test_bundeslaender_ranking_disambiguiert_rundungs_ties():
     assert "exakt 20,95" in desc and "exakt 20,93" in desc, desc
     # Nicht-Tie-Länder bleiben kompakt (400-Zeichen-Budget)
     assert "exakt 36," not in desc, desc
+
+
+def test_rang_satz_im_display_bei_genanntem_bundesland():
+    """Zahlen im description reichen NICHT: der Synthesizer las live
+    'Salzburg 20,95 / Vorarlberg 20,93' und folgerte trotzdem 'Vorarlberg
+    knapp vor Salzburg' (Zweite-Dezimale-Vergleichsfehler, 2026-07-11).
+    Analog zur Drittel-Arithmetik muss die Rang-Aussage als fertiger Satz
+    im display_value stehen — lesen statt rechnen."""
+    from services.at_factbook import _build_citizenship_results
+    results = _build_citizenship_results(
+        _fact(),
+        "salzburg hat nach wien den höchsten ausländeranteil aller bundesländer",
+    )
+    blk = next(r for r in results
+               if r["indicator_name"].startswith("Anteil Nicht-AT-Staatsbürger"))
+    disp = blk["display_value"]
+    assert "Salzburg liegt auf Rang 2 von 9" in disp, disp
+    assert "knapp VOR Vorarlberg" in disp, disp
+    assert len(disp) <= 400, len(disp)  # überlebt die Prompt-Truncation
+    # Wien-Drittel-Pfad bleibt unberührt (kein fremder Rang-Satz)
+    drittel = _build_citizenship_results(
+        _fact(), "in wien ist mehr als jeder dritte einwohner ausländer")
+    dblk = next(r for r in drittel
+                if r["indicator_name"].startswith("Anteil Nicht-AT-Staatsbürger"))
+    assert "liegt auf Rang" not in dblk["display_value"]
