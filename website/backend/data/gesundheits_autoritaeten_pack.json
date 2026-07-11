@@ -1267,6 +1267,63 @@
       "source_url": "https://medlineplus.gov/druginfo/meds/a689002.html",
       "secondary_url": "",
       "fetched_at_iso": "2026-07-08"
+    },
+    {
+      "id": "cetirizin_sedierung_konsens_2026",
+      "topic": "cetirizin_sedierung_konsens",
+      "scope": "Zyrtec/Cetirizin und Schläfrigkeit — 2.-Gen-Antihistaminikum, aber das sedierendste seiner Klasse (teils-teils)",
+      "year": 2026,
+      "headline": "Zyrtec/Cetirizin & Schläfrigkeit — teils-teils: Cetirizin (Antihistaminikum der 2. Generation) macht viel seltener müde als alte Antihistaminika und viele Anwender:innen merken nichts; es ist aber das sedierendste der neueren Wirkstoffe (Zulassungsdaten ~14 % Schläfrigkeit vs. ~6 % unter Placebo, mit Hinweis zu Autofahren/Maschinen) und kann bei einem Teil der Menschen durchaus müde machen — pauschal 'ja' überzeichnet, pauschal 'nein' verharmlost",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG — teils-teils: Die Frage 'Macht Zyrtec/Cetirizin schläfrig?' ist weder klar mit Ja noch mit Nein zu beantworten. Empfehlung für das Verdict: mixed (teils-teils), Konfidenz 0.6. (1) Cetirizin ist ein H1-Antihistaminikum der 2. Generation und überwindet die Blut-Hirn-Schranke deutlich weniger als 1.-Gen-Wirkstoffe → viele Anwender:innen bemerken keine relevante Sedierung, und eine Meta-Analyse mit Placebo-run-in (Du 2016) fand keinen eindeutigen Somnolenz-Effekt. (2) Zugleich gilt Cetirizin unter den 2.-Gen-Antihistaminika als das sedierendste: US-Zulassungsdaten nennen ~14 % Schläfrigkeit gegenüber ~6 % unter Placebo, die Produktinformation trägt einen Hinweis zu Autofahren/Bedienen von Maschinen, und in Vergleichsstudien senkte es Aktivität/Motivation im Tagesverlauf stärker als Loratadin. (3) Die Ausprägung ist stark individuell und dosisabhängig (abends genommen oft besser verträglich). Ein pauschales 'wahr' überzeichnet also die reale Sedierung, ein pauschales 'nein' verharmlost sie — korrekt ist die differenzierte teils-teils-Einordnung.",
+        "zweite_generation": "Cetirizin (Handelsname u. a. Zyrtec, Reactine) ist ein Antihistaminikum der 2. Generation. Es passiert die Blut-Hirn-Schranke deutlich schlechter als Wirkstoffe der 1. Generation (z. B. Diphenhydramin), weshalb es in vielen Märkten als 'wenig/nicht sedierend' beworben wird. Häufigste Nebenwirkungen laut Fach-/Gebrauchsinformation sind dennoch Somnolenz (Schläfrigkeit), Müdigkeit, Kopfschmerz und Mundtrockenheit.",
+        "sedierendstes_der_klasse": "Unter den gebräuchlichen 2.-Gen-Antihistaminika macht Cetirizin (und Levocetirizin) am ehesten müde: In Zulassungsstudien berichteten ~14 % der Erwachsenen unter 10 mg Schläfrigkeit gegenüber ~6 % unter Placebo; Vergleichsdaten zeigen ein höheres Sedierungsrisiko als bei Loratadin/Desloratadin/Fexofenadin. Die MedlinePlus-Arzneimittelinformation listet drowsiness und rät, bis zur Kenntnis der individuellen Wirkung nicht Auto zu fahren.",
+        "individuelle_varianz": "Die sedierende Wirkung ist individuell sehr unterschiedlich und dosisabhängig; ein Placebo-run-in in Studien reduziert den messbaren Effekt (Du 2016). Für Betroffene mit ausgeprägter Müdigkeit sind Loratadin, Desloratadin oder Fexofenadin Alternativen mit geringerem Sedierungsrisiko.",
+        "context": "Der Faktencheck differenziert: Cetirizin kann schläfrig machen, tut es aber seltener als alte Antihistaminika und nicht bei allen — eine pauschale Ja/Nein-Antwort ist irreführend."
+      },
+      "context_notes": [
+        "Kernaussage: Cetirizin KANN schläfrig machen, ist aber 2. Generation und sediert deutlich weniger als alte Antihistaminika — teils-teils.",
+        "Innerhalb der 2. Generation gilt Cetirizin als das sedierendste (~14 % vs. ~6 % Placebo; Auto-fahr-Hinweis in der Produktinformation).",
+        "Wirkung stark individuell/dosisabhängig; Meta-Analyse mit Placebo-run-in (Du 2016) fand keinen eindeutigen Somnolenz-Effekt.",
+        "Keine Anwendungsempfehlung; bei relevanter Müdigkeit sind Loratadin/Desloratadin/Fexofenadin Alternativen."
+      ],
+      "claim_phrasings_handled": [
+        "Macht Zyrtec schläfrig?",
+        "Macht Cetirizin müde?",
+        "Zyrtec macht schläfrig und müde",
+        "Kann man mit Zyrtec Auto fahren?"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "zyrtec",
+          "cetirizin",
+          "cetirizine",
+          "reactine",
+          "cetebe allergie",
+          "cetebe"
+        ],
+        [
+          "schläf",
+          "schlaef",
+          "schlaf",
+          "müd",
+          "mued",
+          "sedier",
+          "somnolen",
+          "benommen",
+          "dösig",
+          "doesig",
+          "fahrtücht",
+          "fahrtaugl",
+          "autofahr",
+          "auto fahr"
+        ]
+      ],
+      "source_label": "MedlinePlus Cetirizin-Arzneimittelinformation (NIH/NLM) + Somnolenz-Placebo-Meta-Analyse (Du 2016, Int Forum Allergy Rhinol) + Produktinformation (Auto-fahr-Hinweis)",
+      "source_url": "https://medlineplus.gov/druginfo/meds/a623043.html",
+      "secondary_url": "https://pubmed.ncbi.nlm.nih.gov/26990040/",
+      "fetched_at_iso": "2026-07-11"
     }
   ]
 }
