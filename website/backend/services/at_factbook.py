@@ -1454,7 +1454,7 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
     origin_triggers = ("herkunft", "nationalität", "nationalitaet",
                        "deutsche", "rumän", "serb", "syrer", "syrisch",
                        "türk", "ungar", "bosn", "kroat", "polnisch",
-                       "afghan", "größte gruppe", "groesste gruppe",
+                       "ukrain", "afghan", "größte gruppe", "groesste gruppe",
                        "größte migrant", "groesste migrant", "top",
                        "rangliste", "ranking")
     top10 = data.get("top_10_herkunftslaender_nicht_at_2026") or []

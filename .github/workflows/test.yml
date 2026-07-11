@@ -47,6 +47,8 @@ jobs:
     #                                  Gel-vs-Tabletten-Nuance, kein pauschal true)
     #   - test_cetirizin_sedierung_fact (Zyrtec/Cetirizin-Schläfrigkeit: mixed,
     #                                  Headline trägt teils-teils, kein Override-Token)
+    #   - test_at_factbook_bevoelkerung (Bevölkerungs-Fakt: Summen-Beweis,
+    #                                  Rang-Monotonie, Wien>1/3, endgültig-Pins)
     #   - test_st_model_revision      (ST-Revision-Pin Code==Dockerfile-Bake,
     #                                  Build-Gate testet echten Ladepfad)
     #   - test_kurz_orf_facts         (Kurz-Freispruch + ORF-Beitrag-Fakten,
@@ -105,6 +107,7 @@ jobs:
             tests/test_volkskanzler_fact.py \
             tests/test_diclofenac_niere_fact.py \
             tests/test_cetirizin_sedierung_fact.py \
+            tests/test_at_factbook_bevoelkerung.py \
             tests/test_st_model_revision.py \
             tests/test_kurz_orf_facts.py \
             tests/test_holocaust_denial_fact.py \
