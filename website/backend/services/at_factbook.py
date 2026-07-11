@@ -321,6 +321,22 @@ def _claim_mentions_citizenship(claim_lc: str) -> bool:
     ))
     if has_group and _has_at_context(claim_lc):
         return True
+    # Composite: Bestands-Frage nach einer Herkunftsgruppe — "Wie viele
+    # Ukrainer leben in Österreich?" (Refresh 2026-07-11: Ukraine neu in
+    # Top-10, solche Claims erreichten das Ranking nie). Drei-fach-AND
+    # hält die Einzel-Tokens sicher; " polen" mit führendem Leerzeichen
+    # gegen "Metropolen" (Substring-Falle).
+    has_nationality = any(t in claim_lc for t in (
+        "deutsche", "rumän", "rumaen", "serb", "syrer", "syrisch",
+        "türk", "tuerk", "ungar", "bosn", "kroat", "polnisch", " polen",
+        "ukrain", "afghan",
+    ))
+    has_count = any(t in claim_lc for t in (
+        "wie viele", "wieviele", "wie viel", "anzahl",
+        "leben in", "wohnen in", "gibt es in",
+    ))
+    if has_nationality and has_count and _has_at_context(claim_lc):
+        return True
     return False
 
 
@@ -1490,9 +1506,25 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
     states = data.get("bundeslaender_anteil_nicht_at_pct") or []
     if states and any(t in claim_lc for t in state_triggers):
         sorted_states = sorted(states, key=lambda x: x.get("rang", 99))
-        ranking = " · ".join(
-            f"{s['land']} {s['anteil_pct']} %" for s in sorted_states
-        )
+        # Rang mitrendern + Rundungs-Ties auflösen: Salzburg (20,947 %)
+        # und Vorarlberg (20,930 %) runden beide auf 20,9 % — ohne exakte
+        # Werte folgert der Synthesizer "geteilter Platz" und kippt einen
+        # korrekten "Salzburg ist Nr. 2"-Claim auf false (Live-Befund
+        # 2026-07-11). Datengetrieben aus absolut/einwohner_gesamt, damit
+        # künftige Werte-Updates die Disambiguierung behalten.
+        rounded_groups: dict = {}
+        for s in sorted_states:
+            rounded_groups.setdefault(s.get("anteil_pct"), []).append(s)
+
+        def _fmt_state(s: dict) -> str:
+            base = f"#{s.get('rang')} {s['land']} {s['anteil_pct']} %"
+            tied = len(rounded_groups.get(s.get("anteil_pct"), [])) > 1
+            if tied and s.get("absolut") and s.get("einwohner_gesamt"):
+                exakt = s["absolut"] / s["einwohner_gesamt"] * 100
+                base += f" (exakt {exakt:.2f} %)".replace(".", ",")
+            return base
+
+        ranking = " · ".join(_fmt_state(s) for s in sorted_states)
         wien = next((s for s in states if s["land"] == "Wien"), None)
         burgenland = next((s for s in states if s["land"] == "Burgenland"), None)
         head_parts = []

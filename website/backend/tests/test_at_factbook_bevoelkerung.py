@@ -141,3 +141,49 @@ def test_ukraine_in_top10_und_trigger_kennt_ukrain():
                             "services", "at_factbook.py"),
                encoding="utf-8").read()
     assert '"ukrain"' in svc
+
+
+# --- Gate + Rendering (Live-Befunde 2026-07-11 nach dem Refresh) ---
+
+@pytest.mark.parametrize("claim", [
+    "Wie viele Ukrainer leben in Österreich?",
+    "Wie viele Syrer gibt es in Wien?",
+    "Anzahl der Rumänen in Österreich",
+    "Wieviele Türken wohnen in Österreich?",
+])
+def test_citizenship_gate_erkennt_bestandsfragen(claim):
+    """'Wie viele <Nationalität> leben in AT?' erreichte das Topic-Gate
+    nicht (Live: unverifiable@0.1 trotz Top-10-Daten). Trigger-Gate ist
+    der Türsteher — die Intelligenz dahinter kam nie zum Zug."""
+    from services.at_factbook import _claim_mentions_citizenship
+    assert _claim_mentions_citizenship(claim.lower()), claim
+
+
+@pytest.mark.parametrize("claim", [
+    "Wie viele Metropolen gibt es in Österreich?",   # ' polen'-Substring-Falle
+    "Wie viele Deutsche leben in Deutschland?",       # kein AT-Kontext
+    "Wie viele Einwohner hat Österreich?",            # keine Nationalität
+])
+def test_citizenship_gate_bestandsfragen_negativ(claim):
+    from services.at_factbook import _claim_mentions_citizenship
+    assert not _claim_mentions_citizenship(claim.lower()), claim
+
+
+def test_bundeslaender_ranking_disambiguiert_rundungs_ties():
+    """Salzburg (20,947 %) und Vorarlberg (20,930 %) runden beide auf
+    20,9 % — ohne exakte Werte folgerte der Synthesizer 'geteilter Platz 2'
+    und kippte einen korrekten 'Salzburg ist Nr. 2'-Claim auf false@0.95
+    (Live-Befund 2026-07-11). Das Ranking muss Ränge + exakte Prozente
+    für Rundungs-Ties tragen."""
+    from services.at_factbook import _build_citizenship_results
+    results = _build_citizenship_results(
+        _fact(),
+        "salzburg hat nach wien den höchsten ausländeranteil aller bundesländer",
+    )
+    blk = next(r for r in results
+               if r["indicator_name"].startswith("Anteil Nicht-AT-Staatsbürger"))
+    desc = blk["description"]
+    assert "#2 Salzburg" in desc and "#3 Vorarlberg" in desc, desc
+    assert "exakt 20,95" in desc and "exakt 20,93" in desc, desc
+    # Nicht-Tie-Länder bleiben kompakt (400-Zeichen-Budget)
+    assert "exakt 36," not in desc, desc
