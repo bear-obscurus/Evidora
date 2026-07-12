@@ -69,6 +69,10 @@ _LAST_GOOD: dict[str, dict] = {}
 # Zwei Versuche mit gestaffelten Timeouts (12s + 8s + 1s Pause; worst
 # case ~21s) statt einem 20s-Schuss — bleibt unter dem Fan-out-Budget.
 SPARQL_ATTEMPT_TIMEOUTS = (12.0, 8.0)
+# Label-Lookup deckt de + mul + en: Wikidata migriert sprachübergreifend
+# identische Labels seit 2024 ins "mul"-Pseudo-Label und LÖSCHT die
+# de/en-Einzellabels — reines @de matchte z. B. Q57641 (Orbán) nie mehr
+# (QA50B #25-Wurzelbefund 2026-07-12).
 
 # Maximale SPARQL-Wartezeit (Wikidata erlaubt 60 s, wir bleiben höflich)
 SPARQL_TIMEOUT_S = 20.0
@@ -102,7 +106,8 @@ _TEMPLATES: list[dict] = [
 SELECT ?person ?personLabel ?birth ?birthPlaceLabel ?death ?deathPlaceLabel
        (GROUP_CONCAT(DISTINCT ?occLabel; separator=", ") AS ?occupations)
 WHERE {{
-  ?person rdfs:label "{name}"@de.
+  VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
+  ?person rdfs:label ?nameLabel.
   ?person wdt:P31 wd:Q5.
   OPTIONAL {{ ?person wdt:P569 ?birth. }}
   OPTIONAL {{ ?person wdt:P19 ?birthPlace. }}
@@ -136,7 +141,8 @@ LIMIT 5
         "sparql": """
 SELECT ?person ?personLabel ?positionLabel ?start ?end ?partyLabel
 WHERE {{
-  ?person rdfs:label "{name}"@de.
+  VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
+  ?person rdfs:label ?nameLabel.
   ?person wdt:P31 wd:Q5.
   ?person p:P39 ?statement.
   ?statement ps:P39 ?position.
@@ -155,7 +161,8 @@ LIMIT 5
         "sparql": """
 SELECT ?country ?countryLabel ?capital ?capitalLabel ?since
 WHERE {{
-  ?country rdfs:label "{name}"@de.
+  VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
+  ?country rdfs:label ?nameLabel.
   ?country wdt:P31/wdt:P279* wd:Q6256.
   ?country p:P36 ?statement.
   ?statement ps:P36 ?capital.
@@ -173,7 +180,8 @@ LIMIT 5
         "sparql": """
 SELECT ?country ?countryLabel ?population ?date
 WHERE {{
-  ?country rdfs:label "{name}"@de.
+  VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
+  ?country rdfs:label ?nameLabel.
   ?country wdt:P31/wdt:P279* wd:Q6256.
   ?country p:P1082 ?statement.
   ?statement ps:P1082 ?population.
@@ -194,7 +202,8 @@ LIMIT 3
         "sparql": """
 SELECT ?org ?orgLabel ?inception ?dissolved ?countryLabel ?founderLabel
 WHERE {{
-  ?org rdfs:label "{name}"@de.
+  VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
+  ?org rdfs:label ?nameLabel.
   ?org wdt:P31/wdt:P279* wd:Q43229.
   OPTIONAL {{ ?org wdt:P571 ?inception. }}
   OPTIONAL {{ ?org wdt:P576 ?dissolved. }}
@@ -214,7 +223,8 @@ LIMIT 5
         "sparql": """
 SELECT ?work ?workLabel ?authorLabel ?directorLabel ?published
 WHERE {{
-  ?work rdfs:label "{name}"@de.
+  VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
+  ?work rdfs:label ?nameLabel.
   OPTIONAL {{ ?work wdt:P50 ?author. }}
   OPTIONAL {{ ?work wdt:P57 ?director. }}
   OPTIONAL {{ ?work wdt:P577 ?published. }}
@@ -232,7 +242,8 @@ LIMIT 5
         "sparql": """
 SELECT ?thing ?thingLabel ?inventorLabel ?discovererLabel ?inceptionDate
 WHERE {{
-  ?thing rdfs:label "{name}"@de.
+  VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
+  ?thing rdfs:label ?nameLabel.
   OPTIONAL {{ ?thing wdt:P61 ?discoverer. }}
   OPTIONAL {{ ?thing wdt:P178 ?inventor. }}
   OPTIONAL {{ ?thing wdt:P571 ?inceptionDate. }}
@@ -250,7 +261,8 @@ LIMIT 5
         "sparql": """
 SELECT ?mountain ?mountainLabel ?elevation ?countryLabel
 WHERE {{
-  ?country rdfs:label "{name}"@de.
+  VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
+  ?country rdfs:label ?nameLabel.
   ?country wdt:P31/wdt:P279* wd:Q6256.
   ?mountain wdt:P31/wdt:P279* wd:Q8502.
   ?mountain wdt:P17 ?country.
@@ -270,7 +282,8 @@ LIMIT 3
         "sparql": """
 SELECT ?river ?riverLabel ?length ?countryLabel
 WHERE {{
-  ?country rdfs:label "{name}"@de.
+  VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
+  ?country rdfs:label ?nameLabel.
   ?country wdt:P31/wdt:P279* wd:Q6256.
   ?river wdt:P31/wdt:P279* wd:Q4022.
   ?river wdt:P17 ?country.
@@ -290,7 +303,8 @@ LIMIT 3
         "sparql": """
 SELECT ?person ?personLabel ?partyLabel ?start ?end
 WHERE {{
-  ?person rdfs:label "{name}"@de.
+  VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
+  ?person rdfs:label ?nameLabel.
   ?person wdt:P31 wd:Q5.
   ?person p:P102 ?statement.
   ?statement ps:P102 ?party.
