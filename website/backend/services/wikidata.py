@@ -119,6 +119,11 @@ LIMIT 5
             "ministerpräsident", "ministerpräsidentin",
             "premierminister", "premierministerin",
             "amtszeit",
+            # QA50B #25 (2026-07-12): "Viktor Orbán REGIERT Ungarn noch
+            # immer" erreichte das Template nie — Wikidata trug das
+            # End-Datum (PM bis 09.05.2026), aber nur Amts-SUBSTANTIVE
+            # triggerten. Verb-Formen + Umschreibung ergänzt.
+            "regiert", "regieren", "regierungschef", "an der macht",
         ],
         "sparql": """
 SELECT ?person ?personLabel ?positionLabel ?start ?end ?partyLabel

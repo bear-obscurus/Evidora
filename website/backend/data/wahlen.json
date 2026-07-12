@@ -1616,7 +1616,8 @@
           "seats": 0
         }
       ]
-    }
+    },
+    {"type": "GRW_W", "year": 2025, "url": "https://www.wien.gv.at/wahlergebnis/de/GR251/index.html", "date": "2025-04-27", "note": "Amtliches Endergebnis Stadt Wien; Wahlbeteiligung 62,74 %, 681.808 gültige Stimmen. SPÖ klar stärkste Kraft (trotz -2,24 pp), FPÖ +13,24 pp auf Platz 2, ÖVP -10,78 pp. KPÖ 4,06 % ohne Mandat.", "results": [{"short": "SPÖ", "long": "Sozialdemokratische Partei Österreichs", "votes": 268514, "percent": 39.38, "seats": 43}, {"short": "FPÖ", "long": "Freiheitliche Partei Österreichs", "percent": 20.35, "seats": 22}, {"short": "GRÜNE", "long": "Die Grünen – Die Grüne Alternative Wien", "percent": 14.52, "seats": 15}, {"short": "NEOS", "long": "NEOS – Das Neue Österreich", "percent": 10.0, "seats": 10}, {"short": "ÖVP", "long": "Österreichische Volkspartei", "percent": 9.65, "seats": 10}, {"short": "KPÖ", "long": "Kommunistische Partei Österreichs", "percent": 4.06, "seats": 0}]}
   ],
   "fetched_at_iso": "2026-04-26T16:13:54",
   "source_root": "https://www.bmi.gv.at/412/",
