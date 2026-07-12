@@ -719,6 +719,27 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
             f"→ mostly_false (nuance: substance not ruled on)"
         )
 
+    # Pattern C-inverse (QA50B #34, 2026-07-12): claim "war verfassungs-
+    # widrig" (OHNE inhaltlich/materiell-Qualifier und OHNE -konform) +
+    # Summary bestätigt Nichtigkeit/Kompetenzwidrigkeit → formal KORREKT
+    # (2 BvF 1/20: "mit dem GG unvereinbar und nichtig"). Der LLM über-
+    # nuanciert deterministisch zu false ("nur formal").
+    if (verdict in ("false", "mostly_false") and not verdict_from_summary
+            and re.search(r"verfassungswidrig|grundgesetzwidrig",
+                          claim_lower)
+            and not re.search(r"inhaltlich|materiell|verfassungskonform|"
+                              r"grundgesetzkonform|verfassungsgemäß",
+                              claim_lower)
+            and re.search(r"nichtig|gesetzgebungskompetenz|"
+                          r"kompetenzwidrig|mit dem grundgesetz "
+                          r"unvereinbar", summary_lower)):
+        verdict_from_summary = "mostly_true"
+        logger.info(
+            "Competence-ruling INVERSE pattern: formal "
+            "'verfassungswidrig' claim + summary confirms "
+            "nullification → mostly_true"
+        )
+
     # Pattern D (Bug #97): Trend claims with "kaum" where data
     # shows modest but non-zero reduction → mostly_true (not true).
     # "kaum gesenkt" + data shows e.g. 16% reduction = mostly_true.

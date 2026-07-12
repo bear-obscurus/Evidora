@@ -421,3 +421,19 @@ def test_h_live_schranken_angabe_bricht_cluster_nicht():
         "und die AT Factbook-Daten bestätigen 11,7 % für 2026.",
         confidence=0.95)
     assert r["verdict"] == "false", r
+
+
+def test_c_inverse_formale_verfassungswidrigkeit():
+    """QA50B #34: 'war verfassungswidrig' + Summary bestätigt Nichtig-
+    keit/Kompetenz → mostly_true; 'verfassungskonform' bleibt bei
+    Pattern C (mostly_false)."""
+    r = _run("Der Berliner Mietendeckel war verfassungswidrig", "false",
+             "Das BVerfG kippte den Mietendeckel nicht wegen inhaltlicher "
+             "Verfassungswidrigkeit, sondern wegen fehlender "
+             "Gesetzgebungskompetenz Berlins; das Gesetz wurde für "
+             "nichtig erklärt.")
+    assert r["verdict"] == "mostly_true", r
+    r2 = _run("Der Mietendeckel war inhaltlich verfassungswidrig", "mostly_false",
+              "Das Gesetz wurde wegen fehlender Gesetzgebungskompetenz "
+              "für nichtig erklärt; inhaltlich erging kein Urteil.")
+    assert r2["verdict"] == "mostly_false", r2

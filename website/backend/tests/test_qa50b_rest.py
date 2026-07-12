@@ -101,7 +101,7 @@ def test_kopftuch_rechtslage_2026_und_trigger():
                        encoding="utf-8"))
     r = next(x for x in d["rulings"]
              if x["id"] == "vfgh_g_4_2020_kopftuchverbot")
-    assert "RECHTSLAGE-UPDATE" in r["kerninhalt"]
+    assert r["kerninhalt"].startswith("RECHTSLAGE Stand Juli 2026")  # Cap-Schatten: vorne
     assert "1.9.2026" in r["kerninhalt"] and "mixed" in r["kerninhalt"]
     assert substring_or_composite_match(
         r, "an österreichs volksschulen gilt ein kopftuchverbot")
