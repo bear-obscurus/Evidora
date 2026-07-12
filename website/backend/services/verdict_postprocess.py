@@ -121,33 +121,49 @@ def _parse_de_number(raw, tail=""):
     return val
 
 
-def _entity_percent_from_summary(entity, summary_norm):
+def _entity_percent_from_summary(entity, summary_norm, exclude=None):
     """Den EINDEUTIGEN Prozentwert, den die Summary der Entität
-    zuschreibt ('kärnten 13,94 %'). None wenn keiner gefunden ODER
-    mehrere verschiedene im Fenster stehen — Verlaufsangaben wie
-    'sank in NÖ von 14,1 % auf 12,57 %' lieferten sonst den
-    historischen Wert und drehten die Relation (Review-Befund
-    2026-07-12). Kein Fix ist besser als ein falscher."""
-    idx = summary_norm.find(entity)
-    if idx < 0:
-        return None
-    window = summary_norm[idx + len(entity):idx + len(entity) + 55]
-    window = re.split(r"[.;]", window)[0]
-    # Fenster an der NÄCHSTEN Entität abschneiden — "Kärnten 13,94 %,
-    # Niederösterreich 12,57 %" im selben Satz ist der Normalfall;
-    # der fremde Wert darf die Eindeutigkeit nicht brechen.
-    cut = len(window)
-    for other in _AT_BUNDESLAENDER + _COMPARISON_COUNTRIES:
-        if other == entity or other in entity or entity in other:
+    zuschreibt ('kärnten 13,94 %').
+
+    Live-Härtungen 2026-07-12: (1) ALLE Vorkommen scannen — das erste
+    ist oft die wertlose Claim-Wiederholung ('… sagt, der Anteil in
+    Kärnten sei höher …'); (2) pro Fenster nur der ERSTE Wert (nächste
+    Attribution), Fenster endet an Satzgrenze und nächster Entität;
+    (3) Verlaufsangaben 'von X % auf Y %' machen das Vorkommen
+    mehrdeutig → skip (Review-Befund: historischer Wert drehte die
+    Relation); (4) Werte über Vorkommen hinweg dürfen nur Rundungs-
+    Varianten sein ('13,94' vs. '13,9', ±0,1 pp) — sonst None;
+    (5) optional ``exclude``: Schwellen-Echo ('… also unter 10 %')
+    zählt nicht als Entitäts-Wert. Kein Fix ist besser als ein
+    falscher."""
+    vals = []
+    for m in re.finditer(re.escape(entity), summary_norm):
+        window = summary_norm[m.end():m.end() + 55]
+        window = re.split(r"[.;]", window)[0]
+        cut = len(window)
+        for other in _AT_BUNDESLAENDER + _COMPARISON_COUNTRIES:
+            if other == entity or other in entity or entity in other:
+                continue
+            pos = window.find(other)
+            if 0 <= pos < cut:
+                cut = pos
+        window = window[:cut]
+        if re.search(r"von\s+\d[\d,]*\s*%\s+auf\s+", window):
             continue
-        pos = window.find(other)
-        if 0 <= pos < cut:
-            cut = pos
-    window = window[:cut]
-    vals = {_parse_de_number(m.group(1))
-            for m in re.finditer(r"(\d{1,3}(?:,\d+)?)\s*%", window)}
-    vals.discard(None)
-    return vals.pop() if len(vals) == 1 else None
+        pm = re.search(r"(\d{1,3}(?:,\d+)?)\s*%", window)
+        if not pm:
+            continue
+        v = _parse_de_number(pm.group(1))
+        if v is None:
+            continue
+        if (exclude is not None and exclude > 0
+                and abs(v - exclude) / exclude <= 0.005):
+            continue
+        vals.append(v)
+    if not vals:
+        return None
+    ref = vals[0]
+    return ref if all(abs(v - ref) <= 0.1 for v in vals) else None
 
 
 def _summary_refutes_superlative(claim_lower, summary_lower):
@@ -897,7 +913,7 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                                    for o in _claim_ents)]
                     if len(_claim_ents) == 1:
                         v = _entity_percent_from_summary(
-                            _claim_ents[0], _sum_norm)
+                            _claim_ents[0], _sum_norm, exclude=_thr)
                         if v is not None:
                             _cands.append(v)
                     elif not _claim_ents:

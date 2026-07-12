@@ -370,3 +370,38 @@ def test_review_pattern_a_top_n_claims_ausgenommen():
         "Die größte Gruppe sind deutsche Staatsangehörige auf Rang 1 "
         "der größten Gruppen.")
     assert r["verdict"] == "false", r
+
+
+# --- Live-Verifikations-Nachzügler (Prod-Summaries 2026-07-12) ---
+
+def test_g_live_claim_wiederholung_und_gerundete_zweitwerte():
+    """Prod-Summary #8: erstes Entitäts-Vorkommen ist die wertlose
+    Claim-Wiederholung, spätere Vorkommen streuen gerundete Varianten
+    ('13,9' neben '13,94'). Alle Vorkommen scannen + Rundungs-Cluster
+    tolerieren."""
+    r = _run(
+        "In Kärnten ist der Ausländeranteil höher als in "
+        "Niederösterreich (l4w-8)",
+        "false",
+        "Die Behauptung sagt, der Ausländeranteil in Kärnten sei höher "
+        "als in Niederösterreich. Daten von Statistik Austria (1.1.2026) "
+        "zeigen: Kärnten 13,94 %, Niederösterreich 12,57 %. Damit ist "
+        "Kärnten höher, aber die Differenz beträgt nur 1,37 "
+        "Prozentpunkte. Die Behauptung ist jedoch falsch, da die exakten "
+        "Werte Kärnten (13,9 %) und Niederösterreich (12,6 %) in der "
+        "Quelle als 13,94 % und 12,57 % angegeben sind.")
+    assert r["verdict"] == "true", r
+
+
+def test_h_live_schwellen_echo_im_entitaets_fenster():
+    """Prod-Summary #9: 'bei 11,7 %, also unter 10 %' — das Schwellen-
+    Echo steht IM Entitäts-Fenster und brach die Eindeutigkeit; per
+    exclude-Filter zählt nur der echte Subjekt-Wert."""
+    r = _run(
+        "Im Burgenland liegt der Ausländeranteil unter 10 Prozent (l4w-9)",
+        "true",
+        "Laut Statistik Austria (1.1.2026) liegt der Anteil der "
+        "Nicht-Österreicher:innen im Burgenland bei 11,7 %, also unter "
+        "10 % ist nicht korrekt, aber knapp darüber. Die Behauptung ist "
+        "damit fast korrekt.")
+    assert r["verdict"] == "false", r
