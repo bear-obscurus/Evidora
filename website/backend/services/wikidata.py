@@ -1016,9 +1016,27 @@ async def search_wikidata(analysis: dict) -> dict:
                 ).strip() or "?"
                 active_positions.add((qid_p, party_label))
 
+    # Meloni-Regel (QA50C #7, 2026-07-12): Nennt der Claim KEIN Amts-
+    # Substantiv ("X regiert noch") und hält die Person ein AKTIVES
+    # Spitzenamt (Stem-Match in _POSITION_CLAIM_STEMS), beantworten
+    # beendete Nebenämter den Claim nicht — Melonis 8-Tage-Interims-
+    # Tourismusministerium (beendet 3.4.2026) feuerte sonst STRUKT-
+    # Marker und invertierte die AKTIVE Ministerpräsidentin zu
+    # mostly_false. Orbán-Klasse bleibt: ohne aktives Spitzenamt
+    # behalten beendete Ämter ihre Marker.
+    _skip_ended_minor = False
+    if template_name == "politiker_amtszeit" and not _claim_position_stems(claim):
+        _skip_ended_minor = any(
+            any(st in pos.lower() for st in _POSITION_CLAIM_STEMS)
+            for _qid, pos in active_positions
+        )
+
     results: list[dict] = []
     seen_qids: set[str] = set()
     for row in rows:
+        if (_skip_ended_minor and _is_office_term_ended(
+                (row.get("end") or {}).get("value") or "")):
+            continue
         try:
             display, qid, label = _format_row(
                 template_name, row, active_positions=active_positions

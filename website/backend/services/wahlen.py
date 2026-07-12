@@ -103,6 +103,10 @@ WAHL_TYPE_KEYWORDS: dict[str, str] = {
     "gemeinderatswahl": "GRW_W",
     "landtagswahl wien": "GRW_W",
     "wiener landtagswahl": "GRW_W",
+    # QA50C #29: Bestands-Claims ohne "-wahl" ("im Wiener Gemeinderat
+    # vertreten") erreichten das Gate nie — Wikipedia bejahte dann falsch.
+    "wiener gemeinderat": "GRW_W",
+    "wiener landtag": "GRW_W",
 }
 
 # Generische Wahl-Keywords (kein Typ-Hinweis, nur Trigger)
@@ -345,6 +349,11 @@ def _make_party_entry(election: dict, party: dict) -> dict:
         parts.append(f"{votes:,} Stimmen".replace(",", "."))
     if seats is not None and typ in ("NRW", "EUW", "GRW_W"):
         parts.append(f"{seats} Mandate")
+        if seats == 0:
+            parts.append("NICHT im Gremium vertreten")
+    ch = party.get("change_pp")
+    if ch is not None:
+        parts.append(f"{ch:+.2f} pp ggü. Vorwahl".replace(".", ","))
     display_value = " · ".join(parts) if parts else short
 
     quelle = ("amtliches Endergebnis der Stadt Wien"

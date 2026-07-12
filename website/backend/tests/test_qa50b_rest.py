@@ -134,3 +134,55 @@ def test_ibuprofen_fakt_trigger_und_mixed_ziel():
     hits = [(m.group(1).lower(), m.group(2)) for m in
             _DIRECTIVE_RE.finditer(f["data"]["kernsatz_fuer_synthesizer"])]
     assert ("mixed", "0.6") in hits, hits
+
+
+# --- QA50C-Sweep (7 Befunde, 2026-07-12 spät) ---
+
+def test_qa50c_einwohner_vergleichs_gate_und_satz():
+    """#5: 'Wien hat mehr Einwohner als NÖ' → Gate + fertiger Satz."""
+    from services.at_factbook import (_claim_mentions_citizenship,
+                                      _build_citizenship_results)
+    c = "wien hat mehr einwohner als niederösterreich"
+    assert _claim_mentions_citizenship(c)
+    d = json.load(open(os.path.join(_DATA, "at_factbook.json"),
+                       encoding="utf-8"))
+    f = next(x for x in d["facts"]
+             if x["id"] == "staatsbuergerschaft_bevoelkerung_2026")
+    blk = next(r for r in _build_citizenship_results(f, c)
+               if r["indicator_name"].startswith("Anteil Nicht-AT"))
+    assert "Wien 2.040.914 — MEHR als Niederösterreich (1.729.541)" in \
+        blk["display_value"].replace("Einwohner: ", "Einwohner-kompakt: ") \
+        or "MEHR als Niederösterreich" in blk["display_value"]
+
+
+def test_qa50c_steuer_fakt_eu_claims_ohne_at():
+    """#41: 'Belgien hat die höchste Abgabenlast in der EU' muss den
+    Ranking-Fakt erreichen (EU-Alternative zur AT-Gruppe)."""
+    f = _steuer_fact()
+    assert substring_or_composite_match(
+        f, "belgien hat die höchste steuer- und abgabenlast auf arbeit in der eu")
+
+
+def test_qa50c_gemeinderat_gate_und_null_mandate():
+    """#29: 'im Wiener Gemeinderat vertreten' → GRW_W-Gate; 0-Mandate-
+    Parteien werden explizit als NICHT vertreten gerendert."""
+    from services.wahlen import WAHL_TYPE_KEYWORDS, _make_party_entry
+    assert WAHL_TYPE_KEYWORDS.get("wiener gemeinderat") == "GRW_W"
+    d = json.load(open(os.path.join(_DATA, "wahlen.json"), encoding="utf-8"))
+    e = next(x for x in d["elections"] if x["type"] == "GRW_W")
+    kpoe = next(r for r in e["results"] if r["short"] == "KPÖ")
+    disp = _make_party_entry(e, kpoe)["display_value"]
+    assert "0 Mandate" in disp and "NICHT im Gremium vertreten" in disp
+    oevp = next(r for r in e["results"] if r["short"] == "ÖVP")
+    assert "-10,78 pp" in _make_party_entry(e, oevp)["display_value"]
+
+
+def test_qa50c_benko_fakt():
+    """#35: U-Haft-Fakt (Opus-recherchiert, orf.at-Quelle), Unschulds-
+    vermutung für offene Verfahren enthalten."""
+    d = json.load(open(os.path.join(_DATA, "at_courts.json"),
+                       encoding="utf-8"))
+    r = next(x for x in d["rulings"] if x["id"] == "benko_uhaft_krida_2026")
+    assert r["kerninhalt"].startswith("STAND JULI 2026")
+    assert "Unschuldsvermutung" in r["kerninhalt"]
+    assert substring_or_composite_match(r, "rené benko sitzt in untersuchungshaft")

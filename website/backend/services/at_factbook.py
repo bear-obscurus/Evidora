@@ -303,6 +303,13 @@ _NATIONALITY_STEMS = (
 )
 
 
+_AT_BUNDESLAENDER_GATE = (
+    "wien", "niederösterreich", "niederoesterreich", "oberösterreich",
+    "oberoesterreich", "salzburg", "tirol", "vorarlberg", "kärnten",
+    "kaernten", "steiermark", "burgenland",
+)
+
+
 def _claim_mentions_citizenship(claim_lc: str) -> bool:
     has_term = any(t in claim_lc for t in _CITIZEN_TERMS)
     if has_term and _has_at_context(claim_lc):
@@ -361,6 +368,14 @@ def _claim_mentions_citizenship(claim_lc: str) -> bool:
     # unverifiable trotz Top-10-Daten).
     has_cmp = any(t in claim_lc for t in (" mehr ", " weniger ", " als "))
     if len(nationality_hits) >= 2 and has_cmp and _has_at_context(claim_lc):
+        return True
+    # Composite: Bundesländer-EINWOHNER-Vergleich (QA50C #5) — "Wien hat
+    # mehr Einwohner als Niederösterreich" erreichte kein Gate; der LLM
+    # verglich dann frei und invertierte (2,04 M > 1,73 M → false@0.85).
+    _states_in_claim = [b for b in _AT_BUNDESLAENDER_GATE if b in claim_lc]
+    _states_in_claim = [b for b in _states_in_claim
+                        if not any(b != x and b in x for x in _states_in_claim)]
+    if len(set(_states_in_claim)) >= 2 and "einwohner" in claim_lc:
         return True
     return False
 
@@ -1679,6 +1694,21 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
                         f"(Rang {p.get('rang')}, {_pct2(exakt_p)}); beide "
                         f"runden auf {s['anteil_pct']} %.")
             display += satz
+        # Einwohner-Vergleichssatz (QA50C #5): zwei genannte Länder +
+        # "einwohner" → Relation vorrechnen, lesen statt rechnen.
+        if "einwohner" in claim_lc:
+            _cmp_states = [x for x in sorted_states
+                           if x.get("einwohner_gesamt")
+                           and any(v in claim_lc
+                                   for v in _lc_variants(x["land"]))]
+            if len(_cmp_states) == 2:
+                a, b = _cmp_states
+                hi, lo = (a, b) if (a["einwohner_gesamt"]
+                                    > b["einwohner_gesamt"]) else (b, a)
+                display += (
+                    f" Einwohner: {hi['land']} {_de(hi['einwohner_gesamt'])}"
+                    f" — MEHR als {lo['land']}"
+                    f" ({_de(lo['einwohner_gesamt'])}).")
         spannweite = (
             f" Spannweite zwischen Wien und Burgenland: Faktor "
             f"{round(wien['anteil_pct'] / burgenland['anteil_pct'], 1)}."
