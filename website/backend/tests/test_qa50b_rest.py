@@ -71,3 +71,66 @@ def test_wien_wahl_2025_eintrag_und_trigger():
                      r"(\s+\d{4})?\s+gewonnen\b")
     assert pat.search("die spö hat die wien-wahl 2025 gewonnen")
     assert '"GRW_W": "Wiener Gemeinderats- und Landtagswahl"' in svc
+
+
+# --- Niedrig-Punkte #34/#33/#4 (2026-07-12, zweiter Sweep) ---
+
+def test_mietendeckel_leitlinie_richtungs_sensibel():
+    """#34: Die alte Leitlinie erklärte ALLE 'verfassungswidrig'-Phrasings
+    zu mostly_false — formal ist 'verfassungswidrig' aber KORREKT
+    (2 BvF 1/20: 'mit dem GG unvereinbar und nichtig'). Neu: richtungs-
+    sensibel + OHNE VERDICT-LEITLINIE-Token (der STRUKT-Marker hätte via
+    L2 die wahre Richtung invertiert)."""
+    d = json.load(open(os.path.join(_DATA, "wohnen_pack.json"),
+                       encoding="utf-8"))
+    f = next(x for x in (d.get("facts") or d.get("topics"))
+             if x["id"] == "mietendeckel_berlin_bilanz_2026")
+    ks = f["data"]["kernsatz_fuer_synthesizer"]
+    assert not has_false_verdict_override(ks)
+    assert "mostly_true bei 0.85" in ks          # formal-korrekt-Richtung
+    assert "mostly_false (Konfidenz 0.9)" in ks  # verfassungskonform-Richtung
+    assert "Kompetenzwidrigkeit IST eine Form der Verfassungswidrigkeit" in ks
+
+
+def test_kopftuch_rechtslage_2026_und_trigger():
+    """#33: 'An Österreichs Volksschulen gilt ein Kopftuchverbot' →
+    Stand Juli 2026 teils-teils (beschlossen 11.12.2025, sanktionswirksam
+    erst 1.9.2026). Ruling trägt Update + triggert auf Bestands-Phrasings.
+    ⚠️ Refresh-Marker: ab 1.9.2026 kippt die Bewertung auf zutreffend."""
+    d = json.load(open(os.path.join(_DATA, "at_courts.json"),
+                       encoding="utf-8"))
+    r = next(x for x in d["rulings"]
+             if x["id"] == "vfgh_g_4_2020_kopftuchverbot")
+    assert "RECHTSLAGE-UPDATE" in r["kerninhalt"]
+    assert "1.9.2026" in r["kerninhalt"] and "mixed" in r["kerninhalt"]
+    assert substring_or_composite_match(
+        r, "an österreichs volksschulen gilt ein kopftuchverbot")
+    assert not substring_or_composite_match(
+        r, "in frankreich gilt ein laizitätsgesetz")
+
+
+def _ibu_fact():
+    d = json.load(open(os.path.join(
+        _DATA, "gesundheits_autoritaeten_pack.json"), encoding="utf-8"))
+    return next(f for f in d["facts"]
+                if f["id"] == "ibuprofen_niere_konsens_2026")
+
+
+def test_ibuprofen_fakt_trigger_und_mixed_ziel():
+    """#4: NSAR-Klassen-Transfer vom Diclofenac-Fakt — Zyrtec-Muster
+    (kein Override-Token, parseable mixed-Direktive)."""
+    f = _ibu_fact()
+    for c in ("Ibuprofen geht auf die Nieren",
+              "Nurofen ist schlecht für die Nieren",
+              "Kann Ibuprofen zu Nierenversagen führen?"):
+        assert substring_or_composite_match(f, c.lower()), c
+    for c in ("Ibuprofen hilft gegen Kopfschmerzen",
+              "Meine Nieren tun weh",
+              "Voltadol schädigt die Nieren"):
+        assert not substring_or_composite_match(f, c.lower()), c
+    assert not has_false_verdict_override(f["data"]["kernsatz_fuer_synthesizer"])
+    assert not has_false_verdict_override(f["headline"])
+    from services.confidence_calibration import _DIRECTIVE_RE
+    hits = [(m.group(1).lower(), m.group(2)) for m in
+            _DIRECTIVE_RE.finditer(f["data"]["kernsatz_fuer_synthesizer"])]
+    assert ("mixed", "0.6") in hits, hits

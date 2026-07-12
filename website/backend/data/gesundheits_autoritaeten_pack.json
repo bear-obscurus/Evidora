@@ -1324,6 +1324,55 @@
       "source_url": "https://medlineplus.gov/druginfo/meds/a623043.html",
       "secondary_url": "https://pubmed.ncbi.nlm.nih.gov/26990040/",
       "fetched_at_iso": "2026-07-11"
-    }
+    },
+    {
+    "id": "ibuprofen_niere_konsens_2026",
+    "topic": "ibuprofen_niere_konsens",
+    "scope": "Ibuprofen/NSAR und Nieren — Dosis, Dauer und Risikofaktoren entscheiden (teils-teils)",
+    "year": 2026,
+    "headline": "Ibuprofen & Nieren — teils-teils: gelegentliche, bestimmungsgemäße Einnahme bei Nierengesunden hat ein geringes Risiko; regelmäßige/hochdosierte Einnahme oder Risikofaktoren (Nieren-/Herzinsuffizienz, Dehydratation, höheres Alter, 'Triple Whammy' mit ACE-Hemmer/Sartan + Diuretikum) tragen ein reales, dokumentiertes NSAR-Nierenrisiko — pauschal 'Ibuprofen geht auf die Nieren' ist weder klar wahr noch klar falsch",
+    "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG — teils-teils, NSAR-Klasseneffekt wie bei Diclofenac: Der Claim 'Ibuprofen geht auf die Nieren / schädigt die Nieren' ist pauschal nur TEILS-TEILS zutreffend. Empfehlung für das Verdict: mixed (teils-teils), Konfidenz 0.6. (1) NSAR (auch Ibuprofen) hemmen die Prostaglandin-Synthese → renale Minderperfusion; akute Nierenschädigung ist ein reales, in der Fach-/Gebrauchsinformation dokumentiertes Risiko — v. a. bei Vorerkrankung, Dehydratation, höherem Alter, hoher Dosis/Dauereinnahme oder 'Triple Whammy' (NSAR + ACE-Hemmer/Sartan + Diuretikum). (2) Bei nierengesunden Erwachsenen ist die gelegentliche, bestimmungsgemäße OTC-Einnahme dagegen mit einem geringen Nierenrisiko verbunden. NUR wenn der Claim klar Dauereinnahme/hohe Dosis/Risikogruppen meint → mostly_true. Wenn er behauptet, schon einzelne Tabletten ruinierten Gesunden die Nieren → mostly_false. Ein pauschales 'wahr' ist alarmistisch, ein pauschales 'falsch' verharmlost das dokumentierte Risiko.",
+        "gelegentlich_gesunde": "Gelegentliche, bestimmungsgemäße Einnahme (OTC-Dosis, wenige Tage) bei Nierengesunden: geringes Risiko; Gebrauchsinformation empfiehlt niedrigste wirksame Dosis über kürzest mögliche Zeit und ausreichend Flüssigkeit.",
+        "risiko_konstellationen": "Dokumentierte NSAR-Risiken laut Fachinformation: akute Nierenschädigung, Flüssigkeitsretention, selten interstitielle Nephritis; erhöht bei Nieren-/Herzinsuffizienz, Volumenmangel, älteren Patient:innen, Langzeit-/Hochdosis-Einnahme und der 'Triple Whammy'-Kombination.",
+        "marken_kontext": "Ibuprofen ist u. a. als Nurofen, Brufen, Dolgit im Handel; NSAR-Klasseneffekt analog Diclofenac (Voltadol/Voltaren) — siehe diclofenac_niere_konsens_2026.",
+        "context": "Der Faktencheck differenziert nach Dosis, Dauer und Risikofaktoren; ohne diese Angabe ist die pauschale Behauptung nicht eindeutig wahr oder falsch."
+    },
+    "context_notes": [
+        "Kernaussage: Dosis/Dauer/Risikofaktoren entscheiden — pauschal ist 'Ibuprofen geht auf die Nieren' teils-teils.",
+        "Reales NSAR-Risiko bei Dauereinnahme, hoher Dosis oder Risikogruppen (Triple Whammy); geringes Risiko bei gelegentlicher bestimmungsgemäßer Einnahme Nierengesunder.",
+        "Keine Anwendungsempfehlung; bei Nierenvorerkrankung ärztliche Rücksprache."
+    ],
+    "claim_phrasings_handled": [
+        "Ibuprofen geht auf die Nieren",
+        "Ibuprofen schädigt die Nieren",
+        "Nurofen ist schlecht für die Nieren",
+        "Kann Ibuprofen zu Nierenversagen führen?"
+    ],
+    "trigger_keywords": [],
+    "trigger_composite": [
+        [
+            "ibuprofen",
+            "nurofen",
+            "brufen",
+            "dolgit",
+            "ibuflam"
+        ],
+        [
+            "niere",
+            "nieren",
+            "nephro",
+            "nephrotox",
+            "renal",
+            "nierenschäd",
+            "nierenschad",
+            "nierenversagen"
+        ]
+    ],
+    "source_label": "MedlinePlus Ibuprofen-Arzneimittelinformation (NIH/NLM) + NSAR-Nephrotoxizität-Fachliteratur (Triple-Whammy)",
+    "source_url": "https://medlineplus.gov/druginfo/meds/a682159.html",
+    "secondary_url": "",
+    "fetched_at_iso": "2026-07-12"
+}
   ]
 }
