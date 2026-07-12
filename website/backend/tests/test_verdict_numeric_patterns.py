@@ -437,3 +437,15 @@ def test_c_inverse_formale_verfassungswidrigkeit():
               "Das Gesetz wurde wegen fehlender Gesetzgebungskompetenz "
               "für nichtig erklärt; inhaltlich erging kein Urteil.")
     assert r2["verdict"] == "mostly_false", r2
+
+
+def test_i_verbform_mehr_als_verdoppelt():
+    """QA50C #45: 'mehr als verdoppelt' bei Faktor 1,92 → false;
+    Verbform fehlte im Pattern-I-Regex."""
+    r = _run(
+        "Der Ausländeranteil in Österreich hat sich seit 2010 mehr als "
+        "verdoppelt",
+        "true",
+        "Der Anteil stieg laut Statistik Austria auf 20,4 %; 2010 lag er "
+        "bei 10,6 %.")
+    assert r["verdict"] == "false", r

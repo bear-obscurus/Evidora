@@ -385,6 +385,7 @@
           ]
         ]
       ]
-    }
-  ]
+    },
+  {"id": "benko_uhaft_krida_2026", "court": "OGH / LG Innsbruck", "case_number": "OGH-Entscheidung 02.07.2026 (betrügerische Krida)", "case_name": "René Benko — U-Haft seit 23.01.2025, erster rechtskräftiger Schuldspruch", "year": 2026, "decided_iso": "2026-07-02", "url": "https://orf.at/stories/3435054/", "topic": "benko_signa_verfahren", "kerninhalt": "STAND JULI 2026: René Benko sitzt seit 23.01.2025 durchgehend in Untersuchungshaft (Justizanstalt Innsbruck) — 'Benko sitzt in U-Haft' ist ZUTREFFEND. Der OGH bestätigte am 02.07.2026 erstmals rechtskräftig einen Schuldspruch wegen betrügerischer Krida (300.000-EUR-Schenkung an die Mutter Ende 2023), hob einen Teilfreispruch zur Neuverhandlung am LG Innsbruck auf und verwies die Strafbemessung zurück; Benko bleibt in U-HAFT, nicht in Strafhaft. Bereits am 13.04.2026 wies der OGH eine Beschwerde gegen die U-Haft ab. Weitere Verfahren sind offen (u. a. dritte Anklage Mitte Juni 2026; das Dezember-2025-Urteil war zum OGH-Zeitpunkt nicht rechtskräftig) — für alle NICHT rechtskräftig entschiedenen Vorwürfe gilt die Unschuldsvermutung.", "boulevard_falschmeldung": "Benko ist längst wieder frei / Benko wurde in allen Punkten verurteilt. (Richtig: durchgehend U-Haft seit 23.01.2025; rechtskräftig bisher NUR der Krida-Schuldspruch vom 02.07.2026, weitere Verfahren offen.)", "trigger_keywords": ["benko"], "trigger_composite": []}
+ ]
 }

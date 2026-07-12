@@ -105,3 +105,38 @@ def test_templates_decken_mul_labels():
                encoding="utf-8").read()
     assert 'rdfs:label "{name}"@de.' not in svc
     assert svc.count('@mul') >= 10
+
+
+def test_meloni_regel_aktives_spitzenamt_unterdrueckt_nebenamt_marker(monkeypatch):
+    """QA50C #7: beendetes 8-Tage-Interims-Ministeramt feuerte STRUKT-
+    Marker gegen die AKTIVE Ministerpräsidentin. Ohne Amts-Substantiv im
+    Claim + aktivem Spitzenamt fliegen beendete Nebenämter raus."""
+    rows = [
+        {"person": {"value": "http://www.wikidata.org/entity/Q118625"},
+         "personLabel": {"value": "Giorgia Meloni"},
+         "positionLabel": {"value": "Italian minister of Tourism"},
+         "start": {"value": "2026-03-26T00:00:00Z"},
+         "end": {"value": "2026-04-03T00:00:00Z"}},
+        {"person": {"value": "http://www.wikidata.org/entity/Q118625"},
+         "personLabel": {"value": "Giorgia Meloni"},
+         "positionLabel": {"value": "Italienischer Ministerpräsident"},
+         "start": {"value": "2022-10-22T00:00:00Z"}},
+    ]
+    _setup(monkeypatch, [rows])
+    out = asyncio.run(wd.search_wikidata(
+        {"claim": "Giorgia Meloni regiert Italien noch immer",
+         "original_claim": "Giorgia Meloni regiert Italien noch immer",
+         "entities": ["Giorgia Meloni"]}))
+    disp = " ".join(r.get("display_value", "") for r in out["results"])
+    assert "STRUKTURELL" not in disp, disp
+    assert "Ministerpräsident" in disp
+    # Orbán-Klasse unberührt: ALLE Ämter beendet → Marker bleibt
+    rows_ended = [dict(rows[0]),
+                  {**rows[1], "end": {"value": "2026-05-09T00:00:00Z"}}]
+    _setup(monkeypatch, [rows_ended])
+    out2 = asyncio.run(wd.search_wikidata(
+        {"claim": "Giorgia Meloni regiert Italien noch immer",
+         "original_claim": "Giorgia Meloni regiert Italien noch immer",
+         "entities": ["Giorgia Meloni"]}))
+    disp2 = " ".join(r.get("display_value", "") for r in out2["results"])
+    assert "STRUKTURELL" in disp2, disp2

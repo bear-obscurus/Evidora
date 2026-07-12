@@ -998,12 +998,16 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     if (_numeric_fix is None and not verdict_from_summary
             and verdict in ("true", "mostly_true")):
         ratio_m = re.search(
-            r"(?:mehr als|über|ueber)\s+(doppelt|zwei\s?mal|dreimal|"
+            r"(?:mehr als|über|ueber)\s+(?:(doppelt|zwei\s?mal|dreimal|"
             r"drei\s?mal|viermal|vier\s?mal)\s+so\s+"
-            r"(?:hoch|hohe\w*|groß|gross|viel|stark)", claim_lower)
+            r"(?:hoch|hohe\w*|groß|gross|viel|stark)"
+            # QA50C #45: Verbformen "(mehr als) verdoppelt/verdreifacht"
+            # — Faktor 1,92 wurde als "mehr als verdoppelt" bestätigt.
+            r"|ver(doppelt|dreifacht|vierfacht))", claim_lower)
         if ratio_m:
+            _w = (ratio_m.group(1) or ratio_m.group(2)).replace(" ", "")
             _factor = {"doppelt": 2, "zweimal": 2, "dreimal": 3,
-                       "viermal": 4}[ratio_m.group(1).replace(" ", "")]
+                       "viermal": 4, "dreifacht": 3, "vierfacht": 4}[_w]
             _pcts = sorted({_parse_de_number(pm.group(1))
                             for pm in re.finditer(
                                 r"(\d{1,3}(?:,\d+)?)\s*%", _sum_norm)
