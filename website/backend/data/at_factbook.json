@@ -341,6 +341,7 @@
           {"rang": 9, "land": "Ukraine", "anzahl": 94030, "anteil_pct_an_nicht_at": 5.0},
           {"rang": 10, "land": "Polen", "anzahl": 66561, "anteil_pct_an_nicht_at": 3.5}
         ],
+        "knapp_ausserhalb_top10": {"rang": 11, "land": "Afghanistan", "anzahl": 55116},
         "bundeslaender_anteil_nicht_at_pct": [
           {"land": "Wien", "anteil_pct": 36.8, "absolut": 751778, "einwohner_gesamt": 2040914, "rang": 1},
           {"land": "Salzburg", "anteil_pct": 20.9, "absolut": 120135, "einwohner_gesamt": 573526, "rang": 2},
@@ -372,7 +373,10 @@
         "Verdopplung Ausländeranteil seit 2010",
         "Top Herkunftsländer Österreich",
         "größte Migrantengruppe Österreich",
-        "Wie viele Ukrainer leben in Österreich"
+        "Wie viele Ukrainer leben in Österreich",
+        "In Österreich leben fast 100.000 Ukrainer",
+        "Es leben mehr Türken als Serben in Österreich",
+        "Afghanen gehören zu den zehn größten Ausländergruppen"
       ],
       "source_label": "Statistik Austria — Bevölkerungsstand 1.1.2026, endgültige Ergebnisse (POPREG)",
       "source_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/bevoelkerungsstand/bevoelkerung-zu-jahres-/-quartalsanfang",

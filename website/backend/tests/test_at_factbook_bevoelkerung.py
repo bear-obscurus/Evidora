@@ -212,3 +212,88 @@ def test_rang_satz_im_display_bei_genanntem_bundesland():
     dblk = next(r for r in drittel
                 if r["indicator_name"].startswith("Anteil Nicht-AT-Staatsbürger"))
     assert "liegt auf Rang" not in dblk["display_value"]
+
+# --- Gate + Top-10-Rendering (QA50B-Befunde #11/#12/#15, 2026-07-11) ---
+
+@pytest.mark.parametrize("claim", [
+    "In Österreich leben fast 100.000 Ukrainer",       # QA50B #11: Verb VOR Gruppe
+    "Es leben mehr Türken als Serben in Österreich",   # QA50B #15: Vergleich
+    "Afghanen gehören zu den zehn größten Ausländergruppen in Österreich",  # QA50B #12
+    "In Wien wohnen über 100.000 Serben",
+])
+def test_citizenship_gate_qa50b_luecken(claim):
+    """Drei Gate-Lücken aus dem 50er-Transfer-Lauf: deutsche
+    Verb-Erst-Stellung ('In Österreich leben X'), Nationalitäten-
+    Vergleich ('mehr X als Y') und Gruppen-Komposita
+    ('Ausländergruppen'). AT Factbook fehlte live komplett in den
+    Quellen — unverifiable trotz vorhandener Top-10-Daten."""
+    from services.at_factbook import _claim_mentions_citizenship
+    assert _claim_mentions_citizenship(claim.lower()), claim
+
+
+@pytest.mark.parametrize("claim", [
+    "Lebensmittel aus Polen sind in Österreich beliebt",   # 'leben ' darf nicht aus 'Lebensmittel' feuern
+    "In Österreich leben viele Menschen",                  # keine Nationalität
+    "Die Metropolen Europas wachsen schneller als Wien",   # ' polen'-Falle + ' als ' ohne 2. Nationalität
+    "Deutsche Autos verkaufen sich besser als französische",  # kein AT-Kontext
+])
+def test_citizenship_gate_qa50b_negativ(claim):
+    from services.at_factbook import _claim_mentions_citizenship
+    assert not _claim_mentions_citizenship(claim.lower()), claim
+
+
+def test_top10_vergleichssatz_bei_zwei_nationalitaeten():
+    """'Mehr Türken als Serben' (123.391 vs. 122.527, Rang 3 vs. 4) muss
+    als fertiger Vergleichssatz im display_value stehen — die Top-3-
+    Kurzform + description reichten live nicht (unverifiable)."""
+    from services.at_factbook import _build_citizenship_results
+    results = _build_citizenship_results(
+        _fact(), "es leben mehr türken als serben in österreich")
+    blk = next(r for r in results
+               if r["indicator_name"].startswith("Top-10 Herkunftsländer"))
+    disp = blk["display_value"]
+    assert "Türkei (123.391, Rang 3) VOR Serbien (122.527, Rang 4)" in disp, disp
+    assert "MEHR türkische als serbische" in disp, disp
+    assert len(disp) <= 480, len(disp)
+
+
+def test_top10_einzelsatz_bei_einer_nationalitaet():
+    """'Fast 100.000 Ukrainer' braucht den Ukraine-Wert im display —
+    Rang 9 stand nur in der description."""
+    from services.at_factbook import _build_citizenship_results
+    results = _build_citizenship_results(
+        _fact(), "in österreich leben fast 100.000 ukrainer")
+    blk = next(r for r in results
+               if r["indicator_name"].startswith("Top-10 Herkunftsländer"))
+    assert "Ukraine: 94.030 Personen (Rang 9 von 10)" in blk["display_value"]
+
+
+def test_top10_rang11_satz_fuer_afghanistan():
+    """'Afghanen in den Top 10?' wurde live aus einer ÖIF-Nebenquelle
+    bejaht (true@0.85), weil nirgends stand, dass Afghanistan Rang 11
+    ist. Der NICHT-Top-10-Satz muss datengetrieben aus
+    knapp_ausserhalb_top10 kommen."""
+    from services.at_factbook import _build_citizenship_results
+    results = _build_citizenship_results(
+        _fact(),
+        "afghanen gehören zu den zehn größten ausländergruppen in österreich")
+    blk = next(r for r in results
+               if r["indicator_name"].startswith("Top-10 Herkunftsländer"))
+    disp = blk["display_value"]
+    assert "Afghanistan liegt mit 55.116 auf Rang 11" in disp, disp
+    assert "NICHT unter den zehn größten Gruppen" in disp, disp
+    assert "Rang 10: Polen, 66.561" in disp, disp
+
+
+def test_top10_ohne_nationalitaet_bleibt_kompakt():
+    """Generische Herkunfts-Claims bekommen weiterhin nur die Top-3-
+    Kurzform — kein Satz-Anhang, kein Rang-11-Leak."""
+    from services.at_factbook import _build_citizenship_results
+    results = _build_citizenship_results(
+        _fact(), "top herkunftsländer österreich")
+    blk = next(r for r in results
+               if r["indicator_name"].startswith("Top-10 Herkunftsländer"))
+    disp = blk["display_value"]
+    assert "Rang 11" not in disp
+    assert "Personen (Rang" not in disp
+    assert disp.endswith("#3 Türkei (123.391).")

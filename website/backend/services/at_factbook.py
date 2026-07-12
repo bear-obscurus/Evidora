@@ -293,6 +293,16 @@ _CITIZEN_TERMS = (
 )
 
 
+# Nationalitäten-Stems der Top-10-Herkunftsländer (+ Rang 11 Afghanistan).
+# " polen" mit führendem Leerzeichen gegen "Metropolen" (Substring-Falle).
+# Geteilt zwischen Gate (Bestandsfragen/Vergleiche) und Top-10-Rendering.
+_NATIONALITY_STEMS = (
+    "deutsche", "rumän", "rumaen", "serb", "syrer", "syrisch",
+    "türk", "tuerk", "ungar", "bosn", "kroat", "polnisch", " polen",
+    "ukrain", "afghan",
+)
+
+
 def _claim_mentions_citizenship(claim_lc: str) -> bool:
     has_term = any(t in claim_lc for t in _CITIZEN_TERMS)
     if has_term and _has_at_context(claim_lc):
@@ -318,6 +328,13 @@ def _claim_mentions_citizenship(claim_lc: str) -> bool:
         "größte herkunft", "groesste herkunft",
         "top herkunft", "top-herkunft",
         "rangliste herkunft",
+        # QA50B #12 (2026-07-11): "zu den zehn größten Ausländergruppen"
+        # — Komposita/Plural erreichten keines der Muster. Bewusst nur
+        # gruppen-spezifische Tokens (kein generisches "top 10"/"zehn
+        # größten" solo — das würde auf Städte-/Firmen-Rankings feuern).
+        "ausländergruppe", "auslaendergruppe",
+        "migrantengruppe", "herkunftsgruppe",
+        "größten gruppen", "groessten gruppen",
     ))
     if has_group and _has_at_context(claim_lc):
         return True
@@ -326,16 +343,24 @@ def _claim_mentions_citizenship(claim_lc: str) -> bool:
     # Top-10, solche Claims erreichten das Ranking nie). Drei-fach-AND
     # hält die Einzel-Tokens sicher; " polen" mit führendem Leerzeichen
     # gegen "Metropolen" (Substring-Falle).
-    has_nationality = any(t in claim_lc for t in (
-        "deutsche", "rumän", "rumaen", "serb", "syrer", "syrisch",
-        "türk", "tuerk", "ungar", "bosn", "kroat", "polnisch", " polen",
-        "ukrain", "afghan",
-    ))
+    nationality_hits = [t for t in _NATIONALITY_STEMS if t in claim_lc]
     has_count = any(t in claim_lc for t in (
         "wie viele", "wieviele", "wie viel", "anzahl",
         "leben in", "wohnen in", "gibt es in",
+        # Wortstellungs-Lücke (QA50B #11 2026-07-11): "In Österreich
+        # leben fast 100.000 Ukrainer" stellt das Verb VOR die Gruppe —
+        # "leben in" matcht nie. Trailing Space hält "Lebensmittel"
+        # draußen (dort folgt "s", kein Leerzeichen).
+        "leben ", "lebt ", "wohnen ", "wohnt ", "gibt es", "sind es",
     ))
-    if has_nationality and has_count and _has_at_context(claim_lc):
+    if nationality_hits and has_count and _has_at_context(claim_lc):
+        return True
+    # Composite: Nationalitäten-VERGLEICH — "Es leben mehr Türken als
+    # Serben in Österreich" (QA50B #15: zwei Herkunftsgruppen im
+    # Vergleich erreichten keines der Muster; Verdict blieb
+    # unverifiable trotz Top-10-Daten).
+    has_cmp = any(t in claim_lc for t in (" mehr ", " weniger ", " als "))
+    if len(nationality_hits) >= 2 and has_cmp and _has_at_context(claim_lc):
         return True
     return False
 
@@ -1479,6 +1504,62 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
             f"#{e['rang']} {e['land']} ({_de(e['anzahl'])})"
             for e in top10[:10]
         )
+        # Nennt der Claim konkrete Nationalitäten, gehören deren Werte
+        # als FERTIGE SÄTZE ins display_value (400-Zeichen-Regel): die
+        # Top-3-Kurzform + description reichten live nicht — "mehr
+        # Türken als Serben" (#3 vs. #4) blieb unverifiable, "Afghanen
+        # in den Top 10" wurde aus einer ÖIF-Nebenquelle bejaht
+        # (QA50B #12/#15, 2026-07-11). Datengetrieben, analog zur
+        # Drittel-/Rang-Arithmetik: der LLM liest die Aussage, statt
+        # selbst zu vergleichen.
+        _nation_render = {
+            "Deutschland": (("deutsche",), "deutsche"),
+            "Rumänien": (("rumän", "rumaen"), "rumänische"),
+            "Türkei": (("türk", "tuerk"), "türkische"),
+            "Serbien": (("serb",), "serbische"),
+            "Ungarn": (("ungar",), "ungarische"),
+            "Syrien": (("syrer", "syrisch", "syrien"), "syrische"),
+            "Kroatien": (("kroat",), "kroatische"),
+            "Bosnien-Herzegowina": (("bosn",), "bosnische"),
+            "Ukraine": (("ukrain",), "ukrainische"),
+            "Polen": ((" polen", "polnisch"), "polnische"),
+            "Afghanistan": (("afghan",), "afghanische"),  # Rang 11
+        }
+        named = []
+        for entry in top10:
+            stems_adj = _nation_render.get(entry.get("land"))
+            if stems_adj and any(s in claim_lc for s in stems_adj[0]):
+                named.append((entry, stems_adj[1]))
+        extra = ""
+        if len(named) == 2:
+            (a, adj_a), (b, adj_b) = named
+            hi, lo = (a, b) if a["anzahl"] >= b["anzahl"] else (b, a)
+            hi_adj, lo_adj = (adj_a, adj_b) if hi is a else (adj_b, adj_a)
+            extra = (
+                f" Vergleich: {hi['land']} ({_de(hi['anzahl'])}, Rang "
+                f"{hi['rang']}) VOR {lo['land']} ({_de(lo['anzahl'])}, Rang "
+                f"{lo['rang']}) — es leben MEHR {hi_adj} als {lo_adj} "
+                f"Staatsangehörige in Österreich."
+            )
+        else:
+            for entry, _adj in named[:3]:
+                extra += (
+                    f" {entry['land']}: {_de(entry['anzahl'])} Personen "
+                    f"(Rang {entry['rang']} von 10)."
+                )
+        # Rang-11-Wissen: "gehören X zu den zehn größten Gruppen?" ist
+        # ohne expliziten NICHT-Top-10-Satz nicht datenbasiert
+        # verneinbar — der Synthesizer griff dann zu vagen Nebenquellen.
+        r11 = data.get("knapp_ausserhalb_top10") or {}
+        r11_stems = (_nation_render.get(r11.get("land"), ((), ""))[0]
+                     if r11 else ())
+        if r11 and any(s in claim_lc for s in r11_stems) and top10:
+            last = top10[-1]
+            extra += (
+                f" {r11['land']} liegt mit {_de(r11['anzahl'])} auf Rang "
+                f"{r11['rang']} und ist damit NICHT unter den zehn größten "
+                f"Gruppen (Rang 10: {last['land']}, {_de(last['anzahl'])})."
+            )
         out.append({
             "indicator_name": "Top-10 Herkunftsländer Nicht-AT-Staatsbürger (2026)",
             "indicator": "factbook_citizenship_at",
@@ -1491,6 +1572,7 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
                 f"#{top10[0]['rang']} {top10[0]['land']} ({_de(top10[0]['anzahl'])}), "
                 f"#{top10[1]['rang']} {top10[1]['land']} ({_de(top10[1]['anzahl'])}), "
                 f"#{top10[2]['rang']} {top10[2]['land']} ({_de(top10[2]['anzahl'])})."
+                + extra
             ),
             "description": f"Vollständige Top-10 (Statistik Austria, 1.1.2026): {ranking}.",
             "url": src,
