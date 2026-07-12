@@ -61,6 +61,14 @@ WIKIDATA_ENTITY_DATA_URL = (
 # In-Memory-Cache: entity-key → (timestamp, result)
 _CACHE: dict[str, tuple[float, dict]] = {}
 _CACHE_TTL_S = 3600.0  # 1h
+# Last-Good-Fallback (QA50B #25-Rest, 2026-07-12): WDQS timeoutet
+# transient; Amts-/Stichtagsdaten sind slow-moving. Letztes erfolgreiches
+# Ergebnis pro (template, entity) wird ohne TTL vorgehalten und bei
+# SPARQL-Fehlern serviert — deterministisch statt Quellen-Lotterie.
+_LAST_GOOD: dict[str, dict] = {}
+# Zwei Versuche mit gestaffelten Timeouts (12s + 8s + 1s Pause; worst
+# case ~21s) statt einem 20s-Schuss — bleibt unter dem Fan-out-Budget.
+SPARQL_ATTEMPT_TIMEOUTS = (12.0, 8.0)
 
 # Maximale SPARQL-Wartezeit (Wikidata erlaubt 60 s, wir bleiben höflich)
 SPARQL_TIMEOUT_S = 20.0
@@ -879,25 +887,50 @@ async def search_wikidata(analysis: dict) -> dict:
         name=_escape_sparql_label(entity_label)
     )
 
-    async with polite_client(timeout=SPARQL_TIMEOUT_S) as client:
-        try:
-            rows = await asyncio.wait_for(
-                _run_sparql(client, sparql),
-                timeout=SPARQL_TIMEOUT_S,
-            )
-        except asyncio.TimeoutError:
+    rows = None
+    async with polite_client(timeout=SPARQL_ATTEMPT_TIMEOUTS[0]) as client:
+        for attempt, att_timeout in enumerate(SPARQL_ATTEMPT_TIMEOUTS, 1):
+            try:
+                rows = await asyncio.wait_for(
+                    _run_sparql(client, sparql),
+                    timeout=att_timeout,
+                )
+            except asyncio.TimeoutError:
+                rows = None
+            if rows is not None:
+                break
+            if attempt < len(SPARQL_ATTEMPT_TIMEOUTS):
+                logger.info(
+                    f"Wikidata: SPARQL-Versuch {attempt} fehlgeschlagen "
+                    f"für '{entity_label[:40]}' ({template_name}) — Retry"
+                )
+                await asyncio.sleep(1.0)
+
+    if rows is None:
+        # FEHLER/Timeout ist KEIN "0 Treffer": vorher wurde das leere
+        # Ergebnis 1 h negativ-gecacht — EIN transienter WDQS-Timeout
+        # vergiftete damit alle Folge-Claims zur selben Entität
+        # (Orbán-Lotterie, QA50B #25-Rest). Fehler werden NICHT gecacht;
+        # wenn vorhanden, wird das letzte erfolgreiche Ergebnis serviert.
+        last_good = _LAST_GOOD.get(cache_key)
+        if last_good is not None:
             logger.info(
-                f"Wikidata: SPARQL-Timeout für "
-                f"'{entity_label[:40]}' ({template_name})"
+                f"Wikidata: SPARQL-Fehler für '{entity_label[:40]}' "
+                f"({template_name}) — serviere Last-Good-Fallback"
             )
-            return empty
+            return last_good
+        logger.info(
+            f"Wikidata: SPARQL-Fehler für '{entity_label[:40]}' "
+            f"({template_name}), kein Last-Good — leer (uncached)"
+        )
+        return empty
 
     if not rows:
         logger.info(
             f"Wikidata: 0 Treffer für '{entity_label[:40]}' "
             f"({template_name})"
         )
-        # Negativ-Cache hilft Wiederholungen
+        # Negativ-Cache NUR für echte 0-Treffer (rows == [])
         _CACHE[cache_key] = (now, empty)
         return empty
 
@@ -1020,6 +1053,7 @@ async def search_wikidata(analysis: dict) -> dict:
         "results": results,
     }
     _CACHE[cache_key] = (now, out)
+    _LAST_GOOD[cache_key] = out
     if results:
         logger.info(
             f"Wikidata: {len(results)} strukturierte Fakten geliefert "
