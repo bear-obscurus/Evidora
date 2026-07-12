@@ -48,6 +48,107 @@ _SUPERLATIVE_ADJECTIVES = (
     "höchste", "niedrigste", "geringste", "größte", "meisten", "stärkste",
 )
 
+# AT-Bundesländer für den numerischen Entitäts-Vergleich (Pattern G) —
+# QA50B #8 2026-07-12: "Kärnten höher als NÖ" wurde false@0.9, obwohl die
+# Summary selbst "Kärnten 13,94 %, NÖ 12,57 %" nannte. Umlaut-Varianten,
+# weil Claims/Summaries beide Schreibungen tragen.
+_AT_BUNDESLAENDER = (
+    "wien", "niederösterreich", "niederoesterreich", "oberösterreich",
+    "oberoesterreich", "salzburg", "tirol", "vorarlberg", "kärnten",
+    "kaernten", "steiermark", "burgenland",
+)
+
+# Negativ-Prädikate für den L2-Tier-2b-Skip (QA50B #48): Ein Claim, der
+# ein NEGATIVES Prädikat VERNEINT ("so schlecht ist X gar nicht"), zeigt
+# in dieselbe Richtung wie der Mythos-widerlegende STRUKTURELL-Marker —
+# der Override würde ein korrektes true invertieren. Mythos-Claims
+# verneinen dagegen neutrale/positive Fakten ("nicht menschengemacht"),
+# die hier bewusst NICHT gelistet sind.
+_NEGATIVE_PREDICATES = (
+    "schlecht", "katastrophal", "unpünktlich", "unpuenktlich",
+    "unzuverlässig", "unzuverlaessig", "marode", "kaputt", "gescheitert",
+    "miserabel", "chaotisch", "überlastet", "ueberlastet",
+)
+
+
+def _claim_negates_negative_predicate(claim_lower):
+    """True bei Doppel-Verneinungs-Claims wie 'So schlecht ist die
+    ÖBB-Pünktlichkeit gar nicht'. Die Negation muss ANS PRÄDIKAT
+    GEBUNDEN sein (Review-Befund 2026-07-12: ein freies Fenster ließ
+    'Die ÖBB ist schlecht, weil KEIN Zug pünktlich fährt' — also die
+    BEHAUPTUNG des Negativ-Prädikats — den Override aushebeln). Zwei
+    gebundene Formen: (a) Negation direkt vor dem Prädikat, (b)
+    'so <Prädikat> … gar nicht' im selben Teilsatz (kein Komma-
+    Übersprung)."""
+    for pred in _NEGATIVE_PREDICATES:
+        if re.search(
+                r"\b(?:nicht|keineswegs|gar nicht)\s+"
+                r"(?:so\s+|besonders\s+|wirklich\s+)?" + re.escape(pred),
+                claim_lower):
+            return True
+        if re.search(
+                r"\bso\s+" + re.escape(pred) +
+                r"\b[^.,;!?]{0,60}?\b(?:gar nicht|nicht|keineswegs)\b",
+                claim_lower):
+            return True
+    return False
+
+
+def _claim_negates_superlative(claim_lower):
+    """True, wenn der Claim seinen Superlativ selbst VERNEINT ('kriegt
+    gar nicht die meisten Inserate'). Pattern A/E dürfen dann nicht
+    confirm-true flippen: Summary bestätigt den Superlativ fürs
+    Claim-Subjekt → der negierte Claim ist damit WIDERLEGT, das
+    LLM-false ist korrekt (QA50B #19: false→true-Flip, 3× reproduziert)."""
+    return bool(re.search(
+        r"(?:gar nicht|nicht|keineswegs)\s+(?:die|der|das|den)\s+"
+        r"(?:" + "|".join(_SUPERLATIVE_ADJECTIVES) + r")",
+        claim_lower))
+
+
+def _parse_de_number(raw, tail=""):
+    """'9.197.213' / '11,7' / '1,9' + Mio/Mrd-Suffix im tail → float."""
+    cleaned = raw.replace("\xa0", "").replace(" ", "").replace(".", "")
+    cleaned = cleaned.replace(",", ".")
+    try:
+        val = float(cleaned)
+    except ValueError:
+        return None
+    if re.match(r"\s*(?:mio\.?|millionen?)", tail):
+        val *= 1_000_000
+    elif re.match(r"\s*(?:mrd\.?|milliarden?)", tail):
+        val *= 1_000_000_000
+    return val
+
+
+def _entity_percent_from_summary(entity, summary_norm):
+    """Den EINDEUTIGEN Prozentwert, den die Summary der Entität
+    zuschreibt ('kärnten 13,94 %'). None wenn keiner gefunden ODER
+    mehrere verschiedene im Fenster stehen — Verlaufsangaben wie
+    'sank in NÖ von 14,1 % auf 12,57 %' lieferten sonst den
+    historischen Wert und drehten die Relation (Review-Befund
+    2026-07-12). Kein Fix ist besser als ein falscher."""
+    idx = summary_norm.find(entity)
+    if idx < 0:
+        return None
+    window = summary_norm[idx + len(entity):idx + len(entity) + 55]
+    window = re.split(r"[.;]", window)[0]
+    # Fenster an der NÄCHSTEN Entität abschneiden — "Kärnten 13,94 %,
+    # Niederösterreich 12,57 %" im selben Satz ist der Normalfall;
+    # der fremde Wert darf die Eindeutigkeit nicht brechen.
+    cut = len(window)
+    for other in _AT_BUNDESLAENDER + _COMPARISON_COUNTRIES:
+        if other == entity or other in entity or entity in other:
+            continue
+        pos = window.find(other)
+        if 0 <= pos < cut:
+            cut = pos
+    window = window[:cut]
+    vals = {_parse_de_number(m.group(1))
+            for m in re.finditer(r"(\d{1,3}(?:,\d+)?)\s*%", window)}
+    vals.discard(None)
+    return vals.pop() if len(vals) == 1 else None
+
 
 def _summary_refutes_superlative(claim_lower, summary_lower):
     """True, wenn die Summary den Superlativ einem ANDEREN Land als dem
@@ -160,6 +261,24 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                     f"LLM summary confirms claim + ratio "
                     f"{struct_sources_count}/{total_results_count} "
                     f"= {struct_ratio:.0%} < 50%. Likely topic mismatch. "
+                    f"Keeping LLM verdict "
+                    f"'{result.get('verdict')}' @ {result.get('confidence')}."
+                )
+            elif (struct_ratio < 0.5
+                    and _claim_negates_negative_predicate(
+                        (original_claim or "").lower())):
+                # Tier 2b (QA50B #48, 2026-07-12): Der Claim VERNEINT ein
+                # negatives Prädikat ("so schlecht ist die ÖBB-Pünktlich-
+                # keit gar nicht") — er zeigt in DIESELBE Richtung wie der
+                # Mythos-widerlegende Marker. LLM-true ist dann korrekt;
+                # der Override würde invertieren. Tier 2 griff nicht, weil
+                # die Summary datenbasiert bestätigt ("94,2 %, sehr gut")
+                # statt mit expliziter "ist korrekt"-Phrase.
+                logger.warning(
+                    f"STRUKTURELL FALSCH override SKIPPED (Tier 2b): "
+                    f"claim negates a negative predicate (anti-myth "
+                    f"direction) + ratio {struct_sources_count}/"
+                    f"{total_results_count} = {struct_ratio:.0%} < 50%. "
                     f"Keeping LLM verdict "
                     f"'{result.get('verdict')}' @ {result.get('confidence')}."
                 )
@@ -282,13 +401,20 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     # Extended regex: "Behauptung, dass ..., ist korrekt/wahr/richtig"
     if not verdict_from_summary:
         import re
+        # Adverb-Toleranz (QA50B #19, 2026-07-12): "ist DAHER falsch" /
+        # "ist DAMIT falsch" matchte nicht — verdict_from_summary blieb
+        # leer und Pattern A konnte ein korrektes false auf true flippen
+        # (Phrasing-Lotterie: mal fing die Regex, mal nicht).
+        _ADV = r"(?:daher\s+|damit\s+|somit\s+|also\s+|deshalb\s+)?"
         if re.search(
-            r"behauptung.{0,150}ist (korrekt|richtig|zutreffend|wahr|belegt)",
+            r"behauptung.{0,150}ist " + _ADV +
+            r"(korrekt|richtig|zutreffend|wahr|belegt)",
             summary_lower
         ):
             verdict_from_summary = "true"
         elif re.search(
-            r"behauptung.{0,150}ist (falsch|inkorrekt|nicht korrekt|nicht richtig|widerlegt)",
+            r"behauptung.{0,150}ist " + _ADV +
+            r"(falsch|inkorrekt|nicht korrekt|nicht richtig|widerlegt)",
             summary_lower
         ):
             verdict_from_summary = "false"
@@ -327,6 +453,14 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
             "meisten", "höchste", "größte", "stärkste",
             "niedrigste", "geringste", "spitzenreiter",
         ))
+        # Top-N-Zugehörigkeits-Claims ("zu den fünf größten Gruppen")
+        # sind KEINE Superlativ-Claims — Pattern A's Confirm-Logik gilt
+        # dort nicht ("der größte" matcht als Substring in "der größten
+        # Gruppen" und bestätigt nichts). Zuständig ist Pattern J mit
+        # Subjekt-gebundenem Rang (Review-Befund 2026-07-12).
+        if re.search(r"(?:zu|unter)\s+den\s+(?:\w+|\d{1,2})\s+größten",
+                     claim_lower):
+            superlative_claim = False
         if superlative_claim:
             superlative_confirmed = any(t in summary_lower for t in (
                 "die meisten", "die höchste", "der größte",
@@ -338,8 +472,14 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
             # different country ("die niedrigste … hat Deutschland") or
             # negated for the claim subject ("nicht Österreich"). Only then
             # does the LLM's correct false/mostly_false survive.
-            if superlative_confirmed and not _summary_refutes_superlative(
-                    claim_lower, summary_lower):
+            # Guard 2 (QA50B #19, 2026-07-12): claims that NEGATE their own
+            # superlative ("kriegt gar nicht die meisten Inserate") — the
+            # summary confirming the superlative REFUTES the negated claim;
+            # the LLM's false is correct and must not be flipped.
+            if (superlative_confirmed
+                    and not _claim_negates_superlative(claim_lower)
+                    and not _summary_refutes_superlative(
+                        claim_lower, summary_lower)):
                 factual_confirms = True
                 logger.info(
                     f"Factual-content consistency: superlative claim "
@@ -657,6 +797,237 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                 f"Factual-content consistency (Pattern F): superlative/"
                 f"threshold claim REFUTED by summary but verdict='{verdict}' "
                 f"→ {target_refute}")
+
+    # --- Numerische Relations-Muster G/H/I/J (QA50B, 2026-07-12) ---
+    # Gemeinsame Wurzel von 5 reproduzierbaren Fehl-Verdicts: die Summary
+    # nennt die RICHTIGEN Zahlen, aber das Label kippt — mal roh vom LLM
+    # ("Kärnten 13,94 > NÖ 12,57, damit FALSCH"), mal per Phrasing-
+    # Lotterie der Schlussformel. Diese Muster werten die Relation aus
+    # den summary-eigenen Zahlen aus (lesen + rechnen statt Label
+    # trauen) und überstimmen dann auch eine anderslautende
+    # Schlussformel. Jedes Muster feuert nur bei eindeutiger Extraktion:
+    # Einheiten-Kohärenz, Jahreszahlen-Ausschluss, Schwellen-Echo-
+    # Ausschluss, Größenordnungs-Fenster.
+    _numeric_fix = None
+    _numeric_reason = ""
+    # Tausenderpunkte neutralisieren ("9.197.213" → "9197213"), Komma
+    # bleibt Dezimaltrenner.
+    _sum_norm = re.sub(r"(?<=\d)\.(?=\d)", "", summary_lower)
+    _share_claim = any(t in claim_lower for t in (
+        "anteil", "quote", "rate", "prozent", "%"))
+
+    # Pattern G — Entitäts-Vergleich (#8): "In Kärnten ist der
+    # Ausländeranteil höher als in Niederösterreich" + Summary trägt
+    # beide %-Werte → Relation selbst auswerten. Nur %-Claims (Anteil/
+    # Quote), nur bei exakt 2 erkannten Entitäten mit je eindeutig
+    # zugeschriebenem Wert.
+    if _share_claim and verdict in ("true", "mostly_true",
+                                    "false", "mostly_false"):
+        cmp_m = re.search(
+            r"\b(höher|hoeher|größer|groesser|mehr|niedriger|kleiner|"
+            r"geringer|weniger)\b[^.]{0,40}?\bals\b", claim_lower)
+        if cmp_m:
+            _dir_up = cmp_m.group(1) in (
+                "höher", "hoeher", "größer", "groesser", "mehr")
+            _ents = [e for e in (_AT_BUNDESLAENDER + _COMPARISON_COUNTRIES)
+                     if e in claim_lower]
+            # Substring-Falle: "österreich" ⊂ "niederösterreich" —
+            # Teil-Entitäten verwerfen.
+            _ents = [e for e in _ents
+                     if not any(e != o and e in o for o in _ents)]
+            _ents = sorted(set(_ents), key=lambda e: claim_lower.find(e))
+            if len(_ents) == 2:
+                _va = _entity_percent_from_summary(_ents[0], _sum_norm)
+                _vb = _entity_percent_from_summary(_ents[1], _sum_norm)
+                if _va is not None and _vb is not None and _va != _vb:
+                    _claim_true = (_va > _vb) if _dir_up else (_va < _vb)
+                    _target = "true" if _claim_true else "false"
+                    if ((_claim_true and verdict in ("false", "mostly_false"))
+                            or (not _claim_true
+                                and verdict in ("true", "mostly_true"))):
+                        _numeric_fix = _target
+                        _numeric_reason = (
+                            f"Pattern G Entitäts-Vergleich: {_ents[0]} "
+                            f"{_va} % vs. {_ents[1]} {_vb} %")
+
+    # Pattern H — Schwellenwert beidseitig (#9/#14): "unter 10 Prozent" /
+    # "über 9,3 Millionen" bei verdict true, obwohl ALLE plausiblen
+    # Summary-Werte auf der falschen Seite der Schwelle liegen.
+    # Review-Härtungen 2026-07-12: (a) nur wenn KEINE Schlussformel
+    # erkannt wurde — eine explizite, zum Label konsistente Konklusion
+    # wird nicht von ungebundenen Zahlen überstimmt; (b) Schwellen-Wahl
+    # bevorzugt Treffer MIT Einheit und überspringt Alters-
+    # Qualifikatoren ("Unter 25-Jährige" ist keine Schwelle);
+    # (c) %-Kandidaten werden bei bekannter Claim-Entität an deren
+    # Satzfenster gebunden (fremde Vergleichswerte wie "Ö-Schnitt
+    # 20,4 %" refuten sonst einen korrekten Burgenland-Claim);
+    # (d) Jahres-Ausschluss nur für NACKTE Vierstellen-Tokens ("2025",
+    # nicht "2.050 Einwohner").
+    if (_numeric_fix is None and not verdict_from_summary
+            and verdict in ("true", "mostly_true")):
+        _thr_cands = []
+        for tm in re.finditer(
+                r"\b(unter|über|ueber|mehr als|weniger als|mindestens|"
+                r"höchstens|hoechstens)\s+"
+                r"(\d{1,3}(?:[. ]\d{3})+(?:,\d+)?|\d+(?:,\d+)?)\s*"
+                r"(prozent|%|mio\.?|millionen?|mrd\.?|milliarden?)?",
+                claim_lower):
+            if re.match(r"\s*-?\s*jährig|\s*jahre\b",
+                        claim_lower[tm.end():]):
+                continue  # Alters-Qualifikator, keine Schwelle
+            _thr_cands.append(tm)
+        # Einheiten-tragende Treffer zuerst (der echte Schwellenwert)
+        _thr_cands.sort(key=lambda m: 0 if m.group(3) else 1)
+        thr_m = _thr_cands[0] if _thr_cands else None
+        if thr_m:
+            _thr = _parse_de_number(thr_m.group(2), thr_m.group(3) or "")
+            _thr_is_pct = (thr_m.group(3) or "") in ("prozent", "%")
+            _up = thr_m.group(1) in ("über", "ueber", "mehr als",
+                                     "mindestens")
+            if _thr and _thr > 0:
+                _cands = []
+                if _thr_is_pct:
+                    _claim_ents = [
+                        e for e in (_AT_BUNDESLAENDER
+                                    + _COMPARISON_COUNTRIES)
+                        if e in claim_lower]
+                    _claim_ents = [
+                        e for e in _claim_ents
+                        if not any(e != o and e in o
+                                   for o in _claim_ents)]
+                    if len(_claim_ents) == 1:
+                        v = _entity_percent_from_summary(
+                            _claim_ents[0], _sum_norm)
+                        if v is not None:
+                            _cands.append(v)
+                    elif not _claim_ents:
+                        for pm in re.finditer(r"(\d{1,3}(?:,\d+)?)\s*%",
+                                              _sum_norm):
+                            v = _parse_de_number(pm.group(1))
+                            if v is not None:
+                                _cands.append(v)
+                    # >=2 Entitäten: ambig — Pattern-G-Territorium
+                else:
+                    for nm in re.finditer(
+                            r"(\d{1,3}(?:[.\xa0 ]\d{3})+(?:,\d+)?"
+                            r"|\d+(?:,\d+)?)", summary_lower):
+                        _tail = summary_lower[nm.end():]
+                        v = _parse_de_number(nm.group(1), _tail)
+                        if v is None:
+                            continue
+                        # NACKTE Jahreszahl ("2025") ausschließen —
+                        # "2.050" (Tausenderpunkt) ist ein Wert
+                        if (re.fullmatch(r"(?:19|20)\d\d", nm.group(1))
+                                and not re.match(
+                                    r"\s*(?:mio|mrd|millionen|"
+                                    r"milliarden|%|prozent|€|euro|eur)",
+                                    _tail)):
+                            continue
+                        _cands.append(v)
+                # Schwellen-Echo (die Schwelle selbst zitiert) +
+                # Größenordnungs-Fenster
+                _cands = [v for v in _cands
+                          if abs(v - _thr) / _thr > 0.005
+                          and _thr / 10 <= v <= _thr * 10]
+                if _cands:
+                    _above = [v for v in _cands if v > _thr]
+                    _below = [v for v in _cands if v < _thr]
+                    if _up and not _above and _below:
+                        _numeric_fix = "false"
+                        _numeric_reason = (
+                            f"Pattern H Schwelle: Claim '>{_thr:g}', "
+                            f"Summary-Werte alle darunter ({_below[:3]})")
+                    elif not _up and not _below and _above:
+                        _numeric_fix = "false"
+                        _numeric_reason = (
+                            f"Pattern H Schwelle: Claim '<{_thr:g}', "
+                            f"Summary-Werte alle darüber ({_above[:3]})")
+
+    # Pattern I — Verhältnis (#10): "mehr als doppelt so hoch" bei
+    # verdict true, obwohl der Faktor aus den beiden Summary-%-Werten
+    # darunter liegt (36,8/20,4 = 1,80 < 2). Nur strikte Claims
+    # ("mehr als"), nur bei exakt zwei distinkten %-Werten.
+    if (_numeric_fix is None and not verdict_from_summary
+            and verdict in ("true", "mostly_true")):
+        ratio_m = re.search(
+            r"(?:mehr als|über|ueber)\s+(doppelt|zwei\s?mal|dreimal|"
+            r"drei\s?mal|viermal|vier\s?mal)\s+so\s+"
+            r"(?:hoch|hohe\w*|groß|gross|viel|stark)", claim_lower)
+        if ratio_m:
+            _factor = {"doppelt": 2, "zweimal": 2, "dreimal": 3,
+                       "viermal": 4}[ratio_m.group(1).replace(" ", "")]
+            _pcts = sorted({_parse_de_number(pm.group(1))
+                            for pm in re.finditer(
+                                r"(\d{1,3}(?:,\d+)?)\s*%", _sum_norm)
+                            if _parse_de_number(pm.group(1))})
+            if len(_pcts) == 2 and _pcts[0] > 0:
+                _ratio = _pcts[1] / _pcts[0]
+                if _ratio <= _factor * 0.98:
+                    _numeric_fix = "false"
+                    _numeric_reason = (
+                        f"Pattern I Verhältnis: {_pcts[1]}/{_pcts[0]} = "
+                        f"{_ratio:.2f} < Faktor {_factor}")
+
+    # Pattern J — Top-N-Zugehörigkeit (#12): "gehören zu den zehn
+    # größten Gruppen" + Summary "Rang 11" → Rang > N widerlegt die
+    # Zugehörigkeit (und umgekehrt). Review-Härtung 2026-07-12: der
+    # Rang muss ans CLAIM-SUBJEKT gebunden sein — der erste "Rang N"
+    # der Summary kann eine fremde Entität betreffen ("Deutsche auf
+    # Rang 1; Syrer erst auf Rang 6"). Subjekt-Stems = Claim-Wörter
+    # ≥5 Zeichen minus Struktur-Vokabular, auf 6 Zeichen gekürzt
+    # (matcht "Afghanen" ↔ "afghanische"); Bindung rückwärts im
+    # selben Satzfenster vor dem Rang.
+    if (_numeric_fix is None and not verdict_from_summary
+            and verdict in ("true", "mostly_true",
+                            "false", "mostly_false")):
+        topn_m = re.search(
+            r"(?:zu|unter)\s+den\s+(zehn|zwanzig|fünf|fuenf|drei|\d{1,2})"
+            r"\s+größten|top[\s-](\d{1,2})\b", claim_lower)
+        if topn_m:
+            _w2n = {"drei": 3, "fünf": 5, "fuenf": 5, "zehn": 10,
+                    "zwanzig": 20}
+            _raw_n = topn_m.group(1) or topn_m.group(2) or ""
+            _n = _w2n.get(_raw_n) or (int(_raw_n) if _raw_n.isdigit()
+                                      else None)
+            _J_STOP = {
+                "gehören", "gehoeren", "zählen", "zaehlen", "größten",
+                "groessten", "gruppen", "gruppe", "österreich",
+                "oesterreich", "ausländergruppen", "auslaendergruppen",
+                "ausländer", "auslaender", "migranten",
+                "migrantengruppen", "herkunftsgruppen", "staaten",
+                "länder", "laender", "weltweit", "bevölkerung",
+                "bevoelkerung", "unter", "zwischen",
+            }
+            _subj = {w[:6] for w in re.findall(r"[a-zäöüß]{5,}",
+                                               claim_lower)
+                     if w not in _J_STOP}
+            _rank = None
+            for rm in re.finditer(r"\brang\s+(\d{1,3})\b",
+                                  summary_lower):
+                _back = summary_lower[max(0, rm.start() - 70):rm.start()]
+                # Satzgrenze = ". " oder ";" — NICHT der Tausenderpunkt
+                # in "55.116 Personen" (der riss die Bindung ab)
+                _back = re.split(r"\.\s|;", _back)[-1]
+                if any(s in _back for s in _subj):
+                    _rank = int(rm.group(1))
+                    break
+            if _n and _rank is not None:
+                _member = _rank <= _n
+                if _member and verdict in ("false", "mostly_false"):
+                    _numeric_fix = "true"
+                    _numeric_reason = (f"Pattern J Top-N: Rang {_rank} "
+                                       f"<= {_n}")
+                elif not _member and verdict in ("true", "mostly_true"):
+                    _numeric_fix = "false"
+                    _numeric_reason = (f"Pattern J Top-N: Rang {_rank} "
+                                       f"> {_n}")
+
+    if _numeric_fix and _numeric_fix != verdict:
+        logger.warning(
+            f"Numeric-relation fix ({_numeric_reason}): verdict "
+            f"'{verdict}' → '{_numeric_fix}' — Summary-Zahlen schlagen "
+            f"das Label.")
+        verdict_from_summary = _numeric_fix
 
     if verdict_from_summary and verdict_from_summary != verdict:
         # Don't override if the STRUKTURELL override ACTUALLY fired
