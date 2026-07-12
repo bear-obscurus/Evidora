@@ -92,6 +92,17 @@ WAHL_TYPE_KEYWORDS: dict[str, str] = {
     "euw": "EUW",
     "european parliament election": "EUW",
     "europäisches parlament wahl": "EUW",
+    # Wiener Gemeinderats-/Landtagswahl (QA50B #30, 2026-07-12):
+    # "SPÖ hat die Wien-Wahl 2025 gewonnen" blieb unverifiable —
+    # amtliches Ergebnis fehlte als Quelle. Deskriptiv-historisch,
+    # Politik-Tabu-konform (kein Prognose-/Bewertungs-Inhalt).
+    "wien-wahl": "GRW_W",
+    "wienwahl": "GRW_W",
+    "wien wahl": "GRW_W",
+    "wiener gemeinderatswahl": "GRW_W",
+    "gemeinderatswahl": "GRW_W",
+    "landtagswahl wien": "GRW_W",
+    "wiener landtagswahl": "GRW_W",
 }
 
 # Generische Wahl-Keywords (kein Typ-Hinweis, nur Trigger)
@@ -312,6 +323,7 @@ def _format_election_label(e: dict) -> str:
         "NRW": "Nationalratswahl",
         "BPW": "Bundespräsidentenwahl",
         "EUW": "Europawahl",
+        "GRW_W": "Wiener Gemeinderats- und Landtagswahl",
     }.get(typ, typ)
     return f"{label} {year}"
 
@@ -331,10 +343,12 @@ def _make_party_entry(election: dict, party: dict) -> dict:
         parts.append(f"{pct:.1f} %".replace(".", ","))
     if votes is not None:
         parts.append(f"{votes:,} Stimmen".replace(",", "."))
-    if seats is not None and typ in ("NRW", "EUW"):
+    if seats is not None and typ in ("NRW", "EUW", "GRW_W"):
         parts.append(f"{seats} Mandate")
     display_value = " · ".join(parts) if parts else short
 
+    quelle = ("amtliches Endergebnis der Stadt Wien"
+              if typ == "GRW_W" else "offizieller BMI-Statistik")
     return {
         "indicator_name": f"{label} — {short}: {long_}" if long_ != short else f"{label} — {short}",
         "indicator": f"wahl_{typ.lower()}_party",
@@ -344,9 +358,9 @@ def _make_party_entry(election: dict, party: dict) -> dict:
         "value": pct if pct is not None else "",
         "display_value": display_value,
         "description": (
-            f"Bundesergebnis {label} laut offizieller BMI-Statistik."
+            f"Ergebnis {label} laut {quelle}."
             if long_ == short else
-            f"Bundesergebnis {label} laut offizieller BMI-Statistik. "
+            f"Ergebnis {label} laut {quelle}. "
             f"Vollständige Parteibezeichnung: {long_}."
         ),
         "url": election.get("url", WAHLEN_BASE),
@@ -410,6 +424,8 @@ _SUPERLATIVE_REGEXES = [
     r"\bgewonnen\s+(hat|hatte|haben)\b",
     r"\b(die\s+)?wahl\s+gewonnen\b",
     r"\b(die\s+)?nationalratswahl\s+gewonnen\b",
+    r"\b(die\s+)?(wien-?wahl|gemeinderatswahl|landtagswahl)"
+    r"(\s+\d{4})?\s+gewonnen\b",
     r"\b(die\s+)?europawahl\s+gewonnen\b",
     r"\b(die\s+)?bundespräsidentenwahl\s+gewonnen\b",
     # Englisch

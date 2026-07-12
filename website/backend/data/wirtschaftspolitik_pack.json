@@ -1139,6 +1139,63 @@
           ]
         ]
       ]
+    },
+    {
+      "id": "at_steuerlast_eu_ranking_2026",
+      "topic": "at_steuerlast_eu_ranking",
+      "scope": "Österreichs Steuer-/Abgabenlast im EU-Vergleich — Spitzengruppe, aber nicht Platz 1",
+      "year": 2024,
+      "source_url": "https://www.oecd.org/en/publications/taxing-wages-2025_b3a95829-en.html",
+      "secondary_url": "https://www.oecd.org/en/about/news/press-releases/2026/04/taxes-on-labour-continue-to-rise-across-oecd-countries.html",
+      "source_label": "OECD Taxing Wages 2025 (Steuerkeil Alleinstehende, Durchschnittslohn, Datenjahr 2024)",
+      "headline": "Österreichs Steuerlast im EU-Vergleich — SPITZENGRUPPE, aber NICHT Platz 1: OECD-Steuerkeil 2024 (Alleinstehende, Durchschnittslohn): Belgien 52,6 % klar voran, dann Deutschland 47,9 %, Frankreich 47,2 %, Österreich 47,0 % (Rang 4). 'Österreich hat die höchste Steuerlast der EU' ist damit nicht korrekt; 'Österreich hat NICHT die höchste, gehört aber zu den höchsten' ist korrekt.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG — Rang entscheidet, Richtung beachten: Beim OECD-Steuerkeil (Steuern+Abgaben auf Arbeit, Alleinstehende mit Durchschnittslohn, Datenjahr 2024) liegt Österreich mit 47,0 % auf RANG 4 — hinter Belgien (52,6 %), Deutschland (47,9 %) und Frankreich (47,2 %). Ein Claim 'Österreich hat die höchste Steuer-/Abgabenlast der EU' ist daher nicht korrekt (Belgien liegt klar voran); ein Claim 'Österreich hat NICHT die höchste Steuerlast der EU' ist korrekt — Österreich gehört aber zur EU-Spitzengruppe, 'nicht die höchste, aber unter den höchsten' ist die präzise Einordnung. Je nach Metrik (Steuerkeil vs. Abgabenquote in % des BIP) verschieben sich Ränge leicht; Platz 1 hält beim Keil jeweils Belgien.",
+        "oecd_steuerkeil_2024": "Belgien 52,6 % · Deutschland 47,9 % · Frankreich 47,2 % · Österreich 47,0 % (Rang 4, OECD Taxing Wages 2025). Auch 2025 (Taxing Wages 2026): Belgien mit 52,5 % am höchsten, DE/AT/FR über 45 %.",
+        "metrik_hinweis": "Steuerkeil = Einkommensteuer + SV-Beiträge (Arbeitnehmer+Arbeitgeber) in % der Arbeitskosten. Andere Metriken (Abgabenquote in % des BIP) ergeben ähnliche Spitzengruppen mit anderem Platz 1.",
+        "context": "Deskriptive OECD-Ranking-Einordnung; keine Bewertung der Steuerpolitik."
+      },
+      "context_notes": [
+        "Kernaussage: Österreich ist beim Steuerkeil EU-Spitzengruppe (Rang 4), aber NICHT Platz 1 — der ist Belgien.",
+        "Richtungs-sensibel: 'höchste Steuerlast' → nicht korrekt; 'nicht die höchste' → korrekt; 'unter den höchsten' → korrekt.",
+        "Schwester-Fakt de_steuern_hoechste_2026 behandelt die DE-Variante derselben Claim-Familie."
+      ],
+      "claim_phrasings_handled": [
+        "Österreich hat nicht die höchste Steuerlast in der EU",
+        "Österreich hat die höchste Steuerlast der EU",
+        "Österreich ist Europameister bei den Abgaben",
+        "In Österreich sind die Steuern am höchsten"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "steuerlast",
+          "steuerquote",
+          "abgabenquote",
+          "abgabenlast",
+          "steuerkeil",
+          "abgabenkeil",
+          "steuerbelastung",
+          "steuern",
+          "abgaben"
+        ],
+        [
+          "höchste",
+          "hoechste",
+          "höchsten",
+          "hoechsten",
+          "spitzenreiter",
+          "eu-spitze",
+          "europameister",
+          "weltspitze",
+          "am meisten steuern"
+        ],
+        [
+          "österreich",
+          "oesterreich",
+          "österreicher"
+        ]
+      ]
     }
   ]
 }

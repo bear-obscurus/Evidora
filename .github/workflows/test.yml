@@ -64,6 +64,8 @@ jobs:
     #   - test_verdict_numeric_patterns (L4-Muster G/H/I/J: Vergleich/
     #                                  Schwelle/Verhältnis/Top-N numerisch
     #                                  + Negations-Gates — QA50B)
+    #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
+    #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -116,7 +118,8 @@ jobs:
             tests/test_holocaust_denial_fact.py \
             tests/test_steuerlast_fact.py \
             tests/test_pack_marker_drift.py \
-            tests/test_verdict_numeric_patterns.py
+            tests/test_verdict_numeric_patterns.py \
+            tests/test_qa50b_rest.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
