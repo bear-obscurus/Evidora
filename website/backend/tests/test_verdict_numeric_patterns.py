@@ -405,3 +405,19 @@ def test_h_live_schwellen_echo_im_entitaets_fenster():
         "10 % ist nicht korrekt, aber knapp darüber. Die Behauptung ist "
         "damit fast korrekt.")
     assert r["verdict"] == "false", r
+
+
+def test_h_live_schranken_angabe_bricht_cluster_nicht():
+    """Prod-Variante 3 von #9: zweites Entitäts-Vorkommen trägt eine
+    Schranken-Angabe ('unter 15 %') statt eines Punktwerts — Schranken
+    sind keine Attributions-Werte."""
+    r = _run(
+        "Im Burgenland liegt der Ausländeranteil unter 10 Prozent (l4y-9)",
+        "true",
+        "Laut Statistik Austria (1.1.2026) liegt der Anteil der "
+        "Nicht-Österreicher:innen im Burgenland bei 11,7 %, was unter "
+        "10 % widerlegt. Allerdings zeigt der ÖIF-Integrationsbericht "
+        "2023, dass der Ausländeranteil im Burgenland unter 15 % liegt, "
+        "und die AT Factbook-Daten bestätigen 11,7 % für 2026.",
+        confidence=0.95)
+    assert r["verdict"] == "false", r
