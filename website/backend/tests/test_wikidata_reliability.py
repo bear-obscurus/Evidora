@@ -91,3 +91,17 @@ def test_echte_null_treffer_bleiben_negativ_gecacht(monkeypatch):
     n_after_first = calls["n"]
     asyncio.run(wd.search_wikidata(_analysis()))
     assert calls["n"] == n_after_first  # zweiter Aufruf aus dem Cache
+
+
+def test_templates_decken_mul_labels():
+    """Wurzelbefund #25: Wikidata migriert sprachübergreifend identische
+    Labels ins 'mul'-Pseudo-Label und löscht de/en — reines @de fand
+    z. B. Orbán (Q57641) NIE mehr (echte 0 Treffer → legitimer
+    Negativ-Cache → Quelle dauerhaft tot). Jedes Template muss
+    de+mul+en abfragen."""
+    import os
+    svc = open(os.path.join(os.path.dirname(__file__), "..",
+                            "services", "wikidata.py"),
+               encoding="utf-8").read()
+    assert 'rdfs:label "{name}"@de.' not in svc
+    assert svc.count('@mul') >= 10
