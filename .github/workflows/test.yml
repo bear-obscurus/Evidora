@@ -61,6 +61,9 @@ jobs:
     #                                  Dispatch-Labels vs. AUTHORITATIVE_
     #                                  PACK_MARKERS, keine toten Marker/
     #                                  Direktiven — #73-Follow-up)
+    #   - test_verdict_numeric_patterns (L4-Muster G/H/I/J: Vergleich/
+    #                                  Schwelle/Verhältnis/Top-N numerisch
+    #                                  + Negations-Gates — QA50B)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -112,7 +115,8 @@ jobs:
             tests/test_kurz_orf_facts.py \
             tests/test_holocaust_denial_fact.py \
             tests/test_steuerlast_fact.py \
-            tests/test_pack_marker_drift.py
+            tests/test_pack_marker_drift.py \
+            tests/test_verdict_numeric_patterns.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
