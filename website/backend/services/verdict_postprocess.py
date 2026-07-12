@@ -150,14 +150,25 @@ def _entity_percent_from_summary(entity, summary_norm, exclude=None):
         window = window[:cut]
         if re.search(r"von\s+\d[\d,]*\s*%\s+auf\s+", window):
             continue
-        pm = re.search(r"(\d{1,3}(?:,\d+)?)\s*%", window)
-        if not pm:
-            continue
-        v = _parse_de_number(pm.group(1))
+        v = None
+        for pm in re.finditer(r"(\d{1,3}(?:,\d+)?)\s*%", window):
+            # Schranken-Angaben ("liegt unter 15 %") sind KEINE
+            # Punktwerte — Live-Variante #9 (2026-07-12): das zweite
+            # Vorkommen trug "unter 15 %" und brach das Cluster.
+            before = window[max(0, pm.start() - 22):pm.start()]
+            if re.search(r"(?:unter|über|ueber|weniger als|mehr als|"
+                         r"bis zu|maximal|mindestens|höchstens|"
+                         r"hoechstens)\s*$", before):
+                continue
+            cand = _parse_de_number(pm.group(1))
+            if cand is None:
+                continue
+            if (exclude is not None and exclude > 0
+                    and abs(cand - exclude) / exclude <= 0.005):
+                continue
+            v = cand
+            break
         if v is None:
-            continue
-        if (exclude is not None and exclude > 0
-                and abs(v - exclude) / exclude <= 0.005):
             continue
         vals.append(v)
     if not vals:
