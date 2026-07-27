@@ -449,3 +449,143 @@ def test_i_verbform_mehr_als_verdoppelt():
         "Der Anteil stieg laut Statistik Austria auf 20,4 %; 2010 lag er "
         "bei 10,6 %.")
     assert r["verdict"] == "false", r
+
+
+# --- Pattern G2: Entitäts-Vergleich ohne Geografie (QA100 #44) ---
+#
+# Alle Summaries in diesem Block sind die ECHTEN Prod-Ausgaben vom
+# 2026-07-26 (Fixtures ≠ echte LLM-Summaries, 3-Iterationen-Lehre) —
+# der Live-Fall scheiterte an ZWEI Details, die kein Fixture getroffen
+# hätte: dem _share_claim-Gate (der Claim sagt nirgends "Anteil") und
+# dem 55-Zeichen-Fenster, das ausgerechnet das '%' hinter "13,8"
+# abschnitt.
+
+_S44 = ("Laut APG/E-Control lag der Anteil von Windkraft an der "
+        "österreichischen Stromproduktion 2024 bei 13,8 %, der von "
+        "Photovoltaik bei 7,5 %. Windkraft liefert damit fast doppelt "
+        "so viel Strom wie Photovoltaik, nicht mehr.")
+
+
+def test_g2_windkraft_pv_false_wird_true():
+    """QA100 #44, 5/5 deterministisch: Summary nennt beide Werte und
+    dementiert dann verbal ('… nicht mehr'). Pattern G kannte nur
+    Bundesländer/Länder."""
+    r = _run("Windkraft liefert in Österreich mehr Strom als Photovoltaik",
+             "false", _S44)
+    assert r["verdict"] == "true", r
+
+
+def test_g2_gegenrichtung_true_wird_false():
+    """Überkorrektur-Schutz: dieselbe Summary muss den umgekehrten
+    Claim auf false ziehen."""
+    r = _run("Photovoltaik liefert in Österreich mehr Strom als Windkraft",
+             "true", _S44)
+    assert r["verdict"] == "false", r
+
+
+def test_g2_feuert_nicht_bei_zwei_geo_entitaeten():
+    """Zwei Länder im Claim = Pattern-G-Territorium; G2 darf dort nicht
+    mit seiner generischen Extraktion dazwischenfunken."""
+    r = _run("Frankreich stößt pro Kopf mehr CO2 aus als Deutschland",
+             "false",
+             "Frankreich liegt bei 4,3 t pro Kopf, Deutschland bei 7,5 t.")
+    assert r["verdict"] == "false", r
+
+
+def test_g2_feuert_nicht_bei_mehrdeutigem_subjekt():
+    """Zwei A-Kandidaten mit je einem Wert → mehrdeutig → kein Fix
+    (konservativ scheitern)."""
+    r = _run("Windkraft liefert in Österreich mehr Strom als Photovoltaik",
+             "false",
+             "Windkraft kam auf 13,8 %. Strom aus Biomasse lag bei 4,2 %. "
+             "Photovoltaik erreichte 7,5 %.")
+    assert r["verdict"] == "false", r
+
+
+def test_g2_ignoriert_massgroessen_als_entitaet():
+    """'Einwohner' ist eine Maßgröße, keine Vergleichs-Entität — sonst
+    würde 'Wien hat mehr Einwohner als Hamburg' die Maßgröße als
+    Subjekt greifen."""
+    from services.verdict_postprocess import _generic_comparison_pair
+    assert _generic_comparison_pair(
+        "Wien hat mehr Einwohner als Hamburg") is None
+
+
+def test_g2_substring_falle_strom_in_stromproduktion():
+    """Ohne Wortgrenzen sammelt 'strom' den Wert aus
+    'stromproduktion … 13,8 %' ein und macht das Subjekt mehrdeutig."""
+    from services.verdict_postprocess import _entity_percent_from_summary
+    sn = _S44.lower()
+    assert _entity_percent_from_summary(
+        "strom", sn, word_boundary=True,
+        others=("windkraft", "photovoltaik"), window_len=90) is None
+    assert _entity_percent_from_summary(
+        "windkraft", sn, word_boundary=True,
+        others=("strom", "photovoltaik"), window_len=90) == 13.8
+
+
+# --- Pattern K: Anti-Mythos-Meta-Claim (QA100 #24) ---
+
+_S24 = ("Atomkraft verursacht laut IPCC AR6 (2022) und OWID nur 12 g "
+        "CO₂/kWh im Lifecycle, Kohle 820 g/kWh (Braunkohle bis "
+        "1.054 g/kWh). Damit ist Kernkraft deutlich klimafreundlicher "
+        "als Kohle.")
+
+
+def test_k_kernkraft_unsinn_false_wird_true():
+    """QA100 #24, 5/5 deterministisch: Die Summary BESTÄTIGT den
+    Meta-Claim ('klimafreundlicher als Kohle'), das Label sagt false.
+    Tier-2b kannte nur 'gar nicht'-Negationen am Prädikat."""
+    r = _run("Dass Kernkraft klimaschädlicher wäre als Kohle, ist ja "
+             "wohl Unsinn", "false", _S24, confidence=0.95)
+    assert r["verdict"] == "true", r
+
+
+def test_k_gegenrichtung_mythos_bleibt_false():
+    """QA100 #26 (Kontroll-Claim): Doppelnegation ohne '<adj>er als'-
+    Vergleich → K greift nicht, das korrekte mostly_false bleibt."""
+    r = _run("Dass Bio-Landwirtschaft mehr Fläche pro Ertrag braucht, "
+             "ist doch längst widerlegt", "mostly_false",
+             "Bio-Landwirtschaft erzielt pro Hektar rund 20-25 % "
+             "geringere Erträge als konventionelle Landwirtschaft und "
+             "benötigt daher mehr Fläche für die gleiche Erntemenge.")
+    assert r["verdict"] == "mostly_false", r
+
+
+def test_k_feuert_nicht_wenn_summary_den_claim_komparativ_traegt():
+    """Steht der Claim-Komparativ selbst in der Summary, ist die Lage
+    mehrdeutig → kein Fix."""
+    r = _run("Dass Kernkraft klimaschädlicher wäre als Wind, ist ja wohl "
+             "Unsinn", "false",
+             "Studien zeigen, dass Kernkraft im Lebenszyklus "
+             "klimaschädlicher als Wind ist.")
+    assert r["verdict"] == "false", r
+
+
+def test_k_braucht_die_zurueckweisung():
+    """Ohne umgangssprachliche Zurückweisung ist es kein Meta-Claim —
+    ein normaler Vergleichs-Claim darf nicht geflippt werden."""
+    r = _run("Kernkraft ist klimaschädlicher als Kohle", "false", _S24)
+    assert r["verdict"] == "false", r
+
+
+def test_k_bindet_antonym_ans_vergleichsobjekt():
+    """Das Antonym muss dem im Claim genannten Objekt zugeschrieben
+    sein — ein freies 'sicherer' irgendwo in der Summary reicht nicht."""
+    r = _run("Dass Impfungen gefährlicher wären als die Krankheit, ist "
+             "ja wohl Unsinn", "false",
+             "Der Straßenverkehr ist sicherer als früher. Zu Impfungen "
+             "liegen keine Vergleichsdaten vor.")
+    assert r["verdict"] == "false", r
+    r2 = _run("Dass Impfungen gefährlicher wären als die Krankheit, ist "
+              "ja wohl Unsinn", "false",
+              "Impfungen sind laut RKI deutlich sicherer als die "
+              "Krankheit selbst.")
+    assert r2["verdict"] == "true", r2
+
+
+def test_k_funktionswoerter_auf_er_sind_kein_komparativ():
+    """'oder'/'unter' enden auf -er, sind aber keine Komparative."""
+    from services.verdict_postprocess import _antimythos_flip
+    c = "Dass Corona oder als Grippe zu sehen ist, ist ja wohl Unsinn"
+    assert _antimythos_flip(c, c.lower(), "grippe ist harmloser") is False

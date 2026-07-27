@@ -71,6 +71,59 @@ _NEGATIVE_PREDICATES = (
 )
 
 
+# Generische Nicht-Entitäten für Pattern G2 (QA100 #44): großgeschriebene
+# Wörter, die im Claim vorkommen, aber nie das VERGLICHENE Ding sind —
+# Maßgrößen, Struktur-Substantive, Institutionen. Ohne diese Liste würde
+# "Wien hat mehr Einwohner als Hamburg" die Maßgröße "Einwohner" als
+# Vergleichs-Entität aufgreifen.
+_G2_NON_ENTITIES = frozenset((
+    "einwohner", "einwohnern", "prozent", "anteil", "anteile", "quote",
+    "rate", "menschen", "personen", "leute", "zahl", "anzahl", "jahr",
+    "jahre", "jahren", "millionen", "milliarden", "euro", "bevölkerung",
+    "bevoelkerung", "eu", "europa", "union", "behauptung", "aussage",
+    "daten", "statistik", "durchschnitt", "schnitt", "gesamt", "summe",
+))
+
+# Antonym-Paare in KOMPARATIV-Form für Pattern K (QA100 #24). Der
+# Anti-Mythos-Claim "Dass X klimaschädlicher wäre als Y, ist Unsinn"
+# ist genau dann WAHR, wenn die Summary X als klimaFREUNDLICHER als Y
+# ausweist. Beide Richtungen werden geprüft; deutsche Komparative sind
+# teils unregelmäßig (hoch→höher, gut→besser), deshalb explizite
+# Formen statt Suffix-Arithmetik.
+_ANTONYM_COMPARATIVES = (
+    ("schädlicher", "freundlicher"),
+    ("schaedlicher", "freundlicher"),
+    ("gefährlicher", "sicherer"),
+    ("gefaehrlicher", "sicherer"),
+    ("schlechter", "besser"),
+    ("teurer", "billiger"),
+    ("teurer", "günstiger"),
+    ("höher", "niedriger"),
+    ("hoeher", "niedriger"),
+    ("größer", "kleiner"),
+    ("groesser", "kleiner"),
+    ("schmutziger", "sauberer"),
+    ("dreckiger", "sauberer"),
+    ("langsamer", "schneller"),
+)
+
+# Funktionswörter auf -er, die kein Komparativ sind (Pattern K).
+_K_COMPARATIVE_STOP = frozenset((
+    "oder", "aber", "unter", "über", "ueber", "immer", "wieder", "eher",
+    "hier", "dieser", "jeder", "unser", "euer", "einer", "keiner",
+    "welcher", "solcher", "später", "spaeter", "vorher", "nachher",
+))
+
+# Umgangssprachliche Zurückweisungen, die einen Claim zum META-Claim
+# machen ("P ist Unsinn" behauptet ¬P). Bewusst NUR starke, eindeutige
+# Dismissals — "falsch"/"widerlegt" sind absichtlich NICHT dabei, weil
+# sie auch in neutralen Referaten vorkommen.
+_ANTI_MYTHOS_DISMISSALS = (
+    "unsinn", "quatsch", "blödsinn", "bloedsinn", "humbug", "märchen",
+    "maerchen", "schmarrn", "ein mythos", "eine mär", "eine maer",
+)
+
+
 def _claim_negates_negative_predicate(claim_lower):
     """True bei Doppel-Verneinungs-Claims wie 'So schlecht ist die
     ÖBB-Pünktlichkeit gar nicht'. Die Negation muss ANS PRÄDIKAT
@@ -121,7 +174,9 @@ def _parse_de_number(raw, tail=""):
     return val
 
 
-def _entity_percent_from_summary(entity, summary_norm, exclude=None):
+def _entity_percent_from_summary(entity, summary_norm, exclude=None,
+                                 word_boundary=False, others=None,
+                                 window_len=55):
     """Den EINDEUTIGEN Prozentwert, den die Summary der Entität
     zuschreibt ('kärnten 13,94 %').
 
@@ -135,16 +190,34 @@ def _entity_percent_from_summary(entity, summary_norm, exclude=None):
     Varianten sein ('13,94' vs. '13,9', ±0,1 pp) — sonst None;
     (5) optional ``exclude``: Schwellen-Echo ('… also unter 10 %')
     zählt nicht als Entitäts-Wert. Kein Fix ist besser als ein
-    falscher."""
+    falscher.
+
+    QA100 2026-07-26 (Pattern G2): ``word_boundary`` erzwingt Wort-
+    grenzen für generische Entitäten — ohne \\b würde 'strom' in
+    'stromproduktion' matchen und den Wert der NACHBAR-Entität
+    einsammeln. ``others`` überschreibt die Abschneide-Liste, damit
+    G2 am jeweils anderen Vergleichs-Begriff kappt statt an
+    Bundesländern. ``window_len``: das Default-Fenster von 55 Zeichen
+    schnitt beim Live-Fall #44 ausgerechnet das '%' hinter '13,8' ab
+    ("… stromproduktion 2024 bei 13,8 %") — G2 fährt deshalb 90, was
+    gefahrlos ist, weil die Entitäts-Kappung davor greift."""
     vals = []
-    for m in re.finditer(re.escape(entity), summary_norm):
-        window = summary_norm[m.end():m.end() + 55]
+    _pat = (r"\b" + re.escape(entity) + r"\b" if word_boundary
+            else re.escape(entity))
+    _others = (tuple(others) if others is not None
+               else _AT_BUNDESLAENDER + _COMPARISON_COUNTRIES)
+    for m in re.finditer(_pat, summary_norm):
+        window = summary_norm[m.end():m.end() + window_len]
         window = re.split(r"[.;]", window)[0]
         cut = len(window)
-        for other in _AT_BUNDESLAENDER + _COMPARISON_COUNTRIES:
+        for other in _others:
             if other == entity or other in entity or entity in other:
                 continue
-            pos = window.find(other)
+            if word_boundary:
+                om = re.search(r"\b" + re.escape(other) + r"\b", window)
+                pos = om.start() if om else -1
+            else:
+                pos = window.find(other)
             if 0 <= pos < cut:
                 cut = pos
         window = window[:cut]
@@ -175,6 +248,105 @@ def _entity_percent_from_summary(entity, summary_norm, exclude=None):
         return None
     ref = vals[0]
     return ref if all(abs(v - ref) <= 0.1 for v in vals) else None
+
+
+def _generic_comparison_pair(original_claim):
+    """Die zwei verglichenen Entitäten eines Claims der Form
+    '… <Komparativ> … als B' — für Pattern G2 (QA100 #44).
+
+    Pattern G kannte nur Bundesländer und Länder; 'Windkraft liefert in
+    Österreich mehr Strom als Photovoltaik' fiel deshalb durch, obwohl
+    die Summary beide Werte nannte (13,8 % / 7,5 %). Deutsche Substantiv-
+    Großschreibung ist hier das Extraktions-Signal:
+
+    - B = erstes großgeschriebenes Wort NACH 'als'
+    - A-Kandidaten = großgeschriebene Wörter DAVOR, ohne Geografie
+      (die gehört Pattern G) und ohne Maßgrößen (``_G2_NON_ENTITIES``)
+
+    Gibt ``(a_kandidaten, b)`` zurück; die Eindeutigkeit von A entscheidet
+    erst der Wert-Lookup in der Summary — genau ein Kandidat mit
+    eindeutigem Wert, sonst kein Fix."""
+    cm = re.search(
+        r"\b(mehr|höher\w*|hoeher\w*|größer\w*|groesser\w*|weniger|"
+        r"niedriger\w*|geringer\w*|kleiner\w*)\b", original_claim, re.I)
+    if not cm:
+        return None
+    am = re.search(r"\bals\b", original_claim[cm.end():], re.I)
+    if not am:
+        return None
+    head = original_claim[:cm.end() + am.start()]
+    tail = original_claim[cm.end() + am.end():]
+    bm = re.search(r"\b([A-ZÄÖÜ][\wäöüß-]{3,})", tail)
+    if not bm:
+        return None
+    b = bm.group(1).lower()
+    geo = set(_AT_BUNDESLAENDER + _COMPARISON_COUNTRIES)
+    if b in geo or b in _G2_NON_ENTITIES:
+        return None
+    cands = []
+    for w in re.findall(r"\b([A-ZÄÖÜ][\wäöüß-]{3,})", head):
+        wl = w.lower()
+        if wl in geo or wl in _G2_NON_ENTITIES or wl == b:
+            continue
+        if wl not in cands:
+            cands.append(wl)
+    if not cands:
+        return None
+    return cands, b
+
+
+def _antimythos_flip(original_claim, claim_lower, summary_lower):
+    """True, wenn ein Anti-Mythos-META-Claim ('Dass X klimaschädlicher
+    wäre als Y, ist ja wohl Unsinn') von der Summary BESTÄTIGT wird,
+    das Label aber false/mostly_false sagt (QA100 #24, 5/5).
+
+    Der Claim behauptet ¬P. Die Summary hat P widerlegt, wenn sie das
+    ANTONYM des Claim-Komparativs auf dasselbe Objekt anwendet
+    ('klimafreundlicher als Kohle'). Drei Bedingungen, alle nötig:
+
+    1. Umgangssprachliche Zurückweisung im Claim (``_ANTI_MYTHOS_DISMISSALS``)
+    2. Komparativ '<adj>er als <B>' im eingebetteten Satz
+    3. Antonym-Komparativ in der Summary, ans selbe B gebunden (60-Zeichen-
+       Fenster), UND der Claim-Komparativ kommt in der Summary NICHT vor
+
+    Bedingung 2 ist zugleich der Schutz für die Gegenrichtung: ein Claim
+    wie 'Dass Bio mehr Fläche braucht, ist doch längst widerlegt' hat
+    keinen '<adj>er als'-Vergleich und wird nicht angefasst."""
+    if not any(d in claim_lower for d in _ANTI_MYTHOS_DISMISSALS):
+        return False
+    if not re.search(
+            r"\b(?:ist|sind|wär\w*|waer\w*|war\w*)\s+"
+            r"(?:ja\s+)?(?:wohl\s+|doch\s+|völliger\s+|voelliger\s+|"
+            r"kompletter\s+|reiner\s+|blanker\s+)*"
+            r"(?:" + "|".join(_ANTI_MYTHOS_DISMISSALS) + r")", claim_lower):
+        return False
+    # Zwischen Komparativ und "als" darf ein Hilfsverb stehen
+    # ("klimaschädlicher WÄRE als Kohle") — Live-Fall #24. Enges
+    # 20-Zeichen-Fenster + Stoppliste, damit Funktionswörter auf -er
+    # ("oder", "unter", "über") nicht als Komparativ durchgehen.
+    claim_comp = obj = None
+    for cm in re.finditer(r"\b([a-zäöüß]{4,}er)\b[^.,;]{0,20}?\bals\s+"
+                          r"(?:die\s+|der\s+|das\s+|den\s+)?"
+                          r"([a-zäöüß]{3,})", claim_lower):
+        if cm.group(1) in _K_COMPARATIVE_STOP:
+            continue
+        claim_comp, obj = cm.group(1), cm.group(2)
+        break
+    if not claim_comp:
+        return False
+    if claim_comp in summary_lower:
+        return False
+    for left, right in _ANTONYM_COMPARATIVES:
+        for src, dst in ((left, right), (right, left)):
+            if not claim_comp.endswith(src):
+                continue
+            antonyms = {claim_comp[:-len(src)] + dst, dst}
+            for anto in antonyms:
+                for am in re.finditer(r"\b" + re.escape(anto) + r"\b",
+                                      summary_lower):
+                    if obj in summary_lower[am.end():am.end() + 60]:
+                        return True
+    return False
 
 
 def _summary_refutes_superlative(claim_lower, summary_lower):
@@ -897,6 +1069,80 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                         _numeric_reason = (
                             f"Pattern G Entitäts-Vergleich: {_ents[0]} "
                             f"{_va} % vs. {_ents[1]} {_vb} %")
+
+    # Pattern G2 — Entitäts-Vergleich OHNE Geografie (QA100 #44,
+    # 2026-07-26): "Windkraft liefert in Österreich mehr Strom als
+    # Photovoltaik" → false@0.9, obwohl die Summary selbst "Windkraft
+    # 13,8 %, Photovoltaik 7,5 %" nennt und dann verbal dementiert
+    # ("… fast doppelt so viel …, nicht mehr"). Wurzel: Pattern G war
+    # auf Bundesländer/Länder überangepasst und hing zusätzlich am
+    # _share_claim-Gate, das dieser Claim nicht erfüllt (kein "Anteil"
+    # im Claim — die Prozente stehen nur in der Summary).
+    #
+    # Enge Guards, weil generische Entitäts-Extraktion fehleranfälliger
+    # ist als eine Whitelist: (a) nur wenn WENIGER als 2 geografische
+    # Entitäten im Claim stehen — sonst ist es Pattern-G-Territorium;
+    # (b) Entitäten per deutscher Substantiv-Großschreibung, ohne
+    # Maßgrößen; (c) genau EIN A-Kandidat darf einen eindeutigen Wert
+    # tragen (mehrere = mehrdeutig = kein Fix); (d) Wortgrenzen beim
+    # Summary-Lookup, sonst greift "strom" in "stromproduktion".
+    if _numeric_fix is None and verdict in ("true", "mostly_true",
+                                            "false", "mostly_false"):
+        _g2_geo = [e for e in (_AT_BUNDESLAENDER + _COMPARISON_COUNTRIES)
+                   if e in claim_lower]
+        _g2_geo = [e for e in _g2_geo
+                   if not any(e != o and e in o for o in _g2_geo)]
+        if len(set(_g2_geo)) < 2:
+            _g2_cmp = re.search(
+                r"\b(höher|hoeher|größer|groesser|mehr|niedriger|kleiner|"
+                r"geringer|weniger)\w*\b[^.]{0,40}?\bals\b", claim_lower)
+            _g2_pair = (_generic_comparison_pair(original_claim)
+                        if _g2_cmp else None)
+            if _g2_pair:
+                _g2_cands, _g2_b = _g2_pair
+                _g2_dir_up = _g2_cmp.group(1) in (
+                    "höher", "hoeher", "größer", "groesser", "mehr")
+                _g2_others = tuple(_g2_cands) + (_g2_b,)
+                _g2_vb = _entity_percent_from_summary(
+                    _g2_b, _sum_norm, word_boundary=True,
+                    others=_g2_others, window_len=90)
+                _g2_hits = []
+                for _c in _g2_cands:
+                    _v = _entity_percent_from_summary(
+                        _c, _sum_norm, word_boundary=True,
+                        others=_g2_others, window_len=90)
+                    if _v is not None:
+                        _g2_hits.append((_c, _v))
+                if (_g2_vb is not None and len(_g2_hits) == 1
+                        and _g2_hits[0][1] != _g2_vb):
+                    _g2_a, _g2_va = _g2_hits[0]
+                    _g2_true = ((_g2_va > _g2_vb) if _g2_dir_up
+                                else (_g2_va < _g2_vb))
+                    if ((_g2_true and verdict in ("false", "mostly_false"))
+                            or (not _g2_true
+                                and verdict in ("true", "mostly_true"))):
+                        _numeric_fix = "true" if _g2_true else "false"
+                        _numeric_reason = (
+                            f"Pattern G2 Entitäts-Vergleich (generisch): "
+                            f"{_g2_a} {_g2_va} % vs. {_g2_b} {_g2_vb} %")
+
+    # Pattern K — Anti-Mythos-Meta-Claim (QA100 #24, 2026-07-26):
+    # "Dass Kernkraft klimaschädlicher wäre als Kohle, ist ja wohl
+    # Unsinn" → false@0.95, obwohl die Summary schreibt "Damit ist
+    # Kernkraft deutlich klimafreundlicher als Kohle" — sie BESTÄTIGT
+    # den Claim. Der L2-Tier-2b-Guard kennt nur "gar nicht"-Negationen
+    # am Prädikat, nicht die umgangssprachliche Zurückweisung. Der
+    # Claim behauptet ¬P; die Summary belegt ¬P über das Antonym.
+    # Nur bei fehlender Schlussformel — eine explizite Konklusion des
+    # LLM zum META-Claim wäre mehrdeutig und wird nicht überstimmt.
+    if (_numeric_fix is None and not verdict_from_summary
+            and verdict in ("false", "mostly_false")
+            and _antimythos_flip(original_claim, claim_lower,
+                                 summary_lower)):
+        _numeric_fix = "true"
+        _numeric_reason = ("Pattern K Anti-Mythos: Claim weist Aussage "
+                           "zurück, Summary belegt das Gegenteil via "
+                           "Antonym-Komparativ")
 
     # Pattern H — Schwellenwert beidseitig (#9/#14): "unter 10 Prozent" /
     # "über 9,3 Millionen" bei verdict true, obwohl ALLE plausiblen
