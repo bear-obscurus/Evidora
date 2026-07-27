@@ -633,3 +633,18 @@ def test_g2_ueberlebt_falsche_verbale_konklusion():
              "Photovoltaik bei 7,5 %. Windkraft liefert damit weniger "
              "Strom als Photovoltaik.")
     assert r["verdict"] == "true", r
+
+
+def test_k_negierte_paraphrase_der_zurueckweisung_kippt_nicht():
+    """Live-Gegenprobe 27.07. (#903): Das LLM paraphrasiert die
+    Zurückweisung als NEGATION statt sie zu zitieren — 'Die Behauptung,
+    Kohle sei NICHT klimaschädlicher als Kernkraft, ist damit widerlegt'.
+    Auch das gilt dem Meta-Claim, nicht dem Mythos: Kohle IST
+    klimaschädlicher, die Zurückweisung ist also falsch."""
+    r = _run("Dass Kohle klimaschädlicher wäre als Kernkraft, ist ja wohl "
+             "Unsinn", "false",
+             "Kohle verursacht mit 820 g CO₂/kWh (Braunkohle: 1054 g/kWh) "
+             "deutlich höhere Lifecycle-CO₂-Emissionen als Kernkraft "
+             "(12 g/kWh). Die Behauptung, Kohle sei nicht klimaschädlicher "
+             "als Kernkraft, ist damit widerlegt.", confidence=0.95)
+    assert r["verdict"] == "false", r
