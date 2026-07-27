@@ -330,7 +330,15 @@
           "ausschließlich",
           "besteht aus",
           "100 %",
-          "100%"
+          "100%",
+          "liefert",
+          "liefern",
+          "erzeug",
+          "stammt",
+          "kommt aus",
+          "strommix",
+          "mehr strom",
+          "am meisten strom"
         ]
       ],
       "source_label": "APG (Austrian Power Grid) + E-Control",
