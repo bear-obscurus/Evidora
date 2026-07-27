@@ -648,3 +648,39 @@ def test_k_negierte_paraphrase_der_zurueckweisung_kippt_nicht():
              "(12 g/kWh). Die Behauptung, Kohle sei nicht klimaschädlicher "
              "als Kernkraft, ist damit widerlegt.", confidence=0.95)
     assert r["verdict"] == "false", r
+
+
+def test_k_live_variante_d_pronomen_und_verteidigung():
+    """Vierte Live-Variante von #24 (27.07., nach dem Pack-Flut-Fix) —
+    zwei neue Hürden auf einmal:
+
+    'Damit ist Kernkraft deutlich klimafreundlicher als Kohle – die
+     Behauptung, sie sei klimaschädlicher, ist falsch.'
+
+    (1) Das Vergleichs-Objekt kollabiert im Formel-Fenster zum Pronomen
+        ('sie'), 'Kohle' steht nur im Satz davor — Weg B darf das Objekt
+        deshalb in der ganzen Summary suchen, nicht nur in der Spanne.
+    (2) Das LLM lieferte hier KORREKT 'true'; erst die 4-Tier-Schluss-
+        formel-Erkennung las 'die Behauptung … ist falsch' als Aussage
+        über den META-Claim und hätte gekippt. K muss ein bereits
+        richtiges Label also auch VERTEIDIGEN, nicht nur korrigieren."""
+    r = _run(_C24, "true",
+             "Atomkraft verursacht laut IPCC AR6 (2022) und OWID nur 12 g "
+             "CO₂/kWh im Lifecycle, Kohle 820 g/kWh (Braunkohle 1.054 "
+             "g/kWh). Damit ist Kernkraft deutlich klimafreundlicher als "
+             "Kohle – die Behauptung, sie sei klimaschädlicher, ist falsch.",
+             confidence=0.95)
+    assert r["verdict"] == "true", r
+
+
+def test_k_verteidigung_kippt_keinen_echten_mythos():
+    """Gegenprobe zur Verteidigungs-Logik: Wenn die Schlussformel
+    tatsächlich dem Meta-Claim gilt (Negations-Paraphrase), bleibt das
+    Kippen auf false erhalten — auch bei rohem 'true'."""
+    r = _run("Dass Kohle klimaschädlicher wäre als Kernkraft, ist ja wohl "
+             "Unsinn", "true",
+             "Kohle verursacht mit 820 g CO₂/kWh deutlich höhere "
+             "Emissionen als Kernkraft (12 g/kWh). Die Behauptung, Kohle "
+             "sei nicht klimaschädlicher als Kernkraft, ist damit "
+             "widerlegt.", confidence=0.95)
+    assert r["verdict"] == "false", r
