@@ -33,20 +33,60 @@
         "ÖBB im Vergleich zur DB"
       ],
       "trigger_keywords": [
-        "öbb pünktlichkeit", "öbb-pünktlichkeit",
-        "öbb verspätung", "öbb verspätungen",
+        "öbb pünktlichkeit",
+        "öbb-pünktlichkeit",
+        "öbb verspätung",
+        "öbb verspätungen",
         "bahn verspätung österreich",
-        "öbb unzuverlässig", "öbb chaos",
+        "öbb unzuverlässig",
+        "öbb chaos",
         "klimaticket pünktlichkeit"
       ],
       "trigger_composite": [
-        ["öbb", "westbahn"],
-        ["pünktlich", "verspätung", "zuverlässig", "unzuverlässig",
-         "chaos", "ausfall", "vergleich", "verlassen", "schlecht"]
+        [
+          "öbb",
+          "westbahn"
+        ],
+        [
+          "pünktlich",
+          "verspätung",
+          "zuverlässig",
+          "unzuverlässig",
+          "chaos",
+          "ausfall",
+          "vergleich",
+          "verlassen",
+          "schlecht"
+        ]
       ],
       "source_label": "ÖBB Pünktlichkeits-Bericht 2024 + EU-Bahn-Statistik",
       "source_url": "https://infrastruktur.oebb.at/de/",
-      "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/rail_pa_total"
+      "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/rail_pa_total",
+      "trigger_all": [
+        [
+          [
+            "bahn",
+            "öbb",
+            "oebb",
+            "zug",
+            "züge",
+            "zuege"
+          ],
+          [
+            "verspät",
+            "verspaet",
+            "unpünktlich",
+            "unpuenktlich",
+            "pünktlich",
+            "puenktlich"
+          ],
+          [
+            "österreich",
+            "österreichisch",
+            "oesterreich"
+          ]
+        ]
+      ]
     },
     {
       "id": "verkehr_co2_at_2024",
@@ -79,20 +119,61 @@
         "Flugverkehr CO2 Bilanz Österreich"
       ],
       "trigger_keywords": [
-        "verkehrs-co2", "verkehrs co2", "co2 verkehr",
-        "verkehrs-emissionen", "verkehrsemissionen",
+        "verkehrs-co2",
+        "verkehrs co2",
+        "co2 verkehr",
+        "verkehrs-emissionen",
+        "verkehrsemissionen",
         "thg verkehr",
         "modal split österreich",
         "klima-verkehr österreich"
       ],
       "trigger_composite": [
-        ["verkehr", "auto", "pkw", "lkw", "flugverkehr", "flieger"],
-        ["co2", "emission", "thg", "treibhausgas", "klima"],
-        ["österreich", "at "]
+        [
+          "verkehr",
+          "auto",
+          "pkw",
+          "lkw",
+          "flugverkehr",
+          "flieger"
+        ],
+        [
+          "co2",
+          "emission",
+          "thg",
+          "treibhausgas",
+          "klima"
+        ],
+        [
+          "österreich",
+          "at "
+        ]
       ],
       "source_label": "Umweltbundesamt Klimaschutzbericht 2025 + Eurostat env_air_gge",
       "source_url": "https://www.umweltbundesamt.at/",
-      "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/env_air_gge"
+      "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/env_air_gge",
+      "trigger_all": [
+        [
+          [
+            "auto",
+            "pkw",
+            "lkw"
+          ],
+          [
+            "co2",
+            "emission",
+            "treibhausgas",
+            "thg"
+          ],
+          [
+            "anteil",
+            "vergleich",
+            "vs.",
+            "versus",
+            "gegenüber"
+          ]
+        ]
+      ]
     },
     {
       "id": "klimaticket_2024",
@@ -122,14 +203,30 @@
         "ÖBB KlimaTicket Wirkung"
       ],
       "trigger_keywords": [
-        "klimaticket", "klima-ticket", "klima ticket",
-        "österreich-ticket bahn", "1095 euro ticket",
-        "klimaticket erfolg", "klimaticket gescheitert"
+        "klimaticket",
+        "klima-ticket",
+        "klima ticket",
+        "österreich-ticket bahn",
+        "1095 euro ticket",
+        "klimaticket erfolg",
+        "klimaticket gescheitert"
       ],
       "trigger_composite": [
-        ["klimaticket", "klima-ticket", "österreich-ticket"],
-        ["erfolg", "gescheitert", "wirkung", "effekt", "co2",
-         "verkauft", "inhaber", "abonnent"]
+        [
+          "klimaticket",
+          "klima-ticket",
+          "österreich-ticket"
+        ],
+        [
+          "erfolg",
+          "gescheitert",
+          "wirkung",
+          "effekt",
+          "co2",
+          "verkauft",
+          "inhaber",
+          "abonnent"
+        ]
       ],
       "source_label": "ÖBB Pünktlichkeits- + KlimaTicket-Bericht 2024",
       "source_url": "https://www.klimaticket.at/"

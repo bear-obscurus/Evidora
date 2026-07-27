@@ -28,7 +28,14 @@ def _claim_matches_facts(claim_lc: str, full_claim: str | None = None) -> list[d
     return find_matching_items(
         STATIC_JSON_PATH, "facts",
         claim_lc=claim_lc, full_claim=full_claim,
-        descriptor_fn=_descriptor,
+        # Cosine-Backup deaktiviert (QA100 2026-07-27, analog #41):
+        # gemessen lieferte der Backup auf 100 breit gestreute Claims
+        # 172 von 176 Treffern — durchweg themenfremd (Olympia,
+        # Glasfaser, Weltbank) — und verdrängte im Prompt den passenden
+        # Inhalt. Eigene claim_phrasings-Abdeckung vorher auf 100 %
+        # gehoben, Über-Trigger-Kontrolle: +1 (thematisch korrekter)
+        # Exakt-Treffer auf denselben 100 Claims.
+        descriptor_fn=None,
     )
 
 
