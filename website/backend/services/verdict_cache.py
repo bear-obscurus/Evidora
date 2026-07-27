@@ -78,9 +78,105 @@ _NEGATION_TOKENS = frozenset({
 
 _NUMBER_RE = re.compile(r"\d[\d.,]*")
 
+# --- Richtungs-Blindheit bei Vergleichs-Claims (QA100, 2026-07-27) --------
+# Satz-Embeddings kodieren die ARGUMENT-REIHENFOLGE praktisch nicht: die
+# Log-Belege aus der Live-Verifikation zeigten
+#   cos=0.961  'Windkraft liefert mehr Strom als Photovoltaik'
+#          ->  'photovoltaik liefert mehr strom als windkraft'
+#   cos=0.976  'Kernkraft klimaschädlicher als Kohle'
+#          ->  'kohle klimaschädlicher als kernkraft'
+#   cos=0.967  'Kohle klimaFREUNDLICHER als Kernkraft'
+#          ->  'kohle klimaSCHÄDLICHER als kernkraft'
+# Alle drei liegen weit über SEMANTIC_THRESHOLD und sind bedeutungs-
+# gegenteilig. Der Negations-Guard greift nicht: es gibt keine Negation,
+# und die Zahlen sind identisch bzw. fehlen. Zwei zusätzliche Prüfungen
+# schließen die Lücke — vertauschte Vergleichs-Operanden und getauschte
+# Richtungswörter.
+
+# Funktionswörter, die nach "als" kein Vergleichs-Operand sein können.
+_ALS_STOP = frozenset({
+    "der", "die", "das", "den", "dem", "des", "ein", "eine", "einen",
+    "einem", "einer", "eines", "in", "im", "bei", "beim", "von", "vom",
+    "zu", "zum", "zur", "auf", "für", "fuer", "mit", "und", "oder",
+    "ist", "sind", "war", "waren", "wird", "werden", "es", "man", "sich",
+    "ja", "wohl", "doch", "noch", "auch", "the", "a", "an", "of", "in",
+})
+
+# Richtungs-Antonyme als Wortstämme (Substring-Match auf Tokens, damit
+# Komposita und Flexion mitgehen: "klimaSCHÄDLICHer", "preisGÜNSTIGer").
+_POLARITY_ANTONYMS = (
+    ("schädlich", "freundlich"), ("schaedlich", "freundlich"),
+    ("gefährlich", "sicher"), ("gefaehrlich", "sicher"),
+    ("höher", "niedriger"), ("hoeher", "niedriger"),
+    ("höher", "geringer"), ("hoeher", "geringer"),
+    ("mehr", "weniger"),
+    ("größer", "kleiner"), ("groesser", "kleiner"),
+    ("teurer", "billiger"), ("teurer", "günstiger"),
+    ("besser", "schlechter"),
+    ("schneller", "langsamer"),
+    ("stärker", "schwächer"), ("staerker", "schwaecher"),
+    ("steigt", "sinkt"), ("anstieg", "rückgang"), ("anstieg", "rueckgang"),
+    ("zunahme", "abnahme"), ("mehrheit", "minderheit"),
+    ("more", "less"), ("higher", "lower"), ("increase", "decrease"),
+)
+
 
 def _negation_present(tokens: set[str]) -> bool:
     return bool(tokens & _NEGATION_TOKENS)
+
+
+def _has_stem(tokens: set[str], stem: str) -> bool:
+    """Stamm in irgendeinem Token — aber NICHT, wenn ihm das negierende
+    Präfix 'un' unmittelbar vorausgeht ('unsicher' ist kein 'sicher',
+    'ungefährlich' kein 'gefährlich')."""
+    for tok in tokens:
+        idx = tok.find(stem)
+        if idx < 0:
+            continue
+        if idx >= 2 and tok[idx - 2:idx] == "un":
+            continue
+        return True
+    return False
+
+
+def _comparison_operands(text: str):
+    """(Tokens vor 'als', erster inhaltstragender Begriff nach 'als')
+    für Vergleichs-Claims — sonst None."""
+    m = re.search(r"\bals\b", text.lower())
+    if not m:
+        return None
+    pre = set(re.findall(r"\w+", text[:m.start()].lower()))
+    for w in re.findall(r"\w+", text[m.end():].lower()):
+        if len(w) >= 3 and w not in _ALS_STOP:
+            return pre, w
+    return None
+
+
+def _operands_swapped(a: str, b: str) -> bool:
+    """True, wenn beide Claims dieselben zwei Dinge vergleichen, aber in
+    VERTAUSCHTER Rolle ('A mehr als B' vs. 'B mehr als A'). Das Vergleichs-
+    Objekt der einen Seite steht dann auf der anderen Seite vor dem 'als'
+    — und umgekehrt."""
+    oa, ob = _comparison_operands(a), _comparison_operands(b)
+    if not oa or not ob:
+        return False
+    pre_a, obj_a = oa
+    pre_b, obj_b = ob
+    return (obj_a != obj_b and obj_a in pre_b and obj_b in pre_a)
+
+
+def _direction_flipped(ta: set[str], tb: set[str]) -> bool:
+    """True, wenn die eine Seite ein Richtungswort trägt und die andere
+    genau dessen Gegenteil (und keine Seite beide) — 'klimafreundlicher'
+    vs. 'klimaschädlicher', 'mehr' vs. 'weniger'. Verlangt bewusst die
+    Anwesenheit BEIDER Pole (je einer pro Seite): ein einseitig fehlendes
+    Richtungswort ist bloß eine Umformulierung, kein Gegenteil."""
+    for x, y in _POLARITY_ANTONYMS:
+        ax, ay = _has_stem(ta, x), _has_stem(ta, y)
+        bx, by = _has_stem(tb, x), _has_stem(tb, y)
+        if (ax and not ay and by and not bx) or (ay and not ax and bx and not by):
+            return True
+    return False
 
 
 def _extract_numbers(text: str) -> set[str]:
@@ -100,7 +196,17 @@ def _polarity_mismatch(a: str, b: str) -> bool:
     Returns True, wenn a und b wahrscheinlich GEGENTEILIGE Aussagen sind:
       (1) eine Negation steht nur auf EINER der beiden Seiten, ODER
       (2) beide nennen Zahlen, die disjunkt sind (z.B. Jahr 2018 vs. 2022,
-          'über 1000' vs. 'über 2000').
+          'über 1000' vs. 'über 2000'), ODER
+      (3) die Vergleichs-Operanden sind VERTAUSCHT ('A mehr als B' vs.
+          'B mehr als A'), ODER
+      (4) ein Richtungswort ist durch sein Gegenteil ersetzt
+          ('klimafreundlicher' vs. 'klimaschädlicher').
+
+    (3) und (4) kamen 2026-07-27 dazu, nachdem die Live-Verifikation der
+    QA100-Fixes zeigte, dass Satz-Embeddings die Argument-Reihenfolge
+    kaum kodieren (cos 0.96-0.98 zwischen gegenteiligen Vergleichs-
+    Claims) — die Fehlerklasse trifft ausgerechnet die Claims, für die
+    der L4-Layer eigene Muster hat.
 
     Bewusst konservativ in die SICHERE Richtung: ein False-Positive bewirkt
     nur einen Cache-Miss (die volle Pipeline läuft und liefert ein korrektes
@@ -113,6 +219,10 @@ def _polarity_mismatch(a: str, b: str) -> bool:
         return True
     na, nb = _extract_numbers(a), _extract_numbers(b)
     if na and nb and na.isdisjoint(nb):
+        return True
+    if _operands_swapped(a, b):
+        return True
+    if _direction_flipped(ta, tb):
         return True
     return False
 
