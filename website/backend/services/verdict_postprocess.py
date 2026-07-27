@@ -370,7 +370,13 @@ def _antimythos_flip(original_claim, claim_lower, summary_lower):
                      r"(?:so\s+|wirklich\s+|besonders\s+)?"
                      + re.escape(claim_comp), span):
             continue
-        if claim_comp in span and obj in span:
+        # Das Vergleichs-Objekt muss in der SUMMARY vorkommen, nicht
+        # zwingend in der Formel-Spanne: Live-Variante 27.07. kollabierte
+        # es zum Pronomen ("die Behauptung, SIE sei klimaschädlicher, ist
+        # falsch") — der topische Anker steht dann im Satz davor
+        # ("Kohle 820 g/kWh"). Die Trennung Mythos-vs-Zurückweisung
+        # leisten ohnehin die beiden Guards oben.
+        if claim_comp in span and obj in summary_lower:
             return True
 
     # Weg A — Antonym-Komparativ am selben Objekt.
@@ -1180,9 +1186,17 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     # Meta-Claim damit BESTÄTIGT. Nur in dieselbe Richtung wie das rohe
     # Label (leer/false/mostly_false) — ein erkanntes 'true' würde K
     # nicht brauchen und wird nicht angefasst.
+    # Zwei Einstiegs-Situationen (Live-Varianten 27.07.):
+    #   (a) das LLM liefert selbst false/mostly_false
+    #   (b) das LLM liefert KORREKT true, und die 4-Tier-Schlussformel-
+    #       Erkennung kippt es auf false, weil sie „die Behauptung …
+    #       ist falsch" auf den META-Claim bezieht statt auf die
+    #       eingebettete Aussage
+    # Ohne (b) rettet K den Fall nicht — es prüfte nur das rohe Label.
     if (_numeric_fix is None
             and verdict_from_summary in ("", None, "false", "mostly_false")
-            and verdict in ("false", "mostly_false")
+            and (verdict in ("false", "mostly_false")
+                 or verdict_from_summary in ("false", "mostly_false"))
             and _antimythos_flip(original_claim, claim_lower,
                                  summary_lower)):
         _numeric_fix = "true"
@@ -1366,11 +1380,22 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                     _numeric_reason = (f"Pattern J Top-N: Rang {_rank} "
                                        f"> {_n}")
 
-    if _numeric_fix and _numeric_fix != verdict:
-        logger.warning(
-            f"Numeric-relation fix ({_numeric_reason}): verdict "
-            f"'{verdict}' → '{_numeric_fix}' — Summary-Zahlen schlagen "
-            f"das Label.")
+    if _numeric_fix:
+        if _numeric_fix != verdict:
+            logger.warning(
+                f"Numeric-relation fix ({_numeric_reason}): verdict "
+                f"'{verdict}' → '{_numeric_fix}' — Summary-Inhalt schlägt "
+                f"das Label.")
+        elif verdict_from_summary and verdict_from_summary != verdict:
+            # Das rohe Label war bereits richtig — der Fix VERTEIDIGT es
+            # gegen eine anderslautende Schlussformel-Erkennung. Live-Fall
+            # 27.07. (#24, Variante D): das LLM lieferte korrekt 'true',
+            # die 4-Tier-Erkennung las "die Behauptung … ist falsch" als
+            # Aussage über den META-Claim und hätte auf 'false' gekippt.
+            logger.warning(
+                f"Numeric-relation fix ({_numeric_reason}): verteidigt "
+                f"verdict '{verdict}' gegen Schlussformel "
+                f"'{verdict_from_summary}'.")
         verdict_from_summary = _numeric_fix
 
     if verdict_from_summary and verdict_from_summary != verdict:
