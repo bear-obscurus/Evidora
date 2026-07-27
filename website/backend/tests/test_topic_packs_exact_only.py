@@ -126,6 +126,21 @@ def test_on_topic_claim_still_matches(pack, json_name):
     assert hits, f"{pack}: eigener Themen-Claim {claim!r} trifft nichts mehr"
 
 
+def test_erzeugungsvergleich_trifft_at_strom_eckdaten():
+    """Live-Regression aus der Verifikation (QA100 #44): Nach dem
+    Abschalten des Backups fiel 'Windkraft liefert in Österreich mehr
+    Strom als Photovoltaik' durch — der Aspekt-Gruppe des Facts fehlten
+    die ERZEUGUNGS-Verben. Folge live: nur noch IRENA lieferte Daten,
+    und zwar installierte KAPAZITÄT (PV 10.295 MW > Wind 4.292 MW)
+    statt Erzeugung — also die falsche Messgröße, Verdict kippte auf
+    false. Der Fact muss auf Erzeugungs-Vergleiche triggern."""
+    facts = _facts("energy_charts.json")
+    claim = "Windkraft liefert in Österreich mehr Strom als Photovoltaik"
+    hits = [f.get("topic") for f in facts
+            if substring_or_composite_match(f, claim.lower())]
+    assert "at_strom_eckdaten" in hits, hits
+
+
 def test_gesamt_trefferquote_bleibt_niedrig():
     """Aggregat-Wächter: über die zehn Off-Topic-Claims dürfen alle sechs
     Packs zusammen NULL Treffer haben. Vor dem Fix waren es 176 Treffer
