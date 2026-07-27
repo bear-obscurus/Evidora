@@ -33,17 +33,61 @@
         "Mathematik Niveau Österreich"
       ],
       "trigger_keywords": [
-        "timss", "timss-studie", "timss studie",
-        "timss österreich", "timss volksschule",
-        "timss 2023", "iea timss"
+        "timss",
+        "timss-studie",
+        "timss studie",
+        "timss österreich",
+        "timss volksschule",
+        "timss 2023",
+        "iea timss"
       ],
       "trigger_composite": [
-        ["timss", "mathematik volksschule", "mathematik 4. klasse"],
-        ["österreich", "österreichisch", "at "]
+        [
+          "timss",
+          "mathematik volksschule",
+          "mathematik 4. klasse"
+        ],
+        [
+          "österreich",
+          "österreichisch",
+          "at "
+        ]
       ],
       "source_label": "IEA TIMSS 2023 (Trends in International Mathematics and Science Study)",
       "source_url": "https://www.iea.nl/index.php?id=studies",
-      "secondary_url": "https://www.iqs.gv.at/"
+      "secondary_url": "https://www.iqs.gv.at/",
+      "trigger_all": [
+        [
+          [
+            "mathematik",
+            "mathe"
+          ],
+          [
+            "volksschule",
+            "4. klasse",
+            "schüler",
+            "schueler",
+            "grundschule",
+            "niveau"
+          ],
+          [
+            "österreich",
+            "österreichisch",
+            "oesterreich"
+          ]
+        ],
+        [
+          [
+            "bildungskrise",
+            "bildungs-krise"
+          ],
+          [
+            "österreich",
+            "österreichisch",
+            "oesterreich"
+          ]
+        ]
+      ]
     },
     {
       "id": "pirls_2021_at",
@@ -74,22 +118,53 @@
         "Lesekrise Volksschule"
       ],
       "trigger_keywords": [
-        "pirls", "pirls-studie", "pirls 2021",
+        "pirls",
+        "pirls-studie",
+        "pirls 2021",
         "pirls österreich",
         "iea pirls",
-        "lesekrise", "lese-krise",
-        "können nicht lesen", "kann nicht lesen", "kann nicht richtig lesen",
-        "können nicht richtig lesen", "kein lesen können"
+        "lesekrise",
+        "lese-krise",
+        "können nicht lesen",
+        "kann nicht lesen",
+        "kann nicht richtig lesen",
+        "können nicht richtig lesen",
+        "kein lesen können"
       ],
       "trigger_composite": [
-        ["pirls", "lesekompetenz", "leseverstehen", "lesen", "lese-",
-         "lese ", "leseschwäch", "leseschwierig"],
-        ["österreich", "österreichisch", "at ", "volksschule",
-         "grundschule", "4. klasse",
-         "drittel", "viertel", "fünftel", "hälfte",
-         "jeder dritt", "jeder vierte", "jeder zweite", "jeder fünfte",
-         "jede dritte", "jede vierte", "jede zweite", "jede fünfte",
-         "ein drittel", "ein viertel", "ein fünftel"]
+        [
+          "pirls",
+          "lesekompetenz",
+          "leseverstehen",
+          "lesen",
+          "lese-",
+          "lese ",
+          "leseschwäch",
+          "leseschwierig"
+        ],
+        [
+          "österreich",
+          "österreichisch",
+          "at ",
+          "volksschule",
+          "grundschule",
+          "4. klasse",
+          "drittel",
+          "viertel",
+          "fünftel",
+          "hälfte",
+          "jeder dritt",
+          "jeder vierte",
+          "jeder zweite",
+          "jeder fünfte",
+          "jede dritte",
+          "jede vierte",
+          "jede zweite",
+          "jede fünfte",
+          "ein drittel",
+          "ein viertel",
+          "ein fünftel"
+        ]
       ],
       "source_label": "IEA PIRLS 2021 (Progress in International Reading Literacy Study)",
       "source_url": "https://www.iea.nl/studies/iea/pirls/2021",
@@ -128,21 +203,80 @@
         "Lehramts-Studierende Rückgang"
       ],
       "trigger_keywords": [
-        "lehrermangel", "lehrer-mangel", "lehrer mangel",
-        "lehrkräfte mangel", "lehrkräftemangel",
-        "lehramts-studienanfänger", "lehramt studienanfänger",
+        "lehrermangel",
+        "lehrer-mangel",
+        "lehrer mangel",
+        "lehrkräfte mangel",
+        "lehrkräftemangel",
+        "lehramts-studienanfänger",
+        "lehramt studienanfänger",
         "pensionierungswelle lehrer",
-        "kein lehrer", "keine lehrer", "fehlende lehrer"
+        "kein lehrer",
+        "keine lehrer",
+        "fehlende lehrer"
       ],
       "trigger_composite": [
-        ["lehrer", "lehrkraft", "lehrkräfte", "lehramt", "pädagog"],
-        ["mangel", "fehlend", "zu wenig", "engpass", "krise",
-         "pensionier", "ruhestand", "ausstand"],
-        ["österreich", "österreichisch", "at ", "wien", "burgenland"]
+        [
+          "lehrer",
+          "lehrkraft",
+          "lehrkräfte",
+          "lehramt",
+          "pädagog"
+        ],
+        [
+          "mangel",
+          "fehlend",
+          "zu wenig",
+          "engpass",
+          "krise",
+          "pensionier",
+          "ruhestand",
+          "ausstand"
+        ],
+        [
+          "österreich",
+          "österreichisch",
+          "at ",
+          "wien",
+          "burgenland"
+        ]
       ],
       "source_label": "Statistik Austria Bildung + BMBWF Lehrer-Bedarf-Bericht 2024",
       "source_url": "https://www.statistik.at/",
-      "secondary_url": "https://www.bmbwf.gv.at/Themen/"
+      "secondary_url": "https://www.bmbwf.gv.at/Themen/",
+      "trigger_all": [
+        [
+          [
+            "bildungssystem"
+          ],
+          [
+            "personal",
+            "lehrer",
+            "lehrkräfte",
+            "lehrkraefte"
+          ],
+          [
+            "krise",
+            "mangel",
+            "engpass",
+            "notstand"
+          ]
+        ],
+        [
+          [
+            "lehramt",
+            "lehramts"
+          ],
+          [
+            "rückgang",
+            "rueckgang",
+            "weniger",
+            "sinkt",
+            "sinken",
+            "einbruch"
+          ]
+        ]
+      ]
     },
     {
       "id": "pisa_2022_dach",
@@ -179,17 +313,42 @@
         "Bildungs-Schock Österreich"
       ],
       "trigger_keywords": [
-        "pisa österreich", "pisa-studie österreich",
-        "pisa-schock", "pisa schock",
-        "pisa 2022", "pisa-ergebnisse"
+        "pisa österreich",
+        "pisa-studie österreich",
+        "pisa-schock",
+        "pisa schock",
+        "pisa 2022",
+        "pisa-ergebnisse"
       ],
       "trigger_composite": [
-        ["pisa"],
-        ["österreich", "deutschland", "schweiz", "dach"]
+        [
+          "pisa"
+        ],
+        [
+          "österreich",
+          "deutschland",
+          "schweiz",
+          "dach"
+        ]
       ],
       "source_label": "OECD PISA 2022 + Statistik Austria PISA-Auswertung",
       "source_url": "https://www.oecd.org/pisa/publications/pisa-2022-results.htm",
-      "secondary_url": "https://www.iqs.gv.at/"
+      "secondary_url": "https://www.iqs.gv.at/",
+      "trigger_all": [
+        [
+          [
+            "bildungs-schock",
+            "bildungsschock"
+          ],
+          [
+            "österreich",
+            "deutschland",
+            "schweiz",
+            "dach",
+            "oesterreich"
+          ]
+        ]
+      ]
     },
     {
       "id": "sitzenbleiben_wirkung",
@@ -219,16 +378,35 @@
         "Sitzenbleiben sinnvoll oder schaedlich"
       ],
       "trigger_keywords": [
-        "sitzenbleiben", "sitzen-bleiben", "sitzen bleiben",
-        "klassenwiederholung", "klassen-wiederholung",
-        "schulversagen wiederholung", "repetieren",
-        "wiederholen lassen", "schueler wiederholen"
+        "sitzenbleiben",
+        "sitzen-bleiben",
+        "sitzen bleiben",
+        "klassenwiederholung",
+        "klassen-wiederholung",
+        "schulversagen wiederholung",
+        "repetieren",
+        "wiederholen lassen",
+        "schueler wiederholen"
       ],
       "trigger_composite": [
-        ["sitzenbleiben", "klassenwiederholung", "repetier",
-         "wiederhol", "klassenstufe wiederhol"],
-        ["wirkung", "hilft", "sinnvoll", "schaden", "schaedlich",
-         "lernerfolg", "studie", "forschung", "effekt"]
+        [
+          "sitzenbleiben",
+          "klassenwiederholung",
+          "repetier",
+          "wiederhol",
+          "klassenstufe wiederhol"
+        ],
+        [
+          "wirkung",
+          "hilft",
+          "sinnvoll",
+          "schaden",
+          "schaedlich",
+          "lernerfolg",
+          "studie",
+          "forschung",
+          "effekt"
+        ]
       ],
       "source_label": "Hattie Visible Learning + Jimerson-Metaanalyse + OECD PISA",
       "source_url": "https://visible-learning.org/",

@@ -87,7 +87,21 @@
       "source_label": "Eurostat (crim_hom_soff) + BMI Österreich PKS 2024",
       "source_url": "https://ec.europa.eu/eurostat/databrowser/view/crim_hom_soff",
       "secondary_url": "https://www.bmi.gv.at/",
-      "fetched_at_iso": "2026-07-06"
+      "fetched_at_iso": "2026-07-06",
+      "trigger_all": [
+        [
+          [
+            "kriminalitätshochburg",
+            "kriminalitaetshochburg",
+            "hochburg der kriminalität"
+          ],
+          [
+            "österreich",
+            "österreichisch",
+            "oesterreich"
+          ]
+        ]
+      ]
     },
     {
       "id": "auslander_kriminalitaet_at_2024",
@@ -170,7 +184,34 @@
       ],
       "source_label": "BMI Österreich — PKS 2024 (Sicherheitsbericht)",
       "source_url": "https://www.bmi.gv.at/",
-      "secondary_url": "https://www.parlament.gv.at/"
+      "secondary_url": "https://www.parlament.gv.at/",
+      "trigger_all": [
+        [
+          [
+            "migrant",
+            "ausländer",
+            "auslaender",
+            "asyl"
+          ],
+          [
+            "kriminalität",
+            "kriminalitaet",
+            "tatverdächtig",
+            "tatverdaechtig",
+            "straftat",
+            "verbrechen"
+          ],
+          [
+            "großteil",
+            "grossteil",
+            "anteil",
+            "mehrheit",
+            "überwiegend",
+            "ueberwiegend",
+            "verursachen"
+          ]
+        ]
+      ]
     },
     {
       "id": "auslander_kriminalitaet_de_2024",

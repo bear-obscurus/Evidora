@@ -46,15 +46,64 @@
         "deutschland stromimporteur"
       ],
       "trigger_composite": [
-        ["deutschland", "deutsche", "brd"],
-        ["atomstrom", "atomausstieg", "kernkraft", "atomenergie",
-         "kernenergie", "stromimport"],
-        ["frankreich", "französisch", "industrie", "versorg",
-         "kollap", "kollabiert", "blackout", "saldo", "bilanz", "dauerhaft"]
+        [
+          "deutschland",
+          "deutsche",
+          "brd"
+        ],
+        [
+          "atomstrom",
+          "atomausstieg",
+          "kernkraft",
+          "atomenergie",
+          "kernenergie",
+          "stromimport"
+        ],
+        [
+          "frankreich",
+          "französisch",
+          "industrie",
+          "versorg",
+          "kollap",
+          "kollabiert",
+          "blackout",
+          "saldo",
+          "bilanz",
+          "dauerhaft"
+        ]
       ],
       "source_label": "Energy-Charts.info (Fraunhofer ISE) — Stromhandelsbilanz 2024",
       "source_url": "https://www.energy-charts.info/",
-      "secondary_url": "https://transparency.entsoe.eu/"
+      "secondary_url": "https://transparency.entsoe.eu/",
+      "trigger_all": [
+        [
+          [
+            "atomstrom"
+          ],
+          [
+            "import",
+            "einfuhr",
+            "kauft",
+            "bezieht"
+          ]
+        ],
+        [
+          [
+            "energiewende"
+          ],
+          [
+            "deutschland",
+            "deutsche",
+            "brd"
+          ],
+          [
+            "frankreich",
+            "französisch",
+            "franzoesisch",
+            "strom aus"
+          ]
+        ]
+      ]
     },
     {
       "id": "ee_anteil_de_2024",
@@ -93,14 +142,78 @@
         "erneuerbare deutschland"
       ],
       "trigger_composite": [
-        ["erneuerbar", "ee-anteil", "ee anteil", "wind-anteil", "solar-anteil",
-         "windkraft", "solar", "ökostrom"],
-        ["anteil", "prozent", "%", "deck", "decken", "versorg", "ausreich",
-         "scheiter", "funktioniert nicht"],
-        ["deutschland", "deutsche", "brd", "energiewende"]
+        [
+          "erneuerbar",
+          "ee-anteil",
+          "ee anteil",
+          "wind-anteil",
+          "solar-anteil",
+          "windkraft",
+          "solar",
+          "ökostrom"
+        ],
+        [
+          "anteil",
+          "prozent",
+          "%",
+          "deck",
+          "decken",
+          "versorg",
+          "ausreich",
+          "scheiter",
+          "funktioniert nicht"
+        ],
+        [
+          "deutschland",
+          "deutsche",
+          "brd",
+          "energiewende"
+        ]
       ],
       "source_label": "Energy-Charts (Fraunhofer ISE) — Public Power 2024",
-      "source_url": "https://www.energy-charts.info/charts/energy/chart.htm?l=de&c=DE"
+      "source_url": "https://www.energy-charts.info/charts/energy/chart.htm?l=de&c=DE",
+      "trigger_all": [
+        [
+          [
+            "wind- und solar",
+            "wind-anteil",
+            "solar-anteil"
+          ],
+          [
+            "anteil",
+            "prozent",
+            "%"
+          ]
+        ],
+        [
+          [
+            "energiewende"
+          ],
+          [
+            "deutschland",
+            "deutsche",
+            "brd"
+          ],
+          [
+            "anteil",
+            "prozent",
+            "%",
+            "erneuerbar"
+          ]
+        ],
+        [
+          [
+            "erneuerbar"
+          ],
+          [
+            "nur"
+          ],
+          [
+            "prozent",
+            "%"
+          ]
+        ]
+      ]
     },
     {
       "id": "dunkelflaute_2024_de",
@@ -127,15 +240,28 @@
         "Deutschland Blackout-Gefahr"
       ],
       "trigger_keywords": [
-        "dunkelflaute", "dunkel-flaute", "dark doldrums",
-        "blackout deutschland", "stromausfall deutschland",
+        "dunkelflaute",
+        "dunkel-flaute",
+        "dark doldrums",
+        "blackout deutschland",
+        "stromausfall deutschland",
         "stromnetz lahm",
         "deutschland kollaps stromnetz"
       ],
       "trigger_composite": [
-        ["dunkelflaute", "blackout", "stromausfall", "netzkollaps",
-         "netzzusammenbruch"],
-        ["deutschland", "deutsche", "brd", "energiewende"]
+        [
+          "dunkelflaute",
+          "blackout",
+          "stromausfall",
+          "netzkollaps",
+          "netzzusammenbruch"
+        ],
+        [
+          "deutschland",
+          "deutsche",
+          "brd",
+          "energiewende"
+        ]
       ],
       "source_label": "Bundesnetzagentur SAIDI 2024 + Fraunhofer ISE",
       "source_url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Versorgungssicherheit/Versorgungsunterbrechungen/start.html"
@@ -176,16 +302,51 @@
         "strompreis österreich grosshandel"
       ],
       "trigger_composite": [
-        ["strom", "elektrizität", "wasserkraft", "wind", "erneuerbar",
-         "energie", "elektri"],
-        ["österreich", "österreichisch", "at "],
-        ["import", "anteil", "produktion", "preis", "autark", "selbstversorg",
-         "saldo", "bilanz", "netto",
-         "100 prozent", "ausschließlich", "besteht aus",
-         "100 %", "100%"]
+        [
+          "strom",
+          "elektrizität",
+          "wasserkraft",
+          "wind",
+          "erneuerbar",
+          "energie",
+          "elektri"
+        ],
+        [
+          "österreich",
+          "österreichisch",
+          "at "
+        ],
+        [
+          "import",
+          "anteil",
+          "produktion",
+          "preis",
+          "autark",
+          "selbstversorg",
+          "saldo",
+          "bilanz",
+          "netto",
+          "100 prozent",
+          "ausschließlich",
+          "besteht aus",
+          "100 %",
+          "100%"
+        ]
       ],
       "source_label": "APG (Austrian Power Grid) + E-Control",
-      "source_url": "https://www.apg.at/"
+      "source_url": "https://www.apg.at/",
+      "trigger_all": [
+        [
+          [
+            "wasserkraft"
+          ],
+          [
+            "österreich",
+            "österreichisch",
+            "oesterreich"
+          ]
+        ]
+      ]
     }
   ]
 }
