@@ -1217,8 +1217,21 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     # 20,4 %" refuten sonst einen korrekten Burgenland-Claim);
     # (d) Jahres-Ausschluss nur für NACKTE Vierstellen-Tokens ("2025",
     # nicht "2.050 Einwohner").
+    #
+    # SYMMETRIE 2026-07-27 (QA100 #34/#8): H war einseitig — es korrigierte
+    # nur true→false bei VERFEHLTER Schwelle, nicht false→true bei
+    # ERFÜLLTER. Live sichtbar an "sind des über 9 millionen?": die Summary
+    # nannte 9.197.213 und 9.208.163, formulierte aber "knapp unter 9,2
+    # Millionen" — das LLM verglich gegen 9,2 statt gegen 9 und landete auf
+    # false. Die Bestätigungs-Richtung trägt zusätzlich ein Negations-Gate:
+    # bei "NICHT über 9 Millionen" würden dieselben Werte den Claim
+    # widerlegen, nicht bestätigen. Die Widerlegungs-Richtung bleibt
+    # unverändert (sie ist seit QA50B live erprobt).
     if (_numeric_fix is None and not verdict_from_summary
-            and verdict in ("true", "mostly_true")):
+            and verdict in ("true", "mostly_true",
+                            "false", "mostly_false")):
+        _h_confirm_ok = not re.search(
+            r"\b(?:nicht|kein\w*|nie|niemals|keineswegs)\b", claim_lower)
         _thr_cands = []
         for tm in re.finditer(
                 r"\b(unter|über|ueber|mehr als|weniger als|mindestens|"
@@ -1286,16 +1299,31 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                 if _cands:
                     _above = [v for v in _cands if v > _thr]
                     _below = [v for v in _cands if v < _thr]
-                    if _up and not _above and _below:
+                    _refute = verdict in ("true", "mostly_true")
+                    _confirm = (verdict in ("false", "mostly_false")
+                                and _h_confirm_ok)
+                    if _refute and _up and not _above and _below:
                         _numeric_fix = "false"
                         _numeric_reason = (
                             f"Pattern H Schwelle: Claim '>{_thr:g}', "
                             f"Summary-Werte alle darunter ({_below[:3]})")
-                    elif not _up and not _below and _above:
+                    elif _refute and not _up and not _below and _above:
                         _numeric_fix = "false"
                         _numeric_reason = (
                             f"Pattern H Schwelle: Claim '<{_thr:g}', "
                             f"Summary-Werte alle darüber ({_above[:3]})")
+                    elif _confirm and _up and _above and not _below:
+                        _numeric_fix = "true"
+                        _numeric_reason = (
+                            f"Pattern H Schwelle (bestätigend): Claim "
+                            f"'>{_thr:g}', Summary-Werte alle darüber "
+                            f"({_above[:3]})")
+                    elif _confirm and not _up and _below and not _above:
+                        _numeric_fix = "true"
+                        _numeric_reason = (
+                            f"Pattern H Schwelle (bestätigend): Claim "
+                            f"'<{_thr:g}', Summary-Werte alle darunter "
+                            f"({_below[:3]})")
 
     # Pattern I — Verhältnis (#10): "mehr als doppelt so hoch" bei
     # verdict true, obwohl der Faktor aus den beiden Summary-%-Werten

@@ -684,3 +684,72 @@ def test_k_verteidigung_kippt_keinen_echten_mythos():
              "sei nicht klimaschädlicher als Kernkraft, ist damit "
              "widerlegt.", confidence=0.95)
     assert r["verdict"] == "false", r
+
+
+# --- Pattern H symmetrisch (QA100 #34/#8, 2026-07-27) ---
+#
+# H korrigierte bisher nur true->false bei VERFEHLTER Schwelle. Live
+# sichtbar an "sind des über 9 millionen?": die Summary nannte 9.197.213
+# und 9.208.163, formulierte aber "knapp unter 9,2 Millionen" — das LLM
+# verglich gegen 9,2 statt gegen 9 und landete auf false. Die
+# Bestätigungs-Richtung schließt das; die Widerlegungs-Richtung bleibt
+# unverändert.
+
+def test_h_bestaetigt_ueber_schwelle_live_34():
+    r = _run("wieviele leute leben eigentlich in österreich? sind des "
+             "über 9 millionen?", "false",
+             "Laut Eurostat lebte Österreich am 1. Januar 2025 mit "
+             "9.197.213 Personen knapp unter 9,2 Millionen Einwohnern. "
+             "Die World Bank bestätigt für 2025 9.208.163 Einwohner.")
+    assert r["verdict"] == "true", r
+
+
+def test_h_bestaetigt_unter_schwelle():
+    r = _run("Die Inflation in Österreich lag unter 3 Prozent", "false",
+             "Der Verbraucherpreisindex stieg 2024 in Österreich um 2,9 %.")
+    assert r["verdict"] == "true", r
+
+
+def test_h_bestaetigung_respektiert_entitaets_bindung():
+    """Der fremde Wert (Wien 36,8 %) darf die Bestätigung für das
+    Claim-Subjekt (Burgenland 11,7 %) weder auslösen noch blockieren."""
+    summary = ("Laut Statistik Austria liegt der Ausländeranteil im "
+               "Burgenland bei 11,7 %, in Wien dagegen bei 36,8 %.")
+    r = _run("Im Burgenland liegt der Ausländeranteil unter 15 Prozent",
+             "false", summary)
+    assert r["verdict"] == "true", r
+    # Gegenrichtung mit derselben Summary
+    r2 = _run("Im Burgenland liegt der Ausländeranteil unter 10 Prozent",
+              "true", summary)
+    assert r2["verdict"] == "false", r2
+
+
+def test_h_bestaetigung_bei_zwei_entitaeten_ambig_kein_fix():
+    r = _run("In Wien und im Burgenland liegt der Anteil unter 15 Prozent",
+             "false",
+             "Laut Statistik Austria liegt der Ausländeranteil im "
+             "Burgenland bei 11,7 %, in Wien dagegen bei 36,8 %.")
+    assert r["verdict"] == "false", r
+
+
+def test_h_bestaetigung_negations_gate():
+    """Bei einem NEGIERTEN Schwellen-Claim widerlegen dieselben Werte den
+    Claim, statt ihn zu bestätigen — die Bestätigungs-Richtung muss
+    schweigen."""
+    r = _run("Österreich hat nicht über 9 Millionen Einwohner", "false",
+             "Laut Statistik Austria leben 9.197.213 Personen in "
+             "Österreich.")
+    assert r["verdict"] == "false", r
+
+
+def test_h_widerlegung_unveraendert():
+    """Die seit QA50B live erprobte Richtung darf sich nicht verändern."""
+    r = _run("Im Burgenland liegt der Ausländeranteil unter 10 Prozent",
+             "true",
+             "Laut Statistik Austria liegt der Anteil im Burgenland "
+             "bei 11,7 %.")
+    assert r["verdict"] == "false", r
+    r2 = _run("Die Jugendarbeitslosigkeit in Spanien liegt über 40 Prozent",
+              "true",
+              "Die Jugendarbeitslosigkeit in Spanien lag 2024 bei 26,5 %.")
+    assert r2["verdict"] == "false", r2
