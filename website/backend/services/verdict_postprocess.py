@@ -361,6 +361,15 @@ def _antimythos_flip(original_claim, claim_lower, summary_lower):
         span = fm.group(0)
         if any(d in span for d in _ANTI_MYTHOS_DISMISSALS):
             continue  # widerlegt wird die ZURÜCKWEISUNG, nicht der Mythos
+        # Dieselbe Falle in Negations-Form (Live-Gegenprobe 27.07.,
+        # Claim #903): das LLM paraphrasiert die Zurückweisung statt sie
+        # zu zitieren — "Die Behauptung, Kohle sei NICHT klimaschädlicher
+        # als Kernkraft, ist damit widerlegt". Auch hier gilt die
+        # Widerlegung dem Meta-Claim, nicht dem Mythos.
+        if re.search(r"\b(?:nicht|keineswegs|kaum)\s+"
+                     r"(?:so\s+|wirklich\s+|besonders\s+)?"
+                     + re.escape(claim_comp), span):
+            continue
         if claim_comp in span and obj in span:
             return True
 
