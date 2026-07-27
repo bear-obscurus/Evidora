@@ -1014,10 +1014,16 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                 if tv == int(tv):
                     num_variants.append(str(int(tv)))
                 num_re = "|".join(num_variants)
+                # Die Zahl darf NICHT der Kopf einer größeren Zahl sein:
+                # `\b` matchte "unter 9" mitten in "knapp unter 9,2
+                # Millionen" (Live-Fall QA100 #34) und erklärte damit
+                # einen Claim "über 9 Millionen" für widerlegt, obwohl
+                # 9,2 > 9 ihn BESTÄTIGT. Gilt genauso für Tausender-
+                # Punkte ("unter 9.197.213" ist kein "unter 9").
                 if re.search(
                     r"(?:unter|weniger\s+als|nicht\s+über|nicht\s+mehr\s+als)\s+"
                     r"(?:rund\s+|ca\.?\s*|etwa\s+|knapp\s+|deutlich\s+)?"
-                    rf"(?:{num_re})\b", summary_lower):
+                    rf"(?:{num_re})(?![.,]?\d)", summary_lower):
                     refuted = True
                     target_refute = "false"
 

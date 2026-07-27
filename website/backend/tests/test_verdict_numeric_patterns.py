@@ -753,3 +753,44 @@ def test_h_widerlegung_unveraendert():
               "true",
               "Die Jugendarbeitslosigkeit in Spanien lag 2024 bei 26,5 %.")
     assert r2["verdict"] == "false", r2
+
+
+# --- Pattern F: Dezimal-Grenze der Widerlegungs-Erkennung (QA100 #34) ---
+
+def test_f_unter_92_widerlegt_keinen_ueber_9_claim():
+    """Live-Blocker von #34: F-1 suchte "unter <Zahl>" mit `\\b` und
+    matchte "unter 9" mitten in "knapp unter 9,2 Millionen". Damit galt
+    ein Claim "über 9 Millionen" als widerlegt, obwohl 9,2 > 9 ihn
+    BESTÄTIGT — und weil F verdict_from_summary setzte, kam Pattern H
+    gar nicht mehr zum Zug."""
+    r = _run("wieviele leute leben eigentlich in österreich? sind des "
+             "über 9 millionen?", "true",
+             "Laut Eurostat lebte Österreich am 1. Januar 2025 mit "
+             "9.197.213 Personen knapp unter 9,2 Millionen Einwohnern. "
+             "Die World Bank schätzt die Bevölkerung 2025 auf 9.208.163. "
+             "Beide Quellen bestätigen, dass Österreich über 9 Millionen "
+             "Einwohner hat.", confidence=0.95)
+    assert r["verdict"] == "true", r
+
+
+def test_f_echte_widerlegung_bleibt_erhalten():
+    """Die Gegenrichtung darf nicht verloren gehen: eine echte
+    'deutlich unter X'-Aussage widerlegt den Schwellen-Claim weiter."""
+    r = _run("Der Bremsweg beträgt über 500 Meter", "true",
+             "Die ADAC-Tests zeigen einen Bremsweg von deutlich unter "
+             "500 Metern.")
+    assert r["verdict"] == "false", r
+    r2 = _run("Österreich hat über 9 Millionen Einwohner", "true",
+              "Die Bevölkerung lag 2015 mit 8,58 Millionen deutlich unter "
+              "9 Millionen Personen.")
+    assert r2["verdict"] == "false", r2
+
+
+def test_h_grenzfall_unter_echo_schwelle_bleibt_unangetastet():
+    """Werte innerhalb von 0,5 % der Schwelle gelten als Schwellen-Echo
+    und werden bewusst NICHT bewertet — kein Fix ist besser als ein
+    falscher."""
+    r = _run("Österreich hat über 9 Millionen Einwohner", "true",
+             "Die Bevölkerung lag mit 8.978.929 knapp unter 9.000.000 "
+             "Personen.")
+    assert r["verdict"] == "true", r
