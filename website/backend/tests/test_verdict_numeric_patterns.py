@@ -589,3 +589,47 @@ def test_k_funktionswoerter_auf_er_sind_kein_komparativ():
     from services.verdict_postprocess import _antimythos_flip
     c = "Dass Corona oder als Grippe zu sehen ist, ist ja wohl Unsinn"
     assert _antimythos_flip(c, c.lower(), "grippe ist harmloser") is False
+
+
+# --- Live-Varianten aus der Verifikation nach dem Deploy (2026-07-27) ---
+#
+# Die 3-Iterationen-Regel in Reinform: dieselbe Sachlage, zwei völlig
+# verschiedene LLM-Formulierungen. Variante B ("Die Behauptung … ist
+# widerlegt") widerlegt die EINGEBETTETE Aussage — die 4-Tier-Schluss-
+# formel liest das als 'false' für den Meta-Claim. Deshalb darf Pattern K
+# die Schlussformel überstimmen, sobald die Formel-Spanne P zitiert und
+# KEIN Dismissal-Token enthält.
+
+_C24 = "Dass Kernkraft klimaschädlicher wäre als Kohle, ist ja wohl Unsinn"
+
+
+def test_k_live_variante_b_widerlegungs_formel():
+    r = _run(_C24, "false",
+             "Atomkraft verursacht mit 12 g CO₂/kWh im Lifecycle deutlich "
+             "weniger Treibhausgase als Kohle (820 g/kWh) und Braunkohle "
+             "(1054 g/kWh). Die Behauptung, Kernkraft sei klimaschädlicher "
+             "als Kohle, ist damit widerlegt.", confidence=0.95)
+    assert r["verdict"] == "true", r
+
+
+def test_k_widerlegte_zurueckweisung_kippt_nicht():
+    """Bezieht sich die Widerlegung auf die ZURÜCKWEISUNG selbst
+    (Dismissal-Token in der Formel-Spanne), bleibt false stehen."""
+    r = _run(_C24, "false",
+             "Die Behauptung, dass es Unsinn sei, Kernkraft als "
+             "klimaschädlicher als Kohle zu bezeichnen, ist widerlegt.",
+             confidence=0.95)
+    assert r["verdict"] == "false", r
+
+
+def test_g2_ueberlebt_falsche_verbale_konklusion():
+    """Live-Variante #44 vom 27.07.: die Summary zieht aus 13,8 vs. 7,5
+    die glatt falsche Konklusion 'weniger Strom' — die Zahlen müssen
+    das Label trotzdem tragen."""
+    r = _run("Windkraft liefert in Österreich mehr Strom als Photovoltaik",
+             "false",
+             "Laut APG/E-Control lag der Anteil von Windkraft an der "
+             "österreichischen Stromproduktion 2024 bei 13,8 %, der von "
+             "Photovoltaik bei 7,5 %. Windkraft liefert damit weniger "
+             "Strom als Photovoltaik.")
+    assert r["verdict"] == "true", r

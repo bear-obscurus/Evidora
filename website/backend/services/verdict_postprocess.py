@@ -306,8 +306,23 @@ def _antimythos_flip(original_claim, claim_lower, summary_lower):
 
     1. Umgangssprachliche Zurückweisung im Claim (``_ANTI_MYTHOS_DISMISSALS``)
     2. Komparativ '<adj>er als <B>' im eingebetteten Satz
-    3. Antonym-Komparativ in der Summary, ans selbe B gebunden (60-Zeichen-
-       Fenster), UND der Claim-Komparativ kommt in der Summary NICHT vor
+    3. Die Summary widerlegt P — auf EINEM von zwei Wegen (Live-
+       Verifikation 27.07.: das LLM formuliert dieselbe Sachlage
+       abwechselnd so oder so, Fixtures hätten nur Weg A getroffen):
+
+       A) Antonym-Komparativ, ans selbe B gebunden (60-Zeichen-Fenster),
+          und der Claim-Komparativ kommt in der Summary NICHT vor
+          ("Damit ist Kernkraft deutlich klimafreundlicher als Kohle")
+       B) explizite Widerlegungs-Formel, die P ZITIERT — die Formel-
+          Spanne enthält Claim-Komparativ UND Objekt, aber KEIN
+          Dismissal-Token ("Die Behauptung, Kernkraft sei klima-
+          schädlicher als Kohle, ist damit widerlegt")
+
+    Weg B ist der Grund, warum K die 4-Tier-Schlussformel überstimmen
+    DARF: die Formel bezieht sich auf die eingebettete Aussage, nicht
+    auf den Meta-Claim. Das Dismissal-Verbot in der Spanne trennt
+    sauber "der Mythos ist widerlegt" von "deine Zurückweisung ist
+    widerlegt".
 
     Bedingung 2 ist zugleich der Schutz für die Gegenrichtung: ein Claim
     wie 'Dass Bio mehr Fläche braucht, ist doch längst widerlegt' hat
@@ -334,6 +349,22 @@ def _antimythos_flip(original_claim, claim_lower, summary_lower):
         break
     if not claim_comp:
         return False
+
+    # Weg B — die Summary widerlegt die ZITIERTE Aussage. Zuerst prüfen,
+    # weil dieser Fall den Claim-Komparativ zwangsläufig enthält (er
+    # steht im Zitat) und Weg A sonst blockieren würde.
+    for fm in re.finditer(
+            r"(?:die behauptung|die aussage|der vorwurf|die these|"
+            r"die annahme)\b[^.]{0,200}?\b(?:widerlegt|falsch|"
+            r"nicht haltbar|unzutreffend|nicht korrekt|unbegründet|"
+            r"unbegruendet)\b", summary_lower):
+        span = fm.group(0)
+        if any(d in span for d in _ANTI_MYTHOS_DISMISSALS):
+            continue  # widerlegt wird die ZURÜCKWEISUNG, nicht der Mythos
+        if claim_comp in span and obj in span:
+            return True
+
+    # Weg A — Antonym-Komparativ am selben Objekt.
     if claim_comp in summary_lower:
         return False
     for left, right in _ANTONYM_COMPARATIVES:
@@ -1133,9 +1164,15 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     # den Claim. Der L2-Tier-2b-Guard kennt nur "gar nicht"-Negationen
     # am Prädikat, nicht die umgangssprachliche Zurückweisung. Der
     # Claim behauptet ¬P; die Summary belegt ¬P über das Antonym.
-    # Nur bei fehlender Schlussformel — eine explizite Konklusion des
-    # LLM zum META-Claim wäre mehrdeutig und wird nicht überstimmt.
-    if (_numeric_fix is None and not verdict_from_summary
+    # K DARF die 4-Tier-Schlussformel überstimmen — Live-Befund 27.07.:
+    # "Die Behauptung, Kernkraft sei klimaschädlicher als Kohle, ist
+    # damit widerlegt" wird von der Schlussformel-Erkennung als 'false'
+    # gelesen, obwohl sie die EINGEBETTETE Aussage widerlegt und den
+    # Meta-Claim damit BESTÄTIGT. Nur in dieselbe Richtung wie das rohe
+    # Label (leer/false/mostly_false) — ein erkanntes 'true' würde K
+    # nicht brauchen und wird nicht angefasst.
+    if (_numeric_fix is None
+            and verdict_from_summary in ("", None, "false", "mostly_false")
             and verdict in ("false", "mostly_false")
             and _antimythos_flip(original_claim, claim_lower,
                                  summary_lower)):
