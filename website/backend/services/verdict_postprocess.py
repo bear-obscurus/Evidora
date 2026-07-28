@@ -395,6 +395,48 @@ def _antimythos_flip(original_claim, claim_lower, summary_lower):
     return False
 
 
+def _claim_entities(claim_lower):
+    """Die im Claim genannten bekannten Entitäten (Bundesländer/Länder),
+    ohne Teil-Treffer ('österreich' ⊂ 'niederösterreich')."""
+    ents = [e for e in (_AT_BUNDESLAENDER + _COMPARISON_COUNTRIES)
+            if e in claim_lower]
+    return {e for e in ents if not any(e != o and e in o for o in ents)}
+
+
+def _nearest_entity_before(summary_lower, pos):
+    """Die zuletzt genannte bekannte Entität vor Position ``pos`` im
+    selben Satz — also diejenige, der die dort folgende Zahl
+    zugeschrieben ist. None, wenn keine im Fenster steht.
+
+    Satzgrenze per ``(?<!\\d)\\.\\s`` — der Punkt in '9.197.213' darf das
+    Fenster NICHT abschneiden (bekannte Tausenderpunkt-Falle)."""
+    back = summary_lower[max(0, pos - 110):pos]
+    back = re.split(r"(?<!\d)\.\s|;", back)[-1]
+    best, best_pos = None, -1
+    for e in (_AT_BUNDESLAENDER + _COMPARISON_COUNTRIES):
+        p = back.rfind(e)
+        if p > best_pos:
+            best, best_pos = e, p
+    return best
+
+
+def _value_attributed_elsewhere(summary_lower, pos, claim_ents):
+    """True, wenn die Zahl an ``pos`` erkennbar einer ANDEREN Entität als
+    dem Claim-Subjekt zugeschrieben ist (QA100, Pattern E).
+
+    Ohne diese Prüfung bestätigte Pattern E einen Claim über Österreich
+    mit dem Wert Griechenlands: 'Die Schuldenquote lag 2024 bei 81,8 %,
+    in Griechenland dagegen bei 158,2 %' bestätigte 'AT über 100 %'.
+    Kennt der Claim keine Entität, bleibt alles wie bisher — es gibt dann
+    nichts, wogegen man attribuieren könnte."""
+    if not claim_ents:
+        return False
+    near = _nearest_entity_before(summary_lower, pos)
+    if near is None:
+        return False
+    return not any(near == c or near in c or c in near for c in claim_ents)
+
+
 def _summary_refutes_superlative(claim_lower, summary_lower):
     """True, wenn die Summary den Superlativ einem ANDEREN Land als dem
     Claim-Subjekt zuschreibt oder ihn fürs Claim-Subjekt explizit verneint
@@ -848,6 +890,7 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                 ):
                     _threshold_refuted = True
 
+            _e_claim_ents = _claim_entities(claim_lower)
             if (threshold_val is not None and threshold_val > 0
                     and not _threshold_refuted):
                 # Step 2: extract candidate numbers from summary
@@ -878,6 +921,18 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                     if (1900 <= summary_num <= 2100 and not re.match(
                             r"\s*(?:mio|mrd|millionen|milliarden|€|euro|eur)",
                             after_s)):
+                        continue
+
+                    # Attributions-Prüfung (QA100 2026-07-27): Ein Wert,
+                    # den die Summary erkennbar einer ANDEREN Entität
+                    # zuschreibt, bestätigt den Claim nicht. Ohne das
+                    # bestätigte der Griechenland-Wert (158,2 %) einen
+                    # Claim über Österreichs Schuldenquote. Dieselbe
+                    # Lehre wie bei Pattern A (_summary_refutes_
+                    # superlative): ein Confirm-Override muss prüfen,
+                    # WEM die Summary den Wert zuschreibt.
+                    if _value_attributed_elsewhere(
+                            summary_lower, nm.start(), _e_claim_ents):
                         continue
 
                     # Step 3: compare — summary number must plausibly
