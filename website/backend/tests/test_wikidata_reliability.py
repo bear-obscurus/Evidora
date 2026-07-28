@@ -140,3 +140,56 @@ def test_meloni_regel_aktives_spitzenamt_unterdrueckt_nebenamt_marker(monkeypatc
          "entities": ["Giorgia Meloni"]}))
     disp2 = " ".join(r.get("display_value", "") for r in out2["results"])
     assert "STRUKTURELL" in disp2, disp2
+
+
+# --- QA100 2026-07-28: die beiden defekten Templates ---
+
+def _template(name):
+    for t in wd._TEMPLATES:
+        if t["name"] == name:
+            return t
+    raise AssertionError(f"Template {name} fehlt")
+
+
+def test_bevoelkerung_template_akzeptiert_auch_siedlungen():
+    """QA100 #90: Der Typfilter war auf wd:Q6256 (Land) beschränkt, wurde
+    aber für Städte aufgerufen — 'Wien' lieferte HTTP 200 mit 0 Treffern,
+    jeder Städte-Einwohner-Claim blieb datenlos. Live gegen WDQS
+    verifiziert: mit Q486972 (Siedlung) treffen Wien 2.028.289 und
+    Hamburg 1.910.160, Länder bleiben unverändert."""
+    sparql = _template("land_bevoelkerung")["sparql"]
+    assert "wd:Q486972" in sparql, "Siedlungs-Typ fehlt — Städte fallen durch"
+    assert "wd:Q6256" in sparql, "Länder-Typ darf nicht verloren gehen"
+
+
+def test_bevoelkerung_template_entschaerft_label_mehrdeutigkeit():
+    """Zwei live reproduzierte Störer: ohne Jahres-Filter gewann Wiens
+    historischer Höchststand von 1910 (2.083.630), ohne Sortierung nach
+    Größe ein gleichnamiges Dorf mit 885 Einwohnern. DISTINCT verhindert
+    zusätzlich die Dreifach-Zeile aus den de/mul/en-Labels."""
+    sparql = _template("land_bevoelkerung")["sparql"]
+    assert "SELECT DISTINCT" in sparql
+    assert "YEAR(?date) >= 2015" in sparql
+    assert "ORDER BY DESC(?population)" in sparql
+
+
+def test_organisation_gruendung_ohne_generische_trigger():
+    """QA100: 'existiert' und 'gibt es' feuerten auf beliebige Claims
+    ('In Österreich GIBT ES mehr Rinder als Schweine') und schickten dann
+    Entitäten wie 'Wien' in eine Query, die bei mehrdeutigen Labels live
+    ~52 s braucht — der Service retryt nur 12 s + 8 s, daher im Prod-Log
+    deterministisch 'SPARQL-Fehler … kein Last-Good — leer'."""
+    triggers = _template("organisation_gruendung")["triggers"]
+    for verboten in ("existiert", "gibt es"):
+        assert verboten not in triggers, (
+            f"{verboten!r} ist als Trigger zu generisch — es zieht "
+            f"beliebige Claims in eine teure Organisations-Query.")
+    # Die fachlich gemeinten Trigger müssen erhalten bleiben
+    assert "gegründet" in triggers and "gründung" in triggers
+
+
+def test_organisation_gruendung_feuert_nicht_auf_gibt_es_claims():
+    """Funktionale Gegenprobe zur Trigger-Liste."""
+    claim = "In Österreich gibt es mehr Rinder als Schweine"
+    triggers = _template("organisation_gruendung")["triggers"]
+    assert not any(t in claim.lower() for t in triggers), claim
