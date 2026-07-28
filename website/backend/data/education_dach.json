@@ -411,6 +411,178 @@
       "source_label": "Hattie Visible Learning + Jimerson-Metaanalyse + OECD PISA",
       "source_url": "https://visible-learning.org/",
       "secondary_url": "https://www.oecd.org/pisa/"
+    },
+    {
+      "id": "pisa_lesen_europa_ranking_2022",
+      "topic": "pisa_lesen_europa_ranking",
+      "scope": "PISA 2022 Lesekompetenz — europäische Rangfolge",
+      "year": 2022,
+      "source_url": "https://www.oecd.org/content/dam/oecd/en/publications/support-materials/2023/12/pisa-2022-results-volume-i_76772a36/PISA%202022%20Insights%20and%20Interpretations.pdf",
+      "secondary_url": "https://www.iqs.gv.at/pisa-2022",
+      "source_label": "OECD PISA 2022 Results (Volume I) — 'Insights and Interpretations' + IQS Österreich PISA 2022",
+      "headline": "PISA 2022 Lesen: Europas Spitzenreiter ist IRLAND (vor Estland) — Finnland NICHT mehr. OECD-Rangfolge über dem Schnitt: Singapur, Irland, Japan, Korea, Chinese Taipei, Estland, … OECD-Schnitt 476 Punkte, Österreich 480.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die verbreitete Annahme 'Finnland hat die besten Lese-Ergebnisse in Europa' ist für PISA 2022 NICHT mehr zutreffend. Die OECD listet die Länder über dem OECD-Schnitt im Lesen in absteigender Reihenfolge der Mittelwerte: Singapur, Irland, Japan, Korea, Chinese Taipei, Estland, Macao (China), Kanada, USA, Neuseeland, Hongkong, Australien, Vereinigtes Königreich, Tschechien, Schweden, Schweiz, Italien. Bestes europäisches Land ist damit IRLAND, gefolgt von Estland. Finnland liegt zwar weiter über dem OECD-Schnitt, ist aber nicht mehr Europas Spitze — Finnlands Leseleistung ist seit den 2000er-Jahren deutlich gesunken. OECD-Mittelwerte 2022: 472 Mathematik, 476 Lesen, 485 Naturwissenschaft. Österreich liegt im Lesen mit 480 Punkten im OECD-Schnitt.",
+        "oecd_schnitt_lesen_2022": 476,
+        "at_lesen_2022": 480,
+        "europa_spitze_lesen_2022": "Irland (vor Estland)",
+        "context": "Rangfolge aus dem OECD-Band 'Comparing countries' and economies' performance in reading'; Länder sind dort absteigend nach Mittelwert gereiht."
+      },
+      "context_notes": [
+        "PISA misst 15-Jährige; PIRLS misst Volksschul-Lesekompetenz — die beiden Studien sind nicht vergleichbar.",
+        "Finnlands Rückgang im Lesen ist ein über mehrere Zyklen dokumentierter Trend, kein Einmal-Ausreißer."
+      ],
+      "claim_phrasings_handled": [
+        "Finnland beste Lese-Ergebnisse Europa",
+        "Finnland PISA Lesen Spitze",
+        "Welches Land liest am besten in Europa",
+        "PISA 2022 Lesekompetenz Ranking"
+      ],
+      "trigger_keywords": [
+        "pisa lesen",
+        "pisa lesekompetenz",
+        "pisa leseergebnis",
+        "beste lese-ergebnisse",
+        "beste leseergebnisse",
+        "pisa 2022 lesen"
+      ],
+      "trigger_composite": [
+        [
+          "lesekompetenz",
+          "lese-ergebnis",
+          "leseergebnis",
+          "leseleistung",
+          "lesen",
+          "leseverstehen",
+          "pisa"
+        ],
+        [
+          "finnland",
+          "finnisch",
+          "irland",
+          "estland",
+          "europa",
+          "europäisch",
+          "europaeisch"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "pisa"
+          ],
+          [
+            "lesen",
+            "lesekompetenz",
+            "leseleistung"
+          ]
+        ],
+        [
+          [
+            "beste",
+            "besten",
+            "spitze",
+            "spitzenreiter"
+          ],
+          [
+            "lese",
+            "lesekompetenz",
+            "liest",
+            "lesen"
+          ],
+          [
+            "europa",
+            "europäisch",
+            "europaeisch",
+            "finnland"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "studienbeitrag_at_2026",
+      "topic": "studienbeitrag_at",
+      "scope": "Studienbeiträge an österreichischen öffentlichen Universitäten",
+      "year": 2026,
+      "source_url": "https://www.oesterreich.gv.at/de/themen/bildung_und_ausbildung/hochschulen/universitaet/1/2/1/Seite.160366",
+      "secondary_url": "https://www.oeh.ac.at/studieren/studienbeitrag/",
+      "source_label": "oesterreich.gv.at (Bundeskanzleramt) 'Studienbeitrag' + Österreichische Hochschüler_innenschaft (ÖH)",
+      "headline": "Studienbeiträge in Österreich sind NICHT abgeschafft: an öffentlichen Unis beitragsfrei nur innerhalb der Regelstudienzeit + 2 Toleranzsemester, danach 363,36 Euro pro Semester; Drittstaatsangehörige zahlen den doppelten Satz 726,72 Euro. Der ÖH-Beitrag ist IMMER zu zahlen.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'die Studiengebühren in Österreich sind abgeschafft' ist nur teilweise richtig und als Pauschal-Aussage FALSCH. Rechtslage an öffentlichen Universitäten: (1) Österreichische Staatsangehörige sowie EU-/EWR-/Schweizer Studierende sind vom Studienbeitrag BEFREIT, solange sie die vorgesehene Studienzeit um nicht mehr als zwei Semester überschreiten (Toleranzsemester; bei Bachelor, Master und Doktorat über das gesamte Studium gerechnet). (2) Nach Überschreiten dieser Frist fallen 363,36 Euro pro Semester an. (3) Drittstaatsangehörige mit Aufenthaltsberechtigung Studierende zahlen den doppelten Betrag von 726,72 Euro pro Semester. (4) Der ÖH-Beitrag (Studierendenbeitrag) ist unabhängig davon in jedem Fall zu entrichten. (5) Befreiungsgründe bestehen u. a. bei Krankheit oder Schwangerschaft über zwei Monate, Kinderbetreuung, Behinderung ab 50 % und Bezug von Studienbeihilfe. Fachhochschulen und Privatuniversitäten haben eigene, davon abweichende Gebührenregelungen.",
+        "beitrag_nach_toleranzsemestern_eur": 363.36,
+        "beitrag_drittstaaten_eur": 726.72,
+        "toleranzsemester": 2,
+        "oeh_beitrag_immer_faellig": true,
+        "context": "Die allgemeinen Studiengebühren wurden 2008 weitgehend abgeschafft, die Beitragspflicht nach Überschreiten der Toleranzsemester und für Drittstaatsangehörige besteht aber fort."
+      },
+      "context_notes": [
+        "Gilt für öffentliche Universitäten; FH und Privatuniversitäten regeln Gebühren eigenständig.",
+        "Bei Zahlung in der Nachfrist erhöht sich der Betrag um 10 %."
+      ],
+      "claim_phrasings_handled": [
+        "Studiengebühren Österreich abgeschafft",
+        "Studienbeitrag Österreich Höhe",
+        "Muss man in Österreich Studiengebühren zahlen",
+        "Studium Österreich kostenlos"
+      ],
+      "trigger_keywords": [
+        "studiengebühr",
+        "studiengebuehr",
+        "studienbeitrag",
+        "studienbeiträge",
+        "studienbeitraege",
+        "öh-beitrag",
+        "oeh-beitrag",
+        "toleranzsemester"
+      ],
+      "trigger_composite": [
+        [
+          "studiengebühr",
+          "studiengebuehr",
+          "studienbeitrag",
+          "studienbeiträge",
+          "studienbeitraege",
+          "studium",
+          "studieren"
+        ],
+        [
+          "abgeschafft",
+          "gratis",
+          "kostenlos",
+          "kostenfrei",
+          "frei",
+          "zahlen",
+          "bezahlen",
+          "kosten",
+          "höhe",
+          "hoehe",
+          "euro",
+          "wieder eingeführt",
+          "eingeführt"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "studiengebühr",
+            "studiengebuehr",
+            "studienbeitrag",
+            "studienbeiträge",
+            "studienbeitraege"
+          ],
+          [
+            "österreich",
+            "österreichisch",
+            "oesterreich",
+            "abgeschafft",
+            "gratis",
+            "kostenlos",
+            "höhe",
+            "hoehe"
+          ]
+        ]
+      ]
     }
   ]
 }

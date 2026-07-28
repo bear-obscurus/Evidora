@@ -1211,6 +1211,182 @@
           ]
         ]
       ]
+    },
+    {
+      "id": "islam_anerkennung_at_2026",
+      "topic": "islam_anerkennung_at_konsens",
+      "scope": "Rechtsstatus des Islam in Österreich",
+      "year": 2026,
+      "source_url": "https://www.oesterreich.gv.at/de/themen/gesetze_und_recht/religionsausuebung/3/Seite.820015",
+      "secondary_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20009124",
+      "source_label": "oesterreich.gv.at (Bundeskanzleramt) 'Gesetzlich anerkannte Kirchen und Religionsgesellschaften' + RIS Islamgesetz 2015 (BGBl. I Nr. 39/2015)",
+      "headline": "JA — der Islam ist in Österreich gesetzlich anerkannte Religionsgesellschaft. Grundlage: Islamgesetz 1912, ersetzt durch das Islamgesetz 2015 (BGBl. I Nr. 39/2015). Anerkannt sind u. a. die Islamische Glaubensgemeinschaft (IGGÖ) und die Alevitische Glaubensgemeinschaft.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Frage 'Ist der Islam in Österreich eine gesetzlich anerkannte Religionsgemeinschaft?' ist mit JA zu beantworten. (1) Österreich erkannte den Islam bereits mit dem Islamgesetz 1912 an — als eines der ersten Länder Europas; historischer Hintergrund war die Annexion Bosnien-Herzegowinas. (2) Das Islamgesetz 1912 wurde durch das Islamgesetz 2015 (BGBl. I Nr. 39/2015) ersetzt, das den Status als gesetzlich anerkannte Religionsgesellschaft fortführt und neu regelt. (3) Die gesetzliche Anerkennung ist der höchste Status, den die Republik einer Religionsgemeinschaft verleihen kann; sie bewirkt die öffentlich-rechtliche Rechtspersönlichkeit (u. a. Religionsunterricht an öffentlichen Schulen, Seelsorge in Bundesheer und Justizanstalten). (4) Zu den gesetzlich anerkannten Kirchen und Religionsgesellschaften zählen neben der Islamischen Glaubensgemeinschaft in Österreich (IGGÖ) und der Alevitischen Glaubensgemeinschaft u. a. die Katholische Kirche, die Evangelische Kirche A.B. und H.B., die Griechisch-orientalische (orthodoxe) Kirche, die Israelitische Religionsgesellschaft, die Altkatholische Kirche, die Österreichische Buddhistische Religionsgesellschaft, Jehovas Zeugen und die Syrisch-orthodoxe Kirche. Der Pack zitiert nur den Rechtsstatus und nimmt KEINE Bewertung von Religionsgemeinschaften vor.",
+        "rechtsgrundlage": "Islamgesetz 2015, BGBl. I Nr. 39/2015 (zuvor Islamgesetz 1912, RGBl. Nr. 159/1912)",
+        "anerkannte_islamische_koerperschaften": [
+          "Islamische Glaubensgemeinschaft in Österreich (IGGÖ)",
+          "Alevitische Glaubensgemeinschaft in Österreich"
+        ],
+        "voraussetzung_anerkennung": "u. a. 20 Jahre Bestand, davon 10 Jahre organisiert und 5 Jahre als eingetragene Bekenntnisgemeinschaft, sowie mindestens 2 Promille der Bevölkerung",
+        "context": "Rein deskriptive Wiedergabe der Rechtslage."
+      },
+      "context_notes": [
+        "Anerkennung ist ein Rechtsstatus, keine inhaltliche Bewertung — der Pack distanziert sich von normativen Wertungen über Religionsgemeinschaften.",
+        "Neben der gesetzlichen Anerkennung gibt es die schwächere Stufe der staatlich eingetragenen Bekenntnisgemeinschaft."
+      ],
+      "claim_phrasings_handled": [
+        "Islam anerkannte Religionsgemeinschaft Österreich",
+        "Ist der Islam in Österreich anerkannt",
+        "Islamgesetz Österreich",
+        "anerkannte Religionsgesellschaften Österreich"
+      ],
+      "trigger_keywords": [
+        "islamgesetz",
+        "islam anerkannt",
+        "anerkannte religionsgesellschaft",
+        "anerkannte religionsgemeinschaft",
+        "iggö",
+        "iggoe"
+      ],
+      "trigger_composite": [
+        [
+          "islam",
+          "islamisch",
+          "muslim",
+          "iggö",
+          "iggoe",
+          "alevit"
+        ],
+        [
+          "anerkann",
+          "anerkennung",
+          "religionsgesellschaft",
+          "religionsgemeinschaft",
+          "islamgesetz",
+          "rechtsstatus",
+          "körperschaft",
+          "koerperschaft",
+          "gesetzlich",
+          "status"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "anerkann"
+          ],
+          [
+            "religionsgesellschaft",
+            "religionsgemeinschaft",
+            "kirche",
+            "islam",
+            "glaubensgemeinschaft"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "konfessionsstatistik_at_wien_2026",
+      "topic": "konfessionsstatistik_at_wien_konsens",
+      "scope": "Religionszugehörigkeit Österreich und Wien — Größenverhältnisse",
+      "year": 2026,
+      "source_url": "https://www.katholisch.at/kircheinzahlen",
+      "secondary_url": "https://www.statistik.at/fileadmin/announcement/2022/05/20220525Religionszugehoerigkeit2021.pdf",
+      "source_label": "Katholische Kirche Österreich 'Kirche in Zahlen' (Stand 31.12.2024, veröffentlicht 17.9.2025) + Statistik Austria 'Religionszugehörigkeit der Bevölkerung 2021' (Erhebung im Auftrag des Bundeskanzleramts)",
+      "headline": "Katholiken in Österreich 4,56 Mio (31.12.2024) bei rund 9,2 Mio Einwohnern = 49,6 % — die 50-%-Marke ist damit UNTERSCHRITTEN, es ist NICHT mehr als die Hälfte. Muslime 745.600 (8,3 %) sind mehr als DOPPELT so viele wie Evangelische 340.300 (3,8 %); in Wien ist der Abstand noch größer (höchster Muslim-Anteil aller Bundesländer).",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Zwei häufige Claims zur Religionsstatistik: (1) 'Mehr als die Hälfte der Österreicher ist katholisch' — das trifft NICHT mehr zu. Die Katholische Kirche Österreich weist zum 31.12.2024 rund 4,56 Mio Katholikinnen und Katholiken aus (veröffentlicht 17.9.2025). Bezogen auf die Bevölkerung von rund 9,2 Mio (Statistik Austria) sind das etwa 49,6 % — die 50-%-Marke wurde damit erstmals unterschritten. Bei der Erhebung 2021 lag der Anteil noch bei rund 55 %. (2) 'In Wien gibt es mehr Muslime als Protestanten' — das trifft ZU. Österreichweit zählte die Erhebung 2021 745.600 Personen islamischen Bekenntnisses (8,3 % der Bevölkerung) gegenüber 340.300 Evangelischen A.B. und H.B. (3,8 %) — also mehr als das Doppelte. Wien hat unter allen Bundesländern den höchsten Anteil an Muslimen und zugleich den höchsten Anteil an Konfessionslosen (34 %), während Evangelische österreichweit eine kleine Minderheit sind. Der Größenunterschied ist in Wien damit noch deutlicher als im Bundesschnitt. Weitere Werte 2021: Orthodoxe 436.700 (4,9 %). Der Pack gibt ausschließlich Statistik wieder und nimmt keine Bewertung von Religionsgemeinschaften vor.",
+        "katholiken_at_absolut_20241231": 4560000,
+        "katholiken_at_anteil_pct": 49.6,
+        "bevoelkerung_at_referenz": 9200000,
+        "muslime_at_2021_absolut": 745600,
+        "muslime_at_2021_pct": 8.3,
+        "evangelische_at_2021_absolut": 340300,
+        "evangelische_at_2021_pct": 3.8,
+        "orthodoxe_at_2021_absolut": 436700,
+        "wien_konfessionslose_pct_2021": 34,
+        "context": "Katholikenzahl aus der kirchlichen Mitgliederstatistik; die übrigen Werte aus der Statistik-Austria-Erhebung 2021 (Stichprobe, im Auftrag des Bundeskanzleramts). Amtliche Wien-Zahlen je Konfession stammen zuletzt aus der Volkszählung 2001 — die Richtung Muslime > Evangelische ist seither unstrittig und hat sich verstärkt."
+      },
+      "context_notes": [
+        "Die 50-%-Marke bei den Katholiken wurde Ende 2024 erstmals unterschritten — bei Claims mit Stichjahr vor 2024 kann 'mehr als die Hälfte' noch zutreffend gewesen sein.",
+        "Mitgliederstatistik der Kirche und Selbstzuordnung in Umfragen sind zwei verschiedene Messgrößen."
+      ],
+      "claim_phrasings_handled": [
+        "Mehr als die Hälfte der Österreicher katholisch",
+        "Anteil Katholiken Österreich",
+        "In Wien mehr Muslime als Protestanten",
+        "Wie viele Muslime leben in Österreich",
+        "Anteil Evangelische Österreich"
+      ],
+      "trigger_keywords": [
+        "anteil katholiken",
+        "wie viele katholiken",
+        "katholiken österreich",
+        "muslime österreich",
+        "anteil muslime",
+        "wie viele muslime",
+        "konfessionslos",
+        "religionszugehörigkeit"
+      ],
+      "trigger_composite": [
+        [
+          "katholik",
+          "katholisch",
+          "muslim",
+          "islamisch",
+          "evangelisch",
+          "protestant",
+          "orthodox",
+          "konfession",
+          "religionszugehörigkeit",
+          "religionszugehoerigkeit"
+        ],
+        [
+          "anteil",
+          "hälfte",
+          "haelfte",
+          "mehrheit",
+          "prozent",
+          "zahl",
+          "mehr",
+          "weniger",
+          "statistik",
+          "bevölkerung",
+          "bevoelkerung",
+          "wien",
+          "österreich",
+          "oesterreich",
+          "viele"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "katholisch",
+            "katholik"
+          ],
+          [
+            "hälfte",
+            "haelfte",
+            "mehrheit",
+            "anteil",
+            "prozent"
+          ]
+        ],
+        [
+          [
+            "muslim",
+            "islamisch"
+          ],
+          [
+            "protestant",
+            "evangelisch",
+            "anteil",
+            "mehr"
+          ]
+        ]
+      ]
     }
   ]
 }
