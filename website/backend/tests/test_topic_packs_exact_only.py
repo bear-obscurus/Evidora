@@ -55,7 +55,10 @@ OFF_TOPIC_CLAIMS = [
     "Österreich ist NATO-Mitglied",
     "Laut Weltbank ist Österreich ein Hocheinkommensland",
     "Österreich hat flächendeckend Glasfaser",
-    "Die Studiengebühren in Österreich sind abgeschafft",
+    # "Die Studiengebühren in Österreich sind abgeschafft" stand hier, bis
+    # education_dach am 2026-07-28 den Fakt `studienbeitrag_at` bekam
+    # (Cluster-A-Lücke #55). Der Claim ist für diesen Service seither
+    # ON-topic — siehe test_studienbeitrag_ist_jetzt_on_topic.
     "Das BIP pro Kopf ist in Österreich höher als in Deutschland",
     "Die Lebenserwartung in Österreich liegt über 82 Jahren",
     "Wer gewinnt die nächste Nationalratswahl in Österreich?",
@@ -153,3 +156,15 @@ def test_gesamt_trefferquote_bleibt_niedrig():
                    for f in facts):
                 total += 1
     assert total == 0, f"{total} Off-Topic-Treffer über alle Packs"
+
+
+def test_studienbeitrag_ist_jetzt_on_topic():
+    """Cluster-A-Lücke #55: education_dach besitzt seit 2026-07-28 den
+    Fakt `studienbeitrag_at`. Der Claim war vorher bewusst als
+    Off-Topic-Referenz gelistet — die Erwartung hat sich mit dem neuen
+    Fakt geändert, nicht das Verhalten des Guards."""
+    facts = _facts("education_dach.json")
+    hits = [f.get("topic") for f in facts
+            if substring_or_composite_match(
+                f, "die studiengebühren in österreich sind abgeschafft")]
+    assert hits == ["studienbeitrag_at"], hits
