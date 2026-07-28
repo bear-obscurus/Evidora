@@ -4,11 +4,11 @@
 
 A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
 
-Evidora automatically verifies claims against **120+ scientific and institutional sources** — **107 live-API connectors** (96.9% verdict-match in our 100-Claim Stress-Test across 15 vulnerability clusters, 2026-06-04) spanning science (PubMed, Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, Crossref, arXiv, **ERIC**, **AHRQ**, **USPSTF**, **NBER**), fact-checkers (GADMO, Snopes, Correctiv, Full Fact, Bellingcat, FactCheck.org), health authorities (WHO, EMA, EFSA, ECDC, NIH MedlinePlus, NCBI ClinVar, CDC×2, **openFDA**), climate (Copernicus, EEA, NASA GISS, Berkeley Earth, **CAMS**, **ERA5**, **NOAA**, **GeoSphere SPARTACUS**, **UBA-AT**, **Global Carbon Budget**, **EDGAR JRC**, **IRENA**), economy/finance (Eurostat, OECD, World Bank, ECB, OeNB, Statistik Austria, WIFO+IHS, UN Comtrade, **DBnomics** Meta-Hub, **IMF** WEO, **BIS**, **WITS**, **WGI**, **OECD SDMX**, **OeNB SDMX**, **CEPII** BACI, **EBA** Risk Dashboard, **ILOSTAT**, **FRED**, **WID.world**), democracy/rule-of-law (V-Dem, Freedom House, Transparency CPI, RSF, IDEA, SIPRI, **BTI**, **WJP Rule of Law**, **Constitute** + Bill-of-Rights-Enrichment, **Polity 5**, **ParlGov**), security/tech (**NIST NVD**, **MITRE ATT&CK**, **AI Incident Database**, **EDPB**, **Mozilla Observatory**), culture/geography (Wikipedia, Wikidata, **OSM Nominatim**, **GeoNames**, **DOAB** + DE-EN-Topic-Map, **Europeana**, **DPLA**, **UNECE** + City-Detection, **UNESCO World Heritage**, **UNESCO UIS**, **ÖAW EPUB**, **ESPON**, **Getty**), migration/displacement (UNHCR, Frontex, **UCDP** Uppsala Conflict Data, **IDMC**), wildlife (**IUCN Red List**, **CITES**), accessibility (**WCAG 2.2**, **WebAIM Million**), religion (**ARDA**, **CARA**), news (GDELT v2 GKG via BigQuery, Wayback Machine CDX) plus **40 curated static-first topic packs** (~430 topics) covering Austria/DACH-specific domains: science consensus, energy, medicine, climate, mental health, oncology, addiction, digital family, finance/investments, everyday myths, traffic safety, animal welfare, cybersecurity, food safety, gender equality, religious communities, economic policy, housing, labor market, mobility, data protection, social state, democracy, agriculture, world trade, inclusion, and security policy.
+Evidora automatically verifies claims against **120+ scientific and institutional sources** — **107 live-API connectors** ([see quality benchmarks](#quality-benchmarks)) spanning science (PubMed, Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, Crossref, arXiv, **ERIC**, **AHRQ**, **USPSTF**, **NBER**), fact-checkers (GADMO, Snopes, Correctiv, Full Fact, Bellingcat, FactCheck.org), health authorities (WHO, EMA, EFSA, ECDC, NIH MedlinePlus, NCBI ClinVar, CDC×2, **openFDA**), climate (Copernicus, EEA, NASA GISS, Berkeley Earth, **CAMS**, **ERA5**, **NOAA**, **GeoSphere SPARTACUS**, **UBA-AT**, **Global Carbon Budget**, **EDGAR JRC**, **IRENA**), economy/finance (Eurostat, OECD, World Bank, ECB, OeNB, Statistik Austria, WIFO+IHS, UN Comtrade, **DBnomics** Meta-Hub, **IMF** WEO, **BIS**, **WITS**, **WGI**, **OECD SDMX**, **OeNB SDMX**, **CEPII** BACI, **EBA** Risk Dashboard, **ILOSTAT**, **FRED**, **WID.world**), democracy/rule-of-law (V-Dem, Freedom House, Transparency CPI, RSF, IDEA, SIPRI, **BTI**, **WJP Rule of Law**, **Constitute** + Bill-of-Rights-Enrichment, **Polity 5**, **ParlGov**), security/tech (**NIST NVD**, **MITRE ATT&CK**, **AI Incident Database**, **EDPB**, **Mozilla Observatory**), culture/geography (Wikipedia, Wikidata, **OSM Nominatim**, **GeoNames**, **DOAB** + DE-EN-Topic-Map, **Europeana**, **DPLA**, **UNECE** + City-Detection, **UNESCO World Heritage**, **UNESCO UIS**, **ÖAW EPUB**, **ESPON**, **Getty**), migration/displacement (UNHCR, Frontex, **UCDP** Uppsala Conflict Data, **IDMC**), wildlife (**IUCN Red List**, **CITES**), accessibility (**WCAG 2.2**, **WebAIM Million**), religion (**ARDA**, **CARA**), news (GDELT v2 GKG via BigQuery, Wayback Machine CDX) plus **40 curated static-first topic packs** (~430 topics) covering Austria/DACH-specific domains: science consensus, energy, medicine, climate, mental health, oncology, addiction, digital family, finance/investments, everyday myths, traffic safety, animal welfare, cybersecurity, food safety, gender equality, religious communities, economic policy, housing, labor market, mobility, data protection, social state, democracy, agriculture, world trade, inclusion, and security policy.
 
 **Live Demo:** [https://evidora.eu](https://evidora.eu)
 
-**Quality assurance:** 58+ structured stress-test PDFs since project start, **1100+ curated claims**, aggregate verdict-match consistently above 90 %. Latest systematic test: 100-Claim Stress-Test (15 vulnerability clusters, 96.9 % after 3 fix-sprints, 10 commits). See [ARCHITECTURE.md §4.4](ARCHITECTURE.md) for the methodology.
+**Quality assurance:** 58+ structured stress-test PDFs since project start, **1100+ curated claims**. Latest systematic run: 100-Claim Transfer-QA (2026-07-26) across 22 problem classes — 70/100 raw, all 21 deterministic findings fixed and live-verified (PRs #89–#103). See [Quality benchmarks](#quality-benchmarks) and [ARCHITECTURE.md §4.4](ARCHITECTURE.md) for the methodology.
 
 > ⚠️ This project is under active development. The online version uses the Mistral Cloud API (EU servers, Paris) for AI analysis.
 
@@ -143,6 +143,29 @@ Sources are grouped by domain. Each lives in its own service module
 during analysis. For implementation patterns (live-API vs. static-first
 topic vs. hybrid), see [ARCHITECTURE.md §2](ARCHITECTURE.md).
 
+### Quality benchmarks
+
+Evidora is tested with **transfer QA runs**: claims are written the way real users
+phrase them (questions, colloquialisms, Austrian idiom, typos), expected verdicts
+are fixed *in advance*, and every non-passing claim is re-run repeatedly to
+separate genuine bugs from model variance. The headline number is therefore the
+**raw first-run score**, not a post-fix figure.
+
+| Run | Date | Raw score | Scope |
+|---|---|---|---|
+| 100-Claim Stress-Test | 2026-06-04 | 81.2% → **96.9%** after 3 fix sprints | 15 vulnerability clusters |
+| 50-Claim Transfer-QA (B) | 2026-07-11 | 34/50 → all 16 findings fixed | numeric comparison/threshold patterns |
+| 50-Claim Transfer-QA (C) | 2026-07-12 | 43/50 → all 7 findings fixed | cross-domain regression probes |
+| **100-Claim Transfer-QA** | **2026-07-26** | **70/100** → all 21 deterministic findings fixed (PRs #89–#103) | 22 problem classes, 44% regression probes |
+
+The 2026-07-26 run was deliberately weighted toward domains with little prior test
+coverage, which is why the raw score is lower than earlier runs — that is where the
+findings were. It surfaced, among others, a semantic-cache defect that returned the
+**inverted verdict** for reversed comparison claims, and 15 genuine coverage gaps
+that were closed with curated, source-verified facts. Each run's full report lives
+in the project's document folder; durable engineering lessons are tracked in the
+repository history.
+
 **Inventory at a glance** (counted from the `main.py` fan-out dispatch, verified 2026-06-27):
 
 | | Count |
@@ -153,7 +176,7 @@ topic vs. hybrid), see [ARCHITECTURE.md §2](ARCHITECTURE.md).
 | Hybrid (static core + live refresh) | **6** |
 | Connector service files | **191** of 213 `services/*.py` (22 are pipeline/helper modules, incl. `ratelimit.py`, `_atomic.py`, `_fmt.py`) |
 
-### Live-API Connectors (107 wired into the fan-out, 96.9% verdict-match in 100-Claim-Stress-Test)
+### Live-API Connectors (107 wired into the fan-out)
 
 | Domain | Sources |
 |---|---|
@@ -174,7 +197,7 @@ topic vs. hybrid), see [ARCHITECTURE.md §2](ARCHITECTURE.md).
 | **Archive** | Wayback Machine CDX (Internet Archive) |
 | **Crypto/DeFi (niche)** | **DeFiLlama** (350+ chains, 5.000+ protocols) |
 
-*Additional in-development / refinement-pending sources (currently in pipeline but selectively triggering): OSV.dev, FAOSTAT, Getty Vocabularies, IMF, ILOSTAT, FRED, GeoNames, DPLA, UCDP, Polity 5, ParlGov, WID.world, EBA Risk Dashboard, NBER, CARA, IDMC, OeNB SDMX, CEPII BACI. Refinement targets documented in `memory/pending_action_items_2026_05_18.md`.*
+*Additional in-development / refinement-pending sources (currently in pipeline but selectively triggering): OSV.dev, FAOSTAT, Getty Vocabularies, IMF, ILOSTAT, FRED, GeoNames, DPLA, UCDP, Polity 5, ParlGov, WID.world, EBA Risk Dashboard, NBER, CARA, IDMC, OeNB SDMX, CEPII BACI. Refinement targets are tracked in the project's internal notes and in the connector round-trip audits (see the PR history for `test_worldbank_indicators`, `test_dbnomics_providers`, `test_oecd_pinned_keys`).*
 
 ### Static-First Topic Packs (40 thematic packs, ~430 topics — part of 78 static-first services)
 
@@ -320,7 +343,7 @@ Bundled claim sets live under `tools/stress_tests/`. Methodology
 (four measurement points: verdict-match, source-match, trigger gaps,
 hot-reload) is documented in [ARCHITECTURE.md §4.4](ARCHITECTURE.md).
 Cumulative result across 58+ stress-test PDFs, **1100+ curated claims**:
-aggregate verdict-match consistently above 90 % (latest 100-claim systematic test: 93/96 = 96.9 %), 0 systematic false-positives detected. Per-pack stress-tests live in `tools/pdf_meta/`. The 100-claim test covers 15 vulnerability clusters: inversions, negation-blindness, temporal claims, category errors, political guardrails, reflexive-unverifiable, record claims, conditionals, AMS/ILO methodology, multi-dimensional comparisons, conspiracy theories, post-cutoff events, medical nuance, AT migration, and climate edge-cases.
+aggregate verdict-match consistently above 90 % on the cluster-style tests (100-claim test 2026-06-04: 93/96 = 96.9 %); the tougher transfer-QA format scores lower on first run by design — see [Quality benchmarks](#quality-benchmarks). Per-pack stress-tests live in `tools/pdf_meta/`. The 100-claim test covers 15 vulnerability clusters: inversions, negation-blindness, temporal claims, category errors, political guardrails, reflexive-unverifiable, record claims, conditionals, AMS/ILO methodology, multi-dimensional comparisons, conspiracy theories, post-cutoff events, medical nuance, AT migration, and climate edge-cases.
 
 A latency profiler complements this:
 
@@ -355,9 +378,10 @@ In addition to unit/integration tests, Evidora uses **structured 20-claim
 stress-tests** to catch trigger gaps and verdict regressions. Each test
 measures verdict-match, expected-source coverage, trigger gaps, and live
 hot-reload behavior. The full methodology lives in
-`memory/stress_test_method.md` and [ARCHITECTURE.md §4.4](ARCHITECTURE.md);
-cumulative balance across 53+ tests: **1000+ claims**, aggregate
-verdict-match above 90 % (latest: 100-claim systematic test across 15 clusters = 96.9 %, state 2026-06-04).
+[ARCHITECTURE.md §4.4](ARCHITECTURE.md);
+cumulative balance across 53+ tests: **1000+ claims**. Latest run:
+100-Claim Transfer-QA 2026-07-26, 70/100 raw across 22 problem classes,
+all 21 deterministic findings fixed (see [Quality benchmarks](#quality-benchmarks)).
 
 ## Troubleshooting
 
