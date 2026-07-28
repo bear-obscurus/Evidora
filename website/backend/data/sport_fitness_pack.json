@@ -28,14 +28,42 @@
         "Spot Reduction funktioniert"
       ],
       "trigger_keywords": [
-        "spot reduction", "ziel-fettverbrennung",
-        "bauchfett uebung", "bauchfett übung",
+        "spot reduction",
+        "ziel-fettverbrennung",
+        "bauchfett uebung",
+        "bauchfett übung",
         "sit-ups bauchfett",
         "gezielt abnehmen"
       ],
       "trigger_composite": [
-        ["sit-ups", "sit ups", "bauchuebung", "bauchübung", "bauch-uebung", "bauch-übung", "spot reduction", "spot-reduction", "uebung", "übung", "training", "fitness", "krafttraining"],
-        ["bauchfett", "fett verbrennen", "fettverbrennung", "abnehmen", "ziel", "gezielt", "spezifisch", "stelle", "körperstelle", "koerperstelle", "an bestimmten"]
+        [
+          "sit-ups",
+          "sit ups",
+          "bauchuebung",
+          "bauchübung",
+          "bauch-uebung",
+          "bauch-übung",
+          "spot reduction",
+          "spot-reduction",
+          "uebung",
+          "übung",
+          "training",
+          "fitness",
+          "krafttraining"
+        ],
+        [
+          "bauchfett",
+          "fett verbrennen",
+          "fettverbrennung",
+          "abnehmen",
+          "ziel",
+          "gezielt",
+          "spezifisch",
+          "stelle",
+          "körperstelle",
+          "koerperstelle",
+          "an bestimmten"
+        ]
       ],
       "source_label": "Ramirez-Campillo et al. 2021 Meta-Analyse + University of Sydney 2023",
       "source_url": "https://www.sydney.edu.au/news-opinion/news/2023/11/07/spot-reduction--why-targeting-weight-loss-to-a-specific-area-is-.html",
@@ -66,13 +94,41 @@
         "Wer immer das Gleiche trainiert, baut keine Muskeln auf"
       ],
       "trigger_keywords": [
-        "muscle confusion", "muskel verwirrung",
-        "muskel verwirren", "muskel verwirrt",
+        "muscle confusion",
+        "muskel verwirrung",
+        "muskel verwirren",
+        "muskel verwirrt",
         "p90x"
       ],
       "trigger_composite": [
-        ["muscle confusion", "muskel-verwirrung", "muskel verwirrung", "uebung wechseln", "übung wechseln", "muskel verwir", "p90x", "beachbody", "neue uebung", "neue übung", "immer das gleiche", "gleiche trainier", "gleiche übung"],
-        ["wachstum", "muskel-wachstum", "hypertrophie", "muskelaufbau", "training", "verwirrt", "muskeln aufbauen", "muskeln wachsen", "trainier", "baut", "muskeln"]
+        [
+          "muscle confusion",
+          "muskel-verwirrung",
+          "muskel verwirrung",
+          "uebung wechseln",
+          "übung wechseln",
+          "muskel verwir",
+          "p90x",
+          "beachbody",
+          "neue uebung",
+          "neue übung",
+          "immer das gleiche",
+          "gleiche trainier",
+          "gleiche übung"
+        ],
+        [
+          "wachstum",
+          "muskel-wachstum",
+          "hypertrophie",
+          "muskelaufbau",
+          "training",
+          "verwirrt",
+          "muskeln aufbauen",
+          "muskeln wachsen",
+          "trainier",
+          "baut",
+          "muskeln"
+        ]
       ],
       "source_label": "ACSM + NSCA + Schoenfeld 2010/2017 + ISSN Position",
       "source_url": "https://journals.lww.com/nsca-jscr/abstract/2010/10000/the_mechanisms_of_muscle_hypertrophy_and_their.40.aspx",
@@ -104,13 +160,33 @@
         "Häufiges Knacken mit den Knöcheln führt zu Hand-Arthrose"
       ],
       "trigger_keywords": [
-        "knoechel cracken", "knöchel cracken",
-        "finger knacken arthritis", "finger knacken gelenk",
-        "knoechel knacken", "knöchel knacken"
+        "knoechel cracken",
+        "knöchel cracken",
+        "finger knacken arthritis",
+        "finger knacken gelenk",
+        "knoechel knacken",
+        "knöchel knacken"
       ],
       "trigger_composite": [
-        ["knoechel", "knöchel", "finger", "gelenk-knacken", "finger knacken", "knuckle"],
-        ["arthritis", "arthrose", "gelenk-verschleiss", "gelenkverschleiss", "gelenkverschleiß", "schaden", "verursacht", "krank", "kaputt"]
+        [
+          "knoechel",
+          "knöchel",
+          "finger",
+          "gelenk-knacken",
+          "finger knacken",
+          "knuckle"
+        ],
+        [
+          "arthritis",
+          "arthrose",
+          "gelenk-verschleiss",
+          "gelenkverschleiss",
+          "gelenkverschleiß",
+          "schaden",
+          "verursacht",
+          "krank",
+          "kaputt"
+        ]
       ],
       "source_label": "Donald Unger 1998 + Kawchuk 2015 PLoS ONE + Harvard Health",
       "source_url": "https://www.health.harvard.edu/pain/does-cracking-knuckles-cause-arthritis",
@@ -148,8 +224,35 @@
         "ohne schmerzen trainieren"
       ],
       "trigger_composite": [
-        ["no pain no gain", "schmerz training", "schmerz beim training", "ohne schmerz", "ohne schmerzen", "weh tun", "weh tut", "keine schmerz", "schmerzen spürt", "schmerzen spuert", "beim sport"],
-        ["erfolg", "fortschritt", "wirkung", "gain", "regel", "trainings-regel", "muskelaufbau", "muskel-wachstum", "wachstum", "kein", "no", "hart genug", "hart trainier", "trainier"]
+        [
+          "no pain no gain",
+          "schmerz training",
+          "schmerz beim training",
+          "ohne schmerz",
+          "ohne schmerzen",
+          "weh tun",
+          "weh tut",
+          "keine schmerz",
+          "schmerzen spürt",
+          "schmerzen spuert",
+          "beim sport"
+        ],
+        [
+          "erfolg",
+          "fortschritt",
+          "wirkung",
+          "gain",
+          "regel",
+          "trainings-regel",
+          "muskelaufbau",
+          "muskel-wachstum",
+          "wachstum",
+          "kein",
+          "no",
+          "hart genug",
+          "hart trainier",
+          "trainier"
+        ]
       ],
       "source_label": "ACSM Position-Statement + BJSM Systematische Reviews 2020-2024",
       "source_url": "https://www.acsm.org/all-blog-posts/certification-blog/acsm-certified-blog/2018/03/27/listening-to-the-pain",
@@ -181,13 +284,29 @@
         "Nach intensivem Sport sammelt sich Milchsäure und macht Muskelkater"
       ],
       "trigger_keywords": [
-        "muskelkater milchsaeure", "muskelkater milchsäure",
-        "milchsaeure muskel", "milchsäure muskel",
+        "muskelkater milchsaeure",
+        "muskelkater milchsäure",
+        "milchsaeure muskel",
+        "milchsäure muskel",
         "lactat muskelkater"
       ],
       "trigger_composite": [
-        ["muskelkater", "doms", "milchsäure", "milchsaeure", "lactat"],
-        ["ursache", "verursacht", "kommt von", "entstand durch", "muskel", "schmerz", "training"]
+        [
+          "muskelkater",
+          "doms",
+          "milchsäure",
+          "milchsaeure",
+          "lactat"
+        ],
+        [
+          "ursache",
+          "verursacht",
+          "kommt von",
+          "entstand durch",
+          "muskel",
+          "schmerz",
+          "training"
+        ]
       ],
       "source_label": "Newham 1983 + Friden 1981 + McHugh 2003 + ACSM Position",
       "source_url": "https://www.acsm.org/blog-detail/acsm-certified-blog/2018/04/06/3-myths-about-muscle-soreness",
@@ -219,13 +338,31 @@
         "Krafttraining macht Frauen bulky"
       ],
       "trigger_keywords": [
-        "frauen krafttraining muskuloes", "frauen krafttraining muskulös",
-        "frauen hanteltraining maennlich", "frauen hanteltraining männlich",
-        "frauen bulky", "frauen muskelpaket"
+        "frauen krafttraining muskuloes",
+        "frauen krafttraining muskulös",
+        "frauen hanteltraining maennlich",
+        "frauen hanteltraining männlich",
+        "frauen bulky",
+        "frauen muskelpaket"
       ],
       "trigger_composite": [
-        ["frauen", "frau", "weibliche", "ladies"],
-        ["krafttraining", "hanteltraining", "muskulös", "muskuloes", "bulky", "muskel", "männlich", "maennlich", "muskelpaket"]
+        [
+          "frauen",
+          "frau",
+          "weibliche",
+          "ladies"
+        ],
+        [
+          "krafttraining",
+          "hanteltraining",
+          "muskulös",
+          "muskuloes",
+          "bulky",
+          "muskel",
+          "männlich",
+          "maennlich",
+          "muskelpaket"
+        ]
       ],
       "source_label": "Roberts et al. 2020 Sports Med + ACSM Position 2020 + Bhasin NEJM 1996",
       "source_url": "https://www.acsm.org/blog-detail/acsm-blog/2020/01/22/strength-training-women",
@@ -263,8 +400,28 @@
         "dehnen verletzung verhindern"
       ],
       "trigger_composite": [
-        ["stretching", "dehnen", "dehnung", "stretchen", "dehnt"],
-        ["verhindert", "verletzung", "verletzungsrisiko", "vor sport", "vor training", "vor dem sport", "schuetzt", "schützt", "verletzt", "wichtig", "sollte", "beim sport", "sport"]
+        [
+          "stretching",
+          "dehnen",
+          "dehnung",
+          "stretchen",
+          "dehnt"
+        ],
+        [
+          "verhindert",
+          "verletzung",
+          "verletzungsrisiko",
+          "vor sport",
+          "vor training",
+          "vor dem sport",
+          "schuetzt",
+          "schützt",
+          "verletzt",
+          "wichtig",
+          "sollte",
+          "beim sport",
+          "sport"
+        ]
       ],
       "source_label": "Cochrane Review 2007 + Behm Meta-Analyse 2016 + ACSM",
       "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004577.pub2/full",
@@ -296,14 +453,43 @@
         "Langsames Cardio ist besser für Fett-Verlust als HIIT"
       ],
       "trigger_keywords": [
-        "fett-verbrennungs-zone", "fettverbrennungszone",
+        "fett-verbrennungs-zone",
+        "fettverbrennungszone",
         "fat burning zone",
-        "niedrige intensitaet fett", "niedrige intensität fett",
-        "65 prozent puls fett", "70 prozent puls fett"
+        "niedrige intensitaet fett",
+        "niedrige intensität fett",
+        "65 prozent puls fett",
+        "70 prozent puls fett"
       ],
       "trigger_composite": [
-        ["fettverbrennung", "fett-verbrennung", "abnehmen", "fett-verlust", "fett-zone", "fettzone", "fat burning", "fett verbrenn", "verbrennt man", "verbrennt mehr"],
-        ["zone", "65 prozent", "70 prozent", "puls", "herzfrequenz", "intensitaet", "intensität", "niedrig", "moderat", "hiit", "cardio", "vo2max", "mehr fett", "fett"]
+        [
+          "fettverbrennung",
+          "fett-verbrennung",
+          "abnehmen",
+          "fett-verlust",
+          "fett-zone",
+          "fettzone",
+          "fat burning",
+          "fett verbrenn",
+          "verbrennt man",
+          "verbrennt mehr"
+        ],
+        [
+          "zone",
+          "65 prozent",
+          "70 prozent",
+          "puls",
+          "herzfrequenz",
+          "intensitaet",
+          "intensität",
+          "niedrig",
+          "moderat",
+          "hiit",
+          "cardio",
+          "vo2max",
+          "mehr fett",
+          "fett"
+        ]
       ],
       "source_label": "Wewege Obesity Reviews 2022 + ACSM + Coyle 1995",
       "source_url": "https://www.acsm.org/blog-detail/acsm-blog/2014/06/24/exercise-fuels-low-intensity-vs-high-intensity",
@@ -336,13 +522,34 @@
       ],
       "trigger_keywords": [
         "abs kitchen",
-        "bauchmuskel ernaehrung", "bauchmuskel ernährung",
-        "sixpack ernaehrung", "sixpack ernährung",
-        "bauchmuskel kueche", "bauchmuskel küche"
+        "bauchmuskel ernaehrung",
+        "bauchmuskel ernährung",
+        "sixpack ernaehrung",
+        "sixpack ernährung",
+        "bauchmuskel kueche",
+        "bauchmuskel küche"
       ],
       "trigger_composite": [
-        ["sixpack", "bauchmuskel", "bauch-muskel", "abs", "abdominal"],
-        ["kueche", "küche", "ernährung", "ernaehrung", "essen", "diaet", "diät", "kitchen", "kalorien", "ernaehrungsplan", "ernährungsplan"]
+        [
+          "sixpack",
+          "bauchmuskel",
+          "bauch-muskel",
+          "abs",
+          "abdominal"
+        ],
+        [
+          "kueche",
+          "küche",
+          "ernährung",
+          "ernaehrung",
+          "essen",
+          "diaet",
+          "diät",
+          "kitchen",
+          "kalorien",
+          "ernaehrungsplan",
+          "ernährungsplan"
+        ]
       ],
       "source_label": "ACSM + ISSN + WHO Body Composition + Hall NIH 2017",
       "source_url": "https://www.issn.com/issn-position-stands.html",
@@ -374,17 +581,182 @@
         "Whey-Protein ist schlecht für die Nieren"
       ],
       "trigger_keywords": [
-        "protein nieren", "eiweiss nieren", "eiweiß nieren",
+        "protein nieren",
+        "eiweiss nieren",
+        "eiweiß nieren",
         "whey nieren",
         "hohe eiweiss aufnahme nieren"
       ],
       "trigger_composite": [
-        ["protein", "eiweiss", "eiweiß", "whey", "casein", "proteinpulver", "eiweisspulver", "hohe eiweis", "viel protein"],
-        ["nieren", "niere", "nierenschaden", "nieren-schaden", "schad", "krank", "ungesund", "gefährlich", "gefaehrlich", "kidney"]
+        [
+          "protein",
+          "eiweiss",
+          "eiweiß",
+          "whey",
+          "casein",
+          "proteinpulver",
+          "eiweisspulver",
+          "hohe eiweis",
+          "viel protein"
+        ],
+        [
+          "nieren",
+          "niere",
+          "nierenschaden",
+          "nieren-schaden",
+          "schad",
+          "krank",
+          "ungesund",
+          "gefährlich",
+          "gefaehrlich",
+          "kidney"
+        ]
       ],
       "source_label": "Antonio et al. 2017 ISSN Position + Knight 2003 + Devries 2018",
       "source_url": "https://jissn.biomedcentral.com/articles/10.1186/s12970-017-0177-8",
       "secondary_url": "https://academic.oup.com/jn/article/148/11/1760/5078551"
+    },
+    {
+      "id": "at_wm_halbfinale_1954",
+      "topic": "at_fussball_wm_bilanz_konsens",
+      "scope": "Österreich bei Fußball-Weltmeisterschaften — beste Platzierungen",
+      "year": 1954,
+      "source_url": "https://www.oefb.at/oefb/News/Die-WM-1954-als-Hoehepunkt",
+      "secondary_url": "https://www.fifa.com/de/tournaments/mens/worldcup/1954switzerland",
+      "source_label": "ÖFB (Österreichischer Fußball-Bund) 'Die WM 1954 als Höhepunkt' + FIFA World Cup Schweiz 1954",
+      "headline": "Österreich HAT ein WM-Halbfinale erreicht: 1954 in der Schweiz stand die Nationalmannschaft im Halbfinale und wurde am Ende DRITTER — der größte Erfolg der österreichischen Fußballgeschichte. 1934 reichte es zu Platz vier. Die Aussage 'noch nie ein Halbfinale' ist damit falsch.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'Österreich hat noch nie ein WM-Halbfinale im Fußball erreicht' ist FALSCH. (1) Bei der Weltmeisterschaft 1954 in der Schweiz erreichte Österreich das Halbfinale und belegte am Ende den DRITTEN Platz — bis heute das beste Ergebnis einer österreichischen Fußball-Nationalmannschaft bei einer WM. (2) Auf dem Weg dorthin gewann Österreich das Viertelfinale gegen die Schweiz mit 7:5; diese Partie hält bis heute den Rekord für die meisten Tore in einem WM-Endrundenspiel. Theodor Wagner traf dreifach, Alfred Körner zweifach. (3) Die zweitbeste Platzierung war Rang vier bei der WM 1934. (4) Seither gelang Österreich keine vergleichbare Platzierung mehr — das ändert aber nichts daran, dass ein Halbfinale erreicht wurde.",
+        "wm_1954_platzierung": 3,
+        "wm_1934_platzierung": 4,
+        "viertelfinale_1954": "Österreich – Schweiz 7:5 (Torrekord)",
+        "context": "Bezieht sich auf die Herren-Nationalmannschaft."
+      },
+      "context_notes": [
+        "Die WM 1954 gilt als Höhepunkt des österreichischen Fußballs ('Wunderteam'-Ära war bereits die 1930er)."
+      ],
+      "claim_phrasings_handled": [
+        "Österreich nie WM-Halbfinale Fußball",
+        "beste WM-Platzierung Österreich",
+        "Österreich WM 1954 dritter Platz",
+        "Wie weit kam Österreich bei einer Fußball-WM"
+      ],
+      "trigger_keywords": [
+        "wm-halbfinale",
+        "wm halbfinale",
+        "wm 1954",
+        "weltmeisterschaft 1954",
+        "dritter platz wm"
+      ],
+      "trigger_composite": [
+        [
+          "wm",
+          "weltmeisterschaft",
+          "world cup",
+          "fußball-wm",
+          "fussball-wm"
+        ],
+        [
+          "halbfinale",
+          "semifinale",
+          "dritter platz",
+          "platzierung",
+          "erreicht",
+          "nie",
+          "niemals",
+          "1954",
+          "1934",
+          "wie weit",
+          "kam",
+          "beste",
+          "österreich"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "halbfinale"
+          ],
+          [
+            "wm",
+            "weltmeisterschaft",
+            "fußball",
+            "fussball"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "at_olympia_medaillen_paris_tokio",
+      "topic": "at_olympia_medaillenbilanz_konsens",
+      "scope": "Österreich bei Olympischen Sommerspielen — Medaillenbilanz Paris 2024 vs. Tokio 2020",
+      "year": 2024,
+      "source_url": "https://olympics.com/de/paris-2024/medaillen/osterreich",
+      "secondary_url": "https://www.olympia.at/main.asp?kat1=64&kat2=700&kat3=741",
+      "source_label": "Olympics.com Medaillenspiegel Paris 2024 + Österreichisches Olympisches Comité (ÖOC)",
+      "headline": "Österreich holte in Paris 2024 FÜNF Medaillen (2 Gold, 0 Silber, 3 Bronze) — in Tokio 2020 waren es SIEBEN (1 Gold, 1 Silber, 5 Bronze). In Paris gab es also WENIGER Medaillen als in Tokio, dafür erstmals seit 20 Jahren wieder zwei Goldene.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'Bei Olympia 2024 in Paris hat Österreich mehr Medaillen geholt als in Tokio' ist FALSCH — gemessen an der Gesamtzahl. (1) PARIS 2024: fünf Medaillen, davon 2 Gold (Lara Vadlau/Lukas Mähr im Segeln, Valentin Bontus im Kitesurfen) und 3 Bronze (Michaela Polleres im Judo, Jakob Schubert und Jessica Pilz im Klettern), keine Silbermedaille. (2) TOKIO 2020 (ausgetragen 2021): sieben Medaillen, davon 1 Gold, 1 Silber und 5 Bronze; Rang 53 im Medaillenspiegel. (3) In der GESAMTZAHL liegt Paris also hinter Tokio. Richtig ist aber: Nach GOLD gemessen war Paris erfolgreicher (2 statt 1) — erstmals seit 20 Jahren wieder zwei Olympiasiege. Wer 'mehr Medaillen' sagt, meint üblicherweise die Gesamtzahl; nach diesem Maßstab trifft der Claim nicht zu.",
+        "paris_2024_gesamt": 5,
+        "paris_2024_gold": 2,
+        "paris_2024_silber": 0,
+        "paris_2024_bronze": 3,
+        "tokio_2020_gesamt": 7,
+        "tokio_2020_gold": 1,
+        "tokio_2020_silber": 1,
+        "tokio_2020_bronze": 5,
+        "context": "Gesamtzahl vs. Gold-Zahl führen hier zu unterschiedlichen Antworten — die Messgröße muss benannt werden."
+      },
+      "context_notes": [
+        "Tokio 2020 fand pandemiebedingt 2021 statt.",
+        "Winterspiele sind eine getrennte Bilanz und für Österreich traditionell deutlich erfolgreicher."
+      ],
+      "claim_phrasings_handled": [
+        "Olympia 2024 Österreich Medaillen Tokio Vergleich",
+        "Wie viele Medaillen Österreich Paris 2024",
+        "Medaillenbilanz Österreich Sommerspiele",
+        "Österreich Olympia Gold Paris"
+      ],
+      "trigger_keywords": [
+        "medaillenbilanz",
+        "medaillenspiegel",
+        "paris 2024 medaillen",
+        "olympia medaillen österreich"
+      ],
+      "trigger_composite": [
+        [
+          "olympia",
+          "olympisch",
+          "sommerspiele",
+          "paris 2024",
+          "tokio",
+          "tokyo"
+        ],
+        [
+          "medaille",
+          "medaillen",
+          "gold",
+          "silber",
+          "bronze",
+          "bilanz",
+          "mehr",
+          "weniger",
+          "geholt",
+          "gewonnen"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "olympia",
+            "olympisch"
+          ],
+          [
+            "medaille",
+            "medaillen"
+          ]
+        ]
+      ]
     }
   ]
 }
