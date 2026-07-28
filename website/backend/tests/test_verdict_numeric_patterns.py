@@ -794,3 +794,79 @@ def test_h_grenzfall_unter_echo_schwelle_bleibt_unangetastet():
              "Die Bevölkerung lag mit 8.978.929 knapp unter 9.000.000 "
              "Personen.")
     assert r["verdict"] == "true", r
+
+
+# --- Pattern E: Attributions-Prüfung (QA100, 2026-07-27) ---
+#
+# E bestätigte einen Schwellen-Claim mit JEDER Zahl der Summary, die über
+# der Schwelle liegt — ohne zu prüfen, WEM die Summary den Wert
+# zuschreibt. Dieselbe Lücke, die Pattern A seit 2026-06-27 mit
+# _summary_refutes_superlative geschlossen hat. Verschärfend: E läuft VOR
+# Pattern H und setzt verdict_from_summary, hebelt also H's
+# Entitäts-Bindung aus.
+#
+# Die Guard-Richtung ist bewusst asymmetrisch: er kann nur Confirms
+# VERHINDERN. Ein False-Positive kostet ein ausbleibendes true (das rohe
+# LLM-Label bleibt stehen), ein False-Negative liefert ein erfundenes true.
+
+def test_e_fremder_landeswert_bestaetigt_nicht():
+    """Live reproduziert: der Griechenland-Wert (158,2 %) bestätigte
+    einen Claim über ÖSTERREICHS Schuldenquote."""
+    r = _run("Österreichs Staatsschulden liegen über 100 Prozent vom BIP",
+             "false",
+             "Die Schuldenquote lag 2024 bei 81,8 %, in Griechenland "
+             "dagegen bei 158,2 %.")
+    assert r["verdict"] == "false", r
+
+
+def test_e_eigener_landeswert_bestaetigt_weiter():
+    """Gegenrichtung: steht der Wert beim Claim-Subjekt, bestätigt er —
+    auch wenn davor ein anderes Land mit kleinerem Wert genannt wird."""
+    r = _run("Österreichs Schuldenquote liegt über 100 Prozent vom BIP",
+             "false",
+             "In Deutschland lag die Quote bei 62,5 %, in Österreich bei "
+             "118,4 %.")
+    assert r["verdict"] == "true", r
+
+
+@pytest.mark.parametrize("claim,summary", [
+    ("Die Miete kostet über 1000 Euro",
+     "Die Durchschnittsmiete lag zuletzt bei 1.095 €."),
+    ("Es gibt über eine Million Wohnungen",
+     "Der Bestand umfasst 1,9 Mio. Wohnungen."),
+])
+def test_e_ohne_claim_entitaet_unveraendert(claim, summary):
+    """Nennt der Claim keine bekannte Entität, gibt es nichts, wogegen
+    man attribuieren könnte — E verhält sich exakt wie vorher."""
+    r = _run(claim, "false", summary)
+    assert r["verdict"] == "true", r
+
+
+def test_e_claim_entitaet_summary_neutral_bestaetigt_weiter():
+    """Nennt die Summary im Zahlen-Fenster gar keine Entität, wird nicht
+    blockiert — sonst verlöre E seine häufigste legitime Anwendung."""
+    r = _run("Österreich hat über 9 Millionen Einwohner", "false",
+             "Die Bevölkerung erreichte 9.197.213 Personen.")
+    assert r["verdict"] == "true", r
+
+
+def test_nearest_entity_before_ignoriert_tausenderpunkt():
+    """Das Rückwärts-Fenster darf nicht am Punkt in '9.197.213' enden —
+    sonst findet es die Entität davor nicht (bekannte Falle)."""
+    from services.verdict_postprocess import _nearest_entity_before
+    s = ("in österreich lebten 9.197.213 personen, das sind mehr als "
+         "im jahr davor.")
+    assert _nearest_entity_before(s, s.index("mehr")) == "österreich"
+
+
+def test_nearest_entity_before_nimmt_die_naechste_entitaet():
+    from services.verdict_postprocess import _nearest_entity_before
+    s = "verglichen mit deutschland lag österreich bei 118,4 %."
+    assert _nearest_entity_before(s, s.index("118")) == "österreich"
+
+
+def test_e_attributionsguard_bricht_satzgrenze_nicht():
+    """Ein Land aus dem VORHERIGEN Satz darf den Wert nicht blockieren."""
+    from services.verdict_postprocess import _nearest_entity_before
+    s = "in griechenland ist die lage anders. die quote lag bei 118,4 %."
+    assert _nearest_entity_before(s, s.index("118")) is None
