@@ -581,6 +581,84 @@
           ]
         ]
       ]
+    },
+    {
+      "id": "glasfaser_breitband_at_2026",
+      "topic": "glasfaser_breitband_at_konsens",
+      "scope": "Breitband- und Glasfaserausbau in Österreich",
+      "year": 2025,
+      "source_url": "https://www.rtr.at/TKP/was_wir_tun/telekommunikation/weitere-regulierungsthemen/vhcn/vhcn.de.html",
+      "secondary_url": "https://data.breitbandbuero.gv.at/Publikationen/Breitband-Evaluierungsbericht-2024.pdf",
+      "source_label": "RTR (Rundfunk und Telekom Regulierungs-GmbH) — Very High Capacity Networks + Breitbandbüro/BMF 'Breitband in Österreich — Evaluierungsbericht 2024' (Wien, September 2025)",
+      "headline": "Österreich hat KEIN flächendeckendes Glasfasernetz. Gigabitfähiges Breitband ist für rund 75 % der Haushalte verfügbar (inkl. laufendem gefördertem Ausbau ~78 %); echte Glasfaser bis ins Haus (FTTP) erreicht selbst in den bestversorgten Bundesländern Wien und Tirol nur je rund 68 %, Salzburg 52 %. Die tatsächliche Nutzung liegt nochmals deutlich darunter.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'Österreich hat flächendeckend Glasfaser' ist FALSCH. (1) Gigabitfähiges Breitband (mindestens 1.000 Mbit/s, technologieoffen — also inklusive Kabel- und Mobilfunk-Lösungen) ist für rund 75 % der Haushalte verfügbar; mit dem noch laufenden geförderten Ausbau werden rund 78 % erwartet. (2) Echte Glasfaser bis ins Gebäude bzw. in die Wohnung (FTTP/FTTH) ist deutlich seltener: Selbst die bestversorgten Bundesländer Wien und Tirol kommen auf je rund 68 %, Salzburg auf 52 % — im ländlichen Raum liegt die Verfügbarkeit teils erheblich niedriger. (3) Die Take-up-Rate, also der Anteil der tatsächlich genutzten Anschlüsse, ist noch einmal viel niedriger und schwankt stark zwischen den Bundesländern. (4) 'Flächendeckend' würde eine nahezu vollständige Verfügbarkeit bedeuten — davon ist Österreich beim Glasfaserausbau klar entfernt, auch wenn der Ausbau zügig voranschreitet.",
+        "gigabitfaehig_haushalte_pct": 75,
+        "gigabitfaehig_nach_gefoerdertem_ausbau_pct": 78,
+        "fttp_bestversorgt_wien_tirol_pct": 68,
+        "fttp_salzburg_pct": 52,
+        "context": "Gigabitfähigkeit ist technologieoffen und NICHT gleich Glasfaser — diese Unterscheidung ist bei Ausbau-Claims entscheidend."
+      },
+      "context_notes": [
+        "Verfügbarkeit (Abdeckung) und Take-up (tatsächliche Nutzung) sind zwei verschiedene Kennzahlen.",
+        "Der geförderte Ausbau läuft; die Werte steigen jährlich."
+      ],
+      "claim_phrasings_handled": [
+        "Österreich flächendeckend Glasfaser",
+        "Glasfaser Abdeckung Österreich",
+        "Wie viele Haushalte haben Glasfaser in Österreich",
+        "Breitbandausbau Österreich Stand"
+      ],
+      "trigger_keywords": [
+        "glasfaser",
+        "glasfaserausbau",
+        "ftth",
+        "fttp",
+        "breitbandausbau",
+        "gigabitfähig",
+        "gigabitfaehig"
+      ],
+      "trigger_composite": [
+        [
+          "glasfaser",
+          "ftth",
+          "fttp",
+          "breitband",
+          "gigabit"
+        ],
+        [
+          "österreich",
+          "österreichisch",
+          "oesterreich",
+          "flächendeck",
+          "flaechendeck",
+          "abdeckung",
+          "ausbau",
+          "haushalte",
+          "verfügbar",
+          "verfuegbar",
+          "prozent",
+          "überall",
+          "ueberall"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "glasfaser",
+            "ftth",
+            "fttp"
+          ],
+          [
+            "österreich",
+            "oesterreich",
+            "flächendeck",
+            "flaechendeck",
+            "abdeckung",
+            "ausbau"
+          ]
+        ]
+      ]
     }
   ]
 }

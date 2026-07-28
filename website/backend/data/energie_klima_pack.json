@@ -28,13 +28,34 @@
         "Atomstrom ist klimaneutral"
       ],
       "trigger_keywords": [
-        "atomkraft co2", "atomkraft klimaneutral",
-        "atomstrom co2", "kernenergie co2",
+        "atomkraft co2",
+        "atomkraft klimaneutral",
+        "atomstrom co2",
+        "kernenergie co2",
         "atomkraft klimaschutz"
       ],
       "trigger_composite": [
-        ["atomkraft", "atomstrom", "kernenergie", "kernkraft", "akw", "atom"],
-        ["co2", "co₂", "emissionen", "klima", "klimaneutral", "klimaschutz", "treibhausgas", "lifecycle", "lebenszyklus", "klimabilanz", "klimakatastrophe"]
+        [
+          "atomkraft",
+          "atomstrom",
+          "kernenergie",
+          "kernkraft",
+          "akw",
+          "atom"
+        ],
+        [
+          "co2",
+          "co₂",
+          "emissionen",
+          "klima",
+          "klimaneutral",
+          "klimaschutz",
+          "treibhausgas",
+          "lifecycle",
+          "lebenszyklus",
+          "klimabilanz",
+          "klimakatastrophe"
+        ]
       ],
       "source_label": "IPCC AR6 WG III Annex III (2022) + IEA + Fraunhofer ISE",
       "source_url": "https://www.ipcc.ch/report/ar6/wg3/",
@@ -73,8 +94,24 @@
         "china klimasch"
       ],
       "trigger_composite": [
-        ["china", "asien"],
-        ["kohle", "kohlekraftwerk", "kohlekraft", "kraftwerk", "kraftwerke", "co2", "klima", "klimaschutz", "klimawandel", "emissionen", "dreckig", "schmutzig"]
+        [
+          "china",
+          "asien"
+        ],
+        [
+          "kohle",
+          "kohlekraftwerk",
+          "kohlekraft",
+          "kraftwerk",
+          "kraftwerke",
+          "co2",
+          "klima",
+          "klimaschutz",
+          "klimawandel",
+          "emissionen",
+          "dreckig",
+          "schmutzig"
+        ]
       ],
       "source_label": "IEA Renewables 2024 + Climate Watch + IPCC + Carbon Brief",
       "source_url": "https://www.iea.org/reports/renewables-2024",
@@ -106,13 +143,37 @@
         "Verbrenner sind klimafreundlicher als E-Autos"
       ],
       "trigger_keywords": [
-        "e-auto co2 verbrenner", "elektroauto co2",
-        "e-auto klimabilanz", "elektroauto akku co2",
-        "tesla co2 schlechter", "elektroauto schlecht klima"
+        "e-auto co2 verbrenner",
+        "elektroauto co2",
+        "e-auto klimabilanz",
+        "elektroauto akku co2",
+        "tesla co2 schlechter",
+        "elektroauto schlecht klima"
       ],
       "trigger_composite": [
-        ["e-auto", "elektroauto", "ev", "bev", "tesla", "akku", "batterie", "elektromobilitaet", "elektromobilität"],
-        ["co2", "klima", "klimabilanz", "lifecycle", "verbrenner", "diesel", "benziner", "umweltbilanz", "klimafreundlich", "schlechter"]
+        [
+          "e-auto",
+          "elektroauto",
+          "ev",
+          "bev",
+          "tesla",
+          "akku",
+          "batterie",
+          "elektromobilitaet",
+          "elektromobilität"
+        ],
+        [
+          "co2",
+          "klima",
+          "klimabilanz",
+          "lifecycle",
+          "verbrenner",
+          "diesel",
+          "benziner",
+          "umweltbilanz",
+          "klimafreundlich",
+          "schlechter"
+        ]
       ],
       "source_label": "ICCT Lifecycle Analysis 2024 + Agora Verkehrswende + JRC",
       "source_url": "https://theicct.org/publication/lifecycle-emissions-roadmap-passenger-vehicles-jul24/",
@@ -144,13 +205,33 @@
         "Wärmepumpen sind nichts für Winter"
       ],
       "trigger_keywords": [
-        "waermepumpe frost", "wärmepumpe frost",
-        "waermepumpe winter", "wärmepumpe winter",
-        "waermepumpe minus", "wärmepumpe minus"
+        "waermepumpe frost",
+        "wärmepumpe frost",
+        "waermepumpe winter",
+        "wärmepumpe winter",
+        "waermepumpe minus",
+        "wärmepumpe minus"
       ],
       "trigger_composite": [
-        ["waermepumpe", "wärmepumpe", "wp-heizung", "luft-wasser-wärmepumpe", "luft-wasser-waermepumpe"],
-        ["frost", "minus", "winter", "kälte", "kalt", "kaelte", "tief", "funktioniert nicht", "friert ein", "minus-temperatur"]
+        [
+          "waermepumpe",
+          "wärmepumpe",
+          "wp-heizung",
+          "luft-wasser-wärmepumpe",
+          "luft-wasser-waermepumpe"
+        ],
+        [
+          "frost",
+          "minus",
+          "winter",
+          "kälte",
+          "kalt",
+          "kaelte",
+          "tief",
+          "funktioniert nicht",
+          "friert ein",
+          "minus-temperatur"
+        ]
       ],
       "source_label": "Fraunhofer ISE Wärmepumpen-Studie 2020/2023 + IEA Heat Pump Centre",
       "source_url": "https://www.ise.fraunhofer.de/de/forschungsprojekte/wp-monitor.html",
@@ -182,13 +263,36 @@
         "PV-Module landen auf Deponie"
       ],
       "trigger_keywords": [
-        "solar nicht recyclebar", "solar sondermuell", "solar sondermüll",
-        "pv modul recycling", "solar module muell", "solar module müll",
+        "solar nicht recyclebar",
+        "solar sondermuell",
+        "solar sondermüll",
+        "pv modul recycling",
+        "solar module muell",
+        "solar module müll",
         "photovoltaik recycling"
       ],
       "trigger_composite": [
-        ["solar", "solarmodul", "pv-modul", "photovoltaik", "solarpanel", "solarmodule", "pv-module"],
-        ["recycling", "recyclebar", "wiederverwertung", "müll", "muell", "abfall", "sondermuell", "sondermüll", "deponie", "entsorgung"]
+        [
+          "solar",
+          "solarmodul",
+          "pv-modul",
+          "photovoltaik",
+          "solarpanel",
+          "solarmodule",
+          "pv-module"
+        ],
+        [
+          "recycling",
+          "recyclebar",
+          "wiederverwertung",
+          "müll",
+          "muell",
+          "abfall",
+          "sondermuell",
+          "sondermüll",
+          "deponie",
+          "entsorgung"
+        ]
       ],
       "source_label": "EU-WEEE-Richtlinie 2012/19/EU + IRENA + Fraunhofer ISE",
       "source_url": "https://environment.ec.europa.eu/topics/waste-and-recycling/waste-electrical-and-electronic-equipment-weee_en",
@@ -220,13 +324,37 @@
         "Windkraft ist Vogelmörder"
       ],
       "trigger_keywords": [
-        "windkraft voegel", "windkraft vögel",
-        "windraeder voegel", "windräder vögel",
-        "windkraft vogelschred", "vogelschlag windrad"
+        "windkraft voegel",
+        "windkraft vögel",
+        "windraeder voegel",
+        "windräder vögel",
+        "windkraft vogelschred",
+        "vogelschlag windrad"
       ],
       "trigger_composite": [
-        ["windkraft", "windrad", "windräder", "windraeder", "windturbinen", "windenergie"],
-        ["vogel", "voegel", "vögel", "vogelschlag", "vogelmord", "vogelschredder", "tötet", "toetet", "töten", "toeten", "rotmilan", "greifvogel", "fledermaus"]
+        [
+          "windkraft",
+          "windrad",
+          "windräder",
+          "windraeder",
+          "windturbinen",
+          "windenergie"
+        ],
+        [
+          "vogel",
+          "voegel",
+          "vögel",
+          "vogelschlag",
+          "vogelmord",
+          "vogelschredder",
+          "tötet",
+          "toetet",
+          "töten",
+          "toeten",
+          "rotmilan",
+          "greifvogel",
+          "fledermaus"
+        ]
       ],
       "source_label": "Hötker NABU 2017 + Loss Nature 2013 + LfU Bayern + DDA",
       "source_url": "https://www.nabu.de/imperia/md/content/nabude/energie/wind/2017_hoetker_studie_windkraft.pdf",
@@ -258,13 +386,36 @@
         "Erneuerbare Energien sind unzuverlässig"
       ],
       "trigger_keywords": [
-        "erneuerbare versorgungssich", "wind solar blackout",
-        "erneuerbare unzuverl", "energiewende blackout",
-        "wind solar gefaehr", "wind solar gefähr"
+        "erneuerbare versorgungssich",
+        "wind solar blackout",
+        "erneuerbare unzuverl",
+        "energiewende blackout",
+        "wind solar gefaehr",
+        "wind solar gefähr"
       ],
       "trigger_composite": [
-        ["erneuerbar", "erneuerbare", "wind", "solar", "windstrom", "solarstrom", "energiewende", "ee-anteil"],
-        ["versorgungssicherheit", "blackout", "stromausfall", "unzuverlässig", "unzuverlaessig", "gefährden", "gefaehrden", "instabil", "kollabieren", "zusammenbruch"]
+        [
+          "erneuerbar",
+          "erneuerbare",
+          "wind",
+          "solar",
+          "windstrom",
+          "solarstrom",
+          "energiewende",
+          "ee-anteil"
+        ],
+        [
+          "versorgungssicherheit",
+          "blackout",
+          "stromausfall",
+          "unzuverlässig",
+          "unzuverlaessig",
+          "gefährden",
+          "gefaehrden",
+          "instabil",
+          "kollabieren",
+          "zusammenbruch"
+        ]
       ],
       "source_label": "BNetzA SAIDI Bericht 2024 + Fraunhofer Energy Charts + Tennet Lastflüsse",
       "source_url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Versorgungssicherheit/Versorgungsunterbrechungen/start.html",
@@ -296,13 +447,33 @@
         "Diesel-Skandal ist überstanden"
       ],
       "trigger_keywords": [
-        "diesel sauber", "euro 6 diesel",
-        "diesel umwelt", "diesel skandal vorbei",
+        "diesel sauber",
+        "euro 6 diesel",
+        "diesel umwelt",
+        "diesel skandal vorbei",
         "moderne diesel"
       ],
       "trigger_composite": [
-        ["diesel", "euro-6d", "euro 6d", "euro-6", "selbstzünder", "selbstzuender"],
-        ["sauber", "umweltfreundlich", "nox", "stickoxid", "feinstaub", "skandal", "klima", "schmutz", "emissionen", "abgas"]
+        [
+          "diesel",
+          "euro-6d",
+          "euro 6d",
+          "euro-6",
+          "selbstzünder",
+          "selbstzuender"
+        ],
+        [
+          "sauber",
+          "umweltfreundlich",
+          "nox",
+          "stickoxid",
+          "feinstaub",
+          "skandal",
+          "klima",
+          "schmutz",
+          "emissionen",
+          "abgas"
+        ]
       ],
       "source_label": "ICCT RDE Reports + EEA + EPA-Untersuchungen",
       "source_url": "https://theicct.org/research-area/passenger-cars/",
@@ -332,20 +503,115 @@
         "Deutschland importiert seit dem Atomausstieg Atomstrom aus Frankreich"
       ],
       "trigger_keywords": [
-        "atomstrom aus frankreich", "billigen atomstrom", "billiger atomstrom",
-        "billigem atomstrom", "französischen atomstrom", "französischer atomstrom",
-        "französischem atomstrom", "franzoesischem atomstrom",
-        "importiert atomstrom", "kauft atomstrom",
-        "atomstrom abhängig", "atomstrom abhaengig"
+        "atomstrom aus frankreich",
+        "billigen atomstrom",
+        "billiger atomstrom",
+        "billigem atomstrom",
+        "französischen atomstrom",
+        "französischer atomstrom",
+        "französischem atomstrom",
+        "franzoesischem atomstrom",
+        "importiert atomstrom",
+        "kauft atomstrom",
+        "atomstrom abhängig",
+        "atomstrom abhaengig"
       ],
       "trigger_composite": [
-        ["atomstrom", "kernkraftstrom", "nuklearstrom", "kernenergie", "atomenergie"],
-        ["frankreich", "französisch", "franzoesisch"],
-        ["import", "kauf", "abhängig", "abhaengig", "bezieh", "zukauf", "angewiesen", "bettel"]
+        [
+          "atomstrom",
+          "kernkraftstrom",
+          "nuklearstrom",
+          "kernenergie",
+          "atomenergie"
+        ],
+        [
+          "frankreich",
+          "französisch",
+          "franzoesisch"
+        ],
+        [
+          "import",
+          "kauf",
+          "abhängig",
+          "abhaengig",
+          "bezieh",
+          "zukauf",
+          "angewiesen",
+          "bettel"
+        ]
       ],
       "source_label": "Fraunhofer ISE Energy-Charts Jahresauswertung 2025 + BR24/correctiv/dpa-Faktenchecks",
       "source_url": "https://www.energy-charts.info/",
       "secondary_url": "https://www.ise.fraunhofer.de/de/presse-und-medien/presseinformationen.html"
+    },
+    {
+      "id": "offshore_wind_vs_kohle_de_2026",
+      "topic": "offshore_wind_vs_kohle_de_konsens",
+      "scope": "Deutschland — Stromerzeugung Offshore-Wind gegenüber Kohle",
+      "year": 2024,
+      "source_url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2025/03/PD25_091_43312.html",
+      "secondary_url": "https://www.energy-charts.info/downloads/Stromerzeugung_2024.pdf",
+      "source_label": "Statistisches Bundesamt (Destatis) PM 091/2025 'Stromerzeugung 2024: 59,4 % aus erneuerbaren Energieträgern' + Fraunhofer ISE Energy-Charts 'Stromerzeugung in Deutschland 2024'",
+      "headline": "NEIN — Offshore-Windparks liefern in Deutschland deutlich WENIGER Strom als die Kohlekraftwerke zusammen: 2024 erzeugten Offshore-Anlagen 26,7 TWh, Braunkohle 79,0 TWh und Steinkohle 26,4 TWh, zusammen also rund 105 TWh Kohlestrom — etwa das Vierfache. Wind gesamt (on- + offshore) lag bei 136,0 TWh.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'Die Windparks in der Nordsee liefern inzwischen mehr Strom als alle deutschen Kohlekraftwerke zusammen' ist FALSCH. Zahlen für 2024 (Statistisches Bundesamt): (1) OFFSHORE-Windkraft insgesamt — also Nord- UND Ostsee — erzeugte 26,7 TWh (gut 11 % mehr als im Vorjahr). (2) KOHLE zusammen: Braunkohle 79,0 TWh (−8,4 %) plus Steinkohle 26,4 TWh (−32 %) ergibt rund 105 TWh. Kohle lieferte damit etwa das Vierfache des Offshore-Windstroms; allein die Braunkohle übertraf Offshore um den Faktor drei. (3) Richtig ist dagegen: Windkraft INSGESAMT (onshore 115,0 TWh + offshore 26,7 TWh = 136,0 TWh) übertrifft die Kohle deutlich und war 2024 mit 31,5 % der wichtigste einzelne Erzeugungsträger. Die Verwechslung von 'Offshore' bzw. 'Nordsee' mit 'Windkraft insgesamt' ist der typische Fehler hinter diesem Claim. (4) Erneuerbare insgesamt: 59,4 % der eingespeisten Strommenge (256,4 TWh), ein Rekordwert.",
+        "offshore_wind_twh_2024": 26.7,
+        "onshore_wind_twh_2024": 115.0,
+        "wind_gesamt_twh_2024": 136.0,
+        "braunkohle_twh_2024": 79.0,
+        "steinkohle_twh_2024": 26.4,
+        "kohle_gesamt_twh_2024": 105.4,
+        "erneuerbare_anteil_pct_2024": 59.4,
+        "context": "Nordsee-Offshore ist eine TEILMENGE des deutschen Offshore-Windstroms (Ostsee kommt hinzu) — die Nordsee allein liegt also noch unter 26,7 TWh."
+      },
+      "context_notes": [
+        "Kohleverstromung sinkt in Deutschland schnell; der Abstand zu Offshore-Wind verkleinert sich, ist 2024 aber noch groß.",
+        "Onshore + Offshore gemeinsam übertreffen die Kohle klar — darauf zielt der Claim aber nicht."
+      ],
+      "claim_phrasings_handled": [
+        "Nordsee Windparks mehr Strom als Kohlekraftwerke",
+        "Offshore Wind Deutschland Kohle Vergleich",
+        "Wie viel Strom liefert Offshore-Wind in Deutschland"
+      ],
+      "trigger_keywords": [
+        "offshore-wind",
+        "offshore wind",
+        "nordsee-windpark",
+        "nordsee windpark",
+        "windpark nordsee"
+      ],
+      "trigger_composite": [
+        [
+          "offshore",
+          "nordsee",
+          "ostsee",
+          "windpark",
+          "windparks"
+        ],
+        [
+          "kohle",
+          "kohlekraftwerk",
+          "kohlekraftwerke",
+          "braunkohle",
+          "steinkohle",
+          "strom",
+          "erzeug",
+          "liefer",
+          "twh"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "nordsee",
+            "offshore"
+          ],
+          [
+            "kohle",
+            "kohlekraftwerk"
+          ]
+        ]
+      ]
     }
   ]
 }

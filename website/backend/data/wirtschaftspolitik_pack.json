@@ -1201,6 +1201,84 @@
           "europäische union"
         ]
       ]
+    },
+    {
+      "id": "weltbank_einkommensklassifikation_at_2026",
+      "topic": "weltbank_einkommensklassifikation_at_konsens",
+      "scope": "Weltbank-Einkommensklassifikation — Einordnung Österreichs",
+      "year": 2026,
+      "source_url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups",
+      "secondary_url": "https://blogs.worldbank.org/en/opendata/understanding-country-income--world-bank-group-income-classifica",
+      "source_label": "World Bank Data Help Desk 'World Bank Country and Lending Groups' + World Bank Blogs 'Understanding country income: World Bank Group income classifications'",
+      "headline": "Österreich ist laut Weltbank ein HOCHEINKOMMENSLAND (high income). Die Weltbank teilt Volkswirtschaften nach BNE pro Kopf (Atlas-Methode) in vier Gruppen; die Schwelle für high income liegt aktuell bei über 14.375 US-Dollar BNE pro Kopf. Österreich liegt weit darüber und wird seit Jahrzehnten durchgehend als high income geführt.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'Laut Weltbank ist Österreich ein Hocheinkommensland' ist ZUTREFFEND. (1) Die Weltbank klassifiziert Volkswirtschaften jährlich anhand des Bruttonationaleinkommens (BNE) pro Kopf nach der Atlas-Methode in vier Gruppen: low income, lower-middle income, upper-middle income und high income. (2) Die Schwelle für die Gruppe 'high income' liegt aktuell bei über 14.375 US-Dollar BNE pro Kopf; die Schwellen werden jährlich inflationsbereinigt (SDR-Deflator) angepasst. (3) Österreich wird von der Weltbank als high-income economy geführt und liegt mit einem BNE pro Kopf im Bereich von etwa 55.000 bis 60.000 US-Dollar deutlich über der Schwelle. (4) Die Klassifikation ist rein einkommensbasiert und sagt nichts über Verteilung, Kaufkraft oder Lebensqualität aus.",
+        "klassifikation_at": "high income (Hocheinkommensland)",
+        "schwelle_high_income_usd": 14375,
+        "methode": "Atlas-Methode, BNE pro Kopf",
+        "gruppen": [
+          "low income",
+          "lower-middle income",
+          "upper-middle income",
+          "high income"
+        ],
+        "context": "Schwellenwerte werden jährlich angepasst."
+      },
+      "context_notes": [
+        "Die Einkommensklassifikation der Weltbank ist unabhängig von der OECD-Mitgliedschaft und von EU-Kategorien.",
+        "Sie misst Durchschnittseinkommen, keine Verteilung."
+      ],
+      "claim_phrasings_handled": [
+        "Weltbank Österreich Hocheinkommensland",
+        "Ist Österreich ein Hocheinkommensland",
+        "Weltbank Einkommensklassifikation Österreich",
+        "high income country Österreich"
+      ],
+      "trigger_keywords": [
+        "hocheinkommensland",
+        "hoch-einkommensland",
+        "high income",
+        "high-income",
+        "einkommensklassifikation",
+        "einkommensgruppe"
+      ],
+      "trigger_composite": [
+        [
+          "weltbank",
+          "world bank",
+          "worldbank"
+        ],
+        [
+          "einkommen",
+          "hocheinkommen",
+          "high income",
+          "high-income",
+          "klassifi",
+          "einstufung",
+          "gruppe",
+          "industriestaat",
+          "entwicklungsland",
+          "bne",
+          "bruttonationaleinkommen"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "hocheinkommensland",
+            "hoch-einkommensland",
+            "high income",
+            "high-income"
+          ],
+          [
+            "österreich",
+            "österreichisch",
+            "oesterreich",
+            "weltbank",
+            "world bank"
+          ]
+        ]
+      ]
     }
   ]
 }
