@@ -888,18 +888,62 @@ def _description_for_template(template_name: str) -> str:
     }.get(template_name, "Wikidata strukturierte Fakten.")
 
 
+# Templates, bei denen der Vergleich ZWEIER Entitäten fachlich sinnvoll
+# ist — dort fragt search_wikidata beide Seiten ab. Bewusst eng gehalten:
+# bei politiker_amtszeit o. Ä. wäre eine zweite Entität kein Vergleich,
+# sondern Rauschen.
+_MULTI_ENTITY_TEMPLATES = frozenset({
+    "land_bevoelkerung", "geographie_berg", "geographie_fluss",
+})
+
+# Vergleichs-Signal im Claim. Nur wenn es steht, lohnt die zweite Abfrage
+# — sonst zahlt man Latenz für eine Entität, nach der niemand gefragt hat.
+_MULTI_ENTITY_COMPARISON_RE = re.compile(
+    r"\b(?:mehr|weniger|höher|hoeher|größer|groesser|kleiner|niedriger|"
+    r"länger|laenger|kürzer|kuerzer|dichter)\w*\b[^.]{0,40}?\balse?\b"
+    r"|\bim vergleich (?:zu|mit)\b|\bverglichen mit\b"
+)
+
+_MAX_ENTITIES_PER_CLAIM = 2
+
+
+def _entities_for_claim(
+    claim: str, analysis: dict, template_name: str
+) -> list[str]:
+    """Die abzufragenden Entitäts-Labels — eine, oder zwei bei einem
+    erkennbaren Vergleichs-Claim auf einem Vergleichs-Template."""
+    raw = [e for e in (analysis or {}).get("entities", []) or []
+           if e and len(e) >= 3]
+    seen: set[str] = set()
+    ents: list[str] = []
+    for e in raw:
+        key = e.lower()
+        if key not in seen:
+            seen.add(key)
+            ents.append(e)
+    if not ents:
+        return []
+    if template_name not in _MULTI_ENTITY_TEMPLATES:
+        return ents[:1]
+    if not _MULTI_ENTITY_COMPARISON_RE.search(claim.lower()):
+        return ents[:1]
+    return ents[:_MAX_ENTITIES_PER_CLAIM]
+
+
 async def search_wikidata(analysis: dict) -> dict:
-    """Live-Lookup gegen Wikidata SPARQL für Claim-Entities.
+    """Wikidata-Lookup für einen Claim — orchestriert die Einzelabfragen.
 
-    Returns Dict mit ≤3 strukturierten Fakt-Treffern. Wenn kein Template
-    passt oder kein Treffer in Wikidata existiert, werden 0 Treffer
-    geliefert (kein Error).
+    Bei Vergleichs-Claims auf einem Vergleichs-Template (siehe
+    ``_MULTI_ENTITY_TEMPLATES``) werden BEIDE genannten Entitäten
+    abgefragt und die Treffer zusammengeführt. Vorher lieferte
+    „Wien hat mehr Einwohner als Hamburg" nur die Wien-Zahl, weshalb der
+    Synthesizer mangels Vergleichswert `unverifiable` ausgab (QA100 #90).
 
-    Strategie:
-    1. _detect_template_for_claim → Template + Entity-Label
-    2. Cache-Lookup (1 h TTL)
-    3. SPARQL-Query (LIMIT 5, 20 s Timeout)
-    4. Top-3 Rows formatieren → display_value + Wikidata-URLs
+    Die Abfragen laufen SEQUENZIELL: WDQS ist die empfindlichste externe
+    Quelle der Pipeline (Retry-/Last-Good-Härtung aus #86/#87), und zwei
+    parallele Queries würden die Politeness-Drosselung unterlaufen.
+    Schlägt die zweite Entität fehl, wird die erste trotzdem geliefert —
+    ein halber Vergleich ist besser als gar keine Daten.
     """
     empty = {"source": "Wikidata", "type": "structured_fact", "results": []}
 
@@ -912,7 +956,64 @@ async def search_wikidata(analysis: dict) -> dict:
     if not template:
         return empty
 
-    entity_label = params["name"]
+    entities = _entities_for_claim(claim, analysis, template_name)
+    if not entities:
+        return empty
+
+    if len(entities) == 1:
+        return await _search_wikidata_entity(
+            analysis, template_name, template, entities[0]
+        )
+
+    merged: list[dict] = []
+    for label in entities:
+        try:
+            part = await _search_wikidata_entity(
+                analysis, template_name, template, label
+            )
+        except Exception as e:  # eine Entität darf den Claim nicht killen
+            logger.warning(
+                f"Wikidata: Multi-Entity-Abfrage für '{label[:40]}' "
+                f"({template_name}) fehlgeschlagen: {e}"
+            )
+            continue
+        merged.extend((part or {}).get("results") or [])
+
+    if not merged:
+        return empty
+    logger.info(
+        f"Wikidata: Multi-Entity-Vergleich {entities} ({template_name}) "
+        f"— {len(merged)} Treffer zusammengeführt"
+    )
+    return {
+        "source": "Wikidata",
+        "type": "structured_fact",
+        "results": merged,
+    }
+
+
+async def _search_wikidata_entity(
+    analysis: dict, template_name: str, template: dict, entity_label: str
+) -> dict:
+    """Live-Lookup gegen Wikidata SPARQL für EINE Entität.
+
+    Bis 2026-07-28 war das ``search_wikidata`` selbst — die Funktion
+    ermittelte Template und Entität intern und konnte deshalb immer nur
+    EINE Entität abfragen. Für Vergleichs-Claims („Wien hat mehr
+    Einwohner als Hamburg") reichte das nicht: Wikidata lieferte nur die
+    Wien-Zahl, Hamburg fehlte, und das Verdict blieb `unverifiable`
+    (QA100 #90). Template- und Entitäts-Wahl liegen jetzt beim
+    Orchestrator ``search_wikidata``; hier bleibt die unveränderte
+    Einzel-Abfrage inklusive Cache, Retry, Last-Good und aller
+    Template-Spezifika (Positions-Filter, Meloni-Regel).
+
+    Returns Dict mit ≤3 (bzw. ≤5) strukturierten Fakt-Treffern. Wenn kein
+    Treffer in Wikidata existiert, werden 0 Treffer geliefert (kein
+    Error).
+    """
+    empty = {"source": "Wikidata", "type": "structured_fact", "results": []}
+
+    claim = (analysis or {}).get("claim", "") or ""
     cache_key = f"{template_name}::{entity_label.lower()}"
     now = time.time()
     cached = _CACHE.get(cache_key)

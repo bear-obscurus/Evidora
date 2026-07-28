@@ -193,3 +193,74 @@ def test_organisation_gruendung_feuert_nicht_auf_gibt_es_claims():
     claim = "In Österreich gibt es mehr Rinder als Schweine"
     triggers = _template("organisation_gruendung")["triggers"]
     assert not any(t in claim.lower() for t in triggers), claim
+
+
+# --- QA100 #90: Multi-Entitäts-Abfrage bei Vergleichs-Claims ---
+
+_POP_CLAIM = "Wien hat mehr Einwohner als Hamburg"
+
+
+def _pop_row(label, pop, date="2025-01-01T00:00:00Z"):
+    return {"country": {"value": f"http://www.wikidata.org/entity/Q{abs(hash(label)) % 9999}"},
+            "countryLabel": {"value": label},
+            "population": {"value": str(pop)},
+            "date": {"value": date}}
+
+
+def _pop_analysis(entities):
+    return {"claim": _POP_CLAIM, "original_claim": _POP_CLAIM,
+            "entities": entities}
+
+
+def test_vergleichs_claim_fragt_beide_entitaeten_ab(monkeypatch):
+    """QA100 #90: `search_wikidata` verarbeitete genau EINE Entität, deshalb
+    lieferte 'Wien hat mehr Einwohner als Hamburg' nur die Wien-Zahl — der
+    Synthesizer sah keinen Vergleichswert und gab `unverifiable` aus."""
+    calls = _setup(monkeypatch, [[_pop_row("Wien", 2028289)],
+                                 [_pop_row("Hamburg", 1910160)]])
+    out = asyncio.run(wd.search_wikidata(_pop_analysis(["Wien", "Hamburg"])))
+    assert calls["n"] == 2, "beide Entitäten müssen abgefragt werden"
+    blob = " ".join(r.get("display_value", "") for r in out["results"])
+    assert "Wien" in blob and "Hamburg" in blob, out["results"]
+
+
+def test_zweite_entitaet_nur_bei_vergleichs_signal(monkeypatch):
+    """Ohne Vergleichs-Wendung wird nicht spekulativ eine zweite Entität
+    abgefragt — das wäre Latenz für eine Frage, die niemand gestellt hat."""
+    claim = "Wie viele Einwohner hat Wien?"
+    calls = _setup(monkeypatch, [[_pop_row("Wien", 2028289)]])
+    asyncio.run(wd.search_wikidata(
+        {"claim": claim, "original_claim": claim,
+         "entities": ["Wien", "Hamburg"]}))
+    assert calls["n"] == 1, "ohne Vergleich nur eine Abfrage"
+
+
+def test_multi_entity_nur_fuer_vergleichs_templates():
+    """Bei politiker_amtszeit wäre eine zweite Entität kein Vergleich,
+    sondern Rauschen."""
+    claim = "Ist Rutte länger im Amt als Macron?"
+    got = wd._entities_for_claim(
+        claim, {"entities": ["Rutte", "Macron"]}, "politiker_amtszeit")
+    assert got == ["Rutte"], got
+    got2 = wd._entities_for_claim(
+        claim, {"entities": ["Rutte", "Macron"]}, "land_bevoelkerung")
+    assert got2 == ["Rutte", "Macron"], got2
+
+
+def test_fehler_bei_zweiter_entitaet_liefert_erste_trotzdem(monkeypatch):
+    """Ein halber Vergleich ist besser als gar keine Daten — die zweite
+    Entität darf den Claim nicht mit in den Abgrund ziehen."""
+    calls = _setup(monkeypatch, [[_pop_row("Wien", 2028289)], None])
+    out = asyncio.run(wd.search_wikidata(_pop_analysis(["Wien", "Hamburg"])))
+    assert calls["n"] >= 2
+    assert out["results"], "Wien-Treffer muss erhalten bleiben"
+    assert "Wien" in out["results"][0].get("display_value", "")
+
+
+def test_einzel_entitaet_pfad_unveraendert(monkeypatch):
+    """Der Einzel-Pfad muss byte-gleich weiterlaufen — er trägt die
+    gesamte Retry-/Last-Good-/Meloni-Logik."""
+    calls = _setup(monkeypatch, [[ROW]])
+    out = asyncio.run(wd.search_wikidata(_analysis()))
+    assert calls["n"] == 1
+    assert out["results"]
