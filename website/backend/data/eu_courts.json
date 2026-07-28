@@ -15,12 +15,27 @@
       "topic": "asyl_transitzonen",
       "kerninhalt": "Ungarn hat gegen EU-Recht verstoßen, weil seine Transitzonen-Verfahren Asylsuchende rechtswidrig festhielten und der Zugang zum Asylverfahren systematisch verhindert wurde. Das Urteil zwingt Ungarn NICHT, eine bestimmte Quote an Asylsuchenden aufzunehmen — es verlangt nur faire, EU-rechtskonforme Verfahren.",
       "boulevard_falschmeldung": "Der EuGH zwingt Ungarn (oder Österreich) zur Aufnahme tausender Migranten.",
-      "trigger_keywords": ["c-808/18", "ungarn transitzonen", "transitzonen-urteil",
-                           "eugh ungarn asyl", "eugh transitzonen"],
+      "trigger_keywords": [
+        "c-808/18",
+        "ungarn transitzonen",
+        "transitzonen-urteil",
+        "eugh ungarn asyl",
+        "eugh transitzonen"
+      ],
       "trigger_composite": [
-        ["eugh", "europäischer gerichtshof"],
-        ["ungarn", "hungary"],
-        ["asyl", "transitzon", "migrant"]
+        [
+          "eugh",
+          "europäischer gerichtshof"
+        ],
+        [
+          "ungarn",
+          "hungary"
+        ],
+        [
+          "asyl",
+          "transitzon",
+          "migrant"
+        ]
       ]
     },
     {
@@ -35,13 +50,34 @@
       "topic": "asyl_dublin_rueckfuehrung",
       "kerninhalt": "Dublin-Rückführungen in einen anderen EU-Staat sind unzulässig, wenn dort systemische Mängel des Asylverfahrens drohen — konkret betraf es Griechenland 2011. Das Urteil setzt Dublin NICHT außer Kraft; es schafft nur eine Schranke gegen Rückführungen in nachweislich überlastete Asylsysteme.",
       "boulevard_falschmeldung": "Der EuGH hat Dublin gekippt / verbietet alle Asyl-Rückführungen.",
-      "trigger_keywords": ["c-411/10", "n.s. urteil", "ns-urteil", "ns urteil",
-                           "dublin gekippt", "dublin außer kraft",
-                           "ns belgian state"],
+      "trigger_keywords": [
+        "c-411/10",
+        "n.s. urteil",
+        "ns-urteil",
+        "ns urteil",
+        "dublin gekippt",
+        "dublin außer kraft",
+        "ns belgian state"
+      ],
       "trigger_composite": [
-        ["eugh", "europäischer gerichtshof", "brüssel", "bruessel", "eu", "ns-urteil"],
-        ["dublin"],
-        ["aufgehoben", "gekippt", "ungültig", "außer kraft", "abgeschafft"]
+        [
+          "eugh",
+          "europäischer gerichtshof",
+          "brüssel",
+          "bruessel",
+          "eu",
+          "ns-urteil"
+        ],
+        [
+          "dublin"
+        ],
+        [
+          "aufgehoben",
+          "gekippt",
+          "ungültig",
+          "außer kraft",
+          "abgeschafft"
+        ]
       ]
     },
     {
@@ -56,12 +92,28 @@
       "topic": "datenschutz_us_transfer",
       "kerninhalt": "EU-US Privacy Shield ist ungültig — Datenexporte in die USA erfordern zusätzliche Schutzgarantien (Standard Contractual Clauses + Risikobewertung). Das Urteil verbietet US-Cloud-Dienste NICHT pauschal — Datenexporte bleiben rechtlich möglich, brauchen aber zusätzliche technische und vertragliche Schutzmaßnahmen. EU-US Data Privacy Framework (Nachfolge-Abkommen) ist seit Juli 2023 in Kraft.",
       "boulevard_falschmeldung": "Alle US-Cloud-Services (Microsoft, Google, AWS) sind in Europa illegal.",
-      "trigger_keywords": ["schrems ii", "schrems-ii", "schrems 2",
-                           "privacy shield ungültig", "c-311/18",
-                           "us-cloud verboten", "us cloud illegal"],
+      "trigger_keywords": [
+        "schrems ii",
+        "schrems-ii",
+        "schrems 2",
+        "privacy shield ungültig",
+        "c-311/18",
+        "us-cloud verboten",
+        "us cloud illegal"
+      ],
       "trigger_composite": [
-        ["eugh", "europäischer gerichtshof", "schrems"],
-        ["privacy shield", "us-cloud", "us cloud", "datentransfer", "datenexport"]
+        [
+          "eugh",
+          "europäischer gerichtshof",
+          "schrems"
+        ],
+        [
+          "privacy shield",
+          "us-cloud",
+          "us cloud",
+          "datentransfer",
+          "datenexport"
+        ]
       ]
     },
     {
@@ -76,11 +128,22 @@
       "topic": "datenschutz_recht_auf_vergessen",
       "kerninhalt": "Google muss Suchergebnis-Auslistungen NUR auf EU-Domains durchführen, NICHT global auf google.com. Das Recht auf Vergessenwerden gilt territorial in der EU.",
       "boulevard_falschmeldung": "Google muss alle Inhalte weltweit löschen.",
-      "trigger_keywords": ["c-507/17", "recht auf vergessen weltweit",
-                           "google muss weltweit löschen", "cnil google"],
+      "trigger_keywords": [
+        "c-507/17",
+        "recht auf vergessen weltweit",
+        "google muss weltweit löschen",
+        "cnil google"
+      ],
       "trigger_composite": [
-        ["recht auf vergessen", "right to be forgotten"],
-        ["weltweit", "global", "alle länder"]
+        [
+          "recht auf vergessen",
+          "right to be forgotten"
+        ],
+        [
+          "weltweit",
+          "global",
+          "alle länder"
+        ]
       ]
     },
     {
@@ -95,12 +158,24 @@
       "topic": "urheberrecht_upload_filter",
       "kerninhalt": "Art. 17 DSM-Richtlinie (verpflichtende Lizenzierung bzw. Upload-Filter für UGC-Plattformen) ist mit der Meinungsfreiheit vereinbar — vorausgesetzt, die Mitgliedstaaten setzen die Vorgaben so um, dass legaler Inhalt NICHT automatisiert blockiert wird. Das Urteil bestätigt KEINE pauschale Zensur, sondern verlangt Schutzmechanismen.",
       "boulevard_falschmeldung": "Der EuGH hat Upload-Filter / Internet-Zensur erlaubt.",
-      "trigger_keywords": ["c-401/19", "upload-filter eugh", "upload filter eugh",
-                           "art. 17 dsm-richtlinie", "artikel 17 dsm",
-                           "internet-zensur eugh"],
+      "trigger_keywords": [
+        "c-401/19",
+        "upload-filter eugh",
+        "upload filter eugh",
+        "art. 17 dsm-richtlinie",
+        "artikel 17 dsm",
+        "internet-zensur eugh"
+      ],
       "trigger_composite": [
-        ["upload-filter", "upload filter", "uploadfilter"],
-        ["eugh", "europäischer gerichtshof"]
+        [
+          "upload-filter",
+          "upload filter",
+          "uploadfilter"
+        ],
+        [
+          "eugh",
+          "europäischer gerichtshof"
+        ]
       ]
     },
     {
@@ -115,11 +190,22 @@
       "topic": "brexit_eu_wahlrecht",
       "kerninhalt": "Britische Staatsangehörige verlieren mit dem Brexit ihre Unionsbürgerschaft und damit das EU-weite Kommunalwahlrecht (außer Doppelstaatsbürger). Das Urteil ist eine reine Statusfeststellung, keine politische Sanktion.",
       "boulevard_falschmeldung": "Der EuGH bestraft die Briten / hat Briten alle Rechte aberkannt.",
-      "trigger_keywords": ["c-673/20", "préfet du gers", "brexit wahlrecht eugh",
-                           "briten kommunalwahl"],
+      "trigger_keywords": [
+        "c-673/20",
+        "préfet du gers",
+        "brexit wahlrecht eugh",
+        "briten kommunalwahl"
+      ],
       "trigger_composite": [
-        ["brexit", "briten"],
-        ["wahlrecht", "kommunalwahl", "unionsbürgerschaft"]
+        [
+          "brexit",
+          "briten"
+        ],
+        [
+          "wahlrecht",
+          "kommunalwahl",
+          "unionsbürgerschaft"
+        ]
       ]
     },
     {
@@ -134,12 +220,27 @@
       "topic": "eu_direktwirkung",
       "kerninhalt": "EU-Verordnungen gelten unmittelbar in den Mitgliedstaaten — nationale Behörden müssen entgegenstehendes nationales Recht von Amts wegen unangewendet lassen. Das ist seit 1962 (Costa/ENEL, Van Gend & Loos) ständige Rechtsprechung; das Urteil C-205/20 bestätigt sie für eine konkrete österreichische Anwendung.",
       "boulevard_falschmeldung": "Brüssel kann Österreich beliebig überfahren / nationales Recht ist abgeschafft.",
-      "trigger_keywords": ["c-205/20", "direktwirkung eu", "eugh nationales recht",
-                           "bezirkshauptmannschaft hartberg", "vorrang eu-recht"],
+      "trigger_keywords": [
+        "c-205/20",
+        "direktwirkung eu",
+        "eugh nationales recht",
+        "bezirkshauptmannschaft hartberg",
+        "vorrang eu-recht"
+      ],
       "trigger_composite": [
-        ["eugh", "europäischer gerichtshof"],
-        ["nationales recht", "österreichisches recht"],
-        ["überfahren", "abgeschafft", "ausgehebelt"]
+        [
+          "eugh",
+          "europäischer gerichtshof"
+        ],
+        [
+          "nationales recht",
+          "österreichisches recht"
+        ],
+        [
+          "überfahren",
+          "abgeschafft",
+          "ausgehebelt"
+        ]
       ]
     },
     {
@@ -154,11 +255,24 @@
       "topic": "brexit_rueckziehung",
       "kerninhalt": "Ein Mitgliedstaat darf seine Austrittsmitteilung nach Art. 50 EUV einseitig zurückziehen — ohne Zustimmung der anderen 27. Das Urteil betrifft keinen Beitrittszwang, sondern bestätigt mitgliedstaatliche Souveränität.",
       "boulevard_falschmeldung": "Brüssel hindert UK am Austritt / EuGH hat Brexit gestoppt.",
-      "trigger_keywords": ["c-621/18", "wightman", "brexit zurücknehmen",
-                           "art. 50 zurückziehen", "artikel 50 zurückziehen"],
+      "trigger_keywords": [
+        "c-621/18",
+        "wightman",
+        "brexit zurücknehmen",
+        "art. 50 zurückziehen",
+        "artikel 50 zurückziehen"
+      ],
       "trigger_composite": [
-        ["brexit", "art. 50", "artikel 50"],
-        ["zurückzieh", "rückzieh", "rücknahme"]
+        [
+          "brexit",
+          "art. 50",
+          "artikel 50"
+        ],
+        [
+          "zurückzieh",
+          "rückzieh",
+          "rücknahme"
+        ]
       ]
     },
     {
@@ -173,11 +287,22 @@
       "topic": "asyl_humanitaere_visa",
       "kerninhalt": "EU-Mitgliedstaaten sind NICHT verpflichtet, Asylsuchenden in Drittstaaten humanitäre Visa zu erteilen. Das Urteil schließt eine extraterritoriale Asyl-Pflicht ausdrücklich aus.",
       "boulevard_falschmeldung": "Der EuGH zwingt EU-Staaten, allen Migranten in Drittstaaten Visa zu erteilen.",
-      "trigger_keywords": ["c-638/16", "humanitäre visa eugh",
-                           "humanitäres visum eu-pflicht"],
+      "trigger_keywords": [
+        "c-638/16",
+        "humanitäre visa eugh",
+        "humanitäres visum eu-pflicht"
+      ],
       "trigger_composite": [
-        ["eugh", "europäischer gerichtshof"],
-        ["humanitäre visa", "humanitäres visum", "asyl-visum", "asyl visa"]
+        [
+          "eugh",
+          "europäischer gerichtshof"
+        ],
+        [
+          "humanitäre visa",
+          "humanitäres visum",
+          "asyl-visum",
+          "asyl visa"
+        ]
       ]
     },
     {
@@ -191,16 +316,33 @@
       "topic": "asyl_pushback",
       "kerninhalt": "Push-backs an der spanischen Außengrenze (Melilla) sind nicht per se konventionswidrig, WENN den Betroffenen gleichzeitig ein realer, zugänglicher und sicherer Weg zur Asylantragstellung an der Grenze offensteht. Bei fehlender Zugangsmöglichkeit bleiben Push-backs verboten (Art. 4 4. ZP EMRK + Art. 13 EMRK).",
       "boulevard_falschmeldung": "Der EGMR hat alle Push-backs erlaubt / EU-Außengrenze ist freigegeben.",
-      "trigger_keywords": ["n.d. and n.t.", "n.d. n.t. spain",
-                           "egmr push-back", "egmr pushback",
-                           "egmr melilla", "push-back urteil",
-                           "melilla urteil", "melilla-urteil"],
+      "trigger_keywords": [
+        "n.d. and n.t.",
+        "n.d. n.t. spain",
+        "egmr push-back",
+        "egmr pushback",
+        "egmr melilla",
+        "push-back urteil",
+        "melilla urteil",
+        "melilla-urteil"
+      ],
       "trigger_composite": [
-        ["egmr", "europäischer gerichtshof für menschenrechte",
-         "european court of human rights",
-         "eugh", "europäischer gerichtshof", "europäischer gerichtshof für menschenrechte"],
-        ["push-back", "pushback", "zurückweisung", "zurueckweisung",
-         "melilla", "ceuta"]
+        [
+          "egmr",
+          "europäischer gerichtshof für menschenrechte",
+          "european court of human rights",
+          "eugh",
+          "europäischer gerichtshof",
+          "europäischer gerichtshof für menschenrechte"
+        ],
+        [
+          "push-back",
+          "pushback",
+          "zurückweisung",
+          "zurueckweisung",
+          "melilla",
+          "ceuta"
+        ]
       ]
     },
     {
@@ -214,11 +356,21 @@
       "topic": "klima_klagerecht",
       "kerninhalt": "Erstes Grundsatzurteil des EGMR zur Klimapolitik: Die Schweiz verletzt Art. 8 EMRK (Privatleben), weil sie keine ausreichenden Klimaziele festgelegt und umgesetzt hat. Das Urteil verpflichtet Mitgliedstaaten zu effektiven, an wissenschaftlichen Erkenntnissen orientierten Klimaschutzplänen.",
       "boulevard_falschmeldung": "Der EGMR mischt sich in nationale Klimapolitik ein und verbietet alles / hat keinen Effekt.",
-      "trigger_keywords": ["klimaseniorinnen", "klimaseniorinnen-urteil",
-                           "klima-klage egmr", "egmr klimaschutz", "egmr klimapolitik"],
+      "trigger_keywords": [
+        "klimaseniorinnen",
+        "klimaseniorinnen-urteil",
+        "klima-klage egmr",
+        "egmr klimaschutz",
+        "egmr klimapolitik"
+      ],
       "trigger_composite": [
-        ["egmr"],
-        ["klima", "climate"]
+        [
+          "egmr"
+        ],
+        [
+          "klima",
+          "climate"
+        ]
       ]
     },
     {
@@ -232,12 +384,26 @@
       "topic": "religion_kruzifix",
       "kerninhalt": "Das Aufhängen von Kruzifixen in italienischen Schulklassen verletzt KEINE EMRK-Rechte. Der EGMR (Große Kammer) erlaubt Mitgliedstaaten ausdrücklich einen weiten Ermessensspielraum bei religiösen Symbolen im öffentlichen Raum.",
       "boulevard_falschmeldung": "Der EGMR hat das Kreuz / Kruzifix in Schulen verboten.",
-      "trigger_keywords": ["lautsi", "kruzifix-urteil", "kruzifix verboten",
-                           "egmr kreuz", "egmr kruzifix"],
+      "trigger_keywords": [
+        "lautsi",
+        "kruzifix-urteil",
+        "kruzifix verboten",
+        "egmr kreuz",
+        "egmr kruzifix"
+      ],
       "trigger_composite": [
-        ["egmr"],
-        ["kruzifix", "kreuz"],
-        ["verbot", "verboten", "abgeschafft"]
+        [
+          "egmr"
+        ],
+        [
+          "kruzifix",
+          "kreuz"
+        ],
+        [
+          "verbot",
+          "verboten",
+          "abgeschafft"
+        ]
       ]
     },
     {
@@ -251,12 +417,24 @@
       "topic": "asyl_dublin_rueckfuehrung",
       "kerninhalt": "Belgien hat gegen Art. 3 EMRK verstoßen, weil es einen Asylbewerber nach Griechenland zurückführte, obwohl die dortigen Aufnahmebedingungen unmenschlich waren. Grundsatzurteil zur menschenrechtlichen Schranke der Dublin-Verordnung.",
       "boulevard_falschmeldung": "EGMR hat Dublin gekippt.",
-      "trigger_keywords": ["m.s.s. v. belgium", "mss belgium greece",
-                           "egmr dublin urteil"],
+      "trigger_keywords": [
+        "m.s.s. v. belgium",
+        "mss belgium greece",
+        "egmr dublin urteil"
+      ],
       "trigger_composite": [
-        ["egmr"],
-        ["dublin"],
-        ["aufgehoben", "gekippt", "ungültig", "verboten"]
+        [
+          "egmr"
+        ],
+        [
+          "dublin"
+        ],
+        [
+          "aufgehoben",
+          "gekippt",
+          "ungültig",
+          "verboten"
+        ]
       ]
     },
     {
@@ -270,12 +448,23 @@
       "topic": "asyl_transitzonen",
       "kerninhalt": "Der Aufenthalt von Asylsuchenden in den ungarischen Transitzonen an der serbischen Grenze stellte KEINE 'Haft' im Sinne von Art. 5 EMRK dar (Personen konnten theoretisch nach Serbien zurück), wohl aber lag eine Verletzung von Art. 3 EMRK vor — wegen der unzureichenden Prüfung sicherer Drittstaaten.",
       "boulevard_falschmeldung": "EGMR hat Transitzonen pauschal verboten.",
-      "trigger_keywords": ["ilias and ahmed", "ilias ahmed hungary",
-                           "egmr ungarn transitzon"],
+      "trigger_keywords": [
+        "ilias and ahmed",
+        "ilias ahmed hungary",
+        "egmr ungarn transitzon"
+      ],
       "trigger_composite": [
-        ["egmr"],
-        ["transitzon", "transit-zone"],
-        ["ungarn", "hungary"]
+        [
+          "egmr"
+        ],
+        [
+          "transitzon",
+          "transit-zone"
+        ],
+        [
+          "ungarn",
+          "hungary"
+        ]
       ]
     },
     {
@@ -289,11 +478,75 @@
       "topic": "ueberwachung_massenscan",
       "kerninhalt": "Das britische Überwachungsregime (RIPA-Massenscan) verletzte Art. 8 (Privatleben) und Art. 10 EMRK — wegen unzureichender unabhängiger Kontrolle und fehlender Schutzklauseln für Journalist:innen. Der EGMR verbot Massenüberwachung NICHT pauschal, sondern definierte sechs Mindestanforderungen.",
       "boulevard_falschmeldung": "EGMR hat alle Geheimdienste verboten / Massenüberwachung pauschal erlaubt.",
-      "trigger_keywords": ["big brother watch egmr",
-                           "egmr massenüberwachung", "egmr überwachung uk"],
+      "trigger_keywords": [
+        "big brother watch egmr",
+        "egmr massenüberwachung",
+        "egmr überwachung uk"
+      ],
       "trigger_composite": [
-        ["egmr"],
-        ["massenüberwachung", "geheimdienst", "ripa", "überwachung"]
+        [
+          "egmr"
+        ],
+        [
+          "massenüberwachung",
+          "geheimdienst",
+          "ripa",
+          "überwachung"
+        ]
+      ]
+    },
+    {
+      "id": "eugh_kopftuch_arbeitsplatz",
+      "court": "EuGH",
+      "case_number": "C-157/15, C-188/15, C-804/18, C-341/19, C-344/20",
+      "case_name": "Achbita; Bougnaoui; WABE; MH Müller Handel; SCRL",
+      "year": 2022,
+      "decided_iso": "2022-10-13",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62018CJ0804",
+      "celex": "62018CJ0804",
+      "topic": "eugh_kopftuch_arbeitsplatz",
+      "kerninhalt": "Der EuGH hat Kopftuchverbote am Arbeitsplatz NICHT pauschal erlaubt, sondern nur unter engen Bedingungen für zulässig erklärt. Kernpunkte: (1) Achbita (C-157/15) und Bougnaoui (C-188/15), beide 14.3.2017: Eine interne Regel, die das sichtbare Tragen JEDES politischen, weltanschaulichen oder religiösen Zeichens verbietet, ist keine unmittelbare Diskriminierung — vorausgesetzt, sie wird allgemein und unterschiedslos angewandt. Der bloße Kundenwunsch, nicht von einer Kopftuchträgerin bedient zu werden, ist dagegen KEINE wesentliche und entscheidende berufliche Anforderung. (2) WABE (C-804/18) und MH Müller Handel (C-341/19), 15.7.2021: Ein allgemeines Verbot begründet keine unmittelbare Diskriminierung; eine mittelbare Ungleichbehandlung ist nur rechtfertigbar, wenn der Arbeitgeber ein WIRKLICHES, konkret nachzuweisendes Bedürfnis darlegt (z. B. berechtigte Neutralitätserwartungen der Kundschaft), und das Verbot muss kohärent und verhältnismäßig sein. (3) SCRL (C-344/20), 13.10.2022: bestätigt und präzisiert diese Linie. (4) Mitgliedstaaten dürfen Religionsfreiheit weitergehend schützen; nationale Gerichte prüfen den Einzelfall. Die Verkürzung 'Kopftuchverbote sind grundsätzlich erlaubt' gibt die Rechtsprechung damit NICHT korrekt wieder — zulässig ist allenfalls ein allgemeines, kohärent angewandtes Neutralitätsgebot mit nachgewiesenem Bedürfnis, nicht ein gezieltes Kopftuchverbot.",
+      "boulevard_falschmeldung": "'EuGH erlaubt Kopftuchverbot' — die Schlagzeile unterschlägt, dass nur ein ALLGEMEINES Verbot aller sichtbaren religiösen und weltanschaulichen Zeichen in Betracht kommt, und auch das nur bei nachgewiesenem betrieblichem Bedürfnis. Ein gezieltes Verbot nur des Kopftuchs wäre unmittelbare Diskriminierung.",
+      "trigger_keywords": [
+        "eugh kopftuch",
+        "kopftuchverbot arbeitsplatz",
+        "achbita",
+        "bougnaoui",
+        "kopftuch arbeitgeber",
+        "neutralitätsgebot"
+      ],
+      "trigger_composite": [
+        [
+          "kopftuch",
+          "hijab",
+          "religiöse zeichen",
+          "religioese zeichen",
+          "neutralitätsgebot",
+          "neutralitaetsgebot"
+        ],
+        [
+          "eugh",
+          "europäischer gerichtshof",
+          "europaeischer gerichtshof",
+          "arbeitsplatz",
+          "arbeitgeber",
+          "betrieb",
+          "job",
+          "arbeit"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "kopftuch"
+          ],
+          [
+            "eugh",
+            "gerichtshof",
+            "arbeitsplatz",
+            "arbeitgeber"
+          ]
+        ]
       ]
     }
   ]

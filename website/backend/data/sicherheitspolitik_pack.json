@@ -1055,6 +1055,80 @@
           "wahl-einmischung"
         ]
       ]
+    },
+    {
+      "id": "eu_einstimmigkeit_gasp_2026",
+      "topic": "eu_einstimmigkeit_gasp_konsens",
+      "scope": "EU-Entscheidungsverfahren — Einstimmigkeit in der GASP und bei Sanktionen",
+      "year": 2026,
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=legissum%3A25_1",
+      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=LEGISSUM:unanimity",
+      "source_label": "EUR-Lex 'Allgemeiner Rahmen für EU-Sanktionen' + EUR-Lex Glossar 'Einstimmigkeit' (Art. 24 Abs. 1, Art. 29 und Art. 31 EUV)",
+      "headline": "JA — ein einzelnes EU-Land kann ein Sanktionspaket alleine blockieren. Sanktionen werden nach Art. 29 EUV vom Rat EINSTIMMIG beschlossen; in der GASP gilt Einstimmigkeit als Regel (Art. 24 Abs. 1, Art. 31 Abs. 1 EUV). Jeder Mitgliedstaat hat damit faktisch ein Veto. Ausweg ist nur die konstruktive Stimmenthaltung (Art. 31 Abs. 1 UAbs. 2 EUV).",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'Ein einzelnes EU-Land kann ein Sanktionspaket alleine blockieren' ist ZUTREFFEND. (1) Restriktive Maßnahmen (Sanktionen) beschließt der Rat nach Art. 29 EUV einstimmig, auf Vorschlag des Hohen Vertreters der Union für Außen- und Sicherheitspolitik — das gilt für Annahme, Verlängerung UND Aufhebung. (2) In der Gemeinsamen Außen- und Sicherheitspolitik ist Einstimmigkeit die Regel (Art. 24 Abs. 1 und Art. 31 Abs. 1 EUV). Daraus folgt: Jeder einzelne Mitgliedstaat kann einen Beschluss durch sein Veto verhindern. (3) Abgemildert wird das nur durch die KONSTRUKTIVE STIMMENTHALTUNG (Art. 31 Abs. 1 UAbs. 2 EUV): Ein Staat kann sich der Stimme enthalten und dies förmlich begründen — der Beschluss kommt dann für die übrigen zustande, ohne dass der enthaltende Staat gebunden ist. (4) Weil Sanktionen turnusmäßig verlängert werden müssen, wirkt das Veto auch als Hebel gegen bestehende Maßnahmen. Der Pack gibt ausschließlich das Verfahren wieder und bewertet keine konkreten Vetos.",
+        "rechtsgrundlage_sanktionen": "Art. 29 EUV",
+        "rechtsgrundlage_einstimmigkeit": "Art. 24 Abs. 1 EUV, Art. 31 Abs. 1 EUV",
+        "ausnahme": "Konstruktive Stimmenthaltung, Art. 31 Abs. 1 UAbs. 2 EUV",
+        "context": "Im Binnenmarkt-Bereich gilt dagegen überwiegend die qualifizierte Mehrheit — die Einstimmigkeit ist eine Besonderheit der GASP."
+      },
+      "context_notes": [
+        "Die Umsetzung von Wirtschaftssanktionen erfolgt zusätzlich per Verordnung auf Basis von Art. 215 AEUV.",
+        "Debatten über einen Übergang zur qualifizierten Mehrheit in der GASP laufen seit Jahren; die Vertragslage ist unverändert."
+      ],
+      "claim_phrasings_handled": [
+        "einzelnes EU-Land kann Sanktionen blockieren",
+        "EU Sanktionen Einstimmigkeit",
+        "Veto EU Sanktionspaket",
+        "Wie werden EU-Sanktionen beschlossen"
+      ],
+      "trigger_keywords": [
+        "einstimmigkeit",
+        "konstruktive stimmenthaltung",
+        "veto eu",
+        "sanktionspaket",
+        "gasp"
+      ],
+      "trigger_composite": [
+        [
+          "sanktion",
+          "sanktionen",
+          "sanktionspaket",
+          "gasp",
+          "außenpolitik",
+          "aussenpolitik"
+        ],
+        [
+          "blockier",
+          "veto",
+          "einstimmig",
+          "einstimmigkeit",
+          "beschluss",
+          "beschließen",
+          "beschliessen",
+          "mehrheit",
+          "eu-land",
+          "mitgliedstaat",
+          "mitgliedsstaat",
+          "verhindern",
+          "beschloss",
+          "zustande",
+          "verfahren"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "blockier",
+            "veto"
+          ],
+          [
+            "sanktion",
+            "eu-land",
+            "mitgliedstaat"
+          ]
+        ]
+      ]
     }
   ]
 }
