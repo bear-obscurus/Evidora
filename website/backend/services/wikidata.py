@@ -177,27 +177,53 @@ LIMIT 5
         "triggers": [
             "einwohner", "einwohnerzahl", "bevölkerung",
         ],
+        # QA100 #90 (2026-07-28): Der Typfilter war auf wd:Q6256 (Land)
+        # beschränkt und wurde trotzdem für STÄDTE aufgerufen — "Wien"
+        # lieferte HTTP 200 mit 0 Ergebnissen, jeder Städte-Einwohner-
+        # Claim blieb also datenlos. Drei Änderungen, alle live gegen
+        # WDQS verifiziert:
+        #   (1) VALUES ?type {{ Q6256 Q486972 }} — Land ODER Siedlung;
+        #       Wien 2.028.289, Hamburg 1.910.160, Graz, Salzburg treffen
+        #       jetzt, Länder unverändert.
+        #   (2) DISTINCT — die drei Label-Varianten (de/mul/en) lieferten
+        #       sonst dieselbe Zeile dreifach.
+        #   (3) Jahres-Filter + Sortierung nach Größe statt Datum: ohne
+        #       Filter gewann Wiens historischer Höchststand von 1910
+        #       (2.083.630), ohne Größen-Sortierung ein gleichnamiges
+        #       Dorf mit 885 Einwohnern. Beides live reproduziert.
         "sparql": """
-SELECT ?country ?countryLabel ?population ?date
+SELECT DISTINCT ?country ?countryLabel ?population ?date
 WHERE {{
   VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
   ?country rdfs:label ?nameLabel.
-  ?country wdt:P31/wdt:P279* wd:Q6256.
+  VALUES ?type {{ wd:Q6256 wd:Q486972 }}
+  ?country wdt:P31/wdt:P279* ?type.
   ?country p:P1082 ?statement.
   ?statement ps:P1082 ?population.
   OPTIONAL {{ ?statement pq:P585 ?date. }}
+  FILTER(!BOUND(?date) || YEAR(?date) >= 2015)
   SERVICE wikibase:label {{ bd:serviceParam wikibase:language "de,en". }}
 }}
-ORDER BY DESC(?date)
+ORDER BY DESC(?population)
 LIMIT 3
 """,
     },
     {
         "name": "organisation_gruendung",
+        # QA100 (2026-07-28): "existiert" und "gibt es" waren als Trigger
+        # viel zu generisch — sie feuerten auf beliebige Claims ("In
+        # Österreich GIBT ES mehr Rinder als Schweine") und schickten
+        # dann Entitäten wie "Wien" oder "Österreich" in diese Query.
+        # Bei so mehrdeutigen Labels braucht sie live gemessen ~52 s;
+        # der Service retryt aber nur 12 s + 8 s, weshalb im Prod-Log
+        # deterministisch "SPARQL-Fehler … kein Last-Good — leer" stand.
+        # Beide Tokens entfernt: das Template soll nur bei echten
+        # Gründungs-/Auflösungs-Fragen laufen.
         "triggers": [
-            "gegründet", "gründung", "gründungsjahr",
-            "founded", "etabliert",
-            "aufgelöst", "aufloesung", "existiert", "gibt es",
+            "gegründet", "gegruendet", "gründung", "gruendung",
+            "gründungsjahr", "gruendungsjahr", "founded", "etabliert",
+            "aufgelöst", "aufloesung", "aufgeloest",
+            "wann entstand", "seit wann gibt es",
         ],
         "sparql": """
 SELECT ?org ?orgLabel ?inception ?dissolved ?countryLabel ?founderLabel

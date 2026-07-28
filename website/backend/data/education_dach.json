@@ -583,6 +583,77 @@
           ]
         ]
       ]
+    },
+    {
+      "id": "schulpflicht_at_2026",
+      "topic": "schulpflicht_at",
+      "scope": "Allgemeine Schulpflicht und Ausbildungspflicht in Österreich",
+      "year": 2026,
+      "source_url": "https://www.oesterreich.gv.at/en/themen/bildung_und_ausbildung/schulen/Seite.110002",
+      "secondary_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20009604",
+      "source_label": "oesterreich.gv.at 'Allgemeine Schulpflicht' + RIS Schulpflichtgesetz 1985 (SchPflG) + RIS Ausbildungspflichtgesetz (APflG, BGBl. I Nr. 62/2016)",
+      "headline": "Die allgemeine SCHULPFLICHT in Österreich dauert NEUN Schuljahre und endet damit typischerweise mit rund 15 Jahren — sie beginnt am 1. September nach Vollendung des 6. Lebensjahres (SchPflG 1985, Art. 14 Abs. 7a B-VG). NICHT zu verwechseln mit der AUSBILDUNGSPFLICHT bis 18: das ist ein eigenes Gesetz (APflG 2016) und keine Schulpflicht.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Bei Claims zur österreichischen Schulpflicht werden regelmäßig ZWEI verschiedene Rechtspflichten verwechselt. (1) ALLGEMEINE SCHULPFLICHT: neun Schuljahre, geregelt im Schulpflichtgesetz 1985 (SchPflG) und verfassungsrechtlich in Art. 14 Abs. 7a B-VG. Sie beginnt mit dem auf die Vollendung des 6. Lebensjahres folgenden 1. September und endet nach neun Schuljahren — also typischerweise mit etwa 15 Jahren. Sie gilt für alle Kinder mit dauerndem Aufenthalt in Österreich, nicht nur für österreichische Staatsangehörige. (2) AUSBILDUNGSPFLICHT BIS 18: ein eigenes Gesetz, das Ausbildungspflichtgesetz (APflG, BGBl. I Nr. 62/2016). Es verpflichtet Jugendliche NACH Ende der Schulpflicht, bis zum 18. Geburtstag eine weiterführende Ausbildung zu absolvieren — das kann Schule, Lehre oder eine andere Ausbildung sein. Es ist KEINE Schulpflicht und keine Verlängerung der Schulpflicht. (3) Die Aussage 'In Österreich gilt die Schulpflicht bis 15' ist damit ZUTREFFEND, die Aussage 'die Schulpflicht gilt bis 18' dagegen FALSCH. Eine Formulierung wie 'Schulpflicht bis zum vollendeten 18. Lebensjahr (9 Schuljahre)' ist in sich widersprüchlich — neun Schuljahre ab 6 enden nicht mit 18.",
+        "schulpflicht_jahre": 9,
+        "schulpflicht_beginn": "1. September nach Vollendung des 6. Lebensjahres",
+        "schulpflicht_ende_alter_typisch": 15,
+        "rechtsgrundlage_schulpflicht": "Schulpflichtgesetz 1985 (SchPflG), Art. 14 Abs. 7a B-VG",
+        "ausbildungspflicht_bis_alter": 18,
+        "rechtsgrundlage_ausbildungspflicht": "Ausbildungspflichtgesetz (APflG), BGBl. I Nr. 62/2016",
+        "context": "Schulpflicht und Ausbildungspflicht sind zwei getrennte Pflichten."
+      },
+      "context_notes": [
+        "Das genaue Ende hängt vom Geburtsdatum und von Wiederholungen ab; neun Schuljahre sind die Regel.",
+        "Die Ausbildungspflicht bis 18 gilt seit dem Schuljahr 2017/18 stufenweise."
+      ],
+      "claim_phrasings_handled": [
+        "Schulpflicht Österreich bis 15",
+        "Wie lange gilt die Schulpflicht in Österreich",
+        "Schulpflicht bis 18 Österreich",
+        "Ausbildungspflicht bis 18"
+      ],
+      "trigger_keywords": [
+        "schulpflicht",
+        "schulpflichtig",
+        "ausbildungspflicht",
+        "schulpflichtgesetz",
+        "neun schuljahre",
+        "9 schuljahre"
+      ],
+      "trigger_composite": [
+        [
+          "schulpflicht",
+          "ausbildungspflicht",
+          "schulpflichtig"
+        ],
+        [
+          "österreich",
+          "österreichisch",
+          "oesterreich",
+          "jahre",
+          "alter",
+          "bis",
+          "dauer",
+          "gilt",
+          "lange",
+          "endet"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "schulpflicht"
+          ],
+          [
+            "österreich",
+            "oesterreich",
+            "bis",
+            "jahre",
+            "lange"
+          ]
+        ]
+      ]
     }
   ]
 }
