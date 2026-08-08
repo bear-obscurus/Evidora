@@ -1846,10 +1846,19 @@ async def health_full():
       - sentence-transformers paraphrase-multilingual-MiniLM-L12-v2
         geladen
       - Static-Cache initialisiert
+      - LLM-Auth-Pfad nicht nachweislich tot (QA50D HOCH 2)
     Returns 503 sonst.
+
+    Der LLM-Check kam 2026-08-08 dazu: am 29.07. war der Dienst ~12 h
+    vollständig ausgefallen (Mistral-Key → 401, jeder Claim brach ab),
+    während Container-Healthcheck, Website und CI grün meldeten. Der
+    Healthcheck prüfte damals `/api/legal` — einen statischen Endpunkt
+    ohne LLM-Beteiligung. Merksatz: „healthy" ≠ funktionsfähig, solange
+    der teuerste externe Abhängigkeitspfad nicht berührt wird.
     """
     from fastapi import HTTPException
     checks: dict[str, bool] = {}
+    details: dict[str, str] = {}
 
     # SpaCy NER-Pipelines (Lazy-Loading triggern via _load_models)
     try:
@@ -1883,14 +1892,34 @@ async def health_full():
         logger.warning(f"health/full: static_cache check failed: {e}")
         checks["static_cache"] = False
 
+    # LLM-Auth-Pfad (QA50D HOCH 2). TRI-STATE: nur ein nachweislich
+    # abgelehnter Key (401/403) ist ein Fehler. "Unbekannt" (Timeout,
+    # Netzfehler, 429, 5xx) zählt als OK — ein Upstream-Schluckauf darf
+    # den Container nicht unhealthy flappen lassen. Das Ergebnis ist
+    # 300 s gecacht, der 30-s-Healthcheck berührt die API also
+    # höchstens alle 5 Minuten und verbraucht dabei keine Tokens.
+    try:
+        from services.ollama import check_llm_auth
+        _llm = await check_llm_auth()
+        checks["llm_auth"] = _llm["ok"] is not False
+        details["llm_auth"] = _llm["detail"]
+        if _llm["ok"] is None:
+            details["llm_auth"] += " (nicht entscheidbar → zählt als OK)"
+    except Exception as e:
+        logger.warning(f"health/full: llm_auth check failed: {e}")
+        checks["llm_auth"] = True  # Probe selbst kaputt ≠ Dienst kaputt
+        details["llm_auth"] = f"Probe-Fehler: {type(e).__name__}"
+
     all_ok = all(checks.values())
     if not all_ok:
-        # 503 Service Unavailable signalisiert Startup-Phase
+        # 503 Service Unavailable — Startup-Phase ODER toter LLM-Pfad
         raise HTTPException(status_code=503, detail={
-            "status": "starting",
+            "status": "degraded" if checks.get("llm_auth") is False
+                      else "starting",
             "checks": checks,
+            "details": details,
         })
-    return {"status": "ready", "checks": checks}
+    return {"status": "ready", "checks": checks, "details": details}
 
 
 @app.get("/api/legal")

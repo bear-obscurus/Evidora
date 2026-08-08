@@ -3,6 +3,7 @@ import json
 import httpx
 import logging
 import os
+import time
 from typing import AsyncIterator, Callable, Awaitable
 
 logger = logging.getLogger("evidora")
@@ -13,6 +14,76 @@ MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions"
 MISTRAL_MODEL = os.getenv("MISTRAL_MODEL", "mistral-small-latest")
 MAX_RETRIES = 3
 RETRY_DELAY = 2  # Sekunden
+
+# --- LLM-Auth-Probe (QA50D HOCH 2) -------------------------------------
+# Am 28./29.07.2026 war Evidora ~12 h vollstaendig ausgefallen: der
+# Mistral-Key lieferte 401, JEDER Claim brach im Analyze-Schritt ab — und
+# nichts hat es gemeldet. Der Container-Healthcheck rief /api/legal auf,
+# einen statischen Endpunkt ohne LLM-Beteiligung, und meldete durchgehend
+# "healthy". Diese Probe schliesst genau diese Luecke.
+#
+# Bewusste Design-Entscheidungen:
+#  - /v1/models statt einer Completion: verbraucht KEINE Tokens.
+#  - Ergebnis gecacht (TTL 300 s), damit der 30-s-Healthcheck die API
+#    hoechstens alle 5 Minuten beruehrt (~288 Requests/Tag).
+#  - TRI-STATE: nur 401/403 gelten als Fehler (persistente Auth-/
+#    Kontingent-Klasse). Timeouts, Netzfehler, 429 und 5xx liefern
+#    ``None`` = "unbekannt" und duerfen den Container NICHT unhealthy
+#    machen — sonst flappt er bei jedem Upstream-Schluckauf.
+#  - Auch das negative Ergebnis wird gecacht, sonst wuerde ein toter Key
+#    bei jedem Healthcheck erneut angefragt.
+MISTRAL_MODELS_URL = "https://api.mistral.ai/v1/models"
+LLM_AUTH_TTL = 300  # Sekunden
+LLM_AUTH_TIMEOUT = 5.0
+
+_llm_auth_cache: dict = {"ts": 0.0, "ok": None, "detail": "noch nicht geprüft"}
+
+
+async def check_llm_auth(force: bool = False) -> dict:
+    """Prüft den LLM-Auth-Pfad. Returns ``{"ok": True|False|None,
+    "detail": str, "cached": bool, "age_s": int}``.
+
+    ``ok is False`` heißt: der Key wird von Mistral abgelehnt — das ist
+    die Ausfallklasse, die am 29.07. unbemerkt blieb. ``ok is None``
+    heißt: nicht entscheidbar (Netz/Timeout/Rate-Limit) und ist KEIN
+    Alarm-Grund.
+    """
+    now = time.time()
+    age = now - _llm_auth_cache["ts"]
+    if not force and _llm_auth_cache["ts"] and age < LLM_AUTH_TTL:
+        return {"ok": _llm_auth_cache["ok"],
+                "detail": _llm_auth_cache["detail"],
+                "cached": True, "age_s": int(age)}
+
+    if not MISTRAL_API_KEY:
+        result = (False, "MISTRAL_API_KEY nicht gesetzt")
+    else:
+        try:
+            async with httpx.AsyncClient(timeout=LLM_AUTH_TIMEOUT) as client:
+                r = await client.get(
+                    MISTRAL_MODELS_URL,
+                    headers={"Authorization": f"Bearer {MISTRAL_API_KEY}"})
+            if r.status_code in (401, 403):
+                # Merke (QA50D): Mistral beantwortet auch einen reinen
+                # KONTINGENT-Zustand mit 401 — derselbe unveraenderte Key
+                # lieferte 10 Tage spaeter wieder 200. "401" heisst also
+                # nicht zwingend "Key ungueltig", aber immer "Dienst
+                # arbeitet gerade nicht".
+                result = (False, f"HTTP {r.status_code} — Key abgelehnt "
+                                 f"(ungültig ODER Kontingent erschöpft)")
+            elif r.status_code == 200:
+                result = (True, "HTTP 200")
+            else:
+                result = (None, f"HTTP {r.status_code} — transient")
+        except Exception as e:
+            result = (None, f"{type(e).__name__} — transient")
+
+    _llm_auth_cache["ts"] = now
+    _llm_auth_cache["ok"], _llm_auth_cache["detail"] = result
+    if result[0] is False:
+        logger.error(f"LLM-Auth-Probe: {result[1]} — Faktencheck-Pipeline "
+                     f"ist funktionsunfähig")
+    return {"ok": result[0], "detail": result[1], "cached": False, "age_s": 0}
 
 
 async def _call_mistral_api(messages: list, timeout: float,
