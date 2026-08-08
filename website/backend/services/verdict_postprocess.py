@@ -395,6 +395,35 @@ def _antimythos_flip(original_claim, claim_lower, summary_lower):
     return False
 
 
+# Schranken-Wörter: ein Wert, dem eines davon unmittelbar vorausgeht, ist
+# eine SCHRANKE ("liegt unter 15 %"), kein Punktwert. Pattern H kennt das
+# seit QA50B in _entity_percent_from_summary; Pattern E fehlte es (QA50D
+# #316) — dort las E die "25" in "die Jugendarbeitslosigkeit (unter 25)"
+# als bestätigenden Wert für die Schwelle "über 20".
+_BOUND_PREFIX_RE = re.compile(
+    r"(?:unter|über|ueber|weniger\s+als|mehr\s+als|bis\s+zu|maximal|"
+    r"mindestens|höchstens|hoechstens|max\.?|min\.?)\s*[(\[]?\s*$")
+
+# Alters-Qualifikator RECHTS der Zahl ("24 Jahre", "25-Jährige").
+_AGE_SUFFIX_RE = re.compile(r"\s*-?\s*jährig|\s*-?\s*jaehrig|\s*jahre[ns]?\b")
+
+
+def _is_bound_or_age(summary_lower, start, end):
+    """True, wenn die Zahl an [start:end] keine Messgröße ist, sondern eine
+    Schranke ("unter 25") oder eine Altersangabe ("15-24 Jahre").
+
+    Beide Prüfungen existieren in Pattern H bereits; QA50D #316 zeigte, dass
+    Pattern E — das VOR H läuft und denselben Claim-Typ beansprucht — ohne
+    sie ein korrektes ``false`` mit 0.95 Konfidenz auf ``true`` invertiert.
+    Live belegt in zwei Varianten: "die Jugendarbeitslosigkeit (unter 25)"
+    (Schranke) und "nach ILO-Methodik 2025 bei 11,5 % (15-24 Jahre)" (Alter).
+    """
+    before = summary_lower[max(0, start - 24):start]
+    if _BOUND_PREFIX_RE.search(before):
+        return True
+    return bool(_AGE_SUFFIX_RE.match(summary_lower[end:]))
+
+
 def _claim_entities(claim_lower):
     """Die im Claim genannten bekannten Entitäten (Bundesländer/Länder),
     ohne Teil-Treffer ('österreich' ⊂ 'niederösterreich')."""
@@ -882,10 +911,26 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
             # "über X" claim is refuted — do NOT treat it as confirmed.
             _threshold_refuted = False
             if threshold_val is not None and threshold_val == int(threshold_val):
+                _thr_s = re.escape(str(int(threshold_val)))
+                # `\b` beendet eine Zahl NICHT (Dezimalkomma/Tausenderpunkt,
+                # Pattern-F-Lehre 2026-07-27): ohne den Lookahead würde
+                # "unter 20" mitten in "unter 20,5" matchen und die Schwelle
+                # fälschlich als widerlegt gelten.
+                _hedge = r"(?:rund\s+|ca\.?\s*|etwa\s+|knapp\s+|deutlich\s+)?"
                 if re.search(
                     r"(?:unter|weniger\s+als|nicht\s+über|nicht\s+mehr\s+als)\s+"
-                    r"(?:rund\s+|ca\.?\s*|etwa\s+|knapp\s+|deutlich\s+)?"
-                    + re.escape(str(int(threshold_val))) + r"\b",
+                    + _hedge + _thr_s + r"(?![.,]?\d)",
+                    summary_lower,
+                ):
+                    _threshold_refuted = True
+                # QA50D #316: Die Summary widerlegt die Schwelle auch in der
+                # Form "aber keine Quote über 20 % erreicht" bzw. "Keine
+                # Quelle bestätigt Werte über 20 %". Die alte Regex kannte
+                # nur "unter 20" und liess diese beiden Live-Formulierungen
+                # durch — ausgerechnet die, die den Claim explizit ablehnen.
+                elif re.search(
+                    r"\bkein\w*\b(?:\W+\w+){0,4}\W+(?:über|ueber|mehr\s+als)\s+"
+                    + _hedge + _thr_s + r"(?![.,]?\d)",
                     summary_lower,
                 ):
                     _threshold_refuted = True
@@ -921,6 +966,16 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                     if (1900 <= summary_num <= 2100 and not re.match(
                             r"\s*(?:mio|mrd|millionen|milliarden|€|euro|eur)",
                             after_s)):
+                        continue
+
+                    # Schranken-/Alters-Prüfung (QA50D 2026-08-08, #316):
+                    # "(unter 25)" ist eine Schranke, "(15-24 Jahre)" eine
+                    # Altersangabe — beides sind KEINE Messwerte. Pattern H
+                    # kennt beide Guards seit QA50B; ohne sie bestätigte E
+                    # den Claim "Jugendarbeitslosigkeit über 20 %" mit dem
+                    # Alters-Qualifikator und invertierte ein korrektes
+                    # 'false' auf 'true' @0.95 (live 2× reproduziert).
+                    if _is_bound_or_age(summary_lower, nm.start(), nm.end()):
                         continue
 
                     # Attributions-Prüfung (QA100 2026-07-27): Ein Wert,
