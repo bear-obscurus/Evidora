@@ -64,6 +64,9 @@ jobs:
     #   - test_verdict_numeric_patterns (L4-Muster G/H/I/J: Vergleich/
     #                                  Schwelle/Verhältnis/Top-N numerisch
     #                                  + Negations-Gates — QA50B)
+    #   - test_pattern_e_bound_age_guard (Pattern E: Schranken-/Alters-
+    #                                  Angaben sind keine Messwerte —
+    #                                  QA50D #316, 2 Live-Summaries gepinnt)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -119,6 +122,7 @@ jobs:
             tests/test_steuerlast_fact.py \
             tests/test_pack_marker_drift.py \
             tests/test_verdict_numeric_patterns.py \
+            tests/test_pattern_e_bound_age_guard.py \
             tests/test_verdict_cache_polarity.py \
             tests/test_topic_packs_exact_only.py \
             tests/test_qa50b_rest.py \
