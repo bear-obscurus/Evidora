@@ -49,11 +49,24 @@ services:
       - /tmp:size=128m,mode=1777
       - /home/evidora:size=16m,uid=1000,gid=1000
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/legal')"]
+      # /api/health/full statt /api/legal (QA50D HOCH 2, 2026-08-08):
+      # /api/legal ist ein statischer Endpunkt ohne LLM-Beteiligung. Am
+      # 29.07. war der Dienst ~12 h vollstaendig ausgefallen (Mistral-Key
+      # -> 401, jeder Claim brach ab) und der Container meldete durchgehend
+      # "healthy". /api/health/full prueft SpaCy + sentence-transformers +
+      # Static-Cache UND den LLM-Auth-Pfad (gecacht, token-frei).
+      # Sicher gegen Flapping: nur ein nachweislich abgelehnter Key
+      # (401/403) macht unhealthy; Timeouts/429/5xx zaehlen als OK.
+      # Sicher gegen Restart-Schleifen: compose-`restart` greift bei
+      # Container-EXIT, nicht bei "unhealthy" — der Container bleibt also
+      # stehen und wird nur markiert; alarmiert wird per Cron-Kanarienvogel.
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health/full')"]
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 180s
+      # 300s statt 180s: health/full verlangt geladene Modelle, der
+      # Cold-Start dauert real ~250-270s (Model-Prefetch + DataCommons).
+      start_period: 300s
 
   frontend:
     build: ./frontend
