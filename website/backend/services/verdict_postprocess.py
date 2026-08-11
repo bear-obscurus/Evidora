@@ -1343,11 +1343,21 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     # bei "NICHT über 9 Millionen" würden dieselben Werte den Claim
     # widerlegen, nicht bestätigen. Die Widerlegungs-Richtung bleibt
     # unverändert (sie ist seit QA50B live erprobt).
+    # ⚠️ Die Schlussformel-Sperre (`not verdict_from_summary`) bleibt
+    # bewusst bestehen. QA50D #309 wäre nur zu retten, wenn ein EINZELNER
+    # ungebundener Summary-Wert eine explizite Konklusion überstimmen
+    # dürfte — genau das hat die QA50B-Härtung untersagt, aus gutem Grund.
+    # Eine Lockerung auf ">= 2 distinkte Werte" wurde gebaut und wieder
+    # verworfen: der Live-Fall nennt nur eine Zahl, der Fix hätte also
+    # Risiko ohne Nutzen gebracht. Der saubere Weg wäre ein eigenes
+    # Muster, das die INTERNE Widersprüchlichkeit der Summary erkennt
+    # ("9.197.213 Personen, also unter 9 Millionen") — neues Muster, kein
+    # Gate-Tweak.
     if (_numeric_fix is None and not verdict_from_summary
             and verdict in ("true", "mostly_true",
                             "false", "mostly_false")):
-        _h_confirm_ok = not re.search(
-            r"\b(?:nicht|kein\w*|nie|niemals|keineswegs)\b", claim_lower)
+        _h_any_negation = bool(re.search(
+            r"\b(?:nicht|kein\w*|nie|niemals|keineswegs)\b", claim_lower))
         _thr_cands = []
         for tm in re.finditer(
                 r"\b(unter|über|ueber|mehr als|weniger als|mindestens|"
@@ -1367,6 +1377,28 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
             _thr_is_pct = (thr_m.group(3) or "") in ("prozent", "%")
             _up = thr_m.group(1) in ("über", "ueber", "mehr als",
                                      "mindestens")
+
+            # NEGIERTE SCHWELLE (QA50D HOCH 3, #311). Bis 2026-08-08 schaltete
+            # eine Negation im Claim die BESTÄTIGENDE Richtung komplett ab —
+            # ausgerechnet der Fall, in dem H helfen könnte, war der einzige,
+            # den es nicht anfassen durfte. Live: "Die Inflation liegt NICHT
+            # über 10 Prozent" (wahr), Summary "…2,9 %, deutlich unter 10 %",
+            # Label false → H schwieg, das falsche Label blieb stehen.
+            #
+            # Richtig ist nicht Abschalten, sondern die Richtung UMKEHREN:
+            # "nicht über 10" behauptet dasselbe wie "höchstens 10".
+            # Bedingung dafür ist eine an die Schwelle GEBUNDENE Negation
+            # (unmittelbar davor, max. 25 Zeichen) — dieselbe Härtung wie bei
+            # _claim_negates_negative_predicate, wo ein freies Fenster den
+            # Guard aushebelte. Eine UNGEBUNDENE Negation irgendwo im Satz
+            # ("Die Inflation, die nicht überraschend kam, liegt über 10 %")
+            # bleibt wie bisher konservativ: keine Umkehr, keine Bestätigung.
+            _thr_neg = bool(re.search(
+                r"\b(?:nicht|keineswegs|nie|niemals)\s*$",
+                claim_lower[max(0, thr_m.start() - 25):thr_m.start()]))
+            _neg_elsewhere = _h_any_negation and not _thr_neg
+            _up_eff = (not _up) if _thr_neg else _up
+            _h_confirm_ok = not _neg_elsewhere
             if _thr and _thr > 0:
                 _cands = []
                 if _thr_is_pct:
@@ -1418,27 +1450,32 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                     _refute = verdict in ("true", "mostly_true")
                     _confirm = (verdict in ("false", "mostly_false")
                                 and _h_confirm_ok)
-                    if _refute and _up and not _above and _below:
+                    _op = ">" if _up_eff else "<"
+                    _neg_note = " [negierte Schwelle]" if _thr_neg else ""
+                    if _refute and _up_eff and not _above and _below:
                         _numeric_fix = "false"
                         _numeric_reason = (
-                            f"Pattern H Schwelle: Claim '>{_thr:g}', "
+                            f"Pattern H Schwelle{_neg_note}: Claim "
+                            f"'{_op}{_thr:g}', "
                             f"Summary-Werte alle darunter ({_below[:3]})")
-                    elif _refute and not _up and not _below and _above:
+                    elif _refute and not _up_eff and not _below and _above:
                         _numeric_fix = "false"
                         _numeric_reason = (
-                            f"Pattern H Schwelle: Claim '<{_thr:g}', "
+                            f"Pattern H Schwelle{_neg_note}: Claim "
+                            f"'{_op}{_thr:g}', "
                             f"Summary-Werte alle darüber ({_above[:3]})")
-                    elif _confirm and _up and _above and not _below:
+                    elif _confirm and _up_eff and _above and not _below:
                         _numeric_fix = "true"
                         _numeric_reason = (
-                            f"Pattern H Schwelle (bestätigend): Claim "
-                            f"'>{_thr:g}', Summary-Werte alle darüber "
-                            f"({_above[:3]})")
-                    elif _confirm and not _up and _below and not _above:
+                            f"Pattern H Schwelle (bestätigend){_neg_note}: "
+                            f"Claim '{_op}{_thr:g}', Summary-Werte alle "
+                            f"darüber ({_above[:3]})")
+                    elif _confirm and not _up_eff and _below and not _above:
                         _numeric_fix = "true"
                         _numeric_reason = (
-                            f"Pattern H Schwelle (bestätigend): Claim "
-                            f"'<{_thr:g}', Summary-Werte alle darunter "
+                            f"Pattern H Schwelle (bestätigend){_neg_note}: "
+                            f"Claim '{_op}{_thr:g}', Summary-Werte alle "
+                            f"darunter "
                             f"({_below[:3]})")
 
     # Pattern I — Verhältnis (#10): "mehr als doppelt so hoch" bei
