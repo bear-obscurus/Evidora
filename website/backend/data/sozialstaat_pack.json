@@ -1331,6 +1331,79 @@
           ]
         ]
       ]
+    },
+    {
+      "id": "pensionen_vs_bildung_budget_2026",
+      "topic": "pensions_vs_bildungsausgaben_at",
+      "scope": "Auszahlungen des Bundes für Pensionen und für Bildung",
+      "year": 2026,
+      "source_url": "https://www.bmf.gv.at/dam/jcr:02c98acd-9bad-46ad-b559-98238fdd58bb/Budget_2026_im_%C3%9Cberblick.pdf",
+      "secondary_url": "https://www.parlament.gv.at/dokument/budgetdienst/budget/BD-Budgetanalyse-2027-und-2028.pdf",
+      "source_label": "BMF — 'Budget 2026 im Überblick' (Finanzierungshaushalt BVA 2026); Budgetdienst der Parlamentsdirektion",
+      "headline": "Österreich gibt deutlich MEHR für Pensionen aus als für Bildung. Bundesvoranschlag 2026: Pensionen (UG 22 Pensionsversicherung 20,29 Mrd € + UG 23 Beamtenpensionen 13,88 Mrd €) zusammen 34,2 Mrd €, gegenüber 20,7 Mrd € für Bildung, Wissenschaft und Forschung zusammen (UG 30-31, 33-34). Bildung allein (UG 30) sind 12,55 Mrd €. Gesamtauszahlungen des Bundes 2026: 125,9 Mrd €.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'Österreich gibt mehr Geld für Pensionen aus als für Bildung' ist RICHTIG — und zwar auf JEDER sinnvollen Vergleichsbasis. Bundesvoranschlag 2026 (BMF, Finanzierungshaushalt): PENSIONEN 34,2 Mrd € (UG 22 Pensionsversicherung 20.292,8 Mio € + UG 23 Pensionen Beamtinnen und Beamte 13.881,6 Mio €). BILDUNG, WISSENSCHAFT UND FORSCHUNG zusammen 20,7 Mrd € (UG 30-31 und UG 33-34); die Untergliederung Bildung allein (UG 30) umfasst 12.547,5 Mio €, also 12,55 Mrd €. Das Verhältnis beträgt damit rund 1,65:1 gegenüber dem breiten Bildungsbegriff und rund 2,7:1 gegenüber der Untergliederung Bildung allein. Die Schere öffnet sich weiter: laut Bundesfinanzrahmen steigen die Pensions-auszahlungen von 34,2 Mrd € (2026) auf 38,3 Mrd € (2029), während Bildung, Wissenschaft und Forschung mit 20,9 Mrd € praktisch stagnieren. Zum Einordnen: Die Gesamtauszahlungen des Bundes betragen 2026 125,9 Mrd €; Pensionen sind damit der mit Abstand größte Einzelposten.",
+        "pensionen_2026_mrd": 34.2,
+        "ug22_pensionsversicherung_mio": 20292.8,
+        "ug23_beamtenpensionen_mio": 13881.6,
+        "bildung_wissenschaft_forschung_2026_mrd": 20.7,
+        "ug30_bildung_mio": 12547.5,
+        "gesamtauszahlungen_2026_mrd": 125.9,
+        "verhaeltnis_zu_bildung_breit": 1.65,
+        "verhaeltnis_zu_ug30_bildung": 2.7,
+        "pensionen_pfad_mrd": {
+          "2024": 30.0,
+          "2025": 32.9,
+          "2026": 34.2,
+          "2027": 35.4,
+          "2028": 36.8,
+          "2029": 38.3
+        },
+        "bildung_pfad_mrd": {
+          "2024": 18.9,
+          "2025": 20.1,
+          "2026": 20.7,
+          "2027": 20.6,
+          "2028": 20.6,
+          "2029": 20.9
+        },
+        "context": "Alle Werte aus derselben BMF-Tabelle, damit direkt vergleichbar."
+      },
+      "context_notes": [
+        "Es handelt sich um BUNDES-Auszahlungen. Bildung wird zusätzlich von Ländern und Gemeinden finanziert, die Gesamt-Bildungsausgaben liegen daher höher — an der Rangfolge ändert das nichts.",
+        "Die Pensionsbeträge sind die Bundes-Zuschüsse bzw. -Auszahlungen, nicht die gesamten Pensionsleistungen inklusive Beitragsfinanzierung."
+      ],
+      "claim_phrasings_handled": [
+        "Österreich gibt mehr Geld für Pensionen aus als für Bildung",
+        "Österreich gibt mehr Geld für Bildung aus als für Pensionen",
+        "Wie viel gibt Österreich für Pensionen aus",
+        "Pensionsausgaben Bildungsausgaben Vergleich Österreich"
+      ],
+      "trigger_all": [
+        [
+          [
+            "pension",
+            "pensionen",
+            "pensionsausgaben",
+            "pensionsversicherung",
+            "altersvorsorge"
+          ],
+          [
+            "bildung",
+            "bildungsausgaben",
+            "schule",
+            "universität",
+            "universitaet",
+            "ausgaben",
+            "budget",
+            "milliarden",
+            "wie viel",
+            "gibt",
+            "kostet",
+            "geld"
+          ]
+        ]
+      ]
     }
   ]
 }

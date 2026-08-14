@@ -609,6 +609,155 @@
           "fahrzeug"
         ]
       ]
+    },
+    {
+      "topic": "verkehrstote_at_2024_strassenart",
+      "headline": "Auf Österreichs Straßen starben 2024 insgesamt 351 Menschen (2023: 402, −12,7 % — zweitniedrigster Wert seit 1961). Die MEISTEN Getöteten entfielen auf Landesstraßen B/ehemalige Bundesstraßen (142 = 40,5 %), NICHT auf Autobahnen: dort starben 25 Menschen (7,1 %), inklusive Schnellstraßen 32 (9,1 %). Freiland 253 (72,1 %) gegenüber Ortsgebiet 98 (27,9 %).",
+      "year": 2024,
+      "source_url": "https://www.statistik.at/fileadmin/publications/Strassenverkehrsunfaelle2024_neu.pdf",
+      "secondary_url": "https://www.statistik.at/fileadmin/announcement/2025/04/20250430Unfaelle2024.pdf",
+      "source_label": "STATISTIK AUSTRIA, Statistik der Straßenverkehrsunfälle — Jahres-publikation 'Straßenverkehrsunfälle 2024', Tabelle 6 (Getötete nach ausgewähltem Merkmal); Pressemitteilung 13 591-084/25 vom 30.04.2025 (endgültige Ergebnisse)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Endgültige Zahlen von Statistik Austria für 2024: 351 Verkehrstote insgesamt (2023: 402). Aufteilung nach Straßenart, in Summe exakt 351: Autobahn 25, Schnellstraße 7, Landesstraße B (ehemalige Bundesstraßen) 142, Landesstraße 105, sonstige Straße 72. (1) Die verbreitete Annahme, die meisten tödlichen Verkehrsunfälle passierten auf der AUTOBAHN, ist FALSCH: Autobahnen tragen 25 von 351 Getöteten (7,1 %), zusammen mit Schnellstraßen 32 (9,1 %). Die mit Abstand meisten Getöteten gab es auf Landesstraßen B, also den ehemaligen Bundesstraßen (142 = 40,5 %). (2) Nach Unfallort: 253 Getötete im Freiland (72,1 %), 98 im Ortsgebiet (27,9 %). (3) Für Schwellenwert-Aussagen: 351 liegt UNTER 400 und UNTER 360, aber ÜBER 300 und ÜBER 350. (4) Vorsicht bei der Vintage: das BMI veröffentlichte am 07.01.2025 eine VORLÄUFIGE Zahl von 349. Maßgeblich ist der endgültige Wert 351 von Statistik Austria.",
+        "getoetete_gesamt_2024": 351,
+        "getoetete_gesamt_2023": 402,
+        "veraenderung_2023_2024_pct": -12.7,
+        "nach_strassenart_2024": {
+          "autobahn": 25,
+          "schnellstrasse": 7,
+          "landesstrasse_b": 142,
+          "landesstrasse": 105,
+          "sonstige_strasse": 72
+        },
+        "autobahn_anteil_pct": 7.1,
+        "autobahn_plus_schnellstrasse": 32,
+        "autobahn_plus_schnellstrasse_anteil_pct": 9.1,
+        "nach_unfallort_2024": {
+          "freiland": 253,
+          "ortsgebiet": 98
+        },
+        "context": "Straßenart-Summe 25+7+142+105+72 = 351 und Unfallort-Summe 253+98 = 351 — beide Aufteilungen stammen aus derselben Tabelle und sind konsistent."
+      },
+      "context_notes": [
+        "Autobahnen sind pro gefahrenem Kilometer die SICHERSTE Straßenart; die niedrige Zahl ist kein Zufall, sondern Folge von Richtungstrennung und fehlendem Gegenverkehr.",
+        "Vorläufige BMI-Zahl (349, Jänner 2025) und endgültige Statistik-Austria-Zahl (351, April 2025) nicht mischen.",
+        "2020 war mit 344 Getöteten der einzige noch niedrigere Wert seit Aufzeichnungsbeginn 1961."
+      ],
+      "claim_phrasings_handled": [
+        "Die meisten tödlichen Verkehrsunfälle in Österreich passieren auf der Autobahn",
+        "Wie viele Verkehrstote gab es 2024 in Österreich",
+        "2024 sind auf Österreichs Straßen weniger als 400 Menschen gestorben",
+        "Verkehrstote Österreich Autobahn Anteil",
+        "Auf welcher Straßenart sterben in Österreich die meisten Menschen"
+      ],
+      "trigger_all": [
+        [
+          [
+            "verkehrstote",
+            "verkehrstoten",
+            "verkehrsopfer",
+            "straßenverkehr",
+            "strassenverkehr",
+            "verkehrsunfäll",
+            "verkehrsunfaell",
+            "verkehrsunfall",
+            "autobahn",
+            "straßenart",
+            "strassenart",
+            "freiland",
+            "ortsgebiet",
+            "straßen",
+            "strassen",
+            "landesstraße",
+            "landesstrasse"
+          ],
+          [
+            "tote",
+            "toten",
+            "getötete",
+            "getoetete",
+            "sterb",
+            "starb",
+            "gestorben",
+            "ums leben",
+            "todesopfer",
+            "tödlich",
+            "toedlich",
+            "unfallbilanz",
+            "wie viele",
+            "meisten",
+            "anteil"
+          ]
+        ]
+      ]
+    },
+    {
+      "topic": "bahn_vs_auto_sicherheit_konsens",
+      "headline": "Zugfahren ist deutlich SICHERER als Autofahren, nicht gefährlicher. Je Milliarde Personenkilometer starben in Deutschland im 10-Jahres-Schnitt 2015–2024 0,03 Bahnreisende gegenüber 1,55 Pkw-Insassen — das Risiko im Auto ist rund 52-mal höher. Ältere DEKRA-Auswertung (2005–2009): Eisenbahn 0,04 gegenüber Pkw 2,9. Bus liegt mit 0,13 dazwischen.",
+      "year": 2024,
+      "source_url": "https://www.allianz-pro-schiene.de/themen/verkehrssicherheit/",
+      "secondary_url": "https://www.dekra-roadsafety.com/de/risikovergleich-nach-art-der-verkehrsteilnahme/",
+      "source_label": "Allianz pro Schiene (Auswertung auf Basis Statistisches Bundesamt, 10-Jahres-Schnitt 2015–2024) + DEKRA Road Safety Report (Basis Statistisches Bundesamt 2011, Schnitt 2005–2009)",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'Zugfahren ist gefährlicher als Autofahren' ist FALSCH — die Rangfolge ist eindeutig umgekehrt. Getötete je Milliarde Personenkilometer in Deutschland, 10-Jahres-Schnitt 2015–2024 (Allianz pro Schiene auf Basis Statistisches Bundesamt): Eisenbahn 0,03, Bus 0,13, Pkw 1,55. Das Todesrisiko im Pkw ist damit rund 52-mal höher als in der Bahn; bei Schwerverletzten liegt der Faktor bei gut 140. Eine unabhängige ältere Auswertung der DEKRA (Daten 2005–2009, Statistisches Bundesamt 2011) kommt zur selben Rangfolge: Eisenbahn 0,04, Straßenbahn 0,16, Bus 0,17, Pkw 2,9. Beide Auswertungen betreffen Deutschland; für Österreich liegen keine abweichenden Größenordnungen vor. Die Kennzahl ist die Exposition je PERSONENKILOMETER — der faire Maßstab beim Vergleich von Verkehrsmitteln; absolute Totenzahlen sind dafür ungeeignet, weil mit dem Pkw ein Vielfaches an Kilometern zurückgelegt wird. Hinweis zur Quellenlage: Allianz pro Schiene ist ein Branchenverband der Schiene, die zugrundeliegenden Daten stammen aber vom Statistischen Bundesamt und die unabhängige DEKRA-Auswertung bestätigt Richtung und Größenordnung.",
+        "getoetete_je_mrd_pkm_2015_2024": {
+          "eisenbahn": 0.03,
+          "bus": 0.13,
+          "pkw": 1.55
+        },
+        "faktor_pkw_zu_bahn": 52,
+        "faktor_schwerverletzte": 140,
+        "dekra_2005_2009": {
+          "eisenbahn": 0.04,
+          "strassenbahn": 0.16,
+          "bus": 0.17,
+          "pkw": 2.9
+        },
+        "context": "Maßstab ist Getötete je Milliarde Personenkilometer, nicht absolute Zahlen."
+      },
+      "context_notes": [
+        "Beide Quellen beziehen sich auf Deutschland; die Rangfolge Bahn < Bus < Pkw gilt europaweit.",
+        "Unterschiedliche Absolutwerte zwischen den Quellen erklären sich aus verschiedenen Zeiträumen (2015–2024 vs. 2005–2009), nicht aus Widerspruch."
+      ],
+      "claim_phrasings_handled": [
+        "Zugfahren ist gefährlicher als Autofahren",
+        "Autofahren ist gefährlicher als Zugfahren",
+        "Was ist sicherer Bahn oder Auto",
+        "Ist die Bahn sicherer als das Auto",
+        "Todesfälle pro Personenkilometer Bahn Auto"
+      ],
+      "trigger_all": [
+        [
+          [
+            "zugfahren",
+            "bahnfahren",
+            "bahn",
+            "zug",
+            "eisenbahn",
+            "schiene",
+            "personenkilometer"
+          ],
+          [
+            "autofahren",
+            "auto",
+            "pkw",
+            "wagen"
+          ],
+          [
+            "gefährlich",
+            "gefaehrlich",
+            "sicher",
+            "sicherer",
+            "sicherheit",
+            "todesfäll",
+            "todesfaell",
+            "unfalltote",
+            "getötete",
+            "getoetete",
+            "risiko"
+          ]
+        ]
+      ]
     }
   ]
 }
