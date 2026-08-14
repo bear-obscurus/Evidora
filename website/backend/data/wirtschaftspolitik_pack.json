@@ -436,7 +436,12 @@
       ],
       "trigger_composite": [
         [
-          "eu",
+          "eu-",
+          " eu ",
+          " eu.",
+          " eu,",
+          "die eu",
+          "der eu",
           "europa",
           "europäische union",
           "europaeische union",
