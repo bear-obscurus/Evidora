@@ -1129,6 +1129,137 @@
           ]
         ]
       ]
+    },
+    {
+      "id": "wehrpflicht_grundwehrdienst_at_2026",
+      "topic": "wehrpflicht_grundwehrdienst_at",
+      "scope": "Allgemeine Wehrpflicht, Grundwehrdienst und Zivildienst in Österreich",
+      "year": 2026,
+      "source_url": "https://www.oesterreich.gv.at/de/themen/gesetze_und_recht/wehrpflicht-und-zivildienst/3/Seite.1401081",
+      "secondary_url": "https://de.wikipedia.org/wiki/Wehrpflicht_in_%C3%96sterreich",
+      "source_label": "oesterreich.gv.at (Amtshelfer des Bundes) — Dauer des Grundwehrdienstes; Wehrgesetz 2001; Zivildienstgesetz 1986; Volksbefragung 20.01.2013 (BMI-Endergebnis)",
+      "headline": "JA — die allgemeine Wehrpflicht besteht in Österreich weiterhin. Der Grundwehrdienst dauert SECHS Monate (seit 2006), der Zivildienst als Ersatzdienst NEUN Monate. Bei der Volksbefragung am 20.1.2013 stimmten 59,7 % für die Beibehaltung von Wehrpflicht und Zivildienst, 40,3 % für ein Berufsheer. ACHTUNG Termin: ab 1.1.2027 kommen drei Monate verpflichtende Truppen- und Milizübungen dazu (dann 6 + 3 = 9 Monate insgesamt).",
+      "data": {
+        "kernsatz_fuer_synthesizer": "(1) Die Wehrpflicht ist in Österreich NICHT abgeschafft — sie besteht unverändert. Bei der Volksbefragung am 20. Jänner 2013 sprachen sich 59,7 % der gültigen Stimmen für die Beibehaltung der allgemeinen Wehrpflicht und des Zivildienstes aus, 40,3 % für ein Berufsheer mit bezahltem freiwilligem Sozialjahr. (2) Der Grundwehrdienst dauert SECHS Monate. Diese Dauer gilt seit 2006; davor waren es 8 Monate (6 Monate Grundwehrdienst plus 2 Monate Übungen, Regelung ab 1971), ursprünglich 9 Monate ab Einführung 1955. Die Aussage 'der Grundwehrdienst dauert acht Monate' ist damit FALSCH — 8 Monate war der Stand vor 2006. (3) Der Zivildienst als Ersatzdienst dauert NEUN Monate, ist also drei Monate länger als der Grundwehrdienst. Grundwehrdienst und Zivildienst dürfen nicht verwechselt werden. (4) Künftige Änderung: Ab 1. Jänner 2027 wird der Grundwehrdienst um drei Monate verpflichtender Truppen- und Milizübungen auf insgesamt neun Monate verlängert. Bis dahin gilt: sechs Monate.",
+        "wehrpflicht_besteht": true,
+        "grundwehrdienst_monate": 6,
+        "zivildienst_monate": 9,
+        "grundwehrdienst_ab_2027_monate_gesamt": 9,
+        "volksbefragung_2013": {
+          "datum": "2013-01-20",
+          "beibehaltung_pct": 59.7,
+          "berufsheer_pct": 40.3
+        },
+        "historie_dauer": {
+          "ab_1955": 9,
+          "ab_1971": "6 + 2 Übungen = 8",
+          "ab_2006": 6
+        },
+        "context": "8 Monate war der Stand 1971-2006 und ist heute falsch; ab 1.1.2027 gelten 6 + 3 = 9 Monate."
+      },
+      "context_notes": [
+        "⏰ Fakt-Refresh 1.1.2027: Verlängerung des Grundwehrdienstes auf insgesamt neun Monate (6 Grundwehrdienst + 3 Monate verpflichtende Übungen).",
+        "Die Wehrpflicht gilt nur für männliche österreichische Staatsbürger; Frauen können freiwillig Militärdienst leisten.",
+        "Die Neutralität (BVG 1955) steht der Wehrpflicht nicht entgegen — sie ist historisch sogar ihre Begründung."
+      ],
+      "claim_phrasings_handled": [
+        "Gibt es in Österreich noch die Wehrpflicht",
+        "Der Grundwehrdienst in Österreich dauert acht Monate",
+        "Wie lange dauert der Grundwehrdienst in Österreich",
+        "Wie lange dauert der Zivildienst in Österreich",
+        "Wurde die Wehrpflicht in Österreich abgeschafft"
+      ],
+      "trigger_all": [
+        [
+          [
+            "wehrpflicht",
+            "grundwehrdienst",
+            "wehrdienst",
+            "zivildienst",
+            "präsenzdienst",
+            "praesenzdienst",
+            "bundesheer"
+          ],
+          [
+            "österreich",
+            "oesterreich",
+            "dauert",
+            "dauer",
+            "monate",
+            "abgeschafft",
+            "noch",
+            "gibt es",
+            "lange",
+            "wie lang"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "feuerwehr_at_2025",
+      "topic": "feuerwehr_freiwillige_vs_berufs_at",
+      "scope": "Feuerwehrwesen in Österreich",
+      "year": 2025,
+      "source_url": "https://www.bundesfeuerwehrverband.at/2026/03/22/feuerwehren-in-oesterreich-2025-weniger-einsaetze-mehr-mitglieder/",
+      "secondary_url": "https://www.bundesfeuerwehrverband.at/homepage-oebfv-2/oebfv/",
+      "source_label": "Österreichischer Bundesfeuerwehrverband (ÖBFV) — Jahresstatistik 2025, veröffentlicht 22.03.2026",
+      "headline": "Österreichs Feuerwehrwesen ist fast vollständig FREIWILLIG: rund 99 % der 357.187 Feuerwehrmitglieder (Stand 2025) leisten ihren Dienst ehrenamtlich und unentgeltlich. Es gibt 4.438 Freiwillige Feuerwehren, 308 Betriebsfeuerwehren und nur SECHS Berufsfeuerwehren (Wien, Graz, Linz, Salzburg, Innsbruck, Klagenfurt). Freiwillige stellen damit ein Vielfaches der hauptberuflichen Kräfte.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'in Österreich gibt es viel mehr freiwillige als hauptberufliche Feuerwehrleute' ist RICHTIG, und zwar sehr deutlich. Umgekehrt formuliert ('mehr Berufsfeuerwehrleute als Freiwillige') ist sie FALSCH. Zahlen des Österreichischen Bundesfeuerwehrverbands für 2025: 357.187 Feuerwehrmitglieder insgesamt (+1.808 gegenüber 2024), davon 257.081 im Aktivstand, 61.393 Reservisten und 38.713 in der Feuerwehrjugend. RUND 99 % aller Mitglieder leisten ihren Dienst auf freiwilliger, unentgeltlicher Basis — hauptberufliche Kräfte machen also nur etwa 1 % aus, das sind grob 3.000 bis 4.000 Personen. Struktur: 4.752 Feuerwehren insgesamt, davon 4.438 Freiwillige Feuerwehren, 308 Betriebsfeuerwehren und nur SECHS Berufsfeuerwehren — in Wien, Graz, Linz, Salzburg, Innsbruck und Klagenfurt. Das Größenverhältnis zwischen Freiwilligen und Berufskräften liegt damit in der Größenordnung 100:1.",
+        "mitglieder_gesamt_2025": 357187,
+        "aktivstand": 257081,
+        "reservisten": 61393,
+        "feuerwehrjugend": 38713,
+        "anteil_ehrenamtlich_pct": 99,
+        "feuerwehren_gesamt": 4752,
+        "freiwillige_feuerwehren": 4438,
+        "betriebsfeuerwehren": 308,
+        "berufsfeuerwehren": 6,
+        "berufsfeuerwehr_staedte": [
+          "Wien",
+          "Graz",
+          "Linz",
+          "Salzburg",
+          "Innsbruck",
+          "Klagenfurt"
+        ],
+        "einsaetze_2025": 254598,
+        "context": "Verhältnis Freiwillige zu Berufskräften rund 100:1."
+      },
+      "context_notes": [
+        "Die Zahl der Feuerwehren (4.752) und die Zahl der Mitglieder (357.187) sind zwei verschiedene Kennzahlen und dürfen nicht verwechselt werden.",
+        "Betriebsfeuerwehren sind betrieblich organisiert und zählen nicht zu den Berufsfeuerwehren der Städte."
+      ],
+      "claim_phrasings_handled": [
+        "Bei der Feuerwehr in Österreich gibt es viel mehr Freiwillige als Berufsfeuerwehrleute",
+        "In Österreich gibt es mehr Berufsfeuerwehrleute als freiwillige Feuerwehrmitglieder",
+        "Wie viele Feuerwehrleute gibt es in Österreich",
+        "Wie viele Berufsfeuerwehren hat Österreich"
+      ],
+      "trigger_all": [
+        [
+          [
+            "feuerwehr",
+            "feuerwehren",
+            "feuerwehrleute",
+            "feuerwehrmann",
+            "feuerwehrmitglied",
+            "berufsfeuerwehr",
+            "florianijünger"
+          ],
+          [
+            "freiwillig",
+            "berufs",
+            "hauptberuflich",
+            "ehrenamt",
+            "österreich",
+            "oesterreich",
+            "wie viele",
+            "mitglied",
+            "mehr"
+          ]
+        ]
+      ]
     }
   ]
 }

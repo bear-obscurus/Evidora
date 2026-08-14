@@ -757,6 +757,63 @@
           ]
         ]
       ]
+    },
+    {
+      "id": "protein_ei_vs_magertopfen_2026",
+      "topic": "proteingehalt_ei_topfen",
+      "scope": "Proteingehalt von Hühnerei und Magertopfen/Magerquark",
+      "year": 2026,
+      "source_url": "https://www.noem.at/produkte/noem-topfen-mager",
+      "secondary_url": "https://www.dge.de/wissenschaft/referenzwerte/protein/",
+      "source_label": "NÖM AG — Nährwertdeklaration Topfen mager; Deutsche Gesellschaft für Ernährung (Referenzwerte Protein); Bundeslebensmittelschlüssel",
+      "headline": "100 Gramm Magertopfen enthalten rund 12–13 Gramm Eiweiß (NÖM Topfen mager: 12,5 g/100 g) — ein Hühnerei der Größe M (rund 60 g brutto) liefert dagegen nur etwa 6–7,5 Gramm. 100 g Magertopfen haben damit ungefähr das DOPPELTE eines Eies; man bräuchte rund zwei Eier, um gleichzuziehen.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'ein Ei hat mehr Eiweiß als 100 Gramm Magertopfen' ist FALSCH. 100 g Magertopfen (in Deutschland: Magerquark) enthalten rund 12–13 g Protein — die Nährwertdeklaration von NÖM Topfen mager weist 12,5 g pro 100 g aus, Tirol Milch Magertopfen 12,0 g. Ein Hühnerei der Größe M wiegt rund 60 g brutto, davon etwa 55 g essbar, und liefert damit rund 6 bis 7,5 g Protein. 100 g Magertopfen enthalten also ungefähr doppelt so viel Eiweiß wie ein Ei; für Gleichstand bräuchte man etwa zwei Eier. Die Richtung kehrt sich auch dann nicht um, wenn 'Eiweiß' umgangssprachlich als EIKLAR gemeint ist — das Eiklar eines M-Eis liefert nur rund 4 g Protein, also noch weniger. In keiner Lesart hat ein Ei mehr Eiweiß als 100 g Magertopfen.",
+        "magertopfen_protein_g_pro_100g": 12.5,
+        "magertopfen_bandbreite": "12,0-13,5 g/100 g je Hersteller",
+        "ei_groesse_m_gewicht_g": 60,
+        "ei_protein_g": "6-7,5",
+        "eiklar_protein_g": 4,
+        "faktor": 2,
+        "context": "Vergleich 1 Ei (Stück) gegen 100 g Magertopfen — unterschiedliche Bezugsgrößen, deshalb explizit ausgewiesen."
+      },
+      "context_notes": [
+        "Topfen (AT) und Quark (DE) bezeichnen dasselbe Produkt; 'mager' meint die Magerstufe mit unter 10 % Fett i. Tr.",
+        "Die Bezugsgröße ist entscheidend: pro 100 g liegt das Ei bei rund 12-13 g Protein und damit gleichauf — die Behauptung vergleicht aber ein STÜCK Ei mit 100 g Topfen."
+      ],
+      "claim_phrasings_handled": [
+        "Ein Ei hat mehr Eiweiß als 100 Gramm Magertopfen",
+        "Wie viel Eiweiß hat Magertopfen",
+        "Wie viel Protein hat ein Ei",
+        "Topfen oder Ei mehr Protein"
+      ],
+      "trigger_all": [
+        [
+          [
+            "topfen",
+            "magertopfen",
+            "quark",
+            "magerquark",
+            "eier",
+            "hühnerei",
+            "huehnerei",
+            "ein ei",
+            "das ei",
+            "dem ei",
+            "eies",
+            "eiklar"
+          ],
+          [
+            "eiweiß",
+            "eiweiss",
+            "protein",
+            "nährwert",
+            "naehrwert",
+            "gramm",
+            "mehr"
+          ]
+        ]
+      ]
     }
   ]
 }

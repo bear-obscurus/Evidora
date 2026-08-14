@@ -335,6 +335,74 @@
       ],
       "source_label": "BMI Österreich — PKS Hauptbericht 2024 + Statistik Austria",
       "source_url": "https://www.bmi.gv.at/"
+    },
+    {
+      "id": "cybercrime_anzeigen_at_2025",
+      "topic": "cybercrime_anzeigen_at",
+      "scope": "Angezeigte Fälle von Internetkriminalität in Österreich",
+      "year": 2025,
+      "source_url": "https://www.bundeskriminalamt.at/501/files/kriminalpolizeiliche_anzeigenstatistik_2025_bf.pdf",
+      "secondary_url": "https://www.bundeskriminalamt.at/306/files/356_2025_ccr-2024_a4_v20251130_web.pdf",
+      "source_label": "Bundeskriminalamt Österreich — Kriminalpolizeiliche Anzeigenstatistik / Kriminalitätsbericht 2025 + Cybercrime-Report 2024",
+      "headline": "Die Anzeigen wegen Internetkriminalität in Österreich sind LANGFRISTIG stark gestiegen: von 13.103 Fällen (2016) auf 63.459 (2025) — fast eine Verfünffachung. Der Höchststand lag aber 2023 bei 65.864; 2024 gab es mit 62.328 (−5,4 %) den ERSTEN Rückgang seit einem Jahrzehnt, 2025 nur ein leichtes Plus (+1,8 %) und weiterhin unter dem Niveau von 2023.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Angezeigte Fälle von Internetkriminalität in Österreich (Bundeskriminalamt): 2016: 13.103 — 2019: 28.434 — 2020: 35.915 — 2021: 46.179 — 2022: 60.195 — 2023: 65.864 (Höchststand) — 2024: 62.328 (−5,4 %, erster Rückgang seit einem Jahrzehnt) — 2025: 63.459 (+1,8 %). Die Bewertung hängt vom Bezugszeitraum ab und sollte differenziert erfolgen: (a) LANGFRISTIG ist der Anstieg dramatisch — +384 % seit 2016, +77 % seit 2020. (b) In den JÜNGSTEN Jahren stimmt 'stark gestiegen' nur eingeschränkt: seit dem Peak 2023 liegt das Niveau niedriger, 2024 gab es sogar einen Rückgang. Eine pauschale Aussage 'in den letzten Jahren stark gestiegen' ist daher größtenteils richtig, aber nicht uneingeschränkt — angemessen ist 'mostly_true' mit dem Hinweis auf die Seitwärtsbewegung seit 2023. Untergliederung 2025: Internetbetrug 31.001 Fälle (rückläufig), Cybercrime im engeren Sinn 21.988 Fälle (steigend). Aufklärungsquote Cybercrime 2024: 31,7 %.",
+        "angezeigte_faelle": {
+          "2016": 13103,
+          "2019": 28434,
+          "2020": 35915,
+          "2021": 46179,
+          "2022": 60195,
+          "2023": 65864,
+          "2024": 62328,
+          "2025": 63459
+        },
+        "hoechststand_jahr": 2023,
+        "veraenderung_2024_pct": -5.4,
+        "veraenderung_2025_pct": 1.8,
+        "anstieg_seit_2016_pct": 384,
+        "internetbetrug_2025": 31001,
+        "cybercrime_ieS_2025": 21988,
+        "aufklaerungsquote_2024_pct": 31.7,
+        "context": "Langfrist-Trend stark steigend, seit 2023 Seitwärtsbewegung mit einem Rückgang 2024."
+      },
+      "context_notes": [
+        "Anzeigen messen das Hellfeld — die Dunkelziffer bei Cybercrime gilt als hoch, Veränderungen können auch Anzeigebereitschaft abbilden.",
+        "'Internetkriminalität' umfasst Internetbetrug UND Cybercrime im engeren Sinn (Hacking, Datenbeschädigung); die beiden Teilgruppen entwickeln sich gegenläufig."
+      ],
+      "claim_phrasings_handled": [
+        "Die Anzeigen wegen Cybercrime sind in Österreich stark gestiegen",
+        "Wie viele Cybercrime-Fälle gibt es in Österreich",
+        "Nimmt Internetkriminalität in Österreich zu",
+        "Cybercrime Österreich Statistik Anzeigen"
+      ],
+      "trigger_all": [
+        [
+          [
+            "cybercrime",
+            "cyberkriminalität",
+            "cyberkriminalitaet",
+            "internetkriminalität",
+            "internetkriminalitaet",
+            "internetbetrug",
+            "cyber-angriff",
+            "cyberangriff"
+          ],
+          [
+            "österreich",
+            "oesterreich",
+            "anzeige",
+            "anzeigen",
+            "fälle",
+            "faelle",
+            "gestiegen",
+            "steigt",
+            "zunahme",
+            "statistik",
+            "wie viele"
+          ]
+        ]
+      ]
     }
   ]
 }

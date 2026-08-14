@@ -230,6 +230,54 @@
       ],
       "source_label": "ÖBB Pünktlichkeits- + KlimaTicket-Bericht 2024",
       "source_url": "https://www.klimaticket.at/"
+    },
+    {
+      "id": "asfinag_netzlaenge_2026",
+      "topic": "asfinag_netzlaenge",
+      "scope": "Hochrangiges Straßennetz Österreich (ASFINAG)",
+      "year": 2026,
+      "source_url": "https://www.asfinag.at/ueber-uns/unternehmen/",
+      "secondary_url": "https://media.asfinag.at/media/jkohkod0/asfinag-netzzustandsbericht-2023-17.pdf",
+      "source_label": "ASFINAG (Autobahnen- und Schnellstraßen-Finanzierungs-Aktiengesellschaft) — Unternehmensangaben; ASFINAG Netzzustandsbericht 2023",
+      "headline": "Die ASFINAG betreibt und erhält knapp 2.280 Kilometer Autobahnen und Schnellstraßen in Österreich (Netzzustandsbericht 2023: 2.258 km Streckennetz). Das hochrangige Netz liegt damit klar ÜBER 2.000 km und deutlich UNTER 3.000 km.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Das von der ASFINAG betriebene hochrangige Straßennetz Österreichs umfasst knapp 2.280 Kilometer Autobahnen und Schnellstraßen (eigene Unternehmensangabe); der Netzzustandsbericht 2023 weist 2.258 km Streckennetz aus. Für Schwellenwert-Aussagen: der Wert liegt ÜBER 2.000 km, ÜBER 2.200 km und UNTER 2.300 km. Wichtig für die Abgrenzung: Diese Zahl umfasst NUR Autobahnen (A) und Schnellstraßen (S) im ASFINAG-Netz. Das gesamte österreichische Straßennetz inklusive Landes- und Gemeindestraßen ist mit rund 125.000 km ein Vielfaches davon — die beiden Größen dürfen nicht verwechselt werden.",
+        "netzlaenge_km_unternehmensangabe": 2280,
+        "netzlaenge_km_netzzustandsbericht_2023": 2258,
+        "umfasst": "Autobahnen (A) und Schnellstraßen (S)",
+        "context": "Nicht zu verwechseln mit dem gesamten Straßennetz Österreichs (~125.000 km inkl. Landes- und Gemeindestraßen)."
+      },
+      "context_notes": [
+        "Die Netzlänge wächst durch Neubauabschnitte langsam; 'knapp 2.280 km' ist der aktuelle Unternehmenswert.",
+        "Autobahnen und Schnellstraßen werden in Österreich ausschließlich von der ASFINAG betrieben und über Maut/Vignette finanziert."
+      ],
+      "claim_phrasings_handled": [
+        "In Österreich gibt es mehr als 2.000 Kilometer Autobahnen und Schnellstraßen",
+        "Wie lang ist das Autobahnnetz in Österreich",
+        "ASFINAG Netzlänge Kilometer",
+        "Wie viele Kilometer Autobahn hat Österreich"
+      ],
+      "trigger_all": [
+        [
+          [
+            "autobahn",
+            "schnellstraße",
+            "schnellstrasse",
+            "asfinag",
+            "autobahnnetz"
+          ],
+          [
+            "kilometer",
+            " km",
+            "netzlänge",
+            "netzlaenge",
+            "netz",
+            "lang",
+            "länge",
+            "laenge"
+          ]
+        ]
+      ]
     }
   ]
 }

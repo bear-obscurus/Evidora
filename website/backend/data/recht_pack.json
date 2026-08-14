@@ -384,6 +384,153 @@
       "source_label": "§ 833 BGB + § 1320 ABGB + Verbraucherzentrale",
       "source_url": "https://www.gesetze-im-internet.de/bgb/__833.html",
       "secondary_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10001622"
+    },
+    {
+      "id": "haftzahlen_at_2026",
+      "topic": "untersuchungshaft_vs_strafhaft_at",
+      "scope": "Insassenstand der österreichischen Justizanstalten",
+      "year": 2026,
+      "source_url": "https://www.justiz.gv.at/strafvollzug/statistik/verteilung-des-insassinnen-bzw-insassenstandes.2c94848542ec49810144457e2e6f3de9.de.html",
+      "secondary_url": "https://www.rechnungshof.gv.at/rh/home/home/Straf__und_Massnahmenvollzug.pdf",
+      "source_label": "Bundesministerium für Justiz — Verteilung des Insassinnen-/Insassenstandes (Stichtag 3.8.2026); Rechnungshof-Bericht Straf- und Maßnahmenvollzug",
+      "headline": "In österreichischen Justizanstalten sitzen weit MEHR Menschen in Strafhaft als in Untersuchungshaft. Stichtag 3.8.2026: 10.113 Insassinnen und Insassen insgesamt — davon 6.151 in Strafhaft (60,82 %), 1.872 in Untersuchungshaft (18,52 %) und 1.704 im Maßnahmenvollzug (16,85 %). Die Strafhaft ist damit rund 3,3-mal so stark belegt wie die Untersuchungshaft.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'in Österreich sitzen mehr Leute in Untersuchungshaft als im Strafvollzug' ist FALSCH — das Verhältnis ist umgekehrt und deutlich. Stichtag 3. August 2026 (BMJ): 10.113 Insassinnen und Insassen insgesamt. Davon Strafhaft 6.151 (60,82 %), Untersuchungshaft 1.872 (18,52 %), Maßnahmenvollzug 1.704 (16,85 %). Die Strafhaft umfasst also rund das 3,3-Fache der Untersuchungshaft. Die U-Haft ist per Definition eine Minderheit: sie dient der Verfahrens-sicherung vor einer rechtskräftigen Verurteilung, ist streng befristet und an Haftgründe gebunden (§ 173 StPO), während die Strafhaft die vollstreckten Freiheitsstrafen umfasst. Zur Auslastung: In den Justizanstalten selbst befinden sich 9.126 Personen bei einer Belagskapazität von 8.411 — das entspricht 108,51 % Auslastung. Die Differenz zur Gesamtzahl 10.113 erklärt sich aus Personen ausserhalb der Anstalt, etwa im elektronisch überwachten Hausarrest.",
+        "stichtag": "2026-08-03",
+        "insassen_gesamt": 10113,
+        "strafhaft": 6151,
+        "strafhaft_pct": 60.82,
+        "untersuchungshaft": 1872,
+        "untersuchungshaft_pct": 18.52,
+        "massnahmenvollzug": 1704,
+        "massnahmenvollzug_pct": 16.85,
+        "faktor_strafhaft_zu_uhaft": 3.3,
+        "in_justizanstalten": 9126,
+        "belagskapazitaet": 8411,
+        "auslastung_pct": 108.51,
+        "context": "Strafhaft rund 3,3-mal so stark belegt wie Untersuchungshaft; Anstalten zu 108,51 % ausgelastet."
+      },
+      "context_notes": [
+        "Der Insassenstand ist ein Stichtagswert und schwankt im Jahresverlauf um einige Hundert Personen.",
+        "Der Maßnahmenvollzug (zurechnungsunfähige und zurechnungsfähige gefährliche Rechtsbrecher) ist eine dritte, eigene Kategorie neben Straf- und Untersuchungshaft."
+      ],
+      "claim_phrasings_handled": [
+        "In Österreich sitzen mehr Leute in Untersuchungshaft als im Strafvollzug",
+        "Wie viele Häftlinge gibt es in Österreich",
+        "Anteil Untersuchungshaft Österreich",
+        "Wie viele Menschen sitzen in Österreich im Gefängnis"
+      ],
+      "trigger_all": [
+        [
+          [
+            "untersuchungshaft",
+            "u-haft",
+            "strafvollzug",
+            "strafhaft",
+            "justizanstalt",
+            "gefängnis",
+            "gefaengnis",
+            "häftling",
+            "haeftling",
+            "insass",
+            "maßnahmenvollzug",
+            "massnahmenvollzug"
+          ],
+          [
+            "österreich",
+            "oesterreich",
+            "wie viele",
+            "anteil",
+            "mehr",
+            "zahl",
+            "sitzen",
+            "auslastung",
+            "belegt"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "amtssprachen_at_2026",
+      "topic": "amtssprachen_oesterreich",
+      "scope": "Staatssprache und regionale Amtssprachen in Österreich",
+      "year": 2026,
+      "source_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10000138",
+      "secondary_url": "https://www.oesterreich.gv.at/de/lexicon/A/amtssprache",
+      "source_label": "Art. 8 B-VG (Bundes-Verfassungsgesetz, RIS); Art. 7 Staatsvertrag von Wien 1955; Volksgruppengesetz 1976; oesterreich.gv.at",
+      "headline": "Deutsch ist NICHT die einzige Amtssprache Österreichs. Art. 8 Abs. 1 B-VG macht Deutsch zur Staatssprache — ausdrücklich 'unbeschadet der den sprachlichen Minderheiten bundesgesetzlich eingeräumten Rechte'. In festgelegten Gemeinden und Bezirken sind zusätzlich SLOWENISCH (Kärnten: Hermagor, Klagenfurt-Land, Villach-Land, Völkermarkt), KROATISCH und UNGARISCH (Burgenland) zweite Amtssprache — Grundlage ist Art. 7 Staatsvertrag 1955.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'Deutsch ist in Österreich die einzige offizielle Amtssprache' ist GRÖSSTENTEILS FALSCH. Richtig ist: Deutsch ist die Staatssprache der Republik (Art. 8 Abs. 1 B-VG). Derselbe Artikel stellt das aber ausdrücklich unter den Vorbehalt 'unbeschadet der den sprachlichen Minderheiten bundesgesetzlich eingeräumten Rechte', und Art. 8 Abs. 2 B-VG verpflichtet die Republik auf die gewachsene sprachliche Vielfalt der autochthonen Volksgruppen. In bestimmten Verwaltungs- und Gerichtsbezirken gilt eine ZWEITE Amtssprache: Slowenisch in den Kärntner Bezirken Hermagor, Klagenfurt-Land, Villach-Land und Völkermarkt; Burgenlandkroatisch in den burgenländischen Bezirken Eisenstadt-Umgebung, Güssing, Mattersburg, Neusiedl am See, Oberpullendorf und Oberwart; Ungarisch in Oberpullendorf und Oberwart. Angehörige dieser Volksgruppen dürfen ihre Sprache vor Behörden und Gerichten verwenden. Rechtsgrundlagen sind Art. 7 des Staatsvertrags von Wien (1955) und das Volksgruppengesetz 1976. Gesetzlich anerkannte Volksgruppensprachen sind Burgenlandkroatisch, Slowenisch, Ungarisch, Tschechisch, Slowakisch und Romani. Korrekt wäre also: Deutsch ist die einzige BUNDESWEITE Amtssprache, aber nicht die einzige Amtssprache Österreichs.",
+        "staatssprache": "Deutsch (Art. 8 Abs. 1 B-VG)",
+        "zweite_amtssprachen": {
+          "slowenisch": [
+            "Hermagor",
+            "Klagenfurt-Land",
+            "Villach-Land",
+            "Völkermarkt"
+          ],
+          "burgenlandkroatisch": [
+            "Eisenstadt-Umgebung",
+            "Güssing",
+            "Mattersburg",
+            "Neusiedl am See",
+            "Oberpullendorf",
+            "Oberwart"
+          ],
+          "ungarisch": [
+            "Oberpullendorf",
+            "Oberwart"
+          ]
+        },
+        "anerkannte_volksgruppensprachen": [
+          "Burgenlandkroatisch",
+          "Slowenisch",
+          "Ungarisch",
+          "Tschechisch",
+          "Slowakisch",
+          "Romani"
+        ],
+        "rechtsgrundlagen": [
+          "Art. 8 B-VG",
+          "Art. 7 Staatsvertrag von Wien 1955",
+          "Volksgruppengesetz 1976"
+        ],
+        "context": "Deutsch ist die einzige BUNDESWEITE Amtssprache — regional gibt es weitere."
+      },
+      "context_notes": [
+        "Die Unterscheidung 'Staatssprache' (Art. 8 B-VG) und 'Amtssprache' ist juristisch relevant: regionale Amtssprachen ändern nichts an der Staatssprache.",
+        "Österreichische Gebärdensprache ist seit 2005 in Art. 8 Abs. 3 B-VG anerkannt, aber keine Amtssprache im territorialen Sinn."
+      ],
+      "claim_phrasings_handled": [
+        "Deutsch ist in Österreich die einzige offizielle Amtssprache",
+        "Welche Amtssprachen gibt es in Österreich",
+        "Ist Slowenisch Amtssprache in Kärnten",
+        "Amtssprache Österreich Volksgruppen"
+      ],
+      "trigger_all": [
+        [
+          [
+            "amtssprache",
+            "amtssprachen",
+            "staatssprache",
+            "landessprache",
+            "volksgruppensprach"
+          ],
+          [
+            "österreich",
+            "oesterreich",
+            "kärnten",
+            "kaernten",
+            "burgenland",
+            "deutsch",
+            "slowenisch",
+            "kroatisch",
+            "ungarisch",
+            "einzige",
+            "welche"
+          ]
+        ]
+      ]
     }
   ]
 }
