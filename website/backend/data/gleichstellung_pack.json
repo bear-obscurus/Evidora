@@ -882,13 +882,14 @@
           "gleichstellungsindex",
           "gender equality index",
           "eige index",
-          "eige",
+          "eige-index",
           "gleichstellung",
           "gleichberechtigung",
-          "equality index"
+          "equality index",
+          "gender-index"
         ],
         [
-          "eu",
+          "eu-27",
           "europa",
           "europäisch",
           "europaeisch",
@@ -901,8 +902,6 @@
           "platz",
           "spitze",
           "letzter",
-          "stand",
-          "wert",
           "punkte",
           "erreicht",
           "fortschritt",

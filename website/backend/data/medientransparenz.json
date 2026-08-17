@@ -252,13 +252,15 @@
       "trigger_composite": [
         [
           "inserat",
-          "anzeigen",
-          "werbung",
+          "inserate",
+          "inseraten",
           "werbeausgab",
           "öffentlichkeitsarbeit",
+          "regierungsinserat",
           "boulevard-medien",
           "boulevardmedien",
-          "boulevard-presse"
+          "boulevard-presse",
+          "medientransparenz"
         ],
         [
           "öffentliche",
