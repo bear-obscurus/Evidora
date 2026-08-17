@@ -83,6 +83,10 @@ jobs:
     #   - test_ueber_trigger_sweep     (4 Cross-Topic-Lecks: eige/eu/eter/
     #                                  anzeigen — Kurz-Tokens in Alltagswoertern,
     #                                  beidseitig gepinnt — QA50D-Sweep)
+    #   - test_fleisch_messgroessen_bindung (Verbrauch vs. Verzehr: der Fakt
+    #                                  bindet die im Claim GENANNTE Messgröße
+    #                                  an ihren Wert, Headline unter dem
+    #                                  400-Zeichen-Prompt-Cap — QA50D #321)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -146,6 +150,7 @@ jobs:
             tests/test_verdict_cache_polarity.py \
             tests/test_topic_packs_exact_only.py \
             tests/test_ueber_trigger_sweep.py \
+            tests/test_fleisch_messgroessen_bindung.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
