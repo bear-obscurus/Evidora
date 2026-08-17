@@ -121,6 +121,14 @@ _K_COMPARATIVE_STOP = frozenset((
 _ANTI_MYTHOS_DISMISSALS = (
     "unsinn", "quatsch", "blödsinn", "bloedsinn", "humbug", "märchen",
     "maerchen", "schmarrn", "ein mythos", "eine mär", "eine maer",
+    # QA50D #305 (2026-08-14): "Dass Zugfahren gefährlicher ist als
+    # Autofahren, ist doch SCHWACHSINN" fiel durch — das Wort fehlte.
+    # Live 6/6 falsch, obwohl die Summary ¬P sauber belegte.
+    "schwachsinn", "unfug", "nonsens", "nonsense", "larifari",
+    # Bewusst NICHT aufgenommen: "käse" und "topfen" — beide sind im
+    # Deutschen/Österreichischen zugleich Lebensmittel und würden auf
+    # Ernährungs-Claims feuern (der Cluster-B-Fakt zu Magertopfen ist
+    # genau so ein Fall).
 )
 
 
@@ -331,8 +339,15 @@ def _antimythos_flip(original_claim, claim_lower, summary_lower):
         return False
     if not re.search(
             r"\b(?:ist|sind|wär\w*|waer\w*|war\w*)\s+"
-            r"(?:ja\s+)?(?:wohl\s+|doch\s+|völliger\s+|voelliger\s+|"
-            r"kompletter\s+|reiner\s+|blanker\s+)*"
+            # QA50D #305: das Gate erlaubte weder den UNBESTIMMTEN ARTIKEL
+            # noch gängige Verstärker. Dadurch fiel sogar "ist EIN Schmarrn"
+            # durch, obwohl "schmarrn" im Literal-Set steht — im Container
+            # reproduziert (5 von 8 geprüften Formulierungen scheiterten).
+            r"(?:ja\s+)?(?:wohl\s+|doch\s+|ein\s+|eine\s+|einer\s+|"
+            r"der\s+|die\s+|das\s+|völliger\s+|voelliger\s+|"
+            r"kompletter\s+|reiner\s+|reinster\s+|reinste\s+|blanker\s+|"
+            r"totaler\s+|purer\s+|absoluter\s+|glatter\s+|grober\s+|"
+            r"ausgemachter\s+|schierer\s+)*"
             r"(?:" + "|".join(_ANTI_MYTHOS_DISMISSALS) + r")", claim_lower):
         return False
     # Zwischen Komparativ und "als" darf ein Hilfsverb stehen
