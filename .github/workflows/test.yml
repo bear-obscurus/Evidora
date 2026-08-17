@@ -73,6 +73,9 @@ jobs:
     #   - test_pattern_h_negierte_schwelle (Pattern H: negierte Schwelle
     #                                  kehrt die Richtung um statt die
     #                                  Bestaetigung abzuschalten — QA50D #311)
+    #   - test_pattern_k_dismissals    (Pattern K: Dismissal-Abdeckung +
+    #                                  Kopula-Gate mit Artikel/Verstaerker,
+    #                                  plus Ueberkorrektur-Gegenproben — QA50D #305)
     #   - test_llm_auth_probe         (LLM-Auth-Probe im Healthcheck:
     #                                  Tri-State (nur 401/403 = Fehler,
     #                                  kein Flapping) + Cache-TTL —
@@ -135,6 +138,7 @@ jobs:
             tests/test_pattern_e_bound_age_guard.py \
             tests/test_pattern_h_negierte_schwelle.py \
             tests/test_pattern_a_generische_attribution.py \
+            tests/test_pattern_k_dismissals.py \
             tests/test_llm_auth_probe.py \
             tests/test_verdict_cache_polarity.py \
             tests/test_topic_packs_exact_only.py \
