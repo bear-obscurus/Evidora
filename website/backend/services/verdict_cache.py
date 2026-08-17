@@ -138,6 +138,30 @@ _POLARITY_ANTONYMS = (
 )
 
 
+# MESSGRÖSSEN-Paare (2026-08-17, bei der Live-Verifikation von #321 gemessen).
+#
+# Keine Richtungs-Antonyme, sondern zwei VERSCHIEDENE Größen für dasselbe
+# Thema — dieselbe Zahl ist bei der einen richtig und bei der anderen falsch.
+# Das Embedding trennt sie überhaupt nicht: `SEMANTIC HIT cos=0.985` zwischen
+# „Der Fleischverzehr in Österreich liegt bei fast 65 Kilo" und „Der
+# Fleischverbrauch …" — und cos=0.963 auch bei deutlich umformulierter
+# Gegenfrage („Österreich kommt beim Pro-Kopf-Verbrauch von Fleisch auf etwa
+# 65 Kilogramm"). Produktionswirkung wie bei den Polaritäts-Paaren (PR #92):
+# wer die andere Messgröße erfragt, bekommt das gegenteilige Verdict mit
+# voller Konfidenz, ohne dass die Pipeline läuft.
+#
+# LIVE GEMESSEN ist nur verbrauch/verzehr. Die beiden anderen Paare stammen
+# aus dokumentierten Fällen derselben Klasse in diesem Repo (QA100 #44: eine
+# plausible Zahl aus der falschen Messgröße — installierte KAPAZITÄT statt
+# ERZEUGUNG; Fakten, die bewusst brutto UND netto nennen) und sind bewusst
+# konservativ gewählt: ein False-Positive kostet nur einen Cache-Miss.
+_MEASURE_PAIRS = (
+    ("verbrauch", "verzehr"),
+    ("kapazität", "erzeugung"), ("kapazitaet", "erzeugung"),
+    ("brutto", "netto"),
+)
+
+
 def _negation_present(tokens: set[str]) -> bool:
     return bool(tokens & _NEGATION_TOKENS)
 
@@ -188,12 +212,28 @@ def _direction_flipped(ta: set[str], tb: set[str]) -> bool:
     vs. 'klimaschädlicher', 'mehr' vs. 'weniger'. Verlangt bewusst die
     Anwesenheit BEIDER Pole (je einer pro Seite): ein einseitig fehlendes
     Richtungswort ist bloß eine Umformulierung, kein Gegenteil."""
-    for x, y in _POLARITY_ANTONYMS:
+    return _exactly_one_pole_each(ta, tb, _POLARITY_ANTONYMS)
+
+
+def _exactly_one_pole_each(ta: set[str], tb: set[str], pairs) -> bool:
+    """True, wenn die eine Seite genau einen Pol eines Paares trägt und die
+    andere Seite genau den anderen. Trägt eine Seite BEIDE (ein Fakt, der
+    Verbrauch und Verzehr nebeneinander nennt), ist es kein Gegensatz."""
+    for x, y in pairs:
         ax, ay = _has_stem(ta, x), _has_stem(ta, y)
         bx, by = _has_stem(tb, x), _has_stem(tb, y)
         if (ax and not ay and by and not bx) or (ay and not ax and bx and not by):
             return True
     return False
+
+
+def _measure_mismatch(ta: set[str], tb: set[str]) -> bool:
+    """True, wenn die beiden Claims dieselbe Frage über VERSCHIEDENE
+    Messgrößen stellen (Verbrauch vs. Verzehr, Kapazität vs. Erzeugung,
+    brutto vs. netto). Getrennt von ``_direction_flipped`` gehalten, weil es
+    keine Richtungs-Umkehr ist, sondern ein Bezugsgrößen-Wechsel — die
+    Fehlerklasse ist dieselbe, die Semantik nicht."""
+    return _exactly_one_pole_each(ta, tb, _MEASURE_PAIRS)
 
 
 def _extract_numbers(text: str) -> set[str]:
@@ -217,7 +257,10 @@ def _polarity_mismatch(a: str, b: str) -> bool:
       (3) die Vergleichs-Operanden sind VERTAUSCHT ('A mehr als B' vs.
           'B mehr als A'), ODER
       (4) ein Richtungswort ist durch sein Gegenteil ersetzt
-          ('klimafreundlicher' vs. 'klimaschädlicher').
+          ('klimafreundlicher' vs. 'klimaschädlicher'), ODER
+      (5) es ist dieselbe Frage über eine ANDERE MESSGRÖSSE
+          ('Fleischverzehr' vs. 'Fleischverbrauch') — dieselbe Zahl ist
+          dann bei der einen richtig und bei der anderen falsch.
 
     (3) und (4) kamen 2026-07-27 dazu, nachdem die Live-Verifikation der
     QA100-Fixes zeigte, dass Satz-Embeddings die Argument-Reihenfolge
@@ -240,6 +283,8 @@ def _polarity_mismatch(a: str, b: str) -> bool:
     if _operands_swapped(a, b):
         return True
     if _direction_flipped(ta, tb):
+        return True
+    if _measure_mismatch(ta, tb):
         return True
     return False
 
