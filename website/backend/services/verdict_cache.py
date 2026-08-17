@@ -118,6 +118,23 @@ _POLARITY_ANTONYMS = (
     ("steigt", "sinkt"), ("anstieg", "rückgang"), ("anstieg", "rueckgang"),
     ("zunahme", "abnahme"), ("mehrheit", "minderheit"),
     ("more", "less"), ("higher", "lower"), ("increase", "decrease"),
+    # QA50D (2026-08-08) im Container reproduziert: bei diesen Paaren
+    # schwieg der Guard, waehrend die Kontrollen (Operanden-Tausch,
+    # schaedlich/freundlich) korrekt griffen. Produktionswirkung: wer die
+    # Gegenfrage stellt, bekommt das gegenteilige Verdict mit voller
+    # Konfidenz, ohne dass die Pipeline laeuft.
+    # `_operands_swapped` fing sie nicht auf, weil auf beiden Seiten
+    # dasselbe Vergleichsobjekt steht ("... als Maenner").
+    ("häufiger", "seltener"), ("haeufiger", "seltener"),
+    ("öfter", "seltener"), ("oefter", "seltener"),
+    ("wärmer", "kälter"), ("waermer", "kaelter"),
+    ("länger", "kürzer"), ("laenger", "kuerzer"),
+    ("älter", "jünger"), ("aelter", "juenger"),
+    ("früher", "später"), ("frueher", "spaeter"),
+    ("reicher", "ärmer"), ("reicher", "aermer"),
+    ("dicker", "dünner"), ("dicker", "duenner"),
+    ("leichter", "schwerer"),
+    ("gesünder", "ungesünder"), ("gesuender", "ungesuender"),
 )
 
 
