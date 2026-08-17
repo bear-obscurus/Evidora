@@ -67,6 +67,9 @@ jobs:
     #   - test_pattern_e_bound_age_guard (Pattern E: Schranken-/Alters-
     #                                  Angaben sind keine Messwerte —
     #                                  QA50D #316, 2 Live-Summaries gepinnt)
+    #   - test_pattern_a_generische_attribution (Pattern A: Fremd-
+    #                                  Attribution des Superlativs auch bei
+    #                                  NICHT-geografischen Entitaeten — QA50D #342)
     #   - test_pattern_h_negierte_schwelle (Pattern H: negierte Schwelle
     #                                  kehrt die Richtung um statt die
     #                                  Bestaetigung abzuschalten — QA50D #311)
@@ -131,6 +134,7 @@ jobs:
             tests/test_verdict_numeric_patterns.py \
             tests/test_pattern_e_bound_age_guard.py \
             tests/test_pattern_h_negierte_schwelle.py \
+            tests/test_pattern_a_generische_attribution.py \
             tests/test_llm_auth_probe.py \
             tests/test_verdict_cache_polarity.py \
             tests/test_topic_packs_exact_only.py \

@@ -475,12 +475,20 @@ def _summary_refutes_superlative(claim_lower, summary_lower):
     der Summary vorkommt (Bug #52/#81, aufgedeckt im 100-Gap-Claim-Lauf
     2026-06-27; Wortstellungs-/Tausenderpunkt-Lücken gefixt 2026-07-06
     nach dem Mordraten-Drift)."""
-    claim_countries = {c for c in _COMPARISON_COUNTRIES if c in claim_lower}
-    if not claim_countries:
-        return False
     # Tausender-Punkte neutralisieren ("100.000" -> "100000"), damit die
     # [^.]{0,70}-Fenster unten nicht an Zahlen-Punkten abbrechen.
     summary_norm = re.sub(r"(?<=\d)\.(?=\d)", "", summary_lower)
+    # Generische Fremd-Attribution ZUERST (QA50D #342) — sie ist nicht auf
+    # Geografie angewiesen und muss deshalb VOR der Länder-Vorbedingung
+    # laufen. Bis 2026-08-14 stand hier ein `if not claim_countries: return
+    # False`, das die Funktion bei jedem Claim ohne Land sofort beendete —
+    # also bei genau den Claims, für die die Whitelist ohnehin nichts
+    # taugt (Medien, Straßenarten, Produkte, Kategorien).
+    if _superlative_attributed_elsewhere(claim_lower, summary_norm):
+        return True
+    claim_countries = {c for c in _COMPARISON_COUNTRIES if c in claim_lower}
+    if not claim_countries:
+        return False
     # Verneinter Claim-Superlativ in deutscher Wortstellung: die Negation
     # steht am Superlativ, nicht am Land ("Deutschland hat NICHT die
     # niedrigste Mordrate"). Eng gefasst auf dasselbe Adjektiv wie im Claim.
@@ -501,6 +509,89 @@ def _summary_refutes_superlative(claim_lower, summary_lower):
                       summary_norm)
                 or re.search(re.escape(c) + r"[^.]{0,70}" + _SUPERLATIVE_PHRASE,
                              summary_norm)):
+            return True
+    return False
+
+
+# Funktionswörter, die nach einer Attributions-Präposition stehen können,
+# aber keine Entität sind ("auf DIESEM Niveau", "in DIESEN Jahren").
+_ATTR_STOPWORDS = frozenset((
+    "diese", "diesem", "diesen", "dieser", "dieses", "jene", "jenem", "jenen",
+    "einem", "einen", "einer", "eines", "ihrer", "ihren", "ihrem", "seine",
+    "seinen", "seinem", "seiner", "welche", "welchem", "welchen", "denen",
+    "ersten", "zweiten", "dritten", "letzten", "beiden", "allen", "aller",
+    "vielen", "manchen", "anderen", "andere", "solchen", "gesamt", "summe",
+    "höhe", "hoehe", "folge", "bezug", "sicht", "bereich", "bereichen",
+    "ebene", "basis", "grund", "grundlage", "seite", "stelle", "weise",
+    "durchschnitt", "schnitt", "vergleich", "zeitraum", "gegensatz",
+))
+
+
+def _attr_stem_match(a, b):
+    """Grober Stamm-Vergleich: 'autobahn' ↔ 'autobahnen' gilt als gleich.
+
+    Gleichheit zählt IMMER — sonst fielen kurze Entitätsnamen durch
+    ('wien' == 'wien' hat nur 4 Zeichen) und ein berechtigter Confirm
+    würde blockiert. Darüber hinaus ist ein Präfix von mindestens 5
+    Zeichen nötig: 'auto' vs. 'autor' darf NICHT als gleich gelten.
+    Im Zweifel kein Match — das führt zur Refutation und damit dazu,
+    dass das rohe LLM-Label stehen bleibt (sichere Richtung).
+    """
+    if a == b:
+        return True
+    n = min(len(a), len(b), 6)
+    return n >= 5 and (a[:n] == b[:n])
+
+
+def _superlative_attributed_elsewhere(claim_lower, summary_norm):
+    """True, wenn die Summary den Superlativ per Attributions-Präposition
+    einer Entität zuschreibt, die im Claim GAR NICHT vorkommt.
+
+    QA50D #342 (2026-08-14): Claim „Die meisten tödlichen Verkehrsunfälle in
+    Österreich passieren auf der Autobahn", Summary „… Die meisten Getöteten
+    entfielen auf Landesstraßen B … mit 142 Fällen (40,5 %)" — die Summary
+    WIDERLEGT den Claim, aber die drei bisherigen Zweige sahen es nicht: sie
+    prüfen Fremd-Attribution ausschließlich gegen eine Whitelist aus Ländern
+    und Bundesländern. Straßenarten, Altersgruppen, Berufsgruppen, Produkte
+    oder Kategorien waren unsichtbar. Im Container isoliert belegt: dieselbe
+    Summary mit „Deutschland" statt „Landesstraßen B" lieferte True.
+
+    Das ist strukturell dieselbe Überanpassung wie bei Pattern G vor G2 —
+    das Muster wurde in der Geografie-Domäne gebaut und kannte nur sie.
+
+    Bewusst attributions-GEBUNDEN statt fenster-basiert: gesucht wird der
+    Kandidat direkt hinter einer Präposition ('entfielen AUF Landesstraßen',
+    'gehen AN Heute'). Ein blosses 70-Zeichen-Fenster würde bei „Die Krone
+    erhält die meisten Inserate, gefolgt von Heute" fälschlich refuten.
+
+    Fehlerkosten sind asymmetrisch und erlauben diese Großzügigkeit: ein
+    True verhindert lediglich den Confirm-Override, das rohe LLM-Label
+    bleibt stehen. Ein False-Negative würde dagegen ein korrektes 'false'
+    auf 'true' kippen — genau der Fehler, den #342 zeigte.
+    """
+    claim_tokens = [w for w in re.findall(r"[a-zäöüß-]{4,}", claim_lower)]
+    for m in re.finditer(_SUPERLATIVE_PHRASE, summary_norm):
+        window = summary_norm[m.end():m.end() + 90]
+        window = re.split(r"[.;]", window)[0]
+        for am in re.finditer(
+                # (a) Präpositional: "… entfielen AUF Landesstraßen"
+                r"\b(?:auf|bei|an|in|für|fuer)\s+"
+                r"(?:die|der|den|das|dem|des)?\s*([a-zäöüß-]{4,})"
+                # (b) Verb-Zweitstellung mit vorangestelltem Objekt:
+                #     "Die meisten Filialen BETREIBT Spar" — im Deutschen
+                #     genauso häufig wie die präpositionale Form. Bewusst
+                #     eine enge Verb-Whitelist statt „irgendein Wort nach
+                #     dem Superlativ", damit der Guard nicht bei jedem
+                #     Nebensatz anschlägt.
+                r"|\b(?:hat|hatte|hält|haelt|erhält|erhaelt|erhielt|bekommt|"
+                r"bekam|betreibt|verzeichnet|stellt|liefert|meldet|führt|"
+                r"fuehrt|entfallen|entfielen|gehen|ging|gingen)\s+"
+                r"(?:die|der|den|das|dem|des)?\s*([a-zäöüß-]{4,})", window):
+            cand = am.group(1) or am.group(2)
+            if not cand or cand in _ATTR_STOPWORDS or cand in _G2_NON_ENTITIES:
+                continue
+            if any(_attr_stem_match(cand, t) for t in claim_tokens):
+                break  # dem Claim-Subjekt zugeschrieben — kein Widerspruch
             return True
     return False
 
