@@ -113,13 +113,34 @@ def test_headline_bindet_65_an_verbrauch(fact):
     )
 
 
-def test_headline_nennt_den_verzehrswert_als_vergleichswert(fact):
+def test_headline_bindet_den_verzehr_an_seinen_vergleichswert(fact):
     head = fact["headline"]
     assert "60,1" in head, "Verzehrs-Wert fehlt in der Headline"
-    satz = next(s for s in head.split(". ") if "65" in s)
-    assert "60,1" in satz, (
-        "Der Bindungs-Satz muss BEIDE Seiten nennen (65 = Verbrauch, "
-        f"60,1 = Verzehr), sonst bleibt die Auswahl beim LLM: {satz!r}"
+    satz = next(
+        (s for s in head.split(". ") if "verzehr" in s.lower() and "60,1" in s),
+        None,
+    )
+    assert satz, (
+        "Kein Satz bindet den VERZEHR an 60,1 kg — ohne diese Bindung "
+        f"bleibt die Auswahl der Messgröße beim LLM: {head!r}"
+    )
+
+
+def test_headline_verbietet_die_umdeutung_der_messgroesse(fact):
+    """Iteration 2 (live erzwungen): Die bloße Nebeneinanderstellung beider
+    Werte reichte NICHT. Mit ihr lieferte prod `mostly_true@0.9` und die
+    Summary schrieb weiter „Die Behauptung bezieht sich vermutlich auf den
+    Verbrauch". Das LLM braucht das ausdrückliche Verbot der wohlwollenden
+    Umdeutung, nicht nur die Zuordnung."""
+    head = fact["headline"]
+    lower = head.lower()
+    assert "nicht" in lower and "gelesen" in lower or "umgedeutet" in lower, (
+        f"Kein Umdeutungs-Verbot in der Headline: {head!r}"
+    )
+    # Und die abgeleitete Bewertung als fertiger Satz — der LLM soll lesen,
+    # nicht selbst entscheiden, ob 65 „nah genug" an 60,1 liegt.
+    assert "unzutreffend" in lower or "ist falsch" in lower, (
+        f"Kein fertiger Bewertungs-Satz für die Verzehrs-Lesart: {head!r}"
     )
 
 
