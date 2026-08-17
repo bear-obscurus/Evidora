@@ -87,6 +87,10 @@ jobs:
     #                                  bindet die im Claim GENANNTE Messgröße
     #                                  an ihren Wert, Headline unter dem
     #                                  400-Zeichen-Prompt-Cap — QA50D #321)
+    #   - test_parlgov_kabinett_vs_staatsoberhaupt (ParlGov: ein abgeloestes
+    #                                  Kabinett beendet nicht die Amtszeit des
+    #                                  Staatsoberhaupts; Wiederwahl ist kein
+    #                                  Amtsende — QA50D #327)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -151,6 +155,7 @@ jobs:
             tests/test_topic_packs_exact_only.py \
             tests/test_ueber_trigger_sweep.py \
             tests/test_fleisch_messgroessen_bindung.py \
+            tests/test_parlgov_kabinett_vs_staatsoberhaupt.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
