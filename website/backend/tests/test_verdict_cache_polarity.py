@@ -152,3 +152,38 @@ def test_negations_guard_unveraendert():
 def test_zahlen_guard_unveraendert():
     assert _polarity_mismatch("PISA-Schnitt 2018 über OECD",
                               "pisa-schnitt 2022 über oecd") is True
+
+
+# --- QA50D 2026-08-08: fehlende Antonym-Paare -------------------------
+# Im deployten Container reproduziert: bei diesen Paaren schwieg der
+# Guard, waehrend die Kontrollen (Operanden-Tausch, schaedlich/
+# freundlich) korrekt griffen. `_operands_swapped` fing sie nicht auf,
+# weil auf beiden Seiten dasselbe Vergleichsobjekt steht ("... als
+# Maenner") — es ist eben KEIN Rollentausch, sondern ein Richtungswechsel.
+# Produktionswirkung: wer die Gegenfrage stellt, bekommt das gegenteilige
+# Verdict mit voller Konfidenz, ohne dass die Pipeline laeuft.
+
+@pytest.mark.parametrize("a,b", [
+    ("Frauen gehen in Österreich häufiger zum Arzt als Männer.",
+     "Frauen gehen in Österreich seltener zum Arzt als Männer."),
+    ("Männer gehen öfter ins Stadion als Frauen.",
+     "Männer gehen seltener ins Stadion als Frauen."),
+    ("Der Winter war heuer wärmer als im Vorjahr.",
+     "Der Winter war heuer kälter als im Vorjahr."),
+    ("Die Wartezeit ist länger als früher.",
+     "Die Wartezeit ist kürzer als früher."),
+    ("Die Bevölkerung wird älter.", "Die Bevölkerung wird jünger."),
+    ("Diese Variante ist leichter als die andere.",
+     "Diese Variante ist schwerer als die andere."),
+])
+def test_qa50d_ergaenzte_antonyme_blocken(a, b):
+    assert _polarity_mismatch(a, b) is True, (a, b)
+
+
+def test_echte_paraphrase_wird_weiterhin_durchgelassen():
+    """Die entscheidende Gegenprobe: waere sie rot, haette die
+    Erweiterung den Cache still deaktiviert statt ihn zu schaerfen."""
+    assert _polarity_mismatch(
+        "Frauen gehen in Österreich häufiger zum Arzt als Männer.",
+        "Gehen Frauen in Österreich häufiger zum Arzt als Männer?"
+    ) is False
