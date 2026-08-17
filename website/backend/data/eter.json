@@ -435,14 +435,15 @@
         "ETER ist die EINZIGE Quelle, die institutionelle Mikrodaten EU-weit vergleichbar fuer alle Hochschulen liefert."
       ],
       "trigger_keywords": [
-        "eter", "european tertiary education register",
+        "eter-register", "eter register", " eter ", "eter-daten",
+        "european tertiary education register",
         "bologna-system", "bologna system", "bologna-prozess", "bologna prozess",
         "europaeische hochschulen", "europäische hochschulen",
         "hochschulen europa", "tertiaerbildung europa", "tertiärbildung europa",
         "forschungs-output europa", "forschungsoutput europa"
       ],
       "trigger_composite": [
-        ["europa", "eu", "europe", "europaeisch", "europäisch"],
+        ["europa", "eu-", " eu ", "die eu", "der eu", "europe", "europaeisch", "europäisch"],
         ["hochschulen", "universitaeten", "universitäten", "tertiaere", "tertiäre",
          "tertiaerbildung", "tertiärbildung", "studierende", "students"]
       ],
