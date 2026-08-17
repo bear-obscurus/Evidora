@@ -187,3 +187,50 @@ def test_echte_paraphrase_wird_weiterhin_durchgelassen():
         "Frauen gehen in Österreich häufiger zum Arzt als Männer.",
         "Gehen Frauen in Österreich häufiger zum Arzt als Männer?"
     ) is False
+
+
+# ---------------------------------------------------------------------------
+# Messgrößen-Paare (2026-08-17, bei der Live-Verifikation von #321 gemessen)
+#
+# Keine Richtungs-Antonyme, sondern zwei VERSCHIEDENE Größen für dasselbe
+# Thema. Log-Belege aus prod b85d1f1:
+#   SEMANTIC HIT cos=0.985  'Der Fleischverbrauch …' -> 'der fleischverzehr …'
+#   SEMANTIC HIT cos=0.963  'Österreich kommt beim Pro-Kopf-Verbrauch …'
+#                            -> 'der fleischverzehr …'
+# Beide Male lieferte der Cache das mostly_false des VERZEHRS-Claims auf die
+# korrekte VERBRAUCHS-Frage — invertiertes Verdict mit voller Konfidenz, ohne
+# dass die Pipeline lief.
+# ---------------------------------------------------------------------------
+
+@pytest.mark.parametrize("a,b", [
+    # Die zwei live gemessenen Paare, wörtlich
+    ("Der Fleischverzehr in Österreich liegt bei fast 65 Kilo pro Kopf im Jahr.",
+     "Der Fleischverbrauch in Österreich liegt bei fast 65 Kilo pro Kopf im Jahr."),
+    ("Der Fleischverzehr in Österreich liegt bei fast 65 Kilo pro Kopf im Jahr.",
+     "Österreich kommt beim Pro-Kopf-Verbrauch von Fleisch auf etwa 65 Kilogramm jährlich."),
+    # Dieselbe Klasse aus QA100 #44: Kapazität ist nicht Erzeugung
+    ("Die installierte Windkraft-Kapazität in Österreich steigt seit Jahren.",
+     "Die Windkraft-Erzeugung in Österreich steigt seit Jahren."),
+    ("Der Bruttolohn liegt in Österreich bei rund 3.500 Euro monatlich.",
+     "Der Nettolohn liegt in Österreich bei rund 3.500 Euro monatlich."),
+])
+def test_messgroessen_paare_blocken(a, b):
+    assert _polarity_mismatch(a, b) is True, (a, b)
+
+
+def test_messgroessen_paraphrase_trifft_weiter():
+    """Muss-Treffer-Kontrolle: dieselbe Messgröße, andere Formulierung —
+    der Cache muss weiter greifen, sonst hat die Schärfung ihn abgeschaltet."""
+    assert _polarity_mismatch(
+        "Der Fleischverzehr in Österreich liegt bei fast 65 Kilo pro Kopf im Jahr.",
+        "Liegt der Fleischverzehr in Österreich bei fast 65 Kilo pro Kopf und Jahr?"
+    ) is False
+
+
+def test_beide_messgroessen_auf_einer_seite_kein_mismatch():
+    """Ein Claim, der BEIDE Größen nennt, ist kein Gegensatz zum anderen —
+    sonst würde jede Nachfrage zum differenzierenden Fakt den Cache sprengen."""
+    assert _polarity_mismatch(
+        "Verbrauch und Verzehr von Fleisch in Österreich 2024",
+        "Fleischverbrauch und Fleischverzehr in Österreich 2024"
+    ) is False
