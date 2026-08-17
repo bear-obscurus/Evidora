@@ -358,6 +358,75 @@ def _parse_iso_date(d_iso: str | None) -> _dt.date | None:
         return None
 
 
+# Präsidentschafts-/Direktwahl-Typen (QA50D #327).
+#
+# Bei diesen Zeilen ist der ``winner`` das STAATSOBERHAUPT, das Feld
+# ``cabinet`` dagegen die Regierungschef-Ebene (Premierminister:in). In
+# semi-präsidentiellen Systemen wechseln beide Ämter UNABHÄNGIG: Frankreich
+# wählt Präsident:in (5 Jahre) und Nationalversammlung getrennt, das Kabinett
+# hängt an der Parlamentsmehrheit. Ein abgelöstes Kabinett sagt dort also
+# nichts über die Amtszeit des Staatsoberhaupts aus.
+_PRESIDENTIAL_ELECTION_TERMS = (
+    "présidentielle", "presidentielle",
+    "präsidentschaftswahl", "praesidentschaftswahl",
+    "präsidentenwahl", "praesidentenwahl",
+    "presidential",
+    "presidenziali", "presidenciales",
+)
+
+
+def _is_presidential_election(election: dict) -> bool:
+    """True wenn die Zeile eine Staatsoberhaupt-Wahl beschreibt."""
+    etype = (election.get("type") or "").lower()
+    return any(t in etype for t in _PRESIDENTIAL_ELECTION_TERMS)
+
+
+def _winner_person(election: dict) -> str:
+    """Personen-Teil des ``winner``-Feldes, Partei-Klammer entfernt.
+
+    "Emmanuel Macron (Renaissance)" → "emmanuel macron"
+    """
+    winner = (election.get("winner") or "").split("(")[0]
+    return " ".join(winner.lower().split())
+
+
+def _presidency_successor(
+    country_elections: list[dict],
+    current_election: dict,
+    today: _dt.date,
+) -> dict | None:
+    """Die nächste Präsidentschaftswahl mit ANDEREM Sieger, deren Amtsantritt
+    bereits vergangen ist — oder None.
+
+    ``None`` heißt: das in dieser Zeile gewählte Staatsoberhaupt ist laut
+    ParlGov nicht nachweislich abgelöst. Das deckt zwei Fälle ab, in denen
+    ein harter Marker falsch wäre:
+
+    1. Es gibt gar keine spätere Präsidentschaftswahl (der Amtsinhaber ist
+       noch im Amt) — der eigentliche #327-Fall.
+    2. Der Amtsinhaber wurde WIEDERGEWÄHLT (gleiche Person in der späteren
+       Zeile) — dieselbe Klasse wie die Wiedereintritts-Falle in
+       ``services/wikidata.py`` (Trump 2017+2025) und die Meloni-Regel.
+    """
+    current_start = _parse_iso_date(current_election.get("cabinet_start"))
+    if current_start is None:
+        return None
+    person = _winner_person(current_election)
+    best: dict | None = None
+    best_start: _dt.date | None = None
+    for e in country_elections:
+        if e is current_election or not _is_presidential_election(e):
+            continue
+        cs = _parse_iso_date(e.get("cabinet_start"))
+        if cs is None or cs <= current_start or cs > today:
+            continue
+        if person and _winner_person(e) == person:
+            continue  # wiedergewählt — kein Amtsende
+        if best_start is None or cs < best_start:
+            best, best_start = e, cs
+    return best
+
+
 def _is_cabinet_superseded(
     country_elections: list[dict],
     current_election: dict,
@@ -457,7 +526,70 @@ def _struct_marker_parlgov(
         f"es ist NICHT mehr die amtierende Regierung. Präsens-Aussagen "
         f"'X ist Regierungschef:in von {cname}' / 'Y-Koalition regiert "
         f"{cname}' sind für dieses historische Kabinett ohne neuere "
-        f"Quelle nicht mehr zutreffend. Roh-Daten: {base_headline}"
+        f"Quelle nicht mehr zutreffend. "
+        f"AMTS-ABGRENZUNG: Diese Aussage betrifft AUSSCHLIESSLICH das "
+        f"Kabinett/die Regierungschef-Ebene. Über die Amtszeit eines "
+        f"STAATSOBERHAUPTS (Präsident:in, Bundespräsident:in, Monarch:in) "
+        f"trifft ParlGov keine Aussage — dafür ist eine andere Quelle "
+        f"heranzuziehen. Roh-Daten: {base_headline}"
+    )
+
+
+def _presidency_ended_marker(
+    cname: str,
+    winner: str,
+    successor_election: dict,
+    today_iso: str,
+    base_headline: str,
+) -> str:
+    """STRUKTURELL FALSCH:-Prefix für ein nachweislich abgelöstes
+    STAATSOBERHAUPT — es gibt eine spätere Präsidentschaftswahl mit einem
+    anderen Sieger."""
+    succ_winner = successor_election.get("winner") or "k. A."
+    succ_year = successor_election.get("year")
+    succ_start = successor_election.get("cabinet_start") or "k. A."
+    year_str = f" {succ_year}" if succ_year is not None else ""
+    return (
+        f"STRUKTURELL FALSCH: '{winner}' wurde als Staatsoberhaupt von "
+        f"{cname} laut ParlGov durch '{succ_winner}' abgelöst "
+        f"(Präsidentschaftswahl{year_str}, Amtsantritt {succ_start}; "
+        f"heute: {today_iso}) — Präsens-Aussagen über diese Amtszeit sind "
+        f"ohne neuere Quelle nicht mehr zutreffend. Roh-Daten: "
+        f"{base_headline}"
+    )
+
+
+def _cabinet_change_note_presidential(
+    cname: str,
+    winner: str,
+    cabinet: str,
+    cabinet_start: str,
+    successor_start_iso: str,
+    today_iso: str,
+    base_headline: str,
+) -> str:
+    """Kabinettswechsel bei einer Präsidentschaftswahl-Zeile — deskriptiver
+    Hinweis OHNE STRUKTURELL-Prefix (QA50D #327).
+
+    Warum kein harter Marker: Der ``winner`` dieser Zeile ist das
+    Staatsoberhaupt, das ``cabinet`` die Regierungschef-Ebene. Ein
+    ``STRUKTURELL FALSCH:``-Prefix ist in Evidora eine Aussage über den
+    CLAIM ("strukturell falsch"), und welches der beiden Ämter der Claim
+    meint, weiß der Quellen-Service nicht. Der Kabinettswechsel selbst
+    bleibt vollständig im Text — ein Claim über die Regierung/den
+    Premierminister ist damit weiter widerlegbar, nur eben durch den
+    Wortlaut statt durch einen Verdict-Override.
+    """
+    return (
+        f"{base_headline} [AMTS-ABGRENZUNG — Kabinett ≠ Staatsoberhaupt: "
+        f"Das Kabinett '{cabinet}' (Regierungschef-Ebene, ab {cabinet_start}) "
+        f"wurde laut ParlGov spätestens am {successor_start_iso} abgelöst "
+        f"(heute: {today_iso}) und ist nicht mehr im Amt. Das betrifft NUR "
+        f"die Regierung. {cname} wählt Staatsoberhaupt und Parlament "
+        f"getrennt, die Amtszeiten laufen unabhängig voneinander — aus dem "
+        f"Kabinettswechsel folgt NICHT, dass '{winner}' nicht mehr "
+        f"Staatsoberhaupt ist. ParlGov weist hier keine Präsidenten-Amtszeit "
+        f"aus; dafür ist eine andere Quelle (z. B. Wikidata) maßgeblich.]"
     )
 
 
@@ -502,7 +634,36 @@ def _build_election_result(
         election, is_superseded, today, months=36,
     )
 
-    if is_superseded and successor_start_iso and cabinet_start:
+    # QA50D #327: Bei Präsidentschaftswahl-Zeilen ist der `winner` das
+    # STAATSOBERHAUPT, das `cabinet` die Regierungschef-Ebene. Ein
+    # abgelöstes Kabinett darf dort keinen harten Marker auf die Person
+    # setzen — dafür zählt nur eine spätere Präsidentschaftswahl mit
+    # anderem Sieger.
+    is_presidential = _is_presidential_election(election)
+    presidency_successor = (
+        _presidency_successor(country_elections, election, today)
+        if is_presidential else None
+    )
+
+    if is_presidential and presidency_successor is not None:
+        display_value = _presidency_ended_marker(
+            cname=cname,
+            winner=winner,
+            successor_election=presidency_successor,
+            today_iso=today_iso,
+            base_headline=headline,
+        )
+    elif is_presidential and is_superseded and successor_start_iso and cabinet_start:
+        display_value = _cabinet_change_note_presidential(
+            cname=cname,
+            winner=winner,
+            cabinet=cabinet,
+            cabinet_start=cabinet_start,
+            successor_start_iso=successor_start_iso,
+            today_iso=today_iso,
+            base_headline=headline,
+        )
+    elif is_superseded and successor_start_iso and cabinet_start:
         display_value = _struct_marker_parlgov(
             cname=cname,
             etype=etype,
