@@ -194,6 +194,7 @@ async def analyze_claim(claim_text: str) -> dict:
         f"<claim>{claim_text}</claim>"
     )
     content = await chat_completion(
+        kind="analysis",
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": wrapped},
@@ -265,6 +266,7 @@ async def analyze_claim(claim_text: str) -> dict:
     try:
         retry_content = await chat_completion(
             messages=retry_messages, timeout=60.0, json_mode=True,
+            kind="analysis_retry",
         )
         retry_result = _repair_json(retry_content)
     except Exception as e:

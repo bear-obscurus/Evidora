@@ -1167,11 +1167,13 @@ async def synthesize_results(
             content = await chat_completion_streaming(
                 messages=base_messages, on_chunk=on_chunk, timeout=300.0,
                 json_mode=True,  # Hebel #5: structured output, no code fences
+                kind="synthesis",
             )
         else:
             content = await chat_completion(
                 messages=base_messages, timeout=300.0,
                 json_mode=True,  # Hebel #5
+                kind="synthesis",
             )
         logger.info(f"Synthesizer responded ({len(content)} chars)")
 
@@ -1200,6 +1202,7 @@ async def synthesize_results(
             ]
             retry_content = await chat_completion(
                 messages=retry_messages, timeout=300.0, json_mode=True,
+                kind="synthesis_retry",
             )
             logger.info(
                 f"Synthesizer retry responded ({len(retry_content)} chars)"

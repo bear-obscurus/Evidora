@@ -91,6 +91,9 @@ jobs:
     #                                  Kabinett beendet nicht die Amtszeit des
     #                                  Staatsoberhaupts; Wiederwahl ist kein
     #                                  Amtsende — QA50D #327)
+    #   - test_llm_usage_logging      (Token-Verbrauch pro LLM-Call im Log;
+    #                                  Streaming-usage-Chunk traegt choices: []
+    #                                  und wurde vorher uebersprungen)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -156,6 +159,7 @@ jobs:
             tests/test_ueber_trigger_sweep.py \
             tests/test_fleisch_messgroessen_bindung.py \
             tests/test_parlgov_kabinett_vs_staatsoberhaupt.py \
+            tests/test_llm_usage_logging.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 

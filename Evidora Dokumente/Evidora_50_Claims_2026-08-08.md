@@ -230,27 +230,148 @@ Dieselbe Kaskaden-Blockade wie QA100 #34, nur mit der Schlussformel-Erkennung st
 als Blocker. **Die Klasse „über 9 Millionen" ist damit nicht geschlossen** — sie ist nur für die
 Phrasierungen geschlossen, in denen die Summary keine Schlussformel schreibt.
 
-### MITTEL 1 — Messgrößen-Verwechslung Verbrauch/Verzehr (#321), **deterministisch 0/6**
+### MITTEL 1 — Messgrößen-Verwechslung Verbrauch/Verzehr (#321), **deterministisch 0/6** — ✅ **GEFIXT (PRs #115 + #117, prod `df658a6`)**
 
 Ist `true@0.9`, Soll `mostly_false`. Die Summary zitiert den Cluster-A-Fakt vollständig korrekt
 („Verzehr 60,1 kg … Verbrauch 64,8 kg") und schließt dann: „Die Behauptung von ‚fast 65 Kilo'
 bezieht sich auf den **Verbrauch** und ist damit korrekt." Der Claim sagt aber explizit **Verzehr**.
 
-**Wurzel:** Der Fakt nennt bewusst beide Messgrößen (Cluster-A-Design), aber nichts bindet die im
-Claim genannte Messgröße an den zu vergleichenden Wert. Das LLM wählt die passende Zahl selbst.
-→ Die Lehre „der LLM soll lesen, nicht rechnen" gilt auch für die **Auswahl der Messgröße**.
+**Wurzel — bestätigt:** Der Fakt nennt bewusst beide Messgrößen (Cluster-A-Design), aber nichts
+bindet die im Claim genannte Messgröße an den zu vergleichenden Wert. Das LLM wählt die passende
+Zahl selbst. → Die Lehre „der LLM soll lesen, nicht rechnen" gilt auch für die **Auswahl der
+Messgröße**. Bei der Diagnose kam ein Nebenbefund dazu: die claim-zentrierte 400-Zeichen-
+Trunkierung schnitt den `display_value` exakt hinter „Verbrauch 64,8 kg/Kopf (+0,9 kg ggü. […]"
+ab — **60,1 war für einen Verzehrs-Claim gar nicht prompt-sichtbar**. Getragen hat den Fakt nur
+`indicator_name` (= Headline, 311 Zeichen, unter dem Cap).
 
-### MITTEL 2 — ParlGov-Kabinett wird mit dem Staatsoberhaupt verwechselt (#327)
+**Fix — Fakt-Ebene, nicht Override-Kaskade.** Weg (b) (generisches Muster in
+`verdict_postprocess`) wurde geprüft und **verworfen**: die Bindung „Messgröße im Claim →
+zugehöriger Wert" ist generisch nicht sauber erkennbar (die Summary argumentiert sogar
+ausdrücklich *über* die Verwechslung — „bezieht sich vermutlich auf den Verbrauch"), ein Muster
+müsste also die Zulässigkeit einer Umdeutung bewerten. In einer Kaskade, die auf 155 Durchläufe
+3 Overrides brachte (2 davon schädlich), ist das die falsche Stelle.
+
+**Zwei Iterationen, beide live erzwungen** — Iteration 1 wirkte, verfehlte das Ziel aber:
+
+| | prod `580fe0e` | nach PR #115 | nach PR #117 |
+|---|---|---|---|
+| „Der Fleischverzehr … fast 65 Kilo" | `true@0.9` | `mostly_true@0.9` | **`mostly_false@0.9`** ✅ |
+
+Iteration 1 setzte den Bindungs-Satz an Headline-Position 1. Die Summary zitierte ihn danach
+**wörtlich** als `evidence.finding` — und schloss trotzdem „bezieht sich vermutlich auf den
+Verbrauch". Die *Zuordnung* kam an, das *Verbot der wohlwollenden Umdeutung* nicht: es stand nur
+im kernsatz und wurde von derselben Trunkierung herausgeschnitten. Iteration 2 zog das Verbot in
+die Headline (394 Zeichen, unter dem Cap):
+
+> „… Eine VERZEHRS-Behauptung ist an 60,1 kg zu messen und **darf NICHT als Verbrauchs-Aussage
+> gelesen werden** — ‚Verzehr rund 65 kg' ist **unzutreffend**."
+
+**Live-Beleg (prod `b1b1e76`, Backend frisch neugestartet, alle vier echte Pipeline-Läufe mit
+`Synthesis verdict` + `STORED`, 0 × `SEMANTIC HIT`):**
+
+| Claim | Verdict | |
+|---|---|---|
+| „Der Fleischverzehr … fast 65 Kilo pro Kopf" | `mostly_false@0.9` | ✅ Ziel |
+| „Der Fleischverbrauch … fast 65 Kilo pro Kopf" | `true@0.9` | ✅ Gegenrichtung hält |
+| „Der Fleischkonsum … geht seit Jahren zurück" | `mostly_true@0.85` | ✅ Zweck des Fakts intakt |
+
+Suite `test_fleisch_messgroessen_bindung.py` (14 Cases), Gegenbeweis 4 Cases ohne Fix rot.
+Gepinnt wird u. a. die fragilste Eigenschaft: **Headline ≤ 400 Zeichen**, sonst verliert der
+Bindungs-Satz seine Garantie.
+
+### MITTEL 2 — ParlGov-Kabinett wird mit dem Staatsoberhaupt verwechselt (#327) — ✅ **GEFIXT (PR #116, prod `b85d1f1`)**
 
 Ist `false@0.9` (1/6), Soll `true`. Log: `Wikidata: 5 strukturierte Fakten geliefert für 'Emmanuel Macron' (politiker_amtszeit)`
 — der Wikidata-Pfad hat korrekt gefeuert. Die Inversion kommt aus **ParlGov**:
 „Laut ParlGov wurde das **Kabinett** unter Emmanuel Macron (Borne/Attal) … durch das Kabinett
 Barnier/Bayrou abgelöst. Aktuell regiert Macron Frankreich daher nicht mehr."
 
-**Wurzel:** ParlGov liefert **Kabinetts**-Daten (Regierungschef); der Claim zielt auf das
-**Staatsoberhaupt**. In Frankreich wechselt das Kabinett unabhängig vom Präsidenten. Das deutsche
-„regiert" ist zwischen beiden Rollen mehrdeutig, und es gibt keinen Guard, der Kabinetts-Ende von
-Amtszeit-Ende trennt. **Neue Klasse** — nicht die Orbán/Meloni-Kante (dort war Wikidata die Quelle).
+**Wurzel — bestätigt, aber schärfer als vermutet.** Die Vorab-Hypothese („kein Guard trennt
+Kabinetts-Ende von Amtszeit-Ende") trifft zu, benennt den Mechanismus aber zu weich. Lokal
+deterministisch reproduziert: die ParlGov-Zeile für die **Présidentielle 2022** trägt **zwei
+Ämter in einem Datensatz** — `winner` ist das Staatsoberhaupt (Emmanuel Macron, Amtszeit bis
+2027), `cabinet` die Regierungschef-Ebene (Borne / Attal). `_is_cabinet_superseded` fand die
+Législatives-Zeile 2024 und setzte den harten `STRUKTURELL FALSCH:`-Marker auf die **ganze
+Zeile** — also auch auf den Präsidenten. Es fehlte also nicht bloß ein Guard: der Marker sprach
+über die *Zeile* statt über das *Kabinett*. **Neue Klasse** — nicht die Orbán/Meloni-Kante
+(dort ist Wikidata die Quelle und es geht um End-Daten derselben Position).
+
+**Fix, strukturell und claim-unabhängig:** `_is_presidential_election()` erkennt
+Staatsoberhaupt-Wahl-Zeilen; auf ihnen entscheidet über den harten Marker nur noch
+`_presidency_successor()` — eine **spätere Präsidentschaftswahl mit anderem Sieger**.
+Wiederwahl derselben Person zählt nicht (Macron 2017→2022) — dieselbe Klasse wie die
+Wiedereintritts-Falle in `wikidata.py` (Trump 2017+2025). Ohne solchen Nachfolger: ein
+deskriptiver `AMTS-ABGRENZUNG`-Hinweis **ohne** Prefix, der den Kabinettswechsel vollständig
+benennt (Kabinetts-Claims bleiben widerlegbar), aber festhält, dass daraus nichts über das
+Staatsoberhaupt folgt. Der unveränderte Kabinetts-Pfad (DE/AT/UK/IT/ES) sagt jetzt ebenfalls
+ausdrücklich, dass er nichts über Staatsoberhäupter aussagt — die generische Hälfte des Fixes.
+
+**Live-Beleg (prod `b1b1e76`) — mit auslösender Konstellation:** In beiden Macron-Läufen zeigt
+das Log `Source 12 (ParlGov) returned 2 results`, die problematische Zeile war also im Prompt.
+Die Summary führt die neue Abgrenzung sichtbar aus:
+
+> „Emmanuel Macron ist seit Mai 2017 Staatspräsident Frankreichs und regiert das Land noch immer.
+> **Die Parlamentswahlen 2024 führten zu einem Kabinettswechsel, betrafen aber nicht seine
+> Position als Staatsoberhaupt.**"
+
+| Claim | Verdict | |
+|---|---|---|
+| „Emmanuel Macron regiert Frankreich noch immer." | `true@0.9` | ✅ Ziel |
+| „Emmanuel Macron ist Präsident Frankreichs." | `true@0.9` | ✅ |
+| „Viktor Orbán ist Ungarns Ministerpräsident." | `false@0.7` | ✅ Orbán-Klasse hält |
+| „Regiert die Ampel-Koalition noch in Deutschland?" | `false@0.95` | ✅ ParlGov liefert, harter Marker feuert |
+
+Suite `test_parlgov_kabinett_vs_staatsoberhaupt.py` (25 Cases). Gegenbeweis per Ad-hoc-Skript
+(der `git stash`-Weg scheiterte an einem Import-Fehler): **5 von 7 Verhaltens-Checks ohne den
+Fix rot**.
+
+### NEU MITTEL 9 — Verdict-Cache verwechselt Messgrößen-Paare — ✅ **GEFIXT (PR #118, prod `b1b1e76`)**
+
+Bei der Live-Verifikation von #321 aufgetaucht, **nicht** durch den Fix verursacht: die vom
+Auftrag geforderte Gegenrichtungs-Kontrolle war live gar nicht messbar, weil die Pipeline nie
+lief. Log aus prod `b85d1f1`:
+
+```
+verdict_cache: SEMANTIC HIT cos=0.985 for 'Der Fleischverbrauch in Österreich liegt bei fast 65 Kilo pr'
+  -> matched 'der fleischverzehr in österreich liegt bei fast 65 kilo pro '
+verdict_cache: SEMANTIC HIT cos=0.963 for 'Österreich kommt beim Pro-Kopf-Verbrauch von Fleisch auf etw'
+  -> matched 'der fleischverzehr in österreich liegt bei fast 65 kilo pro '
+```
+
+Beide Male bekam die **Verbrauchs**-Frage (bei der ~65 kg korrekt ist) das `mostly_false` des
+**Verzehrs**-Claims mit voller Konfidenz. Der zweite Treffer ist der entscheidende: auch eine
+deutlich umformulierte Gegenfrage traf noch — kein Phrasierungs-Artefakt, das Embedding trennt
+die beiden Größen schlicht nicht. Dieselbe Klasse wie PR #92, in nicht abgedeckter Variante:
+alle vier bestehenden Zweige von `_polarity_mismatch` schweigen (keine Negation, kein
+Operanden-Tausch, kein Richtungs-Antonym, und die Zahl ist auf beiden Seiten dieselbe — 65).
+
+Fix: neuer Zweig `_measure_mismatch` mit eigener Tabelle `_MEASURE_PAIRS`, bewusst getrennt von
+den Polaritäts-Antonymen (kein Richtungs-Wechsel, sondern ein Bezugsgrößen-Wechsel). Live
+gemessen ist nur `verbrauch`/`verzehr`; `kapazität`/`erzeugung` (QA100 #44) und `brutto`/`netto`
+sind konservativ mitgenommen — ein False-Positive kostet nur einen Cache-Miss.
+**Live nach dem Deploy: beide Claims echte Läufe, 0 × `SEMANTIC HIT`.**
+
+### NEU MITTEL 10 — Meloni-Regel greift nicht mehr ⛔ **OFFEN**
+
+Als Kontrolle für #327 mitgelaufen und dabei aufgefallen — ein eigener, **vorbestehender**
+Befund:
+
+> Claim „Giorgia Meloni ist Italiens Ministerpräsidentin." → `mostly_false@0.85`,
+> Summary: „Giorgia Meloni ist seit Oktober 2022 italienische Ministerpräsidentin, wie ParlGov
+> und Wikipedia übereinstimmend **bestätigen**."
+
+Log: `STRUKTURELL FALSCH override: LLM returned 'true' @ 0.9 despite STRUKTURELL FALSCH marker
+in sources (ratio 3/9 = 33%). Enforcing 'mostly_false' @ 0.85.` Das LLM lag also richtig, der
+L2-Override kippte es.
+
+**Nicht von PR #116 verursacht** — nachgewiesen, nicht vermutet: die ITA-Zeile 2022 ist die
+jüngste ihres Landes, bekommt also den *stale*-Soft-Caveat statt eines Markers. Gegen beide
+Fassungen von `parlgov.py` (vor `580fe0e` und nach `b85d1f1`) geprüft: in beiden `STRUKT: False`.
+Die drei Marker stammen aus den 5 **Wikidata**-Results, d. h. die Meloni-Regel (aktives
+Spitzenamt unterdrückt beendete Nebenämter, PR #88) unterdrückt sie nicht mehr — in QA100 war
+diese Kontrolle noch 6/6. Braucht eine eigene Diagnose der `active_positions`-Unterdrückung in
+`services/wikidata.py`; hier bewusst **nicht** mitgefixt, um den Auftrags-Scope nicht
+auszuweiten.
 
 ### MITTEL 3 — 14 deterministische Abdeckungslücken (0/6 in **allen** Läufen) — ✅ **GESCHLOSSEN (PR #109, prod `a9f454e`)**
 
@@ -493,8 +614,10 @@ exakt die Klasse, die PR #92 schließen sollte, in nicht abgedeckter Variante.
 | ~~MITTEL 1~~ | ✅ **ERLEDIGT (PR #109, prod `a9f454e`)** — Cluster B: 10 kuratierte Fakten, 14/14 Claims haben jetzt Daten (0 × `unverifiable`), 12/14 Verdicts korrekt, 0 Over-Trigger. | erledigt |
 | ~~NEU HOCH 4~~ | ✅ **ERLEDIGT (PR #110, prod `24c4f2d`)** — `"eu"` ⊂ „F**eu**erwehr" invertierte ein korrektes Verdict; Token eingehegt. | erledigt |
 | ~~NEU MITTEL 8~~ | ✅ **ERLEDIGT (PR #111)** — Pattern A's Attributions-Guard (#342): `_summary_refutes_superlative` prüft nur gegen eine Whitelist aus Ländern/Bundesländern — „Die meisten Getöteten entfielen auf **Landesstraßen B**" wird nicht als Fremd-Attribution erkannt. Analog zu G→G2 auf deutsche Substantiv-Großschreibung umstellen. | mittel, Neubau |
-| MITTEL 2 | **Messgrößen-Bindung** (#321): bei Fakten mit zwei Messgrößen den im Claim genannten Begriff auf den passenden Wert binden und als fertigen Satz rendern. | mittel |
-| MITTEL 3 | **ParlGov-Rollen-Guard** (#327): Kabinetts-Wechsel darf einen Staatsoberhaupt-Claim nicht widerlegen. | mittel |
+| ~~MITTEL 2~~ | ✅ **ERLEDIGT (PRs #115 + #117, prod `df658a6`)** — Messgrößen-Bindung (#321) als fertiger Satz an Headline-Position 1. Zwei Iterationen: die bloße Zuordnung brachte nur `true`→`mostly_true`; erst das ausdrückliche **Verbot der Umdeutung** in der Headline erreichte `mostly_false@0.9`. Gegenrichtung `true@0.9`. | erledigt |
+| ~~MITTEL 3~~ | ✅ **ERLEDIGT (PR #116, prod `b85d1f1`)** — ParlGov-Rollen-Guard (#327): Präsidentschaftswahl-Zeilen bekommen den harten Marker nur noch bei einer späteren Präsidentschaftswahl mit **anderem** Sieger; sonst deskriptive Amts-Abgrenzung. Macron `true@0.9` mit ParlGov im Prompt. | erledigt |
+| ~~NEU MITTEL 9~~ | ✅ **ERLEDIGT (PR #118, prod `b1b1e76`)** — **Verdict-Cache trennt Messgrößen-Paare.** Bei der #321-Verifikation aufgetaucht: `SEMANTIC HIT cos=0.985` zwischen Fleisch**verzehr**- und Fleisch**verbrauch**-Claim (und cos=0.963 auch bei stark umformulierter Gegenfrage) — die korrekte Verbrauchs-Frage bekam das `mostly_false` des Verzehrs-Claims mit voller Konfidenz. Neuer Zweig `_measure_mismatch` + `_MEASURE_PAIRS`. | erledigt |
+| **NEU MITTEL 10** | ⛔ **OFFEN — Meloni-Regel greift nicht mehr.** Kontroll-Claim „Giorgia Meloni ist Italiens Ministerpräsidentin." → `mostly_false@0.85`, obwohl die Summary den Claim **bestätigt**. Log: `STRUKTURELL FALSCH override: LLM returned 'true' @ 0.9 despite STRUKTURELL FALSCH marker in sources (ratio 3/9 = 33%)`. Die Marker kommen aus **Wikidata** (5 Results) — ParlGov emittiert für die ITA-Zeile nachweislich keinen (gegen die Fassungen vor und nach PR #116 geprüft, beide `STRUKT: False`). Also **nicht** durch die #327-Änderung verursacht, sondern eine seit QA100 (dort 6/6) eingetretene Drift der Meloni-Regel. Braucht eigene Diagnose der `active_positions`-Unterdrückung in `wikidata.py`. | mittel, Neubau |
 | ~~MITTEL 4~~ | ✅ **ERLEDIGT (PR #114, prod `580fe0e`)** — Über-Trigger-Sweep. Die genannten Quoten waren überwiegend ein Suffix-Artefakt; die vier **echten** Lecks (EIGE, ETER, AT-Neutralität, MedienTransparenz) sind geschlossen und live gegengeprüft. | erledigt |
 | **NEU MITTEL 7** | **`mem_limit` senken.** `docker-compose.yml` setzt `mem_limit: 4g` / `memswap_limit: 4g` für das Backend — der CX22-Host hat aber nur **3.814 MB**. Das cgroup-Limit liegt damit **über** dem physischen RAM und schützt den Host nicht: am 08.08. riss ein zweiter Python-Prozess im Container die ganze Maschine mit (SSH und nginx tot, Hard-Reboot nötig). Empfehlung `3g` — vorher den realen Cold-Start-Bedarf messen, sonst OOM-Kill während des Model-Prefetch. | klein, aber messpflichtig |
 | ~~MITTEL 5~~ | ✅ **ERLEDIGT (PR #112)** — Pattern K (im Container reproduziert): „schwachsinn"/„unfug"/„nonsens" ergänzen **und** das Kopula-Gate um den unbestimmten Artikel + Verstärker („totaler/purer/absoluter") erweitern — sonst fällt sogar „ist **ein** Schmarrn" durch, obwohl das Wort im Literal-Set steht. | klein |
