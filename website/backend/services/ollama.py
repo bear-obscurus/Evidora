@@ -86,9 +86,70 @@ async def check_llm_auth(force: bool = False) -> dict:
     return {"ok": result[0], "detail": result[1], "cached": False, "age_s": 0}
 
 
+# ---------------------------------------------------------------------------
+# Token-Verbrauch (2026-08-21)
+#
+# Warum: Bis hierher wurde `usage` aus der Mistral-Antwort NIRGENDS
+# ausgewertet — die Frage "was kostet ein Faktencheck" war nur aus dem
+# Abrechnungs-Chart rueckrechenbar (~4,5 Cent/Claim, geschaetzt). Damit war
+# auch unsichtbar, wie oft die Retry-Pfade in claim_analyzer/synthesizer
+# feuern, obwohl jeder Retry den betreffenden Call verdoppelt.
+#
+# Diese Zeile ist bewusst maschinell auswertbar (feste key=value-Paare), damit
+# Tagessummen ohne Zusatz-Tooling gehen:
+#   docker logs evidora-backend-1 | grep llm_usage | \
+#     awk -F'total_tokens=' '{s+=$2} END {print s}'
+#
+# Bewusst KEINE Euro-Schaetzung im Log: Preise aendern sich, ein
+# hartkodierter Faktor wuerde still veralten und faktisch falsche Zahlen
+# produzieren. Tokens sind die messbare Groesse, der Preis ist Politik.
+USAGE_LOG_PREFIX = "llm_usage"
+
+
+def _extract_usage(payload: dict | None) -> dict | None:
+    """``usage``-Block aus einer Antwort/einem Stream-Chunk, oder None.
+
+    Defensiv: Mistral liefert den Block bei Streams erst im LETZTEN Chunk,
+    und der traegt ``choices: []`` — genau der Fall, den die Stream-Schleife
+    vor diesem Commit uebersprungen hat.
+    """
+    if not isinstance(payload, dict):
+        return None
+    usage = payload.get("usage")
+    return usage if isinstance(usage, dict) else None
+
+
+def _log_usage(kind: str, model: str, usage: dict | None,
+               attempt: int = 1, streamed: bool = False) -> None:
+    """Eine Zeile pro LLM-Call. Enthaelt NIE Prompt-Inhalte oder Secrets —
+    nur Zaehler, Modellname und den Aufruf-Typ."""
+    stream_flag = "yes" if streamed else "no"
+    if not usage:
+        logger.info(
+            f"{USAGE_LOG_PREFIX} kind={kind} model={model} attempt={attempt} "
+            f"streamed={stream_flag} tokens=unbekannt"
+        )
+        return
+
+    def _num(key: str) -> int:
+        val = usage.get(key)
+        return val if isinstance(val, int) and val >= 0 else 0
+
+    prompt = _num("prompt_tokens")
+    completion = _num("completion_tokens")
+    total = _num("total_tokens") or (prompt + completion)
+    logger.info(
+        f"{USAGE_LOG_PREFIX} kind={kind} model={model} attempt={attempt} "
+        f"streamed={stream_flag} prompt_tokens={prompt} "
+        f"completion_tokens={completion} total_tokens={total}"
+    )
+
+
 async def _call_mistral_api(messages: list, timeout: float,
                              model: str | None = None,
-                             json_mode: bool = False) -> str:
+                             json_mode: bool = False,
+                             kind: str = "unknown",
+                             attempt: int = 1) -> str:
     """Call Mistral API (EU servers, Paris).
 
     Determinism (Bug 1 fix):
@@ -148,6 +209,8 @@ async def _call_mistral_api(messages: list, timeout: float,
         if "choices" not in payload or not payload["choices"]:
             logger.error(f"Mistral response missing 'choices': {str(payload)[:300]}")
             raise ValueError("Mistral returned response without 'choices' field")
+        _log_usage(kind, model or MISTRAL_MODEL, _extract_usage(payload),
+                   attempt=attempt, streamed=False)
         return payload["choices"][0]["message"]["content"]
 
 
@@ -170,7 +233,8 @@ async def _call_ollama(messages: list, timeout: float) -> str:
 
 async def chat_completion(messages: list, timeout: float = 90.0,
                           model: str | None = None,
-                          json_mode: bool = False) -> str:
+                          json_mode: bool = False,
+                          kind: str = "unknown") -> str:
     """Run a chat completion. ``model`` overrides MISTRAL_MODEL for this
     call only — used by the analyzer to optionally switch to a smaller
     model (e.g. mistral-tiny) for faster turnaround. Default keeps the
@@ -193,7 +257,10 @@ async def chat_completion(messages: list, timeout: float = 90.0,
     for attempt in range(1, MAX_RETRIES + 1):
         try:
             if use_cloud:
-                return await _call_mistral_api(messages, timeout, model=model, json_mode=json_mode)
+                return await _call_mistral_api(
+                    messages, timeout, model=model, json_mode=json_mode,
+                    kind=kind, attempt=attempt,
+                )
             else:
                 return await _call_ollama(messages, timeout)
         except (httpx.ConnectError, httpx.TimeoutException) as e:
@@ -227,6 +294,7 @@ async def chat_completion(messages: list, timeout: float = 90.0,
 
 async def _stream_mistral_api(
     messages: list, timeout: float, json_mode: bool = False,
+    kind: str = "unknown", attempt: int = 1,
 ) -> AsyncIterator[str]:
     """Stream content tokens from Mistral's chat completion endpoint.
 
@@ -260,16 +328,21 @@ async def _stream_mistral_api(
             if resp.status_code in (402, 429):
                 raise ValueError("MISTRAL_CREDITS_EXHAUSTED")
             resp.raise_for_status()
+            usage_seen: dict | None = None
             async for line in resp.aiter_lines():
                 if not line or not line.startswith("data: "):
                     continue
                 payload = line[6:].strip()
                 if payload == "[DONE]":
-                    return
+                    break
                 try:
                     chunk = json.loads(payload)
                 except json.JSONDecodeError:
                     continue
+                # WICHTIG: vor dem choices-Skip. Mistral liefert den
+                # usage-Block im LETZTEN Chunk, und der traegt
+                # choices: [] — die alte Schleife hat ihn verworfen.
+                usage_seen = _extract_usage(chunk) or usage_seen
                 choices = chunk.get("choices") or []
                 if not choices:
                     continue
@@ -277,6 +350,8 @@ async def _stream_mistral_api(
                 content = delta.get("content")
                 if content:
                     yield content
+            _log_usage(kind, MISTRAL_MODEL, usage_seen,
+                       attempt=attempt, streamed=True)
 
 
 async def chat_completion_streaming(
@@ -284,6 +359,7 @@ async def chat_completion_streaming(
     on_chunk: Callable[[str], Awaitable[None]] | None = None,
     timeout: float = 300.0,
     json_mode: bool = False,
+    kind: str = "unknown",
 ) -> str:
     """Streaming variant of ``chat_completion``.
 
@@ -307,7 +383,10 @@ async def chat_completion_streaming(
     last_error = None
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            async for chunk in _stream_mistral_api(messages, timeout, json_mode=json_mode):
+            async for chunk in _stream_mistral_api(
+                messages, timeout, json_mode=json_mode,
+                kind=kind, attempt=attempt,
+            ):
                 parts.append(chunk)
                 if on_chunk:
                     await on_chunk(chunk)
