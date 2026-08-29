@@ -139,7 +139,7 @@ LIMIT 5
             "regiert", "regieren", "regierungschef", "an der macht",
         ],
         "sparql": """
-SELECT ?person ?personLabel ?positionLabel ?start ?end ?partyLabel
+SELECT DISTINCT ?person ?personLabel ?positionLabel ?start ?end ?partyLabel
 WHERE {{
   VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
   ?person rdfs:label ?nameLabel.
@@ -159,7 +159,7 @@ LIMIT 5
         "name": "land_hauptstadt",
         "triggers": ["hauptstadt"],
         "sparql": """
-SELECT ?country ?countryLabel ?capital ?capitalLabel ?since
+SELECT DISTINCT ?country ?countryLabel ?capital ?capitalLabel ?since
 WHERE {{
   VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
   ?country rdfs:label ?nameLabel.
@@ -226,7 +226,7 @@ LIMIT 3
             "wann entstand", "seit wann gibt es",
         ],
         "sparql": """
-SELECT ?org ?orgLabel ?inception ?dissolved ?countryLabel ?founderLabel
+SELECT DISTINCT ?org ?orgLabel ?inception ?dissolved ?countryLabel ?founderLabel
 WHERE {{
   VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
   ?org rdfs:label ?nameLabel.
@@ -247,7 +247,7 @@ LIMIT 5
             "produziert", "regie", "regisseur", "regisseurin",
         ],
         "sparql": """
-SELECT ?work ?workLabel ?authorLabel ?directorLabel ?published
+SELECT DISTINCT ?work ?workLabel ?authorLabel ?directorLabel ?published
 WHERE {{
   VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
   ?work rdfs:label ?nameLabel.
@@ -266,7 +266,7 @@ LIMIT 5
             "entdeckt", "entdecker", "entdeckerin",
         ],
         "sparql": """
-SELECT ?thing ?thingLabel ?inventorLabel ?discovererLabel ?inceptionDate
+SELECT DISTINCT ?thing ?thingLabel ?inventorLabel ?discovererLabel ?inceptionDate
 WHERE {{
   VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
   ?thing rdfs:label ?nameLabel.
@@ -285,7 +285,7 @@ LIMIT 5
             "höchste gipfel", "höchster gipfel",
         ],
         "sparql": """
-SELECT ?mountain ?mountainLabel ?elevation ?countryLabel
+SELECT DISTINCT ?mountain ?mountainLabel ?elevation ?countryLabel
 WHERE {{
   VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
   ?country rdfs:label ?nameLabel.
@@ -306,7 +306,7 @@ LIMIT 3
             "längste flüsse",
         ],
         "sparql": """
-SELECT ?river ?riverLabel ?length ?countryLabel
+SELECT DISTINCT ?river ?riverLabel ?length ?countryLabel
 WHERE {{
   VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
   ?country rdfs:label ?nameLabel.
@@ -327,7 +327,7 @@ LIMIT 3
             "övp", "spö", "fpö", "grüne", "neos",
         ],
         "sparql": """
-SELECT ?person ?personLabel ?partyLabel ?start ?end
+SELECT DISTINCT ?person ?personLabel ?partyLabel ?start ?end
 WHERE {{
   VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
   ?person rdfs:label ?nameLabel.

@@ -104,6 +104,9 @@ jobs:
     #                                  SPEZIFISCHSTEN Amts-Stem; 'minister'
     #                                  ist Substring von 'ministerpraesident'
     #                                  — Meloni-Drift)
+    #   - test_wikidata_row_dedup     (Contract: mehrsprachiges VALUES-JOIN
+    #                                  braucht SELECT DISTINCT/GROUP BY,
+    #                                  sonst frisst LIMIT nur Dubletten)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -173,6 +176,7 @@ jobs:
             tests/test_retrieval_census.py \
             tests/test_abdeckung_drei_luecken.py \
             tests/test_wikidata_stem_spezifitaet.py \
+            tests/test_wikidata_row_dedup.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
