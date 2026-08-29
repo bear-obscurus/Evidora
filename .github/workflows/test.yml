@@ -100,6 +100,10 @@ jobs:
     #   - test_abdeckung_drei_luecken  (3 kuratierte Fakten aus dem Zensus-
     #                                  Schritt 1: Lebensmittelabfall-Bezugs-
     #                                  groesse, DMA/App-Marktplaetze, EP-Sitz)
+    #   - test_wikidata_stem_spezifitaet (Positions-Filter nimmt den
+    #                                  SPEZIFISCHSTEN Amts-Stem; 'minister'
+    #                                  ist Substring von 'ministerpraesident'
+    #                                  — Meloni-Drift)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -168,6 +172,7 @@ jobs:
             tests/test_llm_usage_logging.py \
             tests/test_retrieval_census.py \
             tests/test_abdeckung_drei_luecken.py \
+            tests/test_wikidata_stem_spezifitaet.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
