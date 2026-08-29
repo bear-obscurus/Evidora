@@ -468,6 +468,29 @@ def _claim_position_stems(claim: str) -> set[str]:
     return {stem for stem in _POSITION_CLAIM_STEMS if stem in lc}
 
 
+def _most_specific_stems(stems: set[str]) -> set[str]:
+    """Nur die spezifischsten Stems behalten: ein Stem, der echter Substring
+    eines anderen getroffenen Stems ist, fliegt raus.
+
+    Warum (Meloni-Drift 2026-08-29): Der Claim „Giorgia Meloni ist Italiens
+    MINISTERPRAESIDENTIN" trifft drei Stems — 'ministerpräsident',
+    'minister' UND 'präsident', weil alle drei Substrings des Claims sind.
+    Der Positions-Filter verodert sie, also passierte auch die Row
+    'Italian minister of Tourism' (Melonis beendetes 8-Tage-Interims-
+    Ministerium) den Filter — und brachte ihren STRUKTURELL-FALSCH-Marker
+    mit. Live gemessen: 3 von 5 Rows waren dieses beendete Ministerium,
+    der L2-Override sah Ratio 3/9 = 33 % und kippte ein korrektes
+    `true@0.9` auf `mostly_false@0.85`.
+
+    Der Claim nennt das SPEZIFISCHSTE Amt; danach ist zu filtern.
+    'ministerpräsident' schlaegt 'minister' und 'präsident'.
+    """
+    return {
+        s for s in stems
+        if not any(other != s and s in other for other in stems)
+    }
+
+
 def _row_position_matches_stems(
     row: dict, stems: set[str]
 ) -> bool:
@@ -1085,7 +1108,15 @@ async def _search_wikidata_entity(
     if template_name == "politiker_amtszeit":
         stems = _claim_position_stems(claim)
         if stems:
-            filtered = [r for r in rows if _row_position_matches_stems(r, stems)]
+            # Zuerst mit den SPEZIFISCHSTEN Stems filtern (Meloni-Drift):
+            # nur wenn das nichts uebrig laesst, auf die breite Menge
+            # zurueckfallen — so bleibt der bisherige Fallback-Charakter
+            # erhalten und kein Claim verliert seine Quelle.
+            eng = _most_specific_stems(stems)
+            filtered = [r for r in rows if _row_position_matches_stems(r, eng)]
+            if not filtered:
+                filtered = [r for r in rows
+                            if _row_position_matches_stems(r, stems)]
             if filtered:
                 rows = filtered
 
