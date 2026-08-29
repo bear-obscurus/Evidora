@@ -659,6 +659,62 @@
           ]
         ]
       ]
+    },
+    {
+      "id": "dma_app_marktplaetze_eu_2026",
+      "topic": "dma_app_marktplaetze_konsens",
+      "scope": "Digital Markets Act — alternative App-Marktplätze auf iPhone/iPad in der EU",
+      "year": 2026,
+      "source_url": "https://support.apple.com/de-at/118110",
+      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32022R1925",
+      "source_label": "Apple Support 'Alternative App-Anbieter' (de-at/118110) + Digital Markets Act, Verordnung (EU) 2022/1925 (EUR-Lex)",
+      "headline": "Zutreffend: Der Digital Markets Act (VO (EU) 2022/1925) verpflichtet als Gatekeeper benannte Plattformen, Vertrieb über Dritt-App-Marktplätze zu ermöglichen. Apple erlaubt seit iOS 17.4 (März 2024) alternative App-Marktplätze und den Bezug direkt von Entwickler-Websites — aber NUR, wenn die Apple-Account-Region ein EU-Land ist UND man sich in der EU aufhält.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'Wegen dem Digital Markets Act muss Apple in der EU alternative App-Stores erlauben' ist ZUTREFFEND. (1) Der Digital Markets Act (Verordnung (EU) 2022/1925) verpflichtet als Gatekeeper benannte Plattformen unter anderem dazu, die Installation und Nutzung von Software-Anwendungen und App-Stores Dritter zu ermöglichen. (2) Apple hat das mit iOS 17.4 im März 2024 umgesetzt: In der EU sind alternative App-Marktplätze installierbar, und Apps können auch direkt von Entwickler-Websites bezogen werden. (3) Wichtige Einschränkung: Es gilt nur für Nutzer:innen, deren Apple-Account-Region ein EU-Land ist UND die sich physisch in der EU befinden — außerhalb der EU bleibt der App Store der einzige Weg. Apple bietet inzwischen auch in Brasilien und Japan alternative Bezugswege an, dort mit eingeschränkterem Funktionsumfang. (4) 'Erlauben' heißt nicht 'ohne Bedingungen': Apple verlangt für Apps aus alternativen Quellen eine Notarisierung und knüpft den Betrieb eines Marktplatzes an eigene Anforderungen.",
+        "rechtsgrundlage": "Digital Markets Act — Verordnung (EU) 2022/1925",
+        "umsetzung_seit": "iOS 17.4 (März 2024)",
+        "geltungsbereich": "Apple-Account-Region in der EU UND Aufenthalt in der EU",
+        "context": "Betrifft iPhone und iPad in der EU; außerhalb der EU unverändert nur der App Store."
+      },
+      "context_notes": [
+        "Die Regelung knüpft an die Gatekeeper-Benennung nach dem DMA an, nicht an den Unternehmenssitz.",
+        "Apple hat die Konditionen für alternative Marktplätze seit 2024 mehrfach angepasst — Detailbedingungen können sich ändern, die Verpflichtung als solche nicht."
+      ],
+      "claim_phrasings_handled": [
+        "Wegen dem Digital Markets Act muss Apple in der EU alternative App-Stores erlauben",
+        "Darf man in der EU Apps außerhalb des App Store installieren",
+        "Digital Markets Act alternative App-Marktplätze iPhone",
+        "Sideloading iPhone EU erlaubt"
+      ],
+      "trigger_all": [
+        [
+          [
+            "digital markets act",
+            "digital-markets-act",
+            "app-store",
+            "app store",
+            "app-stores",
+            "app-marktplatz",
+            "app-marktplätze",
+            "app-marktplaetze",
+            "sideloading",
+            "side-loading"
+          ],
+          [
+            "apple",
+            "iphone",
+            "ipad",
+            "ios ",
+            " eu ",
+            "eu-",
+            "der eu",
+            "europäisch",
+            "europaeisch",
+            "alternative",
+            "alternativen"
+          ]
+        ]
+      ]
     }
   ]
 }

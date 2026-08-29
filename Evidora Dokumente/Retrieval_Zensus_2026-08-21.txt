@@ -1,0 +1,376 @@
+RETRIEVAL-ZENSUS — erstellt 2026-08-21 mit tools/retrieval_census.py
+Datengrundlage: QA50D (08.08., prod 3718f03) + QA100 (26.07., prod 4364245)
+Kosten: 0 EUR — reine Auswertung vorhandener QA-Rohdaten, kein LLM-Call.
+
+############################## QA50D (50 Claims) ##############################
+
+========================================================================
+RETRIEVAL-ZENSUS — 50 Claims
+========================================================================
+
+KLASSEN-BILANZ
+  A    0  (  0.0 %)  NICHTS ABGERUFEN (keine Quelle lieferte Treffer)
+  B   15  ( 30.0 %)  KEINE EVIDENZ + Verdict FALSCH
+  E   12  ( 24.0 %)  KEINE EVIDENZ, Verdict richtig (aus Vorwissen, nicht aus Quellen)
+  C   18  ( 36.0 %)  EVIDENZ + Verdict richtig
+  D    5  ( 10.0 %)  EVIDENZ, Verdict FALSCH  <- Verdict-Logik
+
+  Falsche Verdicts gesamt: 20 (40.0 %)
+    davon Retrieval-Ursache (A+B): 15  (75 % aller Fehler)
+    davon Verdict-Logik  (D):      5  (25 % aller Fehler)
+  Ohne jede Evidenz beantwortet (A+B+E): 27 (54.0 %)  — davon 12 zufaellig richtig
+
+------------------------------------------------------------------------
+KLASSE B — KEINE EVIDENZ + Verdict FALSCH
+------------------------------------------------------------------------
+  #303  unverifiable@0.1 (erwartet true)  quellen=4 evidenz=0
+      Bei der Feuerwehr in Österreich gibt es viel mehr Freiwillige als Berufsfeuerwehrleute.
+      Treffer von: Wirtschaftspolitik-Konsens (WIFO …, Landwirtschaft-Konsens (AGES + EF…, GDELT v2 GKG, Wikipedia
+  #304  unverifiable@0.1 (erwartet false)  quellen=4 evidenz=0
+      In Österreich gibt es mehr Berufsfeuerwehrleute als freiwillige Feuerwehrmitglieder.
+      Treffer von: Wirtschaftspolitik-Konsens (WIFO …, Landwirtschaft-Konsens (AGES + EF…, GDELT v2 GKG, Wikipedia
+  #305  unverifiable@0.1 (erwartet true)  quellen=6 evidenz=0
+      Dass Zugfahren gefährlicher ist als Autofahren, ist doch Schwachsinn.
+      Treffer von: OpenAlex, Semantic Scholar, CDC Newsroom, CDC Open Data
+  #306  unverifiable@0.1 (erwartet false)  quellen=5 evidenz=0
+      Dass Autofahren gefährlicher ist als Zugfahren, ist ja wohl Unsinn.
+      Treffer von: Semantic Scholar, CDC Newsroom, CDC Open Data, GDELT v2 GKG
+  #313  unverifiable@0.1 (erwartet true)  quellen=4 evidenz=0
+      In Österreich gibt es mehr als 2.000 Kilometer Autobahnen und Schnellstraßen.
+      Treffer von: ITF/OECD IRTAD, ETER Hochschulen, GDELT v2 GKG, Wikipedia
+  #319  unverifiable@0.1 (erwartet true)  quellen=7 evidenz=0
+      Österreich gibt mehr Geld für Pensionen aus als für Bildung.
+      Treffer von: DataCommons ClaimReview, IQS Bildung AT, Eurostat (EU), OECD
+  #317  unverifiable@0.1 (erwartet true)  quellen=13 evidenz=0
+      Frauen gehen in Österreich häufiger zum Arzt als Männer.
+      Treffer von: PubMed, DataCommons ClaimReview, WHO Hearing, Correctiv
+  #328  unverifiable@0.1 (erwartet true)  quellen=8 evidenz=0
+      Gibt es in Österreich eigentlich noch die Wehrpflicht?
+      Treffer von: DataCommons ClaimReview, Correctiv, EuGH+EGMR, VfGH + VwGH Schlüsselerkenntnisse
+  #337  unverifiable@0.1 (erwartet false)  quellen=4 evidenz=0
+      Der Grundwehrdienst in Österreich dauert acht Monate.
+      Treffer von: DataCommons ClaimReview, VfGH + VwGH Schlüsselerkenntnisse, GDELT v2 GKG, Wikipedia
+  #340  unverifiable@0.1 (erwartet false)  quellen=10 evidenz=0
+      In Österreich sitzen mehr Leute in Untersuchungshaft als im Strafvollzug.
+      Treffer von: DataCommons ClaimReview, Eurostat (EU), EuGH+EGMR, VfGH + VwGH Schlüsselerkenntnisse
+  #341  unverifiable@0.1 (erwartet true)  quellen=7 evidenz=0
+      Die Anzeigen wegen Cybercrime sind in Österreich in den letzten Jahren stark gestiegen.
+      Treffer von: Eurostat (EU), BKA Polizeiliche Kriminalstatistik, MedienTransparenz (RTR/KommAustri…, Tech-/KI-Faktencheck (NIST + EFF …
+  #342  unverifiable@0.1 (erwartet false)  quellen=6 evidenz=0
+      Die meisten tödlichen Verkehrsunfälle in Österreich passieren auf der Autobahn.
+      Treffer von: DataCommons ClaimReview, ITF/OECD IRTAD, Eurostat (EU), Statistik Austria
+  #343  unverifiable@0.1 (erwartet true)  quellen=10 evidenz=0
+      2024 sind auf Österreichs Straßen weniger als 400 Menschen gestorben.
+      Treffer von: DataCommons ClaimReview, ITF/OECD IRTAD, Eurostat (EU), Statistik Austria
+  #345  unverifiable@0.1 (erwartet false)  quellen=7 evidenz=0
+      Ein Ei hat mehr Eiweiß als 100 Gramm Magertopfen.
+      Treffer von: EFSA, OpenAlex, Europe PMC, Semantic Scholar
+  #350  unverifiable@0.1 (erwartet mostly_false)  quellen=3 evidenz=0
+      Deutsch ist in Österreich die einzige offizielle Amtssprache.
+      Treffer von: Wirtschaftspolitik-Konsens (WIFO …, GDELT v2 GKG, Wikipedia
+
+------------------------------------------------------------------------
+KLASSE E — KEINE EVIDENZ, Verdict richtig (aus Vorwissen, nicht aus Quellen)
+------------------------------------------------------------------------
+  #314  true@0.85 (erwartet true)  quellen=12 evidenz=0
+      Hat Wien mittlerweile mehr als 2 Millionen Einwohner?
+      Treffer von: DataCommons ClaimReview, IQS Bildung AT, AMS via WIFO, Eurostat (EU)
+  #315  false@0.85 (erwartet false)  quellen=9 evidenz=0
+      Österreichs Steuer- und Abgabenquote liegt über 50 Prozent.
+      Treffer von: DataCommons ClaimReview, AMS via WIFO, RIS, AT-Faktencheck-RSS
+  #324  true@0.85 (erwartet true)  quellen=4 evidenz=0
+      Österreich hat bei Olympia in Paris mehr Goldmedaillen geholt als in Tokio.
+      Treffer von: DataCommons ClaimReview, Sport-/Fitness-Mythen (ACSM + Coc…, GDELT v2 GKG, Wikipedia
+  #320  false@0.7 (erwartet false)  quellen=7 evidenz=0
+      Österreich gibt mehr Geld für Bildung aus als für Pensionen.
+      Treffer von: DataCommons ClaimReview, IQS Bildung AT, Eurostat (EU), OECD
+  #326  true@0.85 (erwartet true)  quellen=6 evidenz=0
+      Die Einwohnerzahl von Linz liegt bei rund 210.000.
+      Treffer von: Eurostat (EU), Landwirtschaft-Konsens (AGES + EF…, OurWorldInData (CC-BY 4.0), Wikidata SPARQL
+  #325  true@0.85 (erwartet true)  quellen=7 evidenz=0
+      Hat Graz eigentlich mehr Einwohner als Klagenfurt?
+      Treffer von: Eurostat (EU), RKI SurvStat, DESTATIS — Statistisches Bundesam…, Landwirtschaft-Konsens (AGES + EF…
+  #330  mixed@0.5 (erwartet mixed)  quellen=3 evidenz=0
+      Die Grünen sind in Österreich eine linksextreme Partei.
+      Treffer von: DataCommons ClaimReview, GDELT v2 GKG, Wikipedia
+  #331  unverifiable@0.1 (erwartet unverifiable)  quellen=2 evidenz=0
+      Die ÖVP ist die korrupteste Partei Österreichs.
+      Treffer von: GDELT v2 GKG, Wikipedia
+  #338  false@0.85 (erwartet mostly_false)  quellen=3 evidenz=0
+      Wegen der DSGVO muss jede Website ein Cookie-Banner haben.
+      Treffer von: Landwirtschaft-Konsens (AGES + EF…, GDELT v2 GKG, Wikipedia
+  #339  true@0.85 (erwartet true)  quellen=3 evidenz=0
+      Die DSGVO sieht Strafen von bis zu 4 Prozent des weltweiten Jahresumsatzes vor.
+      Treffer von: DESTATIS — Statistisches Bundesam…, Landwirtschaft-Konsens (AGES + EF…, Wikipedia
+  #349  true@0.85 (erwartet true)  quellen=9 evidenz=0
+      Österreich ist gemeinsam mit Schweden und Finnland 1995 der EU beigetreten.
+      Treffer von: DataCommons ClaimReview, GeoNames, Eurobarometer (Europäische Kommis…, Gleichstellung-Konsens (EIGE + Eu…
+  #348  false@0.7 (erwartet false)  quellen=2 evidenz=0
+      Im Weltraum gibt es keine Schwerkraft, deshalb schweben die Astronauten.
+      Treffer von: Correctiv, Wikipedia
+
+------------------------------------------------------------------------
+KLASSE D — EVIDENZ, Verdict FALSCH  <- Verdict-Logik
+------------------------------------------------------------------------
+  #309  false@0.95 (erwartet true)  quellen=13 evidenz=2
+      Sind wir in Österreich eigentlich schon über 9 Millionen Leute?
+  #311  false@0.95 (erwartet true)  quellen=10 evidenz=2
+      Die Inflation in Österreich liegt nicht über 10 Prozent.
+  #321  true@0.9 (erwartet mostly_false)  quellen=7 evidenz=1
+      Der Fleischverzehr in Österreich liegt bei fast 65 Kilo pro Kopf im Jahr.
+  #316  true@0.95 (erwartet false)  quellen=11 evidenz=3
+      In Österreich liegt die Jugendarbeitslosigkeit über 20 Prozent.
+  #327  false@0.9 (erwartet true)  quellen=5 evidenz=2
+      Emmanuel Macron regiert Frankreich noch immer.
+
+------------------------------------------------------------------------
+QUELLEN-TREFFERQUOTE (Ueber-Trigger-Detektor)
+------------------------------------------------------------------------
+   50/50  (100.0 %)  Wikipedia
+   45/50  ( 90.0 %)  GDELT v2 GKG
+   29/50  ( 58.0 %)  DataCommons ClaimReview
+   19/50  ( 38.0 %)  DESTATIS — Statistisches Bundesamt Deutschland
+   17/50  ( 34.0 %)  OECD Health (DACH)
+   16/50  ( 32.0 %)  Eurostat (EU)
+   15/50  ( 30.0 %)  Landwirtschaft-Konsens (AGES + EFSA + IARC + …
+   13/50  ( 26.0 %)  Correctiv
+   12/50  ( 24.0 %)  Semantic Scholar
+   12/50  ( 24.0 %)  CDC Newsroom
+   10/50  ( 20.0 %)  Wirtschaftspolitik-Konsens (WIFO + IHS + DIW …
+   10/50  ( 20.0 %)  OpenAlex
+    8/50  ( 16.0 %)  PubMed
+    7/50  ( 14.0 %)  Statistik Austria
+    7/50  ( 14.0 %)  Europe PMC
+
+------------------------------------------------------------------------
+TRIGGER FEUERTE, QUELLE LIEFERTE NICHTS
+------------------------------------------------------------------------
+  Gates importiert: 137 / 137 erkannte Dispatch-Punkte (von 191 im Code)
+  (hohe Werte hier = Trigger ok, aber die Quelle antwortet nicht —
+   genau dort saesse ein Sprach-/Query-Problem)
+   50/50  (100.0 %)  Mimikama
+   49/50  ( 98.0 %)  AT-Faktencheck-RSS
+    4/50  (  8.0 %)  Sicherheitspolitik-Konsens
+    4/50  (  8.0 %)  Verkehrssicherheit-Konsens
+    2/50  (  4.0 %)  Sozialstaat-Konsens
+    2/50  (  4.0 %)  OSM Nominatim
+    2/50  (  4.0 %)  Sport/Fitness-Mythen
+    2/50  (  4.0 %)  Recht/Rechtsmythen
+    1/50  (  2.0 %)  Gesundheits-Autoritaeten
+    1/50  (  2.0 %)  Verkehr AT
+    1/50  (  2.0 %)  ParlGov
+    1/50  (  2.0 %)  Eurostat Crime + DACH PKS
+    1/50  (  2.0 %)  BKA PKS
+    1/50  (  2.0 %)  FAOSTAT
+    1/50  (  2.0 %)  DBnomics
+
+############################## QA100 (100 Claims) #############################
+
+========================================================================
+RETRIEVAL-ZENSUS — 100 Claims
+========================================================================
+
+KLASSEN-BILANZ
+  A    0  (  0.0 %)  NICHTS ABGERUFEN (keine Quelle lieferte Treffer)
+  B   23  ( 23.0 %)  KEINE EVIDENZ + Verdict FALSCH
+  E   19  ( 19.0 %)  KEINE EVIDENZ, Verdict richtig (aus Vorwissen, nicht aus Quellen)
+  C   51  ( 51.0 %)  EVIDENZ + Verdict richtig
+  D    7  (  7.0 %)  EVIDENZ, Verdict FALSCH  <- Verdict-Logik
+
+  Falsche Verdicts gesamt: 30 (30.0 %)
+    davon Retrieval-Ursache (A+B): 23  (77 % aller Fehler)
+    davon Verdict-Logik  (D):      7  (23 % aller Fehler)
+  Ohne jede Evidenz beantwortet (A+B+E): 42 (42.0 %)  — davon 19 zufaellig richtig
+
+------------------------------------------------------------------------
+KLASSE B — KEINE EVIDENZ + Verdict FALSCH
+------------------------------------------------------------------------
+  #9  unverifiable@0.1 (erwartet true)  quellen=16 evidenz=0
+      China stößt mehr als doppelt so viel CO2 aus wie die USA
+      Treffer von: PubMed, DataCommons ClaimReview, Copernicus, EUvsDisinfo
+  #29  true@0.85 (erwartet mostly_false)  quellen=15 evidenz=0
+      Österreich und Deutschland haben ungefähr die gleiche Steuerquote
+      Treffer von: DataCommons ClaimReview, AMS via WIFO, RIS, AT-Faktencheck-RSS
+  #30  unverifiable@0.1 (erwartet mixed)  quellen=3 evidenz=0
+      Der EuGH hat entschieden, dass Kopftuchverbote am Arbeitsplatz grundsätzlich erlaubt sin
+      Treffer von: VfGH + VwGH Schlüsselerkenntnisse, GDELT v2 GKG, Wikipedia
+  #33  mostly_false@0.85 (erwartet true)  quellen=5 evidenz=0
+      Der VfGH hat das Kopftuchverbot an Volksschulen aufgehoben
+      Treffer von: Bildung (TIMSS/PIRLS/PISA + Lehre…, VfGH + VwGH Schlüsselerkenntnisse, Sozialstaat-Konsens (Statistik Au…, GDELT v2 GKG
+  #49  unverifiable@0.1 (erwartet true)  quellen=10 evidenz=0
+      In Österreich arbeiten viel mehr Frauen in Teilzeit als Männer
+      Treffer von: DataCommons ClaimReview, Statistik Austria, AT-Faktencheck-RSS, Correctiv
+  #46  unverifiable@0.1 (erwartet false)  quellen=12 evidenz=0
+      Die Windparks in der Nordsee liefern inzwischen mehr Strom als alle deutschen Kohlekraft
+      Treffer von: PubMed, DataCommons ClaimReview, Eurostat (EU), EEA
+  #55  unverifiable@0.1 (erwartet mostly_false)  quellen=10 evidenz=0
+      Die Studiengebühren in Österreich sind abgeschafft
+      Treffer von: Eurostat (EU), Correctiv, MedienTransparenz (RTR/KommAustri…, Bildung (TIMSS/PIRLS/PISA + Lehre…
+  #58  false@0.85 (erwartet mixed)  quellen=5 evidenz=0
+      Das EU-Parlament hat seinen Sitz in Brüssel
+      Treffer von: DataCommons ClaimReview, Correctiv, EuGH+EGMR, Eurobarometer (Europäische Kommis…
+  #56  unverifiable@0.1 (erwartet false)  quellen=4 evidenz=0
+      Finnland hat immer noch die besten Lese-Ergebnisse in Europa
+      Treffer von: Correctiv, Bildung (TIMSS/PIRLS/PISA + Lehre…, UN Comtrade, Wikipedia
+  #61  unverifiable@0.1 (erwartet true)  quellen=4 evidenz=0
+      Ein einzelnes EU-Land kann ein Sanktionspaket alleine blockieren
+      Treffer von: EUvsDisinfo, EuGH+EGMR, Eurobarometer (Europäische Kommis…, Wikipedia
+  #65  unverifiable@0.1 (erwartet true)  quellen=2 evidenz=0
+      Wegen dem Digital Markets Act muss Apple in der EU alternative App-Stores zulassen
+      Treffer von: EuGH+EGMR, Wikipedia
+  #68  unverifiable@0.1 (erwartet false)  quellen=6 evidenz=0
+      Österreich hat flächendeckend Glasfaser
+      Treffer von: DataCommons ClaimReview, Energy-Charts (Fraunhofer) + APG, MedienTransparenz (RTR/KommAustri…, Bildung (TIMSS/PIRLS/PISA + Lehre…
+  #71  unverifiable@0.1 (erwartet false)  quellen=10 evidenz=0
+      Die Hälfte aller Lebensmittel in Österreich wird weggeworfen
+      Treffer von: PubMed, EFSA, FactCheck.org, MedienTransparenz (RTR/KommAustri…
+  #70  unverifiable@0.1 (erwartet false)  quellen=4 evidenz=0
+      In Österreich gibt es mehr Rinder als Schweine
+      Treffer von: DataCommons ClaimReview, Landwirtschaft-Konsens (AGES + EF…, Wikidata SPARQL, Wikipedia
+  #72  unverifiable@0.15 (erwartet mixed)  quellen=10 evidenz=0
+      Der Fleischkonsum in Österreich geht seit Jahren zurück
+      Treffer von: PubMed, RKI SurvStat, OECD Health (DACH), Wohnen Österreich (OeNB + EU-SILC)
+  #73  unverifiable@0.1 (erwartet mostly_true)  quellen=13 evidenz=0
+      Die Winterverluste bei Bienenvölkern in Österreich liegen regelmäßig über 20 Prozent
+      Treffer von: PubMed, DataCommons ClaimReview, EFSA, Eurostat (EU)
+  #77  unverifiable@0.1 (erwartet true)  quellen=8 evidenz=0
+      Die HPV-Impfung ist in Österreich bis 21 gratis
+      Treffer von: PubMed, DataCommons ClaimReview, AWMF Leitlinien, ECDC
+  #80  unverifiable@0.1 (erwartet true)  quellen=4 evidenz=0
+      Ist der Islam in Österreich eine gesetzlich anerkannte Religionsgemeinschaft?
+      Treffer von: DataCommons ClaimReview, RIS, Correctiv, Wikipedia
+  #81  unverifiable@0.1 (erwartet mostly_false)  quellen=1 evidenz=0
+      Mehr als die Hälfte der Österreicher ist katholisch
+      Treffer von: Wikipedia
+  #84  unverifiable@0.1 (erwartet false)  quellen=3 evidenz=0
+      Österreich hat noch nie ein WM-Halbfinale im Fußball erreicht
+      Treffer von: Correctiv, Bildung (TIMSS/PIRLS/PISA + Lehre…, Wikipedia
+  #86  unverifiable@0.1 (erwartet false)  quellen=7 evidenz=0
+      Bei Olympia 2024 in Paris hat Österreich mehr Medaillen geholt als in Tokio
+      Treffer von: DataCommons ClaimReview, Bellingcat, Energy-Charts (Fraunhofer) + APG, MedienTransparenz (RTR/KommAustri…
+  #83  unverifiable@0.1 (erwartet true)  quellen=2 evidenz=0
+      In Wien gibt es mehr Muslime als Protestanten
+      Treffer von: DataCommons ClaimReview, Wikipedia
+  #96  unverifiable@0.1 (erwartet true)  quellen=12 evidenz=0
+      Laut Weltbank ist Österreich ein Hocheinkommensland
+      Treffer von: DataCommons ClaimReview, OECD, AT-Faktencheck-RSS, Eurostat Crime + DACH PKS
+
+------------------------------------------------------------------------
+KLASSE E — KEINE EVIDENZ, Verdict richtig (aus Vorwissen, nicht aus Quellen)
+------------------------------------------------------------------------
+  #12  unverifiable@0.1 (erwartet true)  quellen=10 evidenz=0
+      Die Zahl der E-Autos in Österreich hat sich seit 2020 mehr als verdreifacht
+      Treffer von: ITF/OECD IRTAD, Eurostat (EU), Energy-Charts (Fraunhofer) + APG, MedienTransparenz (RTR/KommAustri…
+  #13  true@0.85 (erwartet true)  quellen=7 evidenz=0
+      Wien ist die zweitgrößte deutschsprachige Stadt
+      Treffer von: DataCommons ClaimReview, Eurostat (EU), Energy-Charts (Fraunhofer) + APG, Bildung (TIMSS/PIRLS/PISA + Lehre…
+  #17  true@0.7 (erwartet true)  quellen=5 evidenz=0
+      Wer regiert eigentlich in Polen — ist Donald Tusk noch Premierminister?
+      Treffer von: DataCommons ClaimReview, Correctiv, Wikidata SPARQL, GDELT v2 GKG
+  #16  false@0.85 (erwartet mostly_false)  quellen=16 evidenz=0
+      Österreich hat die dritthöchste Abgabenquote in der EU
+      Treffer von: DataCommons ClaimReview, AMS via WIFO, RIS, AT-Faktencheck-RSS
+  #22  true@0.7 (erwartet true)  quellen=6 evidenz=0
+      Mark Rutte ist NATO-Generalsekretär
+      Treffer von: Europäische Faktenchecker, EUvsDisinfo, SIPRI, EIGE
+  #20  true@0.7 (erwartet true)  quellen=6 evidenz=0
+      Emmanuel Macron ist französischer Staatspräsident
+      Treffer von: DataCommons ClaimReview, Correctiv, ParlGov, Wikidata SPARQL
+  #32  true@0.85 (erwartet true)  quellen=4 evidenz=0
+      Die DSGVO gilt auch für Firmen außerhalb der EU, wenn sie Daten von EU-Bürgern verarbeit
+      Treffer von: DataCommons ClaimReview, EuGH+EGMR, Eurobarometer (Europäische Kommis…, Wikipedia
+  #53  true@0.7 (erwartet true)  quellen=5 evidenz=0
+      Österreich schneidet bei PISA in Mathematik besser ab als der OECD-Schnitt
+      Treffer von: IQS Bildung AT, AMS via WIFO, OECD, Bildung (TIMSS/PIRLS/PISA + Lehre…
+  #54  false@0.85 (erwartet false)  quellen=10 evidenz=0
+      Mehr als die Hälfte der österreichischen Schüler geht ins Gymnasium
+      Treffer von: DataCommons ClaimReview, ETER Hochschulen, IQS Bildung AT, Eurostat (EU)
+  #63  unverifiable@0.1 (erwartet mixed)  quellen=7 evidenz=0
+      Braucht ChatGPT wirklich so viel Strom wie eine ganze Kleinstadt?
+      Treffer von: Energy-Charts (Fraunhofer) + APG, OpenAlex, Europe PMC, Semantic Scholar
+  #66  unverifiable@0.1 (erwartet unverifiable)  quellen=5 evidenz=0
+      Open-Source-KI-Modelle sind grundsätzlich sicherer als kommerzielle
+      Treffer von: Bellingcat, FactCheck.org, CDC Newsroom, CDC Open Data
+  #85  true@0.55 (erwartet true)  quellen=1 evidenz=0
+      Marcel Hirscher hat acht Mal den Gesamtweltcup gewonnen
+      Treffer von: Wikipedia
+  #88  true@0.85 (erwartet true)  quellen=4 evidenz=0
+      Der Großglockner ist mit über 3.700 Metern der höchste Berg Österreichs
+      Treffer von: ETER Hochschulen, Geographie-/Reise-Mythen (NASA + …, UN Comtrade, Wikipedia
+  #87  unverifiable@0.1 (erwartet mixed)  quellen=1 evidenz=0
+      Skifahren ist die beliebteste Sportart der Österreicher
+      Treffer von: Wikipedia
+  #91  false@0.7 (erwartet false)  quellen=2 evidenz=0
+      Der Bodensee grenzt an vier Länder
+      Treffer von: Correctiv, Wikipedia
+  #92  false@0.7 (erwartet false)  quellen=2 evidenz=0
+      Salzburg ist die zweitgrößte Stadt Österreichs
+      Treffer von: Eurostat (EU), Wikipedia
+  #98  mixed@0.5 (erwartet mixed)  quellen=1 evidenz=0
+      Die FPÖ ist eine rechtsextreme Partei
+      Treffer von: Wikipedia
+  #99  unverifiable@0.1 (erwartet unverifiable)  quellen=2 evidenz=0
+      Die Grünen sind die einzige Partei, die Klimaschutz wirklich ernst nimmt
+      Treffer von: Correctiv, Wikipedia
+  #95  true@0.85 (erwartet mixed)  quellen=21 evidenz=0
+      Die Lebenserwartung in Österreich liegt über 82 Jahren
+      Treffer von: PubMed, DataCommons ClaimReview, WHO, WHO Hearing
+
+------------------------------------------------------------------------
+KLASSE D — EVIDENZ, Verdict FALSCH  <- Verdict-Logik
+------------------------------------------------------------------------
+  #8  false@0.9 (erwartet true)  quellen=14 evidenz=1
+      In Österreich sind mehr als 75 Prozent der 20- bis 64-Jährigen erwerbstätig
+  #10  unverifiable@0.1 (erwartet false)  quellen=13 evidenz=1
+      Strom ist in Deutschland mehr als doppelt so teuer wie in Frankreich
+  #24  false@0.95 (erwartet true)  quellen=13 evidenz=3
+      Dass Kernkraft klimaschädlicher wäre als Kohle, ist ja wohl Unsinn
+  #44  false@0.9 (erwartet true)  quellen=9 evidenz=1
+      Windkraft liefert in Österreich mehr Strom als Photovoltaik
+  #52  true@0.9 (erwartet mixed)  quellen=18 evidenz=2
+      Der Fachkräftemangel in Österreich hat sich 2024 weiter verschärft
+  #57  false@0.9 (erwartet true)  quellen=11 evidenz=1
+      In Österreich gilt die Schulpflicht bis 15
+  #90  false@0.9 (erwartet true)  quellen=14 evidenz=1
+      Wien hat mehr Einwohner als Hamburg
+
+------------------------------------------------------------------------
+QUELLEN-TREFFERQUOTE (Ueber-Trigger-Detektor)
+------------------------------------------------------------------------
+   99/100  ( 99.0 %)  Wikipedia
+   59/100  ( 59.0 %)  DataCommons ClaimReview
+   42/100  ( 42.0 %)  GDELT v2 GKG
+   37/100  ( 37.0 %)  MedienTransparenz (RTR/KommAustria)
+   35/100  ( 35.0 %)  Energy-Charts (Fraunhofer) + APG
+   34/100  ( 34.0 %)  Eurostat (EU)
+   34/100  ( 34.0 %)  Bildung (TIMSS/PIRLS/PISA + Lehrer-Bedarf)
+   32/100  ( 32.0 %)  Correctiv
+   32/100  ( 32.0 %)  Verkehr Österreich (ÖBB + UBA + KlimaTicket)
+   32/100  ( 32.0 %)  CDC Newsroom
+   28/100  ( 28.0 %)  DESTATIS — Statistisches Bundesamt Deutschland
+   27/100  ( 27.0 %)  OpenAlex
+   26/100  ( 26.0 %)  Wohnen Österreich (OeNB + EU-SILC)
+   25/100  ( 25.0 %)  PubMed
+   24/100  ( 24.0 %)  Eurostat Crime + DACH PKS
+
+------------------------------------------------------------------------
+TRIGGER FEUERTE, QUELLE LIEFERTE NICHTS
+------------------------------------------------------------------------
+  Gates importiert: 137 / 137 erkannte Dispatch-Punkte (von 191 im Code)
+  (hohe Werte hier = Trigger ok, aber die Quelle antwortet nicht —
+   genau dort saesse ein Sprach-/Query-Problem)
+   99/100  ( 99.0 %)  Mimikama
+   93/100  ( 93.0 %)  AT-Faktencheck-RSS
+    4/100  (  4.0 %)  Bildung DACH
+    4/100  (  4.0 %)  Gesundheits-Autoritaeten
+    3/100  (  3.0 %)  Religionsgemeinschaften-Konsens
+    2/100  (  2.0 %)  NIST NVD
+    2/100  (  2.0 %)  Getty Vocabularies
+    2/100  (  2.0 %)  ParlGov
+    2/100  (  2.0 %)  VfGH+VwGH
+    2/100  (  2.0 %)  FAOSTAT
+    2/100  (  2.0 %)  Sport/Fitness-Mythen
+    1/100  (  1.0 %)  WHO Hearing
+    1/100  (  1.0 %)  EuGH+EGMR
+    1/100  (  1.0 %)  Energie/Klima-Politik
+    1/100  (  1.0 %)  DBnomics

@@ -97,6 +97,9 @@ jobs:
     #   - test_retrieval_census       (Zensus-Klassifikation A/B/E/C/D +
     #                                  main.py-Parser: mehrzeilige Imports
     #                                  und cached()-Bloecke)
+    #   - test_abdeckung_drei_luecken  (3 kuratierte Fakten aus dem Zensus-
+    #                                  Schritt 1: Lebensmittelabfall-Bezugs-
+    #                                  groesse, DMA/App-Marktplaetze, EP-Sitz)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -164,6 +167,7 @@ jobs:
             tests/test_parlgov_kabinett_vs_staatsoberhaupt.py \
             tests/test_llm_usage_logging.py \
             tests/test_retrieval_census.py \
+            tests/test_abdeckung_drei_luecken.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 

@@ -1208,6 +1208,59 @@
           ]
         ]
       ]
+    },
+    {
+      "id": "ep_sitz_strassburg_2026",
+      "topic": "ep_sitz_konsens",
+      "scope": "Sitz des Europäischen Parlaments — Straßburg, Brüssel, Luxemburg",
+      "year": 2026,
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12016M%2FPRO%2F06",
+      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12012M%2FPRO%2F06",
+      "source_label": "Protokoll (Nr. 6) über die Festlegung der Sitze der Organe der Europäischen Union, konsolidierte Fassung (EUR-Lex)",
+      "headline": "Teils zutreffend, teils nicht: Rechtlicher Sitz des Europäischen Parlaments ist laut Protokoll Nr. 6 zu den EU-Verträgen STRASSBURG — dort finden die zwölf monatlichen Plenartagungen samt Haushaltstagung statt. In BRÜSSEL liegen die zusätzlichen Plenartagungen und die Ausschussarbeit, das Generalsekretariat sitzt in LUXEMBURG. 'Das EP hat seinen Sitz in Brüssel' greift also zu kurz.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'Das EU-Parlament hat seinen Sitz in Brüssel' ist TEILWEISE richtig und als Pauschal-Aussage nicht haltbar. (1) Rechtlich eindeutig: Protokoll (Nr. 6) über die Festlegung der Sitze der Organe legt Straßburg als SITZ des Europäischen Parlaments fest; dort finden die zwölf monatlichen Plenartagungen einschließlich der Haushaltstagung statt. (2) Faktisch findet ein großer Teil der Arbeit in Brüssel statt: zusätzliche Plenartagungen sowie die Sitzungen der Ausschüsse. Das Generalsekretariat und seine Dienststellen haben ihren Sitz in Luxemburg. (3) Wer 'Sitz' im rechtlichen Sinn meint, liegt mit Brüssel falsch; wer den faktischen Hauptarbeitsort meint, liegt nicht ganz daneben. Das Parlament arbeitet an drei Orten. (4) Ein ehrliches Urteil lautet daher 'teils/teils' und nicht schlicht falsch. Pack distanziert sich von einer Bewertung dieser Sitzverteilung.",
+        "sitz_rechtlich": "Straßburg (12 monatliche Plenartagungen inkl. Haushaltstagung)",
+        "bruessel": "zusätzliche Plenartagungen + Ausschusssitzungen",
+        "luxemburg": "Generalsekretariat",
+        "context": "Die Sitzfrage ist in den Verträgen selbst geregelt und nur einstimmig änderbar."
+      },
+      "context_notes": [
+        "Das Protokoll ist Primärrecht — eine Änderung des Sitzes erfordert Vertragsänderung und Einstimmigkeit der Mitgliedstaaten.",
+        "Das Parlament selbst hat mehrfach über den Arbeitsort debattiert; das ist eine politische Frage und keine Tatsachenfrage."
+      ],
+      "claim_phrasings_handled": [
+        "Das EU-Parlament hat seinen Sitz in Brüssel",
+        "Wo ist der Sitz des Europäischen Parlaments",
+        "Warum tagt das EU-Parlament in Straßburg",
+        "Europaparlament Straßburg Brüssel Sitz"
+      ],
+      "trigger_all": [
+        [
+          [
+            "europäisches parlament",
+            "europaeisches parlament",
+            "europäische parlament",
+          "europäischen parlament",
+          "europaeischen parlament",
+            "europaparlament",
+            "eu-parlament",
+            "eu parlament"
+          ],
+          [
+            "sitz",
+            "straßburg",
+            "strassburg",
+            "brüssel",
+            "bruessel",
+            "luxemburg",
+            "tagt",
+            "tagung",
+            "tagungsort",
+            "arbeitsort"
+          ]
+        ]
+      ]
     }
   ]
 }

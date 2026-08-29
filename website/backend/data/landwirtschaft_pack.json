@@ -1626,6 +1626,59 @@
           ]
         ]
       ]
+    },
+    {
+      "id": "lebensmittelabfall_at_2026",
+      "topic": "lebensmittelabfall_at_konsens",
+      "scope": "Lebensmittelabfälle in Österreich — Menge und Bezugsgröße",
+      "year": 2025,
+      "source_url": "https://www.wwf.at/nachhaltig-leben/lebensmittelverschwendung/",
+      "secondary_url": "https://www.wien.gv.at/umwelt/lebensmittel-abfaelle-zahlen-fakten",
+      "source_label": "WWF Österreich (Lebensmittelverschwendung) + Stadt Wien (Lebensmittelabfälle — Zahlen, Daten, Fakten) + BMK-Restmüllanalyse 2018/19 via 'Österreich isst informiert'",
+      "headline": "Bezugsgröße beachten: Die oft zitierte 'Hälfte' meint den HAUSHALTS-ANTEIL an den vermeidbaren Lebensmittelabfällen — nicht den Anteil der weggeworfenen Lebensmittel an allen Lebensmitteln. In Österreich fallen jährlich über 1,2 Mio. Tonnen vermeidbare Lebensmittelabfälle an, davon rund 685.000 t in Haushalten (~70 kg/Kopf). 'Die Hälfte aller Lebensmittel wird weggeworfen' ist damit unzutreffend.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Aussage 'Die Hälfte aller Lebensmittel in Österreich wird weggeworfen' vermischt zwei verschiedene Bezugsgrößen. (1) Was stimmt: Rund die Hälfte der VERMEIDBAREN Lebensmittelabfälle entsteht in privaten Haushalten (WWF Österreich); eine EU-Studie beziffert den Haushalts-Anteil an allen weggeworfenen Lebensmitteln auf etwa 42 % (EU-27). Die 'Hälfte' ist also ein Anteil AN DEN ABFÄLLEN. (2) Was NICHT stimmt: dass die Hälfte der insgesamt verfügbaren Lebensmittel im Müll landet. In Österreich fallen jährlich mehr als 1,2 Mio. Tonnen vermeidbare Lebensmittelabfälle und -verluste an, davon rund 685.000 Tonnen in den Haushalten — das entspricht etwa 70 kg pro Kopf und Jahr. Allein im Restmüll landen laut BMK-Restmüllanalyse 2018/19 rund 229.000 Tonnen bzw. 25,5 kg pro Kopf. (3) Eine Behauptung ist an DER Bezugsgröße zu prüfen, die sie selbst nennt: Wer von 'allen Lebensmitteln' spricht, meint die Versorgungsmenge — und die ist ein Vielfaches der Abfallmenge. (4) Ehrliches Urteil: die Größenordnung des Problems ist real und groß, die konkrete Zahl 'Hälfte aller Lebensmittel' ist aber falsch.",
+        "vermeidbare_abfaelle_at_t": 1200000,
+        "haushalte_t": 685000,
+        "haushalte_kg_pro_kopf": 70,
+        "restmuell_t_2018_19": 229000,
+        "restmuell_kg_pro_kopf": 25.5,
+        "context": "Vermeidbare Abfälle = Lebensmittel, die bei rechtzeitigem Konsum genießbar gewesen wären. Abfallmenge und Versorgungsmenge sind verschiedene Bezugsgrößen."
+      },
+      "context_notes": [
+        "Erhebungen zu Lebensmittelabfällen unterscheiden sich stark nach Abgrenzung (vermeidbar/unvermeidbar, Restmüll/Gesamtaufkommen) — Zahlen nur innerhalb derselben Abgrenzung vergleichen.",
+        "Der Haushalts-Anteil von rund 42 % stammt aus einer EU-finanzierten Studie für die EU-27, nicht speziell für Österreich."
+      ],
+      "claim_phrasings_handled": [
+        "Die Hälfte aller Lebensmittel in Österreich wird weggeworfen",
+        "Wie viele Lebensmittel werden in Österreich weggeworfen",
+        "Lebensmittelverschwendung Österreich Tonnen pro Jahr",
+        "Wie viel Lebensmittel landen im Müll"
+      ],
+      "trigger_all": [
+        [
+          [
+            "lebensmittel",
+            "nahrungsmittel",
+            "essen weg",
+            "essensreste"
+          ],
+          [
+            "weggeworfen",
+            "wegwerfen",
+            "wegwirft",
+            "verschwend",
+            "im müll",
+            "im muell",
+            "abfall",
+            "abfälle",
+            "abfaelle",
+            "hälfte",
+            "haelfte",
+            "landen im"
+          ]
+        ]
+      ]
     }
   ]
 }
