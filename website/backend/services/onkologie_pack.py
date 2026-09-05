@@ -22,13 +22,26 @@ Topics (10):
     Hardefeldt 2013)
   - bh_brustkrebs_mythos (FALSE — Singer 'Dressed to Kill' 1995
     methodisch widerlegt; Chen 2014)
-  - mistel_krebs_therapie_mythos (MIXED — Cochrane Horneber 2008,
-    DGHO/ÖGHO: keine Wirkung Tumor-Progression)
+  - mistel_krebs_therapie_mythos (FALSE — Phase-III-RCT MISTRAL 2024
+    n=290: HR 1,13, Lebensqualität p=0,86; bestätigt Cochrane
+    Horneber 2008; DGHO/ÖGHO)
   - vitamin_c_hochdosis_krebs_mythos (FALSE — Pauling-Cameron 1976,
     Mayo RCTs Creagan 1979 + Moertel 1985, NCI PDQ)
-  - frueh_erkennung_uebertherapie_konsens (NUANCED — USPSTF/IQWiG/
-    Cochrane: Mammographie 50-69 nutzen, PSA mixed, Schilddrüse
-    Korea-Lehrstück, Welch 'Less Medicine')
+  - screening_uebertherapie_grundprinzip (NUANCED — Übertherapie-
+    Definition, Korea-Schilddrüsen-Lehrstück, Screening vs. Diagnostik)
+  - mammographie_screening (NUANCED — USPSTF 30.4.2024: 40-74 Grade B;
+    EU-Rat 2022; AT-Programm 45-74 automatisch, 40-44 auf Anmeldung)
+  - psa_prostata_screening (NUANCED — USPSTF 2018 Grade C 55-69 /
+    Grade D ab 70; ERSPC gegen PLCO; EU-Rat: nur Pilotprojekte)
+  - darmkrebs_screening (NUANCED — USPSTF 2021 Grade A 50-75,
+    Grade B 45-49, Grade C 76-85; EU-Rat: FIT 50-74)
+
+  Diese vier standen bis 2026-09 als EIN Fakt mit 4.031 Zeichen in der
+  JSON. Weil er als einziger im Pack keinen STRUKTURELL-Marker trägt
+  (zu Recht — er ist differenziert, nicht falsch), lief er voll in die
+  400-Zeichen-Kürzung des Synthesizers: ein PSA-Claim bekam den
+  Darmkrebs-Abschnitt, ein 40-Jahre-Claim dreimal 'Mammographie 50-69'.
+  Getrennte Fakten kürzen weiterhin — aber im richtigen Fakt.
 
 Quellen-Mix: NCI PDQ, DKFZ Krebsinformationsdienst, Cancer Research UK,
 American Cancer Society, AICR/WCRF, Cochrane Library (Horneber 2008,

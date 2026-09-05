@@ -291,36 +291,208 @@
       ]
     },
     {
-      "topic": "frueh_erkennung_uebertherapie_konsens",
-      "headline": "Krebsfrüherkennungs-Programme können Mortalität reduzieren, aber auch Übertherapie verursachen — der Netto-Nutzen ist screening-spezifisch unterschiedlich. Mammographie 50-69 J. NETTO-NUTZEN; PSA-Screening Prostatakrebs MIXED; Schilddrüsen-Screening NEGATIV (USPSTF, IQWiG, Cochrane Screening Group)",
-      "year": 2024,
+      "topic": "screening_uebertherapie_grundprinzip",
+      "headline": "Mehr Krebsfrüherkennung ist KEIN automatischer Nutzen-Hebel. Der Netto-Nutzen ist pro Screening-Typ und Altersgruppe verschieden: Screening kann die Sterblichkeit senken, aber auch Übertherapie erzeugen — die Behandlung von Tumoren, die nie symptomatisch geworden wären. Lehrstück Korea: nach Einführung des Schilddrüsen-Screenings 15-mal mehr Karzinome bei UNVERÄNDERTER Sterblichkeit.",
+      "year": 2026,
       "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/topic_search_results?topic_status=P",
-      "secondary_url": "https://www.iqwig.de/themen/screening-frueherkennung/",
-      "source_label": "USPSTF + IQWiG (Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen DE) + Cochrane Cancer Screening Group + Welch HG 'Less Medicine, More Health'",
+      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32022H1213(01)",
+      "source_label": "USPSTF + Cochrane Cancer Screening Group + Ahn HS et al. NEJM 2014;371:1765 + Welch HG 'Overdiagnosed' / Esserman LJ Lancet 2013",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mehr Krebsfrüherkennung = weniger Krebs-Tote' ist OVERSIMPLIFIED/MIXED. Krebsfrüherkennungs-Programme (Screening) können Mortalität reduzieren — aber auch ÜBERTHERAPIE verursachen, wenn sie indolente Tumoren entdecken, die nie symptomatisch geworden wären. Der Netto-Nutzen ist screening-spezifisch und altersabhängig. Drei klare Fallbeispiele: (a) Mammographie 50-69 Jahre: NETTO-NUTZEN dokumentiert (Cochrane 2013, Marmot 2013 Lancet). (b) PSA-Screening Prostatakrebs: NETTO-NUTZEN umstritten (USPSTF Grade C 55-69 J., individuelle Entscheidung; Grade D >70 J., nicht empfohlen). (c) Schilddrüsen-Screening Korea 2003-2011: 15-fache Diagnose-Erhöhung OHNE Mortalitäts-Reduktion (Ahn 2014 NEJM) — Programm 2014 reformiert. Zentral für Faktencheck: 'mehr Screening' ist KEIN automatischer Nutzen-Hebel; Evidenz pro Screening-Typ einzeln evaluieren. Übertherapie umfasst: unnötige Operationen + Strahlung + Chemo bei Tumoren, die ohne Behandlung nie progredient geworden wären.",
-        "uebertherapie_definition": "'Übertherapie' (overtreatment, overdiagnosis): die Diagnose und Behandlung von Tumoren, die im Lebenszeitraum des Patienten nie symptomatisch geworden wären. Das Konzept geht auf Welch HG (Dartmouth, 'Overdiagnosed' 2011) und Esserman LJ (UCSF, 'Rethinking Screening' 2013 Lancet) zurück. Quantifizierung methodisch schwierig, da fehlend kontrafaktisches Wissen. Schätzungen via Population-Modeling: Prostata 30-50% der Screening-detected, Brust 15-20%, Schilddrüse Korea historisch >90%.",
-        "mammographie_50_69_evidenz": "Cochrane Review 2013 (Gøtzsche PC, Jørgensen KJ): Mammographie-Screening reduziert Brustkrebs-Mortalität um ~15-20% bei Frauen 50-69 J. NNT (number needed to invite for screening over 10 years) ~2.000 für 1 verhindertes Brustkrebs-Death. Marmot M et al. 2013 Lancet (UK Independent Review): bestätigt, NNT ~235 für 1 verhindertes Death über 20-Jahre-Lebensspanne. Übertherapie-Ratio: ~3 Frauen overdiagnosed pro 1 verhindertes Death. Netto-Nutzen positiv für 50-69 J.",
-        "mammographie_40_49_kontrovers": "Mammographie 40-49 J.: USPSTF 2024 Grade C (individuelle Entscheidung); IQWiG: keine pauschale Empfehlung. Grund: niedrigere Inzidenz + dichteres Brustgewebe + höheres False-Positive-Risiko + längere Lebenszeit für Übertherapie-Folgen. Nutzen-Schaden-Bilanz unklarer als 50-69 J.",
-        "psa_screening_mixed": "Prostata-Karzinom-PSA-Screening (PLCO-Trial USA 2009 + ERSPC-Trial EU 2009/2014): ERSPC zeigt 21% Mortalitäts-Reduktion, PLCO zeigt keine. USPSTF 2018: Grade C für Männer 55-69 J. ('individual decision based on patient values'), Grade D für >70 J. (nicht empfohlen). Kernproblem: PSA detektiert auch indolente Tumoren (Gleason 6 nicht-aggressiv), die zu Übertherapie (radikale Prostatektomie mit Inkontinenz/Erektionsstörung in 30-60%) führen. Aktive Surveillance bei Niedrig-Risiko ist evidenzbasierter Mittelweg.",
-        "schilddruese_korea_lehrstueck": "Ahn HS et al. 'Korea Thyroid-Cancer Epidemic — Screening and Overdiagnosis.' NEJM 2014;371:1765. Korea führte 1999 ein nationales Schilddrüsen-Sonographie-Screening-Programm ein. Folge: Schilddrüsen-Karzinom-Inzidenz stieg 15-fach (1993-2011), während die Mortalität UNVERÄNDERT blieb. Schluss: ~90% der Screening-detected Karzinome waren indolente Mikrokarzinome. Korea reformierte 2014 das Programm radikal nach NEJM-Publikation. Klassisches Lehrbuch-Beispiel für screening-induzierte Übertherapie.",
-        "darmkrebs_kolonoskopie_konsens": "Darmkrebs-Screening (Kolonoskopie ab 50 oder 55 J., FIT-Test): NETTO-NUTZEN klar dokumentiert (Cochrane 2007, USPSTF Grade A 45-75 J.). Spezialfall, weil Polypen-Entfernung präventiv wirken (ADENOM zu Karzinom-Sequenz unterbrochen) — kein klassisches Übertherapie-Problem.",
-        "context": "Krebsfrüherkennung ist eines der am besten erforschten Felder der Public Health. Die Erkenntnis, dass 'mehr Screening' nicht automatisch besser ist, ist seit ~2010 Mainstream-Konsens, aber in der medialen + populären Wahrnehmung noch nicht angekommen. Faktencheck-Relevanz: Behauptungen wie 'jede Frau ab 30 sollte Mammographie' oder 'PSA-Test rettet Leben — pauschal' sind nicht evidenzbasiert; korrekt ist altersspezifische, Screening-spezifische Nutzen-Schaden-Bewertung. Übertherapie ist nicht nur Lebensqualitäts-Schaden — operative Komplikationen + Bestrahlungs-Folgeschäden können in seltenen Fällen tödlich sein."
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mehr Krebsfrüherkennung = weniger Krebs-Tote' ist OVERSIMPLIFIED. Sie ist pro Screening-Typ und Altersgruppe einzeln zu bewerten — Evidenz zu Mammographie, PSA und Darmkrebs steht in den jeweils eigenen Einträgen dieses Packs. Der gemeinsame Nenner: Screening kann Sterblichkeit senken UND Übertherapie erzeugen. Beides gehört in dieselbe Antwort; wer nur eine Seite nennt, verzerrt.",
+        "uebertherapie_definition": "'Übertherapie' (overtreatment/overdiagnosis): Diagnose und Behandlung von Tumoren, die im Lebenszeitraum der Person nie symptomatisch geworden wären. Konzept: Welch HG (Dartmouth, 'Overdiagnosed' 2011) und Esserman LJ (UCSF, Lancet 2013). Quantifizierung ist methodisch schwierig, weil das kontrafaktische Wissen fehlt — die Schätzungen schwanken deshalb je nach Methode und Nachbeobachtungsdauer erheblich.",
+        "schilddruese_korea_lehrstueck": "Ahn HS et al. 'Korea's Thyroid-Cancer Epidemic — Screening and Overdiagnosis.' NEJM 2014;371:1765. Korea führte 1999 ein nationales Schilddrüsen-Sonographie-Screening ein. Folge: die Karzinom-Inzidenz stieg zwischen 1993 und 2011 um das 15-fache, während die Sterblichkeit UNVERÄNDERT blieb. Schluss: der weit überwiegende Teil der entdeckten Karzinome waren indolente Mikrokarzinome. Korea reformierte das Programm 2014.",
+        "screening_ist_nicht_diagnostik": "Screening = systematische Untersuchung von Menschen OHNE Beschwerden. Diagnostik = Untersuchung BEI Symptomen oder Verdacht. Die Nutzen-Schaden-Bilanz beider ist grundverschieden; in populären Diskussionen wird das regelmässig vermischt. Eine Mammographie bei tastbarem Knoten ist Diagnostik und fällt nicht unter die Screening-Altersgrenzen.",
+        "context": "Dass 'mehr Screening' nicht automatisch besser ist, ist seit etwa 2010 fachlicher Konsens, in der öffentlichen Wahrnehmung aber kaum angekommen. Übertherapie ist nicht nur ein Lebensqualitäts-Schaden: operative Komplikationen und Bestrahlungs-Folgeschäden können in seltenen Fällen tödlich sein."
       },
       "context_notes": [
-        "Welch HG 'Less Medicine, More Health' 2015 ist zugängliche Lese-Empfehlung für Patient/innen — präsentiert die Evidenz zu 'mehr Medizin = nicht immer mehr Gesundheit' allgemein verständlich.",
-        "Differenzierung 'Screening' vs. 'Diagnostik': Screening = systematische Untersuchung gesunder Bevölkerung; Diagnostik = Untersuchung bei Symptomen. Nutzen-Schaden-Bilanz beider radikal unterschiedlich. Diese Unterscheidung wird in populären Diskussionen oft vermischt.",
-        "AT/DE-spezifische Empfehlungs-Quellen: ÖGGG (Österr. Ges. f. Gynäkologie und Geburtshilfe) Mammographie-Konsens, S3-Leitlinie Darmkrebsprävention DKG (Deutsche Krebsgesellschaft). Diese folgen primär USPSTF/Cochrane/IQWiG-Linien — österreichisch-deutsche Adaption."
+        "Welch HG 'Less Medicine, More Health' (2015) ist die zugängliche Lese-Empfehlung zu diesem Themenkreis.",
+        "Dieser Eintrag trägt bewusst KEINE Verdict-Direktive: die Frage ist differenziert, nicht falsch. Wer eine konkrete Altersgrenze oder einen konkreten Test prüft, findet die Antwort in den Einträgen zu Mammographie, PSA oder Darmkrebs."
       ],
       "claim_phrasings_handled": [
         "Mehr Krebsfrüherkennung rettet immer Leben",
         "Screening verhindert Krebs-Tode",
-        "Mammographie sollte ab 30 verpflichtend sein",
-        "PSA-Test sollte jeder Mann machen"
+        "Krebsvorsorge rettet Leben",
+        "Was ist Übertherapie bei Krebs"
       ],
       "trigger_composite": [
-        ["screening", "früherkennung", "vorsorge", "mammographie", "psa", "kolonoskopie", "darmspiegelung", "schilddrüsen-sonographie"],
-        ["krebs", "tumor", "karzinom", "übertherapie", "übermedikalisier", "rettung", "leben", "verhindert", "sollte", "ab", "jährlich"]
+        [
+          "screening",
+          "früherkennung",
+          "krebsvorsorge",
+          "krebs-vorsorge",
+          "vorsorgeuntersuchung",
+          "übertherapie",
+          "überdiagnos"
+        ],
+        [
+          "krebs",
+          "tumor",
+          "karzinom",
+          "übertherapie",
+          "übermedikalisier",
+          "überdiagnos",
+          "rettet",
+          "rettung",
+          "leben",
+          "verhindert",
+          "mehr",
+          "immer"
+        ]
+      ]
+    },
+    {
+      "topic": "mammographie_screening",
+      "headline": "Mammographie-Screening: Die USPSTF empfiehlt seit 30.4.2024 alle zwei Jahre für Frauen von 40 bis 74 (Grade B) — das löst die frühere Zurückhaltung bei 40-49 (Grade C) ab. EU-Rat 2022: 50-69 empfohlen, Erweiterung auf 45-74 vorgeschlagen. Österreich lädt 45-74 automatisch ein, 40-44 nach einmaliger Anmeldung. Wer sagt, unter 50 werde nicht empfohlen, gibt einen überholten Stand wieder.",
+      "year": 2026,
+      "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
+      "secondary_url": "https://www.frueh-erkennen.at/fuer-aerztinnen/zielgruppe/",
+      "source_label": "USPSTF Final Recommendation Statement 'Breast Cancer: Screening' vom 30.4.2024 + Empfehlung des Rates der EU vom 9.12.2022 zur Stärkung der Prävention durch Früherkennung (2022/C 473/01), ersetzt die Empfehlung 2003/878/EG + Österreichisches Brustkrebs-Früherkennungsprogramm 'früh erkennen'",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG bei Altersgrenzen-Claims: Die USPSTF hat am 30.4.2024 auf Mammographie alle zwei Jahre für Frauen von 40 bis 74 Jahren umgestellt, Empfehlungsgrad B. Für Frauen ab 75 gibt sie ein 'I statement' ab (Evidenz reicht nicht). Die frühere Einstufung 40-49 als blosse Einzelfall-Entscheidung (Grade C) ist damit ÜBERHOLT. Ein Claim, unter 50 sei Mammographie nicht empfohlen, ist nach heutigem Stand unzutreffend. Umgekehrt gilt auch: eine Empfehlung ab 40 ist keine Empfehlung ab 30 — für Frauen unter 40 ohne erhöhtes Risiko gibt es kein Screening-Programm.",
+        "uspstf_2024": "USPSTF Final Recommendation Statement 'Breast Cancer: Screening', veröffentlicht 30.4.2024: 'Women aged 40 to 74 years: The USPSTF recommends biennial screening mammography. Grade: B.' Für Frauen ab 75 Jahren: Evidenz unzureichend.",
+        "eu_ratsempfehlung_2022": "Empfehlung des Rates der EU vom 9.12.2022 (2022/C 473/01): Für Frauen von 50 bis 69 Jahren wird Brustkrebsscreening mittels Mammografie empfohlen; vorgeschlagen werden eine untere Altersgrenze von 45 und eine obere von 74 Jahren. Als Verfahren: digitale Brusttomosynthese oder digitale Mammografie; MRT bei medizinischer Indikation.",
+        "oesterreich_programm": "Österreichisches Brustkrebs-Früherkennungsprogramm ('früh erkennen'): Frauen von 45 bis 74 Jahren können alle zwei Jahre ohne Anmeldung zur Mammografie — die e-card ist automatisch freigeschaltet, dazu kommt ein Erinnerungsschreiben. Frauen von 40 bis 44 melden sich einmalig an (Serviceline oder online), danach gilt derselbe Zwei-Jahres-Rhythmus. Das Programm richtet sich an Frauen ohne Beschwerden und ohne familiär erhöhtes Risiko.",
+        "nutzen_und_uebertherapie": "Nutzen: Cochrane 2013 (Gøtzsche/Jørgensen) beziffert die Senkung der Brustkrebs-Sterblichkeit auf etwa 15-20 % für 50-69 Jahre; Marmot et al. 2013 (Lancet, UK Independent Review) bestätigt dies und gibt eine NNT von rund 235 über 20 Jahre an. Neuere Langzeitdaten: eine Kohortenstudie zum NHS-Programm in England und Wales mit 2,5 Mio. Frauen und bis zu 33 Jahren Nachbeobachtung (Br J Cancer 2026, PMID 42362870) findet 28 % weniger Brustkrebs-Sterbefälle nach Einladung und 33 % nach Teilnahme, bei 4 % Mehr-Diagnosen.",
+        "messgroesse": "MESSGRÖSSE NICHT TAUSCHEN: Marmot 2013 nennt ein VERHÄLTNIS (rund 3 überdiagnostizierte Frauen je verhindertem Todesfall), die NHS-Kohorte 2026 einen ÜBERSCHUSS AN DIAGNOSEN (4 %). Das sind zwei verschiedene Grössen, keine zwei Schätzungen derselben Zahl — sie lassen sich nicht gegeneinander rechnen, und aus '4 %' folgt nicht, dass das Verhältnis widerlegt wäre. Die Spannweite kommt von Methode und Nachbeobachtungsdauer.",
+        "context": "Die Mammographie ist das am besten untersuchte Screening-Programm überhaupt und zugleich das am heftigsten diskutierte. Zu unterscheiden ist zwischen dem, was eine Fachgesellschaft EMPFIEHLT (USPSTF, EU-Rat), und dem, was ein Land tatsächlich ANBIETET (in Österreich 45-74 automatisch, 40-44 auf Anmeldung)."
+      },
+      "context_notes": [
+        "Die USPSTF-Umstellung 2024 ist eine echte Richtungsänderung, keine Präzisierung: 40-49 ging von Grade C auf Grade B.",
+        "Österreich hat die Zielgruppe nach eigener Darstellung im europaweiten Vergleich am weitesten gefasst.",
+        "Eine Mammographie bei Beschwerden oder Verdacht ist DIAGNOSTIK, nicht Screening — die Altersgrenzen gelten dafür nicht."
+      ],
+      "claim_phrasings_handled": [
+        "Mammographie sollte ab 30 verpflichtend sein",
+        "Ab welchem Alter Mammographie",
+        "Brustkrebs Früherkennung Österreich",
+        "Mammographie unter 50 wird nicht empfohlen"
+      ],
+      "trigger_composite": [
+        [
+          "mammographie",
+          "mammografie",
+          "brustkrebs",
+          "brustkrebs früherkennung",
+          "brustkrebs-screening",
+          "brustkrebs-früherkennung",
+          "brustkrebs-vorsorge",
+          "brustkrebsvorsorge"
+        ],
+        [
+          "krebs",
+          "brustkrebs",
+          "screening",
+          "früherkennung",
+          "vorsorge",
+          "alter",
+          "jahren",
+          "ab",
+          "empfohlen",
+          "verpflichtend",
+          "frauen",
+          "sollte",
+          "nutzen"
+        ]
+      ]
+    },
+    {
+      "topic": "psa_prostata_screening",
+      "headline": "PSA-Screening auf Prostatakrebs: Die USPSTF stuft es seit 2018 für Männer von 55 bis 69 als individuelle Entscheidung ein (Grade C) und rät ab 70 davon ab (Grade D). ERSPC fand 21 % weniger Sterbefälle, PLCO keinen Effekt. Kernproblem ist die Übertherapie indolenter Tumoren. Der EU-Rat 2022 empfiehlt KEIN Breiten-Screening, sondern stufenweise Pilotprogramme mit PSA plus MRT.",
+      "year": 2026,
+      "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/prostate-cancer-screening",
+      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32022H1213(01)",
+      "source_label": "USPSTF Final Recommendation Statement 'Prostate Cancer: Screening' vom 8.5.2018 + ERSPC- und PLCO-Studien + Empfehlung des Rates der EU vom 9.12.2022 zur Stärkung der Prävention durch Früherkennung (2022/C 473/01), ersetzt die Empfehlung 2003/878/EG",
+      "data": {
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Der PSA-Test rettet Leben, jeder Mann sollte ihn machen' ist OVERSIMPLIFIED. Die USPSTF empfiehlt kein pauschales PSA-Screening: für 55-69 Jahre eine informierte Einzelfall-Entscheidung (Grade C), ab 70 Jahren ausdrücklich NICHT (Grade D). Auch der EU-Rat empfiehlt kein Breiten-Programm, sondern erst Pilotprojekte. Ein Claim, PSA-Screening sei allgemein empfohlen, gibt den Stand falsch wieder — ebenso ein Claim, der Test sei nutzlos.",
+        "uspstf_2018": "USPSTF Final Recommendation Statement 'Prostate Cancer: Screening' vom 8.5.2018: Männer 55-69 Jahre — 'The decision to be screened for prostate cancer should be an individual one', Grade C. Männer ab 70 Jahren — 'Do not screen for prostate cancer', Grade D.",
+        "studienlage": "Zwei grosse randomisierte Studien mit gegenläufigem Ergebnis: ERSPC (Europa) zeigt rund 21 % weniger prostatakrebs-bedingte Sterbefälle, PLCO (USA) zeigt keinen Effekt — die PLCO-Kontrollgruppe war allerdings stark durchgetestet, was den Vergleich verwässert. Diese Diskrepanz ist der Grund für die zurückhaltende Empfehlung, nicht ein Beweis für Wirkungslosigkeit.",
+        "uebertherapie_mechanismus": "PSA erfasst auch indolente Tumoren (etwa Gleason 6), die unbehandelt nie gefährlich geworden wären. Wird radikal operiert, drohen Inkontinenz und Erektionsstörungen. Aktive Überwachung statt sofortiger Operation ist bei Niedrig-Risiko-Befunden der evidenzbasierte Mittelweg — sie entkoppelt die Diagnose von der Übertherapie.",
+        "eu_ratsempfehlung_2022": "Empfehlung des Rates der EU vom 9.12.2022 (2022/C 473/01): Angesichts vorläufiger Evidenz und des hohen Masses an opportunistischem Screening sollen die Länder einen STUFENWEISEN Ansatz mit Pilotprojekten und weiterer Forschung erwägen — PSA-Untersuchung in Kombination mit MRT als Folgeuntersuchung. Das ist ausdrücklich keine Empfehlung für ein flächendeckendes Programm.",
+        "context": "Der PSA-Wert ist kein Krebsnachweis, sondern ein Anlass für weitere Abklärung. Erhöhte Werte entstehen auch durch gutartige Vergrösserung, Entzündung oder Radfahren."
+      },
+      "context_notes": [
+        "Die USPSTF-Empfehlung von 2018 ist der aktuelle Stand — sie wurde seither nicht ersetzt.",
+        "Der Unterschied ERSPC gegen PLCO ist ein Lehrstück zur Kontamination von Kontrollgruppen, kein Widerspruch in der Sache."
+      ],
+      "claim_phrasings_handled": [
+        "PSA-Test sollte jeder Mann machen",
+        "PSA-Screening Nutzen",
+        "Rettet der PSA-Test Leben",
+        "Prostatakrebs Früherkennung"
+      ],
+      "trigger_composite": [
+        [
+          "psa",
+          "psa-test",
+          "psa-wert",
+          "prostatakrebs",
+          "prostata-krebs",
+          "prostatakarzinom",
+          "prostata"
+        ],
+        [
+          "test",
+          "screening",
+          "früherkennung",
+          "vorsorge",
+          "krebs",
+          "männer",
+          "sollte",
+          "rettet",
+          "nutzen",
+          "empfohlen",
+          "jeder"
+        ]
+      ]
+    },
+    {
+      "topic": "darmkrebs_screening",
+      "headline": "Darmkrebs-Screening hat einen klaren Netto-Nutzen: Die USPSTF vergibt seit 2021 Grade A für 50-75 Jahre und Grade B für 45-49 Jahre, für 76-85 nur noch selektiv (Grade C). Der EU-Rat 2022 empfiehlt den FIT-Stuhltest für 50-74 mit Koloskopie als Folgeuntersuchung. Sonderfall: entfernte Polypen können nicht mehr entarten — es beugt vor, statt nur früher zu finden.",
+      "year": 2026,
+      "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
+      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32022H1213(01)",
+      "source_label": "USPSTF Final Recommendation Statement 'Colorectal Cancer: Screening' vom 18.5.2021 + Empfehlung des Rates der EU vom 9.12.2022 zur Stärkung der Prävention durch Früherkennung (2022/C 473/01), ersetzt die Empfehlung 2003/878/EG",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Darmkrebs-Screening ist der Fall mit dem klarsten Nutzen-Schaden-Verhältnis. Anders als Mammographie oder PSA entdeckt es nicht nur früher, sondern VERHINDERT Karzinome: entfernte Polypen können nicht mehr entarten. Ein Übertherapie-Problem im engeren Sinn besteht deshalb nicht. Die Altersgrenzen sind nach Empfehlungsgrad abgestuft und dürfen nicht zu einem einzigen 'ab 45' verkürzt werden.",
+        "uspstf_2021": "USPSTF Final Recommendation Statement 'Colorectal Cancer: Screening' vom 18.5.2021, drei abgestufte Empfehlungen: Erwachsene 50-75 Jahre — screenen, Grade A. Erwachsene 45-49 Jahre — screenen, Grade B. Erwachsene 76-85 Jahre — selektiv screenen unter Berücksichtigung von Gesundheitszustand, Vorbefunden und Präferenz, Grade C.",
+        "eu_ratsempfehlung_2022": "Empfehlung des Rates der EU vom 9.12.2022 (2022/C 473/01): Quantitative immunchemische Stuhltests (FIT) gelten als bevorzugte Screeninguntersuchung für Personen zwischen 50 und 74 Jahren, die anschliessend zur Koloskopie überwiesen werden. Die Endoskopie kann als vorrangiges Instrument kombinierter Strategien festgelegt werden.",
+        "warum_sonderfall": "Adenom-Karzinom-Sequenz: Darmkrebs entsteht überwiegend aus zunächst gutartigen Polypen über viele Jahre. Wird ein Polyp bei der Koloskopie entfernt, ist dieser Weg unterbrochen. Das Screening wirkt damit primärpräventiv, nicht nur früherkennend — der entscheidende Unterschied zu Mammographie und PSA.",
+        "context": "In Österreich ist die Darmkrebs-Vorsorge Teil der Vorsorgeuntersuchung; angeboten werden Stuhltest und Koloskopie. Die konkrete Ausgestaltung unterscheidet sich von den USPSTF-Altersgrenzen, die US-Empfehlungen sind."
+      },
+      "context_notes": [
+        "Die Abstufung A/B/C ist inhaltlich relevant: 45-49 ist Grade B, nicht Grade A — der Nutzen ist dort belegt, aber schwächer.",
+        "Die österreichischen Angebote folgen nicht eins zu eins den USPSTF-Grenzen; für AT-spezifische Claims ist die Vorsorgeuntersuchung die massgebliche Referenz."
+      ],
+      "claim_phrasings_handled": [
+        "Darmspiegelung ab welchem Alter",
+        "Darmkrebs Vorsorge Nutzen",
+        "Kolonoskopie sinnvoll",
+        "Darmkrebs Screening Empfehlung"
+      ],
+      "trigger_composite": [
+        [
+          "darmkrebs",
+          "darmspiegelung",
+          "kolonoskopie",
+          "koloskopie",
+          "dickdarmkrebs",
+          "stuhltest",
+          "fit-test",
+          "darmkrebs-vorsorge"
+        ],
+        [
+          "screening",
+          "früherkennung",
+          "vorsorge",
+          "krebs",
+          "alter",
+          "ab",
+          "empfohlen",
+          "nutzen",
+          "sinnvoll",
+          "jahren",
+          "verhindert"
+        ]
       ]
     }
   ]
