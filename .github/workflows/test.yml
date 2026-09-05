@@ -124,6 +124,9 @@ jobs:
     #   - test_freshness_zwei_klassen (echter Refresh-Bedarf via Datei-mtime
     #                                  vs. ungepflegtes fetched_at_iso —
     #                                  nur die erste Klasse alarmiert)
+    #   - test_wifo_ihs_prognoserunde (Runde kommt aus den Daten, nicht aus
+    #                                  dem Code; drei korrigierte Richtungen
+    #                                  BIP/Inflation/Arbeitslosenquote)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -199,6 +202,7 @@ jobs:
             tests/test_stichtag_check.py \
             tests/test_mem_limit_contract.py \
             tests/test_freshness_zwei_klassen.py \
+            tests/test_wifo_ihs_prognoserunde.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
