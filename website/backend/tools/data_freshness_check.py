@@ -85,18 +85,18 @@ def _parse_iso_date(s: str) -> date | None:
             return None
 
 
-def _scan_json(path: Path) -> tuple[date | None, str]:
-    """Returns (fetched_at_date, source_label) — both possibly None/empty."""
+def _scan_json(path: Path) -> tuple[date | None, str, str | None]:
+    """Returns (fetched_at_date, source_label, refresh_kadenz)."""
     try:
         with path.open("r", encoding="utf-8") as f:
             data = json.load(f)
     except Exception as e:
-        return (None, f"<read error: {e}>")
+        return (None, f"<read error: {e}>", None)
     if not isinstance(data, dict):
-        return (None, "<not a dict — list-style data>")
+        return (None, "<not a dict — list-style data>", None)
     fetched_at = _parse_iso_date(data.get("fetched_at_iso", ""))
     label = data.get("source_label", "")
-    return (fetched_at, label)
+    return (fetched_at, label, data.get("refresh_kadenz"))
 
 
 # Klassen der Freshness-Pruefung. Rein, damit sie ohne Dateisystem
@@ -107,21 +107,77 @@ FELD_UNGEPFLEGT = "FELD_UNGEPFLEGT"     # Feld alt, Datei aber frisch
 FRISCH = "FRISCH"
 
 
-def klassifiziere(feld_age, mtime_age: int, max_age: int) -> str:
+# Wie oft die Quelle upstream ueberhaupt neu erscheint. Ohne diese Angabe
+# gilt fuer alle derselbe Schwellwert — und der ist zwangslaeufig fuer die
+# einen zu lax und fuer die anderen zu streng:
+#
+#   rki_surveillance wird woechentlich fortgeschrieben. Bei 120 Tagen
+#   Schwelle schlaegt der Wecker erst nach 17 verpassten Ausgaben an.
+#   rsf traegt den World Press Freedom Index 2026 — die neueste Ausgabe,
+#   die es gibt, denn RSF publiziert einmal im Jahr im Mai. Nach 127 Tagen
+#   ohne Aenderung meldete der Check ihn trotzdem als VERALTET, obwohl die
+#   Werte am 2026-09-05 Zeichen fuer Zeichen mit rsf.org uebereinstimmten
+#   (Oesterreich Rang 19, Score 79,43).
+#
+# Deshalb: Die Datei sagt selbst, in welchem Takt ihre Quelle erscheint.
+# Ohne Angabe bleibt es beim CLI-Standard.
+KADENZ_MAX_AGE = {
+    "woechentlich": 21,        # eine verpasste Ausgabe plus Puffer
+    "monatlich": 60,
+    "quartalsweise": 150,
+    "jaehrlich": 400,          # ein Jahr plus Puffer fuer den Publikationstermin
+    "ereignisgetrieben": None,  # Wahlen, Urteile: kein Takt, kein Alarm
+}
+ANLASSBEZOGEN = "ANLASSBEZOGEN"  # ereignisgetrieben -> nie VERALTET
+
+
+def schwelle_fuer(kadenz, standard: int) -> int | None:
+    """Welcher Schwellwert gilt fuer diese Datei?
+
+    ``None`` heisst: kein Alters-Alarm (ereignisgetriebene Quellen).
+    Unbekannte oder fehlende Angabe -> Standard.
+    """
+    if kadenz in KADENZ_MAX_AGE:
+        return KADENZ_MAX_AGE[kadenz]
+    return standard
+
+
+def klassifiziere(feld_age, mtime_age: int, max_age: int, kadenz=None) -> str:
     """Welche Klasse liegt vor?
 
     ``feld_age`` ist das Alter von ``fetched_at_iso`` (oder None, wenn die
     Datei das Feld nicht traegt), ``mtime_age`` das Alter der letzten
-    echten Dateiaenderung.
+    echten Dateiaenderung, ``kadenz`` der deklarierte Erscheinungstakt der
+    Quelle (siehe ``KADENZ_MAX_AGE``).
 
     Die Datei-mtime hat Vorrang: Sie sagt, ob wirklich seit Langem niemand
     hingesehen hat. Das alte Mass (nur ``fetched_at_iso``) meldete
     2026-09-05 51 Dateien, davon 31 FEHLALARME — Dateien, die kuerzlich
     geaendert worden waren, ohne dass jemand das Feld mitgezogen hatte.
     """
-    if mtime_age > max_age:
+    grenze = schwelle_fuer(kadenz, max_age)
+    if grenze is None:
+        return ANLASSBEZOGEN
+
+    # Ist eine Kadenz DEKLARIERT, entscheidet das Feld — nicht die mtime.
+    # Grund: Die mtime sagt nur, dass jemand die Datei angefasst hat. Schon
+    # das Eintragen der Kadenz selbst setzt sie zurueck und wuerde die
+    # Veraltung verdecken (beim Bau dieser Funktion genau so passiert:
+    # frontex.json rutschte durch das blosse Tagging von VERALTET auf
+    # „kein Alarm", obwohl der Inhalt unveraendert 129 Tage alt war).
+    # Wer eine Kadenz deklariert, verpflichtet sich zugleich,
+    # ``fetched_at_iso`` zu pflegen — dann ist das Feld das ehrlichere Mass.
+    if kadenz in KADENZ_MAX_AGE:
+        if isinstance(feld_age, int):
+            return VERALTET if feld_age > grenze else FRISCH
+        return VERALTET if mtime_age > grenze else FRISCH
+
+    # Ohne Kadenz-Angabe bleibt es beim Mass aus PR #130: die mtime hat
+    # Vorrang, weil ``fetched_at_iso`` dort erfahrungsgemaess nicht
+    # mitgezogen wird (61 % Fehlalarme).
+    if mtime_age > grenze:
         return VERALTET
-    if isinstance(feld_age, int) and feld_age > max_age:
+    if isinstance(feld_age, int) and feld_age > grenze:
         return FELD_UNGEPFLEGT
     return FRISCH
 
@@ -148,7 +204,7 @@ def main():
     for path in sorted(DATA_DIR.glob("*.json")):
         if path.name in GENERATED_CACHES:
             continue  # separat geprüft; cordis (~110 MB) nicht json-laden
-        fetched_at, label = _scan_json(path)
+        fetched_at, label, kadenz = _scan_json(path)
         # mtime = wann die Datei zuletzt WIRKLICH geaendert wurde. Der
         # Docker-Build kopiert sie aus dem git-Checkout, und `git pull`
         # setzt die mtime auf den Pull-Zeitpunkt — verifiziert 2026-09-05:
@@ -157,10 +213,10 @@ def main():
         mtime = date.fromtimestamp(path.stat().st_mtime)
         mtime_age = (today - mtime).days
         if fetched_at is None:
-            rows.append((path.name, None, label, "—", mtime_age))
+            rows.append((path.name, None, label, "—", mtime_age, kadenz))
             continue
         age = (today - fetched_at).days
-        rows.append((path.name, fetched_at, label, age, mtime_age))
+        rows.append((path.name, fetched_at, label, age, mtime_age, kadenz))
 
     print(f"=== Evidora Data-Freshness-Check ({today.isoformat()}, max-age {args.max_age_days} d) ===")
     print()
@@ -180,18 +236,29 @@ def main():
     #   FELD UNGEPFLEGT fetched_at_iso alt, Datei aber frisch geaendert ->
     #                   die deklarierte Vintage stimmt nicht mehr. Nur Log,
     #                   KEIN Alarm: das ist Buchhaltung, kein Ausfall.
-    stale_files, feld_ungepflegt = [], []
-    for name, fetched_at, label, age, mtime_age in rows:
+    stale_files, feld_ungepflegt, anlassbezogen = [], [], []
+    for name, fetched_at, label, age, mtime_age, kadenz in rows:
         fa = fetched_at.isoformat() if fetched_at else "—"
         age_s = f"{age}d" if isinstance(age, int) else "—"
-        klasse = klassifiziere(age, mtime_age, args.max_age_days)
-        marker = {VERALTET: "⚠", FELD_UNGEPFLEGT: "·"}.get(klasse, " ")
+        klasse = klassifiziere(age, mtime_age, args.max_age_days, kadenz)
+        grenze = schwelle_fuer(kadenz, args.max_age_days)
+        marker = {VERALTET: "⚠", FELD_UNGEPFLEGT: "·",
+                  ANLASSBEZOGEN: "~"}.get(klasse, " ")
+        takt = f"[{kadenz}]" if kadenz else ""
         print(f"  {marker} " + fmt.format(
-            name, fa, f"{age_s}/{mtime_age}d", (label or "")[:30])[2:])
+            name, fa, f"{age_s}/{mtime_age}d", (label or "")[:30])[2:] + takt)
         if klasse == VERALTET:
-            stale_files.append((name, mtime_age))
+            # Welches Mass die Entscheidung getragen hat, muss auch in der
+            # Meldung stehen — sonst steht dort "unveraendert seit 0 d
+            # (Schwelle 60 d)" und niemand versteht den Alarm.
+            if kadenz in KADENZ_MAX_AGE and isinstance(age, int):
+                stale_files.append((name, age, kadenz, grenze, "fetched_at_iso"))
+            else:
+                stale_files.append((name, mtime_age, kadenz, grenze, "Datei"))
         elif klasse == FELD_UNGEPFLEGT:
             feld_ungepflegt.append((name, age, mtime_age))
+        elif klasse == ANLASSBEZOGEN:
+            anlassbezogen.append((name, mtime_age))
 
     print()
     cache_problems = check_generated_caches(DATA_DIR)
@@ -205,13 +272,21 @@ def main():
 
     print()
     if stale_files:
-        print(f"⚠ {len(stale_files)} Dateien seit > {args.max_age_days} d "
-              f"NICHT geändert (echter Refresh-Bedarf):")
-        for name, age in stale_files:
-            print(f"  - {name}: unverändert seit {age} d")
+        print(f"⚠ {len(stale_files)} Dateien ueber ihrer Schwelle "
+              f"(echter Refresh-Bedarf):")
+        for name, age, kadenz, grenze, mass in stale_files:
+            takt = f", Takt {kadenz}" if kadenz else ""
+            print(f"  - {name}: {mass} {age} d alt "
+                  f"(Schwelle {grenze} d{takt})")
     else:
-        print(f"OK — alle {len(rows)} Dateien wurden innerhalb "
-              f"{args.max_age_days} d angefasst.")
+        print(f"OK — alle {len(rows)} Dateien innerhalb ihrer Schwelle.")
+
+    if anlassbezogen:
+        print()
+        print(f"~ {len(anlassbezogen)} ereignisgetriebene Quellen — kein Takt, "
+              f"kein Alters-Alarm (Refresh bei Lage-Änderung):")
+        for name, mtime_age in anlassbezogen:
+            print(f"  - {name}: unverändert seit {mtime_age} d")
 
     if feld_ungepflegt:
         print()

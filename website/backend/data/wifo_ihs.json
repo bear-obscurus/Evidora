@@ -1,4 +1,6 @@
 {
+  "refresh_kadenz": "quartalsweise",
+  "kadenz_begruendung": "WIFO und IHS legen ihre Konjunkturprognose quartalsweise vor.",
   "data": {
     "stand_iso": "2026-06",
     "prognose_runde": "WIFO/IHS-Konjunkturprognose 2/2026 (Juni 2026)",

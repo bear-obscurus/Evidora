@@ -1,5 +1,7 @@
 {
   "schema_version": 1,
+  "refresh_kadenz": "jaehrlich",
+  "kadenz_begruendung": "Freedom House publiziert Freedom in the World einmal jaehrlich im Februar/Maerz.",
   "fetched_at_iso": "2026-09-05",
   "report_year": 2026,
   "covering_events_year": 2025,
