@@ -107,6 +107,10 @@ jobs:
     #   - test_wikidata_row_dedup     (Contract: mehrsprachiges VALUES-JOIN
     #                                  braucht SELECT DISTINCT/GROUP BY,
     #                                  sonst frisst LIMIT nur Dubletten)
+    #   - test_quellen_zahlen_konsistent (README + Website behaupten die
+    #                                  Quellen-Zahl, die aus main.py GEZAEHLT
+    #                                  wird — inkl. DE==EN und Aufteilung,
+    #                                  die sich aufsummiert)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -177,6 +181,7 @@ jobs:
             tests/test_abdeckung_drei_luecken.py \
             tests/test_wikidata_stem_spezifitaet.py \
             tests/test_wikidata_row_dedup.py \
+            tests/test_quellen_zahlen_konsistent.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
