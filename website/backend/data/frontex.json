@@ -1,4 +1,6 @@
 {
+  "refresh_kadenz": "monatlich",
+  "kadenz_begruendung": "Frontex veroeffentlicht monatliche Zahlen zu irregulaeren Grenzuebertritten.",
   "data": {
     "year_latest": 2025,
     "irregular_crossings_eu_2025_total_approx": 178000,

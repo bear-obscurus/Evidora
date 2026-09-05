@@ -1,5 +1,7 @@
 {
   "schema_version": 1,
+  "refresh_kadenz": "jaehrlich",
+  "kadenz_begruendung": "Der Bertelsmann Transformation Index erscheint im Zweijahresrhythmus; jaehrlich ist die strengere Annahme.",
   "fetched_at_iso": "2026-05-18",
   "report_year": 2024,
   "edition_label": "BTI 2024",

@@ -1,5 +1,7 @@
 {
   "schema_version": 1,
+  "refresh_kadenz": "jaehrlich",
+  "kadenz_begruendung": "RSF publiziert den World Press Freedom Index einmal jaehrlich Anfang Mai.",
   "fetched_at_iso": "2026-05-01",
   "source_label": "Reporter ohne Grenzen (RSF) — World Press Freedom Index 2026",
   "year": 2026,

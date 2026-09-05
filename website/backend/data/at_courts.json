@@ -1,5 +1,7 @@
 {
   "schema_version": 1,
+  "refresh_kadenz": "ereignisgetrieben",
+  "kadenz_begruendung": "Hoechstgerichtliche Entscheidungen ergehen anlassbezogen.",
   "fetched_at_iso": "2026-04-29",
   "source_label": "VfGH (Verfassungsgerichtshof) + VwGH (Verwaltungsgerichtshof) — kuratierte Schlüsselerkenntnisse",
   "rulings": [

@@ -1,4 +1,6 @@
 {
+  "refresh_kadenz": "ereignisgetrieben",
+  "kadenz_begruendung": "Wahltermine folgen keinem gleichmaessigen Takt.",
   "elections": [
     {
       "type": "NRW",

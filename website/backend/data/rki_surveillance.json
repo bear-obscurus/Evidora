@@ -1,5 +1,7 @@
 {
   "schema_version": 1,
+  "refresh_kadenz": "woechentlich",
+  "kadenz_begruendung": "RKI-Open-Data werden woechentlich fortgeschrieben (GrippeWeb, SARI, ARE).",
   "fetched_at_iso": "2026-09-05",
   "source_label": "Robert Koch-Institut — Open Data (GitHub robert-koch-institut) für die Atemwegs-Surveillance; SurvStat 2.0 + Fachberichte für Masern und Tuberkulose",
   "letzte_pruefung": "2026-09-05: Atemwegs-Fakt vollständig aus RKI-Open-Data neu aufgebaut (Stand Meldewoche 35/2026). Masern und Tuberkulose NICHT aktualisiert — SurvStat 2.0 ist ein interaktives Abfragewerkzeug ohne offenes Datenabbild, und die geprüften Alternativen (Infektionsradar, ECDC-Atlas) liefern die Werte nicht maschinenlesbar. Statt zu schätzen, tragen beide Fakten jetzt ihren Datenstand ausdrücklich in der Headline.",
