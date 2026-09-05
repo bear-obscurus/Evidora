@@ -80,6 +80,20 @@ VINTAGE_RE = re.compile(
     r"\bStand\s+(" + "|".join(_MONATE) + r")\s+(20\d{2})", re.I)
 
 
+# Ein Zeitfenster, das der Satz SELBST als beendet beschreibt, ist kein
+# Fund — sonst meldet der Waechter korrekte Vergangenheits-Aussagen
+# („das Programm WAR befristet und ist mit 30.6.2026 ausgelaufen") und
+# trainiert damit an, ihn zu ignorieren. Gilt nur fuer WARNUNG: ein
+# KRITISCH-Satz behauptet ja gerade, der Stichtag stehe noch bevor.
+_ENDE_MARKER = re.compile(
+    r"\bausgelaufen\b|\bendete\b|\bbeendet\b|\blief\b[^.]{0,30}\baus\b|"
+    r"\bwar\b|\bwaren\b|\bnicht mehr\b|\bbis einschliesslich\b", re.I)
+
+
+def _nennt_das_ende(satz: str) -> bool:
+    return bool(_ENDE_MARKER.search(satz))
+
+
 def _als_datum(m) -> date | None:
     try:
         return date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
@@ -117,6 +131,8 @@ def pruefe_eintrag(eintrag: dict, heute: date, max_vintage_months: int) -> list[
                 datum = _als_datum(m)
                 if datum is None or datum > heute:
                     continue                     # Zukunft ist in Ordnung
+                if stufe == "WARNUNG" and _nennt_das_ende(_satz_um(blob, m.start())):
+                    continue                     # korrekt als beendet beschrieben
                 funde.append({
                     "stufe": stufe, "id": fid, "datum": datum.isoformat(),
                     "tage_her": (heute - datum).days,
