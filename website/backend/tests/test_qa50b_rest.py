@@ -93,16 +93,25 @@ def test_mietendeckel_leitlinie_richtungs_sensibel():
 
 
 def test_kopftuch_rechtslage_2026_und_trigger():
-    """#33: 'An Österreichs Volksschulen gilt ein Kopftuchverbot' →
-    Stand Juli 2026 teils-teils (beschlossen 11.12.2025, sanktionswirksam
-    erst 1.9.2026). Ruling trägt Update + triggert auf Bestands-Phrasings.
-    ⚠️ Refresh-Marker: ab 1.9.2026 kippt die Bewertung auf zutreffend."""
+    """#33, NACHGEZOGEN 2026-09-05: Der Refresh-Marker dieses Tests („ab
+    1.9.2026 kippt die Bewertung auf zutreffend") ist eingetreten. Die alte
+    Fassung pinnte die Formulierung „RECHTSLAGE Stand Juli 2026 … derzeit
+    TEILS-TEILS … Verdict mixed" — die war ab dem 1.9. live falsch und
+    lieferte `mostly_false@0.9` auf einen zutreffenden Claim.
+
+    Die Rechtslage steht jetzt im eigenen Eintrag G 76/2026; dieser Test
+    prueft nur noch, dass der historische 2020-Eintrag sich davon ABGRENZT
+    und weiter auf den Bestands-Phrasings triggert. Inhaltliche Pins →
+    tests/test_kopftuch_rechtslage_2026.py."""
     d = json.load(open(os.path.join(_DATA, "at_courts.json"),
                        encoding="utf-8"))
     r = next(x for x in d["rulings"]
              if x["id"] == "vfgh_g_4_2020_kopftuchverbot")
-    assert r["kerninhalt"].startswith("RECHTSLAGE Stand Juli 2026")  # Cap-Schatten: vorne
-    assert "1.9.2026" in r["kerninhalt"] and "mixed" in r["kerninhalt"]
+    # Cap-Schatten: die Abgrenzung steht vorne im kerninhalt
+    assert r["kerninhalt"].startswith("ZWEI VERSCHIEDENE VERBOTE")
+    assert "1.9.2026" in r["kerninhalt"]
+    assert "G 76/2026" in r["kerninhalt"], "Verweis auf den aktuellen Beschluss"
+    assert "mixed" not in r["kerninhalt"], "keine veraltete Verdict-Empfehlung mehr"
     assert substring_or_composite_match(
         r, "an österreichs volksschulen gilt ein kopftuchverbot")
     assert not substring_or_composite_match(

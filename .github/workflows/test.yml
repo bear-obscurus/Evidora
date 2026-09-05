@@ -111,6 +111,9 @@ jobs:
     #                                  Quellen-Zahl, die aus main.py GEZAEHLT
     #                                  wird — inkl. DE==EN und Aufteilung,
     #                                  die sich aufsummiert)
+    #   - test_kopftuch_rechtslage_2026 (zwei Verbote/zwei Beschluesse in
+    #                                  zwei Eintraegen; kein Zukunfts-Stichtag
+    #                                  im Fakt; zurueckgewiesen != bestaetigt)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -182,6 +185,7 @@ jobs:
             tests/test_wikidata_stem_spezifitaet.py \
             tests/test_wikidata_row_dedup.py \
             tests/test_quellen_zahlen_konsistent.py \
+            tests/test_kopftuch_rechtslage_2026.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
