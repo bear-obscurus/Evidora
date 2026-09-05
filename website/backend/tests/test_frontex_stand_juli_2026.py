@@ -198,10 +198,44 @@ def test_bisherige_trigger_funktionieren_weiter():
         assert claim_mentions_frontex_cached(claim), claim
 
 
+def test_alle_adjektiv_flexionsformen_treffen():
+    """Der Live-Fehlschlag nach dem ersten Anlauf: 'westliches' und
+    'westlichen' waren aufgezählt, 'über das westlichE Mittelmeer' fiel durch
+    beide Listen — und der Claim über die einzige STEIGENDE Route wurde mit
+    EU-weiten Asylzahlen beantwortet. Jetzt greift der Wortstamm."""
+    for claim in ("Über das westliche Mittelmeer kommen immer mehr Menschen",
+                  "Im westlichen Mittelmeer steigen die Zahlen",
+                  "Das westliches Mittelmeer",
+                  "Über das zentrale Mittelmeer kommen weniger",
+                  "Die östliche Mittelmeerroute"):
+        assert claim_mentions_frontex_cached(claim), claim
+        route = [x for x in _treffer(claim) if x["indicator"] == "frontex_route"]
+        assert route, f"{claim!r} liefert kein Routen-Ergebnis"
+
+
+def test_steigende_route_wird_als_solche_ausgegeben():
+    """Wer nach dem westlichen Mittelmeer fragt, muss das PLUS sehen — es ist
+    die einzige grosse Route mit Anstieg."""
+    x = [y for y in _treffer("Über das westliche Mittelmeer kommen immer mehr Menschen")
+         if y["indicator"] == "frontex_route"][0]
+    assert "+37 %" in x["display_value"]
+    assert "11.217" in x["display_value"] and "8.175" in x["display_value"]
+
+
+def test_routen_erkennung_hat_nur_noch_eine_liste():
+    """Trigger und Zuordnung liefen über zwei getrennte Listen — beim ersten
+    Anlauf hatte ich nur eine davon ergänzt."""
+    assert "_ROUTEN_STAMMPAARE" in CODE
+    assert "route_triggers" not in CODE, "die zweite Liste ist zurück"
+
+
 def test_kein_ueber_trigger():
     for claim in ("Die illegale Migration in die USA steigt",
                   "Wie hoch ist die Inflation in Österreich?",
                   "Migration ist ein wichtiges gesellschaftliches Thema",
                   "Der Grenzwert für Feinstaub wurde überschritten",
-                  "Die Vogelmigration beginnt im Herbst"):
+                  "Die Vogelmigration beginnt im Herbst",
+                  "Der Balkankrieg der 1990er Jahre",
+                  "Urlaub am Mittelmeer ist teuer",
+                  "Die westliche Welt driftet auseinander"):
         assert not claim_mentions_frontex_cached(claim), claim
