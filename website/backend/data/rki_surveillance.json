@@ -1,18 +1,20 @@
 {
   "schema_version": 1,
-  "fetched_at_iso": "2026-04-29",
-  "source_label": "Robert Koch-Institut SurvStat 2.0 + RKI Wochenbericht",
+  "fetched_at_iso": "2026-09-05",
+  "source_label": "Robert Koch-Institut — Open Data (GitHub robert-koch-institut) für die Atemwegs-Surveillance; SurvStat 2.0 + Fachberichte für Masern und Tuberkulose",
+  "letzte_pruefung": "2026-09-05: Atemwegs-Fakt vollständig aus RKI-Open-Data neu aufgebaut (Stand Meldewoche 35/2026). Masern und Tuberkulose NICHT aktualisiert — SurvStat 2.0 ist ein interaktives Abfragewerkzeug ohne offenes Datenabbild, und die geprüften Alternativen (Infektionsradar, ECDC-Atlas) liefern die Werte nicht maschinenlesbar. Statt zu schätzen, tragen beide Fakten jetzt ihren Datenstand ausdrücklich in der Headline.",
   "facts": [
     {
       "id": "rki_masern_2024_2025",
       "topic": "rki_masern",
       "scope": "Masern-Fallzahlen Deutschland 2024–2025",
       "year": "2024-2025",
-      "headline": "Masern-Fallzahlen Deutschland 2024 + 2025 — RKI SurvStat",
+      "headline": "Masern-Fallzahlen Deutschland: 2023 = 79, 2024 = 637 Fälle. DATENSTAND: Für 2025 liegt hier nur ein Zwischenstand des ersten Quartals vor (142 Fälle), für 2026 gar keiner — die Zahlen stammen aus RKI SurvStat 2.0, das kein offenes Datenabbild hat. Ein Vergleich mit 2025 oder 2026 ist mit diesem Fakt NICHT möglich; 142 ist kein Jahreswert.",
       "data": {
         "rki_masern_faelle_2023": 79,
         "rki_masern_faelle_2024": 637,
         "rki_masern_faelle_2025_stand_q1": 142,
+        "datenstand": "Letzter vollständiger Jahreswert: 2024. Der 2025er-Wert ist ein Zwischenstand per Ende Q1 und darf nicht als Jahreswert gelesen oder mit 637 verglichen werden.",
         "impfquote_de_masern_kinder_15m_pct_2024": 96.4,
         "impfquote_de_masern_kinder_24m_pct_2024": 92.8,
         "impfquote_who_herdimmunitaet_pct": 95.0,
@@ -26,6 +28,7 @@
       ],
       "claim_phrasings_handled": [
         "Masern-Welle Deutschland",
+        "Masern breiten sich in Deutschland aus",
         "Migration bringt Masern",
         "Asylsuchende Krankheiten Masern",
         "RKI Masern Anstieg"
@@ -40,7 +43,7 @@
       "trigger_composite": [
         ["masern", "measles"],
         ["welle", "anstieg", "ausbruch", "explod", "explosion",
-         "bringt", "verbreit", "import",
+         "bringt", "verbreit", "breitet sich", "breiten sich", "import",
          "asylsuchend", "migrant", "migration", "migrat",
          "asyl", "epidemie", "gestiegen", "stieg ", "steigt", "ansteck"]
       ],
@@ -53,7 +56,7 @@
       "topic": "rki_tuberkulose",
       "scope": "Tuberkulose-Fallzahlen Deutschland 2024",
       "year": 2024,
-      "headline": "Tuberkulose-Fallzahlen Deutschland 2024 — RKI",
+      "headline": "Tuberkulose Deutschland 2024: 4.870 Fälle, Inzidenz 5,8 je 100.000 — leichter Anstieg gegenüber 2023 (4.480), langfristig aber weit unter 1995 (14,2) und 1980 (23,0). DATENSTAND: letzter hier erfasster Jahreswert ist 2024; neuere RKI-Berichte sind in diesem Fakt NICHT abgebildet.",
       "data": {
         "rki_tb_faelle_2023": 4480,
         "rki_tb_faelle_2024": 4870,
@@ -62,6 +65,7 @@
         "rki_tb_inzidenz_pro_100k_1995": 14.2,
         "rki_tb_inzidenz_pro_100k_1980": 23.0,
         "anteil_im_ausland_geboren_pct_2024": 76.4,
+        "datenstand": "Letzter hier erfasster Jahreswert: 2024. Der RKI-Tuberkulosebericht erscheint jährlich; ein neuerer Stand ist hier nicht eingearbeitet.",
         "context": "Tuberkulose-Fallzahlen 2024 zeigen einen leichten Anstieg (+9 % gegenüber 2023). Die Inzidenz pro 100.000 Einwohner liegt bei 5,8 — identisch mit 2010 und ein Drittel des Wertes von 1995. Der Anteil der TB-Fälle bei im Ausland Geborenen liegt bei 76,4 % — das spiegelt die internationale Mobilität und die Tatsache, dass TB in vielen Herkunftsländern endemisch ist.",
         "context_quelle": "RKI Bericht zur Epidemiologie der Tuberkulose 2024"
       },
@@ -97,45 +101,63 @@
       "source_url": "https://www.rki.de/"
     },
     {
-      "id": "rki_grippe_covid_winter_2024_2025",
+      "id": "rki_atemwegsinfekte_saisonvergleich",
       "topic": "rki_atemwegsinfekte",
-      "scope": "Atemwegsinfekt-Surveillance Winter 2024/25 (Influenza, COVID-19, RSV)",
-      "year": "2024-2025",
-      "headline": "Atemwegsinfekt-Welle Winter 2024/25 in Deutschland",
+      "scope": "Atemwegsinfekt-Surveillance Deutschland — Saisonvergleich bis 2025/26",
+      "year": "2025-2026",
+      "headline": "Atemwegsinfekte Deutschland: Die Saison 2025/26 war mit einem GrippeWeb-Höchstwert von 8.661 je 100.000 (KW 5/2026) die SCHWÄCHSTE der letzten vier Saisonen und lag auf Vor-Pandemie-Niveau (2018/19: 8.660). Seit 2022/23 (11.204) geht der Höchstwert durchgehend zurück. MESSGRÖSSE: GrippeWeb ist bevölkerungsbasiert; die Konsultationsinzidenz der Praxen ist eine andere, viermal kleinere Größe.",
       "data": {
-        "rki_ari_inzidenz_peak_woche_5_2025_pro_100k": 9870,
-        "rki_ari_inzidenz_peak_woche_2_2024_pro_100k": 7320,
-        "rki_ari_inzidenz_typischer_winterpeak_pro_100k": 7000,
-        "rki_influenza_anteil_an_ari_peak_pct": 38,
-        "rki_covid_anteil_an_ari_peak_pct": 5,
-        "rki_rsv_anteil_an_ari_peak_pct": 3,
-        "context": "Winter 2024/25 hatte eine Influenza-dominierte Atemwegsinfekt-Welle, deutlich stärker als 2023/24 — der Peak in KW 5/2025 (9.870 ARI pro 100.000) lag etwa 30 % über dem typischen Vor-Pandemie-Winterpeak. COVID spielte mit 5 % Anteil eine untergeordnete Rolle.",
-        "context_quelle": "RKI Wochenbericht 7/2025 + ARE-Wochenbericht"
+        "messgroesse": "MESSGRÖSSE NICHT TAUSCHEN: Die Höchstwerte sind GrippeWeb-ARE-Inzidenz — bevölkerungsbasiert aus Selbstauskünften, je 100.000 Einwohner. Die ARE-KONSULTATIONSinzidenz aus dem Praxis-Sentinel misst etwas anderes und liegt rund viermal niedriger (Saison-Höchstwert 2025/26: 2.044 gegenüber 8.661). Wer beide gegeneinander hält, liest einen Einbruch heraus, den es nicht gibt.",
+        "grippeweb_are_peak_je_100k_2022_23": 11204,
+        "grippeweb_are_peak_je_100k_2023_24": 10434,
+        "grippeweb_are_peak_je_100k_2024_25": 9290,
+        "grippeweb_are_peak_je_100k_2025_26": 8661,
+        "grippeweb_are_peak_woche_2025_26": "KW 5/2026",
+        "grippeweb_are_peak_vor_pandemie_2018_19": 8660,
+        "grippeweb_are_peak_vor_pandemie_2019_20": 8529,
+        "sari_hospitalisierung_peak_je_100k_2022_23": 38.2,
+        "sari_hospitalisierung_peak_je_100k_2023_24": 32.1,
+        "sari_hospitalisierung_peak_je_100k_2024_25": 34.3,
+        "sari_hospitalisierung_peak_je_100k_2025_26": 29.1,
+        "influenza_meldefaelle_ifsg_2023_24": 217770,
+        "influenza_meldefaelle_ifsg_2024_25": 397681,
+        "influenza_meldefaelle_ifsg_2025_26": 247202,
+        "rsv_meldefaelle_ifsg_2023_24": 58851,
+        "rsv_meldefaelle_ifsg_2024_25": 69386,
+        "rsv_meldefaelle_ifsg_2025_26": 70587,
+        "covid_anteil_an_are_konsultationen_peakwoche_2025_26_pct": 0.6,
+        "context": "Der Höchstwert der Atemwegsinfekte geht seit 2022/23 in jeder Saison zurück: 11.204 auf 10.434 auf 9.290 auf 8.661 je 100.000. Die Saison 2025/26 lag damit praktisch exakt auf dem Vor-Pandemie-Wert von 2018/19 (8.660). Auch die Krankenhaus-Seite folgt: die SARI-Hospitalisierungsinzidenz fiel von 38,2 (2022/23) auf 29,1 (2025/26). Influenza-Meldefälle waren 2024/25 mit 397.681 am höchsten und gingen 2025/26 auf 247.202 zurück; RSV stieg dagegen leicht auf 70.587.",
+        "context_quelle": "RKI Open Data (GitHub robert-koch-institut), Stand Meldewoche 35/2026: GrippeWeb_Daten_des_Wochenberichts, SARI-Hospitalisierungsinzidenz, ARE-Konsultationsinzidenz, COVID-ARE-Konsultationsinzidenz, Influenzafaelle_in_Deutschland, Respiratorische_Synzytialvirusfaelle_in_Deutschland"
       },
       "context_notes": [
-        "Die Behauptung 'COVID ist zurück und legt das Land lahm' ist für den Winter 2024/25 nicht haltbar — Influenza war der dominierende Erreger.",
-        "Die Krankenhausbelegung (SARI) lag im Peak bei ~7,5/100 k — vergleichbar mit den schwersten Vor-Pandemie-Wintern (2017/18, 2018/19).",
-        "Der Vergleich zu 2022/23 (Long-COVID-Plateau) hilft Boulevard-Behauptungen 'COVID-Welle macht alle krank' zu widerlegen."
+        "Die Behauptung 'die Atemwegswelle wird jedes Jahr schlimmer' ist für Deutschland nicht haltbar: der Saison-Höchstwert sinkt seit 2022/23 durchgehend.",
+        "COVID spielt in der ambulanten Versorgung nur noch eine Randrolle — in der Höchstwoche der Saison 2025/26 entfielen 0,6 % der ARE-Konsultationen auf eine zusätzliche COVID-Diagnose.",
+        "Influenza und RSV bewegen sich gegenläufig: Influenza-Meldefälle gingen 2025/26 gegenüber der Rekordsaison 2024/25 um rund 38 % zurück, RSV stieg leicht.",
+        "Saison heisst hier Kalenderwoche 40 bis Kalenderwoche 39 des Folgejahres (RKI-Konvention). Meldefälle nach IfSG sind Labormeldungen, keine Schätzung der tatsächlichen Erkrankungszahl."
       ],
       "claim_phrasings_handled": [
-        "COVID-Welle Winter 2024 2025",
         "Grippewelle Deutschland",
-        "Atemwegsinfekt Krise"
+        "Atemwegsinfekt Krise",
+        "Atemwegsinfekte werden jedes Jahr schlimmer",
+        "Die Atemwegswelle wird jedes Jahr schlimmer",
+        "COVID-Welle Deutschland"
       ],
       "trigger_keywords": [
         "grippewelle deutschland", "grippe-welle deutschland",
-        "covid-welle 2024", "covid-welle 2025",
+        "covid-welle",
         "atemwegsinfekt welle",
         "rki atemwegsinfekt", "rki ari", "rki sari"
       ],
       "trigger_composite": [
-        ["grippe", "influenza", "atemwegsinfekt", "rsv", "ari", "sari", "covid"],
+        ["grippe", "influenza", "atemwegs", "atemwegsinfekt", "rsv", "ari", "sari", "covid"],
         ["welle", "anstieg", "gestiegen", "steigt",
          "krise", "lahm", "kollap", "kollabiert", "ausbruch", "boom",
-         "explod", "explosion", "rapide"]
+         "explod", "explosion", "rapide", "schlimmer", "immer mehr",
+         "jedes jahr", "zurück", "rückgang", "schwächer"]
       ],
-      "source_label": "Robert Koch-Institut — ARE-/SARI-Wochenbericht",
-      "source_url": "https://influenza.rki.de/Wochenberichte.aspx"
+      "source_label": "Robert Koch-Institut — Open Data (GrippeWeb, SARI-Hospitalisierungsinzidenz, ARE-Konsultationsinzidenz, IfSG-Meldedaten Influenza + RSV), Stand Meldewoche 35/2026",
+      "source_url": "https://github.com/robert-koch-institut/GrippeWeb_Daten_des_Wochenberichts",
+      "secondary_url": "https://github.com/robert-koch-institut/SARI-Hospitalisierungsinzidenz"
     }
   ]
 }
