@@ -173,7 +173,7 @@ const TRANSLATIONS = {
                 <li><a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament.gv.at</a> — Österreichisches Parlament Open Data (Nationalrats-Klubstärken)</li>
             </ul>
             <h3>Erweiterte Live-API-Quellen (2026)</h3>
-            <p style="font-size: 0.9rem; color: #6b7280;">2026 wurden zusätzliche Live-API-Quellen integriert (aus dem Metastudien-Quellen-Inventar): 60+ verifizierte production-ready Live-API-Connectors.</p>
+            <p style="font-size: 0.9rem; color: #6b7280;">2026 wurden zusätzliche Live-API-Quellen integriert (aus dem Metastudien-Quellen-Inventar): 54 verifizierte production-ready Live-API-Connectors — nachfolgend vollständig aufgelistet.</p>
             <ul>
                 <li><a href="https://db.nomics.world/" target="_blank" rel="noopener">DBnomics</a> — Meta-Aggregator für 50.000+ Wirtschafts-Zeitreihen von ECB, IMF, OECD, BIS, World Bank, FRED, OeNB, CEPII, INSEE etc. (AGPL/ODbL)</li>
                 <li><a href="https://nvd.nist.gov/" target="_blank" rel="noopener">NIST NVD</a> — US National Vulnerability Database: 351k+ CVEs mit CVSS-Scores + CISA KEV-Status (Public Domain)</li>
@@ -594,7 +594,7 @@ const TRANSLATIONS = {
                 <li><a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament.gv.at</a> — Austrian Parliament Open Data (Nationalrat seat shares)</li>
             </ul>
             <h3>Extended Live-API Sources (2026)</h3>
-            <p style="font-size: 0.9rem; color: #6b7280;">In 2026, additional live-API sources were integrated (from the Metastudien-Quellen-Inventar): <strong>75+ verified production-ready live-API connectors</strong> with a 97% Hard-PASS rate in the 101-Claim Comprehensive Test (2026-05-20).</p>
+            <p style="font-size: 0.9rem; color: #6b7280;">In 2026, additional live-API sources were integrated (from the Metastudien-Quellen-Inventar): <strong>54 verified production-ready live-API connectors</strong> (the complete list follows) with a 97% Hard-PASS rate in the 101-Claim Comprehensive Test (2026-05-20).</p>
             <ul>
                 <li><a href="https://db.nomics.world/" target="_blank" rel="noopener">DBnomics</a> — Meta-aggregator for 50,000+ economic time-series from ECB, IMF, OECD, BIS, World Bank, FRED, OeNB, CEPII, INSEE etc. (AGPL/ODbL)</li>
                 <li><a href="https://nvd.nist.gov/" target="_blank" rel="noopener">NIST NVD</a> — US National Vulnerability Database: 351k+ CVEs with CVSS scores + CISA KEV status (Public Domain)</li>
