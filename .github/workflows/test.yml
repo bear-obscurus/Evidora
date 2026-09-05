@@ -137,6 +137,9 @@ jobs:
     #   - test_freedom_house_pack_konsistenz (demokratie_pack fuehrt eine
     #                                  zweite Kopie der FH-Zahlen — sie muss
     #                                  dem Connector entsprechen)
+    #   - test_onkologie_pack_provenienz (Pack hatte GAR keine Metadaten;
+    #                                  Mistel-Evidenz von Cochrane 2008 auf
+    #                                  Phase-III-RCT MISTRAL 2024 ergaenzt)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -216,6 +219,7 @@ jobs:
             tests/test_oecd_health_profil_2025.py \
             tests/test_freedom_house_fiw_2026.py \
             tests/test_freedom_house_pack_konsistenz.py \
+            tests/test_onkologie_pack_provenienz.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
