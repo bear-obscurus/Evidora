@@ -24,3 +24,16 @@ def de_int(v) -> str:
         return f"{int(round(float(v))):,}".replace(",", ".")
     except (TypeError, ValueError):
         return "?"
+
+
+def de_num(v) -> str:
+    """``82.3`` -> ``'82,3'``, ``6.0``/``6`` -> ``'6'``. Dezimalzahlen in
+    deutscher Schreibweise, ohne den umgebenden Text anzufassen (siehe
+    Modul-Docstring). Bei ``None``/nicht-numerisch ``'?'`` statt Crash."""
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return "?"
+    if f.is_integer():
+        return str(int(f))
+    return str(f).replace(".", ",")
