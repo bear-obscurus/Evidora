@@ -6,10 +6,27 @@ Zwei Datenquellen werden kombiniert:
    Threat Reports von euvsdisinfo.eu.  ~30 aktuelle Artikel, stündlich aktualisiert.
    Semantische Suche via MiniLM Embeddings.
 
-2. **Falldatenbank** (historisch): 14.495 dokumentierte pro-Kreml
-   Desinformations-Fälle (Jan 2015 – Nov 2022) mit dem Fake-Claim.
-   Quelle: erosalie/euvsdisinfo (GitHub), CC BY-SA 4.0.
-   Statische JSON-Datei, Keyword-basierte Suche (kein Embedding nötig).
+2. **Falldatenbank** (ARCHIV): dokumentierte pro-Kreml Desinformations-Fälle
+   mit dem jeweiligen Fake-Claim. Quelle: erosalie/euvsdisinfo (GitHub),
+   CC BY-SA 4.0. Statische JSON-Datei, Keyword-basierte Suche.
+
+   ⚠ Das Archiv endet, wo der Spiegel aufhörte. Geprüft am 2026-09-05:
+   erosalie/euvsdisinfo wurde zuletzt am 30.04.2023 gepusht; die offizielle
+   EUvsDisinfo-Datenbank weist inzwischen rund 19.758 Fälle aus gegenüber
+   14.495 hier — es fehlen etwa 26 %. Ein Refresh ist derzeit nicht möglich:
+   euvsdisinfo.eu bietet keinen Export, die WordPress-API antwortet mit 403,
+   data.europa.eu verlinkt nur HTML-Seiten, und die alternativen Spiegel sind
+   älter (cknabs, Anfang 2021) oder enthalten gar keine Daten (joaoaleite).
+
+   Deshalb trägt JEDER Datenbank-Treffer sein Abdeckungsfenster im
+   ``description``-Feld — sonst sieht ein Fall von 2016 im Prompt genauso aus
+   wie ein Threat Report von letzter Woche. Das Fenster wird beim Laden aus
+   den Daten bestimmt, nicht verdrahtet.
+
+   Bekannte Grenze: Bleibt die Datenbank OHNE Treffer, kann der Synthesizer
+   nicht unterscheiden zwischen "EUvsDisinfo hat dazu nichts" und "das
+   Narrativ kam nach November 2022 auf". Der Feed deckt aktuelle Themen ab,
+   aber nur die letzten ~30 Artikel.
 
 Nur Claims mit geopolitischen Keywords werden gegen EUvsDisinfo geprüft.
 """
@@ -39,6 +56,10 @@ DATA_DIR = Path(__file__).parent.parent / "data"
 LOCAL_DB = DATA_DIR / "euvsdisinfo_db.json"
 
 _db_index: list[dict] | None = None
+# Abdeckungsfenster der Falldatenbank, beim Laden AUS DEN DATEN bestimmt.
+# Nicht verdrahten: sonst behauptet der Hinweis irgendwann ein Fenster, das
+# der Datensatz gar nicht hat (Lehre aus wifo_ihs #131 / rki #138).
+_db_abdeckung: tuple[str, str] | None = None
 
 # Keywords that indicate a claim might be related to geopolitical disinformation
 DISINFO_KEYWORDS = [
@@ -207,11 +228,46 @@ def _load_db():
         try:
             with open(LOCAL_DB, encoding="utf-8") as f:
                 _db_index = json.load(f)
-            logger.info(f"EUvsDisinfo DB: loaded {len(_db_index)} cases")
+            global _db_abdeckung
+            _db_abdeckung = _abdeckung_bestimmen(_db_index)
+            logger.info(
+                f"EUvsDisinfo DB: loaded {len(_db_index)} cases "
+                f"(Abdeckung {_db_abdeckung[0]} bis {_db_abdeckung[1]})"
+                if _db_abdeckung else
+                f"EUvsDisinfo DB: loaded {len(_db_index)} cases")
         except Exception as e:
             logger.warning(f"EUvsDisinfo DB: failed to load: {e}")
     else:
         logger.warning(f"EUvsDisinfo DB: file not found at {LOCAL_DB}")
+
+
+
+def _abdeckung_bestimmen(eintraege: list[dict]) -> tuple[str, str] | None:
+    """Aeltester und juengster Fall im Datensatz, als 'MM/JJJJ'.
+
+    Die Falldatenbank ist ein ARCHIV: sie spiegelt erosalie/euvsdisinfo, das
+    seit April 2023 nicht mehr fortgeschrieben wird. Der RSS-Feed daneben ist
+    aktuell. Ohne Kennzeichnung sehen beide im Prompt gleich aus — ein Fall
+    von 2016 und ein Threat Report von letzter Woche tragen dieselbe Quelle
+    und dieselbe Feldform.
+    """
+    monate = []
+    for e in eintraege:
+        d = (e.get("date") or "").strip()
+        if len(d) == 10 and d[2] == "." and d[5] == ".":
+            monate.append((d[6:10], d[3:5]))     # (JJJJ, MM)
+    if not monate:
+        return None
+    aeltest, juengst = min(monate), max(monate)
+    return (f"{aeltest[1]}/{aeltest[0]}", f"{juengst[1]}/{juengst[0]}")
+
+
+def _archiv_hinweis() -> str:
+    """Kurz halten: der Hinweis teilt sich das 400-Zeichen-Prompt-Budget mit
+    dem eigentlichen Fall-Text und darf ihn nicht verdraengen."""
+    if not _db_abdeckung:
+        return "EUvsDisinfo-Fallarchiv"
+    return f"EUvsDisinfo-Fallarchiv {_db_abdeckung[0]}–{_db_abdeckung[1]}"
 
 
 # ─── Search ──────────────────────────────────────────────────────────
@@ -349,7 +405,11 @@ async def search_euvsdisinfo(analysis: dict) -> dict:
         results.append({
             "title": entry["title"],
             "url": entry["url"],
-            "description": entry["claim"][:200],
+            # Der Archiv-Hinweis steht in `description`, weil das eines der
+            # wenigen Felder ist, die der Synthesizer-Prompt durchlaesst.
+            # `source` bleibt unveraendert — Marker- und Dispatch-Logik
+            # haengen an diesem Literal (Marker-Drift-Lehre, PR #74).
+            "description": f"[{_archiv_hinweis()}] {entry['claim'][:300]}",
             "claim": entry["claim"],
             "source": "EUvsDisinfo",
             "date": entry["date"],

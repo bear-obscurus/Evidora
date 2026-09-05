@@ -129,6 +129,26 @@ KADENZ_MAX_AGE = {
     "ereignisgetrieben": None,  # Wahlen, Urteile: kein Takt, kein Alarm
 }
 ANLASSBEZOGEN = "ANLASSBEZOGEN"  # ereignisgetrieben -> nie VERALTET
+BLOCKIERT = "BLOCKIERT"          # Quelle nachweislich nicht refreshbar
+
+# Quellen, deren Refresh an der QUELLE scheitert, nicht an uns. Sie bleiben
+# sichtbar, loesen aber keinen Alarm aus: Ein Wecker, den man nicht abstellen
+# kann, bringt einem bei, Wecker zu ignorieren — genau daran lag der
+# unbeachtete ALERT vom 31.08.2026.
+#
+# Aufnahme nur mit geprueftem Grund und einer Bedingung, unter der ein neuer
+# Versuch lohnt. Siehe auch memory/hard_to_implement.md.
+BLOCKIERTE_QUELLEN = {
+    "euvsdisinfo_db.json": (
+        "Spiegel von erosalie/euvsdisinfo, letzter Push 30.04.2023 (tot). "
+        "Kein Ersatz: cknabs/EUvsDisinfo endet Anfang 2021 und hat keine "
+        "Lizenz, joaoaleite/euvsdisinfo liefert nur den Scraper. "
+        "euvsdisinfo.eu bietet keinen Export, WordPress-API 403, "
+        "data.europa.eu verlinkt nur HTML. Geprueft 2026-09-05. "
+        "Neuer Versuch lohnt, sobald EUvsDisinfo einen Export anbietet oder "
+        "ein gepflegter Spiegel mit Lizenz auftaucht."
+    ),
+}
 
 
 def schwelle_fuer(kadenz, standard: int) -> int | None:
@@ -142,7 +162,8 @@ def schwelle_fuer(kadenz, standard: int) -> int | None:
     return standard
 
 
-def klassifiziere(feld_age, mtime_age: int, max_age: int, kadenz=None) -> str:
+def klassifiziere(feld_age, mtime_age: int, max_age: int, kadenz=None,
+                  blockiert: bool = False) -> str:
     """Welche Klasse liegt vor?
 
     ``feld_age`` ist das Alter von ``fetched_at_iso`` (oder None, wenn die
@@ -155,6 +176,8 @@ def klassifiziere(feld_age, mtime_age: int, max_age: int, kadenz=None) -> str:
     2026-09-05 51 Dateien, davon 31 FEHLALARME — Dateien, die kuerzlich
     geaendert worden waren, ohne dass jemand das Feld mitgezogen hatte.
     """
+    if blockiert:
+        return BLOCKIERT
     grenze = schwelle_fuer(kadenz, max_age)
     if grenze is None:
         return ANLASSBEZOGEN
@@ -236,14 +259,15 @@ def main():
     #   FELD UNGEPFLEGT fetched_at_iso alt, Datei aber frisch geaendert ->
     #                   die deklarierte Vintage stimmt nicht mehr. Nur Log,
     #                   KEIN Alarm: das ist Buchhaltung, kein Ausfall.
-    stale_files, feld_ungepflegt, anlassbezogen = [], [], []
+    stale_files, feld_ungepflegt, anlassbezogen, blockiert = [], [], [], []
     for name, fetched_at, label, age, mtime_age, kadenz in rows:
         fa = fetched_at.isoformat() if fetched_at else "—"
         age_s = f"{age}d" if isinstance(age, int) else "—"
-        klasse = klassifiziere(age, mtime_age, args.max_age_days, kadenz)
+        klasse = klassifiziere(age, mtime_age, args.max_age_days, kadenz,
+                               blockiert=name in BLOCKIERTE_QUELLEN)
         grenze = schwelle_fuer(kadenz, args.max_age_days)
         marker = {VERALTET: "⚠", FELD_UNGEPFLEGT: "·",
-                  ANLASSBEZOGEN: "~"}.get(klasse, " ")
+                  ANLASSBEZOGEN: "~", BLOCKIERT: "×"}.get(klasse, " ")
         takt = f"[{kadenz}]" if kadenz else ""
         print(f"  {marker} " + fmt.format(
             name, fa, f"{age_s}/{mtime_age}d", (label or "")[:30])[2:] + takt)
@@ -259,6 +283,8 @@ def main():
             feld_ungepflegt.append((name, age, mtime_age))
         elif klasse == ANLASSBEZOGEN:
             anlassbezogen.append((name, mtime_age))
+        elif klasse == BLOCKIERT:
+            blockiert.append((name, mtime_age))
 
     print()
     cache_problems = check_generated_caches(DATA_DIR)
@@ -280,6 +306,14 @@ def main():
                   f"(Schwelle {grenze} d{takt})")
     else:
         print(f"OK — alle {len(rows)} Dateien innerhalb ihrer Schwelle.")
+
+    if blockiert:
+        print()
+        print(f"× {len(blockiert)} Quellen an der QUELLE blockiert — sichtbar, "
+              f"aber kein Alarm:")
+        for name, mtime_age in blockiert:
+            print(f"  - {name}: unverändert seit {mtime_age} d")
+            print(f"    {BLOCKIERTE_QUELLEN[name]}")
 
     if anlassbezogen:
         print()

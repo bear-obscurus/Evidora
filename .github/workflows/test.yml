@@ -155,6 +155,9 @@ jobs:
     #   - test_frontex_stand_juli_2026 (Routen mit Zahlen statt Prosa;
     #                                  Routensumme == Gesamtzahl als Gegenprobe;
     #                                  'illegale Migration' traf vorher nichts)
+    #   - test_euvsdisinfo_archiv_fenster (Fallarchiv endet 11/2022 und ist
+    #                                  nicht refreshbar; jeder Treffer traegt
+    #                                  jetzt sein Abdeckungsfenster)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -240,6 +243,7 @@ jobs:
             tests/test_rki_saison_2025_26.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
+            tests/test_euvsdisinfo_archiv_fenster.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
