@@ -38,11 +38,7 @@ _FRONTEX_TERMS = (
     "illegale grenzübertritte",
     "westbalkan-route", "westbalkanroute", "balkan-route",
     "mittelmeer-route", "mittelmeerroute",
-    # Adjektiv-Flexion mit aufnehmen: "im westlichEN Mittelmeer" traf sonst
-    # nicht (gleiche Falle wie "europaeischEN Parlament", QA50D).
-    "zentrales mittelmeer", "östliches mittelmeer", "westliches mittelmeer",
-    "zentralen mittelmeer", "östlichen mittelmeer", "westlichen mittelmeer",
-    "oestliches mittelmeer", "oestlichen mittelmeer",
+    # Die Mittelmeer-Routen laufen ueber _ROUTEN_STAMMPAARE (Flexion!).
     "kanaren-route", "westafrika-route", "westafrikaroute",
     "ärmelkanal migration", "channel crossings",
     "mittelmeer tote", "tote mittelmeer", "tote im mittelmeer",
@@ -52,9 +48,43 @@ _FRONTEX_TERMS = (
 )
 
 
+
+# Adjektiv-Flexion NICHT aufzaehlen, sondern auf den Wortstamm pruefen.
+# Bis 2026-09 standen "westliches"/"westlichen" als Literale in zwei Listen
+# — "ueber das westlichE Mittelmeer" fiel durch beide, und der Live-Lauf
+# beantwortete einen Claim ueber die einzige STEIGENDE Route mit EU-weiten
+# Asylzahlen. Wer Formen aufzaehlt, vergisst eine; der Stamm deckt alle ab.
+_ROUTEN_STAMMPAARE: tuple[tuple[tuple[str, ...], str], ...] = (
+    (("zentral", "mittelmeer"), "zentrales mittelmeer"),
+    (("östlich", "mittelmeer"), "östliches mittelmeer"),
+    (("oestlich", "mittelmeer"), "östliches mittelmeer"),
+    (("westlich", "mittelmeer"), "westliches mittelmeer"),
+    (("kreta",), "östliches mittelmeer"),
+    (("westbalkan",), "westbalkan"),
+    (("balkanroute",), "westbalkan"),
+    (("balkan-route",), "westbalkan"),
+    (("westafrika",), "westafrikanisch"),
+    (("kanaren",), "westafrikanisch"),
+    (("ärmelkanal",), "ärmelkanal"),
+    (("aermelkanal",), "ärmelkanal"),
+    (("channel crossing",), "ärmelkanal"),
+    (("östliche landgrenze",), "östliche landgrenze"),
+    (("oestliche landgrenze",), "östliche landgrenze"),
+)
+
+
+def _route_treffer(claim_lc: str) -> str | None:
+    """Welche Route nennt der Claim? Gibt den Namens-Teilstring zurueck."""
+    for stems, route_substr in _ROUTEN_STAMMPAARE:
+        if all(st in claim_lc for st in stems):
+            return route_substr
+    return None
+
 def _claim_mentions_frontex(claim_lc: str) -> bool:
     has_term = any(t in claim_lc for t in _FRONTEX_TERMS)
     if has_term:
+        return True
+    if _route_treffer(claim_lc):
         return True
     # Composite: 'grenzübertritt' + EU-Bezug
     has_grenzubert = any(t in claim_lc for t in (
@@ -221,47 +251,24 @@ def _build_results(fact: dict, claim_lc: str) -> list[dict]:
     })
 
     # Spezial-Eintrag wenn Claim eine spezifische Route nennt.
-    route_triggers = [
-        ("westbalkan", "westbalkan"),
-        ("balkan", "westbalkan"),
-        ("westafrika", "westafrikanisch"),
-        ("kanaren", "westafrikanisch"),
-        # Beide Adjektiv-Formen: "im westlichEN Mittelmeer" ist die
-        # natuerlichere Formulierung als "westlichES Mittelmeer".
-        ("zentrales mittelmeer", "zentrales mittelmeer"),
-        ("zentralen mittelmeer", "zentrales mittelmeer"),
-        ("östliches mittelmeer", "östliches mittelmeer"),
-        ("östlichen mittelmeer", "östliches mittelmeer"),
-        ("oestliches mittelmeer", "östliches mittelmeer"),
-        ("oestlichen mittelmeer", "östliches mittelmeer"),
-        ("kreta", "östliches mittelmeer"),
-        ("westliches mittelmeer", "westliches mittelmeer"),
-        ("westlichen mittelmeer", "westliches mittelmeer"),
-        ("ärmelkanal", "ärmelkanal"),
-        ("aermelkanal", "ärmelkanal"),
-        ("channel", "ärmelkanal"),
-        ("landgrenze", "östliche landgrenze"),
-        ("albanien", "albanien"),
-    ]
-    for trigger_kw, route_substr in route_triggers:
-        if trigger_kw in claim_lc:
-            for r in routen:
-                if route_substr in r["name"].lower():
-                    results.insert(0, {
-                        "indicator_name": f"Frontex {r['name']}, {zeitraum}",
-                        "indicator": "frontex_route",
-                        "country": "EU", "country_name": "Europäische Union",
-                        "year": zeitraum,
-                        "display_value": f"Frontex, {zeitraum} — {_routen_zeile(r)}.",
-                        "description": (
-                            "Frontex-Routen-Aufschlüsselung, vorläufige Daten. "
-                            "WICHTIG: Detektionen sind keine Personen — eine "
-                            "Person kann mehrfach gezählt werden."
-                        ),
-                        "url": src, "source": label,
-                    })
-                    break
-            break
+    route_substr = _route_treffer(claim_lc)
+    if route_substr:
+        for r in routen:
+            if route_substr in r["name"].lower():
+                results.insert(0, {
+                    "indicator_name": f"Frontex {r['name']}, {zeitraum}",
+                    "indicator": "frontex_route",
+                    "country": "EU", "country_name": "Europäische Union",
+                    "year": zeitraum,
+                    "display_value": f"Frontex, {zeitraum} — {_routen_zeile(r)}.",
+                    "description": (
+                        "Frontex-Routen-Aufschlüsselung, vorläufige Daten. "
+                        "WICHTIG: Detektionen sind keine Personen — eine "
+                        "Person kann mehrfach gezählt werden."
+                    ),
+                    "url": src, "source": label,
+                })
+                break
 
     return results
 
