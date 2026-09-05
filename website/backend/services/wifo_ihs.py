@@ -112,35 +112,40 @@ def _build_results(fact: dict, claim_lc: str) -> list[dict]:
     src = fact.get("source_url") or ""
     label = fact.get("source_label") or "WIFO + IHS"
 
+    # Prognose-Runde kommt aus den DATEN, nicht aus dem Code. Bis 2026-09-05
+    # stand "1/2026 (März 2026)" hier fest verdrahtet — ein Daten-Refresh
+    # allein haette die falsche Runde weiter angezeigt.
+    runde = data.get("prognose_runde") or "WIFO/IHS-Konjunkturprognose"
+
     headline = (
-        f"WIFO + IHS Konjunkturprognose 1/2026 (März 2026): "
-        f"BIP 2026 +{_de_pct(data.get('bip_wachstum_2026_pct_real_wifo'))} % (WIFO) / "
-        f"+{_de_pct(data.get('bip_wachstum_2026_pct_real_ihs'))} % (IHS); "
+        f"{runde}: BIP 2026 +{_de_pct(data.get('bip_wachstum_2026_pct_real_wifo'))} % "
+        f"(WIFO) / +{_de_pct(data.get('bip_wachstum_2026_pct_real_ihs'))} % (IHS) — "
+        f"also WACHSTUM, keine Rezession; 2025 war mit "
+        f"+{_de_pct(data.get('bip_2025_ist_pct_real'))} % bereits ein Erholungsjahr. "
         f"Inflation 2026 {_de_pct(data.get('inflation_2026_pct_wifo'))} % (WIFO) / "
-        f"{_de_pct(data.get('inflation_2026_pct_ihs'))} % (IHS); "
-        f"AMS-Arbeitslosenquote 2026 {_de_pct(data.get('arbeitslosenquote_ams_2026_pct_prognose'))} % "
-        f"(Eurostat-Quote: {_de_pct(data.get('arbeitslosenquote_eurostat_2026_pct_wifo'))} %)."
+        f"{_de_pct(data.get('inflation_2026_pct_ihs'))} % (IHS), deutlich ÜBER dem "
+        f"EZB-Ziel. Arbeitslosenquote (nationale Definition) steigt 2026 leicht auf "
+        f"{_de_pct(data.get('arbeitslosenquote_nat_2026_pct'))} % "
+        f"(2025: {_de_pct(data.get('arbeitslosenquote_nat_2025_pct'))} %)."
     )
 
     description_parts = [
-        f"2025: BIP {_de_pct(data.get('bip_wachstum_2025_pct_real_wifo'))} % "
-        f"(WIFO) / {_de_pct(data.get('bip_wachstum_2025_pct_real_ihs'))} % (IHS), "
-        f"Inflation {_de_pct(data.get('inflation_2025_pct_wifo'))} % (WIFO).",
-        f"2027-Ausblick: BIP "
-        f"+{_de_pct(data.get('bip_wachstum_2027_pct_real_wifo'))} % / "
-        f"+{_de_pct(data.get('bip_wachstum_2027_pct_real_ihs'))} %, Inflation "
-        f"{_de_pct(data.get('inflation_2027_pct_wifo'))} % / "
-        f"{_de_pct(data.get('inflation_2027_pct_ihs'))} %.",
-        data.get("rezession_2023_2024_charakterisierung", ""),
+        f"2027-Ausblick: BIP +{_de_pct(data.get('bip_wachstum_2027_pct_real_wifo'))} % "
+        f"(WIFO) / +{_de_pct(data.get('bip_wachstum_2027_pct_real_ihs'))} % (IHS), "
+        f"Arbeitslosenquote {_de_pct(data.get('arbeitslosenquote_nat_2027_pct'))} %.",
+        f"Budgetdefizit 2026: {_de_pct(data.get('budgetdefizit_2026_pct_bip'))} % des BIP.",
+        data.get("konjunktur_charakterisierung", ""),
+        data.get("inflation_charakterisierung", ""),
+        data.get("arbeitsmarkt_charakterisierung", ""),
         data.get("ams_methodologie_caveat", ""),
     ]
-    if data.get("aufschwung_2026_treiber"):
-        description_parts.append(
-            "Aufschwung-Treiber 2026: " + ", ".join(data["aufschwung_2026_treiber"]) + "."
-        )
+    if data.get("treiber_2026"):
+        description_parts.append("Treiber 2026: " + ", ".join(data["treiber_2026"]) + ".")
+    if data.get("risiken_2026"):
+        description_parts.append("Risiken 2026: " + ", ".join(data["risiken_2026"]) + ".")
 
     return [{
-        "indicator_name": "WIFO + IHS Konjunkturprognose 1/2026 — Österreich",
+        "indicator_name": f"{runde} — Österreich",
         "indicator": "wifo_ihs_main",
         "country": "AUT",
         "country_name": "Österreich",
