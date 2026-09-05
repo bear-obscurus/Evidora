@@ -134,6 +134,9 @@ jobs:
     #                                  aus Code oder Dateiname; PR+CL==Total
     #                                  fuer alle 55 Laender; world_summary war
     #                                  totes Feld)
+    #   - test_freedom_house_pack_konsistenz (demokratie_pack fuehrt eine
+    #                                  zweite Kopie der FH-Zahlen — sie muss
+    #                                  dem Connector entsprechen)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -212,6 +215,7 @@ jobs:
             tests/test_wifo_ihs_prognoserunde.py \
             tests/test_oecd_health_profil_2025.py \
             tests/test_freedom_house_fiw_2026.py \
+            tests/test_freedom_house_pack_konsistenz.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
