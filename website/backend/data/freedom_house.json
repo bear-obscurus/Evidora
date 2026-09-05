@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "fetched_at_iso": "2026-05-07",
-  "report_year": 2024,
-  "covering_events_year": 2023,
-  "source_label": "Freedom House — Freedom in the World 2024 (covering 2023 events). Refreshed 2026-05-07 from official FIW XLSX (All_data_FIW_2013-2024.xlsx) — echte FIW v2024-Werte für 55 Länder.",
-  "source_url": "https://freedomhouse.org/report/freedom-world",
+  "fetched_at_iso": "2026-09-05",
+  "report_year": 2026,
+  "covering_events_year": 2025,
+  "source_label": "Freedom House — Freedom in the World 2026 „Growing Shadow of Autocracy“ (bewertet das Kalenderjahr 2025). Werte am 2026-09-05 von den offiziellen Country-Seiten freedomhouse.org/country/{slug}/freedom-world/2026 gelesen — 55/55 Länder mit echten FIW-2026-Werten.",
+  "source_url": "https://freedomhouse.org/report/freedom-world/2026/growing-shadow-autocracy",
   "license": "CC-BY (Annual report aggregate scores publicly available)",
-  "audit_flag": "REFRESHED 2026-05-07 from official FIW 2024 XLSX. 55/55 Länder mit echten FIW-Werten; restliche bleiben LLM-Approximationen falls FIW-Naming nicht im Mapping war.",
-  "methodology_note": "FIW misst zwei Dimensionen: Political Rights (PR, 0-40 Punkte aus 10 Items je 0-4) und Civil Liberties (CL, 0-60 Punkte aus 15 Items je 0-4). Total = PR + CL (0-100). Status-Schwellen: Free 70-100, Partly Free 35-69, Not Free 0-34. PR-Rating und CL-Rating (1-7, 1=best) ergeben sich aus PR/CL-Score-Bereichen. Methodik basiert auf Experten-Bewertung (jährlich, transparent dokumentiert).",
+  "audit_flag": "REFRESHED 2026-09-05 von FIW 2024 auf FIW 2026 (zwei Ausgaben übersprungen). 55/55 Länder direkt von der Quelle; Gegenproben: PR+CL == Total bei allen 55, und der im Report ausdrücklich genannte US-Verlust von 3 Punkten deckt sich mit den gelesenen Werten (84 -> 81).",
+  "methodology_note": "FIW misst zwei Dimensionen: Political Rights (PR, 0-40 Punkte aus 10 Items je 0-4) und Civil Liberties (CL, 0-60 Punkte aus 15 Items je 0-4). Total = PR + CL (0-100). Status-Schwellen: Free 70-100, Partly Free 35-69, Not Free 0-34. Methodik: jährliche Experten-Bewertung einer US-NGO, transparent dokumentiert.",
   "country_aliases": {
     "AUT": [
       "österreich",
@@ -369,7 +369,7 @@
     "TUR": "turkey",
     "HUN": "hungary",
     "POL": "poland",
-    "CZE": "czech-republic",
+    "CZE": "czechia",
     "SVK": "slovakia",
     "SVN": "slovenia",
     "EST": "estonia",
@@ -397,452 +397,456 @@
   },
   "ratings": {
     "AUT": {
-      "total_score": 93,
-      "pr_score": 37,
+      "total_score": 94,
+      "pr_score": 38,
       "cl_score": 56,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 93,
+      "vorjahr_status": "Free"
     },
     "DEU": {
-      "total_score": 93,
-      "pr_score": 39,
-      "cl_score": 54,
+      "total_score": 95,
+      "pr_score": 40,
+      "cl_score": 55,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 95,
+      "vorjahr_status": "Free"
     },
     "CHE": {
       "total_score": 96,
       "pr_score": 39,
       "cl_score": 57,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 96,
+      "vorjahr_status": "Free"
     },
     "FRA": {
       "total_score": 89,
       "pr_score": 38,
       "cl_score": 51,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 2
+      "vorjahr_score": 89,
+      "vorjahr_status": "Free"
     },
     "ITA": {
-      "total_score": 90,
-      "pr_score": 36,
-      "cl_score": 54,
+      "total_score": 87,
+      "pr_score": 35,
+      "cl_score": 52,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 89,
+      "vorjahr_status": "Free"
     },
     "ESP": {
-      "total_score": 90,
+      "total_score": 91,
       "pr_score": 37,
-      "cl_score": 53,
+      "cl_score": 54,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 90,
+      "vorjahr_status": "Free"
     },
     "GBR": {
-      "total_score": 91,
-      "pr_score": 38,
+      "total_score": 92,
+      "pr_score": 39,
       "cl_score": 53,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 92,
+      "vorjahr_status": "Free"
     },
     "SWE": {
       "total_score": 99,
       "pr_score": 40,
       "cl_score": 59,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 99,
+      "vorjahr_status": "Free"
     },
     "NOR": {
-      "total_score": 98,
+      "total_score": 99,
       "pr_score": 39,
-      "cl_score": 59,
+      "cl_score": 60,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 99,
+      "vorjahr_status": "Free"
     },
     "DNK": {
       "total_score": 97,
       "pr_score": 40,
       "cl_score": 57,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 97,
+      "vorjahr_status": "Free"
     },
     "FIN": {
       "total_score": 100,
       "pr_score": 40,
       "cl_score": 60,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 100,
+      "vorjahr_status": "Free"
     },
     "NLD": {
       "total_score": 97,
       "pr_score": 39,
       "cl_score": 58,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 97,
+      "vorjahr_status": "Free"
     },
     "BEL": {
-      "total_score": 96,
-      "pr_score": 39,
+      "total_score": 95,
+      "pr_score": 38,
       "cl_score": 57,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 96,
+      "vorjahr_status": "Free"
     },
     "IRL": {
-      "total_score": 97,
-      "pr_score": 39,
+      "total_score": 98,
+      "pr_score": 40,
       "cl_score": 58,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 97,
+      "vorjahr_status": "Free"
     },
     "GRC": {
       "total_score": 85,
       "pr_score": 35,
       "cl_score": 50,
       "status": "Free",
-      "pr_rating": 2,
-      "cl_rating": 2
+      "vorjahr_score": 85,
+      "vorjahr_status": "Free"
     },
     "PRT": {
       "total_score": 96,
       "pr_score": 39,
       "cl_score": 57,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 96,
+      "vorjahr_status": "Free"
     },
     "USA": {
-      "total_score": 83,
-      "pr_score": 33,
-      "cl_score": 50,
+      "total_score": 81,
+      "pr_score": 32,
+      "cl_score": 49,
       "status": "Free",
-      "pr_rating": 2,
-      "cl_rating": 2
+      "vorjahr_score": 84,
+      "vorjahr_status": "Free"
     },
     "CAN": {
       "total_score": 97,
       "pr_score": 39,
       "cl_score": 58,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 97,
+      "vorjahr_status": "Free"
     },
     "AUS": {
-      "total_score": 95,
-      "pr_score": 38,
-      "cl_score": 57,
+      "total_score": 94,
+      "pr_score": 39,
+      "cl_score": 55,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 95,
+      "vorjahr_status": "Free"
     },
     "NZL": {
       "total_score": 99,
       "pr_score": 40,
       "cl_score": 59,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 99,
+      "vorjahr_status": "Free"
     },
     "JPN": {
       "total_score": 96,
       "pr_score": 40,
       "cl_score": 56,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 96,
+      "vorjahr_status": "Free"
     },
     "ISR": {
-      "total_score": 74,
+      "total_score": 73,
       "pr_score": 34,
-      "cl_score": 40,
+      "cl_score": 39,
       "status": "Free",
-      "pr_rating": 2,
-      "cl_rating": 3
+      "vorjahr_score": 73,
+      "vorjahr_status": "Free"
     },
     "RUS": {
-      "total_score": 13,
+      "total_score": 12,
       "pr_score": 4,
-      "cl_score": 9,
+      "cl_score": 8,
       "status": "Not Free",
-      "pr_rating": 7,
-      "cl_rating": 6
+      "vorjahr_score": 12,
+      "vorjahr_status": "Not Free"
     },
     "CHN": {
       "total_score": 9,
       "pr_score": -2,
       "cl_score": 11,
       "status": "Not Free",
-      "pr_rating": 7,
-      "cl_rating": 6
+      "vorjahr_score": 9,
+      "vorjahr_status": "Not Free"
     },
     "IND": {
-      "total_score": 66,
-      "pr_score": 33,
-      "cl_score": 33,
+      "total_score": 62,
+      "pr_score": 31,
+      "cl_score": 31,
       "status": "Partly Free",
-      "pr_rating": 2,
-      "cl_rating": 4
+      "vorjahr_score": 63,
+      "vorjahr_status": "Partly Free"
     },
     "BRA": {
-      "total_score": 72,
+      "total_score": 73,
       "pr_score": 30,
-      "cl_score": 42,
+      "cl_score": 43,
       "status": "Free",
-      "pr_rating": 2,
-      "cl_rating": 3
+      "vorjahr_score": 72,
+      "vorjahr_status": "Free"
     },
     "ZAF": {
-      "total_score": 79,
-      "pr_score": 33,
-      "cl_score": 46,
+      "total_score": 81,
+      "pr_score": 34,
+      "cl_score": 47,
       "status": "Free",
-      "pr_rating": 2,
-      "cl_rating": 2
+      "vorjahr_score": 81,
+      "vorjahr_status": "Free"
     },
     "TUR": {
-      "total_score": 33,
-      "pr_score": 17,
+      "total_score": 32,
+      "pr_score": 16,
       "cl_score": 16,
       "status": "Not Free",
-      "pr_rating": 5,
-      "cl_rating": 6
+      "vorjahr_score": 33,
+      "vorjahr_status": "Not Free"
     },
     "HUN": {
       "total_score": 65,
       "pr_score": 24,
       "cl_score": 41,
       "status": "Partly Free",
-      "pr_rating": 3,
-      "cl_rating": 3
+      "vorjahr_score": 65,
+      "vorjahr_status": "Partly Free"
     },
     "POL": {
-      "total_score": 80,
-      "pr_score": 33,
-      "cl_score": 47,
+      "total_score": 82,
+      "pr_score": 34,
+      "cl_score": 48,
       "status": "Free",
-      "pr_rating": 2,
-      "cl_rating": 2
+      "vorjahr_score": 82,
+      "vorjahr_status": "Free"
     },
     "CZE": {
-      "total_score": 94,
-      "pr_score": 36,
+      "total_score": 95,
+      "pr_score": 37,
       "cl_score": 58,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 95,
+      "vorjahr_status": "Free"
     },
     "SVK": {
-      "total_score": 90,
-      "pr_score": 37,
+      "total_score": 88,
+      "pr_score": 35,
       "cl_score": 53,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 89,
+      "vorjahr_status": "Free"
     },
     "SVN": {
+      "total_score": 97,
+      "pr_score": 39,
+      "cl_score": 58,
+      "status": "Free",
+      "vorjahr_score": 96,
+      "vorjahr_status": "Free"
+    },
+    "EST": {
       "total_score": 96,
       "pr_score": 39,
       "cl_score": 57,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
-    },
-    "EST": {
-      "total_score": 95,
-      "pr_score": 38,
-      "cl_score": 57,
-      "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 1
+      "vorjahr_score": 96,
+      "vorjahr_status": "Free"
     },
     "LVA": {
-      "total_score": 88,
+      "total_score": 89,
       "pr_score": 37,
-      "cl_score": 51,
+      "cl_score": 52,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 2
+      "vorjahr_score": 89,
+      "vorjahr_status": "Free"
     },
     "LTU": {
-      "total_score": 89,
+      "total_score": 90,
       "pr_score": 38,
-      "cl_score": 51,
+      "cl_score": 52,
       "status": "Free",
-      "pr_rating": 1,
-      "cl_rating": 2
+      "vorjahr_score": 89,
+      "vorjahr_status": "Free"
     },
     "ROU": {
       "total_score": 83,
       "pr_score": 35,
       "cl_score": 48,
       "status": "Free",
-      "pr_rating": 2,
-      "cl_rating": 2
+      "vorjahr_score": 82,
+      "vorjahr_status": "Free"
     },
     "BGR": {
-      "total_score": 78,
-      "pr_score": 32,
-      "cl_score": 46,
+      "total_score": 74,
+      "pr_score": 30,
+      "cl_score": 44,
       "status": "Free",
-      "pr_rating": 2,
-      "cl_rating": 2
+      "vorjahr_score": 77,
+      "vorjahr_status": "Free"
     },
     "HRV": {
-      "total_score": 83,
+      "total_score": 82,
       "pr_score": 34,
-      "cl_score": 49,
+      "cl_score": 48,
       "status": "Free",
-      "pr_rating": 2,
-      "cl_rating": 2
+      "vorjahr_score": 82,
+      "vorjahr_status": "Free"
     },
     "ALB": {
-      "total_score": 68,
+      "total_score": 69,
       "pr_score": 28,
-      "cl_score": 40,
+      "cl_score": 41,
       "status": "Partly Free",
-      "pr_rating": 3,
-      "cl_rating": 3
+      "vorjahr_score": 68,
+      "vorjahr_status": "Partly Free"
     },
     "BIH": {
-      "total_score": 51,
+      "total_score": 54,
       "pr_score": 17,
-      "cl_score": 34,
+      "cl_score": 37,
       "status": "Partly Free",
-      "pr_rating": 5,
-      "cl_rating": 4
+      "vorjahr_score": 52,
+      "vorjahr_status": "Partly Free"
     },
     "SRB": {
-      "total_score": 57,
+      "total_score": 53,
       "pr_score": 18,
-      "cl_score": 39,
+      "cl_score": 35,
       "status": "Partly Free",
-      "pr_rating": 4,
-      "cl_rating": 3
+      "vorjahr_score": 56,
+      "vorjahr_status": "Partly Free"
     },
     "MKD": {
       "total_score": 67,
       "pr_score": 28,
       "cl_score": 39,
       "status": "Partly Free",
-      "pr_rating": 3,
-      "cl_rating": 3
+      "vorjahr_score": 67,
+      "vorjahr_status": "Partly Free"
     },
     "MNE": {
-      "total_score": 69,
-      "pr_score": 27,
+      "total_score": 68,
+      "pr_score": 26,
       "cl_score": 42,
       "status": "Partly Free",
-      "pr_rating": 3,
-      "cl_rating": 3
+      "vorjahr_score": 69,
+      "vorjahr_status": "Partly Free"
     },
     "BLR": {
-      "total_score": 8,
-      "pr_score": 2,
+      "total_score": 7,
+      "pr_score": 1,
       "cl_score": 6,
       "status": "Not Free",
-      "pr_rating": 7,
-      "cl_rating": 7
+      "vorjahr_score": 7,
+      "vorjahr_status": "Not Free"
     },
     "UKR": {
-      "total_score": 49,
-      "pr_score": 21,
-      "cl_score": 28,
+      "total_score": 51,
+      "pr_score": 22,
+      "cl_score": 29,
       "status": "Partly Free",
-      "pr_rating": 4,
-      "cl_rating": 4
+      "vorjahr_score": 51,
+      "vorjahr_status": "Partly Free"
     },
     "MDA": {
-      "total_score": 61,
-      "pr_score": 26,
+      "total_score": 60,
+      "pr_score": 25,
       "cl_score": 35,
       "status": "Partly Free",
-      "pr_rating": 3,
-      "cl_rating": 3
+      "vorjahr_score": 60,
+      "vorjahr_status": "Partly Free"
     },
     "GEO": {
-      "total_score": 58,
-      "pr_score": 22,
-      "cl_score": 36,
+      "total_score": 51,
+      "pr_score": 19,
+      "cl_score": 32,
       "status": "Partly Free",
-      "pr_rating": 4,
-      "cl_rating": 3
+      "vorjahr_score": 55,
+      "vorjahr_status": "Partly Free"
     },
     "ARM": {
       "total_score": 54,
       "pr_score": 23,
       "cl_score": 31,
       "status": "Partly Free",
-      "pr_rating": 4,
-      "cl_rating": 4
+      "vorjahr_score": 54,
+      "vorjahr_status": "Partly Free"
     },
     "AZE": {
-      "total_score": 7,
+      "total_score": 6,
       "pr_score": 0,
-      "cl_score": 7,
+      "cl_score": 6,
       "status": "Not Free",
-      "pr_rating": 7,
-      "cl_rating": 7
+      "vorjahr_score": 7,
+      "vorjahr_status": "Not Free"
     },
     "KAZ": {
       "total_score": 23,
       "pr_score": 5,
       "cl_score": 18,
       "status": "Not Free",
-      "pr_rating": 7,
-      "cl_rating": 5
+      "vorjahr_score": 23,
+      "vorjahr_status": "Not Free"
     },
     "KGZ": {
-      "total_score": 27,
+      "total_score": 25,
       "pr_score": 4,
-      "cl_score": 23,
+      "cl_score": 21,
       "status": "Not Free",
-      "pr_rating": 7,
-      "cl_rating": 5
+      "vorjahr_score": 26,
+      "vorjahr_status": "Not Free"
     },
     "TJK": {
       "total_score": 5,
       "pr_score": 0,
       "cl_score": 5,
       "status": "Not Free",
-      "pr_rating": 7,
-      "cl_rating": 7
+      "vorjahr_score": 5,
+      "vorjahr_status": "Not Free"
     },
     "TKM": {
-      "total_score": 2,
+      "total_score": 1,
       "pr_score": 0,
-      "cl_score": 2,
+      "cl_score": 1,
       "status": "Not Free",
-      "pr_rating": 7,
-      "cl_rating": 7
+      "vorjahr_score": 1,
+      "vorjahr_status": "Not Free"
     },
     "UZB": {
       "total_score": 12,
       "pr_score": 2,
       "cl_score": 10,
       "status": "Not Free",
-      "pr_rating": 7,
-      "cl_rating": 6
+      "vorjahr_score": 12,
+      "vorjahr_status": "Not Free"
     }
   },
-  "world_summary_2024": {
+  "world_summary": {
     "total_countries_covered": 195,
-    "free_countries": 84,
-    "partly_free_countries": 55,
-    "not_free_countries": 56,
-    "global_decline_years": 18,
-    "note": "FIW 2024 dokumentiert das 18. Jahr in Folge mit globalem Rückgang der Demokratie. 52 Länder verschlechterten sich, 21 verbesserten sich (Netto-Decline)."
+    "total_territories_covered": 13,
+    "free_countries": 88,
+    "partly_free_countries": 48,
+    "not_free_countries": 59,
+    "global_decline_years": 20,
+    "countries_declined": 54,
+    "countries_improved": 35,
+    "herleitung": "Free (88) und Not Free (59) stehen wörtlich im Report; Partly Free (48) ist die Differenz auf 195 und als Einziges gerechnet.",
+    "note": "FIW 2026 dokumentiert das 20. Jahr in Folge mit globalem Rückgang. 54 Länder verschlechterten sich, 35 verbesserten sich. Zugleich sind 88 der 195 Länder Free — mehr als doppelt so viele wie 1973."
   }
 }
