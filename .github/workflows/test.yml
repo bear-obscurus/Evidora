@@ -121,6 +121,9 @@ jobs:
     #   - test_mem_limit_contract     (cgroup-Limit < Host-RAM, aber ueber
     #                                  dem gemessenen anon-Bedarf; Swap-
     #                                  Polster + restart-Policy)
+    #   - test_freshness_zwei_klassen (echter Refresh-Bedarf via Datei-mtime
+    #                                  vs. ungepflegtes fetched_at_iso —
+    #                                  nur die erste Klasse alarmiert)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -195,6 +198,7 @@ jobs:
             tests/test_kopftuch_rechtslage_2026.py \
             tests/test_stichtag_check.py \
             tests/test_mem_limit_contract.py \
+            tests/test_freshness_zwei_klassen.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
