@@ -1,4 +1,4 @@
-"""Freedom House Live-Connector — FIW 2024 Country-Ratings (Static-First-Cache).
+"""Freedom House Live-Connector — FIW Country-Ratings (Static-First-Cache).
 
 Freedom House (https://freedomhouse.org) ist eine US-amerikanische NGO, die
 seit 1972 jährlich ihre 'Freedom in the World' (FIW)-Studie veröffentlicht.
@@ -16,18 +16,26 @@ Strategie: STATIC-FIRST-PRE-CACHE
 =================================
 Freedom House publiziert keine REST-API. Daten werden als Excel/CSV-Download
 veröffentlicht (jährlich Februar/März). Wir halten einen kuratierten Subset
-von ~55 Schlüssel-Ländern in ``data/freedom_house_2024.json``:
+von ~55 Schlüssel-Ländern in ``data/freedom_house.json``:
 
   - DACH + EU + globale Referenz (USA, RUS, CHN, IND, BRA, ZAF, ...)
   - Osteuropa + Westbalkan + Kaukasus + Zentralasien (autoritäre Vergleichs-
     Länder)
-  - 6 Indikatoren pro Land: total_score, pr_score, cl_score, status,
-    pr_rating, cl_rating
+  - Pro Land: total_score, pr_score, cl_score, status sowie der Vorjahres-
+    Stand (vorjahr_score/-status) — der zeigt die Richtung, nach der Claims
+    wie „X wird immer unfreier" fragen.
+
+Die Ausgabe-Jahreszahl kommt AUSSCHLIESSLICH aus ``report_year`` in der JSON.
+Weder der Dateiname noch der Code tragen sie — sonst zeigt ein reiner Daten-
+Refresh weiter die alte Ausgabe an (so passiert in wifo_ihs, PR #131).
 
 Refresh-Workflow (manuell oder per Cron):
-  1. Download All_data_FIW_2013-{year}.xlsx von freedomhouse.org
-  2. Filter auf neuestes Edition-Year + auf relevante ISO3-Länder
-  3. JSON regenerieren, mtime ändert → Hot-Reload greift automatisch
+  1. Werte je Land von ``freedomhouse.org/country/{slug}/freedom-world/{jahr}``
+     lesen (Stand 2026: die frühere All_data_FIW-XLSX liegt nicht mehr unter
+     ihrem alten Pfad; die Country-Seiten sind die belastbare Quelle)
+  2. Gegenprobe: PR + CL muss je Land dem Total entsprechen
+  3. report_year/covering_events_year + world_summary mitziehen
+  4. JSON regenerieren, mtime ändert → Hot-Reload greift automatisch
 
 Trigger:
   - Claim enthält Länder-Alias UND Demokratie-/Freiheits-/Pressefreiheits-
@@ -37,14 +45,15 @@ Trigger:
     → DACH-Default (AT/DE/CH).
 
 Limitations:
-  - FIW publiziert jährlich (Februar) — Daten sind ~1 Jahr alt
-    (FIW 2024 deckt Events 2023 ab).
+  - FIW publiziert jährlich (Februar/März) — die Ausgabe bewertet immer das
+    VORJAHR (FIW 2026 bewertet das Kalenderjahr 2025). Welche Ausgabe im
+    Cache liegt, sagt ``report_year``/``covering_events_year``.
   - Methodik basiert auf Experten-Bewertung (Freedom-House-Analysten,
     interne + externe Reviewer). Subjektiv, aber transparent dokumentiert.
   - Manche Länder/Gebiete (z.B. Taiwan) haben Sonderstatus, sind aber im
     Static-Cache aktuell nicht enthalten.
-  - AUDIT-FLAG: Werte aktuell LLM-Approximationen — Refresh aus offiziellem
-    CSV via Cron-Job einmal/Jahr (Februar/März) nötig.
+  - Refresh einmal jährlich nötig (Februar/März). Stand 2026-09-05: FIW 2026,
+    55/55 Länder direkt von den offiziellen Country-Seiten.
 
 GUARDRAILS (siehe project_political_guardrails.md):
   - Wir zitieren Freedom-House-Scores, wir bewerten sie nicht.
@@ -53,16 +62,16 @@ GUARDRAILS (siehe project_political_guardrails.md):
 
 Result-Schema:
   {
-    "indicator_name": "Freedom House FIW 2024 — Russia: 13/100 (Not Free)",
+    "indicator_name": "Freedom House FIW 2026 — Russia: 12/100 (Not Free)",
     "indicator": "freedom_house_score",
     "country": "RU",
-    "year": "2024",
+    "year": "2026",
     "topic": "freedom_house_ranking",
-    "display_value": "RU 13/100 'Not Free' (PR 5/40, CL 8/60) — vs. AT 93, DE 93, SE 100, CN 9 (FIW 2024)",
-    "description": "Freedom in the World 2024 misst PR (40 P) + CL (60 P). Schwellen: 70-100 Free, 35-69 Partly Free, 0-34 Not Free.",
+    "display_value": "RU 12/100 'Not Free' (PR 4/40, CL 8/60) — vs. AT 94, DE 95, SE 99, CN 9 — gegenüber der Vorausgabe -1 Punkte (Freedom House FIW 2026)",
+    "description": "<methodology_note> + globale Einordnung aus world_summary",
     "url": "https://freedomhouse.org/country/russia",
     "secondary_url": "https://freedomhouse.org/report/freedom-world",
-    "source": "Freedom House — Freedom in the World 2024 (covering 2023 events)",
+    "source": "<source_label aus der JSON>",
   }
 
 Wiring (NICHT in dieser Datei — vom Hauptprozess manuell):
@@ -77,6 +86,7 @@ from __future__ import annotations
 
 import logging
 import os
+import re
 
 from services._static_cache import load_json_mtime_aware
 
@@ -85,7 +95,7 @@ logger = logging.getLogger("evidora")
 STATIC_JSON_PATH = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
     "data",
-    "freedom_house_2024.json",
+    "freedom_house.json",
 )
 
 # DACH-Default-Länder, wenn Claim Freedom-House-Keyword nennt aber kein Land.
@@ -278,14 +288,101 @@ def _select_primary_country(
     return None
 
 
+_PROMPT_BUDGET = 400  # synthesizer.MAX_STR — darüber kürzt der Prompt
+_PFLICHT_BUDGET = 250  # davon reserviert für den Methodik-Caveat
+
+
+def _richtungs_satz(rating: dict) -> str:
+    """'— gegenüber dem Vorjahr +1 Punkt' bzw. den Status-Wechsel.
+
+    Claims fragen fast nie nach dem Punktestand, sondern nach der RICHTUNG
+    („Österreich wird immer unfreier"). Ohne den Vorjahreswert kann der
+    Synthesizer die Richtung nur raten.
+    """
+    jetzt, vorher = rating.get("total_score"), rating.get("vorjahr_score")
+    if jetzt is None or vorher is None:
+        return ""
+    delta = jetzt - vorher
+    if delta == 0:
+        satz = " — gegenüber der Vorausgabe unverändert"
+    else:
+        einheit = "Punkt" if abs(delta) == 1 else "Punkte"
+        satz = f" — gegenüber der Vorausgabe {delta:+d} {einheit}"
+    alt_status, neu_status = rating.get("vorjahr_status"), rating.get("status")
+    if alt_status and neu_status and alt_status != neu_status:
+        satz += f" und von '{alt_status}' auf '{neu_status}' gewechselt"
+    return satz
+
+
+def _beschreibung(methodik: str, data: dict, rating: dict | None = None) -> str:
+    """Methodik + globale Einordnung, zusammen unter der Prompt-Grenze.
+
+    ``world_summary`` lag bis 2026-09 als totes Feld in der JSON: niemand las
+    es. Genau diese Zahlen braucht der Synthesizer aber bei Claims über den
+    globalen Trend („Demokratie ist weltweit auf dem Rückzug"), sonst hat er
+    nur den Punktestand EINES Landes.
+    """
+    w = data.get("world_summary") or {}
+    # Nur wenn es das angefragte Land betrifft: sonst liest der Synthesizer
+    # ein negatives PR als Datenfehler.
+    negativ_satz = ""
+    if rating and isinstance(rating.get("pr_score"), int) and rating["pr_score"] < 0:
+        negativ_satz = (
+            "Ein negativer PR-Wert ist methodisch vorgesehen: eine Zusatzfrage "
+            "zu erzwungenen Bevölkerungsverschiebungen kann Punkte abziehen."
+        )
+    global_satz = ""
+    if w.get("global_decline_years") and w.get("free_countries"):
+        global_satz = (
+            f"Globale Einordnung dieser Ausgabe: {w['global_decline_years']}. "
+            f"Jahr in Folge mit weltweitem Rückgang, "
+            f"{w.get('countries_declined', '?')} Länder schlechter gegenüber "
+            f"{w.get('countries_improved', '?')} besser; zugleich sind "
+            f"{w['free_countries']} von "
+            f"{w.get('total_countries_covered', '?')} Ländern 'Free'."
+        )
+    # Reihenfolge ist Absicht: der Methodik-Caveat ist laut den politischen
+    # Guardrails PFLICHT und bekommt sein Budget zuerst. Was danach passt,
+    # kommt dazu — ganze Sätze oder gar nicht.
+    pflicht = _ganze_saetze(methodik, _PFLICHT_BUDGET) or methodik[:_PFLICHT_BUDGET]
+    teile, rest = [pflicht], _PROMPT_BUDGET - len(pflicht)
+    for zusatz in (negativ_satz, global_satz):
+        if zusatz and len(zusatz) + 1 <= rest:
+            teile.append(zusatz)
+            rest -= len(zusatz) + 1
+    return " ".join(teile)
+
+
+def _ganze_saetze(text: str, budget: int) -> str:
+    """Kürzt auf ganze Sätze statt mitten im Wort.
+
+    ``text[:400]`` hat hier bis 2026-09 „erzwungenen Bevölkerungsversc"
+    produziert — ein Fragment, das der Synthesizer als vollständige Aussage
+    liest.
+    """
+    if budget <= 0:
+        return ""
+    if len(text) <= budget:
+        return text
+    behalten: list[str] = []
+    laenge = 0
+    for satz in re.findall(r"[^.]*\.", text):
+        if laenge + len(satz) > budget:
+            break
+        behalten.append(satz)
+        laenge += len(satz)
+    return "".join(behalten).strip()
+
+
 def _build_display_value(
     primary_iso3: str,
     primary_rating: dict,
     display_countries: list[str],
     ratings: dict,
+    report_year: int | str = "",
 ) -> str:
-    """Build 'RU 13/100 'Not Free' (PR 5/40, CL 8/60) — vs. AT 93, DE 93, ...
-    (Freedom House FIW 2024)'.
+    """Build 'RU 12/100 'Not Free' (PR 4/40, CL 8/60) — vs. AT 94, DE 95, ...
+    (Freedom House FIW 2026)'. Die Jahreszahl kommt aus den Daten.
     """
     iso2 = _ISO3_TO_ISO2.get(primary_iso3, primary_iso3[:2])
     total = primary_rating.get("total_score", "?")
@@ -309,7 +406,9 @@ def _build_display_value(
     else:
         ref = ""
 
-    return f"{head}{ref} (Freedom House FIW 2024)"
+    richtung = _richtungs_satz(primary_rating)
+    marke = f" (Freedom House FIW {report_year})" if report_year else ""
+    return f"{head}{ref}{richtung}{marke}"
 
 
 def _country_url(iso3: str, data: dict) -> str:
@@ -375,12 +474,14 @@ async def search_freedom_house(analysis: dict) -> dict:
 
     source_label = data.get(
         "source_label",
-        "Freedom House — Freedom in the World 2024 (covering events 2023)",
+        "Freedom House — Freedom in the World",
     )
     secondary_url = data.get(
         "source_url", "https://freedomhouse.org/report/freedom-world"
     )
-    report_year = data.get("report_year", 2024)
+    # KEIN Jahres-Default: fehlt die Angabe, lieber gar kein Jahr nennen als
+    # eine erfundene Ausgabe behaupten.
+    report_year = data.get("report_year") or ""
 
     # Methodik-Caveat als description.
     methodology_short = (
@@ -431,11 +532,12 @@ async def search_freedom_house(analysis: dict) -> dict:
     )
 
     display_value = _build_display_value(
-        primary_iso3, primary_rating, display_countries, ratings
+        primary_iso3, primary_rating, display_countries, ratings, report_year
     )
 
+    ausgabe = f"FIW {report_year} " if report_year else ""
     indicator_name = (
-        f"Freedom House FIW {report_year} — "
+        f"Freedom House {ausgabe}— "
         f"{display_name}: {total}/100 ({status})"
     )
 
@@ -446,7 +548,7 @@ async def search_freedom_house(analysis: dict) -> dict:
         "year": str(report_year),
         "topic": "freedom_house_ranking",
         "display_value": display_value[:480],
-        "description": methodology_short[:300],
+        "description": _beschreibung(methodology_short, data, primary_rating),
         "url": _country_url(primary_iso3, data),
         "secondary_url": secondary_url,
         "source": source_label,
