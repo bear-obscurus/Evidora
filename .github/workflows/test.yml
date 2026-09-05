@@ -152,6 +152,9 @@ jobs:
     #   - test_freshness_kadenz       (Schwellwert aus dem Publikationstakt der
     #                                  Quelle statt einheitlich 120 d; bei
     #                                  deklariertem Takt entscheidet das Feld)
+    #   - test_frontex_stand_juli_2026 (Routen mit Zahlen statt Prosa;
+    #                                  Routensumme == Gesamtzahl als Gegenprobe;
+    #                                  'illegale Migration' traf vorher nichts)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -236,6 +239,7 @@ jobs:
             tests/test_url_gate_klammern.py \
             tests/test_rki_saison_2025_26.py \
             tests/test_freshness_kadenz.py \
+            tests/test_frontex_stand_juli_2026.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 

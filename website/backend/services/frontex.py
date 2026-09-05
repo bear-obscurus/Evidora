@@ -38,7 +38,11 @@ _FRONTEX_TERMS = (
     "illegale grenzübertritte",
     "westbalkan-route", "westbalkanroute", "balkan-route",
     "mittelmeer-route", "mittelmeerroute",
+    # Adjektiv-Flexion mit aufnehmen: "im westlichEN Mittelmeer" traf sonst
+    # nicht (gleiche Falle wie "europaeischEN Parlament", QA50D).
     "zentrales mittelmeer", "östliches mittelmeer", "westliches mittelmeer",
+    "zentralen mittelmeer", "östlichen mittelmeer", "westlichen mittelmeer",
+    "oestliches mittelmeer", "oestlichen mittelmeer",
     "kanaren-route", "westafrika-route", "westafrikaroute",
     "ärmelkanal migration", "channel crossings",
     "mittelmeer tote", "tote mittelmeer", "tote im mittelmeer",
@@ -61,6 +65,24 @@ def _claim_mentions_frontex(claim_lc: str) -> bool:
         "eu", "europa", "europäische union", "european union",
     ))
     if has_grenzubert and has_eu:
+        return True
+    # Composite: 'illegale/irregulaere Migration' + EU-/Grenz-Bezug.
+    # Die haeufigste Formulierung ueberhaupt traf bis 2026-09 WEDER frontex
+    # NOCH migration_pack — beide lieferten fuer "Die illegale Migration in
+    # die EU steigt dramatisch" null Treffer. Bewusst mit Regionsbezug
+    # gekoppelt: eine Aussage ohne Region ("die illegale Migration steigt")
+    # laesst sich mit EU-Aussengrenzdaten nicht sauber beantworten.
+    has_migration = any(t in claim_lc for t in (
+        "illegale migration", "illegaler migration",
+        "irreguläre migration", "irregulaere migration", "irregulärer migration",
+        "illegale einwanderung", "illegale zuwanderung",
+        "irreguläre einwanderung", "irreguläre zuwanderung",
+        "illegal migration", "irregular migration",
+    ))
+    has_grenzbezug = has_eu or any(t in claim_lc for t in (
+        "außengrenze", "aussengrenze", "grenze", "mittelmeer", "route",
+    ))
+    if has_migration and has_grenzbezug:
         return True
     # Composite: Mittelmeer + Tote/Tod
     has_mittelmeer = "mittelmeer" in claim_lc
@@ -119,84 +141,120 @@ def _de_int(v):
         return str(v)
 
 
+def _zeichen(v) -> str:
+    """'-37 %' bzw. '+37 %' — das Vorzeichen ist bei Migrationszahlen die
+    eigentliche Aussage und darf nicht verlorengehen."""
+    try:
+        return f"{int(v):+d} %"
+    except (TypeError, ValueError):
+        return "?"
+
+
+def _routen_zeile(r: dict) -> str:
+    teil = (f"{r.get('name')}: {_de_int(r.get('detektionen'))} "
+            f"({_zeichen(r.get('veraenderung_pct'))} gegenüber "
+            f"{_de_int(r.get('vorjahreszeitraum'))})")
+    if r.get("hinweis"):
+        teil += f" — {r['hinweis']}"
+    return teil
+
+
 def _build_results(fact: dict, claim_lc: str) -> list[dict]:
+    """Baut Haupt- und Routen-Ergebnis.
+
+    Zeitraum und Routen kommen AUSSCHLIESSLICH aus den Daten. Bis 2026-09
+    standen "2025", "2024" und die Feldnamen ``routen_2025``/``trend_2025``
+    fest im Code — ein Daten-Refresh haette weiter den alten Zeitraum
+    beschriftet (gleiche Klasse wie wifo_ihs #131 und rki #138).
+    """
     data = fact.get("data") or {}
     src = fact.get("source_url") or ""
     label = fact.get("source_label") or "Frontex"
+    zeitraum = data.get("zeitraum") or ""
+    vergleich = data.get("vergleichszeitraum") or "dem Vorjahreszeitraum"
 
     results: list[dict] = []
+    routen = data.get("routen") or []
 
     headline = (
-        f"Frontex 2025: rund {_de_int(data.get('irregular_crossings_eu_2025_total_approx'))} "
-        f"Detektionen irregulärer Grenzübertritte EU-weit "
-        f"({data.get('rueckgang_2025_yoy_pct')} % gegenüber 2024). "
-        f"2024: {_de_int(data.get('irregular_crossings_eu_2024_total'))} "
-        f"({data.get('rueckgang_2024_yoy_pct')} % yoy, "
-        f"niedrigster Stand seit {data.get('irregular_crossings_eu_2024_lowest_since')}). "
-        f"Mittelmeer-Tote 2025: mind. {_de_int(data.get('todesfaelle_mittelmeer_2025_min'))}."
+        f"Frontex, {zeitraum}: rund "
+        f"{_de_int(data.get('detektionen_eu_gesamt_approx'))} Detektionen "
+        f"irregulärer Grenzübertritte an den EU-Aussengrenzen, "
+        f"{_zeichen(data.get('veraenderung_ggue_vorjahreszeitraum_pct'))} "
+        f"gegenüber {vergleich}. Es sind VORLÄUFIGE Zahlen und DETEKTIONEN, "
+        f"nicht Personen."
     )
 
     description_parts: list[str] = []
-    routen = data.get("routen_2025") or []
     if routen:
-        routen_str = " · ".join(
-            f"{r['name']}: {r['trend_2025']}"
-            for r in routen
-        )
-        description_parts.append(f"Routen 2025: {routen_str}")
-    if data.get("top_3_herkunftslaender_2025"):
         description_parts.append(
-            "Top-3 Herkunftsländer 2025: "
-            + ", ".join(data["top_3_herkunftslaender_2025"])
-        )
+            "Routen im Zeitraum: " + " · ".join(_routen_zeile(r) for r in routen))
+    kontext = data.get("jahreswerte_kontext") or {}
+    if kontext.get("2025_gesamt_approx"):
+        description_parts.append(
+            f"Ganzjahres-Kontext: 2024 rund "
+            f"{_de_int(kontext.get('2024_gesamt'))} Detektionen "
+            f"({_zeichen(kontext.get('2024_veraenderung_pct'))}), 2025 rund "
+            f"{_de_int(kontext.get('2025_gesamt_approx'))} "
+            f"({_zeichen(kontext.get('2025_veraenderung_pct'))}). "
+            f"{kontext.get('hinweis', '')}")
+    tote = data.get("todesfaelle_mittelmeer") or {}
+    if tote.get("wert_2025_min"):
+        description_parts.append(
+            f"Mittelmeer-Todesfälle mindestens "
+            f"{_de_int(tote.get('wert_2025_min'))} ({tote.get('quelle')}). "
+            f"{tote.get('hinweis', '')}")
     for caveat in data.get("wichtige_caveats") or []:
         description_parts.append(caveat)
 
-    main = {
-        "indicator_name": "Frontex EU-Grenzübertritte 2024-2025",
+    results.append({
+        "indicator_name": headline,
         "indicator": "frontex_main",
         "country": "EU",
         "country_name": "Europäische Union",
-        "year": "2025",
-        "value": data.get("irregular_crossings_eu_2025_total_approx"),
+        "year": zeitraum,
+        "value": data.get("detektionen_eu_gesamt_approx"),
         "display_value": headline,
-        "description": " ".join(description_parts),
+        "description": " ".join(p for p in description_parts if p).strip(),
         "url": src,
         "source": label,
-    }
-    results.append(main)
+    })
 
     # Spezial-Eintrag wenn Claim eine spezifische Route nennt.
-    # Mapping: Trigger-Stichwort → Routen-Substring, der eindeutig zuordnet.
     route_triggers = [
         ("westbalkan", "westbalkan"),
         ("balkan", "westbalkan"),
         ("westafrika", "westafrikanisch"),
         ("kanaren", "westafrikanisch"),
+        # Beide Adjektiv-Formen: "im westlichEN Mittelmeer" ist die
+        # natuerlichere Formulierung als "westlichES Mittelmeer".
         ("zentrales mittelmeer", "zentrales mittelmeer"),
+        ("zentralen mittelmeer", "zentrales mittelmeer"),
         ("östliches mittelmeer", "östliches mittelmeer"),
+        ("östlichen mittelmeer", "östliches mittelmeer"),
         ("oestliches mittelmeer", "östliches mittelmeer"),
+        ("oestlichen mittelmeer", "östliches mittelmeer"),
         ("kreta", "östliches mittelmeer"),
         ("westliches mittelmeer", "westliches mittelmeer"),
+        ("westlichen mittelmeer", "westliches mittelmeer"),
         ("ärmelkanal", "ärmelkanal"),
         ("aermelkanal", "ärmelkanal"),
         ("channel", "ärmelkanal"),
+        ("landgrenze", "östliche landgrenze"),
+        ("albanien", "albanien"),
     ]
     for trigger_kw, route_substr in route_triggers:
         if trigger_kw in claim_lc:
             for r in routen:
                 if route_substr in r["name"].lower():
                     results.insert(0, {
-                        "indicator_name": f"Frontex {r['name']} 2025",
+                        "indicator_name": f"Frontex {r['name']}, {zeitraum}",
                         "indicator": "frontex_route",
                         "country": "EU", "country_name": "Europäische Union",
-                        "year": "2025",
-                        "display_value": (
-                            f"Frontex {r['name']} 2025: {r['trend_2025']}. "
-                            f"Wichtigste Herkunftsorte: {r['wichtigster_herkunftshafen']}."
-                        ),
+                        "year": zeitraum,
+                        "display_value": f"Frontex, {zeitraum} — {_routen_zeile(r)}.",
                         "description": (
-                            "Frontex-Routen-Aufschlüsselung 2025. "
+                            "Frontex-Routen-Aufschlüsselung, vorläufige Daten. "
                             "WICHTIG: Detektionen sind keine Personen — eine "
                             "Person kann mehrfach gezählt werden."
                         ),
