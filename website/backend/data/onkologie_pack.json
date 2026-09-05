@@ -295,7 +295,7 @@
       "headline": "Mehr Krebsfrüherkennung ist KEIN automatischer Nutzen-Hebel. Der Netto-Nutzen ist pro Screening-Typ und Altersgruppe verschieden: Screening kann die Sterblichkeit senken, aber auch Übertherapie erzeugen — die Behandlung von Tumoren, die nie symptomatisch geworden wären. Lehrstück Korea: nach Einführung des Schilddrüsen-Screenings 15-mal mehr Karzinome bei UNVERÄNDERTER Sterblichkeit.",
       "year": 2026,
       "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/topic_search_results?topic_status=P",
-      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32022H1213(01)",
+      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32022H1213%2801%29",
       "source_label": "USPSTF + Cochrane Cancer Screening Group + Ahn HS et al. NEJM 2014;371:1765 + Welch HG 'Overdiagnosed' / Esserman LJ Lancet 2013",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mehr Krebsfrüherkennung = weniger Krebs-Tote' ist OVERSIMPLIFIED. Sie ist pro Screening-Typ und Altersgruppe einzeln zu bewerten — Evidenz zu Mammographie, PSA und Darmkrebs steht in den jeweils eigenen Einträgen dieses Packs. Der gemeinsame Nenner: Screening kann Sterblichkeit senken UND Übertherapie erzeugen. Beides gehört in dieselbe Antwort; wer nur eine Seite nennt, verzerrt.",
@@ -400,7 +400,7 @@
       "headline": "PSA-Screening auf Prostatakrebs: Die USPSTF stuft es seit 2018 für Männer von 55 bis 69 als individuelle Entscheidung ein (Grade C) und rät ab 70 davon ab (Grade D). ERSPC fand 21 % weniger Sterbefälle, PLCO keinen Effekt. Kernproblem ist die Übertherapie indolenter Tumoren. Der EU-Rat 2022 empfiehlt KEIN Breiten-Screening, sondern stufenweise Pilotprogramme mit PSA plus MRT.",
       "year": 2026,
       "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/prostate-cancer-screening",
-      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32022H1213(01)",
+      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32022H1213%2801%29",
       "source_label": "USPSTF Final Recommendation Statement 'Prostate Cancer: Screening' vom 8.5.2018 + ERSPC- und PLCO-Studien + Empfehlung des Rates der EU vom 9.12.2022 zur Stärkung der Prävention durch Früherkennung (2022/C 473/01), ersetzt die Empfehlung 2003/878/EG",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Der PSA-Test rettet Leben, jeder Mann sollte ihn machen' ist OVERSIMPLIFIED. Die USPSTF empfiehlt kein pauschales PSA-Screening: für 55-69 Jahre eine informierte Einzelfall-Entscheidung (Grade C), ab 70 Jahren ausdrücklich NICHT (Grade D). Auch der EU-Rat empfiehlt kein Breiten-Programm, sondern erst Pilotprojekte. Ein Claim, PSA-Screening sei allgemein empfohlen, gibt den Stand falsch wieder — ebenso ein Claim, der Test sei nutzlos.",
@@ -450,7 +450,7 @@
       "headline": "Darmkrebs-Screening hat einen klaren Netto-Nutzen: Die USPSTF vergibt seit 2021 Grade A für 50-75 Jahre und Grade B für 45-49 Jahre, für 76-85 nur noch selektiv (Grade C). Der EU-Rat 2022 empfiehlt den FIT-Stuhltest für 50-74 mit Koloskopie als Folgeuntersuchung. Sonderfall: entfernte Polypen können nicht mehr entarten — es beugt vor, statt nur früher zu finden.",
       "year": 2026,
       "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
-      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32022H1213(01)",
+      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32022H1213%2801%29",
       "source_label": "USPSTF Final Recommendation Statement 'Colorectal Cancer: Screening' vom 18.5.2021 + Empfehlung des Rates der EU vom 9.12.2022 zur Stärkung der Prävention durch Früherkennung (2022/C 473/01), ersetzt die Empfehlung 2003/878/EG",
       "data": {
         "kernsatz_fuer_synthesizer": "Darmkrebs-Screening ist der Fall mit dem klarsten Nutzen-Schaden-Verhältnis. Anders als Mammographie oder PSA entdeckt es nicht nur früher, sondern VERHINDERT Karzinome: entfernte Polypen können nicht mehr entarten. Ein Übertherapie-Problem im engeren Sinn besteht deshalb nicht. Die Altersgrenzen sind nach Empfehlungsgrad abgestuft und dürfen nicht zu einem einzigen 'ab 45' verkürzt werden.",
