@@ -137,3 +137,49 @@ def test_scan_liest_alle_container_schluessel():
     assert "rulings" in sc.LIST_KEYS and "facts" in sc.LIST_KEYS
     ids = {f["id"] for f in sc.scanne(DATA, date(2027, 1, 1), 12)}
     assert ids, "Scan findet gar nichts — Container-Schlüssel falsch?"
+
+
+# ---------------------------------------------------------------------------
+# Praezision: korrekte Vergangenheits-Aussagen sind kein Fund
+#
+# Beim Saeubern der Basislinie meldete der Waechter meinen eigenen,
+# KORREKTEN Satz („das Programm WAR befristet und ist mit 30.6.2026
+# ausgelaufen") als WARNUNG. Ein Wächter, der auf richtige Aussagen
+# anschlägt, trainiert an, ihn zu ignorieren — und genau daran war der
+# ⏰-Marker im Memory gescheitert.
+# ---------------------------------------------------------------------------
+
+@pytest.mark.parametrize("text", [
+    "Das Programm war befristet und ist mit 30.6.2026 ausgelaufen: Zweitimpfungen bis 30.6.2026 kostenfrei.",
+    "Die Aktion endete am 31.12.2025; bis 31.12.2025 war die Impfung gratis.",
+    "Seit 1.7.2026 nicht mehr angeboten — vorher kostenfrei bis 30.6.2026.",
+])
+def test_ausdruecklich_beendet_ist_keine_warnung(text):
+    assert "WARNUNG" not in _stufen({"id": "x", "t": text}), text
+
+
+def test_ende_marker_unterdrueckt_KRITISCH_nicht():
+    """Gegenprobe: Ein KRITISCH-Satz behauptet ja gerade, der Stichtag stehe
+    noch bevor — dort darf die Unterdrückung NICHT greifen, auch wenn
+    zufällig ein 'war' im Satz steht."""
+    text = ("Das Gesetz war im Dezember beschlossen, ist aber erst ab 1.3.2026 "
+            "wirksam.")
+    assert "KRITISCH" in _stufen({"id": "x", "t": text})
+
+
+def test_offenes_zeitfenster_bleibt_warnung():
+    """Muss-Treffer-Kontrolle: ohne Ende-Marker greift die Warnung weiter —
+    sonst hätte die Präzisierung den Zweig stillgelegt."""
+    assert "WARNUNG" in _stufen(
+        {"id": "x", "t": "Die Impfung ist kostenfrei bis 30.6.2026."})
+
+
+def test_basislinie_ist_sauber():
+    """Der Waechter ist nur brauchbar, wenn er im Normalzustand schweigt.
+    KRITISCH blockiert die CI, WARNUNG loest den Cron-Alarm aus — beide
+    muessen bei sauberer Datenschicht leer sein."""
+    funde = sc.scanne(DATA, date.today(), 24)
+    laut = [f for f in funde if f["stufe"] in ("KRITISCH", "WARNUNG")]
+    assert not laut, "Basislinie nicht sauber:\n" + "\n".join(
+        f"  {f['stufe']} {f['pack']}/{f['id']} ({f['datum']}): {f['fund']}"
+        for f in laut)
