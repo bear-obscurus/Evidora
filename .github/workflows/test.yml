@@ -118,6 +118,9 @@ jobs:
     #                                  einen abgelaufenen Zukunfts-Schalter
     #                                  tragen — am Kopftuch-Fall kalibriert;
     #                                  bewusst zeit-abhaengig)
+    #   - test_mem_limit_contract     (cgroup-Limit < Host-RAM, aber ueber
+    #                                  dem gemessenen anon-Bedarf; Swap-
+    #                                  Polster + restart-Policy)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -191,6 +194,7 @@ jobs:
             tests/test_quellen_zahlen_konsistent.py \
             tests/test_kopftuch_rechtslage_2026.py \
             tests/test_stichtag_check.py \
+            tests/test_mem_limit_contract.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
