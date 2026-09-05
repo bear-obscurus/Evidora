@@ -35,13 +35,38 @@ BROWSER_UA = (
     "AppleWebKit/605.1.15 (KHTML, like Gecko) "
     "Version/17.0 Safari/605.1.15"
 )
-URL_RE = re.compile(r'https?://[^\s"<>\)]+')
-TRAILING_TRIM = ".,;:!?)]}\"'"
+# Klammern gehoeren zur URL, bis das Gegenteil bewiesen ist. Bis 2026-09
+# schloss die Zeichenklasse ")" aus — die Erfassung brach dann an der ersten
+# Klammer ab. Betroffen waren echte, funktionierende Links:
+#   https://eur-lex.europa.eu/…?uri=CELEX:32022H1213(01)   -> "(01" fehlte ")"
+#   https://www.cell.com/…/fulltext/S2405-4712(20)30203-0  -> nach "(20" gekappt
+# Das Gate meldete sie als 404 und blockierte den PR, obwohl die URL lebt.
+URL_RE = re.compile(r'https?://[^\s"<>]+')
+
+# Satzzeichen, die am Ende nie zur URL gehoeren.
+TRAILING_TRIM = ".,;:!?\"'"
+# Schliessende Klammern: nur abschneiden, wenn sie unbalanciert sind.
+KLAMMER_PAARE = {")": "(", "]": "[", "}": "{"}
 
 
 def clean_url(url: str) -> str:
-    while url and url[-1] in TRAILING_TRIM:
-        url = url[:-1]
+    """Schneidet nachgestellte Satzzeichen ab — Klammern aber nur dann, wenn
+    sie nicht zur URL gehoeren.
+
+    ``(siehe https://example.com)`` endet auf einer Klammer, die im Fliesstext
+    aufgeht: eine schliessende ohne oeffnende in der URL -> abschneiden.
+    ``…/CELEX:32022H1213(01)`` traegt sie balanciert -> behalten.
+    """
+    while url:
+        letztes = url[-1]
+        if letztes in TRAILING_TRIM:
+            url = url[:-1]
+        elif letztes in KLAMMER_PAARE:
+            if url.count(KLAMMER_PAARE[letztes]) >= url.count(letztes):
+                break          # balanciert: gehoert zur URL
+            url = url[:-1]     # unbalanciert: Fliesstext-Klammer
+        else:
+            break
     return url
 
 
