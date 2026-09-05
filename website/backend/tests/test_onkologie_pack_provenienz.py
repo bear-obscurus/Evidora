@@ -64,8 +64,10 @@ def test_pruefvermerk_sagt_was_geprueft_wurde_und_was_nicht():
     assert "Mistel" in v and "Früherkennung" in v
 
 
-def test_alle_zehn_fakten_noch_da():
-    assert len(DATEN["facts"]) == 10
+def test_kein_fakt_verlorengegangen():
+    """Der Früherkennungs-Fakt wurde in vier fokussierte Einträge geteilt
+    (eigener PR) — die neun Mythos-Fakten müssen unberührt bleiben."""
+    assert len(DATEN["facts"]) == 13
     assert "mistel_krebs_therapie_mythos" in FAKTEN
 
 
