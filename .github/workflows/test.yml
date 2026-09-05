@@ -114,6 +114,10 @@ jobs:
     #   - test_kopftuch_rechtslage_2026 (zwei Verbote/zwei Beschluesse in
     #                                  zwei Eintraegen; kein Zukunfts-Stichtag
     #                                  im Fakt; zurueckgewiesen != bestaetigt)
+    #   - test_stichtag_check         (Stichtags-Waechter: kein Fakt darf
+    #                                  einen abgelaufenen Zukunfts-Schalter
+    #                                  tragen — am Kopftuch-Fall kalibriert;
+    #                                  bewusst zeit-abhaengig)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -186,6 +190,7 @@ jobs:
             tests/test_wikidata_row_dedup.py \
             tests/test_quellen_zahlen_konsistent.py \
             tests/test_kopftuch_rechtslage_2026.py \
+            tests/test_stichtag_check.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
