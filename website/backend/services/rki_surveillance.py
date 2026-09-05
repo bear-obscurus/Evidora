@@ -16,7 +16,7 @@ import logging
 import os
 
 from services._topic_match import find_matching_items, load_items
-from services._fmt import de_int
+from services._fmt import de_int, de_num
 
 logger = logging.getLogger("evidora")
 
@@ -51,6 +51,46 @@ async def fetch_rki_surveillance(client=None):
     return load_items(STATIC_JSON_PATH, "facts")
 
 
+
+def _fuege(*bausteine, d: dict) -> str:
+    """Setzt den Anzeigetext aus Bausteinen zusammen und laesst jeden Baustein
+    weg, dessen Datenfelder fehlen (gleiche Bauform wie services/oecd_health.py).
+    """
+    return " ".join(text for text, felder in bausteine
+                    if all(d.get(f) is not None for f in felder))
+
+
+def _zuwachs(vorher, nachher) -> str:
+    """'+706 %' stand bis 2026-09 als Literal im Code — beim naechsten
+    Daten-Refresh haette es nicht mehr zu den Zahlen gepasst."""
+    try:
+        v, n = float(vorher), float(nachher)
+        if v <= 0:
+            return ""
+        return f"{(n - v) / v * 100:+.0f} % gegenueber dem Vorjahr".replace(
+            "gegenueber", "gegenüber")
+    except (TypeError, ValueError):
+        return ""
+
+
+def _saisonreihe(d: dict, praefix: str) -> str:
+    """'2022/23 11.204, 2023/24 10.434, …' aus allen Feldern mit dem Praefix.
+
+    Die Saisonen stehen damit in den DATEN, nicht im Code — eine neue Saison
+    ergaenzt man in der JSON, ohne den Renderer anzufassen.
+    """
+    teile = []
+    for k in sorted(k for k in d if k.startswith(praefix)):
+        rest = k[len(praefix):]
+        if not (len(rest) == 7 and rest[4] == "_"):
+            continue                      # z. B. '..._woche_2025_26'
+        saison = f"20{rest[2:4]}/{rest[5:7]}"
+        wert = d[k]
+        teile.append(f"{saison} "
+                     f"{de_int(wert) if float(wert).is_integer() else de_num(wert)}")
+    return ", ".join(teile)
+
+
 async def search_rki_surveillance(analysis: dict) -> dict:
     empty = {
         "source": "RKI SurvStat (Surveillance)",
@@ -72,43 +112,64 @@ async def search_rki_surveillance(analysis: dict) -> dict:
         notes = fact.get("context_notes") or []
 
         if topic == "rki_masern":
-            display = (
-                f"Masern in DE: 2023 = {d.get('rki_masern_faelle_2023')} Fälle, "
-                f"2024 = {d.get('rki_masern_faelle_2024')} Fälle "
-                f"(+706 % vs. 2023), 2025 Q1 = "
-                f"{d.get('rki_masern_faelle_2025_stand_q1')} Fälle. "
-                f"Zweitimpfquote 24 Mon. = "
-                f"{d.get('impfquote_de_masern_kinder_24m_pct_2024')} % "
-                f"(WHO-Herdimmunität: "
-                f"{d.get('impfquote_who_herdimmunitaet_pct')} %)."
+            display = _fuege(
+                (f"Masern in Deutschland: 2023 = "
+                 f"{de_int(d.get('rki_masern_faelle_2023'))} Fälle, 2024 = "
+                 f"{de_int(d.get('rki_masern_faelle_2024'))} Fälle "
+                 f"({_zuwachs(d.get('rki_masern_faelle_2023'), d.get('rki_masern_faelle_2024'))}).",
+                 ["rki_masern_faelle_2023", "rki_masern_faelle_2024"]),
+                (f"Zweitimpfquote mit 24 Monaten = "
+                 f"{de_num(d.get('impfquote_de_masern_kinder_24m_pct_2024'))} % "
+                 f"(WHO-Schwelle für Herdimmunität: "
+                 f"{de_num(d.get('impfquote_who_herdimmunitaet_pct'))} %).",
+                 ["impfquote_de_masern_kinder_24m_pct_2024",
+                  "impfquote_who_herdimmunitaet_pct"]),
+                (str(d.get("datenstand")), ["datenstand"]),
+                d=d,
             )
-            description = d.get("context", "") + " " + d.get("context_quelle", "")
         elif topic == "rki_tuberkulose":
-            display = (
-                f"TB in DE 2024: {d.get('rki_tb_faelle_2024')} Fälle "
-                f"(Inzidenz {d.get('rki_tb_inzidenz_pro_100k_2024')}/100 k). "
-                f"Zum Vergleich: 1980 = {d.get('rki_tb_inzidenz_pro_100k_1980')}/100 k, "
-                f"1995 = {d.get('rki_tb_inzidenz_pro_100k_1995')}/100 k. "
-                f"Anteil im Ausland Geborener: "
-                f"{d.get('anteil_im_ausland_geboren_pct_2024')} % "
-                f"— wenig Übertragung in DE, viele Fälle bei Einreise diagnostiziert."
+            display = _fuege(
+                (f"Tuberkulose in Deutschland 2024: "
+                 f"{de_int(d.get('rki_tb_faelle_2024'))} Fälle, Inzidenz "
+                 f"{de_num(d.get('rki_tb_inzidenz_pro_100k_2024'))} je 100.000.",
+                 ["rki_tb_faelle_2024", "rki_tb_inzidenz_pro_100k_2024"]),
+                (f"Zum Vergleich 1980 = {de_num(d.get('rki_tb_inzidenz_pro_100k_1980'))}, "
+                 f"1995 = {de_num(d.get('rki_tb_inzidenz_pro_100k_1995'))} je 100.000.",
+                 ["rki_tb_inzidenz_pro_100k_1980", "rki_tb_inzidenz_pro_100k_1995"]),
+                (f"Anteil im Ausland Geborener: "
+                 f"{de_num(d.get('anteil_im_ausland_geboren_pct_2024'))} % — wenig "
+                 f"Übertragung innerhalb Deutschlands, viele Fälle werden bei "
+                 f"der Einreise diagnostiziert.",
+                 ["anteil_im_ausland_geboren_pct_2024"]),
+                (str(d.get("datenstand")), ["datenstand"]),
+                d=d,
             )
-            description = d.get("context", "") + " " + d.get("context_quelle", "")
         elif topic == "rki_atemwegsinfekte":
-            display = (
-                f"Atemwegsinfekt-Welle Winter 2024/25 (DE): "
-                f"Peak ARI in KW 5/2025 = "
-                f"{de_int(d.get('rki_ari_inzidenz_peak_woche_5_2025_pro_100k'))}/100 k"
-                + f" (typischer Vor-Pandemie-Peak ~"
-                f"{de_int(d.get('rki_ari_inzidenz_typischer_winterpeak_pro_100k'))}/100 k"
-                + f"). Influenza dominant ({d.get('rki_influenza_anteil_an_ari_peak_pct')} %), "
-                f"COVID nur {d.get('rki_covid_anteil_an_ari_peak_pct')} %, "
-                f"RSV {d.get('rki_rsv_anteil_an_ari_peak_pct')} %."
+            display = _fuege(
+                (f"Atemwegsinfekte Deutschland, Höchstwert der GrippeWeb-ARE-"
+                 f"Inzidenz je 100.000: "
+                 f"{_saisonreihe(d, 'grippeweb_are_peak_je_100k_')}.",
+                 ["grippeweb_are_peak_je_100k_2025_26"]),
+                (f"Vor-Pandemie-Vergleich 2018/19: "
+                 f"{de_int(d.get('grippeweb_are_peak_vor_pandemie_2018_19'))}.",
+                 ["grippeweb_are_peak_vor_pandemie_2018_19"]),
+                (f"SARI-Hospitalisierungsinzidenz je 100.000: "
+                 f"{_saisonreihe(d, 'sari_hospitalisierung_peak_je_100k_')}.",
+                 ["sari_hospitalisierung_peak_je_100k_2025_26"]),
+                (f"COVID-Anteil an den ARE-Konsultationen in der Höchstwoche: "
+                 f"{de_num(d.get('covid_anteil_an_are_konsultationen_peakwoche_2025_26_pct'))} %.",
+                 ["covid_anteil_an_are_konsultationen_peakwoche_2025_26_pct"]),
+                # Die ausführliche Messgrößen-Warnung steht in der Headline —
+                # dem Kanal, der die 400-Zeichen-Kürzung ungekürzt passiert.
+                # Sie hier zu wiederholen würde den display_value darüber
+                # heben und die Warnung wäre das Erste, was wegfällt.
+                d=d,
             )
-            description = d.get("context", "") + " " + d.get("context_quelle", "")
         else:
             display = fact.get("headline", "?")
-            description = ""
+
+        description = (d.get("context", "") + " "
+                       + d.get("context_quelle", "")).strip()
 
         if notes:
             description = (description + " ").strip() + " | " + " | ".join(notes)

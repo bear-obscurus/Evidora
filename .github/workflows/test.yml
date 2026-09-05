@@ -146,6 +146,9 @@ jobs:
     #   - test_url_gate_klammern      (URL-Extraktor des check-new-urls-Gates
     #                                  brach an der ersten Klammer ab; jetzt
     #                                  balancierte Klammern behalten)
+    #   - test_rki_saison_2025_26     (Atemwegs-Saison 2025/26 aus RKI-Open-Data;
+    #                                  drei falsche Zahlen + verkehrte Richtung
+    #                                  im alten Stand; GrippeWeb != Konsultation)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -228,6 +231,7 @@ jobs:
             tests/test_onkologie_pack_provenienz.py \
             tests/test_onkologie_screening_fokussiert.py \
             tests/test_url_gate_klammern.py \
+            tests/test_rki_saison_2025_26.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
