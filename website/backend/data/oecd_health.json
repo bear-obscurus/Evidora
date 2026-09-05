@@ -1,30 +1,28 @@
 {
   "schema_version": 1,
-  "fetched_at_iso": "2026-04-29",
-  "source_label": "OECD Health Statistics 2024 + Health at a Glance 2023",
+  "fetched_at_iso": "2026-09-05",
+  "source_label": "State of Health in the EU — Austria Country Health Profile 2025 (OECD + European Observatory on Health Systems and Policies, in Zusammenarbeit mit der Europäischen Kommission); Kinder-Adipositas weiterhin aus WHO-COSI + HBSC",
   "facts": [
     {
       "id": "oecd_lebenserwartung_2024",
       "topic": "lebenserwartung",
-      "scope": "Lebenserwartung bei Geburt — DACH + EU-Vergleich 2024",
+      "scope": "Lebenserwartung bei Geburt — Österreich im EU-Vergleich 2024",
       "year": 2024,
-      "headline": "Lebenserwartung bei Geburt 2024 — Österreich, Deutschland, Schweiz, EU-Schnitt",
+      "headline": "Lebenserwartung in Österreich 2024: 82,3 Jahre — rund ein halbes Jahr ÜBER dem EU-Schnitt und erstmals wieder über dem Niveau vor der Pandemie. Frauen 84,5 Jahre. Quelle ist das Länderprofil 2025; ältere Angaben von 81,7 Jahren sind überholt. Das Profil stellt Österreich nur dem EU-Schnitt gegenüber, nicht Deutschland oder der Schweiz.",
       "data": {
-        "lebenserwartung_at_2024": 81.7,
-        "lebenserwartung_de_2024": 81.0,
-        "lebenserwartung_ch_2024": 83.7,
-        "lebenserwartung_eu_avg_2024": 81.0,
-        "lebenserwartung_oecd_avg_2024": 81.0,
-        "lebenserwartung_at_frauen_2024": 84.1,
-        "lebenserwartung_at_maenner_2024": 79.3,
-        "lebenserwartung_at_2010": 80.7,
-        "lebenserwartung_at_2000": 78.3,
-        "context": "AT-Lebenserwartung 2024: 81,7 Jahre — leicht über EU- und OECD-Schnitt (jeweils 81,0). Schweiz mit 83,7 Jahren EU-Spitze. Trend AT 2000–2024: +3,4 Jahre. COVID-Knick 2020/21: ~−0,7 Jahre, weitgehend aufgeholt 2024."
+        "lebenserwartung_at_2024": 82.3,
+        "lebenserwartung_at_frauen_2024": 84.5,
+        "abstand_zum_eu_schnitt_monate": 6,
+        "geschlechter_luecke_jahre_2024": 4.5,
+        "vergleichsbasis": "Vergleichsbasis ist der EU-Schnitt, nicht DE oder CH.",
+        "context": "Österreich hat 2024 erstmals seit der Pandemie sein früheres Höchstniveau wieder übertroffen. Es bestehen deutliche soziale Unterschiede: hochgebildete Männer leben über sechs Jahre länger als Männer mit niedriger Bildung."
       },
       "context_notes": [
-        "Quelle: OECD Health Statistics 2024 + Eurostat demo_mlexpec.",
-        "Boulevard-Schlagzeilen 'Lebenserwartung sinkt' beziehen sich oft auf einzelne Sub-Gruppen (Männer in Ostösterreich, Personen ohne Schulabschluss). Im Schnitt steigt sie weiter.",
-        "Geschlechter-Lücke AT: Frauen 84,1 / Männer 79,3 = 4,8 Jahre — eine der größeren in Europa, aber rückläufig (2000: 6,1 Jahre)."
+        "Quelle: Country Health Profile 2025, Abschnitt 2 (Datenbasis OECD Health Statistics + Eurostat).",
+        "Boulevard-Schlagzeilen 'Lebenserwartung sinkt' beziehen sich oft auf einzelne Sub-Gruppen. Im Schnitt steigt sie weiter — Österreich hat 2024 seinen Vor-Pandemie-Höchststand wieder übertroffen.",
+        "Geschlechter-Lücke AT 2024: Frauen 84,5 Jahre, 4,5 Jahre mehr als Männer — laut Länderprofil leicht UNTER dem EU-Schnitt.",
+        "Deutschland- und Schweiz-Werte wurden entfernt statt fortgeschrieben: Das Länderprofil enthält sie nicht, und zwei Vintages in einem Datensatz zu mischen hat sich als Fehlerquelle erwiesen.",
+        "Österreichs Erholung nach der Pandemie verlief langsamer als in den meisten EU-Staaten: Der frühere Höchststand wurde erst 2024 wieder erreicht, andernorts früher."
       ],
       "claim_phrasings_handled": [
         "Lebenserwartung Österreich",
@@ -33,43 +31,50 @@
         "Frauen Männer Lebenserwartung"
       ],
       "trigger_keywords": [
-        "lebenserwartung", "lebens-erwartung",
-        "life expectancy", "durchschnittsalter sterben"
+        "lebenserwartung",
+        "lebens-erwartung",
+        "life expectancy",
+        "durchschnittsalter sterben"
       ],
       "trigger_composite": [
-        ["lebenserwartung", "life expectancy"],
-        ["österreich", "deutschland", "schweiz", "dach", "eu-schnitt",
-         "europa-schnitt", "frauen", "männer", "geschlechter"]
+        [
+          "lebenserwartung",
+          "life expectancy"
+        ],
+        [
+          "österreich",
+          "deutschland",
+          "schweiz",
+          "dach",
+          "eu-schnitt",
+          "europa-schnitt",
+          "frauen",
+          "männer",
+          "geschlechter"
+        ]
       ],
-      "source_label": "OECD Health Statistics 2024",
-      "source_url": "https://en.wikipedia.org/wiki/Healthcare_in_Austria",
-      "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/demo_mlexpec"
+      "source_label": "State of Health in the EU — Austria Country Health Profile 2025 (OECD + European Observatory on Health Systems and Policies, in Zusammenarbeit mit der Europäischen Kommission)",
+      "source_url": "https://eurohealthobservatory.who.int/docs/librariesprovider3/country-health-profiles/chp2025pdf/soheu-2025-austria-final-webv2.pdf?sfvrsn=70d5cc29_1&download=true"
     },
     {
       "id": "oecd_spitalsbetten_2024",
       "topic": "spitalsbetten",
-      "scope": "Akutbetten + Pflegebetten je 1.000 Einwohner DACH",
-      "year": 2024,
-      "headline": "Spitalsbetten in Österreich, Deutschland, Schweiz im EU-Vergleich",
+      "scope": "Spitalsbetten und Ärztedichte — Österreich im EU-Vergleich 2023",
+      "year": 2023,
+      "headline": "Österreich 2023: 6,6 Spitalsbetten je 1.000 Einwohner — weiterhin einer der höchsten Werte der EU, aber seit 2017 um 10 % GESUNKEN (bewusster Abbau zugunsten ambulanter Versorgung). Ärztedichte 5,5 je 1.000 gegenüber 4,3 im EU-Schnitt. MESSGRÖSSE: 6,6 sind ALLE Spitalsbetten — ältere Angaben von 7,2 meinten AKUTBETTEN und dürfen NICHT als dieselbe Größe gelesen werden.",
       "data": {
-        "akutbetten_pro_1000_at": 7.2,
-        "akutbetten_pro_1000_de": 7.8,
-        "akutbetten_pro_1000_ch": 4.6,
-        "akutbetten_pro_1000_eu_avg": 5.0,
-        "akutbetten_pro_1000_oecd_avg": 4.5,
-        "anzahl_aerzte_pro_1000_at": 5.4,
-        "anzahl_aerzte_pro_1000_de": 4.5,
-        "anzahl_aerzte_pro_1000_ch": 4.4,
-        "anzahl_aerzte_pro_1000_eu_avg": 4.0,
-        "anzahl_pflegekraefte_pro_1000_at": 7.2,
-        "anzahl_pflegekraefte_pro_1000_de": 12.2,
-        "anzahl_pflegekraefte_pro_1000_eu_avg": 8.4,
-        "context": "AT hat mit 7,2 Akutbetten / 1.000 Einwohner deutlich mehr als der EU-Schnitt (5,0) — eines der bettenreichsten Gesundheitssysteme der OECD. Deutschland sogar 7,8. Schweiz hingegen knapp unter EU-Schnitt. Bei Ärzte-Dichte ist AT mit 5,4 / 1.000 EU-weit Spitze (EU-Schnitt 4,0). Schwachstelle AT: Pflegekräfte mit 7,2 / 1.000 unter EU-Schnitt 8,4."
+        "spitalsbetten_pro_1000_at_2023": 6.6,
+        "spitalsbetten_rueckgang_2017_2023_pct": 10,
+        "stationaere_aufenthalte_rueckgang_2017_2023_pct": 15,
+        "aerzte_pro_1000_at_2023": 5.5,
+        "aerzte_pro_1000_eu_avg_2023": 4.3,
+        "messgroesse": "MESSGRÖSSE: ALLE Spitalsbetten, nicht Akutbetten (ältere 7,2).",
+        "context": "Der Bettenabbau geht mit einem Rückgang der stationären Aufenthalte um 15 % im selben Zeitraum einher. Die hohe Ärztedichte wird durch regionale Fehlverteilung und die Abwanderung in Wahlarztpraxen relativiert."
       },
       "context_notes": [
-        "Boulevard-Behauptung 'Gesundheitssystem kollabiert wegen Bettenmangel' ist statistisch widerlegt — AT hat überdurchschnittlich viele Akutbetten + Ärzte.",
-        "Echte Schwachstelle: Pflege-Personal-Mangel, regionale Engpässe (Wartezeiten Wiener Notaufnahmen) und ÖGK-Versorgungs-Engpässe in einzelnen Fachrichtungen (z.B. Kinder-/Jugendpsychiatrie).",
-        "DE hat doppelt so viele Pflegekräfte / 1.000 wie AT — strukturell bessere Pflege-Auslastung trotz vergleichbarer Bettenzahl."
+        "Boulevard-Behauptung 'Gesundheitssystem kollabiert wegen Bettenmangel' ist statistisch nicht haltbar — Österreich hat überdurchschnittlich viele Spitalsbetten UND Ärzte.",
+        "Echte Schwachstelle laut Länderprofil: Personalbedarf in der Pflege (bis 2030 rund 51.100 zusätzliche Pflegekräfte gegenüber 2023 nötig), regionale Fehlverteilung der Ärzte und der Rückgang der Kassenärzte — die Zahl der Wahlärzte stieg seit 2004 um 61 %.",
+        "Der Bettenabbau ist gewollt, nicht Verfall: Er begleitet die Verlagerung in die ambulante Versorgung. Allgemeinmediziner stellten 2023 nur noch 13 % aller Ärzte (2010: über 16 %)."
       ],
       "claim_phrasings_handled": [
         "Spitalsbetten Österreich",
@@ -79,46 +84,70 @@
         "Pflegekräfte-Mangel"
       ],
       "trigger_keywords": [
-        "spitalsbetten", "krankenhausbetten", "akutbetten",
-        "ärztedichte", "ärzte-dichte", "ärzte pro 1000",
-        "ärztemangel", "pflegekräftemangel",
-        "gesundheitssystem kollap", "spital kollap"
+        "spitalsbetten",
+        "krankenhausbetten",
+        "akutbetten",
+        "ärztedichte",
+        "ärzte-dichte",
+        "ärzte pro 1000",
+        "ärztemangel",
+        "pflegekräftemangel",
+        "gesundheitssystem kollap",
+        "spital kollap"
       ],
       "trigger_composite": [
-        ["spital", "krankenhaus", "betten", "ärzte", "ärztin",
-         "pflegekraft", "pflegekräfte", "gesundheitssystem"],
-        ["mangel", "kollap", "kollabiert", "fehlend", "zu wenig", "engpass",
-         "dichte", "pro 1000", "pro 1.000", "pro tausend",
-         "vergleich", "im durchschnitt", "europa"]
+        [
+          "spital",
+          "krankenhaus",
+          "betten",
+          "ärzte",
+          "ärztin",
+          "pflegekraft",
+          "pflegekräfte",
+          "gesundheitssystem"
+        ],
+        [
+          "mangel",
+          "kollap",
+          "kollabiert",
+          "fehlend",
+          "zu wenig",
+          "engpass",
+          "dichte",
+          "pro 1000",
+          "pro 1.000",
+          "pro tausend",
+          "vergleich",
+          "im durchschnitt",
+          "europa"
+        ]
       ],
-      "source_label": "OECD Health at a Glance 2023 + Eurostat hlth_rs_bds",
-      "source_url": "https://www.oecd.org/health/health-at-a-glance/",
-      "secondary_url": "https://ec.europa.eu/eurostat/databrowser/view/hlth_rs_bds"
+      "source_label": "State of Health in the EU — Austria Country Health Profile 2025 (OECD + European Observatory on Health Systems and Policies, in Zusammenarbeit mit der Europäischen Kommission)",
+      "source_url": "https://eurohealthobservatory.who.int/docs/librariesprovider3/country-health-profiles/chp2025pdf/soheu-2025-austria-final-webv2.pdf?sfvrsn=70d5cc29_1&download=true"
     },
     {
       "id": "oecd_gesundheitsausgaben_2024",
       "topic": "gesundheitsausgaben",
-      "scope": "Gesundheitsausgaben pro Kopf + % BIP DACH 2024",
-      "year": 2024,
-      "headline": "Gesundheitsausgaben Österreich + Deutschland + Schweiz 2024",
+      "scope": "Gesundheitsausgaben — Österreich im EU-Vergleich 2023",
+      "year": 2023,
+      "headline": "Gesundheitsausgaben Österreich 2023: 11,2 % des BIP, 1,2 Prozentpunkte über dem EU-Schnitt. Kaufkraftbereinigt 4.901 € pro Kopf gegenüber 3.832 € im EU-Schnitt (rund 28 % mehr) — zweithöchster Wert der EU. MESSGRÖSSE: Die Pro-Kopf-Werte sind KAUFKRAFTBEREINIGT (KKP); frühere nominale Angaben wie 5.780 € sind eine andere Größe und dürfen NICHT damit verglichen werden.",
       "data": {
-        "gesundheitsausgaben_at_pct_bip_2024": 11.7,
-        "gesundheitsausgaben_de_pct_bip_2024": 12.7,
-        "gesundheitsausgaben_ch_pct_bip_2024": 12.0,
-        "gesundheitsausgaben_eu_avg_pct_bip_2024": 9.6,
-        "gesundheitsausgaben_at_pro_kopf_eur_2024": 5780,
-        "gesundheitsausgaben_de_pro_kopf_eur_2024": 5950,
-        "gesundheitsausgaben_ch_pro_kopf_eur_2024": 8430,
-        "gesundheitsausgaben_eu_avg_pro_kopf_eur_2024": 4090,
-        "anteil_oeffentlich_at_pct_2024": 76.8,
-        "anteil_oeffentlich_de_pct_2024": 84.7,
-        "anteil_oeffentlich_eu_avg_pct_2024": 79.4,
-        "context": "AT-Gesundheitsausgaben 2024: 11,7 % des BIP, 5.780 €/Kopf — überdurchschnittlich (EU-Schnitt 9,6 %, 4.090 €). Deutschland mit 12,7 % BIP-Anteil EU-Spitze. Öffentlicher Anteil AT 76,8 % (EU-Schnitt 79,4 %), DE 84,7 %. AT hat einen relativ hohen Privatfinanzierungs-Anteil (Selbstbehalte, private Zusatzversicherungen)."
+        "gesundheitsausgaben_at_pct_bip_2023": 11.2,
+        "abstand_eu_schnitt_pp": 1.2,
+        "pro_kopf_kkp_eur_at_2023": 4901,
+        "pro_kopf_kkp_eur_eu_avg_2023": 3832,
+        "rang_eu_pro_kopf": 2,
+        "oeffentlicher_anteil_at_pct_2023": 76.7,
+        "oeffentlicher_anteil_eu_avg_pct_2023": 80.0,
+        "oop_anteil_at_pct_2023": 16.5,
+        "oop_anteil_eu_avg_pct_2023": 15.5,
+        "messgroesse": "MESSGRÖSSE: pro Kopf kaufkraftbereinigt (KKP), nicht nominal.",
+        "context": "Der Abstand zum EU-Schnitt entsteht aus beiden Säulen: die öffentlichen Ausgaben pro Kopf liegen 22,6 % darüber, die privaten sogar 49,2 %. Der hohe private Anteil wirft laut Länderprofil Fragen der Zugangsgerechtigkeit auf."
       },
       "context_notes": [
         "Boulevard-Behauptung 'Gesundheitssystem ist unterfinanziert' ist zumindest in der Gesamtsumme nicht haltbar — AT investiert pro Kopf das 1,4-fache des EU-Schnitts.",
         "Echte Strukturfrage: Verteilung der Mittel zwischen Spital (überdurchschnittlich finanziert) und niedergelassener Versorgung / Pflege (unterdurchschnittlich).",
-        "Privatanteil AT 23,2 % ist EU-weit hoch — strukturelle Folge der ÖGK-Selbstbehalte + privater Zusatzversicherungs-Markt."
+        "Öffentliche Finanzierung 76,7 % (EU-Schnitt 80,0 %); der private Rest von knapp einem Viertel liegt über dem EU-Schnitt von 20 %. Selbstbehalte (out-of-pocket) 16,5 % gegenüber 15,5 % im EU-Schnitt, getrieben vor allem von Medikamenten, Pflege, Zahnbehandlung und Wahlärzten."
       ],
       "claim_phrasings_handled": [
         "Gesundheitsausgaben Österreich",
@@ -127,18 +156,31 @@
         "Gesundheit pro Kopf"
       ],
       "trigger_keywords": [
-        "gesundheitsausgaben", "gesundheits-ausgaben",
+        "gesundheitsausgaben",
+        "gesundheits-ausgaben",
         "gesundheitsfinanzierung",
         "gesundheitssystem unterfinanziert",
         "gesundheits-budget"
       ],
       "trigger_composite": [
-        ["gesundheit", "gesundheits", "krankenversorgung"],
-        ["ausgaben", "kosten", "finanzierung", "budget", "bip-anteil",
-         "pro kopf", "unterfinanz"]
+        [
+          "gesundheit",
+          "gesundheits",
+          "krankenversorgung"
+        ],
+        [
+          "ausgaben",
+          "kosten",
+          "finanzierung",
+          "budget",
+          "bip-anteil",
+          "bip",
+          "pro kopf",
+          "unterfinanz"
+        ]
       ],
-      "source_label": "OECD Health Statistics 2024 + Eurostat hlth_sha11_hf",
-      "source_url": "https://en.wikipedia.org/wiki/Healthcare_in_Austria"
+      "source_label": "State of Health in the EU — Austria Country Health Profile 2025 (OECD + European Observatory on Health Systems and Policies, in Zusammenarbeit mit der Europäischen Kommission)",
+      "source_url": "https://eurohealthobservatory.who.int/docs/librariesprovider3/country-health-profiles/chp2025pdf/soheu-2025-austria-final-webv2.pdf?sfvrsn=70d5cc29_1&download=true"
     },
     {
       "id": "kinder_adipositas_at_2024",
@@ -168,15 +210,30 @@
         "Schueler werden dicker"
       ],
       "trigger_keywords": [
-        "kinder uebergewicht", "kinder adipositas",
-        "schulkinder dicker", "schulkinder uebergewicht",
-        "jugendliche adipositas", "jugendliche uebergewicht",
-        "kinder werden dick", "schueler werden dick",
+        "kinder uebergewicht",
+        "kinder adipositas",
+        "schulkinder dicker",
+        "schulkinder uebergewicht",
+        "jugendliche adipositas",
+        "jugendliche uebergewicht",
+        "kinder werden dick",
+        "schueler werden dick",
         "schulkinder werden immer dicker"
       ],
       "trigger_composite": [
-        ["kinder", "schueler", "schulkinder", "jugendliche"],
-        ["uebergewicht", "adipos", "dicker", "werden dick", "fettleibig"]
+        [
+          "kinder",
+          "schueler",
+          "schulkinder",
+          "jugendliche"
+        ],
+        [
+          "uebergewicht",
+          "adipos",
+          "dicker",
+          "werden dick",
+          "fettleibig"
+        ]
       ],
       "source_label": "WHO-COSI + HBSC-Befragung + Statistik Austria + KIGGS DE",
       "source_url": "https://www.who.int/"

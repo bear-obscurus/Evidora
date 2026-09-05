@@ -10,7 +10,7 @@ from services._topic_match import (
     find_matching_items,
     load_items,
 )
-from services._fmt import de_int
+from services._fmt import de_int, de_num
 
 logger = logging.getLogger("evidora")
 
@@ -19,6 +19,21 @@ STATIC_JSON_PATH = os.path.join(
     "data",
     "oecd_health.json",
 )
+
+
+
+def _fuege(*bausteine, d: dict) -> str:
+    """Setzt den Anzeigetext aus Bausteinen zusammen und laesst jeden Baustein
+    weg, dessen Datenfelder fehlen.
+
+    Grund: Bis 2026-09 hat dieser Renderer Feldnamen fest verdrahtet und beim
+    Vintage-Wechsel eine TypeError-Arithmetik auf None ausgeloest (gleiche
+    Klasse wie in services/wifo_ihs.py). Ein Datensatz ohne Feld darf hoechstens
+    einen Satz kosten, nicht die ganze Quelle.
+    """
+    teile = [text for text, felder in bausteine
+             if all(d.get(f) is not None for f in felder)]
+    return " ".join(teile)
 
 
 def _descriptor(f: dict) -> tuple[dict, str]:
@@ -68,62 +83,93 @@ async def search_oecd_health(analysis: dict) -> dict:
         year = str(fact.get("year", ""))
 
         if topic == "lebenserwartung":
-            display = (
-                f"Lebenserwartung bei Geburt 2024: AT = "
-                f"{d.get('lebenserwartung_at_2024')} Jahre, DE = "
-                f"{d.get('lebenserwartung_de_2024')}, CH = "
-                f"{d.get('lebenserwartung_ch_2024')} (EU-Schnitt: "
-                f"{d.get('lebenserwartung_eu_avg_2024')}). "
-                f"AT-Trend 2000–2024: +{d.get('lebenserwartung_at_2024') - d.get('lebenserwartung_at_2000'):.1f} Jahre. "
-                f"Frauen {d.get('lebenserwartung_at_frauen_2024')} / "
-                f"Männer {d.get('lebenserwartung_at_maenner_2024')}."
+            display = _fuege(
+                (f"Lebenserwartung bei Geburt in Österreich {year}: "
+                 f"{de_num(d.get('lebenserwartung_at_' + year))} Jahre.",
+                 ["lebenserwartung_at_" + year]),
+                (f"Das sind rund {d.get('abstand_zum_eu_schnitt_monate')} Monate "
+                 f"ÜBER dem EU-Schnitt; {year} wurde erstmals seit der Pandemie "
+                 f"der frühere Höchststand wieder übertroffen.",
+                 ["abstand_zum_eu_schnitt_monate"]),
+                (f"Frauen {de_num(d.get('lebenserwartung_at_frauen_' + year))} Jahre, "
+                 f"{de_num(d.get('geschlechter_luecke_jahre_' + year))} Jahre mehr "
+                 f"als Männer.",
+                 ["lebenserwartung_at_frauen_" + year,
+                  "geschlechter_luecke_jahre_" + year]),
+                d=d,
             )
-            description = d.get("context", "") + " " + notes_joined
         elif topic == "spitalsbetten":
-            display = (
-                f"Akutbetten je 1.000 Einwohner 2024: AT = "
-                f"{d.get('akutbetten_pro_1000_at')}, DE = "
-                f"{d.get('akutbetten_pro_1000_de')}, CH = "
-                f"{d.get('akutbetten_pro_1000_ch')} "
-                f"(EU-Schnitt: {d.get('akutbetten_pro_1000_eu_avg')}). "
-                f"AT-Ärzte / 1.000: {d.get('anzahl_aerzte_pro_1000_at')} "
-                f"(EU-Spitze; EU-Schnitt {d.get('anzahl_aerzte_pro_1000_eu_avg')}). "
-                f"AT-Pflegekräfte / 1.000: {d.get('anzahl_pflegekraefte_pro_1000_at')} "
-                f"(unter EU-Schnitt {d.get('anzahl_pflegekraefte_pro_1000_eu_avg')})."
+            display = _fuege(
+                (f"Spitalsbetten je 1.000 Einwohner in Österreich {year}: "
+                 f"{de_num(d.get('spitalsbetten_pro_1000_at_' + year))} — einer der "
+                 f"höchsten Werte der EU.",
+                 ["spitalsbetten_pro_1000_at_" + year]),
+                (f"Seit 2017 um {d.get('spitalsbetten_rueckgang_2017_' + year + '_pct')} % "
+                 f"GESUNKEN (bewusster Abbau zugunsten ambulanter Versorgung).",
+                 ["spitalsbetten_rueckgang_2017_" + year + "_pct"]),
+                (f"Die stationären Aufenthalte gingen im selben Zeitraum um "
+                 f"{d.get('stationaere_aufenthalte_rueckgang_2017_' + year + '_pct')} % "
+                 f"zurück.",
+                 ["stationaere_aufenthalte_rueckgang_2017_" + year + "_pct"]),
+                (f"Ärztedichte {de_num(d.get('aerzte_pro_1000_at_' + year))} je 1.000 "
+                 f"gegenüber {de_num(d.get('aerzte_pro_1000_eu_avg_' + year))} im "
+                 f"EU-Schnitt.",
+                 ["aerzte_pro_1000_at_" + year, "aerzte_pro_1000_eu_avg_" + year]),
+                d=d,
             )
-            description = d.get("context", "") + " " + notes_joined
         elif topic == "gesundheitsausgaben":
-            display = (
-                f"Gesundheitsausgaben 2024 (% des BIP): AT = "
-                f"{d.get('gesundheitsausgaben_at_pct_bip_2024')} %, DE = "
-                f"{d.get('gesundheitsausgaben_de_pct_bip_2024')} %, CH = "
-                f"{d.get('gesundheitsausgaben_ch_pct_bip_2024')} % "
-                f"(EU-Schnitt: {d.get('gesundheitsausgaben_eu_avg_pct_bip_2024')} %). "
-                f"Pro Kopf: AT {de_int(d.get('gesundheitsausgaben_at_pro_kopf_eur_2024'))} € "
-                + f"(EU-Schnitt {de_int(d.get('gesundheitsausgaben_eu_avg_pro_kopf_eur_2024'))} €). "
-                + f"Öffentlicher Anteil AT: "
-                f"{d.get('anteil_oeffentlich_at_pct_2024')} % "
-                f"(EU-Schnitt {d.get('anteil_oeffentlich_eu_avg_pct_2024')} %)."
+            display = _fuege(
+                (f"Gesundheitsausgaben Österreich {year}: "
+                 f"{de_num(d.get('gesundheitsausgaben_at_pct_bip_' + year))} % des BIP, "
+                 f"{de_num(d.get('abstand_eu_schnitt_pp'))} Prozentpunkte über dem "
+                 f"EU-Schnitt.",
+                 ["gesundheitsausgaben_at_pct_bip_" + year, "abstand_eu_schnitt_pp"]),
+                (f"Kaufkraftbereinigt {de_int(d.get('pro_kopf_kkp_eur_at_' + year))} € "
+                 f"pro Kopf gegenüber "
+                 f"{de_int(d.get('pro_kopf_kkp_eur_eu_avg_' + year))} € im EU-Schnitt.",
+                 ["pro_kopf_kkp_eur_at_" + year, "pro_kopf_kkp_eur_eu_avg_" + year]),
+                (f"Öffentlicher Anteil "
+                 f"{de_num(d.get('oeffentlicher_anteil_at_pct_' + year))} % "
+                 f"(EU-Schnitt {de_num(d.get('oeffentlicher_anteil_eu_avg_pct_' + year))} %), "
+                 f"Selbstbehalte {de_num(d.get('oop_anteil_at_pct_' + year))} % "
+                 f"(EU {de_num(d.get('oop_anteil_eu_avg_pct_' + year))} %).",
+                 ["oeffentlicher_anteil_at_pct_" + year,
+                  "oeffentlicher_anteil_eu_avg_pct_" + year,
+                  "oop_anteil_at_pct_" + year, "oop_anteil_eu_avg_pct_" + year]),
+                d=d,
             )
-            description = d.get("context", "") + " " + notes_joined
         elif topic == "kinder_adipositas":
-            display = (
-                f"Kinder + Jugendliche Übergewicht/Adipositas (DACH-Vergleich): "
-                f"AT (6–15 J.) = {d.get('uebergewicht_at_kinder_6_15_pct_2024')} % "
-                f"übergewichtig, davon {d.get('adipositas_at_kinder_6_15_pct_2024')} % "
-                f"adipös. Trend AT 2008→2024: "
-                f"{d.get('uebergewicht_at_kinder_2014_pct')} % → "
-                f"{d.get('uebergewicht_at_kinder_6_15_pct_2024')} %. "
-                f"DE (KIGGS, 3–17 J.): "
-                f"{d.get('uebergewicht_de_kinder_3_17_pct_2024')} % / "
-                f"{d.get('adipositas_de_kinder_3_17_pct_2024')} %. "
-                f"OECD-Schnitt Übergewicht: "
-                f"{d.get('uebergewicht_oecd_avg_kinder_pct_2024')} %."
+            display = _fuege(
+                (f"Kinder + Jugendliche Übergewicht/Adipositas (DACH-Vergleich): "
+                 f"AT (6–15 J.) = "
+                 f"{de_num(d.get('uebergewicht_at_kinder_6_15_pct_' + year))} % "
+                 f"übergewichtig, davon "
+                 f"{de_num(d.get('adipositas_at_kinder_6_15_pct_' + year))} % adipös.",
+                 ["uebergewicht_at_kinder_6_15_pct_" + year,
+                  "adipositas_at_kinder_6_15_pct_" + year]),
+                (f"Trend AT 2014→{year}: "
+                 f"{de_num(d.get('uebergewicht_at_kinder_2014_pct'))} % → "
+                 f"{de_num(d.get('uebergewicht_at_kinder_6_15_pct_' + year))} %.",
+                 ["uebergewicht_at_kinder_2014_pct",
+                  "uebergewicht_at_kinder_6_15_pct_" + year]),
+                (f"DE (KIGGS, 3–17 J.): "
+                 f"{de_num(d.get('uebergewicht_de_kinder_3_17_pct_' + year))} % / "
+                 f"{de_num(d.get('adipositas_de_kinder_3_17_pct_' + year))} %.",
+                 ["uebergewicht_de_kinder_3_17_pct_" + year,
+                  "adipositas_de_kinder_3_17_pct_" + year]),
+                (f"OECD-Schnitt Übergewicht: "
+                 f"{de_num(d.get('uebergewicht_oecd_avg_kinder_pct_' + year))} %.",
+                 ["uebergewicht_oecd_avg_kinder_pct_" + year]),
+                d=d,
             )
-            description = d.get("context", "") + " " + notes_joined
         else:
             display = fact.get("headline", "?")
-            description = notes_joined
+
+        for zusatz in ("messgroesse", "vergleichsbasis"):
+            wert = d.get(zusatz)
+            if wert:
+                display = f"{display} {wert}"
+        description = (d.get("context", "") + " " + notes_joined)
 
         results.append({
             "indicator_name": fact.get("headline", "?"),

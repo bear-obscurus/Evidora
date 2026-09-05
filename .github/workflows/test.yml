@@ -127,6 +127,9 @@ jobs:
     #   - test_wifo_ihs_prognoserunde (Runde kommt aus den Daten, nicht aus
     #                                  dem Code; drei korrigierte Richtungen
     #                                  BIP/Inflation/Arbeitslosenquote)
+    #   - test_oecd_health_profil_2025 (Country Health Profile 2025; Renderer
+    #                                  ueberlebt Feldwechsel, Messgroessen-
+    #                                  Warnung im ungekuerzten Headline-Kanal)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -203,6 +206,7 @@ jobs:
             tests/test_mem_limit_contract.py \
             tests/test_freshness_zwei_klassen.py \
             tests/test_wifo_ihs_prognoserunde.py \
+            tests/test_oecd_health_profil_2025.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
