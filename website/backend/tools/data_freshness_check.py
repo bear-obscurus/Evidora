@@ -99,6 +99,33 @@ def _scan_json(path: Path) -> tuple[date | None, str]:
     return (fetched_at, label)
 
 
+# Klassen der Freshness-Pruefung. Rein, damit sie ohne Dateisystem
+# testbar ist — in der CI sind alle mtimes der Checkout-Zeitpunkt und
+# damit als Testgrundlage wertlos.
+VERALTET = "VERALTET"                   # Datei laenger nicht angefasst
+FELD_UNGEPFLEGT = "FELD_UNGEPFLEGT"     # Feld alt, Datei aber frisch
+FRISCH = "FRISCH"
+
+
+def klassifiziere(feld_age, mtime_age: int, max_age: int) -> str:
+    """Welche Klasse liegt vor?
+
+    ``feld_age`` ist das Alter von ``fetched_at_iso`` (oder None, wenn die
+    Datei das Feld nicht traegt), ``mtime_age`` das Alter der letzten
+    echten Dateiaenderung.
+
+    Die Datei-mtime hat Vorrang: Sie sagt, ob wirklich seit Langem niemand
+    hingesehen hat. Das alte Mass (nur ``fetched_at_iso``) meldete
+    2026-09-05 51 Dateien, davon 31 FEHLALARME — Dateien, die kuerzlich
+    geaendert worden waren, ohne dass jemand das Feld mitgezogen hatte.
+    """
+    if mtime_age > max_age:
+        return VERALTET
+    if isinstance(feld_age, int) and feld_age > max_age:
+        return FELD_UNGEPFLEGT
+    return FRISCH
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--max-age-days", type=int, default=120,
@@ -122,25 +149,49 @@ def main():
         if path.name in GENERATED_CACHES:
             continue  # separat geprüft; cordis (~110 MB) nicht json-laden
         fetched_at, label = _scan_json(path)
+        # mtime = wann die Datei zuletzt WIRKLICH geaendert wurde. Der
+        # Docker-Build kopiert sie aus dem git-Checkout, und `git pull`
+        # setzt die mtime auf den Pull-Zeitpunkt — verifiziert 2026-09-05:
+        # 86 von 87 Dateien haben mtime == Datum des letzten Commits
+        # (einzige Abweichung: mitre_attack.json, ein Laufzeit-Cache).
+        mtime = date.fromtimestamp(path.stat().st_mtime)
+        mtime_age = (today - mtime).days
         if fetched_at is None:
-            rows.append((path.name, None, label, "—"))
+            rows.append((path.name, None, label, "—", mtime_age))
             continue
         age = (today - fetched_at).days
-        rows.append((path.name, fetched_at, label, age))
+        rows.append((path.name, fetched_at, label, age, mtime_age))
 
     print(f"=== Evidora Data-Freshness-Check ({today.isoformat()}, max-age {args.max_age_days} d) ===")
     print()
     fmt = "  {:32s}  {:12s}  {:>6s}  {:32s}"
-    print(fmt.format("file", "fetched_at", "age", "source"))
+    print(fmt.format("file", "fetched_at", "feld/datei", "source"))
     print(fmt.format("-" * 32, "-" * 12, "-" * 6, "-" * 32))
-    stale_files = []
-    for name, fetched_at, label, age in rows:
+    # ZWEI Klassen statt einer (2026-09-05). Vorher meldete der Job 51
+    # Dateien als „stale" — 31 davon (61 %) waren FEHLALARME: die Datei war
+    # kuerzlich geaendert worden, nur `fetched_at_iso` hatte niemand
+    # mitgezogen. at_courts.json galt als 129 Tage alt, obwohl es am selben
+    # Tag bearbeitet worden war. Ein Alarm, der zu 61 % daneben liegt,
+    # trainiert an, ihn zu ignorieren — der ALERT vom 31.08. lag deshalb
+    # eine Woche unbeachtet.
+    #
+    #   VERALTET        Datei seit > max-age NICHT angefasst -> echter
+    #                   Refresh-Bedarf, loest Alarm + Exit 1 aus
+    #   FELD UNGEPFLEGT fetched_at_iso alt, Datei aber frisch geaendert ->
+    #                   die deklarierte Vintage stimmt nicht mehr. Nur Log,
+    #                   KEIN Alarm: das ist Buchhaltung, kein Ausfall.
+    stale_files, feld_ungepflegt = [], []
+    for name, fetched_at, label, age, mtime_age in rows:
         fa = fetched_at.isoformat() if fetched_at else "—"
         age_s = f"{age}d" if isinstance(age, int) else "—"
-        marker = "⚠" if isinstance(age, int) and age > args.max_age_days else " "
-        print(f"  {marker} " + fmt.format(name, fa, age_s, (label or "")[:30])[2:])
-        if isinstance(age, int) and age > args.max_age_days:
-            stale_files.append((name, age))
+        klasse = klassifiziere(age, mtime_age, args.max_age_days)
+        marker = {VERALTET: "⚠", FELD_UNGEPFLEGT: "·"}.get(klasse, " ")
+        print(f"  {marker} " + fmt.format(
+            name, fa, f"{age_s}/{mtime_age}d", (label or "")[:30])[2:])
+        if klasse == VERALTET:
+            stale_files.append((name, mtime_age))
+        elif klasse == FELD_UNGEPFLEGT:
+            feld_ungepflegt.append((name, age, mtime_age))
 
     print()
     cache_problems = check_generated_caches(DATA_DIR)
@@ -154,11 +205,21 @@ def main():
 
     print()
     if stale_files:
-        print(f"⚠ {len(stale_files)} files stale (> {args.max_age_days} d):")
+        print(f"⚠ {len(stale_files)} Dateien seit > {args.max_age_days} d "
+              f"NICHT geändert (echter Refresh-Bedarf):")
         for name, age in stale_files:
-            print(f"  - {name}: {age} d alt")
+            print(f"  - {name}: unverändert seit {age} d")
     else:
-        print(f"OK — alle {len(rows)} files sind frisch (< {args.max_age_days} d).")
+        print(f"OK — alle {len(rows)} Dateien wurden innerhalb "
+              f"{args.max_age_days} d angefasst.")
+
+    if feld_ungepflegt:
+        print()
+        print(f"· {len(feld_ungepflegt)} × `fetched_at_iso` nicht mitgezogen "
+              f"(Datei frisch, Feld alt) — Buchhaltung, kein Ausfall:")
+        for name, feld_age, mtime_age in feld_ungepflegt:
+            print(f"  - {name}: Feld {feld_age} d, Datei aber vor "
+                  f"{mtime_age} d geändert")
 
     if (stale_files or cache_problems) and args.alert_webhook:
         try:
