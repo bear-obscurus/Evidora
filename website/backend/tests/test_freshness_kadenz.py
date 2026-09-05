@@ -33,6 +33,8 @@ sys.path.insert(0, str(BACKEND))
 
 from tools.data_freshness_check import (  # noqa: E402
     ANLASSBEZOGEN,
+    BLOCKIERT,
+    BLOCKIERTE_QUELLEN,
     FELD_UNGEPFLEGT,
     FRISCH,
     KADENZ_MAX_AGE,
@@ -159,3 +161,36 @@ def test_kadenz_bricht_die_dateien_nicht():
     for name, d in _deklariert().items():
         assert "fetched_at_iso" in d or name.startswith("euvsdisinfo"), \
             f"{name}: Kadenz deklariert, aber kein fetched_at_iso zum Messen"
+
+
+# --------------------------------------------------------------------------
+# Blockierte Quellen: sichtbar, aber kein Alarm
+# --------------------------------------------------------------------------
+
+def test_blockierte_quelle_loest_keinen_alarm_aus():
+    """Ein Wecker, den man nicht abstellen kann, bringt einem bei, Wecker zu
+    ignorieren — daran lag der unbeachtete ALERT vom 31.08.2026."""
+    for alter in (0, 153, 5000):
+        assert klassifiziere(alter, alter, STANDARD, blockiert=True) == BLOCKIERT
+    assert klassifiziere(153, 153, STANDARD) == VERALTET
+
+
+def test_blockiert_sticht_die_kadenz():
+    assert klassifiziere(500, 500, STANDARD, "woechentlich", blockiert=True) == BLOCKIERT
+
+
+def test_jede_blockierung_traegt_einen_geprueften_grund():
+    """Ohne Grund und ohne Bedingung fuer einen neuen Versuch waere das
+    Stummschalten nur Vertuschung."""
+    assert BLOCKIERTE_QUELLEN, "Liste ist leer"
+    for name, grund in BLOCKIERTE_QUELLEN.items():
+        assert name.endswith(".json"), name
+        assert len(grund) > 120, f"{name}: Grund zu duenn"
+        assert "Geprueft" in grund or "geprueft" in grund, f"{name}: kein Pruefdatum"
+        assert "Neuer Versuch" in grund, f"{name}: keine Bedingung fuer einen neuen Anlauf"
+
+
+def test_euvsdisinfo_ist_als_blockiert_gefuehrt():
+    assert "euvsdisinfo_db.json" in BLOCKIERTE_QUELLEN
+    grund = BLOCKIERTE_QUELLEN["euvsdisinfo_db.json"]
+    assert "erosalie" in grund and "403" in grund
