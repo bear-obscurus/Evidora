@@ -33,8 +33,33 @@ services:
         max-size: "20m"
         max-file: "5"
     # Security hardening (H4a-c, 2026-05-08)
-    mem_limit: 4g
-    memswap_limit: 4g
+    #
+    # mem_limit MUSS unter dem physischen Host-RAM liegen, sonst schuetzt das
+    # cgroup-Limit den Host gar nicht. Bis 2026-09-05 stand hier 4g bei
+    # 3.814 MB Host-RAM — genau diese Konstellation riss am 08.08.2026 die
+    # ganze Maschine mit (SSH und nginx tot, Hard-Reboot noetig), als ein
+    # zweiter Python-Prozess im Container Modelle nachlud.
+    #
+    # Gemessen am 05.09.2026 (cgroup v2, nach einem echten Cold Start mit
+    # Model-Prefetch):
+    #   memory.peak    3.407 MB   <- dominiert von PAGE CACHE beim Modell-Lesen
+    #   memory.current 2.703 MB
+    #     davon anon   2.178 MB   <- echt belegt, nicht rueckholbar
+    #     davon file     461 MB   <- Cache, holt der Kernel unter Druck zurueck
+    #   memory.events  oom 0, oom_kill 0, max 0
+    #
+    # Die frueher notierte Empfehlung "3g, vorher messen" waere ohne diese
+    # Aufschluesselung falsch begruendet gewesen: 3g liegt UNTER dem
+    # Peak (3.407 MB) und haette wie ein sicherer OOM-Kill ausgesehen. Da der
+    # Peak aber fast nur Cache ist, sind 3g rund 900 MB ueber dem echten
+    # anon-Bedarf — reichlich Luft.
+    #
+    # memswap_limit gibt 512 MB Swap-Polster (Host hat 2 GB Swap, 114 MB in
+    # Benutzung): Damit ist der Fehlermodus "Container wird langsam" statt
+    # "Container wird hart gekillt". Bleibt der Kill trotzdem noetig, faengt
+    # ihn `restart: unless-stopped` — der Host ueberlebt in jedem Fall.
+    mem_limit: 3g
+    memswap_limit: 3584m
     security_opt:
       - no-new-privileges:true
     cap_drop:
