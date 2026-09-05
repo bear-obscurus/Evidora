@@ -70,13 +70,17 @@ async def search_at_courts(analysis: dict) -> dict:
         kern = r.get("kerninhalt", "")
         falsch = r.get("boulevard_falschmeldung", "")
 
-        headline = f"{court}-Erkenntnis {case} ({year}) — {name}"
+        # Entscheidungs-Art pro Eintrag: eine Zurueckweisung als unzulaessig
+        # ist ein BESCHLUSS, kein Erkenntnis. Default bleibt "Erkenntnis",
+        # damit bestehende Eintraege unveraendert rendern.
+        kind = r.get("decision_type") or "Erkenntnis"
+        headline = f"{court}-{kind} {case} ({year}) — {name}"
         description_parts = [f"Tatsächlicher Inhalt: {kern}"]
         if falsch:
             description_parts.append(
                 "Häufige Boulevard-/Telegram-Verfälschung: „"
                 + falsch
-                + "“ — diese Lesart wird vom Erkenntnis NICHT gestützt."
+                + f"“ — diese Lesart wird vom {kind} NICHT gestützt."
             )
 
         results.append({
