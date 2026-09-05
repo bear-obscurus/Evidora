@@ -164,3 +164,34 @@ def test_beide_eintraege_erreichen_den_claim(claim):
 def test_kein_ueber_triggern_auf_fremde_claims(claim):
     ids = " ".join(x["indicator_name"] for x in _suche(claim))
     assert "Kopftuch" not in ids, f"Kopftuch-Eintrag feuert auf: {claim!r}"
+
+
+# ---------------------------------------------------------------------------
+# Iteration 2 (live erzwungen, 2026-09-05)
+#
+# Nach Iteration 1 stimmten alle drei Verdicts — aber zwei Summaries trugen
+# einen sachlichen Fehler im Nebensatz:
+#   „Der VfGH bestätigte die Gültigkeit dieses Verbots in Beschlüssen
+#    G 76/2026, G 87-88/2026."
+# Direkt gefragt („Hat der VfGH das Verbot für verfassungskonform erklärt?")
+# antwortete die Pipeline korrekt mit `false@0.95`. Der Fehler tritt also nur
+# als beiläufige Zuschreibung auf — die charakteristische Umdeutungs-Reflex-
+# Stelle. Dieselbe Lehre wie bei #321: die ZUORDNUNG stand im Fakt, das
+# VERBOT der Umdeutung fehlte.
+# ---------------------------------------------------------------------------
+
+def test_headline_nennt_die_kausalitaet():
+    """Der ungekürzte Kanal muss sagen, WORAUS das Verbot folgt — aus dem
+    Gesetz, nicht aus dem Beschluss. Genau das hatte das LLM vertauscht."""
+    name = _r(NEU)["case_name"]
+    assert "GESETZES" in name
+    assert "nicht aufgrund dieses Beschlusses" in name
+
+
+def test_formulierungs_verbot_ist_explizit():
+    """Nicht nur „keine inhaltliche Prüfung", sondern das ausdrückliche
+    Verbot der Formulierung — inklusive des Nebensatz-Falls."""
+    kern = _r(NEU)["kerninhalt"]
+    assert "FORMULIERUNGS-VERBOT" in kern
+    assert "Nebensatz" in kern
+    assert "bestätigt" in kern
