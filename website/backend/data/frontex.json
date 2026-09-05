@@ -2,56 +2,95 @@
   "refresh_kadenz": "monatlich",
   "kadenz_begruendung": "Frontex veroeffentlicht monatliche Zahlen zu irregulaeren Grenzuebertritten.",
   "data": {
-    "year_latest": 2025,
-    "irregular_crossings_eu_2025_total_approx": 178000,
-    "rueckgang_2025_yoy_pct": -26,
-    "irregular_crossings_eu_2024_total": 240000,
-    "rueckgang_2024_yoy_pct": -38,
-    "irregular_crossings_eu_2024_lowest_since": "2021",
-    "todesfaelle_mittelmeer_2025_min": 1878,
-    "routen_2025": [
-      {
-        "name": "Zentrales Mittelmeer (Italien/Malta)",
-        "trend_2025": "vergleichbar mit 2024 — aktivste Route",
-        "wichtigster_herkunftshafen": "Libyen, Tunesien"
-      },
+    "zeitraum": "1. Januar bis 31. Juli 2026",
+    "vergleichszeitraum": "1. Januar bis 31. Juli 2025",
+    "detektionen_eu_gesamt_approx": 61000,
+    "veraenderung_ggue_vorjahreszeitraum_pct": -37,
+    "anteil_oestl_und_zentrales_mittelmeer_pct": 60,
+    "eingesetzte_frontex_beamte_approx": 3800,
+    "routen": [
       {
         "name": "Östliches Mittelmeer (Griechenland/Zypern)",
-        "trend_2025": "Gesamtrückgang, aber Kreta-Route hat sich VERDREIFACHT (östlicher Weg von Libyen)",
-        "wichtigster_herkunftshafen": "Türkei, Libyen"
+        "detektionen": 20232,
+        "vorjahreszeitraum": 28068,
+        "veraenderung_pct": -28,
+        "hinweis": "aktivste Route im Zeitraum"
       },
       {
-        "name": "Westafrikanische Route (Kanaren)",
-        "trend_2025": "-66 % (von Mauretanien, Marokko, Senegal)",
-        "wichtigster_herkunftshafen": "Mauretanien, Marokko, Senegal"
-      },
-      {
-        "name": "Westbalkan",
-        "trend_2025": "deutlich rückläufig (verstärkte Sicherheitsmaßnahmen)",
-        "wichtigster_herkunftshafen": "Türkei via Bulgarien/Serbien"
+        "name": "Zentrales Mittelmeer (Italien/Malta)",
+        "detektionen": 16454,
+        "vorjahreszeitraum": 36656,
+        "veraenderung_pct": -55,
+        "hinweis": "zweitaktivste Route"
       },
       {
         "name": "Westliches Mittelmeer (Spanien)",
-        "trend_2025": "Anstieg, hauptsächlich von Algerien",
-        "wichtigster_herkunftshafen": "Algerien"
+        "detektionen": 11217,
+        "vorjahreszeitraum": 8175,
+        "veraenderung_pct": 37,
+        "hinweis": "einzige grosse Route mit Anstieg; davon See 8.648 (7.096), Land bis 30.6. 2.569 (1.079)"
       },
       {
-        "name": "Ärmelkanal (Richtung UK)",
-        "trend_2025": "auf Niveau von 2024",
-        "wichtigster_herkunftshafen": "Frankreich (Transit)"
+        "name": "Westbalkan",
+        "detektionen": 4910,
+        "vorjahreszeitraum": 6673,
+        "veraenderung_pct": -26,
+        "hinweis": ""
+      },
+      {
+        "name": "Westafrikanische Route (Kanaren)",
+        "detektionen": 4682,
+        "vorjahreszeitraum": 11575,
+        "veraenderung_pct": -60,
+        "hinweis": "staerkster Rueckgang aller Routen"
+      },
+      {
+        "name": "Östliche Landgrenze",
+        "detektionen": 3209,
+        "vorjahreszeitraum": 5775,
+        "veraenderung_pct": -44,
+        "hinweis": ""
+      },
+      {
+        "name": "Zirkulaere Route nach Albanien",
+        "detektionen": 281,
+        "vorjahreszeitraum": 257,
+        "veraenderung_pct": 9,
+        "hinweis": ""
+      },
+      {
+        "name": "Ärmelkanal (Ausreise Richtung Vereinigtes Königreich)",
+        "detektionen": 22469,
+        "vorjahreszeitraum": 41647,
+        "veraenderung_pct": -46,
+        "hinweis": "zaehlt AUSREISEN aus der EU, nicht Einreisen — nicht in der EU-Gesamtzahl enthalten"
       }
     ],
-    "top_3_herkunftslaender_2025": ["Bangladesch", "Ägypten", "Afghanistan"],
+    "jahreswerte_kontext": {
+      "2024_gesamt": 240000,
+      "2024_veraenderung_pct": -38,
+      "2024_niedrigster_stand_seit": "2021",
+      "2025_gesamt_approx": 178000,
+      "2025_veraenderung_pct": -26,
+      "hinweis": "Jahreswerte aus frueheren Frontex-Pressemeldungen; sie sind mit den Sieben-Monats-Werten oben NICHT direkt vergleichbar."
+    },
+    "todesfaelle_mittelmeer": {
+      "wert_2025_min": 1878,
+      "quelle": "IOM Missing Migrants Project, Stand der frueheren Erhebung 2025",
+      "hinweis": "NICHT von Frontex und beim Refresh am 2026-09-05 NICHT verifizierbar — missingmigrants.iom.int antwortet mit HTTP 403. Der Wert bleibt als Groessenordnung stehen, ist aber ausdruecklich aelter als die uebrigen Zahlen dieses Fakts."
+    },
     "wichtige_caveats": [
-      "Frontex-Zahlen sind DETEKTIONEN, nicht Personen — eine Person kann mehrfach gezählt werden, wenn sie an mehreren Punkten erfasst wird.",
-      "Die EU-Asyl-Antragszahlen (BAMF, BMI etc.) sind in der Regel niedriger als die Frontex-Detektionen — viele detektierte Personen stellen keinen Asylantrag oder reisen weiter.",
-      "Routen-Verlagerung ist laufendes Pattern — wenn eine Route gesperrt wird, verlagert sich der Druck auf eine andere."
+      "Frontex-Zahlen sind DETEKTIONEN, nicht Personen — eine Person kann mehrfach gezaehlt werden, wenn sie an mehreren Punkten erfasst wird.",
+      "Es sind VORLAEUFIGE Daten (preliminary). Frontex weist ausdruecklich darauf hin, dass die Zahlen die Ereignisse in Ceuta/Spanien Ende Juli 2026 noch nicht abbilden.",
+      "Die EU-Asyl-Antragszahlen liegen in der Regel niedriger als die Frontex-Detektionen — viele detektierte Personen stellen keinen Asylantrag oder reisen weiter.",
+      "Routen-Verlagerung ist ein laufendes Muster: wird eine Route gesperrt, verlagert sich der Druck auf eine andere. Das westliche Mittelmeer ist im Zeitraum die einzige grosse Route mit Anstieg.",
+      "Der Aermelkanal zaehlt AUSREISEN Richtung Vereinigtes Koenigreich und ist in der EU-Einreise-Gesamtzahl nicht enthalten."
     ]
   },
-  "source_label": "Frontex — European Border and Coast Guard Agency, Pressemeldungen 2025/2026",
-  "source_url": "https://www.frontex.europa.eu/what-we-do/monitoring-and-risk-analysis/migratory-map/",
-  "secondary_url": "https://data.europa.eu/data/datasets/detections-of-illegal-border-crossings",
-  "fetched_at_iso": "2026-04-29",
+  "source_label": "Frontex — European Border and Coast Guard Agency, Pressemeldung vom 14.08.2026 (vorlaeufige Daten Januar bis Juli 2026)",
+  "source_url": "https://www.frontex.europa.eu/media-centre/news/news-release/frontex-preliminary-data-show-irregular-border-crossings-into-eu-down-37-in-first-seven-months-of-2026-mffdGl",
+  "secondary_url": "https://www.frontex.europa.eu/what-we-do/monitoring-and-risk-analysis/migratory-map/",
+  "fetched_at_iso": "2026-09-05",
   "version": 1,
-  "note": "Kuratierte Frontex-Daten 2024-2025 für Faktencheck-Use-Cases. Zahlen aus Pressemeldungen Januar 2026. Refresh: vierteljährlich (Frontex publiziert Quartalsbilanz)."
+  "note": "Kuratierte Frontex-Daten fuer Faktencheck-Use-Cases, Stand der Pressemeldung vom 14.08.2026 (Zeitraum Januar bis Juli 2026). Frontex publiziert monatlich kumulierte vorlaeufige Zahlen — der frueher hier vermerkte Quartalsrhythmus traf nicht zu."
 }
