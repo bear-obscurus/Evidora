@@ -17,7 +17,7 @@ Use-Case:
 import json
 import logging
 import os
-from services._schreibweise import normalisiere, norm_terme
+from services._schreibweise import normalisiere, norm_terme as _norm, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -53,10 +53,18 @@ def _claim_mentions_wifo_ihs(claim_lc: str) -> bool:
     if has_term:
         return True
     # Composite: ('wachstum' / 'rezession' / 'BIP') + AT-Kontext
-    has_econ = any(t in claim_lc for t in (
+    has_econ = any(t in claim_lc for t in _norm(
         "bip-wachstum", "bip wachstum", "wirtschaftswachstum",
         "rezession", "konjunktur", "aufschwung", "abschwung",
         "wirtschaftserholung",
+        # Arbeitslosigkeit gehoert dazu: dieser Fakt traegt die nationale
+        # AMS-Prognose (7,4 -> 7,5 % fuer 2026). Bis zur QA-Batterie vom
+        # 2026-09-06 war er mit einem Arbeitslosen-Claim NICHT erreichbar —
+        # "Die Arbeitslosigkeit in Oesterreich sinkt 2026" wurde allein aus
+        # den Eurostat-ILO-Monatswerten mit true@0.85 beantwortet, waehrend
+        # die AMS-Quote laut Prognose steigt.
+        "arbeitslos", "arbeitslosenquote", "arbeitslosenrate",
+        "arbeitslosigkeit", "beschaeftigung", "beschäftigung",
     ))
     has_at = any(t in claim_lc for t in _AT_CONTEXT_TERMS)
     if has_econ and has_at:
@@ -108,6 +116,32 @@ def _de_pct(v):
     return f"{v}".replace(".", ",")
 
 
+
+# Die Warnung haengt nur an, wenn der Claim ueberhaupt von Arbeitslosigkeit
+# handelt. Sonst sprengt sie bei jedem Konjunktur-Claim das 400-Zeichen-
+# Budget und waere als Letztes im Text das Erste, was die Kuerzung frisst.
+_ARBEITSLOS = ("arbeitslos", "arbeitslosenquote", "arbeitslosenrate",
+               "arbeitslosigkeit", "beschaeftigung")
+
+
+def _messgroessen_warnung(claim_lc: str) -> str:
+    """Bei Arbeitslosen-Claims: welche Quote gemeint ist.
+
+    Die QA-Batterie vom 2026-09-06 hat gezeigt, warum das noetig ist. Der
+    Claim "Die Arbeitslosigkeit in Oesterreich sinkt 2026" bekam true@0.85,
+    begruendet mit Eurostat-ILO-Monatswerten (5,8 %) — waehrend die
+    nationale AMS-Quote laut dieser Prognose STEIGT (7,4 -> 7,5 %). Beide
+    Reihen sind korrekt; sie messen Verschiedenes und koennen gleichzeitig
+    in verschiedene Richtungen zeigen. Ohne diesen Satz waehlt der
+    Synthesizer still eine Seite und liefert eine falsche Sicherheit.
+    """
+    if not any(t in claim_lc for t in _ARBEITSLOS):
+        return ""
+    return (" MESSGRÖSSE: das ist die nationale AMS-Quote (registrierte "
+            "Arbeitslose). Die Eurostat/ILO-Quote misst anders, liegt rund "
+            "2 Prozentpunkte niedriger und kann GLEICHZEITIG in die andere "
+            "Richtung zeigen.")
+
 def _build_results(fact: dict, claim_lc: str) -> list[dict]:
     data = fact.get("data") or {}
     src = fact.get("source_url") or ""
@@ -118,17 +152,31 @@ def _build_results(fact: dict, claim_lc: str) -> list[dict]:
     # allein haette die falsche Runde weiter angezeigt.
     runde = data.get("prognose_runde") or "WIFO/IHS-Konjunkturprognose"
 
-    headline = (
-        f"{runde}: BIP 2026 +{_de_pct(data.get('bip_wachstum_2026_pct_real_wifo'))} % "
-        f"(WIFO) / +{_de_pct(data.get('bip_wachstum_2026_pct_real_ihs'))} % (IHS) — "
-        f"also WACHSTUM, keine Rezession; 2025 war mit "
-        f"+{_de_pct(data.get('bip_2025_ist_pct_real'))} % bereits ein Erholungsjahr. "
-        f"Inflation 2026 {_de_pct(data.get('inflation_2026_pct_wifo'))} % (WIFO) / "
-        f"{_de_pct(data.get('inflation_2026_pct_ihs'))} % (IHS), deutlich ÜBER dem "
-        f"EZB-Ziel. Arbeitslosenquote (nationale Definition) steigt 2026 leicht auf "
+    arbeitslos_claim = any(t in claim_lc for t in _ARBEITSLOS)
+
+    quote = (
+        f"Arbeitslosenquote (nationale Definition) steigt 2026 leicht auf "
         f"{_de_pct(data.get('arbeitslosenquote_nat_2026_pct'))} % "
         f"(2025: {_de_pct(data.get('arbeitslosenquote_nat_2025_pct'))} %)."
     )
+    if arbeitslos_claim:
+        # Bei einem Arbeitslosen-Claim sind BIP und Inflation Beiwerk. Sie
+        # wegzulassen schafft Platz fuer die Messgroessen-Warnung, ohne das
+        # 400-Zeichen-Budget zu sprengen — sonst waere die Warnung als
+        # letzter Satz das Erste, was die Kuerzung frisst.
+        headline = (f"{runde}: {quote}" + _messgroessen_warnung(claim_lc)
+                    + f" BIP 2026 "
+                      f"+{_de_pct(data.get('bip_wachstum_2026_pct_real_wifo'))} % (WIFO).")
+    else:
+        headline = (
+            f"{runde}: BIP 2026 +{_de_pct(data.get('bip_wachstum_2026_pct_real_wifo'))} % "
+            f"(WIFO) / +{_de_pct(data.get('bip_wachstum_2026_pct_real_ihs'))} % (IHS) — "
+            f"also WACHSTUM, keine Rezession; 2025 war mit "
+            f"+{_de_pct(data.get('bip_2025_ist_pct_real'))} % bereits ein Erholungsjahr. "
+            f"Inflation 2026 {_de_pct(data.get('inflation_2026_pct_wifo'))} % (WIFO) / "
+            f"{_de_pct(data.get('inflation_2026_pct_ihs'))} % (IHS), deutlich ÜBER dem "
+            f"EZB-Ziel. {quote}"
+        )
 
     description_parts = [
         f"2027-Ausblick: BIP +{_de_pct(data.get('bip_wachstum_2027_pct_real_wifo'))} % "
