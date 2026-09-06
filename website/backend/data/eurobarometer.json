@@ -1,15 +1,19 @@
 {
   "schema_version": 1,
-  "fetched_at_iso": "2026-05-03",
-  "source_label": "Eurobarometer (Europäische Kommission, EP)",
+  "fetched_at_iso": "2026-09-06",
+  "refresh_kadenz": "jaehrlich",
+  "kadenz_begruendung": "Das Standard-Eurobarometer erscheint halbjaehrlich (Fruehjahr und Herbst); ein jaehrlicher Refresh-Takt ist die konservative Untergrenze.",
+  "letzte_pruefung": "2026-09-06: NICHT aktualisiert. Die Eurobarometer-Website ist eine JavaScript-Anwendung ohne server-gerenderte Inhalte; die dahinterliegende API (europa.eu/eurobarometer/api/survey/search) antwortet auf alle geprueften Parameter-Varianten mit HTTP 500, weitere Endpunkte mit 404. Statt Zahlen zu schaetzen tragen alle sechs Fakten ihren Erhebungszeitpunkt jetzt ausdruecklich in der Headline.",
+  "source_label": "Eurobarometer (Europäische Kommission, EP) — Standard Eurobarometer 102, Erhebung Herbst 2024. Neuere Wellen sind hier NICHT eingearbeitet.",
   "facts": [
     {
       "id": "eb_eu_vertrauen_2024",
       "topic": "eb_eu_vertrauen",
       "scope": "Vertrauen der Bürger:innen in die EU vs nationale Regierungen",
       "year": 2024,
-      "headline": "Standard Eurobarometer 102 (Herbst 2024): 51 % EU-Vertrauen — höchster Wert seit 2007",
+      "headline": "STAND HERBST 2024 (Standard Eurobarometer 102), nicht aktuell: Standard Eurobarometer 102 (Herbst 2024): 51 % EU-Vertrauen — höchster Wert seit 2007",
       "data": {
+        "datenstand": "DATENSTAND: Standard Eurobarometer 102, Erhebung Herbst 2024. Neuere Wellen erscheinen halbjaehrlich und sind in diesem Fakt NICHT enthalten — eine Aussage ueber die heutige Stimmungslage laesst sich damit nicht belegen.",
         "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'Vertrauen in die EU sinkt' sind 2024 FALSE. Standard Eurobarometer 102 (Herbst 2024, publiziert Dezember 2024): 51 % der Europäer:innen vertrauen der EU 'eher' (Tend to trust) — höchster Wert seit 2007. Vertrauen in die Europäische Kommission ebenfalls 51 % (+2 PP gegenüber Frühling 2024). Aussage 'EU-Vertrauen kollabiert' nicht zutreffend.",
         "eu_vertrauen_2024": "EU-Vertrauen Herbst 2024: 51 % 'tend to trust', 43 % 'tend not to trust'. Höchster Vertrauenswert seit 2007. Frühling 2024: 49 %, Herbst 2023: 47 %, langfristiger Trend leicht aufwärts.",
         "national_vs_eu": "EU-Vertrauen LIEGT typischerweise ÜBER nationalem Vertrauen in DE-Regierung. Herbst 2024: Vertrauen in Bundesregierung DE deutlich unter EU-Vertrauen, Vertrauen in deutschen Bundestag -8 PP gegenüber Vorperiode (besonders starker Rückgang).",
@@ -46,8 +50,9 @@
       "topic": "eb_top_themen",
       "scope": "Top-Sorgen + Themen-Prioritäten EU-Bürger:innen 2024",
       "year": 2024,
-      "headline": "Eurobarometer 2024: Inflation/Lebenshaltungskosten Top-Sorge (41 %), Wirtschaft + Sicherheit dahinter — Klima auf Platz 4",
+      "headline": "STAND HERBST 2024 (Standard Eurobarometer 102), nicht aktuell: Eurobarometer 2024: Inflation/Lebenshaltungskosten Top-Sorge (41 %), Wirtschaft + Sicherheit dahinter — Klima auf Platz 4",
       "data": {
+        "datenstand": "DATENSTAND: Standard Eurobarometer 102, Erhebung Herbst 2024. Neuere Wellen erscheinen halbjaehrlich und sind in diesem Fakt NICHT enthalten — eine Aussage ueber die heutige Stimmungslage laesst sich damit nicht belegen.",
         "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'X ist DAS Top-Thema in der EU' brauchen Quelle + Jahr. Eurobarometer 2024: Inflation/Lebenshaltungskosten 41 % Top-Sorge, Wirtschaft + Jobs 35 %, Sicherheit (aktive Konflikte 72 %, Terrorismus 67 %, Klima-bedingte Naturkatastrophen 66 %, Cyber 66 %, unkontrollierte Migration 65 %). Klima rückte auf Platz 4 (vorher Platz 1-2 in 2019). Migration und Klima geteilte Spitze als TOP-EU-AUFGABEN. Bei mittelfristigen 5-Jahres-Prioritäten: Sicherheit + Verteidigung 34 %, Klima + Umwelt 30 %, Gesundheit 26 %.",
         "top_sorgen_2024": "Eurobarometer 2024 (EP-Special): persönliche Sorgen — Inflation/Lebenshaltungskosten 41 %, Wirtschaft + Jobs 35 %. Sicherheits-Sorgen: aktive Konflikte 72 %, Terrorismus 67 %, klima-bedingte Naturkatastrophen 66 %, Cyber-Angriffe 66 %, unkontrollierte Migration 65 %.",
         "eu_aufgaben_top": "Bei der Frage 'Worauf soll EU sich primär fokussieren': Migration + Umwelt/Klima geteilte Spitze. Italienische Befragte: ~50 % nennen Klima Top-3. Frankreich + Deutschland: ~40 %. Schweden 36 %, Polen 29 %.",
@@ -87,8 +92,9 @@
       "topic": "eb_klimawandel_einstellung",
       "scope": "Bevölkerungs-Einstellung zum Klimawandel in EU + DE/AT",
       "year": 2024,
-      "headline": "Eurobarometer 2024: Mehrheit der EU-Bürger:innen für Klimaschutz — DE 40 % bei Top-3-Themen, EU-weit 77 % Klimawandel als 'sehr ernstes Problem'",
+      "headline": "STAND HERBST 2024 (Standard Eurobarometer 102), nicht aktuell: Eurobarometer 2024: Mehrheit der EU-Bürger:innen für Klimaschutz — DE 40 % bei Top-3-Themen, EU-weit 77 % Klimawandel als 'sehr ernstes Problem'",
       "data": {
+        "datenstand": "DATENSTAND: Standard Eurobarometer 102, Erhebung Herbst 2024. Neuere Wellen erscheinen halbjaehrlich und sind in diesem Fakt NICHT enthalten — eine Aussage ueber die heutige Stimmungslage laesst sich damit nicht belegen.",
         "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'Bürger sind nicht mehr für Klimaschutz' oder 'Klimaschutz ist gegen Mehrheits-Willen' sind FALSE. Eurobarometer 2024 (Special EB 'Citizens' support for climate action'): 77 % der EU-Bürger:innen halten Klimawandel für 'sehr ernstes Problem'. 64 % unterstützen ambitioniertere EU-Klimaziele. In DE: 40 % nennen Klima Top-3-Thema; 78 % der Deutschen sehen Klimawandel als ernstes Problem. Aussage 'Klima-Politik fehlt Mehrheits-Rückhalt' wird durch Daten widerlegt.",
         "klimawandel_ernsthaftigkeit": "Special EB Climate Action 2024: 77 % EU-Bürger:innen sehen Klimawandel als 'sehr ernstes Problem'. Skandinavische Länder + Spanien Spitze (>85 %), Osteuropa niedriger (~65-70 %), aber Mehrheit überall.",
         "klima_top3_de_2024": "Bei 'Top-3-Themen für die EU': DE ~40 % nennen Klima/Umwelt. Italien ~50 %, Frankreich ~40 %, Schweden 36 %, Polen 29 %.",
@@ -126,8 +132,9 @@
       "topic": "eb_demokratie_zufriedenheit",
       "scope": "Demokratie-Zufriedenheit in EU + DE/AT",
       "year": 2024,
-      "headline": "Eurobarometer 2024: Mehrheit zufrieden mit Demokratie in der EU — aber Vertrauen in nationale Regierungen oft niedriger",
+      "headline": "STAND HERBST 2024 (Standard Eurobarometer 102), nicht aktuell: Eurobarometer 2024: Mehrheit zufrieden mit Demokratie in der EU — aber Vertrauen in nationale Regierungen oft niedriger",
       "data": {
+        "datenstand": "DATENSTAND: Standard Eurobarometer 102, Erhebung Herbst 2024. Neuere Wellen erscheinen halbjaehrlich und sind in diesem Fakt NICHT enthalten — eine Aussage ueber die heutige Stimmungslage laesst sich damit nicht belegen.",
         "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'Die Demokratie in Europa kollabiert' / 'Bürger sind unzufrieden mit Demokratie' brauchen Differenzierung. Eurobarometer 2024: Mehrheit (~58-62 %) der EU-Bürger:innen ist 'eher zufrieden' mit der Demokratie in ihrem Land. ABER: starke nationale Variation (Skandinavien >75 %, Süd- + Osteuropa schwächer). Vertrauen in nationale Regierungen oft niedriger als Demokratie-Zufriedenheit (DE 2024: -8 PP Vertrauen in Bundestag). Demokratie-Zufriedenheit ist NICHT identisch mit Regierungs-Zufriedenheit.",
         "demokratie_zufriedenheit_eu": "Standard EB 102 (Herbst 2024): ~58-62 % EU-Bürger:innen 'eher zufrieden' mit Demokratie in ihrem Land. Spitze: Skandinavien (>75 %), DK + LU + SE besonders hoch.",
         "demokratie_de_at": "Deutschland 2024: leichter Rückgang gegenüber 2022 wegen Energie-Krise + Inflation, aber bleibt Mehrheits-Zufriedenheit. Österreich: stabiler Trend.",
@@ -164,8 +171,9 @@
       "topic": "eb_eu_mitgliedschaft",
       "scope": "Bewertung der EU-Mitgliedschaft in DE/AT/EU",
       "year": 2024,
-      "headline": "Eurobarometer 2024: ~76 % EU-Bürger:innen sehen EU-Mitgliedschaft als 'gute Sache' — DE + AT klar oberhalb des EU-Schnitts",
+      "headline": "STAND HERBST 2024 (Standard Eurobarometer 102), nicht aktuell: Eurobarometer 2024: ~76 % EU-Bürger:innen sehen EU-Mitgliedschaft als 'gute Sache' — DE + AT klar oberhalb des EU-Schnitts",
       "data": {
+        "datenstand": "DATENSTAND: Standard Eurobarometer 102, Erhebung Herbst 2024. Neuere Wellen erscheinen halbjaehrlich und sind in diesem Fakt NICHT enthalten — eine Aussage ueber die heutige Stimmungslage laesst sich damit nicht belegen.",
         "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'Mehrheit will EU verlassen' oder 'EU-Mitgliedschaft wird abgelehnt' sind FALSE im DACH-Kontext. Eurobarometer 2024: EU-Mitgliedschaft wird von ~76 % der EU-Bürger:innen als 'gute Sache' bewertet (höchster Wert seit 2007). Deutschland + Österreich liegen typisch über EU-Schnitt (DE ~80 %, AT ~70-75 %). Brexit-ähnliche Mehrheits-Forderungen existieren in keinem Mitgliedstaat 2024 mehr (UK ist außerhalb der EU).",
         "eu_mitgliedschaft_gut": "Eurobarometer 2024: ~76 % EU-weit 'EU-Mitgliedschaft eine gute Sache'. Spitzenwerte in IE, NL, LU, DK (>85 %). DE ~80 %, AT ~70-75 %. Schwächste Werte in Tschechien (~50-55 %), Bulgarien (~55 %).",
         "kein_austritt_mehrheit": "Brexit-Effekt: nach UK-Austritt (2020) verschwand die Pro-Austritts-Mehrheit in allen verbliebenen 27 Mitgliedstaaten. Selbst in Tschechien + Ungarn + Italien sind Pro-Austritts-Stimmen <30 %.",
@@ -202,8 +210,9 @@
       "topic": "eb_einwanderung_einstellung",
       "scope": "Bevölkerungs-Einstellung zu Einwanderung + EU-Asyl-Politik",
       "year": 2024,
-      "headline": "Eurobarometer 2024: Mehrheit der EU-Bürger sieht Migration ambivalent — 65 % sorgen sich um 'unkontrollierte Migration', 60 % unterstützen EU-Asyl-Pakt",
+      "headline": "STAND HERBST 2024 (Standard Eurobarometer 102), nicht aktuell: Eurobarometer 2024: Mehrheit der EU-Bürger sieht Migration ambivalent — 65 % sorgen sich um 'unkontrollierte Migration', 60 % unterstützen EU-Asyl-Pakt",
       "data": {
+        "datenstand": "DATENSTAND: Standard Eurobarometer 102, Erhebung Herbst 2024. Neuere Wellen erscheinen halbjaehrlich und sind in diesem Fakt NICHT enthalten — eine Aussage ueber die heutige Stimmungslage laesst sich damit nicht belegen.",
         "kernsatz_fuer_synthesizer": "WICHTIG: Bürger-Einstellung zu Migration ist nuanciert. Eurobarometer 2024: 65 % der EU-Bürger:innen sorgen sich um 'unkontrollierte Migration' (Sicherheits-Frage). GLEICHZEITIG ~60 % unterstützen den EU-Asyl- und Migrations-Pakt 2024 (geordnete EU-weite Lösung). Aussage 'Mehrheit will Migration komplett stoppen' ist FALSE — Mehrheit will GEORDNETE Migration. Aussage 'Mehrheit ist liberal pro-Migration' ist auch FALSE — Sorge ist real.",
         "unkontrollierte_migration_sorge": "Eurobarometer 2024 EP-Special: 65 % der Befragten sorgen sich um 'unkontrollierte Migration' als Sicherheits-Risiko. Höher in Italien, Griechenland, Spanien (Frontier-Staaten). Mittel in DE/AT. Niedriger in Skandinavien.",
         "asyl_pakt_unterstuetzung": "EU-Asyl- und Migrations-Pakt (April 2024 verabschiedet): EB 2024 zeigt ~60 % Unterstützung. Pakt vereinheitlicht EU-weite Verteilung + Schnellverfahren an Außengrenzen.",
