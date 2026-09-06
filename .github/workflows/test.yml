@@ -173,6 +173,11 @@ jobs:
     #   - test_arbeitslosenquote_messgroessen (AMS- gegen ILO-Quote: beide
     #                                  kuratierten Fakten waren bei einem
     #                                  Richtungs-Claim nicht erreichbar)
+    #   - test_freedom_house_regime_klassifikation (FIW misst Freiheitsgrade,
+    #                                  keine Staatsform; „Partly Free" ist keine
+    #                                  Demokratie-Einstufung. Enthaelt den Test,
+    #                                  der den Politik-Guard beim ungefalteten
+    #                                  Claim festnagelt)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -264,6 +269,7 @@ jobs:
             tests/test_destatis_eurobarometer_datenstand.py \
             tests/test_normalisierung_eigene_praedikate.py \
             tests/test_arbeitslosenquote_messgroessen.py \
+            tests/test_freedom_house_regime_klassifikation.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
