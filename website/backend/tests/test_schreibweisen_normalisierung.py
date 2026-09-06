@@ -194,3 +194,57 @@ def test_keine_doppel_aufzaehlung_mehr_noetig():
     for umlaut, ascii_ in (("fpö", "fpoe"), ("spö", "spoe"),
                            ("geldwäsche", "geldwaesche")):
         assert normalisiere(umlaut) == normalisiere(ascii_), (umlaut, ascii_)
+
+
+# --------------------------------------------------------------------------
+# Services mit EIGENEM Praedikat (laufen nicht ueber _topic_match)
+# --------------------------------------------------------------------------
+
+def test_eigene_praedikate_verstehen_ascii_umschrift():
+    """at_factbook, dach_factbook und pks haben eigene Trigger-Logik. Live
+    nachgewiesen: „Die Foerderungen in Oesterreich sind stark gestiegen"
+    lieferte `unverifiable@0.1` — „Förderungen … Österreich" traf."""
+    from services.at_factbook import claim_mentions_factbook_cached
+    from services.dach_factbook import claim_mentions_dach_factbook_cached
+    from services.pks import claim_mentions_pks_cached
+
+    for praedikat, paar in (
+        (claim_mentions_factbook_cached,
+         ("Die Förderungen in Österreich sind stark gestiegen",
+          "Die Foerderungen in Oesterreich sind stark gestiegen")),
+        (claim_mentions_factbook_cached,
+         ("Pensionserhöhung Österreich 2026", "Pensionserhoehung Oesterreich 2026")),
+        (claim_mentions_pks_cached,
+         ("Jugendkriminalität in Österreich steigt",
+          "Jugendkriminalitaet in Oesterreich steigt")),
+        (claim_mentions_dach_factbook_cached,
+         ("Bürgergeld in Deutschland", "Buergergeld in Deutschland")),
+    ):
+        mit_umlaut, ascii_form = paar
+        assert praedikat(mit_umlaut), mit_umlaut
+        assert praedikat(ascii_form), ascii_form
+
+
+def test_modulgrenzen_normalisieren_defensiv():
+    """Interne Praedikate bekommen von aussen (Tests, main.py) nur einen
+    kleingeschriebenen Claim. Weil ihre Terme normalisiert sind, muessen sie
+    die Eingabe selbst nachziehen — sonst brach genau das die
+    Staatsbuergerschafts-Erkennung."""
+    from services.at_factbook import _claim_mentions_citizenship, _has_at_context
+    assert _claim_mentions_citizenship("wie viele ukrainer leben in österreich?")
+    assert _claim_mentions_citizenship("wie viele ukrainer leben in oesterreich?")
+    assert _has_at_context("in österreich") and _has_at_context("in oesterreich")
+
+
+def test_terme_werden_einmalig_normalisiert():
+    """Die Listen stehen bewusst mit Umlauten im Quelltext — lesbar —, liegen
+    zur Laufzeit aber normalisiert vor."""
+    from services.at_factbook import _AT_CONTEXT_TERMS
+    assert all(t == normalisiere(t) for t in _AT_CONTEXT_TERMS)
+    assert any("oesterreich" in t for t in _AT_CONTEXT_TERMS)
+
+
+def test_wortgrenzen_schutz_ueberlebt_auch_hier():
+    """Terme wie `"wien "` tragen ihre Rand-Leerzeichen als Schutz."""
+    from services.at_factbook import _WIEN_TERMS
+    assert any(t.startswith(" ") or t.endswith(" ") for t in _WIEN_TERMS)

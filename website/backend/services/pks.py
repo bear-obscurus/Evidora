@@ -29,6 +29,23 @@ GUARDRAILS (siehe project_political_guardrails.md):
 import json
 import logging
 import os
+from services._schreibweise import normalisiere
+
+
+def _norm_terme(*terme: str) -> tuple[str, ...]:
+    """Trigger-Terme einmalig auf die Vergleichs-Schreibweise bringen.
+
+    Die Listen unten stehen bewusst mit Umlauten — so liest man sie. Verglichen
+    wird gegen den ebenfalls normalisierten Claim, damit "Foerderungen in
+    Oesterreich" genauso trifft wie "Förderungen in Österreich". Dieser Service
+    hat ein eigenes Praedikat und laeuft nicht ueber services/_topic_match.py,
+    wo die Normalisierung mit PR #143 eingezogen ist.
+
+    Rand-Leerzeichen bleiben erhalten: `"wien "` ist ein Wortgrenzen-Schutz.
+    """
+    return tuple(normalisiere(t) for t in terme)
+
+
 
 logger = logging.getLogger("evidora")
 
@@ -44,7 +61,7 @@ _cache: dict | None = None
 # ---------------------------------------------------------------------------
 # AT-Kontext
 # ---------------------------------------------------------------------------
-_AT_CONTEXT_TERMS = (
+_AT_CONTEXT_TERMS = _norm_terme(
     "österreich", "austria", "österreichisch",
     "wien", "vienna",
     "burgenland", "kärnten", "niederösterreich", "oberösterreich",
@@ -54,13 +71,18 @@ _AT_CONTEXT_TERMS = (
 
 
 def _has_at_context(claim_lc: str) -> bool:
+    # Modul-Grenze: von aussen (Tests, main.py) kommt der Claim nur
+    # kleingeschrieben. Die Trigger-Terme dieses Moduls sind seit
+    # PR #144 normalisiert — also hier defensiv nachziehen.
+    # normalisiere() ist idempotent und lru_cached, kostet also nichts.
+    claim_lc = normalisiere(claim_lc)
     return any(t in claim_lc for t in _AT_CONTEXT_TERMS)
 
 
 # ---------------------------------------------------------------------------
 # Topic 1: General criminality (PKS Hauptbericht)
 # ---------------------------------------------------------------------------
-_CRIM_GENERAL_TERMS = (
+_CRIM_GENERAL_TERMS = _norm_terme(
     "tatverdächtige", "tatverdächtigen", "tatverdaechtige",
     "kriminalität", "kriminalitaet", "kriminalstatistik",
     "anzeige", "anzeigen", "straftat", "straftaten",
@@ -113,7 +135,7 @@ def _claim_mentions_crim_general(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 2: Drug crime (Lagebericht Suchtmittel)
 # ---------------------------------------------------------------------------
-_DRUG_TERMS = (
+_DRUG_TERMS = _norm_terme(
     "drogen", "drogen-delikte", "drogendelikt", "drogendelikte",
     "drogenkriminalität", "drogenkriminalitaet",
     "suchtmittel", "suchtgift", "smg",
@@ -135,7 +157,7 @@ def _claim_mentions_drug(claim_lc: str) -> bool:
 def _claim_matches_any_topic(claim: str) -> list[str]:
     if not claim:
         return []
-    cl = claim.lower()
+    cl = normalisiere(claim)
     matched: list[str] = []
     if _claim_mentions_crim_general(cl):
         matched.append("criminality_overall")
@@ -560,7 +582,7 @@ async def search_pks(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
     matched_topics = _claim_matches_any_topic(matchable)
     if not matched_topics:
         return empty
