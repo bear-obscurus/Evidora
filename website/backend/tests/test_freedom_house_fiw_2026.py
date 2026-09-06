@@ -289,3 +289,18 @@ def test_kein_ueber_trigger_ohne_freiheits_bezug():
         r = asyncio.run(search_freedom_house({"claim": claim,
                                               "original_claim": claim}))
         assert not r["results"], f"Über-Trigger: {claim!r}"
+
+
+def test_dispatch_label_traegt_keine_jahreszahl():
+    """Zweiter Namensraum, in #133 uebersehen und von der QA-Batterie am
+    2026-09-06 gefunden: main.py meldet die Quelle unter einem EIGENEN Label
+    in `source_coverage.names`. Dort stand "Freedom House FIW 2024", obwohl
+    die Daten auf FIW 2026 standen — die Antwort nannte also eine Ausgabe,
+    die sie gar nicht verwendet hat (Marker-Drift, PR #74)."""
+    main_py = (BACKEND.parent / "backend" / "main.py").read_text(encoding="utf-8")
+    # Auf den DISPATCH ankern, nicht auf die Import-Zeile oben.
+    i = main_py.index('cached("FreedomHouse"')
+    stelle = main_py[i:i + 220]
+    assert 'queried_names.append("Freedom House")' in stelle, stelle[-140:]
+    for jahr in ("FIW 2024", "FIW 2025", "FIW 2026"):
+        assert f'queried_names.append("Freedom House {jahr}")' not in main_py

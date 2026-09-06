@@ -27,8 +27,9 @@ Topics (12):
     1 Mio Quorum, ~10 erfolgreich, 40 % legislativer Effekt;
     Bertelsmann 2020 — 3-5 % aktive Beteiligung; Hindman 2009)
   - demokratie_verfall_empirie_konsens (V-Dem v14 Liberal Democracy
-    Index AT 0.78, DE 0.81, HU 0.32; Freedom House FIW 2024 AT 92,
-    USA 83, RU 13; AT/DE stabil)
+    Index AT 0.78, DE 0.81, HU 0.32; Freedom-House-Werte kommen aus
+    data/demokratie_pack.json und werden per Test gegen den Connector
+    gehalten, siehe tests/test_freedom_house_pack_konsistenz.py)
   - pressefreiheit_trends_konsens (RSF 2024: AT 32. Platz von 16.
     2019 wegen Inseraten + ÖVP-Chats; DE 10., USA 55., RUS 162., NK 180.)
   - korruption_index_konsens (Transparency CPI 2024: AT 71/100 Rang 20,
