@@ -158,6 +158,9 @@ jobs:
     #   - test_euvsdisinfo_archiv_fenster (Fallarchiv endet 11/2022 und ist
     #                                  nicht refreshbar; jeder Treffer traegt
     #                                  jetzt sein Abdeckungsfenster)
+    #   - test_schreibweisen_normalisierung (Umlaut-Faltung + Trennzeichen;
+    #                                  vorher trafen 14 % der dokumentierten
+    #                                  Phrasings in anderer Schreibweise nicht)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -244,6 +247,7 @@ jobs:
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \
+            tests/test_schreibweisen_normalisierung.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 

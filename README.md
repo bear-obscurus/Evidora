@@ -174,7 +174,7 @@ repository history.
 | Live-API connectors | **107** |
 | Static-first topic services | **78** (incl. 40 thematic `*_pack.json` packs, ~430 topics) |
 | Hybrid (static core + live refresh) | **6** |
-| Connector service files | **191** of 215 `services/*.py` (24 are pipeline/helper modules, incl. `ratelimit.py`, `_atomic.py`, `_fmt.py`) |
+| Connector service files | **191** of 216 `services/*.py` (25 are pipeline/helper modules, incl. `ratelimit.py`, `_atomic.py`, `_fmt.py`) |
 
 ### Live-API Connectors (107 wired into the fan-out)
 
