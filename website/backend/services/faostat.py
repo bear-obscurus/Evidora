@@ -43,6 +43,7 @@ from functools import lru_cache
 from urllib.parse import urlencode
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -222,11 +223,11 @@ _ITEM_CODES: dict[str, tuple[int, str]] = {
 # ---------------------------------------------------------------------------
 # Trigger-Terms
 # ---------------------------------------------------------------------------
-_FAOSTAT_PRIMARY = (
+_FAOSTAT_PRIMARY = norm_terme(
     "fao", "faostat", "food and agriculture organization",
 )
 
-_FAOSTAT_TOPIC_TERMS = (
+_FAOSTAT_TOPIC_TERMS = norm_terme(
     "welt-hunger", "welthunger", "welt-ernährung", "welternährung",
     "globale lebensmittel", "globale ernährung", "global food",
     "globaler hunger", "hunger weltweit", "ernährung weltweit",
@@ -245,7 +246,7 @@ _FAOSTAT_TOPIC_TERMS = (
 
 # AT-Marker — wenn der Claim ausschließlich AT-fokussiert ist, NICHT
 # trigger; dafür ist der Grüner-Bericht-/AMA-Service zuständig.
-_AT_EXCLUSIVE_MARKERS = (
+_AT_EXCLUSIVE_MARKERS = norm_terme(
     "österreichische landwirtschaft", "austrias landwirtschaft",
     "grüner bericht", "ama gütesiegel", "ama-gütesiegel",
     "österreichische bauern", "österreichischer bauer",
@@ -289,7 +290,7 @@ def _claim_mentions_faostat(claim_lc: str) -> bool:
 @lru_cache(maxsize=512)
 def claim_mentions_faostat_cached(claim: str) -> bool:
     """LRU-gecachter Wrapper für Trigger-Check."""
-    return _claim_mentions_faostat((claim or "").lower())
+    return _claim_mentions_faostat(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -558,7 +559,7 @@ async def search_faostat(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_faostat(matchable):
         return empty

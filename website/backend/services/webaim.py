@@ -44,6 +44,7 @@ import re
 import time
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -161,7 +162,7 @@ _DOMAIN_STOP_PATTERNS = (
 )
 
 # Explizite WebAIM-/WAVE-Erwaehnungen.
-_WEBAIM_TERMS = (
+_WEBAIM_TERMS = norm_terme(
     "webaim", "web aim", "web-aim",
     "wave engine", "wave-engine",
     "wave accessibility", "wave a11y",
@@ -170,7 +171,7 @@ _WEBAIM_TERMS = (
 )
 
 # Accessibility-/Barrierefreiheits-Begriffe.
-_A11Y_TERMS = (
+_A11Y_TERMS = norm_terme(
     "accessibility", "accessibility-audit", "accessibility audit",
     "a11y", "barrierefrei", "barriere-frei",
     "barrierefreiheit", "barriere-freiheit",
@@ -184,7 +185,7 @@ _A11Y_TERMS = (
 )
 
 # Top-1M-/Million-Kontext-Begriffe (Aggregat-Anker).
-_MILLION_TERMS = (
+_MILLION_TERMS = norm_terme(
     "top 1m", "top-1m", "top 1 million", "top-1-million",
     "top million", "top-million", "1 million homepages",
     "1m homepages", "top-1000000", "top 1000000",
@@ -268,7 +269,7 @@ def _claim_mentions_webaim(claim_lc: str) -> bool:
 
 def claim_mentions_webaim_cached(claim: str) -> bool:
     """Wrapper fuer Trigger-Check — case-normalisiert."""
-    return _claim_mentions_webaim((claim or "").lower())
+    return _claim_mentions_webaim(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------

@@ -80,6 +80,7 @@ import os
 from functools import lru_cache
 
 from services._static_cache import load_json_mtime_aware
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -93,14 +94,14 @@ MAX_PRIMARY_COUNTRIES = 3
 MAX_DISPLAY_REFERENCE_COUNTRIES = 4
 
 # Wenn Claim Inklusions-Keyword nennt, aber kein Land — fall back auf DACH.
-_DEFAULT_COUNTRIES_FOR_DACH_CLAIMS = ("AUT", "DEU", "CHE")
+_DEFAULT_COUNTRIES_FOR_DACH_CLAIMS = norm_terme("AUT", "DEU", "CHE")
 
 # Reference-Pool für vs.-Vergleich im display_value. Auswahl: AT zuerst,
 # dann DE/CH, dann je 1 Land aus jedem "Inklusions-Cluster":
 #   - Vollintegration (IT, PRT, SWE)
 #   - Mittelfeld (FRA, FIN)
 #   - Separations-stark (BEL)
-_DISPLAY_REFERENCE_COUNTRIES = (
+_DISPLAY_REFERENCE_COUNTRIES = norm_terme(
     "AUT", "DEU", "CHE", "ITA", "PRT", "SWE", "FRA", "FIN", "BEL",
 )
 
@@ -119,7 +120,7 @@ _ISO3_TO_ISO2 = {
 # Trigger
 # ---------------------------------------------------------------------------
 # Kern-Trigger: explizite Inklusions-/SEN-Statistik-Vokabeln.
-_EASIE_KEYWORDS = (
+_EASIE_KEYWORDS = norm_terme(
     # Quelle direkt
     "easie", "european agency", "european-agency",
     # Inklusive-Bildungs-Konzept (statistik-fokus, nicht behinderten-spezifik)
@@ -153,7 +154,7 @@ _EASIE_KEYWORDS = (
 # Politik-sensitive Marker, die NICHT triggern dürfen (Wertungs-Claims).
 # Wenn nur einer dieser Terms ohne deskriptiven Inklusions-Term vorkommt,
 # unterbinden wir den Trigger.
-_NORMATIVE_BLOCKLIST = (
+_NORMATIVE_BLOCKLIST = norm_terme(
     "rückständig", "rueckstaendig", "fortschrittlich", "progressiv",
     "vorbild-land", "vorbildland", "vorbild land",
 )
@@ -169,7 +170,7 @@ def claim_mentions_easie_cached(claim: str) -> bool:
     """
     if not claim:
         return False
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
     if not any(kw in claim_lc for kw in _EASIE_KEYWORDS):
         return False
     # Wenn ein normativer Marker auftaucht ohne deskriptiven Anker (Quote,

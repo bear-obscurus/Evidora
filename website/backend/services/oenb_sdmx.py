@@ -60,6 +60,7 @@ import time
 from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -206,7 +207,7 @@ _TERM_TO_INDICATOR: dict[str, str] = {
 }
 
 # Direkt-Trigger (statistisch / OeNB-spezifisch)
-_DIRECT_TERMS = (
+_DIRECT_TERMS = norm_terme(
     "oenb-statistik",
     "oenb statistik",
     "oenb-banken-statistik",
@@ -226,7 +227,7 @@ _DIRECT_TERMS = (
 )
 
 # Pack-Domäne von services/oenb.py — diese Begriffe sollen NICHT triggern
-_PACK_DOMAIN_TERMS = (
+_PACK_DOMAIN_TERMS = norm_terme(
     "leitzins",          # gehört zum oenb.py-Pack (EZB-Leitzins)
     "ezb-leitzins",
     "ezb leitzins",
@@ -291,7 +292,7 @@ _trigger_cache: dict[str, tuple[float, bool]] = {}
 
 def claim_mentions_oenb_sdmx_cached(claim: str) -> bool:
     """24h-Cache-Wrapper für den Trigger-Check."""
-    claim_lc = (claim or "").lower().strip()
+    claim_lc = normalisiere(claim or "")
     if not claim_lc:
         return False
     now = time.time()
@@ -668,7 +669,7 @@ async def search_oenb_sdmx(analysis: dict) -> dict:
     analysis = analysis or {}
     claim = analysis.get("claim") or analysis.get("original_claim") or ""
     original = analysis.get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_oenb_sdmx(matchable):
         return empty

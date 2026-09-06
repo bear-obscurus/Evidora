@@ -65,6 +65,7 @@ import time
 from functools import lru_cache
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -87,7 +88,7 @@ _catalogue_cache: dict[str, tuple[float, dict | None]] = {}
 # ---------------------------------------------------------------------------
 # Trigger — wann soll dieser Service angefragt werden?
 # ---------------------------------------------------------------------------
-_NOAA_TERMS = (
+_NOAA_TERMS = norm_terme(
     # Direkter Name
     "noaa", "ncei", "ncdc", "national oceanic", "national centers for environmental",
     "climate data online", "cdo-web",
@@ -111,13 +112,13 @@ _NOAA_TERMS = (
 )
 
 # Composite-Trigger: US-Wetterereignis-Patterns
-_US_WEATHER_VERBS = (
+_US_WEATHER_VERBS = norm_terme(
     "saison", "season", "rekord", "record",
     "höchste", "stärkste", "schwerste",
     "deadliest", "strongest", "most destructive",
 )
 
-_US_WEATHER_NOUNS = (
+_US_WEATHER_NOUNS = norm_terme(
     "hurricane", "hurrikan", "tornado", "atlantic", "atlantik",
     "tropensturm", "tropical",
 )
@@ -127,7 +128,7 @@ _YEAR_REGEX = re.compile(r"\b(18[5-9]\d|19\d\d|20\d\d|21\d\d)\b")
 # AT/EU-Klima-Indikatoren, bei denen wir NICHT triggern wollen
 # (GeoSphere/SPARTACUS/ZAMG-Domain). Wenn der Claim eindeutig AT-only ist,
 # bleiben wir raus.
-_AT_ONLY_MARKERS = (
+_AT_ONLY_MARKERS = norm_terme(
     "spartacus", "geosphere", "zamg", "hohe warte",
     "alpenraum", "österreichisches klima",
 )
@@ -171,7 +172,7 @@ def _claim_mentions_noaa(claim_lc: str) -> bool:
 @lru_cache(maxsize=512)
 def claim_mentions_noaa_cached(claim: str) -> bool:
     """Public-Wrapper für Trigger-Check (case-normalisiert, LRU-gecached)."""
-    return _claim_mentions_noaa((claim or "").lower())
+    return _claim_mentions_noaa(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------

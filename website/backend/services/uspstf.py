@@ -68,6 +68,7 @@ from functools import lru_cache
 import httpx
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -102,7 +103,7 @@ _query_cache: dict[str, tuple[float, list[dict]]] = {}  # cache_key → results
 # ---------------------------------------------------------------------------
 # Trigger-Vokabular (DE+EN)
 # ---------------------------------------------------------------------------
-_USPSTF_EXPLICIT_TERMS = (
+_USPSTF_EXPLICIT_TERMS = norm_terme(
     "uspstf",
     "u.s. preventive services task force",
     "us preventive services task force",
@@ -113,7 +114,7 @@ _USPSTF_EXPLICIT_TERMS = (
 
 # Allgemeine Prävention-/Screening-Begriffe (DE+EN). Triggern NUR in
 # Kombination mit einem Gesundheits-/Topic-Token.
-_PREVENTION_TERMS = (
+_PREVENTION_TERMS = norm_terme(
     "screening", "screenings", "screening-empfehlung", "screening empfehlung",
     "vorsorge", "vorsorgeuntersuchung", "vorsorge-untersuchung",
     "früherkennung", "frueherkennung",
@@ -127,7 +128,7 @@ _PREVENTION_TERMS = (
 # Inhärent prävention-/screening-bezogene Test-/Maßnahmen-Namen, die ALLEIN
 # (ohne extra "Screening"-/"Vorsorge"-Wort) eine USPSTF-Frage signalisieren,
 # WENN der Claim eine Empfehlungs-/Sinnhaftigkeits-/Alters-Frage stellt.
-_INHERENT_SCREENING_TOKENS = (
+_INHERENT_SCREENING_TOKENS = norm_terme(
     "mammographie", "mammografie", "mammogram", "mammography",
     "psa-test", "psa test",
     "koloskopie", "colonoscopy",
@@ -139,7 +140,7 @@ _INHERENT_SCREENING_TOKENS = (
 # Kontext-Heuristiken: "ist X sinnvoll", "ab welchem Alter", "wer braucht X",
 # "empfohlen", "recommended". Im Verbund mit _INHERENT_SCREENING_TOKENS
 # reicht das als Trigger.
-_RECOMMENDATION_CONTEXT = (
+_RECOMMENDATION_CONTEXT = norm_terme(
     "sinnvoll", "empfohlen", "empfehlen", "empfehlung",
     "ab welchem alter", "ab wann", "wer braucht", "wer sollte",
     "soll man", "soll ich", "should i", "should one",
@@ -369,7 +370,7 @@ def _claim_mentions_uspstf(claim_lc: str) -> bool:
 @lru_cache(maxsize=2048)
 def claim_mentions_uspstf_cached(claim: str) -> bool:
     """Public cache-fähiger Trigger-Check (LRU pro normalisiertem Claim)."""
-    return _claim_mentions_uspstf((claim or "").lower())
+    return _claim_mentions_uspstf(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -850,7 +851,7 @@ async def search_uspstf(analysis: dict) -> dict:
         claim = str(claim or "")
     if not isinstance(original, str):
         original = str(original or "")
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_uspstf(matchable):
         return empty

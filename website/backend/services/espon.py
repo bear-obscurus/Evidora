@@ -48,6 +48,7 @@ import os
 import time
 
 from services._http_polite import polite_client  # noqa: F401 — reserved for future CSV-bulk fetch
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -66,7 +67,7 @@ _static_cache: dict | None = None
 # Trigger-Lexikon
 # ---------------------------------------------------------------------------
 # Direkt-Trigger: namentliche Erwähnung von ESPON oder seinen Projekten
-_DIRECT_TERMS = (
+_DIRECT_TERMS = norm_terme(
     "espon",
     "espon-database", "espon database",
     "espon cohes", "espon escape", "espon demifer", "espon locate",
@@ -77,7 +78,7 @@ _DIRECT_TERMS = (
 )
 
 # NUTS-Codes / Konzepte
-_NUTS_TERMS = (
+_NUTS_TERMS = norm_terme(
     "nuts-2", "nuts 2", "nuts2",
     "nuts-3", "nuts 3", "nuts3",
     "functional urban area", "fua",
@@ -88,7 +89,7 @@ _NUTS_TERMS = (
 )
 
 # AT-NUTS-2 Regionalnamen + Code-Aliasse (Triple-Pack-Erweiterung AT)
-_AT_NUTS2_TERMS = (
+_AT_NUTS2_TERMS = norm_terme(
     "burgenland", "at11",
     "niederösterreich", "niederoesterreich", "at12",
     "wien", "at13",
@@ -101,7 +102,7 @@ _AT_NUTS2_TERMS = (
 )
 
 # DE-NUTS-2 Vergleichsregionen
-_DE_NUTS2_TERMS = (
+_DE_NUTS2_TERMS = norm_terme(
     "oberbayern", "de21",
     "düsseldorf", "duesseldorf", "dea1",
     "köln", "koeln", "dea2",
@@ -109,7 +110,7 @@ _DE_NUTS2_TERMS = (
 )
 
 # EU-Vergleichs-Kontext
-_EU_CONTEXT_TERMS = (
+_EU_CONTEXT_TERMS = norm_terme(
     "eu-vergleich", "eu vergleich",
     "eu-regional", "eu regional",
     "regional disparities eu", "regionale disparitäten eu",
@@ -156,7 +157,7 @@ _trigger_cache: dict[str, tuple[float, bool]] = {}
 
 def claim_mentions_espon_cached(claim: str) -> bool:
     """24h-Cache-Wrapper für den Trigger-Check."""
-    claim_lc = (claim or "").lower().strip()
+    claim_lc = normalisiere(claim or "")
     if not claim_lc:
         return False
     now = time.time()
@@ -364,7 +365,7 @@ async def search_espon(analysis: dict) -> dict:
     analysis = analysis or {}
     claim = analysis.get("claim") or analysis.get("original_claim") or ""
     original = analysis.get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_espon(matchable):
         return empty

@@ -44,6 +44,7 @@ from pathlib import Path
 
 from services._http_polite import polite_client
 from services._atomic import atomic_write_json
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -58,7 +59,7 @@ LOCAL_PATH = DATA_DIR / "mitre_attack.json"
 TIMEOUT_S = 60.0  # 47 MB STIX-Download
 CACHE_TTL_S = 24 * 60 * 60  # 24 h
 MAX_RESULTS = 5
-KEEP_TYPES = ("intrusion-set", "attack-pattern", "malware", "tool")
+KEEP_TYPES = norm_terme("intrusion-set", "attack-pattern", "malware", "tool")
 
 # Modul-Level Cache: gefiltertes STIX-Dataset
 _dataset: dict | None = None
@@ -77,7 +78,7 @@ _SOFT_ID_REGEX = re.compile(r"\bS\d{4}\b", re.IGNORECASE)
 
 # Bekannte APT-Namen + Aliase, die ohne weiteren Kontext triggern sollen.
 # Konservativ: nur prominente Gruppen mit eindeutigen Namen (sonst False-Positives).
-_APT_NAMES = (
+_APT_NAMES = norm_terme(
     "apt28", "apt29", "apt32", "apt33", "apt38", "apt40", "apt41",
     "lazarus", "fancy bear", "cozy bear", "sandworm", "turla",
     "equation group", "carbanak", "fin7", "fin8",
@@ -90,7 +91,7 @@ _APT_NAMES = (
 )
 
 # Threat-Keywords (generisch — triggern nur in Composite mit weiteren Hints)
-_THREAT_KW = (
+_THREAT_KW = norm_terme(
     "apt-gruppe", "apt gruppe", "apt group", "advanced persistent threat",
     "ttps", "ttp", "mitre att&ck", "mitre attck", "mitre att ck",
     "att&ck-framework", "attack framework",
@@ -107,7 +108,7 @@ _THREAT_KW = (
 )
 
 # Composite-Trigger: Nation-Keywords + Hacker/Cyber-Kontext (zusätzlich)
-_NATION_HACKER = (
+_NATION_HACKER = norm_terme(
     "russland-hacker", "russische hacker", "russia-linked",
     "nordkorea-hacker", "nordkoreanische hacker",
     "china-hacker", "chinesische hacker", "china-linked",
@@ -151,7 +152,7 @@ def _claim_mentions_mitre(claim_lc: str) -> bool:
 
 
 def claim_mentions_mitre_cached(claim: str) -> bool:
-    return _claim_mentions_mitre((claim or "").lower())
+    return _claim_mentions_mitre(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------

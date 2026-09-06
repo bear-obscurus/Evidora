@@ -51,6 +51,7 @@ import time
 from functools import lru_cache
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -77,7 +78,7 @@ _CACHE_TTL_S = 24 * 3600.0  # 24 h
 # Trigger
 # ---------------------------------------------------------------------------
 # Explizite Quelle-Mentions (immer triggern)
-_EXPLICIT_TERMS = (
+_EXPLICIT_TERMS = norm_terme(
     "getty", "getty vocabularies", "getty vocabulary",
     "aat", "art and architecture thesaurus",
     "tgn", "thesaurus of geographic names",
@@ -85,7 +86,7 @@ _EXPLICIT_TERMS = (
 )
 
 # Kunst-Stile / Epochen (DE + EN)
-_ART_STYLES = (
+_ART_STYLES = norm_terme(
     "barock", "baroque",
     "rokoko", "rococo",
     "klassizismus", "neoclassicism",
@@ -110,7 +111,7 @@ _ART_STYLES = (
 )
 
 # Material / Technik
-_MATERIAL_TECHNIK = (
+_MATERIAL_TECHNIK = norm_terme(
     "kupferstich", "copperplate engraving",
     "radierung", "etching",
     "lithografie", "lithography", "lithographie",
@@ -129,7 +130,7 @@ _MATERIAL_TECHNIK = (
 )
 
 # Künstler-Lebensdaten-Trigger (komplementär zu Wikidata)
-_ARTIST_TRIGGERS = (
+_ARTIST_TRIGGERS = norm_terme(
     "maler", "malerin", "painter",
     "bildhauer", "bildhauerin", "sculptor",
     "kupferstecher", "engraver",
@@ -141,7 +142,7 @@ _ARTIST_TRIGGERS = (
 )
 
 # Historische Geographie
-_HIST_GEO = (
+_HIST_GEO = norm_terme(
     "antike stadt", "antike städte",
     "alter ortsname", "alte ortsnamen",
     "historischer ortsname",
@@ -195,7 +196,7 @@ def _claim_mentions_getty(claim_lc: str) -> bool:
 @lru_cache(maxsize=2048)
 def claim_mentions_getty_cached(claim: str) -> bool:
     """LRU-gecachter Trigger-Check (Hot-Path-friendly)."""
-    return _claim_mentions_getty((claim or "").lower())
+    return _claim_mentions_getty(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -245,7 +246,7 @@ def _extract_query_term(claim: str, analysis: dict) -> str | None:
     """
     if not claim:
         return None
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
     for term in _LOOKUP_TERMS:
         if term in claim_lc:
             return term
@@ -350,7 +351,7 @@ async def search_getty(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_getty(matchable):
         return empty

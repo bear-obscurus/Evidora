@@ -17,6 +17,7 @@ Use-Case:
 import json
 import logging
 import os
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -32,11 +33,11 @@ _cache: dict | None = None
 # ---------------------------------------------------------------------------
 # Trigger
 # ---------------------------------------------------------------------------
-_AT_CONTEXT_TERMS = (
+_AT_CONTEXT_TERMS = norm_terme(
     "österreich", "austria", "österreichisch",
     "in at", "an at", "des at",
 )
-_WIFO_IHS_TERMS = (
+_WIFO_IHS_TERMS = norm_terme(
     "wifo", "ihs", "ihs-prognose", "ihs prognose",
     "wirtschaftsforschungsinstitut",
     "konjunkturprognose", "konjunktur-prognose",
@@ -64,7 +65,7 @@ def _claim_mentions_wifo_ihs(claim_lc: str) -> bool:
 
 
 def claim_mentions_wifo_ihs_cached(claim: str) -> bool:
-    return _claim_mentions_wifo_ihs((claim or "").lower())
+    return _claim_mentions_wifo_ihs(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -170,7 +171,7 @@ async def search_wifo_ihs(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_wifo_ihs(matchable):
         return empty

@@ -76,6 +76,7 @@ from typing import Any
 import httpx
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -118,7 +119,7 @@ SECTOR_KEYS = tuple(SECTOR_LABELS.keys())
 # ---------------------------------------------------------------------------
 # Trigger
 # ---------------------------------------------------------------------------
-_UBA_PRIMARY_TERMS = (
+_UBA_PRIMARY_TERMS = norm_terme(
     "uba", "umweltbundesamt",
     "klimadashboard", "klima-dashboard",
     "at-klimabilanz", "klimabilanz österreich", "klimabilanz at",
@@ -128,7 +129,7 @@ _UBA_PRIMARY_TERMS = (
 )
 
 # THG/CO2 + Austria-Marker
-_THG_TERMS = (
+_THG_TERMS = norm_terme(
     "treibhausgas", "thg", "ghg",
     "co2-emission", "co2 emission", "co₂-emission",
     "co2-bilanz", "co2 bilanz",
@@ -138,7 +139,7 @@ _THG_TERMS = (
     "treibhausgase",
 )
 
-_AT_TERMS = (
+_AT_TERMS = norm_terme(
     "österreich", "austria", "österreichisch",
     "republik österreich", "at-",
     "burgenland", "kärnten", "niederösterreich", "oberösterreich",
@@ -197,7 +198,7 @@ def _claim_mentions_uba(claim_lc: str) -> bool:
 
 def claim_mentions_uba_cached(claim: str) -> bool:
     """Compat-Wrapper auf den Trigger; konvertiert Claim → lowercase."""
-    return _claim_mentions_uba((claim or "").lower())
+    return _claim_mentions_uba(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -475,7 +476,7 @@ async def search_uba_klima(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_uba(matchable):
         return empty

@@ -38,6 +38,7 @@ import time
 from urllib.parse import quote
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -108,7 +109,7 @@ _PACKAGE_WHITELIST: dict[str, tuple[str, str]] = {
     "actionpack": ("actionpack", "RubyGems"),
 }
 
-_VULN_KEYWORDS = (
+_VULN_KEYWORDS = norm_terme(
     "schwachstelle", "sicherheitslücke", "sicherheitsluecke",
     "vulnerability", "exploit", "zero-day", "0-day", "zeroday",
     "supply-chain-angriff", "supply chain attack",
@@ -181,7 +182,7 @@ def _extract_version(claim: str, package_token: str) -> str | None:
     """
     if not claim or not package_token:
         return None
-    lc = claim.lower()
+    lc = normalisiere(claim)
     idx = lc.find(package_token)
     if idx < 0:
         return None
@@ -218,7 +219,7 @@ def _claim_mentions_osv(claim_lc: str) -> bool:
 
 def claim_mentions_osv_cached(claim: str) -> bool:
     """Wrapper für Trigger-Check — case-normalisiert."""
-    return _claim_mentions_osv((claim or "").lower())
+    return _claim_mentions_osv(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------

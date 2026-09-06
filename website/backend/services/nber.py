@@ -89,6 +89,7 @@ from xml.etree import ElementTree as ET
 import httpx
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -117,7 +118,7 @@ _search_cache: dict[str, tuple[float, list[dict]]] = {}
 # Trigger
 # ---------------------------------------------------------------------------
 # Direkte NBER-Marker (single-word/-phrase ausreichend — "nber" allein reicht)
-_NBER_DIRECT_TRIGGERS = (
+_NBER_DIRECT_TRIGGERS = norm_terme(
     "nber",
     "national bureau of economic research",
     "nber working paper",
@@ -137,14 +138,14 @@ _NBER_DIRECT_TRIGGERS = (
 )
 
 # Composite-Trigger: Paper-Token UND Wirtschaftsthema
-_WORKING_PAPER_TERMS = (
+_WORKING_PAPER_TERMS = norm_terme(
     "working paper", "working papers", "working-paper", "working-papers",
     "arbeitspapier", "arbeitspapiere",
     "research paper", "research papers", "research-paper",
     "diskussionspapier", "discussion paper", "discussion-paper",
     "preprint econ", "econ preprint",
 )
-_ECON_TOPIC_TERMS = (
+_ECON_TOPIC_TERMS = norm_terme(
     # Inflation & Preisniveau
     "inflation", "deflation", "stagflation",
     # Arbeitsmarkt / Labor
@@ -203,7 +204,7 @@ def claim_mentions_nber_cached(claim: str) -> bool:
     Idempotent + ohne I/O — wird in der dispatch-Schleife mehrfach
     aufgerufen, daher keine HTTP-Calls hier.
     """
-    cl = (claim or "").lower()
+    cl = normalisiere(claim or "")
     return _claim_mentions_nber(cl)
 
 

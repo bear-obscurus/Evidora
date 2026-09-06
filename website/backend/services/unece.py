@@ -54,6 +54,7 @@ from typing import Any
 import httpx
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -306,7 +307,7 @@ _TABLES: dict[str, dict[str, Any]] = {
 # ---------------------------------------------------------------------------
 # Trigger
 # ---------------------------------------------------------------------------
-_UNECE_DIRECT_TERMS = (
+_UNECE_DIRECT_TERMS = norm_terme(
     "unece", "un economic commission for europe",
     "un-wirtschaftskommission europa",
     "unece transport", "unece statistics",
@@ -315,7 +316,7 @@ _UNECE_DIRECT_TERMS = (
 )
 
 # Themen-Begriffe für Mobilität / Verkehr
-_UNECE_TOPIC_TERMS = (
+_UNECE_TOPIC_TERMS = norm_terme(
     # Schiene
     "schienenverkehr", "schienen-passagier", "bahn-passagier",
     "bahn-statistik", "schienen-statistik", "rail passenger",
@@ -382,7 +383,7 @@ def _claim_mentions_unece(claim_lc: str) -> bool:
 
 
 def claim_mentions_unece_cached(claim: str) -> bool:
-    return _claim_mentions_unece((claim or "").lower())
+    return _claim_mentions_unece(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -758,7 +759,7 @@ async def search_unece(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_unece(matchable):
         return empty

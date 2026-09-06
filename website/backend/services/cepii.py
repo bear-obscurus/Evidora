@@ -62,6 +62,7 @@ import time
 from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -79,14 +80,14 @@ CACHE_TTL_S = 24 * 3600  # 24h
 # Trigger-Lexikon
 # ---------------------------------------------------------------------------
 # Direkt-Trigger: namentliche Erwähnung von CEPII oder seinen Produkten
-_DIRECT_TERMS = (
+_DIRECT_TERMS = norm_terme(
     "cepii", "baci", "chelem",
 )
 
 # Trade-Verben/Substantive (analog uncomtrade.py — wir nutzen einen
 # kleineren Kern, weil CEPII NUR triggern soll wenn echt bilateral
 # oder akademisch-Fokus vorhanden ist)
-_TRADE_TERMS = (
+_TRADE_TERMS = norm_terme(
     "bilateral", "bilateraler handel", "bilaterales handelsvolumen",
     "handel", "handelsstrom", "handelsströme",
     "handelsfluss", "handelsflüsse",
@@ -99,7 +100,7 @@ _TRADE_TERMS = (
 # Akademik-Kontext (komplementär — wenn jemand explizit nach
 # akademischer Forschungs-Quelle fragt, ist CEPII die bessere Wahl
 # als Comtrade Public)
-_ACADEMIC_TERMS = (
+_ACADEMIC_TERMS = norm_terme(
     "akademisch", "akademische", "wissenschaftlich",
     "forschung", "trade-forschung", "trade research",
     "studie", "studien", "harmonisiert", "harmonisierte",
@@ -214,7 +215,7 @@ _trigger_cache: dict[str, tuple[float, bool]] = {}
 
 def claim_mentions_cepii_cached(claim: str) -> bool:
     """24h-Cache-Wrapper für den Trigger-Check."""
-    claim_lc = (claim or "").lower().strip()
+    claim_lc = normalisiere(claim or "")
     if not claim_lc:
         return False
     now = time.time()
@@ -385,7 +386,7 @@ async def search_cepii(analysis: dict) -> dict:
     analysis = analysis or {}
     claim = analysis.get("claim") or analysis.get("original_claim") or ""
     original = analysis.get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_cepii(matchable):
         return empty

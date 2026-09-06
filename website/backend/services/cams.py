@@ -53,6 +53,7 @@ import time
 from typing import Any
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -73,7 +74,7 @@ _catalogue_cache_ts: float = 0.0
 # Luftqualitäts-/Atmosphären-Keywords (DE + EN). Bewusst breit gehalten,
 # Stadt-Detection wie in openaq.py NICHT nötig — CAMS liefert globale
 # Flächendaten, kein Stations-Lookup.
-_CAMS_KEYWORDS = (
+_CAMS_KEYWORDS = norm_terme(
     # CAMS / Copernicus explizit
     "cams", "copernicus atmosphere", "atmosphere monitoring",
     "atmosphärenüberwachung", "ads atmosphere",
@@ -115,7 +116,7 @@ def _claim_mentions_cams(claim_lc: str) -> bool:
 
 def claim_mentions_cams_cached(claim: str) -> bool:
     """Public-Trigger für main.py — nimmt rohen Claim, lowercased intern."""
-    return _claim_mentions_cams((claim or "").lower())
+    return _claim_mentions_cams(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -425,7 +426,7 @@ async def search_cams(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_cams(matchable):
         return empty

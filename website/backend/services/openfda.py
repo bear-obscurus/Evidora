@@ -58,6 +58,7 @@ from urllib.parse import quote
 import httpx
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -79,7 +80,7 @@ _search_cache: dict[str, tuple[float, dict]] = {}
 # Trigger-Vokabular
 # ---------------------------------------------------------------------------
 # Pharmakovigilanz-/FDA-spezifisches Vokabular (DE + EN)
-_OPENFDA_TERMS = (
+_OPENFDA_TERMS = norm_terme(
     # Direkte FDA-Referenzen
     "openfda", "open fda", "fda",
     "fda-warnung", "fda warnung", "fda warning",
@@ -103,7 +104,7 @@ _OPENFDA_TERMS = (
 # Medizinprodukt-Schlüsselbegriffe (DE+EN) — direkter Device-Bezug, der einen
 # Recall-Lookup im /device/enforcement.json-Endpoint rechtfertigt. Wird zusätzlich
 # zur Trigger-Logik als Routing-Signal verwendet (Drug- vs. Device-Endpoint).
-_DEVICE_TERMS = (
+_DEVICE_TERMS = norm_terme(
     # Generisch
     "device", "medical device", "medizinprodukt", "medizinprodukte",
     "implant", "implants", "implantat", "implantate",
@@ -123,7 +124,7 @@ _DEVICE_TERMS = (
 
 # Symptom-/Reaction-Pattern (DE+EN) — wenn diese ZUSAMMEN mit einem
 # Medikamenten-Namen auftreten, ist FAERS sinnvoll.
-_SYMPTOM_TERMS = (
+_SYMPTOM_TERMS = norm_terme(
     "übelkeit", "uebelkeit", "nausea",
     "erbrechen", "vomiting",
     "kopfschmerz", "headache",
@@ -139,7 +140,7 @@ _SYMPTOM_TERMS = (
 )
 
 # Pharma-Kontext-Terms (Drogen-/Medikament-Domäne)
-_PHARMA_CONTEXT = (
+_PHARMA_CONTEXT = norm_terme(
     "medikament", "medikamente", "arzneimittel", "wirkstoff", "präparat",
     "praeparat", "medication", "medicine", "drug", "pharmaceutical",
     "tablette", "tabletten", "kapsel", "injektion",
@@ -173,7 +174,7 @@ def _claim_mentions_openfda(claim_lc: str) -> bool:
 @lru_cache(maxsize=2048)
 def claim_mentions_openfda_cached(claim: str) -> bool:
     """Public cache-fähiger Trigger-Check (LRU-Cache pro normalisiertem Claim)."""
-    return _claim_mentions_openfda((claim or "").lower())
+    return _claim_mentions_openfda(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -585,7 +586,7 @@ async def search_openfda(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_openfda(matchable):
         return empty

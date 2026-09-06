@@ -65,6 +65,7 @@ import re
 import time
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -80,7 +81,7 @@ MAX_RESULTS = 6
 # ---------------------------------------------------------------------------
 # Trigger
 # ---------------------------------------------------------------------------
-_IDMC_DIRECT_TERMS = (
+_IDMC_DIRECT_TERMS = norm_terme(
     # Marken/Quelle
     "idmc", "internal displacement monitoring centre",
     "internal displacement monitoring center",
@@ -135,7 +136,7 @@ def claim_mentions_idmc_cached(claim: str) -> bool:
     """24h-Cache-Wrapper für den Trigger-Check."""
     if not claim:
         return False
-    key = claim.lower().strip()
+    key = normalisiere(claim)
     if not key:
         return False
     now = time.time()
@@ -483,7 +484,7 @@ async def search_idmc(analysis: dict) -> dict:
         claim = str(claim or "")
     if not isinstance(original, str):
         original = str(original or "")
-    combined_lc = f"{original} {claim}".lower().strip()
+    combined_lc = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_idmc(combined_lc):
         return empty

@@ -65,6 +65,7 @@ import time
 from functools import lru_cache
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -86,7 +87,7 @@ _catalogue_cache: dict[str, tuple[float, dict | None]] = {}
 # ---------------------------------------------------------------------------
 # Trigger — wann soll dieser Service angefragt werden?
 # ---------------------------------------------------------------------------
-_ERA5_TERMS = (
+_ERA5_TERMS = norm_terme(
     # Direkter Name
     "era5", "era-5", "ecmwf reanalysis", "ecmwf-reanalyse",
     "ecmwf reanalyse", "copernicus reanalyse",
@@ -111,7 +112,7 @@ _ERA5_TERMS = (
 # Composite-Trigger: Ortsbezogene Hitze-/Wetter-Behauptungen.
 # Wir wollen Pattern wie "wärmster Sommer in Wien seit 1850" erfassen,
 # auch wenn das Wort "ERA5" nicht im Claim steht.
-_RECORD_VERBS = (
+_RECORD_VERBS = norm_terme(
     "rekord", "record", "höchster", "höchste", "höchstes",
     "wärmster", "wärmste", "wärmstes", "warmest", "hottest",
     "kältester", "kälteste", "kältestes", "coldest",
@@ -120,7 +121,7 @@ _RECORD_VERBS = (
     "höher als je", "noch nie so",
 )
 
-_WEATHER_NOUNS = (
+_WEATHER_NOUNS = norm_terme(
     "temperatur", "temperature", "hitze", "heat",
     "kälte", "cold",
     "niederschlag", "regen", "precipitation", "rainfall",
@@ -164,7 +165,7 @@ def _claim_mentions_era5(claim_lc: str) -> bool:
 @lru_cache(maxsize=512)
 def claim_mentions_era5_cached(claim: str) -> bool:
     """Public-Wrapper für Trigger-Check (case-normalisiert, LRU-gecached)."""
-    return _claim_mentions_era5((claim or "").lower())
+    return _claim_mentions_era5(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------

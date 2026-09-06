@@ -47,6 +47,7 @@ import time
 from urllib.parse import urlencode
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -132,7 +133,7 @@ _KEYWORD_TO_CLUSTER: dict[str, str] = {
 }
 
 # Direkt-Trigger (UNESCO selbst genannt)
-_DIRECT_TERMS = (
+_DIRECT_TERMS = norm_terme(
     "unesco uis", "unesco-uis", "unesco institute for statistics",
     "uis statistik", "uis-statistik",
     "unesco bildungsdaten", "unesco bildungs-daten",
@@ -243,7 +244,7 @@ def claim_mentions_unesco_uis_cached(claim: str) -> bool:
     """24h-Cache-Wrapper fuer den Trigger-Check."""
     if not claim:
         return False
-    key = claim.lower().strip()
+    key = normalisiere(claim)
     if not key:
         return False
     now = time.time()
@@ -478,7 +479,7 @@ async def search_unesco_uis(analysis: dict) -> dict:
     if not isinstance(original, str):
         original = str(original or "")
 
-    matchable = f"{original} {claim}".lower().strip()
+    matchable = normalisiere(f"{original} {claim}")
     if not _claim_mentions_unesco_uis(matchable):
         return empty
 

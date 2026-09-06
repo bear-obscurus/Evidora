@@ -84,6 +84,7 @@ import time
 from functools import lru_cache
 
 from services._http_polite import polite_client  # noqa: F401  (held for future live-verify)
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -107,7 +108,7 @@ _search_cache: dict[str, tuple[float, dict]] = {}
 # ---------------------------------------------------------------------------
 # Trigger-Vokabular
 # ---------------------------------------------------------------------------
-_CARA_TERMS = (
+_CARA_TERMS = norm_terme(
     # Direkter Quellen-Bezug
     "cara catholic", "cara georgetown",
     "center for applied research in the apostolate",
@@ -138,7 +139,7 @@ _CARA_TERMS = (
 
 
 # Quantifier-Composite-Vokabular (Zahl-/Mengen-Indikatoren)
-_QUANTIFIER_TERMS = (
+_QUANTIFIER_TERMS = norm_terme(
     " mio", " mio.", " mrd", " mrd.",
     "million", "millionen", "milliard", "milliarden",
     "billion", "billions",
@@ -149,7 +150,7 @@ _QUANTIFIER_TERMS = (
 )
 
 # Katholik-Token (fuer Quantifier-Composite)
-_CATHOLIC_TOKENS = (
+_CATHOLIC_TOKENS = norm_terme(
     "katholik", "katholiken",  # Substantiv-Plural inkl. Beugung
     "katholisch", "katholische", "katholischen",
     "römisch-katholisch", "roemisch-katholisch",
@@ -256,7 +257,7 @@ def _claim_mentions_cara(claim_lc: str) -> bool:
 @lru_cache(maxsize=2048)
 def claim_mentions_cara_cached(claim: str) -> bool:
     """LRU-gecachter Trigger-Check (Hot-Path-friendly)."""
-    return _claim_mentions_cara((claim or "").lower())
+    return _claim_mentions_cara(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -628,7 +629,7 @@ async def search_cara(analysis: dict) -> dict:
     if not isinstance(original, str):
         original = str(original or "")
 
-    matchable = f"{original} {claim}".lower().strip()
+    matchable = normalisiere(f"{original} {claim}")
     if not _claim_mentions_cara(matchable):
         return empty
 

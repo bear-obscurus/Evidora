@@ -36,21 +36,11 @@ _cache: dict | None = None
 # ---------------------------------------------------------------------------
 # Trigger
 # ---------------------------------------------------------------------------
-from services._schreibweise import normalisiere
+from services._schreibweise import normalisiere, norm_terme
 
 
-def _norm_terme(*terme: str) -> tuple[str, ...]:
-    """Trigger-Terme einmalig auf die Vergleichs-Schreibweise bringen.
 
-    Dieser Service hat ein eigenes Praedikat und laeuft nicht ueber
-    services/_topic_match.py, wo die Normalisierung mit PR #143 einzog.
-    Ohne sie traf "Die Teuerung in Oesterreich sinkt" nicht — mit Umlaut
-    schon.
-    """
-    return tuple(normalisiere(t) for t in terme)
-
-
-_OENB_TERMS = _norm_terme(
+_OENB_TERMS = norm_terme(
     "oenb", "oenb-prognose",
     "österreichische nationalbank", "oesterreichische nationalbank",
     "ezb-leitzins", "ezb leitzins",
@@ -72,16 +62,16 @@ def _claim_mentions_oenb(claim_lc: str) -> bool:
         return True
     # Composite: 'leitzins' alleine + AT-/EU-Kontext
     has_leitzins = "leitzins" in claim_lc
-    has_at_eu = any(t in claim_lc for t in _norm_terme(
+    has_at_eu = any(t in claim_lc for t in norm_terme(
         "österreich", "europa", "eurozone", "ezb", "euro",
     ))
     if has_leitzins and has_at_eu:
         return True
     # Composite: 'sparzins' / 'kreditzins' + AT
-    has_zins = any(t in claim_lc for t in _norm_terme(
+    has_zins = any(t in claim_lc for t in norm_terme(
         "sparzins", "kreditzins", "hypothekenzins",
     ))
-    has_at = any(t in claim_lc for t in _norm_terme(
+    has_at = any(t in claim_lc for t in norm_terme(
         "österreich", "austria",
     ))
     if has_zins and has_at:
@@ -89,17 +79,17 @@ def _claim_mentions_oenb(claim_lc: str) -> bool:
     # Composite: Zentralbank + Zins-Begriff OHNE das Wort "Leitzins".
     # "Die EZB senkt weiter die Zinsen" traf bis 2026-09 nicht, obwohl genau
     # dieser Fakt die Antwort traegt (seit 17.6.2026 steigt der Satz wieder).
-    has_zentralbank = any(t in claim_lc for t in _norm_terme(
+    has_zentralbank = any(t in claim_lc for t in norm_terme(
         "ezb", "europäische zentralbank", "eurosystem", "zentralbank",
     ))
-    has_zinsbegriff = any(t in claim_lc for t in _norm_terme(
+    has_zinsbegriff = any(t in claim_lc for t in norm_terme(
         "zins", "zinsen", "zinssatz", "zinswende", "zinsschritt",
         "geldpolitik",
     ))
     if has_zentralbank and has_zinsbegriff:
         return True
     # Composite: AT-Inflation — die OeNB-Prognose ist dafuer die Quelle.
-    has_inflation = any(t in claim_lc for t in _norm_terme(
+    has_inflation = any(t in claim_lc for t in norm_terme(
         "inflation", "teuerung", "verbraucherpreis", "preissteigerung",
     ))
     if has_inflation and has_at:
@@ -203,7 +193,7 @@ def _build_results(fact: dict, claim_lc: str) -> list[dict]:
 
     # Spezial-Counter wenn Claim "Österreich verlässt Euro" o.ä.
     schilling_rueckkehr = "schilling" in claim_lc and any(
-        t in claim_lc for t in _norm_terme("zurück", "wieder", "rückkehr",
+        t in claim_lc for t in norm_terme("zurück", "wieder", "rückkehr",
                                            "einführen"))
     if schilling_rueckkehr or any(s in claim_lc for s in (
         "österreich euro austritt", "österreich verlässt euro", "öxit",

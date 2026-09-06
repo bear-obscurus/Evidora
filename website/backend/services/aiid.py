@@ -47,6 +47,7 @@ import re
 import time
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -80,7 +81,7 @@ _incident_cache: dict[int, tuple[float, dict | None]] = {}
 # ---------------------------------------------------------------------------
 # Trigger
 # ---------------------------------------------------------------------------
-_AIID_TERMS = (
+_AIID_TERMS = norm_terme(
     # Direkt
     "aiid", "ai incident database", "ai-incident-database",
     "responsible ai collaborative",
@@ -111,7 +112,7 @@ _AIID_TERMS = (
 )
 
 # Composite-Trigger: KI-Modell + falsch/Fehler/Vorfall/Diskriminierung
-_AI_MODEL_TOKENS = (
+_AI_MODEL_TOKENS = norm_terme(
     "chatgpt", "claude", "gemini", "copilot", "midjourney", "dall-e",
     "dall e", "stable diffusion", "llama", "mistral", "grok",
     "deepseek", "openai", "anthropic", "google bard", " bard ",
@@ -125,7 +126,7 @@ _AI_MODEL_TOKENS = (
     "predictive policing", "predictive-policing",
 )
 
-_INCIDENT_KEYWORDS = (
+_INCIDENT_KEYWORDS = norm_terme(
     "vorfall", "skandal", "diskriminierung", "fehler", "fehlalarm",
     "unfall", "verurteilt", "klage", "lawsuit", "schadensfall",
     "bias", "vorurteil", "rassismus", "rassistisch", "geschlechter-bias",
@@ -185,7 +186,7 @@ def _claim_mentions_aiid(claim_lc: str) -> bool:
 
 def claim_mentions_aiid_cached(claim: str) -> bool:
     """Public-Wrapper für Trigger-Check (case-normalisiert)."""
-    return _claim_mentions_aiid((claim or "").lower())
+    return _claim_mentions_aiid(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -242,7 +243,7 @@ def _extract_keywords(claim: str, max_n: int = 4) -> list[str]:
     """
     if not claim:
         return []
-    lc = claim.lower()
+    lc = normalisiere(claim)
     out: list[str] = []
     seen: set[str] = set()
 

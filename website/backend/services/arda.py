@@ -74,6 +74,7 @@ from functools import lru_cache
 # ARDA-Live-Mirror (z. B. ARDA Open Data S3-Bucket) ohne Service-Rewrite
 # möglich ist — analog zu cepii.py / ahrq.py.
 from services._http_polite import polite_client  # noqa: F401
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -97,7 +98,7 @@ _data_cache: tuple[float, dict] | None = None
 # Trigger-Vokabular
 # ---------------------------------------------------------------------------
 # Direkt-Trigger: namentliche Erwähnung von ARDA / Pew Religious Landscape
-_DIRECT_TERMS = (
+_DIRECT_TERMS = norm_terme(
     "arda",
     "association of religion data archives",
     "religion data archives",
@@ -112,7 +113,7 @@ _DIRECT_TERMS = (
 
 # Religions-Demografie-Begriffe — triggern in Kombination mit Land oder
 # 'weltweit/global'
-_RELIGION_DEMO_TERMS = (
+_RELIGION_DEMO_TERMS = norm_terme(
     "religionsstatistik", "religions-statistik",
     "religionsanteil", "religions-anteil", "religions-anteile",
     "religionsanteile",
@@ -128,7 +129,7 @@ _RELIGION_DEMO_TERMS = (
 )
 
 # Religions-Subjekte für die Anteils-Frage
-_RELIGION_GROUPS = (
+_RELIGION_GROUPS = norm_terme(
     "christen", "christlich", "katholisch", "katholiken",
     "evangelisch", "evangelische", "protestanten", "protestantisch",
     "orthodox", "orthodoxe",
@@ -144,7 +145,7 @@ _RELIGION_GROUPS = (
 
 # Anteils-Verben / Mengen-Begriffe — Kontext, dass nach DEMOGRAFIE gefragt
 # wird (nicht z. B. nach Theologie)
-_QUANTITY_TERMS = (
+_QUANTITY_TERMS = norm_terme(
     "anteil", "anteile", "prozent", "prozentual",
     "verteilung", "mehrheit", "minderheit",
     "wachstum", "wächst", "waechst", "schrumpft", "rückgang", "rueckgang",
@@ -156,7 +157,7 @@ _QUANTITY_TERMS = (
 )
 
 # Länder-/Region-Bezüge — gemeinsam mit demo-Term reicht für Trigger
-_COUNTRY_TERMS = (
+_COUNTRY_TERMS = norm_terme(
     "österreich", "oesterreich", "austria", "at",
     "deutschland", "germany", "de",
     "schweiz", "switzerland", "ch",
@@ -190,7 +191,7 @@ def _claim_mentions_arda(claim_lc: str) -> bool:
 @lru_cache(maxsize=2048)
 def claim_mentions_arda_cached(claim: str) -> bool:
     """Public cache-fähiger Trigger-Check (LRU pro normalisiertem Claim)."""
-    return _claim_mentions_arda((claim or "").lower())
+    return _claim_mentions_arda(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -347,7 +348,7 @@ async def search_arda(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_arda(matchable):
         return empty

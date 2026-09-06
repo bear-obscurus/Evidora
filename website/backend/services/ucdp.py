@@ -55,6 +55,7 @@ import os
 import time
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -80,7 +81,7 @@ _no_token_warned = False  # einmaliges Logging der Token-Lücke
 # ---------------------------------------------------------------------------
 # Trigger
 # ---------------------------------------------------------------------------
-_UCDP_DIRECT_TERMS = (
+_UCDP_DIRECT_TERMS = norm_terme(
     # Marken-/Quelle
     "ucdp", "uppsala conflict", "uppsala conflict data",
     "uppsala konfliktdaten",
@@ -103,11 +104,11 @@ _UCDP_DIRECT_TERMS = (
 )
 
 # Konflikt-Komposite: "Konflikt" + Land/Region
-_CONFLICT_GENERIC = (
+_CONFLICT_GENERIC = norm_terme(
     "konflikt", "krieg", "konflikts", "kriegs",
     "conflict", "war ", " war",
 )
-_REGION_HINTS = (
+_REGION_HINTS = norm_terme(
     "in der ukraine", "in ukraine", "in russland", "in syrien", "in libyen",
     "in sudan", "in äthiopien", "in aethiopien", "in myanmar", "in nigeria",
     "in jemen", "in yemen", "in mali", "in burkina faso", "in afghanistan",
@@ -125,7 +126,7 @@ _REGION_HINTS = (
 # erkannte nur Präpositional-Konstruktionen "in der Ukraine", aber nicht
 # Bindestrich-Komposita "Ukraine-Konflikt". Stems werden ALS WORT geprüft
 # (word-boundary substring), damit "DR Kongo"/"Republik Kongo" auch matchen.
-_REGION_STEMS = (
+_REGION_STEMS = norm_terme(
     "ukraine", "russland", "syrien", "libyen", "sudan", "myanmar",
     "äthiopien", "aethiopien", "nigeria", "jemen", "yemen", "mali",
     "afghanistan", "irak", "palästina", "palaestina", "gaza",
@@ -160,7 +161,7 @@ def _claim_mentions_ucdp(claim_lc: str) -> bool:
 
 def claim_mentions_ucdp_cached(claim: str) -> bool:
     """Public-Wrapper (case-normalisiert)."""
-    return _claim_mentions_ucdp((claim or "").lower())
+    return _claim_mentions_ucdp(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -600,7 +601,7 @@ async def search_ucdp(analysis: dict) -> dict:
         claim = str(claim or "")
     if not isinstance(original, str):
         original = str(original or "")
-    combined_lc = f"{original} {claim}".lower()
+    combined_lc = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_ucdp(combined_lc):
         return empty

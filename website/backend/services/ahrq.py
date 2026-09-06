@@ -62,6 +62,7 @@ import time
 from functools import lru_cache
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -92,7 +93,7 @@ _search_cache: dict[str, tuple[float, dict]] = {}
 # Trigger-Vokabular
 # ---------------------------------------------------------------------------
 # Explizite AHRQ-/EPC-Begriffe — sofortiger Trigger.
-_AHRQ_TERMS = (
+_AHRQ_TERMS = norm_terme(
     "ahrq", "a.h.r.q.",
     "agency for healthcare research and quality",
     "evidence-based practice center", "evidence based practice center",
@@ -106,7 +107,7 @@ _AHRQ_TERMS = (
 
 # Evidence-/Methoden-Begriffe — triggern NUR mit Gesundheitskontext (siehe
 # `_HEALTH_CONTEXT`), sonst feuern wir auch bei Tech-/Sozial-SRs.
-_EVIDENCE_TERMS = (
+_EVIDENCE_TERMS = norm_terme(
     "systematic review", "systematische übersicht", "systematische uebersicht",
     "meta-analyse", "metaanalyse", "meta analysis",
     "evidence-based", "evidence based", "evidenzbasiert",
@@ -120,7 +121,7 @@ _EVIDENCE_TERMS = (
 )
 
 # Gesundheits-/Klinik-Kontext, der `_EVIDENCE_TERMS` zum Volltreffer macht.
-_HEALTH_CONTEXT = (
+_HEALTH_CONTEXT = norm_terme(
     "medikament", "medikamente", "arznei", "arzneimittel", "wirkstoff",
     "präparat", "praeparat", "medication", "medicine", "drug",
     "pharmaceutical", "therapie", "therapy", "behandlung", "treatment",
@@ -162,7 +163,7 @@ def _claim_mentions_ahrq(claim_lc: str) -> bool:
 @lru_cache(maxsize=2048)
 def claim_mentions_ahrq_cached(claim: str) -> bool:
     """Public cache-fähiger Trigger-Check (LRU-Cache pro normalisiertem Claim)."""
-    return _claim_mentions_ahrq((claim or "").lower())
+    return _claim_mentions_ahrq(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -299,7 +300,7 @@ async def search_ahrq(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_ahrq(matchable):
         return empty

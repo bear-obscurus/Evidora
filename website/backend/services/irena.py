@@ -37,6 +37,7 @@ from typing import Any
 import httpx
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -195,14 +196,14 @@ _TECH_TRIGGERS: list[tuple[tuple[str, ...], str]] = [
 # ---------------------------------------------------------------------------
 # Trigger
 # ---------------------------------------------------------------------------
-_IRENA_DIRECT_TERMS = (
+_IRENA_DIRECT_TERMS = norm_terme(
     "irena", "irenastat",
     "international renewable energy agency",
     "renewable capacity statistics",
     "renewable energy statistics",
 )
 
-_IRENA_TOPIC_TERMS = (
+_IRENA_TOPIC_TERMS = norm_terme(
     # Tech-Begriffe (auch wenn IRENA nicht direkt genannt wird, koennen
     # wir bei klarer Themen-Bindung helfen)
     "erneuerbare energie", "erneuerbare energien",
@@ -250,7 +251,7 @@ def _claim_mentions_irena(claim_lc: str) -> bool:
 
 
 def claim_mentions_irena_cached(claim: str) -> bool:
-    return _claim_mentions_irena((claim or "").lower())
+    return _claim_mentions_irena(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -469,7 +470,7 @@ async def search_irena(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_irena(matchable):
         return empty

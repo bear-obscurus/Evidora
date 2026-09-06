@@ -54,22 +54,8 @@ _cache: dict | None = None
 # ---------------------------------------------------------------------------
 # AT-Kontext (geteilt mit anderen AT-Services)
 # ---------------------------------------------------------------------------
-from services._schreibweise import normalisiere
-def _norm_terme(*terme: str) -> tuple[str, ...]:
-    """Trigger-Terme einmalig auf die Vergleichs-Schreibweise bringen.
-
-    Die Listen unten stehen bewusst mit Umlauten — so liest man sie. Verglichen
-    wird gegen den ebenfalls normalisierten Claim, damit "Foerderungen in
-    Oesterreich" genauso trifft wie "Förderungen in Österreich". Dieser Service
-    hat ein eigenes Praedikat und laeuft nicht ueber services/_topic_match.py,
-    wo die Normalisierung mit PR #143 eingezogen ist.
-
-    Rand-Leerzeichen bleiben erhalten: `"wien "` ist ein Wortgrenzen-Schutz.
-    """
-    return tuple(normalisiere(t) for t in terme)
-
-
-_AT_CONTEXT_TERMS = _norm_terme(
+from services._schreibweise import normalisiere, norm_terme
+_AT_CONTEXT_TERMS = norm_terme(
     "österreich", "austria", "österreichisch",
     "republik österreich", "wien", "vienna",
     "bundeskanzler", "bundesregierung",
@@ -95,7 +81,7 @@ def _has_at_context(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Trigger erfordert (Religions-Vokabel + Schul-Vokabel + Wien) ODER
 # (eine eindeutig Religions+Schule-Kombination wie "muslimische Schüler").
-_RELIGION_TERMS = _norm_terme(
+_RELIGION_TERMS = norm_terme(
     "religion", "religiös", "konfession", "bekenntnis", "glaube",
     "muslim", "muslimisch", "islam", "islamisch",
     "christ", "christlich", "katholisch", "katholik",
@@ -112,14 +98,14 @@ _RELIGION_TERMS = _norm_terme(
     "ausländische staatsbürger schüler",
     "migrationshintergrund schule", "migrationshintergrund schüler",
 )
-_SCHOOL_TERMS = _norm_terme(
+_SCHOOL_TERMS = norm_terme(
     "schule", "schul", "schüler", "schülerinnen", "schulkind",
     "pflichtschul", "volksschul", "mittelschul", "gymnasium",
     "polytechnisch", "klasse", "klassen", "schulkinder",
     "schulkindern",
 )
 # Wien-Kontext eng: nur "wien" oder "wiener". Nicht "wienerwald" o.ä.
-_WIEN_TERMS = _norm_terme("wien ", " wien", "wien.", "wien,", "wien:", "wien?",
+_WIEN_TERMS = norm_terme("wien ", " wien", "wien.", "wien,", "wien:", "wien?",
                "wien!", "wiener", "vienna")
 
 
@@ -152,7 +138,7 @@ def _claim_mentions_religion_schools_vienna(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 2: Bundesförderungen Österreich
 # ---------------------------------------------------------------------------
-_SUBSIDY_TERMS = _norm_terme(
+_SUBSIDY_TERMS = norm_terme(
     "förderung", "förderungen", "förderquote",
     "subvention", "subventionen",
     "zuschuss", "zuschüsse",
@@ -163,7 +149,7 @@ _SUBSIDY_TERMS = _norm_terme(
 )
 # Bundesebene-Hint: dass es um Bundesförderungen geht, nicht
 # Landesförderungen / Forschungsförderung / EU-Förderung.
-_FEDERAL_HINTS = _norm_terme(
+_FEDERAL_HINTS = norm_terme(
     "bund", "bundesförderung", "bundesregierung", "bmf",
     "republik österreich", "in österreich", "österreich",
     "austria",
@@ -180,7 +166,7 @@ def _claim_mentions_federal_subsidies(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 3: Mindestsicherung / Sozialhilfe-Höchstsätze
 # ---------------------------------------------------------------------------
-_SOCIAL_ASSIST_TERMS = _norm_terme(
+_SOCIAL_ASSIST_TERMS = norm_terme(
     "mindestsicherung", "sozialhilfe", "ms-bezug", "bezug sozialhilfe",
     "sozialhilfeempfänger", "sozialhilfeempfaenger",
     "bedarfsorientierte mindestsicherung", "bms",
@@ -206,7 +192,7 @@ def _claim_mentions_social_assistance(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 4: Pensionsanpassung
 # ---------------------------------------------------------------------------
-_PENSION_TERMS = _norm_terme(
+_PENSION_TERMS = norm_terme(
     "pensionserhöhung", "pensionserhoehung",
     "pensionsanpassung",
     "pensionen erhöht", "pensionen erhoeht",
@@ -225,15 +211,15 @@ _PENSION_TERMS = _norm_terme(
 )
 # Composite-Pattern: "pension*" UND ("erhöh*" ODER "anpass*" ODER Prozentzahl)
 # fängt Phrasings wie "Die Pensionen werden 2026 um 2,7 % erhöht" ab.
-_PENSION_NOUNS = _norm_terme("pension", "pensionen", "rente", "renten")
-_PENSION_VERBS = _norm_terme("erhöh", "erhoeh", "anpass", "steigen", "gestiegen",
+_PENSION_NOUNS = norm_terme("pension", "pensionen", "rente", "renten")
+_PENSION_VERBS = norm_terme("erhöh", "erhoeh", "anpass", "steigen", "gestiegen",
                    "angehoben", "anhebung")
 
 
 # ---------------------------------------------------------------------------
 # Topic 5: 22-Mio-Behandlungen-Claim (strukturell ungeprüfbar)
 # ---------------------------------------------------------------------------
-_HEALTH_BLOCKED_TERMS = _norm_terme(
+_HEALTH_BLOCKED_TERMS = norm_terme(
     "22 millionen behandlungen", "22 mio behandlungen", "22 mio. behandlungen",
     "spitals-touristen", "spitals touristen", "spitalstouristen",
     "krankenhaus-touristen", "krankenhaus touristen",
@@ -277,7 +263,7 @@ def _claim_mentions_health_blocked(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 6: BMI Asyl-Quartalsbilanz
 # ---------------------------------------------------------------------------
-_ASYL_QUARTAL_TERMS = _norm_terme(
+_ASYL_QUARTAL_TERMS = norm_terme(
     "abschiebung", "abschiebungen",
     "ausreise", "ausreisen", "ausreisepflichtig",
     "asylantrag", "asylanträge", "asyl-antrag", "asyl-anträge",
@@ -297,7 +283,7 @@ def _claim_mentions_asyl_quartal(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 7: Staatsbürgerschaft / Wohnbevölkerung
 # ---------------------------------------------------------------------------
-_CITIZEN_TERMS = _norm_terme(
+_CITIZEN_TERMS = norm_terme(
     "staatsbürgerschaft", "staatsbuergerschaft",
     "ohne österreichische staatsbürger", "ohne staatsbürgerschaft",
     "nicht-österreich", "nichtoesterreich",
@@ -316,14 +302,14 @@ _CITIZEN_TERMS = _norm_terme(
 # Nationalitäten-Stems der Top-10-Herkunftsländer (+ Rang 11 Afghanistan).
 # " polen" mit führendem Leerzeichen gegen "Metropolen" (Substring-Falle).
 # Geteilt zwischen Gate (Bestandsfragen/Vergleiche) und Top-10-Rendering.
-_NATIONALITY_STEMS = _norm_terme(
+_NATIONALITY_STEMS = norm_terme(
     "deutsche", "rumän", "rumaen", "serb", "syrer", "syrisch",
     "türk", "tuerk", "ungar", "bosn", "kroat", "polnisch", " polen",
     "ukrain", "afghan",
 )
 
 
-_AT_BUNDESLAENDER_GATE = _norm_terme(
+_AT_BUNDESLAENDER_GATE = norm_terme(
     "wien", "niederösterreich", "niederoesterreich", "oberösterreich",
     "oberoesterreich", "salzburg", "tirol", "vorarlberg", "kärnten",
     "kaernten", "steiermark", "burgenland",
@@ -408,7 +394,7 @@ def _claim_mentions_citizenship(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 8: EU-Asyl-Ranking
 # ---------------------------------------------------------------------------
-_ASYL_RANKING_TERMS = _norm_terme(
+_ASYL_RANKING_TERMS = norm_terme(
     "rang asyl", "stelle asyl", "platz asyl",
     "asyl pro kopf", "asylanträge pro kopf",
     "asyl pro 100",  # 100.000 Einwohner
@@ -437,7 +423,7 @@ def _claim_mentions_asyl_ranking(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 9: Sparpaket der Bundesregierung 2025/2026
 # ---------------------------------------------------------------------------
-_SPARPAKET_TERMS = _norm_terme(
+_SPARPAKET_TERMS = norm_terme(
     "sparpaket", "spar-paket",
     "sparmaßnahmen", "sparmassnahmen",
     "budgetkonsolidierung",
@@ -456,7 +442,7 @@ _SPARPAKET_TERMS = _norm_terme(
     "savings package austria", "austrian budget",
 )
 # AT-spezifische Acronyme/Termini, die selbst als AT-Kontext gelten
-_SPARPAKET_AT_SPECIFIC = _norm_terme(
+_SPARPAKET_AT_SPECIFIC = norm_terme(
     "korridorpension", "pendlereuro", "klimabonus",
     "klimaticket", "e-card", "ecard",
     "bundesheer", "ams-quote", "ohb-pension",
@@ -488,7 +474,7 @@ def _claim_mentions_sparpaket(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 10: Energie-Tarife Österreich 2026
 # ---------------------------------------------------------------------------
-_ENERGY_TARIFF_TERMS = _norm_terme(
+_ENERGY_TARIFF_TERMS = norm_terme(
     "stromsozialtarif", "strom-sozialtarif", "sozialtarif strom",
     "klimaticket",
     "gasnetzgebühr", "gasnetzgebuehr", "gasnetz-gebühr",
@@ -516,7 +502,7 @@ def _claim_mentions_energy_tariff(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 16: EU-Asyl-/Migrationspakt + AT-spezifische Bestimmungen
 # ---------------------------------------------------------------------------
-_EU_PAKT_TERMS = _norm_terme(
+_EU_PAKT_TERMS = norm_terme(
     "eu-asyl-pakt", "eu asyl-pakt", "eu-asylpakt",
     "eu-migrationspakt", "eu migrationspakt",
     "asyl-pakt", "migrationspakt",
@@ -529,7 +515,7 @@ _EU_PAKT_TERMS = _norm_terme(
     "asyl- und migrationsmanagement",
     "eu asylum pact", "eu migration pact",
 )
-_EU_AUSTRITT_TERMS = _norm_terme(
+_EU_AUSTRITT_TERMS = norm_terme(
     "eu-austritt", "eu austritt", "öxit", "oexit",
     "österreich verlassen die eu", "raus aus der eu",
     "eu verlassen", "austritt aus der eu",
@@ -560,7 +546,7 @@ def _claim_mentions_eu_pakt(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 17: BMF-Steuer-Pläne 2026
 # ---------------------------------------------------------------------------
-_BMF_STEUER_TERMS = _norm_terme(
+_BMF_STEUER_TERMS = norm_terme(
     "mehrwertsteuer", "mwst", "umsatzsteuer", "ust",
     "vat austria", "vat reduction",
     "kalte progression",
@@ -588,7 +574,7 @@ def _claim_mentions_bmf_steuer(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 15: Lebensmittel-Inflation EU-Vergleich
 # ---------------------------------------------------------------------------
-_FOOD_INFLATION_TERMS = _norm_terme(
+_FOOD_INFLATION_TERMS = norm_terme(
     "lebensmittel-inflation", "lebensmittelinflation",
     "lebensmittel inflation",
     "lebensmittelpreise",
@@ -609,7 +595,7 @@ def _claim_mentions_food_inflation(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 14: Wärmepumpen Österreich (APA-Faktencheck-Korrektur)
 # ---------------------------------------------------------------------------
-_WP_TERMS = _norm_terme(
+_WP_TERMS = norm_terme(
     "wärmepumpe", "waermepumpe", "wärmepumpen", "waermepumpen",
     "heat pump", "heat pumps",
     "luft-wasser-wärmepumpe", "luftwärmepumpe",
@@ -636,7 +622,7 @@ def _claim_mentions_heat_pumps(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 11: Eingebürgerten-Gleichbehandlung (FPÖ-Gegenposition)
 # ---------------------------------------------------------------------------
-_NATURALIZED_TERMS = _norm_terme(
+_NATURALIZED_TERMS = norm_terme(
     "eingebürgerte", "eingebuergerte",
     "naturalisierte", "naturalisierten",
     "neue staatsbürger", "neue staatsbuerger",
@@ -666,7 +652,7 @@ def _claim_mentions_naturalized(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 12: Gesundheits-Falschmeldungen (Krebs/Handy/Strahlung)
 # ---------------------------------------------------------------------------
-_HEALTH_MIS_TERMS = _norm_terme(
+_HEALTH_MIS_TERMS = norm_terme(
     "krebs durch handy", "krebs durch strahlung", "krebs durch 5g",
     "handy strahlung krebs", "handy-strahlung krebs",
     "mobilfunk krebs", "mobilfunkstrahlung krebs",
@@ -694,7 +680,7 @@ def _claim_mentions_health_misinformation(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic: Vegane Ernährung — DGE/WHO-Counter zu Mangel-Mythos
 # ---------------------------------------------------------------------------
-_VEGAN_TERMS = _norm_terme(
+_VEGAN_TERMS = norm_terme(
     "vegan", "vegane ernährung", "veganer", "veganismus",
     "vegan eisen", "vegan b12", "vegan vitamin b",
     "pflanzliche ernährung mangel",
@@ -717,7 +703,7 @@ def _claim_mentions_vegan(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 13: AMS-Mangelberufsliste
 # ---------------------------------------------------------------------------
-_LABOR_SHORTAGE_TERMS = _norm_terme(
+_LABOR_SHORTAGE_TERMS = norm_terme(
     "mangelberufe", "mangelberuf",
     "mangelberufsliste",
     "fachkräftemangel", "fachkraeftemangel",

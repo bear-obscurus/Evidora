@@ -66,6 +66,7 @@ import logging
 import os
 import re
 import time
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -98,7 +99,7 @@ _act_mapping_cache_time: float = 0.0
 # ---------------------------------------------------------------------------
 # Trigger
 # ---------------------------------------------------------------------------
-_WCAG22_TERMS = (
+_WCAG22_TERMS = norm_terme(
     # Direkt
     "wcag 2.2", "wcag2.2", "wcag-2.2", "wcag22",
     "wcag 2.1", "wcag 2.0",  # User kann Vorgängerversionen meinen
@@ -168,7 +169,7 @@ def _claim_mentions_wcag22(claim_lc: str) -> bool:
 
 def claim_mentions_wcag22_cached(claim: str) -> bool:
     """Public-Wrapper für Trigger-Check (case-normalisiert)."""
-    return _claim_mentions_wcag22((claim or "").lower())
+    return _claim_mentions_wcag22(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------

@@ -29,6 +29,7 @@ from datetime import datetime, timedelta
 
 import httpx
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -47,7 +48,7 @@ _cache_time: float = 0.0
 # ---------------------------------------------------------------------------
 # Trigger
 # ---------------------------------------------------------------------------
-_PREPRINT_TERMS = (
+_PREPRINT_TERMS = norm_terme(
     "preprint", "preprints", "biorxiv", "medrxiv",
     "neue studie", "neue studien",
     "aktuelle studie", "aktuelle studien",
@@ -56,7 +57,7 @@ _PREPRINT_TERMS = (
     "vor peer-review",
     "neueste forschung",
 )
-_HEALTH_TERMS = (
+_HEALTH_TERMS = norm_terme(
     "covid", "sars-cov-2", "impfung", "vakzin",
     "pharmakolog", "medikament", "wirkstoff", "therapie",
     "krankheit", "krebs", "diabetes", "alzheimer", "parkinson",
@@ -82,7 +83,7 @@ def _claim_mentions_biorxiv(claim_lc: str) -> bool:
 
 
 def claim_mentions_biorxiv_cached(claim: str) -> bool:
-    cl = (claim or "").lower()
+    cl = normalisiere(claim or "")
     if _claim_mentions_biorxiv(cl):
         return True
     # Klassiker-Match (Anti-Vax-/COVID-Hoaxes ohne Studien-Wort)
@@ -339,7 +340,7 @@ async def search_biorxiv(analysis: dict) -> dict:
     }
 
     claim = (analysis or {}).get("original_claim") or (analysis or {}).get("claim", "") or ""
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
 
     # Authoritative classics — gehen am Reranker vorbei (whitelist:
     # 'biorxiv_classic' im reranker._AUTHORITATIVE_INDICATORS).

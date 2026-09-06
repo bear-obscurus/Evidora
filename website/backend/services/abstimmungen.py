@@ -36,6 +36,7 @@ import re
 import time
 
 import httpx
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -78,7 +79,7 @@ AT_MARKERS = [
 ]
 
 # Liste der bekannten Klub-Kürzel für die Klub-spezifische Trigger.
-KNOWN_CLUBS = ("ÖVP", "SPÖ", "FPÖ", "NEOS", "GRÜNE", "BZÖ", "JETZT",
+KNOWN_CLUBS = norm_terme("ÖVP", "SPÖ", "FPÖ", "NEOS", "GRÜNE", "BZÖ", "JETZT",
                "STRONACH")
 
 # Stopwords für Betreff-Suche
@@ -95,7 +96,7 @@ _STOPWORDS = {
 
 def _claim_mentions_voting(claim: str) -> bool:
     """True wenn der Claim auf Abstimmungsverhalten verweist."""
-    cl = claim.lower()
+    cl = normalisiere(claim)
     has_kw = any(kw in cl for kw in VOTING_KEYWORDS)
     if not has_kw:
         return False
@@ -174,7 +175,7 @@ def _extract_year(claim: str) -> int | None:
 
 def _extract_clubs_in_claim(claim: str) -> list[str]:
     """Return canonical club shorts mentioned in the claim."""
-    cl = claim.lower()
+    cl = normalisiere(claim)
     found: list[str] = []
     aliases = {
         "ÖVP": ("övp", "volkspartei"),
@@ -308,7 +309,7 @@ async def search_abstimmungen(analysis: dict) -> dict:
     # 2) Wenn der Claim einen einzelnen Klub nennt + ein generisches
     #    Wort wie "einzige" / "alleine" / "allein", filtere zusätzlich auf
     #    Beschlüsse, in denen dieser Klub *isoliert* dafür/dagegen war.
-    cl = claim.lower()
+    cl = normalisiere(claim)
     isolation_intent = any(p in cl for p in [
         "einzige", "alleinig", "alleine ", "als einzige",
         "only party", "sole opposition",

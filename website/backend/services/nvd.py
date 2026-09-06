@@ -49,6 +49,7 @@ import time
 from urllib.parse import quote
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -104,21 +105,21 @@ _PRODUCT_CPE_MAP: dict[str, tuple[str, str]] = {
 }
 
 # Keyword-Set: löst NVD-Suche aus, wenn KEIN bekanntes Produkt erkannt wird.
-_NVD_EXPLICIT_TERMS = (
+_NVD_EXPLICIT_TERMS = norm_terme(
     "nist", "nvd", "national vulnerability database",
     "cvss", "cvss-score", "cvss score",
     "cisa kev", "cisa-kev", "kev-liste", "kev list",
     "known exploited vulnerability", "known exploited vulnerabilities",
 )
 
-_SEVERITY_KEYWORDS = (
+_SEVERITY_KEYWORDS = norm_terme(
     "kritische schwachstelle", "kritische sicherheitslücke", "critical vulnerability",
     "high-severity", "high severity", "hochkritisch",
     "schwere lücke", "schwere sicherheitslücke",
     "kritisch verwundbar", "kritisch", "verwundbar",
 )
 
-_KEV_KEYWORDS = (
+_KEV_KEYWORDS = norm_terme(
     "aktiv ausgenutzt", "aktive ausnutzung", "wird ausgenutzt",
     "actively exploited", "in the wild", "exploited in the wild",
     "kev-listung", "cisa kev",
@@ -174,7 +175,7 @@ def _claim_mentions_nvd(claim_lc: str) -> bool:
 
 def claim_mentions_nvd_cached(claim: str) -> bool:
     """Wrapper für Trigger-Check — case-normalisiert."""
-    return _claim_mentions_nvd((claim or "").lower())
+    return _claim_mentions_nvd(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
