@@ -76,6 +76,7 @@ import xml.etree.ElementTree as ET
 from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -107,7 +108,7 @@ _TRIGGER_CACHE: dict[str, bool] = {}
 # Trigger
 # ---------------------------------------------------------------------------
 # Direkte Quellen-Mentions.
-_EXPLICIT_TERMS = (
+_EXPLICIT_TERMS = norm_terme(
     "epub.oeaw", "epub oeaw",
     "oeaw publikation", "öaw publikation", "öaw-publikation",
     "oeaw forschung", "öaw forschung", "öaw-forschung",
@@ -120,12 +121,12 @@ _EXPLICIT_TERMS = (
 )
 
 # OEAW-Akronyme (Vorsicht bei Mehrdeutigkeit — wir matchen exakt mit Wortgrenze).
-_OEAW_ACRONYMS = (
+_OEAW_ACRONYMS = norm_terme(
     "öaw", "oeaw",
 )
 
 # OEAW-Lexika und -Reihen (Namens-Trigger).
-_OEAW_PUBLICATIONS = (
+_OEAW_PUBLICATIONS = norm_terme(
     # Lexika
     "österreichisches biographisches lexikon", "oesterreichisches biographisches lexikon",
     "oebl",
@@ -154,7 +155,7 @@ _OEAW_PUBLICATIONS = (
 )
 
 # Composite-Trigger: AT-akademische Domaenen + "Forschung/Studie/Publikation".
-_AT_ACADEMIC_CONTEXT = (
+_AT_ACADEMIC_CONTEXT = norm_terme(
     "österreichische geschichte", "oesterreichische geschichte",
     "österreichische archäologie", "oesterreichische archaeologie",
     "österreichische biographie", "oesterreichische biographie",
@@ -208,7 +209,7 @@ def claim_mentions_oeaw_cached(claim: str) -> bool:
     """Cached Wrapper — Trigger-Resolve cached pro Claim-String."""
     if not claim:
         return False
-    key = claim.lower()
+    key = normalisiere(claim)
     cached = _TRIGGER_CACHE.get(key)
     if cached is not None:
         return cached
@@ -314,7 +315,7 @@ def _extract_keywords(claim: str, analysis: dict | None = None) -> list[str]:
             candidates.append(first.lower())
 
     if claim:
-        candidates.append(claim.lower())
+        candidates.append(normalisiere(claim))
 
     keywords: list[str] = []
     seen: set[str] = set()
@@ -609,7 +610,7 @@ async def search_oeaw_epub(analysis: dict) -> dict:
     if not isinstance(original, str):
         original = str(original or "")
 
-    matchable = f"{original} {claim}".lower().strip()
+    matchable = normalisiere(f"{original} {claim}")
     if not _claim_mentions_oeaw(matchable):
         return empty
 

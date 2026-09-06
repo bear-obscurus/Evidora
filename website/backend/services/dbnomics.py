@@ -45,6 +45,7 @@ import time
 from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -80,14 +81,14 @@ _PROVIDER_HINTS: dict[str, str] = {
 }
 
 # Direkt-Trigger: Claim erwähnt DBnomics namentlich
-_DIRECT_TERMS = (
+_DIRECT_TERMS = norm_terme(
     "dbnomics", "db.nomics", "db nomics",
 )
 
 # Meta-Hub-Trigger (Folge-Sprint 2026-05-20): Wenn der Claim explizit
 # Aggregator-/Meta-Hub-Sprache verwendet, ist DBnomics IMMER ein passender
 # Cross-Validation-Layer — unabhängig von dedizierten Service-Tokens.
-_META_HUB_TERMS = (
+_META_HUB_TERMS = norm_terme(
     "meta-hub", "meta hub", "metahub",
     "aggregator", "aggregierte zeitreihen",
     "zeitreihen", "time series", "time-series",
@@ -97,7 +98,7 @@ _META_HUB_TERMS = (
 )
 
 # Wirtschafts-Indikator-Begriffe (DE/EN) — Composite-Trigger-Teil 1
-_INDICATOR_TERMS = (
+_INDICATOR_TERMS = norm_terme(
     "bip", "bruttoinlandsprodukt", "gdp",
     "inflation", "inflationsrate", "verbraucherpreise", "cpi",
     "arbeitslosigkeit", "arbeitslosenquote", "unemployment",
@@ -114,7 +115,7 @@ _INDICATOR_TERMS = (
 )
 
 # International-Kontext (NICHT AT/DE — sonst eigene Quellen)
-_INTL_TERMS = (
+_INTL_TERMS = norm_terme(
     "weltweit", "international", "global", "world",
     "usa", "vereinigte staaten", "united states", "amerika",
     "großbritannien", "uk", "vereinigtes königreich", "britain",
@@ -223,7 +224,7 @@ _trigger_cache: dict[str, tuple[float, bool]] = {}
 
 def claim_mentions_dbnomics_cached(claim: str) -> bool:
     """24h-Cache-Wrapper für den Trigger-Check."""
-    claim_lc = (claim or "").lower().strip()
+    claim_lc = normalisiere(claim or "")
     if not claim_lc:
         return False
     now = time.time()
@@ -540,7 +541,7 @@ async def search_dbnomics(analysis: dict) -> dict:
     analysis = analysis or {}
     claim = analysis.get("claim") or analysis.get("original_claim") or ""
     original = analysis.get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_dbnomics(matchable):
         return empty

@@ -31,6 +31,7 @@ import httpx
 
 from services._http_polite import USER_AGENT
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -280,7 +281,7 @@ async def fetch_edpb(client=None) -> list:
 # ---------------------------------------------------------------------------
 # Trigger
 # ---------------------------------------------------------------------------
-_EDPB_TERMS = (
+_EDPB_TERMS = norm_terme(
     "edpb",
     "european data protection board",
     "europäischer datenschutzausschuss",
@@ -300,10 +301,10 @@ _EDPB_TERMS = (
     "wp29",
 )
 
-_EDPB_COMPOSITE_DP_TERMS = (
+_EDPB_COMPOSITE_DP_TERMS = norm_terme(
     "dsgvo", "gdpr", "datenschutz", "privacy",
 )
-_EDPB_COMPOSITE_EU_TERMS = (
+_EDPB_COMPOSITE_EU_TERMS = norm_terme(
     "eu-leitlinie", "eu leitlinie", "eu-guideline", "eu guideline",
     "eu-aufsicht", "eu-empfehlung", "eu-beschluss",
     "europäische datenschutz", "european data protection",
@@ -312,7 +313,7 @@ _EDPB_COMPOSITE_EU_TERMS = (
 # AI-related composite trigger: AI/KI/ChatGPT/Generative AI + GDPR/Datenschutz
 # Captures claims like "EDPB Leitlinie zu KI-Datenschutz Generative AI 2024",
 # "EDPB Opinion 28/2024 AI Models GDPR", "ChatGPT Task Force EDPB".
-_EDPB_COMPOSITE_AI_TERMS = (
+_EDPB_COMPOSITE_AI_TERMS = norm_terme(
     "ki-datenschutz", "ki datenschutz",
     "ai-datenschutz", "ai datenschutz",
     "generative ai", "generative ki",
@@ -341,7 +342,7 @@ def _claim_mentions_edpb(claim_lc: str) -> bool:
 
 
 def claim_mentions_edpb_cached(claim: str) -> bool:
-    return _claim_mentions_edpb((claim or "").lower())
+    return _claim_mentions_edpb(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -443,7 +444,7 @@ async def search_edpb(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_edpb(matchable):
         return empty

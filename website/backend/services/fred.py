@@ -70,6 +70,7 @@ import time
 from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -223,7 +224,7 @@ _SERIES_MAP: dict[str, tuple[str, str, str, str]] = {
 }
 
 # Direkt-Trigger: FRED namentlich
-_DIRECT_TERMS = (
+_DIRECT_TERMS = norm_terme(
     "fred", "stlouisfed", "st. louis fed", "st louis fed",
     "federal reserve bank of st. louis",
     "federal reserve bank of st louis",
@@ -231,7 +232,7 @@ _DIRECT_TERMS = (
 )
 
 # US-Markierungen (Composite-Trigger Voraussetzung)
-_US_TERMS = (
+_US_TERMS = norm_terme(
     "usa", "u.s.", "u. s.", "us-amerika", "amerika",
     "amerikanisch", "amerikanische", "amerikanischer",
     "vereinigte staaten", "united states",
@@ -243,7 +244,7 @@ _US_TERMS = (
 
 # Allgemeine US-Wirtschafts-Indikator-Worte (für Composite ohne explizite
 # Series-ID). Mit US-Marker → FRED-Trigger.
-_US_ECON_INDICATOR_TERMS = (
+_US_ECON_INDICATOR_TERMS = norm_terme(
     "inflation", "verbraucherpreise", "cpi",
     "arbeitslosenquote", "arbeitslosigkeit", "unemployment",
     "bip", "bruttoinlandsprodukt", "gdp",
@@ -258,7 +259,7 @@ _US_ECON_INDICATOR_TERMS = (
 # DACH-Hard-Skip: wenn der Claim AT/DE/CH-zentriert ist und KEINEN US-
 # Marker enthält, überlassen wir das OeNB/destatis/dbnomics — wir wollen
 # kein irreführendes US-Ergebnis an einen DACH-Claim anhängen.
-_DACH_TERMS = (
+_DACH_TERMS = norm_terme(
     "österreich", "austria",
     "deutschland", "germany",
     "schweiz", "switzerland",
@@ -304,7 +305,7 @@ _trigger_cache: dict[str, tuple[float, bool]] = {}
 
 def claim_mentions_fred_cached(claim: str) -> bool:
     """24h-Cache-Wrapper für den Trigger-Check."""
-    claim_lc = (claim or "").lower().strip()
+    claim_lc = normalisiere(claim or "")
     if not claim_lc:
         return False
     now = time.time()
@@ -651,7 +652,7 @@ async def search_fred(analysis: dict) -> dict:
     analysis = analysis or {}
     claim = analysis.get("claim") or analysis.get("original_claim") or ""
     original = analysis.get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_fred(matchable):
         return empty

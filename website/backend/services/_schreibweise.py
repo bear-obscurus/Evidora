@@ -89,3 +89,17 @@ def enthaelt(claim: str, begriff: str) -> bool:
     if not begriff:
         return False
     return normalisiere(begriff) in normalisiere(claim)
+
+
+def norm_terme(*terme):
+    """Trigger-Terme einmalig auf die Vergleichs-Schreibweise bringen.
+
+    Fuer die Services mit EIGENEM Praedikat, die nicht ueber
+    ``services/_topic_match.py`` laufen. Sie schreiben ihre Trigger-Listen
+    weiterhin mit Umlauten — so liest man sie —, verglichen wird gegen den
+    ebenfalls normalisierten Claim.
+
+    Nicht-Strings gehen unveraendert durch, damit gemischte Tupel heil
+    bleiben (z. B. Paare aus Stichwort und Gewicht).
+    """
+    return tuple(normalisiere(t) if isinstance(t, str) else t for t in terme)

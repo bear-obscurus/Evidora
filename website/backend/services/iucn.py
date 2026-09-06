@@ -62,6 +62,7 @@ from functools import lru_cache
 from urllib.parse import quote
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -294,12 +295,12 @@ _SPECIES_ALIASES: dict[str, str] = {
 # ---------------------------------------------------------------------------
 # Trigger-Terms
 # ---------------------------------------------------------------------------
-_IUCN_PRIMARY = (
+_IUCN_PRIMARY = norm_terme(
     "iucn", "red list", "rote liste der iucn", "rote liste iucn",
     "iucn-status", "iucn status",
 )
 
-_THREAT_TERMS = (
+_THREAT_TERMS = norm_terme(
     "gefährdet", "bedroht", "vom aussterben", "ausgestorben",
     "aussterben", "auszusterben", "stark gefährdet",
     "verschwindet", "verschwinden", "stirbt aus", "sterben aus",
@@ -364,7 +365,7 @@ def _claim_mentions_iucn(claim_lc: str) -> bool:
 @lru_cache(maxsize=512)
 def claim_mentions_iucn_cached(claim: str) -> bool:
     """LRU-gecachter Wrapper für Trigger-Check."""
-    return _claim_mentions_iucn((claim or "").lower())
+    return _claim_mentions_iucn(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -601,7 +602,7 @@ async def search_iucn(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_iucn(matchable):
         return empty

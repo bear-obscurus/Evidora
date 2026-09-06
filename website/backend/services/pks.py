@@ -29,21 +29,8 @@ GUARDRAILS (siehe project_political_guardrails.md):
 import json
 import logging
 import os
-from services._schreibweise import normalisiere
+from services._schreibweise import normalisiere, norm_terme
 
-
-def _norm_terme(*terme: str) -> tuple[str, ...]:
-    """Trigger-Terme einmalig auf die Vergleichs-Schreibweise bringen.
-
-    Die Listen unten stehen bewusst mit Umlauten — so liest man sie. Verglichen
-    wird gegen den ebenfalls normalisierten Claim, damit "Foerderungen in
-    Oesterreich" genauso trifft wie "Förderungen in Österreich". Dieser Service
-    hat ein eigenes Praedikat und laeuft nicht ueber services/_topic_match.py,
-    wo die Normalisierung mit PR #143 eingezogen ist.
-
-    Rand-Leerzeichen bleiben erhalten: `"wien "` ist ein Wortgrenzen-Schutz.
-    """
-    return tuple(normalisiere(t) for t in terme)
 
 
 
@@ -61,7 +48,7 @@ _cache: dict | None = None
 # ---------------------------------------------------------------------------
 # AT-Kontext
 # ---------------------------------------------------------------------------
-_AT_CONTEXT_TERMS = _norm_terme(
+_AT_CONTEXT_TERMS = norm_terme(
     "österreich", "austria", "österreichisch",
     "wien", "vienna",
     "burgenland", "kärnten", "niederösterreich", "oberösterreich",
@@ -82,7 +69,7 @@ def _has_at_context(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 1: General criminality (PKS Hauptbericht)
 # ---------------------------------------------------------------------------
-_CRIM_GENERAL_TERMS = _norm_terme(
+_CRIM_GENERAL_TERMS = norm_terme(
     "tatverdächtige", "tatverdächtigen", "tatverdaechtige",
     "kriminalität", "kriminalitaet", "kriminalstatistik",
     "anzeige", "anzeigen", "straftat", "straftaten",
@@ -135,7 +122,7 @@ def _claim_mentions_crim_general(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic 2: Drug crime (Lagebericht Suchtmittel)
 # ---------------------------------------------------------------------------
-_DRUG_TERMS = _norm_terme(
+_DRUG_TERMS = norm_terme(
     "drogen", "drogen-delikte", "drogendelikt", "drogendelikte",
     "drogenkriminalität", "drogenkriminalitaet",
     "suchtmittel", "suchtgift", "smg",

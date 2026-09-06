@@ -68,6 +68,7 @@ import logging
 import time
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -286,7 +287,7 @@ _DOMAINS: dict[str, dict] = {
 # Trigger-Terme
 # ---------------------------------------------------------------------------
 # Hard-Trigger: Verkehrssicherheits-Kern (immer aktivieren)
-_SAFETY_HARD_TERMS = (
+_SAFETY_HARD_TERMS = norm_terme(
     "verkehrstote", "verkehrstoten", "verkehrstoter",
     "road deaths", "road fatalities", "road fatality",
     "verkehrssicherheit", "road safety",
@@ -313,7 +314,7 @@ _SAFETY_HARD_TERMS = (
 )
 
 # Soft-Trigger: Mobilität / Verkehr (nur in Kombination mit Land oder Jahr)
-_MOBILITY_SOFT_TERMS = (
+_MOBILITY_SOFT_TERMS = norm_terme(
     "mobilität", "mobilitaet", "mobility",
     "verkehrsleistung", "passenger transport", "freight transport",
     "personenkilometer", "tonnenkilometer",
@@ -326,7 +327,7 @@ _MOBILITY_SOFT_TERMS = (
 )
 
 # Verkehrs-Schlüsselbegriffe (allgemein, für Composite-Trigger)
-_TRANSPORT_KEYWORDS = (
+_TRANSPORT_KEYWORDS = norm_terme(
     "verkehr", "transport", "traffic", "straßenverkehr", "strassenverkehr",
     "straße", "strasse", "road",
     "auto", "pkw", "kraftfahrzeug", "motorrad",
@@ -335,7 +336,7 @@ _TRANSPORT_KEYWORDS = (
 
 # Anti-Trigger: Begriffe, die zwar "verkehr" enthalten, aber NICHT
 # Verkehrsstatistik sind (Zahlungsverkehr, Datenverkehr, ...)
-_ANTI_TRIGGERS = (
+_ANTI_TRIGGERS = norm_terme(
     "zahlungsverkehr", "geldverkehr", "datenverkehr",
     "internet-verkehr", "internetverkehr", "internet traffic",
     "netzwerkverkehr", "network traffic",
@@ -412,7 +413,7 @@ _trigger_cache: dict[str, tuple[float, bool]] = {}
 
 def claim_mentions_itf_transport_cached(claim: str) -> bool:
     """24h-Cache-Wrapper für den ITF-Transport-Trigger-Check."""
-    claim_lc = (claim or "").lower().strip()
+    claim_lc = normalisiere(claim or "")
     if not claim_lc:
         return False
     now = time.time()
@@ -899,7 +900,7 @@ async def search_itf_transport(analysis: dict) -> dict:
         claim = str(claim or "")
     if not isinstance(original, str):
         original = str(original or "")
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_itf_transport(matchable):
         return empty

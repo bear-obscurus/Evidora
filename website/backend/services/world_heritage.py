@@ -71,6 +71,7 @@ from functools import lru_cache
 from html.parser import HTMLParser
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -96,7 +97,7 @@ _SITES_CACHE: dict[str, object] = {
 # Trigger
 # ---------------------------------------------------------------------------
 # Generische Welterbe-Trigger (DE/EN)
-_GENERIC_HERITAGE_TERMS = (
+_GENERIC_HERITAGE_TERMS = norm_terme(
     "welterbe",
     "welt-erbe",
     "welterbeliste",
@@ -239,7 +240,7 @@ def _claim_mentions_world_heritage(claim_lc: str) -> bool:
 @lru_cache(maxsize=2048)
 def claim_mentions_world_heritage_cached(claim: str) -> bool:
     """LRU-gecachter Trigger-Check (Hot-Path-friendly)."""
-    return _claim_mentions_world_heritage((claim or "").lower())
+    return _claim_mentions_world_heritage(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -608,7 +609,7 @@ async def search_world_heritage(analysis: dict) -> dict:
     if not isinstance(original, str):
         original = str(original or "")
 
-    matchable = f"{original} {claim}".lower().strip()
+    matchable = normalisiere(f"{original} {claim}")
     if not _claim_mentions_world_heritage(matchable):
         return empty
 

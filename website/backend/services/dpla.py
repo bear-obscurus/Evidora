@@ -49,6 +49,7 @@ import time
 from functools import lru_cache
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -66,14 +67,14 @@ _CACHE_TTL_S = 24 * 3600.0  # 24 h
 # Trigger
 # ---------------------------------------------------------------------------
 # Explizite Quelle-Mentions
-_EXPLICIT_TERMS = (
+_EXPLICIT_TERMS = norm_terme(
     "dpla",
     "digital public library",
     "digital public library of america",
 )
 
 # US-Institutionen direkt im DPLA-Pool
-_US_INSTITUTIONS = (
+_US_INSTITUTIONS = norm_terme(
     "library of congress", "loc archive", "loc collection",
     "smithsonian",
     "hathitrust", "hathi trust",
@@ -96,7 +97,7 @@ _US_INSTITUTIONS = (
 )
 
 # US-Historische Ereignisse / Personen mit hoher DPLA-Trefferchance
-_US_HISTORY_TERMS = (
+_US_HISTORY_TERMS = norm_terme(
     # Buergerkrieg / Civil War
     "civil war", "us civil war", "american civil war",
     "us-buergerkrieg", "us-bürgerkrieg", "us buergerkrieg", "us bürgerkrieg",
@@ -142,7 +143,7 @@ _US_HISTORY_TERMS = (
 )
 
 # Generische Werk-/Objekt-Trigger (nur in Kombination mit US-Kontext)
-_WORK_OBJECT_TRIGGERS = (
+_WORK_OBJECT_TRIGGERS = norm_terme(
     "manuskript", "manuscript", "handschrift",
     "fotografie", "foto", "photograph", "photo",
     "tonaufnahme", "audio recording", "oral history",
@@ -198,7 +199,7 @@ def _claim_mentions_dpla(claim_lc: str) -> bool:
 @lru_cache(maxsize=2048)
 def claim_mentions_dpla_cached(claim: str) -> bool:
     """LRU-gecachter Trigger-Check (Hot-Path-friendly)."""
-    return _claim_mentions_dpla((claim or "").lower())
+    return _claim_mentions_dpla(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -398,7 +399,7 @@ async def search_dpla(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_dpla(matchable):
         return empty

@@ -51,6 +51,7 @@ import time
 from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -71,7 +72,7 @@ _TRIGGER_CACHE: dict[str, bool] = {}
 # Trigger
 # ---------------------------------------------------------------------------
 # Direkte Buch-/OA-Begriffe — Match-on-substring.
-_DOAB_TERMS = (
+_DOAB_TERMS = norm_terme(
     "doab", "oapen", "openedition",
     # Buch-Begriffe DE
     "open-access-buch", "open access buch", "oa-buch", "oa buch",
@@ -102,7 +103,7 @@ _DOAB_TERMS = (
 _DOI_RE = re.compile(r"\b10\.\d{4,9}/[-._;()/:A-Z0-9]+\b", re.IGNORECASE)
 
 # Geistes-/Sozialwiss-Kontext fuer Cross-Cluster-Erkennung.
-_HUMSOC_CONTEXT = (
+_HUMSOC_CONTEXT = norm_terme(
     "geschichte", "historisch", "history", "historical",
     "philosophie", "philosophy", "philosophisch",
     "soziologie", "sociology", "soziologisch",
@@ -118,7 +119,7 @@ _HUMSOC_CONTEXT = (
 )
 
 # "Studie/Forschung/Werk" + Geistes-Kontext → DOAB triggern.
-_RESEARCH_NOUNS = (
+_RESEARCH_NOUNS = norm_terme(
     "buch", "buecher", "bücher", "werk", "werke",
     "book", "books", "volume",
 )
@@ -145,7 +146,7 @@ def claim_mentions_doab_cached(claim: str) -> bool:
     """Cached Wrapper — Trigger-Resolve cached pro Claim-String."""
     if not claim:
         return False
-    key = claim.lower()
+    key = normalisiere(claim)
     cached = _TRIGGER_CACHE.get(key)
     if cached is not None:
         return cached
@@ -318,7 +319,7 @@ def _build_doab_queries(claim: str, analysis: dict | None = None) -> list[str]:
     if not claim:
         return queries
 
-    text = claim.lower()
+    text = normalisiere(claim)
 
     # 2. DOI-Direkt-Resolution: wenn ein DOI im Claim ist, daraus die Query bauen.
     doi_match = _DOI_RE.search(text)
@@ -641,7 +642,7 @@ async def search_doab(analysis: dict) -> dict:
     if not isinstance(original, str):
         original = str(original or "")
 
-    matchable = f"{original} {claim}".lower().strip()
+    matchable = normalisiere(f"{original} {claim}")
     if not _claim_mentions_doab(matchable):
         return empty
 

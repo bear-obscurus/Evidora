@@ -42,6 +42,7 @@ import time
 from urllib.parse import quote
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -171,12 +172,12 @@ _CHAIN_NAMES: dict[str, str] = {
 }
 
 # Direkt-Trigger
-_DIRECT_TERMS = (
+_DIRECT_TERMS = norm_terme(
     "defillama", "defi llama", "defi-llama",
 )
 
 # DeFi-Generelle-Terms (Composite-Part)
-_DEFI_TERMS = (
+_DEFI_TERMS = norm_terme(
     "tvl", "total value locked",
     "defi", "decentralized finance",
     "dezentrale finanzen", "dezentralen finanzen",
@@ -189,7 +190,7 @@ _DEFI_TERMS = (
 
 # EXCLUSION-Terms: NICHT triggern bei reinen Bitcoin-Preis-Claims
 # (BTC ist nicht DeFi-spezifisch — andere Crypto-Service-Domain)
-_BITCOIN_ONLY_TERMS = (
+_BITCOIN_ONLY_TERMS = norm_terme(
     "bitcoin-preis", "btc-preis", "bitcoin preis", "btc preis",
     "bitcoin kurs", "btc kurs", "bitcoin-kurs", "btc-kurs",
     "bitcoin halving", "btc halving",
@@ -267,7 +268,7 @@ _trigger_cache: dict[str, tuple[float, bool]] = {}
 
 def claim_mentions_defillama_cached(claim: str) -> bool:
     """24h-Cache-Wrapper für den Trigger-Check."""
-    claim_lc = (claim or "").lower().strip()
+    claim_lc = normalisiere(claim or "")
     if not claim_lc:
         return False
     now = time.time()
@@ -604,7 +605,7 @@ async def search_defillama(analysis: dict) -> dict:
     analysis = analysis or {}
     claim = analysis.get("claim") or analysis.get("original_claim") or ""
     original = analysis.get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_defillama(matchable):
         return empty

@@ -52,6 +52,7 @@ import time
 from functools import lru_cache
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -69,7 +70,7 @@ _CACHE_TTL_S = 24 * 3600.0  # 24 h
 # Trigger
 # ---------------------------------------------------------------------------
 # Explizite Quelle-Mentions
-_EXPLICIT_TERMS = (
+_EXPLICIT_TERMS = norm_terme(
     "europeana",
     "digitalisat", "digitalisate",
     "digital heritage", "digitales kulturerbe", "digitales erbe",
@@ -77,7 +78,7 @@ _EXPLICIT_TERMS = (
 )
 
 # AT-Institutionen direkt im Europeana-Pool
-_AT_INSTITUTIONS = (
+_AT_INSTITUTIONS = norm_terme(
     "önb", "oenb",
     "österreichische nationalbibliothek", "oesterreichische nationalbibliothek",
     "khm",
@@ -92,7 +93,7 @@ _AT_INSTITUTIONS = (
 )
 
 # AT-Künstler (komplementär zu Wikidata-Personen-Triples)
-_AT_ARTISTS = (
+_AT_ARTISTS = norm_terme(
     "klimt", "gustav klimt",
     "schiele", "egon schiele",
     "kokoschka", "oskar kokoschka",
@@ -113,7 +114,7 @@ _AT_ARTISTS = (
 )
 
 # Generische Werk-/Objekt-Trigger (nur in Kombination mit Entity-Hint)
-_WORK_OBJECT_TRIGGERS = (
+_WORK_OBJECT_TRIGGERS = norm_terme(
     "gemälde", "ölgemälde", "gemalt",  # 2026-05-23: Verb-Form "gemalt"
     "kunstwerk", "kunstwerke", "artwork",
     "skulptur",
@@ -165,7 +166,7 @@ def _claim_mentions_europeana(claim_lc: str) -> bool:
 @lru_cache(maxsize=2048)
 def claim_mentions_europeana_cached(claim: str) -> bool:
     """LRU-gecachter Trigger-Check (Hot-Path-friendly)."""
-    return _claim_mentions_europeana((claim or "").lower())
+    return _claim_mentions_europeana(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -327,7 +328,7 @@ async def search_europeana(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_europeana(matchable):
         return empty

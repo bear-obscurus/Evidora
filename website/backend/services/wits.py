@@ -65,6 +65,7 @@ import time
 import httpx
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -148,7 +149,7 @@ WITS_INDICATORS: dict[str, dict] = {
 
 # Generelle WITS/Trade-Tariff-Trigger — wenn keine konkrete Indicator-Kw
 # matched, geben wir MFN + AHS Simple zurück (beide Kern-Indikatoren).
-_GENERAL_TRIGGERS = (
+_GENERAL_TRIGGERS = norm_terme(
     "wits", "world integrated trade solution",
     "zolltarif", "zolltarife", "zoll-tarif",
     "import-zoll", "importzoll", "importzölle", "importzoelle",
@@ -271,7 +272,7 @@ PARTNER_WORLD = "wld"
 PRODUCT_ALL = "all"
 
 # Default-Indicators wenn nur Allgemein-Trigger: MFN + AHS Simple-Avg
-_DEFAULT_INDICATORS = ("MFN-SMPL-AVRG", "AHS-SMPL-AVRG")
+_DEFAULT_INDICATORS = norm_terme("MFN-SMPL-AVRG", "AHS-SMPL-AVRG")
 
 # Default-Land falls Claim einen WITS-Term erwähnt aber kein Land
 _DEFAULT_COUNTRY = "AUT"
@@ -294,7 +295,7 @@ def _claim_mentions_wits(claim_lc: str) -> bool:
 
 def claim_mentions_wits_cached(claim: str) -> bool:
     """Public-API: lowercase + Trigger-Test."""
-    return _claim_mentions_wits((claim or "").lower())
+    return _claim_mentions_wits(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -474,7 +475,7 @@ async def search_wits(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_wits(matchable):
         return empty

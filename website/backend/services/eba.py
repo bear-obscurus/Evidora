@@ -73,6 +73,7 @@ import time
 from functools import lru_cache
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -123,7 +124,7 @@ _EU_AGGREGATE_RELEASE_DATE = _LATEST_RELEASE_DATE
 
 # Indikator-Reihenfolge (für stabile Iteration; die Werte je Quartal in
 # _QUARTERLY_AGGREGATES nutzen die selben Keys).
-_INDICATOR_ORDER = ("cet1", "npl", "lcr", "roe", "leverage", "cir")
+_INDICATOR_ORDER = norm_terme("cet1", "npl", "lcr", "roe", "leverage", "cir")
 
 # Indikator-Metadaten (Label/Interpretation/Unit — quartalsunabhängig)
 _INDICATOR_META: dict[str, dict] = {
@@ -368,7 +369,7 @@ _COUNTRY_HINTS: dict[str, tuple[str, str]] = {
 # Trigger-Terme
 # ---------------------------------------------------------------------------
 # Direkt-Trigger: Claim erwähnt EBA namentlich
-_DIRECT_TERMS = (
+_DIRECT_TERMS = norm_terme(
     "eba ", " eba ", "eba-",
     "european banking authority",
     "europäische bankenaufsicht",
@@ -380,7 +381,7 @@ _DIRECT_TERMS = (
 )
 
 # Themen-Trigger: EBA-spezifische Indikator-Begriffe
-_TOPIC_TERMS = (
+_TOPIC_TERMS = norm_terme(
     "cet1-ratio", "cet1 ratio", "cet1-quote", "cet1 quote",
     "cet 1 ratio", "common equity tier 1",
     "cet1",                    # standalone — aufsichtsrechtl. Fachbegriff
@@ -406,12 +407,12 @@ _TOPIC_TERMS = (
 )
 
 # Composite-Trigger: Banken + EU-Bezug
-_COMPOSITE_BANK_TERMS = (
+_COMPOSITE_BANK_TERMS = norm_terme(
     "bank", "banken", "banking",
     "bankensektor", "bankenaufsicht",
     "kreditinstitut", "kreditinstitute",
 )
-_COMPOSITE_EU_TERMS = (
+_COMPOSITE_EU_TERMS = norm_terme(
     "eu", "eu-", "europäische union", "europaeische union",
     "european union", "eu/eea", "eea",
     "europäisch", "europaeisch", "european",
@@ -446,7 +447,7 @@ _INDICATOR_HINTS: dict[str, str] = {
 _WORD_RE = re.compile(r"\beba\b", re.IGNORECASE)
 
 # Capital-Ratio / Banken-Kennzahl-Tokens (für Composite-Trigger)
-_CAPITAL_RATIO_TOKENS = (
+_CAPITAL_RATIO_TOKENS = norm_terme(
     "cet1", "cet 1", "common equity tier 1",
     "tier 1 ratio", "tier 1 kapital", "tier 1-kapital",
     "tier 2",
@@ -465,7 +466,7 @@ _YEAR_RE = re.compile(r"\b(19|20)\d{2}\b")
 _QUARTER_YEAR_RE = re.compile(r"\b(q[1-4])[\s\-/]*((?:19|20)\d{2})\b", re.IGNORECASE)
 
 # EU-Banken-Subjekt-Pattern (Composite: Banken + Europa/EU)
-_EU_BANK_SUBJECT_TOKENS = (
+_EU_BANK_SUBJECT_TOKENS = norm_terme(
     "eu-banken", "eu banken",
     "europäische banken", "europaeische banken",
     "eu banks", "european banks",
@@ -549,7 +550,7 @@ _trigger_cache: dict[str, tuple[float, bool]] = {}
 
 def claim_mentions_eba_cached(claim: str) -> bool:
     """24h-Cache-Wrapper für den EBA-Trigger-Check."""
-    claim_lc = (claim or "").lower().strip()
+    claim_lc = normalisiere(claim or "")
     if not claim_lc:
         return False
     now = time.time()
@@ -869,7 +870,7 @@ async def search_eba(analysis: dict) -> dict:
         claim = str(claim or "")
     if not isinstance(original, str):
         original = str(original or "")
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_eba(matchable):
         return empty

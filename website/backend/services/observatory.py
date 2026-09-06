@@ -37,6 +37,7 @@ import re
 import time
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -94,7 +95,7 @@ _DOMAIN_STOP_PATTERNS = (
     re.compile(r"^v\d+\.\d+", re.IGNORECASE),  # v1.2
 )
 
-_SECURITY_HEADER_TERMS = (
+_SECURITY_HEADER_TERMS = norm_terme(
     "security-header", "security header", "security-headers", "security headers",
     "sicherheits-header", "sicherheits header", "sicherheitsheader",
     "csp", "content-security-policy", "content security policy",
@@ -107,13 +108,13 @@ _SECURITY_HEADER_TERMS = (
     "subresource-integrity", "sri-hash",
 )
 
-_OBSERVATORY_TERMS = (
+_OBSERVATORY_TERMS = norm_terme(
     "mozilla observatory", "http observatory",
     "mozilla-observatory", "http-observatory",
     "observatory.mozilla", "observatory mdn",
 )
 
-_SECURITY_GENERIC_TERMS = (
+_SECURITY_GENERIC_TERMS = norm_terme(
     "sicherheitsbewertung", "sicherheits-bewertung",
     "sicherheits-grade", "security-grade", "security grade",
     "sicherheits-rating", "security rating",
@@ -223,7 +224,7 @@ def _claim_mentions_observatory(claim_lc: str) -> bool:
 
 def claim_mentions_observatory_cached(claim: str) -> bool:
     """Wrapper für Trigger-Check — case-normalisiert."""
-    return _claim_mentions_observatory((claim or "").lower())
+    return _claim_mentions_observatory(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------

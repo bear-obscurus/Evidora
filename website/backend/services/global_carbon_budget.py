@@ -63,6 +63,7 @@ import time
 from functools import lru_cache
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -82,7 +83,7 @@ _repo_cache: dict[str, tuple[float, dict | None]] = {}
 # ---------------------------------------------------------------------------
 # Trigger — wann soll dieser Service angefragt werden?
 # ---------------------------------------------------------------------------
-_GCB_TERMS = (
+_GCB_TERMS = norm_terme(
     # Direkter Name
     "global carbon budget", "globales co2-budget", "globales co2 budget",
     "carbon budget", "co2-budget",
@@ -115,7 +116,7 @@ _GCB_TERMS = (
 )
 
 # Composite-Trigger: GtCO2-Mengenangaben oder Anteilsfragen
-_QUANTITY_TOKENS = (
+_QUANTITY_TOKENS = norm_terme(
     "gtco2", "gt co2", "gigatonne co2", "gigatonnen co2",
     "milliarden tonnen co2", "mrd tonnen co2",
     "ppm co2", "co2 ppm",
@@ -149,7 +150,7 @@ def _claim_mentions_gcb(claim_lc: str) -> bool:
 @lru_cache(maxsize=512)
 def claim_mentions_gcb_cached(claim: str) -> bool:
     """Public-Wrapper für Trigger-Check (case-normalisiert, LRU-gecached)."""
-    return _claim_mentions_gcb((claim or "").lower())
+    return _claim_mentions_gcb(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------

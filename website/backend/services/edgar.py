@@ -91,6 +91,7 @@ import time
 from typing import Any
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -112,7 +113,7 @@ _head_cache: dict[str, Any] = {"ok": None, "ts": 0.0}
 # ---------------------------------------------------------------------------
 # Trigger
 # ---------------------------------------------------------------------------
-_EDGAR_PRIMARY = (
+_EDGAR_PRIMARY = norm_terme(
     "edgar",
     "jrc emissionen", "jrc-emissionen",
     "joint research centre",
@@ -124,7 +125,7 @@ _EDGAR_PRIMARY = (
 
 # Sektor-Trigger (DE+EN). Werden mit Länder- oder Emissions-Marker
 # kombiniert (composite).
-_SECTOR_TERMS = (
+_SECTOR_TERMS = norm_terme(
     "sektor",
     "power industry", "energiesektor", "kraftwerk",
     "industrie", "industrial combustion",
@@ -135,7 +136,7 @@ _SECTOR_TERMS = (
 )
 
 # Emissions-/THG-Marker
-_THG_TERMS = (
+_THG_TERMS = norm_terme(
     "co2", "co₂", "kohlendioxid", "carbon dioxide",
     "treibhausgas", "treibhausgase", "thg", "ghg",
     "klimagas", "klimagase",
@@ -146,7 +147,7 @@ _THG_TERMS = (
 )
 
 # Länder-Trigger (klein, aber breit genug für die Hauptvergleiche).
-_COUNTRY_TERMS = (
+_COUNTRY_TERMS = norm_terme(
     "österreich", "austria",
     "deutschland", "germany",
     "eu-27", "eu 27", "europäische union", "european union",
@@ -159,7 +160,7 @@ _COUNTRY_TERMS = (
 )
 
 # Vergleichs-Marker für Cross-Country-Claims
-_COMPARE_TERMS = (
+_COMPARE_TERMS = norm_terme(
     "vergleich", "vs", "vs.", "versus",
     "größter emittent", "groesster emittent", "top emittent",
     "pro kopf", "per capita",
@@ -218,7 +219,7 @@ def _claim_mentions_edgar(claim_lc: str) -> bool:
 
 def claim_mentions_edgar_cached(claim: str) -> bool:
     """Public-Trigger für main.py — nimmt rohen Claim, lowercased intern."""
-    return _claim_mentions_edgar((claim or "").lower())
+    return _claim_mentions_edgar(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -667,7 +668,7 @@ async def search_edgar(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_edgar(matchable):
         return empty

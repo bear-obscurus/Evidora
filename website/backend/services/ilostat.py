@@ -47,6 +47,7 @@ import time
 from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -64,7 +65,7 @@ DEFAULT_DATA_URL = "https://ilostat.ilo.org/data/"
 # ---------------------------------------------------------------------------
 # Trigger-Begriffe
 # ---------------------------------------------------------------------------
-_DIRECT_TERMS = (
+_DIRECT_TERMS = norm_terme(
     "ilostat", "ilo-stat", "ilo stat",
     "internationale arbeitsorganisation",
     "international labour organization",
@@ -75,7 +76,7 @@ _DIRECT_TERMS = (
 )
 
 # Arbeit-Indikator-Begriffe (DE/EN) — Composite-Trigger-Teil 1
-_LABOR_INDICATOR_TERMS = (
+_LABOR_INDICATOR_TERMS = norm_terme(
     "arbeitslosigkeit", "arbeitslosenquote", "arbeitslosenrate",
     "unemployment", "unemployment rate",
     "jugendarbeitslosigkeit", "youth unemployment",
@@ -99,7 +100,7 @@ _LABOR_INDICATOR_TERMS = (
 )
 
 # Welt-Kontext — nur dann ILO triggern, wenn international gemeint ist
-_GLOBAL_CONTEXT_TERMS = (
+_GLOBAL_CONTEXT_TERMS = norm_terme(
     "weltweit", "global", "international", "world",
     "globaler süden", "globaler sueden", "global south",
     "entwicklungsländer", "entwicklungslaender", "developing countries",
@@ -118,7 +119,7 @@ _GLOBAL_CONTEXT_TERMS = (
     "vereinte nationen", "uno", "un agency",
 )
 
-_DACH_TERMS = (
+_DACH_TERMS = norm_terme(
     "österreich", "oesterreich", "austria",
     "deutschland", "germany", "schweiz", "switzerland",
 )
@@ -248,7 +249,7 @@ _trigger_cache: dict[str, tuple[float, bool]] = {}
 
 def claim_mentions_ilostat_cached(claim: str) -> bool:
     """24h-Cache-Wrapper für den Trigger-Check."""
-    claim_lc = (claim or "").lower().strip()
+    claim_lc = normalisiere(claim or "")
     if not claim_lc:
         return False
     now = time.time()
@@ -538,7 +539,7 @@ async def search_ilostat(analysis: dict) -> dict:
     analysis = analysis or {}
     claim = analysis.get("claim") or analysis.get("original_claim") or ""
     original = analysis.get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_ilostat(matchable):
         return empty

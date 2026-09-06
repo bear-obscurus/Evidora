@@ -42,6 +42,7 @@ import logging
 import time
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -349,13 +350,13 @@ def _build_piaac_static_results(target_iso: list[str], dom_info: dict,
     return out
 
 # Allgemeine OECD-SDMX-Trigger (zusätzlich, falls Domain unklar)
-_GENERIC_OECD_TERMS = (
+_GENERIC_OECD_TERMS = norm_terme(
     "oecd-studie", "oecd studie", "oecd-daten", "oecd daten",
     "oecd-bericht", "oecd bericht",
 )
 
 # Hard-Skip-Terme — Anti-Trigger für Health / Wirtschaft (gehört zu oecd.py)
-_HEALTH_ECON_SKIP_TERMS = (
+_HEALTH_ECON_SKIP_TERMS = norm_terme(
     "lebenserwartung", "sterblichkeit", "mortality",
     "spitalsbett", "krankenhaus", "hospital bed",
     "gesundheitsausgaben", "health expenditure",
@@ -366,7 +367,7 @@ _HEALTH_ECON_SKIP_TERMS = (
 )
 
 # Hard-Skip-Terme — DACH-Bildung ohne OECD-Bezug
-_DACH_EDU_SKIP_TERMS = (
+_DACH_EDU_SKIP_TERMS = norm_terme(
     "ahs",  # österr. spezifisch
     "nms ",  # österr. spezifisch
     "matura",  # österr. spezifisch
@@ -436,7 +437,7 @@ _trigger_cache: dict[str, tuple[float, bool]] = {}
 
 def claim_mentions_oecd_sdmx_cached(claim: str) -> bool:
     """24h-Cache-Wrapper für den Trigger-Check."""
-    claim_lc = (claim or "").lower().strip()
+    claim_lc = normalisiere(claim or "")
     if not claim_lc:
         return False
     now = time.time()
@@ -815,7 +816,7 @@ async def search_oecd_sdmx(analysis: dict) -> dict:
     analysis = analysis or {}
     claim = analysis.get("claim") or analysis.get("original_claim") or ""
     original = analysis.get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_oecd_sdmx(matchable):
         return empty

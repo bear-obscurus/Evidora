@@ -40,6 +40,7 @@ import time
 from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -66,7 +67,7 @@ _TRIGGER_CACHE: dict[str, bool] = {}
 # Trigger
 # ---------------------------------------------------------------------------
 # Direkte Bildungs-Begriffe (DE) — Match-on-substring.
-_ERIC_TERMS = (
+_ERIC_TERMS = norm_terme(
     "eric ", " eric", "eric-datenbank", "eric datenbank",
     "bildungsstudie", "bildungsstudien",
     "bildungsforschung", "bildungs-forschung",
@@ -115,7 +116,7 @@ _METHOD_EFFECT_RE = re.compile(
 )
 
 # Peer-Review-Trigger: bei diesen Indikatoren forcieren wir peerreviewed=1.
-_PEER_REVIEW_TRIGGERS = (
+_PEER_REVIEW_TRIGGERS = norm_terme(
     "wissenschaftliche studie",
     "wissenschaftliche untersuchung",
     "peer-reviewed", "peer reviewed",
@@ -154,7 +155,7 @@ def claim_mentions_eric_cached(claim: str) -> bool:
     """Cached Wrapper — Trigger-Resolve cached pro Claim-String."""
     if not claim:
         return False
-    key = claim.lower()
+    key = normalisiere(claim)
     cached = _TRIGGER_CACHE.get(key)
     if cached is not None:
         return cached
@@ -267,7 +268,7 @@ def _build_eric_query(claim: str, analysis: dict | None = None) -> str:
     if not claim:
         return ""
 
-    text = claim.lower()
+    text = normalisiere(claim)
 
     # DE→EN-Substitution VOR Tokenisierung (Multi-Word-Maps).
     for de, en in _DE_EN_MAP.items():
@@ -506,7 +507,7 @@ async def search_eric(analysis: dict) -> dict:
     if not isinstance(original, str):
         original = str(original or "")
 
-    matchable = f"{original} {claim}".lower().strip()
+    matchable = normalisiere(f"{original} {claim}")
     if not _claim_mentions_eric(matchable):
         return empty
 

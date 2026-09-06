@@ -64,6 +64,7 @@ import time
 import httpx
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -134,7 +135,7 @@ LOCATION_ALIASES: dict[str, str] = {
 # Trigger-Logik
 # ---------------------------------------------------------------------------
 # SPARTACUS-spezifische Direkt-Trigger
-_SPARTACUS_DIRECT_TERMS = (
+_SPARTACUS_DIRECT_TERMS = norm_terme(
     "spartacus",
     "1km-klima-grid", "1km klima grid", "1-km-klima-grid",
     "klima-gitter", "klimagitter", "klimagrid",
@@ -144,7 +145,7 @@ _SPARTACUS_DIRECT_TERMS = (
 
 # Klima-Schlagworte (DE/EN). Stamm-Formen wo möglich, damit
 # Beugung/Komposita matchen.
-_CLIMATE_TERMS = (
+_CLIMATE_TERMS = norm_terme(
     "klima", "klimawandel", "klimakrise", "climate", "climate change",
     "global warming", "temperatur", "temperature",
     "erwärm",  # erwärmt, erwärmung, klimaerwärmung
@@ -159,7 +160,7 @@ _CLIMATE_TERMS = (
 )
 
 # AT-Kontext-Marker (Land-Begriff oder bekannte AT-Region/Stadt)
-_AT_CONTEXT_TERMS = (
+_AT_CONTEXT_TERMS = norm_terme(
     "österreich", "austria", "alpenraum", "ostalpen", "südösterreich",
     "westösterreich", "ostösterreich", "österr.",
 )
@@ -196,7 +197,7 @@ def _claim_mentions_spartacus(claim_lc: str) -> bool:
 
 def claim_mentions_spartacus_cached(claim: str) -> bool:
     """Cache-freundlicher Trigger (analog claim_mentions_oenb_cached)."""
-    return _claim_mentions_spartacus((claim or "").lower())
+    return _claim_mentions_spartacus(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -433,7 +434,7 @@ async def search_spartacus(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_spartacus(matchable):
         return empty
