@@ -53,7 +53,7 @@
       "trigger_composite": [
         ["ams", "arbeitslos", "arbeits-los", "arbeitslosenquote", "arbeitslosen-quote", "arbeitslosenrate", "arbeitslosen-rate", "arbeitslosigkeit", "registrierte arbeitslose"],
         ["österreich", "oesterreich", "at ", " at,", " at.", "at-", "nationale berechnung", "ams-methodik", "ams methodik", "ams"],
-        ["2024", "2023", "jahresdurchschnitt", "quote", "rate", "anzahl", "bestand", "wie hoch", "wie viele", "prozent", "%", "7 prozent", "6 prozent", "7,0", "6,4", "7,5"]
+        ["2024", "2023", "2025", "2026", "2027", "jahresdurchschnitt", "quote", "rate", "anzahl", "bestand", "wie hoch", "wie viele", "prozent", "%", "7 prozent", "6 prozent", "7,0", "6,4", "7,5", "sinkt", "steigt", "gesunken", "gestiegen", "rückgang", "anstieg", "zurück", "höher", "niedriger", "rekord", "schlimmer", "besser"]
       ]
     },
     {
@@ -149,6 +149,14 @@
         "verschiedene arbeitslosenzahlen",
         "welche arbeitslosenquote stimmt",
         "ams quote echt", "ams quote real"
+      ],
+      "trigger_all": [
+        [
+          ["arbeitslos", "arbeitslosenquote", "arbeitslosenrate", "arbeitslosigkeit"],
+          ["österreich", "oesterreich", "at-", "ams"],
+          ["sinkt", "steigt", "gesunken", "gestiegen", "rückgang", "anstieg",
+           "zurück", "höher", "niedriger", "wie hoch", "wie viele", "quote", "rate"]
+        ]
       ],
       "trigger_composite": [
         ["ams", "ams-quote", "ams quote", "arbeitslosenquote", "arbeitslosen-quote", "registrierte arbeitslose", "schulungsteilnehmer", "schulung"],
