@@ -88,6 +88,7 @@ import logging
 import os
 import re
 
+from services._schreibweise import normalisiere, norm_terme
 from services._static_cache import load_json_mtime_aware
 
 logger = logging.getLogger("evidora")
@@ -103,23 +104,27 @@ _DEFAULT_COUNTRIES_FOR_DACH_CLAIMS = ("AUT", "DEU", "CHE")
 
 # Trigger-Keywords (DE + EN). Bei Match + Land → Treffer.
 # Bei Match ohne Land → DACH-Default.
-_FH_KEYWORDS = (
-    "freedom house", "freedom-house", "fiw",
+# Die ASCII-Zwillinge („buergerrechte" neben „bürgerrechte") sind hier
+# entfallen: norm_terme faltet beide auf dieselbe Form. Zusammengeschriebene
+# Varianten („demokratieranking") bleiben — die entstehen nicht durch
+# Normalisierung, sondern sind eine eigene Schreibweise.
+_FH_KEYWORDS = norm_terme(
+    "freedom house", "fiw",
     "freedom in the world",
-    "freedom-of-press", "freedom of press",
+    "freedom of press",
     "pressefreiheit", "presse freiheit",
     "political rights", "politische rechte",
-    "bürgerrechte", "buergerrechte", "civil liberties",
+    "bürgerrechte", "civil liberties",
     "freie wahlen", "free elections",
     "demokratie-ranking", "demokratieranking",
     "demokratie-status", "demokratiestatus", "democracy status",
-    "freie länder", "freie laender", "free countries",
-    "unfreie länder", "unfreie laender", "not free countries",
+    "freie länder", "free countries",
+    "unfreie länder", "not free countries",
     "partly free", "teilweise frei",
     "freiheitsindex", "freedom index",
     "country freedom rating", "länder-freiheits-rating",
     "demokratie-niveau", "demokratieniveau",
-    "autoritäres regime", "autoritaeres regime", "authoritarian regime",
+    "autoritäres regime", "authoritarian regime",
 )
 
 # Reference-Länder für display_value Multi-Country-Comparison.
@@ -177,7 +182,7 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
     found: list[str] = []
     for iso3, alias_list in aliases.items():
         for alias in alias_list:
-            if alias.lower() in claim_lc:
+            if normalisiere(alias) in claim_lc:
                 found.append(iso3)
                 break  # nur einmal pro Land
     return found
@@ -198,13 +203,19 @@ def claim_mentions_freedom_house_cached(claim: str) -> bool:
     if not claim:
         return False
     # Politik-Tabu-Guard 2.0: FH misst Länder-Freedom, nicht Parteien.
+    # Bewusst `claim.lower()` und NICHT `normalisiere(claim)`: die Token-Liste
+    # in _topic_match ist unnormalisiert und enthält Bindestrich-Namen
+    # („meinl-reisinger"). Ein gefalteter Claim macht daraus „meinl reisinger",
+    # der Guard greift nicht mehr — und Länder-Quellen feuern auf eine
+    # Partei-Korruptions-Aussage. Festgenagelt in
+    # tests/test_freedom_house_regime_klassifikation.py.
     from services._topic_match import is_party_corruption_superlative_claim
     if is_party_corruption_superlative_claim(claim.lower()):
         return False
     data = _load_data()
     if not data:
         return False
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
 
     if not _has_fh_keyword(claim_lc):
         return False
@@ -374,12 +385,48 @@ def _ganze_saetze(text: str, budget: int) -> str:
     return "".join(behalten).strip()
 
 
+# Claims, die aus einem Freiheits-Rating eine STAATSFORM ableiten wollen.
+# Bewusst eng: nur Begriffe, die eine Regime-Klassifikation behaupten.
+_REGIME_BEGRIFFE = norm_terme(
+    "demokratie", "demokratisch", "diktatur", "diktatorisch",
+    "autokratie", "autokratisch", "autoritär",
+    "regime", "staatsform", "unfreies land", "unfreier staat",
+)
+
+
+def _klassifikations_warnung(claim_lc: str) -> str:
+    """Bei Regime-Claims: was FIW misst — und was nicht.
+
+    Aus der QA-Batterie vom 2026-09-06. „Ungarn ist laut Freedom House keine
+    Demokratie mehr" bekam true@0.9, begründet mit „Partly Free, nicht als
+    Demokratie eingestuft". Der Freedom-House-Text selbst sagt das nirgends:
+    er liefert 65/100 (Partly Free) und die Methodik-Schwellen. Der Sprung
+    vom FREIHEITS-Rating auf eine STAATSFORM kam vom Synthesizer.
+
+    Das berührt Guardrail 3 (keine eigene politische Klassifikation): eine
+    Einstufung darf nur zitiert werden, wenn eine Quelle sie tatsächlich
+    vornimmt, und die Quelle muss ausgewiesen sein. Hier wurde Freedom House
+    eine Aussage zugeschrieben, die es nicht macht.
+
+    Die Warnung hängt nur bei Regime-Claims an — sonst kostet sie bei jedem
+    Länder-Claim Prompt-Budget, das die Zahlen brauchen.
+    """
+    if not any(t in claim_lc for t in _REGIME_BEGRIFFE):
+        return ""
+    return (" WICHTIG: FIW misst FREIHEITSGRADE, keine Staatsform. "
+            "'Partly Free'/'Not Free' sagen NICHT, ob ein Land eine "
+            "Demokratie ist — Freedom House nimmt keine Regime-"
+            "Klassifikation vor. Wer beides gleichsetzt, überdehnt die "
+            "Quelle.")
+
+
 def _build_display_value(
     primary_iso3: str,
     primary_rating: dict,
     display_countries: list[str],
     ratings: dict,
     report_year: int | str = "",
+    claim_lc: str = "",
 ) -> str:
     """Build 'RU 12/100 'Not Free' (PR 4/40, CL 8/60) — vs. AT 94, DE 95, ...
     (Freedom House FIW 2026)'. Die Jahreszahl kommt aus den Daten.
@@ -408,7 +455,8 @@ def _build_display_value(
 
     richtung = _richtungs_satz(primary_rating)
     marke = f" (Freedom House FIW {report_year})" if report_year else ""
-    return f"{head}{ref}{richtung}{marke}"
+    warnung = _klassifikations_warnung(claim_lc)
+    return f"{head}{ref}{richtung}{marke}{warnung}"
 
 
 def _country_url(iso3: str, data: dict) -> str:
@@ -450,7 +498,7 @@ async def search_freedom_house(analysis: dict) -> dict:
         logger.warning("freedom_house: static JSON konnte nicht geladen werden")
         return empty
 
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
 
     if not _has_fh_keyword(claim_lc):
         return empty
@@ -532,7 +580,8 @@ async def search_freedom_house(analysis: dict) -> dict:
     )
 
     display_value = _build_display_value(
-        primary_iso3, primary_rating, display_countries, ratings, report_year
+        primary_iso3, primary_rating, display_countries, ratings, report_year,
+        claim_lc,
     )
 
     ausgabe = f"FIW {report_year} " if report_year else ""
