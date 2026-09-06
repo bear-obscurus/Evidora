@@ -195,7 +195,7 @@ _AUTHORITATIVE_INDICATORS = (
     "crossref_paper",                    # Crossref REST API (DOI-Resolution + Paper-Metadata, polite-pool)
     "openaq_measurement",                # OpenAQ v3 Live (Air Quality Sensor-Daten, CC-BY 4.0, requires API-key)
     "wikidata_fact",                     # Wikidata SPARQL (CC0, 10 strukturierte Templates: Person/Politik/Land/Org/Werk/Geographie)
-    "freedom_house_score",               # Freedom House FIW 2024 Static-First (55 Länder × 6 Indikatoren, komplementär zu V-Dem)
+    "freedom_house_score",               # Freedom House Freedom in the World, Static-First (55 Länder, komplementär zu V-Dem)
     "arxiv_preprint",                    # arXiv Live (Cornell-Hosting, Atom-XML, ~2 Mio Preprints, NICHT peer-reviewed)
     "uncomtrade_trade",                  # UN Comtrade Live (M49-Codes + HS-Klassifikation, bilaterale Handelsflüsse)
     "eige_news_item",                    # EIGE Live (European Institute for Gender Equality, Vilnius)

@@ -1528,14 +1528,19 @@ async def check_claim(request: Request):
         if claim_triggers_wikidata(claim, analysis):
             tasks.append(cached("Wikidata", search_wikidata, analysis))
             queried_names.append("Wikidata SPARQL")
-        # Freedom House FIW 2024 (Static-First-Pre-Cache wie V-Dem):
-        # 55 Länder × 6 Indikatoren (total_score 0-100, PR/CL-scores,
-        # status Free/Partly Free/Not Free). ⚠ Werte aktuell LLM-
-        # Approximationen — Refresh aus offiziellem CSV einmal/Jahr.
-        # Komplementär zu V-Dem (continuous 0-1) mit Schwellen-Status.
+        # Freedom House Freedom in the World (Static-First-Pre-Cache wie
+        # V-Dem): 55 Länder mit total_score 0-100, PR/CL-Scores und Status
+        # Free/Partly Free/Not Free. Komplementär zu V-Dem (continuous 0-1)
+        # mit Schwellen-Status.
+        # Die AUSGABE nennt die Ausgabe aus report_year der JSON — hier steht
+        # bewusst KEINE Jahreszahl mehr. Bis zur QA-Batterie vom 2026-09-06
+        # lautete das Dispatch-Label "Freedom House FIW 2024", obwohl die
+        # Daten seit PR #133 auf FIW 2026 stehen: PR #133 hatte Service und
+        # Daten entjahrt, dieses zweite Namensraum-Literal aber uebersehen
+        # (Marker-Drift, PR #74 — es gibt Service-`source` UND Dispatch-Label).
         if claim_mentions_freedom_house_cached(claim):
             tasks.append(cached("FreedomHouse", search_freedom_house, analysis))
-            queried_names.append("Freedom House FIW 2024")
+            queried_names.append("Freedom House")
         # arXiv Preprint-API (frei, Cornell-Hosting, Atom-XML):
         # ~2 Mio Preprints seit 1991. Triggert bei arXiv-ID im Claim
         # (Regex 2401.12345 oder hep-th/9501001) ODER STEM-Research-
