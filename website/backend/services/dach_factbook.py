@@ -44,14 +44,29 @@ _cache: dict | None = None
 # ---------------------------------------------------------------------------
 # DACH-Kontext
 # ---------------------------------------------------------------------------
-_DE_CONTEXT_TERMS = (
+from services._schreibweise import normalisiere
+def _norm_terme(*terme: str) -> tuple[str, ...]:
+    """Trigger-Terme einmalig auf die Vergleichs-Schreibweise bringen.
+
+    Die Listen unten stehen bewusst mit Umlauten — so liest man sie. Verglichen
+    wird gegen den ebenfalls normalisierten Claim, damit "Foerderungen in
+    Oesterreich" genauso trifft wie "Förderungen in Österreich". Dieser Service
+    hat ein eigenes Praedikat und laeuft nicht ueber services/_topic_match.py,
+    wo die Normalisierung mit PR #143 eingezogen ist.
+
+    Rand-Leerzeichen bleiben erhalten: `"wien "` ist ein Wortgrenzen-Schutz.
+    """
+    return tuple(normalisiere(t) for t in terme)
+
+
+_DE_CONTEXT_TERMS = _norm_terme(
     "deutschland", "germany", "deutsch ", "deutsche",
     "berlin", "münchen", "hamburg", "köln", "frankfurt",
     "bamf", "bürgergeld", "buergergeld", "habeck", "scholz",
     "bundestag", "bundesregierung deutschland",
     "afd", "spd", "cdu", "csu", "grüne deutschland", "fdp",
 )
-_CH_CONTEXT_TERMS = (
+_CH_CONTEXT_TERMS = _norm_terme(
     "schweiz", "switzerland", "schweizer", "swiss",
     "zürich", "bern", "basel", "genf", "lausanne",
     "ahv", "iv-rente", "iv rente", "ergänzungsleistungen",
@@ -71,7 +86,7 @@ def _has_ch_context(claim_lc: str) -> bool:
 # ---------------------------------------------------------------------------
 # Topic-Trigger
 # ---------------------------------------------------------------------------
-_BAMF_TERMS = (
+_BAMF_TERMS = _norm_terme(
     "asylanträge deutschland", "asyl deutschland",
     "bamf", "asylantrag deutschland",
     "erstanträge deutschland", "asylerstantrag deutschland",
@@ -91,7 +106,7 @@ def _claim_mentions_bamf(claim_lc: str) -> bool:
     return False
 
 
-_BUERGERGELD_TERMS = (
+_BUERGERGELD_TERMS = _norm_terme(
     "bürgergeld", "buergergeld",
     "hartz iv", "hartz 4", "hartz-iv",
     "regelsatz",
@@ -109,7 +124,7 @@ def _claim_mentions_buergergeld(claim_lc: str) -> bool:
     return False
 
 
-_HEIZUNG_TERMS = (
+_HEIZUNG_TERMS = _norm_terme(
     "heizungsgesetz",
     "gebäudeenergiegesetz", "geg",
     "gebäudemodernisierungsgesetz",
@@ -127,7 +142,7 @@ def _claim_mentions_heizung(claim_lc: str) -> bool:
     return False
 
 
-_AHV_TERMS = (
+_AHV_TERMS = _norm_terme(
     "ahv ", " ahv", "13. ahv", "13 ahv",
     "ahv-rente", "ahv rente",
     "ergänzungsleistungen schweiz", "ergaenzungsleistungen schweiz",
@@ -158,7 +173,7 @@ def _claim_mentions_ahv(claim_lc: str) -> bool:
     return False
 
 
-_VENEDIG_TERMS = (
+_VENEDIG_TERMS = _norm_terme(
     "meeresspiegel venedig",
     "venedig 1500 jahre", "venedig 1.500 jahre",
     "klauß meeresspiegel", "klauss meeresspiegel",
@@ -178,7 +193,7 @@ def _claim_mentions_venedig(claim_lc: str) -> bool:
     return has_venedig and has_klima
 
 
-_KLIMASKEPSIS_TERMS = (
+_KLIMASKEPSIS_TERMS = _norm_terme(
     "klimawandel ist nicht", "klimawandel nicht real",
     "klimawandel schwindel", "klimawandel lüge",
     "klimawandel erfunden", "klimawandel panikmache",
@@ -239,7 +254,7 @@ def _claim_mentions_klimaskepsis_basic(claim_lc: str) -> bool:
     return False
 
 
-_DACH_ASYL_VERGLEICH_TERMS = (
+_DACH_ASYL_VERGLEICH_TERMS = _norm_terme(
     "asylanträge dach", "asyl deutschland österreich schweiz",
     "deutschland asyl höher",
     "asyl at + ch", "asyl at und ch",
@@ -268,7 +283,7 @@ def _claim_mentions_dach_asyl(claim_lc: str) -> bool:
     return False
 
 
-_DACH_PENSIONS_TERMS = (
+_DACH_PENSIONS_TERMS = _norm_terme(
     "dach pension", "dach rente",
     "pensionsantrittsalter dach",
     "rentenalter dach", "pensionsalter dach",
@@ -298,7 +313,7 @@ def _claim_mentions_dach_pensions(claim_lc: str) -> bool:
     return False
 
 
-_EU_BESCHLUESSE_TERMS = (
+_EU_BESCHLUESSE_TERMS = _norm_terme(
     "eu ai act", "ai act", "eu-ki-verordnung", "ki-verordnung eu",
     "eu-taxonomie", "eu taxonomie",
     "atomstrom eu-taxonomie", "atomstrom nachhaltig",
@@ -350,7 +365,7 @@ def _claim_mentions_eu_beschluesse(claim_lc: str) -> bool:
     return False
 
 
-_DACH_HPV_TERMS = (
+_DACH_HPV_TERMS = _norm_terme(
     "hpv-impfrate", "hpv impfrate",
     "hpv-impfquote", "hpv impfquote",
     "impfrate dach",
@@ -378,7 +393,7 @@ def _claim_mentions_dach_hpv(claim_lc: str) -> bool:
     return False
 
 
-_ASYLBEWERBER_GESUNDHEIT_TERMS = (
+_ASYLBEWERBER_GESUNDHEIT_TERMS = _norm_terme(
     "asylbewerber gesundheitsleistungen",
     "asylbewerber krankenversicherung",
     "asylsuchende sofort versichert",
@@ -410,7 +425,7 @@ def _claim_mentions_asylbewerber_gesundheit(claim_lc: str) -> bool:
 def _claim_matches_any_topic(claim: str) -> list[str]:
     if not claim:
         return []
-    cl = claim.lower()
+    cl = normalisiere(claim)
     matched: list[str] = []
     if _claim_mentions_bamf(cl):
         matched.append("bamf_asyl_de")
@@ -445,6 +460,8 @@ def claim_mentions_dach_factbook_cached(claim: str) -> bool:
 # Static load (mtime-aware, hot-reloads on edit)
 # ---------------------------------------------------------------------------
 from services._static_cache import load_json_mtime_aware as _hot_load
+
+
 
 
 def _load_static_json() -> dict | None:
@@ -1076,7 +1093,7 @@ async def search_dach_factbook(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
     matched_topics = _claim_matches_any_topic(matchable)
     if not matched_topics:
         return empty
