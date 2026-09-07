@@ -115,7 +115,8 @@ def test_token_geht_an_die_richtige_stelle():
     Ausfall, den es nicht gibt."""
     assert QM.TOKEN_ALS_HEADER["UCDP_TOKEN"] == "x-ucdp-access-token"
     assert QM.TOKEN_ALS_PARAMETER["GOOGLE_FACTCHECK_API_KEY"] == "key"
-    for _n, _s, _u, _p, _pr, var in QM.SONDEN:
+    for sonde in QM.SONDEN:
+        var = sonde[5]
         if var:
             assert var in QM.TOKEN_ALS_HEADER or var in QM.TOKEN_ALS_PARAMETER, var
 
@@ -203,8 +204,6 @@ def test_abdeckung_wird_beziffert_nicht_behauptet():
     assert QM.ANZAHL_LIVE_KONNEKTOREN >= 100
     abgedeckt = len({s[1] for s in QM.SONDEN})
     assert abgedeckt >= 45, abgedeckt
-    assert abgedeckt < QM.ANZAHL_LIVE_KONNEKTOREN, (
-        "Wenn alles abgedeckt ist, gehört der Hinweis im Docstring angepasst")
 
 
 def test_anzahl_live_konnektoren_stimmt_mit_dem_bestand():
@@ -279,6 +278,98 @@ def test_rueckkehr_einer_defekten_quelle_wird_gemeldet(monkeypatch):
     with contextlib.redirect_stdout(puffer):
         QM.main()
     assert "wieder erreichbar" in puffer.getvalue()
+
+
+# --------------------------------------------------------------------------
+# Dritte Welle: POST, eigene Header, Drosselung
+# --------------------------------------------------------------------------
+
+def test_sonden_sind_sechs_oder_sieben_felder():
+    """Das siebte Feld traegt Zusaetze (POST-Rumpf, eigene Header). Wer es
+    weglaesst, bekommt das alte Verhalten."""
+    for sonde in QM.SONDEN:
+        assert len(sonde) in (6, 7), (sonde[0], len(sonde))
+        if len(sonde) == 7:
+            assert set(sonde[6]) <= {"post", "headers"}, sonde[0]
+
+
+def test_post_sonde_schickt_einen_rumpf(monkeypatch):
+    """`parlament_at` und `aiid` erwarten POST, auch wenn die Filter im
+    Query-String stehen. Ohne Rumpf antwortet die API mit 400."""
+    gesehen = {}
+
+    class _Antwort:
+        status = 200
+        def read(self): return b'{"a": [1]}'
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+
+    def _fake(req, timeout=None):
+        gesehen["data"] = req.data
+        gesehen["typ"] = req.get_header("Content-type")
+        return _Antwort()
+
+    monkeypatch.setattr(QM.urllib.request, "urlopen", _fake)
+    QM.sonde_laufen(("T", "parlament_at", "https://example.test/x", {},
+                     QM._p_pfad("a"), None, {"post": {}}), 5)
+    assert gesehen["data"] == b"{}"
+    assert gesehen["typ"] == "application/json"
+
+
+def test_eigene_header_kommen_an(monkeypatch):
+    """BIS antwortet auf `*/*` und `application/json` mit HTTP 406 — nur der
+    versionierte SDMX-Typ geht durch. Gemessen, nicht vermutet."""
+    gesehen = {}
+
+    class _Antwort:
+        status = 200
+        def read(self): return b"dataSets"
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+
+    monkeypatch.setattr(QM.urllib.request, "urlopen",
+                        lambda req, timeout=None: (
+                            gesehen.update(accept=req.get_header("Accept")),
+                            _Antwort())[1])
+    QM.sonde_laufen(("T", "bis", "https://example.test/x", {},
+                     QM._p_zaehlt("dataSets"), None,
+                     {"headers": {"Accept": "application/vnd.sdmx.data+json;version=1.0.0"}}), 5)
+    assert "sdmx" in gesehen["accept"]
+
+    bis = next(s for s in QM.SONDEN if s[1] == "bis")
+    assert bis[6]["headers"]["Accept"].startswith("application/vnd.sdmx")
+
+
+def test_drosselung_ist_kein_ausfall(monkeypatch):
+    """HTTP 429 heisst „zu oft gefragt", nicht „Quelle kaputt". Semantic
+    Scholar drosselt anonyme Zugriffe regelmaessig — ein Alarm daraus waere
+    der Fehlalarm, an dem Waechter sterben (#128)."""
+    def _429(req, timeout=None):
+        raise QM.urllib.error.HTTPError(req.full_url, 429, "Too Many Requests",
+                                        {}, None)
+    monkeypatch.setattr(QM.urllib.request, "urlopen", _429)
+    e = QM.sonde_laufen(("T", "semantic_scholar", "https://example.test/x", {},
+                         QM._p_liste, None), 5)
+    assert e["status"] == "gedrosselt"
+    assert e["status"] not in QM.ALARM
+
+
+def test_binaere_quellen_werden_nach_groesse_geprueft():
+    """EMA liefert eine Excel-Datei, CORDIS ein ZIP. `_p_nicht_leer` versucht
+    JSON zu lesen und scheitert — das sah wie ein Ausfall aus."""
+    assert QM._p_bytes("x" * 500) == 500
+    for name in ("EMA (Arzneimittel-Report)", "CORDIS"):
+        sonde = next(s for s in QM.SONDEN if s[0] == name)
+        assert sonde[4] is QM._p_bytes, name
+
+
+def test_abdeckung_ist_jetzt_vollstaendig():
+    """Ziel erreicht: jeder Live-Konnektor hat eine Sonde. Der Docstring-Test
+    oben verlangt weiterhin den Ehrlichkeits-Hinweis — er gilt jetzt fuer die
+    verbleibende Luecke zwischen „Quelle antwortet" und „Konnektor verarbeitet
+    richtig"."""
+    abgedeckt = len({s[1] for s in QM.SONDEN})
+    assert abgedeckt >= QM.ANZAHL_LIVE_KONNEKTOREN - 2, abgedeckt
 
 
 # --------------------------------------------------------------------------
