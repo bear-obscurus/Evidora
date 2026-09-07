@@ -28,6 +28,7 @@ import logging
 import os
 
 from services._static_cache import load_json_mtime_aware
+from services import _laender as _LAENDER
 from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
@@ -56,52 +57,12 @@ RSF_KEYWORDS = norm_terme(
 )
 
 # RSF verwendet in der CSV ISO3-Codes (z.B. FIN, EST, AUT, NLD)
-COUNTRY_MAP = {
-    "österreich": "AUT", "austria": "AUT",
-    "deutschland": "DEU", "germany": "DEU",
-    "schweiz": "CHE", "switzerland": "CHE",
-    "frankreich": "FRA", "france": "FRA",
-    "italien": "ITA", "italy": "ITA",
-    "spanien": "ESP", "spain": "ESP",
-    "niederlande": "NLD", "netherlands": "NLD",
-    "belgien": "BEL", "belgium": "BEL",
-    "polen": "POL", "poland": "POL",
-    "tschechien": "CZE", "czech republic": "CZE", "czechia": "CZE",
-    "ungarn": "HUN", "hungary": "HUN",
-    "rumänien": "ROU", "romania": "ROU",
-    "bulgarien": "BGR", "bulgaria": "BGR",
-    "kroatien": "HRV", "croatia": "HRV",
-    "slowenien": "SVN", "slovenia": "SVN",
-    "slowakei": "SVK", "slovakia": "SVK",
-    "dänemark": "DNK", "denmark": "DNK",
-    "schweden": "SWE", "sweden": "SWE",
-    "norwegen": "NOR", "norway": "NOR",
-    "finnland": "FIN", "finland": "FIN",
-    "portugal": "PRT",
-    "griechenland": "GRC", "greece": "GRC",
-    "irland": "IRL", "ireland": "IRL",
-    "luxemburg": "LUX", "luxembourg": "LUX",
-    "estland": "EST", "estonia": "EST",
-    "lettland": "LVA", "latvia": "LVA",
-    "litauen": "LTU", "lithuania": "LTU",
-    "vereinigtes königreich": "GBR", "united kingdom": "GBR", "großbritannien": "GBR",
-    "türkei": "TUR", "turkey": "TUR",
-    "serbien": "SRB", "serbia": "SRB",
-    "ukraine": "UKR",
-    "russland": "RUS", "russia": "RUS",
-    "belarus": "BLR", "weißrussland": "BLR",
-    "usa": "USA", "vereinigte staaten": "USA", "united states": "USA",
-    "china": "CHN",
-    "indien": "IND", "india": "IND",
-    "brasilien": "BRA", "brazil": "BRA",
-    "japan": "JPN",
-    "südkorea": "KOR", "south korea": "KOR",
-    "nordkorea": "PRK", "north korea": "PRK",
-    "iran": "IRN",
-    "israel": "ISR",
-    "saudi-arabien": "SAU", "saudi arabia": "SAU",
-    "ägypten": "EGY", "egypt": "EGY",
-}
+# Die 44 handgepflegten Laender sind in services/_laender.py aufgegangen
+# (183 Laender, 622 Aliasse). Der Name bleibt als Sicht auf das gemeinsame
+# Verzeichnis erhalten, damit bestehende Aufrufer nicht brechen.
+COUNTRY_MAP = {alias: iso
+               for iso, aliasse in _LAENDER.ALIASSE.items()
+               for alias in aliasse}
 
 
 def _load_rsf_data() -> tuple[dict, int | None]:
@@ -120,22 +81,19 @@ def _load_rsf_data() -> tuple[dict, int | None]:
 
 
 def _find_countries(analysis: dict, max_n: int = 3) -> list[str]:
-    """Extract ISO3 country codes from claim."""
-    ner_countries = analysis.get("ner_entities", {}).get("countries", [])
-    claim = analysis.get("claim", "")
-    search_terms = ner_countries + [claim]
+    """ISO3-Codes der im Claim genannten Laender.
 
-    found: list[str] = []
-    seen: set[str] = set()
-    for term in search_terms:
-        term_lower = normalisiere(term)
-        for name, code in COUNTRY_MAP.items():
-            if normalisiere(name) in term_lower and code not in seen:
-                found.append(code)
-                seen.add(code)
-                if len(found) >= max_n:
-                    return found
-    return found
+    Die Suche liegt in ``services/_laender.py``: Wortanfangs-Grenze, laengste
+    Aliasse zuerst, Fundstelle verbrauchen. Ohne diese drei Regeln liefert
+    „Nigeria" auch NER und „Somalia" auch MLI — bei 183 Laendern ist das kein
+    Randfall mehr, sondern der Normalfall.
+
+    ``erlaubt`` sind genau die Codes, zu denen der RSF-Datensatz etwas hat.
+    Sonst meldet der Konnektor ein Land, zu dem er nichts liefern kann, und
+    der Nutzer bekommt „keine Daten" statt „nicht zustaendig".
+    """
+    by_country, _ = _load_rsf_data()
+    return _LAENDER.aus_analyse(analysis, frozenset(by_country), max_n)
 
 
 def _claim_mentions_rsf(claim: str) -> bool:
