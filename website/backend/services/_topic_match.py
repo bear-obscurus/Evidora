@@ -44,7 +44,7 @@ import os
 from typing import Callable
 
 from services._static_cache import load_json_mtime_aware
-from services._schreibweise import normalisiere
+from services._schreibweise import normalisiere, norm_terme
 from services._reranker_backup import best_matches as _backup_best_matches
 
 logger = logging.getLogger("evidora")
@@ -209,11 +209,27 @@ def load_items(static_path: str, items_key: str) -> list[dict]:
 #
 # Sonst: pass — Service feuert normal.
 
-_PARTY_TOKENS: tuple[str, ...] = (
+# ALLE fuenf Listen laufen durch ``norm_terme`` und werden gegen den
+# ebenfalls normalisierten Claim geprueft (siehe ``politik_guard_action``).
+# Ohne das oeffnet eine voellig uebliche Schreibweise den Guard: „Meinl
+# Reisinger" ohne Bindestrich wurde nicht als Partei-Token erkannt, der Guard
+# gab „pass", und vdem/wgi/demokratie_pack feuerten auf eine
+# Partei-Korruptions-Aussage — genau der Kategorienfehler, den er verhindern
+# soll. Gemessen: 10 von 14 Muss-Blocks trafen, 4 rutschten durch.
+#
+# Die Richtung des Ausfalls unterscheidet sich je Liste, beide sind falsch:
+#   PARTY / CORRUPTION / SUPERLATIVE  verfehlt -> „pass"  (Loch)
+#   SPECIFIC_ANCHOR / AFFAIR_PERSON   verfehlt -> „block" (Ueber-Block:
+#                                     ein Claim MIT konkretem Anker verliert
+#                                     die Laender-Quellen, die er verdient)
+#
+# ASCII-Zwillinge („fpoe" neben „fpö") sind entfallen — norm_terme faltet
+# beide auf dieselbe Form.
+_PARTY_TOKENS: tuple[str, ...] = norm_terme(
     # AT-Parteien
-    "fpö", "fpoe", "spö", "spoe", "övp", "oevp",
-    "neos", "grüne ", "gruene ", "kpö", "kpoe", "bzö", "bzoe",
-    "team-stronach", "team stronach",
+    "fpö", "spö", "övp",
+    "neos", "grüne ", "kpö", "bzö",
+    "team-stronach",
     # DE-Parteien
     "afd", "cdu", "csu", "spd", "fdp", "linke", "die linke",
     "die grünen", "bsw", "republikaner",
@@ -223,37 +239,37 @@ _PARTY_TOKENS: tuple[str, ...] = (
     "strache",  # historisch relevant
 )
 
-_CORRUPTION_TOKENS: tuple[str, ...] = (
+_CORRUPTION_TOKENS: tuple[str, ...] = norm_terme(
     "korruption", "korrupt", "skandal", "bestechung",
-    "geldwäsche", "geldwaesche", "schmiergeld", "kickback",
+    "geldwäsche", "schmiergeld", "kickback",
     "vorteilsannahme", "untreue",
 )
 
 # Normative/Vergleichs-Superlative ohne empirische Mess-Skala
-_SUPERLATIVE_TOKENS: tuple[str, ...] = (
-    "höchste", "hoechste", "korrupteste", "schlimmste",
+_SUPERLATIVE_TOKENS: tuple[str, ...] = norm_terme(
+    "höchste", "korrupteste", "schlimmste",
     "am korruptesten", "die meisten", "am meisten",
-    "größte korruption", "groesste korruption",
+    "größte korruption",
     "am schlimmsten", "alle ", "jede partei", "jeder politiker",
 )
 
 # Konkrete Affären-/Personen-Anker (machen Claim faktisch-prüfbar)
-_SPECIFIC_ANCHOR_TOKENS: tuple[str, ...] = (
+_SPECIFIC_ANCHOR_TOKENS: tuple[str, ...] = norm_terme(
     # Konkrete AT-Affären
-    "ibiza", "casinos-affäre", "casinos affäre", "casinos-affaere",
-    "övp-chats", "oevp-chats", "övp chats", "bvt-affäre", "bvt affäre",
-    "inseratenaffäre", "inseratenaffaere",
+    "ibiza", "casinos-affäre",
+    "övp-chats", "bvt-affäre",
+    "inseratenaffäre",
     "telegram-chats", "kurz-chats",
-    "buwog", "eurofighter", "hypo alpe adria", "hypo-alpe-adria",
+    "buwog", "eurofighter", "hypo-alpe-adria",
     # DE-Affären
-    "cum-ex", "cum ex", "maskenaffäre", "maskenaffaere",
+    "cum-ex", "maskenaffäre",
     "wirecard", "amthor", "spahn-masken",
 )
 
 # Konkrete Personen-Anker — sind in PARTY_TOKENS schon enthalten,
 # aber wir prüfen extra auf NICHT-Spitzenkandidaten-Ebene Affären-Akteure
-_AFFAIR_PERSON_TOKENS: tuple[str, ...] = (
-    "schmid", "sidlo", "blümel", "bluemel", "fellner",
+_AFFAIR_PERSON_TOKENS: tuple[str, ...] = norm_terme(
+    "schmid", "sidlo", "blümel", "fellner",
     "grasser",  # BUWOG
     "amon", "pilnacek",
 )
@@ -285,6 +301,13 @@ def politik_guard_action(claim_lc: str) -> str:
     """
     if not claim_lc:
         return "pass"
+
+    # Der Guard normalisiert SELBST, statt sich auf den Aufrufer zu verlassen.
+    # 16 Aufrufstellen reichen mal `claim.lower()`, mal `claim_lc`, mal eine
+    # bereits gefaltete Variable herein; ``normalisiere`` ist idempotent, also
+    # ist das an jeder dieser Stellen richtig. Vorher musste jeder Aufrufer
+    # die ungefaltete Form durchreichen — eine Regel, die kein Test kannte.
+    claim_lc = normalisiere(claim_lc)
 
     has_party = any(tok in claim_lc for tok in _PARTY_TOKENS)
     has_corruption = any(tok in claim_lc for tok in _CORRUPTION_TOKENS)

@@ -32,7 +32,6 @@ DACH-Default antwortete mit Oesterreich. Ein falsches Land, ohne Fehlermeldung.
 """
 
 import asyncio
-import re
 import sys
 import warnings
 from pathlib import Path
@@ -199,25 +198,20 @@ def test_kein_ueber_trigger():
 # Was beim Aufraeumen NICHT passieren darf
 # --------------------------------------------------------------------------
 
-def test_politik_guard_bekommt_den_ungefalteten_claim():
-    """Der Politik-Tabu-Guard wird bewusst mit ``claim.lower()`` aufgerufen,
-    NICHT mit ``normalisiere(claim)``.
+def test_politik_guard_greift_in_jeder_schreibweise():
+    """`freedom_house` reicht den Claim an den Politik-Tabu-Guard weiter.
 
-    Seine Token-Liste in ``_topic_match`` ist unnormalisiert und enthaelt
-    Bindestrich-Namen („meinl-reisinger", „rendi-wagner"). Ein gefalteter
-    Claim macht daraus „meinl reisinger" — der Guard greift nicht mehr, und
-    Laender-Quellen feuern auf eine Partei-Korruptions-Aussage. Das ist die
-    sensibelste Stelle im ganzen Projekt, deshalb steht sie hier als Test und
-    nicht nur als Kommentar.
+    In #150 stand hier das Gegenteil: der Guard vertrug NUR die ungefaltete
+    Form, weil seine Token-Liste Bindestrich-Namen enthielt. Genau dieses Loch
+    hat der Folge-PR geschlossen — der Guard normalisiert jetzt selbst, und
+    beide Schreibweisen greifen. Der Test bleibt, weil die Zusicherung
+    dieselbe ist: eine Partei-Korruptions-Aussage darf `freedom_house` nicht
+    ausloesen, egal wie sie getippt wurde.
     """
-    heikel = "Meinl-Reisinger ist die korrupteste Politikerin Österreichs"
-    assert politik_guard_action(heikel.lower()) == "block_country_sources"
-    assert politik_guard_action(normalisiere(heikel)) == "pass", (
-        "Wenn das hier bricht, wurde _topic_match normalisiert — dann darf "
-        "freedom_house den gefalteten Claim weiterreichen und dieser Test weg."
-    )
-    quelle = (BACKEND / "services" / "freedom_house.py").read_text(encoding="utf-8")
-    assert re.search(r"is_party_corruption_superlative_claim\(claim\.lower\(\)\)",
-                     quelle), "Guard-Aufruf wurde auf normalisiere() umgestellt"
-    assert not claim_mentions_freedom_house_cached(
-        "Die FPÖ ist die korrupteste Partei — Freedom House")
+    for heikel in ("Meinl-Reisinger ist die korrupteste Politikerin Österreichs",
+                   "Meinl Reisinger ist die korrupteste Politikerin Oesterreichs",
+                   "Die FPÖ ist die korrupteste Partei — Freedom House",
+                   "Die FPOE ist die korrupteste Partei — Freedom House"):
+        assert politik_guard_action(heikel.lower()) == "block_country_sources", heikel
+        assert politik_guard_action(normalisiere(heikel)) == "block_country_sources", heikel
+        assert not claim_mentions_freedom_house_cached(heikel), heikel

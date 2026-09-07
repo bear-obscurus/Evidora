@@ -23,6 +23,8 @@ Eingang: ``result`` (LLM-Output-Dict), ``source_results`` (gerankte Quellen),
 import logging
 import re
 
+from services._schreibweise import normalisiere, norm_terme
+
 logger = logging.getLogger("evidora")
 
 
@@ -1759,20 +1761,32 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     # check detects "überwiegend falsch" in the summary and overrides
     # unverifiable back to false. This guard has final authority.
     import re
-    _claim_lc = (original_claim or "").lower()
+    # Gepruft wird gegen den NORMALISIERTEN Claim, die Muster stehen deshalb
+    # in gefalteter Schreibweise („duerfte", „naechste"). Vorher trugen sie
+    # Umlaute und liefen gegen ein blosses .lower(): „Die SPOE duerfte die
+    # naechste Wahl gewinnen" passierte den Guard ungehindert — 4 von 5
+    # realistischen Prognose-Claims in ASCII-Umschrift. Fuer einen
+    # oesterreichischen Dienst ist das keine Randschreibweise.
+    #
+    # Bewusst NICHT die Varianten aufzaehlen („dürfte|duerfte"): dieselbe
+    # Falle wie bei den Frontex-Flexionsformen (#141) — wer aufzaehlt,
+    # vergisst welche.
+    _claim_norm = normalisiere(original_claim or "")
     _PROGNOSE_PATTERNS = (
-        r"\b(wird|werden|dürfte|könnte|soll)\b.{0,40}\bwahl\w*\b.{0,20}\b(gewinnen|verlieren|siegen)",
-        r"\b(wird|werden|dürfte|könnte|soll)\b.{0,30}\b(stärkste|stärkster|schwächste|erste|erster)\b.{0,20}\b(partei|kraft|fraktion)",
-        r"\bwahl\w*\b.{0,20}\b(gewinnen|verlieren|siegen)\b.{0,20}\b(wird|werden|dürfte)",
-        r"\bnächste\w*\b.{0,20}\b(wahl|nationalratswahl|landtagswahl|europawahl|bundestag)",
+        r"\b(wird|werden|duerfte|koennte|soll)\b.{0,40}\bwahl\w*\b.{0,20}\b(gewinnen|verlieren|siegen)",
+        r"\b(wird|werden|duerfte|koennte|soll)\b.{0,30}\b(staerkste|staerkster|schwaechste|erste|erster)\b.{0,20}\b(partei|kraft|fraktion)",
+        r"\bwahl\w*\b.{0,20}\b(gewinnen|verlieren|siegen)\b.{0,20}\b(wird|werden|duerfte)",
+        r"\bnaechste\w*\b.{0,20}\b(wahl|nationalratswahl|landtagswahl|europawahl|bundestag)",
     )
-    _PARTY_TOKENS_SHORT = (
-        "fpö", "fpoe", "spö", "spoe", "övp", "oevp", "neos",
-        "grüne", "gruene", "afd", "cdu", "csu", "spd", "linke",
+    # Bewusst kuerzer als _PARTY_TOKENS in _topic_match.py: dieser Guard
+    # greift bei PARTEI-Prognosen, nicht bei Personen-Aussagen.
+    _PARTY_TOKENS_SHORT = norm_terme(
+        "fpö", "spö", "övp", "neos",
+        "grüne", "afd", "cdu", "csu", "spd", "linke",
     )
     is_prognose = (
-        any(re.search(p, _claim_lc) for p in _PROGNOSE_PATTERNS)
-        and any(t in _claim_lc for t in _PARTY_TOKENS_SHORT)
+        any(re.search(p, _claim_norm) for p in _PROGNOSE_PATTERNS)
+        and any(t in _claim_norm for t in _PARTY_TOKENS_SHORT)
     )
     if is_prognose and result.get("verdict") != "unverifiable":
         old_v = result["verdict"]
