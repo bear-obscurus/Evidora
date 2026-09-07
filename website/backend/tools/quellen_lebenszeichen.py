@@ -30,10 +30,14 @@ Er fragt die Quellen DIREKT — nicht ueber ``/api/check``. Das ist Absicht:
 
 WAS ER NICHT KANN
 =================
-Er prueft, ob die Quelle Daten liefert — nicht, ob der Konnektor sie richtig
+Er prueft, ob die QUELLE Daten liefert — nicht, ob der Konnektor sie richtig
 verarbeitet. Eine Sonde kann gruen sein, waehrend das Parsing im Service
-daneben liegt. Und er deckt vorerst einen TEIL der Live-Quellen ab; welche,
-steht in ``SONDEN``. Eine Sonde dazuzuschreiben ist ein Dict-Eintrag.
+daneben liegt; WGI waere so ein Fall gewesen, wenn nur die IDs gestimmt
+haetten. Das bleibt die offene Luecke.
+
+Seit der dritten Welle deckt er einen TEIL der Live-Quellen ab — inzwischen
+fast alle, aber "alle Sonden gruen" heisst weiterhin nicht "alle Quellen
+liefern brauchbare Daten". Der Bericht nennt deshalb Zaehler und Nenner.
 
 Damit die Sonden nicht von den Konnektoren wegdriften, prueft
 ``tests/test_quellen_lebenszeichen.py``, dass jede Sonden-URL noch als
@@ -111,6 +115,13 @@ def _p_liste(text):
     return len(d) if isinstance(d, list) else 0
 
 
+def _p_bytes(text):
+    """Fuer Binaerdateien (XLSX, ZIP): nur die Groesse zaehlt. `_p_nicht_leer`
+    versucht JSON zu lesen und scheitert dort — EMA liefert eine Excel-Datei,
+    CORDIS ein ZIP."""
+    return len(text)
+
+
 def _p_nicht_leer(text):
     d = json.loads(text)
     return len(d) if hasattr(d, "__len__") else 0
@@ -139,6 +150,9 @@ def _ucdp_fenster() -> dict:
     return {"StartDate": f"{heute.year - 3}-01-01",
             "EndDate": f"{heute.year}-12-31"}
 
+
+# Die SDMX-Endpunkte antworten ohne passendes Accept mit HTTP 406.
+_SDMX = {"headers": {"Accept": "application/vnd.sdmx.data+json"}}
 
 SONDEN = [
     # (Anzeigename, service, URL, params, pruefer, env-var fuer Token-Header)
@@ -296,6 +310,162 @@ SONDEN = [
      _p_liste, None),
     ("DefiLlama", "defillama", "https://api.llama.fi/protocols", {},
      _p_liste, None),
+
+    # --- Dritte Welle (2026-09-07) ----------------------------------------
+    # Wieder gilt: jede Sonde einzeln gegen die echte API gefahren. Fuenf
+    # brauchten Zusaetze, die es im Monitor vorher nicht gab — POST-Rumpf und
+    # eigene Accept-Header (die SDMX-Endpunkte antworten sonst mit 406).
+    ("Parlament AT (Nationalrat)", "parlament_at",
+     "https://www.parlament.gv.at/Filter/api/json/post"
+     "?jsMode=EVAL&FBEZ=WFW_002&listeId=10002&showAll=true&M=M&W=W", {},
+     _p_nicht_leer, None, {"post": {}}),
+    ("AI Incident Database", "aiid", "https://incidentdatabase.ai/api/graphql",
+     {}, _p_pfad("data"), None,
+     {"post": {"query": "{incidents(limit:1){incident_id}}"}}),
+    ("BIS", "bis",
+     "https://stats.bis.org/api/v2/data/dataflow/BIS/WS_CBPOL/1.0/D.AT",
+     {"lastNObservations": "1", "format": "jsondata"},
+     # Genau dieser Accept — mit "*/*" oder "application/json" antwortet
+     # BIS mit HTTP 406.
+     _p_zaehlt("dataSets"), None,
+     {"headers": {"Accept": "application/vnd.sdmx.data+json;version=1.0.0"}}),
+    ("OECD SDMX", "oecd_sdmx",
+     "https://sdmx.oecd.org/public/rest/data/"
+     "OECD.ELS.SPD,DSD_SOCX_AGG@DF_PUB_PRV,1.0/all",
+     {"lastNObservations": "1"}, _p_zaehlt("dataSets"), None, _SDMX),
+    ("ITF Verkehr (OECD SDMX)", "itf_transport",
+     "https://sdmx.oecd.org/public/rest/data/"
+     "OECD.ITF,DSD_TRENDS@DF_TRENDSSAFETY,1.0/all",
+     {"lastNObservations": "1"}, _p_zaehlt("dataSets"), None, _SDMX),
+    ("OECD (Fakten-Weg)", "oecd",
+     "https://sdmx.oecd.org/public/rest/data/"
+     "OECD.EDU.ECS,DSD_TALIS@DF_TALIS,1.0/all",
+     {"lastNObservations": "1"}, _p_zaehlt("dataSets"), None, _SDMX),
+    ("WITS", "wits",
+     "https://wits.worldbank.org/API/V1/SDMX/V21/datasource/tradestats-tariff"
+     "/reporter/aut/year/2020/partner/wld/product/all/indicator/AHS-SMPL-AVRG",
+     {"format": "JSON"}, _p_nicht_leer, None),
+    ("Parlament AT (Abstimmungen)", "abstimmungen",
+     "https://www.parlament.gv.at/recherchieren/open-data/", {},
+     _p_zaehlt("Open Data"), None),
+    ("CEPII (ueber DBnomics)", "cepii",
+     "https://api.db.nomics.world/v22/series/CEPII/CHELEM-TRADE-GTAP",
+     {"limit": "1"}, _p_pfad("series", "docs"), None),
+    ("DBnomics (Anbieterliste)", "dbnomics",
+     "https://api.db.nomics.world/v22/providers", {},
+     _p_pfad("providers", "docs"), None),
+    ("Constitute", "constitute",
+     "https://www.constituteproject.org/service/constitutions", {},
+     _p_liste, None),
+    ("NASA GISS (Copernicus-Weg)", "copernicus",
+     "https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv", {},
+     _p_csv, None),
+    ("Copernicus CDS-Katalog", "era5",
+     "https://cds.climate.copernicus.eu/api/catalogue/v1/collections", {},
+     _p_pfad("collections"), None),
+    ("EDGAR (JRC-Emissionen)", "edgar",
+     "https://edgar.jrc.ec.europa.eu/dataset_ghg2024", {},
+     _p_zaehlt("EDGAR"), None),
+    ("EDPB", "edpb",
+     "https://www.edpb.europa.eu/our-work-tools/our-documents_en", {},
+     _p_zaehlt("EDPB"), None),
+    ("EMA (Arzneimittel-Report)", "ema",
+     "https://www.ema.europa.eu/en/documents/report/"
+     "medicines-output-medicines-report_en.xlsx", {}, _p_bytes, None),
+    ("ERIC", "eric", "https://api.ies.ed.gov/eric/",
+     {"search": "reading", "format": "json", "rows": "2"},
+     _p_pfad("response", "docs"), None),
+    ("EUvsDisinfo (Feed)", "euvsdisinfo", "https://euvsdisinfo.eu/feed/", {},
+     _p_zaehlt("<item"), None),
+    ("GADMO (Correctiv-Feed)", "gadmo",
+     "https://correctiv.org/faktencheck/feed/", {}, _p_zaehlt("<item"), None),
+    ("GeoSphere Austria", "geosphere",
+     "https://dataset.api.hub.geosphere.at/v1/datasets", {},
+     _p_nicht_leer, None),
+    ("SPARTACUS (GeoSphere)", "spartacus",
+     "https://dataset.api.hub.geosphere.at/v1/datasets", {},
+     _p_nicht_leer, None),
+    ("Getty Vocabularies", "getty", "http://vocab.getty.edu/sparql.json",
+     {"query": "SELECT ?s WHERE {?s a skos:Concept} LIMIT 1"},
+     _p_pfad("results", "bindings"), None),
+    ("Global Carbon Budget", "global_carbon_budget",
+     "https://api.github.com/repos/openclimatedata/global-carbon-budget", {},
+     _p_pfad("full_name"), None),
+    ("IRENA", "irena", "https://pxweb.irena.org/api/v1/en/IRENASTAT", {},
+     _p_liste, None),
+    ("Mimikama", "mimikama", "https://www.mimikama.org/feed/", {},
+     _p_zaehlt("<item"), None),
+    ("NBER", "nber", "https://www.nber.org/rss/new.xml", {},
+     _p_zaehlt("<item"), None),
+    ("Mozilla Observatory", "observatory",
+     "https://observatory-api.mdn.mozilla.net/api/v2/analyze",
+     {"host": "evidora.eu"}, _p_pfad("scan"), None),
+    ("OEAW ePub (OAI)", "oeaw_epub", "https://epub.oeaw.ac.at/oai",
+     {"verb": "Identify"}, _p_zaehlt("<Identify"), None),
+    ("OeNB (ueber EZB-MIR)", "oenb_sdmx",
+     "https://data-api.ecb.europa.eu/service/data/MIR/M.AT.B.L21.A.R.A.2250.EUR.N",
+     {"format": "jsondata", "lastNObservations": "1"},
+     _p_zaehlt("dataSets"), None),
+    ("ParlGov", "parlgov", "https://www.parlgov.org/data-info/", {},
+     _p_zaehlt("ParlGov"), None),
+    ("RIS (Bundesrecht)", "ris",
+     "https://data.bka.gv.at/ris/api/v2.6/Bundesrecht",
+     {"Applikation": "BrKons", "Suchworte": "Datenschutz",
+      "DokumenteProSeite": "Ten"}, _p_zaehlt("OgdSearchResult"), None),
+    ("SIPRI (ueber OWID)", "sipri",
+     "https://ourworldindata.org/grapher/military-spending-sipri.csv", {},
+     _p_csv, None),
+    ("UNESCO UIS", "unesco_uis",
+     "https://api.uis.unesco.org/api/public/data/indicators",
+     {"indicator": "CR.1", "geoUnit": "AUT"}, _p_nicht_leer, None),
+    ("BMI Volksbegehren", "volksbegehren", "https://www.bmi.gv.at/", {},
+     _p_zaehlt("Bundesministerium"), None),
+    ("BMI Wahlen", "wahlen", "https://www.bmi.gv.at/412/", {},
+     _p_zaehlt("Wahl"), None),
+    ("Wayback (CDX)", "wayback", "https://web.archive.org/cdx/search/cdx",
+     {"url": "orf.at", "limit": "2", "output": "json"}, _p_liste, None),
+    ("WCAG 2.2 (ACT-Mapping)", "wcag22",
+     "https://raw.githubusercontent.com/w3c/wcag/main/guidelines/"
+     "act-mapping.json", {}, _p_pfad("act-rules"), None),
+    ("WebAIM Million", "webaim", "https://webaim.org/projects/million/", {},
+     _p_zaehlt("WebAIM Million"), None),
+    ("FRED", "fred", "https://fred.stlouisfed.org/graph/fredgraph.csv",
+     {"id": "GDP"}, _p_csv, None),
+    ("CORDIS", "cordis",
+     "https://cordis.europa.eu/data/cordis-HORIZONprojects-json.zip", {},
+     _p_bytes, None),
+    ("Semantic Scholar", "semantic_scholar",
+     "https://api.semanticscholar.org/graph/v1/paper/search",
+     {"query": "vaccine", "limit": "2"}, _p_pfad("data"), None),
+
+    # Token-Sonden: ohne gesetzte Variable werden sie uebersprungen, nicht
+    # als Ausfall gemeldet (#128).
+    ("CAMS (Copernicus ADS)", "cams",
+     "https://ads.atmosphere.copernicus.eu/api/catalogue/v1/collections", {},
+     _p_pfad("collections"), "ADS_API_KEY"),
+    ("CITES (Species+)", "cites",
+     "https://api.speciesplus.net/api/v1/taxon_concepts", {"per_page": "1"},
+     _p_liste, "CITES_TOKEN"),
+    ("DPLA", "dpla", "https://api.dp.la/v2/items",
+     {"q": "vienna", "page_size": "2"}, _p_pfad("docs"), "DPLA_API_KEY"),
+    ("Europeana", "europeana",
+     "https://api.europeana.eu/record/v2/search.json",
+     {"query": "wien", "rows": "2"}, _p_pfad("items"), "EUROPEANA_API_KEY"),
+    ("GeoNames", "geonames", "https://secure.geonames.org/searchJSON",
+     {"q": "Wien", "maxRows": "1"}, _p_pfad("geonames"), "GEONAMES_USERNAME"),
+    ("IDMC", "idmc",
+     "https://helix-tools-api.idmcdb.org/external-api/idus/last/5/", {},
+     _p_liste, "IDMC_CLIENT_ID"),
+    ("IUCN Red List", "iucn", "https://apiv3.iucnredlist.org/api/v3/version",
+     {}, _p_pfad("version"), "IUCN_TOKEN"),
+    ("NOAA CDO", "noaa", "https://www.ncei.noaa.gov/cdo-web/api/v2/datasets",
+     {"limit": "2"}, _p_pfad("results"), "NOAA_API_TOKEN"),
+    ("OpenAQ", "openaq", "https://api.openaq.org/v3/parameters",
+     {"limit": "2"}, _p_pfad("results"), "OPENAQ_API_KEY"),
+    ("UN Comtrade", "uncomtrade",
+     "https://comtradeapi.un.org/data/v1/get/C/A/HS",
+     {"reporterCode": "40", "period": "2022", "cmdCode": "TOTAL",
+      "flowCode": "M"}, _p_pfad("data"), "COMTRADE_API_KEY"),
 ]
 
 # --------------------------------------------------------------------------
@@ -315,6 +485,13 @@ BEKANNT_DEFEKT = {
         "aus nicht, dort liegt das Intermediate im Store). Das Server-Zert "
         "selbst ist gueltig bis 2026-11-02. "
         "WIEDER AUFNEHMEN, wenn die Sonde ohne Anpassung durchlaeuft."),
+    "AI Incident Database": (
+        "2026-09-07: HTTP 403 auf POST /api/graphql, reproduziert vom "
+        "Entwickler-Mac und vom Prod-Host. Der Endpunkt lebt (GET antwortet "
+        "mit 400 'GraphQL requires POST') und die Website liefert 200 — die "
+        "Abfrage selbst wird abgewiesen, vermutlich Bot-Schutz oder eine neu "
+        "eingefuehrte Authentifizierung. "
+        "WIEDER AUFNEHMEN, sobald der POST wieder 200 liefert."),
     "FAOSTAT": (
         "2026-09-07: HTTP 521 (Cloudflare: Ursprungsserver nicht erreichbar), "
         "reproduziert vom Entwickler-Mac, vom Prod-Host und aus dem Container. "
@@ -332,8 +509,22 @@ SONDEN += [
 ]
 
 # Token, die als Query-Parameter statt als Header gehen.
-TOKEN_ALS_PARAMETER = {"GOOGLE_FACTCHECK_API_KEY": "key"}
-TOKEN_ALS_HEADER = {"UCDP_TOKEN": "x-ucdp-access-token"}
+TOKEN_ALS_PARAMETER = {
+    "GOOGLE_FACTCHECK_API_KEY": "key",
+    "DPLA_API_KEY": "api_key",
+    "EUROPEANA_API_KEY": "wskey",
+    "GEONAMES_USERNAME": "username",
+    "COMTRADE_API_KEY": "subscription-key",
+    "ADS_API_KEY": "key",
+    "IUCN_TOKEN": "token",
+}
+TOKEN_ALS_HEADER = {
+    "UCDP_TOKEN": "x-ucdp-access-token",
+    "CITES_TOKEN": "X-Authentication-Token",
+    "NOAA_API_TOKEN": "token",
+    "OPENAQ_API_KEY": "X-API-Key",
+    "IDMC_CLIENT_ID": "Authorization",
+}
 
 
 def _post_alert(webhook: str, title: str, message: str) -> None:
@@ -354,7 +545,18 @@ def _post_alert(webhook: str, title: str, message: str) -> None:
 
 
 def sonde_laufen(sonde, timeout: float) -> dict:
-    name, service, url, params, pruefer, token_var = sonde
+    """Eine Sonde fahren.
+
+    Sonden sind 6- oder 7-Tupel. Das siebte Feld traegt Zusaetze, die einzelne
+    Quellen brauchen:
+      ``{"post": {...}}``    POST mit JSON-Rumpf statt GET — `parlament_at`
+                             und `aiid` erwarten das, auch wenn die Filter im
+                             Query-String stehen.
+      ``{"headers": {...}}`` zusaetzliche Header — die SDMX-Endpunkte
+                             antworten ohne passendes ``Accept`` mit 406.
+    """
+    extra = sonde[6] if len(sonde) > 6 else {}
+    name, service, url, params, pruefer, token_var = sonde[:6]
     params = dict(params)
     headers = {"User-Agent": USER_AGENT,
                "Accept": "application/json, text/csv, */*"}
@@ -369,13 +571,27 @@ def sonde_laufen(sonde, timeout: float) -> dict:
         else:
             headers[TOKEN_ALS_HEADER[token_var]] = wert
 
-    voll = url + ("?" + urllib.parse.urlencode(params) if params else "")
+    headers.update(extra.get("headers") or {})
+    trenner = "&" if "?" in url else "?"
+    voll = url + (trenner + urllib.parse.urlencode(params) if params else "")
+    rumpf = None
+    if extra.get("post") is not None:
+        rumpf = json.dumps(extra["post"]).encode("utf-8")
+        headers["Content-Type"] = "application/json"
     try:
         with urllib.request.urlopen(
-                urllib.request.Request(voll, headers=headers), timeout=timeout) as r:
+                urllib.request.Request(voll, data=rumpf, headers=headers),
+                timeout=timeout) as r:
             text = r.read().decode("utf-8", "replace")
             code = r.status
     except urllib.error.HTTPError as e:
+        if e.code == 429:
+            # "Zu oft gefragt" ist keine Aussage ueber die Quelle. Semantic
+            # Scholar drosselt anonyme Zugriffe regelmaessig; ein Alarm daraus
+            # waere der klassische Fehlalarm, an dem Waechter sterben (#128).
+            return {"name": name, "service": service, "status": "gedrosselt",
+                    "grund": "HTTP 429 — Rate-Limit, sagt nichts ueber die "
+                             "Verfuegbarkeit der Quelle"}
         return {"name": name, "service": service, "status": "http_fehler",
                 "grund": f"HTTP {e.code}"}
     except Exception as e:  # noqa: BLE001
