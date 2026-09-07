@@ -190,6 +190,12 @@ jobs:
     #                                  Geschwaerzt wird nach WERT, nicht nach
     #                                  Parametername — sonst faellt der
     #                                  OECD-SDMX-Selektor mit weg)
+    #   - test_laenderkarte           (rsf erreichte 44 von 180 Laendern im
+    #                                  eigenen Datensatz. Das Schwierige ist
+    #                                  die Vergleichsart: "mali" steckt in
+    #                                  "somalia", "niger" in "nigeria" —
+    #                                  Wortgrenze + laengste zuerst +
+    #                                  Fundstelle verbrauchen)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -285,6 +291,7 @@ jobs:
             tests/test_politik_guards_schreibweisen.py \
             tests/test_normalisierung_laender_dienste.py \
             tests/test_log_redaktion.py \
+            tests/test_laenderkarte.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 

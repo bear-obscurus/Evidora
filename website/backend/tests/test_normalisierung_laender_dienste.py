@@ -154,8 +154,15 @@ def test_land_wird_auch_in_ascii_umschrift_erkannt(name):
     mod = importlib.import_module(f"services.{name}")
     karte = mod.COUNTRY_MAP
     finden = mod._find_countries
+    # Nur Codes, zu denen der Dienst ueberhaupt Daten hat. `rsf` filtert seit
+    # der Laenderkarten-Konsolidierung auf seinen Datensatz — ein Treffer auf
+    # „Europaeische Union" waere dort eine Zusage, die er nicht halten kann.
+    hat_daten = getattr(mod, "_load_rsf_data", None)
+    erlaubt = set(hat_daten()[0]) if hat_daten else None
     fehlt = []
     for land in [k for k in karte if re.search(r"[äöüß]", k)]:
+        if erlaubt is not None and karte[land] not in erlaubt:
+            continue
         ascii_form = land.translate(UMLAUT)
         frage = f"Wie steht {ascii_form} im Ranking?"
         treffer = finden({"claim": frage, "original_claim": frage}) or []
