@@ -22,6 +22,7 @@ import time
 
 import httpx
 from services._http_polite import polite_client
+from services import _laender as _LAENDER
 from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
@@ -89,48 +90,12 @@ EU_COMPARISON_TRIGGERS = norm_terme(
 )
 
 # Kleinere Country-Map (wir setzen auf die gleiche ISO3-Logik wie V-Dem)
-COUNTRY_MAP = {
-    "österreich": "AUT", "austria": "AUT",
-    "deutschland": "DEU", "germany": "DEU",
-    "schweiz": "CHE", "switzerland": "CHE",
-    "frankreich": "FRA", "france": "FRA",
-    "italien": "ITA", "italy": "ITA",
-    "spanien": "ESP", "spain": "ESP",
-    "niederlande": "NLD", "netherlands": "NLD",
-    "belgien": "BEL", "belgium": "BEL",
-    "polen": "POL", "poland": "POL",
-    "tschechien": "CZE", "czech republic": "CZE", "czechia": "CZE",
-    "ungarn": "HUN", "hungary": "HUN",
-    "rumänien": "ROU", "romania": "ROU",
-    "bulgarien": "BGR", "bulgaria": "BGR",
-    "kroatien": "HRV", "croatia": "HRV",
-    "slowenien": "SVN", "slovenia": "SVN",
-    "slowakei": "SVK", "slovakia": "SVK",
-    "dänemark": "DNK", "denmark": "DNK",
-    "schweden": "SWE", "sweden": "SWE",
-    "norwegen": "NOR", "norway": "NOR",
-    "finnland": "FIN", "finland": "FIN",
-    "portugal": "PRT",
-    "griechenland": "GRC", "greece": "GRC",
-    "irland": "IRL", "ireland": "IRL",
-    "luxemburg": "LUX", "luxembourg": "LUX",
-    "estland": "EST", "estonia": "EST",
-    "lettland": "LVA", "latvia": "LVA",
-    "litauen": "LTU", "lithuania": "LTU",
-    "vereinigtes königreich": "GBR", "united kingdom": "GBR",
-    "türkei": "TUR", "turkey": "TUR",
-    "serbien": "SRB", "serbia": "SRB",
-    "ukraine": "UKR",
-    "russland": "RUS", "russia": "RUS",
-    "belarus": "BLR",
-    "usa": "USA", "vereinigte staaten": "USA", "united states": "USA",
-    "china": "CHN",
-    "indien": "IND", "india": "IND",
-    "brasilien": "BRA", "brazil": "BRA",
-    "japan": "JPN",
-    "südkorea": "KOR", "south korea": "KOR",
-    "iran": "IRN",
-}
+# Die handgepflegte Karte ist in services/_laender.py aufgegangen (224 Laender,
+# 723 Aliasse). Der Name bleibt als Sicht darauf erhalten, damit bestehende
+# Aufrufer und Tests nicht brechen.
+COUNTRY_MAP = {alias: iso
+               for iso, aliasse in _LAENDER.ALIASSE.items()
+               for alias in aliasse}
 
 
 async def fetch_cpi(client: httpx.AsyncClient | None = None) -> dict:
@@ -176,23 +141,20 @@ async def fetch_cpi(client: httpx.AsyncClient | None = None) -> dict:
             await client.aclose()
 
 
-def _find_countries(analysis: dict, max_n: int = 3) -> list[str]:
-    """Extract ISO3 country codes from claim (NER-prioritized)."""
-    ner_countries = analysis.get("ner_entities", {}).get("countries", [])
-    claim = analysis.get("claim", "")
-    search_terms = ner_countries + [claim]
+def _find_countries(analysis: dict, max_n: int = 3,
+                    erlaubt: frozenset[str] | None = None) -> list[str]:
+    """ISO3-Codes der im Claim genannten Laender.
 
-    found: list[str] = []
-    seen: set[str] = set()
-    for term in search_terms:
-        term_lower = normalisiere(term)
-        for name, code in COUNTRY_MAP.items():
-            if normalisiere(name) in term_lower and code not in seen:
-                found.append(code)
-                seen.add(code)
-                if len(found) >= max_n:
-                    return found
-    return found
+    Die Suche liegt in ``services/_laender.py``: Wortgrenze mit Flexions-Regel,
+    laengste Aliasse zuerst, Fundstelle verbrauchen. Ohne diese drei Regeln
+    liefert „Nigeria" auch NER und „Somalia" auch MLI — bei 224 Laendern ist
+    das der Normalfall, nicht der Randfall.
+
+    ``erlaubt`` sind die Codes, zu denen der geladene Datensatz etwas hat.
+    Ohne die Einschraenkung meldet der Konnektor ein Land, zu dem er nichts
+    liefern kann, und der Nutzer bekommt „keine Daten" statt „nicht zustaendig".
+    """
+    return _LAENDER.aus_analyse(analysis, erlaubt, max_n)
 
 
 def _claim_mentions_cpi(claim: str) -> bool:
@@ -306,7 +268,8 @@ async def search_transparency(analysis: dict) -> dict:
     if not data:
         return {"source": "Transparency International", "type": "official_data", "results": []}
 
-    countries = _find_countries(analysis)
+    # Nur Laender, zu denen der CPI-Datensatz Werte hat.
+    countries = _find_countries(analysis, erlaubt=frozenset(data))
     if not countries:
         countries = ["AUT", "DEU"]  # Default-Kontext
 

@@ -37,6 +37,7 @@ import time
 import httpx
 
 from services._http_polite import polite_client
+from services import _laender as _LAENDER
 from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
@@ -149,57 +150,12 @@ _CPI_CROSS_TRIGGERS = norm_terme(
 # ---------------------------------------------------------------------------
 # Country-Map (EU-27 + erweitert)
 # ---------------------------------------------------------------------------
-COUNTRY_MAP: dict[str, str] = {
-    # DACH
-    "österreich": "AUT", "oesterreich": "AUT", "austria": "AUT",
-    "deutschland": "DEU", "germany": "DEU",
-    "schweiz": "CHE", "switzerland": "CHE",
-    # EU-27
-    "frankreich": "FRA", "france": "FRA",
-    "italien": "ITA", "italy": "ITA",
-    "spanien": "ESP", "spain": "ESP",
-    "niederlande": "NLD", "netherlands": "NLD", "holland": "NLD",
-    "belgien": "BEL", "belgium": "BEL",
-    "polen": "POL", "poland": "POL",
-    "tschechien": "CZE", "czech": "CZE", "czechia": "CZE",
-    "ungarn": "HUN", "hungary": "HUN",
-    "rumänien": "ROU", "rumaenien": "ROU", "romania": "ROU",
-    "bulgarien": "BGR", "bulgaria": "BGR",
-    "kroatien": "HRV", "croatia": "HRV",
-    "slowenien": "SVN", "slovenia": "SVN",
-    "slowakei": "SVK", "slovakia": "SVK",
-    "dänemark": "DNK", "daenemark": "DNK", "denmark": "DNK",
-    "schweden": "SWE", "sweden": "SWE",
-    "finnland": "FIN", "finland": "FIN",
-    "portugal": "PRT",
-    "griechenland": "GRC", "greece": "GRC",
-    "irland": "IRL", "ireland": "IRL",
-    "luxemburg": "LUX", "luxembourg": "LUX",
-    "estland": "EST", "estonia": "EST",
-    "lettland": "LVA", "latvia": "LVA",
-    "litauen": "LTU", "lithuania": "LTU",
-    "malta": "MLT",
-    "zypern": "CYP", "cyprus": "CYP",
-    # Erweiterung (Non-EU EU-Nachbar + globale Referenz)
-    "norwegen": "NOR", "norway": "NOR",
-    "island": "ISL", "iceland": "ISL",
-    "vereinigtes königreich": "GBR", "vereinigtes koenigreich": "GBR",
-    "großbritannien": "GBR", "grossbritannien": "GBR",
-    "united kingdom": "GBR", "uk": "GBR",
-    "türkei": "TUR", "tuerkei": "TUR", "turkey": "TUR", "türkiye": "TUR",
-    "serbien": "SRB", "serbia": "SRB",
-    "ukraine": "UKR",
-    "russland": "RUS", "russia": "RUS",
-    "usa": "USA", "vereinigte staaten": "USA", "united states": "USA",
-    "china": "CHN",
-    "indien": "IND", "india": "IND",
-    "brasilien": "BRA", "brazil": "BRA",
-    "japan": "JPN",
-    "australien": "AUS", "australia": "AUS",
-    "kanada": "CAN", "canada": "CAN",
-    "südkorea": "KOR", "suedkorea": "KOR", "south korea": "KOR",
-    "südafrika": "ZAF", "suedafrika": "ZAF", "south africa": "ZAF",
-}
+# Die handgepflegte Karte ist in services/_laender.py aufgegangen (224 Laender,
+# 723 Aliasse). Der Name bleibt als Sicht darauf erhalten, damit bestehende
+# Aufrufer und Tests nicht brechen.
+COUNTRY_MAP = {alias: iso
+               for iso, aliasse in _LAENDER.ALIASSE.items()
+               for alias in aliasse}
 
 # EU-Aggregat für Vergleich
 EU_AGGREGATE = "EUU"
@@ -275,32 +231,22 @@ def _find_indicators(analysis: dict) -> list[str]:
     return []
 
 
-def _find_countries(analysis: dict) -> list[str]:
-    """Extract ISO-3 country codes from claim (NER + Claim-Text)."""
-    ner_countries = (analysis.get("ner_entities") or {}).get("countries") or []
-    claim = analysis.get("claim", "") or ""
-    original = analysis.get("original_claim", "") or ""
-    search_terms = list(ner_countries) + [claim, original]
+def _find_countries(analysis: dict, max_n: int = 3,
+                    erlaubt: frozenset[str] | None = None) -> list[str]:
+    """ISO3-Codes der im Claim genannten Laender.
 
-    found: list[str] = []
-    seen: set[str] = set()
-    for term in search_terms:
-        tl = normalisiere(term)
-        # längste Namen zuerst, damit "südkorea" nicht durch "korea" überschrieben wird
-        for name in sorted(COUNTRY_MAP.keys(), key=len, reverse=True):
-            if normalisiere(name) in tl:
-                code = COUNTRY_MAP[name]
-                if code not in seen:
-                    found.append(code)
-                    seen.add(code)
-                    if len(found) >= 3:
-                        return found
-    return found
+    Die Suche liegt in ``services/_laender.py``: Wortgrenze mit Flexions-Regel,
+    laengste Aliasse zuerst, Fundstelle verbrauchen. Ohne diese drei Regeln
+    liefert „Nigeria" auch NER und „Somalia" auch MLI — bei 224 Laendern ist
+    das der Normalfall, nicht der Randfall.
+
+    ``erlaubt`` sind die Codes, zu denen der geladene Datensatz etwas hat.
+    Ohne die Einschraenkung meldet der Konnektor ein Land, zu dem er nichts
+    liefern kann, und der Nutzer bekommt „keine Daten" statt „nicht zustaendig".
+    """
+    return _LAENDER.aus_analyse(analysis, erlaubt, max_n)
 
 
-# ---------------------------------------------------------------------------
-# Value-Helpers
-# ---------------------------------------------------------------------------
 def _de_num(v: float | None, decimals: int = 2) -> str:
     if v is None:
         return "k. A."
@@ -438,6 +384,9 @@ async def search_wgi(analysis: dict) -> dict:
     if not indicators:
         return empty
 
+    # Kein `erlaubt`: die Weltbank wird PRO LAND abgefragt, es gibt kein
+    # vorab geladenes Universum. Fuer ein Land ohne Werte antwortet die API
+    # leer — dasselbe Verhalten wie vor der Konsolidierung.
     countries = _find_countries(analysis)
     if not countries:
         countries = list(_DEFAULT_COUNTRIES)
