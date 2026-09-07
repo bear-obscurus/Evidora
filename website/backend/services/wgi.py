@@ -43,7 +43,15 @@ from services._schreibweise import normalisiere, norm_terme
 logger = logging.getLogger("evidora")
 
 BASE_URL = "https://api.worldbank.org/v2"
-SOURCE_ID = "75"  # WGI
+# Die WGI-Datenbank ist source=3. „75" war die ESG-Sammlung — die Weltbank
+# hat die Indikatoren umbenannt, und die alte ID wird seither mit einem
+# FEHLER-OBJEKT bei HTTP 200 beantwortet (siehe _fetch_indicator).
+SOURCE_ID = "3"  # Worldwide Governance Indicators
+
+# Die API-IDs tragen seit der Umstellung ein Praefix: RL.EST -> GOV_WGI_RL.EST.
+# Die kurzen Kuerzel bleiben die interne Identitaet (lesbarer, und sie stehen
+# in den Fallback-Listen), das Praefix kommt erst beim Aufruf dazu.
+API_ID_PRAEFIX = "GOV_WGI_"
 
 # 24h cache TTL — WGI ist jährlich, intraday-Cache reicht völlig.
 CACHE_TTL = 86400
@@ -158,6 +166,8 @@ COUNTRY_MAP = {alias: iso
                for alias in aliasse}
 
 # EU-Aggregat für Vergleich
+# Bleibt als Konstante stehen (Tests und der Vergleichs-Satz beziehen sich
+# darauf), wird aber NICHT mehr mitabgefragt — siehe search_wgi.
 EU_AGGREGATE = "EUU"
 
 # Default-Länder, wenn Claim Governance-Term aber kein Land nennt
@@ -322,7 +332,8 @@ async def _fetch_indicator(
 
     try:
         resp = await client.get(
-            f"{BASE_URL}/country/{country_str}/indicator/{indicator}",
+            f"{BASE_URL}/country/{country_str}/indicator/"
+            f"{API_ID_PRAEFIX}{indicator}",
             params={
                 "source": SOURCE_ID,
                 "format": "json",
@@ -340,6 +351,20 @@ async def _fetch_indicator(
         return []
     except Exception as e:  # noqa: BLE001
         logger.warning("WGI fetch failed for %s/%s: %s", country_str, indicator, e)
+        return []
+
+    # Die Weltbank meldet Fehler mit HTTP 200 und einem Fehler-OBJEKT.
+    # `raise_for_status` greift dann nicht, `data[1]` fehlt, und ohne die
+    # folgende Pruefung cacht der Konnektor still eine leere Liste — genau so
+    # lag WGI von Mai bis September 2026 tot, ohne eine einzige Fehlermeldung.
+    if isinstance(data, list) and data and isinstance(data[0], dict) \
+            and "message" in data[0]:
+        meldung = (data[0].get("message") or [{}])[0]
+        logger.warning(
+            "WGI: API-FEHLER statt Daten fuer %s/%s%s — %s: %s. Das ist kein "
+            "leeres Ergebnis, sondern eine kaputte Abfrage.",
+            country_str, API_ID_PRAEFIX, indicator,
+            meldung.get("key"), meldung.get("value"))
         return []
 
     if not isinstance(data, list) or len(data) < 2 or not data[1]:
@@ -393,7 +418,10 @@ async def search_wgi(analysis: dict) -> dict:
     countries = countries[:3]
 
     # EU-Aggregat zur Einordnung mitabholen
-    country_str = ";".join([*countries, EU_AGGREGATE])
+    # KEIN EU-Aggregat: source=3 fuehrt ausschliesslich Einzellaender, geprueft
+    # gegen EUU, OED, WLD, ECS, HIC und EMU — alle liefern total=0. Ein
+    # angehaengtes Aggregat kostet nur Antwortzeit und liefert nie einen Wert.
+    country_str = ";".join(countries)
     year_range = _DEFAULT_YEAR_RANGE
 
     results: list[dict] = []
