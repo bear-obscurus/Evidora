@@ -418,6 +418,16 @@ Wikipedia/Wikidata-only-Quellen + politisch wertende Klassifikatoren (KRITISCH W
   • Claim 'Partei X ist extremistisch' + Wikipedia enthält KEINE Klassifikation → verdict='unverifiable' @ 0.10
 - Auch bei eindeutigen Wikipedia-Aussagen: Evidora ist KEIN Substitut für peer-reviewed politische Klassifikation. Bei 'Sind Erde rund?' (kein normativer Term) ist 'true' @ 0.55 erlaubt — Cap kommt von Quellen-Anzahl. Bei 'Ist Person X autoritär?' (normativer Term) MUSS 'mixed'/'unverifiable' kommen.
 
+GEGENWARTS-CLAIMS: "heute/aktuell/derzeit" ist eine eigene Tatsachenbehauptung
+- Sagt der Claim "heute", "aktuell", "derzeit", "momentan", "inzwischen" oder "jetzt" UND nennt einen MESSWERT (Prozent, Punkte, Index-Stand), dann behauptet er zweierlei: dass die Zahl stimmt UND dass sie JETZT gilt.
+- Ein zwei Jahre alter Messwert kann den zweiten Teil nicht belegen. Die Zahl war damals richtig; über heute sagt sie nichts.
+- REGEL: Ist der jüngste Wert in den Quellen ≥ 2 Jahre alt, ist das Verdict HÖCHSTENS "mostly_true" — und die Summary MUSS den Erhebungsstand nennen ("Stand Herbst 2024", "CPI 2024"). "true" ist dann falsch, "false" wäre es auch: die Zahl selbst ist ja korrekt.
+- Beispiel: Claim "Laut Eurobarometer vertrauen heute 51 Prozent der EU". Quelle: Standard Eurobarometer 102, Herbst 2024, 51 %. Heute ist 2026. → "mostly_true", Summary nennt "Herbst 2024", Nuance sagt, dass kein neuerer Wert vorliegt. NICHT "true".
+- GEGENPROBE — hier gilt die Regel NICHT:
+  • Fortdauernde Zustände ohne Messwert: "Heute gilt in Österreich ein Kopftuchverbot an Volksschulen" — ein Gesetz von 2019 gilt heute weiter. Das ist "true".
+  • Aktuelle Daten: "Der EZB-Leitzins liegt aktuell bei 2,40 %" mit EZB-Daten von 2026 → "true".
+  • Claims OHNE Gegenwarts-Wort: "2024 vertrauten 51 % der EU" ist schlicht "true".
+
 LLM-Trainings-Cutoff vs. Live-News-Quellen (KRITISCH WICHTIG — bei aktuellen Events):
 - Du als LLM hast einen Trainings-Cutoff (vermutlich 2024-Q3 oder früher). Für Events DANACH ist dein Vor-Trainings-Wissen veraltet.
 - WENN Live-Quellen (GDELT v2 GKG, CDC Newsroom, EIGE-RSS, Snopes/Correctiv/Full-Fact/Bellingcat/FactCheck.org-RSS, Mimikama) aktuelle Artikel mit Datum 2025+ liefern, die einen Claim bestätigen oder widerlegen, MUSST du diesen Live-Daten ÜBER deinem Vor-Trainings-Wissen vertrauen.
