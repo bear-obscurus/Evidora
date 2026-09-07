@@ -228,7 +228,16 @@ from services.ner import enrich_entities
 from services.data_updater import prefetch_all, start_background_updates, stop_background_updates
 
 logging.basicConfig(level=logging.INFO)
+
+# Muss NACH basicConfig stehen (die Handler muessen existieren) und VOR dem
+# ersten HTTP-Aufruf: httpx loggt jede Request-URL auf INFO, und mehrere
+# Konnektoren tragen ihren API-Key als Query-Parameter.
+from services._log_redaktion import installiere as _redaktion_installieren
+_ANZAHL_GEHEIMNISSE = _redaktion_installieren()
+
 logger = logging.getLogger("evidora")
+logger.info("Log-Redaktion aktiv: %d Geheimnisse werden geschwaerzt",
+            _ANZAHL_GEHEIMNISSE)
 
 app = FastAPI(title="Evidora API")
 

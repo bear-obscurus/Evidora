@@ -185,6 +185,11 @@ jobs:
     #                                  _topic_match nur fuer den Guard
     #                                  importieren; inkl. der drei Listen-
     #                                  Klassen, die die erste Spec nicht sah)
+    #   - test_log_redaktion          (API-Keys standen im Klartext im Log:
+    #                                  httpx loggt jede Request-URL auf INFO.
+    #                                  Geschwaerzt wird nach WERT, nicht nach
+    #                                  Parametername — sonst faellt der
+    #                                  OECD-SDMX-Selektor mit weg)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -279,6 +284,7 @@ jobs:
             tests/test_freedom_house_regime_klassifikation.py \
             tests/test_politik_guards_schreibweisen.py \
             tests/test_normalisierung_laender_dienste.py \
+            tests/test_log_redaktion.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
