@@ -194,6 +194,94 @@ def test_abdeckung_ist_ehrlich_dokumentiert():
 
 
 # --------------------------------------------------------------------------
+# Zweite Welle: Abdeckung und die zwei nachweislich toten Quellen
+# --------------------------------------------------------------------------
+
+def test_abdeckung_wird_beziffert_nicht_behauptet():
+    """„Alle Sonden grün" darf nie für „alle Quellen leben" gehalten werden.
+    Der Bericht nennt deshalb Zähler und Nenner."""
+    assert QM.ANZAHL_LIVE_KONNEKTOREN >= 100
+    abgedeckt = len({s[1] for s in QM.SONDEN})
+    assert abgedeckt >= 45, abgedeckt
+    assert abgedeckt < QM.ANZAHL_LIVE_KONNEKTOREN, (
+        "Wenn alles abgedeckt ist, gehört der Hinweis im Docstring angepasst")
+
+
+def test_anzahl_live_konnektoren_stimmt_mit_dem_bestand():
+    """Eine Zahl in zwei Kopien driftet. Die gepinnte Zahl wird gegen den
+    echten Bestand geprüft, nicht geglaubt."""
+    import re as _re
+    echt = 0
+    for pfad in sorted((BACKEND / "services").glob("*.py")):
+        if pfad.stem.startswith("_"):
+            continue
+        quelle = pfad.read_text(encoding="utf-8")
+        if not _re.search(r"async def (search|fetch)_", quelle):
+            continue
+        if "load_json_mtime_aware" in quelle:
+            continue
+        if not _re.search(r"httpx|client\.(get|post)", quelle):
+            continue
+        echt += 1
+    assert abs(echt - QM.ANZAHL_LIVE_KONNEKTOREN) <= 3, (
+        f"gepinnt {QM.ANZAHL_LIVE_KONNEKTOREN}, real {echt}")
+
+
+def test_bekannt_defekte_quellen_loesen_keinen_push_aus(monkeypatch):
+    """Ein Wecker, den man nicht abstellen kann, bringt einem bei, Wecker zu
+    ignorieren (#128/#142). WHO Europe und FAOSTAT sind nachweislich tot —
+    sie stehen im Bericht, pushen aber nicht."""
+    gesendet = []
+    monkeypatch.setattr(QM, "_post_alert",
+                        lambda *a, **k: gesendet.append(a))
+    monkeypatch.setattr(QM, "SONDEN", [
+        ("FAOSTAT", "faostat", "https://example.test/x", {}, lambda t: 0, None)])
+
+    class _Antwort:
+        status = 200
+        def read(self): return b"{}"
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+    monkeypatch.setattr(QM.urllib.request, "urlopen", lambda *a, **k: _Antwort())
+    monkeypatch.setattr(sys, "argv", ["quellen_lebenszeichen.py"])
+    assert QM.main() == 0, "bekannt defekt darf den Exit-Code nicht faerben"
+    assert not gesendet, "bekannt defekt darf keinen Push ausloesen"
+
+
+def test_jede_bekannt_defekte_quelle_hat_grund_und_rueckweg():
+    """Aufnahme nur mit geprüftem Grund UND einer Bedingung, unter der der
+    Eintrag wieder verschwindet — sonst versteinert die Liste (#142)."""
+    assert QM.BEKANNT_DEFEKT, "Liste ist leer — dann gehört sie weg"
+    namen = {s[0] for s in QM.SONDEN}
+    for name, grund in QM.BEKANNT_DEFEKT.items():
+        assert name in namen, f"{name} hat keine Sonde"
+        assert "WIEDER AUFNEHMEN" in grund, name
+        assert "2026-" in grund, f"{name}: Datum fehlt"
+        assert len(grund) > 120, f"{name}: Begruendung zu duenn"
+
+
+def test_rueckkehr_einer_defekten_quelle_wird_gemeldet(monkeypatch):
+    """Der erfreuliche Fall gehört genauso gemeldet — sonst bleibt der
+    Eintrag stehen, nachdem die Quelle längst wieder da ist."""
+    monkeypatch.setattr(QM, "SONDEN", [
+        ("FAOSTAT", "faostat", "https://example.test/x", {}, lambda t: 5, None)])
+    monkeypatch.setattr(QM, "_post_alert", lambda *a, **k: None)
+
+    class _Antwort:
+        status = 200
+        def read(self): return b"{}"
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+    monkeypatch.setattr(QM.urllib.request, "urlopen", lambda *a, **k: _Antwort())
+    monkeypatch.setattr(sys, "argv", ["quellen_lebenszeichen.py", "--json"])
+    import io, contextlib
+    puffer = io.StringIO()
+    with contextlib.redirect_stdout(puffer):
+        QM.main()
+    assert "wieder erreichbar" in puffer.getvalue()
+
+
+# --------------------------------------------------------------------------
 # Verdrahtung
 # --------------------------------------------------------------------------
 
