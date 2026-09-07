@@ -184,6 +184,61 @@ def test_leitzins_traegt_keine_sparzins_warnung():
 
 
 # --------------------------------------------------------------------------
+# Vage Wertungen brauchen die Spannweite, nicht eine Verweigerung
+# --------------------------------------------------------------------------
+
+@pytest.mark.parametrize("claim", [
+    "Der EZB-Leitzins ist niedrig",
+    "Die Zinsen sind hoch",
+    "Die hohen Zinsen belasten Kreditnehmer",
+    "niedrige Zinsen in Europa",
+    "Sparbuchzinsen sind gering",
+    "Der Euro ist stark",
+])
+def test_vage_wertung_zieht_die_historische_spannweite(claim):
+    """Nebeneffekt des Stellvertreter-Fixes, live gemessen: „Der EZB-Leitzins
+    ist niedrig" fiel von `mixed@0.75` auf `unverifiable@0.1`.
+
+    Die Ursache lag tiefer als der Prompt: „ist niedrig" steht im POSITIV und
+    war deshalb nicht in `HISTORICAL_KEYWORDS` — das Modell bekam sechs
+    Monatswerte und keine Spannweite. Das alte `mixed` stützte sich auf
+    ungestütztes Modellwissen („>4 % in den 2000ern").
+
+    Mit Minimum und Maximum der Reihe wird aus der Wertung eine prüfbare
+    Aussage. Eine Verweigerung wäre die schlechtere Antwort, wenn 15 Jahre
+    Daten danebenliegen.
+    """
+    from services.ecb import _needs_historical
+    assert _needs_historical(claim), claim
+
+
+@pytest.mark.parametrize("claim", [
+    "Die Hochschule in Wien",
+    "Das Hochwasser 2024",
+    "Die Hochrechnung zur Wahl",
+    "Hochhaus in Wien",
+    "Starkregen in Tirol",
+    "Die Geringfügigkeitsgrenze",
+    "Die Geringfuegigkeitsgrenze",
+    "Die Stärkung des Euro",
+    "Der Leitzins liegt bei 2,4 Prozent",
+])
+def test_vage_wertung_trifft_keine_zusammensetzungen(claim):
+    """Der erste Entwurf nutzte ein offenes Präfix — und traf „Hochschule"
+    und „Hochwasser". Genau der Fehler, gegen den die Wortgrenze im
+    Reihen-Matching überhaupt existiert. Bis zu drei Buchstaben Flexion,
+    danach muss ein Nicht-Buchstabe stehen.
+
+    Der zweite Entwurf hatte `[a-z]{0,3}` ohne Umlaute — und dann matcht
+    „Geringfügigkeit": nach „gering" steht „f" (in der Klasse), danach „ü"
+    (nicht in der Klasse), der Lookahead ist erfüllt. **Dieser Test hat es
+    gefangen**; eine Ad-hoc-Sonde mit ASCII-Schreibweise vorher nicht.
+    """
+    from services.ecb import _needs_historical
+    assert not _needs_historical(claim), claim
+
+
+# --------------------------------------------------------------------------
 # Die Prompt-Schicht
 # --------------------------------------------------------------------------
 

@@ -263,10 +263,38 @@ HISTORICAL_KEYWORDS = [
 ]
 
 
+# Vage Wertungen im POSITIV. Sie verlangen keinen Superlativ und standen
+# deshalb nicht in HISTORICAL_KEYWORDS — mit der Folge, dass "Der EZB-Leitzins
+# ist niedrig" nur sechs Monatswerte bekam und gar nicht belegbar war. Die
+# Antwort stuetzte sich dann auf ungestuetztes Modellwissen (">4 % in den
+# 2000ern"), oder sie verweigerte.
+#
+# Mit der Spannweite der Reihe wird aus der Wertung eine pruefbare Aussage:
+# 2,40 % laesst sich gegen das dokumentierte Minimum und Maximum einordnen.
+#
+# Wortgrenze auf BEIDEN Seiten, mit begrenztem Flexions-Schwanz. Ein offenes
+# Praefix waere hier falsch: "hoch" traefe dann "Hochschule" und "Hochwasser"
+# — genau der Fehler, gegen den die Wortgrenze im Reihen-Matching ueberhaupt
+# existiert. Bis zu drei Buchstaben decken die deutschen Endungen ab
+# ("niedrige", "niedrigen", "niedriger"), danach muss ein Nicht-Buchstabe
+# stehen. Beim Bauen gemessen, nicht vermutet.
+# Umlaute gehoeren in die Zeichenklasse UND in den Lookahead. Ohne sie wirkt
+# ein "ü" als Wortgrenze, und "Geringfuegigkeitsgrenze" — mit echtem Umlaut
+# geschrieben — matcht: nach "gering" steht "f" (in [a-z]), danach "ü" (nicht
+# in [a-z]), der Lookahead ist erfuellt. Der eigene Test hat das gefangen,
+# eine Ad-hoc-Sonde mit ASCII-Schreibweise vorher nicht.
+_VAGE_WERTUNG = re.compile(
+    r"\b(?:niedrig|hoh|hoch|teuer|billig|gering|guenstig|günstig|stark|"
+    r"schwach)[a-zäöüß]{0,3}(?![a-zäöüß])",
+    re.IGNORECASE)
+
+
 def _needs_historical(claim: str) -> bool:
     """Check if the claim requires historical context."""
     claim_lower = claim.lower()
-    return any(kw in claim_lower for kw in HISTORICAL_KEYWORDS)
+    if any(kw in claim_lower for kw in HISTORICAL_KEYWORDS):
+        return True
+    return bool(_VAGE_WERTUNG.search(claim_lower))
 
 
 def _find_series(claim: str) -> list[dict]:
