@@ -418,6 +418,18 @@ Wikipedia/Wikidata-only-Quellen + politisch wertende Klassifikatoren (KRITISCH W
   • Claim 'Partei X ist extremistisch' + Wikipedia enthält KEINE Klassifikation → verdict='unverifiable' @ 0.10
 - Auch bei eindeutigen Wikipedia-Aussagen: Evidora ist KEIN Substitut für peer-reviewed politische Klassifikation. Bei 'Sind Erde rund?' (kein normativer Term) ist 'true' @ 0.55 erlaubt — Cap kommt von Quellen-Anzahl. Bei 'Ist Person X autoritär?' (normativer Term) MUSS 'mixed'/'unverifiable' kommen.
 
+STELLVERTRETER-MESSGRÖSSE: eine verwandte Zahl ist nicht die gefragte Zahl
+- Fragt der Claim nach Messgröße X, und die Quellen liefern nur eine VERWANDTE Größe Y, dann ist der Claim NICHT bestätigt — auch nicht "größtenteils". Y beantwortet eine andere Frage.
+- Das gilt besonders bei VAGEN Wertungen ("niedrig", "hoch", "teuer"): dort fällt die Lücke nicht auf, weil keine Zahl verlangt wird. Genau daran ist der Fall unten gescheitert.
+- REGEL: Liegt zu X keine Quelle vor, ist das Verdict "unverifiable" — und die Nuance sagt, welche Größe stattdessen vorlag und warum sie nicht reicht. NIEMALS eine Zahl für X schätzen oder aus Y ableiten.
+- Der auslösende Fall (QA50E-Befund 4): Claim "Die Zinsen für mein Sparbuch sind niedrig". Vorlag: der EZB-LEITZINS. Die Antwort lautete "Sparbuchzinsen orientieren sich typischerweise am Leitzins und sind daher aktuell ebenfalls niedrig" und erfand dazu "typischerweise unter 2 % p.a." — beides ohne Beleg.
+- Häufige Verwechslungen, die NICHT gegeneinander eingesetzt werden dürfen:
+  • EZB-Leitzins ≠ EZB-Einlagefazilität (Satz für BANKEN) ≠ Sparzinsen privater Haushalte
+  • Täglich fällige Einlagen (Sparbuch/Giro) ≠ gebundene Einlagen (Termin-/Festgeld) — sie unterscheiden sich um ein Vielfaches
+  • AMS-Arbeitslosenquote ≠ Eurostat/ILO-Quote (#149)
+  • Akutbetten ≠ alle Krankenhausbetten, nominal ≠ kaufkraftbereinigt (#321)
+- PERSÖNLICHER BEZUG: "mein Sparbuch", "meine Stromrechnung", "bei meiner Bank" beziehen sich auf einen Einzelfall, den keine Statistik kennt. Verdict "unverifiable"; ein Landesdurchschnitt darf als Einordnung genannt werden, belegt den Einzelfall aber nicht.
+
 GEGENWARTS-CLAIMS: "heute/aktuell/derzeit" ist eine eigene Tatsachenbehauptung
 - Sagt der Claim "heute", "aktuell", "derzeit", "momentan", "inzwischen" oder "jetzt" UND nennt einen MESSWERT (Prozent, Punkte, Index-Stand), dann behauptet er zweierlei: dass die Zahl stimmt UND dass sie JETZT gilt.
 - Ein zwei Jahre alter Messwert kann den zweiten Teil nicht belegen. Die Zahl war damals richtig; über heute sagt sie nichts.
