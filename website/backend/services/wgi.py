@@ -39,6 +39,11 @@ import httpx
 from services._http_polite import polite_client
 from services import _laender as _LAENDER
 from services._schreibweise import normalisiere, norm_terme
+from services._skala import richtung as _richtung
+
+# Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
+# Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
+_SKALA_WGI = _richtung("bessere Governance", spanne="-2,5 bis +2,5")
 
 logger = logging.getLogger("evidora")
 
@@ -455,7 +460,8 @@ async def search_wgi(analysis: dict) -> dict:
                         display_value += f" — EU-Schnitt {year}: {_de_num(eu_value)}"
 
                     results.append({
-                        "indicator_name": WGI_INDICATORS[ind_id]["name"],
+                        "indicator_name": (WGI_INDICATORS[ind_id]["name"]
+                                           + _SKALA_WGI),
                         "indicator": (
                             f"wgi_{ind_id.lower().replace('.', '_')}_{iso.lower()}"
                         ),

@@ -108,6 +108,11 @@ import os
 
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
+from services._skala import richtung as _richtung
+
+# Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
+# Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
+_SKALA_POLITY = _richtung("demokratischer", spanne="-10 bis +10")
 
 logger = logging.getLogger("evidora")
 
@@ -481,7 +486,7 @@ async def search_polity5(analysis: dict) -> dict:
     )
 
     results.append({
-        "indicator_name": indicator_name,
+        "indicator_name": indicator_name + _SKALA_POLITY,
         "indicator": "polity5_score",
         "country": iso2,
         "year": str(year_label),

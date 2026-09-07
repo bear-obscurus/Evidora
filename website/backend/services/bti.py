@@ -96,6 +96,11 @@ import os
 
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
+from services._skala import richtung as _richtung
+
+# Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
+# Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
+_SKALA_BTI = _richtung("weiter fortgeschrittene Transformation", spanne="1-10", mit_rang=True)
 from services import cache
 
 logger = logging.getLogger("evidora")
@@ -416,7 +421,7 @@ def _build_result_row(
     description = (methodology_short + dim_summary)[:300]
 
     return {
-        "indicator_name": indicator_name[:200],
+        "indicator_name": indicator_name[:200] + _SKALA_BTI,
         "indicator": "bti_status_index",
         "country": iso2,
         "year": str(report_year),

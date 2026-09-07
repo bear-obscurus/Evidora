@@ -112,6 +112,11 @@ import os
 
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
+from services._skala import richtung as _richtung
+
+# Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
+# Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
+_SKALA_MIPEX = _richtung("integrationsfreundlichere Politik", spanne="0-100", mit_rang=True)
 from services import cache
 
 logger = logging.getLogger("evidora")
@@ -631,7 +636,7 @@ def _build_result_row(
     description = _build_description(data)
 
     return {
-        "indicator_name": indicator_name[:200],
+        "indicator_name": indicator_name[:200] + _SKALA_MIPEX,
         "indicator": "mipex_overall" if not focus_area else f"mipex_{focus_area}",
         "country": iso2,
         "year": str(report_year),

@@ -90,6 +90,11 @@ import re
 
 from services._schreibweise import normalisiere, norm_terme
 from services._static_cache import load_json_mtime_aware
+from services._skala import richtung as _richtung
+
+# Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
+# Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
+_SKALA_FH = _richtung("mehr politische Rechte und Buergerrechte", spanne="0-100")
 
 logger = logging.getLogger("evidora")
 
@@ -591,7 +596,7 @@ async def search_freedom_house(analysis: dict) -> dict:
     )
 
     results.append({
-        "indicator_name": indicator_name,
+        "indicator_name": indicator_name + _SKALA_FH,
         "indicator": "freedom_house_score",
         "country": iso2,
         "year": str(report_year),

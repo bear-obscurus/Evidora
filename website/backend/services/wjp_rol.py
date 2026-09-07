@@ -66,6 +66,11 @@ import time
 
 from services._http_polite import polite_client  # noqa: F401 -- Symmetrie mit wgi.py
 from services._schreibweise import normalisiere, norm_terme
+from services._skala import richtung as _richtung
+
+# Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
+# Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
+_SKALA_WJP = _richtung("staerkere Rechtsstaatlichkeit", spanne="0-1", mit_rang=True)
 
 logger = logging.getLogger("evidora")
 
@@ -590,7 +595,7 @@ async def search_wjp_rol(analysis: dict) -> dict:
     indicator_slug = f"wjp_rol_{(entry.get('iso3') or country_canonical).lower()}"
 
     result = {
-        "indicator_name": indicator_name,
+        "indicator_name": indicator_name + _SKALA_WJP,
         "indicator": indicator_slug,
         "country": iso2,
         "country_name": country_canonical,

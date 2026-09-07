@@ -30,6 +30,11 @@ import os
 from services._static_cache import load_json_mtime_aware
 from services import _laender as _LAENDER
 from services._schreibweise import normalisiere, norm_terme
+from services._skala import richtung as _richtung
+
+# Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
+# Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
+_SKALA_RSF = _richtung("mehr Pressefreiheit", spanne="0-100", mit_rang=True)
 
 logger = logging.getLogger("evidora")
 
@@ -191,7 +196,7 @@ async def search_rsf(analysis: dict) -> dict:
         name += trend_note
 
         results.append({
-            "indicator_name": name,
+            "indicator_name": name + _SKALA_RSF,
             "indicator": "rsf_press_freedom_score",
             "country": code,
             "country_name": entity,
