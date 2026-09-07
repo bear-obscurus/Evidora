@@ -207,6 +207,10 @@ jobs:
     #                                  Fehler-Objekt, raise_for_status greift
     #                                  nicht — "0 Treffer" sah aus wie "nichts
     #                                  gefunden")
+    #   - test_quellen_lebenszeichen  (der Monitor, der WGI gefunden haette:
+    #                                  Logik ohne Netz + Drift-Schutz, damit
+    #                                  die Sonden-URLs nicht von den
+    #                                  Konnektoren weglaufen)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -305,6 +309,7 @@ jobs:
             tests/test_laenderkarte.py \
             tests/test_laenderkarte_api_konnektoren.py \
             tests/test_wgi_weltbank_api.py \
+            tests/test_quellen_lebenszeichen.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
