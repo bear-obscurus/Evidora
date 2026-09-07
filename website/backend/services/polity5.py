@@ -107,6 +107,7 @@ import logging
 import os
 
 from services._static_cache import load_json_mtime_aware
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -121,7 +122,7 @@ _DEFAULT_COUNTRIES_FOR_DACH_CLAIMS = ("AUT", "DEU", "CHE")
 
 # Trigger-Keywords (DE + EN). Bei Match + Land → Treffer.
 # Bei Match ohne Land → DACH-Default.
-_POLITY_KEYWORDS = (
+_POLITY_KEYWORDS = norm_terme(
     "polity 5", "polity5", "polity-5",
     "polity 4", "polity4", "polity-4",
     "polity score", "polity-score", "polityscore",
@@ -144,7 +145,7 @@ _POLITY_KEYWORDS = (
 # Wird zusammen mit Polity-Keywords zu Composite-Triggern verknüpft,
 # damit "Polity 5 Russland …" / "Regime-Typologie China" robust greift,
 # auch wenn die data/polity5.json gerade nicht ladbar ist.
-_COUNTRY_TOKENS: tuple[str, ...] = (
+_COUNTRY_TOKENS: tuple[str, ...] = norm_terme(
     "österreich", "oesterreich", "austria",
     "deutschland", "germany",
     "schweiz", "switzerland",
@@ -220,7 +221,7 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
     found: list[str] = []
     for iso3, alias_list in aliases.items():
         for alias in alias_list:
-            if alias.lower() in claim_lc:
+            if normalisiere(alias) in claim_lc:
                 found.append(iso3)
                 break  # nur einmal pro Land
     return found
@@ -257,7 +258,7 @@ def _claim_mentions_polity5(claim: str) -> bool:
     """
     if not claim:
         return False
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
     # Politik-Tabu-Guard 2.0 ZUERST — Country-Level-Demokratie-Daten
     # dürfen NICHT für Partei-Werturteile missbraucht werden.
     from services._topic_match import is_party_corruption_superlative_claim
@@ -408,7 +409,7 @@ async def search_polity5(analysis: dict) -> dict:
         logger.warning("polity5: static JSON konnte nicht geladen werden")
         return empty
 
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
 
     if not _has_polity_keyword(claim_lc):
         return empty
@@ -493,7 +494,7 @@ async def search_polity5(analysis: dict) -> dict:
     })
 
     # Optional: History-Highlight wenn Claim einen Transition-Marker trifft.
-    history_marker_keywords = (
+    history_marker_keywords = norm_terme(
         "ddr", "wiedervereinigung", "mauerfall",
         "transición", "transicion", "franco",
         "solidarność", "solidarnosc", "solidarnos",

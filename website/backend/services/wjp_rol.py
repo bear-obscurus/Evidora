@@ -65,6 +65,7 @@ import logging
 import time
 
 from services._http_polite import polite_client  # noqa: F401 -- Symmetrie mit wgi.py
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -165,11 +166,17 @@ WJP_FACTORS: dict[int, dict] = {
     },
 }
 
+# Faktor-Keywords des World Justice Project.
+# Die Specs bleiben mit Umlauten lesbar; verglichen wird gegen den
+# ebenfalls gefalteten Claim. Einmal beim Import, nicht je Aufruf.
+for _spec in WJP_FACTORS.values():
+    _spec["keywords"] = norm_terme(*_spec["keywords"])
+
 
 # ---------------------------------------------------------------------------
 # Cross-Cluster-Trigger (generelle RoL/WJP-Begriffe)
 # ---------------------------------------------------------------------------
-_GENERAL_TRIGGERS = (
+_GENERAL_TRIGGERS = norm_terme(
     "wjp", "world justice project",
     "rule of law index", "rule-of-law-index",
     "rule of law", "rechtsstaatlichkeit international",
@@ -378,7 +385,7 @@ def _claim_mentions_wjp(claim_lc: str) -> bool:
     #    "rule of law", "justiz", "wjp" o.ä., damit z.B. ein reines
     #    "korruption"-Wort nicht von WJP gegriffen wird (das macht WGI/CPI).
     rol_context = any(
-        t in claim_lc for t in (
+        t in claim_lc for t in norm_terme(
             "rechtsstaat", "rule of law", "wjp",
             "world justice project", "justiz",
         )
@@ -392,7 +399,7 @@ def _claim_mentions_wjp(claim_lc: str) -> bool:
 
 def claim_mentions_wjp_cached(claim: str) -> bool:
     """Public-API: lowercase + Test (mit lru-style In-Process-Cache)."""
-    return _claim_mentions_wjp((claim or "").lower())
+    return _claim_mentions_wjp(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -426,10 +433,10 @@ def _qualitative_band(val: float) -> str:
 
 def _find_country(analysis: dict) -> str:
     """Find canonical WJP-Country-Name in claim. Fallback: Austria (DACH-Default)."""
-    claim = (analysis.get("claim") or "").lower()
-    original = (analysis.get("original_claim") or "").lower()
+    claim = normalisiere(analysis.get("claim") or "")
+    original = normalisiere(analysis.get("original_claim") or "")
     ner_countries = (analysis.get("ner_entities") or {}).get("countries") or []
-    search = " ".join([claim, original] + [str(c).lower() for c in ner_countries])
+    search = " ".join([claim, original] + [normalisiere(str(c)) for c in ner_countries])
 
     # längste Aliasse zuerst -- "südkorea" muss vor "korea" matchen
     for alias in sorted(COUNTRY_ALIASES.keys(), key=len, reverse=True):

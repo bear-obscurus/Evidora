@@ -22,6 +22,7 @@ import time
 
 import httpx
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -34,7 +35,7 @@ _cpi_cache: dict | None = None
 _cpi_cache_time: float = 0.0
 
 # Trigger-Keywords (DE + EN)
-CPI_KEYWORDS = [
+CPI_KEYWORDS = norm_terme(
     "korruption", "korrupt", "korruptionsindex",
     "corruption", "corrupt", "corruption index",
     "transparency international",
@@ -43,7 +44,7 @@ CPI_KEYWORDS = [
     "vetternwirtschaft", "cronyism",
     "amtsmissbrauch", "abuse of office",
     "integrität", "integrity",
-]
+)
 
 # EU-27 Mitgliedsstaaten (ISO3) — für Durchschnitts- und Ranking-Kontext,
 # wenn der Claim auf den EU-Schnitt verweist.
@@ -58,7 +59,7 @@ EU27_MEMBERS = frozenset({
 # EU", "gegenüber der EU" …), nachdem ein Testclaim "Die Korruption in der
 # Ukraine ist höher als in der EU" die EU-Kohorte nicht ausgelöst hatte und
 # das LLM dadurch den EU-Ø halluzinierte.
-EU_COMPARISON_TRIGGERS = [
+EU_COMPARISON_TRIGGERS = norm_terme(
     # Durchschnitt / Mittel / Schnitt
     "eu-durchschnitt", "eu durchschnitt", "eu-schnitt", "eu schnitt",
     "eu-mittel", "eu mittel", "eu-mittelwert", "eu mittelwert",
@@ -85,7 +86,7 @@ EU_COMPARISON_TRIGGERS = [
     "vs. the eu", "vs the eu", "versus the eu",
     "than the eu", "than in the eu",
     "compared to europe", "than europe", "than in europe",
-]
+)
 
 # Kleinere Country-Map (wir setzen auf die gleiche ISO3-Logik wie V-Dem)
 COUNTRY_MAP = {
@@ -184,9 +185,9 @@ def _find_countries(analysis: dict, max_n: int = 3) -> list[str]:
     found: list[str] = []
     seen: set[str] = set()
     for term in search_terms:
-        term_lower = term.lower()
+        term_lower = normalisiere(term)
         for name, code in COUNTRY_MAP.items():
-            if name in term_lower and code not in seen:
+            if normalisiere(name) in term_lower and code not in seen:
                 found.append(code)
                 seen.add(code)
                 if len(found) >= max_n:
@@ -196,7 +197,7 @@ def _find_countries(analysis: dict, max_n: int = 3) -> list[str]:
 
 def _claim_mentions_cpi(claim: str) -> bool:
     from services._topic_match import is_party_corruption_superlative_claim
-    claim_lower = claim.lower()
+    claim_lower = normalisiere(claim)
     # Politik-Tabu-Guard 2.0 (Lehrgeld 2026-05-17): Bei Partei+Korruption+
     # Superlativ ohne konkreten Anker NICHT triggern — Country-Level-CPI
     # taugt nicht zur Partei-Bewertung (Kategorienfehler).

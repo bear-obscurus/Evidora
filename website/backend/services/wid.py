@@ -60,6 +60,7 @@ import os
 import time
 
 from services._static_cache import load_json_mtime_aware
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -100,7 +101,7 @@ _ISO3_TO_ISO2 = {
 # ---------------------------------------------------------------------------
 
 # Direkt-Trigger: Claim erwaehnt WID/Piketty namentlich.
-_DIRECT_TRIGGERS = (
+_DIRECT_TRIGGERS = norm_terme(
     "wid.world", "wid world", "world inequality database",
     "world inequality report", "world inequality lab",
     "weltungleichheits-bericht",
@@ -113,12 +114,12 @@ _DIRECT_TRIGGERS = (
 # Author-Trigger: Nur Nachnamen — gelten erst in Kombination mit
 # Top-Share/Inequality/Income/Wealth-Hint oder Land (vermeidet False-Positives
 # fuer zufaellige Namens-Erwaehnungen).
-_AUTHOR_TOKENS = (
+_AUTHOR_TOKENS = norm_terme(
     "piketty", "saez", "zucman", "chancel",
 )
 
 # Top-Share-Trigger (Income oder Wealth — qualifizieren ueber _SHARE_TYPE_HINTS).
-_SHARE_TRIGGERS = (
+_SHARE_TRIGGERS = norm_terme(
     "top-1%", "top 1%", "top-1 %", "top 1 %",
     "top-1-prozent", "top 1 prozent", "top 1-prozent",
     "top 1 percent", "top-1 percent", "top-1-percent",
@@ -134,7 +135,7 @@ _SHARE_TRIGGERS = (
 )
 
 # Income/Wealth-Inequality-Trigger (allgemein).
-_INEQUALITY_TRIGGERS = (
+_INEQUALITY_TRIGGERS = norm_terme(
     "vermögensverteilung", "vermoegensverteilung",
     "vermögensungleichheit", "vermoegensungleichheit",
     "einkommensverteilung", "einkommensungleichheit",
@@ -147,11 +148,11 @@ _INEQUALITY_TRIGGERS = (
 )
 
 # Hinweise auf Share-Typ (Income vs Wealth) im Claim.
-_INCOME_HINTS = (
+_INCOME_HINTS = norm_terme(
     "einkommen", "einkommens", "income", "lohn", "gehalt", "verdienst",
     "earnings", "pretax", "vorsteuerlich", "national income",
 )
-_WEALTH_HINTS = (
+_WEALTH_HINTS = norm_terme(
     "vermögen", "vermoegen", "wealth", "reichtum", "besitz",
     "net worth", "personal wealth", "household wealth",
 )
@@ -237,21 +238,21 @@ def _share_types(claim_lc: str) -> list[str]:
 def _share_buckets(claim_lc: str) -> list[str]:
     """Wahle Buckets (top1 / top10 / bottom50) basierend auf Claim-Hinweisen."""
     buckets: list[str] = []
-    if any(t in claim_lc for t in (
+    if any(t in claim_lc for t in norm_terme(
         "top-1%", "top 1%", "top-1 %", "top 1 %",
         "top-1-prozent", "top 1 prozent",
         "top 1 percent", "top-1 percent", "top-1-percent",
         "obere 1", "obersten 1",
     )):
         buckets.append("top1")
-    if any(t in claim_lc for t in (
+    if any(t in claim_lc for t in norm_terme(
         "top-10%", "top 10%", "top-10 %", "top 10 %",
         "top-10-prozent", "top 10 prozent",
         "top 10 percent", "top-10 percent", "top-10-percent",
         "obere 10", "obersten 10",
     )):
         buckets.append("top10")
-    if any(t in claim_lc for t in (
+    if any(t in claim_lc for t in norm_terme(
         "bottom-50%", "bottom 50%", "bottom 50 %", "bottom-50 %",
         "bottom 50 prozent", "bottom-50-prozent", "bottom 50 percent",
         "unteren 50%", "unteren 50 %", "untere 50%", "untere 50 %",
@@ -348,7 +349,7 @@ _trigger_cache: dict[str, tuple[float, bool]] = {}
 
 def claim_mentions_wid_cached(claim: str) -> bool:
     """24h-Cache-Wrapper fuer den Trigger-Check."""
-    claim_lc = (claim or "").lower().strip()
+    claim_lc = normalisiere(claim or "").strip()
     if not claim_lc:
         return False
     now = time.time()
@@ -522,8 +523,8 @@ async def search_wid(analysis: dict) -> dict:
     if not claim:
         return empty
 
-    claim_lc = claim.lower()
-    original = (analysis.get("original_claim") or claim).lower()
+    claim_lc = normalisiere(claim)
+    original = normalisiere(analysis.get("original_claim") or claim)
     matchable = f"{original} {claim_lc}".strip()
 
     if not _claim_mentions_wid(matchable):

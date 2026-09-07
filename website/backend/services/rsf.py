@@ -28,6 +28,7 @@ import logging
 import os
 
 from services._static_cache import load_json_mtime_aware
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -38,7 +39,7 @@ STATIC_JSON_PATH = os.path.join(
 )
 
 # Trigger-Keywords (DE + EN) — unverändert vom alten Service
-RSF_KEYWORDS = [
+RSF_KEYWORDS = norm_terme(
     "pressefreiheit", "press freedom",
     "medienfreiheit", "media freedom",
     "pressefreiheitsindex", "press freedom index",
@@ -52,7 +53,7 @@ RSF_KEYWORDS = [
     "pressezensur",
     "pressefreiheit eingeschränkt",
     "medienvielfalt", "media pluralism",
-]
+)
 
 # RSF verwendet in der CSV ISO3-Codes (z.B. FIN, EST, AUT, NLD)
 COUNTRY_MAP = {
@@ -127,9 +128,9 @@ def _find_countries(analysis: dict, max_n: int = 3) -> list[str]:
     found: list[str] = []
     seen: set[str] = set()
     for term in search_terms:
-        term_lower = term.lower()
+        term_lower = normalisiere(term)
         for name, code in COUNTRY_MAP.items():
-            if name in term_lower and code not in seen:
+            if normalisiere(name) in term_lower and code not in seen:
                 found.append(code)
                 seen.add(code)
                 if len(found) >= max_n:
@@ -139,7 +140,7 @@ def _find_countries(analysis: dict, max_n: int = 3) -> list[str]:
 
 def _claim_mentions_rsf(claim: str) -> bool:
     from services._topic_match import is_party_corruption_superlative_claim
-    claim_lower = claim.lower()
+    claim_lower = normalisiere(claim)
     # Politik-Tabu-Guard 2.0: RSF Press-Freedom misst Länder, nicht Parteien.
     if is_party_corruption_superlative_claim(claim_lower):
         return False

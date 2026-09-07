@@ -68,6 +68,7 @@ import time
 from functools import lru_cache
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 from services._topic_match import is_party_corruption_superlative_claim
 
 logger = logging.getLogger("evidora")
@@ -87,13 +88,13 @@ _CACHE_TTL_S = 24 * 3600.0  # 24 h
 # Trigger
 # ---------------------------------------------------------------------------
 # Explizite Quelle-Mentions
-_EXPLICIT_TERMS = (
+_EXPLICIT_TERMS = norm_terme(
     "constitute project", "constituteproject",
     "comparative constitutions project",
 )
 
 # Generische Verfassungs-Begriffe (in Composite-Logik gebraucht)
-_CONSTITUTION_TERMS = (
+_CONSTITUTION_TERMS = norm_terme(
     "verfassung", "verfassungstext", "verfassungsartikel",
     "verfassungsbestimmung", "verfassungs­recht",
     "verfassungsrechtlich",
@@ -115,7 +116,7 @@ _ARTICLE_REF_RE = re.compile(
 )
 
 # Länder-/Region-Hints für Composite-Trigger
-_COUNTRY_HINTS = (
+_COUNTRY_HINTS = norm_terme(
     "österreich", "austria", "österreichisch",
     "deutschland", "germany", "deutsch",
     "schweiz", "switzerland",
@@ -164,7 +165,7 @@ def _claim_mentions_constitute(claim_lc: str) -> bool:
         return True
 
     # 3) Spezial-Lemmata, die schon eine Verfassung benennen
-    for self_country in (
+    for self_country in norm_terme(
         "grundgesetz", "b-vg", "bundesverfassungsgesetz",
         "staatsgrundgesetz", "stgg",
         "us-verfassung", "amerikanische verfassung",
@@ -185,7 +186,7 @@ def _claim_mentions_constitute(claim_lc: str) -> bool:
 @lru_cache(maxsize=2048)
 def claim_mentions_constitute_cached(claim: str) -> bool:
     """LRU-gecachter Trigger-Check (Hot-Path-friendly)."""
-    return _claim_mentions_constitute((claim or "").lower())
+    return _claim_mentions_constitute(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -376,7 +377,7 @@ def _build_result_row(item: dict) -> dict | None:
 # der Faktencheck den Sub-Topic-Treffer sichtbar macht, prependen wir bei
 # Match eine kuratierte Referenz-Zeile (Quelle: NARA / Constitute, beide
 # frei). Keine eigene normative Wertung — reine Metadaten + Quell-Link.
-_SUBTOPIC_BILL_OF_RIGHTS_TERMS = (
+_SUBTOPIC_BILL_OF_RIGHTS_TERMS = norm_terme(
     "bill of rights", "first amendment", "second amendment",
     "fourth amendment", "fifth amendment", "sixth amendment",
     "eighth amendment", "tenth amendment", "fourteenth amendment",
@@ -475,7 +476,7 @@ async def search_constitute(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_constitute(matchable):
         return empty

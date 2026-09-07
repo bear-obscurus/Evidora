@@ -96,6 +96,7 @@ import logging
 import os
 
 from services._static_cache import load_json_mtime_aware
+from services._schreibweise import normalisiere, norm_terme
 from services import cache
 
 logger = logging.getLogger("evidora")
@@ -111,7 +112,7 @@ CACHE_TTL_SECONDS = 86400
 
 # Trigger-Keywords (DE + EN). Bei Match + Land → konkretes Country-Result.
 # Bei Match ohne Land → DACH-Default (AT/DE/CH).
-_CAT_KEYWORDS = (
+_CAT_KEYWORDS = norm_terme(
     # Eigenname CAT
     "climate action tracker",
     "climateactiontracker",
@@ -209,7 +210,7 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
     found: list[str] = []
     for iso3, alias_list in aliases.items():
         for alias in alias_list:
-            if alias.lower() in claim_lc:
+            if normalisiere(alias) in claim_lc:
                 if iso3 not in found:
                     found.append(iso3)
                 break
@@ -246,7 +247,7 @@ def _claim_mentions_cat(claim: str) -> bool:
         # Falls Helper nicht verfügbar: graceful Fallback.
         pass
 
-    return _has_cat_keyword(claim.lower())
+    return _has_cat_keyword(normalisiere(claim))
 
 
 def claim_mentions_cat_cached(claim: str) -> bool:
@@ -409,7 +410,7 @@ async def search_cat(analysis: dict) -> dict:
         logger.warning("climate_action_tracker: static JSON konnte nicht geladen werden")
         return empty
 
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
 
     if not _has_cat_keyword(claim_lc):
         return empty

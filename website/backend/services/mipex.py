@@ -111,6 +111,7 @@ import logging
 import os
 
 from services._static_cache import load_json_mtime_aware
+from services._schreibweise import normalisiere, norm_terme
 from services import cache
 
 logger = logging.getLogger("evidora")
@@ -125,7 +126,7 @@ STATIC_JSON_PATH = os.path.join(
 CACHE_TTL_SECONDS = 86400
 
 # Hard-Trigger-Keywords (DE + EN). Bei Match → MIPEX-Pipeline aktiviert.
-_MIPEX_KEYWORDS = (
+_MIPEX_KEYWORDS = norm_terme(
     "mipex",
     "migrant integration policy index",
     "migrant-integration-policy-index",
@@ -142,7 +143,7 @@ _MIPEX_KEYWORDS = (
 # Soft-Trigger Politikfeld-Schlüsselwörter: Wenn diese in einem Claim mit
 # einem MIPEX-Land + einem "Index"/"Vergleich"/"Punkte"-Signal stehen,
 # aktiviert MIPEX ebenfalls (für Themen-spezifische Country-Vergleiche).
-_MIPEX_POLICY_FIELD_KEYWORDS = (
+_MIPEX_POLICY_FIELD_KEYWORDS = norm_terme(
     # 1. Arbeitsmarkt
     "arbeitsmarkt-mobilität", "arbeitsmarktmobilität",
     "arbeitsmarkt-zugang", "arbeitsmarktzugang",
@@ -175,7 +176,7 @@ _MIPEX_POLICY_FIELD_KEYWORDS = (
 # Signal-Wörter, die zusammen mit einem Politikfeld-Soft-Trigger einen
 # echten MIPEX-Bezug nahelegen (sonst würden zu viele False-Positives
 # bei z.B. Wahlrechts-Claims ohne Index-Bezug triggern).
-_MIPEX_INDEX_SIGNAL_WORDS = (
+_MIPEX_INDEX_SIGNAL_WORDS = norm_terme(
     "index", "indikator", "vergleich", "ranking", "rang ", "platz",
     "punkte", "punktzahl", "score", "bewert",
     "international", "im vergleich", "im internat",
@@ -314,7 +315,7 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
     found: list[str] = []
     for iso3, alias_list in aliases.items():
         for alias in alias_list:
-            if alias.lower() in claim_lc:
+            if normalisiere(alias) in claim_lc:
                 found.append(iso3)
                 break
     return found
@@ -374,7 +375,7 @@ def _claim_mentions_mipex(claim: str) -> bool:
     if not data:
         return False
 
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
 
     if _has_mipex_keyword(claim_lc):
         return True
@@ -680,7 +681,7 @@ async def search_mipex(analysis: dict) -> dict:
         logger.warning("mipex: static JSON konnte nicht geladen werden")
         return empty
 
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
 
     # Trigger-Check: hartes Keyword ODER Soft-Trigger.
     has_hard = _has_mipex_keyword(claim_lc)

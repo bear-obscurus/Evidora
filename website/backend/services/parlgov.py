@@ -55,6 +55,7 @@ import time
 import httpx
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 from services._topic_match import is_party_corruption_superlative_claim
 
 logger = logging.getLogger("evidora")
@@ -75,7 +76,7 @@ _cache_time: float = 0.0
 # ---------------------------------------------------------------------------
 # Trigger vocabulary
 # ---------------------------------------------------------------------------
-_PARLGOV_TERMS = (
+_PARLGOV_TERMS = norm_terme(
     "parlgov", "parl gov",
     "parliaments and governments",
     "doring manow", "döring manow",
@@ -86,7 +87,7 @@ _PARLGOV_TERMS = (
 )
 
 # Land-spezifische Wahl-Begriffe (allein-genügend, ohne Land-Token)
-_COUNTRY_ELECTION_TERMS = (
+_COUNTRY_ELECTION_TERMS = norm_terme(
     "bundestagswahl", "bundestags-wahl", "bundestags wahl",
     "nationalratswahl", "nationalrats-wahl", "nationalrats wahl",
     "präsidentschaftswahl", "praesidentschaftswahl",
@@ -96,7 +97,7 @@ _COUNTRY_ELECTION_TERMS = (
 )
 
 # Generelle Wahl-/Koalitions-Trigger (composite: brauchen Land-Token)
-_ELECTION_TERMS = (
+_ELECTION_TERMS = norm_terme(
     "wahlergebnis", "wahlergebnisse", "wahl-ergebnis",
     "kabinett ", "regierung ",
     "koalition", "koalitions",
@@ -106,7 +107,7 @@ _ELECTION_TERMS = (
 )
 
 # Composite-Trigger: Wahl-/Regierungs-Begriff + EU-/Land-Token
-_LAND_TOKENS = (
+_LAND_TOKENS = norm_terme(
     # DE
     "deutschland", "germany", "bundesrepublik",
     # UK
@@ -123,7 +124,7 @@ _LAND_TOKENS = (
 )
 
 # Spezifische bekannte Wahlen / Kabinette (Composite-Anker)
-_FAMOUS_CABINETS = (
+_FAMOUS_CABINETS = norm_terme(
     "adenauer", "brandt", "schmidt ", "kohl", "schröder", "schroeder",
     "merkel", "scholz", "merz",
     "blair", "cameron", "may regierung", "johnson regierung", "starmer",
@@ -188,7 +189,7 @@ def _claim_mentions_parlgov(claim_lc: str) -> bool:
 
 def claim_mentions_parlgov_cached(claim: str) -> bool:
     """Public-API: lowercase + Trigger-Test."""
-    return _claim_mentions_parlgov((claim or "").lower())
+    return _claim_mentions_parlgov(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -366,7 +367,7 @@ def _parse_iso_date(d_iso: str | None) -> _dt.date | None:
 # wählt Präsident:in (5 Jahre) und Nationalversammlung getrennt, das Kabinett
 # hängt an der Parlamentsmehrheit. Ein abgelöstes Kabinett sagt dort also
 # nichts über die Amtszeit des Staatsoberhaupts aus.
-_PRESIDENTIAL_ELECTION_TERMS = (
+_PRESIDENTIAL_ELECTION_TERMS = norm_terme(
     "présidentielle", "presidentielle",
     "präsidentschaftswahl", "praesidentschaftswahl",
     "präsidentenwahl", "praesidentenwahl",
@@ -377,7 +378,11 @@ _PRESIDENTIAL_ELECTION_TERMS = (
 
 def _is_presidential_election(election: dict) -> bool:
     """True wenn die Zeile eine Staatsoberhaupt-Wahl beschreibt."""
-    etype = (election.get("type") or "").lower()
+    # DATEN-Seite, nicht Claim-Seite: `type` kommt aus dem ParlGov-Export und
+    # steht dort mal als „présidentielle", mal als „presidentielle" — genau
+    # deshalb standen beide Varianten von Hand in der Liste. Beide Seiten
+    # falten macht die Doppel-Eintraege ueberfluessig.
+    etype = normalisiere(election.get("type") or "")
     return any(t in etype for t in _PRESIDENTIAL_ELECTION_TERMS)
 
 
@@ -749,7 +754,10 @@ def _select_elections(
         if person not in claim_lc:
             continue
         for e in elections:
-            cab = (e.get("cabinet") or "").lower()
+            # `person` wird oben gegen den gefalteten Claim geprueft, hier
+            # gegen ein Datenfeld — beide Seiten muessen denselben Massstab
+            # haben, sonst trifft die eine Haelfte und die andere nicht.
+            cab = normalisiere(e.get("cabinet") or "")
             if person in cab:
                 key = (country_code, e.get("year"), e.get("date"))
                 if key not in seen_keys:
@@ -777,7 +785,7 @@ async def search_parlgov(analysis: dict) -> dict:
 
     claim = (analysis or {}).get("claim", "") or ""
     original = (analysis or {}).get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_parlgov(matchable):
         return empty

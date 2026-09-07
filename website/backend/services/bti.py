@@ -95,6 +95,7 @@ import logging
 import os
 
 from services._static_cache import load_json_mtime_aware
+from services._schreibweise import normalisiere, norm_terme
 from services import cache
 
 logger = logging.getLogger("evidora")
@@ -110,7 +111,7 @@ CACHE_TTL_SECONDS = 86400
 
 # Trigger-Keywords (DE + EN). Bei Match + Land → konkretes BTI-Result.
 # Bei Match ohne Land → BTI-Top/Bottom-Overview.
-_BTI_KEYWORDS = (
+_BTI_KEYWORDS = norm_terme(
     "bti",
     "bertelsmann transformation index",
     "bertelsmann-transformation-index",
@@ -199,7 +200,7 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
     found: list[str] = []
     for iso3, alias_list in aliases.items():
         for alias in alias_list:
-            if alias.lower() in claim_lc:
+            if normalisiere(alias) in claim_lc:
                 found.append(iso3)
                 break  # nur einmal pro Land
     return found
@@ -236,7 +237,7 @@ def _claim_mentions_bti(claim: str) -> bool:
     if not data:
         return False
 
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
     return _has_bti_keyword(claim_lc)
 
 
@@ -466,7 +467,7 @@ async def search_bti(analysis: dict) -> dict:
         logger.warning("bti: static JSON konnte nicht geladen werden")
         return empty
 
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
 
     if not _has_bti_keyword(claim_lc):
         return empty
