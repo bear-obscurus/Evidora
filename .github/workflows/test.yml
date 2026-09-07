@@ -220,6 +220,12 @@ jobs:
     #                                  zu Sparzinsen keine Reihe gab. Jetzt
     #                                  echte EZB-MIR-Daten — beide Produkte,
     #                                  sie unterscheiden sich um Faktor 5)
+    #   - test_skalen_richtung_vergleiche (QA50F-Befund 1, Inversions-Falle:
+    #                                  "Kamerun schlechter als Suedafrika" war
+    #                                  mostly_false, obwohl die eigene Summary
+    #                                  40,9 gegen 78,0 korrekt nannte. 8 von 9
+    #                                  Index-Quellen nannten ihre Skalen-
+    #                                  Richtung nicht)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -321,6 +327,7 @@ jobs:
             tests/test_quellen_lebenszeichen.py \
             tests/test_gegenwarts_claims_datenstand.py \
             tests/test_sparzinsen_messgroesse.py \
+            tests/test_skalen_richtung_vergleiche.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
