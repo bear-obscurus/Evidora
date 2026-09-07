@@ -145,6 +145,27 @@ def test_sonden_url_steht_noch_im_service(sonde):
         f"gefunden: {konstanten[:5]}")
 
 
+def test_ucdp_sonde_fragt_dasselbe_fenster_wie_der_konnektor():
+    """Der erste Prod-Lauf meldete UCDP als „stumm" — ein FEHLALARM der Sonde,
+    nicht ein Ausfall: sie fragte nur 2025 ab, und GED 25.1 reicht bis 2024.
+    Der Konnektor rechnet „letzte drei Kalenderjahre" und bekommt Daten.
+
+    Eine Sonde, die etwas anderes fragt als der Konnektor, misst nicht den
+    Konnektor — und ein Wächter, der grundlos schreit, wird abgeschaltet
+    (#128). Deshalb steht die Regel hier fest.
+    """
+    import datetime as dt
+    fenster = QM._ucdp_fenster()
+    heute = dt.date.today()
+    assert fenster["StartDate"] == f"{heute.year - 3}-01-01"
+    assert fenster["EndDate"] == f"{heute.year}-12-31"
+
+    quelle = (BACKEND / "services" / "ucdp.py").read_text(encoding="utf-8")
+    assert 'start = f"{today.year - 3}-01-01"' in quelle, (
+        "ucdp.py rechnet ein anderes Fenster — Sonde nachziehen")
+    assert 'end = f"{today.year}-12-31"' in quelle
+
+
 def test_wgi_sonde_folgt_der_quelle_und_dem_praefix():
     """Die beiden Werte, deren stille Umstellung den Ausfall verursacht hat."""
     from services import wgi

@@ -51,6 +51,7 @@ Exit-Codes: 0 = alle Sonden gruen, 1 = mindestens eine Quelle stumm oder
 kaputt (Alert gesendet), 2 = Aufruf-/Konfigurationsfehler.
 """
 import argparse
+import datetime as _dt
 import json
 import os
 import sys
@@ -103,6 +104,25 @@ def _p_nicht_leer(text):
 # Die Sonden. `service` verweist auf das Modul, aus dem die URL stammt —
 # der Drift-Test in tests/ prueft, dass sie dort noch steht.
 # --------------------------------------------------------------------------
+
+def _ucdp_fenster() -> dict:
+    """Dasselbe Zeitfenster, das ``services/ucdp.py`` rechnet: die letzten drei
+    Kalenderjahre.
+
+    Der erste Prod-Lauf meldete UCDP als „stumm" — und das war ein FEHLALARM
+    meiner Sonde, nicht ein Ausfall: sie fragte nur 2025 ab, und der
+    GED-Datensatz 25.1 reicht bis 2024. Der Konnektor fragt drei Jahre und
+    bekommt Daten.
+
+    Eine Sonde, die etwas anderes fragt als der Konnektor, misst nicht den
+    Konnektor. Und ein Waechter, der grundlos schreit, wird abgeschaltet
+    (#128) — deshalb rechnet die Sonde jetzt dieselbe Regel, und ein Test
+    haelt fest, dass sie dieselbe bleibt.
+    """
+    heute = _dt.date.today()
+    return {"StartDate": f"{heute.year - 3}-01-01",
+            "EndDate": f"{heute.year}-12-31"}
+
 
 SONDEN = [
     # (Anzeigename, service, URL, params, pruefer, env-var fuer Token-Header)
@@ -157,7 +177,7 @@ SONDEN = [
      "https://api.klimadashboard.org/v0/data/emissions_data/records",
      {"limit": "2"}, _p_pfad("data"), None),
     ("UCDP", "ucdp", "https://ucdpapi.pcr.uu.se/api/gedevents/25.1",
-     {"pagesize": "2", "StartDate": "2025-01-01", "EndDate": "2025-12-31"},
+     {"pagesize": "2", **_ucdp_fenster()},
      _p_pfad("Result"), "UCDP_TOKEN"),
     ("Wikidata (SPARQL)", "wikidata", "https://query.wikidata.org/sparql",
      {"query": "SELECT ?l WHERE { wd:Q40 rdfs:label ?l FILTER(lang(?l)='de') } LIMIT 1",
