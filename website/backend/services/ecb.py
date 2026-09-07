@@ -8,6 +8,18 @@ logger = logging.getLogger("evidora")
 
 BASE_URL = "https://data-api.ecb.europa.eu/service/data"
 
+# Warnung, die an den Einlagenzinsen haengt. Drei Saetze, die alle "Zinsen"
+# heissen und regelmaessig verwechselt werden — der Anlass war genau diese
+# Verwechslung (QA50E-Befund 4).
+MESSWARNUNG = (
+    "MESSGROESSE: das ist der Zinssatz, den oesterreichische Banken PRIVATEN "
+    "HAUSHALTEN zahlen — nicht der EZB-Leitzins und nicht die "
+    "EZB-Einlagefazilitaet (das ist der Satz, den BANKEN bei der EZB "
+    "bekommen). Taeglich faellige Einlagen (Sparbuch, Girokonto) und "
+    "gebundene Einlagen (Termin-/Festgeld) unterscheiden sich um ein "
+    "Vielfaches und duerfen nicht gegeneinander eingesetzt werden."
+)
+
 # Map keywords (DE + EN) to ECB series keys
 SERIES_MAP = {
     # Key interest rates
@@ -46,6 +58,95 @@ SERIES_MAP = {
         "label": "EZB-Einlagefazilität",
         "label_en": "ECB Deposit Facility Rate",
         "unit": "%",
+    },
+    # --- Einlagenzinsen privater Haushalte (Oesterreich) -------------------
+    # QA50E-Befund 4: "Die Zinsen fuer mein Sparbuch sind niedrig" bekam
+    # true@0.85 — hergeleitet aus dem LEITZINS, weil es zu Sparzinsen gar
+    # keine Reihe gab. Die Summary sagte woertlich "Sparbuchzinsen orientieren
+    # sich typischerweise am Leitzins und sind daher aktuell ebenfalls
+    # niedrig", die Nuance erfand dazu "typischerweise unter 2 % p.a.".
+    #
+    # Es gibt die echten Zahlen: EZB-MIR-Statistik, monatlich, nach Land und
+    # Produkt. Am 2026-09-07 gegen die API geprueft (Stand Juli 2026):
+    #   taeglich faellig  0,43 %   <- das ist das Sparbuch
+    #   gebunden          2,10 %
+    # Ein Faktor 5 zwischen zwei Zahlen, die beide "Sparzinsen" heissen —
+    # dieselbe Falle wie Akut- gegen Gesamtbetten (#321). Deshalb stehen
+    # BEIDE hier, mit Messgroessen-Warnung, statt einer allein.
+    #
+    # `praefix`: deutsche Komposita. "sparbuch" muss auch in
+    # "Sparbuchzinsen" treffen, und dafuer darf die Wortgrenze nur VORNE
+    # stehen. Bewusst nur fuer diese Stichwoerter — bei "euro" wuerde das
+    # "europaeische" treffen, weswegen die Wortgrenze ueberhaupt da ist.
+    "sparbuch": {
+        "series": "MIR/M.AT.B.L21.A.R.A.2250.EUR.N",
+        "label": "Sparzinsen Oesterreich — taeglich faellige Einlagen "
+                 "privater Haushalte (Sparbuch, Girokonto)",
+        "label_en": "Austria — overnight deposit rate, households",
+        "unit": "%",
+        "praefix": True,
+        "vorrang": True,
+        "hinweis": MESSWARNUNG,
+    },
+    "sparzins": {
+        "series": "MIR/M.AT.B.L21.A.R.A.2250.EUR.N",
+        "label": "Sparzinsen Oesterreich — taeglich faellige Einlagen "
+                 "privater Haushalte (Sparbuch, Girokonto)",
+        "label_en": "Austria — overnight deposit rate, households",
+        "unit": "%",
+        "praefix": True,
+        "vorrang": True,
+        "hinweis": MESSWARNUNG,
+    },
+    "sparkonto": {
+        "series": "MIR/M.AT.B.L21.A.R.A.2250.EUR.N",
+        "label": "Sparzinsen Oesterreich — taeglich faellige Einlagen "
+                 "privater Haushalte (Sparbuch, Girokonto)",
+        "label_en": "Austria — overnight deposit rate, households",
+        "unit": "%",
+        "praefix": True,
+        "vorrang": True,
+        "hinweis": MESSWARNUNG,
+    },
+    "spareinlagen": {
+        "series": "MIR/M.AT.B.L21.A.R.A.2250.EUR.N",
+        "label": "Sparzinsen Oesterreich — taeglich faellige Einlagen "
+                 "privater Haushalte (Sparbuch, Girokonto)",
+        "label_en": "Austria — overnight deposit rate, households",
+        "unit": "%",
+        "praefix": True,
+        "vorrang": True,
+        "hinweis": MESSWARNUNG,
+    },
+    "tagesgeld": {
+        "series": "MIR/M.AT.B.L21.A.R.A.2250.EUR.N",
+        "label": "Sparzinsen Oesterreich — taeglich faellige Einlagen "
+                 "privater Haushalte (Sparbuch, Girokonto)",
+        "label_en": "Austria — overnight deposit rate, households",
+        "unit": "%",
+        "praefix": True,
+        "vorrang": True,
+        "hinweis": MESSWARNUNG,
+    },
+    "festgeld": {
+        "series": "MIR/M.AT.B.L22.A.R.A.2250.EUR.N",
+        "label": "Zinsen Oesterreich — gebundene Einlagen privater "
+                 "Haushalte (Termin-/Festgeld)",
+        "label_en": "Austria — deposits with agreed maturity, households",
+        "unit": "%",
+        "praefix": True,
+        "vorrang": True,
+        "hinweis": MESSWARNUNG,
+    },
+    "termingeld": {
+        "series": "MIR/M.AT.B.L22.A.R.A.2250.EUR.N",
+        "label": "Zinsen Oesterreich — gebundene Einlagen privater "
+                 "Haushalte (Termin-/Festgeld)",
+        "label_en": "Austria — deposits with agreed maturity, households",
+        "unit": "%",
+        "praefix": True,
+        "vorrang": True,
+        "hinweis": MESSWARNUNG,
     },
     # Exchange rates
     "wechselkurs": {
@@ -177,11 +278,20 @@ def _find_series(claim: str) -> list[dict]:
     claim_lower = claim.lower()
     found = {}
     for keyword, series_info in SERIES_MAP.items():
-        if re.search(r'\b' + re.escape(keyword) + r'\b', claim_lower):
+        # Deutsche Komposita: "sparbuch" muss auch in "Sparbuchzinsen"
+        # treffen — dort darf die Wortgrenze nur VORNE stehen. Bewusst nur
+        # fuer markierte Stichwoerter: bei "euro" wuerde ein Praefix-Match
+        # "europaeische" treffen, deswegen steht die Grenze ueberhaupt da.
+        muster = (r'\b' + re.escape(keyword) if series_info.get("praefix")
+                  else r'\b' + re.escape(keyword) + r'\b')
+        if re.search(muster, claim_lower):
             series_key = series_info["series"]
             if series_key not in found:
                 found[series_key] = series_info
-    return list(found.values())
+    # Reihen mit `vorrang` zuerst: bei einem Sparbuch-Claim matcht auch
+    # "zinsen" und damit der Leitzins. Ohne Vorrang schneidet `matching[:3]`
+    # unter Umstaenden genau die Reihe weg, nach der gefragt wurde.
+    return sorted(found.values(), key=lambda s: not s.get("vorrang", False))
 
 
 def _parse_sdmx_json(data: dict, series_info: dict, historical: bool = False) -> list[dict]:
@@ -252,6 +362,19 @@ def _parse_sdmx_json(data: dict, series_info: dict, historical: bool = False) ->
                 title = f"{series_info['label']}: {time_val} — {formatted}"
                 if i == 0 and hist_prefix:
                     title = f"{hist_prefix}{title}"
+                # Der JUENGSTE Wert wird als solcher gekennzeichnet. Ohne das
+                # greift sich das Modell eine mittlere Zeile: im Lauf zum
+                # QA50E-Befund 4 zitierte es "Leitzins aktuell (Juni 2025)
+                # 2,15 %", obwohl 2026-06-17 mit 2,40 % in derselben Antwort
+                # stand. Sechs Zeilen ohne Rangfolge laden dazu ein.
+                if i == len(recent) - 1:
+                    title = f"{title} [AKTUELLSTER WERT dieser Reihe]"
+                    # Messgroessen-Warnung an denselben Datenpunkt: sechsmal
+                    # derselbe Satz frisst das Prompt-Budget, das die Zahlen
+                    # brauchen (Cap-Vertrag aus #131) — und wenn sie nur
+                    # einmal steht, dann an der Zeile, die zitiert wird.
+                    if series_info.get("hinweis"):
+                        title = f"{title} {series_info['hinweis']}"
 
                 results.append({
                     "title": title,
