@@ -1756,6 +1756,67 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
             except ValueError:
                 pass
 
+    # --- Gegenwarts-Guard (QA50E-Befund 3, 2026-09-07) ---
+    # "Laut Eurobarometer vertrauen HEUTE 51 Prozent der EU" bekam true@0.9.
+    # Die Zahl stimmt — aus dem Standard Eurobarometer 102 vom Herbst 2024.
+    # Das System WUSSTE das: die Nuance sagte woertlich "Stand Herbst 2024,
+    # aktuellere Daten liegen nicht vor". Nur das Verdict sagte es nicht.
+    #
+    # Ein Gegenwarts-Wort ist eine eigene Tatsachenbehauptung. Ein zwei Jahre
+    # alter Messwert kann sie nicht bestaetigen — die Zahl war damals richtig,
+    # ueber heute sagt sie nichts.
+    #
+    # Gemessen an sechs echten Laeufen (2026-09-07), Regel greift bei:
+    #   Gegenwarts-Wort + MESSWERT im Claim + verdict "true"
+    #   + juengstes Jahr in der SUMMARY >= 2 Jahre zurueck
+    #
+    # Warum nur die Summary und nicht auch die Nuance: die Nuance zum
+    # Eurobarometer-Fall lautete "Aktuellere Daten (2025/2026) liegen nicht
+    # vor" — dort steht 2026 als VERNEINUNG. Wer beide Felder zusammenwirft,
+    # liest daraus einen frischen Datenstand und der Guard greift nie.
+    #
+    # Warum ein Messwert verlangt wird: "Heute gilt ein Kopftuchverbot" ist
+    # ein fortdauernder Rechtszustand, kein Messpunkt — ein Gesetz von 2019
+    # gilt heute weiter. Ohne diese Bedingung wuerde der Guard wahre Claims
+    # abwerten. Auch das ist gemessen, nicht vermutet.
+    import datetime as _dt
+    _GEGENWART = ("heute", "aktuell", "derzeit", "momentan", "zurzeit",
+                  "zur zeit", "gegenwärtig", "gegenwaertig", "inzwischen",
+                  "mittlerweile", "jetzt", "im moment")
+    _MESSWERT_RE = re.compile(
+        r"\d+(?:[.,]\d+)?\s*(?:%|prozent|punkte|punkten|von \d+)", re.I)
+    _JAHR_RE = re.compile(r"\b(19[5-9]\d|20[0-3]\d)\b")
+    _MAX_DATENALTER = 2  # Jahre
+
+    if result.get("verdict") == "true":
+        _cl = (original_claim or "").lower()
+        _hat_gegenwart = any(t in _cl for t in _GEGENWART)
+        _hat_messwert = bool(_MESSWERT_RE.search(_cl))
+        if _hat_gegenwart and _hat_messwert:
+            _jetzt = _dt.date.today().year
+            _jahre = [int(j) for j in _JAHR_RE.findall(result.get("summary") or "")
+                      if int(j) <= _jetzt]
+            if _jahre and (_jetzt - max(_jahre)) >= _MAX_DATENALTER:
+                _stand = max(_jahre)
+                _alt_v = result["verdict"]
+                _alt_c = result.get("confidence", 0)
+                result["verdict"] = "mostly_true"
+                result["confidence"] = min(_alt_c, 0.75)
+                _zusatz = (
+                    f"ZEITBEZUG: Die Zahl stammt aus {_stand}, die Behauptung "
+                    f"spricht von heute. Für {_jetzt} liegt in den geprüften "
+                    f"Quellen kein neuerer Wert vor — der Wert kann sich "
+                    f"seither geändert haben.")
+                _bisher = (result.get("nuance") or "").strip()
+                result["nuance"] = (f"{_bisher} {_zusatz}".strip()
+                                    if _bisher else _zusatz)
+                logger.warning(
+                    "Gegenwarts-Guard: Claim spricht von heute, juengster "
+                    "Datenstand in der Summary ist %s (%s Jahre alt). "
+                    "'%s' @ %.2f -> 'mostly_true' @ %.2f.",
+                    _stand, _jetzt - _stand, _alt_v, _alt_c,
+                    result["confidence"])
+
     # --- Wahlprognose-Guard (Politik-Tabu #2, Bug #38, 2026-06-04) ---
     # MUST run AFTER the consistency check, otherwise the consistency
     # check detects "überwiegend falsch" in the summary and overrides
