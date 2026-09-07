@@ -485,6 +485,19 @@ BEKANNT_DEFEKT = {
         "aus nicht, dort liegt das Intermediate im Store). Das Server-Zert "
         "selbst ist gueltig bis 2026-11-02. "
         "WIEDER AUFNEHMEN, wenn die Sonde ohne Anpassung durchlaeuft."),
+    "Getty Vocabularies": (
+        "2026-09-07: HTTP 403 vom PROD-HOST, mit und ohne Browser-UA — vom "
+        "Entwickler-Mac aus HTTP 200. vocab.getty.edu blockt offenbar die "
+        "Server-IP oder deren Bereich. Dieselbe Klasse wie WHO Europe: der "
+        "Ausfall ist nur dort sichtbar, wo der Dienst laeuft. "
+        "WIEDER AUFNEHMEN, sobald die Sonde aus dem Container 200 liefert."),
+    "OpenAQ": (
+        "2026-09-07: HTTP 401 mit dem in .env hinterlegten OPENAQ_API_KEY, "
+        "auf /v3/parameters UND /v3/locations, vom Prod-Host geprueft. Der "
+        "Key ist gesetzt (65 Zeichen), wird aber abgewiesen — vermutlich "
+        "abgelaufen oder widerrufen. BEHEBBAR AUF UNSERER SEITE: neuen Key "
+        "unter openaq.org anfordern und in .env eintragen. "
+        "WIEDER AUFNEHMEN, sobald die Sonde 200 liefert."),
     "AI Incident Database": (
         "2026-09-07: HTTP 403 auf POST /api/graphql, reproduziert vom "
         "Entwickler-Mac und vom Prod-Host. Der Endpunkt lebt (GET antwortet "
@@ -544,7 +557,16 @@ def _post_alert(webhook: str, title: str, message: str) -> None:
         print(f"WARN: Alert-Push fehlgeschlagen: {e}", file=sys.stderr)
 
 
-def sonde_laufen(sonde, timeout: float) -> dict:
+# Fluechtige Fehler: ein einzelner Timeout oder ein 5xx sagt nichts ueber die
+# Quelle. Im ersten Prod-Lauf der vollen Batterie lief genau das auf: Wayback
+# lief einmal in einen Read-Timeout und war Sekunden spaeter wieder da — der
+# Lauf schlug Alarm. Ein Waechter, der bei jedem Schluckauf schreit, wird
+# abgeschaltet (#128), deshalb ein zweiter Versuch, bevor gemeldet wird.
+FLUECHTIG = {"unerreichbar"}
+FLUECHTIGE_CODES = {500, 502, 503, 504}
+
+
+def sonde_laufen(sonde, timeout: float, versuche: int = 2) -> dict:
     """Eine Sonde fahren.
 
     Sonden sind 6- oder 7-Tupel. Das siebte Feld traegt Zusaetze, die einzelne
@@ -555,6 +577,18 @@ def sonde_laufen(sonde, timeout: float) -> dict:
       ``{"headers": {...}}`` zusaetzliche Header — die SDMX-Endpunkte
                              antworten ohne passendes ``Accept`` mit 406.
     """
+    ergebnis = _sonde_einmal(sonde, timeout)
+    fluechtig = (ergebnis["status"] in FLUECHTIG
+                 or (ergebnis["status"] == "http_fehler"
+                     and any(f"HTTP {c}" == ergebnis.get("grund")
+                             for c in FLUECHTIGE_CODES)))
+    if fluechtig and versuche > 1:
+        ergebnis = _sonde_einmal(sonde, timeout)
+        ergebnis["wiederholt"] = True
+    return ergebnis
+
+
+def _sonde_einmal(sonde, timeout: float) -> dict:
     extra = sonde[6] if len(sonde) > 6 else {}
     name, service, url, params, pruefer, token_var = sonde[:6]
     params = dict(params)

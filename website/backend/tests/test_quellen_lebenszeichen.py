@@ -373,6 +373,76 @@ def test_abdeckung_ist_jetzt_vollstaendig():
 
 
 # --------------------------------------------------------------------------
+# Wiederholung bei fluechtigen Fehlern
+# --------------------------------------------------------------------------
+
+def test_timeout_wird_einmal_wiederholt(monkeypatch):
+    """Im ersten Prod-Lauf der vollen Batterie lief Wayback einmal in einen
+    Read-Timeout und war Sekunden später wieder da — der Lauf schlug Alarm.
+    Ein Wächter, der bei jedem Schluckauf schreit, wird abgeschaltet (#128)."""
+    versuche = {"n": 0}
+
+    class _Antwort:
+        status = 200
+        def read(self): return b"[1,2]"
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+
+    def _flackernd(req, timeout=None):
+        versuche["n"] += 1
+        if versuche["n"] == 1:
+            raise TimeoutError("read timed out")
+        return _Antwort()
+
+    monkeypatch.setattr(QM.urllib.request, "urlopen", _flackernd)
+    e = QM.sonde_laufen(("T", "wayback", "https://example.test/x", {},
+                         QM._p_liste, None), 5)
+    assert e["status"] == "ok"
+    assert e.get("wiederholt") is True
+    assert versuche["n"] == 2
+
+
+def test_dauerhafter_fehler_wird_nicht_wegwiederholt(monkeypatch):
+    """Zwei Versuche, nicht endlos: ein echter Ausfall muss durchschlagen."""
+    versuche = {"n": 0}
+
+    def _immer_kaputt(req, timeout=None):
+        versuche["n"] += 1
+        raise TimeoutError("read timed out")
+
+    monkeypatch.setattr(QM.urllib.request, "urlopen", _immer_kaputt)
+    e = QM.sonde_laufen(("T", "wayback", "https://example.test/x", {},
+                         QM._p_liste, None), 5)
+    assert e["status"] == "unerreichbar"
+    assert versuche["n"] == 2
+
+
+def test_403_wird_nicht_wiederholt(monkeypatch):
+    """Nur flüchtige Fehler bekommen einen zweiten Versuch. Ein 403 ist eine
+    Entscheidung der Gegenseite, kein Schluckauf — Wiederholen kostet nur Zeit
+    und sieht nach Hämmern aus."""
+    versuche = {"n": 0}
+
+    def _403(req, timeout=None):
+        versuche["n"] += 1
+        raise QM.urllib.error.HTTPError(req.full_url, 403, "Forbidden", {}, None)
+
+    monkeypatch.setattr(QM.urllib.request, "urlopen", _403)
+    e = QM.sonde_laufen(("T", "getty", "https://example.test/x", {},
+                         QM._p_liste, None), 5)
+    assert e["status"] == "http_fehler"
+    assert versuche["n"] == 1
+
+
+def test_openaq_befund_nennt_den_weg_zurueck():
+    """Der einzige der fünf Befunde, der auf UNSERER Seite behebbar ist —
+    das muss im Eintrag stehen, sonst bleibt er liegen."""
+    grund = QM.BEKANNT_DEFEKT["OpenAQ"]
+    assert "BEHEBBAR AUF UNSERER SEITE" in grund
+    assert "openaq.org" in grund and ".env" in grund
+
+
+# --------------------------------------------------------------------------
 # Verdrahtung
 # --------------------------------------------------------------------------
 
