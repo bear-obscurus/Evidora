@@ -37,6 +37,7 @@ import time
 import httpx
 
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -124,8 +125,14 @@ WGI_INDICATORS: dict[str, dict] = {
     },
 }
 
+# 66 Indikator-Keywords, viele mit Umlaut ("regierungseffektivität").
+# Die Specs bleiben mit Umlauten lesbar; verglichen wird gegen den
+# ebenfalls gefalteten Claim. Einmal beim Import, nicht je Aufruf.
+for _spec in WGI_INDICATORS.values():
+    _spec["keywords"] = norm_terme(*_spec["keywords"])
+
 # Cross-Cluster-Trigger: Generelle Governance-Begriffe → alle 6 Dimensionen
-_GENERAL_TRIGGERS = (
+_GENERAL_TRIGGERS = norm_terme(
     "wgi", "worldwide governance indicators", "worldbank governance",
     "world bank governance", "weltbank governance",
     "governance-index", "governance index",
@@ -134,7 +141,7 @@ _GENERAL_TRIGGERS = (
 )
 
 # Cross-Cluster: CPI/Transparency-Begriffe sollen auch WGI feuern (Komplement)
-_CPI_CROSS_TRIGGERS = (
+_CPI_CROSS_TRIGGERS = norm_terme(
     "korruption", "corruption index", "cpi",
     "transparency international",
 )
@@ -232,7 +239,7 @@ def _claim_mentions_wgi(claim_lc: str) -> bool:
 
 def claim_mentions_wgi_cached(claim: str) -> bool:
     """Public-API: lowercase + Test."""
-    return _claim_mentions_wgi((claim or "").lower())
+    return _claim_mentions_wgi(normalisiere(claim or ""))
 
 
 # ---------------------------------------------------------------------------
@@ -244,10 +251,10 @@ def _find_indicators(analysis: dict) -> list[str]:
     Returns: Liste der Indicator-IDs in Match-Reihenfolge.
     Fallback: alle 6, wenn nur generelle Governance-Begriffe vorkommen.
     """
-    claim = (analysis.get("claim") or "").lower()
-    original = (analysis.get("original_claim") or "").lower()
-    keywords = " ".join(analysis.get("spacy_keywords") or []).lower()
-    factcheck_q = " ".join(analysis.get("factcheck_queries") or []).lower()
+    claim = normalisiere(analysis.get("claim") or "")
+    original = normalisiere(analysis.get("original_claim") or "")
+    keywords = normalisiere(" ".join(analysis.get("spacy_keywords") or []))
+    factcheck_q = normalisiere(" ".join(analysis.get("factcheck_queries") or []))
     search = f"{original} {claim} {keywords} {factcheck_q}"
 
     matched: list[str] = []
@@ -278,10 +285,10 @@ def _find_countries(analysis: dict) -> list[str]:
     found: list[str] = []
     seen: set[str] = set()
     for term in search_terms:
-        tl = term.lower()
+        tl = normalisiere(term)
         # längste Namen zuerst, damit "südkorea" nicht durch "korea" überschrieben wird
         for name in sorted(COUNTRY_MAP.keys(), key=len, reverse=True):
-            if name in tl:
+            if normalisiere(name) in tl:
                 code = COUNTRY_MAP[name]
                 if code not in seen:
                     found.append(code)
@@ -422,7 +429,7 @@ async def search_wgi(analysis: dict) -> dict:
 
     claim = analysis.get("claim", "") or ""
     original = analysis.get("original_claim") or claim
-    matchable = f"{original} {claim}".lower()
+    matchable = normalisiere(f"{original} {claim}")
 
     if not _claim_mentions_wgi(matchable):
         return empty

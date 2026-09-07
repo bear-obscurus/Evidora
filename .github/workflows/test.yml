@@ -180,6 +180,11 @@ jobs:
     #                                  eine Schreibweise: „Meinl Reisinger"
     #                                  ohne Bindestrich und „duerfte/naechste"
     #                                  in ASCII gingen ungehindert durch)
+    #   - test_normalisierung_laender_dienste (die 13 Services, die #147
+    #                                  faelschlich uebersprang, weil sie
+    #                                  _topic_match nur fuer den Guard
+    #                                  importieren; inkl. der drei Listen-
+    #                                  Klassen, die die erste Spec nicht sah)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -273,6 +278,7 @@ jobs:
             tests/test_arbeitslosenquote_messgroessen.py \
             tests/test_freedom_house_regime_klassifikation.py \
             tests/test_politik_guards_schreibweisen.py \
+            tests/test_normalisierung_laender_dienste.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 

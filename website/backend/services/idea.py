@@ -30,6 +30,7 @@ import time
 
 import httpx
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -48,7 +49,7 @@ _idea_cache: dict | None = None
 _idea_cache_time: float = 0.0
 
 # Keywords die IDEA-Lookup auslösen (DE + EN)
-IDEA_KEYWORDS = [
+IDEA_KEYWORDS = norm_terme(
     # Wahlbeteiligung
     "wahlbeteiligung", "wahlbeteiligungen",
     "voter turnout", "voter turn-out", "turnout", "electoral turnout",
@@ -69,7 +70,7 @@ IDEA_KEYWORDS = [
     "general election", "general elections",
     "parliamentary election", "parliamentary elections",
     "legislative election", "legislative elections",
-]
+)
 
 # Country name → ISO 3-letter code (fokussiert auf EU + wichtigste Länder)
 COUNTRY_MAP = {
@@ -186,9 +187,9 @@ def _find_countries(analysis: dict, max_n: int = 3) -> list[str]:
     found: list[str] = []
     seen: set[str] = set()
     for term in search_terms:
-        term_lower = term.lower()
+        term_lower = normalisiere(term)
         for name, code in COUNTRY_MAP.items():
-            if name in term_lower and code not in seen:
+            if normalisiere(name) in term_lower and code not in seen:
                 found.append(code)
                 seen.add(code)
                 if len(found) >= max_n:
@@ -199,7 +200,7 @@ def _find_countries(analysis: dict, max_n: int = 3) -> list[str]:
 def _claim_mentions_idea(claim: str) -> bool:
     """Check if claim mentions voter-turnout-relevant keywords."""
     from services._topic_match import is_party_corruption_superlative_claim
-    claim_lower = claim.lower()
+    claim_lower = normalisiere(claim)
     # Politik-Tabu-Guard 2.0: IDEA Voter-Turnout misst Wahlen, nicht
     # Partei-Korruption — solche Claims dürfen IDEA nicht aktivieren.
     if is_party_corruption_superlative_claim(claim_lower):

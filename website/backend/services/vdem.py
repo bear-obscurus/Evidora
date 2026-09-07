@@ -60,6 +60,7 @@ import logging
 import os
 
 from services._static_cache import load_json_mtime_aware
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -74,7 +75,7 @@ _DEFAULT_COUNTRIES_FOR_DACH_CLAIMS = ("AUT", "DEU", "CHE")
 
 # Allgemeine Demokratie-Vokabeln (zusätzlich zu Indicator-spezifischen
 # Keywords) — triggern auch ohne explizite Land-Nennung mit Default-DACH.
-_DEMOCRACY_VOCAB = (
+_DEMOCRACY_VOCAB = norm_terme(
     "demokratie-index", "demokratieindex", "demokratie",
     "demokratie-rückgang", "demokratie-rueckgang", "demokratie-niveau",
     "demokratiequalität", "demokratiequalitaet",
@@ -137,7 +138,7 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
     found: list[str] = []
     for iso3, alias_list in aliases.items():
         for alias in alias_list:
-            if alias.lower() in claim_lc:
+            if normalisiere(alias) in claim_lc:
                 found.append(iso3)
                 break  # nur einmal pro Land
     return found
@@ -146,10 +147,10 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
 def _indicator_matches_claim(indicator: dict, claim_lc: str) -> bool:
     """Trifft der Indicator den Claim via Keyword?"""
     for kw in indicator.get("keywords_de") or ():
-        if kw.lower() in claim_lc:
+        if normalisiere(kw) in claim_lc:
             return True
     for kw in indicator.get("keywords_en") or ():
-        if kw.lower() in claim_lc:
+        if normalisiere(kw) in claim_lc:
             return True
     return False
 
@@ -179,7 +180,7 @@ def claim_mentions_vdem_cached(claim: str) -> bool:
     data = _load_data()
     if not data:
         return False
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
 
     # Generische Demokratie-Vokabel reicht.
     if _has_general_democracy_vocab(claim_lc):
@@ -315,7 +316,7 @@ async def search_vdem(analysis: dict) -> dict:
         logger.warning("V-Dem: static JSON konnte nicht geladen werden")
         return empty
 
-    claim_lc = claim.lower()
+    claim_lc = normalisiere(claim)
 
     # Country-Detection: Erst aus dem Claim selbst, dann aus Entity-Liste.
     requested_countries = _detect_countries_in_claim(claim_lc, data)
