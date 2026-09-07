@@ -196,6 +196,11 @@ jobs:
     #                                  "somalia", "niger" in "nigeria" —
     #                                  Wortgrenze + laengste zuerst +
     #                                  Fundstelle verbrauchen)
+    #   - test_laenderkarte_api_konnektoren (transparency/wgi/idea sind
+    #                                  Live-API-Konnektoren — die Karte ist
+    #                                  das EINZIGE Tor. 22/25/20 % ihres
+    #                                  Universums erreichbar; das Gate hat
+    #                                  "usa" und "uk" gefangen)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -292,6 +297,7 @@ jobs:
             tests/test_normalisierung_laender_dienste.py \
             tests/test_log_redaktion.py \
             tests/test_laenderkarte.py \
+            tests/test_laenderkarte_api_konnektoren.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 

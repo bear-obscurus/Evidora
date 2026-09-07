@@ -61,17 +61,34 @@ from functools import lru_cache
 from services._schreibweise import normalisiere
 
 # ISO3 -> Aliasse (deutsch + englisch, klein, ungefaltet lesbar).
+#
+# Aliasse haben mindestens vier Zeichen — mit zwei gemessenen Ausnahmen:
+# „usa" (in vier der alten Karten) und „uk" (in wgi). Beide sind die
+# haeufigste Schreibweise ueberhaupt, und unter der Wortgrenzen-Pruefung sind
+# sie eindeutig: „usa" trifft „usability" nicht, „uk" braucht ein eigenes
+# Token. Ein Blanko-Minimum von zwei Zeichen waere dagegen gefaehrlich —
+# „at" (Oesterreich) stand in einer der 24 Karten und steckt in „at the".
+# Nicht dabei ist „eu": das Token hat schon einmal ueber-getriggert (#110).
 # Verglichen wird gegen den normalisierten Claim; `finde` faltet die Aliasse.
 ALIASSE: dict[str, tuple[str, ...]] = {
+    "ABW": ("aruba", "arubanisch"),
     "AFG": ("afghan", "afghanisch", "afghanistan"),
     "AGO": ("angola", "angolanisch"),
     "ALB": ("albania", "albanian", "albanien", "albanisch"),
     "AND": ("andorra", "andorranisch"),
     "ARE": ("emirate", "united arab emirates", "vereinigte arabische emirate"),
-    "ARG": ("argentina", "argentine", "argentinian", "argentinien", "argentinisch"),
+    "ARG": (
+        "argentina", "argentine", "argentinian", "argentinien",
+        "argentinisch"
+    ),
     "ARM": ("armenia", "armenian", "armenien", "armenisch"),
+    "ASM": ("american samoa", "amerikanisch-samoa"),
+    "ATG": ("antigua", "antigua and barbuda", "antigua und barbuda"),
     "AUS": ("australia", "australian", "australien", "australisch"),
-    "AUT": ("austria", "austrian", "oesterreich", "oesterreichisch", "österreich", "österreichisch"),
+    "AUT": (
+        "austria", "austrian", "oesterreich", "oesterreichisch", "österreich",
+        "österreichisch"
+    ),
     "AZE": ("aserbaidschan", "aserbaidschanisch", "azerbaijan"),
     "BDI": ("burundi", "burundisch"),
     "BEL": ("belgian", "belgien", "belgisch", "belgium"),
@@ -80,42 +97,75 @@ ALIASSE: dict[str, tuple[str, ...]] = {
     "BGD": ("bangladesch", "bangladeschisch", "bangladesh", "bangladeshi"),
     "BGR": ("bulgaria", "bulgarian", "bulgarien", "bulgarisch"),
     "BHR": ("bahrain", "bahrainisch"),
+    "BHS": ("bahamaisch", "bahamas", "bahamas, the"),
     "BIH": ("bosnia", "bosnia and herzegovina", "bosnien", "bosnisch"),
-    "BLR": ("belarus", "belarusian", "belorussian", "belorussisch", "weissrussisch", "weissrussland", "weißrussisch", "weißrussland"),
+    "BLR": (
+        "belarus", "belarusian", "belorussian", "belorussisch",
+        "weissrussisch", "weissrussland", "weißrussisch", "weißrussland"
+    ),
     "BLZ": ("belize", "belizisch"),
+    "BMU": ("bermuda", "bermudas"),
     "BOL": ("bolivia", "bolivianisch", "bolivien"),
     "BRA": ("brasilianisch", "brasilien", "brazil", "brazilian"),
+    "BRB": ("barbadisch", "barbados"),
     "BRN": ("brunei", "bruneiisch"),
     "BTN": ("bhutan", "bhutanisch"),
     "BWA": ("botsuana", "botswana", "botswanian"),
-    "CAF": ("central african republic", "zentralafrika", "zentralafrikanische republik"),
+    "CAF": (
+        "central african republic", "zentralafrika",
+        "zentralafrikanische republik"
+    ),
     "CAN": ("canada", "canadian", "kanada", "kanadisch"),
-    "CHE": ("eidgenossenschaft", "helvetia", "helvetisch", "schweiz", "schweizerisch", "swiss", "switzerland"),
+    "CHE": (
+        "eidgenossenschaft", "helvetia", "helvetisch", "schweiz",
+        "schweizerisch", "swiss", "switzerland"
+    ),
+    "CHI": ("channel islands", "kanalinseln"),
     "CHL": ("chile", "chilean", "chilenisch"),
-    "CHN": ("china", "chinese", "chinesisch", "volksrepublik china", "vr china"),
-    # Der Apostroph ist kein Trennzeichen fuer `normalisiere` — „Cote d Ivoire"
-    # ohne ihn ist aber die haeufigste Tippweise, deshalb beide Formen.
-    "CIV": ("cote d'ivoire", "cote d ivoire", "côte d'ivoire",
-            "elfenbeinküste", "ivorisch"),
+    "CHN": (
+        "china", "chinese", "chinesisch", "volksrepublik china", "vr china"
+    ),
+    "CIV": (
+        "cote d ivoire", "cote d'ivoire", "côte d'ivoire", "elfenbeinküste",
+        "ivorisch"
+    ),
     "CMR": ("cameroon", "kamerun", "kamerunisch"),
-    "COD": ("demokratische republik kongo", "dr congo", "dr kongo", "kongo kinshasa", "kongo-kinshasa"),
-    "COG": ("congo-brazzaville", "kongo brazzaville", "kongo-brazzaville", "republik kongo"),
+    "COD": (
+        "congo, dem. rep.", "democratic republic of congo",
+        "demokratische republik kongo", "dr congo", "dr kongo", "kongo",
+        "kongo kinshasa", "kongo-kinshasa"
+    ),
+    "COG": (
+        "congo, rep.", "congo-brazzaville", "kongo brazzaville",
+        "kongo-brazzaville", "republic of the congo", "republik kongo"
+    ),
     "COL": ("colombia", "colombian", "kolumbianisch", "kolumbien"),
     "COM": ("comoros", "komoren", "komorisch"),
     "CPV": ("cabo verde", "cape verde", "kap verde", "kapverden"),
     "CRI": ("costa rica", "costa-rica", "costaricanisch"),
-    "CSS": ("oecs", "organisation of eastern caribbean states", "ostkaribische staaten"),
+    "CSS": (
+        "oecs", "organisation of eastern caribbean states",
+        "ostkaribische staaten"
+    ),
     "CTU": ("nordzypern", "northern cyprus"),
     "CUB": ("cuba", "cuban", "kuba", "kubanisch"),
+    "CUW": ("curacao", "curaçao"),
+    "CYM": ("cayman islands", "kaiman-inseln", "kaimaninseln"),
     "CYP": ("cypriot", "cyprus", "zypern", "zypriotisch"),
     "CZE": ("czech", "czech republic", "czechia", "tschechien", "tschechisch"),
     "DEU": ("bundesrepublik", "deutsch", "deutschland", "german", "germany"),
     "DJI": ("djibouti", "dschibuti"),
-    "DNK": ("daenemark", "daenisch", "danish", "denmark", "dänemark", "dänisch"),
+    "DMA": ("dominica",),
+    "DNK": (
+        "daenemark", "daenisch", "danish", "denmark", "dänemark", "dänisch"
+    ),
     "DOM": ("dominican republic", "dominikanische republik"),
     "DZA": ("algeria", "algerien", "algerisch"),
     "ECU": ("ecuador", "ecuadorianisch", "ekuador"),
-    "EGY": ("aegypten", "aegyptisch", "egypt", "egyptian", "ägypten", "ägyptisch"),
+    "EGY": (
+        "aegypten", "aegyptisch", "egypt", "egypt, arab rep.", "egyptian",
+        "ägypten", "ägyptisch"
+    ),
     "ERI": ("eritrea", "eritrean", "eritreisch"),
     "ESP": ("spain", "spanien", "spanisch", "spanish"),
     "EST": ("estland", "estnisch", "estonia", "estonian"),
@@ -124,16 +174,26 @@ ALIASSE: dict[str, tuple[str, ...]] = {
     "FIN": ("finland", "finnisch", "finnish", "finnland"),
     "FJI": ("fidschi", "fiji"),
     "FRA": ("france", "frankreich", "franzoesisch", "französisch", "french"),
+    "FRO": ("faeroeer", "faeroer inseln", "faroe islands", "färöer"),
+    "FSM": ("micronesia", "mikronesien"),
     "GAB": ("gabon", "gabun", "gabunisch"),
-    "GBR": ("britain", "britisch", "british", "england", "grossbritannien", "großbritannien", "united kingdom", "vereinigtes koenigreich", "vereinigtes königreich"),
+    "GBR": (
+        "britain", "britisch", "british", "england", "grossbritannien",
+        "großbritannien", "uk", "united kingdom", "vereinigtes koenigreich",
+        "vereinigtes königreich"
+    ),
     "GEO": ("georgia", "georgian", "georgien", "georgisch"),
     "GHA": ("ghana", "ghanaian", "ghanaisch"),
+    "GIB": ("gibraltar",),
     "GIN": ("guinea", "guineisch"),
-    "GMB": ("gambia", "gambisch"),
+    "GMB": ("gambia", "gambia, the", "gambisch"),
     "GNB": ("guinea-bissau",),
     "GNQ": ("aequatorialguinea", "equatorial guinea", "äquatorialguinea"),
     "GRC": ("greece", "greek", "griechenland", "griechisch"),
+    "GRD": ("grenada", "grenadisch"),
+    "GRL": ("greenland", "groenland", "grönland"),
     "GTM": ("guatemala", "guatemaltekisch"),
+    "GUM": ("guam",),
     "GUY": ("guyana", "guyanisch"),
     "HKG": ("hong kong", "hongkong"),
     "HND": ("honduranisch", "honduras"),
@@ -141,9 +201,10 @@ ALIASSE: dict[str, tuple[str, ...]] = {
     "HTI": ("haiti", "haitianisch"),
     "HUN": ("hungarian", "hungary", "magyar", "ungarisch", "ungarn"),
     "IDN": ("indonesia", "indonesian", "indonesien", "indonesisch"),
+    "IMN": ("insel man", "isle of man"),
     "IND": ("india", "indian", "indien", "indisch"),
     "IRL": ("ireland", "irisch", "irish", "irland"),
-    "IRN": ("iran", "iranian", "iranisch", "persien"),
+    "IRN": ("iran", "iran, islamic rep.", "iranian", "iranisch", "persien"),
     "IRQ": ("irak", "iraq"),
     "ISL": ("iceland", "icelandic", "island", "isländisch"),
     "ISR": ("israel", "israeli", "israelisch"),
@@ -153,76 +214,134 @@ ALIASSE: dict[str, tuple[str, ...]] = {
     "JPN": ("japan", "japanese", "japanisch"),
     "KAZ": ("kasachisch", "kasachstan", "kazakhstan"),
     "KEN": ("kenia", "kenianisch", "kenya"),
-    "KGZ": ("kirgisisch", "kirgisistan", "kirgistan", "kyrgyzstan"),
+    "KGZ": (
+        "kirgisisch", "kirgisistan", "kirgistan", "kyrgyz republic",
+        "kyrgyzstan"
+    ),
     "KHM": ("cambodia", "kambodscha", "kambodschanisch"),
-    "KOR": ("korea", "republic of korea", "republik korea", "south korea", "suedkorea", "suedkoreanisch", "südkorea", "südkoreanisch"),
+    "KIR": ("kiribati",),
+    "KNA": (
+        "saint kitts and nevis", "saint kitts und nevis",
+        "st kitts und nevis", "st. kitts and nevis", "st. kitts und nevis"
+    ),
+    "KOR": (
+        "korea", "korea, rep.", "republic of korea", "republik korea",
+        "south korea", "suedkorea", "suedkoreanisch", "südkorea",
+        "südkoreanisch"
+    ),
     "KWT": ("kuwait", "kuwaitisch"),
-    "LAO": ("laos", "laotisch"),
+    "LAO": ("lao pdr", "lao people's democratic republic", "laos", "laotisch"),
     "LBN": ("lebanon", "libanesisch", "libanon"),
     "LBR": ("liberia", "liberianisch"),
     "LBY": ("libya", "libyen", "libysch"),
+    "LCA": ("saint lucia", "santa lucia", "st lucia", "st. lucia"),
     "LIE": ("liechtenstein", "liechtensteinisch"),
     "LKA": ("sri lanka", "srilankisch"),
     "LSO": ("lesothisch", "lesotho"),
     "LTU": ("litauen", "litauisch", "lithuania", "lithuanian"),
     "LUX": ("luxembourg", "luxemburg", "luxemburgisch"),
     "LVA": ("latvia", "latvian", "lettisch", "lettland"),
+    "MAC": ("macao", "macau"),
+    "MAF": ("saint martin", "sankt martin", "st. martin"),
     "MAR": ("marokkanisch", "marokko", "moroccan", "morocco"),
+    "MCO": ("monaco", "monegassisch"),
     "MDA": ("moldau", "moldawien", "moldova", "moldovan"),
     "MDG": ("madagascar", "madagaskar", "madagassisch"),
     "MDV": ("maldives", "malediven"),
     "MEX": ("mexican", "mexico", "mexikanisch", "mexiko"),
+    "MHL": ("marshall islands", "marshall-inseln", "marshallinseln"),
     "MKD": ("macedonia", "mazedonien", "nordmazedonien", "north macedonia"),
     "MLI": ("mali", "malisch"),
     "MLT": ("malta", "maltese", "maltesisch"),
     "MMR": ("birma", "burma", "myanmar", "myanmarisch"),
     "MNE": ("montenegrin", "montenegrinisch", "montenegro"),
     "MNG": ("mongolei", "mongolia", "mongolisch"),
+    "MNP": (
+        "noerdliche marianen", "northern mariana islands",
+        "nördliche marianen"
+    ),
     "MOZ": ("mosambik", "mosambikanisch", "mozambique"),
     "MRT": ("mauretanien", "mauretanisch", "mauritania"),
     "MUS": ("mauritisch", "mauritius"),
     "MWI": ("malawi", "malawisch"),
     "MYS": ("malaysia", "malaysisch"),
     "NAM": ("namibia", "namibisch"),
+    "NCL": ("neu-kaledonien", "neukaledonien", "new caledonia"),
     "NER": ("niger", "nigrisch"),
     "NGA": ("nigeria", "nigerian", "nigerianisch"),
     "NIC": ("nicaragua", "nicaraguan", "nicaraguanisch"),
-    "NLD": ("dutch", "holland", "holländisch", "netherlands", "niederlaendisch", "niederlande", "niederländisch"),
+    "NLD": (
+        "dutch", "holland", "holländisch", "netherlands", "niederlaendisch",
+        "niederlande", "niederländisch"
+    ),
     "NOR": ("norway", "norwegen", "norwegian", "norwegisch"),
     "NPL": ("nepal", "nepalesisch"),
+    "NRU": ("naoero", "nauru"),
     "NZL": ("neuseeland", "neuseeländisch", "new zealand"),
     "OMN": ("oman", "omanisch"),
     "PAK": ("pakistan", "pakistani", "pakistanisch"),
     "PAN": ("panama", "panamaisch"),
     "PER": ("peru", "peruanisch", "peruvian"),
     "PHL": ("filipino", "philippinen", "philippines", "philippinisch"),
+    "PLW": ("palau", "palauisch"),
     "PNG": ("papua neuguinea", "papua new guinea", "papua-neuguinea"),
     "POL": ("poland", "polen", "polish", "polnisch"),
-    "PRK": ("demokratische volksrepublik korea", "dpr korea", "dprk", "dvr korea", "nordkorea", "north korea"),
+    "PRI": ("puerto rico", "puertoricanisch"),
+    "PRK": (
+        "demokratische volksrepublik korea", "dpr korea", "dprk", "dvr korea",
+        "korea, dem. people's rep.", "nordkorea", "north korea", "west korea"
+    ),
     "PRT": ("portugal", "portugiesisch", "portuguese"),
     "PRY": ("paraguay", "paraguayisch"),
-    "PSE": ("palaestina", "palestine", "palästina", "palästinensisch"),
+    "PSE": (
+        "gazastreifen", "palaestina", "palestine", "palästina",
+        "palästinensisch", "west bank and gaza", "westjordanland"
+    ),
+    "PYF": (
+        "franzoesisch-polynesien", "französisch-polynesien",
+        "french polynesia"
+    ),
     "QAT": ("katar", "katarisch", "qatar"),
     "RKS": ("kosovan", "kosovarisch", "kosovo"),
-    "ROU": ("romania", "romanian", "rumaenien", "rumaenisch", "rumänien", "rumänisch"),
-    "RUS": ("russia", "russian", "russisch", "russische föderation", "russland", "rußland"),
+    "ROU": (
+        "romania", "romanian", "rumaenien", "rumaenisch", "rumänien",
+        "rumänisch"
+    ),
+    "RUS": (
+        "russia", "russian", "russisch", "russische föderation", "russland",
+        "rußland"
+    ),
     "RWA": ("ruanda", "ruandisch", "rwanda"),
-    "SAU": ("saudi", "saudi arabia", "saudi arabien", "saudi-arabien", "saudi-arabisch"),
+    "SAU": (
+        "saudi", "saudi arabia", "saudi arabien", "saudi-arabien",
+        "saudi-arabisch"
+    ),
     "SDN": ("sudan", "sudanese", "sudanesisch"),
     "SEN": ("senegal", "senegalesisch"),
     "SGP": ("singapore", "singapur"),
+    "SLB": ("salomon-inseln", "salomonen", "solomon islands"),
     "SLE": ("sierra leone", "sierra-leonisch"),
     "SLV": ("el salvador", "salvadorianisch"),
+    "SMR": ("san marino", "san-marinesisch"),
     "SOM": ("somali", "somalia", "somalisch"),
     "SRB": ("serbia", "serbian", "serbien", "serbisch"),
     "SSD": ("south sudan", "suedsudan", "südsudan"),
+    "STP": (
+        "sao tome", "sao tome and principe", "sao tome und principe",
+        "são tomé und príncipe"
+    ),
     "SUR": ("surinam", "suriname"),
-    "SVK": ("slovak", "slovakia", "slowakei", "slowakisch"),
+    "SVK": ("slovak", "slovak republic", "slovakia", "slowakei", "slowakisch"),
     "SVN": ("slovenia", "slovenian", "slowenien", "slowenisch"),
     "SWE": ("schweden", "schwedisch", "sweden", "swedish"),
     "SWZ": ("eswatini", "swasiland", "swaziland"),
+    "SXM": ("sint maarten",),
     "SYC": ("seychellen", "seychelles"),
     "SYR": ("syria", "syrian", "syrien", "syrisch"),
+    "TCA": (
+        "turks and caicos islands", "turks und caicosinseln",
+        "turks- und caicosinseln"
+    ),
     "TCD": ("chad", "tschad", "tschadisch"),
     "TGO": ("togo", "togoisch"),
     "THA": ("thai", "thailaendisch", "thailand", "thailändisch"),
@@ -232,23 +351,46 @@ ALIASSE: dict[str, tuple[str, ...]] = {
     "TON": ("tonga", "tongaisch"),
     "TTO": ("trinidad", "trinidad and tobago", "trinidad und tobago"),
     "TUN": ("tunesien", "tunesisch", "tunisia", "tunisian"),
-    "TUR": ("tuerkei", "tuerkisch", "turkey", "turkish", "türkei", "türkisch", "türkiye"),
+    "TUR": (
+        "tuerkei", "tuerkisch", "turkey", "turkish", "turkiye", "türkei",
+        "türkisch", "türkiye"
+    ),
+    "TUV": ("tuvalu",),
     "TWN": ("republic of china", "republik china", "taiwan"),
     "TZA": ("tansania", "tansanisch", "tanzania"),
     "UGA": ("uganda", "ugandisch"),
     "UKR": ("ukraine", "ukrainian", "ukrainisch"),
     "URY": ("uruguay", "uruguayan", "uruguayisch"),
-    "USA": ("america", "american", "amerika", "amerikanisch", "u.s.", "u.s.a.", "united states", "us-amerikanisch", "vereinigte staaten"),
+    "USA": (
+        "america", "american", "amerika", "amerikanisch", "u.s.", "u.s.a.",
+        "united states", "us-amerikanisch", "usa", "vereinigte staaten"
+    ),
     "UZB": ("usbekisch", "usbekistan", "uzbekistan"),
-    "VEN": ("venezolanisch", "venezuela", "venezuelan"),
-    "VNM": ("vietnam", "vietnamese", "vietnamesisch"),
+    "VAT": ("heiliger stuhl", "vatican", "vatikan", "vatikanstadt"),
+    "VCT": (
+        "saint vincent and the grenadines",
+        "saint vincent und die grenadinen", "st vincent und die grenadinen",
+        "st. vincent and the grenadines", "st. vincent und die grenadinen"
+    ),
+    "VEN": ("venezolanisch", "venezuela", "venezuela, rb", "venezuelan"),
+    "VGB": ("britische jungferninseln", "british virgin islands"),
+    "VIR": (
+        "amerikanische jungferninseln", "jungferninseln", "us jungferninseln",
+        "virgin islands"
+    ),
+    "VNM": ("viet nam", "vietnam", "vietnamese", "vietnamesisch"),
+    "VUT": ("vanuatu",),
     "WLD": ("global", "welt", "weltweit", "world"),
     "WSM": ("samoa", "samoanisch"),
     "XKX": ("kosovarisch", "kosovo"),
-    "YEM": ("jemen", "jemenitisch", "yemen", "yemeni"),
-    "ZAF": ("south africa", "south african", "south-african", "suedafrika", "suedafrikanisch", "südafrika", "südafrikanisch"),
+    "YEM": ("jemen", "jemenitisch", "yemen", "yemen, rep.", "yemeni"),
+    "ZAF": (
+        "south africa", "south african", "south-african", "suedafrika",
+        "suedafrikanisch", "südafrika", "südafrikanisch"
+    ),
     "ZMB": ("sambia", "sambisch", "zambia"),
-    "ZWE": ("simbabwe", "simbabwisch", "zimbabwe"),}
+    "ZWE": ("simbabwe", "simbabwisch", "zimbabwe"),
+}
 
 
 @lru_cache(maxsize=4096)

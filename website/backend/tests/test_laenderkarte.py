@@ -164,13 +164,41 @@ def test_iso3_codes_sind_wohlgeformt():
         assert len(iso) == 3 and iso.isupper() and iso.isalpha(), iso
 
 
+# „usa" stand in vier der alten Karten, „uk" in `wgi` — beide sind die
+# häufigste Schreibweise überhaupt. Unter der Wortgrenzen-Prüfung sind sie
+# eindeutig („usa" trifft „usability" nicht). Ein Blanko-Minimum von zwei
+# Zeichen wäre dagegen gefährlich: „at" (Österreich) stand in einer der 24
+# Karten und steckt in „at the". „eu" ist bewusst nicht dabei — das Token hat
+# schon einmal über-getriggert (#110).
+KURZ_ERLAUBT = {"usa", "uk"}
+
+
 def test_keine_leeren_oder_zu_kurzen_aliasse():
-    """Ein Alias unter vier Zeichen würde quer durch den Korpus matchen."""
+    """Ein Alias unter vier Zeichen würde quer durch den Korpus matchen —
+    ausser den zwei gemessenen Ausnahmen."""
     for iso, al in ALIASSE.items():
         assert al, iso
         for a in al:
-            assert len(a) >= 4, (iso, a)
+            assert len(a) >= 4 or a in KURZ_ERLAUBT, (iso, a)
             assert a == a.lower().strip(), (iso, a)
+
+
+def test_kurze_aliasse_bleiben_die_gemessene_ausnahme():
+    """Wer eine dritte Kurzform aufnimmt, soll das bewusst tun."""
+    kurz = {a for al in ALIASSE.values() for a in al if len(a) < 4}
+    assert kurz == KURZ_ERLAUBT, kurz
+
+
+@pytest.mark.parametrize("text,erwartet", [
+    ("Die USA und Kanada", ["USA", "CAN"]),
+    ("Korruption in den USA", ["USA"]),
+    ("UK-Politik nach dem Brexit", ["GBR"]),
+    ("usability testing", []),
+    ("Die Ursache war unklar", []),
+    ("Ein Ukulele-Konzert", []),
+])
+def test_kurzformen_sind_unter_wortgrenzen_eindeutig(text, erwartet):
+    assert finde(text) == erwartet, text
 
 
 def test_kein_alias_gehoert_zwei_laendern():
