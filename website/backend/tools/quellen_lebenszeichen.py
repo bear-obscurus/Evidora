@@ -61,6 +61,12 @@ import urllib.request
 
 USER_AGENT = "Evidora-Quellenmonitor/1.0 (+https://evidora.eu; contact@evidora.eu)"
 
+# Stand 2026-09-07, gezaehlt ueber services/*.py mit `async def search_/fetch_`
+# und httpx-Nutzung, ohne Static-First-Pakete. Steht hier, damit der Bericht
+# die Abdeckung nennt statt nur "alle Sonden gruen" — ein Test pinnt die Zahl
+# gegen den echten Bestand.
+ANZAHL_LIVE_KONNEKTOREN = 101
+
 
 # --------------------------------------------------------------------------
 # Pruefer: wie viele DATENZEILEN steckt in dieser Antwort?
@@ -93,6 +99,16 @@ def _p_pfad(*pfad):
                 return 0
         return len(d) if hasattr(d, "__len__") else 0
     return pruefer
+
+
+def _p_zaehlt(marke):
+    """Zaehlt ein Markup-Element — fuer RSS/Atom und XML-Listen."""
+    return lambda text: text.count(marke)
+
+
+def _p_liste(text):
+    d = json.loads(text)
+    return len(d) if isinstance(d, list) else 0
 
 
 def _p_nicht_leer(text):
@@ -186,6 +202,133 @@ SONDEN = [
      "https://factchecktools.googleapis.com/v1alpha1/claims:search",
      {"query": "Klimawandel", "languageCode": "de", "pageSize": "3"},
      _p_pfad("claims"), "GOOGLE_FACTCHECK_API_KEY"),
+
+    # --- Zweite Welle (2026-09-07) ---------------------------------------
+    # Jede dieser Sonden wurde einzeln gegen die echte API gefahren, bevor
+    # sie hier steht. Die erste Fassung war zur Haelfte falsch: `eea` fragt
+    # gar nicht eea.europa.eu ab, sondern Eurostat; `efsa` laeuft ueber
+    # Crossref; `who_europe` haengt an dw.euro.who.int, nicht am Gateway.
+    # Eine Sonde, die etwas anderes fragt als der Konnektor, misst nicht den
+    # Konnektor (#158) — deshalb steht neben jeder der Service, dessen
+    # Konstanten der Drift-Test dagegenhaelt.
+    ("PubMed-Leitlinien (AHRQ-Weg)", "ahrq",
+     "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+     {"db": "pubmed", "term": "guideline", "retmode": "json", "retmax": "3"},
+     _p_pfad("esearchresult", "idlist"), None),
+    ("arXiv", "arxiv", "http://export.arxiv.org/api/query",
+     {"search_query": "all:climate", "max_results": "3"}, _p_zaehlt("<entry"), None),
+    ("AT-Faktencheck (APA)", "at_faktencheck_rss",
+     "https://apa.at/faktencheck/feed/", {}, _p_zaehlt("<item"), None),
+    ("BASG", "basg", "https://www.basg.gv.at/whatsnew/rss", {},
+     _p_zaehlt("<item"), None),
+    ("bioRxiv", "biorxiv",
+     "https://api.biorxiv.org/details/biorxiv/10.1101/2020.03.20.000141", {},
+     _p_pfad("collection"), None),
+    ("CDC Newsroom", "cdc_newsroom",
+     "https://tools.cdc.gov/api/v2/resources/media/132608.rss", {},
+     _p_zaehlt("<item"), None),
+    ("CDC Open Data", "cdc_open_data", "https://api.us.socrata.com/api/catalog/v1",
+     {"q": "covid", "limit": "3"}, _p_pfad("results"), None),
+    ("ClinicalTrials.gov", "clinicaltrials",
+     "https://clinicaltrials.gov/api/v2/studies",
+     {"query.term": "diabetes", "pageSize": "3"}, _p_pfad("studies"), None),
+    ("ClinVar", "clinvar",
+     "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+     {"db": "clinvar", "term": "BRCA1", "retmode": "json", "retmax": "3"},
+     _p_pfad("esearchresult", "idlist"), None),
+    ("Cochrane (ueber PubMed)", "cochrane",
+     "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+     {"db": "pubmed", "term": "cochrane database syst rev[jour]",
+      "retmode": "json", "retmax": "3"},
+     _p_pfad("esearchresult", "idlist"), None),
+    ("DataCommons ClaimReview", "datacommons",
+     "https://storage.googleapis.com/datacommons-feeds/claimreview/latest/data.json",
+     {}, _p_pfad("dataFeedElement"), None),
+    ("DOAB", "doab", "https://directory.doabooks.org/rest/search",
+     {"query": "climate", "expand": "metadata"}, _p_liste, None),
+    # Der Drift-Test hat hier zweimal zugeschlagen, und zu Recht: die erste
+    # Fassung fragte opendata.ecdc.europa.eu ab (der Konnektor nimmt
+    # OWID-Grapher-CSVs) und data.sec.gov — `edgar` ist aber die
+    # JRC-EMISSIONSDATENBANK, nicht die US-Boersenaufsicht.
+    ("ECDC (ueber OWID)", "ecdc",
+     "https://ourworldindata.org/grapher/global-vaccination-coverage.csv", {},
+     _p_csv, None),
+    ("EEA (ueber Eurostat)", "eea",
+     "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/env_air_emis",
+     {"format": "JSON", "geo": "AT", "lang": "EN"}, _p_pfad("value"), None),
+    ("EFSA (ueber Crossref)", "efsa",
+     "https://api.crossref.org/journals/1831-4732/works",
+     {"rows": "2", "mailto": "contact@evidora.eu"},
+     _p_pfad("message", "items"), None),
+    ("GBIF", "gbif", "https://api.gbif.org/v1/species/search",
+     {"q": "Ursus", "limit": "3"}, _p_pfad("results"), None),
+    ("IMF (ueber DBnomics)", "imf",
+     "https://api.db.nomics.world/v22/series/IMF/WEO:2024-10/AUT.NGDP_RPCH", {},
+     _p_pfad("series", "docs"), None),
+    ("MedlinePlus", "medlineplus", "https://wsearch.nlm.nih.gov/ws/query",
+     {"db": "healthTopics", "term": "diabetes", "retmax": "3"},
+     _p_zaehlt("<document "), None),
+    ("MITRE ATT&CK", "mitre_attack",
+     "https://raw.githubusercontent.com/mitre/cti/master/enterprise-attack/"
+     "enterprise-attack.json", {}, _p_pfad("objects"), None),
+    ("Nominatim", "nominatim", "https://nominatim.openstreetmap.org/search",
+     {"q": "Wien", "format": "json", "limit": "1"}, _p_liste, None),
+    ("NVD", "nvd", "https://services.nvd.nist.gov/rest/json/cves/2.0",
+     {"keywordSearch": "openssl", "resultsPerPage": "2"},
+     _p_pfad("vulnerabilities"), None),
+    ("openFDA", "openfda", "https://api.fda.gov/drug/event.json",
+     {"limit": "2"}, _p_pfad("results"), None),
+    ("OSV", "osv", "https://api.osv.dev/v1/vulns/GHSA-jfh8-c2jp-5v3q", {},
+     _p_pfad("id"), None),
+    ("Our World in Data", "owid",
+     "https://ourworldindata.org/grapher/life-expectancy.csv", {}, _p_csv, None),
+    ("USPSTF", "uspstf",
+     "https://data.uspreventiveservicestaskforce.org/api/json", {},
+     _p_nicht_leer, None),
+    ("Wikipedia (REST)", "wikipedia",
+     "https://de.wikipedia.org/api/rest_v1/page/summary/Wien", {},
+     _p_pfad("extract"), None),
+    ("UNESCO Welterbe", "world_heritage", "https://whc.unesco.org/en/list/xml/",
+     {}, _p_zaehlt("<row"), None),
+    ("UNHCR", "unhcr", "https://api.unhcr.org/population/v1/population/",
+     {"limit": "2", "yearFrom": "2023"}, _p_pfad("items"), None),
+    ("UNECE", "unece", "https://w3.unece.org/PXWeb2015/api/v1/en/STAT", {},
+     _p_liste, None),
+    ("DefiLlama", "defillama", "https://api.llama.fi/protocols", {},
+     _p_liste, None),
+]
+
+# --------------------------------------------------------------------------
+# Quellen, die NACHWEISLICH kaputt sind — und zwar nicht durch uns.
+#
+# Dieselbe Ueberlegung wie bei der Waechter-Klasse BLOCKIERT (#142): ein
+# Wecker, den man nicht abstellen kann, bringt einem bei, Wecker zu
+# ignorieren. Diese Sonden laufen mit und stehen im Bericht, loesen aber
+# KEINEN Push aus. Aufnahme nur mit geprueftem Grund UND einer Bedingung,
+# unter der der Eintrag wieder verschwindet.
+# --------------------------------------------------------------------------
+BEKANNT_DEFEKT = {
+    "WHO Europe (Health for All)": (
+        "2026-09-07: TLS-Kette unvollstaendig. dw.euro.who.int sendet das "
+        "Intermediate-Zertifikat nicht mit; aus dem Prod-Container schlaegt "
+        "die Pruefung mit CERTIFICATE_VERIFY_FAILED fehl (vom Entwickler-Mac "
+        "aus nicht, dort liegt das Intermediate im Store). Das Server-Zert "
+        "selbst ist gueltig bis 2026-11-02. "
+        "WIEDER AUFNEHMEN, wenn die Sonde ohne Anpassung durchlaeuft."),
+    "FAOSTAT": (
+        "2026-09-07: HTTP 521 (Cloudflare: Ursprungsserver nicht erreichbar), "
+        "reproduziert vom Entwickler-Mac, vom Prod-Host und aus dem Container. "
+        "Ausfall auf Seiten der FAO, nicht bei uns. "
+        "WIEDER AUFNEHMEN, sobald die API wieder 200 liefert."),
+}
+
+SONDEN += [
+    ("WHO Europe (Health for All)", "who_europe",
+     "https://dw.euro.who.int/api/v5/measures", {}, _p_liste, None),
+    ("FAOSTAT", "faostat",
+     "https://fenixservices.fao.org/faostat/api/v1/en/data/QCL",
+     {"area": "11", "item": "15", "element": "5510", "year": "2022"},
+     _p_pfad("data"), None),
 ]
 
 # Token, die als Query-Parameter statt als Header gehen.
@@ -275,6 +418,14 @@ def main() -> int:
         return 2
 
     ergebnisse = [sonde_laufen(s, a.timeout) for s in sonden]
+    for e in ergebnisse:
+        if e["name"] in BEKANNT_DEFEKT and e["status"] in ALARM:
+            e["status"] = "bekannt_defekt"
+            e["grund"] = BEKANNT_DEFEKT[e["name"]]
+        elif e["name"] in BEKANNT_DEFEKT and e["status"] == "ok":
+            # Der erfreuliche Fall: die Quelle ist zurueck. Das gehoert
+            # gemeldet, damit der Eintrag verschwindet statt zu versteinern.
+            e["grund"] = "wieder erreichbar — Eintrag in BEKANNT_DEFEKT entfernen"
     schlecht = [e for e in ergebnisse if e["status"] in ALARM]
 
     if a.json:
@@ -288,8 +439,20 @@ def main() -> int:
                                                            e["status"].upper())
             zusatz = (f"{e['zeilen']} Datenzeilen" if e["status"] == "ok"
                       else e.get("grund", ""))
-            print(f"  {marke:16} {e['name']:38} {zusatz}")
-        print(f"\n{len(ergebnisse) - len(schlecht)}/{len(ergebnisse)} Sonden gruen.")
+            print(f"  {marke:16} {e['name']:38} {zusatz[:120]}")
+        # Die Kategorien getrennt ausweisen. "51/51 gruen" waere unehrlich,
+        # solange zwei Quellen nachweislich tot sind — sie loesen nur bewusst
+        # keinen Push aus.
+        gruen = [e for e in ergebnisse if e["status"] == "ok"]
+        defekt = [e for e in ergebnisse if e["status"] == "bekannt_defekt"]
+        uebersprungen = [e for e in ergebnisse if e["status"] == "uebersprungen"]
+        print(f"\n{len(gruen)}/{len(ergebnisse)} Sonden liefern Daten. "
+              f"{len(defekt)} bekannt defekt, {len(uebersprungen)} uebersprungen, "
+              f"{len(schlecht)} auffaellig.")
+        if defekt:
+            print("  bekannt defekt: " + ", ".join(e["name"] for e in defekt))
+        print(f"  Abdeckung: {len({s[1] for s in sonden})} von {ANZAHL_LIVE_KONNEKTOREN} "
+              f"Live-Konnektoren.")
 
     if schlecht:
         text = "\n".join(f"{e['name']} ({e['service']}): {e['status']} — "
