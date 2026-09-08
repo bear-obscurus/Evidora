@@ -189,21 +189,79 @@ def test_grund_nennt_beide_stufen(monkeypatch, caplog):
     k = _Klient(head_codes={url: 403}, get_codes={url: 403})
     with caplog.at_level(logging.INFO, logger="evidora"):
         _lauf([{"source": "X", "url": url}], k, monkeypatch)
-    zeile = [r.getMessage() for r in caplog.records if "Removed broken" in r.getMessage()][0]
+    zeile = [r.getMessage() for r in caplog.records if "behalten trotz" in r.getMessage()][0]
     assert "HEAD 403" in zeile and "GET 403" in zeile, zeile
 
 
-def test_grund_nennt_die_ausnahme(monkeypatch, caplog):
-    """Eine Zeitüberschreitung ist kein kaputter Link. Wenn wir das nicht
-    unterscheiden, suchen wir den Fehler beim Server statt bei uns."""
+# --------------------------------------------------------------------------
+# Ein 403 sagt etwas über UNSEREN Zugriff, nicht über den Link (#171)
+# --------------------------------------------------------------------------
+
+def test_bot_wall_kostet_keinen_beleg(monkeypatch):
+    """Nach dem höflichen Client blieben zwei Belege liegen, beide mit
+    `HEAD 403, GET 403` — und `curl` holt dieselben URLs vom selben Server
+    mit 200. Der Container hat kein globales IPv6, geht also über dieselbe
+    IPv4 raus: gleiche Adresse, gleiche URL, anderer Client, anderes
+    Ergebnis. Wer die Quelle im Browser öffnet, bekommt sie zu sehen."""
+    url = "https://www.transparency.org/en/cpi/2024"
+    k = _Klient(head_codes={url: 403}, get_codes={url: 403})
+    assert len(_lauf([{"source": "Transparency", "url": url}], k, monkeypatch)) == 1
+
+
+@pytest.mark.parametrize("code", [401, 429, 500, 503])
+def test_zugriffs_und_serverfehler_kosten_keinen_beleg(monkeypatch, code):
+    """Anmeldepflicht, Drosselung, Serverpanne: alles Aussagen über den
+    Abruf, keine über die Existenz der Seite."""
+    url = "https://beispiel.test/x"
+    k = _Klient(head_codes={url: code})
+    assert len(_lauf([{"source": "X", "url": url}], k, monkeypatch)) == 1
+
+
+@pytest.mark.parametrize("code", [404, 410])
+def test_nur_404_und_410_toeten_einen_beleg(monkeypatch, code):
+    """Diese zwei Codes sagen: die Ressource gibt es nicht."""
+    url = "https://beispiel.test/weg"
+    k = _Klient(head_codes={url: code})
+    assert _lauf([{"source": "X", "url": url}], k, monkeypatch) == []
+
+
+def test_erfundene_domain_fliegt_raus(monkeypatch):
+    """Das Signal, für das dieser Filter gebaut wurde: der Host antwortet
+    gar nicht. Eine halluzinierte Domain darf nicht als Beleg durchgehen."""
+    import httpx
+
+    class OhneHost(_Klient):
+        async def head(self, url, **kw):
+            raise httpx.ConnectError("Name or service not known")
+
+    r = _lauf([{"source": "X", "url": "https://gibts-nicht.test/a"}],
+              OhneHost(head_codes={}), monkeypatch)
+    assert r == []
+
+
+def test_zeitueberschreitung_kostet_keinen_beleg(monkeypatch, caplog):
+    """Eine Zeitüberschreitung ist kein kaputter Link — sie ist eine Aussage
+    über unsere Leitung. Der Beleg bleibt, aber die Zeile steht im Log,
+    damit eine neue Sperre nicht unbemerkt zur Regel wird."""
     import logging
 
-    class Kaputt(_Klient):
+    class Langsam(_Klient):
         async def head(self, url, **kw):
             raise TimeoutError("zu langsam")
 
     url = "https://beispiel.test/langsam"
     with caplog.at_level(logging.INFO, logger="evidora"):
-        _lauf([{"source": "X", "url": url}], Kaputt(head_codes={}), monkeypatch)
-    zeile = [r.getMessage() for r in caplog.records if "Removed broken" in r.getMessage()][0]
+        r = _lauf([{"source": "X", "url": url}], Langsam(head_codes={}), monkeypatch)
+    assert len(r) == 1
+    zeile = [m.getMessage() for m in caplog.records if "behalten trotz" in m.getMessage()][0]
     assert "TimeoutError" in zeile, zeile
+
+
+def test_sauberer_treffer_erzeugt_keine_log_zeile(monkeypatch, caplog):
+    """Sonst ertrinkt der interessante Fall im Rauschen."""
+    import logging
+    url = "https://beispiel.test/ok"
+    k = _Klient(head_codes={url: 200})
+    with caplog.at_level(logging.INFO, logger="evidora"):
+        _lauf([{"source": "X", "url": url}], k, monkeypatch)
+    assert not [m for m in caplog.records if "behalten trotz" in m.getMessage()]

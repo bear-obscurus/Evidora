@@ -940,6 +940,12 @@ def _extract_json(content: str) -> dict | None:
     return None
 
 
+# Nur diese Codes sagen etwas ueber den LINK: die Ressource gibt es nicht.
+# Alles andere (403 Bot-Wall, 401 Anmeldung, 429 Drosselung, 5xx Serverpanne)
+# sagt etwas ueber UNSEREN Zugriff — und wirft einen gueltigen Beleg weg.
+_TOT = frozenset({404, 410})
+
+
 async def _validate_urls(evidence: list[dict]) -> list[dict]:
     """Evidenz-URLs pruefen und kaputte Eintraege entfernen.
 
@@ -962,6 +968,19 @@ async def _validate_urls(evidence: list[dict]) -> list[dict]:
     viele Server als "Method Not Allowed" beantworten.
 
     Die Links waren also nie kaputt. Wir haben falsch angeklopft.
+
+    Und danach war die Regel selbst falsch (#171). Nach dem hoeflichen
+    Client blieben zwei Belege liegen, beide mit ``HEAD 403, GET 403`` —
+    aber ``curl`` holt dieselben URLs vom selben Server mit 200. Der
+    Container hat kein globales IPv6, geht also ueber dieselbe IPv4 raus:
+    gleiche Adresse, gleiche URL, anderer Client, anderes Ergebnis. Das ist
+    eine Bot-Wall, die unseren Fingerabdruck abweist — kein toter Link.
+
+    Deshalb verwirft der Filter nur noch, was etwas ueber den LINK aussagt:
+    404, 410 und eine nicht erreichbare Domain. Ein 403 sagt etwas ueber
+    UNSEREN Zugriff. Wer die Quelle im Browser oeffnet, bekommt sie zu
+    sehen — und ein Faktencheck ohne Beleg ist schlechter als einer mit
+    einem Beleg, den wir selbst nicht abrufen durften.
     """
     if not evidence:
         return evidence
@@ -992,10 +1011,18 @@ async def _validate_urls(evidence: list[dict]) -> list[dict]:
                 if resp.status_code in (403, 405, 501):
                     nach = await client.get(url, headers={"Range": "bytes=0-0"})
                     grund = f"HEAD {resp.status_code}, GET {nach.status_code}"
-                    return nach.status_code < 400, grund
-                return False, f"HEAD {resp.status_code}"
+                    if nach.status_code < 400:
+                        return True, grund
+                    return nach.status_code not in _TOT, grund
+                return resp.status_code not in _TOT, f"HEAD {resp.status_code}"
+        except httpx.ConnectError as exc:
+            # Der Host selbst antwortet nicht — das ist das Signal, fuer das
+            # dieser Filter gebaut wurde: eine erfundene Domain.
+            return False, f"ConnectError: {str(exc)[:120]}"
         except Exception as exc:
-            return False, f"{type(exc).__name__}: {str(exc)[:120]}"
+            # Zeitueberschreitung, abgebrochene Verbindung: sagt nichts ueber
+            # den Link. Beleg behalten.
+            return True, f"{type(exc).__name__}: {str(exc)[:120]}"
 
     tasks = [check_url(url) for url in urls]
     results = await asyncio.gather(*tasks)
@@ -1005,6 +1032,10 @@ async def _validate_urls(evidence: list[dict]) -> list[dict]:
     for entry, url, (ok, grund) in zip(evidence, urls, results):
         if ok or not url:
             validated.append(entry)
+            # Behalten, obwohl der Abruf scheiterte: sichtbar machen, damit
+            # eine neue Sperre nicht unbemerkt zur Regel wird.
+            if url and not grund.startswith(("HEAD 2", "HEAD 3", "doi")):
+                logger.info("Evidenz behalten trotz %s: %s", grund, url)
         else:
             removed += 1
             logger.info("Removed broken evidence URL (%s): %s", grund, url)
