@@ -191,6 +191,72 @@ def _routen_zeile(r: dict) -> str:
     return teil
 
 
+def _ist_ausreise(r: dict) -> bool:
+    """Zaehlt diese Route Ausreisen statt Einreisen?
+
+    Zwei Wege, absichtlich: das explizite Feld ``richtung`` und der
+    Freitext-Hinweis. Die Datei ist handgepflegt (es gibt kein
+    refresh_frontex.py) — wer eine Route ergaenzt und das Feld vergisst,
+    schreibt den Hinweis trotzdem, und umgekehrt.
+    """
+    if str(r.get("richtung", "")).strip().lower() == "ausreise":
+        return True
+    return "ausreisen" in str(r.get("hinweis", "")).lower()
+
+
+def _einordnung(r: dict, data: dict) -> str:
+    """Anteil der Route am Gesamtbild — die fehlende Bezugsgroesse.
+
+    QA50F-Befund 5: „Ueber die oestliche Landgrenze kommen kaum noch Menschen
+    in die EU" bekam `true@0.9`. Das Spiegel-Paar entlarvt es:
+
+        „kommen kaum noch Menschen"      -> true@0.9
+        „kommen weiterhin viele Menschen" -> true@0.9
+
+    Beide Richtungen wahr, auf derselben Zahl (3.209). Logisch unmoeglich.
+    Zur Kontrolle dieselben zwei Saetze fuer die zentrale Mittelmeerroute
+    (16.454): dort trennt das System korrekt, false@0.85 / true@0.9.
+
+    Der Unterschied ist nicht die Logik, sondern die Grauzone. „Viel" und
+    „kaum" haben keine Schwelle — ohne Bezugsgroesse stimmt das Modell der
+    Behauptung zu, egal in welche Richtung sie zeigt.
+
+    Die Bezugsgroesse steht in denselben Daten: 3.209 von rund 61.000 sind
+    5 %, und die groesste Route hat 20.232. Der Konnektor hat das nie
+    ausgerechnet — die Routen-Zeile trug im ``indicator_name`` bis hierher
+    nicht einmal die Zahl selbst.
+    """
+    det = r.get("detektionen")
+    gesamt = data.get("detektionen_eu_gesamt_approx")
+    if not isinstance(det, (int, float)) or not isinstance(gesamt, (int, float)):
+        return ""
+    if gesamt <= 0:
+        return ""
+
+    # Der Aermelkanal zaehlt AUSREISEN und steckt nicht in der Gesamtzahl
+    # (Summe der Einreise-Routen: 60.985 ~ 61.000). Er darf weder einen
+    # Anteil daran bekommen noch als „groesste Route" gegen eine
+    # Einreise-Route gestellt werden — das waere die Umdeutung, vor der die
+    # Daten selbst warnen.
+    if _ist_ausreise(r):
+        return ("zaehlt AUSREISEN aus der EU, nicht Einreisen — nicht in der "
+                "EU-Gesamtzahl enthalten")
+
+    teile = [f"{100.0 * det / gesamt:.0f} % aller rund {_de_int(gesamt)} "
+             f"Detektionen an den EU-Aussengrenzen"]
+    andere = [x for x in (data.get("routen") or [])
+              if isinstance(x.get("detektionen"), (int, float))
+              and x.get("name") != r.get("name")
+              and not _ist_ausreise(x)]
+    if andere:
+        groesste = max(andere, key=lambda x: x["detektionen"])
+        teile.append(
+            f"groesste Einreise-Route {groesste['name']}: "
+            f"{_de_int(groesste['detektionen'])} "
+            f"({100.0 * groesste['detektionen'] / gesamt:.0f} %)")
+    return "; ".join(teile)
+
+
 def _build_results(fact: dict, claim_lc: str) -> list[dict]:
     """Baut Haupt- und Routen-Ergebnis.
 
@@ -257,8 +323,18 @@ def _build_results(fact: dict, claim_lc: str) -> list[dict]:
     if route_substr:
         for r in routen:
             if route_substr in r["name"].lower():
+                # Zahl UND Bezugsgroesse in den indicator_name: der geht
+                # bis 400 Zeichen ungekuerzt in den Prompt, der display_value
+                # nicht zwangslaeufig. Bis hierher stand hier nur der Name.
+                kopf = (f"Frontex {r['name']}, {zeitraum}: "
+                        f"{_de_int(r.get('detektionen'))} Detektionen "
+                        f"({_zeichen(r.get('veraenderung_pct'))} gegenüber "
+                        f"{_de_int(r.get('vorjahreszeitraum'))})")
+                einordnung = _einordnung(r, data)
+                if einordnung:
+                    kopf = f"{kopf} — {einordnung}"
                 results.insert(0, {
-                    "indicator_name": f"Frontex {r['name']}, {zeitraum}",
+                    "indicator_name": kopf,
                     "indicator": "frontex_route",
                     "country": "EU", "country_name": "Europäische Union",
                     "year": zeitraum,

@@ -63,6 +63,7 @@
         "detektionen": 22469,
         "vorjahreszeitraum": 41647,
         "veraenderung_pct": -46,
+        "richtung": "ausreise",
         "hinweis": "zaehlt AUSREISEN aus der EU, nicht Einreisen — nicht in der EU-Gesamtzahl enthalten"
       }
     ],
