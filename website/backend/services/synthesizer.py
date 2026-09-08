@@ -970,39 +970,44 @@ async def _validate_urls(evidence: list[dict]) -> list[dict]:
     if not any(urls):
         return evidence
 
-    async def check_url(url: str) -> bool:
+    async def check_url(url: str) -> tuple[bool, str]:
+        """(bestanden, Grund). Der Grund steht im Log, weil ein blosses
+        "removed" nicht diagnostizierbar ist: Zeitueberschreitung, Sperre
+        und toter Link sehen sonst gleich aus (Lehre aus #168, eine Ebene
+        tiefer)."""
         if not url:
-            return False
+            return False, "leer"
         # DOI links almost always resolve in browsers even when HEAD is blocked
         if "doi.org/" in url:
-            return True
+            return True, "doi"
         try:
             # Hoeflicher Client: derselbe User-Agent wie alle Konnektoren.
             async with polite_client(timeout=8.0, follow_redirects=True) as client:
                 resp = await client.head(url)
                 if resp.status_code < 400:
-                    return True
+                    return True, f"HEAD {resp.status_code}"
                 # Viele Server verweigern HEAD (405/501) oder blocken es
                 # gezielt (403), liefern denselben Pfad per GET aber aus.
                 # Range-Header, damit ein GET nicht die ganze Seite zieht.
                 if resp.status_code in (403, 405, 501):
                     nach = await client.get(url, headers={"Range": "bytes=0-0"})
-                    return nach.status_code < 400
-                return False
-        except Exception:
-            return False
+                    grund = f"HEAD {resp.status_code}, GET {nach.status_code}"
+                    return nach.status_code < 400, grund
+                return False, f"HEAD {resp.status_code}"
+        except Exception as exc:
+            return False, f"{type(exc).__name__}: {str(exc)[:120]}"
 
     tasks = [check_url(url) for url in urls]
     results = await asyncio.gather(*tasks)
 
     validated = []
     removed = 0
-    for entry, url, ok in zip(evidence, urls, results):
+    for entry, url, (ok, grund) in zip(evidence, urls, results):
         if ok or not url:
             validated.append(entry)
         else:
             removed += 1
-            logger.info(f"Removed broken evidence URL: {url}")
+            logger.info("Removed broken evidence URL (%s): %s", grund, url)
 
     if removed:
         logger.warning(f"Removed {removed} evidence entries with broken URLs")
