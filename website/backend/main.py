@@ -1821,8 +1821,13 @@ async def check_claim(request: Request):
         # Cap auch den kalibrierten Wert begrenzt. Capped <0.8 verhindert
         # zugleich, dass der verdict_cache den degradierten Lauf speichert.
         try:
-            from services.verdict_postprocess import apply_analysis_fallback_cap
+            from services.verdict_postprocess import (
+                apply_analysis_fallback_cap, apply_unbelegt_cap,
+            )
             apply_analysis_fallback_cap(synthesis, analysis, lang)
+            # Nach dem Fallback-Cap: ein Verdict ohne zitierbaren Beleg darf
+            # nicht selbstsicher ausgeliefert werden (QA50F, Klasse E).
+            apply_unbelegt_cap(synthesis, lang)
         except Exception as e:
             logger.warning(f"analysis_fallback_cap failed (non-blocking): {e}")
 

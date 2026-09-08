@@ -1875,6 +1875,67 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
 # triggern auf dem Roh-Claim-Text und liefern auch ohne Analyzer-JSON solide
 # Belege. Der Cap verhindert nur das selbstsichere Verdict auf reduzierter
 # Quellen-Basis — er nullt eine gut belegte Bewertung nicht.
+# Ein bestimmtes Verdict ohne einen einzigen zitierbaren Beleg. Der Prompt
+# verlangt das Gegenteil ("If no evidence remains after the relevance filter,
+# set verdict to unverifiable"), und die Gueltigkeitspruefung im Synthesizer
+# prueft nur, ob das FELD existiert — eine leere Liste besteht sie.
+#
+# Gemessen an QA50F (50 Claims, 2026-09-07):
+#     18 Claims ohne Evidenz
+#        davon 12 mit Verdict "unverifiable"  <- korrekt, nichts zu zitieren
+#        davon  6 mit BESTIMMTEM Verdict      <- diese hier
+#
+# Die sechs zerfallen in zwei Muster, beide gleich behandelt:
+#   * Quellen lieferten reichlich (#3: 14 Treffer), zitiert wurde nichts.
+#   * Kaum Quellen (#46/#47/#50: je 2), die Antwort kam aus dem Vorwissen.
+#
+# Bewusst KEINE Abwertung auf "unverifiable": in fuenf der sechs Faelle war
+# die Antwort richtig, und eine richtige Antwort wegzuwerfen macht den Dienst
+# schlechter, nicht ehrlicher. Was fehlt, ist nicht das Urteil, sondern der
+# Beleg — also wird die SELBSTSICHERHEIT gekappt und der fehlende Beleg
+# ausgesprochen. Dieselbe Logik wie beim Degraded-Analysis-Guard darunter.
+UNBELEGT_CONFIDENCE_CAP = 0.5
+
+
+def apply_unbelegt_cap(synthesis, lang="de", cap=UNBELEGT_CONFIDENCE_CAP):
+    """Kappt die Konfidenz, wenn ein bestimmtes Verdict keinen Beleg nennt.
+
+    Ein Faktencheck-Dienst, der recht hat und nichts zitieren kann, hat Glueck
+    gehabt — der Nutzer sieht keinen Beleg und kann nichts nachpruefen. Das
+    darf nicht mit 0,85 Konfidenz ausgeliefert werden.
+
+    Mutiert ``synthesis`` und gibt es zurueck. No-op bei ``unverifiable``
+    (dort ist fehlende Evidenz die richtige Antwort) und wenn Evidenz da ist.
+    """
+    if synthesis.get("verdict") == "unverifiable":
+        return synthesis
+    if synthesis.get("evidence"):
+        return synthesis
+
+    synthesis["_ohne_beleg"] = True
+    orig = synthesis.get("confidence") or 0.0
+    if orig > cap:
+        synthesis["confidence"] = cap
+
+    hinweis = (
+        "Hinweis: Zu dieser Bewertung konnte keine einzelne Quelle als Beleg "
+        "zitiert werden — sie stuetzt sich auf die Gesamtschau der "
+        "abgerufenen Daten, nicht auf einen benannten Nachweis."
+        if lang == "de" else
+        "Note: No single source could be cited for this verdict — it rests on "
+        "the overall picture of the retrieved data, not on a named reference."
+    )
+    bisher = synthesis.get("nuance")
+    synthesis["nuance"] = f"{bisher} {hinweis}".strip() if bisher else hinweis
+
+    logger.warning(
+        "Verdict ohne Beleg: '%s' hat keine Evidenz-Eintraege. "
+        "Konfidenz %.2f -> %.2f, Hinweis angehaengt.",
+        synthesis.get("verdict"), orig, synthesis.get("confidence") or 0.0,
+    )
+    return synthesis
+
+
 ANALYSIS_FALLBACK_CONFIDENCE_CAP = 0.5
 
 
