@@ -57,6 +57,7 @@ import httpx
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._topic_match import is_party_corruption_superlative_claim
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -154,21 +155,21 @@ def _claim_mentions_parlgov(claim_lc: str) -> bool:
     if is_party_corruption_superlative_claim(claim_lc):
         return False
     # 1) Direkte ParlGov-Begriffe
-    if any(t in claim_lc for t in _PARLGOV_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _PARLGOV_TERMS):
         return True
     # 2) Land-spezifische Wahl-Begriffe (Bundestagswahl/Nationalratswahl/...)
-    if any(t in claim_lc for t in _COUNTRY_ELECTION_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _COUNTRY_ELECTION_TERMS):
         return True
     # 3) Bekannte Kabinette / Koalitions-Muster
-    if any(t in claim_lc for t in _FAMOUS_CABINETS):
+    if any(_flexion_trifft(claim_lc, t) for t in _FAMOUS_CABINETS):
         return True
     # 4) Composite: Wahl-/Regierungs-Begriff + Land-Token
-    has_election = any(t in claim_lc for t in _ELECTION_TERMS)
-    has_country = any(t in claim_lc for t in _LAND_TOKENS)
+    has_election = any(_flexion_trifft(claim_lc, t) for t in _ELECTION_TERMS)
+    has_country = any(_flexion_trifft(claim_lc, t) for t in _LAND_TOKENS)
     if has_election and has_country:
         return True
     # 5) Composite: Person-Anker (Regierungschef) + Wahl-/Jahr-Begriff
-    has_person = any(p in claim_lc for p in PERSON_TO_COUNTRY)
+    has_person = any(_flexion_trifft(claim_lc, p) for p in PERSON_TO_COUNTRY)
     has_year_or_wahl = (
         bool(_YEAR_RE.search(claim_lc))
         or "wahl" in claim_lc
@@ -181,7 +182,7 @@ def _claim_mentions_parlgov(claim_lc: str) -> bool:
     #    election etc. via Substring "wahl"/"election" ab.
     has_generic_wahl = ("wahl" in claim_lc) or ("election" in claim_lc)
     has_year = bool(_YEAR_RE.search(claim_lc))
-    has_country = any(t in claim_lc for t in _LAND_TOKENS)
+    has_country = any(_flexion_trifft(claim_lc, t) for t in _LAND_TOKENS)
     if has_generic_wahl and (has_year or has_country):
         return True
     return False

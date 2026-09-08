@@ -45,6 +45,7 @@ from pathlib import Path
 from services._http_polite import polite_client
 from services._atomic import atomic_write_json
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -131,9 +132,9 @@ def _claim_mentions_mitre(claim_lc: str) -> bool:
             or _GROUP_ID_REGEX.search(claim_lc)
             or _SOFT_ID_REGEX.search(claim_lc)):
         return True
-    if any(n in claim_lc for n in _APT_NAMES):
+    if any(_flexion_trifft(claim_lc, n) for n in _APT_NAMES):
         return True
-    if any(n in claim_lc for n in _NATION_HACKER):
+    if any(_flexion_trifft(claim_lc, n) for n in _NATION_HACKER):
         return True
     # MITRE/TTPs explizit
     if "mitre att" in claim_lc or "att&ck" in claim_lc:
@@ -141,8 +142,8 @@ def _claim_mentions_mitre(claim_lc: str) -> bool:
     if "ttps" in claim_lc or "ttp-mapping" in claim_lc:
         return True
     # Composite: Threat-KW + Cyber/Hack-Kontext
-    has_threat = any(k in claim_lc for k in _THREAT_KW)
-    has_cyber = any(c in claim_lc for c in (
+    has_threat = any(_flexion_trifft(claim_lc, k) for k in _THREAT_KW)
+    has_cyber = any(_flexion_trifft(claim_lc, c) for c in (
         "hack", "cyber", "angriff", "attack", "intrusion",
         "malware", "ransomware", "trojaner", "spionage",
     ))

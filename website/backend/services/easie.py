@@ -81,6 +81,7 @@ from functools import lru_cache
 
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -171,14 +172,14 @@ def claim_mentions_easie_cached(claim: str) -> bool:
     if not claim:
         return False
     claim_lc = normalisiere(claim)
-    if not any(kw in claim_lc for kw in _EASIE_KEYWORDS):
+    if not any(_flexion_trifft(claim_lc, kw) for kw in _EASIE_KEYWORDS):
         return False
     # Wenn ein normativer Marker auftaucht ohne deskriptiven Anker (Quote,
     # Prozent, Zahl, Vergleich), blocken wir. Wertungs-Aussagen wie
     # "AT ist rückständig in Inklusion" wollen wir nicht beantworten.
-    has_normative = any(t in claim_lc for t in _NORMATIVE_BLOCKLIST)
+    has_normative = any(_flexion_trifft(claim_lc, t) for t in _NORMATIVE_BLOCKLIST)
     if has_normative:
-        has_descriptive_anchor = any(t in claim_lc for t in (
+        has_descriptive_anchor = any(_flexion_trifft(claim_lc, t) for t in (
             "%", "prozent", "quote", "anteil",
             "rate", "ratio", "zahl", "anzahl", "statistik",
             "wie hoch", "wie viele", "wie viel",

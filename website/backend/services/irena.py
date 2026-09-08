@@ -38,6 +38,7 @@ import httpx
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -227,10 +228,10 @@ def _claim_mentions_irena(claim_lc: str) -> bool:
     2. Renewable-Tech-Topic + Country-Mention → True.
     3. Renewable-Tech-Topic + globaler/EU-/weltweit-Mention → True.
     """
-    if any(t in claim_lc for t in _IRENA_DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _IRENA_DIRECT_TERMS):
         return True
 
-    has_topic = any(t in claim_lc for t in _IRENA_TOPIC_TERMS)
+    has_topic = any(_flexion_trifft(claim_lc, t) for t in _IRENA_TOPIC_TERMS)
     if not has_topic:
         return False
 
@@ -239,7 +240,7 @@ def _claim_mentions_irena(claim_lc: str) -> bool:
         return True
 
     # Globale/weltweite Bindung
-    has_global = any(t in claim_lc for t in (
+    has_global = any(_flexion_trifft(claim_lc, t) for t in (
         "weltweit", "global", "global", "world",
         "international", "weltkapazität", "weltkapazitaet",
         "eu-weit", "europaweit", "europäisch", "europaeisch",
@@ -270,7 +271,7 @@ def _detect_technologies(claim_lc: str) -> list[str]:
     """Erkenne Technology-Codes. Max 3 Codes (Trigger-Spam vermeiden)."""
     out: list[str] = []
     for triggers, code in _TECH_TRIGGERS:
-        if any(t in claim_lc for t in triggers):
+        if any(_flexion_trifft(claim_lc, t) for t in triggers):
             if code not in out:
                 out.append(code)
         if len(out) >= 3:

@@ -64,6 +64,7 @@ from functools import lru_cache
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -133,12 +134,12 @@ def _claim_mentions_gcb(claim_lc: str) -> bool:
     if not claim_lc:
         return False
     # 1) Direkt-Trigger
-    if any(t in claim_lc for t in _GCB_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _GCB_TERMS):
         return True
     # 2) Composite: Mengen-Token + Global-Hinweis
-    has_quantity = any(q in claim_lc for q in _QUANTITY_TOKENS)
+    has_quantity = any(_flexion_trifft(claim_lc, q) for q in _QUANTITY_TOKENS)
     if has_quantity:
-        has_global = any(g in claim_lc for g in (
+        has_global = any(_flexion_trifft(claim_lc, g) for g in (
             "global", "weltweit", "welt", "world", "menschheit",
             "atmosphäre", "atmosphaere",
         ))
@@ -506,7 +507,7 @@ def _select_relevant_highlights(claim_lc: str) -> list[dict]:
         # Region-Match (im Indicator-Namen)
         name_lc = h.get("indicator_name", "").lower()
         for _, aliases in region_tokens.items():
-            if any(a in name_lc for a in aliases) and any(a in claim_lc for a in aliases):
+            if any(a in name_lc for a in aliases) and any(_flexion_trifft(claim_lc, a) for a in aliases):
                 score += 2
                 break
         # Sektor-/Token-Match

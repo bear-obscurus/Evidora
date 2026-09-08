@@ -49,6 +49,7 @@ import time
 
 from services._http_polite import polite_client  # noqa: F401 — reserved for future CSV-bulk fetch
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -132,13 +133,13 @@ def _claim_mentions_espon(claim_lc: str) -> bool:
         return False
 
     # 1. Direkt-Match
-    if any(t in claim_lc for t in _DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TERMS):
         return True
 
-    has_nuts = any(t in claim_lc for t in _NUTS_TERMS)
-    has_at_region = any(t in claim_lc for t in _AT_NUTS2_TERMS)
-    has_de_region = any(t in claim_lc for t in _DE_NUTS2_TERMS)
-    has_eu_ctx = any(t in claim_lc for t in _EU_CONTEXT_TERMS)
+    has_nuts = any(_flexion_trifft(claim_lc, t) for t in _NUTS_TERMS)
+    has_at_region = any(_flexion_trifft(claim_lc, t) for t in _AT_NUTS2_TERMS)
+    has_de_region = any(_flexion_trifft(claim_lc, t) for t in _DE_NUTS2_TERMS)
+    has_eu_ctx = any(_flexion_trifft(claim_lc, t) for t in _EU_CONTEXT_TERMS)
 
     # 2. NUTS-Term + Region oder EU-Kontext
     if has_nuts and (has_at_region or has_de_region or has_eu_ctx):

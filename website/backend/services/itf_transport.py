@@ -69,6 +69,7 @@ import time
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -349,7 +350,7 @@ _ANTI_TRIGGERS = norm_terme(
 # ---------------------------------------------------------------------------
 def _is_anti_triggered(claim_lc: str) -> bool:
     """Anti-Trigger: 'Verkehr' in Daten/Zahlungs-Kontext skippen."""
-    return any(t in claim_lc for t in _ANTI_TRIGGERS)
+    return any(_flexion_trifft(claim_lc, t) for t in _ANTI_TRIGGERS)
 
 
 def _has_country(claim_lc: str) -> bool:
@@ -378,14 +379,14 @@ def _claim_mentions_itf_transport(claim_lc: str) -> bool:
         return False
 
     # 1. Hard-Trigger
-    if any(t in claim_lc for t in _SAFETY_HARD_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _SAFETY_HARD_TERMS):
         return True
 
     has_country = _has_country(claim_lc)
     has_year = _has_year_2010_plus(claim_lc)
 
     # 2. Soft-Trigger (Mobilität) — braucht Country oder Year
-    if any(t in claim_lc for t in _MOBILITY_SOFT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _MOBILITY_SOFT_TERMS):
         if has_country or has_year:
             return True
         # Standalone "itf-statistik" auch ohne Country/Year → True
@@ -393,8 +394,8 @@ def _claim_mentions_itf_transport(claim_lc: str) -> bool:
             return True
 
     # 3. Composite: Verkehrs-Begriff + Country + Mortalitäts-/Anzahl-Kontext
-    has_transport = any(t in claim_lc for t in _TRANSPORT_KEYWORDS)
-    has_mortality_context = any(t in claim_lc for t in (
+    has_transport = any(_flexion_trifft(claim_lc, t) for t in _TRANSPORT_KEYWORDS)
+    has_mortality_context = any(_flexion_trifft(claim_lc, t) for t in (
         "starb", "starben", "tot", "tote", "tod",
         "gestorben", "ums leben", "umkamen", "umgekommen",
         "killed", "deaths", "fatal", "died",
@@ -491,17 +492,17 @@ def _detect_measure_filter(claim_lc: str) -> set[str] | None:
     """Wenn der Claim spezifisch nach Toten/Verletzten/Unfällen fragt,
     nur diese MEASURE liefern. Sonst None (= alle)."""
     filters: set[str] = set()
-    if any(t in claim_lc for t in (
+    if any(_flexion_trifft(claim_lc, t) for t in (
         "tote", "tot", "starb", "starben", "verkehrstote",
         "todesfälle", "todesfaelle", "fatalities", "deaths", "killed",
         "ums leben", "umkamen", "fatal",
     )):
         filters.add("FATALITIES")
-    if any(t in claim_lc for t in (
+    if any(_flexion_trifft(claim_lc, t) for t in (
         "verletzte", "verletzt", "injured", "injuries",
     )):
         filters.add("INJURED")
-    if any(t in claim_lc for t in (
+    if any(_flexion_trifft(claim_lc, t) for t in (
         "unfälle", "unfaelle", "unfall", "crash", "crashes",
     )) and "FATALITIES" not in filters:
         # "Unfall" alleine deutet auf CRASHES, aber wenn schon Tote im Claim
@@ -518,14 +519,14 @@ def _select_domains(claim_lc: str) -> list[str]:
     """
     domains: list[str] = []
     is_safety = (
-        any(t in claim_lc for t in _SAFETY_HARD_TERMS)
+        any(_flexion_trifft(claim_lc, t) for t in _SAFETY_HARD_TERMS)
         or "verkehrssicherheit" in claim_lc
     )
     if is_safety:
         domains.append("safety_abs")
         # Rate-Indikator zusätzlich, wenn explizit nach "pro 100k" / "Rate" /
         # "vergleich" / mehreren Ländern gefragt
-        if any(t in claim_lc for t in (
+        if any(_flexion_trifft(claim_lc, t) for t in (
             "pro 100", "per 100", "rate", "vergleich", "ranking",
             "höchste", "niedrigste", "highest", "lowest",
             "pro einwohner", "pro kopf", "per capita",
@@ -533,9 +534,9 @@ def _select_domains(claim_lc: str) -> list[str]:
             domains.append("safety_rate")
 
     # Mobility-Trend-Begriffe
-    is_trends = any(t in claim_lc for t in _MOBILITY_SOFT_TERMS)
+    is_trends = any(_flexion_trifft(claim_lc, t) for t in _MOBILITY_SOFT_TERMS)
     # Composite: Auto/PKW/Autobahn/Schiene im Claim → Trends
-    if any(t in claim_lc for t in (
+    if any(_flexion_trifft(claim_lc, t) for t in (
         "autobahn", "autobahnnetz", "motorway",
         "schienennetz", "rail network",
         "pkw-bestand", "pkw bestand", "fahrzeugbestand",

@@ -61,6 +61,7 @@ from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -255,7 +256,7 @@ def _claim_mentions_oenb_sdmx(claim_lc: str) -> bool:
         return False
 
     # 1. Direkt-Trigger immer ziehen lassen
-    if any(t in claim_lc for t in _DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TERMS):
         return True
 
     # 2. Composite-Trigger: konkreter Banken-Indikator + AT-Kontext
@@ -276,7 +277,7 @@ def _claim_mentions_oenb_sdmx(claim_lc: str) -> bool:
     )
 
     # Hard-Skip: wenn nur Pack-Term (Leitzins etc.) + AT → oenb.py macht das
-    has_pack_only = any(t in claim_lc for t in _PACK_DOMAIN_TERMS)
+    has_pack_only = any(_flexion_trifft(claim_lc, t) for t in _PACK_DOMAIN_TERMS)
     if has_pack_only and not has_indicator:
         return False
 
@@ -343,7 +344,7 @@ def _extract_indicators(claim_lc: str) -> list[str]:
             seen.add(key)
     if not out:
         # Direct-Trigger ohne spezifischen Indikator → Default-Set
-        if any(t in claim_lc for t in _DIRECT_TERMS):
+        if any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TERMS):
             out = ["konsumkredite", "hypothekardarlehen", "einlagen"]
     return out
 

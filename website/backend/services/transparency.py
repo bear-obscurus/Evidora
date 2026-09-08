@@ -24,6 +24,7 @@ import httpx
 from services._http_polite import polite_client
 from services import _laender as _LAENDER
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -165,13 +166,13 @@ def _claim_mentions_cpi(claim: str) -> bool:
     # taugt nicht zur Partei-Bewertung (Kategorienfehler).
     if is_party_corruption_superlative_claim(claim_lower):
         return False
-    return any(kw in claim_lower for kw in CPI_KEYWORDS)
+    return any(_flexion_trifft(claim_lower, kw) for kw in CPI_KEYWORDS)
 
 
 def _claim_wants_eu_cohort(claim: str) -> bool:
     """Detect comparative references to the EU as a whole (avg, ranking)."""
     cl = claim.lower()
-    return any(t in cl for t in EU_COMPARISON_TRIGGERS)
+    return any(_flexion_trifft(cl, t) for t in EU_COMPARISON_TRIGGERS)
 
 
 # Reverse-Mapping ISO3 → erste (deutsche) Bezeichnung aus COUNTRY_MAP.

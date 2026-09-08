@@ -113,6 +113,7 @@ import os
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
 from services._skala import richtung as _richtung
+from services._flexion import trifft as _flexion_trifft
 
 # Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
 # Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
@@ -328,7 +329,7 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
 
 def _has_mipex_keyword(claim_lc: str) -> bool:
     """Trifft mindestens ein hartes MIPEX-Trigger-Keyword?"""
-    return any(kw in claim_lc for kw in _MIPEX_KEYWORDS)
+    return any(_flexion_trifft(claim_lc, kw) for kw in _MIPEX_KEYWORDS)
 
 
 def _has_policy_field_with_index_signal(claim_lc: str) -> tuple[bool, str | None]:
@@ -351,7 +352,7 @@ def _has_policy_field_with_index_signal(claim_lc: str) -> tuple[bool, str | None
     if matched_kw is None:
         return (False, None)
 
-    has_signal = any(sig in claim_lc for sig in _MIPEX_INDEX_SIGNAL_WORDS)
+    has_signal = any(_flexion_trifft(claim_lc, sig) for sig in _MIPEX_INDEX_SIGNAL_WORDS)
     if not has_signal:
         return (False, None)
 

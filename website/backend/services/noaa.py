@@ -66,6 +66,7 @@ from functools import lru_cache
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -149,8 +150,8 @@ def _claim_mentions_noaa(claim_lc: str) -> bool:
     # Hard-Skip: rein-AT-Klima-Marker
     # Aber nur Skip wenn KEIN expliziter NOAA-Begriff vorkommt (manche
     # Vergleichs-Claims kombinieren beide).
-    has_at_only_marker = any(m in claim_lc for m in _AT_ONLY_MARKERS)
-    has_direct_noaa = any(t in claim_lc for t in _NOAA_TERMS)
+    has_at_only_marker = any(_flexion_trifft(claim_lc, m) for m in _AT_ONLY_MARKERS)
+    has_direct_noaa = any(_flexion_trifft(claim_lc, t) for t in _NOAA_TERMS)
 
     if has_at_only_marker and not has_direct_noaa:
         return False
@@ -160,8 +161,8 @@ def _claim_mentions_noaa(claim_lc: str) -> bool:
         return True
 
     # 2) Composite: US-Wetter-Verb + US-Wetter-Substantiv (ggf. Jahr)
-    has_verb = any(v in claim_lc for v in _US_WEATHER_VERBS)
-    has_noun = any(n in claim_lc for n in _US_WEATHER_NOUNS)
+    has_verb = any(_flexion_trifft(claim_lc, v) for v in _US_WEATHER_VERBS)
+    has_noun = any(_flexion_trifft(claim_lc, n) for n in _US_WEATHER_NOUNS)
     if has_verb and has_noun:
         if _YEAR_REGEX.search(claim_lc) or len(claim_lc) > 40:
             return True

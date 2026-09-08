@@ -30,6 +30,7 @@ import json
 import logging
 import os
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 
 
@@ -63,7 +64,7 @@ def _has_at_context(claim_lc: str) -> bool:
     # PR #144 normalisiert — also hier defensiv nachziehen.
     # normalisiere() ist idempotent und lru_cached, kostet also nichts.
     claim_lc = normalisiere(claim_lc)
-    return any(t in claim_lc for t in _AT_CONTEXT_TERMS)
+    return any(_flexion_trifft(claim_lc, t) for t in _AT_CONTEXT_TERMS)
 
 
 # ---------------------------------------------------------------------------
@@ -94,7 +95,7 @@ _CRIM_GENERAL_TERMS = norm_terme(
 
 
 def _claim_mentions_crim_general(claim_lc: str) -> bool:
-    if not any(t in claim_lc for t in _CRIM_GENERAL_TERMS):
+    if not any(_flexion_trifft(claim_lc, t) for t in _CRIM_GENERAL_TERMS):
         return False
     if _has_at_context(claim_lc):
         return True
@@ -107,7 +108,7 @@ def _claim_mentions_crim_general(claim_lc: str) -> bool:
     if "jugendkriminalität" in claim_lc or "jugendkriminalitaet" in claim_lc:
         import re as _re
         age_match = (
-            any(age in claim_lc for age in (
+            any(_flexion_trifft(claim_lc, age) for age in (
                 "10 bis 14", "10-14", "10 - 14", "zehn bis 14",
                 "kinder bis 14", "kinder unter 14",
             )) or
@@ -135,7 +136,7 @@ _DRUG_TERMS = norm_terme(
 
 
 def _claim_mentions_drug(claim_lc: str) -> bool:
-    return any(t in claim_lc for t in _DRUG_TERMS) and _has_at_context(claim_lc)
+    return any(_flexion_trifft(claim_lc, t) for t in _DRUG_TERMS) and _has_at_context(claim_lc)
 
 
 # ---------------------------------------------------------------------------
@@ -278,7 +279,7 @@ def _build_general_results(fact: dict, claim_lc: str) -> list[dict]:
         "simmering", "liesing", "landstraße", "gefährlichste bezirk",
         "sicherster bezirk",
     )
-    if any(b in claim_lc for b in wien_bezirke):
+    if any(_flexion_trifft(claim_lc, b) for b in wien_bezirke):
         # Mention the top-5 + safest, and any specifically named district
         named_bezirk = next(
             (b for b in wien_bezirke if b in claim_lc and len(b) > 5),
@@ -320,7 +321,7 @@ def _build_general_results(fact: dict, claim_lc: str) -> list[dict]:
         "aufklärungsrate", "aufklaerungsrate",
         "aufklärung", "aufklaerung",
     )
-    if any(t in claim_lc for t in aufkl):
+    if any(_flexion_trifft(claim_lc, t) for t in aufkl):
         a24 = kpis.get("aufklaerungsquote_2024_pct")
         a25 = kpis.get("aufklaerungsquote_2025_pct")
         results.insert(0, {
@@ -343,7 +344,7 @@ def _build_general_results(fact: dict, claim_lc: str) -> list[dict]:
         })
 
     # Abgeschobene Straftäter
-    if any(t in claim_lc for t in (
+    if any(_flexion_trifft(claim_lc, t) for t in (
         "abgeschoben", "abschiebung straftäter",
         "verurteilte straftäter", "3000 straftäter",
     )):
@@ -415,7 +416,7 @@ def _build_general_results(fact: dict, claim_lc: str) -> list[dict]:
     )) or bool(_re.search(
         r"\b10[\s\-]*(bis|-)\s*14[\-\s]*jähr", claim_lc
     ))
-    if any(kw in claim_lc for kw in youth_keywords) or youth_regex_match:
+    if any(_flexion_trifft(claim_lc, kw) for kw in youth_keywords) or youth_regex_match:
         youth = data.get("jugendkriminalitaet_10_14_trend") or {}
         if youth:
             results.insert(0, {
@@ -521,7 +522,7 @@ def _build_drug_results(fact: dict, claim_lc: str) -> list[dict]:
         })
 
     # Wenn der Claim Jugend / Verdopplung erwähnt → expliziter Counter-Eintrag
-    if any(kw in claim_lc for kw in ("jugend", "verdoppelt", "verdoppelung",
+    if any(_flexion_trifft(claim_lc, kw) for kw in ("jugend", "verdoppelt", "verdoppelung",
                                        "10 bis 14", "10-14", "u18", "unter 18",
                                        "minderjährig")):
         results.insert(0, {

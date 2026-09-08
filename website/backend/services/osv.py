@@ -39,6 +39,7 @@ from urllib.parse import quote
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -206,7 +207,7 @@ def _claim_mentions_osv(claim_lc: str) -> bool:
     has_package = bool(_detect_packages(claim_lc))
     if not has_package:
         return False
-    has_vuln_kw = any(k in claim_lc for k in _VULN_KEYWORDS)
+    has_vuln_kw = any(_flexion_trifft(claim_lc, k) for k in _VULN_KEYWORDS)
     if has_vuln_kw:
         return True
     # Composite: Package + "unsicher" / "kaputt" / "lücke" / "patch"
@@ -214,7 +215,7 @@ def _claim_mentions_osv(claim_lc: str) -> bool:
         "unsicher", "lücke", "luecke", "patch", "angreifbar",
         "kompromittiert", "exploit", "ausgenutzt",
     )
-    return any(s in claim_lc for s in soft_signals)
+    return any(_flexion_trifft(claim_lc, s) for s in soft_signals)
 
 
 def claim_mentions_osv_cached(claim: str) -> bool:

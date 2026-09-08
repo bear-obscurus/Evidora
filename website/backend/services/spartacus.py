@@ -65,6 +65,7 @@ import httpx
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -175,15 +176,15 @@ def _claim_mentions_spartacus(claim_lc: str) -> bool:
        Stadt/Region im LOCATION_ALIASES-Wortschatz).
     """
     # Pfad 1: direkter Begriff
-    if any(t in claim_lc for t in _SPARTACUS_DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _SPARTACUS_DIRECT_TERMS):
         return True
 
     # Pfad 2: Klima-Wort + AT-Kontext
-    has_climate = any(t in claim_lc for t in _CLIMATE_TERMS)
+    has_climate = any(_flexion_trifft(claim_lc, t) for t in _CLIMATE_TERMS)
     if not has_climate:
         return False
 
-    if any(t in claim_lc for t in _AT_CONTEXT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _AT_CONTEXT_TERMS):
         return True
 
     # Klima + bekannte AT-Stadt/Region (Bundesland-Alias)

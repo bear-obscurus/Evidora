@@ -77,6 +77,7 @@ from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -187,7 +188,7 @@ def _claim_mentions_oeaw(claim_lc: str) -> bool:
         return False
 
     # Direkte Mentions.
-    if any(t in claim_lc for t in _EXPLICIT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _EXPLICIT_TERMS):
         return True
 
     # Akronym-Match (mit Boundary).
@@ -195,11 +196,11 @@ def _claim_mentions_oeaw(claim_lc: str) -> bool:
         return True
 
     # Lexika-/Reihen-Namen.
-    if any(p in claim_lc for p in _OEAW_PUBLICATIONS):
+    if any(_flexion_trifft(claim_lc, p) for p in _OEAW_PUBLICATIONS):
         return True
 
     # AT-akademischer Kontext.
-    if any(c in claim_lc for c in _AT_ACADEMIC_CONTEXT):
+    if any(_flexion_trifft(claim_lc, c) for c in _AT_ACADEMIC_CONTEXT):
         return True
 
     return False
@@ -271,7 +272,7 @@ def _select_oeaw_set(claim_lc: str) -> tuple[str, str]:
     Fallback: ("buecher", "Elektronische Publikationen OEAW").
     """
     for set_spec, set_name, keywords in _SET_PROFILES:
-        if any(kw in claim_lc for kw in keywords):
+        if any(_flexion_trifft(claim_lc, kw) for kw in keywords):
             return set_spec, set_name
     return "buecher", "Elektronische Publikationen OEAW"
 

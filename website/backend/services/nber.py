@@ -90,6 +90,7 @@ import httpx
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -188,13 +189,13 @@ def _claim_mentions_nber(claim_lc: str) -> bool:
     if not claim_lc:
         return False
     # 1. Direkter NBER-Marker reicht
-    if any(t in claim_lc for t in _NBER_DIRECT_TRIGGERS):
+    if any(_flexion_trifft(claim_lc, t) for t in _NBER_DIRECT_TRIGGERS):
         return True
     # 2. Composite: Working-Paper UND Econ-Topic
-    has_wp = any(t in claim_lc for t in _WORKING_PAPER_TERMS)
+    has_wp = any(_flexion_trifft(claim_lc, t) for t in _WORKING_PAPER_TERMS)
     if not has_wp:
         return False
-    has_econ = any(t in claim_lc for t in _ECON_TOPIC_TERMS)
+    has_econ = any(_flexion_trifft(claim_lc, t) for t in _ECON_TOPIC_TERMS)
     return has_econ
 
 

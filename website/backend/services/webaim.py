@@ -45,6 +45,7 @@ import time
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -245,10 +246,10 @@ def _claim_mentions_webaim(claim_lc: str) -> bool:
         return False
 
     # 1) Direkter WebAIM-Bezug — feuert immer.
-    if any(t in claim_lc for t in _WEBAIM_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _WEBAIM_TERMS):
         return True
 
-    has_a11y = any(t in claim_lc for t in _A11Y_TERMS)
+    has_a11y = any(_flexion_trifft(claim_lc, t) for t in _A11Y_TERMS)
     if not has_a11y:
         return False
 
@@ -257,7 +258,7 @@ def _claim_mentions_webaim(claim_lc: str) -> bool:
         return True
 
     # 3) Accessibility + Top-1M-Kontext.
-    if any(t in claim_lc for t in _MILLION_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _MILLION_TERMS):
         return True
 
     # 4) "Barrierefreiheit Top-Websites" / "Top Websites Accessibility"-Phrase.

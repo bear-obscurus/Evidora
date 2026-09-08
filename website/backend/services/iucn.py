@@ -63,6 +63,7 @@ from urllib.parse import quote
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -323,7 +324,7 @@ def _claim_mentions_iucn(claim_lc: str) -> bool:
         return False
 
     # Explizite IUCN-Nennung
-    if any(t in claim_lc for t in _IUCN_PRIMARY):
+    if any(_flexion_trifft(claim_lc, t) for t in _IUCN_PRIMARY):
         return True
 
     # Spezies-Name (de/en/sci) im Claim?
@@ -352,7 +353,7 @@ def _claim_mentions_iucn(claim_lc: str) -> bool:
         return False
 
     # Bedrohungs-/Aussterbe-Vokabular
-    if any(t in claim_lc for t in _THREAT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _THREAT_TERMS):
         return True
 
     # "Population [Spezies]" / "Bestand [Spezies]"

@@ -53,6 +53,7 @@ from functools import lru_cache
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -127,7 +128,7 @@ _WORK_OBJECT_TRIGGERS = norm_terme(
 
 
 def _has_any(claim_lc: str, terms: tuple[str, ...]) -> bool:
-    return any(t in claim_lc for t in terms)
+    return any(_flexion_trifft(claim_lc, t) for t in terms)
 
 
 def _claim_mentions_europeana(claim_lc: str) -> bool:
@@ -151,7 +152,7 @@ def _claim_mentions_europeana(claim_lc: str) -> bool:
 
     # Composite: Werk-/Objekt-Trigger + AT-/Wien-/EU-Kontext
     has_work = _has_any(claim_lc, _WORK_OBJECT_TRIGGERS)
-    has_context = any(t in claim_lc for t in (
+    has_context = any(_flexion_trifft(claim_lc, t) for t in (
         "österreich", "austria",
         "wien", "vienna",
         "europa", "europäisch",

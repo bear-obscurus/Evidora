@@ -48,6 +48,7 @@ from urllib.parse import urlencode
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -225,7 +226,7 @@ def _claim_mentions_unesco_uis(claim_lc: str) -> bool:
         return False
 
     # 1. Direkt-Trigger
-    if any(t in claim_lc for t in _DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TERMS):
         return True
 
     # 2. Indikator-Keyword (alleine reicht, wenn klar bildungs-spezifisch)
@@ -275,7 +276,7 @@ def _detect_clusters(claim_lc: str) -> list[str]:
             if len(found) >= 2:
                 break
     # Wenn direkt UNESCO erwaehnt aber kein Cluster → Default literacy + OOSC
-    if not found and any(t in claim_lc for t in _DIRECT_TERMS):
+    if not found and any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TERMS):
         found = ["literacy", "out_of_school"]
     return found
 

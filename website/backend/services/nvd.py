@@ -50,6 +50,7 @@ from urllib.parse import quote
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -154,13 +155,13 @@ def _claim_mentions_nvd(claim_lc: str) -> bool:
     # Harter Trigger: CVE-Regex oder NIST-/NVD-/CVSS-Begriffe
     if _CVE_REGEX.search(claim_lc):
         return True
-    if any(t in claim_lc for t in _NVD_EXPLICIT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _NVD_EXPLICIT_TERMS):
         return True
     # Composite: Produkt + Severity-/KEV-Keyword
     if _has_product_token(claim_lc):
-        if any(s in claim_lc for s in _SEVERITY_KEYWORDS):
+        if any(_flexion_trifft(claim_lc, s) for s in _SEVERITY_KEYWORDS):
             return True
-        if any(s in claim_lc for s in _KEV_KEYWORDS):
+        if any(_flexion_trifft(claim_lc, s) for s in _KEV_KEYWORDS):
             return True
         # Composite: Produkt + Version + generischer Sec-Kontext
         if _VERSION_REGEX.search(claim_lc) and any(

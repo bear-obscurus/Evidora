@@ -69,6 +69,7 @@ import httpx
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -349,10 +350,10 @@ def _claim_mentions_uspstf(claim_lc: str) -> bool:
     """
     if not claim_lc:
         return False
-    if any(t in claim_lc for t in _USPSTF_EXPLICIT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _USPSTF_EXPLICIT_TERMS):
         return True
 
-    has_prevention = any(t in claim_lc for t in _PREVENTION_TERMS)
+    has_prevention = any(_flexion_trifft(claim_lc, t) for t in _PREVENTION_TERMS)
     if has_prevention:
         for tokens in _TOPIC_KEYWORDS.values():
             for tok in tokens:
@@ -360,8 +361,8 @@ def _claim_mentions_uspstf(claim_lc: str) -> bool:
                     return True
 
     # 3) Inhärenter Screening-Test-Name + Empfehlungs-Kontext
-    has_inherent = any(t in claim_lc for t in _INHERENT_SCREENING_TOKENS)
-    if has_inherent and any(t in claim_lc for t in _RECOMMENDATION_CONTEXT):
+    has_inherent = any(_flexion_trifft(claim_lc, t) for t in _INHERENT_SCREENING_TOKENS)
+    if has_inherent and any(_flexion_trifft(claim_lc, t) for t in _RECOMMENDATION_CONTEXT):
         return True
 
     return False
@@ -380,7 +381,7 @@ def _detect_topics(claim_lc: str) -> list[str]:
     """Ermittle relevante Topic-Keys aus dem Claim (max 3)."""
     hits: list[str] = []
     for topic, tokens in _TOPIC_KEYWORDS.items():
-        if any(t in claim_lc for t in tokens):
+        if any(_flexion_trifft(claim_lc, t) for t in tokens):
             hits.append(topic)
             if len(hits) >= 3:
                 break

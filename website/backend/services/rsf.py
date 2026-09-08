@@ -31,6 +31,7 @@ from services._static_cache import load_json_mtime_aware
 from services import _laender as _LAENDER
 from services._schreibweise import normalisiere, norm_terme
 from services._skala import richtung as _richtung
+from services._flexion import trifft as _flexion_trifft
 
 # Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
 # Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
@@ -107,7 +108,7 @@ def _claim_mentions_rsf(claim: str) -> bool:
     # Politik-Tabu-Guard 2.0: RSF Press-Freedom misst Länder, nicht Parteien.
     if is_party_corruption_superlative_claim(claim_lower):
         return False
-    return any(kw in claim_lower for kw in RSF_KEYWORDS)
+    return any(_flexion_trifft(claim_lower, kw) for kw in RSF_KEYWORDS)
 
 
 def claim_mentions_rsf_cached(claim: str) -> bool:

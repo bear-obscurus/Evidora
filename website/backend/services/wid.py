@@ -61,6 +61,7 @@ import time
 
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -201,15 +202,15 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
 
 
 def _has_direct_trigger(claim_lc: str) -> bool:
-    return any(t in claim_lc for t in _DIRECT_TRIGGERS)
+    return any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TRIGGERS)
 
 
 def _has_share_trigger(claim_lc: str) -> bool:
-    return any(t in claim_lc for t in _SHARE_TRIGGERS)
+    return any(_flexion_trifft(claim_lc, t) for t in _SHARE_TRIGGERS)
 
 
 def _has_inequality_trigger(claim_lc: str) -> bool:
-    return any(t in claim_lc for t in _INEQUALITY_TRIGGERS)
+    return any(_flexion_trifft(claim_lc, t) for t in _INEQUALITY_TRIGGERS)
 
 
 def _has_author_token(claim_lc: str) -> bool:
@@ -220,13 +221,13 @@ def _has_author_token(claim_lc: str) -> bool:
     impliziter WID-Verweis (vermeidet False-Positives durch zufaellige
     Namensnennungen ohne Inequality-Kontext).
     """
-    return any(t in claim_lc for t in _AUTHOR_TOKENS)
+    return any(_flexion_trifft(claim_lc, t) for t in _AUTHOR_TOKENS)
 
 
 def _share_types(claim_lc: str) -> list[str]:
     """Wahle Share-Typen (income / wealth) basierend auf Claim-Hinweisen."""
-    has_income = any(t in claim_lc for t in _INCOME_HINTS)
-    has_wealth = any(t in claim_lc for t in _WEALTH_HINTS)
+    has_income = any(_flexion_trifft(claim_lc, t) for t in _INCOME_HINTS)
+    has_wealth = any(_flexion_trifft(claim_lc, t) for t in _WEALTH_HINTS)
     if has_income and not has_wealth:
         return ["income"]
     if has_wealth and not has_income:
@@ -307,8 +308,8 @@ def _claim_mentions_wid(claim_lc: str) -> bool:
 
     has_share = _has_share_trigger(claim_lc)
     has_ineq = _has_inequality_trigger(claim_lc)
-    has_income = any(t in claim_lc for t in _INCOME_HINTS)
-    has_wealth = any(t in claim_lc for t in _WEALTH_HINTS)
+    has_income = any(_flexion_trifft(claim_lc, t) for t in _INCOME_HINTS)
+    has_wealth = any(_flexion_trifft(claim_lc, t) for t in _WEALTH_HINTS)
     has_author = _has_author_token(claim_lc)
 
     # 3) Top-Share + Income/Wealth-Hint -> WID

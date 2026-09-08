@@ -66,6 +66,7 @@ import httpx
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -285,10 +286,10 @@ def _claim_mentions_wits(claim_lc: str) -> bool:
     """Pure-string Trigger gegen WITS-Themen-Keywords."""
     if not claim_lc:
         return False
-    if any(t in claim_lc for t in _GENERAL_TRIGGERS):
+    if any(_flexion_trifft(claim_lc, t) for t in _GENERAL_TRIGGERS):
         return True
     for spec in WITS_INDICATORS.values():
-        if any(kw in claim_lc for kw in spec["keywords"]):
+        if any(_flexion_trifft(claim_lc, kw) for kw in spec["keywords"]):
             return True
     return False
 

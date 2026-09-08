@@ -62,6 +62,7 @@ import os
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
 from services._skala import richtung as _richtung
+from services._flexion import trifft as _flexion_trifft
 
 # Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
 # Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
@@ -163,7 +164,7 @@ def _indicator_matches_claim(indicator: dict, claim_lc: str) -> bool:
 def _has_general_democracy_vocab(claim_lc: str) -> bool:
     """Generische Demokratie-Vokabel — auch wenn keine spezifische
     Indikator-Keyword matcht."""
-    return any(v in claim_lc for v in _DEMOCRACY_VOCAB)
+    return any(_flexion_trifft(claim_lc, v) for v in _DEMOCRACY_VOCAB)
 
 
 def claim_mentions_vdem_cached(claim: str) -> bool:

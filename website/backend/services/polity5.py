@@ -109,6 +109,7 @@ import os
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
 from services._skala import richtung as _richtung
+from services._flexion import trifft as _flexion_trifft
 
 # Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
 # Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
@@ -234,7 +235,7 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
 
 def _has_polity_keyword(claim_lc: str) -> bool:
     """Trifft mindestens ein Polity-Trigger-Keyword?"""
-    return any(kw in claim_lc for kw in _POLITY_KEYWORDS)
+    return any(_flexion_trifft(claim_lc, kw) for kw in _POLITY_KEYWORDS)
 
 
 def _has_country_token(claim_lc: str) -> bool:
@@ -243,7 +244,7 @@ def _has_country_token(claim_lc: str) -> bool:
     Unabhängig von ``data/polity5.json`` — damit der Trigger auch bei
     Static-JSON-Reload-Pausen / fehlender Datei robust bleibt.
     """
-    return any(tok in claim_lc for tok in _COUNTRY_TOKENS)
+    return any(_flexion_trifft(claim_lc, tok) for tok in _COUNTRY_TOKENS)
 
 
 def _has_year_pattern(claim_lc: str) -> bool:
@@ -513,7 +514,7 @@ async def search_polity5(analysis: dict) -> dict:
         "backsliding", "demokratie-erosion", "demokratie-abbau",
     )
     history_match: dict | None = None
-    if any(m in claim_lc for m in history_marker_keywords):
+    if any(_flexion_trifft(claim_lc, m) for m in history_marker_keywords):
         for hist in (data.get("history_highlights") or []):
             hist_country = hist.get("country")
             if not hist_country:

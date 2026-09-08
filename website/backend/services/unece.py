@@ -55,6 +55,7 @@ import httpx
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -358,10 +359,10 @@ def _claim_mentions_unece(claim_lc: str) -> bool:
     2. Transport-Topic + Country-Mention → True.
     3. Transport-Topic + EU-/Europa-/weltweit-Mention → True.
     """
-    if any(t in claim_lc for t in _UNECE_DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _UNECE_DIRECT_TERMS):
         return True
 
-    has_topic = any(t in claim_lc for t in _UNECE_TOPIC_TERMS)
+    has_topic = any(_flexion_trifft(claim_lc, t) for t in _UNECE_TOPIC_TERMS)
     if not has_topic:
         return False
 
@@ -370,7 +371,7 @@ def _claim_mentions_unece(claim_lc: str) -> bool:
         return True
 
     # EU- / Europa-weite Bindung
-    has_global = any(t in claim_lc for t in (
+    has_global = any(_flexion_trifft(claim_lc, t) for t in (
         "eu-weit", "eu weit", "europaweit", "europäisch", "europaeisch",
         "europa-vergleich", "europa vergleich", "länder-vergleich",
         "laender-vergleich", "länder vergleich", "international",
@@ -457,20 +458,20 @@ def _detect_indicators(claim_lc: str) -> list[str]:
     out: list[str] = []
 
     # Tram zuerst (bevor generisches "straßenverkehr" greift)
-    if any(t in claim_lc for t in (
+    if any(_flexion_trifft(claim_lc, t) for t in (
         "tram", "straßenbahn", "strassenbahn", "tramway",
     )):
         out.append("road_fleet_trams")
 
     # Autobahn-spezifisch
-    if any(t in claim_lc for t in (
+    if any(_flexion_trifft(claim_lc, t) for t in (
         "autobahn", "motorway", "straßennetz", "strassennetz",
         "länge straßen", "laenge strassen", "road network",
     )):
         out.append("road_infra_motorways")
 
     # Schiene
-    if any(t in claim_lc for t in (
+    if any(_flexion_trifft(claim_lc, t) for t in (
         "schiene", "bahn", "rail", "eisenbahn", "zug-passagier",
         "personenkilometer bahn", "passagierkilometer bahn",
         "personenverkehr bahn",
@@ -479,7 +480,7 @@ def _detect_indicators(claim_lc: str) -> list[str]:
             out.append("rail_passenger_km")
 
     # PKW / Fahrzeugbestand
-    if any(t in claim_lc for t in (
+    if any(_flexion_trifft(claim_lc, t) for t in (
         "pkw-bestand", "pkw bestand", "kfz-bestand", "kfz bestand",
         "fahrzeugbestand", "vehicle fleet", "passenger cars",
         "autobestand", "auto-bestand",
@@ -490,7 +491,7 @@ def _detect_indicators(claim_lc: str) -> list[str]:
     # Default: wenn UNECE direkt erwähnt aber kein Indikator klar →
     # rail (häufigste Faktencheck-Anfrage)
     if not out:
-        if any(t in claim_lc for t in _UNECE_DIRECT_TERMS):
+        if any(_flexion_trifft(claim_lc, t) for t in _UNECE_DIRECT_TERMS):
             out.append("rail_passenger_km")
 
     # Max 3 — wir wollen nicht 4 parallele POSTs feuern

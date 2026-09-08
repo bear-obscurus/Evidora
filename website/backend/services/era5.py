@@ -66,6 +66,7 @@ from functools import lru_cache
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -147,13 +148,13 @@ def _claim_mentions_era5(claim_lc: str) -> bool:
     if not claim_lc:
         return False
     # 1) Direkt-Trigger
-    if any(t in claim_lc for t in _ERA5_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _ERA5_TERMS):
         return True
     # 2) Composite: Rekord-Verb + Wetter-Substantiv
-    has_record_verb = any(v in claim_lc for v in _RECORD_VERBS)
+    has_record_verb = any(_flexion_trifft(claim_lc, v) for v in _RECORD_VERBS)
     if not has_record_verb:
         return False
-    has_weather_noun = any(n in claim_lc for n in _WEATHER_NOUNS)
+    has_weather_noun = any(_flexion_trifft(claim_lc, n) for n in _WEATHER_NOUNS)
     if has_weather_noun:
         # Jahreszahl ist optional, aber wenn fehlt UND Claim sehr kurz,
         # eher kein Rekord-Claim → konservativer Cut.

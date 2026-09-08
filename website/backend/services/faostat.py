@@ -44,6 +44,7 @@ from urllib.parse import urlencode
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -264,20 +265,20 @@ def _claim_mentions_faostat(claim_lc: str) -> bool:
         return False
 
     # Explizite FAO/FAOSTAT-Nennung schlägt alle Filter
-    if any(t in claim_lc for t in _FAOSTAT_PRIMARY):
+    if any(_flexion_trifft(claim_lc, t) for t in _FAOSTAT_PRIMARY):
         return True
 
     # AT-exklusiver Claim → andere Quelle ist besser geeignet
-    if any(t in claim_lc for t in _AT_EXCLUSIVE_MARKERS):
+    if any(_flexion_trifft(claim_lc, t) for t in _AT_EXCLUSIVE_MARKERS):
         return False
 
     # Globaler/welter Agrar-Claim?
-    if any(t in claim_lc for t in _FAOSTAT_TOPIC_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _FAOSTAT_TOPIC_TERMS):
         return True
 
     # Kombinierter Trigger: Produkt + globaler Marker
     has_product = any(t in claim_lc for t in _ITEM_CODES.keys())
-    has_global = any(t in claim_lc for t in (
+    has_global = any(_flexion_trifft(claim_lc, t) for t in (
         "weltweit", "global", "world", "international",
         "alle länder", "länder-vergleich",
     ))
@@ -303,7 +304,7 @@ def _resolve_domain(claim_lc: str) -> str:
     Default-Domain für allgemeine "wie viel produziert X von Y"-Claims.
     """
     for domain, terms in _DOMAIN_TERMS:
-        if any(t in claim_lc for t in terms):
+        if any(_flexion_trifft(claim_lc, t) for t in terms):
             return domain
     return _DOMAIN_QCL
 

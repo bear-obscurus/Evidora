@@ -63,6 +63,7 @@ from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -191,12 +192,12 @@ def _claim_mentions_cepii(claim_lc: str) -> bool:
         return False
 
     # 1. Direkt
-    if any(t in claim_lc for t in _DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TERMS):
         return True
 
     countries = _detect_countries(claim_lc)
-    has_trade = any(t in claim_lc for t in _TRADE_TERMS)
-    has_academic = any(t in claim_lc for t in _ACADEMIC_TERMS)
+    has_trade = any(_flexion_trifft(claim_lc, t) for t in _TRADE_TERMS)
+    has_academic = any(_flexion_trifft(claim_lc, t) for t in _ACADEMIC_TERMS)
 
     # 2. Bilateral + 2 Länder
     if has_trade and len(countries) >= 2:

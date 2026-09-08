@@ -67,6 +67,7 @@ import os
 import re
 import time
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -151,12 +152,12 @@ def _claim_mentions_wcag22(claim_lc: str) -> bool:
     if not claim_lc:
         return False
     # 1) Direkt-Term
-    if any(t in claim_lc for t in _WCAG22_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _WCAG22_TERMS):
         return True
     # 2) SC-Nummer + Web-/A11y-Kontext (sonst greift Pattern für "Artikel 1.4.3"
     #    in juristischen Texten — wir wollen nur Web-Accessibility).
     if _SC_REGEX.search(claim_lc):
-        has_a11y_context = any(t in claim_lc for t in (
+        has_a11y_context = any(_flexion_trifft(claim_lc, t) for t in (
             "barrierefrei", "accessibility", "zugänglich", "zugaenglich",
             "screenreader", "screen reader", "alt-text", "alt text",
             "kontrast", "tastatur", "aria", "html", "website",
@@ -409,7 +410,7 @@ def _keyword_match(sc: dict, claim_lc: str) -> int:
     )
     num = sc.get("num") or ""
     for triggers, sc_nums in topical:
-        if num in sc_nums and any(t in claim_lc for t in triggers):
+        if num in sc_nums and any(_flexion_trifft(claim_lc, t) for t in triggers):
             score += 5
 
     # Wortweise Heuristik (kurze Tokens werden ignoriert).
@@ -543,7 +544,7 @@ def _select_results(data: dict, claim_lc: str) -> list[dict]:
         results.append(_build_overview_result(data))
 
     # 5) Rechtsbezug zusätzlich, wenn Claim juristische Marker hat
-    if any(t in claim_lc for t in (
+    if any(_flexion_trifft(claim_lc, t) for t in (
         "verpflicht", "gesetz", "richtlinie", "wzg", "bafg",
         "barrierefreiheitsgesetz", "european accessibility act", "eaa",
         "en 301 549", "directive", "behindertenanwalt",

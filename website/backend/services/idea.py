@@ -32,6 +32,7 @@ import httpx
 from services._http_polite import polite_client
 from services import _laender as _LAENDER
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -163,7 +164,7 @@ def _claim_mentions_idea(claim: str) -> bool:
     # Partei-Korruption — solche Claims dürfen IDEA nicht aktivieren.
     if is_party_corruption_superlative_claim(claim_lower):
         return False
-    return any(kw in claim_lower for kw in IDEA_KEYWORDS)
+    return any(_flexion_trifft(claim_lower, kw) for kw in IDEA_KEYWORDS)
 
 
 def _trend_arrow(delta: float) -> str:

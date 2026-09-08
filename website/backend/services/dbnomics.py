@@ -46,6 +46,7 @@ from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -174,7 +175,7 @@ def _claim_mentions_dbnomics(claim_lc: str) -> bool:
 
     # Hard-Skip: AT/DE-spezifische Wirtschafts-Claims gehören zu OeNB /
     # Statistik Austria / destatis — DBnomics ist hier nur Noise.
-    has_at_de = any(t in claim_lc for t in (
+    has_at_de = any(_flexion_trifft(claim_lc, t) for t in (
         "österreich", "austria", "deutschland", "germany",
         "statistik austria", "destatis", "oenb",
     ))
@@ -184,7 +185,7 @@ def _claim_mentions_dbnomics(claim_lc: str) -> bool:
     )
 
     # 1. Direkt — überstimmt sogar den DACH-Skip
-    if any(t in claim_lc for t in _DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TERMS):
         return True
 
     # DACH-Hard-Skip (nach Direkt-Trigger): wenn AT/DE OHNE Drittland-Kontext,
@@ -193,12 +194,12 @@ def _claim_mentions_dbnomics(claim_lc: str) -> bool:
         return False
 
     # 2. Meta-Hub-Sprache → IMMER triggern (Aggregator-Cross-Validation)
-    if any(t in claim_lc for t in _META_HUB_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _META_HUB_TERMS):
         return True
 
-    has_indicator = any(t in claim_lc for t in _INDICATOR_TERMS)
+    has_indicator = any(_flexion_trifft(claim_lc, t) for t in _INDICATOR_TERMS)
     has_provider = any(t in claim_lc for t in _PROVIDER_HINTS.keys())
-    has_intl = any(t in claim_lc for t in _INTL_TERMS)
+    has_intl = any(_flexion_trifft(claim_lc, t) for t in _INTL_TERMS)
 
     # 3. Provider + Indikator (z.B. "IMF Inflation")
     if has_provider and has_indicator:

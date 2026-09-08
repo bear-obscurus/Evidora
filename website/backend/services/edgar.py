@@ -92,6 +92,7 @@ from typing import Any
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -186,15 +187,15 @@ def _claim_mentions_edgar(claim_lc: str) -> bool:
 
     # 2. Composite: Sektor + THG + Länder-Kontext (klassischer
     #    "CO2 nach Sektor [Land]"-Claim)
-    has_sector = any(t in claim_lc for t in _SECTOR_TERMS)
-    has_thg = any(t in claim_lc for t in _THG_TERMS)
-    has_country = any(t in claim_lc for t in _COUNTRY_TERMS)
+    has_sector = any(_flexion_trifft(claim_lc, t) for t in _SECTOR_TERMS)
+    has_thg = any(_flexion_trifft(claim_lc, t) for t in _THG_TERMS)
+    has_country = any(_flexion_trifft(claim_lc, t) for t in _COUNTRY_TERMS)
     if has_sector and has_thg and has_country:
         return True
 
     # 3. Composite: Cross-Country-Vergleich + THG-Marker
     #    ("China vs Deutschland CO2-Emissionen")
-    has_compare = any(t in claim_lc for t in _COMPARE_TERMS)
+    has_compare = any(_flexion_trifft(claim_lc, t) for t in _COMPARE_TERMS)
     if has_compare and has_thg and has_country:
         return True
 
@@ -206,7 +207,7 @@ def _claim_mentions_edgar(claim_lc: str) -> bool:
     #    — diese Gase sind in EDGAR sektor-aufgelöst, im Gegensatz zu
     #    generischem "CO2/Emission" (das in vielen Quellen verbreitet ist
     #    und sonst zu false-positives führt).
-    has_specific_gas = any(t in claim_lc for t in (
+    has_specific_gas = any(_flexion_trifft(claim_lc, t) for t in (
         "methan", "methane", "ch4",
         "lachgas", "nitrous oxide", "n2o",
         "f-gas", "f-gase", "fluorierte",
@@ -529,7 +530,7 @@ def _find_anchors(claim_lc: str) -> list[dict[str, Any]]:
     """
     matched: dict[str, dict[str, Any]] = {}
     for anchor in EDGAR_ANCHORS:
-        if any(kw in claim_lc for kw in anchor["keywords"]):
+        if any(_flexion_trifft(claim_lc, kw) for kw in anchor["keywords"]):
             if anchor["topic"] not in matched:
                 matched[anchor["topic"]] = anchor
                 if len(matched) >= 4:

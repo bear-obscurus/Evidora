@@ -74,6 +74,7 @@ from functools import lru_cache
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -493,21 +494,21 @@ def _claim_mentions_eba(claim_lc: str) -> bool:
         return False
 
     # 1. Direkter EBA-Mention
-    if any(t in claim_lc for t in _DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TERMS):
         return True
     # 1b. Bare "EBA" mit Wort-Grenze (z.B. Claim = "EBA")
     if _WORD_RE.search(claim_lc):
         return True
 
     # 2. EBA-Indikator-Begriff
-    if any(t in claim_lc for t in _TOPIC_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _TOPIC_TERMS):
         return True
 
     # 3. Composite: Capital-Ratio-Token + (Quartal/Year ODER EU-Banken-Subjekt)
-    has_capital_ratio = any(t in claim_lc for t in _CAPITAL_RATIO_TOKENS)
+    has_capital_ratio = any(_flexion_trifft(claim_lc, t) for t in _CAPITAL_RATIO_TOKENS)
     has_quarter = bool(_QUARTER_RE.search(claim_lc)) or "quartal" in claim_lc
     has_year = bool(_YEAR_RE.search(claim_lc))
-    has_eu_bank_subject = any(t in claim_lc for t in _EU_BANK_SUBJECT_TOKENS)
+    has_eu_bank_subject = any(_flexion_trifft(claim_lc, t) for t in _EU_BANK_SUBJECT_TOKENS)
 
     if has_capital_ratio and (has_quarter or has_year or has_eu_bank_subject):
         return True
@@ -517,7 +518,7 @@ def _claim_mentions_eba(claim_lc: str) -> bool:
     has_europe_anywhere = (
         "europa" in claim_lc
         or "europe" in claim_lc
-        or any(t in claim_lc for t in _COMPOSITE_EU_TERMS)
+        or any(_flexion_trifft(claim_lc, t) for t in _COMPOSITE_EU_TERMS)
     )
     if has_capital_ratio and has_europe_anywhere:
         return True
@@ -526,13 +527,13 @@ def _claim_mentions_eba(claim_lc: str) -> bool:
         return True
 
     # 4. Composite: Banken + EU + Risiko-/Aufsichts-Kontext (alt)
-    has_bank = any(t in claim_lc for t in _COMPOSITE_BANK_TERMS)
-    has_eu = any(t in claim_lc for t in _COMPOSITE_EU_TERMS)
+    has_bank = any(_flexion_trifft(claim_lc, t) for t in _COMPOSITE_BANK_TERMS)
+    has_eu = any(_flexion_trifft(claim_lc, t) for t in _COMPOSITE_EU_TERMS)
     if has_bank and has_eu:
         # Plausibilitäts-Cap: einzelne Wörter wie "europäische Bank" allein
         # sollen nicht jeden Banken-News-Claim triggern. Wir verlangen
         # einen Risiko-/Aufsichts-Kontext.
-        if any(t in claim_lc for t in (
+        if any(_flexion_trifft(claim_lc, t) for t in (
             "risiko", "risiken", "aufsicht", "kennzahl",
             "kapital", "stabilität", "stabilitaet",
             "krise", "regulier", "regulator",

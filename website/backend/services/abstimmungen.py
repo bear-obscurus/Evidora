@@ -37,6 +37,7 @@ import time
 
 import httpx
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -97,10 +98,10 @@ _STOPWORDS = {
 def _claim_mentions_voting(claim: str) -> bool:
     """True wenn der Claim auf Abstimmungsverhalten verweist."""
     cl = normalisiere(claim)
-    has_kw = any(kw in cl for kw in VOTING_KEYWORDS)
+    has_kw = any(_flexion_trifft(cl, kw) for kw in VOTING_KEYWORDS)
     if not has_kw:
         return False
-    has_at = any(kw in cl for kw in AT_MARKERS)
+    has_at = any(_flexion_trifft(cl, kw) for kw in AT_MARKERS)
     return has_at
 
 
@@ -189,7 +190,7 @@ def _extract_clubs_in_claim(claim: str) -> list[str]:
         "STRONACH": ("team stronach", "stronach"),
     }
     for short, als in aliases.items():
-        if any(a in cl for a in als):
+        if any(_flexion_trifft(cl, a) for a in als):
             found.append(short)
     return found
 

@@ -43,6 +43,7 @@ from urllib.parse import quote
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -215,8 +216,8 @@ def _claim_mentions_defillama(claim_lc: str) -> bool:
 
     # Bitcoin-only-Exclusion: wenn nur Bitcoin-Preis erwähnt wird und KEIN
     # DeFi-/TVL-/Protokoll-Term, NICHT triggern.
-    has_btc_only = any(t in claim_lc for t in _BITCOIN_ONLY_TERMS)
-    has_defi_anchor = any(t in claim_lc for t in (
+    has_btc_only = any(_flexion_trifft(claim_lc, t) for t in _BITCOIN_ONLY_TERMS)
+    has_defi_anchor = any(_flexion_trifft(claim_lc, t) for t in (
         "tvl", "defi", "stablecoin", "uniswap", "aave", "lido", "maker",
         "ethereum", "solana", "defillama",
     ))
@@ -224,10 +225,10 @@ def _claim_mentions_defillama(claim_lc: str) -> bool:
         return False
 
     # 1. Direkt
-    if any(t in claim_lc for t in _DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TERMS):
         return True
 
-    has_defi_term = any(t in claim_lc for t in _DEFI_TERMS)
+    has_defi_term = any(_flexion_trifft(claim_lc, t) for t in _DEFI_TERMS)
     has_protocol = any(p in claim_lc for p in _DEFI_PROTOCOLS.keys())
     has_stablecoin = any(s in claim_lc for s in _STABLECOIN_NAMES.keys())
     has_chain = any(c in claim_lc for c in _CHAIN_NAMES.keys())
@@ -247,7 +248,7 @@ def _claim_mentions_defillama(claim_lc: str) -> bool:
         "circulating", "umlaufmenge", "umlauf",
         "stablecoin",
     )
-    if has_stablecoin and any(t in claim_lc for t in market_terms):
+    if has_stablecoin and any(_flexion_trifft(claim_lc, t) for t in market_terms):
         return True
 
     # 5. Chain + DeFi-Term (z.B. "Solana DeFi", "Ethereum DeFi-Volumen")

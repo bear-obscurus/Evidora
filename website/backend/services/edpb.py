@@ -32,6 +32,7 @@ import httpx
 from services._http_polite import USER_AGENT
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -328,14 +329,14 @@ _EDPB_COMPOSITE_AI_TERMS = norm_terme(
 
 
 def _claim_mentions_edpb(claim_lc: str) -> bool:
-    if any(t in claim_lc for t in _EDPB_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _EDPB_TERMS):
         return True
-    has_dp = any(t in claim_lc for t in _EDPB_COMPOSITE_DP_TERMS)
-    has_eu = any(t in claim_lc for t in _EDPB_COMPOSITE_EU_TERMS)
+    has_dp = any(_flexion_trifft(claim_lc, t) for t in _EDPB_COMPOSITE_DP_TERMS)
+    has_eu = any(_flexion_trifft(claim_lc, t) for t in _EDPB_COMPOSITE_EU_TERMS)
     if has_dp and has_eu:
         return True
     # AI-related: GDPR/Datenschutz + AI/KI/ChatGPT/Generative
-    has_ai = any(t in claim_lc for t in _EDPB_COMPOSITE_AI_TERMS)
+    has_ai = any(_flexion_trifft(claim_lc, t) for t in _EDPB_COMPOSITE_AI_TERMS)
     if has_dp and has_ai:
         return True
     return False
