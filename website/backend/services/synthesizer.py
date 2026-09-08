@@ -10,6 +10,7 @@ from services.reranker import (
     rerank_results, resolve_struct_marker_provenance, _AUTHORITATIVE_INDICATORS,
 )
 from services.verdict_postprocess import apply_verdict_postprocessing
+from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
 
@@ -940,7 +941,28 @@ def _extract_json(content: str) -> dict | None:
 
 
 async def _validate_urls(evidence: list[dict]) -> list[dict]:
-    """Check evidence URLs with HEAD requests; remove entries with broken links."""
+    """Evidenz-URLs pruefen und kaputte Eintraege entfernen.
+
+    QA50F, Klasse E: sechs von fuenfzig Claims bekamen ein bestimmtes Verdict
+    ohne einen einzigen Beleg. Die Beobachtbarkeit aus #168 hat gezeigt, dass
+    meine Vermutung falsch war — das Modell LIEFERT Evidenz, und der
+    Halluzinations-Filter laesst sie durch. Weggeworfen wurde sie hier:
+
+        Modell 1 -> Halluzinations-Filter 1 -> URL-Pruefung 0   (dreimal)
+        Modell 2 -> Halluzinations-Filter 2 -> URL-Pruefung 2   (dreimal)
+
+    Zwei Ursachen, beide auf UNSERER Seite, beide gemessen:
+
+        Wikipedia   HEAD 403  ->  mit hoeflichem User-Agent 200
+        Frontex     HEAD 405  ->  GET 200 (der Server verweigert nur HEAD)
+
+    Der Pruefer nutzte einen nackten Client ohne den projektweiten
+    User-Agent aus ``_http_polite`` — obwohl genau dieser Header existiert,
+    damit Wikipedia & Co. uns nicht abweisen. Und er kannte nur HEAD, das
+    viele Server als "Method Not Allowed" beantworten.
+
+    Die Links waren also nie kaputt. Wir haben falsch angeklopft.
+    """
     if not evidence:
         return evidence
 
@@ -955,9 +977,18 @@ async def _validate_urls(evidence: list[dict]) -> list[dict]:
         if "doi.org/" in url:
             return True
         try:
-            async with httpx.AsyncClient(timeout=5.0, follow_redirects=True) as client:
+            # Hoeflicher Client: derselbe User-Agent wie alle Konnektoren.
+            async with polite_client(timeout=8.0, follow_redirects=True) as client:
                 resp = await client.head(url)
-                return resp.status_code < 400
+                if resp.status_code < 400:
+                    return True
+                # Viele Server verweigern HEAD (405/501) oder blocken es
+                # gezielt (403), liefern denselben Pfad per GET aber aus.
+                # Range-Header, damit ein GET nicht die ganze Seite zieht.
+                if resp.status_code in (403, 405, 501):
+                    nach = await client.get(url, headers={"Range": "bytes=0-0"})
+                    return nach.status_code < 400
+                return False
         except Exception:
             return False
 
