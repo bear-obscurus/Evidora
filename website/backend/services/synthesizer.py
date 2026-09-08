@@ -1262,6 +1262,13 @@ async def synthesize_results(
         for key, default_val in fallback.items():
             result.setdefault(key, default_val)
 
+        # Beobachtbarkeit fuer die Evidenz-Kette (QA50F, Klasse E).
+        # Die Frage "warum steht ein bestimmtes Verdict ohne Beleg da" liess
+        # sich bisher nicht beantworten: es gab keine Zahl dafuer, ob das
+        # Modell gar keine Evidenz lieferte oder ob sie nachtraeglich
+        # herausgefiltert wurde. Drei Stufen, eine Zeile.
+        _ev_roh = len(result.get("evidence") or [])
+
         # Filter hallucinated evidence: only keep entries whose URLs
         # actually appear in the source results we provided
         real_urls = set()
@@ -1282,9 +1289,19 @@ async def synthesize_results(
                     logger.warning(f"Filtered {len(result['evidence']) - len(filtered)} hallucinated evidence entries")
                 result["evidence"] = filtered
 
+        _ev_nach_halluzination = len(result.get("evidence") or [])
+
         # Validate evidence URLs — remove broken links (404, timeouts)
         if result.get("evidence"):
             result["evidence"] = await _validate_urls(result["evidence"])
+
+        _ev_nach_urlpruefung = len(result.get("evidence") or [])
+        logger.info(
+            "Evidenz-Kette: Modell lieferte %d, nach Halluzinations-Filter %d, "
+            "nach URL-Pruefung %d (verdict=%s, %d Quellen-URLs verfuegbar)",
+            _ev_roh, _ev_nach_halluzination, _ev_nach_urlpruefung,
+            result.get("verdict"), len(real_urls),
+        )
 
         # No real sources → override verdict and suppress LLM opinion.
         # NB: Dies prüft das Vorhandensein verwertbarer Evidenz-URLs
