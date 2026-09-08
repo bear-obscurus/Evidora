@@ -13,18 +13,23 @@ steht fuer Polen aber die volle Reihe — 2023: 0.457, 2024: 0.613, 2025:
 0.645. Der Konnektor rendert seit jeher nur ``_latest_year``. Die Daten waren
 da, die Antwort war unmoeglich.
 
-DER ZWEITE, LEISERE FEHLER
-==========================
-Dieselbe Frage fuer Ungarn („seit 2019 verschlechtert") bekam `true@0.95` —
-mit dieser Begruendung:
+EINE KORREKTUR ZU MEINER EIGENEN BEGRUENDUNG
+===========================================
+Beim Bauen hielt ich einen zweiten Fall fuer denselben Fehler: „Die Demokratie
+in Ungarn hat sich seit 2010 verschlechtert" bekam `true@0.95` mit „sank von
+0,78 (2010) auf 0,32 (2025)" — und 0,78 steht nicht in
+``vdem_indicators.json``, dessen Reihe 2019 beginnt. Ich habe daraus eine
+erfundene Zahl gemacht. **Das war falsch.**
 
-    „Der V-Dem Liberal-Demokratie-Index fuer Ungarn sank von 0,78 (2010) auf
-     0,32 (2025)"
+Nachgesehen: ``data/demokratie_pack.json`` enthaelt „HU 2010 0.78 -> 2023
+0.32" aus dem V-Dem Democracy Report 2024. Das Modell hat eine legitime
+zweite Quelle von uns zitiert und mit dem Konnektor kombiniert — genau das,
+was es tun soll. Der Beleg war echt, mein Vorwurf nicht.
 
-**0,78 fuer 2010 steht nirgends in unseren Daten** — die Reihe beginnt 2019.
-Das Modell hat die fehlende Vergleichszahl aus dem Vorwissen ergaenzt und als
-V-Dem-Wert ausgewiesen. Eine Luecke im Payload wird nicht als Luecke
-beantwortet, sie wird gefuellt. Wer die Reihe liefert, nimmt den Anlass weg.
+Was bleibt, ist der Polen-Fall: dort fehlte die Vergleichszahl wirklich, in
+allen Quellen. Und der Hinweis auf ein fehlendes Bezugsjahr bleibt richtig —
+er sagt etwas ueber DIESE Reihe, nicht ueber die Datenlage insgesamt. Genau
+deshalb ist er so formuliert.
 
 WO DIE REIHE HINGEHOERT
 =======================
@@ -118,10 +123,12 @@ def verlauf_text(reihe: dict, *, bezug: str | None = None,
     '2023: 0.46 -> 2025: 0.65, Differenz +0.19 (Reihe 2023-2025: 0.46/0.61/0.65)'
 
     Fehlt das Bezugsjahr in der Reihe, wird das ausgesprochen statt still
-    ersetzt — sonst beantwortet die Zeile eine andere Frage als die gestellte:
+    ersetzt — sonst beantwortet die Zeile eine andere Frage als die gestellte.
+    Der Hinweis gilt bewusst nur DIESER Reihe: eine andere Quelle kann das
+    Jahr haben, und das soll er nicht bestreiten.
 
     >>> verlauf_text({"2019": 0.41, "2025": 0.32}, bezug="2010")
-    '2010 liegt nicht in der Reihe; verfuegbar ab 2019. 2019: 0.41 -> 2025: 0.32, Differenz -0.09 (Reihe 2019-2025: 0.41/0.32)'
+    '2010 nicht in dieser Reihe; sie beginnt 2019. 2019: 0.41 -> 2025: 0.32, Differenz -0.09 (Reihe 2019-2025: 0.41/0.32)'
     """
     paare = []
     for jahr, wert in (reihe or {}).items():
@@ -141,8 +148,10 @@ def verlauf_text(reihe: dict, *, bezug: str | None = None,
         if passend:
             start = passend[0]
         else:
-            vorspann = (f"{bezug} liegt nicht in der Reihe; "
-                        f"verfuegbar ab {paare[0][0]}. ")
+            # „in dieser Reihe", nicht „in unseren Daten": eine andere
+            # Quelle kann das Jahr sehr wohl haben (siehe Korrektur oben).
+            vorspann = (f"{bezug} nicht in dieser Reihe; "
+                        f"sie beginnt {paare[0][0]}. ")
     ende = paare[-1]
     if start[0] == ende[0]:
         return ""
