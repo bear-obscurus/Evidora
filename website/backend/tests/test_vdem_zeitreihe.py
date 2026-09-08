@@ -10,11 +10,13 @@ In `data/vdem_indicators.json` steht für Polen die volle Reihe (2023: 0.457,
 2024: 0.613, 2025: 0.645). Der Konnektor rendert seit jeher nur das neueste
 Jahr.
 
-Der zweite, leisere Fehler: dieselbe Frage für Ungarn („seit 2019
-verschlechtert") bekam `true@0.95` mit „sank von 0,78 (2010) auf 0,32
-(2025)". **0,78 für 2010 steht nirgends in unseren Daten** — die Reihe
-beginnt 2019. Eine Lücke im Payload wird nicht als Lücke beantwortet, sie
-wird gefüllt.
+KORREKTUR zu meiner ersten Begründung: den Ungarn-Fall („sank von 0,78
+(2010) auf 0,32 (2025)") habe ich für eine erfundene Zahl gehalten, weil
+`vdem_indicators.json` erst 2019 beginnt. Falsch — `data/demokratie_pack.json`
+enthält „HU 2010 0.78 -> 2023 0.32" aus dem V-Dem Democracy Report 2024. Das
+Modell hat eine legitime zweite Quelle zitiert. Der Hinweis auf ein fehlendes
+Bezugsjahr bleibt trotzdem richtig, sagt aber bewusst nur etwas über DIESE
+Reihe.
 """
 
 import asyncio
@@ -100,11 +102,21 @@ def test_reihe_nennt_endpunkte_und_differenz():
 
 def test_fehlendes_bezugsjahr_wird_ausgesprochen():
     """Still das früheste Jahr einsetzen hiesse, eine andere Frage zu
-    beantworten als die gestellte — und genau daraus entstand die erfundene
-    Zahl für 2010."""
+    beantworten als die gestellte."""
     t = verlauf_text({"2019": 0.36, "2025": 0.32}, bezug="2010")
-    assert "2010 liegt nicht in der Reihe" in t
-    assert "verfuegbar ab 2019" in t
+    assert "2010 nicht in dieser Reihe" in t
+    assert "sie beginnt 2019" in t
+
+
+def test_hinweis_spricht_nur_ueber_diese_reihe():
+    """Er darf nicht klingen wie „das Jahr gibt es bei uns nicht": eine
+    andere Quelle kann es sehr wohl haben — `demokratie_pack.json` hat für
+    Ungarn 2010 einen V-Dem-Wert. Ein Hinweis, der das bestreitet, würde
+    einen gültigen Beleg entwerten."""
+    t = verlauf_text({"2019": 0.36, "2025": 0.32}, bezug="2010")
+    for zu_breit in ("unseren Daten", "nicht verfuegbar", "gibt es nicht",
+                     "keine Daten"):
+        assert zu_breit not in t, f"zu breite Aussage: {zu_breit} — {t}"
 
 
 def test_ein_einzelner_wert_ergibt_keine_reihe():
@@ -147,7 +159,7 @@ def test_polen_bekommt_die_reihe_in_den_indicator_name():
 def test_ungarn_2010_bekommt_den_hinweis_statt_einer_zahl():
     namen = _namen("Die Demokratie in Ungarn hat sich seit 2010 verschlechtert")
     assert namen
-    assert "2010 liegt nicht in der Reihe" in namen[0], namen[0]
+    assert "2010 nicht in dieser Reihe" in namen[0], namen[0]
 
 
 def test_zustands_claim_behaelt_die_alte_form():
