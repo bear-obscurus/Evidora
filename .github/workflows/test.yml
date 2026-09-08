@@ -340,6 +340,7 @@ jobs:
             tests/test_skalen_richtung_vergleiche.py \
             tests/test_verdict_ohne_beleg.py \
             tests/test_trigger_flexion.py \
+            tests/test_evidenz_url_pruefung.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
