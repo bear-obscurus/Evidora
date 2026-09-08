@@ -70,6 +70,7 @@ from functools import lru_cache
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._topic_match import is_party_corruption_superlative_claim
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -135,7 +136,7 @@ _COUNTRY_HINTS = norm_terme(
 
 
 def _has_any(claim_lc: str, terms: tuple[str, ...]) -> bool:
-    return any(t in claim_lc for t in terms)
+    return any(_flexion_trifft(claim_lc, t) for t in terms)
 
 
 def _claim_mentions_constitute(claim_lc: str) -> bool:

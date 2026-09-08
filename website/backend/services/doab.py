@@ -52,6 +52,7 @@ from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -130,14 +131,14 @@ def _claim_mentions_doab(claim_lc: str) -> bool:
     if not claim_lc:
         return False
     # Direkte Begriffe.
-    if any(t in claim_lc for t in _DOAB_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _DOAB_TERMS):
         return True
     # DOI-Pattern → potenziell Buch-DOI.
     if _DOI_RE.search(claim_lc):
         return True
     # "Buch/Werk" + Geistes-/Sozialwiss-Kontext (Cross-Cluster).
-    if any(n in claim_lc for n in _RESEARCH_NOUNS):
-        if any(c in claim_lc for c in _HUMSOC_CONTEXT):
+    if any(_flexion_trifft(claim_lc, n) for n in _RESEARCH_NOUNS):
+        if any(_flexion_trifft(claim_lc, c) for c in _HUMSOC_CONTEXT):
             return True
     return False
 

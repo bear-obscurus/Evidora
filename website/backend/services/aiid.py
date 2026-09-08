@@ -48,6 +48,7 @@ import time
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -160,13 +161,13 @@ def _claim_mentions_aiid(claim_lc: str) -> bool:
     if not claim_lc:
         return False
     # 1) Direkt-Trigger
-    if any(t in claim_lc for t in _AIID_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _AIID_TERMS):
         return True
     # 2) Incident-ID-Pattern
     if _INCIDENT_ID_REGEX.search(claim_lc):
         # Aber nur, wenn KI-Kontext im Claim ist (sonst greift Pattern auch
         # für Polizei-Bericht "Vorfall #42" etc.).
-        has_ai_context = any(t in claim_lc for t in _AI_MODEL_TOKENS) or any(
+        has_ai_context = any(_flexion_trifft(claim_lc, t) for t in _AI_MODEL_TOKENS) or any(
             t in claim_lc for t in (
                 "ki ", " ki", "ai ", " ai", "künstliche intelligenz",
                 "kuenstliche intelligenz", "artificial intelligence",
@@ -176,9 +177,9 @@ def _claim_mentions_aiid(claim_lc: str) -> bool:
         if has_ai_context:
             return True
     # 3) Composite: KI-Modell + Incident-Kw
-    has_model = any(t in claim_lc for t in _AI_MODEL_TOKENS)
+    has_model = any(_flexion_trifft(claim_lc, t) for t in _AI_MODEL_TOKENS)
     if has_model:
-        has_incident_kw = any(t in claim_lc for t in _INCIDENT_KEYWORDS)
+        has_incident_kw = any(_flexion_trifft(claim_lc, t) for t in _INCIDENT_KEYWORDS)
         if has_incident_kw:
             return True
     return False

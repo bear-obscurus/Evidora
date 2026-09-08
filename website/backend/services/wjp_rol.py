@@ -67,6 +67,7 @@ import time
 from services._http_polite import polite_client  # noqa: F401 -- Symmetrie mit wgi.py
 from services._schreibweise import normalisiere, norm_terme
 from services._skala import richtung as _richtung
+from services._flexion import trifft as _flexion_trifft
 
 # Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
 # Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
@@ -384,7 +385,7 @@ def _claim_mentions_wjp(claim_lc: str) -> bool:
     if is_party_corruption_superlative_claim(claim_lc):
         return False
     # 1) Generelle WJP/RoL-Begriffe
-    if any(t in claim_lc for t in _GENERAL_TRIGGERS):
+    if any(_flexion_trifft(claim_lc, t) for t in _GENERAL_TRIGGERS):
         return True
     # 2) Faktor-spezifische Keywords -- nur in Kombination mit "rechtsstaat",
     #    "rule of law", "justiz", "wjp" o.ä., damit z.B. ein reines
@@ -397,7 +398,7 @@ def _claim_mentions_wjp(claim_lc: str) -> bool:
     )
     if rol_context:
         for spec in WJP_FACTORS.values():
-            if any(kw in claim_lc for kw in spec["keywords"]):
+            if any(_flexion_trifft(claim_lc, kw) for kw in spec["keywords"]):
                 return True
     return False
 
@@ -454,7 +455,7 @@ def _find_factors(claim_lc: str) -> list[int]:
     """Detect which 1..8 WJP-Faktor-IDs the claim addresses (max 3)."""
     matched: list[int] = []
     for fid, spec in WJP_FACTORS.items():
-        if any(kw in claim_lc for kw in spec["keywords"]):
+        if any(_flexion_trifft(claim_lc, kw) for kw in spec["keywords"]):
             matched.append(fid)
         if len(matched) >= 3:
             break

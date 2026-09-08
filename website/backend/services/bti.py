@@ -97,6 +97,7 @@ import os
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
 from services._skala import richtung as _richtung
+from services._flexion import trifft as _flexion_trifft
 
 # Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
 # Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
@@ -213,7 +214,7 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
 
 def _has_bti_keyword(claim_lc: str) -> bool:
     """Trifft mindestens ein BTI-Trigger-Keyword?"""
-    return any(kw in claim_lc for kw in _BTI_KEYWORDS)
+    return any(_flexion_trifft(claim_lc, kw) for kw in _BTI_KEYWORDS)
 
 
 def _claim_mentions_bti(claim: str) -> bool:

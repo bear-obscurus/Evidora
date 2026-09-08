@@ -75,6 +75,7 @@ from functools import lru_cache
 # möglich ist — analog zu cepii.py / ahrq.py.
 from services._http_polite import polite_client  # noqa: F401
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -170,18 +171,18 @@ _COUNTRY_TERMS = norm_terme(
 def _claim_mentions_arda(claim_lc: str) -> bool:
     """Interner Trigger-Check (lowercase'tes Claim-Text)."""
     # 1) Direkter ARDA-/Pew-/RLS-Bezug
-    if any(t in claim_lc for t in _DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TERMS):
         return True
 
     # 2) Religions-Demografie-Begriff + Länder-Bezug
-    has_demo = any(t in claim_lc for t in _RELIGION_DEMO_TERMS)
-    has_country = any(t in claim_lc for t in _COUNTRY_TERMS)
+    has_demo = any(_flexion_trifft(claim_lc, t) for t in _RELIGION_DEMO_TERMS)
+    has_country = any(_flexion_trifft(claim_lc, t) for t in _COUNTRY_TERMS)
     if has_demo and has_country:
         return True
 
     # 3) Religions-Gruppe + Quantitäts-Verb + Länder-Bezug
-    has_group = any(t in claim_lc for t in _RELIGION_GROUPS)
-    has_quantity = any(t in claim_lc for t in _QUANTITY_TERMS)
+    has_group = any(_flexion_trifft(claim_lc, t) for t in _RELIGION_GROUPS)
+    has_quantity = any(_flexion_trifft(claim_lc, t) for t in _QUANTITY_TERMS)
     if has_group and has_quantity and has_country:
         return True
 

@@ -77,6 +77,7 @@ import httpx
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -172,21 +173,21 @@ def _claim_mentions_uba(claim_lc: str) -> bool:
         return False
 
     # 1. Direkte UBA/Klimadashboard-Erwähnung
-    if any(t in claim_lc for t in _UBA_PRIMARY_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _UBA_PRIMARY_TERMS):
         return True
 
     # 2. Composite: THG/CO2-Vokabel + AT-Kontext
-    has_thg = any(t in claim_lc for t in _THG_TERMS)
-    has_at = any(t in claim_lc for t in _AT_TERMS)
+    has_thg = any(_flexion_trifft(claim_lc, t) for t in _THG_TERMS)
+    has_at = any(_flexion_trifft(claim_lc, t) for t in _AT_TERMS)
     if has_thg and has_at:
         return True
 
     # 3. Composite: Sektor-Vokabel + (Emission/CO2/Klima) + AT-Kontext
     has_sector = any(
-        any(t in claim_lc for t in tokens)
+        any(_flexion_trifft(claim_lc, t) for t in tokens)
         for tokens in _SECTOR_DETECT_TERMS.values()
     )
-    has_climate = any(t in claim_lc for t in (
+    has_climate = any(_flexion_trifft(claim_lc, t) for t in (
         "emission", "emissionen", "co2", "co₂", "klima",
         "treibhaus", "klimaneutral",
     ))
@@ -332,7 +333,7 @@ def _detect_focus_sectors(claim_lc: str) -> list[str]:
     """Welche KSG-Sektoren erwähnt der Claim explizit?  Default: alle."""
     hits: list[str] = []
     for key, tokens in _SECTOR_DETECT_TERMS.items():
-        if any(t in claim_lc for t in tokens):
+        if any(_flexion_trifft(claim_lc, t) for t in tokens):
             hits.append(key)
     return hits
 

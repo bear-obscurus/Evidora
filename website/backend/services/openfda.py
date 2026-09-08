@@ -59,6 +59,7 @@ import httpx
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -151,15 +152,15 @@ _PHARMA_CONTEXT = norm_terme(
 def _claim_mentions_openfda(claim_lc: str) -> bool:
     """Trigger-Check (interne Logik auf bereits lowercase'tem Text)."""
     # 1) Direkter FDA-/openFDA-Bezug
-    if any(t in claim_lc for t in _OPENFDA_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _OPENFDA_TERMS):
         return True
     # 2) Symptom + Pharma-Kontext → FAERS-Use-Case
-    has_symptom = any(t in claim_lc for t in _SYMPTOM_TERMS)
-    has_pharma = any(t in claim_lc for t in _PHARMA_CONTEXT)
+    has_symptom = any(_flexion_trifft(claim_lc, t) for t in _SYMPTOM_TERMS)
+    has_pharma = any(_flexion_trifft(claim_lc, t) for t in _PHARMA_CONTEXT)
     if has_symptom and has_pharma:
         return True
     # 3) Device-Schlüsselbegriff + Recall/Warning-Kontext → Device-Recall-Use-Case
-    has_device = any(t in claim_lc for t in _DEVICE_TERMS)
+    has_device = any(_flexion_trifft(claim_lc, t) for t in _DEVICE_TERMS)
     has_recall_ctx = any(
         t in claim_lc for t in (
             "recall", "rückruf", "rueckruf", "withdrawal", "warning",

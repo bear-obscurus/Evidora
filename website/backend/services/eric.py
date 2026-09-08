@@ -41,6 +41,7 @@ from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -131,11 +132,11 @@ def _claim_mentions_eric(claim_lc: str) -> bool:
     """Pure Trigger-Funktion (lowercase claim erwartet)."""
     if not claim_lc:
         return False
-    if any(t in claim_lc for t in _ERIC_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _ERIC_TERMS):
         return True
     # "studie" + Bildungs-Kontext (PISA/IGLU/TIMSS-Kombinationen).
     if "studie" in claim_lc or "study" in claim_lc:
-        edu_context = any(t in claim_lc for t in (
+        edu_context = any(_flexion_trifft(claim_lc, t) for t in (
             "pisa", "iglu", "timms", "timss",
             "schule", "schulkinder", "schulleist",
             "schueler", "schüler", "students",
@@ -302,7 +303,7 @@ def _should_force_peer_review(claim_lc: str) -> bool:
     """Wenn der Claim auf eine wissenschaftliche Studie zielt: Filter setzen."""
     if not claim_lc:
         return False
-    return any(t in claim_lc for t in _PEER_REVIEW_TRIGGERS)
+    return any(_flexion_trifft(claim_lc, t) for t in _PEER_REVIEW_TRIGGERS)
 
 
 # ---------------------------------------------------------------------------

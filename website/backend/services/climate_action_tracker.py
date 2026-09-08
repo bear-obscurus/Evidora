@@ -97,6 +97,7 @@ import os
 
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 from services import cache
 
 logger = logging.getLogger("evidora")
@@ -225,7 +226,7 @@ def _has_cat_keyword(claim_lc: str) -> bool:
     """
     # Padding-Trick für ' cat ' — anfügen damit Wort-Boundary geprüft wird.
     padded = f" {claim_lc} "
-    return any(kw in padded for kw in _CAT_KEYWORDS)
+    return any(_flexion_trifft(padded, kw) for kw in _CAT_KEYWORDS)
 
 
 def _claim_mentions_cat(claim: str) -> bool:

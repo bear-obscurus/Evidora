@@ -231,6 +231,11 @@ jobs:
     #                                  leerer Evidenz — einmal bei 14 Quellen
     #                                  mit Treffern. Die Gueltigkeitspruefung
     #                                  prueft nur, ob das Feld existiert)
+    #   - test_trigger_flexion        (QA50F-Befund 2: "freie wahlen" trifft
+    #                                  "freien Wahlen" nicht. Genitiv und
+    #                                  Plural sind kein Problem (Endung waechst
+    #                                  hinten), der Ausfall ist ein INFIX im
+    #                                  Mehrwort-Begriff: 21 % -> 90 %)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
     # Together these pin the trigger logic AND the verdict pipeline —
@@ -334,6 +339,7 @@ jobs:
             tests/test_sparzinsen_messgroesse.py \
             tests/test_skalen_richtung_vergleiche.py \
             tests/test_verdict_ohne_beleg.py \
+            tests/test_trigger_flexion.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 

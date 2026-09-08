@@ -48,6 +48,7 @@ from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -196,13 +197,13 @@ def _is_pure_dach_claim(claim_lc: str) -> bool:
     Composite-Schutz: wenn 'österreich' + 'weltweit' / 'im Vergleich zu'
     → NICHT pure DACH (Vergleichs-Aussage, ILO darf feuern).
     """
-    has_dach = any(t in claim_lc for t in _DACH_TERMS)
+    has_dach = any(_flexion_trifft(claim_lc, t) for t in _DACH_TERMS)
     if not has_dach:
         return False
-    has_global = any(t in claim_lc for t in _GLOBAL_CONTEXT_TERMS)
+    has_global = any(_flexion_trifft(claim_lc, t) for t in _GLOBAL_CONTEXT_TERMS)
     if has_global:
         return False  # Vergleichs-Aussage — kein Hard-Skip
-    has_compare = any(t in claim_lc for t in (
+    has_compare = any(_flexion_trifft(claim_lc, t) for t in (
         "im vergleich", "vergleich zu", "vergleich mit",
         "verglichen mit", "gegenüber", "gegenueber",
     ))
@@ -219,7 +220,7 @@ def _claim_mentions_ilostat(claim_lc: str) -> bool:
         return False
 
     # 1. Direkt
-    if any(t in claim_lc for t in _DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TERMS):
         # auch hier: pure DACH-ILO-Erwähnung ohne Welt-Kontext NICHT
         # zwingend filtern — direkte ILO-Erwähnung ist ein klarer Wunsch.
         return True
@@ -231,8 +232,8 @@ def _claim_mentions_ilostat(claim_lc: str) -> bool:
         if needle in f" {claim_lc} ":
             return not _is_pure_dach_claim(claim_lc)
 
-    has_indicator = any(t in claim_lc for t in _LABOR_INDICATOR_TERMS)
-    has_global = any(t in claim_lc for t in _GLOBAL_CONTEXT_TERMS)
+    has_indicator = any(_flexion_trifft(claim_lc, t) for t in _LABOR_INDICATOR_TERMS)
+    has_global = any(_flexion_trifft(claim_lc, t) for t in _GLOBAL_CONTEXT_TERMS)
 
     # 2. Arbeit + Welt
     if has_indicator and has_global:
@@ -545,7 +546,7 @@ async def search_ilostat(analysis: dict) -> dict:
         return empty
 
     # AT/DE-Hard-Skip mit Composite-Check
-    has_direct = any(t in matchable for t in _DIRECT_TERMS)
+    has_direct = any(_flexion_trifft(matchable, t) for t in _DIRECT_TERMS)
     if not has_direct and _is_pure_dach_claim(matchable):
         logger.debug(
             "ILOSTAT: skip — pure DACH-Claim ohne Welt-Kontext"

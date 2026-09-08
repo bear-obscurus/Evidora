@@ -44,6 +44,7 @@ import os
 from typing import Callable
 
 from services._static_cache import load_json_mtime_aware
+from services._flexion import trifft as _flexion_trifft
 from services._schreibweise import normalisiere, norm_terme
 from services._reranker_backup import best_matches as _backup_best_matches
 
@@ -77,7 +78,11 @@ def substring_or_composite_match(item: dict, claim_lc: str) -> bool:
     claim_n = normalisiere(claim_lc)
 
     def trifft(tok) -> bool:
-        return bool(tok) and normalisiere(tok) in claim_n
+        # Seit 2026-09-08 flexionstolerant fuer MEHRWORT-Begriffe: bei
+        # „freie wahlen" flektiert das VORDERE Wort („freien Wahlen") und der
+        # Substring reisst. Einwort-Begriffe sind unveraendert — dort waechst
+        # die Endung hinten an und `in` haelt. Siehe services/_flexion.py.
+        return _flexion_trifft(claim_n, tok)
 
     for kw in item.get("trigger_keywords") or ():
         if trifft(kw):

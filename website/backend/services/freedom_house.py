@@ -91,6 +91,7 @@ import re
 from services._schreibweise import normalisiere, norm_terme
 from services._static_cache import load_json_mtime_aware
 from services._skala import richtung as _richtung
+from services._flexion import trifft as _flexion_trifft
 
 # Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
 # Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
@@ -195,7 +196,7 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
 
 def _has_fh_keyword(claim_lc: str) -> bool:
     """Trifft mindestens ein Freedom-House-Trigger-Keyword?"""
-    return any(kw in claim_lc for kw in _FH_KEYWORDS)
+    return any(_flexion_trifft(claim_lc, kw) for kw in _FH_KEYWORDS)
 
 
 def claim_mentions_freedom_house_cached(claim: str) -> bool:
@@ -416,7 +417,7 @@ def _klassifikations_warnung(claim_lc: str) -> str:
     Die Warnung hängt nur bei Regime-Claims an — sonst kostet sie bei jedem
     Länder-Claim Prompt-Budget, das die Zahlen brauchen.
     """
-    if not any(t in claim_lc for t in _REGIME_BEGRIFFE):
+    if not any(_flexion_trifft(claim_lc, t) for t in _REGIME_BEGRIFFE):
         return ""
     return (" WICHTIG: FIW misst FREIHEITSGRADE, keine Staatsform. "
             "'Partly Free'/'Not Free' sagen NICHT, ob ein Land eine "

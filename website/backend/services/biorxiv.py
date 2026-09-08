@@ -30,6 +30,7 @@ from datetime import datetime, timedelta
 import httpx
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -68,15 +69,15 @@ _HEALTH_TERMS = norm_terme(
 
 
 def _claim_mentions_biorxiv(claim_lc: str) -> bool:
-    has_preprint = any(t in claim_lc for t in _PREPRINT_TERMS)
+    has_preprint = any(_flexion_trifft(claim_lc, t) for t in _PREPRINT_TERMS)
     if has_preprint:
         return True
     # Composite: 'neue studie' / 'aktuelle forschung' + Health-Topic
-    has_research = any(t in claim_lc for t in (
+    has_research = any(_flexion_trifft(claim_lc, t) for t in (
         "studie", "studien", "forschung", "untersuchung",
         "research", "study",
     ))
-    has_health = any(t in claim_lc for t in _HEALTH_TERMS)
+    has_health = any(_flexion_trifft(claim_lc, t) for t in _HEALTH_TERMS)
     if has_research and has_health:
         return True
     return False
@@ -323,7 +324,7 @@ def _match_classics(claim_lc: str) -> list[dict]:
             out.append(c)
             continue
         for row in c.get("trigger_all") or ():
-            if all(any(tok in claim_lc for tok in alt) for alt in row):
+            if all(any(_flexion_trifft(claim_lc, tok) for tok in alt) for alt in row):
                 out.append(c)
                 break
     return out

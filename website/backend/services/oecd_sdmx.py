@@ -43,6 +43,7 @@ import time
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -382,22 +383,22 @@ def _matches_any_domain(claim_lc: str) -> list[str]:
     """Liefert die Liste der gematchten Domain-Keys (talis/socx/family/housing/piaac)."""
     matches: list[str] = []
     for dom_id, info in _DOMAINS.items():
-        if any(kw in claim_lc for kw in info["keywords"]):
+        if any(_flexion_trifft(claim_lc, kw) for kw in info["keywords"]):
             matches.append(dom_id)
     return matches
 
 
 def _is_pure_health_econ(claim_lc: str) -> bool:
     """Hard-Skip: rein Health/Wirtschaft → oecd.py."""
-    return any(t in claim_lc for t in _HEALTH_ECON_SKIP_TERMS)
+    return any(_flexion_trifft(claim_lc, t) for t in _HEALTH_ECON_SKIP_TERMS)
 
 
 def _is_pure_dach_edu_without_oecd(claim_lc: str) -> bool:
     """Hard-Skip: DACH-spezifische Bildungs-Begriffe ohne OECD-Bezug → bildung_pack.py."""
-    if not any(t in claim_lc for t in _DACH_EDU_SKIP_TERMS):
+    if not any(_flexion_trifft(claim_lc, t) for t in _DACH_EDU_SKIP_TERMS):
         return False
     # Wenn explizit OECD/TALIS/PIAAC im Claim, NICHT skippen
-    if any(t in claim_lc for t in ("oecd", "talis", "piaac", "international")):
+    if any(_flexion_trifft(claim_lc, t) for t in ("oecd", "talis", "piaac", "international")):
         return False
     return True
 
@@ -423,7 +424,7 @@ def _claim_mentions_oecd_sdmx(claim_lc: str) -> bool:
         return True
 
     # Allgemeiner OECD-Term + Country → Trigger (vager Fall)
-    has_generic = any(t in claim_lc for t in _GENERIC_OECD_TERMS)
+    has_generic = any(_flexion_trifft(claim_lc, t) for t in _GENERIC_OECD_TERMS)
     has_country = any(name in claim_lc for name in _OECD_COUNTRIES.keys())
     if has_generic and has_country:
         return True

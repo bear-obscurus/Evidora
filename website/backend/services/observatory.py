@@ -38,6 +38,7 @@ import time
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -204,15 +205,15 @@ def _claim_mentions_observatory(claim_lc: str) -> bool:
     if not claim_lc:
         return False
     # 1) Direkter Observatory-Verweis
-    if any(t in claim_lc for t in _OBSERVATORY_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _OBSERVATORY_TERMS):
         return bool(_extract_domains(claim_lc))
     # 2) Security-Header + Domain
-    has_header_term = any(t in claim_lc for t in _SECURITY_HEADER_TERMS)
+    has_header_term = any(_flexion_trifft(claim_lc, t) for t in _SECURITY_HEADER_TERMS)
     has_domain = bool(_extract_domains(claim_lc))
     if has_header_term and has_domain:
         return True
     # 3) Generischer Security-Begriff + Domain
-    has_generic = any(t in claim_lc for t in _SECURITY_GENERIC_TERMS)
+    has_generic = any(_flexion_trifft(claim_lc, t) for t in _SECURITY_GENERIC_TERMS)
     if has_generic and has_domain:
         return True
     # 4) Explizite Phrase-Patterns ("Sicherheitsbewertung <DOMAIN>" / "<DOMAIN> Security")

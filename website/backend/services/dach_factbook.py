@@ -62,11 +62,11 @@ _CH_CONTEXT_TERMS = norm_terme(
 
 
 def _has_de_context(claim_lc: str) -> bool:
-    return any(t in claim_lc for t in _DE_CONTEXT_TERMS)
+    return any(_flexion_trifft(claim_lc, t) for t in _DE_CONTEXT_TERMS)
 
 
 def _has_ch_context(claim_lc: str) -> bool:
-    return any(t in claim_lc for t in _CH_CONTEXT_TERMS)
+    return any(_flexion_trifft(claim_lc, t) for t in _CH_CONTEXT_TERMS)
 
 
 # ---------------------------------------------------------------------------
@@ -83,10 +83,10 @@ _BAMF_TERMS = norm_terme(
 
 
 def _claim_mentions_bamf(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _BAMF_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _BAMF_TERMS)
     if has_term:
         return True
-    has_asyl = any(t in claim_lc for t in ("asyl", "asylum"))
+    has_asyl = any(_flexion_trifft(claim_lc, t) for t in ("asyl", "asylum"))
     if has_asyl and _has_de_context(claim_lc):
         return True
     return False
@@ -104,7 +104,7 @@ _BUERGERGELD_TERMS = norm_terme(
 
 
 def _claim_mentions_buergergeld(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _BUERGERGELD_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _BUERGERGELD_TERMS)
     if has_term:
         return True
     return False
@@ -122,7 +122,7 @@ _HEIZUNG_TERMS = norm_terme(
 
 
 def _claim_mentions_heizung(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _HEIZUNG_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _HEIZUNG_TERMS)
     if has_term:
         return True
     return False
@@ -139,10 +139,10 @@ _AHV_TERMS = norm_terme(
 
 
 def _claim_mentions_ahv(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _AHV_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _AHV_TERMS)
     if has_term:
         return True
-    has_pension = any(t in claim_lc for t in (
+    has_pension = any(_flexion_trifft(claim_lc, t) for t in (
         "rente", "rentenalter", "altersvorsorge", "pensionsalter",
         "frauen 65", "bis 65 arbeiten", "frauen bis 65",
     ))
@@ -150,7 +150,7 @@ def _claim_mentions_ahv(claim_lc: str) -> bool:
         return True
     # Composite: 'frauen' + 'schweiz' + ('65' oder 'rentenalter' oder 'arbeiten')
     has_frauen = "frauen" in claim_lc
-    has_age = any(t in claim_lc for t in (
+    has_age = any(_flexion_trifft(claim_lc, t) for t in (
         "65", "64", "rentenalter", "pensionsalter",
         "arbeiten", "anhebung",
     ))
@@ -168,11 +168,11 @@ _VENEDIG_TERMS = norm_terme(
 
 
 def _claim_mentions_venedig(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _VENEDIG_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _VENEDIG_TERMS)
     if has_term:
         return True
     has_venedig = "venedig" in claim_lc or "venice" in claim_lc
-    has_klima = any(t in claim_lc for t in (
+    has_klima = any(_flexion_trifft(claim_lc, t) for t in (
         "meeresspiegel", "sea level", "klimawandel", "climate change",
         "1500 jahr", "1.500 jahr", "unverändert",
     ))
@@ -205,16 +205,16 @@ _KLIMASKEPSIS_TERMS = norm_terme(
 
 
 def _claim_mentions_klimaskepsis_basic(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _KLIMASKEPSIS_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _KLIMASKEPSIS_TERMS)
     if has_term:
         return True
     # Composite: 'klimawandel' + ('nicht' oder 'frost' oder 'kalter winter' oder 'erfunden')
-    has_klima = any(t in claim_lc for t in (
+    has_klima = any(_flexion_trifft(claim_lc, t) for t in (
         "klimawandel", "klima-wandel", "global warming",
         "globale temperatur", "globale erwärmung",
         "kein klimawandel",
     ))
-    has_skeptik = any(t in claim_lc for t in (
+    has_skeptik = any(_flexion_trifft(claim_lc, t) for t in (
         "nicht real", "schwindel", "erfunden", "panikmache",
         "frost", "kalter winter", "kalter monat",
         "war früher", "schon immer",
@@ -250,17 +250,17 @@ _DACH_ASYL_VERGLEICH_TERMS = norm_terme(
 
 
 def _claim_mentions_dach_asyl(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _DACH_ASYL_VERGLEICH_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _DACH_ASYL_VERGLEICH_TERMS)
     if has_term:
         return True
     # Composite: 'asyl' + 2 von 3 DACH-Ländern + 'höher' / 'zusammen'
-    has_asyl = any(t in claim_lc for t in ("asyl", "asylantrag", "asylanträge"))
+    has_asyl = any(_flexion_trifft(claim_lc, t) for t in ("asyl", "asylantrag", "asylanträge"))
     if not has_asyl:
         return False
-    de_mentioned = any(t in claim_lc for t in ("deutschland", "germany"))
+    de_mentioned = any(_flexion_trifft(claim_lc, t) for t in ("deutschland", "germany"))
     at_mentioned = "österreich" in claim_lc or "austria" in claim_lc
     ch_mentioned = "schweiz" in claim_lc or "switzerland" in claim_lc
-    has_compare = any(t in claim_lc for t in (
+    has_compare = any(_flexion_trifft(claim_lc, t) for t in (
         "höher als", "mehr als", "zusammen", "summe", "kombiniert",
         "im vergleich",
     ))
@@ -281,19 +281,19 @@ _DACH_PENSIONS_TERMS = norm_terme(
 
 
 def _claim_mentions_dach_pensions(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _DACH_PENSIONS_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _DACH_PENSIONS_TERMS)
     if has_term:
         return True
-    has_pension = any(t in claim_lc for t in (
+    has_pension = any(_flexion_trifft(claim_lc, t) for t in (
         "pension", "rente", "rentenalter", "pensionsalter",
         "antrittsalter",
     ))
     if not has_pension:
         return False
-    de_mentioned = any(t in claim_lc for t in ("deutschland", "germany"))
+    de_mentioned = any(_flexion_trifft(claim_lc, t) for t in ("deutschland", "germany"))
     at_mentioned = "österreich" in claim_lc or "austria" in claim_lc
     ch_mentioned = "schweiz" in claim_lc or "switzerland" in claim_lc
-    has_dach = any(t in claim_lc for t in ("dach", "drei länder", "alle drei"))
+    has_dach = any(_flexion_trifft(claim_lc, t) for t in ("dach", "drei länder", "alle drei"))
     if has_dach or (de_mentioned + at_mentioned + ch_mentioned) >= 2:
         return True
     return False
@@ -330,18 +330,18 @@ _EU_BESCHLUESSE_TERMS = norm_terme(
 
 
 def _claim_mentions_eu_beschluesse(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _EU_BESCHLUESSE_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _EU_BESCHLUESSE_TERMS)
     if has_term:
         return True
     # Composite: 'EU' + Verordnung/Richtlinie + 2024/2025/2026
-    has_eu = any(t in claim_lc for t in ("eu-verordnung", "eu-richtlinie",
+    has_eu = any(_flexion_trifft(claim_lc, t) for t in ("eu-verordnung", "eu-richtlinie",
                                           "europäische verordnung",
                                           "europäische richtlinie"))
     if has_eu:
         return True
     # Composite: 'Brüssel' + (hat … beschlossen / hat … abgeschafft / Verordnung)
-    has_bxl = any(t in claim_lc for t in ("brüssel", "bruessel"))
-    has_act = any(t in claim_lc for t in (
+    has_bxl = any(_flexion_trifft(claim_lc, t) for t in ("brüssel", "bruessel"))
+    has_act = any(_flexion_trifft(claim_lc, t) for t in (
         "beschlossen", "beschluss", "verordnung", "richtlinie",
         "abgeschafft", "abschafft", "verbot", "verboten",
         "zwingt", "vorschreib",
@@ -361,16 +361,16 @@ _DACH_HPV_TERMS = norm_terme(
 
 
 def _claim_mentions_dach_hpv(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _DACH_HPV_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _DACH_HPV_TERMS)
     if has_term:
         return True
     has_hpv = "hpv" in claim_lc
     if not has_hpv:
         return False
-    de_mentioned = any(t in claim_lc for t in ("deutschland", "germany"))
+    de_mentioned = any(_flexion_trifft(claim_lc, t) for t in ("deutschland", "germany"))
     at_mentioned = "österreich" in claim_lc or "austria" in claim_lc
     ch_mentioned = "schweiz" in claim_lc or "switzerland" in claim_lc
-    has_compare = any(t in claim_lc for t in (
+    has_compare = any(_flexion_trifft(claim_lc, t) for t in (
         "deutlich vor", "vor deutschland", "vor schweiz",
         "höher als", "vergleich",
     ))
@@ -391,12 +391,12 @@ _ASYLBEWERBER_GESUNDHEIT_TERMS = norm_terme(
 
 
 def _claim_mentions_asylbewerber_gesundheit(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _ASYLBEWERBER_GESUNDHEIT_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _ASYLBEWERBER_GESUNDHEIT_TERMS)
     if has_term:
         return True
     # Composite: 'asylbewerber' / 'asylsuchend' + 'gesundheit'/'krankenversicherung' + DE-Kontext
-    has_asyl = any(t in claim_lc for t in ("asylbewerber", "asylsuchende", "asylsuchender"))
-    has_med = any(t in claim_lc for t in (
+    has_asyl = any(_flexion_trifft(claim_lc, t) for t in ("asylbewerber", "asylsuchende", "asylsuchender"))
+    has_med = any(_flexion_trifft(claim_lc, t) for t in (
         "gesundheitsleistung", "krankenversicherung", "arzt", "behandlung",
         "medizinisch", "krankenkasse",
     ))
@@ -446,6 +446,7 @@ def claim_mentions_dach_factbook_cached(claim: str) -> bool:
 # Static load (mtime-aware, hot-reloads on edit)
 # ---------------------------------------------------------------------------
 from services._static_cache import load_json_mtime_aware as _hot_load
+from services._flexion import trifft as _flexion_trifft
 
 
 
@@ -549,7 +550,7 @@ def _build_buergergeld_results(fact: dict, claim_lc: str) -> list[dict]:
     })
 
     # Wenn Claim "Bürgergeld vs. Niedriglohn" ansprcht → Spezial-Counter
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "mehr als niedriglohn", "mehr als arbeit",
         "lohnt sich nicht", "niedriglohnempfänger",
         "vollzeit weniger", "arbeit lohnt nicht",
@@ -609,7 +610,7 @@ def _build_heizung_results(fact: dict, claim_lc: str) -> list[dict]:
     })
 
     # Counter-Eintrag wenn '1 Billion' / 'Habecks Wohn-Hammer'
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "1 billion", "1.000 milliarden", "1000 milliarden",
         "wohn-hammer", "wohnhammer", "habeck", "billion euro",
     )):
@@ -666,7 +667,7 @@ def _build_ahv_results(fact: dict, claim_lc: str) -> list[dict]:
     })
 
     # Spezial: Ergänzungsleistungen-Topic
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "ergänzungsleistungen", "ergaenzungsleistungen",
         "1.420", "1420", "el ohne",
         "ahv-schlupfloch", "schlupfloch",
@@ -692,7 +693,7 @@ def _build_ahv_results(fact: dict, claim_lc: str) -> list[dict]:
         })
 
     # Spezial: Frauen-65-Anhebung
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "frauen 65", "rentenalter 65", "frauen rentenalter",
         "frauen bis 65", "frauen pensionsalter",
         "ahv-reform 65", "ahv reform frauen",
@@ -725,7 +726,7 @@ def _build_ahv_results(fact: dict, claim_lc: str) -> list[dict]:
         })
 
     # Spezial: Migration-AHV
-    if any(s in claim_lc for s in ("migration ahv", "migranten ahv",
+    if any(_flexion_trifft(claim_lc, s) for s in ("migration ahv", "migranten ahv",
                                      "zuwanderung ahv", "ausländer ahv")):
         results.insert(0, {
             "indicator_name": "Migration und AHV-Schweiz — BSV-Studie 2023",
@@ -838,7 +839,7 @@ def _build_klimaskepsis_counter_results(fact: dict, claim_lc: str) -> list[dict]
 
     # Hiatus-Special wenn Claim '1998' / 'pausiert' / 'hiatus' nennt
     hiatus = data.get("hiatus_mythos_1998") or {}
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "1998", "pausiert", "pause", "hiatus",
         "steigt nicht mehr", "stagniert",
     )):

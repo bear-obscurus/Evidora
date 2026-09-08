@@ -56,6 +56,7 @@ import time
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -148,13 +149,13 @@ def _claim_mentions_ucdp(claim_lc: str) -> bool:
     """
     if not claim_lc:
         return False
-    if any(t in claim_lc for t in _UCDP_DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _UCDP_DIRECT_TERMS):
         return True
     # Composite: Konflikt + Region (präpositional ODER Stem-Kompositum)
-    if any(g in claim_lc for g in _CONFLICT_GENERIC):
-        if any(r in claim_lc for r in _REGION_HINTS):
+    if any(_flexion_trifft(claim_lc, g) for g in _CONFLICT_GENERIC):
+        if any(_flexion_trifft(claim_lc, r) for r in _REGION_HINTS):
             return True
-        if any(s in claim_lc for s in _REGION_STEMS):
+        if any(_flexion_trifft(claim_lc, s) for s in _REGION_STEMS):
             return True
     return False
 

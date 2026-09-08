@@ -71,6 +71,7 @@ from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -282,7 +283,7 @@ def _claim_mentions_fred(claim_lc: str) -> bool:
         return False
 
     # 1. Direkt
-    if any(t in claim_lc for t in _DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TERMS):
         return True
 
     # 2. Series-Mapping-Hit (wörtliches Vorkommen einer Map-Phrase)
@@ -290,8 +291,8 @@ def _claim_mentions_fred(claim_lc: str) -> bool:
         return True
 
     # 3. Composite US-Marker + Indikator
-    has_us = any(t in claim_lc for t in _US_TERMS)
-    has_indicator = any(t in claim_lc for t in _US_ECON_INDICATOR_TERMS)
+    has_us = any(_flexion_trifft(claim_lc, t) for t in _US_TERMS)
+    has_indicator = any(_flexion_trifft(claim_lc, t) for t in _US_ECON_INDICATOR_TERMS)
     if has_us and has_indicator:
         return True
 
@@ -362,15 +363,15 @@ def _default_series_for_us_term(claim_lc: str) -> list[tuple[str, str, str, str]
     kein präziser Map-Hint. Mapped allgemeine Begriffe auf typische Series.
     """
     out: list[tuple[str, str, str, str]] = []
-    if any(t in claim_lc for t in ("inflation", "cpi", "verbraucherpreise")):
+    if any(_flexion_trifft(claim_lc, t) for t in ("inflation", "cpi", "verbraucherpreise")):
         out.append(_SERIES_MAP["us cpi"])
-    if any(t in claim_lc for t in (
+    if any(_flexion_trifft(claim_lc, t) for t in (
         "arbeitslosenquote", "arbeitslosigkeit", "unemployment",
     )):
         out.append(_SERIES_MAP["unrate"])
-    if any(t in claim_lc for t in ("bip", "gdp", "bruttoinlandsprodukt")):
+    if any(_flexion_trifft(claim_lc, t) for t in ("bip", "gdp", "bruttoinlandsprodukt")):
         out.append(_SERIES_MAP["us bip"])
-    if any(t in claim_lc for t in (
+    if any(_flexion_trifft(claim_lc, t) for t in (
         "leitzins", "fed funds", "federal funds",
         "interest rate", "interest rates", "rate decision",
     )):
@@ -378,15 +379,15 @@ def _default_series_for_us_term(claim_lc: str) -> list[tuple[str, str, str, str]
     # Fallback: "Federal Reserve" alleine ohne weiteren Indikator-Hint → DFF
     if "federal reserve" in claim_lc and not out:
         out.append(_SERIES_MAP["fed-leitzins"])
-    if any(t in claim_lc for t in ("treasury", "staatsanleihe")):
+    if any(_flexion_trifft(claim_lc, t) for t in ("treasury", "staatsanleihe")):
         out.append(_SERIES_MAP["10y treasury"])
-    if any(t in claim_lc for t in ("yield curve", "zinskurve")):
+    if any(_flexion_trifft(claim_lc, t) for t in ("yield curve", "zinskurve")):
         out.append(_SERIES_MAP["t10y2y"])
-    if any(t in claim_lc for t in ("housing", "wohnungsneubau")):
+    if any(_flexion_trifft(claim_lc, t) for t in ("housing", "wohnungsneubau")):
         out.append(_SERIES_MAP["housing starts"])
-    if any(t in claim_lc for t in ("nonfarm", "payroll")):
+    if any(_flexion_trifft(claim_lc, t) for t in ("nonfarm", "payroll")):
         out.append(_SERIES_MAP["payems"])
-    if any(t in claim_lc for t in ("m2", "geldmenge", "money supply")):
+    if any(_flexion_trifft(claim_lc, t) for t in ("m2", "geldmenge", "money supply")):
         out.append(_SERIES_MAP["m2sl"])
     # Deduplizieren auf Series-ID
     seen: set[str] = set()
@@ -658,10 +659,10 @@ async def search_fred(analysis: dict) -> dict:
         return empty
 
     # Defensive Hard-Skip: pure DACH-Anker ohne US-Marker.
-    has_us = any(t in matchable for t in _US_TERMS)
-    has_fred_direct = any(t in matchable for t in _DIRECT_TERMS)
+    has_us = any(_flexion_trifft(matchable, t) for t in _US_TERMS)
+    has_fred_direct = any(_flexion_trifft(matchable, t) for t in _DIRECT_TERMS)
     has_series_phrase = any(hint in matchable for hint in _SERIES_MAP.keys())
-    has_dach = any(t in matchable for t in _DACH_TERMS)
+    has_dach = any(_flexion_trifft(matchable, t) for t in _DACH_TERMS)
     if has_dach and not (has_us or has_fred_direct or has_series_phrase):
         logger.info("FRED: hard-skip — DACH-Claim ohne US-Marker.")
         return empty

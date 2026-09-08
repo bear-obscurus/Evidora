@@ -63,6 +63,7 @@ from functools import lru_cache
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -150,11 +151,11 @@ _HEALTH_CONTEXT = norm_terme(
 def _claim_mentions_ahrq(claim_lc: str) -> bool:
     """Trigger-Check (interne Logik auf bereits lowercase'tem Text)."""
     # 1) Direkter AHRQ-/EPC-/USPSTF-Bezug
-    if any(t in claim_lc for t in _AHRQ_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _AHRQ_TERMS):
         return True
     # 2) Evidenz-Methode + Gesundheitskontext
-    has_evidence = any(t in claim_lc for t in _EVIDENCE_TERMS)
-    has_health = any(t in claim_lc for t in _HEALTH_CONTEXT)
+    has_evidence = any(_flexion_trifft(claim_lc, t) for t in _EVIDENCE_TERMS)
+    has_health = any(_flexion_trifft(claim_lc, t) for t in _HEALTH_CONTEXT)
     if has_evidence and has_health:
         return True
     return False

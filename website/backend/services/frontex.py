@@ -17,6 +17,7 @@ import json
 import logging
 import os
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -82,17 +83,17 @@ def _route_treffer(claim_lc: str) -> str | None:
     return None
 
 def _claim_mentions_frontex(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _FRONTEX_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _FRONTEX_TERMS)
     if has_term:
         return True
     if _route_treffer(claim_lc):
         return True
     # Composite: 'grenzübertritt' + EU-Bezug
-    has_grenzubert = any(t in claim_lc for t in (
+    has_grenzubert = any(_flexion_trifft(claim_lc, t) for t in (
         "grenzübertritt", "grenzübertrit", "border crossing",
         "border-crossing",
     ))
-    has_eu = any(t in claim_lc for t in (
+    has_eu = any(_flexion_trifft(claim_lc, t) for t in (
         "eu", "europa", "europäische union", "european union",
     ))
     if has_grenzubert and has_eu:
@@ -103,21 +104,21 @@ def _claim_mentions_frontex(claim_lc: str) -> bool:
     # die EU steigt dramatisch" null Treffer. Bewusst mit Regionsbezug
     # gekoppelt: eine Aussage ohne Region ("die illegale Migration steigt")
     # laesst sich mit EU-Aussengrenzdaten nicht sauber beantworten.
-    has_migration = any(t in claim_lc for t in (
+    has_migration = any(_flexion_trifft(claim_lc, t) for t in (
         "illegale migration", "illegaler migration",
         "irreguläre migration", "irregulaere migration", "irregulärer migration",
         "illegale einwanderung", "illegale zuwanderung",
         "irreguläre einwanderung", "irreguläre zuwanderung",
         "illegal migration", "irregular migration",
     ))
-    has_grenzbezug = has_eu or any(t in claim_lc for t in (
+    has_grenzbezug = has_eu or any(_flexion_trifft(claim_lc, t) for t in (
         "außengrenze", "aussengrenze", "grenze", "mittelmeer", "route",
     ))
     if has_migration and has_grenzbezug:
         return True
     # Composite: Mittelmeer + Tote/Tod
     has_mittelmeer = "mittelmeer" in claim_lc
-    has_tot = any(t in claim_lc for t in (
+    has_tot = any(_flexion_trifft(claim_lc, t) for t in (
         "tote", "gestorben", "tod ", "tods", "ertrunken",
     ))
     if has_mittelmeer and has_tot:

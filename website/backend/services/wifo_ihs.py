@@ -18,6 +18,7 @@ import json
 import logging
 import os
 from services._schreibweise import normalisiere, norm_terme as _norm, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -49,7 +50,7 @@ _WIFO_IHS_TERMS = norm_terme(
 
 
 def _claim_mentions_wifo_ihs(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _WIFO_IHS_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _WIFO_IHS_TERMS)
     if has_term:
         return True
     # Composite: ('wachstum' / 'rezession' / 'BIP') + AT-Kontext
@@ -66,7 +67,7 @@ def _claim_mentions_wifo_ihs(claim_lc: str) -> bool:
         "arbeitslos", "arbeitslosenquote", "arbeitslosenrate",
         "arbeitslosigkeit", "beschaeftigung", "beschäftigung",
     ))
-    has_at = any(t in claim_lc for t in _AT_CONTEXT_TERMS)
+    has_at = any(_flexion_trifft(claim_lc, t) for t in _AT_CONTEXT_TERMS)
     if has_econ and has_at:
         return True
     return False
@@ -135,7 +136,7 @@ def _messgroessen_warnung(claim_lc: str) -> str:
     in verschiedene Richtungen zeigen. Ohne diesen Satz waehlt der
     Synthesizer still eine Seite und liefert eine falsche Sicherheit.
     """
-    if not any(t in claim_lc for t in _ARBEITSLOS):
+    if not any(_flexion_trifft(claim_lc, t) for t in _ARBEITSLOS):
         return ""
     return (" MESSGRÖSSE: das ist die nationale AMS-Quote (registrierte "
             "Arbeitslose). Die Eurostat/ILO-Quote misst anders, liegt rund "
@@ -152,7 +153,7 @@ def _build_results(fact: dict, claim_lc: str) -> list[dict]:
     # allein haette die falsche Runde weiter angezeigt.
     runde = data.get("prognose_runde") or "WIFO/IHS-Konjunkturprognose"
 
-    arbeitslos_claim = any(t in claim_lc for t in _ARBEITSLOS)
+    arbeitslos_claim = any(_flexion_trifft(claim_lc, t) for t in _ARBEITSLOS)
 
     quote = (
         f"Arbeitslosenquote (nationale Definition) steigt 2026 leicht auf "

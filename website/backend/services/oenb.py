@@ -37,6 +37,7 @@ _cache: dict | None = None
 # Trigger
 # ---------------------------------------------------------------------------
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 
 
@@ -57,7 +58,7 @@ def _claim_mentions_oenb(claim_lc: str) -> bool:
     # Beide Seiten normalisieren, sonst scheitert ein Umlaut-Trigger
     # an einem ASCII-Claim (siehe PR #143/#144).
     claim_lc = normalisiere(claim_lc)
-    has_term = any(t in claim_lc for t in _OENB_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _OENB_TERMS)
     if has_term:
         return True
     # Composite: 'leitzins' alleine + AT-/EU-Kontext
@@ -97,7 +98,7 @@ def _claim_mentions_oenb(claim_lc: str) -> bool:
     # Composite: Schilling-Rueckkehr in beliebiger Wortstellung.
     # "zurueck zum Schilling" scheiterte an der festen Wendung
     # "schilling zurueck".
-    if "schilling" in claim_lc and any(t in claim_lc for t in (
+    if "schilling" in claim_lc and any(_flexion_trifft(claim_lc, t) for t in (
         "zurück", "zurueck", "wieder", "rückkehr", "rueckkehr",
         "einführen", "einfuehren", "statt euro",
     )):
@@ -195,7 +196,7 @@ def _build_results(fact: dict, claim_lc: str) -> list[dict]:
     schilling_rueckkehr = "schilling" in claim_lc and any(
         t in claim_lc for t in norm_terme("zurück", "wieder", "rückkehr",
                                            "einführen"))
-    if schilling_rueckkehr or any(s in claim_lc for s in (
+    if schilling_rueckkehr or any(_flexion_trifft(claim_lc, s) for s in (
         "österreich euro austritt", "österreich verlässt euro", "öxit",
         "österreich raus aus dem euro", "euro-austritt", "euroaustritt",
     )):

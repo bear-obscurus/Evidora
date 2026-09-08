@@ -73,7 +73,7 @@ def _has_at_context(claim_lc: str) -> bool:
     # PR #144 normalisiert — also hier defensiv nachziehen.
     # normalisiere() ist idempotent und lru_cached, kostet also nichts.
     claim_lc = normalisiere(claim_lc)
-    return any(t in claim_lc for t in _AT_CONTEXT_TERMS)
+    return any(_flexion_trifft(claim_lc, t) for t in _AT_CONTEXT_TERMS)
 
 
 # ---------------------------------------------------------------------------
@@ -110,22 +110,22 @@ _WIEN_TERMS = norm_terme("wien ", " wien", "wien.", "wien,", "wien:", "wien?",
 
 
 def _claim_mentions_religion_schools_vienna(claim_lc: str) -> bool:
-    has_relig = any(t in claim_lc for t in _RELIGION_TERMS)
-    has_school = any(t in claim_lc for t in _SCHOOL_TERMS)
-    has_wien = any(t in claim_lc for t in _WIEN_TERMS) or claim_lc.startswith("wien")
+    has_relig = any(_flexion_trifft(claim_lc, t) for t in _RELIGION_TERMS)
+    has_school = any(_flexion_trifft(claim_lc, t) for t in _SCHOOL_TERMS)
+    has_wien = any(_flexion_trifft(claim_lc, t) for t in _WIEN_TERMS) or claim_lc.startswith("wien")
     if has_relig and has_school and has_wien:
         return True
     # Erweiterung: auch wenn Religion fehlt, aber „ausländische Staatsbürger
     # Schüler" / „Migrationshintergrund Schüler" / „nicht-deutsch Schüler" +
     # Wien-Bezirke explicit genannt werden, ist es derselbe Datensatz.
-    has_demographic = any(t in claim_lc for t in (
+    has_demographic = any(_flexion_trifft(claim_lc, t) for t in (
         "ausländische staatsbürger", "auslaendische staatsbuerger",
         "ausländische schüler", "ausländer schüler",
         "migrationshintergrund",
         "nicht-deutsch", "nicht deutsch",
         "umgangssprache", "muttersprache",
     ))
-    has_wien_bezirk = any(b in claim_lc for b in (
+    has_wien_bezirk = any(_flexion_trifft(claim_lc, b) for b in (
         "favoriten", "ottakring", "rudolfsheim", "fünfhaus",
         "leopoldstadt", "donaustadt", "floridsdorf", "brigittenau",
         "wien-favoriten", "wien favoriten",
@@ -158,8 +158,8 @@ _FEDERAL_HINTS = norm_terme(
 
 
 def _claim_mentions_federal_subsidies(claim_lc: str) -> bool:
-    has_subsidy = any(t in claim_lc for t in _SUBSIDY_TERMS)
-    has_federal = any(t in claim_lc for t in _FEDERAL_HINTS)
+    has_subsidy = any(_flexion_trifft(claim_lc, t) for t in _SUBSIDY_TERMS)
+    has_federal = any(_flexion_trifft(claim_lc, t) for t in _FEDERAL_HINTS)
     return has_subsidy and has_federal
 
 
@@ -175,13 +175,13 @@ _SOCIAL_ASSIST_TERMS = norm_terme(
 
 
 def _claim_mentions_social_assistance(claim_lc: str) -> bool:
-    has_social = any(t in claim_lc for t in _SOCIAL_ASSIST_TERMS)
+    has_social = any(_flexion_trifft(claim_lc, t) for t in _SOCIAL_ASSIST_TERMS)
     if not has_social:
         return False
     # "Mindestsicherung" und "BMS" sind AT-spezifische Termini (DE hat
     # Bürgergeld, kein "Mindestsicherung"). Wenn diese explizit genannt
     # werden, zählt das selbst als AT-Kontext.
-    if any(at_specific in claim_lc for at_specific in (
+    if any(_flexion_trifft(claim_lc, at_specific) for at_specific in (
         "mindestsicherung", "bedarfsorientierte mindestsicherung", "bms",
         "sozialhilfe-grundsatzgesetz",
     )):
@@ -232,12 +232,12 @@ _HEALTH_BLOCKED_TERMS = norm_terme(
 
 
 def _claim_mentions_health_blocked(claim_lc: str) -> bool:
-    if any(t in claim_lc for t in _HEALTH_BLOCKED_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _HEALTH_BLOCKED_TERMS):
         return True
     # Composite-Check: ([Behandlungen|Gesundheit|Krankenhaus] +
     #                   [große Kosten/Anzahl] +
     #                   [nicht-AT-Begriff])
-    has_health = any(t in claim_lc for t in (
+    has_health = any(_flexion_trifft(claim_lc, t) for t in (
         "behandlungen", "behandlung", "treatments",
         "gesundheitssystem", "gesundheits-system",
         "krankenhaus", "krankenhäuser", "spital", "spitäler",
@@ -245,14 +245,14 @@ def _claim_mentions_health_blocked(claim_lc: str) -> bool:
         "arztbesuch", "arztbesuche",
         "in anspruch nehm",  # "in Anspruch nehmen", verschiedene Konjugationen
     ))
-    has_quantity = any(t in claim_lc for t in (
+    has_quantity = any(_flexion_trifft(claim_lc, t) for t in (
         "million", "mio.", "mio ", "millionen",
         "milliard", "billion",
         "kosten",
         "überproportional", "ueberproportional",
         "viel mehr", "deutlich mehr",
     ))
-    has_non_at = any(t in claim_lc for t in (
+    has_non_at = any(_flexion_trifft(claim_lc, t) for t in (
         "nicht-österreich", "ausländer", "migrant", "drittstaat",
         "asyl", "non-austrian", "foreigner",
         "drittstaatsangehörig", "drittstaatsangehoerig",
@@ -274,7 +274,7 @@ _ASYL_QUARTAL_TERMS = norm_terme(
 
 
 def _claim_mentions_asyl_quartal(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _ASYL_QUARTAL_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _ASYL_QUARTAL_TERMS)
     if not has_term:
         return False
     return _has_at_context(claim_lc)
@@ -322,25 +322,25 @@ def _claim_mentions_citizenship(claim_lc: str) -> bool:
     # PR #144 normalisiert — also hier defensiv nachziehen.
     # normalisiere() ist idempotent und lru_cached, kostet also nichts.
     claim_lc = normalisiere(claim_lc)
-    has_term = any(t in claim_lc for t in _CITIZEN_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _CITIZEN_TERMS)
     if has_term and _has_at_context(claim_lc):
         return True
     # Composite: "Anteil/Prozent" + "Ausländer/Migranten" + AT-Kontext
-    has_share = any(t in claim_lc for t in (
+    has_share = any(_flexion_trifft(claim_lc, t) for t in (
         "anteil", "prozent", "%", "quote",
         "drittel", "viertel", "fünftel", "fuenftel", "hälfte", "haelfte",
         "jeder dritte", "jeder vierte", "jeder zweite", "jeder fünfte", "jeder fuenfte",
         "jede dritte", "jede vierte", "jede zweite", "jede fünfte", "jede fuenfte",
         "ein drittel", "ein viertel", "ein fünftel", "ein fuenftel",
     ))
-    has_foreign = any(t in claim_lc for t in (
+    has_foreign = any(_flexion_trifft(claim_lc, t) for t in (
         "ausländer", "auslaender", "migrant", "ausländisch", "auslaendisch",
         "nicht-österreich", "nichtoesterreich",
     ))
     if has_share and has_foreign and _has_at_context(claim_lc):
         return True
     # Composite: "größte Gruppe/Migrantengruppe" + AT-Kontext
-    has_group = any(t in claim_lc for t in (
+    has_group = any(_flexion_trifft(claim_lc, t) for t in (
         "größte gruppe", "groesste gruppe",
         "größte migrant", "groesste migrant",
         "größte herkunft", "groesste herkunft",
@@ -362,7 +362,7 @@ def _claim_mentions_citizenship(claim_lc: str) -> bool:
     # hält die Einzel-Tokens sicher; " polen" mit führendem Leerzeichen
     # gegen "Metropolen" (Substring-Falle).
     nationality_hits = [t for t in _NATIONALITY_STEMS if t in claim_lc]
-    has_count = any(t in claim_lc for t in (
+    has_count = any(_flexion_trifft(claim_lc, t) for t in (
         "wie viele", "wieviele", "wie viel", "anzahl",
         "leben in", "wohnen in", "gibt es in",
         # Wortstellungs-Lücke (QA50B #11 2026-07-11): "In Österreich
@@ -377,7 +377,7 @@ def _claim_mentions_citizenship(claim_lc: str) -> bool:
     # Serben in Österreich" (QA50B #15: zwei Herkunftsgruppen im
     # Vergleich erreichten keines der Muster; Verdict blieb
     # unverifiable trotz Top-10-Daten).
-    has_cmp = any(t in claim_lc for t in (" mehr ", " weniger ", " als "))
+    has_cmp = any(_flexion_trifft(claim_lc, t) for t in (" mehr ", " weniger ", " als "))
     if len(nationality_hits) >= 2 and has_cmp and _has_at_context(claim_lc):
         return True
     # Composite: Bundesländer-EINWOHNER-Vergleich (QA50C #5) — "Wien hat
@@ -406,12 +406,12 @@ _ASYL_RANKING_TERMS = norm_terme(
 
 
 def _claim_mentions_asyl_ranking(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _ASYL_RANKING_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _ASYL_RANKING_TERMS)
     if has_term:
         return _has_at_context(claim_lc) or "österreich" in claim_lc
     # Composite: "asyl" + ("rang" oder "stelle" oder "platz" oder "pro 100")
-    has_asyl = any(t in claim_lc for t in ("asyl", "asylum"))
-    has_rank = any(t in claim_lc for t in (
+    has_asyl = any(_flexion_trifft(claim_lc, t) for t in ("asyl", "asylum"))
+    has_rank = any(_flexion_trifft(claim_lc, t) for t in (
         "rang ", " rang", "stelle", "platz", "pro 100", "an 11",
         "an 12", "an 10", "ranking", "vergleich",
     ))
@@ -455,10 +455,10 @@ _SPARPAKET_AT_SPECIFIC = norm_terme(
 
 
 def _claim_mentions_sparpaket(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _SPARPAKET_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _SPARPAKET_TERMS)
     if not has_term:
         return False
-    if any(s in claim_lc for s in _SPARPAKET_AT_SPECIFIC):
+    if any(_flexion_trifft(claim_lc, s) for s in _SPARPAKET_AT_SPECIFIC):
         return True
     # Heuristik: "Sparpaket" + Euro-Betrag (Mio/Mrd) ist mit hoher
     # Wahrscheinlichkeit das AT-Bundesregierungs-Sparpaket 2025/2026 —
@@ -466,7 +466,7 @@ def _claim_mentions_sparpaket(claim_lc: str) -> bool:
     if "sparpaket" in claim_lc:
         de_markers = ("deutschland", "germany", "bundestag", "berlin",
                        "merz", "scholz")
-        if not any(de in claim_lc for de in de_markers):
+        if not any(_flexion_trifft(claim_lc, de) for de in de_markers):
             return True
     return _has_at_context(claim_lc)
 
@@ -487,11 +487,11 @@ _ENERGY_TARIFF_TERMS = norm_terme(
 
 
 def _claim_mentions_energy_tariff(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _ENERGY_TARIFF_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _ENERGY_TARIFF_TERMS)
     if not has_term:
         return False
     # AT-spezifische Acronyme: Klimaticket, Stromsozialtarif sind AT-eigen
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "klimaticket", "stromsozialtarif", "klimabonus",
         "e-control",
     )):
@@ -525,13 +525,13 @@ _EU_AUSTRITT_TERMS = norm_terme(
 
 
 def _claim_mentions_eu_pakt(claim_lc: str) -> bool:
-    has_pakt = any(t in claim_lc for t in _EU_PAKT_TERMS)
-    has_austritt = any(t in claim_lc for t in _EU_AUSTRITT_TERMS)
+    has_pakt = any(_flexion_trifft(claim_lc, t) for t in _EU_PAKT_TERMS)
+    has_austritt = any(_flexion_trifft(claim_lc, t) for t in _EU_AUSTRITT_TERMS)
     if has_pakt or has_austritt:
         if _has_at_context(claim_lc):
             return True
         # FPÖ-/Kickl-Bezug zählt als AT-Kontext
-        if any(s in claim_lc for s in ("fpö", "fpoe", "kickl",
+        if any(_flexion_trifft(claim_lc, s) for s in ("fpö", "fpoe", "kickl",
                                         "österreich", "oesterreich",
                                         "austria")):
             return True
@@ -558,11 +558,11 @@ _BMF_STEUER_TERMS = norm_terme(
 
 
 def _claim_mentions_bmf_steuer(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _BMF_STEUER_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _BMF_STEUER_TERMS)
     if not has_term:
         return False
     # AT-Kontext: AT-spezifische Termini ODER Österreich-Erwähnung
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "kalte progression",  # AT-spezifisch
         "familienbonus",  # AT-spezifisch
         "ustg-novelle", "umsatzsteuergesetz-novelle",
@@ -586,7 +586,7 @@ _FOOD_INFLATION_TERMS = norm_terme(
 
 
 def _claim_mentions_food_inflation(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _FOOD_INFLATION_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _FOOD_INFLATION_TERMS)
     if has_term:
         return _has_at_context(claim_lc) or "deutschland" in claim_lc or "frankreich" in claim_lc
     return False
@@ -604,17 +604,17 @@ _WP_TERMS = norm_terme(
 
 
 def _claim_mentions_heat_pumps(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _WP_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _WP_TERMS)
     if not has_term:
         return False
     # AT-Kontext oder klima-/winter-/heizungsbezug ohne DE-Marker
     if _has_at_context(claim_lc):
         return True
-    has_winter = any(s in claim_lc for s in (
+    has_winter = any(_flexion_trifft(claim_lc, s) for s in (
         "winter", "frost", "kälte", "kaelte", "kalter winter",
     ))
     de_markers = ("deutschland", "germany", "berlin", "münchen")
-    if has_winter and not any(de in claim_lc for de in de_markers):
+    if has_winter and not any(_flexion_trifft(claim_lc, de) for de in de_markers):
         return True
     return False
 
@@ -632,18 +632,18 @@ _NATURALIZED_TERMS = norm_terme(
 
 
 def _claim_mentions_naturalized(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _NATURALIZED_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _NATURALIZED_TERMS)
     if not has_term:
         return False
     # Soziallleistungs-Bezug erforderlich
-    has_social = any(s in claim_lc for s in (
+    has_social = any(_flexion_trifft(claim_lc, s) for s in (
         "sozialleistung", "sozialleist", "sozialhilfe", "mindestsicherung",
         "höhere", "hoehere", "mehr geld", "bevorzugt", "bevorzugung",
         "benefit", "social", "welfare",
     ))
     if not has_social:
         return False
-    return _has_at_context(claim_lc) or any(s in claim_lc for s in (
+    return _has_at_context(claim_lc) or any(_flexion_trifft(claim_lc, s) for s in (
         "gebürtige österreicher", "geburts-österreicher",
         "gebürtige oesterreicher",
     ))
@@ -663,12 +663,12 @@ _HEALTH_MIS_TERMS = norm_terme(
 
 
 def _claim_mentions_health_misinformation(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _HEALTH_MIS_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _HEALTH_MIS_TERMS)
     if has_term:
         return True
     # Composite: "krebs" + ("handy" oder "strahlung" oder "mobilfunk")
-    has_cancer = any(t in claim_lc for t in ("krebs", "cancer"))
-    has_radio = any(t in claim_lc for t in (
+    has_cancer = any(_flexion_trifft(claim_lc, t) for t in ("krebs", "cancer"))
+    has_radio = any(_flexion_trifft(claim_lc, t) for t in (
         "handy", "mobilfunk", "5g ", "strahlung", "wlan", "smartphone-",
     ))
     if has_cancer and has_radio:
@@ -689,10 +689,10 @@ _VEGAN_TERMS = norm_terme(
 
 
 def _claim_mentions_vegan(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _VEGAN_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _VEGAN_TERMS)
     if not has_term:
         return False
-    has_mangel = any(t in claim_lc for t in (
+    has_mangel = any(_flexion_trifft(claim_lc, t) for t in (
         "mangel", "fehlen", "unterversorgung", "ungesund",
         "krank", "anämie", "anaemie", "mangelerscheinung",
         "eisen", "b12", "vitamin",
@@ -715,11 +715,11 @@ _LABOR_SHORTAGE_TERMS = norm_terme(
 
 
 def _claim_mentions_labor_shortage(claim_lc: str) -> bool:
-    has_term = any(t in claim_lc for t in _LABOR_SHORTAGE_TERMS)
+    has_term = any(_flexion_trifft(claim_lc, t) for t in _LABOR_SHORTAGE_TERMS)
     if not has_term:
         return False
     # AT-spezifische Termini
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "ams ", "mangelberufsliste", "auslbg", "ausländerbeschäftigungs",
     )):
         return True
@@ -728,9 +728,9 @@ def _claim_mentions_labor_shortage(claim_lc: str) -> bool:
 
 def _claim_mentions_pension_adjustment(claim_lc: str) -> bool:
     import re as _re
-    has_pension = any(t in claim_lc for t in _PENSION_TERMS)
-    has_noun = any(n in claim_lc for n in _PENSION_NOUNS)
-    has_verb = any(v in claim_lc for v in _PENSION_VERBS)
+    has_pension = any(_flexion_trifft(claim_lc, t) for t in _PENSION_TERMS)
+    has_noun = any(_flexion_trifft(claim_lc, n) for n in _PENSION_NOUNS)
+    has_verb = any(_flexion_trifft(claim_lc, v) for v in _PENSION_VERBS)
     has_year = bool(_re.search(r"\b202[5-9]\b", claim_lc))
     has_pct = bool(_re.search(r"\d+(?:[,.]\d+)?\s*(?:%|prozent)", claim_lc))
 
@@ -739,7 +739,7 @@ def _claim_mentions_pension_adjustment(claim_lc: str) -> bool:
         return False
 
     # 2. AT-spezifische Acronyme/Termini → automatisch AT
-    if any(at_specific in claim_lc for at_specific in (
+    if any(_flexion_trifft(claim_lc, at_specific) for at_specific in (
         "pensionsanpassung", "anpassungsfaktor",
         "ausgleichszulage", "ausgleichszulagen-richtsatz",
         "luxus-pension", "luxuspension",
@@ -752,7 +752,7 @@ def _claim_mentions_pension_adjustment(claim_lc: str) -> bool:
         # DE-Marker als Hard-Exclude (z.B. "renten in deutschland")
         de_markers = ("deutschland", "germany", "deutsch", "berlin", "bundestag",
                        "deutsche rentenversicherung", "drv")
-        if any(de in claim_lc for de in de_markers):
+        if any(_flexion_trifft(claim_lc, de) for de in de_markers):
             return False
         return True
 
@@ -761,7 +761,7 @@ def _claim_mentions_pension_adjustment(claim_lc: str) -> bool:
     # AT-spezifische Begriffe gelten selbst als AT-Kontext (DE hat
     # "Rentenanpassung" + "Eckrentner", AT hat "Pensionsanpassung" +
     # "Anpassungsfaktor" + "Ausgleichszulage").
-    if any(at_specific in claim_lc for at_specific in (
+    if any(_flexion_trifft(claim_lc, at_specific) for at_specific in (
         "pensionsanpassung", "anpassungsfaktor",
         "ausgleichszulage", "ausgleichszulagen-richtsatz",
         "luxus-pension", "luxuspension",
@@ -789,8 +789,8 @@ def _claim_mentions_orf_finanzierung(claim_lc: str) -> bool:
             t in claim_lc for t in ("gebühr", "gebuehr", "beitrag",
                                     "abgabe", "haushaltsabgabe")):
         return True
-    if has_orf and any(t in claim_lc for t in ("beitrag", "haushaltsabgabe")) \
-            and any(t in claim_lc for t in ("höhe", "hoehe", "euro", "monat",
+    if has_orf and any(_flexion_trifft(claim_lc, t) for t in ("beitrag", "haushaltsabgabe")) \
+            and any(_flexion_trifft(claim_lc, t) for t in ("höhe", "hoehe", "euro", "monat",
                                             "15,30", "15.30")):
         return True
     if "gis" in claim_lc and any(
@@ -813,7 +813,7 @@ def _claim_mentions_volkskanzler(claim_lc: str) -> bool:
     claim_lc = normalisiere(claim_lc)
     if "volkskanzler" not in claim_lc:
         return False
-    return any(t in claim_lc for t in (
+    return any(_flexion_trifft(claim_lc, t) for t in (
         "kickl", "fpö", "fpoe", "freiheitlich",
     ))
 
@@ -879,6 +879,7 @@ def claim_mentions_factbook_cached(claim: str) -> bool:
 # Static load (mtime-aware, hot-reloads on edit)
 # ---------------------------------------------------------------------------
 from services._static_cache import load_json_mtime_aware as _hot_load
+from services._flexion import trifft as _flexion_trifft
 
 
 
@@ -994,7 +995,7 @@ def _build_religion_results(fact: dict, claim_lc: str = "") -> list[dict]:
         })
 
     # Sprach-Statistik (51,6 % nicht-deutschsprachig) wenn Claim Sprache erwähnt
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "umgangssprache", "muttersprache", "nicht-deutsch", "nicht deutsch",
         "deutsch zuhause", "zuhause nicht deutsch", "51,6", "51.6",
     )):
@@ -1023,7 +1024,7 @@ def _build_religion_results(fact: dict, claim_lc: str = "") -> list[dict]:
             })
 
     # Staatsbürgerschafts-Statistik nach Bezirken
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "ausländische schüler", "auslaendische schueler",
         "ausländische staatsbürger schüler",
         "favoriten", "ottakring", "rudolfsheim",
@@ -1206,8 +1207,8 @@ def _build_social_results(fact: dict, claim_lc: str) -> list[dict]:
 
     # Wenn der Claim 9000 EUR / 11 Kinder erwähnt → spezifischer Check
     is_9000_check = (
-        any(s in claim_lc for s in ("9000", "9.000", "9 000")) or
-        any(s in claim_lc for s in ("11 kinder", "elf kinder", "syrische familie"))
+        any(_flexion_trifft(claim_lc, s) for s in ("9000", "9.000", "9 000")) or
+        any(_flexion_trifft(claim_lc, s) for s in ("11 kinder", "elf kinder", "syrische familie"))
     )
     plus_check = comparisons.get("claim_9000_eur_familie_11_kinder_check") or {}
     if plus_check and is_9000_check:
@@ -1289,7 +1290,7 @@ def _build_pension_results(fact: dict, claim_lc: str) -> list[dict]:
     results: list[dict] = [main]
 
     # Mindestpension-Spezial-Eintrag wenn Claim einen Mindestpension-Wert nennt
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "mindestpension", "ausgleichszulage", "ausgleichszulagen-richtsatz",
         "1.308 euro", "1308 euro", "1.308,39", "1308,39",
         "1.218 euro", "1218 euro",  # älterer Wert
@@ -1417,7 +1418,7 @@ def _build_asyl_quartal_results(fact: dict, claim_lc: str) -> list[dict]:
     }]
 
     # Familienzusammenführung-Spezial-Eintrag wenn Claim das Thema nennt
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "familienzusammenführung", "familienzusammenfuehrung",
         "familiennachzug", "syrische kinder", "syrer kinder",
         "350 kinder", "350 syrer",
@@ -1478,7 +1479,7 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
     # Verdict-Hint nur, wenn der Claim tatsächlich auf '20 %' zielt —
     # als unbedingter Anker verzerrte er Wien-/Bundesländer-Claims auf
     # den falschen Bezugswert (Drift-Fix 2026-07-06).
-    if any(t in claim_lc for t in ("20 prozent", "20 %", "20%", "zwanzig prozent")):
+    if any(_flexion_trifft(claim_lc, t) for t in ("20 prozent", "20 %", "20%", "zwanzig prozent")):
         headline += " Eine Behauptung von '20 %' rundet korrekt — wahr."
 
     description_parts = [
@@ -1505,7 +1506,7 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
                       "entwicklung", "anstieg", "gestiegen", "frueher",
                       "früher", "letzte jahre", "jahrzehnt")
     history = data.get("historical_trend_anteil_nicht_at_pct") or []
-    if history and any(t in claim_lc for t in trend_triggers):
+    if history and any(_flexion_trifft(claim_lc, t) for t in trend_triggers):
         timeline = " · ".join(
             f"{p['jahr']}: {p['anteil_pct']} %" for p in history
         )
@@ -1542,7 +1543,7 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
                        "größte migrant", "groesste migrant", "top",
                        "rangliste", "ranking")
     top10 = data.get("top_10_herkunftslaender_nicht_at_2026") or []
-    if top10 and any(t in claim_lc for t in origin_triggers):
+    if top10 and any(_flexion_trifft(claim_lc, t) for t in origin_triggers):
         ranking = " · ".join(
             f"#{e['rang']} {e['land']} ({_de(e['anzahl'])})"
             for e in top10[:10]
@@ -1571,7 +1572,7 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
         named = []
         for entry in top10:
             stems_adj = _nation_render.get(entry.get("land"))
-            if stems_adj and any(s in claim_lc for s in stems_adj[0]):
+            if stems_adj and any(_flexion_trifft(claim_lc, s) for s in stems_adj[0]):
                 named.append((entry, stems_adj[1]))
         extra = ""
         if len(named) == 2:
@@ -1596,7 +1597,7 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
         r11 = data.get("knapp_ausserhalb_top10") or {}
         r11_stems = (_nation_render.get(r11.get("land"), ((), ""))[0]
                      if r11 else ())
-        if r11 and any(s in claim_lc for s in r11_stems) and top10:
+        if r11 and any(_flexion_trifft(claim_lc, s) for s in r11_stems) and top10:
             last = top10[-1]
             extra += (
                 f" {r11['land']} liegt mit {_de(r11['anzahl'])} auf Rang "
@@ -1629,7 +1630,7 @@ def _build_citizenship_results(fact: dict, claim_lc: str) -> list[dict]:
                       "burgenland", "bundesland", "bundesländer", "bundeslaender",
                       "ein drittel", "drittel ausländer", "drittel auslaender")
     states = data.get("bundeslaender_anteil_nicht_at_pct") or []
-    if states and any(t in claim_lc for t in state_triggers):
+    if states and any(_flexion_trifft(claim_lc, t) for t in state_triggers):
         sorted_states = sorted(states, key=lambda x: x.get("rang", 99))
         # Rang mitrendern + Rundungs-Ties auflösen: Salzburg (20,947 %)
         # und Vorarlberg (20,930 %) runden beide auf 20,9 % — ohne exakte
@@ -1851,7 +1852,7 @@ def _build_sparpaket_results(fact: dict, claim_lc: str) -> list[dict]:
     results: list[dict] = [main]
 
     # Spezifische Detail-Einträge je nach Claim
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "verteidigung", "bundesheer", "heeresbudget", "5 milliarden",
         "verteidigungsbudget", "rüstung", "panzer", "kampfflugzeug",
     )):
@@ -1876,7 +1877,7 @@ def _build_sparpaket_results(fact: dict, claim_lc: str) -> list[dict]:
             ),
             "url": src, "source": label,
         })
-    if any(s in claim_lc for s in ("pendlereuro", "pendler-euro", "pendlerpauschale")):
+    if any(_flexion_trifft(claim_lc, s) for s in ("pendlereuro", "pendler-euro", "pendlerpauschale")):
         results.insert(0, {
             "indicator_name": "Pendlereuro Österreich 2026 (Sparpaket-Detail)",
             "indicator": "factbook_sparpaket_pendlereuro",
@@ -1896,7 +1897,7 @@ def _build_sparpaket_results(fact: dict, claim_lc: str) -> list[dict]:
             ),
             "url": src, "source": label,
         })
-    if any(s in claim_lc for s in ("korridorpension", "62 jahre", "63 jahre",
+    if any(_flexion_trifft(claim_lc, s) for s in ("korridorpension", "62 jahre", "63 jahre",
                                      "pensionsalter", "pension früher")):
         results.insert(0, {
             "indicator_name": "Korridorpension Österreich (Sparpaket-Detail)",
@@ -1916,7 +1917,7 @@ def _build_sparpaket_results(fact: dict, claim_lc: str) -> list[dict]:
             ),
             "url": src, "source": label,
         })
-    if any(s in claim_lc for s in ("familienbeihilfe", "familien beihilfe",
+    if any(_flexion_trifft(claim_lc, s) for s in ("familienbeihilfe", "familien beihilfe",
                                      "familien mit kindern", "291 euro",
                                      "165 euro")):
         results.insert(0, {
@@ -1982,7 +1983,7 @@ def _build_energy_tariff_results(fact: dict, claim_lc: str) -> list[dict]:
     results: list[dict] = [main]
 
     # Spezifische Detail-Einträge
-    if any(s in claim_lc for s in ("klimaticket", "klima-ticket", "1400", "1.400",
+    if any(_flexion_trifft(claim_lc, s) for s in ("klimaticket", "klima-ticket", "1400", "1.400",
                                      "öbb-jahreskarte")):
         results.insert(0, {
             "indicator_name": "Klimaticket Österreich Preise 2024-2026",
@@ -2002,7 +2003,7 @@ def _build_energy_tariff_results(fact: dict, claim_lc: str) -> list[dict]:
             ),
             "url": src, "source": label,
         })
-    if any(s in claim_lc for s in ("stromsozialtarif", "sozialtarif strom",
+    if any(_flexion_trifft(claim_lc, s) for s in ("stromsozialtarif", "sozialtarif strom",
                                      "6 cent", "290.000 haushalte", "290000")):
         results.insert(0, {
             "indicator_name": "Stromsozialtarif Österreich 2026",
@@ -2022,7 +2023,7 @@ def _build_energy_tariff_results(fact: dict, claim_lc: str) -> list[dict]:
             ),
             "url": src, "source": label,
         })
-    if any(s in claim_lc for s in ("gasnetzgebühr", "gasnetz", "18,2", "18.2",
+    if any(_flexion_trifft(claim_lc, s) for s in ("gasnetzgebühr", "gasnetz", "18,2", "18.2",
                                      "gas teurer", "gas-tarif")):
         results.insert(0, {
             "indicator_name": "Gasnetzgebühren-Anstieg 2026",
@@ -2233,16 +2234,16 @@ def _build_eu_pakt_results(fact: dict, claim_lc: str) -> list[dict]:
     results: list[dict] = []
 
     # Erkennen, welche Sub-Aspekte angefragt sind
-    is_austritt = any(s in claim_lc for s in (
+    is_austritt = any(_flexion_trifft(claim_lc, s) for s in (
         "eu-austritt", "eu austritt", "öxit",
         "eu verlassen", "raus aus der eu", "eu-austritt droht",
         "leave eu", "exit eu",
     ))
-    is_solidaritaet = any(s in claim_lc for s in (
+    is_solidaritaet = any(_flexion_trifft(claim_lc, s) for s in (
         "solidaritätspflicht", "solidaritätsausnahme",
         "ausnahme von der eu", "erheblich gefordert",
     ))
-    is_aussengrenz = any(s in claim_lc for s in (
+    is_aussengrenz = any(_flexion_trifft(claim_lc, s) for s in (
         "außengrenzverfahren", "aussengrenzverfahren",
         "asylverfahren an", "verfahren an den eu-außengrenzen",
         "eu-außengrenzen", "asyl- und migrationspakt",
@@ -2370,7 +2371,7 @@ def _build_bmf_steuer_results(fact: dict, claim_lc: str) -> list[dict]:
     results: list[dict] = []
 
     # Mehrwertsteuer-Senkung — wenn Claim das Thema nennt
-    if any(s in claim_lc for s in (
+    if any(_flexion_trifft(claim_lc, s) for s in (
         "mehrwertsteuer", "mwst", "umsatzsteuer", "ust ",
         "5 prozent", "5 %", "5 Prozent",
         "lebensmittel günstiger", "grundnahrungsmittel",
@@ -2402,7 +2403,7 @@ def _build_bmf_steuer_results(fact: dict, claim_lc: str) -> list[dict]:
         })
 
     # Kalte Progression
-    if any(s in claim_lc for s in ("kalte progression", "tarifgrenzen")):
+    if any(_flexion_trifft(claim_lc, s) for s in ("kalte progression", "tarifgrenzen")):
         kp = data.get("kalte_progression_dauerhaft_abgeschafft") or {}
         results.append({
             "indicator_name": "Kalte Progression Österreich",

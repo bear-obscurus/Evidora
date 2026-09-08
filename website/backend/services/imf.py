@@ -54,6 +54,7 @@ from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
+from services._flexion import trifft as _flexion_trifft
 
 logger = logging.getLogger("evidora")
 
@@ -224,19 +225,19 @@ def _claim_mentions_imf(claim_lc: str) -> bool:
         return False
 
     # 1. Direkt
-    if any(t in claim_lc for t in _DIRECT_TERMS):
+    if any(_flexion_trifft(claim_lc, t) for t in _DIRECT_TERMS):
         return True
 
     # 2. Composite: Prognose-Indikator + Land
     has_indicator = any(t in claim_lc for t in _INDICATOR_MAP.keys())
     has_country = any(t in claim_lc for t in _COUNTRY_MAP.keys())
-    has_forecast = any(t in claim_lc for t in _FORECAST_TERMS)
+    has_forecast = any(_flexion_trifft(claim_lc, t) for t in _FORECAST_TERMS)
 
     if has_indicator and has_country and has_forecast:
         return True
 
     # 3. Spezifische Kombi: "Schulden-Niveau" + Land (auch ohne Forecast-Term)
-    has_debt = any(t in claim_lc for t in (
+    has_debt = any(_flexion_trifft(claim_lc, t) for t in (
         "schulden-niveau", "schulden niveau", "schuldenquote",
         "schuldenstand", "debt-to-gdp", "debt to gdp",
     ))
@@ -657,7 +658,7 @@ async def search_imf(analysis: dict) -> dict:
     if not indicators:
         # Default: BIP-Wachstum, wenn Article-IV / WEO-Direkt-Term aber kein
         # Indikator-Term gefunden wurde.
-        if any(t in matchable for t in (
+        if any(_flexion_trifft(matchable, t) for t in (
             "article iv", "weo", "world economic outlook", "imf", "iwf",
         )):
             indicators = [("NGDP_RPCH", "BIP-Wachstum (real)", "%")]

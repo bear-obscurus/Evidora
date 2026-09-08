@@ -40,6 +40,7 @@ from services._http_polite import polite_client
 from services import _laender as _LAENDER
 from services._schreibweise import normalisiere, norm_terme
 from services._skala import richtung as _richtung
+from services._flexion import trifft as _flexion_trifft
 
 # Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
 # Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
@@ -196,14 +197,14 @@ def _claim_mentions_wgi(claim_lc: str) -> bool:
     if is_party_corruption_superlative_claim(claim_lc):
         return False
     # 1) Generelle WGI-Begriffe
-    if any(t in claim_lc for t in _GENERAL_TRIGGERS):
+    if any(_flexion_trifft(claim_lc, t) for t in _GENERAL_TRIGGERS):
         return True
     # 2) Dimension-spezifische Keywords
     for spec in WGI_INDICATORS.values():
-        if any(kw in claim_lc for kw in spec["keywords"]):
+        if any(_flexion_trifft(claim_lc, kw) for kw in spec["keywords"]):
             return True
     # 3) Cross-Cluster: CPI/Transparency-Begriffe (Komplement zu Transparency-Service)
-    if any(t in claim_lc for t in _CPI_CROSS_TRIGGERS):
+    if any(_flexion_trifft(claim_lc, t) for t in _CPI_CROSS_TRIGGERS):
         return True
     return False
 
@@ -230,16 +231,16 @@ def _find_indicators(analysis: dict) -> list[str]:
 
     matched: list[str] = []
     for ind_id, spec in WGI_INDICATORS.items():
-        if any(kw in search for kw in spec["keywords"]):
+        if any(_flexion_trifft(search, kw) for kw in spec["keywords"]):
             matched.append(ind_id)
 
     if matched:
         return matched[:3]  # Top-3
 
     # Fallback: generelle Governance-/Korruptions-Erwähnung → alle 6 (Top-3 Default)
-    if any(t in search for t in _GENERAL_TRIGGERS):
+    if any(_flexion_trifft(search, t) for t in _GENERAL_TRIGGERS):
         return ["RL.EST", "CC.EST", "GE.EST"]
-    if any(t in search for t in _CPI_CROSS_TRIGGERS):
+    if any(_flexion_trifft(search, t) for t in _CPI_CROSS_TRIGGERS):
         # CPI-Cross — nur Korruption (Komplement zu transparency.py)
         return ["CC.EST"]
 
