@@ -159,3 +159,51 @@ def test_doi_bleibt_ungeprueft(monkeypatch):
 def test_leere_evidenz_bleibt_leer(monkeypatch):
     k = _Klient(head_codes={})
     assert _lauf([], k, monkeypatch) == []
+
+
+# --------------------------------------------------------------------------
+# Der Grund muss im Log stehen
+# --------------------------------------------------------------------------
+
+def test_grund_der_verwerfung_steht_im_log(monkeypatch, caplog):
+    """Ein blosses „removed" ist nicht diagnostizierbar: Zeitüberschreitung,
+    IP-Sperre und toter Link sehen im Log identisch aus. Nach dem Deploy von
+    #169 blieben zwei Belege liegen, und das Log konnte nicht sagen warum —
+    dieselbe Lücke wie #168, eine Ebene tiefer."""
+    import logging
+    url = "https://beispiel.test/weg"
+    k = _Klient(head_codes={url: 404})
+    with caplog.at_level(logging.INFO, logger="evidora"):
+        _lauf([{"source": "X", "url": url}], k, monkeypatch)
+    zeilen = [r.getMessage() for r in caplog.records if "Removed broken" in r.getMessage()]
+    assert zeilen, "keine Zeile zur verworfenen URL"
+    assert "404" in zeilen[0], f"Grund fehlt: {zeilen[0]}"
+    assert url in zeilen[0]
+
+
+def test_grund_nennt_beide_stufen(monkeypatch, caplog):
+    """Bei einer Nachprüfung sind zwei Codes im Spiel — nur beide zusammen
+    unterscheiden „Server mag HEAD nicht" von „Server sperrt uns aus"."""
+    import logging
+    url = "https://beispiel.test/gesperrt"
+    k = _Klient(head_codes={url: 403}, get_codes={url: 403})
+    with caplog.at_level(logging.INFO, logger="evidora"):
+        _lauf([{"source": "X", "url": url}], k, monkeypatch)
+    zeile = [r.getMessage() for r in caplog.records if "Removed broken" in r.getMessage()][0]
+    assert "HEAD 403" in zeile and "GET 403" in zeile, zeile
+
+
+def test_grund_nennt_die_ausnahme(monkeypatch, caplog):
+    """Eine Zeitüberschreitung ist kein kaputter Link. Wenn wir das nicht
+    unterscheiden, suchen wir den Fehler beim Server statt bei uns."""
+    import logging
+
+    class Kaputt(_Klient):
+        async def head(self, url, **kw):
+            raise TimeoutError("zu langsam")
+
+    url = "https://beispiel.test/langsam"
+    with caplog.at_level(logging.INFO, logger="evidora"):
+        _lauf([{"source": "X", "url": url}], Kaputt(head_codes={}), monkeypatch)
+    zeile = [r.getMessage() for r in caplog.records if "Removed broken" in r.getMessage()][0]
+    assert "TimeoutError" in zeile, zeile
