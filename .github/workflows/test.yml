@@ -341,6 +341,7 @@ jobs:
             tests/test_verdict_ohne_beleg.py \
             tests/test_trigger_flexion.py \
             tests/test_evidenz_url_pruefung.py \
+            tests/test_vdem_zeitreihe.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
