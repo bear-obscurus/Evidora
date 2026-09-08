@@ -78,6 +78,29 @@ def test_eigene_schwelle_schliesst_die_regel_aus(claim):
     assert not hat_vage_mengenangabe(claim)
 
 
+@pytest.mark.parametrize("claim", [
+    "Migranten begehen in Deutschland überproportional viele Straftaten",
+    "Pro Kopf gibt es viele Ärzte",
+    "Gemessen an der Bevölkerung sind es viele",
+    "Im Verhältnis zur Wirtschaftsleistung sind es zahlreiche Betriebe",
+    "Anteilig kommen kaum noch Menschen",
+])
+def test_bezugsbasis_ist_eine_schwelle_ohne_zahl(claim):
+    """Live gemessen: „überproportional viele Straftaten" bekam den Deckel
+    samt Hinweis „ohne feste Schwelle" — dort schlicht unwahr,
+    „überproportional" heisst „mehr als der Bevölkerungsanteil". Ein
+    falscher Vorbehalt ist so schädlich wie ein fehlender, bei heiklen
+    Themen besonders."""
+    assert not hat_vage_mengenangabe(claim)
+
+
+def test_bezugsbasis_faengt_keine_wortteile():
+    """„proportional" darf nicht in „Proportionalitätsprinzip" zünden und
+    den Deckel an einer Stelle abschalten, wo er hingehört."""
+    assert hat_vage_mengenangabe(
+        "Das Proportionalitaetsprinzip kennen viele nicht")
+
+
 def test_jahreszahl_ist_keine_schwelle():
     """Sonst würde jeder Claim mit Jahresangabe aus der Regel fallen —
     „2026 kommen kaum noch Menschen" ist genauso eine Auslegungsfrage."""

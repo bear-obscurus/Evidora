@@ -1957,6 +1957,20 @@ _SCHWELLE = re.compile(
     r"\s+\d|\d+\s*(%|prozent)"
 )
 
+# Eine BEZUGSBASIS ist auch eine Schwelle, nur ohne Zahl: „ueberproportional
+# viele" heisst „mehr als der Bevoelkerungsanteil" und ist damit pruefbar.
+# Live gemessen: „Migranten begehen ueberproportional viele Straftaten" bekam
+# den Deckel samt Hinweis „ohne feste Schwelle" — der Hinweis war dort
+# schlicht unwahr. Ein falscher Vorbehalt ist so schaedlich wie ein
+# fehlender, und bei heiklen Themen besonders.
+_BEZUGSBASIS = re.compile(
+    r"(?<![a-z])("
+    r"ueberproportional|unterproportional|proportional|anteilig|prozentual|"
+    r"pro kopf|je einwohner|pro einwohner|im verhaeltnis zu[rm]?|gemessen an|"
+    r"gemessen am|bezogen auf|im vergleich zu[rm]?"
+    r")(?![a-z])"
+)
+
 _BESTIMMTE_VERDICTS = ("true", "mostly_true", "false", "mostly_false")
 
 
@@ -1965,12 +1979,14 @@ def hat_vage_mengenangabe(claim: str) -> bool:
 
     „kaum", „viele", „zahlreiche" haben keine Grenze, ab der sie zutreffen.
     Nennt der Claim dagegen selbst eine Schwelle („mehr als 3.000", „unter
-    5 %"), ist er pruefbar und faellt nicht unter die Regel.
+    5 %") ODER eine Bezugsbasis („ueberproportional", „pro Kopf", „gemessen
+    an"), ist er pruefbar und faellt nicht unter die Regel — eine
+    Bezugsbasis ist eine Schwelle ohne Zahl.
     """
     if not claim:
         return False
     n = normalisiere(claim)
-    if _SCHWELLE.search(n):
+    if _SCHWELLE.search(n) or _BEZUGSBASIS.search(n):
         return False
     return bool(_VAGE_MENGE.search(n))
 
