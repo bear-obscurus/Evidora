@@ -63,6 +63,7 @@ from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
 from services._skala import richtung as _richtung
 from services._flexion import trifft as _flexion_trifft
+from services._zeitreihe import bezugsjahr, verlangt_verlauf, verlauf_text
 
 # Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
 # Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
@@ -372,6 +373,11 @@ async def search_vdem(analysis: dict) -> dict:
         "secondary_url", "https://en.wikipedia.org/wiki/V-Dem_Democracy_Indices"
     )
 
+    # Richtungs-Claims brauchen zwei Zahlen. Einmal pro Claim entschieden,
+    # nicht pro Indikator — die Frage ist fuer alle dieselbe (QA50F-Befund 4).
+    verlauf_gefragt = verlangt_verlauf(claim)
+    bezug = bezugsjahr(claim)
+
     results: list[dict] = []
     for ind in matched_indicators:
         ind_data = ind.get("data") or {}
@@ -401,11 +407,21 @@ async def search_vdem(analysis: dict) -> dict:
             "description_en"
         ) or ""
 
-        # indicator_name: knapp + AT-zentriert (wenn AT detected).
-        indicator_name = (
-            f"{label_de} {primary_iso2} {year}: "
-            f"{primary_value:.2f} (V-Dem)"
+        # indicator_name: knapp + AT-zentriert (wenn AT detected). Bei einem
+        # Richtungs-Claim steht hier die Reihe statt des Einzelwerts — sonst
+        # antwortet das Modell „keine Vergleichsdaten" auf Daten, die wir
+        # haben, oder ergaenzt die fehlende Zahl aus dem Vorwissen.
+        verlauf = (
+            verlauf_text(primary_country_data, bezug=bezug)
+            if verlauf_gefragt else ""
         )
+        if verlauf:
+            indicator_name = f"{label_de} {primary_iso2}: {verlauf} (V-Dem)"
+        else:
+            indicator_name = (
+                f"{label_de} {primary_iso2} {year}: "
+                f"{primary_value:.2f} (V-Dem)"
+            )
 
         # Transparenz-Marker für nicht-v14-verifizierte Indizes. 4 Indikatoren
         # (deliberativ/egalitär/Ressourcen-Gleichverteilung/Gewaltschutz) sind
