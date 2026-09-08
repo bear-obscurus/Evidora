@@ -1823,11 +1823,15 @@ async def check_claim(request: Request):
         try:
             from services.verdict_postprocess import (
                 apply_analysis_fallback_cap, apply_unbelegt_cap,
+                apply_vage_menge_cap,
             )
             apply_analysis_fallback_cap(synthesis, analysis, lang)
             # Nach dem Fallback-Cap: ein Verdict ohne zitierbaren Beleg darf
             # nicht selbstsicher ausgeliefert werden (QA50F, Klasse E).
             apply_unbelegt_cap(synthesis, lang)
+            # Und eine Mengenangabe ohne Schwelle („kaum", „viele") ist eine
+            # Auslegungsfrage — nicht mit 0,9 ausliefern (QA50F-Befund 5).
+            apply_vage_menge_cap(synthesis, claim, lang)
         except Exception as e:
             logger.warning(f"analysis_fallback_cap failed (non-blocking): {e}")
 

@@ -445,6 +445,14 @@ STELLVERTRETER-MESSGRÖSSE: eine verwandte Zahl ist nicht die gefragte Zahl
   • Akutbetten ≠ alle Krankenhausbetten, nominal ≠ kaufkraftbereinigt (#321)
 - PERSÖNLICHER BEZUG: "mein Sparbuch", "meine Stromrechnung", "bei meiner Bank" beziehen sich auf einen Einzelfall, den keine Statistik kennt. Verdict "unverifiable"; ein Landesdurchschnitt darf als Einordnung genannt werden, belegt den Einzelfall aber nicht.
 
+VAGE MENGENANGABEN: „kaum" und „viele" haben keine Schwelle
+- Behauptet der Claim eine MENGE ohne Grenze („kaum noch", „viele", „zahlreiche", „so gut wie keine"), dann gibt es keinen Wert, ab dem sie nachweislich zutrifft. Die Zahl allein entscheidet nicht.
+- ARBEITSSCHRITT: (1) die Zahl nennen, (2) ihre Bezugsgrösse nennen — Anteil am Ganzen, Vergleich mit der grössten vergleichbaren Grösse, Veränderung zum Vorjahr, (3) erst dann urteilen.
+- REGEL: Sind bei dieser Bezugsgrösse BEIDE Lesarten vertretbar, ist das Verdict „mixed" — nicht „true" und nicht „false". Ein „true@0.9" auf eine Auslegungsfrage behauptet eine Sicherheit, die die Daten nicht hergeben.
+- SELBSTPRÜFUNG: Frage dich, ob du dem GEGENTEIL derselben Behauptung mit denselben Zahlen ebenfalls zustimmen würdest. Wenn ja, ist die Antwort „mixed".
+- Der auslösende Fall (QA50F-Befund 5): „Über die östliche Landgrenze kommen kaum noch Menschen" → true@0.9. Gegenprobe: „…kommen weiterhin viele Menschen" → ebenfalls true@0.9, auf derselben Zahl (3.209 Detektionen, 5 % aller Grenzübertritte, -44 % zum Vorjahr). Beide Richtungen bejaht ist logisch unmöglich.
+- GEGENPROBE — hier gilt die Regel NICHT: Nennt der Claim selbst eine Schwelle („mehr als 3.000", „unter 5 %"), ist er prüfbar und bekommt ein bestimmtes Verdict. Und ist die Lage eindeutig (16.454 Detektionen sind nicht „kaum noch"), dann urteile klar.
+
 GEGENWARTS-CLAIMS: "heute/aktuell/derzeit" ist eine eigene Tatsachenbehauptung
 - Sagt der Claim "heute", "aktuell", "derzeit", "momentan", "inzwischen" oder "jetzt" UND nennt einen MESSWERT (Prozent, Punkte, Index-Stand), dann behauptet er zweierlei: dass die Zahl stimmt UND dass sie JETZT gilt.
 - Ein zwei Jahre alter Messwert kann den zweiten Teil nicht belegen. Die Zahl war damals richtig; über heute sagt sie nichts.

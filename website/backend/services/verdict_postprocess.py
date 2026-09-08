@@ -1936,6 +1936,106 @@ def apply_unbelegt_cap(synthesis, lang="de", cap=UNBELEGT_CONFIDENCE_CAP):
     return synthesis
 
 
+VAGE_MENGE_CONFIDENCE_CAP = 0.7
+
+# Mengenwoerter ohne Schwelle. Wortgrenzen sind Pflicht: "viel" als Substring
+# faengt "vielleicht" und "Vielfalt" (dieselbe Klasse wie das "alle "/"Kristalle"
+# der EZB-Regex).
+_VAGE_MENGE = re.compile(
+    r"(?<![a-z])("
+    r"kaum|viele[nrms]?|viel|wenige[nrms]?|zahlreiche[nrms]?|unzaehlige[nrms]?|"
+    r"massenhaft|scharenweise|nennenswert|"
+    r"so gut wie keine[nrms]?|so gut wie kein|fast keine[nrms]?|fast kein|"
+    r"eine menge|ein grossteil|kaum noch|so gut wie niemand|fast niemand"
+    r")(?![a-z])"
+)
+
+# Eine Zahl MIT Schwellen-Wort ist eine pruefbare Grenze, keine vage Menge.
+# Eine blosse Jahreszahl ist keine — deshalb steht hier nicht \d allein.
+_SCHWELLE = re.compile(
+    r"(mehr als|weniger als|unter|ueber|mindestens|hoechstens|maximal|minimal)"
+    r"\s+\d|\d+\s*(%|prozent)"
+)
+
+_BESTIMMTE_VERDICTS = ("true", "mostly_true", "false", "mostly_false")
+
+
+def hat_vage_mengenangabe(claim: str) -> bool:
+    """Enthaelt der Claim eine Mengenangabe ohne feste Schwelle?
+
+    „kaum", „viele", „zahlreiche" haben keine Grenze, ab der sie zutreffen.
+    Nennt der Claim dagegen selbst eine Schwelle („mehr als 3.000", „unter
+    5 %"), ist er pruefbar und faellt nicht unter die Regel.
+    """
+    if not claim:
+        return False
+    n = normalisiere(claim)
+    if _SCHWELLE.search(n):
+        return False
+    return bool(_VAGE_MENGE.search(n))
+
+
+def apply_vage_menge_cap(synthesis, claim, lang="de",
+                         cap=VAGE_MENGE_CONFIDENCE_CAP):
+    """Kappt die Konfidenz bei Mengenangaben ohne Schwelle.
+
+    QA50F-Befund 5, gemessen als Spiegel-Paar gegen die Live-Instanz:
+
+        „Ueber die oestliche Landgrenze kommen kaum noch Menschen"      true@0.9
+        „Ueber die oestliche Landgrenze kommen weiterhin viele Menschen" true@0.9
+
+    Beide Richtungen wahr, auf derselben Zahl (3.209 Detektionen, 5 % aller
+    Grenzuebertritte). Logisch unmoeglich. Dieselben zwei Saetze fuer die
+    zentrale Mittelmeerroute (16.454) trennt das System korrekt — der
+    Unterschied ist nicht die Logik, sondern die Grauzone.
+
+    #174 hat dem Modell die Bezugsgroesse gegeben (Anteil + groesste Route).
+    Nachgemessen: die Zahlen kommen in der Summary an, **der Widerspruch
+    bleibt**. Bessere Daten loesen ihn nicht — das Modell stimmt der
+    Behauptung zu, egal in welche Richtung sie zeigt.
+
+    Dieser Deckel loest ihn auch nicht. Er sorgt dafuer, dass eine
+    Auslegungsfrage nicht mit 0,9 Selbstsicherheit ausgeliefert wird, und
+    sagt dem Leser, woran es liegt. Das Verdict bleibt unangetastet: in der
+    Grauzone ist die Antwort nicht falsch, nur nicht so sicher, wie sie
+    aussah.
+
+    Mutiert ``synthesis`` und gibt es zurueck. No-op bei ``unverifiable`` und
+    ``mixed`` (dort ist die Unsicherheit schon ausgesprochen).
+    """
+    if synthesis.get("verdict") not in _BESTIMMTE_VERDICTS:
+        return synthesis
+    if not hat_vage_mengenangabe(claim):
+        return synthesis
+
+    synthesis["_vage_menge"] = True
+    orig = synthesis.get("confidence") or 0.0
+    if orig <= cap:
+        return synthesis
+    synthesis["confidence"] = cap
+
+    hinweis = (
+        "Hinweis: Die Behauptung nutzt eine Mengenangabe ohne feste Schwelle "
+        "(etwa „kaum“ oder „viele“). Ob die genannten Zahlen sie "
+        "erfuellen, "
+        "ist Auslegungssache — der Zahlenbefund ist belastbarer als die "
+        "Bewertung."
+        if lang == "de" else
+        "Note: The claim uses a quantity word without a fixed threshold (such "
+        "as \"few\" or \"many\"). Whether the figures meet it is a matter of "
+        "interpretation — the figures are firmer than the verdict."
+    )
+    bisher = synthesis.get("nuance")
+    synthesis["nuance"] = f"{bisher} {hinweis}".strip() if bisher else hinweis
+
+    logger.info(
+        "Vage Mengenangabe: Verdict '%s', Konfidenz %.2f -> %.2f, "
+        "Hinweis angehaengt.",
+        synthesis.get("verdict"), orig, synthesis.get("confidence") or 0.0,
+    )
+    return synthesis
+
+
 ANALYSIS_FALLBACK_CONFIDENCE_CAP = 0.5
 
 
