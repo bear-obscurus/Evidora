@@ -150,13 +150,21 @@ def test_erlaubt_wird_am_aufrufort_gesetzt(name):
     assert "_find_countries(analysis, erlaubt=frozenset(data))" in quelle
 
 
-def test_wgi_bleibt_bewusst_ohne_erlaubt():
+def test_wgi_fragt_jeden_staat_aber_keine_region():
     """Die Weltbank wird PRO LAND abgefragt; ein vorab geladenes Universum
-    gibt es nicht. Der Grund steht als Kommentar am Aufrufort, damit ihn
-    niemand versehentlich „nachrüstet"."""
+    gibt es nicht — deshalb schraenkt `erlaubt` nicht auf einen Datensatz ein,
+    sondern nur auf Staaten. Bis zum Laender-Rueckfall-Nachgang gab es gar
+    kein `erlaubt`: „EU" und „weltweit" gingen als EUR/WLD an die API und
+    kamen als „Invalid value" zurueck, und ohne Ortsangabe davor antwortete
+    Oesterreich. Der Grund steht am Aufrufort, damit ihn niemand
+    versehentlich auf einen Datensatz „nachruestet"."""
     quelle = (BACKEND / "services" / "wgi.py").read_text(encoding="utf-8")
-    assert "Kein `erlaubt`: die Weltbank wird PRO LAND abgefragt" in quelle
-    assert "_find_countries(analysis)\n" in quelle
+    assert "frozenset(_LAENDER.ALIASSE) - _LAENDER.REGIONEN" in quelle
+    assert "jeder Staat, aber keine Region" in quelle
+    from services._laender import ALIASSE, REGIONEN, zustaendigkeit
+    erlaubt = frozenset(ALIASSE) - REGIONEN
+    assert zustaendigkeit({"claim": "Governance in Tuvalu"}, erlaubt) == (["TUV"], [])
+    assert zustaendigkeit({"claim": "Governance in der EU"}, erlaubt) == ([], ["EUR"])
 
 
 @pytest.mark.parametrize("name", KONNEKTOREN)

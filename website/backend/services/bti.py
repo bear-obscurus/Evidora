@@ -94,6 +94,7 @@ from __future__ import annotations
 import logging
 import os
 
+from services import _laender as _LAENDER
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
 from services._skala import richtung as _richtung
@@ -191,25 +192,13 @@ def _load_data() -> dict | None:
     return load_json_mtime_aware(STATIC_JSON_PATH)
 
 
-def _country_aliases(data: dict) -> dict:
-    """Country-Code → Liste von DE/EN-Substring-Aliassen."""
-    return data.get("country_aliases") or {}
-
-
 def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
     """Erkenne welche ISO3-Country-Codes der Claim erwähnt.
 
     Returns Liste der ISO3-Codes (jedes Land höchstens einmal, in der
     Reihenfolge des Country-Alias-Dicts).
     """
-    aliases = _country_aliases(data)
-    found: list[str] = []
-    for iso3, alias_list in aliases.items():
-        for alias in alias_list:
-            if normalisiere(alias) in claim_lc:
-                found.append(iso3)
-                break  # nur einmal pro Land
-    return found
+    return _LAENDER.finde(claim_lc, frozenset(data.get("scores") or {}), max_n=5)
 
 
 def _has_bti_keyword(claim_lc: str) -> bool:
@@ -478,14 +467,9 @@ async def search_bti(analysis: dict) -> dict:
     if not _has_bti_keyword(claim_lc):
         return empty
 
-    # Country-Detection: Claim selbst + Entity-Liste.
-    requested_countries = _detect_countries_in_claim(claim_lc, data)
-    entities = (analysis.get("entities") or [])
-    if entities:
-        ents_lc = " ".join(str(e).lower() for e in entities)
-        for c in _detect_countries_in_claim(ents_lc, data):
-            if c not in requested_countries:
-                requested_countries.append(c)
+    # Country-Detection: Claim, NER und Entity-Liste.
+    requested_countries, ohne_daten = _LAENDER.zustaendigkeit(
+        analysis, frozenset(data.get("scores") or {}), max_n=5, text=claim_lc)
 
     scores = data.get("scores") or {}
     if not scores:
@@ -494,8 +478,14 @@ async def search_bti(analysis: dict) -> dict:
     # Primary-Country-Selection.
     primaries = _select_primary_countries(requested_countries, scores)
 
-    # Wenn keines der genannten Länder im BTI-Cache (z.B. nur AT/DE):
-    # Fallback auf BTI-Top-1 + Bottom-1 als Allgemein-Overview.
+    # Ein genannter Ort ohne BTI-Wert bekommt NICHTS — auch Österreich nicht
+    # (BTI bewertet keine OECD-Staaten). Früher kam dann die Top/Bottom-
+    # Übersicht: „Transformation in Laos" bekam Taiwan und Eritrea.
+    if not primaries and ohne_daten:
+        logger.info("bti: nicht zustaendig fuer %s — kein Ersatzland", ohne_daten)
+        return empty
+
+    # Nur ein Claim OHNE Ortsangabe bekommt die Top-1/Bottom-1-Übersicht.
     if not primaries:
         primaries = _top_and_bottom(scores, n=1)
 

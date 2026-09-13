@@ -148,6 +148,11 @@ def test_flexion_wird_erkannt(text, erwartet):
     "Kristalle wachsen in Salzlösungen",
     "Wie backe ich einen Marmorkuchen?",
     "Der FC Bayern hat gestern gewonnen",
+    # #110: „eu" als nackter Teilstring steckt in „Feuerwehr" — unter
+    # Wortgrenzen darf es dort, in „neu", „treu" und „Euro" nie treffen.
+    "Bei der Feuerwehr gibt es viele Freiwillige",
+    "Das Gesetz ist neu und die Mitglieder sind treu",
+    "Der Euro ist stabil",
 ])
 def test_kein_fehltreffer_in_gewoehnlichen_woertern(text):
     """Gemessen, nicht ausgedacht: die ersten beiden Fälle hat ein früherer
@@ -168,14 +173,17 @@ def test_iso3_codes_sind_wohlgeformt():
 # häufigste Schreibweise überhaupt. Unter der Wortgrenzen-Prüfung sind sie
 # eindeutig („usa" trifft „usability" nicht). Ein Blanko-Minimum von zwei
 # Zeichen wäre dagegen gefährlich: „at" (Österreich) stand in einer der 24
-# Karten und steckt in „at the". „eu" ist bewusst nicht dabei — das Token hat
-# schon einmal über-getriggert (#110).
-KURZ_ERLAUBT = {"usa", "uk"}
+# Karten und steckt in „at the". Seit dem Laender-Rueckfall-Nachgang sind vier
+# weitere Kurzformen gemessen aufgenommen, siehe den Kommentar in
+# services/_laender.py: „eu" (42 von 42 Korpus-Treffern meinen die EU; der
+# #110-Fall „Feuerwehr" ist unter Wortgrenzen unmoeglich und unten
+# festgehalten), „brd", „vae", „uae". „us" bleibt bewusst draussen.
+KURZ_ERLAUBT = {"usa", "uk", "eu", "brd", "vae", "uae"}
 
 
 def test_keine_leeren_oder_zu_kurzen_aliasse():
     """Ein Alias unter vier Zeichen würde quer durch den Korpus matchen —
-    ausser den zwei gemessenen Ausnahmen."""
+    ausser den gemessenen Ausnahmen."""
     for iso, al in ALIASSE.items():
         assert al, iso
         for a in al:
@@ -196,6 +204,10 @@ def test_kurze_aliasse_bleiben_die_gemessene_ausnahme():
     ("usability testing", []),
     ("Die Ursache war unklar", []),
     ("Ein Ukulele-Konzert", []),
+    ("Österreich ist Nettozahler in der EU", ["AUT", "EUR"]),
+    ("Die EU-Kommission kritisiert Ungarn", ["EUR", "HUN"]),
+    ("Die BRD ist juristisch eine Firma", ["DEU"]),
+    ("Exporte in die VAE", ["ARE"]),
 ])
 def test_kurzformen_sind_unter_wortgrenzen_eindeutig(text, erwartet):
     assert finde(text) == erwartet, text

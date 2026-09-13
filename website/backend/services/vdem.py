@@ -59,6 +59,7 @@ from __future__ import annotations
 import logging
 import os
 
+from services import _laender as _LAENDER
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
 from services._skala import richtung as _richtung
@@ -130,9 +131,17 @@ def _load_data() -> dict | None:
     return load_json_mtime_aware(STATIC_JSON_PATH)
 
 
-def _country_aliases(data: dict) -> dict:
-    """Country-Code → Liste von DE/EN-Substring-Aliassen."""
-    return data.get("country_aliases") or {}
+def _vdem_laender(data: dict) -> frozenset[str]:
+    """Alle Codes, zu denen irgendein Indikator Werte hat (179).
+
+    Die Alias-Liste im JSON kennt nur 32 davon. Bis zum Laender-Rueckfall-
+    Nachgang bekamen Eritrea, Laos und Nordkorea deshalb Oesterreich — obwohl
+    ihre Werte im Datensatz stehen.
+    """
+    codes: set[str] = set()
+    for ind in data.get("indicators") or []:
+        codes |= set((ind.get("data") or {}).keys())
+    return frozenset(codes)
 
 
 def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
@@ -141,14 +150,9 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
     Returns Liste der ISO3-Codes (in Reihenfolge des Country-Code-Dicts;
     ein Land wird höchstens einmal eingefügt).
     """
-    aliases = _country_aliases(data)
-    found: list[str] = []
-    for iso3, alias_list in aliases.items():
-        for alias in alias_list:
-            if normalisiere(alias) in claim_lc:
-                found.append(iso3)
-                break  # nur einmal pro Land
-    return found
+    # Ueber das gemeinsame Verzeichnis, eingeschraenkt auf die 179 Codes mit
+    # Werten — nicht auf die 32 der Alias-Liste.
+    return _LAENDER.finde(claim_lc, _vdem_laender(data), max_n=5)
 
 
 def _indicator_matches_claim(indicator: dict, claim_lc: str) -> bool:
@@ -217,7 +221,10 @@ async def fetch_vdem(client=None) -> list[dict]:
 
 def _format_country_year(iso3: str, year_data: dict, year: str) -> str:
     """Hilfs-Format: 'AT 0.85'."""
-    iso2 = _ISO3_TO_ISO2.get(iso3, iso3[:2])
+    # ISO3 statt abgeschnittener Buchstaben: iso3[:2] machte aus Chile „CH"
+    # (Schweiz), aus der Ukraine „UK" und aus Benin „BE" (Belgien). Mit 179
+    # statt 32 erreichbaren Laendern waere das live geworden.
+    iso2 = _ISO3_TO_ISO2.get(iso3, iso3)
     val = year_data.get(year)
     if val is None:
         return ""
@@ -275,19 +282,17 @@ def _select_display_countries(
 def _select_primary_country(
     requested_countries: list[str],
     indicator_data: dict,
-) -> str:
+) -> str | None:
     """Wähle das primäre Land für indicator_name + country-Feld.
 
-    Erstes Match aus dem Claim, sonst AUT als DACH-Default.
+    Erstes Match aus dem Claim — sonst None, und der Indikator entfällt.
+    Früher „sonst AUT": ein Land, das im Datensatz steht, aber in DIESEM
+    Indikator fehlt, hätte dessen Zeile mit Österreichs Wert gefüllt.
     """
     for c in requested_countries:
         if c in indicator_data:
             return c
-    if "AUT" in indicator_data:
-        return "AUT"
-    for k in indicator_data:
-        return k
-    return "AUT"
+    return None
 
 
 def _latest_year(country_data: dict) -> str:
@@ -326,20 +331,20 @@ async def search_vdem(analysis: dict) -> dict:
     claim_lc = normalisiere(claim)
 
     # Country-Detection: Erst aus dem Claim selbst, dann aus Entity-Liste.
-    requested_countries = _detect_countries_in_claim(claim_lc, data)
-    entities = (analysis.get("entities") or [])
-    if entities:
-        ents_lc = " ".join(str(e).lower() for e in entities)
-        for c in _detect_countries_in_claim(ents_lc, data):
-            if c not in requested_countries:
-                requested_countries.append(c)
+    requested_countries, ohne_daten = _LAENDER.zustaendigkeit(
+        analysis, _vdem_laender(data), max_n=5, text=claim)
 
     has_general = _has_general_democracy_vocab(claim_lc)
 
     if not requested_countries and not has_general:
         return empty
 
-    # Wenn nur generic-democracy-Vokabel ohne Land, default DACH.
+    # Ein genannter Ort ohne V-Dem-Werte bekommt NICHTS — kein Ersatzland.
+    if not requested_countries and ohne_daten:
+        logger.info("vdem: nicht zustaendig fuer %s — kein Ersatzland", ohne_daten)
+        return empty
+
+    # Nur ein Claim OHNE Ortsangabe bekommt den DACH-Default.
     if not requested_countries and has_general:
         requested_countries = list(_DEFAULT_COUNTRIES_FOR_DACH_CLAIMS)
 
@@ -385,7 +390,9 @@ async def search_vdem(analysis: dict) -> dict:
             continue
 
         primary_iso3 = _select_primary_country(requested_countries, ind_data)
-        primary_iso2 = _ISO3_TO_ISO2.get(primary_iso3, primary_iso3[:2])
+        if primary_iso3 is None:
+            continue
+        primary_iso2 = _ISO3_TO_ISO2.get(primary_iso3, primary_iso3)
         primary_country_data = ind_data.get(primary_iso3) or {}
         year = _latest_year(primary_country_data)
         primary_value = primary_country_data.get(year)

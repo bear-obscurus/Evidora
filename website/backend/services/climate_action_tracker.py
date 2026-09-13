@@ -95,6 +95,7 @@ from __future__ import annotations
 import logging
 import os
 
+from services import _laender as _LAENDER
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
@@ -200,22 +201,9 @@ def _load_data() -> dict | None:
     return load_json_mtime_aware(STATIC_JSON_PATH)
 
 
-def _country_aliases(data: dict) -> dict:
-    """Country-Code → Liste von DE/EN-Substring-Aliassen."""
-    return data.get("country_aliases") or {}
-
-
 def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
     """Erkenne welche ISO3-Country-Codes der Claim erwähnt."""
-    aliases = _country_aliases(data)
-    found: list[str] = []
-    for iso3, alias_list in aliases.items():
-        for alias in alias_list:
-            if normalisiere(alias) in claim_lc:
-                if iso3 not in found:
-                    found.append(iso3)
-                break
-    return found
+    return _LAENDER.finde(claim_lc, frozenset(data.get("scores") or {}), max_n=5)
 
 
 def _has_cat_keyword(claim_lc: str) -> bool:
@@ -424,20 +412,9 @@ async def search_cat(analysis: dict) -> dict:
     except Exception:
         pass
 
-    # Country-Detection: Claim selbst + Entity-Liste.
-    requested_countries = _detect_countries_in_claim(claim_lc, data)
-    entities = (analysis.get("entities") or [])
-    if entities:
-        ents_lc = " ".join(str(e).lower() for e in entities)
-        for c in _detect_countries_in_claim(ents_lc, data):
-            if c not in requested_countries:
-                requested_countries.append(c)
-    ner_countries = (analysis.get("ner_entities", {}) or {}).get("countries", []) or []
-    if ner_countries:
-        ner_lc = " ".join(str(c).lower() for c in ner_countries)
-        for c in _detect_countries_in_claim(ner_lc, data):
-            if c not in requested_countries:
-                requested_countries.append(c)
+    # Country-Detection: Claim, NER und Entity-Liste.
+    requested_countries, ohne_daten = _LAENDER.zustaendigkeit(
+        analysis, frozenset(data.get("scores") or {}), max_n=5, text=claim)
 
     scores = data.get("scores") or {}
     if not scores:
@@ -451,7 +428,13 @@ async def search_cat(analysis: dict) -> dict:
         if len(primaries) >= MAX_PRIMARY_COUNTRIES:
             break
 
-    # Wenn keines der genannten Länder im CAT-Cache: Fallback DACH-Default.
+    # Ein genannter Ort ohne CAT-Bewertung bekommt NICHTS. Früher fiel hier
+    # jedes unbekannte Land auf AT/DE/CH zurück — auch Ungarn und Nordkorea.
+    if not primaries and ohne_daten:
+        logger.info("cat: nicht zustaendig fuer %s — kein Ersatzland", ohne_daten)
+        return empty
+
+    # Nur ein Claim OHNE Ortsangabe bekommt den DACH-Default.
     if not primaries:
         for c in _DEFAULT_COUNTRIES_FOR_DACH:
             if c in scores:

@@ -152,6 +152,12 @@ async def search_rsf(analysis: dict) -> dict:
 
     countries = _find_countries(analysis)
     if not countries:
+        # Ein genannter Ort ohne RSF-Wert bekommt NICHTS. Früher kam AT/DE —
+        # auch für „Pressefreiheit in der EU", „in der BRD", „in den VAE".
+        _, ohne_daten = _LAENDER.zustaendigkeit(analysis, frozenset(data))
+        if ohne_daten:
+            return {"source": "Reporter ohne Grenzen (RSF)", "type": "official_data", "results": []}
+        # Nur ein Claim OHNE Ortsangabe bekommt den Default.
         countries = ["AUT", "DEU"]
 
     results: list[dict] = []

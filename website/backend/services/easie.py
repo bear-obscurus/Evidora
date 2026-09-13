@@ -79,6 +79,7 @@ import logging
 import os
 from functools import lru_cache
 
+from services import _laender as _LAENDER
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
@@ -196,17 +197,7 @@ def _load_data() -> dict | None:
 
 def _detect_countries(claim_lc: str, data: dict) -> list[str]:
     """Erkenne ISO3-Codes der im Claim genannten Länder."""
-    aliases = data.get("country_aliases") or {}
-    found: list[str] = []
-    for iso3, alias_list in aliases.items():
-        for alias in alias_list:
-            if not alias:
-                continue
-            if alias.lower() in claim_lc:
-                if iso3 not in found:
-                    found.append(iso3)
-                break
-    return found
+    return _LAENDER.finde(claim_lc, frozenset(data.get("country_data") or {}), max_n=5)
 
 
 def _fmt_pct(value) -> str:
@@ -425,16 +416,20 @@ async def search_easie(analysis: dict) -> dict:
     if not country_data:
         return empty
 
-    # Country-Detection im Claim selbst
-    requested = _detect_countries(combined_lc, data)
+    # Country-Detection: Claim, NER und Entity-Liste.
+    requested, ohne_daten = _LAENDER.zustaendigkeit(
+        analysis, frozenset(country_data), max_n=5, text=combined)
 
-    # Plus Entity-Liste aus analysis
-    entities = (analysis.get("entities") or [])
-    if entities:
-        ents_lc = " ".join(str(e).lower() for e in entities)
-        for c in _detect_countries(ents_lc, data):
-            if c not in requested:
-                requested.append(c)
+    if not requested and ohne_daten:
+        # „in der EU" / „in Europa" ist genau, wofuer der EU/EFTA-Durchschnitt
+        # da ist. Jeder andere genannte Ort ohne EASIE-Daten bekommt NICHTS —
+        # „inklusive Bildung in Nordkorea" ist keine Frage an eine europaeische
+        # Agentur, und ihr Durchschnitt keine Antwort darauf.
+        if set(ohne_daten) <= {"EUR"}:
+            avg_result = _build_eu_average_result(data)
+            return {**empty, "results": [avg_result]} if avg_result else empty
+        logger.info("easie: nicht zustaendig fuer %s — kein Ersatzland", ohne_daten)
+        return empty
 
     # Wenn nichts erkannt → DACH-Default.
     if not requested:

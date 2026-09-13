@@ -415,10 +415,15 @@ async def search_wgi(analysis: dict) -> dict:
     if not indicators:
         return empty
 
-    # Kein `erlaubt`: die Weltbank wird PRO LAND abgefragt, es gibt kein
-    # vorab geladenes Universum. Fuer ein Land ohne Werte antwortet die API
-    # leer — dasselbe Verhalten wie vor der Konsolidierung.
-    countries = _find_countries(analysis)
+    # Die Weltbank wird PRO LAND abgefragt, es gibt kein vorab geladenes
+    # Universum — `erlaubt` ist deshalb jeder Staat, aber keine Region. „EU"
+    # und „weltweit" gingen vorher als EUR/WLD an die API und kamen als
+    # „Invalid value" zurueck; ohne Ortsangabe davor stand Oesterreich.
+    erlaubt = frozenset(_LAENDER.ALIASSE) - _LAENDER.REGIONEN
+    countries, ohne_daten = _LAENDER.zustaendigkeit(analysis, erlaubt)
+    if not countries and ohne_daten:
+        logger.info("wgi: nicht zustaendig fuer %s — kein Ersatzland", ohne_daten)
+        return empty
     if not countries:
         countries = list(_DEFAULT_COUNTRIES)
     countries = countries[:3]
