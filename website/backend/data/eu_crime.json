@@ -241,7 +241,8 @@
       "claim_phrasings_handled": [
         "Migranten Kriminalität Deutschland",
         "Ausländerkriminalität Bundesrepublik",
-        "BKA PKS Migranten Anteil"
+        "BKA PKS Migranten Anteil",
+        "Nichtdeutsche sind unter den Tatverdächtigen in Deutschland überrepräsentiert"
       ],
       "trigger_keywords": [
         "bka pks",
@@ -258,7 +259,14 @@
           "auslaender",
           "migrant",
           "asyl",
-          "zuwanderer"
+          "zuwanderer",
+          "nichtdeutsch",
+          "nicht deutsch",
+          "ausländisch",
+          "auslaendisch",
+          "ohne deutschen pass",
+          "staatsangehörigkeit",
+          "staatsangehoerigkeit"
         ],
         [
           "kriminalität",
@@ -266,7 +274,8 @@
           "tatverdaechtig",
           "verbrechen",
           "straftat",
-          "delikt"
+          "delikt",
+          "kriminalstatistik"
         ],
         [
           "deutschland",
