@@ -273,7 +273,7 @@ async def search_transparency(analysis: dict) -> dict:
     countries = _find_countries(analysis, erlaubt=frozenset(data))
     if not countries:
         # Ein genannter Ort ohne CPI-Wert bekommt NICHTS — kein Ersatzland.
-        _, ohne_daten = _LAENDER.zustaendigkeit(analysis, frozenset(data))
+        _, ohne_daten = _LAENDER.zustaendigkeit(analysis, frozenset(data), entities=False)
         if ohne_daten:
             return {"source": "Transparency International", "type": "official_data", "results": []}
         countries = ["AUT", "DEU"]  # Default-Kontext, nur ohne Ortsangabe

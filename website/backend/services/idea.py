@@ -188,7 +188,7 @@ async def search_idea(analysis: dict) -> dict:
     countries = _find_countries(analysis, erlaubt=frozenset(data))
     if not countries:
         # Ein genannter Ort ohne IDEA-Wert bekommt NICHTS — kein Ersatzland.
-        _, ohne_daten = _LAENDER.zustaendigkeit(analysis, frozenset(data))
+        _, ohne_daten = _LAENDER.zustaendigkeit(analysis, frozenset(data), entities=False)
         if ohne_daten:
             return {"source": "IDEA Voter Turnout", "type": "official_data", "results": []}
         # Generischer Wahlbeteiligungs-Claim ohne Länderbezug: AT + DE als Default

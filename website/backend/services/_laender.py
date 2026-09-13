@@ -534,7 +534,8 @@ REGIONEN = frozenset({"EUR", "WLD"})
 
 def zustaendigkeit(analysis: dict, erlaubt: frozenset[str] | None,
                    max_n: int = 3, text: str | None = None,
-                   bereinigen=None) -> tuple[list[str], list[str]]:
+                   bereinigen=None,
+                   entities: bool = True) -> tuple[list[str], list[str]]:
     """Welche genannten Orte kann der Datensatz beantworten — und welche nicht?
 
     Rueckgabe ``(mit_daten, ohne_daten)``.
@@ -566,11 +567,18 @@ def zustaendigkeit(analysis: dict, erlaubt: frozenset[str] | None,
     ``bereinigen`` wird auf jeden Text angewandt, bevor gesucht wird — fuer
     Quellen, deren eigener Name wie ein Ort klingt („World Inequality
     Database" ist kein Claim ueber die Welt).
+
+    ``entities=False`` fuer Konnektoren, die bisher bewusst nur NER und Claim
+    lasen (rsf, transparency, idea, wgi ueber ``aus_analyse``): die flache
+    Entity-Liste des Analyzers kann halluzinierte Eintraege enthalten (siehe
+    ``unhcr.py``). Wer sie vorher nicht las, soll durch diese Regel nicht
+    anfangen, sie zu lesen.
     """
     ner = (analysis.get("ner_entities") or {}).get("countries") or []
     haupt = text if text is not None else (analysis.get("claim") or "")
     teile = [str(c) for c in ner] + [str(haupt), str(analysis.get("original_claim") or "")]
-    teile += [str(e) for e in (analysis.get("entities") or []) if e]
+    if entities:
+        teile += [str(e) for e in (analysis.get("entities") or []) if e]
     if bereinigen is not None:
         teile = [bereinigen(t) for t in teile]
     teile = [t for t in teile if t and t.strip()]

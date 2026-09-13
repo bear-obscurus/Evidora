@@ -235,6 +235,23 @@ def test_entities_und_ner_zaehlen_mit():
     assert mit == ["HUN"]
 
 
+def test_entities_lassen_sich_abschalten():
+    """Die flache Entity-Liste des Analyzers kann halluzinierte Eintraege
+    enthalten (siehe unhcr.py). Konnektoren, die sie bisher nicht lasen,
+    lesen sie auch jetzt nicht."""
+    analyse = {"claim": "Wie steht es um die Pressefreiheit?", "entities": ["Tuvalu"]}
+    assert zustaendigkeit(analyse, frozenset({"HUN"})) == ([], ["TUV"])
+    assert zustaendigkeit(analyse, frozenset({"HUN"}), entities=False) == ([], [])
+
+
+@pytest.mark.parametrize("mod", ["rsf", "transparency", "idea", "wgi"])
+def test_aus_analyse_konnektoren_lesen_keine_entities(mod):
+    """Vor der Regel lasen sie ueber `aus_analyse` nur NER und Claim."""
+    quelle = (BACKEND / "services" / f"{mod}.py").read_text(encoding="utf-8")
+    aufrufe = [z for z in quelle.splitlines() if "_LAENDER.zustaendigkeit(" in z]
+    assert aufrufe and all("entities=False" in z for z in aufrufe), (mod, aufrufe)
+
+
 def test_bereinigen_wirkt_auf_jeden_text():
     mit, ohne = zustaendigkeit(
         {"claim": "world inequality database", "entities": ["World Inequality Database"]},

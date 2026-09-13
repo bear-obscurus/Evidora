@@ -420,7 +420,7 @@ async def search_wgi(analysis: dict) -> dict:
     # und „weltweit" gingen vorher als EUR/WLD an die API und kamen als
     # „Invalid value" zurueck; ohne Ortsangabe davor stand Oesterreich.
     erlaubt = frozenset(_LAENDER.ALIASSE) - _LAENDER.REGIONEN
-    countries, ohne_daten = _LAENDER.zustaendigkeit(analysis, erlaubt)
+    countries, ohne_daten = _LAENDER.zustaendigkeit(analysis, erlaubt, entities=False)
     if not countries and ohne_daten:
         logger.info("wgi: nicht zustaendig fuer %s — kein Ersatzland", ohne_daten)
         return empty
