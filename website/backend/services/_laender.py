@@ -62,6 +62,15 @@ from services._schreibweise import normalisiere
 
 # ISO3 -> Aliasse (deutsch + englisch, klein, ungefaltet lesbar).
 #
+# Vier weitere Kurzformen, nachgemessen an 1.173 echten Claims des Projekts
+# (Stresstests + QA-Batterien): „eu" 42 Treffer, alle meinen die EU; „brd"
+# 1 Treffer, meint Deutschland; „vae"/„uae" 0 Treffer, standen aber in der
+# CAT-Karte. „eu" war bewusst ausgeschlossen, weil es als nackter Teilstring
+# in „Feuerwehr" steckt (#110) — unter der Wortgrenzen-Pruefung hier ist genau
+# das unmoeglich, und ein Test haelt den Feuerwehr-Fall fest. „us" bleibt
+# draussen: im Korpus stimmen alle 6 Treffer („US-Dollar"), aber das englische
+# Pronomen („harms us") kann ein deutscher Korpus nicht messen.
+#
 # Aliasse haben mindestens vier Zeichen — mit zwei gemessenen Ausnahmen:
 # „usa" (in vier der alten Karten) und „uk" (in wgi). Beide sind die
 # haeufigste Schreibweise ueberhaupt, und unter der Wortgrenzen-Pruefung sind
@@ -76,7 +85,7 @@ ALIASSE: dict[str, tuple[str, ...]] = {
     "AGO": ("angola", "angolanisch"),
     "ALB": ("albania", "albanian", "albanien", "albanisch"),
     "AND": ("andorra", "andorranisch"),
-    "ARE": ("emirate", "united arab emirates", "vereinigte arabische emirate"),
+    "ARE": ("emirate", "uae", "united arab emirates", "vae", "vereinigte arabische emirate"),
     "ARG": (
         "argentina", "argentine", "argentinian", "argentinien",
         "argentinisch"
@@ -153,7 +162,7 @@ ALIASSE: dict[str, tuple[str, ...]] = {
     "CYM": ("cayman islands", "kaiman-inseln", "kaimaninseln"),
     "CYP": ("cypriot", "cyprus", "zypern", "zypriotisch"),
     "CZE": ("czech", "czech republic", "czechia", "tschechien", "tschechisch"),
-    "DEU": ("bundesrepublik", "deutsch", "deutschland", "german", "germany"),
+    "DEU": ("brd", "bundesrepublik", "deutsch", "deutschland", "german", "germany"),
     "DJI": ("djibouti", "dschibuti"),
     "DMA": ("dominica",),
     "DNK": (
@@ -170,7 +179,7 @@ ALIASSE: dict[str, tuple[str, ...]] = {
     "ESP": ("spain", "spanien", "spanisch", "spanish"),
     "EST": ("estland", "estnisch", "estonia", "estonian"),
     "ETH": ("aethiopien", "ethiopia", "ethiopian", "äthiopien"),
-    "EUR": ("europa", "europe", "european union", "europäische union"),
+    "EUR": ("eu", "europa", "europe", "european union", "europäische union"),
     "FIN": ("finland", "finnisch", "finnish", "finnland"),
     "FJI": ("fidschi", "fiji"),
     "FRA": ("france", "frankreich", "franzoesisch", "französisch", "french"),
@@ -439,6 +448,16 @@ _CODE_RANG: dict[str, int] = {"XKX": 0, "RKS": 1}
 
 
 @lru_cache(maxsize=1)
+def _codes_je_alias() -> dict[str, frozenset[str]]:
+    """Normalisierter Alias -> alle Codes, die ihn fuehren (meist genau einer)."""
+    von: dict[str, set[str]] = {}
+    for iso, al in ALIASSE.items():
+        for a in al:
+            von.setdefault(normalisiere(a), set()).add(iso)
+    return {a: frozenset(i) for a, i in von.items()}
+
+
+@lru_cache(maxsize=1)
 def _suchreihenfolge() -> tuple[tuple[str, str], ...]:
     """(normalisierter Alias, ISO3), längste zuerst — siehe Regel 2."""
     paare = [(normalisiere(a), iso) for iso, al in ALIASSE.items() for a in al]
@@ -464,17 +483,29 @@ def finde(text: str, erlaubt: frozenset[str] | None = None,
     treffer: list[tuple[int, str]] = []
     gesehen: set[str] = set()
     for alias, iso in _suchreihenfolge():
-        if iso in gesehen or (erlaubt is not None and iso not in erlaubt):
+        if iso in gesehen:
+            continue
+        gesperrt = erlaubt is not None and iso not in erlaubt
+        # Derselbe Alias gehoert auch einem erlaubten Code (Kosovo: XKX/RKS)?
+        # Dann nicht verbrauchen — der erlaubte Code kommt gleich dran.
+        if gesperrt and _codes_je_alias()[alias] & erlaubt:
             continue
         fund = _muster(alias).search(heu)
         if not fund:
             continue
-        gesehen.add(iso)
-        treffer.append((fund.start(), iso))
         # Regel 3: Fundstelle verbrauchen, damit ein kuerzerer Alias nicht
-        # dieselbe Stelle noch einmal trifft ("niger" in "nigeria").
+        # dieselbe Stelle noch einmal trifft ("niger" in "nigeria") — AUCH
+        # wenn das Land gesperrt ist. Frueher wurde ein gesperrter Alias
+        # uebersprungen, ohne seine Stelle zu verbrauchen: mit `erlaubt` ohne
+        # PRK traf dann „korea" in „North Korea" und lieferte SUEDkorea.
+        # Gemessen ueber die ganze Tabelle: 29 solcher Lecks (Suedsudan ->
+        # Sudan, Guinea-Bissau -> Guinea, Republic of China -> China, ...).
         heu = (heu[:fund.start()] + " " * (fund.end() - fund.start())
                + heu[fund.end():])
+        if gesperrt:
+            continue
+        gesehen.add(iso)
+        treffer.append((fund.start(), iso))
     treffer.sort()
     return [iso for _, iso in treffer[:max_n]]
 
@@ -493,3 +524,76 @@ def aus_analyse(analysis: dict, erlaubt: frozenset[str] | None = None,
                 if len(gefunden) >= max_n:
                     return gefunden
     return gefunden
+
+
+# Orte, die kein Staat sind. Sie stehen im Verzeichnis, weil einzelne
+# Datensaetze Aggregate fuehren (WID: Welt und Europa). Fuer einen Konnektor,
+# der pro Staat abfragt, sind sie nie ein gueltiges Ziel.
+REGIONEN = frozenset({"EUR", "WLD"})
+
+
+def zustaendigkeit(analysis: dict, erlaubt: frozenset[str] | None,
+                   max_n: int = 3, text: str | None = None,
+                   bereinigen=None,
+                   entities: bool = True) -> tuple[list[str], list[str]]:
+    """Welche genannten Orte kann der Datensatz beantworten — und welche nicht?
+
+    Rueckgabe ``(mit_daten, ohne_daten)``.
+
+    Anlass (QA50F-Nachgang, 2026-09-13): „In Nordkorea gibt es keine freien
+    Wahlen" bekam von Freedom House „Austria: 94/100 (Free)". Nachgemessen
+    ueber alle Laender-Konnektoren — derselbe Fehler in zwoelf, in drei
+    Varianten:
+
+        DACH/Oesterreich statt des Landes   freedom_house, polity5, vdem, cat,
+                                            wid, rsf, transparency, idea, wgi
+        Top/Bottom-Uebersicht statt Land    mipex (Nordkorea -> Schweden),
+                                            bti (Laos -> Taiwan)
+        EU-Durchschnitt statt Land          easie
+
+    Die Ursache war ueberall dieselbe Regel: „kein BEKANNTES Land erkannt ->
+    Default". Ein Land ausserhalb des Datensatzes sieht dann aus wie „gar kein
+    Land genannt". Richtig ist: nur ein Claim OHNE Ortsangabe bekommt den
+    Default; ein genannter Ort ohne Daten bekommt nichts. Ein falsches Land
+    mit echter Zahl ist schlimmer als kein Treffer — die Zahl stimmt, nur
+    gehoert sie zu einem anderen Land, und das faellt niemandem auf.
+
+    ``mit_daten`` sucht mit ``erlaubt`` — sonst ginge das Kosovo verloren,
+    das die Datensaetze teils als XKX, teils als RKS fuehren. ``ohne_daten``
+    wird nur bestimmt, wenn ``mit_daten`` leer ist: sobald der Claim einen
+    beantwortbaren Ort nennt, ist ein zweiter, unbeantwortbarer kein Grund,
+    zu schweigen.
+
+    ``bereinigen`` wird auf jeden Text angewandt, bevor gesucht wird — fuer
+    Quellen, deren eigener Name wie ein Ort klingt („World Inequality
+    Database" ist kein Claim ueber die Welt).
+
+    ``entities=False`` fuer Konnektoren, die bisher bewusst nur NER und Claim
+    lasen (rsf, transparency, idea, wgi ueber ``aus_analyse``): die flache
+    Entity-Liste des Analyzers kann halluzinierte Eintraege enthalten (siehe
+    ``unhcr.py``). Wer sie vorher nicht las, soll durch diese Regel nicht
+    anfangen, sie zu lesen.
+    """
+    ner = (analysis.get("ner_entities") or {}).get("countries") or []
+    haupt = text if text is not None else (analysis.get("claim") or "")
+    teile = [str(c) for c in ner] + [str(haupt), str(analysis.get("original_claim") or "")]
+    if entities:
+        teile += [str(e) for e in (analysis.get("entities") or []) if e]
+    if bereinigen is not None:
+        teile = [bereinigen(t) for t in teile]
+    teile = [t for t in teile if t and t.strip()]
+
+    mit: list[str] = []
+    for t in teile:
+        for iso in finde(t, erlaubt, max_n):
+            if iso not in mit:
+                mit.append(iso)
+    if mit or erlaubt is None:
+        return mit[:max_n], []
+
+    ohne: list[str] = []
+    for t in teile:
+        for iso in finde(t, None, max_n):
+            if iso not in ohne:
+                ohne.append(iso)
+    return [], ohne[:max_n]

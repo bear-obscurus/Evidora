@@ -59,6 +59,7 @@ import logging
 import os
 import time
 
+from services import _laender as _LAENDER
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
@@ -179,26 +180,23 @@ def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
     inequality" / "european inequality" stammt, ignorieren — der Begriff
     referenziert die Datenbank, nicht das Aggregat-Gebiet.
     """
-    # Sanitize: brand-collisions ausblenden, damit "WID.world" nicht WLD triggert.
-    sanitized = claim_lc
-    for noise in (
+    # Ueber das gemeinsame Verzeichnis. Die eigene Suche war ein Teilstring-
+    # Vergleich: „korea" steckt in „nordkorea", und „Ungleichheit in Nordkorea"
+    # bekam Suedkorea — ein plausibles, falsches Land.
+    return _LAENDER.finde(_ohne_markennamen(claim_lc),
+                          frozenset(data.get("shares") or {}), max_n=5)
+
+
+def _ohne_markennamen(text: str) -> str:
+    """Markennamen ausblenden, die wie ein Ort klingen: „WID.world" und
+    „World Inequality Database" sind kein Claim ueber die Welt."""
+    sanitized = normalisiere(text or "")
+    for noise in norm_terme(
         "wid.world", "wid world", "world inequality database",
         "world inequality report", "world inequality lab",
     ):
         sanitized = sanitized.replace(noise, " ")
-
-    aliases = _country_aliases(data)
-    found: list[str] = []
-    # Iterate by longest alias first, damit "südkorea" nicht zu "korea" entartet.
-    flat: list[tuple[str, str]] = []
-    for iso3, alist in aliases.items():
-        for a in alist:
-            flat.append((a.lower(), iso3))
-    flat.sort(key=lambda x: len(x[0]), reverse=True)
-    for alias, iso3 in flat:
-        if alias in sanitized and iso3 not in found:
-            found.append(iso3)
-    return found
+    return sanitized
 
 
 def _has_direct_trigger(claim_lc: str) -> bool:
@@ -550,21 +548,16 @@ async def search_wid(analysis: dict) -> dict:
     data_year = int(data.get("data_year", 2022))
 
     # Country-Detection: Claim + Entities + NER-Countries
-    requested = _detect_countries_in_claim(matchable, data)
-    ner_countries = (analysis.get("ner_entities") or {}).get("countries") or []
-    if ner_countries:
-        ner_lc = " ".join(str(c).lower() for c in ner_countries)
-        for c in _detect_countries_in_claim(ner_lc, data):
-            if c not in requested:
-                requested.append(c)
-    entities = analysis.get("entities") or []
-    if entities:
-        ent_lc = " ".join(str(e).lower() for e in entities)
-        for c in _detect_countries_in_claim(ent_lc, data):
-            if c not in requested:
-                requested.append(c)
+    requested, ohne_daten = _LAENDER.zustaendigkeit(
+        analysis, frozenset(data.get("shares") or {}), max_n=5,
+        text=matchable, bereinigen=_ohne_markennamen)
 
-    # Wenn kein Land erkannt: DACH-Default.
+    # Ein genannter Ort ohne WID-Werte bekommt NICHTS — kein Ersatzland.
+    if not requested and ohne_daten:
+        logger.info("wid: nicht zustaendig fuer %s — kein Ersatzland", ohne_daten)
+        return empty
+
+    # Nur ein Claim OHNE Ortsangabe bekommt den DACH-Default.
     if not requested:
         requested = list(_DEFAULT_COUNTRIES)
 

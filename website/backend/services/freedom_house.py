@@ -88,6 +88,7 @@ import logging
 import os
 import re
 
+from services import _laender as _LAENDER
 from services._schreibweise import normalisiere, norm_terme
 from services._static_cache import load_json_mtime_aware
 from services._skala import richtung as _richtung
@@ -174,24 +175,14 @@ def _load_data() -> dict | None:
     return load_json_mtime_aware(STATIC_JSON_PATH)
 
 
-def _country_aliases(data: dict) -> dict:
-    """Country-Code → Liste von DE/EN-Substring-Aliassen."""
-    return data.get("country_aliases") or {}
-
-
 def _detect_countries_in_claim(claim_lc: str, data: dict) -> list[str]:
     """Erkenne welche ISO3-Country-Codes der Claim erwähnt.
 
     Returns Liste der ISO3-Codes (jedes Land höchstens einmal).
     """
-    aliases = _country_aliases(data)
-    found: list[str] = []
-    for iso3, alias_list in aliases.items():
-        for alias in alias_list:
-            if normalisiere(alias) in claim_lc:
-                found.append(iso3)
-                break  # nur einmal pro Land
-    return found
+    # Ueber das gemeinsame Verzeichnis (Wortgrenzen, laengste zuerst,
+    # Fundstelle verbrauchen), eingeschraenkt auf die Laender mit Rating.
+    return _LAENDER.finde(claim_lc, frozenset(data.get("ratings") or {}), max_n=5)
 
 
 def _has_fh_keyword(claim_lc: str) -> bool:
@@ -292,16 +283,13 @@ def _select_primary_country(
 ) -> str | None:
     """Wähle das primäre Land für indicator_name + country-Feld.
 
-    Erstes Match aus dem Claim mit verfügbaren Daten. Wenn keine Country-
-    Detection erfolgt ist, fällt auf AUT zurück.
+    Erstes Match aus dem Claim mit verfügbaren Daten — sonst None. Bis zum
+    Laender-Rueckfall-Nachgang fiel die Auswahl hier auf AUT zurück: „In
+    Nordkorea gibt es keine freien Wahlen" bekam „Austria: 94/100 (Free)".
     """
     for c in requested_countries:
         if c in ratings:
             return c
-    if "AUT" in ratings:
-        return "AUT"
-    for k in ratings:
-        return k
     return None
 
 
@@ -509,16 +497,17 @@ async def search_freedom_house(analysis: dict) -> dict:
     if not _has_fh_keyword(claim_lc):
         return empty
 
-    # Country-Detection: Claim selbst + Entity-Liste.
-    requested_countries = _detect_countries_in_claim(claim_lc, data)
-    entities = (analysis.get("entities") or [])
-    if entities:
-        ents_lc = " ".join(str(e).lower() for e in entities)
-        for c in _detect_countries_in_claim(ents_lc, data):
-            if c not in requested_countries:
-                requested_countries.append(c)
+    # Country-Detection: Claim, NER und Entity-Liste.
+    requested_countries, ohne_daten = _LAENDER.zustaendigkeit(
+        analysis, frozenset(data.get("ratings") or {}), max_n=5, text=claim)
 
-    # Wenn keine Land-Detection: DACH-Default.
+    # Ein genannter Ort ohne FH-Rating bekommt NICHTS — kein Ersatzland.
+    if not requested_countries and ohne_daten:
+        logger.info("freedom_house: nicht zustaendig fuer %s — kein Ersatzland",
+                    ohne_daten)
+        return empty
+
+    # Nur ein Claim OHNE Ortsangabe bekommt den DACH-Default.
     if not requested_countries:
         requested_countries = list(_DEFAULT_COUNTRIES_FOR_DACH_CLAIMS)
 
