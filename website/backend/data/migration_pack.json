@@ -90,7 +90,8 @@
       "claim_phrasings_handled": [
         "Migranten sind krimineller als Deutsche",
         "Ausländer begehen mehr Straftaten",
-        "Geflüchtete sind eine Sicherheitsgefahr"
+        "Geflüchtete sind eine Sicherheitsgefahr",
+        "Nichtdeutsche sind unter den Tatverdächtigen in Deutschland überrepräsentiert"
       ],
       "trigger_keywords": [
         "migranten krimineller",
@@ -115,7 +116,12 @@
           "asyl",
           "geflüchtete",
           "gefluechtete",
-          "zuwanderer"
+          "zuwanderer",
+          "nichtdeutsch",
+          "nicht deutsch",
+          "ohne deutschen pass",
+          "staatsangehörigkeit",
+          "staatsangehoerigkeit"
         ],
         [
           "kriminell",
@@ -128,7 +134,10 @@
           "gefahr",
           "gefährlich",
           "gefaehrlich",
-          "krimineller"
+          "krimineller",
+          "tatverdächtig",
+          "tatverdaechtig",
+          "kriminalstatistik"
         ]
       ],
       "source_label": "BKA-PKS Methodik + Feltes Univ. Bochum + KFN Hannover + LTO + correctiv",
