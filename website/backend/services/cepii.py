@@ -61,6 +61,7 @@ import re
 import time
 from urllib.parse import quote_plus
 
+from services import _laender as _LAENDER
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
@@ -264,27 +265,23 @@ def _detect_countries(claim_lc: str) -> list[str]:
     """
     if not claim_lc:
         return []
-    found: list[tuple[int, str]] = []
-    seen: set[str] = set()
-    for iso3, aliases in _COUNTRY_ALIASES.items():
-        # Longest-alias-first verhindert dass kurzer Alias (z.B. "uk")
-        # einen längeren Alias maskiert.
-        for alias in sorted(aliases, key=len, reverse=True):
-            idx = claim_lc.find(alias)
-            if idx >= 0 and iso3 not in seen:
-                found.append((idx, iso3))
-                seen.add(iso3)
-                break
-        if iso3 in seen:
+    # Namen ueber das gemeinsame Verzeichnis (Wortgrenzen, laengste zuerst,
+    # Fundstelle verbrauchen), in Textreihenfolge. Die eigene Suche war
+    # claim_lc.find(alias): „korea" steckt in „nordkorea", und „Handel
+    # zwischen Nordkorea und Deutschland" wurde zu Suedkorea<->Deutschland.
+    found: list[str] = list(
+        _LAENDER.finde(claim_lc, frozenset(_COUNTRY_ALIASES), max_n=3))
+    # ISO-3-Code als nacktes Token mit Wortgrenze (\b…\b).
+    # Beispiel: "DEU FRA" / "BACI DEU AUT" / "Export DEU→FRA".
+    token: list[tuple[int, str]] = []
+    for iso3 in _COUNTRY_ALIASES:
+        if iso3 in found:
             continue
-        # ISO-3-Code als nacktes Token mit Wortgrenze (\b…\b).
-        # Beispiel: "DEU FRA" / "BACI DEU AUT" / "Export DEU→FRA".
         m = re.search(rf"\b{iso3.lower()}\b", claim_lc)
         if m is not None:
-            found.append((m.start(), iso3))
-            seen.add(iso3)
-    found.sort(key=lambda t: t[0])
-    return [iso for _, iso in found[:3]]
+            token.append((m.start(), iso3))
+    found += [iso for _, iso in sorted(token)]
+    return found[:3]
 
 
 # ---------------------------------------------------------------------------

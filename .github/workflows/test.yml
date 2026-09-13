@@ -345,6 +345,7 @@ jobs:
             tests/test_frontex_routen_einordnung.py \
             tests/test_vage_mengenangaben.py \
             tests/test_laender_zustaendigkeit.py \
+            tests/test_live_dienste_kein_ersatzland.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
