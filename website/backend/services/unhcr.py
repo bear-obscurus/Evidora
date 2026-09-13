@@ -64,6 +64,45 @@ def _detect_countries(text: str) -> tuple[str | None, str | None]:
     return coa, coo
 
 
+# The live API mixes types within the count fields: `refugees` arrives as
+# int, but for many countries `idps`/`ooc`/`hst`/`stateless` arrive as the
+# string "0", `returned_refugees` flips between 5000 and "0" year by year,
+# and `oip` is "-" (checked 2026-09-13, coa=AUT/DEU/TUR/CHE, coo=SYR/UKR).
+# Summing raw values raised TypeError on the first "0" and dropped ALL
+# population results for any country claim.
+def _to_count(value) -> int | None:
+    """UNHCR count value -> int. Missing/null counts as 0; anything
+    non-numeric ("-", "", "n/a") returns None so the caller can skip it."""
+    if value is None:
+        return 0
+    if isinstance(value, bool):
+        return None
+    try:
+        if isinstance(value, str):
+            value = float(value.strip())
+        if isinstance(value, (int, float)):
+            return int(value)
+    except (ValueError, OverflowError):
+        pass
+    return None
+
+
+def _add_count(total: int, item: dict, field: str, skipped: list[str]) -> int:
+    value = _to_count(item.get(field))
+    if value is None:
+        skipped.append(f"{item.get('year')}/{field}={item.get(field)!r}")
+        return total
+    return total + value
+
+
+def _log_skipped(request: str, skipped: list[str]) -> None:
+    if skipped:
+        logger.warning(
+            f"UNHCR {request}: {len(skipped)} non-numeric value(s) skipped: "
+            f"{', '.join(skipped[:5])}"
+        )
+
+
 async def search_unhcr(analysis: dict) -> dict:
     """Search UNHCR Refugee Data for population and asylum statistics."""
     claim = analysis.get("claim", "")
@@ -99,6 +138,7 @@ async def search_unhcr(analysis: dict) -> dict:
 
                 # Aggregate by year
                 yearly = {}
+                skipped: list[str] = []
                 for item in data.get("items", []):
                     year = item.get("year")
                     if year not in yearly:
@@ -109,9 +149,11 @@ async def search_unhcr(analysis: dict) -> dict:
                             "coa": item.get("coa_name", ""),
                             "coo": item.get("coo_name", ""),
                         }
-                    yearly[year]["refugees"] += item.get("refugees", 0) or 0
-                    yearly[year]["asylum_seekers"] += item.get("asylum_seekers", 0) or 0
-                    yearly[year]["idps"] += item.get("idps", 0) or 0
+                    for field in ("refugees", "asylum_seekers", "idps"):
+                        yearly[year][field] = _add_count(
+                            yearly[year][field], item, field, skipped
+                        )
+                _log_skipped("population", skipped)
 
                 for year in sorted(yearly.keys(), reverse=True)[:5]:
                     y = yearly[year]
@@ -161,11 +203,15 @@ async def search_unhcr(analysis: dict) -> dict:
 
                     # Aggregate applications by year
                     yearly_apps = {}
+                    skipped_apps: list[str] = []
                     for item in data.get("items", []):
                         year = item.get("year")
                         if year not in yearly_apps:
                             yearly_apps[year] = 0
-                        yearly_apps[year] += item.get("applied", 0) or 0
+                        yearly_apps[year] = _add_count(
+                            yearly_apps[year], item, "applied", skipped_apps
+                        )
+                    _log_skipped("asylum applications", skipped_apps)
 
                     coa_name = ""
                     if data.get("items"):
