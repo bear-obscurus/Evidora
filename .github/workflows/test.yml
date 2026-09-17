@@ -238,6 +238,10 @@ jobs:
     #                                  Mehrwort-Begriff: 21 % -> 90 %)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
+    #   - test_unhcr_zaehlfelder_als_string (UNHCR-API liefert idps/ooc/hst
+    #                                  als "0"-String: `0 += "0"` warf und
+    #                                  verwarf ALLE Bevoelkerungszahlen fuer
+    #                                  Laender-Claims; gemockt, kein Netz)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -348,7 +352,8 @@ jobs:
             tests/test_live_dienste_kein_ersatzland.py \
             tests/test_tatverdaechtige_nichtdeutsche_trigger.py \
             tests/test_qa50b_rest.py \
-            tests/test_wikidata_reliability.py
+            tests/test_wikidata_reliability.py \
+            tests/test_unhcr_zaehlfelder_als_string.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
