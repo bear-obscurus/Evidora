@@ -113,13 +113,6 @@
    "seit": "2026-09-22",
    "grund": "INHALT: Fakt rechnet '1,1 Mrd EU-GAP + 600 Mio national = ~7 Mrd'; Gruener Bericht 2025: 2,65 Mrd gesamt 2024. Link war erfunden (jcr:fixme)"
   },
-  "https://www.bundeskanzleramt.gv.at/themen/oea/eurobarometer.html": {
-   "dateien": [
-    "demokratie_pack.json"
-   ],
-   "seit": "2026-09-22",
-   "grund": "INHALT: Fakt: AT-Demokratiezufriedenheit 67 % (EU 53 %); Eurobarometer 2024: AT 63 % (Fruehjahr) bzw. 60 % (Herbst), EU 55 %"
-  },
   "https://www.dihk.de/de/themen-und-positionen/recht-steuern/internationales-wirtschaftsrecht/made-in-germany": {
    "dateien": [
     "welthandel_pack.json"
