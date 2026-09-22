@@ -323,25 +323,23 @@
     {
       "id": "mobilitaet-klimaticket_bilanz_2026",
       "topic": "klimaticket_bilanz_konsens",
-      "scope": "Klimaticket Österreich Bilanz 2024 — Verkaufte Tickets, Modal-Shift, Subventions-Volumen",
+      "scope": "KlimaTicket Österreich — Nachfrage, Budgetzuschüsse, erwartete Klimawirkung (Rechnungshof 2025), Preise 2026; Deutschlandticket-Vergleich",
       "year": 2024,
-      "source_url": "https://www.klimaticket.at/de/news/dreijahresbilanz/",
-      "secondary_url": "https://www.bmk.gv.at/themen/mobilitaet/klimaticket.html",
-      "source_label": "BMK Bundesministerium Klimaschutz Österreich Klimaticket-Bilanz 2024 (3-Jahresbilanz seit Oktober 2021) + ÖBB-VOR-Klimaticket-Geschäftsbericht 2024 + Verkehrsclub Österreich VCÖ Studien zur Klimaticket-Wirkung 2024 + Land Wien Wiener Mobilitäts-Studie + DLR Deutschland-Ticket-Wirkungs-Studien als Vergleichs-Referenz",
-      "headline": "BMK Bilanz Klimaticket Österreich nach 3 Jahren (2021-2024): ~250.000 verkaufte Klimatickets, ~30 % Modal-Shift Auto→Bahn bei Pendlern (WIFO 2024); jährliche Subvention ~150-200 Mio EUR; Modell wird in DE als 'Deutschland-Ticket' 49 EUR seit 2023 imitiert",
+      "source_url": "https://www.rechnungshof.gv.at/rh/home/home/2025_38_OOe_6_Sbg_3_KlimaTicket.pdf",
+      "secondary_url": "https://www.klimaaktivmobil.at/fachpersonen/mobilitaet/studien/drei-jahre-klimaticket-eine-bilanz",
+      "source_label": "Rechnungshof Österreich, Bericht „KlimaTicket\" (Reihe BUND 2025/38, Oktober 2025) + klimaaktiv „Drei Jahre KlimaTicket – eine Bilanz\" + klimaticket.at (Tarife 2026) + Bundesregierung (Deutschlandticket)",
+      "headline": "KlimaTicket Ö laut Rechnungshof 2025: 2023 etwa doppelt so viele verkauft wie prognostiziert (243.754 statt 124.000); Budgetzuschüsse Oktober 2021 bis Ende 2024: 520 Mio. EUR (plus 610 Mio. EUR für regionale Klimatickets); erwartete Klimawirkung gering: 0,11 Mio. t CO2e 2024, rund 0,2 % der Verkehrsemissionen",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Klimaticket bringt nichts' oder 'Klimaticket ist nur Subvention für Großstädter' ist EMPIRISCH FALSCH. Empirische Lage: (1) BMK BILANZ KLIMATICKET 2024 (3-Jahres-Bilanz seit Oktober 2021): ~250.000 verkaufte Klimatickets Ö. Stand Q4 2024. Ticket-Preis: 1.095 EUR/Jahr (seit Oktober 2024 wegen Inflations-Anpassung), ursprünglich 1.095 EUR (2021-2024 stabil). Studierende/Senioren günstiger (821 EUR). Ticket gilt für ALLE öffentlichen Verkehrsmittel in Österreich (ÖBB + Westbahn + Regional-Bahnen + Stadt-Verkehr + Bus). (2) MODAL-SHIFT-WIRKUNG VCÖ + BMK-3-Jahresbilanz 2024: bei Pendlern, die Klimaticket gekauft haben, geschätzt ~25-30 % Auto-Fahrten verlagert auf Bahn/ÖV (Größenordnung aus VCÖ-Befragungen + BMK-Modal-Shift-Schätzung). Für Gesamt-Pendler-Verkehr Österreich: ~5-7 % CO2-Reduktion durch Klimaticket-Wirkung. Detaillierte WIFO-Klimaticket-Studie steht aus — die WIFO-2024-Publikation Köppl/Schratzenstaller 'Budgetäre Kosten und Risiken durch klimapolitisches Nichthandeln' fokussiert auf Kosten von Untätigkeit (NICHT Klimaticket-spezifisch). (3) SUBVENTIONS-VOLUMEN: Klimaticket wird über Bund + Länder + Verkehrsverbünde finanziert. Netto-Defizit (Differenz Ticket-Erlös vs. Verkehrs-Erlös der Verbünde) ~150-200 Mio EUR/Jahr. Zum Vergleich: AT klima-schädliche Auto-Subventionen ~3-4 Mrd EUR/Jahr (Pendlerpauschale + Diesel-Privileg). (4) DE-VERGLEICH: 'Deutschland-Ticket' 49 EUR/Monat = 588 EUR/Jahr seit Mai 2023 (zunächst als Nachfolger des 9-Euro-Tickets 2022). Geltungsbereich nur für Nahverkehr (Regional + Stadt-Verkehr), NICHT für Fernverkehr ICE/IC. Verkaufte Tickets DE 2024: ~13 Mio. Wirkungs-Studien (DLR 2024): ~16-20 % Modal-Shift. Subventions-Volumen DE: ~3 Mrd EUR/Jahr. (5) NETTO-CO2-EFFEKT: Klimaticket AT geschätzt -150-300 kt CO2/Jahr (BMK + WIFO). Deutschland-Ticket DE: -3-5 Mt CO2/Jahr (UBA-Berechnung 2024). (6) FAKTENCHECK-RELEVANT: Aussagen wie 'Klimaticket bringt nichts' sind empirisch widerlegt (250k Tickets + 30 % Modal-Shift bei Pendlern). Aussagen wie 'Klimaticket ist riesige Subvention' verkennen Größenordnung (150 Mio vs. 3 Mrd Auto-Subventionen). Pack distanziert sich von normativer Pro/Contra-Wertung — präsentiert nur empirische Bilanz.",
-        "bmk_3jahresbilanz_2024": "BMK Klimaticket-3-Jahresbilanz Oktober 2021 — Oktober 2024: ~250.000 verkaufte Klimatickets österreichweit. Geographisches Profil: 60 % in Ballungsräumen Wien + Graz + Linz + Salzburg + Innsbruck, 40 % in ländlichen Gebieten. Demografisches Profil: 40 % Studierende/Schüler, 35 % Erwerbstätige, 20 % Senioren, 5 % andere. ~85 % der Klimaticket-Käufer sind Neu-Bahn-Nutzer oder erhöhen Bahn-Nutzung deutlich.",
-        "vcoe_bmk_modalshift_2024": "VCÖ + BMK-3-Jahresbilanz 2024 (Klimaticket-Befragungen): geschätzt ~25-30 % Reduktion der Auto-Fahrten bei Klimaticket-Pendlern. Bei Wochenend-Reisen ~25 % Reduktion Auto, ~40 % mehr Bahn/ÖV-Reisen. Modal-Shift stärker im urbanen Raum als ländlich. Multiplikator-Effekt: Klimaticket-Besitzer fahren auch privat öfter mit ÖV. Methodischer Vergleich: WIFO 2024 Köppl/Schratzenstaller 'Budgetäre Kosten und Risiken durch klimapolitisches Nichthandeln' = Kosten-Studie (NICHT Klimaticket-spezifisch). Eine umfassende Klimaticket-Wirkungs-Studie steht noch aus.",
-        "subventions_volumen": "Klimaticket-Finanzierung 2024 (BMK Klimaticket-Bilanz): Ticket-Erlöse ~270 Mio EUR. Verkehrserlös der Verbünde ohne Klimaticket-Effekt geschätzt ~430 Mio EUR. Netto-Defizit ~150-200 Mio EUR/Jahr. Wird durch Bund (Hauptanteil ~80 %) + Länder + Verkehrsverbünde finanziert. Vergleich: BMK + UBA Berechnung der AT klima-schädlichen Auto-Subventionen ~3,3-3,7 Mrd EUR/Jahr (Pendlerpauschale 0,8 Mrd + Diesel-Privileg 0,9 Mrd + Dienstwagen-Privileg 1,1 Mrd + KFZ-Steuer-Befreiung 0,5 Mrd).",
-        "deutschland_ticket_de": "Deutschland-Ticket DE Mai 2023 — heute (zunächst als Nachfolger 9-Euro-Ticket Sommer 2022): 49 EUR/Monat = 588 EUR/Jahr (seit Januar 2025 angepasst auf 58 EUR/Monat = 696 EUR/Jahr). Geltungsbereich Nahverkehr (Regional + S-Bahn + Bus + Tram + U-Bahn) DE-weit. KEINE Fernverkehr-Gültigkeit (ICE/IC/EC nicht inkludiert). Verkaufte Tickets 2024 ~13 Mio (Stand Q4 2024). DLR 2024 Wirkungs-Studie: ~16-20 % Modal-Shift bei Pendlern, ~3-5 Mt CO2-Reduktion/Jahr. Subventions-Volumen DE: ~3 Mrd EUR/Jahr Bund + Länder.",
-        "klimaticket_co2_effekt": "BMK + WIFO Schätzung Klimaticket-CO2-Effekt: -150 bis -300 kt CO2/Jahr in Österreich. Bandbreite wegen Modal-Shift-Annahmen. Pro-Klimaticket-Besitzer: ~600-1.200 kg CO2-Reduktion/Jahr durch verlagerte Auto-Fahrten. Effekt linear mit Abschneide-Quote (durchschnittlich Pendler-Auto-Pendler ~3.000 km/Jahr).",
-        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+        "kernsatz_fuer_synthesizer": "Amtliche Bilanz: Rechnungshof, Bericht „KlimaTicket\" (Reihe BUND 2025/38, Oktober 2025). (1) NACHFRAGE HOCH: 2023 wurden 243.754 KlimaTickets Österreich verkauft — etwa doppelt so viele wie prognostiziert (124.000). Dem Verkehrsministerium war laut RH nicht bekannt, ob die Nachfrage auf Neukundinnen und Neukunden oder auf Umsteiger aus anderen Ticketkategorien zurückging. (2) KLIMAWIRKUNG GERING: Das Verkehrsministerium ging von einer Reduktion um 0,11 Mio. t CO2-Äquivalente im Jahr 2024 allein durch Verlagerung von Pkw-Fahrten auf den Schienenpersonenverkehr aus. Die Treibhausgasemissionen des Verkehrssektors betrugen 2023 rd. 20 Mio. t — die Reduktion entspricht rund 0,2 %. Das ist ein ERWARTUNGSWERT des Ministeriums, keine gemessene Wirkung; ein vergleichbares Ziel für Verlagerungen auf den Bus existierte nicht. (3) KOSTEN: Budgetzuschüsse für das KlimaTicket Österreich 2024: 182 Mio. EUR; Oktober 2021 bis Ende 2024: 520 Mio. EUR (geplant waren 613 Mio. EUR). Zuschüsse des Bundes für regionale Klimatickets 2024: 214 Mio. EUR; Oktober 2021 bis Ende 2024: 610 Mio. EUR. Zusammen 2024: 396 Mio. EUR. VERDICT-HINWEISE aus dem Prüfbericht: „Das Klimaticket bringt nichts\" ist in dieser absoluten Form nicht gedeckt (hohe Nachfrage, erwartete CO2-Reduktion größer null) → mostly_false. „Das Klimaticket bringt fürs Klima wenig\" ist gedeckt → mostly_true. „Das Klimaticket hat die CO2-Emissionen stark gesenkt\" → false bzw. mostly_false (rund 0,2 % der Verkehrsemissionen, und nur als Erwartungswert). „Es wurden mehr Klimatickets verkauft als erwartet\" → true. „Das Klimaticket kostet den Staat Hunderte Millionen Euro\" → true (520 Mio. EUR in gut drei Jahren; mit den regionalen Klimatickets 1,13 Mrd. EUR). Das Pack zitiert die Prüfung des Rechnungshofs und bewertet die Maßnahme nicht politisch.",
+        "klimaaktiv_bilanz": "klimaaktiv (Klimaschutzinitiative des Bundes), „Drei Jahre KlimaTicket – eine Bilanz\": Mitte 2023 hatten 250.000 Personen ein bundesweit gültiges KlimaTicket Ö; 20 Prozent der mit dem Ticket zurückgelegten Fahrten wären ohne KlimaTicket im Auto durchgeführt worden; bis 2022 etwa 3 Millionen Autofahrten vermieden; 65.000 t CO2-Äquivalente im Jahr 2022, laut klimaaktiv etwa 0,5 Prozent der verkehrsbedingten Emissionen.",
+        "preise_2026": "KlimaTicket Ö ab 1. Jänner 2026 (klimaticket.at): Classic 1.400 EUR pro Jahr; ermäßigt 1.050 EUR (bis 25 Jahre, ab 65 Jahre, Menschen mit Behinderung); Familienzuschlag 140 EUR für bis zu vier Kinder von 6 bis 15 Jahren.",
+        "deutschlandticket_de": "Deutschlandticket (Nahverkehr in ganz Deutschland, kein ICE/IC): 63 EUR pro Monat seit Jänner 2026 (zuvor 58 EUR ab Jänner 2025, 49 EUR bei der Einführung im Mai 2023). Finanzierung laut Bundesregierung: Bund 1,5 Mrd. EUR pro Jahr (2023 bis 2025), die Länder in gleicher Höhe.",
+        "context": "Pack ist deskriptiv; es zitiert den Rechnungshof und bewertet die Maßnahme nicht."
       },
       "context_notes": [
-        "Wichtige Differenzierung: Klimaticket-Subvention ~150-200 Mio EUR/Jahr ≠ AT klima-schädliche Auto-Subventionen ~3-4 Mrd EUR/Jahr (Größenordnung 1:20).",
-        "WIFO 2024: 30 % Modal-Shift bei Klimaticket-Pendlern empirisch gemessen — KEIN Symbol-Effekt, real beobachtbar.",
-        "DE Deutschland-Ticket 49 EUR (Nahverkehr only) ist nicht direkt vergleichbar mit AT Klimaticket 1.095 EUR (Fern + Nah)."
+        "0,11 Mio. t CO2e (2024) ist der ERWARTUNGSWERT des Verkehrsministeriums laut Rechnungshof, keine gemessene Wirkung — rund 0,2 % der Verkehrsemissionen.",
+        "Nachfrage 2023 etwa doppelt so hoch wie prognostiziert (243.754 statt 124.000); ob Neukunden oder Umsteiger, war dem Ministerium nicht bekannt.",
+        "Budgetzuschüsse Oktober 2021 bis Ende 2024: 520 Mio. EUR (KlimaTicket Ö) plus 610 Mio. EUR (regionale Klimatickets); 2024 zusammen 396 Mio. EUR."
       ],
       "claim_phrasings_handled": [
         "Klimaticket bringt nichts",
@@ -349,7 +347,11 @@
         "Klimaticket-Bilanz ist negativ",
         "Modal-Shift durch Klimaticket existiert nicht",
         "49-Euro-Ticket Deutschland ist Geldverschwendung",
-        "Klimaticket reduziert kein CO2"
+        "Klimaticket reduziert kein CO2",
+        "Es wurden mehr Klimatickets verkauft als erwartet",
+        "Das Klimaticket kostet den Staat Hunderte Millionen Euro",
+        "Das Klimaticket bringt fürs Klima wenig",
+        "Das Deutschlandticket kostet 49 Euro"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
@@ -368,7 +370,9 @@
           "58 euro ticket",
           "ÖBB-Klimaticket",
           "öbb-klimaticket",
-          "klima-jahres-ticket"
+          "klima-jahres-ticket",
+          "63 euro ticket",
+          "63-euro-ticket"
         ],
         [
           "bilanz",
@@ -397,7 +401,22 @@
           "millionen",
           "österreich",
           "oesterreich",
-          "deutschland"
+          "deutschland",
+          "verkauft",
+          "verkauf",
+          "nachfrage",
+          "prognose",
+          "prognostiziert",
+          "erwartet",
+          "kostet",
+          "kosten",
+          "preis",
+          "euro",
+          "teurer",
+          "zuschuss",
+          "zuschüsse",
+          "rechnungshof",
+          "klima"
         ]
       ]
     },
