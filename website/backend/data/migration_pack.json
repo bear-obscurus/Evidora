@@ -593,27 +593,33 @@
     {
       "id": "migration_familiennachzug_2026",
       "topic": "migration_familiennachzug_konsens",
-      "scope": "Familiennachzug zu Asylberechtigten + Subsidiär-Geschützten",
-      "year": 2024,
-      "headline": "Familiennachzug zu subsidiär Geschützten in DE auf 1.000 Visa/Monat begrenzt; Asylberechtigte haben weiterhin Anspruch ohne Limitierung",
+      "scope": "DE: Familiennachzug zu subsidiär Schutzberechtigten, Asylberechtigten und GFK-Flüchtlingen",
+      "year": 2026,
+      "headline": "DE: Familiennachzug zu subsidiär Schutzberechtigten seit 24.7.2025 ausgesetzt, befristet bis 23.7.2027 (§ 104 Abs. 14 AufenthG) — nur Härtefälle nach §§ 22, 23 AufenthG. Die frühere Grenze von 1.000 Visa/Monat (§ 36a, 2018–2025) wird derzeit nicht angewandt. Asylberechtigte und GFK-Flüchtlinge behalten den Anspruch auf Nachzug der Kernfamilie",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'unkontrollierter Familien-Massen-Nachzug' sind FALSE in der pauschalen Form. § 36a AufenthG (DE): Familiennachzug zu SUBSIDIÄR Geschützten ist auf 1.000 Visa pro Monat begrenzt (seit August 2018). Familiennachzug zu ASYLBERECHTIGTEN (Art. 16a GG) + GFK-Flüchtlingen (§ 3 AsylG): Anspruch ohne Quoten, aber mit Voraussetzungen (Sicherungsfähigkeit, Wohnraum). 2024 wurden ~30.000-40.000 Familiennachzugs-Visa erteilt — eine Größenordnung, nicht 'Massen'.",
-        "paragraph_36a_aufenthg": "§ 36a AufenthG: 'Bei Inhabern subsidiären Schutzes wird das Familiennachzug-Verfahren begrenzt durch eine Höchstzahl von 1.000 nationalen Visa pro Monat.' Eingeführt 2018 als Kompromiss. Auswahl nach humanitären Kriterien (Härtefälle, Familien mit Kindern, Krankheits-Bezug).",
-        "asylberechtigte_anspruch": "Asylberechtigte (Art. 16a GG, ~5 % der Schutzgewährungen) + GFK-Flüchtlinge (§ 3 AsylG, ~30-40 % der Schutzgewährungen): Familiennachzugs-Anspruch nach §§ 27-36 AufenthG. Voraussetzung typisch: Sicherungsfähigkeit + Wohnraum (Ausnahmen für Kernfamilie binnen 3 Monaten nach Anerkennung).",
-        "praktische_zahlen_2024": "Auswärtiges Amt + BMI-Statistik 2024: ~30.000-40.000 Familiennachzugs-Visa erteilt. Großteil zu syrischen + afghanischen + irakischen + eritreischen Familien. Verfahrens-Dauer typisch 6-18 Monate, oft 2-3 Jahre.",
-        "kernfamilie_definition": "Kernfamilie nach AufenthG: Ehegatten, minderjährige Kinder. Erwachsene Kinder, Geschwister, Eltern fallen nicht unter den allgemeinen Anspruch — nur in Härtefällen.",
-        "ressourcen_voraussetzung": "Sicherungsfähigkeit + Wohnraum-Voraussetzung wirken faktisch als Limit. Subsidiär Geschützte mit niedrigem Einkommen schaffen die Hürden oft nicht — Familiennachzug bleibt theoretisch möglich, praktisch beschwerlich.",
-        "context": "Pauschale Behauptungen 'jeder Asylberechtigte holt 5-10 Familienangehörige nach' verkennen die rechtlichen + praktischen Hürden. Realer Familiennachzug-Faktor (Anerkannte Personen × durchschnittlich nachgezogenen Familienmitglieder): in Studien zwischen 0,5 und 1,5 — typisch Ehegatten + minderjährige Kinder."
+        "kernsatz_fuer_synthesizer": "RECHTSSTAND DEUTSCHLAND (seit 24.7.2025): Der Familiennachzug zu SUBSIDIÄR Schutzberechtigten ist ausgesetzt (§ 104 Abs. 14 AufenthG). Möglich sind nur Einzelfälle aus völkerrechtlichen oder dringenden humanitären Gründen (§§ 22, 23 AufenthG), ohne Rechtsanspruch. Die Regel 'höchstens 1.000 Visa pro Monat' (§ 36a AufenthG) galt von August 2018 bis 23.7.2025 — wer sie als heute geltend darstellt, beschreibt den früheren Stand. Asylberechtigte (Art. 16a GG) und anerkannte Flüchtlinge nach der Genfer Flüchtlingskonvention (§ 3 AsylG) sind von der Aussetzung NICHT betroffen: Für die Kernfamilie (Ehegatte, minderjährige ledige Kinder, Eltern minderjähriger Schutzberechtigter) besteht weiter ein Anspruch; wird der Antrag binnen drei Monaten nach der Anerkennung gestellt, ist der Nachzug privilegiert (u. a. ohne Nachweis von Lebensunterhalt und Wohnraum, § 29 Abs. 2 AufenthG). Einordnung: 'Deutschland hat den Familiennachzug zu subsidiär Schutzberechtigten ausgesetzt' trifft zu. 'Deutschland hat den Familiennachzug für alle Flüchtlinge gestoppt' trifft nicht zu. 'Familiennachzug ist unbegrenzt / unkontrolliert' trifft nicht zu.",
+        "aussetzung_2025": "Gesetz zur Aussetzung des Familiennachzugs zu subsidiär Schutzberechtigten (BGBl. 2025 I Nr. 173, ausgegeben 23.7.2025), in Kraft seit 24.7.2025; Bundestagsbeschluss 27.6.2025. Wortlaut § 104 Abs. 14 AufenthG: 'Bis zum Ablauf des 23. Juli 2027 wird ein Familiennachzug nach § 36a zu einer Person, der eine Aufenthaltserlaubnis nach § 25 Absatz 2 Satz 1 zweite Alternative erteilt worden ist, nicht gewährt. Die §§ 22 und 23 bleiben unberührt.' Die Aussetzung ist befristet bis 23.7.2027; laut Auswärtigem Amt soll rechtzeitig vorher geprüft werden, ob eine Verlängerung notwendig ist.",
+        "haertefaelle": "Härtefälle: Anzeigen seit 26.7.2025 per E-Mail über das Familienunterstützungsprogramm der IOM; Vorsichtung durch das Bundesverwaltungsamt, Entscheidung durch die Auslandsvertretung. Maßgeblich sind völkerrechtliche und dringende humanitäre Gründe im Einzelfall (§ 22 Satz 1 AufenthG), etwa Dauer der Trennung, Alter der Kinder, schwere Erkrankung oder konkrete Gefährdung (Auswärtiges Amt, BAMF).",
+        "kontingent_2018_2025": "Von 1.8.2018 bis 23.7.2025 galt § 36a AufenthG: kein Anspruch, Nachzug aus humanitären Gründen; 'Monatlich können 1 000 nationale Visa für eine Aufenthaltserlaubnis nach Absatz 1 Satz 1 und 2 erteilt werden.' Das Kontingent war laut Bundestag (hib) seit Juni 2023 ausgeschöpft; das Bundesverwaltungsamt erteilte 2023 11.630 und 2024 erstmals 12.000 Zustimmungen zur Visumerteilung. § 36a steht weiter im Gesetz, wird aber bis 23.7.2027 nicht angewandt.",
+        "vorgeschichte": "Schon von März 2016 bis Ende Juli 2018 war der Nachzug zu subsidiär Schutzberechtigten ausgesetzt (§ 104 Abs. 13 AufenthG, 'Asylpaket II'); danach folgte das 1.000er-Kontingent. Das Bundesverfassungsgericht lehnte am 11.10.2017 einen Eilantrag gegen die damalige Aussetzung ab (2 BvR 1758/17), hat über die Verfassungsmäßigkeit der Aussetzung aber nicht in der Hauptsache entschieden.",
+        "betroffene": "Zum 31.3.2025 lebten laut Ausländerzentralregister 388.074 Menschen mit subsidiärem Schutz (Aufenthaltserlaubnis nach § 25 Abs. 2 Satz 1 Alt. 2 AufenthG) in Deutschland (Bundestag, hib). Wie viele von ihnen Kernfamilie im Ausland haben, ist nicht bekannt.",
+        "kernfamilie_definition": "Kernfamilie nach AufenthG: Ehegatten und minderjährige ledige Kinder; bei minderjährigen Schutzberechtigten die Eltern. Erwachsene Kinder, Geschwister oder weitere Verwandte fallen nicht unter den Anspruch — nur in Härtefällen.",
+        "context": "Die Aussetzung betrifft nur den Nachzug zu subsidiär Schutzberechtigten. Pauschale Behauptungen wie 'jeder Asylberechtigte holt beliebig viele Angehörige nach' verkennen, dass nur die Kernfamilie anspruchsberechtigt ist. Österreich hat eine eigene, abweichende Regelung (Stopp 2025/26, Quote seit August 2026) — siehe den AT-Fakt."
       },
       "context_notes": [
-        "Familiennachzugs-Reform-Diskussion läuft 2024-2026: Vorschläge von SPD/Grünen für Lockerung subsidiärer Schutz, von CDU/CSU/AfD für strikteres Limit.",
-        "EU-RL 2003/86/EG (Familienzusammenführungs-Richtlinie): Mindeststandards für Familiennachzug. DE-Regelung an einigen Stellen restriktiver als EU-Vorgaben (z.B. Sprachtest vor Einreise).",
-        "Klagen vor BVerfG zu § 36a-Limitierung: BVerfG bestätigte 2018 die Verfassungsmäßigkeit der Limitierung."
+        "Rechtsstand September 2026. Die Aussetzung endet mit Ablauf des 23.7.2027, sofern sie nicht verlängert wird.",
+        "Die EU-Familienzusammenführungsrichtlinie 2003/86/EG gilt für anerkannte Flüchtlinge, nicht für subsidiär Schutzberechtigte (Art. 3 Abs. 2 lit. c).",
+        "Korrigiert 2026-09-22: Die frühere Fassung beschrieb 1.000 Visa/Monat als geltend, enthielt ein nicht wörtliches '§ 36a-Zitat', behauptete eine BVerfG-Bestätigung der Verfassungsmäßigkeit (2017 wurde nur ein Eilantrag abgelehnt) und unbelegte Visa- und Anteilszahlen."
       ],
       "claim_phrasings_handled": [
         "Familienzusammenführung verstärkt unkontrolliert die Migration",
         "Jeder Asylberechtigte holt unbegrenzt Familienangehörige nach",
-        "Familiennachzug ist eine Migrations-Lawine"
+        "Familiennachzug ist eine Migrations-Lawine",
+        "Der Familiennachzug zu subsidiär Schutzberechtigten ist auf 1.000 Visa pro Monat begrenzt",
+        "Deutschland hat den Familiennachzug zu subsidiär Schutzberechtigten ausgesetzt",
+        "Deutschland hat den Familiennachzug für alle Flüchtlinge gestoppt",
+        "Anerkannte Flüchtlinge dürfen ihre Familie weiterhin nach Deutschland nachholen",
+        "Die Aussetzung des Familiennachzugs gilt bis 2027"
       ],
       "trigger_keywords": [
         "familiennachzug unkontrolliert",
@@ -621,7 +627,8 @@
         "familienzusammenführung",
         "familiennachzug masse",
         "familiennachzug lawine",
-        "familie nachholen asyl"
+        "familie nachholen asyl",
+        "aussetzung des familiennachzugs"
       ],
       "trigger_composite": [
         [
@@ -650,12 +657,43 @@
           "fluechtling",
           "flüchtling",
           "schutzsuchend",
-          "jeder"
+          "jeder",
+          "subsidiär",
+          "subsidiaer",
+          "schutzberechtigt",
+          "deutschland",
+          "bundesregierung",
+          "kontingent",
+          "visa"
         ]
       ],
-      "source_label": "§ 36a AufenthG + Auswärtiges Amt + BMI-Statistik",
-      "source_url": "https://www.gesetze-im-internet.de/aufenthg_2004/__36a.html",
-      "secondary_url": "https://www.bamf.de/SharedDocs/Meldungen/DE/2024/familiennachzug-2024.html"
+      "trigger_all": [
+        [
+          [
+            "famili"
+          ],
+          [
+            "hole",
+            "nachhol",
+            "nachzug",
+            "zusammenführ",
+            "zusammenfuehr"
+          ],
+          [
+            "subsidiär",
+            "subsidiaer",
+            "schutzberechtigt",
+            "flüchtling",
+            "fluechtling",
+            "deutschland",
+            "aufenthg",
+            "36a"
+          ]
+        ]
+      ],
+      "source_label": "§ 104 Abs. 14 + § 36a AufenthG + BGBl. 2025 I Nr. 173 + BAMF + Auswärtiges Amt + Bundestag (hib) + BVerfG 2 BvR 1758/17",
+      "source_url": "https://www.gesetze-im-internet.de/aufenthg_2004/__104.html",
+      "secondary_url": "https://www.bamf.de/DE/Themen/Asyl/Personengruppen/Familien/familien-node.html"
     }
   ]
 }

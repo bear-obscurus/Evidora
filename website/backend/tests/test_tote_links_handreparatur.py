@@ -118,10 +118,11 @@ def test_jeder_geparkte_link_steht_noch_in_den_daten():
 
 def test_inhaltskonflikte_sind_als_solche_markiert():
     inhalt = [u for u, e in BEKANNT.items() if e["grund"].startswith("INHALT:")]
-    # u. a. Familiennachzug (seit 2025 ausgesetzt), Eurobarometer 67 % vs. 60-63 %,
-    # EFSA-Probenzahlen, Agrarfoerderung "= 7 Mrd", Femizide 31 vs. 26, UBA 8,0 vs. 8,4 Mt
+    # u. a. Eurobarometer 67 % vs. 60-63 %, EFSA-Probenzahlen, Agrarfoerderung
+    # "= 7 Mrd", Femizide 31 vs. 26, UBA 8,0 vs. 8,4 Mt. Der Familiennachzug-
+    # Eintrag ist seit der Fakt-Korrektur (2026-09-22) keiner mehr.
     assert len(inhalt) >= 15
-    for teil in ("familiennachzug-2024", "themen/oea/eurobarometer", "efsajournal/pub/8957",
+    for teil in ("themen/oea/eurobarometer", "efsajournal/pub/8957",
                  "jcr:fixme", "oeffentliche_sicherheit_02_2024", "khg-bilanz"):
         assert any(teil in u for u in inhalt), teil
 
@@ -194,10 +195,18 @@ def test_pflegende_angehoerige_verlinken_die_zitierte_studie():
 
 
 def test_widerspruechliche_quelle_wurde_nicht_untergeschoben():
-    """Familiennachzug: die BAMF-Nachfolgeseite beschreibt die Aussetzung seit
-    2025 — der Fakt behauptet 1.000/Monat als geltend. Also kein Ersatz,
-    sondern geparkt, bis der Fakt korrigiert ist."""
-    f = _fakt("migration_pack.json", "migration_familiennachzug_2026")
-    assert "bamf.de/SharedDocs/Meldungen/DE/2024/familiennachzug-2024" in json.dumps(f)
-    tot = next(u for u in BEKANNT if "familiennachzug-2024" in u)
+    """Eurobarometer: der Fakt nennt 67 % AT-Demokratiezufriedenheit, die
+    Erhebung 2024 misst 63 % bzw. 60 %. Ein Ersatzlink wuerde dem Fakt
+    widersprechen — also geparkt, bis der Fakt korrigiert ist."""
+    f = _fakt("demokratie_pack.json", "at_demokratie_zufriedenheit_2026")
+    assert "bundeskanzleramt.gv.at/themen/oea/eurobarometer" in json.dumps(f)
+    tot = next(u for u in BEKANNT if "themen/oea/eurobarometer" in u)
     assert BEKANNT[tot]["grund"].startswith("INHALT:")
+
+
+def test_familiennachzug_ist_geloest_statt_geparkt():
+    """Gegenstueck: Dieser Konflikt wurde am 22.9.2026 durch eine
+    Fakt-Korrektur aufgeloest (siehe test_familiennachzug_fakt.py)."""
+    assert not [u for u in BEKANNT if "familiennachzug-2024" in u]
+    f = _fakt("migration_pack.json", "migration_familiennachzug_2026")
+    assert "SharedDocs/Meldungen/DE/2024/familiennachzug-2024" not in json.dumps(f)
