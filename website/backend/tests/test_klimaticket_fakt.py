@@ -84,3 +84,33 @@ def test_die_gemessenen_claims_loesen_den_fakt_aus(claim):
                                    "Klimaschutz kostet Geld"])
 def test_ohne_ticket_bezug_kein_treffer(claim):
     assert not substring_or_composite_match(_fakt(), claim.lower()), claim
+
+
+# --------------------------------------------------------------------------
+# Die zweite Kopie: transport_at.json :: klimaticket_2024
+# --------------------------------------------------------------------------
+
+TRANSPORT = Path(__file__).resolve().parents[1] / "data" / "transport_at.json"
+
+
+def _zweitfakt():
+    facts = json.loads(TRANSPORT.read_text(encoding="utf-8"))["facts"]
+    seq = facts if isinstance(facts, list) else list(facts.values())
+    return json.dumps(next(x for x in seq if x.get("id") == "klimaticket_2024"), ensure_ascii=False)
+
+
+@pytest.mark.parametrize("fehler", ["250 kt", "4,1 %", "547", "286.000", "156.000", "(1 % "])
+def test_zweitfakt_ohne_unbelegte_zahlen(fehler):
+    """Nach dem ersten Fix nannten die Antworten weiter „~250 kt, ca. 1 %" und
+    „4,1 % Modal-Shift" — aus dieser zweiten Kopie. 547 € war zudem falsch:
+    der ermäßigte Preis lag laut Rechnungshof bei 821 €."""
+    assert fehler not in _zweitfakt(), fehler
+
+
+@pytest.mark.parametrize("zahl", ["293.742", "118.524", "821", "0,11 Mio. t", "0,2 %"])
+def test_zweitfakt_mit_rechnungshof_zahlen(zahl):
+    assert zahl in _zweitfakt(), zahl
+
+
+def test_kein_vergleich_mit_den_entfernten_30_prozent():
+    assert "AT Klimaticket 30 %" not in DATA.read_text(encoding="utf-8")

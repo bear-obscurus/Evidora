@@ -178,24 +178,29 @@
     {
       "id": "klimaticket_2024",
       "topic": "klimaticket",
-      "scope": "KlimaTicket Österreich — Verkauf, Wirkung, Kosten",
+      "scope": "KlimaTicket Österreich — Nachfrage, Preise, erwartete Klimawirkung (Rechnungshof 2025)",
       "year": 2024,
-      "headline": "KlimaTicket Österreich — Stand 2024: Vollpreis 1.095 €/Jahr (über 1.000 €), Jugend/Senior 547 €, 286.000 Inhaber:innen",
+      "headline": "KlimaTicket Österreich laut Rechnungshof: 293.742 Tickets (Jahresäquivalente) 2024, 2021: 118.524 (+148 %); Preis bis 2024 1.095 € (ermäßigt 821 €), seit 1.1.2026 1.400 € (ermäßigt 1.050 €); erwartete CO2-Reduktion 0,11 Mio. t 2024, rund 0,2 % der Verkehrsemissionen",
       "data": {
-        "klimaticket_inhaber_2024": 286000,
-        "klimaticket_inhaber_2022_start": 156000,
-        "klimaticket_kosten_2024_eur": 1095,
-        "klimaticket_kosten_jugend_2024_eur": 547,
-        "klimaticket_kosten_unter_27_eur": 821,
-        "klimaticket_kosten_senior_eur": 547,
-        "modal_shift_pkw_zu_oeffi_pct_geschaetzt": 4.1,
-        "co2_einsparung_geschaetzt_2024_kt": 250,
-        "context": "KlimaTicket: 286.000 Inhaber:innen 2024 (vs. 156.000 zum Start 10/2021 → +83 %). Vollpreis 1.095 €/Jahr; Jugend/Senior 547 €. Geschätzter Modal-Shift Pkw → ÖV: 4,1 % der Inhaber:innen wechseln substanziell vom Auto auf Bahn — Auto-Reduktion ~250 kt CO2/Jahr (1 % der Verkehrs-CO2)."
+        "klimaticket_oe_jahresaequivalente": {
+          "2021": 118524,
+          "2022": 175128,
+          "2023": 243754,
+          "2024": 293742
+        },
+        "klimaticket_oe_prognose_2023": 124000,
+        "preis_bis_2024_eur": 1095,
+        "preis_ermaessigt_bis_2024_eur": 821,
+        "preis_ab_2026_eur": 1400,
+        "preis_ermaessigt_ab_2026_eur": 1050,
+        "co2_reduktion_erwartet_2024_mio_t": 0.11,
+        "co2_anteil_verkehrsemissionen_pct": 0.2,
+        "context": "Rechnungshof, Bericht „KlimaTicket\" (Reihe BUND 2025/38): KlimaTicket Österreich 118.524 (2021), 175.128 (2022), 243.754 (2023), 293.742 (2024) in Jahresäquivalenten; 2023 etwa doppelt so viele wie prognostiziert (124.000). Vollpreis bis 2024 1.095 €, ermäßigt 821 €; ab 1.1.2026 1.400 €, ermäßigt 1.050 € (klimaticket.at). Das Verkehrsministerium erwartete 0,11 Mio. t CO2e Reduktion 2024 durch Verlagerung von Pkw-Fahrten auf die Schiene — rund 0,2 % der Verkehrsemissionen (rd. 20 Mio. t 2023); ein Erwartungswert, keine gemessene Wirkung."
       },
       "context_notes": [
-        "Symbolische und faktische Wirkung divergieren: 286.000 Inhaber:innen sind eine Erfolgsgeschichte, der CO2-Effekt (~1 % Verkehrs-CO2) ist eher klein.",
-        "Hauptproblem für stärkeren Effekt: schlechte ÖV-Anbindung in ländlichen Regionen — nur ~30 % der ländlichen AT-Bevölkerung hat einen direkten Bahnanschluss.",
-        "Boulevard-Behauptung 'KlimaTicket ist gescheitert' ist faktisch widerlegt (Wachstum +83 % in 3 Jahren); 'KlimaTicket rettet das Klima' ist auch übertrieben (1 % CO2-Effekt)."
+        "Nachfrage stark gestiegen: 118.524 → 293.742 Jahresäquivalente 2021–2024 (Rechnungshof).",
+        "Die erwartete Klimawirkung ist gering: 0,11 Mio. t CO2e 2024, rund 0,2 % der Verkehrsemissionen — ein Erwartungswert des Ministeriums, keine Messung.",
+        "‚KlimaTicket ist gescheitert' passt nicht zur Nachfrage (+148 % 2021–2024); ‚KlimaTicket rettet das Klima' passt nicht zur erwarteten Wirkung (rund 0,2 %)."
       ],
       "claim_phrasings_handled": [
         "KlimaTicket Erfolg",
@@ -228,8 +233,9 @@
           "abonnent"
         ]
       ],
-      "source_label": "ÖBB Pünktlichkeits- + KlimaTicket-Bericht 2024",
-      "source_url": "https://www.klimaticket.at/"
+      "source_label": "Rechnungshof Österreich, Bericht „KlimaTicket\" (Reihe BUND 2025/38, Oktober 2025) + klimaticket.at",
+      "source_url": "https://www.rechnungshof.gv.at/rh/home/home/2025_38_OOe_6_Sbg_3_KlimaTicket.pdf",
+      "secondary_url": "https://www.klimaticket.at/"
     },
     {
       "id": "asfinag_netzlaenge_2026",
