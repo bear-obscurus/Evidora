@@ -40,8 +40,8 @@
       "topic": "zucker_fuettert_krebs_mythos",
       "headline": "Glukose ist der primäre Energieträger aller Körperzellen — auch gesunder. Krebszellen zeigen den Warburg-Effekt (verstärkte Glykolyse), aber Zucker-Reduktion eliminiert keine Tumore; ketogene Diäten zeigen in randomisierten Studien keinen klinisch signifikanten Anti-Tumor-Effekt (Cochrane 2018)",
       "year": 2024,
-      "source_url": "https://www.cancerresearchuk.org/about-cancer/causes-of-cancer/cancer-controversies/sugar-and-cancer",
-      "secondary_url": "https://www.krebsinformationsdienst.de/vorbeugung/risiken/zucker.php",
+      "source_url": "https://news.cancerresearchuk.org/2023/08/16/sugar-and-cancer-what-you-need-to-know/",
+      "secondary_url": "https://www.krebsinformationsdienst.de/aktuelles/detail/zucker-und-kohlenhydrate-bei-krebs-schaedlich-oder-unverzichtbar",
       "source_label": "Cancer Research UK + DKFZ Krebsinformationsdienst + NCI + AICR",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Zucker füttert den Krebs' / 'Krebs stirbt ohne Zucker' ist FALSE/MIXED. Korrekt ist: Krebszellen weisen den Warburg-Effekt auf (Otto Warburg 1924) — sie betreiben Glykolyse auch in Anwesenheit von Sauerstoff (aerobe Glykolyse), was sich von Normalzellen unterscheidet. Aber: alle Zellen, gesund wie krank, brauchen Glukose oder alternativ Aminosäuren/Fettsäuren als Energieträger. Krebszellen können bei Glukose-Mangel auf Glutamin und Fettsäuren umschalten (metabolic flexibility). Mehrere randomisierte ketogene Diät-Studien (Klement 2014, Champ 2014, Cochrane Review 2018) zeigen keinen konsistenten Anti-Tumor-Effekt. Was etabliert ist: chronisch hoher Insulinspiegel (durch dauerhafte hochzucker- und überkalorische Ernährung) korreliert mit erhöhtem Krebsrisiko bei bestimmten Tumortypen (kolorektal, postmenopausales Mammakarzinom, Endometrium); der kausale Mechanismus ist Insulin/IGF-1-Signaling + Adipositas, NICHT Zucker SELBST.",
@@ -72,8 +72,8 @@
       "topic": "saeure_basen_krebs_mythos",
       "headline": "Der Blut-pH-Wert wird durch homöostatische Mechanismen (Bicarbonat-Puffer, Atmung, renale Bicarbonat-Reabsorption) im engen Bereich 7,35-7,45 reguliert; Ernährung verschiebt diesen Wert nicht messbar — 'alkalische Diät' verändert weder Tumor-Mikromilieu noch Krebs-Risiko (Cancer Research UK, AICR)",
       "year": 2024,
-      "source_url": "https://www.cancerresearchuk.org/about-cancer/causes-of-cancer/cancer-controversies/alkaline-diet",
-      "secondary_url": "https://www.aicr.org/cancer-prevention/food-facts/alkaline-diet/",
+      "source_url": "https://www.cancerresearchuk.org/about-cancer/treatment/complementary-alternative-therapies/alternative-cancer-diets",
+      "secondary_url": "https://www.aicr.org/resources/blog/does-the-alkaline-diet-cure-cancer/",
       "source_label": "Cancer Research UK + AICR (American Institute for Cancer Research) + DKFZ + ÖGHO",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Säure-Basen-Diät heilt Krebs' / 'alkalische Ernährung verhindert Tumore' ist FALSE. Der menschliche Blut-pH-Wert wird durch drei Puffer-Systeme im engen Bereich von 7,35-7,45 gehalten: (1) Bicarbonat-Kohlensäure-Puffer im Blut (HCO₃⁻/H₂CO₃), (2) renale H⁺-Ausscheidung mit Bicarbonat-Reabsorption, (3) respiratorische CO₂-Abatmung. Abweichungen unter 7,1 oder über 7,7 sind lebensbedrohlich (metabolische/respiratorische Azidose/Alkalose) und treten ausschließlich bei schweren Erkrankungen auf. Ernährung kann Urin-pH (renaler Output) verändern, aber NICHT Blut-pH. Tumor-Mikromilieu ist tatsächlich oft sauer (durch lokale Laktat-Akkumulation des Warburg-Effekts), aber das ist FOLGE des Tumors, nicht URSACHE — und durch Ernährung nicht beeinflussbar. Cancer Research UK + AICR + DKFZ stimmen überein: keine Evidenz für Anti-Tumor-Effekt alkalischer Diäten.",
@@ -137,7 +137,7 @@
       "headline": "'Alkalisches Wasser' (pH 8,5-10) wird durch die Magensäure (pH 1,5-3,5) sofort und vollständig neutralisiert; randomisierte Studien zeigen keinen messbaren Effekt auf Blut-pH oder Krebs-Biomarker (Mayo Clinic, NIH NCCIH)",
       "year": 2024,
       "source_url": "https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/expert-answers/alkaline-water/faq-20058029",
-      "secondary_url": "https://www.nccih.nih.gov/health/alkaline-water",
+      "secondary_url": "https://www.cancer.org.au/iheard/do-higher-alkaline-diets-protect-against-cancer",
       "source_label": "Mayo Clinic + NIH NCCIH + Cancer Research UK",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'alkalisches Wasser hat gesundheitliche Vorteile / verhindert Krebs' ist FALSE. 'Alkalisches Wasser' (über Ionisierungs-Geräte oder Mineralsalzzusatz auf pH 8,5-10 angehoben) wird beim Trinken sofort durch die Salzsäure-Sekretion des Magens (pH 1,5-3,5) neutralisiert. Der Bicarbonat-Plasma-Spiegel wird durch dieses Neutralisations-Vorgang minimal verändert (~ Standardabweichung < 1 mmol/L), aber Blut-pH bleibt durch homöostatische Mechanismen (siehe saeure_basen_krebs_mythos) unverändert. Mayo Clinic Position: 'There's no scientific evidence that fully supports many of the health claims made by supporters'. NIH NCCIH: keine Wirksamkeits-Studien identifiziert, die alkalisches Wasser für Krebs-Prävention oder -Therapie unterstützen würden. Industrie-Marketing-Begriffe wie 'Wasserstoff-Wasser', 'ionisiertes Wasser', 'mikro-cluster Wasser' sind keine peer-reviewed wissenschaftlichen Konzepte.",
@@ -167,7 +167,7 @@
       "topic": "deo_brustkrebs_mythos",
       "headline": "Aluminium-haltige Antitranspirantien zeigen in epidemiologischen Studien (Kohorten + Fall-Kontroll) keine kausale Assoziation mit Brustkrebs; Hautresorption von Aluminium ist klinisch vernachlässigbar (DKFZ, ACS, BfR Risikobewertung)",
       "year": 2024,
-      "source_url": "https://www.krebsinformationsdienst.de/vorbeugung/risiken/aluminium.php",
+      "source_url": "https://www.krebsinformationsdienst.de/widerlegte-risikofaktoren",
       "secondary_url": "https://www.cancer.org/cancer/cancer-causes/antiperspirants-and-breast-cancer-risk.html",
       "source_label": "DKFZ Krebsinformationsdienst + American Cancer Society + BfR Bundesinstitut für Risikobewertung",
       "data": {
@@ -199,7 +199,7 @@
       "topic": "bh_brustkrebs_mythos",
       "headline": "Die Singer-Grismaijer-Hypothese (Buch 'Dressed to Kill' 1995) zu BH-Tragen und Brustkrebs ist methodisch widerlegt; epidemiologische Studien (Chen 2014, Hsieh 1991) zeigen keine Assoziation zwischen BH-Tragestunden, Bügel-BHs oder Cup-Größe und Brustkrebs (American Cancer Society)",
       "year": 2024,
-      "source_url": "https://www.cancer.org/cancer/breast-cancer/about/types-of-breast-cancer/myths-misconceptions.html",
+      "source_url": "https://www.cancer.org/cancer/types/breast-cancer/risk-and-prevention/disproven-or-controversial-breast-cancer-risk-factors.html",
       "secondary_url": "https://www.cancer.gov/types/breast/risk-fact-sheet",
       "source_label": "American Cancer Society + NCI + Chen 2014 Cancer Epidemiology Biomarkers Prev",
       "data": {
@@ -231,7 +231,7 @@
       "headline": "Misteltherapie (Iscador, Helixor, Abnoba) zeigt weder Überlebens- noch Lebensqualitäts-Vorteil. Belastbarster Beleg: das doppelblinde Phase-III-RCT MISTRAL (2024, n=290): Hazard Ratio 1,13, medianes Überleben 7,8 gegenüber 8,3 Monaten unter Placebo, Lebensqualität p=0,86. Cochrane 2008 (21 RCTs) kam zum selben Schluss — MISTRAL bestätigt ihn (DGHO, ÖGHO)",
       "year": 2024,
       "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003297.pub2/full",
-      "secondary_url": "https://www.krebsinformationsdienst.de/behandlung/misteltherapie.php",
+      "secondary_url": "https://www.krebsinformationsdienst.de/mistel",
       "source_label": "MISTRAL Phase-III-RCT (Dtsch Arztebl Int 2024 + Palliat Med 2026) + Cochrane Review (Horneber et al. 2008) + DGHO + ÖGHO + DKFZ Krebsinformationsdienst",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Mistelpräparate heilen oder reduzieren Krebs' ist FALSE/MIXED. Misteltherapie (Viscum album, Hauptpräparate Iscador®, Helixor®, abnobaVISCUM®, Lektinol®) ist ein anthroposophisches Adjuvans-Verfahren, das auf Rudolf Steiners Konzeption (1920er) basiert. Cochrane Systematic Review 'Mistletoe therapy in oncology' (Horneber MA, Bueschel G, Huber R, Linde K, Rostock M. Cochrane Database Syst Rev 2008;CD003297) analysierte 21 randomisierte kontrollierte Studien. Ergebnis: 'It is not clear if there is sufficient evidence to support the routine use of mistletoe extracts in cancer therapy. Reported clinical effects on quality of life or symptoms (...) are based on weak evidence.' NEUESTE UND STÄRKSTE EVIDENZ — MISTRAL-Studie (Dtsch Arztebl Int 2024;121:9-14, PMID 38915151; Lebensqualitäts-Auswertung Palliat Med 2026, PMID 42059487): doppelblindes, placebokontrolliertes Phase-III-RCT an 9 onkologischen Zentren, n=290 mit fortgeschrittenem Pankreaskarzinom, subkutanes Mistelextrakt oder Placebo 3x/Woche über 9 Monate zusätzlich zur Standardtherapie. Ergebnis: KEIN Überlebensvorteil (adjustierte Hazard Ratio 1,13 [0,89-1,44]; medianes Überleben 7,8 Monate unter Mistel gegenüber 8,3 Monaten unter Placebo) und KEIN Unterschied bei der Lebensqualität (EORTC-QLQ-C30 global health, p=0,86). Lokale Hautreaktionen an der Einstichstelle traten unter Mistel bei 66 % gegenüber 1 % unter Placebo auf. Damit liegt erstmals ein grosses, methodisch sauberes RCT vor — es bestätigt die Cochrane-Einschätzung, statt sie zu revidieren. DGHO (Deutsche Gesellschaft für Hämatologie und Medizinische Onkologie) Position 2014/2018: 'Misteltherapie als alleinige Tumor-Therapie ist abzulehnen; als adjuvant zu evidenzbasierter Behandlung kann sie bei Patientenwunsch unter ärztlicher Kontrolle erwogen werden, ohne dass eine evidenzbasierte Wirksamkeit auf Tumor-Progression dokumentiert ist.' DKFZ Position: 'Wirksamkeit gegen Tumorzellen am Menschen ist nicht überzeugend belegt'.",
@@ -263,7 +263,7 @@
       "headline": "Linus Paulings Hochdosis-Vitamin-C-Hypothese (1976) wurde durch zwei methodisch saubere Mayo-Clinic-RCTs (Creagan 1979, Moertel 1985) widerlegt; aktuelle intravenöse Hochdosis-Studien zeigen pharmakologische Plasmaspiegel, aber kein klinisch signifikantes Anti-Tumor-Signal in Phase-III-Studien (NCI PDQ)",
       "year": 2024,
       "source_url": "https://www.cancer.gov/about-cancer/treatment/cam/hp/vitamin-c-pdq",
-      "secondary_url": "https://www.nccih.nih.gov/health/providers/digest/high-dose-vitamin-c-and-cancer-science",
+      "secondary_url": "https://www.cancer.gov/about-cancer/treatment/cam/hp/vitamin-c-pdq",
       "source_label": "NCI PDQ + NIH NCCIH + Mayo Clinic RCTs (Creagan 1979 NEJM, Moertel 1985 NEJM)",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Hochdosis-Vitamin-C heilt Krebs' ist FALSE/MIXED. Linus Pauling (Doppel-Nobelpreisträger, 1954 Chemie, 1962 Frieden) und Ewan Cameron publizierten 1976 eine nicht-randomisierte Beobachtungsstudie aus Vale-of-Leven-Hospital, Schottland (n=100 Krebs-Patienten + historische Kontrollen) mit angeblich verlängertem Überleben unter Vit-C-Hochdosis (10 g/Tag oral + IV). Die Mayo Clinic führte daraufhin zwei randomisierte placebo-kontrollierte Doppelblind-Studien durch: Creagan ER et al. 1979 NEJM 301:687 (n=150) und Moertel CG et al. 1985 NEJM 312:137 (n=100). BEIDE Studien fanden KEINEN Survival-Effekt gegenüber Placebo. Diese Studien gelten als Standard-Referenz. Aktuelle Forschung zu intravenösem Vitamin C in pharmakologischer Hochdosis (>1 g/kg KG, Plasmaspiegel >mM) zeigt präklinische in-vitro/in-vivo Anti-Tumor-Effekte (Padayatty 2010, Hoffer 2008) — aber Phase-III-RCTs mit klinischen Outcomes haben bisher nicht stattgefunden. Linus Pauling selbst starb 1994 an Prostata-Karzinom trotz täglicher Vitamin-C-Megadosen (~18 g/Tag).",

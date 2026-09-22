@@ -116,25 +116,25 @@
         "code": "ESPON COHES (2021-2027)",
         "topic": "Territorial Cohesion Monitoring",
         "headline": "Zentrales Mess-Instrument für EU-Kohäsionspolitik; misst regionale Disparitäten in BIP/Kopf, Beschäftigung, Bildung, Gesundheit, Digitalisierung über NUTS-2/NUTS-3.",
-        "url": "https://www.espon.eu/topics/territorial-cohesion"
+        "url": "https://www.espon.eu/"
       },
       {
         "code": "ESPON ESCAPE",
         "topic": "Shrinking Rural Regions",
         "headline": "Klassifiziert demografisch schrumpfende Regionen; AT: Waldviertel, Mühlviertel, Lungau identifiziert als 'Inner Periphery'.",
-        "url": "https://www.espon.eu/escape"
+        "url": "https://archive.espon.eu/escape"
       },
       {
         "code": "ESPON DEMIFER",
         "topic": "Demographic Projections",
         "headline": "NUTS-2-Bevölkerungsprojektionen 2030/2050 mit Migrations-Szenarien.",
-        "url": "https://www.espon.eu/demifer"
+        "url": "https://archive.espon.eu/demifer"
       },
       {
         "code": "ESPON LOCATE",
         "topic": "Industrial Location",
         "headline": "Identifiziert Manufacturing-Intensive Regions in der EU.",
-        "url": "https://www.espon.eu/locate"
+        "url": "https://archive.espon.eu/projects/espon-2020/monitoring-and-tools/locate-data-and-maps-update"
       }
     ],
     "important_caveats": [

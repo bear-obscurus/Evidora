@@ -9,7 +9,7 @@
       "scope": "DSGVO-Compliance-Aufwand für KMU + Bußgeld-Statistik 2018-2024 EU-weit",
       "year": 2024,
       "source_url": "https://edpb.europa.eu/news/news/2024/edpb-publishes-overview-gdpr-fines_en",
-      "secondary_url": "https://www.bitkom.org/Presse/Presseinformation/DSGVO-bleibt-fuer-Unternehmen-eine-Herausforderung",
+      "secondary_url": "https://www.bitkom.org/Presse/Presseinformation/Datenschutz-Aufwand-Unternehmen-nimmt-zu",
       "source_label": "EDPB European Data Protection Board GDPR-Bußgeld-Übersicht 2018-2024 + Bitkom Studie 'DSGVO 6 Jahre danach' 2024 + Datenschutz-Behörde Österreich Tätigkeitsbericht 2023 + GDPR Enforcement Tracker (CMS) + Statistisches Bundesamt KMU-Definition + EuGH C-131/12 Google Spain (Datenschutz-Recht-Grundlage)",
       "headline": "DSGVO-Bußgelder EU 2018-2024: kumuliert ca. 5,9 Mrd Euro (GDPR Enforcement Tracker / EDPB), aber 90+ % davon entfallen auf Großkonzerne (Meta, Amazon, Google); KMU-Anteil unter 5 %; Bitkom 2024: Compliance-Aufwand real, aber 'KMU-Pleite-Welle' empirisch nicht belegt",
       "data": {
@@ -77,7 +77,7 @@
       "scope": "Cookie-Banner — Aktiv-Opt-In-Pflicht (EuGH Planet49) + NOYB-Beschwerde-Welle 2021-2022 + TTDSG 2021 + EDPB Cookie Banner Taskforce Report 2023",
       "year": 2024,
       "source_url": "https://curia.europa.eu/juris/liste.jsf?num=C-673/17",
-      "secondary_url": "https://noyb.eu/de/cookie-banner-report",
+      "secondary_url": "https://noyb.eu/en/noybs-consent-banner-report-how-authorities-actually-decide",
       "source_label": "EuGH C-673/17 Planet49 vom 1.10.2019 + NOYB Cookie-Banner-Beschwerde-Welle 2021-2022 (Max Schrems / noyb.eu) + deutsches TTDSG (Telekommunikation-Telemedien-Datenschutz-Gesetz) seit 1.12.2021 + EDPB Cookie Banner Taskforce Report 18.1.2023 + EDPB Guidelines 03/2022 on deceptive design patterns (v2.0 adopted 14.2.2023) + Cnil-Leitlinien Frankreich 2020 + § 25 TTDSG DE",
       "headline": "EuGH Planet49 (C-673/17) 2019: Vorausgekreuzte Cookie-Boxen sind keine wirksame Einwilligung; deutsches TTDSG seit 1.12.2021 verlangt aktive Opt-In; NOYB-Welle 2021-2022 prüfte >500 Websites + reichte >700 Beschwerden bei 18 EU/EEA-Aufsichts-Behörden ein — 81 % keine 'Reject all'-Option auf erster Ebene, 73 % Dark Patterns, 90 % erschwerter Widerruf",
       "data": {
@@ -170,7 +170,7 @@
       "scope": "Vorratsdatenspeicherung — EuGH-Urteile + AT-VfGH 2014 + DE-Status seit 2017",
       "year": 2024,
       "source_url": "https://curia.europa.eu/juris/liste.jsf?num=C-203/15",
-      "secondary_url": "https://www.vfgh.gv.at/medien/Aufhebung_Vorratsdatenspeicherung_juni_2014.de.php",
+      "secondary_url": "https://www.vfgh.gv.at/downloads/presseinformation_verkuendung_vorratsdaten.pdf",
       "source_label": "EuGH C-293/12 + C-594/12 Digital Rights Ireland 2014 + EuGH C-203/15 Tele2 Sverige 2016 + EuGH C-140/20 La Quadrature du Net 2020 + EuGH C-746/18 H.K. 2021 + AT-VfGH G47/2012 vom 27.6.2014 + BVerfG 1 BvR 256/08 vom 2.3.2010 + BVerwG 6 C 12.18 vom 25.9.2019",
       "headline": "EuGH Digital Rights Ireland (C-293/12) 2014 + Tele2 Sverige (C-203/15) 2016 + La Quadrature du Net (C-140/20) 2020 — anlasslose flächendeckende Vorratsdaten-Speicherung mit EU-Recht unvereinbar; AT-VfGH G47/2012 hob AT-VDS am 27.6.2014 auf; deutsche VDS-Regelung (TKG § 113b) seit 2017 ausgesetzt nach BVerwG-Beschluss",
       "data": {
@@ -337,7 +337,7 @@
       "topic": "massenueberwachung_at_konsens",
       "scope": "Tele-Überwachung in AT — Bundestrojaner-Diskurs seit 2008, BVT-Reform zur DSN 2021, BVT-Untersuchungs-Ausschuss 2018-2019 (Endbericht 18.9.2019)",
       "year": 2024,
-      "source_url": "https://www.parlament.gv.at/aktuelles/news/parlbga20180430-bvt-u-ausschuss/",
+      "source_url": "https://www.parlament.gv.at/gegenstand/XXVI/I/695",
       "secondary_url": "https://www.bmi.gv.at/202/start.aspx",
       "source_label": "BMI Bundesministerium für Inneres Berichte + DSN Direktion Staatsschutz und Nachrichtendienst (seit 1.12.2021, vormals BVT) Tätigkeitsberichte + BVT-Untersuchungs-Ausschuss-Bericht 18.9.2019 (695 d.B. XXVI. GP, 3/A-USA) + AT-Strafprozessordnung § 134 Z 3a + § 135a + Verfassungsgerichtshof-Erkenntnisse + Reform-Gesetz Bundesgesetzblatt I Nr. 148/2021 (SNG)",
       "headline": "AT: BVT-Affäre 2018-2019 + Untersuchungs-Ausschuss-Bericht 2020 dokumentierten Strukturmängel; Reform 1.12.2021 Auflösung BVT, Neugründung DSN (Direktion Staatsschutz und Nachrichtendienst); Tele-Überwachung nur bei richterlicher Anordnung in begrenzten Fällen (§§ 134 Z 3a, 135a StPO); KEINE flächendeckende Massen-Überwachung dokumentiert",
@@ -564,8 +564,8 @@
       "topic": "klarnamen_pflicht_konsens",
       "scope": "Klarnamen-Pflicht — empirische Wirkung auf Hass-Rede; Schweden + Süd-Korea Vergleichsstudien",
       "year": 2024,
-      "source_url": "https://www.medienanstalt-nrw.de/themen/hass.html",
-      "secondary_url": "https://policyreview.info/articles/analysis/online-anonymity-and-online-hate-speech",
+      "source_url": "https://www.medienanstalt-nrw.de/themen/hass/forsa-befragung-zur-wahrnehmung-von-hassrede.html",
+      "secondary_url": "https://www.yalejournal.org/publications/real-names-and-responsible-speech-the-cases-of-south-korea-china-and-facebook",
       "source_label": "LfM Landesanstalt für Medien NRW Studien zu Hass-Rede 2018-2023 + Süd-Korea Real-Name Verification Law 2007-2012 + Verfassungsgerichts-Urteil Süd-Korea 23.8.2012 (2010Hun-Ma47) + Cho/Kim 2012 Empirical Study + Kim/Hyun 2017 Cyber-Bullying Study + Schweden Aftonbladet-Studie 2014 + NetzDG-Evaluations-Bericht BMJV 2020",
       "headline": "Klarnamen-Pflicht reduziert Hass-Rede empirisch NICHT signifikant: Süd-Korea hatte 2007-2012 Klarnamen-Pflicht für Plattformen >100k Nutzer, Reduktion 'beleidigender Posts' nur ~0,9 % (Cho/Kim 2012); Verfassungs-Urteil 23.8.2012 hob Gesetz auf; Schweden-Vergleich (Pseudonyme erlaubt) zeigt ähnliche Hass-Rede-Niveaus wie Klarnamen-Plattformen",
       "data": {
@@ -753,7 +753,7 @@
       "scope": "BVerfG-Urteil 27.5.2020 + Reform 30.3.2021 + Bestandsdaten-Auskunfts-Statistik",
       "year": 2024,
       "source_url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2020/05/rs20200527_1bvr187313.html",
-      "secondary_url": "https://www.bundesnetzagentur.de/DE/Vportal/TK/AufgabenundBefugnisseTK/Berichte/_navigation.html",
+      "secondary_url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2020/05/rs20200527_1bvr187313.html",
       "source_label": "BVerfG 1 BvR 1873/13 + 1 BvR 2618/13 vom 27.5.2020 + Bestandsdaten-Auskunfts-Gesetz vom 30.3.2021 (BGBl. I S. 448) + Bundesnetzagentur Jahresberichte 2022 + 2023 + § 113 TKG + § 100j StPO + Art. 2 Abs. 1 iVm Art. 1 Abs. 1 GG + EuGH C-582/14 Breyer 2016",
       "headline": "BVerfG 1 BvR 1873/13 vom 27.5.2020 erklärte automatische Bestandsdaten-Auskunft als verfassungswidrig (kein Anlass + keine Schwellen); Folge-Reform 30.3.2021 verlangt Anlass-Tat + Schwellen + bei IP/Passwörtern erhöhte Schwellen; Bundesnetzagentur 2023: hunderttausende Bestandsdaten-Abrufe pro Jahr (Größenordnung)",
       "data": {
@@ -858,8 +858,8 @@
       "topic": "bundestrojaner_at_konsens",
       "scope": "AT-Bundestrojaner-Diskurs + § 134 Z 3a + § 135a StPO + VfGH G72/2019",
       "year": 2024,
-      "source_url": "https://www.vfgh.gv.at/medien/Bundestrojaner_aufgehoben.de.php",
-      "secondary_url": "https://www.parlament.gv.at/aktuelles/news/parlbga20180428-bundestrojaner-grundrechtsbericht/",
+      "source_url": "https://www.vfgh.gv.at/medien/Kfz-Kennzeichenerfassung_und__Bundestrojaner__verfass.de.php",
+      "secondary_url": "https://www.parlament.gv.at/aktuelles/pk/jahr_2018/pk0443",
       "source_label": "AT-VfGH G72/2019 + G181/2019 vom 11.12.2019 + AT-Strafprozessordnung § 134 Z 3a + § 135a + § 76a + § 138 StPO + DSN Direktion Staatsschutz und Nachrichtendienst Tätigkeitsbericht 2022 + 2023 + Bundesgesetzblatt I Nr. 27/2018 (Sicherheitspaket-Reform) + Bundesgesetzblatt I Nr. 148/2021 (SNG)",
       "headline": "AT-Bundestrojaner-Gesetz 2018 (BGBl. I Nr. 27/2018, Sicherheitspaket): Quellen-TKÜ + Online-Durchsuchung; AT-VfGH G72/2019 vom 11.12.2019 hob § 135a StPO + § 76a StPO + § 53 SPG zur Online-Durchsuchung als verfassungswidrig auf; Stand 2024: stark begrenzte Quellen-TKÜ in Schwerverbrechen-Fällen, Anzahl der Einsätze bleibt im niedrigen zweistelligen Bereich pro Jahr (DSN-Berichts-Größenordnungen)",
       "data": {
@@ -945,7 +945,7 @@
       "scope": "Smartmeter — DSGVO Art. 6, BSI-Schutzprofil DE, AT-Energie-Steuer-Recht; freie Wahl Opt-Out DE bis 2032",
       "year": 2024,
       "source_url": "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/Smart-metering/smart-metering_node.html",
-      "secondary_url": "https://www.e-control.at/marktteilnehmer/strom/smart-meter",
+      "secondary_url": "https://www.e-control.at/presse/aktuelle-meldungen/smart-meter-strenger-datenschutz",
       "source_label": "DSGVO Art. 6 + Art. 32 + Erwägungsgrund 26 + § 21 EnWG (Energiewirtschaftsgesetz DE) + Messstellenbetriebs-Gesetz DE (MsbG) + BSI Schutzprofil + Technische Richtlinie BSI-CC-PP-0073 + Technische Richtlinie BSI TR-03109 + AT ElWOG 2010 (Elektrizitätswirtschaftsgesetz) + § 81 ElWOG + Smart-Meter-Verordnung BGBl. II Nr. 138/2012 (AT) + E-Control Smart-Meter-Berichte 2023 + 2024",
       "headline": "Smartmeter 15-Min-Werte sind nach DSGVO + Erwägungsgrund 26 personenbezogene Daten (Verbrauchs-Profile lassen Rückschlüsse auf Lebensgewohnheiten zu); BSI-Schutzprofil DE setzt Pseudonymisierungs-Vorgaben; in DE freie Wahl Opt-Out bei modernen Messeinrichtungen bis 2032 (MsbG-Reform 2023) — beim intelligenten Messsystem (iMSys) Pflicht in bestimmten Konstellationen",
       "data": {

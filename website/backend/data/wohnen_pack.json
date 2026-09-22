@@ -78,7 +78,7 @@
       "scope": "Leerstand-Statistik DACH — strukturelle vs. friktionelle Leerstände, Umverteilungs-Grenzen",
       "year": 2024,
       "source_url": "https://www.zensus2022.de/DE/Was-ist-der-Zensus/Wohnungen/_inhalt.html",
-      "secondary_url": "https://www.bbsr.bund.de/BBSR/DE/forschung/programme/laufendeprogramme/wohnen/wohnen_node.html",
+      "secondary_url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/Zensus2022-Pressemitteilungen/PM_zenus2022_46.html",
       "source_label": "DESTATIS Zensus 2022 Wohnungs-Statistik + BBSR Bundesinstitut für Bau-, Stadt- und Raumforschung + Statistik Austria Wohnungs-Daten + BFS CH + Pestel-Institut Studien + DIW Wochenbericht zu Leerstand",
       "headline": "DE Zensus 2022: 1,9 Mio leerstehende Wohnungen (4,3 % aller Wohnungen) — davon ~70 % friktionell + Sanierungs-bedingt + Vermarktungs-Phase, NUR ~500.000 strukturell langzeit-leer in Schrumpfungs-Regionen; Umverteilung in Ballungsräume praktisch unmöglich",
       "data": {
@@ -152,7 +152,7 @@
       "topic": "sozialwohnungsbau_konsens",
       "scope": "Sozialwohnungs-Bestand DACH — DE-Verlust 1990-2024, Wiener Modell als Best-Practice",
       "year": 2024,
-      "source_url": "https://www.bmwsb.bund.de/Webs/BMWSB/DE/themen/stadt-wohnen/wohnungswirtschaft/wohnraumfoerderung/wohnraumfoerderung-node.html",
+      "source_url": "https://www.bmwsb.bund.de/DE/wohnen/foerderprogramme-bmwsb/foerderprogramme-wohnen/sozialer-wohnungsbau/sozialer-wohnungsbau_node.html",
       "secondary_url": "https://www.wienwohnen.at/zahlen-und-fakten.html",
       "source_label": "BMWSB Bundesministerium für Wohnen + Mieterbund DE + Statistisches Bundesamt + Wien-Wohnen Geschäftsbericht 2024 + GBV Gemeinnützige Bauvereinigungen AT + AK Wien Wohnstudien + IBA Hamburg Sozialwohnungs-Studien",
       "headline": "DE Sozialwohnungs-Bestand 1990 ~4 Mio → 2024 ~1,1 Mio (-72 %): Massive Bestand-Reduktion durch Auslaufen Belegungs-Bindung; AT Wien-Modell mit ~220.000 Gemeindebau-Wohnungen + 200.000 gemeinnützige = ~60 % Wiener Mietwohnungen sozial gebunden",
@@ -248,7 +248,7 @@
       "scope": "Frei-Markt-These — Glaeser/Gyourko, Hilber Bauleit-Planungs-Forschung",
       "year": 2024,
       "source_url": "https://www.nber.org/papers/w25060",
-      "secondary_url": "https://www.lse.ac.uk/granthaminstitute/people/christian-hilber/",
+      "secondary_url": "https://www.lse.ac.uk/people/christian-hilber",
       "source_label": "Glaeser/Gyourko 2018 NBER 23833 (publiziert 2018 Journal of Economic Perspectives 32(1):3-30) + Hilber LSE Housing Economics + Edward Glaeser Triumph of the City 2011 + LSE Spatial Economics Research Centre + Cambridge Centre for Housing Research + IFO Wohnungsmarkt-Studien",
       "headline": "Frei-Markt-These bei Wohnen empirisch DIFFERENZIERT FALSCH: Glaeser/Gyourko 2018 + Hilber 2017 — Bauleit-Planung + Zoning sind ZENTRALER Engpass-Faktor, freier Markt allein löst Wohnungs-Mangel nicht; Wohnungsmarkt ist klassischer Markt-Versagens-Fall (Externalitäten + Liquiditäts-Probleme + Standort-Monopol)",
       "data": {
@@ -323,7 +323,7 @@
       "scope": "AirBnB Wohnungsmarkt-Wirkung — Berlin Studie 2018, Wien Studie 2024, Top-Lagen vs. Gesamt-Stadt",
       "year": 2024,
       "source_url": "https://www.diw.de/de/diw_01.c.598389.de/publikationen/wochenberichte/2018_31_4/airbnb-und-die-wohnungsknappheit-in-berlin.html",
-      "secondary_url": "https://www.wifo.ac.at/projekte/airbnb-wohnungsmarkt-wien-studie",
+      "secondary_url": "https://repositum.tuwien.at/handle/20.500.12708/39217",
       "source_label": "DIW Wochenbericht AirBnB Berlin 2018 + WIFO AirBnB Wien Studie 2024 + AirDNA + Stadt Berlin Studie + Wien-Wohnen Daten + Studie Universität Wien Stadt-Soziologie",
       "headline": "AirBnB-Wohnungsmarkt-Wirkung empirisch DIFFERENZIERT: in Top-Lagen Boom-Städte (Berlin Mitte/Friedrichshain, Wien Innenstadt) ~3-5 % der Wohnungen entzogen — relevant lokal, Gesamt-Stadt-Wirkung quantitativ klein (~0,5-1,5 % Mietpreis-Steigerungs-Beitrag)",
       "data": {
@@ -543,8 +543,8 @@
       "topic": "genossenschaftswohnen_konsens",
       "scope": "Genossenschaftswohnen + Wiener Modell — internationale Best-Practice",
       "year": 2024,
-      "source_url": "https://www.gbv.at/wgg",
-      "secondary_url": "https://www.bbu.de/themen/wohnen/genossenschaften",
+      "source_url": "https://gbv-aktuell.at/abc",
+      "secondary_url": "https://bbu.de/themen/genossenschaften",
       "source_label": "GBV Gemeinnützige Bauvereinigungen AT + WGG Wohnungsgemeinnützigkeitsgesetz AT + BBU Bundesverband deutscher Wohnungs- und Immobilienunternehmen + vbw Verband bayerischer Wohnungsunternehmen + UN-Habitat World Habitat Award 2018 (Wien) + IBA Hamburg-Studien + DIW Wochenbericht zu Genossenschaftswohnen",
       "headline": "Genossenschaftswohnen DACH: AT GBV-Sektor ~750.000 Wohnungen + WGG-Regelung mit Kostenmiete; DE Wohnungsbau-Genossenschaften ~2,2 Mio Wohnungen (5,3 % des Bestands); Wien-Modell international Best-Practice (UN-Habitat 2018)",
       "data": {
@@ -611,7 +611,7 @@
       "scope": "Berlin Mietendeckel 2020-21 — empirische Bilanz + BVerfG-Urteil",
       "year": 2024,
       "source_url": "https://www.diw.de/de/diw_01.c.821024.de/publikationen/wochenberichte/2021_31_4/sechs-monate-mietendeckel_berlin_in_der_zahlen-bilanz.html",
-      "secondary_url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2021/04/fs20210415_2bvf000120.html",
+      "secondary_url": "https://www.bundesverfassungsgericht.de/SharedDocs/Pressemitteilungen/DE/2021/bvg21-028.html",
       "source_label": "DIW Wochenbericht Mietendeckel-Bilanz 2021 + BVerfG-Urteil 2 BvF 1/20 vom 25.3.2021 + Senatsverwaltung Berlin Mieten-Statistik + DIW Update 2024 + IFO Mietendeckel-Studien + Empirica Mietspiegel-Analysen",
       "headline": "Mietendeckel-Urteil 2 BvF 1/20: BVerfG erklärte das Gesetz für MIT DEM GG UNVEREINBAR UND NICHTIG — 'war verfassungswidrig' ist formal KORREKT (mostly_true; Grund: fehlende Landes-Kompetenz, KEIN Inhalts-Urteil); 'war verfassungskonform' ist mostly_false. | Berlin-Mietendeckel 2020-21: Mietpreis-Stopp 5 Jahre + Mietsenkung November 2020. DIW-Bilanz Juli 2021: Bestandsmieten -3,5 % vs. Kontroll-Gruppe; BVerfG kippte 25.3.2021 wegen Bundes-Kompetenz (kein materielles Urteil); Mieter mussten gestoppte Zahlungen mit Zins nachzahlen",
       "data": {
@@ -680,7 +680,7 @@
       "topic": "wohnungs_mangel_de_konsens",
       "scope": "DE Wohnungs-Mangel-Schätzungen — Pestel + IW Köln + BMWSB-Daten",
       "year": 2024,
-      "source_url": "https://www.pestel-institut.de/aktuelles/wohnungsbedarf-2024",
+      "source_url": "https://www.bundesbaublatt.de/news/studie-ermittelt-fuer-2023-rekorddefizit-ueber-700-000-wohnungen-fehlen-3892881.html",
       "secondary_url": "https://www.iwkoeln.de/studien/themen/immobilien.html",
       "source_label": "Pestel-Institut Wohnungsbedarfs-Studie 2024 + IW Köln Wohnungsbedarf 2023 + BMWSB Bundesministerium für Wohnen + Empirica Wohnungsbedarfs-Schätzungen + Bundesbank Wohnungsmarkt-Analyse + DIW Wohnungsbedarfs-Studien",
       "headline": "DE Wohnungs-Mangel-Schätzungen 2024: Pestel-Institut ~700.000 fehlende Wohnungen + Bedarf ~400.000 jährlicher Neubau für Bedarfsdeckung; IW Köln ~600.000-1 Mio. Konsens: ~700.000-1 Mio fehlende Wohnungen in DE — empirisch belegt, geografisch konzentriert auf Boom-Städte",
@@ -778,7 +778,7 @@
       "scope": "Wohngeld-Empfänger — Bezugsdauer + sozio-demografische Lage",
       "year": 2024,
       "source_url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Soziales/Wohngeld/_inhalt.html",
-      "secondary_url": "https://www.bmwsb.bund.de/Webs/BMWSB/DE/themen/stadt-wohnen/wohngeld/wohngeld-node.html",
+      "secondary_url": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld_node.html",
       "source_label": "DESTATIS Wohngeld-Statistik 2024 + BMWSB Wohngeld-Reform 2023 + BBSR Wohngeld-Empfänger-Studie + DIW Wochenbericht zu Wohngeld + Mieterbund Studien",
       "headline": "DE Wohngeld-Empfänger 2023 (nach Wohngeld-Plus-Reform): ~2 Mio Haushalte (~5 Mio Personen), durchschnittlicher Wohngeld-Betrag ~370 Euro/Monat. Mehrheit Rentner:innen (~45 %), Alleinerziehende (~20 %), Niedriglohn-Erwerbstätige (~25 %), Sonstige (~10 %)",
       "data": {
@@ -871,7 +871,7 @@
       "scope": "Spekulations-Anteil an Mietpreis-Steigerung — DIW + IFO + Bundesbank-Studien",
       "year": 2024,
       "source_url": "https://www.diw.de/de/diw_01.c.892145.de/publikationen/wochenberichte/2024_22_3/wohnungsmarkt-und-spekulation.html",
-      "secondary_url": "https://www.bundesbank.de/de/aufgaben/finanz-und-waehrungssystem/finanzstabilitaet/finanzstabilitaetsbericht",
+      "secondary_url": "https://www.bundesbank.de/de/aufgaben/finanz-und-waehrungssystem/finanzstabilitaetsbericht",
       "source_label": "DIW Wochenbericht zu Spekulation + IFO Wohnungsmarkt-Studien + Bundesbank Finanzstabilitäts-Bericht 2024 + WIFO + Empirica + Pestel-Institut",
       "headline": "Spekulations-Anteil an DE-Mietpreis-Steigerung 2010-2024 empirisch differenziert: DIW 2024 schätzt ~10-15 %, primär durch Niedrigzins-Investitions-Welle 2010-22 + Großinvestoren (Vonovia, Deutsche Wohnen); Hauptursachen Bauleit-Engpass + Demografie quantitativ größer",
       "data": {
@@ -964,7 +964,7 @@
       "scope": "Wohnkosten-Belastung — Eurostat-Schwellenwerte + DACH-Verteilung",
       "year": 2024,
       "source_url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho07a__custom_2197200/default/table",
-      "secondary_url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Einkommen-Konsum-Lebensbedingungen/Wohnen/_inhalt.html",
+      "secondary_url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Wohnen/_inhalt.html",
       "source_label": "Eurostat ilc_lvho07a Housing Cost Overburden Rate 2024 + DESTATIS Einkommens- und Verbrauchsstichprobe + Statistik Austria Wohnkosten + AK Wien + DIW Wohnkosten-Studien + EU-SILC Survey",
       "headline": "Wohnkosten-überlastete Haushalte 2023 (Eurostat ilc_lvho07a, >40 % Einkommen für Wohnen): EU-Mittel 9,5 %, DE 12,1 %, AT 9,1 %, NL 8,2 %; Spitzen GR 28,5 %, BG 19,5 %; Schluss IE 4,1 %, MT 4,2 %. DACH im EU-Mittelfeld",
       "data": {

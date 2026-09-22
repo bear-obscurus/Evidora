@@ -65,7 +65,7 @@
         ]
       ],
       "source_label": "ÖIF Integrationsbericht / BMI Asyl-Statistik",
-      "source_url": "https://www.integrationsfonds.at/mediathek/publikationen/",
+      "source_url": "https://www.integrationsfonds.at/mediathek/mediathek-publikationen/",
       "secondary_url": "https://www.bmi.gv.at/301/Statistiken/start.aspx",
       "trigger_all": [
         [
@@ -136,7 +136,7 @@
       ],
       "source_label": "ÖIF Integrationsbericht / Statistik Austria Bevölkerungsbewegung",
       "source_url": "https://www.integrationsfonds.at/publikationen/",
-      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/wanderungen"
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/migration-und-einbuergerung/wanderungen-mit-dem-ausland"
     },
     {
       "id": "oeif_einbuergerung_at_2023",
@@ -1383,7 +1383,7 @@
         ]
       ],
       "source_label": "ÖIF / Integrationsgesetz IntG §§ 5–6 / IGAusbV",
-      "source_url": "https://www.integrationsfonds.at/themen/werte-und-orientierungskurse/",
+      "source_url": "https://www.integrationsfonds.at/kurse/werte-und-orientierungskurse/",
       "secondary_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20009769"
     },
     {
@@ -1674,7 +1674,7 @@
         ]
       ],
       "source_label": "profil-Faktencheck 4/2024 + ASVG §§ 31 ff + Dachverband Sozialversicherung Statistisches Handbuch",
-      "source_url": "https://www.profil.at/oesterreich/fpoe-22-millionen-behandlungen-drittstaatsangehoerige-faktencheck",
+      "source_url": "https://www.profil.at/faktiv/kronen-zeitung-fpoe-kickl-gesundheitssystem-kosten-oesterreichischer-staatsbuerger/403126496",
       "secondary_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008147"
     }
   ]

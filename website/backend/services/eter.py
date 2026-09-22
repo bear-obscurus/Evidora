@@ -8,7 +8,7 @@ Land/Stadt, Gruendungsjahr, Rechtsstatus, ISCED-Levels, Total students
 enrolled, Academic staff (Headcount), Forschungs-Aktivitaet, PhD-Recht.
 
 Datenzugang: ETER bietet Bulk-CSV-Download (jaehrlicher Release) plus
-ein Daten-Portal (`https://www.eter-project.com/data-for-research`).
+ein Daten-Portal (`https://www.nature.com/articles/s41597-023-02353-2`).
 **Wir verwenden den Static-Snapshot-Pfad** — der CSV-Bulk-Download wird
 periodisch (1x/Jahr nach ETER-Release) lokal als JSON serialisiert und
 ueber `data/eter.json` geladen. Begruendung:

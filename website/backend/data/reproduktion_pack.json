@@ -53,7 +53,7 @@
       "headline": "Das fruchtbare Fenster umfasst etwa die 5 Tage VOR der Ovulation und den Ovulationstag selbst (insgesamt ~6 Tage); Konzeption ist nicht auf den Ovulations-Tag beschränkt",
       "year": 2024,
       "source_url": "https://www.nejm.org/doi/full/10.1056/NEJM199512073332301",
-      "secondary_url": "https://www.nichd.nih.gov/health/topics/menstruation/conditioninfo/fertility-window",
+      "secondary_url": "https://www.britishfertilitysociety.org.uk/fei/when-are-women-men-most-fertile/",
       "source_label": "NEJM Wilcox/Weinberg/Baird 1995 + NIH NICHD + ACOG + ASRM",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Konzeption nur am Ovulationstag möglich' ist FALSE. Das fertile Fenster umfasst ca. 6 Tage: 5 Tage VOR Ovulation + Ovulationstag selbst. Wahrscheinlichkeit für klinische Schwangerschaft pro einzelnem Geschlechtsverkehr-Zyklus ist am Tag -2 und -1 maximal (je ~27-33%, Wilcox NEJM 1995). NACH der Ovulation sinkt die Konzeptions-Wahrscheinlichkeit innerhalb von 12-24 Stunden auf nahe null, weil die Eizelle nur diese Zeit befruchtungsfähig ist. Praktische Konsequenz: 'sichere Tage'-Berechnung allein anhand Kalender ist unzuverlässig; Ovulations-Vorhersage erfordert Symptothermie, LH-Tests oder Ultraschall.",
@@ -104,8 +104,8 @@
       "topic": "eltern_geschlecht_vererbung_mythos",
       "headline": "Das Geschlecht des Embryos wird durch das Sex-Chromosom des befruchtenden Spermiums determiniert — paternal — nicht durch die Eizelle, die ausschließlich ein X-Chromosom enthält",
       "year": 2024,
-      "source_url": "https://medlineplus.gov/genetics/understanding/basics/howgeneswork/",
-      "secondary_url": "https://my.clevelandclinic.org/health/articles/sex-chromosomes",
+      "source_url": "https://medlineplus.gov/genetics/understanding/howgeneswork",
+      "secondary_url": "https://my.clevelandclinic.org/health/body/chromosomes",
       "source_label": "NIH MedlinePlus Genetics + Cleveland Clinic + ACOG + Lewis Genetics 13th edition",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Die Mutter bestimmt das Geschlecht des Kindes' ist FALSE. Bei der Befruchtung trägt die Eizelle (oocyte) IMMER ein X-Chromosom — sie kann genetisch nichts anderes mitbringen. Spermien hingegen tragen ENTWEDER ein X- ODER ein Y-Chromosom (in etwa gleichem Verhältnis 50:50). Bei Fusion entsteht entweder XX (weiblich) oder XY (männlich). Damit ist das Geschlecht des Embryos paternal determiniert — durch das Spermium, nicht durch die Eizelle. Dieser Mechanismus ist seit 1905 bekannt (Nettie Stevens, Edmund Wilson — unabhängige Entdeckungen Sex-Chromosomen).",
@@ -369,7 +369,7 @@
       "topic": "wechseljahre_alter_mythos",
       "headline": "Das mediane Menopause-Alter liegt bei 51 Jahren; die normale Variations-Spanne der natürlichen Menopause umfasst 45-55 Jahre (10. - 90. Perzentil) — die Vorstellung 'Wechseljahre erst ab 50' ist eine Vereinfachung",
       "year": 2024,
-      "source_url": "https://www.menopause.org/publications/clinical-care-recommendations",
+      "source_url": "https://menopause.org/professional-resources/position-statements",
       "secondary_url": "https://www.womenshealth.gov/menopause/menopause-basics",
       "source_label": "NAMS Position Statement 2022 (STRAW+10) + NIH Office on Women's Health + SWAN Study (Study of Women's Health Across the Nation)",
       "data": {

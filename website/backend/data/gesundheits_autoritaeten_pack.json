@@ -181,7 +181,7 @@
       ],
       "source_label": "NIH NIDA Cannabis Research",
       "source_url": "https://nida.nih.gov/research-topics/cannabis-marijuana",
-      "secondary_url": "https://nida.nih.gov/download/1380/cannabis-marijuana-research-report.pdf"
+      "secondary_url": "https://nida.nih.gov/sites/default/files/1380-marijuana.pdf"
     },
     {
       "id": "nci_red_meat_cancer_2026",
@@ -614,8 +614,8 @@
         ]
       ],
       "source_label": "NIH NCCIH + USPSTF Recommendations + ATBC/CARET Studies",
-      "source_url": "https://www.nccih.nih.gov/health/multivitamin-mineral-supplements",
-      "secondary_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/vitamin-supplementation-to-prevent-cancer-and-cvd-counseling"
+      "source_url": "https://www.nccih.nih.gov/health/vitamins-and-minerals",
+      "secondary_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/vitamin-supplementation-to-prevent-cvd-and-cancer-preventive-medication"
     },
     {
       "id": "mrna_impfstoff_sicherheit_konsens_2026",
@@ -751,8 +751,8 @@
         ]
       ],
       "source_label": "PEI + EMA + BfArM + WHO mRNA-Vaccine-Mechanismus",
-      "source_url": "https://www.pei.de/SharedDocs/FAQs/DE/coronavirus/mrna-impfstoffe-veraendern-erbgut.html",
-      "secondary_url": "https://www.ema.europa.eu/en/human-regulatory-overview/public-health-threats/coronavirus-disease-covid-19/treatments-vaccines/vaccines-covid-19/covid-19-vaccines-key-facts"
+      "source_url": "https://www.rki.de/DE/Themen/Infektionskrankheiten/Impfen/Informationsmaterialien/Impfmythen/Sicherheit_DNA.html",
+      "secondary_url": "https://www.ema.europa.eu/en/human-regulatory-overview/public-health-threats/coronavirus-disease-covid-19/covid-19-medicines/covid-19-vaccines-key-facts"
     },
     {
       "id": "uebersterblichkeit_impfung_konsens_2026",
@@ -812,7 +812,7 @@
         ]
       ],
       "source_label": "Statistik Austria + Destatis + RKI + ONS UK + CDC",
-      "source_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/gestorbene/uebersterblichkeit",
+      "source_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/gestorbene",
       "secondary_url": "https://www.destatis.de/DE/Themen/Querschnitt/Corona/Gesellschaft/kontextinformationen-gesellschaft.html"
     },
     {
@@ -872,7 +872,7 @@
         ]
       ],
       "source_label": "STIKO + RKI + EMA + Cochrane 2023 + ONS UK",
-      "source_url": "https://www.rki.de/DE/Content/Infekt/Impfen/ImpfungenAZ/COVID-19/COVID-19.html",
+      "source_url": "https://www.rki.de/DE/Themen/Infektionskrankheiten/Impfen/Impfungen-A-Z/COVID-19/Impfempfehlung-Zusfassung.html",
       "secondary_url": "https://www.ema.europa.eu/en/medicines/human/EPAR/comirnaty",
       "trigger_all": [
         [
@@ -1133,7 +1133,7 @@
         ]
       ],
       "source_label": "USPSTF 2022 + AHA Aspirin-Primärprävention-Konsens",
-      "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/aspirin-use-to-prevent-cardiovascular-disease-preventive-medication",
+      "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/aspirin-to-prevent-cardiovascular-disease-preventive-medication",
       "secondary_url": "https://jamanetwork.com/journals/jama/fullarticle/2791399"
     },
     {

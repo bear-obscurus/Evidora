@@ -130,7 +130,7 @@
       "scope": "AT-Briefwahl seit 2007, VfGH W I 6/2016 Aufhebung der BPräs-Stichwahl vom 22.5.2016, Manipulations-Hypothese",
       "year": 2024,
       "source_url": "https://www.vfgh.gv.at/downloads/VfGH_W_I_6-2016_Bundespraesidentenwahl.pdf",
-      "secondary_url": "https://www.idea.int/news-media/news/postal-voting-democracy",
+      "secondary_url": "https://www.idea.int/publications/catalogue/special-voting-arrangements-international-idea-handbook",
       "source_label": "VfGH-Erkenntnis W I 6/2016 vom 1.7.2016 + BMI Wahlrechts-Reform 2007 + IDEA Postal Voting Studies + Wikipedia/Wikidata",
       "headline": "AT-Briefwahl seit 2007 (Verfassungsrang Art. 26 B-VG); VfGH W I 6/2016 hob die BPräs-Stichwahl vom 22.5.2016 auf wegen FORMFEHLER beim Umgang mit Briefwahlstimmen (u. a. verfrühtes Öffnen und Auszählen), KEIN Manipulations-Beweis",
       "data": {
@@ -234,7 +234,7 @@
       "topic": "volksbegehren_wirkung_empirie_konsens",
       "scope": "AT-Volksbegehren seit 1964 — Verbindlichkeit, parlamentarische Behandlung, Erfolg-Empirie",
       "year": 2024,
-      "source_url": "https://www.parlament.gv.at/gegenstand/XXVI/Volksbegehren/",
+      "source_url": "https://www.parlament.gv.at/beteiligen/wissenswertes/volksbegehren",
       "secondary_url": "https://www.bmi.gv.at/411/Alle_Volksbegehren_der_zweiten_Republik.aspx",
       "source_label": "Parlament Austria Volksbegehren-Datenbank + BMI AT Statistik + Wikipedia AT-Volksbegehren-Liste + Hopp/Plasser AT-Demokratie-Forschung",
       "headline": "AT-Volksbegehren seit 1964: parlamentarische Behandlungs-Pflicht ab 100k Unterschriften, KEIN bindender legislativer Effekt; ~50 % der erfolgreichen VB führten zu legislativen Änderungen (z.B. Don't Smoke 2018, Frauen-VB 1997+2018)",
@@ -332,8 +332,8 @@
       "topic": "at_bundesrat_funktion_konsens",
       "scope": "AT-Bundesrat (62 Mitglieder von Landtagen entsandt), suspensives + absolutes Veto",
       "year": 2024,
-      "source_url": "https://www.parlament.gv.at/PERK/RGES/BR/index.shtml",
-      "secondary_url": "https://www.bundesrat.de/DE/funktionen/funktionen-node.html",
+      "source_url": "https://www.parlament.gv.at/verstehen/bundesrat/",
+      "secondary_url": "https://www.parlament.gv.at/verstehen/bundesrat/",
       "source_label": "Parlament Austria Bundesrat + AT B-VG Art. 34-37 + Vergleich DE-Bundesrat (DE-Grundgesetz Art. 50)",
       "headline": "AT-Bundesrat 62 Mitglieder von Landtagen entsandt; suspensives Veto bei einfachen Gesetzen, absolutes Veto nur bei Verfassungsgesetzen mit Bundesländer-Kompetenz-Beschränkung; vs. DE-Bundesrat (deutlich mächtiger durch Zustimmungs-Pflicht)",
       "data": {
@@ -642,7 +642,7 @@
       "scope": "Online-Petitionen + EU-Bürger-Initiative + ePartizipation — Mobilisierungs-Empirie",
       "year": 2024,
       "source_url": "https://citizens-initiative.europa.eu/_de",
-      "secondary_url": "https://www.idea.int/news-media/news/digital-democracy",
+      "secondary_url": "https://www.idea.int/publications/catalogue/democracy-technologies-europe",
       "source_label": "EU Bürgerinitiative-Register + IDEA Digital Democracy Studies + Bertelsmann ePartizipation-Forschung 2020 + Hindman 2009 'The Myth of Digital Democracy'",
       "headline": "ePartizipation (Online-Petitionen + EU-Bürgerinitiative seit 2012, 1 Mio Unterschriften aus mind. 7 Mitgliedsstaaten): niedrige Mobilisierung außerhalb Krisen-Themen; Bertelsmann + IDEA Studien — kein Substitut für klassische Partizipation",
       "data": {
@@ -725,7 +725,7 @@
       "scope": "Demokratie-Rückgang seit 2010 — V-Dem v14 Liberal Democracy Index, Freedom House FIW 2026, Länder-Vergleich",
       "year": 2024,
       "source_url": "https://www.v-dem.net/data/the-v-dem-dataset/",
-      "secondary_url": "https://freedomhouse.org/report/freedom-world/2024",
+      "secondary_url": "https://freedomhouse.org/report/freedom-world/2024/mounting-damage-flawed-elections-and-armed-conflict",
       "source_label": "V-Dem Institute (University of Gothenburg) Varieties of Democracy v14 (2024) + Freedom House Freedom in the World 2026 + V-Dem Democracy Report 2024 + Bertelsmann Transformation Index BTI 2024",
       "headline": "V-Dem v14 (2024) Liberal Democracy Index: AT 0.78, DE 0.81, USA 0.79, HU 0.32, RU 0.07; Demokratie-Rückgang seit 2010 in HU/PL/TR/IN/USA empirisch belegt; AT/DE im EU-Vergleich stabil",
       "data": {

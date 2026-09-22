@@ -1,1650 +1,215 @@
 {
  "hinweis": "Bekannte tote Beleg-Links. Nur NEUE tote Links alarmieren. Reparierte Links hier entfernen (check_urls.py --schreibe-bekannt).",
  "tot": {
-  "https://aggressionresearchgroup.com/dan-olweus-1931-2020/": {
-   "dateien": [
-    "digital_familie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://agriculture.ec.europa.eu/farming/fertilisers/observatory_de": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://autisticadvocacy.org/2021/05/aba-statement/": {
-   "dateien": [
-    "inklusion_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://climateactiontracker.org/countries/eu-countries/": {
-   "dateien": [
-    "climate_action_tracker.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://climateactiontracker.org/countries/viet-nam/": {
-   "dateien": [
-    "climate_action_tracker.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://commission.europa.eu/strategy-and-policy/priorities-2019-2024/stronger-europe-world/eu-economic-security-strategy_en": {
-   "dateien": [
-    "welthandel_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://commission.europa.eu/transport-and-mobility/dieselgate-action-following-vw-emissions-scandal_en": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://ec.europa.eu/eurostat/web/youth/data/main-tables": {
-   "dateien": [
-    "arbeitsmarkt_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
   "https://economics.mit.edu/sites/default/files/2024-04/AcemogluPublishedRestrepoAERPP202405.pdf": {
    "dateien": [
     "arbeitsmarkt_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://eige.europa.eu/publications-resources/publications/gender-equality-index-2024-report": {
-   "dateien": [
-    "gleichstellung_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://fra.europa.eu/en/publications-and-resources/data-and-maps/survey-data-explorer-fundamental-rights-survey": {
-   "dateien": [
-    "gleichstellung_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://freedomhouse.org/report/freedom-world/2024": {
-   "dateien": [
-    "demokratie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://info.bml.gv.at/themen/landwirtschaft/eu-agrarpolitik-foerderungen/": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://info.bml.gv.at/themen/landwirtschaft/zahlen-und-fakten/": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://info.bml.gv.at/themen/landwirtschaft/zahlen-und-fakten/landwirtschaftliche-betriebe.html": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://infrastruktur.oebb.at/de/zahlen-daten-fakten/zielnetz-2040": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://medlineplus.gov/genetics/understanding/basics/howgeneswork/": {
-   "dateien": [
-    "reproduktion_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://mieterbund.de/mietrecht/schoenheitsreparaturen.html": {
-   "dateien": [
-    "recht_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://my.clevelandclinic.org/health/articles/sex-chromosomes": {
-   "dateien": [
-    "reproduktion_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://nbloom.people.stanford.edu/sites/g/files/sbiybj4746/f/wfh.pdf": {
-   "dateien": [
-    "arbeitsmarkt_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://nida.nih.gov/download/1380/cannabis-marijuana-research-report.pdf": {
-   "dateien": [
-    "gesundheits_autoritaeten_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://nida.nih.gov/research-topics/marijuana": {
-   "dateien": [
-    "substanzen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://noyb.eu/de/cookie-banner-report": {
-   "dateien": [
-    "datenschutz_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://policyreview.info/articles/analysis/online-anonymity-and-online-hate-speech": {
-   "dateien": [
-    "datenschutz_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://report-antisemitism.de/jahresbericht/": {
-   "dateien": [
-    "religionsgemeinschaften_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "MIT-PDF Acemoglu/Restrepo AER P&P 2024 nicht auffindbar"
   },
   "https://theicct.org/publication/lifecycle-emissions-roadmap-passenger-vehicles-jul24/": {
    "dateien": [
     "energie_klima_pack.json"
    ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: ICCT 2025: Amortisation ~17.000 km; Fakt nennt 30.000-50.000 km"
   },
   "https://theicct.org/publication/real-world-energy-consumption-electric-vehicles-europe-jul24/": {
    "dateien": [
     "mobilitaet_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://wid.world/document/the-elephant-curve-of-global-inequality-and-growth-wid-world-working-paper-2017-20/": {
-   "dateien": [
-    "welthandel_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://wien.arbeiterkammer.at/interessenvertretung/arbeitundsoziales/arbeitsbedingungen/Burnout.html": {
-   "dateien": [
-    "arbeitsmarkt_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "ICCT-Bericht in dieser Form nicht auffindbar"
   },
   "https://wsava.org/global-guidelines/puppy-development-guidelines/": {
    "dateien": [
     "tierhaltung_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.aaafco.org/": {
-   "dateien": [
-    "tierhaltung_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.aaapfeline.org/": {
-   "dateien": [
-    "tierhaltung_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "WSAVA-Welpen-Leitlinie nicht auffindbar"
   },
   "https://www.acsm.org/all-blog-posts/certification-blog/acsm-certified-blog/2018/03/27/listening-to-the-pain": {
    "dateien": [
     "sport_fitness_pack.json"
    ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "ACSM-Blogbeitrag ersatzlos entfernt — Nachfolgematerial suchen"
   },
   "https://www.acsm.org/blog-detail/acsm-blog/2014/06/24/exercise-fuels-low-intensity-vs-high-intensity": {
    "dateien": [
     "sport_fitness_pack.json"
    ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "ACSM-Blogbeitrag ersatzlos entfernt — Nachfolgematerial suchen"
   },
   "https://www.acsm.org/blog-detail/acsm-blog/2018/03/14/lean-body-mass": {
    "dateien": [
     "sport_fitness_pack.json"
    ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "ACSM-Blogbeitrag ersatzlos entfernt — Nachfolgematerial suchen"
   },
   "https://www.acsm.org/blog-detail/acsm-blog/2020/01/22/strength-training-women": {
    "dateien": [
     "sport_fitness_pack.json"
    ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "ACSM-Blogbeitrag ersatzlos entfernt — Nachfolgematerial suchen"
   },
   "https://www.acsm.org/blog-detail/acsm-certified-blog/2017/04/26/dynamic-stretching": {
    "dateien": [
     "sport_fitness_pack.json"
    ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "ACSM-Blogbeitrag ersatzlos entfernt — Nachfolgematerial suchen"
   },
   "https://www.acsm.org/blog-detail/acsm-certified-blog/2018/04/06/3-myths-about-muscle-soreness": {
    "dateien": [
     "sport_fitness_pack.json"
    ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "ACSM-Blogbeitrag ersatzlos entfernt — Nachfolgematerial suchen"
   },
   "https://www.acsm.org/blog-detail/acsm-certified-blog/2018/10/15/progressive-overload-strength-training": {
    "dateien": [
     "sport_fitness_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.adac.de/rund-ums-fahrzeug/ausstattung-technik-zubehoer/reifen/winterreifen/": {
-   "dateien": [
-    "verkehrssicherheit_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/auto-kosten/sicherheit/anhalteweg/": {
-   "dateien": [
-    "verkehrssicherheit_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.adac.de/rund-ums-fahrzeug/elektromobilitaet/tests/elektroauto-reichweite-winter/": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.adl.org/global-100": {
-   "dateien": [
-    "religionsgemeinschaften_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.aeaweb.org/articles?id=10.1257/aer.84.4.772": {
-   "dateien": [
-    "arbeitsmarkt_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.ages.at/forschung/publikationen-statistiken/rueckstandskontrolle-pflanzenschutzmittel": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "ACSM-Blogbeitrag ersatzlos entfernt — Nachfolgematerial suchen"
   },
   "https://www.ages.at/themen/lebensmittel/lebensmittelsicherheit/tierwohl-und-tierschutz": {
    "dateien": [
     "landwirtschaft_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.agora-verkehrswende.de/publikationen/": {
-   "dateien": [
-    "energie_klima_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.agora-verkehrswende.de/veroeffentlichungen/wasserstoff-im-strassenverkehr/": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.aicr.org/cancer-prevention/food-facts/alkaline-diet/": {
-   "dateien": [
-    "onkologie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.allianz-pro-schiene.de/themen/infrastruktur/schienen-investitionen/": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "AGES-Tierwohlseite ohne Nachfolger"
   },
   "https://www.amnesty.org/en/documents/asa01/4030/2021/en/": {
    "dateien": [
     "religionsgemeinschaften_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.ams.at/arbeitsuchende/arbeitslos-was-tun/notstandshilfe": {
-   "dateien": [
-    "sozialstaat_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.ams.at/arbeitsuchende/aus-und-weiterbildung/bildungskarenz": {
-   "dateien": [
-    "sozialstaat_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.antidiskriminierungsstelle.de/DE/themen-und-forschung/recht-und-beratung/recht/_node.html": {
-   "dateien": [
-    "recht_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.antidiskriminierungsstelle.de/DE/themen/datenundforschung/sexismus_erfahrungen.html": {
-   "dateien": [
-    "gleichstellung_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.arbeiterkammer.at/beratung/arbeitundrecht/Beendigung/Kuendigung.html": {
-   "dateien": [
-    "recht_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.arbeiterkammer.at/beratung/arbeitundrecht/Beendigung/Probezeit.html": {
-   "dateien": [
-    "recht_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.arbeiterkammer.at/beratung/arbeitundrecht/arbeitszeit/Pausen.html": {
-   "dateien": [
-    "recht_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.arbeiterkammer.at/beratung/wohnen/Schimmel.html": {
-   "dateien": [
-    "recht_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.asfinag.at/ueber-uns/zahlen-daten-fakten/": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bafin.de/DE/Aufsicht/MaFinanzgeschaefte/CFD/cfd_node.html": {
-   "dateien": [
-    "geldanlage_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bafin.de/DE/Verbraucher/Anlegerwarnungen/anlegerwarnungen_node.html": {
-   "dateien": [
-    "geldanlage_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bafin.de/DE/Verbraucher/Finanzwissen/Geldanlage/Schneeballsysteme/schneeballsysteme_node.html": {
-   "dateien": [
-    "finanzen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bag.bund.de/DE/Navigation/Themen/Maut/Mautstatistik/mautstatistik_node.html": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "Amnesty-Dokument ASA 01/4030/2021 nicht auffindbar"
   },
   "https://www.bamf.de/SharedDocs/Meldungen/DE/2024/familiennachzug-2024.html": {
    "dateien": [
     "migration_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bankofengland.co.uk/monetary-policy-report": {
-   "dateien": [
-    "welthandel_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: Familiennachzug zu subsidiaer Geschuetzten seit 24.7.2025 fuer 2 Jahre ausgesetzt (§ 104 Abs. 14 AufenthG); Fakt beschreibt 1.000/Monat als geltend — kein Ersatzlink untergeschoben"
   },
   "https://www.bast.de/DE/Verkehrssicherheit/Fachthemen/U-SUV/U-SUV.html": {
    "dateien": [
     "mobilitaet_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bbsr.bund.de/BBSR/DE/forschung/programme/laufendeprogramme/wohnen/wohnen_node.html": {
-   "dateien": [
-    "wohnen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bbu.de/themen/wohnen/genossenschaften": {
-   "dateien": [
-    "wohnen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bertelsmann-stiftung.de/de/themen/aktuelle-meldungen/2019/januar/binnenmarkt-bringt-deutschland-86-milliarden-euro": {
-   "dateien": [
-    "wirtschaftspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bfn.de/themen/erneuerbare-energien/windenergie/voegel-und-fledermaeuse.html": {
-   "dateien": [
-    "energie_klima_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bfs.de/EN/topics/emf/applications/household/microwave-oven/microwave-oven_node.html": {
-   "dateien": [
-    "ernaehrungs_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bitkom.org/Presse/Presseinformation/DSGVO-bleibt-fuer-Unternehmen-eine-Herausforderung": {
-   "dateien": [
-    "datenschutz_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/Lagebilder/Partnerschaftsgewalt/Partnerschaftsgewalt_node.html": {
-   "dateien": [
-    "gleichstellung_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/PolizeilicheKriminalstatistik/PKS2023/PKSJahrbuecher/pksJahrbuecher.html": {
-   "dateien": [
-    "gleichstellung_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bmbf.de/SharedDocs/Publikationen/de/bmbf/3/31888_Bildung_in_Deutschland_2024.pdf": {
-   "dateien": [
-    "gleichstellung_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bmf.gv.at/themen/budget/das-budget/bundesvoranschlag.html": {
-   "dateien": [
-    "sicherheitspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bmf.gv.at/themen/familienbeihilfe.html": {
-   "dateien": [
-    "sozialstaat_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bmf.gv.at/themen/steuern/fuer-familien/familienbonus-plus.html": {
-   "dateien": [
-    "sozialstaat_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bmi.gv.at/415/Volksbefragung_zum_Bundesheer/start.aspx": {
-   "dateien": [
-    "sicherheitspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: Fakt zitiert 'BASt DE 2023' zur SUV-Sicherheit — keine solche BASt-Veroeffentlichung auffindbar (naechstliegend: UDV-Studie der Versicherer)"
   },
   "https://www.bmi.gv.at/cms/BMI_OeffentlicheSicherheit/2024/02/files/oeffentliche_sicherheit_02_2024.pdf": {
    "dateien": [
     "gleichstellung_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bmi.gv.at/cyber-sicherheit/": {
-   "dateien": [
-    "sicherheitspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: Fakt: 'Femizide AT 2023 31 vollendete Toetungen (BMI)'; AOeF/Medien: 26 Femizide 2023, PKS ~25 — Zahl pruefen"
   },
   "https://www.bml.gv.at/dam/jcr:fixme/CAP-Verteilung-2023.pdf": {
    "dateien": [
     "landwirtschaft_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bmwsb.bund.de/Webs/BMWSB/DE/themen/stadt-wohnen/wohngeld/wohngeld-node.html": {
-   "dateien": [
-    "wohnen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bmwsb.bund.de/Webs/BMWSB/DE/themen/stadt-wohnen/wohnungswirtschaft/wohnraumfoerderung/wohnraumfoerderung-node.html": {
-   "dateien": [
-    "wohnen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.britannica.com/list/the-10-most-dangerous-animals-in-the-world": {
-   "dateien": [
-    "geographie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.britannica.com/story/do-ostriches-really-bury-their-heads-in-the-sand": {
-   "dateien": [
-    "tier_natur_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.britannica.com/story/whats-the-tallest-mountain-on-earth": {
-   "dateien": [
-    "geographie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Cyber-Sicherheitsempfehlungen/Internet/Phishing-Spam-und-Computerviren/phishing-spam-und-computerviren_node.html": {
-   "dateien": [
-    "cybersecurity_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bundesbank.de/de/aufgaben/finanz-und-waehrungssystem/finanzstabilitaet/finanzstabilitaetsbericht": {
-   "dateien": [
-    "wohnen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bundesbank.de/de/aufgaben/themen/eurosystem-zinsen-im-ueberblick": {
-   "dateien": [
-    "finanzen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bundesheer.at/cms/artikel.php?ID=11907": {
-   "dateien": [
-    "sicherheitspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bundesheer.at/organisation/zahlen_fakten.shtml": {
-   "dateien": [
-    "sicherheitspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bundesheer.at/wehrpflicht/": {
-   "dateien": [
-    "sicherheitspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: Fakt rechnet '1,1 Mrd EU-GAP + 600 Mio national = ~7 Mrd'; Gruener Bericht 2025: 2,65 Mrd gesamt 2024. Link war erfunden (jcr:fixme)"
   },
   "https://www.bundeskanzleramt.gv.at/themen/oea/eurobarometer.html": {
    "dateien": [
     "demokratie_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bundesnetzagentur.de/DE/Vportal/TK/AufgabenundBefugnisseTK/Berichte/_navigation.html": {
-   "dateien": [
-    "datenschutz_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bundesrat.de/DE/funktionen/funktionen-node.html": {
-   "dateien": [
-    "demokratie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bundesstelle-sekten.at/": {
-   "dateien": [
-    "religionsgemeinschaften_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bundesstelle-sekten.at/cgi-bin/zsi/index.cgi": {
-   "dateien": [
-    "religionsgemeinschaften_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2021/04/fs20210415_2bvf000120.html": {
-   "dateien": [
-    "wohnen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bva.co.uk/news-and-blog/news-article/bva-position-on-vegan-and-vegetarian-pet-foods/": {
-   "dateien": [
-    "tierhaltung_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.bverwg.de/200320U6C7.20.0": {
-   "dateien": [
-    "sicherheitspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.cam.ac.uk/research/news/uks-largest-four-day-week-trial-finds-significant-drop-in-staff-turnover-and-sick-days": {
-   "dateien": [
-    "arbeitsmarkt_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.cambridge.org/core/journals/the-british-journal-of-psychiatry/article/role-of-media-reports-in-completed-and-prevented-suicide-werther-v-papageno-effects/96BD3C05A05B5A5B5C5D5E5F5060708": {
-   "dateien": [
-    "mental_health_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.cancer.org/cancer/breast-cancer/about/types-of-breast-cancer/myths-misconceptions.html": {
-   "dateien": [
-    "onkologie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.cancerresearchuk.org/about-cancer/causes-of-cancer/cancer-controversies/alkaline-diet": {
-   "dateien": [
-    "onkologie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.cancerresearchuk.org/about-cancer/causes-of-cancer/cancer-controversies/sugar-and-cancer": {
-   "dateien": [
-    "onkologie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.carbonbrief.org/analysis-china-built-more-clean-energy-capacity-in-2024-than-rest-of-world-combined/": {
-   "dateien": [
-    "energie_klima_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.cbr.cam.ac.uk/research/research-projects/the-political-economy-of-rail-privatisation/": {
-   "dateien": [
-    "wirtschaftspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.chainalysis.com/blog/2024-crypto-crime-trends/": {
-   "dateien": [
-    "tech_ki_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.dai.de/de/das-bieten-wir/studien-und-statistiken/dai-renditedreiecke": {
-   "dateien": [
-    "finanzen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.destatis.de/DE/Themen/Arbeit/Arbeitsmarkt/Verdienste/Verdienstunterschiede/_inhalt.html": {
-   "dateien": [
-    "gleichstellung_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Sterbefaelle-Lebenserwartung/Tabellen/lebenserwartung-deutschland.html": {
-   "dateien": [
-    "destatis.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Einkommen-Konsum-Lebensbedingungen/Wohnen/_inhalt.html": {
-   "dateien": [
-    "wohnen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.deutschebahn.com/de/konzern/im_blickpunkt/puenktlichkeit-3520986": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.dgb.de/themen/++co++8a8c5c8c-1234-11ee-bcde-001a4a160129": {
-   "dateien": [
-    "arbeitsmarkt_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.dge.de/wissenschaft/weitere-publikationen/fachinformationen/detox/": {
-   "dateien": [
-    "ernaehrungs_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.dgppn.de/_Resources/Persistent/d57c9f9b87fbf2b76406d7e6d80b1f8a14de3996/S3-LL-Unipolare-Depression-langfassung.pdf": {
-   "dateien": [
-    "mental_health_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.dgppn.de/_Resources/Persistent/d8c8b7c8b7c8b7c8b7c8b7c8b7c8b7c8b7c8b7c8/S2-LL-Borderline.pdf": {
-   "dateien": [
-    "mental_health_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.dgppn.de/_Resources/Persistent/d8c8b7c8b7c8b7c8b7c8b7c8b7c8b7c8b7c8b7c8/S3-LL-Essstoerungen.pdf": {
-   "dateien": [
-    "mental_health_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: Fakt: AT-Demokratiezufriedenheit 67 % (EU 53 %); Eurobarometer 2024: AT 63 % (Fruehjahr) bzw. 60 % (Herbst), EU 55 %"
   },
   "https://www.dihk.de/de/themen-und-positionen/recht-steuern/internationales-wirtschaftsrecht/made-in-germany": {
    "dateien": [
     "welthandel_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.dkhwb.de/down-syndrom/": {
-   "dateien": [
-    "inklusion_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.dsn.gv.at/dsn/publikationen/jahresberichte.aspx": {
-   "dateien": [
-    "sicherheitspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.e-control.at/marktteilnehmer/strom/smart-meter": {
-   "dateien": [
-    "datenschutz_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.ecb.europa.eu/pub/economic-research/working-papers/html/index.en.html": {
-   "dateien": [
-    "geldanlage_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.eff.org/deeplinks/2018/06/password-managers-help-us-stay-safer-online": {
-   "dateien": [
-    "cybersecurity_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: Fakt: 'Made in Germany fordert nach BGH/DIHK ~45 % Wertschoepfung in DE' — laut IHK gibt es keine gesetzliche Quote; Ersatz waere widerspruechlich"
   },
   "https://www.efsa.europa.eu/de/efsajournal/pub/8957": {
    "dateien": [
     "landwirtschaft_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.efsa.europa.eu/de/news/glyphosate-no-critical-areas-concern-data-gaps-be-clarified": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.efsa.europa.eu/en/topics/topic/nitrate-and-nitrite": {
-   "dateien": [
-    "lebensmittel_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.einstein.caltech.edu/what/index.html": {
-   "dateien": [
-    "geschichts_mythen2_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.ema.europa.eu/en/human-regulatory-overview/public-health-threats/coronavirus-disease-covid-19/treatments-vaccines/vaccines-covid-19/covid-19-vaccines-key-facts": {
-   "dateien": [
-    "gesundheits_autoritaeten_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.ema.europa.eu/en/medicines/human/referrals": {
-   "dateien": [
-    "ema_referrals.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.enisa.europa.eu/topics/cybersecurity-threats/phishing": {
-   "dateien": [
-    "cybersecurity_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.esma.europa.eu/sites/default/files/library/esma35-43-1135_decision_renewing_temporary_intervention_measures_relating_to_contracts_for_differences.pdf": {
-   "dateien": [
-    "geldanlage_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.espon.eu/demifer": {
-   "dateien": [
-    "espon.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.espon.eu/escape": {
-   "dateien": [
-    "espon.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.espon.eu/locate": {
-   "dateien": [
-    "espon.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.espon.eu/topics/territorial-cohesion": {
-   "dateien": [
-    "espon.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.eter-project.com/data-for-research": {
-   "dateien": [
-    "eter.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.european-accessibility-act.com/": {
-   "dateien": [
-    "inklusion_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.european-agency.org/data/easie": {
-   "dateien": [
-    "easie.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.european-agency.org/sites/default/files/easie_2018_2019_dataset.xlsx": {
-   "dateien": [
-    "easie.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.fda.gov/food/buy-store-serve-safe-food/food-safety-microwave": {
-   "dateien": [
-    "lebensmittel_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.fda.gov/food/buy-store-serve-safe-food/keep-food-safe-temperature": {
-   "dateien": [
-    "lebensmittel_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.fda.gov/food/buy-store-serve-safe-food/safe-food-handling-information-consumers": {
-   "dateien": [
-    "lebensmittel_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: EFSA-Fakt: 88.353 Proben, 96,4 %, 1,5 % relevant — EFSA (2022er Daten) sagt 110.829 Proben, 96,3 %, 2,2 % nicht konform"
   },
   "https://www.fertilizerseurope.com/wp-content/uploads/2024/04/Industry-Facts-and-Figures-2024.pdf": {
    "dateien": [
     "landwirtschaft_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.fli.de/de/aktuelles/tierseuchen/tollwut/": {
-   "dateien": [
-    "tierhaltung_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.folger.edu/explore/shakespeares-life/shakespeare-authorship-question/": {
-   "dateien": [
-    "kunst_kultur_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.ftc.gov/news-events/topics/truth-advertising/multi-level-marketing": {
-   "dateien": [
-    "geldanlage_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.g-ba.de/themen/methodenbewertung/ambulant/frueherkennung/": {
-   "dateien": [
-    "who_hearing.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.gbv.at/wgg": {
-   "dateien": [
-    "wohnen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.gleichbehandlungsanwaltschaft.gv.at/themen/Schutz_vor_Diskriminierung/index.html": {
-   "dateien": [
-    "recht_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.healthline.com/nutrition/does-milk-cause-mucus": {
-   "dateien": [
-    "ernaehrungs_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.hoer-selbsthilfe.at/": {
-   "dateien": [
-    "who_hearing.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.hsph.harvard.edu/nutritionsource/microwave-food-safety/": {
-   "dateien": [
-    "ernaehrungs_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.iab.de/de/publikationen/forschungsberichte.aspx": {
-   "dateien": [
-    "gleichstellung_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.iab.de/de/publikationen/forschungsberichte/forschungsberichte-zum-hartz4.aspx": {
-   "dateien": [
-    "wirtschaftspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.iab.de/de/publikationen/forschungsberichte/forschungsberichte-zum-mindestlohn.aspx": {
-   "dateien": [
-    "wirtschaftspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: Nachfolgeseite liefert HTTP 500; Fakt-Zahl '~60 % des EU-Stickstoffduengers aus Russland/Belarus' nicht verifizierbar"
   },
   "https://www.iab.de/de/publikationen/forschungsberichte/forschungsberichte-zum-wohnungsmarkt.aspx": {
    "dateien": [
     "wohnen_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.iab.de/de/publikationen/forschungsberichte/forschungsberichte-zur-migration.aspx": {
-   "dateien": [
-    "wirtschaftspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.iab.de/en/befragungen/migration_und_integration.aspx": {
-   "dateien": [
-    "arbeitsmarkt_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.icsahome.com/articles/characteristics-of-cults": {
-   "dateien": [
-    "religionsgemeinschaften_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.idea.int/news-media/news/digital-democracy": {
-   "dateien": [
-    "demokratie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.idea.int/news-media/news/postal-voting-democracy": {
-   "dateien": [
-    "demokratie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.iea.org/reports/oil-market-report": {
-   "dateien": [
-    "welthandel_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.iea.org/reports/the-future-of-cooling-in-buildings": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: IAB-Seite existierte vermutlich nie; 'IAB + Bundesbank 2024: Migration 10-20 % der Mietsteigerung' nicht auffindbar"
   },
   "https://www.ifo.de/publikationen/2023/aufsatz-zeitschrift/wertschoepfungsanteile-deutscher-automobilhersteller": {
    "dateien": [
     "welthandel_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.ifo.de/publikationen/2024/aufsatz-zeitschrift/effekte-der-inflation-auf-die-einkommensteuer": {
-   "dateien": [
-    "finanzen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.iihs.org/news/detail/larger-suvs-pose-greater-risk-to-pedestrians-in-crashes": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.iihs.org/topics/distracted-driving": {
-   "dateien": [
-    "verkehrssicherheit_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.integrationsfonds.at/mediathek/publikationen/": {
-   "dateien": [
-    "oeif_zara.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.integrationsfonds.at/themen/werte-und-orientierungskurse/": {
-   "dateien": [
-    "oeif_zara.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.ise.fraunhofer.de/de/forschungsprojekte/wasserstoff-pkw-effizienz-analyse.html": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: ifo-Aufsatz 2023 zur VW-Tiguan-Wertschoepfung (30/30/25/15 %) nicht auffindbar; Zahlen ohne Beleg"
   },
   "https://www.juraforum.de/lexikon/screenshot-recht": {
    "dateien": [
     "recht_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.kcw-online.de/oepnv-ausbau-pakt-finanzierung-2024": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.kfv.at/strassenverkehr/kindersicherheit-im-auto/": {
-   "dateien": [
-    "lebensmittel_pack.json",
-    "verkehrssicherheit_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.kfv.at/strassenverkehr/winter-reifen/": {
-   "dateien": [
-    "verkehrssicherheit_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.kirche-finanzen.de/kirchensteuer/aktuelle-zahlen.html": {
-   "dateien": [
-    "religionsgemeinschaften_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.kmk.org/themen/allgemeinbildende-schulen/unterrichtsfaecher/faecher.html": {
-   "dateien": [
-    "religionsgemeinschaften_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.knoflacher.at/publikationen/parken-und-stadtverkehr": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.konsument.at/test/grander": {
-   "dateien": [
-    "esoterik_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.krebsinformationsdienst.de/behandlung/misteltherapie.php": {
-   "dateien": [
-    "onkologie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.krebsinformationsdienst.de/vorbeugung/risiken/aluminium.php": {
-   "dateien": [
-    "onkologie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.krebsinformationsdienst.de/vorbeugung/risiken/zucker.php": {
-   "dateien": [
-    "onkologie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.lse.ac.uk/granthaminstitute/people/christian-hilber/": {
-   "dateien": [
-    "wohnen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.medienanstalt-nrw.de/themen/hass.html": {
-   "dateien": [
-    "datenschutz_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.menopause.org/publications/clinical-care-recommendations": {
-   "dateien": [
-    "reproduktion_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.nabu.de/imperia/md/content/nabude/energie/wind/2017_hoetker_studie_windkraft.pdf": {
-   "dateien": [
-    "energie_klima_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.nccih.nih.gov/health/alkaline-water": {
-   "dateien": [
-    "onkologie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.nccih.nih.gov/health/multivitamin-mineral-supplements": {
-   "dateien": [
-    "gesundheits_autoritaeten_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.nccih.nih.gov/health/providers/digest/high-dose-vitamin-c-and-cancer-science": {
-   "dateien": [
-    "onkologie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.newamerica.org/international-security/reports/americas-counterterrorism-wars/": {
-   "dateien": [
-    "sicherheitspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.nhs.uk/conditions/detoxes-and-cleanses-do-they-work/": {
-   "dateien": [
-    "ernaehrungs_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.nhs.uk/conditions/eye-strain/": {
-   "dateien": [
-    "alltags_mythen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.nhs.uk/live-well/alcohol-advice/alcohol-units/": {
-   "dateien": [
-    "verkehrssicherheit_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.nice.org.uk/guidance/conditions-and-diseases/cardiovascular-conditions/wound-management": {
-   "dateien": [
-    "alltags_mythen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.nichd.nih.gov/health/topics/menstruation/conditioninfo/fertility-window": {
-   "dateien": [
-    "reproduktion_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.niesr.ac.uk/publications/union-wage-premium": {
-   "dateien": [
-    "arbeitsmarkt_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "kein gleichwertiger Nachfolger (nur Foren/Kanzlei-Blogs)"
   },
   "https://www.ogh.gv.at/entscheidungen-suche/8oba70-22": {
    "dateien": [
     "arbeitsmarkt_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.ohchr.org/sites/default/files/Documents/Countries/MM/ReportoftheUNFFM_Myanmar_A_HRC_39_64.pdf": {
-   "dateien": [
-    "religionsgemeinschaften_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.parlament.gv.at/PERK/RGES/BR/index.shtml": {
-   "dateien": [
-    "demokratie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.parlament.gv.at/aktuelles/news/parlbga20180428-bundestrojaner-grundrechtsbericht/": {
-   "dateien": [
-    "datenschutz_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.parlament.gv.at/aktuelles/news/parlbga20180430-bvt-u-ausschuss/": {
-   "dateien": [
-    "datenschutz_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.parlament.gv.at/gegenstand/XXVI/Volksbegehren/": {
-   "dateien": [
-    "demokratie_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.pei.de/SharedDocs/FAQs/DE/coronavirus/mrna-impfstoffe-veraendern-erbgut.html": {
-   "dateien": [
-    "gesundheits_autoritaeten_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.pestel-institut.de/aktuelles/wohnungsbedarf-2024": {
-   "dateien": [
-    "wohnen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.pewresearch.org/global/2024/02/28/representative-democracy-remains-popular/": {
-   "dateien": [
-    "internationale_quellen.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.pewresearch.org/religion/2022/11/29/how-restrictions-on-religion-have-risen-around-the-world/": {
-   "dateien": [
-    "religionsgemeinschaften_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.pewresearch.org/religion/feature/the-global-religious-landscape/": {
-   "dateien": [
-    "arda.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.pewresearch.org/social-trends/2023/04/06/young-workers-and-the-job-market/": {
-   "dateien": [
-    "arbeitsmarkt_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.profil.at/oesterreich/fpoe-22-millionen-behandlungen-drittstaatsangehoerige-faktencheck": {
-   "dateien": [
-    "oeif_zara.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.psychiatry.org/patients-families/borderline-personality-disorder": {
-   "dateien": [
-    "mental_health_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.rki.de/DE/Content/Infekt/EpidBull/Merkblaetter/Ratgeber_Botulismus.html": {
-   "dateien": [
-    "lebensmittel_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.rki.de/DE/Content/Infekt/Impfen/ImpfungenAZ/COVID-19/COVID-19.html": {
-   "dateien": [
-    "gesundheits_autoritaeten_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.royalsociety.org/news/2010/newton-apple/": {
-   "dateien": [
-    "geschichts_mythen2_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.smithsonianmag.com/travel/the-pyramid-builders-130984123/": {
-   "dateien": [
-    "kunst_kultur_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.snopes.com/fact-check/napoleon-was-short/": {
-   "dateien": [
-    "kunst_kultur_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.statistik.at/fileadmin/pages/450/Versorgungsbilanz_2024.pdf": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/gestorbene/uebersterblichkeit": {
-   "dateien": [
-    "gesundheits_autoritaeten_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/wanderungen": {
-   "dateien": [
-    "oeif_zara.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/einkommen-und-soziale-lage/einkommen": {
-   "dateien": [
-    "arbeitsmarkt_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/familien-und-haushalte": {
-   "dateien": [
-    "sozialstaat_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/familien-und-haushalte/kinderbetreuungsgeld": {
-   "dateien": [
-    "sozialstaat_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/gesundheit/personal-im-gesundheitswesen": {
-   "dateien": [
-    "arbeitsmarkt_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/gesundheit/pflege": {
-   "dateien": [
-    "sozialstaat_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: OGH-Entscheidung '8 ObA 70/22f (Foodora-Riders Arbeitnehmer)' nicht auffindbar — Aktenzeichen und Aussage pruefen"
   },
   "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/sozialleistungen-auf-bundes-und-landesebene/wohnbeihilfe": {
    "dateien": [
     "sozialstaat_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/sozialleistungen/pflegevorsorge": {
-   "dateien": [
-    "inklusion_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.statistik.at/statistiken/bildung": {
-   "dateien": [
-    "inklusion_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.statistik.at/statistiken/land-und-forstwirtschaft/agrarstrukturerhebung": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.statistik.at/statistiken/land-und-forstwirtschaft/viehwirtschaft": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.statistik.at/statistiken/wirtschaft/aussenhandel": {
-   "dateien": [
-    "welthandel_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.test.de/Riester-Rente-Was-Sie-wissen-muessen-1138999-0/": {
-   "dateien": [
-    "finanzen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.thensf.org/how-much-sleep-do-we-really-need/": {
-   "dateien": [
-    "alltags_mythen_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: Fakt: Wien ~140.000 Wohnbeihilfe-Bezieher; Stadt Wien meldet fuer die neue Wohnbeihilfe 2025 rund 36.000 Haushalte — Zahl pruefen"
   },
   "https://www.tirol.gv.at/landtag/leerstandsabgabe": {
    "dateien": [
     "wohnen_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.toi.no/getfile.php?mmfileid=15084": {
-   "dateien": [
-    "verkehrssicherheit_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: Fakt: Tirol Leerstandsabgabe 'seit 2024', 1.500-2.000 EUR/Jahr; TFLAG gilt seit 1.1.2023 mit 10-215 EUR/Monat je nach Groesse (Vorbehaltsgemeinden doppelt)"
   },
   "https://www.umweltbundesamt.at/klima/treibhausgase/khg-bilanz": {
    "dateien": [
     "landwirtschaft_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.umweltbundesamt.de/publikationen/umweltschaedliche-subventionen-deutschland-2021": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.umweltbundesamt.de/themen/co2-minderung-im-verkehr-durch-tempolimit": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.umweltbundesamt.de/themen/luft/emissionen-von-luftschadstoffen/spezifische-emissionen-des-verkehrs": {
-   "dateien": [
-    "energie_klima_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.umweltbundesamt.de/themen/tempo-30-staedtischen-strassen": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.umweltbundesamt.de/themen/verkehr/parkraum-management": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.un.org/disabilities/documents/convention/convoptprot-d.pdf": {
-   "dateien": [
-    "inklusion_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.unil.ch/files/live/sites/hec/files/shared/documents/recherche/IRENE_Brulhart_2022_wealth-tax.pdf": {
-   "dateien": [
-    "wirtschaftspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.usccb.org/about/child-and-youth-protection/john-jay-college-research-studies": {
-   "dateien": [
-    "religionsgemeinschaften_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/aspirin-use-to-prevent-cardiovascular-disease-preventive-medication": {
-   "dateien": [
-    "gesundheits_autoritaeten_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/vitamin-supplementation-to-prevent-cancer-and-cvd-counseling": {
-   "dateien": [
-    "gesundheits_autoritaeten_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.vatican.va/roman_curia/secretariat_state/economy/index_en.htm": {
-   "dateien": [
-    "religionsgemeinschaften_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.vdv.de/finanzierungsbedarf-oepnv.aspx": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: Fakt: Landwirtschaft AT 2024 = 8,0 Mt CO2e; UBA Oesterreich nennt 8,4 Mt (2024)"
   },
   "https://www.verbraucherzentrale.de/wissen/digitale-welt/datenschutz/whatsapp-chats-als-beweismittel-rechtslage-und-tipps-69466": {
    "dateien": [
     "recht_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.verbraucherzentrale.de/wissen/digitale-welt/mietrecht/schimmelpilz-rechte-und-pflichten-von-mietern-und-vermietern-13738": {
-   "dateien": [
-    "recht_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/altersvorsorge/riesterrente-tipps-zur-foerderung-26025": {
-   "dateien": [
-    "finanzen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/anlagebetrug-erkennen-und-meiden": {
-   "dateien": [
-    "geldanlage_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/sparen-und-anlegen/multilevelmarketing-mlm-vorsicht-vor-pyramidensystemen-77373": {
-   "dateien": [
-    "geldanlage_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.verbraucherzentrale.de/wissen/lebensmittel/lebensmittelproduktion/pilze-aufwaermen-was-ist-zu-beachten-12826": {
-   "dateien": [
-    "lebensmittel_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.verfassungsschutz.bayern.de/scientology/index.html": {
-   "dateien": [
-    "religionsgemeinschaften_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.verfassungsschutz.de/SharedDocs/publikationen/DE/verfassungsschutzberichte/2024-06-18-vsbericht-2023.html": {
-   "dateien": [
-    "religionsgemeinschaften_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.vfgh.gv.at/medien/Aufhebung_Vorratsdatenspeicherung_juni_2014.de.php": {
-   "dateien": [
-    "datenschutz_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.vfgh.gv.at/medien/Bundestrojaner_aufgehoben.de.php": {
-   "dateien": [
-    "datenschutz_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.vfgh.gv.at/medien/Pressemitteilungen.de.html": {
-   "dateien": [
-    "sicherheitspolitik_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.vfgh.gv.at/medien/Sozialhilfe-Grundsatzgesetz.de.php": {
-   "dateien": [
-    "sozialstaat_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.whitehouse.gov/cleanenergy/inflation-reduction-act-guidebook/": {
-   "dateien": [
-    "welthandel_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.who.int/europe/news/item/29-09-2023-30-km-h-zones-save-lives--findings-from-european-cities": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.who.int/news/item/03-03-2021-1-in-4-people-projected-to-have-hearing-problems-by-2050": {
-   "dateien": [
-    "who_hearing.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.who.int/publications/i/item/preventing-suicide-a-resource-for-media-professionals-update-2023": {
-   "dateien": [
-    "mental_health_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.who.int/publications/i/item/speed-management-a-road-safety-manual-for-decision-makers-and-practitioners": {
-   "dateien": [
-    "verkehrssicherheit_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "Verbraucherzentrale-Seite entfernt, kein gleichwertiger Nachfolger (nur Kanzlei-Blogs)"
   },
   "https://www.wien.gv.at/wohnen/wohnbaufoerderung/wohnbeihilfe/index.html": {
    "dateien": [
     "sozialstaat_pack.json"
    ],
-   "seit": "2026-09-22"
-  },
-  "https://www.wifo.ac.at/jart/prj3/wifo/main.jart?rel=de&content-id=1454619331110&publikation_id=66932": {
-   "dateien": [
-    "welthandel_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.wifo.ac.at/news/fachkraeftemangel_oesterreich": {
-   "dateien": [
-    "arbeitsmarkt_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.wifo.ac.at/projekte/airbnb-wohnungsmarkt-wien-studie": {
-   "dateien": [
-    "wohnen_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.wifo.ac.at/publikationen/karenz_lohnverlust_oesterreich": {
-   "dateien": [
-    "arbeitsmarkt_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.wifo.ac.at/themen/arbeitsmarkt-und-loehne": {
-   "dateien": [
-    "ams_wifo.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.wifo.ac.at/themen/oeffentliche-finanzen-staat": {
-   "dateien": [
-    "sozialstaat_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.wko.at/statistik/extranet/aussenhandel/aussenhandel.pdf": {
-   "dateien": [
-    "welthandel_pack.json"
-   ],
-   "seit": "2026-09-22"
-  },
-  "https://www.wur.nl/en/research-results/research-institutes/plant-research/show-wpr/vertical-farming-trade-offs.htm": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22"
+   "seit": "2026-09-22",
+   "grund": "INHALT: siehe Statistik-Wohnbeihilfe: Wiener Bezieherzahl im Fakt passt nicht zur Stadt Wien"
   }
  }
 }

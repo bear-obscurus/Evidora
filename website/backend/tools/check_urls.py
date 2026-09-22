@@ -311,6 +311,15 @@ def lade_bekannt(pfad: str) -> dict[str, dict]:
         return {}
 
 
+def bekannt_eintraege(tot: set[str], bekannt: dict, orte: dict, heute: str) -> dict:
+    """Neue Liste bekannter toter Links. Handnotizen (z. B. "grund", warum
+    ein Link nicht ersetzbar ist) ueberleben das Neuschreiben."""
+    return {u: {**(bekannt.get(u) or {}),
+                "dateien": orte.get(u, ["live"]),
+                "seit": (bekannt.get(u) or {}).get("seit", heute)}
+            for u in sorted(tot)}
+
+
 def vergleiche(tot: set[str], bekannt: dict) -> tuple[list[str], list[str], list[str]]:
     """(neu tot, weiterhin bekannt tot, bekannt aber nicht mehr tot/gefunden)."""
     neu = sorted(tot - set(bekannt))
@@ -421,10 +430,8 @@ async def main_async(args: argparse.Namespace) -> int:
     for u in neu[:30]:
         print(f"  NEU TOT  {', '.join(orte.get(u, ['live']))[:40]:<40} {u}")
     if args.schreibe_bekannt:
-        heute = datetime.date.today().isoformat()
-        eintraege = {u: {"dateien": orte.get(u, ["live"]),
-                         "seit": (bekannt.get(u) or {}).get("seit", heute)}
-                     for u in sorted(tot)}
+        eintraege = bekannt_eintraege(tot, bekannt, orte,
+                                      datetime.date.today().isoformat())
         with open(args.bekannt, "w", encoding="utf-8") as f:
             json.dump({"hinweis": "Bekannte tote Beleg-Links. Nur NEUE tote Links "
                                   "alarmieren. Reparierte Links hier entfernen "

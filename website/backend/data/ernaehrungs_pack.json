@@ -189,8 +189,8 @@
         ["saft", "saefte", "säfte", "kur", "diaet", "diät", "smoothie", "körper", "koerper", "leber", "nieren", "gesund"]
       ],
       "source_label": "NHS UK + AGES + DGE + BfArM",
-      "source_url": "https://www.nhs.uk/conditions/detoxes-and-cleanses-do-they-work/",
-      "secondary_url": "https://www.dge.de/wissenschaft/weitere-publikationen/fachinformationen/detox/"
+      "source_url": "https://www.nccih.nih.gov/health/detoxes-and-cleanses-what-you-need-to-know",
+      "secondary_url": "https://www.dge.de/gesunde-ernaehrung/diaeten-und-fasten/entgiftungsdiaeten/"
     },
     {
       "id": "mikrowelle_naehrstoffe_2026",
@@ -227,8 +227,8 @@
         ["naehrstoff", "nährstoff", "vitamin", "ungesund", "schaedlich", "schädlich", "gefährlich", "gefaehrlich", "kaputt", "zerstört", "zerstoert"]
       ],
       "source_label": "Harvard T.H. Chan + BfS + Murcia 2003 J. Sci. Food",
-      "source_url": "https://www.hsph.harvard.edu/nutritionsource/microwave-food-safety/",
-      "secondary_url": "https://www.bfs.de/EN/topics/emf/applications/household/microwave-oven/microwave-oven_node.html"
+      "source_url": "https://www.health.harvard.edu/healthy-aging-and-longevity/microwave-cooking-and-nutrition",
+      "secondary_url": "https://www.bfs.de/DE/themen/emf/hff/quellen/mikrowelle/mikrowelle.html"
     },
     {
       "id": "brauner_zucker_2026",
@@ -379,7 +379,7 @@
       ],
       "source_label": "Pinnock 1990 + Wüthrich 2005 + Balfour-Lynn 2019 (Arch Dis Child)",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/30798237/",
-      "secondary_url": "https://www.healthline.com/nutrition/does-milk-cause-mucus"
+      "secondary_url": "https://pubmed.ncbi.nlm.nih.gov/2154152/"
     }
   ]
 }
