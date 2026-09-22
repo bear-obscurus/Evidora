@@ -131,21 +131,20 @@
       "id": "eb_demokratie_2024",
       "topic": "eb_demokratie_zufriedenheit",
       "scope": "Demokratie-Zufriedenheit in EU + DE/AT",
-      "year": 2024,
-      "headline": "STAND HERBST 2024 (Standard Eurobarometer 102), nicht aktuell: Eurobarometer 2024: Mehrheit zufrieden mit Demokratie in der EU — aber Vertrauen in nationale Regierungen oft niedriger",
+      "year": 2026,
+      "headline": "STAND FRÜHJAHR 2026 (Standard-Eurobarometer 105, Feldzeit 12.3.–5.4.2026): 60 % in der EU-27 sind mit dem Funktionieren der Demokratie im eigenen Land zufrieden — Spanne von Dänemark 91 % bis Griechenland 28 %. Vertrauen in nationale Regierung und Parlament je 37 %, in politische Parteien 25 %",
       "data": {
-        "datenstand": "DATENSTAND: Standard Eurobarometer 102, Erhebung Herbst 2024. Neuere Wellen erscheinen halbjaehrlich und sind in diesem Fakt NICHT enthalten — eine Aussage ueber die heutige Stimmungslage laesst sich damit nicht belegen.",
-        "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'Die Demokratie in Europa kollabiert' / 'Bürger sind unzufrieden mit Demokratie' brauchen Differenzierung. Eurobarometer 2024: Mehrheit (~58-62 %) der EU-Bürger:innen ist 'eher zufrieden' mit der Demokratie in ihrem Land. ABER: starke nationale Variation (Skandinavien >75 %, Süd- + Osteuropa schwächer). Vertrauen in nationale Regierungen oft niedriger als Demokratie-Zufriedenheit (DE 2024: -8 PP Vertrauen in Bundestag). Demokratie-Zufriedenheit ist NICHT identisch mit Regierungs-Zufriedenheit.",
-        "demokratie_zufriedenheit_eu": "Standard EB 102 (Herbst 2024): ~58-62 % EU-Bürger:innen 'eher zufrieden' mit Demokratie in ihrem Land. Spitze: Skandinavien (>75 %), DK + LU + SE besonders hoch.",
-        "demokratie_de_at": "Deutschland 2024: leichter Rückgang gegenüber 2022 wegen Energie-Krise + Inflation, aber bleibt Mehrheits-Zufriedenheit. Österreich: stabiler Trend.",
-        "vertrauen_regierung_separat": "Vertrauen in nationale Regierung 2024: in DE -8 PP gegenüber Vorperiode (besonders starker Rückgang); ähnliche Tendenz NL, IE, FI. Aber das ist Regierungs-, nicht Demokratie-Misstrauen.",
-        "demokratie_verteidigung": "Eurobarometer 2024 Frage 'Wären Sie bereit, Demokratie zu verteidigen?': 70-80 % positiv. Junge Befragte etwas niedriger als ältere.",
-        "context": "Demokratie als System hat solide Mehrheits-Zustimmung. Konkrete Regierungen, Parteien oder Politik-Maßnahmen werden separat bewertet — und schwanken stärker. Pauschale 'Demokratie-Krise' wird durch Daten nicht gestützt."
+        "datenstand": "DATENSTAND: Standard-Eurobarometer 105, Frühjahr 2026, Feldzeit 12.3.–5.4.2026 (Volume A, Fragen SD18a und QA6). Die Wellen erscheinen halbjährlich; spätere Wellen sind in diesem Fakt NICHT enthalten.",
+        "kernsatz_fuer_synthesizer": "Aussagen wie 'Die Demokratie in Europa kollabiert' oder 'Die Bürger sind unzufrieden mit der Demokratie' brauchen Differenzierung. Amtliche Eurobarometer-Tabellen: (1) EU-27 insgesamt sind 60 % mit dem Funktionieren der Demokratie im eigenen Land zufrieden (Frühjahr 2026), gegenüber 55 % im Herbst 2024 und 56 % im Winter 2021/22 — also mehrheitlich zufrieden, mit Schwankung statt Absturz. (2) Die nationale Spanne ist groß: Dänemark 91 %, Luxemburg 88 %, Schweden 85 %, Finnland 81 %, Irland 78 % oben; Griechenland 28 %, Zypern 36 %, Rumänien 45 % unten. Deutschland 61 %, Österreich 65 %, Frankreich 56 %. (3) Demokratie-Zufriedenheit ist NICHT Regierungs-Zufriedenheit: Dem nationalen Parlament vertrauen EU-weit 37 %, der nationalen Regierung 37 %, politischen Parteien 25 % — deutlich weniger als die 60 % Demokratie-Zufriedenheit. Wer beide Größen gleichsetzt, vergleicht zwei verschiedene Fragen.",
+        "eu_verlauf": "EU-27, Anteil zufrieden mit dem Funktionieren der Demokratie im eigenen Land (SD18a, Total 'Satisfied'): Winter 2021/22 56 %, Herbst 2023 55 %, Frühjahr 2024 58 %, Herbst 2024 55 %, Frühjahr 2026 60 %.",
+        "laender_spanne_2026": "Frühjahr 2026: DK 91 %, LU 88 %, SE 85 %, FI 81 %, IE 78 %; AT 65 %, DE 61 %, FR 56 %; RO 45 %, CY 36 %, EL 28 %.",
+        "vertrauen_vs_zufriedenheit": "Eurobarometer 105, QA6 'neige dazu zu vertrauen', EU-27: Gesundheitspersonal 83 %, Lehrkräfte 80 %, Wissenschaft 79 %, Armee 77 %, Polizei 74 %, regionale und lokale Behörden 63 %, Justiz 58 %, NATO 52 %, EU 51 %, UNO 49 %, Medien 43 %, nationales Parlament 37 %, nationale Regierung 37 %, politische Parteien 25 %.",
+        "context": "Die Demokratie als System hat eine solide Mehrheit hinter sich; konkrete Regierungen, Parlamente und Parteien werden deutlich kritischer bewertet und schwanken stärker. Eine pauschale 'Demokratie-Krise' lässt sich aus diesen Zahlen nicht ableiten, ein Gleichsetzen von Regierungs- und Demokratie-Zufriedenheit ebenso wenig."
       },
       "context_notes": [
-        "Eurobarometer-Frage 'Wie zufrieden mit Demokratie': Likert-Skala 1-4, oft als 'satisfied / not satisfied' aggregiert.",
-        "Differenzierung 'Demokratie als System' vs 'Demokratie wie sie funktioniert' — letztere oft kritischer bewertet.",
-        "Vergleichbare Daten: V-Dem-Index (akademisch), Bertelsmann Demokratie-Index, Economist Democracy Index — alle zeigen DE/AT als 'volle Demokratien' Stand 2024."
+        "Die Eurobarometer-Frage SD18a fasst 'sehr zufrieden' und 'eher zufrieden' zu 'zufrieden' zusammen; Stichprobe rund 1.000 Befragte je Land.",
+        "Für Österreich gibt es einen eigenen Fakt mit Verlauf und Institutionen-Vertrauen (demokratie_pack :: at_demokratie_zufriedenheit).",
+        "Korrigiert 2026-09-22: Die frühere Fassung nannte '~58-62 % EU' für Herbst 2024 (amtlich 55 %), dazu einen nicht auffindbaren Rückgang 'DE -8 PP' und eine Frage zur Verteidigungsbereitschaft, die im Standard-Eurobarometer nicht so erhoben wird."
       ],
       "claim_phrasings_handled": [
         "Die Demokratie in Europa kollabiert",
@@ -153,17 +152,43 @@
         "Niemand glaubt mehr an die Demokratie"
       ],
       "trigger_keywords": [
-        "demokratie zufrieden", "demokratie unzufrieden",
-        "demokratie kollabiert", "demokratie krise",
-        "buerger demokratie", "bürger demokratie",
+        "demokratie zufrieden",
+        "demokratie unzufrieden",
+        "demokratie kollabiert",
+        "demokratie krise",
+        "buerger demokratie",
+        "bürger demokratie",
         "demokratie ende"
       ],
       "trigger_composite": [
-        ["demokratie", "demokrat", "demokratisch"],
-        ["zufrieden", "unzufrieden", "kollabiert", "krise", "ende", "vertrauen", "misstrauen", "glauben", "glaubt", "glaub", "niemand", "kaum jemand", "bevoelkerung", "bevölkerung", "buerger", "bürger", "europaeer", "europäer"]
+        [
+          "demokratie",
+          "demokrat",
+          "demokratisch"
+        ],
+        [
+          "zufrieden",
+          "unzufrieden",
+          "kollabiert",
+          "krise",
+          "ende",
+          "vertrauen",
+          "misstrauen",
+          "glauben",
+          "glaubt",
+          "glaub",
+          "niemand",
+          "kaum jemand",
+          "bevoelkerung",
+          "bevölkerung",
+          "buerger",
+          "bürger",
+          "europaeer",
+          "europäer"
+        ]
       ],
-      "source_label": "Standard Eurobarometer 102 (Herbst 2024) — Demokratie-Indikatoren",
-      "source_url": "https://europa.eu/eurobarometer/surveys/detail/3215",
+      "source_label": "Standard-Eurobarometer 105 (Frühjahr 2026) und 96/100/101/102, Volume A, Fragen SD18a und QA6 — amtliche Tabellen der Europäischen Kommission",
+      "source_url": "https://europa.eu/eurobarometer/surveys/detail/3613",
       "secondary_url": "https://www.veriangroup.com/news-and-insights/trust-in-the-eu-national-parliament-and-national-government"
     },
     {

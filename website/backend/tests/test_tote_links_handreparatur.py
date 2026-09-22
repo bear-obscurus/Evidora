@@ -118,12 +118,13 @@ def test_jeder_geparkte_link_steht_noch_in_den_daten():
 
 def test_inhaltskonflikte_sind_als_solche_markiert():
     inhalt = [u for u, e in BEKANNT.items() if e["grund"].startswith("INHALT:")]
-    # u. a. Eurobarometer 67 % vs. 60-63 %, EFSA-Probenzahlen, Agrarfoerderung
-    # "= 7 Mrd", Femizide 31 vs. 26, UBA 8,0 vs. 8,4 Mt. Der Familiennachzug-
-    # Eintrag ist seit der Fakt-Korrektur (2026-09-22) keiner mehr.
-    assert len(inhalt) >= 15
-    for teil in ("themen/oea/eurobarometer", "efsajournal/pub/8957",
-                 "jcr:fixme", "oeffentliche_sicherheit_02_2024", "khg-bilanz"):
+    # u. a. EFSA-Probenzahlen, Agrarfoerderung "= 7 Mrd", Femizide 31 vs. 26,
+    # UBA 8,0 vs. 8,4 Mt. Familiennachzug und Eurobarometer sind seit den
+    # Fakt-Korrekturen vom 22.9.2026 keine Konflikte mehr (siehe
+    # test_geloeste_inhaltskonflikte).
+    assert len(inhalt) >= 12
+    for teil in ("efsajournal/pub/8957", "jcr:fixme",
+                 "oeffentliche_sicherheit_02_2024", "khg-bilanz"):
         assert any(teil in u for u in inhalt), teil
 
 
@@ -195,18 +196,22 @@ def test_pflegende_angehoerige_verlinken_die_zitierte_studie():
 
 
 def test_widerspruechliche_quelle_wurde_nicht_untergeschoben():
-    """Eurobarometer: der Fakt nennt 67 % AT-Demokratiezufriedenheit, die
-    Erhebung 2024 misst 63 % bzw. 60 %. Ein Ersatzlink wuerde dem Fakt
-    widersprechen — also geparkt, bis der Fakt korrigiert ist."""
-    f = _fakt("demokratie_pack.json", "at_demokratie_zufriedenheit_2026")
-    assert "bundeskanzleramt.gv.at/themen/oea/eurobarometer" in json.dumps(f)
-    tot = next(u for u in BEKANNT if "themen/oea/eurobarometer" in u)
-    assert BEKANNT[tot]["grund"].startswith("INHALT:")
+    """Wo die auffindbare Quelle dem Fakt widerspricht, steht weiter der tote
+    Link — statt einer Quelle, die etwas anderes sagt als der Fakt. Diese
+    Faelle bleiben geparkt, bis der Fakt selbst korrigiert ist."""
+    inhalt = [u for u, e in BEKANNT.items() if e["grund"].startswith("INHALT:")]
+    assert inhalt, "Liste der Inhaltskonflikte ist leer"
+    ohne_fundstelle = [u for u in inhalt if not _vorkommen(u)]
+    assert not ohne_fundstelle, ohne_fundstelle
 
 
-def test_familiennachzug_ist_geloest_statt_geparkt():
-    """Gegenstueck: Dieser Konflikt wurde am 22.9.2026 durch eine
-    Fakt-Korrektur aufgeloest (siehe test_familiennachzug_fakt.py)."""
-    assert not [u for u in BEKANNT if "familiennachzug-2024" in u]
-    f = _fakt("migration_pack.json", "migration_familiennachzug_2026")
-    assert "SharedDocs/Meldungen/DE/2024/familiennachzug-2024" not in json.dumps(f)
+@pytest.mark.parametrize("tot,fakt", [
+    ("familiennachzug-2024", ("migration_pack.json", "migration_familiennachzug_2026")),
+    ("themen/oea/eurobarometer", ("demokratie_pack.json", "at_demokratie_zufriedenheit_2026")),
+])
+def test_geloeste_inhaltskonflikte(tot, fakt):
+    """Gegenstueck: Diese Konflikte wurden am 22.9.2026 durch eine
+    Fakt-Korrektur aufgeloest (siehe test_familiennachzug_fakt.py und
+    test_eurobarometer_demokratie.py) — Link raus, Eintrag raus."""
+    assert not [u for u in BEKANNT if tot in u], tot
+    assert tot not in json.dumps(_fakt(*fakt)), tot

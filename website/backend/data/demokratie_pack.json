@@ -1118,96 +1118,92 @@
     {
       "id": "at_demokratie_zufriedenheit_2026",
       "topic": "at_demokratie_zufriedenheit_konsens",
-      "scope": "Eurobarometer 2024 — AT-Demokratie-Zufriedenheit 67 % (EU-Mittel 53 %), AT relativ stabil",
-      "year": 2024,
-      "source_url": "https://europa.eu/eurobarometer/surveys/browse/all",
-      "secondary_url": "https://www.bundeskanzleramt.gv.at/themen/oea/eurobarometer.html",
-      "source_label": "Eurobarometer Standard 101 + 102 + 103 (2024) + AT-Bundeskanzleramt Eurobarometer-Auswertung + IFES AT-Demokratie-Monitor",
-      "headline": "Eurobarometer 2024: AT-Demokratie-Zufriedenheit 67 % (EU-Mittel 53 %), höher als DE 59 % oder FR 47 %; Vertrauen ins Parlament AT 38 % (EU-Mittel 33 %); AT relativ stabil im EU-Vergleich",
+      "scope": "Eurobarometer: Zufriedenheit mit der Demokratie in Österreich, Vertrauen in Institutionen",
+      "year": 2026,
+      "headline": "Eurobarometer 105 (Feldzeit 12.3.–5.4.2026): 65 % in Österreich sind mit dem Funktionieren der Demokratie im eigenen Land zufrieden, EU-27 60 %, DE 61 %, FR 56 %. Verlauf AT: 62 % (Winter 2021/22), 61 % (Herbst 2023), 63 % (Frühjahr 2024), 60 % (Herbst 2024), 65 % (Frühjahr 2026) — Schwankung, kein freier Fall. Platz 9 von 27",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT-Demokratie-Vertrauen ist im freien Fall' ist EMPIRISCH NICHT BELEGT. Empirische Lage: (1) EUROBAROMETER 2024 (Standard 101+102+103, Frühjahr/Sommer/Herbst): AT-Demokratie-Zufriedenheit 67 % (EU-Mittel 53 %). Höher als DE 59 %, FR 47 %, IT 41 %, ES 53 %. Skandinavien-Spitze: DK 87 %, SE 79 %, FI 78 %. (2) VERTRAUEN INSTITUTIONELL: AT-Vertrauen ins Parlament 38 % (EU-Mittel 33 %), Vertrauen in Regierung 32 % (EU-Mittel 32 %), Vertrauen in EU-Kommission 47 % (EU-Mittel 42 %). AT-Werte über EU-Mittel. (3) VERTRAUEN PERSONELL: AT-Vertrauen in Politiker:innen 26 % (EU-Mittel 23 %), Vertrauen in Justiz 71 % (EU-Mittel 53 %), Vertrauen in Medien 35 % (EU-Mittel 36 %). Justiz-Vertrauen besonders hoch in AT. (4) AT-DEMOKRATIE-MONITOR (IFES Institut für Politische Studien Wien) 2024: ähnliche Befunde — Demokratie-Zufriedenheit 65 %, Vertrauen Polit-Institutionen Bandbreite 25-50 %. (5) ZEITREIHE AT-DEMOKRATIE-ZUFRIEDENHEIT (Eurobarometer): 2014 76 %, 2017 73 %, 2019 71 %, 2021 70 % (Pandemie-Tief 65 %), 2023 67 %, 2024 67 %. Leichter Rückgang seit 2014 (-9 P.) aber Stabilisierung seit 2021. (6) Faktencheck: 'AT-Demokratie-Vertrauen ist im freien Fall' empirisch nicht belegt (-9 P. seit 2014, Stabilisierung). 'AT hat höchste Demokratie-Zufriedenheit' überzeichnet (DK + SE + FI sind höher). Pack distanziert sich von normativer Wertung.",
-        "eurobarometer_2024_demokratie": "Eurobarometer 2024 (101+102+103): AT-Demokratie-Zufriedenheit 67 % vs. EU-Mittel 53 %. Spitze: DK 87 %, SE 79 %, FI 78 %, NL 76 %. AT 6.-7. Platz EU-weit. Schluss-Licht: GR 24 %, RO 38 %, BG 39 %, IT 41 %.",
-        "vertrauen_institutionen": "Eurobarometer 2024 AT-Vertrauen-Werte: Parlament 38 % (EU-Mittel 33 %), Regierung 32 % (32 %), EU-Kommission 47 % (42 %), EU-Parlament 49 % (45 %), Justiz 71 % (53 %), Medien 35 % (36 %), Politiker:innen 26 % (23 %). AT-Werte konsistent über EU-Mittel.",
-        "ifes_demokratie_monitor": "IFES AT-Demokratie-Monitor 2024: ähnliche Befunde. Demokratie-Zufriedenheit 65 %, Vertrauen Bundesregierung 28 %, Bundespräsident 64 %, Parlament 35 %, Justiz 70 %. Konsistenz mit Eurobarometer. Trends: Bundespräsidenten-Vertrauen hoch trotz Politik-Verdrossenheit insgesamt.",
-        "at_zeitreihe_2014_2024": "AT-Demokratie-Zufriedenheit Eurobarometer 2014-2024: 2014 76 %, 2017 73 %, 2019 71 %, 2021 70 % (Pandemie 65 %), 2023 67 %, 2024 67 %. Trend -9 P. seit 2014, aber Stabilisierung seit 2021 — kein 'freier Fall'.",
-        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+        "kernsatz_fuer_synthesizer": "Zahlen aus den amtlichen Eurobarometer-Tabellen (Volume A, Frage SD18a 'Zufriedenheit mit dem Funktionieren der Demokratie in (UNSER LAND)', Anteil 'Total Satisfied'). (1) AKTUELLER STAND — Standard-Eurobarometer 105, Feldzeit 12.3.–5.4.2026: Österreich 65 %, EU-27 60 %, Deutschland 61 %, Frankreich 56 %. Österreich liegt auf Platz 9 von 27; vorn Dänemark 91 %, Luxemburg 88 %, Schweden 85 %, Finnland 81 %, Irland 78 %; am Ende Griechenland 28 %, Zypern 36 %, Rumänien 45 %. (2) VERLAUF ÖSTERREICH: 62 % (EB 96, Winter 2021/22), 61 % (EB 100, Herbst 2023), 63 % (EB 101, Frühjahr 2024), 60 % (EB 102, Herbst 2024), 65 % (EB 105, Frühjahr 2026). Die Werte schwanken in einem Band von rund fünf Prozentpunkten und liegen durchgehend über dem EU-Schnitt. (3) EINORDNUNG: 'Das Demokratie-Vertrauen in Österreich ist im freien Fall' ist damit nicht belegt. 'Österreich hat die höchste Demokratie-Zufriedenheit' ist falsch — Dänemark, Luxemburg, Schweden, Finnland und Irland liegen darüber. Wer einen Rückgang behauptet, muss die Welle nennen: Von Frühjahr 2024 auf Herbst 2024 fiel der Wert um 3 Punkte, seither stieg er um 5 Punkte.",
+        "eb105_zufriedenheit": "Standard-Eurobarometer 105 (Feldzeit 12.3.–5.4.2026), SD18a, Anteil zufrieden: AT 65 %, EU-27 60 %, DE 61 %, FR 56 %. Spitze DK 91 %, LU 88 %, SE 85 %, FI 81 %, IE 78 %. Schlusslichter EL 28 %, CY 36 %, RO 45 %.",
+        "at_verlauf_eurobarometer": "AT-Zufriedenheit mit der Demokratie im eigenen Land (SD18a, Total 'Satisfied'): Winter 2021/22 62 %, Herbst 2023 61 %, Frühjahr 2024 63 %, Herbst 2024 60 %, Frühjahr 2026 65 %. EU-27 im selben Zeitraum: 56 %, 55 %, 58 %, 55 %, 60 %.",
+        "eb105_vertrauen_institutionen": "Eurobarometer 105, Frage QA6 ('neige dazu zu vertrauen'), Österreich gegenüber EU-27: Gesundheitspersonal 84 % (EU 83 %), Polizei 83 % (74 %), Justiz 79 % (58 %), regionale und lokale Behörden 78 % (63 %), Bundesheer 78 % (77 %), Lehrkräfte 74 % (80 %), Wissenschaft 70 % (79 %), Medien 56 % (43 %), Parlament 55 % (37 %), Regierung 51 % (37 %), Europäische Union 49 % (51 %), UNO 48 % (49 %), NATO 39 % (52 %), politische Parteien 36 % (25 %). Das Muster: hohes Vertrauen in Verwaltung, Justiz und Sicherheitsbehörden, niedriges in Parteien.",
+        "demokratie_monitor": "Der Österreichische Demokratie Monitor (Foresight, vormals SORA, im Auftrag der AK Wien) misst eine ANDERE Frage: ob das politische System gut funktioniert. 2024 sagten das 43 % — vier Punkte mehr als im Vorjahr und deutlich über dem Tiefstwert von 34 % aus dem Jahr 2022. Die Werte sind wegen der anderen Fragestellung nicht mit dem Eurobarometer vergleichbar.",
+        "methodenhinweis": "Eurobarometer-Werte sind Umfragewerte mit Stichprobenfehler (rund 1.000 Befragte je Land, in AT 1.009 in EB 102). Unterschiede von zwei bis drei Punkten zwischen zwei Wellen sind nicht zwingend eine Trendwende. 'Zufrieden' fasst 'sehr zufrieden' und 'eher zufrieden' zusammen.",
+        "context": "Deskriptiv. Keine Bewertung von Regierung, Parteien oder Institutionen — nur die gemessenen Anteile."
       },
       "context_notes": [
-        "AT 67 % Demokratie-Zufriedenheit ist EU-Mittelspitze (vs. EU-Mittel 53 %).",
-        "Vertrauen in Justiz besonders hoch (71 %), in Politiker:innen niedrig (26 %).",
-        "Trend -9 P. seit 2014 aber Stabilisierung seit 2021 — kein 'freier Fall'."
+        "Stand September 2026: jüngste verfügbare Welle ist Standard-Eurobarometer 105 (Frühjahr 2026). Bei neueren Wellen die Zahlen nachziehen.",
+        "Die Fragen unterscheiden sich: Eurobarometer fragt nach Zufriedenheit mit dem Funktionieren der Demokratie, der Demokratie Monitor danach, ob das politische System gut funktioniert. Werte beider Quellen nicht vermischen.",
+        "Korrigiert 2026-09-22: Die frühere Fassung nannte für 2024 AT 67 % und EU 53 % (amtlich: 60 % bzw. 55 % im Herbst 2024), dazu Vertrauenswerte (Parlament 38 %, Regierung 32 %, Justiz 71 %) und eine Zeitreihe 2014–2024, die sich in den Eurobarometer-Tabellen nicht finden. Der Demokratie Monitor war fälschlich dem IFES zugeschrieben."
       ],
       "claim_phrasings_handled": [
         "AT-Demokratie-Vertrauen ist im freien Fall",
         "Demokratie-Zufriedenheit in Österreich sinkt dramatisch",
         "AT hat höchste Demokratie-Zufriedenheit",
         "Politiker werden in AT verachtet",
-        "Justiz-Vertrauen ist in AT hoch"
+        "Justiz-Vertrauen ist in AT hoch",
+        "Die Mehrheit der Österreicher ist mit der Demokratie zufrieden",
+        "In Österreich vertrauen die Menschen dem Parlament mehr als im EU-Schnitt"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "demokratie-zufriedenheit",
+        "demokratiezufriedenheit",
+        "zufriedenheit mit der demokratie",
+        "eurobarometer",
+        "demokratie monitor",
+        "demokratie-monitor"
+      ],
       "trigger_composite": [
         [
-          "demokratie-zufriedenheit",
-          "demokratie-vertrauen",
-          "demokratiezufriedenheit",
-          "demokratievertrauen",
-          "eurobarometer",
-          "ifes",
-          "demokratie-monitor",
-          "vertrauen",
-          "politik-vertrauen",
-          "politiker-vertrauen",
-          "polit-verdrossen",
-          "polit-verdrossenheit",
-          "demokratie-müdigkeit",
-          "demokratiemüdigkeit",
-          "demokratiemuedigkeit",
-          "regierungs-vertrauen",
-          "regierungsvertrauen",
+          "demokratie",
+          "demokratisch",
+          "politisches system",
+          "institutionen",
           "parlament",
-          "justiz-vertrauen"
+          "justiz",
+          "rechtsstaat",
+          "politiker",
+          "politikerin",
+          "parteien"
         ],
         [
-          "zufrieden",
-          "unzufrieden",
           "vertrauen",
-          "vertrauenswürdig",
-          "vertrauenswuerdig",
+          "zufrieden",
+          "zufriedenheit",
+          "unzufrieden",
           "freier fall",
           "sinkt",
           "steigt",
-          "stabil",
-          "67 %",
-          "53 %",
-          "33 %",
-          "26 %",
-          "71 %",
-          "rang",
-          "platz",
-          "eu-mittel",
-          "eu-vergleich",
-          "skandinavien",
-          "österreich",
-          "oesterreich",
-          "deutschland",
-          "frankreich",
-          "italien",
-          "verfall",
-          "stabilisierung",
-          "trend",
-          "zeitreihe"
+          "verachtet",
+          "umfrage",
+          "eurobarometer"
         ]
       ],
       "trigger_all": [
         [
           [
-            "politik"
+            "österreich",
+            "oesterreich",
+            "at ",
+            "wien"
           ],
           [
-            "verachtet"
+            "demokratie",
+            "politisches system",
+            "parlament",
+            "justiz"
+          ],
+          [
+            "vertrauen",
+            "zufrieden",
+            "zufriedenheit",
+            "umfrage",
+            "krise"
           ]
         ]
-      ]
+      ],
+      "source_label": "Standard-Eurobarometer 105 (Frühjahr 2026) und 96/100/101/102, Volume A, Fragen SD18a und QA6 (amtliche Tabellen der Europäischen Kommission) + Österreichischer Demokratie Monitor 2024 (Foresight/SORA)",
+      "source_url": "https://europa.eu/eurobarometer/surveys/detail/3613",
+      "secondary_url": "https://www.foresight.at/news/demokratie-und-nationalratswahl"
     },
     {
       "id": "ep_sitz_strassburg_2026",
