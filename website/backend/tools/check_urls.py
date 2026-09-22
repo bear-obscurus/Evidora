@@ -2,8 +2,9 @@
 """URL-Health-Check für die in ``data/*.json`` referenzierten Quellen-Links.
 
 Drei-Tier-Strategie:
-  Tier 1 — kuratierte URLs in Topic-Packs (Esoterik, Geschichte,
-           Verschwörungen, AT-Factbook etc.) — ~280 URLs. Pflicht-Check.
+  Tier 1 — JEDE Datendatei mit Links (ausser Tier 2/3), jede Woche neu
+           bestimmt. Bis 2026-09-22 eine feste Liste von 21 Dateien;
+           61 weitere wurden nie geprueft. Pflicht-Check.
   Tier 2 — halb-kuratierte Cache-Files (abstimmungen, volksbegehren,
            wahlen) — strukturierte parlament.gv.at/BMI-URLs. Sample 5 %.
   Tier 3 — externe Cache-Dumps (claimreview_index, euvsdisinfo_db) —
@@ -32,6 +33,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import datetime
 import json
 import os
 import random
@@ -46,20 +48,27 @@ import httpx
 # Tier-Definitionen
 # ---------------------------------------------------------------------------
 
-TIER_1_FILES = [
-    "esoterik_pack.json", "geschichte_pack.json", "verschwoerungen_pack.json",
-    "at_factbook.json", "dach_factbook.json", "education_dach.json",
-    "eu_courts.json", "eu_crime.json", "energy_charts.json",
-    "frontex.json", "housing_at.json", "medientransparenz.json",
-    "oecd_health.json", "oenb.json", "pks.json", "retraction_watch.json",
-    "rki_surveillance.json", "rsf.json", "transport_at.json",
-    "wifo_ihs.json", "at_courts.json",
-]
+# Tier 1 ist KEINE feste Liste mehr. Bis 2026-09-22 stand hier eine von
+# 21 Dateien — alles, was danach dazukam, wurde nie geprueft: 61 von 87
+# Datendateien mit 1.052 Links, darunter iqs_bildung, substanzen_pack und
+# mobilitaet_pack, deren tote Links in Prod Belege kosteten. Der Vollcheck
+# fand 261 tote Links (21 %) — fast alle ausserhalb der Liste. Dieselbe
+# Klasse wie der Ausschluss-Filter aus #147: eine Liste, die beim Wachsen
+# nicht mitwaechst, schweigt still.
+#
+# Tier 1 = jede Datendatei mit mindestens einem Link, ausser den beiden
+# Stichproben-Stufen unten.
 
 TIER_2_FILES = ["abstimmungen.json", "volksbegehren.json", "wahlen.json"]
 TIER_3_FILES = ["claimreview_index.json", "euvsdisinfo_db.json"]
 
 TIER_2_SAMPLE_RATIO = 0.05   # 5 %
+
+# Liste bekannter toter Links: nur NEU verrottete Links loesen Alarm aus.
+# Ohne sie wuerde der Waechter jede Woche dieselben 250 Links melden — und
+# ein Waechter, der immer schreit, wird abgeschaltet (#128).
+BEKANNT_TOT_PFAD = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "url_bekannt_tot.json")
 TIER_3_SAMPLE_RATIO = 0.005  # 0.5 %
 
 USER_AGENT = "Evidora/1.0 (+https://evidora.eu; mailto:Evidora@proton.me; URL health-check)"
@@ -98,6 +107,29 @@ def extract_urls(file_path: str) -> set[str]:
     return {clean_url(u) for u in raw if clean_url(u)}
 
 
+def kuratierte_dateien(data_dir: str) -> list[str]:
+    """Jede Datendatei mit mindestens einem Link — ausser den Stichproben-
+    Stufen. Wird bei jedem Lauf neu bestimmt, damit eine neue Datei nicht
+    wieder aus der Pruefung faellt."""
+    ausgenommen = set(TIER_2_FILES) | set(TIER_3_FILES)
+    namen = []
+    for name in sorted(os.listdir(data_dir)):
+        if not name.endswith(".json") or name in ausgenommen:
+            continue
+        if extract_urls(os.path.join(data_dir, name)):
+            namen.append(name)
+    return namen
+
+
+def herkunft(data_dir: str) -> dict[str, list[str]]:
+    """URL -> Dateien, in denen sie steht (fuer Meldung und Liste)."""
+    out: dict[str, list[str]] = {}
+    for name in kuratierte_dateien(data_dir):
+        for u in extract_urls(os.path.join(data_dir, name)):
+            out.setdefault(u, []).append(name)
+    return out
+
+
 def collect_urls(tier: str, data_dir: str, seed: int = 42) -> dict[str, set[str]]:
     """Return dict tier_label -> set of URLs to check."""
     random.seed(seed)
@@ -105,7 +137,7 @@ def collect_urls(tier: str, data_dir: str, seed: int = 42) -> dict[str, set[str]
 
     if tier in ("1", "all"):
         urls = set()
-        for f in TIER_1_FILES:
+        for f in kuratierte_dateien(data_dir):
             urls.update(extract_urls(os.path.join(data_dir, f)))
         out["tier1"] = urls
 
@@ -254,6 +286,55 @@ async def check_urls(urls: set[str], concurrency: int = 20) -> list[dict[str, An
 # Reporting
 # ---------------------------------------------------------------------------
 
+# Nur diese Befunde sagen: der Link ist tot. Ein 403 ist eine Sperre, ein
+# Timeout oder 5xx eine Stoerung — beides sagt etwas ueber den Abruf, nicht
+# ueber die Seite (#171). Eine Domain, die nicht mehr aufloest, ist dagegen tot.
+_DNS_TOT = ("nodename nor servname", "name or service not known",
+            "getaddrinfo failed", "no address associated")
+
+
+def ist_tot(r: dict) -> bool:
+    status = r.get("status")
+    if status in (404, 410):
+        return True
+    if status is None:
+        fehler = str(r.get("error") or "").lower()
+        return any(s in fehler for s in _DNS_TOT)
+    return False
+
+
+def lade_bekannt(pfad: str) -> dict[str, dict]:
+    try:
+        with open(pfad, encoding="utf-8") as f:
+            return json.load(f).get("tot") or {}
+    except FileNotFoundError:
+        return {}
+
+
+def vergleiche(tot: set[str], bekannt: dict) -> tuple[list[str], list[str], list[str]]:
+    """(neu tot, weiterhin bekannt tot, bekannt aber nicht mehr tot/gefunden)."""
+    neu = sorted(tot - set(bekannt))
+    weiter = sorted(tot & set(bekannt))
+    erledigt = sorted(set(bekannt) - tot)
+    return neu, weiter, erledigt
+
+
+def post_alert(webhook: str, title: str, message: str) -> None:
+    """ntfy-Push — gleiche Mechanik wie quellen_lebenszeichen."""
+    if not webhook:
+        print("WARN: kein EVIDORA_ALERT_WEBHOOK gesetzt — kein Push", file=sys.stderr)
+        return
+    import urllib.request
+    try:
+        req = urllib.request.Request(
+            webhook, data=message.encode("utf-8"),
+            headers={"Title": title, "Priority": "high", "Tags": "link"})
+        urllib.request.urlopen(req, timeout=10)
+        print("Alert gesendet.")
+    except Exception as e:  # noqa: BLE001
+        print(f"WARN: Alert-Push fehlgeschlagen: {e}", file=sys.stderr)
+
+
 def categorize(status: int | None) -> str:
     if status is None:
         return "ERROR"
@@ -327,13 +408,38 @@ async def main_async(args: argparse.Namespace) -> int:
             json.dump(results_by_tier, f, ensure_ascii=False, indent=2)
         print(f"\nFull results -> {args.out}")
 
-    # Exit-Code: 0 wenn alles OK, 1 wenn broken URLs
-    n_broken = sum(
-        sum(1 for r in results
-            if r["status"] is None or (r["status"] is not None and r["status"] >= 400))
-        for results in results_by_tier.values()
-    )
-    return 1 if n_broken else 0
+    # Tot heisst 404/410 oder erloschene Domain. Frueher war der Exit-Code bei
+    # JEDEM Status >= 400 gesetzt, auch bei den ~100 Sperren (403) — der Lauf
+    # war damit immer "rot", schrieb in ein Log, das niemand las, und
+    # alarmierte nie.
+    tot = {r["url"] for results in results_by_tier.values() for r in results if ist_tot(r)}
+    bekannt = lade_bekannt(args.bekannt)
+    neu, weiter, erledigt = vergleiche(tot, bekannt)
+    print(f"\n=== Tote Links: {len(tot)} (neu {len(neu)}, bekannt {len(weiter)}; "
+          f"{len(erledigt)} bekannte nicht mehr tot/gefunden)")
+    orte = herkunft(data_dir)
+    for u in neu[:30]:
+        print(f"  NEU TOT  {', '.join(orte.get(u, ['live']))[:40]:<40} {u}")
+    if args.schreibe_bekannt:
+        heute = datetime.date.today().isoformat()
+        eintraege = {u: {"dateien": orte.get(u, ["live"]),
+                         "seit": (bekannt.get(u) or {}).get("seit", heute)}
+                     for u in sorted(tot)}
+        with open(args.bekannt, "w", encoding="utf-8") as f:
+            json.dump({"hinweis": "Bekannte tote Beleg-Links. Nur NEUE tote Links "
+                                  "alarmieren. Reparierte Links hier entfernen "
+                                  "(check_urls.py --schreibe-bekannt).",
+                       "tot": eintraege}, f, ensure_ascii=False, indent=1)
+            f.write("\n")
+        print(f"Liste bekannter toter Links geschrieben: {args.bekannt} ({len(eintraege)})")
+        return 0
+    if neu:
+        zeilen = [f"{', '.join(orte.get(u, ['live']))}: {u}" for u in neu[:10]]
+        post_alert(args.alert_webhook,
+                   f"Evidora: {len(neu)} neue tote Beleg-Links",
+                   "\n".join(zeilen))
+        return 1
+    return 0
 
 
 def main() -> None:
@@ -348,6 +454,11 @@ def main() -> None:
     ap.add_argument("--out", default=None,
                     help="Write full result JSON to this path")
     ap.add_argument("--data-dir", default="data")
+    ap.add_argument("--bekannt", default=BEKANNT_TOT_PFAD,
+                    help="Liste bekannter toter Links (nur neue alarmieren)")
+    ap.add_argument("--schreibe-bekannt", action="store_true",
+                    help="Liste bekannter toter Links aus diesem Lauf neu schreiben")
+    ap.add_argument("--alert-webhook", default=os.getenv("EVIDORA_ALERT_WEBHOOK", ""))
     args = ap.parse_args()
 
     try:

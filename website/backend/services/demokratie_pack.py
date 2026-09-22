@@ -10,7 +10,7 @@ Zufriedenheit. AT-/EU-/Welt-Vergleichs-Empirie.
 Topics (12):
   - wahlbeteiligung_at_trends_konsens (BMI 1949 96 % → 2024 77.5 % NR;
     EU-Wahl 2024 ~57 %; OECD-Mittelfeld)
-  - briefwahl_manipulation_mythen (VfGH G203/2016 BPräs-Stichwahl
+  - briefwahl_manipulation_mythen (VfGH W I 6/2016 BPräs-Stichwahl
     aufgehoben wegen FORMFEHLER, kein Manipulations-Beweis;
     US-2020-Big-Lie 60+ Court Cases abgelehnt + FBI/DOJ/CISA)
   - volksbegehren_wirkung_empirie_konsens (Art 41 B-VG, 100k Quorum,
