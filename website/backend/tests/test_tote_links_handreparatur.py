@@ -133,8 +133,8 @@ def test_inhaltskonflikte_sind_als_solche_markiert():
     # Familiennachzug, Eurobarometer und Femizide sind seit den
     # Fakt-Korrekturen vom 22.9.2026 keine Konflikte mehr (siehe
     # test_geloeste_inhaltskonflikte).
-    assert len(inhalt) >= 11
-    for teil in ("efsajournal/pub/8957", "jcr:fixme", "khg-bilanz"):
+    assert len(inhalt) >= 9
+    for teil in ("efsajournal/pub/8957", "wohnbeihilfe", "Industry-Facts-and-Figures"):
         assert any(teil in u for u in inhalt), teil
 
 
@@ -219,10 +219,17 @@ def test_widerspruechliche_quelle_wurde_nicht_untergeschoben():
     ("familiennachzug-2024", ("migration_pack.json", "migration_familiennachzug_2026")),
     ("themen/oea/eurobarometer", ("demokratie_pack.json", "at_demokratie_zufriedenheit_2026")),
     ("oeffentliche_sicherheit_02_2024", ("gleichstellung_pack.json", "femizide_at_de_2026")),
+    ("jcr:fixme", ("landwirtschaft_pack.json", "agrar_subventionen_at_2026")),
+    ("khg-bilanz", ("landwirtschaft_pack.json", "klima_landwirtschaft_2026")),
 ])
 def test_geloeste_inhaltskonflikte(tot, fakt):
     """Gegenstueck: Diese Konflikte wurden am 22.9.2026 durch eine
     Fakt-Korrektur aufgeloest (siehe test_familiennachzug_fakt.py und
     test_eurobarometer_demokratie.py) — Link raus, Eintrag raus."""
     assert not [u for u in BEKANNT if tot in u], tot
-    assert tot not in json.dumps(_fakt(*fakt)), tot
+    f = _fakt(*fakt)
+    # Nur die Aussage und die Quell-Links pruefen — die "Korrigiert"-Notiz
+    # in context_notes benennt den alten Link absichtlich.
+    aussage = " ".join([f["headline"], json.dumps(f["data"], ensure_ascii=False),
+                        f.get("source_url", ""), f.get("secondary_url", "")])
+    assert tot not in aussage, tot
