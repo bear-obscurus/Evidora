@@ -295,94 +295,104 @@
     {
       "id": "femizide_at_de_2026",
       "topic": "femizide_at_de_konsens",
-      "scope": "Femizid-Statistik AT/DE: BMI/BKA Bundeslagebild, Risikofaktor Trennung",
+      "scope": "Tötungsdelikte an Frauen in AT und DE — amtliche Zahlen 2024, Zählweisen, Beziehungskontext",
       "year": 2024,
-      "source_url": "https://www.bmi.gv.at/cms/BMI_OeffentlicheSicherheit/2024/02/files/oeffentliche_sicherheit_02_2024.pdf",
-      "secondary_url": "https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/Lagebilder/Partnerschaftsgewalt/partnerschaftsgewalt_node.html",
-      "source_label": "BMI Österreich Sicherheitsbericht 2023 + BKA Bundeslagebild Partnerschaftsgewalt 2024 + Bundesweiter Verein Autonomer Frauenhäuser AÖF + EIGE Femicide Watch + WHO Violence-Against-Women-Database",
-      "headline": "Femizide AT 2023 31 vollendete Tötungen (BMI), DE 2024 155 vollendete Femizide (BKA Bundeslagebild) — primärer Risikofaktor Trennung/Trennungs-Phase, ~85 % Täter Ex-Partner oder aktueller Partner",
+      "headline": "Tötungsdelikte an Frauen 2024: AT 98 weibliche Opfer von Mord und Mordversuch, davon 40 vollendete Morde (PKS); DE 859 weibliche Opfer versuchter und vollendeter Tötungsdelikte, davon 328 vollendet und 308 tödlich verletzt, im Partnerschaftskontext 133 vollendete Taten (BKA). 'Femizid' ist in beiden Ländern keine eigene Straf- oder Polizeikategorie",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Femizide sind seltene Einzelfälle / nicht systemisch' ist FALSE. Empirische Datenlage 2023/2024: (1) AT BMI Sicherheitsbericht 2023: 31 vollendete Femizide (Frauenmorde). 2024 vorläufig 36. Per Capita höhere Femizid-Rate als DE-Durchschnitt — AT-spezifisches Schwerpunkt-Thema. (2) DE BKA Bundeslagebild Partnerschaftsgewalt 2024: 155 vollendete Femizide im Partnerschafts-Kontext, 360 versuchte/vollendete. (3) EU-Vergleich EIGE Femicide Watch: AT/DE im EU-Mittel-Drittel; Spitzen Lettland, Litauen; niedrigste Raten Skandinavien (außer FI), Spanien (nach LO 1/2004 Reform). (4) Risiko-Profile: ~85 % Täter sind aktueller Partner oder Ex-Partner (BKA-Daten). Höchstes Risiko in Trennungs-/post-Trennungs-Phase erste 12 Monate (Campbell 2003 American Journal of Public Health 93(7):1089-97, replicated international). (5) Vorgeschichte: 70-90 % der vollendeten Femizide haben dokumentierte Vorgeschichte häuslicher Gewalt (Polizei-Akten, Schutz-Anordnungen, Frauenhaus-Kontakt). (6) Kategorisierung: Begriff 'Femizid' international UN/CEDAW/EIGE definiert — Tötung einer Frau wegen ihres Geschlechts oder im geschlechtsbezogenen Kontext. Pack folgt internationaler Definition, vermeidet Begriff 'Beziehungsdrama' der Tat-Schwere verharmlost. Faktencheck-relevant: Aussagen wie 'Männer werden auch ermordet, wo ist der Aufschrei' ignorieren strukturelle Asymmetrie — Frauen werden überproportional von Partnern getötet, Männer mehrheitlich von Fremden.",
-        "at_2023": "AT BMI Sicherheitsbericht 2023 + BMI 2024 Pressemeldungen: 2023 31 vollendete Femizide. 2024 vorläufig 36. Vergleichszahl Männer durch Frau getötet: 4-7 pro Jahr (intim-partner-Kontext). Per-Capita Rate AT 0,5-0,7 pro 100.000 weibliche Bevölkerung — höher als DE.",
-        "de_2024": "DE BKA Bundeslagebild Partnerschaftsgewalt 2024 (publiziert November 2024 für 2023): 155 vollendete Femizide im Partnerschafts-Kontext, 360 versuchte/vollendete. Dunkelfeld nicht erfasst. 80 % Täter männlich, 80 % Opfer weiblich. Bei vollendetem Tötungsdelikt 91 % Opfer weiblich, 91 % Täter männlich.",
-        "risikoprofil_trennung": "Campbell 2003 American Journal of Public Health 93(7):1089-97 'Risk Factors for Femicide in Abusive Relationships': retrospektive Studie 11 US-Städte, n=220 Femizid-Opfer + Kontrollgruppe. Höchstes Risiko in Trennungs-Phase, sex-trafficking-Faktor, Schusswaffen-Zugang, Drohungen. Replikationen Europa (Aldridge & Browne 2003 UK, Belfrage & Strand 2008 Schweden) bestätigen Befunde. AT BMI: 70 % der AT-Femizide 2023 in Trennungs- oder post-Trennungs-Kontext.",
-        "internationale_einordnung": "EIGE Femicide Watch 2024: EU-Femizid-Rate 0,5-1,5 pro 100.000 weibliche Bevölkerung. Spitzen: Lettland 1,8, Litauen 1,5. Niedrigste: Spanien 0,2 (nach LO 1/2004 Femizid-Reform), Schweden 0,3. AT 0,7, DE 0,4.",
-        "begriffs_klarheit": "UN/CEDAW/EIGE-Definition Femizid: Tötung einer Frau wegen ihres Geschlechts ODER im geschlechtsbezogenen Kontext (Partner-/Ex-Partner-Tötung, Hass-Verbrechen, Ehrenmord, etc.). DE BKA verwendet 'Tötung im Partnerschafts-Kontext'. AT BMI Sicherheitsbericht 2023 verwendet 'Frauenmorde' und 'Femizide' synonym. Begriff 'Beziehungsdrama' wird in Forschung + offizieller Statistik abgelehnt — verharmlost Tat-Schwere und individualisiert systemisches Problem.",
-        "context": "AT-spezifisches Schwerpunkt-Thema. Pack folgt international etablierter UN/CEDAW/EIGE-Definition."
+        "kernsatz_fuer_synthesizer": "Drei Zählweisen, die oft vermischt werden — beim Zitieren immer dazusagen, welche gemeint ist. (1) ÖSTERREICH, Polizeiliche Kriminalstatistik 2024 (aufbereitet von der Nationalen Koordinierungsstelle 'Gewalt gegen Frauen'): Mord und Mordversuch nach § 75 StGB hatten 285 Opfer, davon 98 weiblich (34 %) und 187 männlich (66 %). Von den 98 weiblichen Opfern entfielen 58 auf Mordversuche und 40 auf vollendete Morde; bei den Männern 151 Versuche und 36 vollendete Morde. Bei vollendeten Morden waren also mehr Frauen als Männer Opfer, bei Mordversuchen deutlich mehr Männer. (2) DEUTSCHLAND, BKA-Bundeslagebild 'Geschlechtsspezifisch gegen Frauen gerichtete Straftaten' 2024: 859 Frauen und Mädchen wurden Opfer versuchter oder vollendeter Tötungsdelikte (−8,4 % gegenüber 938 im Jahr 2023), 328 davon Opfer vollendeter Taten, 308 wurden tödlich verletzt. Im Kontext häuslicher Gewalt gab es 198 vollendete Taten (133 bei Partnerschaftsgewalt, 65 innerfamiliär). An allen Opfern vollendeter Partnerschaftstötungen sind Frauen zu 84,7 % beteiligt. (3) ZIVILGESELLSCHAFT: Der Verein Autonome Österreichische Frauenhäuser zählt aus Medienberichten 'mutmaßliche Femizide' — 2019 39, 2020 31, 2021 30, 2022 27, 2023 26, jeweils plus Frauenmorde und Fälle schwerer Gewalt. Diese Zahlen sind nicht deckungsgleich mit der Polizeistatistik, weil sie anders definiert und anders erhoben werden. WICHTIG ZUR EINORDNUNG: 'Femizid' ist weder in Österreich noch in Deutschland ein eigener Straftatbestand oder eine polizeiliche Kategorie; das BKA weist ausdrücklich auf die fehlende bundeseinheitliche Definition hin. Aussagen wie 'Männer werden doch auch ermordet' treffen einen realen Punkt — in beiden Ländern sind Männer die Mehrheit aller Tötungsopfer — verfehlen aber die Asymmetrie im Nahbereich: Frauen werden weit überwiegend von Partnern, Ex-Partnern oder Familienangehörigen getötet.",
+        "at_2024_pks": "Österreich 2024 (§ 75 StGB, Mord und Mordversuch): 285 Opfer gesamt, davon 98 weiblich und 187 männlich. Weibliche Opfer: 58 Mordversuche, 40 vollendete Morde. Männliche Opfer: 151 Mordversuche, 36 vollendete Morde. Altersverteilung der weiblichen Opfer: bis 17 Jahre 13, 18–20 Jahre 5, 21–24 Jahre 6, 25–39 Jahre 24, 40–64 Jahre 35, ab 65 Jahre 15.",
+        "at_2024_beziehung": "Beziehungsverhältnis bei männlichem Tatverdächtigen und weiblichem Opfer (inklusive Mordversuche, n = 90): Partnerschaft mit Hausgemeinschaft 33 %, Bekanntschaftsverhältnis 18 %, keine Beziehung 17 %, sonstige familiäre Beziehung mit Hausgemeinschaft 9 %, Ex-Partnerschaft ohne Hausgemeinschaft 8 %, sonstige familiäre Beziehung ohne Hausgemeinschaft 6 %, sonstige Hausgemeinschaft 6 %, Partnerschaft ohne Hausgemeinschaft 2 %, Zufallsbekanntschaft 2 %.",
+        "de_2024_bka": "Deutschland 2024 (BKA-Bundeslagebild): 859 weibliche Opfer versuchter und vollendeter Tötungsdelikte (2023: 938; 2020: 1.050), davon 328 Opfer vollendeter Taten und 308 tödlich verletzt. Im Kontext häuslicher Gewalt 198 vollendete Taten (133 Partnerschaftsgewalt, 65 innerfamiliäre Gewalt), davon 191 tödlich verletzt (132 und 59). Bei Partnerschaftsgewalt insgesamt 308 weibliche Opfer versuchter und vollendeter Taten (2023: 340). Anteil weiblicher Opfer an allen Opfern von Tötungsdelikten 29,9 %, bei vollendeten Taten 43,4 %, bei Partnerschaftsgewalt 80,6 % und bei vollendeten Partnerschaftstötungen 84,7 %.",
+        "zaehlweisen": "Warum Zahlen auseinandergehen: Die Polizeistatistik zählt Anzeigen nach Paragrafen (Mord, Totschlag, Körperverletzung mit Todesfolge) und unterscheidet versucht und vollendet, kennt aber keine Kategorie 'Femizid'. Zivilgesellschaftliche Listen zählen aus Medienberichten die Tötungen von Frauen, die sie als geschlechtsbezogen einordnen. Die BKA-Zahl 308 bezeichnet je nach Textstelle zwei verschiedene Dinge — tödlich verletzte Frauen insgesamt und weibliche Opfer von Tötungsdelikten in Partnerschaftsgewalt inklusive Versuchen. Bei Vergleichen zwischen Ländern kommt hinzu, dass Erhebungsjahr und Deliktsabgrenzung übereinstimmen müssen.",
+        "risikofaktor_trennung": "Zum erhöhten Risiko in der Trennungsphase: Campbell et al. 2003, 'Risk Factors for Femicide in Abusive Relationships: Results From a Multisite Case Control Study', American Journal of Public Health 93(7):1089–1097 (doi:10.2105/AJPH.93.7.1089). Fall-Kontroll-Studie in elf US-Städten; als Risikofaktoren identifiziert unter anderem Trennung, Zugang zu Schusswaffen, Drohungen und Würgen. Die Übertragbarkeit auf Österreich und Deutschland ist nicht automatisch gegeben.",
+        "context": "Deskriptiv. Der Fakt bewertet keine Politik und keine Partei, sondern ordnet Zahlen und Zählweisen ein."
       },
       "context_notes": [
-        "Trennungs-Phase ist quantitativ höchster Risikofaktor — internationale Replikation eindeutig.",
-        "Begriff 'Beziehungsdrama' wird in Forschung + offizieller AT/DE-Statistik abgelehnt, verharmlost.",
-        "Faktencheck-relevant: Männer werden zwar absolut häufiger ermordet als Frauen, aber überwiegend von Fremden — die Partner-Tötungs-Asymmetrie (Frauen 91 %) ist stabil seit Jahrzehnten."
+        "Datenstand: Polizeiliche Kriminalstatistik Österreich 2024 (Aufbereitung der Koordinierungsstelle, Stand Dezember 2025) und BKA-Bundeslagebild 2024 (veröffentlicht 21.11.2025). Für 2025 lagen bei der letzten Prüfung im September 2026 nur Teilzahlen vor.",
+        "Der Verein Autonome Österreichische Frauenhäuser führt eine laufende Liste mutmaßlicher Femizide aus Medienberichten; am 4.9.2026 standen dort 18 Femizide und 45 Fälle schwerer Gewalt für das laufende Jahr.",
+        "Korrigiert 2026-09-22: Die frühere Fassung nannte '31 vollendete Femizide in AT 2023' und '155 vollendete Femizide in DE 2024' sowie '85 % der Täter sind Partner oder Ex-Partner', EIGE-Raten je 100.000 und '70–90 % mit dokumentierter Vorgeschichte'. Keine dieser Zahlen ließ sich in den amtlichen Berichten finden."
       ],
       "claim_phrasings_handled": [
-        "Femizide sind seltene Einzelfälle",
-        "Beziehungsdrama statt Femizid",
+        "Femizide sind Einzelfälle",
+        "In Österreich werden mehr Frauen als Männer ermordet",
         "Männer werden auch ermordet, wo ist der Aufschrei",
-        "Femizid ist nur ein Modewort",
-        "Tötung in Partnerschaft ist nicht systemisch"
+        "In Deutschland wird fast jeden Tag eine Frau getötet",
+        "Die Zahl der Femizide steigt",
+        "Frauen werden meistens von ihren Partnern getötet"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "femizid",
+        "femizide",
+        "frauenmord",
+        "frauenmorde",
+        "frauenmord-land"
+      ],
       "trigger_composite": [
-        [
-          "femizid",
-          "frauenmord",
-          "frauenmorde",
-          "frauentötung",
-          "frauentoetung",
-          "tötung der frau",
-          "toetung der frau",
-          "partnerschaftsgewalt",
-          "häusliche gewalt",
-          "haeusliche gewalt",
-          "beziehungsdrama"
-        ],
         [
           "frau",
           "frauen",
-          "ex-partner",
-          "ex partner",
-          "expartner",
-          "trennung",
-          "einzelfall",
-          "einzelfälle",
-          "einzelfaelle",
-          "drama",
-          "modewort",
-          "männer",
-          "maenner",
-          "auch",
-          "systemisch",
-          "systematisch",
-          "selten"
+          "partnerin",
+          "ex-partnerin",
+          "mädchen"
+        ],
+        [
+          "ermordet",
+          "getötet",
+          "toetet",
+          "tötungsdelikt",
+          "mord",
+          "morde",
+          "umgebracht",
+          "erschlagen",
+          "erstochen"
         ]
       ],
       "trigger_all": [
         [
           [
-            "maenn",
-            "männ"
+            "femizid",
+            "frauenmord",
+            "gewalt an frauen",
+            "gewalt gegen frauen"
           ],
           [
-            "ermordet"
-          ],
-          [
-            "aufschrei"
+            "zahl",
+            "statistik",
+            "steigt",
+            "sinkt",
+            "einzelfall",
+            "einzelfälle",
+            "österreich",
+            "oesterreich",
+            "deutschland"
           ]
         ],
         [
           [
-            "toetung",
-            "tötung"
+            "männer",
+            "maenner",
+            "burschen",
+            "buben"
           ],
           [
-            "partnerschaft"
+            "ermordet",
+            "getötet",
+            "toetet",
+            "mord",
+            "tötungsdelikt",
+            "umgebracht"
           ],
           [
-            "systemisch"
+            "frau",
+            "frauen",
+            "femizid",
+            "aufschrei"
           ]
         ]
-      ]
+      ],
+      "source_label": "Polizeiliche Kriminalstatistik Österreich 2024, aufbereitet von der Nationalen Koordinierungsstelle 'Gewalt gegen Frauen' (BKA/Bundeskanzleramt) + BKA-Bundeslagebild 'Geschlechtsspezifisch gegen Frauen gerichtete Straftaten' 2024 + Autonome Österreichische Frauenhäuser (Medienzählung) + Campbell et al. 2003",
+      "source_url": "https://www.coordination-vaw.gv.at/dam/jcr:676b18d0-e22b-4f36-9b71-83c8d16b3560/daten_polizei_2024.pdf",
+      "secondary_url": "https://www.bka.de/SharedDocs/Downloads/DE/Publikationen/JahresberichteUndLagebilder/StraftatenGegenFrauen/StraftatengegenFrauenBLB2024.pdf?__blob=publicationFile&v=7"
     },
     {
       "id": "sexualisierte_gewalt_dunkelfeld_2026",

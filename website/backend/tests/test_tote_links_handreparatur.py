@@ -31,8 +31,12 @@ _spec = importlib.util.spec_from_file_location("check_urls", BACKEND / "tools" /
 cu = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(cu)
 
-ERSETZT = json.loads((BACKEND / "tests" / "fixtures" / "reparierte_tote_links.json")
-                     .read_text(encoding="utf-8"))["ersetzt"]
+_FIXTURE = json.loads((BACKEND / "tests" / "fixtures" / "reparierte_tote_links.json")
+                      .read_text(encoding="utf-8"))
+ERSETZT = _FIXTURE["ersetzt"]
+# Ersatz-Links, die eine spaetere Fakt-Korrektur durch eine genauere Quelle
+# abgeloest hat. Der TOTE Link darf trotzdem nicht zurueckkehren.
+ABGELOEST = _FIXTURE.get("abgeloest") or {}
 BEKANNT = json.loads((BACKEND / "tools" / "url_bekannt_tot.json").read_text(encoding="utf-8"))["tot"]
 
 # Ganze URL, kein Praefix einer laengeren (".../sekten.at/" vs ".../sekten.at/cgi-bin/...").
@@ -85,8 +89,15 @@ def test_ersetzter_toter_link_steht_nirgends_mehr(tot):
 
 
 def test_jeder_ersatz_steht_in_den_daten_oder_im_code():
-    fehlt = [neu for neu in set(ERSETZT.values()) if not _vorkommen(neu)]
+    fehlt = [neu for neu in set(ERSETZT.values())
+             if not _vorkommen(neu) and neu not in ABGELOEST]
     assert not fehlt, fehlt
+
+
+def test_abgeloeste_ersatzlinks_sind_begruendet():
+    for url, grund in ABGELOEST.items():
+        assert url in set(ERSETZT.values()), url
+        assert len(grund) > 30, (url, grund)
 
 
 def test_kein_ersatz_ist_selbst_als_tot_bekannt():
@@ -118,13 +129,12 @@ def test_jeder_geparkte_link_steht_noch_in_den_daten():
 
 def test_inhaltskonflikte_sind_als_solche_markiert():
     inhalt = [u for u, e in BEKANNT.items() if e["grund"].startswith("INHALT:")]
-    # u. a. EFSA-Probenzahlen, Agrarfoerderung "= 7 Mrd", Femizide 31 vs. 26,
-    # UBA 8,0 vs. 8,4 Mt. Familiennachzug und Eurobarometer sind seit den
+    # u. a. EFSA-Probenzahlen, Agrarfoerderung "= 7 Mrd", UBA 8,0 vs. 8,4 Mt.
+    # Familiennachzug, Eurobarometer und Femizide sind seit den
     # Fakt-Korrekturen vom 22.9.2026 keine Konflikte mehr (siehe
     # test_geloeste_inhaltskonflikte).
-    assert len(inhalt) >= 12
-    for teil in ("efsajournal/pub/8957", "jcr:fixme",
-                 "oeffentliche_sicherheit_02_2024", "khg-bilanz"):
+    assert len(inhalt) >= 11
+    for teil in ("efsajournal/pub/8957", "jcr:fixme", "khg-bilanz"):
         assert any(teil in u for u in inhalt), teil
 
 
@@ -208,6 +218,7 @@ def test_widerspruechliche_quelle_wurde_nicht_untergeschoben():
 @pytest.mark.parametrize("tot,fakt", [
     ("familiennachzug-2024", ("migration_pack.json", "migration_familiennachzug_2026")),
     ("themen/oea/eurobarometer", ("demokratie_pack.json", "at_demokratie_zufriedenheit_2026")),
+    ("oeffentliche_sicherheit_02_2024", ("gleichstellung_pack.json", "femizide_at_de_2026")),
 ])
 def test_geloeste_inhaltskonflikte(tot, fakt):
     """Gegenstueck: Diese Konflikte wurden am 22.9.2026 durch eine

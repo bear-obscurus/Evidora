@@ -1,5 +1,5 @@
 {
- "hinweis": "Tote Beleg-Links, die am 2026-09-22 von Hand ersetzt wurden (Wayback nicht erreichbar). Sie duerfen nicht zurueckkehren. Schluessel: toter Link, Wert: Ersatz.",
+ "hinweis": "Tote Beleg-Links, die am 2026-09-22 von Hand ersetzt wurden (Wayback nicht erreichbar). Sie duerfen nicht zurueckkehren. Schluessel: toter Link, Wert: Ersatz. Unter 'abgeloest' stehen Ersatz-Links, die spaeter durch eine noch genauere Quelle abgeloest wurden.",
  "ersetzt": {
   "https://aggressionresearchgroup.com/dan-olweus-1931-2020/": "https://link.springer.com/article/10.1007/s42380-021-00096-5",
   "https://agriculture.ec.europa.eu/farming/fertilisers/observatory_de": "https://agriculture.ec.europa.eu/data-and-analysis/markets/overviews/market-observatories/fertilisers_en",
@@ -245,5 +245,8 @@
   "https://www.wifo.ac.at/themen/oeffentliche-finanzen-staat": "https://www.wifo.ac.at/en/research/research-groups/macroeconomics-and-public-finance/",
   "https://www.wko.at/statistik/extranet/aussenhandel/aussenhandel.pdf": "https://www.wko.at/oe/aussenwirtschaft/2024-aussenhandel-waren-export.pdf",
   "https://www.wur.nl/en/research-results/research-institutes/plant-research/show-wpr/vertical-farming-trade-offs.htm": "https://research.wur.nl/en/publications/vertical-farming-productivity-environmental-impact-and-resource-u/"
+ },
+ "abgeloest": {
+  "https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/Lagebilder/Partnerschaftsgewalt/partnerschaftsgewalt_node.html": "2026-09-22 bei der Femizid-Korrektur durch das BKA-Bundeslagebild 2024 (PDF) ersetzt — praeziser, weil die Zahlen dort stehen"
  }
 }
