@@ -397,111 +397,69 @@
     {
       "id": "agrar_subventionen_at_2026",
       "topic": "agrar_subventionen_at_konsens",
-      "scope": "AT-Agrar-Subventionen — EU-GAP + nationale Top-Up + ÖPUL — Verteilung, Volumen, 80-20-Pareto",
+      "scope": "AT-Agrarbudget 2024 und Verteilung der Direktzahlungen (Grüner Bericht 2025)",
       "year": 2024,
-      "source_url": "https://www.bmluk.gv.at/themen/landwirtschaft/gemeinsame-agrarpolitik-foerderungen.html",
-      "secondary_url": "https://www.bml.gv.at/dam/jcr:fixme/CAP-Verteilung-2023.pdf",
-      "source_label": "BMVL Bundesministerium für Land- und Forstwirtschaft + AMA Agrarmarkt Austria + BOKU Wien CAP-Verteilungs-Analyse 2023 + EU-Kommission DG AGRI + Statistik Austria + ÖPUL Programm + Bergbauern-Förderung + AGES",
-      "headline": "AT-Agrar-Subventionen 2024: ~1.1 Mrd EUR EU-GAP + ~600 Mio nationaler Top-Up = ~7 Mrd EUR/Jahr inkl. ÖPUL + Bergbauern; 80 % der GAP-Mittel an 20 % der Höfe (BOKU 2023, fläche-bezogene Direkt-Zahlungen)",
+      "headline": "AT-Agrarbudget 2024: 2.652 Mio. Euro aus EU-, Bundes- und Landesmitteln (EU 49 %, Bund 28 %, Länder 23 %) — davon 603 Mio. erste GAP-Säule, 1.364 Mio. zweite Säule, 685 Mio. rein national. Die Direktzahlungen der ersten Säule gingen 2024 an 101.027 Förderfälle, im Schnitt 5.693 Euro; 60 % der Fälle bekamen unter 5.000 Euro",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT-Bauern bekommen kaum Subventionen' ODER 'Subventionen gehen an wenige Großbetriebe' sind beide differenziert. Empirische Lage: (1) EU-GAP-FÖRDERMITTEL AT 2024 (BMVL + AMA): ~1.1 Mrd EUR aus EU-Topf für AT (Pillar 1 Direkt-Zahlungen ~700 Mio + Pillar 2 ländliche Entwicklung ~400 Mio). Nationaler Top-Up + Bundesländer-Programme: ~600 Mio EUR. ÖPUL (Österreichisches Programm umweltgerechte Landwirtschaft): ~600 Mio EUR/Jahr. Bergbauern-Förderung: ~250 Mio EUR. Total AT-Agrar-Subventionen 2024: ~7 Mrd EUR (inkl. EU-Mittel). (2) VERTEILUNG 80-20-PARETO (BOKU 2023 Wytrzens/Schermer Studie): 80 % der EU-GAP-Mittel gehen an 20 % der Höfe (große Betriebe + Genossenschaften). Direkt-Zahlungen sind FLÄCHE-BEZOGEN (€/ha), nicht Leistung-bezogen — größere Betriebe bekommen automatisch mehr. (3) HÖFE-ANZAHL AT 2024: ~155.000 Höfe (Statistik AT). Davon ~30.000 Vollerwerbs-Höfe (>50 % Einkommen aus Landwirtschaft), ~85.000 Nebenerwerbs-Höfe, ~40.000 Hobby/Kleinst-Höfe. (4) DURCHSCHNITTLICHE FÖRDERUNG PRO HOF AT: ~45.000 EUR/Jahr Vollerwerb, ~8.000 EUR/Jahr Nebenerwerb. ABER: Median deutlich niedriger (Großbetriebe verzerren Mittel). 50 % der Höfe bekommen <12.000 EUR/Jahr. (5) ÖPUL-VERTEILUNG anders als GAP: ÖPUL ist Leistungs-bezogen (Bio-Bonus, Biodiversitäts-Maßnahmen, Wasser-Schutz), kleinere Höfe profitieren überproportional (Bio-Anteil bei kleinen Höfen höher). (6) Faktencheck-relevant: Aussagen wie 'AT-Bauern bekommen kaum Subventionen' verkennen 7 Mrd EUR/Jahr. Aussagen wie 'alle Subventionen gehen an Großbetriebe' überzeichnen — ÖPUL + Bergbauern-Förderung gleichen aus. Pack distanziert sich von Pro/Contra-Subventions-Wertung.",
-        "eu_gap_2024_at": "EU-GAP 2024 für AT (BMVL + AMA): Pillar 1 Direkt-Zahlungen ~700 Mio EUR (fläche-bezogen, ~285 EUR/ha basis-Prämie), Pillar 2 ländliche Entwicklung ~400 Mio EUR (Investitions-Förderungen, Junglandwirte, ÖPUL-Co-Finanzierung). Total EU-Mittel 2024: ~1.1 Mrd EUR.",
-        "boku_verteilungs_analyse": "BOKU Wien (Wytrzens/Schermer) Studie 2023 zur CAP-Verteilung in AT: 80 % der Direkt-Zahlungen an 20 % der Höfe (typische Pareto-Verteilung). Top-1 % der Höfe (~1.500 Betriebe) bekommen 30 % der Mittel. Direkt-Zahlungen sind fläche-bezogen, nicht Leistung-bezogen — Großbetriebe automatisch im Vorteil.",
-        "oepul_compensation": "ÖPUL (Österreichisches Programm umweltgerechte Landwirtschaft) ist im Gegensatz zu GAP-Direkt-Zahlungen LEISTUNGS-BEZOGEN: Bio-Bonus (~600 EUR/ha), Biodiversitäts-Maßnahmen, Bergbauern-Hangneigungs-Bonus, Wasser-Schutz-Maßnahmen. Kleinere Höfe + Bio-Höfe profitieren überproportional. ÖPUL-Volumen 2024: ~600 Mio EUR/Jahr.",
-        "bergbauern_foerderung": "Bergbauern-Ausgleichszulage AT 2024: ~250 Mio EUR. Ausgleich für erschwerte Bewirtschaftungs-Bedingungen (Hangneigung, Höhenlage). Pro Hof typisch 2.000-15.000 EUR/Jahr. AT hat höchste Bergbauern-Förderung in EU pro ha.",
-        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Subventions-Wertung."
+        "kernsatz_fuer_synthesizer": "Zahlen aus dem Grünen Bericht 2025 (Bundesministerium, Datenjahr 2024). (1) BUDGET: 2024 wurden 2.652 Mio. Euro aus EU-, Bundes- und Landesmitteln für Land- und Forstwirtschaft aufgewendet, 93 Mio. mehr als 2023 (+3,6 %). Herkunft: EU 49 %, Bund 28 %, Länder 23 %. Verwendung: 603 Mio. Euro (23 %) erste GAP-Säule (Marktordnung), 1.364 Mio. Euro (51 %) zweite Säule (Ländliche Entwicklung), 685 Mio. Euro (26 %) sonstige, rein national finanzierte Maßnahmen. Verlauf: 2.773 (2020), 2.298 (2021), 2.559 (2022), 2.437 (2023), 2.652 (2024). (2) VERTEILUNG: Die Direktzahlungen der ersten Säule betrugen 2024 insgesamt 575,1 Mio. Euro, verteilt auf 101.027 Förderfälle — im Schnitt 5.693 Euro. 60,5 % der Fälle lagen unter 5.000 Euro und erhielten zusammen 23,3 % der Summe; 14 Fälle (0,01 %) lagen über 150.000 Euro und erhielten 0,66 %. Aus der Verteilungstabelle gerechnet entfallen auf die größten 20 % der Förderfälle rund 52 % der Direktzahlungen. Die verbreitete Formel '80 % der Mittel gehen an 20 % der Höfe' trifft auf die österreichischen Direktzahlungen also NICHT zu; die Konzentration ist real, aber halb so stark. (3) BETRIEBE: Bei den 1.905 Buchführungsbetrieben machten öffentliche Gelder 2024 im Schnitt 20.650 Euro von 135.222 Euro Ertrag aus, also gut 15 %. Die Einkünfte aus Land- und Forstwirtschaft lagen bei 30.933 Euro je betrieblicher Arbeitskraft, bei Bergbauernbetrieben bei 33.221 Euro je Betrieb.",
+        "budget_2024": "Agrarbudget 2024 (Grüner Bericht 2025): 2.652 Mio. Euro gesamt. Herkunft: EU 49 %, Bund 28 %, Länder 23 %. Verwendung: Marktordnung (1. Säule) 603,2 Mio. Euro / 23 %, Ländliche Entwicklung (2. Säule) 1.364 Mio. Euro / 51,4 %, sonstige Maßnahmen 685 Mio. Euro / 25,8 %.",
+        "verteilung_direktzahlungen_2024": "Direktzahlungen 1. Säule 2024, Größenklassen (Förderfälle / Anteil / Summe): bis 5.000 Euro 61.081 / 60,46 % / 133,9 Mio.; 5.000–10.000 23.579 / 23,34 % / 168,0 Mio.; 10.000–15.000 10.165 / 10,06 % / 123,0 Mio.; 15.000–20.000 3.225 / 3,19 % / 55,1 Mio.; 20.000–25.000 1.361 / 1,35 % / 30,2 Mio.; 25.000–30.000 621 / 0,61 % / 16,9 Mio.; 30.000–40.000 548 / 0,54 % / 18,7 Mio.; 40.000–50.000 197; 50.000–60.000 92; 60.000–70.000 53; 70.000–100.000 63; 100.000–150.000 28; über 150.000 14 Fälle / 0,01 % / 3,8 Mio. Gesamt 101.027 Fälle / 575,14 Mio. Euro / Schnitt 5.693 Euro.",
+        "konzentration_nachgerechnet": "Aus der Größenklassen-Tabelle gerechnet: Die größten 20 % der Förderfälle erhalten rund 52 % der Direktzahlungen der ersten Säule. Eine Pareto-Verteilung '80/20' liegt damit nicht vor. Zu beachten: gezählt werden Förderfälle, nicht Betriebe, und nur die Direktzahlungen der ersten Säule — Ausgleichszulage und ÖPUL sind eigene Töpfe mit eigener Verteilung.",
+        "betriebsergebnisse_2024": "Buchführungsbetriebe 2024 (n = 1.905, im Schnitt 32,84 ha landwirtschaftlich genutzte Fläche): Ertrag 135.222 Euro je Betrieb, davon öffentliche Gelder 20.650 Euro (gut 15 %); Aufwand 103.076 Euro. Einkünfte aus Land- und Forstwirtschaft je betrieblicher Arbeitskraft 30.933 Euro; je Bergbauernbetrieb 33.221 Euro.",
+        "context": "Deskriptiv. Der Fakt bewertet die Agrarpolitik nicht, sondern nennt Budget, Verteilung und Betriebsergebnisse aus dem amtlichen Bericht."
       },
       "context_notes": [
-        "AT-Total-Subventionen 2024: ~7 Mrd EUR/Jahr (1.1 Mrd EU + 5.9 Mrd national + ÖPUL + Bergbauern).",
-        "80-20-Pareto bei EU-GAP-Direkt-Zahlungen (BOKU 2023) — fläche-bezogen, nicht Leistung.",
-        "ÖPUL (Bio + Biodiversität) gleicht teilweise aus — kleinere Höfe profitieren proportional mehr."
+        "Datenstand: Grüner Bericht 2025 mit Datenjahr 2024, Stand der Fördermittel Juli 2025. Der Bericht erscheint jährlich im Herbst.",
+        "Die zweite Säule (Ländliche Entwicklung) enthält ÖPUL und die Ausgleichszulage für benachteiligte Gebiete; diese Zahlungen sind an Auflagen oder an naturbedingte Nachteile gebunden und verteilen sich anders als die Flächenprämien der ersten Säule.",
+        "Korrigiert 2026-09-22: Die frühere Fassung rechnete '1,1 Mrd. EU-GAP + 600 Mio. national = ~7 Mrd. pro Jahr' — die Summe passte weder zu den Summanden noch zum Agrarbudget von 2,652 Mrd. Ebenfalls entfernt: die Aussage '80 % der Mittel an 20 % der Höfe (BOKU 2023)' samt 'Top-1 % bekommt 30 %'; die Verteilungstabelle des Grünen Berichts zeigt rund 52 % für die größten 20 %. Der zugehörige Link war erfunden (jcr:fixme)."
       ],
       "claim_phrasings_handled": [
         "AT-Bauern bekommen kaum Subventionen",
-        "Alle Subventionen gehen an Großbetriebe",
-        "80 Prozent der Subventionen an 20 Prozent der Höfe",
-        "AT zahlt Milliarden Euro für Landwirtschaft",
-        "EU-Agrarsubventionen sind ungerecht verteilt",
-        "Bauern leben von Steuergeld"
+        "Agrar-Subventionen gehen an wenige Großbetriebe",
+        "80 Prozent der Agrarförderung gehen an 20 Prozent der Höfe",
+        "Österreich zahlt Milliarden an die Landwirtschaft",
+        "Die meisten Bauern bekommen nur kleine Beträge"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "agrarsubvention",
+        "agrarsubventionen",
+        "agrarförderung",
+        "agrarfoerderung",
+        "agrarbudget",
+        "direktzahlungen",
+        "gap-mittel",
+        "flächenprämie",
+        "flaechenpraemie"
+      ],
       "trigger_composite": [
         [
-          "agrar-subventionen",
-          "agrarsubventionen",
-          "agrar-förderung",
-          "agrarfoerderung",
-          "agrar-foerderung",
-          "eu-agrar",
-          "gap",
-          "cap",
-          "direkt-zahlungen",
-          "direktzahlungen",
-          "öpul",
-          "oepul",
-          "ÖPUL",
-          "bergbauern",
-          "berg-bauern",
-          "ama",
-          "bml",
-          "bmvl",
           "bauern",
+          "landwirt",
           "landwirtschaft",
-          "land-wirtschaft",
           "höfe",
-          "hoefe"
+          "hoefe",
+          "betriebe",
+          "agrar"
         ],
         [
           "subvention",
           "förderung",
           "foerderung",
-          "geld",
+          "gap",
+          "direktzahlung",
+          "steuergeld",
           "milliarden",
           "millionen",
-          "steuergeld",
-          "steuer-geld",
-          "zahlung",
-          "auszahlung",
-          "bekommen",
-          "erhalten",
-          "verteilung",
-          "verteilt",
-          "ungerecht",
-          "großbetriebe",
-          "grossbetriebe",
-          "klein-betriebe",
-          "kleinbetriebe",
-          "bergbauern",
-          "hektar",
-          "ha",
-          "fläche",
-          "flaeche",
-          "leistung",
-          "pareto",
-          "80 %",
-          "80 prozent",
-          "80%",
-          "20 %",
-          "20 prozent",
-          "20%",
-          "7 mrd",
-          "1 mrd"
+          "prämie",
+          "praemie",
+          "beträge",
+          "betraege",
+          "betrag"
         ]
       ],
-      "trigger_all": [
-        [
-          [
-            "subvent"
-          ],
-          [
-            "gehe"
-          ],
-          [
-            "grossbetrieb",
-            "großbetrieb"
-          ]
-        ]
-      ]
+      "source_label": "Grüner Bericht 2025 (Bundesministerium für Land- und Forstwirtschaft, Klima- und Umweltschutz, Regionen und Wasserwirtschaft), Datenjahr 2024 — Kapitel 5 und Tabelle 33",
+      "source_url": "https://www.bmluk.gv.at/themen/landwirtschaft/landwirtschaft-in-oesterreich/gruenerbericht2025.html",
+      "secondary_url": "https://www.bmluk.gv.at/dam/jcr:8e02c1e2-f58c-4d9e-be5f-830f0f6cd456/Gr%C3%BCner%20Bericht%202025.pdf"
     },
     {
       "id": "regionale_versorgung_mythen_2026",
@@ -1350,128 +1308,64 @@
     {
       "id": "klima_landwirtschaft_2026",
       "topic": "klima_landwirtschaft_konsens",
-      "scope": "AT-Landwirtschaft Treibhausgas-Emissionen 2024 + Klima-Anpassung — Wein-Verlagerung, Mais-Hitze-Stress",
+      "scope": "Treibhausgas-Emissionen der österreichischen Landwirtschaft im Sektorvergleich",
       "year": 2024,
-      "source_url": "https://www.umweltbundesamt.at/klima/treibhausgase/khg-bilanz",
-      "secondary_url": "https://www.zamg.ac.at/cms/de/klima/klima-aktuell/klimadaten",
-      "source_label": "Umweltbundesamt AT Klimagas-Bilanz 2024 + ZAMG (GeoSphere AT) Klimaentwicklung + IPCC AR6 Working Group II + AGES Klima-Anpassung-Empfehlungen + Statistik Austria + BMK 2040-Klima-Strategie",
-      "headline": "AT-Treibhausgas-Emissionen Landwirtschaft 2024 (UBA): 8.0 Mt CO2e (~10 % Gesamt-Emissionen, davon 60 % Methan aus Wiederkäuern + Gülle); Klima-Anpassung: Wein-Anbau verlagert nach Norden (+1.5°C 1980-2024 Sankt Pölten), Mais-Hitze-Stress 2018+2022 -25-30 % Ernte",
+      "headline": "AT-Treibhausgase 2024 (Umweltbundesamt): 66,6 Mio. t CO2-Äquivalent insgesamt, −16,4 % gegenüber 1990 und −3,0 % gegenüber 2023. Auf die Landwirtschaft entfielen 8,4 Mio. t, also 12,6 % — nach Energie und Industrie (29,0) und Verkehr (19,5) der drittgrößte Sektor, vor Gebäuden (5,8), Abfallwirtschaft (2,3) und F-Gasen (1,7)",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Landwirtschaft ist nicht Klima-relevant' ist EMPIRISCH FALSCH. Empirische Lage: (1) AT-LANDWIRTSCHAFT KLIMAGAS-EMISSIONEN 2024 (Umweltbundesamt AT KHG-Bilanz): 8.0 Mt CO2e, ~10 % der AT-Gesamt-Emissionen (von 80 Mt). Aufteilung: 60 % Methan aus Wiederkäuern + Gülle (Rinder + Schweine), 25 % Distickstoff-Oxid aus Düngung + Boden, 15 % CO2 aus Diesel + Energie. (2) HAUPTQUELLEN: Rinder-Methan ~3.5 Mt, Schwein-Methan ~0.4 Mt, Gülle-Lager ~0.5 Mt, Düngung-Distickstoff-Oxid ~2.0 Mt, Diesel + Energie ~1.2 Mt. AT-Landwirtschafts-Emissionen seit 1990 -16 % gefallen (durch Effizienz-Steigerung Tier-Futter + Düngung). (3) KLIMA-WANDEL-AUSWIRKUNG AT (ZAMG/GeoSphere 2024): AT-Mittel-Temperatur +1.8°C seit 1880, +1.5°C seit 1980. Sankt Pölten 2024: 11.5°C Jahresmittel (vs. 10.0°C 1980). (4) SEKTOR-SPEZIFISCHE EFFEKTE: (a) WEIN: Anbau-Grenzen verlagert nach Norden (Wachau-Süd-Grenze) und in höhere Lagen (Steiermark-Berge). Reife-Zeitpunkt 2 Wochen früher als 1980. Neue Sorten (Cabernet Sauvignon) klimatisch möglich. (b) MAIS: Hitze-Stress 2018 + 2022 -25-30 % Ernte (BOKU-Studie 2023). Bewässerungs-Bedarf steigt — AT-Mais bisher fast nicht bewässert, ändert sich. (c) APFEL/OBSTBAU: Verlagert in höhere Lagen (Steiermark + Oberösterreich). (d) RIND-/MILCH: Hitze-Stress >25°C reduziert Milch-Leistung 10-15 %. (5) AT-KLIMA-STRATEGIE 2040: Landwirtschaft soll -23 % Emissionen bis 2030, -36 % bis 2040. Maßnahmen: Bio-Erweiterung + Tier-Bestand-Reduktion + Bio-Gülle-Vergärung + Präzisions-Düngung. (6) GLOBAL VERGLEICH: Welt-Landwirtschaft 23-25 % der globalen Klima-Emissionen (IPCC AR6). EU-Landwirtschaft 11 %, USA 10 %, AT 10 % — etwa EU-Mittel. (7) Faktencheck-relevant: Aussagen wie 'Landwirtschaft ist klimaneutral' sind durch UBA-KHG-Bilanz widerlegt (10 % AT-Emissionen). Aussagen wie 'Bauern sind Klima-Sünder' sind überzogen — Effizienz-Steigerung läuft seit 1990 (-16 %). Pack distanziert sich von normativer Wertung.",
-        "uba_khg_bilanz_2024": "Umweltbundesamt AT Klimagas-Bilanz 2024 (publiziert 2025): AT-Gesamt-Emissionen ~80 Mt CO2e. Landwirtschaft 8.0 Mt (10.0 %), Verkehr 23 Mt (29 %), Industrie 22 Mt (27 %), Energie 18 Mt (22 %), Gebäude 8 Mt (10 %). Landwirtschaft seit 1990 -16 % (1990: 9.5 Mt).",
-        "methan_wiederkaeuer": "AT-Methan-Emissionen 2024: 3.5 Mt CO2e Rinder (Wiederkäuer-Verdauung Mikrobielle Pansen-Gärung), 0.4 Mt Schweine, 0.5 Mt Gülle-Lager. Welt-Methan-Forschung: Methan ~80× wirksamer als CO2 in 20-Jahres-Zeitraum (IPCC AR6). Reduktions-Strategien: Tier-Futter-Ergänzungen (3-NOP/Bovaer), Gülle-Vergärung Biogas.",
-        "klima_temperatur_at": "ZAMG (GeoSphere AT) 2024: AT-Mittel-Temperatur +1.8°C seit 1880, +1.5°C seit 1980. Wärmster Bereich: Pannonisches Tiefland + Wien + Sankt Pölten. Niederschlags-Trend: leicht steigend im Westen, stabil/sinkend im Osten. Hitze-Tage (>30°C) Wien: 1980 ~5/Jahr → 2024 ~25/Jahr.",
-        "wein_mais_apfel_anpassung": "Klima-Anpassung AT 2024: Wein-Reife-Zeitpunkt 2 Wochen früher als 1980 (BOKU + AGES Wein-Studien). Mais-Erträge 2018+2022 -25-30 % wegen Hitze-Stress (BOKU 2023). Apfel-Anbau verlagert in höhere Lagen (Steiermark + Oberösterreich-Mittelgebirge). Rind-/Milch-Hitze-Stress >25°C: Milch-Leistung -10-15 %.",
-        "at_klima_strategie": "AT 2040-Klima-Strategie (BMK + Landwirtschafts-Pakt 2023): Landwirtschaft -23 % bis 2030, -36 % bis 2040 (gegenüber 2020). Maßnahmen: Bio-Erweiterung 30 % bis 2030, Tier-Bestand-Reduktion 10 % bis 2030, Bio-Gülle-Vergärung 50 % der Gülle, Präzisions-Düngung -25 % Stickstoff-Verbrauch.",
-        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+        "kernsatz_fuer_synthesizer": "Zahlen aus der Treibhausgas-Inventur des Umweltbundesamtes (Datenjahr 2024, veröffentlicht 2025). (1) GESAMT: Österreich emittierte 2024 66,6 Mio. Tonnen CO2-Äquivalent — 16,4 % weniger als im Basisjahr 1990 und 3,0 % weniger als 2023. (2) SEKTOREN 2024: Energie und Industrie 29,0 Mio. t, Verkehr 19,5, Landwirtschaft 8,4, Gebäude 5,8, Abfallwirtschaft 2,3, fluorierte Gase 1,7. Der Anteil der Landwirtschaft liegt damit bei 12,6 %. (3) EINORDNUNG: 'Die Landwirtschaft ist klimatechnisch nicht relevant' trifft nicht zu — sie ist der drittgrößte Sektor. 'Die Landwirtschaft ist der Hauptverursacher' trifft ebenfalls nicht zu — Energie/Industrie und Verkehr liegen deutlich darüber. (4) ZIELERREICHUNG: In den vom Klimaschutzgesetz erfassten Sektoren außerhalb des Emissionshandels lagen die Emissionen 2024 bei 42,7 Mio. t und damit rund 0,3 Mio. t unter der Höchstmenge von etwa 43,0 Mio. t. Für 2025 erwartet das Umweltbundesamt wieder einen Anstieg um rund 1 %.",
+        "gesamt_und_trend": "Österreich 2024: 66,6 Mio. t CO2-Äquivalent, −16,4 % gegenüber 1990, −3,0 % gegenüber 2023. Hauptgründe für den Rückgang 2024: Produktionsrückgänge in Stahl-, Zement- und Chemieindustrie, weniger Erdgas in Industrie und Energie außerhalb des Emissionshandels, weniger Heizöl und Erdgas im Gebäudesektor, geringerer Dieselabsatz im Güterverkehr. Das Bruttoinlandsprodukt sank 2024 um rund 0,7 %.",
+        "sektoren_2024": "Sektoren 2024 in Mio. t CO2-Äquivalent: Energie und Industrie 29,0; Verkehr 19,5; Landwirtschaft 8,4; Gebäude 5,8; Abfallwirtschaft 2,3; fluorierte Gase 1,7. Summe 66,6. Anteil Landwirtschaft 12,6 %.",
+        "klimaschutzgesetz": "Nicht-Emissionshandelsbereich (Sektoren des Klimaschutzgesetzes) 2024: 42,7 Mio. t gegenüber einer Höchstmenge von rund 43,0 Mio. t — die Vorgabe wurde also um etwa 0,3 Mio. t unterschritten.",
+        "methodik": "Die Inventur rechnet alle Gase in CO2-Äquivalente um und verwendet dafür die Treibhausgaspotenziale des fünften IPCC-Sachstandsberichts (2014). Wer für Methan den 20-Jahres-Wert heranzieht, kommt auf deutlich höhere Äquivalente als die Inventur — beim Zitieren also den Zeithorizont dazusagen.",
+        "context": "Deskriptiv. Der Fakt nennt Sektorzahlen, keine Bewertung einzelner Betriebsformen oder politischer Maßnahmen."
       },
       "context_notes": [
-        "AT-Landwirtschaft 10 % der THG-Emissionen — relevant aber kleiner als Verkehr (29 %) oder Industrie (27 %).",
-        "Methan aus Wiederkäuern + Gülle ist 60 % der LW-Emissionen — Reduktions-Strategien existieren (Bovaer, Biogas).",
-        "Klima-Anpassung läuft real: Wein nach Norden, Mais zunehmend stress-belastet, Apfel in höhere Lagen."
+        "Datenstand: Treibhausgas-Inventur des Umweltbundesamtes mit Datenjahr 2024 (Stand September 2026). Die Inventur erscheint jährlich; die Werte werden rückwirkend revidiert.",
+        "Die Aufteilung der Landwirtschafts-Emissionen auf Methan aus der Tierhaltung und Lachgas aus Böden steht nicht in der zitierten Übersicht; wer sie braucht, muss den Emissionsbericht heranziehen.",
+        "Korrigiert 2026-09-22: Die frühere Fassung nannte 8,0 Mio. t Landwirtschaft bei 80 Mio. t Gesamtemissionen (amtlich 8,4 von 66,6) und eine Sektorverteilung (Verkehr 23, Industrie 22, Energie 18, Gebäude 8), die es so nicht gibt. Ebenfalls entfernt: unbelegte Angaben zu Methan-Teilmengen und zur Temperaturentwicklung."
       ],
       "claim_phrasings_handled": [
-        "Landwirtschaft ist klimaneutral",
-        "Bauern sind Klima-Sünder",
-        "10 Prozent der AT-Emissionen aus Landwirtschaft",
-        "Klima-Wandel betrifft AT-Bauern stark",
-        "AT-Landwirtschaft reduziert Emissionen seit 1990",
-        "Mais-Erträge sinken wegen Klima"
+        "Die Landwirtschaft ist nicht klimarelevant",
+        "Die Landwirtschaft ist der größte Klimasünder",
+        "Wie viel CO2 verursacht die Landwirtschaft in Österreich?",
+        "Österreich hat seine Emissionen seit 1990 kaum gesenkt",
+        "Der Verkehr verursacht mehr Emissionen als die Landwirtschaft"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "treibhausgas-bilanz",
+        "treibhausgasbilanz",
+        "khg-bilanz",
+        "thg-bilanz",
+        "klimabilanz österreich",
+        "klimabilanz oesterreich"
+      ],
       "trigger_composite": [
         [
-          "klima",
-          "klima-wandel",
-          "klimawandel",
-          "klima-erwärmung",
-          "klimaerwaermung",
-          "treibhausgas",
-          "treibhausgase",
-          "thg",
-          "co2",
-          "methan",
-          "ch4",
-          "distickstoff-oxid",
-          "n2o",
           "landwirtschaft",
-          "land-wirtschaft",
           "bauern",
+          "tierhaltung",
           "rinder",
-          "rind-haltung",
-          "schweine",
-          "gülle",
-          "guelle",
-          "düngung",
-          "duengung",
-          "dünger",
-          "duenger"
+          "verkehr",
+          "industrie",
+          "gebäude",
+          "gebaeude",
+          "österreich",
+          "oesterreich"
         ],
         [
-          "emissionen",
+          "treibhausgas",
+          "co2",
           "emission",
-          "klima-bilanz",
+          "emissionen",
           "klimabilanz",
-          "khg",
-          "khg-bilanz",
-          "uba",
-          "umweltbundesamt",
-          "zamg",
-          "geosphere",
-          "ipcc",
-          "global",
-          "welt",
-          "ausstoß",
-          "ausstoss",
-          "ausstossen",
-          "verursachen",
-          "verursacht",
-          "klima-neutral",
-          "klimaneutral",
-          "anpassung",
-          "klima-anpassung",
-          "wein",
-          "mais",
-          "apfel",
-          "milch",
-          "ertrag",
-          "ernte",
-          "hitze",
-          "hitze-stress",
-          "trockenheit",
-          "10 %",
-          "10 prozent",
-          "23 %",
-          "16 %"
+          "klimasünder",
+          "klimasuender",
+          "klimarelevant"
         ]
       ],
-      "trigger_all": [
-        [
-          [
-            "bauer",
-            "baür"
-          ],
-          [
-            "klima-suend",
-            "klima-sünd"
-          ]
-        ],
-        [
-          [
-            "klima-wandel"
-          ],
-          [
-            "betrifft"
-          ],
-          [
-            "at-bauer",
-            "at-baür"
-          ],
-          [
-            "stark"
-          ]
-        ]
-      ]
+      "source_label": "Umweltbundesamt Österreich — Treibhausgas-Inventur, Datenjahr 2024 (veröffentlicht 2025)",
+      "source_url": "https://www.umweltbundesamt.at/klima/treibhausgase",
+      "secondary_url": "https://www.umweltbundesamt.at/emiberichte"
     },
     {
       "id": "viehbestand_at_2026",

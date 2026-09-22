@@ -99,13 +99,6 @@
    "seit": "2026-09-22",
    "grund": "INHALT: Fakt zitiert 'BASt DE 2023' zur SUV-Sicherheit — keine solche BASt-Veroeffentlichung auffindbar (naechstliegend: UDV-Studie der Versicherer)"
   },
-  "https://www.bml.gv.at/dam/jcr:fixme/CAP-Verteilung-2023.pdf": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22",
-   "grund": "INHALT: Fakt rechnet '1,1 Mrd EU-GAP + 600 Mio national = ~7 Mrd'; Gruener Bericht 2025: 2,65 Mrd gesamt 2024. Link war erfunden (jcr:fixme)"
-  },
   "https://www.dihk.de/de/themen-und-positionen/recht-steuern/internationales-wirtschaftsrecht/made-in-germany": {
    "dateien": [
     "welthandel_pack.json"
@@ -168,13 +161,6 @@
    ],
    "seit": "2026-09-22",
    "grund": "INHALT: Fakt: Tirol Leerstandsabgabe 'seit 2024', 1.500-2.000 EUR/Jahr; TFLAG gilt seit 1.1.2023 mit 10-215 EUR/Monat je nach Groesse (Vorbehaltsgemeinden doppelt)"
-  },
-  "https://www.umweltbundesamt.at/klima/treibhausgase/khg-bilanz": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22",
-   "grund": "INHALT: Fakt: Landwirtschaft AT 2024 = 8,0 Mt CO2e; UBA Oesterreich nennt 8,4 Mt (2024)"
   },
   "https://www.verbraucherzentrale.de/wissen/digitale-welt/datenschutz/whatsapp-chats-als-beweismittel-rechtslage-und-tipps-69466": {
    "dateien": [
