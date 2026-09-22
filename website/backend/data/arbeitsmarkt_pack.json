@@ -9,7 +9,7 @@
       "scope": "Mindestlohn-Beschaeftigungs-Effekt — Card/Krueger NJ-PA + Cengiz et al. 2019 QJE",
       "year": 2024,
       "source_url": "https://academic.oup.com/qje/article/134/3/1405/5484905",
-      "secondary_url": "https://www.aeaweb.org/articles?id=10.1257/aer.84.4.772",
+      "secondary_url": "https://www.nber.org/papers/w4509",
       "source_label": "Card/Krueger 1994 American Economic Review 84(4):772-793 'Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania' + Cengiz/Dube/Lindner/Zipperer 2019 Quarterly Journal of Economics 134(3):1405-1454 'The Effect of Minimum Wages on Low-Wage Jobs' + Dube 2019 Centre for Economic Policy Research Review + IAB DE Mindestlohn-Studien 2015-2024 + WIFO AT Mindestlohn-Analysen + DESTATIS DE-Mindestlohn-Statistik",
       "headline": "Mindestlohn-Beschaeftigungs-Effekt empirisch nahe Null: Card/Krueger 1994 (NJ-Beschaeftigung +0,8 %) + Cengiz et al. 2019 QJE Bunching-Methode (138 US-Erhoehungen: keine Beschaeftigungs-Reduktion in low-wage sectors); DE-Mindestlohn 2015 (8,50 EUR) keine messbare Job-Verluste laut IAB; AT-System ueber Kollektiv-Vertraege (KV-Mindest-Loehne ~1.500 EUR netto 2024)",
       "data": {
@@ -78,7 +78,7 @@
       "scope": "4-Tage-Woche bei gleichem Lohn — Iceland-Trial + UK-4Day-Week Cambridge",
       "year": 2024,
       "source_url": "https://autonomy.work/wp-content/uploads/2021/06/ICELAND_4DW.pdf",
-      "secondary_url": "https://www.cam.ac.uk/research/news/uks-largest-four-day-week-trial-finds-significant-drop-in-staff-turnover-and-sick-days",
+      "secondary_url": "https://www.sociology.cam.ac.uk/news/new-results-worlds-largest-trial-four-day-working-week",
       "source_label": "Iceland 4-Day-Week Trial 2015-2019 (Reykjavik City + Icelandic National Government, Bericht Autonomy Institute + Alda Iceland 2021) + UK 4-Day-Week Pilot 2022 (Cambridge University + Boston College + Autonomy Institute + 4 Day Week Global, 61 Unternehmen 6 Monate) + Belgien 4-Tage-Woche-Reform 2022 + WIFO AT 4-Tage-Woche-Studie 2024 + Henley Business School UK 4-Day-Week Studien",
       "headline": "4-Tage-Woche bei gleichem Lohn: Iceland-Trial 2015-2019 (2.500 Beschaeftigte) + UK-Pilot 2022 (61 Unternehmen, Cambridge/Boston-College Studie) — Produktivitaet konstant oder leicht positiv, Burnout-Symptome -71 %, Sick-Days -65 %, 92 % der UK-Pilot-Unternehmen behielten 4-Tage-Woche bei",
       "data": {
@@ -168,7 +168,7 @@
       "scope": "Homeoffice-Produktivitaet — Bloom/Han Stanford 2020 + 2024 Hybrid-Studie",
       "year": 2024,
       "source_url": "https://www.nature.com/articles/s41586-024-07500-2",
-      "secondary_url": "https://nbloom.people.stanford.edu/sites/g/files/sbiybj4746/f/wfh.pdf",
+      "secondary_url": "https://www.nber.org/system/files/working_papers/w18871/w18871.pdf",
       "source_label": "Bloom/Han/Liang 2024 Nature 630(8018):920-925 'Hybrid working from home improves retention without damaging performance' + Bloom et al. 2015 Quarterly Journal of Economics 130(1):165-218 'Does Working from Home Work? Evidence from a Chinese Experiment' + Stanford WFH Research (Bloom/Davis/Barrero) + IAB Homeoffice-Bilanz 2020-2024 + WIFO AT Homeoffice-Studie 2024 + ifo Homeoffice-Index 2024",
       "headline": "Homeoffice-Produktivitaet empirisch positiv: Bloom Stanford 2015 (Ctrip 13 % Produktivitaets-Steigerung) + Bloom/Han/Liang 2024 Nature (Hybrid 2-3 Tage Homeoffice = Produktivitaet wie Office, Fluktuation -33 %); IAB DE 2024: ~25 % der Beschaeftigten regelmaessig Homeoffice (vor 2020: 5 %)",
       "data": {
@@ -239,7 +239,7 @@
       "scope": "Burnout — WHO ICD-11-Status 2022 + AK-Studie AT 2024",
       "year": 2024,
       "source_url": "https://icd.who.int/browse11/l-m/en#/http%3A%2F%2Fid.who.int%2Ficd%2Fentity%2F129180281",
-      "secondary_url": "https://wien.arbeiterkammer.at/interessenvertretung/arbeitundsoziales/arbeitsbedingungen/Burnout.html",
+      "secondary_url": "https://wien.arbeiterkammer.at/beratung/arbeitundrecht/arbeitundgesundheit/psychischebelastungen/Burnout_bei_der_Arbeit.html",
       "source_label": "WHO ICD-11 QD85 Burnout (Inkrafttreten Januar 2022, ICD-11 als Berufs-Phaenomen, KEINE Krankheit) + AK Wien Burnout-Studie 2024 + IFA-Trend Burnout-Daten DE 2024 + DGUV Berufsgenossenschaft Burnout-Statistik + Bundesarbeitsblatt DE Burnout-Bericht 2023 + WIFO Arbeits-Stress-Studien AT",
       "headline": "WHO ICD-11 (gueltig ab 1.1.2022): Burnout = QD85 'Berufs-Phaenomen' (occupational phenomenon), AUSDRUECKLICH KEINE Krankheit; AT-AK-Studie 2024 ~20 % der Beschaeftigten Burnout-Symptome, DE DGUV-Daten 2024 Burnout 19 % der Beschaeftigten",
       "data": {
@@ -306,7 +306,7 @@
       "scope": "Fachkraefte-Mangel DACH — strukturelle vs. zyklische Komponente, IAB + WIFO",
       "year": 2024,
       "source_url": "https://www.iab.de/publikationen/publikation/?id=12693935",
-      "secondary_url": "https://www.wifo.ac.at/news/fachkraeftemangel_oesterreich",
+      "secondary_url": "https://www.wifo.ac.at/news/eine-bildungsoffensive-gegen-den-fachkraeftemangel/",
       "source_label": "IAB Forschungsbericht 'Fachkraefte-Engpass Deutschland' 2024 + IAB-Stellenerhebung Quartals-Daten + WIFO AT 'Fachkraefte-Bedarf' Studie 2024 + IHS AT Arbeitsmarkt-Studien + DGB-Indikatoren-System Fachkraefte + Bundesagentur fuer Arbeit Engpass-Analyse + AMS-Berufsfelder-Engpass + DESTATIS Erwerbstaetigen-Statistik + Eurostat Arbeitsmarkt-Engpass-Indikatoren",
       "headline": "Fachkraefte-Mangel DACH ist DIFFERENZIERT: Bundesagentur DE 2024 Engpass in 200+ Berufen (Pflege, IT, Handwerk), aber nicht universell — IAB unterscheidet Arbeits-LUECKE (200-400k) von Arbeits-MANGEL (Branchen-spezifisch); WIFO AT 2024 ~250k offene Stellen + ~330k Arbeitsuchende = STRUKTURELLE Disparitaet, nicht reiner Mangel",
       "data": {
@@ -375,7 +375,7 @@
       "topic": "gewerkschafts_lohneffekt_konsens",
       "scope": "Gewerkschafts-Lohn-Effekt — Bryson NIESR + Card/Lemieux/Riddell, Union-Wage-Premium",
       "year": 2024,
-      "source_url": "https://www.niesr.ac.uk/publications/union-wage-premium",
+      "source_url": "https://www.niesr.ac.uk/wp-content/uploads/2021/10/Bryson-IZA-5.pdf",
       "secondary_url": "https://www.nber.org/papers/w9473",
       "source_label": "Bryson NIESR National Institute of Economic and Social Research UK 'Union Wage Premium' Studien-Reihe 2002-2024 + Card/Lemieux/Riddell 2003 NBER Working Paper 9473 + 2020 Industrial Relations Journal Update + IAB DE Tarifbindungs-Studien + WIFO AT KV-Wirkungs-Analysen + AK Wien Tarif-Bilanzen",
       "headline": "Gewerkschafts-Lohn-Effekt empirisch positiv: Bryson NIESR UK ~10-15 % Union-Wage-Premium + Card/Lemieux/Riddell 2003 ~10-20 % Premium fuer Tarif-Bindung; AT KV-System 98 % Abdeckung (sehr hoch international); DE Tarifbindung 51 % der Beschaeftigten (sinkend von 70 % 1996)",
@@ -543,7 +543,7 @@
       "scope": "Migration-Arbeitsmarkt-Wirkung — Dustmann/Frattini + IAB-Studien",
       "year": 2024,
       "source_url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/ecoj.12181",
-      "secondary_url": "https://www.iab.de/en/befragungen/migration_und_integration.aspx",
+      "secondary_url": "https://iab.de/themen/migration-und-integration/",
       "source_label": "Dustmann/Frattini 2014 Economic Journal 124(580):F593-F643 'The Fiscal Effects of Immigration to the UK' + Dustmann/Schoenberg/Stuhler 2017 Quarterly Journal of Economics 132(1):435-483 'Labor Supply Shocks, Native Wages, and the Adjustment of Local Employment' + Card 2009 American Economic Review Papers and Proceedings 99(2):1-21 + IAB DE Migrations-Forschung 2024 + LSE Migration Observatory + WIFO AT Migrations-Studien",
       "headline": "Migration-Arbeitsmarkt-Wirkung empirisch klein: Dustmann/Frattini 2014 EJ + Dustmann/Schoenberg/Stuhler 2017 QJE — Lohn-Effekt einheimisch low-skilled ~-1 % bis -2 % in low-wage sectors, Beschaeftigungs-Effekt nahe Null; IAB DE Studien 2024 bestaetigen kleinen Lohn-Druck-Effekt unten",
       "data": {
@@ -636,7 +636,7 @@
       "scope": "Karenz-Lohnverlust — Lalive/Zweimueller 2009 QJE + WIFO 2024",
       "year": 2024,
       "source_url": "https://academic.oup.com/qje/article/124/3/1363/1905162",
-      "secondary_url": "https://www.wifo.ac.at/publikationen/karenz_lohnverlust_oesterreich",
+      "secondary_url": "https://doi.org/10.1162/qjec.2009.124.3.1363",
       "source_label": "Lalive/Zweimueller 2009 Quarterly Journal of Economics 124(3):1363-1402 'How Does Parental Leave Affect Fertility and Return to Work? Evidence from Two Natural Experiments' + Lalive/Schlosser/Steinhauer/Zweimueller 2014 Review of Economic Studies 81(1):219-265 'Parental Leave and Mothers' Careers' + WIFO AT Karenz-Studien 2024 + IHS AT Karenz-Wirkungs-Analysen + WSI DE Eltern-Geld-Bilanz",
       "headline": "Karenz-Verlaengerung erhoeht Lohnverlust dauerhaft: Lalive/Zweimueller 2009 QJE — AT-Karenz-Reform 1990 Verlaengerung 1 → 2 Jahre fuehrte zu ~5-10 % dauerhaftem Lohnverlust fuer Muetter; Lalive et al. 2014 RES — Karenz-Verlaengerung ueber 12 Monate erhoeht Lohnverlust signifikant; AT-Reform 2008 (Kinderbetreuungsgeld-Modelle) bestaetigt Effekt",
       "data": {
@@ -707,8 +707,8 @@
       "topic": "generation_z_arbeit_mythos",
       "scope": "Gen Z Arbeitswerte — Pew Research + Eurostat",
       "year": 2024,
-      "source_url": "https://www.pewresearch.org/social-trends/2023/04/06/young-workers-and-the-job-market/",
-      "secondary_url": "https://ec.europa.eu/eurostat/web/youth/data/main-tables",
+      "source_url": "https://www.pewresearch.org/social-trends/2023/03/30/how-americans-view-their-jobs/",
+      "secondary_url": "https://ec.europa.eu/eurostat/web/children-youth/database",
       "source_label": "Pew Research Center 'Young Workers and the Job Market' 2023-2024 Studien-Reihe + Eurostat Jugend-Beschaeftigung Statistik 2024 + Deloitte Gen Z Survey 2024 + AK Wien Jugend-Studie 2024 + IHS AT Generationen-Studie + Bertelsmann Stiftung Jugend-Bilanz",
       "headline": "Gen Z 'arbeits-faul / anspruchslos' empirisch nicht belegt: Pew Research 2023-2024 + Deloitte Gen Z Survey + Eurostat — Werte-Unterschiede zwischen Gen Z + Millennials + Gen X klein/nicht systematisch; 87 % Gen Z arbeiten + studieren laut Eurostat 2024",
       "data": {
@@ -845,7 +845,7 @@
       "scope": "Gender Pay Gap — Eurostat unadjusted vs. adjusted, AT 18,4 %",
       "year": 2024,
       "source_url": "https://ec.europa.eu/eurostat/databrowser/view/sdg_05_20/default/table",
-      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/einkommen-und-soziale-lage/einkommen",
+      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/gender-statistiken/einkommen",
       "source_label": "Eurostat Gender Pay Gap Database (unadjusted SDG 5.2.0 + Structure of Earnings Survey adjusted) + Statistik Austria Verdienst-Strukturerhebung + DESTATIS DE Verdienst-Statistik + Heinze/Wolf 2010 Journal of Population Economics 23(3):851-879 'The intra-firm gender wage gap' + EIGE European Institute for Gender Equality + AK Wien Equal Pay Day Bilanzen + WIFO AT Gender-Studien",
       "headline": "Gender Pay Gap unadjusted vs. adjusted: Eurostat 2022/2023 AT unadjusted 18,4 %, EU-Mittel 12,7 %, DE 17,6 % — adjusted nach Sektor + Beruf + Karenz EU-weit ~5-7 %; Heinze/Wolf 2010 + Olivetti/Petrongolo 2008-2024 zeigen Branchen-Konzentration + Teilzeit als Hauptursache",
       "data": {
@@ -925,8 +925,8 @@
       "topic": "pflegekraeftemangel_konsens",
       "scope": "Pflege-Kraefte-Mangel DACH — Statistik Austria + DGB Pflege-Index, 2030-Prognosen",
       "year": 2024,
-      "source_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/gesundheit/personal-im-gesundheitswesen",
-      "secondary_url": "https://www.dgb.de/themen/++co++8a8c5c8c-1234-11ee-bcde-001a4a160129",
+      "source_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/gesundheit/gesundheitsversorgung-und-ausgaben/einrichtungen-und-personal-im-gesundheitswesen",
+      "secondary_url": "https://www.dgb.de/politik/arbeit-und-soziales/gesundheitspolitik-und-pflege/",
       "source_label": "Statistik Austria Personal-Gesundheitswesen 2024 + Bundesministerium fuer Soziales AT Pflege-Bedarf-Prognose 2030 + DGB Pflege-Index DE 2024 + DESTATIS DE Pflege-Statistik + Bertelsmann Stiftung Pflege-Studie 2022 + WSI Pflege-Bilanz + AK Wien Pflege-Studien + IHS Pflege-Bedarfsanalyse 2024",
       "headline": "Pflege-Kraefte-Mangel DACH Prognose 2030: AT ~75-100k Pflege-Kraefte-Engpass (Statistik Austria + Bundesministerium AT 2024), DE ~500k Engpass (DGB + Bertelsmann 2022); Hauptgruende Demografie + Lohn-Sektor-Probleme + hohe Belastung",
       "data": {

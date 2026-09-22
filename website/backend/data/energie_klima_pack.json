@@ -115,7 +115,7 @@
       ],
       "source_label": "IEA Renewables 2024 + Climate Watch + IPCC + Carbon Brief",
       "source_url": "https://www.iea.org/reports/renewables-2024",
-      "secondary_url": "https://www.carbonbrief.org/analysis-china-built-more-clean-energy-capacity-in-2024-than-rest-of-world-combined/"
+      "secondary_url": "https://www.carbonbrief.org/analysis-record-surge-of-clean-energy-in-2024-halts-chinas-co2-rise/"
     },
     {
       "id": "e_auto_akku_co2_2026",
@@ -177,7 +177,7 @@
       ],
       "source_label": "ICCT Lifecycle Analysis 2024 + Agora Verkehrswende + JRC",
       "source_url": "https://theicct.org/publication/lifecycle-emissions-roadmap-passenger-vehicles-jul24/",
-      "secondary_url": "https://www.agora-verkehrswende.de/publikationen/"
+      "secondary_url": "https://www.agora-verkehrswende.de/veroeffentlichungen"
     },
     {
       "id": "waermepumpe_winter_2026",
@@ -357,8 +357,8 @@
         ]
       ],
       "source_label": "Hötker NABU 2017 + Loss Nature 2013 + LfU Bayern + DDA",
-      "source_url": "https://www.nabu.de/imperia/md/content/nabude/energie/wind/2017_hoetker_studie_windkraft.pdf",
-      "secondary_url": "https://www.bfn.de/themen/erneuerbare-energien/windenergie/voegel-und-fledermaeuse.html"
+      "source_url": "https://bergenhusen.nabu.de/forschung/windenergie-und-voegel/index.html",
+      "secondary_url": "https://www.bfn.de/bau-und-betrieb"
     },
     {
       "id": "erneuerbare_versorgungssicher_2026",
@@ -477,7 +477,7 @@
       ],
       "source_label": "ICCT RDE Reports + EEA + EPA-Untersuchungen",
       "source_url": "https://theicct.org/research-area/passenger-cars/",
-      "secondary_url": "https://www.umweltbundesamt.de/themen/luft/emissionen-von-luftschadstoffen/spezifische-emissionen-des-verkehrs"
+      "secondary_url": "https://www.umweltbundesamt.de/themen/verkehr/emissionsdaten"
     },
     {
       "id": "atomstrom_frankreich_import_2026",

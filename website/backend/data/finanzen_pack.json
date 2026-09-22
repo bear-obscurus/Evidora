@@ -38,7 +38,7 @@
         ["gluecksspiel", "glücksspiel", "casino", "zocken", "spekulation", "verlieren", "alles verloren", "risiko", "spielen", "buerger", "bürger", "normale"]
       ],
       "source_label": "Deutsches Aktieninstitut (Renditedreieck DAX) + EZB Financial Stability Review",
-      "source_url": "https://www.dai.de/de/das-bieten-wir/studien-und-statistiken/dai-renditedreiecke",
+      "source_url": "https://www.dai.de/en/return-triangles",
       "secondary_url": "https://www.ecb.europa.eu/pub/financial-stability/fsr/html/index.en.html"
     },
     {
@@ -115,7 +115,7 @@
         ["mythos", "marketing", "ueberschaetzt", "überschätzt", "lohnt sich nicht", "bringt nichts", "schwach", "trick", "luege", "lüge", "wert", "effekt"]
       ],
       "source_label": "Mathematische Identität + MSCI World Index + DAI Renditedreieck",
-      "source_url": "https://www.dai.de/de/das-bieten-wir/studien-und-statistiken/dai-renditedreiecke",
+      "source_url": "https://www.dai.de/en/return-triangles",
       "secondary_url": "https://www.bundesbank.de/de/service/schule-und-bildung"
     },
     {
@@ -154,8 +154,8 @@
         ["lohnt", "sinnvoll", "falle", "nichts wert", "geld-falle", "abschliessen", "abschließen", "abzocke"]
       ],
       "source_label": "Stiftung Warentest + Verbraucherzentrale + DRV-Position 2024",
-      "source_url": "https://www.test.de/Riester-Rente-Was-Sie-wissen-muessen-1138999-0/",
-      "secondary_url": "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/altersvorsorge/riesterrente-tipps-zur-foerderung-26025"
+      "source_url": "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/altersvorsorge/riesterrente-das-muessen-sie-ueber-die-private-altersvorsorge-wissen-103726",
+      "secondary_url": "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/altersvorsorge/riesterrente-fuer-wen-kann-sie-sich-lohnen-6854"
     },
     {
       "id": "kalte_progression_2026",
@@ -194,7 +194,7 @@
       ],
       "source_label": "BMF DE + ifo-Institut + DIW + Inflations-Anpassungs-Gesetz 2022",
       "source_url": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/Steuerarten/Lohnsteuer/2024-12-23-Inflationsausgleichsgesetz-FAQ.html",
-      "secondary_url": "https://www.ifo.de/publikationen/2024/aufsatz-zeitschrift/effekte-der-inflation-auf-die-einkommensteuer"
+      "secondary_url": "https://www.ifo.de/en/publications/2023/article-journal/kalte-progression-zeiten-hoher-inflation"
     },
     {
       "id": "krypto_pyramide_2026",
@@ -232,7 +232,7 @@
         ["pyramide", "schneeball", "schneeballsystem", "ponzi", "betrug", "schwindel"]
       ],
       "source_label": "BaFin Definition Ponzi + Bitcoin Whitepaper + BIS 2022 Krypto-Studie",
-      "source_url": "https://www.bafin.de/DE/Verbraucher/Finanzwissen/Geldanlage/Schneeballsysteme/schneeballsysteme_node.html",
+      "source_url": "https://www.bafin.de/DE/verbraucherinnen-verbraucher/themen-finanzprodukte/finanzwissen-seniorinnen-senioren/finanzen-information-tipps/sicher-am-finanzmarkt/sicher-am-finanzmarkt.html",
       "secondary_url": "https://www.bis.org/publ/work1049.htm"
     },
     {
@@ -272,7 +272,7 @@
       ],
       "source_label": "EZB Statistical Data Warehouse + Bundesbank Zins-Statistik",
       "source_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
-      "secondary_url": "https://www.bundesbank.de/de/aufgaben/themen/eurosystem-zinsen-im-ueberblick"
+      "secondary_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html"
     }
   ]
 }

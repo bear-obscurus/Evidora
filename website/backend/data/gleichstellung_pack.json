@@ -9,7 +9,7 @@
       "scope": "Strukturelle vs. individuelle Erklärung des Gender Pay Gap (unbereinigt + bereinigt)",
       "year": 2024,
       "source_url": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20250304-1",
-      "secondary_url": "https://www.destatis.de/DE/Themen/Arbeit/Arbeitsmarkt/Verdienste/Verdienstunterschiede/_inhalt.html",
+      "secondary_url": "https://www.destatis.de/DE/Themen/Arbeit/Verdienste/Verdienste-GenderPayGap/_inhalt.html",
       "source_label": "Eurostat Gender Pay Gap 2023 + DESTATIS Verdienste 2024 + Statistik Austria Gehälter 2024 + ILO + OECD",
       "headline": "Gender Pay Gap unbereinigt EU-27 12,7 %, DE 18 %, AT 18,4 % (2023); bereinigt verbleiben ~6 % nach Kontrollvariablen — Lohnlücke ist überwiegend strukturell, nicht individuelle Wahl",
       "data": {
@@ -234,7 +234,7 @@
       "scope": "Frauen-Anteil in MINT-Studien und Berufen + Stereotype-Threat-Forschung",
       "year": 2024,
       "source_url": "https://eige.europa.eu/gender-equality-index/2024/domain/knowledge",
-      "secondary_url": "https://www.bmbf.de/SharedDocs/Publikationen/de/bmbf/3/31888_Bildung_in_Deutschland_2024.pdf",
+      "secondary_url": "https://www.bildungsbericht.de/de/bildungsberichte-seit-2006/bildungsbericht-2024",
       "source_label": "EIGE Gender Equality Index 2024 Knowledge-Domain + Eurostat Education + Stereotype-Threat-Forschung (Steele 1995, Spencer Steele Quinn 1999) + Stoet Geary 2018",
       "headline": "Frauen-Anteil in MINT-Studien EU-27 ~33 %, AT 32 %, DE 34 % — Lücke NICHT durch biologische 'Begabung' erklärbar; Stereotype-Threat-Forschung zeigt Aktivierung von Geschlechter-Stereotypen senkt Performance reproduzierbar",
       "data": {
@@ -298,7 +298,7 @@
       "scope": "Femizid-Statistik AT/DE: BMI/BKA Bundeslagebild, Risikofaktor Trennung",
       "year": 2024,
       "source_url": "https://www.bmi.gv.at/cms/BMI_OeffentlicheSicherheit/2024/02/files/oeffentliche_sicherheit_02_2024.pdf",
-      "secondary_url": "https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/Lagebilder/Partnerschaftsgewalt/Partnerschaftsgewalt_node.html",
+      "secondary_url": "https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/Lagebilder/Partnerschaftsgewalt/partnerschaftsgewalt_node.html",
       "source_label": "BMI Österreich Sicherheitsbericht 2023 + BKA Bundeslagebild Partnerschaftsgewalt 2024 + Bundesweiter Verein Autonomer Frauenhäuser AÖF + EIGE Femicide Watch + WHO Violence-Against-Women-Database",
       "headline": "Femizide AT 2023 31 vollendete Tötungen (BMI), DE 2024 155 vollendete Femizide (BKA Bundeslagebild) — primärer Risikofaktor Trennung/Trennungs-Phase, ~85 % Täter Ex-Partner oder aktueller Partner",
       "data": {
@@ -390,7 +390,7 @@
       "scope": "Hellfeld:Dunkelfeld-Verhältnis bei sexualisierter Gewalt (FRA + BKA + Kriminologische Studien)",
       "year": 2024,
       "source_url": "https://fra.europa.eu/en/publications-and-resources/data-and-maps/survey-data-explorer-violence-against-women-survey",
-      "secondary_url": "https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/PolizeilicheKriminalstatistik/PKS2023/PKSJahrbuecher/pksJahrbuecher.html",
+      "secondary_url": "https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/PolizeilicheKriminalstatistik/PKS2023/pks2023_node.html",
       "source_label": "FRA EU-Survey on Violence Against Women 2024 + BKA PKS 2023 + Schröttle 2004 BMFSFJ-Studie + Lisak & Miller 2010 Violence and Victims (Falsch-Anzeigen-Rate)",
       "headline": "FRA-EU-Studie 2024: 1 von 3 Frauen erlebt physische/sexualisierte Gewalt; Dunkelfeld:Hellfeld-Faktor 5-10 — Anzeigewahrscheinlichkeit nur 14 % bei Vergewaltigung; Falsch-Anzeigen-Rate <5 %",
       "data": {
@@ -695,8 +695,8 @@
       "topic": "sexismus_erfahrungen_konsens",
       "scope": "Sexismus-Erfahrungen offline + online (FRA + Eurobarometer + Antidiskriminierungsstellen)",
       "year": 2024,
-      "source_url": "https://fra.europa.eu/en/publications-and-resources/data-and-maps/survey-data-explorer-fundamental-rights-survey",
-      "secondary_url": "https://www.antidiskriminierungsstelle.de/DE/themen/datenundforschung/sexismus_erfahrungen.html",
+      "source_url": "https://fra.europa.eu/en/publication/2024/eu-gender-violence-survey-key-results",
+      "secondary_url": "https://www.antidiskriminierungsstelle.gov.de/DE/ueber-diskriminierung/lebensbereiche/arbeitsleben/sexuelle-belaestigung-am-arbeitsplatz/sexuelle-belaestigung-am-arbeitsplatz-node.html",
       "source_label": "FRA Fundamental Rights Survey 2024 + Eurobarometer 'Gender Stereotypes' 2024 + Antidiskriminierungsstelle DE 'Sexismus-Studie' 2023 + Plan International Online-Sexismus 2020",
       "headline": "Sexismus-Erfahrungen Frauen EU 2024: 33 % sexualisierte Belästigung, 75 % halten Sexismus für ernstes Problem (Eurobarometer 2024); Online-Sexismus 70 % junger Frauen erlebt — empirisch nicht 'verschwunden'",
       "data": {
@@ -777,7 +777,7 @@
       "topic": "vereinbarkeit_familie_beruf_konsens",
       "scope": "Karriereeffekt der Mutterschaft + Väter-Karenz-Quote (DE + AT + Skandinavien)",
       "year": 2024,
-      "source_url": "https://www.iab.de/de/publikationen/forschungsberichte.aspx",
+      "source_url": "https://iab.de/publikationen/",
       "secondary_url": "https://www.bmfsfj.de/bmfsfj/themen/familie/elterngeld/elterngeldstatistik/elterngeldstatistik-2024-218596",
       "source_label": "IAB Forschungsbericht 'Mutterschaft und Karriere' 2023 + BMFSFJ Elterngeld-Statistik 2024 + Statistik Austria + EIGE Time-Domain + Folbre 2014 + OECD Family Database 2024",
       "headline": "Karrierebruch bei Müttern in DE messbar (Lohnknick 7-10 J. nach Geburt erstes Kind, IAB-Studie); Väter-Elternzeit-Quote DE 2024 ~26 % länger als 2 Monate, AT ähnlich, Skandinavien 30-90 % — DACH unter Skandinavien",
@@ -849,7 +849,7 @@
       "scope": "EIGE Gender Equality Index 2024 — EU-27 + DACH-Stand + 6 Dimensionen",
       "year": 2024,
       "source_url": "https://eige.europa.eu/gender-equality-index/2024",
-      "secondary_url": "https://eige.europa.eu/publications-resources/publications/gender-equality-index-2024-report",
+      "secondary_url": "https://eige.europa.eu/publications-resources/publications/gender-equality-index-2024-sustaining-momentum-fragile-path",
       "source_label": "EIGE Gender Equality Index 2024 + EIGE Annual Report 2024 + EIGE Methodologie-Paper",
       "headline": "EIGE Gender Equality Index 2024: EU-27 70,2/100 (Anstieg 7,1 pp seit 2010); SE Spitze 82,0, EL Schluss 58,0; DE 70,8 (Platz 11), AT 68,8 (Platz 13) — Power-Dimension EU-weit schlechteste mit 60,1",
       "data": {

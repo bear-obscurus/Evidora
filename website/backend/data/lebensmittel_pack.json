@@ -5,7 +5,7 @@
       "headline": "Spinat-Aufwärmen ist bei korrekter Lagerung (zügig kühlen + Kühlschrank + zeitnaher Verzehr) sicher; Nitrit-Bildung aus Nitrat ist primär Folge unsachgemäßer Lagerung (lange warm), NICHT zwingend Folge des Erhitzungs-Vorgangs (BfR, EFSA, DGE)",
       "year": 2024,
       "source_url": "https://www.bfr.bund.de/de/a-z_index/nitrat-3979.html",
-      "secondary_url": "https://www.efsa.europa.eu/en/topics/topic/nitrate-and-nitrite",
+      "secondary_url": "https://www.efsa.europa.eu/sites/default/files/corporate_publications/files/nitrates-nitrites-170614.pdf",
       "source_label": "BfR Bundesinstitut für Risikobewertung + EFSA European Food Safety Authority + DGE Deutsche Gesellschaft für Ernährung + ÖLMB Österreichisches Lebensmittelbuch",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These Spinat darf NIE aufgewärmt werden ist OVERSIMPLIFIED. Korrekte Differenzierung: Spinat enthält von Natur aus relativ hohe Nitrat-Mengen (~500-2.000 mg Nitrat pro kg Frischgewicht, höchst-saisonal). Nitrat selbst ist gesundheitlich unproblematisch, aber bei BAKTERIELLER Reduktion (durch Bakterien im Spinat) → Nitrit. Nitrit kann bei Säuglingen <6 Monate Methämoglobinämie auslösen (Säuglings-Methämoglobinämie / Blue Baby Syndrome) — eine ernste Erkrankung. Bei Erwachsenen + älteren Kindern (>1 Jahr): Methämoglobin-Bildung gut kompensiert, kein klinisch relevantes Risiko. WICHTIG: bakterielle Nitrat-Nitrit-Reduktion erfolgt PRIMÄR bei (a) langer Lagerung BEI WARMEN TEMPERATUREN (z.B. stundenlang auf dem Herd warmhalten, langsam abkühlen ohne Kühlschrank), (b) langer Lagerung im Kühlschrank ohne richtige Verpackung, (c) wiederholtem Aufwärmen + Abkühlen über mehrere Tage. NICHT primär durch das Erhitzen selbst. Aufwärmen von ZÜGIG nach Zubereitung gekühltem Spinat ist für Erwachsene + ältere Kinder unbedenklich, wenn (1) zügig nach Zubereitung im Kühlschrank gelagert (max 1-2h Wartezeit zwischen Zubereitung + Kühlschrank), (2) Verzehr binnen 1-2 Tage, (3) gut durcherhitzt vor Verzehr (>70 °C Kerntemperatur). Säuglings-Beikost mit Spinat: BfR-Empfehlung — frisch zubereiten und sofort verzehren oder einfrieren, NICHT lange warmhalten oder mehrfach aufwärmen. Faktencheck-relevant: pauschale Aussagen wie Spinat darf nie aufgewärmt werden überzeichnen das Risiko für Erwachsene + ältere Kinder; differenzierte Bewertung mit Lagerungs-Konzept akkurater.",
@@ -54,7 +54,7 @@
       "headline": "Pilze-Aufwärmen ist bei korrekter Lagerung (zügig kühlen + Kühlschrank max 1-2 Tage + gut durcherhitzen >70 °C) sicher — alter Mythos basiert auf Lagerungs-Risiken (Pilze sind eiweiß-reich + schnell verderbend), NICHT auf einem Erhitzungs-Problem (BfR, BLE, Verbraucherzentrale)",
       "year": 2024,
       "source_url": "https://www.bfr.bund.de/de/a-z_index/pilze-9904.html",
-      "secondary_url": "https://www.verbraucherzentrale.de/wissen/lebensmittel/lebensmittelproduktion/pilze-aufwaermen-was-ist-zu-beachten-12826",
+      "secondary_url": "https://www.verbraucherzentrale.nrw/aufwaermen",
       "source_label": "BfR Bundesinstitut für Risikobewertung + BLE Bundesanstalt für Landwirtschaft und Ernährung + Verbraucherzentrale + DGE",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These Pilze dürfen NIE aufgewärmt werden ist OVERSIMPLIFIED — moderne BfR/BLE/Verbraucherzentrale-Position differenziert. Pilze (Champignons, Steinpilze, Pfifferlinge, Austernpilze, Kräutersaitlinge) sind eiweiß-reich und enthalten viel freie Aminosäuren. Bei warmer Lagerung über Stunden vermehren sich Bakterien sehr schnell + bauen Aminosäuren zu Aminen + Histidin zu biogenen Aminen ab. Diese können Übelkeit, Erbrechen, Diarrhö, Kopfschmerzen auslösen. Der alte Mythos Pilze nicht aufwärmen kommt aus VOR-Kühlschrank-Zeit (Mitte 20. Jh.), als zubereitete Pilz-Gerichte über Stunden bei Raumtemperatur warmgehalten oder unsachgemäß gelagert wurden — DANN war Aufwärmen tatsächlich riskant. BfR + BLE + Verbraucherzentrale aktuelle Position 2024: Pilz-Reste sind sicher aufwärmbar, wenn (1) Reste innerhalb 2 Stunden nach Zubereitung im Kühlschrank gelagert werden. (2) Verzehr innerhalb 1-2 Tage. (3) Gut durcherhitzen (>70 °C Kerntemperatur, einige Min). (4) Nur einmal aufwärmen, nicht mehrfach. (5) Bei Verdacht (verändertes Aussehen, Geruch) NICHT verzehren. Wichtige Differenzierung: für Säuglinge + Kleinkinder + Schwangere konservative Empfehlung — frisch zubereitete Pilze, keine Reste-Verwertung. Bei Erwachsenen mit korrekter Lagerung: ohne Risiko. Faktencheck-relevant: Aussagen wie Pilze nicht aufwärmen ist absolute Regel sind überzogen; differenzierte Bewertung mit Lagerungs-Konzept akkurater.",
@@ -173,7 +173,7 @@
       "topic": "mikrowelle_ei_explosion_konsens",
       "headline": "Eier ohne Anstich der Schale können in der Mikrowelle durch Dampf-Druck-Aufbau explodieren — auch entschalt-eier können bei Erhitzen über kritischer Temperatur platzen; sichere Zubereitung erfordert Anstich + reduzierte Hitze + Aufsicht (FDA, BfR, NHS)",
       "year": 2024,
-      "source_url": "https://www.fda.gov/food/buy-store-serve-safe-food/food-safety-microwave",
+      "source_url": "https://www.fda.gov/radiation-emitting-products/resources-you-radiation-emitting-products/microwave-ovens",
       "secondary_url": "https://www.bfr.bund.de/",
       "source_label": "FDA Food Safety + BfR Bundesinstitut für Risikobewertung + NHS UK + AAP Burn Prevention",
       "data": {
@@ -225,7 +225,7 @@
       "topic": "honig_baby_botulismus_konsens",
       "headline": "Honig kann Sporen von Clostridium botulinum enthalten; bei Säuglingen <12 Monate kann sich daraus Säuglings-Botulismus entwickeln (RKI-Daten DE: <10 Fälle/Jahr; AAP-Daten USA: ~70-100 Fälle/Jahr); Erwachsene und Kinder >12 Monate sind nicht gefährdet (Darm-Mikrobiom verhindert Sporen-Auskeimung)",
       "year": 2024,
-      "source_url": "https://www.rki.de/DE/Content/Infekt/EpidBull/Merkblaetter/Ratgeber_Botulismus.html",
+      "source_url": "https://www.rki.de/DE/Aktuelles/Publikationen/RKI-Ratgeber/Ratgeber/Ratgeber_Botulismus.html",
       "secondary_url": "https://www.aap.org/",
       "source_label": "RKI Robert Koch-Institut + BfR + AAP American Academy of Pediatrics + NHS UK + WHO",
       "data": {
@@ -373,7 +373,7 @@
       "headline": "Hot-Dog-/Wiener-Würstchen sind eine der häufigsten Erstickungs-Ursachen bei Kindern unter 4 Jahren (AAP-Daten USA: ~17 Prozent aller pädiatrischen Erstickungs-Hospitalisierungen); AAP-Empfehlung Längs-Schnitt + kleine Stücke (max 1 cm) — Hohlzylinder-Form rutscht in Atemwege",
       "year": 2024,
       "source_url": "https://www.aap.org/en/patient-care/healthy-living/nutrition/choking-prevention/",
-      "secondary_url": "https://www.kfv.at/strassenverkehr/kindersicherheit-im-auto/",
+      "secondary_url": "https://www.kfv.at/wp-content/uploads/2020/07/KFV_Kindersicherheit_doppel.pdf",
       "source_label": "AAP American Academy of Pediatrics + KFV Österreich Kuratorium für Verkehrssicherheit + BfR + DKG Deutsche Kinderschutzbund",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These Hot-Dog-Würstchen sind harmlose Kindernahrung ist FALSE. AAP American Academy of Pediatrics: Würstchen (Hot Dogs, Wiener Würstchen, Frankfurter) sind eine der häufigsten Erstickungs-Ursachen bei Kindern unter 4 Jahren. AAP-Daten US-Pediatric Emergency Departments: ca. 17 Prozent aller pädiatrischen Erstickungs-Hospitalisierungen sind Würstchen-bezogen — höher als jedes andere Lebensmittel. Pathophysiologische Begründung: Würstchen-Form ist (a) zylindrisch + glatt — gleitet leicht in Atemwege ohne Kau-Resistenz, (b) Durchmesser ähnlich wie Säuglings-/Kleinkind-Trachea (~10-15 mm), (c) flexibel-verformbar — passt sich an Atemwege-Kontur an, schwer zu entfernen, (d) Heimlich-Manöver kann durch Verformung ineffektiv sein. Andere Hochrisiko-Lebensmittel <4 Jahre (AAP-Liste): Trauben (ähnliche zylindrische Form, sollten halbiert werden), Gummibärchen, harte Bonbons, Erdnüsse, Karotten-Sticks, Apfel-Stücke, Popcorn. AAP-Empfehlung Würstchen-Zubereitung für <4-jährige Kinder: (1) Würstchen erst LÄNGS durchschneiden (vier Längsstreifen erzeugen, beseitigt Hohlzylinder-Form). (2) Dann quer in kleine Stücke (max 1 cm) schneiden. (3) Kind sitzend essen lassen, nicht laufen + essen. (4) Aufsicht während Mahlzeit. (5) Bei Erstickungs-Verdacht: 5 schnelle Schläge zwischen den Schulterblättern + Heimlich-ähnliche Manöver. AAP empfiehlt zudem keine ganzen Würstchen für Kinder <4 Jahre — sondern nur in den o.g. Stücken serviert. Faktencheck-relevant: Aussagen wie Würstchen sind sicheres Kinder-Essen widersprechen AAP-Daten; differenzierte Empfehlungen mit Schnitt-Technik wissenschaftlich akkurater.",
@@ -435,7 +435,7 @@
       "headline": "Kühlkette-Unterbrechung von >2-4 Stunden bei Raumtemperatur (>5 °C) bei verderblichen Lebensmitteln (rohes Fleisch, frischer Fisch, Milchprodukte, fertige Speisen) erhöht Bakterien-Wachstum exponentiell — bei 22 °C verdoppelt sich Bakterien-Population alle 30-60 Min (BfR, EFSA, FDA Danger Zone)",
       "year": 2024,
       "source_url": "https://www.bfr.bund.de/de/a-z_index/kuehlkette-9921.html",
-      "secondary_url": "https://www.fda.gov/food/buy-store-serve-safe-food/keep-food-safe-temperature",
+      "secondary_url": "https://www.fda.gov/food/buy-store-serve-safe-food/safe-food-handling",
       "source_label": "BfR Bundesinstitut für Risikobewertung + EFSA + FDA Food Safety Danger Zone + FAO + DGE",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These Kühlkette-Unterbrechung 2-3 Stunden ist immer egal ist FALSE. Kühlkette (Cold Chain) bezeichnet die kontinuierliche Kühlung verderblicher Lebensmittel von Produktion bis Verzehr. FDA Danger Zone: 5-65 °C ist Temperatur-Bereich, in dem Bakterien-Wachstum optimal abläuft. Bei 22 °C (Raumtemperatur) verdoppelt sich die Bakterien-Population eines verderblichen Lebensmittels alle 30-60 Min. Innerhalb von 2-4 Stunden bei Raumtemperatur können Bakterien-Konzentrationen das 8-32-fache des Ausgangs-Werts erreichen. Bei Hitze (>30 °C): noch schneller — bei 35 °C alle 15-20 Min verdoppelt. FDA + BfR + EFSA 2-Stunden-Regel: verderbliche Lebensmittel bei Raumtemperatur max 2 Stunden, bei Hitze (>30 °C) max 1 Stunde — danach Wegwerfen oder durcherhitzen. Lebensmittel-Klassifizierung nach Verderblichkeit: (1) HOCH-VERDERBLICH: rohes Fleisch, rohe Fisch-/Meeresprodukte, rohe Eier-Produkte, frische Milchprodukte, fertige gekochte Speisen, Sushi. (2) MITTEL-VERDERBLICH: hartgekochte Eier, Wurst (vorgekocht), Käse (manche Sorten), zubereitete Salate. (3) NIEDRIG-VERDERBLICH (Trockenheit + Verarbeitung schützen): Trocken-Brot, Hartkäse, fermentierte Wurst, Konserven. WICHTIG: Bakterien-Toxine die durch Bakterien gebildet werden (Staphylococcus aureus-Enterotoxin, Bacillus cereus-Toxin) sind hitzeresistent — d.h. selbst nach Durcherhitzen verderblicher Lebensmittel können Toxine verbleiben + Vergiftung auslösen. Konsequenz: zu lange-warmgehaltene Lebensmittel können auch nach Aufwärmung problematisch sein. Praktische Empfehlung BfR + FDA: bei Verdacht auf Kühlketten-Unterbrechung >2-4 h Lebensmittel entsorgen, NICHT versuchen wieder zu retten. Faktencheck-relevant: Aussagen wie Lebensmittel kann ich auch nach 6 Stunden bei Raumtemperatur noch essen sind nicht haltbar; differenzierte Bewertung mit Verderblichkeits-Klassifizierung + Zeit-Limits notwendig.",
@@ -498,7 +498,7 @@
       "topic": "auftauen_zimmertemperatur_mythos",
       "headline": "Auftauen von gefrorenem Fleisch/Fisch bei Zimmertemperatur (>20 °C) ist ein Lebensmittel-Sicherheits-Risiko — Außenseite erreicht Bakterien-Wachstums-Bereich (>5 °C), bevor das Innere aufgetaut ist; Kühlschrank-Auftauen oder kaltes Wasser-Bad oder Mikrowellen-Defrost-Funktion sind sicherer (FDA, BfR, ÖLMB)",
       "year": 2024,
-      "source_url": "https://www.fda.gov/food/buy-store-serve-safe-food/safe-food-handling-information-consumers",
+      "source_url": "https://www.fda.gov/food/buy-store-serve-safe-food/safe-food-handling",
       "secondary_url": "https://www.bfr.bund.de/de/a-z_index/aufgetaute_lebensmittel-9928.html",
       "source_label": "FDA Food Safety + BfR Bundesinstitut für Risikobewertung + ÖLMB Österreichisches Lebensmittelbuch + USDA Food Safety",
       "data": {

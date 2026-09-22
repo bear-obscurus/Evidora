@@ -142,7 +142,7 @@ EMA_REFERRALS_URL = (
     "https://www.ema.europa.eu/system/files/documents/other/"
     "medicines_output_referrals_en.xlsx"
 )
-EMA_OVERVIEW_URL = "https://www.ema.europa.eu/en/medicines/human/referrals"
+EMA_OVERVIEW_URL = "https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/referral-procedures-human-medicines"
 EMA_OUT = DATA_DIR / "ema_referrals.json"
 
 

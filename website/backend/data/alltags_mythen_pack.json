@@ -70,7 +70,7 @@
       "headline": "Lesen bei schwacher Beleuchtung verursacht KEINE bleibenden Augenschäden; vorübergehende Augenermüdung (asthenopia) ja, dauerhafter Sehkraft-Verlust nein (American Academy of Ophthalmology AAO, NHS, Mayo Clinic)",
       "year": 2024,
       "source_url": "https://www.aao.org/eye-health/tips-prevention/will-reading-in-dim-light-damage-eyes",
-      "secondary_url": "https://www.nhs.uk/conditions/eye-strain/",
+      "secondary_url": "https://my.clevelandclinic.org/health/diseases/24802-computer-vision-syndrome",
       "source_label": "American Academy of Ophthalmology (AAO) + NHS UK + Mayo Clinic + Optometrists Association",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These Lesen bei schwacher Beleuchtung schädigt die Augen dauerhaft ist FALSE. American Academy of Ophthalmology (AAO) Position seit Jahrzehnten konsistent: schwache Beleuchtung beim Lesen kann zu vorübergehender Augenermüdung führen (Astenopie / Eye Strain), aber keine dauerhaften Augen-Schäden, keine Verschlechterung der Sehkraft, keine Myopie-Entwicklung. Symptome temporär: brennende Augen, Müdigkeit, leichte Kopfschmerzen, verschwommenes Sehen — diese Symptome verschwinden nach Pause oder besserer Beleuchtung komplett. NHS UK + Mayo Clinic bestätigen diese Position. Hintergrund: das Auge passt sich an Licht-Bedingungen an (Pupillen-Adaptation, Akkommodation), bei schwachem Licht ist Sehen anstrengender, aber nicht schädlich. Keine wissenschaftliche Studie hat einen kausalen Zusammenhang zwischen Lese-Beleuchtung und dauerhaftem Sehkraft-Verlust nachgewiesen. WICHTIG: Bei chronischer Augenermüdung trotz guter Beleuchtung sollten andere Ursachen (Refraktions-Fehler, trockenes Auge, Bildschirm-Nutzung) abgeklärt werden — Augenarzt-Konsultation. Mythos kommt vermutlich aus historischer Sorge der Eltern (Pop-Pädagogik im 19./20. Jh.), wissenschaftlich nicht haltbar.",
@@ -123,7 +123,7 @@
       "headline": "Die These Jeder Mensch braucht zwingend 8 Stunden Schlaf simplifiziert; individueller Schlafbedarf variiert 7-9h bei gesunden Erwachsenen, ältere Menschen oft 6-7h ausreichend (Hirshkowitz 2015 Sleep Health, AASM National Sleep Foundation Guidelines)",
       "year": 2024,
       "source_url": "https://aasm.org/clinical-resources/practice-standards/practice-guidelines/",
-      "secondary_url": "https://www.thensf.org/how-much-sleep-do-we-really-need/",
+      "secondary_url": "https://www.thensf.org/how-many-hours-of-sleep-do-you-really-need/",
       "source_label": "American Academy of Sleep Medicine (AASM) + National Sleep Foundation + Hirshkowitz 2015 Sleep Health + NIH NHLBI",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These Jeder Mensch braucht zwingend 8 Stunden Schlaf pro Nacht ist OVERSIMPLIFIED. Individueller Schlafbedarf variiert nach Alter, Genetik und individuellem Stoffwechsel. National Sleep Foundation Guidelines (Hirshkowitz M et al. 2015 Sleep Health Vol 1: National Sleep Foundations sleep time duration recommendations) Konsens-Empfehlungen nach Alter: (a) Säuglinge 4-12 Monate: 12-16h. (b) Kleinkinder 1-2 J.: 11-14h. (c) Vorschulkinder 3-5 J.: 10-13h. (d) Schulkinder 6-13 J.: 9-11h. (e) Jugendliche 14-17 J.: 8-10h. (f) Junge Erwachsene 18-25 J.: 7-9h. (g) Erwachsene 26-64 J.: 7-9h. (h) Ältere Erwachsene 65+ J.: 7-8h (oft natürlich 6-7h ausreichend). Diese sind RANGES, keine fixen Werte. AASM Position: 7+h für gesunde Erwachsene als Minimum-Empfehlung, 8h ist mittlerer Wert nicht universelle Pflicht. Genetische Variation: kleine Subgruppe natürlicher Kurzschläfer (DEC2-Mutation, ca. 1-3 Prozent Bevölkerung) braucht nur 4-6h für volle Performance ohne gesundheitliche Konsequenzen. Walker M Why We Sleep 2017 (Bestseller, populär) hat 8-Stunden-Empfehlung verstärkt — methodische Kritik (Guzey 2019 Buchkritik): Walker übergeneralisiert vereinzelte Studien. Wichtige Ausnahmen: chronisches Schlafdefizit (<5h dauerhaft) ist mit erhöhtem Risiko für Herz-Kreislauf-Erkrankungen, Diabetes, kognitive Einschränkungen assoziiert (Cappuccio 2010 Sleep Meta-Analyse) — Risiko ist Dosis-abhängig, nicht binär. Faktencheck-relevant: pauschale Aussagen wie Wer keine 8 Stunden schläft ist unproduktiv überzeichnen die Datenlage; differenzierte Bewertung mit individuellem Bedarfs-Range evidenzbasierter.",
@@ -531,7 +531,7 @@
       "topic": "wundbrand_jod_mythos",
       "headline": "Jodtinktur und Alkohol als Wund-Desinfektion verzögern Heilung durch Zellschädigung; moderne Wund-Pflege (sauberes Wasser + Abdeckung mit Pflaster) ist evidenzbasiert besser bei kleinen Wunden (NICE Wound Care Guidelines, Cochrane Wound Care Reviews)",
       "year": 2024,
-      "source_url": "https://www.nice.org.uk/guidance/conditions-and-diseases/cardiovascular-conditions/wound-management",
+      "source_url": "https://health.clevelandclinic.org/cover-wound-air",
       "secondary_url": "https://www.cochranelibrary.com/",
       "source_label": "NICE Wound Care Guidelines + Cochrane Wound Care Group + WHO + Mayo Clinic + Wound Healing Society",
       "data": {

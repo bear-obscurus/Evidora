@@ -4,7 +4,7 @@
       "topic": "krypto_promi_endorsement_mythos",
       "headline": "Werbung mit angeblichen Promi-Endorsements für Krypto-Plattformen (Elon Musk, Tesla, Beck, Schweighöfer Deepfakes) ist fast immer Betrug; BaFin, FCA und SEC dokumentieren seit 2023 weltweite Welle gefälschter Werbung mit KI-generierten Videos und Stimmen — Chainalysis 2023 schätzt globalen Schaden durch Krypto-Scams >5 Mrd USD jährlich",
       "year": 2024,
-      "source_url": "https://www.bafin.de/DE/Verbraucher/Anlegerwarnungen/anlegerwarnungen_node.html",
+      "source_url": "https://www.bafin.de/DE/verbraucherinnen-verbraucher/news-warnungen/warnmeldungen/warnmeldungen_node.html",
       "secondary_url": "https://www.fca.org.uk/scamsmart",
       "source_label": "BaFin Anlegerwarnungen + FCA ScamSmart + SEC Investor Alerts + FMA Österreich + Chainalysis 2024 Crypto Crime Report",
       "data": {
@@ -63,7 +63,7 @@
       "topic": "daytrading_erfolg_mythos",
       "headline": "Empirische Studien zu Privat-Day-Trading-Erfolgsraten zeigen 70-95 Prozent Verlust-Anteile; Barber & Odean 2000 J Finance n>66.000, Chague & De-Losso 2017 Brasilien-Studie n=1.551 Day-Trader: 97 Prozent verlieren über 1 Jahr; ESMA-Statistik 2018: 74-89 Prozent CFD-Privatanleger verlieren",
       "year": 2024,
-      "source_url": "https://www.esma.europa.eu/sites/default/files/library/esma35-43-1135_decision_renewing_temporary_intervention_measures_relating_to_contracts_for_differences.pdf",
+      "source_url": "https://www.esma.europa.eu/sites/default/files/library/esma35-43-1912_cfd_renewal_3_-_notice_en.pdf",
       "secondary_url": "https://onlinelibrary.wiley.com/doi/10.1111/0022-1082.00226",
       "source_label": "ESMA CFD Statistics + Barber & Odean 2000 J Finance + Chague & De-Losso 2017 + Dalbar QAIB Annual + BaFin",
       "data": {
@@ -148,8 +148,8 @@
       "topic": "garantierte_rendite_mythos",
       "headline": "Garantierte hohe Renditen jenseits der Inflations-Rate sind ökonomisch unmöglich; Versprechen wie 5 Prozent pro Monat oder Risiko-frei reich werden oder 50 Prozent jährlich risikolos sind klassische Indikatoren für Schneeball-Systeme (Ponzi-Scheme); BaFin-Definition: Anbieter ist Betrüger",
       "year": 2024,
-      "source_url": "https://www.bafin.de/DE/Verbraucher/Anlegerwarnungen/anlegerwarnungen_node.html",
-      "secondary_url": "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/anlagebetrug-erkennen-und-meiden",
+      "source_url": "https://www.bafin.de/DE/verbraucherinnen-verbraucher/news-warnungen/warnmeldungen/warnmeldungen_node.html",
+      "secondary_url": "https://www.vzbv.de/pressemitteilungen/grauer-kapitalmarkt-anbieter-fischen-sozialen-medien",
       "source_label": "BaFin Anlegerwarnungen + Verbraucherzentrale + BdV (Bund der Versicherten) + SEC Investor Alerts on Ponzi Schemes",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These Es gibt seriöse Anlagen mit garantierten hohen Renditen ohne Risiko ist FALSE. Das fundamentale ökonomische Prinzip Risiko-Rendite-Trade-off besagt: höhere Rendite-Erwartung erfordert proportional höheres Risiko. Garantierte hohe Renditen (>3-4 Prozent über Inflations-Rate) ohne Risiko sind logisch widersprüchlich und in seriösen Märkten nicht möglich. Wenn es so wäre, würden riesige institutionelle Anleger (Pensionskassen, Versicherungen, Staatsfonds) das gesamte Kapital in solche Anlagen verlagern, der Markt würde sich angleichen. Wenn ein Anbieter trotzdem garantierte hohe Renditen bewirbt (5 Prozent pro Monat = 60 Prozent jährlich, 50 Prozent jährlich risikofrei, etc.), gibt es nur 3 Möglichkeiten: (1) Es ist ein Schneeball-System (Ponzi-Scheme): Anfangs-Renditen werden aus neuen Anleger-Geldern gezahlt, bricht zusammen wenn Neukunden-Strom versiegt. Klassisch: Madoff 2008 ca. 65 Mrd USD Schaden, Phoenix-Capital DE 2007 ca. 700 Mio Euro Schaden. (2) Es ist Pyramidensystem ohne reales Produkt — strafrechtlich verboten in DE/AT (Strafgesetz). (3) Es ist andere Form von Betrug — Anlage-Übergabe ohne Investment, Wertpapier-Fälschung. BaFin-Definition: jeder Anbieter mit nicht-marktkonformen Renditen + Garantie-Versprechen ist mit hoher Wahrscheinlichkeit Betrüger. Standardprüfung: BaFin-Anlegerwarnungs-Liste + FCA ScamSmart konsultieren. Faktencheck-relevant: Aussagen wie Bei Anbieter X bekommen Sie garantiert 12 Prozent jährlich oder Diese Anlage ist risikofrei mit hoher Rendite sind klassische Betrugs-Indikatoren.",
@@ -231,7 +231,7 @@
       "headline": "Online-Forex-Plattformen mit Hebeln >1:30 sind in EU durch ESMA-Beschränkung 2018-08-01 für Privatanleger beschränkt; vor der Regulation 74-89 Prozent Privat-Verlust-Quote; auch nach 1:30-Beschränkung weiterhin >70 Prozent Privat-Verluste; off-EU-Plattformen mit höheren Hebeln umgehen Schutz",
       "year": 2024,
       "source_url": "https://www.esma.europa.eu/press-news/esma-news/esma-renews-restriction-cfds-binary-options-restriction-cancelled",
-      "secondary_url": "https://www.bafin.de/DE/Aufsicht/MaFinanzgeschaefte/CFD/cfd_node.html",
+      "secondary_url": "https://www.bafin.de/SharedDocs/Veroeffentlichungen/DE/Aufsichtsrecht/Verfuegung/vf_190801_allgvfg_Differenzgeschaefte.html",
       "source_label": "ESMA Decision 2018-08-01 + ESMA Renewal Decisions + BaFin CFD Aufsicht + FCA UK + FMA AT + ASIC Australia",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These Mit Forex-Trading kann man als Privat-Anleger systematisch profitieren, vor allem mit hohen Hebeln ist FALSE. Forex (Foreign Exchange = Devisenhandel) und CFDs (Contracts for Differences) auf Forex-Paaren sind hochriskante Finanzinstrumente. Vor 2018: EU-Privat-Anleger konnten Hebel bis 1:500 nutzen, Verlust-Quoten 74-89 Prozent dokumentiert (ESMA 2017-2018 Datensammlung). Konsequenz: ESMA Decision 2018-08-01 verhängte EU-weite Beschränkung — Hebel max 1:30 für Major-Currency-Pairs, 1:20 Indizes, 1:10 Rohstoffe, 1:5 Aktien, 1:2 Krypto. Plus: Pflicht-Negative-Balance-Schutz (Anleger kann nicht mehr verlieren als Einlage), Standard-Risikohinweise. Diese Beschränkungen wurden 2019 als permanent in Mitgliedstaaten umgesetzt (DE WpHG-Anlage). Auch nach Beschränkung: Privat-Verlust-Quoten bleiben hoch (70+ Prozent) — die Reform schützt vor totalem Bankrott, nicht vor Verlust. Mehrere Off-EU-Plattformen (St. Vincent and the Grenadines, Vanuatu, einige asiatische Jurisdiktionen) bewerben sich an EU-Anleger mit höheren Hebeln (1:500-1:1000) — das ist regulatorische Umgehung, kein Schutz greift bei Insolvenz, KEINE Empfehlung. BaFin Position: keine Werbung für CFD-Plattformen mit Versprechen risikofreier hoher Renditen ist seriös. Faktencheck-relevant: Aussagen wie Mit Forex / CFD verdiene ich täglich ohne Risiko sind statistisch widersprochen.",
@@ -281,8 +281,8 @@
       "topic": "pyramidensystem_mlm_mythos",
       "headline": "Multi-Level-Marketing-Systeme (Tupperware, Amway, Herbalife, doTERRA, Younique) sind in DE/AT/EU legal, aber FTC + Verbraucherzentrale-Daten zeigen: 99 Prozent der Teilnehmer:innen verdienen weniger als Mindestlohn; klassische Pyramidensysteme ohne reales Produkt sind strafrechtlich verboten (DE § 16 UWG, AT § 168a StGB)",
       "year": 2024,
-      "source_url": "https://www.ftc.gov/news-events/topics/truth-advertising/multi-level-marketing",
-      "secondary_url": "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/sparen-und-anlegen/multilevelmarketing-mlm-vorsicht-vor-pyramidensystemen-77373",
+      "source_url": "https://consumer.ftc.gov/articles/multi-level-marketing-businesses-and-pyramid-schemes",
+      "secondary_url": "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/sparen-und-anlegen/millionaer-in-dreissig-tagen-schneeballsysteme-versprechen-viel-und-halten-nichts-104168",
       "source_label": "FTC Multi-Level Marketing Guidance + Verbraucherzentrale + DE § 16 UWG + AT § 168a StGB + Direct Selling Association vs. CASE",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These MLM ist eine seriöse Möglichkeit, von zu Hause aus reich zu werden ist FALSE/MIXED. Multi-Level-Marketing (MLM) Systeme wie Tupperware, Amway, Herbalife, doTERRA, Forever Living, Younique, Mary Kay sind in DE/AT/EU LEGAL — sofern ein reales Produkt verkauft wird. Empirisch zeigen FTC-Daten + Verbraucherzentrale-Analysen + Income Disclosure Statements der MLM-Firmen selbst: 99 Prozent der Teilnehmer:innen verdienen weniger als Mindestlohn (FTC 2018 Studie n=180 MLM-Firmen, Median-Net-Income für aktive Teilnehmer:innen <0 Euro nach Inventar-Kosten). Tatsächliche Profitable: Top 1 Prozent (oft Gründer-/Top-Verkäufer-Cluster). Strukturelle Probleme: (a) Verdienst kommt primär aus Sponsorings (Werben neuer Teilnehmer), nicht aus Produkt-Verkauf, (b) Inventar-Kauf-Pflicht zu Großhandels-Konditionen führt zu Lager-Akkumulation, (c) Saturierung des Marktes — wenn die Pyramide weiter wächst, sinkt Erfolgs-Wahrscheinlichkeit für späte Teilnehmer:innen. Strafrechtliche Abgrenzung Pyramidensystem: ohne reales Produkt = Pyramidensystem (illegal in DE § 16 UWG bzw. AT § 168a StGB Strafrecht). Mit Produkt + überwiegend Provision aus Sponsorings = MLM (legal, aber meistens unprofitabel). Sozial-Folgen MLM-Teilnahme: Familien-Konflikte (Druck auf Verwandte zum Kauf), soziale Isolation (Freunde wenden sich ab), finanzielle Verluste durch unverkäufliches Inventar. Faktencheck-relevant: MLM-Werbung mit Versprechen finanzielle Freiheit oder als Hausfrau 5.000 pro Monat widerspricht statistischer Realität fast immer.",
@@ -516,7 +516,7 @@
       "headline": "Hochdruck-Verkaufs-Indikatoren wie eilig handeln, geheimer Insider-Tipp, einmalige Chance, exklusiver Zugang sind klassische FOMO-Marketing-Tools für Anlage-Betrug; SEC + BaFin Investor Alerts warnen vor diesen psychologischen Mustern als roten Flaggen",
       "year": 2024,
       "source_url": "https://www.sec.gov/investor/pubs/cyberfraud.htm",
-      "secondary_url": "https://www.bafin.de/DE/Verbraucher/Anlegerwarnungen/anlegerwarnungen_node.html",
+      "secondary_url": "https://www.bafin.de/DE/verbraucherinnen-verbraucher/news-warnungen/warnmeldungen/warnmeldungen_node.html",
       "source_label": "SEC Investor Alerts on Investment Fraud + BaFin Anlegerwarnungen + Cialdini Influence Principles + FCA Behavioural Insights",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Hochdruck-Verkaufs-Indikatoren in Anlage-Werbung sind starke Indikatoren für Betrug. Robert Cialdini Psychologe, Buch Influence 1984, identifizierte 6 Beeinflussungs-Prinzipien, die Betrüger systematisch ausnutzen: (1) Knappheit — limitiertes Angebot, nur noch 24 Stunden, nur 100 Plätze. (2) Sozialer Beweis — andere haben schon investiert, viele Kunden vertrauen uns. (3) Autorität — Promi-Endorsement, angebliche Behörden-Anerkennung, Pseudo-Zertifikate. (4) Reziprozität — Geschenk-Strategie wir geben Ihnen 50 Euro Bonus zum Beginnen. (5) Sympathie — Charisma der Vermittler, persönliche Beziehung. (6) Konsistenz — kleine erste Investition, dann Erweiterungs-Druck. SEC + BaFin + FCA dokumentieren diese Pattern als rote Flaggen für Anlage-Betrug. Standard-Pattern bei (a) Krypto-Pump-and-Dump-Schemes, (b) Schneeball-Systemen, (c) MLM-Rekrutierung, (d) Boiler-Room-Schemes (Hochdruck-Telefon-Verkauf), (e) Pig-Butchering-Scams (langfristige Beziehungs-Aufbau-Betrug), (f) Promi-Endorsement-Krypto-Werbung. Faktencheck-Konsequenz: bei Hochdruck-Stil GRUNDSÄTZLICH Vorsicht — seriöse Anbieter haben keinen künstlichen Zeitdruck, geben Kunden Bedenkzeit, erlauben unabhängige Beratung. Wenn Anbieter sagt jetzt sofort entscheiden, sonst verpasst — fast immer Betrug. Empfehlung: bei Hochdruck-Werbung 24-48 Stunden Pause einlegen, zweite Meinung einholen (Verbraucherzentrale, BaFin Verbraucher-Hotline), BaFin-Anlegerwarnungs-Liste prüfen.",
@@ -612,7 +612,7 @@
       "topic": "bitcoin_inflations_safe_haven_mythos",
       "headline": "Bitcoin ist KEIN klassisches Safe-Haven-Asset; Bitcoin-Korrelation mit Inflation inkonsistent (positiv 2020-2021, negativ 2022); Bitcoin-Volatilität >70 Prozent jährlich (vs. Gold ~15 Prozent); EZB Position 2022 + IMF Working Paper 2023 + Roy 2024: Bitcoin verhält sich in Krisen Risk-On, nicht Risk-Off",
       "year": 2024,
-      "source_url": "https://www.ecb.europa.eu/pub/economic-research/working-papers/html/index.en.html",
+      "source_url": "https://www.ecb.europa.eu/press/research-publications/working-papers/html/index.en.html",
       "secondary_url": "https://www.imf.org/en/Publications/WP",
       "source_label": "EZB Working Papers + IMF Position Papers + Roy 2024 Energy Economics + Baur & Lucey 2010 J Financ Stab Safe-Haven-Definition",
       "data": {

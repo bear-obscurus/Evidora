@@ -52,7 +52,7 @@ Result-Schema:
     "topic": "inclusive_education_stats",
     "display_value": "AT 60,8% inklusiv (39,2% separat), 4,6% SEN-Identifikation — vs. DE 44,3%, IT 99,7%, SE 99,0% (EASIE 2018/19)",
     "description": "EASIE-Methodik + nationale SEN-Definition-Unterschiede + Lizenz-Hinweis (CC BY-NC-ND)",
-    "url": "https://www.european-agency.org/data/easie",
+    "url": "https://www.european-agency.org/activities/data",
     "source": "EASIE European Agency Statistics on Inclusive Education",
   }
 
@@ -322,7 +322,7 @@ def _build_country_result(
         "value": rating.get("inclusive_enrolment_pct"),
         "display_value": display_value[:480],
         "description": description,
-        "url": data.get("source_url") or "https://www.european-agency.org/data/easie",
+        "url": data.get("source_url") or "https://www.european-agency.org/activities/data",
         "secondary_url": data.get("secondary_url")
             or "https://www.european-agency.org/data/cross-country-reports",
         "source": data.get("source_label")
@@ -364,7 +364,7 @@ def _build_eu_average_result(data: dict) -> dict | None:
             f"{ref_year})"
         )[:480],
         "description": description[:1200],
-        "url": data.get("source_url") or "https://www.european-agency.org/data/easie",
+        "url": data.get("source_url") or "https://www.european-agency.org/activities/data",
         "source": data.get("source_label")
             or "EASIE European Agency Statistics on Inclusive Education",
     }
@@ -502,7 +502,7 @@ async def search_easie(analysis: dict) -> dict:
                     f"Vergleichs-Caveat: nationale SEN-Definitionen variieren. "
                     f"Lizenz: CC BY-NC-ND 4.0."
                 ),
-                "url": data.get("source_url") or "https://www.european-agency.org/data/easie",
+                "url": data.get("source_url") or "https://www.european-agency.org/activities/data",
                 "source": data.get("source_label")
                     or "EASIE European Agency Statistics on Inclusive Education",
             })

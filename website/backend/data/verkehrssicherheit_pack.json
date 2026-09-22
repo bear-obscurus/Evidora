@@ -4,7 +4,7 @@
       "topic": "tempo_30_kindersicherheit_konsens",
       "headline": "Tempo 30 in Wohngebieten reduziert die Kollisions-Mortalität bei Fußgänger:innen und Kindern signifikant; bei Aufprall mit 50 km/h beträgt die Fußgänger-Sterblichkeit etwa 85 Prozent, bei 30 km/h nur etwa 10 Prozent (WHO Speed Management 2008, ETSC 2018, Pasanen 1992)",
       "year": 2024,
-      "source_url": "https://www.who.int/publications/i/item/speed-management-a-road-safety-manual-for-decision-makers-and-practitioners",
+      "source_url": "https://cdn.who.int/media/docs/default-source/documents/health-topics/road-traffic-injuries/3146-wbk-speed-mgmt-2nd-edition-131023-electronic.pdf?sfvrsn=696ed45e_3",
       "secondary_url": "https://www.itf-oecd.org/road-safety-data",
       "source_label": "WHO Speed Management 2008 + ETSC European Transport Safety Council + OECD-IRTAD + BASt Bundesanstalt für Straßenwesen + KFV Österreich",
       "data": {
@@ -157,7 +157,7 @@
       "headline": "Kindersitze sind nach Alter UND Körpergröße auszuwählen; ECE R129 (i-Size) Standard seit 2013 definiert Größen-Kategorien — korrekt-passender Kindersitz reduziert Verletzungs-Wahrscheinlichkeit bei Aufprall um 60-80 Prozent (NHTSA, ADAC Crash-Tests, KFV)",
       "year": 2024,
       "source_url": "https://www.adac.de/rund-ums-fahrzeug/ausstattung-technik-zubehoer/kindersitze/",
-      "secondary_url": "https://www.kfv.at/strassenverkehr/kindersicherheit-im-auto/",
+      "secondary_url": "https://www.kfv.at/wp-content/uploads/2020/07/KFV_Kindersicherheit_doppel.pdf",
       "source_label": "ECE R129 i-Size Standard + ADAC Kindersitz-Tests + KFV Österreich + NHTSA Child Passenger Safety",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These Kindersitze sind alle gleich gut, Hauptsache irgendeiner ist FALSE. Korrekt-passender Kindersitz nach ALTER und KÖRPERGRÖSSE des Kindes reduziert Verletzungs-Wahrscheinlichkeit bei Verkehrs-Unfall signifikant. ECE R129 (i-Size) ist seit 2013 europäischer Standard, ergänzend zu älterem ECE R44/04. Kategorisierung in i-Size: nach Körpergröße statt Gewicht (wie ECE R44). Kategorien: (a) bis 75 cm: Babyschale rückwärtsgerichtet, Pflicht bis 15 Monate. (b) 76-105 cm: Reboard-Sitz oder Vorwärts-Sitz mit Hosenträger-Gurt. (c) 100-135 cm: Sitzerhöhung mit Rückenlehne und Auto-Gurt. (d) 135+ cm und 36+ kg: regulärer Auto-Gurt OK. ADAC Crash-Tests (jährlich, ~50 Modelle): Sicherheits-Bewertung in mehreren Kategorien (Frontal-/Seitenaufprall, Bedienbarkeit, Schadstoffe). Hochwertige Modelle reduzieren Kopf-/Brust-/Halsverletzungs-Wahrscheinlichkeit bei Aufprall um ca. 60-80 Prozent gegenüber regulärem Erwachsenen-Gurt. NHTSA-Daten USA: Kindersitz reduziert Verkehrstoten-Wahrscheinlichkeit bei Säuglingen um 71 Prozent, bei Kleinkindern 1-4 Jahre um 54 Prozent. WICHTIG: Rückwärtsgerichtetes Sitzen ist bis Körpergröße 75 cm Pflicht (i-Size), wird empfohlen bis 4 Jahre/105 cm — Hals-Wirbel-Säule bei Kleinkindern noch nicht vollständig stabilisiert, Frontal-Aufprall-Belastung deutlich höher in Vorwärts-Position. Faktencheck-relevant: Aussagen wie Mein Kind ist groß für sein Alter, kann auf Sitzerhöhung wechseln müssen mit ECE-R129-Kriterien (Körpergröße + Alter) abgeglichen werden, nicht nach Eltern-Einschätzung.",
@@ -228,7 +228,7 @@
       "topic": "tagfahrlicht_unfall_reduktion_mythos",
       "headline": "Tagfahrlicht (DRL) reduziert die Häufigkeit von Verkehrs-Unfällen bei Tageslicht moderat um 5-15 Prozent (Elvik 2009 systematic review n>40 Studien); EU-Pflicht für Neufahrzeuge seit 2011 — Effekt populationsweit dokumentiert aber nicht dramatisch",
       "year": 2024,
-      "source_url": "https://www.toi.no/getfile.php?mmfileid=15084",
+      "source_url": "https://www.toi.no/publications/the-safety-effect-of-studded-tyres-in-norwegian-cities-article18277-29.html",
       "secondary_url": "https://www.bast.de/",
       "source_label": "Elvik 2009 systematic review + Cochrane DRL + OECD-IRTAD + BASt + EU-Verordnung 1004/2008",
       "data": {
@@ -279,7 +279,7 @@
       "topic": "promille_grenzen_alkohol_kontext",
       "headline": "Bei 0,5 Promille Blutalkohol sind Reaktions- und Aufmerksamkeits-Fähigkeiten messbar beeinträchtigt; bei 1,0 Promille ist die Beeinträchtigung ähnlich wie bei 24 Stunden Schlafentzug; bereits ab 0,3 Promille treten dokumentierte Effekte auf (NHS, AAA Foundation, BASt)",
       "year": 2024,
-      "source_url": "https://www.nhs.uk/live-well/alcohol-advice/alcohol-units/",
+      "source_url": "https://www.nhs.uk/live-well/alcohol-advice/calculating-alcohol-units/",
       "secondary_url": "https://aaafoundation.org/",
       "source_label": "NHS UK + AAA Foundation for Traffic Safety + BASt + WHO + StVO § 24a",
       "data": {
@@ -347,7 +347,7 @@
       "topic": "mobile_telefon_freisprech_konsens",
       "headline": "Hands-free-Telefonieren während Autofahrt reduziert Unfall-Risiko NICHT signifikant gegenüber Handy-Telefonieren in der Hand; primärer Risiko-Faktor ist kognitive Ablenkung (cognitive distraction), nicht manuelle Belastung (Strayer 2003 Univ Utah, IIHS, NHTSA, AAA Foundation Cognitive Distraction Study)",
       "year": 2024,
-      "source_url": "https://www.iihs.org/topics/distracted-driving",
+      "source_url": "https://www.iihs.org/research-areas/distracted-driving",
       "secondary_url": "https://www.nhtsa.gov/risky-driving/distracted-driving",
       "source_label": "IIHS Insurance Institute for Highway Safety + NHTSA + AAA Foundation Cognitive Distraction Study + Strayer 2003 Univ Utah",
       "data": {
@@ -499,7 +499,7 @@
       "topic": "bremsweg_geschwindigkeit_quadratisch_konsens",
       "headline": "Der reine Bremsweg steigt quadratisch mit der Geschwindigkeit (kinetische Energie E=½mv²); bei Verdoppelung der Geschwindigkeit (50→100 km/h) vervierfacht sich der reine Bremsweg, NICHT verdoppelt — physikalisch zwingend, dokumentiert in ADAC + BASt Bremsweg-Tabellen",
       "year": 2024,
-      "source_url": "https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/auto-kosten/sicherheit/anhalteweg/",
+      "source_url": "https://www.adac.de/verkehr/rund-um-den-fuehrerschein/erwerb/anhalteweg-berechnen/",
       "secondary_url": "https://www.bast.de/",
       "source_label": "Physik-Konsens (Energie-Erhaltungs-Satz) + ADAC Bremsweg-Tabellen + BASt + StVO Faustformel",
       "data": {
@@ -559,8 +559,8 @@
       "topic": "winterreifen_pflicht_konsens",
       "headline": "Winterreifen reduzieren Bremsweg auf Schnee/Eis um 30-50 Prozent gegenüber Sommerreifen; in Deutschland situative Winterreifen-Pflicht (StVO § 2 Abs. 3a), in Österreich § 102 Abs. 8a KFG (1. November bis 15. April bei winterlichen Straßenverhältnissen)",
       "year": 2024,
-      "source_url": "https://www.adac.de/rund-ums-fahrzeug/ausstattung-technik-zubehoer/reifen/winterreifen/",
-      "secondary_url": "https://www.kfv.at/strassenverkehr/winter-reifen/",
+      "source_url": "https://www.adac.de/rund-ums-fahrzeug/ausstattung-technik-zubehoer/reifen/reifentest/winterreifen/",
+      "secondary_url": "https://www.oeamtc.at/thema/vorschriften-strafen/winterreifenpflicht-in-oesterreich-74581857",
       "source_label": "ADAC Winterreifen-Tests + ÖAMTC + KFV Österreich + TÜV + BMVBS DE + BMK Österreich",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These Sommerreifen sind im Winter ausreichend ist FALSE. Winterreifen unterscheiden sich von Sommerreifen durch (a) speziellen Profilcharakter (mehr Lamellen, tiefere Profilrillen für Schnee-/Wasser-Verdrängung) und (b) andere Gummi-Mischung mit niedriger Glasübergangs-Temperatur (~–7 °C statt ~+7 °C bei Sommerreifen). Folge: bei niedrigen Temperaturen behalten Winterreifen Elastizität, sorgen für besseren Reibungs-Kontakt zur Straße. Mess-Werte ADAC-Tests + ÖAMTC: Bremsweg auf Schnee von 50 km/h auf 0: Sommerreifen ~64 m, Winterreifen ~33 m. Auf Glatteis bei -5 °C: Sommerreifen >100 m, Winterreifen ~50-60 m. Aufprall-Energie bei 50 km/h auf trockener Straße ~65 m vs. winterliche Bedingungen — Faktor 2-5 längerer Brems-Weg ohne Winter-Reifen-Anpassung. Gesetzliche Lage: DE situative Pflicht nach § 2 Abs. 3a StVO seit 2010 — bei winterlichen Straßenverhältnissen (Schnee, Glätte, Schneematsch, Reif) müssen Pkw mit Winterreifen ausgerüstet sein. Verstoß: Bußgeld + 1 Punkt. Bei Behinderung anderer Verkehrs-Teilnehmer:innen erhöhter Bußgeld + ggf. Fahr-Verbot. AT § 102 Abs. 8a KFG: zeitlich-situative Pflicht 1. November bis 15. April bei winterlichen Bedingungen. Verstoß: Bußgeld bis 5.000 Euro. Schweiz: keine generelle Pflicht, aber bei Witterungs-bedingten Verkehrs-Behinderungen Haftung. ADAC + ÖAMTC + KFV Empfehlungen: O-O-Regel von Oktober bis Ostern Winterreifen montiert. Reifen-Mischung Ganzjahresreifen sind Kompromiss — funktionieren teilweise, sind aber bei reinen Winter- oder reinen Sommer-Bedingungen nicht optimal. M+S-Symbol allein reicht nicht — seit 2018 EU-Verordnung erfordert 3PMSF (3-Peak Mountain Snowflake) für echten Winter-Tauglichkeits-Nachweis.",

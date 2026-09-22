@@ -76,8 +76,8 @@
         ["vermieter", "mieter", "mietwohnung", "wohnung", "miete", "haftung", "haftet", "schuld", "minderung", "mietminderung", "renovieren", "sanieren"]
       ],
       "source_label": "BGH VIII ZR 44/15 + OGH 5 Ob 207/14k + Verbraucherzentrale",
-      "source_url": "https://www.verbraucherzentrale.de/wissen/digitale-welt/mietrecht/schimmelpilz-rechte-und-pflichten-von-mietern-und-vermietern-13738",
-      "secondary_url": "https://www.arbeiterkammer.at/beratung/wohnen/Schimmel.html"
+      "source_url": "https://www.test.de/Schimmel-in-der-Wohnung-Diese-Rechte-haben-Mieter-5390912-0/",
+      "secondary_url": "https://www.arbeiterkammer.at/beratung/konsument/bauenundwohnen/miete/Schimmel_in_der_Wohnung.html"
     },
     {
       "id": "schoenheitsreparaturen_2026",
@@ -114,7 +114,7 @@
         ["mieter", "mietvertrag", "wohnung", "vermieter", "pflicht", "muessen", "müssen"]
       ],
       "source_label": "BGH VIII ZR 277/16 (2018) + DMB Mieterverein Position",
-      "source_url": "https://mieterbund.de/mietrecht/schoenheitsreparaturen.html",
+      "source_url": "https://mieterbund.de/aktuelles/meldungen/bgh/unverstaendlich-unwirksame-schoenheitsreparaturklausel-verursacht-mehrkosten-fuer-mieter/",
       "secondary_url": "https://www.bundesgerichtshof.de/SharedDocs/Pressemitteilungen/DE/2018/2018126.html"
     },
     {
@@ -153,7 +153,7 @@
       ],
       "source_label": "§ 622 BGB DE + KSchG + § 19 AngG + § 1158 ABGB AT",
       "source_url": "https://www.gesetze-im-internet.de/bgb/__622.html",
-      "secondary_url": "https://www.arbeiterkammer.at/beratung/arbeitundrecht/Beendigung/Probezeit.html"
+      "secondary_url": "https://www.arbeiterkammer.at/beratung/arbeitundrecht/beendigung/Loesung_in_der_Probezeit.html"
     },
     {
       "id": "screenshot_whatsapp_2026",
@@ -228,8 +228,8 @@
         ["geschaeft", "geschäft", "supermarkt", "laden", "restaurant", "diskothek", "club", "lokal", "ohne grund", "begruendung", "begründung", "alle rechte", "alles"]
       ],
       "source_label": "§ 903 BGB + AGG + GlBG + Antidiskriminierungs-Stelle",
-      "source_url": "https://www.antidiskriminierungsstelle.de/DE/themen-und-forschung/recht-und-beratung/recht/_node.html",
-      "secondary_url": "https://www.gleichbehandlungsanwaltschaft.gv.at/themen/Schutz_vor_Diskriminierung/index.html"
+      "source_url": "https://www.antidiskriminierungsstelle.gov.de/DE/ueber-diskriminierung/lebensbereiche/alltagsgeschaefte/alltagsgeschaefte-node.html",
+      "secondary_url": "https://www.gleichbehandlungsanwaltschaft.gv.at/Themen/rechtliches/gleichbehandlungsrecht-in-oesterreich.html"
     },
     {
       "id": "erbrecht_pflichtteil_2026",
@@ -306,7 +306,7 @@
       ],
       "source_label": "§ 4 ArbZG DE + § 11 AZG AT + AK Wien",
       "source_url": "https://www.gesetze-im-internet.de/arbzg/__4.html",
-      "secondary_url": "https://www.arbeiterkammer.at/beratung/arbeitundrecht/arbeitszeit/Pausen.html"
+      "secondary_url": "https://www.arbeiterkammer.at/pause"
     },
     {
       "id": "kuendigungsschutz_klein_2026",
@@ -345,7 +345,7 @@
       ],
       "source_label": "§ 23 KSchG DE + § 105 ArbVG AT + DGB Beratung",
       "source_url": "https://www.gesetze-im-internet.de/kschg/__23.html",
-      "secondary_url": "https://www.arbeiterkammer.at/beratung/arbeitundrecht/Beendigung/Kuendigung.html"
+      "secondary_url": "https://www.arbeiterkammer.at/beratung/arbeitundrecht/beendigung/Arbeitgeber-Kuendigung.html"
     },
     {
       "id": "hund_haftung_2026",
