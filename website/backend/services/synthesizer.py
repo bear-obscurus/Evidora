@@ -1013,16 +1013,18 @@ async def _validate_urls(evidence: list[dict]) -> list[dict]:
                 resp = await client.head(url)
                 if resp.status_code < 400:
                     return True, f"HEAD {resp.status_code}"
-                # Viele Server verweigern HEAD (405/501) oder blocken es
-                # gezielt (403), liefern denselben Pfad per GET aber aus.
+                # HEAD ist nur die schnelle Abkuerzung, nie das Urteil. Viele
+                # Server verweigern HEAD (405/501) oder blocken es (403) — und
+                # manche antworten auf HEAD sogar mit 404, liefern die Seite
+                # per GET aber aus: Our World in Data, gemessen 2026-09-22 an
+                # drei in Prod verworfenen Grapher-Belegen (HEAD 404, GET 200).
+                # Deshalb entscheidet bei JEDEM HEAD-Fehler der GET.
                 # Range-Header, damit ein GET nicht die ganze Seite zieht.
-                if resp.status_code in (403, 405, 501):
-                    nach = await client.get(url, headers={"Range": "bytes=0-0"})
-                    grund = f"HEAD {resp.status_code}, GET {nach.status_code}"
-                    if nach.status_code < 400:
-                        return True, grund
-                    return nach.status_code not in _TOT, grund
-                return resp.status_code not in _TOT, f"HEAD {resp.status_code}"
+                nach = await client.get(url, headers={"Range": "bytes=0-0"})
+                grund = f"HEAD {resp.status_code}, GET {nach.status_code}"
+                if nach.status_code < 400:
+                    return True, grund
+                return nach.status_code not in _TOT, grund
         except httpx.ConnectError as exc:
             # Der Host selbst antwortet nicht — das ist das Signal, fuer das
             # dieser Filter gebaut wurde: eine erfundene Domain.

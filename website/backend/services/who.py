@@ -76,6 +76,24 @@ INDICATOR_MAP = {
 }
 
 
+
+def _indikator_url(code: str) -> str:
+    """Der Beleg-Link fuer einen GHO-Indikator: der API-Endpunkt, aus dem
+    die Zahl tatsaechlich kommt.
+
+    Bis 2026-09 stand hier ``who.int/…/indicator-details/GHO/{Code}``. Die
+    WHO hat diese Seiten auf Namens-Slugs umgestellt; die Code-Form liefert
+    404, und die URL-Pruefung verwarf die Belege (in Prod gemessen:
+    HWF_0006, MDG_0000000020). Der Namens-Slug ist keine Loesung — von
+    zwoelf gemappten Indikatoren loesten ihn sechs auf, die anderen
+    scheiterten an „≥", „%" und geschachtelten Klammern (HTTP 400/404).
+
+    Der API-Endpunkt ist fuer Menschen JSON statt einer Webseite, aber er
+    ist genau die Quelle der Zahl und loest immer auf, solange der
+    Konnektor selbst funktioniert.
+    """
+    return f"{BASE_URL}/{code}" if code else BASE_URL
+
 async def search_who(analysis: dict) -> dict:
     entities = analysis.get("entities", [])
     subcategory = analysis.get("subcategory", "")
@@ -117,7 +135,7 @@ async def search_who(analysis: dict) -> dict:
                         "country": entry.get("SpatialDim", ""),
                         "year": entry.get("TimeDim", ""),
                         "value": entry.get("NumericValue", ""),
-                        "url": f"https://www.who.int/data/gho/data/indicators/indicator-details/GHO/{indicator}",
+                        "url": _indikator_url(indicator),
                     }
                 )
 
@@ -148,7 +166,7 @@ async def search_who(analysis: dict) -> dict:
                     {
                         "indicator_code": ind.get("IndicatorCode", ""),
                         "indicator_name": ind.get("IndicatorName", ""),
-                        "url": f"https://www.who.int/data/gho/data/indicators/indicator-details/GHO/{ind.get('IndicatorCode', '')}",
+                        "url": _indikator_url(ind.get("IndicatorCode", "")),
                     }
                 )
 
