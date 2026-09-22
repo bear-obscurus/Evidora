@@ -1146,26 +1146,31 @@
     {
       "id": "oeif_familiennachzug_at_2023",
       "topic": "familiennachzug_at_konsens",
-      "scope": "Familiennachzug AT — rechtliche Differenzierung Asyl vs. subsidiär Schutzberechtigt (deskriptiv)",
-      "year": 2023,
-      "headline": "AT-Familiennachzug 2023: Asylberechtigte haben Anspruch ohne Limit; subsidiär Schutzberechtigte seit 2018-Reform mit Wartefrist + Voraussetzungen",
+      "scope": "AT: Familiennachzug zu Asylberechtigten und subsidiär Schutzberechtigten — Stopp 2025/26, Quote seit August 2026 (deskriptiv)",
+      "year": 2026,
+      "headline": "AT: Familiennachzug zu Schutzberechtigten war von 3.7.2025 bis 2.7.2026 per Verordnung gestoppt (nur Härtefälle); seit August 2026 gilt eine Quote (§ 46a NAG), die Länderquoten sind noch nicht festgelegt (Stand September 2026). Jänner–August 2026: 60 Einreisen über Familiennachzug, im Vorjahreszeitraum 979 (BMI)",
       "data": {
-        "kernsatz_fuer_synthesizer": "Deskriptive Rechts-Aussage. VERDICT-LEITLINIE: Aussagen die zwischen Asyl- und subsidiär-Familiennachzug korrekt differenzieren sind 'mostly_true'. Aussagen 'Familiennachzug ist unbegrenzt für alle Schutzberechtigten' sind 'mostly_false'. Aussagen zu konkreten jährlichen Familiennachzugs-Zahlen brauchen Verifikation am BMI-Bericht. KEINE Bewertung der Familiennachzugs-Reformdebatte.",
-        "rechtsstatus_asyl_familiennachzug": "Asylberechtigte (§ 35 AsylG): Ehegatten + minderjährige Kinder haben Anspruch auf Familiennachzug ohne Quoten-Limitierung; Voraussetzungen sind familiäre Verbindung + Antrags-Frist (3 Monate Privilegierte Frist).",
-        "rechtsstatus_subsidiaer_familiennachzug": "Subsidiär Schutzberechtigte: bis 2018 ähnlicher Anspruch wie Asyl; seit 2018-Reform (FrÄG 2018) deutliche Einschränkungen — 3 Jahre Wartefrist nach Statusgewährung, Selbsterhaltungsfähigkeit + Wohnraum nachzuweisen, danach Antrag möglich. Praktisch deutlich erschwert.",
-        "ukraine_temp_schutz_kontext": "Personen mit temporärem Schutz (Vertriebenen-VO 2022) haben einen abgekoppelten Status — Familien können direkt einreisen ohne separates Familiennachzugs-Verfahren (so kommen sie regelmäßig direkt mit Familienangehörigen).",
-        "amtliche_zahlen_kontext": "Familiennachzugs-Zahlen 2023 AT: BMI-Statistik dokumentiert mehrere tausend Familiennachzugs-Bewilligungen pro Jahr (Größenordnung 5.000–15.000, schwankt mit Schutzberechtigten-Bestand). Detail-Zahlen brauchen Jahresbericht.",
-        "context": "Pack ist deskriptiv-rechtlich. Reform-Debatten (z.B. 'Aussetzung Familiennachzug') sind politische Diskussion — NICHT Gegenstand."
+        "kernsatz_fuer_synthesizer": "RECHTSSTAND ÖSTERREICH (Stand September 2026): (1) STOPP: Von 3.7.2025 bis 2.7.2026 war der Familiennachzug zu Asylberechtigten UND subsidiär Schutzberechtigten per Verordnung nach § 36 AsylG gehemmt — Einreisen nur in Ausnahmefällen; der Hauptausschuss genehmigte die Verordnung (Juli 2025) und ihre Verlängerung um sechs Monate ab Jänner 2026. (2) QUOTE: Der Nationalrat beschloss am 20.5.2026, den Familiennachzug vom Asylgesetz (§ 35 AsylG) ins Niederlassungs- und Aufenthaltsgesetz zu überführen (§ 46a NAG) und einer Quote zu unterwerfen. Die Quotenregel ist seit Anfang August 2026 in Kraft; die Länderquoten in der Niederlassungsverordnung waren im September 2026 noch nicht festgelegt, das Innenministerium kündigt eine 'sehr geringe' erste Quote an. Ist kein Quotenplatz frei, wird die Entscheidung aufgeschoben; nach drei Jahren erlischt die Quotenpflicht (§ 12 Abs. 7 NAG). (3) WIRKUNG: Jänner–August 2026 gab es laut BMI 60 Einreisen über Familiennachzug (nur soziale Härtefälle), im selben Zeitraum 2025 979. Einordnung: 'Österreich hat den Familiennachzug gestoppt' traf von Juli 2025 bis Juli 2026 zu; seither gilt statt des Stopps eine Quote, deren Höhe noch offen ist, bei weiterhin nur vereinzelten Einreisen. 'Asylberechtigte können ihre Familie in Österreich ohne Limit nachholen' trifft nicht mehr zu. Ob Stopp und Quote mit EU-Recht vereinbar sind, ist umstritten und gerichtlich nicht entschieden.",
+        "stopp_2025_2026": "Verordnung nach § 36 AsylG, in Kraft 3.7.2025 (Hauptausschuss des Nationalrats, 1.7.2025), mit Anfang Jänner 2026 um sechs Monate bis 2.7.2026 verlängert (Parlament, 17.12.2025). Das Asylgesetz erlaubte höchstens drei Verlängerungen, längstens bis 30.9.2026. Begründung der Regierung: Überlastung von Bildungs-, Integrations- und Sozialsystem, insbesondere der Schulen in Wien.",
+        "quote_ab_august_2026": "Asyl- und Migrationspakt-Anpassungsgesetz (Nationalrat 20.5.2026): Der bisherige Regelungsinhalt von § 35 AsylG geht in § 46a NAG über; zuständig bleibt das Bundesamt für Fremdenwesen und Asyl. Quotenplätze legt die Bundesregierung im Einvernehmen mit dem Hauptausschuss je Kalenderjahr und Bundesland in der Niederlassungsverordnung fest. Ein Nachweis von Deutschkenntnissen vor Zuzug ist nicht nötig. Für subsidiär Schutzberechtigte bleibt die Wartefrist von drei Jahren nach Zuerkennung des Schutzes (Regierungsvorlage 443 d.B. XXVIII. GP).",
+        "uebergang_2026": "Mit Inkrafttreten der Umsetzung des EU-Asyl- und Migrationspakts am 12.6.2026 fiel § 35 AsylG als Antragsgrundlage weg; anhängige Verfahren sind per Übergangsbestimmung bis zum Inkrafttreten der Quotenregel ausgesetzt. Fachleute sprachen für den Sommer 2026 von einem 'rechtlichen Vakuum' (ORF, 2.7.2026).",
+        "rechtslage_vor_juli_2025": "Bis Juli 2025 konnten Asylberechtigte Ehegatten und minderjährige Kinder ohne Quote nachholen, privilegiert bei Antrag binnen drei Monaten nach Zuerkennung. Subsidiär Schutzberechtigte konnten erst drei Jahre nach Zuerkennung einen Antrag stellen und mussten u. a. Selbsterhaltungsfähigkeit und Wohnraum nachweisen.",
+        "amtliche_zahlen": "BMI: Einreisen über Familiennachzug Jänner–August 2025: 979; Jänner–August 2026: 60 (nur absolute soziale Härtefälle). Erstes Quartal: 401 (2025) gegenüber 25 (2026).",
+        "ukraine_temp_schutz_kontext": "Personen mit temporärem Schutz (Vertriebenen-Verordnung 2022) haben einen eigenen Status; für sie gilt dieses Familiennachzugs-Verfahren nicht.",
+        "context": "Deskriptive Rechtslage. Die politische Bewertung von Stopp und Quote ist nicht Gegenstand. Deutschland hat eine eigene Regelung (Aussetzung nur für subsidiär Schutzberechtigte bis 23.7.2027) — siehe den DE-Fakt."
       },
       "context_notes": [
-        "Genfer Flüchtlingskonvention + EU-Familienzusammenführungs-Richtlinie 2003/86/EG sind die rechtlichen Grundlagen.",
-        "Bei Aussagen 'Familiennachzug ist gestoppt' Vorsicht — politisch ist eine Aussetzung im Gespräch (2024), rechtlich erfordert das EU-rechtliche Prüfung.",
-        "Die mediale Konflation 'Asyl-Familiennachzug = subsidiär-Familiennachzug = Ukraine-Schutz-Familie' ist juristisch falsch — drei unterschiedliche Kategorien."
+        "Rechtmäßigkeit umstritten: Ende April 2026 brachten Organisationen und Rechtswissenschaftler eine Beschwerde bei der EU-Kommission ein; Amnesty International Österreich hält die Quote für EU-rechtswidrig; das Innenministerium verteidigt sie. Eine Gerichtsentscheidung dazu liegt nicht vor.",
+        "Die mediale Vermischung 'Asyl-Familiennachzug = subsidiär-Familiennachzug = Ukraine-Schutz' ist juristisch falsch — drei unterschiedliche Kategorien.",
+        "Korrigiert 2026-09-22: Die frühere Fassung (Stand 2023) beschrieb den Nachzug zu Asylberechtigten als unbegrenzt und die Aussetzung als bloß 'im Gespräch'."
       ],
       "claim_phrasings_handled": [
         "Asylberechtigte können ihre Familie nach AT holen",
         "Subsidiär Schutzberechtigte müssen 3 Jahre warten für Familiennachzug",
-        "Familiennachzug zu Asyl ist unbegrenzt"
+        "Familiennachzug zu Asyl ist unbegrenzt",
+        "Österreich hat den Familiennachzug gestoppt",
+        "In Österreich gibt es eine Quote für den Familiennachzug",
+        "Der Familiennachzug-Stopp in Österreich ist EU-rechtswidrig"
       ],
       "trigger_keywords": [
         "familiennachzug at",
@@ -1194,12 +1199,14 @@
           "asyl",
           "subsidiär",
           "subsidiaer",
-          "schutzberechtigt"
+          "schutzberechtigt",
+          "karner",
+          "quote"
         ]
       ],
-      "source_label": "ÖIF Integrationsbericht / BMI / AsylG § 35 + FrÄG 2018",
-      "source_url": "https://www.integrationsfonds.at/publikationen/",
-      "secondary_url": "https://www.bmi.gv.at/301/Statistiken/start.aspx",
+      "source_label": "BMI (Presseaussendung 20.9.2026) + Parlament (Nationalrat 20.5.2026; Hauptausschuss 1.7.2025 und 17.12.2025) + Regierungsvorlage 443 d.B. XXVIII. GP (§ 46a NAG) + ORF",
+      "source_url": "https://www.ots.at/presseaussendung/OTS_20260920_OTS0002/asylerstantraege-tiefststand-bei-erstantraegen-im-august",
+      "secondary_url": "https://www.parlament.gv.at/aktuelles/news/Nationalrat-ebnet-Weg-fuer-Quotenregelung-bei-Familiennachzug/",
       "trigger_all": [
         [
           [
@@ -1210,6 +1217,29 @@
           ],
           [
             "hole"
+          ]
+        ],
+        [
+          [
+            "famili"
+          ],
+          [
+            "hole",
+            "nachhol",
+            "nachzug",
+            "zusammenführ",
+            "zusammenfuehr"
+          ],
+          [
+            "österreich",
+            "oesterreich",
+            "wien",
+            "karner",
+            "quote",
+            "bfa",
+            "subsidiär",
+            "subsidiaer",
+            "schutzberechtigt"
           ]
         ]
       ]

@@ -350,6 +350,7 @@ jobs:
             tests/test_beleg_links.py \
             tests/test_klimaticket_fakt.py \
             tests/test_tote_links_handreparatur.py \
+            tests/test_familiennachzug_fakt.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
