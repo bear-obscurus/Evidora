@@ -493,11 +493,11 @@
         "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wohnbeihilfe-Wertung."
       },
       "context_notes": [
-        "Korrigiert 2026-09-23: Der Fakt nannte ~280.000 Beziehende in Österreich und ~140.000 in Wien. Wien hatte 2023 31.043 — der Fakt lag beim Vierfachen. Auch das Auszahlungsvolumen (~330 Mio. Euro) und die AK-Wien-Studie 2023 waren unbelegt. Tote Altbelege: wien.gv.at/wohnen/wohnbaufoerderung/wohnbeihilfe/index.html und die Statistik-Austria-Seite /sozialleistungen-auf-bundes-und-landesebene/wohnbeihilfe.",
+        "Korrigiert 2026-09-23: Die frühere Fassung nannte eine bundesweite und eine Wiener Bezieherzahl, die um ein Vielfaches über den amtlichen Werten lagen, dazu ein Auszahlungsvolumen und eine AK-Wien-Studie ohne Beleg. Tote Altbelege: wien.gv.at/wohnen/wohnbaufoerderung/wohnbeihilfe/index.html und die Statistik-Austria-Seite /sozialleistungen-auf-bundes-und-landesebene/wohnbeihilfe.",
         "Datenstand: ESSOSS-Reihe bis 2024 (vorläufig), Stand 21.11.2025; Statistisches Jahrbuch der Stadt Wien 2025 mit Daten bis 2024.",
         "Wien weist 2024 bewusst keine Gesamtzahl aus, weil Haushalte in beiden Modellen gezählt würden — die Summe 23.985 + 22.925 ist deshalb keine Bezieherzahl.",
         "Wohnbeihilfe ist bedarfsgeprüft, nicht universell wie die Familienbeihilfe.",
-        "Ebenfalls als unbelegt entfernt: die Länderaufteilung (NÖ 45.000, OÖ 30.000, Stmk 25.000 Beziehende), das Auszahlungsvolumen (Wien ~150 Mio., gesamt ~330 Mio. Euro) und die AK-Wien-Studie 2023 (Zenz/Schoibl), wonach die Wohnkostenbelastung ohne Wohnbeihilfe über 50 % und mit ihr 30 bis 35 % betrage."
+        "Ebenfalls als unbelegt entfernt: eine Aufteilung der Beziehenden auf die Bundesländer, ein Auszahlungsvolumen für Wien und für Österreich sowie die AK-Wien-Studie 2023 (Zenz/Schoibl) zur Wohnkostenbelastung mit und ohne Wohnbeihilfe."
       ],
       "claim_phrasings_handled": [
         "Wohnbeihilfe in Oesterreich einheitlich",
