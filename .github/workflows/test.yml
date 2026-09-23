@@ -354,6 +354,7 @@ jobs:
             tests/test_eurobarometer_demokratie.py \
             tests/test_femizide_zahlen.py \
             tests/test_agrar_und_klimazahlen.py \
+            tests/test_leerstandsabgabe_wohnbeihilfe.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 

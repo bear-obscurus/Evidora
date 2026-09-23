@@ -129,12 +129,12 @@ def test_jeder_geparkte_link_steht_noch_in_den_daten():
 
 def test_inhaltskonflikte_sind_als_solche_markiert():
     inhalt = [u for u, e in BEKANNT.items() if e["grund"].startswith("INHALT:")]
-    # u. a. EFSA-Probenzahlen, Agrarfoerderung "= 7 Mrd", UBA 8,0 vs. 8,4 Mt.
-    # Familiennachzug, Eurobarometer und Femizide sind seit den
-    # Fakt-Korrekturen vom 22.9.2026 keine Konflikte mehr (siehe
-    # test_geloeste_inhaltskonflikte).
-    assert len(inhalt) >= 9
-    for teil in ("efsajournal/pub/8957", "wohnbeihilfe", "Industry-Facts-and-Figures"):
+    # u. a. EFSA-Probenzahlen, ICCT-Amortisation, IAB-Wohnungsmarkt.
+    # Familiennachzug, Eurobarometer, Femizide, Agrar/Klima sowie
+    # Leerstandsabgabe und Wohnbeihilfe sind seit den Fakt-Korrekturen vom
+    # 22./23.9.2026 keine Konflikte mehr (siehe test_geloeste_inhaltskonflikte).
+    assert len(inhalt) >= 8
+    for teil in ("efsajournal/pub/8957", "Industry-Facts-and-Figures", "lifecycle-emissions"):
         assert any(teil in u for u in inhalt), teil
 
 
@@ -221,11 +221,16 @@ def test_widerspruechliche_quelle_wurde_nicht_untergeschoben():
     ("oeffentliche_sicherheit_02_2024", ("gleichstellung_pack.json", "femizide_at_de_2026")),
     ("jcr:fixme", ("landwirtschaft_pack.json", "agrar_subventionen_at_2026")),
     ("khg-bilanz", ("landwirtschaft_pack.json", "klima_landwirtschaft_2026")),
+    ("landtag/leerstandsabgabe", ("wohnen_pack.json", "leerstandsabgabe_wirkung_2026")),
+    ("sozialleistungen-auf-bundes-und-landesebene/wohnbeihilfe",
+     ("sozialstaat_pack.json", "wohnbeihilfe_at_2026")),
+    ("wohnbaufoerderung/wohnbeihilfe", ("sozialstaat_pack.json", "wohnbeihilfe_at_2026")),
 ])
 def test_geloeste_inhaltskonflikte(tot, fakt):
-    """Gegenstueck: Diese Konflikte wurden am 22.9.2026 durch eine
-    Fakt-Korrektur aufgeloest (siehe test_familiennachzug_fakt.py und
-    test_eurobarometer_demokratie.py) — Link raus, Eintrag raus."""
+    """Gegenstueck: Diese Konflikte wurden am 22./23.9.2026 durch eine
+    Fakt-Korrektur aufgeloest (siehe test_familiennachzug_fakt.py,
+    test_eurobarometer_demokratie.py und
+    test_leerstandsabgabe_wohnbeihilfe.py) — Link raus, Eintrag raus."""
     assert not [u for u in BEKANNT if tot in u], tot
     f = _fakt(*fakt)
     # Nur die Aussage und die Quell-Links pruefen — die "Korrigiert"-Notiz
