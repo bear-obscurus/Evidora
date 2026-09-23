@@ -87,13 +87,13 @@
         "bbsr_leerstand_typen": "BBSR Bundesinstitut für Bau-, Stadt- und Raumforschung Leerstands-Typologie 2024: (a) FRIKTIONELL (2-3 % Quote als gesund-funktional), (b) SANIERUNGS-BEDINGT (Modernisierungs-Phase), (c) STRUKTURELL LANGZEIT-LEER (>1 Jahr, Schrumpfungs-Regionen). DE: Boom-Städte München/Berlin/Hamburg LEERSTANDS-QUOTE 0,5-1,2 % — UNTER friktionell-gesundem Bereich. Schrumpfungs-Regionen Sachsen-Anhalt/MV/Thüringen/Saarland LEERSTANDS-QUOTE 8-15 %.",
         "boomstaedte_engpass": "Boom-Städte DE 2024 Leerstands-Quoten (BBSR + Empirica): München 0,5 %, Berlin 0,9 %, Hamburg 0,8 %, Frankfurt 0,6 %, Stuttgart 0,7 %, Köln 1,2 %, Düsseldorf 1,4 %. Alle UNTER friktionell-gesundem 3 % Niveau. Wohnungs-Mangel real + empirisch belegt.",
         "schrumpfungs_regionen": "DE Schrumpfungs-Regionen 2024 Leerstands-Quoten: Sachsen-Anhalt-Land 12-15 %, Thüringen-Land 9-12 %, Mecklenburg-Vorpommern-Land 11-14 %, ländlicher Saarland 8-10 %, Bayerischer Wald + Oberpfalz 7-10 %. Strukturell leerstehende Wohnungen — physisch NICHT in Boom-Regionen umverteilbar. Lokale Job-Märkte machen Zuzug für Erwerbstätige unattraktiv.",
-        "wien_leerstand": "AT Statistik Austria Volkszählungs-Daten + Wien-Wohnen Leerstand 2024: ~135.000 langzeit-leerstehende Wohnungen Wien-weit (~8 % aller Wohnungen). Höher als DE-Großstädte. Wiener Wohn-Ticket-Reform 2024 + Leerstand-Abgabe-Diskussion (Vorarlberg + Tirol haben bereits Leerstand-Abgabe seit 2024). Empirica 2024 Schätzung: bei Aktivierung könnten ~30.000-50.000 Wohnungen zurück auf Markt — wäre quantitativ relevant.",
+        "wien_leerstand": "AT Statistik Austria Volkszählungs-Daten + Wien-Wohnen Leerstand 2024: ~135.000 langzeit-leerstehende Wohnungen Wien-weit (~8 % aller Wohnungen). Höher als DE-Großstädte. Wiener Wohn-Ticket-Reform 2024 + Leerstand-Abgabe-Diskussion (Leerstandsabgabe: Steiermark seit 1.10.2022, Tirol seit 1.1.2023, Vorarlberg seit 1.1.2024). Empirica 2024 Schätzung: bei Aktivierung könnten ~30.000-50.000 Wohnungen zurück auf Markt — wäre quantitativ relevant.",
         "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
       },
       "context_notes": [
         "Wichtige Differenzierung: 1,9 Mio Leerstand-Wohnungen DE klingt viel, aber 70 % davon sind friktionell + Sanierungs-bedingt (gesunder Markt-Mechanismus) — nur ~500-600k strukturell langzeit-leer.",
         "GEOGRAFIE-PROBLEM: strukturelle Leerstände sind in Schrumpfungs-Regionen, Wohnungs-Mangel in Boom-Städten — Umverteilung physisch unmöglich.",
-        "AT Wien hat höhere Leerstand-Quote (~8 %) als DE-Großstädte — Leerstand-Abgabe seit 2024 Vorarlberg + Tirol als Pilot-Projekte."
+        "AT Wien hat höhere Leerstand-Quote (~8 %) als DE-Großstädte — Leerstandsabgabe: Steiermark seit 1.10.2022, Tirol seit 1.1.2023, Vorarlberg seit 1.1.2024."
       ],
       "claim_phrasings_handled": [
         "Genug Leerstand in Deutschland",
@@ -1057,33 +1057,45 @@
     {
       "id": "leerstandsabgabe_wirkung_2026",
       "topic": "leerstandsabgabe_wirkung_konsens",
-      "scope": "Leerstandsabgabe Vorarlberg + Tirol seit 2024 — empirische Erst-Wirkung",
-      "year": 2024,
-      "source_url": "https://www.vorarlberg.at/landtag/-/asset_publisher/CN8XRoYKqZWp/content/leerstandsabgabe-vorarlberg",
-      "secondary_url": "https://www.tirol.gv.at/landtag/leerstandsabgabe",
-      "source_label": "Land Vorarlberg Leerstandsabgabe-Gesetz 2024 + Land Tirol + WIFO Studien zu Leerstandsabgabe + Empirica Wirkungs-Analysen + AK Vorarlberg + Mietverband AT",
-      "headline": "AT Vorarlberg + Tirol Leerstandsabgabe seit 2024: Vorarlberg 1.000-3.000 Euro/Jahr je leerstehende Wohnung, Tirol 1.500-2.000 Euro/Jahr; erste Bilanz Q1-Q2 2024 Vorarlberg ~600 Wohnungen zurück auf Mietmarkt geschätzt — Wirkung empirisch real aber quantitativ klein",
+      "scope": "Leerstandsabgabe AT — Rechtsstand Tirol/Steiermark/Vorarlberg + Wirkungsevidenz",
+      "year": 2026,
+      "source_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrT&Gesetzesnummer=20000923",
+      "secondary_url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrVbg&Gesetzesnummer=20001747",
+      "source_label": "RIS — Tiroler Freizeitwohnsitz- und Leerstandsabgabegesetz (TFLAG, LGBl. Nr. 86/2022) + Vorarlberger Zweitwohnungsabgabegesetz (ZAG, LGBl. Nr. 59/2023) + Steiermärkisches Zweitwohnsitz- und Wohnungsleerstandsabgabegesetz (StZWAG, LGBl. Nr. 46/2022) + VfGH-Erkenntnisse 2026 + Segú (2020), Journal of Public Economics 185",
+      "headline": "STAND 23.9.2026: Leerstandsabgaben sind in Österreich Landes- und Gemeindeabgaben — Tirol seit 1.1.2023 (TFLAG), Steiermark seit 1.10.2022 (StZWAG), Vorarlberg seit 1.1.2024 (ZAG); die Höhe beschließt jede Gemeinde per Verordnung innerhalb gesetzlicher Grenzen. Für Österreich gibt es keine veröffentlichte Wirkungsmessung; kausal belegt ist nur Frankreich (Segú 2020: −13 % Leerstandsquote).",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Leerstandsabgabe wirkt automatisch / wirkt nicht' ist DIFFERENZIERT FALSCH. Empirische Lage: (1) RECHTLICHE GRUNDLAGE: AT Bundes-Verfassungsgericht-Urteil 2023 (G54/22): Bundesländer haben Kompetenz für Leerstandsabgabe (Eigentums-Bewahrung-Steuern). Vorarlberg Landtag 2023 + Tirol 2023 verabschiedeten Leerstandsabgabe-Gesetze, Inkrafttreten 2024. Wien Landtag 2024 in Diskussion, noch nicht verabschiedet. (2) VORARLBERG MODELL 2024: Leerstandsabgabe 1.000 Euro/Jahr (Wohnungen 60-99 m²), 2.000 Euro (100-149 m²), 3.000 Euro (>150 m²). Bemessung ab 6 Monaten Leerstand. Befreiungs-Gründe: Sanierungs-Phase (max. 12 Monate), Erbschafts-Phase, Eigentümer-Selbstbewohnung. (3) TIROL MODELL 2024: Leerstandsabgabe 1.500 Euro/Jahr (60-99 m²), 2.000 Euro (>100 m²). Strukturell ähnlich Vorarlberg. (4) ERSTE BILANZ Q1-Q2 2024 (AK Vorarlberg + Land Vorarlberg Statistik): ~600 Wohnungen zurück auf Mietmarkt geschätzt (Empirica-Schätzung) seit Inkrafttreten Januar 2024. Hauptmotivation: Eigentümer entscheiden zwischen Vermietung + Abgabe. Bei niedrigen Mietpreis-Niveaus (West-AT-Mittel ~12 Euro/m²) Vermietungs-Ertrag deutlich über Abgabe. (5) INTERNATIONALE ERFAHRUNGEN: Frankreich Leerstandsabgabe seit 1998 (taxe sur les logements vacants TLV): in Tendenz-Städten 12,5-25 % der Mietwert/Jahr — Wirkung +10-15 % Mietangebots-Erhöhung in betroffenen Städten (INSEE 2018 Studie). Belgien (regionale Modelle), Niederlande (kommunale Modelle) ähnliche Erfahrungen. (6) WIRKUNG-LIMITS: Leerstand-Definitions-Probleme (Sanierungs-Phase, kurzzeitige Vermietungs-Vakanzen), Vollzugs-Aufwand für Gemeinden. Empirica 2024 Schätzung: bei optimalem Vollzug DE-weite Leerstandsabgabe könnte ~50-100k Wohnungen zurück auf Mietmarkt bringen — quantitativ relevant für Boom-Städte, nicht Wohnungs-Mangel-Lösung-vollständig. (7) Faktencheck-relevant: Aussagen wie 'Leerstandsabgabe wirkt nicht' sind durch Vorarlberg + Frankreich-Daten widerlegt. Aussagen wie 'Leerstandsabgabe löst Wohnungsmangel' überzeichnen — Wirkung ist additiv, nicht primär.",
-        "vbg_bvfg_2023": "AT BVfG-Urteil G54/22 vom 2.10.2023: Bundesländer haben Verfassungs-Kompetenz für Leerstandsabgabe nach Art. 17 Bundes-Verfassungsgesetz (Eigentums-Bewahrungs-Steuern als Landes-Sache). Vorarlberg-Bedenken zur Bundes-Kompetenz wurden zurückgewiesen. Folge: Vorarlberg + Tirol Leerstandsabgabe-Gesetze rechtlich bestätigt.",
-        "vbg_modell_2024": "Vorarlberg Leerstandsabgabe-Gesetz 2024 (Inkrafttreten 1.1.2024): Stafelung nach Wohnungsgröße — Wohnungen 60-99 m² 1.000 Euro/Jahr, 100-149 m² 2.000 Euro/Jahr, >150 m² 3.000 Euro/Jahr. Bemessung ab 6 Monaten Leerstand. Befreiungs-Gründe: Sanierungs-Phase max. 12 Monate, Erbschafts-Phase max. 12 Monate, Eigentümer-Selbstbewohnung in absehbarer Zeit dokumentiert.",
-        "tirol_modell_2024": "Tirol Leerstandsabgabe-Gesetz 2024 (Inkrafttreten 1.1.2024): 1.500 Euro/Jahr für Wohnungen 60-99 m², 2.000 Euro/Jahr >100 m². Strukturell ähnlich Vorarlberg, etwas unterschiedliche Stafelung.",
-        "erste_bilanz_2024": "Q1-Q2 2024 Bilanz Vorarlberg (AK Vorarlberg + Land Vorarlberg Statistik): ~600 Wohnungen zurück auf Mietmarkt geschätzt seit Januar 2024 (Empirica-Schätzung). 80 % der zurückgekehrten Wohnungen in Bezirken Bregenz + Feldkirch + Dornbirn. Tirol Erste Bilanz noch nicht publiziert.",
-        "frankreich_tlv": "Frankreich Leerstandsabgabe Taxe sur les Logements Vacants TLV seit 1999 (Loi 99-882): in Tendenz-Städten >50.000 Einwohner. Tarif: 12,5 % Mietwert ab 1. Jahr Leerstand, 25 % ab 2. Jahr. INSEE 2018 Wirkungs-Studie: +10-15 % Mietangebots-Erhöhung in betroffenen Städten, ~50.000 Wohnungen zurück auf Markt jährlich. Wien-Diskussion folgt diesem Modell.",
-        "empirica_2024_de_potenzial": "Empirica 2024 Schätzung 'DE-weite Leerstandsabgabe-Potenzial': bei Inkrafttreten + optimalem Vollzug ~50-100.000 Wohnungen zurück auf Mietmarkt. Hauptpotenzial: Boom-Städte mit hohen Eigentumswohnungs-Leerstand-Quoten (Berlin 15-30 % in Top-Lagen, München, Hamburg). Quantitativ relevant aber nicht alleinige Wohnungs-Mangel-Lösung.",
+        "kernsatz_fuer_synthesizer": "Es gibt in Österreich keine bundesweite Leerstandsabgabe und keine einheitlichen Sätze: Jedes Bundesland hat ein eigenes Gesetz, die Höhe beschließt der Gemeinderat per Verordnung innerhalb gesetzlicher Ober- und Untergrenzen. Die Steiermark ermöglichte die Wohnungsleerstandsabgabe zuerst (1.10.2022), Tirol erhebt seit 1.1.2023, Vorarlberg seit 1.1.2024 — nicht beide erst 2024. Die Beträge sind je Monat oder je Quadratmeter geregelt, nicht als Pauschale 'pro Wohnung und Jahr'. Zur Wirkung: Für Österreich liegt (Stand 23.9.2026) keine veröffentlichte Evaluierung vor, die misst, wie viele Wohnungen durch die Abgabe vermietet wurden; Aussagen wie 'die Abgabe hat X Wohnungen zurück auf den Markt gebracht' sind für Österreich unbelegt. Kausal untersucht ist nur Frankreich: Segú (2020) findet für die 1999 eingeführte Leerstandsteuer einen Rückgang der Leerstandsquote um 13 % zwischen 1997 und 2001, konzentriert auf Langzeitleerstand. 'Leerstandsabgaben wirken grundsätzlich nicht' ist damit widerlegt; 'die Leerstandsabgabe löst den Wohnungsmangel' ist durch diese Größenordnung nicht gedeckt.",
+        "kompetenz": "Rechtsgrundlage ist die Finanzverfassung, kein Verfassungsgerichtshof-Urteil: Die Länder ermächtigen ihre Gemeinden, die Abgabe als ausschließliche Gemeindeabgabe nach § 6 Abs. 1 Z 5 F-VG 1948 auszuschreiben (§ 1 StZWAG); der VfGH behandelt sie als Zweitwohnsitzabgabe nach § 16 Abs. 1 Z 4 FAG 2017 (V220/2025). Ein Erkenntnis 'G54/22 vom 2.10.2023' dazu ist in der RIS-Judikatur nicht auffindbar.",
+        "tirol_bis_2025": "Tirol, TFLAG (LGBl. Nr. 86/2022), in Kraft seit 1.1.2023: Bis Ende 2025 setzte der Gemeinderat die monatliche Abgabe nach Nutzfläche fest (§ 9 Abs. 3) — bis 30 m² 10 bis 25 Euro, bis 60 m² 20 bis 50, bis 90 m² 30 bis 70, bis 150 m² 45 bis 100, bis 200 m² 60 bis 135, bis 250 m² 75 bis 175, über 250 m² 90 bis 215 Euro je Monat; in Vorbehaltsgemeinden doppelt (§ 9 Abs. 4).",
+        "tirol_seit_2026": "Tirol seit 1.1.2026 (LGBl. Nr. 38/2025): Die Gemeinden sind nur noch ermächtigt, die Abgabe zu erheben, nicht mehr verpflichtet; Leerstand ist eine Wohnung ohne Hauptwohnsitzmeldung im Melderegister über sechs durchgehende Monate (§ 6 Abs. 1). Die alten Verordnungen über die Höhe traten mit Ablauf des 31.12.2025 außer Kraft und gelten nur für frühere Zeiträume (§ 14 Abs. 4 und 5).",
+        "tirol_basismietwerte": "Tirol seit 15.8.2026 (LGBl. Nr. 65/2026): Die Landesregierung legt je Gemeinde Basismietwerte fest — Durchschnittsmiete je m² für eine Standardwohnung von 65 m², Zuschlag unter 40 m², Abschlag über 90 m², Zuschlag für neuwertige oder größer renovierte Wohnungen (§ 9 Abs. 3). Der Gemeinderat darf höchstens 30 v. H. dieses Basismietwerts je m² und Monat festlegen (§ 9 Abs. 4).",
+        "vorarlberg_zag": "Vorarlberg, ZAG (LGBl. Nr. 59/2023), in Kraft seit 1.1.2024: keine eigene Leerstandsabgabe, sondern eine Zweitwohnungsabgabe, die leerstehende Wohnungen miterfasst — abgabepflichtig ist eine Wohnung, an der mehr als 26 Wochen im Kalenderjahr keine Hauptwohnsitzmeldung und keine Ausnahme vorliegt (§ 2 Abs. 2 lit. a). Die Gemeinden sind ermächtigt, nicht verpflichtet (§ 1).",
+        "vorarlberg_saetze": "Vorarlberg, Höchstsätze je m² Geschoßfläche und Jahr (§ 5 Abs. 1 ZAG): 18,50 Euro in Gemeinden mit mehr als 30 % Wohnungen ohne Hauptwohnsitzmeldung, 14,10 Euro über 15 %, 8,20 Euro bis 15 %; dazu Jahreshöchstbeträge von 2.775, 2.115 und 1.230 Euro. Die Landesregierung veröffentlicht die Kategorie jeder Gemeinde jährlich bis Ende Februar (§ 5 Abs. 2).",
+        "steiermark_stzwag": "Steiermark, StZWAG (LGBl. Nr. 46/2022), in Kraft seit 1.10.2022 — das erste Landesgesetz mit einer Wohnungsleerstandsabgabe: Gegenstand sind Wohnungen, an denen nach dem Zentralen Melderegister mehr als 26 Kalenderwochen im Jahr weder ein Haupt- noch ein sonstiger Wohnsitz gemeldet ist (§ 8); bemessen wird nach Nutzfläche und Kalenderwochen ohne Wohnsitz (§ 11).",
+        "ausnahmen": "Die Ausnahmen sind breit und je Land verschieden. Die Steiermark nimmt etwa Wohnungen gemeinnütziger Bauvereinigungen, Wohnungen von Gebietskörperschaften, Häuser mit bis zu drei Wohnungen mit Hauptwohnsitz der Eigentümer, Instandsetzungen bis 26 Wochen, Wohnungen von aus gesundheitlichen oder Altersgründen Ausgezogenen und je eine Vorsorgewohnung pro Kind aus (§ 9 StZWAG).",
+        "vfgh_gemeindeverordnungen": "VfGH 2026: Die Gemeinde muss die Abgabenhöhe im Verordnungsakt begründen — Verkehrswerte der Liegenschaften und jene Belastungen, die nicht durch Benützungsgebühren oder Fremdenverkehrsabgaben abgegolten sind. Am 2.3.2026 hob er die Verordnungen der Gemeinde Ehrwald auf (V85/2025 ua); Irdning-Donnersbachtal (V220/2025), Mariazell (V11/2026, 8 Euro je m²) und Köflach (V266/2025) hielten stand.",
+        "wirkung_oesterreich": "Wirkung in Österreich: keine veröffentlichte Evaluierung (Stand 23.9.2026). Die bis 22.9.2026 hier genannte Zahl '~600 Wohnungen zurück auf den Mietmarkt (Vorarlberg, 1. Halbjahr 2024, Empirica-Schätzung)' ließ sich in keiner Quelle finden und wurde als unbelegt entfernt, ebenso 'Empirica 2024: DE-weit 50.000 bis 100.000 Wohnungen'.",
+        "wirkung_frankreich": "Frankreich, einzige kausale Studie — Mariona Segú, 'The impact of taxing vacancy on housing markets: Evidence from France', Journal of Public Economics 185 (2020), doi:10.1016/j.jpubeco.2019.104079. Differenz-von-Differenzen, Wohnungen 1995 bis 2013: Die Steuer von 1999 senkte die Leerstandsquote 1997 bis 2001 um 13 %, vor allem beim Langzeitleerstand; die Wohnungen wurden meist Hauptwohnsitze.",
+        "frankreich_rechtsstand": "Frankreich heute: Die taxe sur les logements vacants (TLV) beträgt 17 % des Mietwerts im ersten Jahr und 34 % in den Folgejahren (service-public.fr, geprüft 11.6.2025) — 12,5 und 25 % war der Satz vor 2023. Ab der Veranlagung 2027 werden TLV und die kommunale THLV zur taxe sur la vacance des locaux d'habitation (TVLH) zusammengelegt.",
         "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
       },
       "context_notes": [
-        "Wichtige Differenzierung: Leerstandsabgabe-Wirkung empirisch real (Vorarlberg ~600 Wohnungen H1 2024, Frankreich ~50k/Jahr), aber quantitativ nicht alleinige Wohnungs-Mangel-Lösung.",
-        "AT BVfG bestätigte 2023 Landes-Kompetenz für Leerstandsabgabe. Wien-Diskussion 2024 folgt Vorarlberg/Tirol-Modell.",
-        "Definitions-/Vollzugs-Probleme limitieren Wirkung — Sanierungs-Phasen, Erbschafts-Vakanzen müssen unterschieden werden."
+        "Korrigiert 2026-09-23: Der Fakt nannte 'Vorarlberg 1.000 bis 3.000 Euro/Jahr', 'Tirol 1.500 bis 2.000 Euro/Jahr', Inkrafttreten 'beide 2024', ein VfGH-Urteil G54/22 vom 2.10.2023 und eine Empirica-Schätzung von ~600 Wohnungen. Keine dieser Angaben war belegbar; die Sätze stehen in TFLAG und ZAG anders. Tote Altbelege: vorarlberg.at/landtag/… und tirol.gv.at/landtag/leerstandsabgabe.",
+        "Datenstand: TFLAG in der Fassung LGBl. Nr. 65/2026 (§ 9 seit 15.8.2026), ZAG in der Fassung LGBl. Nr. 27/2024, StZWAG in der Fassung LGBl. Nr. 68/2025; VfGH-Erkenntnisse vom 2.3.2026 und 15.6.2026; TLV-Sätze Stand 11.6.2025.",
+        "Die Steiermark fehlte im Fakt ganz, obwohl ihr Gesetz als erstes eine Wohnungsleerstandsabgabe ermöglicht hat (1.10.2022).",
+        "Tirol steckt im Übergang: Die alten Höhe-Verordnungen sind Ende 2025 ausgelaufen, die neue Bemessung setzt eine Basismietwerteverordnung der Landesregierung voraus."
       ],
       "claim_phrasings_handled": [
         "Leerstandsabgabe wirkt nicht",
         "Leerstandsabgabe löst Wohnungsmangel",
         "Leerstandsabgabe Vorarlberg ist verfassungswidrig",
         "Leerstandsabgabe ist Enteignung",
-        "Leerstandsabgabe bringt nichts gegen Wohnungsmangel"
+        "Leerstandsabgabe bringt nichts gegen Wohnungsmangel",
+        "Wie hoch ist die Leerstandsabgabe in Tirol?",
+        "Die Leerstandsabgabe gibt es erst seit 2024",
+        "Wie viele Wohnungen hat die Leerstandsabgabe zurück auf den Markt gebracht?",
+        "Gibt es in der Steiermark eine Leerstandsabgabe?",
+        "Wie hoch ist die Zweitwohnungsabgabe in Vorarlberg?"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
@@ -1094,7 +1106,11 @@
           "leerstand-steuer",
           "leerstandssteuer",
           "wohnungsleerstand-abgabe",
-          "wohnungsleerstandsabgabe"
+          "wohnungsleerstandsabgabe",
+          "zweitwohnungsabgabe",
+          "zweitwohnsitzabgabe",
+          "tflag",
+          "stzwag"
         ],
         [
           "wirkt",
@@ -1108,11 +1124,43 @@
           "enteignung",
           "vorarlberg",
           "tirol",
+          "steiermark",
           "wien",
           "deutschland",
+          "österreich",
+          "oesterreich",
           "wohnungsmangel",
           "wohnungs-mangel",
-          "bringt nichts"
+          "bringt nichts",
+          "wie hoch",
+          "höhe",
+          "hoehe",
+          "euro",
+          "seit",
+          "gibt es",
+          "wie viele",
+          "zurück auf den markt",
+          "zurueck auf den markt",
+          "frankreich"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "leerstand"
+          ],
+          [
+            "abgabe",
+            "steuer"
+          ]
+        ],
+        [
+          [
+            "zweitwohn"
+          ],
+          [
+            "abgabe"
+          ]
         ]
       ]
     }

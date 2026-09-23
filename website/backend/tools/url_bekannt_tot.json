@@ -148,33 +148,12 @@
    "seit": "2026-09-22",
    "grund": "INHALT: OGH-Entscheidung '8 ObA 70/22f (Foodora-Riders Arbeitnehmer)' nicht auffindbar — Aktenzeichen und Aussage pruefen"
   },
-  "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/sozialleistungen-auf-bundes-und-landesebene/wohnbeihilfe": {
-   "dateien": [
-    "sozialstaat_pack.json"
-   ],
-   "seit": "2026-09-22",
-   "grund": "INHALT: Fakt: Wien ~140.000 Wohnbeihilfe-Bezieher; Stadt Wien meldet fuer die neue Wohnbeihilfe 2025 rund 36.000 Haushalte — Zahl pruefen"
-  },
-  "https://www.tirol.gv.at/landtag/leerstandsabgabe": {
-   "dateien": [
-    "wohnen_pack.json"
-   ],
-   "seit": "2026-09-22",
-   "grund": "INHALT: Fakt: Tirol Leerstandsabgabe 'seit 2024', 1.500-2.000 EUR/Jahr; TFLAG gilt seit 1.1.2023 mit 10-215 EUR/Monat je nach Groesse (Vorbehaltsgemeinden doppelt)"
-  },
   "https://www.verbraucherzentrale.de/wissen/digitale-welt/datenschutz/whatsapp-chats-als-beweismittel-rechtslage-und-tipps-69466": {
    "dateien": [
     "recht_pack.json"
    ],
    "seit": "2026-09-22",
    "grund": "Verbraucherzentrale-Seite entfernt, kein gleichwertiger Nachfolger (nur Kanzlei-Blogs)"
-  },
-  "https://www.wien.gv.at/wohnen/wohnbaufoerderung/wohnbeihilfe/index.html": {
-   "dateien": [
-    "sozialstaat_pack.json"
-   ],
-   "seit": "2026-09-22",
-   "grund": "INHALT: siehe Statistik-Wohnbeihilfe: Wiener Bezieherzahl im Fakt passt nicht zur Stadt Wien"
   }
  }
 }

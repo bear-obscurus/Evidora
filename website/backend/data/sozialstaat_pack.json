@@ -476,26 +476,28 @@
     {
       "id": "wohnbeihilfe_at_2026",
       "topic": "wohnbeihilfe_konsens",
-      "scope": "AT-Wohnbeihilfe Bundeslaender — Wien-Modell + andere Laender 2024",
+      "scope": "AT-Wohnbeihilfe — Landeskompetenz, amtliche Ausgaben, Wiener Bezieherzahlen",
       "year": 2024,
-      "source_url": "https://www.wien.gv.at/wohnen/wohnbaufoerderung/wohnbeihilfe/index.html",
-      "secondary_url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/sozialleistungen-auf-bundes-und-landesebene/wohnbeihilfe",
-      "source_label": "Stadt Wien Wohnbau-Foerderung 2024 + Statistik Austria Wohnbeihilfe-Statistik + Bundeslaender-Foerderstellen + AK Wien Wohn-Studien + WIFO Wohnpolitik-Analysen",
-      "headline": "AT-Wohnbeihilfe ist Bundeslaender-Sache: ~280.000 Bezieher 2024 gesamt; Wien-Modell groesster Anteil (~140.000 Bezieher); Saetze einkommens- + haushaltsabhaengig 100-300 EUR/Monat",
+      "source_url": "https://www.wien.gv.at/statistik/publikationen/jahrbuch.html",
+      "secondary_url": "https://www.statistik.at/fileadmin/pages/341/Sozialschutz_1990-2024_STAT.pdf",
+      "source_label": "Statistisches Jahrbuch der Stadt Wien 2025 (Tabelle 10.1.5) + Statistik Austria, Sozialschutz 1990–2024 (ESSOSS, Tabelle 76, Stand 21.11.2025) + RIS (Wiener Wohnbeihilfegesetz, LGBl. Nr. 7/2024)",
+      "headline": "STAND 23.9.2026: Wohnbeihilfe ist Landessache — neun Landesgesetze, kein Bundesgesetz. Amtlich für ganz Österreich sind nur die Ausgaben: 265 Mio. Euro 2024 (vorläufig) nach 399 Mio. 2010; eine bundesweite Bezieherzahl wird nicht veröffentlicht. Wien 2023: 31.043 Bezieher, 43,5 Mio. Euro — 2024 nach dem Modellwechsel 23.985 im alten und 22.925 im neuen Modell, 58,2 Mio. Euro.",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT-Wohnbeihilfe ist einheitlich' ist FALSCH — Wohnbeihilfe ist Landes-Sache mit 9 verschiedenen Modellen. Datenlage: (1) AT-Wohnbeihilfe nach Wohnbau-Foerderungs-Gesetzen der 9 Bundeslaender (kein Bundesgesetz). Gemeinsamer Zweck: Mietbelastung von einkommens-schwachen Haushalten reduzieren. Modelle unterscheiden sich nach Bundesland — Saetze, Einkommens-Grenzen, Wohnungs-Groesse-Limits variieren. (2) Bezieher 2024 (Statistik Austria + Bundeslaender-Foerderstellen): ~280.000 Bezieher gesamt. Davon Wien ~140.000, Niederoesterreich ~45.000, Oberoesterreich ~30.000, Steiermark ~25.000, Tirol/Vorarlberg/Salzburg/Kaernten/Burgenland ~40.000 zusammen. (3) Wien-Modell (Wiener Wohnbeihilfen-Gesetz): einkommens-, haushalts- und wohnungs-abhaengig. Beispiel: Alleinerzieher mit 2 Kindern, Netto-Einkommen 2.000 EUR, Miete 800 EUR — Wohnbeihilfe ca. 200-280 EUR/Monat (Stadt Wien Foerder-Rechner 2024). Bezugsdauer ueblicherweise 1-2 Jahre, dann Neuantrag. (4) Saetze andere Bundeslaender: aehnlich, mit Variationen. NOe + OOe niedrigere Saetze als Wien. Tirol + Salzburg neuere Reformen 2023-2024. Vorarlberg hat zusaetzlich 2024 Leerstand-Abgabe als Bundeslaender-Pilot. (5) Wirkung: Wohnbeihilfe reduziert Mietbelastung von Bezieher-Haushalten signifikant. AK Wien-Studie 2023: ohne Wohnbeihilfe waere Wohnkosten-Belastung von Mindest-Einkommens-Haushalten in Wien ueber 50 % der Netto-Einkommens — mit Wohnbeihilfe ca. 30-35 %. (6) Universelle vs. bedarfs-gepruefte Leistung: AT-Wohnbeihilfe ist BEDARFS-gepruefte Leistung (Einkommens-Pruefung, Wohnungs-Groessen-Limits) — nicht universell wie Familienbeihilfe. (7) Faktencheck-relevant: Aussagen wie 'AT hat einheitliche Wohnbeihilfe' sind falsch (Landes-Sache); Aussagen wie 'Wohnbeihilfe ist zu niedrig / zu hoch' sind Werte-Fragen. Pack distanziert sich von Pro/Contra-Wertung — praesentiert nur die 9 Modelle + Bezieher-Statistik.",
-        "bundeslaender_modelle": "9 Bundeslaender — 9 Wohnbau-Foerderungs-Gesetze: Wien (Wiener Wohnbeihilfen-Gesetz, neueste Novelle 2023), NOe (NOe Wohnungsfoerderungsgesetz), OOe (OOe Wohnbau-Foerderungsgesetz), Stmk (Steiermaerkisches Wohnbaufoerderungsgesetz), Tirol + Sbg + Vbg + Krnt + Bgld jeweils eigenstaendig. Saetze + Einkommens-Grenzen + Wohnungs-Groesse-Limits unterschiedlich.",
-        "bezieher_2024": "Statistik Austria + Bundeslaender-Foerderstellen 2024: ~280.000 Bezieher gesamt. Wien ~140.000 (groesster Anteil), NOe ~45.000, OOe ~30.000, Stmk ~25.000, Tirol/Vbg/Sbg/Krnt/Bgld ~40.000 zusammen. Auszahlungs-Volumen Wien ~150 Mio EUR/Jahr, gesamt AT ~330 Mio EUR/Jahr.",
-        "wien_modell_beispiel": "Wien-Modell (Wiener Wohnbeihilfen-Gesetz): einkommens-, haushalts- und wohnungs-abhaengige Leistung. Beispiel-Berechnung 2024 (Stadt Wien Foerder-Rechner): Alleinerzieher mit 2 Kindern, Netto-Einkommen 2.000 EUR, Miete 800 EUR — Wohnbeihilfe ca. 200-280 EUR/Monat. Wohnungs-Groessen-Limit: max 90 m2 fuer 4-Personen-Haushalt. Bezugsdauer 1-2 Jahre, dann Neuantrag.",
-        "ak_wien_wirkung_2023": "AK Wien Wohn-Studien 2023 (Tradition AK-Wien-Wohnstudien Zenz/Schoibl): ohne Wohnbeihilfe waere Wohnkosten-Belastung Mindest-Einkommens-Haushalte in Wien ueber 50 % des Netto-Einkommens. Mit Wohnbeihilfe Wohnkosten-Belastung ca. 30-35 % — signifikante Wirkung der Leistung. Studie weiterhin AK-Wien Sozialberichte ausgebaut.",
-        "vorarlberg_leerstandsabgabe_2024": "Vorarlberg + Tirol haben 2024 Leerstand-Abgabe als Bundeslaender-Pilot eingefuehrt — flankierende Massnahme zur Wohnbeihilfe. Erste Bilanzen 2024-2025: ca. 600 Wohnungen wurden zurueck auf den Mietmarkt gebracht (Land Vorarlberg + Tirol Berichte).",
+        "kernsatz_fuer_synthesizer": "Wohnbeihilfe ist in Österreich Landessache: neun Landesgesetze, kein Bundesgesetz, keine bundesweit einheitliche Leistung. Eine amtliche Gesamtzahl der Beziehenden für Österreich wird nicht veröffentlicht — Angaben wie 'rund 280.000 Bezieher, davon 140.000 in Wien' haben keine Quelle und sind um ein Vielfaches zu hoch. Belegt sind zwei Dinge: (1) die Ausgaben für ganz Österreich aus der EU-Sozialschutzstatistik ESSOSS — 265 Mio. Euro 2024 (vorläufig) nach 266 Mio. 2023, 237 Mio. 2022, 343 Mio. 2015 und 399 Mio. 2010; die Ausgaben sind seit 2010 also deutlich gesunken. (2) die Länderzahlen dort, wo ein Land sie veröffentlicht: Wien zählte 2023 31.043 Wohnbeihilfe-Beziehende bei 43,5 Mio. Euro Jahresaufwand; 2024 gab es wegen der Umstellung auf das neue Wiener Wohnbeihilfegesetz Beziehende in beiden Modellen (23.985 alt, 22.925 neu) und 58,2 Mio. Euro Aufwand. Wohnbeihilfe ist eine bedarfsgeprüfte Leistung mit Einkommens- und Wohnungsgrößengrenzen, nicht universell wie die Familienbeihilfe.",
+        "ausgaben_oesterreich": "Ausgaben für Wohnbeihilfe in Österreich (Statistik Austria, Sozialschutz 1990–2024, ESSOSS, Tabelle 76, Stand 21.11.2025; Mio. Euro): 1990 111, 2000 174, 2010 399, 2015 343, 2018 273, 2019 259, 2020 254, 2021 243, 2022 237, 2023 266, 2024 vorläufig 265. Mit Annuitäten- und Zinsenzuschüssen sowie Mietzinsbeihilfe zusammen 266 Mio. Euro (2024).",
+        "wien_bezieher": "Wien, Wohnbeihilfe des Landes (Statistisches Jahrbuch der Stadt Wien 2025, Tabelle 10.1.5) — Beziehende und Jahresaufwand: 2006 54.784 / 86,1 Mio. Euro, 2015 45.381 / 70,1, 2020 39.979 / 59,6, 2022 34.129 / 45,7, 2023 31.043 / 43,5. Für 2024 weist das Jahrbuch wegen des Modellwechsels keine einheitliche Bezieherzahl aus, nur den Aufwand: 58,2 Mio. Euro.",
+        "wien_modellwechsel": "Wien stellte die Wohnbeihilfe mit 1.3.2024 auf eine neue Grundlage um (Wiener Wohnbeihilfegesetz – WrWbG, LGBl. Nr. 7/2024, zuletzt geändert LGBl. Nr. 65/2025; davor LGBl. Nr. 32/1989). 2024 gab es deshalb Beziehende in beiden Modellen: 23.985 im alten, 22.925 im neuen. Der Jahresaufwand stieg von 43,5 auf 58,2 Mio. Euro, also um rund 34 %.",
+        "wien_mietbeihilfe_abgrenzung": "Nicht dasselbe wie die Wohnbeihilfe: Die Mietbeihilfe des Landes Wien für Pensionsbeziehende hatte 2023 noch 9.955 Beziehende bei 20,1 Mio. Euro, 2024 nur 4.651 bei 9,2 Mio. Euro; sie ging im Lauf des Jahres 2024 in den Vollzug der MA 50 über. Die Mietzinsbeihilfe des Bundes wurde mit 1.1.2016 eingestellt.",
+        "bundeslaender_modelle": "Rechtsgrundlage sind die Wohnbauförderungs- bzw. Wohnbeihilfegesetze der neun Länder; Wien hat seit 1.3.2024 ein eigenes Wohnbeihilfegesetz. Höhe, Einkommensgrenzen und Wohnungsgrößengrenzen unterscheiden sich je Land. Ein Vergleich aller neun Länder aus einer amtlichen Quelle liegt nicht vor — Länderzahlen sind nur einzeln und mit unterschiedlichen Zählweisen verfügbar.",
+        "leerstandsabgabe_abgrenzung": "Die Leerstandsabgabe ist keine Wohnbeihilfe-Maßnahme und kein 'Bundesländer-Pilot seit 2024': Die Steiermark ermöglicht sie seit 1.10.2022, Tirol seit 1.1.2023, Vorarlberg seit 1.1.2024. Wie viele Wohnungen dadurch vermietet wurden, ist für Österreich nicht erhoben; die früher hier genannten '600 Wohnungen' hatten keine Quelle.",
         "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wohnbeihilfe-Wertung."
       },
       "context_notes": [
-        "AT-Wohnbeihilfe ist Bundeslaender-Sache — 9 verschiedene Wohnbau-Foerderungs-Gesetze, keine einheitliche Bundes-Regelung.",
-        "~280.000 Bezieher 2024 gesamt, davon Wien ~140.000 (groesster Anteil) — Wiener Wohnbeihilfen-Gesetz ist meist diskutiertes Modell.",
-        "Wohnbeihilfe ist BEDARFS-gepruefte Leistung — nicht universell wie Familienbeihilfe.",
-        "AK Wien-Studie 2023: ohne Wohnbeihilfe waere Wohnkosten-Belastung Mindest-Einkommens-Haushalte in Wien ueber 50 %, mit Wohnbeihilfe ca. 30-35 %."
+        "Korrigiert 2026-09-23: Der Fakt nannte ~280.000 Beziehende in Österreich und ~140.000 in Wien. Wien hatte 2023 31.043 — der Fakt lag beim Vierfachen. Auch das Auszahlungsvolumen (~330 Mio. Euro) und die AK-Wien-Studie 2023 waren unbelegt. Tote Altbelege: wien.gv.at/wohnen/wohnbaufoerderung/wohnbeihilfe/index.html und die Statistik-Austria-Seite /sozialleistungen-auf-bundes-und-landesebene/wohnbeihilfe.",
+        "Datenstand: ESSOSS-Reihe bis 2024 (vorläufig), Stand 21.11.2025; Statistisches Jahrbuch der Stadt Wien 2025 mit Daten bis 2024.",
+        "Wien weist 2024 bewusst keine Gesamtzahl aus, weil Haushalte in beiden Modellen gezählt würden — die Summe 23.985 + 22.925 ist deshalb keine Bezieherzahl.",
+        "Wohnbeihilfe ist bedarfsgeprüft, nicht universell wie die Familienbeihilfe.",
+        "Ebenfalls als unbelegt entfernt: die Länderaufteilung (NÖ 45.000, OÖ 30.000, Stmk 25.000 Beziehende), das Auszahlungsvolumen (Wien ~150 Mio., gesamt ~330 Mio. Euro) und die AK-Wien-Studie 2023 (Zenz/Schoibl), wonach die Wohnkostenbelastung ohne Wohnbeihilfe über 50 % und mit ihr 30 bis 35 % betrage."
       ],
       "claim_phrasings_handled": [
         "Wohnbeihilfe in Oesterreich einheitlich",
@@ -503,15 +505,21 @@
         "Wer bekommt Wohnbeihilfe AT",
         "Wieviel Wohnbeihilfe Wien",
         "Wohnbeihilfe Bundeslaender Vergleich",
-        "Wohnbeihilfe Wirkung Mietbelastung"
+        "Wohnbeihilfe Wirkung Mietbelastung",
+        "Wie viele Menschen bekommen in Wien Wohnbeihilfe?",
+        "In Österreich beziehen 280.000 Menschen Wohnbeihilfe",
+        "Wie viel gibt Österreich für Wohnbeihilfe aus?",
+        "Die Wohnbeihilfe wurde in Wien ausgeweitet"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
         [
           "wohnbeihilfe",
           "wohn-beihilfe",
+          "wohnbeihilfegesetz",
           "wohnbau-foerderung",
           "wohnbaufoerderung",
+          "wohnbauförderung",
           "wohnzuschuss",
           "wohn-zuschuss",
           "mietbeihilfe",
@@ -524,6 +532,7 @@
         [
           "bundeslaender",
           "bundes-laender",
+          "bundesländer",
           "bundesland",
           "bundes-land",
           "wien",
@@ -535,9 +544,13 @@
           "vorarlberg",
           "burgenland",
           "steiermark",
+          "österreich",
+          "oesterreich",
           "wer bekommt",
           "anspruch",
           "wieviel",
+          "wie viel",
+          "wie viele",
           "wie hoch",
           "einheitlich",
           "modell",
@@ -546,13 +559,21 @@
           "miet-belastung",
           "saetze",
           "satze",
+          "sätze",
           "missbrauch",
           "missbraucht",
           "miss-brauch",
           "flaechendeckend",
           "flächendeckend",
           "wird missbraucht",
-          "fake"
+          "fake",
+          "bezieher",
+          "beziehen",
+          "ausgaben",
+          "kostet",
+          "ausgeweitet",
+          "gekuerzt",
+          "gekürzt"
         ]
       ],
       "trigger_all": [
@@ -562,6 +583,17 @@
           ],
           [
             "niedrig"
+          ]
+        ],
+        [
+          [
+            "wohnbeihilf"
+          ],
+          [
+            "280.000",
+            "280000",
+            "140.000",
+            "140000"
           ]
         ]
       ]
