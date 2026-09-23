@@ -110,8 +110,8 @@ def test_80_20_wird_ausdruecklich_verneint():
 def test_agrar_quelle_ist_der_gruene_bericht():
     assert "gruenerbericht2025" in AGRAR["source_url"]
     assert AGRAR["secondary_url"].endswith(".pdf")
-    # Der erfundene Link darf nicht mehr als Quelle dienen; in der
-    # "Korrigiert"-Notiz wird er absichtlich benannt.
+    # Der erfundene Link darf nicht mehr als Quelle dienen; die
+    # "Korrigiert"-Notiz benennt ihn (Links sind erlaubt, Zahlen nicht).
     assert "jcr:fixme" not in AGRAR["source_url"] + AGRAR["secondary_url"]
     assert "jcr:fixme" not in AGRAR_TEXT
 

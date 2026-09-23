@@ -411,7 +411,7 @@
       "context_notes": [
         "Datenstand: Grüner Bericht 2025 mit Datenjahr 2024, Stand der Fördermittel Juli 2025. Der Bericht erscheint jährlich im Herbst.",
         "Die zweite Säule (Ländliche Entwicklung) enthält ÖPUL und die Ausgleichszulage für benachteiligte Gebiete; diese Zahlungen sind an Auflagen oder an naturbedingte Nachteile gebunden und verteilen sich anders als die Flächenprämien der ersten Säule.",
-        "Korrigiert 2026-09-22: Die frühere Fassung rechnete '1,1 Mrd. EU-GAP + 600 Mio. national = ~7 Mrd. pro Jahr' — die Summe passte weder zu den Summanden noch zum Agrarbudget von 2,652 Mrd. Ebenfalls entfernt: die Aussage '80 % der Mittel an 20 % der Höfe (BOKU 2023)' samt 'Top-1 % bekommt 30 %'; die Verteilungstabelle des Grünen Berichts zeigt rund 52 % für die größten 20 %. Der zugehörige Link war erfunden (jcr:fixme)."
+        "Korrigiert 2026-09-22: Die frühere Fassung addierte EU-Mittel und nationale Mittel zu einer Jahressumme, die weder zu ihren Summanden noch zum Agrarbudget des Grünen Berichts passte. Ebenfalls entfernt: die Aussage '80 % der Mittel an 20 % der Höfe (BOKU 2023)' samt 'Top-1 % bekommt 30 %'; die Verteilungstabelle des Grünen Berichts zeigt rund 52 % für die größten 20 %. Der zugehörige Link war erfunden (jcr:fixme)."
       ],
       "claim_phrasings_handled": [
         "AT-Bauern bekommen kaum Subventionen",

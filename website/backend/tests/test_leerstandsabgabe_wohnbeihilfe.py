@@ -52,8 +52,9 @@ def _fakt(datei: str, fakt_id: str) -> dict:
 LEER = _fakt("wohnen_pack.json", "leerstandsabgabe_wirkung_2026")
 WBH = _fakt("sozialstaat_pack.json", "wohnbeihilfe_at_2026")
 
-# Geprueft wird die Aussage (headline + data); die "Korrigiert"-Notiz in
-# context_notes benennt die alten Zahlen absichtlich.
+# Geprueft wird die Aussage (headline + data). Die context_notes duerfen die
+# widerlegten Zahlen seit dem 23.9.2026 nicht mehr nennen — warum, steht in
+# tests/test_korrekturnotiz_ohne_alte_zahlen.py.
 LEER_TEXT = LEER["headline"] + " " + json.dumps(LEER["data"], ensure_ascii=False)
 WBH_TEXT = WBH["headline"] + " " + json.dumps(WBH["data"], ensure_ascii=False)
 

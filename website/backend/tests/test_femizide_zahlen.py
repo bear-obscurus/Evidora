@@ -57,8 +57,9 @@ def _fakt(datei: str, fakt_id: str) -> dict:
 
 
 F = _fakt("gleichstellung_pack.json", "femizide_at_de_2026")
-# Geprueft wird die Aussage (headline + data); die "Korrigiert"-Notiz nennt
-# die alten Falschzahlen absichtlich.
+# Geprueft wird die Aussage (headline + data). Die "Korrigiert"-Notiz nennt
+# die alten Falschzahlen nicht mehr (siehe
+# tests/test_korrekturnotiz_ohne_alte_zahlen.py).
 TEXT = F["headline"] + " " + json.dumps(F["data"], ensure_ascii=False)
 
 
