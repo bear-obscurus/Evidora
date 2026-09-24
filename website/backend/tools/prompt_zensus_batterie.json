@@ -213,6 +213,28 @@
       "muss": [
         "17.000"
       ]
+    },
+    {
+      "claim": "SUVs sind gefährlicher für Fußgänger",
+      "datei": "mobilitaet_pack.json",
+      "fakt": "mobilitaet-suv_sicherheit_2026",
+      "muss": [
+        [
+          "44",
+          "45 %"
+        ]
+      ]
+    },
+    {
+      "claim": "SUV-Fahrer sind bei einem Unfall besser geschützt",
+      "datei": "mobilitaet_pack.json",
+      "fakt": "mobilitaet-suv_sicherheit_2026",
+      "muss": [
+        [
+          "keinen Beleg",
+          "1.100"
+        ]
+      ]
     }
   ],
   "bekannte_luecken": [],
