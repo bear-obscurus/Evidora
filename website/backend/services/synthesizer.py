@@ -52,6 +52,16 @@ _SNIPPET_STOPWORDS = frozenset({
     "dass", "wenn", "weil", "auch", "noch", "nur", "sehr", "beim", "einem",
     "this", "that", "with", "from", "have", "were", "been", "they", "their",
     "which", "about", "than", "then", "there", "these", "those", "such",
+    # Frage- und Hilfswörter: stehen in fast jedem Feld und verdrängen sonst
+    # den seltenen, claim-tragenden Begriff (Prompt-Zensus 2026-09-24 —
+    # „Gibt es in der Steiermark eine Leerstandsabgabe?" gewann den Satz mit
+    # „gibt", nicht den mit „Steiermark").
+    "gibt", "geben", "kann", "können", "koennen", "muss", "müssen", "muessen",
+    "soll", "sollen", "darf", "dürfen", "duerfen", "wurde", "wurden", "worden",
+    "welche", "welcher", "welches", "wieviel", "viele", "viel", "warum",
+    "wann", "wieso", "weshalb", "eigentlich", "wirklich", "stimmt", "stimmen",
+    "sowie", "schon", "immer", "jeder", "jede", "jedes", "keine", "kein",
+    "does", "what", "when", "many", "much", "should", "could", "would",
 })
 
 
@@ -103,20 +113,51 @@ def _claim_centered_truncate(s: str, terms: list[str], max_str: int) -> str:
     if not terms:
         return _snippet_head(s, max_str)
 
+    # Schreibweisen-Normalisierung wie bei der Trigger-Erkennung (#143/#144):
+    # Ohne sie ankert „Oesterreich" nicht an „Österreich" — der Claim-Term
+    # zaehlt dann 0 Treffer und ein beliebiger anderer Satz gewinnt das
+    # Budget (Prompt-Zensus 2026-09-24). Normalisiert wird nur fuer die
+    # BEWERTUNG; ausgegeben wird immer der Originaltext.
+    from services._schreibweise import normalisiere
+
     s_lc = s.lower()
-    freq = {t: s_lc.count(t) for t in terms}
+    s_norm = normalisiere(s_lc)
+
+    def _nadel(t: str) -> str:
+        """Claim-Term, notfalls um seine Flexionsendung gekuerzt.
+
+        „Partnern" steht im Fakt als „Partnerschaftsgewalt" — der Substring
+        reisst an der Endung (dasselbe Muster wie die Frontex-Flexionsformen
+        in #141: Wortstamm pruefen statt Varianten aufzaehlen). Zwei
+        Buchstaben genuegen fuer die deutschen Endungen (-n, -en, -er, -es,
+        -em); der Stamm muss mindestens vier Zeichen behalten."""
+        t_n = normalisiere(t)
+        if t_n in s_norm:
+            return t_n
+        for kurz in (t_n[:-1], t_n[:-2]):
+            if len(kurz) >= 4 and kurz in s_norm:
+                return kurz
+        return t_n
+
+    norm_term = {t: _nadel(t) for t in terms}
+    freq = {t: s_norm.count(norm_term[t]) for t in terms}
     present = {t: f for t, f in freq.items() if f > 0}
     if not present:
         return _snippet_head(s, max_str)
 
-    # Sätze inkl. Trenner erhalten (Split an .!? + Whitespace/Zeilenumbruch).
-    raw = _re.split(r"(?<=[.!?])\s+|\n+", s)
-    sentences = [seg.strip() for seg in raw if seg and seg.strip()]
+    # Sätze bzw. Datenfelder. Der frühere Split an "(?<=[.!?])\s+" endete
+    # hinter jeder Abkürzung ("LGBl. Nr.", "Abs. 3", "Mio. Euro") und hinter
+    # jeder Ordnungszahl ("seit 1. Jänner 2023") — das Budget ging dann an
+    # 20-Zeichen-Fragmente ohne Zahl (Prompt-Zensus 2026-09-24).
+    from services._satzgrenzen import teile_in_einheiten
+    sentences = teile_in_einheiten(s)
     if len(sentences) <= 1:
         # Ein einziger Riesensatz → hartes Fenster um den seltensten Term.
         rarest = min(present, key=lambda t: present[t])
+        # Offsets gelten nur im Originaltext; findet sich der Term dort in
+        # abweichender Schreibweise nicht, bleibt es beim Textanfang.
         anchor = s_lc.find(rarest)
-        start = max(0, anchor - 120)
+        start = max(0, anchor - 120) if anchor >= 0 else 0
         window = s[start:start + max_str]
         if start > 0:
             window = window.split(" ", 1)[-1]
@@ -125,18 +166,32 @@ def _claim_centered_truncate(s: str, terms: list[str], max_str: int) -> str:
         return (("[…] " if start > 0 else "") + window.strip()
                 + (" […]" if start + max_str < len(s) else ""))
 
-    def _score(sent_lc: str) -> float:
-        return sum(1.0 / present[t] for t in present if t in sent_lc)
+    def _score(sent_lc: str) -> tuple[int, float]:
+        """Abdeckung zuerst, Seltenheit als Stichentscheid.
+
+        Gemessen (Prompt-Zensus 2026-09-24, Batterie mit 17 Faellen):
+        Abdeckung 13, Abdeckung+Seltenheit 12, 1/Haeufigkeit 11, 1/sqrt 12.
+        Die reine IDF-Gewichtung liess einen einzelnen seltenen Term jeden
+        anderen ueberstimmen — sobald die Schreibweisen-Normalisierung mehr
+        Terme treffen laesst, zog damit ein beliebiger Nebensatz das Budget
+        an sich. Die Seltenheit bleibt als Stichentscheid: nur so ueberlebt
+        der Kickl-Fall, in dem beide Saetze je EINEN Term tragen und der
+        seltene ("kickl") gegen den achtfachen ("volkskanzler") gewinnt."""
+        sent_norm = normalisiere(sent_lc)
+        treffer = [t for t in present if norm_term[t] in sent_norm]
+        return (len(treffer), sum(1.0 / present[t] for t in treffer))
 
     scored = [(i, sent, _score(sent.lower())) for i, sent in enumerate(sentences)]
-    candidates = [x for x in scored if x[2] > 0]
+    candidates = [x for x in scored if x[2][0] > 0]
     if not candidates:
         return _snippet_head(s, max_str)
 
     # Gierig nach IDF-Score, bis das Zeichenbudget erschöpft ist.
     chosen: list[int] = []
     used = 0
-    for i, sent, _sc in sorted(candidates, key=lambda x: (-x[2], x[0])):
+    for i, sent, _sc in sorted(candidates, key=lambda x: (-x[2][0], -x[2][1], x[0])):
+        if i in chosen:
+            continue
         if chosen and used + len(sent) + 1 > max_str:
             continue
         chosen.append(i)
@@ -144,6 +199,12 @@ def _claim_centered_truncate(s: str, terms: list[str], max_str: int) -> str:
         if used >= max_str:
             break
 
+    # Nachbar-Auffuellung: Die entscheidende Zahl steht oft im FOLGESATZ des
+    # Satzes, der die Claim-Terme traegt ("(1) OESTERREICH, PKS 2024 …" /
+    # "Von den 98 Opfern entfielen … 40 auf vollendete Morde"). Ein solcher
+    # Folgesatz enthaelt selbst keinen Claim-Term und ist deshalb gar kein
+    # Kandidat. Mit Restbudget nehmen wir ihn trotzdem mit — erst die
+    # Nachfolger, dann die Vorgaenger (Prompt-Zensus 2026-09-24).
     chosen.sort()
     parts: list[str] = []
     if chosen[0] != 0:

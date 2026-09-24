@@ -1,0 +1,159 @@
+{
+  "hinweis": "Batterie fuer tools/prompt_zensus.py. 'muss' = Zeichenfolgen, die im gekuerzten Synthesizer-Prompt ankommen MUESSEN, damit der Claim ueberhaupt korrekt beantwortbar ist. Erweitern, sobald ein Fakt korrigiert wird: der Zensus haelt fest, dass die neue Zahl auch ankommt.",
+  "claims": [
+    {
+      "claim": "Wie hoch ist die Leerstandsabgabe in Tirol?",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "10 bis 215"
+      ]
+    },
+    {
+      "claim": "Die Leerstandsabgabe in Vorarlberg betraegt 3.000 Euro im Jahr",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "8,20 bis 18,50"
+      ]
+    },
+    {
+      "claim": "Gibt es in der Steiermark eine Leerstandsabgabe?",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "1.10.2022"
+      ]
+    },
+    {
+      "claim": "Tirol und Vorarlberg haben die Leerstandsabgabe 2024 eingefuehrt",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "1.1.2023"
+      ]
+    },
+    {
+      "claim": "Wie viele Wohnungen hat die Leerstandsabgabe zurueck auf den Markt gebracht?",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "keine veröffentlichte"
+      ]
+    },
+    {
+      "claim": "In Wien bekommen 140.000 Haushalte Wohnbeihilfe",
+      "datei": "sozialstaat_pack.json",
+      "fakt": "wohnbeihilfe_at_2026",
+      "muss": [
+        "31.043"
+      ]
+    },
+    {
+      "claim": "Wie viel gibt Oesterreich fuer Wohnbeihilfe aus?",
+      "datei": "sozialstaat_pack.json",
+      "fakt": "wohnbeihilfe_at_2026",
+      "muss": [
+        [
+          "265 Mio.",
+          "2024 vorläufig 265"
+        ]
+      ]
+    },
+    {
+      "claim": "Wie viele Frauen wurden 2024 in Oesterreich ermordet?",
+      "datei": "gleichstellung_pack.json",
+      "fakt": "femizide_at_de_2026",
+      "muss": [
+        [
+          "40 vollendete Morde",
+          "40 auf vollendete Morde"
+        ]
+      ]
+    },
+    {
+      "claim": "Die Agrarfoerderung in Oesterreich betraegt 7 Milliarden Euro pro Jahr",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "agrar_subventionen_at_2026",
+      "muss": [
+        [
+          "2.652 Mio.",
+          "2.652 Mio. Euro"
+        ]
+      ]
+    },
+    {
+      "claim": "Die Landwirtschaft verursacht die meisten Treibhausgase in Oesterreich",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "klima_landwirtschaft_2026",
+      "muss": [
+        "12,6 %"
+      ]
+    },
+    {
+      "claim": "Deutschland hat den Familiennachzug zu subsidiaer Schutzberechtigten ausgesetzt",
+      "datei": "migration_pack.json",
+      "fakt": "migration_familiennachzug_2026",
+      "muss": [
+        "24.7.2025"
+      ]
+    },
+    {
+      "claim": "Der Familiennachzug ist in Deutschland auf 1.000 Visa pro Monat begrenzt",
+      "datei": "migration_pack.json",
+      "fakt": "migration_familiennachzug_2026",
+      "muss": [
+        "nicht angewandt"
+      ]
+    },
+    {
+      "claim": "Die Zufriedenheit mit der Demokratie in Oesterreich ist im freien Fall",
+      "datei": "demokratie_pack.json",
+      "fakt": "at_demokratie_zufriedenheit_2026",
+      "muss": [
+        "65 %"
+      ]
+    },
+    {
+      "claim": "Wie viele Wohnbeihilfe-Bezieher hatte Wien 2015?",
+      "datei": "sozialstaat_pack.json",
+      "fakt": "wohnbeihilfe_at_2026",
+      "muss": [
+        "45.381"
+      ]
+    }
+  ],
+  "bekannte_luecken": [
+    {
+      "claim": "Wurde eine Leerstandsabgabe-Verordnung vom Verfassungsgerichtshof aufgehoben?",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "V85/2025"
+      ],
+      "grund": "steht im data-Feld vfgh_gemeindeverordnungen (395 Zeichen) — neben der Headline passt im 400-Zeichen-Budget kein zweites Feld mehr. Schliesst sich mit Massnahme B (Budget je Fakt statt je Blob)."
+    },
+    {
+      "claim": "Wie hoch ist die Leerstandsabgabe in Frankreich?",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "17 %"
+      ],
+      "grund": "steht im data-Feld frankreich_rechtsstand — dito, verdraengt von der Headline."
+    },
+    {
+      "claim": "In Deutschland werden immer mehr Frauen von ihren Partnern getoetet",
+      "datei": "gleichstellung_pack.json",
+      "fakt": "femizide_at_de_2026",
+      "muss": [
+        [
+          "133 vollendete Taten",
+          "133 bei Partnerschaftsgewalt"
+        ]
+      ],
+      "grund": "Der Nuancen-Satz ('Frauen werden weit ueberwiegend von Partnern … getoetet') deckt drei Claim-Terme ab und gewinnt zu Recht; das DE-Datenfeld mit 133/198 ist 395 Zeichen lang und passt daneben nicht mehr ins 400-Zeichen-Budget. Schliesst sich mit Massnahme B (Budget je Fakt statt je Blob)."
+    }
+  ],
+  "hinweis_luecken": "bekannte_luecken sind gemessene Faelle, in denen die entscheidende Angabe das 400-Zeichen-Budget NICHT erreicht. Sie duerfen nicht mehr werden — geschlossen werden sie mit Massnahme B (Budget je Fakt statt je Feld-Blob)."
+}
