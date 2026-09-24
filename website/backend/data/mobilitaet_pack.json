@@ -422,34 +422,37 @@
     },
     {
       "id": "mobilitaet-suv_sicherheit_2026",
-      "topic": "suv_sicherheit_mythos",
-      "scope": "SUV-Sicherheit — Insassen-Schutz vs. Fußgänger-Risiko vs. Aggressivität",
+      "topic": "suv_sicherheit_konsens",
+      "scope": "SUV und Verkehrssicherheit — Frontgeometrie, Fußgängerrisiko, Insassenschutz",
       "year": 2024,
       "source_url": "https://www.iihs.org/news/detail/vehicles-with-higher-more-vertical-front-ends-pose-greater-risk-to-pedestrians",
-      "secondary_url": "https://www.bast.de/DE/Verkehrssicherheit/Fachthemen/U-SUV/U-SUV.html",
-      "source_label": "IIHS Insurance Institute for Highway Safety USA 'Larger SUVs pose greater risk to pedestrians' Studie 2024 + BASt Bundesanstalt für Straßenwesen DE Studien zu SUV-Beteiligung in Unfällen + Justin Tyndall (University of Hawaii UHERO) 'Pedestrian Deaths and Large Vehicles' 2021 + 'The effect of front-end vehicle height on pedestrian death risk' 2024 + EuroNCAP Crash-Tests 2024",
-      "headline": "IIHS US 2024 + BASt DE 2023: SUVs schützen Insassen besser bei Crash (Crash-Test-Note +), ABER Fußgänger-Tot-Risiko +2-3 × höher als Limousine, Aggressivität gegen Kleinwagen +50-100 % höhere Kollisions-Energie; Netto-Sicherheits-Bilanz differenziert",
+      "secondary_url": "https://doi.org/10.1016/j.ecotra.2021.100219",
+      "source_label": "IIHS (Hu/Cicchino 2023, 17.897 Fußgängerunfälle) + Tyndall, Economics of Transportation 2021 und 2024",
+      "headline": "SUV und Sicherheit: Nicht das Etikett entscheidet, sondern die Frontgeometrie. IIHS-Auswertung von 17.897 Fußgängerunfällen: Fahrzeuge mit Haubenkante über 40 Zoll (gut 100 cm) töten Fußgänger 44 bis 45 % häufiger als Fahrzeuge unter 30 Zoll; bei mittlerer Höhe erhöht eine steile Front das Risiko um 26 %, eine flache Haube um 25 %.",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'SUV ist generell sicherer' ODER 'SUV ist generell gefährlicher' ist DIFFERENZIERT FALSCH — Pack zeigt: kontextabhängig sicherer oder gefährlicher. Empirische Lage: (1) IIHS USA 2024 'Larger SUVs pose greater risk to pedestrians in crashes' (Insurance Institute for Highway Safety, Crash-Daten 2018-2023): SUVs ≥4.500 lbs (~2 t) haben 2-3 × höheres Fußgänger-Tot-Risiko bei Kollision vs. Personenwagen-Limousinen. Hauptursache: Höhere Front-Höhe (~85-100 cm vs. Limousine 70-75 cm) trifft Fußgänger im Rumpf-/Kopfbereich statt Beinen. (2) BASt 2023 'Sicherheit bei SUV-Beteiligung' DE Crash-Daten 2018-2022: bei Kollisionen SUV vs. Kleinwagen ist Tot-Risiko für Kleinwagen-Insassen ~50-100 % höher als bei Mittelklasse-Limousine. Ursache: Kollisions-Energie steigt mit Masse + Geschwindigkeit² + Stoßstangen-Höhen-Differenz (SUV-Stoßstange überlappt nicht Kleinwagen-Crash-Struktur). (3) INSASSEN-SCHUTZ SUV: SUV-Insassen werden BESSER geschützt — bei eigenständigem Crash gegen Hindernis oder gegen Limousine geringeres Tot-Risiko (~15-25 % weniger). Höhere Karosserie + größere Knautschzone + bessere Sichtposition. EuroNCAP-Crash-Test-Noten 2024 für SUV teilweise besser als Limousinen. (4) NETTO-EFFEKT GESELLSCHAFT: BASt-Verkehrsunfall-Daten + Justin Tyndall (University of Hawaii) 2021/2024 Pedestrian-Death-Modell: SUV-Boom in DE-Markt-Anteil von ~15 % (2010) auf ~35 % (2024) hat Verkehrs-Toten-Zahl um geschätzte ~50-100 Tote/Jahr erhöht (Fußgänger + Kleinwagen-Insassen-Effekt überwiegt Insassen-Schutz-Vorteil). (5) E-SUV-PROBLEM: E-SUVs durch Akku-Gewicht 200-500 kg schwerer als Verbrenner-SUVs gleicher Klasse — Aggressivitäts-Faktor weiter erhöht. (6) FAKTENCHECK-RELEVANT: Aussagen wie 'SUV ist generell sicherer' sind nur teilrichtig (für Insassen ja, für andere Verkehrsteilnehmer nein). Aussagen wie 'SUV ist generell gefährlicher' verkennen Insassen-Schutz-Vorteil. Pack distanziert sich von normativer Pro/Contra-SUV-Wertung — präsentiert nur empirische differenzierte Sicherheits-Bilanz.",
-        "iihs_2024_fussgaenger": "IIHS 2024 'Larger SUVs pose greater risk to pedestrians in crashes' (Hu/Cicchino, Cooperative Crash Injury Study Datenbank 2018-2023, ~10.000 Pedestrian-Crashes): SUVs ≥4.500 lbs (~2 t) haben 2,5 × höheres Fußgänger-Tot-Risiko vs. Personenwagen-Limousinen. SUVs 3.500-4.500 lbs: 1,8 ×. Ursache empirisch nachgewiesen: Höhere Front-Höhe (Hood Height) trifft Fußgänger im Rumpf-/Kopfbereich statt Beinen. Kopf-Aufprall hat höheres Tot-Risiko als Bein-Aufprall + Hood-Wurf.",
-        "bast_2023_aggressivitaet": "BASt 2023 'Sicherheit bei SUV-Beteiligung' (Bundesanstalt für Straßenwesen, GIDAS Datenbank Hannover/Dresden 2018-2022): bei Kollisionen Mittelklasse-SUV vs. Kleinwagen Tot-Risiko Kleinwagen-Insassen 1,5-2 × höher als Mittelklasse-Limousine vs. Kleinwagen. Stoßstangen-Höhen-Differenz Hauptursache (SUV-Stoßstange ~50-65 cm vs. Kleinwagen-Crash-Struktur ~40-50 cm — kein Überlapp).",
-        "insassen_schutz": "EuroNCAP Crash-Test 2024 Auswertung: SUV-Insassen-Schutz Crash-Note durchschnittlich 89 % vs. Limousine 86 %. Volumen-Vorteil + höhere Sicht-Position. Bei eigenständigem Crash gegen Hindernis (Baum, Mauer) Tot-Risiko SUV-Insassen ~15-25 % geringer als Limousine. Bei SUV vs. SUV Crash etwas geringer Tot-Risiko als Limousine vs. Limousine wegen Knautschzone-Größe.",
-        "netto_effekt_modell": "Justin Tyndall (University of Hawaii UHERO) 2021 'Pedestrian Deaths and Large Vehicles' + 2024 'The effect of front-end vehicle height on pedestrian death risk': SUV-Marktanteil DE 2010 ~15 % → 2024 ~35 % (Kraftfahrt-Bundesamt KBA-Daten). Übertragen auf DE-Verkehrslage Schätzung: ~50-100 zusätzliche Verkehrstote DE/Jahr durch SUV-Boom. Hauptanteil Fußgänger (~50-60 zusätzliche/Jahr) + Kleinwagen-Insassen (~15-30/Jahr). Insassen-Schutz-Vorteil reduziert um ~10-20 SUV-Insassen-Tote/Jahr — Netto bleibt deutlich negativ.",
-        "e_suv_gewichts_problem": "E-SUV durch Akku-Gewicht 200-500 kg schwerer als Verbrenner-SUV gleicher Klasse. Tesla Model X ~2.500 kg, BMW iX 2.500-2.700 kg, Mercedes EQS SUV ~2.700-2.900 kg. Verbrenner-SUV Audi Q5 ~1.900 kg, BMW X3 ~1.900 kg. E-SUVs erhöhen Aggressivitäts-Faktor weiter. ICCT-Berechnung: zusätzliche 200 kg = +5 % Kollisions-Energie + ~10 % erhöhtes Fußgänger-Tot-Risiko bei Kollision.",
-        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-SUV-Wertung."
+        "kernsatz_fuer_synthesizer": "Beide Pauschalaussagen greifen daneben: 'SUV sind generell sicherer' ebenso wie 'SUV sind generell gefährlicher'. Was die Unfallforschung misst, ist nicht das Etikett SUV, sondern die Frontgeometrie. Das IIHS hat 17.897 Unfälle zwischen einem Fahrzeug und einem Fußgänger ausgewertet und für 2.958 Modelle die Fronthöhe und den Winkel vermessen: Liegt die Haubenkante über 40 Zoll — gut einen Meter —, endet der Zusammenstoß 44 bis 45 % häufiger tödlich als bei Fahrzeugen unter 30 Zoll. Bei mittlerer Höhe kostet eine steile Front 26 % und eine flache Haube 25 % zusätzliches Risiko. Für die Insassen gilt die Umkehrung nicht automatisch: Tyndall findet für die USA keinen Beleg, dass der Trend zu größeren Fahrzeugen die Sicherheit der Autoinsassen insgesamt verbessert hätte. Beides sind US-Befunde; für Deutschland ist keine vergleichbare veröffentlichte Untersuchung auffindbar.",
+        "iihs_frontgeometrie": "IIHS (Wen Hu u. a.): 17.897 Unfälle zwischen je einem Fahrzeug und einem Fußgänger, Fronthöhe und -winkel für 2.958 Modelle aus Fotos vermessen. Haubenkante über 40 Zoll mit geneigtem Grill (bis 65 Grad): 45 % höheres Tötungsrisiko als unter 30 Zoll; über 40 Zoll mit steiler Front: 44 %. Fahrzeuge mit Fußgänger-Notbremsassistent blieben außen vor; Tempolimit und Alter wurden herausgerechnet.",
+        "iihs_mittlere_hoehe": "Bei Haubenkanten zwischen 30 und 40 Zoll entscheidet die Form: Eine stumpfe, steile Front erhöht das Tötungsrisiko um 26 % gegenüber niedrigen Fahrzeugen mit geneigter Front, während eine geneigte Front bei mittlerer Höhe kein höheres Risiko zeigt. Unabhängig von Höhe und Frontform kostet eine flache Motorhaube (Neigung bis 15 Grad) 25 % zusätzliches Risiko.",
+        "tyndall_flottenwirkung": "Justin Tyndall, 'Pedestrian deaths and large vehicles', Economics of Transportation 2021, doi:10.1016/j.ecotra.2021.100219: Hätte man in den USA das Wachstum der SUV-Flotte zwischen 2000 und 2019 durch Pkw ersetzt, wären rund 1.100 Fußgänger nicht gestorben. Für eine verbesserte Sicherheit der Autoinsassen durch größere Fahrzeuge findet die Arbeit keinen Beleg.",
+        "tyndall_fronthoehe": "Dieselbe Zeitschrift, Tyndall 2024: 'The effect of front-end vehicle height on pedestrian death risk', doi:10.1016/j.ecotra.2024.100342 — unabhängige Bestätigung, dass die Fronthöhe und nicht die Fahrzeugklasse die entscheidende Größe ist.",
+        "us_kontext": "Einordnung der US-Zahlen (IIHS): Die Zahl getöteter Fußgänger ist seit dem Tiefstand 2009 um 80 % gestiegen, 2021 starben rund 7.400 Menschen. Das durchschnittliche US-Fahrzeug wurde in 30 Jahren etwa 10 cm breiter, 25 cm länger, 20 cm höher und 450 kg schwerer. Neben der Fahrzeugflotte nennen die Forschenden Geschwindigkeit und Straßengestaltung als Ursachen.",
+        "uebertragbarkeit": "Die Befunde stammen aus den USA, wo Pick-ups einen weit größeren Flottenanteil haben als in Europa und die Unfalldaten anders erhoben werden. Eine veröffentlichte deutsche oder österreichische Untersuchung mit vergleichbaren Risikozahlen für SUV-Beteiligung ließ sich nicht finden — wer solche Zahlen zitiert, sollte die Quelle prüfen.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von einer Pro/Contra-SUV-Wertung; gemessen wird Fahrzeuggeometrie, nicht ein Fahrzeugtyp."
       },
       "context_notes": [
-        "Wichtige Differenzierung: SUV-Insassen-Schutz tatsächlich besser (+15-25 %), SUV-Aggressivität gegen Fußgänger 2-3 × höher + gegen Kleinwagen 50-100 % höher — kontext-abhängig.",
-        "Netto-Effekt für Gesellschaft DE laut BASt-Modell ~50-100 zusätzliche Verkehrstote/Jahr durch SUV-Boom.",
-        "E-SUVs verstärken durch Akku-Gewicht das Aggressivitäts-Problem zusätzlich (+200-500 kg vs. Verbrenner-SUV)."
+        "Korrigiert 2026-09-24: Die frühere Fassung nannte Risikofaktoren nach Fahrzeuggewicht, eine deutsche Untersuchung auf Basis einer Unfalldatenbank, Crash-Test-Noten für Insassenschutz, eine Zahl zusätzlicher Verkehrstoter je Jahr für Deutschland und eine Rechnung zum Mehrgewicht von Elektro-SUV. Keine dieser Angaben ließ sich in den zitierten Quellen finden.",
+        "Datenstand: IIHS-Auswertung (17.897 Unfälle, veröffentlicht 2023), Tyndall 2021 und 2024 in Economics of Transportation.",
+        "Die entscheidende Größe ist die Frontgeometrie, nicht die Fahrzeugklasse: Ein flach gebauter Kombi und ein hoch gebauter Van unterscheiden sich im Fußgängerrisiko stärker als zwei Fahrzeuge desselben Etiketts.",
+        "40 Zoll sind 101,6 cm, 30 Zoll 76,2 cm — die Studie misst in Zoll, weil sie US-Fahrzeuge vermisst."
       ],
       "claim_phrasings_handled": [
-        "SUV ist sicherer als jedes andere Auto",
-        "SUVs sind die sichersten Autos",
-        "SUV gefährdet Fußgänger nicht mehr",
-        "SUV ist generell gefährlicher",
-        "Gewicht eines SUV spielt keine Rolle",
-        "E-SUV ist genauso sicher wie Verbrenner-SUV"
+        "SUVs sind gefährlicher für Fußgänger",
+        "SUV sind sicherer als normale Autos",
+        "SUVs gehören verboten",
+        "Sind SUVs wirklich gefährlicher?",
+        "Wie viel höher ist das Risiko für Fußgänger bei einem SUV?",
+        "SUV-Fahrer sind bei einem Unfall besser geschützt",
+        "Gibt es eine deutsche Studie zu SUV-Unfällen?"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
@@ -457,49 +460,71 @@
           "suv",
           "geländewagen",
           "gelaendewagen",
-          "gelände-wagen",
-          "gelaende-wagen",
-          "offroader",
-          "off-roader",
+          "pick-up",
+          "pickup",
           "stadtgeländewagen",
-          "stadt-geländewagen",
-          "x-drive",
-          "4×4",
-          "4x4",
-          "allrad",
-          "all-rad",
-          "tesla model x",
-          "bmw x5",
-          "audi q7",
-          "mercedes gle"
+          "stadtgelaendewagen",
+          "frontgeometrie",
+          "fronthöhe",
+          "fronthoehe",
+          "motorhaube"
         ],
         [
-          "sicherheit",
           "sicher",
           "sicherer",
           "gefährlich",
           "gefaehrlich",
+          "gefährlicher",
+          "gefaehrlicher",
           "fußgänger",
           "fussgaenger",
-          "fußgaenger",
-          "passant",
-          "passanten",
-          "kollision",
+          "risiko",
           "unfall",
-          "crash",
+          "unfälle",
+          "unfaelle",
           "tödlich",
           "toedlich",
-          "tote",
-          "schwerverletzte",
-          "schwer verletzt",
-          "kleinwagen",
-          "klein-wagen",
-          "aggressivität",
-          "aggressivitaet",
-          "kein problem",
-          "harmlos",
-          "gewicht",
-          "schwer"
+          "verboten",
+          "insassen",
+          "schutz",
+          "schützt",
+          "schuetzt",
+          "geschützt",
+          "geschuetzt",
+          "crash",
+          "studie",
+          "wie viel",
+          "höher",
+          "hoeher",
+          "kollision",
+          "getötet",
+          "getoetet"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "suv"
+          ],
+          [
+            "verbot",
+            "verboten"
+          ]
+        ],
+        [
+          [
+            "suv",
+            "geländewagen",
+            "gelaendewagen"
+          ],
+          [
+            "fußgänger",
+            "fussgaenger",
+            "insassen",
+            "sicher",
+            "gefähr",
+            "gefaehr"
+          ]
         ]
       ]
     },
