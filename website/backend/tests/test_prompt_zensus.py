@@ -133,24 +133,46 @@ def test_batterie_ist_nicht_leer():
 @pytest.mark.parametrize("eintrag", BATTERIE["claims"],
                          ids=[f"{e['fakt']}:{e['claim'][:40]}" for e in BATTERIE["claims"]])
 def test_muss_treffer_kommt_im_prompt_an(eintrag):
-    r = zensus.pruefe(eintrag, MAX)
+    r = zensus.pruefe(eintrag)
     assert not r["fehlt"], (eintrag["claim"], r["fehlt"], r["text"]["display_value"])
 
 
 def test_bekannte_luecken_wachsen_nicht():
-    """Gemessene Faelle, in denen das 400-Zeichen-Budget die Angabe abschneidet.
-    Sie sind der Auftrag fuer Massnahme B — und duerfen nicht mehr werden."""
+    """Gemessene Faelle, in denen die entscheidende Angabe das Budget nicht
+    erreicht. Seit Massnahme B ist die Liste leer; neue Eintraege brauchen
+    eine Begruendung und duerfen nicht mehr als drei werden."""
     luecken = BATTERIE["bekannte_luecken"]
     assert len(luecken) <= 3, [l["claim"] for l in luecken]
     for l in luecken:
         assert len(l.get("grund", "")) > 40, l["claim"]
 
 
+def test_budget_politik():
+    """Das grosse Budget bekommt NUR das display_value des ersten
+    Ergebnisses je Quelle — sonst waechst der Prompt um das Dreifache."""
+    from services.synthesizer import (PROMPT_MAX_DISPLAY, PROMPT_MAX_STR,
+                                      prompt_budget)
+    assert PROMPT_MAX_DISPLAY > PROMPT_MAX_STR
+    assert prompt_budget("display_value", 0) == PROMPT_MAX_DISPLAY
+    assert prompt_budget("display_value", 1) == PROMPT_MAX_STR
+    assert prompt_budget("display_value", 2) == PROMPT_MAX_STR
+    assert prompt_budget("description", 0) == PROMPT_MAX_STR
+    assert prompt_budget("title", 0) == PROMPT_MAX_STR
+
+
+def test_400_zeichen_wuerden_die_geschlossenen_luecken_wieder_reissen():
+    """Gegenprobe zu Massnahme B: Mit dem alten Budget faellt mindestens ein
+    Claim wieder aus — sonst misst die Batterie den Unterschied gar nicht."""
+    kaputt = [e["claim"] for e in BATTERIE["claims"]
+              if zensus.pruefe(e, 400)["fehlt"]]
+    assert kaputt, "Batterie trennt 400 und 1200 nicht mehr — Faelle ergaenzen"
+
+
 def test_luecken_sind_echte_luecken():
     """Was als Luecke gefuehrt wird, muss auch eine sein — sonst bleibt ein
     laengst geschlossener Fall ewig als Ausnahme stehen."""
     offen = [l["claim"] for l in BATTERIE["bekannte_luecken"]
-             if not zensus.pruefe(l, MAX)["fehlt"]]
+             if not zensus.pruefe(l)["fehlt"]]
     assert not offen, f"kommt inzwischen an, gehoert in claims: {offen}"
 
 
@@ -160,4 +182,4 @@ def test_zensus_meldet_fehler_als_exitcode():
                 "datei": "wohnen_pack.json",
                 "fakt": "leerstandsabgabe_wirkung_2026",
                 "muss": ["diese Zeichenfolge steht garantiert nirgends"]}
-    assert zensus.pruefe(erfunden, MAX)["fehlt"]
+    assert zensus.pruefe(erfunden)["fehlt"]

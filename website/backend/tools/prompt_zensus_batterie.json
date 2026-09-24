@@ -154,17 +154,14 @@
           "0,4 %"
         ]
       ]
-    }
-  ],
-  "bekannte_luecken": [
+    },
     {
       "claim": "Wurde eine Leerstandsabgabe-Verordnung vom Verfassungsgerichtshof aufgehoben?",
       "datei": "wohnen_pack.json",
       "fakt": "leerstandsabgabe_wirkung_2026",
       "muss": [
         "V85/2025"
-      ],
-      "grund": "steht im data-Feld vfgh_gemeindeverordnungen (395 Zeichen) — neben der Headline passt im 400-Zeichen-Budget kein zweites Feld mehr. Schliesst sich mit Massnahme B (Budget je Fakt statt je Blob)."
+      ]
     },
     {
       "claim": "Wie hoch ist die Leerstandsabgabe in Frankreich?",
@@ -172,8 +169,7 @@
       "fakt": "leerstandsabgabe_wirkung_2026",
       "muss": [
         "17 %"
-      ],
-      "grund": "steht im data-Feld frankreich_rechtsstand — dito, verdraengt von der Headline."
+      ]
     },
     {
       "claim": "In Deutschland werden immer mehr Frauen von ihren Partnern getoetet",
@@ -184,9 +180,9 @@
           "133 vollendete Taten",
           "133 bei Partnerschaftsgewalt"
         ]
-      ],
-      "grund": "Der Nuancen-Satz ('Frauen werden weit ueberwiegend von Partnern … getoetet') deckt drei Claim-Terme ab und gewinnt zu Recht; das DE-Datenfeld mit 133/198 ist 395 Zeichen lang und passt daneben nicht mehr ins 400-Zeichen-Budget. Schliesst sich mit Massnahme B (Budget je Fakt statt je Blob)."
+      ]
     }
   ],
-  "hinweis_luecken": "bekannte_luecken sind gemessene Faelle, in denen die entscheidende Angabe das 400-Zeichen-Budget NICHT erreicht. Sie duerfen nicht mehr werden — geschlossen werden sie mit Massnahme B (Budget je Fakt statt je Feld-Blob)."
+  "bekannte_luecken": [],
+  "hinweis_luecken": "bekannte_luecken sind gemessene Faelle, in denen die entscheidende Angabe das Zeichenbudget NICHT erreicht. Die Liste ist seit Massnahme B (PR #194) leer — neue Eintraege brauchen eine Begruendung und duerfen nicht mehr als drei werden."
 }
