@@ -121,6 +121,39 @@
       "muss": [
         "45.381"
       ]
+    },
+    {
+      "claim": "Unsere Lebensmittel sind voller Pestizide",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "pestizid_rueckstaende_2026",
+      "muss": [
+        [
+          "96,7 %",
+          "58,4 %"
+        ]
+      ]
+    },
+    {
+      "claim": "Wie viele Lebensmittelproben überschreiten die Grenzwerte?",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "pestizid_rueckstaende_2026",
+      "muss": [
+        [
+          "1,8 %",
+          "3,3 %"
+        ]
+      ]
+    },
+    {
+      "claim": "Bio-Lebensmittel sind komplett pestizidfrei",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "pestizid_rueckstaende_2026",
+      "muss": [
+        [
+          "80,4 %",
+          "0,4 %"
+        ]
+      ]
     }
   ],
   "bekannte_luecken": [

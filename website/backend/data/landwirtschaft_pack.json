@@ -842,25 +842,32 @@
     {
       "id": "pestizid_rueckstaende_2026",
       "topic": "pestizid_rueckstaende_konsens",
-      "scope": "Pestizid-Rückstände in EU-Lebensmitteln — EFSA Annual Report 2024, AT-AGES-Konformität, Bio-Vergleich",
+      "scope": "Pestizid-Rückstände in EU- und AT-Lebensmitteln — EFSA-Bericht für das Datenjahr 2024",
       "year": 2024,
-      "source_url": "https://www.efsa.europa.eu/de/efsajournal/pub/8957",
-      "secondary_url": "https://www.ages.at/pflanze/pflanzenschutzmittel/pflanzenschutzmittel-rueckstaende",
-      "source_label": "EFSA Annual Report on Pesticide Residues in Food 2024 + AGES Rückstandskontrolle 2023+2024 + AT Lebensmittelsicherheits-Gesetz LMSVG + EU MRL-Verordnung 396/2005 + Statistik Austria Pflanzenschutzmittel-Verbrauch",
-      "headline": "EFSA Annual Report 2024: ~96.4 % der EU-Lebensmittel innerhalb MRL (Maximum Residue Levels), ~3.6 % über MRL; AT 2023 (AGES) 99.4 % konform; Mehrfach-Rückstände typisch (Median 2-3 Wirkstoffe); Bio 99 % konform mit Bio-Vorgabe",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13140735/",
+      "secondary_url": "https://www.ages.at/mensch/schwerpunkte/schwerpunktaktionen/detail/nationales-kontrollprogramm-pestizidrueckstaende-1",
+      "source_label": "EFSA, The 2024 European Union report on pesticide residues in food (EFSA Journal 2026, doi:10.2903/j.efsa.2026.10054) + AGES-Schwerpunktaktion A-918-23 + EFSA-Kumulativbewertungen 2020 + Eurostat aei_fm_salpest09",
+      "headline": "EFSA-Bericht 2024 (veröffentlicht Mai 2026): 125.882 Proben in drei Programmen. Nationale Kontrolle 86.449 Proben — 96,7 % innerhalb der Höchstgehalte, 58,4 % ganz ohne nachweisbare Rückstände, 1,8 % nicht konform. EU-Kontrollprogramm 9.842 Proben, 1,2 % nicht konform. Verschärfte Einfuhrkontrolle 39.433 Proben, 3,6 % nicht konform.",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Unsere Lebensmittel sind voller Pestizide' ist EMPIRISCH ÜBERZEICHNET. Empirische Lage: (1) EFSA ANNUAL REPORT ON PESTICIDE RESIDUES 2024 (basierend auf 2022er-Daten, ~88.000 Lebensmittel-Proben EU-weit): 96.4 % der untersuchten Proben innerhalb der gesetzlichen Maximum-Residue-Levels (MRL), 3.6 % über MRL. Davon 1.5 % rechtlich relevante Überschreitung (Verkaufs-Stop oder Rückruf). 2.1 % nur statistisch über MRL aber wegen Mess-Unsicherheit nicht rechtlich relevant. (2) AT-AGES-RÜCKSTANDSKONTROLLE 2023+2024: AT-Konformitäts-Quote 99.4 % (AT überdurchschnittlich gut). ~3.500 AT-Lebensmittel-Proben pro Jahr (Obst + Gemüse + Getreide-Produkte + Fleisch). MRL-Überschreitungen 2023: 21 Fälle (0.6 %). (3) MEHRFACH-RÜCKSTÄNDE typisch: Median 2-3 verschiedene Wirkstoffe pro Probe (Frucht/Gemüse). Cocktail-Effekt diskutiert in Wissenschaft, EFSA Modell für kumulative Risiko-Bewertung 2018. (4) BIO-LEBENSMITTEL: ~99 % konform mit Bio-Vorgabe (sehr selten verbotene Wirkstoff-Kontamination, oft Drift von Nachbar-Felder). Bio-Pestizid-Verwendung beschränkt auf zugelassene Naturstoffe (Spinosad, Bt, Pyrethrum). (5) HOTSPOTS-LEBENSMITTEL: Importierte Trockenfrüchte (Rosinen, Datteln) + Tee + Gewürze haben höhere MRL-Überschreitungs-Quote (5-8 %) wegen weniger strikter Drittland-Kontrolle. AT/EU-Frischwaren <2 %. (6) VERBRAUCHS-TRENDS: AT-Pestizid-Verbrauch 2010-2024 (Statistik AT): Glyphosat ~3.500 t/Jahr stabil, Insektizide -30 %, Fungizide stabil. EU-Farm-to-Fork-Strategie 2030: -50 % Pestizid-Verbrauch (Ziel, nicht garantiert). (7) Faktencheck-relevant: Aussagen wie 'Unser Essen ist voller Pestizide' sind durch EFSA-Konformität 96 % nicht belegt. Aussagen wie 'Bio ist 100 % pestizid-frei' überzeichnen — Drift-Kontamination + Naturstoff-Pestizide. Pack distanziert sich von normativer Wertung.",
-        "efsa_2024_konformitaet": "EFSA Annual Report 2024 (publiziert April 2024, 2022er-Daten): 88.353 Lebensmittel-Proben EU-weit untersucht, 96.4 % innerhalb MRL. 3.6 % über MRL: 1.5 % rechtlich relevant (Verkaufs-Stop oder Rückruf), 2.1 % statistisch über aber Mess-Unsicherheits-Korrektur. Trend stabil seit 2018.",
-        "at_ages_2024": "AT AGES Rückstandskontrolle 2023+2024: ~3.500 Proben/Jahr, 99.4 % MRL-konform. AT-Quote überdurchschnittlich besser als EU-Schnitt. Hauptproben Obst (Äpfel + Birnen + Beeren) + Gemüse (Salate + Tomaten + Paprika) + Getreide-Produkte. MRL-Überschreitungs-Hotspots in AT 2023: importierte Spitzpaprika + Rosinen + Tee.",
-        "mehrfach_rueckstaende": "Mehrfach-Rückstands-Empirie EFSA 2024: 53 % der Proben mit Mehrfach-Rückständen, Median 2-3 verschiedene Wirkstoffe. Cocktail-Effekt-Forschung (Kortenkamp 2018 Trends Pharmacol Sci): kumulative Bewertung wichtig, EFSA Modell seit 2018.",
-        "bio_konformitaet": "Bio-Pestizid-Konformität (AT-AGES + EU-Kontrollen): ~99 % konform mit Bio-Vorgabe (Bio-EU-Verordnung 848/2018). Häufigste Beanstandungen: Drift-Kontamination von Nachbar-Konventional-Feldern (juristisch geduldet bis 0.01 mg/kg), seltene verbotene Wirkstoff-Kontamination (illegale Anwendung).",
-        "hotspots_drittland": "MRL-Überschreitungs-Hotspots EU 2023-2024: importierte Trockenfrüchte (Rosinen 5-8 %, Datteln 4-6 %), Tee (5 %), Gewürze (Pfeffer 7 %). Ursache: weniger strikte Drittland-Pestizid-Regulierung. EU-Frischwaren-Quote <2 % über MRL.",
+        "kernsatz_fuer_synthesizer": "Die Aussage 'unsere Lebensmittel sind voller Pestizide' trifft die amtliche Datenlage nicht: Im EFSA-Bericht für das Datenjahr 2024 lagen 96,7 % der 86.449 Proben aus den nationalen Kontrollprogrammen innerhalb der gesetzlichen Höchstgehalte, und 58,4 % enthielten überhaupt keine quantifizierbaren Rückstände. Wichtig ist die Trennung zweier Zahlen: Über dem Höchstgehalt lagen 3,3 % der Proben, als nicht konform gewertet wurden nach Abzug der Messunsicherheit 1,8 %. Ebenso wichtig: Der Höchstgehalt (MRL) ist ein Handels- und Anwendungsgrenzwert nach Verordnung (EG) Nr. 396/2005, keine Giftigkeitsschwelle — überschritten wurde dieser Grenzwert 2024 von 3,3 % der Proben, nicht konform waren 1,8 %, und eine Überschreitung ist nicht automatisch ein Gesundheitsrisiko. Die drei Programme haben sehr unterschiedliche Quoten: EU-Kontrollprogramm 1,2 %, nationale Programme 1,8 %, verschärfte Einfuhrkontrolle 3,6 % nicht konform. Wer eine EU-Gesamtquote nennt, muss dazusagen, welches Programm gemeint ist. Auch 'Bio-Lebensmittel sind pestizidfrei' trifft nicht zu: 80,4 % der Bio-Proben enthielten keine quantifizierbaren Rückstände, 18,8 % Rückstände unterhalb des Höchstgehalts, 0,4 % waren nicht konform.",
+        "efsa_2024_national": "Nationale Kontrollprogramme 2024 (EU-Mitgliedstaaten, Island, Norwegen): 86.449 Proben aus über 1.140 Lebensmitteln, 17 % weniger als 2023 (104.400). 83.591 Proben (96,7 %) innerhalb der Höchstgehalte, davon 50.524 (58,4 %) ohne quantifizierbare Rückstände und 33.067 (38,3 %) mit Rückständen unterhalb der Grenze. Über dem Höchstgehalt 2.858 (3,3 %), nicht konform 1.591 (1,8 %).",
+        "efsa_2024_eu_programm": "EU-koordiniertes Kontrollprogramm 2024 (zwölf festgelegte Erzeugnisse, darunter Auberginen, Bananen, Brokkoli, Tafeltrauben, Weizenkorn, Rinderfett und Hühnereier): 9.842 Proben. 9.608 (97,6 %) innerhalb der Höchstgehalte, 4.241 (43,1 %) ohne quantifizierbare Rückstände. Über dem Höchstgehalt 234 (2,4 %), nicht konform 113 (1,2 %).",
+        "efsa_2024_einfuhr": "Verschärfte Einfuhrkontrolle 2024 (gezielt für auffällige Erzeugnisse und Herkünfte): 39.433 Proben. 37.263 (94,5 %) innerhalb der Höchstgehalte, 2.170 (5,5 %) darüber, 1.403 (3,6 %) nicht konform. Beanstandete Einfuhrware gelangte nicht auf den EU-Markt. Diese Quote ist die höchste der drei Programme — sie beschreibt eine Risikostichprobe, nicht den Markt.",
+        "herkunft_eu_drittland": "Nach Herkunft (nationale Programme 2024): Bei Ware aus EU-Staaten lagen 2,1 % über dem Höchstgehalt und 1,0 % waren nicht konform; bei Ware aus Drittstaaten 8,3 % und 5,2 %. Die höchste Beanstandungsquote hatte Ware aus der Türkei mit 14,8 %, vor allem Granatäpfel, Zitronen und Tomaten.",
+        "bio_2024": "Bio-Lebensmittel 2024: 5.939 der 86.449 Proben (6,9 %) waren als biologisch gekennzeichnet. 4.774 (80,4 %) ohne quantifizierbare Rückstände, 1.114 (18,8 %) unterhalb des Höchstgehalts, 51 (0,9 %) darüber, 21 (0,4 %) nicht konform. Nachweis- und Überschreitungsraten liegen unter denen konventioneller Ware — außer bei tierischen Erzeugnissen, wegen des im Biolandbau zugelassenen Kupfers.",
+        "mehrfach_rueckstaende": "Mehrfachrückstände (EU-Kontrollprogramm 2024): In 5.601 der 9.842 Proben (56,9 %) wurden Rückstände quantifiziert, in 3.432 (34,9 %) mehr als ein Wirkstoff — 2021 waren es 27 %. Über 50 % Mehrfachrückstände hatten Tafeltrauben (78 %), Grapefruits (73,5 %) und Bananen (66,1 %). Der Höchstwert waren 17 verschiedene Wirkstoffe in einer Gemüsepaprika aus der Türkei.",
+        "cocktail_effekt": "Der Cocktail-Effekt wird nicht ignoriert, sondern gerechnet: EFSA veröffentlichte 2020 zwei kumulative Bewertungen — Nervensystem (doi:10.2903/j.efsa.2020.6087) und Schilddrüse (doi:10.2903/j.efsa.2020.6088). Ergebnis für alle zehn Verbrauchergruppen, mit unterschiedlichem Sicherheitsgrad: Die kumulative Aufnahme bleibt unter der Schwelle für regulatorischen Handlungsbedarf.",
+        "risikobewertung": "EFSA schätzt die akute und chronische Aufnahme und vergleicht sie mit den gesundheitsbezogenen Richtwerten. Gesamturteil 2024: Das geschätzte Ernährungsrisiko ist für die meisten Bevölkerungsgruppen und Stoffe gering. Analysiert wurden im Schnitt 261 Rückstände je Probe; Österreich prüfte auf 626 Wirkstoffe.",
+        "oesterreich_ages": "Österreich, AGES-Schwerpunktaktion A-918-23 (Endbericht 8.5.2024): 849 Proben, 25 wegen Überschreitung von Höchstgehalten beanstandet — eine Probe Schwarzaugenbohnen aus Madagaskar galt als gesundheitsschädlich, sieben als für den Verzehr ungeeignet. Bei 31 Bio-Proben lagen Rückstände über der Bestimmungsgrenze, eine davon über dem Höchstgehalt.",
+        "oesterreich_vorjahr": "Vorjahresaktion A-918-22 (Endbericht 24.4.2023): 826 Proben, 30 beanstandet; eine Probe Mango aus der Dominikanischen Republik galt als gesundheitsschädlich, drei Proben (zweimal Gemüsepaprika, einmal Zitronen, je aus der Türkei) als für den Verzehr ungeeignet. Bei 16 Bio-Proben wurden Rückstände über der Bestimmungsgrenze bestätigt.",
+        "at_verbrauch": "In Österreich in Verkehr gebrachte Pflanzenschutzmittel 2024 (Eurostat aei_fm_salpest09, Wirkstoffmenge): 5.232 t insgesamt — Insektizide und Akarizide 2.221 t, Fungizide und Bakterizide 1.875 t, Herbizide 1.015 t. Auf Organophosphor-Herbizide, die Gruppe mit Glyphosat, entfielen 290 t. Verlauf gesamt: 2018 5.280 t, 2022 6.069 t, 2023 5.251 t, 2024 5.232 t.",
         "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Pestizid-Wertung."
       },
       "context_notes": [
-        "EU-Konformität 96.4 %, AT 99.4 % — Pestizid-Rückstände ÜBER MRL sind die Ausnahme.",
-        "Mehrfach-Rückstände typisch (Median 2-3 Wirkstoffe) — Cocktail-Effekt EFSA-bewertet seit 2018.",
-        "Bio nicht 100 % pestizid-frei — Drift-Kontamination möglich + Naturstoff-Pestizide erlaubt."
+        "Korrigiert 2026-09-24: Die frühere Fassung nannte eine EU-Probenzahl und eine Konformitätsquote, die im Bericht so nicht stehen, eine österreichische Quote mit erfundener Probenzahl, einen Anteil Mehrfachrückstände samt Median, eine Bio-Quote, Überschreitungsquoten für Trockenfrüchte, Tee und Gewürze sowie eine Glyphosat-Menge, die über der gesamten österreichischen Herbizidmenge lag. Ebenfalls entfernt: eine nicht auffindbare Studie zum Cocktail-Effekt und das Farm-to-Fork-Reduktionsziel, das nichts über Rückstände aussagt.",
+        "Datenstand: EFSA-Bericht für das Datenjahr 2024, EFSA Journal 2026, veröffentlicht Mai 2026; AGES-Schwerpunktaktion A-918-23 mit Datenjahr 2023 (die Aktion erscheint jährlich); Eurostat-Verkaufsmengen bis 2024.",
+        "Die drei EFSA-Programme haben unterschiedliche Zwecke: Das EU-Programm ist repräsentativ für zwölf festgelegte Erzeugnisse, die nationalen Programme sind risikoorientiert, die verschärfte Einfuhrkontrolle ist eine gezielte Stichprobe auffälliger Herkünfte. Ihre Quoten sind nicht vergleichbar.",
+        "Über dem Höchstgehalt und nicht konform sind zwei verschiedene Zahlen: Zwischen ihnen liegt die Messunsicherheit, die zugunsten der Ware gerechnet wird."
       ],
       "claim_phrasings_handled": [
         "Unsere Lebensmittel sind voller Pestizide",
@@ -868,7 +875,10 @@
         "Bio ist 100 Prozent pestizid-frei",
         "AT-Konformität bei Pestizid-Rückständen ist hoch",
         "EFSA toleriert zu hohe Pestizid-Werte",
-        "Cocktail-Effekt wird ignoriert"
+        "Cocktail-Effekt wird ignoriert",
+        "Wie viele Lebensmittelproben überschreiten die Grenzwerte?",
+        "Importware ist stärker belastet als EU-Ware",
+        "In Bio-Lebensmitteln sind auch Pestizide"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
@@ -884,6 +894,8 @@
           "wirkstoffe",
           "mrl",
           "maximum residue",
+          "höchstgehalt",
+          "hoechstgehalt",
           "efsa",
           "ages",
           "lebensmittel-sicherheit",
@@ -934,7 +946,17 @@
           "vielen",
           "fast",
           "lebensmittel",
-          "lebensmittel-sicherheit"
+          "import",
+          "importware",
+          "drittland",
+          "türkei",
+          "tuerkei",
+          "wie viele",
+          "wie viel",
+          "menge",
+          "tonnen",
+          "ausgebracht",
+          "belastet"
         ]
       ],
       "trigger_all": [
@@ -958,6 +980,32 @@
           ],
           [
             "ignoriert"
+          ]
+        ],
+        [
+          [
+            "probe",
+            "proben"
+          ],
+          [
+            "grenzwert",
+            "höchstgehalt",
+            "hoechstgehalt",
+            "überschreit",
+            "ueberschreit"
+          ]
+        ],
+        [
+          [
+            "importware",
+            "importierte",
+            "einfuhrware"
+          ],
+          [
+            "belastet",
+            "belastung",
+            "rückstände",
+            "rueckstaende"
           ]
         ]
       ]

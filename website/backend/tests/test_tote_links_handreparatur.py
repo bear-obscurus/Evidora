@@ -129,12 +129,12 @@ def test_jeder_geparkte_link_steht_noch_in_den_daten():
 
 def test_inhaltskonflikte_sind_als_solche_markiert():
     inhalt = [u for u, e in BEKANNT.items() if e["grund"].startswith("INHALT:")]
-    # u. a. EFSA-Probenzahlen, ICCT-Amortisation, IAB-Wohnungsmarkt.
-    # Familiennachzug, Eurobarometer, Femizide, Agrar/Klima sowie
-    # Leerstandsabgabe und Wohnbeihilfe sind seit den Fakt-Korrekturen vom
-    # 22./23.9.2026 keine Konflikte mehr (siehe test_geloeste_inhaltskonflikte).
-    assert len(inhalt) >= 8
-    for teil in ("efsajournal/pub/8957", "Industry-Facts-and-Figures", "lifecycle-emissions"):
+    # u. a. ICCT-Amortisation, Duengemittel, IAB-Wohnungsmarkt.
+    # Familiennachzug, Eurobarometer, Femizide, Agrar/Klima, Leerstandsabgabe,
+    # Wohnbeihilfe und die EFSA-Probenzahlen sind seit den Fakt-Korrekturen
+    # vom 22.-24.9.2026 keine Konflikte mehr (test_geloeste_inhaltskonflikte).
+    assert len(inhalt) >= 7
+    for teil in ("Industry-Facts-and-Figures", "lifecycle-emissions", "iab.de"):
         assert any(teil in u for u in inhalt), teil
 
 
@@ -225,6 +225,7 @@ def test_widerspruechliche_quelle_wurde_nicht_untergeschoben():
     ("sozialleistungen-auf-bundes-und-landesebene/wohnbeihilfe",
      ("sozialstaat_pack.json", "wohnbeihilfe_at_2026")),
     ("wohnbaufoerderung/wohnbeihilfe", ("sozialstaat_pack.json", "wohnbeihilfe_at_2026")),
+    ("efsajournal/pub/8957", ("landwirtschaft_pack.json", "pestizid_rueckstaende_2026")),
 ])
 def test_geloeste_inhaltskonflikte(tot, fakt):
     """Gegenstueck: Diese Konflikte wurden am 22./23.9.2026 durch eine
