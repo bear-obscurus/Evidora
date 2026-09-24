@@ -37,6 +37,7 @@ BACKEND = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND))
 
 from services import synthesizer as syn  # noqa: E402
+from services._notizen import prompt_notizen  # noqa: E402
 from services._struct_marker import render_data_with_marker  # noqa: E402
 
 DATA = BACKEND / "data"
@@ -68,7 +69,9 @@ def _fakt(datei: str, fakt_id: str) -> dict:
 def felder(fakt: dict) -> dict[str, str]:
     """display_value und description — so wie die Pack-Services sie bauen."""
     d = fakt.get("data") or {}
-    notizen = " | ".join(fakt.get("context_notes") or [])
+    # Wartungs-Notizen ("Korrigiert JJJJ-MM-TT: …") erreichen den Prompt
+    # seit #195 nicht mehr — der Zensus misst dieselbe Auswahl.
+    notizen = " | ".join(prompt_notizen(fakt.get("context_notes")))
     return {
         "display_value": f"{fakt.get('headline', '?')}. {render_data_with_marker(d)}",
         "description": (d.get("context", "") + " " + notizen).strip(),

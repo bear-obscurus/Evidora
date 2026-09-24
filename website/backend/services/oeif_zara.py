@@ -58,6 +58,7 @@ import logging
 import os
 
 from services._topic_match import find_matching_items, load_items, stamp_provenance
+from services._notizen import prompt_notizen
 
 logger = logging.getLogger("evidora")
 
@@ -162,7 +163,7 @@ async def search_oeif_zara(analysis: dict) -> dict:
             "ÖIF Integrationsbericht / ZARA Rassismus Report",
         )
         notes = fact.get("context_notes") or []
-        notes_joined = " | ".join(notes)
+        notes_joined = " | ".join(prompt_notizen(notes))
         year = str(fact.get("year", ""))
 
         display = f"{fact.get('headline', '?')}. {_data_lines(d)}"

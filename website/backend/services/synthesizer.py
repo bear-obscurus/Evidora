@@ -35,6 +35,46 @@ PROMPT_MAX_STR = 400
 PROMPT_MAX_DISPLAY = int(_os.getenv("SYNTH_MAX_DISPLAY", "1200"))
 
 
+def claim_abdeckung(result: dict, terms: list[str]) -> int:
+    """Wie viele VERSCHIEDENE Claim-Terme stehen im Inhalt dieses Ergebnisses.
+
+    Gezaehlt wird ueber die Felder, die spaeter auch im Prompt stehen —
+    vor allem ``display_value``, wo bei kuratierten Fakten die Zahlen
+    stecken. Schreibweisen-normalisiert wie die Trigger (#143/#144).
+    """
+    from services._schreibweise import normalisiere
+
+    if not terms:
+        return 0
+    text = " ".join(
+        str(result.get(k) or "")
+        for k in ("indicator_name", "display_value", "description", "title", "name")
+    )
+    norm = normalisiere(text.lower())
+    return sum(1 for t in terms if normalisiere(t) in norm)
+
+
+def nach_claim_abdeckung(results: list, terms: list[str]) -> list:
+    """Ergebnisse EINER Quelle nach Claim-Abdeckung ordnen (stabil).
+
+    Massnahme C (Prompt-Zensus 2026-09-24). Der Per-Source-Cap nimmt nur die
+    ersten drei Ergebnisse, und seit Massnahme B bekommt das erste das grosse
+    Budget. Welches Fakt an Position 1 steht, entschied bei Static-Packs
+    faktisch die Reihenfolge in der JSON-Datei: Beim Claim "Die
+    Leerstandsabgabe bringt nichts" gewann `leerstand_umverteilung_2026`
+    (Dateiposition 2) gegen den zustaendigen `leerstandsabgabe_wirkung_2026`
+    (Position 14) — und brachte seine quellenlose Empirica-Schaetzung ins
+    Verdict (#191). Gemessen an zehn Faellen: Dateireihenfolge 2 Fehlgriffe,
+    Abdeckung 0.
+
+    Gleichstand behaelt die bisherige Reihenfolge (sorted ist stabil), die
+    Auswahl des Rerankers bleibt also erhalten.
+    """
+    if len(results) < 2 or not terms:
+        return results
+    return sorted(results, key=lambda r: -claim_abdeckung(r, terms))
+
+
 def prompt_budget(feld: str, rang: int) -> int:
     """Zeichenbudget eines Prompt-Feldes.
 
@@ -1316,6 +1356,11 @@ async def synthesize_results(
             # reichen für ein gutes Verdict; mehr ist Token-Verschwendung).
             is_ranking = any(r.get("rank") for r in results[:1])
             limit = 15 if is_ranking else 3
+            # Massnahme C: innerhalb der Quelle nach Claim-Abdeckung ordnen,
+            # BEVOR der Cap zuschlaegt. Ranking-Listen (Eurostat-Vergleiche)
+            # bleiben unberuehrt — dort traegt die Reihenfolge die Aussage.
+            if not is_ranking:
+                results = nach_claim_abdeckung(results, _claim_terms)
             for rang, r in enumerate(results[:limit]):
                 # Only include key fields
                 compact = {k: v for k, v in r.items() if v and k in (
