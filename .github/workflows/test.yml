@@ -360,6 +360,7 @@ jobs:
             tests/test_pestizid_rueckstaende.py \
             tests/test_fakt_rangfolge.py \
             tests/test_wartungsnotizen.py \
+            tests/test_e_auto_lebenszyklus.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 

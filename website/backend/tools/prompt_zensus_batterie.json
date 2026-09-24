@@ -177,9 +177,41 @@
       "fakt": "femizide_at_de_2026",
       "muss": [
         [
-          "133 vollendete Taten",
-          "133 bei Partnerschaftsgewalt"
+          "8,4 % weniger",
+          "−8,4 %",
+          "938"
         ]
+      ]
+    },
+    {
+      "claim": "Wie viele Frauen wurden 2024 in Deutschland von ihren Partnern getötet?",
+      "datei": "gleichstellung_pack.json",
+      "fakt": "femizide_at_de_2026",
+      "muss": [
+        [
+          "133 bei Partnerschaftsgewalt",
+          "133 Partnerschaftsgewalt",
+          "133 vollendete Taten"
+        ]
+      ]
+    },
+    {
+      "claim": "E-Autos haben eine schlechtere CO2-Bilanz als Verbrenner",
+      "datei": "energie_klima_pack.json",
+      "fakt": "e_auto_akku_co2_2026",
+      "muss": [
+        [
+          "63 g",
+          "73 %"
+        ]
+      ]
+    },
+    {
+      "claim": "Wie lange muss ein E-Auto fahren, bis es sich klimatisch rechnet?",
+      "datei": "energie_klima_pack.json",
+      "fakt": "e_auto_akku_co2_2026",
+      "muss": [
+        "17.000"
       ]
     }
   ],
