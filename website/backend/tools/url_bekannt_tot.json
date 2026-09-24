@@ -8,13 +8,6 @@
    "seit": "2026-09-22",
    "grund": "MIT-PDF Acemoglu/Restrepo AER P&P 2024 nicht auffindbar"
   },
-  "https://theicct.org/publication/lifecycle-emissions-roadmap-passenger-vehicles-jul24/": {
-   "dateien": [
-    "energie_klima_pack.json"
-   ],
-   "seit": "2026-09-22",
-   "grund": "INHALT: ICCT 2025: Amortisation ~17.000 km; Fakt nennt 30.000-50.000 km"
-  },
   "https://theicct.org/publication/real-world-energy-consumption-electric-vehicles-europe-jul24/": {
    "dateien": [
     "mobilitaet_pack.json"
