@@ -358,6 +358,8 @@ jobs:
             tests/test_korrekturnotiz_ohne_alte_zahlen.py \
             tests/test_prompt_zensus.py \
             tests/test_pestizid_rueckstaende.py \
+            tests/test_fakt_rangfolge.py \
+            tests/test_wartungsnotizen.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 

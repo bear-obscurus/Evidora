@@ -67,6 +67,7 @@ import logging
 import os
 
 from services._topic_match import find_matching_items, load_items
+from services._notizen import prompt_notizen
 
 logger = logging.getLogger("evidora")
 
@@ -132,7 +133,7 @@ async def search_sicherheitspolitik(analysis: dict) -> dict:
         label = fact.get("source_label",
                          "AT BVG 1955 + AT-VfGH + UN-Resolutionen + ICJ + NATO Strategic Concept 2022 + EU PESCO + SIPRI + RAND + DSN + BMLV + BMI")
         notes = fact.get("context_notes") or []
-        notes_joined = " | ".join(notes)
+        notes_joined = " | ".join(prompt_notizen(notes))
         year = str(fact.get("year", ""))
 
         display = f"{fact.get('headline', '?')}. {_data_lines(d)}"
