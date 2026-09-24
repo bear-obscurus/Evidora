@@ -75,11 +75,11 @@ def felder(fakt: dict) -> dict[str, str]:
     }
 
 
-def ankommend(text: str, claim: str, max_str: int) -> str:
+def ankommend(text: str, claim: str, budget: int) -> str:
     terme = syn._prompt_claim_terms({}, claim)
-    if len(text) <= max_str:
+    if len(text) <= budget:
         return text
-    return syn._claim_centered_truncate(text, terme, max_str)
+    return syn._claim_centered_truncate(text, terme, budget)
 
 
 def _alte_satztrennung() -> None:
@@ -91,10 +91,15 @@ def _alte_satztrennung() -> None:
     ]
 
 
-def pruefe(eintrag: dict, max_str: int) -> dict:
+def pruefe(eintrag: dict, max_str: int | None = None) -> dict:
+    """Misst mit derselben Politik wie der Synthesizer: display_value bekommt
+    PROMPT_MAX_DISPLAY (erstes Ergebnis je Quelle), description PROMPT_MAX_STR."""
     fakt = _fakt(eintrag["datei"], eintrag["fakt"])
     texte = felder(fakt)
-    zusammen = {k: ankommend(v, eintrag["claim"], max_str) for k, v in texte.items() if v}
+    budgets = {"display_value": max_str or syn.PROMPT_MAX_DISPLAY,
+               "description": syn.PROMPT_MAX_STR}
+    zusammen = {k: ankommend(v, eintrag["claim"], budgets[k])
+                for k, v in texte.items() if v}
     alles = " ".join(zusammen.values())
     # Ein Muss-Eintrag darf eine Liste von Schreibvarianten sein (any-of):
     # entscheidend ist die Information, nicht ihr Wortlaut.
@@ -115,15 +120,20 @@ def pruefe(eintrag: dict, max_str: int) -> dict:
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--batterie", default=str(BATTERIE))
-    p.add_argument("--max-str", type=int, default=400)
+    p.add_argument("--max-str", type=int, default=None,
+                   help="Budget fuer display_value (Vorgabe: synthesizer.PROMPT_MAX_DISPLAY)")
     p.add_argument("--zeige-prompt", action="store_true")
     p.add_argument("--alt", action="store_true", help="mit der alten Satztrennung messen")
+    p.add_argument("--luecken", action="store_true",
+                   help="statt der Pflicht-Claims die bekannten Luecken messen "
+                        "(zeigt, was ein groesseres Budget brauchen wuerde)")
     a = p.parse_args()
 
     if a.alt:
         _alte_satztrennung()
 
-    batterie = json.loads(Path(a.batterie).read_text(encoding="utf-8"))["claims"]
+    roh = json.loads(Path(a.batterie).read_text(encoding="utf-8"))
+    batterie = roh["bekannte_luecken"] if a.luecken else roh["claims"]
     ergebnisse = [pruefe(e, a.max_str) for e in batterie]
 
     print(f"{'Fakt':38s} {'voll':>6s} {'an':>5s} {'%':>5s}  Claim")
@@ -145,7 +155,8 @@ def main() -> int:
     print(f"{len(ergebnisse) - len(schlecht)}/{len(ergebnisse)} Claims vollstaendig | "
           f"Durchsatz {100.0 * gesamt_an / max(1, gesamt_voll):.1f} % der Fakt-Zeichen "
           f"({gesamt_an} von {gesamt_voll})")
-    return 1 if schlecht else 0
+    # Beim Luecken-Lauf ist ein Fehlschlag der erwartete Zustand, kein Fehler.
+    return 0 if a.luecken else (1 if schlecht else 0)
 
 
 if __name__ == "__main__":

@@ -26,6 +26,26 @@ logger = logging.getLogger("evidora")
 import os as _os
 SYNTH_SOURCE_BUDGET = int(_os.getenv("SYNTH_SOURCE_BUDGET", "16"))
 
+# Prompt-Budget je Feld. PROMPT_MAX_STR gilt fuer alle Felder,
+# PROMPT_MAX_DISPLAY nur fuer das display_value des ersten (hoechstgerankten)
+# Ergebnisses je Quelle — dort steht der kuratierte Fakt, um den es geht.
+# Begruendung und Messung stehen an der Verwendungsstelle in build_prompt.
+# tools/prompt_zensus.py misst gegen genau diese beiden Werte.
+PROMPT_MAX_STR = 400
+PROMPT_MAX_DISPLAY = int(_os.getenv("SYNTH_MAX_DISPLAY", "1200"))
+
+
+def prompt_budget(feld: str, rang: int) -> int:
+    """Zeichenbudget eines Prompt-Feldes.
+
+    Nur das ``display_value`` des ERSTEN Ergebnisses je Quelle bekommt das
+    grosse Budget — dort steht der kuratierte Fakt, um den es geht. Alles
+    andere bleibt bei 400 Zeichen.
+    """
+    if feld == "display_value" and rang == 0:
+        return PROMPT_MAX_DISPLAY
+    return PROMPT_MAX_STR
+
 
 def _source_prompt_priority(source_data: dict) -> tuple:
     """Priorität einer Quelle für die Prompt-Budget-Auswahl (höher = wichtiger).
@@ -1248,7 +1268,18 @@ async def synthesize_results(
     # services) carry hundreds of chars of context-notes that the LLM
     # doesn't need verbatim — a 400-char truncation preserves the gist
     # while reducing prompt size by ~30-40 %.
-    MAX_STR = 400
+    MAX_STR = PROMPT_MAX_STR
+
+    # Massnahme B (Prompt-Zensus 2026-09-24): 400 Zeichen reichen fuer ein
+    # Datenfeld, nicht fuer einen ganzen kuratierten Fakt. Ein Fakt liefert
+    # seine Headline UND ein Dutzend data-Felder in EINEM display_value —
+    # bei 400 Zeichen passt neben der Headline kein zweites Feld, und die
+    # Antwort auf "Wurde eine Verordnung aufgehoben?" oder "Wie hoch ist die
+    # Abgabe in Frankreich?" bleibt liegen. Gemessen an den drei
+    # dokumentierten Luecken: 400 -> 0 von 3, 800 -> 2 von 3, 1200 -> 3 von 3.
+    # Das groessere Budget bekommt NUR das erste (hoechstgerankte) Ergebnis
+    # je Quelle: dort steht der Fakt, um den es geht. Damit waechst der
+    # Prompt gemessen um rund 900 Zeichen je Claim statt um das Dreifache.
 
     # Claim-zentriertes Fenster (Audit 2026-07-07): die alte Trunkierung nahm
     # stumpf s[:400] = den Textanfang. Beim Kickl/„Volkskanzler"-Claim war die
@@ -1260,10 +1291,10 @@ async def synthesize_results(
     # (mit etwas Kontext davor). Kein Term getroffen → altes Head-Verhalten.
     _claim_terms = _prompt_claim_terms(analysis, original_claim)
 
-    def _truncate_str(s: str) -> str:
-        if not isinstance(s, str) or len(s) <= MAX_STR:
+    def _truncate_str(s: str, budget: int = MAX_STR) -> str:
+        if not isinstance(s, str) or len(s) <= budget:
             return s
-        return _claim_centered_truncate(s, _claim_terms, MAX_STR)
+        return _claim_centered_truncate(s, _claim_terms, budget)
 
     # Fix #7 — Fan-out-Budget: nur die Top-N Quellen-mit-Treffern in den
     # Prompt aufnehmen (autoritative/STRUKTURELL immer behalten). Ändert NUR
@@ -1285,7 +1316,7 @@ async def synthesize_results(
             # reichen für ein gutes Verdict; mehr ist Token-Verschwendung).
             is_ranking = any(r.get("rank") for r in results[:1])
             limit = 15 if is_ranking else 3
-            for r in results[:limit]:
+            for rang, r in enumerate(results[:limit]):
                 # Only include key fields
                 compact = {k: v for k, v in r.items() if v and k in (
                     "title", "name", "url", "journal", "date", "status",
@@ -1322,7 +1353,7 @@ async def synthesize_results(
                     k: (v if k == "display_value"
                         and isinstance(v, str)
                         and "STRUKTURELL FALSCH:" in v
-                        else _truncate_str(v))
+                        else _truncate_str(v, prompt_budget(k, rang)))
                     for k, v in compact.items()
                 }
                 context_parts.append(json.dumps(compact, ensure_ascii=False))
