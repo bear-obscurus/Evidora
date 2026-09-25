@@ -363,6 +363,7 @@ jobs:
             tests/test_e_auto_lebenszyklus.py \
             tests/test_suv_frontgeometrie.py \
             tests/test_label_kohaerenz.py \
+            tests/test_tempolimit_zuordnung.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
 
