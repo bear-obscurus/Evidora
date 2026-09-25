@@ -24,6 +24,14 @@ in jeder Lesart falsch ist. Sagt die Summary irgendwo ausdruecklich, dass die
 Behauptung zutrifft, ist die Umdeutung nur eine Praezisierung und das Muster
 schweigt.
 
+Nachtrag (2026-09-25): Vor M laeuft seit PR #202 Muster N, das die
+Claim-Schwelle gegen die zugeschriebene Zahl rechnet (133 < 300) und dort
+``false`` setzt, wo die Rechnung aufgeht. M ist seither das Auffangnetz fuer
+die Faelle ohne vergleichbare Zahl. Die Femizid-Faelle in dieser Datei enden
+darum bei ``false``; das exakte Label prueft
+``test_muster_n_schwellenzahl.py``, hier steht die Zusage, dass am Ende kein
+bejahendes Label uebrig bleibt.
+
 Keine Netzabfrage, kein Modell.
 """
 
@@ -71,15 +79,30 @@ def _lauf(verdict, summary, claim=FEMIZID_CLAIM, confidence=0.9):
 # Der Fall aus QA50F
 # --------------------------------------------------------------------------
 
-def test_umdeutung_wertet_true_auf_mixed_ab():
+def test_umdeutung_wird_abgewertet():
     r = _lauf("true", FEMIZID_SUMMARY)
-    assert r["verdict"] == "mixed", r["verdict"]
-    assert r["confidence"] <= 0.6
+    assert r["verdict"] not in ("true", "mostly_true"), r["verdict"]
 
 
 def test_auch_mostly_true_wird_abgewertet():
     r = _lauf("mostly_true", FEMIZID_SUMMARY)
-    assert r["verdict"] == "mixed"
+    assert r["verdict"] not in ("true", "mostly_true")
+
+
+# Umdeutung ohne vergleichbare Zahl: hier kann Muster N nichts rechnen, und
+# M muss allein tragen. Das ist der Fall, der die Abwertung auf "mixed"
+# ueberhaupt begruendet.
+UMDEUTUNG_OHNE_ZAHL = (
+    "Die Behauptung von 'über 300' bezieht sich vermutlich auf alle "
+    "weiblichen Opfer von Tötungsdelikten, nicht nur auf den "
+    "Partnerschaftskontext."
+)
+
+
+def test_umdeutung_ohne_vergleichszahl_endet_bei_mixed():
+    r = _lauf("true", UMDEUTUNG_OHNE_ZAHL)
+    assert r["verdict"] == "mixed", r["verdict"]
+    assert r["confidence"] <= 0.6
 
 
 def test_summary_bleibt_unveraendert():
@@ -140,8 +163,9 @@ def test_zweite_live_formulierung_wird_auch_erkannt():
     """Dieselbe Umdeutung, anderes Wort: "zu hoch angesetzt" statt "nicht".
     Die erste Fassung des Musters verlangte ein literales "nicht" und ging
     darum live nicht an."""
+    assert _UMDEUTUNG_MUSTER.search(FEMIZID_SUMMARY_V2.lower())
     r = _lauf("true", FEMIZID_SUMMARY_V2)
-    assert r["verdict"] == "mixed", r["verdict"]
+    assert r["verdict"] not in ("true", "mostly_true"), r["verdict"]
 
 
 def test_umdeutungsmuster_trifft_den_originalfall():
