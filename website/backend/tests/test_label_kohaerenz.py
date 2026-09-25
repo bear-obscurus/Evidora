@@ -50,6 +50,16 @@ FEMIZID_SUMMARY = (
 )
 FEMIZID_CLAIM = "In Deutschland sterben jedes Jahr über 300 Frauen durch ihren Partner"
 
+# Zweite live beobachtete Formulierung (25.9., nach der Fakt-Ergaenzung):
+# dieselbe Umdeutung, anderes Wort — "zu hoch angesetzt" statt "nicht nur".
+FEMIZID_SUMMARY_V2 = (
+    "Laut BKA-Bundeslagebild 2024 starben in Deutschland 133 Frauen durch "
+    "vollendete Tötungsdelikte im Partnerschaftskontext. Die Behauptung von "
+    "'über 300' bezieht sich vermutlich auf alle weiblichen Opfer von "
+    "Tötungsdelikten (328 vollendet), ist aber für den Partnerschaftskontext "
+    "zu hoch angesetzt."
+)
+
 
 def _lauf(verdict, summary, claim=FEMIZID_CLAIM, confidence=0.9):
     result = {"verdict": verdict, "confidence": confidence, "summary": summary,
@@ -125,6 +135,14 @@ def test_umdeutung_ohne_negation_feuert_nicht():
 # --------------------------------------------------------------------------
 # Die Muster selbst
 # --------------------------------------------------------------------------
+
+def test_zweite_live_formulierung_wird_auch_erkannt():
+    """Dieselbe Umdeutung, anderes Wort: "zu hoch angesetzt" statt "nicht".
+    Die erste Fassung des Musters verlangte ein literales "nicht" und ging
+    darum live nicht an."""
+    r = _lauf("true", FEMIZID_SUMMARY_V2)
+    assert r["verdict"] == "mixed", r["verdict"]
+
 
 def test_umdeutungsmuster_trifft_den_originalfall():
     assert _UMDEUTUNG_MUSTER.search(FEMIZID_SUMMARY.lower())

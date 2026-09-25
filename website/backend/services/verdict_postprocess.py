@@ -46,7 +46,15 @@ _COMPARISON_COUNTRIES = (
 _UMDEUTUNG_MUSTER = re.compile(
     r"behauptung[^.]{0,60}?\d[^.]{0,60}?"
     r"\b(?:bezieht sich|beziehen sich|meint|bezeichnet)\b"
-    r"[^.]{0,200}?\bnicht\b"
+    r"[^.]{0,220}?"
+    # Der zweite Teil sagt, dass die Zahl fuer die behauptete Sache NICHT
+    # stimmt. Live am 25.9. zweimal beobachtet, beide Male anders formuliert:
+    # "… nicht nur auf Partnerschaftskontext" und "… ist aber fuer den
+    # Partnerschaftskontext zu hoch angesetzt". Eine Wortform allein reicht
+    # nicht — die Liste bleibt trotzdem klein, weil die
+    # Bestaetigungs-Ausnahme unten den Schaden begrenzt.
+    r"\b(?:nicht|zu hoch|zu niedrig|überschätzt|ueberschaetzt|unterschätzt|"
+    r"unterschaetzt|übertrieben|uebertrieben|irreführend|irrefuehrend)\b"
 )
 
 # Sagt die Summary IRGENDWO ausdruecklich, dass die Behauptung zutrifft,
