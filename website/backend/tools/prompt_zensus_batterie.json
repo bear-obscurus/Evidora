@@ -235,6 +235,27 @@
           "1.100"
         ]
       ]
+    },
+    {
+      "claim": "In der EU überschreiten mehr als drei Prozent der Lebensmittelproben die Pestizid-Höchstgehalte",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "pestizid_rueckstaende_2026",
+      "muss": [
+        [
+          "3,3 %"
+        ]
+      ]
+    },
+    {
+      "claim": "In Deutschland sterben jedes Jahr über 300 Frauen durch ihren Partner",
+      "datei": "gleichstellung_pack.json",
+      "fakt": "femizide_at_de_2026",
+      "muss": [
+        [
+          "133",
+          "308"
+        ]
+      ]
     }
   ],
   "bekannte_luecken": [],
