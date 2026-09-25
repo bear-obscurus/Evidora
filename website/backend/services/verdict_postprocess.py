@@ -512,6 +512,82 @@ def _value_attributed_elsewhere(summary_lower, pos, claim_ents):
     return not any(near == c or near in c or c in near for c in claim_ents)
 
 
+# --- Muster N: Schwellen-Claim gegen die zugeschriebene Zahl (QA50F) -------
+# "In Deutschland sterben jedes Jahr ueber 300 Frauen durch ihren Partner"
+# -> true@0.9, waehrend die Summary selbst 133 fuer den Partnerschaftskontext
+# nennt. Muster M (Umdeutung) fing zwei von drei Formulierungen; die dritte
+# stellte die Umdeutung rein sachlich fest ("wobei 133 davon im
+# Partnerschaftskontext lagen") und trug kein Widerlegungs-Signal. Eine
+# Wortliste holt diese Vielfalt nicht ein — also rechnen statt lesen, wie in
+# den Mustern G bis J.
+
+# Funktionswoerter, die als Claim-Anker nichts taugen.
+_N_STOPP = frozenset({
+    "jedes", "jeder", "jede", "durch", "ihren", "ihrer", "ihrem", "eines",
+    "einer", "einem", "nicht", "mehr", "sind", "haben", "werden", "wurde",
+    "wurden", "sowie", "gegen", "unter", "ueber", "zwischen", "insgesamt",
+    "etwa", "rund", "circa", "knapp", "davon", "dabei", "wobei", "damit",
+    "diese", "dieser", "dieses", "welche", "welcher", "seit", "nach", "beim",
+})
+
+_N_SCHWELLE_RE = re.compile(
+    r"\b(über|ueber|mehr\s+als|mindestens|unter|weniger\s+als|höchstens|"
+    r"hoechstens)\s+([\d][\d.]*(?:,\d+)?)"
+)
+_N_ZAHL_RE = re.compile(r"\b(\d[\d.]*(?:,\d+)?)\b")
+
+
+def _n_inhaltswoerter(claim_lower):
+    """Inhaltswoerter des Claims, normalisiert — der Anker fuer die
+    Zuschreibung einer Summary-Zahl."""
+    aus = set()
+    for w in re.findall(r"[a-zäöüßa-z]{5,}", claim_lower):
+        if w in _N_STOPP:
+            continue
+        aus.add(normalisiere(w))
+    return aus
+
+
+def zahl_zum_claim_gegenstand(claim_lower, summary_lower, schwelle_roh):
+    """Die Zahl, die die Summary dem GEGENSTAND des Claims zuschreibt.
+
+    Rueckgabe ``(wert, getroffene_woerter)`` oder ``None``. Bewusst streng:
+    mindestens zwei Claim-Woerter im Umfeld der Zahl, und die beste
+    Zuschreibung muss eindeutig sein — sonst lieber nichts tun, als ein
+    korrektes Label zu invertieren.
+    """
+    woerter = _n_inhaltswoerter(claim_lower)
+    if len(woerter) < 2:
+        return None
+    kandidaten = []
+    for m in _N_ZAHL_RE.finditer(summary_lower):
+        roh = m.group(1)
+        if roh == schwelle_roh:
+            continue                                   # die Claim-Zahl selbst
+        if re.fullmatch(r"(19|20)\d\d", roh.replace(".", "")):
+            continue                                   # Jahreszahl
+        if _is_bound_or_age(summary_lower, m.start(), m.end()):
+            continue
+        tail = summary_lower[m.end():m.end() + 14]
+        if re.match(r"\s*(?:%|prozent|euro|€|mio|mrd|millionen|milliarden)", tail):
+            continue                                   # andere Einheit
+        wert = _parse_de_number(roh, tail)
+        if wert is None:
+            continue
+        fenster = normalisiere(summary_lower[max(0, m.start() - 70):m.end() + 70])
+        treffer = {w for w in woerter if w in fenster}
+        kandidaten.append((len(treffer), wert, treffer))
+    if not kandidaten:
+        return None
+    kandidaten.sort(key=lambda k: -k[0])
+    if kandidaten[0][0] < 2:
+        return None
+    for anzahl, wert, _ in kandidaten[1:]:
+        if anzahl == kandidaten[0][0] and wert != kandidaten[0][1]:
+            return None                                # keine eindeutige Zuschreibung
+    return kandidaten[0][1], kandidaten[0][2]
+
+
 def _summary_refutes_superlative(claim_lower, summary_lower):
     """True, wenn die Summary den Superlativ einem ANDEREN Land als dem
     Claim-Subjekt zuschreibt oder ihn fürs Claim-Subjekt explizit verneint
@@ -1785,7 +1861,53 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
             except ValueError:
                 pass
 
+    # --- Muster N: Schwellen-Claim gegen die zugeschriebene Zahl (QA50F) ---
+    # Rechnen statt lesen: Nennt der Claim eine Schwelle ("ueber 300") und
+    # schreibt die Summary dem Gegenstand des Claims eine andere Zahl zu
+    # (133 im Partnerschaftskontext), entscheidet der Vergleich — nicht das
+    # Label und nicht die Schlussformel. Laeuft VOR Muster M: Wo die
+    # Rechnung aufgeht, ist 'false' praeziser als das 'mixed', auf das
+    # sich M ohne Zahlenvergleich beschraenken muss. Nach dem
+    # Consistency-Check, weil der sonst zurueckflippt.
+    _n_summary = (result.get("summary") or "").lower()
+    _n_m = _N_SCHWELLE_RE.search(_claim_lc)
+    if (_n_m and _n_summary
+            and result.get("verdict") in ("true", "mostly_true",
+                                          "false", "mostly_false")):
+        _n_roh = _n_m.group(2)
+        _n_schwelle = _parse_de_number(_n_roh, _claim_lc[_n_m.end():_n_m.end() + 14])
+        _n_treffer = zahl_zum_claim_gegenstand(_claim_lc, _n_summary, _n_roh)
+        if _n_schwelle and _n_treffer:
+            _n_wert, _n_woerter = _n_treffer
+            # Groessenordnungs-Fenster: Faktor > 1000 spricht fuer
+            # verschiedene Einheiten, nicht fuer einen Widerspruch.
+            _n_quotient = max(_n_wert, _n_schwelle) / max(min(_n_wert, _n_schwelle), 1e-9)
+            if _n_quotient <= 1000:
+                _n_op = re.sub(r"\s+", " ", _n_m.group(1))
+                if _n_op == "mindestens":
+                    _n_wahr = _n_wert >= _n_schwelle
+                elif _n_op in ("höchstens", "hoechstens"):
+                    _n_wahr = _n_wert <= _n_schwelle
+                elif _n_op in ("über", "ueber", "mehr als"):
+                    _n_wahr = _n_wert > _n_schwelle
+                else:                                   # unter / weniger als
+                    _n_wahr = _n_wert < _n_schwelle
+                _n_ziel = "true" if _n_wahr else "false"
+                _n_alt = result["verdict"]
+                if ((_n_wahr and _n_alt in ("false", "mostly_false"))
+                        or (not _n_wahr and _n_alt in ("true", "mostly_true"))):
+                    result["verdict"] = _n_ziel
+                    logger.warning(
+                        f"Muster N (Schwellen-Zuschreibung): Claim '{_n_op} "
+                        f"{_n_schwelle:g}', Summary schreibt dem Gegenstand "
+                        f"{_n_wert:g} zu (Anker: {sorted(_n_woerter)}) — "
+                        f"Label '{_n_alt}' auf '{_n_ziel}' korrigiert."
+                    )
+
     # --- Muster M: Umdeutung der Claim-Zahl bei Label "true" (QA50F) ---
+    # Auffangnetz hinter Muster N: Wenn die Summary die Claim-Zahl
+    # umdeutet, aber keine vergleichbare Zahl zuschreibt (oder die
+    # Zuschreibung mehrdeutig bleibt), bleibt nur die Abwertung.
     # MUSS nach dem Consistency-Check laufen — sonst ueberschreibt ihn die
     # Schlussformel-Erkennung. Abgewertet wird auf "mixed", nicht auf
     # "false": Die Umdeutung sagt, dass die Zahl etwas anderes meint, nicht
