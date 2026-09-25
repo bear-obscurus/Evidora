@@ -344,7 +344,15 @@
           "morde",
           "umgebracht",
           "erschlagen",
-          "erstochen"
+          "erstochen",
+          "sterben",
+          "stirbt",
+          "starben",
+          "opfer",
+          "tot",
+          "tote",
+          "getoetet",
+          "gewalt"
         ]
       ],
       "trigger_all": [
