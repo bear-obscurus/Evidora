@@ -37,6 +37,27 @@ _COMPARISON_COUNTRIES = (
     "zypern",
 )
 
+# Muster M (QA50F, 2026-09-25): Die Summary deutet die Zahl DES CLAIMS um
+# ("Die Behauptung von 'ueber 300' bezieht sich auf alle weiblichen Opfer,
+# nicht nur auf Partnerschaftskontext") — und das Label sagt trotzdem
+# ``true``. Dreimal hintereinander reproduziert, identische Summary: keine
+# Varianz, sondern ein Label, das seiner eigenen Begruendung widerspricht.
+# Der Dienst behauptet damit das Gegenteil dessen, was er erklaert.
+_UMDEUTUNG_MUSTER = re.compile(
+    r"behauptung[^.]{0,60}?\d[^.]{0,60}?"
+    r"\b(?:bezieht sich|beziehen sich|meint|bezeichnet)\b"
+    r"[^.]{0,200}?\bnicht\b"
+)
+
+# Sagt die Summary IRGENDWO ausdruecklich, dass die Behauptung zutrifft,
+# ist die Umdeutung nur eine Praezisierung — dann nicht abwerten.
+_BESTAETIGUNG_MUSTER = re.compile(
+    r"\b(?:ist|sind)\s+(?:damit\s+|somit\s+|daher\s+|dennoch\s+|trotzdem\s+)?"
+    r"(?:bestätigt|korrekt|richtig|zutreffend|wahr|belegt)\b"
+    r"|\btrifft\s+(?:damit\s+|somit\s+)?zu\b"
+)
+
+
 _SUPERLATIVE_PHRASE = (
     r"(?:(?:die|der|das|den)\s+"
     r"(?:höchste|niedrigste|geringste|größte|meiste\w*|stärkste)\w*"
@@ -1755,6 +1776,28 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                     )
             except ValueError:
                 pass
+
+    # --- Muster M: Umdeutung der Claim-Zahl bei Label "true" (QA50F) ---
+    # MUSS nach dem Consistency-Check laufen — sonst ueberschreibt ihn die
+    # Schlussformel-Erkennung. Abgewertet wird auf "mixed", nicht auf
+    # "false": Die Umdeutung sagt, dass die Zahl etwas anderes meint, nicht
+    # zwingend, dass die Behauptung in jeder Lesart falsch ist. "mixed" mit
+    # der erklaerenden Summary ist ehrlich; "true" mit derselben Summary
+    # behauptet das Gegenteil der eigenen Begruendung.
+    _m_summary = (result.get("summary") or "").lower()
+    if (result.get("verdict") in ("true", "mostly_true")
+            and _UMDEUTUNG_MUSTER.search(_m_summary)
+            and not _BESTAETIGUNG_MUSTER.search(_m_summary)):
+        _alt_verdict = result["verdict"]
+        result["verdict"] = "mixed"
+        try:
+            result["confidence"] = min(float(result.get("confidence", 0.6)), 0.6)
+        except (TypeError, ValueError):
+            result["confidence"] = 0.6
+        logger.warning(
+            f"Muster M (Umdeutung): Summary deutet die Claim-Zahl um, "
+            f"Label war '{_alt_verdict}' — auf 'mixed' abgewertet."
+        )
 
     # --- Gegenwarts-Guard (QA50E-Befund 3, 2026-09-07) ---
     # "Laut Eurobarometer vertrauen HEUTE 51 Prozent der EU" bekam true@0.9.
