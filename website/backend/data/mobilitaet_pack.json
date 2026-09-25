@@ -219,103 +219,83 @@
     {
       "id": "mobilitaet-tempolimit_130_2026",
       "topic": "tempolimit_130_konsens",
-      "scope": "Tempolimit 130 Autobahn DE — UBA + Helmholtz CO2 + Sicherheits-Wirkung",
+      "scope": "Tempolimit auf deutschen Autobahnen — CO2- und Schadstoffwirkung nach den beiden UBA-Studien",
       "year": 2024,
-      "source_url": "https://www.umweltbundesamt.de/system/files/medien/11850/publikationen/umweltwirkung_eines_tempolimits_auf_autobahnen_und_ausserortsstrassen.pdf",
-      "secondary_url": "https://www.dlr.de/vf/desktopdefault.aspx/tabid-2974/4441_read-78443/",
-      "source_label": "UBA Umweltbundesamt DE 'CO2-Minderung im Verkehr durch ein Tempolimit auf Autobahnen' aktualisierte Studie 2023 + Helmholtz-Institut DLR Berechnungen + Bundesanstalt für Straßenwesen BASt Sicherheits-Studien + Verkehrsclub Deutschland VCD Auswertungen + ADAC Sicherheits-Statistik",
-      "headline": "UBA-Studie 2023 (durchgeführt von Universität Stuttgart, Friedrich): Tempolimit 130 km/h auf DE-Autobahnen würde CO2 -1,9 Mio t/Jahr (~1,2 % des DE-Verkehrs-Sektor-CO2 2018) reduzieren; BASt Schätzungen: schwere Unfälle auf Autobahnen -22 % bei 120 km/h-Limit, -34 % bei 100 km/h",
+      "source_url": "https://www.umweltbundesamt.de/publikationen/klimaschutz-durch-tempolimit",
+      "secondary_url": "https://www.umweltbundesamt.de/publikationen/modellierung-der-umweltwirkung-von-tempolimit",
+      "source_label": "Umweltbundesamt, 'Klimaschutz durch Tempolimit' (Texte 38/2020, Lange/Hendzlik/Schmied) + 'Modellierung der Umweltwirkung von Tempolimit-Maßnahmen' (Texte 176/2024, Friedrich/Bawidamann/Schmaus, Universität Stuttgart)",
+      "headline": "Zwei UBA-Studien, zwei Zahlen: 'Klimaschutz durch Tempolimit' (Texte 38/2020) rechnet für ein Tempolimit 130 km/h auf Autobahnen 1,9 Mio. t CO2e weniger im Jahr (120 km/h: 2,6; 100 km/h: 5,4). Die Modellierung von Friedrich u. a. (Texte 176/2024) kommt für den gesamten Straßenverkehr auf 2,2 % weniger Treibhausgase bei T130/100 bis 8,1 % bei T100/80.",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Tempolimit 130 bringt nichts für CO2 oder Sicherheit' ist EMPIRISCH FALSCH. Empirische Lage: (1) UBA STUDIE 2023 'CO2-Minderung im Verkehr durch ein Tempolimit auf Autobahnen' (aktualisiert): Tempolimit 130 km/h auf DE-Autobahnen würde CO2-Emissionen um ~1,9 Mio Tonnen pro Jahr reduzieren (~1,2 % der DE-Verkehrs-Sektor-Emissionen 2018, ~0,3 % der gesamten DE-Treibhausgas-Emissionen). Tempolimit 120 km/h: -2,6 Mio t. Tempolimit 100 km/h: -5,4 Mio t. Berechnungs-Methode: Geschwindigkeits-Verteilung-Daten + Verbrauch-Geschwindigkeit-Funktion (Studie durchgeführt von Universität Stuttgart, Institut für Straßen- und Verkehrswesen, Prof. Friedrich, im Auftrag des UBA). (2) PARALLEL-MODELLIERUNGEN aus Forschungs-Institutionen kommen zu konsistenten Werten: Größenordnung 1,9-2,0 Mio t CO2/Jahr bei Tempolimit 130 km/h. (3) BASt SICHERHEIT 2023 (Bundesanstalt für Straßenwesen): empirische Auswertung von Auslands-Daten + DE-Daten. Geschwindigkeits-Reduktion auf DE-Autobahnen würde schwere Unfälle reduzieren: bei 130 km/h-Limit ~10-15 %, bei 120 km/h ~22 %, bei 100 km/h ~34 %. Tödliche Unfälle reduzieren stärker: 130 km/h ~15 %, 120 ~26 %, 100 ~40 %. (4) INTERNATIONALE EMPIRIE: DE einziges OECD-Land ohne generelles Tempolimit auf Autobahnen. Vergleichbare Länder mit 130 km/h: Frankreich, Italien, Spanien — schwere Autobahn-Unfall-Quote dort 30-50 % unter DE. (5) VERMÖGENS-EFFEKT: Tempolimit reduziert auch Lärm + Stress + Reise-Zeit-Streuung (Stau-Wahrscheinlichkeit sinkt). UBA: ~250.000 Personen würden weniger Verkehrslärm-Belastung erfahren. (6) GEGEN-ARGUMENTE WIDERLEGT: 'Tempolimit verlängert Reise-Zeiten massiv' — UBA: durchschnittliche Verlängerung 2-3 Minuten pro 100 km auf Autobahnen, bei Tempolimit 130. 'CO2-Wirkung ist marginal' — 1,9 Mio t entspricht ~0,5 % der EU-Land-Sektor-Klima-Bilanz, nicht trivial. (7) FAKTENCHECK-RELEVANT: Aussagen wie 'Tempolimit bringt 0,1 % CO2-Reduktion' sind empirisch falsch (real ~1,2 % der Verkehrs-Sektor-Emissionen 2018). Aussagen wie 'Tempolimit hätte 30 % weniger Unfälle' überzeichnen (130 km/h ~10-15 %, 100 km/h ~34 %). Pack distanziert sich von normativer 'Tempolimit ist Bevormundung'-Wertung — präsentiert nur empirische Daten zur CO2- + Sicherheits-Wirkung.",
-        "uba_co2_2023": "UBA Umweltbundesamt 2023 aktualisierte Berechnung 'CO2-Minderung im Verkehr durch ein Tempolimit auf Autobahnen': Tempolimit 130 km/h → -1,9 Mio Tonnen CO2/Jahr (Bandbreite 1,7-2,1). Tempolimit 120 → -2,6 Mio t. Tempolimit 100 → -5,4 Mio t. Methode: HBEFA-Modell + Realgeschwindigkeits-Verteilung DE-Autobahnen + Verbrauchs-Geschwindigkeits-Funktion. Vorgänger-Studie 1999 + 2020-Update.",
-        "uba_stuttgart_friedrich_2023": "UBA-Studie 2023 'CO2-Minderung im Verkehr durch ein Tempolimit auf Autobahnen', durchgeführt vom Institut für Straßen- und Verkehrswesen, Universität Stuttgart (Prof. Markus Friedrich): Tempolimit 130 km/h → ~1,9 Mio t CO2/Jahr Reduktion (entspricht ~1,2 % des deutschen Verkehrs-Emissions-Sektors 2018). Compliance-Annahme + Verkehrsfluss-Modell. Hauptbericht UBA-Texte 39/2023.",
-        "bast_sicherheit_2023": "BASt Bundesanstalt für Straßenwesen 2023 Auswertung 'Geschwindigkeit + Sicherheit auf Autobahnen': internationale Daten + DE-Spezifika. Schwere Unfälle auf DE-Autobahnen würden reduzieren: Tempolimit 130 km/h -10-15 %, Tempolimit 120 km/h -22 %, Tempolimit 100 km/h -34 %. Tödliche Unfälle reduzieren stärker (Geschwindigkeits-Aufprall-Energie quadratisch): -15 %, -26 %, -40 %. DE-Autobahnen 2023: ~330 Tote, ~17.000 Verletzte. 130er-Limit: ~50 weniger Tote/Jahr.",
-        "internationaler_vergleich": "DE als einziges OECD-Land ohne generelles Autobahn-Tempolimit (Stand 2024). Vergleichbare Länder: Frankreich 130 (110 bei Regen), Italien 130, Spanien 120, Niederlande 100 (seit 2020), Schweden 110-120, Dänemark 130, Polen 140, USA Bundesstaaten 105-137 km/h. Schwere Autobahn-Unfall-Quote pro Mio km: DE ~5,3, Frankreich 3,2, Italien 2,9, Spanien 3,1.",
-        "lärm_belastung_uba": "UBA + Bundeskabinett Lärmminderungsplanung 2024: ~250.000 Personen entlang DE-Autobahnen erfahren Verkehrslärm-Belastung über kritischen Schwellen (>70 dB Tag, >60 dB Nacht). Tempolimit 130 km/h würde Lärm-Belastung um 1-3 dB reduzieren (Halbierung bei 3 dB, weil log-Skala). Lärm-Effekt zusätzlich zu CO2- + Sicherheits-Effekt.",
-        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Tempolimit-Wertung."
+        "kernsatz_fuer_synthesizer": "Die These 'ein Tempolimit bringt für das Klima nichts' trifft nicht zu — wie groß die Wirkung ist, hängt aber davon ab, welche Studie und welche Bezugsgröße gemeint sind. Das Umweltbundesamt hat zwei verschiedene Rechnungen veröffentlicht: 'Klimaschutz durch Tempolimit' (Texte 38/2020) betrachtet nur Pkw und leichte Nutzfahrzeuge auf Bundesautobahnen, die 2018 zusammen 39,1 Mio. t CO2-Äquivalente verursachten, und kommt für ein Tempolimit von 130 km/h auf 1,9 Mio. t Minderung im Jahr, für 120 km/h auf 2,6 und für 100 km/h auf 5,4. Die spätere Modellierung von Markus Friedrich und Kollegen (Texte 176/2024) rechnet den gesamten Straßenverkehr samt Ausweich- und Nachfrageeffekten und kommt auf 2,2 % weniger Treibhausgase im Szenario T130/100 bis 8,1 % im Szenario T100/80. Beide Studien zeigen eine Wirkung; wer eine einzelne Zahl zitiert, sollte die Studie dazusagen.",
+        "welche_zahl_aus_welcher_studie": "Zuordnung, weil beide Studien vom Umweltbundesamt stammen und oft vermischt werden: Die 1,9 Mio. t stehen in 'Klimaschutz durch Tempolimit' (Texte 38/2020) von Lange, Hendzlik und Schmied. Die Prozentwerte von 2,2 bis 8,1 % stehen in 'Modellierung der Umweltwirkung von Tempolimit-Maßnahmen' (Texte 176/2024) von Friedrich, Bawidamann und Schmaus. Friedrich hat die Tonnen-Zahl nicht berechnet.",
+        "uba_2020_tonnen": "'Klimaschutz durch Tempolimit', UBA Texte 38/2020: Datengrundlage 2018, Pkw und leichte Nutzfahrzeuge auf Bundesautobahnen mit 39,1 Mio. t CO2-Äquivalenten. Ein generelles Tempolimit von 130 km/h mindert davon 1,9 Mio. t im Jahr, 120 km/h 2,6 Mio. t, 100 km/h 5,4 Mio. t. Gerechnet wird mit realen Geschwindigkeitsverteilungen, nicht mit Wunschwerten.",
+        "uba_2024_prozente": "'Modellierung der Umweltwirkung von Tempolimit-Maßnahmen auf Autobahnen und außerorts', UBA Texte 176/2024 (Friedrich, Bawidamann, Schmaus, Institut für Straßen- und Verkehrswesen der Universität Stuttgart): Für den gesamten Straßenverkehr sinken die Treibhausgase um 2,2 % (T130/100) bis 8,1 % (T100/80), die Stickoxide um 5,1 bis 16,1 %, der Feinstaub um 3,6 bis 11,4 %.",
+        "uba_2024_methodik": "Die Modellierung von 2024 stützt sich auf Floating-Car-Daten von TomTom für das Jahr 2018, rechnet je Streckenabschnitt von rund 150 m Länge und nutzt die Emissionsfaktoren des HBEFA. Etwa 75 % der Minderung stammen aus dem reinen Geschwindigkeitseffekt, der Rest aus veränderter Routenwahl und Verkehrsnachfrage; die Pkw-Fahrleistung sinkt um 0,7 % (T130/100) bis 4,3 % (T100/80).",
+        "szenarien": "Die Szenarienbezeichnung nennt zuerst das Limit auf Autobahnen und Kraftfahrstraßen, dann das auf allen übrigen Außerortsstraßen: T130/100, T120/100, T130/80, T120/80 und T100/80. Ein Vergleich zwischen Studien ist nur sinnvoll, wenn dieselbe Kombination gemeint ist.",
+        "unfallwirkung": "Zur Unfallwirkung nennt dieser Fakt bewusst keine Zahl: Die früher hier zitierte BASt-Auswertung 'Geschwindigkeit und Sicherheit auf Autobahnen' mit Angaben von minus 22 und minus 34 Prozent ließ sich nicht auffinden. Dass niedrigere Geschwindigkeiten die Aufprallenergie senken, ist unbestritten — eine belastbare deutsche Schätzung für diesen Fakt fehlt.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von einer normativen Tempolimit-Wertung; berichtet werden die veröffentlichten Rechnungen und ihre Bezugsgrößen."
       },
       "context_notes": [
-        "Wichtige Differenzierung: ~1,2 % der DE-Verkehrs-Sektor-Emissionen ist NICHT marginal (entspricht ~1 Mio Personen-Auto-Jahres-Emission), aber auch nicht alleinige Klima-Lösung.",
-        "BASt Sicherheits-Schätzung gestaffelt: 130 km/h -10-15 %, 100 km/h -34 % schwere Unfälle — Effekt steigt nicht-linear.",
-        "DE als einziges OECD-Land ohne Autobahn-Tempolimit — Vergleichsländer Frankreich/Italien haben 30-50 % niedrigere schwere Unfall-Quoten."
+        "Korrigiert 2026-09-25: Die frühere Fassung führte beide UBA-Studien als eine zusammen, schrieb die Tonnen-Minderung der Arbeitsgruppe um Friedrich zu und nannte ein falsches Erscheinungsjahr. Dazu standen Unfall-, Lärm- und Länderzahlen im Fakt, die sich in den angegebenen Quellen nicht finden ließen.",
+        "Datenstand: UBA Texte 38/2020 (Datenjahr 2018) und UBA Texte 176/2024 (Floating-Car-Daten 2018); beide Publikationsseiten am 25.9.2026 geprüft.",
+        "Der Unterschied zwischen den beiden Rechnungen ist keine Widersprüchlichkeit, sondern eine andere Bezugsgröße: einmal nur Pkw und leichte Nutzfahrzeuge auf Autobahnen, einmal der gesamte Straßenverkehr samt Ausweicheffekten."
       ],
       "claim_phrasings_handled": [
-        "Tempolimit bringt nichts für das Klima",
-        "130 auf der Autobahn hat keine CO2-Wirkung",
-        "Tempolimit ist Symbolpolitik",
-        "Tempolimit hätte 30 % weniger Unfälle",
-        "Tempolimit verlängert die Reise massiv",
-        "Tempolimit 130 reduziert CO2 um 0,1 Prozent"
+        "Tempolimit 130 bringt nichts für das Klima",
+        "Ein Tempolimit spart kaum CO2",
+        "Wie viel CO2 spart ein Tempolimit auf Autobahnen?",
+        "Die Tempolimit-Studie des Umweltbundesamts stammt von Friedrich",
+        "Ein Tempolimit würde die Emissionen um 8 Prozent senken",
+        "Tempolimit 130 spart 1,9 Millionen Tonnen CO2"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
         [
           "tempolimit",
-          "tempo-limit",
-          "tempo limit",
-          "geschwindigkeitsbegrenzung",
-          "geschwindigkeits-begrenzung",
-          "speed limit",
           "tempo 130",
-          "130 km/h",
-          "130er",
-          "tempo 120",
-          "tempo 100",
-          "autobahn-tempolimit",
-          "autobahntempolimit"
+          "tempo130",
+          "geschwindigkeitsbegrenzung",
+          "richtgeschwindigkeit",
+          "autobahn-tempolimit"
         ],
         [
           "co2",
-          "co2-emissionen",
           "klima",
-          "klimawirkung",
-          "klima-wirkung",
-          "umwelt",
-          "umweltwirkung",
-          "unfall",
-          "unfälle",
-          "unfaelle",
-          "tote",
-          "verkehrstote",
-          "verkehrs-tote",
-          "sicherheit",
-          "schwer verletzt",
-          "schwerverletzt",
+          "treibhausgas",
+          "emission",
+          "emissionen",
+          "spart",
+          "sparen",
           "bringt nichts",
-          "nichts bringen",
-          "würde nichts bringen",
-          "wirkungslos",
-          "sinnlos",
-          "symbolpolitik",
-          "symbol-politik",
-          "lärm",
-          "laerm",
-          "autobahn",
-          "auto-bahn"
+          "bringt nix",
+          "wirkung",
+          "studie",
+          "umweltbundesamt",
+          "uba",
+          "friedrich",
+          "wie viel",
+          "prozent",
+          "tonnen",
+          "stickoxid",
+          "feinstaub",
+          "unfall",
+          "sicherheit"
         ]
       ],
       "trigger_all": [
         [
           [
-            "autobah"
-          ],
-          [
-            "co2-wirkung"
-          ]
-        ],
-        [
-          [
             "tempolimit"
           ],
           [
-            "verlaengert",
-            "verlängert"
+            "studie",
+            "umweltbundesamt",
+            "uba"
           ],
           [
-            "reis"
-          ],
-          [
-            "massiv"
+            "friedrich",
+            "stammt",
+            "wer"
           ]
         ]
       ]

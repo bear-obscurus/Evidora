@@ -259,6 +259,28 @@
           "GETÖTET wurden 133"
         ]
       ]
+    },
+    {
+      "claim": "Die Tempolimit-Studie des Umweltbundesamts stammt von Friedrich",
+      "datei": "mobilitaet_pack.json",
+      "fakt": "mobilitaet-tempolimit_130_2026",
+      "muss": [
+        [
+          "Texte 176/2024",
+          "Friedrich, Bawidamann"
+        ]
+      ]
+    },
+    {
+      "claim": "Wie viel CO2 spart ein Tempolimit 130 auf Autobahnen?",
+      "datei": "mobilitaet_pack.json",
+      "fakt": "mobilitaet-tempolimit_130_2026",
+      "muss": [
+        [
+          "1,9 Mio. t",
+          "1,9 Millionen"
+        ]
+      ]
     }
   ],
   "bekannte_luecken": [],
