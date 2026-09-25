@@ -191,7 +191,8 @@
         [
           "133 bei Partnerschaftsgewalt",
           "133 Partnerschaftsgewalt",
-          "133 vollendete Taten"
+          "133 vollendete Taten",
+          "GETÖTET wurden 133"
         ]
       ]
     },
@@ -252,8 +253,10 @@
       "fakt": "femizide_at_de_2026",
       "muss": [
         [
-          "133",
-          "308"
+          "133 bei Partnerschaftsgewalt",
+          "133 Partnerschaftsgewalt",
+          "133 vollendete Taten",
+          "GETÖTET wurden 133"
         ]
       ]
     }
