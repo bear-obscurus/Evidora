@@ -46,6 +46,7 @@ from typing import Callable
 from services._static_cache import load_json_mtime_aware
 from services._flexion import trifft as _flexion_trifft
 from services._schreibweise import normalisiere, norm_terme
+from services._tippfehler import tippfehler_match
 from services._reranker_backup import best_matches as _backup_best_matches
 
 logger = logging.getLogger("evidora")
@@ -131,6 +132,17 @@ def find_matching_items(
     matches = [it for it in items if substring_or_composite_match(it, claim_lc)]
     if matches:
         return _tag_provenance(matches, exact=True)
+    # Zweiter Pass, tippfehler-tolerant (2026-09-26). Er laeuft NUR, wenn der
+    # exakte Pass leer blieb — ein Fakt, der exakt ankert, gewinnt immer. Und
+    # er laeuft VOR dem Cosine-Backup: schreibweisen-nah ist ein literales
+    # Signal, Cosinus ein semantisches. Gemessen holt er 45,8 % der durch
+    # EINEN Tippfehler verlorenen Treffer zurueck und fuegt dabei 9 neue
+    # dienst-fremde Treffer auf 1,4 Mio. gepruefte Paare hinzu. Provenance
+    # bewusst exact=False: ein toleranter Treffer darf kein "strukturell
+    # falsch" behaupten. Siehe services/_tippfehler.py.
+    tolerant = [it for it in items if tippfehler_match(it, claim_lc)]
+    if tolerant:
+        return _tag_provenance(tolerant, exact=False)
     if not full_claim or descriptor_fn is None:
         return []
     pairs = [descriptor_fn(it) for it in items]

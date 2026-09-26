@@ -364,6 +364,7 @@ jobs:
             tests/test_suv_frontgeometrie.py \
             tests/test_label_kohaerenz.py \
             tests/test_muster_n_schwellenzahl.py \
+            tests/test_tippfehler_toleranz.py \
             tests/test_tempolimit_zuordnung.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py
