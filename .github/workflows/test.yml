@@ -87,6 +87,11 @@ jobs:
     #                                  ass/de/neutral u. a. gebunden; Rand-
     #                                  Leerzeichen = Wortgrenze auch am Claim-
     #                                  Rand; Sweep mit Gift-Probe als Gate)
+    #   - test_tippfehler_echtwort     (der tolerante Pass haelt kein anderes
+    #                                  echtes Wort fuer einen Tippfehler:
+    #                                  fuehrt/fuehlt, aktion/aktien, schweiz/
+    #                                  schwein; Formen desselben Worts tragen
+    #                                  weiter; Korpus-Sweep mit Gift-Probe)
     #   - test_fleisch_messgroessen_bindung (Verbrauch vs. Verzehr: der Fakt
     #                                  bindet die im Claim GENANNTE Messgröße
     #                                  an ihren Wert, Headline unter dem
@@ -372,6 +377,7 @@ jobs:
             tests/test_tempolimit_zuordnung.py \
             tests/test_qa50b_rest.py \
             tests/test_wortgrenzen_trigger.py \
+            tests/test_tippfehler_echtwort.py \
             tests/test_wikidata_reliability.py
 
   check-new-urls:
