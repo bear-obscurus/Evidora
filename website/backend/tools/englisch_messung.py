@@ -14,8 +14,10 @@ die Gegenprobe.
     python tools/englisch_messung.py --bericht /tmp/main.json /tmp/branch.json
 
     # 3. Instrument gegenpruefen: ein absichtlich vergiftetes Glossar
-    #    ("the" -> "oesterreich") MUSS im Ueber-Trigger-Sweep anschlagen
+    #    ("the" -> "oesterreich") MUSS im Ueber-Trigger-Sweep anschlagen —
+    #    und mit aufgezwungen offenem Gate auch bei den DEUTSCHEN Claims
     python tools/englisch_messung.py --gegenprobe --out /tmp/gift.json
+    python tools/englisch_messung.py --ohne-gate --out /tmp/offen.json
     python tools/englisch_messung.py --bericht /tmp/main.json /tmp/gift.json
 
 Population (wie #205): Fakten MIT Trigger-Feldern (trigger_keywords /
@@ -99,10 +101,11 @@ def vergifte_glossar(mod) -> None:
     mod.GLOSSAR = mod.GLOSSAR + (("österreich", ("the",)),
                                  ("gefährlich", ("is",)))
     mod._index.cache_clear()
-    mod.englische_fassung.cache_clear()
+    mod._fassung.cache_clear()
 
 
-def roh_messung(backend: str, korpus_pfad: str, gegenprobe: bool = False) -> dict:
+def roh_messung(backend: str, korpus_pfad: str, gegenprobe: bool = False,
+                gate_streng: bool = False, ohne_gate: bool = False) -> dict:
     sys.path.insert(0, backend)
     for name in list(sys.modules):
         if name == "services" or name.startswith("services."):
@@ -110,6 +113,16 @@ def roh_messung(backend: str, korpus_pfad: str, gegenprobe: bool = False) -> dic
     tm = importlib.import_module("services._topic_match")
     if gegenprobe:
         vergifte_glossar(importlib.import_module("services._englisch"))
+    if gate_streng:
+        # Nur das Funktionswort-Gate, ohne die Stichwort-Erweiterung
+        importlib.import_module("services._englisch").VOKABEL_EVIDENZ_MIND = 10 ** 6
+    if ohne_gate:
+        # Gegenprobe fuer den DEUTSCHEN Sweep: Gate aufgezwungen, jeder Claim
+        # laeuft durch den englischen Pass. „die" -> „sterben", „war" ->
+        # „krieg" — der Sweep MUSS jetzt auch bei deutschen Claims anschlagen.
+        en = importlib.import_module("services._englisch")
+        en.englisch_gate = lambda claim: True
+        en._fassung.cache_clear()
     pop = population(backend)
     ergebnis = []
     for c in claims(backend, korpus_pfad):
@@ -121,7 +134,9 @@ def roh_messung(backend: str, korpus_pfad: str, gegenprobe: bool = False) -> dic
                 treffer[datei] = [[fakt_id(x), bool((x.get("data") or {})
                                    .get("_matched_exact", True))] for x in m]
         ergebnis.append({**c, "treffer": treffer})
-    return {"backend": backend, "gegenprobe": gegenprobe, "claims": ergebnis}
+    return {"backend": backend, "gegenprobe": gegenprobe,
+            "gate_streng": gate_streng, "ohne_gate": ohne_gate,
+            "claims": ergebnis}
 
 
 # ---------------------------------------------------------------------------
@@ -187,6 +202,22 @@ def bericht(alt: dict, neu: dict) -> dict:
         r[f"ueber_{art}"] = {"claims": len(paare), "status_quo_fremd": status_quo,
                              "neu_fremd": len(neu_fremd), "beispiele": neu_fremd}
         geprueft[art] = len(paare)
+
+    # 3b. Deckungsgleich mit Deutsch? Ein neuer englischer Fremdtreffer, den
+    # das deutsche Quell-Phrasing desselben Fakts im Status quo AUCH hat, ist
+    # kein Ueber-Trigger des englischen Passes, sondern derselbe Querbezug
+    # zwischen zwei Packs (Cookie-Banner in datenschutz UND cybersecurity).
+    de_fremd = {x["text"]: _fremd(x) for x in a if x["art"] == "de"}
+    gleich, echt = [], []
+    for x, y in zip(a, n):
+        if x["art"] != "en":
+            continue
+        for d, fid in sorted(_fremd(y) - _fremd(x)):
+            (gleich if (d, fid) in de_fremd.get(x["de"], set()) else echt).append(
+                (y["text"], d, fid))
+    r["ueber_en_deckungsgleich_mit_deutsch"] = len(gleich)
+    r["ueber_en_echt_neu"] = len(echt)
+    r["ueber_en_echt_neu_beispiele"] = echt
     return r
 
 
@@ -209,8 +240,15 @@ def drucke(r: dict) -> None:
         u = r[f"ueber_{art}"]
         print(f"  {art:11s} {u['claims']:5d} Claims   Status quo fremd "
               f"{u['status_quo_fremd']:5d}   NEU {u['neu_fremd']}")
-        for t, d, fid in u["beispiele"][:60]:
-            print(f"      + {d}:{fid}  <- {t}")
+        if art != "en":
+            for t, d, fid in u["beispiele"][:60]:
+                print(f"      + {d}:{fid}  <- {t}")
+    print(f"\n  davon EN deckungsgleich mit dem deutschen Quell-Phrasing: "
+          f"{r['ueber_en_deckungsgleich_mit_deutsch']}")
+    print(f"  davon EN echt neu (das deutsche Phrasing trifft den Fakt nicht): "
+          f"{r['ueber_en_echt_neu']}")
+    for t, d, fid in r["ueber_en_echt_neu_beispiele"]:
+        print(f"      + {d}:{fid}  <- {t}")
 
 
 def main() -> None:
@@ -219,6 +257,10 @@ def main() -> None:
     ap.add_argument("--korpus", default=KORPUS_DEFAULT)
     ap.add_argument("--out")
     ap.add_argument("--gegenprobe", action="store_true")
+    ap.add_argument("--ohne-gate", action="store_true",
+                    help="Gegenprobe: Sprach-Gate aufgezwungen offen")
+    ap.add_argument("--gate-streng", action="store_true",
+                    help="nur Funktionswort-Gate (ohne Stichwort-Erweiterung)")
     ap.add_argument("--bericht", nargs=2, metavar=("ALT", "NEU"))
     ap.add_argument("--json", action="store_true",
                     help="Bericht als JSON statt Text")
@@ -234,7 +276,8 @@ def main() -> None:
         else:
             drucke(r)
         return
-    roh = roh_messung(os.path.abspath(args.backend), args.korpus, args.gegenprobe)
+    roh = roh_messung(os.path.abspath(args.backend), args.korpus,
+                      args.gegenprobe, args.gate_streng, args.ohne_gate)
     with open(args.out, "w", encoding="utf-8") as fh:
         json.dump(roh, fh, ensure_ascii=False)
     print(f"{len(roh['claims'])} Claims gemessen -> {args.out}")

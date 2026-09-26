@@ -44,7 +44,7 @@ import os
 from typing import Callable
 
 from services._static_cache import load_json_mtime_aware
-from services._englisch import englische_fassung
+from services._englisch import englisch_match, englische_fassung
 from services._flexion import trifft as _flexion_trifft
 from services._schreibweise import normalisiere, norm_terme
 from services._tippfehler import tippfehler_match
@@ -154,8 +154,7 @@ def find_matching_items(
     # services/_englisch.py.
     uebertragen = englische_fassung(claim_lc)
     if uebertragen and politik_guard_action(uebertragen) == "pass":
-        englisch = [it for it in items
-                    if substring_or_composite_match(it, uebertragen)]
+        englisch = [it for it in items if englisch_match(it, claim_lc)]
         if englisch:
             return _tag_provenance(englisch, exact=False)
     if not full_claim or descriptor_fn is None:
