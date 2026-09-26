@@ -47,7 +47,7 @@
       ],
       "trigger_composite": [
         ["wien"],
-        ["uni", "universitaet", "universität", "university", "hochschule"],
+        [" uni ", " unis ", "universitaet", "universität", "university", "hochschule"],
         ["studierende", "studenten", "studierendenzahl", "anzahl",
          "groesste", "größte", "biggest", "largest", "wie viel",
          "wieviele", "wie viele", "personal", "mitarbeiter",
@@ -128,7 +128,7 @@
       ],
       "trigger_composite": [
         ["graz"],
-        ["uni", "universitaet", "universität", "university", "hochschule"]
+        [" uni ", " unis ", "universitaet", "universität", "university", "hochschule"]
       ],
       "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
       "source_url": "https://www.eter-project.com",
@@ -167,7 +167,7 @@
       ],
       "trigger_composite": [
         ["innsbruck"],
-        ["uni", "universitaet", "universität", "university", "hochschule"]
+        [" uni ", " unis ", "universitaet", "universität", "university", "hochschule"]
       ],
       "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
       "source_url": "https://www.eter-project.com",
@@ -322,7 +322,7 @@
         "eidgenoessische technische hochschule"
       ],
       "trigger_composite": [
-        ["eth"],
+        [" eth "],
         ["zuerich", "zürich", "zurich"]
       ],
       "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
@@ -443,7 +443,7 @@
         "forschungs-output europa", "forschungsoutput europa"
       ],
       "trigger_composite": [
-        ["europa", "eu-", " eu ", "die eu", "der eu", "europe", "europaeisch", "europäisch"],
+        ["europa", " eu ", "die eu", "der eu", "europe", "europaeisch", "europäisch"],
         ["hochschulen", "universitaeten", "universitäten", "tertiaere", "tertiäre",
          "tertiaerbildung", "tertiärbildung", "studierende", "students"]
       ],

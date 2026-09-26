@@ -34,7 +34,7 @@
         "boerse spielen", "börse spielen"
       ],
       "trigger_composite": [
-        ["aktien", "boerse", "börse", "etf", "index-fonds", "wertpapier", "wertpapiere", "fonds"],
+        ["aktien", "boerse", "börse", " etf", "index-fonds", "wertpapier", "wertpapiere", " fonds", "indexfonds", "investmentfonds"],
         ["gluecksspiel", "glücksspiel", "casino", "zocken", "spekulation", "verlieren", "alles verloren", "risiko", "spielen", "buerger", "bürger", "normale"]
       ],
       "source_label": "Deutsches Aktieninstitut (Renditedreieck DAX) + EZB Financial Stability Review",
@@ -111,7 +111,7 @@
         "compound interest", "lohnt sich sparen"
       ],
       "trigger_composite": [
-        ["zinseszins", "compound interest", "zins", "zinsen", "sparen", "anlage", "vermoegensbildung", "vermögensbildung"],
+        ["zinseszins", "compound interest", " zins", "zinsen", " sparen", "anlage", "vermoegensbildung", "vermögensbildung"],
         ["mythos", "marketing", "ueberschaetzt", "überschätzt", "lohnt sich nicht", "bringt nichts", "schwach", "trick", "luege", "lüge", "wert", "effekt"]
       ],
       "source_label": "Mathematische Identität + MSCI World Index + DAI Renditedreieck",
@@ -228,7 +228,7 @@
         "bitcoin ponzi"
       ],
       "trigger_composite": [
-        ["bitcoin", "btc", "krypto", "kryptowaehrung", "kryptowährung", "ethereum", "eth"],
+        ["bitcoin", "btc", "krypto", "kryptowaehrung", "kryptowährung", "ethereum", " eth "],
         ["pyramide", "schneeball", "schneeballsystem", "ponzi", "betrug", "schwindel"]
       ],
       "source_label": "BaFin Definition Ponzi + Bitcoin Whitepaper + BIS 2022 Krypto-Studie",

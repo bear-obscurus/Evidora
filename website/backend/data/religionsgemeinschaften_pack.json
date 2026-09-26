@@ -380,7 +380,7 @@
           "buddh",
           "buddhismus",
           "buddhist",
-          "zen",
+          " zen ",
           "myanmar",
           "burma",
           "birma",
@@ -510,7 +510,7 @@
           "vatikan",
           "vatican",
           "papst",
-          "ior",
+          " ior ",
           "vatikan-bank",
           "vatikanbank",
           "vatikanstaat",
@@ -827,7 +827,9 @@
       "trigger_composite": [
         [
           "sekte",
-          "kult",
+          " kult ",
+          " kulte",
+          " kults ",
           "destruktiv",
           "destruktive gruppe",
           "destruktiver kult",
@@ -887,7 +889,7 @@
             "destruktiv"
           ],
           [
-            "kult"
+            " kult ", " kulte", " kults "
           ]
         ]
       ]
@@ -1142,7 +1144,7 @@
           "allah",
           "jahwe",
           "seele",
-          "engel",
+          " engel",
           "teufel",
           "reinkarnation",
           "leben nach dem tod",

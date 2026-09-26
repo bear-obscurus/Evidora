@@ -45,7 +45,7 @@
       ],
       "trigger_composite": [
         ["schüler", "schueler", "volksschüler", "volksschueler", "schulen", "privatschule", "privatschul"],
-        ["österreich", "oesterreich", "at ", " at,", " at.", "wien", "bundesland"],
+        ["österreich", "oesterreich", " at ", " at,", " at.", "wien", "bundesland"],
         ["anzahl", "wie viele", "gesamt", "millionen", "1,1", "1.150.000", "1,15", "quote", "anteil", "bestand"]
       ]
     },
@@ -89,7 +89,7 @@
       ],
       "trigger_composite": [
         ["pisa"],
-        ["österreich", "oesterreich", "at ", " at.", " at,", "iqs", "nbb"],
+        ["österreich", "oesterreich", " at ", " at.", " at,", "iqs", "nbb"],
         ["mathematik", "lesen", "naturwiss", "ergebnis", "punkte", "rang", "schock", "486", "487", "480", "491", "krise", "katastroph", "versagt", "schlecht", "wie gut"]
       ]
     },
@@ -137,7 +137,7 @@
       "trigger_composite": [
         ["lehrer", "lehrkraft", "lehrkräfte", "lehrkraefte", "lehramt", "pädagog", "paedagog"],
         ["mangel", "fehlend", "zu wenig", "engpass", "pensionier", "ruhestand", "anzahl", "bestand", "studienanfänger", "studienanfaenger"],
-        ["österreich", "oesterreich", "at ", "wien", "bundesland", " at."]
+        ["österreich", "oesterreich", " at ", "wien", "bundesland", " at."]
       ]
     },
     {
@@ -181,7 +181,7 @@
       "trigger_composite": [
         ["bildung", "bildungs", "schul", "lehrer", "lehrkraft", "lehrkräfte", "lehrkraefte"],
         ["ausgaben", "budget", "kosten", "investition", "gehalt", "verdienst", "%bip", "% bip", "prozent bip", "anteil bip", "pro schüler", "pro schueler"],
-        ["österreich", "oesterreich", "at ", "oecd", "europa", "vergleich"]
+        ["österreich", "oesterreich", " at ", "oecd", "europa", "vergleich"]
       ]
     },
     {
@@ -221,9 +221,9 @@
         "nachmittagsbetreuung schule"
       ],
       "trigger_composite": [
-        ["ganztag", "ganztags", "gts ", "verschränkt", "verschraenkt", "nachmittagsbetreuung"],
+        ["ganztag", "ganztags", " gts ", "verschränkt", "verschraenkt", "nachmittagsbetreuung"],
         ["schul", "schüler", "schueler", "klasse", "wien", "vorarlberg", "tirol", "quote", "anteil", "prozent"],
-        ["österreich", "oesterreich", "at ", " at,", " at."]
+        ["österreich", "oesterreich", " at ", " at,", " at."]
       ]
     },
     {
@@ -266,7 +266,7 @@
       "trigger_composite": [
         ["klasse", "klassen", "klassengröße", "klassengroesse", "klassen-größe", "schüler pro", "schueler pro", "schüler-lehrer", "schueler-lehrer"],
         ["größe", "groesse", "anzahl", "verhältnis", "verhaeltnis", "durchschnitt", "mittel", "oecd"],
-        ["österreich", "oesterreich", "at ", "deutschland", "schweiz", "dach", "vergleich"]
+        ["österreich", "oesterreich", " at ", "deutschland", "schweiz", "dach", "vergleich"]
       ]
     },
     {
@@ -310,7 +310,7 @@
       "trigger_composite": [
         ["migrationshintergrund", "migrations-hintergrund", "migrationshintergründ", "migrant", "migranten", "zuwander", "ausländ", "auslaend", "nicht-deutsch"],
         ["pisa", "schul", "schüler", "schueler", "bildung", "leistung", "spread", "differenz", "schere", "lücke", "luecke"],
-        ["österreich", "oesterreich", "at ", " at.", "iqs", "nbb"]
+        ["österreich", "oesterreich", " at ", " at.", "iqs", "nbb"]
       ]
     },
     {
@@ -354,7 +354,7 @@
       "trigger_composite": [
         ["tertiär", "tertiaer", "tertiar-", "hochschul", "akademiker", "studierende", "isced 5", "isced 6", "isced 7", "isced 8"],
         ["quote", "anteil", "prozent", "25-34", "anzahl"],
-        ["österreich", "oesterreich", "at ", " at,", " at.", "oecd", "europa"]
+        ["österreich", "oesterreich", " at ", " at,", " at.", "oecd", "europa"]
       ]
     },
     {
@@ -399,7 +399,7 @@
       "trigger_composite": [
         ["lehrplan", "curriculum", "schulplan", "schulreform"],
         ["2023", "2024", "neu", "reform", "kompetenz", "umstellung", "in kraft"],
-        ["österreich", "oesterreich", "at ", "volksschule", "ms ", "nms", "ahs", "sek-i", "sek 1"]
+        ["österreich", "oesterreich", " at ", "volksschule", " ms ", "nms", "ahs", "sek-i", "sek 1"]
       ]
     },
     {
@@ -443,9 +443,9 @@
         "förderschule at quote", "foerderschule at quote"
       ],
       "trigger_composite": [
-        ["spf", "sonderpädagog", "sonderpaedagog", "sonderschul", "sonderklasse", "förderbedarf", "foerderbedarf", "inklusion", "inklusiv"],
+        [" spf ", "sonderpädagog", "sonderpaedagog", "sonderschul", "sonderklasse", "förderbedarf", "foerderbedarf", "inklusion", "inklusiv"],
         ["quote", "anteil", "prozent", "anzahl", "bestand", "bundesländer", "spread", "regelklasse", "förderschule", "foerderschule"],
-        ["österreich", "oesterreich", "at ", " at,", " at."]
+        ["österreich", "oesterreich", " at ", " at,", " at."]
       ]
     }
   ]

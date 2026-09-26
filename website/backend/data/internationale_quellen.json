@@ -34,7 +34,7 @@
         "buerger weltweit demokratie", "bürger weltweit demokratie"
       ],
       "trigger_composite": [
-        ["pew", "pew research", "demokratie", "demokrat"],
+        [" pew ", "pew research", "demokratie", "demokrat"],
         ["weltweit", "global", "international", "welt", "weltordnung", "ueberall", "überall", "ende", "krise", "verlieren", "verliert"]
       ],
       "source_label": "Pew Research Center 2024 Global Democracy Survey",

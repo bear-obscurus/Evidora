@@ -38,7 +38,7 @@
         "eurobarometer vertrauen"
       ],
       "trigger_composite": [
-        ["eu", "europäische union", "europaeische union", "eu-buerger", "eu-bürger", "europäer", "europaeer"],
+        [" eu ", "europäische union", "europaeische union", "eu-buerger", "eu-bürger", "europäer", "europaeer"],
         ["vertrauen", "misstrauen", "skepsis", "kritisch", "zuspruch", "akzeptanz", "kollabiert", "sinkt", "tiefstand"]
       ],
       "source_label": "Standard Eurobarometer 102 (Herbst 2024) — Europäische Kommission",
@@ -80,8 +80,8 @@
         "thema in der eu"
       ],
       "trigger_composite": [
-        ["eurobarometer", "eu-buerger", "eu-bürger", "europäer", "europaeer", "europäische union", "europaeische union", "eu ", "eu-", "europa"],
-        ["sorge", "thema", "themen", "prioritaet", "prioritäten", "aufgabe", "wichtig", "top", "anliegen"]
+        ["eurobarometer", "eu-buerger", "eu-bürger", "europäer", "europaeer", "europäische union", "europaeische union", " eu ", "europa"],
+        ["sorge", "thema", "themen", "prioritaet", "prioritäten", "aufgabe", "wichtig", " top ", "anliegen"]
       ],
       "source_label": "Eurobarometer 2024 — EP-Special + Standard EB 102",
       "source_url": "https://europa.eu/eurobarometer/surveys/detail/3232",
@@ -223,8 +223,8 @@
         "oesterreich eu raus"
       ],
       "trigger_composite": [
-        ["eu", "europäische union", "europaeische union", "brexit", "dexit", "deutschland", "österreich", "oesterreich"],
-        ["austritt", "verlassen", "mitgliedschaft", "dexit", "raus", "ablehnen", "ablehnung", "abstimmung", "referendum", "brexit-ähnlich", "brexit-aehnlich", "mehrheitsfaehig", "mehrheitsfähig", "brexit"]
+        [" eu ", "europäische union", "europaeische union", "brexit", "dexit", "deutschland", "österreich", "oesterreich"],
+        ["austritt", "verlassen", "mitgliedschaft", "dexit", " raus", "ablehnen", "ablehnung", "abstimmung", "referendum", "brexit-ähnlich", "brexit-aehnlich", "mehrheitsfaehig", "mehrheitsfähig", "brexit"]
       ],
       "source_label": "Standard Eurobarometer 102 (Herbst 2024) — EU-Mitgliedschaft",
       "source_url": "https://europa.eu/eurobarometer/surveys/detail/3215",

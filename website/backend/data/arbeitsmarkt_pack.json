@@ -803,7 +803,7 @@
       "trigger_keywords": [],
       "trigger_composite": [
         [
-          "ams",
+          " ams ",
           "ams-quote",
           "ams quote",
           "arbeitslosenquote",
@@ -811,10 +811,10 @@
           "arbeitslosigkeit",
           "arbeits-losigkeit",
           "eurostat",
-          "lfs",
+          " lfs ",
           "labour force survey",
           "labour-force-survey",
-          "ilo",
+          " ilo ",
           "registrierte arbeitslose",
           "ba-quote",
           "bundesagentur"

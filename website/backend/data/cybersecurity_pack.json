@@ -93,7 +93,8 @@
       ],
       "trigger_composite": [
         [
-          "mac",
+          " mac ",
+          " macs ",
           "macbook",
           "imac",
           "macos",
@@ -407,7 +408,7 @@
           "zweifaktor",
           "two-factor",
           "two factor",
-          "mfa",
+          " mfa ",
           "multi-faktor"
         ],
         [

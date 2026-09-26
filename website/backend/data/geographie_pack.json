@@ -111,7 +111,7 @@
         "hoechster berg", "höchster berg"
       ],
       "trigger_composite": [
-        ["everest", "mauna kea", "chimborazo", "berg", "berge"],
+        ["everest", "mauna kea", "chimborazo", " berg", " berge"],
         ["höchster", "hoechster", "höchste", "hoechste", "höher", "hoeher", "groesser", "größer", "groesst", "größt", "tiefster", "weltranking", "welt", "welt-record"]
       ],
       "source_label": "Nepal+China Vermessung 2020 + USGS + Britannica",

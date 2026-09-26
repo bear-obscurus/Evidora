@@ -78,9 +78,9 @@
         ],
         [
           "österreich",
-          "at ",
+          " at ",
           "europa",
-          "eu",
+          " eu ",
           "deutschland"
         ]
       ],
@@ -339,7 +339,7 @@
         ],
         [
           "österreich",
-          "at "
+          " at "
         ]
       ],
       "source_label": "BMI Österreich — PKS Hauptbericht 2024 + Statistik Austria",

@@ -35,7 +35,7 @@
         "vak modell"
       ],
       "trigger_composite": [
-        ["lernstil", "lernstile", "lerntyp", "lerntypen", "vak", "visueller lerner", "auditiver lerner"],
+        ["lernstil", "lernstile", "lerntyp", "lerntypen", " vak ", "visueller lerner", "auditiver lerner"],
         ["unterricht", "lernen", "schueler", "schüler", "anpass", "verbessern", "test", "modell", "wirksam", "funktioniert", "brauchen", "hilft"]
       ],
       "source_label": "Pashler et al. 2008 + APA Top 20 Principles + EEF Toolkit",
@@ -74,7 +74,7 @@
         "mozart kinder iq"
       ],
       "trigger_composite": [
-        ["mozart", "klassische musik", "klassik", "baroque", "bach"],
+        ["mozart", "klassische musik", "klassik", "baroque", " bach"],
         ["intelligen", "schlau", "iq", "klueger", "klüger", "babys", "kinder", "saeugling", "säugling", "lernen", "fördert", "foerdert", "macht", "effekt"]
       ],
       "source_label": "Pietschnig 2010 Meta-Analyse + Rauscher 1993 Original-Studie + APA",

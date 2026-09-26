@@ -44,7 +44,8 @@
           "elektromobilität",
           "elektromobilitaet",
           "elektro-mobilität",
-          "ev",
+          " ev ",
+          " evs ",
           "electric vehicle",
           "e-fahrzeug",
           "efahrzeug",
@@ -155,8 +156,8 @@
           "österreichische bundesbahnen",
           "oesterreichische bundesbahnen",
           "deutsche bahn",
-          "db",
-          "ice",
+          " db ",
+          " ice ",
           "railjet",
           "rail-jet",
           "nightjet",
@@ -272,7 +273,7 @@
           "wirkung",
           "studie",
           "umweltbundesamt",
-          "uba",
+          " uba ",
           "friedrich",
           "wie viel",
           "prozent",
@@ -291,7 +292,7 @@
           [
             "studie",
             "umweltbundesamt",
-            "uba"
+            " uba "
           ],
           [
             "friedrich",
@@ -1203,7 +1204,7 @@
           "ch",
           "dach",
           "europa",
-          "eu",
+          " eu ",
           "ausreichend",
           "genug",
           "wenig",
@@ -1222,7 +1223,7 @@
           "vergleich",
           "öbb",
           "oebb",
-          "db",
+          " db ",
           "sbb"
         ]
       ],
@@ -1512,7 +1513,7 @@
           "österreich",
           "oesterreich",
           "europa",
-          "eu",
+          " eu ",
           "öffentlich",
           "oeffentlich",
           "privat",

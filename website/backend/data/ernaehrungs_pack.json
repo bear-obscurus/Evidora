@@ -110,8 +110,8 @@
         "eier schaden"
       ],
       "trigger_composite": [
-        ["eier", "ei essen", "eier konsum", "eggs"],
-        ["cholesterin", "ldl", "herz", "herzinfarkt", "herzkrank", "schlecht", "ungesund", "schaedlich", "schädlich"]
+        [" eier", "ei essen", "eier konsum", "eggs"],
+        ["cholesterin", " ldl ", "herz", "herzinfarkt", "herzkrank", "schlecht", "ungesund", "schaedlich", "schädlich"]
       ],
       "source_label": "American Heart Association 2019 + Circulation 2022 Meta-Analyse + DGE",
       "source_url": "https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.057642",
@@ -299,8 +299,8 @@
         "biolebensmittel pestizide"
       ],
       "trigger_composite": [
-        ["bio", "biolebensmittel", "biologisch", "organisch", "organic", "demeter"],
-        ["pestizid", "pestizidfrei", "spritzmittel", "chemie", "rueckstand", "rückstand", "frei von"]
+        [" bio", "biolebensmittel", "biologisch", "organisch", "organic", "demeter"],
+        ["pestizid", "pestizidfrei", "spritzmittel", " chemie", "rueckstand", "rückstand", "frei von"]
       ],
       "source_label": "EU-Verordnung 2018/848 + EFSA Pesticide Residues Report 2022",
       "source_url": "https://www.efsa.europa.eu/en/topics/topic/pesticide-residues",
