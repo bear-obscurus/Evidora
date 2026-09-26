@@ -1,0 +1,606 @@
+{
+ "_zweck": "Robustheits-Probe fuer den englischen Pass, geschrieben NACH dem Einfrieren des Glossars (Commit 4ca941c) und VOR ihrer Messung. 100 Fakten aus der TEST-Haelfte, je eine englische Uebertragung von claim_phrasings_handled[1] — also einem ANDEREN deutschen Wortlaut als im Hauptkorpus. Misst, wie stark die Rueckgewinnung an der Wortwahl des Hauptkorpus haengt.",
+ "auswahl": "sha1('para:datei:id') aufsteigend, die ersten 100 Test-Fakten mit >= 2 Phrasings",
+ "claims": [
+  {
+   "datei": "rechnungshof_parteienfin.json",
+   "id": "partg_par3_rahmen_pro_wahlberechtigtem",
+   "de": "PartG § 3 Höchstgrenze",
+   "en": "Maximum limit under section 3 of the Austrian Political Parties Act"
+  },
+  {
+   "datei": "mental_health_pack.json",
+   "id": "essstoerung_willens_mythos",
+   "de": "Essstörungen sind Disziplin-Frage",
+   "en": "Eating disorders are a matter of discipline"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "zucker_fuettert_krebs_mythos",
+   "de": "Krebs stirbt ohne Zucker",
+   "en": "Cancer dies without sugar"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "at_neutralitaet_recht_2026",
+   "de": "Neutralitätsgesetz 1955 verbietet NATO-Beitritt",
+   "en": "The 1955 Neutrality Act prohibits Austria from joining NATO"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "gewerkschafts_lohneffekt_2026",
+   "de": "Tarifbindung schadet der Wirtschaft",
+   "en": "Collective bargaining coverage hurts the economy"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "mindestlohn_beschaeftigung_2026",
+   "de": "Mindestlohn-Erhöhung kostet Hunderttausende Jobs",
+   "en": "Raising the minimum wage costs hundreds of thousands of jobs"
+  },
+  {
+   "datei": "cybersecurity_pack.json",
+   "id": "antivirus_linux_unnoetig_konsens",
+   "de": "Linux ist sicher, Antivirus ist überflüssig",
+   "en": "Linux is secure, antivirus software is unnecessary"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_demenz",
+   "de": "Memantin ist bei mittelschwerer bis schwerer Demenz indiziert",
+   "en": "Memantine is indicated for moderate to severe dementia"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "wahlbeteiligung_at_trends_2026",
+   "de": "Bei EU-Wahlen geht kaum noch jemand wählen",
+   "en": "Hardly anyone votes in EU elections anymore"
+  },
+  {
+   "datei": "finanzen_pack.json",
+   "id": "kalte_progression_2026",
+   "de": "Kalte Progression ist erfunden",
+   "en": "Bracket creep is a myth"
+  },
+  {
+   "datei": "energie_klima_pack.json",
+   "id": "waermepumpe_winter_2026",
+   "de": "Bei Minus-Temperaturen friert die Wärmepumpe ein",
+   "en": "Heat pumps freeze up when temperatures drop below zero"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "hiroshima_2026",
+   "de": "Atombomben auf Japan haben den Krieg beendet",
+   "en": "The atomic bombs on Japan ended the war"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "versailles_2wk_2026",
+   "de": "Versailler Vertrag war schuld am 2. WK",
+   "en": "The Treaty of Versailles was to blame for World War II"
+  },
+  {
+   "datei": "iqs_bildung.json",
+   "id": "nbb_2024_bildungsausgaben_bip",
+   "de": "Bildungs-Ausgaben Österreich %BIP",
+   "en": "Austria's education spending as a share of GDP"
+  },
+  {
+   "datei": "lebensmittel_pack.json",
+   "id": "kartoffel_solanin_grun_konsens",
+   "de": "Keimende Kartoffeln muss man immer wegwerfen",
+   "en": "Sprouting potatoes always have to be thrown out"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "demokratie_verfall_empirie_2026",
+   "de": "AT-Demokratie verfällt dramatisch",
+   "en": "Austrian democracy is deteriorating dramatically"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "chakren_2026",
+   "de": "Chakren beeinflussen die Gesundheit",
+   "en": "Chakras affect your health"
+  },
+  {
+   "datei": "rechnungshof_parteienfin.json",
+   "id": "sanktionen_partg_par10",
+   "de": "Sanktionen Parteiengesetz",
+   "en": "Penalties under the Austrian party law"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "migration_wohnungspreis_2026",
+   "de": "Asylsuchende sind Schuld an Wohnungsmangel",
+   "en": "Asylum seekers are to blame for the housing shortage"
+  },
+  {
+   "datei": "migration_pack.json",
+   "id": "migration_fiskalbilanz_2026",
+   "de": "Migration zahlt sich für den Staat aus",
+   "en": "Migration pays off for the state"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "cdc_vaccines_autism_2026",
+   "de": "MMR-Impfung führt zu Autismus",
+   "en": "The MMR vaccine leads to autism"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_nvl_hypertonie",
+   "de": "Blutdruck-Ziel sollte unter 130/80 sein",
+   "en": "The blood pressure target should be below 130/80"
+  },
+  {
+   "datei": "recht_pack.json",
+   "id": "kuendigungsschutz_klein_2026",
+   "de": "Auch in kleinen Firmen gibt es Kündigungsschutz",
+   "en": "Small companies also have protection against unfair dismissal"
+  },
+  {
+   "datei": "gleichstellung_pack.json",
+   "id": "mint_frauen_anteil_2026",
+   "de": "Männer sind einfach besser in Naturwissenschaften",
+   "en": "Men are simply better at science"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "high_protein_kidneys_2026",
+   "de": "Wer viel Protein isst, riskiert Nieren-Schäden",
+   "en": "Eating lots of protein puts your kidneys at risk"
+  },
+  {
+   "datei": "geschichts_mythen2_pack.json",
+   "id": "edison_gluehbirne_mythos",
+   "de": "Thomas Edison hat die Glühbirne erfunden",
+   "en": "Thomas Edison invented the light bulb"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "wahlfaelschungs_mythen_2026",
+   "de": "Trump hatte Recht mit Wahl-Manipulation 2020",
+   "en": "Trump was right about election fraud in 2020"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "mondlandung_2026",
+   "de": "Apollo 11 war ein Studio-Fake",
+   "en": "Apollo 11 was faked in a studio"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "vorratsdatenspeicherung_stand_konsens_2026",
+   "de": "In Österreich werden alle Telefon-Daten gespeichert",
+   "en": "In Austria all phone data is stored"
+  },
+  {
+   "datei": "migration_pack.json",
+   "id": "abschiebungen_simpel_2026",
+   "de": "Es gibt keinen politischen Willen für Abschiebungen",
+   "en": "There is no political will to carry out deportations"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_chronischer_schmerz",
+   "de": "Opioide sind bei Fibromyalgie nicht empfohlen",
+   "en": "Opioids are not recommended for fibromyalgia"
+  },
+  {
+   "datei": "geldanlage_pack.json",
+   "id": "krypto_promi_endorsement_mythos",
+   "de": "Beck investiert in Bitcoin Code",
+   "en": "Beck invests in Bitcoin Code"
+  },
+  {
+   "datei": "lebensmittel_pack.json",
+   "id": "pilze_aufwaermen_konsens",
+   "de": "Aufgewärmte Pilze sind immer giftig",
+   "en": "Reheated mushrooms are always poisonous"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "duengemittel_importabhaengigkeit_2026",
+   "de": "Düngemittel-Preise sind explodiert",
+   "en": "Fertiliser prices have exploded"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "kirchensteuer_kirchenbeitrag_2026",
+   "de": "Konfessionslose zahlen für Kirche",
+   "en": "People without a religion pay for the church"
+  },
+  {
+   "datei": "rki_surveillance.json",
+   "id": "rki_masern_2024_2025",
+   "de": "Masern breiten sich in Deutschland aus",
+   "en": "Measles is spreading in Germany"
+  },
+  {
+   "datei": "digital_familie_pack.json",
+   "id": "social_media_addiction_mythos",
+   "de": "TikTok-Sucht ist klinisch anerkannt",
+   "en": "TikTok addiction is clinically recognised"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "russland_bedrohungs_empirie_2026",
+   "de": "DSN-Bericht warnt vor Russland-Spionage",
+   "en": "DSN report warns of Russian espionage"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "vermoegenssteuer_kapitalflucht_2026",
+   "de": "Reiche fliehen wenn Vermögenssteuer kommt",
+   "en": "The rich will flee if a wealth tax is introduced"
+  },
+  {
+   "datei": "gleichstellung_pack.json",
+   "id": "gender_equality_index_2026",
+   "de": "Frauen sind heute privilegiert in Europa",
+   "en": "Women are privileged in Europe today"
+  },
+  {
+   "datei": "inklusion_pack.json",
+   "id": "inklusions_quoten_effekte_2026",
+   "de": "Sonderschulen sollten abgeschafft werden",
+   "en": "Special schools should be abolished"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "snowden_nsa_faktoide_konsens_2026",
+   "de": "PRISM ist Verschwörungstheorie",
+   "en": "PRISM is a conspiracy theory"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "familienbeihilfe_wirkung_2026",
+   "de": "Familienbeihilfe ist zu niedrig in Oesterreich",
+   "en": "Family allowance in Austria is too low"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "russland_sanktionen_wirkung_2026",
+   "de": "RUS-Wirtschaft wächst trotz Sanktionen",
+   "en": "The Russian economy is growing despite sanctions"
+  },
+  {
+   "datei": "education_dach.json",
+   "id": "pisa_lesen_europa_ranking_2022",
+   "de": "Finnland PISA Lesen Spitze",
+   "en": "Finland tops PISA in reading"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "astrologie_2026",
+   "de": "Sternzeichen beeinflussen die Persönlichkeit",
+   "en": "Star signs influence your personality"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "zara_arbeitswelt_diskriminierung_2023",
+   "de": "ZARA dokumentiert Arbeitswelt-Rassismus",
+   "en": "ZARA documents racism in the workplace"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "bach_blueten_2026",
+   "de": "Rescue Tropfen helfen bei Angst",
+   "en": "Rescue drops help with anxiety"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "notstandshilfe_streichung_2026",
+   "de": "Notstandshilfe gestrichen Oesterreich",
+   "en": "Emergency assistance scrapped in Austria"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "regionale_versorgung_mythen_2026",
+   "de": "AT ist autark beim Essen",
+   "en": "Austria is self-sufficient in food"
+  },
+  {
+   "datei": "tech_ki_pack.json",
+   "id": "enisa_threat_landscape_2026",
+   "de": "Ransomware ist die größte Cyber-Bedrohung",
+   "en": "Ransomware is the biggest cyber threat"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_long_covid",
+   "de": "Bei Post-Exertional Malaise wird Pacing statt GET empfohlen",
+   "en": "Pacing rather than graded exercise therapy is recommended for post-exertional malaise"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "mistel_krebs_therapie_mythos",
+   "de": "Mistelpräparate stoppen Tumor",
+   "en": "Mistletoe extracts stop tumours"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "subventions_kriege_2026",
+   "de": "EU verliert Investitionen an USA",
+   "en": "The EU is losing investment to the US"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "mietregulierung_investitionseffekt_2026",
+   "de": "Mietregulierung führt zu weniger Investitionen",
+   "en": "Rent regulation leads to less investment"
+  },
+  {
+   "datei": "lebensmittel_pack.json",
+   "id": "auftauen_zimmertemperatur_mythos",
+   "de": "Gefrorenes Fleisch bei Zimmertemperatur auftauen ist sicher",
+   "en": "Thawing frozen meat at room temperature is safe"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "islam_mehrheit_radikal_2026",
+   "de": "Muslime sind gewaltbereit",
+   "en": "Muslims are prone to violence"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "booster_sicherheit_konsens_2026",
+   "de": "Booster sind nutzlos",
+   "en": "Boosters are useless"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "at_demokratie_zufriedenheit_2026",
+   "de": "Demokratie-Zufriedenheit in Österreich sinkt dramatisch",
+   "en": "Satisfaction with democracy in Austria is dropping sharply"
+  },
+  {
+   "datei": "digital_familie_pack.json",
+   "id": "kinderschutz_filter_wirksamkeit_mythos",
+   "de": "Kindersicherung im Browser ist effektiv genug",
+   "en": "Browser parental controls are effective enough"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "diclofenac_niere_konsens_2026",
+   "de": "Voltadol ist schlecht für die Nieren",
+   "en": "Voltadol is bad for your kidneys"
+  },
+  {
+   "datei": "mental_health_pack.json",
+   "id": "adhs_ueberdiagnose_mythos",
+   "de": "ADHS wird systematisch überdiagnostiziert",
+   "en": "ADHD is systematically overdiagnosed"
+  },
+  {
+   "datei": "verkehrssicherheit_pack.json",
+   "id": "kindersitz_alter_groesse_konsens",
+   "de": "Kindersitze sind alle gleich gut",
+   "en": "All child car seats are equally good"
+  },
+  {
+   "datei": "geographie_pack.json",
+   "id": "everest_hoechster_2026",
+   "de": "Mauna Kea ist höher als Everest",
+   "en": "Mauna Kea is taller than Everest"
+  },
+  {
+   "datei": "substanzen_pack.json",
+   "id": "energy_drinks_herz_mythos",
+   "de": "Ein Schluck Red Bull führt zum Herzinfarkt",
+   "en": "One sip of Red Bull causes a heart attack"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "soros_eu_steuerung_2026",
+   "de": "Soros lenkt die Migration",
+   "en": "Soros is steering migration"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "deo_brustkrebs_mythos",
+   "de": "Antitranspirantien sind krebserregend",
+   "en": "Antiperspirants are carcinogenic"
+  },
+  {
+   "datei": "digital_familie_pack.json",
+   "id": "kinder_smartphone_alter_mythos",
+   "de": "Es ist wissenschaftlich erwiesen dass Smartphone vor 13 schadet",
+   "en": "It's scientifically proven that smartphones harm children under 13"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "heilsteine_2026",
+   "de": "Rosenquarz hilft bei Liebeskummer",
+   "en": "Rose quartz helps with heartbreak"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "glyphosat_empirie_2026",
+   "de": "Glyphosat verursacht Krebs",
+   "en": "Glyphosate causes cancer"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "ibuprofen_niere_konsens_2026",
+   "de": "Ibuprofen schädigt die Nieren",
+   "en": "Ibuprofen damages the kidneys"
+  },
+  {
+   "datei": "kunst_kultur_pack.json",
+   "id": "salem_hexen_2026",
+   "de": "Salem ist das berüchtigtste Beispiel für Hexenverbrennungen",
+   "en": "Salem is the most notorious example of witch burnings"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "darmkrebs_screening",
+   "de": "Darmkrebs Vorsorge Nutzen",
+   "en": "Benefits of bowel cancer screening"
+  },
+  {
+   "datei": "alltags_mythen_pack.json",
+   "id": "nasse_haare_erkaeltung_mythos",
+   "de": "Kalte Füße verursachen Schnupfen",
+   "en": "Cold feet give you the sniffles"
+  },
+  {
+   "datei": "substanzen_pack.json",
+   "id": "entgiftungs_diaeten_drogen_mythos",
+   "de": "Säfte reinigen die Leber von Drogen",
+   "en": "Juices cleanse the liver of drugs"
+  },
+  {
+   "datei": "ernaehrungs_pack.json",
+   "id": "detox_saefte_2026",
+   "de": "Reinigungs-Diäten reinigen",
+   "en": "Cleansing diets detoxify you"
+  },
+  {
+   "datei": "tierhaltung_pack.json",
+   "id": "katzen_neunte_leben_mythos",
+   "de": "Bei Katzen passiert nichts wegen 9 Leben",
+   "en": "Nothing happens to cats because they have 9 lives"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "5g_krebs_mythos_2026",
+   "de": "5G-Strahlung macht krank",
+   "en": "5G radiation makes you ill"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "ddr_mauer_tote_2026",
+   "de": "Mauertote sind erfunden",
+   "en": "The deaths at the Berlin Wall are made up"
+  },
+  {
+   "datei": "kunst_kultur_pack.json",
+   "id": "great_wall_china_alter_2026",
+   "de": "Die Chinesische Mauer wurde unter Qin Shi Huangdi erbaut",
+   "en": "The Great Wall of China was built under Qin Shi Huang"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "qanon_pizzagate_2026",
+   "de": "Pizzagate ist real",
+   "en": "Pizzagate is real"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "nato_mitgliedstaaten_at_diskurs_2026",
+   "de": "Schweden ist 2024 NATO beigetreten",
+   "en": "Sweden joined NATO in 2024"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_asylantraege_at_2023",
+   "de": "Österreich hatte 2023 Rekord-Asylanträge",
+   "en": "Austria had a record number of asylum applications in 2023"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "hellsehen_wahrsagen_2026",
+   "de": "Wahrsager treffen ins Schwarze",
+   "en": "Fortune tellers hit the nail on the head"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "bestandsdaten_auskunft_konsens_2026",
+   "de": "Bestandsdaten werden ohne Kontrolle abgerufen",
+   "en": "Subscriber data is accessed without any oversight"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_schizophrenie",
+   "de": "Clozapin ist bei therapieresistenter Schizophrenie wirksamstes Antipsychotikum",
+   "en": "Clozapine is the most effective antipsychotic for treatment-resistant schizophrenia"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "vertical_farming_realitaet_2026",
+   "de": "Indoor-Farming ist die Zukunft",
+   "en": "Indoor farming is the future"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "wehrpflicht_grundwehrdienst_at_2026",
+   "de": "Der Grundwehrdienst in Österreich dauert acht Monate",
+   "en": "Basic military service in Austria lasts eight months"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "irak_krieg_wmd_2026",
+   "de": "Irak-Krieg wegen WMD gerechtfertigt",
+   "en": "The Iraq war was justified because of WMD"
+  },
+  {
+   "datei": "geldanlage_pack.json",
+   "id": "pyramidensystem_mlm_mythos",
+   "de": "Mit Tupperware / Amway / Herbalife wird man finanziell frei",
+   "en": "Tupperware, Amway or Herbalife can make you financially free"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "cdc_fluoride_water_2026",
+   "de": "Trinkwasser-Fluoridierung ist Massenmedikation",
+   "en": "Water fluoridation is mass medication"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "nida_cannabis_health_2026",
+   "de": "Marihuana ist eine Gateway-Droge",
+   "en": "Marijuana is a gateway drug"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "mietendeckel_berlin_bilanz_2026",
+   "de": "Mietendeckel war verfassungswidrig",
+   "en": "The rent cap was unconstitutional"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "studienbeihilfe_at_2026",
+   "de": "Wer bekommt Studienbeihilfe",
+   "en": "Who is eligible for a student grant?"
+  },
+  {
+   "datei": "substanzen_pack.json",
+   "id": "kratom_natuerliche_alternative_mythos",
+   "de": "Kratom hilft beim Opioid-Entzug ohne Sucht-Risiko",
+   "en": "Kratom helps with opioid withdrawal without any risk of addiction"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "pension_generationen_2026",
+   "de": "Pensions-System Oesterreich ist Pleite",
+   "en": "Austria's pension system is bankrupt"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "reichsbuerger_brd_gmbh_2026",
+   "de": "Deutschland ist nicht souverän",
+   "en": "Germany is not a sovereign country"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "leerstand_umverteilung_2026",
+   "de": "Wohnungs-Mangel ist Lüge",
+   "en": "The housing shortage is a lie"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "eu_militaerfonds_pesco_2026",
+   "de": "EU-Verteidigungsfonds hat 8 Milliarden Euro",
+   "en": "The European Defence Fund has 8 billion euros"
+  },
+  {
+   "datei": "bildung_pack.json",
+   "id": "10_prozent_gehirn_2026",
+   "de": "90 Prozent des Gehirns sind ungenutzt",
+   "en": "90 percent of the brain is unused"
+  }
+ ]
+}
