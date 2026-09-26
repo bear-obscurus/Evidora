@@ -387,8 +387,10 @@ def _fremde_treffer(datei: str, it: dict) -> set[str]:
                  or tippfehler_match(it, ph.lower()))}
 
 
-# Dienst-fremde Treffer, die nach dem Fix bleiben — geprueft, alle am Thema
-# bis auf den letzten, der zu einer anderen Klasse gehoert.
+# Dienst-fremde Treffer, die nach dem Fix bleiben — geprueft, alle am Thema.
+# (Der KI-Bewusstseins-Fakt stand hier mit „fuehrt"/„fuehlt" — ein anderes
+# echtes Wort, das der tolerante Pass fuer einen Tippfehler hielt; seit
+# tests/test_tippfehler_echtwort.py zu.)
 ERLAUBT = {
     "eter_overview_at_2021": {
         "Studierende Quote AT",                        # Studierende in AT
@@ -397,11 +399,6 @@ ERLAUBT = {
     },
     "awmf_nvl_khk": {
         "Statine bringen nichts gegen Herzinfarkt",    # Statine = KHK-Leitlinie
-    },
-    "ki_bewusstsein_2026": {
-        # NICHT dieser Fix: der tolerante Pass (#205) haelt „fuehrt" fuer
-        # einen Tippfehler von „fuehlt" (Abstand 1, gleicher Anlaut).
-        "Kuenstliche Intelligenz fuehrt zu Massenarbeitslosigkeit",
     },
 }
 
