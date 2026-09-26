@@ -36,7 +36,7 @@
       "trigger_keywords": [],
       "trigger_composite": [
         [
-          "gvo",
+          " gvo",
           "gv-o",
           "gentechnik",
           "gen-technik",
@@ -45,14 +45,14 @@
           "transgen",
           "genmanipuliert",
           "gen-manipuliert",
-          "ngt",
+          " ngt ",
           "neue genomische",
           "cisgenese",
           "cisgenetik",
           "genome editing",
           "crispr",
           "cas9",
-          "gmo",
+          " gmo",
           "genetically modified",
           "mon810",
           "monsanto",
@@ -126,7 +126,7 @@
       "trigger_keywords": [],
       "trigger_composite": [
         [
-          "bio",
+          " bio",
           "bio-landbau",
           "biolandbau",
           "biologisch",
@@ -140,10 +140,9 @@
           "konventioneller landbau",
           "intensive landwirtschaft",
           "extensiv",
-          "ertrag",
-          "erträge",
-          "ertraege",
-          "yield"
+          "yield",
+          "ökolandbau",
+          "öko-landbau"
         ],
         [
           "ertrag",
@@ -151,7 +150,7 @@
           "ertraege",
           "produktion",
           "hektar",
-          "ha",
+          " ha ",
           "yield-gap",
           "ertrags-gap",
           "ertragsgap",
@@ -175,7 +174,7 @@
           "besser",
           "schlechter",
           "vergleich",
-          "vs",
+          " vs ",
           "weltmeister"
         ]
       ]
@@ -218,11 +217,11 @@
           "roundup",
           "round-up",
           "monsanto-roundup",
-          "iarc",
+          " iarc ",
           "efsa",
-          "epa",
-          "echa",
-          "rac"
+          " epa ",
+          " echa ",
+          " rac "
         ],
         [
           "krebs",
@@ -445,7 +444,7 @@
           "subvention",
           "förderung",
           "foerderung",
-          "gap",
+          " gap ",
           "direktzahlung",
           "steuergeld",
           "milliarden",
@@ -519,8 +518,8 @@
           "gemuese",
           "obst",
           "kartoffel",
-          "wein",
-          "eier",
+          " wein",
+          " eier",
           "energie",
           "diesel",
           "erdgas",
@@ -774,8 +773,8 @@
           "kaefig",
           "kaefighaltung",
           "käfighaltung",
-          "ages",
-          "ama",
+          " ages ",
+          " ama ",
           "tierwohl",
           "tier-wohl",
           "tierschutz",
@@ -800,7 +799,7 @@
           "gut",
           "schlecht",
           "konventionell",
-          "bio",
+          " bio",
           "freiland",
           "käfig-frei",
           "kaefig-frei",
@@ -898,7 +897,7 @@
           "höchstgehalt",
           "hoechstgehalt",
           "efsa",
-          "ages",
+          " ages ",
           "lebensmittel-sicherheit",
           "rückstandskontrolle",
           "rueckstandskontrolle",
@@ -934,7 +933,7 @@
           "zugelassen",
           "drift",
           "kontamination",
-          "bio",
+          " bio",
           "konventionell",
           "obst",
           "gemüse",
@@ -1051,7 +1050,7 @@
           "stickstoff",
           "ammoniak",
           "harnstoff",
-          "kali",
+          " kali ",
           "phosphor",
           "npk",
           "haber-bosch",
@@ -1059,14 +1058,10 @@
           "yara",
           "borealis",
           "agrolinz",
-          "oci",
+          " oci ",
           "fertilizer",
           "fertilisers",
-          "russland",
-          "belarus",
-          "sanktionen",
-          "russisch",
-          "belarussisch"
+          "dünger"
         ],
         [
           "abhängig",
@@ -1110,6 +1105,25 @@
           [
             "duengemittel",
             "düngemittel"
+          ]
+        ],
+        [
+          [
+            "sanktion"
+          ],
+          [
+            "bauern",
+            "landwirt",
+            "agrar"
+          ]
+        ],
+        [
+          [
+            "russland",
+            "belarus"
+          ],
+          [
+            "diversifiz"
           ]
         ]
       ]

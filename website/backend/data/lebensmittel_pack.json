@@ -198,7 +198,7 @@
       ],
       "trigger_composite": [
         [
-          "eier",
+          " eier",
           "eier-schale",
           "ei kochen",
           "eier kochen",
@@ -299,10 +299,10 @@
       ],
       "trigger_composite": [
         [
-          "eier",
+          " eier",
           "ei lagerung",
           "ei lagern",
-          "egg",
+          " egg",
           "eggs"
         ],
         [
@@ -525,7 +525,7 @@
         [
           "auftauen",
           "auftauung",
-          "tauen",
+          " tauen",
           "defrosten",
           "gefrorenes",
           "tiefkühl",

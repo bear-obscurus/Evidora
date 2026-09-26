@@ -164,7 +164,8 @@
           "elektroauto",
           "e-fahrzeug",
           "elektrofahrzeug",
-          "bev",
+          " bev ",
+          " bevs ",
           "tesla",
           "akku",
           "batterie",
@@ -455,7 +456,7 @@
         [
           "erneuerbar",
           "erneuerbare",
-          "wind",
+          " wind",
           "solar",
           "windstrom",
           "solarstrom",
@@ -523,7 +524,7 @@
         [
           "sauber",
           "umweltfreundlich",
-          "nox",
+          " nox ",
           "stickoxid",
           "feinstaub",
           "skandal",

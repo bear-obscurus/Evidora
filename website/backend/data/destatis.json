@@ -117,7 +117,7 @@
       ],
       "trigger_composite": [
         ["deutschland", "deutsch", "brd"],
-        ["geburten", "geburtenrate", "geburtenziffer", "kinder pro", "kinder je frau", "kinder bekommen", "keine kinder", "kinderlos", "fertilitaet", "fertilität", "tfr"]
+        ["geburten", "geburtenrate", "geburtenziffer", "kinder pro", "kinder je frau", "kinder bekommen", "keine kinder", "kinderlos", "fertilitaet", "fertilität", " tfr "]
       ],
       "source_label": "DESTATIS — Geburtenstatistik",
       "source_url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Geburten/_inhalt.html",

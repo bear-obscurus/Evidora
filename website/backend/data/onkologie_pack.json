@@ -97,7 +97,7 @@
       ],
       "trigger_composite": [
         ["krebs", "tumor", "karzinom", "metastas"],
-        ["säure", "basisch", "alkalisch", "ph", "ph-wert", "übersäuer", "basen", "säure-basen", "saeure"]
+        ["säure", "basisch", "alkalisch", " ph ", "ph-wert", "übersäuer", "basen", "säure-basen", "saeure"]
       ]
     },
     {
@@ -191,7 +191,7 @@
         "Antitranspirantien blockieren die Entgiftung und verursachen Brustkrebs"
       ],
       "trigger_composite": [
-        ["deo", "deodorant", "antitranspirant", "antitranspirantien", "achselspray", "aluminium-deo"],
+        [" deo", "deodorant", "antitranspirant", "antitranspirantien", "achselspray", "aluminium-deo"],
         ["krebs", "brustkrebs", "tumor", "karzinom", "krebsrisiko", "krebserregend"]
       ]
     },
@@ -222,7 +222,7 @@
         "BHs blockieren die Lymphdrainage und verursachen Tumore"
       ],
       "trigger_composite": [
-        ["bh", "büstenhalter", "bra", "bügel-bh", "bügelbh"],
+        [" bh ", " bhs ", "büstenhalter", " bra ", "bügel-bh", "bügelbh"],
         ["brustkrebs", "krebs", "tumor", "karzinom", "lymphdrainage", "krebsrisiko"]
       ]
     },

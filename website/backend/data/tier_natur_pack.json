@@ -69,7 +69,7 @@
         "stiere reagieren rot", "bullen rot"
       ],
       "trigger_composite": [
-        ["stier", "bulle", "bullen", "bull", "rind", "rinder"],
+        [" stier", "bulle", "bullen", " bull ", " bulls ", "rind", "rinder"],
         ["rot", "rote", "rotes", "red", "farbe", "stierkampf"]
       ],
       "source_label": "Live Science + ScienceABC + MythBusters Episode 2007 + Snopes",
@@ -106,7 +106,7 @@
         "fledermaus sehen"
       ],
       "trigger_composite": [
-        ["fledermaus", "fledermäuse", "fledermaeuse", "bat", "bats"],
+        ["fledermaus", "fledermäuse", "fledermaeuse", " bat ", "bats"],
         ["blind", "sehen", "augen", "echoortung", "echolocation"]
       ],
       "source_label": "Britannica + NIH NCBI + Forest Preserve + Crittercontrol",
@@ -254,7 +254,7 @@
         "shark attack", "hai-attacke"
       ],
       "trigger_composite": [
-        ["hai", "haie", "shark", "haifisch"],
+        [" hai", "haie", "shark", "haifisch"],
         ["angriff", "attacke", "gefahr", "gefährlich", "gefaehrlich", "biss", "toetet", "tötet", "töten", "toeten"]
       ],
       "source_label": "International Shark Attack File 2025 + CDC + Florida Museum",

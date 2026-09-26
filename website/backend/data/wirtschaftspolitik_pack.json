@@ -305,7 +305,7 @@
           "europaeische zentralbank",
           "zentralbank",
           "ecb",
-          "fed",
+          " fed ",
           "federal reserve",
           "geldmenge",
           "geld-menge",
@@ -436,7 +436,6 @@
       ],
       "trigger_composite": [
         [
-          "eu-",
           " eu ",
           " eu.",
           " eu,",
@@ -754,7 +753,7 @@
           "staatlich",
           "regierung",
           "ezb",
-          "fed",
+          " fed ",
           "zentralbank",
           "politik",
           "berlin",
@@ -918,7 +917,7 @@
           "erbsteuer",
           "schenkungssteuer",
           "schenkung-steuer",
-          "erben",
+          " erben",
           "erbschaft"
         ],
         [
@@ -1044,8 +1043,8 @@
       ],
       "trigger_composite": [
         [
-          "reiche",
-          "reichen",
+          " reiche",
+          " reichen",
           "superreiche",
           "superreichen",
           "millionär",
@@ -1114,7 +1113,7 @@
         ],
         [
           [
-            "reiche",
+            " reiche",
             "superreiche",
             "vermögende",
             "vermoegende",

@@ -47,8 +47,7 @@
           "bgbl. 211",
           "art 23f",
           "art. 23f",
-          "bündnis",
-          "buendnis",
+          "bündnisfrei",
           "militärbündnis",
           "militaerbuendnis",
           "nato-beitritt"
@@ -80,6 +79,18 @@
           "gasp",
           "gsvp",
           "eu-beitritt"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "kein bündnis"
+          ],
+          [
+            "österreich",
+            "oesterreich",
+            " at "
+          ]
         ]
       ]
     },
@@ -188,7 +199,7 @@
       "trigger_keywords": [],
       "trigger_composite": [
         [
-          "nato",
+          " nato",
           "n.a.t.o.",
           "north atlantic",
           "atlantik-pakt",
@@ -273,7 +284,7 @@
           "strategic compass",
           "strategischer kompass",
           "european peace facility",
-          "epf",
+          " epf ",
           "eu-armee",
           "eu armee",
           "eu militärfonds",
@@ -658,7 +669,7 @@
           "sky shield",
           "sky-shield",
           "skyshield",
-          "essi",
+          " essi ",
           "european sky shield",
           "european-sky-shield",
           "raketen-abwehr",
@@ -733,9 +744,9 @@
           "kreml",
           "moskau",
           "putin",
-          "rus-",
-          "ru-",
-          "rand",
+          " rus ",
+          " ru ",
+          " rand ",
           "rand corporation",
           "dsn",
           "direktion staatsschutz",
@@ -826,7 +837,7 @@
       "trigger_keywords": [],
       "trigger_composite": [
         [
-          "krim",
+          " krim ",
           "krim-annexion",
           "krimannexion",
           "krim-halbinsel",
