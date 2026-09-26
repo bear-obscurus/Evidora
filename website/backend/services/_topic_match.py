@@ -261,6 +261,14 @@ def load_items(static_path: str, items_key: str) -> list[dict]:
 # ASCII-Zwillinge („fpoe" neben „fpö") sind entfallen — norm_terme faltet
 # beide auf dieselbe Form.
 _PARTY_TOKENS: tuple[str, ...] = norm_terme(
+    # Die generische Rede von "einer Partei" (26.9.2026). Ohne sie lief
+    # "Welche Partei in Österreich hatte die meisten Korruptionsfälle?" am
+    # Guard vorbei — genau die Frage, bei der ein Länderwert (CPI, WGI) am
+    # meisten Schaden anrichtet, weil sie nach einem Vergleich verlangt, den
+    # kein Länderindex leisten kann. Der Guard bleibt trotzdem eng: Er
+    # verlangt zusätzlich ein Korruptionswort, einen Superlativ UND das
+    # Fehlen jedes konkreten Ankers.
+    "partei",
     # AT-Parteien
     "fpö", "spö", "övp",
     "neos", "grüne ", "kpö", "bzö",

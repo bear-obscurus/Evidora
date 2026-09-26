@@ -322,7 +322,14 @@ def test_ergebnis_haengt_nicht_am_hash_seed():
     # Wie im Deutschen: konkreter Anker oder keine Partei -> kein Block
     ("The FPÖ was involved in the Ibiza corruption scandal", "pass"),
     ("Austria is a corrupt country", "pass"),
-    ("Every party in Austria is corrupt", "pass"),
+    # Bis 26.9.2026 "pass", weil _PARTY_TOKENS nur Partei-NAMEN kannte und
+    # "every party" keinen traf. Seit das generische "partei" drin ist,
+    # greift der Guard hier wie beim deutschen "Alle Parteien sind korrupt":
+    # Ein Pauschalurteil ueber alle Parteien ist mit einem LAENDERwert (CPI,
+    # WGI) genauso wenig zu belegen wie ein Superlativ ueber eine einzelne.
+    # Die Frage bleibt beantwortbar — der Fakt
+    # parteien_korruption_datenlage_2026 traegt sie.
+    ("Every party in Austria is corrupt", "block_country_sources"),
     ("Die FPÖ ist die korrupteste Partei Österreichs", "block_country_sources"),
 ])
 def test_guard_sieht_die_englische_fassung(claim, soll):

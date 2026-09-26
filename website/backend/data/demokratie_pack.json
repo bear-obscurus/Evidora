@@ -1017,6 +1017,73 @@
       ]
     },
     {
+          "id": "parteien_korruption_datenlage_2026",
+          "topic": "Parteien und Korruption in Österreich — was erhoben wird und was nicht",
+          "scope": "AT",
+          "year": 2026,
+          "source_url": "https://www.bundeskanzleramt.gv.at/themen/unabhangiger-parteien-transparenz-senat.html",
+          "secondary_url": "https://www.profil.at/oesterreich/umfrage-haelfte-haelt-alle-parteien-fuer-korruptionsanfaellig/402198930",
+          "source_label": "Unabhängiger Parteien-Transparenz-Senat (BKA/RIS) + Unique-research für profil",
+          "headline": "Für Österreich existiert keine vergleichende Statistik, die Parteien nach dokumentierten Korruptionsfällen reiht. Erhoben werden drei andere Dinge: amtliche Sanktionen nach dem Parteiengesetz (UPTS), einzelne Ermittlungs- und Gerichtsverfahren, und Umfragen zur wahrgenommenen Korruptionsanfälligkeit.",
+          "data": {
+                "kernsatz_fuer_synthesizer": "Wer eine Partei als 'die korrupteste' bezeichnet, stützt sich auf Wahrnehmung oder auf Einzelfälle, nicht auf eine vergleichende Erhebung — eine solche gibt es für Österreich nicht. Belegbar sind amtliche Sanktionen nach dem Parteiengesetz, einzelne Verfahren und Umfrageergebnisse. Diese drei Grössen messen Verschiedenes und lassen sich nicht zu einer Rangliste verrechnen. Umfragewerte gehören zitiert und datiert, nicht als Tatsache über eine Partei weitergegeben.",
+                "upts_sanktionen": "Der Unabhängige Parteien-Transparenz-Senat verhängt Geldbußen und Geldstrafen bei Verstößen gegen das Parteiengesetz (§ 10 Abs. 8 und §§ 11 bis 12a PartG 2012 idF BGBl. I Nr. 125/2022). Die Entscheidungen werden beim Bundeskanzleramt und im Rechtsinformationssystem unter ris.bka.gv.at/Upts veröffentlicht.",
+                "upts_betroffene_parteien": "Die veröffentlichte Bescheidliste des UPTS reicht von 2015 bis 2026 und nennt ÖVP, SPÖ, FPÖ, Die Grünen, NEOS, Team Kärnten, BZÖ, KPÖ, Team Stronach, Bierpartei und Wandel. Die Liste zählt Verstöße gegen Transparenz- und Finanzierungsregeln, nicht Korruption, und sie ist keine nach Schwere oder Häufigkeit geordnete Reihung.",
+                "umfrage_wahrnehmung_2022": "Unique-research befragte für profil 500 Personen, Schwankungsbreite ±4,4 Prozentpunkte, veröffentlicht am 29.10.2022: 48 % hielten alle Parteien ohne Unterschied für korruptionsanfällig, 35 % gaben an, die ÖVP habe ein echtes Korruptionsproblem, und 8 % hielten Korruption für medial übertrieben dargestellt.",
+                "was_umfragen_messen": "Eine Wahrnehmungsumfrage misst Meinungen zu einem Zeitpunkt, nicht die Zahl der Vorfälle. Das Ergebnis hängt von Jahr, Anlass und Frageformulierung ab; verschiedene Erhebungen haben in verschiedenen Jahren auf verschiedene Parteien gezeigt. Die profil-Erhebung gibt ihre Frageformulierung nicht wieder und umfasst 500 Befragte.",
+                "cpi_ist_laenderebene": "Der Corruption Perceptions Index von Transparency International bewertet Staaten, nicht Parteien. Ein Länderwert für Österreich lässt sich keiner einzelnen Partei zurechnen; wer ihn dafür heranzieht, wechselt die Messebene.",
+                "context": "Pack ist empirisch-deskriptiv. Dieser Fakt nimmt keine Bewertung einer Partei vor und ordnet keine Partei ein; er beschreibt, welche Erhebungen existieren, was sie messen und wo ihre Grenzen liegen. Zahlen aus Umfragen werden mit Institut, Auftraggeber, Datum und Fallzahl zitiert."
+          },
+          "context_notes": [
+                "Datenstand: UPTS-Seite des Bundeskanzleramts und RIS-Bescheidliste am 26.9.2026 geprüft; profil/Unique-research-Erhebung veröffentlicht am 29.10.2022.",
+                "Der Fakt beantwortet ausdrücklich die Frage nach einer Rangliste. Die Antwort lautet, dass es keine gibt — nicht, dass es keine Daten gibt. Die Unterscheidung ist der Zweck des Fakts.",
+                "Bewusst ohne CPI-Zahl: Der Länderwert steht im Fakt korruption_index_2026 und würde hier nur eine zweite, driftende Kopie erzeugen."
+          ],
+          "claim_phrasings_handled": [
+                "Die FPÖ ist die korrupteste Partei Österreichs",
+                "Welche Partei in Österreich ist die korrupteste?",
+                "Welche Partei hatte die meisten Korruptionsfälle?",
+                "Gibt es eine Rangliste der Parteien nach Korruption?",
+                "Alle Parteien in Österreich sind gleich korrupt",
+                "Welche Parteien wurden nach dem Parteiengesetz bestraft?",
+                "Wie viele Österreicher halten alle Parteien für korruptionsanfällig?"
+          ],
+          "trigger_keywords": [],
+          "trigger_composite": [
+                [
+                      "korrupt",
+                      "korruption",
+                      "korruptions",
+                      "bestechung",
+                      "parteiengesetz",
+                      "upts",
+                      "parteien-transparenz",
+                      "korruptionsanfällig",
+                      "korruptionsanfaellig"
+                ],
+                [
+                      "partei",
+                      "parteien",
+                      "fpö",
+                      "fpoe",
+                      "övp",
+                      "oevp",
+                      "spö",
+                      "spoe",
+                      "neos",
+                      "grüne",
+                      "gruene",
+                      "kpö",
+                      "kpoe",
+                      "rangliste",
+                      "reihung",
+                      "am korruptesten",
+                      "korrupteste",
+                      "die meisten"
+                ]
+          ]
+    },
+    {
       "id": "us_wahl_system_faktoide_2026",
       "topic": "us_wahl_system_faktoide_konsens",
       "scope": "US-Wahlsystem — Electoral College, Swing States, Popular vs. Electoral Vote, Voter-ID-Gesetze",
