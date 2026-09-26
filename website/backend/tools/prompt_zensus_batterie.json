@@ -266,8 +266,8 @@
       "fakt": "mobilitaet-tempolimit_130_2026",
       "muss": [
         [
-          "Texte 176/2024",
-          "Friedrich, Bawidamann"
+          "stamme von Friedrich, meint Texte 176/2024",
+          "meint Texte 176/2024"
         ]
       ]
     },
@@ -279,6 +279,18 @@
         [
           "1,9 Mio. t",
           "1,9 Millionen"
+        ]
+      ]
+    },
+    {
+      "claim": "Wer hat die 1,9 Millionen Tonnen CO2 berechnet?",
+      "datei": "mobilitaet_pack.json",
+      "fakt": "mobilitaet-tempolimit_130_2026",
+      "muss": [
+        [
+          "Texte 38/2020 (Lange, Hendzlik, Schmied",
+          "1,9 Mio. t stehen in Texte 38/2020",
+          "Lange, Hendzlik und Schmied"
         ]
       ]
     }
