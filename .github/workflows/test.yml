@@ -83,6 +83,10 @@ jobs:
     #   - test_ueber_trigger_sweep     (4 Cross-Topic-Lecks: eige/eu/eter/
     #                                  anzeigen — Kurz-Tokens in Alltagswoertern,
     #                                  beidseitig gepinnt — QA50D-Sweep)
+    #   - test_wortgrenzen_trigger     (Kurz-Tokens in fremden Woertern: tum/
+    #                                  ass/de/neutral u. a. gebunden; Rand-
+    #                                  Leerzeichen = Wortgrenze auch am Claim-
+    #                                  Rand; Sweep mit Gift-Probe als Gate)
     #   - test_fleisch_messgroessen_bindung (Verbrauch vs. Verzehr: der Fakt
     #                                  bindet die im Claim GENANNTE Messgröße
     #                                  an ihren Wert, Headline unter dem
@@ -367,6 +371,7 @@ jobs:
             tests/test_tippfehler_toleranz.py \
             tests/test_tempolimit_zuordnung.py \
             tests/test_qa50b_rest.py \
+            tests/test_wortgrenzen_trigger.py \
             tests/test_wikidata_reliability.py
 
   check-new-urls:
