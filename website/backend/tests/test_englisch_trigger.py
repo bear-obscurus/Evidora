@@ -485,7 +485,12 @@ def test_echt_neue_fremdtreffer_bleiben_begrenzt():
 
 def test_sweep_ist_nicht_blind():
     """Gegenprobe des Instruments: ein vergifteter Glossar-Eintrag ('the' ->
-    'oesterreich', 'is' -> 'gefaehrlich') MUSS neue Fremdtreffer erzeugen."""
+    'oesterreich', 'is' -> 'gefaehrlich') MUSS neue Fremdtreffer erzeugen.
+
+    Stichprobe 400 statt 200 Claims: bei 200 lag der Abstand bei 11, und
+    einer davon war selbst ein Wortgrenzen-Leck — „free fall" -> „freier
+    Fall" traf ueber EIER den Eier-Lagerungs-Fakt; #211 bindet `" eier"`.
+    Bei 400 gemessen: 76 gegen 55, Abstand 21."""
     alt_glossar = _englisch.GLOSSAR
     try:
         _englisch.GLOSSAR = alt_glossar + (("österreich", ("the",)),
@@ -493,13 +498,13 @@ def test_sweep_ist_nicht_blind():
         _englisch._index.cache_clear()
         _englisch._fassung.cache_clear()
         n = sum(len(_neue_fremdtreffer(c["en"], c["datei"]))
-                for c in KORPUS["claims"][:200])
+                for c in KORPUS["claims"][:400])
     finally:
         _englisch.GLOSSAR = alt_glossar
         _englisch._index.cache_clear()
         _englisch._fassung.cache_clear()
     sauber = sum(len(_neue_fremdtreffer(c["en"], c["datei"]))
-                 for c in KORPUS["claims"][:200])
+                 for c in KORPUS["claims"][:400])
     assert n > sauber + 10, (n, sauber)
 
 
