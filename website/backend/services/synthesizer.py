@@ -145,6 +145,14 @@ def _prompt_claim_terms(analysis: dict, original_claim: str) -> list[str]:
             _add(e)
     for w in _re.findall(r"\w{4,}", (original_claim or "").lower()):
         _add(w)
+    # Englische Claims (2026-09-26): Die Fakt-Saetze sind deutsch. Ohne die
+    # deutschen Glossen teilt „How high is the vacancy tax in Tyrol?" kein
+    # Wort mit dem Fakt, die Kuerzung faellt auf den Textanfang zurueck, und
+    # der Tiroler Betrag kommt nicht an (Prompt-Zensus: 226 von 6.235
+    # Zeichen). Fuer deutsche Claims ist die Fassung None — unveraendert.
+    from services._englisch import englische_fassung
+    for w in _re.findall(r"\w{4,}", englische_fassung((original_claim or "").lower()) or ""):
+        _add(w)
     return terms
 
 
