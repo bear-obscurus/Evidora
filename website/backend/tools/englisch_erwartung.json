@@ -1,0 +1,30 @@
+{
+ "_zweck": "Erwartungen, geschrieben am 26.9.2026 VOR jeder Messung auf tools/englisch_korpus.json und VOR dem Bau einer Loesung. Die Messung wird hiergegen verglichen; wo sie abweicht, steht das im PR.",
+ "bereits_gemessen_vorher": {
+  "population_phrasings": 2603,
+  "population_trefferquote_exakt": 0.977,
+  "detect_language_haelt_deutsch_fuer_englisch": "2158 von 2603 deutschen Phrasings (82,9 %) -> _detect_language() taugt NICHT als Gate; es braucht positive englische Evidenz"
+ },
+ "status_quo": {
+  "en_trifft_eigenen_fakt_exakt": "5-12 % (nur Kognaten und Eigennamen: PISA, NATO, Bitcoin, QAnon, 5G, ZARA, AMS ...)",
+  "en_zusaetzlich_tolerant": "0-2 %",
+  "live_claim": "trifft keinen Fakt, weder exakt noch tolerant"
+ },
+ "sprachsignal_neu": {
+  "falsch_englisch_auf_2603_deutschen_phrasings": "<= 1 %",
+  "recall_auf_624_englischen_claims": "75-90 % (kurze Stichwort-Claims wie 'TB wave in Germany' tragen kaum Funktionswoerter)"
+ },
+ "loesung_a_glossar": {
+  "rueckgewinnung_test": "40-60 % der Faelle, in denen das deutsche Quell-Phrasing seinen Fakt trifft, das englische aber nicht",
+  "rueckgewinnung_dev": "hoeher als test; die Differenz ist das Mass fuer Ueberanpassung",
+  "ueber_trigger_deutsch": "0-5 neue dienst-fremde Treffer auf den 2.603 deutschen Phrasings (der Pass laeuft nur bei englischem Sprachsignal)",
+  "ueber_trigger_englisch": "neue dienst-fremde Treffer je englischem Claim hoechstens so viele wie der deutsche Status quo je Phrasing (374 / 2603 = 0,14)",
+  "themenfremd": "0-3 Treffer auf 40 themenfremden englischen Claims"
+ },
+ "loesung_b_cosine": {
+  "top1_im_eigenen_dienst": "50-70 % (mehrsprachiges MiniLM, aber kurze EN-Claims gegen lange DE-Deskriptoren)",
+  "cosinus_richtiger_fakt": "Median 0,45-0,60",
+  "dienste_ueber_schwelle_045_je_en_claim": "mehrere (3-10) -> der #41-Effekt waere fuer englische Claims gross; ohne deutlich hoehere Schwelle nicht tragfaehig",
+  "prognose": "(b) wird eher NICHT tragen; (a) wird der erste Schritt"
+ }
+}

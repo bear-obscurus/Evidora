@@ -1,0 +1,4428 @@
+{
+ "_zweck": "Englischer Mess-Korpus fuer das Retrieval der Pack-Trigger. Je Fakt MIT Trigger-Feldern und dokumentierten claim_phrasings_handled genau ein englisches Phrasing: eine Uebertragung von claim_phrasings_handled[0] ins Englische, von Hand, so wie ein englischsprachiger Nutzer die Aussage schreiben wuerde (Laender- und Institutionsnamen englisch, Eigennamen wie AMS/ZARA/ÖBB bleiben).",
+ "_grenzen": "Die Uebertragungen stammen aus EINER Hand und liegen nah am deutschen Wortlaut. Echte englische Nutzer-Claims koennen andere Begriffe waehlen ('empty homes tax' statt 'vacancy tax'). Die Rueckgewinnung auf diesem Korpus ist darum eine Obergrenze fuer den Glossar-Ansatz, keine Prognose fuer Produktion.",
+ "_split": "sha1('datei:id') gerade -> dev, ungerade -> test. Das Glossar darf nur aus dem Trigger-Vokabular und den DEV-Claims gebaut werden; die TEST-Haelfte wurde vor dem Glossar geschrieben und committet und wird danach nicht mehr angepasst.",
+ "erstellt": "2026-09-26",
+ "live": [
+  {
+   "en": "Is it true that the vacancy tax in Vorarlberg is 3000 euros a year?",
+   "quelle": "Live-Messung gegen Produktion 26.9.2026: unverifiable@0.1 nach 7 s",
+   "erwartet_fakt": [
+    "wohnen_pack.json",
+    "leerstandsabgabe_wirkung_2026"
+   ]
+  }
+ ],
+ "themenfremd": [
+  "The Eiffel Tower was completed in 1889",
+  "Lionel Messi has won eight Ballon d'Or awards",
+  "The Beatles released Abbey Road in 1969",
+  "Mount Kilimanjaro is the highest mountain in Africa",
+  "The iPhone was first released in 2007",
+  "Taylor Swift's Eras Tour is the highest-grossing concert tour ever",
+  "The Amazon river is longer than the Nile",
+  "Barack Obama was born in Hawaii",
+  "The Titanic sank in 1912",
+  "Tokyo is the most populous city in the world",
+  "Coffee originated in Ethiopia",
+  "The Great Barrier Reef is visible from space",
+  "Canada has more lakes than the rest of the world combined",
+  "The first Harry Potter book was published in 1997",
+  "Honey never spoils",
+  "A marathon is 42.195 kilometres long",
+  "The Mona Lisa hangs in the Louvre",
+  "Venus is the hottest planet in the solar system",
+  "The Sydney Opera House opened in 1973",
+  "Tennis was invented in England",
+  "The Golden Gate Bridge is painted international orange",
+  "Pluto is no longer classified as a planet",
+  "Octopuses have three hearts",
+  "The Roman Empire fell in 476",
+  "Diamonds are made of carbon",
+  "The Netherlands has more bicycles than people",
+  "Sharks existed before trees",
+  "Bananas are berries but strawberries are not",
+  "The first modern Olympic Games were held in Athens in 1896",
+  "Mars has two moons",
+  "The Statue of Liberty was a gift from France",
+  "Iceland has no mosquitoes",
+  "Chess originated in India",
+  "The Burj Khalifa is the tallest building in the world",
+  "The Pacific is the largest ocean",
+  "Jupiter has the shortest day of all planets",
+  "The guitar has six strings",
+  "Penguins live only in the southern hemisphere",
+  "Leonardo da Vinci painted the Last Supper",
+  "The speed of light is about 300,000 kilometres per second"
+ ],
+ "claims": [
+  {
+   "datei": "alltags_mythen_pack.json",
+   "id": "acht_glaeser_wasser_mythos",
+   "de": "Jeder Mensch muss täglich 8 Gläser Wasser trinken",
+   "en": "Everyone has to drink 8 glasses of water a day",
+   "split": "test"
+  },
+  {
+   "datei": "alltags_mythen_pack.json",
+   "id": "lesen_im_dunkeln_augen_mythos",
+   "de": "Lesen im Dunkeln macht die Augen kaputt",
+   "en": "Reading in the dark ruins your eyes",
+   "split": "test"
+  },
+  {
+   "datei": "alltags_mythen_pack.json",
+   "id": "acht_stunden_schlaf_zwingend_mythos",
+   "de": "Jeder Mensch braucht zwingend 8 Stunden Schlaf",
+   "en": "Everybody absolutely needs 8 hours of sleep",
+   "split": "dev"
+  },
+  {
+   "datei": "alltags_mythen_pack.json",
+   "id": "kalter_boden_blasenentzuendung_mythos",
+   "de": "Sitzen auf kaltem Boden verursacht Blasenentzündung",
+   "en": "Sitting on cold ground gives you a bladder infection",
+   "split": "test"
+  },
+  {
+   "datei": "alltags_mythen_pack.json",
+   "id": "linkshaender_sterblichkeit_mythos",
+   "de": "Linkshänder sterben durchschnittlich früher",
+   "en": "Is it true that left-handed people die earlier on average?",
+   "split": "dev"
+  },
+  {
+   "datei": "alltags_mythen_pack.json",
+   "id": "glas_kaffee_dehydrierung_mythos",
+   "de": "Pro Tasse Kaffee braucht man ein Glas Wasser",
+   "en": "For every cup of coffee you need to drink a glass of water",
+   "split": "dev"
+  },
+  {
+   "datei": "alltags_mythen_pack.json",
+   "id": "nasse_haare_erkaeltung_mythos",
+   "de": "Mit nassen Haaren in die Kälte = Erkältung",
+   "en": "Going out in the cold with wet hair gives you a cold",
+   "split": "test"
+  },
+  {
+   "datei": "alltags_mythen_pack.json",
+   "id": "gehirn_10_prozent_mythos",
+   "de": "Wir nutzen nur 10 Prozent unseres Gehirns",
+   "en": "We only use 10 percent of our brain",
+   "split": "dev"
+  },
+  {
+   "datei": "alltags_mythen_pack.json",
+   "id": "vollmond_schlaf_geburten_mythos",
+   "de": "Bei Vollmond schlafen Menschen schlechter",
+   "en": "People sleep worse during a full moon",
+   "split": "dev"
+  },
+  {
+   "datei": "alltags_mythen_pack.json",
+   "id": "wundbrand_jod_mythos",
+   "de": "Wunden müssen mit Jodtinktur desinfiziert werden",
+   "en": "Wounds have to be disinfected with iodine tincture",
+   "split": "test"
+  },
+  {
+   "datei": "ams_wifo.json",
+   "id": "ams_at_quote_2024_gesamt",
+   "de": "AT-Arbeitslosenquote 2024",
+   "en": "Austrian unemployment rate 2024",
+   "split": "test"
+  },
+  {
+   "datei": "ams_wifo.json",
+   "id": "ams_at_bundeslaender_2024",
+   "de": "Arbeitslosenquote Wien 2024",
+   "en": "Unemployment rate in Vienna 2024",
+   "split": "dev"
+  },
+  {
+   "datei": "ams_wifo.json",
+   "id": "ams_vs_eurostat_methodik_diff_2024",
+   "de": "AMS-Quote vs Eurostat",
+   "en": "AMS rate versus Eurostat",
+   "split": "test"
+  },
+  {
+   "datei": "ams_wifo.json",
+   "id": "ams_at_jugendliche_2024",
+   "de": "Jugendarbeitslosigkeit Österreich 2024",
+   "en": "Youth unemployment in Austria 2024",
+   "split": "dev"
+  },
+  {
+   "datei": "ams_wifo.json",
+   "id": "ams_at_langzeit_2024",
+   "de": "Langzeitarbeitslosigkeit Österreich 2024",
+   "en": "Long-term unemployment in Austria 2024",
+   "split": "test"
+  },
+  {
+   "datei": "ams_wifo.json",
+   "id": "ams_at_offene_stellen_2024",
+   "de": "Offene Stellen Österreich 2024",
+   "en": "Job vacancies in Austria 2024",
+   "split": "dev"
+  },
+  {
+   "datei": "ams_wifo.json",
+   "id": "ams_at_beschaeftigung_2024",
+   "de": "Wie viele Beschäftigte in Österreich 2024",
+   "en": "How many people were employed in Austria in 2024?",
+   "split": "test"
+  },
+  {
+   "datei": "ams_wifo.json",
+   "id": "ams_at_zeitreihe_2015_2024",
+   "de": "AT-Arbeitslosigkeit historisch",
+   "en": "Austrian unemployment over time",
+   "split": "test"
+  },
+  {
+   "datei": "ams_wifo.json",
+   "id": "ams_at_branche_sektor_2024",
+   "de": "AT-Industrie-Arbeitslosigkeit 2024",
+   "en": "Unemployment in Austrian industry 2024",
+   "split": "dev"
+  },
+  {
+   "datei": "ams_wifo.json",
+   "id": "ams_at_pressespiegel_jahresbericht_2024",
+   "de": "Quelle AMS Daten",
+   "en": "Source AMS data",
+   "split": "dev"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "mindestlohn_arbeitsplatzverlust_2026",
+   "de": "Mindestlohn vernichtet Jobs",
+   "en": "The minimum wage destroys jobs",
+   "split": "test"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "vier_tage_woche_2026",
+   "de": "Vier-Tage-Woche kostet Produktivitaet",
+   "en": "A four-day week costs productivity",
+   "split": "dev"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "homeoffice_produktivitaet_2026",
+   "de": "Homeoffice schadet der Produktivitaet",
+   "en": "Working from home hurts productivity",
+   "split": "test"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "burnout_praevalenz_2026",
+   "de": "Burnout ist eine offizielle Krankheit",
+   "en": "Burnout is an official disease",
+   "split": "dev"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "fachkraeftemangel_empirie_2026",
+   "de": "Es gibt keinen Fachkraefte-Mangel",
+   "en": "There is no skilled labour shortage",
+   "split": "dev"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "gewerkschafts_lohneffekt_2026",
+   "de": "Gewerkschaften haben keinen Lohn-Einfluss",
+   "en": "Trade unions have no effect on wages",
+   "split": "test"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "ki_job_verdraengung_2026",
+   "de": "KI ersetzt 47 % der Jobs",
+   "en": "AI will replace 47 % of jobs",
+   "split": "dev"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "migration_arbeitsmarkt_2026",
+   "de": "Migration drueckt Loehne",
+   "en": "Migration pushes wages down",
+   "split": "dev"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "karenz_lohnverlust_2026",
+   "de": "Karenz hat keinen Lohn-Effekt",
+   "en": "Parental leave has no effect on wages",
+   "split": "test"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "generation_z_arbeit_2026",
+   "de": "Generation Z ist arbeits-faul",
+   "en": "Generation Z is lazy about work",
+   "split": "dev"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "ams_quote_realitaet_2026",
+   "de": "AT-Arbeitslosigkeit ist 8 Prozent",
+   "en": "Austrian unemployment is 8 percent",
+   "split": "dev"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "gender_pay_gap_2026",
+   "de": "Frauen verdienen 18 Prozent weniger fuer gleiche Arbeit",
+   "en": "Women earn 18 percent less for the same work",
+   "split": "test"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "pflegekraeftemangel_2026",
+   "de": "Pflege-Mangel ist erfunden",
+   "en": "The nursing shortage is made up",
+   "split": "dev"
+  },
+  {
+   "datei": "arbeitsmarkt_pack.json",
+   "id": "scheinselbststaendigkeit_2026",
+   "de": "Plattform-Arbeit ist selbststaendig",
+   "en": "Platform work is self-employment",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_nvl_diabetes_typ2",
+   "de": "Bei Typ-2-Diabetes ist Metformin Erstlinien-Therapie",
+   "en": "Metformin is the first-line therapy for type 2 diabetes",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_nvl_hypertonie",
+   "de": "Bei Hypertonie ist ACE-Hemmer Erstlinien-Therapie",
+   "en": "ACE inhibitors are the first-line therapy for hypertension",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_nvl_khk",
+   "de": "Bei KHK soll LDL unter 1,4 mmol/l gesenkt werden",
+   "en": "In coronary heart disease LDL should be lowered below 1.4 mmol/l",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_nvl_herzinsuffizienz",
+   "de": "SGLT-2-Hemmer sind bei Herzinsuffizienz Standard",
+   "en": "SGLT2 inhibitors are standard in heart failure",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_schlaganfall_akut",
+   "de": "Bei Schlaganfall ist Lyse-Therapie bis 4,5 Stunden moeglich",
+   "en": "Thrombolysis is possible up to 4.5 hours after a stroke",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_mammakarzinom",
+   "de": "Brusterhaltende Therapie ist Standard beim Mammakarzinom",
+   "en": "Breast-conserving therapy is standard for breast cancer",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_kolorektales_karzinom",
+   "de": "Koloskopie ab 50 wird empfohlen",
+   "en": "A colonoscopy is recommended from age 50",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_prostatakarzinom",
+   "de": "Active Surveillance ist bei Niedrigrisiko-Prostatakrebs Standard",
+   "en": "Active surveillance is standard for low-risk prostate cancer",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_lungenkarzinom",
+   "de": "Bei Lungenkrebs ist molekulare Testung Standard",
+   "en": "Molecular testing is standard in lung cancer",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_copd",
+   "de": "Tabakentwoehnung ist die wichtigste COPD-Therapie",
+   "en": "Quitting smoking is the most important COPD therapy",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_asthma",
+   "de": "SABA-Monotherapie ist bei Asthma nicht mehr Standard",
+   "en": "SABA monotherapy is no longer standard for asthma",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_unipolare_depression",
+   "de": "Bei leichter Depression ist Psychotherapie Erstlinien-Therapie",
+   "en": "Psychotherapy is the first-line treatment for mild depression",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_schizophrenie",
+   "de": "Atypika sind Erstlinien bei Schizophrenie",
+   "en": "Atypical antipsychotics are first-line in schizophrenia",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_adhs",
+   "de": "Methylphenidat ist Erstlinien-Therapie bei ADHS",
+   "en": "Methylphenidate is the first-line therapy for ADHD",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_rueckenschmerz",
+   "de": "Bei Rueckenschmerz ist Bettruhe nicht empfohlen",
+   "en": "Bed rest is not recommended for back pain",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_adipositas",
+   "de": "Semaglutid ist wirksamste pharmakologische Adipositas-Therapie",
+   "en": "Semaglutide is the most effective drug treatment for obesity",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_demenz",
+   "de": "Cholinesterase-Hemmer sind bei leichter bis mittelschwerer Alzheimer-Demenz Standard",
+   "en": "Cholinesterase inhibitors are standard for mild to moderate Alzheimer's dementia",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_migraene",
+   "de": "Triptane sind Erstlinien bei mittelschwerer Migraene",
+   "en": "Triptans are first-line for moderate migraine",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_epilepsie",
+   "de": "Lamotrigin und Levetiracetam sind Erstlinien-Antiepileptika",
+   "en": "Lamotrigine and levetiracetam are first-line antiepileptic drugs",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_parkinson",
+   "de": "Levodopa ist wirksamstes Parkinson-Medikament",
+   "en": "Levodopa is the most effective Parkinson's drug",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_multiple_sklerose",
+   "de": "Ocrelizumab ist wirksam bei schubfoermiger und primaer-progredienter MS",
+   "en": "Ocrelizumab is effective in relapsing and primary progressive MS",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_covid19",
+   "de": "Paxlovid ist bei COVID-19-Risiko-Patienten innerhalb 5 Tagen indiziert",
+   "en": "Paxlovid is indicated for high-risk COVID-19 patients within 5 days",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_long_covid",
+   "de": "Long-COVID-Therapie ist primaer nicht-pharmakologisch",
+   "en": "Long COVID treatment is primarily non-pharmacological",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_palliativmedizin",
+   "de": "Fruehe Palliativ-Integration verbessert Lebensqualitaet und Ueberleben",
+   "en": "Early palliative care improves quality of life and survival",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_osteoporose",
+   "de": "Bisphosphonate sind Erstlinien-Therapie bei Osteoporose",
+   "en": "Bisphosphonates are the first-line therapy for osteoporosis",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_chronische_niereninsuffizienz",
+   "de": "ACE-Hemmer/ARB sind bei diabetischer Nephropathie Erstlinien",
+   "en": "ACE inhibitors or ARBs are first-line in diabetic nephropathy",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_hashimoto_thyreoiditis",
+   "de": "Subklinische Hypothyreose erfordert nicht immer L-Thyroxin",
+   "en": "Subclinical hypothyroidism does not always require levothyroxine",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_atopische_dermatitis",
+   "de": "Dupilumab ist wirksam bei moderat bis schwerer atopischer Dermatitis",
+   "en": "Dupilumab is effective for moderate to severe atopic dermatitis",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_rheumatoide_arthritis",
+   "de": "Methotrexat ist Ankertherapie bei rheumatoider Arthritis",
+   "en": "Methotrexate is the anchor therapy for rheumatoid arthritis",
+   "split": "dev"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_suizidpraevention",
+   "de": "Lithium hat dokumentierten Anti-Suizid-Effekt",
+   "en": "Lithium has a documented anti-suicidal effect",
+   "split": "test"
+  },
+  {
+   "datei": "awmf.json",
+   "id": "awmf_chronischer_schmerz",
+   "de": "Opioide bei chronischen Nicht-Tumorschmerzen nur gestuft",
+   "en": "Opioids for chronic non-cancer pain only in a stepwise approach",
+   "split": "test"
+  },
+  {
+   "datei": "bildung_pack.json",
+   "id": "lernstile_2026",
+   "de": "Schüler lernen besser, wenn an ihren Lernstil angepasst wird",
+   "en": "Students learn better when teaching matches their learning style",
+   "split": "test"
+  },
+  {
+   "datei": "bildung_pack.json",
+   "id": "mozart_effekt_2026",
+   "de": "Mozart-Hören macht Babys schlauer",
+   "en": "Listening to Mozart makes babies smarter",
+   "split": "dev"
+  },
+  {
+   "datei": "bildung_pack.json",
+   "id": "linke_rechte_gehirnhaelfte_2026",
+   "de": "Manche Menschen sind links-hirnig, andere rechts-hirnig",
+   "en": "Some people are left-brained, others right-brained",
+   "split": "dev"
+  },
+  {
+   "datei": "bildung_pack.json",
+   "id": "multitasking_2026",
+   "de": "Multitasking ist effizient",
+   "en": "Multitasking is efficient",
+   "split": "test"
+  },
+  {
+   "datei": "bildung_pack.json",
+   "id": "10_prozent_gehirn_2026",
+   "de": "Wir nutzen nur 10 Prozent unseres Gehirns",
+   "en": "We only use 10 percent of our brains",
+   "split": "test"
+  },
+  {
+   "datei": "bildung_pack.json",
+   "id": "frueh_lernen_immer_besser_2026",
+   "de": "Je früher Kinder lernen, desto besser",
+   "en": "The earlier children start learning, the better",
+   "split": "dev"
+  },
+  {
+   "datei": "bildung_pack.json",
+   "id": "hattie_visible_learning_2026",
+   "de": "Kleine Klassengröße ist der wichtigste Faktor für Lernerfolg",
+   "en": "Small class size is the most important factor for learning success",
+   "split": "dev"
+  },
+  {
+   "datei": "cybersecurity_pack.json",
+   "id": "passwort_wechsel_intervall_mythos",
+   "de": "Passwörter müssen alle 90 Tage gewechselt werden",
+   "en": "Passwords have to be changed every 90 days",
+   "split": "test"
+  },
+  {
+   "datei": "cybersecurity_pack.json",
+   "id": "mac_keine_viren_mythos",
+   "de": "Macs bekommen keine Viren",
+   "en": "Is it true that Macs don't get viruses?",
+   "split": "dev"
+  },
+  {
+   "datei": "cybersecurity_pack.json",
+   "id": "vpn_anonymitaet_mythos",
+   "de": "VPN macht mich komplett anonym im Internet",
+   "en": "A VPN makes me completely anonymous on the internet",
+   "split": "dev"
+  },
+  {
+   "datei": "cybersecurity_pack.json",
+   "id": "public_wifi_banking_konsens",
+   "de": "Banking im öffentlichen WLAN ist immer hochgefährlich",
+   "en": "Online banking on public Wi-Fi is always extremely dangerous",
+   "split": "dev"
+  },
+  {
+   "datei": "cybersecurity_pack.json",
+   "id": "cookie_banner_sinn_kontroverse",
+   "de": "Cookie-Banner sind sinnloser Müll",
+   "en": "Cookie banners are pointless rubbish",
+   "split": "dev"
+  },
+  {
+   "datei": "cybersecurity_pack.json",
+   "id": "inkognito_modus_anonymitaet_mythos",
+   "de": "Im Inkognito-Modus surfe ich komplett anonym",
+   "en": "In incognito mode I browse completely anonymously",
+   "split": "dev"
+  },
+  {
+   "datei": "cybersecurity_pack.json",
+   "id": "2fa_unnoetig_mythos",
+   "de": "2FA ist umständlich und unnötig",
+   "en": "2FA is cumbersome and unnecessary",
+   "split": "dev"
+  },
+  {
+   "datei": "cybersecurity_pack.json",
+   "id": "passwort_manager_unsicher_mythos",
+   "de": "Passwort-Manager sind unsicher",
+   "en": "Password managers are insecure",
+   "split": "test"
+  },
+  {
+   "datei": "cybersecurity_pack.json",
+   "id": "phishing_email_eindeutig_mythos",
+   "de": "Phishing-Mails erkenne ich an Schreibfehlern",
+   "en": "You can spot phishing emails by their spelling mistakes",
+   "split": "dev"
+  },
+  {
+   "datei": "cybersecurity_pack.json",
+   "id": "antivirus_linux_unnoetig_konsens",
+   "de": "Linux braucht keinen Antivirus, ist immun",
+   "en": "Linux doesn't need antivirus, it is immune",
+   "split": "test"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "dsgvo_buerokratie_mythos_2026",
+   "de": "DSGVO ruiniert KMU",
+   "en": "The GDPR is ruining small businesses",
+   "split": "test"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "cookie_banner_wirkung_konsens_2026",
+   "de": "Cookie-Banner sind sinnlos",
+   "en": "Cookie banners are useless",
+   "split": "dev"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "vorratsdatenspeicherung_stand_konsens_2026",
+   "de": "Vorratsdatenspeicherung ist in Deutschland in Kraft",
+   "en": "Data retention is in force in Germany",
+   "split": "test"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "snowden_nsa_faktoide_konsens_2026",
+   "de": "Snowden hat nichts Bewiesenes enthüllt",
+   "en": "Snowden revealed nothing that was proven",
+   "split": "test"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "massenueberwachung_at_konsens_2026",
+   "de": "AT überwacht alle Bürger flächendeckend",
+   "en": "Austria monitors all its citizens across the board",
+   "split": "dev"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "pegasus_spyware_konsens_2026",
+   "de": "Pegasus ist nur eine Verschwörungstheorie",
+   "en": "Pegasus is just a conspiracy theory",
+   "split": "test"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "klarnamen_pflicht_konsens_2026",
+   "de": "Klarnamen-Pflicht würde Hass-Rede stoppen",
+   "en": "A real-name requirement would stop hate speech",
+   "split": "dev"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "anonymitaet_im_netz_recht_konsens_2026",
+   "de": "Anonymität im Netz ist illegal",
+   "en": "Anonymity on the internet is illegal",
+   "split": "dev"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "bestandsdaten_auskunft_konsens_2026",
+   "de": "BVerfG hat Bestandsdaten-Auskunft komplett verboten",
+   "en": "The Constitutional Court completely banned subscriber data requests",
+   "split": "test"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "bundestrojaner_at_konsens_2026",
+   "de": "Bundestrojaner ist in Österreich erlaubt",
+   "en": "The federal trojan is allowed in Austria",
+   "split": "dev"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "smartmeter_datenschutz_konsens_2026",
+   "de": "Smartmeter haben nichts mit Datenschutz zu tun",
+   "en": "Smart meters have nothing to do with data protection",
+   "split": "test"
+  },
+  {
+   "datei": "datenschutz_pack.json",
+   "id": "browser_fingerprinting_konsens_2026",
+   "de": "Browser-Fingerprinting ist nicht personenbezogen",
+   "en": "Browser fingerprinting is not personal data",
+   "split": "test"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "wahlbeteiligung_at_trends_2026",
+   "de": "Wahlbeteiligung in Österreich sinkt dramatisch",
+   "en": "Voter turnout in Austria is falling dramatically",
+   "split": "test"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "briefwahl_manipulation_mythen_2026",
+   "de": "Briefwahl ist manipulationsanfällig",
+   "en": "Postal voting is prone to manipulation",
+   "split": "dev"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "volksbegehren_wirkung_empirie_2026",
+   "de": "Volksbegehren werden in Österreich ignoriert",
+   "en": "Popular initiatives are ignored in Austria",
+   "split": "dev"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "at_bundesrat_funktion_2026",
+   "de": "AT-Bundesrat ist wirkungslos",
+   "en": "Is it true that the Austrian Federal Council is powerless?",
+   "split": "dev"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "wahlfaelschungs_mythen_2026",
+   "de": "Wahlen werden manipuliert",
+   "en": "Elections are rigged",
+   "split": "test"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "mehrheits_verhaeltniswahl_2026",
+   "de": "Mehrheitswahl ist demokratischer",
+   "en": "First-past-the-post voting is more democratic",
+   "split": "dev"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "epartizipation_wirkung_2026",
+   "de": "EU-Bürgerinitiativen werden ignoriert",
+   "en": "European citizens' initiatives are ignored",
+   "split": "dev"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "demokratie_verfall_empirie_2026",
+   "de": "Demokratie ist global im Verfall",
+   "en": "Democracy is declining worldwide",
+   "split": "test"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "pressefreiheit_trends_2026",
+   "de": "AT hat hervorragende Pressefreiheit",
+   "en": "Austria has excellent press freedom",
+   "split": "dev"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "korruption_index_2026",
+   "de": "AT ist Korruptions-Land",
+   "en": "Austria is a corrupt country",
+   "split": "test"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "us_wahl_system_faktoide_2026",
+   "de": "US-Wahlsystem ist undemokratisch",
+   "en": "The US electoral system is undemocratic",
+   "split": "dev"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "at_demokratie_zufriedenheit_2026",
+   "de": "AT-Demokratie-Vertrauen ist im freien Fall",
+   "en": "Trust in democracy in Austria is in free fall",
+   "split": "test"
+  },
+  {
+   "datei": "demokratie_pack.json",
+   "id": "ep_sitz_strassburg_2026",
+   "de": "Das EU-Parlament hat seinen Sitz in Brüssel",
+   "en": "The European Parliament has its seat in Brussels",
+   "split": "test"
+  },
+  {
+   "datei": "destatis.json",
+   "id": "destatis_bevoelkerung_2024",
+   "de": "Deutschland verliert massiv Bevölkerung",
+   "en": "Germany is losing population massively",
+   "split": "dev"
+  },
+  {
+   "datei": "destatis.json",
+   "id": "destatis_inflation_2024",
+   "de": "Inflation in Deutschland ist außer Kontrolle",
+   "en": "Inflation in Germany is out of control",
+   "split": "test"
+  },
+  {
+   "datei": "destatis.json",
+   "id": "destatis_geburten_2024",
+   "de": "Deutsche bekommen keine Kinder mehr",
+   "en": "Germans are not having children anymore",
+   "split": "test"
+  },
+  {
+   "datei": "destatis.json",
+   "id": "destatis_arbeitslosigkeit_2024",
+   "de": "Deutschland hat hohe Arbeitslosigkeit",
+   "en": "Germany has high unemployment",
+   "split": "test"
+  },
+  {
+   "datei": "destatis.json",
+   "id": "destatis_bip_2024",
+   "de": "Deutschland steckt in tiefer Rezession",
+   "en": "Germany is in a deep recession",
+   "split": "test"
+  },
+  {
+   "datei": "destatis.json",
+   "id": "destatis_lebenserwartung_2024",
+   "de": "Deutsche werden immer älter",
+   "en": "Germans are living longer and longer",
+   "split": "test"
+  },
+  {
+   "datei": "digital_familie_pack.json",
+   "id": "bildschirmzeit_hirnentwicklung_mythos",
+   "de": "Bildschirmzeit zerstört das kindliche Gehirn",
+   "en": "Screen time destroys children's brains",
+   "split": "test"
+  },
+  {
+   "datei": "digital_familie_pack.json",
+   "id": "tiktok_algorithmus_dumm_mythos",
+   "de": "TikTok-Algorithmus macht Kinder dumm",
+   "en": "The TikTok algorithm makes kids stupid",
+   "split": "test"
+  },
+  {
+   "datei": "digital_familie_pack.json",
+   "id": "smartphone_macht_dumm_mythos",
+   "de": "Smartphones machen dumm",
+   "en": "Smartphones make you stupid",
+   "split": "dev"
+  },
+  {
+   "datei": "digital_familie_pack.json",
+   "id": "kinderschutz_filter_wirksamkeit_mythos",
+   "de": "Family Link schützt mein Kind sicher vor allem",
+   "en": "Family Link keeps my child safe from everything",
+   "split": "test"
+  },
+  {
+   "datei": "digital_familie_pack.json",
+   "id": "online_spiele_aggression_mythos",
+   "de": "Gewalt-Videospiele machen Kinder aggressiv",
+   "en": "Violent video games make children aggressive",
+   "split": "dev"
+  },
+  {
+   "datei": "digital_familie_pack.json",
+   "id": "gen_z_iphone_depression_mythos",
+   "de": "Smartphones haben Generation Z depressiv gemacht",
+   "en": "Smartphones have made Gen Z depressed",
+   "split": "dev"
+  },
+  {
+   "datei": "digital_familie_pack.json",
+   "id": "cyberbullying_mehr_als_offline_mythos",
+   "de": "Cyberbullying ist viel schlimmer als klassisches Mobbing",
+   "en": "Cyberbullying is much worse than traditional bullying",
+   "split": "test"
+  },
+  {
+   "datei": "digital_familie_pack.json",
+   "id": "social_media_addiction_mythos",
+   "de": "Social-Media-Sucht ist offizielle Diagnose",
+   "en": "Social media addiction is an official diagnosis",
+   "split": "test"
+  },
+  {
+   "datei": "digital_familie_pack.json",
+   "id": "frueh_lesen_lernen_smartphone_mythos",
+   "de": "Lese-Apps sind genauso gut wie Vorlesen",
+   "en": "Reading apps are just as good as reading aloud",
+   "split": "dev"
+  },
+  {
+   "datei": "digital_familie_pack.json",
+   "id": "kinder_smartphone_alter_mythos",
+   "de": "Kinder sollten kein Smartphone vor 14 haben",
+   "en": "Children shouldn't have a smartphone before 14",
+   "split": "test"
+  },
+  {
+   "datei": "education_dach.json",
+   "id": "timss_2023_at",
+   "de": "TIMSS Ergebnisse Österreich",
+   "en": "TIMSS results Austria",
+   "split": "dev"
+  },
+  {
+   "datei": "education_dach.json",
+   "id": "pirls_2021_at",
+   "de": "PIRLS Österreich Lesekompetenz",
+   "en": "PIRLS Austria reading literacy",
+   "split": "test"
+  },
+  {
+   "datei": "education_dach.json",
+   "id": "lehrermangel_at_2024",
+   "de": "Lehrermangel Österreich",
+   "en": "Teacher shortage in Austria",
+   "split": "test"
+  },
+  {
+   "datei": "education_dach.json",
+   "id": "pisa_2022_dach",
+   "de": "PISA Österreich katastrophal",
+   "en": "Austria's PISA results are a disaster",
+   "split": "dev"
+  },
+  {
+   "datei": "education_dach.json",
+   "id": "sitzenbleiben_wirkung",
+   "de": "Sitzenbleiben hilft beim Lernen",
+   "en": "Repeating a grade helps learning",
+   "split": "test"
+  },
+  {
+   "datei": "education_dach.json",
+   "id": "pisa_lesen_europa_ranking_2022",
+   "de": "Finnland beste Lese-Ergebnisse Europa",
+   "en": "Finland has the best reading scores in Europe",
+   "split": "test"
+  },
+  {
+   "datei": "education_dach.json",
+   "id": "studienbeitrag_at_2026",
+   "de": "Studiengebühren Österreich abgeschafft",
+   "en": "Tuition fees in Austria have been abolished",
+   "split": "dev"
+  },
+  {
+   "datei": "education_dach.json",
+   "id": "schulpflicht_at_2026",
+   "de": "Schulpflicht Österreich bis 15",
+   "en": "Compulsory schooling in Austria lasts until 15",
+   "split": "test"
+  },
+  {
+   "datei": "energie_klima_pack.json",
+   "id": "atomkraft_co2_2026",
+   "de": "Atomkraft ist CO2-frei",
+   "en": "Nuclear power is carbon-free",
+   "split": "dev"
+  },
+  {
+   "datei": "energie_klima_pack.json",
+   "id": "china_kohle_whataboutism_2026",
+   "de": "EU-Klimaschutz bringt nichts solange China Kohlekraftwerke baut",
+   "en": "EU climate action is pointless as long as China keeps building coal plants",
+   "split": "dev"
+  },
+  {
+   "datei": "energie_klima_pack.json",
+   "id": "e_auto_akku_co2_2026",
+   "de": "E-Autos haben schlechtere CO2-Bilanz als Verbrenner",
+   "en": "Electric cars have a worse carbon footprint than combustion cars",
+   "split": "test"
+  },
+  {
+   "datei": "energie_klima_pack.json",
+   "id": "waermepumpe_winter_2026",
+   "de": "Wärmepumpen funktionieren bei Frost nicht",
+   "en": "Heat pumps don't work when it's freezing",
+   "split": "test"
+  },
+  {
+   "datei": "energie_klima_pack.json",
+   "id": "solar_recycling_2026",
+   "de": "Solar-Module sind nicht recyclebar",
+   "en": "Solar panels can't be recycled",
+   "split": "test"
+  },
+  {
+   "datei": "energie_klima_pack.json",
+   "id": "windkraft_voegel_2026",
+   "de": "Windkraft tötet zu viele Vögel",
+   "en": "Wind turbines kill too many birds",
+   "split": "dev"
+  },
+  {
+   "datei": "energie_klima_pack.json",
+   "id": "erneuerbare_versorgungssicher_2026",
+   "de": "Erneuerbare gefährden Versorgungssicherheit",
+   "en": "Renewables endanger security of supply",
+   "split": "dev"
+  },
+  {
+   "datei": "energie_klima_pack.json",
+   "id": "diesel_skandal_2026",
+   "de": "Moderne Diesel sind sauber",
+   "en": "Modern diesel cars are clean",
+   "split": "dev"
+  },
+  {
+   "datei": "energie_klima_pack.json",
+   "id": "atomstrom_frankreich_import_2026",
+   "de": "Deutschland kauft seit Atomausstieg billigen Atomstrom aus Frankreich",
+   "en": "Since the nuclear phase-out Germany buys cheap nuclear power from France",
+   "split": "dev"
+  },
+  {
+   "datei": "energie_klima_pack.json",
+   "id": "offshore_wind_vs_kohle_de_2026",
+   "de": "Nordsee Windparks mehr Strom als Kohlekraftwerke",
+   "en": "North Sea wind farms produce more electricity than coal plants",
+   "split": "test"
+  },
+  {
+   "datei": "energy_charts.json",
+   "id": "de_atomstrom_frankreich_mythos_2024",
+   "de": "Deutschland kauft Atomstrom aus Frankreich",
+   "en": "Germany buys nuclear electricity from France",
+   "split": "dev"
+  },
+  {
+   "datei": "energy_charts.json",
+   "id": "ee_anteil_de_2024",
+   "de": "Erneuerbaren-Anteil Deutschland",
+   "en": "Share of renewables in Germany",
+   "split": "test"
+  },
+  {
+   "datei": "energy_charts.json",
+   "id": "dunkelflaute_2024_de",
+   "de": "Dunkelflaute Stromausfall",
+   "en": "Dark doldrums power outage",
+   "split": "test"
+  },
+  {
+   "datei": "energy_charts.json",
+   "id": "at_strom_eckdaten_2024",
+   "de": "Österreich Stromimport",
+   "en": "Austria electricity imports",
+   "split": "dev"
+  },
+  {
+   "datei": "ernaehrungs_pack.json",
+   "id": "fuenf_sekunden_regel_2026",
+   "de": "Heruntergefallenes Essen ist binnen 5 Sekunden sicher",
+   "en": "Food dropped on the floor is safe to eat within 5 seconds",
+   "split": "dev"
+  },
+  {
+   "datei": "ernaehrungs_pack.json",
+   "id": "spinat_eisen_2026",
+   "de": "Spinat hat besonders viel Eisen",
+   "en": "Spinach is particularly rich in iron",
+   "split": "dev"
+  },
+  {
+   "datei": "ernaehrungs_pack.json",
+   "id": "eier_cholesterin_2026",
+   "de": "Eier sind schlecht für das Herz",
+   "en": "Eggs are bad for your heart",
+   "split": "test"
+  },
+  {
+   "datei": "ernaehrungs_pack.json",
+   "id": "karotten_sehkraft_2026",
+   "de": "Karotten machen gute Augen",
+   "en": "Carrots are good for your eyesight",
+   "split": "test"
+  },
+  {
+   "datei": "ernaehrungs_pack.json",
+   "id": "detox_saefte_2026",
+   "de": "Detox-Säfte entgiften den Körper",
+   "en": "Detox juices cleanse the body",
+   "split": "test"
+  },
+  {
+   "datei": "ernaehrungs_pack.json",
+   "id": "mikrowelle_naehrstoffe_2026",
+   "de": "Mikrowelle zerstört Nährstoffe",
+   "en": "Microwaves destroy nutrients",
+   "split": "dev"
+  },
+  {
+   "datei": "ernaehrungs_pack.json",
+   "id": "brauner_zucker_2026",
+   "de": "Brauner Zucker ist gesünder als weißer",
+   "en": "Brown sugar is healthier than white sugar",
+   "split": "test"
+  },
+  {
+   "datei": "ernaehrungs_pack.json",
+   "id": "bio_pestizidfrei_2026",
+   "de": "Bio-Lebensmittel sind pestizidfrei",
+   "en": "Organic food is pesticide-free",
+   "split": "test"
+  },
+  {
+   "datei": "ernaehrungs_pack.json",
+   "id": "kaffee_dehydration_2026",
+   "de": "Kaffee dehydriert den Körper",
+   "en": "Coffee dehydrates the body",
+   "split": "test"
+  },
+  {
+   "datei": "ernaehrungs_pack.json",
+   "id": "milch_schleim_2026",
+   "de": "Milch macht Schleim",
+   "en": "Milk causes mucus",
+   "split": "dev"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "heilsteine_2026",
+   "de": "Heilsteine haben heilende Energien",
+   "en": "Healing crystals have healing energies",
+   "split": "test"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "astrologie_2026",
+   "de": "Astrologie kann Charakter vorhersagen",
+   "en": "Astrology can predict character",
+   "split": "test"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "bach_blueten_2026",
+   "de": "Bach-Blüten wirken bei Stress",
+   "en": "Bach flower remedies work against stress",
+   "split": "test"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "reiki_energieheilung_2026",
+   "de": "Reiki lindert chronische Schmerzen",
+   "en": "Reiki relieves chronic pain",
+   "split": "dev"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "aura_diagnose_2026",
+   "de": "Aura-Lesen erkennt Krankheiten",
+   "en": "Aura reading detects diseases",
+   "split": "dev"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "chakren_2026",
+   "de": "Chakren sind energetische Zentren im Körper",
+   "en": "Chakras are energy centres in the body",
+   "split": "test"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "mondphasen_schlaf_2026",
+   "de": "Vollmond stört den Schlaf",
+   "en": "A full moon disturbs your sleep",
+   "split": "dev"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "wuenschelrute_2026",
+   "de": "Wünschelrutengänger können Wasseradern finden",
+   "en": "Dowsers can find underground water veins",
+   "split": "dev"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "geistheilung_2026",
+   "de": "Geistheilung beschleunigt die Genesung",
+   "en": "Spiritual healing speeds up recovery",
+   "split": "dev"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "schuessler_salze_2026",
+   "de": "Schüssler-Salze helfen bei Mineralstoffmangel",
+   "en": "Schuessler salts help with mineral deficiency",
+   "split": "test"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "bioresonanz_2026",
+   "de": "Bioresonanz heilt Allergien",
+   "en": "Bioresonance cures allergies",
+   "split": "dev"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "hellsehen_wahrsagen_2026",
+   "de": "Hellseher können die Zukunft vorhersagen",
+   "en": "Psychics can predict the future",
+   "split": "test"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "reinkarnation_rueckfuehrung_2026",
+   "de": "Rückführung beweist frühere Leben",
+   "en": "Past-life regression proves earlier lives",
+   "split": "test"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "iris_diagnose_2026",
+   "de": "Iris-Diagnose erkennt Krankheiten",
+   "en": "Iridology detects diseases",
+   "split": "dev"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "wasserbelebung_2026",
+   "de": "Verwirbeltes Wasser hat heilende Wirkung",
+   "en": "Vortexed water has healing effects",
+   "split": "dev"
+  },
+  {
+   "datei": "esoterik_pack.json",
+   "id": "schwitzen_detox_2026",
+   "de": "Schwitzen scheidet Giftstoffe aus",
+   "en": "Sweating flushes out toxins",
+   "split": "test"
+  },
+  {
+   "datei": "eu_crime.json",
+   "id": "homicide_rate_eu_2024",
+   "de": "Tötungsdelikte Österreich gestiegen",
+   "en": "Homicides in Austria have increased",
+   "split": "dev"
+  },
+  {
+   "datei": "eu_crime.json",
+   "id": "auslander_kriminalitaet_at_2024",
+   "de": "Migranten verursachen Großteil der Kriminalität",
+   "en": "Migrants commit most of the crime",
+   "split": "dev"
+  },
+  {
+   "datei": "eu_crime.json",
+   "id": "auslander_kriminalitaet_de_2024",
+   "de": "Migranten Kriminalität Deutschland",
+   "en": "Migrant crime in Germany",
+   "split": "dev"
+  },
+  {
+   "datei": "eu_crime.json",
+   "id": "kriminalitaet_trend_at",
+   "de": "Kriminalität in Österreich explodiert",
+   "en": "Crime in Austria is exploding",
+   "split": "test"
+  },
+  {
+   "datei": "eu_crime.json",
+   "id": "cybercrime_anzeigen_at_2025",
+   "de": "Die Anzeigen wegen Cybercrime sind in Österreich stark gestiegen",
+   "en": "Reports of cybercrime in Austria have risen sharply",
+   "split": "test"
+  },
+  {
+   "datei": "eurobarometer.json",
+   "id": "eb_eu_vertrauen_2024",
+   "de": "Vertrauen der Bürger in die EU sinkt",
+   "en": "Citizens' trust in the EU is falling",
+   "split": "dev"
+  },
+  {
+   "datei": "eurobarometer.json",
+   "id": "eb_top_themen_2024",
+   "de": "Klima ist nicht mehr Top-Thema in der EU",
+   "en": "Climate is no longer a top issue in the EU",
+   "split": "dev"
+  },
+  {
+   "datei": "eurobarometer.json",
+   "id": "eb_klimawandel_2024",
+   "de": "Klimaschutz ist gegen den Mehrheits-Willen der Bevölkerung",
+   "en": "Climate protection goes against the will of the majority",
+   "split": "dev"
+  },
+  {
+   "datei": "eurobarometer.json",
+   "id": "eb_demokratie_2024",
+   "de": "Die Demokratie in Europa kollabiert",
+   "en": "Democracy in Europe is collapsing",
+   "split": "test"
+  },
+  {
+   "datei": "eurobarometer.json",
+   "id": "eb_eu_mitgliedschaft_2024",
+   "de": "Mehrheit der Deutschen will die EU verlassen",
+   "en": "A majority of Germans want to leave the EU",
+   "split": "test"
+  },
+  {
+   "datei": "eurobarometer.json",
+   "id": "eb_einwanderung_2024",
+   "de": "Mehrheit der Bürger lehnt Einwanderung komplett ab",
+   "en": "A majority of citizens completely reject immigration",
+   "split": "dev"
+  },
+  {
+   "datei": "finanzen_pack.json",
+   "id": "aktien_gluecksspiel_2026",
+   "de": "Aktien sind reines Glücksspiel",
+   "en": "Stocks are pure gambling",
+   "split": "dev"
+  },
+  {
+   "datei": "finanzen_pack.json",
+   "id": "inflation_zugesteckt_2026",
+   "de": "Die echte Inflation ist viel höher als die offizielle",
+   "en": "Real inflation is much higher than the official figure",
+   "split": "test"
+  },
+  {
+   "datei": "finanzen_pack.json",
+   "id": "zinseszins_2026",
+   "de": "Zinseszins ist ein Marketing-Mythos",
+   "en": "Compound interest is a marketing myth",
+   "split": "test"
+  },
+  {
+   "datei": "finanzen_pack.json",
+   "id": "riester_rente_2026",
+   "de": "Riester-Rente lohnt sich für niemanden",
+   "en": "The Riester pension isn't worth it for anyone",
+   "split": "dev"
+  },
+  {
+   "datei": "finanzen_pack.json",
+   "id": "kalte_progression_2026",
+   "de": "Bürger werden durch Inflation heimlich besteuert",
+   "en": "Citizens are secretly taxed through inflation",
+   "split": "test"
+  },
+  {
+   "datei": "finanzen_pack.json",
+   "id": "krypto_pyramide_2026",
+   "de": "Bitcoin ist ein Pyramidensystem",
+   "en": "Bitcoin is a pyramid scheme",
+   "split": "dev"
+  },
+  {
+   "datei": "finanzen_pack.json",
+   "id": "negativzins_volkstheorie_2026",
+   "de": "Sparer werden durch Negativzinsen enteignet",
+   "en": "Savers are being expropriated by negative interest rates",
+   "split": "test"
+  },
+  {
+   "datei": "geldanlage_pack.json",
+   "id": "krypto_promi_endorsement_mythos",
+   "de": "Elon Musk empfiehlt diese Krypto-Plattform",
+   "en": "Elon Musk recommends this crypto platform",
+   "split": "test"
+  },
+  {
+   "datei": "geldanlage_pack.json",
+   "id": "daytrading_erfolg_mythos",
+   "de": "Mit Day-Trading kann man reich werden",
+   "en": "You can get rich with day trading",
+   "split": "dev"
+  },
+  {
+   "datei": "geldanlage_pack.json",
+   "id": "garantierte_rendite_mythos",
+   "de": "Garantierte 5 Prozent monatliche Rendite",
+   "en": "Guaranteed 5 percent monthly return",
+   "split": "test"
+  },
+  {
+   "datei": "geldanlage_pack.json",
+   "id": "forex_plattform_mythos",
+   "de": "Mit Forex kann ich täglich Geld verdienen",
+   "en": "I can make money every day with forex",
+   "split": "test"
+  },
+  {
+   "datei": "geldanlage_pack.json",
+   "id": "pyramidensystem_mlm_mythos",
+   "de": "MLM ist eine seriöse Möglichkeit, von zu Hause Geld zu verdienen",
+   "en": "MLM is a serious way to earn money from home",
+   "split": "test"
+  },
+  {
+   "datei": "geldanlage_pack.json",
+   "id": "gold_inflation_schutz_mythos",
+   "de": "Gold ist immer Inflationsschutz",
+   "en": "Gold always protects against inflation",
+   "split": "test"
+  },
+  {
+   "datei": "geldanlage_pack.json",
+   "id": "compound_interest_24_mythos",
+   "de": "Mit Aktien 20 Prozent jährliche Rendite ist normal",
+   "en": "A 20 percent annual return on stocks is normal",
+   "split": "dev"
+  },
+  {
+   "datei": "geldanlage_pack.json",
+   "id": "versicherung_kapital_anlage_mythos",
+   "de": "Kapital-Lebensversicherung ist sichere Anlage",
+   "en": "Endowment life insurance is a safe investment",
+   "split": "test"
+  },
+  {
+   "datei": "geldanlage_pack.json",
+   "id": "fomo_signal_anlage_mythos",
+   "de": "Eilig handeln um Geld zu verdienen",
+   "en": "Act fast to make money",
+   "split": "dev"
+  },
+  {
+   "datei": "geldanlage_pack.json",
+   "id": "bitcoin_inflations_safe_haven_mythos",
+   "de": "Bitcoin ist digitales Gold",
+   "en": "Bitcoin is digital gold",
+   "split": "test"
+  },
+  {
+   "datei": "geldanlage_pack.json",
+   "id": "bitcoin_preis_meilensteine",
+   "de": "Bitcoin hat 2024 die 100.000-Dollar-Marke überschritten",
+   "en": "Bitcoin crossed the 100,000 dollar mark in 2024",
+   "split": "dev"
+  },
+  {
+   "datei": "geographie_pack.json",
+   "id": "bermudadreieck_2026",
+   "de": "Im Bermudadreieck verschwinden viele Schiffe",
+   "en": "Lots of ships disappear in the Bermuda Triangle",
+   "split": "test"
+  },
+  {
+   "datei": "geographie_pack.json",
+   "id": "chinesische_mauer_2026",
+   "de": "Die Chinesische Mauer ist vom Mond aus sichtbar",
+   "en": "Is it true that the Great Wall of China is visible from the moon?",
+   "split": "dev"
+  },
+  {
+   "datei": "geographie_pack.json",
+   "id": "everest_hoechster_2026",
+   "de": "Mount Everest ist der höchste Berg der Welt",
+   "en": "Mount Everest is the highest mountain in the world",
+   "split": "test"
+  },
+  {
+   "datei": "geographie_pack.json",
+   "id": "toilette_coriolis_2026",
+   "de": "Wasser im Waschbecken dreht in der Südhalbkugel anders",
+   "en": "Water in the sink swirls the other way in the southern hemisphere",
+   "split": "test"
+  },
+  {
+   "datei": "geographie_pack.json",
+   "id": "sahara_groesste_wueste_2026",
+   "de": "Sahara ist die größte Wüste der Welt",
+   "en": "The Sahara is the largest desert in the world",
+   "split": "test"
+  },
+  {
+   "datei": "geographie_pack.json",
+   "id": "australien_giftigste_2026",
+   "de": "Australien hat die gefährlichsten Tiere der Welt",
+   "en": "Australia has the most dangerous animals in the world",
+   "split": "dev"
+  },
+  {
+   "datei": "geographie_pack.json",
+   "id": "vatikan_kleinster_2026",
+   "de": "Vatikan ist der kleinste Staat der Welt",
+   "en": "The Vatican is the smallest country in the world",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "hitler_sozialist_2026",
+   "de": "Hitler war ein Sozialist",
+   "en": "Hitler was a socialist",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "wehrmacht_kriegsverbrechen_2026",
+   "de": "Die Wehrmacht hat keine Kriegsverbrechen begangen",
+   "en": "The Wehrmacht did not commit war crimes",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "holocaust_leugnung_2026",
+   "de": "Der Holocaust hat so nie stattgefunden",
+   "en": "The Holocaust never happened that way",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "holocaust_wissen_2026",
+   "de": "Die Deutschen wussten nichts vom Holocaust",
+   "en": "The Germans knew nothing about the Holocaust",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "opfer_these_oesterreich_2026",
+   "de": "Österreich war erstes Opfer der Nazis",
+   "en": "Austria was the first victim of the Nazis",
+   "split": "test"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "dresden_auschwitz_2026",
+   "de": "Dresden hatte mehr Tote als Auschwitz",
+   "en": "Dresden had more deaths than Auschwitz",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "stalin_hitler_gleich_2026",
+   "de": "Stalin und Hitler waren ideologisch gleich",
+   "en": "Stalin and Hitler were ideologically the same",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "versailles_2wk_2026",
+   "de": "Versailles hat den 2. Weltkrieg verursacht",
+   "en": "Versailles caused the Second World War",
+   "split": "test"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "ddr_mauer_tote_2026",
+   "de": "An der DDR-Mauer wurde niemand erschossen",
+   "en": "Nobody was shot at the Berlin Wall",
+   "split": "test"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "marshall_plan_2026",
+   "de": "Marshall-Plan war reine Wirtschaftshilfe",
+   "en": "The Marshall Plan was pure economic aid",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "hiroshima_2026",
+   "de": "Hiroshima-Atombombe war notwendig",
+   "en": "The Hiroshima atomic bomb was necessary",
+   "split": "test"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "irak_krieg_wmd_2026",
+   "de": "Irak hatte Massenvernichtungswaffen 2003",
+   "en": "Iraq had weapons of mass destruction in 2003",
+   "split": "test"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "nato_osterweiterung_2026",
+   "de": "NATO hat versprochen sich nicht zu erweitern",
+   "en": "NATO promised not to expand eastwards",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "putin_ukraine_2026",
+   "de": "Putin hat keinen Krieg gegen Ukraine geplant",
+   "en": "Putin did not plan a war against Ukraine",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "mondlandung_2026",
+   "de": "Mondlandung wurde inszeniert",
+   "en": "The moon landing was staged",
+   "split": "test"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "9_11_inside_job_2026",
+   "de": "9/11 war ein Inside Job",
+   "en": "9/11 was an inside job",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "aids_cia_labor_2026",
+   "de": "CIA hat AIDS entwickelt",
+   "en": "The CIA created AIDS",
+   "split": "test"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "wikinger_hoerner_2026",
+   "de": "Wikinger trugen Hörnerhelme",
+   "en": "Vikings wore horned helmets",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichte_pack.json",
+   "id": "mittelalter_erde_flach_2026",
+   "de": "Im Mittelalter glaubte man an flache Erde",
+   "en": "In the Middle Ages people believed the earth was flat",
+   "split": "test"
+  },
+  {
+   "datei": "geschichts_mythen2_pack.json",
+   "id": "buddha_hotei_mythos",
+   "de": "Buddha war dick",
+   "en": "Buddha was fat",
+   "split": "test"
+  },
+  {
+   "datei": "geschichts_mythen2_pack.json",
+   "id": "mittelalter_dunkel_mythos",
+   "de": "Im Mittelalter wurden viele Hexen verbrannt",
+   "en": "Many witches were burned in the Middle Ages",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichts_mythen2_pack.json",
+   "id": "galileo_folter_mythos",
+   "de": "Galileo wurde von der Inquisition gefoltert",
+   "en": "Galileo was tortured by the Inquisition",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichts_mythen2_pack.json",
+   "id": "newton_apfel_mythos",
+   "de": "Newton hatte den Apfel auf den Kopf bekommen",
+   "en": "An apple fell on Newton's head",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichts_mythen2_pack.json",
+   "id": "marie_antoinette_kuchen_mythos",
+   "de": "Marie Antoinette sagte 'Lasst sie Kuchen essen'",
+   "en": "Marie Antoinette said 'Let them eat cake'",
+   "split": "test"
+  },
+  {
+   "datei": "geschichts_mythen2_pack.json",
+   "id": "einstein_schulversager_mythos",
+   "de": "Einstein war ein Schulversager",
+   "en": "Einstein failed at school",
+   "split": "dev"
+  },
+  {
+   "datei": "geschichts_mythen2_pack.json",
+   "id": "edison_gluehbirne_mythos",
+   "de": "Edison erfand die Glühbirne",
+   "en": "Edison invented the light bulb",
+   "split": "test"
+  },
+  {
+   "datei": "geschichts_mythen2_pack.json",
+   "id": "napoleon_sphinx_nase_mythos",
+   "de": "Napoleons Soldaten haben die Nase der Sphinx abgeschossen",
+   "en": "Napoleon's soldiers shot the nose off the Sphinx",
+   "split": "test"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "cdc_vaccines_autism_2026",
+   "de": "Impfungen verursachen Autismus",
+   "en": "Vaccines cause autism",
+   "split": "test"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "cdc_fluoride_water_2026",
+   "de": "Fluorid im Trinkwasser ist gefährlich",
+   "en": "Fluoride in drinking water is dangerous",
+   "split": "test"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "nida_cannabis_health_2026",
+   "de": "Cannabis ist harmlos",
+   "en": "Cannabis is harmless",
+   "split": "test"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "nci_red_meat_cancer_2026",
+   "de": "Rotes Fleisch verursacht Krebs",
+   "en": "Red meat causes cancer",
+   "split": "dev"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "bfr_acrylamid_2026",
+   "de": "Acrylamid ist krebserregend",
+   "en": "Acrylamide is carcinogenic",
+   "split": "dev"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "bfr_mikroplastik_2026",
+   "de": "Mikroplastik im Essen ist gefährlich",
+   "en": "Microplastics in food are dangerous",
+   "split": "test"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "bfr_glyphosat_2026",
+   "de": "Glyphosat verursacht Krebs",
+   "en": "Glyphosate causes cancer",
+   "split": "dev"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "bfr_aspartam_2026",
+   "de": "Aspartam verursacht Krebs",
+   "en": "Aspartame causes cancer",
+   "split": "dev"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "bfr_bpa_2026",
+   "de": "BPA in Babyflaschen ist gefährlich",
+   "en": "BPA in baby bottles is dangerous",
+   "split": "dev"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "nih_supplements_disease_prevention_2026",
+   "de": "Multivitamine beugen Krankheiten vor",
+   "en": "Multivitamins prevent diseases",
+   "split": "dev"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "mrna_impfstoff_sicherheit_konsens_2026",
+   "de": "mRNA Impfstoffe verursachen Impfschäden",
+   "en": "mRNA vaccines cause vaccine injuries",
+   "split": "dev"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "mrna_erbgut_spike_protein_konsens_2026",
+   "de": "mRNA Impfstoffe verändern das Erbgut",
+   "en": "mRNA vaccines alter your DNA",
+   "split": "dev"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "uebersterblichkeit_impfung_konsens_2026",
+   "de": "Mehr Tote durch Impfung als durch COVID",
+   "en": "More people died from the vaccine than from COVID",
+   "split": "dev"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "booster_sicherheit_konsens_2026",
+   "de": "Booster sind gefährlich",
+   "en": "Boosters are dangerous",
+   "split": "test"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "statine_ldl_konsens_2026",
+   "de": "Statine sind gefährlich",
+   "en": "Statins are dangerous",
+   "split": "test"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "antibiotika_resistenz_konsens_2026",
+   "de": "Antibiotika sind nutzlos",
+   "en": "Antibiotics are useless",
+   "split": "test"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "aspirin_primaerpraevention_konsens_2026",
+   "de": "Aspirin täglich schützt vor Herzinfarkt",
+   "en": "Taking aspirin daily protects against heart attacks",
+   "split": "dev"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "omega_3_supplemente_konsens_2026",
+   "de": "Omega-3 schützt vor Herzinfarkt",
+   "en": "Omega-3 protects against heart attacks",
+   "split": "dev"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "diclofenac_niere_konsens_2026",
+   "de": "Voltadol schädigt die Nieren",
+   "en": "Voltadol damages the kidneys",
+   "split": "test"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "cetirizin_sedierung_konsens_2026",
+   "de": "Macht Zyrtec schläfrig?",
+   "en": "Does Zyrtec make you drowsy?",
+   "split": "dev"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "ibuprofen_niere_konsens_2026",
+   "de": "Ibuprofen geht auf die Nieren",
+   "en": "Ibuprofen is bad for the kidneys",
+   "split": "test"
+  },
+  {
+   "datei": "gesundheits_autoritaeten_pack.json",
+   "id": "hpv_impfung_at_kostenfrei_2026",
+   "de": "HPV-Impfung Österreich gratis bis 21",
+   "en": "HPV vaccination in Austria is free until age 21",
+   "split": "dev"
+  },
+  {
+   "datei": "gleichstellung_pack.json",
+   "id": "gender_pay_gap_2026",
+   "de": "Frauen verdienen 18 Prozent weniger als Männer",
+   "en": "Women earn 18 percent less than men",
+   "split": "dev"
+  },
+  {
+   "datei": "gleichstellung_pack.json",
+   "id": "frauenquote_wirksamkeit_2026",
+   "de": "Frauenquote bringt statistisch nichts",
+   "en": "Is it true that women's quotas achieve nothing statistically?",
+   "split": "test"
+  },
+  {
+   "datei": "gleichstellung_pack.json",
+   "id": "mint_frauen_anteil_2026",
+   "de": "Frauen sind biologisch weniger begabt für Mathematik",
+   "en": "Women are biologically less gifted at mathematics",
+   "split": "test"
+  },
+  {
+   "datei": "gleichstellung_pack.json",
+   "id": "femizide_at_de_2026",
+   "de": "Femizide sind Einzelfälle",
+   "en": "Femicides are isolated cases",
+   "split": "test"
+  },
+  {
+   "datei": "gleichstellung_pack.json",
+   "id": "sexualisierte_gewalt_dunkelfeld_2026",
+   "de": "Falsche Vergewaltigungs-Anzeigen sind Hauptproblem",
+   "en": "False rape reports are the main problem",
+   "split": "dev"
+  },
+  {
+   "datei": "gleichstellung_pack.json",
+   "id": "gender_care_gap_2026",
+   "de": "Sorge-Arbeit ist heute gleichmäßig verteilt",
+   "en": "Care work is evenly shared these days",
+   "split": "test"
+  },
+  {
+   "datei": "gleichstellung_pack.json",
+   "id": "frauen_in_politik_2026",
+   "de": "Frauen sind in Politik gleich repräsentiert",
+   "en": "Women are equally represented in politics",
+   "split": "dev"
+  },
+  {
+   "datei": "gleichstellung_pack.json",
+   "id": "sexismus_erfahrungen_2026",
+   "de": "Sexismus ist heute kein Thema mehr",
+   "en": "Sexism is no longer an issue today",
+   "split": "dev"
+  },
+  {
+   "datei": "gleichstellung_pack.json",
+   "id": "vereinbarkeit_familie_beruf_2026",
+   "de": "Mutterschaft beeinflusst Karriere kaum",
+   "en": "Motherhood hardly affects careers",
+   "split": "dev"
+  },
+  {
+   "datei": "gleichstellung_pack.json",
+   "id": "gender_equality_index_2026",
+   "de": "EU ist gleichberechtigt",
+   "en": "The EU has achieved gender equality",
+   "split": "test"
+  },
+  {
+   "datei": "housing_at.json",
+   "id": "oenb_wohnpreise_2024",
+   "de": "Wohnen ist unleistbar geworden",
+   "en": "Housing has become unaffordable",
+   "split": "dev"
+  },
+  {
+   "datei": "housing_at.json",
+   "id": "wohnkostenbelastung_at_2024",
+   "de": "Wohnkostenbelastung Haushalte",
+   "en": "Housing cost burden of households",
+   "split": "test"
+  },
+  {
+   "datei": "inklusion_pack.json",
+   "id": "autismus_mythen_2026",
+   "de": "Impfungen verursachen Autismus",
+   "en": "Vaccinations cause autism",
+   "split": "dev"
+  },
+  {
+   "datei": "inklusion_pack.json",
+   "id": "adhs_mythen_2026",
+   "de": "ADHS ist erfunden",
+   "en": "ADHD is made up",
+   "split": "test"
+  },
+  {
+   "datei": "inklusion_pack.json",
+   "id": "down_syndrom_realitaet_2026",
+   "de": "Down-Syndrom-Menschen werden nicht alt",
+   "en": "People with Down syndrome don't live long",
+   "split": "test"
+  },
+  {
+   "datei": "inklusion_pack.json",
+   "id": "iq_foerderung_mythen_2026",
+   "de": "IQ ist genetisch festgelegt",
+   "en": "IQ is genetically fixed",
+   "split": "dev"
+  },
+  {
+   "datei": "inklusion_pack.json",
+   "id": "inklusions_quoten_effekte_2026",
+   "de": "Inklusion schadet allen Schülern",
+   "en": "Inclusion harms all pupils",
+   "split": "test"
+  },
+  {
+   "datei": "inklusion_pack.json",
+   "id": "pflegeheim_realitaet_at_2026",
+   "de": "AT-Pflegeheime sind überfüllt",
+   "en": "Austrian nursing homes are overcrowded",
+   "split": "test"
+  },
+  {
+   "datei": "inklusion_pack.json",
+   "id": "icf_vs_medizinisches_modell_2026",
+   "de": "Behinderung ist eine Krankheit",
+   "en": "Disability is an illness",
+   "split": "test"
+  },
+  {
+   "datei": "inklusion_pack.json",
+   "id": "un_brk_konvention_2026",
+   "de": "AT setzt UN-Behindertenrechtskonvention voll um",
+   "en": "Austria fully implements the UN Convention on the Rights of Persons with Disabilities",
+   "split": "dev"
+  },
+  {
+   "datei": "inklusion_pack.json",
+   "id": "autismus_therapie_wirkung_2026",
+   "de": "ABA ist Standard-Therapie für Autismus",
+   "en": "ABA is the standard therapy for autism",
+   "split": "dev"
+  },
+  {
+   "datei": "inklusion_pack.json",
+   "id": "hochsensibilitaet_hochbegabung_mythen_2026",
+   "de": "Hochsensibilität ist eine Diagnose",
+   "en": "High sensitivity is a diagnosis",
+   "split": "dev"
+  },
+  {
+   "datei": "inklusion_pack.json",
+   "id": "barrierefreiheit_empirie_at_2026",
+   "de": "AT ist voll barrierefrei",
+   "en": "Austria is fully accessible",
+   "split": "test"
+  },
+  {
+   "datei": "inklusion_pack.json",
+   "id": "inklusion_schule_vs_sonderschule_2026",
+   "de": "Sonderschulen sind besser für betroffene Kinder",
+   "en": "Special schools are better for affected children",
+   "split": "test"
+  },
+  {
+   "datei": "internationale_quellen.json",
+   "id": "pew_demokratie_2024",
+   "de": "Weltweit verlieren Demokratien das Vertrauen ihrer Bürger",
+   "en": "Democracies worldwide are losing the trust of their citizens",
+   "split": "test"
+  },
+  {
+   "datei": "internationale_quellen.json",
+   "id": "wmo_klimazustand_2024",
+   "de": "Die globale Erwärmung hat sich verlangsamt",
+   "en": "Global warming has slowed down",
+   "split": "dev"
+  },
+  {
+   "datei": "internationale_quellen.json",
+   "id": "imf_weltwirtschaft_2024",
+   "de": "Die Weltwirtschaft kollabiert",
+   "en": "The world economy is collapsing",
+   "split": "test"
+  },
+  {
+   "datei": "internationale_quellen.json",
+   "id": "wto_welthandel_2024",
+   "de": "Der freie Welthandel bricht zusammen",
+   "en": "Free world trade is collapsing",
+   "split": "dev"
+  },
+  {
+   "datei": "iqs_bildung.json",
+   "id": "nbb_2024_schueler_eckwerte",
+   "de": "Wie viele Schüler hat Österreich?",
+   "en": "How many pupils does Austria have?",
+   "split": "dev"
+  },
+  {
+   "datei": "iqs_bildung.json",
+   "id": "nbb_2024_pisa_2022_at_results",
+   "de": "PISA 2022 Österreich Ergebnisse",
+   "en": "PISA 2022 results for Austria",
+   "split": "dev"
+  },
+  {
+   "datei": "iqs_bildung.json",
+   "id": "nbb_2024_lehrkraefte_pensionierung",
+   "de": "Lehrermangel Österreich 2024",
+   "en": "Teacher shortage in Austria 2024",
+   "split": "test"
+  },
+  {
+   "datei": "iqs_bildung.json",
+   "id": "nbb_2024_bildungsausgaben_bip",
+   "de": "Wie viel gibt Österreich für Bildung aus",
+   "en": "How much does Austria spend on education?",
+   "split": "test"
+  },
+  {
+   "datei": "iqs_bildung.json",
+   "id": "nbb_2024_ganztagsschule_quote",
+   "de": "Ganztagsschul-Quote Österreich",
+   "en": "Share of all-day schools in Austria",
+   "split": "test"
+  },
+  {
+   "datei": "iqs_bildung.json",
+   "id": "nbb_2024_klassengroesse_dach",
+   "de": "Klassen-Größe Österreich",
+   "en": "Class size in Austria",
+   "split": "test"
+  },
+  {
+   "datei": "iqs_bildung.json",
+   "id": "nbb_2024_migrant_leistungs_spread",
+   "de": "Migrationshintergrund schlechtere PISA",
+   "en": "Students with a migration background do worse in PISA",
+   "split": "dev"
+  },
+  {
+   "datei": "iqs_bildung.json",
+   "id": "nbb_2024_tertiaer_quote_25_34",
+   "de": "Tertiär-Quote Österreich",
+   "en": "Tertiary education rate in Austria",
+   "split": "dev"
+  },
+  {
+   "datei": "iqs_bildung.json",
+   "id": "nbb_2024_lehrplan_reform_2023",
+   "de": "Lehrplan-Reform 2023 Österreich",
+   "en": "Austria's 2023 curriculum reform",
+   "split": "dev"
+  },
+  {
+   "datei": "iqs_bildung.json",
+   "id": "nbb_2024_spf_bestand_at",
+   "de": "SPF-Quote Österreich",
+   "en": "Special educational needs rate in Austria",
+   "split": "dev"
+  },
+  {
+   "datei": "kunst_kultur_pack.json",
+   "id": "pyramiden_sklaven_2026",
+   "de": "Die ägyptischen Pyramiden wurden von Sklaven gebaut",
+   "en": "The Egyptian pyramids were built by slaves",
+   "split": "dev"
+  },
+  {
+   "datei": "kunst_kultur_pack.json",
+   "id": "mozart_armer_2026",
+   "de": "Mozart starb in Armut",
+   "en": "Mozart died in poverty",
+   "split": "test"
+  },
+  {
+   "datei": "kunst_kultur_pack.json",
+   "id": "napoleon_klein_2026",
+   "de": "Napoleon war besonders klein",
+   "en": "Napoleon was particularly short",
+   "split": "test"
+  },
+  {
+   "datei": "kunst_kultur_pack.json",
+   "id": "wikinger_helme_2026",
+   "de": "Wikinger trugen Helme mit Hörnern",
+   "en": "Vikings wore helmets with horns",
+   "split": "test"
+  },
+  {
+   "datei": "kunst_kultur_pack.json",
+   "id": "kolumbus_erde_rund_2026",
+   "de": "Vor Kolumbus glaubten alle, die Erde sei flach",
+   "en": "Before Columbus everyone believed the earth was flat",
+   "split": "dev"
+  },
+  {
+   "datei": "kunst_kultur_pack.json",
+   "id": "salem_hexen_2026",
+   "de": "Bei den Salem-Hexenprozessen wurden Tausende verbrannt",
+   "en": "Thousands were burned in the Salem witch trials",
+   "split": "test"
+  },
+  {
+   "datei": "kunst_kultur_pack.json",
+   "id": "great_wall_china_alter_2026",
+   "de": "Die Große Mauer Chinas ist 2300 Jahre alt",
+   "en": "The Great Wall of China is 2300 years old",
+   "split": "test"
+  },
+  {
+   "datei": "kunst_kultur_pack.json",
+   "id": "shakespeare_autorenschaft_2026",
+   "de": "Shakespeare hat seine Werke nicht selbst geschrieben",
+   "en": "Shakespeare did not write his own works",
+   "split": "test"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "gvo_gentechnik_risiko_2026",
+   "de": "GVO sind gesundheitsgefährdend",
+   "en": "GMOs are a health hazard",
+   "split": "dev"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "bio_landbau_ertrags_oekobilanz_2026",
+   "de": "Bio-Landbau hat keine Ertrags-Nachteile",
+   "en": "Organic farming has no yield disadvantages",
+   "split": "test"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "glyphosat_empirie_2026",
+   "de": "Glyphosat ist krebserregend",
+   "en": "Glyphosate is carcinogenic",
+   "split": "test"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "saatgut_konzentration_2026",
+   "de": "4 Konzerne kontrollieren das Saatgut der Welt",
+   "en": "4 corporations control the world's seeds",
+   "split": "dev"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "agrar_subventionen_at_2026",
+   "de": "AT-Bauern bekommen kaum Subventionen",
+   "en": "Austrian farmers hardly get any subsidies",
+   "split": "test"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "regionale_versorgung_mythen_2026",
+   "de": "Österreich versorgt sich nicht mehr selbst",
+   "en": "Austria no longer feeds itself",
+   "split": "test"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "vertical_farming_realitaet_2026",
+   "de": "Vertical Farming löst die Welternährung",
+   "en": "Vertical farming will solve world hunger",
+   "split": "test"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "massentierhaltung_empirie_2026",
+   "de": "AT hat industrielle Massentierhaltung",
+   "en": "Austria has industrial factory farming",
+   "split": "test"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "pestizid_rueckstaende_2026",
+   "de": "Unsere Lebensmittel sind voller Pestizide",
+   "en": "Our food is full of pesticides",
+   "split": "dev"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "duengemittel_importabhaengigkeit_2026",
+   "de": "EU komplett vom russischen Düngemittel abhängig",
+   "en": "The EU is completely dependent on Russian fertiliser",
+   "split": "test"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "welternaehrung_knappheit_mythen_2026",
+   "de": "Welt-Bevölkerung wächst, wir produzieren nicht genug",
+   "en": "The world population is growing and we don't produce enough food",
+   "split": "test"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "bauern_sterben_empirie_2026",
+   "de": "AT-Bauern sterben aus",
+   "en": "Austrian farmers are dying out",
+   "split": "test"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "klima_landwirtschaft_2026",
+   "de": "Die Landwirtschaft ist nicht klimarelevant",
+   "en": "Agriculture is not relevant to the climate",
+   "split": "test"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "viehbestand_at_2026",
+   "de": "mehr Rinder als Schweine Österreich",
+   "en": "More cattle than pigs in Austria",
+   "split": "test"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "fleischkonsum_at_trend_2026",
+   "de": "Fleischkonsum Österreich geht zurück",
+   "en": "Meat consumption in Austria is falling",
+   "split": "test"
+  },
+  {
+   "datei": "landwirtschaft_pack.json",
+   "id": "lebensmittelabfall_at_2026",
+   "de": "Die Hälfte aller Lebensmittel in Österreich wird weggeworfen",
+   "en": "Half of all food in Austria is thrown away",
+   "split": "test"
+  },
+  {
+   "datei": "lebensmittel_pack.json",
+   "id": "aufgewaermter_spinat_nitrit_konsens",
+   "de": "Spinat darf nie aufgewärmt werden",
+   "en": "Spinach must never be reheated",
+   "split": "dev"
+  },
+  {
+   "datei": "lebensmittel_pack.json",
+   "id": "pilze_aufwaermen_konsens",
+   "de": "Pilze dürfen nie aufgewärmt werden",
+   "en": "Mushrooms must never be reheated",
+   "split": "test"
+  },
+  {
+   "datei": "lebensmittel_pack.json",
+   "id": "kartoffel_solanin_grun_konsens",
+   "de": "Grüne Kartoffeln sind immer tödlich giftig",
+   "en": "Green potatoes are always deadly poisonous",
+   "split": "test"
+  },
+  {
+   "datei": "lebensmittel_pack.json",
+   "id": "mikrowelle_ei_explosion_konsens",
+   "de": "Eier in der Mikrowelle erhitzen ist sicher",
+   "en": "Heating eggs in the microwave is safe",
+   "split": "dev"
+  },
+  {
+   "datei": "lebensmittel_pack.json",
+   "id": "honig_baby_botulismus_konsens",
+   "de": "Bio-Honig ist sicher für Babys",
+   "en": "Organic honey is safe for babies",
+   "split": "dev"
+  },
+  {
+   "datei": "lebensmittel_pack.json",
+   "id": "kuehlschrank_eier_lagerung_konsens",
+   "de": "Eier müssen immer zwingend in den Kühlschrank",
+   "en": "Eggs must always be kept in the fridge",
+   "split": "test"
+  },
+  {
+   "datei": "lebensmittel_pack.json",
+   "id": "mhd_verbrauchsdatum_konsens",
+   "de": "Lebensmittel nach MHD wegwerfen ist Pflicht",
+   "en": "Food must be thrown away after the best-before date",
+   "split": "dev"
+  },
+  {
+   "datei": "lebensmittel_pack.json",
+   "id": "wuerstchen_kinder_erstickungsrisiko_konsens",
+   "de": "Würstchen sind sicheres Kinder-Essen",
+   "en": "Sausages are a safe food for children",
+   "split": "dev"
+  },
+  {
+   "datei": "lebensmittel_pack.json",
+   "id": "kuehlkette_unterbrochen_konsens",
+   "de": "2-3 Stunden Kühlkette-Unterbrechung ist immer egal",
+   "en": "Breaking the cold chain for 2-3 hours never matters",
+   "split": "test"
+  },
+  {
+   "datei": "lebensmittel_pack.json",
+   "id": "auftauen_zimmertemperatur_mythos",
+   "de": "Auftauen auf der Theke ist OK",
+   "en": "Thawing on the counter is fine",
+   "split": "test"
+  },
+  {
+   "datei": "medientransparenz.json",
+   "id": "medientransparenz_beinschab_gestaendnis",
+   "de": "In der Inseratenaffäre Kurz wurden Beinschab-Studien gefälscht",
+   "en": "In the Kurz advertising affair the Beinschab polls were falsified",
+   "split": "dev"
+  },
+  {
+   "datei": "medientransparenz.json",
+   "id": "medientransparenz_kurz_aera",
+   "de": "Inseraten-Affäre Kurz",
+   "en": "Kurz advertising affair",
+   "split": "dev"
+  },
+  {
+   "datei": "medientransparenz.json",
+   "id": "medientransparenz_overview_2024",
+   "de": "Krone bekommt am meisten Inserate",
+   "en": "The Krone gets the most government advertising",
+   "split": "dev"
+  },
+  {
+   "datei": "mental_health_pack.json",
+   "id": "depression_charakterschwaeche_mythos",
+   "de": "Depression ist Charakterschwäche",
+   "en": "Depression is a weakness of character",
+   "split": "dev"
+  },
+  {
+   "datei": "mental_health_pack.json",
+   "id": "antidepressiva_abhaengigkeit_mythos",
+   "de": "Antidepressiva machen abhängig",
+   "en": "Antidepressants are addictive",
+   "split": "test"
+  },
+  {
+   "datei": "mental_health_pack.json",
+   "id": "psychotherapie_wirkt_nicht_mythos",
+   "de": "Psychotherapie wirkt nicht",
+   "en": "Psychotherapy doesn't work",
+   "split": "dev"
+  },
+  {
+   "datei": "mental_health_pack.json",
+   "id": "werther_effekt_papageno_mythos",
+   "de": "Über Suizid darf man nicht reden weil es Nachahmer gibt",
+   "en": "You shouldn't talk about suicide because of copycats",
+   "split": "test"
+  },
+  {
+   "datei": "mental_health_pack.json",
+   "id": "borderline_klischee_mythos",
+   "de": "Borderline ist nur eine launische Frau",
+   "en": "Borderline is just a moody woman",
+   "split": "test"
+  },
+  {
+   "datei": "mental_health_pack.json",
+   "id": "adhs_ueberdiagnose_mythos",
+   "de": "ADHS gibt es nicht es ist nur Mode",
+   "en": "ADHD doesn't exist, it's just a fad",
+   "split": "test"
+  },
+  {
+   "datei": "mental_health_pack.json",
+   "id": "psychopharmaka_persoenlichkeit_mythos",
+   "de": "Antidepressiva machen einen anderen Menschen aus dir",
+   "en": "Antidepressants turn you into a different person",
+   "split": "test"
+  },
+  {
+   "datei": "mental_health_pack.json",
+   "id": "traum_unterbewusst_freud_mythos",
+   "de": "Träume haben immer eine tiefere Bedeutung",
+   "en": "Dreams always have a deeper meaning",
+   "split": "test"
+  },
+  {
+   "datei": "mental_health_pack.json",
+   "id": "selbstmord_kuendigung_mythos",
+   "de": "Wer über Selbstmord redet tut es nicht",
+   "en": "People who talk about suicide don't do it",
+   "split": "dev"
+  },
+  {
+   "datei": "mental_health_pack.json",
+   "id": "essstoerung_willens_mythos",
+   "de": "Anorexia ist nur extremer Diät-Versuch",
+   "en": "Anorexia is just an extreme diet attempt",
+   "split": "test"
+  },
+  {
+   "datei": "migration_pack.json",
+   "id": "demographic_replacement_2026",
+   "de": "Es findet ein großer Bevölkerungsaustausch statt",
+   "en": "A great population replacement is taking place",
+   "split": "test"
+  },
+  {
+   "datei": "migration_pack.json",
+   "id": "migration_kriminalitaet_2026",
+   "de": "Migranten sind krimineller als Deutsche",
+   "en": "Migrants are more criminal than Germans",
+   "split": "test"
+  },
+  {
+   "datei": "migration_pack.json",
+   "id": "sozialmagnet_asyl_2026",
+   "de": "Asylsuchende kommen wegen der Sozialleistungen",
+   "en": "Asylum seekers come because of the welfare benefits",
+   "split": "test"
+  },
+  {
+   "datei": "migration_pack.json",
+   "id": "abschiebungen_simpel_2026",
+   "de": "Abschiebungen sind einfach möglich",
+   "en": "Deportations are easy to carry out",
+   "split": "test"
+  },
+  {
+   "datei": "migration_pack.json",
+   "id": "integration_gescheitert_2026",
+   "de": "Integration in Deutschland ist gescheitert",
+   "en": "Integration in Germany has failed",
+   "split": "dev"
+  },
+  {
+   "datei": "migration_pack.json",
+   "id": "asyl_arbeitsverbot_2026",
+   "de": "Asylsuchende dürfen in Deutschland nicht arbeiten",
+   "en": "Asylum seekers are not allowed to work in Germany",
+   "split": "test"
+  },
+  {
+   "datei": "migration_pack.json",
+   "id": "migration_demografie_arbeitsmarkt_2026",
+   "de": "Migration löst den Fachkräftemangel nicht",
+   "en": "Migration does not solve the skilled worker shortage",
+   "split": "dev"
+  },
+  {
+   "datei": "migration_pack.json",
+   "id": "migration_fiskalbilanz_2026",
+   "de": "Migration kostet den Steuerzahler hunderte Milliarden",
+   "en": "Migration costs taxpayers hundreds of billions",
+   "split": "test"
+  },
+  {
+   "datei": "migration_pack.json",
+   "id": "migration_anerkennungsquoten_2026_aktuell",
+   "de": "Fast alle Asylanträge werden anerkannt",
+   "en": "Almost all asylum applications are approved",
+   "split": "dev"
+  },
+  {
+   "datei": "migration_pack.json",
+   "id": "migration_familiennachzug_2026",
+   "de": "Familienzusammenführung verstärkt unkontrolliert die Migration",
+   "en": "Family reunification drives uncontrolled migration",
+   "split": "test"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-e_auto_reichweite_2026",
+   "de": "E-Auto Reichweite ist unter 100 km",
+   "en": "Electric car range is under 100 km",
+   "split": "test"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-oebb_puenktlichkeit_2026",
+   "de": "Deutsche Bahn ist pünktlicher als ÖBB",
+   "en": "Deutsche Bahn is more punctual than ÖBB",
+   "split": "dev"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-tempolimit_130_2026",
+   "de": "Tempolimit 130 bringt nichts für das Klima",
+   "en": "A 130 km/h speed limit does nothing for the climate",
+   "split": "test"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-klimaticket_bilanz_2026",
+   "de": "Klimaticket bringt nichts",
+   "en": "Is it true that the climate ticket achieves nothing?",
+   "split": "dev"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-suv_sicherheit_2026",
+   "de": "SUVs sind gefährlicher für Fußgänger",
+   "en": "SUVs are more dangerous for pedestrians",
+   "split": "dev"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-wasserstoff_pkw_2026",
+   "de": "Wasserstoff-Auto ist die Zukunft",
+   "en": "The hydrogen car is the future",
+   "split": "test"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-oepnv_ausbau_empirie_2026",
+   "de": "ÖPNV in Deutschland wird ausreichend finanziert",
+   "en": "Public transport in Germany is adequately funded",
+   "split": "dev"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-diesel_skandal_kosten_2026",
+   "de": "Dieselgate war übertrieben",
+   "en": "Dieselgate was exaggerated",
+   "split": "dev"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-tempo_30_wirkung_2026",
+   "de": "Tempo 30 bringt in der Stadt nichts",
+   "en": "A 30 km/h speed limit in cities achieves nothing",
+   "split": "test"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-auto_subventionen_2026",
+   "de": "Auto wird massiv besteuert nicht subventioniert",
+   "en": "Cars are heavily taxed, not subsidised",
+   "split": "dev"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-lkw_maut_wirkung_2026",
+   "de": "LKW-Maut bringt nichts",
+   "en": "The truck toll achieves nothing",
+   "split": "dev"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-bahn_investition_de_at_2026",
+   "de": "Bahn in Deutschland wird ausreichend finanziert",
+   "en": "Rail in Germany is adequately funded",
+   "split": "test"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-parken_2026",
+   "de": "Auto-Verkehr in der Stadt ist hauptsächlich Bewegung",
+   "en": "Car traffic in cities is mostly moving traffic",
+   "split": "dev"
+  },
+  {
+   "datei": "mobilitaet_pack.json",
+   "id": "mobilitaet-lade_infrastruktur_de_at_2026",
+   "de": "Es gibt keine Ladestationen für E-Autos",
+   "en": "There are no charging stations for electric cars",
+   "split": "test"
+  },
+  {
+   "datei": "oecd_health.json",
+   "id": "oecd_lebenserwartung_2024",
+   "de": "Lebenserwartung Österreich",
+   "en": "Life expectancy in Austria",
+   "split": "test"
+  },
+  {
+   "datei": "oecd_health.json",
+   "id": "oecd_spitalsbetten_2024",
+   "de": "Spitalsbetten Österreich",
+   "en": "Hospital beds in Austria",
+   "split": "dev"
+  },
+  {
+   "datei": "oecd_health.json",
+   "id": "oecd_gesundheitsausgaben_2024",
+   "de": "Gesundheitsausgaben Österreich",
+   "en": "Health spending in Austria",
+   "split": "test"
+  },
+  {
+   "datei": "oecd_health.json",
+   "id": "kinder_adipositas_at_2024",
+   "de": "Schulkinder werden immer dicker",
+   "en": "Schoolchildren are getting fatter and fatter",
+   "split": "dev"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_asylantraege_at_2023",
+   "de": "2023 wurden in Österreich 58.000 Asylanträge gestellt",
+   "en": "In 2023, 58,000 asylum applications were filed in Austria",
+   "split": "test"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_migrationssaldo_at_2023",
+   "de": "Österreich hatte 2023 75.000 Netto-Zuwanderung",
+   "en": "Austria had net immigration of 75,000 in 2023",
+   "split": "dev"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_einbuergerung_at_2023",
+   "de": "AT hatte 2023 21.000 Einbürgerungen",
+   "en": "Austria had 21,000 naturalisations in 2023",
+   "split": "test"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_sprachkurse_2023",
+   "de": "ÖIF hatte 2023 22.000 Sprachkursteilnehmer",
+   "en": "The ÖIF had 22,000 language course participants in 2023",
+   "split": "dev"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_integrationsmonitor_indikatoren_2023",
+   "de": "ÖIF-Integrationsmonitor hat 25 Indikatoren",
+   "en": "The ÖIF integration monitor has 25 indicators",
+   "split": "test"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_migrationshintergrund_at_2023",
+   "de": "26 % der Österreicher haben Migrationshintergrund",
+   "en": "26 % of Austrians have a migration background",
+   "split": "dev"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_arbeitsmarkt_integration_2023",
+   "de": "Drittstaatsangehörige sind häufiger arbeitslos in AT",
+   "en": "Third-country nationals are more often unemployed in Austria",
+   "split": "test"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_pisa_migrationshintergrund_2022",
+   "de": "Migranten-Kinder schneiden bei PISA schlechter ab",
+   "en": "Migrant children do worse in PISA",
+   "split": "dev"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_eu_drittstaat_struktur_2023",
+   "de": "AT hat 1,8 Mio Ausländer",
+   "en": "Austria has 1.8 million foreigners",
+   "split": "dev"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "zara_rassismus_report_2023",
+   "de": "ZARA hat 2023 1.300 Rassismus-Vorfälle dokumentiert",
+   "en": "ZARA documented 1,300 racist incidents in 2023",
+   "split": "test"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "zara_hate_speech_online_2023",
+   "de": "Hate Speech ist in AT angestiegen",
+   "en": "Online hate speech has increased in Austria",
+   "split": "test"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_subsidiaerer_schutz_at_2023",
+   "de": "AT hat 115.000 Asylberechtigte",
+   "en": "Austria has 115,000 recognised refugees",
+   "split": "test"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "zara_arbeitswelt_diskriminierung_2023",
+   "de": "Migranten werden auf AT-Arbeitsmarkt diskriminiert",
+   "en": "Migrants face discrimination on the Austrian labour market",
+   "split": "test"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_sozialleistungen_migration_at_2023",
+   "de": "Migranten sind Hauptempfänger von Mindestsicherung",
+   "en": "Migrants are the main recipients of minimum income benefits",
+   "split": "test"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_familiennachzug_at_2023",
+   "de": "Asylberechtigte können ihre Familie nach AT holen",
+   "en": "Recognised refugees can bring their family to Austria",
+   "split": "dev"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_anerkennung_qualifikation_at_2023",
+   "de": "AT erkennt ausländische Abschlüsse nicht an",
+   "en": "Austria does not recognise foreign qualifications",
+   "split": "dev"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_wertekurs_struktur_2023",
+   "de": "Schutzberechtigte müssen Wertekurs absolvieren",
+   "en": "People granted protection must complete a values course",
+   "split": "dev"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "zara_rechtsschutz_beratung_2023",
+   "de": "ZARA bietet Diskriminierungs-Beratung",
+   "en": "ZARA offers counselling on discrimination",
+   "split": "test"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "oeif_grundversorgung_at_2023",
+   "de": "AsylwerberInnen erhalten 1.000 EUR Sozialhilfe",
+   "en": "Asylum seekers receive 1,000 euros in welfare",
+   "split": "test"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "zara_zivilcourage_struktur_2023",
+   "de": "ZARA ist eine NGO",
+   "en": "ZARA is an NGO",
+   "split": "test"
+  },
+  {
+   "datei": "oeif_zara.json",
+   "id": "behandlungszahlen_drittstaat_at_ungepruefbar_2026",
+   "de": "22 Millionen Behandlungen durch Drittstaatsangehörige in Wien",
+   "en": "22 million treatments of third-country nationals in Vienna",
+   "split": "dev"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "mikrowelle_krebs_mythos",
+   "de": "Mikrowellengeräte verursachen Krebs",
+   "en": "Microwave ovens cause cancer",
+   "split": "dev"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "zucker_fuettert_krebs_mythos",
+   "de": "Zucker füttert den Krebs",
+   "en": "Sugar feeds cancer",
+   "split": "test"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "saeure_basen_krebs_mythos",
+   "de": "Säure-Basen-Diät heilt Krebs",
+   "en": "An alkaline diet cures cancer",
+   "split": "dev"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "aprikosenkerne_laetril_mythos",
+   "de": "Aprikosenkerne heilen Krebs",
+   "en": "Apricot kernels cure cancer",
+   "split": "dev"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "alkalisches_wasser_krebs_mythos",
+   "de": "Alkalisches Wasser verhindert Krebs",
+   "en": "Alkaline water prevents cancer",
+   "split": "dev"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "deo_brustkrebs_mythos",
+   "de": "Aluminium-Deos verursachen Brustkrebs",
+   "en": "Aluminium deodorants cause breast cancer",
+   "split": "test"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "bh_brustkrebs_mythos",
+   "de": "BH-Tragen verursacht Brustkrebs",
+   "en": "Wearing a bra causes breast cancer",
+   "split": "dev"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "mistel_krebs_therapie_mythos",
+   "de": "Misteltherapie heilt Krebs",
+   "en": "Mistletoe therapy cures cancer",
+   "split": "test"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "vitamin_c_hochdosis_krebs_mythos",
+   "de": "Hochdosis-Vitamin-C heilt Krebs",
+   "en": "High-dose vitamin C cures cancer",
+   "split": "test"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "screening_uebertherapie_grundprinzip",
+   "de": "Mehr Krebsfrüherkennung rettet immer Leben",
+   "en": "More cancer screening always saves lives",
+   "split": "test"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "mammographie_screening",
+   "de": "Mammographie sollte ab 30 verpflichtend sein",
+   "en": "Mammography should be mandatory from 30",
+   "split": "test"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "psa_prostata_screening",
+   "de": "PSA-Test sollte jeder Mann machen",
+   "en": "Every man should get a PSA test",
+   "split": "dev"
+  },
+  {
+   "datei": "onkologie_pack.json",
+   "id": "darmkrebs_screening",
+   "de": "Darmspiegelung ab welchem Alter",
+   "en": "From what age should you get a colonoscopy?",
+   "split": "test"
+  },
+  {
+   "datei": "rechnungshof_parteienfin.json",
+   "id": "partg_2012_rechtsgrundlage",
+   "de": "Wie ist Parteienfinanzierung in Österreich gesetzlich geregelt?",
+   "en": "How is party financing regulated by law in Austria?",
+   "split": "dev"
+  },
+  {
+   "datei": "rechnungshof_parteienfin.json",
+   "id": "bundes_parteienfoerderung_2024",
+   "de": "Wie viel Parteienförderung bekam die ÖVP 2024?",
+   "en": "How much party funding did the ÖVP get in 2024?",
+   "split": "dev"
+  },
+  {
+   "datei": "rechnungshof_parteienfin.json",
+   "id": "partg_par3_rahmen_pro_wahlberechtigtem",
+   "de": "Wie viel Parteienförderung pro Wahlberechtigtem in Österreich?",
+   "en": "How much party funding per eligible voter in Austria?",
+   "split": "test"
+  },
+  {
+   "datei": "rechnungshof_parteienfin.json",
+   "id": "wahlkampfkosten_grenze_nrw_2024",
+   "de": "Wahlkampfkostengrenze Österreich 2024",
+   "en": "Campaign spending limit in Austria 2024",
+   "split": "test"
+  },
+  {
+   "datei": "rechnungshof_parteienfin.json",
+   "id": "spenden_meldeschwelle_partg_par6",
+   "de": "Spenden-Veröffentlichungsschwelle Österreich",
+   "en": "Disclosure threshold for donations in Austria",
+   "split": "dev"
+  },
+  {
+   "datei": "rechnungshof_parteienfin.json",
+   "id": "sanktionen_partg_par10",
+   "de": "Welche Strafe gibt es für unzulässige Parteispenden in Österreich?",
+   "en": "What is the penalty for illegal party donations in Austria?",
+   "split": "test"
+  },
+  {
+   "datei": "rechnungshof_parteienfin.json",
+   "id": "rechenschaftsbericht_pflicht_partg_par8",
+   "de": "Wann müssen Parteien Rechenschaftsbericht abgeben?",
+   "en": "When do parties have to submit their financial statements?",
+   "split": "dev"
+  },
+  {
+   "datei": "rechnungshof_parteienfin.json",
+   "id": "rechnungshof_kontrolle_parteien",
+   "de": "Wer kontrolliert Parteienfinanzierung in Österreich?",
+   "en": "Who oversees party financing in Austria?",
+   "split": "dev"
+  },
+  {
+   "datei": "rechnungshof_parteienfin.json",
+   "id": "klubfoerderung_kfg_2024",
+   "de": "Klubförderung Österreich 2024",
+   "en": "Parliamentary group funding in Austria 2024",
+   "split": "test"
+  },
+  {
+   "datei": "rechnungshof_parteienfin.json",
+   "id": "parteiakademien_partakadg_2024",
+   "de": "Parteiakademien Österreich Förderung",
+   "en": "Funding for party academies in Austria",
+   "split": "test"
+  },
+  {
+   "datei": "rechnungshof_parteienfin.json",
+   "id": "parteienfin_total_2024_kontext",
+   "de": "Wie viel Geld bekommen österreichische Parteien insgesamt?",
+   "en": "How much money do Austrian parties get in total?",
+   "split": "dev"
+  },
+  {
+   "datei": "recht_pack.json",
+   "id": "notwehr_pauschalen_2026",
+   "de": "Bei Einbruch darf man schießen",
+   "en": "You are allowed to shoot a burglar",
+   "split": "dev"
+  },
+  {
+   "datei": "recht_pack.json",
+   "id": "mietrecht_schimmel_2026",
+   "de": "Vermieter haftet immer für Schimmel",
+   "en": "The landlord is always liable for mould",
+   "split": "test"
+  },
+  {
+   "datei": "recht_pack.json",
+   "id": "schoenheitsreparaturen_2026",
+   "de": "Mieter muss bei Auszug Renovierung machen",
+   "en": "Tenants have to renovate when moving out",
+   "split": "test"
+  },
+  {
+   "datei": "recht_pack.json",
+   "id": "probezeit_kuendigung_2026",
+   "de": "In der Probezeit kann man jederzeit kündigen",
+   "en": "You can be dismissed at any time during the probation period",
+   "split": "test"
+  },
+  {
+   "datei": "recht_pack.json",
+   "id": "screenshot_whatsapp_2026",
+   "de": "Screenshots von WhatsApp sind illegal",
+   "en": "Taking screenshots of WhatsApp is illegal",
+   "split": "dev"
+  },
+  {
+   "datei": "recht_pack.json",
+   "id": "hausrecht_geschaefte_2026",
+   "de": "Geschäft kann mich ohne Grund rauswerfen",
+   "en": "A shop can throw me out without a reason",
+   "split": "dev"
+  },
+  {
+   "datei": "recht_pack.json",
+   "id": "erbrecht_pflichtteil_2026",
+   "de": "Kinder können vollständig enterbt werden",
+   "en": "Children can be completely disinherited",
+   "split": "dev"
+  },
+  {
+   "datei": "recht_pack.json",
+   "id": "arbeitsrecht_pause_2026",
+   "de": "Pausen müssen vom Arbeitgeber bezahlt werden",
+   "en": "Breaks must be paid by the employer",
+   "split": "dev"
+  },
+  {
+   "datei": "recht_pack.json",
+   "id": "kuendigungsschutz_klein_2026",
+   "de": "Kündigungsschutz besteht immer nach 6 Monaten",
+   "en": "Protection against dismissal always applies after 6 months",
+   "split": "test"
+  },
+  {
+   "datei": "recht_pack.json",
+   "id": "hund_haftung_2026",
+   "de": "Wenn mein Hund einen Menschen beißt muss ich nicht haften",
+   "en": "If my dog bites someone I'm not liable",
+   "split": "test"
+  },
+  {
+   "datei": "recht_pack.json",
+   "id": "haftzahlen_at_2026",
+   "de": "In Österreich sitzen mehr Leute in Untersuchungshaft als im Strafvollzug",
+   "en": "In Austria more people are in pre-trial detention than serving sentences",
+   "split": "dev"
+  },
+  {
+   "datei": "recht_pack.json",
+   "id": "amtssprachen_at_2026",
+   "de": "Deutsch ist in Österreich die einzige offizielle Amtssprache",
+   "en": "German is the only official language in Austria",
+   "split": "test"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "christen_aussterben_dach_2026",
+   "de": "Christen sterben in Europa aus",
+   "en": "Christians are dying out in Europe",
+   "split": "dev"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "islam_mehrheit_radikal_2026",
+   "de": "Mehrheit der Muslime ist radikal",
+   "en": "The majority of Muslims are radical",
+   "split": "test"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "sharia_imminent_europa_2026",
+   "de": "Sharia kommt nach Europa",
+   "en": "Sharia is coming to Europe",
+   "split": "test"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "antisemitismus_verschwoerung_2026",
+   "de": "Juden kontrollieren die Welt-Finanzen",
+   "en": "Jews control world finance",
+   "split": "dev"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "buddhismus_friedlich_2026",
+   "de": "Buddhismus ist die friedlichste Religion",
+   "en": "Buddhism is the most peaceful religion",
+   "split": "dev"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "hinduismus_kasten_2026",
+   "de": "Kastensystem ist überwunden in Indien",
+   "en": "The caste system has been overcome in India",
+   "split": "dev"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "vatikan_vermoegen_2026",
+   "de": "Vatikan ist reichste Institution der Welt",
+   "en": "The Vatican is the richest institution in the world",
+   "split": "test"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "kirchensteuer_kirchenbeitrag_2026",
+   "de": "Kirchen werden mit Steuergeld finanziert",
+   "en": "Churches are financed with taxpayers' money",
+   "split": "test"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "scientology_sekten_status_dach_2026",
+   "de": "Scientology ist eine anerkannte Religion",
+   "en": "Scientology is a recognised religion",
+   "split": "dev"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "zeugen_jehovas_blut_2026",
+   "de": "Zeugen Jehovas dürfen Kinder sterben lassen",
+   "en": "Jehovah's Witnesses are allowed to let children die",
+   "split": "test"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "destruktive_kulte_kennzeichen_2026",
+   "de": "Es gibt keine destruktiven Kulte mehr",
+   "en": "There are no destructive cults anymore",
+   "split": "test"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "religion_gewalt_korrelation_2026",
+   "de": "Religion verursacht die meisten Kriege",
+   "en": "Religion causes most wars",
+   "split": "dev"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "kirchen_paedophilie_aufarbeitung_2026",
+   "de": "Kirchen-Pädophilie ist nur Einzelfälle",
+   "en": "Paedophilia in the church is just isolated cases",
+   "split": "dev"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "religionsunterricht_dach_schule_2026",
+   "de": "Religionsunterricht ist Indoktrination",
+   "en": "Religious education is indoctrination",
+   "split": "dev"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "theologische_aussagen_kategorie_2026",
+   "de": "Gott ist tot",
+   "en": "God is dead",
+   "split": "dev"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "islam_anerkennung_at_2026",
+   "de": "Islam anerkannte Religionsgemeinschaft Österreich",
+   "en": "Islam is a recognised religious community in Austria",
+   "split": "dev"
+  },
+  {
+   "datei": "religionsgemeinschaften_pack.json",
+   "id": "konfessionsstatistik_at_wien_2026",
+   "de": "Mehr als die Hälfte der Österreicher katholisch",
+   "en": "More than half of Austrians are Catholic",
+   "split": "dev"
+  },
+  {
+   "datei": "reproduktion_pack.json",
+   "id": "spermien_lebensdauer_mythos",
+   "de": "Spermien sterben nach wenigen Stunden",
+   "en": "Sperm die after a few hours",
+   "split": "dev"
+  },
+  {
+   "datei": "reproduktion_pack.json",
+   "id": "fruchtbarstes_fenster_mythos",
+   "de": "Eine Frau kann nur am Ovulationstag schwanger werden",
+   "en": "A woman can only get pregnant on the day of ovulation",
+   "split": "dev"
+  },
+  {
+   "datei": "reproduktion_pack.json",
+   "id": "eltern_geschlecht_vererbung_mythos",
+   "de": "Die Mutter bestimmt das Geschlecht des Kindes",
+   "en": "The mother determines the sex of the child",
+   "split": "test"
+  },
+  {
+   "datei": "reproduktion_pack.json",
+   "id": "antibabypille_gewicht_mythos",
+   "de": "Die Pille macht dick",
+   "en": "The pill makes you fat",
+   "split": "dev"
+  },
+  {
+   "datei": "reproduktion_pack.json",
+   "id": "vasektomie_libido_mythos",
+   "de": "Vasektomie macht impotent",
+   "en": "A vasectomy makes you impotent",
+   "split": "test"
+  },
+  {
+   "datei": "reproduktion_pack.json",
+   "id": "menstruation_synchronisation_mythos",
+   "de": "Frauen die zusammenwohnen synchronisieren ihre Menstruation",
+   "en": "Women who live together synchronise their periods",
+   "split": "test"
+  },
+  {
+   "datei": "reproduktion_pack.json",
+   "id": "stillen_verhuetung_mythos",
+   "de": "Solange ich stille kann ich nicht schwanger werden",
+   "en": "As long as I'm breastfeeding I can't get pregnant",
+   "split": "dev"
+  },
+  {
+   "datei": "reproduktion_pack.json",
+   "id": "wechseljahre_alter_mythos",
+   "de": "Mit 50 Jahren bekommen alle Frauen die Wechseljahre",
+   "en": "All women go through menopause at 50",
+   "split": "dev"
+  },
+  {
+   "datei": "rki_surveillance.json",
+   "id": "rki_masern_2024_2025",
+   "de": "Masern-Welle Deutschland",
+   "en": "Measles wave in Germany",
+   "split": "test"
+  },
+  {
+   "datei": "rki_surveillance.json",
+   "id": "rki_tuberkulose_2024",
+   "de": "TB Welle Deutschland",
+   "en": "TB wave in Germany",
+   "split": "dev"
+  },
+  {
+   "datei": "rki_surveillance.json",
+   "id": "rki_atemwegsinfekte_saisonvergleich",
+   "de": "Grippewelle Deutschland",
+   "en": "Flu wave in Germany",
+   "split": "test"
+  },
+  {
+   "datei": "rsf.json",
+   "id": "rsf_index_2026",
+   "de": "Pressefreiheit in Österreich",
+   "en": "Press freedom in Austria",
+   "split": "dev"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "at_neutralitaet_recht_2026",
+   "de": "AT-Neutralität ist im Verfassungsrang",
+   "en": "Austrian neutrality has constitutional status",
+   "split": "test"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "wehrpflicht_reform_debatte_2026",
+   "de": "60 Prozent waren für die Wehrpflicht",
+   "en": "60 percent were in favour of conscription",
+   "split": "dev"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "nato_mitgliedstaaten_at_diskurs_2026",
+   "de": "NATO hat 32 Mitgliedstaaten",
+   "en": "NATO has 32 member states",
+   "split": "test"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "eu_militaerfonds_pesco_2026",
+   "de": "EU hat schon eine Armee",
+   "en": "The EU already has an army",
+   "split": "test"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "drohnen_krieg_empirie_2026",
+   "de": "USA haben 15000 Drohnen-Angriffe geflogen",
+   "en": "The US has flown 15000 drone strikes",
+   "split": "dev"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "atomwaffen_faktoide_2026",
+   "de": "12000 Atomwaffen weltweit",
+   "en": "12000 nuclear weapons worldwide",
+   "split": "dev"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "bundesheer_personal_krise_2026",
+   "de": "AT-Bundesheer hat 46000 Personen",
+   "en": "The Austrian armed forces have 46000 personnel",
+   "split": "test"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "sky_shield_beitritts_diskurs_2026",
+   "de": "Österreich ist Sky Shield beigetreten",
+   "en": "Austria has joined Sky Shield",
+   "split": "dev"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "russland_bedrohungs_empirie_2026",
+   "de": "Russland ist eine Bedrohung für AT",
+   "en": "Russia is a threat to Austria",
+   "split": "test"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "krim_donbas_ukraine_voelkerrecht_2026",
+   "de": "Krim-Annexion ist völkerrechtlich illegal",
+   "en": "The annexation of Crimea is illegal under international law",
+   "split": "test"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "cyber_verteidigung_at_2026",
+   "de": "AT hat NIS2 umgesetzt",
+   "en": "Austria has implemented NIS2",
+   "split": "test"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "hybrid_krieg_realitaet_2026",
+   "de": "Hybrid-Krieg ist im NATO Strategic Concept 2022",
+   "en": "Hybrid warfare is in the NATO Strategic Concept 2022",
+   "split": "test"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "eu_einstimmigkeit_gasp_2026",
+   "de": "einzelnes EU-Land kann Sanktionen blockieren",
+   "en": "A single EU country can block sanctions",
+   "split": "dev"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "wehrpflicht_grundwehrdienst_at_2026",
+   "de": "Gibt es in Österreich noch die Wehrpflicht",
+   "en": "Does Austria still have conscription?",
+   "split": "test"
+  },
+  {
+   "datei": "sicherheitspolitik_pack.json",
+   "id": "feuerwehr_at_2025",
+   "de": "Bei der Feuerwehr in Österreich gibt es viel mehr Freiwillige als Berufsfeuerwehrleute",
+   "en": "Austrian fire brigades have far more volunteers than professional firefighters",
+   "split": "dev"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "mindestsicherung_trittbrett_2026",
+   "de": "Mindestsicherung lockt Trittbrettfahrer",
+   "en": "Minimum income support attracts freeloaders",
+   "split": "test"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "familienbeihilfe_wirkung_2026",
+   "de": "Familienbeihilfe hat keinen Effekt auf Geburtenrate",
+   "en": "Family allowance has no effect on the birth rate",
+   "split": "test"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "pflegegeld_stufen_2026",
+   "de": "AT Pflegegeld ist zu niedrig",
+   "en": "Austrian long-term care allowance is too low",
+   "split": "test"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "kinderbetreuungsgeld_2026",
+   "de": "Kinderbetreuungsgeld bekommen nur Frauen",
+   "en": "Only women receive childcare allowance",
+   "split": "dev"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "pension_generationen_2026",
+   "de": "Junge zahlen fuer die Alten",
+   "en": "The young pay for the old",
+   "split": "test"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "wohnbeihilfe_at_2026",
+   "de": "Wohnbeihilfe in Oesterreich einheitlich",
+   "en": "Housing allowance in Austria is uniform",
+   "split": "dev"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "sozialhilfe_at_spezial_2026",
+   "de": "Sozialhilfe-Reform Oesterreich 2019",
+   "en": "Austria's 2019 social assistance reform",
+   "split": "dev"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "notstandshilfe_streichung_2026",
+   "de": "Notstandshilfe wurde abgeschafft",
+   "en": "Emergency assistance has been abolished",
+   "split": "test"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "studienbeihilfe_at_2026",
+   "de": "Studienbeihilfe Oesterreich zu niedrig",
+   "en": "Student grants in Austria are too low",
+   "split": "test"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "bildungskarenz_wirkung_2026",
+   "de": "Bildungskarenz wirkt nicht",
+   "en": "Educational leave doesn't work",
+   "split": "test"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "reha_geld_at_2026",
+   "de": "Invaliditaets-Pension wurde abgeschafft Oesterreich",
+   "en": "The invalidity pension has been abolished in Austria",
+   "split": "test"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "pflegende_angehoerige_2026",
+   "de": "Pflegende Angehoerige in Oesterreich",
+   "en": "Family caregivers in Austria",
+   "split": "dev"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "familienbonus_plus_2026",
+   "de": "Familienbonus Plus hilft allen Familien gleich",
+   "en": "The Family Bonus Plus helps all families equally",
+   "split": "test"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "mindestsicherung_hoehe_2026",
+   "de": "Die Mindestsicherung in Österreich beträgt rund 1000 Euro pro Monat",
+   "en": "Minimum income support in Austria is around 1000 euros a month",
+   "split": "test"
+  },
+  {
+   "datei": "sozialstaat_pack.json",
+   "id": "pensionen_vs_bildung_budget_2026",
+   "de": "Österreich gibt mehr Geld für Pensionen aus als für Bildung",
+   "en": "Austria spends more money on pensions than on education",
+   "split": "dev"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "spot_fat_reduction_2026",
+   "de": "Sit-Ups verbrennen Bauchfett",
+   "en": "Sit-ups burn belly fat",
+   "split": "dev"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "muscle_confusion_2026",
+   "de": "Muskel-Verwirrung führt zu mehr Wachstum",
+   "en": "Muscle confusion leads to more growth",
+   "split": "dev"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "knuckle_cracking_2026",
+   "de": "Knöchel-Cracken verursacht Arthritis",
+   "en": "Cracking your knuckles causes arthritis",
+   "split": "test"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "no_pain_no_gain_2026",
+   "de": "Ohne Schmerz kein Trainings-Erfolg",
+   "en": "No pain, no gain in training",
+   "split": "test"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "lactic_acid_2026",
+   "de": "Muskelkater entsteht durch Milchsäure",
+   "en": "Muscle soreness is caused by lactic acid",
+   "split": "dev"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "women_bulky_muscles_2026",
+   "de": "Frauen werden durch Krafttraining zu muskulös",
+   "en": "Strength training makes women too muscular",
+   "split": "dev"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "stretching_injury_2026",
+   "de": "Stretching vor dem Training verhindert Verletzungen",
+   "en": "Stretching before training prevents injuries",
+   "split": "test"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "fat_burning_zone_2026",
+   "de": "Bei niedriger Intensität verbrennt man mehr Fett",
+   "en": "You burn more fat at low intensity",
+   "split": "test"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "abs_kitchen_2026",
+   "de": "Sichtbare Bauchmuskeln werden in der Küche gemacht",
+   "en": "Visible abs are made in the kitchen",
+   "split": "dev"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "high_protein_kidneys_2026",
+   "de": "Hohe Eiweiß-Zufuhr schadet den Nieren",
+   "en": "A high protein intake damages the kidneys",
+   "split": "test"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "at_wm_halbfinale_1954",
+   "de": "Österreich nie WM-Halbfinale Fußball",
+   "en": "Austria never reached a World Cup semi-final in football",
+   "split": "dev"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "at_olympia_medaillen_paris_tokio",
+   "de": "Olympia 2024 Österreich Medaillen Tokio Vergleich",
+   "en": "Austria's Olympic medals in 2024 compared with Tokyo",
+   "split": "test"
+  },
+  {
+   "datei": "sport_fitness_pack.json",
+   "id": "protein_ei_vs_magertopfen_2026",
+   "de": "Ein Ei hat mehr Eiweiß als 100 Gramm Magertopfen",
+   "en": "An egg has more protein than 100 grams of low-fat quark",
+   "split": "test"
+  },
+  {
+   "datei": "substanzen_pack.json",
+   "id": "cannabis_jugend_hirnschaden_mythos",
+   "de": "Cannabis zerstört das jugendliche Gehirn",
+   "en": "Cannabis destroys the teenage brain",
+   "split": "test"
+  },
+  {
+   "datei": "substanzen_pack.json",
+   "id": "mikrodosing_lsd_psilocybin_mythos",
+   "de": "Mikrodosing macht kreativer und produktiver",
+   "en": "Microdosing makes you more creative and productive",
+   "split": "dev"
+  },
+  {
+   "datei": "substanzen_pack.json",
+   "id": "energy_drinks_herz_mythos",
+   "de": "Energy-Drinks sind völlig harmlos",
+   "en": "Energy drinks are completely harmless",
+   "split": "test"
+  },
+  {
+   "datei": "substanzen_pack.json",
+   "id": "alkohol_rotwein_herz_mythos",
+   "de": "Ein Glas Rotwein täglich ist herzgesund",
+   "en": "A glass of red wine a day is good for your heart",
+   "split": "dev"
+  },
+  {
+   "datei": "substanzen_pack.json",
+   "id": "vape_e_zigarette_sicherheit_mythos",
+   "de": "E-Zigaretten sind völlig harmlos",
+   "en": "E-cigarettes are completely harmless",
+   "split": "test"
+  },
+  {
+   "datei": "substanzen_pack.json",
+   "id": "kratom_natuerliche_alternative_mythos",
+   "de": "Kratom ist eine natürliche und sichere Alternative",
+   "en": "Kratom is a natural and safe alternative",
+   "split": "test"
+  },
+  {
+   "datei": "substanzen_pack.json",
+   "id": "kokain_filter_kaffee_mythos",
+   "de": "Viel Wasser trinken macht den Drogen-Test negativ",
+   "en": "Drinking lots of water makes a drug test negative",
+   "split": "test"
+  },
+  {
+   "datei": "substanzen_pack.json",
+   "id": "cbd_wundermittel_mythos",
+   "de": "CBD ist ein Wundermittel",
+   "en": "CBD is a miracle cure",
+   "split": "dev"
+  },
+  {
+   "datei": "substanzen_pack.json",
+   "id": "cannabis_legalisierung_konsum_mythos",
+   "de": "Cannabis-Legalisierung führt zu massivem Anstieg bei Jugendlichen",
+   "en": "Cannabis legalisation leads to a massive increase among teenagers",
+   "split": "dev"
+  },
+  {
+   "datei": "substanzen_pack.json",
+   "id": "entgiftungs_diaeten_drogen_mythos",
+   "de": "Detox-Diäten entgiften den Körper",
+   "en": "Detox diets cleanse the body",
+   "split": "test"
+  },
+  {
+   "datei": "tech_ki_pack.json",
+   "id": "ki_bewusstsein_2026",
+   "de": "ChatGPT ist bewusst",
+   "en": "ChatGPT is conscious",
+   "split": "dev"
+  },
+  {
+   "datei": "tech_ki_pack.json",
+   "id": "bitcoin_anonymitaet_2026",
+   "de": "Bitcoin ist anonym",
+   "en": "Bitcoin is anonymous",
+   "split": "dev"
+  },
+  {
+   "datei": "tech_ki_pack.json",
+   "id": "bitcoin_stromverbrauch_2026",
+   "de": "Bitcoin verbraucht mehr Strom als Industrieländer",
+   "en": "Bitcoin uses more electricity than industrialised countries",
+   "split": "test"
+  },
+  {
+   "datei": "tech_ki_pack.json",
+   "id": "quantencomputer_2026",
+   "de": "Quantencomputer brechen alle Verschlüsselungen",
+   "en": "Quantum computers will break all encryption",
+   "split": "dev"
+  },
+  {
+   "datei": "tech_ki_pack.json",
+   "id": "anonymisierung_2026",
+   "de": "Anonymisierte Daten sind sicher",
+   "en": "Anonymised data is safe",
+   "split": "dev"
+  },
+  {
+   "datei": "tech_ki_pack.json",
+   "id": "vpn_anonymitaet_2026",
+   "de": "VPN macht anonym",
+   "en": "A VPN makes you anonymous",
+   "split": "test"
+  },
+  {
+   "datei": "tech_ki_pack.json",
+   "id": "enisa_threat_landscape_2026",
+   "de": "Cyberangriffe in der EU nehmen zu",
+   "en": "Cyber attacks in the EU are increasing",
+   "split": "test"
+  },
+  {
+   "datei": "tech_ki_pack.json",
+   "id": "5g_telekom_qos_2026",
+   "de": "EU hängt bei 5G hinter den USA und Asien zurück",
+   "en": "The EU is lagging behind the US and Asia on 5G",
+   "split": "dev"
+  },
+  {
+   "datei": "tech_ki_pack.json",
+   "id": "apple_android_2026",
+   "de": "iPhones sind sicherer als Android",
+   "en": "iPhones are more secure than Android",
+   "split": "test"
+  },
+  {
+   "datei": "tech_ki_pack.json",
+   "id": "glasfaser_breitband_at_2026",
+   "de": "Österreich flächendeckend Glasfaser",
+   "en": "Austria has fibre optic coverage everywhere",
+   "split": "dev"
+  },
+  {
+   "datei": "tech_ki_pack.json",
+   "id": "dma_app_marktplaetze_eu_2026",
+   "de": "Wegen dem Digital Markets Act muss Apple in der EU alternative App-Stores erlauben",
+   "en": "Because of the Digital Markets Act Apple has to allow alternative app stores in the EU",
+   "split": "dev"
+  },
+  {
+   "datei": "tier_natur_pack.json",
+   "id": "goldfish_gedaechtnis_2026",
+   "de": "Goldfische haben 3 Sekunden Gedächtnis",
+   "en": "Goldfish have a 3-second memory",
+   "split": "dev"
+  },
+  {
+   "datei": "tier_natur_pack.json",
+   "id": "stier_rote_farbe_2026",
+   "de": "Stiere werden bei Rot aggressiv",
+   "en": "Bulls get aggressive when they see red",
+   "split": "dev"
+  },
+  {
+   "datei": "tier_natur_pack.json",
+   "id": "fledermaus_blind_2026",
+   "de": "Fledermäuse sind blind",
+   "en": "Bats are blind",
+   "split": "test"
+  },
+  {
+   "datei": "tier_natur_pack.json",
+   "id": "hund_schwarz_weiss_2026",
+   "de": "Hunde sehen nur schwarz-weiß",
+   "en": "Dogs only see in black and white",
+   "split": "test"
+  },
+  {
+   "datei": "tier_natur_pack.json",
+   "id": "spinnen_im_schlaf_2026",
+   "de": "Wir essen jede Woche eine Spinne im Schlaf",
+   "en": "We eat a spider every week in our sleep",
+   "split": "dev"
+  },
+  {
+   "datei": "tier_natur_pack.json",
+   "id": "lemming_massensuizid_2026",
+   "de": "Lemminge begehen Massensuizid",
+   "en": "Lemmings commit mass suicide",
+   "split": "test"
+  },
+  {
+   "datei": "tier_natur_pack.json",
+   "id": "hai_angriff_2026",
+   "de": "Hai-Angriffe sind häufig",
+   "en": "Shark attacks are common",
+   "split": "dev"
+  },
+  {
+   "datei": "tier_natur_pack.json",
+   "id": "eskimo_schnee_woerter_2026",
+   "de": "Eskimos haben hundert Wörter für Schnee",
+   "en": "Eskimos have a hundred words for snow",
+   "split": "dev"
+  },
+  {
+   "datei": "tier_natur_pack.json",
+   "id": "strauss_kopf_sand_2026",
+   "de": "Strauß steckt den Kopf in den Sand",
+   "en": "Ostriches bury their heads in the sand",
+   "split": "test"
+  },
+  {
+   "datei": "tier_natur_pack.json",
+   "id": "elefant_maus_2026",
+   "de": "Elefanten haben Angst vor Mäusen",
+   "en": "Elephants are afraid of mice",
+   "split": "dev"
+  },
+  {
+   "datei": "tierhaltung_pack.json",
+   "id": "hund_schokolade_toxizitaet_konsens",
+   "de": "Schokolade ist gefährlich für Hunde",
+   "en": "Chocolate is dangerous for dogs",
+   "split": "dev"
+  },
+  {
+   "datei": "tierhaltung_pack.json",
+   "id": "katze_milch_mythos",
+   "de": "Eine Schüssel Milch ist gut für die Katze",
+   "en": "A bowl of milk is good for the cat",
+   "split": "test"
+  },
+  {
+   "datei": "tierhaltung_pack.json",
+   "id": "veganer_hund_diet_kontroverse",
+   "de": "Vegane Hund-Ernährung schadet immer dem Hund",
+   "en": "A vegan diet always harms a dog",
+   "split": "dev"
+  },
+  {
+   "datei": "tierhaltung_pack.json",
+   "id": "welpe_schlafbedarf_konsens",
+   "de": "Welpen schlafen zu viel das ist faul",
+   "en": "Puppies sleep too much, that's lazy",
+   "split": "dev"
+  },
+  {
+   "datei": "tierhaltung_pack.json",
+   "id": "wildschwein_tollwut_kontroverse",
+   "de": "Wildschweine in Deutschland haben Tollwut",
+   "en": "Wild boars in Germany have rabies",
+   "split": "dev"
+  },
+  {
+   "datei": "tierhaltung_pack.json",
+   "id": "barf_rohfutter_kontroverse_mythos",
+   "de": "BARF ist immer gesünder als Trockenfutter",
+   "en": "Raw feeding is always healthier than dry food",
+   "split": "dev"
+  },
+  {
+   "datei": "tierhaltung_pack.json",
+   "id": "katzen_neunte_leben_mythos",
+   "de": "Katzen haben neun Leben",
+   "en": "Cats have nine lives",
+   "split": "test"
+  },
+  {
+   "datei": "tierhaltung_pack.json",
+   "id": "hund_ein_jahr_sieben_mensch_jahre_mythos",
+   "de": "Ein Hundejahr ist sieben Menschenjahre",
+   "en": "One dog year equals seven human years",
+   "split": "test"
+  },
+  {
+   "datei": "tierhaltung_pack.json",
+   "id": "katzen_landung_fuesse_konsens",
+   "de": "Katzen landen immer auf den Pfoten",
+   "en": "Cats always land on their feet",
+   "split": "dev"
+  },
+  {
+   "datei": "tierhaltung_pack.json",
+   "id": "pferdefleisch_konsum_eu_konsens",
+   "de": "Pferdefleisch ist gesundheitlich gefährlich",
+   "en": "Horse meat is a health hazard",
+   "split": "dev"
+  },
+  {
+   "datei": "transport_at.json",
+   "id": "oebb_puenktlichkeit_2024",
+   "de": "ÖBB Pünktlichkeit",
+   "en": "ÖBB punctuality",
+   "split": "dev"
+  },
+  {
+   "datei": "transport_at.json",
+   "id": "verkehr_co2_at_2024",
+   "de": "CO2 Verkehr Österreich",
+   "en": "Transport CO2 emissions in Austria",
+   "split": "dev"
+  },
+  {
+   "datei": "transport_at.json",
+   "id": "klimaticket_2024",
+   "de": "KlimaTicket Erfolg",
+   "en": "Is the climate ticket a success?",
+   "split": "dev"
+  },
+  {
+   "datei": "transport_at.json",
+   "id": "asfinag_netzlaenge_2026",
+   "de": "In Österreich gibt es mehr als 2.000 Kilometer Autobahnen und Schnellstraßen",
+   "en": "Austria has more than 2,000 kilometres of motorways and expressways",
+   "split": "test"
+  },
+  {
+   "datei": "verkehrssicherheit_pack.json",
+   "id": "tempo_30_kindersicherheit_konsens",
+   "de": "Tempo 30 ist nur bürokratische Schikane",
+   "en": "A 30 km/h limit is just bureaucratic harassment",
+   "split": "dev"
+  },
+  {
+   "datei": "verkehrssicherheit_pack.json",
+   "id": "helmpflicht_radfahrer_kontroverse_mythos",
+   "de": "Fahrradhelm bringt nichts",
+   "en": "Bike helmets are useless",
+   "split": "dev"
+  },
+  {
+   "datei": "verkehrssicherheit_pack.json",
+   "id": "kindersitz_alter_groesse_konsens",
+   "de": "Mein Kind ist groß genug für die Sitzerhöhung mit 5 Jahren",
+   "en": "My child is big enough for a booster seat at 5",
+   "split": "test"
+  },
+  {
+   "datei": "verkehrssicherheit_pack.json",
+   "id": "tagfahrlicht_unfall_reduktion_mythos",
+   "de": "Tagfahrlicht ist nutzlos und überflüssig",
+   "en": "Daytime running lights are useless and unnecessary",
+   "split": "test"
+  },
+  {
+   "datei": "verkehrssicherheit_pack.json",
+   "id": "promille_grenzen_alkohol_kontext",
+   "de": "Bei 0,5 Promille kann ich sicher fahren",
+   "en": "I can drive safely at 0.5 per mille",
+   "split": "test"
+  },
+  {
+   "datei": "verkehrssicherheit_pack.json",
+   "id": "mobile_telefon_freisprech_konsens",
+   "de": "Mit Freisprech-Anlage telefonieren ist sicher",
+   "en": "Talking on the phone with a hands-free kit is safe",
+   "split": "dev"
+  },
+  {
+   "datei": "verkehrssicherheit_pack.json",
+   "id": "rote_ampel_kein_verkehr_mythos",
+   "de": "Bei roter Ampel und keinem Verkehr ist Übertretung OK",
+   "en": "Running a red light is OK when there is no traffic",
+   "split": "dev"
+  },
+  {
+   "datei": "verkehrssicherheit_pack.json",
+   "id": "mued_fahren_promille_aequivalent_mythos",
+   "de": "Müdigkeit ist nicht so schlimm wie Alkohol beim Fahren",
+   "en": "Tiredness is not as bad as alcohol when driving",
+   "split": "dev"
+  },
+  {
+   "datei": "verkehrssicherheit_pack.json",
+   "id": "bremsweg_geschwindigkeit_quadratisch_konsens",
+   "de": "Doppelte Geschwindigkeit verdoppelt nur den Bremsweg",
+   "en": "Doubling your speed only doubles the braking distance",
+   "split": "dev"
+  },
+  {
+   "datei": "verkehrssicherheit_pack.json",
+   "id": "winterreifen_pflicht_konsens",
+   "de": "Sommerreifen reichen auch im Winter wenn ich vorsichtig fahre",
+   "en": "Summer tyres are enough in winter if I drive carefully",
+   "split": "dev"
+  },
+  {
+   "datei": "verkehrssicherheit_pack.json",
+   "id": "verkehrstote_at_2024_strassenart",
+   "de": "Die meisten tödlichen Verkehrsunfälle in Österreich passieren auf der Autobahn",
+   "en": "Most fatal road accidents in Austria happen on the motorway",
+   "split": "dev"
+  },
+  {
+   "datei": "verkehrssicherheit_pack.json",
+   "id": "bahn_vs_auto_sicherheit_konsens",
+   "de": "Zugfahren ist gefährlicher als Autofahren",
+   "en": "Travelling by train is more dangerous than driving",
+   "split": "dev"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "reichsbuerger_brd_gmbh_2026",
+   "de": "BRD ist eine GmbH",
+   "en": "The Federal Republic of Germany is a limited company",
+   "split": "test"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "soros_eu_steuerung_2026",
+   "de": "Soros steuert die EU",
+   "en": "Soros controls the EU",
+   "split": "test"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "qanon_pizzagate_2026",
+   "de": "QAnon hat recht",
+   "en": "QAnon is right",
+   "split": "test"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "great_reset_wef_2026",
+   "de": "Great Reset ist eine geheime Diktatur-Planung",
+   "en": "The Great Reset is a secret plan for dictatorship",
+   "split": "dev"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "bilderberger_weltsteuerung_2026",
+   "de": "Bilderberger steuern die Welt",
+   "en": "The Bilderberg group rules the world",
+   "split": "dev"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "chemtrails_kondensstreifen_2026",
+   "de": "Chemtrails sind echte Sprühungen",
+   "en": "Chemtrails are real spraying",
+   "split": "dev"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "5g_krebs_mythos_2026",
+   "de": "5G verursacht Krebs",
+   "en": "5G causes cancer",
+   "split": "test"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "5g_corona_2026",
+   "de": "5G verbreitet Corona",
+   "en": "5G spreads the coronavirus",
+   "split": "dev"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "bill_gates_microchips_2026",
+   "de": "Bill Gates implantiert Microchips über Impfungen",
+   "en": "Bill Gates implants microchips through vaccines",
+   "split": "dev"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "plandemic_corona_2026",
+   "de": "Corona war geplant",
+   "en": "Covid was planned",
+   "split": "test"
+  },
+  {
+   "datei": "verschwoerungen_pack.json",
+   "id": "deep_state_konspiration_2026",
+   "de": "Es gibt einen Deep State",
+   "en": "There is a deep state",
+   "split": "test"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "china_lieferketten_abhaengigkeit_2026",
+   "de": "Wir hängen komplett von China ab",
+   "en": "We are completely dependent on China",
+   "split": "dev"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "made_in_germany_realitaet_2026",
+   "de": "Made in Germany ist eine Lüge",
+   "en": "Made in Germany is a lie",
+   "split": "dev"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "trips_pharma_patente_2026",
+   "de": "Pharma-Patente verhindern günstige Medikamente",
+   "en": "Pharma patents prevent cheap medicines",
+   "split": "dev"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "welthandel_gewinner_2026",
+   "de": "Globalisierung hat alle reicher gemacht",
+   "en": "Globalisation has made everyone richer",
+   "split": "dev"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "at_export_quote_2026",
+   "de": "AT-Export-Quote ist 58 %",
+   "en": "Austria's export ratio is 58 %",
+   "split": "dev"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "eu_binnenmarkt_wirkung_2026",
+   "de": "EU-Binnenmarkt brachte 5 % BIP",
+   "en": "The EU single market brought 5 % of GDP",
+   "split": "dev"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "handelsbilanz_defizit_mythen_2026",
+   "de": "USA verliert Geld durch Handelsdefizit",
+   "en": "The US loses money through its trade deficit",
+   "split": "dev"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "brexit_folge_handel_2026",
+   "de": "Brexit hatte keine Folgen",
+   "en": "Brexit had no consequences",
+   "split": "test"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "russland_sanktionen_wirkung_2026",
+   "de": "Sanktionen wirken nicht",
+   "en": "Sanctions don't work",
+   "split": "test"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "subventions_kriege_2026",
+   "de": "USA IRA ist Subventions-Krieg gegen EU",
+   "en": "The US IRA is a subsidy war against the EU",
+   "split": "test"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "at_energie_importabhaengigkeit_2026",
+   "de": "AT ist energie-autark",
+   "en": "Austria is energy self-sufficient",
+   "split": "test"
+  },
+  {
+   "datei": "welthandel_pack.json",
+   "id": "china_solar_markt_dominanz_2026",
+   "de": "China hat das Solar-Monopol",
+   "en": "China has a monopoly on solar",
+   "split": "dev"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "global_prevalence_2026",
+   "de": "Weltweit haben ueber 400 Millionen Menschen einen behindernden Hoerverlust",
+   "en": "More than 400 million people worldwide have disabling hearing loss",
+   "split": "dev"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "phl_jugend_risiko_2026",
+   "de": "Eine Milliarde junge Menschen sind durch laute Musik gefaehrdet",
+   "en": "A billion young people are at risk from loud music",
+   "split": "dev"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "lmic_anteil_2026",
+   "de": "80% der Schwerhoerigen leben in armen Laendern",
+   "en": "80% of people with hearing loss live in poor countries",
+   "split": "test"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "saeuglings_screening_2026",
+   "de": "Hoerscreening bei Neugeborenen ist Pflicht",
+   "en": "Newborn hearing screening is mandatory",
+   "split": "dev"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "safe_listening_standard_2026",
+   "de": "WHO empfiehlt max. 80 dB",
+   "en": "The WHO recommends a maximum of 80 dB",
+   "split": "dev"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "environmental_noise_2026",
+   "de": "WHO-Grenzwert Strassenlaerm 53 dB",
+   "en": "The WHO limit for road traffic noise is 53 dB",
+   "split": "dev"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "tinnitus_praevalenz_2026",
+   "de": "10-15% aller Erwachsenen haben Tinnitus",
+   "en": "10-15% of all adults have tinnitus",
+   "split": "dev"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "hoergeraet_versorgung_2026",
+   "de": "Nur 17% der Schwerhoerigen haben ein Hoergeraet",
+   "en": "Only 17% of people with hearing loss have a hearing aid",
+   "split": "dev"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "cochlea_implantat_at_2026",
+   "de": "2.500 Oesterreicher tragen Cochlea-Implantate",
+   "en": "2,500 Austrians have cochlear implants",
+   "split": "dev"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "cost_of_inaction_2026",
+   "de": "Hoerverlust kostet 980 Milliarden Dollar im Jahr",
+   "en": "Hearing loss costs 980 billion dollars a year",
+   "split": "dev"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "demenz_risiko_2026",
+   "de": "Hoerverlust verursacht Demenz",
+   "en": "Hearing loss causes dementia",
+   "split": "test"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "otitis_media_kinder_2026",
+   "de": "Mittelohr-Entzuendung verursacht Hoerverlust bei Kindern",
+   "en": "Middle ear infections cause hearing loss in children",
+   "split": "dev"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "altersbedingt_praevalenz_2026",
+   "de": "Jeder zweite ueber 65 ist schwerhoerig",
+   "en": "Every second person over 65 is hard of hearing",
+   "split": "dev"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "laerm_arbeit_2026",
+   "de": "Arbeitsplatz-Laerm verursacht Hoerverlust",
+   "en": "Workplace noise causes hearing loss",
+   "split": "test"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "praevention_kosten_effekt_2026",
+   "de": "Hoer-Praevention ist kosteneffektiv",
+   "en": "Hearing loss prevention is cost-effective",
+   "split": "test"
+  },
+  {
+   "datei": "who_hearing.json",
+   "id": "ototoxische_medikamente_2026",
+   "de": "Antibiotika koennen taub machen",
+   "en": "Antibiotics can make you deaf",
+   "split": "dev"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "steuersenkung_selbstfinanzierung_2026",
+   "de": "Steuersenkungen finanzieren sich selbst",
+   "en": "Tax cuts pay for themselves",
+   "split": "test"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "mindestlohn_beschaeftigung_2026",
+   "de": "Mindestlohn vernichtet Arbeitsplätze",
+   "en": "The minimum wage destroys jobs",
+   "split": "test"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "schuldenbremse_schwarze_null_2026",
+   "de": "Schuldenbremse ist alternativlos",
+   "en": "The debt brake has no alternative",
+   "split": "dev"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "geldmenge_inflation_2026",
+   "de": "EZB hat Inflation durch Geld-Drucken verursacht",
+   "en": "The ECB caused inflation by printing money",
+   "split": "dev"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "migration_sozialsystem_2026",
+   "de": "Migranten kosten das Sozialsystem netto",
+   "en": "Migrants are a net cost to the welfare system",
+   "split": "dev"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "eu_netto_zahler_2026",
+   "de": "Deutschland zahlt mehr an EU als es bekommt",
+   "en": "Germany pays more into the EU than it gets back",
+   "split": "test"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "vermoegenssteuer_kapitalflucht_2026",
+   "de": "Vermögenssteuer führt zu Kapitalflucht",
+   "en": "A wealth tax leads to capital flight",
+   "split": "test"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "privatisierung_bahn_effizienz_2026",
+   "de": "Bahn-Privatisierung bringt Effizienz",
+   "en": "Rail privatisation brings efficiency",
+   "split": "dev"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "hartz_iv_faulenzer_2026",
+   "de": "Hartz-IV-Empfänger sind faul",
+   "en": "People on Hartz IV are lazy",
+   "split": "dev"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "inflation_staat_verursacher_2026",
+   "de": "Hohe Inflation 2022 ist staatlich gemacht",
+   "en": "The high inflation of 2022 was caused by the state",
+   "split": "dev"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "renten_zusammenbruch_2026",
+   "de": "Renten brechen bald zusammen",
+   "en": "Pensions will soon collapse",
+   "split": "test"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "erbschaftssteuer_mittelstand_2026",
+   "de": "Erbschaftssteuer ruiniert den Mittelstand",
+   "en": "Inheritance tax ruins small and medium-sized businesses",
+   "split": "test"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "de_steuern_hoechste_2026",
+   "de": "Deutschland hat die höchsten Steuern der Welt",
+   "en": "Germany has the highest taxes in the world",
+   "split": "dev"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "effektive_steuerlast_reiche_mittelschicht_2026",
+   "de": "Reiche zahlen prozentual weniger Steuern als die Mittelschicht",
+   "en": "The rich pay a lower percentage of tax than the middle class",
+   "split": "dev"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "at_steuerlast_eu_ranking_2026",
+   "de": "Österreich hat nicht die höchste Steuerlast in der EU",
+   "en": "Austria does not have the highest tax burden in the EU",
+   "split": "test"
+  },
+  {
+   "datei": "wirtschaftspolitik_pack.json",
+   "id": "weltbank_einkommensklassifikation_at_2026",
+   "de": "Weltbank Österreich Hocheinkommensland",
+   "en": "The World Bank classifies Austria as a high-income country",
+   "split": "test"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "mietregulierung_investitionseffekt_2026",
+   "de": "Mietpreisbremse verhindert Wohnungsbau",
+   "en": "Rent control prevents housing construction",
+   "split": "test"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "leerstand_umverteilung_2026",
+   "de": "Genug Leerstand in Deutschland",
+   "en": "There is enough vacant housing in Germany",
+   "split": "test"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "sozialwohnungsbau_konsens_2026",
+   "de": "Wir haben genug Sozialwohnungen",
+   "en": "We have enough social housing",
+   "split": "dev"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "wohnungsmarkt_freier_markt_2026",
+   "de": "Markt regelt den Wohnungsmarkt",
+   "en": "The market will sort out the housing market",
+   "split": "dev"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "airbnb_wohnungsmarkt_2026",
+   "de": "AirBnB zerstört den Wohnungsmarkt",
+   "en": "Airbnb is destroying the housing market",
+   "split": "test"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "migration_wohnungspreis_2026",
+   "de": "Migration treibt Mieten",
+   "en": "Migration drives up rents",
+   "split": "test"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "eigentumsquote_dach_eu_2026",
+   "de": "Deutsche sind zu mietfaul",
+   "en": "Germans are too lazy to buy and just rent",
+   "split": "dev"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "genossenschaftswohnen_2026",
+   "de": "Genossenschaftswohnen löst Wohnungsmangel",
+   "en": "Cooperative housing solves the housing shortage",
+   "split": "test"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "mietendeckel_berlin_bilanz_2026",
+   "de": "Berlin-Mietendeckel hat den Markt zerstört",
+   "en": "The Berlin rent cap destroyed the market",
+   "split": "test"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "wohnungs_mangel_de_2026",
+   "de": "Wohnungs-Mangel ist Lüge",
+   "en": "The housing shortage is a lie",
+   "split": "dev"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "wohngeld_faulenzer_2026",
+   "de": "Wohngeld-Empfänger sind Faulenzer",
+   "en": "People on housing benefit are lazy",
+   "split": "test"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "spekulations_preistreiber_2026",
+   "de": "Spekulanten haben Wohnungsmarkt zerstört",
+   "en": "Speculators have destroyed the housing market",
+   "split": "test"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "wohnkosten_50_prozent_2026",
+   "de": "DE-Wohnkosten sind höchste der Welt",
+   "en": "German housing costs are the highest in the world",
+   "split": "dev"
+  },
+  {
+   "datei": "wohnen_pack.json",
+   "id": "leerstandsabgabe_wirkung_2026",
+   "de": "Leerstandsabgabe wirkt nicht",
+   "en": "The vacancy tax doesn't work",
+   "split": "dev"
+  }
+ ]
+}
