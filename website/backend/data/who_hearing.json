@@ -313,7 +313,7 @@
         "laerm grenzwert",
         "verkehrslaerm grenzwert",
         "who laerm",
-        "lden",
+        " lden ",
         "lnight",
         "noise guidelines",
         "strassenlaerm grenzwert"
@@ -337,7 +337,7 @@
           "schwellwert",
           "norm",
           "who",
-          "db"
+          " db "
         ]
       ],
       "source_label": "WHO Environmental Noise Guidelines for the European Region 2018",
@@ -505,7 +505,7 @@
           "graz",
           "linz",
           "salzburg",
-          "at",
+          " at ",
           "anzahl",
           "zahl",
           "versorgung",
@@ -560,7 +560,7 @@
           "kosten",
           "milliarden",
           "billion",
-          "usd",
+          " usd ",
           "dollar",
           "oekonom",
           "wirtschaft"

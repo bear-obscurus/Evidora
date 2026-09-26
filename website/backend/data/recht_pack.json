@@ -263,7 +263,7 @@
         "pflichtteil testament"
       ],
       "trigger_composite": [
-        ["enterben", "enterbt", "erbe", "erbschaft", "testament", "pflichtteil", "pflichtteilsentziehung", "erblasser"],
+        ["enterben", "enterbt", " erbe", "erbschaft", "testament", "pflichtteil", "pflichtteilsentziehung", "erblasser"],
         ["kinder", "tochter", "sohn", "ehepartner", "ehegatte", "vollständig", "vollstaendig", "ausschluss", "ausschließen", "ausschliessen", "frei entscheiden", "wer was", "frei", "entscheiden"]
       ],
       "source_label": "§ 2303 BGB + § 762 ABGB AT + Notarkammern",
@@ -378,7 +378,7 @@
         "hund schaden", "tierhalter haftpflicht"
       ],
       "trigger_composite": [
-        ["hund", "hunde", "tier", "tiere", "tierhalter"],
+        [" hund", " hunde", "tier", "tiere", "tierhalter"],
         ["haftung", "haftet", "haften", "verschulden", "schaden", "schadensersatz", "haftpflicht", "verantwortung", "verantwortlich", "beisst", "beißt", "biss", "verletzt", "pech"]
       ],
       "source_label": "§ 833 BGB + § 1320 ABGB + Verbraucherzentrale",

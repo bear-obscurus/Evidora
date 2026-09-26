@@ -29,8 +29,8 @@
       ],
       "trigger_composite": [
         [
-          "hund",
-          "hunde",
+          " hund",
+          " hunde",
           "welpe",
           "haustier"
         ],
@@ -81,7 +81,7 @@
           "katze",
           "katzen",
           "kätzchen",
-          "kater"
+          " kater"
         ],
         [
           "milch",
@@ -382,8 +382,8 @@
       ],
       "trigger_composite": [
         [
-          "hund",
-          "hunde",
+          " hund",
+          " hunde",
           "hundejahr",
           "hundealter",
           "hundejahre"
@@ -409,7 +409,7 @@
             "5-jährig"
           ],
           [
-            "hund"
+            " hund"
           ],
           [
             "menschen-jahr"

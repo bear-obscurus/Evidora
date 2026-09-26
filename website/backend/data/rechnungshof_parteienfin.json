@@ -44,7 +44,7 @@
         "parteienfinanzierung gesetz",
         "parteienfinanzierung österreich",
         "parteienfinanzierung oesterreich",
-        "upts",
+        " upts ",
         "transparenz-senat"
       ],
       "trigger_composite": [
@@ -57,12 +57,12 @@
           "partg",
           "partförg",
           "partfoerg",
-          "upts"
+          " upts "
         ],
         [
           "österreich",
           "oesterreich",
-          "at ",
+          " at ",
           " at,",
           " at.",
           "bgbl",
@@ -172,7 +172,7 @@
           "neos",
           "österreich",
           "oesterreich",
-          "at ",
+          " at ",
           " at,",
           " at.",
           "bundes",
@@ -302,7 +302,7 @@
         [
           "österreich",
           "oesterreich",
-          "at ",
+          " at ",
           " at.",
           " at,",
           "partg",
@@ -392,7 +392,7 @@
         [
           "österreich",
           "oesterreich",
-          "at ",
+          " at ",
           " at,",
           " at.",
           "nationalratswahl",
@@ -499,7 +499,7 @@
         [
           "österreich",
           "oesterreich",
-          "at ",
+          " at ",
           " at,",
           " at.",
           "rechnungshof",
@@ -700,7 +700,7 @@
           "parteien",
           "österreich",
           "oesterreich",
-          "at ",
+          " at ",
           " at,",
           " at.",
           "rechnungshof",
@@ -888,7 +888,7 @@
         [
           "österreich",
           "oesterreich",
-          "at ",
+          " at ",
           " at,",
           " at.",
           "parlament",
@@ -982,7 +982,7 @@
         [
           "österreich",
           "oesterreich",
-          "at ",
+          " at ",
           " at,",
           " at.",
           "förderung",
@@ -1059,7 +1059,7 @@
         [
           "österreich",
           "oesterreich",
-          "at ",
+          " at ",
           " at,",
           " at.",
           "gesamt",

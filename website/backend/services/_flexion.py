@@ -94,13 +94,20 @@ from services._schreibweise import normalisiere
 # „freiheit" werden und „grosse" „grossen…" ueber Wortgrenzen hinweg.
 MAX_ENDUNG = 2
 _WORTZEICHEN = "a-zäöüß"
+# Erst ab drei Buchstaben ist ein Wort ein Adjektiv, das Endungen annimmt.
+# Darunter steht ein Kuerzel, eine Zahl oder ein Buchstabe — und dort bauen
+# die zwei Zusatzbuchstaben fremde Woerter: „e-auto" traf „EIN Auto",
+# „h-2" traf „HAT 2024", „de bundesrat" traf „DER Bundesrat", „eu armee"
+# traf „EURE Armee". Siehe WORTGRENZEN.
+MIN_FLEKTIERBAR = 3
 
 
 @lru_cache(maxsize=8192)
 def _muster(term_n: str) -> re.Pattern[str]:
     """Regex fuer einen bereits normalisierten Mehrwort-Begriff."""
     worte = term_n.split(" ")
-    teile = [re.escape(w) + rf"[{_WORTZEICHEN}]{{0,{MAX_ENDUNG}}}"
+    teile = [re.escape(w) + (rf"[{_WORTZEICHEN}]{{0,{MAX_ENDUNG}}}"
+                             if len(w) >= MIN_FLEKTIERBAR else "")
              for w in worte[:-1]]
     teile.append(re.escape(worte[-1]))      # letztes Wort offen lassen
     return re.compile(r"(?<![" + _WORTZEICHEN + r"])" + r"\s+".join(teile))

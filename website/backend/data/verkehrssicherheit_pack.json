@@ -307,7 +307,7 @@
           "promille",
           "alkohol",
           "blutalkohol",
-          "bak",
+          " bak ",
           "alkoholgrenze",
           "trinken und fahren",
           "drink and drive"
@@ -592,7 +592,7 @@
           "ganzjahres-reifen",
           "allwetter-reifen",
           "schnee",
-          "eis",
+          " eis ",
           "glatteis"
         ],
         [
@@ -604,7 +604,6 @@
           "geld-verschwendung",
           "geld verschwendung",
           "unsinn",
-          "schnee",
           "winter",
           "fahrzeug"
         ]
@@ -731,7 +730,7 @@
           [
             "zugfahren",
             "bahnfahren",
-            "bahn",
+            " bahn",
             "zug",
             "eisenbahn",
             "schiene",
