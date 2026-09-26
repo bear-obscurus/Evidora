@@ -44,6 +44,7 @@ import os
 from typing import Callable
 
 from services._static_cache import load_json_mtime_aware
+from services._englisch import englisch_match, englische_fassung
 from services._flexion import trifft as _flexion_trifft
 from services._schreibweise import normalisiere, norm_terme
 from services._tippfehler import tippfehler_match
@@ -143,6 +144,19 @@ def find_matching_items(
     tolerant = [it for it in items if tippfehler_match(it, claim_lc)]
     if tolerant:
         return _tag_provenance(tolerant, exact=False)
+    # Dritter Pass, englisch (2026-09-26). Die Trigger sind deutsch; ein
+    # englischer Claim bekommt die deutschen Begriffe aus einem kuratierten
+    # Glossar daneben geschrieben, und dieselbe Trigger-Logik laeuft darauf.
+    # Nur bei positivem englischem Sprachsignal, nur wenn exakt UND tolerant
+    # leer blieben, und nie an einem Partei-Korruptions-Superlativ vorbei:
+    # Der Guard sieht die glossierte Fassung mit (siehe politik_guard_action)
+    # und greift hier zentral — auch fuer Packs, die ihn selbst nicht rufen.
+    # Provenance exact=False wie beim toleranten Pass. Siehe
+    # services/_englisch.py.
+    if englische_fassung(claim_lc) and politik_guard_action(claim_lc) == "pass":
+        englisch = [it for it in items if englisch_match(it, claim_lc)]
+        if englisch:
+            return _tag_provenance(englisch, exact=False)
     if not full_claim or descriptor_fn is None:
         return []
     pairs = [descriptor_fn(it) for it in items]
@@ -325,6 +339,15 @@ def politik_guard_action(claim_lc: str) -> str:
     # ist das an jeder dieser Stellen richtig. Vorher musste jeder Aufrufer
     # die ungefaltete Form durchreichen — eine Regel, die kein Test kannte.
     claim_lc = normalisiere(claim_lc)
+
+    # Englische Claims (2026-09-26): Die Token-Listen sind deutsch. „The FPÖ
+    # is the most corrupt party in Austria" gab „pass", und transparency
+    # (CPI) feuerte — der deutsche Satz wird blockiert. Deshalb prueft der
+    # Guard die glossierte Fassung mit („corrupt" -> „korrupt", „the most" ->
+    # „die meisten"). Fuer deutsche Claims ist sie None, nichts aendert sich.
+    uebertragen = englische_fassung(claim_lc)
+    if uebertragen:
+        claim_lc = claim_lc + " " + uebertragen
 
     has_party = any(tok in claim_lc for tok in _PARTY_TOKENS)
     has_corruption = any(tok in claim_lc for tok in _CORRUPTION_TOKENS)
