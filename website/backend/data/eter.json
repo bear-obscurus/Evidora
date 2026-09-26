@@ -241,10 +241,10 @@
       ],
       "trigger_keywords": [
         "tu muenchen", "tu münchen", "technische universitaet muenchen",
-        "technische universität münchen", "tum"
+        "technische universität münchen", " tum "
       ],
       "trigger_composite": [
-        ["tu", "tum", "technische"],
+        [" tu ", " tum ", "technische"],
         ["muenchen", "münchen", "munich"]
       ],
       "source_label": "ETER European Tertiary Education Register 2021 (CC BY 4.0)",
@@ -365,7 +365,7 @@
         "paedagogische hochschule", "pädagogische hochschule"
       ],
       "trigger_composite": [
-        ["oesterreich", "österreich", "at "],
+        ["oesterreich", "österreich", " at "],
         ["studierende", "studenten", "hochschulen", "universitaeten", "universitäten",
          "tertiaere", "tertiäre", "tertiaerbildung", "tertiärbildung", "hochschullandschaft"]
       ],
@@ -398,12 +398,12 @@
       ],
       "trigger_keywords": [
         "studierende deutschland", "studentenzahl deutschland",
-        "studentenzahl de", "hochschullandschaft deutschland",
+        "hochschullandschaft deutschland",
         "anzahl hochschulen deutschland",
         "fachhochschulen deutschland", "private hochschulen deutschland"
       ],
       "trigger_composite": [
-        ["deutschland", "germany", "de "],
+        ["deutschland", "germany", " de "],
         ["studierende", "studenten", "hochschulen", "universitaeten", "universitäten",
          "tertiaere", "tertiäre", "hochschullandschaft"]
       ],
@@ -435,7 +435,7 @@
         "ETER ist die EINZIGE Quelle, die institutionelle Mikrodaten EU-weit vergleichbar fuer alle Hochschulen liefert."
       ],
       "trigger_keywords": [
-        "eter-register", "eter register", " eter ", "eter-daten",
+        "eter-register", "eter register", " eter ", " eter-daten",
         "european tertiary education register",
         "bologna-system", "bologna system", "bologna-prozess", "bologna prozess",
         "europaeische hochschulen", "europäische hochschulen",
