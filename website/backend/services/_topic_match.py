@@ -44,6 +44,7 @@ import os
 from typing import Callable
 
 from services._static_cache import load_json_mtime_aware
+from services._englisch import englische_fassung
 from services._flexion import trifft as _flexion_trifft
 from services._schreibweise import normalisiere, norm_terme
 from services._tippfehler import tippfehler_match
@@ -143,6 +144,20 @@ def find_matching_items(
     tolerant = [it for it in items if tippfehler_match(it, claim_lc)]
     if tolerant:
         return _tag_provenance(tolerant, exact=False)
+    # Dritter Pass, englisch (2026-09-26). Die Trigger sind deutsch; ein
+    # englischer Claim bekommt die deutschen Begriffe aus einem kuratierten
+    # Glossar daneben geschrieben, und dieselbe Trigger-Logik laeuft darauf.
+    # Nur bei positivem englischem Sprachsignal, nur wenn exakt UND tolerant
+    # leer blieben, und nie an einem Partei-Korruptions-Superlativ vorbei:
+    # der Guard kennt nur deutsche Tokens und prueft darum den glossierten
+    # Text. Provenance exact=False wie beim toleranten Pass. Siehe
+    # services/_englisch.py.
+    uebertragen = englische_fassung(claim_lc)
+    if uebertragen and politik_guard_action(uebertragen) == "pass":
+        englisch = [it for it in items
+                    if substring_or_composite_match(it, uebertragen)]
+        if englisch:
+            return _tag_provenance(englisch, exact=False)
     if not full_claim or descriptor_fn is None:
         return []
     pairs = [descriptor_fn(it) for it in items]

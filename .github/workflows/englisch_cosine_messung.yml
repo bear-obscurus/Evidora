@@ -1,0 +1,34 @@
+name: Messung (temporaer) — Cosine fuer englische Claims
+
+# TEMPORAER. Misst Loesungsrichtung (b) mit dem echten Modell, weil der
+# Entwicklungs-Container keinen HuggingFace-Zugang hat. Wird vor dem PR
+# wieder entfernt.
+
+on:
+  push:
+    branches: [claude/zealous-bardeen-w833q5]
+    paths:
+      - website/backend/tools/englisch_cosine_messung.py
+      - .github/workflows/englisch_cosine_messung.yml
+
+jobs:
+  cosine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install model stack (Prod-Pins)
+        run: |
+          pip install --upgrade pip
+          pip install torch==2.12.1 --index-url https://download.pytorch.org/whl/cpu \
+            || pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install sentence-transformers==5.6.0 transformers==5.12.1 numpy==2.5.0 \
+            || pip install sentence-transformers transformers numpy
+          pip freeze | grep -iE "torch|sentence|transformers|numpy"
+      - name: Cosine-Messung
+        working-directory: website/backend
+        env:
+          HF_HUB_DISABLE_XET: "1"
+        run: python tools/englisch_cosine_messung.py
