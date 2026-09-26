@@ -43,7 +43,7 @@ ein schwaches Signal und darf kein „strukturell falsch" behaupten.
 
 import re
 
-from services._flexion import trifft as _flexion_trifft
+from services._flexion import trifft_mit_wortgrenze, wortgrenzen_fassung
 from services._schreibweise import normalisiere
 
 MIND_LAENGE = 6
@@ -108,6 +108,7 @@ def tippfehler_match(item: dict, claim_lc: str) -> bool:
     woerter = _kandidaten(claim_n)
     if not woerter:
         return False
+    claim_w = wortgrenzen_fassung(claim_n)
 
     def trifft(tok) -> bool:
         """Exakt ODER schreibweisen-nah. Das ODER ist entscheidend: Ein
@@ -117,7 +118,8 @@ def tippfehler_match(item: dict, claim_lc: str) -> bool:
         und damit genau den Fall, der das Modul ausgeloest hat."""
         if not isinstance(tok, str):
             return False
-        return _flexion_trifft(claim_n, tok) or token_ist_schreibnah(tok, woerter)
+        return (trifft_mit_wortgrenze(claim_n, claim_w, tok)
+                or token_ist_schreibnah(tok, woerter))
 
     for kw in item.get("trigger_keywords") or ():
         if trifft(kw):

@@ -44,7 +44,7 @@ import os
 from typing import Callable
 
 from services._static_cache import load_json_mtime_aware
-from services._flexion import trifft as _flexion_trifft
+from services._flexion import trifft_mit_wortgrenze, wortgrenzen_fassung
 from services._schreibweise import normalisiere, norm_terme
 from services._tippfehler import tippfehler_match
 from services._reranker_backup import best_matches as _backup_best_matches
@@ -77,13 +77,17 @@ def substring_or_composite_match(item: dict, claim_lc: str) -> bool:
     # Der Claim wird EINMAL normalisiert, die Trigger je Vergleich — sonst
     # zahlt man die Faltung fuer jeden der teils hunderten Tokens erneut.
     claim_n = normalisiere(claim_lc)
+    claim_w = wortgrenzen_fassung(claim_n)
 
     def trifft(tok) -> bool:
         # Seit 2026-09-08 flexionstolerant fuer MEHRWORT-Begriffe: bei
         # „freie wahlen" flektiert das VORDERE Wort („freien Wahlen") und der
         # Substring reisst. Einwort-Begriffe sind unveraendert — dort waechst
         # die Endung hinten an und `in` haelt. Siehe services/_flexion.py.
-        return _flexion_trifft(claim_n, tok)
+        # Seit 2026-09-26 zaehlen fuer gebundene Tokens (" ki ") auch
+        # Claim-Rand und Satzzeichen als Wortgrenze — vorher fand " ki "
+        # „KI ersetzt …" nicht. Siehe services/_flexion.py, WORTGRENZEN.
+        return trifft_mit_wortgrenze(claim_n, claim_w, tok)
 
     for kw in item.get("trigger_keywords") or ():
         if trifft(kw):
