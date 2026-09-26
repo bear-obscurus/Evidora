@@ -840,6 +840,15 @@ ERLAUBT = {
         "Glyphosat ist sicher", "Glyphosat verursacht Krebs",
         "Roundup ist krebserregend",
     },
+    # Kein Leck, sondern eine richtige Zweitquelle (26.9.2026): Die Frage
+    # nach Strafen NACH DEM PARTEIENGESETZ gehoert sowohl zum neuen Fakt
+    # parteien_korruption_datenlage_2026 (was erhoben wird) als auch zu
+    # diesem hier, der PartG 2012, PartFoerG und den Vollzug durch BKA,
+    # Rechnungshof und UPTS beschreibt. Beide Fakten antworten auf dieselbe
+    # Frage, aus verschiedenen Richtungen.
+    "partg_2012_rechtsgrundlage": {
+        "Welche Parteien wurden nach dem Parteiengesetz bestraft?",
+    },
 }
 
 
