@@ -247,6 +247,52 @@ def _extract_numbers(text: str) -> set[str]:
     return out
 
 
+# --- Einseitige oder gedrehte Schwellenzahl (Live-Fund 2026-09-26) -------
+# Gemessen nach dem Deploy von PR #202:
+#   cos=0.9334  'In Österreich wurden 2024 mehr als 200 Frauen ermordet'
+#           ->  'in österreich wurden 2024 mehr frauen als männer ermordet'
+# Der Treffer lieferte das true@0.9 der ANDEREN Frage, obwohl die PKS 2024
+# 40 vollendete Morde an Frauen ausweist. Die Zahlen-Regel in
+# `_polarity_mismatch` bustet nur bei DISJUNKTEN Mengen: {'2024','200'} und
+# {'2024'} schneiden sich in der Jahreszahl, also kein Bust. Die Schwelle
+# ist aber genau die Behauptung — eine Antwort kann nicht gleichzeitig für
+# "mehr als 200" und für eine Frage ohne Schwelle stimmen.
+#
+# Dieselbe Messung zeigte eine zweite Lücke: 'über 300' gegen 'unter 300'
+# war ein HIT. 'mehr'/'weniger' stehen in _POLARITY_ANTONYMS, 'über'/'unter'
+# nicht — deshalb wird hier die RICHTUNG mitkodiert und nicht nur die Zahl.
+_SCHWELLE_RE = re.compile(
+    r"\b(über|ueber|mehr\s+als|mindestens|unter|weniger\s+als|höchstens|"
+    r"hoechstens|more\s+than|at\s+least|over|less\s+than|fewer\s+than|"
+    r"at\s+most|under)\s+(\d[\d.,]*)"
+)
+# Untergrenze: der Claim behauptet, der Wert liege DARÜBER.
+_SCHWELLE_UNTEN = frozenset({
+    "über", "ueber", "mehr als", "mindestens", "more than", "at least", "over",
+})
+
+
+def _threshold_claims(text: str) -> set[str]:
+    """Schwellen des Claims als ``richtung:zahl`` ("mehr als 1.000" ->
+    {'min:1000'}, "unter 300" -> {'max:300'}). Ohne Schwelle leer.
+
+    Das Dezimalkomma bleibt als Wert erhalten ("2,5" -> 2.5): anders als
+    `_extract_numbers`, das Komma und Punkt gleich behandelt, ist die Zahl
+    hier das EINZIGE Signal — "unter 2,5 %" und "unter 25 %" duerfen nicht
+    denselben Schluessel bekommen.
+    """
+    out: set[str] = set()
+    for op, raw in _SCHWELLE_RE.findall(text.lower()):
+        roh = raw.rstrip(".,")
+        try:
+            wert = float(roh.replace(".", "").replace(",", "."))
+        except ValueError:
+            continue
+        op = re.sub(r"\s+", " ", op)
+        out.add(f"{'min' if op in _SCHWELLE_UNTEN else 'max'}:{wert:g}")
+    return out
+
+
 def _polarity_mismatch(a: str, b: str) -> bool:
     """Heuristik gegen die Negations-Blindheit des semantischen Caches.
 
@@ -261,6 +307,9 @@ def _polarity_mismatch(a: str, b: str) -> bool:
       (5) es ist dieselbe Frage über eine ANDERE MESSGRÖSSE
           ('Fleischverzehr' vs. 'Fleischverbrauch') — dieselbe Zahl ist
           dann bei der einen richtig und bei der anderen falsch.
+      (6) die SCHWELLEN unterscheiden sich — eine Seite nennt eine
+          ('mehr als 200'), die andere keine oder eine andere Zahl bzw.
+          die andere Richtung ('unter 300' vs. 'über 300').
 
     (3) und (4) kamen 2026-07-27 dazu, nachdem die Live-Verifikation der
     QA100-Fixes zeigte, dass Satz-Embeddings die Argument-Reihenfolge
@@ -285,6 +334,8 @@ def _polarity_mismatch(a: str, b: str) -> bool:
     if _direction_flipped(ta, tb):
         return True
     if _measure_mismatch(ta, tb):
+        return True
+    if _threshold_claims(a) != _threshold_claims(b):
         return True
     return False
 
