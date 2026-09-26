@@ -238,6 +238,10 @@ jobs:
     #                                  Mehrwort-Begriff: 21 % -> 90 %)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
+    #   - test_englisch_trigger       (englische Claims trafen keinen Pack-
+    #                                  Trigger: Glossar-Pass, Sprach-Gate,
+    #                                  Wortgrenzen, Politik-Guard zweisprachig,
+    #                                  Ueber-Trigger-Sweep als Gate)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -365,6 +369,7 @@ jobs:
             tests/test_label_kohaerenz.py \
             tests/test_muster_n_schwellenzahl.py \
             tests/test_tippfehler_toleranz.py \
+            tests/test_englisch_trigger.py \
             tests/test_tempolimit_zuordnung.py \
             tests/test_qa50b_rest.py \
             tests/test_wikidata_reliability.py

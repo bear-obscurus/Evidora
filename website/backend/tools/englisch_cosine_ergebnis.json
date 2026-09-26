@@ -1,0 +1,54 @@
+{
+ "_zweck": "Ergebnis von tools/englisch_cosine_messung.py (Loesungsrichtung b). Gemessen im CI, weil der Entwicklungs-Container keinen HuggingFace-Zugang hat: GitHub-Actions-Lauf 36253750169 auf Commit 3d4de35, 26.9.2026.",
+ "modell": "paraphrase-multilingual-MiniLM-L12-v2 @ e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+ "stack": {"torch": "2.12.1+cpu", "sentence-transformers": "5.6.0", "transformers": "5.12.1", "numpy": "2.5.0"},
+ "deskriptor": "headline + context_notes[:2], 300 Zeichen (wie die Services mit descriptor_fn)",
+ "lesart": "Je Dienst (= data-Datei) die Top-3 Fakten mit Cosinus >= Schwelle, wie der Backup in find_matching_items. 'fremde_dienste' = Dienste AUSSER dem eigenen, die gefeuert haetten (#41-Effekt). 'eigener_fakt_zurueck' = der eigene Fakt ist unter den gefeuerten des eigenen Dienstes.",
+ "en_alle": {
+  "claims": 624, "top1_im_eigenen_dienst": 0.758, "top3_im_eigenen_dienst": 0.885,
+  "cos_eigener_fakt_q1_median_q3": [0.443, 0.563, 0.68],
+  "schwellen": {
+   "0.45": {"eigener_fakt_zurueck": 0.726, "fremde_dienste_je_claim_mittel": 2.7, "claims_ohne_fremden_dienst": 0.417},
+   "0.50": {"eigener_fakt_zurueck": 0.644, "fremde_dienste_je_claim_mittel": 1.49, "claims_ohne_fremden_dienst": 0.59},
+   "0.55": {"eigener_fakt_zurueck": 0.532, "fremde_dienste_je_claim_mittel": 0.75, "claims_ohne_fremden_dienst": 0.75},
+   "0.60": {"eigener_fakt_zurueck": 0.405, "fremde_dienste_je_claim_mittel": 0.35, "claims_ohne_fremden_dienst": 0.851},
+   "0.65": {"eigener_fakt_zurueck": 0.311, "fremde_dienste_je_claim_mittel": 0.14, "claims_ohne_fremden_dienst": 0.915},
+   "0.70": {"eigener_fakt_zurueck": 0.21, "fremde_dienste_je_claim_mittel": 0.05, "claims_ohne_fremden_dienst": 0.955},
+   "0.75": {"eigener_fakt_zurueck": 0.114, "fremde_dienste_je_claim_mittel": 0.01, "claims_ohne_fremden_dienst": 0.992}
+  }
+ },
+ "de_phrasings_referenz": {
+  "claims": 2603, "top1_im_eigenen_dienst": 0.713, "top3_im_eigenen_dienst": 0.872,
+  "cos_eigener_fakt_q1_median_q3": [0.445, 0.566, 0.68],
+  "schwellen": {
+   "0.45": {"eigener_fakt_zurueck": 0.719, "fremde_dienste_je_claim_mittel": 3.99, "claims_ohne_fremden_dienst": 0.237},
+   "0.55": {"eigener_fakt_zurueck": 0.533, "fremde_dienste_je_claim_mittel": 1.07, "claims_ohne_fremden_dienst": 0.609},
+   "0.65": {"eigener_fakt_zurueck": 0.316, "fremde_dienste_je_claim_mittel": 0.21, "claims_ohne_fremden_dienst": 0.87}
+  }
+ },
+ "themenfremd_en": {
+  "claims": 40,
+  "schwellen": {
+   "0.45": {"fremde_dienste_je_claim_mittel": 0.17, "claims_ohne_fremden_dienst": 0.825},
+   "0.50": {"fremde_dienste_je_claim_mittel": 0.07, "claims_ohne_fremden_dienst": 0.925},
+   "0.55": {"fremde_dienste_je_claim_mittel": 0.03, "claims_ohne_fremden_dienst": 0.975},
+   "0.60": {"fremde_dienste_je_claim_mittel": 0.0, "claims_ohne_fremden_dienst": 1.0}
+  }
+ },
+ "live_claim": {
+  "claim": "Is it true that the vacancy tax in Vorarlberg is 3000 euros a year?",
+  "cos_eigener_fakt": 0.512,
+  "top5_global": [
+   ["wirtschaftspolitik_pack.json", "erbschaftssteuer_mittelstand_2026", 0.595],
+   ["wirtschaftspolitik_pack.json", "at_steuerlast_eu_ranking_2026", 0.545],
+   ["sozialstaat_pack.json", "wohnbeihilfe_at_2026", 0.525],
+   ["wohnen_pack.json", "leerstandsabgabe_wirkung_2026", 0.512],
+   ["wohnen_pack.json", "eigentumsquote_dach_eu_2026", 0.507]
+  ],
+  "fremde_dienste_bei": {"0.45": 6, "0.50": 3, "0.55": 1},
+  "eigener_fakt_zurueck_bei": {"0.45": true, "0.50": true, "0.55": false}
+ },
+ "global_top1": {"en": 0.62, "de": 0.524},
+ "sprach_gate_detect_language": "_detect_language() haelt 2158 der 2603 deutschen Phrasings (82,9 %) fuer Englisch; fuer diese Teilmenge feuern bei 0,45 im Mittel 4,08 fremde Dienste je Claim",
+ "urteil": "Traegt in der Trefferqualitaet besser als erwartet (Erwartung Top-1 50-70 %, gemessen 75,8 %). Scheitert am #41-Effekt: jede Schwelle, die den Live-Claim zurueckholt (<= 0,50), zieht dort 3-6 fremde Dienste mit; bei >= 0,55 ist er verloren. Nicht gebaut."
+}

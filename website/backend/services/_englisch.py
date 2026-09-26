@@ -7,45 +7,64 @@ Gemessen am 26.9.2026, live gegen Produktion:
 
 Der deutsche Claim zur selben Sache liefert true@0.9. Es fehlt nicht der
 Fakt, sondern das Retrieval: die Trigger in ``data/*.json`` sind deutsch.
-Auf 624 englischen Claims (je Fakt einer, ``tools/englisch_korpus.json``)
-trafen im Status quo 114 ihren Fakt, 500 verfehlten ihn, obwohl das deutsche
-Quell-Phrasing traf.
+Von 624 englischen Claims (je Fakt mit Trigger-Feldern einer,
+``tools/englisch_korpus.json``) trafen im Status quo 114 ihren Fakt; 510
+verfehlten ihn.
 
 WARUM EIN GLOSSAR UND KEIN COSINUS
 ==================================
-Der Cosine-Backup ist in 49 von 63 Trigger-Services seit #41 abgeschaltet,
-weil er bei Multi-Topic-Packs themenfremde Claims zog. Ihn fuer englische
-Claims wieder einzuschalten, haette ein Sprach-Gate gebraucht — und das
-vorhandene ``services.ner._detect_language`` haelt **82,9 %** der 2.603
-dokumentierten deutschen Phrasings fuer Englisch (es zaehlt deutsche
-Funktionswoerter; kurze deutsche Claims haben keine). Die Cosine-Messung
-selbst steht im PR und in ``tools/englisch_cosine_messung.py``.
+Der Cosine-Backup ist in 49 von 63 Trigger-Services seit #41 abgeschaltet.
+Gemessen mit dem Produktionsmodell (``tools/englisch_cosine_messung.py``):
+cross-lingual traegt es erstaunlich gut — der eigene Fakt liegt fuer 75,8 %
+der englischen Claims im eigenen Dienst auf Platz 1. Aber bei Schwelle 0,45
+feuern je englischem Claim im Mittel 2,7 FREMDE Dienste, und der Live-Claim
+selbst hat fuer seinen Fakt nur cos 0,512, fuer einen Erbschaftssteuer-Fakt
+0,595. Jede Schwelle, die ihn zurueckholt, zieht 3-6 fremde Dienste mit —
+das ist der #41-Fehler, am ausloesenden Claim. Das vorhandene Sprachsignal
+``services.ner._detect_language`` haette als Gate ohnehin nicht getaugt: es
+haelt 82,9 % der 2.603 dokumentierten deutschen Phrasings fuer Englisch.
 
 Dieses Modul bleibt literal wie ``services/_tippfehler.py``: Es uebersetzt
-nicht, es **glossiert**. Steht im Claim ein englischer Begriff aus dem
-Glossar, wird der deutsche Trigger-Begriff daneben geschrieben, und die
-unveraenderte Trigger-Logik laeuft auf diesem Text. Composite-Regeln bleiben
+nicht, es **glossiert**. Englische Begriffe aus dem Glossar werden an Ort
+und Stelle durch den deutschen Trigger-Begriff ersetzt, und dieselbe
+AND-of-OR-Logik laeuft auf diesem Text. Composite-Regeln bleiben
 Composite-Regeln — ein Fakt, der Thema UND Bundesland verlangt, verlangt
 beides auch auf Englisch.
 
-DREI SICHERUNGEN
+VIER SICHERUNGEN
 ================
-  * **Sprach-Gate mit positiver Evidenz.** Der Pass laeuft nur, wenn der
-    Claim mindestens ein englisches Funktionswort traegt und mehr englische
-    als deutsche. Deutsche Homographen („was", „will", „die", „an", „in",
-    „war") zaehlen nicht; „who" auch nicht — in deutschen Claims ist das die
-    WHO. Gemessen: 1 falscher Alarm auf 3.766 deutschen Claims.
+  * **Sprach-Gate mit positiver Evidenz** (``englisch_gate``). Mindestens ein
+    englisches Funktionswort und mehr englische als deutsche — oder, fuer
+    Stichwort-Claims, kein deutsches Funktionswort und zwei eindeutig
+    englische Glossar-Begriffe. Von 2.603 deutschen Phrasings oeffnen es 8,
+    und 7 davon sind dort dokumentierte ENGLISCHE Phrasings.
   * **Nur wenn exakt und tolerant leer blieben.** Ein Fakt, der exakt ankert,
     gewinnt immer; der Treffer wird ``_matched_exact=False`` markiert und darf
     kein „strukturell falsch" behaupten.
-  * **Politik-Guard auf dem glossierten Text.** Ohne das waere ein englischer
-    Partei-Korruptions-Superlativ ein Loch: Der Guard kennt nur deutsche
-    Tokens. Deshalb glossiert das Glossar auch „corrupt" -> „korrupt" und
-    ``find_matching_items`` prueft den Guard auf dem glossierten Text.
+  * **Wortgrenzen in den englischen Restwoertern.** Eigennamen und Zahlen
+    bleiben im Text, damit „Vorarlberg" oder „2024" ihre Composite-Gruppe
+    erfuellen. In diesen englischen Woertern trifft ein Trigger aber nur als
+    ganzes Wort — sonst traefe „ass" (ASS, Aspirin) in „glass", „ai" in
+    „brains", „rac" in „attracts". In den deutschen Glossen bleibt der
+    Vergleich ein Substring wie im Deutschen („mangel" in
+    „fachkraeftemangel").
+  * **Politik-Guard auf dem glossierten Text.** Der Guard kennt nur deutsche
+    Tokens; ohne Glossen waere ein englischer Partei-Korruptions-Superlativ
+    ein Loch. ``find_matching_items`` prueft ihn auf ``englische_fassung``.
 
-Englische Funktionswoerter werden aus dem Rest-Claim entfernt, bevor die
-Trigger laufen: Ein deutsches Composite mit „ at " (Oesterreich-Kuerzel)
-darf nicht von der englischen Praeposition „at" erfuellt werden.
+WAS ES BRINGT — UND WAS NICHT
+=============================
+Rueckgewinnung der 510 verlorenen Treffer: 82,9 % (dev 82,3 %, test
+83,6 %). Das ist eine OBERGRENZE: Korpus und Glossar stammen aus einer Hand.
+Die Paraphrasen-Probe (``tools/englisch_paraphrasen.json``, anderer
+deutscher Wortlaut, nach dem Einfrieren des Glossars geschrieben) holt
+46,4 % zurueck. Die Luecke ist fast immer ein Synonym: „bankrupt" statt
+„pleite", „hardly anyone votes" statt „Wahlbeteiligung sinkt".
+
+Ueber-Trigger: 0 neue dienst-fremde Treffer auf den 2.603 deutschen
+Phrasings. Auf den 624 englischen Claims 80 neue; 67 davon trifft das
+deutsche Quell-Phrasing ebenfalls (derselbe Querbezug zweier Packs), 13 sind
+echt neu, davon 11 thematisch plausibel.
 
 DAS GLOSSAR
 ===========
@@ -65,6 +84,8 @@ Kuratierungs-Regeln:
     selbst traegt.
   * Nie „true"/„really": „Is it true that …" steht vor fast jedem
     Frage-Claim und darf nichts glossieren.
+  * Die deutsche Seite muss einen Trigger treffen koennen — sonst ist der
+    Eintrag tot (gepinnt in ``tests/test_englisch_trigger.py``).
 """
 
 from __future__ import annotations
@@ -179,7 +200,6 @@ GLOSSAR: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("brüssel", ("brussels",)),
     ("straßburg", ("strasbourg",)),
     ("indien", ("india", "indian")),
-    ("afrika", ("africa", "african")),
     ("asien", ("asia", "asian")),
     ("weltweit", ("worldwide", "globally", "around the world",
                   "in the world", "of the world")),
@@ -211,7 +231,6 @@ GLOSSAR: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("arbeitnehmer", ("employee", "worker")),
     ("pensionisten", ("pensioner", "retiree")),
     ("ärzte", ("doctor", "physician")),
-    ("patienten", ("patient",)),
     ("bauern", ("farmer",)),
     ("muslime", ("muslim",)),
     ("christen", ("christian",)),
@@ -728,7 +747,7 @@ GLOSSAR: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("lebensversicherung", ("life insurance", "endowment",
                             "endowment policy")),
     ("anlage", ("investment",)),
-    ("schnell", ("fast", "quick", "quickly")),
+    ("schnell", ("quick", "quickly")),
     ("sofort", ("immediately",)),
     ("eilig", ("hurry", "urgent", "act fast")),
     ("sicherer hafen", ("safe haven",)),

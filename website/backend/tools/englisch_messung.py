@@ -86,6 +86,12 @@ def claims(backend: str, korpus_pfad: str) -> list[dict]:
     for c in korpus["claims"]:
         out.append({"art": "en", "datei": c["datei"], "id": c["id"],
                     "split": c["split"], "text": c["en"], "de": c["de"]})
+    para = os.path.join(os.path.dirname(korpus_pfad), "englisch_paraphrasen.json")
+    if os.path.exists(para):
+        with open(para, encoding="utf-8") as fh:
+            for c in json.load(fh)["claims"]:
+                out.append({"art": "para", "datei": c["datei"], "id": c["id"],
+                            "split": "test", "text": c["en"], "de": c["de"]})
     for t in korpus["themenfremd"]:
         out.append({"art": "themenfremd", "text": t})
     for l in korpus["live"]:
@@ -171,10 +177,11 @@ def bericht(alt: dict, neu: dict) -> dict:
                                   if _eigen(x) == (True, True)
                                   and _eigen(y) != (True, True)]
 
-    # 2. Rueckgewinnung (englischer Korpus)
-    for split in ("dev", "test", "alle"):
-        en = [(x, y) for x, y in zip(a, n) if x["art"] == "en"
-              and (split == "alle" or x["split"] == split)]
+    # 2. Rueckgewinnung (englischer Korpus; "para" = Paraphrasen-Probe)
+    for split in ("dev", "test", "alle", "para"):
+        art = "para" if split == "para" else "en"
+        en = [(x, y) for x, y in zip(a, n) if x["art"] == art
+              and (split in ("alle", "para") or x["split"] == split)]
         verloren = [(x, y) for x, y in en if not _eigen(x)[0]]
         zurueck = [(x, y) for x, y in verloren if _eigen(y)[0]]
         r[f"en_{split}"] = {
@@ -190,7 +197,7 @@ def bericht(alt: dict, neu: dict) -> dict:
 
     # 3. Ueber-Trigger-Sweep: NEUE dienst-fremde Treffer gegen den Status quo
     geprueft = Counter()
-    for art in ("de", "en", "themenfremd", "live"):
+    for art in ("de", "en", "para", "themenfremd", "live"):
         paare = [(x, y) for x, y in zip(a, n) if x["art"] == art]
         neu_fremd = []
         status_quo = 0
@@ -229,18 +236,18 @@ def drucke(r: dict) -> None:
           f"neu {r['de_exakt_neu']}/{r['de_phrasings']}")
     print(f"  Muss-Treffer verloren: {len(r['muss_treffer_verloren'])}")
     print("\nRUECKGEWINNUNG (englischer Korpus, eigener Fakt in irgendeinem Pass)")
-    for s in ("dev", "test", "alle"):
+    for s in ("dev", "test", "alle", "para"):
         e = r[f"en_{s}"]
         print(f"  {s:5s} trifft {e['trifft_alt']:3d} -> {e['trifft_neu']:3d} "
               f"von {e['claims']}   zurueck {e['zurueck']}/{e['verloren_alt']} "
               f"({p(e['zurueck'], e['verloren_alt'])})   "
               f"eigener Fakt weg: {e['eigener_fakt_weg']}")
     print("\nUEBER-TRIGGER (neue dienst-fremde Treffer gegen den Status quo)")
-    for art in ("de", "en", "themenfremd", "live"):
+    for art in ("de", "en", "para", "themenfremd", "live"):
         u = r[f"ueber_{art}"]
         print(f"  {art:11s} {u['claims']:5d} Claims   Status quo fremd "
               f"{u['status_quo_fremd']:5d}   NEU {u['neu_fremd']}")
-        if art != "en":
+        if art not in ("en", "para"):
             for t, d, fid in u["beispiele"][:60]:
                 print(f"      + {d}:{fid}  <- {t}")
     print(f"\n  davon EN deckungsgleich mit dem deutschen Quell-Phrasing: "
