@@ -86,6 +86,7 @@ SERIES_MAP = {
         "unit": "%",
         "praefix": True,
         "vorrang": True,
+        "nur_aktuell": True,
         "hinweis": MESSWARNUNG,
     },
     # "Sparzinsen"/"Spareinlagen" sind der OBERBEGRIFF und meinen beide
@@ -104,13 +105,15 @@ SERIES_MAP = {
         "unit": "%",
         "praefix": True,
         "vorrang": True,
+        "nur_aktuell": True,
         "hinweis": MESSWARNUNG,
         "auch_serie": {
             "series": "MIR/M.AT.B.L22.A.R.A.2250.EUR.N",
-            "label": "Zinsen Oesterreich — gebundene Einlagen privater "
+            "label": "Sparzinsen Oesterreich — gebundene Einlagen privater "
                      "Haushalte (Termin-/Festgeld)",
             "label_en": "Austria — deposits with agreed maturity, households",
             "unit": "%",
+            "nur_aktuell": True,
             "hinweis": MESSWARNUNG,
         },
     },
@@ -122,6 +125,7 @@ SERIES_MAP = {
         "unit": "%",
         "praefix": True,
         "vorrang": True,
+        "nur_aktuell": True,
         "hinweis": MESSWARNUNG,
     },
     # "Sparzinsen"/"Spareinlagen" sind der OBERBEGRIFF und meinen beide
@@ -140,13 +144,15 @@ SERIES_MAP = {
         "unit": "%",
         "praefix": True,
         "vorrang": True,
+        "nur_aktuell": True,
         "hinweis": MESSWARNUNG,
         "auch_serie": {
             "series": "MIR/M.AT.B.L22.A.R.A.2250.EUR.N",
-            "label": "Zinsen Oesterreich — gebundene Einlagen privater "
+            "label": "Sparzinsen Oesterreich — gebundene Einlagen privater "
                      "Haushalte (Termin-/Festgeld)",
             "label_en": "Austria — deposits with agreed maturity, households",
             "unit": "%",
+            "nur_aktuell": True,
             "hinweis": MESSWARNUNG,
         },
     },
@@ -158,26 +164,29 @@ SERIES_MAP = {
         "unit": "%",
         "praefix": True,
         "vorrang": True,
+        "nur_aktuell": True,
         "hinweis": MESSWARNUNG,
     },
     "festgeld": {
         "series": "MIR/M.AT.B.L22.A.R.A.2250.EUR.N",
-        "label": "Zinsen Oesterreich — gebundene Einlagen privater "
+        "label": "Sparzinsen Oesterreich — gebundene Einlagen privater "
                  "Haushalte (Termin-/Festgeld)",
         "label_en": "Austria — deposits with agreed maturity, households",
         "unit": "%",
         "praefix": True,
         "vorrang": True,
+        "nur_aktuell": True,
         "hinweis": MESSWARNUNG,
     },
     "termingeld": {
         "series": "MIR/M.AT.B.L22.A.R.A.2250.EUR.N",
-        "label": "Zinsen Oesterreich — gebundene Einlagen privater "
+        "label": "Sparzinsen Oesterreich — gebundene Einlagen privater "
                  "Haushalte (Termin-/Festgeld)",
         "label_en": "Austria — deposits with agreed maturity, households",
         "unit": "%",
         "praefix": True,
         "vorrang": True,
+        "nur_aktuell": True,
         "hinweis": MESSWARNUNG,
     },
     # Exchange rates
@@ -453,6 +462,18 @@ def _parse_sdmx_json(data: dict, series_info: dict, historical: bool = False) ->
                 })
     except Exception as e:
         logger.error(f"ECB JSON parse error: {e}")
+
+    # Per-Source-Cap: Der Synthesizer nimmt je Quelle nur die besten drei
+    # Treffer. Sechs Beobachtungen JE REIHE fuellen ihn allein mit der
+    # ersten Reihe — am 27.9.2026 live gemessen: Bei "Die Sparzinsen
+    # liegen bei 2 Prozent" standen im Prompt dreimal der taeglich
+    # faellige Satz (0,43 %) und kein einziges Mal der gebundene (2,10 %),
+    # der die Behauptung fast genau trifft. Fuer die Messgroessen-Paare
+    # zaehlt deshalb nur der juengste Wert; der Verlauf steht in seinem
+    # Titel. Historische Claims bleiben unberuehrt, dort IST die Reihe die
+    # Aussage.
+    if series_info.get("nur_aktuell") and not historical and len(results) > 1:
+        results = results[-1:]
 
     return results
 
