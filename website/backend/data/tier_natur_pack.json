@@ -347,7 +347,7 @@
           "data": {
                 "kernsatz_fuer_synthesizer": "Die Aussage 'streng geschützt' war bis 2025 richtig und ist es seither nicht mehr ohne Zusatz: Der strenge Schutz nach Artikel 12 FFH-Richtlinie gilt für den Wolf nicht mehr, an seine Stelle tritt Artikel 14. Herabgestuft heißt nicht freigegeben — die Mitgliedstaaten müssen weiterhin einen günstigen Erhaltungszustand sicherstellen, und sie dürfen den Wolf national strenger schützen. Ob er in Österreich streng geschützt ist, hängt deshalb vom jeweiligen Bundesland ab.",
                 "eu_entscheidung": "Das Europäische Parlament stimmte am 8. Mai 2025 mit 371 Stimmen dafür, 162 dagegen und 37 Enthaltungen für die Herabstufung von 'streng geschützt' auf 'geschützt'. Die Richtlinie tritt 20 Tage nach ihrer Veröffentlichung im Amtsblatt in Kraft und ist von den Mitgliedstaaten binnen 18 Monaten umzusetzen.",
-                "berner_konvention": "Vorausgegangen war die Berner Konvention: Der Wolf wurde dort von Anhang II auf Anhang III herabgestuft, wirksam im März 2025. Erst dadurch konnte die EU ihre eigene Richtlinie anpassen, weil sie an die Konvention gebunden ist.",
+                "berner_konvention": "Vorausgegangen war die Berner Konvention: Ihr Ständiger Ausschuss billigte den EU-Vorschlag am 6.12.2024, wirksam wurde die Herabstufung von Anhang II auf Anhang III am 7.3.2025 nach Ablauf der dreimonatigen Einspruchsfrist. Monaco, Tschechien und das Vereinigte Königreich legten Einspruch ein; für sie gilt sie nicht.",
                 "was_bleibt": "Artikel 14 FFH-Richtlinie verpflichtet die Mitgliedstaaten, die Entnahme von Anhang-V-Arten mit einem günstigen Erhaltungszustand vereinbar zu halten. Die Pflicht zum Monitoring des Erhaltungszustands bleibt bestehen. Laut Europäischem Parlament steht es den Staaten frei, den Wolf national weiterhin als streng geschützte Art einzustufen.",
                 "oesterreich_zustaendigkeit": "Naturschutz und Jagd sind in Österreich Landessache. Der Schutzstatus des Wolfs wird in den Landesnaturschutz- und Landesjagdgesetzen der neun Bundesländer umgesetzt, die sich unterscheiden. Eine bundesweit einheitliche Antwort auf 'Ist der Wolf in Österreich streng geschützt?' gibt es deshalb nicht.",
                 "context": "Pack ist empirisch-deskriptiv. Dieser Fakt beschreibt die Rechtslage und bewertet sie nicht. Die EU-Ebene ist mit Datum, Abstimmungsergebnis und Artikeln belegt; die Ebene der neun Landesgesetze ist hier bewusst nur als Zuständigkeit benannt, nicht im Einzelnen ausgeführt."
@@ -355,7 +355,8 @@
           "context_notes": [
                 "Datenstand: Pressemitteilung des Europäischen Parlaments vom 8.5.2025 und ÖKOBÜRO-Rechtsanalyse vom Mai 2025, beide am 27.9.2026 geprüft.",
                 "Bewusst NICHT im Fakt: die einzelnen Regelungen der neun Bundesländer. Dafür wären neun Primärquellen aus dem RIS nötig, die sich zudem laufend ändern; eine unvollständige Aufzählung wäre schlechter als der Hinweis auf die Zuständigkeit.",
-                "Die Formulierung vermeidet 'der Wolf darf jetzt geschossen werden': Die Herabstufung ändert die Rechtsgrundlage, nicht automatisch die Zulässigkeit einer Entnahme."
+                "Die Formulierung vermeidet 'der Wolf darf jetzt geschossen werden': Die Herabstufung ändert die Rechtsgrundlage, nicht automatisch die Zulässigkeit einer Entnahme.",
+        "Korrigiert 2026-09-27: Der Fakt nannte nur das Wirksamkeitsdatum. Der Claim 'Die Berner Konvention hat den Wolf 2024 herabgestuft' wurde deshalb als schlicht falsch abgetan, obwohl der Beschluss am 6.12.2024 fiel — beide Daten stehen jetzt da, samt Einspruchsfrist."
           ],
           "claim_phrasings_handled": [
                 "Der Wolf ist in Österreich streng geschützt",
