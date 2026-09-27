@@ -688,6 +688,172 @@ def summary_bestaetigt_vergleich(claim_lc: str, summary_lc: str) -> bool:
     return False
 
 
+# --- Muster P: Vergleichs-Claim gegen die Zahlen beider Seiten (HART40) --
+# Muster O prueft, ob die Summary den Vergleich in WORTEN bejaht. Das half
+# beim Ausloeser nicht immer: Er kam live in einer fuenften Formulierung.
+# Muster P rechnet stattdessen — wie N, aber mit zwei Gegenstaenden:
+#
+#   "Die ÖBB sind puenktlicher als die Deutsche Bahn"
+#   -> ÖBB 78,2-88,7 %, Deutsche Bahn 62,5 %  -> 78,2 > 62,5 -> wahr
+#
+# Drei Stellen, an denen es schiefgehen kann, und was dagegen steht:
+#
+#  1. ZUORDNUNG ueber Abkuerzungen. "Deutsche Bahn" steht in der Summary
+#     auch als "DB". Mehrwort-Operanden bekommen daher ihr Akronym als
+#     Alias (Anfangsbuchstaben, ab 2 Woertern).
+#  2. RICHTUNG des Komparativs. "puenktlicher" heisst mehr Prozent,
+#     "guenstiger" weniger Euro. Nur Komparative aus einer kuratierten
+#     Liste zaehlen; alles andere laesst das Muster schweigen.
+#  3. EINHEIT. Verglichen wird nur, wenn beide Seiten dieselbe Einheit
+#     tragen (beide Prozent, beide blank). Sonst schweigt es.
+#
+# Spannen werden konservativ gelesen: Erst wenn die ungaenstigste Zahl der
+# einen Seite die guenstigste der anderen schlaegt, gilt der Vergleich als
+# entschieden. Ueberlappen die Spannen, entscheidet das Muster nicht.
+_P_GROESSER = frozenset({
+    "hoeher", "mehr", "groesser", "teurer", "schneller", "laenger", "aelter",
+    "haeufiger", "oefter", "staerker", "puenktlicher", "reicher", "weiter",
+})
+_P_KLEINER = frozenset({
+    "niedriger", "weniger", "kleiner", "billiger", "guenstiger", "langsamer",
+    "kuerzer", "juenger", "seltener", "schwaecher", "aermer", "geringer",
+})
+_P_ZAHL_RE = re.compile(r"(\d[\d.]*(?:,\d+)?)\s*(%|prozent)?")
+
+
+def _p_aliase(woerter) -> set:
+    """Operanden-Woerter plus das Akronym des Mehrwort-Namens.
+
+    ``["deutsche", "bahn"]`` -> zusaetzlich ``"db"``. Ohne diesen Alias
+    findet die Zuordnung die Zahl nicht, wenn die Summary die Kurzform
+    benutzt — der Grund, warum Muster P ueberhaupt eine eigene Funktion
+    dafuer hat. Die REIHENFOLGE zaehlt: aus sortierten Woertern wuerde
+    "bd" statt "db".
+    """
+    geordnet = [normalisiere(w) for w in woerter]
+    aus = set(geordnet)
+    lang = [w for w in geordnet if len(w) >= 4]
+    if len(lang) >= 2:
+        aus.add("".join(w[0] for w in lang))
+    return aus
+
+
+def _p_naechste_stelle(text: str, aliase) -> list:
+    """Alle Fundstellen der Aliase im Text."""
+    stellen = []
+    for a in aliase:
+        stellen.extend(m.start() for m in re.finditer(re.escape(a), text))
+    return stellen
+
+
+def zahlen_beider_seiten(a_woerter, b_woerter, summary_lc: str):
+    """Ordnet jede Zahl der Summary der NAEHEREN der beiden Seiten zu.
+
+    Rueckgabe ``(a_spanne, b_spanne, einheit)`` oder None.
+
+    Die Zuordnung ueber ein festes Fenster reicht hier nicht: In
+    "ÖBB ... 78,2-88,7 % ... waehrend die Deutsche Bahn ... 62,5 %" liegen
+    beide Namen im +-70-Zeichen-Fenster der oberen Zahl, und 88,7 landete
+    auf beiden Seiten. Entschieden wird deshalb nach Abstand — und nur,
+    wenn eine Seite eindeutig naeher ist.
+    """
+    summary_n = normalisiere(summary_lc)
+    a_stellen = _p_naechste_stelle(summary_n, _p_aliase(a_woerter))
+    b_stellen = _p_naechste_stelle(summary_n, _p_aliase(b_woerter))
+    if not a_stellen or not b_stellen:
+        return None
+
+    roh = []
+    for m in _P_ZAHL_RE.finditer(summary_n):
+        z = m.group(1)
+        if re.fullmatch(r"(19|20)\d\d", z.replace(".", "")):
+            continue
+        if _is_bound_or_age(summary_n, m.start(), m.end()):
+            continue
+        wert = _parse_de_number(z, summary_n[m.end():m.end() + 14])
+        if wert is None:
+            continue
+        roh.append((m.start(), wert, "%" if m.group(2) else ""))
+    if not roh:
+        return None
+
+    # Traegt eine Zahl eine Einheit, zaehlen nur Zahlen mit dieser Einheit
+    # — plus der Spannen-Anfang direkt davor ("78,2-88,7 %" nennt das
+    # Prozent nur einmal). Sonst mischt sich "(5 Minuten)" darunter.
+    mit = [t for t in roh if t[2]]
+    if mit:
+        einheit = mit[0][2]
+        gewaehlt = list(mit)
+        belegt = {t[0] for t in mit}
+        for stelle, wert, _ in roh:
+            if stelle in belegt:
+                continue
+            if any(0 < m_stelle - stelle <= 10 for m_stelle, _w, _u in mit):
+                gewaehlt.append((stelle, wert, einheit))
+    else:
+        einheit = ""
+        gewaehlt = roh
+
+    # Zugeordnet wird nach der zuletzt DAVOR genannten Seite, nicht nach
+    # blossem Abstand. Der Abstand scheitert an der Satzstellung: In
+    # "Die ÖBB wiesen ... 78,2-88,7 % auf, waehrend die Deutsche Bahn ...
+    # 62,5 % erreichte" steht "ÖBB" ganz vorn und "Deutsche Bahn" in der
+    # Mitte — nach Abstand landeten ALLE Zahlen bei der zweiten Seite.
+    # Deutsche Saetze nennen den Traeger vor seiner Zahl; genau das wird
+    # hier ausgenutzt.
+    a_werte, b_werte = [], []
+    for stelle, wert, _ in gewaehlt:
+        davor_a = [x for x in a_stellen if x < stelle]
+        davor_b = [x for x in b_stellen if x < stelle]
+        letzte_a = max(davor_a) if davor_a else None
+        letzte_b = max(davor_b) if davor_b else None
+        if letzte_a is None and letzte_b is None:
+            continue
+        if letzte_b is None or (letzte_a is not None and letzte_a > letzte_b):
+            if stelle - letzte_a <= 160:
+                a_werte.append(wert)
+        else:
+            if stelle - letzte_b <= 160:
+                b_werte.append(wert)
+    if not a_werte or not b_werte:
+        return None
+    return (min(a_werte), max(a_werte)), (min(b_werte), max(b_werte)), einheit
+
+
+def vergleich_rechnerisch(claim_lc: str, summary_lc: str):
+    """``True``/``False``, wenn die Zahlen beider Seiten den Claim
+    entscheiden — sonst ``None``."""
+    zerlegt = vergleich_aus_claim(claim_lc)
+    if not zerlegt:
+        return None
+    subjekt, komparativ, partner = zerlegt
+    # Reihenfolge aus dem Claim zurueckholen — fuer das Akronym noetig.
+    _reihe = [normalisiere(w) for w in re.findall(r"[a-zäöüßa-z]{3,}", claim_lc)]
+    subjekt = [w for w in _reihe if w in subjekt]
+    partner = [w for w in _reihe if w in partner]
+    if komparativ in _P_GROESSER:
+        groesser_ist_wahr = True
+    elif komparativ in _P_KLEINER:
+        groesser_ist_wahr = False
+    else:
+        return None                       # Richtung unbekannt
+    gemessen = zahlen_beider_seiten(subjekt, partner, summary_lc)
+    if not gemessen:
+        return None
+    (a_min, a_max), (b_min, b_max), _einheit = gemessen
+    if groesser_ist_wahr:
+        if a_min > b_max:
+            return True
+        if a_max < b_min:
+            return False
+    else:
+        if a_max < b_min:
+            return True
+        if a_min > b_max:
+            return False
+    return None                           # Spannen ueberlappen
+
+
 def _summary_refutes_superlative(claim_lower, summary_lower):
     """True, wenn die Summary den Superlativ einem ANDEREN Land als dem
     Claim-Subjekt zuschreibt oder ihn fürs Claim-Subjekt explizit verneint
@@ -2048,6 +2214,26 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                         f"{_n_wert:g} zu (Anker: {sorted(_n_woerter)}) — "
                         f"Label '{_n_alt}' auf '{_n_ziel}' korrigiert."
                     )
+
+    # --- Muster P: Vergleichs-Claim gegen die Zahlen beider Seiten ---
+    # Vor Muster O, weil Rechnen praeziser ist als das Wort-Muster: P
+    # entscheidet in BEIDE Richtungen, O nur die eine. Siehe
+    # vergleich_rechnerisch().
+    _p_summary = (result.get("summary") or "").lower()
+    if result.get("verdict") in ("true", "mostly_true", "false", "mostly_false") and _p_summary:
+        _p_wahr = vergleich_rechnerisch(_claim_lc, _p_summary)
+        if _p_wahr is not None:
+            _p_ziel = "true" if _p_wahr else "false"
+            _p_alt = result["verdict"]
+            if ((_p_wahr and _p_alt in ("false", "mostly_false"))
+                    or (not _p_wahr and _p_alt in ("true", "mostly_true"))):
+                result["verdict"] = _p_ziel
+                logger.warning(
+                    f"Muster P (Vergleich gerechnet): Die Summary schreibt "
+                    f"beiden Seiten Zahlen zu, die den Claim "
+                    f"{'bestaetigen' if _p_wahr else 'widerlegen'} — Label "
+                    f"'{_p_alt}' auf '{_p_ziel}' korrigiert."
+                )
 
     # --- Muster O: Vergleichs-Claim gegen die eigene Begruendung (HART40) ---
     # Der Claim vergleicht zwei Groessen ("A ist puenktlicher als B"), die
