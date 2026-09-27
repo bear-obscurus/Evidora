@@ -206,3 +206,63 @@ def test_prompt_felder_bleiben_unter_der_kuerzung():
 def test_datenstand_ist_benannt():
     notiz = " ".join(F["context_notes"])
     assert "26.9.2026" in notiz and "29.10.2022" in notiz
+
+
+# --------------------------------------------------------------------------
+# Der Guard sperrt die Länderdaten, nicht die Antwort
+# --------------------------------------------------------------------------
+# Live-Befund vom 27.9.2026, direkt nach dem Deploy des Fakts: "Die FPÖ ist
+# die korrupteste Partei Österreichs" bekam weiter unverifiable mit "die
+# bereitgestellten Quellen enthalten keine relevanten Daten" — der Fakt kam
+# gar nicht an. `claim_mentions_demokratie_cached` sperrte bei einem
+# Partei-Korruptions-Superlativ das GANZE Pack, weil es sonst nur
+# Country-Level-Quellen führt (V-Dem, FH, CPI, RSF, IDEA, Eurobarometer).
+# Seit es einen Fakt gibt, der genau diese Frage beantwortet, lief die
+# Sperre gegen ihren eigenen Zweck. Jetzt filtert sie: Fakten mit
+# `partei_korruption_tauglich` gehen durch, die Länderdaten nicht.
+
+from services import demokratie_pack as dp  # noqa: E402
+
+
+def test_der_fakt_traegt_die_eignung_selbst():
+    assert F.get("partei_korruption_tauglich") is True
+
+
+def test_kein_anderer_fakt_des_packs_ist_markiert():
+    """Die Markierung ist eine Ausnahme, kein Default."""
+    markiert = [f["id"] for f in PACK["facts"] if f.get("partei_korruption_tauglich")]
+    assert markiert == ["parteien_korruption_datenlage_2026"]
+
+
+@pytest.mark.parametrize("claim", [
+    "Die FPÖ ist die korrupteste Partei Österreichs",
+    "Welche Partei in Österreich hatte die meisten Korruptionsfälle?",
+    "Alle Parteien in Österreich sind gleich korrupt",
+])
+def test_superlativ_bekommt_genau_den_einen_fakt(claim):
+    ids = [f.get("id") for f in dp._erlaubte_fakten(claim)]
+    assert ids == ["parteien_korruption_datenlage_2026"], (claim, ids)
+    assert dp.claim_mentions_demokratie_cached(claim) is True
+
+
+def test_laenderdaten_bleiben_beim_superlativ_draussen():
+    """Der Kern des Guards: Der CPI-Fakt trifft den Claim zwar, darf aber
+    nicht ausgeliefert werden — ein Länderwert bewertet keine Partei."""
+    claim = "Welche Partei in Österreich hatte die meisten Korruptionsfälle?"
+    alle = [f.get("id") for f in dp._claim_matches_facts(claim.lower(), full_claim=claim)]
+    erlaubt = [f.get("id") for f in dp._erlaubte_fakten(claim)]
+    assert "korruption_index_2026" in alle
+    assert "korruption_index_2026" not in erlaubt
+
+
+def test_ohne_superlativ_wird_nichts_gefiltert():
+    claim = "Gibt es eine Rangliste der Parteien nach Korruption?"
+    ids = sorted(f.get("id") for f in dp._erlaubte_fakten(claim))
+    assert "korruption_index_2026" in ids
+    assert "parteien_korruption_datenlage_2026" in ids
+
+
+def test_normale_demokratie_claims_unberuehrt():
+    ids = [f.get("id") for f in dp._erlaubte_fakten(
+        "Wie zufrieden sind die Österreicher mit ihrer Demokratie?")]
+    assert ids == ["at_demokratie_zufriedenheit_2026"]
