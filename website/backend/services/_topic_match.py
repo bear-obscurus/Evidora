@@ -47,6 +47,7 @@ from services._static_cache import load_json_mtime_aware
 from services._englisch import englisch_match, englische_fassung
 from services._flexion import trifft_mit_wortgrenze, wortgrenzen_fassung
 from services._schreibweise import normalisiere, norm_terme
+from services._wortformen import mit_wortformen
 from services._tippfehler import tippfehler_match
 from services._reranker_backup import best_matches as _backup_best_matches
 
@@ -93,16 +94,24 @@ def substring_or_composite_match(item: dict, claim_lc: str) -> bool:
     for kw in item.get("trigger_keywords") or ():
         if trifft(kw):
             return True
+    # Seit 2026-09-27 zaehlen in den Alternations-Gruppen auch die
+    # attestierten WORTFORMEN ihrer Mitglieder: Eine Gruppe mit "frauen"
+    # trifft auch "weibliche". Gemessen war "Österreich 2024: mehr
+    # männliche als weibliche Mordopfer" unverifiable, waehrend drei
+    # andere Formulierungen derselben Frage den Fakt trafen. Nur hier,
+    # NICHT bei trigger_keywords — siehe services/_wortformen.py.
     composite = item.get("trigger_composite") or []
     if composite and all(
-        isinstance(alt, (list, tuple)) and any(trifft(tok) for tok in alt)
+        isinstance(alt, (list, tuple))
+        and any(trifft(tok) for tok in mit_wortformen(alt))
         for alt in composite
     ):
         return True
     # Optional 2. Pattern: Liste von Regeln, je AND-of-OR
     for rule in item.get("trigger_all") or ():
         if rule and all(
-            isinstance(alt, (list, tuple)) and any(trifft(tok) for tok in alt)
+            isinstance(alt, (list, tuple))
+            and any(trifft(tok) for tok in mit_wortformen(alt))
             for alt in rule
         ):
             return True
