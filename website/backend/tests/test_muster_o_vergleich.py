@@ -156,3 +156,51 @@ def test_der_zweite_treffer_aus_dem_sweep_bleibt_folgenlos():
     assert summary_bestaetigt_vergleich(claim.lower(), summary.lower())
     r = _lauf("true", summary=summary, claim=claim)
     assert r["verdict"] == "true"
+
+
+# --------------------------------------------------------------------------
+# Der Wiederholungssatz (Live-Regression 27.9.2026)
+# --------------------------------------------------------------------------
+# Eine Stunde nach dem Deploy live gemessen und zurueckgenommen: Der
+# GEGENTEILIGE Claim wurde faelschlich auf true korrigiert.
+#
+#   Claim:   "Die Deutsche Bahn ist pünktlicher als die ÖBB"   (falsch)
+#   Summary: "Die Behauptung sagt, die Deutsche Bahn (DB) sei pünktlicher
+#             als die ÖBB. ... Damit ist die DB deutlich weniger pünktlich
+#             als die ÖBB."
+#
+# Der erste Satz REFERIERT den Claim, bevor die Summary ihn widerlegt. Er
+# traegt den Komparativ des Claims wörtlich und das Subjekt davor — fuer
+# die erste Fassung sah er aus wie eine Bestaetigung.
+
+GEGEN_CLAIM = "Die Deutsche Bahn ist pünktlicher als die ÖBB"
+GEGEN_SUMMARY = (
+    "Die Behauptung sagt, die Deutsche Bahn (DB) sei pünktlicher als die ÖBB. "
+    "Daten zeigen: DB Fernverkehr 2024 bei 62,5 % Pünktlichkeit "
+    "(6-Min-Toleranz), ÖBB Fernverkehr bei 78,2–88,7 % (5-Min-Toleranz). "
+    "Damit ist die DB deutlich weniger pünktlich als die ÖBB."
+)
+
+
+def test_referat_des_claims_ist_keine_bestaetigung():
+    assert not summary_bestaetigt_vergleich(GEGEN_CLAIM.lower(), GEGEN_SUMMARY.lower())
+
+
+@pytest.mark.parametrize("eingang", ["false", "mostly_false"])
+def test_der_gegenteilige_claim_bleibt_verneint(eingang):
+    r = _lauf(eingang, summary=GEGEN_SUMMARY, claim=GEGEN_CLAIM)
+    assert r["verdict"] == eingang, r["verdict"]
+
+
+@pytest.mark.parametrize("satz", [
+    "Die Behauptung, die ÖBB seien pünktlicher als die Deutsche Bahn, wird geprüft.",
+    "Behauptet wird, die ÖBB seien pünktlicher als die Deutsche Bahn.",
+    "Die Aussage lautet, die ÖBB seien pünktlicher als die Deutsche Bahn.",
+])
+def test_referats_formeln_zaehlen_nicht(satz):
+    assert not summary_bestaetigt_vergleich(CLAIM.lower(), satz.lower()), satz
+
+
+def test_der_ausloeser_wird_weiterhin_erkannt():
+    """Der Wiederholungs-Guard darf den eigentlichen Fall nicht mitnehmen."""
+    assert summary_bestaetigt_vergleich(CLAIM.lower(), SUMMARY.lower())
