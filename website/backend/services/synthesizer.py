@@ -395,6 +395,11 @@ Thematische Relevanz (SEHR WICHTIG):
 - Lieber WENIGER aber relevante Evidenz als MEHR aber thematisch falsche Evidenz
 - Wenn nach dem Relevanzfilter keine Evidenz übrig bleibt, setze verdict auf "unverifiable"
 
+MEHRERE MESSGRÖSSEN ZU DERSELBEN FRAGE (nicht "unverifiable"):
+- Liefern die Quellen zu einer allgemein gestellten Frage MEHRERE benannte Messgrößen derselben Sache — etwa "Sparzinsen" mit täglich fälligen Einlagen 0,43 % UND gebundenen Einlagen 2,10 % —, dann ist die Frage BEANTWORTBAR. Nenne alle Werte mit ihrer Bezeichnung und gib ein Verdict.
+- "unverifiable" ist in diesem Fall NICHT zulässig, nur weil der Claim die Untergröße ("Sparbuch" oder "Festgeld") nicht benennt. Die Antwort lautet dann "je nach X 0,43 % bzw. 2,10 %", nicht "nicht beantwortbar".
+- ABGRENZUNG: Diese Regel gilt NUR, wenn die Werte in den vorliegenden Quellen stehen. Fehlen sie, bleibt "unverifiable" richtig. Sie hebelt auch die Kategorienfehler-Regeln unten NICHT aus: Normative, theologische, ästhetische und Prognose-Claims bleiben "unverifiable", selbst wenn Zahlen danebenstehen.
+
 Kategorienfehler-Detection (WICHTIG — NICHT mit verdict 'true'/'false' beantworten):
 - THEOLOGISCH-WELTANSCHAULICHE Behauptungen über transzendente Realitäten ("Gott existiert", "Gott ist tot", "Es gibt ein Leben nach dem Tod", "Die Seele ist unsterblich", "Engel existieren", "Reinkarnation gibt es wirklich", "Jesus ist der Sohn Gottes", "Mohammed war Prophet") sind KEINE empirisch entscheidbaren Faktenaussagen — verdict MUSS "unverifiable" sein, Konfidenz 0.10-0.20, nuance mit Erklärung "theologisch-philosophischer Charakter, nicht empirisch prüfbar".
 - PHILOSOPHISCHE Behauptungen über Sinn / freien Willen / Bewusstsein ("Das Leben hat einen Sinn", "Der freie Wille existiert", "Bewusstsein ist materiell reduzierbar") sind philosophische Positionen — verdict "unverifiable" mit Hinweis "philosophische Streitfrage".
