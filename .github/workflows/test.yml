@@ -394,6 +394,7 @@ jobs:
             tests/test_frontend_cache_header.py \
             tests/test_englisch_trigger.py \
             tests/test_parteien_korruption_datenlage.py \
+            tests/test_wolf_schutzstatus.py \
             tests/test_tempolimit_zuordnung.py \
             tests/test_qa50b_rest.py \
             tests/test_wortgrenzen_trigger.py \

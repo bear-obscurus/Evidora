@@ -157,8 +157,18 @@ def find_matching_items(
     # und greift hier zentral — auch fuer Packs, die ihn selbst nicht rufen.
     # Provenance exact=False wie beim toleranten Pass. Siehe
     # services/_englisch.py.
-    if englische_fassung(claim_lc) and politik_guard_action(claim_lc) == "pass":
+    if englische_fassung(claim_lc):
         englisch = [it for it in items if englisch_match(it, claim_lc)]
+        if politik_guard_action(claim_lc) != "pass":
+            # Filtern statt sperren (27.9.2026, dieselbe Lehre wie in
+            # services/demokratie_pack.py): Bis hierher uebersprang der
+            # englische Pass bei einem Partei-Korruptions-Superlativ ALLE
+            # Packs. Gemeint war, Laenderquellen (CPI, WGI, V-Dem)
+            # fernzuhalten — getroffen wurde auch der eine Fakt, der die
+            # Frage beantwortet. Der deutsche Claim bekam seit #213 die
+            # richtige Antwort, der englische nicht. Fakten tragen die
+            # Eignung selbst; ohne Markierung bleibt es beim Block.
+            englisch = [it for it in englisch if it.get("partei_korruption_tauglich")]
         if englisch:
             return _tag_provenance(englisch, exact=False)
     if not full_claim or descriptor_fn is None:

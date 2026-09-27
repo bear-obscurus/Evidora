@@ -163,8 +163,17 @@ def test_zeitreihe_aus_dem_auszug(connector, stelle):
 def test_verschlechterung_seit_2019(connector):
     _, daten = connector
     delta = _score(daten, "AUT", 2019) - _score(daten, "AUT", _jahr(daten))
+    # Zwei Schreibweisen, seit die dritte Stelle am 27.9.2026 umformuliert
+    # wurde: Dort stand "'AT-Korruption hat zugenommen' faktisch korrekt
+    # (-10 P. seit 2019)" — eine Tatsachenbehauptung ueber Korruption, die
+    # der CPI nicht hergibt (er misst Wahrnehmung). Der Satz nennt die Zahl
+    # jetzt als "um 10 Punkte schlechter bewertet".
     genannt = [int(d) for d in re.findall(
         r"-(\d{1,2}) P\.(?: seit 2019| 2019-2024)", FAKT_TEXT)]
+    genannt += [int(d) for d in re.findall(
+        r"seit 2019 um (\d{1,2}) Punkte schlechter", FAKT_TEXT)]
+    genannt += [int(d) for d in re.findall(
+        r"verlor seit 2019 (\d{1,2}) Punkte", FAKT_TEXT)]
     assert len(genannt) >= 3, genannt
     assert set(genannt) == {delta}, f"Pack {genannt}, Auszug -{delta}"
 
@@ -224,3 +233,63 @@ def test_schlusslicht_aus_dem_auszug(connector):
     assert genannt == {c: _score(daten, c, jahr) for c in genannt}
     letzte = sorted((j[jahr]["score"], c) for c, j in daten.items() if jahr in j)[:3]
     assert {c for _, c in letzte} == set(genannt)
+
+
+# --------------------------------------------------------------------------
+# Keine Kausal-Zuschreibung in eigener Stimme (27.9.2026)
+# --------------------------------------------------------------------------
+# Überschrift und Zeitreihe schrieben die Verschlechterung ursächlich
+# benannten Affären und einer Partei zu ("AT-Verschlechterung wegen
+# ÖVP-Chats + Casinos-Affäre + Ibiza", "Hauptursachen: ..."). Transparency
+# International Austria behauptet zwar einen Zusammenhang, nennt aber zum
+# CPI 2021 ausdrücklich KEINE einzelnen Fälle als Ursache, sondern nicht
+# umgesetzte Anti-Korruptionsvorhaben und "Skandale auf höchster
+# politischer Ebene". Die Zuschreibung gehört damit zitiert, nicht
+# behauptet — Projektregel: Klassifikationen nur zitieren.
+
+import json as _json
+from pathlib import Path as _Path
+
+_PACK = _json.loads(
+    (_Path(__file__).resolve().parents[1] / "data" / "demokratie_pack.json")
+    .read_text(encoding="utf-8"))
+_CPI = next(x for x in _PACK["facts"] if x["id"] == "korruption_index_2026")
+_TEXT = _CPI["headline"] + " " + _json.dumps(_CPI["data"], ensure_ascii=False)
+
+
+def test_keine_ursachen_behauptung_in_eigener_stimme():
+    for formel in ("Verschlechterung wegen", "Hauptursachen:", "Ursache:", "verursacht durch"):
+        assert formel not in _TEXT, formel
+
+
+def test_die_zuschreibung_ist_zitiert_und_datiert():
+    z = _CPI["data"]["at_verschlechterung_zeitreihe"]
+    assert "Transparency International Austria" in z
+    assert "CPI 2021" in z
+    assert "ohne einzelne Fälle zu benennen" in z
+
+
+def test_die_affaeren_bleiben_beschreibend_im_fakt():
+    """Die Affären selbst sind Tatsachen und bleiben drin — nur nicht mehr
+    als Ursache des Indexwerts."""
+    a = _CPI["data"]["at_affaeren_2019_2024"]
+    assert "Casinos-Affäre" in a and "Ibiza" in a
+    assert "Ursache" not in a and "wegen" not in a
+
+
+def test_zeitreihe_bleibt_unter_der_kuerzung():
+    assert len(_CPI["data"]["at_verschlechterung_zeitreihe"]) <= 400
+
+
+def test_zugenommen_wird_nicht_als_tatsache_bestaetigt():
+    """Der Fakt sagt selbst, dass der CPI WAHRNEHMUNG misst — dann darf er
+    'AT-Korruption hat zugenommen' nicht als 'faktisch korrekt' abnicken."""
+    k = _CPI["data"]["kernsatz_fuer_synthesizer"]
+    assert "faktisch korrekt (-10 P" not in k
+    assert "nicht belegbar, weil er Wahrnehmung misst" in k
+    assert "wahrgenommene Korruption seit 2019 um 10 Punkte schlechter bewertet" in k
+
+
+def test_die_affaeren_stehen_ohne_ursachen_anspruch():
+    k = _CPI["data"]["kernsatz_fuer_synthesizer"]
+    assert "ohne sie als Ursache des Indexwerts auszuweisen" in k
