@@ -218,9 +218,6 @@ def test_bekannte_reste_haben_eine_andere_ursache():
     schuld. Wer einen davon schliesst, dreht die Zeile um."""
     reste = [
         # (Fakt, Claim, warum)
-        ("frauenquote_wirksamkeit_2026",
-         "Männliche Führungskräfte dominieren die Aufsichtsräte",
-         "Token 'aufsichtsrat' trifft nicht in 'Aufsichtsräte' — Umlaut-Plural"),
         ("gender_care_gap_2026",
          "Weibliche Erwerbstätige leisten mehr unbezahlte Arbeit",
          "'unbezahlte Arbeit' fehlt als Themenwort"),
@@ -286,6 +283,14 @@ ERLAUBT_FREMD = {
         "In Österreich vertrauen die Menschen dem Parlament mehr als im EU-Schnitt",
     },
     "vereinbarkeit_familie_beruf_2026": {
+        # Beide seit dem Umlaut-Plural-Pass (28.9.2026): "Mütter" und
+        # "Vaeter" sind echte Umlaut-Plurale und erfuellen die
+        # Personen-Gruppe dieses Fakts. Das KBG-Paar ist am Thema (Vaeter +
+        # Kinderbetreuungsgeld gehoeren zur Vereinbarkeit), das Stillzeit-Paar
+        # ist der eine gesichtete Ueber-Trigger aus 1.898 Umlaut-Claims.
+        # Begruendung in tests/test_umlaut_plural.py.
+        "Mütter werden während Stillzeit nicht schwanger",
+        "Vaeter nehmen kein KBG",
         "Karenz hat keinen Lohn-Effekt",
         "Karenz schadet der Karriere nicht",
         "Karenz vernichtet Karriere komplett",
