@@ -23,6 +23,7 @@ Eingang: ``result`` (LLM-Output-Dict), ``source_results`` (gerankte Quellen),
 import logging
 import re
 
+from services._satzgrenzen import teile_in_einheiten
 from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
@@ -586,6 +587,94 @@ def zahl_zum_claim_gegenstand(claim_lower, summary_lower, schwelle_roh):
         if anzahl == kandidaten[0][0] and wert != kandidaten[0][1]:
             return None                                # keine eindeutige Zuschreibung
     return kandidaten[0][1], kandidaten[0][2]
+
+
+# --- Muster O: Vergleichs-Claim gegen die eigene Begruendung (HART40) ----
+# "Die ÖBB sind pünktlicher als die Deutsche Bahn" -> mostly_false@0.85,
+# waehrend die Summary sagt: "ÖBB 78,2-88,7 % ... DB nur 62,5 % ... Selbst
+# bei strengerer Definition sind die ÖBB deutlich puenktlicher als die DB."
+# Das Label verneint, was die Begruendung im selben Text bejaht.
+#
+# Muster M greift nicht (keine Umdeutungs-Formel), Muster N auch nicht: Der
+# Claim nennt KEINE Schwellenzahl, es ist ein reiner Vergleich. Deshalb hier
+# nicht rechnen, sondern die Aussage selbst vergleichen — literal:
+#
+#   1. Der Claim hat die Form "A ist/sind <komparativ> als B".
+#   2. Ein Satz der Summary enthaelt denselben Komparativ mit "als",
+#      nennt A davor, ist nicht verneint und nicht im Konjunktiv.
+#   3. Der zweite Vergleichspartner B kommt irgendwo in der Summary vor.
+#
+# Dann bejaht die Begruendung den Claim, und ein verneinendes Label
+# widerspricht ihr. Bewusst nur diese Richtung: Aus einer Bestaetigung ein
+# "true" zu machen ist belegt; der umgekehrte Fall (Summary dreht den
+# Vergleich um) braucht eine Operanden-Zuordnung ueber Abkuerzungen hinweg
+# ("Deutsche Bahn" -> "DB") und ist ein eigener Schritt.
+_O_KOMPARATIV_RE = re.compile(
+    r"\b([a-zäöüß]{4,})er\s+als\b"
+)
+_O_HEDGE = (
+    "könnte", "koennte", "möglicherweise", "moeglicherweise", "vermutlich",
+    "wäre", "waere", "würde", "wuerde", "dürfte", "duerfte", "angeblich",
+    "hypothetisch", "sofern", "falls",
+)
+_O_NEGATION = ("nicht", "kein", "keine", "keinen", "weniger", "kaum")
+
+
+def vergleich_aus_claim(claim_lc: str):
+    """``(subjekt_woerter, komparativ_wort, partner_woerter)`` oder None.
+
+    Zurueckgegeben wird das vollstaendige Komparativ-Wort ("puenktlicher"),
+    normalisiert — danach wird in der Summary gesucht.
+    """
+    m = _O_KOMPARATIV_RE.search(claim_lc)
+    if not m:
+        return None
+    komparativ = normalisiere(m.group(1) + "er")
+    vorn = claim_lc[:m.start()]
+    hinten = claim_lc[m.end():]
+    subjekt = {normalisiere(w) for w in re.findall(r"[a-zäöüßa-z]{3,}", vorn)
+               if normalisiere(w) not in _N_STOPP and w not in ("ist", "sind", "die", "der", "das")}
+    partner = {normalisiere(w) for w in re.findall(r"[a-zäöüßa-z]{3,}", hinten)
+               if normalisiere(w) not in _N_STOPP and w not in ("die", "der", "das")}
+    if not subjekt or not partner:
+        return None
+    return subjekt, komparativ, partner
+
+
+def summary_bestaetigt_vergleich(claim_lc: str, summary_lc: str) -> bool:
+    """Bejaht ein Satz der Summary denselben Vergleich wie der Claim?
+
+    Gesucht wird das KOMPARATIV-WORT DES CLAIMS selbst ("puenktlicher"),
+    nicht ein allgemeines Muster auf ``-er als``. Der Grund steht im
+    Messprotokoll: Die echte Summary des Ausloesers endet mit "sind die ÖBB
+    deutlich puenktlicher." — ohne "als die DB", weil der Vergleichspartner
+    im Satz davor steht. Eine Fassung, die "als" verlangt, feuerte auf
+    keinem einzigen von 140 Live-Laeufen, auch nicht auf dem eigenen
+    Ausloeser.
+
+    Dass nach dem Claim-Wort gesucht wird, haelt die Regel trotzdem eng:
+    "puenktlicher" kommt nur vor, wenn der Text wirklich davon spricht.
+    """
+    zerlegt = vergleich_aus_claim(claim_lc)
+    if not zerlegt:
+        return False
+    subjekt, komparativ, partner = zerlegt
+    summary_n = normalisiere(summary_lc)
+    if not any(w in summary_n for w in partner):
+        return False                      # der Vergleichspartner fehlt ganz
+    for satz in teile_in_einheiten(summary_lc):
+        satz_n = normalisiere(satz)
+        stelle = satz_n.find(komparativ)
+        if stelle < 0:
+            continue
+        if any(h in satz_n for h in _O_HEDGE):
+            continue
+        vorn = satz_n[:stelle]
+        if any(n in re.findall(r"[a-zäöüßa-z]+", vorn) for n in _O_NEGATION):
+            continue
+        if any(w in vorn for w in subjekt):
+            return True
+    return False
 
 
 def _summary_refutes_superlative(claim_lower, summary_lower):
@@ -1948,6 +2037,22 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                         f"{_n_wert:g} zu (Anker: {sorted(_n_woerter)}) — "
                         f"Label '{_n_alt}' auf '{_n_ziel}' korrigiert."
                     )
+
+    # --- Muster O: Vergleichs-Claim gegen die eigene Begruendung (HART40) ---
+    # Der Claim vergleicht zwei Groessen ("A ist puenktlicher als B"), die
+    # Summary bejaht genau diesen Vergleich — und das Label verneint ihn.
+    # Muster N greift hier nicht, weil der Claim keine Schwellenzahl nennt.
+    # Nur diese Richtung: eine bejahende Begruendung unter einem
+    # verneinenden Label. Siehe summary_bestaetigt_vergleich().
+    _o_summary = (result.get("summary") or "").lower()
+    if (result.get("verdict") in ("false", "mostly_false") and _o_summary
+            and summary_bestaetigt_vergleich(_claim_lc, _o_summary)):
+        _o_alt = result["verdict"]
+        result["verdict"] = "true"
+        logger.warning(
+            f"Muster O (Vergleich): Die Summary bejaht denselben Vergleich, "
+            f"den das Label '{_o_alt}' verneint — auf 'true' korrigiert."
+        )
 
     # --- Muster M: Umdeutung der Claim-Zahl bei Label "true" (QA50F) ---
     # Auffangnetz hinter Muster N: Wenn die Summary die Claim-Zahl
