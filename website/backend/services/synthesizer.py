@@ -26,6 +26,66 @@ logger = logging.getLogger("evidora")
 import os as _os
 SYNTH_SOURCE_BUDGET = int(_os.getenv("SYNTH_SOURCE_BUDGET", "16"))
 
+# Prompt-Budget je Feld. PROMPT_MAX_STR gilt fuer alle Felder,
+# PROMPT_MAX_DISPLAY nur fuer das display_value des ersten (hoechstgerankten)
+# Ergebnisses je Quelle — dort steht der kuratierte Fakt, um den es geht.
+# Begruendung und Messung stehen an der Verwendungsstelle in build_prompt.
+# tools/prompt_zensus.py misst gegen genau diese beiden Werte.
+PROMPT_MAX_STR = 400
+PROMPT_MAX_DISPLAY = int(_os.getenv("SYNTH_MAX_DISPLAY", "1200"))
+
+
+def claim_abdeckung(result: dict, terms: list[str]) -> int:
+    """Wie viele VERSCHIEDENE Claim-Terme stehen im Inhalt dieses Ergebnisses.
+
+    Gezaehlt wird ueber die Felder, die spaeter auch im Prompt stehen —
+    vor allem ``display_value``, wo bei kuratierten Fakten die Zahlen
+    stecken. Schreibweisen-normalisiert wie die Trigger (#143/#144).
+    """
+    from services._schreibweise import normalisiere
+
+    if not terms:
+        return 0
+    text = " ".join(
+        str(result.get(k) or "")
+        for k in ("indicator_name", "display_value", "description", "title", "name")
+    )
+    norm = normalisiere(text.lower())
+    return sum(1 for t in terms if normalisiere(t) in norm)
+
+
+def nach_claim_abdeckung(results: list, terms: list[str]) -> list:
+    """Ergebnisse EINER Quelle nach Claim-Abdeckung ordnen (stabil).
+
+    Massnahme C (Prompt-Zensus 2026-09-24). Der Per-Source-Cap nimmt nur die
+    ersten drei Ergebnisse, und seit Massnahme B bekommt das erste das grosse
+    Budget. Welches Fakt an Position 1 steht, entschied bei Static-Packs
+    faktisch die Reihenfolge in der JSON-Datei: Beim Claim "Die
+    Leerstandsabgabe bringt nichts" gewann `leerstand_umverteilung_2026`
+    (Dateiposition 2) gegen den zustaendigen `leerstandsabgabe_wirkung_2026`
+    (Position 14) — und brachte seine quellenlose Empirica-Schaetzung ins
+    Verdict (#191). Gemessen an zehn Faellen: Dateireihenfolge 2 Fehlgriffe,
+    Abdeckung 0.
+
+    Gleichstand behaelt die bisherige Reihenfolge (sorted ist stabil), die
+    Auswahl des Rerankers bleibt also erhalten.
+    """
+    if len(results) < 2 or not terms:
+        return results
+    return sorted(results, key=lambda r: -claim_abdeckung(r, terms))
+
+
+def prompt_budget(feld: str, rang: int) -> int:
+    """Zeichenbudget eines Prompt-Feldes.
+
+    Nur das ``display_value`` des ERSTEN Ergebnisses je Quelle bekommt das
+    grosse Budget — dort steht der kuratierte Fakt, um den es geht. Alles
+    andere bleibt bei 400 Zeichen.
+    """
+    if feld == "display_value" and rang == 0:
+        return PROMPT_MAX_DISPLAY
+    return PROMPT_MAX_STR
+
 
 def _source_prompt_priority(source_data: dict) -> tuple:
     """Priorität einer Quelle für die Prompt-Budget-Auswahl (höher = wichtiger).
@@ -52,6 +112,16 @@ _SNIPPET_STOPWORDS = frozenset({
     "dass", "wenn", "weil", "auch", "noch", "nur", "sehr", "beim", "einem",
     "this", "that", "with", "from", "have", "were", "been", "they", "their",
     "which", "about", "than", "then", "there", "these", "those", "such",
+    # Frage- und Hilfswörter: stehen in fast jedem Feld und verdrängen sonst
+    # den seltenen, claim-tragenden Begriff (Prompt-Zensus 2026-09-24 —
+    # „Gibt es in der Steiermark eine Leerstandsabgabe?" gewann den Satz mit
+    # „gibt", nicht den mit „Steiermark").
+    "gibt", "geben", "kann", "können", "koennen", "muss", "müssen", "muessen",
+    "soll", "sollen", "darf", "dürfen", "duerfen", "wurde", "wurden", "worden",
+    "welche", "welcher", "welches", "wieviel", "viele", "viel", "warum",
+    "wann", "wieso", "weshalb", "eigentlich", "wirklich", "stimmt", "stimmen",
+    "sowie", "schon", "immer", "jeder", "jede", "jedes", "keine", "kein",
+    "does", "what", "when", "many", "much", "should", "could", "would",
 })
 
 
@@ -74,6 +144,14 @@ def _prompt_claim_terms(analysis: dict, original_claim: str) -> list[str]:
         if isinstance(e, str):
             _add(e)
     for w in _re.findall(r"\w{4,}", (original_claim or "").lower()):
+        _add(w)
+    # Englische Claims (2026-09-26): Die Fakt-Saetze sind deutsch. Ohne die
+    # deutschen Glossen teilt „How high is the vacancy tax in Tyrol?" kein
+    # Wort mit dem Fakt, die Kuerzung faellt auf den Textanfang zurueck, und
+    # der Tiroler Betrag kommt nicht an (Prompt-Zensus: 226 von 6.235
+    # Zeichen). Fuer deutsche Claims ist die Fassung None — unveraendert.
+    from services._englisch import englische_fassung
+    for w in _re.findall(r"\w{4,}", englische_fassung((original_claim or "").lower()) or ""):
         _add(w)
     return terms
 
@@ -103,20 +181,51 @@ def _claim_centered_truncate(s: str, terms: list[str], max_str: int) -> str:
     if not terms:
         return _snippet_head(s, max_str)
 
+    # Schreibweisen-Normalisierung wie bei der Trigger-Erkennung (#143/#144):
+    # Ohne sie ankert „Oesterreich" nicht an „Österreich" — der Claim-Term
+    # zaehlt dann 0 Treffer und ein beliebiger anderer Satz gewinnt das
+    # Budget (Prompt-Zensus 2026-09-24). Normalisiert wird nur fuer die
+    # BEWERTUNG; ausgegeben wird immer der Originaltext.
+    from services._schreibweise import normalisiere
+
     s_lc = s.lower()
-    freq = {t: s_lc.count(t) for t in terms}
+    s_norm = normalisiere(s_lc)
+
+    def _nadel(t: str) -> str:
+        """Claim-Term, notfalls um seine Flexionsendung gekuerzt.
+
+        „Partnern" steht im Fakt als „Partnerschaftsgewalt" — der Substring
+        reisst an der Endung (dasselbe Muster wie die Frontex-Flexionsformen
+        in #141: Wortstamm pruefen statt Varianten aufzaehlen). Zwei
+        Buchstaben genuegen fuer die deutschen Endungen (-n, -en, -er, -es,
+        -em); der Stamm muss mindestens vier Zeichen behalten."""
+        t_n = normalisiere(t)
+        if t_n in s_norm:
+            return t_n
+        for kurz in (t_n[:-1], t_n[:-2]):
+            if len(kurz) >= 4 and kurz in s_norm:
+                return kurz
+        return t_n
+
+    norm_term = {t: _nadel(t) for t in terms}
+    freq = {t: s_norm.count(norm_term[t]) for t in terms}
     present = {t: f for t, f in freq.items() if f > 0}
     if not present:
         return _snippet_head(s, max_str)
 
-    # Sätze inkl. Trenner erhalten (Split an .!? + Whitespace/Zeilenumbruch).
-    raw = _re.split(r"(?<=[.!?])\s+|\n+", s)
-    sentences = [seg.strip() for seg in raw if seg and seg.strip()]
+    # Sätze bzw. Datenfelder. Der frühere Split an "(?<=[.!?])\s+" endete
+    # hinter jeder Abkürzung ("LGBl. Nr.", "Abs. 3", "Mio. Euro") und hinter
+    # jeder Ordnungszahl ("seit 1. Jänner 2023") — das Budget ging dann an
+    # 20-Zeichen-Fragmente ohne Zahl (Prompt-Zensus 2026-09-24).
+    from services._satzgrenzen import teile_in_einheiten
+    sentences = teile_in_einheiten(s)
     if len(sentences) <= 1:
         # Ein einziger Riesensatz → hartes Fenster um den seltensten Term.
         rarest = min(present, key=lambda t: present[t])
+        # Offsets gelten nur im Originaltext; findet sich der Term dort in
+        # abweichender Schreibweise nicht, bleibt es beim Textanfang.
         anchor = s_lc.find(rarest)
-        start = max(0, anchor - 120)
+        start = max(0, anchor - 120) if anchor >= 0 else 0
         window = s[start:start + max_str]
         if start > 0:
             window = window.split(" ", 1)[-1]
@@ -125,18 +234,32 @@ def _claim_centered_truncate(s: str, terms: list[str], max_str: int) -> str:
         return (("[…] " if start > 0 else "") + window.strip()
                 + (" […]" if start + max_str < len(s) else ""))
 
-    def _score(sent_lc: str) -> float:
-        return sum(1.0 / present[t] for t in present if t in sent_lc)
+    def _score(sent_lc: str) -> tuple[int, float]:
+        """Abdeckung zuerst, Seltenheit als Stichentscheid.
+
+        Gemessen (Prompt-Zensus 2026-09-24, Batterie mit 17 Faellen):
+        Abdeckung 13, Abdeckung+Seltenheit 12, 1/Haeufigkeit 11, 1/sqrt 12.
+        Die reine IDF-Gewichtung liess einen einzelnen seltenen Term jeden
+        anderen ueberstimmen — sobald die Schreibweisen-Normalisierung mehr
+        Terme treffen laesst, zog damit ein beliebiger Nebensatz das Budget
+        an sich. Die Seltenheit bleibt als Stichentscheid: nur so ueberlebt
+        der Kickl-Fall, in dem beide Saetze je EINEN Term tragen und der
+        seltene ("kickl") gegen den achtfachen ("volkskanzler") gewinnt."""
+        sent_norm = normalisiere(sent_lc)
+        treffer = [t for t in present if norm_term[t] in sent_norm]
+        return (len(treffer), sum(1.0 / present[t] for t in treffer))
 
     scored = [(i, sent, _score(sent.lower())) for i, sent in enumerate(sentences)]
-    candidates = [x for x in scored if x[2] > 0]
+    candidates = [x for x in scored if x[2][0] > 0]
     if not candidates:
         return _snippet_head(s, max_str)
 
     # Gierig nach IDF-Score, bis das Zeichenbudget erschöpft ist.
     chosen: list[int] = []
     used = 0
-    for i, sent, _sc in sorted(candidates, key=lambda x: (-x[2], x[0])):
+    for i, sent, _sc in sorted(candidates, key=lambda x: (-x[2][0], -x[2][1], x[0])):
+        if i in chosen:
+            continue
         if chosen and used + len(sent) + 1 > max_str:
             continue
         chosen.append(i)
@@ -144,6 +267,12 @@ def _claim_centered_truncate(s: str, terms: list[str], max_str: int) -> str:
         if used >= max_str:
             break
 
+    # Nachbar-Auffuellung: Die entscheidende Zahl steht oft im FOLGESATZ des
+    # Satzes, der die Claim-Terme traegt ("(1) OESTERREICH, PKS 2024 …" /
+    # "Von den 98 Opfern entfielen … 40 auf vollendete Morde"). Ein solcher
+    # Folgesatz enthaelt selbst keinen Claim-Term und ist deshalb gar kein
+    # Kandidat. Mit Restbudget nehmen wir ihn trotzdem mit — erst die
+    # Nachfolger, dann die Vorgaenger (Prompt-Zensus 2026-09-24).
     chosen.sort()
     parts: list[str] = []
     if chosen[0] != 0:
@@ -1013,16 +1142,18 @@ async def _validate_urls(evidence: list[dict]) -> list[dict]:
                 resp = await client.head(url)
                 if resp.status_code < 400:
                     return True, f"HEAD {resp.status_code}"
-                # Viele Server verweigern HEAD (405/501) oder blocken es
-                # gezielt (403), liefern denselben Pfad per GET aber aus.
+                # HEAD ist nur die schnelle Abkuerzung, nie das Urteil. Viele
+                # Server verweigern HEAD (405/501) oder blocken es (403) — und
+                # manche antworten auf HEAD sogar mit 404, liefern die Seite
+                # per GET aber aus: Our World in Data, gemessen 2026-09-22 an
+                # drei in Prod verworfenen Grapher-Belegen (HEAD 404, GET 200).
+                # Deshalb entscheidet bei JEDEM HEAD-Fehler der GET.
                 # Range-Header, damit ein GET nicht die ganze Seite zieht.
-                if resp.status_code in (403, 405, 501):
-                    nach = await client.get(url, headers={"Range": "bytes=0-0"})
-                    grund = f"HEAD {resp.status_code}, GET {nach.status_code}"
-                    if nach.status_code < 400:
-                        return True, grund
-                    return nach.status_code not in _TOT, grund
-                return resp.status_code not in _TOT, f"HEAD {resp.status_code}"
+                nach = await client.get(url, headers={"Range": "bytes=0-0"})
+                grund = f"HEAD {resp.status_code}, GET {nach.status_code}"
+                if nach.status_code < 400:
+                    return True, grund
+                return nach.status_code not in _TOT, grund
         except httpx.ConnectError as exc:
             # Der Host selbst antwortet nicht — das ist das Signal, fuer das
             # dieser Filter gebaut wurde: eine erfundene Domain.
@@ -1185,7 +1316,18 @@ async def synthesize_results(
     # services) carry hundreds of chars of context-notes that the LLM
     # doesn't need verbatim — a 400-char truncation preserves the gist
     # while reducing prompt size by ~30-40 %.
-    MAX_STR = 400
+    MAX_STR = PROMPT_MAX_STR
+
+    # Massnahme B (Prompt-Zensus 2026-09-24): 400 Zeichen reichen fuer ein
+    # Datenfeld, nicht fuer einen ganzen kuratierten Fakt. Ein Fakt liefert
+    # seine Headline UND ein Dutzend data-Felder in EINEM display_value —
+    # bei 400 Zeichen passt neben der Headline kein zweites Feld, und die
+    # Antwort auf "Wurde eine Verordnung aufgehoben?" oder "Wie hoch ist die
+    # Abgabe in Frankreich?" bleibt liegen. Gemessen an den drei
+    # dokumentierten Luecken: 400 -> 0 von 3, 800 -> 2 von 3, 1200 -> 3 von 3.
+    # Das groessere Budget bekommt NUR das erste (hoechstgerankte) Ergebnis
+    # je Quelle: dort steht der Fakt, um den es geht. Damit waechst der
+    # Prompt gemessen um rund 900 Zeichen je Claim statt um das Dreifache.
 
     # Claim-zentriertes Fenster (Audit 2026-07-07): die alte Trunkierung nahm
     # stumpf s[:400] = den Textanfang. Beim Kickl/„Volkskanzler"-Claim war die
@@ -1197,10 +1339,10 @@ async def synthesize_results(
     # (mit etwas Kontext davor). Kein Term getroffen → altes Head-Verhalten.
     _claim_terms = _prompt_claim_terms(analysis, original_claim)
 
-    def _truncate_str(s: str) -> str:
-        if not isinstance(s, str) or len(s) <= MAX_STR:
+    def _truncate_str(s: str, budget: int = MAX_STR) -> str:
+        if not isinstance(s, str) or len(s) <= budget:
             return s
-        return _claim_centered_truncate(s, _claim_terms, MAX_STR)
+        return _claim_centered_truncate(s, _claim_terms, budget)
 
     # Fix #7 — Fan-out-Budget: nur die Top-N Quellen-mit-Treffern in den
     # Prompt aufnehmen (autoritative/STRUKTURELL immer behalten). Ändert NUR
@@ -1222,7 +1364,12 @@ async def synthesize_results(
             # reichen für ein gutes Verdict; mehr ist Token-Verschwendung).
             is_ranking = any(r.get("rank") for r in results[:1])
             limit = 15 if is_ranking else 3
-            for r in results[:limit]:
+            # Massnahme C: innerhalb der Quelle nach Claim-Abdeckung ordnen,
+            # BEVOR der Cap zuschlaegt. Ranking-Listen (Eurostat-Vergleiche)
+            # bleiben unberuehrt — dort traegt die Reihenfolge die Aussage.
+            if not is_ranking:
+                results = nach_claim_abdeckung(results, _claim_terms)
+            for rang, r in enumerate(results[:limit]):
                 # Only include key fields
                 compact = {k: v for k, v in r.items() if v and k in (
                     "title", "name", "url", "journal", "date", "status",
@@ -1259,7 +1406,7 @@ async def synthesize_results(
                     k: (v if k == "display_value"
                         and isinstance(v, str)
                         and "STRUKTURELL FALSCH:" in v
-                        else _truncate_str(v))
+                        else _truncate_str(v, prompt_budget(k, rang)))
                     for k, v in compact.items()
                 }
                 context_parts.append(json.dumps(compact, ensure_ascii=False))

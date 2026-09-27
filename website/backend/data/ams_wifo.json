@@ -51,8 +51,8 @@
         "arbeitsmarktlage 2024"
       ],
       "trigger_composite": [
-        ["ams", "arbeitslos", "arbeits-los", "arbeitslosenquote", "arbeitslosen-quote", "arbeitslosenrate", "arbeitslosen-rate", "arbeitslosigkeit", "registrierte arbeitslose"],
-        ["österreich", "oesterreich", "at ", " at,", " at.", "at-", "nationale berechnung", "ams-methodik", "ams methodik", "ams"],
+        [" ams ", "arbeitslos", "arbeits-los", "arbeitslosenquote", "arbeitslosen-quote", "arbeitslosenrate", "arbeitslosen-rate", "arbeitslosigkeit", "registrierte arbeitslose"],
+        ["österreich", "oesterreich", " at ", " at,", " at.", "nationale berechnung", "ams-methodik", "ams methodik", " ams "],
         ["2024", "2023", "2025", "2026", "2027", "jahresdurchschnitt", "quote", "rate", "anzahl", "bestand", "wie hoch", "wie viele", "prozent", "%", "7 prozent", "6 prozent", "7,0", "6,4", "7,5", "sinkt", "steigt", "gesunken", "gestiegen", "rückgang", "anstieg", "zurück", "höher", "niedriger", "rekord", "schlimmer", "besser"]
       ]
     },
@@ -104,7 +104,7 @@
       ],
       "trigger_composite": [
         ["wien", "kärnten", "kaernten", "burgenland", "niederösterreich", "niederoesterreich", "oberösterreich", "oberoesterreich", "salzburg", "steiermark", "tirol", "vorarlberg", "bundesland", "bundesländer", "bundeslaender"],
-        ["arbeitslos", "arbeits-los", "arbeitslosenquote", "arbeitslosen-quote", "arbeitslosenrate", "ams", "ams-quote", "al-quote"],
+        ["arbeitslos", "arbeits-los", "arbeitslosenquote", "arbeitslosen-quote", "arbeitslosenrate", " ams ", "ams-quote", "al-quote"],
         ["2024", "2023", "quote", "anteil", "prozent", "%", "höchste", "niedrigste", "vergleich", "spread"]
       ]
     },
@@ -153,14 +153,14 @@
       "trigger_all": [
         [
           ["arbeitslos", "arbeitslosenquote", "arbeitslosenrate", "arbeitslosigkeit"],
-          ["österreich", "oesterreich", "at-", "ams"],
+          ["österreich", "oesterreich", " at ", " ams "],
           ["sinkt", "steigt", "gesunken", "gestiegen", "rückgang", "anstieg",
            "zurück", "höher", "niedriger", "wie hoch", "wie viele", "quote", "rate"]
         ]
       ],
       "trigger_composite": [
-        ["ams", "ams-quote", "ams quote", "arbeitslosenquote", "arbeitslosen-quote", "registrierte arbeitslose", "schulungsteilnehmer", "schulung"],
-        ["eurostat", "ilo", "labour force survey", "labour-force-survey", "lfs", "methodik", "methode", "berechnung", "konzept", "ams-quote", "ams quote", "ams-methodik", "versteckt", "verstecken", "verschoenert", "verschönert"],
+        [" ams ", "ams-quote", "ams quote", "arbeitslosenquote", "arbeitslosen-quote", "registrierte arbeitslose", "schulungsteilnehmer", "schulung"],
+        ["eurostat", " ilo ", "labour force survey", "labour-force-survey", " lfs ", "methodik", "methode", "berechnung", "konzept", "ams-quote", "ams quote", "ams-methodik", "versteckt", "verstecken", "verschoenert", "verschönert"],
         ["differenz", "unterschied", "warum", "welche", "echt", "real", "wahre", "richtig", "stimmt", "verschönert", "verschoenert", "schulungsteilnehmer", "schulung", "trick", "manipuliert", "versteckt", "verstecken", "geschoent", "gefälscht", "gefaelscht"]
       ]
     },
@@ -206,7 +206,7 @@
       ],
       "trigger_composite": [
         ["jugend", "junge", "unter 25", "25-49", "haupterwerb", "50+", "über 50", "ältere", "aeltere", "akademiker", "pflichtschul", "lehrabschluss", "bildung"],
-        ["arbeitslos", "arbeitslosigkeit", "ams", "ams-quote", "arbeitslosenquote", "vorgemerkt"],
+        ["arbeitslos", "arbeitslosigkeit", " ams ", "ams-quote", "arbeitslosenquote", "vorgemerkt"],
         ["österreich", "oesterreich", " at ", "at,", " at.", "2024", "2023", "anstieg", "anzahl"]
       ]
     },
@@ -250,8 +250,8 @@
       ],
       "trigger_composite": [
         ["langzeit", "lang-zeit", "lang zeit", "12 monate", "über 12 monate", "ueber 12 monate", "vormerkdauer", "verweildauer"],
-        ["arbeitslos", "arbeitslosigkeit", "beschäftigungslos", "beschaeftigungslos", "ams", "vorgemerkt"],
-        ["österreich", "oesterreich", "at ", " at,", " at.", "wien", "bundesland", "anteil", "quote", "bestand", "anzahl"]
+        ["arbeitslos", "arbeitslosigkeit", "beschäftigungslos", "beschaeftigungslos", " ams ", "vorgemerkt"],
+        ["österreich", "oesterreich", " at ", " at,", " at.", "wien", "bundesland", "anteil", "quote", "bestand", "anzahl"]
       ]
     },
     {
@@ -296,7 +296,7 @@
       ],
       "trigger_composite": [
         ["offene stelle", "offene-stelle", "stellenmarkt", "stellen-markt", "stellenmeldung", "lehrstelle", "lehr-stelle", "lehrstellenmarkt", "lehrstellen-markt"],
-        ["österreich", "oesterreich", " at ", " at,", " at.", "ams", "bundesland", "wien", "tirol", "salzburg"],
+        ["österreich", "oesterreich", " at ", " at,", " at.", " ams ", "bundesland", "wien", "tirol", "salzburg"],
         ["2024", "2023", "anzahl", "bestand", "quote", "wie viele", "rückgang", "anstieg"]
       ]
     },
@@ -340,7 +340,7 @@
       ],
       "trigger_composite": [
         ["beschäftig", "beschaeftig", "erwerbstätig", "erwerbstaetig", "arbeitskräfte", "arbeitskraefte", "arbeitsmarkt-teilnahme"],
-        ["österreich", "oesterreich", " at ", " at,", " at.", "at-", "bundesland", "wien", "salzburg", "tirol"],
+        ["österreich", "oesterreich", " at ", " at,", " at.", "bundesland", "wien", "salzburg", "tirol"],
         ["2024", "2023", "anzahl", "wie viele", "bestand", "veränderung", "quote", "anteil", "millionen", "mio"]
       ]
     },
@@ -386,9 +386,9 @@
         "rezession arbeitslosigkeit at"
       ],
       "trigger_composite": [
-        ["arbeitslos", "arbeitslosenquote", "arbeitslosen-quote", "ams", "ams-quote", "al-quote", "al quote"],
+        ["arbeitslos", "arbeitslosenquote", "arbeitslosen-quote", " ams ", "ams-quote", "al-quote", "al quote"],
         ["zeitreihe", "historisch", "vergleich", "über die jahre", "ueber die jahre", "corona", "rezession", "2019", "2020", "2021", "2022", "2023", "2024", "10 jahre"],
-        ["österreich", "oesterreich", " at ", " at,", " at.", "wifo", "ams"]
+        ["österreich", "oesterreich", " at ", " at,", " at.", "wifo", " ams "]
       ]
     },
     {
@@ -434,9 +434,9 @@
         "branche arbeitslosigkeit österreich"
       ],
       "trigger_composite": [
-        ["industrie", "industrie-", "warenerzeugung", "produktion", "bau", "baubranche", "handel", "tourismus", "beherbergung", "gastronomie", "gesundheits-wesen", "gesundheitswesen", "verkehr", "logistik", "arbeitskräfte-überlassung", "leiharbeit", "sektor", "branche", "wirtschaftsabschnitt"],
-        ["arbeitslos", "arbeitslosigkeit", "ams", "ams-quote", "stellen", "beschäftigung", "beschaeftigung"],
-        ["österreich", "oesterreich", " at ", " at,", " at.", "at-", " at", "2024", "2023", "anstieg", "rückgang"]
+        ["industrie", "industrie-", "warenerzeugung", "produktion", " bau", "baubranche", " handel", "einzelhandel", "großhandel", "tourismus", "beherbergung", "gastronomie", "gesundheits-wesen", "gesundheitswesen", "verkehr", "logistik", "arbeitskräfte-überlassung", "leiharbeit", "sektor", "branche", "wirtschaftsabschnitt"],
+        ["arbeitslos", "arbeitslosigkeit", " ams ", "ams-quote", "stellen", "beschäftigung", "beschaeftigung"],
+        ["österreich", "oesterreich", " at ", " at,", " at.", "2024", "2023", "anstieg", "rückgang"]
       ]
     },
     {
@@ -449,12 +449,12 @@
       "source_label": "AMS Arbeitsmarktservice Österreich — Berichte + Auswertungen (Übersicht) + 'Die Arbeitsmarktlage 2024' (Februar 2025) + AMS Spezialthema zum Arbeitsmarkt Dezember 2024",
       "headline": "Quellen-Pack für AT-Arbeitsmarkt-AMS-Daten 2024: Primärquelle AMS Jahresbericht 2024 (Februar 2025); WIFO-Konjunktur-Bezug im Bericht-Vorwort; Aktualitäts-Stand Pack 2026-05-23 (JD-2024-Werte)",
       "data": {
-        "kernsatz_fuer_synthesizer": "Quellen-Vermerk für AT-Arbeitsmarkt-AMS-Daten 2024-Pack: (1) PRIMÄR-Quelle ist der AMS-Jahresbericht 'Die Arbeitsmarktlage 2024', publiziert im Februar 2025 vom Arbeitsmarktservice Österreich (Abt. Arbeitsmarktforschung + Berufsinformation, Treustraße 35-43, 1200 Wien). PDF-URL: https://www.ams.at/content/dam/download/arbeitsmarktdaten/österreich/berichte-auswertungen/001_JB-2024.pdf (2) WIFO-Bezug: Konjunktur-Daten (BIP-Wachstum 2023, 2024) sind im AMS-Bericht-Vorwort von Dr. Johannes Kopf (AMS-Vorstand) zitiert. Sekundär-Vermerk: 'AMS via WIFO-Konjunktur-Kommentar zitiert im AMS-Jahresbericht 2024'. Direkter WIFO-Bericht ist verfügbar auf https://www.wifo.ac.at/themen/arbeitsmarkt-und-loehne. (3) AKTUALITÄTS-STAND Pack: 2026-05-23. Werte beziehen sich auf Jahresdurchschnitt 2024. Aktuelle Monats- + Quartals-Daten (Stand z.B. April 2026) sind in den AMS-Übersicht-PDFs verfügbar (siehe URL-Root). Pack updatet sich NICHT automatisch — bei Bedarf manuelle Aktualisierung im JSON. (4) Pack-LIZENZ: AMS-Daten unterliegen der CC-0-ähnlichen Behörden-Daten-Lizenz (data.gv.at-Schnittstelle). Sekundär-Zitierung mit URL + Datum erlaubt. (5) Pack-Politik-Tabu-Konformität: Pack hält strikt die 4 Tabus aus project_political_guardrails.md: KEINE Wertung 'AL-Quote hoch/niedrig ist gut/schlecht', KEINE Partei-Schuld-Zuweisung, KEINE Prognosen über zukünftige AL-Entwicklung, KEINE eigene normative Wertung. Strukturhinweise sind aus dem AMS-Bericht selbst zitiert.",
+        "kernsatz_fuer_synthesizer": "Quellen-Vermerk für AT-Arbeitsmarkt-AMS-Daten 2024-Pack: (1) PRIMÄR-Quelle ist der AMS-Jahresbericht 'Die Arbeitsmarktlage 2024', publiziert im Februar 2025 vom Arbeitsmarktservice Österreich (Abt. Arbeitsmarktforschung + Berufsinformation, Treustraße 35-43, 1200 Wien). PDF-URL: https://www.ams.at/content/dam/download/arbeitsmarktdaten/österreich/berichte-auswertungen/001_JB-2024.pdf (2) WIFO-Bezug: Konjunktur-Daten (BIP-Wachstum 2023, 2024) sind im AMS-Bericht-Vorwort von Dr. Johannes Kopf (AMS-Vorstand) zitiert. Sekundär-Vermerk: 'AMS via WIFO-Konjunktur-Kommentar zitiert im AMS-Jahresbericht 2024'. Direkter WIFO-Bericht ist verfügbar auf https://www.wifo.ac.at/en/research/research-groups/labour-economics-income-and-social-security/. (3) AKTUALITÄTS-STAND Pack: 2026-05-23. Werte beziehen sich auf Jahresdurchschnitt 2024. Aktuelle Monats- + Quartals-Daten (Stand z.B. April 2026) sind in den AMS-Übersicht-PDFs verfügbar (siehe URL-Root). Pack updatet sich NICHT automatisch — bei Bedarf manuelle Aktualisierung im JSON. (4) Pack-LIZENZ: AMS-Daten unterliegen der CC-0-ähnlichen Behörden-Daten-Lizenz (data.gv.at-Schnittstelle). Sekundär-Zitierung mit URL + Datum erlaubt. (5) Pack-Politik-Tabu-Konformität: Pack hält strikt die 4 Tabus aus project_political_guardrails.md: KEINE Wertung 'AL-Quote hoch/niedrig ist gut/schlecht', KEINE Partei-Schuld-Zuweisung, KEINE Prognosen über zukünftige AL-Entwicklung, KEINE eigene normative Wertung. Strukturhinweise sind aus dem AMS-Bericht selbst zitiert.",
         "ams_jahresbericht_titel": "AMS Jahresbericht 'Die Arbeitsmarktlage 2024' — Folder-Format, publiziert Februar 2025.",
         "ams_publikator": "Publikator: Arbeitsmarktservice Österreich, Abt. Arbeitsmarktforschung + Berufsinformation. Adresse: Treustraße 35-43, 1200 Wien. E-Mail: ams.statistik@ams.at",
         "ams_url_root": "AMS Berichte + Auswertungen URL-Root: https://www.ams.at/arbeitsmarktdaten-und-medien/arbeitsmarkt-daten-und-arbeitsmarkt-forschung/berichte-und-auswertungen",
         "ams_aktualitaet": "Aktualitäts-Hinweis: Pack-Snapshot 2026-05-23 referenziert AMS-Jahresdurchschnitt-Werte 2024. Aktuellere Monats-/Quartals-Werte (z.B. April 2026) sind auf der AMS-Berichte-Seite verfügbar.",
-        "wifo_konjunktur_bezug": "WIFO-Konjunktur-Bezug: BIP-Wachstums-Werte sind im AMS-Bericht-Vorwort durch Dr. Johannes Kopf zitiert. WIFO-Originalwerte: https://www.wifo.ac.at/themen/arbeitsmarkt-und-loehne",
+        "wifo_konjunktur_bezug": "WIFO-Konjunktur-Bezug: BIP-Wachstums-Werte sind im AMS-Bericht-Vorwort durch Dr. Johannes Kopf zitiert. WIFO-Originalwerte: https://www.wifo.ac.at/en/research/research-groups/labour-economics-income-and-social-security/",
         "lizenz_hinweis": "AMS-Daten = Behörden-Daten (CC-0-ähnlich). Sekundär-Zitierung mit URL + Datum + 'Quelle: AMS via WIFO-Bericht vom Februar 2025' erlaubt. data.gv.at-Schnittstelle dokumentiert Open-Data-Status.",
         "politik_tabu_konformitaet": "Pack hält strikt die 4 Tabus aus project_political_guardrails.md ein. Pack ist DESKRIPTIV und vermeidet Wertungs-Frames. Strukturhinweise sind aus dem AMS-Bericht selbst zitiert.",
         "context": "Quellen-Vermerk für Synthesizer + Reranker: dieser Topic wird nur getriggert, wenn Claims explizit nach AMS-Quellen/Methodik/Datenherkunft fragen (z.B. 'Woher kommen AMS-Daten', 'Wie aktuell ist AMS-Statistik'). Default ist KEIN Trigger."
@@ -478,7 +478,7 @@
         "wo finde ich ams daten"
       ],
       "trigger_composite": [
-        ["ams"],
+        [" ams "],
         ["quelle", "url", "pdf", "download", "wo finde", "datenherkunft", "open data", "datenstand", "publikator", "herausgeber"],
         ["arbeitsmarktdaten", "arbeitslos", "arbeitslosenquote", "statistik", "berichte", "jahresbericht", "monatsbericht"]
       ]

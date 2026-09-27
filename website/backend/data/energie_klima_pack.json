@@ -68,9 +68,9 @@
       "year": 2024,
       "headline": "China baut Kohlekraftwerke UND größte Erneuerbare-Kapazitäten weltweit — Whataboutism-Logik ignoriert beides",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die Aussage 'EU-Klimaschutz bringt nichts solange China Kohlekraftwerke baut' ist eine WHATABOUTISM-Argumentation, die Fakten verzerrt. Realität 2024: (1) China hat 2024 mehr Solar + Wind installiert als der gesamte Rest der Welt zusammen — über 200 GW PV in einem Jahr. (2) China baut weiterhin neue Kohlekraftwerke, aber gleichzeitig schließt es alte ab + Kohle-Anteil am Stromix sinkt seit 2011. (3) China-Pro-Kopf-Emissionen sind ~ EU-Niveau, deutlich unter USA. (4) EU-Klimaschutz und China-Energie-Wende sind nicht-konkurrierend, beide tragen zu globalen Zielen bei.",
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die Aussage 'EU-Klimaschutz bringt nichts solange China Kohlekraftwerke baut' ist eine WHATABOUTISM-Argumentation, die Fakten verzerrt. Realität 2024: (1) China hat 2024 mehr Solar + Wind installiert als der gesamte Rest der Welt zusammen — über 200 GW PV in einem Jahr. (2) China baut weiterhin neue Kohlekraftwerke, aber gleichzeitig schließt es alte ab + Kohle-Anteil am Strommix sinkt seit 2011. (3) China-Pro-Kopf-Emissionen sind ~ EU-Niveau, deutlich unter USA. (4) EU-Klimaschutz und China-Energie-Wende sind nicht-konkurrierend, beide tragen zu globalen Zielen bei.",
         "china_renewables_2024": "IEA Renewables 2024: China installierte 2024 ~280 GW Solar PV + ~75 GW Wind = ~355 GW Erneuerbare neu. EU 2024 zum Vergleich: ~70 GW Solar + ~17 GW Wind. China baut Erneuerbare ~5x so schnell wie EU.",
-        "china_kohle_beide_ja": "China genehmigt + baut weiterhin neue Kohlekraftwerke (2023: ~96 GW Genehmigungen) — gleichzeitig wird der Anteil von Kohle am Stromix gesenkt (60 % 2011, ~55 % 2023, Ziel <50 % 2030). Stromnachfrage wächst so schnell, dass beide Kapazitäten zubauen können.",
+        "china_kohle_beide_ja": "China genehmigt + baut weiterhin neue Kohlekraftwerke (2023: ~96 GW Genehmigungen) — gleichzeitig wird der Anteil von Kohle am Strommix gesenkt (60 % 2011, ~55 % 2023, Ziel <50 % 2030). Stromnachfrage wächst so schnell, dass beide Kapazitäten zubauen können.",
         "pro_kopf_emissionen": "Climate Watch 2023: CO2-Pro-Kopf-Emissionen — Katar 36, USA 14, Australien 14, Russland 12, EU-27 6,2, China 7,3, Indien 1,8, Welt-Schnitt 4,6. China und EU pro Kopf vergleichbar.",
         "globaler_emissions_anteil": "China ist 2024 der größte Emittent absolut (~28 % global), USA zweiter (~13 %), EU dritter (~7 %). Bei historisch akkumulierten Emissionen (kumulativ seit 1850, klimaforschungs-relevant) sind USA + EU vorne.",
         "whataboutism_logik": "Whataboutism-Argumentation: 'X handelt nicht perfekt, also ist Y-Handeln sinnlos' — funktioniert mathematisch nicht. Globaler Klimaschutz ist Summen-Spiel: jedes Land + jeder Sektor zählt.",
@@ -115,32 +115,40 @@
       ],
       "source_label": "IEA Renewables 2024 + Climate Watch + IPCC + Carbon Brief",
       "source_url": "https://www.iea.org/reports/renewables-2024",
-      "secondary_url": "https://www.carbonbrief.org/analysis-china-built-more-clean-energy-capacity-in-2024-than-rest-of-world-combined/"
+      "secondary_url": "https://www.carbonbrief.org/analysis-record-surge-of-clean-energy-in-2024-halts-chinas-co2-rise/"
     },
     {
       "id": "e_auto_akku_co2_2026",
       "topic": "e_auto_co2_lifecycle_konsens",
-      "scope": "CO2-Bilanz E-Auto vs Verbrenner über Lifecycle",
-      "year": 2024,
-      "headline": "E-Auto hat in DE/EU besseres CO2-Lifecycle als Diesel/Benziner — Pay-back nach ~30.000-50.000 km",
+      "scope": "CO2-Bilanz E-Auto vs Verbrenner über den Lebenszyklus — ICCT-Analyse für die EU",
+      "year": 2025,
+      "headline": "ICCT-Lebenszyklusanalyse (Juli 2025): Ein 2025 in der EU verkauftes E-Auto verursacht über 20 Jahre 63 g CO2e/km — 73 % weniger als ein Benziner (235 g/km) und damit die beste CO2-Bilanz aller Antriebe. Die rund 40 % höheren Produktionsemissionen gegenüber einem Verbrenner sind nach etwa 17.000 km ausgeglichen. Hybrid 188 g/km, Plug-in-Hybrid 163, Diesel 234.",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'E-Autos haben schlechtere CO2-Bilanz als Verbrenner' ist FALSE im EU-Stromnetz. JRC, Agora Verkehrswende + ICCT-Lifecycle-Analysen 2024: E-Auto hat höhere Bau-Emissionen (Akku-Produktion +50-70 % CO2 vs Verbrenner-Bau), aber bei Nutzung im EU-Strommix bricht E-Auto nach 30.000-50.000 km in der CO2-Bilanz die Verbrenner-Linie. Über typische Auto-Lebensdauer (200.000+ km) hat E-Auto ~50-65 % weniger Lifecycle-CO2 in der EU. In DE/AT mit hohem Erneuerbaren-Anteil deutlich besser, in PL/IN mit hohem Kohle-Anteil weniger gut.",
-        "icct_lifecycle_2024": "ICCT Lifecycle Analysis 2024 (Bieker et al., updated): mittel-große Limousine, 200.000 km Lebensdauer, EU-Strommix 2024: BEV-CO2-gesamt ~80 g/km, Diesel ~210 g/km, Benziner ~245 g/km. BEV ~62 % weniger über Lifecycle.",
-        "agora_2023": "Agora Verkehrswende 2023: Pay-back-Distanz E-Auto vs Verbrenner: ~30.000-50.000 km in DE-Strommix 2023. Bei sich-dekarbonisierendem Strom verkürzt sich Pay-back über Zeit.",
-        "akku_produktion_co2": "Akku-Produktion CO2: 2020: ~120 kg CO2/kWh Akku-Kapazität. 2024: ~75 kg CO2/kWh (Skalierung + Erneuerbare in Asien-Fertigungs-Strommix). Erwartete Reduktion auf ~40 kg CO2/kWh bis 2030.",
-        "regional_differences": "EU-2024-Strommix (~280 g CO2/kWh, sinkt): E-Auto klar besser. PL-Strommix (~600 g CO2/kWh): E-Auto Pay-back nach ~80.000 km. Norwegen-Strommix (~25 g CO2/kWh, Wasserkraft): E-Auto ab ersten km besser.",
-        "akku_recycling": "EU-Batterieverordnung 2023: Akku-Recycling-Quote bis 2031: 70 % Lithium, 95 % Co/Cu/Ni. Im Recycling reduzieren sich zukünftige Akku-CO2 weiter.",
-        "context": "Aussage 'E-Auto + Kohlestrom = Verbrenner' ist nur in extremen Strommixen wahr (z.B. PL ohne Erneuerbare). EU-Standard-Strommix führt zu klar positiver E-Auto-Bilanz. Kritik 'die ganze Energie kommt eh aus Kohle' ist faktisch falsch für DE/AT/EU 2024."
+        "kernsatz_fuer_synthesizer": "Die These 'E-Autos haben eine schlechtere CO2-Bilanz als Verbrenner' trifft für die EU nicht zu: Die ICCT-Lebenszyklusanalyse vom Juli 2025 rechnet für ein 2025 verkauftes Mittelklasseauto über 20 Jahre und 240.000 km mit 63 g CO2e/km für das E-Auto gegenüber 235 g beim Benziner — 73 % weniger. Richtig an der Gegenthese ist nur der Ausgangspunkt: Die Produktion eines Batterieautos verursacht etwa 40 % mehr Emissionen als die eines Verbrenners — dieser Vorsprung ist nach rund 17.000 Kilometern aufgebraucht, also im ersten oder zweiten Betriebsjahr. Hybride (188 g/km) und Plug-in-Hybride (163 g/km) liegen nur 20 bzw. 30 % unter Benzin und damit dreimal so hoch wie das Batterieauto. Der Vorsprung wächst mit dem Strommix: Mit reinem Ökostrom sind es 52 g/km. Wer 'E-Auto und Kohlestrom' rechnet, rechnet mit einem Strommix, den die EU nicht hat.",
+        "icct_2025_werte": "ICCT 2025, Mittelklasse, EU, Verkaufsjahr 2025, Lebenszyklus in g CO2e/km: Benzin mit Biokraftstoffanteil 235, Diesel 234, Erdgas 203, Hybrid 188, Wasserstoff aus Erdgas 175, Plug-in-Hybrid 163 (mit realem Fahrverhalten), Batterieauto im EU-Strommix 2025–2044 63, Batterieauto mit Ökostrom 52, Wasserstoff aus erneuerbarem Strom 50.",
+        "pay_back": "Ein E-Auto rechnet sich klimatisch nach etwa 17.000 Kilometern Fahrleistung: Seine Produktion verursacht rund 40 % mehr Treibhausgase als die eines Verbrenners, im Wesentlichen wegen der Batterie, und dieser Rückstand ist bei 12.000 km im Jahr im ersten bis zweiten Betriebsjahr aufgeholt (ICCT 2025).",
+        "batterie_produktion": "Batteriezellen (ICCT 2025 nach R&D GREET): 72,8 kg CO2e/kWh für die in der EU verkaufte NMC622-Technik, gewichtet nach Produktionsländern (2024: 56 % China, 30 % EU). Nach Region und Chemie reicht die Spanne von 52 kg (LFP, Europa) bis 80 kg (NMC622, China). Mittlere Batterie eines Mittelklasse-Batterieautos: 53,4 kWh, das ergibt 3,9 t CO2e Produktionsemissionen.",
+        "lebensdauer_annahme": "Die Rechnung unterstellt 20 Jahre Nutzung und 12.000 km im Jahr, also 240.000 km Gesamtfahrleistung. Wer nur 15 Jahre (180.000 km) ansetzt, überschätzt die Produktionsemissionen je Kilometer und verschiebt das Ergebnis um 4 bis 5 % zulasten des Batterieautos — die Rangfolge der Antriebe ändert das nicht.",
+        "batterie_haltbarkeit": "Die Batterie hält länger als das Auto: 3.000 bis 5.000 Vollzyklen entsprechen bei 200 bis 400 km Reichweite 600.000 bis 2.000.000 km, ein Vielfaches der mittleren Fahrleistung von 240.000 km. Von 20.000 ausgewerteten Batterieautos ab Baujahr 2016 meldeten außerhalb von Rückrufen weniger als 1 % einen Batterietausch (Recurrent, zitiert in ICCT 2025).",
+        "strommix": "Der Vorsprung wächst über die Haltedauer, weil der Strom sauberer wird: 2025 stammen rund 56 % des EU-Stroms aus erneuerbaren Quellen, 18 Prozentpunkte mehr als 2020; die Gemeinsame Forschungsstelle der EU erwartet 86 % bis 2045. Weil ein heute verkauftes Auto rund 20 Jahre fährt, rechnet die Analyse mit dem Mix der Jahre 2025 bis 2044 statt mit dem heutigen.",
+        "eu_batterieverordnung": "Verordnung (EU) 2023/1542, Anhang XII Teil C: Beim Recycling müssen bis 31.12.2027 mindestens 90 % des Kobalts, Kupfers, Bleis und Nickels und 50 % des Lithiums zurückgewonnen werden, bis 31.12.2031 je 95 % und 80 % beim Lithium.",
+        "context": "Pack ist empirisch-deskriptiv. Die Zahlen gelten für den EU-Durchschnitt; in einem Strommix mit sehr hohem Kohleanteil fällt der Vorsprung kleiner aus, in einem mit viel Wasser- und Windkraft größer."
       },
       "context_notes": [
-        "Kleine E-Autos haben besseren CO2-Pay-back als große SUV-E-Autos — Akku-Größe steigt linear mit Reichweite.",
-        "Nutzfahrzeug-Bewertung anders: E-LKW noch schlechtere Pay-back-Quote, vor allem bei Langstrecken.",
-        "Reine Kalt-Wetter-Reichweiten-Verluste (~20-30 % in Frost) verlängern Pay-back leicht — nicht die Bilanz qualitativ ändern."
+        "Korrigiert 2026-09-24: Die frühere Fassung nannte eine Pay-back-Distanz, einen Produktionsaufschlag, Lebenszyklus-Werte je Kilometer, Angaben zu Strommix-Intensitäten und eine Lithium-Recyclingquote, die alle nicht zur zitierten Quelle passten. Sie berief sich zudem auf eine ICCT-Veröffentlichung von 2024, die es unter der angegebenen Adresse nicht gibt.",
+        "Datenstand: ICCT-Bericht 'Life-cycle greenhouse gas emissions from passenger cars in the European Union', veröffentlicht 8./9. Juli 2025; Verordnung (EU) 2023/1542 in der Fassung vom Juli 2023.",
+        "Die Werte gelten je Fahrzeugklasse: Ein großes Batterieauto mit großer Batterie hat höhere Produktionsemissionen als ein kleines, die Rangfolge gegenüber dem Verbrenner derselben Klasse bleibt aber bestehen.",
+        "Die Analyse rechnet mit realem Verbrauch statt mit Typprüfwerten — das ist für Plug-in-Hybride entscheidend, die seltener elektrisch gefahren werden als früher angenommen."
       ],
       "claim_phrasings_handled": [
         "E-Autos haben schlechtere CO2-Bilanz als Verbrenner",
         "E-Auto-Akkus sind sehr CO2-intensiv",
-        "Verbrenner sind klimafreundlicher als E-Autos"
+        "Verbrenner sind klimafreundlicher als E-Autos",
+        "Wie lange muss ein E-Auto fahren, bis es sich klimatisch rechnet?",
+        "Ein E-Auto muss erst 100.000 km fahren, bevor es besser ist als ein Diesel",
+        "Wie viel CO2 verursacht die Batterieproduktion?",
+        "E-Auto-Akkus halten nur ein paar Jahre",
+        "Plug-in-Hybride sind so sauber wie E-Autos"
       ],
       "trigger_keywords": [
         "e-auto co2 verbrenner",
@@ -154,30 +162,81 @@
         [
           "e-auto",
           "elektroauto",
-          "ev",
-          "bev",
+          "e-fahrzeug",
+          "elektrofahrzeug",
+          " bev ",
+          " bevs ",
           "tesla",
           "akku",
           "batterie",
           "elektromobilitaet",
-          "elektromobilität"
+          "elektromobilität",
+          "plug-in",
+          "hybrid"
         ],
         [
           "co2",
           "klima",
           "klimabilanz",
           "lifecycle",
+          "lebenszyklus",
           "verbrenner",
           "diesel",
           "benziner",
           "umweltbilanz",
           "klimafreundlich",
-          "schlechter"
+          "schlechter",
+          "besser",
+          "pay-back",
+          "payback",
+          "amortis",
+          "rechnet sich",
+          "produktion",
+          "herstellung",
+          "halten",
+          "haltbarkeit",
+          "wie lange",
+          "wie viel",
+          "sauber",
+          "genauso",
+          "so gut"
         ]
       ],
-      "source_label": "ICCT Lifecycle Analysis 2024 + Agora Verkehrswende + JRC",
-      "source_url": "https://theicct.org/publication/lifecycle-emissions-roadmap-passenger-vehicles-jul24/",
-      "secondary_url": "https://www.agora-verkehrswende.de/publikationen/"
+      "trigger_all": [
+        [
+          [
+            "akku",
+            "batterie"
+          ],
+          [
+            "produktion",
+            "herstellung"
+          ],
+          [
+            "co2",
+            "klima"
+          ]
+        ],
+        [
+          [
+            "e-auto",
+            "elektroauto"
+          ],
+          [
+            "100.000",
+            "50.000",
+            "km"
+          ],
+          [
+            "besser",
+            "rechnet",
+            "bilanz"
+          ]
+        ]
+      ],
+      "source_label": "ICCT, Life-cycle greenhouse gas emissions from passenger cars in the European Union (Juli 2025) + Verordnung (EU) 2023/1542",
+      "source_url": "https://theicct.org/publication/electric-cars-life-cycle-analysis-emissions-europe-jul25/",
+      "secondary_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32023R1542"
     },
     {
       "id": "waermepumpe_winter_2026",
@@ -357,8 +416,8 @@
         ]
       ],
       "source_label": "Hötker NABU 2017 + Loss Nature 2013 + LfU Bayern + DDA",
-      "source_url": "https://www.nabu.de/imperia/md/content/nabude/energie/wind/2017_hoetker_studie_windkraft.pdf",
-      "secondary_url": "https://www.bfn.de/themen/erneuerbare-energien/windenergie/voegel-und-fledermaeuse.html"
+      "source_url": "https://bergenhusen.nabu.de/forschung/windenergie-und-voegel/index.html",
+      "secondary_url": "https://www.bfn.de/bau-und-betrieb"
     },
     {
       "id": "erneuerbare_versorgungssicher_2026",
@@ -369,7 +428,7 @@
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Erneuerbare gefährden Versorgungssicherheit' ist FALSE im DE/AT/EU-Kontext 2024. Empirische Daten: DE-Stromversorgungs-Zuverlässigkeit (SAIDI: System Average Interruption Duration Index) bleibt seit 2006 zwischen 12-17 Min/Jahr — einer der besten Werte weltweit, trotz Anstieg Erneuerbaren-Anteil von 12 % (2006) auf ~62 % (2024). USA-Vergleich: ~120-180 Min/Jahr. Aussage 'Wind- + Solar-Strom kollabiert Netze' wird durch Lastflüsse-Studien (50Hertz, BNetzA, Tennet 2024) widerlegt.",
         "saidi_de_2024": "BNetzA SAIDI 2024 (vorläufig): ~12 Minuten ungeplante Stromunterbrechung pro Endkunde pro Jahr. EU-Top-3, nahe Schweiz + Niederlande. AT SAIDI 2023: ~30-40 Min, ebenfalls niedrig.",
-        "ee_anteil_de": "Fraunhofer ISE Energy Charts 2024: Erneuerbare im DE-Stromix 2024: ~62 % (Wind 31 %, Solar 14 %, Biomasse 8 %, Wasser 3,5 %, Sonstige 5,5 %). Trend +3-5 PP/Jahr.",
+        "ee_anteil_de": "Fraunhofer ISE Energy Charts 2024: Erneuerbare im DE-Strommix 2024: ~62 % (Wind 31 %, Solar 14 %, Biomasse 8 %, Wasser 3,5 %, Sonstige 5,5 %). Trend +3-5 PP/Jahr.",
         "dunkelflaute_kontext": "'Dunkelflaute' (wenig Wind + Solar gleichzeitig) sind 1-2 Mal pro Jahr für 1-3 Tage. Ausgleich durch: Pumpspeicher (DE ~7 GW), Erdgas-Backup (DE ~22 GW Reserveleistung), EU-Stromhandel (Nord-Süd-Ost-Import), zukünftig Wasserstoff-Backup-Kraftwerke.",
         "tennet_studie": "Tennet (DE Übertragungsnetzbetreiber, 2023 Lastflüsse-Studie): Stromsystem 2030 mit 80 % EE technisch beherrschbar bei adequatem Ausbau Backup + Speicher + Netz. Ähnliche Studien von 50Hertz, Amprion, Transnet BW.",
         "regelreserve_kosten": "Regelreserve-Kosten für Netzstabilisierung: 2010 (kohle-dominiert) ~600 Mio EUR/Jahr DE. 2023 (höherer EE-Anteil): ~700-800 Mio EUR/Jahr. Nur leichter Anstieg trotz fundamentaler Mix-Veränderung.",
@@ -397,7 +456,7 @@
         [
           "erneuerbar",
           "erneuerbare",
-          "wind",
+          " wind",
           "solar",
           "windstrom",
           "solarstrom",
@@ -465,7 +524,7 @@
         [
           "sauber",
           "umweltfreundlich",
-          "nox",
+          " nox ",
           "stickoxid",
           "feinstaub",
           "skandal",
@@ -477,7 +536,7 @@
       ],
       "source_label": "ICCT RDE Reports + EEA + EPA-Untersuchungen",
       "source_url": "https://theicct.org/research-area/passenger-cars/",
-      "secondary_url": "https://www.umweltbundesamt.de/themen/luft/emissionen-von-luftschadstoffen/spezifische-emissionen-des-verkehrs"
+      "secondary_url": "https://www.umweltbundesamt.de/themen/verkehr/emissionsdaten"
     },
     {
       "id": "atomstrom_frankreich_import_2026",

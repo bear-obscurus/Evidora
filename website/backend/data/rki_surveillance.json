@@ -151,7 +151,7 @@
         "rki atemwegsinfekt", "rki ari", "rki sari"
       ],
       "trigger_composite": [
-        ["grippe", "influenza", "atemwegs", "atemwegsinfekt", "rsv", "ari", "sari", "covid"],
+        ["grippe", "influenza", "atemwegs", "atemwegsinfekt", " rsv ", " ari ", "sari", "covid"],
         ["welle", "anstieg", "gestiegen", "steigt",
          "krise", "lahm", "kollap", "kollabiert", "ausbruch", "boom",
          "explod", "explosion", "rapide", "schlimmer", "immer mehr",

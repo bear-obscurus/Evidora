@@ -15,6 +15,7 @@ import logging
 import os
 
 from services._topic_match import find_matching_items, load_items
+from services._notizen import prompt_notizen
 
 logger = logging.getLogger("evidora")
 
@@ -109,7 +110,7 @@ async def search_medientransparenz(analysis: dict) -> dict:
         url = fact.get("source_url", "")
         label = fact.get("source_label", "RTR / KommAustria")
         notes = fact.get("context_notes") or []
-        notes_joined = " | ".join(notes)
+        notes_joined = " | ".join(prompt_notizen(notes))
         year = str(fact.get("year", ""))
 
         if topic == "medientransparenz_overview":

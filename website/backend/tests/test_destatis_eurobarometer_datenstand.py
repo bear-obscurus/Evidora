@@ -31,6 +31,7 @@ Fakten tragen ihren Erhebungszeitpunkt jetzt im Kopf der Headline.
 """
 
 import json
+import re
 from pathlib import Path
 
 BACKEND = Path(__file__).resolve().parents[1]
@@ -51,18 +52,29 @@ def test_jeder_destatis_fakt_traegt_seinen_datenstand():
         assert "2024" in f["data"]["datenstand"] or "2021/23" in f["data"]["datenstand"]
 
 
+def _welle(headline: str) -> str:
+    """'STAND HERBST 2024 (…)' -> 'Herbst 2024'. Die Fakten stehen auf
+    unterschiedlichen Wellen, seit der Demokratie-Fakt am 22.9.2026 auf
+    Eurobarometer 105 (Frühjahr 2026) gezogen wurde."""
+    m = re.match(r"STAND ([A-ZÄÖÜa-zäöü]+ \d{4})", headline)
+    assert m, headline
+    return m.group(1).capitalize()
+
+
 def test_jeder_eurobarometer_fakt_traegt_seinen_datenstand():
     for f in EB["facts"]:
         assert "datenstand" in f["data"], f["id"]
-        assert "Herbst 2024" in f["data"]["datenstand"]
-        assert "NICHT enthalten" in f["data"]["datenstand"]
+        welle = _welle(f["headline"])
+        assert welle in f["data"]["datenstand"], (f["id"], welle)
+        assert "NICHT enthalten" in f["data"]["datenstand"], f["id"]
 
 
 def test_eurobarometer_headlines_beginnen_mit_dem_stand():
     """Der Erhebungszeitpunkt gehört an den ANFANG — nicht ans Ende, wo ihn
     die Prompt-Kürzung als Erstes wegnimmt."""
     for f in EB["facts"]:
-        assert f["headline"].startswith("STAND HERBST 2024"), f["id"]
+        assert f["headline"].startswith("STAND "), f["id"]
+        assert _welle(f["headline"]), f["id"]
         assert len(f["headline"]) <= MAX_STR
 
 

@@ -234,3 +234,145 @@ def test_beide_messgroessen_auf_einer_seite_kein_mismatch():
         "Verbrauch und Verzehr von Fleisch in Österreich 2024",
         "Fleischverbrauch und Fleischverzehr in Österreich 2024"
     ) is False
+
+
+# ===================================================================
+# Einseitige oder gedrehte Schwellenzahl (Live-Fund 2026-09-26)
+# ===================================================================
+# Gemessen nach dem Deploy von PR #202, prod c3881ba:
+#
+#   cos=0.9334  'In Österreich wurden 2024 mehr als 200 Frauen ermordet'
+#           ->  'in österreich wurden 2024 mehr frauen als männer ermordet'
+#
+# Ausgeliefert wurde das true@0.9 der ANDEREN Frage, obwohl die PKS 2024
+# 40 vollendete Morde an Frauen ausweist. Die Zahlen-Regel bustet nur bei
+# DISJUNKTEN Mengen: {'2024','200'} und {'2024'} schneiden sich in der
+# Jahreszahl. Die Schwelle ist aber genau die Behauptung.
+#
+# Dieselbe Messung zeigte eine zweite Lücke: 'über 300' gegen 'unter 300'
+# war ein HIT — 'mehr'/'weniger' stehen in _POLARITY_ANTONYMS, 'über'/
+# 'unter' nicht. Deshalb kodiert der Guard die RICHTUNG mit.
+
+from services.verdict_cache import _threshold_claims  # noqa: E402
+
+
+# --- Die Live-Paare (müssen blocken) ---
+
+@pytest.mark.parametrize("a,b", [
+    # Der gemessene Fall: Schwelle nur auf einer Seite, Jahr auf beiden.
+    ("In Österreich wurden 2024 mehr als 200 Frauen ermordet",
+     "In Österreich wurden 2024 mehr Frauen als Männer ermordet"),
+    # Gedrehte Richtung, gleiche Zahl — von der Zahlen-Regel nicht erfasst.
+    ("In Deutschland sterben jedes Jahr über 300 Frauen durch ihren Partner",
+     "In Deutschland sterben jedes Jahr unter 300 Frauen durch ihren Partner"),
+    ("Die Anerkennungs-Quote bei Asyl ist über 90 Prozent",
+     "Die Anerkennungs-Quote bei Asyl ist unter 90 Prozent"),
+    # Andere Schwelle, gleiche Frage.
+    ("In Wien bekommen mehr als 100.000 Haushalte Wohnbeihilfe",
+     "In Wien bekommen mehr als 30.000 Haushalte Wohnbeihilfe"),
+])
+def test_schwellen_paare_blocken(a, b):
+    assert _polarity_mismatch(a, b) is True, (a, b)
+
+
+# --- Muss-Treffer-Kontrolle: dieselbe Schwelle darf weiter treffen ---
+
+@pytest.mark.parametrize("a,b", [
+    # Live beobachtete Paraphrase, die korrekt geteilt wurde.
+    ("In Deutschland werden jährlich mehr als 300 Frauen von ihrem Partner getötet",
+     "in deutschland sterben jedes jahr über 300 frauen durch ihren partner"),
+    # Gleiche Richtung, andere Wörter, auch über Sprachgrenzen.
+    ("Mindestens 1.000 Betriebe sind betroffen",
+     "At least 1000 Betriebe sind betroffen"),
+    # Gar keine Schwelle auf beiden Seiten.
+    ("Wie hoch ist die Leerstandsabgabe in Tirol?",
+     "wie hoch ist die leerstandsabgabe in tirol"),
+])
+def test_schwellen_paraphrase_trifft_weiter(a, b):
+    assert _polarity_mismatch(a, b) is False, (a, b)
+
+
+# --- Der Baustein ---
+
+@pytest.mark.parametrize("text,erwartet", [
+    ("mehr als 200 Frauen", {"min:200"}),
+    ("über 300", {"min:300"}),
+    ("ueber 300", {"min:300"}),
+    ("mindestens 1.000 Fälle", {"min:1000"}),
+    ("unter 300", {"max:300"}),
+    ("weniger als 2,5 Prozent", {"max:2.5"}),
+    ("höchstens 12 Betriebe", {"max:12"}),
+    ("more than 200 women", {"min:200"}),
+    ("at least 1000 cases", {"min:1000"}),
+    ("fewer than 40 cases", {"max:40"}),
+    ("at most 12 farms", {"max:12"}),
+    ("mehr  als   200", {"min:200"}),          # Mehrfach-Whitespace
+    ("über 300 Frauen und unter 40 Männer", {"min:300", "max:40"}),
+])
+def test_schwellen_erkennung(text, erwartet):
+    assert _threshold_claims(text) == erwartet
+
+
+@pytest.mark.parametrize("text", [
+    "PISA 2018 zeigte schlechtere Werte",     # Jahreszahl ohne Operator
+    "2024 wurden 40 Frauen ermordet",         # Zahlen ohne Schwelle
+    "Die Leerstandsabgabe beträgt 215 Euro",
+    "genau 300 Frauen",
+    "rund 300 Frauen",
+])
+def test_ohne_schwelle_keine_schwelle(text):
+    assert _threshold_claims(text) == set()
+
+
+def test_dezimalkomma_kollidiert_nicht_mit_der_ganzen_zahl():
+    """"unter 2,5 %" ist nicht "unter 25 %" — `_extract_numbers` wirft beide
+    auf '25', hier ist die Zahl aber das einzige Signal."""
+    assert _threshold_claims("unter 2,5 Prozent") != _threshold_claims("unter 25 Prozent")
+    assert _polarity_mismatch("Der Anteil liegt unter 2,5 Prozent",
+                              "Der Anteil liegt unter 25 Prozent") is True
+
+
+def test_satzende_punkt_gehoert_nicht_zur_zahl():
+    assert _threshold_claims("Es sind mehr als 300.") == {"min:300"}
+
+
+def test_richtung_zaehlt_nicht_nur_die_zahl():
+    """Der Grund, warum der Schlüssel die Richtung mitführt: sonst wären
+    'über 300' und 'unter 300' identisch."""
+    assert _threshold_claims("über 300") != _threshold_claims("unter 300")
+
+
+@pytest.mark.parametrize("a,b", [
+    ("mehr als 200 Frauen ermordet", "Frauen ermordet"),
+    ("Frauen ermordet", "mehr als 200 Frauen ermordet"),
+])
+def test_der_guard_ist_symmetrisch(a, b):
+    assert _polarity_mismatch(a, b) is True
+
+
+# --- End-to-End durch den echten Cache ---
+
+def test_semantic_hit_blocked_fuer_schwellen_claim():
+    """Der Live-Fall durch put()/get(): Embedding identisch (Cosine 1.0),
+    nur der Guard kann den Treffer verhindern."""
+    pytest.importorskip("numpy")
+    import numpy as np
+    from services import verdict_cache as vc
+
+    vc.clear()
+    fixed = np.ones(8, dtype=float) / np.sqrt(8)
+    original_embed = vc._embed
+    vc._embed = lambda _text: fixed
+    try:
+        vc.put("In Österreich wurden 2024 mehr Frauen als Männer ermordet",
+               {"verdict": "true", "confidence": 0.9, "summary": "40 vs. 36"})
+        # Mit Schwelle: darf die Antwort der anderen Frage NICHT bekommen.
+        assert vc.get("In Österreich wurden 2024 mehr als 200 Frauen ermordet") is None
+        # Ohne Schwellenwechsel: echte Umformulierung trifft weiter.
+        treffer = vc.get("Wurden 2024 in Österreich mehr Frauen als Männer ermordet?")
+        assert treffer is not None
+        assert treffer["verdict"] == "true"
+        assert treffer["_cache_hit"]["type"] == "semantic"
+    finally:
+        vc._embed = original_embed
+        vc.clear()

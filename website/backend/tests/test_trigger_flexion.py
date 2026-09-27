@@ -145,7 +145,9 @@ def test_gemeinsamer_matcher_nutzt_die_regel():
     """`find_matching_items` -> `substring_or_composite_match` -> `trifft`.
     Eine Aenderung dort erreicht alle Pack-Dienste auf einmal."""
     quelle = (BACKEND / "services" / "_topic_match.py").read_text(encoding="utf-8")
-    assert "_flexion_trifft" in quelle
+    # Seit 2026-09-26 ueber die Wortgrenzen-Huelle, die `trifft` aufruft
+    # (services/_flexion.py, WORTGRENZEN).
+    assert "trifft_mit_wortgrenze" in quelle
     from services._topic_match import substring_or_composite_match
     item = {"trigger_keywords": ["freie wahlen"]}
     assert substring_or_composite_match(item, "es gab keine freien wahlen")

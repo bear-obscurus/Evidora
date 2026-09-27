@@ -46,6 +46,7 @@ import re
 import time
 from urllib.parse import urlencode
 
+from services import _laender as _LAENDER
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
@@ -297,11 +298,16 @@ def _detect_countries(claim_lc: str) -> list[tuple[str, str]]:
         iso, name = _COUNTRY_MAP[kw]
         if iso in seen:
             continue
-        pattern = r"(?<![a-zäöüß])" + re.escape(kw) + r"(?![a-zäöüß])"
+        # Schluessel falten wie den Claim: der Aufrufer uebergibt
+        # normalisierten Text, und „österreich" traf „oesterreich" nie —
+        # „in Oesterreich" lieferte deshalb Nigeria. Betroffen waren fuenf
+        # Laender: Oesterreich, Aethiopien, Suedafrika, Aegypten, Tuerkei.
+        kw_n = normalisiere(kw).strip()
+        pattern = r"(?<![a-zäöüß])" + re.escape(kw_n) + r"(?![a-zäöüß])"
         if re.search(pattern, masked):
             found.append((iso, name))
             seen.add(iso)
-            masked = re.sub(pattern, " " * len(kw), masked)
+            masked = re.sub(pattern, " " * len(kw_n), masked)
             if len(found) >= 2:
                 break
     return found
@@ -491,9 +497,26 @@ async def search_unesco_uis(analysis: dict) -> dict:
 
     countries = _detect_countries(matchable)
     if not countries:
-        # Default: globale Hotspot-Beispiele (NGA = bevoelkerungsreichstes
-        # OOSC-Land; KEN = solide Datenlage fuer SDG-4-Vergleiche)
-        countries = [("NGA", "Nigeria"), ("KEN", "Kenia")]
+        # Zweiter Blick ueber das gemeinsame Verzeichnis. Die eigene Karte
+        # verfehlt Schluessel, die der normalisierte Claim nicht mehr traegt
+        # („in Oesterreich" lieferte Nigeria, obwohl AUT in der Karte steht).
+        codes = frozenset(iso for iso, _ in _COUNTRY_MAP.values())
+        mit_daten, ohne_daten = _LAENDER.zustaendigkeit(
+            analysis, codes, max_n=2, text=matchable, entities=False)
+        if mit_daten:
+            namen = {iso: name for iso, name in _COUNTRY_MAP.values()}
+            countries = [(iso, namen[iso]) for iso in mit_daten]
+        elif ohne_daten:
+            # Ein genannter Ort ohne UIS-Karte bekommt NICHTS. Frueher kamen
+            # Nigeria und Kenia — auch fuer Nordkorea, Tuvalu und „weltweit".
+            logger.info("unesco_uis: nicht zustaendig fuer %s — kein Ersatzland",
+                        ohne_daten)
+            return empty
+        else:
+            # Nur ohne Ortsangabe: globale Hotspot-Beispiele (NGA =
+            # bevoelkerungsreichstes OOSC-Land; KEN = solide Datenlage fuer
+            # SDG-4-Vergleiche)
+            countries = [("NGA", "Nigeria"), ("KEN", "Kenia")]
 
     results: list[dict] = []
     seen_indicators: set[str] = set()

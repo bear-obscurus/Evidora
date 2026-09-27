@@ -266,7 +266,7 @@ def _build_meta_result() -> dict:
             f"Insgesamt {total} Verfahren seit EMA-Gruendung."
         ),
         "url": payload.get("source_url",
-                           "https://www.ema.europa.eu/en/medicines/human/referrals"),
+                           "https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/referral-procedures-human-medicines"),
         "source": "EMA Referrals (Art. 20/30/31/107i, CC-BY 4.0)",
     }
 
@@ -343,7 +343,7 @@ async def search_ema_referrals(analysis: dict) -> dict:
             ),
             "url": payload.get(
                 "source_url",
-                "https://www.ema.europa.eu/en/medicines/human/referrals",
+                "https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/referral-procedures-human-medicines",
             ),
             "secondary_url": payload.get("xlsx_url", ""),
             "source": "EMA Referrals (Art. 20/30/31/107i, CC-BY 4.0)",

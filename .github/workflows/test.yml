@@ -83,6 +83,20 @@ jobs:
     #   - test_ueber_trigger_sweep     (4 Cross-Topic-Lecks: eige/eu/eter/
     #                                  anzeigen — Kurz-Tokens in Alltagswoertern,
     #                                  beidseitig gepinnt — QA50D-Sweep)
+    #   - test_wortgrenzen_trigger     (Kurz-Tokens in fremden Woertern: tum/
+    #                                  ass/de/neutral u. a. gebunden; Rand-
+    #                                  Leerzeichen = Wortgrenze auch am Claim-
+    #                                  Rand; Sweep mit Gift-Probe als Gate)
+    #   - test_wortgrenzen_alle_fakten (Sweep 2 ueber ALLE Trigger-Fakten:
+    #                                  ~110 Kurz-Tokens gebunden, 5 Stichwort-
+    #                                  Degenerationen aufgeloest, keine Endungen
+    #                                  an 1-2-Buchstaben-Woerter; 4 Gates mit
+    #                                  Gift-Proben)
+    #   - test_tippfehler_echtwort     (der tolerante Pass haelt kein anderes
+    #                                  echtes Wort fuer einen Tippfehler:
+    #                                  fuehrt/fuehlt, aktion/aktien, schweiz/
+    #                                  schwein; Formen desselben Worts tragen
+    #                                  weiter; Korpus-Sweep mit Gift-Probe)
     #   - test_fleisch_messgroessen_bindung (Verbrauch vs. Verzehr: der Fakt
     #                                  bindet die im Claim GENANNTE Messgröße
     #                                  an ihren Wert, Headline unter dem
@@ -241,6 +255,10 @@ jobs:
     #                                  Mehrwort-Begriff: 21 % -> 90 %)
     #   - test_qa50b_rest             (Orbán-regiert-Trigger, AT-Steuerlast-
     #                                  Ranking-Fakt, Wien-Wahl 2025 GRW_W)
+    #   - test_englisch_trigger       (englische Claims trafen keinen Pack-
+    #                                  Trigger: Glossar-Pass, Sprach-Gate,
+    #                                  Wortgrenzen, Politik-Guard zweisprachig,
+    #                                  Ueber-Trigger-Sweep als Gate)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -349,7 +367,34 @@ jobs:
             tests/test_frontex_routen_einordnung.py \
             tests/test_vage_mengenangaben.py \
             tests/test_laender_zustaendigkeit.py \
+            tests/test_live_dienste_kein_ersatzland.py \
+            tests/test_tatverdaechtige_nichtdeutsche_trigger.py \
+            tests/test_beleg_links.py \
+            tests/test_klimaticket_fakt.py \
+            tests/test_tote_links_handreparatur.py \
+            tests/test_familiennachzug_fakt.py \
+            tests/test_eurobarometer_demokratie.py \
+            tests/test_femizide_zahlen.py \
+            tests/test_agrar_und_klimazahlen.py \
+            tests/test_leerstandsabgabe_wohnbeihilfe.py \
+            tests/test_korrekturnotiz_ohne_alte_zahlen.py \
+            tests/test_prompt_zensus.py \
+            tests/test_pestizid_rueckstaende.py \
+            tests/test_fakt_rangfolge.py \
+            tests/test_wartungsnotizen.py \
+            tests/test_e_auto_lebenszyklus.py \
+            tests/test_suv_frontgeometrie.py \
+            tests/test_label_kohaerenz.py \
+            tests/test_muster_n_schwellenzahl.py \
+            tests/test_tippfehler_toleranz.py \
+            tests/test_frontend_cache_header.py \
+            tests/test_englisch_trigger.py \
+            tests/test_parteien_korruption_datenlage.py \
+            tests/test_tempolimit_zuordnung.py \
             tests/test_qa50b_rest.py \
+            tests/test_wortgrenzen_trigger.py \
+            tests/test_wortgrenzen_alle_fakten.py \
+            tests/test_tippfehler_echtwort.py \
             tests/test_wikidata_reliability.py
 
   check-new-urls:

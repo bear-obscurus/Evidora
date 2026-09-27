@@ -1645,7 +1645,7 @@ async def _search_migration(search_text: str) -> list[dict]:
             "net_migration": net,
             "unit": "Personen",
             "source": "Statistik Austria",
-            "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/wanderungen",
+            "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/migration-und-einbuergerung/wanderungen-mit-dem-ausland",
             "dataset_id": "OGD_bevbewegung_BEV_BEW_3",
         })
 
@@ -1663,7 +1663,7 @@ async def _search_migration(search_text: str) -> list[dict]:
                 "value": nat_change,
                 "unit": "Personen",
                 "source": "Statistik Austria",
-                "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/wanderungen",
+                "url": "https://www.statistik.at/statistiken/bevoelkerung-und-soziales/bevoelkerung/migration-und-einbuergerung/wanderungen-mit-dem-ausland",
                 "dataset_id": "OGD_bevbewegung_BEV_BEW_3",
             })
 

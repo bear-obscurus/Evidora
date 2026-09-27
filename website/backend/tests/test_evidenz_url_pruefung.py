@@ -131,13 +131,24 @@ def test_echter_toter_link_fliegt_raus(monkeypatch):
     assert _lauf([{"source": "X", "url": url}], k, monkeypatch) == []
 
 
-def test_bei_404_wird_nicht_nachgeprueft(monkeypatch):
-    """Ein 404 sagt etwas über den LINK, nicht über die Methode — eine
-    GET-Nachprüfung wäre ein zweiter Fehlschlag und kostet nur Zeit."""
+def test_head_404_wird_per_get_nachgeprueft(monkeypatch):
+    """Korrektur einer eigenen Annahme. Dieser Test hielt frueher fest, dass
+    ein HEAD-404 NICHT nachgeprueft wird („ein 404 sagt etwas ueber den
+    Link"). Gemessen 2026-09-22: Our World in Data antwortet auf HEAD mit
+    404 und auf GET mit 200 — drei gueltige Grapher-Belege gingen in Prod
+    verloren. HEAD ist die Abkuerzung, der GET das Urteil."""
+    url = "https://ourworldindata.org/grapher/share-electricity-renewables"
+    k = _Klient(head_codes={url: 404}, get_codes={url: 200})
+    r = _lauf([{"source": "OWID", "url": url}], k, monkeypatch)
+    assert len(r) == 1
+    assert any(a[0] == "GET" for a in k.aufrufe)
+
+
+def test_head_404_und_get_404_bleibt_tot(monkeypatch):
+    """Die Gegenprobe: bestaetigt auch der GET den 404, fliegt der Beleg."""
     url = "https://beispiel.test/weg"
-    k = _Klient(head_codes={url: 404})
-    _lauf([{"source": "X", "url": url}], k, monkeypatch)
-    assert not any(a[0] == "GET" for a in k.aufrufe)
+    k = _Klient(head_codes={url: 404}, get_codes={url: 404})
+    assert _lauf([{"source": "X", "url": url}], k, monkeypatch) == []
 
 
 def test_eintrag_ohne_url_bleibt(monkeypatch):
@@ -172,7 +183,7 @@ def test_grund_der_verwerfung_steht_im_log(monkeypatch, caplog):
     dieselbe Lücke wie #168, eine Ebene tiefer."""
     import logging
     url = "https://beispiel.test/weg"
-    k = _Klient(head_codes={url: 404})
+    k = _Klient(head_codes={url: 404}, get_codes={url: 404})
     with caplog.at_level(logging.INFO, logger="evidora"):
         _lauf([{"source": "X", "url": url}], k, monkeypatch)
     zeilen = [r.getMessage() for r in caplog.records if "Removed broken" in r.getMessage()]
@@ -219,9 +230,10 @@ def test_zugriffs_und_serverfehler_kosten_keinen_beleg(monkeypatch, code):
 
 @pytest.mark.parametrize("code", [404, 410])
 def test_nur_404_und_410_toeten_einen_beleg(monkeypatch, code):
-    """Diese zwei Codes sagen: die Ressource gibt es nicht."""
+    """Diese zwei Codes sagen: die Ressource gibt es nicht — wenn der GET
+    sie bestaetigt."""
     url = "https://beispiel.test/weg"
-    k = _Klient(head_codes={url: code})
+    k = _Klient(head_codes={url: code}, get_codes={url: code})
     assert _lauf([{"source": "X", "url": url}], k, monkeypatch) == []
 
 

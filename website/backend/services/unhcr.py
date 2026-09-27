@@ -1,5 +1,6 @@
 import httpx
 import logging
+from services import _laender as _LAENDER
 from services._http_polite import polite_client
 
 logger = logging.getLogger("evidora")
@@ -33,6 +34,8 @@ COUNTRY_MAP = {
 }
 
 # Keywords that indicate origin country (not asylum country)
+_UNHCR_LAENDER = frozenset(COUNTRY_MAP.values())
+
 ORIGIN_KEYWORDS = [
     "aus ", "from ", "herkunft", "origin", "fliehen", "flüchten",
     "kommen aus", "stammen aus", "coming from",
@@ -48,18 +51,20 @@ def _detect_countries(text: str) -> tuple[str | None, str | None]:
     # Check if text mentions origin context
     is_origin_context = any(kw in text_lower for kw in ORIGIN_KEYWORDS)
 
-    for keyword, iso3 in COUNTRY_MAP.items():
-        if keyword in text_lower:
-            # European countries are likely asylum countries
-            # Non-European countries are likely origin countries
-            european = iso3 in ("AUT", "DEU", "FRA", "ITA", "ESP", "GRC", "HUN",
-                                "POL", "SWE", "CHE", "TUR")
-            if european and not is_origin_context:
-                if not coa:
-                    coa = iso3
-            else:
-                if not coo:
-                    coo = iso3
+    # Ueber das gemeinsame Verzeichnis, in Textreihenfolge. Die eigene Suche
+    # war `keyword in text_lower`: „sudan" steckt in „suedsudan", und
+    # Gefluechtete AUS DEM SUEDSUDAN wurden dem Sudan zugeschrieben.
+    for iso3 in _LAENDER.finde(text, _UNHCR_LAENDER, max_n=5):
+        # European countries are likely asylum countries
+        # Non-European countries are likely origin countries
+        european = iso3 in ("AUT", "DEU", "FRA", "ITA", "ESP", "GRC", "HUN",
+                            "POL", "SWE", "CHE", "TUR")
+        if european and not is_origin_context:
+            if not coa:
+                coa = iso3
+        else:
+            if not coo:
+                coo = iso3
 
     return coa, coo
 
@@ -72,6 +77,19 @@ async def search_unhcr(analysis: dict) -> dict:
     search_text = f"{claim} {' '.join(ner_countries)}".lower()
 
     coa, coo = _detect_countries(search_text)
+
+    # Ein genannter Ort, den die UNHCR-Karte nicht fuehrt, bekommt NICHTS.
+    # Frueher kam die WELT-Summe („30,958,200 Fluechtlinge") — auch fuer
+    # „in Nordkorea" und „in Tuvalu". Ausnahme „weltweit": dort ist die
+    # Welt-Summe genau die gefragte Zahl.
+    if not coa and not coo:
+        _, ohne_daten = _LAENDER.zustaendigkeit(
+            {"claim": claim, "ner_entities": {"countries": ner_countries}},
+            _UNHCR_LAENDER, entities=False)
+        if ohne_daten and not set(ohne_daten) <= {"WLD"}:
+            logger.info("unhcr: nicht zustaendig fuer %s — kein Ersatzland", ohne_daten)
+            return {"source": "UNHCR (UN-Flüchtlingshilfswerk)",
+                    "type": "official_data", "results": []}
 
     results = []
 

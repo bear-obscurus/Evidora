@@ -10,7 +10,7 @@ Zufriedenheit. AT-/EU-/Welt-Vergleichs-Empirie.
 Topics (12):
   - wahlbeteiligung_at_trends_konsens (BMI 1949 96 % → 2024 77.5 % NR;
     EU-Wahl 2024 ~57 %; OECD-Mittelfeld)
-  - briefwahl_manipulation_mythen (VfGH G203/2016 BPräs-Stichwahl
+  - briefwahl_manipulation_mythen (VfGH W I 6/2016 BPräs-Stichwahl
     aufgehoben wegen FORMFEHLER, kein Manipulations-Beweis;
     US-2020-Big-Lie 60+ Court Cases abgelehnt + FBI/DOJ/CISA)
   - volksbegehren_wirkung_empirie_konsens (Art 41 B-VG, 100k Quorum,
@@ -60,6 +60,7 @@ import logging
 import os
 
 from services._topic_match import find_matching_items, load_items
+from services._notizen import prompt_notizen
 
 logger = logging.getLogger("evidora")
 
@@ -84,17 +85,34 @@ def _claim_matches_facts(claim_lc: str, full_claim: str | None = None) -> list[d
     )
 
 
+def _erlaubte_fakten(claim: str) -> list[dict]:
+    """Die Fakten dieses Packs, die fuer DIESEN Claim ausgeliefert werden.
+
+    Politik-Tabu-Guard 2.0 (Lehrgeld 2026-05-17): Das Pack aggregiert V-Dem,
+    Freedom House, CPI, RSF, IDEA und Eurobarometer — alles Country-Level.
+    Bei Partei + Korruption + Superlativ ohne Anker wuerden diese Daten eine
+    Partei-Wertung implizieren, also bleiben sie draussen.
+
+    Seit 26.9.2026 sperrt das nicht mehr das ganze Pack. Der Fakt
+    ``parteien_korruption_datenlage_2026`` beantwortet genau diese Frage,
+    ohne einen Laenderwert auf eine Partei zu muenzen: Er sagt, dass es keine
+    Rangliste gibt, und nennt zitiert und datiert, was es stattdessen gibt
+    (UPTS-Bescheide, Wahrnehmungs-Umfragen). Vorher lief die Sperre gegen den
+    eigenen Zweck — der Claim bekam „keine relevanten Daten" zurueck,
+    obwohl die Antwort im Pack lag. Fakten tragen die Eignung selbst, als
+    ``partei_korruption_tauglich``; ohne die Markierung bleibt es beim Block.
+    """
+    treffer = _claim_matches_facts(claim.lower(), full_claim=claim)
+    from services._topic_match import is_party_corruption_superlative_claim
+    if is_party_corruption_superlative_claim(claim.lower()):
+        return [f for f in treffer if f.get("partei_korruption_tauglich")]
+    return treffer
+
+
 def claim_mentions_demokratie_cached(claim: str) -> bool:
     if not claim:
         return False
-    # Politik-Tabu-Guard 2.0 (Lehrgeld 2026-05-17): Demokratie-Konsens-Pack
-    # aggregiert V-Dem + FH + CPI + RSF + IDEA + Eurobarometer — alle
-    # Country-Level. Bei Partei+Korruption+Superlativ ohne Anker blockieren,
-    # weil Country-Daten dann Partei-Wertung implizieren würden.
-    from services._topic_match import is_party_corruption_superlative_claim
-    if is_party_corruption_superlative_claim(claim.lower()):
-        return False
-    return bool(_claim_matches_facts(claim.lower(), full_claim=claim))
+    return bool(_erlaubte_fakten(claim))
 
 
 async def fetch_demokratie(client=None):
@@ -119,7 +137,7 @@ async def search_demokratie(analysis: dict) -> dict:
     }
 
     claim = (analysis or {}).get("original_claim") or (analysis or {}).get("claim", "") or ""
-    matches = _claim_matches_facts(claim.lower(), full_claim=claim)
+    matches = _erlaubte_fakten(claim)
     if not matches:
         return empty
 
@@ -132,7 +150,7 @@ async def search_demokratie(analysis: dict) -> dict:
         label = fact.get("source_label",
                          "V-Dem + Freedom House + Transparency CPI + RSF + IDEA + BMI + Statistik Austria + AT-VfGH + Eurobarometer + Bertelsmann")
         notes = fact.get("context_notes") or []
-        notes_joined = " | ".join(notes)
+        notes_joined = " | ".join(prompt_notizen(notes))
         year = str(fact.get("year", ""))
 
         display = f"{fact.get('headline', '?')}. {_data_lines(d)}"
