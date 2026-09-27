@@ -238,3 +238,51 @@ def test_die_unverneinten_faelle_sind_unveraendert():
     assert _lauf("true", FASSUNG_A, CONTRA)["verdict"] == "false"
     assert _lauf("true", FASSUNG_A, PRO)["verdict"] == "true"
     assert _lauf("false", FASSUNG_A, CONTRA)["verdict"] == "false"
+
+
+# --------------------------------------------------------------------------
+# P hat Vorrang vor O (Live-Regression 27.9.2026)
+# --------------------------------------------------------------------------
+# Eine halbe Stunde nach dem Deploy von #223 gemessen: "Die Deutsche Bahn
+# ist nicht pünktlicher als die ÖBB" -> false, obwohl die Verneinung
+# zutrifft. Im Log standen BEIDE Guards hintereinander:
+#
+#   Muster P: Label 'false' auf 'true' korrigiert          <- richtig
+#   Muster O (verneint): Label 'true' auf 'false' korrigiert <- macht es kaputt
+#
+# P rechnet mit den Zahlen beider Seiten, O liest Wörter. Die präzisere
+# Instanz gewinnt — dieselbe Hierarchie wie N vor M.
+
+LIVE_FASSUNG = (
+    "Die ÖBB-Fernverkehr-Pünktlichkeit lag 2024 bei 78,2–88,7 % "
+    "(5-Minuten-Toleranz), während die Deutsche Bahn im Fernverkehr nur "
+    "62,5 % (6-Minuten-Toleranz) erreichte. Selbst bei strengerer Definition "
+    "ist die ÖBB deutlich pünktlicher als die DB."
+)
+
+
+@pytest.mark.parametrize("claim,eingang,soll", [
+    ("Die ÖBB sind nicht pünktlicher als die Deutsche Bahn", "true", "false"),
+    ("Die Deutsche Bahn ist nicht pünktlicher als die ÖBB", "false", "true"),
+    ("Die ÖBB sind pünktlicher als die Deutsche Bahn", "mostly_false", "true"),
+    ("Die Deutsche Bahn ist pünktlicher als die ÖBB", "true", "false"),
+])
+def test_alle_vier_richtungen_mit_der_live_fassung(claim, eingang, soll):
+    assert _lauf(eingang, LIVE_FASSUNG, claim)["verdict"] == soll, claim
+
+
+def test_o_ruehrt_nicht_mehr_an_was_p_entschieden_hat():
+    """Der Kern der Regression: O lief nach P und drehte dessen richtige
+    Korrektur zurück."""
+    r = _lauf("false", LIVE_FASSUNG, "Die Deutsche Bahn ist nicht pünktlicher als die ÖBB")
+    assert r["verdict"] == "true"
+
+
+def test_o_arbeitet_weiter_wo_p_schweigt():
+    """Muss-Kontrolle: Ohne Zahlen entscheidet P nicht, dann ist O dran."""
+    ohne_zahlen = ("Die ÖBB gelten im Fernverkehr als verlässlich, die Deutsche "
+                   "Bahn kämpft mit Verspätungen. Insgesamt sind die ÖBB "
+                   "deutlich pünktlicher.")
+    from services.verdict_postprocess import vergleich_rechnerisch
+    assert vergleich_rechnerisch(PRO.lower(), ohne_zahlen.lower()) is None
+    assert _lauf("mostly_false", ohne_zahlen, PRO)["verdict"] == "true"

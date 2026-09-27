@@ -2240,11 +2240,19 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     # entscheidet in BEIDE Richtungen, O nur die eine. Siehe
     # vergleich_rechnerisch().
     _p_summary = (result.get("summary") or "").lower()
+    _p_entschieden = False
     if result.get("verdict") in ("true", "mostly_true", "false", "mostly_false") and _p_summary:
         _p_wahr = vergleich_rechnerisch(_claim_lc, _p_summary)
         if _p_wahr is not None and vergleich_negiert(_claim_lc):
             _p_wahr = not _p_wahr     # "A ist NICHT xer als B"
         if _p_wahr is not None:
+            # P hat entschieden — O darf danach nicht mehr daran ruehren.
+            # Live am 27.9.2026 gemessen: Bei "Die Deutsche Bahn ist nicht
+            # puenktlicher als die ÖBB" korrigierte P richtig auf 'true',
+            # und O machte es direkt danach wieder zu 'false'. P rechnet
+            # mit den Zahlen beider Seiten, O liest Woerter; die praezisere
+            # Instanz gewinnt, wie N vor M.
+            _p_entschieden = True
             _p_ziel = "true" if _p_wahr else "false"
             _p_alt = result["verdict"]
             if ((_p_wahr and _p_alt in ("false", "mostly_false"))
@@ -2264,7 +2272,7 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     # Nur diese Richtung: eine bejahende Begruendung unter einem
     # verneinenden Label. Siehe summary_bestaetigt_vergleich().
     _o_summary = (result.get("summary") or "").lower()
-    if _o_summary and summary_bestaetigt_vergleich(_claim_lc, _o_summary):
+    if _o_summary and not _p_entschieden and summary_bestaetigt_vergleich(_claim_lc, _o_summary):
         # Ist der Claim selbst verneint ("A ist NICHT xer als B"), dann
         # WIDERLEGT eine bejahende Summary ihn — dieselbe Lehre wie bei
         # Muster P (HART40-B).
