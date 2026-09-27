@@ -650,6 +650,26 @@ def vergleich_aus_claim(claim_lc: str):
     return subjekt, komparativ, partner
 
 
+_O_CLAIM_NEGATION = ("nicht", "kein", "keine", "keinen", "keinem", "keiner",
+                     "nie", "niemals", "kaum")
+
+
+def vergleich_negiert(claim_lc: str) -> bool:
+    """Steht im Claim eine Verneinung VOR dem Komparativ?
+
+    HART40-B, 27.9.2026: "Die ÖBB sind NICHT puenktlicher als die Deutsche
+    Bahn" bekam true@0.85 — Muster P rechnete 78,2 > 62,5 und bejahte damit
+    einen verneinten Claim. Die Zerlegung sah nur "puenktlicher als" und
+    ignorierte das "nicht" davor. Beide Vergleichsmuster (O und P) fragen
+    deshalb hier nach und drehen ihr Ergebnis um.
+    """
+    m = _O_KOMPARATIV_RE.search(normalisiere(claim_lc))
+    if not m:
+        return False
+    vorn = re.findall(r"[a-zäöüßa-z]+", normalisiere(claim_lc)[:m.start()])
+    return any(w in _O_CLAIM_NEGATION for w in vorn)
+
+
 def summary_bestaetigt_vergleich(claim_lc: str, summary_lc: str) -> bool:
     """Bejaht ein Satz der Summary denselben Vergleich wie der Claim?
 
@@ -2222,6 +2242,8 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     _p_summary = (result.get("summary") or "").lower()
     if result.get("verdict") in ("true", "mostly_true", "false", "mostly_false") and _p_summary:
         _p_wahr = vergleich_rechnerisch(_claim_lc, _p_summary)
+        if _p_wahr is not None and vergleich_negiert(_claim_lc):
+            _p_wahr = not _p_wahr     # "A ist NICHT xer als B"
         if _p_wahr is not None:
             _p_ziel = "true" if _p_wahr else "false"
             _p_alt = result["verdict"]
@@ -2242,14 +2264,21 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     # Nur diese Richtung: eine bejahende Begruendung unter einem
     # verneinenden Label. Siehe summary_bestaetigt_vergleich().
     _o_summary = (result.get("summary") or "").lower()
-    if (result.get("verdict") in ("false", "mostly_false") and _o_summary
-            and summary_bestaetigt_vergleich(_claim_lc, _o_summary)):
-        _o_alt = result["verdict"]
-        result["verdict"] = "true"
-        logger.warning(
-            f"Muster O (Vergleich): Die Summary bejaht denselben Vergleich, "
-            f"den das Label '{_o_alt}' verneint — auf 'true' korrigiert."
-        )
+    if _o_summary and summary_bestaetigt_vergleich(_claim_lc, _o_summary):
+        # Ist der Claim selbst verneint ("A ist NICHT xer als B"), dann
+        # WIDERLEGT eine bejahende Summary ihn — dieselbe Lehre wie bei
+        # Muster P (HART40-B).
+        _o_negiert = vergleich_negiert(_claim_lc)
+        _o_ziel = "false" if _o_negiert else "true"
+        _o_falsch = ("true", "mostly_true") if _o_negiert else ("false", "mostly_false")
+        if result.get("verdict") in _o_falsch:
+            _o_alt = result["verdict"]
+            result["verdict"] = _o_ziel
+            logger.warning(
+                f"Muster O (Vergleich{', verneint' if _o_negiert else ''}): "
+                f"Die Summary bejaht den Vergleich, das Label '{_o_alt}' "
+                f"widerspricht — auf '{_o_ziel}' korrigiert."
+            )
 
     # --- Muster M: Umdeutung der Claim-Zahl bei Label "true" (QA50F) ---
     # Auffangnetz hinter Muster N: Wenn die Summary die Claim-Zahl
