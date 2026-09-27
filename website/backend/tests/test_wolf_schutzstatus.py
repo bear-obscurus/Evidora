@@ -62,7 +62,26 @@ def test_anhang_wechsel_steht_in_der_headline():
 
 def test_berner_konvention_ging_voraus():
     b = F["data"]["berner_konvention"]
-    assert "Anhang II" in b and "Anhang III" in b and "März 2025" in b
+    assert "Anhang II" in b and "Anhang III" in b
+
+
+def test_beschluss_und_wirksamkeit_stehen_beide_da():
+    """HART40-B: "Die Berner Konvention hat den Wolf 2024 herabgestuft"
+    bekam false@0.8 — "bereits im März 2025, nicht 2024". Der Beschluss
+    fiel aber am 6.12.2024; der Fakt nannte nur das Wirksamkeitsdatum, also
+    konnte das Modell nicht fair urteilen."""
+    b = F["data"]["berner_konvention"]
+    assert "6.12.2024" in b, "Beschlussdatum fehlt"
+    assert "7.3.2025" in b, "Wirksamkeitsdatum fehlt"
+    assert "Einspruchsfrist" in b
+
+
+def test_die_einsprechenden_parteien_stehen_da():
+    """Für Monaco, Tschechien und das Vereinigte Königreich gilt die
+    Herabstufung nicht — ohne das wäre "in Europa herabgestuft" zu grob."""
+    b = F["data"]["berner_konvention"]
+    for land in ("Monaco", "Tschechien", "Vereinigte Königreich"):
+        assert land in b, land
 
 
 # --------------------------------------------------------------------------
