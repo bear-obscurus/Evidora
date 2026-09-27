@@ -88,6 +88,14 @@ SERIES_MAP = {
         "vorrang": True,
         "hinweis": MESSWARNUNG,
     },
+    # "Sparzinsen"/"Spareinlagen" sind der OBERBEGRIFF und meinen beide
+    # Produkte. Deshalb liefern sie BEIDE Reihen — anders als "sparbuch",
+    # "sparkonto" und "tagesgeld" (nur taeglich faellig) und "festgeld",
+    # "termingeld" (nur gebunden). Live am 27.9.2026 gemessen: "Die
+    # Sparzinsen in Oesterreich liegen bei 2 Prozent" bekam false@0.95,
+    # begruendet nur mit 0,43 % (taeglich faellig) — der gebundene Satz
+    # von rund 2,10 % trifft die Behauptung fast genau und kam nie im
+    # Prompt an. Genau die Verwechslung, gegen die MESSWARNUNG steht.
     "sparzins": {
         "series": "MIR/M.AT.B.L21.A.R.A.2250.EUR.N",
         "label": "Sparzinsen Oesterreich — taeglich faellige Einlagen "
@@ -97,6 +105,14 @@ SERIES_MAP = {
         "praefix": True,
         "vorrang": True,
         "hinweis": MESSWARNUNG,
+        "auch_serie": {
+            "series": "MIR/M.AT.B.L22.A.R.A.2250.EUR.N",
+            "label": "Zinsen Oesterreich — gebundene Einlagen privater "
+                     "Haushalte (Termin-/Festgeld)",
+            "label_en": "Austria — deposits with agreed maturity, households",
+            "unit": "%",
+            "hinweis": MESSWARNUNG,
+        },
     },
     "sparkonto": {
         "series": "MIR/M.AT.B.L21.A.R.A.2250.EUR.N",
@@ -108,6 +124,14 @@ SERIES_MAP = {
         "vorrang": True,
         "hinweis": MESSWARNUNG,
     },
+    # "Sparzinsen"/"Spareinlagen" sind der OBERBEGRIFF und meinen beide
+    # Produkte. Deshalb liefern sie BEIDE Reihen — anders als "sparbuch",
+    # "sparkonto" und "tagesgeld" (nur taeglich faellig) und "festgeld",
+    # "termingeld" (nur gebunden). Live am 27.9.2026 gemessen: "Die
+    # Sparzinsen in Oesterreich liegen bei 2 Prozent" bekam false@0.95,
+    # begruendet nur mit 0,43 % (taeglich faellig) — der gebundene Satz
+    # von rund 2,10 % trifft die Behauptung fast genau und kam nie im
+    # Prompt an. Genau die Verwechslung, gegen die MESSWARNUNG steht.
     "spareinlagen": {
         "series": "MIR/M.AT.B.L21.A.R.A.2250.EUR.N",
         "label": "Sparzinsen Oesterreich — taeglich faellige Einlagen "
@@ -117,6 +141,14 @@ SERIES_MAP = {
         "praefix": True,
         "vorrang": True,
         "hinweis": MESSWARNUNG,
+        "auch_serie": {
+            "series": "MIR/M.AT.B.L22.A.R.A.2250.EUR.N",
+            "label": "Zinsen Oesterreich — gebundene Einlagen privater "
+                     "Haushalte (Termin-/Festgeld)",
+            "label_en": "Austria — deposits with agreed maturity, households",
+            "unit": "%",
+            "hinweis": MESSWARNUNG,
+        },
     },
     "tagesgeld": {
         "series": "MIR/M.AT.B.L21.A.R.A.2250.EUR.N",
@@ -313,9 +345,16 @@ def _find_series(claim: str) -> list[dict]:
         muster = (r'\b' + re.escape(keyword) if series_info.get("praefix")
                   else r'\b' + re.escape(keyword) + r'\b')
         if re.search(muster, claim_lower):
-            series_key = series_info["series"]
-            if series_key not in found:
-                found[series_key] = series_info
+            for info in (series_info, series_info.get("auch_serie")):
+                if not info:
+                    continue
+                series_key = info["series"]
+                if series_key not in found:
+                    # Die Zusatzreihe erbt den Vorrang des Oberbegriffs,
+                    # damit sie nicht vom `matching[:3]`-Schnitt faellt.
+                    if info is not series_info and series_info.get("vorrang"):
+                        info = dict(info, vorrang=True)
+                    found[series_key] = info
     # Reihen mit `vorrang` zuerst: bei einem Sparbuch-Claim matcht auch
     # "zinsen" und damit der Leitzins. Ohne Vorrang schneidet `matching[:3]`
     # unter Umstaenden genau die Reihe weg, nach der gefragt wurde.
