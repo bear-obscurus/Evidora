@@ -396,6 +396,7 @@ jobs:
             tests/test_parteien_korruption_datenlage.py \
             tests/test_wolf_schutzstatus.py \
             tests/test_konfidenz_deckel.py \
+            tests/test_muster_o_vergleich.py \
             tests/test_tempolimit_zuordnung.py \
             tests/test_qa50b_rest.py \
             tests/test_wortgrenzen_trigger.py \
