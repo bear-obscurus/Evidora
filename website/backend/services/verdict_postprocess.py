@@ -718,6 +718,51 @@ def _superlative_attributed_elsewhere(claim_lower, summary_norm):
     return False
 
 
+# --- Konfidenz-Deckel bei duenner Beleglage (Messung 27.9.2026) ----------
+# 140 Live-Laeufe (QA50F + QA50G + HART40), mechanisch gegen vorab
+# festgeschriebene Erwartungen bewertet. Auf den BESTIMMTEN Labels
+# (true/false/mostly_*) — dort, wo der Dienst eine Behauptung aufstellt:
+#
+#     Konfidenz   richtig 0,902 | falsch 0,898   AUC 0,604  (Muenzwurf)
+#
+# Alle elf falschen bestimmten Verdicts lagen zwischen 0,85 und 0,95, also
+# ununterscheidbar von den richtigen. Die Zahl sagt, welches LABEL vergeben
+# wurde, nicht ob es stimmt — und beglaubigt damit den Fehler mit.
+#
+# Was messbar mitgeht, ist die Beleglage (69 Laeufe mit erfasster Evidenz):
+#
+#     Belege   n    Trefferquote   behauptete Konfidenz
+#       1      28      78,6 %            0,87
+#       2      15      80,0 %            0,90
+#       3      12      83,3 %            0,92
+#      4+      14     100,0 %            0,92
+#
+# Die Konfidenz steigt mit der Beleglage kaum (0,87 → 0,92), die
+# Trefferquote deutlich (79 % → 100 %). Bei ein bis zwei Belegen behauptet
+# der Dienst also rund 0,9 und liegt in einem Fuenftel der Faelle daneben.
+#
+# Dies ist bewusst KEINE Kalibrierung, sondern ein DECKEL: Er senkt nur,
+# nie hebt er an, und er greift nur bei bestimmten Labels. Die Stufen sind
+# an der beobachteten Trefferquote orientiert und konservativ gerundet; die
+# Stichprobe ist klein (n=12 bis 28 je Stufe), weshalb der Deckel eher zu
+# zurueckhaltend als zu scharf gewaehlt ist. Eine echte Kalibrierung
+# braucht mehr Negative und einen zweiten, unabhaengigen Korpus.
+_KONFIDENZ_DECKEL: dict[int, float] = {
+    0: 0.50,   # sollte der Beleg-Guard (#166) gar nicht durchlassen
+    1: 0.80,
+    2: 0.85,
+    3: 0.90,
+}
+_BESTIMMTE_LABELS = ("true", "false", "mostly_true", "mostly_false")
+
+
+def deckel_fuer(anzahl_belege: int) -> float | None:
+    """Obergrenze der Konfidenz fuer diese Beleglage, oder None ab 4 Belegen."""
+    if anzahl_belege >= 4:
+        return None
+    return _KONFIDENZ_DECKEL[max(0, anzahl_belege)]
+
+
 def apply_verdict_postprocessing(result, source_results, original_claim):
     # STRUKTURELL FALSCH post-processing override (Defense-in-Depth):
     # If curated packs delivered a STRUKTURELL FALSCH marker but the LLM
@@ -2036,6 +2081,29 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
             f"Wahlprognose-Guard: overriding '{old_v}' @ {old_c} → "
             f"'unverifiable' @ 0.10 for prediction claim."
         )
+
+    # --- Konfidenz-Deckel bei duenner Beleglage (27.9.2026) ---
+    # Ganz am Ende, damit das Label endgueltig ist: Ein Guard, der oben noch
+    # korrigiert, soll den Deckel seiner EIGENEN Einstufung bekommen.
+    # Fehlender Schluessel heisst UNBEKANNT, nicht null: Ein Result ohne
+    # `evidence` kommt aus einem Pfad, der die Belegstufe nie durchlaufen
+    # hat (Golden-Fixtures, Teilpfade). Eine leere LISTE dagegen ist eine
+    # Messung — und der Fall, den der Beleg-Guard (#166) ohnehin abfaengt.
+    if result.get("verdict") in _BESTIMMTE_LABELS and "evidence" in result:
+        _belege = result.get("evidence")
+        _n = len(_belege) if isinstance(_belege, (list, tuple)) else 0
+        _deckel = deckel_fuer(_n)
+        if _deckel is not None:
+            try:
+                _alt = float(result.get("confidence", 0) or 0)
+            except (TypeError, ValueError):
+                _alt = 0.0
+            if _alt > _deckel:
+                result["confidence"] = _deckel
+                logger.info(
+                    f"Konfidenz-Deckel: {_n} Beleg(e) -> {_alt:.2f} auf "
+                    f"{_deckel:.2f} gesenkt (Label '{result['verdict']}')."
+                )
 
     # Clean up internal flags before returning
     result.pop("_struct_override_fired", None)
