@@ -398,6 +398,7 @@ jobs:
             tests/test_konfidenz_deckel.py \
             tests/test_muster_o_vergleich.py \
             tests/test_muster_p_vergleich_gerechnet.py \
+            tests/test_vergleich_mehr_als.py \
             tests/test_mehrere_messgroessen_regel.py \
             tests/test_tempolimit_zuordnung.py \
             tests/test_qa50b_rest.py \
