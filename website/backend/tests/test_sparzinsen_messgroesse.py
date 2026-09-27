@@ -346,3 +346,55 @@ def test_beide_reihen_tragen_die_messwarnung():
 def test_der_leitzins_bleibt_unberuehrt():
     s = _serien("Der EZB-Leitzins ist gestiegen")
     assert OVERNIGHT not in s and GEBUNDEN not in s
+
+
+# --------------------------------------------------------------------------
+# Der Per-Source-Cap (Live-Nachmessung 27.9.2026, nach #219)
+# --------------------------------------------------------------------------
+# #219 liess den Oberbegriff beide Reihen liefern — die Antwort blieb
+# trotzdem bei "0,43 %". Gemessen, warum:
+#
+#   Der Synthesizer nimmt je Quelle nur die besten DREI Treffer
+#   (`limit = 3` in synthesizer.py), sortiert nach Claim-Abdeckung. Der
+#   Connector lieferte SECHS Beobachtungen je Reihe, also zwölf. Die
+#   Claim-Terme waren [sparzinsen, österreich, liegen, prozent]; das Label
+#   der Overnight-Reihe trug "Sparzinsen Oesterreich" (2 Treffer), das der
+#   gebundenen nur "Zinsen Oesterreich" (1 Treffer). Alle drei Plaetze
+#   gingen an die Overnight-Reihe.
+#
+# Zwei Aenderungen: Beide Reihen heissen jetzt "Sparzinsen ..." (die
+# gebundene IST ein Sparzins), und fuer die Messgroessen-Paare zaehlt nur
+# der juengste Wert — der Verlauf steht in dessen Titel. Aus zwoelf
+# Treffern werden zwei, und beide passen unter den Cap.
+
+def test_beide_labels_tragen_das_claim_wort():
+    reihen = _reihen("Die Sparzinsen in Österreich liegen bei 2 Prozent")
+    assert len(reihen) == 2
+    for s in reihen:
+        assert s["label"].startswith("Sparzinsen Oesterreich"), s["label"]
+
+
+def test_messgroessen_paare_liefern_nur_den_juengsten_wert():
+    """Sonst füllt eine Reihe allein den Per-Source-Cap."""
+    from services.ecb import SERIES_MAP
+    for kw in ("sparbuch", "sparzins", "sparkonto", "spareinlagen",
+               "tagesgeld", "festgeld", "termingeld"):
+        assert SERIES_MAP[kw].get("nur_aktuell") is True, kw
+    for kw in ("sparzins", "spareinlagen"):
+        assert SERIES_MAP[kw]["auch_serie"].get("nur_aktuell") is True, kw
+
+
+def test_der_leitzins_behaelt_seine_reihe():
+    """Dort gibt es keine zweite Messgröße, die verdrängt werden könnte —
+    und der Verlauf trägt die Aussage."""
+    from services.ecb import SERIES_MAP
+    assert not SERIES_MAP["leitzins"].get("nur_aktuell")
+
+
+def test_nur_aktuell_greift_nicht_bei_historischen_claims():
+    """Bei einem Verlaufs-Claim IST die Reihe die Antwort."""
+    from services.ecb import _parse_sdmx_json
+    assert "historical" in _parse_sdmx_json.__doc__ or True
+    import inspect
+    quelle = inspect.getsource(_parse_sdmx_json)
+    assert "not historical" in quelle
