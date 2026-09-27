@@ -809,6 +809,10 @@ SWEEP_FAKTEN = (
 # eine inhaltliche Ueberschneidung (Wasser + gesund).
 ERLAUBT = {
     "acht_glaeser_wasser_mythos": {
+        # Seit dem Umlaut-Plural-Pass (28.9.2026): "gesünder" entumlautet zu
+        # "gesunder" == "gesund" + "er". Am Thema (Wasser + gesund), kein
+        # Wortgrenzen-Leck. Siehe tests/test_umlaut_plural.py.
+        "Belebtes Wasser ist gesünder",
         "Basisches Wasser ist gesund gegen Tumor",
         "Ionisiertes Wasser hat gesundheitliche Vorteile",
         "Viel Wasser trinken macht den Drogen-Test negativ",

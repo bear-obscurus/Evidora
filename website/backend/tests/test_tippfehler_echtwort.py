@@ -95,8 +95,6 @@ BLEIBT_TOLERANT = [
     ("eter.json", "eter_overview_at_2021", "Tertiär-Quote Österreich"),
     ("oecd_health.json", "oecd_spitalsbetten_2024",
      "In Österreich fehlen bis 2030 rund 100.000 Pflegekräfte."),      # Partizip
-    ("who_hearing.json", "phl_jugend_risiko_2026",
-     "Laute Musik über Kopfhörer verursacht bleibende Schäden"),       # Umlaut
     ("wirtschaftspolitik_pack.json", "vermoegenssteuer_kapitalflucht_2026",
      "Die Vermögensteuer vertreibt die Reichen aus dem Land"),         # Fugen-s
 ]
@@ -121,6 +119,21 @@ def test_tippfehler_und_formen_tragen_weiter(datei, fid, claim):
     treffer = {_fid(t): t["data"]["_matched_exact"] for t in _treffer(datei, claim)}
     assert fid in treffer, f"{fid} verliert {claim!r}"
     assert treffer[fid] is False, "sollte tolerant tragen — sonst misst der Fall nichts"
+
+
+def test_umlaut_plural_traegt_jetzt_exakt():
+    """Bis zum 28.9.2026 trug den Fall nur der tolerante Pass: "Schäden"
+    normalisiert zu "schaeden", und darin steckt das Token "schaden" nicht.
+    Seit services/_umlaut_plural.py entumlautet der exakte Pass das
+    Claim-Wort und trifft selbst — dieselbe Lage wie bei "Marijuana" unten.
+
+    Der Fall stand darum vorher in BLEIBT_TOLERANT und steht jetzt hier."""
+    treffer = {_fid(t): t["data"]["_matched_exact"]
+               for t in _treffer("who_hearing.json",
+                                 "Laute Musik über Kopfhörer verursacht bleibende Schäden")}
+    assert "phl_jugend_risiko_2026" in treffer
+    assert treffer["phl_jugend_risiko_2026"] is True, (
+        "sollte exakt treffen — sonst ist der Umlaut-Pass nicht aktiv")
 
 
 def test_marijuana_ist_eine_schreibung_kein_tippfehler():
