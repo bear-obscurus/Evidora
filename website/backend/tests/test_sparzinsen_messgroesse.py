@@ -275,3 +275,74 @@ def test_echte_reihen_liefern_plausible_werte():
     werte = [x for x in (r.get("results") or []) if "taeglich" in x["indicator"]]
     assert werte, "keine Sparzins-Daten — Reihen-ID pruefen"
     assert 0.0 <= werte[-1]["value"] <= 5.0, werte[-1]
+
+
+# --------------------------------------------------------------------------
+# Der Oberbegriff liefert BEIDE Reihen (Live-Befund 27.9.2026)
+# --------------------------------------------------------------------------
+# HART40: "Die Sparzinsen in Österreich liegen bei 2 Prozent" bekam
+# false@0.95 — begründet ausschließlich mit "0,43 % (täglich fällige
+# Einlagen)". Der gebundene Satz liegt bei rund 2,10 % und trifft die
+# Behauptung damit fast genau; er kam nie im Prompt an.
+#
+# Ursache: `_find_series` sammelt je Serie einen Eintrag, und das Stichwort
+# "sparzins" zeigte nur auf die Overnight-Reihe. Nur wer "Festgeld" oder
+# "Termingeld" schrieb, bekam die zweite. Die MESSWARNUNG stand daneben —
+# sie warnt aber nur, dass sich die beiden Größen um ein Vielfaches
+# unterscheiden; der zweite WERT fehlte.
+#
+# "Sparzinsen" und "Spareinlagen" sind Oberbegriffe und liefern deshalb
+# beide Reihen. Produktbezeichnungen bleiben eindeutig.
+
+from services.ecb import _find_series as _reihen  # noqa: E402
+
+OVERNIGHT = "MIR/M.AT.B.L21.A.R.A.2250.EUR.N"
+GEBUNDEN = "MIR/M.AT.B.L22.A.R.A.2250.EUR.N"
+
+
+def _serien(claim):
+    return {s["series"] for s in _reihen(claim)}
+
+
+@pytest.mark.parametrize("claim", [
+    "Die Sparzinsen in Österreich liegen bei 2 Prozent",
+    "Wie hoch sind die Sparzinsen?",
+    "Die Spareinlagen werden schlecht verzinst",
+])
+def test_oberbegriff_liefert_beide_reihen(claim):
+    s = _serien(claim)
+    assert OVERNIGHT in s and GEBUNDEN in s, (claim, s)
+
+
+@pytest.mark.parametrize("claim,erwartet", [
+    ("Wie hoch sind die Sparbuchzinsen?", OVERNIGHT),
+    ("Mein Sparkonto bringt nichts", OVERNIGHT),
+    ("Tagesgeld wirft kaum etwas ab", OVERNIGHT),
+    ("Wie hoch ist der Festgeldzins?", GEBUNDEN),
+    ("Termingeld bringt mehr", GEBUNDEN),
+])
+def test_produktbezeichnungen_bleiben_eindeutig(claim, erwartet):
+    """Wer nach EINEM Produkt fragt, bekommt nicht beide Zahlen — sonst
+    wäre die Messgrößen-Warnung sinnlos."""
+    s = _serien(claim)
+    assert erwartet in s
+    andere = {OVERNIGHT, GEBUNDEN} - {erwartet}
+    assert not (andere & s), (claim, s)
+
+
+def test_die_zusatzreihe_erbt_den_vorrang():
+    """Ohne Vorrang fiele sie unter Umständen dem `matching[:3]`-Schnitt
+    zum Opfer — der Grund, warum die Overnight-Reihe ihn überhaupt hat."""
+    reihen = _reihen("Die Sparzinsen in Österreich liegen bei 2 Prozent")
+    gebunden = next(s for s in reihen if s["series"] == GEBUNDEN)
+    assert gebunden.get("vorrang") is True
+
+
+def test_beide_reihen_tragen_die_messwarnung():
+    for s in _reihen("Wie hoch sind die Sparzinsen?"):
+        assert "duerfen nicht gegeneinander eingesetzt werden" in s["hinweis"]
+
+
+def test_der_leitzins_bleibt_unberuehrt():
+    s = _serien("Der EZB-Leitzins ist gestiegen")
+    assert OVERNIGHT not in s and GEBUNDEN not in s
