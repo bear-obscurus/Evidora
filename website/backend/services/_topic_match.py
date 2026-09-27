@@ -44,8 +44,10 @@ import os
 from typing import Callable
 
 from services._static_cache import load_json_mtime_aware
-from services._flexion import trifft as _flexion_trifft
+from services._englisch import englisch_match, englische_fassung
+from services._flexion import trifft_mit_wortgrenze, wortgrenzen_fassung
 from services._schreibweise import normalisiere, norm_terme
+from services._tippfehler import tippfehler_match
 from services._reranker_backup import best_matches as _backup_best_matches
 
 logger = logging.getLogger("evidora")
@@ -76,13 +78,17 @@ def substring_or_composite_match(item: dict, claim_lc: str) -> bool:
     # Der Claim wird EINMAL normalisiert, die Trigger je Vergleich — sonst
     # zahlt man die Faltung fuer jeden der teils hunderten Tokens erneut.
     claim_n = normalisiere(claim_lc)
+    claim_w = wortgrenzen_fassung(claim_n)
 
     def trifft(tok) -> bool:
         # Seit 2026-09-08 flexionstolerant fuer MEHRWORT-Begriffe: bei
         # „freie wahlen" flektiert das VORDERE Wort („freien Wahlen") und der
         # Substring reisst. Einwort-Begriffe sind unveraendert — dort waechst
         # die Endung hinten an und `in` haelt. Siehe services/_flexion.py.
-        return _flexion_trifft(claim_n, tok)
+        # Seit 2026-09-26 zaehlen fuer gebundene Tokens (" ki ") auch
+        # Claim-Rand und Satzzeichen als Wortgrenze — vorher fand " ki "
+        # „KI ersetzt …" nicht. Siehe services/_flexion.py, WORTGRENZEN.
+        return trifft_mit_wortgrenze(claim_n, claim_w, tok)
 
     for kw in item.get("trigger_keywords") or ():
         if trifft(kw):
@@ -131,6 +137,30 @@ def find_matching_items(
     matches = [it for it in items if substring_or_composite_match(it, claim_lc)]
     if matches:
         return _tag_provenance(matches, exact=True)
+    # Zweiter Pass, tippfehler-tolerant (2026-09-26). Er laeuft NUR, wenn der
+    # exakte Pass leer blieb — ein Fakt, der exakt ankert, gewinnt immer. Und
+    # er laeuft VOR dem Cosine-Backup: schreibweisen-nah ist ein literales
+    # Signal, Cosinus ein semantisches. Gemessen holt er 45,8 % der durch
+    # EINEN Tippfehler verlorenen Treffer zurueck und fuegt dabei 9 neue
+    # dienst-fremde Treffer auf 1,4 Mio. gepruefte Paare hinzu. Provenance
+    # bewusst exact=False: ein toleranter Treffer darf kein "strukturell
+    # falsch" behaupten. Siehe services/_tippfehler.py.
+    tolerant = [it for it in items if tippfehler_match(it, claim_lc)]
+    if tolerant:
+        return _tag_provenance(tolerant, exact=False)
+    # Dritter Pass, englisch (2026-09-26). Die Trigger sind deutsch; ein
+    # englischer Claim bekommt die deutschen Begriffe aus einem kuratierten
+    # Glossar daneben geschrieben, und dieselbe Trigger-Logik laeuft darauf.
+    # Nur bei positivem englischem Sprachsignal, nur wenn exakt UND tolerant
+    # leer blieben, und nie an einem Partei-Korruptions-Superlativ vorbei:
+    # Der Guard sieht die glossierte Fassung mit (siehe politik_guard_action)
+    # und greift hier zentral — auch fuer Packs, die ihn selbst nicht rufen.
+    # Provenance exact=False wie beim toleranten Pass. Siehe
+    # services/_englisch.py.
+    if englische_fassung(claim_lc) and politik_guard_action(claim_lc) == "pass":
+        englisch = [it for it in items if englisch_match(it, claim_lc)]
+        if englisch:
+            return _tag_provenance(englisch, exact=False)
     if not full_claim or descriptor_fn is None:
         return []
     pairs = [descriptor_fn(it) for it in items]
@@ -231,6 +261,14 @@ def load_items(static_path: str, items_key: str) -> list[dict]:
 # ASCII-Zwillinge („fpoe" neben „fpö") sind entfallen — norm_terme faltet
 # beide auf dieselbe Form.
 _PARTY_TOKENS: tuple[str, ...] = norm_terme(
+    # Die generische Rede von "einer Partei" (26.9.2026). Ohne sie lief
+    # "Welche Partei in Österreich hatte die meisten Korruptionsfälle?" am
+    # Guard vorbei — genau die Frage, bei der ein Länderwert (CPI, WGI) am
+    # meisten Schaden anrichtet, weil sie nach einem Vergleich verlangt, den
+    # kein Länderindex leisten kann. Der Guard bleibt trotzdem eng: Er
+    # verlangt zusätzlich ein Korruptionswort, einen Superlativ UND das
+    # Fehlen jedes konkreten Ankers.
+    "partei",
     # AT-Parteien
     "fpö", "spö", "övp",
     "neos", "grüne ", "kpö", "bzö",
@@ -313,6 +351,15 @@ def politik_guard_action(claim_lc: str) -> str:
     # ist das an jeder dieser Stellen richtig. Vorher musste jeder Aufrufer
     # die ungefaltete Form durchreichen — eine Regel, die kein Test kannte.
     claim_lc = normalisiere(claim_lc)
+
+    # Englische Claims (2026-09-26): Die Token-Listen sind deutsch. „The FPÖ
+    # is the most corrupt party in Austria" gab „pass", und transparency
+    # (CPI) feuerte — der deutsche Satz wird blockiert. Deshalb prueft der
+    # Guard die glossierte Fassung mit („corrupt" -> „korrupt", „the most" ->
+    # „die meisten"). Fuer deutsche Claims ist sie None, nichts aendert sich.
+    uebertragen = englische_fassung(claim_lc)
+    if uebertragen:
+        claim_lc = claim_lc + " " + uebertragen
 
     has_party = any(tok in claim_lc for tok in _PARTY_TOKENS)
     has_corruption = any(tok in claim_lc for tok in _CORRUPTION_TOKENS)

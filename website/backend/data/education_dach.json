@@ -50,7 +50,7 @@
         [
           "österreich",
           "österreichisch",
-          "at "
+          " at "
         ]
       ],
       "source_label": "IEA TIMSS 2023 (Trends in International Mathematics and Science Study)",
@@ -137,15 +137,14 @@
           "lesekompetenz",
           "leseverstehen",
           "lesen",
-          "lese-",
-          "lese ",
+          " lese ",
           "leseschwäch",
           "leseschwierig"
         ],
         [
           "österreich",
           "österreichisch",
-          "at ",
+          " at ",
           "volksschule",
           "grundschule",
           "4. klasse",
@@ -236,7 +235,7 @@
         [
           "österreich",
           "österreichisch",
-          "at ",
+          " at ",
           "wien",
           "burgenland"
         ]

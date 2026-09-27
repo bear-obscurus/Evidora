@@ -8,7 +8,7 @@
       "topic": "e_auto_reichweite_konsens",
       "scope": "E-Auto-Reichweite — WLTP vs. Real, Wintertest, Schnelllader-Netz",
       "year": 2024,
-      "source_url": "https://www.adac.de/rund-ums-fahrzeug/elektromobilitaet/tests/elektroauto-reichweite-winter/",
+      "source_url": "https://www.adac.de/rund-ums-fahrzeug/elektromobilitaet/laden/elektroauto-reichweite-winter/",
       "secondary_url": "https://theicct.org/publication/real-world-energy-consumption-electric-vehicles-europe-jul24/",
       "source_label": "ADAC Wintertest E-Autos 2024 + ICCT International Council on Clean Transportation 'Real-world energy consumption of electric vehicles in Europe' Juli 2024 + Fraunhofer ISI E-Mobilitäts-Studien + BNetzA Schnelllader-Statistik 2024 + Bundesverband eMobilität BEM Marktdaten",
       "headline": "ADAC Wintertest 2024 + ICCT 2024: Real-Reichweite E-Autos ~70-80 % der WLTP-Angabe; bei -10°C Stadt-Land-Mix 250-350 km typisch; Schnelllader-Netz seit 2023 stark ausgebaut (DE +60 %, AT +80 %)",
@@ -44,7 +44,8 @@
           "elektromobilität",
           "elektromobilitaet",
           "elektro-mobilität",
-          "ev",
+          " ev ",
+          " evs ",
           "electric vehicle",
           "e-fahrzeug",
           "efahrzeug",
@@ -121,10 +122,10 @@
       "topic": "oebb_puenktlichkeit_konsens",
       "scope": "ÖBB-Pünktlichkeit vs. Deutsche Bahn — Personen + Fern-Verkehr 2024",
       "year": 2024,
-      "source_url": "https://presse.oebb.at/de/news/oebb-konzern-erfolgreichstes-jahr-2024",
-      "secondary_url": "https://www.deutschebahn.com/de/konzern/im_blickpunkt/puenktlichkeit-3520986",
+      "source_url": "https://presse-oebb.at/news-oebb-bilanz-2024-stabiles-ergebnis-trotz-hochwasser-und-rezession?id=216147&menueid=27024&l=deutsch",
+      "secondary_url": "https://ibir.deutschebahn.com/2024/en/combined-management-report/product-quality-and-digitalization/the-customer-is-at-the-center-of-our-actions/punctuality/",
       "source_label": "ÖBB Konzern-Geschäftsbericht 2024 + ÖBB Pünktlichkeits-Statistik Jahresbericht 2024 + Deutsche Bahn Konzernbericht 2024 + DB Pünktlichkeits-Veröffentlichung monatlich + Allianz pro Schiene Vergleichsstudien + Verkehrsclub Österreich VCÖ Bahn-Studien",
-      "headline": "ÖBB Personenverkehr 2024 ~95 % pünktlich (5-Min-Toleranz), Fernverkehr 88-92 %; Deutsche Bahn Fernverkehr 2024 nur ~64 % pünktlich (6-Min-Toleranz) — empirisch klar AT-System weit über DE-Niveau",
+      "headline": "ÖBB Personenverkehr 2024 93,6 % pünktlich (5-Min-Toleranz), Fernverkehr 78,2 %; Deutsche Bahn Fernverkehr 2024 nur 62,5 % pünktlich (6-Min-Toleranz) — empirisch klar AT-System weit über DE-Niveau",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Deutsche Bahn ist pünktlicher als ÖBB' oder 'ÖBB ist auch nicht besser' ist EMPIRISCH FALSCH. Empirische Lage: (1) ÖBB PÜNKTLICHKEIT 2024 (Geschäftsbericht 2024): Personenverkehr Gesamt ~93,6 % pünktlich (5-Minuten-Toleranz, unter ÖBB-Plan-Ziel 95,8 % wegen Hochwasser-Ereignissen + Bauprojekten). Aufgliederung: Nahverkehr 94,3 %, Regionalverkehr ~92 %, Fernverkehr (RailJet + Nightjet + EuroCity) 78,2 % (deutlich unter Vorjahr). ÖBB nutzt 5-Minuten-Toleranz-Definition. (2) DEUTSCHE BAHN PÜNKTLICHKEIT 2024 (DB-Konzernbericht + DB Pünktlichkeits-Veröffentlichung): Fernverkehr 2024 ~62,5 % pünktlich (6-Minuten-Toleranz, schwächere Definition als ÖBB; 21-Jahres-Tief, teils wegen GDL-Streiks). Nahverkehr ~91 %. Vor 2018 lag DB-Fernverkehr noch bei 80+%, kontinuierliche Verschlechterung seit 2018 wegen Bau-Projekt-Konzentration + Infrastruktur-Verschleiß. (3) URSACHEN DE-AT-DIFFERENZ (Allianz pro Schiene 2024 + Difu/VDV/Bauindustrie/ADAC 2023-Studie): (a) DE Schienen-Netz seit 1990 um ~20 % geschrumpft (Streckenstilllegungen), AT Schienen-Netz wurde ausgebaut. (b) DE Bauprojekt-Konzentration wegen Generalsanierungen (Riedbahn 2024, Hamburg-Berlin 2025-2027). (c) AT hat höheres Pro-Kopf-Investitions-Niveau (siehe Pack-Topic 'bahn_investition_de_at'). (d) AT-Bahn-System ist als Konzern + Infrastruktur-Trennung etwas anders strukturiert. (4) HISTORISCHE EINORDNUNG: ÖBB-Pünktlichkeit über 20 Jahre konsistent 90+%. DB-Verschlechterung 2018-2024 ist neuer struktureller Trend, nicht historisch normal. (5) FAKTENCHECK-RELEVANT: Aussagen wie 'Deutsche Bahn fährt pünktlicher als ÖBB' sind empirisch falsch. Aussagen wie 'ÖBB ist nur 60 % pünktlich' verwechseln möglicherweise mit DB-Werten. Pack distanziert sich von normativer Pro/Contra-Wertung — präsentiert nur empirische Pünktlichkeits-Statistik aus offiziellen Konzern-Berichten.",
         "oebb_2024_statistik": "ÖBB Konzern-Geschäftsbericht 2024 + Pünktlichkeits-Jahresbericht 2024: Personenverkehr Gesamt 93,6 % pünktlich (5-Min-Toleranz, unter Plan-Ziel 95,8 %). Nahverkehr 94,3 %, Regionalverkehr ~92 %, Fernverkehr (RailJet + EuroCity + Nightjet) 78,2 % (deutlich unter Vorjahr — wesentliche Ursache: Hochwasser-Ereignisse + Bauprojekte). Güterverkehr Rail Cargo Group ~73 % pünktlich. ÖBB-Konzern transportierte 2024 ~480 Mio Fahrgäste.",
@@ -155,8 +156,8 @@
           "österreichische bundesbahnen",
           "oesterreichische bundesbahnen",
           "deutsche bahn",
-          "db",
-          "ice",
+          " db ",
+          " ice ",
           "railjet",
           "rail-jet",
           "nightjet",
@@ -219,103 +220,84 @@
     {
       "id": "mobilitaet-tempolimit_130_2026",
       "topic": "tempolimit_130_konsens",
-      "scope": "Tempolimit 130 Autobahn DE — UBA + Helmholtz CO2 + Sicherheits-Wirkung",
+      "scope": "Tempolimit auf deutschen Autobahnen — CO2- und Schadstoffwirkung nach den beiden UBA-Studien",
       "year": 2024,
-      "source_url": "https://www.umweltbundesamt.de/themen/co2-minderung-im-verkehr-durch-tempolimit",
-      "secondary_url": "https://www.dlr.de/vf/desktopdefault.aspx/tabid-2974/4441_read-78443/",
-      "source_label": "UBA Umweltbundesamt DE 'CO2-Minderung im Verkehr durch ein Tempolimit auf Autobahnen' aktualisierte Studie 2023 + Helmholtz-Institut DLR Berechnungen + Bundesanstalt für Straßenwesen BASt Sicherheits-Studien + Verkehrsclub Deutschland VCD Auswertungen + ADAC Sicherheits-Statistik",
-      "headline": "UBA-Studie 2023 (durchgeführt von Universität Stuttgart, Friedrich): Tempolimit 130 km/h auf DE-Autobahnen würde CO2 -1,9 Mio t/Jahr (~1,2 % des DE-Verkehrs-Sektor-CO2 2018) reduzieren; BASt Schätzungen: schwere Unfälle auf Autobahnen -22 % bei 120 km/h-Limit, -34 % bei 100 km/h",
+      "source_url": "https://www.umweltbundesamt.de/publikationen/klimaschutz-durch-tempolimit",
+      "secondary_url": "https://www.umweltbundesamt.de/publikationen/modellierung-der-umweltwirkung-von-tempolimit",
+      "source_label": "Umweltbundesamt, 'Klimaschutz durch Tempolimit' (Texte 38/2020, Lange/Hendzlik/Schmied) + 'Modellierung der Umweltwirkung von Tempolimit-Maßnahmen' (Texte 176/2024, Friedrich/Bawidamann/Schmaus, Universität Stuttgart)",
+      "headline": "Zwei UBA-Studien, zwei Zahlen: 'Klimaschutz durch Tempolimit' (Texte 38/2020) rechnet für ein Tempolimit 130 km/h auf Autobahnen 1,9 Mio. t CO2e weniger im Jahr (120 km/h: 2,6; 100 km/h: 5,4). Die Modellierung von Friedrich u. a. (Texte 176/2024) kommt für den gesamten Straßenverkehr auf 2,2 % weniger Treibhausgase bei T130/100 bis 8,1 % bei T100/80.",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Tempolimit 130 bringt nichts für CO2 oder Sicherheit' ist EMPIRISCH FALSCH. Empirische Lage: (1) UBA STUDIE 2023 'CO2-Minderung im Verkehr durch ein Tempolimit auf Autobahnen' (aktualisiert): Tempolimit 130 km/h auf DE-Autobahnen würde CO2-Emissionen um ~1,9 Mio Tonnen pro Jahr reduzieren (~1,2 % der DE-Verkehrs-Sektor-Emissionen 2018, ~0,3 % der gesamten DE-Treibhausgas-Emissionen). Tempolimit 120 km/h: -2,6 Mio t. Tempolimit 100 km/h: -5,4 Mio t. Berechnungs-Methode: Geschwindigkeits-Verteilung-Daten + Verbrauch-Geschwindigkeit-Funktion (Studie durchgeführt von Universität Stuttgart, Institut für Straßen- und Verkehrswesen, Prof. Friedrich, im Auftrag des UBA). (2) PARALLEL-MODELLIERUNGEN aus Forschungs-Institutionen kommen zu konsistenten Werten: Größenordnung 1,9-2,0 Mio t CO2/Jahr bei Tempolimit 130 km/h. (3) BASt SICHERHEIT 2023 (Bundesanstalt für Straßenwesen): empirische Auswertung von Auslands-Daten + DE-Daten. Geschwindigkeits-Reduktion auf DE-Autobahnen würde schwere Unfälle reduzieren: bei 130 km/h-Limit ~10-15 %, bei 120 km/h ~22 %, bei 100 km/h ~34 %. Tödliche Unfälle reduzieren stärker: 130 km/h ~15 %, 120 ~26 %, 100 ~40 %. (4) INTERNATIONALE EMPIRIE: DE einziges OECD-Land ohne generelles Tempolimit auf Autobahnen. Vergleichbare Länder mit 130 km/h: Frankreich, Italien, Spanien — schwere Autobahn-Unfall-Quote dort 30-50 % unter DE. (5) VERMÖGENS-EFFEKT: Tempolimit reduziert auch Lärm + Stress + Reise-Zeit-Streuung (Stau-Wahrscheinlichkeit sinkt). UBA: ~250.000 Personen würden weniger Verkehrslärm-Belastung erfahren. (6) GEGEN-ARGUMENTE WIDERLEGT: 'Tempolimit verlängert Reise-Zeiten massiv' — UBA: durchschnittliche Verlängerung 2-3 Minuten pro 100 km auf Autobahnen, bei Tempolimit 130. 'CO2-Wirkung ist marginal' — 1,9 Mio t entspricht ~0,5 % der EU-Land-Sektor-Klima-Bilanz, nicht trivial. (7) FAKTENCHECK-RELEVANT: Aussagen wie 'Tempolimit bringt 0,1 % CO2-Reduktion' sind empirisch falsch (real ~1,2 % der Verkehrs-Sektor-Emissionen 2018). Aussagen wie 'Tempolimit hätte 30 % weniger Unfälle' überzeichnen (130 km/h ~10-15 %, 100 km/h ~34 %). Pack distanziert sich von normativer 'Tempolimit ist Bevormundung'-Wertung — präsentiert nur empirische Daten zur CO2- + Sicherheits-Wirkung.",
-        "uba_co2_2023": "UBA Umweltbundesamt 2023 aktualisierte Berechnung 'CO2-Minderung im Verkehr durch ein Tempolimit auf Autobahnen': Tempolimit 130 km/h → -1,9 Mio Tonnen CO2/Jahr (Bandbreite 1,7-2,1). Tempolimit 120 → -2,6 Mio t. Tempolimit 100 → -5,4 Mio t. Methode: HBEFA-Modell + Realgeschwindigkeits-Verteilung DE-Autobahnen + Verbrauchs-Geschwindigkeits-Funktion. Vorgänger-Studie 1999 + 2020-Update.",
-        "uba_stuttgart_friedrich_2023": "UBA-Studie 2023 'CO2-Minderung im Verkehr durch ein Tempolimit auf Autobahnen', durchgeführt vom Institut für Straßen- und Verkehrswesen, Universität Stuttgart (Prof. Markus Friedrich): Tempolimit 130 km/h → ~1,9 Mio t CO2/Jahr Reduktion (entspricht ~1,2 % des deutschen Verkehrs-Emissions-Sektors 2018). Compliance-Annahme + Verkehrsfluss-Modell. Hauptbericht UBA-Texte 39/2023.",
-        "bast_sicherheit_2023": "BASt Bundesanstalt für Straßenwesen 2023 Auswertung 'Geschwindigkeit + Sicherheit auf Autobahnen': internationale Daten + DE-Spezifika. Schwere Unfälle auf DE-Autobahnen würden reduzieren: Tempolimit 130 km/h -10-15 %, Tempolimit 120 km/h -22 %, Tempolimit 100 km/h -34 %. Tödliche Unfälle reduzieren stärker (Geschwindigkeits-Aufprall-Energie quadratisch): -15 %, -26 %, -40 %. DE-Autobahnen 2023: ~330 Tote, ~17.000 Verletzte. 130er-Limit: ~50 weniger Tote/Jahr.",
-        "internationaler_vergleich": "DE als einziges OECD-Land ohne generelles Autobahn-Tempolimit (Stand 2024). Vergleichbare Länder: Frankreich 130 (110 bei Regen), Italien 130, Spanien 120, Niederlande 100 (seit 2020), Schweden 110-120, Dänemark 130, Polen 140, USA Bundesstaaten 105-137 km/h. Schwere Autobahn-Unfall-Quote pro Mio km: DE ~5,3, Frankreich 3,2, Italien 2,9, Spanien 3,1.",
-        "lärm_belastung_uba": "UBA + Bundeskabinett Lärmminderungsplanung 2024: ~250.000 Personen entlang DE-Autobahnen erfahren Verkehrslärm-Belastung über kritischen Schwellen (>70 dB Tag, >60 dB Nacht). Tempolimit 130 km/h würde Lärm-Belastung um 1-3 dB reduzieren (Halbierung bei 3 dB, weil log-Skala). Lärm-Effekt zusätzlich zu CO2- + Sicherheits-Effekt.",
-        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Tempolimit-Wertung."
+        "kernsatz_fuer_synthesizer": "Die These 'ein Tempolimit bringt für das Klima nichts' trifft nicht zu — wie groß die Wirkung ist, hängt aber davon ab, welche Studie und welche Bezugsgröße gemeint sind. Das Umweltbundesamt hat zwei verschiedene Rechnungen veröffentlicht: 'Klimaschutz durch Tempolimit' (Texte 38/2020) betrachtet nur Pkw und leichte Nutzfahrzeuge auf Bundesautobahnen, die 2018 zusammen 39,1 Mio. t CO2-Äquivalente verursachten, und kommt für ein Tempolimit von 130 km/h auf 1,9 Mio. t Minderung im Jahr, für 120 km/h auf 2,6 und für 100 km/h auf 5,4. Die spätere Modellierung von Markus Friedrich und Kollegen (Texte 176/2024) rechnet den gesamten Straßenverkehr samt Ausweich- und Nachfrageeffekten und kommt auf 2,2 % weniger Treibhausgase im Szenario T130/100 bis 8,1 % im Szenario T100/80. Beide Studien zeigen eine Wirkung; wer eine einzelne Zahl zitiert, sollte die Studie dazusagen.",
+        "welche_zahl_aus_welcher_studie": "Beide Studien stammen vom Umweltbundesamt und werden oft vermischt. Texte 38/2020 'Klimaschutz durch Tempolimit' ist von Lange, Hendzlik und Schmied; Texte 176/2024 ist von Friedrich, Bawidamann und Schmaus. Wer sagt, die UBA-Studie zum Tempolimit stamme von Friedrich, meint Texte 176/2024. Die 1,9 Mio. t stehen in Texte 38/2020, die Prozentwerte von 2,2 bis 8,1 % in Texte 176/2024.",
+        "uba_2020_tonnen": "'Klimaschutz durch Tempolimit', UBA Texte 38/2020 (Lange, Hendzlik, Schmied, UBA): Datengrundlage 2018, Pkw und leichte Nutzfahrzeuge auf Bundesautobahnen mit 39,1 Mio. t CO2-Äquivalenten. Ein generelles Tempolimit von 130 km/h mindert davon 1,9 Mio. t im Jahr, 120 km/h 2,6 Mio. t, 100 km/h 5,4 Mio. t. Gerechnet wird mit realen Geschwindigkeitsverteilungen, nicht mit Wunschwerten.",
+        "uba_2024_prozente": "'Modellierung der Umweltwirkung von Tempolimit-Maßnahmen auf Autobahnen und außerorts', UBA Texte 176/2024 (Friedrich, Bawidamann, Schmaus, Institut für Straßen- und Verkehrswesen der Universität Stuttgart): Für den gesamten Straßenverkehr sinken die Treibhausgase um 2,2 % (T130/100) bis 8,1 % (T100/80), die Stickoxide um 5,1 bis 16,1 %, der Feinstaub um 3,6 bis 11,4 %.",
+        "uba_2024_methodik": "Die Modellierung von 2024 stützt sich auf Floating-Car-Daten von TomTom für das Jahr 2018, rechnet je Streckenabschnitt von rund 150 m Länge und nutzt die Emissionsfaktoren des HBEFA. Etwa 75 % der Minderung stammen aus dem reinen Geschwindigkeitseffekt, der Rest aus veränderter Routenwahl und Verkehrsnachfrage; die Pkw-Fahrleistung sinkt um 0,7 % (T130/100) bis 4,3 % (T100/80).",
+        "szenarien": "Die Szenarienbezeichnung nennt zuerst das Limit auf Autobahnen und Kraftfahrstraßen, dann das auf allen übrigen Außerortsstraßen: T130/100, T120/100, T130/80, T120/80 und T100/80. Ein Vergleich zwischen Studien ist nur sinnvoll, wenn dieselbe Kombination gemeint ist.",
+        "unfallwirkung": "Zur Unfallwirkung nennt dieser Fakt bewusst keine Zahl: Die früher hier zitierte BASt-Auswertung 'Geschwindigkeit und Sicherheit auf Autobahnen' mit Angaben von minus 22 und minus 34 Prozent ließ sich nicht auffinden. Dass niedrigere Geschwindigkeiten die Aufprallenergie senken, ist unbestritten — eine belastbare deutsche Schätzung für diesen Fakt fehlt.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von einer normativen Tempolimit-Wertung; berichtet werden die veröffentlichten Rechnungen und ihre Bezugsgrößen."
       },
       "context_notes": [
-        "Wichtige Differenzierung: ~1,2 % der DE-Verkehrs-Sektor-Emissionen ist NICHT marginal (entspricht ~1 Mio Personen-Auto-Jahres-Emission), aber auch nicht alleinige Klima-Lösung.",
-        "BASt Sicherheits-Schätzung gestaffelt: 130 km/h -10-15 %, 100 km/h -34 % schwere Unfälle — Effekt steigt nicht-linear.",
-        "DE als einziges OECD-Land ohne Autobahn-Tempolimit — Vergleichsländer Frankreich/Italien haben 30-50 % niedrigere schwere Unfall-Quoten."
+        "Korrigiert 2026-09-25: Die frühere Fassung führte beide UBA-Studien als eine zusammen, schrieb die Tonnen-Minderung der Arbeitsgruppe um Friedrich zu und nannte ein falsches Erscheinungsjahr. Dazu standen Unfall-, Lärm- und Länderzahlen im Fakt, die sich in den angegebenen Quellen nicht finden ließen.",
+        "Datenstand: UBA Texte 38/2020 (Datenjahr 2018) und UBA Texte 176/2024 (Floating-Car-Daten 2018); beide Publikationsseiten am 25.9.2026 geprüft.",
+        "Der Unterschied zwischen den beiden Rechnungen ist keine Widersprüchlichkeit, sondern eine andere Bezugsgröße: einmal nur Pkw und leichte Nutzfahrzeuge auf Autobahnen, einmal der gesamte Straßenverkehr samt Ausweicheffekten.",
+        "Korrigiert 2026-09-26: Der Schlusssatz 'Friedrich hat die Tonnen-Zahl nicht berechnet' aus dem vorherigen Zuordnungs-Fix war die einzige Negation am Namen Friedrich im gekuerzten Prompt. Die Frage nach der Autorschaft bekam danach dreimal hintereinander ein negatives Label (false/false/mostly_false) mit einer Begruendung, die Friedrich im selben Satz als Autor nannte. Die Zuordnung ist jetzt durchgehend positiv formuliert."
       ],
       "claim_phrasings_handled": [
-        "Tempolimit bringt nichts für das Klima",
-        "130 auf der Autobahn hat keine CO2-Wirkung",
-        "Tempolimit ist Symbolpolitik",
-        "Tempolimit hätte 30 % weniger Unfälle",
-        "Tempolimit verlängert die Reise massiv",
-        "Tempolimit 130 reduziert CO2 um 0,1 Prozent"
+        "Tempolimit 130 bringt nichts für das Klima",
+        "Ein Tempolimit spart kaum CO2",
+        "Wie viel CO2 spart ein Tempolimit auf Autobahnen?",
+        "Die Tempolimit-Studie des Umweltbundesamts stammt von Friedrich",
+        "Ein Tempolimit würde die Emissionen um 8 Prozent senken",
+        "Tempolimit 130 spart 1,9 Millionen Tonnen CO2"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
         [
           "tempolimit",
-          "tempo-limit",
-          "tempo limit",
-          "geschwindigkeitsbegrenzung",
-          "geschwindigkeits-begrenzung",
-          "speed limit",
           "tempo 130",
-          "130 km/h",
-          "130er",
-          "tempo 120",
-          "tempo 100",
-          "autobahn-tempolimit",
-          "autobahntempolimit"
+          "tempo130",
+          "geschwindigkeitsbegrenzung",
+          "richtgeschwindigkeit",
+          "autobahn-tempolimit"
         ],
         [
           "co2",
-          "co2-emissionen",
           "klima",
-          "klimawirkung",
-          "klima-wirkung",
-          "umwelt",
-          "umweltwirkung",
-          "unfall",
-          "unfälle",
-          "unfaelle",
-          "tote",
-          "verkehrstote",
-          "verkehrs-tote",
-          "sicherheit",
-          "schwer verletzt",
-          "schwerverletzt",
+          "treibhausgas",
+          "emission",
+          "emissionen",
+          "spart",
+          "sparen",
           "bringt nichts",
-          "nichts bringen",
-          "würde nichts bringen",
-          "wirkungslos",
-          "sinnlos",
-          "symbolpolitik",
-          "symbol-politik",
-          "lärm",
-          "laerm",
-          "autobahn",
-          "auto-bahn"
+          "bringt nix",
+          "wirkung",
+          "studie",
+          "umweltbundesamt",
+          " uba ",
+          "friedrich",
+          "wie viel",
+          "prozent",
+          "tonnen",
+          "stickoxid",
+          "feinstaub",
+          "unfall",
+          "sicherheit"
         ]
       ],
       "trigger_all": [
         [
           [
-            "autobah"
-          ],
-          [
-            "co2-wirkung"
-          ]
-        ],
-        [
-          [
             "tempolimit"
           ],
           [
-            "verlaengert",
-            "verlängert"
+            "studie",
+            "umweltbundesamt",
+            " uba "
           ],
           [
-            "reis"
-          ],
-          [
-            "massiv"
+            "friedrich",
+            "stammt",
+            "wer"
           ]
         ]
       ]
@@ -323,25 +305,23 @@
     {
       "id": "mobilitaet-klimaticket_bilanz_2026",
       "topic": "klimaticket_bilanz_konsens",
-      "scope": "Klimaticket Österreich Bilanz 2024 — Verkaufte Tickets, Modal-Shift, Subventions-Volumen",
+      "scope": "KlimaTicket Österreich — Nachfrage, Budgetzuschüsse, erwartete Klimawirkung (Rechnungshof 2025), Preise 2026; Deutschlandticket-Vergleich",
       "year": 2024,
-      "source_url": "https://www.klimaticket.at/de/news/dreijahresbilanz/",
-      "secondary_url": "https://www.bmk.gv.at/themen/mobilitaet/klimaticket.html",
-      "source_label": "BMK Bundesministerium Klimaschutz Österreich Klimaticket-Bilanz 2024 (3-Jahresbilanz seit Oktober 2021) + ÖBB-VOR-Klimaticket-Geschäftsbericht 2024 + Verkehrsclub Österreich VCÖ Studien zur Klimaticket-Wirkung 2024 + Land Wien Wiener Mobilitäts-Studie + DLR Deutschland-Ticket-Wirkungs-Studien als Vergleichs-Referenz",
-      "headline": "BMK Bilanz Klimaticket Österreich nach 3 Jahren (2021-2024): ~250.000 verkaufte Klimatickets, ~30 % Modal-Shift Auto→Bahn bei Pendlern (WIFO 2024); jährliche Subvention ~150-200 Mio EUR; Modell wird in DE als 'Deutschland-Ticket' 49 EUR seit 2023 imitiert",
+      "source_url": "https://www.rechnungshof.gv.at/rh/home/home/2025_38_OOe_6_Sbg_3_KlimaTicket.pdf",
+      "secondary_url": "https://www.klimaaktivmobil.at/fachpersonen/mobilitaet/studien/drei-jahre-klimaticket-eine-bilanz",
+      "source_label": "Rechnungshof Österreich, Bericht „KlimaTicket\" (Reihe BUND 2025/38, Oktober 2025) + klimaaktiv „Drei Jahre KlimaTicket – eine Bilanz\" + klimaticket.at (Tarife 2026) + Bundesregierung (Deutschlandticket)",
+      "headline": "KlimaTicket Ö laut Rechnungshof 2025: 2023 etwa doppelt so viele verkauft wie prognostiziert (243.754 statt 124.000); Budgetzuschüsse Oktober 2021 bis Ende 2024: 520 Mio. EUR (plus 610 Mio. EUR für regionale Klimatickets); erwartete Klimawirkung gering: 0,11 Mio. t CO2e 2024, rund 0,2 % der Verkehrsemissionen",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Klimaticket bringt nichts' oder 'Klimaticket ist nur Subvention für Großstädter' ist EMPIRISCH FALSCH. Empirische Lage: (1) BMK BILANZ KLIMATICKET 2024 (3-Jahres-Bilanz seit Oktober 2021): ~250.000 verkaufte Klimatickets Ö. Stand Q4 2024. Ticket-Preis: 1.095 EUR/Jahr (seit Oktober 2024 wegen Inflations-Anpassung), ursprünglich 1.095 EUR (2021-2024 stabil). Studierende/Senioren günstiger (821 EUR). Ticket gilt für ALLE öffentlichen Verkehrsmittel in Österreich (ÖBB + Westbahn + Regional-Bahnen + Stadt-Verkehr + Bus). (2) MODAL-SHIFT-WIRKUNG VCÖ + BMK-3-Jahresbilanz 2024: bei Pendlern, die Klimaticket gekauft haben, geschätzt ~25-30 % Auto-Fahrten verlagert auf Bahn/ÖV (Größenordnung aus VCÖ-Befragungen + BMK-Modal-Shift-Schätzung). Für Gesamt-Pendler-Verkehr Österreich: ~5-7 % CO2-Reduktion durch Klimaticket-Wirkung. Detaillierte WIFO-Klimaticket-Studie steht aus — die WIFO-2024-Publikation Köppl/Schratzenstaller 'Budgetäre Kosten und Risiken durch klimapolitisches Nichthandeln' fokussiert auf Kosten von Untätigkeit (NICHT Klimaticket-spezifisch). (3) SUBVENTIONS-VOLUMEN: Klimaticket wird über Bund + Länder + Verkehrsverbünde finanziert. Netto-Defizit (Differenz Ticket-Erlös vs. Verkehrs-Erlös der Verbünde) ~150-200 Mio EUR/Jahr. Zum Vergleich: AT klima-schädliche Auto-Subventionen ~3-4 Mrd EUR/Jahr (Pendlerpauschale + Diesel-Privileg). (4) DE-VERGLEICH: 'Deutschland-Ticket' 49 EUR/Monat = 588 EUR/Jahr seit Mai 2023 (zunächst als Nachfolger des 9-Euro-Tickets 2022). Geltungsbereich nur für Nahverkehr (Regional + Stadt-Verkehr), NICHT für Fernverkehr ICE/IC. Verkaufte Tickets DE 2024: ~13 Mio. Wirkungs-Studien (DLR 2024): ~16-20 % Modal-Shift. Subventions-Volumen DE: ~3 Mrd EUR/Jahr. (5) NETTO-CO2-EFFEKT: Klimaticket AT geschätzt -150-300 kt CO2/Jahr (BMK + WIFO). Deutschland-Ticket DE: -3-5 Mt CO2/Jahr (UBA-Berechnung 2024). (6) FAKTENCHECK-RELEVANT: Aussagen wie 'Klimaticket bringt nichts' sind empirisch widerlegt (250k Tickets + 30 % Modal-Shift bei Pendlern). Aussagen wie 'Klimaticket ist riesige Subvention' verkennen Größenordnung (150 Mio vs. 3 Mrd Auto-Subventionen). Pack distanziert sich von normativer Pro/Contra-Wertung — präsentiert nur empirische Bilanz.",
-        "bmk_3jahresbilanz_2024": "BMK Klimaticket-3-Jahresbilanz Oktober 2021 — Oktober 2024: ~250.000 verkaufte Klimatickets österreichweit. Geographisches Profil: 60 % in Ballungsräumen Wien + Graz + Linz + Salzburg + Innsbruck, 40 % in ländlichen Gebieten. Demografisches Profil: 40 % Studierende/Schüler, 35 % Erwerbstätige, 20 % Senioren, 5 % andere. ~85 % der Klimaticket-Käufer sind Neu-Bahn-Nutzer oder erhöhen Bahn-Nutzung deutlich.",
-        "vcoe_bmk_modalshift_2024": "VCÖ + BMK-3-Jahresbilanz 2024 (Klimaticket-Befragungen): geschätzt ~25-30 % Reduktion der Auto-Fahrten bei Klimaticket-Pendlern. Bei Wochenend-Reisen ~25 % Reduktion Auto, ~40 % mehr Bahn/ÖV-Reisen. Modal-Shift stärker im urbanen Raum als ländlich. Multiplikator-Effekt: Klimaticket-Besitzer fahren auch privat öfter mit ÖV. Methodischer Vergleich: WIFO 2024 Köppl/Schratzenstaller 'Budgetäre Kosten und Risiken durch klimapolitisches Nichthandeln' = Kosten-Studie (NICHT Klimaticket-spezifisch). Eine umfassende Klimaticket-Wirkungs-Studie steht noch aus.",
-        "subventions_volumen": "Klimaticket-Finanzierung 2024 (BMK Klimaticket-Bilanz): Ticket-Erlöse ~270 Mio EUR. Verkehrserlös der Verbünde ohne Klimaticket-Effekt geschätzt ~430 Mio EUR. Netto-Defizit ~150-200 Mio EUR/Jahr. Wird durch Bund (Hauptanteil ~80 %) + Länder + Verkehrsverbünde finanziert. Vergleich: BMK + UBA Berechnung der AT klima-schädlichen Auto-Subventionen ~3,3-3,7 Mrd EUR/Jahr (Pendlerpauschale 0,8 Mrd + Diesel-Privileg 0,9 Mrd + Dienstwagen-Privileg 1,1 Mrd + KFZ-Steuer-Befreiung 0,5 Mrd).",
-        "deutschland_ticket_de": "Deutschland-Ticket DE Mai 2023 — heute (zunächst als Nachfolger 9-Euro-Ticket Sommer 2022): 49 EUR/Monat = 588 EUR/Jahr (seit Januar 2025 angepasst auf 58 EUR/Monat = 696 EUR/Jahr). Geltungsbereich Nahverkehr (Regional + S-Bahn + Bus + Tram + U-Bahn) DE-weit. KEINE Fernverkehr-Gültigkeit (ICE/IC/EC nicht inkludiert). Verkaufte Tickets 2024 ~13 Mio (Stand Q4 2024). DLR 2024 Wirkungs-Studie: ~16-20 % Modal-Shift bei Pendlern, ~3-5 Mt CO2-Reduktion/Jahr. Subventions-Volumen DE: ~3 Mrd EUR/Jahr Bund + Länder.",
-        "klimaticket_co2_effekt": "BMK + WIFO Schätzung Klimaticket-CO2-Effekt: -150 bis -300 kt CO2/Jahr in Österreich. Bandbreite wegen Modal-Shift-Annahmen. Pro-Klimaticket-Besitzer: ~600-1.200 kg CO2-Reduktion/Jahr durch verlagerte Auto-Fahrten. Effekt linear mit Abschneide-Quote (durchschnittlich Pendler-Auto-Pendler ~3.000 km/Jahr).",
-        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
+        "kernsatz_fuer_synthesizer": "Amtliche Bilanz: Rechnungshof, Bericht „KlimaTicket\" (Reihe BUND 2025/38, Oktober 2025). (1) NACHFRAGE HOCH: 2023 wurden 243.754 KlimaTickets Österreich verkauft — etwa doppelt so viele wie prognostiziert (124.000). Dem Verkehrsministerium war laut RH nicht bekannt, ob die Nachfrage auf Neukundinnen und Neukunden oder auf Umsteiger aus anderen Ticketkategorien zurückging. (2) KLIMAWIRKUNG GERING: Das Verkehrsministerium ging von einer Reduktion um 0,11 Mio. t CO2-Äquivalente im Jahr 2024 allein durch Verlagerung von Pkw-Fahrten auf den Schienenpersonenverkehr aus. Die Treibhausgasemissionen des Verkehrssektors betrugen 2023 rd. 20 Mio. t — die Reduktion entspricht rund 0,2 %. Das ist ein ERWARTUNGSWERT des Ministeriums, keine gemessene Wirkung; ein vergleichbares Ziel für Verlagerungen auf den Bus existierte nicht. (3) KOSTEN: Budgetzuschüsse für das KlimaTicket Österreich 2024: 182 Mio. EUR; Oktober 2021 bis Ende 2024: 520 Mio. EUR (geplant waren 613 Mio. EUR). Zuschüsse des Bundes für regionale Klimatickets 2024: 214 Mio. EUR; Oktober 2021 bis Ende 2024: 610 Mio. EUR. Zusammen 2024: 396 Mio. EUR. VERDICT-HINWEISE aus dem Prüfbericht: „Das Klimaticket bringt nichts\" ist in dieser absoluten Form nicht gedeckt (hohe Nachfrage, erwartete CO2-Reduktion größer null) → mostly_false. „Das Klimaticket bringt fürs Klima wenig\" ist gedeckt → mostly_true. „Das Klimaticket hat die CO2-Emissionen stark gesenkt\" → false bzw. mostly_false (rund 0,2 % der Verkehrsemissionen, und nur als Erwartungswert). „Es wurden mehr Klimatickets verkauft als erwartet\" → true. „Das Klimaticket kostet den Staat Hunderte Millionen Euro\" → true (520 Mio. EUR in gut drei Jahren; mit den regionalen Klimatickets 1,13 Mrd. EUR). Das Pack zitiert die Prüfung des Rechnungshofs und bewertet die Maßnahme nicht politisch.",
+        "klimaaktiv_bilanz": "klimaaktiv (Klimaschutzinitiative des Bundes), „Drei Jahre KlimaTicket – eine Bilanz\": Mitte 2023 hatten 250.000 Personen ein bundesweit gültiges KlimaTicket Ö; 20 Prozent der mit dem Ticket zurückgelegten Fahrten wären ohne KlimaTicket im Auto durchgeführt worden; bis 2022 etwa 3 Millionen Autofahrten vermieden; 65.000 t CO2-Äquivalente im Jahr 2022, laut klimaaktiv etwa 0,5 Prozent der verkehrsbedingten Emissionen.",
+        "preise_2026": "KlimaTicket Ö ab 1. Jänner 2026 (klimaticket.at): Classic 1.400 EUR pro Jahr; ermäßigt 1.050 EUR (bis 25 Jahre, ab 65 Jahre, Menschen mit Behinderung); Familienzuschlag 140 EUR für bis zu vier Kinder von 6 bis 15 Jahren.",
+        "deutschlandticket_de": "Deutschlandticket (Nahverkehr in ganz Deutschland, kein ICE/IC): 63 EUR pro Monat seit Jänner 2026 (zuvor 58 EUR ab Jänner 2025, 49 EUR bei der Einführung im Mai 2023). Finanzierung laut Bundesregierung: Bund 1,5 Mrd. EUR pro Jahr (2023 bis 2025), die Länder in gleicher Höhe.",
+        "context": "Pack ist deskriptiv; es zitiert den Rechnungshof und bewertet die Maßnahme nicht."
       },
       "context_notes": [
-        "Wichtige Differenzierung: Klimaticket-Subvention ~150-200 Mio EUR/Jahr ≠ AT klima-schädliche Auto-Subventionen ~3-4 Mrd EUR/Jahr (Größenordnung 1:20).",
-        "WIFO 2024: 30 % Modal-Shift bei Klimaticket-Pendlern empirisch gemessen — KEIN Symbol-Effekt, real beobachtbar.",
-        "DE Deutschland-Ticket 49 EUR (Nahverkehr only) ist nicht direkt vergleichbar mit AT Klimaticket 1.095 EUR (Fern + Nah)."
+        "0,11 Mio. t CO2e (2024) ist der ERWARTUNGSWERT des Verkehrsministeriums laut Rechnungshof, keine gemessene Wirkung — rund 0,2 % der Verkehrsemissionen.",
+        "Nachfrage 2023 etwa doppelt so hoch wie prognostiziert (243.754 statt 124.000); ob Neukunden oder Umsteiger, war dem Ministerium nicht bekannt.",
+        "Budgetzuschüsse Oktober 2021 bis Ende 2024: 520 Mio. EUR (KlimaTicket Ö) plus 610 Mio. EUR (regionale Klimatickets); 2024 zusammen 396 Mio. EUR."
       ],
       "claim_phrasings_handled": [
         "Klimaticket bringt nichts",
@@ -349,7 +329,11 @@
         "Klimaticket-Bilanz ist negativ",
         "Modal-Shift durch Klimaticket existiert nicht",
         "49-Euro-Ticket Deutschland ist Geldverschwendung",
-        "Klimaticket reduziert kein CO2"
+        "Klimaticket reduziert kein CO2",
+        "Es wurden mehr Klimatickets verkauft als erwartet",
+        "Das Klimaticket kostet den Staat Hunderte Millionen Euro",
+        "Das Klimaticket bringt fürs Klima wenig",
+        "Das Deutschlandticket kostet 49 Euro"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
@@ -368,7 +352,9 @@
           "58 euro ticket",
           "ÖBB-Klimaticket",
           "öbb-klimaticket",
-          "klima-jahres-ticket"
+          "klima-jahres-ticket",
+          "63 euro ticket",
+          "63-euro-ticket"
         ],
         [
           "bilanz",
@@ -397,40 +383,58 @@
           "millionen",
           "österreich",
           "oesterreich",
-          "deutschland"
+          "deutschland",
+          "verkauft",
+          "verkauf",
+          "nachfrage",
+          "prognose",
+          "prognostiziert",
+          "erwartet",
+          "kostet",
+          "kosten",
+          "preis",
+          "euro",
+          "teurer",
+          "zuschuss",
+          "zuschüsse",
+          "rechnungshof",
+          "klima"
         ]
       ]
     },
     {
       "id": "mobilitaet-suv_sicherheit_2026",
-      "topic": "suv_sicherheit_mythos",
-      "scope": "SUV-Sicherheit — Insassen-Schutz vs. Fußgänger-Risiko vs. Aggressivität",
+      "topic": "suv_sicherheit_konsens",
+      "scope": "SUV und Verkehrssicherheit — Frontgeometrie, Fußgängerrisiko, Insassenschutz",
       "year": 2024,
-      "source_url": "https://www.iihs.org/news/detail/larger-suvs-pose-greater-risk-to-pedestrians-in-crashes",
-      "secondary_url": "https://www.bast.de/DE/Verkehrssicherheit/Fachthemen/U-SUV/U-SUV.html",
-      "source_label": "IIHS Insurance Institute for Highway Safety USA 'Larger SUVs pose greater risk to pedestrians' Studie 2024 + BASt Bundesanstalt für Straßenwesen DE Studien zu SUV-Beteiligung in Unfällen + Justin Tyndall (University of Hawaii UHERO) 'Pedestrian Deaths and Large Vehicles' 2021 + 'The effect of front-end vehicle height on pedestrian death risk' 2024 + EuroNCAP Crash-Tests 2024",
-      "headline": "IIHS US 2024 + BASt DE 2023: SUVs schützen Insassen besser bei Crash (Crash-Test-Note +), ABER Fußgänger-Tot-Risiko +2-3 × höher als Limousine, Aggressivität gegen Kleinwagen +50-100 % höhere Kollisions-Energie; Netto-Sicherheits-Bilanz differenziert",
+      "source_url": "https://www.iihs.org/news/detail/vehicles-with-higher-more-vertical-front-ends-pose-greater-risk-to-pedestrians",
+      "secondary_url": "https://doi.org/10.1016/j.ecotra.2021.100219",
+      "source_label": "IIHS (Hu/Cicchino 2023, 17.897 Fußgängerunfälle) + Tyndall, Economics of Transportation 2021 und 2024",
+      "headline": "SUV und Sicherheit: Nicht das Etikett entscheidet, sondern die Frontgeometrie. IIHS-Auswertung von 17.897 Fußgängerunfällen: Fahrzeuge mit Haubenkante über 40 Zoll (gut 100 cm) töten Fußgänger 44 bis 45 % häufiger als Fahrzeuge unter 30 Zoll; bei mittlerer Höhe erhöht eine steile Front das Risiko um 26 %, eine flache Haube um 25 %.",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'SUV ist generell sicherer' ODER 'SUV ist generell gefährlicher' ist DIFFERENZIERT FALSCH — Pack zeigt: kontextabhängig sicherer oder gefährlicher. Empirische Lage: (1) IIHS USA 2024 'Larger SUVs pose greater risk to pedestrians in crashes' (Insurance Institute for Highway Safety, Crash-Daten 2018-2023): SUVs ≥4.500 lbs (~2 t) haben 2-3 × höheres Fußgänger-Tot-Risiko bei Kollision vs. Personenwagen-Limousinen. Hauptursache: Höhere Front-Höhe (~85-100 cm vs. Limousine 70-75 cm) trifft Fußgänger im Rumpf-/Kopfbereich statt Beinen. (2) BASt 2023 'Sicherheit bei SUV-Beteiligung' DE Crash-Daten 2018-2022: bei Kollisionen SUV vs. Kleinwagen ist Tot-Risiko für Kleinwagen-Insassen ~50-100 % höher als bei Mittelklasse-Limousine. Ursache: Kollisions-Energie steigt mit Masse + Geschwindigkeit² + Stoßstangen-Höhen-Differenz (SUV-Stoßstange überlappt nicht Kleinwagen-Crash-Struktur). (3) INSASSEN-SCHUTZ SUV: SUV-Insassen werden BESSER geschützt — bei eigenständigem Crash gegen Hindernis oder gegen Limousine geringeres Tot-Risiko (~15-25 % weniger). Höhere Karosserie + größere Knautschzone + bessere Sichtposition. EuroNCAP-Crash-Test-Noten 2024 für SUV teilweise besser als Limousinen. (4) NETTO-EFFEKT GESELLSCHAFT: BASt-Verkehrsunfall-Daten + Justin Tyndall (University of Hawaii) 2021/2024 Pedestrian-Death-Modell: SUV-Boom in DE-Markt-Anteil von ~15 % (2010) auf ~35 % (2024) hat Verkehrs-Toten-Zahl um geschätzte ~50-100 Tote/Jahr erhöht (Fußgänger + Kleinwagen-Insassen-Effekt überwiegt Insassen-Schutz-Vorteil). (5) E-SUV-PROBLEM: E-SUVs durch Akku-Gewicht 200-500 kg schwerer als Verbrenner-SUVs gleicher Klasse — Aggressivitäts-Faktor weiter erhöht. (6) FAKTENCHECK-RELEVANT: Aussagen wie 'SUV ist generell sicherer' sind nur teilrichtig (für Insassen ja, für andere Verkehrsteilnehmer nein). Aussagen wie 'SUV ist generell gefährlicher' verkennen Insassen-Schutz-Vorteil. Pack distanziert sich von normativer Pro/Contra-SUV-Wertung — präsentiert nur empirische differenzierte Sicherheits-Bilanz.",
-        "iihs_2024_fussgaenger": "IIHS 2024 'Larger SUVs pose greater risk to pedestrians in crashes' (Hu/Cicchino, Cooperative Crash Injury Study Datenbank 2018-2023, ~10.000 Pedestrian-Crashes): SUVs ≥4.500 lbs (~2 t) haben 2,5 × höheres Fußgänger-Tot-Risiko vs. Personenwagen-Limousinen. SUVs 3.500-4.500 lbs: 1,8 ×. Ursache empirisch nachgewiesen: Höhere Front-Höhe (Hood Height) trifft Fußgänger im Rumpf-/Kopfbereich statt Beinen. Kopf-Aufprall hat höheres Tot-Risiko als Bein-Aufprall + Hood-Wurf.",
-        "bast_2023_aggressivitaet": "BASt 2023 'Sicherheit bei SUV-Beteiligung' (Bundesanstalt für Straßenwesen, GIDAS Datenbank Hannover/Dresden 2018-2022): bei Kollisionen Mittelklasse-SUV vs. Kleinwagen Tot-Risiko Kleinwagen-Insassen 1,5-2 × höher als Mittelklasse-Limousine vs. Kleinwagen. Stoßstangen-Höhen-Differenz Hauptursache (SUV-Stoßstange ~50-65 cm vs. Kleinwagen-Crash-Struktur ~40-50 cm — kein Überlapp).",
-        "insassen_schutz": "EuroNCAP Crash-Test 2024 Auswertung: SUV-Insassen-Schutz Crash-Note durchschnittlich 89 % vs. Limousine 86 %. Volumen-Vorteil + höhere Sicht-Position. Bei eigenständigem Crash gegen Hindernis (Baum, Mauer) Tot-Risiko SUV-Insassen ~15-25 % geringer als Limousine. Bei SUV vs. SUV Crash etwas geringer Tot-Risiko als Limousine vs. Limousine wegen Knautschzone-Größe.",
-        "netto_effekt_modell": "Justin Tyndall (University of Hawaii UHERO) 2021 'Pedestrian Deaths and Large Vehicles' + 2024 'The effect of front-end vehicle height on pedestrian death risk': SUV-Marktanteil DE 2010 ~15 % → 2024 ~35 % (Kraftfahrt-Bundesamt KBA-Daten). Übertragen auf DE-Verkehrslage Schätzung: ~50-100 zusätzliche Verkehrstote DE/Jahr durch SUV-Boom. Hauptanteil Fußgänger (~50-60 zusätzliche/Jahr) + Kleinwagen-Insassen (~15-30/Jahr). Insassen-Schutz-Vorteil reduziert um ~10-20 SUV-Insassen-Tote/Jahr — Netto bleibt deutlich negativ.",
-        "e_suv_gewichts_problem": "E-SUV durch Akku-Gewicht 200-500 kg schwerer als Verbrenner-SUV gleicher Klasse. Tesla Model X ~2.500 kg, BMW iX 2.500-2.700 kg, Mercedes EQS SUV ~2.700-2.900 kg. Verbrenner-SUV Audi Q5 ~1.900 kg, BMW X3 ~1.900 kg. E-SUVs erhöhen Aggressivitäts-Faktor weiter. ICCT-Berechnung: zusätzliche 200 kg = +5 % Kollisions-Energie + ~10 % erhöhtes Fußgänger-Tot-Risiko bei Kollision.",
-        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-SUV-Wertung."
+        "kernsatz_fuer_synthesizer": "Beide Pauschalaussagen greifen daneben: 'SUV sind generell sicherer' ebenso wie 'SUV sind generell gefährlicher'. Was die Unfallforschung misst, ist nicht das Etikett SUV, sondern die Frontgeometrie. Das IIHS hat 17.897 Unfälle zwischen einem Fahrzeug und einem Fußgänger ausgewertet und für 2.958 Modelle die Fronthöhe und den Winkel vermessen: Liegt die Haubenkante über 40 Zoll — gut einen Meter —, endet der Zusammenstoß 44 bis 45 % häufiger tödlich als bei Fahrzeugen unter 30 Zoll. Bei mittlerer Höhe kostet eine steile Front 26 % und eine flache Haube 25 % zusätzliches Risiko. Für die Insassen gilt die Umkehrung nicht automatisch: Tyndall findet für die USA keinen Beleg, dass der Trend zu größeren Fahrzeugen die Sicherheit der Autoinsassen insgesamt verbessert hätte. Beides sind US-Befunde; für Deutschland ist keine vergleichbare veröffentlichte Untersuchung auffindbar.",
+        "iihs_frontgeometrie": "IIHS (Wen Hu u. a.): 17.897 Unfälle zwischen je einem Fahrzeug und einem Fußgänger, Fronthöhe und -winkel für 2.958 Modelle aus Fotos vermessen. Haubenkante über 40 Zoll mit geneigtem Grill (bis 65 Grad): 45 % höheres Tötungsrisiko als unter 30 Zoll; über 40 Zoll mit steiler Front: 44 %. Fahrzeuge mit Fußgänger-Notbremsassistent blieben außen vor; Tempolimit und Alter wurden herausgerechnet.",
+        "iihs_mittlere_hoehe": "Bei Haubenkanten zwischen 30 und 40 Zoll entscheidet die Form: Eine stumpfe, steile Front erhöht das Tötungsrisiko um 26 % gegenüber niedrigen Fahrzeugen mit geneigter Front, während eine geneigte Front bei mittlerer Höhe kein höheres Risiko zeigt. Unabhängig von Höhe und Frontform kostet eine flache Motorhaube (Neigung bis 15 Grad) 25 % zusätzliches Risiko.",
+        "tyndall_flottenwirkung": "Justin Tyndall, 'Pedestrian deaths and large vehicles', Economics of Transportation 2021, doi:10.1016/j.ecotra.2021.100219: Hätte man in den USA das Wachstum der SUV-Flotte zwischen 2000 und 2019 durch Pkw ersetzt, wären rund 1.100 Fußgänger nicht gestorben. Für eine verbesserte Sicherheit der Autoinsassen durch größere Fahrzeuge findet die Arbeit keinen Beleg.",
+        "tyndall_fronthoehe": "Dieselbe Zeitschrift, Tyndall 2024: 'The effect of front-end vehicle height on pedestrian death risk', doi:10.1016/j.ecotra.2024.100342 — unabhängige Bestätigung, dass die Fronthöhe und nicht die Fahrzeugklasse die entscheidende Größe ist.",
+        "us_kontext": "Einordnung der US-Zahlen (IIHS): Die Zahl getöteter Fußgänger ist seit dem Tiefstand 2009 um 80 % gestiegen, 2021 starben rund 7.400 Menschen. Das durchschnittliche US-Fahrzeug wurde in 30 Jahren etwa 10 cm breiter, 25 cm länger, 20 cm höher und 450 kg schwerer. Neben der Fahrzeugflotte nennen die Forschenden Geschwindigkeit und Straßengestaltung als Ursachen.",
+        "uebertragbarkeit": "Die Befunde stammen aus den USA, wo Pick-ups einen weit größeren Flottenanteil haben als in Europa und die Unfalldaten anders erhoben werden. Eine veröffentlichte deutsche oder österreichische Untersuchung mit vergleichbaren Risikozahlen für SUV-Beteiligung ließ sich nicht finden — wer solche Zahlen zitiert, sollte die Quelle prüfen.",
+        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von einer Pro/Contra-SUV-Wertung; gemessen wird Fahrzeuggeometrie, nicht ein Fahrzeugtyp."
       },
       "context_notes": [
-        "Wichtige Differenzierung: SUV-Insassen-Schutz tatsächlich besser (+15-25 %), SUV-Aggressivität gegen Fußgänger 2-3 × höher + gegen Kleinwagen 50-100 % höher — kontext-abhängig.",
-        "Netto-Effekt für Gesellschaft DE laut BASt-Modell ~50-100 zusätzliche Verkehrstote/Jahr durch SUV-Boom.",
-        "E-SUVs verstärken durch Akku-Gewicht das Aggressivitäts-Problem zusätzlich (+200-500 kg vs. Verbrenner-SUV)."
+        "Korrigiert 2026-09-24: Die frühere Fassung nannte Risikofaktoren nach Fahrzeuggewicht, eine deutsche Untersuchung auf Basis einer Unfalldatenbank, Crash-Test-Noten für Insassenschutz, eine Zahl zusätzlicher Verkehrstoter je Jahr für Deutschland und eine Rechnung zum Mehrgewicht von Elektro-SUV. Keine dieser Angaben ließ sich in den zitierten Quellen finden.",
+        "Datenstand: IIHS-Auswertung (17.897 Unfälle, veröffentlicht 2023), Tyndall 2021 und 2024 in Economics of Transportation.",
+        "Die entscheidende Größe ist die Frontgeometrie, nicht die Fahrzeugklasse: Ein flach gebauter Kombi und ein hoch gebauter Van unterscheiden sich im Fußgängerrisiko stärker als zwei Fahrzeuge desselben Etiketts.",
+        "40 Zoll sind 101,6 cm, 30 Zoll 76,2 cm — die Studie misst in Zoll, weil sie US-Fahrzeuge vermisst."
       ],
       "claim_phrasings_handled": [
-        "SUV ist sicherer als jedes andere Auto",
-        "SUVs sind die sichersten Autos",
-        "SUV gefährdet Fußgänger nicht mehr",
-        "SUV ist generell gefährlicher",
-        "Gewicht eines SUV spielt keine Rolle",
-        "E-SUV ist genauso sicher wie Verbrenner-SUV"
+        "SUVs sind gefährlicher für Fußgänger",
+        "SUV sind sicherer als normale Autos",
+        "SUVs gehören verboten",
+        "Sind SUVs wirklich gefährlicher?",
+        "Wie viel höher ist das Risiko für Fußgänger bei einem SUV?",
+        "SUV-Fahrer sind bei einem Unfall besser geschützt",
+        "Gibt es eine deutsche Studie zu SUV-Unfällen?"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
@@ -438,49 +442,71 @@
           "suv",
           "geländewagen",
           "gelaendewagen",
-          "gelände-wagen",
-          "gelaende-wagen",
-          "offroader",
-          "off-roader",
+          "pick-up",
+          "pickup",
           "stadtgeländewagen",
-          "stadt-geländewagen",
-          "x-drive",
-          "4×4",
-          "4x4",
-          "allrad",
-          "all-rad",
-          "tesla model x",
-          "bmw x5",
-          "audi q7",
-          "mercedes gle"
+          "stadtgelaendewagen",
+          "frontgeometrie",
+          "fronthöhe",
+          "fronthoehe",
+          "motorhaube"
         ],
         [
-          "sicherheit",
           "sicher",
           "sicherer",
           "gefährlich",
           "gefaehrlich",
+          "gefährlicher",
+          "gefaehrlicher",
           "fußgänger",
           "fussgaenger",
-          "fußgaenger",
-          "passant",
-          "passanten",
-          "kollision",
+          "risiko",
           "unfall",
-          "crash",
+          "unfälle",
+          "unfaelle",
           "tödlich",
           "toedlich",
-          "tote",
-          "schwerverletzte",
-          "schwer verletzt",
-          "kleinwagen",
-          "klein-wagen",
-          "aggressivität",
-          "aggressivitaet",
-          "kein problem",
-          "harmlos",
-          "gewicht",
-          "schwer"
+          "verboten",
+          "insassen",
+          "schutz",
+          "schützt",
+          "schuetzt",
+          "geschützt",
+          "geschuetzt",
+          "crash",
+          "studie",
+          "wie viel",
+          "höher",
+          "hoeher",
+          "kollision",
+          "getötet",
+          "getoetet"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "suv"
+          ],
+          [
+            "verbot",
+            "verboten"
+          ]
+        ],
+        [
+          [
+            "suv",
+            "geländewagen",
+            "gelaendewagen"
+          ],
+          [
+            "fußgänger",
+            "fussgaenger",
+            "insassen",
+            "sicher",
+            "gefähr",
+            "gefaehr"
+          ]
         ]
       ]
     },
@@ -489,8 +515,8 @@
       "topic": "wasserstoff_pkw_mythos",
       "scope": "Wasserstoff-PKW vs. Batterie-Elektro — Effizienz-Vergleich, Markt-Hemmnisse",
       "year": 2024,
-      "source_url": "https://www.ise.fraunhofer.de/de/forschungsprojekte/wasserstoff-pkw-effizienz-analyse.html",
-      "secondary_url": "https://www.agora-verkehrswende.de/veroeffentlichungen/wasserstoff-im-strassenverkehr/",
+      "source_url": "https://www.umweltbundesamt.de/themen/verkehr/kraftstoffe-antriebe/wasserstoff-im-verkehr-haeufig-gestellte-fragen",
+      "secondary_url": "https://www.agora-verkehrswende.de/veroeffentlichungen/klimabilanz-von-strombasierten-antrieben-und-kraftstoffen-1",
       "source_label": "Fraunhofer ISE 'Wege zu einem klimaneutralen Energiesystem' Studie 2023 + Agora Verkehrswende 'Wasserstoff im Straßenverkehr — Eine Faktenanalyse' 2024 + Volker Quaschning HTW Berlin Wasserstoff-Effizienz-Berechnung + ICCT H2-PKW-Studien + ifo-Institut H2-Markt-Analyse",
       "headline": "Fraunhofer ISE + Agora Verkehrswende 2024: H2-PKW-Well-to-Wheel-Effizienz nur 25-30 % vs. Batterie-Elektro 70-80 %; H2-PKW-Markt 2024 stagniert (~5.000 verkaufte H2-PKW DE seit 2014); H2 sinnvoll für Schwerlast/Schiff/Stahl, aber NICHT PKW",
       "data": {
@@ -592,15 +618,15 @@
       "topic": "oepnv_ausbau_empirie_konsens",
       "scope": "ÖPNV-Investitions-Bedarf DE — VDV + Bauindustrie + ADAC + Difu-Studie, 49-Euro-Ticket-Wirkung",
       "year": 2024,
-      "source_url": "https://www.vdv.de/finanzierungsbedarf-oepnv.aspx",
-      "secondary_url": "https://www.kcw-online.de/oepnv-ausbau-pakt-finanzierung-2024",
+      "source_url": "https://www.vdv.de/oepnv2040.aspx",
+      "secondary_url": "https://difu.de/projekte/investitionsbedarfe-fuer-ein-nachhaltiges-verkehrssystem",
       "source_label": "VDV Verband Deutscher Verkehrsunternehmen + Hauptverband der Deutschen Bauindustrie + ADAC Studie 2023 'ÖPNV-Investitionsbedarf bis 2030' (durchgeführt von Difu Deutsches Institut für Urbanistik) + Allianz pro Schiene Studien + Bundesverband SchienenNahverkehr BSN + DLR ÖPNV-Wirkungs-Forschung",
       "headline": "VDV + Hauptverband Bauindustrie + ADAC Studie 2023 (durchgeführt von Difu): DE-ÖPNV-Investitionsbedarf ~64 Mrd EUR bis 2030 (Bestand-Erhalt + Ausbau); Bund-Länder-Pakt seit 2022 mit ~12 Mrd EUR; 49-EUR-Ticket-Wirkungs-Studien DLR 2024 zeigen 16-20 % Modal-Shift bei Pendlern",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'ÖPNV in DE wird ausreichend finanziert' oder 'ÖPNV-Ausbau ist Geld-Verschwendung' ist EMPIRISCH FALSCH. Empirische Lage: (1) VDV + HAUPTVERBAND BAUINDUSTRIE + ADAC 2023 INVESTITIONS-BEDARF-ANALYSE (durchgeführt von Difu): DE-ÖPNV (Stadt + Regional) hat Investitionsbedarf von ~64 Mrd EUR bis 2030. Aufgliederung: (a) BESTANDS-ERHALT ~30 Mrd EUR (Erneuerung S-Bahn-Wagen, Tram-Schienen, U-Bahn-Tunnels, Brücken), (b) AUSBAU NEU ~24 Mrd EUR (neue Straßenbahn-Strecken, S-Bahn-Verlängerungen, neue Verbindungen Rhein-Ruhr/Berlin/Hamburg), (c) DIGITALISIERUNG ~10 Mrd EUR (Steuer-Technik, Echtzeit-Information, ETCS European Train Control System). (2) BUND-LÄNDER-PAKT seit 2022: 'ÖPNV-Ausbau-Pakt' (BMDV + Länder) mit ~12 Mrd EUR bis 2030 — DECKT NUR 19 % des KCW-Bedarfs. (3) DEUTSCHLAND-TICKET 49-EUR-WIRKUNG (DLR 2024 Studie): ~16-20 % Modal-Shift bei Pendlern, ~3-5 Mt CO2-Reduktion/Jahr. Aber ÖPNV-Auslastung in Boom-Korridoren bereits an Kapazitäts-Grenze — 49-Euro-Ticket erhöht Nachfrage, ohne dass Angebot mitgewachsen ist (Sardine-Effekt). (4) GLEICHZEITIG INFRASTRUKTUR-VERSCHLEISS: Allianz pro Schiene 2024 — DE-Schienen-Netz hat ~150 Brücken in Zustandsklasse 4 (sanierungsbedürftig dringend). Generalsanierungs-Programm DB ab 2024 (Riedbahn 2024, Hamburg-Berlin 2025-2027) reduziert Kapazität temporär — Pünktlichkeits-Krise verschärft sich. (5) AT VERGLEICH: Bahn + ÖPNV-Investitionen pro Kopf 270 EUR/Jahr (vs. DE 120 EUR vs. CH 440 EUR — siehe Pack-Topic 'bahn_investition_de_at'). AT investiert mehr in ÖPNV — schlägt sich in Pünktlichkeit + Modal-Shift nieder. (6) FAKTENCHECK-RELEVANT: Aussagen wie 'ÖPNV ist gut finanziert' sind durch VDV/KCW-Bedarf-Analyse widerlegt. Aussagen wie '49-Euro-Ticket bringt nichts ohne Ausbau' sind teil-richtig (Modal-Shift real, aber Sardine-Effekt). Pack distanziert sich von Pro/Contra-Wertung — präsentiert nur empirische Bedarf- + Wirkungs-Daten.",
         "vdv_bauindustrie_adac_difu_2023": "VDV + Hauptverband der Deutschen Bauindustrie + ADAC 2023 'ÖPNV-Investitionsbedarf bis 2030' (durchgeführt von Difu Deutsches Institut für Urbanistik): Gesamt-Bedarf ~64 Mrd EUR. Bestand-Erhalt ~30 Mrd (Wagen-Erneuerung, Schienen-Sanierung, Brücken, Tunnels), Ausbau-Neu ~24 Mrd (neue Strecken Rhein-Ruhr-S-Bahn, Berlin-Brandenburg, Hamburg-S4, München-2.S-Bahn-Stammstrecke), Digitalisierung ~10 Mrd (ETCS, Echtzeit-Information, Buchungs-Systeme). Vorgänger-Studie 2018: ~37 Mrd Bedarf — Steigerung wegen Inflation + Generalsanierungs-Programm.",
         "bund_laender_pakt_2022": "Bund-Länder-ÖPNV-Pakt 2022 (BMDV unter Wissing): ~12 Mrd EUR bis 2030 (für ÖPNV-Ausbau + Bestand). Aufteilung Bund 50 % + Länder 50 %. Deckt nur ~19 % des KCW-2024-Bedarfs. Pakt umfasst auch Regionalisierungs-Mittel-Reform für Deutschland-Ticket-Finanzierung.",
-        "dlr_2024_49euro_wirkung": "DLR Deutsches Zentrum für Luft- und Raumfahrt 2024 'Wirkungs-Studie Deutschland-Ticket': bei Pendlern ~16-20 % Modal-Shift Auto→ÖPNV (geringer als AT Klimaticket 30 %). Bei Wochenend-Reisen ~12-15 % Modal-Shift. CO2-Reduktion DE-weit ~3-5 Mt/Jahr. Aber: ÖPNV-Auslastung Boom-Korridoren (Hamburg-S-Bahn, München-S-Bahn) bereits an Kapazitäts-Grenze — Sardine-Effekt + Beschwerden über überfüllte Züge.",
+        "dlr_2024_49euro_wirkung": "DLR Deutsches Zentrum für Luft- und Raumfahrt 2024 'Wirkungs-Studie Deutschland-Ticket': bei Pendlern ~16-20 % Modal-Shift Auto→ÖPNV. Bei Wochenend-Reisen ~12-15 % Modal-Shift. CO2-Reduktion DE-weit ~3-5 Mt/Jahr. Aber: ÖPNV-Auslastung Boom-Korridoren (Hamburg-S-Bahn, München-S-Bahn) bereits an Kapazitäts-Grenze — Sardine-Effekt + Beschwerden über überfüllte Züge.",
         "infrastruktur_verschleiss": "Allianz pro Schiene 2024 + DB Netz Zustandsbericht: ~150 Schienen-Brücken in DB-Netz in Zustandsklasse 4 (sanierungsbedürftig dringend, Restnutzungsdauer <5 Jahre). Generalsanierungs-Programm DB ab 2024: Riedbahn 2024 (Frankfurt-Mannheim, 5-Monats-Sperrung), Hamburg-Berlin 2025-2027 (10-Monats-Sperrung), Stuttgart 2026 (4-Monats-Sperrung). Während Sanierung Pünktlichkeit verschlechtert sich weiter — kurzfristig Krise, mittelfristig Verbesserung erwartet.",
         "international_dach": "Pro-Kopf-Bahn-Investition 2024 DACH (Allianz pro Schiene + Bundesamt für Statistik CH): CH 480 EUR/Person/Jahr (FinöV-Fonds + Bahn 2030 / FABI-Programm), AT 270 EUR/Person (ÖBB-Investitionsplan), DE 198 EUR/Person (BMDV + DB-Investitionen 2024 mit Rekord-Anstieg). Schwedische Vergleich ~250 EUR. DE strukturelles Investitions-Defizit seit 1990er — schlägt sich in Pünktlichkeits-Krise nieder.",
         "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Wertung."
@@ -716,7 +742,7 @@
       "scope": "Diesel-Skandal VW 2015-2024 — Bußgelder, Stickoxid-Gesundheits-Schäden",
       "year": 2024,
       "source_url": "https://www.umweltbundesamt.de/themen/luft/luftschadstoffe-im-ueberblick/stickstoffoxide",
-      "secondary_url": "https://commission.europa.eu/transport-and-mobility/dieselgate-action-following-vw-emissions-scandal_en",
+      "secondary_url": "https://commission.europa.eu/live-work-travel-eu/consumer-rights-and-complaints/enforcement-consumer-protection/coordinated-actions/dieselgate_en",
       "source_label": "UBA Umweltbundesamt 'Stickstoffoxide + Gesundheits-Schäden' 2024 + EU-Kommission Bilanz Dieselgate 2015-2024 + Volkswagen Konzern-Geschäftsberichte 2015-2024 + ICCT Diesel-Test-Studien 2014/2015 + Helmholtz-Studie 'Vorzeitige Sterblichkeit durch NO2' 2017 + EEA European Environment Agency Air Quality Reports",
       "headline": "VW-Dieselgate-Skandal 2015-2024 (UBA + EU-Kommission Bilanz): ~33 Mrd EUR globale Bußgelder/Vergleiche; UBA + Helmholtz: ~6.000 vorzeitige Tode/Jahr in DE durch erhöhte NO2-Belastung (Bezugsjahr 2014) in Diesel-Skandal-Zeit + bestehende Diesel-Flotte 2015-2024",
       "data": {
@@ -814,8 +840,8 @@
       "topic": "tempo_30_wirkung_konsens",
       "scope": "Tempo 30 in Stadtgebieten — Helsinki, Brussels, Bremen empirische Evidenz",
       "year": 2024,
-      "source_url": "https://www.who.int/europe/news/item/29-09-2023-30-km-h-zones-save-lives--findings-from-european-cities",
-      "secondary_url": "https://www.umweltbundesamt.de/themen/tempo-30-staedtischen-strassen",
+      "source_url": "https://doi.org/10.3390/su16114382",
+      "secondary_url": "https://www.umweltbundesamt.de/themen/uba-empfiehlt-tempo-30-als-inneroertliche",
       "source_label": "WHO Europa 'Lower urban speed limits save lives' 2023 + Helsinki Stadt Verkehrs-Sicherheits-Bericht 2018-2023 + Brussels Mobility Verkehrs-Studie 2021-2024 + Bremen Bürgerschafts-Bericht Tempo-30-Innenstadt 2023 + UBA 'Tempo 30 + Lärm' 2022 + ETSC European Transport Safety Council Studien",
       "headline": "Helsinki 2018-2023 + Brussels 2021-2024 + Bremen 2023: Tempo 30 in Stadtgebieten reduziert Schwer-Verletzte 30-50 %, Lärm -3 dB (Halbierung); Reisezeit-Effekt minimal (1-3 Min/10 km); empirische Evidenz aus mehreren EU-Städten konsistent",
       "data": {
@@ -898,7 +924,7 @@
       "scope": "Klima-schädliche Auto-Subventionen DE/AT — FÖS-/UBA-Quantifizierung",
       "year": 2024,
       "source_url": "https://foes.de/themen/oekologische-finanzreform/umweltschaedliche-subventionen/",
-      "secondary_url": "https://www.umweltbundesamt.de/publikationen/umweltschaedliche-subventionen-deutschland-2021",
+      "secondary_url": "https://www.umweltbundesamt.de/publikationen/umweltschaedliche-subventionen-in-deutschland-0",
       "source_label": "FÖS Forum Ökologisch-Soziale Marktwirtschaft 'Klima-schädliche Subventionen DE' 2024 + UBA 'Umweltschädliche Subventionen Deutschland' Berichte 2021/2024 + WIFO + AK Wien Berechnungen AT-Subventionen + IMK Hans-Böckler-Stiftung Subventions-Berichte + OECD Inventory of Support Measures + EU-Kommission Bericht zu Steuer-Vergünstigungen",
       "headline": "FÖS 2024 + UBA Subventions-Bericht: DE klima-schädliche Auto-Subventionen 28-65 Mrd EUR/Jahr (Diesel-Privileg ~8 Mrd, Pendlerpauschale ~6 Mrd, Dienstwagen-Privileg ~4-6 Mrd, externe Kosten + KFZ-Steuer-Befreiung); AT KFZ-Steuer-System mit ähnlichen Strukturen ~3,3-3,7 Mrd EUR/Jahr",
       "data": {
@@ -1016,8 +1042,8 @@
       "topic": "lkw_maut_wirkung_konsens",
       "scope": "LKW-Maut DE + AT — Mehreinnahmen, Modal-Shift Bahn",
       "year": 2024,
-      "source_url": "https://www.bag.bund.de/DE/Navigation/Themen/Maut/Mautstatistik/mautstatistik_node.html",
-      "secondary_url": "https://www.asfinag.at/ueber-uns/zahlen-daten-fakten/",
+      "source_url": "https://www.balm.bund.de/DE/Themen/Lkw-Maut/Mautstatistik/mautstatistiken_node.html",
+      "secondary_url": "https://www.asfinag.at/en/about-us/facts-figures/",
       "source_label": "BAG Bundesamt für Güterverkehr 'LKW-Maut-Statistik' Jahresberichte 2005-2024 + ASFINAG Geschäftsberichte 2024 + Allianz pro Schiene LKW-Maut-Wirkungs-Studien + DLR Modal-Shift-Forschung + EU-Kommission Eurovignette-Richtlinie + UBA LKW-Verkehr-Klimawirkung",
       "headline": "DE LKW-Maut seit 2005 (BAG-Bilanz 2024): Mehreinnahmen Verkehrs-Etat ~7 Mrd EUR/Jahr; Modal-Shift Effekt Bahn ~3-5 % der Tonnen-km; AT LKW-Maut ASFINAG ~1,8 Mrd EUR/Jahr; CO2-Lkw-Maut-Aufschlag DE 200 EUR/t seit Dezember 2023",
       "data": {
@@ -1126,8 +1152,8 @@
       "topic": "bahn_investition_de_at_konsens",
       "scope": "Pro-Kopf-Bahn-Investitionen DACH 2024 — Allianz pro Schiene Auswertung",
       "year": 2024,
-      "source_url": "https://www.allianz-pro-schiene.de/themen/infrastruktur/schienen-investitionen/",
-      "secondary_url": "https://infrastruktur.oebb.at/de/zahlen-daten-fakten/zielnetz-2040",
+      "source_url": "https://www.allianz-pro-schiene.de/themen/infrastruktur/investitionen/",
+      "secondary_url": "https://infrastruktur.oebb.at/en/company/for-austria/future-rail-target-network",
       "source_label": "Allianz pro Schiene 'Pro-Kopf-Schienen-Investitionen DACH' Jahresvergleich 2024 + ÖBB-Infrastruktur Zielnetz 2040 + DB Konzern-Investitionsplan + Schweizer Bundesamt für Verkehr BAV + Bahn 2030 / FABI-Programm CH + KCW Schienen-Investitions-Studien",
       "headline": "Allianz pro Schiene 2024 + ÖBB + BAV: Pro-Kopf-Bahn-Investitionen 2024 — AT ~352 EUR/Person/Jahr (ÖBB-Zielnetz 2040), DE ~198 EUR/Person/Jahr (DB + Bund 2024 Rekord-Anstieg), CH ~480 EUR/Person/Jahr (FinöV + FABI) — DE strukturelles Defizit",
       "data": {
@@ -1178,7 +1204,7 @@
           "ch",
           "dach",
           "europa",
-          "eu",
+          " eu ",
           "ausreichend",
           "genug",
           "wenig",
@@ -1197,7 +1223,7 @@
           "vergleich",
           "öbb",
           "oebb",
-          "db",
+          " db ",
           "sbb"
         ]
       ],
@@ -1246,8 +1272,8 @@
       "topic": "parken_mythos",
       "scope": "Park-Such-Verkehr in Innenstädten — Knoflacher 2018 + UVP empirische Datenlage",
       "year": 2024,
-      "source_url": "https://www.knoflacher.at/publikationen/parken-und-stadtverkehr",
-      "secondary_url": "https://www.umweltbundesamt.de/themen/verkehr/parkraum-management",
+      "source_url": "https://doi.org/10.1016/j.tranpol.2006.05.005",
+      "secondary_url": "https://www.umweltbundesamt.de/system/files/medien/479/publikationen/uba_broschuere_parkraummanagement_0.pdf",
       "source_label": "Hermann Knoflacher TU Wien Verkehrs-Planung Forschung 2018 + UVP-Studien Innenstadt-Verkehr 2024 + UBA 'Parkraum-Management' 2024 + Difu Deutsches Institut für Urbanistik Park-Studien + KCW Berater Parken-Wirkungs-Studien + Stadt Zürich Mobility-Pricing-Pilot",
       "headline": "Knoflacher TU Wien 2018 + UVP-Studien: Park-Suchverkehr ~30 % des Stadt-Verkehrs-Aufkommens in Innenstädten DACH; statistisch: Auto steht 23 von 24 h pro Tag (95 % Stillstand), bewegt sich nur 1 h täglich; Park-Subventionen + Park-Flächen-Größenordnung",
       "data": {
@@ -1487,7 +1513,7 @@
           "österreich",
           "oesterreich",
           "europa",
-          "eu",
+          " eu ",
           "öffentlich",
           "oeffentlich",
           "privat",

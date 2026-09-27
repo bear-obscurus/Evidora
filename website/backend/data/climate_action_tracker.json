@@ -82,7 +82,7 @@
       "current_policies_rating": "Insufficient",
       "fair_share_rating": "Insufficient",
       "assessment_date": "2024-11",
-      "url": "https://climateactiontracker.org/countries/eu-countries/",
+      "url": "https://climateactiontracker.org/countries/eu/",
       "note": "AT wird im CAT-EU-Aggregat geführt (EU-27 Overall: Insufficient). Einzelländer-Sub-Assessments existieren punktuell."
     },
     "DEU": {
@@ -113,7 +113,7 @@
       "current_policies_rating": "Insufficient",
       "fair_share_rating": "Insufficient",
       "assessment_date": "2024-11",
-      "url": "https://climateactiontracker.org/countries/eu-countries/",
+      "url": "https://climateactiontracker.org/countries/eu/",
       "note": "FR im EU-Aggregat geführt; nationale Sub-Indikatoren teils einzeln berichtet."
     },
     "GBR": {
@@ -134,7 +134,7 @@
       "current_policies_rating": "Insufficient",
       "fair_share_rating": "Insufficient",
       "assessment_date": "2024-11",
-      "url": "https://climateactiontracker.org/countries/eu-countries/"
+      "url": "https://climateactiontracker.org/countries/eu/"
     },
     "ESP": {
       "iso3": "ESP",
@@ -144,7 +144,7 @@
       "current_policies_rating": "Insufficient",
       "fair_share_rating": "Insufficient",
       "assessment_date": "2024-11",
-      "url": "https://climateactiontracker.org/countries/eu-countries/"
+      "url": "https://climateactiontracker.org/countries/eu/"
     },
     "POL": {
       "iso3": "POL",
@@ -154,7 +154,7 @@
       "current_policies_rating": "Highly insufficient",
       "fair_share_rating": "Insufficient",
       "assessment_date": "2024-11",
-      "url": "https://climateactiontracker.org/countries/eu-countries/"
+      "url": "https://climateactiontracker.org/countries/eu/"
     },
     "NLD": {
       "iso3": "NLD",
@@ -164,7 +164,7 @@
       "current_policies_rating": "Insufficient",
       "fair_share_rating": "Insufficient",
       "assessment_date": "2024-11",
-      "url": "https://climateactiontracker.org/countries/eu-countries/"
+      "url": "https://climateactiontracker.org/countries/eu/"
     },
     "SWE": {
       "iso3": "SWE",
@@ -174,7 +174,7 @@
       "current_policies_rating": "Insufficient",
       "fair_share_rating": "Insufficient",
       "assessment_date": "2024-11",
-      "url": "https://climateactiontracker.org/countries/eu-countries/"
+      "url": "https://climateactiontracker.org/countries/eu/"
     },
     "NOR": {
       "iso3": "NOR",
@@ -344,7 +344,7 @@
       "current_policies_rating": "Critically insufficient",
       "fair_share_rating": "Almost sufficient",
       "assessment_date": "2024-11",
-      "url": "https://climateactiontracker.org/countries/viet-nam/"
+      "url": "https://climateactiontracker.org/countries/vietnam/"
     },
     "PHL": {
       "iso3": "PHL",

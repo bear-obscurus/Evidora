@@ -4,7 +4,7 @@
   "reference_school_year": "2018/2019",
   "report_published": 2022,
   "source_label": "EASIE — European Agency Statistics on Inclusive Education, Cross-Country Report 2018/2019 (European Agency for Special Needs and Inclusive Education, 2022). Reference data XLSX tables.",
-  "source_url": "https://www.european-agency.org/data/easie",
+  "source_url": "https://www.european-agency.org/activities/data",
   "secondary_url": "https://www.european-agency.org/data/cross-country-reports",
   "license": "CC BY-NC-ND 4.0 (European Agency for Special Needs and Inclusive Education). Quote with full source attribution, no derivatives, non-commercial reuse.",
   "license_note_nc": "Lizenz-Status nicht zu 100 % verifiziert (WebFetch im Sandbox geblockt). Aktuelle Standard-Lizenz-Praxis der European Agency ist CC BY-NC-ND 4.0. Bei kommerzieller Nutzung im Zweifel direkt bei European Agency anfragen.",
@@ -285,7 +285,7 @@
   "xlsx_sources": [
     {
       "title": "EASIE Cross-Country Statistical Tables 2018/2019",
-      "file_url": "https://www.european-agency.org/sites/default/files/easie_2018_2019_dataset.xlsx",
+      "file_url": "https://www.european-agency.org/activities/data",
       "note": "URL-Pattern beobachtet, exakte URL kann beim nächsten Refresh-Run via openpyxl-Parser eingelesen werden. WebFetch im Sandbox geblockt — daher hier Best-Effort-Pfad."
     },
     {

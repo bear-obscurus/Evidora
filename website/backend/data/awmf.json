@@ -137,7 +137,7 @@
           "behandlung",
           "ace-hemmer",
           "ace hemmer",
-          "arb",
+          " arb ",
           "at1",
           "calciumkanal",
           "betablocker",
@@ -199,13 +199,13 @@
           "stenokardie",
           "herzinfarkt",
           "myokardinfarkt",
-          "ldl"
+          " ldl "
         ],
         [
           "leitlinie",
           "empfehlung",
           "therapie",
-          "ass",
+          " ass ",
           "statin",
           "stent",
           "bypass",
@@ -214,7 +214,7 @@
           "nvl",
           "awmf",
           "dgk",
-          "ldl",
+          " ldl ",
           "gesenkt",
           "senken",
           "zielwert",
@@ -351,7 +351,7 @@
           "lyse",
           "alteplase",
           "stroke-unit",
-          "dsg",
+          " dsg ",
           "dgn",
           "awmf",
           "erstlinien",
@@ -552,7 +552,7 @@
           "biopsie",
           "abirateron",
           "enzalutamid",
-          "dgu",
+          " dgu ",
           "dkg",
           "awmf",
           "erstlinien",
@@ -1088,7 +1088,7 @@
           "magenband",
           "schlauchmagen",
           "awmf",
-          "dag",
+          " dag ",
           "erstlinien",
           "standard",
           "indiziert",
@@ -1408,11 +1408,10 @@
       "trigger_composite": [
         [
           "multiple sklerose",
-          "ms ",
+          " ms ",
           " ms.",
-          "ms-",
           "encephalomyelitis disseminata",
-          "ed"
+          " ed "
         ],
         [
           "leitlinie",
@@ -1748,7 +1747,7 @@
         [
           "niereninsuffizienz",
           "nephropathie",
-          "ckd",
+          " ckd ",
           "chronic kidney disease",
           "albuminurie",
           "nierenversagen",
@@ -1760,7 +1759,7 @@
           "therapie",
           "ace-hemmer",
           "ace hemmer",
-          "arb",
+          " arb ",
           "sglt-2",
           "finerenon",
           "nvl",
@@ -1817,7 +1816,7 @@
         [
           "schilddruese",
           "schilddrüse",
-          "tsh",
+          " tsh ",
           "hypothyreose",
           "hashimoto",
           "thyreoiditis",

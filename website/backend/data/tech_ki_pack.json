@@ -42,12 +42,12 @@
       ],
       "trigger_composite": [
         [
-          "ki",
-          "ai",
+          " ki ",
+          " ai ",
           "chatgpt",
           "claude",
           "gemini",
-          "llm",
+          " llm",
           "sprachmodell",
           "kuenstliche intelligenz"
         ],
@@ -128,7 +128,7 @@
         ]
       ],
       "source_label": "Chainalysis Crypto Crime Report + DOJ-Cases + Meiklejohn 2013",
-      "source_url": "https://www.chainalysis.com/blog/2024-crypto-crime-trends/",
+      "source_url": "https://www.chainalysis.com/blog/2024-crypto-crime-report-introduction/",
       "secondary_url": "https://en.wikipedia.org/wiki/Bitcoin#Anonymity"
     },
     {
@@ -432,7 +432,7 @@
           "datenleck"
         ],
         [
-          "eu",
+          " eu ",
           "europa",
           "europaeisch",
           "europäisch",
@@ -559,7 +559,7 @@
         [
           "apple",
           "iphone",
-          "ios"
+          " ios "
         ],
         [
           "sicherer",
@@ -704,9 +704,8 @@
             "apple",
             "iphone",
             "ipad",
-            "ios ",
+            " ios ",
             " eu ",
-            "eu-",
             "der eu",
             "europäisch",
             "europaeisch",

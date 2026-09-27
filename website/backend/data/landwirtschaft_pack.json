@@ -36,7 +36,7 @@
       "trigger_keywords": [],
       "trigger_composite": [
         [
-          "gvo",
+          " gvo",
           "gv-o",
           "gentechnik",
           "gen-technik",
@@ -45,14 +45,14 @@
           "transgen",
           "genmanipuliert",
           "gen-manipuliert",
-          "ngt",
+          " ngt ",
           "neue genomische",
           "cisgenese",
           "cisgenetik",
           "genome editing",
           "crispr",
           "cas9",
-          "gmo",
+          " gmo",
           "genetically modified",
           "mon810",
           "monsanto",
@@ -126,7 +126,7 @@
       "trigger_keywords": [],
       "trigger_composite": [
         [
-          "bio",
+          " bio",
           "bio-landbau",
           "biolandbau",
           "biologisch",
@@ -140,10 +140,9 @@
           "konventioneller landbau",
           "intensive landwirtschaft",
           "extensiv",
-          "ertrag",
-          "erträge",
-          "ertraege",
-          "yield"
+          "yield",
+          "ökolandbau",
+          "öko-landbau"
         ],
         [
           "ertrag",
@@ -151,7 +150,7 @@
           "ertraege",
           "produktion",
           "hektar",
-          "ha",
+          " ha ",
           "yield-gap",
           "ertrags-gap",
           "ertragsgap",
@@ -175,7 +174,7 @@
           "besser",
           "schlechter",
           "vergleich",
-          "vs",
+          " vs ",
           "weltmeister"
         ]
       ]
@@ -185,7 +184,7 @@
       "topic": "glyphosat_empirie_konsens",
       "scope": "Glyphosat-Karzinogenität — IARC-vs-EFSA-Streit, Hazard-vs-Risk, EU-Genehmigungs-Verlängerung 2023",
       "year": 2024,
-      "source_url": "https://www.efsa.europa.eu/de/news/glyphosate-no-critical-areas-concern-data-gaps-be-clarified",
+      "source_url": "https://www.efsa.europa.eu/en/news/glyphosate-no-critical-areas-concern-data-gaps-identified",
       "secondary_url": "https://www.iarc.who.int/news-events/iarc-monographs-volume-112-evaluation-of-five-organophosphate-insecticides-and-herbicides/",
       "source_label": "IARC Monograph Volume 112 (2015) + EFSA Glyphosat-Bewertung 2017 + EFSA Glyphosat-Bewertung 2023 (CLH-Verfahren) + US-EPA 2020 Interim Decision + ECHA RAC 2017+2022 + AGES Pflanzenschutzmittel-Statistik 2024 + Statistik Austria",
       "headline": "Glyphosat-Karzinogenitäts-Streit: IARC 2015 'wahrscheinlich kanzerogen' (Group 2A) vs. EFSA 2017+2023 'unwahrscheinlich kanzerogen' vs. US-EPA 2020 'unlikely' — Methodik-Diff Hazard vs. Risk; EU-Genehmigung 2023 +10 Jahre verlängert",
@@ -218,11 +217,11 @@
           "roundup",
           "round-up",
           "monsanto-roundup",
-          "iarc",
+          " iarc ",
           "efsa",
-          "epa",
-          "echa",
-          "rac"
+          " epa ",
+          " echa ",
+          " rac "
         ],
         [
           "krebs",
@@ -397,119 +396,77 @@
     {
       "id": "agrar_subventionen_at_2026",
       "topic": "agrar_subventionen_at_konsens",
-      "scope": "AT-Agrar-Subventionen — EU-GAP + nationale Top-Up + ÖPUL — Verteilung, Volumen, 80-20-Pareto",
+      "scope": "AT-Agrarbudget 2024 und Verteilung der Direktzahlungen (Grüner Bericht 2025)",
       "year": 2024,
-      "source_url": "https://info.bml.gv.at/themen/landwirtschaft/eu-agrarpolitik-foerderungen/",
-      "secondary_url": "https://www.bml.gv.at/dam/jcr:fixme/CAP-Verteilung-2023.pdf",
-      "source_label": "BMVL Bundesministerium für Land- und Forstwirtschaft + AMA Agrarmarkt Austria + BOKU Wien CAP-Verteilungs-Analyse 2023 + EU-Kommission DG AGRI + Statistik Austria + ÖPUL Programm + Bergbauern-Förderung + AGES",
-      "headline": "AT-Agrar-Subventionen 2024: ~1.1 Mrd EUR EU-GAP + ~600 Mio nationaler Top-Up = ~7 Mrd EUR/Jahr inkl. ÖPUL + Bergbauern; 80 % der GAP-Mittel an 20 % der Höfe (BOKU 2023, fläche-bezogene Direkt-Zahlungen)",
+      "headline": "AT-Agrarbudget 2024: 2.652 Mio. Euro aus EU-, Bundes- und Landesmitteln (EU 49 %, Bund 28 %, Länder 23 %) — davon 603 Mio. erste GAP-Säule, 1.364 Mio. zweite Säule, 685 Mio. rein national. Die Direktzahlungen der ersten Säule gingen 2024 an 101.027 Förderfälle, im Schnitt 5.693 Euro; 60 % der Fälle bekamen unter 5.000 Euro",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT-Bauern bekommen kaum Subventionen' ODER 'Subventionen gehen an wenige Großbetriebe' sind beide differenziert. Empirische Lage: (1) EU-GAP-FÖRDERMITTEL AT 2024 (BMVL + AMA): ~1.1 Mrd EUR aus EU-Topf für AT (Pillar 1 Direkt-Zahlungen ~700 Mio + Pillar 2 ländliche Entwicklung ~400 Mio). Nationaler Top-Up + Bundesländer-Programme: ~600 Mio EUR. ÖPUL (Österreichisches Programm umweltgerechte Landwirtschaft): ~600 Mio EUR/Jahr. Bergbauern-Förderung: ~250 Mio EUR. Total AT-Agrar-Subventionen 2024: ~7 Mrd EUR (inkl. EU-Mittel). (2) VERTEILUNG 80-20-PARETO (BOKU 2023 Wytrzens/Schermer Studie): 80 % der EU-GAP-Mittel gehen an 20 % der Höfe (große Betriebe + Genossenschaften). Direkt-Zahlungen sind FLÄCHE-BEZOGEN (€/ha), nicht Leistung-bezogen — größere Betriebe bekommen automatisch mehr. (3) HÖFE-ANZAHL AT 2024: ~155.000 Höfe (Statistik AT). Davon ~30.000 Vollerwerbs-Höfe (>50 % Einkommen aus Landwirtschaft), ~85.000 Nebenerwerbs-Höfe, ~40.000 Hobby/Kleinst-Höfe. (4) DURCHSCHNITTLICHE FÖRDERUNG PRO HOF AT: ~45.000 EUR/Jahr Vollerwerb, ~8.000 EUR/Jahr Nebenerwerb. ABER: Median deutlich niedriger (Großbetriebe verzerren Mittel). 50 % der Höfe bekommen <12.000 EUR/Jahr. (5) ÖPUL-VERTEILUNG anders als GAP: ÖPUL ist Leistungs-bezogen (Bio-Bonus, Biodiversitäts-Maßnahmen, Wasser-Schutz), kleinere Höfe profitieren überproportional (Bio-Anteil bei kleinen Höfen höher). (6) Faktencheck-relevant: Aussagen wie 'AT-Bauern bekommen kaum Subventionen' verkennen 7 Mrd EUR/Jahr. Aussagen wie 'alle Subventionen gehen an Großbetriebe' überzeichnen — ÖPUL + Bergbauern-Förderung gleichen aus. Pack distanziert sich von Pro/Contra-Subventions-Wertung.",
-        "eu_gap_2024_at": "EU-GAP 2024 für AT (BMVL + AMA): Pillar 1 Direkt-Zahlungen ~700 Mio EUR (fläche-bezogen, ~285 EUR/ha basis-Prämie), Pillar 2 ländliche Entwicklung ~400 Mio EUR (Investitions-Förderungen, Junglandwirte, ÖPUL-Co-Finanzierung). Total EU-Mittel 2024: ~1.1 Mrd EUR.",
-        "boku_verteilungs_analyse": "BOKU Wien (Wytrzens/Schermer) Studie 2023 zur CAP-Verteilung in AT: 80 % der Direkt-Zahlungen an 20 % der Höfe (typische Pareto-Verteilung). Top-1 % der Höfe (~1.500 Betriebe) bekommen 30 % der Mittel. Direkt-Zahlungen sind fläche-bezogen, nicht Leistung-bezogen — Großbetriebe automatisch im Vorteil.",
-        "oepul_compensation": "ÖPUL (Österreichisches Programm umweltgerechte Landwirtschaft) ist im Gegensatz zu GAP-Direkt-Zahlungen LEISTUNGS-BEZOGEN: Bio-Bonus (~600 EUR/ha), Biodiversitäts-Maßnahmen, Bergbauern-Hangneigungs-Bonus, Wasser-Schutz-Maßnahmen. Kleinere Höfe + Bio-Höfe profitieren überproportional. ÖPUL-Volumen 2024: ~600 Mio EUR/Jahr.",
-        "bergbauern_foerderung": "Bergbauern-Ausgleichszulage AT 2024: ~250 Mio EUR. Ausgleich für erschwerte Bewirtschaftungs-Bedingungen (Hangneigung, Höhenlage). Pro Hof typisch 2.000-15.000 EUR/Jahr. AT hat höchste Bergbauern-Förderung in EU pro ha.",
-        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Subventions-Wertung."
+        "kernsatz_fuer_synthesizer": "Zahlen aus dem Grünen Bericht 2025 (Bundesministerium, Datenjahr 2024). (1) BUDGET: 2024 wurden 2.652 Mio. Euro aus EU-, Bundes- und Landesmitteln für Land- und Forstwirtschaft aufgewendet, 93 Mio. mehr als 2023 (+3,6 %). Herkunft: EU 49 %, Bund 28 %, Länder 23 %. Verwendung: 603 Mio. Euro (23 %) erste GAP-Säule (Marktordnung), 1.364 Mio. Euro (51 %) zweite Säule (Ländliche Entwicklung), 685 Mio. Euro (26 %) sonstige, rein national finanzierte Maßnahmen. Verlauf: 2.773 (2020), 2.298 (2021), 2.559 (2022), 2.437 (2023), 2.652 (2024). (2) VERTEILUNG: Die Direktzahlungen der ersten Säule betrugen 2024 insgesamt 575,1 Mio. Euro, verteilt auf 101.027 Förderfälle — im Schnitt 5.693 Euro. 60,5 % der Fälle lagen unter 5.000 Euro und erhielten zusammen 23,3 % der Summe; 14 Fälle (0,01 %) lagen über 150.000 Euro und erhielten 0,66 %. Aus der Verteilungstabelle gerechnet entfallen auf die größten 20 % der Förderfälle rund 52 % der Direktzahlungen. Die verbreitete Formel '80 % der Mittel gehen an 20 % der Höfe' trifft auf die österreichischen Direktzahlungen also NICHT zu; die Konzentration ist real, aber halb so stark. (3) BETRIEBE: Bei den 1.905 Buchführungsbetrieben machten öffentliche Gelder 2024 im Schnitt 20.650 Euro von 135.222 Euro Ertrag aus, also gut 15 %. Die Einkünfte aus Land- und Forstwirtschaft lagen bei 30.933 Euro je betrieblicher Arbeitskraft, bei Bergbauernbetrieben bei 33.221 Euro je Betrieb.",
+        "budget_2024": "Agrarbudget 2024 (Grüner Bericht 2025): 2.652 Mio. Euro gesamt. Herkunft: EU 49 %, Bund 28 %, Länder 23 %. Verwendung: Marktordnung (1. Säule) 603,2 Mio. Euro / 23 %, Ländliche Entwicklung (2. Säule) 1.364 Mio. Euro / 51,4 %, sonstige Maßnahmen 685 Mio. Euro / 25,8 %.",
+        "verteilung_direktzahlungen_2024": "Direktzahlungen 1. Säule 2024, Größenklassen (Förderfälle / Anteil / Summe): bis 5.000 Euro 61.081 / 60,46 % / 133,9 Mio.; 5.000–10.000 23.579 / 23,34 % / 168,0 Mio.; 10.000–15.000 10.165 / 10,06 % / 123,0 Mio.; 15.000–20.000 3.225 / 3,19 % / 55,1 Mio.; 20.000–25.000 1.361 / 1,35 % / 30,2 Mio.; 25.000–30.000 621 / 0,61 % / 16,9 Mio.; 30.000–40.000 548 / 0,54 % / 18,7 Mio.; 40.000–50.000 197; 50.000–60.000 92; 60.000–70.000 53; 70.000–100.000 63; 100.000–150.000 28; über 150.000 14 Fälle / 0,01 % / 3,8 Mio. Gesamt 101.027 Fälle / 575,14 Mio. Euro / Schnitt 5.693 Euro.",
+        "konzentration_nachgerechnet": "Aus der Größenklassen-Tabelle gerechnet: Die größten 20 % der Förderfälle erhalten rund 52 % der Direktzahlungen der ersten Säule. Eine Pareto-Verteilung '80/20' liegt damit nicht vor. Zu beachten: gezählt werden Förderfälle, nicht Betriebe, und nur die Direktzahlungen der ersten Säule — Ausgleichszulage und ÖPUL sind eigene Töpfe mit eigener Verteilung.",
+        "betriebsergebnisse_2024": "Buchführungsbetriebe 2024 (n = 1.905, im Schnitt 32,84 ha landwirtschaftlich genutzte Fläche): Ertrag 135.222 Euro je Betrieb, davon öffentliche Gelder 20.650 Euro (gut 15 %); Aufwand 103.076 Euro. Einkünfte aus Land- und Forstwirtschaft je betrieblicher Arbeitskraft 30.933 Euro; je Bergbauernbetrieb 33.221 Euro.",
+        "context": "Deskriptiv. Der Fakt bewertet die Agrarpolitik nicht, sondern nennt Budget, Verteilung und Betriebsergebnisse aus dem amtlichen Bericht."
       },
       "context_notes": [
-        "AT-Total-Subventionen 2024: ~7 Mrd EUR/Jahr (1.1 Mrd EU + 5.9 Mrd national + ÖPUL + Bergbauern).",
-        "80-20-Pareto bei EU-GAP-Direkt-Zahlungen (BOKU 2023) — fläche-bezogen, nicht Leistung.",
-        "ÖPUL (Bio + Biodiversität) gleicht teilweise aus — kleinere Höfe profitieren proportional mehr."
+        "Datenstand: Grüner Bericht 2025 mit Datenjahr 2024, Stand der Fördermittel Juli 2025. Der Bericht erscheint jährlich im Herbst.",
+        "Die zweite Säule (Ländliche Entwicklung) enthält ÖPUL und die Ausgleichszulage für benachteiligte Gebiete; diese Zahlungen sind an Auflagen oder an naturbedingte Nachteile gebunden und verteilen sich anders als die Flächenprämien der ersten Säule.",
+        "Korrigiert 2026-09-22: Die frühere Fassung addierte EU-Mittel und nationale Mittel zu einer Jahressumme, die weder zu ihren Summanden noch zum Agrarbudget des Grünen Berichts passte. Ebenfalls entfernt: die Aussage '80 % der Mittel an 20 % der Höfe (BOKU 2023)' samt 'Top-1 % bekommt 30 %'; die Verteilungstabelle des Grünen Berichts zeigt rund 52 % für die größten 20 %. Der zugehörige Link war erfunden (jcr:fixme)."
       ],
       "claim_phrasings_handled": [
         "AT-Bauern bekommen kaum Subventionen",
-        "Alle Subventionen gehen an Großbetriebe",
-        "80 Prozent der Subventionen an 20 Prozent der Höfe",
-        "AT zahlt Milliarden Euro für Landwirtschaft",
-        "EU-Agrarsubventionen sind ungerecht verteilt",
-        "Bauern leben von Steuergeld"
+        "Agrar-Subventionen gehen an wenige Großbetriebe",
+        "80 Prozent der Agrarförderung gehen an 20 Prozent der Höfe",
+        "Österreich zahlt Milliarden an die Landwirtschaft",
+        "Die meisten Bauern bekommen nur kleine Beträge"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "agrarsubvention",
+        "agrarsubventionen",
+        "agrarförderung",
+        "agrarfoerderung",
+        "agrarbudget",
+        "direktzahlungen",
+        "gap-mittel",
+        "flächenprämie",
+        "flaechenpraemie"
+      ],
       "trigger_composite": [
         [
-          "agrar-subventionen",
-          "agrarsubventionen",
-          "agrar-förderung",
-          "agrarfoerderung",
-          "agrar-foerderung",
-          "eu-agrar",
-          "gap",
-          "cap",
-          "direkt-zahlungen",
-          "direktzahlungen",
-          "öpul",
-          "oepul",
-          "ÖPUL",
-          "bergbauern",
-          "berg-bauern",
-          "ama",
-          "bml",
-          "bmvl",
           "bauern",
+          "landwirt",
           "landwirtschaft",
-          "land-wirtschaft",
           "höfe",
-          "hoefe"
+          "hoefe",
+          "betriebe",
+          "agrar"
         ],
         [
           "subvention",
           "förderung",
           "foerderung",
-          "geld",
+          " gap ",
+          "direktzahlung",
+          "steuergeld",
           "milliarden",
           "millionen",
-          "steuergeld",
-          "steuer-geld",
-          "zahlung",
-          "auszahlung",
-          "bekommen",
-          "erhalten",
-          "verteilung",
-          "verteilt",
-          "ungerecht",
-          "großbetriebe",
-          "grossbetriebe",
-          "klein-betriebe",
-          "kleinbetriebe",
-          "bergbauern",
-          "hektar",
-          "ha",
-          "fläche",
-          "flaeche",
-          "leistung",
-          "pareto",
-          "80 %",
-          "80 prozent",
-          "80%",
-          "20 %",
-          "20 prozent",
-          "20%",
-          "7 mrd",
-          "1 mrd"
+          "prämie",
+          "praemie",
+          "beträge",
+          "betraege",
+          "betrag"
         ]
       ],
-      "trigger_all": [
-        [
-          [
-            "subvent"
-          ],
-          [
-            "gehe"
-          ],
-          [
-            "grossbetrieb",
-            "großbetrieb"
-          ]
-        ]
-      ]
+      "source_label": "Grüner Bericht 2025 (Bundesministerium für Land- und Forstwirtschaft, Klima- und Umweltschutz, Regionen und Wasserwirtschaft), Datenjahr 2024 — Kapitel 5 und Tabelle 33",
+      "source_url": "https://www.bmluk.gv.at/themen/landwirtschaft/landwirtschaft-in-oesterreich/gruenerbericht2025.html",
+      "secondary_url": "https://www.bmluk.gv.at/dam/jcr:8e02c1e2-f58c-4d9e-be5f-830f0f6cd456/Gr%C3%BCner%20Bericht%202025.pdf"
     },
     {
       "id": "regionale_versorgung_mythen_2026",
       "topic": "regionale_versorgung_mythen_konsens",
       "scope": "AT-Selbstversorgungsgrad — Getreide/Fleisch/Milch/Gemüse/Obst/Energie — Statistik AT 2024",
       "year": 2024,
-      "source_url": "https://www.statistik.at/fileadmin/pages/450/Versorgungsbilanz_2024.pdf",
-      "secondary_url": "https://info.bml.gv.at/themen/landwirtschaft/zahlen-und-fakten/",
+      "source_url": "https://www.statistik.at/statistiken/land-und-forstwirtschaft/landwirtschaftliche-bilanzen/versorgungsbilanzen",
+      "secondary_url": "https://www.bmluk.gv.at/dam/jcr:a2885849-5144-4d94-a287-4a1f09463b0a/BML_Broschuere_Zahlen_und_Fakten_DE_BF_2024.pdf",
       "source_label": "Statistik Austria Versorgungsbilanz 2024 + BMVL + AMA + WIFO Selbstversorgungs-Studien + AT-Klimaticket-Effekt-Studien",
       "headline": "AT-Selbstversorgungsgrad 2024 (Statistik AT): Getreide 89 %, Fleisch 109 %, Milch 165 %, Eier 91 %, Gemüse 56 %, Obst 47 %, Wein 89 %, Kartoffeln 91 %; Energie nur 36 % (Diesel-Imports dominant)",
       "data": {
@@ -561,8 +518,8 @@
           "gemuese",
           "obst",
           "kartoffel",
-          "wein",
-          "eier",
+          " wein",
+          " eier",
           "energie",
           "diesel",
           "erdgas",
@@ -635,8 +592,8 @@
       "topic": "vertical_farming_realitaet_konsens",
       "scope": "Vertical Farming — Indoor-Hydroponik, Energieverbrauch, Wirtschaftlichkeit, Welternährungs-Beitrag",
       "year": 2024,
-      "source_url": "https://www.wur.nl/en/research-results/research-institutes/plant-research/show-wpr/vertical-farming-trade-offs.htm",
-      "secondary_url": "https://www.iea.org/reports/the-future-of-cooling-in-buildings",
+      "source_url": "https://research.wur.nl/en/publications/vertical-farming-productivity-environmental-impact-and-resource-u/",
+      "secondary_url": "https://www.iea.org/reports/the-future-of-cooling",
       "source_label": "Wagenigen UR (WUR) 2022 Vertical Farming Trade-Offs Report + IEA Lighting Energy Statistics + Forschungs-Konsortium 'INFARM'-Pleite-Analyse 2023 + AeroFarms-Annual-Reports + Plenty Bankruptcy Filing 2024 + Crop One Holdings Reports",
       "headline": "Vertical Farming = Indoor-Hydroponik mit ~50× höherem Energieverbrauch als Freiland (LED+Klima); CapEx 5-10 Mio EUR/10.000 m²; Wagenigen UR 2022: kaum Beitrag zur Welternährung — nur Salat/Kräuter ökonomisch",
       "data": {
@@ -762,7 +719,7 @@
       "topic": "massentierhaltung_empirie_konsens",
       "scope": "AT-Tierhaltung — Bestands-Konzentration, Tierwohl-Standards, Vollspaltboden vs. Einstreu",
       "year": 2024,
-      "source_url": "https://www.statistik.at/statistiken/land-und-forstwirtschaft/viehwirtschaft",
+      "source_url": "https://www.statistik.at/statistiken/land-und-forstwirtschaft/tiere-tierische-erzeugung/viehbestand/viehwirtschaft-agrarstrukturdaten",
       "secondary_url": "https://www.ages.at/themen/lebensmittel/lebensmittelsicherheit/tierwohl-und-tierschutz",
       "source_label": "Statistik Austria Viehwirtschaft 2024 + AGES Tierwohl-Statistik + EU-Tierschutz-Richtlinie 2008/120/EG (Schweine) + AT Tierschutz-Gesetz BGBl I 2004/118 + AGES-Tierwohl-Studie 2023",
       "headline": "AT 2024 (Statistik AT): 2.6 Mio Schweine, 2.5 Mio Rinder, 21 Mio Hühner. Großbetriebe (>2.000 Schweine) halten 30 % aller Schweine; EU-Tierwohl-Standard bewertet Haltungs-System (Vollspaltboden vs. Einstreu), nicht Bestandsgröße",
@@ -816,8 +773,8 @@
           "kaefig",
           "kaefighaltung",
           "käfighaltung",
-          "ages",
-          "ama",
+          " ages ",
+          " ama ",
           "tierwohl",
           "tier-wohl",
           "tierschutz",
@@ -842,7 +799,7 @@
           "gut",
           "schlecht",
           "konventionell",
-          "bio",
+          " bio",
           "freiland",
           "käfig-frei",
           "kaefig-frei",
@@ -884,25 +841,33 @@
     {
       "id": "pestizid_rueckstaende_2026",
       "topic": "pestizid_rueckstaende_konsens",
-      "scope": "Pestizid-Rückstände in EU-Lebensmitteln — EFSA Annual Report 2024, AT-AGES-Konformität, Bio-Vergleich",
+      "scope": "Pestizid-Rückstände in EU- und AT-Lebensmitteln — EFSA-Bericht für das Datenjahr 2024",
       "year": 2024,
-      "source_url": "https://www.efsa.europa.eu/de/efsajournal/pub/8957",
-      "secondary_url": "https://www.ages.at/forschung/publikationen-statistiken/rueckstandskontrolle-pflanzenschutzmittel",
-      "source_label": "EFSA Annual Report on Pesticide Residues in Food 2024 + AGES Rückstandskontrolle 2023+2024 + AT Lebensmittelsicherheits-Gesetz LMSVG + EU MRL-Verordnung 396/2005 + Statistik Austria Pflanzenschutzmittel-Verbrauch",
-      "headline": "EFSA Annual Report 2024: ~96.4 % der EU-Lebensmittel innerhalb MRL (Maximum Residue Levels), ~3.6 % über MRL; AT 2023 (AGES) 99.4 % konform; Mehrfach-Rückstände typisch (Median 2-3 Wirkstoffe); Bio 99 % konform mit Bio-Vorgabe",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13140735/",
+      "secondary_url": "https://www.ages.at/mensch/schwerpunkte/schwerpunktaktionen/detail/nationales-kontrollprogramm-pestizidrueckstaende-1",
+      "source_label": "EFSA, The 2024 European Union report on pesticide residues in food (EFSA Journal 2026, doi:10.2903/j.efsa.2026.10054) + AGES-Schwerpunktaktion A-918-23 + EFSA-Kumulativbewertungen 2020 + Eurostat aei_fm_salpest09",
+      "headline": "EFSA-Bericht 2024 (veröffentlicht Mai 2026): 125.882 Proben in drei Programmen. Nationale Kontrolle 86.449 Proben — 96,7 % innerhalb der Höchstgehalte, 58,4 % ganz ohne nachweisbare Rückstände, 1,8 % nicht konform. EU-Kontrollprogramm 9.842 Proben, 1,2 % nicht konform. Verschärfte Einfuhrkontrolle 39.433 Proben, 3,6 % nicht konform.",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Unsere Lebensmittel sind voller Pestizide' ist EMPIRISCH ÜBERZEICHNET. Empirische Lage: (1) EFSA ANNUAL REPORT ON PESTICIDE RESIDUES 2024 (basierend auf 2022er-Daten, ~88.000 Lebensmittel-Proben EU-weit): 96.4 % der untersuchten Proben innerhalb der gesetzlichen Maximum-Residue-Levels (MRL), 3.6 % über MRL. Davon 1.5 % rechtlich relevante Überschreitung (Verkaufs-Stop oder Rückruf). 2.1 % nur statistisch über MRL aber wegen Mess-Unsicherheit nicht rechtlich relevant. (2) AT-AGES-RÜCKSTANDSKONTROLLE 2023+2024: AT-Konformitäts-Quote 99.4 % (AT überdurchschnittlich gut). ~3.500 AT-Lebensmittel-Proben pro Jahr (Obst + Gemüse + Getreide-Produkte + Fleisch). MRL-Überschreitungen 2023: 21 Fälle (0.6 %). (3) MEHRFACH-RÜCKSTÄNDE typisch: Median 2-3 verschiedene Wirkstoffe pro Probe (Frucht/Gemüse). Cocktail-Effekt diskutiert in Wissenschaft, EFSA Modell für kumulative Risiko-Bewertung 2018. (4) BIO-LEBENSMITTEL: ~99 % konform mit Bio-Vorgabe (sehr selten verbotene Wirkstoff-Kontamination, oft Drift von Nachbar-Felder). Bio-Pestizid-Verwendung beschränkt auf zugelassene Naturstoffe (Spinosad, Bt, Pyrethrum). (5) HOTSPOTS-LEBENSMITTEL: Importierte Trockenfrüchte (Rosinen, Datteln) + Tee + Gewürze haben höhere MRL-Überschreitungs-Quote (5-8 %) wegen weniger strikter Drittland-Kontrolle. AT/EU-Frischwaren <2 %. (6) VERBRAUCHS-TRENDS: AT-Pestizid-Verbrauch 2010-2024 (Statistik AT): Glyphosat ~3.500 t/Jahr stabil, Insektizide -30 %, Fungizide stabil. EU-Farm-to-Fork-Strategie 2030: -50 % Pestizid-Verbrauch (Ziel, nicht garantiert). (7) Faktencheck-relevant: Aussagen wie 'Unser Essen ist voller Pestizide' sind durch EFSA-Konformität 96 % nicht belegt. Aussagen wie 'Bio ist 100 % pestizid-frei' überzeichnen — Drift-Kontamination + Naturstoff-Pestizide. Pack distanziert sich von normativer Wertung.",
-        "efsa_2024_konformitaet": "EFSA Annual Report 2024 (publiziert April 2024, 2022er-Daten): 88.353 Lebensmittel-Proben EU-weit untersucht, 96.4 % innerhalb MRL. 3.6 % über MRL: 1.5 % rechtlich relevant (Verkaufs-Stop oder Rückruf), 2.1 % statistisch über aber Mess-Unsicherheits-Korrektur. Trend stabil seit 2018.",
-        "at_ages_2024": "AT AGES Rückstandskontrolle 2023+2024: ~3.500 Proben/Jahr, 99.4 % MRL-konform. AT-Quote überdurchschnittlich besser als EU-Schnitt. Hauptproben Obst (Äpfel + Birnen + Beeren) + Gemüse (Salate + Tomaten + Paprika) + Getreide-Produkte. MRL-Überschreitungs-Hotspots in AT 2023: importierte Spitzpaprika + Rosinen + Tee.",
-        "mehrfach_rueckstaende": "Mehrfach-Rückstands-Empirie EFSA 2024: 53 % der Proben mit Mehrfach-Rückständen, Median 2-3 verschiedene Wirkstoffe. Cocktail-Effekt-Forschung (Kortenkamp 2018 Trends Pharmacol Sci): kumulative Bewertung wichtig, EFSA Modell seit 2018.",
-        "bio_konformitaet": "Bio-Pestizid-Konformität (AT-AGES + EU-Kontrollen): ~99 % konform mit Bio-Vorgabe (Bio-EU-Verordnung 848/2018). Häufigste Beanstandungen: Drift-Kontamination von Nachbar-Konventional-Feldern (juristisch geduldet bis 0.01 mg/kg), seltene verbotene Wirkstoff-Kontamination (illegale Anwendung).",
-        "hotspots_drittland": "MRL-Überschreitungs-Hotspots EU 2023-2024: importierte Trockenfrüchte (Rosinen 5-8 %, Datteln 4-6 %), Tee (5 %), Gewürze (Pfeffer 7 %). Ursache: weniger strikte Drittland-Pestizid-Regulierung. EU-Frischwaren-Quote <2 % über MRL.",
+        "kernsatz_fuer_synthesizer": "Die Aussage 'unsere Lebensmittel sind voller Pestizide' trifft die amtliche Datenlage nicht: Im EFSA-Bericht für das Datenjahr 2024 lagen 96,7 % der 86.449 Proben aus den nationalen Kontrollprogrammen innerhalb der gesetzlichen Höchstgehalte, und 58,4 % enthielten überhaupt keine quantifizierbaren Rückstände. Wichtig ist die Trennung zweier Zahlen: Über dem Höchstgehalt lagen 3,3 % der Proben, als nicht konform gewertet wurden nach Abzug der Messunsicherheit 1,8 %. Ebenso wichtig: Der Höchstgehalt (MRL) ist ein Handels- und Anwendungsgrenzwert nach Verordnung (EG) Nr. 396/2005, keine Giftigkeitsschwelle — überschritten wurde dieser Grenzwert 2024 von 3,3 % der Proben, nicht konform waren 1,8 %, und eine Überschreitung ist nicht automatisch ein Gesundheitsrisiko. Die drei Programme haben sehr unterschiedliche Quoten: EU-Kontrollprogramm 1,2 %, nationale Programme 1,8 %, verschärfte Einfuhrkontrolle 3,6 % nicht konform. Wer eine EU-Gesamtquote nennt, muss dazusagen, welches Programm gemeint ist. Auch 'Bio-Lebensmittel sind pestizidfrei' trifft nicht zu: 80,4 % der Bio-Proben enthielten keine quantifizierbaren Rückstände, 18,8 % Rückstände unterhalb des Höchstgehalts, 0,4 % waren nicht konform.",
+        "welche_zahl_beantwortet_was": "Zwei Zahlen, die oft verwechselt werden: In den nationalen Programmen 2024 ÜBERSCHRITTEN 3,3 % der Proben den Höchstgehalt, BEANSTANDET wurden 1,8 % (nach Abzug der Messunsicherheit). Wer nach der EU fragt, ohne ein Programm zu nennen, meint diese nationalen Programme — mit 86.449 von 125.882 Proben das größte.",
+        "efsa_2024_national": "Nationale Kontrollprogramme 2024 (EU-Mitgliedstaaten, Island, Norwegen): 86.449 Proben aus über 1.140 Lebensmitteln, 17 % weniger als 2023 (104.400). 83.591 Proben (96,7 %) innerhalb der Höchstgehalte, davon 50.524 (58,4 %) ohne quantifizierbare Rückstände und 33.067 (38,3 %) mit Rückständen unterhalb der Grenze. Über dem Höchstgehalt 2.858 (3,3 %), nicht konform 1.591 (1,8 %).",
+        "efsa_2024_eu_programm": "EU-koordiniertes Kontrollprogramm 2024 (zwölf festgelegte Erzeugnisse, darunter Auberginen, Bananen, Brokkoli, Tafeltrauben, Weizenkorn, Rinderfett und Hühnereier): 9.842 Proben. 9.608 (97,6 %) innerhalb der Höchstgehalte, 4.241 (43,1 %) ohne quantifizierbare Rückstände. Über dem Höchstgehalt 234 (2,4 %), nicht konform 113 (1,2 %).",
+        "efsa_2024_einfuhr": "Verschärfte Einfuhrkontrolle 2024 (gezielt für auffällige Erzeugnisse und Herkünfte): 39.433 Proben. 37.263 (94,5 %) innerhalb der Höchstgehalte, 2.170 (5,5 %) darüber, 1.403 (3,6 %) nicht konform. Beanstandete Einfuhrware gelangte nicht auf den EU-Markt. Diese Quote ist die höchste der drei Programme — sie beschreibt eine Risikostichprobe, nicht den Markt.",
+        "herkunft_eu_drittland": "Nach Herkunft (nationale Programme 2024): Bei Ware aus EU-Staaten lagen 2,1 % über dem Höchstgehalt und 1,0 % waren nicht konform; bei Ware aus Drittstaaten 8,3 % und 5,2 %. Die höchste Beanstandungsquote hatte Ware aus der Türkei mit 14,8 %, vor allem Granatäpfel, Zitronen und Tomaten.",
+        "bio_2024": "Bio-Lebensmittel 2024: 5.939 der 86.449 Proben (6,9 %) waren als biologisch gekennzeichnet. 4.774 (80,4 %) ohne quantifizierbare Rückstände, 1.114 (18,8 %) unterhalb des Höchstgehalts, 51 (0,9 %) darüber, 21 (0,4 %) nicht konform. Nachweis- und Überschreitungsraten liegen unter denen konventioneller Ware — außer bei tierischen Erzeugnissen, wegen des im Biolandbau zugelassenen Kupfers.",
+        "mehrfach_rueckstaende": "Mehrfachrückstände (EU-Kontrollprogramm 2024): In 5.601 der 9.842 Proben (56,9 %) wurden Rückstände quantifiziert, in 3.432 (34,9 %) mehr als ein Wirkstoff — 2021 waren es 27 %. Über 50 % Mehrfachrückstände hatten Tafeltrauben (78 %), Grapefruits (73,5 %) und Bananen (66,1 %). Der Höchstwert waren 17 verschiedene Wirkstoffe in einer Gemüsepaprika aus der Türkei.",
+        "cocktail_effekt": "Der Cocktail-Effekt wird nicht ignoriert, sondern gerechnet: EFSA veröffentlichte 2020 zwei kumulative Bewertungen — Nervensystem (doi:10.2903/j.efsa.2020.6087) und Schilddrüse (doi:10.2903/j.efsa.2020.6088). Ergebnis für alle zehn Verbrauchergruppen, mit unterschiedlichem Sicherheitsgrad: Die kumulative Aufnahme bleibt unter der Schwelle für regulatorischen Handlungsbedarf.",
+        "risikobewertung": "EFSA schätzt die akute und chronische Aufnahme und vergleicht sie mit den gesundheitsbezogenen Richtwerten. Gesamturteil 2024: Das geschätzte Ernährungsrisiko ist für die meisten Bevölkerungsgruppen und Stoffe gering. Analysiert wurden im Schnitt 261 Rückstände je Probe; Österreich prüfte auf 626 Wirkstoffe.",
+        "oesterreich_ages": "Österreich, AGES-Schwerpunktaktion A-918-23 (Endbericht 8.5.2024): 849 Proben, 25 wegen Überschreitung von Höchstgehalten beanstandet — eine Probe Schwarzaugenbohnen aus Madagaskar galt als gesundheitsschädlich, sieben als für den Verzehr ungeeignet. Bei 31 Bio-Proben lagen Rückstände über der Bestimmungsgrenze, eine davon über dem Höchstgehalt.",
+        "oesterreich_vorjahr": "Vorjahresaktion A-918-22 (Endbericht 24.4.2023): 826 Proben, 30 beanstandet; eine Probe Mango aus der Dominikanischen Republik galt als gesundheitsschädlich, drei Proben (zweimal Gemüsepaprika, einmal Zitronen, je aus der Türkei) als für den Verzehr ungeeignet. Bei 16 Bio-Proben wurden Rückstände über der Bestimmungsgrenze bestätigt.",
+        "at_verbrauch": "In Österreich in Verkehr gebrachte Pflanzenschutzmittel 2024 (Eurostat aei_fm_salpest09, Wirkstoffmenge): 5.232 t insgesamt — Insektizide und Akarizide 2.221 t, Fungizide und Bakterizide 1.875 t, Herbizide 1.015 t. Auf Organophosphor-Herbizide, die Gruppe mit Glyphosat, entfielen 290 t. Verlauf gesamt: 2018 5.280 t, 2022 6.069 t, 2023 5.251 t, 2024 5.232 t.",
         "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von Pro/Contra-Pestizid-Wertung."
       },
       "context_notes": [
-        "EU-Konformität 96.4 %, AT 99.4 % — Pestizid-Rückstände ÜBER MRL sind die Ausnahme.",
-        "Mehrfach-Rückstände typisch (Median 2-3 Wirkstoffe) — Cocktail-Effekt EFSA-bewertet seit 2018.",
-        "Bio nicht 100 % pestizid-frei — Drift-Kontamination möglich + Naturstoff-Pestizide erlaubt."
+        "Korrigiert 2026-09-24: Die frühere Fassung nannte eine EU-Probenzahl und eine Konformitätsquote, die im Bericht so nicht stehen, eine österreichische Quote mit erfundener Probenzahl, einen Anteil Mehrfachrückstände samt Median, eine Bio-Quote, Überschreitungsquoten für Trockenfrüchte, Tee und Gewürze sowie eine Glyphosat-Menge, die über der gesamten österreichischen Herbizidmenge lag. Ebenfalls entfernt: eine nicht auffindbare Studie zum Cocktail-Effekt und das Farm-to-Fork-Reduktionsziel, das nichts über Rückstände aussagt.",
+        "Datenstand: EFSA-Bericht für das Datenjahr 2024, EFSA Journal 2026, veröffentlicht Mai 2026; AGES-Schwerpunktaktion A-918-23 mit Datenjahr 2023 (die Aktion erscheint jährlich); Eurostat-Verkaufsmengen bis 2024.",
+        "Die drei EFSA-Programme haben unterschiedliche Zwecke: Das EU-Programm ist repräsentativ für zwölf festgelegte Erzeugnisse, die nationalen Programme sind risikoorientiert, die verschärfte Einfuhrkontrolle ist eine gezielte Stichprobe auffälliger Herkünfte. Ihre Quoten sind nicht vergleichbar.",
+        "Über dem Höchstgehalt und nicht konform sind zwei verschiedene Zahlen: Zwischen ihnen liegt die Messunsicherheit, die zugunsten der Ware gerechnet wird."
       ],
       "claim_phrasings_handled": [
         "Unsere Lebensmittel sind voller Pestizide",
@@ -910,7 +875,10 @@
         "Bio ist 100 Prozent pestizid-frei",
         "AT-Konformität bei Pestizid-Rückständen ist hoch",
         "EFSA toleriert zu hohe Pestizid-Werte",
-        "Cocktail-Effekt wird ignoriert"
+        "Cocktail-Effekt wird ignoriert",
+        "Wie viele Lebensmittelproben überschreiten die Grenzwerte?",
+        "Importware ist stärker belastet als EU-Ware",
+        "In Bio-Lebensmitteln sind auch Pestizide"
       ],
       "trigger_keywords": [],
       "trigger_composite": [
@@ -926,8 +894,10 @@
           "wirkstoffe",
           "mrl",
           "maximum residue",
+          "höchstgehalt",
+          "hoechstgehalt",
           "efsa",
-          "ages",
+          " ages ",
           "lebensmittel-sicherheit",
           "rückstandskontrolle",
           "rueckstandskontrolle",
@@ -963,7 +933,7 @@
           "zugelassen",
           "drift",
           "kontamination",
-          "bio",
+          " bio",
           "konventionell",
           "obst",
           "gemüse",
@@ -976,7 +946,17 @@
           "vielen",
           "fast",
           "lebensmittel",
-          "lebensmittel-sicherheit"
+          "import",
+          "importware",
+          "drittland",
+          "türkei",
+          "tuerkei",
+          "wie viele",
+          "wie viel",
+          "menge",
+          "tonnen",
+          "ausgebracht",
+          "belastet"
         ]
       ],
       "trigger_all": [
@@ -1001,6 +981,32 @@
           [
             "ignoriert"
           ]
+        ],
+        [
+          [
+            "probe",
+            "proben"
+          ],
+          [
+            "grenzwert",
+            "höchstgehalt",
+            "hoechstgehalt",
+            "überschreit",
+            "ueberschreit"
+          ]
+        ],
+        [
+          [
+            "importware",
+            "importierte",
+            "einfuhrware"
+          ],
+          [
+            "belastet",
+            "belastung",
+            "rückstände",
+            "rueckstaende"
+          ]
         ]
       ]
     },
@@ -1010,7 +1016,7 @@
       "scope": "EU-Stickstoff-Düngemittel — Russland/Belarus-Abhängigkeit, Sanktions-Wirkung 2022-2024, EU-Reshoring-Strategie",
       "year": 2024,
       "source_url": "https://www.fertilizerseurope.com/wp-content/uploads/2024/04/Industry-Facts-and-Figures-2024.pdf",
-      "secondary_url": "https://agriculture.ec.europa.eu/farming/fertilisers/observatory_de",
+      "secondary_url": "https://agriculture.ec.europa.eu/data-and-analysis/markets/overviews/market-observatories/fertilisers_en",
       "source_label": "Fertilizers Europe Industry Facts 2024 + EU-Kommission DG-AGRI Düngemittel-Observatorium + Statistik Austria + Russisch-Belarus-Sanktionen 2022-2024 + IFA International Fertilizer Association Statistics",
       "headline": "EU-Stickstoff-Düngemittel-Bedarf: ~60 % aus Russland/Belarus vor 2022; Sanktions-Wirkung 2022-2023 Düngemittel-Preise verdreifacht, 2024 normalisiert; AT-Stickstoff-Verbrauch 2024 ~460k t, ~80 % Import",
       "data": {
@@ -1044,7 +1050,7 @@
           "stickstoff",
           "ammoniak",
           "harnstoff",
-          "kali",
+          " kali ",
           "phosphor",
           "npk",
           "haber-bosch",
@@ -1052,14 +1058,10 @@
           "yara",
           "borealis",
           "agrolinz",
-          "oci",
+          " oci ",
           "fertilizer",
           "fertilisers",
-          "russland",
-          "belarus",
-          "sanktionen",
-          "russisch",
-          "belarussisch"
+          "dünger"
         ],
         [
           "abhängig",
@@ -1103,6 +1105,25 @@
           [
             "duengemittel",
             "düngemittel"
+          ]
+        ],
+        [
+          [
+            "sanktion"
+          ],
+          [
+            "bauern",
+            "landwirt",
+            "agrar"
+          ]
+        ],
+        [
+          [
+            "russland",
+            "belarus"
+          ],
+          [
+            "diversifiz"
           ]
         ]
       ]
@@ -1234,8 +1255,8 @@
       "topic": "bauern_sterben_empirie_konsens",
       "scope": "AT-Höfe-Schwund 1951-2024 — Strukturwandel, EU-Vergleich, Wirtschaftsfaktor 1.4 % BIP",
       "year": 2024,
-      "source_url": "https://www.statistik.at/statistiken/land-und-forstwirtschaft/agrarstrukturerhebung",
-      "secondary_url": "https://info.bml.gv.at/themen/landwirtschaft/zahlen-und-fakten/landwirtschaftliche-betriebe.html",
+      "source_url": "https://www.statistik.at/statistiken/land-und-forstwirtschaft/betriebsstruktur/betriebsdaten/betriebe",
+      "secondary_url": "https://www.bmluk.gv.at/themen/landwirtschaft/landwirtschaft-in-oesterreich/gruenerbericht2024.html",
       "source_label": "Statistik Austria Agrarstrukturerhebung 1951-2024 + BMVL + DESTATIS Höfe-Statistik DE + Eurostat Farm Structure Survey + WIFO Strukturwandel-Studien",
       "headline": "AT-Höfe-Schwund 1951-2024: 432.848 Höfe (1951) → 155.000 (2024) = -64 % über 73 Jahre, ~1 %/Jahr Trend; AT-Landwirtschaft 2024: 1.4 % BIP, 4 % Beschäftigte; EU-Trend ähnlich (DE 1990 700k → 2024 257k Höfe)",
       "data": {
@@ -1350,128 +1371,64 @@
     {
       "id": "klima_landwirtschaft_2026",
       "topic": "klima_landwirtschaft_konsens",
-      "scope": "AT-Landwirtschaft Treibhausgas-Emissionen 2024 + Klima-Anpassung — Wein-Verlagerung, Mais-Hitze-Stress",
+      "scope": "Treibhausgas-Emissionen der österreichischen Landwirtschaft im Sektorvergleich",
       "year": 2024,
-      "source_url": "https://www.umweltbundesamt.at/klima/treibhausgase/khg-bilanz",
-      "secondary_url": "https://www.zamg.ac.at/cms/de/klima/klima-aktuell/klimadaten",
-      "source_label": "Umweltbundesamt AT Klimagas-Bilanz 2024 + ZAMG (GeoSphere AT) Klimaentwicklung + IPCC AR6 Working Group II + AGES Klima-Anpassung-Empfehlungen + Statistik Austria + BMK 2040-Klima-Strategie",
-      "headline": "AT-Treibhausgas-Emissionen Landwirtschaft 2024 (UBA): 8.0 Mt CO2e (~10 % Gesamt-Emissionen, davon 60 % Methan aus Wiederkäuern + Gülle); Klima-Anpassung: Wein-Anbau verlagert nach Norden (+1.5°C 1980-2024 Sankt Pölten), Mais-Hitze-Stress 2018+2022 -25-30 % Ernte",
+      "headline": "AT-Treibhausgase 2024 (Umweltbundesamt): 66,6 Mio. t CO2-Äquivalent insgesamt, −16,4 % gegenüber 1990 und −3,0 % gegenüber 2023. Auf die Landwirtschaft entfielen davon 8,4 Mio. t Treibhausgase, also 12,6 % der österreichischen Emissionen — nach Energie und Industrie (29,0) und Verkehr (19,5) der drittgrößte Sektor, vor Gebäuden (5,8), Abfallwirtschaft (2,3) und F-Gasen (1,7)",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Landwirtschaft ist nicht Klima-relevant' ist EMPIRISCH FALSCH. Empirische Lage: (1) AT-LANDWIRTSCHAFT KLIMAGAS-EMISSIONEN 2024 (Umweltbundesamt AT KHG-Bilanz): 8.0 Mt CO2e, ~10 % der AT-Gesamt-Emissionen (von 80 Mt). Aufteilung: 60 % Methan aus Wiederkäuern + Gülle (Rinder + Schweine), 25 % Distickstoff-Oxid aus Düngung + Boden, 15 % CO2 aus Diesel + Energie. (2) HAUPTQUELLEN: Rinder-Methan ~3.5 Mt, Schwein-Methan ~0.4 Mt, Gülle-Lager ~0.5 Mt, Düngung-Distickstoff-Oxid ~2.0 Mt, Diesel + Energie ~1.2 Mt. AT-Landwirtschafts-Emissionen seit 1990 -16 % gefallen (durch Effizienz-Steigerung Tier-Futter + Düngung). (3) KLIMA-WANDEL-AUSWIRKUNG AT (ZAMG/GeoSphere 2024): AT-Mittel-Temperatur +1.8°C seit 1880, +1.5°C seit 1980. Sankt Pölten 2024: 11.5°C Jahresmittel (vs. 10.0°C 1980). (4) SEKTOR-SPEZIFISCHE EFFEKTE: (a) WEIN: Anbau-Grenzen verlagert nach Norden (Wachau-Süd-Grenze) und in höhere Lagen (Steiermark-Berge). Reife-Zeitpunkt 2 Wochen früher als 1980. Neue Sorten (Cabernet Sauvignon) klimatisch möglich. (b) MAIS: Hitze-Stress 2018 + 2022 -25-30 % Ernte (BOKU-Studie 2023). Bewässerungs-Bedarf steigt — AT-Mais bisher fast nicht bewässert, ändert sich. (c) APFEL/OBSTBAU: Verlagert in höhere Lagen (Steiermark + Oberösterreich). (d) RIND-/MILCH: Hitze-Stress >25°C reduziert Milch-Leistung 10-15 %. (5) AT-KLIMA-STRATEGIE 2040: Landwirtschaft soll -23 % Emissionen bis 2030, -36 % bis 2040. Maßnahmen: Bio-Erweiterung + Tier-Bestand-Reduktion + Bio-Gülle-Vergärung + Präzisions-Düngung. (6) GLOBAL VERGLEICH: Welt-Landwirtschaft 23-25 % der globalen Klima-Emissionen (IPCC AR6). EU-Landwirtschaft 11 %, USA 10 %, AT 10 % — etwa EU-Mittel. (7) Faktencheck-relevant: Aussagen wie 'Landwirtschaft ist klimaneutral' sind durch UBA-KHG-Bilanz widerlegt (10 % AT-Emissionen). Aussagen wie 'Bauern sind Klima-Sünder' sind überzogen — Effizienz-Steigerung läuft seit 1990 (-16 %). Pack distanziert sich von normativer Wertung.",
-        "uba_khg_bilanz_2024": "Umweltbundesamt AT Klimagas-Bilanz 2024 (publiziert 2025): AT-Gesamt-Emissionen ~80 Mt CO2e. Landwirtschaft 8.0 Mt (10.0 %), Verkehr 23 Mt (29 %), Industrie 22 Mt (27 %), Energie 18 Mt (22 %), Gebäude 8 Mt (10 %). Landwirtschaft seit 1990 -16 % (1990: 9.5 Mt).",
-        "methan_wiederkaeuer": "AT-Methan-Emissionen 2024: 3.5 Mt CO2e Rinder (Wiederkäuer-Verdauung Mikrobielle Pansen-Gärung), 0.4 Mt Schweine, 0.5 Mt Gülle-Lager. Welt-Methan-Forschung: Methan ~80× wirksamer als CO2 in 20-Jahres-Zeitraum (IPCC AR6). Reduktions-Strategien: Tier-Futter-Ergänzungen (3-NOP/Bovaer), Gülle-Vergärung Biogas.",
-        "klima_temperatur_at": "ZAMG (GeoSphere AT) 2024: AT-Mittel-Temperatur +1.8°C seit 1880, +1.5°C seit 1980. Wärmster Bereich: Pannonisches Tiefland + Wien + Sankt Pölten. Niederschlags-Trend: leicht steigend im Westen, stabil/sinkend im Osten. Hitze-Tage (>30°C) Wien: 1980 ~5/Jahr → 2024 ~25/Jahr.",
-        "wein_mais_apfel_anpassung": "Klima-Anpassung AT 2024: Wein-Reife-Zeitpunkt 2 Wochen früher als 1980 (BOKU + AGES Wein-Studien). Mais-Erträge 2018+2022 -25-30 % wegen Hitze-Stress (BOKU 2023). Apfel-Anbau verlagert in höhere Lagen (Steiermark + Oberösterreich-Mittelgebirge). Rind-/Milch-Hitze-Stress >25°C: Milch-Leistung -10-15 %.",
-        "at_klima_strategie": "AT 2040-Klima-Strategie (BMK + Landwirtschafts-Pakt 2023): Landwirtschaft -23 % bis 2030, -36 % bis 2040 (gegenüber 2020). Maßnahmen: Bio-Erweiterung 30 % bis 2030, Tier-Bestand-Reduktion 10 % bis 2030, Bio-Gülle-Vergärung 50 % der Gülle, Präzisions-Düngung -25 % Stickstoff-Verbrauch.",
-        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+        "kernsatz_fuer_synthesizer": "Zahlen aus der Treibhausgas-Inventur des Umweltbundesamtes (Datenjahr 2024, veröffentlicht 2025). (1) GESAMT: Österreich emittierte 2024 66,6 Mio. Tonnen CO2-Äquivalent — 16,4 % weniger als im Basisjahr 1990 und 3,0 % weniger als 2023. (2) SEKTOREN 2024: Energie und Industrie 29,0 Mio. t, Verkehr 19,5, Landwirtschaft 8,4, Gebäude 5,8, Abfallwirtschaft 2,3, fluorierte Gase 1,7. Der Anteil der Landwirtschaft liegt damit bei 12,6 %. (3) EINORDNUNG: 'Die Landwirtschaft ist klimatechnisch nicht relevant' trifft nicht zu — sie ist der drittgrößte Sektor. 'Die Landwirtschaft ist der Hauptverursacher' trifft ebenfalls nicht zu — Energie/Industrie und Verkehr liegen deutlich darüber. (4) ZIELERREICHUNG: In den vom Klimaschutzgesetz erfassten Sektoren außerhalb des Emissionshandels lagen die Emissionen 2024 bei 42,7 Mio. t und damit rund 0,3 Mio. t unter der Höchstmenge von etwa 43,0 Mio. t. Für 2025 erwartet das Umweltbundesamt wieder einen Anstieg um rund 1 %.",
+        "gesamt_und_trend": "Österreich 2024: 66,6 Mio. t CO2-Äquivalent, −16,4 % gegenüber 1990, −3,0 % gegenüber 2023. Hauptgründe für den Rückgang 2024: Produktionsrückgänge in Stahl-, Zement- und Chemieindustrie, weniger Erdgas in Industrie und Energie außerhalb des Emissionshandels, weniger Heizöl und Erdgas im Gebäudesektor, geringerer Dieselabsatz im Güterverkehr. Das Bruttoinlandsprodukt sank 2024 um rund 0,7 %.",
+        "sektoren_2024": "Sektoren 2024 in Mio. t CO2-Äquivalent: Energie und Industrie 29,0; Verkehr 19,5; Landwirtschaft 8,4; Gebäude 5,8; Abfallwirtschaft 2,3; fluorierte Gase 1,7. Summe 66,6. Anteil Landwirtschaft 12,6 %.",
+        "klimaschutzgesetz": "Nicht-Emissionshandelsbereich (Sektoren des Klimaschutzgesetzes) 2024: 42,7 Mio. t gegenüber einer Höchstmenge von rund 43,0 Mio. t — die Vorgabe wurde also um etwa 0,3 Mio. t unterschritten.",
+        "methodik": "Die Inventur rechnet alle Gase in CO2-Äquivalente um und verwendet dafür die Treibhausgaspotenziale des fünften IPCC-Sachstandsberichts (2014). Wer für Methan den 20-Jahres-Wert heranzieht, kommt auf deutlich höhere Äquivalente als die Inventur — beim Zitieren also den Zeithorizont dazusagen.",
+        "context": "Deskriptiv. Der Fakt nennt Sektorzahlen, keine Bewertung einzelner Betriebsformen oder politischer Maßnahmen."
       },
       "context_notes": [
-        "AT-Landwirtschaft 10 % der THG-Emissionen — relevant aber kleiner als Verkehr (29 %) oder Industrie (27 %).",
-        "Methan aus Wiederkäuern + Gülle ist 60 % der LW-Emissionen — Reduktions-Strategien existieren (Bovaer, Biogas).",
-        "Klima-Anpassung läuft real: Wein nach Norden, Mais zunehmend stress-belastet, Apfel in höhere Lagen."
+        "Datenstand: Treibhausgas-Inventur des Umweltbundesamtes mit Datenjahr 2024 (Stand September 2026). Die Inventur erscheint jährlich; die Werte werden rückwirkend revidiert.",
+        "Die Aufteilung der Landwirtschafts-Emissionen auf Methan aus der Tierhaltung und Lachgas aus Böden steht nicht in der zitierten Übersicht; wer sie braucht, muss den Emissionsbericht heranziehen.",
+        "Korrigiert 2026-09-22: Die frühere Fassung nannte 8,0 Mio. t Landwirtschaft bei 80 Mio. t Gesamtemissionen (amtlich 8,4 von 66,6) und eine Sektorverteilung (Verkehr 23, Industrie 22, Energie 18, Gebäude 8), die es so nicht gibt. Ebenfalls entfernt: unbelegte Angaben zu Methan-Teilmengen und zur Temperaturentwicklung."
       ],
       "claim_phrasings_handled": [
-        "Landwirtschaft ist klimaneutral",
-        "Bauern sind Klima-Sünder",
-        "10 Prozent der AT-Emissionen aus Landwirtschaft",
-        "Klima-Wandel betrifft AT-Bauern stark",
-        "AT-Landwirtschaft reduziert Emissionen seit 1990",
-        "Mais-Erträge sinken wegen Klima"
+        "Die Landwirtschaft ist nicht klimarelevant",
+        "Die Landwirtschaft ist der größte Klimasünder",
+        "Wie viel CO2 verursacht die Landwirtschaft in Österreich?",
+        "Österreich hat seine Emissionen seit 1990 kaum gesenkt",
+        "Der Verkehr verursacht mehr Emissionen als die Landwirtschaft"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "treibhausgas-bilanz",
+        "treibhausgasbilanz",
+        "khg-bilanz",
+        "thg-bilanz",
+        "klimabilanz österreich",
+        "klimabilanz oesterreich"
+      ],
       "trigger_composite": [
         [
-          "klima",
-          "klima-wandel",
-          "klimawandel",
-          "klima-erwärmung",
-          "klimaerwaermung",
-          "treibhausgas",
-          "treibhausgase",
-          "thg",
-          "co2",
-          "methan",
-          "ch4",
-          "distickstoff-oxid",
-          "n2o",
           "landwirtschaft",
-          "land-wirtschaft",
           "bauern",
+          "tierhaltung",
           "rinder",
-          "rind-haltung",
-          "schweine",
-          "gülle",
-          "guelle",
-          "düngung",
-          "duengung",
-          "dünger",
-          "duenger"
+          "verkehr",
+          "industrie",
+          "gebäude",
+          "gebaeude",
+          "österreich",
+          "oesterreich"
         ],
         [
-          "emissionen",
+          "treibhausgas",
+          "co2",
           "emission",
-          "klima-bilanz",
+          "emissionen",
           "klimabilanz",
-          "khg",
-          "khg-bilanz",
-          "uba",
-          "umweltbundesamt",
-          "zamg",
-          "geosphere",
-          "ipcc",
-          "global",
-          "welt",
-          "ausstoß",
-          "ausstoss",
-          "ausstossen",
-          "verursachen",
-          "verursacht",
-          "klima-neutral",
-          "klimaneutral",
-          "anpassung",
-          "klima-anpassung",
-          "wein",
-          "mais",
-          "apfel",
-          "milch",
-          "ertrag",
-          "ernte",
-          "hitze",
-          "hitze-stress",
-          "trockenheit",
-          "10 %",
-          "10 prozent",
-          "23 %",
-          "16 %"
+          "klimasünder",
+          "klimasuender",
+          "klimarelevant"
         ]
       ],
-      "trigger_all": [
-        [
-          [
-            "bauer",
-            "baür"
-          ],
-          [
-            "klima-suend",
-            "klima-sünd"
-          ]
-        ],
-        [
-          [
-            "klima-wandel"
-          ],
-          [
-            "betrifft"
-          ],
-          [
-            "at-bauer",
-            "at-baür"
-          ],
-          [
-            "stark"
-          ]
-        ]
-      ]
+      "source_label": "Umweltbundesamt Österreich — Treibhausgas-Inventur, Datenjahr 2024 (veröffentlicht 2025)",
+      "source_url": "https://www.umweltbundesamt.at/klima/treibhausgase",
+      "secondary_url": "https://www.umweltbundesamt.at/emiberichte"
     },
     {
       "id": "viehbestand_at_2026",

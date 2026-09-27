@@ -67,6 +67,7 @@ import logging
 import os
 
 from services._topic_match import find_matching_items, load_items, stamp_provenance
+from services._notizen import prompt_notizen
 
 logger = logging.getLogger("evidora")
 
@@ -132,7 +133,7 @@ async def search_welthandel(analysis: dict) -> dict:
         label = fact.get("source_label",
                          "Statistik Austria + WIFO + IFO + Bank of England + LSE CEP + EU-Kommission + Weltbank + IEA + BNEF + WTO + UNCTAD + McKinsey + BCG + CSIS")
         notes = fact.get("context_notes") or []
-        notes_joined = " | ".join(notes)
+        notes_joined = " | ".join(prompt_notizen(notes))
         year = str(fact.get("year", ""))
 
         display = f"{fact.get('headline', '?')}. {_data_lines(d)}"

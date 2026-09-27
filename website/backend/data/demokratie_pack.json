@@ -70,7 +70,7 @@
           "europa",
           "österreich",
           "oesterreich",
-          "at",
+          " at ",
           "deutschland",
           "schweiz",
           "1949",
@@ -127,21 +127,21 @@
     {
       "id": "briefwahl_manipulation_mythen_2026",
       "topic": "briefwahl_manipulation_mythen",
-      "scope": "AT-Briefwahl seit 2007, VfGH G203/2016 BPräs-Stichwahl-Wiederholung, Manipulations-Hypothese",
+      "scope": "AT-Briefwahl seit 2007, VfGH W I 6/2016 Aufhebung der BPräs-Stichwahl vom 22.5.2016, Manipulations-Hypothese",
       "year": 2024,
-      "source_url": "https://www.vfgh.gv.at/medien/Bundespraesidentenstichwahl_aufgehoben.de.php",
-      "secondary_url": "https://www.idea.int/news-media/news/postal-voting-democracy",
-      "source_label": "VfGH-Erkenntnis G203/2016 vom 1.7.2016 + BMI Wahlrechts-Reform 2007 + IDEA Postal Voting Studies + Wikipedia/Wikidata",
-      "headline": "AT-Briefwahl seit 2007 (Verfassungsrang Art. 26 B-VG); VfGH G203/2016 hob BPräs-Stichwahl-Wiederholung auf wegen FORMFEHLER (verfrühte Briefwahl-Auszählung), KEIN Manipulations-Beweis",
+      "source_url": "https://www.vfgh.gv.at/downloads/VfGH_W_I_6-2016_Bundespraesidentenwahl.pdf",
+      "secondary_url": "https://www.idea.int/publications/catalogue/special-voting-arrangements-international-idea-handbook",
+      "source_label": "VfGH-Erkenntnis W I 6/2016 vom 1.7.2016 + BMI Wahlrechts-Reform 2007 + IDEA Postal Voting Studies + Wikipedia/Wikidata",
+      "headline": "AT-Briefwahl seit 2007 (Verfassungsrang Art. 26 B-VG); VfGH W I 6/2016 hob die BPräs-Stichwahl vom 22.5.2016 auf wegen FORMFEHLER beim Umgang mit Briefwahlstimmen (u. a. verfrühtes Öffnen und Auszählen), KEIN Manipulations-Beweis",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Briefwahl ist manipulationsanfällig' ist EMPIRISCH NICHT BELEGT in AT/DE/EU. Empirische Lage: (1) AT-BRIEFWAHL-EINFÜHRUNG: Verfassungs-Reform 2007, BGBl I 2007/28 — Art. 26 B-VG Verfassungsrang. (2) VFGH G203/2016 vom 1.7.2016 (BPräs-Stichwahl 2016): Verfassungsgerichtshof hob Bundespräsidenten-Stichwahl 22.5.2016 auf. Begründung KEIN Wahlbetrug, sondern FORMFEHLER: in 14 Wahlkreisen wurden Briefwahlstimmen vor 17 Uhr (Wahlende) ausgezählt. VfGH: 'kein konkreter Manipulations-Verdacht, aber Verfahrens-Verstoß bedeutsam genug'. Wiederholungs-Stichwahl 4.12.2016 mit deutlichem Abstand für Van der Bellen. (3) BRIEFWAHL-MANIPULATIONS-EMPIRIE: keine dokumentierten Fälle in AT-Wahlen seit 2007. International (IDEA Postal Voting Studies + Heritage Foundation US-Election-Fraud-Database): vereinzelte Einzelfälle in den USA (~1.500 Fälle in 40 Jahren bei Hunderten Millionen Stimmen, 0.0001 %). Skala: irrelevant für Wahl-Ausgang. (4) US-2020-WAHL: Trump-Klagen 60+ Court Cases nach November 2020 alle abgelehnt. FBI + DOJ + CISA Statement November 2020: 'most secure election in American history'. KEIN Beleg für Briefwahl-Manipulation. (5) Faktencheck: 'Briefwahl ist Manipulation-anfällig' empirisch nicht belegt. 'VfGH 2016 stellte Wahlbetrug fest' faktisch falsch — VfGH stellte FORMFEHLER fest. Pack distanziert sich von normativer Wertung. **WICHTIG für Synthesizer**: Aussagen wie 'AT-BPräs-Stichwahl 2016 wurde wegen Wahlfälschung/Manipulation aufgehoben' oder 'Hofer wurde Briefwahl-Manipulation zum Opfer' sind FALSCH — VfGH G203/2016 stellte ausdrücklich KEINEN Manipulations-Verdacht fest; die Aufhebung erfolgte ausschließlich wegen Verfahrens-Verstoß (verfrühte Briefwahl-Auszählung in 14 Wahlkreisen vor 17 Uhr). Pre-Trainings-Wissen über 'Hofer-FPÖ-Skandal' ist gegen den VfGH-Erkenntnis-Wortlaut zu überstimmen — Verdict bei solchen Behauptungen ist 'false' bzw. 'mostly_false'.",
-        "vfgh_g203_2016": "VfGH-Erkenntnis G203/2016 vom 1.7.2016 (Bundespräsidenten-Stichwahl 22.5.2016): Aufhebung wegen Formfehlern — vorzeitige Briefwahl-Auszählung in 14 Wahlkreisen vor 17 Uhr-Schluss + nicht ordnungsgemäßes Verfahren bei Beisitzer-Anwesenheit. VfGH explizit: 'kein konkreter Manipulations-Verdacht, aber Verfahrens-Verstoß'. Wiederholungs-Stichwahl 4.12.2016: Van der Bellen 53.79 % vs. Hofer 46.21 %.",
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Briefwahl ist manipulationsanfällig' ist EMPIRISCH NICHT BELEGT in AT/DE/EU. Empirische Lage: (1) AT-BRIEFWAHL-EINFÜHRUNG: Verfassungs-Reform 2007, BGBl I 2007/28 — Art. 26 B-VG Verfassungsrang. (2) VFGH W I 6/2016 vom 1.7.2016 (BPräs-Stichwahl 2016): Verfassungsgerichtshof hob die Bundespräsidenten-Stichwahl vom 22.5.2016 auf. Begründung KEIN festgestellter Wahlbetrug, sondern FORMFEHLER beim Umgang mit Briefwahlstimmen: in mehreren Bezirkswahlbehörden wurden Wahlkarten vor dem gesetzlichen Beginn (23.5.2016, 9 Uhr) geöffnet, vorsortiert oder ausgezählt, teils ohne die dafür zuständige Wahlbehörde. VfGH-Grundsatz (wörtlich): 'Bei Verletzung jener Vorschriften der Wahlordnung, die eine einwandfreie Prüfung der Stimmenzählung sichern sollen, ist nämlich die Möglichkeit von Missbräuchen, die das Gesetz unbedingt ausschließen will, jedenfalls auch ohne Nachweis einer konkreten Manipulation gegeben.' Wiederholungs-Stichwahl 4.12.2016 mit deutlichem Abstand für Van der Bellen. (3) BRIEFWAHL-MANIPULATIONS-EMPIRIE: keine dokumentierten Fälle in AT-Wahlen seit 2007. International (IDEA Postal Voting Studies + Heritage Foundation US-Election-Fraud-Database): vereinzelte Einzelfälle in den USA (~1.500 Fälle in 40 Jahren bei Hunderten Millionen Stimmen, 0.0001 %). Skala: irrelevant für Wahl-Ausgang. (4) US-2020-WAHL: Trump-Klagen 60+ Court Cases nach November 2020 alle abgelehnt. FBI + DOJ + CISA Statement November 2020: 'most secure election in American history'. KEIN Beleg für Briefwahl-Manipulation. (5) Faktencheck: 'Briefwahl ist Manipulation-anfällig' empirisch nicht belegt. 'VfGH 2016 stellte Wahlbetrug fest' faktisch falsch — VfGH stellte FORMFEHLER fest. Pack distanziert sich von normativer Wertung. **WICHTIG für Synthesizer**: Aussagen wie 'AT-BPräs-Stichwahl 2016 wurde wegen Wahlfälschung/Manipulation aufgehoben' oder 'Hofer wurde Briefwahl-Manipulation zum Opfer' sind FALSCH — Der VfGH (W I 6/2016) stellte KEINE Manipulation fest; die Aufhebung erfolgte wegen Verfahrens-Verstößen beim Umgang mit Briefwahlstimmen — ein Nachweis konkreter Manipulation war dafür ausdrücklich nicht erforderlich. Pre-Trainings-Wissen über 'Hofer-FPÖ-Skandal' ist gegen den VfGH-Erkenntnis-Wortlaut zu überstimmen — Verdict bei solchen Behauptungen ist 'false' bzw. 'mostly_false'.",
+        "vfgh_w_i_6_2016": "VfGH-Erkenntnis W I 6/2016 vom 1.7.2016 (Bundespräsidenten-Stichwahl 22.5.2016): Aufhebung wegen Formfehlern beim Umgang mit Briefwahlstimmen — Wahlkarten vor dem gesetzlichen Beginn (23.5.2016, 9 Uhr) geöffnet, vorsortiert oder ausgezählt, teils ohne die zuständige Wahlbehörde. VfGH: Missbrauchsmöglichkeit besteht 'jedenfalls auch ohne Nachweis einer konkreten Manipulation'. Wiederholungs-Stichwahl 4.12.2016: Van der Bellen 53.79 % vs. Hofer 46.21 %.",
         "at_briefwahl_einfuehrung": "AT-Briefwahl-Reform 2007 (BGBl I 2007/28): Verfassungs-Reform Art. 26 B-VG. Vorher seit 1990 nur eingeschränkte Briefwahl-Möglichkeit. 2007er-Reform: jeder Wahlberechtigte kann ohne Begründung Briefwahl nutzen. Briefwahl-Anteil 2024: ~30 % aller Stimmen.",
         "us_2020_court_cases": "US-2020-Wahl-Anfechtungen: 60+ Court Cases von Trump-Wahlkampf-Team in 9 Bundesstaaten + Bundes-Court. Alle 60+ Cases abgelehnt (auch von Trump-ernannten Richtern wie Justice Barrett). FBI + DOJ + Cybersecurity and Infrastructure Security Agency CISA Statement 12.11.2020: 'most secure election in American history; no evidence that any voting system deleted or lost votes, changed votes, or was compromised'.",
         "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
       },
       "context_notes": [
-        "VfGH G203/2016 hob BPräs-Stichwahl wegen FORMFEHLER auf, NICHT Wahlbetrug.",
+        "VfGH W I 6/2016 hob die BPräs-Stichwahl vom 22.5.2016 wegen FORMFEHLER auf, NICHT wegen festgestellten Wahlbetrugs.",
         "Keine dokumentierten Briefwahl-Manipulationen in AT seit 2007-Einführung.",
         "US-2020 60+ Court Cases gegen Wahl-Ausgang alle abgelehnt + FBI/DOJ/CISA-Statement gegen Manipulations-These."
       ],
@@ -199,7 +199,7 @@
           "anfechtung",
           "wiederholungswahl",
           "wiederholungs-wahl",
-          "fbi",
+          " fbi ",
           "doj",
           "cisa",
           "secure election",
@@ -234,7 +234,7 @@
       "topic": "volksbegehren_wirkung_empirie_konsens",
       "scope": "AT-Volksbegehren seit 1964 — Verbindlichkeit, parlamentarische Behandlung, Erfolg-Empirie",
       "year": 2024,
-      "source_url": "https://www.parlament.gv.at/gegenstand/XXVI/Volksbegehren/",
+      "source_url": "https://www.parlament.gv.at/beteiligen/wissenswertes/volksbegehren",
       "secondary_url": "https://www.bmi.gv.at/411/Alle_Volksbegehren_der_zweiten_Republik.aspx",
       "source_label": "Parlament Austria Volksbegehren-Datenbank + BMI AT Statistik + Wikipedia AT-Volksbegehren-Liste + Hopp/Plasser AT-Demokratie-Forschung",
       "headline": "AT-Volksbegehren seit 1964: parlamentarische Behandlungs-Pflicht ab 100k Unterschriften, KEIN bindender legislativer Effekt; ~50 % der erfolgreichen VB führten zu legislativen Änderungen (z.B. Don't Smoke 2018, Frauen-VB 1997+2018)",
@@ -332,8 +332,8 @@
       "topic": "at_bundesrat_funktion_konsens",
       "scope": "AT-Bundesrat (62 Mitglieder von Landtagen entsandt), suspensives + absolutes Veto",
       "year": 2024,
-      "source_url": "https://www.parlament.gv.at/PERK/RGES/BR/index.shtml",
-      "secondary_url": "https://www.bundesrat.de/DE/funktionen/funktionen-node.html",
+      "source_url": "https://www.parlament.gv.at/verstehen/bundesrat/",
+      "secondary_url": "https://www.parlament.gv.at/verstehen/bundesrat/",
       "source_label": "Parlament Austria Bundesrat + AT B-VG Art. 34-37 + Vergleich DE-Bundesrat (DE-Grundgesetz Art. 50)",
       "headline": "AT-Bundesrat 62 Mitglieder von Landtagen entsandt; suspensives Veto bei einfachen Gesetzen, absolutes Veto nur bei Verfassungsgesetzen mit Bundesländer-Kompetenz-Beschränkung; vs. DE-Bundesrat (deutlich mächtiger durch Zustimmungs-Pflicht)",
       "data": {
@@ -432,10 +432,10 @@
       "year": 2024,
       "source_url": "https://www.cisa.gov/news-events/news/joint-statement-elections-infrastructure-government-coordinating-council-election",
       "secondary_url": "https://www.heritage.org/voterfraud",
-      "source_label": "VfGH G203/2016 + AT-BMI Wahlrechts-Statistik + FBI/DOJ/CISA US-2020-Statement Nov 2020 + Heritage Foundation Election Fraud Database + Brennan Center for Justice Studien",
+      "source_label": "VfGH W I 6/2016 + AT-BMI Wahlrechts-Statistik + FBI/DOJ/CISA US-2020-Statement Nov 2020 + Heritage Foundation Election Fraud Database + Brennan Center for Justice Studien",
       "headline": "Wahlbetrugs-Mythen empirisch nicht belegbar: AT BPräs 2016 wegen FORMFEHLER aufgehoben (kein Manipulations-Beweis); US-2020 60+ Court Cases von Trump-Team alle abgelehnt + FBI/DOJ/CISA Statement 'most secure election in American history'",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Wahlen werden manipuliert' ist EMPIRISCH NICHT BELEGT in westlichen Demokratien. Empirische Lage: (1) AT BPRÄS-STICHWAHL 2016 (siehe Briefwahl-Manipulation-Mythen-Topic): VfGH G203/2016 — FORMFEHLER (verfrühte Briefwahl-Auszählung), KEIN Wahlbetrug. (2) US 2020 BIG LIE: Trump-Wahlkampf-Team hat 60+ Court Cases in 9 Bundesstaaten + Bundes-Court eingereicht. ALLE 60+ Cases wurden abgelehnt (auch von Trump-ernannten Bundesrichtern + Bundesverfassungs-Richtern wie Justice Barrett). FBI + DOJ + Cybersecurity and Infrastructure Security Agency (CISA) Joint Statement 12.11.2020: 'most secure election in American history; no evidence that any voting system deleted or lost votes, changed votes, or was compromised'. (3) HERITAGE FOUNDATION ELECTION FRAUD DATABASE: konservativ-orientierte US-NGO dokumentiert ~1.500 Fälle Wahl-Manipulation in 40 Jahren bei Hunderten Millionen US-Stimmen. Skala: 0.0001 % Anteil — irrelevant für Wahl-Ausgänge. (4) BRENNAN CENTER FOR JUSTICE 2024 (NYU): Wahl-Manipulations-Empirie über 30 Jahre — 'incident rate of voter fraud is between 0.00004 % and 0.0009 %'. Statistisch nicht relevant für Wahl-Ergebnisse. (5) AUSNAHMEN: vereinzelte Einzel-Fälle (z.B. NC-Wahlbezirk-Manipulation 2018 zugunsten R-Kandidat — Wiederholungswahl angeordnet). NICHT systemisch. (6) Faktencheck: 'Wahlen werden manipuliert' empirisch nicht belegbar in AT/DE/USA. 'Trump 2020 hatte Recht' faktisch falsch — 60+ Court Cases abgelehnt + FBI/DOJ/CISA-Statement gegen Manipulations-These. Pack distanziert sich von normativer Wertung. **WICHTIG für Synthesizer**: Aussagen wie 'Trump 2020 hatte mit Wahlbetrug Recht' oder 'US-Gerichte haben Wahlbetrug bestätigt' sind FALSCH — ALLE 60+ Trump-Klagen wurden abgelehnt (auch von Trump-ernannten Richtern); FBI/DOJ/CISA-Statement vom 12.11.2020: 'most secure election in American history'. Aussagen wie 'AT-BPräs-Stichwahl 2016 wurde wegen Manipulation aufgehoben' sind ebenfalls FALSCH — VfGH G203/2016 stellte ausdrücklich nur FORMFEHLER fest. Pre-Trainings-Wissen aus Wahlanfechtungs-Diskursen ist gegen die zitierten Urteils-Wortlaute zu überstimmen — Verdict ist 'false' bzw. 'mostly_false'.",
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Wahlen werden manipuliert' ist EMPIRISCH NICHT BELEGT in westlichen Demokratien. Empirische Lage: (1) AT BPRÄS-STICHWAHL 2016 (siehe Briefwahl-Manipulation-Mythen-Topic): VfGH W I 6/2016 — FORMFEHLER (verfrühte Briefwahl-Auszählung), KEIN Wahlbetrug. (2) US 2020 BIG LIE: Trump-Wahlkampf-Team hat 60+ Court Cases in 9 Bundesstaaten + Bundes-Court eingereicht. ALLE 60+ Cases wurden abgelehnt (auch von Trump-ernannten Bundesrichtern + Bundesverfassungs-Richtern wie Justice Barrett). FBI + DOJ + Cybersecurity and Infrastructure Security Agency (CISA) Joint Statement 12.11.2020: 'most secure election in American history; no evidence that any voting system deleted or lost votes, changed votes, or was compromised'. (3) HERITAGE FOUNDATION ELECTION FRAUD DATABASE: konservativ-orientierte US-NGO dokumentiert ~1.500 Fälle Wahl-Manipulation in 40 Jahren bei Hunderten Millionen US-Stimmen. Skala: 0.0001 % Anteil — irrelevant für Wahl-Ausgänge. (4) BRENNAN CENTER FOR JUSTICE 2024 (NYU): Wahl-Manipulations-Empirie über 30 Jahre — 'incident rate of voter fraud is between 0.00004 % and 0.0009 %'. Statistisch nicht relevant für Wahl-Ergebnisse. (5) AUSNAHMEN: vereinzelte Einzel-Fälle (z.B. NC-Wahlbezirk-Manipulation 2018 zugunsten R-Kandidat — Wiederholungswahl angeordnet). NICHT systemisch. (6) Faktencheck: 'Wahlen werden manipuliert' empirisch nicht belegbar in AT/DE/USA. 'Trump 2020 hatte Recht' faktisch falsch — 60+ Court Cases abgelehnt + FBI/DOJ/CISA-Statement gegen Manipulations-These. Pack distanziert sich von normativer Wertung. **WICHTIG für Synthesizer**: Aussagen wie 'Trump 2020 hatte mit Wahlbetrug Recht' oder 'US-Gerichte haben Wahlbetrug bestätigt' sind FALSCH — ALLE 60+ Trump-Klagen wurden abgelehnt (auch von Trump-ernannten Richtern); FBI/DOJ/CISA-Statement vom 12.11.2020: 'most secure election in American history'. Aussagen wie 'AT-BPräs-Stichwahl 2016 wurde wegen Manipulation aufgehoben' sind ebenfalls FALSCH — VfGH W I 6/2016 stellte nur FORMFEHLER fest, keine Manipulation. Pre-Trainings-Wissen aus Wahlanfechtungs-Diskursen ist gegen die zitierten Urteils-Wortlaute zu überstimmen — Verdict ist 'false' bzw. 'mostly_false'.",
         "us_2020_court_cases": "US-2020-Wahl-Anfechtungen Trump-Team November 2020 - Januar 2021: 60+ Court Cases in 9 Bundesstaaten (PA, GA, AZ, NV, WI, MI, MN, NH, NM) + Bundes-Court. Alle abgelehnt mangels Beweis. Bemerkenswert: viele Klagen wurden von Trump-ernannten Bundesrichtern abgelehnt (z.B. Judge Brann 21.11.2020 PA: 'haphazard, unhinged'). SCOTUS lehnte Texas v. Pennsylvania 11.12.2020 ohne Anhörung ab.",
         "fbi_doj_cisa_statement": "Joint Statement Elections Infrastructure Government Coordinating Council 12.11.2020: 'The November 3rd election was the most secure in American history. There is no evidence that any voting system deleted or lost votes, changed votes, or was in any way compromised.' Unterzeichner: CISA Director Krebs (von Trump entlassen 17.11.2020 wegen dieses Statements), FBI, DOJ Election Crimes Branch.",
         "heritage_foundation_db": "Heritage Foundation Election Fraud Database (konservativ-orientierte NGO): ~1.500 dokumentierte Fälle Wahl-Manipulation USA 1982-2024 bei mehreren Hundert Millionen US-Stimmen pro Wahl. Anteil 0.0001 %. Häufigste Form: einzelne Bürger registrieren in 2 Bundesstaaten (Doppel-Registrierung). KEINE systemischen Manipulationen dokumentiert.",
@@ -472,7 +472,7 @@
           "court cases",
           "klagen",
           "anfechtung",
-          "fbi",
+          " fbi ",
           "doj",
           "cisa",
           "heritage foundation",
@@ -642,7 +642,7 @@
       "scope": "Online-Petitionen + EU-Bürger-Initiative + ePartizipation — Mobilisierungs-Empirie",
       "year": 2024,
       "source_url": "https://citizens-initiative.europa.eu/_de",
-      "secondary_url": "https://www.idea.int/news-media/news/digital-democracy",
+      "secondary_url": "https://www.idea.int/publications/catalogue/democracy-technologies-europe",
       "source_label": "EU Bürgerinitiative-Register + IDEA Digital Democracy Studies + Bertelsmann ePartizipation-Forschung 2020 + Hindman 2009 'The Myth of Digital Democracy'",
       "headline": "ePartizipation (Online-Petitionen + EU-Bürgerinitiative seit 2012, 1 Mio Unterschriften aus mind. 7 Mitgliedsstaaten): niedrige Mobilisierung außerhalb Krisen-Themen; Bertelsmann + IDEA Studien — kein Substitut für klassische Partizipation",
       "data": {
@@ -725,7 +725,7 @@
       "scope": "Demokratie-Rückgang seit 2010 — V-Dem v14 Liberal Democracy Index, Freedom House FIW 2026, Länder-Vergleich",
       "year": 2024,
       "source_url": "https://www.v-dem.net/data/the-v-dem-dataset/",
-      "secondary_url": "https://freedomhouse.org/report/freedom-world/2024",
+      "secondary_url": "https://freedomhouse.org/report/freedom-world/2024/mounting-damage-flawed-elections-and-armed-conflict",
       "source_label": "V-Dem Institute (University of Gothenburg) Varieties of Democracy v14 (2024) + Freedom House Freedom in the World 2026 + V-Dem Democracy Report 2024 + Bertelsmann Transformation Index BTI 2024",
       "headline": "V-Dem v14 (2024) Liberal Democracy Index: AT 0.78, DE 0.81, USA 0.79, HU 0.32, RU 0.07; Demokratie-Rückgang seit 2010 in HU/PL/TR/IN/USA empirisch belegt; AT/DE im EU-Vergleich stabil",
       "data": {
@@ -769,7 +769,7 @@
           "tuerkei",
           "russland",
           "china",
-          "usa",
+          " usa ",
           "österreich",
           "oesterreich",
           "demokratie-niveau",
@@ -911,23 +911,23 @@
     {
       "id": "korruption_index_2026",
       "topic": "korruption_index_konsens",
-      "scope": "Transparency International Corruption Perceptions Index CPI 2024 — AT 71/100 (Rang 20), Verschlechterung 2019-2024",
+      "scope": "Transparency International Corruption Perceptions Index CPI 2024 — AT 67/100 (Rang 25), Verschlechterung 2019-2024",
       "year": 2024,
       "source_url": "https://www.transparency.org/en/cpi/2024",
       "secondary_url": "https://www.transparency.de/cpi/cpi-2024",
       "source_label": "Transparency International Corruption Perceptions Index 2024 + AT-Casinos-Affäre + ÖVP-Chats + Ibiza-Folgen-Aufarbeitung",
-      "headline": "Transparency CPI 2024: DK 90/100 (Rang 1), CH 81/100 (6.), DE 75 (15.), AT 71/100 (Rang 20, vs. 77/100 Rang 12 2019); RUS 26 (154.); AT-Verschlechterung wegen ÖVP-Chats + Casinos-Affäre + Ibiza",
+      "headline": "Transparency CPI 2024: DK 90/100 (Rang 1), CH 81/100 (5.), DE 75 (15.), AT 67/100 (Rang 25, vs. 77/100 Rang 12 2019); RUS 22 (154.); AT-Verschlechterung wegen ÖVP-Chats + Casinos-Affäre + Ibiza",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT ist Korruptions-Land' ist DIFFERENZIERT. Empirische Lage: (1) TRANSPARENCY INTERNATIONAL CPI 2024 (Skala 0-100, höher = weniger wahrgenommene Korruption): 1. DK 90/100, 2. NZ 87, 3. NO 84, 4. SG 84, 5. FI 84, 6. CH 81, 7. NL 79, ..., 15. DE 75, 20. AT 71, ..., 154. RUS 26. (2) AT-VERSCHLECHTERUNG 2019-2024: AT 2019 77/100 (Rang 12) → 2020 76 (15) → 2022 71 (22) → 2024 71 (20). Hauptursachen: (a) Casinos-Affäre 2019-2021 (Sidlo/Schmid + Glücksspiel-Lizenzen), (b) ÖVP-Chats 2021-2022 (Inseraten-Verträge gegen Wahl-Berichterstattung), (c) Ibiza-Affäre 2019 (Strache-Video, FPÖ-Kompromittierung), (d) BVT-Affäre 2018-2019 (Korruptions-Ermittlungs-Behinderung). (3) CPI-METHODIK: Aggregat aus 13 Datenquellen (World Bank Governance, World Justice Project Rule of Law Index, IMD World Competitiveness, Bertelsmann Sustainable Governance, etc.). Kein direkter Korruptions-Mess-Wert, sondern WAHRGENOMMENE Korruption durch Experten + Geschäftsleute. (4) DACH-VERGLEICH: CH 6. (81 P.), DE 15. (75), AT 20. (71) — AT deutlich schlechter als CH/DE. AT-Verschlechterung am stärksten in Westeuropa seit 2019. (5) GLOBAL EXTREME: NK + Somalia + Süd-Sudan teilen Schlusslicht (8-13 P.), Skandinavien dominiert Top-10. (6) Faktencheck: 'AT ist Korruptions-Land' überzeichnet (CPI 71/100 = OECD-Mittelfeld). 'AT-Korruption hat zugenommen' faktisch korrekt (-6 P. seit 2019). Pack distanziert sich von normativer Wertung.",
-        "cpi_2024_top": "Transparency CPI 2024 Top-10: 1. DK 90, 2. NZ 87, 3. NO 84, 4. SG 84, 5. FI 84, 6. CH 81, 7. NL 79, 8. SE 78, 9. LU 78, 10. CA 76, 11. AU 75, 12. DE 75, 13. UK 73, ..., 20. AT 71, ..., 154. RUS 26.",
-        "at_verschlechterung_zeitreihe": "AT-CPI-Zeitreihe: 2019 77 P. (Rang 12), 2020 76 (15), 2021 74 (13), 2022 71 (22), 2023 71 (20), 2024 71 (20). Verschlechterung -6 P. seit 2019 (stärkste Verschlechterung in Westeuropa). Hauptursachen: Casinos-Affäre, ÖVP-Chats, Ibiza, BVT-Affäre.",
+        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT ist Korruptions-Land' ist DIFFERENZIERT. Empirische Lage: (1) TRANSPARENCY INTERNATIONAL CPI 2024 (Skala 0-100, höher = weniger wahrgenommene Korruption): 1. DK 90/100, 2. FI 88, 3. SG 84, 4. NZ 83, 5. CH 81 (gleichauf NO, LU), 8. SE 80, 9. NL 78, ..., 15. DE 75, 25. AT 67, ..., 154. RUS 22. (2) AT-VERSCHLECHTERUNG 2019-2024: AT 2019 77/100 (Rang 12) → 2020 76 (15) → 2022 71 (22) → 2023 71 (20) → 2024 67 (25). Hauptursachen: (a) Casinos-Affäre 2019-2021 (Sidlo/Schmid + Glücksspiel-Lizenzen), (b) ÖVP-Chats 2021-2022 (Inseraten-Verträge gegen Wahl-Berichterstattung), (c) Ibiza-Affäre 2019 (Strache-Video, FPÖ-Kompromittierung), (d) BVT-Affäre 2018-2019 (Korruptions-Ermittlungs-Behinderung). (3) CPI-METHODIK: Aggregat aus 13 Datenquellen (World Bank Governance, World Justice Project Rule of Law Index, IMD World Competitiveness, Bertelsmann Sustainable Governance, etc.). Kein direkter Korruptions-Mess-Wert, sondern WAHRGENOMMENE Korruption durch Experten + Geschäftsleute. (4) DACH-VERGLEICH: CH 5. (81 P.), DE 15. (75), AT 25. (67) — AT deutlich schlechter als CH/DE. AT-Verschlechterung am stärksten in Westeuropa seit 2019. (5) GLOBAL EXTREME: Süd-Sudan (8 P.), Somalia (9) und Venezuela (10) bilden das Schlusslicht, Skandinavien dominiert Top-10. (6) Faktencheck: 'AT ist Korruptions-Land' überzeichnet (CPI 67/100 = OECD-Mittelfeld). 'AT-Korruption hat zugenommen' faktisch korrekt (-10 P. seit 2019). Pack distanziert sich von normativer Wertung.",
+        "cpi_2024_top": "Transparency CPI 2024 Top-10: 1. DK 90, 2. FI 88, 3. SG 84, 4. NZ 83, 5. CH 81, 5. LU 81, 5. NO 81, 8. SE 80, 9. NL 78, 10. AU 77, 10. IE 77, 10. IS 77, ..., 15. CA 75, 15. DE 75, ..., 20. UK 71, ..., 25. AT 67, ..., 154. RUS 22.",
+        "at_verschlechterung_zeitreihe": "AT-CPI-Zeitreihe: 2019 77 P. (Rang 12), 2020 76 (15), 2021 74 (13), 2022 71 (22), 2023 71 (20), 2024 67 (25). Verschlechterung -10 P. seit 2019 (stärkste Verschlechterung in Westeuropa). Hauptursachen: Casinos-Affäre, ÖVP-Chats, Ibiza, BVT-Affäre.",
         "cpi_methodik": "CPI-Methodik: Aggregat aus 13 Datenquellen — World Bank Governance, World Justice Project Rule of Law, IMD World Competitiveness, Bertelsmann Sustainable Governance Indicators, IDEA, Economist Intelligence Unit. Skala 0-100 (höher = weniger wahrgenommene Korruption). Kein direkter Mess-Wert, sondern WAHRGENOMMENE Korruption durch Experten/Geschäftsleute.",
         "at_affaeren_2019_2024": "AT-Korruptions-Affären 2019-2024: (a) Casinos-Affäre 2019-2021 (Schmid/Sidlo + Casinos-Glücksspiel-Lizenz, Sebastian Kurz im Verfahren), (b) Ibiza-Affäre Mai 2019 (Strache-Video Flugzeug-Sequenz), (c) ÖVP-Chats 2021-2022 (Inseraten-Verträge mit Krone gegen Wahl-Berichterstattung, $4.6 Mio Volumen), (d) BVT-Affäre 2018-2019 (Verfassungs-Schutz-Behörde Razzien + Untersuchungs-Ausschuss).",
         "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
       },
       "context_notes": [
-        "AT-CPI 71/100 (Rang 20) ist OECD-Mittelfeld — nicht 'Korruptions-Land' aber verschlechtert.",
-        "Verschlechterung -6 P. 2019-2024 — stärkste in Westeuropa.",
+        "AT-CPI 67/100 (Rang 25) ist OECD-Mittelfeld — nicht 'Korruptions-Land' aber verschlechtert.",
+        "Verschlechterung -10 P. 2019-2024 — stärkste in Westeuropa.",
         "Hauptursachen: Casinos-Affäre + ÖVP-Chats + Ibiza + BVT — alle 2019-2022."
       ],
       "claim_phrasings_handled": [
@@ -956,7 +956,7 @@
           "bvt-affäre",
           "bvt-affaere",
           "schmid",
-          "kurz",
+          " kurz ",
           "strache",
           "ti-cpi"
         ],
@@ -1015,6 +1015,74 @@
           ]
         ]
       ]
+    },
+    {
+          "id": "parteien_korruption_datenlage_2026",
+      "partei_korruption_tauglich": true,
+          "topic": "Parteien und Korruption in Österreich — was erhoben wird und was nicht",
+          "scope": "AT",
+          "year": 2026,
+          "source_url": "https://www.bundeskanzleramt.gv.at/themen/unabhangiger-parteien-transparenz-senat.html",
+          "secondary_url": "https://www.profil.at/oesterreich/umfrage-haelfte-haelt-alle-parteien-fuer-korruptionsanfaellig/402198930",
+          "source_label": "Unabhängiger Parteien-Transparenz-Senat (BKA/RIS) + Unique-research für profil",
+          "headline": "Für Österreich existiert keine vergleichende Statistik, die Parteien nach dokumentierten Korruptionsfällen reiht. Erhoben werden drei andere Dinge: amtliche Sanktionen nach dem Parteiengesetz (UPTS), einzelne Ermittlungs- und Gerichtsverfahren, und Umfragen zur wahrgenommenen Korruptionsanfälligkeit.",
+          "data": {
+                "kernsatz_fuer_synthesizer": "Wer eine Partei als 'die korrupteste' bezeichnet, stützt sich auf Wahrnehmung oder auf Einzelfälle, nicht auf eine vergleichende Erhebung — eine solche gibt es für Österreich nicht. Belegbar sind amtliche Sanktionen nach dem Parteiengesetz, einzelne Verfahren und Umfrageergebnisse. Diese drei Grössen messen Verschiedenes und lassen sich nicht zu einer Rangliste verrechnen. Umfragewerte gehören zitiert und datiert, nicht als Tatsache über eine Partei weitergegeben.",
+                "upts_sanktionen": "Der Unabhängige Parteien-Transparenz-Senat verhängt Geldbußen und Geldstrafen bei Verstößen gegen das Parteiengesetz (§ 10 Abs. 8 und §§ 11 bis 12a PartG 2012 idF BGBl. I Nr. 125/2022). Die Entscheidungen werden beim Bundeskanzleramt und im Rechtsinformationssystem unter ris.bka.gv.at/Upts veröffentlicht.",
+                "upts_betroffene_parteien": "Die veröffentlichte Bescheidliste des UPTS reicht von 2015 bis 2026 und nennt ÖVP, SPÖ, FPÖ, Die Grünen, NEOS, Team Kärnten, BZÖ, KPÖ, Team Stronach, Bierpartei und Wandel. Die Liste zählt Verstöße gegen Transparenz- und Finanzierungsregeln, nicht Korruption, und sie ist keine nach Schwere oder Häufigkeit geordnete Reihung.",
+                "umfrage_wahrnehmung_2022": "Unique-research befragte für profil 500 Personen, Schwankungsbreite ±4,4 Prozentpunkte, veröffentlicht am 29.10.2022: 48 % hielten alle Parteien ohne Unterschied für korruptionsanfällig, 35 % gaben an, die ÖVP habe ein echtes Korruptionsproblem, und 8 % hielten Korruption für medial übertrieben dargestellt.",
+                "was_umfragen_messen": "Eine Wahrnehmungsumfrage misst Meinungen zu einem Zeitpunkt, nicht die Zahl der Vorfälle. Das Ergebnis hängt von Jahr, Anlass und Frageformulierung ab; verschiedene Erhebungen haben in verschiedenen Jahren auf verschiedene Parteien gezeigt. Die profil-Erhebung gibt ihre Frageformulierung nicht wieder und umfasst 500 Befragte.",
+                "cpi_ist_laenderebene": "Der Corruption Perceptions Index von Transparency International bewertet Staaten, nicht Parteien. Ein Länderwert für Österreich lässt sich keiner einzelnen Partei zurechnen; wer ihn dafür heranzieht, wechselt die Messebene.",
+                "context": "Pack ist empirisch-deskriptiv. Dieser Fakt nimmt keine Bewertung einer Partei vor und ordnet keine Partei ein; er beschreibt, welche Erhebungen existieren, was sie messen und wo ihre Grenzen liegen. Zahlen aus Umfragen werden mit Institut, Auftraggeber, Datum und Fallzahl zitiert."
+          },
+          "context_notes": [
+                "Datenstand: UPTS-Seite des Bundeskanzleramts und RIS-Bescheidliste am 26.9.2026 geprüft; profil/Unique-research-Erhebung veröffentlicht am 29.10.2022.",
+                "Der Fakt beantwortet ausdrücklich die Frage nach einer Rangliste. Die Antwort lautet, dass es keine gibt — nicht, dass es keine Daten gibt. Die Unterscheidung ist der Zweck des Fakts.",
+                "Bewusst ohne CPI-Zahl: Der Länderwert steht im Fakt korruption_index_2026 und würde hier nur eine zweite, driftende Kopie erzeugen."
+          ],
+          "claim_phrasings_handled": [
+                "Die FPÖ ist die korrupteste Partei Österreichs",
+                "Welche Partei in Österreich ist die korrupteste?",
+                "Welche Partei hatte die meisten Korruptionsfälle?",
+                "Gibt es eine Rangliste der Parteien nach Korruption?",
+                "Alle Parteien in Österreich sind gleich korrupt",
+                "Welche Parteien wurden nach dem Parteiengesetz bestraft?",
+                "Wie viele Österreicher halten alle Parteien für korruptionsanfällig?"
+          ],
+          "trigger_keywords": [],
+          "trigger_composite": [
+                [
+                      "korrupt",
+                      "korruption",
+                      "korruptions",
+                      "bestechung",
+                      "parteiengesetz",
+                      "upts",
+                      "parteien-transparenz",
+                      "korruptionsanfällig",
+                      "korruptionsanfaellig"
+                ],
+                [
+                      "partei",
+                      "parteien",
+                      "fpö",
+                      "fpoe",
+                      "övp",
+                      "oevp",
+                      "spö",
+                      "spoe",
+                      "neos",
+                      "grüne",
+                      "gruene",
+                      "kpö",
+                      "kpoe",
+                      "rangliste",
+                      "reihung",
+                      "am korruptesten",
+                      "korrupteste",
+                      "die meisten"
+                ]
+          ]
     },
     {
       "id": "us_wahl_system_faktoide_2026",
@@ -1118,96 +1186,92 @@
     {
       "id": "at_demokratie_zufriedenheit_2026",
       "topic": "at_demokratie_zufriedenheit_konsens",
-      "scope": "Eurobarometer 2024 — AT-Demokratie-Zufriedenheit 67 % (EU-Mittel 53 %), AT relativ stabil",
-      "year": 2024,
-      "source_url": "https://europa.eu/eurobarometer/surveys/browse/all",
-      "secondary_url": "https://www.bundeskanzleramt.gv.at/themen/oea/eurobarometer.html",
-      "source_label": "Eurobarometer Standard 101 + 102 + 103 (2024) + AT-Bundeskanzleramt Eurobarometer-Auswertung + IFES AT-Demokratie-Monitor",
-      "headline": "Eurobarometer 2024: AT-Demokratie-Zufriedenheit 67 % (EU-Mittel 53 %), höher als DE 59 % oder FR 47 %; Vertrauen ins Parlament AT 38 % (EU-Mittel 33 %); AT relativ stabil im EU-Vergleich",
+      "scope": "Eurobarometer: Zufriedenheit mit der Demokratie in Österreich, Vertrauen in Institutionen",
+      "year": 2026,
+      "headline": "Eurobarometer 105 (Feldzeit 12.3.–5.4.2026): 65 % in Österreich sind mit dem Funktionieren der Demokratie im eigenen Land zufrieden, EU-27 60 %, DE 61 %, FR 56 %. Verlauf AT: 62 % (Winter 2021/22), 61 % (Herbst 2023), 63 % (Frühjahr 2024), 60 % (Herbst 2024), 65 % (Frühjahr 2026) — Schwankung, kein freier Fall. Platz 9 von 27",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'AT-Demokratie-Vertrauen ist im freien Fall' ist EMPIRISCH NICHT BELEGT. Empirische Lage: (1) EUROBAROMETER 2024 (Standard 101+102+103, Frühjahr/Sommer/Herbst): AT-Demokratie-Zufriedenheit 67 % (EU-Mittel 53 %). Höher als DE 59 %, FR 47 %, IT 41 %, ES 53 %. Skandinavien-Spitze: DK 87 %, SE 79 %, FI 78 %. (2) VERTRAUEN INSTITUTIONELL: AT-Vertrauen ins Parlament 38 % (EU-Mittel 33 %), Vertrauen in Regierung 32 % (EU-Mittel 32 %), Vertrauen in EU-Kommission 47 % (EU-Mittel 42 %). AT-Werte über EU-Mittel. (3) VERTRAUEN PERSONELL: AT-Vertrauen in Politiker:innen 26 % (EU-Mittel 23 %), Vertrauen in Justiz 71 % (EU-Mittel 53 %), Vertrauen in Medien 35 % (EU-Mittel 36 %). Justiz-Vertrauen besonders hoch in AT. (4) AT-DEMOKRATIE-MONITOR (IFES Institut für Politische Studien Wien) 2024: ähnliche Befunde — Demokratie-Zufriedenheit 65 %, Vertrauen Polit-Institutionen Bandbreite 25-50 %. (5) ZEITREIHE AT-DEMOKRATIE-ZUFRIEDENHEIT (Eurobarometer): 2014 76 %, 2017 73 %, 2019 71 %, 2021 70 % (Pandemie-Tief 65 %), 2023 67 %, 2024 67 %. Leichter Rückgang seit 2014 (-9 P.) aber Stabilisierung seit 2021. (6) Faktencheck: 'AT-Demokratie-Vertrauen ist im freien Fall' empirisch nicht belegt (-9 P. seit 2014, Stabilisierung). 'AT hat höchste Demokratie-Zufriedenheit' überzeichnet (DK + SE + FI sind höher). Pack distanziert sich von normativer Wertung.",
-        "eurobarometer_2024_demokratie": "Eurobarometer 2024 (101+102+103): AT-Demokratie-Zufriedenheit 67 % vs. EU-Mittel 53 %. Spitze: DK 87 %, SE 79 %, FI 78 %, NL 76 %. AT 6.-7. Platz EU-weit. Schluss-Licht: GR 24 %, RO 38 %, BG 39 %, IT 41 %.",
-        "vertrauen_institutionen": "Eurobarometer 2024 AT-Vertrauen-Werte: Parlament 38 % (EU-Mittel 33 %), Regierung 32 % (32 %), EU-Kommission 47 % (42 %), EU-Parlament 49 % (45 %), Justiz 71 % (53 %), Medien 35 % (36 %), Politiker:innen 26 % (23 %). AT-Werte konsistent über EU-Mittel.",
-        "ifes_demokratie_monitor": "IFES AT-Demokratie-Monitor 2024: ähnliche Befunde. Demokratie-Zufriedenheit 65 %, Vertrauen Bundesregierung 28 %, Bundespräsident 64 %, Parlament 35 %, Justiz 70 %. Konsistenz mit Eurobarometer. Trends: Bundespräsidenten-Vertrauen hoch trotz Politik-Verdrossenheit insgesamt.",
-        "at_zeitreihe_2014_2024": "AT-Demokratie-Zufriedenheit Eurobarometer 2014-2024: 2014 76 %, 2017 73 %, 2019 71 %, 2021 70 % (Pandemie 65 %), 2023 67 %, 2024 67 %. Trend -9 P. seit 2014, aber Stabilisierung seit 2021 — kein 'freier Fall'.",
-        "context": "Pack ist empirisch-deskriptiv. Pack distanziert sich von normativer Wertung."
+        "kernsatz_fuer_synthesizer": "Zahlen aus den amtlichen Eurobarometer-Tabellen (Volume A, Frage SD18a 'Zufriedenheit mit dem Funktionieren der Demokratie in (UNSER LAND)', Anteil 'Total Satisfied'). (1) AKTUELLER STAND — Standard-Eurobarometer 105, Feldzeit 12.3.–5.4.2026: Österreich 65 %, EU-27 60 %, Deutschland 61 %, Frankreich 56 %. Österreich liegt auf Platz 9 von 27; vorn Dänemark 91 %, Luxemburg 88 %, Schweden 85 %, Finnland 81 %, Irland 78 %; am Ende Griechenland 28 %, Zypern 36 %, Rumänien 45 %. (2) VERLAUF ÖSTERREICH: 62 % (EB 96, Winter 2021/22), 61 % (EB 100, Herbst 2023), 63 % (EB 101, Frühjahr 2024), 60 % (EB 102, Herbst 2024), 65 % (EB 105, Frühjahr 2026). Die Werte schwanken in einem Band von rund fünf Prozentpunkten und liegen durchgehend über dem EU-Schnitt. (3) EINORDNUNG: 'Das Demokratie-Vertrauen in Österreich ist im freien Fall' ist damit nicht belegt. 'Österreich hat die höchste Demokratie-Zufriedenheit' ist falsch — Dänemark, Luxemburg, Schweden, Finnland und Irland liegen darüber. Wer einen Rückgang behauptet, muss die Welle nennen: Von Frühjahr 2024 auf Herbst 2024 fiel der Wert um 3 Punkte, seither stieg er um 5 Punkte.",
+        "eb105_zufriedenheit": "Standard-Eurobarometer 105 (Feldzeit 12.3.–5.4.2026), SD18a, Anteil zufrieden: AT 65 %, EU-27 60 %, DE 61 %, FR 56 %. Spitze DK 91 %, LU 88 %, SE 85 %, FI 81 %, IE 78 %. Schlusslichter EL 28 %, CY 36 %, RO 45 %.",
+        "at_verlauf_eurobarometer": "AT-Zufriedenheit mit der Demokratie im eigenen Land (SD18a, Total 'Satisfied'): Winter 2021/22 62 %, Herbst 2023 61 %, Frühjahr 2024 63 %, Herbst 2024 60 %, Frühjahr 2026 65 %. EU-27 im selben Zeitraum: 56 %, 55 %, 58 %, 55 %, 60 %.",
+        "eb105_vertrauen_institutionen": "Eurobarometer 105, Frage QA6 ('neige dazu zu vertrauen'), Österreich gegenüber EU-27: Gesundheitspersonal 84 % (EU 83 %), Polizei 83 % (74 %), Justiz 79 % (58 %), regionale und lokale Behörden 78 % (63 %), Bundesheer 78 % (77 %), Lehrkräfte 74 % (80 %), Wissenschaft 70 % (79 %), Medien 56 % (43 %), Parlament 55 % (37 %), Regierung 51 % (37 %), Europäische Union 49 % (51 %), UNO 48 % (49 %), NATO 39 % (52 %), politische Parteien 36 % (25 %). Das Muster: hohes Vertrauen in Verwaltung, Justiz und Sicherheitsbehörden, niedriges in Parteien.",
+        "demokratie_monitor": "Der Österreichische Demokratie Monitor (Foresight, vormals SORA, im Auftrag der AK Wien) misst eine ANDERE Frage: ob das politische System gut funktioniert. 2024 sagten das 43 % — vier Punkte mehr als im Vorjahr und deutlich über dem Tiefstwert von 34 % aus dem Jahr 2022. Die Werte sind wegen der anderen Fragestellung nicht mit dem Eurobarometer vergleichbar.",
+        "methodenhinweis": "Eurobarometer-Werte sind Umfragewerte mit Stichprobenfehler (rund 1.000 Befragte je Land, in AT 1.009 in EB 102). Unterschiede von zwei bis drei Punkten zwischen zwei Wellen sind nicht zwingend eine Trendwende. 'Zufrieden' fasst 'sehr zufrieden' und 'eher zufrieden' zusammen.",
+        "context": "Deskriptiv. Keine Bewertung von Regierung, Parteien oder Institutionen — nur die gemessenen Anteile."
       },
       "context_notes": [
-        "AT 67 % Demokratie-Zufriedenheit ist EU-Mittelspitze (vs. EU-Mittel 53 %).",
-        "Vertrauen in Justiz besonders hoch (71 %), in Politiker:innen niedrig (26 %).",
-        "Trend -9 P. seit 2014 aber Stabilisierung seit 2021 — kein 'freier Fall'."
+        "Stand September 2026: jüngste verfügbare Welle ist Standard-Eurobarometer 105 (Frühjahr 2026). Bei neueren Wellen die Zahlen nachziehen.",
+        "Die Fragen unterscheiden sich: Eurobarometer fragt nach Zufriedenheit mit dem Funktionieren der Demokratie, der Demokratie Monitor danach, ob das politische System gut funktioniert. Werte beider Quellen nicht vermischen.",
+        "Korrigiert 2026-09-22: Die frühere Fassung nannte für 2024 AT 67 % und EU 53 % (amtlich: 60 % bzw. 55 % im Herbst 2024), dazu Vertrauenswerte (Parlament 38 %, Regierung 32 %, Justiz 71 %) und eine Zeitreihe 2014–2024, die sich in den Eurobarometer-Tabellen nicht finden. Der Demokratie Monitor war fälschlich dem IFES zugeschrieben."
       ],
       "claim_phrasings_handled": [
         "AT-Demokratie-Vertrauen ist im freien Fall",
         "Demokratie-Zufriedenheit in Österreich sinkt dramatisch",
         "AT hat höchste Demokratie-Zufriedenheit",
         "Politiker werden in AT verachtet",
-        "Justiz-Vertrauen ist in AT hoch"
+        "Justiz-Vertrauen ist in AT hoch",
+        "Die Mehrheit der Österreicher ist mit der Demokratie zufrieden",
+        "In Österreich vertrauen die Menschen dem Parlament mehr als im EU-Schnitt"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "demokratie-zufriedenheit",
+        "demokratiezufriedenheit",
+        "zufriedenheit mit der demokratie",
+        "eurobarometer",
+        "demokratie monitor",
+        "demokratie-monitor"
+      ],
       "trigger_composite": [
         [
-          "demokratie-zufriedenheit",
-          "demokratie-vertrauen",
-          "demokratiezufriedenheit",
-          "demokratievertrauen",
-          "eurobarometer",
-          "ifes",
-          "demokratie-monitor",
-          "vertrauen",
-          "politik-vertrauen",
-          "politiker-vertrauen",
-          "polit-verdrossen",
-          "polit-verdrossenheit",
-          "demokratie-müdigkeit",
-          "demokratiemüdigkeit",
-          "demokratiemuedigkeit",
-          "regierungs-vertrauen",
-          "regierungsvertrauen",
+          "demokratie",
+          "demokratisch",
+          "politisches system",
+          "institutionen",
           "parlament",
-          "justiz-vertrauen"
+          "justiz",
+          "rechtsstaat",
+          "politiker",
+          "politikerin",
+          "parteien"
         ],
         [
-          "zufrieden",
-          "unzufrieden",
           "vertrauen",
-          "vertrauenswürdig",
-          "vertrauenswuerdig",
+          "zufrieden",
+          "zufriedenheit",
+          "unzufrieden",
           "freier fall",
           "sinkt",
           "steigt",
-          "stabil",
-          "67 %",
-          "53 %",
-          "33 %",
-          "26 %",
-          "71 %",
-          "rang",
-          "platz",
-          "eu-mittel",
-          "eu-vergleich",
-          "skandinavien",
-          "österreich",
-          "oesterreich",
-          "deutschland",
-          "frankreich",
-          "italien",
-          "verfall",
-          "stabilisierung",
-          "trend",
-          "zeitreihe"
+          "verachtet",
+          "umfrage",
+          "eurobarometer"
         ]
       ],
       "trigger_all": [
         [
           [
-            "politik"
+            "österreich",
+            "oesterreich",
+            " at ",
+            "wien"
           ],
           [
-            "verachtet"
+            "demokratie",
+            "politisches system",
+            "parlament",
+            "justiz"
+          ],
+          [
+            "vertrauen",
+            "zufrieden",
+            "zufriedenheit",
+            "umfrage",
+            "krise"
           ]
         ]
-      ]
+      ],
+      "source_label": "Standard-Eurobarometer 105 (Frühjahr 2026) und 96/100/101/102, Volume A, Fragen SD18a und QA6 (amtliche Tabellen der Europäischen Kommission) + Österreichischer Demokratie Monitor 2024 (Foresight/SORA)",
+      "source_url": "https://europa.eu/eurobarometer/surveys/detail/3613",
+      "secondary_url": "https://www.foresight.at/news/demokratie-und-nationalratswahl"
     },
     {
       "id": "ep_sitz_strassburg_2026",

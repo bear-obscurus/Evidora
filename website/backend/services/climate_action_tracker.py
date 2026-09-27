@@ -71,7 +71,7 @@ Result-Schema:
     "topic": "climate_action_tracker",
     "display_value": "AT Overall: Insufficient | Targets: Insufficient | Current Policies: Insufficient | Fair Share: Insufficient",
     "description": "CAT-Methodik: Pledge-vs-Pariser-Trajectory. Caveat: alternative Methodologien (Climate Watch, OECD ENV-Linkages, IPCC AR6) kommen zu anderen Bewertungen.",
-    "url": "https://climateactiontracker.org/countries/eu-countries/",
+    "url": "https://climateactiontracker.org/countries/eu/",
     "secondary_url": "https://climateactiontracker.org/countries/",
     "source": "Climate Action Tracker (CAT) — Country Assessments (Stand 2024-11)",
   }

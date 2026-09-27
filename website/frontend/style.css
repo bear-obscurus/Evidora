@@ -32,8 +32,10 @@
 /* Language Toggle */
 .lang-toggle {
     position: fixed;
-    top: 20px;
-    right: 24px;
+    /* Ohne die Safe-Area-Insets liegt die Pille auf Geraeten mit Notch in
+       der Statusleiste (gemeldet 26.9.2026, iPhone Safari). */
+    top: calc(20px + env(safe-area-inset-top, 0px));
+    right: calc(24px + env(safe-area-inset-right, 0px));
     display: flex;
     gap: 4px;
     z-index: 100;
@@ -1598,18 +1600,52 @@ footer {
 
     /* Verdict-card metrics-grid stacks: label and value on one row,
        bar full-width on the next.  Avoids the cramped 3-col layout. */
+    /* Das Markup liefert je Messgroesse label -> track -> value. Der Balken
+       belegt eine ganze Zeile, und ohne `dense` schob die Auto-Platzierung
+       den Wert DAHINTER — gemessen lagen "98 %" und "Quellenabdeckung:" auf
+       derselben Zeile, das Label rechts abgeschnitten (26.9.2026).
+       `dense` fuellt den freien Platz neben dem Label wieder auf. */
     .metrics-grid {
-        grid-template-columns: auto 1fr;
+        grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+        grid-auto-flow: row dense;
         column-gap: 8px;
         font-size: 0.82rem;
     }
-    .metrics-grid .metric-label { justify-content: flex-start; }
+    /* `nowrap` liess die erste Spalte auf 234 px wachsen; das Raster wurde
+       breiter als die Karte und die Balken liefen 53 px darueber hinaus. */
+    .metrics-grid .metric-label {
+        justify-content: flex-start;
+        grid-column: 1;
+        white-space: normal;
+        min-width: 0;
+    }
     .metrics-grid .confidence-track,
     .metrics-grid .coverage-track {
         grid-column: 1 / -1;
         width: 100%;
+        min-width: 0;
     }
-    .metrics-grid .metric-value { text-align: right; }
+    .metrics-grid .metric-value {
+        grid-column: 2;
+        text-align: right;
+        white-space: normal;
+        min-width: 0;
+    }
+    /* Der zweite Wert ("15 von 30 Quellen lieferten Ergebnisse") ist ein
+       ganzer Satz und bekommt wie bisher seine eigene Zeile. */
+    .metrics-grid .metric-value ~ .metric-value {
+        grid-column: 1 / -1;
+        text-align: left;
+    }
+
+    /* Auf dem Telefon ist die Pille breit genug, um beim Scrollen die
+       Verdict-Ueberschrift zu verdecken (gemeldet mit Screenshots). Sie
+       scrollt jetzt mit dem Seitenkopf weg, statt darueber zu schweben. */
+    .lang-toggle {
+        position: absolute;
+        top: calc(14px + env(safe-area-inset-top, 0px));
+        right: calc(14px + env(safe-area-inset-right, 0px));
+    }
 
     /* Source-tag pills look better with tighter spacing at this width */
     .coverage-sources { gap: 4px; }
@@ -1631,7 +1667,11 @@ footer {
 /* Compact phones (<= 400 px) — extra tightening for iPhone SE etc. */
 @media (max-width: 400px) {
     body { font-size: 0.95rem; }
-    .lang-toggle { top: 14px; right: 14px; padding: 3px; }
+    .lang-toggle {
+        top: calc(14px + env(safe-area-inset-top, 0px));
+        right: calc(14px + env(safe-area-inset-right, 0px));
+        padding: 3px;
+    }
     .lang-btn { padding: 6px 12px; font-size: 0.85rem; }
 
     .logo h1 { font-size: 1.7rem; }

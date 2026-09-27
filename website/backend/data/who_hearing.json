@@ -223,7 +223,7 @@
       ],
       "source_label": "WHO World Report on Hearing 2021 + G-BA + JCIH 2019",
       "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
-      "secondary_url": "https://www.g-ba.de/themen/methodenbewertung/ambulant/frueherkennung/"
+      "secondary_url": "https://www.g-ba.de/beschluesse/681/"
     },
     {
       "id": "safe_listening_standard_2026",
@@ -313,7 +313,7 @@
         "laerm grenzwert",
         "verkehrslaerm grenzwert",
         "who laerm",
-        "lden",
+        " lden ",
         "lnight",
         "noise guidelines",
         "strassenlaerm grenzwert"
@@ -337,7 +337,7 @@
           "schwellwert",
           "norm",
           "who",
-          "db"
+          " db "
         ]
       ],
       "source_label": "WHO Environmental Noise Guidelines for the European Region 2018",
@@ -505,7 +505,7 @@
           "graz",
           "linz",
           "salzburg",
-          "at",
+          " at ",
           "anzahl",
           "zahl",
           "versorgung",
@@ -515,7 +515,7 @@
       ],
       "source_label": "MED-EL + CI-Zentren AT + Schaetzungen Hoer-Selbsthilfe Oesterreich",
       "source_url": "https://www.medel.com/de-at",
-      "secondary_url": "https://www.hoer-selbsthilfe.at/"
+      "secondary_url": "https://ci-a.at/"
     },
     {
       "id": "cost_of_inaction_2026",
@@ -560,7 +560,7 @@
           "kosten",
           "milliarden",
           "billion",
-          "usd",
+          " usd ",
           "dollar",
           "oekonom",
           "wirtschaft"
@@ -568,7 +568,7 @@
       ],
       "source_label": "WHO World Report on Hearing 2021",
       "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
-      "secondary_url": "https://www.who.int/news/item/03-03-2021-1-in-4-people-projected-to-have-hearing-problems-by-2050"
+      "secondary_url": "https://www.who.int/publications/i/item/9789240020481"
     },
     {
       "id": "demenz_risiko_2026",
@@ -846,7 +846,7 @@
       ],
       "source_label": "WHO World Report on Hearing 2021",
       "source_url": "https://www.who.int/publications/i/item/world-report-on-hearing",
-      "secondary_url": "https://www.who.int/news/item/03-03-2021-1-in-4-people-projected-to-have-hearing-problems-by-2050"
+      "secondary_url": "https://www.who.int/publications/i/item/9789240020481"
     },
     {
       "id": "ototoxische_medikamente_2026",

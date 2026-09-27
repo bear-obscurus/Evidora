@@ -1,0 +1,300 @@
+{
+  "hinweis": "Batterie fuer tools/prompt_zensus.py. 'muss' = Zeichenfolgen, die im gekuerzten Synthesizer-Prompt ankommen MUESSEN, damit der Claim ueberhaupt korrekt beantwortbar ist. Erweitern, sobald ein Fakt korrigiert wird: der Zensus haelt fest, dass die neue Zahl auch ankommt.",
+  "claims": [
+    {
+      "claim": "Wie hoch ist die Leerstandsabgabe in Tirol?",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "10 bis 215"
+      ]
+    },
+    {
+      "claim": "Die Leerstandsabgabe in Vorarlberg betraegt 3.000 Euro im Jahr",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "8,20 bis 18,50"
+      ]
+    },
+    {
+      "claim": "Gibt es in der Steiermark eine Leerstandsabgabe?",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "1.10.2022"
+      ]
+    },
+    {
+      "claim": "Tirol und Vorarlberg haben die Leerstandsabgabe 2024 eingefuehrt",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "1.1.2023"
+      ]
+    },
+    {
+      "claim": "Wie viele Wohnungen hat die Leerstandsabgabe zurueck auf den Markt gebracht?",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "keine veröffentlichte"
+      ]
+    },
+    {
+      "claim": "In Wien bekommen 140.000 Haushalte Wohnbeihilfe",
+      "datei": "sozialstaat_pack.json",
+      "fakt": "wohnbeihilfe_at_2026",
+      "muss": [
+        "31.043"
+      ]
+    },
+    {
+      "claim": "Wie viel gibt Oesterreich fuer Wohnbeihilfe aus?",
+      "datei": "sozialstaat_pack.json",
+      "fakt": "wohnbeihilfe_at_2026",
+      "muss": [
+        [
+          "265 Mio.",
+          "2024 vorläufig 265"
+        ]
+      ]
+    },
+    {
+      "claim": "Wie viele Frauen wurden 2024 in Oesterreich ermordet?",
+      "datei": "gleichstellung_pack.json",
+      "fakt": "femizide_at_de_2026",
+      "muss": [
+        [
+          "40 vollendete Morde",
+          "40 auf vollendete Morde"
+        ]
+      ]
+    },
+    {
+      "claim": "Die Agrarfoerderung in Oesterreich betraegt 7 Milliarden Euro pro Jahr",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "agrar_subventionen_at_2026",
+      "muss": [
+        [
+          "2.652 Mio.",
+          "2.652 Mio. Euro"
+        ]
+      ]
+    },
+    {
+      "claim": "Die Landwirtschaft verursacht die meisten Treibhausgase in Oesterreich",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "klima_landwirtschaft_2026",
+      "muss": [
+        "12,6 %"
+      ]
+    },
+    {
+      "claim": "Deutschland hat den Familiennachzug zu subsidiaer Schutzberechtigten ausgesetzt",
+      "datei": "migration_pack.json",
+      "fakt": "migration_familiennachzug_2026",
+      "muss": [
+        "24.7.2025"
+      ]
+    },
+    {
+      "claim": "Der Familiennachzug ist in Deutschland auf 1.000 Visa pro Monat begrenzt",
+      "datei": "migration_pack.json",
+      "fakt": "migration_familiennachzug_2026",
+      "muss": [
+        "nicht angewandt"
+      ]
+    },
+    {
+      "claim": "Die Zufriedenheit mit der Demokratie in Oesterreich ist im freien Fall",
+      "datei": "demokratie_pack.json",
+      "fakt": "at_demokratie_zufriedenheit_2026",
+      "muss": [
+        "65 %"
+      ]
+    },
+    {
+      "claim": "Wie viele Wohnbeihilfe-Bezieher hatte Wien 2015?",
+      "datei": "sozialstaat_pack.json",
+      "fakt": "wohnbeihilfe_at_2026",
+      "muss": [
+        "45.381"
+      ]
+    },
+    {
+      "claim": "Unsere Lebensmittel sind voller Pestizide",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "pestizid_rueckstaende_2026",
+      "muss": [
+        [
+          "96,7 %",
+          "58,4 %"
+        ]
+      ]
+    },
+    {
+      "claim": "Wie viele Lebensmittelproben überschreiten die Grenzwerte?",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "pestizid_rueckstaende_2026",
+      "muss": [
+        [
+          "1,8 %",
+          "3,3 %"
+        ]
+      ]
+    },
+    {
+      "claim": "Bio-Lebensmittel sind komplett pestizidfrei",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "pestizid_rueckstaende_2026",
+      "muss": [
+        [
+          "80,4 %",
+          "0,4 %"
+        ]
+      ]
+    },
+    {
+      "claim": "Wurde eine Leerstandsabgabe-Verordnung vom Verfassungsgerichtshof aufgehoben?",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "V85/2025"
+      ]
+    },
+    {
+      "claim": "Wie hoch ist die Leerstandsabgabe in Frankreich?",
+      "datei": "wohnen_pack.json",
+      "fakt": "leerstandsabgabe_wirkung_2026",
+      "muss": [
+        "17 %"
+      ]
+    },
+    {
+      "claim": "In Deutschland werden immer mehr Frauen von ihren Partnern getoetet",
+      "datei": "gleichstellung_pack.json",
+      "fakt": "femizide_at_de_2026",
+      "muss": [
+        [
+          "8,4 % weniger",
+          "−8,4 %",
+          "938"
+        ]
+      ]
+    },
+    {
+      "claim": "Wie viele Frauen wurden 2024 in Deutschland von ihren Partnern getötet?",
+      "datei": "gleichstellung_pack.json",
+      "fakt": "femizide_at_de_2026",
+      "muss": [
+        [
+          "133 bei Partnerschaftsgewalt",
+          "133 Partnerschaftsgewalt",
+          "133 vollendete Taten",
+          "GETÖTET wurden 133"
+        ]
+      ]
+    },
+    {
+      "claim": "E-Autos haben eine schlechtere CO2-Bilanz als Verbrenner",
+      "datei": "energie_klima_pack.json",
+      "fakt": "e_auto_akku_co2_2026",
+      "muss": [
+        [
+          "63 g",
+          "73 %"
+        ]
+      ]
+    },
+    {
+      "claim": "Wie lange muss ein E-Auto fahren, bis es sich klimatisch rechnet?",
+      "datei": "energie_klima_pack.json",
+      "fakt": "e_auto_akku_co2_2026",
+      "muss": [
+        "17.000"
+      ]
+    },
+    {
+      "claim": "SUVs sind gefährlicher für Fußgänger",
+      "datei": "mobilitaet_pack.json",
+      "fakt": "mobilitaet-suv_sicherheit_2026",
+      "muss": [
+        [
+          "44",
+          "45 %"
+        ]
+      ]
+    },
+    {
+      "claim": "SUV-Fahrer sind bei einem Unfall besser geschützt",
+      "datei": "mobilitaet_pack.json",
+      "fakt": "mobilitaet-suv_sicherheit_2026",
+      "muss": [
+        [
+          "keinen Beleg",
+          "1.100"
+        ]
+      ]
+    },
+    {
+      "claim": "In der EU überschreiten mehr als drei Prozent der Lebensmittelproben die Pestizid-Höchstgehalte",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "pestizid_rueckstaende_2026",
+      "muss": [
+        [
+          "3,3 %"
+        ]
+      ]
+    },
+    {
+      "claim": "In Deutschland sterben jedes Jahr über 300 Frauen durch ihren Partner",
+      "datei": "gleichstellung_pack.json",
+      "fakt": "femizide_at_de_2026",
+      "muss": [
+        [
+          "133 bei Partnerschaftsgewalt",
+          "133 Partnerschaftsgewalt",
+          "133 vollendete Taten",
+          "GETÖTET wurden 133"
+        ]
+      ]
+    },
+    {
+      "claim": "Die Tempolimit-Studie des Umweltbundesamts stammt von Friedrich",
+      "datei": "mobilitaet_pack.json",
+      "fakt": "mobilitaet-tempolimit_130_2026",
+      "muss": [
+        [
+          "stamme von Friedrich, meint Texte 176/2024",
+          "meint Texte 176/2024"
+        ]
+      ]
+    },
+    {
+      "claim": "Wie viel CO2 spart ein Tempolimit 130 auf Autobahnen?",
+      "datei": "mobilitaet_pack.json",
+      "fakt": "mobilitaet-tempolimit_130_2026",
+      "muss": [
+        [
+          "1,9 Mio. t",
+          "1,9 Millionen"
+        ]
+      ]
+    },
+    {
+      "claim": "Wer hat die 1,9 Millionen Tonnen CO2 berechnet?",
+      "datei": "mobilitaet_pack.json",
+      "fakt": "mobilitaet-tempolimit_130_2026",
+      "muss": [
+        [
+          "Texte 38/2020 (Lange, Hendzlik, Schmied",
+          "1,9 Mio. t stehen in Texte 38/2020",
+          "Lange, Hendzlik und Schmied"
+        ]
+      ]
+    }
+  ],
+  "bekannte_luecken": [],
+  "hinweis_luecken": "bekannte_luecken sind gemessene Faelle, in denen die entscheidende Angabe das Zeichenbudget NICHT erreicht. Die Liste ist seit Massnahme B (PR #194) leer — neue Eintraege brauchen eine Begruendung und duerfen nicht mehr als drei werden."
+}
