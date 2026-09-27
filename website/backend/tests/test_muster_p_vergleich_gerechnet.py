@@ -179,3 +179,62 @@ def test_umgekehrte_richtung_wird_richtig_gelesen():
 @pytest.mark.parametrize("verdict", ["mixed", "unverifiable"])
 def test_unbestimmte_labels_werden_nicht_eskaliert(verdict):
     assert _lauf(verdict, FASSUNG_A, PRO)["verdict"] == verdict
+
+
+# --------------------------------------------------------------------------
+# Verneinte Vergleichs-Claims (HART40-B, 27.9.2026)
+# --------------------------------------------------------------------------
+# "Die ÖBB sind NICHT pünktlicher als die Deutsche Bahn" bekam true@0.85 —
+# Muster P rechnete 78,2 > 62,5 und bejahte damit einen verneinten Claim.
+# Die Zerlegung sah nur "pünktlicher als" und ignorierte das "nicht" davor.
+# Der Fehler steckte in meinem eigenen Guard vom selben Tag.
+#
+# `vergleich_negiert()` beantwortet die Frage für BEIDE Vergleichsmuster;
+# O und P drehen ihr Ergebnis um.
+
+from services.verdict_postprocess import vergleich_negiert  # noqa: E402
+
+NEG_PRO = "Die ÖBB sind nicht pünktlicher als die Deutsche Bahn"
+NEG_CONTRA = "Die Deutsche Bahn ist nicht pünktlicher als die ÖBB"
+
+
+@pytest.mark.parametrize("claim,erwartet", [
+    ("Die ÖBB sind nicht pünktlicher als die Deutsche Bahn", True),
+    ("Die ÖBB sind kein bisschen pünktlicher als die Deutsche Bahn", True),
+    ("Die ÖBB sind nie pünktlicher als die Deutsche Bahn", True),
+    ("Die ÖBB sind pünktlicher als die Deutsche Bahn", False),
+    ("Die ÖBB sind deutlich pünktlicher als die Deutsche Bahn", False),
+])
+def test_verneinung_wird_erkannt(claim, erwartet):
+    assert vergleich_negiert(claim.lower()) is erwartet, claim
+
+
+@pytest.mark.parametrize("summary", [FASSUNG_A, FASSUNG_B])
+@pytest.mark.parametrize("eingang", ["true", "mostly_true"])
+def test_verneinter_claim_wird_widerlegt(summary, eingang):
+    """Der Fehlschlag aus HART40-B: Die Zahlen bestätigen den VERGLEICH,
+    also ist seine Verneinung falsch."""
+    assert _lauf(eingang, summary, NEG_PRO)["verdict"] == "false"
+
+
+@pytest.mark.parametrize("summary", [FASSUNG_A, FASSUNG_B])
+@pytest.mark.parametrize("eingang", ["false", "mostly_false"])
+def test_die_wahre_verneinung_wird_bestaetigt(summary, eingang):
+    """Gegenrichtung: Die DB ist tatsächlich nicht pünktlicher — die
+    Verneinung stimmt also."""
+    assert _lauf(eingang, summary, NEG_CONTRA)["verdict"] == "true"
+
+
+@pytest.mark.parametrize("summary", [FASSUNG_A, FASSUNG_B])
+def test_stimmige_verneinte_labels_bleiben(summary):
+    assert _lauf("false", summary, NEG_PRO)["verdict"] == "false"
+    assert _lauf("true", summary, NEG_CONTRA)["verdict"] == "true"
+
+
+def test_die_unverneinten_faelle_sind_unveraendert():
+    """Muss-Kontrolle: Die vier Grundfälle von vorhin dürfen sich durch die
+    Verneinungs-Erweiterung nicht bewegt haben."""
+    assert _lauf("mostly_false", FASSUNG_A, PRO)["verdict"] == "true"
+    assert _lauf("true", FASSUNG_A, CONTRA)["verdict"] == "false"
+    assert _lauf("true", FASSUNG_A, PRO)["verdict"] == "true"
+    assert _lauf("false", FASSUNG_A, CONTRA)["verdict"] == "false"
