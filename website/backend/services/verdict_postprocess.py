@@ -618,6 +618,15 @@ _O_HEDGE = (
     "hypothetisch", "sofern", "falls",
 )
 _O_NEGATION = ("nicht", "kein", "keine", "keinen", "weniger", "kaum")
+# Saetze, die den Claim nur WIEDERHOLEN, bevor sie ihn pruefen. Sie tragen
+# den Komparativ des Claims woertlich und sahen deshalb wie eine
+# Bestaetigung aus — live am 27.9.2026 einmal falsch korrigiert:
+#   Claim:   "Die Deutsche Bahn ist puenktlicher als die ÖBB"  (falsch)
+#   Summary: "Die Behauptung sagt, die Deutsche Bahn sei puenktlicher als
+#             die ÖBB. ... Damit ist die DB deutlich weniger puenktlich."
+# Der erste Satz ist Referat, nicht Aussage. Solche Saetze zaehlen nicht.
+_O_WIEDERHOLUNG = ("behauptung", "behauptet", "claim", "aussage lautet",
+                   "es wird gesagt", "angenommen wird")
 
 
 def vergleich_aus_claim(claim_lc: str):
@@ -669,6 +678,8 @@ def summary_bestaetigt_vergleich(claim_lc: str, summary_lc: str) -> bool:
             continue
         if any(h in satz_n for h in _O_HEDGE):
             continue
+        if any(w in satz_n for w in _O_WIEDERHOLUNG):
+            continue                      # Referat des Claims, keine Aussage
         vorn = satz_n[:stelle]
         if any(n in re.findall(r"[a-zäöüßa-z]+", vorn) for n in _O_NEGATION):
             continue
