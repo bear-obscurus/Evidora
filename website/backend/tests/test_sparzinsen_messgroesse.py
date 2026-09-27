@@ -147,9 +147,14 @@ def test_warnung_nennt_alle_drei_verwechselbaren_saetze():
     „Zinsen" — die Warnung muss alle drei auseinanderhalten."""
     res = _parse_sdmx_json(_antwort("x", [0.40, 0.41, 0.43]), _spec("sparbuch"))
     text = " ".join(r["title"] for r in res)
-    assert "MESSGROESSE" in text
+    # Marker seit 27.9.2026 "Zwei Messgroessen" statt "MESSGROESSE":
+    # die Warnung musste unter PROMPT_MAX_STR passen.
+    assert "Zwei Messgroessen" in text
     assert "Leitzins" in text and "Einlagefazilitaet" in text
-    assert "PRIVATEN HAUSHALTEN" in text
+    # "privater Haushalte" steht seit 27.9.2026 im LABEL statt in der
+    # Warnung — die musste unter PROMPT_MAX_STR passen, und doppelt
+    # brauchte es die Angabe nicht.
+    assert "privater Haushalte" in text
     assert "Vielfaches" in text, "Der Unterschied Sparbuch/Festgeld muss stehen"
 
 
@@ -159,7 +164,7 @@ def test_warnung_haengt_am_juengsten_wert_und_nur_einmal():
     zitiert wird."""
     res = _parse_sdmx_json(_antwort("x", [0.40, 0.41, 0.40, 0.41, 0.40, 0.43]),
                            _spec("sparbuch"))
-    mit_warnung = [r for r in res if "MESSGROESSE" in r["title"]]
+    mit_warnung = [r for r in res if "Zwei Messgroessen" in r["title"]]
     assert len(mit_warnung) == 1
     assert mit_warnung[0] is res[-1], "Warnung gehört an den jüngsten Wert"
     assert mit_warnung[0]["value"] == 0.43
@@ -180,7 +185,7 @@ def test_leitzins_traegt_keine_sparzins_warnung():
     """Die Warnung gehört an die Einlagenzinsen, nicht an jede Reihe —
     sonst steht sie auch bei Wechselkursen und wird zu Rauschen."""
     res = _parse_sdmx_json(_antwort("x", [2.40, 2.15, 2.40]), _spec("leitzins"))
-    assert not any("MESSGROESSE" in r["title"] for r in res)
+    assert not any("Zwei Messgroessen" in r["title"] for r in res)
 
 
 # --------------------------------------------------------------------------
@@ -340,7 +345,7 @@ def test_die_zusatzreihe_erbt_den_vorrang():
 
 def test_beide_reihen_tragen_die_messwarnung():
     for s in _reihen("Wie hoch sind die Sparzinsen?"):
-        assert "duerfen nicht gegeneinander eingesetzt werden" in s["hinweis"]
+        assert "nie gegeneinander einsetzen" in s["hinweis"]
 
 
 def test_der_leitzins_bleibt_unberuehrt():
@@ -398,3 +403,54 @@ def test_nur_aktuell_greift_nicht_bei_historischen_claims():
     import inspect
     quelle = inspect.getsource(_parse_sdmx_json)
     assert "not historical" in quelle
+
+
+# --------------------------------------------------------------------------
+# Die Warnung muss unter die Kürzung passen (Messung 27.9.2026)
+# --------------------------------------------------------------------------
+# Beim Nachmessen von #220 gefunden: Der Hinweis hängt am Titel des
+# jüngsten Datenpunkts, und der Synthesizer kürzt jedes String-Feld auf
+# PROMPT_MAX_STR (400). Die Titel waren 525 bzw. 514 Zeichen lang — die
+# zweite Hälfte der Warnung, also genau der Satz über die beiden
+# Messgrößen, erreichte das Modell NIE. Die Warnung aus #160/#161 stand
+# seit ihrer Einführung nur zur Hälfte im Prompt.
+#
+# Sie ist deshalb gekürzt und nach Wichtigkeit geordnet: erst die
+# Verwechslungsgefahr, dann die Handlungsanweisung für allgemeine Fragen,
+# zuletzt die Abgrenzung zum Leitzins.
+
+MAX_WARNUNG = 240
+"""Obergrenze der Warnung.
+
+Gemessen am 27.9.2026 gegen die echte EZB-API: Mit einer 382 Zeichen
+langen Warnung waren die fertigen Titel 525 und 514 Zeichen lang und
+wurden bei PROMPT_MAX_STR (400) abgeschnitten — mitten im Satz über die
+beiden Messgrößen. Mit 238 Zeichen sind dieselben Titel 381 und 370
+Zeichen lang und kommen vollständig an. 240 ist die Grenze, die diesen
+Abstand hält; wer sie anhebt, muss die Titel neu messen."""
+
+
+def test_die_warnung_passt_unter_die_kuerzung():
+    from services.ecb import MESSWARNUNG
+    from services.synthesizer import PROMPT_MAX_STR
+    assert len(MESSWARNUNG) <= MAX_WARNUNG, len(MESSWARNUNG)
+    assert MAX_WARNUNG < PROMPT_MAX_STR
+
+
+def test_die_warnung_nennt_zuerst_die_verwechslungsgefahr():
+    from services.ecb import MESSWARNUNG
+    assert MESSWARNUNG.startswith("Zwei Messgroessen")
+    assert "nie gegeneinander einsetzen" in MESSWARNUNG
+
+
+def test_die_warnung_sagt_was_bei_einer_allgemeinen_frage_zu_tun_ist():
+    """Der Anlass: "Wie hoch sind die Sparzinsen?" bekam unverifiable@0.1,
+    obwohl beide Werte in der Begründung standen."""
+    from services.ecb import MESSWARNUNG
+    assert "Bei allgemeiner Frage BEIDE nennen" in MESSWARNUNG
+
+
+def test_die_abgrenzung_zum_leitzins_bleibt_erhalten():
+    from services.ecb import MESSWARNUNG
+    assert "Nicht der Leitzins" in MESSWARNUNG
+    assert "nicht die Einlagefazilitaet" in MESSWARNUNG
