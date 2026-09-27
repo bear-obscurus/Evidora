@@ -12,12 +12,17 @@ BASE_URL = "https://data-api.ecb.europa.eu/service/data"
 # heissen und regelmaessig verwechselt werden — der Anlass war genau diese
 # Verwechslung (QA50E-Befund 4).
 MESSWARNUNG = (
-    "MESSGROESSE: das ist der Zinssatz, den oesterreichische Banken PRIVATEN "
-    "HAUSHALTEN zahlen — nicht der EZB-Leitzins und nicht die "
-    "EZB-Einlagefazilitaet (das ist der Satz, den BANKEN bei der EZB "
-    "bekommen). Taeglich faellige Einlagen (Sparbuch, Girokonto) und "
-    "gebundene Einlagen (Termin-/Festgeld) unterscheiden sich um ein "
-    "Vielfaches und duerfen nicht gegeneinander eingesetzt werden."
+    # Kurz gehalten, und das ist keine Stilfrage: Der Hinweis haengt am
+    # Titel des juengsten Datenpunkts, und der Synthesizer kuerzt jedes
+    # String-Feld auf PROMPT_MAX_STR (400). Am 27.9.2026 gemessen war der
+    # Titel 525 Zeichen lang — die zweite Haelfte der Warnung, also genau
+    # der Satz ueber die beiden Messgroessen, erreichte das Modell nie.
+    # Reihenfolge nach Wichtigkeit: erst die Verwechslungsgefahr, dann die
+    # Handlungsanweisung, zuletzt die Abgrenzung zum Leitzins.
+    "Zwei Messgroessen: taeglich faellig (Sparbuch, Giro) und gebunden "
+    "(Termin-/Festgeld) unterscheiden sich um ein Vielfaches, nie "
+    "gegeneinander einsetzen. Bei allgemeiner Frage BEIDE nennen. Nicht "
+    "der Leitzins, nicht die Einlagefazilitaet."
 )
 
 # Map keywords (DE + EN) to ECB series keys
