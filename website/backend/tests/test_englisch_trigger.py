@@ -347,11 +347,21 @@ def test_englischer_parteisuperlativ_erreicht_keine_laenderquelle():
 
 def test_guard_greift_auch_im_englischen_pass_zentral():
     """Der Glossar-Pass allein wuerde den CPI-Fakt treffen; find_matching_items
-    haelt ihn an, auch fuer Packs, die den Guard selbst nicht rufen."""
+    haelt ihn an, auch fuer Packs, die den Guard selbst nicht rufen.
+
+    Bis 27.9.2026 lieferte das Pack hier GAR NICHTS — der Pass wurde
+    komplett uebersprungen. Seither filtert er: Fakten mit
+    ``partei_korruption_tauglich`` gehen durch, Laenderquellen nicht. Der
+    Zweck des Guards ist damit unveraendert (kein Laenderwert fuer eine
+    Partei-Aussage), die Frage bleibt aber beantwortbar — in beiden
+    Sprachen gleich. Siehe tests/test_parteien_korruption_datenlage.py."""
     claim = "The FPÖ has the highest corruption of all parties"
     fakt = _fakt("demokratie_pack.json", "korruption_index_2026")
     assert englisch_match(fakt, claim.lower())
-    assert _finde("demokratie_pack.json", claim) == []
+    geliefert = _finde("demokratie_pack.json", claim)
+    ids = [f.get("id") for f in geliefert] if geliefert and isinstance(geliefert[0], dict) else geliefert
+    assert "korruption_index_2026" not in ids, ids
+    assert ids == ["parteien_korruption_datenlage_2026"], ids
 
 
 # --------------------------------------------------------------------------

@@ -266,3 +266,42 @@ def test_normale_demokratie_claims_unberuehrt():
     ids = [f.get("id") for f in dp._erlaubte_fakten(
         "Wie zufrieden sind die Österreicher mit ihrer Demokratie?")]
     assert ids == ["at_demokratie_zufriedenheit_2026"]
+
+
+# --------------------------------------------------------------------------
+# Englischer Pfad: filtern statt überspringen (27.9.2026)
+# --------------------------------------------------------------------------
+# #213 löste das für den deutschen Claim, der englische lief weiter ins
+# Leere: Der zentrale Englisch-Pass in find_matching_items übersprang bei
+# `block_country_sources` ALLE Packs statt nur die Länderquellen. Gemeint
+# war, den CPI fernzuhalten; getroffen wurde auch der eine Fakt, der die
+# Frage beantwortet.
+
+from services._topic_match import find_matching_items  # noqa: E402
+
+_PACK_PFAD = str(BACKEND / "data" / "demokratie_pack.json")
+
+
+def _pack_treffer(claim):
+    return [f.get("id") for f in find_matching_items(
+        _PACK_PFAD, "facts", claim_lc=claim.lower(), full_claim=claim, descriptor_fn=None)]
+
+
+@pytest.mark.parametrize("claim", [
+    "The FPÖ is the most corrupt party in Austria",
+    "Which party in Austria had the most corruption cases?",
+])
+def test_englischer_superlativ_erreicht_den_fakt(claim):
+    assert _pack_treffer(claim) == ["parteien_korruption_datenlage_2026"], claim
+
+
+def test_englisch_und_deutsch_liefern_dasselbe():
+    assert (_pack_treffer("The FPÖ is the most corrupt party in Austria")
+            == _pack_treffer("Die FPÖ ist die korrupteste Partei Österreichs"))
+
+
+def test_der_cpi_fakt_bleibt_auch_englisch_draussen():
+    """Der Zweck des Guards bleibt gewahrt: kein Länderwert für eine
+    Partei-Aussage, in keiner Sprache."""
+    assert "korruption_index_2026" not in _pack_treffer(
+        "Which party in Austria had the most corruption cases?")
