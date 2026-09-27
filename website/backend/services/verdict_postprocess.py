@@ -1004,49 +1004,51 @@ def _superlative_attributed_elsewhere(claim_lower, summary_norm):
     return False
 
 
-# --- Konfidenz-Deckel bei duenner Beleglage (Messung 27.9.2026) ----------
-# 140 Live-Laeufe (QA50F + QA50G + HART40), mechanisch gegen vorab
-# festgeschriebene Erwartungen bewertet. Auf den BESTIMMTEN Labels
-# (true/false/mostly_*) — dort, wo der Dienst eine Behauptung aufstellt:
+# --- Konfidenz-Deckel bei duenner Beleglage ------------------------------
+# Stand 27.9.2026, nachgerechnet auf 180 Live-Laeufe aus ZWEI unabhaengigen
+# Batterien (QA50F+QA50G+HART40 = 140, HART40-B = 40). Auf den BESTIMMTEN
+# Labels, wo der Dienst eine Behauptung aufstellt:
 #
-#     Konfidenz   richtig 0,902 | falsch 0,898   AUC 0,604  (Muenzwurf)
+#                     Korpus 1        Korpus 2 (unabhaengig)   beide
+#   Konfidenz  AUC      0,604            0,483                 0,624
+#   Belegzahl  AUC      0,643            0,489                 0,595
 #
-# Alle elf falschen bestimmten Verdicts lagen zwischen 0,85 und 0,95, also
-# ununterscheidbar von den richtigen. Die Zahl sagt, welches LABEL vergeben
-# wurde, nicht ob es stimmt — und beglaubigt damit den Fehler mit.
+# ZWEI Befunde, beide wichtig:
 #
-# Was messbar mitgeht, ist die Beleglage (69 Laeufe mit erfasster Evidenz):
+# 1. Die Konfidenz traegt kein Signal. Das repliziert: In beiden Korpora
+#    liegen richtige und falsche Verdicts gleichauf (0,902/0,898 bzw.
+#    0,830/0,836). Der Deckel bleibt deshalb noetig.
 #
-#     Belege   n    Trefferquote   behauptete Konfidenz
-#       1      28      78,6 %            0,87
-#       2      15      80,0 %            0,90
-#       3      12      83,3 %            0,92
-#      4+      14     100,0 %            0,92
+# 2. Die ABSTUFUNG nach Belegzahl repliziert NICHT. Sie sah auf 4 Negativen
+#    nach AUC 0,753 aus, auf 11 nach 0,643 — und auf dem unabhaengigen
+#    Korpus nach 0,489, also Muenzwurf. Die Trefferquoten ueber alle 180:
 #
-# Die Konfidenz steigt mit der Beleglage kaum (0,87 → 0,92), die
-# Trefferquote deutlich (79 % → 100 %). Bei ein bis zwei Belegen behauptet
-# der Dienst also rund 0,9 und liegt in einem Fuenftel der Faelle daneben.
+#        1 Beleg   79,1 %  (n=43)
+#        2 Belege  75,0 %  (n=24)   <- NIEDRIGER als bei einem Beleg
+#        3 Belege  81,2 %  (n=16)
+#       4+ Belege 100,0 %  (n=17)
 #
-# Dies ist bewusst KEINE Kalibrierung, sondern ein DECKEL: Er senkt nur,
-# nie hebt er an, und er greift nur bei bestimmten Labels. Die Stufen sind
-# an der beobachteten Trefferquote orientiert und konservativ gerundet; die
-# Stichprobe ist klein (n=12 bis 28 je Stufe), weshalb der Deckel eher zu
-# zurueckhaltend als zu scharf gewaehlt ist. Eine echte Kalibrierung
-# braucht mehr Negative und einen zweiten, unabhaengigen Korpus.
-_KONFIDENZ_DECKEL: dict[int, float] = {
-    0: 0.50,   # sollte der Beleg-Guard (#166) gar nicht durchlassen
-    1: 0.80,
-    2: 0.85,
-    3: 0.90,
-}
+#    Die Monotonie, auf der die Stufen 0,80/0,85/0,90 beruhten, gibt es
+#    nicht. Was bleibt, ist EIN Unterschied: unter vier Belegen rund 75-81 %,
+#    ab vier Belegen kein Fehlschlag. Genau das bildet der Deckel jetzt ab —
+#    eine Stufe statt drei, weil die Daten keine drei hergeben.
+_KONFIDENZ_DECKEL_DUENN = 0.85     # 1-3 Belege: gemessen 75-81 % richtig
+_KONFIDENZ_DECKEL_LEER = 0.50      # 0 Belege bei bestimmtem Label; n=1,
+                                   # faengt ohnehin der Beleg-Guard (#166)
 _BESTIMMTE_LABELS = ("true", "false", "mostly_true", "mostly_false")
 
 
 def deckel_fuer(anzahl_belege: int) -> float | None:
-    """Obergrenze der Konfidenz fuer diese Beleglage, oder None ab 4 Belegen."""
+    """Obergrenze der Konfidenz fuer diese Beleglage, oder None ab 4 Belegen.
+
+    Eine Stufe, keine Abstufung: Die feinere Staffelung war nicht
+    replizierbar (siehe Messung oben).
+    """
     if anzahl_belege >= 4:
         return None
-    return _KONFIDENZ_DECKEL[max(0, anzahl_belege)]
+    if anzahl_belege <= 0:
+        return _KONFIDENZ_DECKEL_LEER
+    return _KONFIDENZ_DECKEL_DUENN
 
 
 def apply_verdict_postprocessing(result, source_results, original_claim):
