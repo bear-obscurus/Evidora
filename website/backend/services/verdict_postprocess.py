@@ -609,9 +609,29 @@ def zahl_zum_claim_gegenstand(claim_lower, summary_lower, schwelle_roh):
 # "true" zu machen ist belegt; der umgekehrte Fall (Summary dreht den
 # Vergleich um) braucht eine Operanden-Zuordnung ueber Abkuerzungen hinweg
 # ("Deutsche Bahn" -> "DB") und ist ein eigener Schritt.
+# "puenktlicher als" — und "mehr X als Y", die haeufigste deutsche
+# Vergleichsform, die das alte Muster nicht sah: "mehr" endet nicht auf
+# "-er". HART30-C, 27.9.2026: "In Österreich wurden 2024 mehr Männer als
+# Frauen ermordet" bekam true@0.85, waehrend die Summary "also mehr Frauen
+# als Männer" sagte — beide Vergleichsmuster waren blind dafuer.
 _O_KOMPARATIV_RE = re.compile(
-    r"\b([a-zäöüß]{4,})er\s+als\b"
+    r"\b([a-zäöüß]{4,})er\s+als\b|\b(mehr|weniger)\b"
 )
+
+
+def _o_komparativ(text_n: str):
+    """``(wort, treffer)`` des Komparativs oder ``(None, None)``.
+
+    Bei "mehr/weniger" steht der Vergleichsgegenstand ZWISCHEN Komparativ
+    und "als" ("mehr Maenner als Frauen"), bei "-er als" davor ("die ÖBB
+    sind puenktlicher als ..."). Der Aufrufer braucht daher beides.
+    """
+    m = _O_KOMPARATIV_RE.search(text_n)
+    if not m:
+        return None, None
+    if m.group(1):
+        return normalisiere(m.group(1) + "er"), m
+    return normalisiere(m.group(2)), m
 _O_HEDGE = (
     "könnte", "koennte", "möglicherweise", "moeglicherweise", "vermutlich",
     "wäre", "waere", "würde", "wuerde", "dürfte", "duerfte", "angeblich",
@@ -629,18 +649,38 @@ _O_WIEDERHOLUNG = ("behauptung", "behauptet", "claim", "aussage lautet",
                    "es wird gesagt", "angenommen wird")
 
 
+def _o_seiten(text_n: str, komparativ: str, stelle: int):
+    """``(vorn, hinten)`` um den Komparativ — oder None.
+
+    Bei "-er als" steht der Gegenstand DAVOR ("die ÖBB sind puenktlicher
+    als die DB"), bei "mehr/weniger" liegen BEIDE Seiten dahinter ("mehr
+    Maenner als Frauen"). Wer das nicht trennt, nimmt bei "mehr" den halben
+    Satz davor als Subjekt.
+    """
+    if komparativ in ("mehr", "weniger"):
+        rest = text_n[stelle + len(komparativ):]
+        trenner = re.search(r"\bals\b", rest)
+        if not trenner:
+            return None
+        return rest[:trenner.start()], rest[trenner.end():]
+    hinten = text_n[stelle + len(komparativ):]
+    return text_n[:stelle], re.sub(r"^\s*als\b", "", hinten)
+
+
 def vergleich_aus_claim(claim_lc: str):
     """``(subjekt_woerter, komparativ_wort, partner_woerter)`` oder None.
 
     Zurueckgegeben wird das vollstaendige Komparativ-Wort ("puenktlicher"),
     normalisiert — danach wird in der Summary gesucht.
     """
-    m = _O_KOMPARATIV_RE.search(claim_lc)
+    claim_n = normalisiere(claim_lc)
+    komparativ, m = _o_komparativ(claim_n)
     if not m:
         return None
-    komparativ = normalisiere(m.group(1) + "er")
-    vorn = claim_lc[:m.start()]
-    hinten = claim_lc[m.end():]
+    seiten = _o_seiten(claim_n, komparativ, m.start())
+    if not seiten:
+        return None                # "mehr X" ohne "als": kein Vergleich
+    vorn, hinten = seiten
     subjekt = {normalisiere(w) for w in re.findall(r"[a-zäöüßa-z]{3,}", vorn)
                if normalisiere(w) not in _N_STOPP and w not in ("ist", "sind", "die", "der", "das")}
     partner = {normalisiere(w) for w in re.findall(r"[a-zäöüßa-z]{3,}", hinten)
@@ -663,14 +703,15 @@ def vergleich_negiert(claim_lc: str) -> bool:
     ignorierte das "nicht" davor. Beide Vergleichsmuster (O und P) fragen
     deshalb hier nach und drehen ihr Ergebnis um.
     """
-    m = _O_KOMPARATIV_RE.search(normalisiere(claim_lc))
+    claim_n = normalisiere(claim_lc)
+    _kw, m = _o_komparativ(claim_n)
     if not m:
         return False
-    vorn = re.findall(r"[a-zäöüßa-z]+", normalisiere(claim_lc)[:m.start()])
+    vorn = re.findall(r"[a-zäöüßa-z]+", claim_n[:m.start()])
     return any(w in _O_CLAIM_NEGATION for w in vorn)
 
 
-def summary_bestaetigt_vergleich(claim_lc: str, summary_lc: str) -> bool:
+def summary_bestaetigt_vergleich(claim_lc: str, summary: str) -> bool:
     """Bejaht ein Satz der Summary denselben Vergleich wie der Claim?
 
     Gesucht wird das KOMPARATIV-WORT DES CLAIMS selbst ("puenktlicher"),
@@ -683,15 +724,24 @@ def summary_bestaetigt_vergleich(claim_lc: str, summary_lc: str) -> bool:
 
     Dass nach dem Claim-Wort gesucht wird, haelt die Regel trotzdem eng:
     "puenktlicher" kommt nur vor, wenn der Text wirklich davon spricht.
+
+    ACHTUNG Schreibung: ``summary`` kommt in ORIGINAL-Gross-/Kleinschreibung
+    herein, nicht kleingeschrieben. ``teile_in_einheiten`` trennt hinter
+    einem Punkt nur, wenn danach ein Grossbuchstabe folgt — sonst waere jede
+    Gliederungszahl ("seit 1. Jaenner") eine Satzgrenze. Wer vorher
+    ``.lower()`` aufruft, bekommt die GANZE Summary als einen Satz zurueck,
+    und damit greifen alle Satz-Wachen (Hedge, Referat, Verneinung) nur noch
+    global. Genau so entstand am 27.9.2026 ein Fehltreffer: "Deutsche Bahn"
+    aus Satz 1 galt als Subjekt des Komparativs in Satz 2.
     """
     zerlegt = vergleich_aus_claim(claim_lc)
     if not zerlegt:
         return False
     subjekt, komparativ, partner = zerlegt
-    summary_n = normalisiere(summary_lc)
+    summary_n = normalisiere(summary)
     if not any(w in summary_n for w in partner):
         return False                      # der Vergleichspartner fehlt ganz
-    for satz in teile_in_einheiten(summary_lc):
+    for satz in teile_in_einheiten(summary):
         satz_n = normalisiere(satz)
         stelle = satz_n.find(komparativ)
         if stelle < 0:
@@ -700,10 +750,63 @@ def summary_bestaetigt_vergleich(claim_lc: str, summary_lc: str) -> bool:
             continue
         if any(w in satz_n for w in _O_WIEDERHOLUNG):
             continue                      # Referat des Claims, keine Aussage
-        vorn = satz_n[:stelle]
-        if any(n in re.findall(r"[a-zäöüßa-z]+", vorn) for n in _O_NEGATION):
+        # Die Verneinung steht immer VOR dem Komparativ, auch bei
+        # "nicht mehr X als Y" — dafuer nicht die Seiten nehmen.
+        if any(n in re.findall(r"[a-zäöüßa-z]+", satz_n[:stelle])
+               for n in _O_NEGATION):
             continue
-        if any(w in vorn for w in subjekt):
+        seiten = _o_seiten(satz_n, komparativ, stelle)
+        if not seiten:
+            continue
+        if any(w in seiten[0] for w in subjekt):
+            return True
+    return False
+
+
+def summary_dreht_vergleich(claim_lc: str, summary: str) -> bool:
+    """Sagt ein Satz der Summary denselben Vergleich mit VERTAUSCHTEN Seiten?
+
+    Die Gegenrichtung zu :func:`summary_bestaetigt_vergleich`. Anlass
+    (HART30-C, 27.9.2026):
+
+        Claim:   "In Österreich wurden 2024 mehr Männer als Frauen ermordet"
+        Label:   true @ 0.85
+        Summary: "... bei vollendeten Morden 40 weibliche und 36 männliche
+                  Opfer — also mehr FRAUEN als MÄNNER."
+
+    Die Begruendung sagt woertlich das Gegenteil des Labels. Muster P darf
+    hier nicht rechnen (derselbe Text nennt mit Mord+Mordversuch eine zweite
+    Messgroesse mit gegenteiliger Antwort, 98 zu 187), aber der Satz selbst
+    ist eindeutig: dieselbe Vergleichsform, die Seiten getauscht.
+
+    Bewusst literal und ohne Zahlen. Passen die Namen nicht wortgleich
+    ("Deutsche Bahn" in der Summary nur als "DB"), schweigt die Regel —
+    lieber keine Entscheidung als eine aus geratenen Operanden.
+    """
+    zerlegt = vergleich_aus_claim(claim_lc)
+    if not zerlegt:
+        return False
+    subjekt, komparativ, partner = zerlegt
+    for satz in teile_in_einheiten(summary):
+        satz_n = normalisiere(satz)
+        stelle = satz_n.find(komparativ)
+        if stelle < 0:
+            continue
+        if any(h in satz_n for h in _O_HEDGE):
+            continue
+        if any(w in satz_n for w in _O_WIEDERHOLUNG):
+            continue                      # Referat des Claims, keine Aussage
+        if any(n in re.findall(r"[a-zäöüßa-z]+", satz_n[:stelle])
+               for n in _O_NEGATION):
+            continue
+        seiten = _o_seiten(satz_n, komparativ, stelle)
+        if not seiten:
+            continue
+        vorn, hinten = seiten
+        # Getauscht heisst: der Vergleichspartner des Claims steht auf der
+        # Gewinnerseite, das Claim-Subjekt auf der anderen. BEIDE muessen
+        # zutreffen, sonst ist es kein Widerspruch, nur ein anderer Satz.
+        if any(w in vorn for w in partner) and any(w in hinten for w in subjekt):
             return True
     return False
 
@@ -766,6 +869,17 @@ def _p_naechste_stelle(text: str, aliase) -> list:
     return stellen
 
 
+_P_NACHGESTELLT = 3  # "98 frauen" -> ein Leerzeichen; "98 % frauen" -> drei
+
+
+def _traeger_direkt_dahinter(summary_n: str, ende: int, woerter) -> int:
+    """Abstand zum Operandenwort UNMITTELBAR hinter der Zahl, sonst -1."""
+    danach = summary_n[ende:ende + 40]
+    treffer = [i for i in (danach.find(x) for x in _p_aliase(woerter))
+               if 0 <= i <= _P_NACHGESTELLT]
+    return min(treffer) if treffer else -1
+
+
 def zahlen_beider_seiten(a_woerter, b_woerter, summary_lc: str):
     """Ordnet jede Zahl der Summary der NAEHEREN der beiden Seiten zu.
 
@@ -793,7 +907,7 @@ def zahlen_beider_seiten(a_woerter, b_woerter, summary_lc: str):
         wert = _parse_de_number(z, summary_n[m.end():m.end() + 14])
         if wert is None:
             continue
-        roh.append((m.start(), wert, "%" if m.group(2) else ""))
+        roh.append((m.start(), wert, "%" if m.group(2) else "", m.end()))
     if not roh:
         return None
 
@@ -805,11 +919,11 @@ def zahlen_beider_seiten(a_woerter, b_woerter, summary_lc: str):
         einheit = mit[0][2]
         gewaehlt = list(mit)
         belegt = {t[0] for t in mit}
-        for stelle, wert, _ in roh:
+        for stelle, wert, _, ende in roh:
             if stelle in belegt:
                 continue
-            if any(0 < m_stelle - stelle <= 10 for m_stelle, _w, _u in mit):
-                gewaehlt.append((stelle, wert, einheit))
+            if any(0 < m_stelle - stelle <= 10 for m_stelle, _w, _u, _e in mit):
+                gewaehlt.append((stelle, wert, einheit, ende))
     else:
         einheit = ""
         gewaehlt = roh
@@ -822,7 +936,24 @@ def zahlen_beider_seiten(a_woerter, b_woerter, summary_lc: str):
     # Deutsche Saetze nennen den Traeger vor seiner Zahl; genau das wird
     # hier ausgenutzt.
     a_werte, b_werte = [], []
-    for stelle, wert, _ in gewaehlt:
+    for stelle, wert, _, ende in gewaehlt:
+        # Deutsch stellt den Traeger mal VOR die Zahl ("die ÖBB ... 78,2 %"),
+        # mal UNMITTELBAR DAHINTER ("98 Frauen und 187 Männer"). Der
+        # nachgestellte Fall hat Vorrang, weil er eindeutig ist. Ohne diese
+        # Regel ordnete die "zuletzt davor genannt"-Heuristik am 27.9.2026
+        # "98 Frauen und 187 Männer" GENAU VERKEHRT zu (98 -> Maenner,
+        # 187 -> Frauen), weil der Satz davor mit "... als Maenner." endete.
+        #
+        # Das Fenster ist absichtlich winzig (_P_NACHGESTELLT Zeichen hinter
+        # dem ENDE der Zahl): Ein erster Versuch mit 30 Zeichen ab dem
+        # ANFANG reichte in "78,2-88,7 %, während die Deutsche Bahn" ueber
+        # die Satzgrenze und gab der ÖBB-Zahl die Deutsche Bahn als Traeger.
+        nach_a = _traeger_direkt_dahinter(summary_n, ende, a_woerter)
+        nach_b = _traeger_direkt_dahinter(summary_n, ende, b_woerter)
+        if nach_a >= 0 and (nach_b < 0 or nach_a < nach_b):
+            a_werte.append(wert); continue
+        if nach_b >= 0 and (nach_a < 0 or nach_b < nach_a):
+            b_werte.append(wert); continue
         davor_a = [x for x in a_stellen if x < stelle]
         davor_b = [x for x in b_stellen if x < stelle]
         letzte_a = max(davor_a) if davor_a else None
@@ -851,6 +982,17 @@ def vergleich_rechnerisch(claim_lc: str, summary_lc: str):
     _reihe = [normalisiere(w) for w in re.findall(r"[a-zäöüßa-z]{3,}", claim_lc)]
     subjekt = [w for w in _reihe if w in subjekt]
     partner = [w for w in _reihe if w in partner]
+    if komparativ in ("mehr", "weniger"):
+        # BEWUSST keine Rechnung fuer "mehr X als Y" (27.9.2026). Der
+        # gemessene Fall zeigt, warum: "In Österreich wurden 2024 mehr
+        # Maenner als Frauen ermordet" hat in der Summary ZWEI Messgroessen
+        # mit gegenteiliger Antwort — 40 zu 36 bei vollendeten Morden, 98 zu
+        # 187 bei Mord und Mordversuch. Die Zuordnung erwischt nur die
+        # zweite, weil "40 weibliche / 36 maennliche" die Operandenwoerter
+        # nicht traegt. Eine Rechnung waere hier zufaellig richtig oder
+        # zufaellig falsch. Die Zerlegung bleibt trotzdem, damit die
+        # Verneinungs-Erkennung und Muster O die Form ueberhaupt sehen.
+        return None
     if komparativ in _P_GROESSER:
         groesser_ist_wahr = True
     elif komparativ in _P_KLEINER:
@@ -2273,8 +2415,21 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     # Muster N greift hier nicht, weil der Claim keine Schwellenzahl nennt.
     # Nur diese Richtung: eine bejahende Begruendung unter einem
     # verneinenden Label. Siehe summary_bestaetigt_vergleich().
-    _o_summary = (result.get("summary") or "").lower()
-    if _o_summary and not _p_entschieden and summary_bestaetigt_vergleich(_claim_lc, _o_summary):
+    # NICHT .lower() — siehe summary_bestaetigt_vergleich(): der
+    # Satz-Splitter braucht die Grossschreibung als Satzanfang.
+    _o_summary = result.get("summary") or ""
+    _o_ja = bool(_o_summary) and summary_bestaetigt_vergleich(_claim_lc, _o_summary)
+    _o_nein = bool(_o_summary) and summary_dreht_vergleich(_claim_lc, _o_summary)
+    if _o_ja and _o_nein:
+        # Ein Satz bejaht den Vergleich, ein anderer dreht ihn um. Das ist
+        # kein Widerspruch zum Label, sondern eine Summary mit zwei
+        # Messgroessen — hier schweigt das Muster.
+        logger.warning(
+            "Muster O: Die Summary bejaht UND dreht denselben Vergleich "
+            "(zwei Messgroessen) — kein Eingriff."
+        )
+        _o_ja = _o_nein = False
+    if _o_ja and not _p_entschieden:
         # Ist der Claim selbst verneint ("A ist NICHT xer als B"), dann
         # WIDERLEGT eine bejahende Summary ihn — dieselbe Lehre wie bei
         # Muster P (HART40-B).
@@ -2288,6 +2443,25 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                 f"Muster O (Vergleich{', verneint' if _o_negiert else ''}): "
                 f"Die Summary bejaht den Vergleich, das Label '{_o_alt}' "
                 f"widerspricht — auf '{_o_ziel}' korrigiert."
+            )
+
+    # Gegenrichtung: Die Summary dreht den Vergleich um. Bis zum 27.9.2026
+    # deckte nur Muster P diese Richtung ab, ueber die Zahlen beider Seiten.
+    # Fuer "mehr X als Y" rechnet P bewusst nicht (siehe dort), und damit
+    # blieb HART30-C Nr. 29 unkorrigiert: Claim "mehr Männer als Frauen
+    # ermordet" true@0.85, Summary "also mehr FRAUEN als MÄNNER".
+    elif _o_nein and not _p_entschieden:
+        _o_negiert = vergleich_negiert(_claim_lc)
+        _o_ziel = "true" if _o_negiert else "false"
+        _o_falsch = ("false", "mostly_false") if _o_negiert else ("true", "mostly_true")
+        if result.get("verdict") in _o_falsch:
+            _o_alt = result["verdict"]
+            result["verdict"] = _o_ziel
+            logger.warning(
+                f"Muster O (Vergleich gedreht"
+                f"{', verneint' if _o_negiert else ''}): Die Summary sagt "
+                f"denselben Vergleich mit vertauschten Seiten, das Label "
+                f"'{_o_alt}' widerspricht — auf '{_o_ziel}' korrigiert."
             )
 
     # --- Muster M: Umdeutung der Claim-Zahl bei Label "true" (QA50F) ---
