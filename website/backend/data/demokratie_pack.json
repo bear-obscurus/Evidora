@@ -1018,6 +1018,7 @@
     },
     {
           "id": "parteien_korruption_datenlage_2026",
+      "partei_korruption_tauglich": true,
           "topic": "Parteien und Korruption in Österreich — was erhoben wird und was nicht",
           "scope": "AT",
           "year": 2026,
