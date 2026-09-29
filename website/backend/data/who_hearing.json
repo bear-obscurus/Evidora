@@ -53,7 +53,9 @@
           "milliarden",
           "praevalenz",
           "betroffen",
-          "menschen"
+          "menschen",
+          "2050",
+          "verdoppel"
         ]
       ],
       "source_label": "WHO World Report on Hearing 2021",
@@ -163,7 +165,9 @@
           "globaler sueden",
           "low income",
           "low-income",
-          "middle income"
+          "middle income",
+          "sueden",
+          "süden"
         ]
       ],
       "source_label": "WHO World Report on Hearing 2021",
@@ -274,7 +278,9 @@
           "empfehlung",
           "who",
           "itu",
-          "norm"
+          "norm",
+          "40 stunden",
+          "stunden pro woche"
         ]
       ],
       "source_label": "WHO/ITU H.870 + WHO Make Listening Safe",
@@ -326,7 +332,9 @@
           "fluglaerm",
           "strassenlaerm",
           "schienenlaerm",
-          "windkraft"
+          "windkraft",
+          "nachts",
+          "nachtlaerm"
         ],
         [
           "grenzwert",
@@ -554,7 +562,8 @@
           "hoerverlust",
           "schwerhoerig",
           "schwerhoerigkeit",
-          "hearing loss"
+          "hearing loss",
+          "hoer-"
         ],
         [
           "kosten",
@@ -671,7 +680,8 @@
           "ursache",
           "praevention",
           "verbreit",
-          "anteil"
+          "anteil",
+          "millionen"
         ]
       ],
       "source_label": "WHO World Report on Hearing 2021",
@@ -716,7 +726,10 @@
           "presbyakusis",
           "altersbedingt",
           "altersschwerhoerig",
-          "altersschwerhoerigkeit"
+          "altersschwerhoerigkeit",
+          "ueber 65",
+          "über 65",
+          "65 jahre"
         ],
         [
           "hoerverlust",
@@ -755,7 +768,7 @@
       ],
       "claim_phrasings_handled": [
         "Arbeitsplatz-Laerm verursacht Hoerverlust",
-        "Bau-Arbeiter werden taub",
+        "Bau-Arbeiter werden vom Lärm taub",
         "NIHL durch Arbeit"
       ],
       "trigger_keywords": [
@@ -831,7 +844,9 @@
           "schwerhoerig",
           "hearing",
           "hoer-",
-          "hoer "
+          "hoer ",
+          "hoergeraet",
+          "hörgerät"
         ],
         [
           "praevention",
@@ -891,7 +906,11 @@
           "aminoglykosid",
           "cisplatin",
           "gentamicin",
-          "streptomycin"
+          "streptomycin",
+          "antibiotik",
+          "chemotherapie",
+          "aspirin",
+          "salicylat"
         ],
         [
           "hoerverlust",
@@ -900,7 +919,8 @@
           "gehoer",
           "tinnitus",
           "schaden",
-          "innenohr"
+          "innenohr",
+          "taub"
         ]
       ],
       "source_label": "WHO World Report on Hearing 2021 + WHO Pharmacovigilance",

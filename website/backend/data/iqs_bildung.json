@@ -46,7 +46,7 @@
       "trigger_composite": [
         ["schüler", "schueler", "volksschüler", "volksschueler", "schulen", "privatschule", "privatschul"],
         ["österreich", "oesterreich", " at ", " at,", " at.", "wien", "bundesland"],
-        ["anzahl", "wie viele", "gesamt", "millionen", "1,1", "1.150.000", "1,15", "quote", "anteil", "bestand"]
+        ["anzahl", "wie viele", "gesamt", "millionen", "1,1", "1.150.000", "1,15", "quote", "anteil", "bestand", "2024"]
       ]
     },
     {
@@ -77,7 +77,7 @@
         "PISA AT Mathematik 487",
         "Österreich PISA Naturwissenschaft",
         "PISA-Schock Österreich",
-        "Bildungs-Krise PISA",
+        "Bildungs-Krise PISA Österreich",
         "Wie schlecht ist Österreich bei PISA"
       ],
       "trigger_keywords": [
@@ -136,7 +136,7 @@
       ],
       "trigger_composite": [
         ["lehrer", "lehrkraft", "lehrkräfte", "lehrkraefte", "lehramt", "pädagog", "paedagog"],
-        ["mangel", "fehlend", "zu wenig", "engpass", "pensionier", "ruhestand", "anzahl", "bestand", "studienanfänger", "studienanfaenger"],
+        ["mangel", "fehlend", "zu wenig", "engpass", "pensionier", "ruhestand", "anzahl", "bestand", "studienanfänger", "studienanfaenger", "wie viele", "bedarf"],
         ["österreich", "oesterreich", " at ", "wien", "bundesland", " at."]
       ]
     },
@@ -180,7 +180,7 @@
       ],
       "trigger_composite": [
         ["bildung", "bildungs", "schul", "lehrer", "lehrkraft", "lehrkräfte", "lehrkraefte"],
-        ["ausgaben", "budget", "kosten", "investition", "gehalt", "verdienst", "%bip", "% bip", "prozent bip", "anteil bip", "pro schüler", "pro schueler"],
+        ["ausgaben", "budget", "kosten", "investition", "gehalt", "verdienst", "%bip", "% bip", "prozent bip", "anteil bip", "pro schüler", "pro schueler", "wie viel", "bip", "zu wenig"],
         ["österreich", "oesterreich", " at ", "oecd", "europa", "vergleich"]
       ]
     },
@@ -222,8 +222,8 @@
       ],
       "trigger_composite": [
         ["ganztag", "ganztags", " gts ", "verschränkt", "verschraenkt", "nachmittagsbetreuung"],
-        ["schul", "schüler", "schueler", "klasse", "wien", "vorarlberg", "tirol", "quote", "anteil", "prozent"],
-        ["österreich", "oesterreich", " at ", " at,", " at."]
+        ["schul", "schüler", "schueler", "klasse", "quote", "anteil", "prozent"],
+        ["österreich", "oesterreich", " at ", " at,", " at.", "wien", "vorarlberg", "tirol"]
       ]
     },
     {
@@ -253,7 +253,7 @@
       "claim_phrasings_handled": [
         "Klassen-Größe Österreich",
         "Wie groß sind Klassen in AT",
-        "Klassen DACH-Vergleich",
+        "Klassen-Größe DACH-Vergleich",
         "Schüler-Lehrer-Verhältnis AT"
       ],
       "trigger_keywords": [
@@ -265,7 +265,7 @@
       ],
       "trigger_composite": [
         ["klasse", "klassen", "klassengröße", "klassengroesse", "klassen-größe", "schüler pro", "schueler pro", "schüler-lehrer", "schueler-lehrer"],
-        ["größe", "groesse", "anzahl", "verhältnis", "verhaeltnis", "durchschnitt", "mittel", "oecd"],
+        ["größe", "groesse", "anzahl", "verhältnis", "verhaeltnis", "durchschnitt", "mittel", "oecd", "wie gross", "wie groß"],
         ["österreich", "oesterreich", " at ", "deutschland", "schweiz", "dach", "vergleich"]
       ]
     },
@@ -294,9 +294,9 @@
         "Vergleichbarkeit: Spread-Werte sind methodisch zwischen Ländern vergleichbar (OECD-Standardisierung), aber NICHT eindeutig auf eine Ursache rückführbar. Sozio-ökonomischer Status korreliert stark mit Migrationshintergrund — Verwechslung der Ursache ist häufiger Methodik-Fehler."
       ],
       "claim_phrasings_handled": [
-        "Migrationshintergrund schlechtere PISA",
+        "Migrationshintergrund schlechtere PISA Österreich",
         "PISA AT Migrant Spread",
-        "Schüler mit Migrationshintergrund Bildung",
+        "Schüler mit Migrationshintergrund Bildung Österreich",
         "Bildungsschere Migrant Österreich"
       ],
       "trigger_keywords": [
@@ -355,6 +355,12 @@
         ["tertiär", "tertiaer", "tertiar-", "hochschul", "akademiker", "studierende", "isced 5", "isced 6", "isced 7", "isced 8"],
         ["quote", "anteil", "prozent", "25-34", "anzahl"],
         ["österreich", "oesterreich", " at ", " at,", " at.", "oecd", "europa"]
+      ],
+      "trigger_all": [
+        [
+          ["bildungsexpansion", "akademisierung"],
+          ["österreich", "oesterreich", " at ", " at.", " at,"]
+        ]
       ]
     },
     {
@@ -428,7 +434,7 @@
       ],
       "claim_phrasings_handled": [
         "SPF-Quote Österreich",
-        "Inklusion Schule Österreich",
+        "Inklusions-Quote Schule Österreich",
         "Sonderschüler AT Anzahl",
         "Inklusions-Anteil Bundesländer AT"
       ],

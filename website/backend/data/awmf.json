@@ -78,7 +78,9 @@
           "standard",
           "indiziert",
           "wirksam",
-          "empfohlen"
+          "empfohlen",
+          " ziel",
+          "zielwert"
         ]
       ],
       "source_label": "Nationale VersorgungsLeitlinie Typ-2-Diabetes (BAEK / KBV / AWMF, Stand 2023)",
@@ -149,7 +151,11 @@
           "standard",
           "indiziert",
           "wirksam",
-          "empfohlen"
+          "empfohlen",
+          " ziel",
+          "zielwert",
+          "salzreduktion",
+          "kochsalz"
         ]
       ],
       "source_label": "Nationale VersorgungsLeitlinie Hypertonie (BAEK / KBV / AWMF, Stand 2023)",
@@ -476,7 +482,9 @@
           "kolonkarzinom",
           "rektumkarzinom",
           "koloskopie",
-          "crc"
+          "crc",
+          "anti-egfr",
+          "ras-wildtyp"
         ],
         [
           "leitlinie",
@@ -693,7 +701,9 @@
           "indiziert",
           "behandlung",
           "wirksam",
-          "empfohlen"
+          "empfohlen",
+          "rehabilitation",
+          "evidenzbasiert"
         ]
       ],
       "source_label": "S2k-Leitlinie COPD (DGP / Deutsche Atemwegsliga / AWMF, Stand 2018)",
@@ -958,7 +968,10 @@
           "indiziert",
           "behandlung",
           "wirksam",
-          "empfohlen"
+          "empfohlen",
+          "diagnose",
+          "diagnostik",
+          "kriterien"
         ]
       ],
       "source_label": "S3-Leitlinie ADHS (DGKJP / DGPPN / DGSPJ / AWMF, Stand 2018)",
@@ -1143,7 +1156,8 @@
           "vaskulaere demenz",
           "frontotemporale demenz",
           "lewy-koerper",
-          "lewy körper"
+          "lewy körper",
+          "bpsd"
         ],
         [
           "leitlinie",
@@ -1162,7 +1176,9 @@
           "indiziert",
           "behandlung",
           "wirksam",
-          "empfohlen"
+          "empfohlen",
+          "intervention",
+          "nicht-pharmakologisch"
         ]
       ],
       "source_label": "S3-Leitlinie Demenzen (DGPPN / DGN / AWMF, Stand 2023)",
@@ -1300,9 +1316,27 @@
           "indiziert",
           "behandlung",
           "wirksam",
-          "empfohlen"
+          "empfohlen",
+          "chirurgie",
+          "pharmakoresistent"
         ]
       ],
+        "trigger_all": [
+          [
+            [
+              "lamotrigin",
+              "levetiracetam",
+              "valproat",
+              "lacosamid"
+            ],
+            [
+              "erstlinien",
+              "antiepileptik",
+              "kontraindiziert",
+              "mittel der wahl"
+            ]
+          ]
+        ],
       "source_label": "S2k-Leitlinie Epilepsie (DGN / DGfE / AWMF, Stand 2023)",
       "source_url": "https://register.awmf.org/de/leitlinien/detail/030-041",
       "secondary_url": "https://dgfe.org"
@@ -1368,6 +1402,20 @@
           "empfohlen"
         ]
       ],
+        "trigger_all": [
+          [
+            [
+              "tiefe hirnstimulation",
+              "hirnstimulation",
+              "dbs"
+            ],
+            [
+              "fluktuation",
+              "dyskinesie",
+              "motorisch"
+            ]
+          ]
+        ],
       "source_label": "S2k-Leitlinie Parkinson-Krankheit (DGN / AWMF, Stand 2023)",
       "source_url": "https://register.awmf.org/de/leitlinien/detail/030-010",
       "secondary_url": "https://www.dgn.org"
@@ -1572,6 +1620,21 @@
           "empfohlen"
         ]
       ],
+        "trigger_all": [
+          [
+            [
+              "post-exertional",
+              "pacing"
+            ],
+            [
+              "empfohlen",
+              "empfehlung",
+              "leitlinie",
+              "therapie",
+              "rehabilitation"
+            ]
+          ]
+        ],
       "source_label": "S1-Leitlinie Long/Post-COVID (DGP u.v.a. / AWMF, Stand 2024)",
       "source_url": "https://register.awmf.org/de/leitlinien/detail/020-027",
       "secondary_url": "https://www.awmf.org"
@@ -1635,9 +1698,24 @@
           "indiziert",
           "behandlung",
           "wirksam",
-          "empfohlen"
+          "empfohlen",
+          "integration",
+          "lebensqualitaet"
         ]
       ],
+        "trigger_all": [
+          [
+            [
+              "who-stufenschema",
+              "stufenschema"
+            ],
+            [
+              "schmerztherapie",
+              "opioid",
+              "schmerz"
+            ]
+          ]
+        ],
       "source_label": "S3-Leitlinie Palliativmedizin (DGP / DKG / AWMF, Stand 2020)",
       "source_url": "https://register.awmf.org/de/leitlinien/detail/128-001OL",
       "secondary_url": "https://www.leitlinienprogramm-onkologie.de"
@@ -1751,7 +1829,8 @@
           "chronic kidney disease",
           "albuminurie",
           "nierenversagen",
-          "nephrologie"
+          "nephrologie",
+          "nierenerkrankung"
         ],
         [
           "leitlinie",
@@ -1838,7 +1917,8 @@
           "indiziert",
           "behandlung",
           "wirksam",
-          "empfohlen"
+          "empfohlen",
+          "subklinisch"
         ]
       ],
       "source_label": "S2k-Leitlinie Erhoehter TSH-Wert (DEGAM / AWMF, Stand 2023)",
@@ -1906,6 +1986,21 @@
           "empfohlen"
         ]
       ],
+        "trigger_all": [
+          [
+            [
+              "jak-inhibitor",
+              "dupilumab",
+              "tralokinumab"
+            ],
+            [
+              "systemisch",
+              "option",
+              "erstlinien",
+              "indiziert"
+            ]
+          ]
+        ],
       "source_label": "S3-Leitlinie Atopische Dermatitis (DDG / DGAKI / AWMF, Stand 2023)",
       "source_url": "https://register.awmf.org/de/leitlinien/detail/013-027",
       "secondary_url": "https://derma.de"
@@ -1974,6 +2069,19 @@
           "empfohlen"
         ]
       ],
+        "trigger_all": [
+          [
+            [
+              "mtx",
+              "methotrexat"
+            ],
+            [
+              "biologika",
+              "versagen",
+              "tnf-inhibitor"
+            ]
+          ]
+        ],
       "source_label": "S3-Leitlinie Rheumatoide Arthritis (DGRh / AWMF, Stand 2019)",
       "source_url": "https://register.awmf.org/de/leitlinien/detail/060-004",
       "secondary_url": "https://dgrh.de"
@@ -2038,7 +2146,10 @@
           "indiziert",
           "behandlung",
           "wirksam",
-          "empfohlen"
+          "empfohlen",
+          "risiko-einschaetzung",
+          "einschaetzung",
+          "gespraech"
         ]
       ],
       "source_label": "S3-Leitlinie Suizidpraevention (DGPPN / DGS / AWMF, Stand 2024)",
@@ -2106,7 +2217,9 @@
           "indiziert",
           "behandlung",
           "wirksam",
-          "empfohlen"
+          "empfohlen",
+          "gestuft",
+          "stufenweise"
         ]
       ],
       "source_label": "S3-Leitlinie LONTS — Opioide bei chronischen Nicht-Tumorschmerzen (DGSS / AWMF, Stand 2020)",
