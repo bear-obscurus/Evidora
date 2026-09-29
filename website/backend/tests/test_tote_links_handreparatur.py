@@ -10,6 +10,11 @@ Status + Titel geprueft und nur eingetragen, wenn er dieselbe Aussage belegt.
      30 geparkt   kein gleichwertiger Nachfolger — oder der Fakt selbst
                   widerspricht der auffindbaren Quelle ("INHALT:")
 
+Nachtrag 29.9.2026: Die fuenf INHALT-Faelle sind abgearbeitet — nicht durch
+einen Ersatzlink, sondern durch Korrektur des FAKTS. Die Parkliste enthaelt
+keinen Inhaltskonflikt mehr; die Belege stehen in
+tests/test_geparkte_inhaltskonflikte_geloest.py.
+
 Beim Suchen fiel auf: ein Teil der toten Links war nie echt (jcr:fixme,
 Hex-Wiederholungen, Platzhalter-UUIDs). Solche Muster sind nur noch
 erlaubt, solange sie begruendet in der Liste bekannter toter Links stehen.
@@ -127,15 +132,25 @@ def test_jeder_geparkte_link_steht_noch_in_den_daten():
     assert not weg, weg
 
 
-def test_inhaltskonflikte_sind_als_solche_markiert():
-    inhalt = [u for u, e in BEKANNT.items() if e["grund"].startswith("INHALT:")]
-    # u. a. ICCT-Amortisation, Duengemittel, IAB-Wohnungsmarkt.
-    # Familiennachzug, Eurobarometer, Femizide, Agrar/Klima, Leerstandsabgabe,
-    # Wohnbeihilfe und die EFSA-Probenzahlen sind seit den Fakt-Korrekturen
-    # vom 22.-24.9.2026 keine Konflikte mehr (test_geloeste_inhaltskonflikte).
-    assert len(inhalt) >= 5
-    for teil in ("Industry-Facts-and-Figures", "iab.de", "ogh.gv.at"):
-        assert any(teil in u for u in inhalt), teil
+def test_die_geparkten_urls_sind_aus_den_daten_verschwunden():
+    """Gegenprobe zur Aufloesung: Die fuenf Adressen der Inhaltskonflikte
+    stehen in keinem data/*.json mehr. Frueher war genau das Gegenteil die
+    Zusage — der tote Link BLIEB stehen, damit keine Quelle untergeschoben
+    wird, die etwas anderes sagt als der Fakt."""
+    fort = (
+        "https://www.dihk.de/de/themen-und-positionen/recht-steuern/"
+        "internationales-wirtschaftsrecht/made-in-germany",
+        "https://www.fertilizerseurope.com/wp-content/uploads/2024/04/"
+        "Industry-Facts-and-Figures-2024.pdf",
+        "https://www.iab.de/de/publikationen/forschungsberichte/"
+        "forschungsberichte-zum-wohnungsmarkt.aspx",
+        "https://www.ifo.de/publikationen/2023/aufsatz-zeitschrift/"
+        "wertschoepfungsanteile-deutscher-automobilhersteller",
+        "https://www.ogh.gv.at/entscheidungen-suche/8oba70-22",
+    )
+    for u in fort:
+        assert not _vorkommen(u), u
+        assert u not in BEKANNT, u
 
 
 def test_schreibe_bekannt_behaelt_den_grund():
@@ -205,14 +220,15 @@ def test_pflegende_angehoerige_verlinken_die_zitierte_studie():
     assert "broschuerenservice.sozialministerium.gv.at/Home/Download?publicationId=664" in json.dumps(f)
 
 
-def test_widerspruechliche_quelle_wurde_nicht_untergeschoben():
-    """Wo die auffindbare Quelle dem Fakt widerspricht, steht weiter der tote
-    Link — statt einer Quelle, die etwas anderes sagt als der Fakt. Diese
-    Faelle bleiben geparkt, bis der Fakt selbst korrigiert ist."""
+def test_keine_inhaltskonflikte_mehr_geparkt():
+    """Die fuenf INHALT-Faelle sind am 29.9.2026 abgearbeitet — nicht durch
+    einen Ersatzlink, sondern durch Korrektur des FAKTS. Siehe
+    tests/test_geparkte_inhaltskonflikte_geloest.py.
+
+    Wer einen neuen Inhaltskonflikt parkt, dreht diesen Test um und traegt
+    dort seine Begruendung ein."""
     inhalt = [u for u, e in BEKANNT.items() if e["grund"].startswith("INHALT:")]
-    assert inhalt, "Liste der Inhaltskonflikte ist leer"
-    ohne_fundstelle = [u for u in inhalt if not _vorkommen(u)]
-    assert not ohne_fundstelle, ohne_fundstelle
+    assert not inhalt, inhalt
 
 
 @pytest.mark.parametrize("tot,fakt", [
