@@ -236,3 +236,39 @@ def test_gesichteter_fremdtreffer_besteht(fid, phrasing):
     """Wer einen davon wieder schliesst, dreht die Zeile um — dann ist die
     Sichtung von damals ueberholt und gehoert neu begruendet."""
     assert substring_or_composite_match(FAKT[fid], phrasing.lower())
+
+
+# ---------------------------------------------------------------------------
+# Nachtrag 29.9.2026: ein Token aus dieser Runde war zu breit
+# ---------------------------------------------------------------------------
+
+def test_wie_viel_steckt_in_wie_viele():
+    """Der Grund fuer den Test darunter — einmal ausgeschrieben, damit ihn
+    niemand nachrechnen muss."""
+    assert "wie viel" in "wie viele lehrer in oesterreich"
+
+
+def test_mengenfrage_zieht_nicht_den_ausgaben_fakt():
+    """``nbb_2024_bildungsausgaben_bip`` bekam in dieser Runde "wie viel" in
+    die Messgroessen-Gruppe, damit "Wie viel gibt Österreich für Bildung aus"
+    trifft. Nebenwirkung, live gemessen: "wie viel" steckt in "wie viele",
+    also zog JEDE Mengenfrage zu Bildung zusaetzlich die AUSGABEN heran —
+    Kopfzahl-Frage mit Budget-Daten beantwortet.
+
+    "Wie viele Lehrer in Österreich" kam daraufhin als `unverifiable@0.1`
+    zurueck, mit der Begruendung, die Anfrage sei unpraezise; das Retrieval
+    hatte zwei Fakten geliefert, die verschiedene Fragen beantworten. Das
+    Token heisst jetzt "wie viel gibt" und trifft "wie viele" nicht mehr."""
+    toks = FAKT["nbb_2024_bildungsausgaben_bip"]["trigger_composite"][1]
+    assert "wie viel" not in toks, "zu breit — steckt in 'wie viele'"
+    assert "wie viel gibt" in toks
+    treffer = [_fid(it) for _d, it in ALLE
+               if substring_or_composite_match(it, "wie viele lehrer in österreich")]
+    assert treffer == ["nbb_2024_lehrkraefte_pensionierung"], treffer
+
+
+def test_die_ausgaben_phrasings_treffen_weiter():
+    """Die Verengung darf die Zusage nicht wieder brechen."""
+    it = FAKT["nbb_2024_bildungsausgaben_bip"]
+    for ph in it["claim_phrasings_handled"]:
+        assert substring_or_composite_match(it, ph.lower()), ph

@@ -180,7 +180,7 @@
       ],
       "trigger_composite": [
         ["bildung", "bildungs", "schul", "lehrer", "lehrkraft", "lehrkräfte", "lehrkraefte"],
-        ["ausgaben", "budget", "kosten", "investition", "gehalt", "verdienst", "%bip", "% bip", "prozent bip", "anteil bip", "pro schüler", "pro schueler", "wie viel", "bip", "zu wenig"],
+        ["ausgaben", "budget", "kosten", "investition", "gehalt", "verdienst", "%bip", "% bip", "prozent bip", "anteil bip", "pro schüler", "pro schueler", "bip", "zu wenig", "wie viel gibt"],
         ["österreich", "oesterreich", " at ", "oecd", "europa", "vergleich"]
       ]
     },
