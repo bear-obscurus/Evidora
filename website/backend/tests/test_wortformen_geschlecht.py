@@ -80,11 +80,12 @@ def _fid(it):
 def _laden():
     """Ortskundig: EINE Fakt-ID kann in mehreren Dateien liegen.
 
-    ``gender_pay_gap_2026`` liegt in arbeitsmarkt_pack.json UND
-    gleichstellung_pack.json — zwei verschiedene Fakten (anderer Scope,
-    andere Quellen, andere Trigger) mit derselben ID. Vorbestehend, hier
-    nicht behoben, aber ein Instrument, das pro ID nur eine Datei kennt,
-    prueft fuer diesen Fakt die falsche und meldet vier Phantom-Verluste.
+    Bis zum 29.9.2026 lag ``gender_pay_gap_2026`` in arbeitsmarkt_pack.json
+    UND gleichstellung_pack.json — zwei verschiedene Fakten unter derselben
+    ID. Ein Instrument, das pro ID nur eine Datei kennt, prueft dann fuer
+    einen davon die falsche und meldet Phantom-Verluste; genau so entstanden
+    hier einmal vier. Die ID ist seither eindeutig, der mehrfache Ort bleibt
+    trotzdem zugelassen — die Annahme soll nicht wieder still einziehen.
     """
     orte, alle = {}, []
     for p in sorted(glob.glob(os.path.join(DATA, "*.json"))):
@@ -247,7 +248,8 @@ def test_bekannte_reste_haben_eine_andere_ursache():
 
 # Die 22 Fakten, deren Gruppen durch die Regel eine Form dazubekommen.
 BETROFFEN = (
-    "gender_pay_gap_2026", "multitasking_2026", "frauenquote_wirksamkeit_2026",
+    "gender_pay_gap_2026", "gender_pay_gap_bereinigt_2026",
+    "multitasking_2026", "frauenquote_wirksamkeit_2026",
     "mint_frauen_anteil_2026", "femizide_at_de_2026",
     "sexualisierte_gewalt_dunkelfeld_2026", "gender_care_gap_2026",
     "frauen_in_politik_2026", "sexismus_erfahrungen_2026",
@@ -263,8 +265,22 @@ BETROFFEN = (
 # und nachher identisch. Gesichtet: alle am Thema (Karenz <-> Vereinbarkeit,
 # Screening <-> Onkologie, Lebenserwartung <-> Trisomie), kein Leck.
 ERLAUBT_FREMD = {
-    # Zwei verschiedene Fakten mit DERSELBEN ID in zwei Dateien: Jede
-    # Kopie sieht die Phrasings der anderen als "fremd". Vorbestehend.
+    # Zwei verschiedene Fakten zum selben Thema in zwei Dateien (bis zum
+    # 29.9.2026 sogar unter derselben ID): Jeder sieht die Phrasings des
+    # anderen als "fremd". Am Thema, kein Leck.
+    "gender_pay_gap_bereinigt_2026": {
+        "Frauen verdienen 18 Prozent weniger als Männer",
+        "Frauen verdienen 18 Prozent weniger fuer gleiche Arbeit",
+        "Frauen verdienen weniger weil sie weniger arbeiten",
+        "Gender Pay Gap ist 20 Prozent",
+        "Gender Pay Gap existiert nicht",
+        "Gender Pay Gap ist nur Lifestyle-Choice",
+        "Frauen verhandeln einfach schlechter",
+        "Wenn man bereinigt ist Pay Gap nur 6 Prozent",
+        "Lohnlücke gibt es eigentlich gar nicht",
+        "Equal Pay Day ist Mythos",
+        "Lohn-Diskriminierung von Frauen",
+    },
     "gender_pay_gap_2026": {
         "Frauen verdienen 18 Prozent weniger als Männer",
         "Frauen verdienen 18 Prozent weniger fuer gleiche Arbeit",
@@ -357,20 +373,14 @@ def test_eigene_phrasings_treffen_weiter(fid):
 # 4. Was der Sweep nebenbei fand
 # ---------------------------------------------------------------------------
 
-def test_doppelte_fakt_id_ist_bekannt():
-    """``gender_pay_gap_2026`` liegt zweimal in den Daten — zwei
-    VERSCHIEDENE Fakten (anderer Scope, andere Quellen, andere Trigger) mit
-    derselben ID. Vorbestehend, hier bewusst nicht behoben: Eine ID zu
-    aendern beruehrt Daten, Tests und moeglicherweise Cache-Schluessel und
-    braucht ihre eigene Messung.
+def test_keine_doppelte_fakt_id_mehr():
+    """Frueher: ``gender_pay_gap_2026`` lag zweimal in den Daten, als zwei
+    VERSCHIEDENE Fakten. Seit dem 29.9.2026 heisst die Arbeitsmarkt-Kopie
+    ``gender_pay_gap_bereinigt_2026``; das Gate dafuer steht in
+    tests/test_fakt_id_eindeutig.py.
 
-    Solange das so ist, muss jedes Instrument, das Fakten ueber ihre ID
-    einer Datei zuordnet, MEHRERE Orte zulassen. Ein Instrument mit
-    ``setdefault`` prueft sonst die falsche Datei und meldete hier vier
-    Phantom-Verluste (54 echte statt 58 gemeldeter).
-
-    Wer die ID aufloest, dreht diesen Test um."""
+    Hier bleibt nur die Zusage, dass die Helfer dieser Datei wieder auf
+    eine eindeutige Kennung bauen duerfen."""
     doppelt = {f: [d for d, _it in kopien] for f, kopien in KOPIEN.items()
                if len(kopien) > 1}
-    assert doppelt == {"gender_pay_gap_2026": ["arbeitsmarkt_pack.json",
-                                              "gleichstellung_pack.json"]}, doppelt
+    assert not doppelt, doppelt
