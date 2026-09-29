@@ -653,16 +653,37 @@ def _o_seiten(text_n: str, komparativ: str, stelle: int):
     """``(vorn, hinten)`` um den Komparativ — oder None.
 
     Bei "-er als" steht der Gegenstand DAVOR ("die ÖBB sind puenktlicher
-    als die DB"), bei "mehr/weniger" liegen BEIDE Seiten dahinter ("mehr
-    Maenner als Frauen"). Wer das nicht trennt, nimmt bei "mehr" den halben
-    Satz davor als Subjekt.
+    als die DB"). Bei "mehr/weniger" gibt es ZWEI Stellungen, und sie
+    entscheiden sich daran, ob zwischen Komparativ und "als" etwas steht:
+
+        ATTRIBUTIV   "mehr MAENNER als Frauen"
+                     -> der Gegenstand steht zwischen beiden
+        ADVERBIAL    "weibliche Beschaeftigte verdienen weniger als …"
+                     -> dort steht nichts, der Gegenstand steht davor
+
+    Die erste Fassung (PR #227) kannte nur die attributive Form. Die
+    adverbiale lieferte eine leere Seite, ``vergleich_aus_claim`` gab None
+    zurueck und Muster O schwieg — live am 29.9.2026 an einem Label, das
+    seiner eigenen Begruendung widersprach ("mostly_false", waehrend die
+    Summary sagte: "Dies BESTAETIGT, dass weibliche Beschaeftigte im
+    Schnitt weniger verdienen"). Im 3.730-Claim-Korpus stehen 43
+    attributive gegen 25 adverbiale Formen.
+
+    Schwellen-Claims ("Wer weniger als 8 Glaeser trinkt", "Mehr als 2 Eier
+    pro Woche schadet") laufen ebenfalls durch den adverbialen Zweig. Dort
+    bleibt die vordere Seite leer oder tragen nur Stoppwoerter, die
+    Zerlegung gibt None zurueck — und Muster N, das VOR O laeuft, rechnet
+    sie ohnehin.
     """
     if komparativ in ("mehr", "weniger"):
         rest = text_n[stelle + len(komparativ):]
         trenner = re.search(r"\bals\b", rest)
         if not trenner:
             return None
-        return rest[:trenner.start()], rest[trenner.end():]
+        zwischen, hinten = rest[:trenner.start()], rest[trenner.end():]
+        if zwischen.strip():
+            return zwischen, hinten           # attributiv
+        return text_n[:stelle], hinten        # adverbial
     hinten = text_n[stelle + len(komparativ):]
     return text_n[:stelle], re.sub(r"^\s*als\b", "", hinten)
 
@@ -681,6 +702,17 @@ def vergleich_aus_claim(claim_lc: str):
     if not seiten:
         return None                # "mehr X" ohne "als": kein Vergleich
     vorn, hinten = seiten
+    # "weniger als 8 Glaeser", "mehr als 2 Eier": eine SCHWELLE, kein
+    # Vergleich zweier Gegenstaende. Die gehoert Muster N, das vor O
+    # laeuft und sie rechnet. Ohne diese Zeile zerlegte "Wer weniger als 8
+    # Glaeser trinkt dehydriert" zu Subjekt {wer} — und O haette auf ein
+    # Fuerwort hin entschieden.
+    if re.match(r"\s*\d", hinten):
+        return None
+    # Ein Vergleich braucht zwei BENANNTE Seiten. Fuerwoerter sind keine.
+    vorn_woerter = {normalisiere(w) for w in re.findall(r"[a-zäöüßa-z]{3,}", vorn)}
+    if vorn_woerter and vorn_woerter <= _O_PRONOMEN:
+        return None
     subjekt = {normalisiere(w) for w in re.findall(r"[a-zäöüßa-z]{3,}", vorn)
                if normalisiere(w) not in _N_STOPP and w not in ("ist", "sind", "die", "der", "das")}
     partner = {normalisiere(w) for w in re.findall(r"[a-zäöüßa-z]{3,}", hinten)
@@ -690,6 +722,10 @@ def vergleich_aus_claim(claim_lc: str):
     return subjekt, komparativ, partner
 
 
+_O_PRONOMEN = frozenset({
+    "wer", "was", "wen", "wem", "man", "jemand", "niemand", "alle",
+    "jeder", "jede", "jedes", "sie", "ihr", "wir", "ich", "sich",
+})
 _O_CLAIM_NEGATION = ("nicht", "kein", "keine", "keinen", "keinem", "keiner",
                      "nie", "niemals", "kaum")
 
