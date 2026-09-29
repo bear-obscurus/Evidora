@@ -403,6 +403,7 @@ jobs:
             tests/test_umlaut_plural.py \
             tests/test_dokumentierte_phrasings_alle.py \
             tests/test_mehrere_messgroessen_regel.py \
+            tests/test_stichwortfragen_regel.py \
             tests/test_tempolimit_zuordnung.py \
             tests/test_qa50b_rest.py \
             tests/test_wortgrenzen_trigger.py \
