@@ -399,6 +399,7 @@ jobs:
             tests/test_muster_o_vergleich.py \
             tests/test_muster_p_vergleich_gerechnet.py \
             tests/test_vergleich_mehr_als.py \
+            tests/test_vergleich_adverbial.py \
             tests/test_wortformen_geschlecht.py \
             tests/test_umlaut_plural.py \
             tests/test_dokumentierte_phrasings_alle.py \
