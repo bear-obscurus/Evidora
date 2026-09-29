@@ -401,6 +401,7 @@ jobs:
             tests/test_vergleich_mehr_als.py \
             tests/test_wortformen_geschlecht.py \
             tests/test_umlaut_plural.py \
+            tests/test_dokumentierte_phrasings_alle.py \
             tests/test_mehrere_messgroessen_regel.py \
             tests/test_tempolimit_zuordnung.py \
             tests/test_qa50b_rest.py \

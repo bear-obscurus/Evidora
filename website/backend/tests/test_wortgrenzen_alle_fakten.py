@@ -477,36 +477,13 @@ ANGEFASST = sorted(set(GEBUNDEN) | {
 # Dokumentierte Phrasings angefasster Fakten, die schon auf #207 nicht exakt
 # trafen — nicht dieser Fix (0 Muss-Treffer verloren, gemessen). Die meisten
 # Dienste darunter haben ein eigenes Praedikat neben dem Pack-Matcher.
-OHNE_EXAKTEN_TREFFER_SCHON_VORHER = {
-    "Warum unterschiedliche Arbeitslosenzahlen",
-    "Wie lange sind Arbeitslose in Österreich arbeitslos",
-    "Arbeitskräftepotenzial Österreich",
-    "Arbeitsmarkt-Krise AT",
-    "Wann war die höchste Arbeitslosigkeit in Österreich",
-    "Quelle AMS Daten",
-    "Wie aktuell sind AMS-Statistiken",
-    "Blutdruck-Ziel sollte unter 130/80 sein",
-    "Salzreduktion senkt den Blutdruck nachweislich",
-    "SGLT-2-Hemmer wirken renoprotektiv bei diabetischer Nierenerkrankung",
-    "Subklinische Hypothyreose erfordert nicht immer L-Thyroxin",
-    "Schüler in Österreich 2024",
-    "Bildungs-Krise PISA",
-    "Wie viele Lehrer in Österreich",
-    "Lehrkräfte Bedarf AT",
-    "Wie viel gibt Österreich für Bildung aus",
-    "Österreich gibt 5% des BIP für Bildung aus",
-    "AT zu wenig für Bildung",
-    "Ganztagsschule Anteil Wien",
-    "Wie groß sind Klassen in AT",
-    "Klassen DACH-Vergleich",
-    "Migrationshintergrund schlechtere PISA",
-    "Schüler mit Migrationshintergrund Bildung",
-    "Bildungsexpansion Österreich",
-    "Inklusion Schule Österreich",
-    "Sonderschüler AT Anzahl",
-    "WHO empfiehlt 45 dB nachts",
-    "WHO-Schaetzung Hoer-Kosten",
-}
+OHNE_EXAKTEN_TREFFER_SCHON_VORHER: set[str] = set()
+# Diese Liste hielt 28 dokumentierte Phrasings fest, die ihren eigenen Fakt
+# NICHT trafen — Altlast, die #211 uebernommen, aber nicht behoben hatte.
+# Am 29.9.2026 abgearbeitet: 23 treffen jetzt (Trigger ergaenzt), 5 gibt es
+# in dieser Form nicht mehr (die Phrasing versprach mehr, als sie hergab,
+# und wurde korrigiert). Die Liste bleibt leer — das Gate dafuer steht jetzt
+# ueber ALLEN Fakten in tests/test_dokumentierte_phrasings_alle.py.
 
 
 def test_angefasst_ist_vollstaendig():

@@ -159,8 +159,8 @@
         ]
       ],
       "trigger_composite": [
-        [" ams ", "ams-quote", "ams quote", "arbeitslosenquote", "arbeitslosen-quote", "registrierte arbeitslose", "schulungsteilnehmer", "schulung"],
-        ["eurostat", " ilo ", "labour force survey", "labour-force-survey", " lfs ", "methodik", "methode", "berechnung", "konzept", "ams-quote", "ams quote", "ams-methodik", "versteckt", "verstecken", "verschoenert", "verschönert"],
+        [" ams ", "ams-quote", "ams quote", "arbeitslosenquote", "arbeitslosen-quote", "registrierte arbeitslose", "schulungsteilnehmer", "schulung", "arbeitslos"],
+        ["eurostat", " ilo ", "labour force survey", "labour-force-survey", " lfs ", "methodik", "methode", "berechnung", "konzept", "ams-quote", "ams quote", "ams-methodik", "versteckt", "verstecken", "verschoenert", "verschönert", "unterschied"],
         ["differenz", "unterschied", "warum", "welche", "echt", "real", "wahre", "richtig", "stimmt", "verschönert", "verschoenert", "schulungsteilnehmer", "schulung", "trick", "manipuliert", "versteckt", "verstecken", "geschoent", "gefälscht", "gefaelscht"]
       ]
     },
@@ -249,7 +249,7 @@
         "vormerkdauer ams"
       ],
       "trigger_composite": [
-        ["langzeit", "lang-zeit", "lang zeit", "12 monate", "über 12 monate", "ueber 12 monate", "vormerkdauer", "verweildauer"],
+        ["langzeit", "lang-zeit", "lang zeit", "12 monate", "über 12 monate", "ueber 12 monate", "vormerkdauer", "verweildauer", "wie lange"],
         ["arbeitslos", "arbeitslosigkeit", "beschäftigungslos", "beschaeftigungslos", " ams ", "vorgemerkt"],
         ["österreich", "oesterreich", " at ", " at,", " at.", "wien", "bundesland", "anteil", "quote", "bestand", "anzahl"]
       ]
@@ -341,7 +341,7 @@
       "trigger_composite": [
         ["beschäftig", "beschaeftig", "erwerbstätig", "erwerbstaetig", "arbeitskräfte", "arbeitskraefte", "arbeitsmarkt-teilnahme"],
         ["österreich", "oesterreich", " at ", " at,", " at.", "bundesland", "wien", "salzburg", "tirol"],
-        ["2024", "2023", "anzahl", "wie viele", "bestand", "veränderung", "quote", "anteil", "millionen", "mio"]
+        ["2024", "2023", "anzahl", "wie viele", "bestand", "veränderung", "quote", "anteil", "millionen", "mio", "potenzial"]
       ]
     },
     {
@@ -386,8 +386,8 @@
         "rezession arbeitslosigkeit at"
       ],
       "trigger_composite": [
-        ["arbeitslos", "arbeitslosenquote", "arbeitslosen-quote", " ams ", "ams-quote", "al-quote", "al quote"],
-        ["zeitreihe", "historisch", "vergleich", "über die jahre", "ueber die jahre", "corona", "rezession", "2019", "2020", "2021", "2022", "2023", "2024", "10 jahre"],
+        ["arbeitslos", "arbeitslosenquote", "arbeitslosen-quote", " ams ", "ams-quote", "al-quote", "al quote", "arbeitsmarkt"],
+        ["zeitreihe", "historisch", "vergleich", "über die jahre", "ueber die jahre", "corona", "rezession", "2019", "2020", "2021", "2022", "2023", "2024", "10 jahre", "krise", "wann", "hoechste", "höchste"],
         ["österreich", "oesterreich", " at ", " at,", " at.", "wifo", " ams "]
       ]
     },
@@ -479,8 +479,8 @@
       ],
       "trigger_composite": [
         [" ams "],
-        ["quelle", "url", "pdf", "download", "wo finde", "datenherkunft", "open data", "datenstand", "publikator", "herausgeber"],
-        ["arbeitsmarktdaten", "arbeitslos", "arbeitslosenquote", "statistik", "berichte", "jahresbericht", "monatsbericht"]
+        ["quelle", "url", "pdf", "download", "wo finde", "datenherkunft", "open data", "datenstand", "publikator", "herausgeber", "aktuell"],
+        ["arbeitsmarktdaten", "arbeitslos", "arbeitslosenquote", "statistik", "berichte", "jahresbericht", "monatsbericht", "daten"]
       ]
     }
   ]
