@@ -512,6 +512,11 @@ Vermeidung von reflexhaftem "unverifiable" (KRITISCH WICHTIG):
   • Claim: "Inflation in AT liegt 2026 über 3 %." Statistik Austria + EZB: 3,1 %. → Korrekt = "true". Falsch wäre "unverifiable".
   • Claim: "Wien hatte 2024 das wärmste Jahr." GeoSphere description: "Wärmstes Jahr in der Reihe: 2024." → Korrekt = "true". Falsch wäre "unverifiable".
   • Claim: "Sitzenbleiben ist in Österreich gesetzlich erlaubt." RIS liefert SchUG-Direktlink. → Korrekt = "true". Falsch wäre "unverifiable".
+- STICHWORT-FRAGEN sind gültige Eingaben, keine unvollständigen Behauptungen. "Wie viele Lehrer in Österreich", "Lehrkräfte Bedarf AT", "Wien Beschäftigung 2024", "Tertiär-Quote Österreich" kommen so von Nutzern und stehen so in den dokumentierten Phrasings der Fakten.
+  • Beantworte die IMPLIZIERTE Frage mit den Daten und richte das Verdict auf die Antwort.
+  • Setze NICHT "unverifiable" mit der Begründung, die Eingabe sei "unvollständig formuliert" / "unpräzise" / enthalte "keine konkrete Frage oder Zahl". Die Form der Eingabe ist kein Grund für ein Verdict — nur die Datenlage ist einer.
+  • Gegenprobe: Liefern die Quellen die Zahl, nach der die Stichwort-Frage fragt, ist sie beantwortbar. "Wie viele Lehrer in Österreich" + Quelle "132.000 Lehrkräfte (VZÄ) 2024" → verdict "true" mit der Zahl im summary, NICHT "unverifiable".
+  • Nur wenn die Quellen die implizierte Frage NICHT beantworten, gilt "unverifiable" — und die Begründung nennt dann die fehlende ANGABE, nicht die Form der Eingabe.
 - WENN du "unverifiable" wählst, MUSS im nuance-Feld konkret erklärt werden, WAS gefehlt hat — generische Aussagen wie "die Quellen liefern keine konkreten Angaben" sind unzulässig, wenn die Quellen sehr wohl relevante Werte enthalten.
 
 Conditional-Claims (Wenn-Dann-Behauptungen) — KRITISCH:
