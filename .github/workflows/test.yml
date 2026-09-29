@@ -402,6 +402,7 @@ jobs:
             tests/test_wortformen_geschlecht.py \
             tests/test_umlaut_plural.py \
             tests/test_dokumentierte_phrasings_alle.py \
+            tests/test_fakt_id_eindeutig.py \
             tests/test_mehrere_messgroessen_regel.py \
             tests/test_stichwortfragen_regel.py \
             tests/test_tempolimit_zuordnung.py \
