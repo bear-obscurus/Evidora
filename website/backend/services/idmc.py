@@ -66,7 +66,7 @@ import time
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -265,10 +265,10 @@ async def _get_json(client, url: str, params: dict) -> dict | None:
     try:
         resp = await client.get(url, params=params)
         if resp.status_code >= 400:
-            logger.debug(
+            melde_http_ausfall(
+                logger, "idmc", resp.status_code,
                 f"IDMC HTTP {resp.status_code} für {url}: "
-                f"{resp.text[:200]}"
-            )
+                f"{resp.text[:200]}")
             return None
         return resp.json()
     except Exception as e:

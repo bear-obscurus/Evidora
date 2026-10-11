@@ -25,6 +25,7 @@ Was NICHT lauter wurde, und warum:
 
 import ast
 import importlib.util
+import re
 import sys
 from pathlib import Path
 
@@ -268,3 +269,161 @@ def test_der_text_des_konnektors_bleibt_unveraendert():
     log = _Mitschrift()
     melde_ausfall(log, "crossref", "Crossref DOI fetch failed for '10.x': E")
     assert log.warnungen[0] == "Crossref DOI fetch failed for '10.x': E"
+
+
+# --------------------------------------------------------------------------
+# 5. Die zweite Form — Statuscode-Zweige (#241, 11.10.2026)
+# --------------------------------------------------------------------------
+# Der erste Sweep sah nur `ast.ExceptHandler`. `httpx` wirft bei 4xx/5xx
+# aber nur, wenn man `raise_for_status()` ruft — sonst prüft der Konnektor
+# selbst:
+#
+#     if resp.status_code != 200:
+#         logger.debug(...)
+#         return []
+#
+# Genau diesen Zweig nimmt DOAB mit seinem 403. Aufgefallen ist die Lücke
+# erst bei der Live-Probe nach dem Deploy von #238: ein Claim, der DOAB
+# triggert, erzeugte KEINE Warnung — obwohl DOAB nachweislich tot ist und
+# die Quelle laut `source_coverage` abgefragt wurde. Der Zensus hatte 77
+# Handler gezählt und die 73 Statuscode-Zweige daneben nicht gesehen.
+#
+# Lehre für dieses Gate: ein Detektor, der nur eine Gestalt des
+# Fehlerpfades kennt, ist genauso blind wie der Sweep, der ihn benutzt.
+
+from services._ausfall import (  # noqa: E402
+    NICHT_GEFUNDEN, melde_http_ausfall,
+)
+
+# "Gibt es nicht" ist kein Ausfall: diese Zweige dürfen leise bleiben.
+_NUR_NICHT_GEFUNDEN = re.compile(
+    r"^[\w.]+\.status_code\s*(?:==\s*(?:404|410)"
+    r"|in\s*[({\[]\s*(?:404|410)\s*(?:,\s*(?:404|410)\s*)*,?\s*[)}\]])$")
+
+
+def _status_ausdruck(test) -> str | None:
+    """Der `<resp>.status_code`-Zugriff im Test, falls einer drin ist.
+
+    Bewusst nur `.status_code`: `data.get("status") != "ok"` ist ein
+    NUTZLAST-Status und eine andere Klasse (HTTP 200 mit Fehler-Objekt im
+    Rumpf — der WGI-Fall aus #107). Der gehört eigens gemessen, nicht hier
+    mitgeschleift.
+    """
+    for k in ast.walk(test):
+        if isinstance(k, ast.Attribute) and k.attr == "status_code":
+            return ast.unparse(k)
+    return None
+
+
+def status_zweige(quelle: str):
+    """Alle `if`-Zweige, die einen HTTP-Status in leere Daten verwandeln."""
+    for k in ast.walk(ast.parse(quelle)):
+        if not isinstance(k, ast.If):
+            continue
+        if _status_ausdruck(k.test) is None:
+            continue
+        if _NUR_NICHT_GEFUNDEN.match(ast.unparse(k.test).strip()):
+            continue
+        if any(_leere_daten(x) for b in k.body for x in ast.walk(b)):
+            yield k
+
+
+def _zweig_stufen(k) -> set[str]:
+    return {lvl for b in k.body for lvl in _log_stufen(b)}
+
+
+def _zweig_meldet(k) -> bool:
+    return any(isinstance(x, ast.Call) and isinstance(x.func, ast.Name)
+               and x.func.id in ("melde_ausfall", "melde_http_ausfall")
+               for b in k.body for x in ast.walk(b))
+
+
+def test_kein_konnektor_verschluckt_einen_statuscode_auf_debug():
+    """Das Gate für die Form, die #238 übersehen hat."""
+    stumm = []
+    for pfad in _module_mit_sonde():
+        for k in status_zweige(pfad.read_text(encoding="utf-8")):
+            if _zweig_meldet(k):
+                continue
+            if _zweig_stufen(k) & {"info", "warning", "error", "exception"}:
+                continue
+            stumm.append(f"{pfad.name}:{k.lineno}")
+    assert not stumm, (
+        f"{len(stumm)} Statuscode-Ausfälle wären im Prod-Log unsichtbar: "
+        + ", ".join(stumm))
+
+
+def test_der_detektor_sieht_den_doab_fall():
+    """Gift-Probe mit genau der Form, die 18 Tage unsichtbar blieb."""
+    doab_form = (
+        "import logging\n"
+        "logger = logging.getLogger('evidora')\n"
+        "async def hole(client, query):\n"
+        "    resp = await client.get('https://example.test/' + query)\n"
+        "    if resp.status_code != 200:\n"
+        "        logger.debug(f'DOAB HTTP {resp.status_code}')\n"
+        "        return []\n"
+        "    return resp.json()\n"
+    )
+    treffer = list(status_zweige(doab_form))
+    assert len(treffer) == 1
+    assert _zweig_stufen(treffer[0]) == {"debug"}
+    assert not _zweig_meldet(treffer[0])
+
+
+def test_der_detektor_laesst_nicht_gefunden_in_ruhe():
+    """Gegenprobe: ein 404-Zweig ist Datenabwesenheit, kein Ausfall. Würde
+    er warnen, wäre der Kanal nach einer Stunde unbrauchbar — Wikipedia
+    antwortet auf jede unbekannte Seite mit 404."""
+    nicht_gefunden = (
+        "import logging\n"
+        "logger = logging.getLogger('evidora')\n"
+        "async def hole(client, doi):\n"
+        "    resp = await client.get('https://example.test/' + doi)\n"
+        "    if resp.status_code == 404:\n"
+        "        logger.debug('unbekannte DOI')\n"
+        "        return []\n"
+        "    return resp.json()\n"
+    )
+    assert list(status_zweige(nicht_gefunden)) == []
+
+
+def test_der_detektor_laesst_nutzlast_status_in_ruhe():
+    """`data.get("status") != "ok"` ist HTTP 200 mit Fehler-Objekt im Rumpf —
+    der WGI-Fall aus #107. Eigene Klasse, eigene Messung."""
+    nutzlast = (
+        "import logging\n"
+        "logger = logging.getLogger('evidora')\n"
+        "async def hole(client):\n"
+        "    resp = await client.get('https://example.test/')\n"
+        "    data = resp.json()\n"
+        "    if data.get('status') != 'ok':\n"
+        "        logger.debug('nicht ok')\n"
+        "        return []\n"
+        "    return data\n"
+    )
+    assert list(status_zweige(nutzlast)) == []
+
+
+def test_nicht_gefunden_bleibt_leise():
+    log = _Mitschrift()
+    for code in sorted(NICHT_GEFUNDEN):
+        melde_http_ausfall(log, "wikipedia", code, f"HTTP {code}")
+    assert log.warnungen == []
+    assert len(log.debugs) == len(NICHT_GEFUNDEN)
+
+
+@pytest.mark.parametrize("code", [403, 401, 500, 503, 429])
+def test_echte_ausfaelle_werden_laut(code):
+    log = _Mitschrift()
+    melde_http_ausfall(log, "doab", code, f"DOAB HTTP {code}")
+    assert log.warnungen == [f"DOAB HTTP {code}"]
+
+
+def test_unlesbarer_status_wird_wie_ein_ausfall_behandelt():
+    """Lieber eine Warnung zu viel als ein verschluckter Ausfall, wenn der
+    Statuscode nicht als Zahl ankommt."""
+    log = _Mitschrift()
+    melde_http_ausfall(log, "doab", None, "kein Status")
+    melde_http_ausfall(log, "getty", "kaputt", "kein Status")
+    assert len(log.warnungen) == 2

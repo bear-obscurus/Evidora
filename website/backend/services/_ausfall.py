@@ -60,6 +60,39 @@ def melde_ausfall(logger, dienst: str, nachricht: str) -> None:
         logger.debug(nachricht)
 
 
+# "Gibt es nicht" ist kein Ausfall der Quelle. Wikipedia antwortet auf eine
+# unbekannte Seite mit 404, Crossref auf eine unbekannte DOI, OSV auf eine
+# unbekannte Kennung — das passiert im Normalbetrieb dauernd. Wuerde das
+# warnen, waere der Kanal binnen Stunden wertlos.
+NICHT_GEFUNDEN = frozenset({404, 410})
+
+
+def melde_http_ausfall(logger, dienst: str, status, nachricht: str) -> None:
+    """Fuer Statuscode-Zweige: wie `melde_ausfall`, aber 404/410 bleiben still.
+
+    Die zweite Form, in der ein Ausfall verschluckt wurde — und die, die der
+    erste Sweep (#238) uebersehen hat. `httpx` wirft bei 4xx/5xx nur, wenn
+    man `raise_for_status()` ruft; sonst prueft der Konnektor selbst:
+
+        if resp.status_code != 200:
+            logger.debug(...)
+            return []
+
+    Genau diesen Zweig nimmt DOAB mit seinem 403. Der erste Zensus sah nur
+    `ast.ExceptHandler` und fand ihn nicht — aufgefallen ist es erst, als die
+    Live-Probe nach dem Deploy KEINE Warnung fand, obwohl DOAB nachweislich
+    tot ist.
+    """
+    try:
+        code = int(status)
+    except (TypeError, ValueError):
+        code = None
+    if code in NICHT_GEFUNDEN:
+        logger.debug(nachricht)
+        return
+    melde_ausfall(logger, dienst, nachricht)
+
+
 def _zuruecksetzen() -> None:
     """Nur fuer Tests: der Prozess-Zustand ist sonst zwischen Tests geteilt."""
     _STAND.clear()

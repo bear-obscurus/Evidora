@@ -40,7 +40,7 @@ import logging
 from urllib.parse import quote
 
 from services._http_polite import polite_client
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -222,9 +222,9 @@ async def _match_species(client, latin: str) -> dict | None:
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(
-                f"GBIF species/match HTTP {resp.status_code} for '{latin}'"
-            )
+            melde_http_ausfall(
+                logger, "gbif", resp.status_code,
+                f"GBIF species/match HTTP {resp.status_code} for '{latin}'")
             return None
         data = resp.json()
         if data.get("matchType") in (None, "NONE"):

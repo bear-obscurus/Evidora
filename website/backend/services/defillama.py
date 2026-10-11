@@ -44,7 +44,7 @@ from urllib.parse import quote
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -386,9 +386,10 @@ async def _fetch_protocol(client, slug: str) -> dict | None:
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(
-                f"DeFiLlama protocol HTTP {resp.status_code} for slug='{slug}'"
-            )
+            melde_http_ausfall(
+                logger, "defillama", resp.status_code,
+                f"DeFiLlama protocol HTTP {resp.status_code} "
+                f"for slug='{slug}'")
             _cache_put(cache_key, {})
             return None
         data = resp.json()
@@ -415,7 +416,8 @@ async def _fetch_chains(client) -> list[dict]:
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(f"DeFiLlama chains HTTP {resp.status_code}")
+            melde_http_ausfall(logger, "defillama", resp.status_code,
+                               f"DeFiLlama chains HTTP {resp.status_code}")
             _cache_put(cache_key, [])
             return []
         data = resp.json()
@@ -442,7 +444,9 @@ async def _fetch_stablecoins(client) -> list[dict]:
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(f"DeFiLlama stablecoins HTTP {resp.status_code}")
+            melde_http_ausfall(
+                logger, "defillama", resp.status_code,
+                f"DeFiLlama stablecoins HTTP {resp.status_code}")
             _cache_put(cache_key, [])
             return []
         data = resp.json()

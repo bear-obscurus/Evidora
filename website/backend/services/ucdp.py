@@ -57,7 +57,7 @@ import time
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -261,11 +261,14 @@ async def _get_json(client, url: str, params: dict) -> dict | None:
     try:
         resp = await client.get(url, params=params)
         if resp.status_code == 401:
-            logger.debug(f"UCDP 401 (token fehlt/ungültig) für {url}")
+            melde_http_ausfall(logger, "ucdp", resp.status_code,
+                               f"UCDP 401 (token fehlt/ungültig) für {url}")
             return None
         if resp.status_code >= 400:
-            logger.debug(f"UCDP HTTP {resp.status_code} für {url}: "
-                         f"{resp.text[:200]}")
+            melde_http_ausfall(
+                logger, "ucdp", resp.status_code,
+                f"UCDP HTTP {resp.status_code} für {url}: "
+                f"{resp.text[:200]}")
             return None
         return resp.json()
     except Exception as e:

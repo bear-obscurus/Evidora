@@ -49,7 +49,7 @@ import logging
 import os
 
 from services._http_polite import polite_client
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -369,10 +369,10 @@ async def _fetch_comtrade(
             logger.warning("UN Comtrade: 429 rate-limit — skip diesen Call")
             return []
         if resp.status_code != 200:
-            logger.debug(
+            melde_http_ausfall(
+                logger, "uncomtrade", resp.status_code,
                 f"UN Comtrade: HTTP {resp.status_code} für "
-                f"{reporter_iso3}/{partner_iso3}/{cmd_code}/{flow_code}"
-            )
+                f"{reporter_iso3}/{partner_iso3}/{cmd_code}/{flow_code}")
             return []
         data = resp.json()
         if not isinstance(data, dict):

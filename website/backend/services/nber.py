@@ -91,7 +91,7 @@ import httpx
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -366,7 +366,9 @@ async def _search_nber_api(
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(f"NBER search HTTP {resp.status_code} for '{query[:40]}'")
+            melde_http_ausfall(
+                logger, "nber", resp.status_code,
+                f"NBER search HTTP {resp.status_code} for '{query[:40]}'")
             return []
         payload = resp.json()
     except Exception as e:

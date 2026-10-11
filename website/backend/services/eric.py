@@ -42,7 +42,7 @@ from urllib.parse import quote_plus
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -356,9 +356,9 @@ async def _fetch_eric(query: str, peer_only: bool) -> list[dict]:
         async with polite_client(timeout=TIMEOUT_S) as client:
             resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(
-                f"ERIC HTTP {resp.status_code} fuer '{query[:40]}'"
-            )
+            melde_http_ausfall(
+                logger, "eric", resp.status_code,
+                f"ERIC HTTP {resp.status_code} fuer '{query[:40]}'")
             return []
         try:
             payload = resp.json()
