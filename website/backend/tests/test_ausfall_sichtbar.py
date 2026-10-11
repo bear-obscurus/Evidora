@@ -272,7 +272,7 @@ def test_der_text_des_konnektors_bleibt_unveraendert():
 
 
 # --------------------------------------------------------------------------
-# 5. Die zweite Form — Statuscode-Zweige (#240, 11.10.2026)
+# 5. Die zweite Form — Statuscode-Zweige (#241, 11.10.2026)
 # --------------------------------------------------------------------------
 # Der erste Sweep sah nur `ast.ExceptHandler`. `httpx` wirft bei 4xx/5xx
 # aber nur, wenn man `raise_for_status()` ruft — sonst prüft der Konnektor
