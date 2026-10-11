@@ -228,6 +228,14 @@ jobs:
     #                                  Logik ohne Netz + Drift-Schutz, damit
     #                                  die Sonden-URLs nicht von den
     #                                  Konnektoren weglaufen)
+    #   - test_ausfall_sichtbar       (ein toter Konnektor muss im Log des
+    #                                  Dienstes auffallen: DOAB war 18 Tage
+    #                                  tot und nur die Sonde sah es, weil
+    #                                  der Fehlerpfad auf debug loggte und
+    #                                  Leeres zurueckgab. Gate = der Zensus
+    #                                  ueber ALLE Konnektoren mit Sonde,
+    #                                  ohne Ausnahmeliste, mit Gift-Probe
+    #                                  und Gegenprobe fuer Parse-Fehler)
     #   - test_waechter_ehrlich       (die Waechter, die sich selbst nicht
     #                                  geprueft haben: der Freshness-Push
     #                                  wurde seit #139 GAR NICHT gebaut
@@ -370,6 +378,7 @@ jobs:
             tests/test_wgi_weltbank_api.py \
             tests/test_quellen_lebenszeichen.py \
             tests/test_waechter_ehrlich.py \
+            tests/test_ausfall_sichtbar.py \
             tests/test_gegenwarts_claims_datenstand.py \
             tests/test_sparzinsen_messgroesse.py \
             tests/test_skalen_richtung_vergleiche.py \

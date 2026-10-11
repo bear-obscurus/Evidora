@@ -39,6 +39,7 @@ import time
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -261,7 +262,8 @@ async def _fetch_scan(client, host: str) -> dict | None:
         _scan_cache[key] = (time.time(), data)
         return data
     except Exception as e:
-        logger.debug(f"Observatory fetch failed for {host}: {e}")
+        melde_ausfall(logger, "observatory",
+                      f"Observatory fetch failed for {host}: {e}")
         return None
 
 

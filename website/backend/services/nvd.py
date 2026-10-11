@@ -51,6 +51,7 @@ from urllib.parse import quote
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -269,7 +270,7 @@ async def _fetch_cve_by_id(client, cve_id: str) -> dict | None:
         _cve_cache[key] = (time.time(), cve if isinstance(cve, dict) else None)
         return cve if isinstance(cve, dict) else None
     except Exception as e:
-        logger.debug(f"NVD CVE fetch failed for {cve_id}: {e}")
+        melde_ausfall(logger, "nvd", f"NVD CVE fetch failed for {cve_id}: {e}")
         return None
 
 
@@ -303,7 +304,7 @@ async def _query_nvd(client, params: dict[str, str]) -> list[dict]:
         _query_cache[cache_key] = (time.time(), cves)
         return cves
     except Exception as e:
-        logger.debug(f"NVD query failed qs={qs[:120]}: {e}")
+        melde_ausfall(logger, "nvd", f"NVD query failed qs={qs[:120]}: {e}")
         return []
 
 

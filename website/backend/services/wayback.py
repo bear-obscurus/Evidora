@@ -45,6 +45,7 @@ import re
 from urllib.parse import quote, urlparse
 
 from services._http_polite import polite_client
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -244,7 +245,8 @@ async def _fetch_snapshots(client, target_url: str) -> list[dict] | None:
             return None
         data = resp.json()
     except Exception as e:
-        logger.debug(f"Wayback CDX fetch failed for {target_url[:60]}: {e}")
+        melde_ausfall(logger, "wayback",
+                      f"Wayback CDX fetch failed for {target_url[:60]}: {e}")
         return None
 
     # CDX gibt [] zurück, wenn nichts archiviert wurde

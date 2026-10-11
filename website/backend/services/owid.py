@@ -40,6 +40,7 @@ import logging
 from typing import Any
 
 from services._http_polite import polite_client
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -460,7 +461,8 @@ async def _fetch_csv_latest(client, slug: str) -> dict | None:
         if not text or len(text) < 50:
             return None
     except Exception as e:
-        logger.debug(f"OWID CSV fetch exception slug={slug}: {e}")
+        melde_ausfall(logger, "owid",
+                      f"OWID CSV fetch exception slug={slug}: {e}")
         return None
 
     # CSV parsen — Spalten: Entity, Code, Year, <value-column>

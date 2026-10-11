@@ -93,6 +93,7 @@ from typing import Any
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -639,7 +640,8 @@ async def _verify_source_live() -> bool | None:
                 )
             return ok
     except Exception as exc:
-        logger.debug(f"EDGAR Quellen-Verifikation fehlgeschlagen: {exc!r}")
+        melde_ausfall(logger, "edgar",
+                      f"EDGAR Quellen-Verifikation fehlgeschlagen: {exc!r}")
         # Bei Netz-Fehler nicht cachen → nächster Call versucht erneut
         return None
 

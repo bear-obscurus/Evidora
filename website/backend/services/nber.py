@@ -91,6 +91,7 @@ import httpx
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -369,7 +370,8 @@ async def _search_nber_api(
             return []
         payload = resp.json()
     except Exception as e:
-        logger.debug(f"NBER search failed for '{query[:30]}': {e}")
+        melde_ausfall(logger, "nber",
+                      f"NBER search failed for '{query[:30]}': {e}")
         return []
 
     raw_results = payload.get("results") or []

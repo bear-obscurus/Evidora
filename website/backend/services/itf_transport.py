@@ -70,6 +70,7 @@ import time
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -831,7 +832,8 @@ async def _fetch_domain(
             "Accept": "application/vnd.sdmx.data+json",
         })
     except Exception as e:
-        logger.debug(f"itf_transport: {dom_id} request failed: {e}")
+        melde_ausfall(logger, "itf_transport",
+                      f"itf_transport: {dom_id} request failed: {e}")
         _cache_put(cache_key, [])
         return []
 

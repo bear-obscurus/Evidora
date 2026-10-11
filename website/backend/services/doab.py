@@ -53,6 +53,7 @@ from urllib.parse import quote_plus
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -442,7 +443,8 @@ async def _fetch_doab(query: str) -> list[dict]:
             logger.debug(f"DOAB JSON-Parse-Error: {e}")
             return []
     except Exception as e:
-        logger.debug(f"DOAB fetch failed fuer '{query[:40]}': {e}")
+        melde_ausfall(logger, "doab",
+                      f"DOAB fetch failed fuer '{query[:40]}': {e}")
         return []
 
     # Top-Level ist eine Liste, kein Dict.

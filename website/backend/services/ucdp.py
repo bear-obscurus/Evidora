@@ -57,6 +57,7 @@ import time
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -268,7 +269,7 @@ async def _get_json(client, url: str, params: dict) -> dict | None:
             return None
         return resp.json()
     except Exception as e:
-        logger.debug(f"UCDP GET failed ({url}): {e}")
+        melde_ausfall(logger, "ucdp", f"UCDP GET failed ({url}): {e}")
         return None
 
 

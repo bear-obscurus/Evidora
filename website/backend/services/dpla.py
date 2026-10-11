@@ -51,6 +51,7 @@ from functools import lru_cache
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -262,7 +263,7 @@ async def _run_search(client, api_key: str, query: str) -> list[dict] | None:
         data = resp.json()
         return data.get("docs") or []
     except Exception as e:
-        logger.debug(f"DPLA fetch failed: {e}")
+        melde_ausfall(logger, "dpla", f"DPLA fetch failed: {e}")
         return None
 
 

@@ -46,6 +46,7 @@ import time
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -396,7 +397,8 @@ async def _fetch_lookup(client, domain: str) -> dict | None:
         _lookup_cache[key] = (time.time(), parsed)
         return parsed
     except Exception as e:
-        logger.debug(f"WebAIM fetch failed for {domain}: {e}")
+        melde_ausfall(logger, "webaim",
+                      f"WebAIM fetch failed for {domain}: {e}")
         return None
 
 

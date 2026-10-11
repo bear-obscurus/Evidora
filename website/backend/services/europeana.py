@@ -54,6 +54,7 @@ from functools import lru_cache
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -226,7 +227,7 @@ async def _run_search(client, api_key: str, query: str) -> list[dict] | None:
             return None
         return data.get("items") or []
     except Exception as e:
-        logger.debug(f"Europeana fetch failed: {e}")
+        melde_ausfall(logger, "europeana", f"Europeana fetch failed: {e}")
         return None
 
 

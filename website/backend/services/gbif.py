@@ -40,6 +40,7 @@ import logging
 from urllib.parse import quote
 
 from services._http_polite import polite_client
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -230,7 +231,8 @@ async def _match_species(client, latin: str) -> dict | None:
             return None
         return data
     except Exception as e:
-        logger.debug(f"GBIF species/match failed for '{latin}': {e}")
+        melde_ausfall(logger, "gbif",
+                      f"GBIF species/match failed for '{latin}': {e}")
         return None
 
 
@@ -246,7 +248,7 @@ async def _count_occurrences(
         data = resp.json()
         return int(data.get("count") or 0)
     except Exception as e:
-        logger.debug(
+        melde_ausfall(logger, "gbif",
             f"GBIF occurrence count failed for usageKey {usage_key}: {e}"
         )
         return 0

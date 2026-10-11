@@ -49,6 +49,7 @@ import time
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -318,7 +319,7 @@ async def _post_graphql(client, query: str, variables: dict | None = None) -> di
             return None
         return payload.get("data")
     except Exception as e:
-        logger.debug(f"AIID GraphQL POST failed: {e}")
+        melde_ausfall(logger, "aiid", f"AIID GraphQL POST failed: {e}")
         return None
 
 

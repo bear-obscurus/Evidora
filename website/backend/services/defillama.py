@@ -44,6 +44,7 @@ from urllib.parse import quote
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -392,7 +393,8 @@ async def _fetch_protocol(client, slug: str) -> dict | None:
             return None
         data = resp.json()
     except Exception as e:
-        logger.debug(f"DeFiLlama protocol fetch failed for '{slug}': {e}")
+        melde_ausfall(logger, "defillama",
+                      f"DeFiLlama protocol fetch failed for '{slug}': {e}")
         return None
 
     if not isinstance(data, dict) or "name" not in data:
@@ -418,7 +420,8 @@ async def _fetch_chains(client) -> list[dict]:
             return []
         data = resp.json()
     except Exception as e:
-        logger.debug(f"DeFiLlama chains fetch failed: {e}")
+        melde_ausfall(logger, "defillama",
+                      f"DeFiLlama chains fetch failed: {e}")
         return []
 
     if not isinstance(data, list):
@@ -444,7 +447,8 @@ async def _fetch_stablecoins(client) -> list[dict]:
             return []
         data = resp.json()
     except Exception as e:
-        logger.debug(f"DeFiLlama stablecoins fetch failed: {e}")
+        melde_ausfall(logger, "defillama",
+                      f"DeFiLlama stablecoins fetch failed: {e}")
         return []
 
     pegged = (data or {}).get("peggedAssets") if isinstance(data, dict) else None
