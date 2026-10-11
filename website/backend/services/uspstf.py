@@ -70,6 +70,7 @@ import httpx
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_kaputte_nutzlast
 
 logger = logging.getLogger("evidora")
 
@@ -421,6 +422,11 @@ async def _fetch_dump(client: httpx.AsyncClient) -> dict | None:
             return None
         data = resp.json()
         if not isinstance(data, dict):
+            melde_kaputte_nutzlast(
+                logger, "uspstf",
+                f"USPSTF: Antwort ist kein dict "
+                f"(type={type(data).__name__})",
+                data)
             _dump_cache = (now, None)
             return None
         _dump_cache = (now, data)

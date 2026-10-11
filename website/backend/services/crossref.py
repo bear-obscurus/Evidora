@@ -44,7 +44,9 @@ from html import unescape
 from urllib.parse import quote, quote_plus
 
 from services._http_polite import polite_client
-from services._ausfall import melde_ausfall, melde_http_ausfall
+from services._ausfall import (
+    melde_ausfall, melde_http_ausfall, melde_kaputte_nutzlast,
+)
 
 logger = logging.getLogger("evidora")
 
@@ -272,6 +274,14 @@ async def _fetch_doi(client, doi: str) -> dict | None:
             return None
         data = resp.json()
         if data.get("status") != "ok":
+            # Crossref verpackt jede Antwort in {"status": ..., "message":
+            # ...}. Ein anderer Status als "ok" ist die Aussage der API
+            # UEBER SICH SELBST — HTTP 200 mit Fehler im Rumpf, also die
+            # WGI-Klasse aus #107. Stand hier ohne jedes Log.
+            melde_kaputte_nutzlast(
+                logger, "crossref",
+                f"Crossref DOI {doi}: status={data.get('status')!r} "
+                f"statt 'ok'")
             return None
         item = data.get("message") or {}
         return _format_result(item)
@@ -299,6 +309,10 @@ async def _search_query(client, query: str) -> list[dict]:
             return []
         data = resp.json()
         if data.get("status") != "ok":
+            melde_kaputte_nutzlast(
+                logger, "crossref",
+                f"Crossref search '{query[:40]}': "
+                f"status={data.get('status')!r} statt 'ok'")
             return []
         items = (data.get("message") or {}).get("items") or []
         out: list[dict] = []

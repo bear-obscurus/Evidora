@@ -49,7 +49,9 @@ import logging
 import os
 
 from services._http_polite import polite_client
-from services._ausfall import melde_ausfall, melde_http_ausfall
+from services._ausfall import (
+    melde_ausfall, melde_http_ausfall, melde_kaputte_nutzlast,
+)
 
 logger = logging.getLogger("evidora")
 
@@ -376,6 +378,11 @@ async def _fetch_comtrade(
             return []
         data = resp.json()
         if not isinstance(data, dict):
+            melde_kaputte_nutzlast(
+                logger, "uncomtrade",
+                f"UN Comtrade: Antwort ist kein dict "
+                f"(type={type(data).__name__})",
+                data)
             return []
         rows = data.get("data") or []
         if not isinstance(rows, list):

@@ -93,6 +93,43 @@ def melde_http_ausfall(logger, dienst: str, status, nachricht: str) -> None:
     melde_ausfall(logger, dienst, nachricht)
 
 
+_FEHLT = object()
+
+
+def _ist_leer(nutzlast) -> bool:
+    """`None` oder ein leerer Container — also "nichts gefunden"."""
+    if nutzlast is None:
+        return True
+    return hasattr(nutzlast, "__len__") and len(nutzlast) == 0
+
+
+def melde_kaputte_nutzlast(logger, dienst: str, nachricht: str,
+                           nutzlast=_FEHLT) -> None:
+    """Dritte Form: HTTP 200, aber der Rumpf ist nicht brauchbar.
+
+    Die WGI-Blindheit aus #107: Die Weltbank quittierte eine kaputte Abfrage
+    mit HTTP 200 und einem Fehler-OBJEKT im Rumpf. `raise_for_status` greift
+    nicht, der Statuscode-Zweig greift nicht, der Konnektor cachte still eine
+    leere Liste — so lag WGI von Mai bis September 2026 tot, ohne eine
+    einzige Fehlermeldung. `services/wgi.py` ist seither das Vorbild: dort
+    steht die Pruefung mit einer lauten, erklaerenden Meldung.
+
+    EIGENER Zaehler je Dienst (`<dienst>/nutzlast`): ein Formatwechsel soll
+    nicht in der Stunde Stille eines Ausfalls untergehen — das sind zwei
+    verschiedene Probleme derselben Quelle.
+
+    `nutzlast` ist optional. Wird sie mitgegeben und ist LEER (`None`, `[]`,
+    `{}`, `""`), bleibt die Meldung still: viele APIs antworten auf "nichts
+    gefunden" mit `null` oder einer leeren Liste, und eine Formpruefung
+    schlaegt dann an, ohne dass etwas kaputt ist. Dieselbe Logik wie die
+    404-Regel in `melde_http_ausfall`.
+    """
+    if nutzlast is not _FEHLT and _ist_leer(nutzlast):
+        logger.debug(nachricht)
+        return
+    melde_ausfall(logger, f"{dienst}/nutzlast", nachricht)
+
+
 def _zuruecksetzen() -> None:
     """Nur fuer Tests: der Prozess-Zustand ist sonst zwischen Tests geteilt."""
     _STAND.clear()

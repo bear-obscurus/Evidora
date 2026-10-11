@@ -427,3 +427,229 @@ def test_unlesbarer_status_wird_wie_ein_ausfall_behandelt():
     melde_http_ausfall(log, "doab", None, "kein Status")
     melde_http_ausfall(log, "getty", "kaputt", "kein Status")
     assert len(log.warnungen) == 2
+
+
+# --------------------------------------------------------------------------
+# 6. Die dritte Form — HTTP 200 mit Fehler im Rumpf (#242, 11.10.2026)
+# --------------------------------------------------------------------------
+# Die WGI-Blindheit aus #107: Die Weltbank quittierte eine kaputte Abfrage
+# mit HTTP 200 und einem Fehler-OBJEKT im Rumpf. `raise_for_status` greift
+# nicht, der Statuscode-Zweig greift nicht — der Konnektor cachte still eine
+# leere Liste. So lag WGI von Mai bis September 2026 tot.
+#
+# `services/wgi.py` ist seither das VORBILD, nicht der Befund: dort steht
+# die Prüfung mit einer lauten, erklärenden Meldung („Das ist kein leeres
+# Ergebnis, sondern eine kaputte Abfrage"), und erst DANACH der stille
+# Zweig für das tatsächlich leere Ergebnis. Dieses Gate muss diese Reihenfolge
+# zulassen — sonst zwingt es zu Warnungen auf leere Trefferlisten.
+
+from services._ausfall import melde_kaputte_nutzlast  # noqa: E402
+
+_NUTZLAST_MARKEN = ("isinstance", "error", "errors", "status", "success",
+                    "fault", "detail")
+_LAUT = {"info", "warning", "error", "exception"}
+
+
+def _json_namen(fn) -> set[str]:
+    """Namen, die in dieser Funktion aus `.json()` / `json.loads` stammen.
+
+    Die Abgrenzung zur zweiten Form: eine Formprüfung auf EINEN Datensatz
+    in einer Schleife (`not isinstance(eintrag, dict)`) ist Robustheit pro
+    Datensatz — dieselbe Klasse wie die Parse-Handler, die #238 bewusst
+    leise gelassen hat. Erst die Prüfung der GANZEN Antwort heißt: die
+    Quelle liefert etwas, das wir nicht lesen können.
+    """
+    namen = set()
+    for k in ast.walk(fn):
+        if not isinstance(k, (ast.Assign, ast.AnnAssign)):
+            continue
+        if k.value is None:
+            continue
+        q = ast.unparse(k.value)
+        if ".json()" not in q and "json.loads" not in q:
+            continue
+        ziele = k.targets if isinstance(k, ast.Assign) else [k.target]
+        namen |= {z.id for z in ziele if isinstance(z, ast.Name)}
+    return namen
+
+
+def _laut(k) -> bool:
+    if any(isinstance(x, ast.Call) and isinstance(x.func, ast.Name)
+           and x.func.id.startswith("melde_")
+           for b in k.body for x in ast.walk(b)):
+        return True
+    return bool({lvl for b in k.body for lvl in _log_stufen(b)} & _LAUT)
+
+
+def nutzlast_zweige(quelle: str):
+    """`if`-Zweige, die eine FEHLERHAFTE oberste Antwort in Leeres wandeln."""
+    for fn in ast.walk(ast.parse(quelle)):
+        if not isinstance(fn, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            continue
+        oberste = _json_namen(fn)
+        if not oberste:
+            continue
+        schon_laut: set[str] = set()
+        # NACH ZEILE sortiert, nicht in `ast.walk`-Reihenfolge: die Regel
+        # "laute Prüfung zuerst" hängt an der Quellordnung, und `ast.walk`
+        # geht in die Breite. Bei wgi.py liegen beide `if` auf derselben
+        # Ebene und die Reihenfolge stimmte zufällig — verschachtelt wäre
+        # sie falsch gewesen.
+        ifs = sorted((k for k in ast.walk(fn) if isinstance(k, ast.If)),
+                     key=lambda k: k.lineno)
+        for k in ifs:
+            test = ast.unparse(k.test)
+            if "status_code" in test:
+                continue            # zweite Form, siehe #241
+            betroffen = {n.id for n in ast.walk(k.test)
+                         if isinstance(n, ast.Name)} & oberste
+            if not betroffen:
+                continue
+            if _laut(k):
+                # Ab hier ist für diese Variable eine laute Prüfung
+                # vorhanden — ein folgender stiller Zweig ist der
+                # Leer-Fall (Vorbild wgi.py).
+                schon_laut |= betroffen
+                continue
+            if betroffen & schon_laut:
+                continue
+            if not any(m in test.lower() for m in _NUTZLAST_MARKEN):
+                continue            # reine Leer-Prüfung: `not data`
+            if not any(_leere_daten(x) for b in k.body for x in ast.walk(b)):
+                continue
+            yield k
+
+
+def test_kein_konnektor_verschluckt_einen_fehler_im_rumpf():
+    """Das Gate für die Form, die WGI vier Monate lang unsichtbar machte."""
+    stumm = []
+    for pfad in _module_mit_sonde():
+        for k in nutzlast_zweige(pfad.read_text(encoding="utf-8")):
+            stumm.append(f"{pfad.name}:{k.lineno}")
+    assert not stumm, (
+        f"{len(stumm)} Fehler-Nutzlasten wären im Prod-Log unsichtbar: "
+        + ", ".join(stumm))
+
+
+def test_der_detektor_sieht_den_crossref_fall():
+    """Gift-Probe: Crossref prüfte zweimal `status != "ok"` und loggte
+    dabei GAR NICHTS."""
+    crossref_form = (
+        "import logging\n"
+        "logger = logging.getLogger('evidora')\n"
+        "async def hole(client, doi):\n"
+        "    resp = await client.get('https://example.test/' + doi)\n"
+        "    data = resp.json()\n"
+        "    if data.get('status') != 'ok':\n"
+        "        return None\n"
+        "    return data.get('message')\n"
+    )
+    assert len(list(nutzlast_zweige(crossref_form))) == 1
+
+
+def test_die_reihenfolge_entscheidet_nicht_die_baum_traversierung():
+    """Die Ausnahme gilt nur für Zweige NACH der lauten Prüfung.
+
+    Steht der stille Zweig VOR der lauten, ist er nicht gedeckt — sonst
+    könnte ein Konnektor das Gate mit einer einzigen lauten Prüfung
+    irgendwo in der Funktion stillstellen.
+    """
+    falsche_reihenfolge = (
+        "import logging\n"
+        "logger = logging.getLogger('evidora')\n"
+        "async def hole(client):\n"
+        "    resp = await client.get('https://example.test/')\n"
+        "    data = resp.json()\n"
+        "    if not isinstance(data, list):\n"
+        "        return []\n"
+        "    if 'error' in data:\n"
+        "        logger.warning('API-Fehler')\n"
+        "        return []\n"
+        "    return data\n"
+    )
+    assert len(list(nutzlast_zweige(falsche_reihenfolge))) == 1
+
+
+def test_der_detektor_laesst_die_wgi_reihenfolge_zu():
+    """Vorbild wgi.py: laute Fehler-Prüfung zuerst, danach der stille
+    Leer-Fall. Würde das Gate hier anschlagen, zwänge es zu Warnungen auf
+    jede leere Trefferliste."""
+    wgi_form = (
+        "import logging\n"
+        "logger = logging.getLogger('evidora')\n"
+        "async def hole(client):\n"
+        "    resp = await client.get('https://example.test/')\n"
+        "    data = resp.json()\n"
+        "    if isinstance(data, list) and data and 'message' in data[0]:\n"
+        "        logger.warning('API-FEHLER statt Daten')\n"
+        "        return []\n"
+        "    if not isinstance(data, list) or len(data) < 2:\n"
+        "        return []\n"
+        "    return data[1]\n"
+    )
+    assert list(nutzlast_zweige(wgi_form)) == []
+
+
+def test_der_detektor_laesst_einzelne_datensaetze_in_ruhe():
+    """Eine Formprüfung auf EINEN Datensatz in der Schleife ist Robustheit
+    pro Datensatz, kein Quellenbefund (Abgrenzung zu #238)."""
+    pro_datensatz = (
+        "import logging\n"
+        "logger = logging.getLogger('evidora')\n"
+        "def forme(eintraege):\n"
+        "    out = []\n"
+        "    for eintrag in eintraege:\n"
+        "        if not isinstance(eintrag, dict):\n"
+        "            return []\n"
+        "        out.append(eintrag)\n"
+        "    return out\n"
+    )
+    assert list(nutzlast_zweige(pro_datensatz)) == []
+
+
+def test_der_detektor_laesst_leere_treffer_in_ruhe():
+    """`not items` heißt "nichts gefunden" — der Normalfall."""
+    leer = (
+        "import logging\n"
+        "logger = logging.getLogger('evidora')\n"
+        "async def hole(client):\n"
+        "    resp = await client.get('https://example.test/')\n"
+        "    data = resp.json()\n"
+        "    if not data:\n"
+        "        return []\n"
+        "    return data\n"
+    )
+    assert list(nutzlast_zweige(leer)) == []
+
+
+def test_leere_nutzlast_bleibt_leise():
+    """Viele APIs antworten auf "nichts gefunden" mit `null` oder `[]`. Eine
+    Formprüfung schlägt dann an, ohne dass etwas kaputt ist."""
+    log = _Mitschrift()
+    for leer in (None, [], {}, ""):
+        melde_kaputte_nutzlast(log, "doab", "Antwort ist kein list", leer)
+    assert log.warnungen == []
+    assert len(log.debugs) == 4
+
+
+def test_unbrauchbare_nutzlast_wird_laut():
+    log = _Mitschrift()
+    melde_kaputte_nutzlast(log, "doab", "Antwort ist kein list", "<html>…")
+    assert len(log.warnungen) == 1
+
+
+def test_ohne_nutzlast_wird_immer_laut():
+    """Wer die Nutzlast nicht mitgibt, meint einen echten Fehler im Rumpf —
+    etwa GraphQL-`errors` oder Crossrefs `status != "ok"`."""
+    log = _Mitschrift()
+    melde_kaputte_nutzlast(log, "crossref", "status='error' statt 'ok'")
+    assert len(log.warnungen) == 1
+
+
+def test_formatwechsel_und_ausfall_zaehlen_getrennt():
+    """Zwei verschiedene Probleme derselben Quelle dürfen sich nicht
+    gegenseitig in der Stunde Stille verstecken."""
+    log = _Mitschrift()
+    melde_ausfall(log, "doab", "DOAB HTTP 403")
+    melde_kaputte_nutzlast(log, "doab", "DOAB: Antwort ist kein list", "x")
+    assert len(log.warnungen) == 2

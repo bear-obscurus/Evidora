@@ -71,7 +71,9 @@ from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._topic_match import is_party_corruption_superlative_claim
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall, melde_http_ausfall
+from services._ausfall import (
+    melde_ausfall, melde_http_ausfall, melde_kaputte_nutzlast,
+)
 
 logger = logging.getLogger("evidora")
 
@@ -263,7 +265,9 @@ async def _run_constitutions_lookup(
             return None
         data = resp.json()
         if not isinstance(data, list):
-            logger.debug(f"Constitute unexpected payload: {type(data)}")
+            melde_kaputte_nutzlast(
+                logger, "constitute",
+                f"Constitute unexpected payload: {type(data)}", data)
             return None
         return data
     except Exception as e:

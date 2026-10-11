@@ -44,7 +44,9 @@ from urllib.parse import quote
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall, melde_http_ausfall
+from services._ausfall import (
+    melde_ausfall, melde_http_ausfall, melde_kaputte_nutzlast,
+)
 
 logger = logging.getLogger("evidora")
 
@@ -399,6 +401,11 @@ async def _fetch_protocol(client, slug: str) -> dict | None:
         return None
 
     if not isinstance(data, dict) or "name" not in data:
+        melde_kaputte_nutzlast(
+            logger, "defillama",
+            f"DeFiLlama: Antwort ist kein dict "
+            f"(type={type(data).__name__})",
+            data)
         _cache_put(cache_key, {})
         return None
     _cache_put(cache_key, data)
@@ -427,6 +434,11 @@ async def _fetch_chains(client) -> list[dict]:
         return []
 
     if not isinstance(data, list):
+        melde_kaputte_nutzlast(
+            logger, "defillama",
+            f"DeFiLlama: Antwort ist kein list "
+            f"(type={type(data).__name__})",
+            data)
         _cache_put(cache_key, [])
         return []
     _cache_put(cache_key, data)

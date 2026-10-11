@@ -54,7 +54,9 @@ from functools import lru_cache
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall, melde_http_ausfall
+from services._ausfall import (
+    melde_ausfall, melde_http_ausfall, melde_kaputte_nutzlast,
+)
 
 logger = logging.getLogger("evidora")
 
@@ -223,7 +225,12 @@ async def _run_search(client, api_key: str, query: str) -> list[dict] | None:
             return None
         data = resp.json()
         if not data.get("success"):
-            logger.debug(f"Europeana success=false: {data.get('error', '?')[:120]}")
+            # `success: false` ist eine FEHLERMELDUNG der API, kein leeres
+            # Ergebnis — die Nutzlast geht bewusst NICHT mit, sie ist ja da.
+            melde_kaputte_nutzlast(
+                logger, "europeana",
+                f"Europeana success=false: "
+                f"{data.get('error', '?')[:120]}")
             return None
         return data.get("items") or []
     except Exception as e:

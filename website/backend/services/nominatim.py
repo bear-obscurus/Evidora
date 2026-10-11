@@ -41,6 +41,7 @@ import re
 import time
 
 from services._http_polite import polite_client
+from services._ausfall import melde_kaputte_nutzlast
 
 logger = logging.getLogger("evidora")
 
@@ -370,6 +371,11 @@ async def _fetch_one(client, query: str) -> list[dict]:
             return []
         data = resp.json()
         if not isinstance(data, list):
+            melde_kaputte_nutzlast(
+                logger, "nominatim",
+                f"Nominatim: Antwort ist kein list "
+                f"(type={type(data).__name__})",
+                data)
             return []
         return data[:MAX_RESULTS_PER_LOCATION]
     except Exception as e:

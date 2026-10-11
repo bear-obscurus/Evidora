@@ -36,7 +36,9 @@ import logging
 from urllib.parse import quote
 
 from services._http_polite import polite_client
-from services._ausfall import melde_ausfall, melde_http_ausfall
+from services._ausfall import (
+    melde_ausfall, melde_http_ausfall, melde_kaputte_nutzlast,
+)
 
 logger = logging.getLogger("evidora")
 
@@ -108,6 +110,11 @@ async def _search_first_match(client, lang: str, query: str) -> str | None:
         data = resp.json()
         # opensearch-Format: [query, [titles], [descriptions], [urls]]
         if not isinstance(data, list) or len(data) < 2:
+            melde_kaputte_nutzlast(
+                logger, "wikipedia",
+                f"Wikipedia: Antwort ist kein list "
+                f"(type={type(data).__name__})",
+                data)
             return None
         titles = data[1]
         if not titles:

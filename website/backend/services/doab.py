@@ -53,7 +53,9 @@ from urllib.parse import quote_plus
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall, melde_http_ausfall
+from services._ausfall import (
+    melde_ausfall, melde_http_ausfall, melde_kaputte_nutzlast,
+)
 
 logger = logging.getLogger("evidora")
 
@@ -449,6 +451,11 @@ async def _fetch_doab(query: str) -> list[dict]:
 
     # Top-Level ist eine Liste, kein Dict.
     if not isinstance(payload, list):
+        melde_kaputte_nutzlast(
+            logger, "doab",
+            f"DOAB: Antwort ist kein list "
+            f"(type={type(payload).__name__})",
+            payload)
         return []
 
     _cache_put(query, payload)

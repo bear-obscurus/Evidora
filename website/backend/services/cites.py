@@ -63,6 +63,7 @@ from functools import lru_cache
 from urllib.parse import quote
 
 from services._http_polite import polite_client
+from services._ausfall import melde_kaputte_nutzlast
 
 logger = logging.getLogger("evidora")
 
@@ -611,6 +612,11 @@ async def _fetch_cites_taxon(scientific_name: str) -> dict | None:
         return None
 
     if not isinstance(payload, dict):
+        melde_kaputte_nutzlast(
+            logger, "cites",
+            f"CITES: Antwort ist kein dict "
+            f"(type={type(payload).__name__})",
+            payload)
         _cache[key] = (now, [])
         return None
     concepts = payload.get("taxon_concepts")
