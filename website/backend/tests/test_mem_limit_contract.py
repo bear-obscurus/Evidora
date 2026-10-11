@@ -103,13 +103,64 @@ def test_backend_hat_ein_swap_polster():
     assert swap - mem <= 1024, "mehr als 1 GB Swap wuerde die Modelle auslagern"
 
 
+# Wartungs-Container laufen NEBEN dem Dienst, nicht statt ihm — ihre
+# Limits zaehlen also in die Summe. Eingefuehrt 2026-10-11 mit
+# `cordis-refresh`, nachdem der Quartals-Refresh per `docker compose exec`
+# IM servierenden Container lief und ihn dreimal mit umgerissen hat (#236).
+WARTUNGS_DIENSTE = ["cordis-refresh"]
+
+
 def test_summe_der_limits_passt_auf_den_host():
-    """Beide Container zusammen duerfen den Host nicht sprengen — sonst
-    verschiebt man das Problem nur."""
-    summe = _limits("backend")[0] + _limits("frontend")[0]
+    """Alle gleichzeitig laufenden Container zusammen duerfen den Host nicht
+    sprengen — sonst verschiebt man das Problem nur.
+
+    Die Wartungs-Container sind MIT drin: ein Einmal-Lauf, der neben dem
+    Backend startet, ist genau der Fall, der am 01.10. den CORDIS-Refresh
+    und den Container gekostet hat.
+    """
+    teile = {n: _limits(n)[0]
+             for n in ["backend", "frontend"] + WARTUNGS_DIENSTE}
+    summe = sum(teile.values())
     assert summe < HOST_RAM_MB, (
-        f"backend+frontend = {summe} MB >= Host-RAM {HOST_RAM_MB} MB"
+        f"{' + '.join(f'{k} {v}' for k, v in teile.items())} = {summe} MB "
+        f">= Host-RAM {HOST_RAM_MB} MB"
     )
+
+
+@pytest.mark.parametrize("service", WARTUNGS_DIENSTE)
+def test_wartungslauf_startet_nicht_mit_up(service):
+    """Ein Profil haelt den Dienst aus `docker compose up` heraus. Ohne das
+    wuerde jeder Deploy den Wartungs-Lauf mitstarten."""
+    block = _service_block(service)
+    assert re.search(r"^\s*profiles:", block, re.M), (
+        f"{service} ohne `profiles` — der Deploy wuerde ihn starten")
+
+
+@pytest.mark.parametrize("service", WARTUNGS_DIENSTE)
+def test_wartungslauf_startet_nicht_neu(service):
+    """`restart: unless-stopped` waere hier fatal: ein Einmal-Lauf, der nach
+    jedem Ende wieder anlaeuft, laedt 141 MB im Dauerlauf."""
+    assert re.search(r'^\s*restart:\s*"no"', _service_block(service), re.M), (
+        f"{service} braucht restart: \"no\"")
+
+
+@pytest.mark.parametrize("service", WARTUNGS_DIENSTE)
+def test_wartungslauf_baut_nicht(service):
+    """Mit `build:` wuerde der Quartals-Cron ein Image bauen — auf einem
+    Host, der dafuer keinen Speicher hat. Das Image legt deploy.sh an."""
+    block = _service_block(service)
+    assert not re.search(r"^\s*build:", block, re.M), (
+        f"{service} hat `build:` — der Cron-Lauf wuerde bauen")
+    assert re.search(r"^\s*image:", block, re.M), f"{service} ohne `image:`"
+
+
+@pytest.mark.parametrize("service", WARTUNGS_DIENSTE)
+def test_wartungslauf_hat_ein_swap_polster(service):
+    """Waechst der Datenbestand ueber das RAM-Limit, soll der Lauf LANGSAM
+    werden, nicht hart gekillt. Gemessen 182 MiB bei 224m Limit — die
+    Reserve ist knapp, also muss der Fehlermodus mild sein."""
+    mem, swap = _limits(service)
+    assert swap > mem, f"{service}: kein Swap-Polster"
 
 
 def test_restart_policy_faengt_einen_oom_kill():

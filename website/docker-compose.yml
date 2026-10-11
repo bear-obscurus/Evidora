@@ -93,6 +93,63 @@ services:
       # Cold-Start dauert real ~250-270s (Model-Prefetch + DataCommons).
       start_period: 300s
 
+  # --------------------------------------------------------------------
+  # Wartungs-Lauf: CORDIS-Quartals-Refresh als EIGENER Einmal-Container
+  # --------------------------------------------------------------------
+  # Vorher lief der Refresh per `docker compose exec` IM servierenden
+  # Container. Der haelt ~2,5 GB von 3 GB Limit; der Refresh brauchte
+  # gemessen 1.363 MiB Spitze. Drei der fuenf Container-Neustarts zwischen
+  # dem 29.09. und dem 09.10. fielen auf die Startminute eines solchen
+  # Wartungs-Tools, und der Refresh vom 01.10. starb mit dem Container, in
+  # dem er lief — das Logfile blieb leer, nur der ALERT kam (#236).
+  #
+  # Zwei Aenderungen, nicht eine: der Refresh wurde erst sparsam gemacht
+  # (Stream auf Platte statt BytesIO, JSON-Array stueckweise geschrieben;
+  # 1.363 -> 182 MiB, Ergebnis byteweise identisch), und laeuft jetzt
+  # getrennt. Nur isolieren haette nicht genuegt: 2,5 GB + 1,36 GB passen
+  # nicht in 3.814 MB Host-RAM.
+  #
+  # `profiles` haelt den Dienst aus `docker compose up` heraus — er darf
+  # beim Deploy nicht mitstarten. Aufruf:
+  #   docker compose run --rm --profile wartung cordis-refresh
+  cordis-refresh:
+    profiles: ["wartung"]
+    # Dasselbe Image wie das Backend, ABER ohne `build:` — sonst baut jeder
+    # Aufruf neu. Das Image legt deploy.sh an; fehlt es, scheitert der Lauf
+    # mit klarer Meldung, statt still etwas Altes zu nehmen.
+    image: evidora-backend:latest
+    command: ["python3", "/app/tools/refresh_cordis.py", "--force"]
+    volumes:
+      - ./backend/data:/app/data
+    # Die Rechnung, nicht das Bauchgefuehl: 3.814 MB Host-RAM minus 3g
+    # Backend minus 512m Frontend lassen 230 MB. Also 224m — damit gilt die
+    # Invariante aus dem 08.08.-Vorfall WEITER, dass die Summe aller
+    # gleichzeitig laufenden Limits unter dem physischen RAM bleibt
+    # (3.072 + 512 + 224 = 3.808). Dieser Container laeuft neben dem
+    # Backend, nicht statt ihm.
+    #
+    # Gemessene Spitze des Laufs: 182 MiB (17 Interpreter + 24 httpx +
+    # 17 ZIP-Central-Directory + Allokator-Hochwasser). Passt also in die
+    # 224m, aber ohne viel Reserve — deshalb 512m Swap-Polster: waechst der
+    # CORDIS-Bestand, wird der Lauf LANGSAM statt hart gekillt. Derselbe
+    # Fehlermodus, den das Backend mit memswap_limit absichert. Und selbst
+    # ein Kill waere ungefaehrlich: bei 0 Records benennt der Writer nicht
+    # um, der bestehende Cache bleibt stehen, der Cron alarmiert.
+    mem_limit: 224m
+    memswap_limit: 512m
+    restart: "no"
+    # Gleiche Haertung wie das Backend. KEIN read_only: der Lauf legt seine
+    # Temp-Archive neben den Cache, also in den rw-Mount /app/data.
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "2"
+
   frontend:
     build: ./frontend
     ports:

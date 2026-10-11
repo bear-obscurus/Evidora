@@ -42,15 +42,15 @@ Limitationen:
 """
 
 import asyncio
-import io
 import json
 import logging
 import os
+import tempfile
 import zipfile
 
 import httpx
 
-from services._atomic import atomic_write_json
+from services._atomic import atomic_write_json_array
 
 logger = logging.getLogger("evidora")
 
@@ -198,14 +198,29 @@ def _records_from_zip(zf: zipfile.ZipFile, framework_label: str) -> list[dict]:
       SLIM_FIELDS-kompatibel; ``frameworkProgramme`` fehlt dort und wird
       aus der ZIP-Herkunft gesetzt.
     """
+    return list(_iter_records_from_zip(zf, framework_label))
+
+
+def _iter_records_from_zip(zf: zipfile.ZipFile, framework_label: str):
+    """Wie `_records_from_zip`, aber als Generator — ein Record zur Zeit.
+
+    Der Quartals-Refresh hielt vorher alle 59.002 Records als Liste UND das
+    fertige 114-MB-JSON als String: gemessen 1.363 MiB Spitzen-RSS. Auf
+    einem Host mit 3.814 MB, von dem das Backend 2,5 GB belegt, passte das
+    nicht — dreimal hat der Container den Start eines Wartungs-Tools mit
+    einem Neustart quittiert (#236). Als Generator bleibt nur das
+    Central Directory und ein Record im Speicher.
+    """
     names = zf.namelist()
     if "project.json" in names:
         with zf.open("project.json") as f:
             data = json.load(f)
         if not isinstance(data, list):
             logger.warning("CORDIS prefetch: project.json not a list")
-            return []
-        return [_slim_record(r) for r in data]
+            return
+        for r in data:
+            yield _slim_record(r)
+        return
 
     per_project = [n for n in names
                    if n.startswith("project-") and n.endswith(".json")]
@@ -213,8 +228,7 @@ def _records_from_zip(zf: zipfile.ZipFile, framework_label: str) -> list[dict]:
         logger.warning(
             "CORDIS prefetch: weder project.json noch project-*.json im ZIP"
         )
-        return []
-    out: list[dict] = []
+        return
     for name in per_project:
         try:
             with zf.open(name) as f:
@@ -226,23 +240,51 @@ def _records_from_zip(zf: zipfile.ZipFile, framework_label: str) -> list[dict]:
         slim = _slim_record(rec)
         if not slim.get("frameworkProgramme"):
             slim["frameworkProgramme"] = framework_label
-        out.append(slim)
-    return out
+        yield slim
 
 
-async def _download_and_extract(
-    client: httpx.AsyncClient, url: str
-) -> list[dict]:
-    """Lädt ein CORDIS-ZIP und extrahiert die Projekt-Records."""
+async def _download_zip(client: httpx.AsyncClient, url: str) -> str:
+    """Streamt ein CORDIS-ZIP in eine Temp-DATEI und gibt deren Pfad zurück.
+
+    Vorher lag das Archiv als `io.BytesIO(r.content)` im Speicher — 141 MB
+    je ZIP, zwei davon gleichzeitig. `zipfile` liest von der Platte genauso
+    gut und hält dann nur das Central Directory.
+    """
     logger.info(f"CORDIS prefetch: downloading {url}")
-    r = await client.get(url, timeout=TIMEOUT_S, follow_redirects=True)
-    r.raise_for_status()
-    zf = zipfile.ZipFile(io.BytesIO(r.content))
-    framework = "HORIZON" if "HORIZON" in url else "H2020"
-    records = _records_from_zip(zf, framework)
-    if not records:
-        logger.warning(f"CORDIS prefetch: 0 records aus {url}")
-    return records
+    # NEBEN den Cache, nicht nach /tmp: im Container ist /tmp ein tmpfs mit
+    # 128 MB — also RAM. Zwei Archive von je 141 MB wuerden dort nicht nur
+    # nicht passen, sie wuerden auch genau den Speicher belegen, den dieser
+    # Umbau einsparen soll. `/app/data` ist ein Bind-Mount auf echte Platte.
+    fd, pfad = tempfile.mkstemp(
+        dir=os.path.dirname(SLIM_CACHE_PATH) or ".",
+        prefix=".tmp-cordis-", suffix=".zip")
+    try:
+        with os.fdopen(fd, "wb") as f:
+            async with client.stream("GET", url, timeout=TIMEOUT_S,
+                                     follow_redirects=True) as r:
+                r.raise_for_status()
+                async for stueck in r.aiter_bytes(1 << 20):
+                    f.write(stueck)
+        return pfad
+    except BaseException:
+        try:
+            os.unlink(pfad)
+        except OSError:
+            pass
+        raise
+
+
+def _records_aus_archiven(archive):
+    """Alle Slim-Records aus mehreren ZIP-Dateien, einer zur Zeit."""
+    for url, pfad in archive:
+        framework = "HORIZON" if "HORIZON" in url else "H2020"
+        vorher = 0
+        with zipfile.ZipFile(pfad) as zf:
+            for rec in _iter_records_from_zip(zf, framework):
+                vorher += 1
+                yield rec
+        if not vorher:
+            logger.warning(f"CORDIS prefetch: 0 records aus {url}")
 
 
 async def prefetch_cordis(
@@ -277,28 +319,39 @@ async def prefetch_cordis(
     if client is None:
         client = httpx.AsyncClient(timeout=TIMEOUT_S)
         close_client = True
+    urls = (CORDIS_HORIZON_EUROPE_ZIP, CORDIS_H2020_ZIP)
     try:
-        he_records, h2020_records = await asyncio.gather(
-            _download_and_extract(client, CORDIS_HORIZON_EUROPE_ZIP),
-            _download_and_extract(client, CORDIS_H2020_ZIP),
+        ergebnisse = await asyncio.gather(
+            *(_download_zip(client, u) for u in urls),
             return_exceptions=True,
         )
-        if isinstance(he_records, Exception):
-            logger.warning(f"CORDIS Horizon Europe download failed: {he_records}")
-            he_records = []
-        if isinstance(h2020_records, Exception):
-            logger.warning(f"CORDIS H2020 download failed: {h2020_records}")
-            h2020_records = []
-
-        all_records = list(he_records) + list(h2020_records)
-        if not all_records:
+        archive = []
+        for url, ergebnis in zip(urls, ergebnisse):
+            if isinstance(ergebnis, BaseException):
+                logger.warning(f"CORDIS download failed ({url}): {ergebnis}")
+                continue
+            archive.append((url, ergebnis))
+        if not archive:
             logger.warning("CORDIS prefetch: 0 records (both downloads failed?)")
             return 0
 
-        # Schreibe Slim-Cache (atomar: 50-MB-Schreibfenster, sonst kann ein
-        # Abbruch eine truncierte Datei hinterlassen)
-        os.makedirs(os.path.dirname(SLIM_CACHE_PATH), exist_ok=True)
-        atomic_write_json(SLIM_CACHE_PATH, all_records, ensure_ascii=False)
+        try:
+            os.makedirs(os.path.dirname(SLIM_CACHE_PATH), exist_ok=True)
+            # Stueckweise: bei 0 Records benennt der Writer NICHT um, der
+            # bestehende Cache bleibt also unangetastet.
+            n = atomic_write_json_array(
+                SLIM_CACHE_PATH, _records_aus_archiven(archive),
+                ensure_ascii=False)
+        finally:
+            for _url, pfad in archive:
+                try:
+                    os.unlink(pfad)
+                except OSError:
+                    pass
+
+        if n == 0:
+            logger.warning("CORDIS prefetch: 0 records (Layout geaendert?)")
+            return 0
 
         # Reset In-Memory-Cache damit nächster Load die neue Datei sieht
         global _MEMORY_CACHE
@@ -306,10 +359,9 @@ async def prefetch_cordis(
 
         size_mb = os.path.getsize(SLIM_CACHE_PATH) / 1_000_000
         logger.info(
-            f"CORDIS prefetch: {len(all_records)} records cached "
-            f"({size_mb:.1f} MB slim)"
+            f"CORDIS prefetch: {n} records cached ({size_mb:.1f} MB slim)"
         )
-        return len(all_records)
+        return n
     finally:
         if close_client:
             await client.aclose()
