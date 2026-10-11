@@ -48,6 +48,12 @@ import sys
 from datetime import date
 from pathlib import Path
 
+# Das Tool-Verzeichnis auf den Pfad, damit `_kanal` auch dann gefunden wird,
+# wenn das Tool per Dateipfad geladen wird (CI laedt es so).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from _kanal import kanal_kurz  # noqa: E402
+
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
 # Container-Schlüssel, unter denen Fakten in den data/*.json liegen.
@@ -222,7 +228,7 @@ def main(argv=None):
                          "Priority": "high", "Tags": "hourglass"},
                 timeout=15,
             )
-            print(f"\n  alert webhook posted to {args.alert_webhook}")
+            print(f"\n  alert webhook posted to {kanal_kurz(args.alert_webhook)}")
         except Exception as e:
             print(f"\n  alert webhook failed: {e}")
 

@@ -28,6 +28,12 @@ import sys
 from datetime import date, datetime
 from pathlib import Path
 
+# Das Tool-Verzeichnis auf den Pfad, damit `_kanal` auch dann gefunden wird,
+# wenn das Tool per Dateipfad geladen wird (CI laedt es so).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from _kanal import kanal_kurz  # noqa: E402
+
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
 # Generierte Caches: kein fetched_at_iso, werden separat auf Gesundheit
@@ -225,7 +231,7 @@ def sende_alert(webhook: str, body: str) -> bool:
         print(f"  ⚠ ALERT-KANAL DEFEKT — der Befund ging NICHT raus: "
               f"{type(e).__name__}: {e}")
         return False
-    print(f"  alert webhook posted to {webhook}")
+    print(f"  alert webhook posted to {kanal_kurz(webhook)}")
     return True
 
 

@@ -32,6 +32,13 @@ import os
 import sys
 import time
 from datetime import datetime, timezone
+from pathlib import Path
+
+# Das Tool-Verzeichnis auf den Pfad, damit `_kanal` auch dann gefunden wird,
+# wenn das Tool per Dateipfad geladen wird (CI laedt es so).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from _kanal import kanal_kurz  # noqa: E402
 
 import httpx
 
@@ -222,7 +229,7 @@ async def main():
                                  "Priority": "high", "Tags": "warning"},
                         timeout=15,
                     )
-                print(f"  alert webhook posted to {args.alert_webhook}")
+                print(f"  alert webhook posted to {kanal_kurz(args.alert_webhook)}")
             except Exception as e:
                 print(f"  alert webhook failed: {e}")
         if args.strict:
