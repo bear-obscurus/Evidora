@@ -116,10 +116,29 @@ def _p_liste(text):
 
 
 def _p_bytes(text):
-    """Fuer Binaerdateien (XLSX, ZIP): nur die Groesse zaehlt. `_p_nicht_leer`
-    versucht JSON zu lesen und scheitert dort — EMA liefert eine Excel-Datei,
-    CORDIS ein ZIP."""
+    """Fuer Binaerdateien: nur die Groesse zaehlt. `_p_nicht_leer` versucht
+    JSON zu lesen und scheitert dort — EMA liefert eine Excel-Datei."""
     return len(text)
+
+
+def _p_zip_member(*praefixe):
+    """Zaehlt Member-Namen im ZIP-Central-Directory, die so anfangen.
+
+    `_p_bytes` wog nur die Archiv-GROESSE — also die Huelle. Was bei CORDIS
+    zweimal brach, war der Name der Datei DARIN: bis Mitte 2026 eine
+    `project.json`, seither eine Datei pro Projekt
+    (`project-rcn-<rcn>_en.json`). Beide Male lief der Refresh still auf
+    0 Records, waehrend diese Sonde OK meldete — erreichbar ist nicht
+    brauchbar. Geprueft werden genau die Namen, die `_records_from_zip`
+    akzeptiert; weicht das Layout ein drittes Mal ab, wird die Sonde ROT,
+    bevor der Quartals-Cron leer laeuft.
+
+    Das Central Directory steht am ENDE des Archivs, deshalb holt die Sonde
+    per Range-Header nur dessen letzte Bytes statt 141 MB taeglich.
+    Stichprobe 2026-10-11: in den letzten 128 KB stehen ausschliesslich
+    `project-rcn-*_en.json`-Namen.
+    """
+    return lambda text: sum(text.count(prae) for prae in praefixe)
 
 
 def _p_nicht_leer(text):
@@ -431,9 +450,12 @@ SONDEN = [
      _p_zaehlt("WebAIM Million"), None),
     ("FRED", "fred", "https://fred.stlouisfed.org/graph/fredgraph.csv",
      {"id": "GDP"}, _p_csv, None),
+    # Range statt Volldownload: die Byte-Sonde zog hier jeden Morgen 141 MB
+    # und sagte danach nur, dass das ZIP ankommt.
     ("CORDIS", "cordis",
      "https://cordis.europa.eu/data/cordis-HORIZONprojects-json.zip", {},
-     _p_bytes, None),
+     _p_zip_member("project.json", "project-"), None,
+     {"headers": {"Range": "bytes=-131072"}}),
     ("Semantic Scholar", "semantic_scholar",
      "https://api.semanticscholar.org/graph/v1/paper/search",
      {"query": "vaccine", "limit": "2"}, _p_pfad("data"), None),
@@ -510,6 +532,21 @@ BEKANNT_DEFEKT = {
         "reproduziert vom Entwickler-Mac, vom Prod-Host und aus dem Container. "
         "Ausfall auf Seiten der FAO, nicht bei uns. "
         "WIEDER AUFNEHMEN, sobald die API wieder 200 liefert."),
+    "DOAB": (
+        "2026-10-11: HTTP 403 auf /rest/search, 46 Bytes Body, Wortlaut "
+        "'You address is not allowed to access this API' — identisch vom "
+        "Prod-Host und vom Entwickler-Mac. Dieselbe Antwort liefert die "
+        "Schwester-Instanz library.oapen.org/rest/search: geschlossen ist "
+        "die DSpace-REST-API der OAPEN/DOAB-Plattform, nicht unsere IP "
+        "gesperrt. Das Verzeichnis selbst lebt (Startseite 200), und "
+        "OAI-PMH unter /oai/request antwortet (verb=Identify, HTTP 200, "
+        "gueltiges OAI-XML) — OAI-PMH kann aber keine Freitext-Suche, die "
+        "`services/doab.py` braucht. Ein Umzug waere ein Umbau des "
+        "Konnektors (Harvest + eigener Index), keine Endpunkt-Korrektur, "
+        "und gehoert eigens gemessen. Die Sonde hat ab 2026-09-24 taeglich "
+        "gerufen und lag 18 Tage unbeachtet. "
+        "WIEDER AUFNEHMEN, sobald /rest/search ohne Freischaltung 200 "
+        "liefert."),
 }
 
 SONDEN += [
@@ -710,7 +747,13 @@ def main() -> int:
         _post_alert(a.alert_webhook,
                     f"Evidora: {len(schlecht)} Quelle(n) ohne Lebenszeichen",
                     text)
-        return 1
+        # 2, nicht 1: Exit 1 vergibt Python auch fuer jeden Absturz und fuer
+        # jeden Fehler des `docker compose exec`-Wrappers. Der Cron konnte
+        # beides nicht unterscheiden und schrieb bei JEDEM Nicht-Null
+        # "kam nicht zum Laufen" — 18 Tage lang, waehrend das Tool
+        # tadellos lief und DOAB meldete. 2 heisst ab jetzt: gelaufen,
+        # Befund. Alles andere heisst: nicht gelaufen.
+        return 2
     return 0
 
 

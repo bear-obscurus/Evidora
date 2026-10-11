@@ -228,6 +228,14 @@ jobs:
     #                                  Logik ohne Netz + Drift-Schutz, damit
     #                                  die Sonden-URLs nicht von den
     #                                  Konnektoren weglaufen)
+    #   - test_waechter_ehrlich       (die Waechter, die sich selbst nicht
+    #                                  geprueft haben: der Freshness-Push
+    #                                  wurde seit #139 GAR NICHT gebaut
+    #                                  (5-Tupel in 2 Namen entpackt), die
+    #                                  CORDIS-Sonde wog die ZIP-Groesse statt
+    #                                  den Dateinamen DARIN zu pruefen, und
+    #                                  Exit 1 hiess gleichzeitig "Befund" und
+    #                                  "abgestuerzt". Mit Gift-Proben)
     #   - test_gegenwarts_claims_datenstand (QA50E-Befund 3: "heute 51 %" mit
     #                                  Herbst-2024-Daten war true@0.9. Das
     #                                  System wusste den Stand und sagte ihn
@@ -361,6 +369,7 @@ jobs:
             tests/test_laenderkarte_api_konnektoren.py \
             tests/test_wgi_weltbank_api.py \
             tests/test_quellen_lebenszeichen.py \
+            tests/test_waechter_ehrlich.py \
             tests/test_gegenwarts_claims_datenstand.py \
             tests/test_sparzinsen_messgroesse.py \
             tests/test_skalen_richtung_vergleiche.py \

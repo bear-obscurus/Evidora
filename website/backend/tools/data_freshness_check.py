@@ -205,6 +205,50 @@ def klassifiziere(feld_age, mtime_age: int, max_age: int, kadenz=None,
     return FRISCH
 
 
+def sende_alert(webhook: str, body: str) -> bool:
+    """Schickt den Befund an ntfy. Returns True, wenn er raus ist.
+
+    Eigene Funktion, damit der Fehlerfall pruefbar ist: ein klemmender
+    Kanal heisst, dass der Befund den Empfaenger NICHT erreicht hat, und
+    muss im Log wie ein Befund aussehen — nicht wie eine Randnotiz
+    ("alert webhook failed: ...", eine Zeile unter 80 Zeilen Tabelle).
+    """
+    try:
+        import httpx
+        httpx.post(
+            webhook, content=body,
+            headers={"Title": "Evidora Data-Freshness ALERT",
+                     "Priority": "high", "Tags": "warning"},
+            timeout=15,
+        )
+    except Exception as e:  # noqa: BLE001
+        print(f"  ⚠ ALERT-KANAL DEFEKT — der Befund ging NICHT raus: "
+              f"{type(e).__name__}: {e}")
+        return False
+    print(f"  alert webhook posted to {webhook}")
+    return True
+
+
+def alert_body(today, cache_problems, stale_files) -> str:
+    """Klartext-Body fuer den ntfy-Push. ntfy zeigt ihn direkt als Nachricht.
+
+    Eigene Funktion, weil dieser Body vom 2026-09-05 bis 2026-10-11 GAR
+    NICHT gebaut wurde: #139 erweiterte `stale_files` von 2- auf 5-Tupel
+    (name, alter, kadenz, grenze, mass), die Entpackung hier blieb bei zwei
+    Namen und warf `too many values to unpack (expected 2)`. Der Fehler
+    landete im `except` und erschien als eine Zeile Log — fuenf
+    Montagsalarme ohne Push, waehrend `--strict` brav Exit 1 lieferte.
+    Als Funktion ist der Body testbar, ohne HTTP zu sprechen.
+    """
+    zeilen = [f"Cache: {p}" for p in cache_problems]
+    for name, alter, kadenz, grenze, mass in stale_files:
+        takt = f", {kadenz}" if kadenz else ""
+        zeilen.append(f"Stale: {name} ({mass} {alter} d, "
+                      f"Schwelle {grenze} d{takt})")
+    return (f"data_freshness_check {today.isoformat()}\n"
+            + "\n".join(zeilen))[:3800]
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--max-age-days", type=int, default=120,
@@ -331,23 +375,8 @@ def main():
                   f"{mtime_age} d geändert")
 
     if (stale_files or cache_problems) and args.alert_webhook:
-        try:
-            import httpx
-            # Klartext-Body statt JSON: ntfy.sh zeigt ihn direkt als
-            # Push-Nachricht an (Title/Priority/Tags via Header).
-            lines = ([f"Cache: {p}" for p in cache_problems]
-                     + [f"Stale: {n} ({a} d)" for n, a in stale_files])
-            httpx.post(
-                args.alert_webhook,
-                content=("data_freshness_check "
-                         f"{today.isoformat()}\n" + "\n".join(lines))[:3800],
-                headers={"Title": "Evidora Data-Freshness ALERT",
-                         "Priority": "high", "Tags": "warning"},
-                timeout=15,
-            )
-            print(f"  alert webhook posted to {args.alert_webhook}")
-        except Exception as e:
-            print(f"  alert webhook failed: {e}")
+        sende_alert(args.alert_webhook,
+                    alert_body(today, cache_problems, stale_files))
 
     if (stale_files or cache_problems) and args.strict:
         sys.exit(1)
