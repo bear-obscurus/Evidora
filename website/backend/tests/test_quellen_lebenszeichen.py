@@ -355,12 +355,16 @@ def test_drosselung_ist_kein_ausfall(monkeypatch):
 
 
 def test_binaere_quellen_werden_nach_groesse_geprueft():
-    """EMA liefert eine Excel-Datei, CORDIS ein ZIP. `_p_nicht_leer` versucht
-    JSON zu lesen und scheitert — das sah wie ein Ausfall aus."""
+    """EMA liefert eine Excel-Datei. `_p_nicht_leer` versucht JSON zu lesen
+    und scheitert — das sah wie ein Ausfall aus.
+
+    CORDIS stand bis 2026-10-11 ebenfalls hier. Die Groesse war dort das
+    falsche Mass: das ZIP kam jedes Mal an, waehrend der Refresh an den
+    Dateinamen DARIN scheiterte. Siehe test_cordis_sonde_prueft_den_member.
+    """
     assert QM._p_bytes("x" * 500) == 500
-    for name in ("EMA (Arzneimittel-Report)", "CORDIS"):
-        sonde = next(s for s in QM.SONDEN if s[0] == name)
-        assert sonde[4] is QM._p_bytes, name
+    sonde = next(s for s in QM.SONDEN if s[0] == "EMA (Arzneimittel-Report)")
+    assert sonde[4] is QM._p_bytes
 
 
 def test_abdeckung_ist_jetzt_vollstaendig():
@@ -446,8 +450,15 @@ def test_openaq_befund_nennt_den_weg_zurueck():
 # Verdrahtung
 # --------------------------------------------------------------------------
 
-def test_exit_code_1_bei_stummer_quelle(monkeypatch, capsys):
-    """Der Cron-Job braucht einen Exit-Code, an dem er hängen kann."""
+def test_exit_code_2_bei_stummer_quelle(monkeypatch, capsys):
+    """Der Cron-Job braucht einen Exit-Code, an dem er hängen kann.
+
+    Seit 2026-10-11 ist das die 2 und nicht die 1: Exit 1 vergibt Python
+    auch für jeden Absturz und der `docker compose exec`-Wrapper für jeden
+    eigenen Fehler. Der Cron schrieb deshalb bei jedem Nicht-Null
+    „kam nicht zum Laufen" — 18 Tage lang, während das Tool lief und DOAB
+    korrekt meldete.
+    """
     monkeypatch.setattr(QM, "SONDEN", [
         ("Kaputt", "wgi", "https://example.test/x", {}, lambda t: -1, None)])
     monkeypatch.setattr(QM, "_post_alert", lambda *a, **k: None)
@@ -459,7 +470,7 @@ def test_exit_code_1_bei_stummer_quelle(monkeypatch, capsys):
         def __exit__(self, *a): return False
     monkeypatch.setattr(QM.urllib.request, "urlopen", lambda *a, **k: _Antwort())
     monkeypatch.setattr(sys, "argv", ["quellen_lebenszeichen.py"])
-    assert QM.main() == 1
+    assert QM.main() == 2
     assert "KAPUTTE_ABFRAGE" in capsys.readouterr().out.upper()
 
 
