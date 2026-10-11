@@ -52,6 +52,7 @@ import xml.etree.ElementTree as ET
 from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -382,7 +383,7 @@ async def _fetch_by_ids(client, ids: list[str]) -> list[dict]:
             return []
         return _parse_arxiv_atom(resp.text)
     except Exception as e:
-        logger.debug(
+        melde_ausfall(logger, "arxiv",
             f"arXiv id_list fetch failed for '{id_list_param[:40]}': {e}"
         )
         return []
@@ -414,7 +415,8 @@ async def _search_query(client, query: str) -> list[dict]:
             return []
         return _parse_arxiv_atom(resp.text)
     except Exception as e:
-        logger.debug(f"arXiv search failed for '{query[:30]}': {e}")
+        melde_ausfall(logger, "arxiv",
+                      f"arXiv search failed for '{query[:30]}': {e}")
         return []
 
 

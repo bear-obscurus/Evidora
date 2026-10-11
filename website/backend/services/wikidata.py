@@ -49,6 +49,7 @@ from datetime import date as _date
 from urllib.parse import quote
 
 from services._http_polite import polite_client
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -848,7 +849,7 @@ async def _run_sparql(client, query: str) -> list[dict] | None:
         data = resp.json()
         return data.get("results", {}).get("bindings", []) or []
     except Exception as e:
-        logger.debug(f"Wikidata SPARQL fetch failed: {e}")
+        melde_ausfall(logger, "wikidata", f"Wikidata SPARQL fetch failed: {e}")
         return None
 
 

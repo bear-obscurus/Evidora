@@ -49,6 +49,7 @@ import logging
 import os
 
 from services._http_polite import polite_client
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -381,7 +382,7 @@ async def _fetch_comtrade(
             return []
         return rows
     except Exception as e:
-        logger.debug(
+        melde_ausfall(logger, "uncomtrade",
             f"UN Comtrade fetch failed "
             f"({reporter_iso3}->{partner_iso3} {cmd_code} {flow_code}): {e}"
         )

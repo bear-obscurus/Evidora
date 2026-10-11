@@ -50,6 +50,7 @@ from services import _laender as _LAENDER
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -365,7 +366,8 @@ async def _fetch_indicator(
             return []
         data = resp.json()
     except Exception as e:
-        logger.debug(f"UNESCO UIS fetch failed {indicator}/{geo}: {e}")
+        melde_ausfall(logger, "unesco_uis",
+                      f"UNESCO UIS fetch failed {indicator}/{geo}: {e}")
         return []
 
     records = data.get("records") or []

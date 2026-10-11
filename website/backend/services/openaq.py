@@ -49,6 +49,7 @@ from datetime import datetime
 from typing import Any
 
 from services._http_polite import polite_client
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -242,7 +243,7 @@ async def _fetch_locations_near(
         results = data.get("results", []) or []
         return results[:5]
     except Exception as e:
-        logger.debug(
+        melde_ausfall(logger, "openaq",
             f"OpenAQ locations fetch failed near ({lat:.3f},{lon:.3f}): {e}"
         )
         return []
@@ -265,7 +266,8 @@ async def _fetch_latest_for_location(
         data = resp.json()
         return data.get("results", []) or []
     except Exception as e:
-        logger.debug(f"OpenAQ latest fetch failed loc={location_id}: {e}")
+        melde_ausfall(logger, "openaq",
+                      f"OpenAQ latest fetch failed loc={location_id}: {e}")
         return []
 
 

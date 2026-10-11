@@ -42,6 +42,7 @@ from urllib.parse import quote_plus
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -365,7 +366,8 @@ async def _fetch_eric(query: str, peer_only: bool) -> list[dict]:
             logger.debug(f"ERIC JSON-Parse-Error: {e}")
             return []
     except Exception as e:
-        logger.debug(f"ERIC fetch failed fuer '{query[:40]}': {e}")
+        melde_ausfall(logger, "eric",
+                      f"ERIC fetch failed fuer '{query[:40]}': {e}")
         return []
 
     response = (payload or {}).get("response") or {}

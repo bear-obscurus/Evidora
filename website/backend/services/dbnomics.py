@@ -47,6 +47,7 @@ from urllib.parse import quote_plus
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -461,7 +462,8 @@ async def _search_api(client, query: str, provider: str | None) -> list[dict]:
             return []
         data = resp.json()
     except Exception as e:
-        logger.debug(f"DBnomics search failed for '{query[:40]}': {e}")
+        melde_ausfall(logger, "dbnomics",
+                      f"DBnomics search failed for '{query[:40]}': {e}")
         return []
 
     docs = (data.get("results") or {}).get("docs") or []
@@ -506,7 +508,7 @@ async def _fetch_default_series(
             return None
         data = resp.json()
     except Exception as e:
-        logger.debug(
+        melde_ausfall(logger, "dbnomics",
             f"DBnomics series fetch failed "
             f"{provider}/{dataset}/{series_code}: {e}"
         )

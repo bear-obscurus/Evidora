@@ -47,6 +47,7 @@ import time
 from urllib.parse import quote, quote_plus
 
 from services._http_polite import polite_client
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -415,7 +416,7 @@ async def _fetch_dbnomics_series(
             return []
         data = resp.json()
     except Exception as e:
-        logger.debug(
+        melde_ausfall(logger, "bis",
             f"BIS/DBnomics fetch failed {dbnomics_ds}/{iso2}: {e}"
         )
         return []

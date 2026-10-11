@@ -36,6 +36,7 @@ import logging
 from urllib.parse import quote
 
 from services._http_polite import polite_client
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -77,7 +78,9 @@ async def _fetch_summary(client, lang: str, title: str) -> dict | None:
             "lang": lang,
         }
     except Exception as e:
-        logger.debug(f"Wikipedia {lang} summary fetch failed for '{title[:30]}': {e}")
+        melde_ausfall(
+            logger, "wikipedia",
+            f"Wikipedia {lang} summary fetch failed for '{title[:30]}': {e}")
         return None
 
 
@@ -101,7 +104,9 @@ async def _search_first_match(client, lang: str, query: str) -> str | None:
             return None
         return titles[0]
     except Exception as e:
-        logger.debug(f"Wikipedia {lang} search failed for '{query[:30]}': {e}")
+        melde_ausfall(
+            logger, "wikipedia",
+            f"Wikipedia {lang} search failed for '{query[:30]}': {e}")
         return None
 
 

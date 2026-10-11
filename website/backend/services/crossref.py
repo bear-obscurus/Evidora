@@ -44,6 +44,7 @@ from html import unescape
 from urllib.parse import quote, quote_plus
 
 from services._http_polite import polite_client
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -275,7 +276,8 @@ async def _fetch_doi(client, doi: str) -> dict | None:
         item = data.get("message") or {}
         return _format_result(item)
     except Exception as e:
-        logger.debug(f"Crossref DOI fetch failed for '{doi}': {e}")
+        melde_ausfall(logger, "crossref",
+                      f"Crossref DOI fetch failed for '{doi}': {e}")
         return None
 
 
@@ -306,7 +308,8 @@ async def _search_query(client, query: str) -> list[dict]:
                 out.append(r)
         return out
     except Exception as e:
-        logger.debug(f"Crossref search failed for '{query[:30]}': {e}")
+        melde_ausfall(logger, "crossref",
+                      f"Crossref search failed for '{query[:30]}': {e}")
         return []
 
 

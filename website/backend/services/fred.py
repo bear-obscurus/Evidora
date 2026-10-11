@@ -72,6 +72,7 @@ from urllib.parse import quote_plus
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -424,7 +425,8 @@ async def _fetch_fred_api_json(
             return None
         data = resp.json()
     except Exception as e:
-        logger.debug(f"FRED-API fetch failed for {series_id}: {e}")
+        melde_ausfall(logger, "fred",
+                      f"FRED-API fetch failed for {series_id}: {e}")
         return None
 
     obs = data.get("observations") or []
@@ -461,7 +463,8 @@ async def _fetch_fred_csv(
             return None
         text = resp.text
     except Exception as e:
-        logger.debug(f"FRED-CSV fetch failed for {series_id}: {e}")
+        melde_ausfall(logger, "fred",
+                      f"FRED-CSV fetch failed for {series_id}: {e}")
         return None
 
     pairs: list[tuple[str, float]] = []

@@ -62,6 +62,7 @@ from urllib.parse import quote_plus
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -460,7 +461,7 @@ async def _fetch_ecb_direct(
             return None
         data = resp.json()
     except Exception as e:
-        logger.debug(
+        melde_ausfall(logger, "oenb_sdmx",
             f"OeNB-SDMX→ECB-Direct fetch failed {dataset}/{series_key}: {e}"
         )
         return None
@@ -538,7 +539,7 @@ async def _fetch_dbnomics_filtered(
             return None
         data = resp.json()
     except Exception as e:
-        logger.debug(
+        melde_ausfall(logger, "oenb_sdmx",
             f"OeNB-SDMX→DBnomics fetch failed {provider}/{dataset}: {e}"
         )
         return None

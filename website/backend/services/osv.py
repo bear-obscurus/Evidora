@@ -40,6 +40,7 @@ from urllib.parse import quote
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._ausfall import melde_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -247,7 +248,8 @@ async def _fetch_vuln_by_id(client, vuln_id: str) -> dict | None:
         _vuln_cache[key] = (time.time(), data)
         return data
     except Exception as e:
-        logger.debug(f"OSV vuln fetch failed for {vuln_id}: {e}")
+        melde_ausfall(logger, "osv",
+                      f"OSV vuln fetch failed for {vuln_id}: {e}")
         return None
 
 
@@ -281,7 +283,8 @@ async def _query_by_package(
         _query_cache[cache_key] = (time.time(), vulns)
         return vulns
     except Exception as e:
-        logger.debug(f"OSV query failed for {name} ({ecosystem}): {e}")
+        melde_ausfall(logger, "osv",
+                      f"OSV query failed for {name} ({ecosystem}): {e}")
         return []
 
 
