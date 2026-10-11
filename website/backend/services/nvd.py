@@ -51,7 +51,7 @@ from urllib.parse import quote
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -258,7 +258,8 @@ async def _fetch_cve_by_id(client, cve_id: str) -> dict | None:
     try:
         resp = await client.get(url, headers=_api_headers(), follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(f"NVD CVE HTTP {resp.status_code} for {cve_id}")
+            melde_http_ausfall(logger, "nvd", resp.status_code,
+                               f"NVD CVE HTTP {resp.status_code} for {cve_id}")
             _cve_cache[key] = (time.time(), None)
             return None
         data = resp.json() or {}
@@ -291,7 +292,9 @@ async def _query_nvd(client, params: dict[str, str]) -> list[dict]:
     try:
         resp = await client.get(url, headers=_api_headers(), follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(f"NVD query HTTP {resp.status_code} qs={qs[:120]}")
+            melde_http_ausfall(
+                logger, "nvd", resp.status_code,
+                f"NVD query HTTP {resp.status_code} qs={qs[:120]}")
             _query_cache[cache_key] = (time.time(), [])
             return []
         data = resp.json() or {}

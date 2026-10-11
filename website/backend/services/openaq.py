@@ -49,7 +49,7 @@ from datetime import datetime
 from typing import Any
 
 from services._http_polite import polite_client
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -234,10 +234,10 @@ async def _fetch_locations_near(
             OPENAQ_LOCATIONS, params=query_params, headers=headers,
         )
         if resp.status_code != 200:
-            logger.debug(
+            melde_http_ausfall(
+                logger, "openaq", resp.status_code,
                 f"OpenAQ locations near ({lat:.3f},{lon:.3f}) "
-                f"returned {resp.status_code}"
-            )
+                f"returned {resp.status_code}")
             return []
         data = resp.json()
         results = data.get("results", []) or []
@@ -258,10 +258,10 @@ async def _fetch_latest_for_location(
     try:
         resp = await client.get(url, headers=headers, params={"limit": "20"})
         if resp.status_code != 200:
-            logger.debug(
+            melde_http_ausfall(
+                logger, "openaq", resp.status_code,
                 f"OpenAQ latest for loc={location_id} "
-                f"returned {resp.status_code}"
-            )
+                f"returned {resp.status_code}")
             return []
         data = resp.json()
         return data.get("results", []) or []

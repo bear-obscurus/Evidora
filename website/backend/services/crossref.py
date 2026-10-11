@@ -44,7 +44,7 @@ from html import unescape
 from urllib.parse import quote, quote_plus
 
 from services._http_polite import polite_client
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -266,9 +266,9 @@ async def _fetch_doi(client, doi: str) -> dict | None:
             logger.debug(f"Crossref DOI not found: {doi}")
             return None
         if resp.status_code != 200:
-            logger.debug(
-                f"Crossref DOI fetch HTTP {resp.status_code} for {doi}"
-            )
+            melde_http_ausfall(
+                logger, "crossref", resp.status_code,
+                f"Crossref DOI fetch HTTP {resp.status_code} for {doi}")
             return None
         data = resp.json()
         if data.get("status") != "ok":
@@ -292,10 +292,10 @@ async def _search_query(client, query: str) -> list[dict]:
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(
+            melde_http_ausfall(
+                logger, "crossref", resp.status_code,
                 f"Crossref search HTTP {resp.status_code} for "
-                f"'{query[:40]}'"
-            )
+                f"'{query[:40]}'")
             return []
         data = resp.json()
         if data.get("status") != "ok":

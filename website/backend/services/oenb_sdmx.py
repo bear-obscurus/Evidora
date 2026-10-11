@@ -62,7 +62,7 @@ from urllib.parse import quote_plus
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -454,10 +454,10 @@ async def _fetch_ecb_direct(
             headers={"Accept": "application/json"},
         )
         if resp.status_code != 200:
-            logger.debug(
+            melde_http_ausfall(
+                logger, "oenb_sdmx", resp.status_code,
                 f"OeNB-SDMX→ECB-Direct HTTP {resp.status_code} "
-                f"for {dataset}/{series_key}"
-            )
+                f"for {dataset}/{series_key}")
             return None
         data = resp.json()
     except Exception as e:
@@ -532,10 +532,10 @@ async def _fetch_dbnomics_filtered(
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(
+            melde_http_ausfall(
+                logger, "oenb_sdmx", resp.status_code,
                 f"OeNB-SDMX→DBnomics HTTP {resp.status_code} for "
-                f"{provider}/{dataset}/{filters}"
-            )
+                f"{provider}/{dataset}/{filters}")
             return None
         data = resp.json()
     except Exception as e:

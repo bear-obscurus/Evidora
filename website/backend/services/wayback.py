@@ -45,7 +45,7 @@ import re
 from urllib.parse import quote, urlparse
 
 from services._http_polite import polite_client
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -239,9 +239,9 @@ async def _fetch_snapshots(client, target_url: str) -> list[dict] | None:
     try:
         resp = await client.get(cdx_url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(
-                f"Wayback CDX HTTP {resp.status_code} für {target_url[:60]}"
-            )
+            melde_http_ausfall(
+                logger, "wayback", resp.status_code,
+                f"Wayback CDX HTTP {resp.status_code} für {target_url[:60]}")
             return None
         data = resp.json()
     except Exception as e:

@@ -47,7 +47,7 @@ import time
 from urllib.parse import quote, quote_plus
 
 from services._http_polite import polite_client
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -408,10 +408,10 @@ async def _fetch_dbnomics_series(
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(
+            melde_http_ausfall(
+                logger, "bis", resp.status_code,
                 f"BIS/DBnomics HTTP {resp.status_code} "
-                f"for {dbnomics_ds}/{iso2}"
-            )
+                f"for {dbnomics_ds}/{iso2}")
             _cache_put(cache_key, [])
             return []
         data = resp.json()

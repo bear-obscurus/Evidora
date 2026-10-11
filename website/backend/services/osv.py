@@ -40,7 +40,7 @@ from urllib.parse import quote
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -240,7 +240,9 @@ async def _fetch_vuln_by_id(client, vuln_id: str) -> dict | None:
             _vuln_cache[key] = (time.time(), None)
             return None
         if resp.status_code != 200:
-            logger.debug(f"OSV vuln HTTP {resp.status_code} for {vuln_id}")
+            melde_http_ausfall(
+                logger, "osv", resp.status_code,
+                f"OSV vuln HTTP {resp.status_code} for {vuln_id}")
             return None
         data = resp.json()
         if not isinstance(data, dict):
@@ -270,9 +272,9 @@ async def _query_by_package(
     try:
         resp = await client.post(OSV_QUERY_URL, json=body)
         if resp.status_code != 200:
-            logger.debug(
-                f"OSV query HTTP {resp.status_code} for {name} ({ecosystem})"
-            )
+            melde_http_ausfall(
+                logger, "osv", resp.status_code,
+                f"OSV query HTTP {resp.status_code} for {name} ({ecosystem})")
             return []
         data = resp.json()
         vulns = data.get("vulns") if isinstance(data, dict) else None

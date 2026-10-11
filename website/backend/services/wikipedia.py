@@ -36,7 +36,7 @@ import logging
 from urllib.parse import quote
 
 from services._http_polite import polite_client
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -62,6 +62,12 @@ async def _fetch_summary(client, lang: str, title: str) -> dict | None:
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
+            # 404 bleibt still: "Artikel gibt es nicht" ist der Normalfall
+            # bei einem Titel-Lookup, kein Ausfall der Quelle.
+            melde_http_ausfall(
+                logger, "wikipedia", resp.status_code,
+                f"Wikipedia {lang} summary HTTP {resp.status_code} "
+                f"fuer '{title[:30]}'")
             return None
         data = resp.json()
         if not data.get("title"):
@@ -94,6 +100,10 @@ async def _search_first_match(client, lang: str, query: str) -> str | None:
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
+            melde_http_ausfall(
+                logger, "wikipedia", resp.status_code,
+                f"Wikipedia {lang} search HTTP {resp.status_code} "
+                f"fuer '{query[:30]}'")
             return None
         data = resp.json()
         # opensearch-Format: [query, [titles], [descriptions], [urls]]

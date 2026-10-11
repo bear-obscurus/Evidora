@@ -52,7 +52,7 @@ import xml.etree.ElementTree as ET
 from urllib.parse import quote_plus
 
 from services._http_polite import polite_client
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -376,10 +376,10 @@ async def _fetch_by_ids(client, ids: list[str]) -> list[dict]:
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(
+            melde_http_ausfall(
+                logger, "arxiv", resp.status_code,
                 f"arXiv id_list HTTP {resp.status_code} "
-                f"for {id_list_param[:60]}"
-            )
+                f"for {id_list_param[:60]}")
             return []
         return _parse_arxiv_atom(resp.text)
     except Exception as e:
@@ -409,9 +409,9 @@ async def _search_query(client, query: str) -> list[dict]:
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(
-                f"arXiv search HTTP {resp.status_code} for '{query[:40]}'"
-            )
+            melde_http_ausfall(
+                logger, "arxiv", resp.status_code,
+                f"arXiv search HTTP {resp.status_code} for '{query[:40]}'")
             return []
         return _parse_arxiv_atom(resp.text)
     except Exception as e:

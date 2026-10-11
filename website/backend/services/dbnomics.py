@@ -47,7 +47,7 @@ from urllib.parse import quote_plus
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -456,9 +456,9 @@ async def _search_api(client, query: str, provider: str | None) -> list[dict]:
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(
-                f"DBnomics search HTTP {resp.status_code} for '{query[:40]}'"
-            )
+            melde_http_ausfall(
+                logger, "dbnomics", resp.status_code,
+                f"DBnomics search HTTP {resp.status_code} for '{query[:40]}'")
             return []
         data = resp.json()
     except Exception as e:
@@ -500,10 +500,10 @@ async def _fetch_default_series(
     try:
         resp = await client.get(url, follow_redirects=True)
         if resp.status_code != 200:
-            logger.debug(
+            melde_http_ausfall(
+                logger, "dbnomics", resp.status_code,
                 f"DBnomics series HTTP {resp.status_code} for "
-                f"{provider}/{dataset}/{series_code}"
-            )
+                f"{provider}/{dataset}/{series_code}")
             _cache_put(cache_key, [])
             return None
         data = resp.json()

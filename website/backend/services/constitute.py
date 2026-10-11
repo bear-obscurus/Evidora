@@ -71,7 +71,7 @@ from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._topic_match import is_party_corruption_superlative_claim
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -256,10 +256,10 @@ async def _run_constitutions_lookup(
             follow_redirects=True,
         )
         if resp.status_code != 200:
-            logger.debug(
+            melde_http_ausfall(
+                logger, "constitute", resp.status_code,
                 f"Constitute HTTP {resp.status_code} "
-                f"(body: {resp.text[:120]!r})"
-            )
+                f"(body: {resp.text[:120]!r})")
             return None
         data = resp.json()
         if not isinstance(data, list):

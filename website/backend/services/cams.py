@@ -54,7 +54,7 @@ from typing import Any
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
-from services._ausfall import melde_ausfall
+from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
 
@@ -310,9 +310,9 @@ async def _fetch_ads_metadata(client, dataset_id: str) -> dict | None:
     try:
         resp = await client.get(f"{ADS_CATALOGUE_URL}/{dataset_id}")
         if resp.status_code != 200:
-            logger.debug(
-                f"CAMS ADS-Katalog für {dataset_id} → {resp.status_code}"
-            )
+            melde_http_ausfall(
+                logger, "cams", resp.status_code,
+                f"CAMS ADS-Katalog für {dataset_id} → {resp.status_code}")
             return None
         meta = resp.json()
         _catalogue_cache[dataset_id] = meta
