@@ -281,3 +281,57 @@ def test_befund_und_fehlstart_sind_unterscheidbar():
         encoding="utf-8")
     assert "return 2" in quelle
     assert "return 1" not in quelle
+
+
+# --------------------------------------------------------------------------
+# 4. Der Kanal im Log — Nebenprodukt der Reparatur
+# --------------------------------------------------------------------------
+# Solange der Push warf, kam die Zeile "alert webhook posted to <URL>" nie
+# zum Drucken. Der reparierte Kanal hat sie sofort ins Log geschrieben —
+# und damit den ntfy-Topic, der das Zugangsmittel IST: wer ihn kennt, liest
+# die Alarme mit und speist eigene ein. Ein stiller Fehler hat ein Leck
+# verdeckt.
+
+sys.path.insert(0, str(BACKEND / "tools"))
+from _kanal import kanal_kurz  # noqa: E402
+
+_BEISPIEL = "https://ntfy.sh/evidora-alerts-0123456789ab"
+
+
+def test_kanal_kurz_verraet_den_topic_nicht():
+    kurz = kanal_kurz(_BEISPIEL)
+    assert "evidora-alerts-0123456789ab" not in kurz
+    assert "0123456789ab" not in kurz
+
+
+def test_kanal_kurz_bleibt_diagnostisch():
+    """Ohne Host wäre „ging an den falschen Dienst" nicht zu sehen, ohne
+    Unterscheidungsmerkmal nicht „ging an den falschen Topic"."""
+    kurz = kanal_kurz(_BEISPIEL)
+    assert kurz.startswith("ntfy.sh")
+    assert kurz.endswith("89ab")
+
+
+def test_kanal_kurz_haelt_den_leeren_fall_aus():
+    assert "kein Kanal" in kanal_kurz("")
+
+
+def test_kein_tool_druckt_die_webhook_url_im_klartext():
+    """Das Gate über ALLE Tools, nicht nur über die drei gefundenen.
+
+    Geprüft wird die Quelle, nicht ein Lauf: ein Tool, das seinen Kanal
+    einmal im Jahr druckt, fällt in keinem Test auf, der es ausführt.
+    """
+    verdaechtig = []
+    for pfad in sorted((BACKEND / "tools").glob("*.py")):
+        for nr, zeile in enumerate(
+                pfad.read_text(encoding="utf-8").splitlines(), 1):
+            if "print" not in zeile and "logger" not in zeile:
+                continue
+            if "kanal_kurz" in zeile:
+                continue
+            if any(m in zeile for m in ("{webhook}", "{args.alert_webhook}",
+                                        "{a.alert_webhook}",
+                                        "{self.alert_webhook}")):
+                verdaechtig.append(f"{pfad.name}:{nr}")
+    assert not verdaechtig, verdaechtig
