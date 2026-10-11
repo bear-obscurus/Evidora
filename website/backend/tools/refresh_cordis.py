@@ -3,14 +3,24 @@
 Lädt cordis-HORIZONprojects-json.zip + cordis-h2020projects-json.zip von
 cordis.europa.eu, slim Felder, schreibt /app/data/cordis_projects_slim.json.
 
-Nutzung:
-  docker compose exec backend python3 /app/tools/refresh_cordis.py [--force]
+Nutzung — als EIGENER Einmal-Container, nicht im servierenden:
+  cd /opt/Evidora/website
+  docker compose --profile wartung run --rm cordis-refresh
+
+Bis 2026-10-11 lief das als `docker compose exec backend python3 ...`, also
+im Prozessraum des Dienstes. Der haelt ~2,5 GB von 3 GB Limit, der Refresh
+brauchte gemessen 1.363 MiB — drei der fuenf Container-Neustarts im Oktober
+fielen auf die Startminute eines solchen Wartungs-Tools, und der Lauf vom
+01.10. starb mit dem Container (leeres Logfile, nur der ALERT). Seither:
+eigener Container mit eigenem Limit (224m/512m Swap), und der Refresh
+selbst ist sparsam (182 MiB statt 1.363, Ergebnis byteweise identisch).
 
 Optionen:
-  --force   Erzwingt Refresh auch wenn Cache <90 Tage alt ist.
+  --force   Erzwingt Refresh auch wenn Cache <90 Tage alt ist. Der
+            Compose-Dienst setzt das bereits.
 
 Cron (quartalsweise, 1. des Quartals 03:00):
-  0 3 1 1,4,7,10 * /opt/Evidora/website/run_evidora_tool.sh refresh_cordis.py >> /home/burrito/evidora-logs/cordis_refresh.log 2>&1
+  siehe `crontab -l` — ruft den Compose-Dienst, nicht mehr run_evidora_tool.sh
 """
 
 from __future__ import annotations
