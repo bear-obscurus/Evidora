@@ -539,7 +539,9 @@ def test_die_sonde_liest_nicht_mehr_als_die_obergrenze(monkeypatch):
     monkeypatch.setattr(QM.urllib.request, "urlopen", lambda *a, **k: _Riesig())
     e = QM.sonde_laufen(("T", "wgi", "https://example.test/x", {},
                          lambda t: len(t), None), 5)
-    assert gelesen["n"] == QM.MAX_RUMPF_BYTES
+    # Ein Byte ueber die Grenze wird gelesen, um die Kuerzung zu ERKENNEN —
+    # behalten wird hoechstens die Grenze. Das ist die Invariante.
+    assert gelesen["n"] == QM.MAX_RUMPF_BYTES + 1
     assert e["zeilen"] <= QM.MAX_RUMPF_BYTES
 
 
@@ -563,3 +565,69 @@ def test_ein_abgeschnittenes_json_wuerde_den_alten_pruefer_werfen():
     scheitert, war die Umstellung nötig."""
     with pytest.raises(Exception):
         QM._p_pfad("objects")('{"objects": [{"type": "attack-pat')
+
+
+# --------------------------------------------------------------------------
+# Gekürzt ist kein Befund über die Quelle (12.10.2026)
+# --------------------------------------------------------------------------
+# Die Obergrenze aus #250 liess EEA und Copernicus auflaufen:
+#   UNLESBAR  EEA (ueber Eurostat)  JSONDecodeError: Unterminated string
+#                                   starting at line 1 column 262141
+# 262.141 ist exakt die Grenze. Zwei Fehlalarme, ein Push aufs Handy —
+# weil ich die fünf GRÖSSTEN Sonden umgestellt hatte, statt zu fragen, wer
+# sonst noch darüber liegt. Derselbe Fehler wie in #236, wo ich nur CORDIS
+# behoben hatte statt zu zählen.
+#
+# Der systemische Fix: wenn der Rumpf grösser ist als unsere Grenze, kann
+# ein strenger Parser daran nur scheitern. Das ist eine Aussage über UNSERE
+# Grenze, nicht über die Quelle — und darf keinen Alarm auslösen.
+
+def _antwort(rumpf: bytes, status=200):
+    class _A:
+        def __init__(self):
+            self.status = status
+            self._r = rumpf
+
+        def read(self, n=None):
+            return self._r[:n] if n else self._r
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+    return _A()
+
+
+def test_abgeschnittener_rumpf_loest_keinen_alarm_aus(monkeypatch):
+    """Der Fall EEA/Copernicus: grosses JSON, strenger Prüfer."""
+    riesig = b'{"value": [' + b'{"x": "y"},' * 60_000 + b']}'
+    assert len(riesig) > QM.MAX_RUMPF_BYTES
+    monkeypatch.setattr(QM.urllib.request, "urlopen",
+                        lambda *a, **k: _antwort(riesig))
+    e = QM.sonde_laufen(("T", "eea", "https://example.test/x", {},
+                         QM._p_pfad("value"), None), 5)
+    assert e["status"] == "ok", e
+    assert e["status"] not in QM.ALARM
+    assert "nur das Praefix geprueft" in e["grund"]
+
+
+def test_kleiner_kaputter_rumpf_bleibt_unlesbar(monkeypatch):
+    """Gegenprobe: passt der Rumpf in die Grenze, ist ein Parser-Fehler
+    sehr wohl ein Befund — sonst hätte der Deckel die Prüfung
+    stillgelegt."""
+    monkeypatch.setattr(QM.urllib.request, "urlopen",
+                        lambda *a, **k: _antwort(b'{"kaputt": '))
+    e = QM.sonde_laufen(("T", "eea", "https://example.test/x", {},
+                         QM._p_pfad("value"), None), 5)
+    assert e["status"] == "unlesbar"
+    assert e["status"] in QM.ALARM
+
+
+def test_vollstaendiger_rumpf_wird_weiter_streng_geprueft(monkeypatch):
+    monkeypatch.setattr(QM.urllib.request, "urlopen",
+                        lambda *a, **k: _antwort(b'{"value": [1, 2, 3]}'))
+    e = QM.sonde_laufen(("T", "eea", "https://example.test/x", {},
+                         QM._p_pfad("value"), None), 5)
+    assert e["status"] == "ok" and e["zeilen"] == 3
+    assert "Praefix" not in (e.get("grund") or "")
