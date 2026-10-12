@@ -49,7 +49,9 @@ import time
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall, melde_http_ausfall
+from services._ausfall import (
+    melde_ausfall, melde_http_ausfall, melde_kaputte_nutzlast,
+)
 
 logger = logging.getLogger("evidora")
 
@@ -315,9 +317,19 @@ async def _post_graphql(client, query: str, variables: dict | None = None) -> di
             return None
         payload = resp.json()
         if not isinstance(payload, dict):
+            melde_kaputte_nutzlast(
+                logger, "aiid",
+                f"AIID: Antwort ist kein dict "
+                f"(type={type(payload).__name__})",
+                payload)
             return None
         if payload.get("errors"):
-            logger.debug(f"AIID GraphQL errors: {payload['errors'][:1]}")
+            # GraphQL antwortet mit HTTP 200 und legt die Fehler in den
+            # Rumpf. Die Nutzlast geht NICHT mit — sie ist da, sie enthaelt
+            # nur Fehler statt Daten.
+            melde_kaputte_nutzlast(
+                logger, "aiid",
+                f"AIID GraphQL errors: {payload['errors'][:1]}")
             return None
         return payload.get("data")
     except Exception as e:

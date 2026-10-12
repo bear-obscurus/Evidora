@@ -39,7 +39,9 @@ import time
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
-from services._ausfall import melde_ausfall, melde_http_ausfall
+from services._ausfall import (
+    melde_ausfall, melde_http_ausfall, melde_kaputte_nutzlast,
+)
 
 logger = logging.getLogger("evidora")
 
@@ -257,6 +259,11 @@ async def _fetch_scan(client, host: str) -> dict | None:
             return None
         data = resp.json()
         if not isinstance(data, dict):
+            melde_kaputte_nutzlast(
+                logger, "observatory",
+                f"Mozilla Observatory: Antwort ist kein dict "
+                f"(type={type(data).__name__})",
+                data)
             _scan_cache[key] = (time.time(), None)
             return None
         _scan_cache[key] = (time.time(), data)

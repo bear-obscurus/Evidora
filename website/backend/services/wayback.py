@@ -45,7 +45,9 @@ import re
 from urllib.parse import quote, urlparse
 
 from services._http_polite import polite_client
-from services._ausfall import melde_ausfall, melde_http_ausfall
+from services._ausfall import (
+    melde_ausfall, melde_http_ausfall, melde_kaputte_nutzlast,
+)
 
 logger = logging.getLogger("evidora")
 
@@ -251,6 +253,11 @@ async def _fetch_snapshots(client, target_url: str) -> list[dict] | None:
 
     # CDX gibt [] zurück, wenn nichts archiviert wurde
     if not isinstance(data, list) or len(data) < 2:
+        melde_kaputte_nutzlast(
+            logger, "wayback",
+            f"Wayback: Antwort ist kein list "
+            f"(type={type(data).__name__})",
+            data)
         return []
 
     header = data[0]
