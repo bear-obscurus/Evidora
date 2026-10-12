@@ -303,11 +303,20 @@ def test_bekannter_ueber_trigger_ist_festgeschrieben():
         "Der bekannte Über-Trigger ist weg — Zeile umdrehen")
 
 
-def test_batterie_rest_hat_eine_andere_ursache():
-    """„Wie viele Sonderschüler gibt es in Österreich?“ scheitert an der
-    Mengen-Gruppe des Fakts, nicht am Umlaut. Wer „wie viele“ als
-    Mengen-Marker nachtraegt, dreht die Zeile um."""
+def test_batterie_rest_ist_geschlossen():
+    """Die Zeile ist umgedreht — wie #229 es vorhergesagt hat.
+
+    Der Test hiess bis zum 12.10.2026 `test_batterie_rest_hat_eine_andere_
+    ursache` und pinnte, dass diese Frage NICHT trifft: sie scheiterte an
+    der Mengen-Gruppe des Fakts, nicht am Umlaut. Sein Docstring sagte
+    wortwoertlich „Wer ‚wie viele' als Mengen-Marker nachtraegt, dreht die
+    Zeile um." QA50H hat den Fall live bestaetigt (unverifiable@0.1, 0
+    Belege), #253 traegt die Frageform nach — und hier steht jetzt das
+    Gegenteil.
+
+    Die zweite Zusicherung bleibt unveraendert: der Umlaut war nie das
+    Problem."""
     claim = "Wie viele Sonderschüler gibt es in Österreich?"
-    assert not _trifft_echt("nbb_2024_spf_bestand_at", claim)
+    assert _trifft_echt("nbb_2024_spf_bestand_at", claim)
     # Der Umlaut selbst ist geliefert:
     assert plural_trifft(plural_woerter(normalisiere(claim.lower())), "sonderschul")

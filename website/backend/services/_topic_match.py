@@ -48,6 +48,7 @@ from services._englisch import englisch_match, englische_fassung
 from services._flexion import trifft_mit_wortgrenze, wortgrenzen_fassung
 from services._schreibweise import normalisiere, norm_terme
 from services._umlaut_plural import plural_trifft, plural_woerter
+from services._mengenfrage import mit_mengenfrage
 from services._wortformen import mit_wortformen
 from services._tippfehler import tippfehler_match
 from services._reranker_backup import best_matches as _backup_best_matches
@@ -112,7 +113,7 @@ def substring_or_composite_match(item: dict, claim_lc: str) -> bool:
     composite = item.get("trigger_composite") or []
     if composite and all(
         isinstance(alt, (list, tuple))
-        and any(trifft(tok) for tok in mit_wortformen(alt))
+        and any(trifft(tok) for tok in mit_mengenfrage(mit_wortformen(alt)))
         for alt in composite
     ):
         return True
@@ -120,7 +121,7 @@ def substring_or_composite_match(item: dict, claim_lc: str) -> bool:
     for rule in item.get("trigger_all") or ():
         if rule and all(
             isinstance(alt, (list, tuple))
-            and any(trifft(tok) for tok in mit_wortformen(alt))
+            and any(trifft(tok) for tok in mit_mengenfrage(mit_wortformen(alt)))
             for alt in rule
         ):
             return True
