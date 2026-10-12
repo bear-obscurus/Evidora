@@ -112,13 +112,25 @@ services:
   # `profiles` haelt den Dienst aus `docker compose up` heraus — er darf
   # beim Deploy nicht mitstarten. Aufruf:
   #   docker compose run --rm --profile wartung cordis-refresh
-  cordis-refresh:
+  # EIN Dienst fuer ALLE Wartungs-Laeufe, nicht einer je Werkzeug. Der
+  # Aufrufer gibt das Kommando mit (`run_evidora_tool.sh` tut genau das).
+  # Zwei Gruende: der Vertrag in test_mem_limit_contract summiert die
+  # Limits aller gleichzeitig laufenden Container — sechs eigene Dienste
+  # mit je 224m haetten die Summe ueber den Host-RAM gehoben, obwohl nie
+  # zwei zugleich laufen. Und ein Dienst bedeutet eine Stelle, an der das
+  # Limit und die Haertung gepflegt werden.
+  wartung:
     profiles: ["wartung"]
     # Dasselbe Image wie das Backend, ABER ohne `build:` — sonst baut jeder
     # Aufruf neu. Das Image legt deploy.sh an; fehlt es, scheitert der Lauf
     # mit klarer Meldung, statt still etwas Altes zu nehmen.
     image: evidora-backend:latest
-    command: ["python3", "/app/tools/refresh_cordis.py", "--force"]
+    # Kein festes `command`: der Aufrufer bestimmt das Werkzeug.
+    # Dieselbe .env wie das Backend — die Sonden in quellen_lebenszeichen
+    # brauchen die API-Tokens, die dort stehen (z. B. OPENAQ_API_KEY).
+    # Ohne das meldete der Lauf sie plOetzlich als "nicht gesetzt" und die
+    # Sonden-Bilanz haette sich still geaendert.
+    env_file: .env
     volumes:
       - ./backend/data:/app/data
     # Die Rechnung, nicht das Bauchgefuehl: 3.814 MB Host-RAM minus 3g
@@ -128,10 +140,12 @@ services:
     # (3.072 + 512 + 224 = 3.808). Dieser Container laeuft neben dem
     # Backend, nicht statt ihm.
     #
-    # Gemessene Spitze des Laufs: 182 MiB (17 Interpreter + 24 httpx +
-    # 17 ZIP-Central-Directory + Allokator-Hochwasser). Passt also in die
-    # 224m, aber ohne viel Reserve — deshalb 512m Swap-Polster: waechst der
-    # CORDIS-Bestand, wird der Lauf LANGSAM statt hart gekillt. Derselbe
+    # Gemessene Spitze des teuersten Laufs (CORDIS-Refresh): 182 MiB
+    # (17 Interpreter + 24 httpx + 17 ZIP-Central-Directory +
+    # Allokator-Hochwasser). Alle anderen Werkzeuge liegen deutlich
+    # darunter. Passt in die 224m, aber ohne viel Reserve — deshalb 512m
+    # Swap-Polster: waechst der Bestand, wird der Lauf LANGSAM statt hart
+    # gekillt. Derselbe
     # Fehlermodus, den das Backend mit memswap_limit absichert. Und selbst
     # ein Kill waere ungefaehrlich: bei 0 Records benennt der Writer nicht
     # um, der bestehende Cache bleibt stehen, der Cron alarmiert.
