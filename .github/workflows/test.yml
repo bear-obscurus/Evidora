@@ -396,6 +396,7 @@ jobs:
             tests/test_wsava_herkunft.py \
             tests/test_beleg_identitaet.py \
             tests/test_mengenfrage.py \
+            tests/test_zaehlweise.py \
             tests/test_klimaticket_fakt.py \
             tests/test_tote_links_handreparatur.py \
             tests/test_familiennachzug_fakt.py \

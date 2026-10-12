@@ -136,6 +136,8 @@ def render_data_with_marker(
     so). Beim STRUKTURELL-Pfad wird ``kernsatz_fuer_synthesizer``
     zusätzlich übersprungen (steckt schon im Prefix).
     """
+    from services._zaehlweise import FELD, deklarierte_namen, prefix_fuer
+
     kernsatz = d.get("kernsatz_fuer_synthesizer", "")
     is_override = has_false_verdict_override(kernsatz)
     # Provenance (Bug #47): default True = Aufrufer ohne find_matching_items
@@ -144,6 +146,15 @@ def render_data_with_marker(
     matched_exact = d.get("_matched_exact", True)
     parts: list[str] = []
     skip_keys = tuple(set(skip_keys) | {"_matched_exact"})
+    # Zaehlweisen-Marker (12.10.2026): Der Fakt deklariert, dass sein
+    # Vergleich von der Zaehlweise abhaengt. Eigener Zweig statt der
+    # Schleife unten, weil ``zaehlweisen`` eine LISTE ist — die Schleife
+    # rendert nur Strings und haette sie still verschluckt. Steht vor dem
+    # STRUKTURELL-Prefix, damit beide Marker nebeneinander lesbar sind.
+    _zw_namen = deklarierte_namen(d)
+    if _zw_namen:
+        parts.append(prefix_fuer(_zw_namen))
+        skip_keys = tuple(set(skip_keys) | {FELD})
     if is_override:
         prefix = STRUCT_EXACT_PREFIX if matched_exact else STRUCT_COSINE_PREFIX
         parts.append(f"{prefix} {kernsatz}")

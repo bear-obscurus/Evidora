@@ -532,6 +532,14 @@ Conditional-Claims (Wenn-Dann-Behauptungen) — KRITISCH:
   • Claim: "Eingebürgerte erhalten höhere Sozialleistungen als gebürtige Österreicher." Factbook-Eintrag startet mit "STRUKTURELL FALSCH: Sozialleistungen werden NICHT nach Geburtsstaatsbürgerschaft unterschieden." → verdict = "false" @ 0.90.
   • Claim: "Krebs wird durch Handy-Strahlung verursacht." Factbook-Eintrag zitiert WHO/IARC: "KEINE kausale Verbindung." → verdict = "false" @ 0.90.
 
+'ZAEHLWEISE ENTSCHEIDET'-Marker bei Vergleichen und Superlativen (KRITISCH):
+- Wenn ein Eintrag den display_value mit "ZAEHLWEISE ENTSCHEIDET (A / B / ...):" einleitet, dann hängt die Antwort auf diese Frage davon ab, WAS gezählt wird — die Klammer nennt die Zählweisen, die die Quelle unterscheidet.
+- ENTSCHEIDUNGSREGEL: Vergleich oder Superlativ in der Behauptung ("mehr X als Y", "höher als", "der höchste") UND die Behauptung nennt KEINE der genannten Zählweisen → verdict = "mixed" mit Confidence 0.50–0.60. NICHT "true", NICHT "false" — beide wären eine willkürlich gewählte Seite.
+- Im summary-Feld BEIDE Zahlenpaare mit ihrer Zählweise nennen, im nuance-Feld sagen, welche Zählweise welche Antwort ergibt.
+- Nennt die Behauptung die Zählweise selbst ("bei vollendeten Morden", "über dem Meeresspiegel"), ist sie eindeutig → normal mit "true"/"false" entscheiden.
+- Beispiel:
+  • Claim: "In Österreich werden mehr Frauen als Männer ermordet." Eintrag startet mit "ZAEHLWEISE ENTSCHEIDET (vollendete Morde / Mord und Mordversuch / Partnerschaftskontext):" → verdict = "mixed" @ 0.60, summary nennt 40 zu 36 bei vollendeten Morden UND 98 zu 187 bei Mord und Mordversuch.
+
 Strukturell ungeprüfbare Behauptungen mit dokumentiertem Faktencheck-Befund (KRITISCH):
 - Manche populären Behauptungen beziehen sich auf Daten, die strukturell nicht öffentlich verfügbar sind (z.B. Sozialversicherungs-Behandlungen nach Staatsangehörigkeit nach §§ 31 ff ASVG, oder klassifizierte Geheimdienst-Daten). Wenn die Behauptung trotzdem mit einer konkreten Zahl operiert ("22 Millionen Behandlungen"), ist das KEIN Fall für ein bequemes "unverifiable @ 0.0".
 - Wenn eine Quelle einen Eintrag mit dem expliziten Marker "STRUKTURELL UNGEPRÜFBAR" oder "BLOCKIERT" liefert UND zusätzlich einen DOKUMENTIERTEN FAKTENCHECK-BEFUND zitiert (z.B. Kontrast.at-, profil-, FALTER-Faktencheck mit Vergleichszahlen, die die Behauptung kontextualisieren oder relativieren), DANN ist das eine SUBSTANZIELLE Gegen-Evidenz — die Behauptung ist NICHT bestätigt und das Verdict sollte "mostly_false" oder "false" sein, abhängig vom dokumentierten Faktencheck-Befund.
@@ -817,6 +825,12 @@ Conditional claims (if-then claims) — CRITICAL:
 - DECISION RULE: 'STRUKTURELL FALSCH' entry in sources → verdict = 'false' or 'mostly_false' with confidence 0.85–0.95. NOT 'unverifiable', NOT 'mostly_true', NOT 'true'.
 - This override applies EVEN IF other (less authoritative) sources contain phrases like "in seltenen Fällen", "selten aber möglich", "in rare cases possible" — these nuance-phrases describe edge cases, NOT the pauschale-claim being checked. The curated pack has already weighed nuance against pauschale-claim and rendered the verdict-recommendation.
 - Pre-training knowledge (e.g. "vaccines have side effects", "statins have muscle effects") must NOT override a 'STRUKTURELL FALSCH' marker from a curated pack — the marker IS the consensus.
+
+'ZAEHLWEISE ENTSCHEIDET' marker on comparisons and superlatives (CRITICAL):
+- If an entry's display_value starts with "ZAEHLWEISE ENTSCHEIDET (A / B / ...):", the answer depends on WHAT IS COUNTED — the parentheses name the counting methods the source distinguishes.
+- DECISION RULE: comparison or superlative in the claim ("more X than Y", "higher than", "the highest") AND the claim names NONE of the listed counting methods → verdict = "mixed" with confidence 0.50–0.60. NOT "true", NOT "false" — either would be an arbitrarily chosen side.
+- Name BOTH number pairs with their counting method in the summary; say in the nuance field which method yields which answer.
+- If the claim names the counting method itself ("completed homicides only", "above sea level"), it is unambiguous → decide normally with "true"/"false".
 
 Structurally unverifiable claims with documented fact-check finding (CRITICAL):
 - Some popular claims refer to data that is structurally not publicly available (e.g. social-security treatment data by nationality under §§ 31 ff ASVG, or classified intelligence data). When the claim still operates with a concrete number ("22 million treatments"), this is NOT a case for a comfortable "unverifiable @ 0.0".
