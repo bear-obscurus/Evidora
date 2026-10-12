@@ -189,3 +189,45 @@ def test_die_literatur_stand_schon_im_source_label(fakt_id, autor):
     d = json.loads(_text("sport_fitness_pack.json"))
     f = next(x for x in d["facts"] if x.get("id") == fakt_id)
     assert autor in f.get("source_label", ""), f.get("source_label")
+
+
+# --------------------------------------------------------------------------
+# Die Domain, die während der Arbeit gestorben ist
+# --------------------------------------------------------------------------
+# Beim Nachlauf des Wächters am 12.10. um 07:20 — nach dem Deploy der zehn
+# Ersetzungen — meldete er GENAU EINEN neuen toten Beleg:
+# `bmbwf.gv.at/Themen/schule/schulpraxis/lp/lp_neu_2023.html`. Um 06:37
+# hatte er noch gelebt.
+#
+# Das ist kein Zufall, sondern dieselbe Ursache wie bei dreien der zehn:
+# `bmbwf.gv.at` wird gerade abgeschaltet. `/Themen/` leitet bereits auf
+# `bmb.gv.at` um, die Unterseiten fallen nacheinander auf 404. Der Wächter
+# hat den Übergang live mitgeschrieben.
+#
+# Deshalb nicht nur den einen Link nachziehen, sondern die Domain räumen —
+# die übrigen wären in den nächsten Wochen einzeln nachgekommen.
+
+STERBENDE_DOMAIN = "bmbwf.gv.at"
+
+
+def test_die_sterbende_ministeriums_domain_ist_geraeumt():
+    """Ein Link auf eine Domain, die nachweislich abgeschaltet wird, ist ein
+    toter Link mit Verzögerung."""
+    reste = []
+    for pfad in sorted(DATA.glob("*.json")):
+        if STERBENDE_DOMAIN in pfad.read_text(encoding="utf-8"):
+            reste.append(pfad.name)
+    assert not reste, (
+        f"{STERBENDE_DOMAIN} wird abgeschaltet, steht aber noch in: {reste}")
+
+
+@pytest.mark.parametrize("datei,url", [
+    ("iqs_bildung.json",
+     "https://www.bmb.gv.at/Themen/schule/schulpraxis/lp.html"),
+    ("iqs_bildung.json",
+     "https://www.bmb.gv.at/service/bildungsdaten/lehrpersonen.html"),
+    ("education_dach.json",
+     "https://www.bmb.gv.at/service/bildungsdaten/lehrpersonen.html"),
+])
+def test_nachfolger_auf_der_neuen_domain(datei, url):
+    assert url in _text(datei)

@@ -99,7 +99,7 @@
       "scope": "Lehrkräfte-Bestand + Pensionierungs-Welle AT 2024-2030 (NBB 2024 Band Controlling)",
       "year": 2024,
       "source_url": "https://www.iqs.gv.at/nbb2024",
-      "secondary_url": "https://www.bmbwf.gv.at/Themen/schule/lehr.html",
+      "secondary_url": "https://www.bmb.gv.at/service/bildungsdaten/lehrpersonen.html",
       "source_label": "IQS Nationaler Bildungsbericht 2024 (Band Controlling) + BMBWF Lehrer:innen-Bedarfsprognose 2024 + Statistik Austria",
       "headline": "AT-Lehrkräfte 2024 ~132.000 Vollzeit-Äquivalent; bis 2030 gehen ~32.000 in Pension (24 %), nur ~5.400 Lehramts-Studienanfänger:innen 2024 (vs. 8.200 in 2014, -34 %) — strukturelle Bedarfs-Lücke absehbar",
       "data": {
@@ -368,7 +368,7 @@
       "topic": "lehrplan_reform_2023_at_konsens",
       "scope": "Lehrplan-Reform 2023 Volksschule + Sek-I — kompetenzorientierte Reform (NBB 2024 Band Wissenschaft)",
       "year": 2023,
-      "source_url": "https://www.bmbwf.gv.at/Themen/schule/schulpraxis/lp/lp_neu_2023.html",
+      "source_url": "https://www.bmb.gv.at/Themen/schule/schulpraxis/lp.html",
       "secondary_url": "https://www.iqs.gv.at/nbb2024",
       "source_label": "BMBWF Lehrplan 2023 + IQS Nationaler Bildungsbericht 2024 (Band Wissenschaft Beitrag zur Lehrplan-Reform)",
       "headline": "Lehrplan-Reform AT 2023: kompetenzorientierte Curricula Volksschule + Sek-I in Kraft seit Schuljahr 2023/24; Fokus Grundkompetenzen + 'übergreifende Themen' (Demokratie, Digital, Gesundheit, Umwelt)",
