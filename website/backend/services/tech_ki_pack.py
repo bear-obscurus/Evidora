@@ -28,7 +28,7 @@ Topics:
   - bitcoin_stromverbrauch_konsens
   - quantencomputer_verschluesselung_mythos
   - anonymisierung_re_identifikation_mythos
-  - vpn_anonymitaet_mythos
+  - vpn_anonymitaet_angriffsflaechen
   - apple_android_sicherheit_mythos
 """
 
