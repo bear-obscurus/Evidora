@@ -24,6 +24,10 @@ API-Strategie:
    Der OeNB-Direct-Endpoint wirft Cloudflare-503/Session-Redirects bei
    anonymem Zugriff. Da die ECB-Aggregate REF_AREA=AT die identischen
    Meldedaten enthalten, ist OeNB-Direct nicht mehr nötig.
+   "Nicht im Einsatz" heißt hier auch: KEIN Code. Eine frühere Ping-
+   Funktion auf diesen Endpoint hatte seit ihrer Einführung keinen
+   Aufrufer und loggte nichts, obwohl ihr Docstring "nur Ping für
+   Logging/Telemetrie" versprach — entfernt statt verdrahtet.
 
 Beispiel-Indikatoren (über ECB-BSI-Aggregat):
 - Konsumkredite (BS_ITEM=A21 oder A20-Subset, BS_COUNT_SECTOR=2250 Haushalte)
@@ -71,10 +75,8 @@ logger = logging.getLogger("evidora")
 # ---------------------------------------------------------------------------
 ECB_DIRECT_API = "https://data-api.ecb.europa.eu/service/data"
 DBNOMICS_API = "https://api.db.nomics.world/v22"
-OENB_DIRECT_API = "https://www.oenb.at/isaweb/spec_sdw/datacollection"
 TIMEOUT_S = 12.0
 TIMEOUT_ECB_S = 10.0
-TIMEOUT_DIRECT_S = 5.0   # OeNB-Direkt blockt oft → kurz halten
 MAX_RESULTS = 3
 CACHE_TTL_S = 24 * 3600  # 24h
 
@@ -553,26 +555,6 @@ async def _fetch_dbnomics_filtered(
         if sc.endswith(".E") or sc.endswith(".EUR.E"):
             return doc
     return docs[0]
-
-
-async def _fetch_oenb_direct_ping(client) -> bool:
-    """Versuche OeNB-Direct-Endpoint nur zur Verfügbarkeits-Prüfung.
-
-    OeNB ISAweb blockt anonymen Traffic häufig mit Cloudflare-503/Session-
-    Redirect; wir geben hier False zurück, sobald der Endpoint nicht direkt
-    200 antwortet. Datenparsing der OeNB-XML-Antwort ist deutlich teurer
-    als sinnvoll für diesen Service — daher kein echter Fallback-Parser,
-    nur Ping für Logging/Telemetrie.
-    """
-    try:
-        resp = await client.get(
-            OENB_DIRECT_API,
-            timeout=TIMEOUT_DIRECT_S,
-            follow_redirects=False,
-        )
-        return resp.status_code == 200
-    except Exception:
-        return False
 
 
 # ---------------------------------------------------------------------------
