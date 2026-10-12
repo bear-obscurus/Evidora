@@ -14,7 +14,9 @@ laufen, sonst werden sie zurueckueberschrieben):
      Medical-Healing-Denial / Kompetenz-Urteil / Trend-"kaum")
   6. Consistency-Fix anwenden
   7. AMS/ILO-Dual-Methodik-Guard (NACH 6)
-  8. Wahlprognose-Guard / Politik-Tabu (NACH 6, finale Autoritaet)
+  8. Zaehlweisen-Guard (NACH den Vergleichsmustern O/P, die sonst eine
+     Richtung setzen, die der Guard gleich wieder aufhebt)
+  9. Wahlprognose-Guard / Politik-Tabu (NACH 6, finale Autoritaet)
 
 Eingang: ``result`` (LLM-Output-Dict), ``source_results`` (gerankte Quellen),
 ``original_claim``. Mutiert ``result`` und gibt es zurueck.
@@ -25,6 +27,10 @@ import re
 
 from services._satzgrenzen import teile_in_einheiten
 from services._schreibweise import normalisiere, norm_terme
+from services._zaehlweise import (
+    claim_nennt_zaehlweise,
+    namen_aus_text as zaehlweisen_aus_text,
+)
 
 logger = logging.getLogger("evidora")
 
@@ -67,7 +73,14 @@ _BESTAETIGUNG_MUSTER = re.compile(
 )
 
 
+# Die linke Wortgrenze ist noetig, nicht kosmetisch (12.10.2026): ohne sie
+# lieferte "frauen WERDEN MEISTENS von ihren Partnern getötet" den Treffer
+# "den meistens" — das "den" kam aus "werden". Dieselbe Falle bei "die
+# Zahlen WERDEN GRÖSSTENTEILS bestätigt". Gefunden beim Zaehlweisen-Guard,
+# der die Phrase fuer die CLAIM-Seite mitbenutzt; die drei aelteren
+# Fundstellen lesen SUMMARIES und konnten denselben Fehlgriff machen.
 _SUPERLATIVE_PHRASE = (
+    r"(?<![a-zäöüß])"
     r"(?:(?:die|der|das|den)\s+"
     r"(?:höchste|niedrigste|geringste|größte|meiste\w*|stärkste)\w*"
     r"|spitzenreiter|an erster stelle|an der spitze|schlusslicht)"
@@ -1050,6 +1063,24 @@ def vergleich_rechnerisch(claim_lc: str, summary_lc: str):
         if a_min > b_max:
             return False
     return None                           # Spannen ueberlappen
+
+
+# --- Zaehlweisen-Guard: Welche Behauptungen haengen von ihr ab? ----------
+# Nur Vergleiche und Superlative. "Wie hoch ist der Everest" hat EINE
+# Antwort (8.848,86 m ueber Meeresspiegel) — den Guard darauf anzuwenden
+# wuerde eine eindeutige Auskunft zu "mixed" abwerten. Erst "hoeher als"
+# oder "der hoechste" macht die Zaehlweise entscheidend, weil dann zwei
+# Zaehlweisen zu GEGENSAETZLICHEN Antworten fuehren.
+_ZW_SUPERLATIV_RE = re.compile(_SUPERLATIVE_PHRASE)
+
+
+def _claim_ist_vergleichsfrage(claim_lc: str) -> bool:
+    """Vergleicht die Behauptung zwei Groessen oder behauptet einen Rang?"""
+    if not claim_lc:
+        return False
+    if vergleich_aus_claim(claim_lc):
+        return True
+    return bool(_ZW_SUPERLATIV_RE.search(claim_lc))
 
 
 def _summary_refutes_superlative(claim_lower, summary_lower):
@@ -2499,6 +2530,67 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                 f"denselben Vergleich mit vertauschten Seiten, das Label "
                 f"'{_o_alt}' widerspricht — auf '{_o_ziel}' korrigiert."
             )
+
+    # --- Zaehlweisen-Guard: ein Vergleich ohne genannte Zaehlweise ---------
+    # Gemessen am 12.10.2026: Der Dienst bejahte BEIDE Richtungen desselben
+    # Vergleichs mit 0,85 — "mehr Frauen als Männer ermordet" UND "mehr
+    # männliche als weibliche Mordopfer", "Mauna Kea höher als der Everest"
+    # UND "der Everest höher als der Mauna Kea". Hoechstens eine Seite kann
+    # stimmen. Beide Fakten sagen selbst, dass die Antwort von der Zaehlweise
+    # abhaengt ("Drei Zaehlweisen, die oft vermischt werden"; "Pauschal ohne
+    # Spezifizierung: alle 3 Antworten richtig") — das Label sagt es nicht.
+    #
+    # Hier wird NICHT gerechnet. Muster P hat die Rechnung fuer "mehr X als
+    # Y" in PR #227 bewusst stillgelegt, mit genau diesem Fall als Grund;
+    # eine Nachmessung am 12.10.2026 bestaetigte es (satzweise gerechnet
+    # sagt die Arithmetik fuer beide GEGENSAETZLICHEN Behauptungen "falsch",
+    # weil sie jeweils die andere Zaehlweise greift). Statt die Richtung zu
+    # erraten, wird gesagt, was bekannt ist: ohne Zaehlweise keine Seite.
+    #
+    # Nennt die Behauptung die Zaehlweise selbst ("bei vollendeten Morden"),
+    # ist sie eindeutig — dann schweigt der Guard und das Label bleibt.
+    if result.get("verdict") in _BESTIMMTE_LABELS:
+        _zw_namen: tuple[str, ...] = ()
+        for _sd in source_results:
+            if not isinstance(_sd, dict):
+                continue
+            for _r in _sd.get("results", []):
+                _gefunden = zaehlweisen_aus_text(_r.get("display_value", ""))
+                if _gefunden:
+                    _zw_namen = _gefunden
+                    break
+            if _zw_namen:
+                break
+        if _zw_namen and _claim_ist_vergleichsfrage(_claim_lc):
+            _zw_genannt = claim_nennt_zaehlweise(original_claim or "", _zw_namen)
+            if _zw_genannt:
+                logger.warning(
+                    f"Zaehlweisen-Guard: Die Behauptung nennt die Zaehlweise "
+                    f"selbst ('{_zw_genannt}') — Label "
+                    f"'{result.get('verdict')}' bleibt."
+                )
+            else:
+                _zw_alt = result["verdict"]
+                result["verdict"] = "mixed"
+                try:
+                    result["confidence"] = min(
+                        float(result.get("confidence", 0.6)), 0.6)
+                except (TypeError, ValueError):
+                    result["confidence"] = 0.6
+                _zw_hinweis = (
+                    "Die Antwort haengt davon ab, was gezaehlt wird — die "
+                    "Quelle unterscheidet: "
+                    + ", ".join(_zw_namen)
+                    + ". Die Behauptung nennt keine davon."
+                )
+                _zw_bisher = (result.get("nuance") or "").strip()
+                result["nuance"] = (f"{_zw_bisher} {_zw_hinweis}".strip()
+                                    if _zw_bisher else _zw_hinweis)
+                logger.warning(
+                    f"Zaehlweisen-Guard: Vergleich ohne genannte Zaehlweise "
+                    f"({len(_zw_namen)} deklariert: {list(_zw_namen)}) — "
+                    f"Label '{_zw_alt}' auf 'mixed' abgewertet."
+                )
 
     # --- Muster M: Umdeutung der Claim-Zahl bei Label "true" (QA50F) ---
     # Auffangnetz hinter Muster N: Wenn die Summary die Claim-Zahl

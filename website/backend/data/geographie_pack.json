@@ -87,6 +87,7 @@
       "headline": "Mount Everest ist höchster ÜBER MEERESSPIEGEL — aber Mauna Kea ist vom Meeresboden höher, Chimborazo ist erdmittelpunkt-fernster",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die Frage 'Welcher Berg ist der höchste' hängt von der Definition ab — 3 mögliche TRUE-Antworten: (1) Mount Everest (8.849 m über Meeresspiegel) — der populär höchste; (2) Mauna Kea auf Hawai'i (~10.210 m vom Meeresgrund, davon ~4.207 m über Wasser) — vom Sockel-zur-Spitze höchster; (3) Chimborazo in Ecuador (6.263 m über Meeresspiegel, aber durch Erd-Abplattung am Äquator ~6.384 km vom Erdmittelpunkt) — am weitesten vom Erdmittelpunkt entfernter Punkt der Erdoberfläche.",
+        "zaehlweisen_namen": ["Höhe über dem Meeresspiegel", "Höhe vom Meeresgrund aus", "Abstand vom Erdmittelpunkt"],
         "everest": "Mount Everest, Himalaya (Nepal/China-Grenze): 8.848,86 m über Meeresspiegel (offizielle Vermessung 2020 nach gemeinsamer Vermessung). Bisher höchster Punkt der Erde nach klassischer Definition.",
         "mauna_kea": "Mauna Kea, Hawai'i (USA): Schildvulkan, Spitze 4.207 m über Meeresspiegel. Vom Meeresgrund aus ~10.210 m. Nach 'Berg = Sockel-zu-Spitze'-Definition: höchster Berg der Erde.",
         "chimborazo": "Chimborazo, Ecuador (Anden): 6.263 m über Meeresspiegel. Liegt aber nur 1° südlich des Äquators, wo die Erde durch Rotations-Abplattung ihren größten Radius hat. Spitze ist ~6.384.400 m vom Erdmittelpunkt entfernt — am weitesten vom Erdmittelpunkt entfernter Punkt der Erdoberfläche.",
