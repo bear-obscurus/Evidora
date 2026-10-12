@@ -63,6 +63,18 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+# Eine Lebenszeichen-Sonde fragt "antwortet die Quelle und liefert sie
+# Daten?". Dafuer genuegen Kilobytes. Gemessen am 12.10.2026 zog ein Lauf
+# aber 394 MiB — DataCommons 191, OECD TALIS 126, MITRE 46, OECD SOCX 10,
+# DefiLlama 9 — und erreichte 940 MiB Spitzen-RSS. Im Backend-Container
+# mit 3 GB fiel das nie auf; im eigenen Wartungs-Container mit 224m wurde
+# der Lauf hart gekillt (Exit 137).
+#
+# Deshalb eine harte Obergrenze fuer JEDEN Rumpf. Sie schuetzt auch vor
+# der naechsten Quelle, die ihren Datensatz vergroessert, ohne dass jemand
+# die Sondenliste anfasst.
+MAX_RUMPF_BYTES = 262_144
+
 USER_AGENT = "Evidora-Quellenmonitor/1.0 (+https://evidora.eu; contact@evidora.eu)"
 
 # Stand 2026-09-07, gezaehlt ueber services/*.py mit `async def search_/fetch_`
@@ -274,9 +286,11 @@ SONDEN = [
      {"db": "pubmed", "term": "cochrane database syst rev[jour]",
       "retmode": "json", "retmax": "3"},
      _p_pfad("esearchresult", "idlist"), None),
+    # 191 MiB fuer die Frage "lebt der Feed?" — jetzt nur noch das
+    # Praefix, in dem der erwartete Schluessel stehen muss.
     ("DataCommons ClaimReview", "datacommons",
      "https://storage.googleapis.com/datacommons-feeds/claimreview/latest/data.json",
-     {}, _p_pfad("dataFeedElement"), None),
+     {}, _p_zaehlt("dataFeedElement"), None),
     ("DOAB", "doab", "https://directory.doabooks.org/rest/search",
      {"query": "climate", "expand": "metadata"}, _p_liste, None),
     # Der Drift-Test hat hier zweimal zugeschlagen, und zu Recht: die erste
@@ -301,9 +315,10 @@ SONDEN = [
     ("MedlinePlus", "medlineplus", "https://wsearch.nlm.nih.gov/ws/query",
      {"db": "healthTopics", "term": "diabetes", "retmax": "3"},
      _p_zaehlt("<document "), None),
+    # 46 MiB; der Praefix enthaelt den Schluessel und die ersten Objekte.
     ("MITRE ATT&CK", "mitre_attack",
      "https://raw.githubusercontent.com/mitre/cti/master/enterprise-attack/"
-     "enterprise-attack.json", {}, _p_pfad("objects"), None),
+     "enterprise-attack.json", {}, _p_zaehlt("\"type\""), None),
     ("Nominatim", "nominatim", "https://nominatim.openstreetmap.org/search",
      {"q": "Wien", "format": "json", "limit": "1"}, _p_liste, None),
     ("NVD", "nvd", "https://services.nvd.nist.gov/rest/json/cves/2.0",
@@ -327,8 +342,9 @@ SONDEN = [
      {"limit": "2", "yearFrom": "2023"}, _p_pfad("items"), None),
     ("UNECE", "unece", "https://w3.unece.org/PXWeb2015/api/v1/en/STAT", {},
      _p_liste, None),
+    # 9 MiB Liste; ein Praefix mit Eintraegen genuegt als Lebenszeichen.
     ("DefiLlama", "defillama", "https://api.llama.fi/protocols", {},
-     _p_liste, None),
+     _p_zaehlt("\"name\""), None),
 
     # --- Dritte Welle (2026-09-07) ----------------------------------------
     # Wieder gilt: jede Sonde einzeln gegen die echte API gefahren. Fuenf
@@ -653,7 +669,10 @@ def _sonde_einmal(sonde, timeout: float) -> dict:
         with urllib.request.urlopen(
                 urllib.request.Request(voll, data=rumpf, headers=headers),
                 timeout=timeout) as r:
-            text = r.read().decode("utf-8", "replace")
+            # Nur bis zur Obergrenze lesen. Die Pruefer unten kommen
+            # mit einem Praefix aus — sie zaehlen Marken, statt den
+            # ganzen Rumpf zu parsen.
+            text = r.read(MAX_RUMPF_BYTES).decode("utf-8", "replace")
             code = r.status
     except urllib.error.HTTPError as e:
         if e.code == 429:

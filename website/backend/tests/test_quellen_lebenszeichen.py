@@ -83,7 +83,7 @@ def test_zeilenzahl_wird_zum_status(monkeypatch, zeilen, erwartet):
     """Die Abbildung Zeilenzahl → Status, ohne Netz."""
     class _Antwort:
         status = 200
-        def read(self): return b"{}"
+        def read(self, n=None): return b"{}"
         def __enter__(self): return self
         def __exit__(self, *a): return False
     monkeypatch.setattr(QM.urllib.request, "urlopen", lambda *a, **k: _Antwort())
@@ -238,7 +238,7 @@ def test_bekannt_defekte_quellen_loesen_keinen_push_aus(monkeypatch):
 
     class _Antwort:
         status = 200
-        def read(self): return b"{}"
+        def read(self, n=None): return b"{}"
         def __enter__(self): return self
         def __exit__(self, *a): return False
     monkeypatch.setattr(QM.urllib.request, "urlopen", lambda *a, **k: _Antwort())
@@ -268,7 +268,7 @@ def test_rueckkehr_einer_defekten_quelle_wird_gemeldet(monkeypatch):
 
     class _Antwort:
         status = 200
-        def read(self): return b"{}"
+        def read(self, n=None): return b"{}"
         def __enter__(self): return self
         def __exit__(self, *a): return False
     monkeypatch.setattr(QM.urllib.request, "urlopen", lambda *a, **k: _Antwort())
@@ -300,7 +300,7 @@ def test_post_sonde_schickt_einen_rumpf(monkeypatch):
 
     class _Antwort:
         status = 200
-        def read(self): return b'{"a": [1]}'
+        def read(self, n=None): return b'{"a": [1]}'
         def __enter__(self): return self
         def __exit__(self, *a): return False
 
@@ -323,7 +323,7 @@ def test_eigene_header_kommen_an(monkeypatch):
 
     class _Antwort:
         status = 200
-        def read(self): return b"dataSets"
+        def read(self, n=None): return b"dataSets"
         def __enter__(self): return self
         def __exit__(self, *a): return False
 
@@ -388,7 +388,7 @@ def test_timeout_wird_einmal_wiederholt(monkeypatch):
 
     class _Antwort:
         status = 200
-        def read(self): return b"[1,2]"
+        def read(self, n=None): return b"[1,2]"
         def __enter__(self): return self
         def __exit__(self, *a): return False
 
@@ -465,7 +465,7 @@ def test_exit_code_2_bei_stummer_quelle(monkeypatch, capsys):
 
     class _Antwort:
         status = 200
-        def read(self): return b"{}"
+        def read(self, n=None): return b"{}"
         def __enter__(self): return self
         def __exit__(self, *a): return False
     monkeypatch.setattr(QM.urllib.request, "urlopen", lambda *a, **k: _Antwort())
@@ -484,7 +484,7 @@ def test_alarm_nennt_quelle_und_grund(monkeypatch):
 
     class _Antwort:
         status = 200
-        def read(self): return b"{}"
+        def read(self, n=None): return b"{}"
         def __enter__(self): return self
         def __exit__(self, *a): return False
     monkeypatch.setattr(QM.urllib.request, "urlopen", lambda *a, **k: _Antwort())
@@ -493,3 +493,73 @@ def test_alarm_nennt_quelle_und_grund(monkeypatch):
     assert "Weltbank-Test" in gesendet["text"]
     assert "kaputte_abfrage" in gesendet["text"]
     assert "1 Quelle" in gesendet["titel"]
+
+
+# --------------------------------------------------------------------------
+# Eine Sonde fragt "lebst du?" — dafür genügen Kilobytes (12.10.2026)
+# --------------------------------------------------------------------------
+# Gemessen: ein Lauf zog **394 MiB** und erreichte **940 MiB Spitzen-RSS**.
+# Fünf Sonden machten 383 davon aus — DataCommons 191, OECD TALIS 126,
+# MITRE 46, OECD SOCX 10, DefiLlama 9. Im Backend-Container mit 3 GB fiel
+# das nie auf. Erst der eigene Wartungs-Container mit 224m zeigte es, und
+# zwar hart: Exit 137, der Lauf wurde gekillt, bevor er eine Zeile ausgab.
+#
+# Der Fix ist nicht "mehr Speicher geben", sondern weniger holen: eine
+# harte Obergrenze für jeden Rumpf, und Prüfer, die mit einem Präfix
+# auskommen. Danach 40 MiB Spitze.
+#
+# Was das kostet, ehrlich gesagt: ein Fehler-Objekt, das ERST nach der
+# Obergrenze käme, bliebe unentdeckt. Für die WGI-Klasse (#107) ist das
+# unschädlich — Fehler-Rümpfe sind klein und tragen die erwartete Marke
+# nicht.
+
+def test_es_gibt_eine_obergrenze_fuer_den_rumpf():
+    assert QM.MAX_RUMPF_BYTES <= 1_048_576, "eine Sonde braucht kein Megabyte"
+    assert QM.MAX_RUMPF_BYTES >= 65_536, "zu knapp für Präfix-Prüfungen"
+
+
+def test_die_sonde_liest_nicht_mehr_als_die_obergrenze(monkeypatch):
+    """Der Schutz muss im LESEN sitzen, nicht im Vertrauen darauf, dass
+    die Quelle klein antwortet."""
+    gelesen = {}
+
+    class _Riesig:
+        status = 200
+
+        def read(self, n=None):
+            gelesen["n"] = n
+            return b"x" * (n if n else 50_000_000)
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+    monkeypatch.setattr(QM.urllib.request, "urlopen", lambda *a, **k: _Riesig())
+    e = QM.sonde_laufen(("T", "wgi", "https://example.test/x", {},
+                         lambda t: len(t), None), 5)
+    assert gelesen["n"] == QM.MAX_RUMPF_BYTES
+    assert e["zeilen"] <= QM.MAX_RUMPF_BYTES
+
+
+@pytest.mark.parametrize("name", [
+    "DataCommons ClaimReview", "MITRE ATT&CK", "DefiLlama",
+    "OECD SDMX", "OECD (Fakten-Weg)",
+])
+def test_die_grossen_sonden_kommen_mit_einem_praefix_aus(name):
+    """`_p_pfad` und `_p_liste` rufen json.loads auf dem GANZEN Rumpf —
+    mit einer Obergrenze bricht das ab und meldete 'unlesbar', also einen
+    Fehlalarm. Marken-Zählung funktioniert auf jedem Präfix."""
+    sonde = next(s for s in QM.SONDEN if s[0] == name)
+    probe = '{"dataFeedElement": [{"type": "x", "name": "y"}], "dataSets": 1}'
+    assert sonde[4](probe) > 0, "Prüfer erkennt die Marke im Präfix nicht"
+    # Und auf einem ABGESCHNITTENEN Rumpf darf er nicht werfen.
+    assert sonde[4](probe[:30]) >= 0
+
+
+def test_ein_abgeschnittenes_json_wuerde_den_alten_pruefer_werfen():
+    """Gift-Probe: nur wenn `_p_pfad` auf einem Präfix tatsächlich
+    scheitert, war die Umstellung nötig."""
+    with pytest.raises(Exception):
+        QM._p_pfad("objects")('{"objects": [{"type": "attack-pat')

@@ -244,7 +244,7 @@ def test_exit_zwei_heisst_gelaufen_mit_befund(monkeypatch, capsys):
 
     class _Antwort:
         status = 200
-        def read(self): return b"{}"
+        def read(self, n=None): return b"{}"
         def __enter__(self): return self
         def __exit__(self, *a): return False
 
@@ -262,7 +262,7 @@ def test_exit_null_heisst_alles_still(monkeypatch, capsys):
 
     class _Antwort:
         status = 200
-        def read(self): return b"[1]"
+        def read(self, n=None): return b"[1]"
         def __enter__(self): return self
         def __exit__(self, *a): return False
 
