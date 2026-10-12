@@ -41,6 +41,7 @@ from services._zaehlweise import (
     unterscheidende_woerter,
 )
 from services.verdict_postprocess import (
+    _ZW_KONFIDENZ_DECKEL,
     _claim_ist_vergleichsfrage,
     apply_verdict_postprocessing,
 )
@@ -163,12 +164,51 @@ def test_wie_hoch_ist_der_everest_bleibt_eindeutig():
     assert r["confidence"] == 0.9
 
 
-@pytest.mark.parametrize("verdict", ["unverifiable", "mixed"])
-def test_unbestimmte_labels_bleiben(verdict):
+def test_unverifiable_bleibt_unberuehrt():
     """Der Guard wertet AB, er wertet nicht auf."""
     r = _lauf("In Österreich werden mehr Frauen als Männer ermordet",
-              verdict, 0.1, _quellen(*MARKIERT[0]))
-    assert r["verdict"] == verdict
+              "unverifiable", 0.1, _quellen(*MARKIERT[0]))
+    assert r["verdict"] == "unverifiable"
+    assert r["confidence"] == 0.1
+
+
+def test_selbst_gewaehltes_mixed_wird_gedeckelt():
+    """Live gemessen am 12.10.2026, direkt nach dem Deploy von #254.
+
+    Die Prompt-Regel wirkt: auf drei der vier Ausloeser antwortete das
+    Modell von SELBST mit "mixed" — und behielt dabei 0,9. Der Guard sah
+    das nicht an, weil "mixed" nicht in _BESTIMMTE_LABELS steht. Damit
+    bekam dieselbe Erkenntnislage 0,6 oder 0,9, je nachdem wer sie zog.
+
+    Das Label bleibt dabei unberuehrt; nur Konfidenz und Nuance kommen
+    dazu.
+    """
+    r = _lauf("Mauna Kea ist höher als der Everest", "mixed", 0.9,
+              _quellen(*MARKIERT[1]))
+    assert r["verdict"] == "mixed"
+    assert r["confidence"] == _ZW_KONFIDENZ_DECKEL
+    assert "was gezaehlt wird" in r["nuance"]
+
+
+def test_der_deckel_hebt_eine_niedrigere_konfidenz_nicht():
+    """``min``, nicht ``=``: ein duenn belegtes mixed bleibt duenn."""
+    r = _lauf("Mauna Kea ist höher als der Everest", "mixed", 0.3,
+              _quellen(*MARKIERT[1]))
+    assert r["confidence"] == 0.3
+
+
+def test_prompt_regel_und_guard_nennen_dieselbe_zahl():
+    """Sonst zieht das Modell auf 0,6 und der Guard deckelt auf 0,5 —
+    oder umgekehrt, und niemand merkt es."""
+    pfad = os.path.join(os.path.dirname(DATA), "services", "synthesizer.py")
+    with open(pfad, encoding="utf-8") as fh:
+        quelle = fh.read()
+    stelle = quelle.find(ZAEHLWEISE_PREFIX)
+    assert re.search(r"0[,.]50.{0,3}0[,.]60", quelle[stelle:stelle + 2000]), (
+        "Prompt-Regel nennt keine Konfidenz-Spanne")
+    assert _ZW_KONFIDENZ_DECKEL == 0.6, (
+        "Deckel und die in der Prompt-Regel genannte Obergrenze "
+        "muessen zusammenpassen")
 
 
 def test_ohne_marker_kein_eingriff():

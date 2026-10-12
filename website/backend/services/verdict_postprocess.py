@@ -1073,6 +1073,12 @@ def vergleich_rechnerisch(claim_lc: str, summary_lc: str):
 # Zaehlweisen zu GEGENSAETZLICHEN Antworten fuehren.
 _ZW_SUPERLATIV_RE = re.compile(_SUPERLATIVE_PHRASE)
 
+#: Obergrenze fuer ein zaehlweisenabhaengiges "mixed". Dieselbe Stufe wie
+#: Muster M, das aus demselben Grund abwertet (die Begruendung traegt die
+#: Antwort nicht, die das Label behauptet). Die Prompt-Regel nennt
+#: 0,50-0,60, damit Modell und Guard dieselbe Zahl anstreben.
+_ZW_KONFIDENZ_DECKEL = 0.6
+
 
 def _claim_ist_vergleichsfrage(claim_lc: str) -> bool:
     """Vergleicht die Behauptung zwei Groessen oder behauptet einen Rang?"""
@@ -2549,7 +2555,15 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     #
     # Nennt die Behauptung die Zaehlweise selbst ("bei vollendeten Morden"),
     # ist sie eindeutig — dann schweigt der Guard und das Label bleibt.
-    if result.get("verdict") in _BESTIMMTE_LABELS:
+    # "mixed" ist hier mit dabei, nicht nur die bestimmten Labels — und das
+    # ist eine Korrektur an der ersten Fassung (12.10.2026). Live gemessen:
+    # Die Prompt-Regel wirkt, das Modell antwortete auf drei der vier
+    # Ausloeser von selbst "mixed" — und behielt dabei 0,9. Der Guard sah
+    # das Label nicht an, weil es nicht in _BESTIMMTE_LABELS steht. Damit
+    # bekam DIESELBE Erkenntnislage 0,6 oder 0,9, je nachdem, wer sie
+    # gezogen hat. Der Deckel gilt jetzt unabhaengig davon; das Label
+    # bleibt dann unberuehrt, nur die Konfidenz und die Nuance kommen dazu.
+    if result.get("verdict") in _BESTIMMTE_LABELS + ("mixed",):
         _zw_namen: tuple[str, ...] = ()
         for _sd in source_results:
             if not isinstance(_sd, dict):
@@ -2571,12 +2585,14 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                 )
             else:
                 _zw_alt = result["verdict"]
+                _zw_war_schon_mixed = _zw_alt == "mixed"
                 result["verdict"] = "mixed"
                 try:
                     result["confidence"] = min(
-                        float(result.get("confidence", 0.6)), 0.6)
+                        float(result.get("confidence", 0.6)),
+                        _ZW_KONFIDENZ_DECKEL)
                 except (TypeError, ValueError):
-                    result["confidence"] = 0.6
+                    result["confidence"] = _ZW_KONFIDENZ_DECKEL
                 _zw_hinweis = (
                     "Die Antwort haengt davon ab, was gezaehlt wird — die "
                     "Quelle unterscheidet: "
@@ -2589,7 +2605,10 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                 logger.warning(
                     f"Zaehlweisen-Guard: Vergleich ohne genannte Zaehlweise "
                     f"({len(_zw_namen)} deklariert: {list(_zw_namen)}) — "
-                    f"Label '{_zw_alt}' auf 'mixed' abgewertet."
+                    + ("Label war schon 'mixed', Konfidenz auf "
+                       f"{result['confidence']} gedeckelt."
+                       if _zw_war_schon_mixed else
+                       f"Label '{_zw_alt}' auf 'mixed' abgewertet.")
                 )
 
     # --- Muster M: Umdeutung der Claim-Zahl bei Label "true" (QA50F) ---
