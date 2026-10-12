@@ -538,7 +538,16 @@ async def main_async(args: argparse.Namespace) -> int:
     stand = args.stand or stand_pfad(data_dir)
     vorher, stand_datum = lade_stand(stand)
     neu_tot = sorted(tot - vorher) if stand_datum else []
-    wieder_da = sorted(vorher - tot)
+    # "Wieder erreichbar" nur, wo diesmal tatsaechlich nachgesehen wurde.
+    # Am 12.10.2026 meldete der Waechter die zehn Links, die #244 ERSETZT
+    # hatte, als "wieder erreichbar" — `vorher - tot` verwechselt "lebt
+    # wieder" mit "steht nicht mehr in den Daten". Fuer die Frage "muss
+    # jemand etwas tun?" ist das der Unterschied zwischen einer guten
+    # Nachricht und einer erledigten Aufgabe.
+    geprueft = {r["url"] for ergebnisse in results_by_tier.values()
+                for r in ergebnisse}
+    wieder_da = sorted((vorher - tot) & geprueft)
+    nicht_mehr_geprueft = sorted((vorher - tot) - geprueft)
 
     eigen, fremd = teile_nach_herkunft(sorted(tot), orte)
     print(f"\n=== Tote Links: {len(tot)} — {len(eigen)} in Belegen, "
@@ -547,7 +556,8 @@ async def main_async(args: argparse.Namespace) -> int:
           f"{len(erledigt)} geparkte nicht mehr tot")
     if stand_datum:
         print(f"    Veraenderung seit {stand_datum}: {len(neu_tot)} neu tot, "
-              f"{len(wieder_da)} wieder erreichbar")
+              f"{len(wieder_da)} wieder erreichbar, "
+              f"{len(nicht_mehr_geprueft)} nicht mehr geprueft")
     else:
         print("    Keine Stand-Datei — dieser Lauf legt die Basislinie an, "
               "kein Alarm.")
@@ -556,6 +566,11 @@ async def main_async(args: argparse.Namespace) -> int:
         print(f"  NEU TOT  {', '.join(orte.get(u) or ['live'])[:40]:<40} {u}")
     for u in wieder_da:
         print(f"  WIEDER DA {', '.join(orte.get(u) or ['live'])[:39]:<39} {u}")
+    for u in nicht_mehr_geprueft:
+        # Meist: aus den Daten entfernt (ersetzt oder geloescht). Bei
+        # Live-URLs kann es auch heissen, dass diesmal andere Claims
+        # gezogen wurden — deshalb die zurueckhaltende Formulierung.
+        print(f"  NICHT MEHR GEPRUEFT{'':<30} {u}")
     # Der Rueckstand, an dem jemand arbeiten KANN: unsere eigenen Belege.
     offen_eigen = [u for u in eigen if u not in neu_tot]
     if offen_eigen:
