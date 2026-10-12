@@ -25,16 +25,14 @@ DIESELBE Aussage trägt:
     McHugh/Connolly 2003, je über PubMed. Das ist nicht nur ein Ersatz,
     sondern der bessere Beleg.
 
-NICHT ersetzt und absichtlich offen (12) — hier fehlt der Nachweis, dass
+NICHT ersetzt und absichtlich offen (11) — hier fehlt der Nachweis, dass
 ein Ersatz dieselbe Aussage trägt:
 
   * **bundesfinanzministerium.de**: liefert inzwischen site-weit 503, also
     **nicht nachweislich tot**. Die Getty-Klasse: erst wieder ansehen,
     wenn der Server antwortet.
-  * **wsava.org/global-guidelines/puppy-development-guidelines/**: die
-    WSAVA-Leitlinienübersicht führt **keine** Welpen-Leitlinie. Entweder
-    zurückgezogen oder nie existent — und damit die Klasse aus #235. Das
-    gehört untersucht, nicht ersetzt.
+  * **wsava.org/.../puppy-development-guidelines/** — inzwischen
+    untersucht und erledigt, siehe test_wsava_herkunft.
   * **economics.mit.edu/.../AcemogluPublishedRestrepoAERPP202405.pdf**:
     unter diesem Namen nicht auffindbar.
   * **ACSM (4 verbliebene)**: die im `source_label` genannten Arbeiten
@@ -100,7 +98,6 @@ TOT_12_10 = [alt for _d, alt, _n in ERSETZT] + [
     "AcemogluPublishedRestrepoAERPP202405.pdf",
     "https://theicct.org/publication/"
     "real-world-energy-consumption-electric-vehicles-europe-jul24/",
-    "https://wsava.org/global-guidelines/puppy-development-guidelines/",
     "https://www.acsm.org/all-blog-posts/certification-blog/acsm-certified-blog/"
     "2018/03/27/listening-to-the-pain",
     "https://www.acsm.org/blog-detail/acsm-blog/2014/06/24/"
@@ -157,7 +154,7 @@ def test_die_offenen_sind_benannt_und_nicht_heimlich_verschwunden():
     fehlend = [u for u in NOCH_OFFEN if u not in alle]
     assert not fehlend, (
         "diese Links stehen nicht mehr in data/ — Liste veraltet: " + str(fehlend))
-    assert len(NOCH_OFFEN) == 12
+    assert len(NOCH_OFFEN) == 11
 
 
 def test_die_ersetzten_sind_erreichbare_quellen_derselben_herkunft():
