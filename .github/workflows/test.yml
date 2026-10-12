@@ -392,6 +392,7 @@ jobs:
             tests/test_live_dienste_kein_ersatzland.py \
             tests/test_tatverdaechtige_nichtdeutsche_trigger.py \
             tests/test_beleg_links.py \
+            tests/test_tote_belege_2026_10.py \
             tests/test_klimaticket_fakt.py \
             tests/test_tote_links_handreparatur.py \
             tests/test_familiennachzug_fakt.py \
