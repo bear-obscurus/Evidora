@@ -4,8 +4,10 @@ Lädt cordis-HORIZONprojects-json.zip + cordis-h2020projects-json.zip von
 cordis.europa.eu, slim Felder, schreibt /app/data/cordis_projects_slim.json.
 
 Nutzung — als EIGENER Einmal-Container, nicht im servierenden:
-  cd /opt/Evidora/website
-  docker compose --profile wartung run --rm cordis-refresh
+  /opt/Evidora/website/run_evidora_tool.sh refresh_cordis.py --force
+
+Der Wrapper startet seit 12.10.2026 fuer JEDES Werkzeug einen eigenen
+Einmal-Container (`docker compose --profile wartung run --rm wartung …`).
 
 Bis 2026-10-11 lief das als `docker compose exec backend python3 ...`, also
 im Prozessraum des Dienstes. Der haelt ~2,5 GB von 3 GB Limit, der Refresh

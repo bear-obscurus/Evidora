@@ -107,7 +107,11 @@ def test_backend_hat_ein_swap_polster():
 # Limits zaehlen also in die Summe. Eingefuehrt 2026-10-11 mit
 # `cordis-refresh`, nachdem der Quartals-Refresh per `docker compose exec`
 # IM servierenden Container lief und ihn dreimal mit umgerissen hat (#236).
-WARTUNGS_DIENSTE = ["cordis-refresh"]
+# EIN Dienst fuer alle Wartungs-Laeufe. Sechs eigene Dienste mit je 224m
+# haetten die Summe ueber den Host-RAM gehoben, obwohl nie zwei zugleich
+# laufen — der Vertrag unten kann das nicht wissen und soll es auch nicht
+# muessen.
+WARTUNGS_DIENSTE = ["wartung"]
 
 
 def test_summe_der_limits_passt_auf_den_host():
@@ -168,3 +172,47 @@ def test_restart_policy_faengt_einen_oom_kill():
     compose-`restart` greift bei EXIT, und ein OOM-Kill ist ein Exit."""
     assert re.search(r"^\s*restart:\s*unless-stopped",
                      _service_block("backend"), re.M)
+
+
+# --------------------------------------------------------------------------
+# Wartung laeuft nicht im servierenden Container (12.10.2026)
+# --------------------------------------------------------------------------
+# Bis zum 12.10. rief `run_evidora_tool.sh` die Werkzeuge mit
+# `docker compose exec backend` auf — also im Prozessraum des Dienstes.
+# Drei der fuenf Container-Neustarts zwischen dem 29.09. und dem 09.10.
+# fielen auf die Startminute eines solchen Laufs, und der CORDIS-Refresh
+# vom 01.10. starb mit dem Container, in dem er lief: leeres Logfile, nur
+# der ALERT (#236, #239).
+#
+# Das Limit allein genuegt nicht — es muss auch benutzt werden. Deshalb
+# prueft dieser Test den WRAPPER, nicht nur die Compose-Datei.
+
+WRAPPER = COMPOSE.parent / "run_evidora_tool.sh"
+
+
+def test_der_wrapper_startet_einen_eigenen_container():
+    text = WRAPPER.read_text(encoding="utf-8")
+    assert "run --rm" in text, "Wartung braucht einen Einmal-Container"
+    assert "--profile wartung" in text
+
+
+def test_der_wrapper_greift_nicht_mehr_in_den_dienst():
+    """Der eigentliche Punkt. `exec backend` heisst: im servierenden
+    Container, mit dessen Speicher, auf dessen Risiko."""
+    # Zeilen ZUSAMMENFUEGEN, bevor geprueft wird: der alte Aufruf stand
+    # ueber zwei Zeilen (`exec docker compose exec -T \` / `backend
+    # python3 …`). Die erste Fassung dieses Tests sah nur einzelne Zeilen
+    # an und liess den zurueckgebauten Wrapper durch.
+    befehl = " ".join(
+        z.strip().rstrip("\\") for z in WRAPPER.read_text(encoding="utf-8").splitlines()
+        if z.strip() and not z.strip().startswith("#"))
+    assert "compose exec" not in befehl, \
+        "run_evidora_tool.sh ruft wieder IM Backend-Container auf"
+
+
+def test_der_wrapper_reicht_den_exit_code_durch():
+    """Die Crontab-Zweige haengen daran: 2 = Befund, alles andere = nicht
+    gelaufen (#236). Ein `exec` am Zeilenanfang ersetzt den Prozess und
+    behaelt den Code; ein Aufruf ohne wuerde ihn verschlucken."""
+    text = WRAPPER.read_text(encoding="utf-8")
+    assert "exec docker compose" in text
