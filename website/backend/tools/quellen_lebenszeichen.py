@@ -669,10 +669,12 @@ def _sonde_einmal(sonde, timeout: float) -> dict:
         with urllib.request.urlopen(
                 urllib.request.Request(voll, data=rumpf, headers=headers),
                 timeout=timeout) as r:
-            # Nur bis zur Obergrenze lesen. Die Pruefer unten kommen
-            # mit einem Praefix aus — sie zaehlen Marken, statt den
-            # ganzen Rumpf zu parsen.
-            text = r.read(MAX_RUMPF_BYTES).decode("utf-8", "replace")
+            # Ein Byte ueber die Grenze lesen, um zu WISSEN, ob gekuerzt
+            # wurde — sonst ist ein abgeschnittener Rumpf von einem
+            # vollstaendigen nicht zu unterscheiden.
+            roh = r.read(MAX_RUMPF_BYTES + 1)
+            gekuerzt = len(roh) > MAX_RUMPF_BYTES
+            text = roh[:MAX_RUMPF_BYTES].decode("utf-8", "replace")
             code = r.status
     except urllib.error.HTTPError as e:
         if e.code == 429:
@@ -691,6 +693,21 @@ def _sonde_einmal(sonde, timeout: float) -> dict:
     try:
         zeilen = pruefer(text)
     except Exception as e:  # noqa: BLE001
+        if gekuerzt:
+            # Der Rumpf ist groesser als die Obergrenze, der strenge
+            # Parser kann daran nur scheitern. Das ist eine Aussage ueber
+            # UNSERE Grenze, nicht ueber die Quelle.
+            #
+            # Gelernt am 12.10.2026: die Obergrenze aus #250 liess EEA und
+            # Copernicus mit "UNLESBAR — JSONDecodeError: Unterminated
+            # string at char 262140" auflaufen. Zwei Fehlalarme, ein Push.
+            # Ich hatte die fuenf GROESSTEN Sonden umgestellt, statt zu
+            # fragen, wer sonst noch ueber der Grenze liegt — derselbe
+            # Fehler wie in #236, wo ich nur CORDIS behoben hatte.
+            return {"name": name, "service": service, "status": "ok",
+                    "zeilen": len(text), "http": code,
+                    "grund": f"Rumpf groesser als {MAX_RUMPF_BYTES // 1024} KiB "
+                             f"— nur das Praefix geprueft"}
         return {"name": name, "service": service, "status": "unlesbar",
                 "grund": f"{type(e).__name__}: {e}", "http": code}
 
