@@ -292,3 +292,46 @@ def test_pruefer_liest_seine_eigenen_arbeitsdateien_nicht(tmp_path):
         json.dumps({"url": "https://wartung.test/x"}), encoding="utf-8")
     namen = cu.kuratierte_dateien(str(tmp_path))
     assert namen == ["echt_pack.json"]
+
+
+# --------------------------------------------------------------------------
+# Entfernt ist nicht wiederbelebt (12.10.2026)
+# --------------------------------------------------------------------------
+# Nach dem Deploy von #244 meldete der Wächter die zehn Links, die dort
+# ERSETZT worden waren, als „wieder erreichbar". `vorher - tot` verwechselt
+# „lebt wieder" mit „steht nicht mehr in den Daten" — für die Frage „muss
+# jemand etwas tun?" ist das der Unterschied zwischen einer guten Nachricht
+# und einer erledigten Aufgabe.
+
+def test_wieder_erreichbar_nur_wenn_diesmal_nachgesehen(monkeypatch, tmp_path,
+                                                        capsys):
+    """Der Link lebt wieder: er wurde geprüft und ist nicht mehr tot."""
+    rc, gesendet = _lauf(monkeypatch, tmp_path,
+                         [{"url": "https://lebt.test/wieder", "status": 200}],
+                         bekannt=[], vorher=["https://lebt.test/wieder"])
+    ausgabe = capsys.readouterr().out
+    assert "1 wieder erreichbar" in ausgabe
+    assert "0 nicht mehr geprueft" in ausgabe
+    assert rc == 0 and not gesendet
+
+
+def test_entfernter_link_gilt_nicht_als_wiederbelebt(monkeypatch, tmp_path,
+                                                     capsys):
+    """Der Fall aus #244: der Link wurde ersetzt, also gar nicht mehr
+    geprüft. Er ist nicht zurückgekommen — er ist weg."""
+    rc, gesendet = _lauf(monkeypatch, tmp_path, [],
+                         bekannt=[], vorher=["https://ersetzt.test/weg"])
+    ausgabe = capsys.readouterr().out
+    assert "0 wieder erreichbar" in ausgabe
+    assert "1 nicht mehr geprueft" in ausgabe
+    assert "NICHT MEHR GEPRUEFT" in ausgabe
+    assert rc == 0 and not gesendet
+
+
+def test_beide_faelle_nebeneinander(monkeypatch, tmp_path, capsys):
+    rc, _ = _lauf(monkeypatch, tmp_path,
+                  [{"url": "https://lebt.test/wieder", "status": 200}],
+                  bekannt=[],
+                  vorher=["https://lebt.test/wieder", "https://weg.test/x"])
+    ausgabe = capsys.readouterr().out
+    assert "1 wieder erreichbar, 1 nicht mehr geprueft" in ausgabe
