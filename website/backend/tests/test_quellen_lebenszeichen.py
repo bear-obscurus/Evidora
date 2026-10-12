@@ -631,3 +631,19 @@ def test_vollstaendiger_rumpf_wird_weiter_streng_geprueft(monkeypatch):
                          QM._p_pfad("value"), None), 5)
     assert e["status"] == "ok" and e["zeilen"] == 3
     assert "Praefix" not in (e.get("grund") or "")
+
+
+def test_ein_gekuerztes_praefix_wird_nicht_als_datenzeilen_ausgewiesen(monkeypatch, capsys):
+    """„262142 Datenzeilen" für 256 KiB Präfix wäre genau das falsche
+    Etikett — der Wert stimmt, die Beschriftung nicht."""
+    riesig = b'{"value": [' + b'{"x": "y"},' * 60_000 + b']}'
+    monkeypatch.setattr(QM, "SONDEN", [
+        ("Gross", "eea", "https://example.test/x", {}, QM._p_pfad("value"), None)])
+    monkeypatch.setattr(QM, "_post_alert", lambda *a, **k: None)
+    monkeypatch.setattr(QM.urllib.request, "urlopen",
+                        lambda *a, **k: _antwort(riesig))
+    monkeypatch.setattr(sys, "argv", ["quellen_lebenszeichen.py"])
+    QM.main()
+    ausgabe = capsys.readouterr().out
+    assert "Datenzeilen" not in ausgabe
+    assert "nur das Praefix geprueft" in ausgabe
