@@ -760,8 +760,12 @@ def main() -> int:
         for e in ergebnisse:
             marke = {"ok": "OK", "uebersprungen": "—"}.get(e["status"],
                                                            e["status"].upper())
-            zusatz = (f"{e['zeilen']} Datenzeilen" if e["status"] == "ok"
-                      else e.get("grund", ""))
+            # Bei gekuerzten Ruempfen steht in `zeilen` die Praefix-LAENGE,
+            # keine Datenzeile. "262142 Datenzeilen" waere genau das
+            # falsche Etikett, das diese Woche an mehreren Stellen
+            # aufgeraeumt wurde — also den Grund zeigen, wenn es einen gibt.
+            zusatz = (e.get("grund") or f"{e['zeilen']} Datenzeilen") \
+                if e["status"] == "ok" else e.get("grund", "")
             print(f"  {marke:16} {e['name']:38} {zusatz[:120]}")
         # Die Kategorien getrennt ausweisen. "51/51 gruen" waere unehrlich,
         # solange zwei Quellen nachweislich tot sind — sie loesen nur bewusst
