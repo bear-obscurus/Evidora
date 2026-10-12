@@ -69,6 +69,34 @@ TIER_2_SAMPLE_RATIO = 0.05   # 5 %
 # ein Waechter, der immer schreit, wird abgeschaltet (#128).
 BEKANNT_TOT_PFAD = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 "url_bekannt_tot.json")
+
+# Generierte Caches tragen FREMDE Referenzen: MITRE-ATT&CK-Quellenangaben,
+# Projekt-Websites aus der CORDIS-Datenbank. Wenn die sterben, ist das die
+# Sache von MITRE bzw. der EU — wir koennen sie nicht ersetzen, und sie
+# gehoeren deshalb nicht in denselben Topf wie unsere eigenen Belege.
+# Gemessen 2026-10-12: von 76 toten Links lagen 42 in mitre_attack, 14 in
+# cordis_projects_slim und nur 20 in kuratierten Dateien. Drei Viertel des
+# Alarms waren also nichts, woran jemand arbeiten kann — und die 20, an
+# denen man arbeiten koennte, gingen darin unter.
+GENERIERTE_CACHES = frozenset({
+    "cordis_projects_slim.json", "mitre_attack.json", "claimreview_index.json",
+})
+
+# Maschinen-Gedaechtnis: was war beim LETZTEN Lauf tot? Daraus wird die
+# Veraenderung berechnet. Bewusst GETRENNT von url_bekannt_tot.json, das
+# eine von Hand gepflegte Parkliste ist ("angesehen, bleibt vorerst").
+# Beides zu vermischen war der Fehler: die Parkliste wird nur mit
+# --schreibe-bekannt fortgeschrieben, der Cron tut das nicht, also meldete
+# der Waechter JEDE Woche dieselben 60+ Links als "neu". Am 12.10.2026
+# waren 27 der 30 angezeigten wortgleich die der Vorwoche.
+#
+# Die Datei liegt unter data/, weil /app/tools im Container read-only ist —
+# aber in einem UNTERVERZEICHNIS, denn `kuratierte_dateien` listet data/
+# und wuerde sie sonst als Quelle von URLs einlesen. Genau das ist mir am
+# 12.10. mit einer --out-Datei passiert: der Pruefer fuehrte sich selbst
+# als Fundort auf.
+STAND_UNTERORDNER = "_wartung"
+STAND_DATEI = "url_tot_stand.json"
 TIER_3_SAMPLE_RATIO = 0.005  # 0.5 %
 
 USER_AGENT = "Evidora/1.0 (+https://evidora.eu; mailto:Evidora@proton.me; URL health-check)"
@@ -115,6 +143,14 @@ def kuratierte_dateien(data_dir: str) -> list[str]:
     namen = []
     for name in sorted(os.listdir(data_dir)):
         if not name.endswith(".json") or name in ausgenommen:
+            continue
+        # Punkt und Unterstrich sind Arbeitsdateien, keine Daten. Am
+        # 12.10.2026 habe ich `--out` versehentlich nach data/ zeigen
+        # lassen; `herkunft()` las die Ergebnisdatei danach ein und der
+        # Pruefer fuehrte SICH SELBST als Fundort der toten Links auf.
+        # Ein Werkzeug, das in das Verzeichnis schreibt, das es liest,
+        # braucht diese Grenze.
+        if name.startswith((".", "_")):
             continue
         if extract_urls(os.path.join(data_dir, name)):
             namen.append(name)
@@ -328,6 +364,74 @@ def vergleiche(tot: set[str], bekannt: dict) -> tuple[list[str], list[str], list
     return neu, weiter, erledigt
 
 
+def stand_pfad(data_dir: str) -> str:
+    return os.path.join(data_dir, STAND_UNTERORDNER, STAND_DATEI)
+
+
+def lade_stand(pfad: str) -> tuple[set[str], str | None]:
+    """(tote URLs beim letzten Lauf, Datum). Ohne Datei: (leer, None)."""
+    try:
+        with open(pfad, encoding="utf-8") as f:
+            d = json.load(f)
+        return set(d.get("tot") or []), d.get("stand")
+    except (FileNotFoundError, json.JSONDecodeError):
+        return set(), None
+
+
+def schreibe_stand(pfad: str, tot: set[str], heute: str) -> None:
+    os.makedirs(os.path.dirname(pfad) or ".", exist_ok=True)
+    with open(pfad, "w", encoding="utf-8") as f:
+        json.dump({"hinweis": "Maschinen-Gedaechtnis fuer check_urls.py: was "
+                              "war beim letzten Lauf tot. NICHT von Hand "
+                              "pflegen — dafuer ist url_bekannt_tot.json da.",
+                   "stand": heute, "tot": sorted(tot)}, f,
+                  ensure_ascii=False, indent=1)
+        f.write("\n")
+
+
+def aus_generiertem_cache(url: str, orte: dict) -> bool:
+    """Steht die URL AUSSCHLIESSLICH in generierten Caches?
+
+    Ausschliesslich, nicht irgendwo: steht dieselbe URL auch in einem
+    kuratierten Pack, ist sie unser Beleg und damit unsere Aufgabe.
+    """
+    dateien = set(orte.get(url) or [])
+    return bool(dateien) and dateien <= set(GENERIERTE_CACHES)
+
+
+def teile_nach_herkunft(urls, orte: dict) -> tuple[list[str], list[str]]:
+    """(unsere Belege, Fremdreferenzen aus generierten Caches)."""
+    eigen, fremd = [], []
+    for u in urls:
+        (fremd if aus_generiertem_cache(u, orte) else eigen).append(u)
+    return eigen, fremd
+
+
+def alarm_text(neu_tot, wieder_da, tot, orte, stand_datum) -> str:
+    """Der Push nennt die VERAENDERUNG zuerst, den Bestand danach.
+
+    Vorher stand im Titel die Zahl aller nicht-geparkten toten Links — am
+    12.10.2026 waren das 64, von denen 27 der 30 angezeigten schon in der
+    Vorwoche gemeldet worden waren. Ein Waechter, der jede Woche dasselbe
+    ruft, wird abgeschaltet (#128, #236).
+    """
+    neu_eigen, neu_fremd = teile_nach_herkunft(neu_tot, orte)
+    best_eigen, best_fremd = teile_nach_herkunft(sorted(tot), orte)
+    seit = f" seit {stand_datum}" if stand_datum else ""
+    zeilen = [
+        f"{len(neu_tot)} neu tot{seit}: "
+        f"{len(neu_eigen)} in Belegen, {len(neu_fremd)} in generierten Caches",
+        f"Bestand: {len(tot)} tot — {len(best_eigen)} in Belegen, "
+        f"{len(best_fremd)} in generierten Caches",
+    ]
+    if wieder_da:
+        zeilen.append(f"{len(wieder_da)} wieder erreichbar")
+    zeilen.append("")
+    for u in (neu_eigen + neu_fremd)[:10]:
+        zeilen.append(f"{', '.join(orte.get(u) or ['live'])}: {u}")
+    return "\n".join(zeilen)[:3800]
+
+
 def post_alert(webhook: str, title: str, message: str) -> None:
     """ntfy-Push — gleiche Mechanik wie quellen_lebenszeichen."""
     if not webhook:
@@ -424,14 +528,44 @@ async def main_async(args: argparse.Namespace) -> int:
     tot = {r["url"] for results in results_by_tier.values() for r in results if ist_tot(r)}
     bekannt = lade_bekannt(args.bekannt)
     neu, weiter, erledigt = vergleiche(tot, bekannt)
-    print(f"\n=== Tote Links: {len(tot)} (neu {len(neu)}, bekannt {len(weiter)}; "
-          f"{len(erledigt)} bekannte nicht mehr tot/gefunden)")
     orte = herkunft(data_dir)
-    for u in neu[:30]:
-        print(f"  NEU TOT  {', '.join(orte.get(u, ['live']))[:40]:<40} {u}")
+    heute = datetime.date.today().isoformat()
+
+    # Veraenderung gegen den LETZTEN LAUF — nicht gegen die handgepflegte
+    # Parkliste. Die wird nur mit --schreibe-bekannt fortgeschrieben, und
+    # der Cron tut das nicht; deshalb meldete dieser Waechter jede Woche
+    # dieselben 60+ Links als "neu".
+    stand = args.stand or stand_pfad(data_dir)
+    vorher, stand_datum = lade_stand(stand)
+    neu_tot = sorted(tot - vorher) if stand_datum else []
+    wieder_da = sorted(vorher - tot)
+
+    eigen, fremd = teile_nach_herkunft(sorted(tot), orte)
+    print(f"\n=== Tote Links: {len(tot)} — {len(eigen)} in Belegen, "
+          f"{len(fremd)} in generierten Caches (MITRE/CORDIS)")
+    print(f"    Parkliste: {len(weiter)} geparkt, {len(neu)} ungeparkt, "
+          f"{len(erledigt)} geparkte nicht mehr tot")
+    if stand_datum:
+        print(f"    Veraenderung seit {stand_datum}: {len(neu_tot)} neu tot, "
+              f"{len(wieder_da)} wieder erreichbar")
+    else:
+        print("    Keine Stand-Datei — dieser Lauf legt die Basislinie an, "
+              "kein Alarm.")
+
+    for u in neu_tot:
+        print(f"  NEU TOT  {', '.join(orte.get(u) or ['live'])[:40]:<40} {u}")
+    for u in wieder_da:
+        print(f"  WIEDER DA {', '.join(orte.get(u) or ['live'])[:39]:<39} {u}")
+    # Der Rueckstand, an dem jemand arbeiten KANN: unsere eigenen Belege.
+    offen_eigen = [u for u in eigen if u not in neu_tot]
+    if offen_eigen:
+        print(f"\n--- Rueckstand in Belegen ({len(offen_eigen)}), "
+              f"die ersten 20:")
+        for u in offen_eigen[:20]:
+            print(f"  TOT  {', '.join(orte.get(u) or ['live'])[:40]:<40} {u}")
+
     if args.schreibe_bekannt:
-        eintraege = bekannt_eintraege(tot, bekannt, orte,
-                                      datetime.date.today().isoformat())
+        eintraege = bekannt_eintraege(tot, bekannt, orte, heute)
         with open(args.bekannt, "w", encoding="utf-8") as f:
             json.dump({"hinweis": "Bekannte tote Beleg-Links. Nur NEUE tote Links "
                                   "alarmieren. Reparierte Links hier entfernen "
@@ -439,13 +573,14 @@ async def main_async(args: argparse.Namespace) -> int:
                        "tot": eintraege}, f, ensure_ascii=False, indent=1)
             f.write("\n")
         print(f"Liste bekannter toter Links geschrieben: {args.bekannt} ({len(eintraege)})")
-        return 0
-    if neu:
-        zeilen = [f"{', '.join(orte.get(u, ['live']))}: {u}" for u in neu[:10]]
+
+    schreibe_stand(stand, tot, heute)
+
+    if neu_tot:
         post_alert(args.alert_webhook,
-                   f"Evidora: {len(neu)} neue tote Beleg-Links",
-                   "\n".join(zeilen))
-        return 1
+                   f"Evidora: {len(neu_tot)} neu tote Beleg-Links",
+                   alarm_text(neu_tot, wieder_da, tot, orte, stand_datum))
+        return 2
     return 0
 
 
@@ -463,6 +598,11 @@ def main() -> None:
     ap.add_argument("--data-dir", default="data")
     ap.add_argument("--bekannt", default=BEKANNT_TOT_PFAD,
                     help="Liste bekannter toter Links (nur neue alarmieren)")
+    ap.add_argument("--stand", default=None,
+                    help="Maschinen-Gedaechtnis (Default: "
+                         "<data-dir>/_wartung/url_tot_stand.json). Daraus "
+                         "wird die VERAENDERUNG seit dem letzten Lauf "
+                         "berechnet — nicht aus der Parkliste.")
     ap.add_argument("--schreibe-bekannt", action="store_true",
                     help="Liste bekannter toter Links aus diesem Lauf neu schreiben")
     ap.add_argument("--alert-webhook", default=os.getenv("EVIDORA_ALERT_WEBHOOK", ""))

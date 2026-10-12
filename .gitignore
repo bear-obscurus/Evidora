@@ -48,6 +48,11 @@ website/secrets/*.json
 # seit dem data/-Mount 2026-07-02 landen sie im Host-Git-Tree)
 website/backend/data/claimreview_index.json
 website/backend/data/cordis_projects_slim.json
+# Maschinen-Gedaechtnis von check_urls.py (was war beim letzten Lauf
+# tot). Wird im Container in den rw-Mount geschrieben, weil /app/tools
+# read-only ist. Kein Repo-Inhalt — die handgepflegte Parkliste ist
+# tools/url_bekannt_tot.json und bleibt versioniert.
+website/backend/data/_wartung/
 website/backend/data/mitre_attack.json
 
 # Temp-Dateien des atomaren Writes (services/_atomic.py) — transient, aber

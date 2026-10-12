@@ -86,9 +86,21 @@ def test_vergleich_mit_der_liste_bekannter_toter_links():
 # Alarm nur bei NEU verrotteten Links
 # --------------------------------------------------------------------------
 
-def _lauf(monkeypatch, tmp_path, ergebnisse, bekannt):
+def _lauf(monkeypatch, tmp_path, ergebnisse, bekannt, vorher=None):
+    """Ein Lauf des Waechters. `vorher` ist der STAND des letzten Laufs —
+    `None` heisst: es gab noch keinen, der Lauf legt die Basislinie an.
+
+    Der Stand-Pfad zeigt bewusst in `tmp_path`. Vorher schrieb der Test in
+    das ECHTE data/-Verzeichnis; dort lag nach dem ersten Testlauf eine
+    Stand-Datei mit `https://alt.test/weg` darin, und der naechste Test sah
+    sie. Ein Test, der Produktionsdaten anfasst, faellt frueher oder
+    spaeter dem naechsten Test auf die Fuesse — hier nach zwei Minuten.
+    """
     liste = tmp_path / "bekannt.json"
     liste.write_text(json.dumps({"tot": {u: {"dateien": ["x.json"], "seit": "2026-09-22"} for u in bekannt}}))
+    stand = tmp_path / "stand.json"
+    if vorher is not None:
+        stand.write_text(json.dumps({"stand": "2026-10-05", "tot": vorher}))
     monkeypatch.setattr(cu, "collect_urls", lambda tier, d: {"tier1": {r["url"] for r in ergebnisse}})
 
     async def gepruefte(urls, concurrency=20):
@@ -98,20 +110,54 @@ def _lauf(monkeypatch, tmp_path, ergebnisse, bekannt):
     monkeypatch.setattr(cu, "post_alert", lambda w, titel, text: gesendet.append((titel, text)))
     args = type("A", (), dict(data_dir=DATA, tier="1", live=0, out=None, backend="", api_key=None,
                               concurrency=4, bekannt=str(liste), schreibe_bekannt=False,
+                              stand=str(stand),
                               alert_webhook="https://example.invalid"))()
     return asyncio.run(cu.main_async(args)), gesendet
 
 
-def test_neuer_toter_link_alarmiert(monkeypatch, tmp_path):
+def test_neu_verrotteter_link_alarmiert(monkeypatch, tmp_path):
+    """Neu heisst: war beim letzten Lauf noch nicht tot."""
     rc, gesendet = _lauf(monkeypatch, tmp_path,
-                         [{"url": "https://neu.test/weg", "status": 404}], bekannt=[])
-    assert rc == 1 and gesendet and "1 neue tote" in gesendet[0][0]
+                         [{"url": "https://neu.test/weg", "status": 404}],
+                         bekannt=[], vorher=[])
+    assert rc == 2 and gesendet and "1 neu tote" in gesendet[0][0]
 
 
-def test_bekannter_toter_link_alarmiert_nicht(monkeypatch, tmp_path):
+def test_derselbe_tote_link_alarmiert_nicht_zweimal(monkeypatch, tmp_path):
+    """Der Kern des Umbaus (12.10.2026): der Waechter meldete jeden Montag
+    dieselben 60+ Links als "neu", weil er gegen eine handgepflegte
+    Parkliste verglich, die der Cron nie fortschreibt. 27 der 30
+    angezeigten waren wortgleich die der Vorwoche."""
     rc, gesendet = _lauf(monkeypatch, tmp_path,
                          [{"url": "https://alt.test/weg", "status": 404}],
-                         bekannt=["https://alt.test/weg"])
+                         bekannt=[], vorher=["https://alt.test/weg"])
+    assert rc == 0 and not gesendet
+
+
+def test_erster_lauf_legt_die_basislinie_an(monkeypatch, tmp_path):
+    """Ohne Stand-Datei waeren ALLE toten Links "neu" — ein Fehlalarm mit
+    Ansage. Der erste Lauf schreibt nur."""
+    rc, gesendet = _lauf(monkeypatch, tmp_path,
+                         [{"url": "https://alt.test/weg", "status": 404}],
+                         bekannt=[], vorher=None)
+    assert rc == 0 and not gesendet
+    assert json.loads((tmp_path / "stand.json").read_text())["tot"] == [
+        "https://alt.test/weg"]
+
+
+def test_stand_wird_fortgeschrieben(monkeypatch, tmp_path):
+    """Sonst meldet der naechste Lauf denselben Link wieder als neu."""
+    _lauf(monkeypatch, tmp_path,
+          [{"url": "https://neu.test/weg", "status": 404}],
+          bekannt=[], vorher=[])
+    assert json.loads((tmp_path / "stand.json").read_text())["tot"] == [
+        "https://neu.test/weg"]
+
+
+def test_wieder_erreichbarer_link_alarmiert_nicht(monkeypatch, tmp_path):
+    """Gute Nachrichten wecken niemanden."""
+    rc, gesendet = _lauf(monkeypatch, tmp_path, [],
+                         bekannt=[], vorher=["https://war.test/tot"])
     assert rc == 0 and not gesendet
 
 
@@ -176,3 +222,73 @@ def test_liste_bekannter_toter_links_ist_gueltig():
     assert liste["tot"], "Liste leer"
     for u, e in liste["tot"].items():
         assert u.startswith("http") and e.get("dateien") and e.get("seit"), u
+
+
+# --------------------------------------------------------------------------
+# Herkunft: was KANN jemand reparieren? (12.10.2026)
+# --------------------------------------------------------------------------
+# Gemessen am 12.10.2026: von 76 toten Links lagen 42 in mitre_attack.json
+# und 14 in cordis_projects_slim.json — Fremdreferenzen in generierten
+# Caches, die wir weder besitzen noch ersetzen koennen. Nur 20 standen in
+# kuratierten Packs. Der alte Alarm warf alles in einen Topf, und die 20,
+# an denen man haette arbeiten koennen, gingen in den 56 unter.
+
+def test_fremdreferenz_wird_als_solche_erkannt():
+    orte = {"https://x.test/a": ["mitre_attack.json"],
+            "https://x.test/b": ["cordis_projects_slim.json"]}
+    assert cu.aus_generiertem_cache("https://x.test/a", orte)
+    assert cu.aus_generiertem_cache("https://x.test/b", orte)
+
+
+def test_unser_beleg_bleibt_unserer():
+    orte = {"https://x.test/c": ["sport_fitness_pack.json"]}
+    assert not cu.aus_generiertem_cache("https://x.test/c", orte)
+
+
+def test_dieselbe_url_in_beiden_gehoert_uns():
+    """AUSSCHLIESSLICH im Cache, nicht irgendwo: steht die URL auch in
+    einem kuratierten Pack, ist sie unser Beleg und unsere Aufgabe."""
+    orte = {"https://x.test/d": ["mitre_attack.json", "recht_pack.json"]}
+    assert not cu.aus_generiertem_cache("https://x.test/d", orte)
+
+
+def test_unbekannte_herkunft_gilt_nicht_als_fremd():
+    """Live aus dem Dienst gezogene URLs haben keinen Fundort in data/ —
+    die als "nicht unser Problem" zu zaehlen waere die falsche Richtung."""
+    assert not cu.aus_generiertem_cache("https://x.test/e", {})
+
+
+def test_alarmtext_nennt_die_veraenderung_vor_dem_bestand():
+    """Der Kern: im Titel und in der ersten Zeile steht, was sich geaendert
+    hat — nicht, wie gross der Rueckstand ist."""
+    orte = {"https://neu.test/a": ["sport_fitness_pack.json"],
+            "https://alt.test/b": ["mitre_attack.json"]}
+    text = cu.alarm_text(["https://neu.test/a"], [],
+                         {"https://neu.test/a", "https://alt.test/b"},
+                         orte, "2026-10-05")
+    erste, zweite = text.splitlines()[:2]
+    assert erste.startswith("1 neu tot seit 2026-10-05")
+    assert "1 in Belegen, 0 in generierten Caches" in erste
+    assert zweite.startswith("Bestand: 2 tot")
+    assert "1 in Belegen, 1 in generierten Caches" in zweite
+
+
+def test_alarmtext_bleibt_unter_dem_ntfy_limit():
+    viele = [f"https://x.test/{i}" for i in range(500)]
+    text = cu.alarm_text(viele, [], set(viele), {}, "2026-10-05")
+    assert len(text) <= 3800
+
+
+def test_pruefer_liest_seine_eigenen_arbeitsdateien_nicht(tmp_path):
+    """Am 12.10.2026 habe ich `--out` versehentlich nach data/ zeigen
+    lassen. `herkunft()` las die Ergebnisdatei danach ein, und der Pruefer
+    fuehrte SICH SELBST als Fundort der toten Links auf. Ein Werkzeug, das
+    in das Verzeichnis schreibt, das es liest, braucht diese Grenze."""
+    (tmp_path / "echt_pack.json").write_text(
+        json.dumps({"quelle": "https://echt.test/beleg"}), encoding="utf-8")
+    (tmp_path / ".tmp-urlcheck.json").write_text(
+        json.dumps({"url": "https://arbeitsdatei.test/x"}), encoding="utf-8")
+    (tmp_path / "_wartung.json").write_text(
+        json.dumps({"url": "https://wartung.test/x"}), encoding="utf-8")
+    namen = cu.kuratierte_dateien(str(tmp_path))
+    assert namen == ["echt_pack.json"]
