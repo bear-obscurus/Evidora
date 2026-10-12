@@ -308,9 +308,9 @@
           "training"
         ]
       ],
-      "source_label": "Newham 1983 + Friden 1981 + McHugh 2003 + ACSM Position",
+      "source_label": "Newham 1983 + Friden 1983 + McHugh 2003",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/12580677/",
-      "secondary_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1473829/"
+      "secondary_url": "https://pubmed.ncbi.nlm.nih.gov/6822050/"
     },
     {
       "id": "women_bulky_muscles_2026",
@@ -364,9 +364,9 @@
           "muskelpaket"
         ]
       ],
-      "source_label": "Roberts et al. 2020 Sports Med + ACSM Position 2020 + Bhasin NEJM 1996",
+      "source_label": "Roberts et al. 2020 J Strength Cond Res + Bhasin 1996 NEJM",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/8637535/",
-      "secondary_url": "https://link.springer.com/article/10.1007/s40279-020-01345-1"
+      "secondary_url": "https://pubmed.ncbi.nlm.nih.gov/32218059/"
     },
     {
       "id": "stretching_injury_2026",
@@ -491,9 +491,9 @@
           "fett"
         ]
       ],
-      "source_label": "Wewege Obesity Reviews 2022 + ACSM + Coyle 1995",
+      "source_label": "Wewege 2017 Obesity Reviews + Coyle 1995",
       "source_url": "https://www.acsm.org/blog-detail/acsm-blog/2014/06/24/exercise-fuels-low-intensity-vs-high-intensity",
-      "secondary_url": "https://onlinelibrary.wiley.com/doi/10.1111/obr.13035"
+      "secondary_url": "https://pubmed.ncbi.nlm.nih.gov/28401638/"
     },
     {
       "id": "abs_kitchen_2026",

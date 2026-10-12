@@ -268,9 +268,9 @@
       "topic": "menstruation_synchronisation_mythos",
       "headline": "Die McClintock-These der Menstrual-Synchronisation (1971, Nature) ist methodisch nicht reproduzierbar; mehrere Re-Analysen seit 1992 (Wilson, Strassmann, Yang & Schank) widersprechen dem postulierten Effekt",
       "year": 2024,
-      "source_url": "https://royalsocietypublishing.org/doi/10.1098/rspb.2006.3506",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/26181612/",
       "secondary_url": "https://academic.oup.com/humrep/article/14/3/579/716050",
-      "source_label": "Yang & Schank 2006 (Proc R Soc B) + Strassmann 1999 (Hum Reprod) + Wilson 1992 (J Sex Res)",
+      "source_label": "Yang & Schank 2006 (Human Nature) + Strassmann 1999 (Hum Reprod) + Wilson 1992 (J Sex Res)",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Frauen, die zusammenwohnen, synchronisieren ihre Menstruation' ist FALSE/MOSTLY_FALSE. Die ursprüngliche McClintock-Studie (Martha McClintock, Nature 1971, 'Menstrual synchrony and suppression', n=135 Studentinnen Wellesley College) berichtete eine Verkürzung der Zyklus-Differenzen über mehrere Monate — wurde zur populärwissenschaftlichen Standard-These. Mehrere methodische Re-Analysen widersprechen aber: Wilson (1992, J Sex Research) wies auf statistische Schwächen hin (zu kurze Beobachtungs-Zeiträume, willkürliche Definitionen). Strassmann (1999, Human Reproduction, n=58 Frauen Dogon-Population Mali, 10 Monate prospektiv): keine Synchronisation. Yang & Schank (2006, Proc R Soc B, Re-Analyse mit n=186 chinesischen Studentinnen, 10 Monate): ebenfalls kein Effekt. Schank (2006) zeigte zudem mathematisch: zufällige Zyklus-Längen produzieren naturgemäß scheinbare 'Synchronisations-Episoden' (statistisches Artefakt).",
         "mcclintock_1971_design": "McClintock M. 'Menstrual synchrony and suppression.' Nature 1971;229:244-245. Studien-Design: 135 Studentinnen-Bewohnerinnen Wellesley College, Selbstbericht-Tagebücher über Menstruationsdaten, retrospektive Befragung. Ergebnis: berichtete Verkürzung der Zyklus-Onset-Differenzen über 4-6 Monate von ~6.4 Tagen auf ~4.8 Tage zwischen Mitbewohnerinnen. Erklärung postuliert: Pheromon-vermittelte Kommunikation.",
