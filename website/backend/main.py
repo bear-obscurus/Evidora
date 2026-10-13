@@ -351,7 +351,7 @@ async def check_claim(request: Request):
         # gecacht ist. Bei Hit: gesamte Pipeline ueberspringen,
         # Antwort in <100 ms statt 8-15 s.
         from services import verdict_cache as _vc
-        cached_result = _vc.get(claim)
+        cached_result = _vc.get(claim, lang)
         if cached_result is not None:
             yield {"event": "step", "data": json.dumps({"step": "analyze"})}
             yield {"event": "step", "data": json.dumps({"step": "cache_hit"})}
@@ -1839,7 +1839,7 @@ async def check_claim(request: Request):
         # nur wenn Confidence ≥ 0.8 + Verdict != unverifiable). Filtert
         # Stream-Loss-Artefakte aus.
         try:
-            _vc.put(claim, synthesis)
+            _vc.put(claim, synthesis, lang)
         except Exception as e:
             logger.warning(f"verdict_cache.put failed (non-blocking): {e}")
         yield {"event": "result", "data": json.dumps(synthesis, ensure_ascii=False)}
