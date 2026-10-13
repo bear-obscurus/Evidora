@@ -338,6 +338,7 @@ jobs:
             tests/test_pattern_k_dismissals.py \
             tests/test_llm_auth_probe.py \
             tests/test_verdict_cache_polarity.py \
+            tests/test_verdict_cache_sprache.py \
             tests/test_topic_packs_exact_only.py \
             tests/test_ueber_trigger_sweep.py \
             tests/test_fleisch_messgroessen_bindung.py \
