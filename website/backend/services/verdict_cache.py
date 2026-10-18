@@ -340,6 +340,43 @@ def _polarity_mismatch(a: str, b: str) -> bool:
     return False
 
 
+#: Sprachen, fuer die der Dienst eigene Prompts fuehrt. Alles andere
+#: faellt in ``synthesize_results`` ohnehin auf "de" zurueck; der Cache
+#: tut dasselbe, damit ein Tippfehler im Feld keinen eigenen Eimer anlegt,
+#: der nie wieder getroffen wird.
+BEKANNTE_SPRACHEN = ("de", "en")
+
+
+def _schluessel(lang: str, norm: str) -> tuple[str, str]:
+    """Der Store-Schluessel: Sprache UND normalisierter Claim.
+
+    Gemessen am 13.10.2026 gegen prod. Dreimal dieselbe Behauptung, nur
+    das Cache-Bust-Suffix unterschied sich, und das Sprachfeld wechselte:
+
+        {"claim": "Austria has the highest …", "lang": "en"}  -> 10,3 s
+        {"claim": "Austria has the highest …", "lang": "de"}  ->  0,6 s
+        {"claim": "Austria has the highest …", "language": "en"} -> 0,9 s
+
+    Der zweite Lauf wollte Deutsch und bekam Wort fuer Wort den
+    englischen Text des ersten. Im Log: ``SEMANTIC HIT cos=0.999``. Der
+    Schluessel war nur der normalisierte Claim — wer zuerst fragt, legt
+    die Sprache fuer alle anderen fest, bis die TTL ablaeuft.
+
+    Das ist dieselbe Fehlerfamilie wie #203 (die Richtung fehlte im
+    Schluessel) und #118 (die Messgroesse fehlte): Was die Antwort
+    bestimmt, gehoert in den Schluessel.
+
+    NICHT beobachtet, und darum hier auch nicht behauptet: dass eine
+    echte UEBERSETZUNG die Grenze springt. "Oesterreich gibt mehr fuer
+    Bildung aus als Deutschland" blieb gegen die englische Fassung unter
+    SEMANTIC_THRESHOLD und lief frisch. Der Sprachfilter in der
+    semantischen Schleife deckt den Fall trotzdem ab — er kostet einen
+    Vergleich und der Schwellenwert ist nichts, worauf man sich
+    verlassen sollte.
+    """
+    return (lang if lang in BEKANNTE_SPRACHEN else "de", norm)
+
+
 def _purge_expired() -> None:
     """Entfernt abgelaufene Einträge."""
     now = time.time()
@@ -374,8 +411,8 @@ def _embed(text: str) -> Optional["np.ndarray"]:
         return None
 
 
-def get(claim: str) -> Optional[dict]:
-    """Liefert ein gecachtes Verdict für ``claim``, falls verfügbar.
+def get(claim: str, lang: str = "de") -> Optional[dict]:
+    """Liefert ein gecachtes Verdict für ``claim`` in ``lang``, falls da.
 
     Probiert in Reihenfolge:
       1. Exact-Match (Trim + lowercase) — sehr schnell, ohne Embedding
@@ -390,11 +427,12 @@ def get(claim: str) -> Optional[dict]:
 
     # 1) Exact match
     norm = _normalize(claim)
-    entry = _verdict_store.get(norm)
+    entry = _verdict_store.get(_schluessel(lang, norm))
     if entry is not None:
         ts, emb, result, dv = entry
         if dv == current_dv and time.time() - ts <= DEFAULT_TTL:
-            logger.info(f"verdict_cache: EXACT HIT for {claim[:60]!r}")
+            logger.info(
+                f"verdict_cache: EXACT HIT [{lang}] for {claim[:60]!r}")
             return _annotate_hit(result, "exact", 1.0, claim)
 
     # 2) Semantic match
@@ -414,11 +452,18 @@ def get(claim: str) -> Optional[dict]:
             continue
         if time.time() - ts > DEFAULT_TTL:
             continue
+        # Fremde Sprache ueberspringen. Das Embedding ist MEHRSPRACHIG
+        # (paraphrase-multilingual-MiniLM) — eine Uebersetzung desselben
+        # Satzes liegt dort nah beieinander, und ohne diese Zeile
+        # beantwortet ein deutscher Claim sich aus einem englischen
+        # Eintrag. Siehe die Begruendung an _schluessel().
+        if key[0] != lang:
+            continue
         # Negations-/Polaritäts-Guard: MiniLM ist negations-blind, ein
         # semantischer Treffer auf eine GEGENTEILIGE Aussage würde das
         # invertierte Verdict liefern. Solche Kandidaten überspringen —
         # der Claim läuft dann durch die volle Pipeline (sicher).
-        if _polarity_mismatch(claim, key):
+        if _polarity_mismatch(claim, key[1]):
             continue
         # Cosine: beide normalisiert -> Skalarprodukt
         score = float(np.dot(query_emb, emb))
@@ -429,11 +474,11 @@ def get(claim: str) -> Optional[dict]:
 
     if best_score >= SEMANTIC_THRESHOLD and best_result is not None:
         logger.info(
-            f"verdict_cache: SEMANTIC HIT cos={best_score:.3f} "
-            f"for {claim[:60]!r} -> matched {best_key[:60]!r}"
+            f"verdict_cache: SEMANTIC HIT [{lang}] cos={best_score:.3f} "
+            f"for {claim[:60]!r} -> matched {best_key[1][:60]!r}"
         )
         return _annotate_hit(best_result, "semantic", best_score, claim,
-                             matched_claim=best_key)
+                             matched_claim=best_key[1])
     return None
 
 
@@ -450,7 +495,7 @@ def _annotate_hit(result: dict, hit_type: str, score: float,
     return annotated
 
 
-def put(claim: str, result: dict) -> None:
+def put(claim: str, result: dict, lang: str = "de") -> None:
     """Speichert ein Verdict-Result für späteren Cache-Lookup.
 
     Cache-Filter:
@@ -471,10 +516,10 @@ def put(claim: str, result: dict) -> None:
     norm = _normalize(claim)
     emb = _embed(claim)
     dv = get_data_version()
-    _verdict_store[norm] = (time.time(), emb, result, dv)
+    _verdict_store[_schluessel(lang, norm)] = (time.time(), emb, result, dv)
     _enforce_size_limit()
     logger.info(
-        f"verdict_cache: STORED {claim[:60]!r} "
+        f"verdict_cache: STORED [{lang}] {claim[:60]!r} "
         f"(verdict={verdict}, conf={confidence}, store_size={len(_verdict_store)})"
     )
 
