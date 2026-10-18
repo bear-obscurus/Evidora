@@ -44,6 +44,20 @@ from typing import Any
 
 import httpx
 
+#: Welche Exit-Codes einen BEFUND bedeuten — also: das Werkzeug ist
+#: gelaufen, hat etwas gefunden und den ntfy-Push SELBST geschickt. Der
+#: Cron darf dann keinen zweiten schicken. Alles andere ausser 0 heisst
+#: "kam nicht zum Laufen", und DAS muss der Cron pushen, weil das
+#: Werkzeug es nicht mehr kann.
+#:
+#: Maschinenlesbar und nicht nur im Docstring, weil ein Gate es prueft:
+#: tests/test_cron_aufrufe.py las bis zum 18.10.2026 eine von Hand
+#: gefuehrte Liste im Test selbst. Darin fehlte stichtag_check.py — und
+#: genau dessen Cron-Zeile warf sechs Tage lang einen OOM-Kill (exit 137)
+#: mit einem Befund zusammen. Eine Liste, die man pflegen muss, vergisst
+#: man.
+BEFUND_EXITS: tuple[int, ...] = (2,)
+
 # ---------------------------------------------------------------------------
 # Tier-Definitionen
 # ---------------------------------------------------------------------------
@@ -78,9 +92,10 @@ BEKANNT_TOT_PFAD = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 # cordis_projects_slim und nur 20 in kuratierten Dateien. Drei Viertel des
 # Alarms waren also nichts, woran jemand arbeiten kann — und die 20, an
 # denen man arbeiten koennte, gingen darin unter.
-GENERIERTE_CACHES = frozenset({
-    "cordis_projects_slim.json", "mitre_attack.json", "claimreview_index.json",
-})
+# Die Namen stehen in tools/_generiert.py — EINE Liste fuer alle
+# Werkzeuge. Hier lag bis zum 18.10.2026 eine eigene Kopie; eine
+# dritte in stichtag_check.py haette sie zur driftenden gemacht.
+from _generiert import GENERIERTE_CACHES  # noqa: E402,F401
 
 # Maschinen-Gedaechtnis: was war beim LETZTEN Lauf tot? Daraus wird die
 # Veraenderung berechnet. Bewusst GETRENNT von url_bekannt_tot.json, das

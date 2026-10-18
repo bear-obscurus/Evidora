@@ -42,6 +42,20 @@ from _kanal import kanal_kurz  # noqa: E402
 
 import httpx
 
+#: Welche Exit-Codes einen BEFUND bedeuten — also: das Werkzeug ist
+#: gelaufen, hat etwas gefunden und den ntfy-Push SELBST geschickt. Der
+#: Cron darf dann keinen zweiten schicken. Alles andere ausser 0 heisst
+#: "kam nicht zum Laufen", und DAS muss der Cron pushen, weil das
+#: Werkzeug es nicht mehr kann.
+#:
+#: Maschinenlesbar und nicht nur im Docstring, weil ein Gate es prueft:
+#: tests/test_cron_aufrufe.py las bis zum 18.10.2026 eine von Hand
+#: gefuehrte Liste im Test selbst. Darin fehlte stichtag_check.py — und
+#: genau dessen Cron-Zeile warf sechs Tage lang einen OOM-Kill (exit 137)
+#: mit einem Befund zusammen. Eine Liste, die man pflegen muss, vergisst
+#: man.
+BEFUND_EXITS: tuple[int, ...] = (1,)
+
 # ---------------------------------------------------------------------------
 # Test-Claim-Suite — kanonisch, eine pro Quelle/Topic.
 # Bei jeder neuen Quelle wird hier ein Eintrag ergänzt.
