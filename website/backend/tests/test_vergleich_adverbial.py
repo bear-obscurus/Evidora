@@ -192,15 +192,31 @@ def test_die_verneinung_landet_nicht_im_subjekt():
 # 4. Die Grenze, bewusst offen
 # ---------------------------------------------------------------------------
 
-def test_gedrehte_adverbiale_summary_bleibt_unentschieden():
-    """Verb und Kopfnomen stehen in der gedrehten Fassung auf BEIDEN Seiten,
-    also treffen Bestaetigung UND Drehung — die Doppeltreffer-Wache aus #227
-    haelt die Kaskade still. Lieber keine Entscheidung als eine geratene.
+def test_gedrehte_adverbiale_summary_wird_jetzt_entschieden():
+    """Die Grenze ist am 18.10.2026 gefallen — wie hier vorhergesagt.
 
-    Wer die Richtung unterscheidbar macht, dreht diese Zeile um."""
-    assert summary_bestaetigt_vergleich(CLAIM.lower(), GEDREHT)
+    Die fruehere Fassung dieses Tests pinnte, dass Verb und Kopfnomen in
+    der gedrehten Summary auf BEIDEN Seiten stehen, dass deshalb
+    Bestaetigung UND Drehung treffen und die Doppeltreffer-Wache aus #227
+    die Kaskade stilllegt. Der Docstring endete mit: "Wer die Richtung
+    unterscheidbar macht, dreht diese Zeile um."
+
+    Genau das ist passiert. Die Bestaetigung verlangt bei "mehr/weniger"
+    jetzt den Partner auf der GEGENSEITE, nicht mehr bloss irgendwo in der
+    Summary. Damit trifft nur noch die Drehung, die Wache schweigt, und
+    die Kaskade entscheidet — richtig:
+
+        Claim:   "Weibliche Beschaeftigte verdienen weniger als maennliche"
+        Summary: "... verdienen maennliche Beschaeftigte im Schnitt
+                  weniger als weibliche."
+        Label:   true -> false
+    """
+    assert not summary_bestaetigt_vergleich(CLAIM.lower(), GEDREHT)
     assert summary_dreht_vergleich(CLAIM.lower(), GEDREHT)
-    for eingang in ("true", "false", "mostly_true", "mostly_false"):
+    assert _lauf("true", CLAIM, GEDREHT)["verdict"] == "false"
+    assert _lauf("mostly_true", CLAIM, GEDREHT)["verdict"] == "false"
+    # Ein bereits verneinendes Label bleibt, es gibt nichts zu korrigieren.
+    for eingang in ("false", "mostly_false"):
         assert _lauf(eingang, CLAIM, GEDREHT)["verdict"] == eingang
 
 
