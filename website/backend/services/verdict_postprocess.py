@@ -807,8 +807,38 @@ def summary_bestaetigt_vergleich(claim_lc: str, summary: str) -> bool:
         seiten = _o_seiten(satz_n, komparativ, stelle)
         if not seiten:
             continue
-        if any(w in seiten[0] for w in subjekt):
-            return True
+        if not any(w in seiten[0] for w in subjekt):
+            continue
+        # BEI "mehr/weniger X als Y" muss der Partner auf der Gegenseite
+        # stehen, nicht bloss irgendwo in der Summary.
+        #
+        # Gemessen am 18.10.2026 gegen prod:
+        #   Claim:   "Die USA haben mehr Atomwaffen als Russland" -> true@0.85
+        #   Summary: "... Russland 5.420 Atomwaffen, die USA 5.042.
+        #             Russland hat also mehr Atomwaffen als die USA."
+        #
+        # Das Label widersprach seiner eigenen Begruendung, und dieses
+        # Muster hat es nicht nur uebersehen, sondern BEJAHT. Der Grund:
+        # ``_o_seiten`` liefert im attributiven Zweig den Zwischen-Slot als
+        # Seite 0 — und das ist hier die MESSGROESSE ("Atomwaffen"), nicht
+        # die verglichene Seite. Claim und Gegenbehauptung haben damit
+        # DIESELBE Seite 0, und der Vergleich war strukturell richtungsblind.
+        # Dass "russland" irgendwo in der Summary vorkam, genuegte.
+        #
+        # Im Korpus ist das kein Randfall: Von 41 Formulierungen mit
+        # "mehr/weniger … als" verlieren rund ein Drittel ihre echte Seite
+        # an die Messgroesse — "Dresden hatte mehr TOTE als Auschwitz",
+        # "Bitcoin verbraucht mehr STROM als Industrielaender", "Der
+        # Mittelstand zahlt mehr STEUERN als die Reichen".
+        #
+        # NUR fuer mehr/weniger: Im "-er als"-Zweig ist Seite 0 verlaesslich
+        # der Gegenstand ("sind die ÖBB deutlich puenktlicher"), und der
+        # Partner steht dort oft im Satz DAVOR — eine Fassung, die ihn im
+        # Satz verlangt, feuerte auf 140 Live-Laeufen nie (siehe oben).
+        if komparativ in ("mehr", "weniger") and not any(
+                w in seiten[1] for w in partner):
+            continue
+        return True
     return False
 
 
@@ -856,6 +886,23 @@ def summary_dreht_vergleich(claim_lc: str, summary: str) -> bool:
         # Gewinnerseite, das Claim-Subjekt auf der anderen. BEIDE muessen
         # zutreffen, sonst ist es kein Widerspruch, nur ein anderer Satz.
         if any(w in vorn for w in partner) and any(w in hinten for w in subjekt):
+            return True
+        # Zweiter Weg, fuer die Faelle, in denen die Zerlegung die
+        # MESSGROESSE als Seite 0 liefert statt des Gegenstands (siehe die
+        # Begruendung in ``summary_bestaetigt_vergleich``). Dann steht in
+        # beiden Saetzen dasselbe Wort zwischen Komparativ und "als", und
+        # entschieden wird an den Gegenstaenden drumherum:
+        #
+        #   Claim:   "Die USA haben mehr ATOMWAFFEN als Russland"
+        #   Summary: "Russland hat also mehr ATOMWAFFEN als die USA."
+        #
+        # Dieselbe Messgroesse im Zwischen-Slot, der Claim-Partner steht
+        # NICHT hinter "als" (dort steht das Claim-Subjekt), sondern VOR dem
+        # Komparativ. Das ist die Umkehr, und sie ist literal lesbar.
+        if (komparativ in ("mehr", "weniger")
+                and any(w in vorn for w in subjekt)
+                and not any(w in hinten for w in partner)
+                and any(w in satz_n[:stelle] for w in partner)):
             return True
     return False
 
