@@ -110,7 +110,7 @@ def test_hoechststand_ist_kein_vintage_marker():
 
 
 def test_reihenfolge_kritisch_zuerst():
-    funde = sc.scanne(DATA, HEUTE, 24)
+    funde, _uebersprungen = sc.scanne(DATA, HEUTE, 24)
     stufen = [f["stufe"] for f in funde]
     rang = {"KRITISCH": 0, "WARNUNG": 1, "INFO": 2}
     assert stufen == sorted(stufen, key=lambda s: rang[s])
@@ -124,7 +124,7 @@ def test_keine_kritischen_stichtage_in_den_echten_fakten():
     """⚠️ Bewusst zeit-abhängig. Wird das rot, hat ein Fakt einen
     eingebauten Schalter umgelegt und instruiert die Pipeline aktiv
     falsch — dann gehört der Fakt gefixt, nicht der Test."""
-    kritisch = [f for f in sc.scanne(DATA, date.today(), 24)
+    kritisch = [f for f in sc.scanne(DATA, date.today(), 24)[0]
                 if f["stufe"] == "KRITISCH"]
     assert not kritisch, "Abgelaufene Zukunfts-Stichtage:\n" + "\n".join(
         f"  {f['pack']} / {f['id']} ({f['datum']}): {f['fund']}\n"
@@ -135,7 +135,7 @@ def test_scan_liest_alle_container_schluessel():
     """rulings (at_courts) und facts (Packs) müssen beide erfasst sein —
     sonst prüft der Wächter die halbe Datenschicht."""
     assert "rulings" in sc.LIST_KEYS and "facts" in sc.LIST_KEYS
-    ids = {f["id"] for f in sc.scanne(DATA, date(2027, 1, 1), 12)}
+    ids = {f["id"] for f in sc.scanne(DATA, date(2027, 1, 1), 12)[0]}
     assert ids, "Scan findet gar nichts — Container-Schlüssel falsch?"
 
 
@@ -178,8 +178,25 @@ def test_basislinie_ist_sauber():
     """Der Waechter ist nur brauchbar, wenn er im Normalzustand schweigt.
     KRITISCH blockiert die CI, WARNUNG loest den Cron-Alarm aus — beide
     muessen bei sauberer Datenschicht leer sein."""
-    funde = sc.scanne(DATA, date.today(), 24)
+    funde, _uebersprungen = sc.scanne(DATA, date.today(), 24)
     laut = [f for f in funde if f["stufe"] in ("KRITISCH", "WARNUNG")]
     assert not laut, "Basislinie nicht sauber:\n" + "\n".join(
         f"  {f['stufe']} {f['pack']}/{f['id']} ({f['datum']}): {f['fund']}"
         for f in laut)
+
+
+def test_scanne_gibt_die_uebersprungenen_mit_zurueck():
+    """Seit dem 18.10.2026 ist die Rueckgabe ``(Funde, Uebersprungene)``.
+
+    Die Signatur hat sich geaendert, weil der stille Uebersprung der
+    generierte Caches das Werkzeug sechs Tage lang unsichtbar erschlagen
+    liess (exit 137 im 224-MB-Wartungs-Container, siehe
+    tests/test_stichtag_speicher.py). Vier Aufrufstellen in dieser Datei
+    haben den Bruch gemeldet — genau dafuer sind sie da.
+    """
+    erg = sc.scanne(DATA, date.today(), 24)
+    assert isinstance(erg, tuple) and len(erg) == 2
+    funde, uebersprungen = erg
+    assert isinstance(funde, list)
+    assert all(isinstance(n, str) and isinstance(g, str)
+               for n, g in uebersprungen)

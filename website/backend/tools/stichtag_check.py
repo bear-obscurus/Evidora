@@ -48,11 +48,27 @@ import sys
 from datetime import date
 from pathlib import Path
 
+from _generiert import ueberspringen
+
 # Das Tool-Verzeichnis auf den Pfad, damit `_kanal` auch dann gefunden wird,
 # wenn das Tool per Dateipfad geladen wird (CI laedt es so).
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from _kanal import kanal_kurz  # noqa: E402
+
+#: Welche Exit-Codes einen BEFUND bedeuten — also: das Werkzeug ist
+#: gelaufen, hat etwas gefunden und den ntfy-Push SELBST geschickt. Der
+#: Cron darf dann keinen zweiten schicken. Alles andere ausser 0 heisst
+#: "kam nicht zum Laufen", und DAS muss der Cron pushen, weil das
+#: Werkzeug es nicht mehr kann.
+#:
+#: Maschinenlesbar und nicht nur im Docstring, weil ein Gate es prueft:
+#: tests/test_cron_aufrufe.py las bis zum 18.10.2026 eine von Hand
+#: gefuehrte Liste im Test selbst. Darin fehlte stichtag_check.py — und
+#: genau dessen Cron-Zeile warf sechs Tage lang einen OOM-Kill (exit 137)
+#: mit einem Befund zusammen. Eine Liste, die man pflegen muss, vergisst
+#: man.
+BEFUND_EXITS: tuple[int, ...] = (1,)
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
@@ -159,13 +175,30 @@ def pruefe_eintrag(eintrag: dict, heute: date, max_vintage_months: int) -> list[
     return funde
 
 
-def scanne(data_dir: Path, heute: date, max_vintage_months: int) -> list[dict]:
+def scanne(data_dir: Path, heute: date,
+           max_vintage_months: int) -> tuple[list[dict], list[tuple[str, str]]]:
+    """``(Funde, Uebersprungene)``.
+
+    Der Uebersprung wird ZURUECKGEGEBEN, nicht verschluckt: Bis zum
+    18.10.2026 stand am ``except`` nur ``# generierte Caches u. Ä.`` —
+    die Annahme, solche Dateien wuerden am Parsen scheitern. Sie parsen
+    einwandfrei; ``cordis_projects_slim.json`` ist nur 108 MiB gross und
+    hat das Werkzeug im 224-MB-Wartungs-Container sechs Tage lang
+    erschlagen (exit 137, leere Logdatei, und der Cron meldete dennoch
+    "FUNDE"). Siehe ``tools/_generiert.py``.
+    """
     alle: list[dict] = []
+    uebersprungen: list[tuple[str, str]] = []
     for pfad in sorted(data_dir.glob("*.json")):
+        grund = ueberspringen(pfad)
+        if grund:
+            uebersprungen.append((pfad.name, grund))
+            continue
         try:
             d = json.loads(pfad.read_text(encoding="utf-8"))
-        except Exception:
-            continue                              # generierte Caches u. Ä.
+        except Exception as e:
+            uebersprungen.append((pfad.name, f"nicht lesbar: {type(e).__name__}"))
+            continue
         if not isinstance(d, dict):
             continue
         for key in LIST_KEYS:
@@ -176,7 +209,8 @@ def scanne(data_dir: Path, heute: date, max_vintage_months: int) -> list[dict]:
                     f["pack"] = pfad.name
                     alle.append(f)
     rang = {"KRITISCH": 0, "WARNUNG": 1, "INFO": 2}
-    return sorted(alle, key=lambda f: (rang[f["stufe"]], -f["tage_her"]))
+    return (sorted(alle, key=lambda f: (rang[f["stufe"]], -f["tage_her"])),
+            uebersprungen)
 
 
 def main(argv=None):
@@ -196,11 +230,13 @@ def main(argv=None):
         return 2
 
     heute = date.today()
-    funde = scanne(data_dir, heute, args.max_vintage_months)
+    funde, uebersprungen = scanne(data_dir, heute, args.max_vintage_months)
     nach_stufe = {s: [f for f in funde if f["stufe"] == s]
                   for s in ("KRITISCH", "WARNUNG", "INFO")}
 
     print(f"Stichtags-Check {heute.isoformat()} — {data_dir}")
+    for name, grund in uebersprungen:
+        print(f"  uebersprungen: {name} ({grund})")
     for stufe in ("KRITISCH", "WARNUNG", "INFO"):
         treffer = nach_stufe[stufe]
         if not treffer:

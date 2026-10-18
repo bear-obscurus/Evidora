@@ -63,6 +63,20 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+#: Welche Exit-Codes einen BEFUND bedeuten — also: das Werkzeug ist
+#: gelaufen, hat etwas gefunden und den ntfy-Push SELBST geschickt. Der
+#: Cron darf dann keinen zweiten schicken. Alles andere ausser 0 heisst
+#: "kam nicht zum Laufen", und DAS muss der Cron pushen, weil das
+#: Werkzeug es nicht mehr kann.
+#:
+#: Maschinenlesbar und nicht nur im Docstring, weil ein Gate es prueft:
+#: tests/test_cron_aufrufe.py las bis zum 18.10.2026 eine von Hand
+#: gefuehrte Liste im Test selbst. Darin fehlte stichtag_check.py — und
+#: genau dessen Cron-Zeile warf sechs Tage lang einen OOM-Kill (exit 137)
+#: mit einem Befund zusammen. Eine Liste, die man pflegen muss, vergisst
+#: man.
+BEFUND_EXITS: tuple[int, ...] = (2,)
+
 # Eine Lebenszeichen-Sonde fragt "antwortet die Quelle und liefert sie
 # Daten?". Dafuer genuegen Kilobytes. Gemessen am 12.10.2026 zog ein Lauf
 # aber 394 MiB — DataCommons 191, OECD TALIS 126, MITRE 46, OECD SOCX 10,

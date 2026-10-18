@@ -7,7 +7,7 @@
       "id": "aktien_gluecksspiel_2026",
       "topic": "aktien_gluecksspiel_mythos",
       "scope": "Behauptung, Aktien-Investition sei Glücksspiel",
-      "year": 2024,
+      "year": 2026,
       "headline": "Aktien sind KEIN Glücksspiel — langfristig (15+ Jahre) breit gestreute ETFs mit positivem Erwartungswert; Kurs-Volatilität ≠ Verlust-Risiko",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Aktien sind Glücksspiel' ist FALSE/MOSTLY_FALSE. Aktien-Investition = anteilige Gesellschafter-Beteiligung am Unternehmens-Erfolg, NICHT zufalls-basiert wie Roulette. Empirische Daten (DAX/MSCI World/S&P500 seit 1900): Bei langfristigem Anlage-Horizont (15+ Jahre) und breit gestreuter Investition (Index-ETF) waren ALLE 15-Jahres-Perioden seit 1969 positiv. Verluste bei kurzem Horizont oder Einzelaktien-Risiko sind real, aber NICHT mit Glücksspiel-Statistik vergleichbar.",
@@ -21,7 +21,7 @@
       "context_notes": [
         "Differenzierung: Daytrading + Optionen + CFDs = hochspekulativ (verlieren ~70-90 % der Privat-Anleger Geld). Index-ETF-Sparpläne = etablierte Vermögensbildung. Beide sind 'Aktien' im weitesten Sinn.",
         "Steuerliche Behandlung: Abgeltungssteuer 25 % + Soli auf Kursgewinne + Dividenden in DE. AT: KESt 27,5 % auf Kursgewinne nach 1 Jahr, sonst Einkommensteuer.",
-        "Inflations-Schutz: Aktien sind historisch besserer Inflations-Schutz als Cash-Sparen. Bei aktueller Inflation (DE 2024: 2,2 %) verliert Sparbuch real Wert."
+        "Inflations-Schutz: Aktien sind historisch besserer Inflations-Schutz als Cash-Sparen. Bei einer Inflationsrate von 3,3 % (Deutschland, September 2026, Statistisches Bundesamt) verliert ein Sparbuch real an Wert."
       ],
       "claim_phrasings_handled": [
         "Aktien sind reines Glücksspiel",
@@ -84,13 +84,13 @@
       "id": "zinseszins_2026",
       "topic": "zinseszins_konsens",
       "scope": "Effekt von Zinseszins bei langfristiger Vermögensbildung",
-      "year": 2024,
+      "year": 2026,
       "headline": "Zinseszins ist ein realer + großer Vermögensbildungs-Effekt — Faustregel 72: Geld verdoppelt sich in 72/Zins Jahre",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'Zinseszins-Effekt ist Marketing-Mythos' oder 'bei niedrigen Zinsen lohnt sich Sparen nicht' sind FALSE/MIXED. Zinseszins = mathematisches Phänomen: Zinsen werden auf bereits angefallene Zinsen zugerechnet → exponentielles Wachstum. Faustregel 72: 72/Zins-Prozent = Verdoppelungs-Zeit in Jahren. Bei 7 % p.a. (durchschnittliche Aktien-ETF-Rendite langfristig): Geld verdoppelt sich alle ~10 Jahre. Über 30+ Jahre Anlage-Horizont: Faktor 8-10 Vermögenswachstum dokumentiert.",
         "faustregel_72": "Mathematische Näherung: Verdoppelungs-Zeit T = ln(2)/ln(1+r) ≈ 72/r (bei kleinem r). Beispiele: 4 % → 18 J, 6 % → 12 J, 7 % → 10,3 J, 10 % → 7,3 J. Beweis: 1 EUR × 1.07^10 = 1,97 EUR.",
         "msci_langfrist_rendite": "MSCI World seit 1970: nominale Rendite ~10 %/Jahr, real (inflations-bereinigt) ~7-8 %/Jahr. Über 40 Jahre: 1 EUR → ~22 EUR nominal, ~12 EUR real (inflations-bereinigt).",
-        "vergleich_sparbuch": "Sparbuch DE 2024: ~0,5 % Zins. Bei 0,5 % p.a. real (-1,7 % nach 2,2 % Inflation): Geld verliert über 30 Jahre ~40 % Kaufkraft. ETF-Sparen 7 %: gewinnt real ~6x Kaufkraft. Faktor-Unterschied ~10x.",
+        "vergleich_sparbuch": "Täglich fällige Einlagen privater Haushalte im Euroraum: 0,26 % (Bundesbank-MFI-Zinsstatistik, April 2026). Gegen eine deutsche Inflationsrate von 3,3 % (September 2026) ist die Real-Rendite klar negativ, und über 30 Jahre kostet das einen grossen Teil der Kaufkraft. Ein Aktien-ETF mit langfristig 5-7 % real gewinnt dagegen Kaufkraft — bei Kursrisiko, das das Sparbuch nicht hat.",
         "compound_psychologie": "Albert Einstein wird das Zitat 'Compound interest is the eighth wonder of the world' zugeschrieben (echter Ursprung unklar). Was real ist: Zinseszins ist mathematisch beweisbar.",
         "wann_lohnt_nicht": "Zinseszins lohnt sich NICHT bei: (1) hohen laufenden Kosten (>2 % p.a. Verwaltung frisst Effekt), (2) zu kurzem Anlage-Horizont (<5 J), (3) Steuer-Verrechnung ohne Reinvestition.",
         "context": "Mathematik des Zinseszins ist klar. Praktische Vermögensbildung scheitert oft an: zu späten Sparbeginn, zu hohen Kosten, fehlende Disziplin (Verkauf in Crash). Junge Anleger profitieren überproportional vom Zinseszins durch Zeit-Vorteil."
@@ -239,16 +239,16 @@
       "id": "negativzins_volkstheorie_2026",
       "topic": "negativzins_volkstheorie_mythos",
       "scope": "Behauptung, Negativzinsen seien Enteignung der Sparer",
-      "year": 2024,
-      "headline": "Negativzinsen sind seit 2022 in DE/EU passé — EZB-Leitzins aktuell 3,5 % (Stand Oktober 2024); reale Negativ-Renditen wegen Inflation jedoch real",
+      "year": 2026,
+      "headline": "Negativzinsen sind seit 2022 in DE/EU passé — EZB-Hauptrefinanzierungssatz 2,65 % und Einlagezins 2,50 % seit 16.09.2026; real bleibt die Rendite auf Spareinlagen negativ, weil die Inflation darüber liegt",
       "data": {
-        "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'EZB enteignet Sparer durch Negativzinsen' sind 2024 ÜBERHOLT. Phase der Negativ-Leitzinsen war 2014-2022 (EZB-Einlagezins -0,5 % bis -0,1 %). Seit Juli 2022 wurde EZB-Leitzins zur Inflations-Bekämpfung erhöht. Stand Oktober 2024: EZB-Einlagezins 3,5 %, ECB-Hauptrefinanzierungssatz 3,65 %. Sparer erhalten wieder positive Nominal-Zinsen. ABER: Real-Rendite (nominal minus Inflation) bleibt oft negativ — Sparbuch 0,5 % vs Inflation 2,2 % = -1,7 % real. Das ist nicht 'EZB-Politik' sondern Bank-Praxis.",
-        "ezb_leitzinsen_2024": "EZB Leitzinsen Stand Oktober 2024: Einlagezins (DFR) 3,5 %, Hauptrefinanzierungssatz 3,65 %, Spitzenrefinanzierungssatz 3,9 %. Erste Senkung seit 2019 (seit Juni 2024 -0,5 PP).",
+        "kernsatz_fuer_synthesizer": "WICHTIG: Aussagen 'EZB enteignet Sparer durch Negativzinsen' sind ÜBERHOLT. Die Phase der Negativ-Leitzinsen war Juni 2014 bis Juli 2022 (EZB-Einlagezins -0,5 % bis -0,1 %). Seit dem 16.09.2026 gelten laut EZB ein Einlagezins von 2,50 %, ein Hauptrefinanzierungssatz von 2,65 % und ein Spitzenrefinanzierungssatz von 2,90 %; davor, ab dem 17.06.2026, waren es 2,25 / 2,40 / 2,65 %. Sparer erhalten also wieder positive Nominal-Zinsen. ABER: Die Real-Rendite (nominal minus Inflation) ist negativ, und zwar inzwischen auch bei Festgeld. Täglich fällige Einlagen privater Haushalte brachten im April 2026 0,26 %, Einlagen mit Laufzeit bis zu einem Jahr 1,87 % (Bundesbank-MFI-Zinsstatistik für den EURORAUM, nicht nur Deutschland). Die deutsche Inflationsrate lag im September 2026 bei 3,3 % (Statistisches Bundesamt). Beide Anlageformen verlieren damit real an Kaufkraft. Die Höhe der Spar-Zinsen ist nicht 'EZB-Politik', sondern Bank-Praxis im Rahmen des Leitzinses.",
+        "ezb_leitzinsen_2026": "EZB-Leitzinsen seit 16.09.2026: Einlagezins (DFR) 2,50 %, Hauptrefinanzierungssatz (MRO) 2,65 %, Spitzenrefinanzierungssatz 2,90 %. Zuvor ab 17.06.2026: 2,25 / 2,40 / 2,65 %; der Schritt im September 2026 war also eine Anhebung. Quelle: EZB, Key ECB interest rates.",
         "negativzins_phase_2014_2022": "EZB-Negativzins-Phase: Juni 2014 bis Juli 2022. Einlagezins schrittweise von 0,0 % auf -0,5 %. Begründung: Deflations-Risiko nach Eurokrise + zu niedrige Inflation. Banken berechneten Verwahrentgelte (sog. 'Negativzinsen für Privatkunden') ab ~2019.",
         "verwahrentgelt_praxis": "Verwahrentgelt für Privatkunden in DE: Sparkassen + Genossenschaftsbanken berechneten ab 2019-2021 oft 0,5 %/Jahr ab 100k EUR Einlagen. Mit Zins-Wende 2022 wurden diese Praktiken abgeschafft.",
-        "real_negativ_rendite_kontext": "Real-Rendite Sparbuch DE 2024: ~-1,7 % (nominal 0,5 % minus 2,2 % Inflation). Real-Rendite Festgeld 2024 (~3 %): ~+0,8 % real. Das ist NICHT EZB-Politik, sondern Banken-Konkurrenz + Inflations-Niveau.",
-        "alternative_anlage_frage": "Aussage 'Sparer werden bestraft' ist vor allem dann valid, wenn Sparer NUR Sparbuch nutzen. Mit Festgeld + Tagesgeld + ETF-Sparen ist positive Real-Rendite 2024 möglich. Konsumenten-Bildung-Frage, nicht 'Enteignung'.",
-        "context": "Politische 'Sparer-Enteignung'-Erzählung war 2014-2022 in DE populär. Seit Zins-Wende 2022 + EZB-Anhebung verlor sie an Schärfe. Aktuelle Aussage 'Sparer werden bestraft' ist faktisch nur noch teilweise zutreffend — vor allem bei Sparbuch-Sparern ohne Anlage-Diversifikation."
+        "real_negativ_rendite_kontext": "Nominal-Zinsen im Euroraum, Stand April 2026 (Bundesbank-MFI-Zinsstatistik): täglich fällige Einlagen privater Haushalte 0,26 %, Einlagen mit Laufzeit bis zu einem Jahr 1,87 %, dreimonatige Kündigungsfrist 1,17 %. Deutsche Inflationsrate September 2026: 3,3 % (Statistisches Bundesamt). Real verlieren damit BEIDE Formen Kaufkraft — 2024 war das bei Festgeld noch anders. Das ist nicht EZB-Politik, sondern Banken-Konkurrenz und Inflations-Niveau.",
+        "alternative_anlage_frage": "Die Aussage 'Sparer werden bestraft' trifft am stärksten auf reine Sparbuch-Sparer zu. Mit Festgeld und Tagesgeld allein war eine positive Real-Rendite 2024 erreichbar, bei einer Inflation von 3,3 % (September 2026) jedoch nicht mehr; dafür braucht es Anlageformen mit Kursrisiko. Das ist eine Frage der Konsumenten-Bildung und des Risiko-Profils, nicht der 'Enteignung'.",
+        "context": "Politische 'Sparer-Enteignung'-Erzählung war 2014-2022 in DE populär. Seit Zins-Wende 2022 + EZB-Anhebung verlor sie an Schärfe. Die Aussage 'Sparer werden bestraft' trifft auf die NOMINAL-Zinsen nicht mehr zu (sie sind positiv), auf die REAL-Rendite dagegen schon — bei 3,3 % Inflation im September 2026 auch bei Festgeld. Beim Zitieren immer dazusagen, welche der beiden gemeint ist."
       },
       "context_notes": [
         "Vermögensteuer-Diskussion ist davon zu trennen — separate Frage von Steuer-Politik.",

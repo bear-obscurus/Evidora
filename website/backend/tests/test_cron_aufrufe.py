@@ -175,15 +175,97 @@ def test_kein_werkzeug_im_cron_spricht_eine_loopback_adresse_an():
 
 # --- Der Exit-Code-Vertrag ---------------------------------------------
 
-#: Werkzeuge, die einen BEFUND von "kam nicht zum Laufen" unterscheiden,
-#: je mit den Exit-Codes, die einen Befund bedeuten. Das Werkzeug hat in
-#: diesen Faellen den Push selbst geschickt — der Cron darf keinen
-#: zweiten schicken, sonst klingelt es doppelt und keiner der beiden
-#: Texte ist der genauere.
-BEFUND_CODES = {
-    "quellen_lebenszeichen.py": ("2",),
-    "canary_check.py": ("1", "3"),
-}
+def _befund_exits(werkzeug: str) -> tuple[str, ...]:
+    """Die Befund-Codes, die das WERKZEUG selbst deklariert.
+
+    Hier stand bis zum 18.10.2026 eine von Hand gefuehrte Liste im Test.
+    Darin fehlte ``stichtag_check.py`` — und genau dessen Cron-Zeile warf
+    sechs Tage lang einen OOM-Kill (exit 137) mit einem Befund zusammen,
+    waehrend dieses Gate gruen blieb. Ein Gate, das an einer Liste haengt,
+    die man pflegen muss, prueft nur, woran man gedacht hat.
+
+    Jetzt liest es ``BEFUND_EXITS`` aus dem Werkzeug — per Syntaxbaum, ohne
+    Import, damit kein Modul-Code laeuft.
+    """
+    import ast
+
+    with open(os.path.join(TOOLS, werkzeug), encoding="utf-8") as fh:
+        baum = ast.parse(fh.read())
+    for knoten in ast.walk(baum):
+        ziele = ([knoten.target] if isinstance(knoten, ast.AnnAssign)
+                 else getattr(knoten, "targets", []))
+        if not isinstance(knoten, (ast.Assign, ast.AnnAssign)):
+            continue
+        if not any(isinstance(z, ast.Name) and z.id == "BEFUND_EXITS"
+                   for z in ziele):
+            continue
+        werte = ast.literal_eval(knoten.value)
+        return tuple(str(w) for w in werte)
+    raise AssertionError(
+        f"{werkzeug} deklariert kein BEFUND_EXITS — ohne diese Zusage "
+        f"kann der Cron einen Befund nicht von einem Ausfall trennen")
+
+
+def _cron_werkzeuge() -> list[str]:
+    return sorted(set(re.findall(
+        r"run_evidora_tool\.sh\s+([a-z_0-9]+\.py)", _crontab())))
+
+
+def test_jedes_cron_werkzeug_deklariert_seine_befund_codes():
+    """Der Zensus als Gate, nicht die Liste (Lehre aus #238).
+
+    Ein neues Werkzeug im Cron faellt hier auf, auch wenn niemand an
+    diesen Test denkt.
+    """
+    werkzeuge = _cron_werkzeuge()
+    assert len(werkzeuge) >= 7, werkzeuge
+    for w in werkzeuge:
+        _befund_exits(w)          # wirft, wenn die Zusage fehlt
+
+
+@pytest.mark.parametrize("werkzeug", _cron_werkzeuge())
+def test_cron_trennt_befund_von_nicht_gelaufen_alle(werkzeug):
+    """Fuer JEDES Cron-Werkzeug, nicht fuer die, an die ich dachte."""
+    codes = _befund_exits(werkzeug)
+    zeile = next((z for z in _zeilen() if werkzeug in z), None)
+    assert zeile, f"{werkzeug} steht nicht im Cron"
+    if codes:
+        assert "|| {" not in zeile, (
+            f"{werkzeug}: `|| {{` wirft Befund ({codes}) und Ausfall "
+            f"zusammen")
+        for code in codes:
+            assert f'"$rc" = {code}' in zeile, (
+                f"{werkzeug}: Exit {code} ist ein Befund, der Cron "
+                f"behandelt ihn nicht gesondert")
+    assert 'rc=$?' in zeile, f"{werkzeug}: kein rc-Zweig"
+    nach_elif = zeile.split("elif")[-1] if "elif" in zeile else zeile
+    assert "curl" in nach_elif, (
+        f"{werkzeug}: 'kam nicht zum Laufen' pusht nicht — und genau "
+        f"dieser Fall ist der dringendste, weil das Werkzeug selbst "
+        f"nichts mehr melden kann")
+
+
+def _befund_codes() -> dict[str, tuple[str, ...]]:
+    """Zum Parametrisieren — und TOLERANT gegen eine fehlende Zusage.
+
+    Eine erste Fassung baute diesen Dict direkt auf Modulebene. Fehlte
+    bei einem Werkzeug ``BEFUND_EXITS``, brach pytest schon beim
+    SAMMELN ab und verdeckte die anderen 21 Tests. Jetzt meldet
+    ``test_jedes_cron_werkzeug_deklariert_seine_befund_codes`` das
+    einzeln, und der Rest laeuft weiter.
+    """
+    aus = {}
+    for w in _cron_werkzeuge():
+        try:
+            codes = _befund_exits(w)
+        except AssertionError:
+            continue
+        if codes:
+            aus[w] = codes
+    return aus
+
+
+BEFUND_CODES = _befund_codes()
 
 
 @pytest.mark.parametrize("werkzeug,codes", sorted(BEFUND_CODES.items()))
