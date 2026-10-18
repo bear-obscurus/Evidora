@@ -1,0 +1,48 @@
+# Evidora — Cron auf prod. KANONISCHE KOPIE; mit `crontab crontab.prod`
+# installiert. Vor dem 18.10.2026 lebte diese Liste nur auf dem Server,
+# und PR #249 (Wartung in einen eigenen Container) hat dabei ZWEI Jobs
+# gebrochen, ohne dass etwas die Aufrufer prueffte:
+#
+#   * canary_check.py sprach weiter http://localhost:8000 an — im eigenen
+#     Container sein eigener Namensraum. Sechs Tage Fehlalarm (13.-18.10.).
+#   * die CORDIS-Zeile rief den Compose-Service `cordis-refresh`, der in
+#     #249 zu `wartung` wurde. "no such service". Quartalsweise, also erst
+#     am 1.1.2027 aufgefallen — und dann als stiller Ausfall des Caches.
+#
+# Deshalb liegt die Liste jetzt hier, und ein Gate in
+# tests/test_cron_aufrufe.py prueft, dass jeder Compose-Service und jedes
+# Werkzeug, das sie nennt, wirklich existiert.
+#
+# EXIT-CODE-VERTRAG (Lehre aus #236): Ein Werkzeug trennt "ich habe einen
+# Befund" von "ich kam nicht zum Laufen". Findet das Werkzeug etwas, hat
+# es den Push selbst geschickt — der Cron schreibt dann nur ins Log und
+# schickt KEINEN zweiten. Nur wenn das Werkzeug gar nicht lief, pusht der
+# Cron, denn dann konnte es niemand sonst.
+
+# Evidora — wöchentlicher Phrasing-Drift-Check (Sonntag 03:00 UTC)
+0 3 * * 0 /opt/Evidora/website/run_evidora_tool.sh weekly_phrasing_check.py >> /home/burrito/evidora-logs/phrasing_check.log 2>&1
+# Evidora — wöchentlicher Daten-Freshness-Check (Montag 04:00 UTC)
+0 4 * * 1 /opt/Evidora/website/run_evidora_tool.sh data_freshness_check.py --max-age-days 120 --strict >> /home/burrito/evidora-logs/data_freshness.log 2>&1 || { echo "ALERT $(date -Is) data_freshness FAILED" >> /home/burrito/evidora-logs/ALERTS.log; curl -s -m 10 -H "Title: Evidora Cron ALERT" -H "Priority: high" -H "Tags: rotating_light" -d "data_freshness FAILED $(date -Is)" "$(grep ^EVIDORA_ALERT_WEBHOOK /opt/Evidora/website/.env | cut -d= -f2-)" >/dev/null; }
+# Evidora 
+
+0 4 * * 1 /opt/Evidora/website/run_evidora_tool.sh check_urls.py --live 30 > /home/burrito/evidora-logs/url_health_$(date +\%Y\%m\%d).log 2>&1
+30 2 * * * /usr/local/bin/evidora-restic-backup.sh >> /home/burrito/evidora-logs/restic-backup.log 2>&1
+30 3 * * 0 /usr/local/bin/evidora-restic-prune.sh >> /home/burrito/evidora-logs/restic-prune.log 2>&1
+
+# Evidora — Docker Build-Cache + Image-Prune (1. des Monats, 02:30 UTC) — added 2026-05-24
+0 1 1 * * docker builder prune -af >/dev/null 2>&1 && docker image prune -af >/dev/null 2>&1 && docker container prune -f >/dev/null 2>&1
+
+# Evidora — quartalsweiser CORDIS Slim-Cache-Refresh (1. Jan/Apr/Jul/Okt, 03:00 UTC)
+0 3 1 1,4,7,10 * { echo "=== $(date -Is) cordis-refresh ==="; /opt/Evidora/website/run_evidora_tool.sh refresh_cordis.py --force; } >> /home/burrito/evidora-logs/cordis_refresh.log 2>&1; rc=$?; [ "$rc" = 0 ] || { echo "ALERT $(date -Is) cordis_refresh FAILED (exit $rc)" >> /home/burrito/evidora-logs/ALERTS.log; curl -s -m 10 -H "Title: Evidora Cron ALERT" -H "Priority: high" -H "Tags: rotating_light" -d "cordis_refresh FAILED $(date -Is)" "$(grep ^EVIDORA_ALERT_WEBHOOK /opt/Evidora/website/.env | cut -d= -f2-)" >/dev/null; }
+0 5 * * * /opt/Evidora/website/run_evidora_tool.sh canary_check.py >> /home/burrito/evidora-logs/canary.log 2>&1; rc=$?; if [ "$rc" = 1 ] || [ "$rc" = 3 ]; then echo "ALERT $(date -Is) canary: Befund (exit $rc) - Tool lief, Push ist raus" >> /home/burrito/evidora-logs/ALERTS.log; elif [ "$rc" != 0 ]; then echo "ALERT $(date -Is) canary kam nicht zum Laufen (exit $rc)" >> /home/burrito/evidora-logs/ALERTS.log; curl -s -m 10 -H "Title: Evidora Kanarienvogel: Werkzeug lief nicht" -H "Priority: urgent" -H "Tags: rotating_light" -d "canary_check kam nicht zum Laufen (exit $rc) $(date -Is) - siehe canary.log" "$(grep ^EVIDORA_ALERT_WEBHOOK /opt/Evidora/website/.env | cut -d= -f2-)" >/dev/null; fi
+
+# Evidora — Stichtags-Waechter (taeglich 06:00 UTC). Findet Fakten, deren
+# eingebauter Stichtag abgelaufen ist. Ergaenzt data_freshness_check, das
+# nur das DATEI-Alter prueft, nicht Daten IM Text (Lehrgeld Kopftuch 09/2026).
+0 6 * * * /opt/Evidora/website/run_evidora_tool.sh stichtag_check.py --strict >> /home/burrito/evidora-logs/stichtag_check.log 2>&1 || { echo "ALERT $(date -Is) stichtag_check FUNDE" >> /home/burrito/evidora-logs/ALERTS.log; }
+# Lebenszeichen der Live-Quellen (PR #157/#158): fragt die Quellen DIREKT,
+# ohne LLM. WGI lag 17.05.-07.09.2026 tot, ohne dass etwas anschlug — der
+# Kanarienvogel um 05:00 prueft die Pipeline, nicht die einzelnen Quellen.
+# Das Werkzeug pusht selbst; der Fallback hier greift nur, wenn es gar nicht
+# zum Laufen kam.
+30 5 * * * /opt/Evidora/website/run_evidora_tool.sh quellen_lebenszeichen.py >> /home/burrito/evidora-logs/quellen_lebenszeichen.log 2>&1; rc=$?; if [ "$rc" = 2 ]; then echo "ALERT $(date -Is) quellen_lebenszeichen: Quelle(n) ohne Lebenszeichen - Tool lief, Push ist raus" >> /home/burrito/evidora-logs/ALERTS.log; elif [ "$rc" != 0 ]; then echo "ALERT $(date -Is) quellen_lebenszeichen kam nicht zum Laufen (exit $rc)" >> /home/burrito/evidora-logs/ALERTS.log; fi

@@ -296,7 +296,10 @@ jobs:
       - name: Install test dependencies
         run: |
           pip install --upgrade pip
-          pip install pytest pytest-asyncio pytest-timeout httpx
+          # numpy: der semantische Pfad des verdict_cache rechnet damit.
+          # Ohne numpy sprangen die zwei Sprach-Tests aus #257 in CI ab
+          # (`.....ss....`) — gruen, ohne den Pfad je betreten zu haben.
+          pip install pytest pytest-asyncio pytest-timeout httpx numpy
 
       - name: Run dependency-light unit suites
         working-directory: website/backend
@@ -339,6 +342,7 @@ jobs:
             tests/test_llm_auth_probe.py \
             tests/test_verdict_cache_polarity.py \
             tests/test_verdict_cache_sprache.py \
+            tests/test_cron_aufrufe.py \
             tests/test_topic_packs_exact_only.py \
             tests/test_ueber_trigger_sweep.py \
             tests/test_fleisch_messgroessen_bindung.py \

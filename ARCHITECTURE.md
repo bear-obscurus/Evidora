@@ -321,7 +321,10 @@ the old image. `up -d --build` fixes it.
 
 ### 4.2 Cron-jobs on production
 
-Seven cron-jobs run on the Hetzner host (verified 2026-07-06):
+Ten cron-jobs run on the Hetzner host. The canonical copy lives in
+`website/crontab.prod` and is installed with `crontab crontab.prod` —
+before 2026-10-18 the list existed only on the server, and PR #249
+silently broke two of its lines (see below):
 
 | Time | Job | Purpose |
 |---|---|---|
@@ -331,11 +334,27 @@ Seven cron-jobs run on the Hetzner host (verified 2026-07-06):
 | daily 02:30 | `evidora-restic-backup.sh` | restic backup (`.env` + `data/`) to the Hetzner volume |
 | Sun 03:30 | `evidora-restic-prune.sh` | restic retention (keep-daily 7 / keep-weekly 4) |
 | monthly 1st 03:00 | `docker builder/image/container prune` | Reclaims Docker build cache and dangling images |
-| quarterly 1st 03:00 | `tools/refresh_cordis.py` | Rebuilds the CORDIS slim cache (generated, untracked) |
+| quarterly 1st 03:00 | `tools/refresh_cordis.py --force` | Rebuilds the CORDIS slim cache (generated, untracked) |
+| daily 05:00 | `tools/canary_check.py` | Fires one real claim through the whole pipeline against `http://backend:8000`; the 2026-07-29 outage went unnoticed for twelve hours because no cron touched `/api/check` |
+| daily 05:30 | `tools/quellen_lebenszeichen.py` | Probes every source for a sign of life; exit 2 = finding |
+| daily 06:00 | `tools/stichtag_check.py --strict` | Finds facts whose built-in cut-off date has passed — complements the freshness check, which only looks at file age |
 
-Tool jobs go through `run_evidora_tool.sh`, which loads the prod env
-file and the bypass API key; failures append to `ALERTS.log` and push
-ntfy. See `memory/deployment_hetzner.md`.
+Tool jobs go through `run_evidora_tool.sh`, which runs the tool in a
+separate one-shot container (`--profile wartung`) with the prod env file
+and its own memory limit. No cron line names a compose service any more:
+that knowledge lives in the wrapper alone, because PR #249 renamed the
+service and the quarterly CORDIS line kept calling the old name
+(`no such service: cordis-refresh`, dormant until 2027-01-01).
+
+**Exit-code contract** (lesson from #236, reinforced 2026-10-18): a tool
+separates *I have a finding* from *I could not run*. On a finding the tool
+has already sent its own ntfy push, so the cron only logs and must not
+send a second one — `canary_check.py` returns 1 (backend answers but the
+pipeline yields nothing) or 3 (backend unreachable at the configured
+address), `quellen_lebenszeichen.py` returns 2. A blanket `|| { … }`
+branch conflates both cases: it made the canary alert read
+"Backend-Container down?" for six days while the container was healthy.
+`tests/test_cron_aufrufe.py` gates this. See `memory/deployment_hetzner.md`.
 
 **No cron may write a git-tracked file.** Since `data/` is host-mounted,
 an in-container write to a tracked file dirties the server worktree and
