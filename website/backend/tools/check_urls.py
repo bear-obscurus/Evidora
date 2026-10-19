@@ -140,14 +140,69 @@ def clean_url(url: str) -> str:
     return url
 
 
+#: Lesefenster und Ueberlappung fuer ``extract_urls``.
+#:
+#: Gemessen am 19.10.2026: Der erste check_urls-Lauf nach PR #249 starb mit
+#: exit 137 (OOM) im Wartungs-Container mit 224 MB Limit. ``f.read()`` zog
+#: ``cordis_projects_slim.json`` komplett ein — 108 MiB — und liess die
+#: Regex darueber laufen. Eine Woche lang unsichtbar, weil die Cron-Zeile
+#: damals keinen Zweig hatte; der Zweig aus #259 hat es beim ersten Lauf
+#: gemeldet.
+#:
+#: ZEILENWEISE haette nicht geholfen: Die Datei hat NULL Zeilenumbrueche
+#: (113.929.377 Bytes in einer Zeile), weil ``atomic_write_json_array``
+#: aus #239 mit ", " trennt. Deshalb ein Schiebefenster.
+#:
+#: Die Datei wird NICHT uebersprungen, obwohl sie ein generierter Cache
+#: ist: ``aus_generiertem_cache`` (#243) muss wissen, ob eine URL
+#: AUSSCHLIESSLICH dort steht, und das setzt voraus, sie dort zu finden.
+#: Gemessen traegt sie 94 der 4.237 eindeutigen URLs — wenig Ausbeute, aber
+#: sie entscheidet ueber die Herkunfts-Trennung von drei Vierteln der
+#: toten Links.
+LESEFENSTER = 1 << 20          # 1 MiB
+UEBERLAPP = 4096               # weit ueber jeder realen URL-Laenge
+
+
 def extract_urls(file_path: str) -> set[str]:
+    """Alle URLs einer Datei — im Schiebefenster, nicht in einem Stueck.
+
+    Ein Treffer gilt nur, wenn er VOLLSTAENDIG vor der Annahme-Grenze
+    liegt. Sonst landete eine am Fensterrand abgeschnittene URL als
+    eigener, falscher Eintrag im Ergebnis — der ``set`` faengt Doppelte,
+    aber keine Stuempfe.
+
+    Mitgenommen wird DOPPELT so viel, wie die Annahme-Grenze zurueckliegt.
+    Eine erste Fassung nahm nur bis zur Grenze mit und verlor dabei 4 von
+    28.029 URLs: Ein Treffer, der die Grenze ueberschreitet, wird
+    uebersprungen — und begann vor ihr, also fehlte sein Anfang im
+    naechsten Fenster. Gegen die alte Fassung byteweise nachgerechnet,
+    nicht geschaetzt.
+    """
+    treffer: set[str] = set()
+
+    def sammle(text: str, bis: int) -> None:
+        for m in URL_RE.finditer(text):
+            if m.end() > bis:
+                continue
+            u = clean_url(m.group(0))
+            if u:
+                treffer.add(u)
+
     try:
         with open(file_path, encoding="utf-8") as f:
-            text = f.read()
+            rest = ""
+            while True:
+                block = f.read(LESEFENSTER)
+                if not block:
+                    sammle(rest, len(rest))
+                    break
+                text = rest + block
+                grenze = max(0, len(text) - UEBERLAPP)
+                sammle(text, grenze)
+                rest = text[max(0, len(text) - 2 * UEBERLAPP):]
     except FileNotFoundError:
         return set()
-    raw = URL_RE.findall(text)
-    return {clean_url(u) for u in raw if clean_url(u)}
+    return treffer
 
 
 def kuratierte_dateien(data_dir: str) -> list[str]:
