@@ -755,6 +755,8 @@
         "EU-Gas RUS-Anteil 40 %→8 % (2021→2024), AT 80 %→25 % — Diversifikation real."
       ],
       "claim_phrasings_handled": [
+          "Wie viele Sanktionspakete hat die EU gegen Russland verhaengt",
+          "Die EU hat 14 Sanktionspakete gegen Russland verhaengt",
         "Sanktionen wirken nicht",
         "RUS-Wirtschaft wächst trotz Sanktionen",
         "EU hängt immer noch von russischem Gas",
@@ -765,6 +767,8 @@
       "trigger_keywords": [],
       "trigger_composite": [
         [
+          "sanktionspaket",
+          "sanktions-paket",
           "russland-sanktionen",
           "russland sanktionen",
           "rus-sanktionen",
