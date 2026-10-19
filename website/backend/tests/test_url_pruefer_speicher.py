@@ -93,7 +93,7 @@ def test_dieselben_urls_wie_in_einem_stueck():
     Genau diese Rechnung hat den Fehler der ersten Fassung gefunden:
     28.029 gegen 28.025.
     """
-    alt = neu = 0
+    alt = neu = dateien = 0
     unterschiede = []
     for name in sorted(os.listdir(DATA)):
         if not name.endswith(".json") or name.startswith((".", "_")):
@@ -103,9 +103,18 @@ def test_dieselben_urls_wie_in_einem_stueck():
         n = cu.extract_urls(pfad)
         alt += len(a)
         neu += len(n)
+        dateien += 1
         if a != n:
             unterschiede.append((name, sorted(a - n)[:3], sorted(n - a)[:3]))
-    assert alt > 20000, f"nur {alt} URLs gelesen — liest der Test ins Leere?"
+    # Die Plausibilitaets-Schranke darf KEINE umgebungsabhaengige Zahl
+    # sein. Eine erste Fassung forderte > 20.000 — das war meine lokale
+    # Summe (28.029) und fiel in CI auf 17.147 um. Die Differenz sind
+    # genau die 10.882 URLs aus ``claimreview_index.json``, einem
+    # generierten und darum nicht eingecheckten Cache. Geprueft wird
+    # deshalb gegen die eingecheckten Dateien mit Abstand nach unten;
+    # der Zweck der Schranke ist allein, ein leeres data/ zu erkennen.
+    assert dateien > 50, f"nur {dateien} Dateien gelesen"
+    assert alt > 10000, f"nur {alt} URLs gelesen — liest der Test ins Leere?"
     assert not unterschiede, unterschiede
     assert alt == neu
 
