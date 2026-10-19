@@ -10,11 +10,30 @@
         "asylantraege_gesamt_2025": 168543,
         "asylantraege_gesamt_2024": 250945,
         "asylantraege_gesamt_2023": 351915,
+        "ZAEHLWEISEN_BRUCH_12_06_2026": "Das BAMF zaehlt Folgeantraege seit Inkrafttreten der GEAS-Reform am 12.06.2026 anders und schreibt selbst, die Zahlen seien 'nicht mehr uneingeschraenkt mit frueheren Zeitraeumen vergleichbar'. Fuer die Vergleichbarkeit wurde die Kennzahl 'Neuzugaenge in das Asylsystem' eingefuehrt: Erstantraege plus transnationale Folgeantraege und transnationale weitere Angaben. Wer eine Zahl von vor Juni 2026 gegen eine danach haelt, vergleicht zwei Zaehlweisen.",
+        "neuzugaenge_jan_sep_2026": 55366,
+        "neuzugaenge_jan_sep_2026_zusammensetzung": "51.982 Erstantraege und 3.384 transnationale Folgeantraege / weitere Angaben",
+        "neuzugaenge_september_2026": 5276,
+        "neuzugaenge_august_2026": 4766,
+        "erstantraege_september_2026": 4217,
+        "folgeantraege_september_2026": 2367,
+        "folgeantraege_september_2026_davon_transnational": 1059,
+        "gesamtschutzquote_jan_sep_2026_pct": 36.4,
+        "entscheidungen_jan_sep_2026": 157901,
+        "anhaengige_verfahren_ende_september_2026": 51234,
+        "q1_2026_hinweis": "Die Q1-Zahlen unten stammen aus der Zaehlweise VOR dem 12.06.2026 (Erst- plus Folgeantraege). Sie bleiben als historischer Stand stehen, sind aber nicht mit den Neuzugaengen zu verrechnen.",
         "asylantraege_q1_2026_erstantraege": 22491,
         "asylantraege_q1_2026_folgeantraege": 10342,
         "asylantraege_q1_2026_gesamt": 32833,
         "rueckgang_q1_yoy_pct": -37.8,
         "anstieg_folgeantraege_q1_yoy_pct": 107.4,
+        "top_5_herkunftslaender_neuzugaenge_september_2026": [
+          {"land": "Afghanistan", "antraege": 1087},
+          {"land": "Syrien", "antraege": 688},
+          {"land": "Türkei", "antraege": 618},
+          {"land": "Irak", "antraege": 264},
+          {"land": "Somalia", "antraege": 250}
+        ],
         "top_3_herkunftslaender_q1_2026": [
           {
             "land": "Afghanistan",
@@ -52,7 +71,7 @@
       "source_label": "BAMF — Bundesamt für Migration und Flüchtlinge, monatliche Asyl-Geschäftsstatistik",
       "source_url": "https://www.bamf.de/SharedDocs/Meldungen/DE/2026/260407-asylzahlen-maerz-2026.html",
       "secondary_url": "https://www.bpb.de/themen/migration-integration/zahlen-zu-asyl/",
-      "fetched_at_iso": "2026-04-28"
+      "fetched_at_iso": "2026-10-19"
     },
     {
       "id": "buergergeld_de_2026",
@@ -330,13 +349,19 @@
         "antraege_at_q1_2026_gesamt": 2598,
         "antraege_ch_q1_2026_gesamt_approx": 5800,
         "antraege_at_plus_ch_q1_2026_summe": 8398,
-        "verhaeltnis_de_zu_at_plus_ch": "DE ist rund 3,9-mal höher als AT + CH zusammen",
+        "KEIN_EINZELNES_VERHAELTNIS": "Ein einzelnes DE-zu-AT-plus-CH-Verhaeltnis ist aus den amtlichen Zahlen fuer 2026 NICHT berechenbar, und das hat drei Gruende. (1) Die Zeitfenster: Deutschland veroeffentlicht bis September, Oesterreich bis Juli, die Schweiz bis August. (2) Die Kategorien: Deutschland zaehlt 'Neuzugaenge in das Asylsystem', Oesterreich 'Erst- und Mehrfachantragsteller', die Schweiz 'Asylgesuche'. (3) Der Methodenbruch in Deutschland am 12.06.2026. Das frueher hier gefuehrte '3,9-mal' verglich schon damals ungleiche Kategorien, nur ohne es zu sagen; der Bruch hat es sichtbar gemacht.",
+        "de_jan_sep_2026_neuzugaenge": 55366,
+        "at_jan_jul_2026_gesamt": 5743,
+        "at_jan_jul_2026_zusammensetzung": "4.533 Erstantragsteller und 1.210 Mehrfachantragsteller (BMI, vorlaeufige Asylstatistik Juli 2026)",
+        "ch_jan_aug_2026_asylgesuche": 13545,
+        "ch_jan_aug_2026_hinweis": "13.545 Gesuche in den ersten acht Monaten, 16,9 % weniger als im Vorjahreszeitraum (SEM). Der September allein brachte 2.122 Gesuche, 18 % weniger als im Vorjahresmonat; eine veroeffentlichte Jan-Sep-Summe lag zum 19.10.2026 nicht vor.",
+        "groessenordnung_statt_verhaeltnis": "Wer eine Groessenordnung braucht, rechnet auf Monatsmittel im jeweils eigenen Fenster: Deutschland rund 6.150 je Monat (55.366 / 9), Oesterreich rund 820 (5.743 / 7), die Schweiz rund 1.690 (13.545 / 8). Das ergibt grob Faktor 2,4 gegenueber AT plus CH — mit der Einschraenkung, dass die Kategorien verschieden sind und Asylantraege saisonal schwanken, ein Monatsmittel also kein Jahresbild ist.",
         "antraege_de_2025_gesamt": 168543,
         "antraege_at_2025_gesamt_approx": 8014,
         "antraege_ch_2025_gesamt_approx": 28000,
         "antraege_at_plus_ch_2025_summe": 36014,
-        "verhaeltnis_de_zu_at_plus_ch_2025": "DE 2025: ~4,7-mal höher als AT + CH zusammen",
-        "quellen": "BAMF (DE), BMI (AT), SEM (CH); Q1 2026"
+        "verhaeltnis_de_zu_at_plus_ch_2025": "DE 2025: rund 4,7-mal hoeher als AT plus CH zusammen. Das Jahr 2025 liegt vollstaendig VOR dem Methodenbruch, die drei Zahlen sind dort auf vergleichbarer Grundlage erhoben.",
+        "quellen": "BAMF (DE), BMI (AT), SEM (CH); Stand 19.10.2026: BAMF bis September, BMI bis Juli, SEM bis August"
       },
       "context_notes": [
         "Q1 2026: Deutschland 32.833 Asylanträge gesamt (BAMF), Österreich 2.598 (BMI), Schweiz ca. 5.800 (SEM-Trend Januar–März).",
@@ -353,7 +378,7 @@
       "source_label": "BAMF (DE) + BMI (AT) + SEM (CH) Q1 2026",
       "source_url": "https://www.bamf.de/SharedDocs/Meldungen/DE/2026/260407-asylzahlen-maerz-2026.html",
       "secondary_url": "https://www.sem.admin.ch/sem/de/home/asyl.html",
-      "fetched_at_iso": "2026-04-29"
+      "fetched_at_iso": "2026-10-19"
     },
     {
       "id": "dach_pensions_vergleich",
@@ -577,7 +602,10 @@
       "fetched_at_iso": "2026-04-28"
     }
   ],
-  "fetched_at_iso": "2026-04-28",
+  "fetched_at_iso": "2026-10-19",
+  "refresh_kadenz": "quartalsweise",
+  "kadenz_begruendung": "Die Datei fuehrt zwei Takte: Asyl-Statistiken erscheinen monatlich und werden hier quartalsweise nachgezogen, Sozialleistungen und Pensionsreformen jaehrlich. Fuer den Waechter gilt der KUERZERE — bei 150 Tagen meldet er, und das ist richtig, weil dann der Asyl-Teil faellig ist. Bis zum 19.10.2026 stand die Kadenz nur im note-Feld und war damit unsichtbar; der Waechter mass gegen den 120-Tage-Standard.",
+  "letzte_pruefung": "2026-10-19: Asyl-Teil aus den Primaerquellen nachgezogen (BAMF-Meldung vom 05.10.2026, BMI vorlaeufige Asylstatistik Juli 2026, SEM-Auguststatistik). Dabei kam ein Methodenbruch heraus: Das BAMF zaehlt Folgeantraege seit dem 12.06.2026 anders und nennt die Zahlen selbst nicht mehr uneingeschraenkt vergleichbar. Das frueher gefuehrte DE-zu-AT-plus-CH-Verhaeltnis von 3,9 ist ersetzt — es verglich ungleiche Kategorien ueber ungleiche Zeitfenster. Die uebrigen neun Fakten (Buergergeld, Heizungsgesetz, AHV, Pensionsalter, HPV, EU-Beschluesse, Klima- und Asyl-Gegenfakten) sind jaehrlich getaktet und in dieser Runde NICHT geprueft; sie behalten ihr eigenes fetched_at_iso.",
   "note": "Kuratierte DACH-Faktoide (Deutschland + Schweiz) für Boulevardpresse-Stress-Tests. Manuell aktualisiert nach BAMF/DGB/Bundesrat/CORRECTIV-Quellen. Refresh-Cadence: vierteljährlich für Asyl-Statistiken, jährlich für Sozialleistungen.",
   "version": 1
 }
