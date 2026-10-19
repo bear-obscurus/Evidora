@@ -1,6 +1,20 @@
 {
   "retractions": [
     {
+      "id": "harris_2023_atmosphere_klima",
+      "doi": "10.3390/atmos14081244",
+      "original_title": "Comparison of Recently Proposed Causes of Climate Change",
+      "authors": ["Harris S (University of Calgary, emeritiert)"],
+      "journal": "Atmosphere (MDPI), Band 14, Heft 8, Artikel 1244",
+      "publication_year": 2023,
+      "retraction_year": 2026,
+      "retraction_reason": "Zurueckgezogen am 16.09.2026. Die Ruecknahme-Notiz nennt 'significant concerns': eine unzureichende Auswertung der einschlaegigen Literatur, nicht gestuetzte Schlussfolgerungen, Fehler in der Interpretation der gezeigten Daten und Probleme bei Verwendung und Zuschreibung der Quellenangaben.",
+      "topic_keywords": ["co2 kein treibhausgas", "co2 nicht schuld", "klimawandel nicht menschengemacht", "klimawandel natuerliche ursachen", "sonnenaktivitaet klimawandel", "harris atmosphere", "peer reviewed klimaskepsis", "studie widerlegt klimawandel"],
+      "common_misinformation": "Das Papier wird als 'peer-reviewed Studie' zitiert, die den menschlichen Anteil am Klimawandel bestreite. Es ist seit dem 16.09.2026 zurueckgezogen; die Ruecknahme-Notiz nennt unter anderem nicht gestuetzte Schlussfolgerungen. Ein zurueckgezogenes Papier belegt nichts mehr — auch dann nicht, wenn die PDF-Datei weiter auffindbar ist.",
+      "source_url": "https://retractionwatch.com/2026/10/02/paper-questioning-co2-and-climate-change-retracted/",
+      "scientific_consensus": "Der menschengemachte Anteil an der Erwaermung ist in den IPCC-Sachstandsberichten als eindeutig beschrieben. Eine einzelne zurueckgezogene Arbeit aendert daran nichts."
+    },
+    {
       "id": "wakefield_1998_lancet",
       "doi": "10.1016/S0140-6736(97)11096-0",
       "original_title": "Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children",
@@ -71,7 +85,10 @@
       "scientific_consensus": "Es gibt KEINE wissenschaftliche Evidenz für Schokolade als Gewichtsverlust-Mittel."
     }
   ],
-  "fetched_at_iso": "2026-04-29",
+  "fetched_at_iso": "2026-10-19",
+  "refresh_kadenz": "jaehrlich",
+  "kadenz_begruendung": "Die Sammlung fuehrt Ruecknahme-KLASSIKER, deren Fakten sich nicht mehr aendern (Wakefield 1998, Schoen 2002, Surgisphere 2020). Neu kommt etwas dazu, wenn eine prominente Ruecknahme einen Desinformations-Vektor schafft — das ist kein Takt, sondern ein Anlass. Jaehrlich ist die Obergrenze, in der nachgesehen wird. Bis zum 19.10.2026 stand die Kadenz nur im note-Feld und damit fuer den Freshness-Waechter unsichtbar; er mass gegen den 120-Tage-Standard und meldete die Datei bei 170 Tagen.",
+  "letzte_pruefung": "2026-10-19: Alle fuenf bestehenden Eintraege unveraendert (historische Faelle). NEU aufgenommen: Harris 2023 in Atmosphere, zurueckgezogen am 16.09.2026 — ein als peer-reviewed zitiertes Papier gegen den menschlichen Anteil am Klimawandel. DOI und Titel unabhaengig ueber Crossref geprueft (10.3390/atmos14081244, 'RETRACTED: Comparison of Recently Proposed Causes of Climate Change'), nicht aus dem MDPI-Nummernmuster erraten.",
   "note": "Kuratierte Sammlung der wichtigsten Retraction-Watch-Klassiker für Faktencheck-Use-Cases. Vollständige Datenbank: https://api.labs.crossref.org/data/retractionwatch (50.000+ Einträge). Refresh: jährlich oder bei prominenten neuen Retractions.",
   "version": 1
 }
