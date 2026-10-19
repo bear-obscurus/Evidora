@@ -344,6 +344,7 @@ jobs:
             tests/test_verdict_cache_sprache.py \
             tests/test_cron_aufrufe.py \
             tests/test_stichtag_speicher.py \
+            tests/test_url_pruefer_speicher.py \
             tests/test_stichtage_2026_10.py \
             tests/test_sanktionspakete_erreichbar.py \
             tests/test_topic_packs_exact_only.py \
