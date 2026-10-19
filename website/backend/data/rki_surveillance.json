@@ -2,9 +2,9 @@
   "schema_version": 1,
   "refresh_kadenz": "woechentlich",
   "kadenz_begruendung": "RKI-Open-Data werden woechentlich fortgeschrieben (GrippeWeb, SARI, ARE).",
-  "fetched_at_iso": "2026-09-05",
+  "fetched_at_iso": "2026-10-19",
   "source_label": "Robert Koch-Institut — Open Data (GitHub robert-koch-institut) für die Atemwegs-Surveillance; SurvStat 2.0 + Fachberichte für Masern und Tuberkulose",
-  "letzte_pruefung": "2026-09-05: Atemwegs-Fakt vollständig aus RKI-Open-Data neu aufgebaut (Stand Meldewoche 35/2026). Masern und Tuberkulose NICHT aktualisiert — SurvStat 2.0 ist ein interaktives Abfragewerkzeug ohne offenes Datenabbild, und die geprüften Alternativen (Infektionsradar, ECDC-Atlas) liefern die Werte nicht maschinenlesbar. Statt zu schätzen, tragen beide Fakten jetzt ihren Datenstand ausdrücklich in der Headline.",
+  "letzte_pruefung": "2026-10-19: Atemwegs-Fakt gegen RKI-Open-Data nachgerechnet (Stand Meldewoche 41/2026). ALLE bisherigen Zahlen bestätigt, keine Revisionen: GrippeWeb-ARE-Höchstwerte 2018/19 8.660, 2022/23 11.204, 2023/24 10.434, 2024/25 9.290, 2025/26 8.661; SARI 38,2 und 29,1; ARE-Konsultationsinzidenz 2.044. NEU ist allein die begonnene Saison 2026/27. Davor, 2026-09-05: Atemwegs-Fakt vollständig aus RKI-Open-Data neu aufgebaut (Stand Meldewoche 35/2026). Masern und Tuberkulose NICHT aktualisiert — SurvStat 2.0 ist ein interaktives Abfragewerkzeug ohne offenes Datenabbild, und die geprüften Alternativen (Infektionsradar, ECDC-Atlas) liefern die Werte nicht maschinenlesbar. Statt zu schätzen, tragen beide Fakten jetzt ihren Datenstand ausdrücklich in der Headline.",
   "facts": [
     {
       "id": "rki_masern_2024_2025",
@@ -115,6 +115,9 @@
         "grippeweb_are_peak_je_100k_2024_25": 9290,
         "grippeweb_are_peak_je_100k_2025_26": 8661,
         "grippeweb_are_peak_woche_2025_26": "KW 5/2026",
+        "laufende_saison_2026_27": "Die Saison 2026/27 hat begonnen und ist nach zwei Meldewochen noch ohne Aussage: GrippeWeb-ARE 6.640 (KW 40/2026) und 6.854 (KW 41/2026). ZWEI WOCHEN SIND KEIN SAISONVERLAUF, und diese Werte sind KEINE Höchstwerte — sie gegen die Saison-Höchstwerte oben zu halten, vergleicht einen Anfangswert mit einem Gipfel.",
+        "laufende_saison_fairer_vergleich": "Wer die laufende Saison einordnen will, vergleicht DIESELBE Kalenderwoche. In KW 41 lag die ARE-Inzidenz 2026/27 bei 6.854, 2025/26 bei 7.584, 2024/25 bei 8.568, 2023/24 bei 6.918, 2022/23 bei 7.170 und 2021/22 bei 6.497. Der Start 2026/27 liegt damit am unteren Rand der letzten sechs Saisonen, aber im Bereich von 2021/22 und 2023/24.",
+        "laufende_saison_weitere_reihen": "Ebenfalls Stand KW 41/2026, jeweils Höchstwert der laufenden Saison und damit vorläufig: SARI-Hospitalisierungsinzidenz 9,6 (KW 40), ARE-Konsultationsinzidenz 1.332 (KW 41). Zum Vergleich die VOLLEN Vorsaison-Höchstwerte: SARI 29,1 und Konsultationsinzidenz 2.044.",
         "grippeweb_are_peak_vor_pandemie_2018_19": 8660,
         "grippeweb_are_peak_vor_pandemie_2019_20": 8529,
         "sari_hospitalisierung_peak_je_100k_2022_23": 38.2,
