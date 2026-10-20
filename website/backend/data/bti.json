@@ -1,0 +1,1334 @@
+{
+  "schema_version": 1,
+  "refresh_kadenz": "jaehrlich",
+  "kadenz_begruendung": "Der Bertelsmann Transformation Index erscheint im Zweijahresrhythmus (2018, 2020, 2022, 2024, 2026), jeweils im Februar/Maerz. Jaehrlich ist die strengere Annahme und sorgt dafuer, dass eine neue Ausgabe im Erscheinungsjahr auffaellt. Genau das hat beim Lauf am 20.10.2026 gefehlt: Die Datei stand seit dem 18.05.2026 auf der Ausgabe 2024, obwohl BTI 2026 am 25.03.2026 veroeffentlicht war.",
+  "fetched_at_iso": "2026-10-20",
+  "report_year": 2026,
+  "edition_label": "BTI 2026",
+  "covering_events_year": 2025,
+  "laenderzahl": 137,
+  "erhebungszeitraum": "1. Februar 2023 bis 31. Januar 2025 (BTI-2026-Codebook, S. 318: 'Your evidence should refer to the period February 1, 2023 - January 31, 2025'). Wer BTI-2026-Werte auf Ereignisse nach dem 31.01.2025 bezieht, liest mehr hinein als erhoben wurde.",
+  "source_label": "Bertelsmann Transformation Index (BTI) 2026 — Guetersloh: Bertelsmann Stiftung. 137 Transformationslaender, Werte 1-10. Kuratierter Auszug von 66 Laendern: die Top-20 und die Bottom-20 des Status-Index vollstaendig, dazu haeufig angefragte Vergleichslaender. Alle Zahlen aus dem amtlichen Excel-Export BTI_2026_Scores.xlsx, nicht geschaetzt.",
+  "source_url": "https://bti-project.org/en/downloads",
+  "license": "CC-BY 4.0 (Bertelsmann Stiftung, BTI Datasets)",
+  "audit_flag": "GEPRUEFT 2026-10-20 gegen den amtlichen Excel-Export, und das Ergebnis war ein Totalschaden: Von 424 vergleichbaren Werten des alten Standes waren 341 falsch (80 %), kein einziges der 53 zuordenbaren Laender war fehlerfrei. Alle drei Dimensionswerte waren bei allen 53 Laendern falsch, 50 der 53 Raenge ebenfalls; die groesste Rang-Abweichung betrug 23 Plaetze. Der alte Stand trug seit seiner Anlage den Vermerk 'AUDIT NEEDED — LLM-Approximationen ... vor produktivem Einsatz gegenchecken' und wurde trotzdem ab Mai 2026 live serviert. Die Werte hier stammen jetzt Zelle fuer Zelle aus BTI_2026_Scores.xlsx; tools/bti_aus_excel.py wiederholt die Gegenprobe.",
+  "methodology_note": "BTI bewertet 137 Transformationslaender (keine etablierten Demokratien wie AT/DE/CH/USA) auf einer 1-10-Skala. Zwei Status-Dimensionen: Demokratie-Status (politische Transformation, 5 Kriterien) und Marktwirtschafts-Status (wirtschaftliche Transformation, 7 Kriterien). Der Status-Index ist das Mittel aus beiden, der Rang die absteigende Ordnung des Status-Index ueber alle 137 Laender. Der Governance-Index steht daneben und hat seinen eigenen Rang. Doppel-Gutachter pro Land (intern und extern), Regional Coordinators, Board-Review.",
+  "einstufungen_hinweis": "Die fuenfstufigen Einstufungen stehen im amtlichen Export und werden von dort GELESEN, nicht aus dem Score hergeleitet. Das ist kein Formalismus: Die Stufen 'hochdefekte Demokratie' (Score 4,75-5,95) und 'moderate Autokratie' (4,03-5,48) UEBERLAPPEN, weil BTI zusaetzlich seine Demokratie/Autokratie-Bewertung hinzuzieht. Wer die Stufe aus dem Score ableitet, bekommt sie in diesem Band falsch. Der alte Stand fuehrte dazu in methodology_note erfundene Schwellen ('Moderate Autokratie (3-4)'), die so nicht gelten. Das Feld <dimension>_status_bti traegt die englische Originalbezeichnung, <dimension>_status ihre deutsche Fassung.",
+  "guardrail_note": "Politik-Tabu-Guard 2.0: Wir zitieren BTI-Scores und BTI-Einstufungen, wir bewerten Parteien nicht und klassifizieren nicht selbst. AT/DE/CH werden vom BTI nicht erfasst (gelten als etablierte Demokratien) — bei AT/DE/CH-Claims liefern wir nur Vergleichs-Kontext fuer genannte Drittstaaten.",
+  "country_aliases": {
+    "AFG": [
+      "afghanistan",
+      "afghanisch",
+      "afghan"
+    ],
+    "ALB": [
+      "albanien",
+      "albania",
+      "albanisch",
+      "albanian"
+    ],
+    "ARG": [
+      "argentinien",
+      "argentina",
+      "argentinian",
+      "argentinisch"
+    ],
+    "ARM": [
+      "armenien",
+      "armenia",
+      "armenian",
+      "armenisch"
+    ],
+    "BGD": [
+      "bangladesch",
+      "bangladesh",
+      "bangladeschisch",
+      "bangladeshi"
+    ],
+    "BGR": [
+      "bulgarien",
+      "bulgaria",
+      "bulgarian",
+      "bulgarisch"
+    ],
+    "BLR": [
+      "belarus",
+      "weißrussland",
+      "weissrussland",
+      "belorussian",
+      "belarusian"
+    ],
+    "BRA": [
+      "brasilien",
+      "brazil",
+      "brazilian",
+      "brasilianisch"
+    ],
+    "BWA": [
+      "botswana",
+      "botsuana",
+      "botswanian"
+    ],
+    "CHL": [
+      "chile",
+      "chilenisch",
+      "chilean"
+    ],
+    "CHN": [
+      "china",
+      "volksrepublik china",
+      "chinese",
+      "chinesisch"
+    ],
+    "COD": [
+      "dr kongo",
+      "demokratische republik kongo",
+      "kongo-kinshasa",
+      "congo, dr",
+      "dr congo",
+      "democratic republic of the congo"
+    ],
+    "CRI": [
+      "costa rica",
+      "costa-rica",
+      "costaricanisch"
+    ],
+    "CUB": [
+      "kuba",
+      "cuba",
+      "kubanisch",
+      "cuban"
+    ],
+    "CZE": [
+      "tschechien",
+      "czechia",
+      "czech republic",
+      "tschechisch",
+      "czech"
+    ],
+    "EGY": [
+      "ägypten",
+      "aegypten",
+      "egypt",
+      "egyptian",
+      "ägyptisch",
+      "aegyptisch"
+    ],
+    "ERI": [
+      "eritrea",
+      "eritreisch",
+      "eritrean"
+    ],
+    "EST": [
+      "estland",
+      "estonia",
+      "estonian",
+      "estnisch"
+    ],
+    "GEO": [
+      "georgien",
+      "georgia",
+      "georgian",
+      "georgisch"
+    ],
+    "GHA": [
+      "ghana",
+      "ghanaisch",
+      "ghanaian"
+    ],
+    "GNQ": [
+      "äquatorialguinea",
+      "aequatorialguinea",
+      "equatorial guinea"
+    ],
+    "HRV": [
+      "kroatien",
+      "croatia",
+      "croatian",
+      "kroatisch"
+    ],
+    "HTI": [
+      "haiti",
+      "haitianisch",
+      "haitian"
+    ],
+    "HUN": [
+      "ungarn",
+      "hungary",
+      "hungarian",
+      "ungarisch",
+      "magyar"
+    ],
+    "IDN": [
+      "indonesien",
+      "indonesia",
+      "indonesian",
+      "indonesisch"
+    ],
+    "IND": [
+      "indien",
+      "india",
+      "indian",
+      "indisch"
+    ],
+    "IRN": [
+      "iran",
+      "iranisch",
+      "iranian"
+    ],
+    "JAM": [
+      "jamaika",
+      "jamaica",
+      "jamaican"
+    ],
+    "KOR": [
+      "südkorea",
+      "suedkorea",
+      "south korea",
+      "republik korea"
+    ],
+    "LBY": [
+      "libyen",
+      "libya",
+      "libysch",
+      "libyan"
+    ],
+    "LTU": [
+      "litauen",
+      "lithuania",
+      "lithuanian",
+      "litauisch"
+    ],
+    "LVA": [
+      "lettland",
+      "latvia",
+      "latvian",
+      "lettisch"
+    ],
+    "MDA": [
+      "moldau",
+      "moldova",
+      "moldawien",
+      "moldovan"
+    ],
+    "MEX": [
+      "mexiko",
+      "mexico",
+      "mexican",
+      "mexikanisch"
+    ],
+    "MKD": [
+      "nordmazedonien",
+      "north macedonia",
+      "mazedonien",
+      "macedonia",
+      "nordmazedonisch",
+      "macedonian"
+    ],
+    "MMR": [
+      "myanmar",
+      "burma",
+      "birma",
+      "myanmarisch"
+    ],
+    "MNE": [
+      "montenegro",
+      "montenegrinisch",
+      "montenegrin"
+    ],
+    "MUS": [
+      "mauritius",
+      "mauritisch"
+    ],
+    "NER": [
+      "niger",
+      "nigrisch",
+      "nigerien"
+    ],
+    "NIC": [
+      "nicaragua",
+      "nicaraguanisch",
+      "nicaraguan"
+    ],
+    "PAK": [
+      "pakistan",
+      "pakistanisch",
+      "pakistani"
+    ],
+    "PAN": [
+      "panama",
+      "panamaisch"
+    ],
+    "PHL": [
+      "philippinen",
+      "philippines",
+      "filipino",
+      "philippinisch"
+    ],
+    "POL": [
+      "polen",
+      "poland",
+      "polish",
+      "polnisch"
+    ],
+    "PRK": [
+      "nordkorea",
+      "north korea",
+      "dprk",
+      "demokratische volksrepublik korea"
+    ],
+    "ROU": [
+      "rumänien",
+      "rumaenien",
+      "romania",
+      "romanian",
+      "rumänisch",
+      "rumaenisch"
+    ],
+    "RUS": [
+      "russland",
+      "russia",
+      "russian",
+      "russisch",
+      "russische föderation"
+    ],
+    "SDN": [
+      "sudan",
+      "sudanesisch",
+      "sudanese"
+    ],
+    "SOM": [
+      "somalia",
+      "somalisch",
+      "somali"
+    ],
+    "SRB": [
+      "serbien",
+      "serbia",
+      "serbian",
+      "serbisch"
+    ],
+    "SSD": [
+      "südsudan",
+      "suedsudan",
+      "south sudan"
+    ],
+    "SVK": [
+      "slowakei",
+      "slovakia",
+      "slovak",
+      "slowakisch",
+      "slowakische republik"
+    ],
+    "SVN": [
+      "slowenien",
+      "slovenia",
+      "slovenian",
+      "slowenisch"
+    ],
+    "SYR": [
+      "syrien",
+      "syria",
+      "syrian",
+      "syrisch"
+    ],
+    "TCD": [
+      "tschad",
+      "chad",
+      "tschadisch"
+    ],
+    "TJK": [
+      "tadschikistan",
+      "tajikistan",
+      "tajik"
+    ],
+    "TKM": [
+      "turkmenistan",
+      "turkmenistanisch",
+      "turkmen"
+    ],
+    "TTO": [
+      "trinidad und tobago",
+      "trinidad and tobago",
+      "trinidad"
+    ],
+    "TUN": [
+      "tunesien",
+      "tunisia",
+      "tunisian",
+      "tunesisch"
+    ],
+    "TUR": [
+      "türkei",
+      "tuerkei",
+      "turkey",
+      "türkisch",
+      "turkish",
+      "tuerkisch",
+      "türkiye",
+      "tuerkiye"
+    ],
+    "TWN": [
+      "taiwan",
+      "republik china",
+      "republic of china"
+    ],
+    "UKR": [
+      "ukraine",
+      "ukrainisch",
+      "ukrainian"
+    ],
+    "URY": [
+      "uruguay",
+      "uruguayisch",
+      "uruguayan"
+    ],
+    "VEN": [
+      "venezuela",
+      "venezolanisch",
+      "venezuelan"
+    ],
+    "YEM": [
+      "jemen",
+      "yemen",
+      "yemeni",
+      "jemenitisch"
+    ],
+    "ZAF": [
+      "südafrika",
+      "suedafrika",
+      "south africa",
+      "south-african",
+      "südafrikanisch",
+      "suedafrikanisch"
+    ]
+  },
+  "country_display_names": {
+    "AFG": "Afghanistan",
+    "ALB": "Albania",
+    "ARG": "Argentina",
+    "ARM": "Armenia",
+    "BGD": "Bangladesh",
+    "BGR": "Bulgaria",
+    "BLR": "Belarus",
+    "BRA": "Brazil",
+    "BWA": "Botswana",
+    "CHL": "Chile",
+    "CHN": "China",
+    "COD": "Congo, DR",
+    "CRI": "Costa Rica",
+    "CUB": "Cuba",
+    "CZE": "Czechia",
+    "EGY": "Egypt",
+    "ERI": "Eritrea",
+    "EST": "Estonia",
+    "GEO": "Georgia",
+    "GHA": "Ghana",
+    "GNQ": "Equatorial Guinea",
+    "HRV": "Croatia",
+    "HTI": "Haiti",
+    "HUN": "Hungary",
+    "IDN": "Indonesia",
+    "IND": "India",
+    "IRN": "Iran",
+    "JAM": "Jamaica",
+    "KOR": "South Korea",
+    "LBY": "Libya",
+    "LTU": "Lithuania",
+    "LVA": "Latvia",
+    "MDA": "Moldova",
+    "MEX": "Mexico",
+    "MKD": "North Macedonia",
+    "MMR": "Myanmar",
+    "MNE": "Montenegro",
+    "MUS": "Mauritius",
+    "NER": "Niger",
+    "NIC": "Nicaragua",
+    "PAK": "Pakistan",
+    "PAN": "Panama",
+    "PHL": "Philippines",
+    "POL": "Poland",
+    "PRK": "North Korea",
+    "ROU": "Romania",
+    "RUS": "Russia",
+    "SDN": "Sudan",
+    "SOM": "Somalia",
+    "SRB": "Serbia",
+    "SSD": "South Sudan",
+    "SVK": "Slovakia",
+    "SVN": "Slovenia",
+    "SYR": "Syria",
+    "TCD": "Chad",
+    "TJK": "Tajikistan",
+    "TKM": "Turkmenistan",
+    "TTO": "Trinidad and Tobago",
+    "TUN": "Tunisia",
+    "TUR": "Türkiye",
+    "TWN": "Taiwan",
+    "UKR": "Ukraine",
+    "URY": "Uruguay",
+    "VEN": "Venezuela",
+    "YEM": "Yemen",
+    "ZAF": "South Africa"
+  },
+  "scores": {
+    "AFG": {
+      "status_index": 1.94,
+      "political": 1.82,
+      "economic": 2.07,
+      "governance": 2.14,
+      "rank": 132,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "ALB": {
+      "status_index": 7.4,
+      "political": 7.7,
+      "economic": 7.11,
+      "governance": 6.71,
+      "rank": 18,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Entwickelte Marktwirtschaft",
+      "economic_status_bti": "Advanced",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "ARG": {
+      "status_index": 6.6,
+      "political": 7.35,
+      "economic": 5.86,
+      "governance": 4.97,
+      "rank": 30,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Moderat",
+      "governance_status_bti": "Moderate"
+    },
+    "ARM": {
+      "status_index": 6.84,
+      "political": 6.9,
+      "economic": 6.79,
+      "governance": 5.1,
+      "rank": 26,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Moderat",
+      "governance_status_bti": "Moderate"
+    },
+    "BGD": {
+      "status_index": 4.75,
+      "political": 4.72,
+      "economic": 4.79,
+      "governance": 4.79,
+      "rank": 80,
+      "political_status": "Moderate Autokratie",
+      "political_status_bti": "Moderate autocracies",
+      "economic_status": "Marktwirtschaft mit schweren Funktionsdefiziten",
+      "economic_status_bti": "Very limited",
+      "governance_status": "Moderat",
+      "governance_status_bti": "Moderate"
+    },
+    "BGR": {
+      "status_index": 7.2,
+      "political": 6.9,
+      "economic": 7.5,
+      "governance": 5.72,
+      "rank": 22,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Entwickelte Marktwirtschaft",
+      "economic_status_bti": "Advanced",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "BLR": {
+      "status_index": 4.31,
+      "political": 3.45,
+      "economic": 5.18,
+      "governance": 2.36,
+      "rank": 95,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "BRA": {
+      "status_index": 7.23,
+      "political": 7.5,
+      "economic": 6.96,
+      "governance": 5.69,
+      "rank": 21,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "BWA": {
+      "status_index": 7.69,
+      "political": 8.45,
+      "economic": 6.93,
+      "governance": 6.84,
+      "rank": 14,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "CHL": {
+      "status_index": 8.84,
+      "political": 9.25,
+      "economic": 8.43,
+      "governance": 7.07,
+      "rank": 8,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Weit entwickelte Marktwirtschaft",
+      "economic_status_bti": "Highly advanced",
+      "governance_status": "Sehr gut",
+      "governance_status_bti": "Very good"
+    },
+    "CHN": {
+      "status_index": 4.66,
+      "political": 3.18,
+      "economic": 6.14,
+      "governance": 4.93,
+      "rank": 83,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Moderat",
+      "governance_status_bti": "Moderate"
+    },
+    "COD": {
+      "status_index": 3.32,
+      "political": 3.57,
+      "economic": 3.07,
+      "governance": 2.65,
+      "rank": 119,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Marktwirtschaft mit schweren Funktionsdefiziten",
+      "economic_status_bti": "Very limited",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "CRI": {
+      "status_index": 8.49,
+      "political": 8.9,
+      "economic": 8.07,
+      "governance": 6.7,
+      "rank": 11,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Weit entwickelte Marktwirtschaft",
+      "economic_status_bti": "Highly advanced",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "CUB": {
+      "status_index": 2.97,
+      "political": 3.05,
+      "economic": 2.89,
+      "governance": 3.8,
+      "rank": 122,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Schwach",
+      "governance_status_bti": "Weak"
+    },
+    "CZE": {
+      "status_index": 9.22,
+      "political": 9.15,
+      "economic": 9.29,
+      "governance": 7.04,
+      "rank": 4,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Weit entwickelte Marktwirtschaft",
+      "economic_status_bti": "Highly advanced",
+      "governance_status": "Sehr gut",
+      "governance_status_bti": "Very good"
+    },
+    "EGY": {
+      "status_index": 3.87,
+      "political": 3.42,
+      "economic": 4.32,
+      "governance": 3.74,
+      "rank": 106,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Marktwirtschaft mit schweren Funktionsdefiziten",
+      "economic_status_bti": "Very limited",
+      "governance_status": "Schwach",
+      "governance_status_bti": "Weak"
+    },
+    "ERI": {
+      "status_index": 1.54,
+      "political": 2.02,
+      "economic": 1.07,
+      "governance": 1.05,
+      "rank": 135,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "EST": {
+      "status_index": 9.48,
+      "political": 9.6,
+      "economic": 9.36,
+      "governance": 7.22,
+      "rank": 3,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Weit entwickelte Marktwirtschaft",
+      "economic_status_bti": "Highly advanced",
+      "governance_status": "Sehr gut",
+      "governance_status_bti": "Very good"
+    },
+    "GEO": {
+      "status_index": 5.17,
+      "political": 4.37,
+      "economic": 5.96,
+      "governance": 4.21,
+      "rank": 65,
+      "political_status": "Moderate Autokratie",
+      "political_status_bti": "Moderate autocracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Schwach",
+      "governance_status_bti": "Weak"
+    },
+    "GHA": {
+      "status_index": 6.63,
+      "political": 7.75,
+      "economic": 5.5,
+      "governance": 6.41,
+      "rank": 29,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "GNQ": {
+      "status_index": 3.08,
+      "political": 2.98,
+      "economic": 3.18,
+      "governance": 3.5,
+      "rank": 121,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Marktwirtschaft mit schweren Funktionsdefiziten",
+      "economic_status_bti": "Very limited",
+      "governance_status": "Schwach",
+      "governance_status_bti": "Weak"
+    },
+    "HRV": {
+      "status_index": 8.58,
+      "political": 8.55,
+      "economic": 8.61,
+      "governance": 6.45,
+      "rank": 9,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Weit entwickelte Marktwirtschaft",
+      "economic_status_bti": "Highly advanced",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "HTI": {
+      "status_index": 2.5,
+      "political": 2.38,
+      "economic": 2.61,
+      "governance": 2.62,
+      "rank": 127,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "HUN": {
+      "status_index": 6.48,
+      "political": 6.2,
+      "economic": 6.75,
+      "governance": 3.45,
+      "rank": 33,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Schwach",
+      "governance_status_bti": "Weak"
+    },
+    "IDN": {
+      "status_index": 5.98,
+      "political": 5.95,
+      "economic": 6.0,
+      "governance": 5.27,
+      "rank": 47,
+      "political_status": "Hochdefekte Demokratie",
+      "political_status_bti": "Highly defective democracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Moderat",
+      "governance_status_bti": "Moderate"
+    },
+    "IND": {
+      "status_index": 5.98,
+      "political": 6.1,
+      "economic": 5.86,
+      "governance": 5.18,
+      "rank": 47,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Moderat",
+      "governance_status_bti": "Moderate"
+    },
+    "IRN": {
+      "status_index": 2.53,
+      "political": 2.78,
+      "economic": 2.29,
+      "governance": 1.79,
+      "rank": 126,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "JAM": {
+      "status_index": 7.09,
+      "political": 8.0,
+      "economic": 6.18,
+      "governance": 5.53,
+      "rank": 24,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Moderat",
+      "governance_status_bti": "Moderate"
+    },
+    "KOR": {
+      "status_index": 8.29,
+      "political": 8.0,
+      "economic": 8.57,
+      "governance": 6.44,
+      "rank": 12,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Weit entwickelte Marktwirtschaft",
+      "economic_status_bti": "Highly advanced",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "LBY": {
+      "status_index": 2.31,
+      "political": 2.12,
+      "economic": 2.5,
+      "governance": 2.4,
+      "rank": 128,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "LTU": {
+      "status_index": 9.22,
+      "political": 9.4,
+      "economic": 9.04,
+      "governance": 7.38,
+      "rank": 4,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Weit entwickelte Marktwirtschaft",
+      "economic_status_bti": "Highly advanced",
+      "governance_status": "Sehr gut",
+      "governance_status_bti": "Very good"
+    },
+    "LVA": {
+      "status_index": 8.97,
+      "political": 9.15,
+      "economic": 8.79,
+      "governance": 7.22,
+      "rank": 7,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Weit entwickelte Marktwirtschaft",
+      "economic_status_bti": "Highly advanced",
+      "governance_status": "Sehr gut",
+      "governance_status_bti": "Very good"
+    },
+    "MDA": {
+      "status_index": 6.37,
+      "political": 6.7,
+      "economic": 6.04,
+      "governance": 5.91,
+      "rank": 38,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "MEX": {
+      "status_index": 5.82,
+      "political": 5.6,
+      "economic": 6.04,
+      "governance": 4.61,
+      "rank": 53,
+      "political_status": "Hochdefekte Demokratie",
+      "political_status_bti": "Highly defective democracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Moderat",
+      "governance_status_bti": "Moderate"
+    },
+    "MKD": {
+      "status_index": 7.41,
+      "political": 7.65,
+      "economic": 7.18,
+      "governance": 6.07,
+      "rank": 17,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Entwickelte Marktwirtschaft",
+      "economic_status_bti": "Advanced",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "MMR": {
+      "status_index": 1.6,
+      "political": 1.55,
+      "economic": 1.64,
+      "governance": 1.3,
+      "rank": 134,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "MNE": {
+      "status_index": 7.45,
+      "political": 7.4,
+      "economic": 7.5,
+      "governance": 5.9,
+      "rank": 16,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Entwickelte Marktwirtschaft",
+      "economic_status_bti": "Advanced",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "MUS": {
+      "status_index": 7.55,
+      "political": 7.85,
+      "economic": 7.25,
+      "governance": 6.13,
+      "rank": 15,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Entwickelte Marktwirtschaft",
+      "economic_status_bti": "Advanced",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "NER": {
+      "status_index": 3.37,
+      "political": 2.78,
+      "economic": 3.96,
+      "governance": 3.69,
+      "rank": 118,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Marktwirtschaft mit schweren Funktionsdefiziten",
+      "economic_status_bti": "Very limited",
+      "governance_status": "Schwach",
+      "governance_status_bti": "Weak"
+    },
+    "NIC": {
+      "status_index": 3.8,
+      "political": 2.92,
+      "economic": 4.68,
+      "governance": 2.61,
+      "rank": 107,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Marktwirtschaft mit schweren Funktionsdefiziten",
+      "economic_status_bti": "Very limited",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "PAK": {
+      "status_index": 3.52,
+      "political": 3.25,
+      "economic": 3.79,
+      "governance": 3.35,
+      "rank": 111,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Marktwirtschaft mit schweren Funktionsdefiziten",
+      "economic_status_bti": "Very limited",
+      "governance_status": "Schwach",
+      "governance_status_bti": "Weak"
+    },
+    "PAN": {
+      "status_index": 6.37,
+      "political": 6.35,
+      "economic": 6.39,
+      "governance": 5.36,
+      "rank": 38,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Moderat",
+      "governance_status_bti": "Moderate"
+    },
+    "PHL": {
+      "status_index": 5.55,
+      "political": 5.25,
+      "economic": 5.86,
+      "governance": 4.34,
+      "rank": 58,
+      "political_status": "Hochdefekte Demokratie",
+      "political_status_bti": "Highly defective democracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Moderat",
+      "governance_status_bti": "Moderate"
+    },
+    "POL": {
+      "status_index": 8.58,
+      "political": 8.4,
+      "economic": 8.75,
+      "governance": 6.76,
+      "rank": 9,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Weit entwickelte Marktwirtschaft",
+      "economic_status_bti": "Highly advanced",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "PRK": {
+      "status_index": 2.1,
+      "political": 2.6,
+      "economic": 1.61,
+      "governance": 1.14,
+      "rank": 131,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "ROU": {
+      "status_index": 7.32,
+      "political": 7.1,
+      "economic": 7.54,
+      "governance": 4.81,
+      "rank": 20,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Entwickelte Marktwirtschaft",
+      "economic_status_bti": "Advanced",
+      "governance_status": "Moderat",
+      "governance_status_bti": "Moderate"
+    },
+    "RUS": {
+      "status_index": 4.04,
+      "political": 3.22,
+      "economic": 4.86,
+      "governance": 2.41,
+      "rank": 102,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Marktwirtschaft mit schweren Funktionsdefiziten",
+      "economic_status_bti": "Very limited",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "SDN": {
+      "status_index": 1.46,
+      "political": 1.63,
+      "economic": 1.29,
+      "governance": 1.06,
+      "rank": 136,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "SOM": {
+      "status_index": 1.8,
+      "political": 1.72,
+      "economic": 1.89,
+      "governance": 2.48,
+      "rank": 133,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "SRB": {
+      "status_index": 5.98,
+      "political": 5.18,
+      "economic": 6.79,
+      "governance": 3.96,
+      "rank": 47,
+      "political_status": "Moderate Autokratie",
+      "political_status_bti": "Moderate autocracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Schwach",
+      "governance_status_bti": "Weak"
+    },
+    "SSD": {
+      "status_index": 2.19,
+      "political": 2.52,
+      "economic": 1.86,
+      "governance": 2.01,
+      "rank": 130,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "SVK": {
+      "status_index": 8.28,
+      "political": 8.2,
+      "economic": 8.36,
+      "governance": 5.37,
+      "rank": 13,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Weit entwickelte Marktwirtschaft",
+      "economic_status_bti": "Highly advanced",
+      "governance_status": "Moderat",
+      "governance_status_bti": "Moderate"
+    },
+    "SVN": {
+      "status_index": 9.52,
+      "political": 9.25,
+      "economic": 9.79,
+      "governance": 6.69,
+      "rank": 2,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Weit entwickelte Marktwirtschaft",
+      "economic_status_bti": "Highly advanced",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "SYR": {
+      "status_index": 2.22,
+      "political": 2.87,
+      "economic": 1.57,
+      "governance": 3.42,
+      "rank": 129,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Schwach",
+      "governance_status_bti": "Weak"
+    },
+    "TCD": {
+      "status_index": 2.77,
+      "political": 2.47,
+      "economic": 3.07,
+      "governance": 2.22,
+      "rank": 124,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Marktwirtschaft mit schweren Funktionsdefiziten",
+      "economic_status_bti": "Very limited",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "TJK": {
+      "status_index": 3.22,
+      "political": 2.87,
+      "economic": 3.57,
+      "governance": 3.09,
+      "rank": 120,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Marktwirtschaft mit schweren Funktionsdefiziten",
+      "economic_status_bti": "Very limited",
+      "governance_status": "Schwach",
+      "governance_status_bti": "Weak"
+    },
+    "TKM": {
+      "status_index": 2.69,
+      "political": 2.7,
+      "economic": 2.68,
+      "governance": 2.18,
+      "rank": 125,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "TTO": {
+      "status_index": 7.4,
+      "political": 8.2,
+      "economic": 6.61,
+      "governance": 5.99,
+      "rank": 18,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "TUN": {
+      "status_index": 4.68,
+      "political": 4.33,
+      "economic": 5.04,
+      "governance": 4.05,
+      "rank": 82,
+      "political_status": "Moderate Autokratie",
+      "political_status_bti": "Moderate autocracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Schwach",
+      "governance_status_bti": "Weak"
+    },
+    "TUR": {
+      "status_index": 4.91,
+      "political": 4.18,
+      "economic": 5.64,
+      "governance": 3.4,
+      "rank": 72,
+      "political_status": "Moderate Autokratie",
+      "political_status_bti": "Moderate autocracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Schwach",
+      "governance_status_bti": "Weak"
+    },
+    "TWN": {
+      "status_index": 9.55,
+      "political": 9.6,
+      "economic": 9.5,
+      "governance": 7.49,
+      "rank": 1,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Weit entwickelte Marktwirtschaft",
+      "economic_status_bti": "Highly advanced",
+      "governance_status": "Sehr gut",
+      "governance_status_bti": "Very good"
+    },
+    "UKR": {
+      "status_index": 6.39,
+      "political": 6.85,
+      "economic": 5.93,
+      "governance": 6.58,
+      "rank": 37,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    },
+    "URY": {
+      "status_index": 9.13,
+      "political": 9.9,
+      "economic": 8.36,
+      "governance": 7.46,
+      "rank": 6,
+      "political_status": "Demokratie in Konsolidierung",
+      "political_status_bti": "Democracies in consolidation",
+      "economic_status": "Weit entwickelte Marktwirtschaft",
+      "economic_status_bti": "Highly advanced",
+      "governance_status": "Sehr gut",
+      "governance_status_bti": "Very good"
+    },
+    "VEN": {
+      "status_index": 2.89,
+      "political": 3.07,
+      "economic": 2.71,
+      "governance": 1.57,
+      "rank": 123,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "YEM": {
+      "status_index": 1.38,
+      "political": 1.5,
+      "economic": 1.25,
+      "governance": 1.45,
+      "rank": 137,
+      "political_status": "Harte Autokratie",
+      "political_status_bti": "Hard-line autocracies",
+      "economic_status": "Rudimentäre Marktwirtschaft",
+      "economic_status_bti": "Rudimentary",
+      "governance_status": "Versagend",
+      "governance_status_bti": "Failed"
+    },
+    "ZAF": {
+      "status_index": 6.41,
+      "political": 7.1,
+      "economic": 5.71,
+      "governance": 5.6,
+      "rank": 35,
+      "political_status": "Defekte Demokratie",
+      "political_status_bti": "Defective democracies",
+      "economic_status": "Marktwirtschaft mit Funktionsdefiziten",
+      "economic_status_bti": "Limited",
+      "governance_status": "Gut",
+      "governance_status_bti": "Good"
+    }
+  }
+}
