@@ -19,17 +19,27 @@ Strategie: STATIC-FIRST-PRE-CACHE
 =================================
 BTI publiziert keine REST-API. Daten kommen als Excel/CSV-Download aus
 https://bti-project.org/en/downloads (CC-BY 4.0). Wir halten in
-``data/bti_2024.json`` einen kuratierten Subset von ~54 Ländern:
+``data/bti.json`` einen kuratierten Auszug von 66 Ländern:
 
-  - Top-20-BTI-Status-Index (Taiwan, Estland, Tschechien, Uruguay, ...)
-  - Bottom-20-BTI-Status-Index (Eritrea, Nordkorea, Afghanistan, Myanmar, ...)
+  - die Top-20 des Status-Index VOLLSTÄNDIG (Taiwan, Estland, Tschechien,
+    Uruguay, Slowakei, Montenegro, Nordmazedonien, Albanien, ...)
+  - die Bottom-20 des Status-Index VOLLSTÄNDIG (Jemen, Nordkorea, Syrien,
+    Eritrea, Südsudan, Libyen, Haiti, Tschad, ...)
   - AT/DE-relevante Vergleichsländer (Russland, China, Türkei, Ungarn, Polen,
     Ukraine — werden im Faktencheck-Kontext häufig genannt)
 
+"VOLLSTÄNDIG" ist hier eine Zusage, die bis zum 20.10.2026 nicht galt: Der
+alte Stand nannte sich "Top-20 + Bottom-20", fuhr aber nur 28 der 40 Plätze
+— es fehlten u. a. Slowakei (Rang 13) und DR Kongo (Rang 119). Die Zusage
+wird jetzt in tests/test_bti_amtliche_werte.py geprüft.
+
 Refresh-Workflow (manuell, alle 2 Jahre nach BTI-Release):
-  1. Excel-Download von bti-project.org/en/downloads
-  2. Filter auf Top-20 + Bottom-20 + AT/DE-Comparator-Liste
-  3. JSON regenerieren, mtime ändert → Hot-Reload greift automatisch
+  1. Excel-Download BTI_<jahr>_Scores.xlsx von bti-project.org/en/downloads
+  2. ``python3 tools/bti_aus_excel.py --xlsx <datei>`` — das Werkzeug liest
+     die amtlichen Spalten, vergleicht gegen data/bti.json und nennt jede
+     Abweichung. Exit 1 heißt: es gibt welche.
+  3. JSON nachziehen, mtime ändert → Hot-Reload greift automatisch
+  4. Werkzeug erneut laufen lassen, bis es 0 Abweichungen meldet
 
 Trigger:
   - Claim enthält BTI-Keyword ("BTI", "Bertelsmann Transformation Index",
@@ -42,7 +52,8 @@ Limitations:
   - AT/DE/CH/USA werden vom BTI NICHT erfasst (sind etablierte Demokratien,
     nicht in Transformation). Bei Claims über diese Länder liefern wir nur
     Vergleichs-Kontext für genannte Drittstaaten.
-  - BTI-Werte alle 2 Jahre (BTI 2024 = Erhebungszeitraum 2021-2023).
+  - BTI-Werte alle 2 Jahre (BTI 2026 = Erhebungszeitraum
+    01.02.2023-31.01.2025, siehe Feld `erhebungszeitraum`).
   - Werte sind LLM-Approximationen — AUDIT-FLAG im JSON. Refresh aus
     offiziellem Excel nötig vor produktivem Einsatz.
 
@@ -57,12 +68,12 @@ Lizenz: CC-BY 4.0 (Bertelsmann Stiftung, BTI Datasets)
 
 Result-Schema:
   {
-    "indicator_name": "BTI 2024 — Russia: Status-Index 3.35/10 (Rang 117/137, Harte Autokratie)",
+    "indicator_name": "BTI 2026 — Russland: Status-Index 4.04/10 (Rang 102/137, Harte Autokratie)",
     "indicator": "bti_status_index",
     "country": "RU",
     "year": "2024",
     "topic": "bti_transformation_index",
-    "display_value": "RU 3.35/10 (Rang 117/137) — vs. AT n/a (BTI deckt nur Transformationsländer), DE n/a, HU 6.94, TR 4.70, CN 4.15, PRK 1.50 (BTI 2024)",
+    "display_value": "RU 4.04/10 (Rang 102/137) — vs. AT n/a (BTI deckt nur Transformationsländer), DE n/a, HU 6.48, TR 4.91, CN 4.66, PRK 2.10 (BTI 2026)",
     "description": "BTI misst 137 Transformationsländer auf 1-10-Skala in 3 Dimensionen ...",
     "url": "https://bti-project.org/en/reports/country-report/rus",
     "secondary_url": "https://bti-project.org/en/downloads",
@@ -110,7 +121,7 @@ logger = logging.getLogger("evidora")
 STATIC_JSON_PATH = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
     "data",
-    "bti_2024.json",
+    "bti.json",
 )
 
 # 24-Hour-Cache-TTL (BTI-JSON ändert sich nur bei Refresh alle 2 Jahre).
@@ -168,23 +179,27 @@ _ISO3_TO_ISO2 = {
     # AT/DE/CH werden vom BTI nicht erfasst, aber Mapping für Erkennung
     # in Claims:
     "AUT": "AT", "DEU": "DE", "CHE": "CH", "USA": "US",
+    # Ergaenzt am 20.10.2026 mit den zwoelf Laendern, die den
+    # Top-20/Bottom-20-Auszug vervollstaendigen. Ohne sie griff der
+    # Fallback iso3[:2] und erzeugte SECHS Codes ANDERER Staaten:
+    # COD->CO (Kolumbien), SVK->SV (El Salvador), LBY->LB (Libanon),
+    # MNE->MN (Mongolei), GNQ->GN (Guinea), TCD->TC.
+    "ALB": "AL",
+    "COD": "CD",
+    "GNQ": "GQ",
+    "HTI": "HT",
+    "LBY": "LY",
+    "MKD": "MK",
+    "MNE": "ME",
+    "NER": "NE",
+    "SSD": "SS",
+    "SVK": "SK",
+    "TCD": "TD",
+    "TTO": "TT",
 }
 
 # Country-Slug für offizielle BTI-Country-Report-URL.
 # Format: https://bti-project.org/en/reports/country-report/{slug}
-_BTI_COUNTRY_SLUGS = {
-    "TWN": "twn", "EST": "est", "CZE": "cze", "URY": "ury", "LTU": "ltu",
-    "SVN": "svn", "CHL": "chl", "KOR": "kor", "LVA": "lva", "POL": "pol",
-    "CRI": "cri", "MUS": "mus", "BWA": "bwa", "BGR": "bgr", "HRV": "hrv",
-    "ROU": "rou", "PAN": "pan", "JAM": "jam", "ARG": "arg", "BRA": "bra",
-    "GHA": "gha", "IND": "ind", "ZAF": "zaf", "MEX": "mex", "PHL": "phl",
-    "IDN": "idn", "UKR": "ukr", "GEO": "geo", "MDA": "mda", "ARM": "arm",
-    "HUN": "hun", "SRB": "srb", "TUR": "tur", "TUN": "tun", "PAK": "pak",
-    "BGD": "bgd", "EGY": "egy", "BLR": "blr", "RUS": "rus", "CUB": "cub",
-    "VEN": "ven", "NIC": "nic", "IRN": "irn", "MMR": "mmr", "AFG": "afg",
-    "PRK": "prk", "ERI": "eri", "SOM": "som", "SYR": "syr", "YEM": "yem",
-    "SDN": "sdn", "TKM": "tkm", "TJK": "tjk", "CHN": "chn",
-}
 
 
 def _load_data() -> dict | None:
@@ -257,8 +272,8 @@ async def fetch_bti(client=None) -> dict:
 
 
 def _format_country_status(iso3: str, scores: dict) -> str:
-    """Hilfs-Format: 'RU 3.35/10' oder 'AT n/a'."""
-    iso2 = _ISO3_TO_ISO2.get(iso3, iso3[:2])
+    """Hilfs-Format: 'RU 4.04/10' oder 'AT n/a'."""
+    iso2 = _ISO3_TO_ISO2.get(iso3, iso3)
     rec = scores.get(iso3) or {}
     val = rec.get("status_index")
     if val is None:
@@ -341,14 +356,17 @@ def _build_display_value(
     primary_rec: dict,
     display_countries: list[str],
     scores: dict,
+    laenderzahl: object = "?",
+    edition: str = "BTI",
 ) -> str:
-    """Build 'RU 3.35/10 (Rang 117/137) — vs. AT n/a (BTI deckt nur
-    Transformationsländer), HU 6.94, TR 4.70, CN 4.15 (BTI 2024)'.
+    """Build 'RU 4.04/10 (Rang 102/137) — vs. AT n/a (BTI deckt nur
+    Transformationsländer), HU 6.48, TR 4.91, CN 4.66 (BTI 2026)'.
     """
-    iso2 = _ISO3_TO_ISO2.get(primary_iso3, primary_iso3[:2])
+    iso2 = _ISO3_TO_ISO2.get(primary_iso3, primary_iso3)
     val = primary_rec.get("status_index", "?")
     rank = primary_rec.get("rank", "?")
-    head = f"{iso2} {val:.2f}/10 (Rang {rank}/137)" if isinstance(val, (int, float)) else f"{iso2} n/a"
+    head = (f"{iso2} {val:.2f}/10 (Rang {rank}/{laenderzahl})"
+            if isinstance(val, (int, float)) else f"{iso2} n/a")
 
     parts: list[str] = []
     for iso3 in display_countries:
@@ -359,13 +377,25 @@ def _build_display_value(
     else:
         ref = ""
 
-    return f"{head}{ref} (BTI 2024)"
+    return f"{head}{ref} ({edition})"
 
 
 def _country_url(iso3: str) -> str:
-    """Offizielle BTI-Country-Report-URL."""
-    slug = _BTI_COUNTRY_SLUGS.get(iso3) or iso3.lower()
-    return f"https://bti-project.org/en/reports/country-report/{slug}"
+    """Offizielle BTI-Country-Report-URL.
+
+    Der ISO3-Code steht GROSS in der URL. Bis zum 20.10.2026 baute diese
+    Funktion ihn klein ein — und bti-project.org antwortet darauf mit
+    HTTP 500. Jedes BTI-Ergebnis trug damit einen toten Beleg-Link, und
+    niemand hat es gemerkt, weil die URL plausibel aussah.
+
+    Die frueher hier benutzte Tabelle `_BTI_COUNTRY_SLUGS` ist entfallen:
+    Sie hatte 54 Eintraege, und jeder einzelne war nur die
+    Kleinschreibung des ISO3-Codes — sie war die Ursache, nicht die
+    Loesung. Geprueft am 20.10.2026 fuer alle 66 Laender: HTTP 200, und
+    der Seitentitel nennt Land UND Ausgabe (#248: Erreichbarkeit und
+    Identitaet sind zwei Pruefungen).
+    """
+    return f"https://bti-project.org/en/reports/country-report/{iso3.upper()}"
 
 
 def _build_result_row(
@@ -376,7 +406,7 @@ def _build_result_row(
     data: dict,
 ) -> dict:
     """Baue einen einzelnen Result-Eintrag für ein Land."""
-    iso2 = _ISO3_TO_ISO2.get(iso3, iso3[:2])
+    iso2 = _ISO3_TO_ISO2.get(iso3, iso3)
     display_name = (data.get("country_display_names") or {}).get(iso3) or iso3
     val = rec.get("status_index")
     rank = rec.get("rank")
@@ -384,14 +414,24 @@ def _build_result_row(
     political = rec.get("political")
     economic = rec.get("economic")
     governance = rec.get("governance")
-    report_year = data.get("report_year", 2024)
+    # KEIN Default: Bis zum 20.10.2026 stand hier 2024, und der
+    # Wert ueberlebte den Refresh auf eine andere Ausgabe (#133).
+    # Fehlt das Feld, nennt die Ausgabe lieber kein Jahr.
+    edition = data.get("edition_label") or "BTI"
+    # Aus den Daten, nicht als Literal: Die Zahl stand an zwei
+    # Stellen im Quelltext und haette einen Zuschnitt der Quelle
+    # stumm ueberlebt.
+    laenderzahl = data.get("laenderzahl") or "?"
+    report_year = data.get("report_year") or ""
 
-    display_value = _build_display_value(iso3, rec, display_countries, scores)
+    display_value = _build_display_value(
+        iso3, rec, display_countries, scores, laenderzahl, edition)
 
     val_str = f"{val:.2f}" if isinstance(val, (int, float)) else "n/a"
     indicator_name = (
-        f"BTI {report_year} — {display_name}: "
-        f"Status-Index {val_str}/10 (Rang {rank}/137, {political_status})"
+        f"{edition} — {display_name}: "
+        f"Status-Index {val_str}/10 (Rang {rank}/{laenderzahl}, "
+        f"{political_status})"
     )
 
     methodology_short = (
@@ -408,7 +448,12 @@ def _build_result_row(
             f"wirtschaftlich {economic:.2f}, governance {governance:.2f}."
         )
 
-    description = (methodology_short + dim_summary)[:300]
+    # Reihenfolge ist hier die ganze Arbeit: Bis zum 20.10.2026 stand
+    # (methodology_short + dim_summary)[:300] hier — und weil die
+    # methodology_note 786 Zeichen hatte, erreichten 0 von 76 Zeichen
+    # der Dimensionswerte die Ausgabe. Berechnet und still verworfen.
+    # Das Landesspezifische steht jetzt vorn, die Methodik fuellt auf.
+    description = (dim_summary.strip() + " " + methodology_short)[:300]
 
     return {
         "indicator_name": indicator_name[:200] + _SKALA_BTI,
