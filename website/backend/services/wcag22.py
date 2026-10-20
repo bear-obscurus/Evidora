@@ -425,25 +425,57 @@ def _build_overview_result(data: dict) -> dict:
     """Generischer Übersichts-Eintrag — wird ausgeliefert, wenn der Claim
     WCAG/Barrierefreiheit ganz allgemein anspricht."""
     key_facts = data.get("key_facts") or {}
-    total = key_facts.get("total_criteria", "?")
+    # Bis zum 20.10.2026 stand hier `key_facts.get("total_criteria", "?")`.
+    # PR #267 hatte das Feld in `gelistete_kriterien` und
+    # `aktive_kriterien` aufgeteilt, weil 87 und 86 zwei verschiedene
+    # Zahlen sind — diese Zeile blieb stehen. Der Service lieferte seither
+    # woertlich "? Success Criteria", und im QA50I-Lauf fuellte das Modell
+    # die Luecke mit einem erfundenen "62". Der Test aus #267 prueffte nur
+    # die DATEN-Seite der Umbenennung; tools/feldzugriffe_pruefen.py
+    # prueft jetzt beide.
+    gelistet = key_facts.get("gelistete_kriterien")
+    aktiv = key_facts.get("aktive_kriterien")
     new_in_22 = key_facts.get("new_in_2_2") or []
     obsolete = key_facts.get("obsoleted_in_2_2") or []
+    def _de_datum(iso: str) -> str:
+        """'2023-10-05' -> '05.10.2023'. Leer, wenn das Format nicht passt."""
+        teile = (iso or "").split("-")
+        if len(teile) != 3 or not all(x.isdigit() for x in teile):
+            return ""
+        return f"{teile[2]}.{teile[1]}.{teile[0]}"
 
+    # Beide Daten kommen aus den DATEN. Bis zum 20.10.2026 standen hier
+    # "05.10.2023" und "12.12.2024" als Literale — sie haetten jede
+    # kuenftige Fassung stumm ueberlebt (Marker-Drift, #74/#133).
+    veroeffentlicht = _de_datum(data.get("published") or "")
+    geaendert = _de_datum(data.get("updated") or "")
+
+    datum = ""
+    if veroeffentlicht:
+        datum = f" (W3C-Empfehlung vom {veroeffentlicht}"
+        datum += f", Erratum {geaendert})" if geaendert else ")"
+    # Beide Zahlen oder keine — eine allein laesst offen, welche gemeint
+    # ist, und genau diese Mehrdeutigkeit war der Anlass von #267.
+    if isinstance(aktiv, int) and isinstance(gelistet, int):
+        zahlen = (f"{aktiv} AKTIVE Success Criteria (gelistet sind "
+                  f"{gelistet}; SC {', '.join(obsolete) or '—'} ist in 2.2 "
+                  f"obsolet und gilt stets als bestanden)")
+    else:
+        zahlen = ("Anzahl der Success Criteria nicht verfuegbar — bitte "
+                  "nicht schaetzen")
     display = (
-        f"WCAG 2.2 (W3C-Empfehlung vom 05.10.2023, Erratum 12.12.2024): "
-        f"{total} Success Criteria über 4 Prinzipien "
+        f"WCAG 2.2{datum}: {zahlen} über 4 Prinzipien "
         f"(Wahrnehmbar, Bedienbar, Verständlich, Robust), je 3 "
         f"Konformitätsstufen (A, AA, AAA). 9 neue SCs gegenüber WCAG 2.1: "
-        f"{', '.join(new_in_22)}. SC {', '.join(obsolete) or '—'} ist in "
-        f"2.2 obsolet."
+        f"{', '.join(new_in_22)}."
     )
     return {
         "indicator_name": "WCAG 2.2 — Überblick",
         "indicator": "wcag22_overview",
         "country": "INT",
         "country_name": "International (W3C-Standard)",
-        "year": "2023",
-        "value": str(total),
+        "year": (data.get("updated") or data.get("published") or "")[:4],
+        "value": str(aktiv) if isinstance(aktiv, int) else "",
         "display_value": display,
         "description": (
             "Web Content Accessibility Guidelines 2.2 sind die aktuelle "

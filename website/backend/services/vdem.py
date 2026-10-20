@@ -438,8 +438,13 @@ async def search_vdem(analysis: dict) -> dict:
         desc_out = (
             f"{description} ({scale})" if scale else description
         )[:300]
-        if (ind.get("dataset_verified") is False
-                or ind.get("v14_verified") is False):
+        # `v14_verified` war der Feldname vor PR #27; dort wurden alle 11
+        # Indikatoren auf echte v16-Werte gehoben und das Feld durch
+        # `dataset_verified` ersetzt. Die zweite Haelfte dieser Bedingung
+        # war seither tot: Das Feld fehlt, `None is False` ist False. Sie
+        # ist entfernt, damit nicht eine Absicht im Code steht, die nichts
+        # tut (gefunden von tools/feldzugriffe_pruefen.py).
+        if ind.get("dataset_verified") is False:
             desc_out = (
                 f"{desc_out} ⚠ Hinweis: Dieser Indikator-Wert ist eine "
                 "LLM-Approximation und noch nicht gegen das offizielle "
