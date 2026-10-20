@@ -107,6 +107,7 @@ WIRING (NICHT in dieser Datei — vom Hauptprozess manuell):
 
 from __future__ import annotations
 
+import json
 import logging
 import os
 
@@ -189,6 +190,31 @@ _MIPEX_INDEX_SIGNAL_WORDS = norm_terme(
     "international", "im vergleich", "im internat",
     "studie", "report", "bericht",
 )
+
+def _laender_im_ausschnitt() -> int:
+    """Wie viele Laender der Snapshot fuehrt — aus den Daten, nicht fest.
+
+    Die alte Anzeige schrieb "/52" hartkodiert in den Text, obwohl der
+    Snapshot 22 Laender fuehrt und das Datenfeld ``rank_total_in_index``
+    gar nicht gelesen wurde. Eine Zahl im Satz, die niemand nachrechnet,
+    bleibt stehen, auch wenn sie nicht mehr stimmt.
+    """
+    with open(STATIC_JSON_PATH, encoding="utf-8") as fh:
+        n = int(json.load(fh).get("laender_im_ausschnitt") or 0)
+    if n <= 0:
+        # KEIN stilles 0. Die erste Fassung dieses Helfers hatte ein
+        # `except Exception: return 0` und verschluckte damit ein
+        # fehlendes `import json` — die Anzeige haette "Platz 19 von 0"
+        # gelautet, und niemand haette es bemerkt. Genau die Fehlerklasse,
+        # die PR #238 bis #242 aus diesem Code entfernt haben.
+        raise ValueError(
+            f"laender_im_ausschnitt fehlt oder ist 0 in {STATIC_JSON_PATH} — "
+            f"ohne diese Zahl ist die Platz-Angabe sinnlos")
+    return n
+
+
+_LAENDER_IM_AUSSCHNITT = _laender_im_ausschnitt()
+
 
 # Reference-Länder für display_value-Vergleich (DACH-Bias + EU-Spitze).
 _DISPLAY_REFERENCE_COUNTRIES = (
@@ -461,7 +487,7 @@ def _top_and_bottom(scores: dict, n: int = 1) -> list[str]:
     """
     by_rank: list[tuple[int, str]] = []
     for iso3, rec in scores.items():
-        rank = rec.get("rank")
+        rank = rec.get("rang_im_ausschnitt")
         if isinstance(rank, int):
             by_rank.append((rank, iso3))
     by_rank.sort()
@@ -533,11 +559,21 @@ def _build_display_value(
     """
     iso2 = _ISO3_TO_ISO2.get(primary_iso3, primary_iso3[:2])
     overall = primary_rec.get("overall", "?")
-    rank = primary_rec.get("rank", "?")
+    rang = primary_rec.get("rang_im_ausschnitt", "?")
 
     head = f"{iso2} {overall}/100 Gesamt"
-    if isinstance(rank, int):
-        head = f"{iso2} {overall}/100 Gesamt (Rang {rank}/52)"
+    if isinstance(rang, int):
+        # Platz im hier erfassten AUSSCHNITT, nicht im vollen Index.
+        #
+        # Bis zum 20.10.2026 stand hier "(Rang {rank}/52)" — die 52 war
+        # hartkodiert, und der Rang selbst war nicht belegbar: Australien
+        # fuehrte 65 Punkte auf Rang 12, Irland 64 auf Rang 11. Ein
+        # hoeherer Score kann keinen schlechteren Rang haben. Die
+        # Position unter allen 52 MIPEX-Laendern laesst sich mit 22
+        # erfassten Laendern ohnehin nicht bestimmen.
+        head = (f"{iso2} {overall}/100 Gesamt "
+                f"(Platz {rang} von {_LAENDER_IM_AUSSCHNITT} im erfassten "
+                f"Laender-Ausschnitt, nicht im vollen MIPEX-Index)")
 
     areas = _select_focus_areas(primary_rec, focus_area)
     area_parts: list[str] = []
