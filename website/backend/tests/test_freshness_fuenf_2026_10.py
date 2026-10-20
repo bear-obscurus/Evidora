@@ -207,30 +207,40 @@ def test_die_korrektur_benennt_was_falsch_war():
 
 # --- wid: der Ausgaben-Rueckstand -------------------------------------
 
-def test_der_rueckstand_steht_im_label_das_zitiert_wird():
-    """Das ``source_label`` geht in die Ausgabe. Dort muss es stehen, nicht
-    nur in einem Audit-Feld, das niemand serviert."""
+def test_der_rueckstand_ist_aufgeloest_und_nicht_mehr_behauptet():
+    """Diese Pruefung hiess bis zum Vollrefresh
+    ``test_der_rueckstand_steht_im_label_das_zitiert_wird`` und verlangte
+    das Gegenteil: ein ``ACHTUNG`` im ``source_label``, weil der Fakt eine
+    Ausgabe zurueckhing. Der Vollrefresh (tests/test_wid_vollrefresh_2026)
+    hat das erledigt, also muss die Warnung WEG sein — eine stehengelassene
+    Warnung ist genauso falsch wie eine fehlende.
+    """
     label = _laden("wid")["source_label"]
-    assert "ACHTUNG" in label
-    assert "WIR 2026" in label
-    assert "10.12.2025" in label
-    assert "NICHT eingearbeitet" in label
+    assert "ACHTUNG" not in label
+    assert "NICHT eingearbeitet" not in label
+    assert "Datenjahr 2023" in label
 
 
-def test_das_audit_feld_nennt_den_umfang_des_offenen_refresh():
+def test_das_audit_feld_haelt_den_erledigten_refresh_fest():
+    """Vorher verlangte diese Pruefung ``RUECKSTAND`` und ``steht aus``.
+    Jetzt muss dort stehen, DASS und WIE er erledigt wurde."""
     flag = _laden("wid")["audit_flag"]
-    assert "RUECKSTAND" in flag
-    assert "34 Laender" in flag
-    assert "steht aus" in flag
+    assert flag.startswith("VOLLREFRESH 2026-10-20")
+    assert "steht aus" not in flag
+    assert "RUECKSTAND" not in flag
 
 
-def test_die_alten_werte_bleiben_unangetastet():
-    """Nichts ersetzen, was man nicht belegen kann (#235). Die WIR-2022-
-    Werte sind nicht falsch — sie sind eine Ausgabe alt."""
+def test_der_gebiets_satz_ueberlebt_den_refresh():
+    """Vorher pinnte diese Pruefung ``data_year == 2022`` — nichts
+    ersetzen, was man nicht belegen kann (#235). Belegt ist es jetzt:
+    Jeder einzelne Wert ist in tests/test_wid_vollrefresh_2026.py gegen
+    den Bulk-Download gepinnt. Was hier bleibt, ist die Abdeckung: Ein
+    Refresh darf keine Gebiete verlieren.
+    """
     d = _laden("wid")
-    assert d["data_year"] == 2022
+    assert d["data_year"] == 2023
     assert len(d["shares"]) == 34
-    assert "2022" in d["citation"]
+    assert "2023" in d["citation"]
 
 
 def test_das_tote_feld_erfindet_keine_ausgabe_mehr():
@@ -242,8 +252,14 @@ def test_das_tote_feld_erfindet_keine_ausgabe_mehr():
     """
     d = _laden("wid")
     assert "report_year" not in d
-    assert d["snapshot_jahr"] == 2024
-    assert "gibt es nicht" in d["jahr_hinweis"]
+    # Die Aufzeichnung lag bis zum Vollrefresh in `snapshot_jahr` und
+    # `jahr_hinweis`. Der Umbau hat beide Felder entfernt und damit das
+    # Gedaechtnis gleich mit — dieser Test hat es gemeldet. Jetzt steht
+    # es in `feld_historie`.
+    h = d["feld_historie"]
+    assert "report_year" in h
+    assert "gibt es nicht" in h
+    assert "2018, 2022 und 2026" in h
 
 
 def test_der_service_nennt_im_fallback_kein_ausgabe_jahr():
@@ -263,12 +279,28 @@ def test_der_service_nennt_im_fallback_kein_ausgabe_jahr():
 
 def test_die_ausgabe_nennt_weiterhin_das_datenjahr():
     """Die Gegenprobe zur Entjahrung: ``data_year`` MUSS in die Ausgabe,
-    sonst steht eine Zahl ohne Bezug da."""
+    sonst steht eine Zahl ohne Bezug da.
+
+    Die erste Fassung dieser Pruefung verlangte wortwoertlich
+    ``data.get("data_year", 2022)`` — sie pinnte damit den Default MIT,
+    also genau das Literal, das beim naechsten Refresh driftet. Geprueft
+    wird jetzt die Absicht (das Jahr erscheint in der Ausgabe), nicht die
+    fehlerhafte Schreibweise.
+    """
     with open(os.path.join(BACKEND, "services", "wid.py"),
               encoding="utf-8") as fh:
         quelle = fh.read()
-    assert 'data.get("data_year", 2022)' in quelle
-    assert "{data_year}" in quelle
+    assert 'data.get("data_year")' in quelle
+    assert 'data.get("data_year", 2022)' not in quelle
+    # JE FUNKTION pruefen, nicht im Volltext: `{data_year}` steht an zwei
+    # Stellen, und eine Giftprobe hat gezeigt, dass die eine die andere
+    # deckt — das Jahr konnte aus dem display_value verschwinden, waehrend
+    # die Zusicherung ueber die description noch hielt.
+    for name in ("_build_display_value", "_build_description"):
+        i = quelle.index(f"def {name}(")
+        j = quelle.index("\ndef ", i + 1)
+        assert "{data_year}" in quelle[i:j], (
+            f"{name} nennt das Datenjahr nicht")
 
 
 # --- wcag22: eine Zahl, die zwei Zahlen war ---------------------------
@@ -404,10 +436,20 @@ def test_das_vergleichsfeld_existiert_in_jedem_eintrag():
 
 # --- Was diese Runde NICHT behauptet ----------------------------------
 
-def test_der_offene_wid_refresh_ist_nicht_als_erledigt_markiert():
-    """Die Gegenprobe zur Ehrlichkeit: Die Datei darf nicht behaupten,
-    auf WIR 2026 zu stehen. Sie steht auf WIR 2022 und sagt das."""
+def test_die_datei_behauptet_nicht_den_report_zu_zitieren():
+    """Dieselbe Pruefung, gedreht.
+
+    Sie hiess ``test_der_offene_wid_refresh_ist_nicht_als_erledigt_markiert``
+    und verlangte, dass die Datei NICHT behauptet, auf der Ausgabe 2026 zu
+    stehen, solange sie WIR-2022-Werte fuehrte. Nach dem Vollrefresh steht
+    sie auf der aktuellen DATENBANK — und damit kehrt die Ehrlichkeitsfrage
+    nur die Richtung: Sie darf jetzt nicht behaupten, den REPORT zu
+    zitieren. Die gedruckten Report-Zahlen koennen durch spaetere
+    Revisionen abweichen; zitiert wird der Bulk-Download vom 20.10.2026.
+    """
     d = _laden("wid")
-    assert "2022" in d["source_label"]
-    assert "wir2026" not in (d.get("secondary_url") or "").lower(), (
-        "die Zweit-URL zeigt auf WIR 2026, die Daten stammen aus WIR 2022")
+    assert "Bulk-Download" in d["source_label"]
+    assert "DATENBANK" in d["zitier_hinweis"]
+    assert "nicht der Report" in d["zitier_hinweis"]
+    assert "wir2026" in (d.get("secondary_url") or "").lower(), (
+        "die Zweit-URL zeigt noch auf eine aeltere Ausgabe")

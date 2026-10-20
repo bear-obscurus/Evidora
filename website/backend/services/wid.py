@@ -17,18 +17,24 @@ Strategie: STATIC-FIRST-SNAPSHOT
 WID hat eine REST-API (https://wid.world/codes-dictionary/) und ein
 R-/Python-Package ``wid``. Fuer Evidora halten wir die Top-Shares
 fuer 30+ Schluessellaender als kuratierten Snapshot in
-``data/wid.json`` vor (Data Year 2022, Snapshot 2024 — einen World
-Inequality Report 2024 gibt es nicht; 2024 war der Snapshot). Vorteile:
-  - Keine Live-API-Latenz (WID-Snapshots aendern sich ~jaehrlich)
-  - Konsistente Werte, die manuell gegen den World Inequality
-    Report 2022 + WID-Country-Pages validiert wurden
+``data/wid.json`` vor (Datenjahr 2023, abgerufen am 20.10.2026 aus dem
+amtlichen Bulk-Download). Vorteile:
+  - Keine Live-API-Latenz (die Reihen aendern sich ~jaehrlich)
+  - Werte Zelle fuer Zelle aus den Reihen sptincj992 und shwealj992,
+    nicht aus einer Report-Grafik gelesen
   - 24h-Hot-Reload via _static_cache.load_json_mtime_aware
 
+Bis zum 20.10.2026 stand hier ein Snapshot des World Inequality Report
+2022 mit Datenjahr 2022. Er war fuer seine Ausgabe KORREKT — die
+Welt-Werte stimmten exakt mit den Schlagzeilen des Reports —, aber grob:
+43 % der Werte endeten auf .0 oder .5, gegen 18 % in der Datenbank.
+
 Refresh-Workflow (manuell, ~jaehrlich):
-  1. WID Update-Welle abwarten (i. d. R. Q1)
-  2. Pro Land Top-1 %, Top-10 %, Bottom-50 %-Income- und
-     Wealth-Shares aus WID.world pruefen
-  3. ``data/wid.json`` patchen + ``data_year``/``fetched_at_iso`` updaten
+  1. ``python3 tools/wid_aus_bulk.py --cache <ordner>`` — laedt die
+     Reihen, bestimmt das juengste GEMEINSAME Datenjahr und nennt jede
+     Abweichung zu data/wid.json. Exit 1 heisst: es gibt welche.
+  2. ``data/wid.json`` nachziehen, ``data_year``/``fetched_at_iso`` mit
+  3. Werkzeug erneut laufen lassen, bis es 0 Abweichungen meldet
 
 Trigger:
   - Direkt-Trigger: "WID.world", "Piketty-Daten", "Saez-Zucman"
@@ -41,8 +47,10 @@ GUARDRAILS (project_political_guardrails.md):
   - Keine eigene Bewertung "ungerecht/gerecht".
   - Politik-Tabu-Guard 2.0: Partei + Korruption + Superlativ blocken.
 
-Lizenz: Open Access mit Zitation. Chancel/Piketty/Saez/Zucman (2022),
-World Inequality Report 2022, WID.world.
+Lizenz: Open Access mit Zitation. Zitiert wird die DATENBANK
+(WID.world, Reihen sptincj992/shwealj992, Datenjahr 2023, abgerufen
+20.10.2026), nicht der Report — dessen gedruckte Zahlen koennen durch
+spaetere Revisionen abweichen.
 
 Wiring (NICHT in dieser Datei — main.py manuell verdrahten):
   # from services.wid import search_wid, claim_mentions_wid_cached
@@ -398,8 +406,8 @@ def _country_value(
 def _format_country_value(
     shares: dict, iso3: str, share_type: str, bucket: str,
 ) -> str:
-    """Hilfs-Format: 'AT 10,8 %'."""
-    iso2 = _ISO3_TO_ISO2.get(iso3, iso3[:2])
+    """Hilfs-Format: 'AT 8,9 %'."""
+    iso2 = _ISO3_TO_ISO2.get(iso3, iso3)
     val = _country_value(shares, iso3, share_type, bucket)
     if val is None:
         return ""
@@ -436,10 +444,10 @@ def _build_display_value(
     shares: dict,
     data_year: int,
 ) -> str:
-    """Bsp: 'AT Top-1 % Einkommen 2022: 10,8 % — vs. DE 12,8, USA 19,0, ...
+    """Bsp: 'AT Top-1 % Einkommen 2023: 8,9 % — vs. DE 13,3, US 20,7, ...
     (WID.world DINA)'.
     """
-    iso2 = _ISO3_TO_ISO2.get(iso3, iso3[:2])
+    iso2 = _ISO3_TO_ISO2.get(iso3, iso3)
     bucket_de = _BUCKET_LABEL_DE.get(bucket, bucket)
     type_de = "Einkommen" if share_type == "income" else "Vermoegen"
 
@@ -544,9 +552,17 @@ async def search_wid(analysis: dict) -> dict:
         "WID.world — World Inequality Database (Chancel/Piketty/Saez/Zucman)",
     )
     secondary_url = data.get(
-        "secondary_url", "https://wir2022.wid.world/"
+        "secondary_url", "https://wir2026.wid.world/"
     )
-    data_year = int(data.get("data_year", 2022))
+    # KEIN Default: Ein hartkodiertes Datenjahr ueberlebt den
+    # Refresh und beschriftet dann neue Zahlen mit dem alten Jahr
+    # (#133). Fehlt das Feld, bricht der Aufruf hier sichtbar ab,
+    # statt still ein falsches Jahr zu nennen.
+    rohes_jahr = data.get("data_year")
+    if rohes_jahr is None:
+        logger.error("wid.json ohne data_year — kein Ergebnis")
+        return empty
+    data_year = int(rohes_jahr)
 
     # Country-Detection: Claim + Entities + NER-Countries
     requested, ohne_daten = _LAENDER.zustaendigkeit(
@@ -606,7 +622,7 @@ async def search_wid(analysis: dict) -> dict:
             continue
 
         country_name = _country_display_name(iso3, data)
-        iso2 = _ISO3_TO_ISO2.get(iso3, iso3[:2])
+        iso2 = _ISO3_TO_ISO2.get(iso3, iso3)
         display_countries = _select_display_countries(
             requested, shares, iso3
         )
