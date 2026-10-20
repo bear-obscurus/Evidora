@@ -166,6 +166,15 @@ jobs:
     #   - test_rki_saison_2025_26     (Atemwegs-Saison 2025/26 aus RKI-Open-Data;
     #                                  drei falsche Zahlen + verkehrte Richtung
     #                                  im alten Stand; GrippeWeb != Konsultation)
+    #   - test_feldzugriffe_services  (QA50I: wcag22.py las total_criteria,
+    #                                  das #267 entfernt hatte — der Service
+    #                                  lieferte '? Success Criteria' und das
+    #                                  Modell erfand 62. Das Gate prueft per
+    #                                  AST-Taint ALLE Services gegen ihre
+    #                                  JSON: 82 Services, 1.202 Zugriffe,
+    #                                  keine Ausnahmeliste. Fand drei
+    #                                  weitere Faelle, darunter sechs tote
+    #                                  Felder im KlimaTicket-Zweig)
     #   - test_wid_vollrefresh_2026   (34 Gebiete von WIR 2022 auf die
     #                                  Datenbank, Datenjahr 2023; der alte
     #                                  Stand war fuer seine Ausgabe KORREKT,
@@ -396,6 +405,7 @@ jobs:
             tests/test_freshness_fuenf_2026_10.py \
             tests/test_bti_amtliche_werte.py \
             tests/test_wid_vollrefresh_2026.py \
+            tests/test_feldzugriffe_services.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \

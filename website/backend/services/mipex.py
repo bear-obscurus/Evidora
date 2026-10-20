@@ -77,12 +77,12 @@ verifizieren).
 
 Result-Schema:
   {
-    "indicator_name": "MIPEX 2020 — Österreich: 46/100 Gesamt (Rang 28/52)",
+    "indicator_name": "MIPEX 2020 — Österreich: 46/100 Gesamt (Platz 19 von 22 im erfassten Länder-Ausschnitt)",
     "indicator": "mipex_overall",
     "country": "AT",
     "year": "2020",
     "topic": "mipex_integration_policy_index",
-    "display_value": "AT 46/100 Gesamt (Rang 28/52) — Anti-Diskriminierung 78, Familiennachzug 31, Einbürgerung 13. Vergleich: SE 86, DE 58, CH 50 (MIPEX 2020)",
+    "display_value": "AT 46/100 Gesamt (Platz 19 von 22 im erfassten Länder-Ausschnitt) — Anti-Diskriminierung 53, Familiennachzug 36, Einbürgerung 13. Vergleich: SE 86, DE 58, CH 50 (MIPEX 2020)",
     "description": "MIPEX misst Integrations-Politiken in 56 Ländern ...",
     "url": "https://www.mipex.eu/austria",
     "secondary_url": "https://www.mipex.eu/play/",
@@ -429,7 +429,7 @@ async def fetch_mipex(client=None) -> dict:
 
 def _format_country_overall(iso3: str, scores: dict) -> str:
     """Hilfs-Format: 'SE 86' oder 'AT n/a'."""
-    iso2 = _ISO3_TO_ISO2.get(iso3, iso3[:2])
+    iso2 = _ISO3_TO_ISO2.get(iso3, iso3)
     rec = scores.get(iso3) or {}
     val = rec.get("overall")
     if val is None:
@@ -550,14 +550,15 @@ def _build_display_value(
     display_countries: list[str],
     scores: dict,
     focus_area: str | None,
+    ausgabe: str,
 ) -> str:
     """Build deskriptiven display_value (keine Wertung).
 
-    Beispiel: 'AT 46/100 Gesamt (Rang 28/52) — Anti-Diskriminierung 78,
+    Beispiel: 'AT 46/100 Gesamt (Platz 19 von 22) — Anti-Diskriminierung 53,
     Familiennachzug 31, Einbürgerung 13. Vergleich: SE 86, DE 58, CH 50
     (MIPEX 2020)'
     """
-    iso2 = _ISO3_TO_ISO2.get(primary_iso3, primary_iso3[:2])
+    iso2 = _ISO3_TO_ISO2.get(primary_iso3, primary_iso3)
     overall = primary_rec.get("overall", "?")
     rang = primary_rec.get("rang_im_ausschnitt", "?")
 
@@ -596,7 +597,7 @@ def _build_display_value(
     if comp_parts:
         comp = ". Vergleich: " + ", ".join(comp_parts)
 
-    return f"{head}{detail}{comp} (MIPEX 2020)"
+    return f"{head}{detail}{comp} ({ausgabe})"
 
 
 def _country_url(iso3: str) -> str:
@@ -614,12 +615,20 @@ def _build_indicator_name(
     """Baue indicator_name (deskriptiv, keine Wertung)."""
     display_name = (data.get("country_display_names") or {}).get(iso3) or iso3
     overall = rec.get("overall", "?")
-    rank = rec.get("rank")
-    report_year = data.get("report_year", 2020)
+    # PR #266 hat `rank` in `rang_im_ausschnitt` umbenannt und die
+    # hartkodierte 52 aus dem display_value entfernt — DIESE Funktion
+    # blieb stehen. Folge: `rank` war None, der Rang fiel still aus dem
+    # indicator_name, und das "/52" wartete im Quelltext darauf, wieder
+    # zu greifen. Gefunden von tools/feldzugriffe_pruefen.py nach dem
+    # QA50I-Lauf.
+    rang = rec.get("rang_im_ausschnitt")
+    report_year = data.get("report_year") or ""
 
-    base = f"MIPEX {report_year} — {display_name}: {overall}/100 Gesamt"
-    if isinstance(rank, int):
-        base += f" (Rang {rank}/52)"
+    base = f"MIPEX {report_year} — {display_name}: {overall}/100 Gesamt".replace(
+        "MIPEX  —", "MIPEX —")
+    if isinstance(rang, int):
+        base += (f" (Platz {rang} von {_LAENDER_IM_AUSSCHNITT} im erfassten "
+                 f"Länder-Ausschnitt)")
 
     if focus_area and focus_area in rec:
         short_name = _POLICY_AREA_SHORT.get(focus_area, focus_area)
@@ -652,11 +661,15 @@ def _build_result_row(
     focus_area: str | None,
 ) -> dict:
     """Baue Result-Eintrag für ein Land."""
-    iso2 = _ISO3_TO_ISO2.get(iso3, iso3[:2])
-    report_year = data.get("report_year", 2020)
+    # iso3[:2] erfindet bei einem neuen Land den Code eines anderen
+    # Staates (#268: COD->CO ist Kolumbien). Der dreistellige Code ist
+    # sichtbar KEIN ISO2.
+    iso2 = _ISO3_TO_ISO2.get(iso3, iso3)
+    report_year = data.get("report_year") or ""
 
+    ausgabe = f"MIPEX {report_year}".strip()
     display_value = _build_display_value(
-        iso3, rec, display_countries, scores, focus_area
+        iso3, rec, display_countries, scores, focus_area, ausgabe
     )
     indicator_name = _build_indicator_name(iso3, rec, data, focus_area)
     description = _build_description(data)

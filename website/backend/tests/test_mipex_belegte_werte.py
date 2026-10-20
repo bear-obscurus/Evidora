@@ -189,12 +189,24 @@ def test_die_laenderzahl_steht_in_den_daten():
 # --- Was der Dienst serviert -----------------------------------------
 
 def _display(iso):
+    """Der servierte Satz, mit der Ausgabe-Angabe wie im echten Aufruf.
+
+    ``ausgabe`` ist seit dem 20.10.2026 ein PFLICHT-Parameter: Vorher
+    stand "(MIPEX 2020)" als Literal im f-String und haette einen Refresh
+    auf MIPEX 2025 stumm ueberlebt — dieselbe Marker-Drift wie "(BTI
+    2024)" in #268. Ein Default-Wert waere der halbe Fehler geblieben,
+    weil er die Angabe lautlos weglaesst; genau das hat
+    ``test_der_servierte_satz_nennt_die_ausgabe`` gemeldet, als ich es
+    zuerst mit Default gebaut habe.
+    """
     import sys
     sys.path.insert(0, BACKEND)
     from services.mipex import _build_display_value
-    s = _daten()["scores"]
+    d = _daten()
+    s = d["scores"]
     andere = [i for i in ("SWE", "DEU", "CHE") if i != iso][:3]
-    return _build_display_value(iso, s[iso], andere, s, None)
+    ausgabe = f"MIPEX {d.get('report_year') or ''}".strip()
+    return _build_display_value(iso, s[iso], andere, s, None, ausgabe)
 
 
 def test_der_servierte_satz_nennt_den_ausschnitt():

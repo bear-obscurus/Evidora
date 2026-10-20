@@ -100,18 +100,63 @@ async def search_transport(analysis: dict) -> dict:
             )
             description = d.get("context", "") + " " + notes_joined
         elif topic == "klimaticket":
-            display = (
-                f"KlimaTicket Österreich: "
-                f"{de_int(d.get('klimaticket_inhaber_2024'))} Inhaber:innen 2024 "
-                + f"(Start 10/2021: {de_int(d.get('klimaticket_inhaber_2022_start'))}, "
-                + f"+83 %). Vollpreis {de_int(d.get('klimaticket_kosten_2024_eur'))} €/Jahr; "
-                + f"Jugend/Senior {de_int(d.get('klimaticket_kosten_jugend_2024_eur'))} €. "
-                + f"Geschätzter Modal-Shift "
-                f"{d.get('modal_shift_pkw_zu_oeffi_pct_geschaetzt')} % der Inhaber:innen "
-                f"vom Auto zum ÖV; CO2-Einsparung "
-                f"~{d.get('co2_einsparung_geschaetzt_2024_kt')} kt/Jahr (~1 % "
-                f"der Verkehrs-CO2)."
-            )
+            # Bis zum 20.10.2026 las dieser Zweig SECHS Felder, die es in
+            # transport_at.json nicht gibt: klimaticket_inhaber_2024,
+            # _inhaber_2022_start, _kosten_2024_eur, _kosten_jugend_2024_eur,
+            # modal_shift_pkw_zu_oeffi_pct_geschaetzt und
+            # co2_einsparung_geschaetzt_2024_kt. Live ging damit heraus:
+            #
+            #   "KlimaTicket Österreich: ? Inhaber:innen 2024 (Start 10/2021:
+            #    ?, +83 %). Vollpreis ? €/Jahr; Jugend/Senior ? €.
+            #    Geschätzter Modal-Shift None % ...; CO2-Einsparung ~None kt"
+            #
+            # Vier Fragezeichen und zwei woertliche None — waehrend der Fakt
+            # belastbare Rechnungshof-Zahlen fuehrt (Reihe BUND 2025/38).
+            # Der Zweig war gegen eine aeltere Datengestalt geschrieben und
+            # wurde beim Daten-Refresh nicht mitgezogen. Gefunden von
+            # tools/feldzugriffe_pruefen.py nach dem QA50I-Lauf.
+            #
+            # Die Steigerung wird GERECHNET, nicht gefuehrt: Das alte
+            # "+83 %" stand als Literal da und war falsch (118.524 -> 293.742
+            # sind +148 %).
+            jahre = d.get("klimaticket_oe_jahresaequivalente") or {}
+            geordnet = sorted((str(k), v) for k, v in jahre.items()
+                              if isinstance(v, (int, float)))
+            teile = ["KlimaTicket Österreich (Jahresäquivalente, Rechnungshof)"]
+            if geordnet:
+                (erstes_j, erstes_w), (letztes_j, letztes_w) = (
+                    geordnet[0], geordnet[-1])
+                verlauf = ", ".join(f"{j}: {de_int(w)}" for j, w in geordnet)
+                teile.append(f"{verlauf}")
+                if erstes_w:
+                    wachstum = round((letztes_w / erstes_w - 1) * 100)
+                    teile.append(f"{erstes_j} bis {letztes_j}: +{wachstum} %")
+            prognose = d.get("klimaticket_oe_prognose_2023")
+            if isinstance(prognose, (int, float)) and geordnet:
+                ist_2023 = jahre.get("2023")
+                if isinstance(ist_2023, (int, float)):
+                    teile.append(
+                        f"Prognose für 2023 war {de_int(prognose)}, "
+                        f"tatsächlich {de_int(ist_2023)}")
+            preise = []
+            for feld, text in (
+                    ("preis_bis_2024_eur", "Vollpreis bis 2024"),
+                    ("preis_ab_2026_eur", "ab 2026"),
+                    ("preis_ermaessigt_bis_2024_eur", "ermäßigt bis 2024"),
+                    ("preis_ermaessigt_ab_2026_eur", "ermäßigt ab 2026")):
+                wert = d.get(feld)
+                if isinstance(wert, (int, float)):
+                    preise.append(f"{text} {de_int(wert)} €")
+            if preise:
+                teile.append("; ".join(preise))
+            co2 = d.get("co2_reduktion_erwartet_2024_mio_t")
+            anteil = d.get("co2_anteil_verkehrsemissionen_pct")
+            if isinstance(co2, (int, float)):
+                satz = f"erwartete CO2-Reduktion {co2} Mio. t"
+                if isinstance(anteil, (int, float)):
+                    satz += f" ({anteil} % der Verkehrsemissionen)"
+                teile.append(satz)
+            display = ". ".join(teile) + "."
             description = d.get("context", "") + " " + notes_joined
         else:
             display = fact.get("headline", "?")
