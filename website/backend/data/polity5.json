@@ -1,11 +1,13 @@
 {
   "schema_version": 1,
-  "fetched_at_iso": "2026-05-18",
+  "fetched_at_iso": "2026-10-20",
+  "refresh_kadenz": "jaehrlich",
+  "kadenz_begruendung": "Das Center for Systemic Peace hat seit dem Polity5-Release (Abdeckung bis 2018) nichts Neues veroeffentlicht. Die Datei ist damit nicht veraltet, sondern vollstaendig — die Quelle schweigt. Jaehrlich ist die Obergrenze, in der nachgesehen wird, ob ein v2019+ erschienen ist. Bis zum 20.10.2026 stand keine Kadenz im Feld, und der Waechter mass gegen den 120-Tage-Standard.",
   "source_label": "Polity 5 — Center for Systemic Peace (CSP), Marshall/Gurr (2020). Annual Polity-Scores -10 (full autocracy) to +10 (full democracy) for 167 states since 1800. Public-Domain.",
   "source_url": "http://www.systemicpeace.org/inscrdata.html",
   "secondary_url": "https://en.wikipedia.org/wiki/Polity_data_series",
   "version_note": "Polity 5 (Annual Time Series 1800-2018) deckt 167 unabhängige Staaten ab. Aktuelles letztes Coverage-Jahr: 2018 (letzter offizieller CSP-Release). Werte sind kuratierte Punkt-Auszüge aus der offiziellen p5v2018-CSV — für rigorose Verwendung sollte die Originaldatei (p5v2018.xls, p5v2018.csv) konsultiert werden.",
-  "audit_flag": "STATIC v1 (2026-05-18). Kuratierter Auszug aus Polity-5-Annual-Series. Letztes Coverage-Jahr 2018 (letzter offizieller Release CSP). Historische Highlights manuell kuratiert. Wenn CSP einen v2019+ veröffentlicht, JSON komplett neu generieren.",
+  "audit_flag": "GEPRUEFT 2026-10-20 an der Quelle: systemicpeace.org fuehrt weiterhin Polity5 als neueste Version, Abdeckung endet 2018 ('Polity5 Annual Time-Series, 1946-2018'). Kein v2019+. Die kuratierten Punkt-Auszuege aus der p5v2018-CSV bleiben unveraendert. Wenn CSP einen neueren Release veroeffentlicht, JSON komplett neu generieren.",
   "regime_categories": {
     "full_democracy": {
       "range": "+10",
