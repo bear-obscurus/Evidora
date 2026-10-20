@@ -602,6 +602,213 @@ def zahl_zum_claim_gegenstand(claim_lower, summary_lower, schwelle_roh):
     return kandidaten[0][1], kandidaten[0][2]
 
 
+# --- Muster Q: die Jahrgangszahl (QA50I, 2026-10-20) ---------------------
+# Befund #77: "Der Gender Pay Gap in Deutschland liegt bei 18 Prozent" bekam
+# mostly_true@0.85 — mit einer Begruendung, die alles richtig sagte:
+#
+#   "lag 2024 bei 15,6 % (Eurostat) bzw. 16 % (DESTATIS), die Behauptung von
+#    18 % bezieht sich vermutlich auf den Vorjahreswert 2023 (DESTATIS: 18 %)"
+#
+# Die Zahl des Claims gehoert einem ueberholten Jahrgang. Ein Claim im
+# Praesens, der den Vorjahreswert nennt, ist nicht "im Wesentlichen richtig" —
+# PR #256 hatte die widerspruechlichen Zahlen in den DATEN bereinigt, die
+# Verdict-Bildung behandelte eine veraltete Zahl aber weiter als Treffer,
+# sobald sie irgendeinem Jahrgang entsprach.
+#
+# Gerechnet statt gelesen, wie Muster N und P: Aus der Begruendung werden
+# (Jahr, Prozentwert)-Paare gezogen und verglichen. Keine Phrasenliste —
+# "bezieht sich vermutlich auf", "Rueckgang von ... im Jahr", "trifft fuer
+# ... zu" sind drei Formulierungen derselben Lage, und die vierte waere nicht
+# in der Liste (Lehre: die dritte Formulierung widerlegt die Wortliste).
+_Q_JAHR_RE = re.compile(r"\b(19[5-9]\d|20[0-4]\d)\b")
+# IGNORECASE ist nicht kosmetisch: Begruendungen schreiben "15,6 Prozent"
+# mit grossem P. Ohne das Flag traf dieses Muster nur "%" und kleines
+# "prozent" — im QA-Korpus stand ueberall "%", deshalb fiel es dort nicht
+# auf. Gefunden hat es die Giftprobe "Jahreszahl zaehlt als Prozentwert":
+# Sie HIELT, weil "2020 Prozent" gar nicht erkannt wurde, und genau das
+# war der Hinweis auf die Luecke.
+_Q_PROZENT_RE = re.compile(
+    r"\b(\d{1,3}(?:\.\d{3})*(?:,\d+)?|\d+(?:,\d+)?)\s*(?:%|prozent)",
+    re.IGNORECASE)
+#: Wie weit eine Jahresangabe von einer Zahl entfernt stehen darf, um ihr
+#: zugeordnet zu werden. 60 Zeichen deckt "2024 bei 15,6 %" und
+#: "18 % im Jahr 2023" ab.
+_Q_FENSTER = 60
+
+#: Zeichen, die die Zuordnung NICHT ueberschreiten darf. Der Abstand allein
+#: genuegt nicht, und das war messbar: In
+#:
+#:   "... auf den Wert von 2023 (DESTATIS: 18 %), der 2024 um 2
+#:    Prozentpunkte sank."
+#:
+#: steht das "2024" 11 Zeichen NACH dem "18 %", das "2023" 16 Zeichen davor.
+#: Nach reinem Abstand gewinnt 2024 — und damit galt die Zahl des Claims als
+#: aktueller Wert, das Muster schwieg an seinem eigenen Anlass. Das "2024"
+#: gehoert aber zu "sank", nicht zu "18 %", und dazwischen steht ein Komma.
+#: Die Gegenprobe "von 18 % im Jahr 2023" hat keines und bleibt zugeordnet.
+_Q_TRENNER = frozenset(",;.!?")
+#: Unterhalb dieser relativen Differenz sind zwei Werte dieselbe Aussage.
+#:
+#: DAS IST DER SCHWAECHSTE TEIL DIESES MUSTERS, und die Messung sagt
+#: warum. Der Sweep ueber 164 echte (Claim, Summary)-Paare aus QA50H und
+#: QA50I lieferte genau zwei Kandidaten, und sie klammern die Schwelle
+#: eng ein:
+#:
+#:   Gender Pay Gap   Claim 18 %, aktuell 16 %   -> 11,1 %  SOLL feuern
+#:   Eurobarometer    Claim 51 %, aktuell 49 %   ->  3,9 %  soll SCHWEIGEN
+#:
+#: 10 % liegt dazwischen, aber nur 1,1 Punkte unter dem Fall, der feuern
+#: soll. Sinkt der Gender Pay Gap naechstes Jahr von 18 auf 17, waere die
+#: Differenz 5,6 % und das Muster stumm. Deshalb loggt Muster Q beide
+#: Werte: Ein Fehlurteil an dieser Schwelle ist dann sichtbar und nicht
+#: still. Eine Schwelle, die nur dieses Jahr passt, waere eine
+#: Kalibrierung auf die Stichprobe — darum steht die zweite, inhaltliche
+#: Bedingung daneben (`claim_zitiert_quelle`), die den Eurobarometer-Fall
+#: UNABHAENGIG von der Schwelle ausnimmt.
+_Q_MIN_ABWEICHUNG = 0.10
+
+#: Formeln, mit denen ein Claim seine Zahl einer Quelle ZUSCHREIBT.
+_Q_ZITAT_FORMELN = (
+    "laut ", "nach angaben", "nach daten", "nach berechnungen", "zufolge",
+    "gemäß ", "gemaess ", "berichtet", "schreibt", "meldet",
+    "according to", "says ", "reports ",
+)
+
+
+def claim_zitiert_quelle(claim_lc: str) -> bool:
+    """Schreibt der Claim seine Zahl einer benannten Quelle zu?
+
+    "Laut Eurobarometer vertrauen heute 51 Prozent ..." ist eine Aussage
+    DARUEBER, was Eurobarometer publiziert hat — und Eurobarometer hat
+    51 % publiziert (Welle 102). Dass eine neuere Welle 49 % zeigt, macht
+    das Zitat nicht falsch, sondern ergaenzungsbeduerftig.
+
+    Das ist dieselbe Lehre wie die QA50I-Befunde #31 und #88, nur
+    andersherum: Dort beantwortete das System einen Claim ueber Freedom
+    House mit V-Dem-Zahlen. Wer eine Quelle nennt, fragt nach dieser
+    Quelle. Muster Q schweigt deshalb bei zugeschriebenen Zahlen — der
+    passende Hinweis ist eine Nuance ("neuere Welle zeigt 49 %"), kein
+    'mostly_false'.
+    """
+    return any(f in claim_lc for f in _Q_ZITAT_FORMELN)
+
+
+def jahr_wert_paare(text: str) -> list[tuple[float, int]]:
+    """``(prozentwert, jahr)`` fuer jeden Prozentwert mit Jahresangabe daneben.
+
+    Zugeordnet wird das NAECHSTE Jahr im Fenster; bei gleichem Abstand das
+    davorstehende, weil "2024 bei 15,6 %" die haeufigere Form ist.
+    """
+    jahre = [(m.start(), int(m.group(1))) for m in _Q_JAHR_RE.finditer(text)]
+    if not jahre:
+        return []
+    aus: list[tuple[float, int]] = []
+    for m in _Q_PROZENT_RE.finditer(text):
+        stelle = m.start()
+        # Eine Jahreszahl ist kein Prozentwert ("2024 %" gibt es nicht, aber
+        # "2020 Prozent" waere ein Lesefehler).
+        if any(abs(stelle - jp) < 6 for jp, _j in jahre):
+            continue
+        wert = _parse_de_number(m.group(1))
+        if wert is None:
+            continue
+        nah = []
+        for jp, j in jahre:
+            if abs(stelle - jp) > _Q_FENSTER:
+                continue
+            a, b = (jp, stelle) if jp < stelle else (stelle, jp)
+            if any(z in _Q_TRENNER for z in text[a:b]):
+                continue
+            nah.append((abs(stelle - jp), jp > stelle, j))
+        if not nah:
+            continue
+        nah.sort()
+        aus.append((wert, nah[0][2]))
+    return aus
+
+
+def claim_prozentzahl(claim_lc: str):
+    """Der einzige Prozentwert des Claims, oder None.
+
+    Nennt der Claim mehrere, ist nicht entscheidbar, welcher gemeint ist —
+    dann schweigt Muster Q.
+    """
+    werte = {_parse_de_number(m.group(1))
+             for m in _Q_PROZENT_RE.finditer(claim_lc)}
+    werte.discard(None)
+    return werte.pop() if len(werte) == 1 else None
+
+
+#: Formeln, mit denen ein Claim einen BEREICH statt eines Wertes nennt.
+_Q_BEREICH_RE = re.compile(
+    r"zwischen\s+\d|\d\s*(?:bis|-|–|—|und)\s*\d{1,3}(?:[.,]\d+)?\s*(?:%|prozent)")
+
+
+def claim_nennt_bereich(claim_lc: str) -> bool:
+    """Nennt der Claim einen Bereich?
+
+    "Der Gap liegt zwischen 15 und 18 Prozent" ist bei einem aktuellen
+    Wert von 15,6 % WAHR — die Spanne enthaelt ihn. Ohne diese Bedingung
+    sah ``claim_prozentzahl`` nur die 18 (nur sie traegt die Einheit) und
+    Muster Q haette den Claim abgewertet. Gefunden beim Schreiben der
+    Gegenprobe, nicht im Betrieb.
+    """
+    return bool(_Q_BEREICH_RE.search(claim_lc))
+
+
+def claim_nennt_jahr(claim_lc: str) -> bool:
+    """Nennt der Claim selbst ein Jahr?
+
+    Dann ist die Zahl datiert und richtig — "Der Gender Pay Gap lag 2023 bei
+    18 Prozent" ist wahr. Muster Q greift nur bei Claims im Praesens ohne
+    Jahresangabe. Diese Bedingung ist die wichtigste Gegenprobe des Musters.
+    """
+    return bool(_Q_JAHR_RE.search(claim_lc))
+
+
+def veraltete_jahrgangszahl(claim_lc: str, summary: str):
+    """``(claim_wert, claim_jahr, neuestes_jahr, neuester_wert)`` oder None.
+
+    Trifft zu, wenn die Zahl des Claims in der Begruendung AUSSCHLIESSLICH
+    einem aelteren Jahr zugeordnet ist und fuer das neueste Jahr ein
+    anderer Wert steht.
+    """
+    wert = claim_prozentzahl(claim_lc)
+    if wert is None or claim_nennt_jahr(claim_lc):
+        return None
+    if claim_zitiert_quelle(claim_lc):
+        return None
+    # Ein SCHWELLEN-Claim gehoert Muster N, nicht Q. "Die Staatsverschuldung
+    # liegt bei ueber 80 Prozent" wird durch einen neueren, HOEHEREN Wert
+    # nicht falsch, sondern wahrer — Q wuerde ihn abwerten. Im Sweep
+    # schwieg dieser Fall nur, weil 80 gegen 81,5 unter der
+    # Groessenschwelle lag (1,9 %); bei 95 % haette Q ihn getroffen. Die
+    # Richtung einer Schwelle rechnet Muster N aus, Q kennt sie nicht.
+    if _N_SCHWELLE_RE.search(claim_lc):
+        return None
+    if claim_nennt_bereich(claim_lc):
+        return None
+    paare = jahr_wert_paare(summary)
+    if len(paare) < 2:
+        return None
+    jahre_der_claim_zahl = {j for w, j in paare if abs(w - wert) < 0.05}
+    if not jahre_der_claim_zahl:
+        return None
+    neuestes = max(j for _w, j in paare)
+    if neuestes in jahre_der_claim_zahl:
+        return None                      # die Zahl ist der aktuelle Wert
+    neue_werte = [w for w, j in paare if j == neuestes]
+    if not neue_werte:
+        return None
+    # Der naechstliegende aktuelle Wert entscheidet: Nennt die Begruendung
+    # fuer das neueste Jahr zwei Quellen (15,6 und 16), ist die kleinere
+    # Differenz die vorsichtigere Lesart.
+    naechster = min(neue_werte, key=lambda w: abs(w - wert))
+    if abs(naechster - wert) / max(abs(wert), 1e-9) < _Q_MIN_ABWEICHUNG:
+        return None
+    return (wert, max(jahre_der_claim_zahl), neuestes, naechster)
+
+
 # --- Muster O: Vergleichs-Claim gegen die eigene Begruendung (HART40) ----
 # "Die ÖBB sind pünktlicher als die Deutsche Bahn" -> mostly_false@0.85,
 # waehrend die Summary sagt: "ÖBB 78,2-88,7 % ... DB nur 62,5 % ... Selbst
@@ -2498,6 +2705,24 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                         f"{_n_wert:g} zu (Anker: {sorted(_n_woerter)}) — "
                         f"Label '{_n_alt}' auf '{_n_ziel}' korrigiert."
                     )
+
+    # --- Muster Q: die Zahl des Claims gehoert einem alten Jahrgang ---
+    # Laeuft nach N (dessen Rechnung praeziser ist, wo sie aufgeht) und vor
+    # P/O, die Vergleiche behandeln. Q braucht keinen Vergleich im Claim.
+    if result.get("verdict") in ("true", "mostly_true"):
+        _q = veraltete_jahrgangszahl(_claim_lc, result.get("summary") or "")
+        if _q:
+            _q_wert, _q_jahr, _q_neu, _q_neuwert = _q
+            _q_alt = result["verdict"]
+            result["verdict"] = "mostly_false"
+            if isinstance(result.get("confidence"), (int, float)):
+                result["confidence"] = min(float(result["confidence"]), 0.75)
+            logger.warning(
+                f"Muster Q (Jahrgangszahl): Claim nennt {_q_wert:g} % ohne "
+                f"Jahr; die Begruendung ordnet {_q_wert:g} % dem Jahr "
+                f"{_q_jahr} zu und fuehrt fuer {_q_neu} {_q_neuwert:g} % — "
+                f"Label '{_q_alt}' auf 'mostly_false' korrigiert."
+            )
 
     # --- Muster P: Vergleichs-Claim gegen die Zahlen beider Seiten ---
     # Vor Muster O, weil Rechnen praeziser ist als das Wort-Muster: P
