@@ -1,8 +1,11 @@
 {
   "source_label": "W3C WCAG 2.2 — Web Content Accessibility Guidelines",
+  "refresh_kadenz": "jaehrlich",
+  "kadenz_begruendung": "WCAG 2.2 ist eine W3C Recommendation — ein verabschiedeter Standard, der sich nur durch Errata oder eine neue Fassung aendert. WCAG 3.0 ist seit Jahren in Entwicklung und keine Recommendation. Jaehrlich ist die Obergrenze, in der nachgesehen wird. Bis zum 20.10.2026 stand keine Kadenz im Feld, und der Waechter mass gegen den 120-Tage-Standard.",
+  "fetched_at_iso": "2026-10-20",
   "source_url": "https://www.w3.org/TR/WCAG22/",
   "license": "W3C Document License (https://www.w3.org/copyright/document-license/)",
-  "version": "2.2",
+  "version": "2.2 (W3C Recommendation vom 12.12.2024; geprueft 2026-10-20, keine neuere Fassung. WCAG 3.0 ist in Entwicklung und KEINE Recommendation.)",
   "published": "2023-10-05",
   "updated": "2024-12-12",
   "principles": {
@@ -101,10 +104,12 @@
     {"num": "4.1.3", "name": "Statusmeldungen", "name_en": "Status Messages", "level": "AA", "principle": "4", "summary": "Statusmeldungen können programmatisch (per ARIA live regions) ermittelt werden — ohne Fokuswechsel."}
   ],
   "key_facts": {
-    "total_criteria": 87,
-    "level_a_count": 32,
-    "level_aa_count": 24,
-    "level_aaa_count": 31,
+    "gelistete_kriterien": 87,
+    "aktive_kriterien": 86,
+    "kriterien_hinweis": "WCAG 2.2 hat 86 AKTIVE Erfolgskriterien. Gelistet sind 87, weil 4.1.1 (Parsing) mitgefuehrt wird — es ist in WCAG 2.2 obsolet und gilt stets als bestanden. Das frueher hier gefuehrte Feld hiess 'total_criteria: 87' und liess offen, welche der beiden Zahlen gemeint ist.",
+    "level_a_count_aktiv": 31,
+    "level_aa_count_aktiv": 24,
+    "level_aaa_count_aktiv": 31,
     "new_in_2_2": ["2.4.11", "2.4.12", "2.4.13", "2.5.7", "2.5.8", "3.2.6", "3.3.7", "3.3.8", "3.3.9"],
     "obsoleted_in_2_2": ["4.1.1"],
     "eu_legal_reference": "EU Web Accessibility Directive 2016/2102 verlangt EN 301 549, das WCAG 2.1 Level AA referenziert. Der European Accessibility Act (EAA, Richtlinie 2019/882) gilt seit 28.06.2025 für private Anbieter — auch hier ist EN 301 549 / WCAG 2.1 AA der Standard. WCAG 2.2 ist eine Erweiterung, NICHT verpflichtend nach EU-Recht (Stand 2026); aber rückwärtskompatibel.",

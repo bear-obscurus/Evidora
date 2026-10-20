@@ -17,7 +17,8 @@ Strategie: STATIC-FIRST-SNAPSHOT
 WID hat eine REST-API (https://wid.world/codes-dictionary/) und ein
 R-/Python-Package ``wid``. Fuer Evidora halten wir die Top-Shares
 fuer 30+ Schluessellaender als kuratierten Snapshot in
-``data/wid.json`` vor (Data Year 2022, Snapshot 2024). Vorteile:
+``data/wid.json`` vor (Data Year 2022, Snapshot 2024 — einen World
+Inequality Report 2024 gibt es nicht; 2024 war der Snapshot). Vorteile:
   - Keine Live-API-Latenz (WID-Snapshots aendern sich ~jaehrlich)
   - Konsistente Werte, die manuell gegen den World Inequality
     Report 2022 + WID-Country-Pages validiert wurden
@@ -540,7 +541,7 @@ async def search_wid(analysis: dict) -> dict:
 
     source_label = data.get(
         "source_label",
-        "WID.world — World Inequality Database 2024 (Piketty/Saez/Zucman/Chancel)",
+        "WID.world — World Inequality Database (Chancel/Piketty/Saez/Zucman)",
     )
     secondary_url = data.get(
         "secondary_url", "https://wir2022.wid.world/"

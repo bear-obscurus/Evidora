@@ -3,8 +3,10 @@
   "source_url": "https://en.wikipedia.org/wiki/List_of_withdrawn_drugs",
   "license": "CC-BY-SA 4.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-  "fetched_at_iso": "2026-05-23",
-  "note": "Statischer Snapshot der Wikipedia-Tabelle. Die Liste deckt vor allem Medikamente ab, deren Marktzulassung wegen Sicherheits-Bedenken (Hepatotoxizität, kardiovaskuläre Risiken, etc.) entzogen oder ausgesetzt wurde. Diese ergänzt das EMA-CSV (centralized procedure), das national-zugelassene Medikamente wie Mediator/Vioxx/Avandia nicht vollständig erfasst. Hand-curated additions 2026-05-23: Mediator/Benfluorex (FR 2009), Tegaserod/Zelnorm (US 2007), Sibutramine/Reductil (Worldwide 2010).",
+  "fetched_at_iso": "2026-10-20",
+  "refresh_kadenz": "jaehrlich",
+  "kadenz_begruendung": "Die Wikipedia-Liste waechst, wenn ein Praeparat vom Markt genommen wird — das ist ein Anlass, kein Takt. Jaehrlich ist die Obergrenze, in der nachgesehen wird. Bis zum 20.10.2026 stand keine Kadenz im Feld, und der Waechter mass gegen den 120-Tage-Standard.",
+  "note": "Statischer Snapshot der Wikipedia-Tabelle. Die Liste deckt vor allem Medikamente ab, deren Marktzulassung wegen Sicherheits-Bedenken (Hepatotoxizitaet, kardiovaskulaere Risiken) entzogen oder ausgesetzt wurde. Sie ergaenzt das EMA-CSV. GEPRUEFT 2026-10-20: Die Wikipedia-Seite wurde am 30.09.2026 bearbeitet, die Liste ist dabei NICHT gewachsen — 180 Eintraege hier gegen 179 Tabellenzeilen dort, und die Unterschiede sind reine Namensvarianten desselben Wirkstoffs (Aminopyrine/Aminophenazon, Dextropropoxyphen/Propoxyphen, Zimelidine/Zimeldin). Kein neuer Entzug.",
   "items": [
     {
       "inn": "Amphetamine",

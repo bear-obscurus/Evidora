@@ -166,6 +166,12 @@ jobs:
     #   - test_rki_saison_2025_26     (Atemwegs-Saison 2025/26 aus RKI-Open-Data;
     #                                  drei falsche Zahlen + verkehrte Richtung
     #                                  im alten Stand; GrippeWeb != Konsultation)
+    #   - test_freshness_fuenf_2026_10 (letzte fuenf Dateien ohne Kadenz;
+    #                                  parlgov-DOI zeigte auf den 2020er
+    #                                  Release, wid liegt eine Ausgabe
+    #                                  zurueck, wcag-Zahl war zwei Zahlen;
+    #                                  Zensus: kein Takt ausserhalb des
+    #                                  Waechter-Vokabulars)
     #   - test_freshness_kadenz       (Schwellwert aus dem Publikationstakt der
     #                                  Quelle statt einheitlich 120 d; bei
     #                                  deklariertem Takt entscheidet das Feld)
@@ -373,6 +379,7 @@ jobs:
             tests/test_rki_saison_2026_27.py \
             tests/test_refresh_oktober_2026.py \
             tests/test_mipex_belegte_werte.py \
+            tests/test_freshness_fuenf_2026_10.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \
