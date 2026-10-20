@@ -1,99 +1,525 @@
 {
   "schema_version": 1,
   "fetched_at_iso": "2026-10-20",
-  "snapshot_jahr": 2024,
-  "jahr_hinweis": "Bis zum 20.10.2026 hiess dieses Feld 'report_year' und trug 2024 — einen World Inequality Report 2024 gibt es nicht. Die Ausgaben erschienen 2018, 2022 und 2026. 2024 war das Jahr des Snapshots, nicht der Ausgabe. services/wid.py hat das Feld nie gelesen; die Ausgabe nennt ausschliesslich data_year (2022).",
-  "data_year": 2022,
-  "source_label": "WID.world — World Inequality Database, World Inequality Report 2022 (Chancel / Piketty / Saez / Zucman), Datenjahr 2022. Distributional National Accounts. ACHTUNG: Es gibt eine neuere Ausgabe (WIR 2026 vom 10.12.2025, Daten bis 2025), die hier noch NICHT eingearbeitet ist.",
-  "refresh_kadenz": "jaehrlich",
-  "kadenz_begruendung": "WID aktualisiert die Datenbank laufend, die Flaggschiff-Reports erscheinen in mehrjaehrigem Abstand (2018, 2022, 2026). Jaehrlich ist die Obergrenze, in der nachgesehen wird. Beim Lauf am 20.10.2026 hat genau das den Rueckstand auf WIR 2026 aufgedeckt.",
+  "data_year": 2023,
+  "feld_historie": "Bis zum 20.10.2026 fuehrte diese Datei ein Feld 'report_year' mit dem Wert 2024. Einen World Inequality Report 2024 gibt es nicht — die Ausgaben erschienen 2018, 2022 und 2026; 2024 war das Jahr des damaligen Snapshots. services/wid.py hat das Feld nie gelesen, nannte die Zahl aber im Fallback-Literal. In PR #267 umbenannt und entjahrt, hier als Aufzeichnung behalten: Ein Feldname IST eine Quellenangabe (#247), und wer ihn liest, zitiert sonst eine Ausgabe, die nie erschienen ist. 'report_year' darf nicht zurueckkehren.",
+  "datenjahr_begruendung": "2023 ist das juengste Jahr, in dem ALLE 34 Gebiete alle sechs Reihen fuehren. 32 Gebiete haben auch 2023er-Nachfolger fuer 2024, Europa (QE) und die Welt (WO) nicht. Ein gemischtes Datenjahr waere eine Falschangabe: Dann stuende ein Einkommensanteil von 2024 neben einem Aggregat von 2023, und das Feld data_year behauptete ein gemeinsames Jahr, das es nicht gibt (vgl. #138, #264 — Messgroessen und Zeitpunkte nicht vermischen).",
+  "source_label": "WID.world — World Inequality Database (Chancel/Piketty/Saez/Zucman), Datenjahr 2023. Anteile am Pretax National Income und am Netto-Haushaltsvermoegen, equal-split adults. Abgerufen am 20.10.2026 aus dem amtlichen Bulk-Download, Reihen sptincj992 und shwealj992 — nicht aus einer Report-Grafik.",
   "source_url": "https://wid.world/data/",
-  "secondary_url": "https://wir2022.wid.world/",
+  "bulk_url": "https://wid.world/bulk_download/",
+  "secondary_url": "https://wir2026.wid.world/",
   "license": "Open Access (with citation). WID Data licensed for non-commercial scientific use; redistribution with attribution to WID.world.",
-  "citation": "Chancel, L.; Piketty, T.; Saez, E.; Zucman, G. (2022). World Inequality Report 2022. WID.world.",
-  "methodology_note": "WID kombiniert nationale Steuerdaten, Volkswirtschaftliche Gesamtrechnungen (SNA) und Surveys zu Distributional National Accounts. Berichtet werden Pretax-National-Income-Shares (vor Sozialtransfers, nach Renten) sowie Personal-Wealth-Shares (Netto-Vermögen Erwachsener). Top-1 % / Top-10 % / Bottom-50 % beziehen sich auf adulte Bevölkerung (20+). Werte sind WID-Best-Estimates — Mess-Unsicherheit groesser in Schwellenlaendern als in OECD-Steuerdaten-Laendern.",
-  "audit_flag": "GEPRUEFT 2026-10-20, und das Ergebnis ist ein RUECKSTAND: Der World Inequality Report 2026 ist am 10.12.2025 erschienen und fuehrt Daten bis 2025 (wir2026.wid.world). Die Werte hier stammen aus dem WIR 2022 mit Datenjahr 2022 und sind damit eine ganze Ausgabe alt. Sie sind nicht falsch, aber sie sind nicht aktuell — wer sie zitiert, nennt 'WIR 2022, Datenjahr 2022' dazu. Ein Refresh auf WIR 2026 betrifft alle 34 Laender und steht aus; geschaetzte Bandbreite der Schwellenwerte wie bisher +/- 1 Prozentpunkt.",
+  "citation": "WID.world (2026). World Inequality Database, Reihen sptincj992 und shwealj992, Datenjahr 2023. Abgerufen am 20.10.2026. Chancel, L.; Piketty, T.; Saez, E.; Zucman, G. (Hrsg.)",
+  "zitier_hinweis": "Zitiert wird die DATENBANK, nicht der Report. Die Werte stammen aus dem Bulk-Download vom 20.10.2026; der World Inequality Report 2026 (erschienen 10.12.2025) ist die zugehoerige Flaggschiff-Publikation, seine gedruckten Zahlen koennen durch spaetere Revisionen abweichen. Wer 'laut World Inequality Report 2026' schreibt, zitiert etwas anderes als diese Datei.",
+  "refresh_kadenz": "jaehrlich",
+  "kadenz_begruendung": "WID aktualisiert die Datenbank laufend, die Flaggschiff-Reports erscheinen in mehrjaehrigem Abstand (2018, 2022, 2026). Jaehrlich ist die Obergrenze, in der nachgesehen wird. Beim Lauf am 20.10.2026 hat genau das den Rueckstand auf die Ausgabe 2026 aufgedeckt.",
+  "methodology_note": "WID kombiniert nationale Steuerdaten, Volkswirtschaftliche Gesamtrechnungen (SNA) und Surveys zu Distributional National Accounts. Berichtet werden Pretax-National-Income-Shares (vor Sozialtransfers, nach Renten) sowie Netto-Haushaltsvermoegens-Shares, beide fuer equal-split adults. Top-1 % = p99p100, Top-10 % = p90p100, untere 50 % = p0p50. Die drei Gruppen addieren sich mit den mittleren 40 % auf 100 % — geprueft fuer 2023, Summe 100,00 +/- 0,01.",
+  "negative_anteile_hinweis": "Ein negativer Vermoegensanteil der unteren 50 % ist kein Fehler, sondern Nettoschuld: Diese Haelfte schuldet mehr, als sie besitzt. 2023 betrifft das Schweden (-10,9 %), Suedafrika (-2,5 %) und die Niederlande fuehren +9,8 %. Wer solche Werte als Tippfehler 'korrigiert', faelscht sie.",
+  "audit_flag": "VOLLREFRESH 2026-10-20. Der vorige Stand fuehrte Werte des World Inequality Report 2022 mit Datenjahr 2022 und war fuer seine Ausgabe KORREKT: Die Welt-Werte stimmen exakt mit den Schlagzeilen des Reports (Einkommen Top-10 % 52,0 %, untere 50 % 8,5 %, Vermoegen untere 50 % 2,0 %). Er war nur grob — 43 % der Werte endeten auf .0 oder .5 gegen 18 % in der Datenbank, sie waren aus Report-Grafiken gelesen. Jetzt Zelle fuer Zelle aus dem Bulk-Download, Datenjahr 2023; 195 von 204 Werten haben sich geaendert, Median 1,2 Prozentpunkte. Das ist kein Fehlerbefund, sondern zwei Datenjahre plus WID-Revisionen. tools/wid_aus_bulk.py wiederholt die Gegenprobe.",
   "country_aliases": {
-    "AUT": ["österreich", "oesterreich", "austria", "österreichisch", "austrian"],
-    "DEU": ["deutschland", "germany", "deutsch", "german", "brd", "bundesrepublik"],
-    "CHE": ["schweiz", "switzerland", "swiss", "eidgenossenschaft"],
-    "FRA": ["frankreich", "france", "französisch", "french"],
-    "ITA": ["italien", "italy", "italienisch", "italian"],
-    "ESP": ["spanien", "spain", "spanisch", "spanish"],
-    "GBR": ["vereinigtes königreich", "vereinigtes koenigreich", "united kingdom", "großbritannien", "grossbritannien", "britain", "british", "uk"],
-    "USA": ["usa", "vereinigte staaten", "united states", "amerika", "us"],
-    "CAN": ["kanada", "canada", "canadian"],
-    "SWE": ["schweden", "sweden", "swedish"],
-    "NOR": ["norwegen", "norway", "norwegian"],
-    "DNK": ["dänemark", "daenemark", "denmark", "danish"],
-    "FIN": ["finnland", "finland", "finnish"],
-    "NLD": ["niederlande", "netherlands", "dutch", "holland"],
-    "BEL": ["belgien", "belgium", "belgian"],
-    "IRL": ["irland", "ireland", "irish"],
-    "POL": ["polen", "poland", "polish"],
-    "CZE": ["tschechien", "czech", "czechia", "tschechisch"],
-    "HUN": ["ungarn", "hungary", "hungarian"],
-    "ROU": ["rumänien", "rumaenien", "romania", "romanian"],
-    "PRT": ["portugal", "portuguese"],
-    "GRC": ["griechenland", "greece", "greek"],
-    "RUS": ["russland", "russia", "russian"],
-    "CHN": ["china", "chinesisch", "chinese"],
-    "IND": ["indien", "india", "indian"],
-    "BRA": ["brasilien", "brazil", "brazilian"],
-    "JPN": ["japan", "japanese", "japanisch"],
-    "KOR": ["südkorea", "suedkorea", "south korea", "korea"],
-    "AUS": ["australien", "australia", "australian"],
-    "ZAF": ["südafrika", "suedafrika", "south africa"],
-    "MEX": ["mexiko", "mexico", "mexican"],
-    "TUR": ["türkei", "tuerkei", "turkey", "türkiye"],
-    "EUR": ["europa", "europe", "europäische union", "eu", "european union"],
-    "WLD": ["welt", "world", "weltweit", "global"]
+    "AUT": [
+      "österreich",
+      "oesterreich",
+      "austria",
+      "österreichisch",
+      "austrian"
+    ],
+    "DEU": [
+      "deutschland",
+      "germany",
+      "deutsch",
+      "german",
+      "brd",
+      "bundesrepublik"
+    ],
+    "CHE": [
+      "schweiz",
+      "switzerland",
+      "swiss",
+      "eidgenossenschaft"
+    ],
+    "FRA": [
+      "frankreich",
+      "france",
+      "französisch",
+      "french"
+    ],
+    "ITA": [
+      "italien",
+      "italy",
+      "italienisch",
+      "italian"
+    ],
+    "ESP": [
+      "spanien",
+      "spain",
+      "spanisch",
+      "spanish"
+    ],
+    "GBR": [
+      "vereinigtes königreich",
+      "vereinigtes koenigreich",
+      "united kingdom",
+      "großbritannien",
+      "grossbritannien",
+      "britain",
+      "british",
+      "uk"
+    ],
+    "USA": [
+      "usa",
+      "vereinigte staaten",
+      "united states",
+      "amerika",
+      "us"
+    ],
+    "CAN": [
+      "kanada",
+      "canada",
+      "canadian"
+    ],
+    "SWE": [
+      "schweden",
+      "sweden",
+      "swedish"
+    ],
+    "NOR": [
+      "norwegen",
+      "norway",
+      "norwegian"
+    ],
+    "DNK": [
+      "dänemark",
+      "daenemark",
+      "denmark",
+      "danish"
+    ],
+    "FIN": [
+      "finnland",
+      "finland",
+      "finnish"
+    ],
+    "NLD": [
+      "niederlande",
+      "netherlands",
+      "dutch",
+      "holland"
+    ],
+    "BEL": [
+      "belgien",
+      "belgium",
+      "belgian"
+    ],
+    "IRL": [
+      "irland",
+      "ireland",
+      "irish"
+    ],
+    "POL": [
+      "polen",
+      "poland",
+      "polish"
+    ],
+    "CZE": [
+      "tschechien",
+      "czech",
+      "czechia",
+      "tschechisch"
+    ],
+    "HUN": [
+      "ungarn",
+      "hungary",
+      "hungarian"
+    ],
+    "ROU": [
+      "rumänien",
+      "rumaenien",
+      "romania",
+      "romanian"
+    ],
+    "PRT": [
+      "portugal",
+      "portuguese"
+    ],
+    "GRC": [
+      "griechenland",
+      "greece",
+      "greek"
+    ],
+    "RUS": [
+      "russland",
+      "russia",
+      "russian"
+    ],
+    "CHN": [
+      "china",
+      "chinesisch",
+      "chinese"
+    ],
+    "IND": [
+      "indien",
+      "india",
+      "indian"
+    ],
+    "BRA": [
+      "brasilien",
+      "brazil",
+      "brazilian"
+    ],
+    "JPN": [
+      "japan",
+      "japanese",
+      "japanisch"
+    ],
+    "KOR": [
+      "südkorea",
+      "suedkorea",
+      "south korea",
+      "korea"
+    ],
+    "AUS": [
+      "australien",
+      "australia",
+      "australian"
+    ],
+    "ZAF": [
+      "südafrika",
+      "suedafrika",
+      "south africa"
+    ],
+    "MEX": [
+      "mexiko",
+      "mexico",
+      "mexican"
+    ],
+    "TUR": [
+      "türkei",
+      "tuerkei",
+      "turkey",
+      "türkiye"
+    ],
+    "EUR": [
+      "europa",
+      "europe",
+      "europäische union",
+      "eu",
+      "european union"
+    ],
+    "WLD": [
+      "welt",
+      "world",
+      "weltweit",
+      "global"
+    ]
   },
   "country_slugs": {
-    "AUT": "austria", "DEU": "germany", "CHE": "switzerland", "FRA": "france",
-    "ITA": "italy", "ESP": "spain", "GBR": "united-kingdom", "USA": "usa",
-    "CAN": "canada", "SWE": "sweden", "NOR": "norway", "DNK": "denmark",
-    "FIN": "finland", "NLD": "netherlands", "BEL": "belgium", "IRL": "ireland",
-    "POL": "poland", "CZE": "czech-republic", "HUN": "hungary",
-    "ROU": "romania", "PRT": "portugal", "GRC": "greece", "RUS": "russia",
-    "CHN": "china", "IND": "india", "BRA": "brazil", "JPN": "japan",
-    "KOR": "south-korea", "AUS": "australia", "ZAF": "south-africa",
-    "MEX": "mexico", "TUR": "turkey", "EUR": "europe", "WLD": "world"
+    "AUT": "austria",
+    "DEU": "germany",
+    "CHE": "switzerland",
+    "FRA": "france",
+    "ITA": "italy",
+    "ESP": "spain",
+    "GBR": "united-kingdom",
+    "USA": "usa",
+    "CAN": "canada",
+    "SWE": "sweden",
+    "NOR": "norway",
+    "DNK": "denmark",
+    "FIN": "finland",
+    "NLD": "netherlands",
+    "BEL": "belgium",
+    "IRL": "ireland",
+    "POL": "poland",
+    "CZE": "czech-republic",
+    "HUN": "hungary",
+    "ROU": "romania",
+    "PRT": "portugal",
+    "GRC": "greece",
+    "RUS": "russia",
+    "CHN": "china",
+    "IND": "india",
+    "BRA": "brazil",
+    "JPN": "japan",
+    "KOR": "south-korea",
+    "AUS": "australia",
+    "ZAF": "south-africa",
+    "MEX": "mexico",
+    "TUR": "turkey",
+    "EUR": "europe",
+    "WLD": "world"
   },
   "shares": {
-    "AUT": {"income_top1": 10.8, "income_top10": 31.6, "income_bottom50": 19.5, "wealth_top1": 25.3, "wealth_top10": 56.4, "wealth_bottom50": 3.0},
-    "DEU": {"income_top1": 12.8, "income_top10": 37.1, "income_bottom50": 18.6, "wealth_top1": 30.0, "wealth_top10": 59.6, "wealth_bottom50": 3.2},
-    "CHE": {"income_top1": 12.0, "income_top10": 33.7, "income_bottom50": 18.9, "wealth_top1": 33.2, "wealth_top10": 63.0, "wealth_bottom50": 2.4},
-    "FRA": {"income_top1": 9.8, "income_top10": 32.1, "income_bottom50": 21.4, "wealth_top1": 27.0, "wealth_top10": 59.2, "wealth_bottom50": 4.8},
-    "ITA": {"income_top1": 9.1, "income_top10": 31.4, "income_bottom50": 21.2, "wealth_top1": 23.0, "wealth_top10": 53.3, "wealth_bottom50": 5.7},
-    "ESP": {"income_top1": 11.6, "income_top10": 33.5, "income_bottom50": 21.4, "wealth_top1": 24.5, "wealth_top10": 57.4, "wealth_bottom50": 4.0},
-    "GBR": {"income_top1": 13.0, "income_top10": 35.7, "income_bottom50": 20.0, "wealth_top1": 22.6, "wealth_top10": 57.1, "wealth_bottom50": 4.6},
-    "USA": {"income_top1": 19.0, "income_top10": 45.5, "income_bottom50": 13.3, "wealth_top1": 34.9, "wealth_top10": 70.7, "wealth_bottom50": 1.5},
-    "CAN": {"income_top1": 13.6, "income_top10": 39.9, "income_bottom50": 17.0, "wealth_top1": 24.4, "wealth_top10": 58.1, "wealth_bottom50": 5.1},
-    "SWE": {"income_top1": 11.6, "income_top10": 31.9, "income_bottom50": 23.4, "wealth_top1": 25.8, "wealth_top10": 58.9, "wealth_bottom50": -0.6},
-    "NOR": {"income_top1": 13.4, "income_top10": 34.0, "income_bottom50": 21.1, "wealth_top1": 21.3, "wealth_top10": 53.4, "wealth_bottom50": 4.2},
-    "DNK": {"income_top1": 12.4, "income_top10": 32.5, "income_bottom50": 22.0, "wealth_top1": 26.0, "wealth_top10": 61.4, "wealth_bottom50": -0.4},
-    "FIN": {"income_top1": 10.0, "income_top10": 31.4, "income_bottom50": 22.6, "wealth_top1": 25.2, "wealth_top10": 56.0, "wealth_bottom50": 4.7},
-    "NLD": {"income_top1": 11.2, "income_top10": 31.4, "income_bottom50": 22.8, "wealth_top1": 27.0, "wealth_top10": 60.0, "wealth_bottom50": 1.0},
-    "BEL": {"income_top1": 9.4, "income_top10": 31.1, "income_bottom50": 21.5, "wealth_top1": 19.5, "wealth_top10": 51.7, "wealth_bottom50": 6.9},
-    "IRL": {"income_top1": 13.0, "income_top10": 36.0, "income_bottom50": 18.6, "wealth_top1": 27.0, "wealth_top10": 58.0, "wealth_bottom50": 3.2},
-    "POL": {"income_top1": 14.3, "income_top10": 37.4, "income_bottom50": 19.4, "wealth_top1": 31.0, "wealth_top10": 61.6, "wealth_bottom50": 2.0},
-    "CZE": {"income_top1": 9.7, "income_top10": 30.0, "income_bottom50": 21.0, "wealth_top1": 25.0, "wealth_top10": 57.0, "wealth_bottom50": 4.0},
-    "HUN": {"income_top1": 14.0, "income_top10": 35.0, "income_bottom50": 19.0, "wealth_top1": 32.0, "wealth_top10": 63.0, "wealth_bottom50": 2.5},
-    "ROU": {"income_top1": 14.6, "income_top10": 36.0, "income_bottom50": 19.0, "wealth_top1": 27.6, "wealth_top10": 60.0, "wealth_bottom50": 3.0},
-    "PRT": {"income_top1": 11.8, "income_top10": 33.6, "income_bottom50": 21.0, "wealth_top1": 24.0, "wealth_top10": 56.5, "wealth_bottom50": 4.8},
-    "GRC": {"income_top1": 9.5, "income_top10": 31.2, "income_bottom50": 21.0, "wealth_top1": 24.0, "wealth_top10": 56.7, "wealth_bottom50": 6.0},
-    "RUS": {"income_top1": 24.0, "income_top10": 47.0, "income_bottom50": 14.7, "wealth_top1": 47.7, "wealth_top10": 74.5, "wealth_bottom50": 3.1},
-    "CHN": {"income_top1": 14.0, "income_top10": 41.7, "income_bottom50": 14.4, "wealth_top1": 30.5, "wealth_top10": 67.8, "wealth_bottom50": 6.4},
-    "IND": {"income_top1": 21.7, "income_top10": 57.1, "income_bottom50": 13.1, "wealth_top1": 33.0, "wealth_top10": 64.6, "wealth_bottom50": 5.9},
-    "BRA": {"income_top1": 21.8, "income_top10": 58.6, "income_bottom50": 10.0, "wealth_top1": 48.9, "wealth_top10": 79.8, "wealth_bottom50": 0.4},
-    "JPN": {"income_top1": 13.1, "income_top10": 44.9, "income_bottom50": 16.8, "wealth_top1": 24.5, "wealth_top10": 57.8, "wealth_bottom50": 5.8},
-    "KOR": {"income_top1": 14.7, "income_top10": 46.5, "income_bottom50": 16.0, "wealth_top1": 25.4, "wealth_top10": 58.5, "wealth_bottom50": 5.6},
-    "AUS": {"income_top1": 11.5, "income_top10": 33.5, "income_bottom50": 19.0, "wealth_top1": 23.7, "wealth_top10": 57.2, "wealth_bottom50": 4.7},
-    "ZAF": {"income_top1": 19.0, "income_top10": 65.0, "income_bottom50": 5.3, "wealth_top1": 55.0, "wealth_top10": 85.7, "wealth_bottom50": -2.4},
-    "MEX": {"income_top1": 26.0, "income_top10": 58.8, "income_bottom50": 9.2, "wealth_top1": 36.1, "wealth_top10": 78.7, "wealth_bottom50": 0.0},
-    "TUR": {"income_top1": 19.0, "income_top10": 54.5, "income_bottom50": 12.0, "wealth_top1": 39.5, "wealth_top10": 67.5, "wealth_bottom50": 3.8},
-    "EUR": {"income_top1": 12.0, "income_top10": 36.0, "income_bottom50": 19.0, "wealth_top1": 27.0, "wealth_top10": 58.0, "wealth_bottom50": 4.5},
-    "WLD": {"income_top1": 19.0, "income_top10": 52.0, "income_bottom50": 8.5, "wealth_top1": 37.8, "wealth_top10": 75.5, "wealth_bottom50": 2.0}
+    "AUS": {
+      "income_bottom50": 17.1,
+      "income_top1": 10.9,
+      "income_top10": 35.2,
+      "wealth_bottom50": 4.9,
+      "wealth_top1": 23.5,
+      "wealth_top10": 57.6
+    },
+    "AUT": {
+      "income_bottom50": 23.2,
+      "income_top1": 8.9,
+      "income_top10": 31.8,
+      "wealth_bottom50": 3.1,
+      "wealth_top1": 30.1,
+      "wealth_top10": 61.6
+    },
+    "BEL": {
+      "income_bottom50": 20.3,
+      "income_top1": 8.7,
+      "income_top10": 32.9,
+      "wealth_bottom50": 7.4,
+      "wealth_top1": 15.0,
+      "wealth_top10": 52.3
+    },
+    "BRA": {
+      "income_bottom50": 9.3,
+      "income_top1": 26.5,
+      "income_top10": 59.1,
+      "wealth_bottom50": 2.1,
+      "wealth_top1": 38.9,
+      "wealth_top10": 71.7
+    },
+    "CAN": {
+      "income_bottom50": 16.9,
+      "income_top1": 12.1,
+      "income_top10": 36.8,
+      "wealth_bottom50": 14.0,
+      "wealth_top1": 28.6,
+      "wealth_top10": 59.8
+    },
+    "CHE": {
+      "income_bottom50": 23.0,
+      "income_top1": 10.3,
+      "income_top10": 31.5,
+      "wealth_bottom50": 3.7,
+      "wealth_top1": 31.4,
+      "wealth_top10": 62.8
+    },
+    "CHN": {
+      "income_bottom50": 13.5,
+      "income_top1": 15.8,
+      "income_top10": 43.5,
+      "wealth_bottom50": 6.3,
+      "wealth_top1": 30.4,
+      "wealth_top10": 68.0
+    },
+    "CZE": {
+      "income_bottom50": 25.3,
+      "income_top1": 10.1,
+      "income_top10": 29.1,
+      "wealth_bottom50": 4.8,
+      "wealth_top1": 25.9,
+      "wealth_top10": 58.5
+    },
+    "DEU": {
+      "income_bottom50": 18.8,
+      "income_top1": 13.3,
+      "income_top10": 37.6,
+      "wealth_bottom50": 3.4,
+      "wealth_top1": 27.7,
+      "wealth_top10": 58.4
+    },
+    "DNK": {
+      "income_bottom50": 21.6,
+      "income_top1": 12.4,
+      "income_top10": 33.4,
+      "wealth_bottom50": 4.1,
+      "wealth_top1": 20.5,
+      "wealth_top10": 50.1
+    },
+    "ESP": {
+      "income_bottom50": 21.4,
+      "income_top1": 12.1,
+      "income_top10": 34.0,
+      "wealth_bottom50": 6.7,
+      "wealth_top1": 23.8,
+      "wealth_top10": 57.2
+    },
+    "EUR": {
+      "income_bottom50": 18.9,
+      "income_top1": 12.3,
+      "income_top10": 36.4,
+      "wealth_bottom50": 3.1,
+      "wealth_top1": 25.4,
+      "wealth_top10": 60.2
+    },
+    "FIN": {
+      "income_bottom50": 22.7,
+      "income_top1": 9.4,
+      "income_top10": 30.7,
+      "wealth_bottom50": 2.1,
+      "wealth_top1": 17.9,
+      "wealth_top10": 55.5
+    },
+    "FRA": {
+      "income_bottom50": 20.3,
+      "income_top1": 11.8,
+      "income_top10": 34.0,
+      "wealth_bottom50": 4.9,
+      "wealth_top1": 27.4,
+      "wealth_top10": 59.7
+    },
+    "GBR": {
+      "income_bottom50": 20.4,
+      "income_top1": 13.1,
+      "income_top10": 36.2,
+      "wealth_bottom50": 4.6,
+      "wealth_top1": 21.3,
+      "wealth_top10": 57.1
+    },
+    "GRC": {
+      "income_bottom50": 20.9,
+      "income_top1": 11.3,
+      "income_top10": 33.2,
+      "wealth_bottom50": -1.8,
+      "wealth_top1": 23.4,
+      "wealth_top10": 60.5
+    },
+    "HUN": {
+      "income_bottom50": 22.3,
+      "income_top1": 11.5,
+      "income_top10": 33.1,
+      "wealth_bottom50": 3.9,
+      "wealth_top1": 33.4,
+      "wealth_top10": 67.2
+    },
+    "IND": {
+      "income_bottom50": 13.2,
+      "income_top1": 23.1,
+      "income_top10": 58.9,
+      "wealth_bottom50": 6.4,
+      "wealth_top1": 40.1,
+      "wealth_top10": 65.0
+    },
+    "IRL": {
+      "income_bottom50": 19.5,
+      "income_top1": 13.0,
+      "income_top10": 36.9,
+      "wealth_bottom50": -3.5,
+      "wealth_top1": 22.4,
+      "wealth_top10": 65.9
+    },
+    "ITA": {
+      "income_bottom50": 21.6,
+      "income_top1": 9.1,
+      "income_top10": 32.3,
+      "wealth_bottom50": 2.5,
+      "wealth_top1": 22.0,
+      "wealth_top10": 56.1
+    },
+    "JPN": {
+      "income_bottom50": 18.2,
+      "income_top1": 12.7,
+      "income_top10": 43.5,
+      "wealth_bottom50": 4.6,
+      "wealth_top1": 24.5,
+      "wealth_top10": 59.1
+    },
+    "KOR": {
+      "income_bottom50": 17.6,
+      "income_top1": 14.1,
+      "income_top10": 37.8,
+      "wealth_bottom50": 1.7,
+      "wealth_top1": 25.9,
+      "wealth_top10": 66.3
+    },
+    "MEX": {
+      "income_bottom50": 7.7,
+      "income_top1": 25.6,
+      "income_top10": 59.1,
+      "wealth_bottom50": 2.0,
+      "wealth_top1": 39.4,
+      "wealth_top10": 71.9
+    },
+    "NLD": {
+      "income_bottom50": 20.8,
+      "income_top1": 7.1,
+      "income_top10": 30.4,
+      "wealth_bottom50": 9.8,
+      "wealth_top1": 13.9,
+      "wealth_top10": 45.5
+    },
+    "NOR": {
+      "income_bottom50": 24.0,
+      "income_top1": 9.5,
+      "income_top10": 30.6,
+      "wealth_bottom50": 3.6,
+      "wealth_top1": 23.3,
+      "wealth_top10": 52.6
+    },
+    "POL": {
+      "income_bottom50": 19.4,
+      "income_top1": 15.1,
+      "income_top10": 37.7,
+      "wealth_bottom50": -0.8,
+      "wealth_top1": 29.9,
+      "wealth_top10": 61.7
+    },
+    "PRT": {
+      "income_bottom50": 20.4,
+      "income_top1": 10.4,
+      "income_top10": 35.4,
+      "wealth_bottom50": 3.6,
+      "wealth_top1": 24.9,
+      "wealth_top10": 60.0
+    },
+    "ROU": {
+      "income_bottom50": 15.3,
+      "income_top1": 14.5,
+      "income_top10": 41.1,
+      "wealth_bottom50": 4.7,
+      "wealth_top1": 24.1,
+      "wealth_top10": 58.5
+    },
+    "RUS": {
+      "income_bottom50": 15.7,
+      "income_top1": 23.8,
+      "income_top10": 50.8,
+      "wealth_bottom50": 2.7,
+      "wealth_top1": 49.0,
+      "wealth_top10": 76.0
+    },
+    "SWE": {
+      "income_bottom50": 24.4,
+      "income_top1": 9.5,
+      "income_top10": 29.0,
+      "wealth_bottom50": -10.9,
+      "wealth_top1": 27.0,
+      "wealth_top10": 68.0
+    },
+    "TUR": {
+      "income_bottom50": 12.4,
+      "income_top1": 24.4,
+      "income_top10": 56.7,
+      "wealth_bottom50": 2.6,
+      "wealth_top1": 36.1,
+      "wealth_top10": 69.2
+    },
+    "USA": {
+      "income_bottom50": 13.4,
+      "income_top1": 20.7,
+      "income_top10": 46.8,
+      "wealth_bottom50": 0.9,
+      "wealth_top1": 34.8,
+      "wealth_top10": 69.5
+    },
+    "WLD": {
+      "income_bottom50": 8.4,
+      "income_top1": 20.3,
+      "income_top10": 53.1,
+      "wealth_bottom50": 2.0,
+      "wealth_top1": 36.6,
+      "wealth_top10": 74.4
+    },
+    "ZAF": {
+      "income_bottom50": 5.8,
+      "income_top1": 19.3,
+      "income_top10": 65.4,
+      "wealth_bottom50": -2.5,
+      "wealth_top1": 54.7,
+      "wealth_top10": 85.6
+    }
   }
 }

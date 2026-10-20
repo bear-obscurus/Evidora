@@ -166,6 +166,13 @@ jobs:
     #   - test_rki_saison_2025_26     (Atemwegs-Saison 2025/26 aus RKI-Open-Data;
     #                                  drei falsche Zahlen + verkehrte Richtung
     #                                  im alten Stand; GrippeWeb != Konsultation)
+    #   - test_wid_vollrefresh_2026   (34 Gebiete von WIR 2022 auf die
+    #                                  Datenbank, Datenjahr 2023; der alte
+    #                                  Stand war fuer seine Ausgabe KORREKT,
+    #                                  nur grob — kein Fehlerbefund.
+    #                                  Partitions-Probe belegt die
+    #                                  Spalten-Zuordnung, negative Anteile
+    #                                  sind Nettoschuld)
     #   - test_bti_amtliche_werte     (BTI trug 'AUDIT NEEDED' und niemand
     #                                  checkte: 341 von 424 Werten falsch
     #                                  (80 %), kein Land fehlerfrei. Dazu:
@@ -388,6 +395,7 @@ jobs:
             tests/test_mipex_belegte_werte.py \
             tests/test_freshness_fuenf_2026_10.py \
             tests/test_bti_amtliche_werte.py \
+            tests/test_wid_vollrefresh_2026.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \
