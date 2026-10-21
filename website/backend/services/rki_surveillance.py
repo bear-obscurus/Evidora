@@ -73,6 +73,45 @@ def _zuwachs(vorher, nachher) -> str:
         return ""
 
 
+def _jahresvergleich(d: dict, praefix: str, label: str) -> str:
+    """Der fertige Satz 'dieses Jahr gegen letztes Jahr' aus zwei Werten.
+
+    QA50I-Befund #79. "Die Grippewelle ist dieses Jahr schwaecher als
+    letztes Jahr" bekam true@0.85 — begruendet mit 8.661 (2025/26) gegen
+    9.290 (2024/25). Das Label war richtig, die Begruendung nicht: Sie
+    erzaehlt dem Nutzer "letzte gegen vorletzte Saison", nicht "dieses
+    Jahr gegen letztes".
+
+    Nach PR #273 stand der faire Kalenderwochen-Vergleich im Prompt — als
+    Reihe von sechs Zahlen. Das Modell hat trotzdem die Hoechstwerte
+    genommen. Zwei Zahlen hinzulegen und auf die richtige Verknuepfung zu
+    hoffen ist genau der Fall, fuer den in diesem Projekt gilt:
+    LLM-Zahlenvergleich -> fertiger Satz. Die Rechnung steht jetzt hier.
+
+    Gibt "" zurueck, wenn eine der beiden Saisonen fehlt — dann laesst
+    ``_fuege`` den Baustein weg, statt "None" zu servieren.
+    """
+    saisonen = sorted(k for k in d if k.startswith(praefix)
+                      and isinstance(d.get(k), (int, float)))
+    if len(saisonen) < 2:
+        return ""
+    jetzt, vorher = d[saisonen[-1]], d[saisonen[-2]]
+    name_jetzt = saisonen[-1][len(praefix):].replace("_", "/")
+    name_vorher = saisonen[-2][len(praefix):].replace("_", "/")
+    try:
+        delta = (float(jetzt) - float(vorher)) / float(vorher) * 100
+    except (TypeError, ValueError, ZeroDivisionError):
+        return ""
+    richtung = "niedriger" if delta < 0 else ("hoeher" if delta > 0 else
+                                              "gleich hoch")
+    richtung = richtung.replace("hoeher", "höher")
+    return (f"DIESES JAHR GEGEN LETZTES JAHR, {label}: {name_jetzt} "
+            f"{de_int(jetzt)} gegen {name_vorher} {de_int(vorher)} — "
+            f"{abs(delta):.0f} % {richtung}. NICHT die Saison-Hoechstwerte "
+            f"dafuer vergleichen.").replace("Hoechstwerte", "Höchstwerte"
+                                            ).replace("dafuer", "dafür")
+
+
 def _saisonreihe(d: dict, praefix: str) -> str:
     """'2022/23 11.204, 2023/24 10.434, …' aus allen Feldern mit dem Praefix.
 
@@ -146,6 +185,16 @@ async def search_rki_surveillance(analysis: dict) -> dict:
             )
         elif topic == "rki_atemwegsinfekte":
             display = _fuege(
+                # Der fertige Jahresvergleich VOR der Reihe: Er ist die
+                # direkte Antwort auf "dieses Jahr gegen letztes Jahr".
+                # Nach #273 stand die Reihe im Prompt und das Modell nahm
+                # trotzdem die Hoechstwerte (QA50I #79, 3/3
+                # deterministisch) — eine Reihe von sechs Zahlen ist keine
+                # Rechnung.
+                (_jahresvergleich(d, "vergleich_gleiche_kw_je_100k_",
+                                  "dieselbe Kalenderwoche"),
+                 ["vergleich_gleiche_kw_je_100k_2025_26",
+                  "vergleich_gleiche_kw_je_100k_2026_27"]),
                 # ZUERST die laufende Saison. QA50I-Befunde #24, #79 und #80
                 # hatten alle dieselbe Ursache: PR #264 hat die laufende
                 # Saison 2026/27 in den Fakt geschrieben — als PROSA. Dieser
@@ -169,9 +218,7 @@ async def search_rki_surveillance(analysis: dict) -> dict:
                  f"(Vorwoche "
                  f"{de_int(d.get('grippeweb_are_laufend_vorwoche_je_100k'))}). "
                  f"{d.get('laufende_saison_meldewochen')} Meldewochen sind "
-                 f"KEIN Saisonverlauf, und das ist KEIN Höchstwert — gegen "
-                 f"die Saison-Höchstwerte unten gehalten vergleicht man "
-                 f"einen Anfangswert mit einem Gipfel.",
+                 f"kein Saisonverlauf und KEIN Höchstwert.",
                  ["laufende_saison_label", "laufende_saison_stand_kw",
                   "laufende_saison_meldewochen",
                   "grippeweb_are_laufend_je_100k",
