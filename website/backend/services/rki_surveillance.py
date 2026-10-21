@@ -146,6 +146,41 @@ async def search_rki_surveillance(analysis: dict) -> dict:
             )
         elif topic == "rki_atemwegsinfekte":
             display = _fuege(
+                # ZUERST die laufende Saison. QA50I-Befunde #24, #79 und #80
+                # hatten alle dieselbe Ursache: PR #264 hat die laufende
+                # Saison 2026/27 in den Fakt geschrieben — als PROSA. Dieser
+                # Renderer kennt nur Praefix-Felder und hat sie NIE
+                # ausgeliefert. Gemessen am 21.10.2026 stand weder 6.854 noch
+                # "KW 41" im Ergebnis. Folge: Auf "Die Grippewelle ist dieses
+                # Jahr schwaecher" antwortete das Modell mit 2025/26 gegen
+                # 2024/25 — der abgeschlossenen Saison, weil es die laufende
+                # nicht sah. Und "Wie hoch war die ARE-Rate in KW 41" blieb
+                # unverifiable mit 0 Belegen.
+                #
+                # Das Budget war nie das Problem: Das display_value des
+                # ersten Treffers je Quelle bekommt 1.200 Zeichen
+                # (PROMPT_MAX_DISPLAY), belegt waren 344. Es fehlte der
+                # Renderer, nicht der Platz. Das ist die Lehre
+                # "Daten-Refresh ohne Renderer-Refresh reisst die Quelle
+                # still ab" — und #264 ist hineingelaufen.
+                (f"LAUFENDE SAISON {d.get('laufende_saison_label')}, Stand "
+                 f"{d.get('laufende_saison_stand_kw')}: GrippeWeb-ARE "
+                 f"{de_int(d.get('grippeweb_are_laufend_je_100k'))} je 100.000 "
+                 f"(Vorwoche "
+                 f"{de_int(d.get('grippeweb_are_laufend_vorwoche_je_100k'))}). "
+                 f"{d.get('laufende_saison_meldewochen')} Meldewochen sind "
+                 f"KEIN Saisonverlauf, und das ist KEIN Höchstwert — gegen "
+                 f"die Saison-Höchstwerte unten gehalten vergleicht man "
+                 f"einen Anfangswert mit einem Gipfel.",
+                 ["laufende_saison_label", "laufende_saison_stand_kw",
+                  "laufende_saison_meldewochen",
+                  "grippeweb_are_laufend_je_100k",
+                  "grippeweb_are_laufend_vorwoche_je_100k"]),
+                # Der FAIRE Vergleich direkt daneben: Eine Sperre allein
+                # laesst die Frage "und wie stark ist es nun?" offen.
+                (f"Dieselbe Kalenderwoche in den Vorsaisonen, je 100.000: "
+                 f"{_saisonreihe(d, 'vergleich_gleiche_kw_je_100k_')}.",
+                 ["vergleich_gleiche_kw_je_100k_2025_26"]),
                 (f"Atemwegsinfekte Deutschland, Höchstwert der GrippeWeb-ARE-"
                  f"Inzidenz je 100.000: "
                  f"{_saisonreihe(d, 'grippeweb_are_peak_je_100k_')}.",
