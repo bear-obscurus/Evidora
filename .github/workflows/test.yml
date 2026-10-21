@@ -166,6 +166,13 @@ jobs:
     #   - test_rki_saison_2025_26     (Atemwegs-Saison 2025/26 aus RKI-Open-Data;
     #                                  drei falsche Zahlen + verkehrte Richtung
     #                                  im alten Stand; GrippeWeb != Konsultation)
+    #   - test_wortformen_are_reichste (QA50I #80/#85: Der RKI-Fakt schreibt
+    #                                  ARE neunmal, seine Trigger kannten nur
+    #                                  'rki ari' — und ARI kommt im Fakt null
+    #                                  Mal vor. Bei WID hatte die UNTERE
+    #                                  Haelfte umgangssprachliche Formen, die
+    #                                  obere nur Fachsprache. Sweep vorher/
+    #                                  nachher: 348 fremde Paare, unveraendert)
     #   - test_muster_q_jahrgangszahl (QA50I #77: 'Gender Pay Gap liegt bei
     #                                  18 Prozent' bekam mostly_true, obwohl
     #                                  die Begruendung 15,6 % fuer 2024 nannte
@@ -414,6 +421,7 @@ jobs:
             tests/test_wid_vollrefresh_2026.py \
             tests/test_feldzugriffe_services.py \
             tests/test_muster_q_jahrgangszahl.py \
+            tests/test_wortformen_are_reichste.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \

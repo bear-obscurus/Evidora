@@ -143,6 +143,25 @@ _SHARE_TRIGGERS = norm_terme(
     "bottom-50%", "bottom 50%", "bottom 50 %", "bottom-50 %",
     "bottom 50 prozent", "bottom-50-prozent", "bottom 50 percent",
     "ärmste hälfte", "aermste haelfte", "untere hälfte", "untere haelfte",
+    # QA50I #85: "Das reichste Prozent in Österreich bekommt 10,8 Prozent
+    # des Einkommens" fragte WID gar nicht erst ab — 0 Belege,
+    # unverifiable@0.1. Die Liste war ASYMMETRISCH: Fuer die untere
+    # Haelfte standen umgangssprachliche Formen da ("ärmste hälfte",
+    # "untere hälfte"), fuer die obere nur die Fachformen "top 1 %" und
+    # "obersten 1 %". Dieselbe Klasse wie "weibliche" gegen "Frauen"
+    # in #228.
+    #
+    # Alle Formen verlangen "prozent"/"%"/"zehntel" dahinter: "die
+    # reichsten" allein wuerde bei "die reichsten Laender" fehltreffen.
+    "reichste prozent", "reichstes prozent", "reichsten prozent",
+    "reichste 1 prozent", "reichsten 1 prozent",
+    "reichste 1 %", "reichsten 1 %",
+    "reichste 10 prozent", "reichsten 10 prozent",
+    "reichste 10 %", "reichsten 10 %",
+    "oberste prozent", "obersten prozent",
+    "reichste zehntel", "reichstes zehntel",
+    "oberstes zehntel", "obersten zehntel", "oberste zehntel",
+    "richest percent", "richest 1 percent", "richest 10 percent",
 )
 
 # Income/Wealth-Inequality-Trigger (allgemein).

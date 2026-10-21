@@ -411,10 +411,25 @@ def test_jedes_gebiet_hat_einen_eigenen_iso2_code():
 
 
 def test_der_service_nennt_im_docstring_die_gemessenen_werte():
-    """Ein Beispiel mit alten Zahlen wird abgeschrieben."""
+    """Ein BEISPIEL mit alten Zahlen wird abgeschrieben.
+
+    Geprueft werden die zwei Docstrings, die ein Ausgabe-Beispiel zeigen —
+    nicht der ganze Quelltext. Eine erste Fassung verlangte, dass "10,8"
+    nirgends vorkommt, und schlug am Kommentar zu den Trigger-Formen fehl,
+    der den QA50I-Claim woertlich zitiert ("Das reichste Prozent in
+    Oesterreich bekommt 10,8 Prozent des Einkommens"). Ein zitierter
+    Claim ist keine behauptete Zahl.
+    """
     q = _quelle()
     assert "8,9 %" in q, "das Beispiel traegt nicht den gemessenen AT-Wert"
-    assert "10,8" not in q, "der alte AT-Wert steht noch im Docstring"
+    for name in ("_build_display_value", "_format_country_value"):
+        if f"def {name}(" not in q:
+            continue
+        i = q.index(f"def {name}(")
+        j = q.index('"""', q.index('"""', i) + 3)
+        beispiel = q[i:j]
+        assert "10,8" not in beispiel, (
+            f"der alte AT-Wert steht noch im Beispiel von {name}")
 
 
 # --- Das Werkzeug -----------------------------------------------------
