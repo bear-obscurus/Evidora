@@ -380,11 +380,19 @@ def test_die_fassung_ist_datiert_und_grenzt_wcag3_positiv_ab():
 
 def test_polity5_haelt_fest_dass_die_quelle_schweigt():
     """Ein Refresh, der nichts aendert, ist auch ein Ergebnis — und er
-    gehoert dokumentiert, sonst prueft der naechste von vorn."""
+    gehoert dokumentiert, sonst prueft der naechste von vorn.
+
+    Seit dem 21.10.2026 steht die Stichprobe fuer Ungarn VOR diesem
+    Vermerk (QA50I #88). Beides muss stehen: Diese Pruefung hier belegt,
+    dass die QUELLE schweigt (kein v2019+), die Stichprobe belegt, dass
+    ein EINZELWERT stimmt. #267 hatte nur das Erste geprueft.
+    """
     flag = _laden("polity5")["audit_flag"]
-    assert flag.startswith("GEPRUEFT 2026-10-20")
+    assert "GEPRUEFT 2026-10-20" in flag
     assert "Kein v2019+" in flag
     assert "2018" in flag
+    assert flag.startswith("STICHPROBE 2026-10-21"), (
+        "der Stichproben-Vermerk muss vorn stehen — er ist der neuere Befund")
 
 
 def test_polity5_nennt_sein_abdeckungsende():

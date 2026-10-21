@@ -130,6 +130,7 @@ _DEFAULT_COUNTRIES_FOR_DACH_CLAIMS = ("AUT", "DEU", "CHE")
 # Trigger-Keywords (DE + EN). Bei Match + Land → Treffer.
 # Bei Match ohne Land → DACH-Default.
 _POLITY_KEYWORDS = norm_terme(
+    " polity ",
     "polity 5", "polity5", "polity-5",
     "polity 4", "polity4", "polity-4",
     "polity score", "polity-score", "polityscore",
@@ -288,7 +289,7 @@ def _regime_label(category: str, data: dict, lang: str = "de") -> str:
 
 def _format_country_score(iso3: str, scores: dict) -> str:
     """Hilfs-Format: 'AT +10' oder 'RU +4' oder 'PRK -10'."""
-    iso2 = _ISO3_TO_ISO2.get(iso3, iso3[:2])
+    iso2 = _ISO3_TO_ISO2.get(iso3, iso3)
     rec = scores.get(iso3) or {}
     s = rec.get("score")
     if s is None:
@@ -340,6 +341,47 @@ def _select_primary_country(
     return None
 
 
+#: Zeichengrenze der description. 400 ist das echte Prompt-Budget
+#: (services.synthesizer.PROMPT_MAX_STR); der frueher hier stehende
+#: 300er-Cut schnitt die Aussage-Grenze mitten im Satz ab.
+_BESCHREIBUNG_MAX = 400
+
+# Claims, die eine Regime-Einstufung fuer HEUTE behaupten. Gleiche Bauform
+# wie _REGIME_BEGRIFFE in services/freedom_house.py.
+_REGIME_BEGRIFFE = norm_terme(
+    "demokratie", "demokratisch", "diktatur", "diktatorisch",
+    "autokratie", "autokratisch", "autoritär", "autoritaer",
+    "regime", "staatsform", "anokratie",
+)
+
+def _coverage_warnung(claim_lc: str) -> str:
+    """Bei Regime-Claims OHNE Jahresangabe: bis wann Polity5 etwas sagt.
+
+    QA50I-Befund #88. "Ungarn ist laut Polity5 eine vollstaendige Demokratie"
+    bekam false@0.85 — widerlegt mit V-Dem 2025 (0,32 im
+    Liberal-Demokratie-Index). Polity5 fuehrt fuer Ungarn aber +10, und zwar
+    durchgehend von 2010 bis 2018 (am 21.10.2026 gegen den Datensatz
+    geprueft). Dass V-Dem heute anders bewertet, macht eine Aussage UEBER
+    POLITY5 nicht falsch — V-Dem beantwortet eine andere Frage.
+
+    Das ist die Gegenrichtung zur Warnung in services/freedom_house.py:
+    Dort schreibt der Synthesizer einer Quelle eine Klassifikation zu, die
+    sie nicht vornimmt. Hier ersetzt er die GENANNTE Quelle durch eine
+    andere. Beide Male entscheidet nicht die Sachlage, sondern wonach
+    gefragt wurde.
+
+    Nur bei Regime-Claims und nur OHNE Jahresangabe: "Ungarn hatte 2018 laut
+    Polity5 +10" braucht die Warnung nicht und sie kostet sonst
+    Prompt-Budget, das die Zahlen brauchen (gleiche Begruendung wie bei
+    Freedom House).
+    """
+    if _has_year_pattern(claim_lc):
+        return ""
+    if not any(_flexion_trifft(claim_lc, t) for t in _REGIME_BEGRIFFE):
+        return ""
+    return " "
+
+
 def _build_display_value(
     primary_iso3: str,
     primary_rec: dict,
@@ -351,7 +393,7 @@ def _build_display_value(
     """Build 'RU +4 'Open Anocracy' — vs. AT +10, DE +10, SE +10, ...
     (Polity 5, 2018)'.
     """
-    iso2 = _ISO3_TO_ISO2.get(primary_iso3, primary_iso3[:2])
+    iso2 = _ISO3_TO_ISO2.get(primary_iso3, primary_iso3)
     s = primary_rec.get("score")
     cat = primary_rec.get("category", "")
     label = _regime_label(cat, data, lang="en")
@@ -434,12 +476,27 @@ async def search_polity5(analysis: dict) -> dict:
     )
     year_label = 2018
 
+    # Die Skala-Beschreibung stand bis zum 21.10.2026 als Literal hier —
+    # inklusive der Kategorie-Bereiche, die damit bei jeder Korrektur in den
+    # Daten haetten driften koennen (Marker-Drift, #74/#270).
     description = (
         "Polity 5 misst Regime-Typologie auf einer Skala von -10 (volle "
-        "Autokratie) bis +10 (volle Demokratie); Kategorien: Full Democracy "
-        "(+10), Democracy (+6..+9), Open Anocracy (+1..+5), Closed Anocracy "
-        "(-5..0), Autocracy (-10..-6). Letztes Coverage-Jahr 2018 (CSP)."
+        "Autokratie) bis +10 (volle Demokratie); Kategorien: "
+        + ", ".join(
+            f"{v.get('label_en', k)} ({v.get('range', '?')})"
+            for k, v in (data.get("regime_categories") or {}).items())
+        + f". Letztes Coverage-Jahr {year_label} (CSP)."
     )
+    # Bei Regime-Claims ohne Jahresangabe steht die Aussage-Grenze ZUERST.
+    # Angehaengt wurde sie von `description[:300]` und spaeter von
+    # PROMPT_MAX_STR (400) abgeschnitten — die Sperre war das Erste, was
+    # wegfiel. Dieselbe Lehre wie der V-Dem-Caveat in services/vdem.py, der
+    # bewusst NACH dem Cut steht (#135: das Modell sieht nur einen Teil des
+    # Fakts, und zwar den Anfang).
+    if _coverage_warnung(claim_lc):
+        grenze = (data.get("aussage_grenze") or "").strip()
+        if grenze:
+            description = f"{grenze} {description}"
 
     results: list[dict] = []
     primary_iso3 = _select_primary_country(requested_countries, scores)
@@ -450,7 +507,7 @@ async def search_polity5(analysis: dict) -> dict:
     if not primary_rec:
         return empty
 
-    iso2 = _ISO3_TO_ISO2.get(primary_iso3, primary_iso3[:2])
+    iso2 = _ISO3_TO_ISO2.get(primary_iso3, primary_iso3)
     s = primary_rec.get("score")
     cat = primary_rec.get("category", "")
     label_en = _regime_label(cat, data, lang="en")
@@ -480,7 +537,7 @@ async def search_polity5(analysis: dict) -> dict:
         "year": str(year_label),
         "topic": "polity5_regime",
         "display_value": display_value[:480],
-        "description": description[:300],
+        "description": description[:_BESCHREIBUNG_MAX],
         "url": source_url,
         "secondary_url": secondary_url,
         "source": source_label,
@@ -521,7 +578,7 @@ async def search_polity5(analysis: dict) -> dict:
 
     if history_match is not None:
         h_country = history_match.get("country", "")
-        h_iso2 = _ISO3_TO_ISO2.get(h_country, h_country[:2])
+        h_iso2 = _ISO3_TO_ISO2.get(h_country, h_country)
         h_label_de = history_match.get("label_de", "")
         transitions = history_match.get("transitions") or []
         trans_parts: list[str] = []
