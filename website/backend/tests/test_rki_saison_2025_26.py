@@ -215,11 +215,43 @@ def test_keine_platzhalter_und_keine_englischen_dezimalzahlen():
 
 
 def test_alle_felder_unter_dem_prompt_budget():
+    """Das Budget haengt am RANG, und seit dem 21.10.2026 nutzt ein Fakt das.
+
+    ``prompt_budget`` gibt dem display_value des ERSTEN Ergebnisses je
+    Quelle 1.200 Zeichen (PROMPT_MAX_DISPLAY), allen weiteren 400
+    (PROMPT_MAX_STR). Diese Pruefung verlangte bisher 400 fuer alle — die
+    strengere Annahme, und richtig, solange kein Fakt mehr brauchte.
+
+    Mit der laufenden Saison (QA50I #24/#79/#80) braucht
+    ``rki_atemwegsinfekte`` 745 Zeichen: aktueller Wert, Meldewoche, die
+    Sperre gegen den Gipfel-Vergleich, der faire Kalenderwochen-Vergleich
+    UND die Saison-Hoechstwerte. Geprueft wird deshalb jetzt zweistufig,
+    was strenger ist als die alte Fassung:
+
+      1. Nichts ueberschreitet das Rang-0-Budget.
+      2. Was ab Rang 1 ankommt — die ersten 400 Zeichen — muss das
+         Claim-Kritische tragen. Abgeschnitten werden darf nur der
+         Hintergrund, nicht die aktuelle Lage.
+    """
+    from services.synthesizer import PROMPT_MAX_DISPLAY
     for topic in FAKTEN:
         claim = FAKTEN[topic]["claim_phrasings_handled"][0]
         x = _ergebnis(claim, topic)
-        for feld in ("indicator_name", "display_value"):
-            assert len(x[feld]) <= MAX_STR, f"{topic}/{feld}: {len(x[feld])}"
+        assert len(x["indicator_name"]) <= MAX_STR, (
+            f"{topic}/indicator_name: {len(x['indicator_name'])}")
+        assert len(x["display_value"]) <= PROMPT_MAX_DISPLAY, (
+            f"{topic}/display_value: {len(x['display_value'])}")
+        kopf = x["display_value"][:MAX_STR]
+        if topic == "rki_atemwegsinfekte":
+            for pflicht in ("6.854", "KW 41/2026", "KEIN Höchstwert",
+                            "Dieselbe Kalenderwoche"):
+                assert pflicht in kopf, (
+                    f"{pflicht!r} faellt ab Rang 1 weg — die laufende Saison "
+                    f"muss in den ersten {MAX_STR} Zeichen stehen")
+        else:
+            assert len(x["display_value"]) <= MAX_STR, (
+                f"{topic}/display_value: {len(x['display_value'])} — nur der "
+                f"Atemwegs-Fakt darf das Rang-0-Budget brauchen")
 
 
 # --------------------------------------------------------------------------

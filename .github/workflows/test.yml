@@ -166,6 +166,14 @@ jobs:
     #   - test_rki_saison_2025_26     (Atemwegs-Saison 2025/26 aus RKI-Open-Data;
     #                                  drei falsche Zahlen + verkehrte Richtung
     #                                  im alten Stand; GrippeWeb != Konsultation)
+    #   - test_laufende_saison_gerendert (QA50I #24/#79/#80 hatten EINE
+    #                                  Ursache: #264 schrieb die laufende
+    #                                  Saison als PROSA in den Fakt, der
+    #                                  Renderer kennt nur Praefix-Felder und
+    #                                  lieferte sie NIE aus. 'dieses Jahr'
+    #                                  traf deshalb die abgeschlossene
+    #                                  Saison. Budget war nie knapp: 344 von
+    #                                  1.200 Zeichen belegt)
     #   - test_wortformen_are_reichste (QA50I #80/#85: Der RKI-Fakt schreibt
     #                                  ARE neunmal, seine Trigger kannten nur
     #                                  'rki ari' — und ARI kommt im Fakt null
@@ -422,6 +430,7 @@ jobs:
             tests/test_feldzugriffe_services.py \
             tests/test_muster_q_jahrgangszahl.py \
             tests/test_wortformen_are_reichste.py \
+            tests/test_laufende_saison_gerendert.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \
