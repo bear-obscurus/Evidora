@@ -277,11 +277,24 @@ def _build_display_value(iso3: str, rec: dict) -> str:
     return " | ".join(parts)
 
 
-def _build_indicator_name(iso3: str, rec: dict, display_name: str) -> str:
+def _build_indicator_name(iso3: str, rec: dict, display_name: str,
+                          data: dict) -> str:
     """'CAT (Stand 2024-11): Österreich Overall \\'Insufficient\\''."""
-    assessment_date = rec.get("assessment_date") or "2024"
+    # KEIN Default-Jahr: Bis zum 22.10.2026 stand hier "2024" und haette
+    # jeden Refresh stumm ueberlebt (#74/#133/#268). Und `assessment_date`
+    # gab ein ABRUF- als BEWERTUNGSdatum aus — CAT druckt auf den
+    # Laenderseiten kein maschinenlesbares Bewertungsdatum.
+    gelesen_am = data.get("ratings_gelesen_am") or ""
     overall = rec.get("overall_rating", "n/a")
-    return f"CAT (Stand {assessment_date}): {display_name} Overall '{overall}'"
+    stand = f", Ratings gelesen {gelesen_am}" if gelesen_am else ""
+    # Fuer sieben EU-Mitglieder fuehrt CAT keine eigene Laenderseite — ihre
+    # Werte sind die der EU-Bewertung. Ohne diesen Zusatz liest der Nutzer
+    # eine EU-Zahl als Laenderzahl. Der Marker lag seit dem 22.10.2026 in
+    # den Daten und wurde NICHT gerendert; genau diese Haelfte war der
+    # Befund in #273.
+    ebene = rec.get("bewertungs_ebene")
+    zusatz = f" [{ebene}: CAT bewertet die EU als Einheit]" if ebene else ""
+    return f"CAT{stand}: {display_name} Overall '{overall}'{zusatz}"
 
 
 def _build_description(rec: dict, data: dict) -> str:
@@ -313,13 +326,13 @@ def _build_result_row(iso3: str, rec: dict, data: dict) -> dict:
     """Baue einen Result-Eintrag für ein Land."""
     iso2 = _country_iso2(iso3)
     display_name = (data.get("country_display_names") or {}).get(iso3) or iso3
-    assessment_date = rec.get("assessment_date") or "2024-11"
+    gelesen_am = data.get("ratings_gelesen_am") or ""
 
     return {
-        "indicator_name": _build_indicator_name(iso3, rec, display_name)[:200],
+        "indicator_name": _build_indicator_name(iso3, rec, display_name, data)[:200],
         "indicator": "cat_climate_rating",
         "country": iso2,
-        "year": str(assessment_date)[:4],
+        "year": str(gelesen_am)[:4],
         "topic": "climate_action_tracker",
         "display_value": _build_display_value(iso3, rec)[:480],
         "description": _build_description(rec, data)[:600],
@@ -347,7 +360,7 @@ def _build_methodology_caveat_row(data: dict) -> dict:
         "indicator_name": "WICHTIGER KONTEXT: CAT-Methodik-Caveat",
         "indicator": "cat_methodology_caveat",
         "country": "",
-        "year": str(data.get("report_year", 2024)),
+        "year": str(data.get("report_year") or ""),
         "topic": "climate_action_tracker",
         "display_value": "",
         "description": kernsatz[:600],
