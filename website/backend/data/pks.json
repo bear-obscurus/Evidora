@@ -137,5 +137,7 @@
   ],
   "fetched_at_iso": "2026-04-27",
   "note": "Kuratierte Auszüge aus PKS Hauptbericht 2024 + Lagebericht Suchtmittelkriminalität 2024 (BKA, BMI). Die BKA-Originale sind PDFs ohne API — manuell aktualisiert (jährliches Erscheinen typisch Q1 fürs Vorjahr).",
+  "refresh_kadenz": "jaehrlich",
+  "kadenz_begruendung": "Die Polizeiliche Kriminalstatistik erscheint jaehrlich, in Oesterreich im Fruehjahr fuer das Vorjahr. Bis zum 22.10.2026 stand der Takt nur in der Prosa.",
   "version": 1
 }
