@@ -58,7 +58,10 @@ DATA = os.path.join(BACKEND, "data")
 sys.path.insert(0, BACKEND)
 
 import services.rki_surveillance as rki  # noqa: E402
-from services.synthesizer import PROMPT_MAX_DISPLAY  # noqa: E402
+from services.synthesizer import (  # noqa: E402
+    PROMPT_MAX_DISPLAY,
+    PROMPT_MAX_STR,
+)
 
 ATEM = "rki_atemwegsinfekte_saisonvergleich"
 
@@ -112,11 +115,23 @@ def test_die_sperre_steht_bei_den_zahlen(claim):
 
     Sie stand in #264 im Fakt — aber in einem Feld, das der Renderer nicht
     kennt.
+
+    Der Wortlaut ist seit QA50I #79 kuerzer: Statt "vergleicht einen
+    Anfangswert mit einem Gipfel" steht jetzt die ANWEISUNG "NICHT die
+    Saison-Hoechstwerte dafuer vergleichen" direkt am fertigen
+    Jahresvergleich. Grund: Der vollstaendige Vergleich musste in die
+    ersten 400 Zeichen passen (das Budget ab Rang 1), und eine halbe
+    Rechnung ist schlechter als keine. Die ausfuehrliche Formulierung
+    bleibt als Aufzeichnung im Prosa-Feld.
     """
     dv = _ergebnis(claim)["display_value"]
-    assert "KEIN Saisonverlauf" in dv
+    assert "kein Saisonverlauf" in dv
     assert "KEIN Höchstwert" in dv
-    assert "Anfangswert mit einem Gipfel" in dv
+    assert "NICHT die Saison-Höchstwerte" in dv
+    # Die lange Fassung bleibt in den Daten, auch wenn sie nicht mehr
+    # gerendert wird — nichts loeschen, was belegt ist (#235).
+    assert "Anfangswert mit einem Gipfel" in _fakt()["data"][
+        "laufende_saison_2026_27"]
 
 
 @pytest.mark.parametrize("claim", [
@@ -151,6 +166,85 @@ def test_die_saison_hoechstwerte_bleiben_erhalten():
     assert i_laufend < i_vergleich < i_peaks, (
         f"Reihenfolge {i_laufend}/{i_vergleich}/{i_peaks}: Sperre, fairer "
         f"Vergleich, dann Hoechstwerte")
+
+
+# --- Der fertige Jahresvergleich (QA50I #79) -------------------------
+
+@pytest.mark.parametrize("claim", [
+    "Die Grippewelle ist dieses Jahr schwächer als letztes Jahr",
+    "Ist die Grippewelle dieses Jahr stärker als im Vorjahr?",
+    "In der Kalenderwoche 41 2026 lag die ARE-Rate bei 6.854",
+])
+def test_der_jahresvergleich_steht_fertig_gerechnet_da(claim):
+    """QA50I #79: Nach #273 stand der faire Vergleich im Prompt — als
+    Reihe von sechs Zahlen. Das Modell nahm trotzdem die Hoechstwerte
+    (8.661 gegen 9.290), also "letzte gegen vorletzte Saison" statt
+    "dieses Jahr gegen letztes". 3/3 deterministisch.
+
+    Zwei Zahlen hinzulegen und auf die richtige Verknuepfung zu hoffen ist
+    der Fall, fuer den gilt: LLM-Zahlenvergleich -> fertiger Satz.
+    """
+    dv = _ergebnis(claim)["display_value"]
+    assert "DIESES JAHR GEGEN LETZTES JAHR" in dv
+    assert "2026/27 6.854 gegen 2025/26 7.584" in dv
+    assert "niedriger" in dv
+    assert "NICHT die Saison-Höchstwerte" in dv
+
+
+def test_der_jahresvergleich_passt_vollstaendig_ins_rang1_budget():
+    """Eine halbe Rechnung ist schlechter als keine.
+
+    Die erste Fassung stand hinter dem Sperr-Baustein, und bei 400
+    Zeichen brach der Satz mitten in der Vergleichszahl ab ("gegen
+    2025/2"). Deshalb steht er jetzt ZUERST und beide Bausteine sind
+    gekuerzt.
+    """
+    dv = _ergebnis(
+        "Die Grippewelle ist dieses Jahr schwächer als letztes Jahr")[
+        "display_value"]
+    kopf = dv[:PROMPT_MAX_STR]
+    assert "2026/27 6.854 gegen 2025/26 7.584" in kopf
+    assert "% niedriger" in kopf
+    assert dv.startswith("DIESES JAHR GEGEN LETZTES JAHR")
+
+
+def test_die_prozentzahl_ist_gerechnet_nicht_gefuehrt():
+    """6.854 gegen 7.584 sind 9,6 %, gerundet 10 %. Ein Literal haette
+    beim naechsten Meldewochen-Refresh nicht mehr gepasst."""
+    d = _fakt()["data"]
+    jetzt = d["vergleich_gleiche_kw_je_100k_2026_27"]
+    vorher = d["vergleich_gleiche_kw_je_100k_2025_26"]
+    erwartet = round(abs((jetzt - vorher) / vorher * 100))
+    dv = _ergebnis(
+        "Die Grippewelle ist dieses Jahr schwächer als letztes Jahr")[
+        "display_value"]
+    assert f"{erwartet} % niedriger" in dv, (erwartet, dv[:200])
+    with open(os.path.join(BACKEND, "services", "rki_surveillance.py"),
+              encoding="utf-8") as fh:
+        quelle = fh.read()
+    assert "10 % niedriger" not in quelle, "die Prozentzahl steht als Literal"
+
+
+def test_der_vergleich_faellt_weg_wenn_eine_saison_fehlt():
+    """Kein "None" in der Ausgabe, wenn die Vorsaison fehlt."""
+    d = dict(_fakt()["data"])
+    d.pop("vergleich_gleiche_kw_je_100k_2025_26")
+    satz = rki._jahresvergleich(d, "vergleich_gleiche_kw_je_100k_",
+                                "dieselbe Kalenderwoche")
+    assert "None" not in satz
+    # Mit nur einer Saison ist kein Vergleich moeglich.
+    nur_eine = {"vergleich_gleiche_kw_je_100k_2026_27": 6854}
+    assert rki._jahresvergleich(nur_eine, "vergleich_gleiche_kw_je_100k_",
+                                "x") == ""
+
+
+def test_die_richtung_folgt_den_zahlen():
+    """Bei hoeheren Werten muss "höher" stehen, nicht "niedriger"."""
+    hoch = {"vergleich_gleiche_kw_je_100k_2025_26": 6000,
+            "vergleich_gleiche_kw_je_100k_2026_27": 7500}
+    satz = rki._jahresvergleich(hoch, "vergleich_gleiche_kw_je_100k_", "KW")
+    assert "25 % höher" in satz, satz
+    assert "niedriger" not in satz
 
 
 # --- Das Budget -------------------------------------------------------
