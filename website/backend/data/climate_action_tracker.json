@@ -13,13 +13,38 @@
   "marker_hinweis": "Dieselbe Marker-Klasse wie MIPEX (#266, 52 % falsch) und BTI (#268, 80 %), nur in anderer Wortwahl — das Gate aus #268 suchte woertlich nach 'AUDIT NEEDED' und fand 'STATIC-SNAPSHOT / Recherche-Approximationen' nicht. Ein Marker ist eine offene Rechnung, unabhaengig davon, wie er formuliert ist.",
   "schema_hinweis": "WIR FUEHREN VIER RATINGS, CAT PUBLIZIERT BIS ZU SECHS. Ohne Feld bei uns: 'Policies and action against fair share' (auf 32 Seiten), die Aufspaltung in Conditional/Unconditional NDC target, 'Climate finance' und 'Net zero target'. current_policies_rating traegt die Bewertung gegen die modellierten Pfade, nicht die gegen den fair share. Das ist eine Vereinfachung, keine Luecke im Lesen.",
   "ebenen_hinweis": "EBENEN-HINWEIS: Fuer 7 EU-Mitglieder (AUT, ESP, FRA, ITA, NLD, POL, SWE) fuehrt CAT keine eigene Laenderseite — ihre Werte sind die der EU-Bewertung und als 'bewertungs_ebene: EU-Aggregat' markiert. Der vorige Stand trug hier je Land UNTERSCHIEDLICHE Approximationen, obwohl alle sieben auf dieselbe Quelle zeigen. Deutschland hat eine eigene Seite.",
+  "kategorien_sprachhinweis": "CAT publiziert seine Kategorien NUR auf Englisch. Die Felder label_de sind Uebersetzungshilfen, damit eine deutsche Behauptung ('kritisch unzureichend') auf die amtliche Kategorie ('Critically insufficient') abgebildet werden kann. Beim Zitieren gilt der englische Name als der amtliche.",
   "rating_scale": {
-    "1.5C_compatible": "1.5°C Paris Agreement compatible (Bester CAT-Score, deckt sich mit 1.5°C-Pariser-Limit)",
-    "almost_sufficient": "Almost sufficient (knapp unter 1.5°C-kompatibel, ~1.5-2°C)",
-    "insufficient": "Insufficient (~2-3°C globale Erwärmung wenn alle Länder so vorgehen)",
-    "highly_insufficient": "Highly insufficient (~3-4°C)",
-    "critically_insufficient": "Critically insufficient (>4°C — schlechtester CAT-Score)",
-    "1.5C_global_least_cost": "1.5°C global least cost (auf den Laenderseiten als eigene Stufe ausgewiesen, z. B. Norwegen und Philippinen; in dieser Tabelle bis zum 22.10.2026 nicht gefuehrt)"
+    "1.5C_compatible": {
+      "label_en": "1.5°C compatible",
+      "label_de": "1,5-Grad-kompatibel",
+      "erklaerung": "Bester CAT-Score, deckt sich mit dem 1.5°C-Limit des Pariser Abkommens; die Laenderseiten schreiben '1.5°C compatible'"
+    },
+    "almost_sufficient": {
+      "label_en": "Almost sufficient",
+      "label_de": "nahezu ausreichend",
+      "erklaerung": "knapp unter 1.5°C-kompatibel, ~1.5-2°C"
+    },
+    "insufficient": {
+      "label_en": "Insufficient",
+      "label_de": "unzureichend",
+      "erklaerung": "~2-3°C globale Erwaermung, wenn alle Laender so vorgehen"
+    },
+    "highly_insufficient": {
+      "label_en": "Highly insufficient",
+      "label_de": "hochgradig unzureichend",
+      "erklaerung": "~3-4°C"
+    },
+    "critically_insufficient": {
+      "label_en": "Critically insufficient",
+      "label_de": "kritisch unzureichend",
+      "erklaerung": ">4°C — schlechtester CAT-Score"
+    },
+    "1.5C_global_least_cost": {
+      "label_en": "1.5°C global least cost",
+      "label_de": "1,5 Grad global kostenminimal",
+      "erklaerung": "auf den Laenderseiten als eigene Stufe ausgewiesen, z. B. Norwegen und Philippinen; in dieser Tabelle bis zum 22.10.2026 nicht gefuehrt"
+    }
   },
   "methodology_note": "CAT bewertet Klimaschutz-Pledges der ~40 wichtigsten Emitter-Staaten in vier Dimensionen: (1) Overall-Rating: Gesamteinschätzung gegen Pariser-1.5°C-Limit, (2) Targets-Rating: NDC-Ambition (offizielle nationale Klimaziele), (3) Current-Policies-Rating: Was tatsächlich umgesetzt wird, (4) Fair-Share-Rating: Lasten-Verteilung global gerechte Beitragshöhe. Bewertungs-Skala (CAT 2024): '1.5°C Paris Agreement compatible' / 'Almost sufficient' / 'Insufficient' / 'Highly insufficient' / 'Critically insufficient'. Methodik: Pledge-vs-Pariser-Trajectory-Modell (Climate Analytics + NewClimate Institute, peer-reviewed in Nature Climate Change u.a.). CAT publiziert halbjährliche Updates, jeweils vor COP-Treffen.",
   "guardrail_note": "Politik-Tabu-Guard: Wir zitieren CAT-Bewertungen DESKRIPTIV, wir vergeben KEINE eigene Klimaschutz-Pionier/-Versager-Klassifikation. CAT ist nur EINE Methodik (Pledge-vs-Trajectory); alternative Methodologien (Climate Watch, OECD ENV-Linkages, IPCC AR6 Pathways) kommen zu unterschiedlichen Bewertungen. Vergleich nur innerhalb gleicher Methodik-Version sinnvoll. Bewertende Begriffe (z.B. 'Insufficient') stets als Zitat von CAT kennzeichnen, nie als Evidora-Bewertung.",

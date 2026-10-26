@@ -265,14 +265,62 @@ def _country_iso2(iso3: str) -> str:
     return _ISO3_TO_ISO2.get(iso3, iso3[:2])
 
 
-def _build_display_value(iso3: str, rec: dict) -> str:
-    """'AT Overall: Insufficient | Targets: Insufficient | ...' """
+def _label_de(rating: str, data: dict) -> str:
+    """Deutsche Uebersetzungshilfe zur amtlichen englischen Kategorie.
+
+    CAT publiziert seine Stufen NUR englisch. Ohne diese Zuordnung sieht das
+    Modell "Insufficient" und hat keinen Anhalt, dass eine Behauptung ueber
+    "kritisch unzureichend" dieselbe Skala meint — live am 26.10.2026
+    schrieb es deshalb, die CAT-Skala kenne die Kategorie gar nicht.
+
+    EXAKTER Vergleich, bewusst keine Teiltreffer: "Insufficient" steckt in
+    "Highly insufficient" UND in "Critically insufficient", eine
+    Enthaltensein-Pruefung wuerde also die falsche Stufe zuordnen. Dass
+    exakt reicht, haelt ein Gate fest: Jeder in den Daten vorkommende
+    Rating-Wert muss einen Skala-Eintrag haben.
+    """
+    for eintrag in (data.get("rating_scale") or {}).values():
+        if isinstance(eintrag, dict) and eintrag.get("label_en") == rating:
+            return eintrag.get("label_de") or ""
+    return ""
+
+
+def _mit_de(rating: str, data: dict) -> str:
+    """``unzureichend / Insufficient`` — oder nur das Rating.
+
+    Reihenfolge und Trennzeichen wie bei Polity5 (dort steht seit #274
+    "+10 (Volle Demokratie / Full Democracy)"): deutsche Form zuerst, weil
+    der Claim deutsch kommt, amtlicher englischer Name dahinter.
+    """
+    de = _label_de(rating, data)
+    return f"{de} / {rating}" if de else rating
+
+
+def _skala_zweisprachig(data: dict) -> str:
+    """Die Skala AUS DEN DATEN, beide Sprachen.
+
+    Vorher stand sie als Literal im Code — und zaehlte fuenf Stufen,
+    waehrend die Laenderseiten sechs kennen ("1.5°C global least cost",
+    gefunden in #276). Dieselbe Marker-Drift wie #74/#133: eine Aufzaehlung
+    im Code, die den Daten-Refresh stumm ueberlebt.
+    """
+    paare = [
+        f"'{e['label_en']}' ({e['label_de']})"
+        for e in (data.get("rating_scale") or {}).values()
+        if isinstance(e, dict) and e.get("label_en") and e.get("label_de")
+    ]
+    return " / ".join(paare)
+
+
+def _build_display_value(iso3: str, rec: dict, data: dict) -> str:
+    """'AT Overall: Insufficient (unzureichend) | Targets: … | Skala: …'"""
     iso2 = _country_iso2(iso3)
     parts = [
-        f"{iso2} Overall: {rec.get('overall_rating', 'n/a')}",
-        f"Targets: {rec.get('targets_rating', 'n/a')}",
-        f"Current Policies: {rec.get('current_policies_rating', 'n/a')}",
-        f"Fair Share: {rec.get('fair_share_rating', 'n/a')}",
+        f"{iso2} Overall: {_mit_de(rec.get('overall_rating', 'n/a'), data)}",
+        f"Targets: {_mit_de(rec.get('targets_rating', 'n/a'), data)}",
+        f"Current Policies: "
+        f"{_mit_de(rec.get('current_policies_rating', 'n/a'), data)}",
+        f"Fair Share: {_mit_de(rec.get('fair_share_rating', 'n/a'), data)}",
     ]
     return " | ".join(parts)
 
@@ -294,7 +342,8 @@ def _build_indicator_name(iso3: str, rec: dict, display_name: str,
     # Befund in #273.
     ebene = rec.get("bewertungs_ebene")
     zusatz = f" [{ebene}: CAT bewertet die EU als Einheit]" if ebene else ""
-    return f"CAT{stand}: {display_name} Overall '{overall}'{zusatz}"
+    return (f"CAT{stand}: {display_name} Overall "
+            f"'{_mit_de(overall, data)}'{zusatz}")
 
 
 def _build_description(rec: dict, data: dict) -> str:
@@ -302,8 +351,7 @@ def _build_description(rec: dict, data: dict) -> str:
     methodology = (
         "CAT-Methodik: Bewertung der Klimaschutz-Pledges gegen das 1.5°C-Limit "
         "des Pariser Abkommens (Pledge-vs-Trajectory-Modell von Climate Analytics "
-        "+ NewClimate Institute). Skala: '1.5°C compatible' / 'Almost sufficient' / "
-        "'Insufficient' / 'Highly insufficient' / 'Critically insufficient'. "
+        "+ NewClimate Institute). "
         "CAT publiziert ~halbjährlich vor COP-Treffen. "
         "WICHTIGER KONTEXT: CAT ist EINE Methodik; alternative Bewertungen "
         "(Climate Watch, OECD ENV-Linkages, IPCC AR6 Pathways) kommen teils zu "
@@ -334,7 +382,7 @@ def _build_result_row(iso3: str, rec: dict, data: dict) -> dict:
         "country": iso2,
         "year": str(gelesen_am)[:4],
         "topic": "climate_action_tracker",
-        "display_value": _build_display_value(iso3, rec)[:480],
+        "display_value": _build_display_value(iso3, rec, data)[:480],
         "description": _build_description(rec, data)[:600],
         "url": _country_url(iso3, rec, data),
         "secondary_url": data.get("source_url", "https://climateactiontracker.org/countries/"),
@@ -362,7 +410,11 @@ def _build_methodology_caveat_row(data: dict) -> dict:
         "country": "",
         "year": str(data.get("report_year") or ""),
         "topic": "climate_action_tracker",
-        "display_value": "",
+        # Die Skala AUS DEN DATEN, beide Sprachen. Dieses Feld war leer,
+        # und die Laender-Zeile hat keinen Platz mehr (480 Zeichen).
+        "display_value": (
+            f"CAT-Skala, amtlich englisch mit deutscher Uebersetzungshilfe: "
+            f"{_skala_zweisprachig(data)}")[:480],
         "description": kernsatz[:600],
         "url": data.get("source_url", "https://climateactiontracker.org/countries/"),
         "secondary_url": "https://climateactiontracker.org/methodology/",

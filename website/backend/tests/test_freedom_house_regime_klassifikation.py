@@ -111,7 +111,11 @@ def test_die_zahlen_bleiben_vorne():
     """Der Hinweis haengt HINTEN an. Vorne stehen Score und Status — sonst
     verdraengt die Warnung genau die Belege, die den Claim pruefbar machen."""
     d = _display("Ungarn ist laut Freedom House keine Demokratie mehr")
-    assert d.startswith("HU 65/100 'Partly Free'"), d[:60]
+    # Geprueft wird die REIHENFOLGE, nicht die Schreibweise des Status. Seit
+    # dem 26.10.2026 steht er zweisprachig da ("teilweise frei / Partly
+    # Free"), weil das Modell sonst keine Zuordnung zur deutschen Form hat.
+    assert d.startswith("HU 65/100 '"), d[:60]
+    assert "Partly Free" in d[:60], d[:60]
     assert d.index("65/100") < d.index("WICHTIG")
 
 

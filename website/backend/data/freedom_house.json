@@ -9,6 +9,24 @@
   "source_url": "https://freedomhouse.org/report/freedom-world/2026/growing-shadow-autocracy",
   "license": "CC-BY (Annual report aggregate scores publicly available)",
   "audit_flag": "REFRESHED 2026-09-05 von FIW 2024 auf FIW 2026 (zwei Ausgaben übersprungen). 55/55 Länder direkt von der Quelle; Gegenproben: PR+CL == Total bei allen 55, und der im Report ausdrücklich genannte US-Verlust von 3 Punkten deckt sich mit den gelesenen Werten (84 -> 81).",
+  "kategorien_sprachhinweis": "Freedom House publiziert die drei Status-Stufen NUR auf Englisch. Die Felder label_de sind Uebersetzungshilfen, damit eine deutsche Behauptung ('teilweise frei') auf die amtliche Kategorie ('Partly Free') abgebildet werden kann. Beim Zitieren gilt der englische Name als der amtliche.",
+  "status_categories": {
+    "free": {
+      "label_en": "Free",
+      "label_de": "frei",
+      "range": "100-70 Punkte"
+    },
+    "partly_free": {
+      "label_en": "Partly Free",
+      "label_de": "teilweise frei",
+      "range": "69-35 Punkte"
+    },
+    "not_free": {
+      "label_en": "Not Free",
+      "label_de": "nicht frei",
+      "range": "34-0 Punkte"
+    }
+  },
   "methodology_note": "FIW misst zwei Dimensionen: Political Rights (PR, 0-40 Punkte aus 10 Items je 0-4) und Civil Liberties (CL, 0-60 Punkte aus 15 Items je 0-4). Total = PR + CL (0-100). Status-Schwellen: Free 70-100, Partly Free 35-69, Not Free 0-34. Methodik: jährliche Experten-Bewertung einer US-NGO, transparent dokumentiert.",
   "country_aliases": {
     "AUT": [
