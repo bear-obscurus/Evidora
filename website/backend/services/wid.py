@@ -71,7 +71,30 @@ import time
 from services import _laender as _LAENDER
 from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
-from services._flexion import trifft as _flexion_trifft
+from functools import lru_cache as _lru_für_wortgrenze
+
+from services._flexion import (
+    trifft_mit_wortgrenze as _trifft_mit_grenze,
+    wortgrenzen_fassung as _grenzfassung,
+)
+
+
+@_lru_für_wortgrenze(maxsize=256)
+def _wortgrenzen(claim_n: str) -> str:
+    return _grenzfassung(claim_n)
+
+
+def _flexion_trifft(claim_lc: str, term) -> bool:
+    """``trifft`` — und fuer GEBUNDENE Tokens zaehlen auch Claim-Rand und
+    Satzzeichen als Wortgrenze (#207).
+
+    Die Fakten nutzen das seit dem 26.09.2026 ueber
+    ``_topic_match.substring_or_composite_match``; die Dienste nicht — 68
+    von 71 riefen das nackte ``trifft``. Damit war ein kurzes Token in
+    einem Dienst-Vokabular nicht sicher bindbar: `" dina "` haette
+    „DINA zeigt …" am Satzanfang verloren. Siehe _flexion.WORTGRENZEN.
+    """
+    return _trifft_mit_grenze(claim_lc, _wortgrenzen(claim_lc), term)
 
 logger = logging.getLogger("evidora")
 
@@ -119,7 +142,11 @@ _DIRECT_TRIGGERS = norm_terme(
     "weltungleichheitsreport", "piketty-daten", "piketty daten",
     "saez-zucman", "saez zucman", "thomas piketty",
     "lucas chancel", "gabriel zucman", "emmanuel saez",
-    "distributional national accounts", "dina",
+    "distributional national accounts",
+    # GEBUNDEN (#207): "dina" steckt in "KarDINAele" — der normalisierten
+    # Form von "Kardinaele". Gemessen am 26.10.2026 zog genau das einen
+    # Claim ueber Dschihadisten und den Vatikan in den WID-Dienst.
+    " dina ",
 )
 
 # Author-Trigger: Nur Nachnamen — gelten erst in Kombination mit
