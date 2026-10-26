@@ -166,6 +166,14 @@ jobs:
     #   - test_rki_saison_2025_26     (Atemwegs-Saison 2025/26 aus RKI-Open-Data;
     #                                  drei falsche Zahlen + verkehrte Richtung
     #                                  im alten Stand; GrippeWeb != Konsultation)
+    #   - test_cat_gelesen_statt_geschaetzt (CAT trug 'STATIC-SNAPSHOT /
+    #                                  Recherche-Approximationen' vom
+    #                                  November 2024: 75 von 159 Werten
+    #                                  falsch (47 %). Derselbe Marker wie
+    #                                  MIPEX/BTI in anderer Wortwahl —
+    #                                  das Gate aus #268 suchte woertlich
+    #                                  'AUDIT NEEDED'. Dazu halbjaehrlich
+    #                                  240 in KADENZ_MAX_AGE)
     #   - test_polity5_aussage_grenze (QA50I #88: Claim ueber Polity5 wurde
     #                                  mit V-Dem widerlegt. Ungarn hat in
     #                                  Polity5 +10 (2010-2018, am Datensatz
@@ -439,6 +447,7 @@ jobs:
             tests/test_wortformen_are_reichste.py \
             tests/test_laufende_saison_gerendert.py \
             tests/test_polity5_aussage_grenze.py \
+            tests/test_cat_gelesen_statt_geschaetzt.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \

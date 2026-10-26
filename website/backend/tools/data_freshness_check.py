@@ -145,6 +145,14 @@ KADENZ_MAX_AGE = {
     "woechentlich": 21,        # eine verpasste Ausgabe plus Puffer
     "monatlich": 60,
     "quartalsweise": 150,
+    # 240 interpoliert zwischen quartalsweise und jaehrlich. Das Muster
+    # der bestehenden Werte: Je laenger der Takt, desto kleiner der
+    # Sicherheitsfaktor — woechentlich 21 d = 3 Zyklen, monatlich 60 d = 2,
+    # quartalsweise 150 d = 1,65, jaehrlich 400 d = 1,1. Fuer 182 Tage
+    # ergibt das rund 1,3 Zyklen. Anlass: climate_action_tracker, dessen
+    # Takt bis zum 22.10.2026 nur in der Prosa stand (CAT publiziert
+    # halbjaehrlich, typisch vor der COP und zur Jahresmitte).
+    "halbjaehrlich": 240,
     "jaehrlich": 400,          # ein Jahr plus Puffer fuer den Publikationstermin
     "ereignisgetrieben": None,  # Wahlen, Urteile: kein Takt, kein Alarm
 }

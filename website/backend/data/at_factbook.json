@@ -914,5 +914,7 @@
   ],
   "fetched_at_iso": "2026-04-27",
   "note": "Kuratierte AT-Faktoide aus offiziellen Primärquellen (Bildungsdirektion Wien, BMF, Statistik Austria, BMI, Sozialministerium, PV.at, E-Control). Manuell aktualisiert — Refresh-Cadence: jährlich nach Erscheinen des jeweiligen Berichts.",
+  "refresh_kadenz": "jaehrlich",
+  "kadenz_begruendung": "Die Quellen des Factbooks (Statistik Austria, BMF, Bildungsdirektion) veroeffentlichen jaehrlich. Bis zum 22.10.2026 stand der Takt nur in der Prosa, und der Waechter mass gegen den 120-Tage-Standard.",
   "version": 4
 }
