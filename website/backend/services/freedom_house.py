@@ -162,12 +162,62 @@ _ISO3_TO_ISO2 = {
     "KAZ": "KZ", "KGZ": "KG", "TJK": "TJ", "TKM": "TM", "UZB": "UZ",
 }
 
-# Status-Übersetzung für indicator_name.
-_STATUS_DE = {
-    "Free": "Free",
-    "Partly Free": "Partly Free",
-    "Not Free": "Not Free",
+#: Fallback, falls die Daten keine `status_categories` fuehren. Bis zum
+#: 26.10.2026 stand hier eine "Status-Uebersetzung", die Englisch auf
+#: Englisch abbildete ("Free" -> "Free") und ausserdem nirgends aufgerufen
+#: wurde. Die Haken waren da, die Uebersetzung fehlte.
+_STATUS_DE_FALLBACK = {
+    "Free": "frei",
+    "Partly Free": "teilweise frei",
+    "Not Free": "nicht frei",
 }
+
+
+def _status_de(status: str, data: dict) -> str:
+    """Deutsche Uebersetzungshilfe zur amtlichen englischen Stufe.
+
+    Freedom House publiziert nur englisch. Ohne diese Zuordnung sieht das
+    Modell "Partly Free" und hat keinen Anhalt, dass eine Behauptung ueber
+    "teilweise frei" dieselbe Stufe meint — dieselbe Luecke, die bei CAT am
+    26.10.2026 live zu der Aussage fuehrte, die Kategorie existiere nicht.
+
+    EXAKTER Vergleich: "Free" steckt als Teilstring in "Partly Free" und
+    "Not Free", eine Enthaltensein-Pruefung wuerde also die falsche Stufe
+    zuordnen.
+    """
+    for eintrag in (data.get("status_categories") or {}).values():
+        if isinstance(eintrag, dict) and eintrag.get("label_en") == status:
+            return eintrag.get("label_de") or ""
+    return _STATUS_DE_FALLBACK.get(status, "")
+
+
+def _mit_de(status: str, data: dict) -> str:
+    """``teilweise frei / Partly Free`` — oder nur den Status.
+
+    Reihenfolge und Trennzeichen wie bei Polity5 (dort steht seit #274
+    "+10 (Volle Demokratie / Full Democracy)"): deutsche Form zuerst, weil
+    der Claim deutsch kommt, amtlicher englischer Name dahinter.
+    """
+    de = _status_de(status, data)
+    return f"{de} / {status}" if de else status
+
+
+def _stufen_satz(data: dict) -> str:
+    """`` [Stufen: 'Free' (frei, …) / …]`` fuer den indicator_name."""
+    skala = _skala_zweisprachig(data or {})
+    return (f" [Stufen, amtlich englisch mit deutscher Uebersetzungshilfe: "
+            f"{skala}]") if skala else ""
+
+
+def _skala_zweisprachig(data: dict) -> str:
+    """Die drei Stufen AUS DEN DATEN, beide Sprachen mit Punktebereich."""
+    teile = [
+        f"'{e['label_en']}' ({e['label_de']}, {e.get('range', '')})".replace(
+            ", )", ")")
+        for e in (data.get("status_categories") or {}).values()
+        if isinstance(e, dict) and e.get("label_en") and e.get("label_de")
+    ]
+    return " / ".join(teile)
 
 
 def _load_data() -> dict | None:
@@ -336,6 +386,11 @@ def _beschreibung(methodik: str, data: dict, rating: dict | None = None) -> str:
             "Ein negativer PR-Wert ist methodisch vorgesehen: eine Zusatzfrage "
             "zu erzwungenen Bevölkerungsverschiebungen kann Punkte abziehen."
         )
+    # Der zweisprachige Stufen-Satz steht NICHT hier, sondern im
+    # display_value: Diese Beschreibung hat 400 Zeichen, davon 250 fuer den
+    # Pflicht-Caveat und 160 fuer die globale Einordnung — der Stufen-Satz
+    # haette die globale Einordnung verdraengt, die fuer Trend-Claims da
+    # ist. Gemessen: 232 + 114 + 160 > 400.
     global_satz = ""
     if w.get("global_decline_years") and w.get("free_countries"):
         global_satz = (
@@ -421,6 +476,7 @@ def _build_display_value(
     ratings: dict,
     report_year: int | str = "",
     claim_lc: str = "",
+    data: dict | None = None,
 ) -> str:
     """Build 'RU 12/100 'Not Free' (PR 4/40, CL 8/60) — vs. AT 94, DE 95, ...
     (Freedom House FIW 2026)'. Die Jahreszahl kommt aus den Daten.
@@ -432,7 +488,7 @@ def _build_display_value(
     cl = primary_rating.get("cl_score", "?")
 
     head = (
-        f"{iso2} {total}/100 '{status}' "
+        f"{iso2} {total}/100 '{_mit_de(status, data or {})}' "
         f"(PR {pr}/40, CL {cl}/60)"
     )
 
@@ -450,6 +506,10 @@ def _build_display_value(
     richtung = _richtungs_satz(primary_rating)
     marke = f" (Freedom House FIW {report_year})" if report_year else ""
     warnung = _klassifikations_warnung(claim_lc)
+    # Die drei Stufen stehen NICHT hier: Der Vertrag aus #131 haelt diesen
+    # Wert unter MAX_STR, weil die Klassifikations-Warnung hinten steht und
+    # sonst abgeschnitten wuerde. Gemessen: mit Stufen-Satz 480 > 400. Sie
+    # stehen im indicator_name, der dasselbe Budget hat und kuerzer ist.
     return f"{head}{ref}{richtung}{marke}{warnung}"
 
 
@@ -576,17 +636,20 @@ async def search_freedom_house(analysis: dict) -> dict:
 
     display_value = _build_display_value(
         primary_iso3, primary_rating, display_countries, ratings, report_year,
-        claim_lc,
+        claim_lc, data,
     )
 
     ausgabe = f"FIW {report_year} " if report_year else ""
     indicator_name = (
         f"Freedom House {ausgabe}— "
-        f"{display_name}: {total}/100 ({status})"
+        f"{display_name}: {total}/100 ({_mit_de(status, data)})"
     )
 
     results.append({
-        "indicator_name": indicator_name + _SKALA_FH,
+        # Die drei Stufen zweisprachig. Aus den DATEN, nicht als Literal,
+        # damit geaenderte Schwellen nicht im Code stehen bleiben
+        # (#74/#133). Hier und nicht im display_value — siehe dort.
+        "indicator_name": (indicator_name + _SKALA_FH + _stufen_satz(data)),
         "indicator": "freedom_house_score",
         "country": iso2,
         "year": str(report_year),
