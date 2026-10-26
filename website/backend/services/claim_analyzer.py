@@ -41,6 +41,11 @@ Analysiere die folgende Behauptung und antworte AUSSCHLIESSLICH im JSON-Format:
 
 Regeln:
 - Extrahiere nur die faktische Behauptung, nicht den Rahmen ("Stimmt es, dass...")
+- FRAGEN sind gueltige Eingaben. Erfinde dafuer KEIN Platzhalter-Praedikat wie "... hat eine bestimmte Anzahl", "... betraegt einen bestimmten Wert" oder "... ist unterschiedlich hoch" — eine solche Aussage ist leer und laesst sich nicht pruefen. Nenne stattdessen die GESUCHTE GROESSE als Nominalphrase:
+  • "Wie viele Erfolgskriterien hat WCAG 2.2?" -> "Die Anzahl der Erfolgskriterien in WCAG 2.2"
+  • "Wie hoch ist die Arbeitslosenquote in Oesterreich?" -> "Die Arbeitslosenquote in Oesterreich"
+  • "Welche Stufen hat die CAT-Skala?" -> "Die Stufen der CAT-Skala"
+  Enthaelt die Frage selbst eine pruefbare Zahl oder Aussage ("Hat WCAG 2.2 wirklich 87 Kriterien?"), dann extrahiere DIESE Aussage ("WCAG 2.2 hat 87 Erfolgskriterien").
 - Faktencheck-Queries in der Sprache der Behauptung
 - Setze confidence auf 0.0 wenn die Behauptung unklar oder kein Faktenclaim ist
 - Antworte NUR mit dem JSON, kein anderer Text
