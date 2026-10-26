@@ -237,6 +237,16 @@ jobs:
     #                                  wortgrenzen-bewussten Matcher,
     #                                  damit Binden den Satzanfang nicht
     #                                  kostet)
+    #   - test_intensitaet_und_saison_zuordnung (QA50I #24 nachgemessen:
+    #                                  "besonders stark" war keine vage
+    #                                  Angabe (Deckel kannte nur
+    #                                  MENGEN-Woerter), und der Superlativ
+    #                                  ueber die ABGESCHLOSSENE Saison
+    #                                  2025/26 wanderte auf die laufende
+    #                                  2026/27 — Zuordnung, nicht der
+    #                                  verbotene Vergleich. Sperre im
+    #                                  display_value, weil die headline
+    #                                  399 von 400 Zeichen hat)
     #   - test_polity5_aussage_grenze (QA50I #88: Claim ueber Polity5 wurde
     #                                  mit V-Dem widerlegt. Ungarn hat in
     #                                  Polity5 +10 (2010-2018, am Datensatz
@@ -518,6 +528,7 @@ jobs:
             tests/test_frage_wird_nicht_zur_leeren_aussage.py \
             tests/test_wartung_einer_zur_zeit.py \
             tests/test_dina_in_kardinaele.py \
+            tests/test_intensitaet_und_saison_zuordnung.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \
