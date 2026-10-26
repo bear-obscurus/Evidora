@@ -107,7 +107,7 @@
       "topic": "rki_atemwegsinfekte",
       "scope": "Atemwegsinfekt-Surveillance Deutschland — Saisonvergleich bis 2025/26",
       "year": "2025-2026",
-      "headline": "Atemwegsinfekte (ARE) Deutschland: Die Saison 2025/26 war mit einem GrippeWeb-Höchstwert von 8.661 je 100.000 (KW 5/2026) die SCHWÄCHSTE der letzten vier Saisonen und lag auf Vor-Pandemie-Niveau (2018/19: 8.660). Seit 2022/23 (11.204) geht der Höchstwert durchgehend zurück. MESSGRÖSSE: GrippeWeb ist bevölkerungsbasiert; die Konsultationsinzidenz der Praxen ist eine andere, viermal kleinere Größe.",
+      "headline": "Atemwegsinfekte (ARE) Deutschland: Die Saison 2025/26 war mit einem GrippeWeb-Höchstwert von 8.661 je 100.000 (KW 5/2026) die SCHWÄCHSTE der vier ABGESCHLOSSENEN Saisonen und lag auf Vor-Pandemie-Niveau (2018/19: 8.660). Seit 2022/23 (11.204) geht der Höchstwert zurück. MESSGRÖSSE: GrippeWeb ist bevölkerungsbasiert; die Konsultationsinzidenz der Praxen ist eine andere, viermal kleinere Größe.",
       "data": {
         "messgroesse": "MESSGRÖSSE NICHT TAUSCHEN: Die Höchstwerte sind GrippeWeb-ARE-Inzidenz — bevölkerungsbasiert aus Selbstauskünften, je 100.000 Einwohner. Die ARE-KONSULTATIONSinzidenz aus dem Praxis-Sentinel misst etwas anderes und liegt rund viermal niedriger (Saison-Höchstwert 2025/26: 2.044 gegenüber 8.661). Wer beide gegeneinander hält, liest einen Einbruch heraus, den es nicht gibt.",
         "grippeweb_are_peak_je_100k_2022_23": 11204,

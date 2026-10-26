@@ -108,8 +108,8 @@ def _jahresvergleich(d: dict, praefix: str, label: str) -> str:
     return (f"DIESES JAHR GEGEN LETZTES JAHR, {label}: {name_jetzt} "
             f"{de_int(jetzt)} gegen {name_vorher} {de_int(vorher)} — "
             f"{abs(delta):.0f} % {richtung}. NICHT die Saison-Hoechstwerte "
-            f"dafuer vergleichen.").replace("Hoechstwerte", "Höchstwerte"
-                                            ).replace("dafuer", "dafür")
+            f"dafuer vergleichen."
+            ).replace("Hoechstwerte", "Höchstwerte").replace("dafuer", "dafür")
 
 
 def _saisonreihe(d: dict, praefix: str) -> str:
@@ -257,6 +257,9 @@ async def search_rki_surveillance(analysis: dict) -> dict:
             description = (description + " ").strip() + " | " + " | ".join(notes)
 
         results.append({
+            # KEIN Zusatz hier: Die headline ist 399 von 400 Zeichen lang
+            # (PROMPT_MAX_STR). Ein angehaengter Satz wird abgeschnitten,
+            # und es traefe genau ihn — der Fehlermodus aus #131.
             "indicator_name": fact.get("headline", "?"),
             "indicator": "rki_surveillance_fact",
             "country": "DE",

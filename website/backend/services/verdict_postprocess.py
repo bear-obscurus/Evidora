@@ -3274,6 +3274,31 @@ _VAGE_MENGE = re.compile(
     r")(?![a-z])"
 )
 
+# INTENSITAETS-Urteile, GEBUNDEN an ein Adjektiv. "besonders stark" hat so
+# wenig eine Schwelle wie "viele" — bis zum 26.10.2026 kannte die Regel aber
+# nur Mengenwoerter, und "Die Grippewelle ist dieses Jahr besonders stark"
+# bekam deshalb mostly_false @ 0.85 statt eines Deckels (QA50I #24).
+#
+# GEMESSEN ueber 12.155 echte Claims, zwei Fassungen:
+#   bloss "besonders|sehr|extrem"      45 Claims neu — darunter Unsinn
+#                                      ("wir setzen uns SEHR fuer behinderte
+#                                      Menschen ein", "verhielt sich SEHR
+#                                      ungebuehrlich"). Verworfen.
+#   gebunden an ein Adjektiv           10 Claims neu, 9 davon gewollt
+#                                      ("Atomkraft hat eine sehr niedrige
+#                                      CO2-Bilanz", "Napoleon war besonders
+#                                      klein", "Polizeigewalt ist nur sehr
+#                                      selten"). Diese Fassung.
+# Der Deckel aendert nur die Konfidenz, nie das Verdict — der eine
+# Grenzfall (ein Foto bei "besonders niedrigen Temperaturen") kostet also
+# 0,15 Konfidenz und sonst nichts.
+_VAGE_INTENSITAET = re.compile(
+    r"(?<![a-z])(besonders|sehr|ungewoehnlich|aussergewoehnlich|extrem)\s+"
+    r"(stark|schwach|hoch|niedrig|haeufig|selten|gross|klein|"
+    r"heiss|kalt|warm|gefaehrlich|gering|intensiv|massiv|"
+    r"gut|schlecht|schnell|langsam)[a-z]{0,3}(?![a-z])"
+)
+
 # Eine Zahl MIT Schwellen-Wort ist eine pruefbare Grenze, keine vage Menge.
 # Eine blosse Jahreszahl ist keine — deshalb steht hier nicht \d allein.
 _SCHWELLE = re.compile(
@@ -3312,7 +3337,7 @@ def hat_vage_mengenangabe(claim: str) -> bool:
     n = normalisiere(claim)
     if _SCHWELLE.search(n) or _BEZUGSBASIS.search(n):
         return False
-    return bool(_VAGE_MENGE.search(n))
+    return bool(_VAGE_MENGE.search(n) or _VAGE_INTENSITAET.search(n))
 
 
 def apply_vage_menge_cap(synthesis, claim, lang="de",
@@ -3355,14 +3380,15 @@ def apply_vage_menge_cap(synthesis, claim, lang="de",
     synthesis["confidence"] = cap
 
     hinweis = (
-        "Hinweis: Die Behauptung nutzt eine Mengenangabe ohne feste Schwelle "
-        "(etwa „kaum“ oder „viele“). Ob die genannten Zahlen sie "
-        "erfuellen, "
+        "Hinweis: Die Behauptung nutzt eine Angabe ohne feste Schwelle "
+        "(etwa „kaum“, „viele“ oder „besonders stark“). Ob die genannten "
+        "Zahlen sie erfuellen, "
         "ist Auslegungssache — der Zahlenbefund ist belastbarer als die "
         "Bewertung."
         if lang == "de" else
-        "Note: The claim uses a quantity word without a fixed threshold (such "
-        "as \"few\" or \"many\"). Whether the figures meet it is a matter of "
+        "Note: The claim uses a wording without a fixed threshold (such "
+        "as \"few\", \"many\" or \"particularly strong\"). Whether the figures "
+        "meet it is a matter of "
         "interpretation — the figures are firmer than the verdict."
     )
     bisher = synthesis.get("nuance")
