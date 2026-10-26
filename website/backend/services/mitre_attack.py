@@ -602,7 +602,7 @@ async def search_mitre_attack(analysis: dict) -> dict:
     combined = f"{original} {claim}"
     combined_lc = combined.lower()
 
-    if not _claim_mentions_mitre(combined_lc):
+    if not _claim_mentions_mitre(normalisiere(combined_lc)):
         return empty
 
     # Wenn Dataset noch nicht da → einmaliger Sync-Versuch

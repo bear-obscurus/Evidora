@@ -600,7 +600,7 @@ async def search_global_carbon_budget(analysis: dict) -> dict:
         original = str(original or "")
     combined_lc = f"{original} {claim}".strip().lower()
 
-    if not _claim_mentions_gcb(combined_lc):
+    if not _claim_mentions_gcb(normalisiere(combined_lc)):
         return empty
 
     # 1) Kuratierte Highlights, nach Relevanz sortiert

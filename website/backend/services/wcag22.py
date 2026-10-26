@@ -102,6 +102,12 @@ _act_mapping_cache_time: float = 0.0
 # ---------------------------------------------------------------------------
 _WCAG22_TERMS = norm_terme(
     # Direkt
+    # Bis zum 26.10.2026 standen hier nur die VERSIONIERTEN Formen — "Wie
+    # viele WCAG-Erfolgskriterien gibt es?" fiel damit durch. Genau diese
+    # Frage hatte in #87 eine erfundene Zahl ("62") bekommen; der Renderer
+    # zaehlt inzwischen richtig, aber ohne Treffer sieht das Modell die Zahl
+    # gar nicht.
+    "wcag",
     "wcag 2.2", "wcag2.2", "wcag-2.2", "wcag22",
     "wcag 2.1", "wcag 2.0",  # User kann Vorgängerversionen meinen
     "web content accessibility guidelines",
@@ -124,7 +130,10 @@ _WCAG22_TERMS = norm_terme(
     "richtlinie 2016/2102",
     "en 301 549",
     # SC-spezifische Marker
-    "success criterion", "erfolgskriterium",
+    # STAMM statt Aufzaehlung: "erfolgskriterium" traf den Plural
+    # "Erfolgskriterien" nicht — die Endung wechselt, sie waechst nicht
+    # hinten an (#140/#141).
+    "success criterion", "success criteria", "erfolgskriteri",
     "kontrastverhältnis", "kontrastverhaeltnis",
     "alt-text", "alt text", "alternativtext",
     "screenreader", "screen reader", "screen-reader",
@@ -611,7 +620,7 @@ async def search_wcag22(analysis: dict) -> dict:
     combined = f"{original} {claim}".strip()
     combined_lc = combined.lower()
 
-    if not _claim_mentions_wcag22(combined_lc):
+    if not _claim_mentions_wcag22(normalisiere(combined_lc)):
         return empty
 
     data = _load_static_json()

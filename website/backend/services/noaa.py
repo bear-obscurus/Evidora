@@ -557,7 +557,7 @@ async def search_noaa(analysis: dict) -> dict:
         original = str(original or "")
     combined_lc = f"{original} {claim}".strip().lower()
 
-    if not _claim_mentions_noaa(combined_lc):
+    if not _claim_mentions_noaa(normalisiere(combined_lc)):
         return empty
 
     # 1) Kuratierte Highlights, nach Relevanz sortiert

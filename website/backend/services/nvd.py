@@ -523,7 +523,7 @@ async def search_nvd(analysis: dict) -> dict:
     combined = f"{original} {claim}"
     combined_lc = combined.lower()
 
-    if not _claim_mentions_nvd(combined_lc):
+    if not _claim_mentions_nvd(normalisiere(combined_lc)):
         return empty
 
     cve_ids = _extract_cve_ids(combined)

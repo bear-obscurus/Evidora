@@ -873,7 +873,7 @@ async def search_eba(analysis: dict) -> dict:
         original = str(original or "")
     matchable = normalisiere(f"{original} {claim}")
 
-    if not _claim_mentions_eba(matchable):
+    if not _claim_mentions_eba(normalisiere(matchable)):
         return empty
 
     # 1. Indikator-Auswahl
@@ -971,7 +971,10 @@ async def search_eba(analysis: dict) -> dict:
 
 
 # Kleiner LRU-Wrapper-Helfer, falls Caller eine sync-Variante des Trigger-
-# Checks bevorzugt (analog era5.claim_mentions_era5_cached).
+# Checks bevorzugt (analog era5.claim_mentions_era5_cached). Derzeit ruft ihn
+# niemand auf — er normalisiert seit dem 26.10.2026 trotzdem, wie sein
+# Gegenstueck in era5: Sonst waere er fuer den ersten Caller eine Falle, weil
+# die Trigger-Vokabeln gefaltet sind und ein roher Claim sie nicht trifft.
 @lru_cache(maxsize=512)
-def _claim_mentions_eba_lru(claim_lc: str) -> bool:
-    return _claim_mentions_eba(claim_lc)
+def _claim_mentions_eba_lru(claim: str) -> bool:
+    return _claim_mentions_eba(normalisiere(claim or ""))

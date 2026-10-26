@@ -554,7 +554,7 @@ async def search_wid(analysis: dict) -> dict:
     original = normalisiere(analysis.get("original_claim") or claim)
     matchable = f"{original} {claim_lc}".strip()
 
-    if not _claim_mentions_wid(matchable):
+    if not _claim_mentions_wid(normalisiere(matchable)):
         return empty
 
     data = _load_data()
