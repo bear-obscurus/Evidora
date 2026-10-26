@@ -564,7 +564,7 @@ async def search_wjp_rol(analysis: dict) -> dict:
     matchable = (
         f"{analysis.get('original_claim') or ''} {analysis.get('claim') or ''}"
     ).lower()
-    if not _claim_mentions_wjp(matchable):
+    if not _claim_mentions_wjp(normalisiere(matchable)):
         return empty
 
     # Country-Detect

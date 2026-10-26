@@ -440,7 +440,7 @@ async def search_osv(analysis: dict) -> dict:
     combined = f"{original} {claim}"
     combined_lc = combined.lower()
 
-    if not _claim_mentions_osv(combined_lc):
+    if not _claim_mentions_osv(normalisiere(combined_lc)):
         return empty
 
     ids = _extract_cve_ghsa_ids(combined)

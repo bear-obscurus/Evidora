@@ -521,7 +521,7 @@ async def search_webaim(analysis: dict) -> dict:
     combined = f"{original} {claim}"
     combined_lc = combined.lower()
 
-    if not _claim_mentions_webaim(combined_lc):
+    if not _claim_mentions_webaim(normalisiere(combined_lc)):
         return empty
 
     results: list[dict] = [_aggregate_result()]

@@ -400,7 +400,7 @@ async def search_observatory(analysis: dict) -> dict:
     combined = f"{original} {claim}"
     combined_lc = combined.lower()
 
-    if not _claim_mentions_observatory(combined_lc):
+    if not _claim_mentions_observatory(normalisiere(combined_lc)):
         return empty
 
     domains = _extract_domains(combined_lc)

@@ -133,6 +133,25 @@ _WEATHER_NOUNS = norm_terme(
     "dürre", "drought", "hochwasser", "flood",
 )
 
+#: Rekord-Woerter, die das WETTER selbst benennen. Sie genuegen zusammen mit
+#: jedem Substantiv der Liste oben.
+_WETTER_SUPERLATIVE = norm_terme(
+    "wärmster", "wärmste", "wärmstes", "warmest", "hottest",
+    "kältester", "kälteste", "kältestes", "coldest",
+    "trockenster", "trockenste", "driest",
+    "feuchtester", "feuchteste", "wettest",
+)
+
+#: Zeit-Einheiten. Sie sind kein Wetter — "die allerhöchsten
+#: Rentenerhöhungen der letzten 20 JAHRE" und "der höchste TAG" haben am
+#: 26.10.2026 den ERA5-Trigger ausgeloest, sobald der Claim normalisiert
+#: ankam ("höchste" traegt einen Umlaut und war vorher unerreichbar).
+#: Gemessen ueber 12.155 Claims: 7 echte Rekord-Claims gewonnen, 2
+#: Fehltreffer dazu — beide nach diesem Muster.
+_ZEIT_EINHEITEN = norm_terme(
+    "monat", "month", "jahr", "year", "tag", "day",
+)
+
 # Jahreszahl 1850–2099 (4-stellig)
 _YEAR_REGEX = re.compile(r"\b(18[5-9]\d|19\d\d|20\d\d|21\d\d)\b")
 
@@ -154,7 +173,16 @@ def _claim_mentions_era5(claim_lc: str) -> bool:
     has_record_verb = any(_flexion_trifft(claim_lc, v) for v in _RECORD_VERBS)
     if not has_record_verb:
         return False
-    has_weather_noun = any(_flexion_trifft(claim_lc, n) for n in _WEATHER_NOUNS)
+    # Ein allgemeiner Superlativ ("höchste", "Rekord") plus eine bloße
+    # ZEIT-Einheit ist kein Wetter-Claim. Entweder benennt das Rekord-Wort
+    # selbst das Wetter ("wärmste Jahr"), oder das Substantiv tut es
+    # ("Rekord-Hitze").
+    ist_wetter_superlativ = any(
+        _flexion_trifft(claim_lc, v) for v in _WETTER_SUPERLATIVE)
+    treffer_nomen = [n for n in _WEATHER_NOUNS if _flexion_trifft(claim_lc, n)]
+    echtes_wetter_nomen = any(n not in _ZEIT_EINHEITEN for n in treffer_nomen)
+    has_weather_noun = bool(treffer_nomen) and (
+        ist_wetter_superlativ or echtes_wetter_nomen)
     if has_weather_noun:
         # Jahreszahl ist optional, aber wenn fehlt UND Claim sehr kurz,
         # eher kein Rekord-Claim → konservativer Cut.
@@ -437,7 +465,7 @@ async def search_era5(analysis: dict) -> dict:
         original = str(original or "")
     combined_lc = f"{original} {claim}".strip().lower()
 
-    if not _claim_mentions_era5(combined_lc):
+    if not _claim_mentions_era5(normalisiere(combined_lc)):
         return empty
 
     # 1) Kuratierte Highlights, nach Relevanz sortiert

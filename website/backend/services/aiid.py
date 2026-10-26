@@ -607,7 +607,7 @@ async def search_aiid(analysis: dict) -> dict:
     combined = f"{original} {claim}".strip()
     combined_lc = combined.lower()
 
-    if not _claim_mentions_aiid(combined_lc):
+    if not _claim_mentions_aiid(normalisiere(combined_lc)):
         return empty
 
     incident_ids = _extract_incident_ids(combined)
