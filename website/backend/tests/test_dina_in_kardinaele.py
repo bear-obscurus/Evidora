@@ -214,6 +214,45 @@ def _korpus() -> list[str]:
     return sorted(set(raus))
 
 
+#: Die neun Wortfamilien, in denen "dina" gemessen steckte. Synthetisch,
+#: damit die Pruefung ohne den (gitignorierten) ClaimReview-Index laeuft.
+WORTFAMILIEN = [
+    "Ein Kardinal hat sich dazu geäußert",
+    "Die Kardinäle wählen einen neuen Papst",
+    "Lidl verkauft günstige Ordinateurs in Belgien",
+    "Das war eine ganz ordinaire Grippe",
+    "He wants ordinary people to decide",
+    "Ferdinand Marcos war Präsident der Philippinen",
+    "Die Zielkoordinaten wurden falsch eingegeben",
+    "Skandinavische Länder haben andere Regeln",
+    "In Skandinavien gab es keine zweite Welle",
+    "Müsbət dinamika davamlı xarakter daşıyır",
+]
+
+
+@pytest.mark.parametrize("claim", WORTFAMILIEN)
+def test_keine_wortfamilie_zieht_den_wid_dienst(claim):
+    """Die neun Familien synthetisch — laeuft auch ohne den Index.
+
+    Der Index `data/claimreview_index.json` ist gitignoriert (ein
+    erzeugter Cache), in der CI also nicht vorhanden. Die erste Fassung
+    dieser Suite hing daran: Zwei Korpus-Sweeps schlugen dort fehl, weil
+    der Korpus statt 12.155 nur die 1.123 Stress-Claims umfasste — und die
+    enthalten KEINE dieser Woerter. Der Vertrag gehoert deshalb in die
+    Suite, nicht in fremde Daten.
+    """
+    assert not _gate(claim), claim
+
+
+# Die Korpus-Sweeps bleiben als ZUSATZ, wo die Daten liegen (lokal, prod).
+_INDEX = BACKEND / "data" / "claimreview_index.json"
+_ohne_index = pytest.mark.skipif(
+    not _INDEX.exists(),
+    reason=f"{_INDEX.name} ist gitignoriert und hier nicht vorhanden — "
+           f"die Wortfamilien pruefen WORTFAMILIEN synthetisch")
+
+
+@_ohne_index
 def test_das_gate_bleibt_eng():
     """Obergrenze statt fester Zahl: der Korpus darf wachsen.
 
@@ -227,11 +266,12 @@ def test_das_gate_bleibt_eng():
     assert len(treffer) <= 5, [c[:70] for c in treffer]
 
 
+@_ohne_index
 def test_kein_claim_mit_ordina_oder_kardina_trifft():
-    """Die Wortfamilien aus der Messung, ueber den ganzen Korpus.
+    """Dieselben Wortfamilien, aber ueber die 12.155 ECHTEN Claims.
 
-    Breiter als die dreizehn Einzelfaelle: Faellt hier etwas, ist das
-    Token wieder ungebunden oder der Matcher zurueckgebaut.
+    Breiter als die dreizehn Einzelfaelle und als die synthetischen oben:
+    Hier steht, was Menschen wirklich geschrieben haben.
     """
     muster = re.compile(r"ordina|kardina|koordina|skandinav|scandinav|ferdinand",
                         re.IGNORECASE)
