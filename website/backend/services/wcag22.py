@@ -478,8 +478,24 @@ def _build_overview_result(data: dict) -> dict:
         f"Konformitätsstufen (A, AA, AAA). 9 neue SCs gegenüber WCAG 2.1: "
         f"{', '.join(new_in_22)}."
     )
+    # Der indicator_name traegt die ANTWORT, nicht nur das Thema. Live am
+    # 26.10.2026: "Wie viele WCAG-Erfolgskriterien gibt es?" bekam
+    # `unverifiable @ 0.1` mit "Die bereitgestellten Quellen enthalten
+    # keine Information zur Anzahl" — obwohl die Zahl an Position 62 des
+    # display_value stand, der Reranker sie behalten hatte (1/1) und kein
+    # Fan-out-Budget gekuerzt hatte. Dieselbe Behauptung als AUSSAGE
+    # ("WCAG 2.2 hat 87 Erfolgskriterien") wurde korrekt mit
+    # mostly_true @ 0.8 beantwortet — das Modell liest die Zeile also,
+    # wenn der Claim bestimmt ist. Lehre aus #192: den fertigen Satz
+    # liefern, nicht die Bestandteile.
+    if isinstance(aktiv, int) and isinstance(gelistet, int):
+        titel = (f"WCAG 2.2 — {aktiv} aktive Erfolgskriterien "
+                 f"(Success Criteria), {gelistet} gelistet")
+    else:
+        # #87-Pfad: ohne Zahlen darf hier keine stehen.
+        titel = "WCAG 2.2 — Überblick (Anzahl nicht verfuegbar)"
     return {
-        "indicator_name": "WCAG 2.2 — Überblick",
+        "indicator_name": titel,
         "indicator": "wcag22_overview",
         "country": "INT",
         "country_name": "International (W3C-Standard)",
