@@ -158,7 +158,7 @@
       "headline": "Hormonelle Verhütungsmittel verursachen keine systematische klinisch signifikante Gewichtszunahme — Cochrane-Systematic-Review 2014 (49 RCTs, n>16.000) fand keinen kausalen Zusammenhang",
       "year": 2024,
       "source_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003987.pub5/full",
-      "secondary_url": "https://www.acog.org/womens-health/faqs/combined-hormonal-birth-control-pill-patch-and-ring",
+      "secondary_url": "https://www.acog.org/womens-health/faqs/combined-hormonal-birth-control-pill-patch-ring",
       "source_label": "Cochrane Database Syst Rev: Gallo et al. 2014 (CD003987) + ACOG + Mayo Clinic",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Antibabypille macht dick' ist FALSE/MOSTLY_FALSE. Gallo MF, Lopez LM, Grimes DA, Carayon F, Schulz KF, Helmerhorst FM. 'Combination contraceptives: effects on weight.' Cochrane Database Syst Rev. 2014;(1):CD003987 — meta-analysierte 49 randomisierte kontrollierte Studien (RCTs) mit über 16.000 Teilnehmerinnen. ERGEBNIS: kein kausal-signifikanter Effekt von Kombinations-Pillen auf Gewicht in den ersten 6-12 Monaten. Beobachtete Gewichts-Schwankungen lagen im Bereich der natürlichen Varianz (±1-2 kg), die auch in Placebo-Gruppen auftraten. Wichtige methodische Anmerkung: Studien-Design erfasst Durchschnitts-Effekte — individuelle Varianz möglich, aber statistisch ohne Trend.",
@@ -320,8 +320,8 @@
       "headline": "Stillen ist nur unter den 3 LAM-Kriterien (Lactational Amenorrhea Method) eine effektive Verhütungsmethode (98% Schutz bei strikter Befolgung); ohne diese Kriterien NICHT zuverlässig",
       "year": 2024,
       "source_url": "https://www.who.int/news-room/fact-sheets/detail/family-planning-contraception",
-      "secondary_url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2018/12/optimizing-postpartum-care",
-      "source_label": "WHO Family Planning Handbook + ACOG Practice Bulletin + Bellagio Consensus 1988 + Kennedy Trussell 1996",
+      "secondary_url": "https://www.acog.org/clinical/guidance/committee-opinion/2018/05/optimizing-postpartum-care",
+      "source_label": "WHO Family Planning Handbook + ACOG Committee Opinion 736 'Optimizing Postpartum Care' (Mai 2018) + Bellagio Consensus 1988 + Kennedy Trussell 1996",
       "data": {
         "kernsatz_fuer_synthesizer": "WICHTIG: Die These 'Stillen ist eine sichere Verhütung' ist NUR UNTER STRENGEN BEDINGUNGEN richtig — sonst FALSE. Die Lactational Amenorrhea Method (LAM) ist als wissenschaftlich evaluierte Methode unter genau 3 gleichzeitig erfüllten Bedingungen ~98% effektiv (Pearl-Index 1.5-2 in Studien). Sind alle 3 Kriterien NICHT gleichzeitig erfüllt, ist Stillen NICHT zuverlässige Verhütung. LAM-Kriterien (Bellagio Consensus 1988, WHO/UNFPA): (1) Amenorrhö (keine Menstruations-Wiederkehr seit Geburt — Wochenfluss zählt nicht), (2) Vollstillen oder fast-Vollstillen (Baby ausschließlich Muttermilch, keine Beikost, höchstens minimale Flüssigkeits-Zufütterung), (3) Baby <6 Monate alt. Sobald EINES der 3 Kriterien wegfällt — Beikost-Beginn, erste Menstruation, oder 6-Monats-Marke — sinkt die Effektivität dramatisch und ergänzende Verhütung wird empfohlen.",
         "lam_mechanismus": "Physiologische Grundlage: hohe Prolaktin-Spiegel durch häufiges Stillen unterdrücken die GnRH-Pulsation im Hypothalamus → unterdrückt LH-Surge → keine Ovulation. Mechanismus ist DOSIS-ABHÄNGIG: nur bei häufigem, intensivem Stillen (alle 3-4 Stunden tagsüber, alle 6 Stunden nachts) ist Prolaktin hoch genug. Bei Beikost-Beginn oder Schlaf-durch-Phasen sinkt die Stimulation, Ovulation kann zurückkehren.",

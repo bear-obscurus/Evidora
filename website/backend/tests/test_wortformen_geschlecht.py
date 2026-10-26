@@ -312,6 +312,16 @@ ERLAUBT_FREMD = {
         "Karenz vernichtet Karriere komplett",
         "Kinderbetreuungsgeld bekommen nur Frauen",
         "Lange Karenz ist gut fuer Mutter und Karriere",
+        # Seit #55 (26.10.2026): Beide Fakten antworten auf die Frage, wie
+        # viel Karenz oesterreichische Vaeter nehmen — der KBG-Fakt mit den
+        # Zahlen (4,1 % der Anspruchstage, 15,40 % der Vaeter), dieser mit
+        # dem Nordeuropa-Vergleich auf derselben Messgroesse. Der Treffer ist
+        # gewollt und wird NICHT bloss erlaubt, sondern in
+        # tests/test_vaeterkarenz_messgroessen.py ausdruecklich verlangt
+        # (test_der_claim_erreicht_beide_fakten) — verschwindet er, faellt
+        # dort ein Test.
+        "Väter nehmen in Österreich selten Karenz",
+        "Wie viele Väter gehen in Österreich in Karenz",
     },
     "oecd_lebenserwartung_2024": {
         "Down-Syndrom-Lebenserwartung ist nur 30 Jahre",
@@ -327,7 +337,12 @@ ERLAUBT_FREMD = {
         "Active Surveillance ist bei Niedrigrisiko-Prostatakrebs Standard",
         "PSA-Screening ist nicht generell empfohlen",
     },
-    "kinderbetreuungsgeld_2026": {"Karenz hat keinen Lohn-Effekt"},
+    "kinderbetreuungsgeld_2026": {
+        "Karenz hat keinen Lohn-Effekt",
+        # Gegenrichtung desselben Paars, siehe oben.
+        "Männer übernehmen heute genauso viel Karenz",
+        "Der Väter-Anteil an der Karenz ist in Österreich mittleres Niveau",
+    },
 }
 
 
