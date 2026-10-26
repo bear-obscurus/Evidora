@@ -182,6 +182,15 @@ jobs:
     #                                  es als Statistik nicht. Dazu zwei
     #                                  ACOG-404 und zwei Links, die mit 200
     #                                  auf fremde Seiten umleiteten)
+    #   - test_label_ueberschreibt_eigene_begruendung (zwei Waechter
+    #                                  drehten ein richtiges Modell-Label:
+    #                                  Muster O las "Climate Action
+    #                                  TRACKER als" als Komparativ
+    #                                  (false->true), und die
+    #                                  Relevanz-Wache des
+    #                                  STRUKTURELL-Overrides kannte
+    #                                  "bestaetigen, dass" nicht
+    #                                  (true->mostly_false))
     #   - test_polity5_aussage_grenze (QA50I #88: Claim ueber Polity5 wurde
     #                                  mit V-Dem widerlegt. Ungarn hat in
     #                                  Polity5 +10 (2010-2018, am Datensatz
@@ -457,6 +466,7 @@ jobs:
             tests/test_polity5_aussage_grenze.py \
             tests/test_cat_gelesen_statt_geschaetzt.py \
             tests/test_vaeterkarenz_messgroessen.py \
+            tests/test_label_ueberschreibt_eigene_begruendung.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \

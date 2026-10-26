@@ -1049,6 +1049,57 @@ def summary_bestaetigt_vergleich(claim_lc: str, summary: str) -> bool:
     return False
 
 
+def komparativ_ist_nomen(claim_original: str) -> bool:
+    """Ist der scheinbare Komparativ vor "als" in Wahrheit ein NOMEN?
+
+    ``_O_KOMPARATIV_RE`` sucht ``<wort>er als`` und kann einen Komparativ
+    nicht von einem Nomen auf -er unterscheiden. Live am 26.10.2026:
+
+        Claim:   "Österreich wird vom Climate Action Tracker als kritisch
+                  unzureichend bewertet."          (falsch, Overall ist
+                                                    'Insufficient')
+        gelesen: Komparativ "tracker"
+        Modell:  false @ 0.95, Summary "…, NICHT mit 'kritisch unzureichend'"
+        geliefert: true @ 0.85
+
+    Muster O hielt "Climate Action **Tracker** als" fuer "puenktlicher als",
+    fand die Partnerwoerter in der Summary und drehte ein richtiges ``false``
+    auf ``true``. Der Code sagt an dieser Stelle selbst, ein false->true-
+    Override sei die schaedlichste Fehlerklasse.
+
+    Das Unterscheidungsmerkmal ist die ORTHOGRAFIE, nicht das Wort: Deutsch
+    schreibt Nomen gross, ein Komparativ in "A ist Xer als B" steht klein.
+    Gemessen an 11.032 echten Faktencheck-Claims aus ``claimreview_index``:
+    61 Treffer auf ``-er als``, davon 10 grossgeschrieben — neun davon sind
+    keine Vergleiche ("AfD-Wähler als Ratten", "Bilder als Beweise", "ein
+    anderes Silvester als sonst", "Bücher", "Europäer", "Besucher",
+    "IV-Empfänger"). Die 51 kleingeschriebenen sind alle echte Vergleiche.
+
+    Der eine Verlust ist ein Komparativ am SATZANFANG ("Schneller als
+    erwartet werden …"); der ist hier ausgenommen. Traegt der Claim gar
+    keine Kleinbuchstaben (Grossschreibung durchgehend), sagt die
+    Orthografie nichts — dann greift die Regel nicht.
+    """
+    if not claim_original:
+        return False
+    if not any(c.islower() for c in claim_original):
+        return False          # durchgehend gross: kein Signal
+    treffer = _O_KOMPARATIV_RE.search(normalisiere(claim_original.lower()))
+    if not treffer or treffer.group(2):
+        return False          # "mehr"/"weniger" sind nie Nomen
+    wort = normalisiere(treffer.group(1) + "er")
+    for m in re.finditer(r"[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß\-]*", claim_original):
+        if not normalisiere(m.group(0).lower()).endswith(wort):
+            continue
+        if not m.group(0)[0].isupper():
+            return False      # klein geschrieben: ein Komparativ
+        davor = claim_original[:m.start()].rstrip()
+        if not davor or davor[-1] in ".!?:;":
+            return False      # Satzanfang: auch ein Komparativ steht gross
+        return True
+    return False
+
+
 def summary_dreht_vergleich(claim_lc: str, summary: str) -> bool:
     """Sagt ein Satz der Summary denselben Vergleich mit VERTAUSCHTEN Seiten?
 
@@ -1520,6 +1571,82 @@ def deckel_fuer(anzahl_belege: int) -> float | None:
     return _KONFIDENZ_DECKEL_DUENN
 
 
+#: "bestaetigen, dass …" / "belegen, dass …" — ein Bejahungs-Verb mit
+#: dass-Satz. Der dass-Satz entscheidet, nicht das Verb (siehe
+#: :func:`summary_bejaht_per_dass_satz`).
+_SF_BEJAHUNG_RE = re.compile(r"\b(?:bestaetig\w*|beleg\w*|zeig\w*)\s*,?\s*dass\b")
+_SF_VERNEINUNG = frozenset({
+    "nicht", "kein", "keine", "keinen", "keinem", "keiner", "keines",
+    "keineswegs", "nie", "niemals",
+})
+#: Fuellwoerter, die keine Claim-Inhalte sind.
+_SF_STOPP = frozenset({
+    "der", "die", "das", "den", "dem", "des", "ein", "eine", "einer",
+    "eines", "einem", "und", "oder", "ist", "sind", "war", "waren", "hat",
+    "haben", "wird", "werden", "dass", "als", "auch", "nur", "sich",
+    "bei", "fuer", "ueber", "nach", "aus", "vom", "von", "zur", "zum",
+})
+
+
+def _sf_inhaltswoerter(text: str) -> set:
+    return {w for w in re.findall(r"[a-zäöüß]{4,}", normalisiere(text.lower()))
+            } - _SF_STOPP
+
+
+def summary_bejaht_per_dass_satz(claim: str, summary: str) -> bool:
+    """Bejaht die Summary den Claim mit "bestaetigen, dass …"?
+
+    Der STRUKTURELL-FALSCH-Override brauchte bis zum 26.10.2026 eine von
+    zwoelf festen Wendungen ("ist korrekt", "wird bestaetigt", …). Live
+    gemessen an genau dem Claim, dessen Daten einen Tag vorher korrigiert
+    wurden:
+
+        Claim:   "Vaeter nehmen in Oesterreich selten Karenz."   (wahr)
+        Modell:  true @ 0.95
+        Summary: "… Beide Messgroessen BESTAETIGEN, DASS Vaeter in
+                  Oesterreich selten Karenz nehmen."
+        geliefert: mostly_false @ 0.85
+
+    Die Wortliste kannte "wird bestaetigt" und "bestaetigt dies", nicht die
+    aktive Mehrzahl mit dass-Satz. Der Override sah keine Bestaetigung,
+    hielt den STRUKTURELL-Marker eines ANDEREN Satzes fuer einschlaegig
+    (Verhaeltnis 2/10 = 20 %, also oberhalb der Tier-1-Schwelle) und
+    ueberschrieb ein richtiges Label. Dieselbe Lehre wie #140/#141:
+    Formulierungen aufzaehlen scheitert.
+
+    Nicht das Verb entscheidet, sondern der DASS-SATZ. Ein erster Versuch,
+    nur den Wortstamm zu nehmen, war messbar schlechter: Von 98
+    QA50I-Summaries kamen zwei neu dazu, und beide hatten das Label
+    ``false`` — "… bestaetigen, dass Homoeopathie KEINE Wirkung hat" und
+    "Mammographien sind NICHT verboten". Dort bejaht der dass-Satz das
+    GEGENTEIL des Claims. Deshalb zwei Bedingungen:
+
+    1. Im dass-Satz steht keine Verneinung.
+    2. Der dass-Satz wiederholt den Claim — mindestens zwei und mindestens
+       die Haelfte seiner Inhaltswoerter.
+
+    So gemessen an denselben 98 Summaries: EIN neuer Treffer, und der traegt
+    das Label ``true`` — "Die UNHCR-Daten zeigen, dass die Zahl der
+    Binnenvertriebenen …" bejaht den Claim wirklich. Die beiden
+    ``false``-Faelle von oben fallen an der Verneinungs-Wache. Der Live-Fall
+    wird erkannt.
+    """
+    if not claim or not summary:
+        return False
+    claim_woerter = _sf_inhaltswoerter(claim)
+    if len(claim_woerter) < 2:
+        return False
+    summary_n = normalisiere(summary.lower())
+    for m in _SF_BEJAHUNG_RE.finditer(summary_n):
+        klausel = summary_n[m.end():m.end() + 220]
+        if set(re.findall(r"[a-z]+", klausel)) & _SF_VERNEINUNG:
+            continue
+        gemeinsam = claim_woerter & _sf_inhaltswoerter(klausel)
+        if len(gemeinsam) >= 2 and len(gemeinsam) / len(claim_woerter) >= 0.5:
+            return True
+    return False
+
+
 def apply_verdict_postprocessing(result, source_results, original_claim):
     # STRUKTURELL FALSCH post-processing override (Defense-in-Depth):
     # If curated packs delivered a STRUKTURELL FALSCH marker but the LLM
@@ -1567,6 +1694,13 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                     r"behauptung.{0,120}ist (korrekt|richtig|zutreffend|wahr|belegt)",
                     summary_lc
                 ))
+            # "… bestaetigen, DASS <der Claim>" — die Wortliste oben kannte
+            # nur "wird bestaetigt" und "bestaetigt dies". Siehe
+            # summary_bejaht_per_dass_satz(): live am 26.10.2026 wurde ein
+            # richtiges 'true' zu 'mostly_false', weil diese Form fehlte.
+            if not summary_confirms_claim:
+                summary_confirms_claim = summary_bejaht_per_dass_satz(
+                    original_claim or "", result.get("summary", ""))
             # Dominance check (2026-05-25 v2): Two-tier guard:
             # Tier 1: If STRUKTURELL ratio < 15%, this is ALWAYS a
             #   topic mismatch (e.g., 1/58 = 1.7% — one unrelated
@@ -2724,13 +2858,27 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                 f"Label '{_q_alt}' auf 'mostly_false' korrigiert."
             )
 
+    # Vor P und O: Ist der scheinbare Komparativ ein NOMEN auf -er? Dann
+    # gibt es keinen Vergleich, und beide Muster muessen schweigen. Siehe
+    # komparativ_ist_nomen() — live am 26.10.2026 drehte O ein richtiges
+    # 'false' auf 'true', weil "Climate Action Tracker als" wie
+    # "puenktlicher als" aussah.
+    _kein_vergleich = komparativ_ist_nomen(original_claim or "")
+    if _kein_vergleich:
+        logger.info(
+            "Muster O/P: scheinbarer Komparativ ist ein Nomen auf -er — "
+            "kein Vergleich, beide Muster schweigen."
+        )
+
     # --- Muster P: Vergleichs-Claim gegen die Zahlen beider Seiten ---
     # Vor Muster O, weil Rechnen praeziser ist als das Wort-Muster: P
     # entscheidet in BEIDE Richtungen, O nur die eine. Siehe
     # vergleich_rechnerisch().
     _p_summary = (result.get("summary") or "").lower()
     _p_entschieden = False
-    if result.get("verdict") in ("true", "mostly_true", "false", "mostly_false") and _p_summary:
+    if (not _kein_vergleich
+            and result.get("verdict") in ("true", "mostly_true", "false", "mostly_false")
+            and _p_summary):
         _p_wahr = vergleich_rechnerisch(_claim_lc, _p_summary)
         if _p_wahr is not None and vergleich_negiert(_claim_lc):
             _p_wahr = not _p_wahr     # "A ist NICHT xer als B"
@@ -2762,7 +2910,7 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     # verneinenden Label. Siehe summary_bestaetigt_vergleich().
     # NICHT .lower() — siehe summary_bestaetigt_vergleich(): der
     # Satz-Splitter braucht die Grossschreibung als Satzanfang.
-    _o_summary = result.get("summary") or ""
+    _o_summary = "" if _kein_vergleich else (result.get("summary") or "")
     _o_ja = bool(_o_summary) and summary_bestaetigt_vergleich(_claim_lc, _o_summary)
     _o_nein = bool(_o_summary) and summary_dreht_vergleich(_claim_lc, _o_summary)
     if _o_ja and _o_nein:
@@ -2847,7 +2995,8 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                     break
             if _zw_namen:
                 break
-        if _zw_namen and _claim_ist_vergleichsfrage(_claim_lc):
+        if (_zw_namen and not _kein_vergleich
+                and _claim_ist_vergleichsfrage(_claim_lc)):
             _zw_genannt = claim_nennt_zaehlweise(original_claim or "", _zw_namen)
             if _zw_genannt:
                 logger.warning(
