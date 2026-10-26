@@ -213,6 +213,19 @@ def test_der_wrapper_greift_nicht_mehr_in_den_dienst():
 def test_der_wrapper_reicht_den_exit_code_durch():
     """Die Crontab-Zweige haengen daran: 2 = Befund, alles andere = nicht
     gelaufen (#236). Ein `exec` am Zeilenanfang ersetzt den Prozess und
-    behaelt den Code; ein Aufruf ohne wuerde ihn verschlucken."""
-    text = WRAPPER.read_text(encoding="utf-8")
-    assert "exec docker compose" in text
+    behaelt den Code; ein Aufruf ohne wuerde ihn verschlucken.
+
+    Seit dem 26.10.2026 steht zwischen `exec` und `docker compose` ein
+    `flock`, das die Werkzeuge serialisiert (siehe
+    tests/test_wartung_einer_zur_zeit.py). `flock` gibt den Status des
+    aufgerufenen Befehls weiter, der `exec` bleibt. Geprueft wird deshalb
+    die ABSICHT — exec, und `docker compose` im exec'ten Befehl — und
+    nicht mehr die eine Zeichenkette. Das Durchreichen selbst prueft die
+    neue Suite funktional, mit 0/1/2/137 durch den echten Wrapper.
+    """
+    befehl = " ".join(
+        z.strip().rstrip("\\") for z in WRAPPER.read_text(encoding="utf-8").splitlines()
+        if z.strip() and not z.strip().startswith("#"))
+    assert "exec " in befehl, befehl
+    exec_teil = befehl[befehl.index("exec "):]
+    assert "docker compose" in exec_teil, exec_teil

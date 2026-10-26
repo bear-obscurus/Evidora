@@ -216,6 +216,16 @@ jobs:
     #                                  obwohl die Zahl im Prompt stand.
     #                                  Dazu traegt die Ueberblick-Zeile
     #                                  die Zahl jetzt im indicator_name)
+    #   - test_wartung_einer_zur_zeit (die Speicher-Rechnung am
+    #                                  wartung-Service geht von EINEM
+    #                                  Container aus (3.072+512+224 =
+    #                                  3.808 von 3.814 MB); die Crontab
+    #                                  startete zwei auf derselben
+    #                                  Minute, am 19.10. starb check_urls
+    #                                  mit Exit 137 vor der ersten
+    #                                  Ausgabe. flock serialisiert,
+    #                                  -E 75 trennt "lief nicht" von
+    #                                  "Befund")
     #   - test_polity5_aussage_grenze (QA50I #88: Claim ueber Polity5 wurde
     #                                  mit V-Dem widerlegt. Ungarn hat in
     #                                  Polity5 +10 (2010-2018, am Datensatz
@@ -495,6 +505,7 @@ jobs:
             tests/test_kategorien_zweisprachig.py \
             tests/test_normalisierung_am_dienst_eingang.py \
             tests/test_frage_wird_nicht_zur_leeren_aussage.py \
+            tests/test_wartung_einer_zur_zeit.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \
