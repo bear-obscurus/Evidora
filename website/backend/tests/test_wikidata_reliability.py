@@ -98,13 +98,27 @@ def test_templates_decken_mul_labels():
     Labels ins 'mul'-Pseudo-Label und löscht de/en — reines @de fand
     z. B. Orbán (Q57641) NIE mehr (echte 0 Treffer → legitimer
     Negativ-Cache → Quelle dauerhaft tot). Jedes Template muss
-    de+mul+en abfragen."""
+    de+mul+en abfragen.
+
+    Geprueft wird seit dem 28.10.2026 die ABSICHT statt einer Anzahl:
+    Jedes Template, das ueber ein LABEL aufloest, muss de+mul+en abfragen.
+    Vorher stand hier ``svc.count('@mul') >= 10``. Das brach, als die
+    Fluss-Abfrage auf eine feste Laender-QID umgestellt wurde (die
+    Label-Aufloesung kostete dort 44 s fuer Deutschland, siehe
+    _LAND_QID) — ein Template OHNE Label-Aufloesung kann den
+    mul-Befund gar nicht haben.
+    """
     import os
     svc = open(os.path.join(os.path.dirname(__file__), "..",
                             "services", "wikidata.py"),
                encoding="utf-8").read()
     assert 'rdfs:label "{name}"@de.' not in svc
-    assert svc.count('@mul') >= 10
+    from services.wikidata import _TEMPLATES
+    mit_label = [x for x in _TEMPLATES if "rdfs:label" in x["sparql"]]
+    assert len(mit_label) >= 8, f"nur {len(mit_label)} Label-Templates"
+    for tmpl in mit_label:
+        for sprache in ("@de", "@mul", "@en"):
+            assert sprache in tmpl["sparql"], (tmpl["name"], sprache)
 
 
 def test_meloni_regel_aktives_spitzenamt_unterdrueckt_nebenamt_marker(monkeypatch):

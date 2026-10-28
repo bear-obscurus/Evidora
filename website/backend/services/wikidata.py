@@ -285,36 +285,76 @@ LIMIT 5
             "höchster berg", "höchste berg", "höchsten berg",
             "höchste gipfel", "höchster gipfel",
         ],
+        # P610 = "hoechster Punkt" des Landes. Bis zum 28.10.2026 stand hier
+        # `?mountain wdt:P31/wdt:P279* wd:Q8502` — also ALLE Berge mitsamt
+        # Unterklassen-Abschluss, danach nach Land gefiltert. Direkt gegen
+        # WDQS gemessen: HTTP 504 nach 65 s. Der Dienst gibt dem ersten
+        # Versuch 12 s (SPARQL_ATTEMPT_TIMEOUTS), die Abfrage konnte also
+        # NIE ankommen — "0 Rows" war kein Trigger-Problem.
+        #
+        # P610 ist genau die Tatsache, nach der gefragt wird, und Wikidata
+        # modelliert sie: 1,0 s, Grossglockner 3.798 m.
         "sparql": """
 SELECT DISTINCT ?mountain ?mountainLabel ?elevation ?countryLabel
 WHERE {{
   VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
   ?country rdfs:label ?nameLabel.
   ?country wdt:P31/wdt:P279* wd:Q6256.
-  ?mountain wdt:P31/wdt:P279* wd:Q8502.
-  ?mountain wdt:P17 ?country.
-  ?mountain wdt:P2044 ?elevation.
+  ?country wdt:P610 ?mountain.
+  OPTIONAL {{ ?mountain wdt:P2044 ?elevation. }}
   SERVICE wikibase:label {{ bd:serviceParam wikibase:language "de,en". }}
 }}
-ORDER BY DESC(?elevation)
 LIMIT 3
 """,
     },
     {
         "name": "geographie_fluss",
         "triggers": [
-            "längster fluss", "längsten fluss",
-            "längste flüsse",
+            # Die Auswahl vergleicht per SUBSTRING (`trig in claim_lc`),
+            # nicht flexionstolerant. Unter dieser Semantik trafen von
+            # sechs natuerlichen Formulierungen nur ZWEI: Es fehlten
+            # "längste fluss" (die haeufigste Frageform, "der längste
+            # Fluss Österreichs") und "längsten flüsse" (die flektierte
+            # Mehrzahl). Die Berg-Liste hat ihre Gegenstuecke und ist mit
+            # 7 von 7 vollstaendig.
+            #
+            # ⚠️ Zweimal mit dem falschen Werkzeug gemessen: erst mit dem
+            # Flexions-Matcher (der tolerierte, was der Code nicht
+            # toleriert), dann die Mehrzahl uebersehen. Der Test prueft
+            # deshalb SECHS Formulierungen gegen
+            # `_detect_template_for_claim`, nicht die Liste.
+            # Aufzaehlen von Flexionsformen bleibt die Schwachstelle
+            # (#140/#141).
+            "längster fluss", "längste fluss", "längsten fluss",
+            "längste flüsse", "längsten flüsse",
         ],
+        # Zwei Aenderungen, beide gemessen.
+        #
+        # (1) Ohne den Unterklassen-Abschluss: mit ihm brauchte die Abfrage
+        #     24,6 s, der Dienst gibt dem ersten Versuch 12 s.
+        #
+        # (2) Die EINHEIT lesen. `wdt:P2043` liefert die blanke Zahl, und
+        #     Wikidata fuehrt Flusslaengen teils in Metern. Die alte
+        #     Abfrage sortierte Meter gegen Kilometer und haette als
+        #     Oesterreichs dritt-laengsten Fluss den "Westlichen
+        #     Neuperhauserbach" mit 1.210 geliefert — das sind 1.210 METER.
+        #     ⚠️ Ich hielt diese Zeilen zuerst fuer Datenfehler bei
+        #     Wikidata; die Einheiten-Probe zeigte, dass unsere Abfrage sie
+        #     nur falsch gelesen hat. Jetzt: nur wd:Q828224 (Kilometer).
+        #
+        # Was die Abfrage NICHT kann: die Laenge IM LAND. P2043 ist die
+        # Gesamtlaenge — der Rhein beruehrt Oesterreich auf rund 25 km und
+        # steht hier mit 1.232,7 km. Deshalb nennt die Ausgabe die
+        # Messgroesse ausdruecklich.
         "sparql": """
-SELECT DISTINCT ?river ?riverLabel ?length ?countryLabel
+SELECT DISTINCT ?river ?riverLabel ?length
 WHERE {{
-  VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
-  ?country rdfs:label ?nameLabel.
-  ?country wdt:P31/wdt:P279* wd:Q6256.
-  ?river wdt:P31/wdt:P279* wd:Q4022.
-  ?river wdt:P17 ?country.
-  ?river wdt:P2043 ?length.
+  ?river wdt:P17 wd:{qid}.
+  ?river wdt:P31 wd:Q4022.
+  ?river p:P2043 ?aussage.
+  ?aussage psv:P2043 ?wertknoten.
+  ?wertknoten wikibase:quantityAmount ?length.
+  ?wertknoten wikibase:quantityUnit wd:Q828224.
   SERVICE wikibase:label {{ bd:serviceParam wikibase:language "de,en". }}
 }}
 ORDER BY DESC(?length)
@@ -377,9 +417,58 @@ def _detect_template_for_claim(
                 # Erste plausible Entity nehmen — die SPARQL-Templates
                 # sind so geschrieben, dass das Label exakt gematcht
                 # werden muss
+                if "{qid}" in tmpl["sparql"]:
+                    qid = _land_qid(entities[0])
+                    if not qid:
+                        logger.info(
+                            f"Wikidata {tmpl['name']}: kein QID fuer "
+                            f"'{entities[0][:40]}' — Abfrage uebersprungen, "
+                            f"die Label-Fassung laeuft in den Timeout."
+                        )
+                        return None, {}
+                    return tmpl["name"], {"name": entities[0], "qid": qid}
                 return tmpl["name"], {"name": entities[0]}
 
     return None, {}
+
+
+#: Laender-QIDs fuer die Fluss-Abfrage. Die Aufloesung ueber ``rdfs:label``
+#: kostet dort das Vielfache, weil sie mit dem Scan ueber alle Fluesse
+#: zusammentrifft — direkt gegen WDQS gemessen am 28.10.2026:
+#:
+#:     Oesterreich   Label 5,6 s   QID 3,0 s
+#:     Deutschland   Label 44,2 s  QID 5,8 s
+#:
+#: Der erste Versuch hat 12 s (SPARQL_ATTEMPT_TIMEOUTS), die Label-Fassung
+#: war fuer Deutschland also unerreichbar. Country-QIDs sind
+#: unveraenderliche Kennungen — hier droht kein Marker-Drift.
+#:
+#: Ist das Land nicht in der Karte, laeuft die Fluss-Abfrage GAR NICHT.
+#: Besser kein Ergebnis als zwoelf Sekunden Wartezeit und dann keines.
+_LAND_QID = {
+    "österreich": "Q40", "oesterreich": "Q40", "austria": "Q40",
+    "deutschland": "Q183", "germany": "Q183",
+    "schweiz": "Q39", "switzerland": "Q39",
+    "frankreich": "Q142", "france": "Q142",
+    "italien": "Q38", "italy": "Q38",
+    "spanien": "Q29", "spain": "Q29",
+    "polen": "Q36", "poland": "Q36",
+    "tschechien": "Q213", "czechia": "Q213",
+    "ungarn": "Q28", "hungary": "Q28",
+    "slowenien": "Q215", "slovenia": "Q215",
+    "slowakei": "Q214", "slovakia": "Q214",
+    "niederlande": "Q55", "netherlands": "Q55",
+    "belgien": "Q31", "belgium": "Q31",
+    "schweden": "Q34", "sweden": "Q34",
+    "norwegen": "Q20", "norway": "Q20",
+    "daenemark": "Q35", "dänemark": "Q35", "denmark": "Q35",
+    "finnland": "Q33", "finland": "Q33",
+}
+
+
+def _land_qid(label: str) -> str:
+    """QID zu einem Laender-Label, oder "" wenn unbekannt."""
+    return _LAND_QID.get((label or "").strip().lower(), "")
 
 
 def claim_triggers_wikidata(claim: str, analysis: dict) -> bool:
@@ -781,20 +870,23 @@ def _format_row(
             elev_fmt = (elev + " m") if elev else "?"
         text = f"{label} ({elev_fmt})"
         if country:
-            text += f", {country}"
+            text += f", hoechster Punkt von {country}"
         return text, qid, label
 
     if template_name == "geographie_fluss":
         label = v("riverLabel") or "Fluss"
         length = v("length")
-        country = v("countryLabel")
         try:
             length_fmt = f"{int(float(length)):,} km".replace(",", ".")
         except ValueError:
             length_fmt = (length + " km") if length else "?"
-        text = f"{label} ({length_fmt})"
-        if country:
-            text += f", {country}"
+        # Die Messgroesse MUSS dastehen. P2043 ist die Laenge des GANZEN
+        # Flusses: Der Rhein beruehrt Oesterreich auf rund 25 km und stand
+        # in dieser Liste mit 1.232 km. Ohne den Zusatz liest das Modell
+        # eine Rangliste "laengster Fluss des Landes", die hier niemand
+        # liefern kann — Wikidata fuehrt die Strecke je Land nicht.
+        text = (f"{label} ({length_fmt} GESAMTlaenge des Flusses, NICHT die "
+                f"Strecke im angefragten Land)")
         return text, qid, label
 
     if template_name == "person_partei":
@@ -1049,7 +1141,8 @@ async def _search_wikidata_entity(
         return cached[1]
 
     sparql = template["sparql"].format(
-        name=_escape_sparql_label(entity_label)
+        name=_escape_sparql_label(entity_label),
+        qid=_land_qid(entity_label) or "Q0",
     )
 
     rows = None

@@ -257,6 +257,16 @@ jobs:
     #                                  laufendes Subjekt im selben
     #                                  Teilsatz. Konfidenz-Deckel 0,6,
     #                                  kein Label-Wechsel)
+    #   - test_geographie_berg_fluss  (beide Abfragen liefen in den
+    #                                  Timeout: Berg zaehlte ALLE Berge
+    #                                  auf (504 nach 65 s), Fluss 44 s
+    #                                  fuer Deutschland. Berg jetzt ueber
+    #                                  P610, Fluss ueber Laender-QID und
+    #                                  mit EINHEIT (die Liste sortierte
+    #                                  Meter gegen Kilometer). Dazu zwei
+    #                                  fehlende Trigger-Formen: unter
+    #                                  Substring-Semantik trafen 2 von 6
+    #                                  Formulierungen)
     #   - test_polity5_aussage_grenze (QA50I #88: Claim ueber Polity5 wurde
     #                                  mit V-Dem widerlegt. Ungarn hat in
     #                                  Polity5 +10 (2010-2018, am Datensatz
@@ -540,6 +550,7 @@ jobs:
             tests/test_dina_in_kardinaele.py \
             tests/test_intensitaet_und_saison_zuordnung.py \
             tests/test_muster_r_laufende_periode.py \
+            tests/test_geographie_berg_fluss.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \
