@@ -247,6 +247,16 @@ jobs:
     #                                  verbotene Vergleich. Sperre im
     #                                  display_value, weil die headline
     #                                  399 von 400 Zeichen hat)
+    #   - test_muster_r_laufende_periode (die Begruendung widerspricht
+    #                                  SICH SELBST: "Die AKTUELLE
+    #                                  Grippewelle 2026/27 … ist die
+    #                                  schwaechste der letzten vier
+    #                                  ABGESCHLOSSENEN Saisons". Drei
+    #                                  Bedingungen — Superlativ, Menge im
+    #                                  Genitiv UND abgeschlossen,
+    #                                  laufendes Subjekt im selben
+    #                                  Teilsatz. Konfidenz-Deckel 0,6,
+    #                                  kein Label-Wechsel)
     #   - test_polity5_aussage_grenze (QA50I #88: Claim ueber Polity5 wurde
     #                                  mit V-Dem widerlegt. Ungarn hat in
     #                                  Polity5 +10 (2010-2018, am Datensatz
@@ -529,6 +539,7 @@ jobs:
             tests/test_wartung_einer_zur_zeit.py \
             tests/test_dina_in_kardinaele.py \
             tests/test_intensitaet_und_saison_zuordnung.py \
+            tests/test_muster_r_laufende_periode.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \

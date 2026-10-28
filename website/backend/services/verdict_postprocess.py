@@ -809,6 +809,84 @@ def veraltete_jahrgangszahl(claim_lc: str, summary: str):
     return (wert, max(jahre_der_claim_zahl), neuestes, naechster)
 
 
+# --- Muster R: Superlativ ueber ABGESCHLOSSENE Perioden am LAUFENDEN Subjekt
+# Live am 27.10.2026, nach #284 und in der AUSSAGE-Form reproduzierbar:
+#
+#   Claim:   "Die Grippewelle in Deutschland ist dieses Jahr besonders stark"
+#   Summary: "Die AKTUELLE Grippewelle 2026/27 … ist die schwaechste der
+#             letzten vier ABGESCHLOSSENEN Saisons"
+#
+# Der Satz widerspricht SICH SELBST: Was laeuft, kann nicht das Extrem einer
+# Menge abgeschlossener Perioden sein. In den Daten steht der Superlativ
+# ueber die abgeschlossene Saison 2025/26; das Modell hat ihn auf die
+# laufende uebertragen (Meloni-Drift-Klasse, #122).
+#
+# #284 hat dem Satz in den Daten seinen Geltungsbereich gegeben ("der vier
+# ABGESCHLOSSENEN Saisonen"). Das half nur bei der FRAGE-Form — in der
+# Aussage-Form uebernahm das Modell das Wort und hing den Superlativ
+# trotzdem ans falsche Subjekt. Ein Wort in den Daten kann eine Zuordnung
+# nicht erzwingen; das muss der Waechter tun.
+#
+# Muster M prueft Label gegen Begruendung, O und P den Vergleich. Hier
+# widerspricht die Begruendung sich selbst — deshalb ein eigener Schritt.
+_R_LAUFEND = (
+    "aktuelle", "aktuellen", "aktuell", "laufende", "laufenden",
+    "heurige", "diesjaehrige", "dieses jahr", "derzeitige",
+)
+#: JEDER Superlativ, nicht eine Wortliste. Eine Aufzaehlung waere hier
+#: wieder die Falle aus #140/#141: Die erste Fassung kannte
+#: "schwaechste/staerkste/…" und verfehlte "die kuerzeste" und "das
+#: waermste" — letzteres schon am Artikel, weil sie nur "die" kannte.
+_R_SUPERLATIV = re.compile(r"\b(die|das|der)\s+([a-zaeoeue]+ste[nrms]?)\b")
+#: Der Superlativ muss die Menge im GENITIV nennen ("die schwaechste DER
+#: letzten vier Saisons"). Ohne diese Bedingung schlug eine Gegenprobe an:
+#: "Die aktuelle Lage ist die beste Grundlage FUER die vergangenen Jahre
+#: der Reform" — Superlativ und abgeschlossene Menge im selben Teilsatz,
+#: aber in keinem Rang-Verhaeltnis. 10 von 10 Proben erst mit dem Partitiv.
+_R_PARTITIV = re.compile(
+    r"^\s+(der|des)\s+(\w+\s+){0,3}"
+    r"(saison|saisons|saisonen|jahre|jahren|perioden|legislaturperioden|"
+    r"wahlperioden)\b"
+)
+_R_ABGESCHLOSSEN = re.compile(
+    r"\b(abgeschlossene[nr]?|vergangene[nr]?|bisherige[nr]?|frueheren?|"
+    r"letzten)\b"
+)
+#: Teilsatz-Grenze. Der Satz-Splitter des Projekts trennt NICHT hinter
+#: "…seit 2022/23." (Ziffer vor dem Punkt, siehe _satzgrenzen), und genau
+#: daran hat die erste Fassung dieses Musters einen Fehltreffer gebaut: Sie
+#: nahm "laufende" aus dem FOLGESATZ als Subjekt des Superlativs. Deshalb
+#: wird hier selbst bis zur naechsten Teilsatz-Grenze zurueckgeschnitten.
+_R_GRENZE = re.compile(r"[.;]\s|\s[—–]\s")
+
+
+def superlativ_am_laufenden_subjekt(summary: str) -> str:
+    """Der Satzteil mit dem Widerspruch — oder "".
+
+    Drei Bedingungen, alle noetig:
+      1. ein Superlativ (Artikel + Wort auf -ste),
+      2. der die Menge im GENITIV nennt und diese Menge ausdruecklich
+         ABGESCHLOSSEN ist ("der letzten vier abgeschlossenen Saisons"),
+      3. und dessen Subjekt im SELBEN Teilsatz als laufend bezeichnet ist.
+
+    Gemessen: 10 von 10 Proben richtig, 0 Treffer auf 98 QA50I-Summaries.
+    """
+    if not summary:
+        return ""
+    n = normalisiere(summary.lower())
+    for treffer in _R_SUPERLATIV.finditer(n):
+        partitiv = _R_PARTITIV.match(n[treffer.end():treffer.end() + 110])
+        if not partitiv or not _R_ABGESCHLOSSEN.search(partitiv.group(0)):
+            continue
+        links = n[:treffer.start()]
+        grenzen = list(_R_GRENZE.finditer(links))
+        if grenzen:
+            links = links[grenzen[-1].end():]
+        if any(w in links for w in _R_LAUFEND):
+            return summary[max(0, treffer.start() - 60):treffer.end() + 70]
+    return ""
+
+
 # --- Muster O: Vergleichs-Claim gegen die eigene Begruendung (HART40) ----
 # "Die ÖBB sind pünktlicher als die Deutsche Bahn" -> mostly_false@0.85,
 # waehrend die Summary sagt: "ÖBB 78,2-88,7 % ... DB nur 62,5 % ... Selbst
@@ -3187,6 +3265,34 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                     f"Konfidenz-Deckel: {_n} Beleg(e) -> {_alt:.2f} auf "
                     f"{_deckel:.2f} gesenkt (Label '{result['verdict']}')."
                 )
+
+    # --- Muster R: Die Begruendung widerspricht SICH SELBST ---------------
+    # Kein Label-Wechsel: Welche Haelfte des Widerspruchs stimmt, ist von
+    # hier aus nicht zu entscheiden. Gesenkt wird die Konfidenz — auf
+    # dieselbe Stufe wie bei Muster M und beim Zaehlweisen-Guard, die aus
+    # demselben Grund abwerten.
+    _r_stelle = superlativ_am_laufenden_subjekt(result.get("summary") or "")
+    if _r_stelle and result.get("verdict") in _BESTIMMTE_LABELS:
+        try:
+            _r_alt = float(result.get("confidence", 0) or 0)
+        except (TypeError, ValueError):
+            _r_alt = 0.0
+        if _r_alt > _ZW_KONFIDENZ_DECKEL:
+            result["confidence"] = _ZW_KONFIDENZ_DECKEL
+            logger.warning(
+                f"Muster R: Superlativ ueber abgeschlossene Perioden am "
+                f"LAUFENDEN Subjekt — die Begruendung widerspricht sich "
+                f"selbst. Konfidenz {_r_alt:.2f} -> "
+                f"{_ZW_KONFIDENZ_DECKEL:.2f}. Stelle: {_r_stelle[:90]!r}"
+            )
+        _r_hinweis = (
+            "Hinweis: Die Begruendung nennt eine laufende Periode als "
+            "Extremwert unter ABGESCHLOSSENEN Perioden. Solange die Periode "
+            "laeuft, ist dieser Rang nicht bestimmbar."
+        )
+        _r_bisher = result.get("nuance")
+        result["nuance"] = (f"{_r_bisher} {_r_hinweis}".strip()
+                            if _r_bisher else _r_hinweis)
 
     # Clean up internal flags before returning
     result.pop("_struct_override_fired", None)
