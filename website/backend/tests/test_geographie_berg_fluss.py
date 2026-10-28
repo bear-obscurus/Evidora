@@ -70,6 +70,42 @@ deshalb prüft dieser Test **sechs Formulierungen**, nicht die Liste.
 Über 12.155 echte Claims gemessen trifft die neue Form genau **einen**:
 „Die Donau ist der längste Fluss in Deutschland." — ein gewollter Treffer.
 
+## Befund 5 (28.10.2026) — wessen Label in die Abfrage kam
+
+Nach dem Deploy live gegen prod nachgemessen. Die Abfragen laufen
+("Österreich" 1 Zeile, "Deutschland" 1, "Nepal" 1, "Deutschland" und
+"Italien" je 3 Fluesse) — aber welches Label eingesetzt wird, entscheidet
+die Analyse-Stufe, und sie nennt nicht immer das Land zuerst.
+
+**Der Berg (1 von 12 Formulierungen).**
+
+    "Der höchste Berg Boliviens ist der Nevado Sajama"
+    -> Wikidata: 0 Treffer für 'Nevado Sajama' (geographie_berg)
+
+Gefragt wurde nach dem hoechsten Punkt des LANDES "Nevado Sajama" — 0
+Treffer, voellig korrekt. ⚠️ **Eine Laender-Liste loest das nicht:**
+Bolivien steht nicht in ``_LAND_QID``, mein erster Fix hat den
+gemessenen Fall also nicht angefasst. Die Abfrage nimmt jetzt per UNION
+auch einen genannten Berg (ueber P17 das Land, darueber P610) — 0,4 s,
+Sajama 6.542 m.
+
+**Der Fluss (2 von 5 Formulierungen, NULL Zeilen).** Hier entscheidet die
+Reihenfolge wirklich, denn die Fluss-Abfrage braucht eine QID:
+
+    entities ['Donau', 'Deutschland', 'Fluss']   -> 0 Zeilen
+    entities ['Deutschland', 'Fluss', 'Länge']   -> 3 Zeilen
+    entities ['Österreich', 'Donau']             -> 3 Zeilen
+
+Stand der Fluss vorn, war ``_land_qid('Donau')`` leer und die Auswahl
+brach ab. Beide Antworten lagen trotzdem richtig — Wikipedia sprang ein.
+
+⚠️ **Und der erste Fix sass in der falschen Funktion.**
+``_detect_template_for_claim`` entscheidet nur, OB ein Template laeuft;
+die abgefragten Labels kommen aus ``_entities_for_claim``. Das Prod-Log
+zeigte es: Die Auswahl meldete ``{'name': 'Österreich'}``, die Abfrage
+schickte weiter ``"Großglockner"@de`` als Land. Beide nutzen jetzt
+``_geo_kandidaten``.
+
 ## Was die Abfrage NICHT kann, und was deshalb dasteht
 
 P2043 ist die Länge des **ganzen** Flusses. Der Rhein berührt Österreich auf
@@ -93,7 +129,9 @@ sys.path.insert(0, BACKEND)
 from services.wikidata import (  # noqa: E402
     _LAND_QID,
     _TEMPLATES,
+    _entities_for_claim,
     _format_row,
+    _geo_kandidaten,
     _land_qid,
     _detect_template_for_claim,
 )
@@ -254,3 +292,96 @@ def test_der_berg_braucht_keine_qid():
                                     {"entities": ["Bolivien"]})
     assert name == "geographie_berg"
     assert "qid" not in params
+
+
+# ----------------------------------------------- welche Entity abgefragt wird
+
+def test_das_land_wird_vorgezogen():
+    """Der live gemessene Fluss-Fall — der Fluss stand zuerst.
+
+    ⚠️ Mein erster Entwurf dieses Tests nahm Bolivien, den gemessenen
+    BERG-Fall, und fiel durch: Bolivien steht nicht in ``_LAND_QID``, die
+    Laender-Liste konnte ihn also nie loesen. Dafuer ist die UNION in der
+    Berg-Abfrage da. Was die Reihenfolge wirklich entscheidet, ist der
+    Fluss — er BRAUCHT eine QID.
+    """
+    assert _geo_kandidaten(["Donau", "Deutschland"],
+                           "geographie_fluss")[0] == "Deutschland"
+    assert _geo_kandidaten(["Großglockner", "Österreich"],
+                           "geographie_berg")[0] == "Österreich"
+
+
+def test_ohne_land_in_der_karte_bleibt_die_reihenfolge():
+    """Sonst wuerde die Label-Fassung fuer Laender ausserhalb von
+    _LAND_QID unbrauchbar — der Berg kostet nur eine Sekunde."""
+    assert _geo_kandidaten(["Bolivien"], "geographie_berg") == ["Bolivien"]
+    assert _geo_kandidaten(["Nevado Sajama", "Anden"],
+                           "geographie_berg") == ["Nevado Sajama", "Anden"]
+
+
+def test_andere_templates_bleiben_unberuehrt():
+    """Bei person_lebensdaten ist die erste Entity die richtige."""
+    assert _geo_kandidaten(["Mozart", "Österreich"],
+                           "person_lebensdaten") == ["Mozart", "Österreich"]
+
+
+def test_der_fluss_lief_ohne_das_land_gar_nicht():
+    """2 von 5 Fluss-Formulierungen bekamen live NULL Wikidata-Zeilen.
+
+    Gemessen am 28.10.2026 an den gespeicherten Antworten — es entscheidet
+    die Reihenfolge der Analyse-Stufe:
+
+        entities ['Donau', 'Deutschland', 'Fluss']   -> 0 Zeilen
+        entities ['Deutschland', 'Fluss', 'Länge']   -> 3 Zeilen
+        entities ['Österreich', 'Donau']             -> 3 Zeilen
+
+    Stand der Fluss vorn, war ``_land_qid('Donau')`` leer und die Auswahl
+    brach ab — die Abfrage lief NIE. Beide Antworten lagen trotzdem
+    richtig, weil Wikipedia einsprang; belegt waren sie von Wikidata
+    nicht.
+    """
+    claim = "die donau ist der längste fluss in deutschland."
+    analyse = {"entities": ["Donau", "Deutschland", "Fluss"]}
+    name, params = _detect_template_for_claim(claim, analyse)
+    assert name == "geographie_fluss"
+    assert params["qid"] == "Q183", params
+    assert _entities_for_claim(claim, analyse, name)[0] == "Deutschland"
+
+
+def test_die_abgefragten_labels_nutzen_dieselbe_reihenfolge():
+    """``_detect_template_for_claim`` entscheidet nur, OB ein Template
+    laeuft — abgefragt werden die Labels aus ``_entities_for_claim``.
+    Vorher zogen die beiden auseinander: Die Auswahl meldete im Prod-Log
+    ``{'name': 'Österreich'}``, und die Abfrage schickte weiter
+    ``"Großglockner"@de`` als Land."""
+    claim = "der höchste berg österreichs ist der großglockner"
+    analyse = {"entities": ["Großglockner", "Österreich"]}
+    name, params = _detect_template_for_claim(claim, analyse)
+    assert name == "geographie_berg"
+    assert params["name"] == "Österreich"
+    assert _entities_for_claim(claim, analyse, name)[0] == "Österreich"
+
+
+def test_der_berg_loest_auch_vom_berg_aus_auf():
+    """Die UNION ist die Antwort auf den gemessenen Bolivien-Fall: Ein
+    Land ausserhalb von ``_LAND_QID`` laesst sich durch keine Liste
+    vorziehen, also muss die Abfrage den genannten BERG verkraften."""
+    s = _tmpl("geographie_berg")["sparql"]
+    assert "UNION" in s
+    assert "?genannt wdt:P17 ?country" in s
+    assert "?genannt wdt:P2044 []" in s, "Zweig nicht auf Erhebungen begrenzt"
+    name, params = _detect_template_for_claim(
+        "der höchste berg boliviens ist der nevado sajama",
+        {"entities": ["Nevado Sajama", "Bolivien"]})
+    assert name == "geographie_berg"
+    assert "qid" not in params
+
+
+def test_der_vergleich_behaelt_beide_entitaeten():
+    """Bei einem Vergleichs-Claim fragt der Dienst beide Seiten ab — das
+    Land-Vorziehen darf die zweite Entity nicht wegwerfen."""
+    claim = "der höchste berg österreichs ist höher als der in deutschland"
+    ents = _entities_for_claim(claim, {"entities": ["Österreich",
+                                                    "Deutschland"]},
+                               "geographie_berg")
+    assert ents == ["Österreich", "Deutschland"]

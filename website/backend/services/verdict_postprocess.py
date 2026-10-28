@@ -1460,7 +1460,79 @@ _ZW_SUPERLATIV_RE = re.compile(_SUPERLATIVE_PHRASE)
 #: Muster M, das aus demselben Grund abwertet (die Begruendung traegt die
 #: Antwort nicht, die das Label behauptet). Die Prompt-Regel nennt
 #: 0,50-0,60, damit Modell und Guard dieselbe Zahl anstreben.
+#: Der Zusatz, den ``wikidata._format_row`` an jede Fluss-Zeile haengt.
+#: Hier bewusst als Konstante und nicht als Import: Der Test prueft ihn
+#: gegen die AUSGABE des echten Renderers, nicht gegen einen Fixture-
+#: String — damit kann er nicht stillschweigend auseinanderlaufen.
+GESAMTLAENGE_MARKER = "GESAMTlaenge des Flusses, NICHT die Strecke"
+
 _ZW_KONFIDENZ_DECKEL = 0.6
+
+
+def _url_kern(url: str) -> str:
+    """Vergleichsform einer URL — Schema, www und Schluss-Schraegstrich weg."""
+    u = (url or "").strip().lower()
+    for p in ("https://", "http://"):
+        if u.startswith(p):
+            u = u[len(p):]
+    if u.startswith("www."):
+        u = u[4:]
+    return u.rstrip("/")
+
+
+def _quelle_traegt_das_verdict(row: dict, quellen_label: str,
+                               evidence) -> bool | None:
+    """Ruht das Verdict auf DIESER Quelle? ``None`` = nicht entscheidbar.
+
+    Der Zaehlweisen-Guard wertete ab, sobald IRGENDEINE abgerufene Quelle
+    mehrere Zaehlweisen deklariert — auch wenn das Verdict gar nicht auf
+    ihr ruht. Live am 28.10.2026 gegen prod gemessen:
+
+        "Welcher ist der höchste Berg Österreichs?"  mixed @ 0,6
+        "Wie heißt der höchste Berg in Deutschland?" mixed @ 0,6
+
+    Beide Antworten waren RICHTIG (Großglockner 3.798 m, Zugspitze
+    2.962 m, beide aus Wikidata) und benannten die Zaehlweise selbst
+    ("Andere Definitionen sind für Österreich nicht relevant"). Der Guard
+    haengte trotzdem "Die Behauptung nennt keine davon" an und deckelte.
+    Deklariert hatte der Geographie-Mythen-Fakt (Everest/Mauna Kea), der
+    zum Thema passt, zur Frage aber nichts beitraegt: Unter den Belegen
+    stand er nicht.
+
+    ⚠️ Die naheliegende Regel "die Summary nennt eine Zaehlweise, also ist
+    sie eindeutig" wurde gemessen und VERWORFEN: Alle vier Original-
+    Ausloeser nennen in ihrer Summary ebenfalls eine ("Die Behauptung
+    bezieht sich auf vollendete Morde") — und genau das ist der Fall, den
+    der Guard fangen soll. Die Summary trennt die Faelle nicht.
+
+    Was sie trennt, ist die BELEGLAGE (6 von 6 richtig):
+
+        Berg Österreich / Deutschland   Beleg: nur Wikidata      -> nein
+        Mauna Kea / Everest, beide      Beleg: Britannica-URL    -> ja
+        Mordopfer, beide Richtungen     Beleg: Konsens-URL       -> ja
+
+    Entschieden wird nur, wenn es etwas zu vergleichen gibt: Die Zeile
+    braucht eine URL und es muss Belege geben. Sonst ``None`` — dann
+    feuert der Guard wie bisher, denn ein nicht entscheidbarer Fall darf
+    keinen Waechter stilllegen.
+    """
+    belege = [e for e in (evidence or []) if isinstance(e, dict)]
+    url = (row or {}).get("url") or ""
+    if not belege or not url:
+        return None
+    kern = _url_kern(url)
+    if any(_url_kern(e.get("url") or "") == kern for e in belege):
+        return True
+    # Das Modell schreibt die Quellenbezeichnung selbst und kuerzt sie
+    # dabei; ein Treffer auf dem markanten Anfang zaehlt auch. Allein
+    # traegt dieses Kriterium nicht (2 der 4 Ausloeser verfehlt es),
+    # als Ergaenzung senkt es das Risiko eines stillgelegten Guards.
+    marke = (quellen_label or "").split("(")[0].split("+")[0].strip()[:18]
+    if marke:
+        gesamt = " | ".join((e.get("source") or "") for e in belege).lower()
+        if marke.lower() in gesamt:
+            return True
+    return False
 
 
 def _claim_ist_vergleichsfrage(claim_lc: str) -> bool:
@@ -3062,17 +3134,41 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
     # gezogen hat. Der Deckel gilt jetzt unabhaengig davon; das Label
     # bleibt dann unberuehrt, nur die Konfidenz und die Nuance kommen dazu.
     if result.get("verdict") in _BESTIMMTE_LABELS + ("mixed",):
+        # Es zaehlt die Quelle, auf der das Verdict RUHT — nicht die
+        # erste, die irgendwo mehrere Zaehlweisen deklariert. Deshalb
+        # werden alle Deklarationen gesammelt und eine belegte
+        # vorgezogen; siehe _quelle_traegt_das_verdict.
         _zw_namen: tuple[str, ...] = ()
+        _zw_kandidaten: list[tuple[tuple[str, ...], dict, str]] = []
         for _sd in source_results:
             if not isinstance(_sd, dict):
                 continue
             for _r in _sd.get("results", []):
+                if not isinstance(_r, dict):
+                    continue
                 _gefunden = zaehlweisen_aus_text(_r.get("display_value", ""))
                 if _gefunden:
-                    _zw_namen = _gefunden
+                    _zw_kandidaten.append(
+                        (_gefunden, _r, _sd.get("source", "") or ""))
                     break
-            if _zw_namen:
+        _zw_unentscheidbar = False
+        for _namen, _row, _label in _zw_kandidaten:
+            _traegt = _quelle_traegt_das_verdict(
+                _row, _label, result.get("evidence"))
+            if _traegt:
+                _zw_namen = _namen
                 break
+            if _traegt is None:
+                _zw_unentscheidbar = True
+                if not _zw_namen:
+                    _zw_namen = _namen
+        if _zw_kandidaten and not _zw_namen and not _zw_unentscheidbar:
+            logger.warning(
+                "Zaehlweisen-Guard: "
+                f"{len(_zw_kandidaten)} Deklaration(en) abgerufen, aber "
+                "keine davon traegt das Verdict (nicht unter den Belegen) "
+                "— Label bleibt."
+            )
         if (_zw_namen and not _kein_vergleich
                 and _claim_ist_vergleichsfrage(_claim_lc)):
             _zw_genannt = claim_nennt_zaehlweise(original_claim or "", _zw_namen)
@@ -3108,6 +3204,85 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                        f"{result['confidence']} gedeckelt."
                        if _zw_war_schon_mixed else
                        f"Label '{_zw_alt}' auf 'mixed' abgewertet.")
+                )
+
+    # --- Gesamtlaenge ist keine Rangliste im Land -------------------------
+    # Die Wikidata-Fluss-Abfrage liefert P2043, die Laenge des GANZEN
+    # Flusses. Eine Rangliste "laengster Fluss des Landes" folgt daraus
+    # NICHT: Der Rhein fuehrt 865 seiner 1.233 km durch Deutschland, die
+    # Donau 647 von 2.850 — nach Gesamtlaenge steht die Donau vorn, im
+    # Land der Rhein. Wikidata fuehrt die Strecke je Land nicht; direkt
+    # gegen WDQS geprueft (28.10.2026): Die Donau hat GENAU EINE
+    # Laengenangabe, ohne Land-Qualifikator. Keine Abfrage kann das also
+    # liefern.
+    #
+    # Die Zeile sagt das selbst — _format_row haengt an jede Fluss-Zeile
+    # "GESAMTlaenge des Flusses, NICHT die Strecke im angefragten Land".
+    # Live am 28.10.2026 gemessen: Das Modell BEFOLGT den Hinweis — in
+    # einer Formulierung von zwei:
+    #
+    #   "Welcher ist der längste Fluss Österreichs?"
+    #       -> unverifiable: "Die Wikidata-Einträge beziehen sich auf die
+    #          Gesamtlänge …, nicht auf die Strecke innerhalb Österreichs"
+    #   "Wie lang ist der längste Fluss Deutschlands?"
+    #       -> true @ 0,85: "Der längste Fluss Deutschlands ist die Donau
+    #          mit einer Gesamtlänge von 2.850 km, wobei die Strecke
+    #          innerhalb Deutschlands 647 km beträgt"
+    #
+    # Dieselben drei Zeilen, derselbe Hinweis, zwei Antworten — die zweite
+    # nennt die 647 km und stellt die Donau trotzdem an die Spitze. Ein
+    # Hinweis in den Daten kann eine Zuordnung nicht erzwingen (#285),
+    # also tut es der Waechter.
+    #
+    # Er greift NUR, wenn das Verdict ausschliesslich auf solchen Zeilen
+    # ruht. Gemessen ueber fuenf Formulierungen: Wo Wikipedia mitbelegt,
+    # antwortete der Dienst richtig ("nicht der längste Fluss in
+    # Deutschland. … der Rhein mit 1.233 km, davon 865 km in
+    # Deutschland") — diese Faelle bleiben unberuehrt.
+    #
+    # Label "unverifiable" wie beim Prognose-Guard: Das ist keine geratene
+    # Richtung, sondern die Beleglage. Ein gedeckeltes "true" haette die
+    # falsche Rangliste in der Schlagzeile stehen gelassen.
+    if result.get("verdict") in _BESTIMMTE_LABELS + ("mixed",):
+        _fl_zeilen = []
+        for _sd in source_results:
+            if not isinstance(_sd, dict):
+                continue
+            for _r in _sd.get("results", []):
+                if (isinstance(_r, dict)
+                        and GESAMTLAENGE_MARKER in (_r.get("display_value")
+                                                    or "")):
+                    _fl_zeilen.append(_r)
+        if _fl_zeilen:
+            _fl_urls = {_url_kern(_r.get("url") or "") for _r in _fl_zeilen}
+            _fl_urls.discard("")
+            _fl_belege = [e for e in (result.get("evidence") or [])
+                          if isinstance(e, dict)]
+            _fl_beleg_urls = {_url_kern(e.get("url") or "")
+                              for e in _fl_belege}
+            _fl_beleg_urls.discard("")
+            _fl_nur_gesamtlaenge = bool(
+                _fl_belege and _fl_beleg_urls
+                and _fl_beleg_urls <= _fl_urls)
+            if _fl_nur_gesamtlaenge:
+                _fl_alt = result["verdict"]
+                result["verdict"] = "unverifiable"
+                result["confidence"] = 0.10
+                _fl_hinweis = (
+                    "Unsere Quellen fuehren nur die GESAMTlaenge der "
+                    "Fluesse, nicht die Strecke im Land. Daraus folgt "
+                    "keine Rangfolge innerhalb eines Landes: Der Rhein "
+                    "fuehrt 865 seiner 1.233 km durch Deutschland, die "
+                    "Donau 647 von 2.850."
+                )
+                _fl_bisher = (result.get("nuance") or "").strip()
+                result["nuance"] = (f"{_fl_bisher} {_fl_hinweis}".strip()
+                                    if _fl_bisher else _fl_hinweis)
+                logger.warning(
+                    f"Fluss-Guard: Rangfolge im Land aus {len(_fl_zeilen)} "
+                    f"Gesamtlaengen-Zeile(n) — Label '{_fl_alt}' auf "
+                    f"'unverifiable' gesetzt, weil alle "
+                    f"{len(_fl_belege)} Belege aus diesen Zeilen stammen."
                 )
 
     # --- Muster M: Umdeutung der Claim-Zahl bei Label "true" (QA50F) ---

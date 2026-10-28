@@ -266,7 +266,35 @@ jobs:
     #                                  Meter gegen Kilometer). Dazu zwei
     #                                  fehlende Trigger-Formen: unter
     #                                  Substring-Semantik trafen 2 von 6
-    #                                  Formulierungen)
+    #                                  Formulierungen. Dazu, nach dem
+    #                                  Deploy live nachgemessen: wessen
+    #                                  Label in die Abfrage kam — der Berg
+    #                                  loest jetzt per UNION auch vom Berg
+    #                                  aus auf (Bolivien steht in KEINER
+    #                                  Laender-Liste), der Fluss zieht das
+    #                                  Land vor (2 von 5 Formulierungen
+    #                                  bekamen NULL Zeilen))
+    #   - test_zaehlweisen_relevanz_und_fluss_rang
+    #                                 (zwei falsche Antworten, nachdem die
+    #                                  Abfragen liefen. 1) Der
+    #                                  Zaehlweisen-Guard wertete "höchster
+    #                                  Berg Österreichs" auf mixed@0,6 ab,
+    #                                  obwohl der deklarierende
+    #                                  Everest-Fakt NICHT unter den
+    #                                  Belegen stand — es zaehlt jetzt die
+    #                                  Beleglage, nicht die bloss
+    #                                  abgerufene Quelle. Die Regel "die
+    #                                  Summary nennt eine Zaehlweise" wurde
+    #                                  gemessen und VERWORFEN (alle vier
+    #                                  Original-Ausloeser tun das auch).
+    #                                  2) Die GESAMTlaenge wurde zur
+    #                                  Rangliste im Land: "Der längste
+    #                                  Fluss Deutschlands ist die Donau"
+    #                                  true@0,85 — der Rhein fuehrt 865
+    #                                  seiner 1.233 km durch Deutschland.
+    #                                  Ruht das Verdict NUR auf
+    #                                  Gesamtlaengen-Zeilen, wird es
+    #                                  unverifiable)
     #   - test_polity5_aussage_grenze (QA50I #88: Claim ueber Polity5 wurde
     #                                  mit V-Dem widerlegt. Ungarn hat in
     #                                  Polity5 +10 (2010-2018, am Datensatz
@@ -551,6 +579,7 @@ jobs:
             tests/test_intensitaet_und_saison_zuordnung.py \
             tests/test_muster_r_laufende_periode.py \
             tests/test_geographie_berg_fluss.py \
+            tests/test_zaehlweisen_relevanz_und_fluss_rang.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \

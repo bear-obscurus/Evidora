@@ -294,13 +294,44 @@ LIMIT 5
         #
         # P610 ist genau die Tatsache, nach der gefragt wird, und Wikidata
         # modelliert sie: 1,0 s, Grossglockner 3.798 m.
+        #
+        # Die zweite Haelfte der UNION loest von der ANDEREN Seite auf.
+        # Die Analyse-Stufe nennt nicht immer das Land zuerst, und wessen
+        # Label hier eingesetzt wird, entscheidet sie. Live gemessen
+        # (28.10.2026): "Der höchste Berg Boliviens ist der Nevado
+        # Sajama" fragte nach dem hoechsten Punkt des LANDES "Nevado
+        # Sajama" — 0 Treffer. Eine Laender-Liste half nicht, denn
+        # Bolivien steht nicht in _LAND_QID. Also nimmt die Abfrage auch
+        # einen genannten BERG: ueber sein P17 das Land, darueber dessen
+        # hoechsten Punkt. Das ist genau die gefragte Tatsache.
+        #
+        # ``?genannt wdt:P2044 []`` haelt den Zweig auf Erhebungen: ohne
+        # ihn wuerde jede Entity mit einem P17 das Land aufziehen.
+        # Gemessen gegen WDQS, alle unter einer Sekunde — schneller als
+        # die alte Fassung:
+        #
+        #     "Nevado Sajama" 0,4 s -> Sajama 6.542 m (Bolivien)
+        #     "Österreich"    0,4 s -> Großglockner 3.798 m
+        #     "Großglockner"  0,3 s -> Großglockner 3.798 m
+        #     "Zugspitze"     0,3 s -> Großglockner + Zugspitze
+        #
+        # Die Zugspitze liefert ZWEI Zeilen, weil ihr Gipfel auf der
+        # Grenze liegt und P17 beide Laender nennt. Beide Zeilen sind
+        # richtig; der Renderer nennt das Land je Zeile.
         "sparql": """
 SELECT DISTINCT ?mountain ?mountainLabel ?elevation ?countryLabel
 WHERE {{
   VALUES ?nameLabel {{ "{name}"@de "{name}"@mul "{name}"@en }}
-  ?country rdfs:label ?nameLabel.
-  ?country wdt:P31/wdt:P279* wd:Q6256.
-  ?country wdt:P610 ?mountain.
+  {{
+    ?country rdfs:label ?nameLabel.
+    ?country wdt:P31/wdt:P279* wd:Q6256.
+    ?country wdt:P610 ?mountain.
+  }} UNION {{
+    ?genannt rdfs:label ?nameLabel.
+    ?genannt wdt:P2044 [].
+    ?genannt wdt:P17 ?country.
+    ?country wdt:P610 ?mountain.
+  }}
   OPTIONAL {{ ?mountain wdt:P2044 ?elevation. }}
   SERVICE wikibase:label {{ bd:serviceParam wikibase:language "de,en". }}
 }}
@@ -386,6 +417,32 @@ LIMIT 5
 ]
 
 
+def _geo_kandidaten(entities: list[str], template_name: str) -> list[str]:
+    """Entity-Reihenfolge fuer die Abfrage — Land zuerst bei Geographie.
+
+    Die Geographie-Templates fragen ein LAND ab (``?country rdfs:label``
+    bzw. ``wd:{qid}``), nicht den Berg oder Fluss. Welche Entity zuerst
+    steht, entscheidet aber die Analyse-Stufe, und die nennt nicht immer
+    das Land zuerst. Live am 28.10.2026 gegen prod gemessen, zwoelf
+    Formulierungen: **elf** hatten das Land vorne und liefen richtig
+    ("Österreich" 1 Treffer, "Deutschland" 1, "Nepal" 1, "Italien" 3).
+    Eine nicht:
+
+        "Der höchste Berg Boliviens ist der Nevado Sajama"
+        -> Wikidata: 0 Treffer für 'Nevado Sajama' (geographie_berg)
+
+    Die Abfrage fragte nach dem hoechsten Punkt des LANDES "Nevado
+    Sajama" — 0 Treffer, voellig korrekt. Ein Land aus ``_LAND_QID``
+    wird deshalb vorgezogen; steht keines drin, bleibt die Reihenfolge
+    der Analyse-Stufe (so bleibt die Label-Fassung fuer Laender ausserhalb
+    der Karte brauchbar, siehe _LAND_QID).
+    """
+    if not template_name.startswith("geographie_"):
+        return entities
+    laender = [e for e in entities if _land_qid(e)]
+    return laender + [e for e in entities if e not in laender]
+
+
 def _detect_template_for_claim(
     claim: str, analysis: dict
 ) -> tuple[str | None, dict]:
@@ -416,18 +473,21 @@ def _detect_template_for_claim(
             if trig in claim_lc:
                 # Erste plausible Entity nehmen — die SPARQL-Templates
                 # sind so geschrieben, dass das Label exakt gematcht
-                # werden muss
+                # werden muss. Bei Geographie-Templates ist das das LAND,
+                # siehe _geo_kandidaten.
+                kandidaten = _geo_kandidaten(entities, tmpl["name"])
                 if "{qid}" in tmpl["sparql"]:
-                    qid = _land_qid(entities[0])
+                    qid = _land_qid(kandidaten[0])
                     if not qid:
                         logger.info(
                             f"Wikidata {tmpl['name']}: kein QID fuer "
-                            f"'{entities[0][:40]}' — Abfrage uebersprungen, "
-                            f"die Label-Fassung laeuft in den Timeout."
+                            f"'{kandidaten[0][:40]}' — Abfrage "
+                            f"uebersprungen, die Label-Fassung laeuft in "
+                            f"den Timeout."
                         )
                         return None, {}
-                    return tmpl["name"], {"name": entities[0], "qid": qid}
-                return tmpl["name"], {"name": entities[0]}
+                    return tmpl["name"], {"name": kandidaten[0], "qid": qid}
+                return tmpl["name"], {"name": kandidaten[0]}
 
     return None, {}
 
@@ -1039,6 +1099,7 @@ def _entities_for_claim(
             ents.append(e)
     if not ents:
         return []
+    ents = _geo_kandidaten(ents, template_name)
     if template_name not in _MULTI_ENTITY_TEMPLATES:
         return ents[:1]
     if not _MULTI_ENTITY_COMPARISON_RE.search(claim.lower()):
