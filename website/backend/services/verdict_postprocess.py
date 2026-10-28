@@ -93,6 +93,81 @@ _SUPERLATIVE_ADJECTIVES = (
     "höchste", "niedrigste", "geringste", "größte", "meisten", "stärkste",
 )
 
+#: Superlativ-GEFORMTE Woerter, die keinen Rang auf einer messbaren
+#: Groesse behaupten: Reihenfolge ("der erste Covid-Patient", "die
+#: naechsten 100 Jahre") und Aktualitaet ("die aktuellste Studie", "der
+#: juengste Ausbruch"). Im Korpus gemessen die haeufigste Gruppe
+#: ueberhaupt — "ersten" allein 24x. ``_ATTR_STOPWORDS`` fuehrt die
+#: Reihenfolge-Woerter aus demselben Grund.
+#:
+#: ⚠️ "juengste" und "aelteste" liegen auf verschiedenen Seiten: "der
+#: juengste Ausbruch" ist zeitlich, "zu den aeltesten Deutschen" ist ein
+#: echter Rang auf dem Alter. Im Korpus war jeder "juengste"-Treffer
+#: zeitlich und jeder "aelteste" ein Rang — so gemessen, nicht geraten.
+_SUPERLATIV_OHNE_RANG = (
+    "erste", "zweite", "dritte", "vierte", "fuenfte", "fünfte",
+    "letzte", "vorletzte", "naechste", "nächste", "uebernaechste",
+    "übernächste", "neueste", "aktuellste", "juengste", "jüngste",
+)
+
+#: Superlativ am bestimmten Artikel — ueber die ORTHOGRAFIE, nicht ueber
+#: eine Wortliste.
+#:
+#: ``_SUPERLATIVE_PHRASE`` kennt sechs Adjektive (hoechste, niedrigste,
+#: geringste, groesste, meiste, staerkste). Gemessen an 11.032 echten
+#: Claims trifft diese Liste 34 Claims — die allgemeine Form findet 61.
+#: "laengste" fehlte, weshalb der Zaehlweisen-Guard Fluss-Claims NIE
+#: gesehen hat (#287). Aufzaehlen von Formen ist die Schwachstelle
+#: (#140/#141).
+#:
+#: ⚠️ Die naive Form ``[a-z]+ste[nrms]?`` ist VERSCHMUTZT und wurde
+#: gemessen verworfen: Sie zieht 69 "Adjektive" an, die groesstenteils
+#: Substantive auf -ste/-sten sind — Kosten, Polizisten, Immunsystem,
+#: Briefkaesten, Proteste, Liste, Fenster, Westen, Kueste, Alster,
+#: Zivilisten. Dieselbe Klasse wie "dina" in Kardinaele (#283).
+#:
+#: Was sie trennt, ist die deutsche GROSS-/Kleinschreibung: Das
+#: Substantiv ist gross, das Adjektiv klein (#278). Deshalb laeuft diese
+#: Regex auf dem ORIGINALTEXT — mit ``[a-zäöüß]`` statt ``\w``. Gemessen
+#: ergibt das 27 neue Claims und NULL Substantiv-Fehltreffer.
+#:
+#: ⚠️ Mein erster Messlauf hat den Claim vorher kleingeschrieben und
+#: damit genau dieses Signal zerstoert (#227).
+#:
+#: Die linke Wortgrenze ist Pflicht: Ohne sie kommt das "den" aus
+#: "werden" ("frauen WERDEN MEISTENS") — der Fehler aus dem
+#: Phrasings-Sweep in test_zaehlweise.
+_SUPERLATIV_ORTHO = re.compile(
+    r"(?<![A-Za-zÄÖÜäöüß])(?:[Dd]ie|[Dd]er|[Dd]as|[Dd]en)\s+"
+    r"([a-zäöüß]+ste[nrms]?)(?![A-Za-zäöüß])")
+
+
+def nennt_superlativ(text: str) -> str:
+    """Der Superlativ am bestimmten Artikel, oder "".
+
+    Arbeitet auf dem ORIGINALTEXT — die Gross-/Kleinschreibung IST das
+    Unterscheidungsmerkmal.
+
+    ⚠️ Bewusst OHNE Rueckfall fuer durchgehend grossgeschriebene
+    Eingaben (gemessen 21 im Korpus), anders als die Komparativ-Pruefung
+    in #278. Der Rueckfall war zuerst drin, und ein eigener Test hat ihn
+    erledigt: Ohne Schreibung ist „DIE KOSTEN SIND ZU HOCH" ein
+    Superlativ — der Rueckfall holt genau die Substantive zurueck, wegen
+    derer diese Funktion existiert. Er ist auch unnoetig: Die sechs
+    Woerter aus ``_SUPERLATIVE_PHRASE`` werden weiter auf der
+    kleingeschriebenen Fassung geprueft, grossgeschriebene Eingaben
+    verlieren also nichts gegenueber heute.
+    """
+    if not text:
+        return ""
+    for m in _SUPERLATIV_ORTHO.finditer(text):
+        wort = m.group(1)
+        if any(wort.startswith(r) for r in _SUPERLATIV_OHNE_RANG):
+            continue
+        return wort
+    return ""
+
+
 # AT-Bundesländer für den numerischen Entitäts-Vergleich (Pattern G) —
 # QA50B #8 2026-07-12: "Kärnten höher als NÖ" wurde false@0.9, obwohl die
 # Summary selbst "Kärnten 13,94 %, NÖ 12,57 %" nannte. Umlaut-Varianten,
@@ -1535,16 +1610,25 @@ def _quelle_traegt_das_verdict(row: dict, quellen_label: str,
     return False
 
 
-def _claim_ist_vergleichsfrage(claim_lc: str) -> bool:
-    """Vergleicht die Behauptung zwei Groessen oder behauptet einen Rang?"""
+def _claim_ist_vergleichsfrage(claim_lc: str, claim_original: str = "") -> bool:
+    """Vergleicht die Behauptung zwei Groessen oder behauptet einen Rang?
+
+    ``claim_original`` ist der Claim in SEINER Schreibung. Ohne ihn
+    bleibt nur die Sechs-Wort-Liste ``_SUPERLATIVE_PHRASE`` — die
+    Gross-/Kleinschreibung ist das Merkmal, das einen Superlativ von
+    einem Substantiv auf -ste trennt (siehe ``nennt_superlativ``).
+    """
     if not claim_lc:
         return False
     if vergleich_aus_claim(claim_lc):
         return True
-    return bool(_ZW_SUPERLATIV_RE.search(claim_lc))
+    if _ZW_SUPERLATIV_RE.search(claim_lc):
+        return True
+    return bool(nennt_superlativ(claim_original))
 
 
-def _summary_refutes_superlative(claim_lower, summary_lower):
+def _summary_refutes_superlative(claim_lower, summary_lower,
+                                 summary_original=""):
     """True, wenn die Summary den Superlativ einem ANDEREN Land als dem
     Claim-Subjekt zuschreibt oder ihn fürs Claim-Subjekt explizit verneint
     ("… nicht Österreich", "hat nicht die niedrigste …"). Verhindert, dass
@@ -1562,7 +1646,8 @@ def _summary_refutes_superlative(claim_lower, summary_lower):
     # False`, das die Funktion bei jedem Claim ohne Land sofort beendete —
     # also bei genau den Claims, für die die Whitelist ohnehin nichts
     # taugt (Medien, Straßenarten, Produkte, Kategorien).
-    if _superlative_attributed_elsewhere(claim_lower, summary_norm):
+    if _superlative_attributed_elsewhere(claim_lower, summary_norm,
+                                         summary_original):
         return True
     claim_countries = {c for c in _COMPARISON_COUNTRIES if c in claim_lower}
     if not claim_countries:
@@ -1588,6 +1673,21 @@ def _summary_refutes_superlative(claim_lower, summary_lower):
                 or re.search(re.escape(c) + r"[^.]{0,70}" + _SUPERLATIVE_PHRASE,
                              summary_norm)):
             return True
+        # Dieselbe Naehe-Pruefung ueber die Orthografie. Das Land wird
+        # schreibungsunabhaengig gesucht — ``(?i:…)`` nur um den
+        # Laendernamen, denn ein globales re.I wuerde die
+        # Klein-Bedingung am Adjektiv aufheben und damit genau die
+        # Substantive wieder hereinlassen.
+        if summary_original:
+            land = f"(?i:{re.escape(c)})"
+            sup = _SUPERLATIV_ORTHO.pattern
+            for muster in (sup + r"[^.]{0,70}" + land,
+                           land + r"[^.]{0,70}" + sup):
+                treffer = re.search(muster, summary_original)
+                if treffer and not any(
+                        treffer.group(1).startswith(r)
+                        for r in _SUPERLATIV_OHNE_RANG):
+                    return True
     return False
 
 
@@ -1621,7 +1721,8 @@ def _attr_stem_match(a, b):
     return n >= 5 and (a[:n] == b[:n])
 
 
-def _superlative_attributed_elsewhere(claim_lower, summary_norm):
+def _superlative_attributed_elsewhere(claim_lower, summary_norm,
+                                      summary_original=""):
     """True, wenn die Summary den Superlativ per Attributions-Präposition
     einer Entität zuschreibt, die im Claim GAR NICHT vorkommt.
 
@@ -1648,8 +1749,20 @@ def _superlative_attributed_elsewhere(claim_lower, summary_norm):
     auf 'true' kippen — genau der Fehler, den #342 zeigte.
     """
     claim_tokens = [w for w in re.findall(r"[a-zäöüß-]{4,}", claim_lower)]
-    for m in re.finditer(_SUPERLATIVE_PHRASE, summary_norm):
-        window = summary_norm[m.end():m.end() + 90]
+    # Die Fenster kommen aus ZWEI Quellen: der Sechs-Wort-Liste auf dem
+    # normalisierten Text und der Orthografie-Pruefung auf dem Original.
+    # Beide liefern nur noch das Fenster, das danach kleingeschrieben
+    # wird — so muessen die Offsets der zwei Fassungen nicht aufeinander
+    # passen (``summary_norm`` entfernt Tausenderpunkte und ist deshalb
+    # kuerzer als das Original).
+    fenster = [summary_norm[m.end():m.end() + 90]
+               for m in re.finditer(_SUPERLATIVE_PHRASE, summary_norm)]
+    if summary_original:
+        fenster += [summary_original[m.end():m.end() + 90].lower()
+                    for m in _SUPERLATIV_ORTHO.finditer(summary_original)
+                    if not any(m.group(1).startswith(r)
+                               for r in _SUPERLATIV_OHNE_RANG)]
+    for window in fenster:
         window = re.split(r"[.;]", window)[0]
         for am in re.finditer(
                 # (a) Präpositional: "… entfielen AUF Landesstraßen"
@@ -2094,7 +2207,8 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
             if (superlative_confirmed
                     and not _claim_negates_superlative(claim_lower)
                     and not _summary_refutes_superlative(
-                        claim_lower, summary_lower)):
+                        claim_lower, summary_lower,
+                        result.get("summary", "") or "")):
                 factual_confirms = True
                 logger.info(
                     f"Factual-content consistency: superlative claim "
@@ -3170,7 +3284,8 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                 "— Label bleibt."
             )
         if (_zw_namen and not _kein_vergleich
-                and _claim_ist_vergleichsfrage(_claim_lc)):
+                and _claim_ist_vergleichsfrage(_claim_lc,
+                                               original_claim or "")):
             _zw_genannt = claim_nennt_zaehlweise(original_claim or "", _zw_namen)
             if _zw_genannt:
                 logger.warning(
