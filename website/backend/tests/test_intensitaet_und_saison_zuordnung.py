@@ -228,3 +228,65 @@ def test_die_alte_sperre_steht_weiter_da():
     assert "DIESES JAHR GEGEN LETZTES JAHR" in dv
     # Der Jahresvergleich bleibt VORNE: er ist die direkte Antwort (#275).
     assert dv.index("DIESES JAHR") < dv.index("LAUFENDE SAISON")
+
+
+# ---------------------------------------------------------------------------
+# "wie viel(e)" ist ein Interrogativ, keine Mengenangabe (30.10.2026)
+#
+# Gefunden beim Nachmessen eines ANDEREN offenen Punktes: Die
+# WCAG-Zaehlfrage war langst gefixt, aber sie bekam den Deckel aus dieser
+# Datei. Live gemessen:
+#
+#     "Wie viele Erfolgskriterien hat WCAG 2.2?"   true @ 0,70
+#     "WCAG 2.2 hat 86 Erfolgskriterien"           true @ 0,80
+#
+# Beide Antworten nannten dieselbe richtige Zahl (86 aktive, 87
+# gelistet, SC 4.1.1 obsolet). Die FRAGE bekam trotzdem den Deckel und
+# dazu den Hinweis "nutzt eine Angabe ohne feste Schwelle (etwa 'kaum',
+# 'viele')" — eine Auskunft, die nicht stimmt. Die Form der Eingabe ist
+# kein Grund fuer einen Deckel (#232).
+#
+# Gemessen ueber 11.032 echte Claims: 251 -> 245 gedeckelt. Die sechs
+# sind alle Zaehlfragen.
+
+@pytest.mark.parametrize("claim", [
+    "Wie viele Erfolgskriterien hat WCAG 2.2?",
+    "Wie viele Einwohner hat Österreich?",
+    "Wie viel kostet ein Faktencheck?",
+    "Wie viele Femizide gab es 2024?",
+    # Woertlich aus dem Korpus, die beiden klarsten der sechs:
+    "Wie viele Menschen sind im Pandemie-Jahr 2020 gestorben?",
+    "Wie viel Kosten entstehen in Deutschland durch Flüchtlinge?",
+    # Auch mitten im Satz, nicht nur am Anfang:
+    "Niemand weiß, wie viele es wirklich sind",
+])
+def test_zaehlfragen_werden_nicht_gedeckelt(claim):
+    assert not hat_vage_mengenangabe(claim), claim
+
+
+@pytest.mark.parametrize("claim", [
+    # ⚠️ DER Fall, der eine claim-weite Ausnahme verboten haette: hier
+    # stehen "so viele" UND "wie" im selben Satz. Geprueft wird deshalb
+    # die linke Nachbarschaft JEDES Treffers, nicht der ganze Claim.
+    "So viele Menschen wie nie zuvor sind gekommen",
+    "Es gibt viele Femizide in Österreich",
+    "Kaum jemand nutzt das KlimaTicket",
+    "Über die östliche Landgrenze kommen kaum noch Menschen",
+    "Zahlreiche Studien belegen das",
+])
+def test_echte_mengenangaben_bleiben_gedeckelt(claim):
+    assert hat_vage_mengenangabe(claim), claim
+
+
+def test_die_alte_zusammenschreibung_war_nie_betroffen():
+    """„wieviele" trifft _VAGE_MENGE gar nicht — die linke Wortgrenze
+    verhindert es schon. Festgehalten, damit niemand den Interrogativ-Fall
+    fuer sie nachbaut und dabei die Wortgrenze aufweicht."""
+    assert not hat_vage_mengenangabe("Wieviele Menschen starben 2020?")
+
+
+def test_der_deckel_aus_284_bleibt_unberuehrt():
+    """Die Intensitaets-Haelfte wird vor der Mengen-Pruefung entschieden
+    — eine Zaehlfrage darf sie nicht aushebeln."""
+    assert hat_vage_mengenangabe(
+        "Wie viele Menschen sind besonders stark betroffen?")

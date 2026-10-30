@@ -13,7 +13,8 @@ danach nach Land:
     ?mountain wdt:P17 ?country.
 
 Direkt gegen WDQS gemessen: **HTTP 504 nach 65 Sekunden**. Der Dienst gibt
-dem ersten Versuch 12 s (``SPARQL_ATTEMPT_TIMEOUTS = (12.0, 8.0)``) — die
+dem ersten Versuch 12 s (``SPARQL_ATTEMPT_TIMEOUTS``, damals
+``(12.0, 8.0)``) — die
 Abfrage konnte also nie ankommen. „0 Zeilen" war kein Trigger-Problem.
 
 Wikidata modelliert die gefragte Tatsache direkt: **P610, höchster Punkt**.
@@ -127,6 +128,7 @@ BACKEND = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BACKEND)
 
 from services.wikidata import (  # noqa: E402
+    SPARQL_ATTEMPT_TIMEOUTS,
     _LAND_QID,
     _TEMPLATES,
     _entities_for_claim,
@@ -385,3 +387,29 @@ def test_der_vergleich_behaelt_beide_entitaeten():
                                                     "Deutschland"]},
                                "geographie_berg")
     assert ents == ["Österreich", "Deutschland"]
+
+
+# ------------------------------------------------------- die Zeitbudgets
+
+def test_der_zweite_versuch_bekommt_mehr_zeit_als_der_erste():
+    """Bis zum 30.10.2026 war es umgekehrt: (12, 8). Ein Retry laeuft
+    aber genau dann, wenn der Dienst langsam ist — dann ist weniger Zeit
+    die falsche Richtung.
+
+    Zehn Laeufe direkt gegen WDQS gemessen: Median 3,7 s, aber 4 von 10
+    ueber 8 s und 2 ueber 12 s. Die Streuung sitzt ganz in der
+    Fluss-Abfrage — dieselbe Abfrage schwankte zwischen 3,3 und 21,1 s.
+    Live ging am 30.10. ein Deutschland-Lauf in BEIDEN Versuchen in den
+    Timeout, und nur Wikipedia rettete die Antwort.
+    """
+    assert len(SPARQL_ATTEMPT_TIMEOUTS) == 2
+    erster, zweiter = SPARQL_ATTEMPT_TIMEOUTS
+    assert zweiter > erster, SPARQL_ATTEMPT_TIMEOUTS
+
+
+def test_das_budget_deckt_die_gemessene_streuung_ab():
+    """9 der 10 Messungen lagen unter 20 s; der langsamste Lauf (21,1 s)
+    bleibt bewusst ausserhalb. Und die Summe bleibt weit unter dem
+    Synthese-Budget von 300 s."""
+    assert max(SPARQL_ATTEMPT_TIMEOUTS) >= 20.0
+    assert sum(SPARQL_ATTEMPT_TIMEOUTS) + 1.0 < 60.0, "Fan-out-Budget"

@@ -67,9 +67,33 @@ _CACHE_TTL_S = 3600.0  # 1h
 # Ergebnis pro (template, entity) wird ohne TTL vorgehalten und bei
 # SPARQL-Fehlern serviert — deterministisch statt Quellen-Lotterie.
 _LAST_GOOD: dict[str, dict] = {}
-# Zwei Versuche mit gestaffelten Timeouts (12s + 8s + 1s Pause; worst
-# case ~21s) statt einem 20s-Schuss — bleibt unter dem Fan-out-Budget.
-SPARQL_ATTEMPT_TIMEOUTS = (12.0, 8.0)
+# Zwei Versuche. Der ZWEITE bekommt mehr Zeit als der erste — bis zum
+# 30.10.2026 war es umgekehrt (12s dann 8s), und das ist verkehrt herum:
+# Ein Retry laeuft genau dann, wenn der Dienst gerade langsam ist.
+#
+# Gemessen am 30.10.2026, zehn Laeufe direkt gegen WDQS:
+#
+#     geographie_berg      Oesterreich    0,4 s / 0,4 s
+#     land_bevoelkerung    Oesterreich    0,8 s / 0,7 s
+#     geographie_fluss     Italien        3,7 s / 3,3 s
+#     geographie_fluss     Deutschland    8,5 s / 21,1 s
+#     geographie_fluss     Oesterreich   10,4 s / 16,2 s
+#
+#     Median 3,7 s — aber 4 von 10 ueber 8 s und 2 ueber 12 s.
+#
+# Die Streuung sitzt ganz in der Fluss-Abfrage: dieselbe Abfrage
+# schwankt zwischen 3,3 und 21,1 s. Mit (12, 8) war der zweite Versuch
+# damit chancenlos; live ging am 30.10. ein Deutschland-Lauf in BEIDEN
+# Versuchen in den Timeout (Prod-Log: "SPARQL-Versuch 1 fehlgeschlagen"
+# dann "kein Last-Good — leer"), und nur Wikipedia rettete die Antwort.
+#
+# (12, 20) deckt 9 der 10 Messungen ab. Worst case 12+1+20 = 33 s statt
+# 21 s — bewusst in Kauf genommen: Die Synthese hat 300 s, und eine
+# Quelle, die gar nichts liefert, kostet mehr als eine, die spaet
+# liefert. Der eigentliche Grund ist die teure Wertknoten-Aufloesung in
+# der Fluss-Abfrage (p:/psv:/quantityAmount); die schneller zu machen
+# waere der naechste Schritt, nicht dieser.
+SPARQL_ATTEMPT_TIMEOUTS = (12.0, 20.0)
 # Label-Lookup deckt de + mul + en: Wikidata migriert sprachübergreifend
 # identische Labels seit 2024 ins "mul"-Pseudo-Label und LÖSCHT die
 # de/en-Einzellabels — reines @de matchte z. B. Q57641 (Orbán) nie mehr
