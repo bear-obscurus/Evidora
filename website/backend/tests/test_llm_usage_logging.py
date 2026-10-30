@@ -27,6 +27,7 @@ einer Hilfsfunktion.
 
 import json
 import logging
+import re
 
 import httpx
 import pytest
@@ -211,3 +212,174 @@ async def test_log_enthaelt_niemals_prompt_oder_key(monkeypatch, caplog):
     assert "Bearer" not in line
     # Positiv-Kontrolle: die Zahlen sind da (sonst prueft der Test nichts)
     assert "prompt_tokens=5" in line
+
+
+# ---------------------------------------------------------------------------
+# cached_tokens + prompt_cache_key (30.10.2026)
+#
+# Anlass: Die Modellwechsel-Abschaetzung. 97 % unserer Tokens sind
+# EINGABE, und gecachte Eingabe kostet 10 % — aber das Log zeigte die
+# Zahl nicht, also konnte niemand sehen, dass sie durchgehend 0 war.
+#
+# Gemessen gegen die echte API mit dem deutschen Synthese-System-Prompt
+# (14.700 Tokens), vier Aufrufe hintereinander:
+#
+#     ohne prompt_cache_key   cached = 0, 0, 0  (auch identisch wiederholt)
+#     mit  prompt_cache_key   cached = 0, 14.464, 14.592   (98-99 %)
+#
+# Mistrals Cache ist also OPT-IN. Kosten je Faktencheck: 3,18 -> 0,95
+# Cent (-70 %), mehr als ein Modellwechsel braechte.
+
+_USAGE_MIT_DETAILS = {
+    "prompt_tokens": 14738,
+    "prompt_tokens_details": {"cached_tokens": 14464},
+    "completion_tokens": 211,
+    "completion_tokens_details": {"reasoning_tokens": 0},
+    "total_tokens": 14949,
+}
+
+
+async def test_cached_tokens_stehen_im_log(monkeypatch, caplog):
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json={
+            "choices": [{"message": {"content": "ok"}}],
+            "usage": _USAGE_MIT_DETAILS,
+        })
+
+    _patch_client(monkeypatch, handler)
+    with caplog.at_level(logging.INFO, logger="evidora"):
+        await ollama.chat_completion([{"role": "user", "content": "x"}],
+                                     kind="synthesis")
+    zeile = _usage_lines(caplog)[0]
+    assert "cached_tokens=14464" in zeile, zeile
+    assert "prompt_tokens=14738" in zeile
+
+
+async def test_reasoning_tokens_stehen_im_log(monkeypatch, caplog):
+    """Heute 0. Bei einem Wechsel auf ein Reasoning-Modell ist das der
+    Posten, der sich vervielfacht — gemessen 1.441 statt 0 je
+    Analyse-Call bei mistral-large-4."""
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json={
+            "choices": [{"message": {"content": "ok"}}],
+            "usage": dict(_USAGE_MIT_DETAILS,
+                          completion_tokens_details={
+                              "reasoning_tokens": 1441}),
+        })
+
+    _patch_client(monkeypatch, handler)
+    with caplog.at_level(logging.INFO, logger="evidora"):
+        await ollama.chat_completion([{"role": "user", "content": "x"}],
+                                     kind="analysis")
+    assert "reasoning_tokens=1441" in _usage_lines(caplog)[0]
+
+
+@pytest.mark.parametrize("usage", [
+    {"prompt_tokens": 5, "completion_tokens": 1},            # keine Details
+    {"prompt_tokens": 5, "prompt_tokens_details": None},     # None statt dict
+    {"prompt_tokens": 5, "prompt_tokens_details": "kaputt"},  # falscher Typ
+    {"prompt_tokens": 5, "prompt_tokens_details": {"cached_tokens": None}},
+    {"prompt_tokens": 5, "prompt_tokens_details": {"cached_tokens": -3}},
+])
+def test_fehlende_oder_kaputte_details_stuerzen_nicht_ab(caplog, usage):
+    """Ein Anbieter, der das Unterfeld weglaesst oder anders fuellt, darf
+    das Log nicht sprengen — derselbe Vertrag wie beim ganzen
+    usage-Block."""
+    with caplog.at_level(logging.INFO, logger="evidora"):
+        ollama._log_usage("analysis", "m", usage)
+    zeile = _usage_lines(caplog)[0]
+    assert "cached_tokens=0" in zeile, zeile
+    assert "reasoning_tokens=0" in zeile
+
+
+# ------------------------------------------------- der Cache-Schluessel
+
+_SYS = {"role": "system", "content": "Du bist ein Faktencheck-Assistent."}
+
+
+def test_der_schluessel_haengt_am_system_teil():
+    """Zwei verschiedene Behauptungen, derselbe System-Prompt → derselbe
+    Bucket. Genau das macht den Cache nutzbar."""
+    a = ollama.prompt_cache_key([_SYS, {"role": "user", "content": "Claim A"}])
+    b = ollama.prompt_cache_key([_SYS, {"role": "user", "content": "Claim B"}])
+    assert a and a == b
+
+
+def test_ein_anderer_system_prompt_bekommt_einen_anderen_bucket():
+    """Deutsch und Englisch haben verschiedene System-Prompts — und jede
+    kuenftige Aenderung bekommt automatisch ihren eigenen Schluessel.
+    Deshalb der Hash und keine Handliste (kein Marker-Drift)."""
+    a = ollama.prompt_cache_key([_SYS, {"role": "user", "content": "x"}])
+    b = ollama.prompt_cache_key([{"role": "system", "content": "Other"},
+                                 {"role": "user", "content": "x"}])
+    assert a != b
+
+
+def test_kein_nutzerinhalt_im_schluessel():
+    """Der Schluessel darf nichts aus der Behauptung tragen — die Doku
+    warnt ausdruecklich davor, Inhalte in dieses Feld zu schreiben.
+
+    ⚠️ Die erste Fassung dieses Tests suchte jedes Wort der Behauptung im
+    Schluessel — und fiel an der "1" aus einer Hausnummer, die in jedem
+    Hex-Hash zufaellig vorkommt. Geprueft wird jetzt die EIGENSCHAFT:
+    feste Form, und bei voellig verschiedenen Nutzerinhalten derselbe
+    Schluessel. Damit kann gar nichts durchsickern.
+    """
+    geheim = "Max Mustermann wohnt in der Hauptstrasse 1"
+    k1 = ollama.prompt_cache_key([_SYS, {"role": "user", "content": geheim}])
+    k2 = ollama.prompt_cache_key([_SYS, {"role": "user",
+                                         "content": "etwas voellig anderes"}])
+    assert re.fullmatch(r"evidora-[0-9a-f]{16}", k1), k1
+    assert k1 == k2
+    assert "Mustermann" not in k1 and "Hauptstrasse" not in k1
+
+
+def test_ohne_system_teil_kein_schluessel():
+    """Ohne konstanten Anfang gibt es nichts zu cachen — dann bleibt das
+    Feld weg, statt einen nutzlosen Bucket aufzumachen."""
+    assert ollama.prompt_cache_key([{"role": "user", "content": "x"}]) == ""
+    assert ollama.prompt_cache_key([]) == ""
+    assert ollama.prompt_cache_key(None) == ""
+
+
+async def test_der_schluessel_geht_mit_der_anfrage_raus(monkeypatch, caplog):
+    gesehen = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        gesehen.update(json.loads(request.content))
+        return httpx.Response(200, json={
+            "choices": [{"message": {"content": "ok"}}],
+            "usage": _USAGE_MIT_DETAILS})
+
+    _patch_client(monkeypatch, handler)
+    with caplog.at_level(logging.INFO, logger="evidora"):
+        await ollama.chat_completion([_SYS, {"role": "user", "content": "x"}],
+                                     kind="analysis")
+    assert gesehen.get("prompt_cache_key") == ollama.prompt_cache_key(
+        [_SYS, {"role": "user", "content": "x"}])
+    # Und der Schluessel traegt nichts aus der Nutzeranfrage.
+    assert "x" not in gesehen["prompt_cache_key"].replace("evidora-", "")
+
+
+async def test_auch_der_streaming_pfad_schickt_ihn(monkeypatch, caplog):
+    """Die Synthese streamt — ohne den Schluessel dort bliebe der GROESSTE
+    Prompt ungecacht."""
+    gesehen = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        gesehen.update(json.loads(request.content))
+        return httpx.Response(200, text=_sse([
+            {"choices": [{"delta": {"content": "A"}}]},
+            {"choices": [], "usage": _USAGE_MIT_DETAILS},
+        ]), headers={"content-type": "text/event-stream"})
+
+    _patch_client(monkeypatch, handler)
+    with caplog.at_level(logging.INFO, logger="evidora"):
+        out = await ollama.chat_completion_streaming(
+            [_SYS, {"role": "user", "content": "x"}], kind="synthesis")
+    assert out == "A"
+    assert gesehen.get("stream") is True
+    assert gesehen.get("prompt_cache_key") == ollama.prompt_cache_key(
+        [_SYS, {"role": "user", "content": "x"}]), sorted(gesehen)
+    # Und die Zahlen des Streams landen vollstaendig im Log.
+    assert "cached_tokens=14464" in _usage_lines(caplog)[0]

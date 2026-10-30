@@ -2,6 +2,7 @@ import asyncio
 import json
 import httpx
 import logging
+import hashlib
 import os
 import time
 from typing import AsyncIterator, Callable, Awaitable
@@ -166,6 +167,47 @@ def _modell_lage_aus_antwort(resp) -> dict | None:
 USAGE_LOG_PREFIX = "llm_usage"
 
 
+def prompt_cache_key(messages: list) -> str:
+    """Cache-Bucket fuer den KONSTANTEN Anfang dieser Nachrichtenfolge.
+
+    Mistrals Prompt-Cache ist **opt-in**: Ohne dieses Feld liefert die API
+    ``prompt_tokens_details.cached_tokens = 0``, und genau das haben wir
+    bis zum 30.10.2026 bezahlt. Gemessen mit dem echten deutschen
+    Synthese-System-Prompt (14.700 Tokens), vier Aufrufe hintereinander:
+
+        ohne Schluessel   cached = 0, 0, 0            (auch bei
+                                                       identischer Wiederholung)
+        mit Schluessel    cached = 0, 14.464, 14.592  (98-99 %)
+
+    Der erste Aufruf fuellt den Cache, ab dem zweiten sind 98-99 % des
+    Prompts gecacht. Zum Preis: gecachte Eingabe kostet 10 % — damit
+    sinken die Kosten je Faktencheck von 3,18 auf 0,95 Cent (-70 %),
+    mehr als ein Modellwechsel braechte.
+
+    Der Schluessel ist der Hash des SYSTEM-Teils, nicht ein Handname: So
+    bekommt jede Prompt-Variante automatisch ihren eigenen Bucket
+    (deutsch/englisch, und jede kuenftige Aenderung am System-Prompt),
+    ohne dass jemand eine Liste pflegen muss. Marker-Drift ist hier
+    ausgeschlossen, weil der Schluessel AUS dem Prompt entsteht.
+
+    ⚠️ Kein Nutzerinhalt im Schluessel, und keiner im gecachten Bereich:
+    Der Cache arbeitet ueber den gemeinsamen ANFANG, und der ist bei zwei
+    verschiedenen Behauptungen genau unser System-Prompt. Die Messung
+    zeigt es — der zweite Aufruf mit einer ANDEREN Behauptung bekam 14.464
+    gecachte Tokens, also den System-Teil und nicht mehr. Die Doku warnt
+    ausserdem davor, Geheimnisse in dieses Feld zu schreiben; ein Hash
+    unseres eigenen System-Prompts ist keines.
+    """
+    system = "".join(
+        str(m.get("content") or "")
+        for m in (messages or [])
+        if isinstance(m, dict) and m.get("role") == "system"
+    )
+    if not system:
+        return ""
+    return "evidora-" + hashlib.sha256(system.encode("utf-8")).hexdigest()[:16]
+
+
 def _extract_usage(payload: dict | None) -> dict | None:
     """``usage``-Block aus einer Antwort/einem Stream-Chunk, oder None.
 
@@ -195,12 +237,32 @@ def _log_usage(kind: str, model: str, usage: dict | None,
         val = usage.get(key)
         return val if isinstance(val, int) and val >= 0 else 0
 
+    def _detail(block: str, key: str) -> int:
+        d = usage.get(block)
+        if not isinstance(d, dict):
+            return 0
+        val = d.get(key)
+        return val if isinstance(val, int) and val >= 0 else 0
+
     prompt = _num("prompt_tokens")
     completion = _num("completion_tokens")
     total = _num("total_tokens") or (prompt + completion)
+    # Zwei Unterfelder, die die Rechnung erst lesbar machen:
+    #
+    # cached_tokens — gecachte Eingabe kostet 10 %. Ohne diese Zahl ist
+    #   aus dem Log nicht erkennbar, was ein Faktencheck WIRKLICH kostet;
+    #   97 % unserer Tokens sind Eingabe. Bis zum 30.10.2026 stand sie
+    #   nirgends, und niemand konnte sehen, dass sie durchgehend 0 war.
+    # reasoning_tokens — Denk-Tokens werden als Ausgabe abgerechnet.
+    #   Heute 0, weil mistral-medium ohne reasoning_effort nicht denkt.
+    #   Bei einem Wechsel auf ein Reasoning-Modell ist das der Posten,
+    #   der sich vervielfacht (gemessen: 1.441 statt 0 je Analyse-Call).
+    cached = _detail("prompt_tokens_details", "cached_tokens")
+    reasoning = _detail("completion_tokens_details", "reasoning_tokens")
     logger.info(
         f"{USAGE_LOG_PREFIX} kind={kind} model={model} attempt={attempt} "
         f"streamed={stream_flag} prompt_tokens={prompt} "
+        f"cached_tokens={cached} reasoning_tokens={reasoning} "
         f"completion_tokens={completion} total_tokens={total}"
     )
 
@@ -236,6 +298,9 @@ async def _call_mistral_api(messages: list, timeout: float,
         "max_tokens": 2048,
         "random_seed": 42,
     }
+    _ck = prompt_cache_key(messages)
+    if _ck:
+        body["prompt_cache_key"] = _ck
     if json_mode:
         body["response_format"] = {"type": "json_object"}
     async with httpx.AsyncClient(timeout=timeout) as client:
@@ -373,6 +438,9 @@ async def _stream_mistral_api(
         "random_seed": 42,
         "stream": True,
     }
+    _ck = prompt_cache_key(messages)
+    if _ck:
+        body["prompt_cache_key"] = _ck
     if json_mode:
         body["response_format"] = {"type": "json_object"}
     async with httpx.AsyncClient(timeout=timeout) as client:
