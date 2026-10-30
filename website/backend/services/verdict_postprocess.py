@@ -3661,6 +3661,10 @@ VAGE_MENGE_CONFIDENCE_CAP = 0.7
 # Mengenwoerter ohne Schwelle. Wortgrenzen sind Pflicht: "viel" als Substring
 # faengt "vielleicht" und "Vielfalt" (dieselbe Klasse wie das "alle "/"Kristalle"
 # der EZB-Regex).
+#: "wie " unmittelbar vor der Mengenangabe. Eigene Konstante, damit der
+#: Zweck im Code steht und nicht nur im Kommentar.
+_INTERROGATIV_DAVOR = re.compile(r"(?<![a-z])wie\s+$")
+
 _VAGE_MENGE = re.compile(
     r"(?<![a-z])("
     r"kaum|viele[nrms]?|viel|wenige[nrms]?|zahlreiche[nrms]?|unzaehlige[nrms]?|"
@@ -3733,7 +3737,36 @@ def hat_vage_mengenangabe(claim: str) -> bool:
     n = normalisiere(claim)
     if _SCHWELLE.search(n) or _BEZUGSBASIS.search(n):
         return False
-    return bool(_VAGE_MENGE.search(n) or _VAGE_INTENSITAET.search(n))
+    if _VAGE_INTENSITAET.search(n):
+        return True
+    # "wie viel(e)" ist ein INTERROGATIV, keine Mengenangabe — dasselbe
+    # Wort in einer anderen Rolle. Live am 30.10.2026 gemessen:
+    #
+    #   "Wie viele Erfolgskriterien hat WCAG 2.2?"   true @ 0,70
+    #   "WCAG 2.2 hat 86 Erfolgskriterien"           true @ 0,80
+    #
+    # Beide Antworten nannten dieselbe richtige Zahl (86 aktive, 87
+    # gelistet). Die FRAGE bekam trotzdem den Deckel und dazu den Hinweis
+    # "nutzt eine Angabe ohne feste Schwelle (etwa 'kaum', 'viele')" —
+    # eine Auskunft, die schlicht nicht stimmt. Die Form der Eingabe ist
+    # kein Grund fuer einen Deckel (#232).
+    #
+    # Geprueft wird die linke Nachbarschaft jedes einzelnen Treffers,
+    # nicht der ganze Claim: "So viele Menschen wie nie" enthaelt beides
+    # und muss weiter greifen.
+    #
+    # Gemessen ueber 11.032 echte Claims: 251 -> 245 gedeckelt. Die
+    # sechs sind alle Zaehlfragen ("Wie viele Menschen sind im
+    # Pandemie-Jahr 2020 gestorben?", "Wie viel Kosten entstehen durch
+    # Fluechtlinge?"). "so viele", "viele", "kaum" bleiben unberuehrt.
+    #
+    # ⚠️ Die alte Zusammenschreibung "wieviele" war nie betroffen: Die
+    # linke Wortgrenze in _VAGE_MENGE verhindert den Treffer schon.
+    for m in _VAGE_MENGE.finditer(n):
+        if _INTERROGATIV_DAVOR.search(n[max(0, m.start() - 9):m.start()]):
+            continue
+        return True
+    return False
 
 
 def apply_vage_menge_cap(synthesis, claim, lang="de",
