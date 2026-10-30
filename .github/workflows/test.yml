@@ -327,6 +327,26 @@ jobs:
     #                                  datierte ID, darunter der
     #                                  empfohlene Ersatz large-4 — dort
     #                                  sagt er das statt zu raten)
+    #   - test_wikidata_trigger_schreibweise
+    #                                 (die Trigger der 10 SPARQL-Templates
+    #                                  waren nicht normalisiert — 6 von 10
+    #                                  tragen Umlaute, "laengster Fluss"
+    #                                  erreichte Wikidata nie. ⚠️ Faltung
+    #                                  ALLEIN gemessen: 0 neue richtige
+    #                                  Treffer, 6 neue Fehltreffer ("spoe"
+    #                                  in niederlaendischem "spoedwet").
+    #                                  Der messbare Gewinn ist ein
+    #                                  anderer: "regie" traf 116 Claims
+    #                                  und in KEINEM als Wort — 89 davon
+    #                                  fragten Wikidata nach dem Autor
+    #                                  eines Werks, fuer Saetze ueber die
+    #                                  REGIERUNG. Sweep gegen HEAD: 90
+    #                                  Aenderungen, 0 echte Verluste.
+    #                                  Gebunden sind nur die zwei, bei
+    #                                  denen der Compound-Treffer in ein
+    #                                  FREMDES Wort faellt — praesident,
+    #                                  kanzler, gruene, partei bleiben
+    #                                  ungebunden, dort ist er gewollt)
     #   - test_polity5_aussage_grenze (QA50I #88: Claim ueber Polity5 wurde
     #                                  mit V-Dem widerlegt. Ungarn hat in
     #                                  Polity5 +10 (2010-2018, am Datensatz
@@ -614,6 +634,7 @@ jobs:
             tests/test_zaehlweisen_relevanz_und_fluss_rang.py \
             tests/test_superlativ_ueber_die_orthografie.py \
             tests/test_modell_wachhund.py \
+            tests/test_wikidata_trigger_schreibweise.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \
