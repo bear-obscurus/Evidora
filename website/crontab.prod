@@ -46,3 +46,14 @@
 # Das Werkzeug pusht selbst; der Fallback hier greift nur, wenn es gar nicht
 # zum Laufen kam.
 30 5 * * * /opt/Evidora/website/run_evidora_tool.sh quellen_lebenszeichen.py >> /home/burrito/evidora-logs/quellen_lebenszeichen.log 2>&1; rc=$?; if [ "$rc" = 2 ]; then echo "ALERT $(date -Is) quellen_lebenszeichen: Quelle(n) ohne Lebenszeichen - Tool lief, Push ist raus" >> /home/burrito/evidora-logs/ALERTS.log; elif [ "$rc" != 0 ]; then echo "ALERT $(date -Is) quellen_lebenszeichen kam nicht zum Laufen (exit $rc)" >> /home/burrito/evidora-logs/ALERTS.log; curl -s -m 10 -H "Title: Evidora Lebenszeichen-Sonde: Werkzeug lief nicht" -H "Priority: high" -H "Tags: rotating_light" -d "quellen_lebenszeichen kam nicht zum Laufen (exit $rc) $(date -Is)" "$(grep ^EVIDORA_ALERT_WEBHOOK /opt/Evidora/website/.env | cut -d= -f2-)" >/dev/null; fi
+
+# Modell-Wachhund (2026-10-30): Steht unser Antwort-Modell noch im
+# Mistral-Katalog, und ist es noch dasselbe? Anlass: Mail vom 30.10.,
+# prod faehrt mistral-medium-latest = mistral-medium-3-5, Abschaltung
+# 30.4.2027. Die API warnt NICHT (deprecation ist bei allen 64
+# Modellen None, auch bei einem, das am Tag danach abgeschaltet wurde).
+# exit 1 = Tausch oder fehlender Pin, exit 2 = Modell verschwunden
+# (dann faellt jeder Faktencheck aus). 06:30, damit kein zweiter
+# Wartungs-Container auf derselben Minute startet (#282) — flock
+# serialisiert ohnehin, aber eine freie Minute ist billiger.
+30 6 * * * /opt/Evidora/website/run_evidora_tool.sh modell_wachhund.py >> /home/burrito/evidora-logs/modell_wachhund.log 2>&1; rc=$?; if [ "$rc" = 1 ] || [ "$rc" = 2 ]; then echo "ALERT $(date -Is) modell_wachhund: Befund (exit $rc) - Tool lief, Push ist raus" >> /home/burrito/evidora-logs/ALERTS.log; elif [ "$rc" != 0 ]; then echo "ALERT $(date -Is) modell_wachhund kam nicht zum Laufen (exit $rc)" >> /home/burrito/evidora-logs/ALERTS.log; curl -s -m 10 -H "Title: Evidora Modell-Wachhund: Werkzeug lief nicht" -H "Priority: high" -H "Tags: rotating_light" -d "modell_wachhund kam nicht zum Laufen (exit $rc) $(date -Is) - 64 = kein Modell/Key konfiguriert, 75 = Netz/Kontingent, 137 = Speicherlimit" "$(grep ^EVIDORA_ALERT_WEBHOOK /opt/Evidora/website/.env | cut -d= -f2-)" >/dev/null; fi

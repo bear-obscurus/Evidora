@@ -12,6 +12,17 @@ OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", "")
 MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions"
 MISTRAL_MODEL = os.getenv("MISTRAL_MODEL", "mistral-small-latest")
+
+#: ⚠️ Ist MISTRAL_MODEL nicht gesetzt, beantwortet mistral-small-latest
+#: JEDEN Claim — ein anderes Modell als in Produktion, ohne dass es
+#: jemand sieht. Prod faehrt mistral-medium-latest. Der Rueckfall bleibt
+#: (er haelt lokale Laeufe und Tests am Leben), aber er sagt es jetzt.
+if MISTRAL_API_KEY and not os.getenv("MISTRAL_MODEL"):
+    logging.getLogger("evidora").error(
+        "MISTRAL_MODEL ist nicht gesetzt — Rueckfall auf "
+        f"{MISTRAL_MODEL}. In Produktion laeuft ein anderes Modell; "
+        "jedes Verdict kommt dann aus einem anderen Modell als gemessen."
+    )
 MAX_RETRIES = 3
 RETRY_DELAY = 2  # Sekunden
 
@@ -33,6 +44,11 @@ RETRY_DELAY = 2  # Sekunden
 #  - Auch das negative Ergebnis wird gecacht, sonst wuerde ein toter Key
 #    bei jedem Healthcheck erneut angefragt.
 MISTRAL_MODELS_URL = "https://api.mistral.ai/v1/models"
+
+from services._modell_katalog import (  # noqa: E402
+    nachricht as modell_nachricht,
+    pruefe as pruefe_modell,
+)
 LLM_AUTH_TTL = 300  # Sekunden
 LLM_AUTH_TIMEOUT = 5.0
 
@@ -55,6 +71,7 @@ async def check_llm_auth(force: bool = False) -> dict:
                 "detail": _llm_auth_cache["detail"],
                 "cached": True, "age_s": int(age)}
 
+    modell_lage = None
     if not MISTRAL_API_KEY:
         result = (False, "MISTRAL_API_KEY nicht gesetzt")
     else:
@@ -73,6 +90,17 @@ async def check_llm_auth(force: bool = False) -> dict:
                                  f"(ungültig ODER Kontingent erschöpft)")
             elif r.status_code == 200:
                 result = (True, "HTTP 200")
+                # Die Liste, die wir ohnehin bekommen, auch LESEN: Bis
+                # zum 30.10.2026 prueften wir nur den Status und warfen
+                # sie weg — ein abgeschaltetes Modell waere erst beim
+                # ersten gescheiterten Faktencheck aufgefallen.
+                #
+                # Der Zustand faellt BEWUSST nicht in `ok` ein. Der
+                # Container-Healthcheck haengt daran, und die
+                # Tri-State-Lehre dieser Sonde ist, bei Unsicherheit
+                # nicht zu flappen. Alarm schlaegt der Cron-Waechter
+                # (tools/modell_wachhund.py); hier wird es sichtbar.
+                modell_lage = _modell_lage_aus_antwort(r)
             else:
                 result = (None, f"HTTP {r.status_code} — transient")
         except Exception as e:
@@ -80,10 +108,42 @@ async def check_llm_auth(force: bool = False) -> dict:
 
     _llm_auth_cache["ts"] = now
     _llm_auth_cache["ok"], _llm_auth_cache["detail"] = result
+    _llm_auth_cache["modell"] = modell_lage
     if result[0] is False:
         logger.error(f"LLM-Auth-Probe: {result[1]} — Faktencheck-Pipeline "
                      f"ist funktionsunfähig")
-    return {"ok": result[0], "detail": result[1], "cached": False, "age_s": 0}
+    if modell_lage and modell_lage.get("lage") not in (None, "ok",
+                                                       "nicht_pinnbar"):
+        logger.error(
+            f"Modell-Lage: {modell_lage.get('lage')} für "
+            f"'{modell_lage.get('modell')}' — "
+            f"{modell_lage.get('nachricht')}")
+    antwort = {"ok": result[0], "detail": result[1], "cached": False,
+               "age_s": 0}
+    if modell_lage:
+        antwort["modell"] = modell_lage
+    return antwort
+
+
+def _modell_lage_aus_antwort(resp) -> dict | None:
+    """Die Modell-Lage aus der Katalog-Antwort, oder None.
+
+    Darf NIE werfen: Diese Sonde haengt am Container-Healthcheck, und ein
+    unlesbarer Rumpf ist kein Grund, den Dienst unhealthy zu melden
+    (Tri-State-Lehre). Kann der Katalog nicht gelesen werden, gibt es
+    eben keine Modell-Auskunft.
+    """
+    try:
+        katalog = (resp.json() or {}).get("data") or []
+        if not katalog:
+            return None
+        befund = pruefe_modell(katalog, MISTRAL_MODEL)
+        befund["nachricht"] = modell_nachricht(befund)
+        befund["aus_default"] = not os.getenv("MISTRAL_MODEL")
+        return befund
+    except Exception as e:  # noqa: BLE001
+        logger.debug(f"Modell-Lage nicht lesbar: {type(e).__name__}")
+        return None
 
 
 # ---------------------------------------------------------------------------

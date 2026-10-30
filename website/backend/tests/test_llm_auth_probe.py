@@ -24,8 +24,16 @@ from services import ollama
 
 
 class _Resp:
-    def __init__(self, status_code):
+    def __init__(self, status_code, rumpf=None):
         self.status_code = status_code
+        self._rumpf = rumpf
+
+    def json(self):
+        """Ein Rumpf, den niemand gesetzt hat, ist unlesbar — genau wie
+        vor dem 30.10.2026, als die Sonde den Katalog gar nicht las."""
+        if self._rumpf is None:
+            raise ValueError("kein JSON")
+        return self._rumpf
 
 
 class _FakeClient:
@@ -45,12 +53,13 @@ class _FakeClient:
         type(self).calls += 1
         if isinstance(self.behaviour, Exception):
             raise self.behaviour
-        return _Resp(self.behaviour)
+        return _Resp(self.behaviour, getattr(self, "rumpf", None))
 
 
-def _install(monkeypatch, behaviour, key="k" * 32):
+def _install(monkeypatch, behaviour, key="k" * 32, rumpf=None):
     _FakeClient.calls = 0
-    cls = type("C", (_FakeClient,), {"behaviour": behaviour})
+    cls = type("C", (_FakeClient,), {"behaviour": behaviour,
+                                     "rumpf": rumpf})
     monkeypatch.setattr(ollama.httpx, "AsyncClient", cls)
     monkeypatch.setattr(ollama, "MISTRAL_API_KEY", key)
     # Cache je Test leeren
@@ -141,3 +150,57 @@ def test_ttl_deckelt_die_upstream_last(monkeypatch):
 def test_probe_verbraucht_keine_tokens():
     """/v1/models statt einer Completion — Contract gegen Kosten-Drift."""
     assert ollama.MISTRAL_MODELS_URL.endswith("/v1/models")
+
+
+# --- Modell-Lage (30.10.2026) ------------------------------------------
+#
+# Die Sonde ruft /v1/models auf und warf die LISTE weg: Sie prüfte nur
+# den Status. Ein abgeschaltetes Modell wäre erst beim ersten
+# gescheiterten Faktencheck aufgefallen — und die Mistral-API warnt
+# nicht, `deprecation` ist bei allen 64 Modellen None.
+
+#: Wörtlich aus dem Katalog unseres Keys, auf einen Eintrag verkürzt.
+_KATALOG = {"data": [{
+    "id": "mistral-medium-latest",
+    "aliases": ["mistral-medium", "mistral-medium-3-5",
+                "mistral-medium-2604", "magistral-medium-latest"],
+    "deprecation": None, "max_context_length": 262144}]}
+
+
+def test_unlesbarer_rumpf_laesst_die_sonde_in_ruhe(monkeypatch):
+    """Die Tri-State-Lehre gilt weiter: Am Container-Healthcheck hängt
+    `ok`, und ein Rumpf, den niemand lesen kann, ist kein Grund, den
+    Dienst unhealthy zu melden."""
+    _install(monkeypatch, 200, rumpf=None)
+    out = _run(ollama.check_llm_auth(force=True))
+    assert out["ok"] is True
+    assert "modell" not in out
+
+
+def test_die_modell_lage_wird_mitgeliefert(monkeypatch):
+    _install(monkeypatch, 200, rumpf=_KATALOG)
+    monkeypatch.setattr(ollama, "MISTRAL_MODEL", "mistral-medium-latest")
+    out = _run(ollama.check_llm_auth(force=True))
+    assert out["ok"] is True
+    assert out["modell"]["lage"] == "ok"
+    assert out["modell"]["datiert"] == "mistral-medium-2604"
+    assert "2027-04-30" in out["modell"]["nachricht"]
+
+
+def test_verschwundenes_modell_macht_den_dienst_nicht_unhealthy(monkeypatch):
+    """BEWUSST so: Alarm schlägt der Cron-Wächter. Ein Flappen des
+    Containers würde die Lage nur verschleiern."""
+    _install(monkeypatch, 200, rumpf=_KATALOG)
+    monkeypatch.setattr(ollama, "MISTRAL_MODEL", "gibt-es-nicht")
+    out = _run(ollama.check_llm_auth(force=True))
+    assert out["ok"] is True
+    assert out["modell"]["lage"] == "verschwunden"
+
+
+def test_der_rueckfall_auf_small_wird_benannt(monkeypatch):
+    """Ohne MISTRAL_MODEL beantwortet ein anderes Modell jeden Claim."""
+    monkeypatch.delenv("MISTRAL_MODEL", raising=False)
+    _install(monkeypatch, 200, rumpf=_KATALOG)
+    monkeypatch.setattr(ollama, "MISTRAL_MODEL", "mistral-medium-latest")
+    out = _run(ollama.check_llm_auth(force=True))
+    assert out["modell"]["aus_default"] is True

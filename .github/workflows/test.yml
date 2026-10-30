@@ -295,6 +295,20 @@ jobs:
     #                                  Ruht das Verdict NUR auf
     #                                  Gesamtlaengen-Zeilen, wird es
     #                                  unverifiable)
+    #   - test_modell_wachhund       (Mistral-Mail 30.10.2026: prod faehrt
+    #                                  mistral-medium-latest, und das IST
+    #                                  mistral-medium-3-5 — Abschaltung
+    #                                  30.4.2027. Die API warnt NICHT:
+    #                                  deprecation ist bei allen 64
+    #                                  Modellen None, auch bei einem, das
+    #                                  am Tag nach der Messung
+    #                                  abgeschaltet wurde. Der Waechter
+    #                                  prueft Vorhandensein (exit 2) und
+    #                                  die datierte ID hinter dem Alias
+    #                                  (exit 1). 21 Modelle haben keine
+    #                                  datierte ID, darunter der
+    #                                  empfohlene Ersatz large-4 — dort
+    #                                  sagt er das statt zu raten)
     #   - test_polity5_aussage_grenze (QA50I #88: Claim ueber Polity5 wurde
     #                                  mit V-Dem widerlegt. Ungarn hat in
     #                                  Polity5 +10 (2010-2018, am Datensatz
@@ -580,6 +594,7 @@ jobs:
             tests/test_muster_r_laufende_periode.py \
             tests/test_geographie_berg_fluss.py \
             tests/test_zaehlweisen_relevanz_und_fluss_rang.py \
+            tests/test_modell_wachhund.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \
