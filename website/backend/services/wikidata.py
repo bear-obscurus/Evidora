@@ -50,6 +50,8 @@ from urllib.parse import quote
 
 from services._http_polite import polite_client
 from services._ausfall import melde_ausfall, melde_http_ausfall
+from services._flexion import ist_gebunden, wortgrenzen_fassung
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -110,7 +112,13 @@ SPARQL_RESULT_LIMIT = 5
 #
 # Jedes Template hat:
 #   - "name":      menschenlesbarer Bezeichner (für Logging/Result)
-#   - "triggers":  Liste Lower-Case-Substrings im Claim
+#   - "triggers":  Substrings im Claim. Verglichen wird gegen den
+#                  NORMALISIERTEN Claim (Umlaute gefaltet, Trennzeichen zu
+#                  Leerzeichen) — die Trigger werden beim Import einmal
+#                  durch `norm_terme` gezogen, geschrieben bleiben sie mit
+#                  Umlauten, weil man sie so liest.
+#                  Ein Trigger mit Leerzeichen am Rand (" regie ") ist
+#                  GEBUNDEN: er trifft nur als ganzes Wort (#207).
 #   - "regex":     optional, wenn präzisere Entity-Extraktion möglich
 #   - "sparql":    SPARQL-Query mit `{name}`-Placeholder
 #   - "format":    Funktion, die Wikidata-JSON-Result-Row → display_string
@@ -269,7 +277,15 @@ LIMIT 5
         "name": "werk_autor",
         "triggers": [
             "geschrieben", "verfasst", "autor von", "autorin von",
-            "produziert", "regie", "regisseur", "regisseurin",
+            "produziert", "regisseur", "regisseurin",
+            # GEBUNDEN: "regie" steckt in Regierung, Bundesregierung,
+            # regieren, Energie. Ueber 11.032 echte Claims gemessen traf
+            # es 116 Claims und in KEINEM davon als Wort — 89 davon
+            # gewann `werk_autor` das erste Match und fragte Wikidata nach
+            # dem Autor eines Werks, fuer Saetze wie "Sprit-Preise
+            # explodieren: Regierung profitiert". Dieselbe Klasse wie
+            # "dina" in KarDINAele (#283).
+            " regie ",
         ],
         "sparql": """
 SELECT DISTINCT ?work ?workLabel ?authorLabel ?directorLabel ?published
@@ -420,7 +436,12 @@ LIMIT 3
         "name": "person_partei",
         "triggers": [
             "partei", "parteimitglied", "parteizugehörigkeit",
-            "övp", "spö", "fpö", "grüne", "neos",
+            "övp", "fpö", "grüne", "neos",
+            # GEBUNDEN: gefaltet wird "spö" zu "spoe", und das steckt in
+            # niederlaendischem "spoedwet", "rampspoed", "Tesla-spoelen".
+            # Genau diese 6 Fehltreffer brachte die Faltung mit — ohne
+            # Bindung waere sie ein Rueckschritt gewesen.
+            " spö ",
         ],
         "sparql": """
 SELECT DISTINCT ?person ?personLabel ?partyLabel ?start ?end
@@ -439,6 +460,31 @@ LIMIT 5
 """,
     },
 ]
+
+
+#: Die Trigger einmal beim Import gefaltet — nicht je Claim. Geschrieben
+#: bleiben sie oben mit Umlauten, weil man sie so liest; verglichen wird
+#: gegen den ebenfalls gefalteten Claim (dieselbe Mechanik wie
+#: ``norm_terme`` in den 13 Laender-Diensten, #280).
+_TRIGGER_NORM: dict[str, tuple[str, ...]] = {
+    t["name"]: norm_terme(*t["triggers"]) for t in _TEMPLATES
+}
+
+
+def _trigger_trifft(claim_n: str, claim_w: str, trig: str) -> bool:
+    """Substring-Vergleich — fuer gebundene Trigger an Wortgrenzen.
+
+    Bewusst KEIN ``_flexion.trifft``: Das brachte Flexionstoleranz mit,
+    und die Template-Auswahl hat sie nie gehabt. Hier aendert sich nur
+    die Schreibweise und die Bindung, nicht die Semantik.
+
+    Ein gebundener Trigger wird gegen ``wortgrenzen_fassung`` geprueft,
+    damit auch Satzanfang, Satzende und Satzzeichen als Wortgrenze
+    zaehlen — ohne das waere Binden still Loeschen (#207).
+    """
+    if ist_gebunden(trig):
+        return trig in claim_w
+    return trig in claim_n
 
 
 def _geo_kandidaten(entities: list[str], template_name: str) -> list[str]:
@@ -486,15 +532,16 @@ def _detect_template_for_claim(
     if not claim:
         return None, {}
 
-    claim_lc = claim.lower()
+    claim_n = normalisiere(claim)
+    claim_w = wortgrenzen_fassung(claim_n)
     entities = (analysis or {}).get("entities", []) or []
     entities = [e for e in entities if e and len(e) >= 3]
     if not entities:
         return None, {}
 
     for tmpl in _TEMPLATES:
-        for trig in tmpl["triggers"]:
-            if trig in claim_lc:
+        for trig in _TRIGGER_NORM[tmpl["name"]]:
+            if _trigger_trifft(claim_n, claim_w, trig):
                 # Erste plausible Entity nehmen — die SPARQL-Templates
                 # sind so geschrieben, dass das Label exakt gematcht
                 # werden muss. Bei Geographie-Templates ist das das LAND,
