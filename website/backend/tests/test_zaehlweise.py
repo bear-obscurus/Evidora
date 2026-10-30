@@ -364,6 +364,12 @@ def test_ueber_trigger_sweep_ueber_alle_phrasings():
     KEINER wuerde ein markierter Fakt eine fremde Antwort abwerten. Der
     Sweep laeuft hier als Gate mit, nicht als Notiz — die Zahl aendert
     sich mit jeder neuen Formulierung.
+
+    ⚠️ Seit #288 bekommt ``_claim_ist_vergleichsfrage`` die Formulierung
+    in IHRER Schreibung — sonst prueft dieses Gate den neuen
+    Orthografie-Pfad gar nicht, weil der auf ein kleingeschriebenes
+    Original nicht anspringt. Eine gruene Suite haette hier nichts
+    bewiesen.
     """
     fakten = [(k, _fakt(d, k)) for d, k in MARKIERT]
     fremde = []
@@ -371,7 +377,7 @@ def test_ueber_trigger_sweep_ueber_alle_phrasings():
         for ph in f.get("claim_phrasings_handled") or []:
             if not isinstance(ph, str) or not ph.strip():
                 continue
-            ist_vgl = _claim_ist_vergleichsfrage(ph.lower())
+            ist_vgl = _claim_ist_vergleichsfrage(ph.lower(), ph)
             for k, mf in fakten:
                 if kennung == k or not ist_vgl:
                     continue

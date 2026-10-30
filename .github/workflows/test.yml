@@ -295,6 +295,24 @@ jobs:
     #                                  Ruht das Verdict NUR auf
     #                                  Gesamtlaengen-Zeilen, wird es
     #                                  unverifiable)
+    #   - test_superlativ_ueber_die_orthografie
+    #                                 (die Superlativ-Erkennung war eine
+    #                                  geschlossene Liste aus SECHS
+    #                                  Woertern — "laengste" fehlte, der
+    #                                  Zaehlweisen-Guard sah Fluss-Claims
+    #                                  nie (#287). Die naive Form
+    #                                  [a-z]+ste wurde gemessen und
+    #                                  VERWORFEN: 69 Woerter, meist
+    #                                  Substantive (Kosten, Polizisten,
+    #                                  Immunsystem, Briefkaesten) — die
+    #                                  dina-Klasse (#283). Es trennt die
+    #                                  GROSS-/Kleinschreibung, deshalb
+    #                                  laeuft die Pruefung auf dem
+    #                                  ORIGINALTEXT: 11.032 Claims 34 ->
+    #                                  61, null Substantiv-Treffer.
+    #                                  Verneinungs-Zweig gemessen und
+    #                                  NICHT angefasst (ein Treffer im
+    #                                  Korpus, in der Liste))
     #   - test_modell_wachhund       (Mistral-Mail 30.10.2026: prod faehrt
     #                                  mistral-medium-latest, und das IST
     #                                  mistral-medium-3-5 — Abschaltung
@@ -594,6 +612,7 @@ jobs:
             tests/test_muster_r_laufende_periode.py \
             tests/test_geographie_berg_fluss.py \
             tests/test_zaehlweisen_relevanz_und_fluss_rang.py \
+            tests/test_superlativ_ueber_die_orthografie.py \
             tests/test_modell_wachhund.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
