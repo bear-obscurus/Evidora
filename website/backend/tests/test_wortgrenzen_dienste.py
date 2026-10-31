@@ -226,3 +226,82 @@ def test_kein_gebundenes_token_hat_seine_raender_verloren():
     assert len(gebunden) >= 4, gebunden
     for t in gebunden:
         assert t.startswith(" ") and t.endswith(" "), t
+
+
+# ---------------------------------------------------------------------------
+# Nachtrag 31.10.2026: die drei Rest-Kandidaten aus #293
+#
+# ``sperre`` / ``spender`` / ``charge`` waren bewusst offen gelassen, weil
+# sie plausible echte Komposita haben (Chargensperre). Einzeln gemessen:
+#
+#     "sperre"   11 Treffer, ALLE fremd — AusgangsSPERRE(6),
+#                KontaktSPERREn(4), VollSPERREn(1)
+#     "spender"   3 Treffer, alle fremd — GeldSPENDERn, BlutSPENDER
+#     "charge"   14 Treffer, davon 4 als Wort — und AUCH die vier sind
+#                fremd: "lathi-charge on BJP workers", "a chargé le
+#                gouvernement", "charge virale", "en charge de la"
+#
+# ⭐ Bei ``charge`` half Binden ALLEIN nicht: Der einzige echte Treffer im
+# Korpus ist ein PLURAL — „Einige Chargen der Corona-Impfstoffe" —, und
+# den haette die Bindung verloren. Deshalb ist ``chargen`` dazugekommen
+# (gemessen 1 Treffer, 0 fremde). Die vier franzoesischen „charge"
+# bleiben; sie passieren das ``pharma UND austria``-Gate nicht.
+#
+# Die generischen Woerter trugen ohnehin nichts bei, weil die
+# einschlaegigen Formen direkt daneben stehen: spendersperre,
+# chargensperre, chargenrueckruf, samenspender, eizellspender.
+#
+# Sweep gegen HEAD: pharma 747 -> 726, **21 weg, 0 neu**. Alle 21
+# einzeln angesehen — Muelldeponie, E-Auto-Ladung, Handy-Guthaben,
+# Ausgangssperren. Auch „Kurz … beim Impf-Start gegen die Ausgangssperre
+# verstossen" ist kein Arzneimittel-Claim.
+
+@pytest.mark.parametrize("claim", [
+    # " sperre " — woertlich aus dem Korpus
+    "Bei Ausgangssperre darf man nicht in den eigenen Garten",
+    "In Deutschland sind umfassende Kontaktsperren für die Bürger in Kraft",
+    "Bundeskanzler Kurz hat beim Impf-Start gegen die Ausgangssperre "
+    "verstoßen.",
+    # " spender "
+    "Selenskyj betreibt Stiftung, die Geldspendern Gewinne verspricht.",
+    "Bis zu 50 Prozent der Blutspender haben eine Immunität gegen "
+    "Sars-CoV-2.",
+    # " charge "
+    "Cette vidéo montre un incendie dans la décharge de Ghazipur.",
+    "Une voiture électrique explose pendant son chargement.",
+    "Congress leader offers three months free recharge",
+    "The European Union charges 39% tariffs on imports",
+])
+def test_die_drei_restkandidaten_treffen_nichts_fremdes_mehr(claim):
+    assert not _pharma(claim), claim
+
+
+@pytest.mark.parametrize("claim", [
+    # Der PLURAL, den die Bindung allein verloren haette:
+    "Einige Chargen der Corona-Impfstoffe sind laut VAERS deutlich "
+    "tödlicher als andere.",
+    # Das Singular als ganzes Wort, und die Komposita daneben:
+    "Die Charge wurde zurückgerufen",
+    "Eine Chargensperre wurde verhängt",
+    "Die Chargennummer steht auf der Packung",
+    "Ein Chargenrückruf ist angeordnet",
+    "Ein Samenspender klagt gegen die Klinik",
+    "Eine Spendersperre gilt seit Montag",
+    # „gesperrt" war nie betroffen und muss bleiben:
+    "Der Impfstoff wurde gesperrt",
+])
+def test_die_pharma_begriffe_treffen_weiter(claim):
+    assert _pharma(claim), claim
+
+
+def test_das_generische_wort_war_redundant():
+    """Die einschlaegigen Formen stehen eigens in der Liste — deshalb hat
+    das Binden der generischen Woerter keinen Treffer gekostet."""
+    from services.basg import PHARMA_KEYWORDS
+    for spezifisch in ("spendersperre", "chargensperre", "chargenrueckruf",
+                       "samenspender", "eizellspender"):
+        assert spezifisch in PHARMA_KEYWORDS, spezifisch
+    for gebunden in (" sperre ", " spender ", " charge ", " lot "):
+        assert gebunden in PHARMA_KEYWORDS, gebunden
+    # Und der Plural, der die Bindung ausgleicht:
+    assert "chargen" in PHARMA_KEYWORDS

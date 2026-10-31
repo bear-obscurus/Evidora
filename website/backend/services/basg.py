@@ -58,13 +58,35 @@ PHARMA_KEYWORDS = norm_terme(*[
     "side effect", "side effects", "adverse event", "adverse reaction",
     # Sperren / Spender (Bug L: Cryos-Spender-Sperrungen sind häufig im
     # BASG-Feed — die ursprüngliche Liste hat das Vokabular nicht abgedeckt)
-    "gesperrt", "gesperrte", "sperre", "spendersperre", "chargensperre",
-    "spender", "spendergameten", "spendergamet", "samenspender", "eizellspender",
+    # GEBUNDEN, je Token gemessen:
+    #   "sperre"   11 Treffer, ALLE fremd — AusgangsSPERRE(6),
+    #              KontaktSPERREn(4), VollSPERREn(1): Corona-Massnahmen
+    #              und Strassensperren.
+    #   "spender"   3 Treffer, alle fremd — GeldSPENDERn(1) und zweimal
+    #              "BlutSPENDER … Immunitaet gegen Sars-CoV-2", eine
+    #              Serologie-Aussage, zu der BASG nichts hat.
+    # Beide generischen Woerter trugen nichts bei, weil die
+    # einschlaegigen Formen direkt daneben stehen (spendersperre,
+    # chargensperre, samenspender, eizellspender).
+    "gesperrt", "gesperrte", " sperre ", "spendersperre", "chargensperre",
+    " spender ", "spendergameten", "spendergamet", "samenspender",
+    "eizellspender",
     # Impfstoffe + Charge
     "impfstoff", "impfung", "impfdosen", "vaccine", "vaccination",
     # GEBUNDEN: "lot" (Pharma-Charge) steckt in LOThar(7), cLOTHes(5),
     # piLOTen(5), piLOT(4) — 69 Treffer, davon 1 als Wort.
-    "charge", "batch", " lot ",
+    # GEBUNDEN + Plural ergaenzt. Gemessen ueber 11.032 Claims: "charge"
+    # traf 14x, davon 4 als Wort — und AUCH die vier sind fremd:
+    # "lathi-charge on BJP workers", "a chargé le gouvernement", "charge
+    # virale", "en charge de la". Binden ALLEIN half hier also nicht; die
+    # zehn Substring-Treffer sind decharge, recharge, chargement,
+    # telechargee, charges.
+    # Der EINZIGE echte Treffer im Korpus ist ein PLURAL — "Einige
+    # Chargen der Corona-Impfstoffe" —, und den haette die Bindung
+    # verloren. Deshalb "chargen" dazu: gemessen 1 Treffer, 0 fremde.
+    # Die vier franzoesischen "charge" bleiben; sie passieren das
+    # `pharma UND austria`-Gate dieses Dienstes nicht.
+    " charge ", "chargen", "batch", " lot ",
     # Behörde
     # GEBUNDEN: "ema" (European Medicines Agency) steckt in thEMA(20),
     # niEMAnd(18), ehEMAlige(15), kEMAl(15) — 391 Treffer, davon 12 als
