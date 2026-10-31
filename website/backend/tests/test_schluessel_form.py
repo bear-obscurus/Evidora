@@ -128,14 +128,26 @@ def test_openaq_loggt_die_form_genau_einmal():
     assert quelle.count("logger.info(f\"OpenAQ: API-Key-Form") == 1
 
 
-def test_der_registereintrag_nennt_die_gemessene_ursache():
-    """Die alte Vermutung „vermutlich abgelaufen" ist durch die Messung
-    ersetzt — und die Reparatur ist EIN Zeichen, kein neuer Key."""
+def test_die_geschichte_des_befundes_bleibt_lesbar():
+    """Der Eintrag ist raus, weil die Quelle wieder laeuft — aber die
+    Ursache bleibt als Spur im Werkzeug. Sonst beginnt die naechste
+    401-Diagnose wieder bei einer Vermutung (#295).
+
+    Die alte Vermutung „vermutlich abgelaufen oder widerrufen" stand
+    sieben Wochen und war falsch; sie darf nicht als Erklaerung
+    stehenbleiben.
+    """
     sys.path.insert(0, os.path.join(BACKEND, "tools"))
     import quellen_lebenszeichen as QM
-    grund = QM.BEKANNT_DEFEKT["OpenAQ"]
-    assert "2026-10-31" in grund
-    assert "versprengtes Satzzeichen" in grund
-    assert "KEIN neuer Key" in grund
-    assert "vermutlich abgelaufen oder widerrufen" not in grund or \
-        "FALSCH" in grund
+    assert "OpenAQ" not in QM.BEKANNT_DEFEKT
+    import re
+    roh = open(QM.__file__, encoding="utf-8").read()
+    # Kommentarzeichen UND Umbrueche raus — sonst sind sie tragend.
+    quelle = re.sub(r"\s+", " ", re.sub(r"(?m)^\s*#\s?", "", roh))
+    assert "2026-10-31" in quelle
+    assert "versprengtes Satzzeichen" in quelle
+    assert "Invalid credentials" in quelle, (
+        "die Meldung, die Header-Fehler von Key-Fehler trennt")
+    i = quelle.index("versprengtes Satzzeichen")
+    assert "FALSCH" in quelle[max(0, i - 400):i], (
+        "die alte Vermutung muss als falsch markiert sein")
