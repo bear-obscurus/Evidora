@@ -347,6 +347,21 @@ jobs:
     #                                  FREMDES Wort faellt — praesident,
     #                                  kanzler, gruene, partei bleiben
     #                                  ungebunden, dort ist er gewollt)
+    #   - test_wortgrenzen_dienste   (Fortsetzung von #211 fuer die DIENSTE:
+    #                                  fuenf hielten sich fuer zustaendig,
+    #                                  weil ein Akronym in einem fremden
+    #                                  Wort steckte — " ris " 601 Treffer
+    #                                  und 0 als Wort (harRIS, paRIS,
+    #                                  chRIStmas), " geg " 526 (GEGen),
+    #                                  " aat " 416 (stAAT), " ema " 391
+    #                                  (thEMA), " nist " 310 (miNISTer).
+    #                                  Sweep gegen HEAD: 3.216 -> 993,
+    #                                  2.294 Fehltreffer weg. NICHT
+    #                                  gebunden, wo der Compound gewollt
+    #                                  ist: österreich, kanzler, impfung,
+    #                                  verbot, berlin. Der Sweep deckte
+    #                                  dabei eine LUECKE auf — "wien"
+    #                                  stand in keiner Markerliste)
     #   - test_polity5_aussage_grenze (QA50I #88: Claim ueber Polity5 wurde
     #                                  mit V-Dem widerlegt. Ungarn hat in
     #                                  Polity5 +10 (2010-2018, am Datensatz
@@ -635,6 +650,7 @@ jobs:
             tests/test_superlativ_ueber_die_orthografie.py \
             tests/test_modell_wachhund.py \
             tests/test_wikidata_trigger_schreibweise.py \
+            tests/test_wortgrenzen_dienste.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \

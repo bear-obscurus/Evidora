@@ -156,6 +156,22 @@ def ist_gebunden(term) -> bool:
     return isinstance(term, str) and (term[:1] == " " or term[-1:] == " ")
 
 
+def substring_mit_wortgrenze(claim_n: str, claim_w: str, term) -> bool:
+    """Reiner Substring-Vergleich — fuer gebundene Tokens an Wortgrenzen.
+
+    Das Gegenstueck zu ``trifft_mit_wortgrenze`` fuer Dienste, die NIE
+    Flexionstoleranz hatten. Wer sie hier einfuehrt, aendert die Semantik
+    aller Tokens dieses Dienstes auf einmal — das war in #292 der Grund,
+    es nicht zu tun.
+
+    ``claim_w`` ist ``wortgrenzen_fassung(claim_n)``; beides berechnet der
+    Aufrufer einmal je Claim.
+    """
+    if ist_gebunden(term):
+        return term in claim_w
+    return term in claim_n
+
+
 def trifft_mit_wortgrenze(claim_n: str, claim_w: str, term) -> bool:
     """``trifft`` — und fuer gebundene Tokens zaehlen auch Claim-Rand und
     Satzzeichen als Wortgrenze.

@@ -32,7 +32,9 @@ import time
 from xml.etree import ElementTree
 
 import httpx
+from services._flexion import substring_mit_wortgrenze, wortgrenzen_fassung
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -43,7 +45,7 @@ _feed_cache: list[dict] = []
 _cache_time: float = 0.0
 
 # Pharma-/Medizin-Keywords (DE + EN), die BASG-Trigger rechtfertigen.
-PHARMA_KEYWORDS = [
+PHARMA_KEYWORDS = norm_terme(*[
     # Allgemein
     "medikament", "medikamente", "arzneimittel", "arzneispezialität", "wirkstoff",
     "medication", "medicine", "drug", "pharmaceutical",
@@ -60,9 +62,14 @@ PHARMA_KEYWORDS = [
     "spender", "spendergameten", "spendergamet", "samenspender", "eizellspender",
     # Impfstoffe + Charge
     "impfstoff", "impfung", "impfdosen", "vaccine", "vaccination",
-    "charge", "batch", "lot",
+    # GEBUNDEN: "lot" (Pharma-Charge) steckt in LOThar(7), cLOTHes(5),
+    # piLOTen(5), piLOT(4) — 69 Treffer, davon 1 als Wort.
+    "charge", "batch", " lot ",
     # Behörde
-    "basg", "ema", "chmp", "dhpc",
+    # GEBUNDEN: "ema" (European Medicines Agency) steckt in thEMA(20),
+    # niEMAnd(18), ehEMAlige(15), kEMAl(15) — 391 Treffer, davon 12 als
+    # Wort. Der Treffer startete den Dienst DIREKT (ein `return True`).
+    "basg", " ema ", "chmp", "dhpc",
     # Medizinprodukte
     "medizinprodukt", "medizinprodukte", "medical device",
     # Apotheke / Vertrieb
@@ -70,7 +77,7 @@ PHARMA_KEYWORDS = [
     "vertriebseinschränkung", "lieferengpass", "shortage",
     # Pharmakovigilanz
     "pharmakovigilanz", "pharmacovigilance",
-]
+])
 
 # Ressort-Keywords im News-GUID — wir filtern auf substanzielle News-Items
 NEWS_GUID_PREFIXES = ("tx_news_domain_model_news_",)
@@ -169,8 +176,14 @@ async def fetch_basg(client: httpx.AsyncClient | None = None) -> list[dict]:
 
 def _claim_mentions_pharma(claim: str, analysis: dict | None = None) -> bool:
     """Check if claim mentions pharma/safety keywords or NER detected a drug entity."""
-    claim_lower = claim.lower()
-    if any(kw in claim_lower for kw in PHARMA_KEYWORDS):
+    # Verglichen wird gegen den NORMALISIERTEN Claim; die Keywords sind
+    # unten einmalig durch norm_terme gezogen. Das macht die gebundenen
+    # Akronyme ueberhaupt erst tragfaehig: "EMA-Zulassung" wird zu "ema
+    # zulassung" und trifft weiter, waehrend "Thema" draussen bleibt.
+    claim_n = normalisiere(claim or "")
+    claim_w = wortgrenzen_fassung(claim_n)
+    if any(substring_mit_wortgrenze(claim_n, claim_w, kw)
+           for kw in PHARMA_KEYWORDS):
         return True
     if analysis is not None:
         ner = analysis.get("ner_entities", {}) or {}
@@ -179,10 +192,20 @@ def _claim_mentions_pharma(claim: str, analysis: dict | None = None) -> bool:
     return False
 
 
+#: Gefaltet, damit "Oesterreich" trifft. Ungebunden: "oesterreich"
+#: steckt nur in oesterreichisch(e/en) — gewollt.
+_AT_MARKER = norm_terme("österreich", "austria", "basg")
+
+
 def _claim_mentions_austria(analysis: dict) -> bool:
     """Heuristic: claim has Austria context."""
-    claim_lower = analysis.get("claim", "").lower()
-    if "österreich" in claim_lower or "austria" in claim_lower or "basg" in claim_lower:
+    # Dieselbe Faltung wie in der Pharma-Haelfte: Ohne sie erreicht
+    # "Oesterreich" diesen Marker nicht (#280). Das Gate aus #280 hat
+    # diese Stelle sichtbar gemacht, als die Datei durch die
+    # Pharma-Aenderung erstmals in seinen Blick kam.
+    claim_n = normalisiere(analysis.get("claim", "") or "")
+    claim_w = wortgrenzen_fassung(claim_n)
+    if any(substring_mit_wortgrenze(claim_n, claim_w, m) for m in _AT_MARKER):
         return True
     countries = analysis.get("ner_entities", {}).get("countries", [])
     return any("österreich" in c.lower() or "austria" in c.lower() for c in countries)

@@ -50,7 +50,7 @@ from urllib.parse import quote
 
 from services._http_polite import polite_client
 from services._ausfall import melde_ausfall, melde_http_ausfall
-from services._flexion import ist_gebunden, wortgrenzen_fassung
+from services._flexion import substring_mit_wortgrenze, wortgrenzen_fassung
 from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
@@ -471,20 +471,10 @@ _TRIGGER_NORM: dict[str, tuple[str, ...]] = {
 }
 
 
-def _trigger_trifft(claim_n: str, claim_w: str, trig: str) -> bool:
-    """Substring-Vergleich — fuer gebundene Trigger an Wortgrenzen.
-
-    Bewusst KEIN ``_flexion.trifft``: Das brachte Flexionstoleranz mit,
-    und die Template-Auswahl hat sie nie gehabt. Hier aendert sich nur
-    die Schreibweise und die Bindung, nicht die Semantik.
-
-    Ein gebundener Trigger wird gegen ``wortgrenzen_fassung`` geprueft,
-    damit auch Satzanfang, Satzende und Satzzeichen als Wortgrenze
-    zaehlen — ohne das waere Binden still Loeschen (#207).
-    """
-    if ist_gebunden(trig):
-        return trig in claim_w
-    return trig in claim_n
+#: Seit #293 der geteilte Helfer aus ``_flexion`` — vorher stand hier eine
+#: eigene Kopie. Bewusst KEIN ``trifft``: Das braechte Flexionstoleranz
+#: mit, und die Template-Auswahl hat sie nie gehabt.
+_trigger_trifft = substring_mit_wortgrenze
 
 
 def _geo_kandidaten(entities: list[str], template_name: str) -> list[str]:
