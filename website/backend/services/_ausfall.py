@@ -67,6 +67,47 @@ def melde_ausfall(logger, dienst: str, nachricht: str) -> None:
 NICHT_GEFUNDEN = frozenset({404, 410})
 
 
+def schluessel_form(wert: str) -> str:
+    """Die FORM eines Schluessels, nie sein Wert.
+
+    Anlass: OpenAQ lieferte sieben Wochen HTTP 401, und der Eintrag im
+    Wächter-Register riet „vermutlich abgelaufen oder widerrufen".
+    Gemessen am 31.10.2026 war der Schluessel in Ordnung — in der
+    `.env` stand EIN versprengtes Satzzeichen davor (65 Zeichen statt
+    64). Mit entferntem ersten Zeichen antwortete die API sofort mit
+    HTTP 200.
+
+    Zwei Fehlermeldungen haetten das von Anfang an getrennt:
+
+        ohne Key   "A valid API key must be provided in the
+                    X-API-Key header"      -> unser Header ist falsch
+        mit Key    {"detail":"Invalid credentials"}
+                                           -> der Key wird abgewiesen
+
+    Diese Funktion macht die dritte Frage beantwortbar — hat der Key
+    ueberhaupt die richtige GESTALT? — ohne ein Geheimnis ins Log zu
+    schreiben. Ausgegeben werden nur Laenge und Zeichenklassen; der
+    Wert selbst kommt NIE vor (Lehre aus #153 Log-Redaktion und #237,
+    wo ein Alarm-Topic im Log stand).
+
+    >>> schluessel_form("abc123")
+    'Laenge 6, hex'
+    >>> schluessel_form("%" + "a" * 64)
+    'Laenge 65, 1 Zeichen ausserhalb hex (Position 0)'
+    """
+    if not wert:
+        return "nicht gesetzt"
+    fremd = [i for i, c in enumerate(wert)
+             if c not in "0123456789abcdefABCDEF"]
+    if not fremd:
+        return f"Laenge {len(wert)}, hex"
+    if all(c.isalnum() for c in wert):
+        return f"Laenge {len(wert)}, alphanumerisch"
+    stellen = ", ".join(str(i) for i in fremd[:4])
+    return (f"Laenge {len(wert)}, {len(fremd)} Zeichen ausserhalb hex "
+            f"(Position {stellen})")
+
+
 def melde_http_ausfall(logger, dienst: str, status, nachricht: str) -> None:
     """Fuer Statuscode-Zweige: wie `melde_ausfall`, aber 404/410 bleiben still.
 

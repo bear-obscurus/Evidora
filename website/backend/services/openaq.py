@@ -49,11 +49,18 @@ from datetime import datetime
 from typing import Any
 
 from services._http_polite import polite_client
-from services._ausfall import melde_ausfall, melde_http_ausfall
+from services._ausfall import (
+    melde_ausfall,
+    melde_http_ausfall,
+    schluessel_form,
+)
 
 logger = logging.getLogger("evidora")
 
 OPENAQ_BASE = "https://api.openaq.org/v3"
+
+#: Die Key-Form wird einmal je Prozess geloggt, nicht je Abfrage.
+_FORM_GEMELDET = False
 OPENAQ_LOCATIONS = OPENAQ_BASE + "/locations"
 OPENAQ_LOCATION_LATEST = OPENAQ_BASE + "/locations/{location_id}/latest"
 
@@ -504,6 +511,16 @@ async def search_openaq(analysis: dict) -> dict:
         return empty
 
     api_key = os.getenv("OPENAQ_API_KEY", "").strip()
+    # Die FORM des Schluessels EINMAL beim ersten Gebrauch nennen — nie
+    # den Wert. Am 31.10.2026 stand in der .env ein versprengtes
+    # Satzzeichen vor dem Schluessel (65 Zeichen statt 64 hex); die API
+    # antwortete sieben Wochen mit 401, und das Register riet
+    # „vermutlich abgelaufen". Mit dieser Zeile im Log waere die
+    # Diagnose eine Minute gewesen.
+    global _FORM_GEMELDET
+    if api_key and not _FORM_GEMELDET:
+        _FORM_GEMELDET = True
+        logger.info(f"OpenAQ: API-Key-Form — {schluessel_form(api_key)}")
     if not api_key:
         logger.warning(
             "OpenAQ: OPENAQ_API_KEY env-var nicht gesetzt — "

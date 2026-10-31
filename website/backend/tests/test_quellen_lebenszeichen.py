@@ -439,11 +439,21 @@ def test_403_wird_nicht_wiederholt(monkeypatch):
 
 
 def test_openaq_befund_nennt_den_weg_zurueck():
-    """Der einzige der fünf Befunde, der auf UNSERER Seite behebbar ist —
-    das muss im Eintrag stehen, sonst bleibt er liegen."""
+    """Der einzige der Befunde, der auf UNSERER Seite behebbar ist — das
+    muss im Eintrag stehen, sonst bleibt er liegen.
+
+    ⚠️ Dieser Test verlangte bis zum 31.10.2026 „openaq.org" im Text,
+    weil der Eintrag einen NEUEN Key empfahl. Gemessen ist der Key
+    gueltig; davor stand ein versprengtes Satzzeichen. Der Weg zurueck
+    ist jetzt ein ANDERER (ein Zeichen in der .env), also prueft der
+    Test seine ABSICHT weiter und nicht den alten Wortlaut: Es muss ein
+    konkreter, ausfuehrbarer Weg dastehen.
+    """
     grund = QM.BEKANNT_DEFEKT["OpenAQ"]
     assert "BEHEBBAR AUF UNSERER SEITE" in grund
-    assert "openaq.org" in grund and ".env" in grund
+    assert ".env" in grund
+    assert "OPENAQ_API_KEY" in grund, "der betroffene Eintrag muss benannt sein"
+    assert "deploy.sh" in grund, "und was danach zu tun ist"
 
 
 # --------------------------------------------------------------------------

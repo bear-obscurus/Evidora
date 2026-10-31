@@ -573,10 +573,22 @@ BEKANNT_DEFEKT = {
         "WIEDER AUFNEHMEN, sobald die Sonde aus dem Container 200 liefert."),
     "OpenAQ": (
         "2026-09-07: HTTP 401 mit dem in .env hinterlegten OPENAQ_API_KEY, "
-        "auf /v3/parameters UND /v3/locations, vom Prod-Host geprueft. Der "
-        "Key ist gesetzt (65 Zeichen), wird aber abgewiesen — vermutlich "
-        "abgelaufen oder widerrufen. BEHEBBAR AUF UNSERER SEITE: neuen Key "
-        "unter openaq.org anfordern und in .env eintragen. "
+        "auf /v3/parameters UND /v3/locations, vom Prod-Host geprueft. "
+        "⚠️ URSACHE AM 2026-10-31 GEMESSEN — die alte Vermutung "
+        "('vermutlich abgelaufen oder widerrufen') war FALSCH und stand "
+        "sieben Wochen: Der Schluessel ist gueltig, aber in der .env "
+        "steht EIN versprengtes Satzzeichen davor. 65 Zeichen statt 64 "
+        "hex — die Zahl stand in dieser Notiz, nur hat niemand 65 gegen "
+        "64 gerechnet. Mit entferntem ERSTEM Zeichen antwortet "
+        "/v3/parameters sofort mit HTTP 200. "
+        "Zwei Fehlermeldungen trennen die Faelle: ohne Key sagt die API "
+        "'A valid API key must be provided in the X-API-Key header' "
+        "(Header falsch), mit unserem Key '{\"detail\":\"Invalid "
+        "credentials\"}' (Key abgewiesen) — unser Header-Name ist also "
+        "korrekt, das Schema unveraendert. "
+        "BEHEBBAR AUF UNSERER SEITE, EIN ZEICHEN: in /opt/Evidora/"
+        "website/.env das erste Zeichen des Wertes von OPENAQ_API_KEY "
+        "loeschen, dann deploy.sh. KEIN neuer Key noetig. "
         "WIEDER AUFNEHMEN, sobald die Sonde 200 liefert."),
     "AI Incident Database": (
         "2026-09-07: HTTP 403 auf POST /api/graphql, reproduziert vom "
