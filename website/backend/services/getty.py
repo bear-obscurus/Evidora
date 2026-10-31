@@ -52,7 +52,11 @@ from functools import lru_cache
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
-from services._flexion import trifft as _flexion_trifft
+from services._flexion import (
+    trifft as _flexion_trifft,
+    trifft_mit_wortgrenze,
+    wortgrenzen_fassung,
+)
 from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
@@ -82,9 +86,16 @@ _CACHE_TTL_S = 24 * 3600.0  # 24 h
 # Explizite Quelle-Mentions (immer triggern)
 _EXPLICIT_TERMS = norm_terme(
     "getty", "getty vocabularies", "getty vocabulary",
-    "aat", "art and architecture thesaurus",
-    "tgn", "thesaurus of geographic names",
-    "ulan", "union list of artist names",
+    # GEBUNDEN, ueber 11.032 echte Claims gemessen (30.10.2026):
+    #   "aat"   416 frei / 0 gebunden: stAAT(66), nl. gAAT(41)/lAAT(35),
+    #           geplAATst(14), klimAATverandering(12)
+    #   "ulan"   17 / 0: hierzULANde(4), ambULANce(3), circULANt(3)
+    # "tgn" hat 0 Korpus-Treffer — gebunden als LATENTER Fall, wie die
+    # Kurz-Tokens in #211: ein Drei-Buchstaben-Akronym ohne eigenes
+    # Wortfeld wartet nur auf den ersten Claim, der es trifft.
+    " aat ", "art and architecture thesaurus",
+    " tgn ", "thesaurus of geographic names",
+    " ulan ", "union list of artist names",
 )
 
 # Kunst-Stile / Epochen (DE + EN)
@@ -121,7 +132,11 @@ _MATERIAL_TECHNIK = norm_terme(
     "aquarell", "watercolor", "watercolour",
     "ölgemälde", "oil painting",
     "fresko", "fresco",
-    "tempera",
+    # GEBUNDEN: "tempera" steckt in TEMPERAturen(14), TEMPERAtures(6),
+    # TEMPERAtuur(3) — 34 Treffer, 0 als Wort. Die Maltechnik gegen die
+    # Lufttemperatur; alle 34 waren Klima-Claims, die im
+    # Kunst-Vokabular-Dienst landeten.
+    " tempera ",
     "bronze-plastik", "bronze sculpture", "bronzeplastik",
     "marmor-skulptur", "marble sculpture",
     "tafelbild",
@@ -156,7 +171,14 @@ _HIST_GEO = norm_terme(
 
 
 def _has_any(claim_lc: str, terms: tuple[str, ...]) -> bool:
-    return any(_flexion_trifft(claim_lc, t) for t in terms)
+    """Trifft eines der Terme? Gebundene Terme nur als ganzes Wort.
+
+    Der Tausch auf ``trifft_mit_wortgrenze`` ist fuer ALLE Listen sicher:
+    ein Term ohne Rand-Leerzeichen verhaelt sich unveraendert. Nur die
+    Terme, die oben ausdruecklich gebunden sind, aendern ihr Verhalten.
+    """
+    claim_w = wortgrenzen_fassung(claim_lc)
+    return any(trifft_mit_wortgrenze(claim_lc, claim_w, t) for t in terms)
 
 
 def _claim_mentions_getty(claim_lc: str) -> bool:

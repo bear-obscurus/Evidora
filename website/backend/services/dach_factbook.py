@@ -112,7 +112,14 @@ def _claim_mentions_buergergeld(claim_lc: str) -> bool:
 
 _HEIZUNG_TERMS = norm_terme(
     "heizungsgesetz",
-    "gebäudeenergiegesetz", "geg",
+    # GEBUNDEN: "geg" (Gebaeudeenergiegesetz) steckt in GEGen(333),
+    # GEGeben(26), GEGner(22), anGEGeben(19), hinGEGen(16) — ueber 11.032
+    # echte Claims gemessen 526 Treffer, davon 0 als Wort. Ein Akronym
+    # ohne eigenes Wortfeld; dieselbe Klasse wie " eter " (#207). Die
+    # Nachbarzeile `_AHV_TERMS` loest dasselbe noch von Hand mit zwei
+    # Rand-Varianten ("ahv ", " ahv") — hier reicht eine, weil
+    # `trifft_mit_wortgrenze` auch Satzanfang und -ende als Grenze zaehlt.
+    "gebäudeenergiegesetz", " geg ",
     "gebäudemodernisierungsgesetz",
     "habeck heizung", "habeck wohn",
     "65-prozent-regel", "65 prozent regel",
@@ -122,7 +129,9 @@ _HEIZUNG_TERMS = norm_terme(
 
 
 def _claim_mentions_heizung(claim_lc: str) -> bool:
-    has_term = any(_flexion_trifft(claim_lc, t) for t in _HEIZUNG_TERMS)
+    claim_w = wortgrenzen_fassung(claim_lc)
+    has_term = any(trifft_mit_wortgrenze(claim_lc, claim_w, t)
+                   for t in _HEIZUNG_TERMS)
     if has_term:
         return True
     return False
@@ -446,7 +455,11 @@ def claim_mentions_dach_factbook_cached(claim: str) -> bool:
 # Static load (mtime-aware, hot-reloads on edit)
 # ---------------------------------------------------------------------------
 from services._static_cache import load_json_mtime_aware as _hot_load
-from services._flexion import trifft as _flexion_trifft
+from services._flexion import (
+    trifft as _flexion_trifft,
+    trifft_mit_wortgrenze,
+    wortgrenzen_fassung,
+)
 
 
 

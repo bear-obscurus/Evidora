@@ -40,7 +40,9 @@ import time
 from urllib.parse import urlencode
 
 import httpx
+from services._flexion import substring_mit_wortgrenze, wortgrenzen_fassung
 from services._http_polite import polite_client
+from services._schreibweise import normalisiere, norm_terme
 
 logger = logging.getLogger("evidora")
 
@@ -130,7 +132,7 @@ CONSTITUTIONAL_LAWS = {"b-vg", "stgg"}
 # Legal-Domain-Keywords — claims, die mit höherer Wahrscheinlichkeit
 # einen Gesetzesbezug haben. Englische Pendants für mehrsprachige
 # Behauptungen ergänzt.
-LEGAL_KEYWORDS = [
+LEGAL_KEYWORDS = norm_terme(*[
     # Gesetzes-Vokabular
     "gesetz", "gesetze", "gesetzlich", "law", "laws", "legal",
     "bundesgesetz", "bundesgesetzblatt", "bgbl",
@@ -191,7 +193,7 @@ LEGAL_KEYWORDS = [
     "lehrerausbildung", "lehrerinnenausbildung", "lehramtsstudium",
     "pädagogische hochschule",
     "häuslicher unterricht", "externistenprüfung",
-]
+])
 
 # Stop-Tokens für die Such-Term-Extraktion (zu generisch für RIS-Suche)
 STOP_TOKENS = {
@@ -212,33 +214,65 @@ MAX_RESULTS = 4
 
 
 def _claim_mentions_legal(claim: str) -> bool:
-    """Check if claim mentions legal-domain keywords."""
-    claim_lower = claim.lower()
-    return any(kw in claim_lower for kw in LEGAL_KEYWORDS)
+    """Check if claim mentions legal-domain keywords.
+
+    Gefaltet wie die AT-Marker. Das Gate aus #280 hat diese Stelle
+    sichtbar gemacht, als die Datei durch die Marker-Aenderung erstmals
+    in seinen Blick kam — vorher pruefte es nur Dateien mit
+    ``norm_terme``.
+    """
+    claim_n = normalisiere(claim or "")
+    claim_w = wortgrenzen_fassung(claim_n)
+    return any(substring_mit_wortgrenze(claim_n, claim_w, kw)
+               for kw in LEGAL_KEYWORDS)
 
 
 # Bug R: AT-spezifische Marker, die eindeutig Österreich kennzeichnen.
 # „ORF" ist eindeutig AT (deutsche/schweizer Rundfunkanstalten heißen
 # anders). „Volkskanzler" und „freiheitlicher Kanzler" sind FPÖ-/AT-
 # Begriffe.  „Klubobmann/Klubobfrau" ist AT-parlamentarische Sprache.
-_AT_HARD_MARKERS = (
+_AT_HARD_MARKERS = norm_terme(
     "österreich", "austria", "österreichisch",
-    "ris", "bgbl", "b-vg",
-    "abgb", "stgb", "stpo", "asvg", "mrg", "asylg", "fpg",
+    # GEBUNDEN — ueber 11.032 echte Claims gemessen (30.10.2026):
+    #   "ris"   601 frei / 0 gebunden: harRIS(71), paRIS(43), chRIStian(27),
+    #           corona-kRISe(24). Ein Behoerden-Akronym ohne eigenes
+    #           Wortfeld — dieselbe Klasse wie " eter " in #207.
+    #   "stgb"    4 / 3: DStGB ist der DEUTSCHE Staedte- und Gemeindebund,
+    #           also gerade kein AT-Marker.
+    #   "schog"   1 / 0: SCHOGetten.
+    " ris ", "bgbl", "b-vg",
+    "abgb", " stgb ", "stpo", "asvg", "mrg", "asylg", "fpg",
     # Schul- & Lehrer-Dienstrecht: eindeutig AT-spezifische Acronyme
     # (DE hat keine SchUG/SchOG/SchPflG/SchZG, kein BD-EG, kein LLVG;
     # BDG/VBG/GehG/PG mit AT-Jahreszahlen). Diese zählen als AT-Kontext,
     # damit Claims wie „§ 14 SchOG regelt …" auch ohne explizites
     # „Österreich" RIS triggern.
-    "schug", "schog", "schpflg", "schzg", "bd-eg", "bdeg", "llvg",
+    "schug", " schog ", "schpflg", "schzg", "bd-eg", "bdeg", "llvg",
     "schulunterrichtsgesetz", "schulorganisationsgesetz",
     "schulpflichtgesetz", "schulzeitgesetz",
     "bildungsdirektionen-einrichtungsgesetz",
     "landeslehrer-dienstrechtsgesetz",
     "bdg 1979", "vbg 1948", "gehg 1956", "pg 1965",
     "pensionsgesetz 1965", "vertragsbedienstetengesetz 1948",
-    "orf",  # AT-only Rundfunk
+    # GEBUNDEN: "orf" steckt in VORFall(10), VORFeld(7), VORGeworfen(5),
+    # VORFaelle(4) — 55 von 62 Treffern waren fremd. Der gewollte Treffer
+    # ueberlebt, weil der NORMALISIERTE Claim den Bindestrich zum
+    # Leerzeichen macht: "ORF-Beitrag" -> "orf beitrag". Ohne das waere
+    # Binden still Loeschen (#207) — und "ORF-Beitrag" ist ein Kernthema
+    # dieses Dienstes (siehe _TERM_SYNONYMS).
+    " orf ",
     "volkskanzler", "freiheitlicher kanzler", "freiheitliche kanzler",
+    # Der Sweep zu den gebundenen Akronymen hat diese LUECKE aufgedeckt:
+    # "wien" stand in KEINER Markerliste. Zwei echte AT-Claims hingen
+    # bis dahin an einem Zufallstreffer ("Terroranschlag in Wien" ueber
+    # paRIS, "Verwaltungsgericht Wien" ueber kRISe) — die Bindung hat
+    # keinen Treffer zerstoert, sondern die Luecke sichtbar gemacht.
+    # UNGEBUNDEN, gemessen: 45 frei / 36 gebunden, die Differenz ist
+    # "wiener"(10) und Satzzeichen — kein Fremdwort enthaelt "wien".
+    # Alle 40 neu erkannten Claims von Hand geprueft: Wiener Linien,
+    # Wiener Wohnen, MedUni Wien, Bundesheer, WEGA, Wien-Wahl. Kein
+    # Fehltreffer.
+    "wien",
     "nationalrat", "bundesrat",  # AT-Parlament (DE/CH-Bundesrat in
     # diesen Claims selten, aber wenn DE-Marker auch da → unten geblockt)
     "klubobmann", "klubobfrau", "klubobleute",
@@ -246,14 +280,14 @@ _AT_HARD_MARKERS = (
 
 # Bug S: Politische System-Tokens, die in AT *und* DE auftreten —
 # nur als AT zählen, wenn KEIN DE-Marker im Claim ist.
-_AT_SOFT_TOKENS = (
+_AT_SOFT_TOKENS = norm_terme(
     "kanzler", "bundeskanzler", "bundespräsident", "bundespraesident",
     "kanzleramt", "regierungsbildung", "regierungsbildner",
 )
 
 # Wenn diese DE-spezifischen Marker im Claim auftauchen, ist es eine
 # Deutschland-Aussage — kein AT-RIS-Trigger.
-_DE_MARKERS = (
+_DE_MARKERS = norm_terme(
     "grundgesetz", " gg ", " gg.", "art. 63 gg", "artikel 63 gg",
     "bundestag", "bundespräsidialamt",
     "bundesrepublik deutschland", "deutsche bundeskanzlerin",
@@ -273,18 +307,27 @@ def _claim_mentions_austria(analysis: dict) -> bool:
        in absence of a DE-cue we default to AT.
     4. NER fallback: if NER detected Österreich/Austria.
     """
-    claim_lower = analysis.get("claim", "").lower()
+    # Verglichen wird gegen den NORMALISIERTEN Claim (Umlaute gefaltet,
+    # Trennzeichen zu Leerzeichen); die Marker sind oben einmalig durch
+    # norm_terme gezogen. Das macht "Oesterreich" und "ORF-Beitrag"
+    # erreichbar — und es ist die Voraussetzung dafuer, dass die
+    # gebundenen Akronyme ihren gewollten Treffer behalten.
+    claim_n = normalisiere(analysis.get("claim", "") or "")
+    claim_w = wortgrenzen_fassung(claim_n)
+
+    def _trifft(term):
+        return substring_mit_wortgrenze(claim_n, claim_w, term)
 
     # 1. DE-Marker ⇒ nicht AT
-    if any(de in claim_lower for de in _DE_MARKERS):
+    if any(_trifft(de) for de in _DE_MARKERS):
         return False
 
     # 2. Hard AT-Marker
-    if any(at in claim_lower for at in _AT_HARD_MARKERS):
+    if any(_trifft(at) for at in _AT_HARD_MARKERS):
         return True
 
     # 3. Soft AT-Marker (politisches System ohne DE-Cue)
-    if any(soft in claim_lower for soft in _AT_SOFT_TOKENS):
+    if any(_trifft(soft) for soft in _AT_SOFT_TOKENS):
         return True
 
     # 4. NER-Fallback

@@ -50,7 +50,11 @@ from urllib.parse import quote
 
 from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
-from services._flexion import trifft as _flexion_trifft
+from services._flexion import (
+    trifft as _flexion_trifft,
+    trifft_mit_wortgrenze,
+    wortgrenzen_fassung,
+)
 from services._ausfall import melde_ausfall, melde_http_ausfall
 
 logger = logging.getLogger("evidora")
@@ -108,8 +112,15 @@ _PRODUCT_CPE_MAP: dict[str, tuple[str, str]] = {
 
 # Keyword-Set: löst NVD-Suche aus, wenn KEIN bekanntes Produkt erkannt wird.
 _NVD_EXPLICIT_TERMS = norm_terme(
-    "nist", "nvd", "national vulnerability database",
-    "cvss", "cvss-score", "cvss score",
+    # GEBUNDEN, ueber 11.032 echte Claims gemessen (30.10.2026):
+    #   "nist"  310 frei / 0 gebunden: miNISTer(93), miNISTre(27),
+    #           gesundheitsmiNISTer(17), afghaNISTan. Der Treffer startete
+    #           den Dienst DIREKT.
+    #   "nvd"     2 / 0: (pNVD), coNVD — niederlaendische Abkuerzungen.
+    #   "cvss" hat 0 Korpus-Treffer, wird aber als LATENTER Fall mit
+    #           gebunden (#211): vier Buchstaben ohne eigenes Wortfeld.
+    " nist ", " nvd ", "national vulnerability database",
+    " cvss ", "cvss-score", "cvss score",
     "cisa kev", "cisa-kev", "kev-liste", "kev list",
     "known exploited vulnerability", "known exploited vulnerabilities",
 )
@@ -156,7 +167,9 @@ def _claim_mentions_nvd(claim_lc: str) -> bool:
     # Harter Trigger: CVE-Regex oder NIST-/NVD-/CVSS-Begriffe
     if _CVE_REGEX.search(claim_lc):
         return True
-    if any(_flexion_trifft(claim_lc, t) for t in _NVD_EXPLICIT_TERMS):
+    claim_w = wortgrenzen_fassung(claim_lc)
+    if any(trifft_mit_wortgrenze(claim_lc, claim_w, t)
+           for t in _NVD_EXPLICIT_TERMS):
         return True
     # Composite: Produkt + Severity-/KEV-Keyword
     if _has_product_token(claim_lc):
