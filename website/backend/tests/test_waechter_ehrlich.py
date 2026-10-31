@@ -335,3 +335,78 @@ def test_kein_tool_druckt_die_webhook_url_im_klartext():
                                         "{self.alert_webhook}")):
                 verdaechtig.append(f"{pfad.name}:{nr}")
     assert not verdaechtig, verdaechtig
+
+
+# --------------------------------------------------------------------------
+# 4. WHO GHO ist tot, WHO Europe lebt wieder (31.10.2026)
+# --------------------------------------------------------------------------
+#
+# ntfy meldete "WHO GHO (who) HTTP 500". Nachgemessen: fuenf Tagelaeufe in
+# Folge (27.-31.10.), davor OK; HTTP 500 auf /api, /api/Indicator,
+# /api/WHOSIS_000001 und /api/$metadata, reproduziert vom Entwickler-Mac
+# UND vom Prod-Host.
+#
+# ⚠️ Es wurde NICHT auf einen Ersatz umgebogen. WHOs eigene Doku nennt
+# weiter genau diesen Host und keine Abkuendigung; Dritte berichten von
+# einer Abloesung durch den World Health Data Hub, deren Link aber ein
+# Platzhalter ist. Und die xMart-API antwortet auf JEDEN Pfad mit HTTP 200
+# und "View GHO not found" im Rumpf — ein falscher Freund, genau die
+# #235/#277-Falle.
+#
+# WHO Europe ist im selben Lauf zurueckgekommen: WHO hat am 26.10. ein
+# neues Zertifikat ausgerollt (Sectigo DV R36, bis 2027-05-12), diesmal
+# mit vollstaendiger Kette. Vier Laeufe in Folge gruen, live wieder Daten.
+
+def test_who_gho_ist_bekannt_defekt_mit_datum_und_bedingung():
+    grund = QM.BEKANNT_DEFEKT["WHO GHO"]
+    assert "2026-10-27" in grund
+    assert "WIEDER AUFNEHMEN" in grund
+
+
+def test_who_gho_begruendung_nennt_beide_gegenproben():
+    """Ein 500 nur vom Prod-Host hiesse „unsere IP" (Getty-Klasse). Erst
+    die zweite Stelle zeigt, dass es WHOs Ausfall ist."""
+    grund = QM.BEKANNT_DEFEKT["WHO GHO"]
+    assert "Entwickler-Mac" in grund
+    assert "Prod-Host" in grund
+
+
+def test_who_gho_begruendung_haelt_den_falschen_freund_fest():
+    """Die xMart-API liefert auf jeden Pfad 200 mit „not found" im Rumpf.
+    Ohne diese Notiz biegt der naechste Durchgang den Konnektor darauf
+    um — HTTP 200 heisst nicht, dass die Seite da ist (#235/#277)."""
+    grund = QM.BEKANNT_DEFEKT["WHO GHO"]
+    assert "xMart" in grund
+    assert "200" in grund
+
+
+def test_kein_geratener_ersatz_endpunkt():
+    """Solange WHO keinen Nachfolger DOKUMENTIERT, bleibt der Konnektor
+    auf dem alten Host — erreichbar ist nicht dasselbe wie richtig
+    (#248)."""
+    import services.who as who
+    assert who.BASE_URL == "https://ghoapi.azureedge.net/api"
+    grund = QM.BEKANNT_DEFEKT["WHO GHO"]
+    assert "DOKUMENTIERT" in grund
+
+
+def test_who_gho_sonde_bleibt_stehen():
+    assert any(s[0] == "WHO GHO" for s in QM.SONDEN)
+
+
+def test_who_europe_ist_wieder_draussen():
+    """Behoben, weil WHO am 26.10. ein neues Zertifikat mit
+    vollstaendiger Kette ausgerollt hat. Vier Laeufe in Folge gruen."""
+    assert "WHO Europe (Health for All)" not in QM.BEKANNT_DEFEKT
+    assert any("WHO Europe" in s[0] for s in QM.SONDEN), (
+        "die Sonde muss bleiben, sonst merkt niemand den naechsten Ausfall")
+
+
+def test_die_geschichte_der_behobenen_quelle_bleibt_lesbar():
+    """Ein geloeschter Eintrag nimmt seine Begruendung mit. Der Grund,
+    WARUM WHO Europe wieder laeuft, steht deshalb als Kommentar im
+    Werkzeug — sonst beginnt die naechste Diagnose bei null."""
+    import os
+    quelle = open(QM.__file__, encoding="utf-8").read()
+    assert "BEHOBEN und deshalb hier NICHT mehr gelistet" in quelle
+    assert "2026-10-26" in quelle, "das Datum des neuen Zertifikats"

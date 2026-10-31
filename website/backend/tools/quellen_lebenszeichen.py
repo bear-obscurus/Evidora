@@ -529,14 +529,42 @@ SONDEN = [
 # KEINEN Push aus. Aufnahme nur mit geprueftem Grund UND einer Bedingung,
 # unter der der Eintrag wieder verschwindet.
 # --------------------------------------------------------------------------
+# BEHOBEN und deshalb hier NICHT mehr gelistet — als Spur, damit die
+# Geschichte nicht mit dem Eintrag verschwindet:
+#
+#   "WHO Europe (Health for All)"  2026-09-07 bis 2026-10-27
+#       TLS-Kette unvollstaendig (CERTIFICATE_VERIFY_FAILED nur aus dem
+#       Prod-Container). Behoben, weil WHO am 2026-10-26 ein neues
+#       Zertifikat ausgerollt hat — Sectigo DV R36, gueltig bis
+#       2027-05-12, diesmal mit vollstaendiger Kette. Die Sonde laeuft
+#       seit dem 28.10. vier Laeufe in Folge durch; der Konnektor
+#       lieferte am 31.10. live wieder Daten
+#       ("Source 11 (WHO Europe (HFA)) returned 1 results").
+#       Der alte Eintrag nannte 2026-11-02 als Ablaufdatum des alten
+#       Zerts — es wurde eine Woche frueher getauscht.
 BEKANNT_DEFEKT = {
-    "WHO Europe (Health for All)": (
-        "2026-09-07: TLS-Kette unvollstaendig. dw.euro.who.int sendet das "
-        "Intermediate-Zertifikat nicht mit; aus dem Prod-Container schlaegt "
-        "die Pruefung mit CERTIFICATE_VERIFY_FAILED fehl (vom Entwickler-Mac "
-        "aus nicht, dort liegt das Intermediate im Store). Das Server-Zert "
-        "selbst ist gueltig bis 2026-11-02. "
-        "WIEDER AUFNEHMEN, wenn die Sonde ohne Anpassung durchlaeuft."),
+    "WHO GHO": (
+        "2026-10-27: HTTP 500 auf JEDEM Pfad der OData-API "
+        "(https://ghoapi.azureedge.net/api), mit einer generischen "
+        "Azure-Fehlerseite im Rumpf ('Server Error 500'). Geprueft auf "
+        "/api, /api/Indicator, /api/WHOSIS_000001 und /api/$metadata, "
+        "reproduziert vom Entwickler-Mac UND vom Prod-Host — also kein "
+        "IP-Block wie bei Getty, sondern ein Ausfall auf WHO-Seite. "
+        "Fuenf Tagelaeufe in Folge (27.-31.10.), davor OK. "
+        "⚠️ KEIN dokumentierter Nachfolger: WHOs eigene Doku-Seite "
+        "(who.int/data/gho/info/gho-odata-api) nennt weiter genau diesen "
+        "Host und keine Abkuendigung. Dritte berichten von einer "
+        "Abloesung durch den World Health Data Hub, deren Link aber ein "
+        "Platzhalter ist — deshalb hier KEIN Umbiegen auf einen "
+        "geratenen Endpunkt (die Lehre aus #248: erreichbar ist nicht "
+        "dasselbe wie richtig). Die xMart-API antwortet auf jeden Pfad "
+        "mit HTTP 200 und 'View GHO not found' im Rumpf, ist also kein "
+        "Ersatz. "
+        "Der Dienst faellt sauber aus: main.py faengt den Fehler je "
+        "Task ab ('Source 5 (WHO) failed'), der Faktencheck laeuft "
+        "weiter, und WHO Europe/Eurostat/OECD decken dasselbe Feld. "
+        "WIEDER AUFNEHMEN, sobald die Sonde 200 liefert — oder "
+        "umbiegen, sobald WHO einen Nachfolger DOKUMENTIERT."),
     "Getty Vocabularies": (
         "2026-09-07: HTTP 403 vom PROD-HOST, mit und ohne Browser-UA — vom "
         "Entwickler-Mac aus HTTP 200. vocab.getty.edu blockt offenbar die "
