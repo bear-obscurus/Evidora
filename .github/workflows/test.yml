@@ -376,6 +376,28 @@ jobs:
     #                                  Zeichenklassen, NIE den Wert; die
     #                                  Tests pruefen genau das, inklusive
     #                                  Praefix und Suffix (#153/#237))
+    #   - test_tote_belege_2026_11
+    #                                 (die 14 toten Beleg-Links vom
+    #                                  2.11.2026: sieben ersetzt, sechs
+    #                                  begruendet geparkt, einer war gar
+    #                                  nicht tot. Dabei zwei NICHT
+    #                                  belegbare Aktenzeichen gefunden
+    #                                  (BGH XII ZB 124/20, OGH 1 Ob 7/22w)
+    #                                  und eine Zeitschrift falsch
+    #                                  zugeschrieben — zweiter Fall von
+    #                                  #235)
+    #   - test_bot_sperre_ist_nicht_tot
+    #                                 (ein toter Beleg-Link war nicht tot,
+    #                                  sondern ausgesperrt: die BMF-Seite
+    #                                  liefert eine Myra-Cloud-
+    #                                  "Sicherheitsueberpruefung" — dreimal
+    #                                  mit 503, beim Werkzeug-Lauf davor
+    #                                  aber mit 404, und 404 zaehlt als tot.
+    #                                  #235 lernte "HTTP 200 heisst nicht,
+    #                                  dass die Seite da ist"; hier gilt die
+    #                                  Gegenrichtung. `ist_tot` liest jetzt
+    #                                  den Rumpf mit; Marker an fuenf echten
+    #                                  Antworten gemessen, 0 Fehlalarme)
     #   - test_openaq_naechste_stationen
     #                                 (nach dem Schluessel-Fix aus #296 kam
     #                                  HTTP 422 zum Vorschein: OpenAQ hat
@@ -717,6 +739,8 @@ jobs:
             tests/test_zaehlweise.py \
             tests/test_klimaticket_fakt.py \
             tests/test_tote_links_handreparatur.py \
+            tests/test_bot_sperre_ist_nicht_tot.py \
+            tests/test_tote_belege_2026_11.py \
             tests/test_familiennachzug_fakt.py \
             tests/test_eurobarometer_demokratie.py \
             tests/test_femizide_zahlen.py \

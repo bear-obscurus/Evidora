@@ -166,7 +166,7 @@
         "screenshot_an_sich": "Screenshot eines Chat-Verlaufs für persönliche Verwendung (Erinnerung, Backup) ist rechtlich unproblematisch. Erst die Weiter-Verwendung kann rechtswidrig sein.",
         "veroeffentlichung_persoenlichkeitsrecht": "§ 201a StGB DE (Recht am eigenen Bild) erstreckt sich auf intime Aufnahmen. Bei Chat-Inhalten gilt eher das Allgemeine Persönlichkeitsrecht (Art. 2 Abs. 1 GG / Art. 8 EMRK + §§ 1004, 823 BGB analog). Veröffentlichung privater Chat-Inhalte kann Unterlassungs- + Schadens-Ansprüche auslösen.",
         "dsgvo_personenbezug": "DSGVO (EU): Chat-Inhalte sind personenbezogene Daten. Veröffentlichung ohne Einwilligung kann Bußgeld + Schadens-Klage auslösen — vor allem wenn Profilbild oder klare Identitäts-Hinweise enthalten.",
-        "gerichtliche_verwendung": "Vorlage von WhatsApp-Screenshots als Beweismittel in Gerichtsverfahren ist GRUNDSÄTZLICH zulässig (BGH XII ZB 124/20 + OGH 1 Ob 7/22w). Gerichte bewerten Beweis-Wert, abhängig von Authentifizierbarkeit + Vollständigkeit.",
+        "gerichtliche_verwendung": "Vorlage von WhatsApp-Screenshots als Beweismittel in Gerichtsverfahren ist GRUNDSÄTZLICH zulässig: es gilt die freie Beweiswürdigung (§ 286 ZPO DE, § 272 ZPO AT), gesetzliche Beweisregeln binden das Gericht nur in benannten Fällen. Gerichte bewerten den Beweis-Wert, abhängig von Authentifizierbarkeit + Vollständigkeit.",
         "agb_whatsapp": "WhatsApp-AGB enthalten Hinweise zur 'fairen Nutzung'. Massen-Weiterleitung mit identifizierender Information kann gegen AGB verstoßen — aber AGB-Verstoß ≠ Strafbarkeit.",
         "context": "Praktische Empfehlung: Screenshots für sich behalten ist OK. Vor Veröffentlichung (Social Media, Forum, Presse) sollten Identifikatoren entfernt werden. Bei Konflikten oder als Beweis: anwaltliche Beratung."
       },
@@ -189,9 +189,9 @@
         ["screenshot", "bildschirm-aufnahme", "chat-verlauf", "whatsapp", "messenger", "telegram", "signal", "sms"],
         ["illegal", "strafbar", "verboten", "rechtswidrig", "datenschutz", "persoenlichkeitsrecht", "persönlichkeitsrecht"]
       ],
-      "source_label": "BGH XII ZB 124/20 + OGH 1 Ob 7/22w + Verbraucherzentrale",
-      "source_url": "https://www.verbraucherzentrale.de/wissen/digitale-welt/datenschutz/whatsapp-chats-als-beweismittel-rechtslage-und-tipps-69466",
-      "secondary_url": "https://www.juraforum.de/lexikon/screenshot-recht"
+      "source_label": "§ 286 ZPO DE + § 272 ZPO AT (freie Beweiswürdigung) + § 201 StGB DE + BGH I ZR 256/25 (EuGH-Vorlage 17.9.2026)",
+      "source_url": "https://www.gesetze-im-internet.de/zpo/__286.html",
+      "secondary_url": "https://www.bundesgerichtshof.de/SharedDocs/Pressemitteilungen/DE/2026/2026169.html"
     },
     {
       "id": "hausrecht_geschaefte_2026",

@@ -115,7 +115,24 @@ TOT_12_10 = [alt for _d, alt, _n in ERSETZT] + [
     "whatsapp-chats-als-beweismittel-rechtslage-und-tipps-69466",
 ]
 
-NOCH_OFFEN = [u for u in TOT_12_10 if u not in {a for _d, a, _n in ERSETZT}]
+#: Am 2.11.2026 nachgezogen, in eigener Runde: siehe
+#: test_tote_belege_2026_11.py. Diese fuenf stehen deshalb nicht mehr in
+#: data/ — das ist kein veralteter Eintrag, sondern ein geschlossener.
+SPAETER_ERSETZT = {
+    "https://economics.mit.edu/sites/default/files/2024-04/"
+    "AcemogluPublishedRestrepoAERPP202405.pdf",
+    "https://theicct.org/publication/"
+    "real-world-energy-consumption-electric-vehicles-europe-jul24/",
+    "https://www.acsm.org/blog-detail/acsm-certified-blog/2018/10/15/"
+    "progressive-overload-strength-training",
+    "https://www.juraforum.de/lexikon/screenshot-recht",
+    "https://www.verbraucherzentrale.de/wissen/digitale-welt/datenschutz/"
+    "whatsapp-chats-als-beweismittel-rechtslage-und-tipps-69466",
+}
+
+NOCH_OFFEN = [u for u in TOT_12_10
+              if u not in {a for _d, a, _n in ERSETZT}
+              and u not in SPAETER_ERSETZT]
 
 
 def _text(datei):
@@ -145,6 +162,19 @@ def test_kein_ersetzter_link_taucht_woanders_wieder_auf():
     assert not rueckkehrer, rueckkehrer
 
 
+def test_spaeter_ersetzte_sind_echt_aus_dieser_runde_und_echt_ersetzt():
+    """Sonst waere SPAETER_ERSETZT eine Ausnahmeliste ohne Deckung (#230)."""
+    import importlib.util
+    pfad = Path(__file__).with_name("test_tote_belege_2026_11.py")
+    spec = importlib.util.spec_from_file_location("_nov", pfad)
+    nov = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(nov)
+    november = {a for _d, a, _n in nov.ERSETZT}
+    for u in SPAETER_ERSETZT:
+        assert u in TOT_12_10, u
+        assert u in november, u
+
+
 def test_die_offenen_sind_benannt_und_nicht_heimlich_verschwunden():
     """Was NICHT ersetzt wurde, bleibt sichtbar — sonst wäre die Lücke
     stillgelegt statt geschlossen. Jeder offene Link muss noch in einer
@@ -154,7 +184,11 @@ def test_die_offenen_sind_benannt_und_nicht_heimlich_verschwunden():
     fehlend = [u for u in NOCH_OFFEN if u not in alle]
     assert not fehlend, (
         "diese Links stehen nicht mehr in data/ — Liste veraltet: " + str(fehlend))
-    assert len(NOCH_OFFEN) == 11
+    # 11 am 12.10.2026, davon fuenf am 2.11.2026 ersetzt (SPAETER_ERSETZT).
+    # Von den sechs verbliebenen ist einer gar nicht tot, sondern von einer
+    # Bot-Sperre verdeckt (BMF/Myra, siehe test_bot_sperre_ist_nicht_tot.py);
+    # die anderen fuenf stehen begruendet in url_bekannt_tot.json.
+    assert len(NOCH_OFFEN) == 6
 
 
 def test_die_ersetzten_sind_erreichbare_quellen_derselben_herkunft():

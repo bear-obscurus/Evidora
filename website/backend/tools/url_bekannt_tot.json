@@ -1,79 +1,52 @@
 {
  "hinweis": "Bekannte tote Beleg-Links. Nur NEUE tote Links alarmieren. Reparierte Links hier entfernen (check_urls.py --schreibe-bekannt).",
  "tot": {
-  "https://economics.mit.edu/sites/default/files/2024-04/AcemogluPublishedRestrepoAERPP202405.pdf": {
+  "https://bergenhusen.nabu.de/forschung/windenergie-und-voegel/index.html": {
    "dateien": [
-    "arbeitsmarkt_pack.json"
+    "energie_klima_pack.json"
    ],
-   "seit": "2026-09-22",
-   "grund": "MIT-PDF Acemoglu/Restrepo AER P&P 2024 nicht auffindbar"
-  },
-  "https://theicct.org/publication/real-world-energy-consumption-electric-vehicles-europe-jul24/": {
-   "dateien": [
-    "mobilitaet_pack.json"
-   ],
-   "seit": "2026-09-22",
-   "grund": "ICCT-Bericht in dieser Form nicht auffindbar"
+   "seit": "2026-11-02",
+   "grund": "bergenhusen.nabu.de ist abgeschaltet und leitet per Meta-Refresh auf www.nabu.de. Ein Ersatz ist derzeit NICHT pruefbar: nabu.de ist am 2.11.2026 seitenweit offline (Wartungsmeldung wegen einer Sicherheitsluecke), jeder Pfad landet mit HTTP 200 auf index.html. Wieder aufnehmen, sobald nabu.de normal antwortet; gesucht wird die Hoetker-NABU-Studie zu Windenergie und Voegeln. Der zweite Beleg des Fakts (bfn.de/bau-und-betrieb) lebt."
   },
   "https://www.acsm.org/all-blog-posts/certification-blog/acsm-certified-blog/2018/03/27/listening-to-the-pain": {
    "dateien": [
     "sport_fitness_pack.json"
    ],
    "seit": "2026-09-22",
-   "grund": "ACSM-Blogbeitrag ersatzlos entfernt (12.10.2026 bestaetigt: eigene Suche findet nichts, neue Flach-Slugs 404). Der Weg, der bei drei Geschwister-Fakten funktioniert hat: die im source_label genannte Primaerliteratur ueber PubMed verlinken. Hier blieb die genannte Arbeit unaufloesbar.",
-   "geprueft": "2026-10-12"
+   "grund": "ACSM-Blogbeitrag ersatzlos entfernt (12.10.2026 und 2.11.2026 bestaetigt). NEU am 2.11.2026: der Weg ueber die im source_label genannte Primaerliteratur hat beim Geschwister-Fakt muscle_confusion doch getragen — nicht ueber eine einzelne Studie, sondern ueber das ACSM-POSITIONSPAPIER selbst (PubMed 19204579, 'Progression models in resistance training'). Fuer diese drei Aussagen (Schmerz ist kein Trainingserfolg, Fettverbrennungszone, Koerperfett-Anteil fuer sichtbare Bauchmuskeln) hat ACSM heute keine abrufbare Entsprechung; eine Suche auf acsm.org liefert nur Nachbarthemen. Kein Ersatz eintragen, der die Aussage nur annaehernd belegt.",
+   "geprueft": "2026-11-02"
   },
   "https://www.acsm.org/blog-detail/acsm-blog/2014/06/24/exercise-fuels-low-intensity-vs-high-intensity": {
    "dateien": [
     "sport_fitness_pack.json"
    ],
    "seit": "2026-09-22",
-   "grund": "ACSM-Blogbeitrag ersatzlos entfernt (12.10.2026 bestaetigt: eigene Suche findet nichts, neue Flach-Slugs 404). Der Weg, der bei drei Geschwister-Fakten funktioniert hat: die im source_label genannte Primaerliteratur ueber PubMed verlinken. Hier blieb die genannte Arbeit unaufloesbar.",
-   "geprueft": "2026-10-12"
+   "grund": "ACSM-Blogbeitrag ersatzlos entfernt (12.10.2026 und 2.11.2026 bestaetigt). NEU am 2.11.2026: der Weg ueber die im source_label genannte Primaerliteratur hat beim Geschwister-Fakt muscle_confusion doch getragen — nicht ueber eine einzelne Studie, sondern ueber das ACSM-POSITIONSPAPIER selbst (PubMed 19204579, 'Progression models in resistance training'). Fuer diese drei Aussagen (Schmerz ist kein Trainingserfolg, Fettverbrennungszone, Koerperfett-Anteil fuer sichtbare Bauchmuskeln) hat ACSM heute keine abrufbare Entsprechung; eine Suche auf acsm.org liefert nur Nachbarthemen. Kein Ersatz eintragen, der die Aussage nur annaehernd belegt.",
+   "geprueft": "2026-11-02"
   },
   "https://www.acsm.org/blog-detail/acsm-blog/2018/03/14/lean-body-mass": {
    "dateien": [
     "sport_fitness_pack.json"
    ],
    "seit": "2026-09-22",
-   "grund": "ACSM-Blogbeitrag ersatzlos entfernt (12.10.2026 bestaetigt: eigene Suche findet nichts, neue Flach-Slugs 404). Der Weg, der bei drei Geschwister-Fakten funktioniert hat: die im source_label genannte Primaerliteratur ueber PubMed verlinken. Hier blieb die genannte Arbeit unaufloesbar.",
-   "geprueft": "2026-10-12"
-  },
-  "https://www.acsm.org/blog-detail/acsm-certified-blog/2018/10/15/progressive-overload-strength-training": {
-   "dateien": [
-    "sport_fitness_pack.json"
-   ],
-   "seit": "2026-09-22",
-   "grund": "ACSM-Blogbeitrag ersatzlos entfernt (12.10.2026 bestaetigt: eigene Suche findet nichts, neue Flach-Slugs 404). Der Weg, der bei drei Geschwister-Fakten funktioniert hat: die im source_label genannte Primaerliteratur ueber PubMed verlinken. Hier blieb die genannte Arbeit unaufloesbar.",
-   "geprueft": "2026-10-12"
+   "grund": "ACSM-Blogbeitrag ersatzlos entfernt (12.10.2026 und 2.11.2026 bestaetigt). NEU am 2.11.2026: der Weg ueber die im source_label genannte Primaerliteratur hat beim Geschwister-Fakt muscle_confusion doch getragen — nicht ueber eine einzelne Studie, sondern ueber das ACSM-POSITIONSPAPIER selbst (PubMed 19204579, 'Progression models in resistance training'). Fuer diese drei Aussagen (Schmerz ist kein Trainingserfolg, Fettverbrennungszone, Koerperfett-Anteil fuer sichtbare Bauchmuskeln) hat ACSM heute keine abrufbare Entsprechung; eine Suche auf acsm.org liefert nur Nachbarthemen. Kein Ersatz eintragen, der die Aussage nur annaehernd belegt.",
+   "geprueft": "2026-11-02"
   },
   "https://www.ages.at/themen/lebensmittel/lebensmittelsicherheit/tierwohl-und-tierschutz": {
    "dateien": [
     "landwirtschaft_pack.json"
    ],
    "seit": "2026-09-22",
-   "grund": "AGES-Tierwohlseite ohne Nachfolger"
+   "grund": "AGES-Tierwohlseite ohne Nachfolger. Am 2.11.2026 maschinell belegt: die Seiten-Sitemap von ages.at fuehrt 904 Seiten, davon KEINE zu Tierwohl oder Tierschutz (einziger Treffer: Nutztierfuttermittelherstellung). AGES hat das Thema nicht verschoben, sondern abgegeben. Damit sind auch die im source_label genannten 'AGES Tierwohl-Statistik' und 'AGES-Tierwohl-Studie 2023' auf ages.at nicht auffindbar — beim naechsten Durchgang pruefen und notfalls aus dem Label nehmen. Der Hauptbeleg (statistik.at) lebt.",
+   "geprueft": "2026-11-02"
   },
   "https://www.amnesty.org/en/documents/asa01/4030/2021/en/": {
    "dateien": [
     "religionsgemeinschaften_pack.json"
    ],
    "seit": "2026-09-22",
-   "grund": "Amnesty-Dokument ASA 01/4030/2021 nicht auffindbar"
-  },
-  "https://www.juraforum.de/lexikon/screenshot-recht": {
-   "dateien": [
-    "recht_pack.json"
-   ],
-   "seit": "2026-09-22",
-   "grund": "kein gleichwertiger Nachfolger (nur Foren/Kanzlei-Blogs)"
-  },
-  "https://www.verbraucherzentrale.de/wissen/digitale-welt/datenschutz/whatsapp-chats-als-beweismittel-rechtslage-und-tipps-69466": {
-   "dateien": [
-    "recht_pack.json"
-   ],
-   "seit": "2026-09-22",
-   "grund": "Verbraucherzentrale-Seite entfernt, kein gleichwertiger Nachfolger (nur Kanzlei-Blogs)"
+   "grund": "Amnesty-Dokument ASA 01/4030/2021 nicht auffindbar. Am 2.11.2026 nachgeprueft: Gross- und Kleinschreibung des Index-Codes ergeben beide 404, und die Dokumentsuche von amnesty.org antwortet maschinellen Abrufen mit 403 — es ist also offen, ob das Dokument entfernt oder nur umgezogen ist. Der Hauptbeleg des Fakts (OHCHR-Bericht A/HRC/39/64) lebt.",
+   "geprueft": "2026-11-02"
   }
  }
 }
