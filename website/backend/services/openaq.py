@@ -217,23 +217,70 @@ def _detect_cities_in_claim(
     return found
 
 
+#: Wie viele Locations wir rohe holen, bevor WIR nach Naehe sortieren.
+#: Hoeher als die fuenf, die wir ausgeben — sonst waehlt [:5] aus einer
+#: unsortierten Liste. 88 Stationen liegen im 25-km-Radius um Wien,
+#: 50 deckt das reichlich ab und bleibt eine Seite.
+LOCATIONS_ROHLIMIT = 50
+
+
+def _naechste_fuenf(results: list, lat: float, lon: float) -> list:
+    """Die fuenf naechsten Locations, nach Luftlinie sortiert.
+
+    Ersetzt das weggefallene ``order_by=distance`` der API. Bewusst
+    ohne Geodaesie: Fuer einen Vergleich innerhalb von 50 km genuegt der
+    quadrierte Abstand in Grad, mit Breitengrad-Korrektur fuer die
+    Laenge. Eine Location ohne Koordinaten landet hinten, statt die
+    Sortierung zu sprengen.
+    """
+    import math
+    cos_lat = math.cos(math.radians(lat)) or 1e-6
+
+    def abstand(eintrag):
+        koord = (eintrag or {}).get("coordinates") or {}
+        y, x = koord.get("latitude"), koord.get("longitude")
+        if not isinstance(y, (int, float)) or not isinstance(x, (int, float)):
+            return float("inf")
+        return (y - lat) ** 2 + ((x - lon) * cos_lat) ** 2
+
+    return sorted(results, key=abstand)[:5]
+
+
 async def _fetch_locations_near(
     client, api_key: str, lat: float, lon: float,
     radius_m: int = 25000, params: list[int] | None = None,
 ) -> list[dict[str, Any]]:
     """Hole OpenAQ-Locations im Umkreis von (lat, lon).
 
-    Returns Liste von Location-Dicts (max 5, sortiert nach Nähe).
+    Returns Liste von Location-Dicts (max 5, sortiert nach Naehe).
     Bei API-Fehler/Empty-Response: leere Liste.
+
+    ⚠️ ``order_by=distance`` gibt es nicht mehr. Nachdem der
+    Schluessel-Fix den 401 beseitigt hatte (#296), kam HTTP 422 zum
+    Vorschein — und die API sagt genau, warum:
+
+        {'loc': ('query', 'order_by'), 'msg': "Input should be 'id'",
+         'input': 'distance'}
+
+    Gemessen am 2026-11-02 gegen die echte API: Dieselbe Abfrage OHNE
+    ``order_by``/``sort_order`` liefert HTTP 200 und 88 Stationen im
+    25-km-Radius um Wien. Der Parameter wurde also verengt, waehrend uns
+    der 401 sieben Wochen blind hielt — ein Ausfall verdeckt den
+    naechsten (#237).
+
+    Die Sortierung nach Naehe war der ZWECK des Parameters. Sie passiert
+    jetzt bei uns: Die API liefert zu jeder Location ``coordinates``,
+    und ``limit`` wird angehoben, damit nach dem Sortieren die wirklich
+    naechsten fuenf uebrig bleiben — sonst waehlte ``[:5]`` aus einer
+    unsortierten Liste.
     """
     params = params or DEFAULT_PARAMS
     query_params = {
         "coordinates": f"{lat},{lon}",
         "radius": str(radius_m),
         "parameters_id": ",".join(str(p) for p in params),
-        "limit": "5",
-        "order_by": "distance",
-        "sort_order": "asc",
+        # Mehr holen als wir brauchen, weil WIR sortieren.
+        "limit": str(LOCATIONS_ROHLIMIT),
     }
     headers = {"X-API-Key": api_key}
     try:
@@ -248,7 +295,7 @@ async def _fetch_locations_near(
             return []
         data = resp.json()
         results = data.get("results", []) or []
-        return results[:5]
+        return _naechste_fuenf(results, lat, lon)
     except Exception as e:
         melde_ausfall(logger, "openaq",
             f"OpenAQ locations fetch failed near ({lat:.3f},{lon:.3f}): {e}"
