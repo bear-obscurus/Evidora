@@ -124,6 +124,15 @@ ERSETZT = [
      "https://www.eff.org/issues/online-anonymity",
      "https://www.mozilla.org/en-US/products/vpn/resource-center/"
      "what-is-a-vpn/"),
+    # AGES hat das Thema Tierwohl nicht verschoben, sondern abgegeben: in allen
+    # 1.178 AGES-URLs 0 Treffer fuer tierwohl/tierschutz/tierhaltung, Gegenprobe
+    # lebensmittel 131. Stattdessen die Richtlinie, die das im Fakt behauptete
+    # Kaefigverbot traegt (1999/74/EG, Kapitel II Art. 5 Abs. 2, woertlich
+    # geprueft). Siehe test_massentierhaltung_quellen.py.
+    ("landwirtschaft_pack.json",
+     "https://www.ages.at/themen/lebensmittel/lebensmittelsicherheit/"
+     "tierwohl-und-tierschutz",
+     "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:31999L0074"),
     # Das SSD-Modul sagt es woertlich: "VPNs Don't Completely Anonymize You"
     # und "A VPN is not a tool for anonymity" (Stand 28.7.2026).
     ("tech_ki_pack.json",
@@ -134,8 +143,6 @@ ERSETZT = [
 #: Tot, aber nicht ersetzbar — die Begruendung steht in url_bekannt_tot.json.
 GEPARKT = [
     "https://bergenhusen.nabu.de/forschung/windenergie-und-voegel/index.html",
-    "https://www.ages.at/themen/lebensmittel/lebensmittelsicherheit/"
-    "tierwohl-und-tierschutz",
     "https://www.amnesty.org/en/documents/asa01/4030/2021/en/",
     "https://www.acsm.org/all-blog-posts/certification-blog/"
     "acsm-certified-blog/2018/03/27/listening-to-the-pain",
