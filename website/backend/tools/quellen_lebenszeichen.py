@@ -542,6 +542,22 @@ SONDEN = [
 #       ("Source 11 (WHO Europe (HFA)) returned 1 results").
 #       Der alte Eintrag nannte 2026-11-02 als Ablaufdatum des alten
 #       Zerts — es wurde eine Woche frueher getauscht.
+#
+#   "OpenAQ"  2026-09-07 bis 2026-10-31
+#       HTTP 401 auf /v3/parameters und /v3/locations. Der Eintrag riet
+#       sieben Wochen "vermutlich abgelaufen oder widerrufen" — FALSCH.
+#       Der Schluessel war gueltig; in der .env stand EIN versprengtes
+#       Satzzeichen davor, 65 Zeichen statt 64 hex. Die Zahl 65 stand
+#       im alten Eintrag, nur hat niemand gegen 64 gerechnet.
+#       Getrennt haben die Faelle zwei Fehlermeldungen: ohne Key
+#       "A valid API key must be provided in the X-API-Key header"
+#       (Header falsch), mit Key {"detail":"Invalid credentials"}
+#       (Key abgewiesen). Nach dem Entfernen des Zeichens antwortete
+#       /v3/parameters mit HTTP 200, und die Sonde meldet seit dem
+#       2026-10-31 "wieder erreichbar" (90/101 statt 89).
+#       Seitdem nennt services/openaq.py beim ersten Gebrauch die FORM
+#       des Schluessels im Log (_ausfall.schluessel_form) — Laenge und
+#       Zeichenklassen, nie den Wert.
 BEKANNT_DEFEKT = {
     "WHO GHO": (
         "2026-10-27: HTTP 500 auf JEDEM Pfad der OData-API "
@@ -571,13 +587,6 @@ BEKANNT_DEFEKT = {
         "Server-IP oder deren Bereich. Dieselbe Klasse wie WHO Europe: der "
         "Ausfall ist nur dort sichtbar, wo der Dienst laeuft. "
         "WIEDER AUFNEHMEN, sobald die Sonde aus dem Container 200 liefert."),
-    "OpenAQ": (
-        "2026-09-07: HTTP 401 mit dem in .env hinterlegten OPENAQ_API_KEY, "
-        "auf /v3/parameters UND /v3/locations, vom Prod-Host geprueft. Der "
-        "Key ist gesetzt (65 Zeichen), wird aber abgewiesen — vermutlich "
-        "abgelaufen oder widerrufen. BEHEBBAR AUF UNSERER SEITE: neuen Key "
-        "unter openaq.org anfordern und in .env eintragen. "
-        "WIEDER AUFNEHMEN, sobald die Sonde 200 liefert."),
     "AI Incident Database": (
         "2026-09-07: HTTP 403 auf POST /api/graphql, reproduziert vom "
         "Entwickler-Mac und vom Prod-Host. Der Endpunkt lebt (GET antwortet "

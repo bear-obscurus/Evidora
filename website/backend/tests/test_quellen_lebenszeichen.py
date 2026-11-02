@@ -438,12 +438,43 @@ def test_403_wird_nicht_wiederholt(monkeypatch):
     assert versuche["n"] == 1
 
 
-def test_openaq_befund_nennt_den_weg_zurueck():
-    """Der einzige der fünf Befunde, der auf UNSERER Seite behebbar ist —
-    das muss im Eintrag stehen, sonst bleibt er liegen."""
-    grund = QM.BEKANNT_DEFEKT["OpenAQ"]
-    assert "BEHEBBAR AUF UNSERER SEITE" in grund
-    assert "openaq.org" in grund and ".env" in grund
+def _spur(modul) -> str:
+    """Die Kommentar-Spur des Werkzeugs, Leerraum zusammengefasst.
+
+    ⚠️ Zwei Anlaeufe gebraucht. Erst haengte der Test am Zeilenumbruch
+    („EIN versprengtes\n#       Satzzeichen" enthaelt die Wortfolge
+    nicht). Leerraum zusammenzufassen genuegte aber nicht — dann stand
+    „versprengtes # Satzzeichen" da, denn das Kommentarzeichen bleibt.
+    Beides muss weg, sonst sind Umbrueche in einem Kommentar tragend.
+    """
+    import re
+    roh = open(modul.__file__, encoding="utf-8").read()
+    ohne_marker = re.sub(r"(?m)^\s*#\s?", "", roh)
+    return re.sub(r"\s+", " ", ohne_marker)
+
+
+def test_openaq_ist_behoben_und_draussen():
+    """War der einzige der Befunde, der auf UNSERER Seite behebbar war —
+    und er ist behoben.
+
+    Dieser Test hiess bis zum 31.10.2026 ``..._nennt_den_weg_zurueck``
+    und verlangte „openaq.org" im Eintrag, weil dort ein NEUER Key
+    empfohlen wurde. Gemessen war der Schluessel gueltig; in der .env
+    stand ein versprengtes Satzzeichen davor (65 Zeichen statt 64 hex).
+    Nach dem Entfernen antwortete /v3/parameters mit HTTP 200 und die
+    Sonde meldet „wieder erreichbar" — 90/101 statt 89.
+
+    Geprueft wird jetzt die neue Lage: Eintrag raus, Sonde bleibt,
+    Geschichte lesbar.
+    """
+    assert "OpenAQ" not in QM.BEKANNT_DEFEKT
+    assert any(s[0] == "OpenAQ" for s in QM.SONDEN), (
+        "die Sonde muss bleiben, sonst merkt niemand den naechsten Ausfall")
+    quelle = _spur(QM)
+    assert "versprengtes Satzzeichen" in quelle, (
+        "die Ursache muss als Spur bleiben — ein geloeschter Eintrag "
+        "nimmt sonst seine Begruendung mit (#295)")
+    assert "65 Zeichen statt 64 hex" in quelle
 
 
 # --------------------------------------------------------------------------

@@ -362,6 +362,20 @@ jobs:
     #                                  verbot, berlin. Der Sweep deckte
     #                                  dabei eine LUECKE auf — "wien"
     #                                  stand in keiner Markerliste)
+    #   - test_schluessel_form        (OpenAQ lieferte SIEBEN WOCHEN 401 —
+    #                                  wegen EINEM Zeichen in der .env. Der
+    #                                  Schluessel ist gueltig, davor stand
+    #                                  ein versprengtes Satzzeichen: 65
+    #                                  Zeichen statt 64 hex. Mit entferntem
+    #                                  ersten Zeichen sofort HTTP 200. Die
+    #                                  Zahl 65 stand seit 2026-09-07 im
+    #                                  Register, daneben die FALSCHE
+    #                                  Vermutung "vermutlich abgelaufen".
+    #                                  `schluessel_form` nennt jetzt die
+    #                                  GESTALT im Log — Laenge und
+    #                                  Zeichenklassen, NIE den Wert; die
+    #                                  Tests pruefen genau das, inklusive
+    #                                  Praefix und Suffix (#153/#237))
     #   - test_polity5_aussage_grenze (QA50I #88: Claim ueber Polity5 wurde
     #                                  mit V-Dem widerlegt. Ungarn hat in
     #                                  Polity5 +10 (2010-2018, am Datensatz
@@ -651,6 +665,7 @@ jobs:
             tests/test_modell_wachhund.py \
             tests/test_wikidata_trigger_schreibweise.py \
             tests/test_wortgrenzen_dienste.py \
+            tests/test_schluessel_form.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \
