@@ -1,25 +1,35 @@
-"""Ein toter Link war gar nicht tot — er war ausgesperrt.
+"""Eine Bot-Sperre im Rumpf ist keine tote Seite — auch nicht bei 404.
 
-Gemessen am 2.11.2026 beim Abarbeiten der 14 toten Beleg-Links. Einer
-davon, die Inflationsausgleichsgesetz-FAQ des BMF, stand im Bericht als
-``TOT``. Der Abruf von Hand ergab aber:
+## Zuerst die Korrektur, damit niemand der Vorlage folgt
 
-    HTTP 503  30840B
-    <title>Security Check</title>
-    "Unsere Systeme haben ungewöhnlichen Datenverkehr … nicht von einem
-     Roboter gesendet werden."
+Diese Suite ist am 2.11.2026 aus einer **Fehldiagnose** entstanden. Einer
+von 14 toten Beleg-Links, die Inflationsausgleichsgesetz-FAQ des BMF,
+antwortete von meinem Arbeitsrechner aus dreimal mit HTTP 503 und einer
+Myra-Cloud-Seite "Sicherheitsüberprüfung". Ich hielt das fuer die Erklaerung
+der Tot-Meldung. Vom **Prod-Host**, von dem der Waechter laeuft, kommt
+dreimal HTTP 404 mit der BMF-eigenen Fehlerseite ("Nicht gefunden - not
+found", 172 KB, kein Sperr-Marker), waehrend die BMF-Startseite 200
+liefert. Die Seite ist weg, der Waechter hatte recht, der Link ist geparkt
+(test_tote_belege_2026_11.py).
 
-Das ist eine Myra-Cloud-Bot-Sperre, keine fehlende Seite. #235 hat
-gelernt, dass HTTP 200 nicht heisst, dass die Seite da ist. Hier gilt die
-Gegenrichtung: **404 heisst nicht, dass die Seite weg ist.**
+Wer einen Befund des Waechters nachprueft, muss **vom Host aus** messen.
+Vom Laptop aus ist es eine andere Messung — andere IP, andere Reputation,
+andere Antwort.
 
-## Warum der Status allein nicht reicht
+## Warum der Mechanismus trotzdem bleibt
 
-``ist_tot`` stuft nur 404/410 und erloschene Domains als tot ein — ein 503
-hätte also gar nicht in der Liste landen dürfen. Dreimal nachgefragt kam
-dreimal 503. Beim Lauf des Werkzeugs muss die Sperre demnach **404**
-geantwortet haben: dieselbe Wand, zwei Status-Codes. Genau deshalb kann
-der Status die Frage nicht entscheiden; der Rumpf muss mitgelesen werden.
+Weil der Fehlerfall echt ist, nur eben nicht an diesem Link: ``ist_tot``
+stuft 404/410 als tot ein und sah bis hierher nur den Status. Eine Wand,
+die 404 antwortet statt 403, wandert damit als "weg" in die Liste. Dass
+Myra genau das kann, habe ich an jenem Nachmittag selbst gesehen.
+
+Und er traegt messbar: derselbe Waechter-Lauf, der die 7 Ersetzungen
+bestaetigte, fand **164 Antworten mit einer Bot-Sperre im Rumpf** und
+benennt sie jetzt getrennt ("Bot-Sperre statt Seite, nicht als tot
+gezaehlt"), statt sie unter den 403ern verschwinden zu lassen.
+
+#235 lernte "HTTP 200 heisst nicht, dass die Seite da ist". Das hier ist
+die Gegenrichtung — mit der Einschraenkung, dass der Prueftstand mitzaehlt.
 
 ## Die Marker sind an echten Rümpfen gemessen, nicht geraten
 
@@ -27,7 +37,7 @@ Fünf echte Antworten, 0 Fehler:
 
 | Rumpf | erkannt |
 |---|---|
-| BMF/Myra-Sperre (30.835 Zeichen) | Sperre |
+| Myra-Sperre, wie mein Rechner sie sah (30.835 Zeichen) | Sperre |
 | ages.at 404 | keine |
 | acsm.org 404 (339.050 Zeichen) | keine |
 | eff.org 404 | keine |
@@ -36,13 +46,6 @@ Fünf echte Antworten, 0 Fehler:
 Auf der Myra-Seite greifen sechs Marker, der früheste (``security check``)
 an Position 34 — im ``<title>``, also weit innerhalb des Fensters von
 20.000 Zeichen, das ``ist_bot_wall`` liest.
-
-## Was dieser Test nicht prüft
-
-Dass der Beleg inhaltlich noch stimmt. Die Seite ist für jeden maschinellen
-Abruf unzugänglich; der Klick auf "Bitte klicken Sie hier, wenn Sie kein
-Roboter sind" ist eine Bot-Prüfung und wird nicht umgangen. Das Ergebnis
-ist deshalb nur: dieser Link gehört nicht in die Tot-Liste.
 """
 
 import sys
@@ -83,9 +86,9 @@ def test_die_myra_sperre_wird_als_sperre_erkannt():
     assert ist_bot_wall(MYRA_RUMPF) is True
 
 
-def test_der_bmf_link_zaehlt_mit_sperre_nicht_mehr_als_tot():
-    """Der Fall, der den Bericht verfälscht hat: 404 PLUS Sperre."""
-    befund = {"url": "https://www.bundesfinanzministerium.de/x.html",
+def test_404_plus_sperre_zaehlt_nicht_als_tot():
+    """Eine Wand, die 404 antwortet statt 403, darf nicht als "weg" gelten."""
+    befund = {"url": "https://example.org/x.html",
               "status": 404, "bot_wall": True}
     assert ist_tot(befund) is False
 

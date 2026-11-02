@@ -4,20 +4,27 @@ Der Wächter meldete 71 tote URLs, davon **14 in kuratierten Dateien**; die
 übrigen 57 liegen in generierten Caches (MITRE/CORDIS, #243). Von den 14
 waren 10 schon begründet geparkt, vier neu oder ungeparkt.
 
-Alle 14 einzeln nachgeprüft, mit Browser-User-Agent:
+Alle 14 einzeln nachgeprüft: **alle 14 sind echt tot.** Der Prüfer hatte
+recht.
 
-    13 x HTTP 404      echt tot
-     1 x HTTP 503      KEINE tote Seite, sondern eine Bot-Sperre
+## Der Prüfstand entschied, nicht die Seite
 
-## Der Prüfer hatte in einem Fall unrecht
+Vom Arbeitsrechner aus antwortete einer der 14 — die
+Inflationsausgleichsgesetz-FAQ des BMF — dreimal mit HTTP 503 und einer
+Myra-Cloud-Seite "Sicherheitsüberprüfung". Das sah nach der Erklärung der
+Tot-Meldung aus, war aber die Bot-Sperre vor meinen wiederholten Abrufen.
+Vom Prod-Host, von dem der Wächter läuft, kommt dreimal **HTTP 404 mit der
+BMF-eigenen Fehlerseite** ("Nicht gefunden - not found", 172 KB, kein
+Sperr-Marker), während die BMF-Startseite 200 liefert. Die Seite ist weg.
 
-Die Inflationsausgleichsgesetz-FAQ des BMF liefert eine Myra-Cloud-Seite
-"Sicherheitsüberprüfung" — dreimal in Folge mit 503, beim Werkzeug-Lauf
-davor aber mit 404, und 404 zählt als tot. #235 lernte "HTTP 200 heisst
-nicht, dass die Seite da ist"; das ist die Gegenrichtung. ``ist_tot`` liest
-jetzt den Rumpf mit, siehe test_bot_sperre_ist_nicht_tot.py. Der Link
-bleibt unverändert im Fakt stehen und wird NICHT geparkt, weil er nicht tot
-ist.
+Die Lehre ist nicht "der Prüfer irrt", sondern: **eine Messung von einem
+anderen Netz aus ist eine andere Messung.** Der Wächter läuft auf dem Host;
+wer seine Befunde vom Laptop aus nachprüft, prüft etwas anderes nach.
+
+Der Rumpf-Mitleser aus test_bot_sperre_ist_nicht_tot.py bleibt — er ist auf
+einer Fehldiagnose entstanden, trägt aber unabhängig davon: derselbe
+Wächter-Lauf hat 164 Antworten mit einer Bot-Sperre im Rumpf gefunden und
+benennt sie jetzt getrennt.
 
 ## Sieben ersetzt — und zwei erfundene Aktenzeichen gefunden
 
@@ -135,14 +142,13 @@ GEPARKT = [
     "https://www.acsm.org/blog-detail/acsm-blog/2014/06/24/"
     "exercise-fuels-low-intensity-vs-high-intensity",
     "https://www.acsm.org/blog-detail/acsm-blog/2018/03/14/lean-body-mass",
+    # Vom Host dreimal 404 mit der BMF-eigenen Fehlerseite; kein Nachfolger
+    # nennt "kalte Progression" (Pressemitteilung zur Einkommensteuerreform,
+    # Lohnsteuer-Themenseite, FAQ-Pfad ohne Datum alle geprueft).
+    "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/"
+    "Steuern/Steuerarten/Lohnsteuer/"
+    "2024-12-23-Inflationsausgleichsgesetz-FAQ.html",
 ]
-
-#: Der Fall, in dem der Pruefer unrecht hatte: eine Bot-Sperre.
-NICHT_TOT_SONDERN_GESPERRT = (
-    "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/"
-    "Themen/Steuern/Steuerarten/Lohnsteuer/"
-    "2024-12-23-Inflationsausgleichsgesetz-FAQ.html"
-)
 
 BEKANNT = json.loads((BACKEND / "tools" / "url_bekannt_tot.json")
                      .read_text(encoding="utf-8"))["tot"]
@@ -198,10 +204,18 @@ def test_geparkter_link_steht_noch_in_den_daten(url):
     assert url in _alle_daten(), url
 
 
-def test_die_bot_sperre_ist_nicht_geparkt():
-    """Sie ist nicht tot — parken wuerde die Lage falsch darstellen."""
-    assert NICHT_TOT_SONDERN_GESPERRT not in BEKANNT
-    assert NICHT_TOT_SONDERN_GESPERRT in _alle_daten()
+def test_die_bmf_faq_ist_geparkt_und_nicht_als_sperre_entschuldigt():
+    """Die Giftprobe gegen meine eigene Fehldiagnose.
+
+    Der Link stand einen Nachmittag lang als "nicht tot, nur ausgesperrt"
+    da. Vom Prod-Host aus ist er 404. Wer diesen Test fallen sieht, hat die
+    Begruendung aus der Parkliste entfernt — dann bitte vom HOST aus
+    nachmessen, nicht vom Arbeitsrechner.
+    """
+    bmf = [u for u in GEPARKT if "bundesfinanzministerium" in u]
+    assert len(bmf) == 1
+    grund = BEKANNT[bmf[0]]["grund"]
+    assert "404" in grund and "Host" in grund
 
 
 # --------------------------------------------------------------------------

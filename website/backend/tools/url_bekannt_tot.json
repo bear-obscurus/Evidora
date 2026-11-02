@@ -47,6 +47,14 @@
    "seit": "2026-09-22",
    "grund": "Amnesty-Dokument ASA 01/4030/2021 nicht auffindbar. Am 2.11.2026 nachgeprueft: Gross- und Kleinschreibung des Index-Codes ergeben beide 404, und die Dokumentsuche von amnesty.org antwortet maschinellen Abrufen mit 403 — es ist also offen, ob das Dokument entfernt oder nur umgezogen ist. Der Hauptbeleg des Fakts (OHCHR-Bericht A/HRC/39/64) lebt.",
    "geprueft": "2026-11-02"
+  },
+  "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/Steuerarten/Lohnsteuer/2024-12-23-Inflationsausgleichsgesetz-FAQ.html": {
+   "dateien": [
+    "finanzen_pack.json"
+   ],
+   "seit": "2026-11-02",
+   "geprueft": "2026-11-02",
+   "grund": "BMF hat die Inflationsausgleichsgesetz-FAQ ohne Nachfolger entfernt. KORREKTUR meiner eigenen Diagnose vom selben Tag: von meinem Arbeitsrechner aus antwortete die Seite dreimal 503 mit einer Myra-Cloud-Bot-Sperre, was ich fuer die Erklaerung der Tot-Meldung hielt. Vom Prod-Host aus — von dem der Waechter laeuft — kommt dreimal HTTP 404 mit der BMF-eigenen Fehlerseite ('Nicht gefunden - not found', 172 KB, kein Sperr-Marker), waehrend die BMF-Startseite 200 liefert. Die Seite ist also wirklich weg; der Waechter hatte recht. Kein Ersatz gefunden: die Pressemitteilung zur Einkommensteuerreform (2.9.2026), die Lohnsteuer-Themenseite und der FAQ-Pfad ohne Datum nennen 'kalte Progression' kein einziges Mal. Der zweite Beleg des Fakts (ifo) lebt. Wieder aufnehmen, wenn das BMF eine Seite zur jaehrlichen Tarifanpassung hat."
   }
  }
 }
