@@ -378,26 +378,27 @@ jobs:
     #                                  Praefix und Suffix (#153/#237))
     #   - test_tote_belege_2026_11
     #                                 (die 14 toten Beleg-Links vom
-    #                                  2.11.2026: sieben ersetzt, sechs
-    #                                  begruendet geparkt, einer war gar
-    #                                  nicht tot. Dabei zwei NICHT
+    #                                  2.11.2026: sieben ersetzt, sieben
+    #                                  begruendet geparkt — alle 14 waren
+    #                                  echt tot. Dabei zwei NICHT
     #                                  belegbare Aktenzeichen gefunden
     #                                  (BGH XII ZB 124/20, OGH 1 Ob 7/22w)
     #                                  und eine Zeitschrift falsch
     #                                  zugeschrieben — zweiter Fall von
     #                                  #235)
     #   - test_bot_sperre_ist_nicht_tot
-    #                                 (ein toter Beleg-Link war nicht tot,
-    #                                  sondern ausgesperrt: die BMF-Seite
-    #                                  liefert eine Myra-Cloud-
-    #                                  "Sicherheitsueberpruefung" — dreimal
-    #                                  mit 503, beim Werkzeug-Lauf davor
-    #                                  aber mit 404, und 404 zaehlt als tot.
-    #                                  #235 lernte "HTTP 200 heisst nicht,
-    #                                  dass die Seite da ist"; hier gilt die
-    #                                  Gegenrichtung. `ist_tot` liest jetzt
-    #                                  den Rumpf mit; Marker an fuenf echten
-    #                                  Antworten gemessen, 0 Fehlalarme)
+    #                                 (`ist_tot` stufte 404/410 allein nach
+    #                                  dem Status als tot ein — eine Wand,
+    #                                  die 404 statt 403 antwortet, wandert
+    #                                  damit als "weg" in die Liste. Jetzt
+    #                                  wird der Rumpf mitgelesen; der Lauf
+    #                                  vom 2.11. fand 164 solche Antworten
+    #                                  und benennt sie getrennt. Entstanden
+    #                                  aus einer EIGENEN Fehldiagnose: vom
+    #                                  Laptop aus sah ich eine Myra-Sperre,
+    #                                  vom Prod-Host ist dieselbe Seite
+    #                                  echter 404 — wer einen Waechter-
+    #                                  Befund nachprueft, messe vom HOST)
     #   - test_openaq_naechste_stationen
     #                                 (nach dem Schluessel-Fix aus #296 kam
     #                                  HTTP 422 zum Vorschein: OpenAQ hat

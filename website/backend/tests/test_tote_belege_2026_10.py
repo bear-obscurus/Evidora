@@ -185,9 +185,7 @@ def test_die_offenen_sind_benannt_und_nicht_heimlich_verschwunden():
     assert not fehlend, (
         "diese Links stehen nicht mehr in data/ — Liste veraltet: " + str(fehlend))
     # 11 am 12.10.2026, davon fuenf am 2.11.2026 ersetzt (SPAETER_ERSETZT).
-    # Von den sechs verbliebenen ist einer gar nicht tot, sondern von einer
-    # Bot-Sperre verdeckt (BMF/Myra, siehe test_bot_sperre_ist_nicht_tot.py);
-    # die anderen fuenf stehen begruendet in url_bekannt_tot.json.
+    # Die sechs verbliebenen stehen alle begruendet in url_bekannt_tot.json.
     assert len(NOCH_OFFEN) == 6
 
 
