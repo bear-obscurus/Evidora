@@ -32,14 +32,6 @@
    "grund": "ACSM-Blogbeitrag ersatzlos entfernt (12.10.2026 und 2.11.2026 bestaetigt). NEU am 2.11.2026: der Weg ueber die im source_label genannte Primaerliteratur hat beim Geschwister-Fakt muscle_confusion doch getragen — nicht ueber eine einzelne Studie, sondern ueber das ACSM-POSITIONSPAPIER selbst (PubMed 19204579, 'Progression models in resistance training'). Fuer diese drei Aussagen (Schmerz ist kein Trainingserfolg, Fettverbrennungszone, Koerperfett-Anteil fuer sichtbare Bauchmuskeln) hat ACSM heute keine abrufbare Entsprechung; eine Suche auf acsm.org liefert nur Nachbarthemen. Kein Ersatz eintragen, der die Aussage nur annaehernd belegt.",
    "geprueft": "2026-11-02"
   },
-  "https://www.ages.at/themen/lebensmittel/lebensmittelsicherheit/tierwohl-und-tierschutz": {
-   "dateien": [
-    "landwirtschaft_pack.json"
-   ],
-   "seit": "2026-09-22",
-   "grund": "AGES-Tierwohlseite ohne Nachfolger. Am 2.11.2026 maschinell belegt: die Seiten-Sitemap von ages.at fuehrt 904 Seiten, davon KEINE zu Tierwohl oder Tierschutz (einziger Treffer: Nutztierfuttermittelherstellung). AGES hat das Thema nicht verschoben, sondern abgegeben. Damit sind auch die im source_label genannten 'AGES Tierwohl-Statistik' und 'AGES-Tierwohl-Studie 2023' auf ages.at nicht auffindbar — beim naechsten Durchgang pruefen und notfalls aus dem Label nehmen. Der Hauptbeleg (statistik.at) lebt.",
-   "geprueft": "2026-11-02"
-  },
   "https://www.amnesty.org/en/documents/asa01/4030/2021/en/": {
    "dateien": [
     "religionsgemeinschaften_pack.json"

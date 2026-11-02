@@ -128,6 +128,8 @@ SPAETER_ERSETZT = {
     "https://www.juraforum.de/lexikon/screenshot-recht",
     "https://www.verbraucherzentrale.de/wissen/digitale-welt/datenschutz/"
     "whatsapp-chats-als-beweismittel-rechtslage-und-tipps-69466",
+    "https://www.ages.at/themen/lebensmittel/lebensmittelsicherheit/"
+    "tierwohl-und-tierschutz",
 }
 
 NOCH_OFFEN = [u for u in TOT_12_10
@@ -184,9 +186,9 @@ def test_die_offenen_sind_benannt_und_nicht_heimlich_verschwunden():
     fehlend = [u for u in NOCH_OFFEN if u not in alle]
     assert not fehlend, (
         "diese Links stehen nicht mehr in data/ — Liste veraltet: " + str(fehlend))
-    # 11 am 12.10.2026, davon fuenf am 2.11.2026 ersetzt (SPAETER_ERSETZT).
+    # 11 am 12.10.2026, davon sechs am 2.11.2026 ersetzt (SPAETER_ERSETZT).
     # Die sechs verbliebenen stehen alle begruendet in url_bekannt_tot.json.
-    assert len(NOCH_OFFEN) == 6
+    assert len(NOCH_OFFEN) == 5
 
 
 def test_die_ersetzten_sind_erreichbare_quellen_derselben_herkunft():
