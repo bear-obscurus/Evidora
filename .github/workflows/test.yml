@@ -376,6 +376,18 @@ jobs:
     #                                  Zeichenklassen, NIE den Wert; die
     #                                  Tests pruefen genau das, inklusive
     #                                  Praefix und Suffix (#153/#237))
+    #   - test_openaq_naechste_stationen
+    #                                 (nach dem Schluessel-Fix aus #296 kam
+    #                                  HTTP 422 zum Vorschein: OpenAQ hat
+    #                                  `order_by=distance` abgeschafft,
+    #                                  erlaubt ist nur noch 'id'. Der 401
+    #                                  hatte das sieben Wochen verdeckt
+    #                                  (#237). Sortieren nach Naehe war
+    #                                  der ZWECK — passiert jetzt bei uns,
+    #                                  mit Breitengrad-Korrektur, und das
+    #                                  Roh-Limit steigt von 5 auf 50,
+    #                                  sonst waehlt [:5] aus einer
+    #                                  unsortierten Liste)
     #   - test_polity5_aussage_grenze (QA50I #88: Claim ueber Polity5 wurde
     #                                  mit V-Dem widerlegt. Ungarn hat in
     #                                  Polity5 +10 (2010-2018, am Datensatz
@@ -666,6 +678,7 @@ jobs:
             tests/test_wikidata_trigger_schreibweise.py \
             tests/test_wortgrenzen_dienste.py \
             tests/test_schluessel_form.py \
+            tests/test_openaq_naechste_stationen.py \
             tests/test_freshness_kadenz.py \
             tests/test_frontex_stand_juli_2026.py \
             tests/test_euvsdisinfo_archiv_fenster.py \
