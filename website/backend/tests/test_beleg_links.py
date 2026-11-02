@@ -28,6 +28,11 @@ import pytest
 
 BACKEND = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND))
+# check_urls.py importiert `_generiert` als Nachbarmodul — ohne tools/ auf dem
+# Pfad scheitert schon das Einlesen. Bisher ging es nur gut, weil in der
+# CI-Liste test_url_pruefer_speicher.py vorher laeuft und den Pfad setzt;
+# allein aufgerufen brach diese Datei ab.
+sys.path.insert(0, str(BACKEND / "tools"))
 
 _spec = importlib.util.spec_from_file_location("check_urls", BACKEND / "tools" / "check_urls.py")
 cu = importlib.util.module_from_spec(_spec)

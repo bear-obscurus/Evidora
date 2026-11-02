@@ -370,9 +370,14 @@ async def check_one(client: httpx.AsyncClient, sem: asyncio.Semaphore,
         try:
             r = await client.get(url, follow_redirects=True, timeout=15.0,
                                  headers={"User-Agent": BROWSER_UA})
+            try:
+                rumpf = r.text if r.status_code >= 400 else None
+            except Exception:
+                rumpf = None          # Binaerantwort o. kaputtes Encoding
             return {"url": url, "status": r.status_code,
                     "final_url": str(r.url), "method": "GET-browser-ua",
-                    "polite_status": polite_status}
+                    "polite_status": polite_status,
+                    "bot_wall": ist_bot_wall(rumpf)}
         except Exception as e:
             return {"url": url, "status": None,
                     "error": f"{type(e).__name__}: {e}",
@@ -392,6 +397,27 @@ async def check_urls(urls: set[str], concurrency: int = 20) -> list[dict[str, An
 # Reporting
 # ---------------------------------------------------------------------------
 
+# Eine Bot-Sperre ist auch dann keine tote Seite, wenn sie 404 antwortet.
+# Das BMF liefert auf JEDEN Pfad eine Myra-Cloud-Seite "Sicherheits-
+# ueberpruefung" — am 2.11.2026 dreimal in Folge mit 503, beim Lauf davor
+# aber mit 404. Damit wanderte ein lebender Beleg in die Tot-Liste. Der
+# Status allein entscheidet also nicht: 404 heisst nur "weg", wenn im Rumpf
+# auch eine Seite steht und keine Pruefung.
+_BOT_WALL_MARKER = (
+    "sicherheitsüberprüfung", "sicherheitsueberpruefung", "security check",
+    "kein roboter", "not a robot", "not a bot", "are you human",
+    "captcha", "cf-browser-verification", "cf_chl_opt", "myracloud",
+    "attention required! | cloudflare", "ddos protection by",
+)
+
+
+def ist_bot_wall(text: str | None) -> bool:
+    """Steht im Rumpf eine Bot-Pruefung statt einer Seite?"""
+    if not text:
+        return False
+    return any(m in text[:20000].lower() for m in _BOT_WALL_MARKER)
+
+
 # Nur diese Befunde sagen: der Link ist tot. Ein 403 ist eine Sperre, ein
 # Timeout oder 5xx eine Stoerung — beides sagt etwas ueber den Abruf, nicht
 # ueber die Seite (#171). Eine Domain, die nicht mehr aufloest, ist dagegen tot.
@@ -401,6 +427,8 @@ _DNS_TOT = ("nodename nor servname", "name or service not known",
 
 def ist_tot(r: dict) -> bool:
     status = r.get("status")
+    if r.get("bot_wall"):
+        return False
     if status in (404, 410):
         return True
     if status is None:
@@ -624,6 +652,13 @@ async def main_async(args: argparse.Namespace) -> int:
           f"{len(fremd)} in generierten Caches (MITRE/CORDIS)")
     print(f"    Parkliste: {len(weiter)} geparkt, {len(neu)} ungeparkt, "
           f"{len(erledigt)} geparkte nicht mehr tot")
+    gesperrt = [r["url"] for ergebnisse in results_by_tier.values()
+                for r in ergebnisse if r.get("bot_wall")]
+    if gesperrt:
+        print(f"    Bot-Sperre statt Seite, nicht als tot gezaehlt: "
+              f"{len(gesperrt)}")
+        for u in gesperrt[:5]:
+            print(f"  SPERRE   {', '.join(orte.get(u) or ['live'])[:40]:<40} {u}")
     if stand_datum:
         print(f"    Veraenderung seit {stand_datum}: {len(neu_tot)} neu tot, "
               f"{len(wieder_da)} wieder erreichbar, "

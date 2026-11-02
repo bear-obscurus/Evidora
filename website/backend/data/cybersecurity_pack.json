@@ -118,7 +118,7 @@
       "topic": "vpn_anonymitaet_mythos",
       "headline": "VPN-Dienste verschlüsseln den Verbindungs-Tunnel zwischen Client und VPN-Server, aber der VPN-Anbieter sieht den gesamten Traffic; bei kommerziellen VPN-Anbietern mit Logging-Praktiken oder Datenverkauf besteht KEINE echte Anonymität (EFF, NIST, Mozilla)",
       "year": 2024,
-      "source_url": "https://www.eff.org/issues/online-anonymity",
+      "source_url": "https://www.mozilla.org/en-US/products/vpn/resource-center/what-is-a-vpn/",
       "secondary_url": "https://ssd.eff.org/module/choosing-vpn-thats-right-you",
       "source_label": "EFF Electronic Frontier Foundation + NIST + Mozilla VPN-Recommendations + Citizen Lab",
       "data": {

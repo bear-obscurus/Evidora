@@ -25,12 +25,16 @@ Keine Netzabfrage in diesen Tests.
 import importlib.util
 import json
 import re
+import sys
 from pathlib import Path
 
 import pytest
 
 BACKEND = Path(__file__).resolve().parents[1]
 DATA = BACKEND / "data"
+# check_urls.py importiert `_generiert` als Nachbarmodul — ohne tools/ auf dem
+# Pfad scheitert schon das Einlesen (siehe test_beleg_links.py).
+sys.path.insert(0, str(BACKEND / "tools"))
 
 _spec = importlib.util.spec_from_file_location("check_urls", BACKEND / "tools" / "check_urls.py")
 cu = importlib.util.module_from_spec(_spec)
@@ -42,6 +46,9 @@ ERSETZT = _FIXTURE["ersetzt"]
 # Ersatz-Links, die eine spaetere Fakt-Korrektur durch eine genauere Quelle
 # abgeloest hat. Der TOTE Link darf trotzdem nicht zurueckkehren.
 ABGELOEST = _FIXTURE.get("abgeloest") or {}
+# Ein Ersatz kann selbst sterben. Dann gehoert er in die Parkliste — und
+# darf dort stehen, ohne dass dieses Gate ihn als Widerspruch meldet.
+SPAETER_GESTORBEN = _FIXTURE.get("spaeter_gestorben") or {}
 BEKANNT = json.loads((BACKEND / "tools" / "url_bekannt_tot.json").read_text(encoding="utf-8"))["tot"]
 
 # Ganze URL, kein Praefix einer laengeren (".../sekten.at/" vs ".../sekten.at/cgi-bin/...").
@@ -106,7 +113,15 @@ def test_abgeloeste_ersatzlinks_sind_begruendet():
 
 
 def test_kein_ersatz_ist_selbst_als_tot_bekannt():
-    assert not set(ERSETZT.values()) & set(BEKANNT)
+    """Ausgenommen die, deren Tod in der Fixture begruendet steht."""
+    assert not (set(ERSETZT.values()) & set(BEKANNT)) - set(SPAETER_GESTORBEN)
+
+
+def test_gestorbene_ersatzlinks_sind_begruendet_und_geparkt():
+    for url, grund in SPAETER_GESTORBEN.items():
+        assert url in set(ERSETZT.values()), url
+        assert url in BEKANNT, (url, "tot, aber nicht in der Parkliste")
+        assert len(grund) > 30, (url, grund)
 
 
 def test_kein_ersatz_ist_ein_ersetzter_toter_link():
