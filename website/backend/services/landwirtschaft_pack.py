@@ -26,9 +26,11 @@ Topics (13):
   - vertical_farming_realitaet_konsens (Wagenigen UR 2022: 50-100×
     höherer Energieverbrauch; Branchen-Pleiten 2022-2024 Infarm/
     AeroFarms/Plenty)
-  - massentierhaltung_empirie_konsens (AT 2024 Statistik: 2.6 Mio
-    Schweine, 2.5 Mio Rinder, 21 Mio Hühner; Hofgrößen-Median AT
-    deutlich kleiner als DE/NL/DK)
+  - massentierhaltung_empirie_konsens (Statistik Austria 1.6.2024:
+    2,52 Mio Schweine, 1,80 Mio Rinder; Hühner-Durchschnittsbestand
+    2025 21,2 Mio. Fuer Hofgroessen-Verteilung und Vollspaltboden-Anteil
+    gibt es keine amtliche Zahl — der Fakt sagt das. Bis #300 stand hier
+    "2.5 Mio Rinder": das war die Schweinezahl auf der Rinderzeile.)
   - pestizid_rueckstaende_konsens (EFSA Annual Report 2024: 96.4 %
     EU-MRL-konform; AT 99.4 %; Mehrfach-Rückstände typisch Median
     2-3 Wirkstoffe)

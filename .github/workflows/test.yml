@@ -376,6 +376,19 @@ jobs:
     #                                  Zeichenklassen, NIE den Wert; die
     #                                  Tests pruefen genau das, inklusive
     #                                  Praefix und Suffix (#153/#237))
+    #   - test_massentierhaltung_trigger
+    #                                 (der korrigierte Fakt erreichte
+    #                                  seine eigene Kernfrage nicht: "85
+    #                                  Prozent der Schweine auf
+    #                                  Vollspaltboden" lief live auf
+    #                                  unverifiable@0,1, weil Gruppe 2
+    #                                  weder Prozent noch leben kennt und
+    #                                  'vollspaltboden' nicht in
+    #                                  'vollspaltenboden' steckt. 8 -> 16
+    #                                  von 16, 0 von 7 Kontrollen, 0 neue
+    #                                  Korpus-/Phrasing-/Tippfehler-
+    #                                  Treffer. Nebenbei Breitscheid-PLATZ
+    #                                  gebunden (#293-Klasse))
     #   - test_massentierhaltung_quellen
     #                                 (drei erfundene Quellen und eine
     #                                  vertauschte Zahl. AGES stand
@@ -759,6 +772,7 @@ jobs:
             tests/test_bot_sperre_ist_nicht_tot.py \
             tests/test_tote_belege_2026_11.py \
             tests/test_massentierhaltung_quellen.py \
+            tests/test_massentierhaltung_trigger.py \
             tests/test_familiennachzug_fakt.py \
             tests/test_eurobarometer_demokratie.py \
             tests/test_femizide_zahlen.py \
