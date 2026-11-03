@@ -751,7 +751,11 @@
         "Die meisten Schweine in Österreich stehen auf Vollspaltenboden",
         "Österreichische Schweine leben fast alle auf Spaltenböden",
         "90 Prozent der Mastschweine in Österreich haben keinen Zugang zu Stroh",
-        "Legehennen in Österreich leben in Käfigen"
+        "Legehennen in Österreich leben in Käfigen",
+        "In Österreich halten 4 Prozent der Betriebe 40 Prozent der Schweine",
+        "Die meisten Schweinehalter in Österreich haben nur ein paar Tiere",
+        "Österreichs Schweinehaltung ist kleinbäuerlich strukturiert",
+        "Ein Großteil der Schweine in Österreich wird in Betrieben mit über 400 Tieren gehalten"
       ],
       "trigger_keywords": [
         "vollspaltboden",
@@ -861,6 +865,44 @@
           [
             "käfig",
             "kaefig"
+          ]
+        ],
+        [
+          [
+            "betrieb",
+            "schweinehalter",
+            "bauern"
+          ],
+          [
+            "schwein"
+          ],
+          [
+            " tieren ",
+            "wenige tiere",
+            "paar tiere",
+            "im schnitt",
+            "durchschnitt",
+            "hälfte",
+            "großteil",
+            "mehrheit",
+            "große",
+            "großen",
+            "kleine",
+            "kleinen",
+            " halten ",
+            " hält ",
+            " gehalten "
+          ]
+        ],
+        [
+          [
+            "kleinbäuerlich",
+            "kleinstrukturiert",
+            "familienbetrieb"
+          ],
+          [
+            "schwein",
+            "tierhaltung"
           ]
         ]
       ]

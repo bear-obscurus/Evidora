@@ -376,6 +376,17 @@ jobs:
     #                                  Zeichenklassen, NIE den Wert; die
     #                                  Tests pruefen genau das, inklusive
     #                                  Praefix und Suffix (#153/#237))
+    #   - test_massentierhaltung_bestandsgroessen
+    #                                 (#302 schrieb die amtlichen
+    #                                  Bestandsgroessen in den Fakt, 3 von 5
+    #                                  Fragen danach kamen nicht an. Zwei
+    #                                  trigger_all-Regeln: Halter x Schwein x
+    #                                  Mengen-Hinweis, Struktur x Schwein.
+    #                                  2 -> 10 von 10, 0 von 16 Kontrollen auch
+    #                                  ueber den Tippfehler-Pass. Gemessene
+    #                                  Fallen: protesTIEREN, erHALTEN, und der
+    #                                  Tippfehler-Pass liest 'halten' als
+    #                                  'halter' (#208-Klasse))
     #   - test_massentierhaltung_trigger
     #                                 (der korrigierte Fakt erreichte
     #                                  seine eigene Kernfrage nicht: "85
@@ -773,6 +784,7 @@ jobs:
             tests/test_tote_belege_2026_11.py \
             tests/test_massentierhaltung_quellen.py \
             tests/test_massentierhaltung_trigger.py \
+            tests/test_massentierhaltung_bestandsgroessen.py \
             tests/test_familiennachzug_fakt.py \
             tests/test_eurobarometer_demokratie.py \
             tests/test_femizide_zahlen.py \
