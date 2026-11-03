@@ -376,6 +376,15 @@ jobs:
     #                                  Zeichenklassen, NIE den Wert; die
     #                                  Tests pruefen genau das, inklusive
     #                                  Praefix und Suffix (#153/#237))
+    #   - test_strukturell_markierung_schwester
+    #                                 (der Schwester-Fakt viehbestand_at_2026
+    #                                  trug ' IST FALSCH.' fuer EINE Aussage und
+    #                                  zwang damit jeden AT-Schweine-Claim —
+    #                                  Prompt-Regel, Rangfolge, Override. Das
+    #                                  Modell sagte 4/4 richtig true, der Override
+    #                                  kippte 3 davon. Dazu die kleinen Haltungen
+    #                                  in den Prompt: vorher 7-15 % des Fakts, die
+    #                                  13.035 kamen gar nicht an)
     #   - test_massentierhaltung_bestandsgroessen
     #                                 (#302 schrieb die amtlichen
     #                                  Bestandsgroessen in den Fakt, 3 von 5
@@ -785,6 +794,7 @@ jobs:
             tests/test_massentierhaltung_quellen.py \
             tests/test_massentierhaltung_trigger.py \
             tests/test_massentierhaltung_bestandsgroessen.py \
+            tests/test_strukturell_markierung_schwester.py \
             tests/test_familiennachzug_fakt.py \
             tests/test_eurobarometer_demokratie.py \
             tests/test_femizide_zahlen.py \

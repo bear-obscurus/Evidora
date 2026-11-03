@@ -293,6 +293,62 @@
           "Lange, Hendzlik und Schmied"
         ]
       ]
+    },
+    {
+      "claim": "Die meisten Schweinehalter in Österreich haben nur ein paar Tiere",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "massentierhaltung_empirie_2026",
+      "muss": [
+        "58,5",
+        "79,1",
+        "4,7 %"
+      ]
+    },
+    {
+      "claim": "Österreichs Schweinehaltung ist kleinbäuerlich strukturiert",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "massentierhaltung_empirie_2026",
+      "muss": [
+        "79,1",
+        "4,7 %",
+        "nach Tieren nicht"
+      ]
+    },
+    {
+      "claim": "Die Mehrzahl der österreichischen Schweinebauern hält nur wenige Schweine",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "massentierhaltung_empirie_2026",
+      "muss": [
+        "79,1",
+        "4,7 %"
+      ]
+    },
+    {
+      "claim": "Die Schweinehaltung in Österreich ist von kleinen Familienbetrieben geprägt",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "massentierhaltung_empirie_2026",
+      "muss": [
+        "79,1",
+        "4,7 %"
+      ]
+    },
+    {
+      "claim": "In Österreich halten 4 Prozent der Betriebe 40 Prozent der Schweine",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "massentierhaltung_empirie_2026",
+      "muss": [
+        "3,9 %",
+        "39"
+      ]
+    },
+    {
+      "claim": "In Österreich gibt es mehr Rinder als Schweine",
+      "datei": "landwirtschaft_pack.json",
+      "fakt": "viehbestand_at_2026",
+      "muss": [
+        "2,53",
+        "1,82"
+      ]
     }
   ],
   "bekannte_luecken": [],
