@@ -1,8 +1,10 @@
 """Der korrigierte Fakt erreichte seine eigene Kernfrage nicht (3.11.2026).
 
 #300 hat den Massentierhaltungs-Fakt korrigiert: Statt „85 % Vollspaltboden
-(AGES)" sagt er jetzt, dass es keine amtliche Quote gibt, und nennt die
-Schätzungen 58–80 % mit Erheber. Der Live-Check danach:
+(AGES)" sagte er danach, dass es keine amtliche Quote gibt, und nannte
+Schätzungen 58–80 %. (⚠️ Das war selbst falsch — die Quote ist amtlich,
+68,7 % laut Agrarstrukturerhebung 2020; siehe test_massentierhaltung_quellen.)
+Der Live-Check danach:
 
     "In Österreich leben 85 Prozent der Schweine auf Vollspaltboden"
     -> unverifiable @ 0,1, kein einziger Beleg

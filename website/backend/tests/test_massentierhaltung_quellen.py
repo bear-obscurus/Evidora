@@ -76,6 +76,27 @@ Erheber (VGT 2022: 69 % Vollspaltboden, 11 % Stroh; Land schafft Leben rund
 von Interessengruppen stammen. Für einen Faktencheck ist „es gibt dazu
 keine amtliche Zahl" die brauchbarere Auskunft.
 
+## ⚠️ KORREKTUR 3.11.2026 — der Abschnitt darüber war selbst falsch
+
+Ich hatte die Spanne „58 bis 80 %" aus einer Suchzusammenfassung
+übernommen, nicht aus einer Quelle. Die Wiederholungsmessung danach zeigte
+widersprüchliche Verdicts und erfundene Zuschreibungen („80 % (VGT: 69 +
+11 Stroh)"); an der Quelle stand:
+
+* Der VGT **zitiert** die Agrarstrukturerhebung — er schätzt nicht. 58 %
+  ist der Wert von **2010**, 69 % der von 2020. **80 % steht dort nicht.**
+* Statistik Austria, Seite „Haltungsformen", Tabelle „Haltungsverfahren
+  für Schweine 2020": 3.254.980 Haltungsplätze, davon **2.237.499 = 68,74 %
+  Vollspaltenboden**. Drei Wege gegengeprüft (Gesamttabelle, Summe der
+  Teiltabellen Zuchtsauen + sonstige Schweine, Kachel auf der Seite).
+* „Halter:innen von Schweinen 2023": **859 Halter:innen mit mehr als 800
+  Schweinen (3,9 %) halten 39,0 %** aller Schweine — also auch „keine
+  amtliche Auswertung" der Bestandsgrößen war falsch.
+
+Zweimal „keine amtliche Zahl", zweimal ungeprüft, zweimal falsch — in einer
+Korrektur, die erfundene Quellen entfernen sollte. Die Tests unten pinnen
+jetzt die amtlichen Werte; die vorherigen pinnten meinen Fehler.
+
 Keine Netzabfrage in diesen Tests.
 """
 
@@ -222,11 +243,21 @@ def test_das_bgbl_zitat_blieb_stehen():
 # Die Quelle zeigt dorthin, wo die Zahlen stehen
 # --------------------------------------------------------------------------
 
-def test_source_url_zeigt_auf_die_jahresbestaende():
-    """Die Agrarstrukturerhebung fuehrt Stand 2023, der Fakt Jahreswerte."""
+def test_source_url_zeigt_auf_die_haltungsformen():
+    """Die meistgestellte Frage an diesen Fakt ist der Vollspaltenboden-
+    Anteil — der Beleg dafuer muss der Link sein, den Nutzer:innen sehen.
+    Die Bestandszahlen (Viehbestand jaehrlich) verlinkt der Schwester-Fakt
+    viehbestand_at_2026; dieser Fakt nennt sie mit Pressemitteilung."""
     u = _fakt()["source_url"]
-    assert u.endswith("viehbestand-jaehrlich")
-    assert "agrarstrukturdaten" not in u
+    assert u.endswith("/haltungsformen")
+
+
+def test_die_bestandszahlen_bleiben_verlinkt():
+    """Nur der Ort wechselt: der Schwester-Fakt traegt die Viehbestand-URL."""
+    import json as _json
+    d = _json.loads(PACK.read_text(encoding="utf-8"))
+    s = [f for f in d["facts"] if f.get("id") == "viehbestand_at_2026"][0]
+    assert s["source_url"].endswith("viehbestand-jaehrlich")
 
 
 def test_die_pressemitteilung_ist_im_label_benannt():
@@ -234,28 +265,52 @@ def test_die_pressemitteilung_ist_im_label_benannt():
 
 
 # --------------------------------------------------------------------------
-# Wo keine amtliche Zahl existiert, sagt der Fakt das
+# Die amtlichen Werte — gegen die Originaltabellen gepinnt (3.11.2026)
 # --------------------------------------------------------------------------
 
-def test_die_haltungsanteile_nennen_ihren_erheber():
+#: Statistik Austria, "Haltungsverfahren fuer Schweine 2020", Oesterreich.
+SCHWEINE_2020 = {"plaetze": 3_254_980, "vollspalten": 2_237_499}
+#: Statistik Austria, "Halter:innen von Schweinen 2023", Oesterreich.
+HALTER_2023 = {"halter": 22_285, "halter_801": 859, "schweine_801": 1_033_899,
+               "schweine": 2_651_394}
+
+
+def test_die_haltungsanteile_sind_die_amtlichen():
     feld = _fakt()["data"]["at_tierwohl_2024"]
-    assert "keine amtliche Quote" in feld
-    assert "VGT" in feld
-    assert "58" in feld and "80" in feld
+    anteil = 100 * SCHWEINE_2020["vollspalten"] / SCHWEINE_2020["plaetze"]
+    assert f"{anteil:.1f}".replace(".", ",") + " %" in feld   # 68,7 %
+    assert "Agrarstrukturerhebung 2020" in feld
+    assert "Plätze, nicht Tiere" in feld
 
 
-def test_die_bestandskonzentration_behauptet_keine_quote_mehr():
+def test_die_bestandskonzentration_ist_die_amtliche():
     feld = _fakt()["data"]["bestand_konzentration_schwein"]
-    assert "keine amtliche Auswertung" in feld
-    for weg in ("30 %", "50 %", "20 %", "Top-100"):
-        assert weg not in feld, weg
+    anteil_h = 100 * HALTER_2023["halter_801"] / HALTER_2023["halter"]
+    anteil_s = 100 * HALTER_2023["schweine_801"] / HALTER_2023["schweine"]
+    assert f"{anteil_h:.1f}".replace(".", ",") + " %" in feld     # 3,9 %
+    assert f"{anteil_s:.1f}".replace(".", ",") + " %" in feld     # 39,0 %
+    assert "Agrarstrukturerhebung 2023" in feld
 
 
-def test_der_kernsatz_sagt_wo_die_datenluecke_ist():
+@pytest.mark.parametrize("falsch", [
+    "keine amtliche Quote", "keine amtliche Auswertung", "58 und 80",
+    "Interessengruppen", "VGT", "DIFFERENZIERT FALSCH",
+])
+def test_die_falschen_aussagen_aus_300_sind_raus(falsch):
+    """Giftprobe gegen meinen eigenen Fehler — siehe KORREKTUR im Docstring."""
+    assert falsch not in _blob(), falsch
+
+
+def test_die_legehennen_tabelle_kennt_keinen_kaefig():
+    feld = _fakt()["data"]["legehennen_haltung_2020"]
+    assert "42,4 % Voliere" in feld
+    assert "Käfighaltung führt die Erhebung nicht" in feld
+
+
+def test_der_kernsatz_traegt_beide_amtlichen_werte():
     k = _fakt()["data"]["kernsatz_fuer_synthesizer"]
-    assert "keine amtliche Auswertung" in k
-    assert "keine amtliche Quote" in k
-    assert "Interessengruppen" in k
+    assert "68,7 %" in k and "39,0 %" in k
+    assert "Haltungsplätze, nicht Tiere" in k
 
 
 # --------------------------------------------------------------------------
