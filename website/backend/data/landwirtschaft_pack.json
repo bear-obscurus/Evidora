@@ -744,9 +744,17 @@
         "AT-Hühner leben in Käfigen",
         "Schweine in AT haben es gut",
         "Tierwohl ist in AT besser als in DE",
-        "Vollspaltboden ist Standard"
+        "Vollspaltboden ist Standard",
+        "In Österreich leben 85 Prozent der Schweine auf Vollspaltboden",
+        "Die meisten Schweine in Österreich stehen auf Vollspaltenboden",
+        "Österreichische Schweine leben fast alle auf Spaltenböden",
+        "90 Prozent der Mastschweine in Österreich haben keinen Zugang zu Stroh",
+        "Legehennen in Österreich leben in Käfigen"
       ],
-      "trigger_keywords": [],
+      "trigger_keywords": [
+        "vollspaltboden",
+        "spaltenboden"
+      ],
       "trigger_composite": [
         [
           "massentierhaltung",
@@ -806,12 +814,13 @@
           "kaefig-frei",
           "stallraum",
           "bewegung",
-          "platz",
+          " platz ",
           "verboten",
           "erlaubt",
           "standard",
           "norm",
-          "vergleich"
+          "vergleich",
+          " stroh "
         ]
       ],
       "trigger_all": [
@@ -835,6 +844,21 @@
           [
             "kaefig",
             "käfig"
+          ]
+        ],
+        [
+          [
+            "legehenne",
+            "legehennen",
+            "henne",
+            "hennen",
+            "hühner",
+            "huehner",
+            "huhn"
+          ],
+          [
+            "käfig",
+            "kaefig"
           ]
         ]
       ]
