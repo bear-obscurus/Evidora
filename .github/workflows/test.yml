@@ -764,6 +764,7 @@ jobs:
             tests/test_normalisierung_laender_dienste.py \
             tests/test_log_redaktion.py \
             tests/test_log_ohne_claim.py \
+            tests/test_logs_ohne_ip.py \
             tests/test_laenderkarte.py \
             tests/test_laenderkarte_api_konnektoren.py \
             tests/test_wgi_weltbank_api.py \

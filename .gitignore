@@ -53,6 +53,11 @@ website/backend/data/cordis_projects_slim.json
 # read-only ist. Kein Repo-Inhalt — die handgepflegte Parkliste ist
 # tools/url_bekannt_tot.json und bleibt versioniert.
 website/backend/data/_wartung/
+# Datei-Log des Backends (services/_log_datei.py) — Laufzeitdaten, nie
+# committen. Das Verzeichnis selbst kommt mit, damit es auf dem Server
+# burrito gehoert und nicht root (siehe docker-compose.yml).
+website/logs/*
+!website/logs/.gitkeep
 website/backend/data/mitre_attack.json
 
 # Temp-Dateien des atomaren Writes (services/_atomic.py) — transient, aber

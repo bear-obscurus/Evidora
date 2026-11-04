@@ -18,6 +18,12 @@ services:
       #     refresh_eurostat_crime via run_evidora_tool.sh) überleben
       #     Rebuilds, statt bei jedem --build verloren zu gehen.
       - ./backend/data:/app/data
+      # Datei-Log, 30 Tage (services/_log_datei.py). Eigenes Verzeichnis,
+      # NICHT unter data/ — data/ sichert restic drei Monate lang. Das
+      # Verzeichnis kommt mit git (logs/.gitkeep) und gehoert damit burrito
+      # (uid 1000) = Container-User evidora; legte Docker es selbst an,
+      # gehoerte es root und der Handler koennte nicht schreiben.
+      - ./logs:/app/logs
     ports:
       - "127.0.0.1:8000:8000"
     extra_hosts:

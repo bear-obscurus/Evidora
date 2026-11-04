@@ -232,6 +232,10 @@ logging.basicConfig(level=logging.INFO)
 # Muss NACH basicConfig stehen (die Handler muessen existieren) und VOR dem
 # ersten HTTP-Aufruf: httpx loggt jede Request-URL auf INFO, und mehrere
 # Konnektoren tragen ihren API-Key als Query-Parameter.
+# Das Datei-Log (30 Tage, ueberlebt den Deploy) MUSS vor der Redaktion
+# haengen — die umhuellt nur Handler, die es beim Installieren schon gibt.
+from services._log_datei import richte_datei_log_ein as _datei_log_einrichten
+_LOG_DATEI = _datei_log_einrichten()
 from services._log_redaktion import installiere as _redaktion_installieren
 from services._log_redaktion import ANFRAGE_FELDER, merke_anfrage
 _ANZAHL_GEHEIMNISSE = _redaktion_installieren()
@@ -239,6 +243,7 @@ _ANZAHL_GEHEIMNISSE = _redaktion_installieren()
 logger = logging.getLogger("evidora")
 logger.info("Log-Redaktion aktiv: %d Geheimnisse werden geschwaerzt",
             _ANZAHL_GEHEIMNISSE)
+logger.info("Datei-Log: %s", _LOG_DATEI or "aus (kein Verzeichnis)")
 
 app = FastAPI(title="Evidora API")
 
