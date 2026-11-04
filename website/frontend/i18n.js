@@ -349,45 +349,49 @@ const TRANSLATIONS = {
                 <li>Keine Nutzerkonten oder Registrierung</li>
                 <li>Keine Analyse-Tools (kein Google Analytics o.Ä.)</li>
                 <li>Keine Weitergabe von Daten an Dritte zu Werbezwecken</li>
-                <li>Keine dauerhafte Speicherung deiner Eingaben</li>
+                <li>Keine dauerhafte Speicherung deiner Eingaben auf unseren Servern</li>
+                <li>Keine IP-Adressen in unseren Zugriffs- und Anwendungsprotokollen</li>
             </ul>
 
             <h3>3. Welche Daten verarbeitet werden</h3>
 
             <h4>a) Deine Behauptung</h4>
-            <p>Wenn du eine Behauptung eingibst, wird diese an unser Backend gesendet und dort verarbeitet. Die KI-Analyse erfolgt je nach Konfiguration durch:</p>
-            <ul>
-                <li><strong>Lokales Sprachmodell (Mistral 7B via Ollama)</strong> — deine Eingabe verlässt nicht unsere Infrastruktur</li>
-                <li><strong>Mistral Cloud API (EU-Server, Paris)</strong> — deine Eingabe wird an Mistral AI (Frankreich) übermittelt. Mistral verarbeitet die Daten gemäß ihrer <a href="https://mistral.ai/terms/#privacy-policy" target="_blank" rel="noopener">Datenschutzrichtlinie</a> auf EU-Servern.</li>
-            </ul>
-            <p>In beiden Fällen werden deine Eingaben <strong>nicht dauerhaft gespeichert</strong> — weder bei uns noch bei Mistral (API-Modus: keine Trainingsnutzung laut Mistral-Richtlinien).</p>
+            <p>Deine Behauptung wird an unseren Server gesendet und dort geprüft. Für die KI-Analyse übermittelt unser Server sie an die API von <strong>Mistral AI</strong> (Paris, Frankreich). Mistral verarbeitet diese Daten in der EU und bewahrt Ein- und Ausgaben der API nach eigenen Angaben 30 Tage zur Missbrauchserkennung auf (<a href="https://legal.mistral.ai/terms/privacy-policy/" target="_blank" rel="noopener">Datenschutzrichtlinie von Mistral</a>). Der Nutzung unserer Anfragen zum Training der Modelle von Mistral haben wir in den Kontoeinstellungen widersprochen.</p>
+            <p>Auf unserem Server wird deine Behauptung <strong>nicht dauerhaft gespeichert</strong>: Damit eine gleiche Frage nicht doppelt geprüft wird, bleiben Behauptung und Ergebnis bis zu 30 Minuten im Arbeitsspeicher und werden danach verworfen, spätestens bei einem Neustart des Dienstes.</p>
 
             <h4>b) Externe Quellenabfragen</h4>
-            <p>Um Fakten zu prüfen, werden <strong>Suchanfragen</strong> (nicht deine exakte Eingabe, sondern extrahierte Suchbegriffe) an folgende öffentliche APIs gesendet:</p>
+            <p>Um Fakten zu prüfen, schickt unser Server <strong>Suchbegriffe</strong>, die aus deiner Behauptung gebildet werden, an öffentliche Dienste, die Evidora live abfragt — unter anderem an:</p>
             <ul>
-                <li>PubMed (NIH, USA) — biomedizinische Studien</li>
-                <li>WHO GHO — Gesundheitsdaten</li>
-                <li>EMA — Medikamentendaten (EU)</li>
-                <li>Copernicus CDS (ECMWF/EU) — Klimadaten</li>
-                <li>Eurostat (EU) — europäische Statistiken</li>
-                <li>EZB (EU) — Leitzinsen, Wechselkurse, Geldmenge</li>
-                <li>UNHCR — Weltweite Flüchtlings- und Asylstatistiken</li>
-                <li>EEA (EU) — Umweltdaten</li>
-                <li>ECDC (EU) — Infektionskrankheiten</li>
-                <li>Cochrane Reviews — Systematische Reviews (via PubMed)</li>
-                <li>GADMO/APA — Deutschsprachige Faktenchecks</li>
-                <li>EFCSN-Faktenchecker — bestehende Faktenchecks</li>
+                <li>Google Fact Check Tools (Google, USA) — bestehende Faktenchecks</li>
+                <li>PubMed, MedlinePlus und ClinicalTrials.gov (U.S. National Library of Medicine, USA) — medizinische Studien und Informationen</li>
+                <li>Europe PMC (EMBL-EBI, Vereinigtes Königreich) — biomedizinische Literatur</li>
+                <li>Semantic Scholar (Allen Institute for AI, USA), OpenAlex (OurResearch, USA) und Crossref — wissenschaftliche Literatur</li>
+                <li>Wikipedia und Wikidata (Wikimedia Foundation, USA) — Nachschlagewerke</li>
+                <li>Europeana (EU) — Kulturerbe</li>
+                <li>CDC Open Data (USA) und WHO — Gesundheitsdaten</li>
+                <li>Mimikama (Österreich) — Faktenchecks</li>
+                <li>GeoNames und OpenStreetMap Nominatim — nur für Ortsnamen</li>
             </ul>
-            <p>Diese Dienste unterliegen ihren eigenen Datenschutzrichtlinien. Es werden keine personenbezogenen Daten an sie übermittelt.</p>
+            <p>Die Anfragen stellt unser Server, nicht dein Browser: Deine IP-Adresse wird dabei nicht übermittelt. Nennt deine Behauptung eine Person, kann ihr Name als Suchbegriff an diese Dienste gehen. Viele weitere Quellen liegen als Datensätze auf unserem Server und erhalten keine Anfrage. Die Dienste unterliegen ihren eigenen Datenschutzrichtlinien.</p>
 
-            <h4>c) Spracheinstellung</h4>
-            <p>Deine gewählte Sprache (DE/EN) wird im <strong>localStorage</strong> deines Browsers gespeichert, damit sie beim nächsten Besuch erhalten bleibt. Dies ist kein Cookie und wird nicht an den Server gesendet.</p>
+            <h4>c) Im Browser gespeicherte Daten</h4>
+            <p>Im <strong>localStorage</strong> deines Browsers speichern wir deine gewählte Sprache (DE/EN) und deine letzten 10 Prüfungen (Behauptung, Ergebnis, Datum), damit du sie unter „Letzte Checks“ wieder aufrufen kannst. Beides bleibt auf deinem Gerät und wird nicht an den Server gesendet. Den Verlauf löschst du mit „Verlauf löschen“. Das sind keine Cookies.</p>
 
             <h4>d) Server-Logs</h4>
-            <p>Unser Backend protokolliert anonymisierte technische Daten (Fehlermeldungen, Kategorie der Anfrage, Antwortzeiten). <strong>Deine eingegebenen Behauptungen werden nicht geloggt.</strong> Logs werden beim Neustart des Servers automatisch gelöscht.</p>
+            <p>Unser Server führt diese Protokolle:</p>
+            <ul>
+                <li><strong>Zugriffsprotokoll des Webservers:</strong> Zeitpunkt, Anfragemethode, aufgerufener Pfad ohne Parameter, Protokoll, Statuscode, Größe und Dauer der Antwort. Keine IP-Adresse, keine Browserkennung, keine Herkunftsseite. Gelöscht nach spätestens 31 Tagen.</li>
+                <li><strong>Protokoll des Prüfdienstes:</strong> Fehlermeldungen, Kategorie der Anfrage, abgefragte Quellen und die Zahl ihrer Treffer, Ergebnis und Konfidenz sowie der Verbrauch der KI-Aufrufe. Wörter deiner Behauptung und der daraus gebildeten Suchbegriffe werden vor dem Schreiben unkenntlich gemacht; stehen bleiben Zahlen, Wörter mit weniger als vier Buchstaben, häufige Füllwörter und Begriffe, die eine Quelle selbst aus deiner Behauptung ableitet (etwa ein Synonym). Gelöscht nach spätestens 31 Tagen.</li>
+                <li><strong>Fehlerprotokoll des Webservers:</strong> Bei technischen Fehlern enthält es deine IP-Adresse, die aufgerufene Adresse und eine Fehlerbeschreibung. Gelöscht nach spätestens 8 Tagen.</li>
+            </ul>
+            <p>Zusätzlich bewahrt die Container-Software die Ausgaben von Webserver und Prüfdienst auf (ohne IP-Adressen, mit unkenntlich gemachten Behauptungen), bis der jeweilige Dienst aktualisiert wird, höchstens 100 MB je Dienst. Für die Qualitätssicherung zählen wir außerdem, wie oft bestimmte interne Prüfregeln greifen (Datum, Ergebnis, Thema des Fakts) — ohne Behauptung und ohne IP-Adresse.</p>
+            <p>Um höchstens 10 Prüfungen pro Minute zuzulassen, hält der Prüfdienst deine IP-Adresse im Arbeitsspeicher. Sie wird nicht auf Datenträger geschrieben und geht spätestens beim nächsten Neustart des Dienstes verloren.</p>
+
+            <h4>e) Geteilte Links und Meldungen</h4>
+            <p>Ein geteilter Link trägt die Behauptung hinter dem #-Zeichen. Diesen Teil überträgt der Browser nicht an unseren Server. Wenn du ein Ergebnis mit „Ergebnis melden“ meldest, öffnet sich dein E-Mail-Programm mit Behauptung und Ergebnis; schickst du die E-Mail ab, erhalten wir deine E-Mail-Adresse und den Inhalt. Wir verwenden beides nur, um die Meldung zu bearbeiten.</p>
 
             <h3>4. Rechtsgrundlage</h3>
-            <p>Die Verarbeitung erfolgt auf Basis von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse: Bereitstellung des Dienstes). Da keine personenbezogenen Daten gespeichert werden, fallen keine Auskunfts- oder Löschrechte an.</p>
+            <p>Die Verarbeitung erfolgt auf Basis von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse: Bereitstellung und Absicherung des Dienstes). Personenbezogene Daten speichern wir nur im Fehlerprotokoll des Webservers (IP-Adresse, höchstens 8 Tage) und, wenn du uns schreibst, deine E-Mail. Für diese Daten stehen dir die Rechte nach Art. 15 bis 21 DSGVO zu, insbesondere auf Auskunft, Löschung und Widerspruch, sowie das Recht auf Beschwerde bei der Datenschutzbehörde.</p>
 
             <h3>5. Datenquellen & Lizenzen</h3>
             <p>Evidora nutzt ausschließlich öffentliche, frei zugängliche Datenquellen:</p>
@@ -770,45 +774,49 @@ const TRANSLATIONS = {
                 <li>No user accounts or registration</li>
                 <li>No analytics tools (no Google Analytics etc.)</li>
                 <li>No sharing of data with third parties for advertising</li>
-                <li>No permanent storage of your inputs</li>
+                <li>No permanent storage of your inputs on our servers</li>
+                <li>No IP addresses in our access and application logs</li>
             </ul>
 
             <h3>3. What data is processed</h3>
 
             <h4>a) Your claim</h4>
-            <p>When you enter a claim, it is sent to our backend for processing. Depending on the configuration, AI analysis is performed by:</p>
-            <ul>
-                <li><strong>Local language model (Mistral 7B via Ollama)</strong> — your input does not leave our infrastructure</li>
-                <li><strong>Mistral Cloud API (EU servers, Paris)</strong> — your input is transmitted to Mistral AI (France). Mistral processes data in accordance with their <a href="https://mistral.ai/terms/#privacy-policy" target="_blank" rel="noopener">Privacy Policy</a> on EU servers.</li>
-            </ul>
-            <p>In both cases, your inputs are <strong>not stored permanently</strong> — neither by us nor by Mistral (API mode: no training use per Mistral's policies).</p>
+            <p>Your claim is sent to our server and checked there. For the AI analysis, our server transmits it to the API of <strong>Mistral AI</strong> (Paris, France). Mistral processes this data in the EU and, according to its own statements, keeps API inputs and outputs for 30 days for abuse monitoring (<a href="https://legal.mistral.ai/terms/privacy-policy/" target="_blank" rel="noopener">Mistral's privacy policy</a>). We have opted out of the use of our requests for training Mistral's models in our account settings.</p>
+            <p>On our server, your claim is <strong>not stored permanently</strong>: so that the same question is not checked twice, the claim and its result stay in memory for up to 30 minutes and are then discarded, at the latest when the service restarts.</p>
 
             <h4>b) External source queries</h4>
-            <p>To verify facts, <strong>search queries</strong> (not your exact input, but extracted search terms) are sent to the following public APIs:</p>
+            <p>To verify facts, our server sends <strong>search terms</strong> derived from your claim to public services that Evidora queries live — among others:</p>
             <ul>
-                <li>PubMed (NIH, USA) — biomedical studies</li>
-                <li>WHO GHO — health data</li>
-                <li>EMA — medication data (EU)</li>
-                <li>Copernicus CDS (ECMWF/EU) — climate data</li>
-                <li>Eurostat (EU) — European statistics</li>
-                <li>ECB (EU) — key interest rates, exchange rates, money supply</li>
-                <li>UNHCR — Global refugee and asylum statistics</li>
-                <li>EEA (EU) — environmental data</li>
-                <li>ECDC (EU) — infectious diseases</li>
-                <li>Cochrane Reviews — systematic reviews (via PubMed)</li>
-                <li>GADMO/APA — German-language fact-checks</li>
-                <li>EFCSN fact-checkers — existing fact checks</li>
+                <li>Google Fact Check Tools (Google, USA) — existing fact checks</li>
+                <li>PubMed, MedlinePlus and ClinicalTrials.gov (U.S. National Library of Medicine, USA) — medical studies and information</li>
+                <li>Europe PMC (EMBL-EBI, United Kingdom) — biomedical literature</li>
+                <li>Semantic Scholar (Allen Institute for AI, USA), OpenAlex (OurResearch, USA) and Crossref — scholarly literature</li>
+                <li>Wikipedia and Wikidata (Wikimedia Foundation, USA) — reference works</li>
+                <li>Europeana (EU) — cultural heritage</li>
+                <li>CDC Open Data (USA) and WHO — health data</li>
+                <li>Mimikama (Austria) — fact checks</li>
+                <li>GeoNames and OpenStreetMap Nominatim — place names only</li>
             </ul>
-            <p>These services are subject to their own privacy policies. No personal data is transmitted to them.</p>
+            <p>The requests are made by our server, not by your browser: your IP address is not transmitted. If your claim names a person, that name may be sent to these services as a search term. Many other sources are stored as datasets on our server and receive no request. These services are subject to their own privacy policies.</p>
 
-            <h4>c) Language setting</h4>
-            <p>Your chosen language (DE/EN) is stored in your browser's <strong>localStorage</strong> so it persists across visits. This is not a cookie and is not sent to the server.</p>
+            <h4>c) Data stored in your browser</h4>
+            <p>In your browser's <strong>localStorage</strong> we store your chosen language (DE/EN) and your last 10 checks (claim, result, date), so you can open them again under “Recent checks”. Both stay on your device and are not sent to the server. You can delete the history with “Clear history”. These are not cookies.</p>
 
             <h4>d) Server logs</h4>
-            <p>Our backend logs anonymized technical data (error messages, request category, response times). <strong>Your entered claims are not logged.</strong> Logs are automatically deleted when the server restarts.</p>
+            <p>Our server keeps these logs:</p>
+            <ul>
+                <li><strong>Web server access log:</strong> time, request method, requested path without parameters, protocol, status code, size and duration of the response. No IP address, no user agent, no referring page. Deleted after 31 days at the latest.</li>
+                <li><strong>Checking service log:</strong> error messages, request category, queried sources and their number of hits, result and confidence, and the usage of the AI calls. Words of your claim and of the search terms derived from it are made unrecognisable before writing; numbers, words shorter than four letters, common filler words and terms a source derives from your claim by itself (such as a synonym) remain. Deleted after 31 days at the latest.</li>
+                <li><strong>Web server error log:</strong> in case of technical errors it contains your IP address, the requested address and an error description. Deleted after 8 days at the latest.</li>
+            </ul>
+            <p>In addition, the container software keeps the output of the web server and the checking service (without IP addresses, with claims made unrecognisable) until the respective service is updated, at most 100 MB per service. For quality assurance we also count how often certain internal checking rules apply (date, result, topic of the fact) — without the claim and without an IP address.</p>
+            <p>To allow at most 10 checks per minute, the checking service keeps your IP address in memory. It is not written to disk and is lost at the latest when the service next restarts.</p>
+
+            <h4>e) Shared links and reports</h4>
+            <p>A shared link carries the claim after the # sign. Your browser does not transmit this part to our server. If you report a result with “Report result”, your email program opens with the claim and the result; if you send the email, we receive your email address and its content. We use both only to handle the report.</p>
 
             <h3>4. Legal basis</h3>
-            <p>Processing is based on Art. 6(1)(f) GDPR (legitimate interest: providing the service). Since no personal data is stored, no data access or deletion rights apply.</p>
+            <p>Processing is based on Art. 6(1)(f) GDPR (legitimate interest: providing and securing the service). We store personal data only in the web server error log (IP address, at most 8 days) and, if you write to us, your email. For this data you have the rights under Art. 15 to 21 GDPR, in particular access, erasure and objection, as well as the right to lodge a complaint with the data protection authority.</p>
 
             <h3>5. Data Sources & Licenses</h3>
             <p>Evidora uses exclusively public, freely accessible data sources:</p>
