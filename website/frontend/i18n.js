@@ -356,7 +356,7 @@ const TRANSLATIONS = {
             <h3>3. Welche Daten verarbeitet werden</h3>
 
             <h4>a) Deine Behauptung</h4>
-            <p>Deine Behauptung wird an unseren Server gesendet und dort geprüft. Für die KI-Analyse übermittelt unser Server sie an die API von <strong>Mistral AI</strong> (Paris, Frankreich). Mistral verarbeitet diese Daten in der EU und bewahrt Ein- und Ausgaben der API nach eigenen Angaben 30 Tage zur Missbrauchserkennung auf (<a href="https://legal.mistral.ai/terms/privacy-policy/" target="_blank" rel="noopener">Datenschutzrichtlinie von Mistral</a>). Der Nutzung unserer Anfragen zum Training der Modelle von Mistral haben wir in den Kontoeinstellungen widersprochen.</p>
+            <p>Deine Behauptung wird an unseren Server gesendet und dort geprüft. Für die KI-Analyse übermittelt unser Server sie an die API von <strong>Mistral AI</strong> (Paris, Frankreich). Mistral verarbeitet diese Daten in der EU und bewahrt Ein- und Ausgaben der API nach eigenen Angaben 30 Tage zur Missbrauchserkennung auf (<a href="https://legal.mistral.ai/terms/privacy-policy/" target="_blank" rel="noopener">Datenschutzrichtlinie von Mistral</a>). In unseren Kontoeinstellungen bei Mistral ist die Nutzung unserer API-Aufrufe zum Training der Modelle ausgeschaltet; sogenannte Labs-Modelle, für die das nicht gilt, sind nicht aktiviert.</p>
             <p>Auf unserem Server wird deine Behauptung <strong>nicht dauerhaft gespeichert</strong>: Damit eine gleiche Frage nicht doppelt geprüft wird, bleiben Behauptung und Ergebnis bis zu 30 Minuten im Arbeitsspeicher und werden danach verworfen, spätestens bei einem Neustart des Dienstes.</p>
 
             <h4>b) Externe Quellenabfragen</h4>
@@ -781,7 +781,7 @@ const TRANSLATIONS = {
             <h3>3. What data is processed</h3>
 
             <h4>a) Your claim</h4>
-            <p>Your claim is sent to our server and checked there. For the AI analysis, our server transmits it to the API of <strong>Mistral AI</strong> (Paris, France). Mistral processes this data in the EU and, according to its own statements, keeps API inputs and outputs for 30 days for abuse monitoring (<a href="https://legal.mistral.ai/terms/privacy-policy/" target="_blank" rel="noopener">Mistral's privacy policy</a>). We have opted out of the use of our requests for training Mistral's models in our account settings.</p>
+            <p>Your claim is sent to our server and checked there. For the AI analysis, our server transmits it to the API of <strong>Mistral AI</strong> (Paris, France). Mistral processes this data in the EU and, according to its own statements, keeps API inputs and outputs for 30 days for abuse monitoring (<a href="https://legal.mistral.ai/terms/privacy-policy/" target="_blank" rel="noopener">Mistral's privacy policy</a>). In our Mistral account settings, the use of our API calls for training the models is switched off; so-called Labs models, to which this does not apply, are not enabled.</p>
             <p>On our server, your claim is <strong>not stored permanently</strong>: so that the same question is not checked twice, the claim and its result stay in memory for up to 30 minutes and are then discarded, at the latest when the service restarts.</p>
 
             <h4>b) External source queries</h4>
