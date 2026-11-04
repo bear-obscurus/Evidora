@@ -228,15 +228,25 @@ def test_installieren_ist_idempotent(monkeypatch):
         monkeypatch.setattr(LR, "_installiert", False)
 
 
-def test_ohne_geheimnisse_passiert_nichts(monkeypatch):
-    """In einer Umgebung ohne Keys bleibt die Fabrik unangetastet — kein
-    Overhead auf dem Log-Pfad."""
+def test_ohne_geheimnisse_wird_trotzdem_installiert(monkeypatch):
+    """Bis 4.11.2026 blieb die Fabrik ohne Keys unangetastet. Seitdem
+    braucht die Schwaerzung der Anfrage-Woerter dieselben Schichten — auch
+    lokal und in der CI, wo kein Key gesetzt ist. Ohne angemeldete Woerter
+    bleibt eine Zeile unveraendert."""
     for name, _ in LR.geheimnisse():
         monkeypatch.delenv(name, raising=False)
     monkeypatch.setattr(LR, "_installiert", False)
+    LR.vergiss_anfragen()
     alte = logging.getLogRecordFactory()
-    assert LR.installiere() == 0
-    assert logging.getLogRecordFactory() is alte
+    try:
+        assert LR.installiere() == 0
+        assert logging.getLogRecordFactory() is not alte
+        rec = logging.getLogRecordFactory()("evidora", logging.INFO, "x", 1,
+                                            "Source %d returned", (3,), None)
+        assert rec.getMessage() == "Source 3 returned"
+    finally:
+        logging.setLogRecordFactory(alte)
+        monkeypatch.setattr(LR, "_installiert", False)
 
 
 # --------------------------------------------------------------------------

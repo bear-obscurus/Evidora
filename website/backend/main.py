@@ -233,6 +233,7 @@ logging.basicConfig(level=logging.INFO)
 # ersten HTTP-Aufruf: httpx loggt jede Request-URL auf INFO, und mehrere
 # Konnektoren tragen ihren API-Key als Query-Parameter.
 from services._log_redaktion import installiere as _redaktion_installieren
+from services._log_redaktion import ANFRAGE_FELDER, merke_anfrage
 _ANZAHL_GEHEIMNISSE = _redaktion_installieren()
 
 logger = logging.getLogger("evidora")
@@ -345,6 +346,11 @@ async def check_claim(request: Request):
         raise HTTPException(status_code=400, detail="Claim too short — please enter at least 2 words." if lang == "en" else "Behauptung zu kurz — bitte mindestens 2 Wörter eingeben.")
 
     async def event_stream():
+        # Die Datenschutzerklaerung sagt, eingegebene Behauptungen werden
+        # nicht geloggt. Ab hier schwaerzt die Log-Redaktion die Woerter des
+        # Claims in jeder Zeile — auch in den URLs, die httpx protokolliert.
+        # Siehe services/_log_redaktion.py, „DIE ANFRAGE SELBST".
+        merke_anfrage(claim)
         # Hebel #4: Verdict-Cache mit semantischer Aehnlichkeit. Vor der
         # gesamten Pipeline (Analyzer + Datenquellen + Synthesizer)
         # pruefen, ob ein gleicher oder fast-gleicher Claim bereits
@@ -372,7 +378,9 @@ async def check_claim(request: Request):
             # the original text because the analyzer may paraphrase away
             # exactly those comparative markers.
             analysis["original_claim"] = claim
-            logger.info(f"Analysis done: category={analysis.get('category')}, confidence={analysis.get('confidence')}, entities={analysis.get('entities')}")
+            # Die Suchbegriffe der Analyse stehen gleich in den Request-URLs.
+            merke_anfrage({k: analysis.get(k) for k in ANFRAGE_FELDER})
+            logger.info(f"Analysis done: category={analysis.get('category')}, confidence={analysis.get('confidence')}, entities={len(analysis.get('entities') or [])}")
         except ValueError as e:
             if "MISTRAL_CREDITS_EXHAUSTED" in str(e):
                 logger.error("Mistral API credits exhausted")

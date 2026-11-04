@@ -57,6 +57,7 @@ import os
 
 from services._topic_match import find_matching_items, load_items
 from services._notizen import prompt_notizen
+from services._log_redaktion import claim_kennung
 
 logger = logging.getLogger("evidora")
 
@@ -240,7 +241,7 @@ async def search_awmf(analysis: dict) -> dict:
     results = results[:5]
 
     logger.info(
-        f"AWMF: {len(results)} Treffer fuer Claim '{claim[:60]}'"
+        f"AWMF: {len(results)} Treffer fuer Claim {claim_kennung(claim)}"
     )
     return {
         "source": "AWMF Leitlinienregister (S3-Leitlinien)",

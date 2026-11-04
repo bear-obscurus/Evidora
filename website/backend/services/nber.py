@@ -92,6 +92,7 @@ from services._http_polite import polite_client
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
 from services._ausfall import melde_ausfall, melde_http_ausfall
+from services._log_redaktion import claim_kennung
 
 logger = logging.getLogger("evidora")
 
@@ -608,7 +609,7 @@ async def search_nber(analysis: dict) -> dict:
     if not combined:
         logger.info(
             f"NBER: 0/{len(rss_items)} RSS, 0/{len(search_items)} Search "
-            f"für Claim '{claim[:60]}'"
+            f"für Claim {claim_kennung(claim)}"
         )
         return empty
 

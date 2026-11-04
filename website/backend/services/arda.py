@@ -76,6 +76,7 @@ from functools import lru_cache
 from services._http_polite import polite_client  # noqa: F401
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
+from services._log_redaktion import claim_kennung
 
 logger = logging.getLogger("evidora")
 
@@ -370,12 +371,12 @@ async def search_arda(analysis: dict) -> dict:
         # Match — wir liefern keine generischen Hits, sondern leeres Result,
         # damit der Synthesizer keine unpassenden Zahlen zitiert.
         logger.info(
-            f"ARDA: trigger fired but 0 fact matches for claim='{claim[:80]}'"
+            f"ARDA: trigger fired but 0 fact matches for claim {claim_kennung(claim)}"
         )
         return empty
 
     matched.append(_caveat_result(data_root))
-    logger.info(f"ARDA: {len(matched) - 1} fact hits for claim='{claim[:80]}'")
+    logger.info(f"ARDA: {len(matched) - 1} fact hits for claim {claim_kennung(claim)}")
     return {
         "source": "ARDA",
         "type": "religion_statistics",
