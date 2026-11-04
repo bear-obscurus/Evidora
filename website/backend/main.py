@@ -9,7 +9,7 @@ import os
 import re
 import unicodedata
 
-from services.ratelimit import get_client_ip, RateLimiter
+from services.ratelimit import get_client_ip, RateLimiter, raeume_regelmaessig
 from services.claim_analyzer import analyze_claim
 from services.pubmed import search_pubmed
 from services.who import search_who
@@ -255,6 +255,17 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# Kennwerte der IPs spaetestens HOECHSTDAUER_S nach der letzten Pruefung
+# aus dem Speicher — auch ohne neue Anfrage (services/ratelimit.py).
+_raeum_task = None
+
+
+@app.on_event("startup")
+async def rate_limit_raeumen_starten():
+    global _raeum_task
+    _raeum_task = asyncio.create_task(raeume_regelmaessig(_rate_limiter))
 
 
 @app.on_event("startup")

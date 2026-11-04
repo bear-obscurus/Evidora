@@ -14,11 +14,41 @@ Der linkeste `X-Forwarded-For`-Eintrag ist dagegen client-kontrolliert
 (nginx hängt die echte IP nur an) und darf NICHT fürs Rate-Limit-Keying
 verwendet werden — genau das war die gefixte Lücke: ein rotierender
 XFF-Wert pro Request erschien als neue IP und umging das Limit komplett.
+
+Datenschutz (4.11.2026): Bis dahin stand die IP im Klartext als Schlüssel
+im Speicher, und geräumt wurde erst ab ``max_keys`` (10.000) Einträgen —
+praktisch blieb jede IP seit dem letzten Deploy bis zum Neustart liegen.
+Der Server lagert Speicher aus (2 GB Swap, Container bis 512 MB), die
+Tabelle konnte also auf der Platte landen. Jetzt:
+
+* Schlüssel ist ein HMAC-SHA256-Kennwert der IP. Der Schlüssel dafür
+  (``_salz``) entsteht pro Instanz, also pro Prozess, aus ``os.urandom`` und
+  liegt nur im Speicher. In der Tabelle steht keine IP mehr.
+* ``raeume_regelmaessig`` entfernt alle ``RAEUM_INTERVALL_S`` Sekunden die
+  Einträge, deren letzte Prüfung länger als das Fenster zurückliegt — auch
+  wenn niemand prüft. Damit ist ein Kennwert spätestens Fenster + Abstand
+  nach der letzten Prüfung weg; ``HOECHSTDAUER_S`` legt einen Puffer für
+  eine kurz belegte Event-Loop drauf. Diese Zahl nennt die
+  Datenschutzerklärung (tests/test_datenschutz_exakt.py).
 """
 from __future__ import annotations
 
+import asyncio
+import hashlib
+import hmac
+import logging
+import os
 import time as _time
 from collections.abc import Mapping
+
+logger = logging.getLogger("evidora")
+
+#: Abstand der Hintergrund-Räumung.
+RAEUM_INTERVALL_S = 20
+
+#: Obere Schranke, die die Datenschutzerklärung nennt: Fenster (60 s) +
+#: Abstand (20 s) + 10 s Puffer für eine kurz belegte Event-Loop.
+HOECHSTDAUER_S = 90
 
 
 def get_client_ip(headers: Mapping, peer_host: str | None) -> str:
@@ -48,27 +78,51 @@ class RateLimiter:
         self.limit = limit
         self.window = window
         self.max_keys = max_keys
-        self._store: dict[str, list[float]] = {}
+        self._store: dict[bytes, list[float]] = {}
+        self._salz = os.urandom(32)
 
-    def _sweep(self, now: float) -> None:
+    def _kennung(self, ip: str) -> bytes:
+        """Kennwert statt IP — ohne ``_salz`` nicht zurückzurechnen."""
+        return hmac.new(self._salz, ip.encode("utf-8"), hashlib.sha256).digest()[:16]
+
+    def raeume(self, now: float | None = None) -> int:
+        """Entfernt Einträge ohne Prüfung im Fenster. Gibt die Zahl zurück."""
+        now = _time.time() if now is None else now
         stale = [k for k, ts in self._store.items()
                  if not ts or now - ts[-1] >= self.window]
         for k in stale:
             del self._store[k]
+        return len(stale)
 
     def allow(self, ip: str, now: float | None = None) -> bool:
         """True, wenn der Request erlaubt ist (und zählt ihn dann), sonst
         False (Limit erreicht)."""
         now = _time.time() if now is None else now
         if len(self._store) > self.max_keys:
-            self._sweep(now)
-        timestamps = [t for t in self._store.get(ip, []) if now - t < self.window]
+            self.raeume(now)
+        k = self._kennung(ip)
+        timestamps = [t for t in self._store.get(k, []) if now - t < self.window]
         if len(timestamps) >= self.limit:
-            self._store[ip] = timestamps
+            self._store[k] = timestamps
             return False
         timestamps.append(now)
-        self._store[ip] = timestamps
+        self._store[k] = timestamps
         return True
 
     def __len__(self) -> int:
         return len(self._store)
+
+
+async def raeume_regelmaessig(limiter: RateLimiter,
+                              intervall: float = RAEUM_INTERVALL_S) -> None:
+    """Hintergrund-Schleife: räumt auch, wenn niemand prüft.
+
+    Ohne sie bliebe der letzte Kennwert einer ruhigen Stunde liegen, bis die
+    nächste Prüfung kommt. Ein Fehler beendet die Schleife nicht.
+    """
+    while True:
+        await asyncio.sleep(intervall)
+        try:
+            limiter.raeume()
+        except Exception as e:  # pragma: no cover — darf nie die Schleife beenden
+            logger.warning(f"Rate-Limit-Räumung fehlgeschlagen: {e}")
