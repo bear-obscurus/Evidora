@@ -713,10 +713,18 @@ function copyToClipboard(text) {
     });
 }
 
+// Die Behauptung steht hinter "#", nicht hinter "?": Ein Fragment schickt
+// der Browser nie an den Server, also landet sie in keinem Zugriffslog.
+// Vorher (bis 4.11.2026) stand sie als ?claim= in der Anfrage — wer einen
+// geteilten Link öffnete, stand mit Behauptung im nginx-Log.
+function teilenLink(claim) {
+    return `${window.location.origin}/#claim=${encodeURIComponent(claim)}`;
+}
+
 function shareResult() {
     // geprüften Claim teilen, nicht das evtl. weiterbearbeitete Feld (Audit #5)
     const claim = lastCheckedClaim || input.value.trim();
-    const url = `${window.location.origin}?claim=${encodeURIComponent(claim)}`;
+    const url = teilenLink(claim);
 
     copyToClipboard(url).then(() => {
         showToast(t("toast_link_copied"), "success");
@@ -731,7 +739,7 @@ function reportResult() {
     const verdict = verdictEl ? verdictEl.textContent.trim() : "?";
     const summaryEl = document.querySelector(".verdict-summary");
     const summary = summaryEl ? summaryEl.textContent.trim() : "";
-    const url = `${window.location.origin}?claim=${encodeURIComponent(claim)}`;
+    const url = teilenLink(claim);
 
     const subject = `[Evidora] ${t("report_subject")}: ${claim.substring(0, 80)}`;
     const body = `${t("report_claim")}: ${claim}\n${t("report_verdict")}: ${verdict}\n${t("report_summary")}: ${summary}\n\nURL: ${url}\n\n${t("report_reason")}:\n`;
@@ -742,8 +750,10 @@ function reportResult() {
 
 // --- Auto-fill from URL ---
 function checkUrlParams() {
-    const params = new URLSearchParams(window.location.search);
-    const claim = params.get("claim");
+    // Neue Links tragen die Behauptung im Fragment, alte im Query-String —
+    // beide funktionieren weiter.
+    const ausFragment = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+    const claim = ausFragment.get("claim") || new URLSearchParams(window.location.search).get("claim");
     if (claim) {
         input.value = claim;
         form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
