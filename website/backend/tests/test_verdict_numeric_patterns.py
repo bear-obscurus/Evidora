@@ -15,6 +15,7 @@ Dependency-light: reine Kaskaden-Tests, kein Netz/LLM.
 
 import pytest
 
+import services.verdict_postprocess as vp
 from services.verdict_postprocess import apply_verdict_postprocessing
 
 
@@ -231,10 +232,11 @@ def test_tier2b_doppelnegation_skippt_struct_override():
     assert not r.get("_struct_override_fired")
 
 
-def test_tier2b_mythos_via_negation_feuert_weiter():
+def test_tier2b_mythos_via_negation_feuert_weiter(monkeypatch):
     """Kontroll-Fall: 'nicht menschengemacht' ist eine Negation, aber
     KEIN Negativ-Prädikat — der Mythos wird per Negation BEHAUPTET,
     der Override muss weiter feuern."""
+    monkeypatch.setattr(vp, "STRUKTURELL_OVERRIDE_MODUS", "aktiv")  # Entscheidung, nicht Schatten
     r = _run(
         "Der Klimawandel ist nicht menschengemacht",
         "true",
@@ -313,10 +315,11 @@ def test_review_h_altersqualifikator_ist_keine_schwelle():
     assert r["verdict"] == "true", r
 
 
-def test_review_tier2b_behauptetes_negativpraedikat_skippt_nicht():
+def test_review_tier2b_behauptetes_negativpraedikat_skippt_nicht(monkeypatch):
     """'Die ÖBB ist schlecht, weil KEIN Zug pünktlich fährt' BEHAUPTET
     das Negativ-Prädikat — die freie Fenster-Negation hebelte den
     STRUKT-Override aus. Negation muss ans Prädikat gebunden sein."""
+    monkeypatch.setattr(vp, "STRUKTURELL_OVERRIDE_MODUS", "aktiv")  # Entscheidung, nicht Schatten
     r = _run(
         "Die ÖBB ist schlecht, weil kein Zug pünktlich fährt",
         "true",

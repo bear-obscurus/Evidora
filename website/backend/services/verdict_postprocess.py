@@ -22,7 +22,10 @@ Eingang: ``result`` (LLM-Output-Dict), ``source_results`` (gerankte Quellen),
 ``original_claim``. Mutiert ``result`` und gibt es zurueck.
 """
 
+import datetime
+import json
 import logging
+import os
 import re
 
 from services._satzgrenzen import teile_in_einheiten
@@ -33,6 +36,58 @@ from services._zaehlweise import (
 )
 
 logger = logging.getLogger("evidora")
+
+# STRUKTURELL-Override im SCHATTENBETRIEB (4.11.2026). Audit vom 3.11.
+# (Memo "Audit_STRUKTURELL_Markierung", Abschnitt 3): In 84 Live-Laeufen
+# brauchte KEIN Mythos den Override — das Modell selbst lieferte 0 von 69 Mal
+# true/mostly_true —, und alle 5 an diesem Tag beobachteten Feuerungen gingen
+# gegen ein RICHTIGES Modell-Urteil ("Vaeter nehmen in Oesterreich selten
+# Karenz": true @ 0,95 -> mostly_false). Ob ein richtiges true durchkam, hing
+# am Anteil markierter Treffer, also daran, wie viele andere Quellen zufaellig
+# antworteten. Gemessen waren nur die kanonischen Formulierungen; gebaut wurde
+# der Override fuer schwierigere ("in seltenen Faellen ist X moeglich"). Den
+# Bedarf DORT liefert der Schattenbetrieb: Der Override entscheidet weiter,
+# schreibt die Entscheidung auf, aendert das Verdict aber nicht.
+# "aktiv" stellt das alte Verhalten wieder her.
+STRUKTURELL_OVERRIDE_MODUS = os.getenv("STRUKTURELL_OVERRIDE", "schatten")
+
+# Protokoll OHNE Claim-Text: Die Datenschutzerklaerung sagt "Deine
+# eingegebenen Behauptungen werden nicht geloggt" und "keine dauerhafte
+# Speicherung". Aufgeschrieben wird nur, was uns gehoert — Datum, Modell-
+# Urteil, Anteil, Entscheidung und die Themen der markierten Fakten. Im
+# Unterordner, weil check_urls die Dateien direkt unter data/ als Fundorte
+# einliest (siehe tools/check_urls.py, STAND_UNTERORDNER); data/ ist im
+# Container ein rw-Mount und ueberlebt den Deploy, anders als das Log.
+SCHATTEN_PROTOKOLL = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "data", "_wartung", "strukturell_schatten.jsonl",
+)
+
+
+def _schatten_eintrag(entscheidung: str, result: dict, markiert: int,
+                      gesamt: int, themen: list) -> None:
+    """Eine Zeile je Begegnung von Marker und true/mostly_true.
+
+    Alle Entscheidungen, nicht nur "wuerde feuern" — erst die Tier-Spruenge
+    zeigen, wie oft der Marker ueberhaupt auf ein positives Urteil trifft.
+    Ein Schreibfehler darf keine Anfrage kosten.
+    """
+    zeile = {
+        "datum": datetime.date.today().isoformat(),
+        "modus": STRUKTURELL_OVERRIDE_MODUS,
+        "entscheidung": entscheidung,
+        "verdict": result.get("verdict"),
+        "confidence": result.get("confidence"),
+        "markiert": markiert,
+        "treffer": gesamt,
+        "themen": sorted(set(themen)),
+    }
+    try:
+        os.makedirs(os.path.dirname(SCHATTEN_PROTOKOLL), exist_ok=True)
+        with open(SCHATTEN_PROTOKOLL, "a", encoding="utf-8") as f:
+            f.write(json.dumps(zeile, ensure_ascii=False) + "\n")
+    except OSError as e:
+        logger.warning(f"STRUKTURELL-Schattenprotokoll nicht geschrieben: {e}")
 
 
 _COMPARISON_COUNTRIES = (
@@ -1928,6 +1983,7 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
         has_struct_marker = False
         struct_sources_count = 0
         total_results_count = 0
+        struct_themen: list = []
         for source_data in source_results:
             if not isinstance(source_data, dict):
                 continue
@@ -1937,6 +1993,9 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                 if isinstance(dv, str) and "STRUKTURELL FALSCH:" in dv:
                     has_struct_marker = True
                     struct_sources_count += 1
+                    struct_themen.append(str(
+                        r.get("topic") or r.get("indicator")
+                        or source_data.get("source") or "?"))
         if has_struct_marker:
             # Relevance guard: check if LLM summary confirms the claim.
             # If yes, the STRUKTURELL source likely addresses a different
@@ -1982,6 +2041,8 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                     f"topic mismatch via cosine. Keeping LLM verdict "
                     f"'{result.get('verdict')}' @ {result.get('confidence')}."
                 )
+                _schatten_eintrag("Tier 1", result, struct_sources_count,
+                                  total_results_count, struct_themen)
             elif summary_confirms_claim and struct_ratio < 0.5:
                 # Tier 2: low ratio + summary confirms → mismatch
                 logger.warning(
@@ -1992,6 +2053,8 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                     f"Keeping LLM verdict "
                     f"'{result.get('verdict')}' @ {result.get('confidence')}."
                 )
+                _schatten_eintrag("Tier 2", result, struct_sources_count,
+                                  total_results_count, struct_themen)
             elif (struct_ratio < 0.5
                     and _claim_negates_negative_predicate(
                         (original_claim or "").lower())):
@@ -2010,7 +2073,23 @@ def apply_verdict_postprocessing(result, source_results, original_claim):
                     f"Keeping LLM verdict "
                     f"'{result.get('verdict')}' @ {result.get('confidence')}."
                 )
+                _schatten_eintrag("Tier 2b", result, struct_sources_count,
+                                  total_results_count, struct_themen)
+            elif STRUKTURELL_OVERRIDE_MODUS != "aktiv":
+                # Schattenbetrieb (siehe STRUKTURELL_OVERRIDE_MODUS oben):
+                # entschieden ist, aber das Verdict bleibt das des Modells.
+                logger.warning(
+                    f"STRUKTURELL FALSCH override (SCHATTEN): wuerde "
+                    f"'{result.get('verdict')}' @ {result.get('confidence')} "
+                    f"auf 'mostly_false' @ 0.85 setzen (ratio "
+                    f"{struct_sources_count}/{total_results_count} = "
+                    f"{struct_ratio:.0%}). Verdict bleibt."
+                )
+                _schatten_eintrag("wuerde feuern", result, struct_sources_count,
+                                  total_results_count, struct_themen)
             else:
+                _schatten_eintrag("gefeuert", result, struct_sources_count,
+                                  total_results_count, struct_themen)
                 old_verdict = result["verdict"]
                 old_conf = result.get("confidence", 0)
                 result["verdict"] = "mostly_false"

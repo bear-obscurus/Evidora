@@ -29,7 +29,17 @@ import copy
 
 import pytest
 
+import services.verdict_postprocess as vp
 from services.verdict_postprocess import apply_verdict_postprocessing as P
+
+
+@pytest.fixture(autouse=True)
+def _override_aktiv(monkeypatch):
+    """Der Golden-Satz pinnt die ENTSCHEIDUNGS-Kaskade des STRUKTURELL-
+    Overrides. Seit 4.11.2026 laeuft er in Prod im Schatten und aendert das
+    Verdict nicht mehr — dass die Kaskade dort dieselbe Entscheidung trifft,
+    prueft tests/test_strukturell_schattenbetrieb.py an diesen Faellen."""
+    monkeypatch.setattr(vp, "STRUKTURELL_OVERRIDE_MODUS", "aktiv")
 
 
 def _r(verdict, confidence, summary=""):
