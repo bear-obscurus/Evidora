@@ -193,6 +193,120 @@ def test_beide_fassungen_nennen_dieselben_zahlen():
     englischen Fassung ausfuehrlicher (ESA-2010) und hier nicht Gegenstand.
     """
     zahlen = lambda t: sorted(re.findall(r"\b\d+\b", re.sub(r"<[^>]+>", " ", t)))
-    teil = lambda t: t[t.index("<h3>2."):t.index("<h3>5.")]
+    teil = lambda t: t[t.index("<h3>1."):t.index("<h3>5.")]
     assert zahlen(teil(DE)) == zahlen(teil(EN))
     assert zahlen(teil(DE)), "leer — Test misst nichts"
+
+
+# --------------------------------------------------------------------------
+# Verantwortlicher und Hoster (5.11.2026: "den transparenten Weg")
+# --------------------------------------------------------------------------
+
+def test_verantwortlicher_kommt_aus_dem_impressum():
+    """Open Source: Name und Kontakt stehen in der Instanz-Konfiguration
+    (/api/legal), nicht im Code — Impressum und Erklaerung lesen dieselbe Quelle."""
+    assert "Verantwortlich für die Verarbeitung: {verantwortlich}" in DE
+    assert "Controller responsible for the processing: {verantwortlich}" in EN
+    js = (WEBSITE / "frontend" / "app.js").read_text(encoding="utf-8")
+    block = js[js.index('if (type === "privacy")'):js.index('} else if (type === "disclaimer")')]
+    assert "await ladeImpressum()" in block
+    for feld in ("name", "location", "email"):
+        assert f"escapeHtml(imp.{feld})" in block, feld
+    assert 'replace(/\\{verantwortlich\\}/g' in block
+    assert I18N.count("privacy_controller_unconfigured:") == 2, "DE und EN"
+
+
+def test_hoster_wird_genannt():
+    assert "Hetzner Online GmbH (Industriestraße 25, 91710 Gunzenhausen, Deutschland) in einem Rechenzentrum in Nürnberg" in DE
+    assert "Hetzner Online GmbH (Industriestraße 25, 91710 Gunzenhausen, Germany) in a data centre in Nuremberg" in EN
+
+
+def test_meldungs_mails_haben_ein_loeschkriterium():
+    """Art. 13 Abs. 2 lit. a DSGVO: Dauer oder Kriterien der Speicherung."""
+    assert "bis die Meldung bearbeitet ist, und löschen sie danach" in DE
+    assert "until the report has been handled, and delete it afterwards" in EN
+
+
+# --------------------------------------------------------------------------
+# Abschnitt 5: Quellen und ihre Nutzungsbedingungen
+# --------------------------------------------------------------------------
+
+def _quellen(t):
+    teil = t[t.index("<h3>5."):]
+    return [re.sub(r"<[^>]+>", "", re.split(r" — ", li)[0]).strip()
+            for li in re.findall(r"<li>(.*?)</li>", teil, re.S)]
+
+
+#: Jede genannte Quelle hat einen Dienst — sonst nennt die Erklaerung etwas,
+#: das Evidora nicht abfragt.
+QUELLE_ZU_DIENST = {
+    "PubMed / NCBI": "pubmed.py", "WHO GHO": "who.py", "EMA": "ema.py",
+    "EFSA": "efsa.py", "Copernicus CDS": "copernicus.py", "Eurostat": "eurostat.py",
+    "EZB": "ecb.py", "ECB": "ecb.py", "UNHCR": "unhcr.py", "EEA": "eea.py",
+    "ECDC": "ecdc.py", "Statistik Austria": "statistik_austria.py",
+    "GeoSphere Austria": "geosphere.py", "BASG": "basg.py", "RIS": "ris.py",
+    "BMI Volksbegehren": "volksbegehren.py", "BMI Popular Initiatives": "volksbegehren.py",
+    "BMI Wahlen / Bundeswahlbehörde": "wahlen.py", "BMI Elections / Federal Electoral Commission": "wahlen.py",
+    "Parlament Abstimmungen": "abstimmungen.py", "Austrian Parliament Voting Records": "abstimmungen.py",
+    "AT Factbook": "at_factbook.py", "BKA PKS": "pks.py", "DACH Factbook": "dach_factbook.py",
+    "Cochrane Reviews": "cochrane.py", "GADMO Faktenchecks": "gadmo.py", "GADMO fact-checks": "gadmo.py",
+    "EFCSN-Faktenchecker": "claimreview.py", "EFCSN fact-checkers": "claimreview.py",
+}
+
+
+def test_beide_sprachen_nennen_dieselben_quellen():
+    """Bis 5.11.2026 fehlte EFSA im Englischen."""
+    de, en = _quellen(DE), _quellen(EN)
+    assert len(de) == len(en) == 23, (len(de), len(en))
+    assert [QUELLE_ZU_DIENST[q] for q in de] == [QUELLE_ZU_DIENST[q] for q in en]
+
+
+def test_jede_quelle_hat_einen_dienst():
+    for q in _quellen(DE) + _quellen(EN):
+        assert (BACKEND / "services" / QUELLE_ZU_DIENST[q]).exists(), q
+
+
+def _eintrag(t, name):
+    teil = t[t.index("<h3>5."):]
+    (li,) = [x for x in re.findall(r"<li>(.*?)</li>", teil, re.S) if x.startswith(f"<strong>{name}</strong>")]
+    return li
+
+
+@pytest.mark.parametrize("name", ["EMA", "Eurostat"])
+def test_ema_und_eurostat_sind_nicht_cc_by(name):
+    """Beide erlauben Weiterverwendung mit Quellenangabe — keine CC-Lizenz
+    (EMA Legal Notice; bei Eurostat gilt CC BY 4.0 nur fuer redaktionelle
+    Inhalte). Nachgelesen am 5.11.2026."""
+    assert "CC BY" not in _eintrag(DE, name) and "CC BY" not in _eintrag(EN, name)
+    assert "Weiterverwendung mit Quellenangabe erlaubt" in _eintrag(DE, name)
+    assert "reuse permitted with acknowledgement of the source" in _eintrag(EN, name)
+
+
+def test_ris_ist_cc_by_mit_aktuellem_link():
+    """RIS-OGD-FAQ: CC BY 4.0; data.bka.gv.at leitet seit 2026 um."""
+    for t in (DE, EN):
+        e = _eintrag(t, "RIS")
+        assert "(CC BY 4.0)" in e and "https://www.ris.bka.gv.at/UI/Ogd.aspx" in e
+        assert "data.bka.gv.at" not in e
+
+
+@pytest.mark.parametrize("name", ["Statistik Austria", "GeoSphere Austria"])
+def test_cc_by_wo_es_stimmt(name):
+    assert "(CC BY 4.0)" in _eintrag(DE, name) and "(CC BY 4.0)" in _eintrag(EN, name)
+
+
+def test_geosphere_nutzt_die_cc_by_jahresdaten():
+    """HISTALP waere CC BY-NC 4.0 — genutzt wird klima-v2-1y (CC BY 4.0)."""
+    src = (BACKEND / "services" / "geosphere.py").read_text(encoding="utf-8")
+    assert "klima-v2-1y" in src and "histalp" not in src.lower()
+
+
+def test_esvg_2010_in_beiden_sprachen():
+    assert "ESVG-2010-Förderquote" in DE and "ESA-2010 subsidy ratio" in EN
+
+
+def test_einleitung_sagt_auswahl():
+    """23 Eintraege von rund 190 Quellen — "folgende Datenquellen" war falsch."""
+    assert "Hier die wichtigsten mit ihren Nutzungsbedingungen; weitere stehen unter „Quellen“" in DE
+    assert "These are the main ones with their terms of use; more are listed under “Sources”" in EN
+    assert 'sources_link: "Quellen"' in I18N and 'sources_link: "Sources"' in I18N

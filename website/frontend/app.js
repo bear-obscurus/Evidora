@@ -782,12 +782,31 @@ function getFocusableElements(container) {
         .filter(el => el.offsetWidth > 0 || el.offsetHeight > 0 || el.getClientRects().length > 0);
 }
 
+// Name, Ort und Kontakt des Betreibers kommen aus der Instanz-Konfiguration
+// (/api/legal) — Impressum UND Datenschutzerklärung lesen dieselbe Quelle,
+// damit der Verantwortliche nicht doppelt gepflegt wird.
+async function ladeImpressum() {
+    if (!imprintData) {
+        try {
+            const res = await fetch("/api/legal");
+            imprintData = await res.json();
+        } catch {
+            imprintData = { configured: false };
+        }
+    }
+    return imprintData;
+}
+
 async function openModal(type, e) {
     e.preventDefault();
     const body = document.getElementById("legal-body");
 
     if (type === "privacy") {
-        body.innerHTML = t("privacy_html");
+        const imp = await ladeImpressum();
+        const verantwortlich = imp.configured
+            ? `<strong>${escapeHtml(imp.name)}</strong>, ${escapeHtml(imp.location)}, E-Mail: ${escapeHtml(imp.email)}`
+            : escapeHtml(t("privacy_controller_unconfigured"));
+        body.innerHTML = t("privacy_html").replace(/\{verantwortlich\}/g, verantwortlich);
     } else if (type === "disclaimer") {
         body.innerHTML = t("disclaimer_page_html");
     } else if (type === "sources") {
@@ -795,14 +814,7 @@ async function openModal(type, e) {
     } else if (type === "austria") {
         body.innerHTML = t("austria_html");
     } else if (type === "imprint") {
-        if (!imprintData) {
-            try {
-                const res = await fetch("/api/legal");
-                imprintData = await res.json();
-            } catch {
-                imprintData = { configured: false };
-            }
-        }
+        await ladeImpressum();
         if (imprintData.configured) {
             body.innerHTML = t("imprint_html_configured")
                 .replace(/\{name\}/g, escapeHtml(imprintData.name))
