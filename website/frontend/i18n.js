@@ -299,6 +299,7 @@ const TRANSLATIONS = {
             <h3>Haftung für Links</h3>
             <p>Evidora verlinkt auf externe Quellen (PubMed, WHO, EMA etc.). Für deren Inhalte sind ausschließlich die jeweiligen Betreiber verantwortlich.</p>
         `,
+        privacy_controller_unconfigured: "der Betreiber dieser Instanz (Angaben im Impressum)",
         imprint_html_unconfigured: `
             <h2>Impressum</h2>
             <p>Der Betreiber dieser Instanz hat noch kein Impressum konfiguriert.</p>
@@ -342,6 +343,8 @@ const TRANSLATIONS = {
 
             <h3>1. Überblick</h3>
             <p>Der Schutz deiner Daten ist uns wichtig. Diese Seite erklärt, welche Daten verarbeitet werden — und welche nicht.</p>
+            <p>Verantwortlich für die Verarbeitung: {verantwortlich}</p>
+            <p>Unser Server steht bei der Hetzner Online GmbH (Industriestraße 25, 91710 Gunzenhausen, Deutschland) in einem Rechenzentrum in Nürnberg.</p>
 
             <h3>2. Was wir NICHT tun</h3>
             <ul>
@@ -388,20 +391,20 @@ const TRANSLATIONS = {
             <p>Um höchstens 10 Prüfungen pro Minute zuzulassen, merkt sich der Prüfdienst im Arbeitsspeicher einen Kennwert, der aus deiner IP-Adresse gebildet wird, nicht die IP-Adresse selbst. Der Schlüssel dafür liegt nur im Arbeitsspeicher und entsteht bei jedem Neustart neu. Der Kennwert wird spätestens 90 Sekunden nach deiner letzten Prüfung gelöscht; in Dateien oder Protokolle schreibt der Prüfdienst ihn nicht.</p>
 
             <h4>e) Geteilte Links und Meldungen</h4>
-            <p>Ein geteilter Link trägt die Behauptung hinter dem #-Zeichen. Diesen Teil überträgt der Browser nicht an unseren Server. Wenn du ein Ergebnis mit „Ergebnis melden“ meldest, öffnet sich dein E-Mail-Programm mit Behauptung und Ergebnis; schickst du die E-Mail ab, erhalten wir deine E-Mail-Adresse und den Inhalt. Wir verwenden beides nur, um die Meldung zu bearbeiten.</p>
+            <p>Ein geteilter Link trägt die Behauptung hinter dem #-Zeichen. Diesen Teil überträgt der Browser nicht an unseren Server. Wenn du ein Ergebnis mit „Ergebnis melden“ meldest, öffnet sich dein E-Mail-Programm mit Behauptung und Ergebnis; schickst du die E-Mail ab, erhalten wir deine E-Mail-Adresse und den Inhalt. Wir verwenden beides nur, um die Meldung zu bearbeiten, bewahren die E-Mail auf, bis die Meldung bearbeitet ist, und löschen sie danach.</p>
 
             <h3>4. Rechtsgrundlage</h3>
             <p>Die Verarbeitung erfolgt auf Basis von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse: Bereitstellung und Absicherung des Dienstes). Personenbezogene Daten speichern wir nur im Fehlerprotokoll des Webservers (IP-Adresse, höchstens 8 Tage) und, wenn du uns schreibst, deine E-Mail. Für diese Daten stehen dir die Rechte nach Art. 15 bis 21 DSGVO zu, insbesondere auf Auskunft, Löschung und Widerspruch, sowie das Recht auf Beschwerde bei der Datenschutzbehörde.</p>
 
             <h3>5. Datenquellen & Lizenzen</h3>
-            <p>Evidora nutzt ausschließlich öffentliche, frei zugängliche Datenquellen:</p>
+            <p>Evidora nutzt ausschließlich öffentlich zugängliche Datenquellen. Hier die wichtigsten mit ihren Nutzungsbedingungen; weitere stehen unter „Quellen“:</p>
             <ul>
                 <li><strong>PubMed / NCBI</strong> — öffentliche Datenbank der U.S. National Library of Medicine. Nutzung gemäß <a href="https://www.ncbi.nlm.nih.gov/home/about/policies/" target="_blank" rel="noopener">NCBI Policies</a></li>
                 <li><strong>WHO GHO</strong> — offene Gesundheitsdaten der Weltgesundheitsorganisation. <a href="https://www.who.int/about/policies/publishing/copyright" target="_blank" rel="noopener">WHO Copyright Policy</a></li>
-                <li><strong>EMA</strong> — offene Medikamentendaten der Europäischen Arzneimittel-Agentur (CC BY 4.0). <a href="https://www.ema.europa.eu/en/about-us/legal-notice" target="_blank" rel="noopener">EMA Legal Notice</a></li>
+                <li><strong>EMA</strong> — offene Medikamentendaten der Europäischen Arzneimittel-Agentur; Weiterverwendung mit Quellenangabe erlaubt. <a href="https://www.ema.europa.eu/en/about-us/legal-notice" target="_blank" rel="noopener">EMA Legal Notice</a></li>
                 <li><strong>EFSA</strong> — wissenschaftliche Gutachten der Europäischen Behörde für Lebensmittelsicherheit via CrossRef/EFSA Journal. <a href="https://www.efsa.europa.eu/en/about/legal" target="_blank" rel="noopener">EFSA Legal Notice</a></li>
                 <li><strong>Copernicus CDS</strong> — Klimadaten des ECMWF/EU. <a href="https://cds.climate.copernicus.eu/datasets" target="_blank" rel="noopener">Copernicus Licence</a></li>
-                <li><strong>Eurostat</strong> — offene EU-Statistiken (CC BY 4.0). <a href="https://ec.europa.eu/eurostat/web/main/help/copyright-notice" target="_blank" rel="noopener">Eurostat Copyright</a></li>
+                <li><strong>Eurostat</strong> — offene EU-Statistiken; Weiterverwendung mit Quellenangabe erlaubt. <a href="https://ec.europa.eu/eurostat/web/main/help/copyright-notice" target="_blank" rel="noopener">Eurostat Copyright</a></li>
                 <li><strong>EZB</strong> — Leitzinsen, Wechselkurse und Geldmengen der Europäischen Zentralbank. <a href="https://data.ecb.europa.eu/help/api/overview" target="_blank" rel="noopener">ECB Data Portal</a></li>
                 <li><strong>UNHCR</strong> — Flüchtlings- und Asylstatistiken des UN-Flüchtlingshilfswerks. <a href="https://www.unhcr.org/refugee-statistics/" target="_blank" rel="noopener">UNHCR Refugee Data</a></li>
                 <li><strong>EEA</strong> — Umweltdaten der Europäischen Umweltagentur. <a href="https://www.eea.europa.eu/en/legal-notice" target="_blank" rel="noopener">EEA Legal Notice</a></li>
@@ -409,11 +412,11 @@ const TRANSLATIONS = {
                 <li><strong>Statistik Austria</strong> — amtliche österreichische Statistiken (CC BY 4.0). <a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria OGD</a></li>
                 <li><strong>GeoSphere Austria</strong> — Klima-Stationsdaten der Bundesanstalt für Meteorologie (CC BY 4.0). <a href="https://data.hub.geosphere.at/" target="_blank" rel="noopener">GeoSphere Data Hub</a></li>
                 <li><strong>BASG</strong> — amtliche Mitteilungen des Bundesamts für Sicherheit im Gesundheitswesen (gemeinfrei, § 7 UrhG-AT). <a href="https://www.basg.gv.at/marktbeobachtung/amtliche-nachrichten" target="_blank" rel="noopener">BASG Amtliche Nachrichten</a></li>
-                <li><strong>RIS</strong> — Rechtsinformationssystem des Bundes (BKA) via Open-Data-API (PSI/OGD, Attribution erforderlich). <a href="https://data.bka.gv.at/" target="_blank" rel="noopener">RIS Open Data</a></li>
+                <li><strong>RIS</strong> — Rechtsinformationssystem des Bundes (BKA) über die Open-Data-Schnittstelle (CC BY 4.0). <a href="https://www.ris.bka.gv.at/UI/Ogd.aspx" target="_blank" rel="noopener">RIS Open Data</a></li>
                 <li><strong>BMI Volksbegehren</strong> — amtliche Liste aller bundesweiten Volksbegehren der zweiten Republik (BMI, Abt. III/6 Wahlangelegenheiten; gemeinfrei, § 7 UrhG-AT). <a href="https://www.bmi.gv.at/411/Alle_Volksbegehren_der_zweiten_Republik.aspx" target="_blank" rel="noopener">BMI Volksbegehren</a></li>
                 <li><strong>BMI Wahlen / Bundeswahlbehörde</strong> — amtliche Bundesergebnisse aller österreichischen Bundeswahlen (Nationalrats-, Bundespräsidenten-, Europawahlen; gemeinfrei, § 7 UrhG-AT). <a href="https://www.bmi.gv.at/412/start.aspx" target="_blank" rel="noopener">BMI Wahlen</a></li>
                 <li><strong>Parlament Abstimmungen</strong> — Klub-Abstimmungsverhalten zu Nationalrats-Beschlüssen aus dem Open-Data-Portal des Parlaments (CC BY 4.0). <a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament Open Data</a></li>
-                <li><strong>AT Factbook</strong> — kuratierte österreichische Faktoide aus offiziellen Primärquellen (Bildungsdirektion Wien zu Religionsbekenntnissen an Wiener Pflichtschulen; BMF-Förderungsbericht zu Bundesförderungen; Statistik Austria zu ESVG-Förderquote; Sozialministerium zu Mindestsicherung und Pensionsanpassung; E-Control zu Energie-Tarifen; AT-spezifische Counter-Topics zu Falschmeldungen wie 22-Mio-Behandlungen, Eingebürgerten-Sozialleistungen und Mobilfunk-Krebs). Manuell aktualisiert; ergänzt API-lose AT-Statistiken.</li>
+                <li><strong>AT Factbook</strong> — kuratierte österreichische Faktoide aus offiziellen Primärquellen (Bildungsdirektion Wien zu Religionsbekenntnissen an Wiener Pflichtschulen; BMF-Förderungsbericht zu Bundesförderungen; Statistik Austria zur ESVG-2010-Förderquote; Sozialministerium zu Mindestsicherung und Pensionsanpassung; E-Control zu Energie-Tarifen; AT-spezifische Counter-Topics zu Falschmeldungen wie 22-Mio-Behandlungen, Eingebürgerten-Sozialleistungen und Mobilfunk-Krebs). Manuell aktualisiert; ergänzt API-lose AT-Statistiken.</li>
                 <li><strong>BKA PKS</strong> — Polizeiliche Kriminalstatistik + Lagebericht Suchtmittel (statisch curated aus den jährlichen BKA-PDF-Berichten; Hauptbericht 2024 mit Tatverdächtigen-Anteilen, Wien-Bezirks-Statistik, Aufklärungsquote, Suchtmittel-Trends).</li>
                 <li><strong>DACH Factbook</strong> — kuratierte deutsche und schweizerische Faktoide für Boulevardpresse-Falschmeldungen (BAMF-Asylstatistik, deutsches Bürgergeld + ifo/DGB-Counter, GEG-Heizungsgesetz + RWI-Counter, Schweizer AHV-Reform + Ergänzungsleistungen, IPCC-/WHO-Counter zu Klima- und Krebs-Misinformation, CORRECTIV-Counter zu AfD-Behauptungen).</li>
                 <li><strong>Cochrane Reviews</strong> — Systematische Reviews via PubMed (höchste Evidenzstufe)</li>
@@ -724,6 +727,7 @@ const TRANSLATIONS = {
             <h3>Liability for links</h3>
             <p>Evidora links to external sources (PubMed, WHO, EMA, etc.). The respective operators are solely responsible for their content.</p>
         `,
+        privacy_controller_unconfigured: "the operator of this instance (details in the legal notice)",
         imprint_html_unconfigured: `
             <h2>Legal Notice</h2>
             <p>The operator of this instance has not yet configured a legal notice.</p>
@@ -767,6 +771,8 @@ const TRANSLATIONS = {
 
             <h3>1. Overview</h3>
             <p>Protecting your data is important to us. This page explains what data is processed — and what is not.</p>
+            <p>Controller responsible for the processing: {verantwortlich}</p>
+            <p>Our server is hosted by Hetzner Online GmbH (Industriestraße 25, 91710 Gunzenhausen, Germany) in a data centre in Nuremberg.</p>
 
             <h3>2. What we do NOT do</h3>
             <ul>
@@ -813,19 +819,20 @@ const TRANSLATIONS = {
             <p>To allow at most 10 checks per minute, the checking service keeps in memory a token derived from your IP address, not the IP address itself. The key for this exists only in memory and is created anew at every restart. The token is deleted at the latest 90 seconds after your last check; the checking service does not write it to files or logs.</p>
 
             <h4>e) Shared links and reports</h4>
-            <p>A shared link carries the claim after the # sign. Your browser does not transmit this part to our server. If you report a result with “Report result”, your email program opens with the claim and the result; if you send the email, we receive your email address and its content. We use both only to handle the report.</p>
+            <p>A shared link carries the claim after the # sign. Your browser does not transmit this part to our server. If you report a result with “Report result”, your email program opens with the claim and the result; if you send the email, we receive your email address and its content. We use both only to handle the report, keep the email until the report has been handled, and delete it afterwards.</p>
 
             <h3>4. Legal basis</h3>
             <p>Processing is based on Art. 6(1)(f) GDPR (legitimate interest: providing and securing the service). We store personal data only in the web server error log (IP address, at most 8 days) and, if you write to us, your email. For this data you have the rights under Art. 15 to 21 GDPR, in particular access, erasure and objection, as well as the right to lodge a complaint with the data protection authority.</p>
 
             <h3>5. Data Sources & Licenses</h3>
-            <p>Evidora uses exclusively public, freely accessible data sources:</p>
+            <p>Evidora uses only publicly accessible data sources. These are the main ones with their terms of use; more are listed under “Sources”:</p>
             <ul>
                 <li><strong>PubMed / NCBI</strong> — public database of the U.S. National Library of Medicine. Used per <a href="https://www.ncbi.nlm.nih.gov/home/about/policies/" target="_blank" rel="noopener">NCBI Policies</a></li>
                 <li><strong>WHO GHO</strong> — open health data by the World Health Organization. <a href="https://www.who.int/about/policies/publishing/copyright" target="_blank" rel="noopener">WHO Copyright Policy</a></li>
-                <li><strong>EMA</strong> — open medication data by the European Medicines Agency (CC BY 4.0). <a href="https://www.ema.europa.eu/en/about-us/legal-notice" target="_blank" rel="noopener">EMA Legal Notice</a></li>
+                <li><strong>EMA</strong> — open medication data by the European Medicines Agency; reuse permitted with acknowledgement of the source. <a href="https://www.ema.europa.eu/en/about-us/legal-notice" target="_blank" rel="noopener">EMA Legal Notice</a></li>
+                <li><strong>EFSA</strong> — scientific opinions by the European Food Safety Authority via CrossRef/EFSA Journal. <a href="https://www.efsa.europa.eu/en/about/legal" target="_blank" rel="noopener">EFSA Legal Notice</a></li>
                 <li><strong>Copernicus CDS</strong> — climate data by ECMWF/EU. <a href="https://cds.climate.copernicus.eu/datasets" target="_blank" rel="noopener">Copernicus Licence</a></li>
-                <li><strong>Eurostat</strong> — open EU statistics (CC BY 4.0). <a href="https://ec.europa.eu/eurostat/web/main/help/copyright-notice" target="_blank" rel="noopener">Eurostat Copyright</a></li>
+                <li><strong>Eurostat</strong> — open EU statistics; reuse permitted with acknowledgement of the source. <a href="https://ec.europa.eu/eurostat/web/main/help/copyright-notice" target="_blank" rel="noopener">Eurostat Copyright</a></li>
                 <li><strong>ECB</strong> — key interest rates, exchange rates and money supply by the European Central Bank. <a href="https://data.ecb.europa.eu/help/api/overview" target="_blank" rel="noopener">ECB Data Portal</a></li>
                 <li><strong>UNHCR</strong> — refugee and asylum statistics by the UN Refugee Agency. <a href="https://www.unhcr.org/refugee-statistics/" target="_blank" rel="noopener">UNHCR Refugee Data</a></li>
                 <li><strong>EEA</strong> — environmental data by the European Environment Agency. <a href="https://www.eea.europa.eu/en/legal-notice" target="_blank" rel="noopener">EEA Legal Notice</a></li>
@@ -833,7 +840,7 @@ const TRANSLATIONS = {
                 <li><strong>Statistik Austria</strong> — Austrian official statistics (CC BY 4.0). <a href="https://data.statistik.gv.at/" target="_blank" rel="noopener">Statistik Austria OGD</a></li>
                 <li><strong>GeoSphere Austria</strong> — climate station data by the Federal Institute for Meteorology (CC BY 4.0). <a href="https://data.hub.geosphere.at/" target="_blank" rel="noopener">GeoSphere Data Hub</a></li>
                 <li><strong>BASG</strong> — official notices by the Austrian Federal Office for Safety in Health Care (public domain, § 7 UrhG-AT). <a href="https://www.basg.gv.at/marktbeobachtung/amtliche-nachrichten" target="_blank" rel="noopener">BASG Official Notices</a></li>
-                <li><strong>RIS</strong> — Federal Legal Information System (Federal Chancellery) via Open Data API (PSI/OGD, attribution required). <a href="https://data.bka.gv.at/" target="_blank" rel="noopener">RIS Open Data</a></li>
+                <li><strong>RIS</strong> — Federal Legal Information System (Federal Chancellery) via its Open Data interface (CC BY 4.0). <a href="https://www.ris.bka.gv.at/UI/Ogd.aspx" target="_blank" rel="noopener">RIS Open Data</a></li>
                 <li><strong>BMI Popular Initiatives</strong> — official list of all Austrian federal popular initiatives (Volksbegehren) of the Second Republic (Federal Ministry of the Interior, Department III/6 — Electoral Affairs; public domain, § 7 UrhG-AT). <a href="https://www.bmi.gv.at/411/Alle_Volksbegehren_der_zweiten_Republik.aspx" target="_blank" rel="noopener">BMI Popular Initiatives</a></li>
                 <li><strong>BMI Elections / Federal Electoral Commission</strong> — official federal results of all Austrian federal-level elections (National Council, Federal Presidential, European Parliament; public domain, § 7 UrhG-AT). <a href="https://www.bmi.gv.at/412/start.aspx" target="_blank" rel="noopener">BMI Elections</a></li>
                 <li><strong>Austrian Parliament Voting Records</strong> — club voting behaviour on National Council decisions, via the Parliament's Open Data portal (CC BY 4.0). <a href="https://www.parlament.gv.at/recherchieren/open-data/" target="_blank" rel="noopener">Parlament Open Data</a></li>
