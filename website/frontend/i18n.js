@@ -385,7 +385,7 @@ const TRANSLATIONS = {
                 <li><strong>Fehlerprotokoll des Webservers:</strong> Bei technischen Fehlern enthält es deine IP-Adresse, die aufgerufene Adresse und eine Fehlerbeschreibung. Gelöscht nach spätestens 8 Tagen.</li>
             </ul>
             <p>Zusätzlich bewahrt die Container-Software die Ausgaben von Webserver und Prüfdienst auf (ohne IP-Adressen, mit unkenntlich gemachten Behauptungen), bis der jeweilige Dienst aktualisiert wird, höchstens 100 MB je Dienst. Für die Qualitätssicherung zählen wir außerdem, wie oft bestimmte interne Prüfregeln greifen (Datum, Ergebnis, Thema des Fakts) — ohne Behauptung und ohne IP-Adresse.</p>
-            <p>Um höchstens 10 Prüfungen pro Minute zuzulassen, hält der Prüfdienst deine IP-Adresse im Arbeitsspeicher. Sie wird nicht auf Datenträger geschrieben und geht spätestens beim nächsten Neustart des Dienstes verloren.</p>
+            <p>Um höchstens 10 Prüfungen pro Minute zuzulassen, merkt sich der Prüfdienst im Arbeitsspeicher einen Kennwert, der aus deiner IP-Adresse gebildet wird, nicht die IP-Adresse selbst. Der Schlüssel dafür liegt nur im Arbeitsspeicher und entsteht bei jedem Neustart neu. Der Kennwert wird spätestens 90 Sekunden nach deiner letzten Prüfung gelöscht; in Dateien oder Protokolle schreibt der Prüfdienst ihn nicht.</p>
 
             <h4>e) Geteilte Links und Meldungen</h4>
             <p>Ein geteilter Link trägt die Behauptung hinter dem #-Zeichen. Diesen Teil überträgt der Browser nicht an unseren Server. Wenn du ein Ergebnis mit „Ergebnis melden“ meldest, öffnet sich dein E-Mail-Programm mit Behauptung und Ergebnis; schickst du die E-Mail ab, erhalten wir deine E-Mail-Adresse und den Inhalt. Wir verwenden beides nur, um die Meldung zu bearbeiten.</p>
@@ -810,7 +810,7 @@ const TRANSLATIONS = {
                 <li><strong>Web server error log:</strong> in case of technical errors it contains your IP address, the requested address and an error description. Deleted after 8 days at the latest.</li>
             </ul>
             <p>In addition, the container software keeps the output of the web server and the checking service (without IP addresses, with claims made unrecognisable) until the respective service is updated, at most 100 MB per service. For quality assurance we also count how often certain internal checking rules apply (date, result, topic of the fact) — without the claim and without an IP address.</p>
-            <p>To allow at most 10 checks per minute, the checking service keeps your IP address in memory. It is not written to disk and is lost at the latest when the service next restarts.</p>
+            <p>To allow at most 10 checks per minute, the checking service keeps in memory a token derived from your IP address, not the IP address itself. The key for this exists only in memory and is created anew at every restart. The token is deleted at the latest 90 seconds after your last check; the checking service does not write it to files or logs.</p>
 
             <h4>e) Shared links and reports</h4>
             <p>A shared link carries the claim after the # sign. Your browser does not transmit this part to our server. If you report a result with “Report result”, your email program opens with the claim and the result; if you send the email, we receive your email address and its content. We use both only to handle the report.</p>

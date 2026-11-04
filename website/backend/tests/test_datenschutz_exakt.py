@@ -103,6 +103,17 @@ def test_rate_limit_10_pro_minute():
     assert f"at most {n} checks per minute" in EN
 
 
+def test_rate_limit_kennwert_hoechstens_90_sekunden():
+    """Seit 4.11.2026: Kennwert statt IP, geraeumt im Hintergrund."""
+    fenster = _konstante("main.py", "RATE_WINDOW")
+    abstand = _konstante("services/ratelimit.py", "RAEUM_INTERVALL_S")
+    grenze = _konstante("services/ratelimit.py", "HOECHSTDAUER_S")
+    assert fenster + abstand + 10 <= grenze, "kein Puffer fuer eine belegte Event-Loop"
+    assert f"spätestens {grenze} Sekunden nach deiner letzten Prüfung" in DE
+    assert f"at the latest {grenze} seconds after your last check" in EN
+    assert "nicht die IP-Adresse selbst" in DE and "not the IP address itself" in EN
+
+
 def test_verlauf_10_pruefungen():
     js = (WEBSITE / "frontend" / "app.js").read_text(encoding="utf-8")
     n = int(re.search(r"const MAX_HISTORY = (\d+);", js).group(1))
@@ -156,6 +167,8 @@ def test_google_steht_in_der_empfaengerliste():
     "Da keine personenbezogenen Daten gespeichert werden",
     "Lokales Sprachmodell",
     "keine Trainingsnutzung laut Mistral-Richtlinien",
+    # bis 4.11.2026 abends — der Swap machte "nicht auf Datentraeger" unhaltbar
+    "nicht auf Datenträger geschrieben",
 ])
 def test_alte_saetze_de_sind_weg(satz):
     assert satz not in DE
@@ -167,6 +180,7 @@ def test_alte_saetze_de_sind_weg(satz):
     "Since no personal data is stored",
     "Local language model",
     "no training use per Mistral",
+    "It is not written to disk",
 ])
 def test_alte_saetze_en_sind_weg(satz):
     assert satz not in EN

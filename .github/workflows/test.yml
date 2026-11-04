@@ -766,6 +766,7 @@ jobs:
             tests/test_log_ohne_claim.py \
             tests/test_logs_ohne_ip.py \
             tests/test_datenschutz_exakt.py \
+            tests/test_ratelimit_ohne_ip.py \
             tests/test_laenderkarte.py \
             tests/test_laenderkarte_api_konnektoren.py \
             tests/test_wgi_weltbank_api.py \
