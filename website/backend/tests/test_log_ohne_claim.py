@@ -207,6 +207,52 @@ def test_tupel_argumente_behalten_ihre_typen(log_puffer):
     rec.getMessage()
 
 
+def test_feldnamen_vor_dem_gleichheitszeichen_bleiben(log_puffer):
+    """Live 4.11.2026: "Mein Kind ist …" schwaerzte "llm_usage kind=analysis"."""
+    LR.merke_anfrage("Mein Kind ist groß genug, brown sugar")
+    logging.getLogger("evidora").info("AHRQ: 0 hits kind=brown term=sugar")
+    text = log_puffer.getvalue()
+    assert "kind=" in text and "term=" in text, text
+    assert "brown" not in text and "sugar" not in text, "Werte werden geschwaerzt"
+
+
+def test_unterstrich_trennt_wie_im_wikipedia_titel(log_puffer):
+    LR.merke_anfrage("Kamala Harris hat gesagt")
+    _httpx_zeile("https://en.wikipedia.org/api/rest_v1/page/summary/Kamala_Harris")
+    text = log_puffer.getvalue()
+    assert "Kamala" not in text and "Harris" not in text, text
+
+
+def test_die_usage_zeile_bleibt_lesbar(log_puffer):
+    """Die Cache-Messung liest sie (project_offen_cache_anteil)."""
+    from services import ollama
+    LR.merke_anfrage("latest analysis of medium sized cars")   # Woerter der Zeile
+    logging.getLogger("evidora").info(
+        f"{ollama.USAGE_LOG_PREFIX} kind=analysis model=mistral-medium-latest "
+        f"attempt=1 cached_tokens=0")
+    assert "kind=analysis model=mistral-medium-latest" in log_puffer.getvalue()
+
+
+def test_usage_praefix_ist_synchron():
+    from services import ollama
+    assert ollama.USAGE_LOG_PREFIX + " " in LR._OHNE_ANFRAGE_INHALT
+
+
+def test_die_usage_zeile_enthaelt_keinen_claim():
+    """Die Ausnahme ist nur haltbar, solange die Zeile keine Claim-Variable traegt."""
+    quelle = (BACKEND / "services" / "ollama.py").read_text(encoding="utf-8")
+    baum = ast.parse(quelle)
+    for n in ast.walk(baum):
+        if (isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute)
+                and n.func.attr == "info" and n.args
+                and "USAGE_LOG_PREFIX" in ast.dump(n.args[0])):
+            namen = {x.id for x in ast.walk(n.args[0]) if isinstance(x, ast.Name)}
+            assert namen <= {"USAGE_LOG_PREFIX", "kind", "model", "attempt", "stream_flag",
+                             "prompt", "cached", "reasoning", "completion", "total"}, namen
+            return
+    pytest.fail("usage-Zeile in ollama.py nicht gefunden")
+
+
 # --------------------------------------------------------------------------
 # Kennung und Struktur statt Text
 # --------------------------------------------------------------------------

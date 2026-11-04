@@ -178,7 +178,16 @@ _FUNKTIONSWOERTER = frozenset("""
 """.split())
 
 _WORT_IM_FELD = re.compile(r"[^\W\d_]+")
-_WORT_IM_LOG = re.compile(r"[^\W_]+")
+# Ein ganzer Lauf aus Buchstaben/Ziffern — aber NICHT direkt vor "=": dort
+# steht ein Feldname. Live am 4.11.2026: der Claim "Mein Kind ist …"
+# schwaerzte in "llm_usage kind=analysis" den Schluessel. Der Unterstrich
+# trennt (Wikipedia-Titel "Kamala_Harris"), deshalb die Lookarounds statt \b.
+_WORT_IM_LOG = re.compile(r"(?<![^\W_])[^\W_]+(?![^\W_])(?!=)")
+
+#: Zeilen, die nur aus Zahlen, Modell- und Aufrufnamen bestehen und von
+#: Werkzeugen gelesen werden — sie bekommen nur die Key-Schwaerzung. Haelt
+#: ein Test mit ``ollama.USAGE_LOG_PREFIX`` synchron.
+_OHNE_ANFRAGE_INHALT = ("llm_usage ",)
 _URL = re.compile(r"https?://[^\s'\"<>]+")
 
 _anfrage_lock = threading.Lock()
@@ -357,7 +366,14 @@ def _redigiere_wert(wert, geheim):
     return sauber if sauber != text else wert
 
 
+def _ohne_anfrage_inhalt(record: logging.LogRecord) -> bool:
+    return isinstance(record.msg, str) and record.msg.startswith(_OHNE_ANFRAGE_INHALT)
+
+
 def _saeubere_record(record: logging.LogRecord, geheim) -> None:
+    if _ohne_anfrage_inhalt(record):
+        record.msg = _ersetze_geheimnisse(record.msg, geheim)
+        return
     if isinstance(record.msg, str):
         # Bei Dict-Argumenten stehen Schluessel im Format ("%(name)s") — ein
         # geschwaerztes Wort dort waere ein KeyError beim Formatieren. Die
@@ -385,7 +401,10 @@ class RedigierenderFormatter(logging.Formatter):
         self._geheim = geheim
 
     def format(self, record: logging.LogRecord) -> str:
-        return redigiere(self._innerer.format(record), self._geheim)
+        text = self._innerer.format(record)
+        if _ohne_anfrage_inhalt(record):
+            return _ersetze_geheimnisse(text, self._geheim)
+        return redigiere(text, self._geheim)
 
 
 def installiere(logger: logging.Logger | None = None) -> int:
