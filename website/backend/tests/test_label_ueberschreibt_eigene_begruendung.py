@@ -89,6 +89,7 @@ BACKEND = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(BACKEND, "data")
 sys.path.insert(0, BACKEND)
 
+import services.verdict_postprocess as vp  # noqa: E402
 from services.verdict_postprocess import (  # noqa: E402
     apply_verdict_postprocessing,
     komparativ_ist_nomen,
@@ -277,20 +278,23 @@ def test_zu_kurzer_claim_bleibt_unbewertet():
         "Wien", "Die Daten bestätigen, dass Wien wächst.")
 
 
-def test_der_override_feuert_weiter_wenn_er_soll():
+def test_der_override_feuert_weiter_wenn_er_soll(monkeypatch):
     """Ohne Bejahung in der Summary bleibt der Override scharf.
 
     Sonst waere der Fix ein Loch: Der Override existiert, weil das Modell
-    einen echten STRUKTURELL-Marker uebergeht.
+    einen echten STRUKTURELL-Marker uebergeht. Seit 4.11.2026 im Schatten —
+    geprueft wird die Entscheidung, also im Modus "aktiv".
     """
+    monkeypatch.setattr(vp, "STRUKTURELL_OVERRIDE_MODUS", "aktiv")
     out = _lauf("KBG bekommen nur Frauen", "true",
                 "Das Kinderbetreuungsgeld steht beiden Elternteilen zu.",
                 quellen=B_QUELLEN)
     assert out["verdict"] == "mostly_false"
 
 
-def test_der_override_feuert_bei_dominantem_marker():
+def test_der_override_feuert_bei_dominantem_marker(monkeypatch):
     """Ab 50 % Marker-Anteil greift er auch gegen eine bejahende Summary."""
+    monkeypatch.setattr(vp, "STRUKTURELL_OVERRIDE_MODUS", "aktiv")
     quellen = [{"results": [
         {"display_value": "STRUKTURELL FALSCH: Die These ist unzutreffend."},
         {"display_value": "Ergebnis ohne Marker"},

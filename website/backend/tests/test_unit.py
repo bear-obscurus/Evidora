@@ -546,7 +546,10 @@ class TestVerdictPostprocessing:
         from services.verdict_postprocess import apply_verdict_postprocessing
         return apply_verdict_postprocessing
 
-    def test_strukturell_override_fires(self):
+    def test_strukturell_override_fires(self, monkeypatch):
+        # Seit 4.11.2026 im Schatten; geprueft wird die Entscheidung.
+        import services.verdict_postprocess as vp
+        monkeypatch.setattr(vp, "STRUKTURELL_OVERRIDE_MODUS", "aktiv")
         P = self._P()
         r = P({"verdict": "true", "confidence": 0.9, "summary": "Die Behauptung trifft zu."},
               [{"source": "Pack", "results": [{"display_value": "STRUKTURELL FALSCH: widerlegt."}]}],

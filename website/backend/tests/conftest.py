@@ -15,6 +15,21 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 BACKEND_URL = os.getenv("EVIDORA_TEST_URL", "http://localhost:8000")
 
 
+@pytest.fixture(autouse=True)
+def _schattenprotokoll_im_tmp(tmp_path, monkeypatch):
+    """Kein Test schreibt ins echte data/_wartung/strukturell_schatten.jsonl.
+
+    Jeder Aufruf von apply_verdict_postprocessing mit einem STRUKTURELL-
+    Marker haengt dort eine Zeile an (Schattenbetrieb, 4.11.2026).
+    """
+    try:
+        import services.verdict_postprocess as vp
+    except Exception:
+        return
+    monkeypatch.setattr(vp, "SCHATTEN_PROTOKOLL",
+                        str(tmp_path / "_wartung" / "strukturell_schatten.jsonl"))
+
+
 @pytest.fixture
 def backend_url():
     """Base URL for the running backend."""

@@ -795,6 +795,7 @@ jobs:
             tests/test_massentierhaltung_trigger.py \
             tests/test_massentierhaltung_bestandsgroessen.py \
             tests/test_strukturell_markierung_schwester.py \
+            tests/test_strukturell_schattenbetrieb.py \
             tests/test_familiennachzug_fakt.py \
             tests/test_eurobarometer_demokratie.py \
             tests/test_femizide_zahlen.py \
