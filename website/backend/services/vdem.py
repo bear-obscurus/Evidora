@@ -65,6 +65,7 @@ from services._schreibweise import normalisiere, norm_terme
 from services._skala import richtung as _richtung
 from services._flexion import trifft as _flexion_trifft
 from services._zeitreihe import bezugsjahr, verlangt_verlauf, verlauf_text
+from services._log_redaktion import claim_kennung
 
 # Skalen-Richtung in Worten. Ohne sie invertierte der Synthesizer
 # Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
@@ -467,7 +468,7 @@ async def search_vdem(analysis: dict) -> dict:
     if not results:
         logger.info(
             f"V-Dem: kein Indicator mit Daten für Claim "
-            f"'{claim[:60]}...' (countries={requested_countries})"
+            f"{claim_kennung(claim)} (countries={requested_countries})"
         )
         return empty
 

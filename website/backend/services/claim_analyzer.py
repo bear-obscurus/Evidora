@@ -4,6 +4,7 @@ import os
 import re
 
 from services.ollama import chat_completion
+from services._log_redaktion import nur_struktur
 
 # Optional analyzer-specific model override. The analyzer does a relatively
 # deterministic job (extract entities, categorize) — a smaller model can
@@ -255,8 +256,8 @@ async def analyze_claim(claim_text: str) -> dict:
     # (Bug Q observed 2026-04-26), a second pass usually returns clean
     # JSON.
     logger.warning(
-        f"Mistral unparseable response on first try (first 300 chars): "
-        f"{content[:300]!r} — retrying once"
+        f"Mistral unparseable response on first try (first 300 chars, "
+        f"nur Struktur): {nur_struktur(content[:300])!r} — retrying once"
     )
     retry_messages = [
         {"role": "system", "content": SYSTEM_PROMPT},
@@ -300,7 +301,7 @@ async def analyze_claim(claim_text: str) -> dict:
     # NOT crash with a 500 error in the user's face. Sources still get
     # the raw claim text and most triggers fire on the claim alone.
     logger.error(
-        f"Mistral unparseable response after retry (first 500 chars): "
-        f"{content[:500]}"
+        f"Mistral unparseable response after retry (first 500 chars, "
+        f"nur Struktur): {nur_struktur(content[:500])}"
     )
     return _fallback_analysis(claim_text)

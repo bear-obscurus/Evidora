@@ -100,6 +100,7 @@ from services._static_cache import load_json_mtime_aware
 from services._schreibweise import normalisiere, norm_terme
 from services._flexion import trifft as _flexion_trifft
 from services import cache
+from services._log_redaktion import claim_kennung
 
 logger = logging.getLogger("evidora")
 
@@ -517,7 +518,7 @@ async def search_cat(analysis: dict) -> dict:
 
     if not results:
         logger.info(
-            f"cat: kein Country-Result für Claim '{claim[:60]}...' "
+            f"cat: kein Country-Result für Claim {claim_kennung(claim)} "
             f"(countries={requested_countries[:3]})"
         )
         return empty

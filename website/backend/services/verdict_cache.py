@@ -43,6 +43,7 @@ from typing import Optional
 # unit-testbar.
 from services._reranker_backup import _get_model as _get_st_model
 from services._static_cache import get_data_version
+from services._log_redaktion import claim_kennung
 
 logger = logging.getLogger("evidora")
 
@@ -432,7 +433,7 @@ def get(claim: str, lang: str = "de") -> Optional[dict]:
         ts, emb, result, dv = entry
         if dv == current_dv and time.time() - ts <= DEFAULT_TTL:
             logger.info(
-                f"verdict_cache: EXACT HIT [{lang}] for {claim[:60]!r}")
+                f"verdict_cache: EXACT HIT [{lang}] for {claim_kennung(claim)}")
             return _annotate_hit(result, "exact", 1.0, claim)
 
     # 2) Semantic match
@@ -475,7 +476,7 @@ def get(claim: str, lang: str = "de") -> Optional[dict]:
     if best_score >= SEMANTIC_THRESHOLD and best_result is not None:
         logger.info(
             f"verdict_cache: SEMANTIC HIT [{lang}] cos={best_score:.3f} "
-            f"for {claim[:60]!r} -> matched {best_key[1][:60]!r}"
+            f"for {claim_kennung(claim)} -> matched {claim_kennung(best_key[1])}"
         )
         return _annotate_hit(best_result, "semantic", best_score, claim,
                              matched_claim=best_key[1])
@@ -519,7 +520,7 @@ def put(claim: str, result: dict, lang: str = "de") -> None:
     _verdict_store[_schluessel(lang, norm)] = (time.time(), emb, result, dv)
     _enforce_size_limit()
     logger.info(
-        f"verdict_cache: STORED [{lang}] {claim[:60]!r} "
+        f"verdict_cache: STORED [{lang}] {claim_kennung(claim)} "
         f"(verdict={verdict}, conf={confidence}, store_size={len(_verdict_store)})"
     )
 

@@ -11,6 +11,7 @@ from services.reranker import (
 )
 from services.verdict_postprocess import apply_verdict_postprocessing
 from services._http_polite import polite_client
+from services._log_redaktion import nur_struktur
 
 logger = logging.getLogger("evidora")
 
@@ -1475,8 +1476,8 @@ async def synthesize_results(
         if result is None:
             logger.warning(
                 "Synthesizer JSON parse failed on first attempt; retrying with "
-                "stricter prompt. First 500 chars: %r",
-                content[:500] if content else "",
+                "stricter prompt. First 500 chars (nur Struktur): %r",
+                nur_struktur((content or "")[:500]),
             )
             retry_messages = base_messages + [
                 {"role": "assistant", "content": content or ""},
@@ -1499,8 +1500,8 @@ async def synthesize_results(
         if result is None:
             logger.error(
                 "Synthesizer JSON parse failed after retry + cleanup. "
-                "Final content (first 500 chars): %r",
-                last_content[:500] if last_content else "",
+                "Final content (first 500 chars, nur Struktur): %r",
+                nur_struktur((last_content or "")[:500]),
             )
             return fallback
 

@@ -56,6 +56,7 @@ import os
 
 from services._topic_match import find_matching_items, load_items, stamp_provenance
 from services._notizen import prompt_notizen
+from services._log_redaktion import claim_kennung
 
 logger = logging.getLogger("evidora")
 
@@ -287,7 +288,7 @@ async def search_eter(analysis: dict) -> dict:
     results = results[:5]
 
     logger.info(
-        f"ETER: {len(results)} Treffer fuer Claim '{claim[:60]}'"
+        f"ETER: {len(results)} Treffer fuer Claim {claim_kennung(claim)}"
     )
     return {
         "source": "ETER European Tertiary Education Register (CC-BY 4.0)",

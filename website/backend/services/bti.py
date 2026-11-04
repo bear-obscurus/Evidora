@@ -115,6 +115,7 @@ from services._flexion import trifft as _flexion_trifft
 # Vergleichs-Claims — gemessen in QA50F, siehe services/_skala.py.
 _SKALA_BTI = _richtung("weiter fortgeschrittene Transformation", spanne="1-10", mit_rang=True)
 from services import cache
+from services._log_redaktion import claim_kennung
 
 logger = logging.getLogger("evidora")
 
@@ -549,7 +550,7 @@ async def search_bti(analysis: dict) -> dict:
 
     if not results:
         logger.info(
-            f"bti: kein Country-Result für Claim '{claim[:60]}...' "
+            f"bti: kein Country-Result für Claim {claim_kennung(claim)} "
             f"(countries={requested_countries[:3]})"
         )
         return empty
