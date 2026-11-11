@@ -11,7 +11,7 @@ the project. For installation and end-user documentation, see
 
 ```
                     ┌─────────────────────────┐
-   user claim  ───► │  FastAPI /verify (SSE)  │
+   user claim  ───► │ FastAPI /api/check (SSE)│
                     └──────────┬──────────────┘
                                │
                 ┌──────────────┴───────────────┐
@@ -86,8 +86,10 @@ and rate limits.
 
 ### 2.2 Static-first topic services
 
-Curated facts shipped as `data/*.json`, queried via deterministic
-trigger logic with a semantic-similarity fallback. Examples:
+Curated facts shipped as `data/*.json` (675 facts in 63 files, 477 of
+them in the 40 `*_pack.json` packs), queried via deterministic trigger
+logic. A semantic-similarity fallback exists but is switched off for all
+packs (§3.3). Examples:
 `eu_courts.py`, `eu_crime.py`, `energy_charts.py`,
 `medientransparenz.py`, `rki_surveillance.py`, `education_dach.py`,
 `at_courts.py`, `oecd_health.py`, `housing_at.py`, `transport_at.py`,
@@ -156,6 +158,10 @@ typically requires ~50 LOC of service code plus a JSON file.
 
 ### 3.2 The trigger mechanic
 
+Packs match the user's **original wording** (`analysis["original_claim"]`),
+not the analyzer's paraphrase — the analyzer may drop exactly the markers a
+trigger needs ("als die EU", "kaum noch").
+
 Three trigger fields, evaluated against the lower-cased claim:
 
 | Field | Semantic | Match rule |
@@ -166,26 +172,58 @@ Three trigger fields, evaluated against the lower-cased claim:
 
 A fact wins if **any** of these three patterns fire.
 
-Both composite paths defensively lower-case tokens before comparing
-(`tok.lower() in claim_lc`), so a stray `"Wohn"` in JSON does not
-silently fail to match — the test
-`test_composite_token_uppercase_still_matches` pins this contract.
+"Substring" is no longer a plain `in` test. Claim and trigger both pass
+through `_schreibweise.normalisiere` (umlaut folding, unified separators —
+"Oesterreich" = "Österreich"); short tokens are bound to word edges (#207 —
+"ei" inside "Österreich" once fired an egg fact on welfare claims);
+multi-word terms are inflection-tolerant (#167), and
+umlaut plurals reach their singular token (#229). Tokens are lower-cased
+defensively, so a stray `"Wohn"` in JSON still matches
+(`test_composite_token_uppercase_still_matches`).
 
-### 3.3 The reranker-backup fallback
+`find_matching_items` runs up to four passes and stops at the first that
+returns anything:
 
-If neither substring nor composite trigger fires, but the service was
-plausibly relevant, `_topic_match.find_matching_items` falls back to a
-cosine-similarity match between the claim and a per-fact descriptor
-string, using the multilingual MiniLM model already loaded for the
-top-level reranker. The descriptor-match threshold **0.45** lives in
-`_topic_match.py` (`DEFAULT_BACKUP_THRESHOLD`, passed into
-`_backup_best_matches`); `services/_reranker_backup.py` provides the
-underlying cosine engine (`best_matches`, own default 0.65 for the
-boolean `claim_might_be_about` callers).
+1. **exact** — the trigger rules above;
+2. **typo-tolerant** (`_tippfehler.py`, #205) — only if the exact pass is
+   empty; recovered 45.8 % of hits lost to a single typo;
+3. **English glossary** (`_englisch.py`, #206) — only for English claims;
+   curated German terms are written next to the English words and the same
+   rules run again;
+4. **cosine backup** (§3.3) — only where the service passes a
+   `descriptor_fn`.
 
-This catches phrasings that are semantically clear but lexically
-distant from the curated triggers — the typical "long-tail" failure
-mode of substring-only systems.
+Passes 2–4 tag their hits `exact=False`. A STRUKTURELL marker on such a
+hit is emitted in resolvable form (`STRUKTURELL_COSINE_FALSCH:`) and the
+provenance gate (§5) degrades it to plain text whenever another fact
+anchors the claim exactly; without an exact anchor it is restored.
+
+### 3.3 The reranker-backup fallback (off for all packs)
+
+`_topic_match.find_matching_items` can fall back to a cosine-similarity
+match between the claim and a per-fact descriptor string, using the
+multilingual MiniLM model already loaded for the top-level reranker
+(threshold **0.45**, `DEFAULT_BACKUP_THRESHOLD`; the boolean
+`claim_might_be_about` callers in `_reranker_backup.py` use 0.65).
+
+**It is switched off (`descriptor_fn=None`) in 50 services, including
+every curated pack, since 2026-07-02.** The measurement behind that
+decision: an off-topic SIPRI claim scored *higher* on several packs than
+legitimate claims did (welthandel 0.594 vs. 0.483) — no threshold
+separates "same broad topic" from "same claim". Pulled-in facts carried
+STRUKTURELL markers about other topics into the prompt and flipped
+verdicts. The trigger coverage of every pack's own
+`claim_phrasings_handled` was raised to 100 % instead and is pinned by
+`tests/test_konsens_exact_only.py`. Twelve services still use the
+fallback.
+
+The price is recall on human phrasing. The 2026-11-05 phrasing-variant
+battery (§4.4) measured it: 67 % of colloquial variants still reach the
+fact the clean phrasing reaches; irony (29 %), everyday words (34 %) and
+Austrian colloquial (53 %) fall through. Simply also matching the
+analyzer's paraphrase raised recall to 80 % but more than tripled
+off-topic marker hits (1.6 % → 5.0 % of variants) — so the next step is a
+relevance decision by the LLM, not a wider net.
 
 ### 3.4 The shared helper
 
@@ -199,11 +237,12 @@ find_matching_items(static_path, items_key, *,
 load_items(static_path, items_key) -> list[dict]
 ```
 
-Migrating the 10 cluster-A/B services to this helper removed 218 net
-LOC and consolidated a previously duplicated pattern. Unit tests in
-`tests/test_topic_match.py` cover the substring, composite,
-`trigger_all`, backup-fallback, file-not-found and hot-reload paths
-(36 tests, all green).
+All static-first services use this helper. `tests/test_topic_match.py`
+covers the substring, composite, `trigger_all`, backup-fallback,
+file-not-found and hot-reload paths; `tests/test_konsens_exact_only.py`
+pins, for the consensus and myth packs it lists, that each pack's own
+`claim_phrasings_handled` keep hitting their fact and that the packs stay
+exact-only.
 
 ### 3.5 Anatomy of a new topic service
 
@@ -220,26 +259,22 @@ To add a new topic (`my_topic`):
        os.path.dirname(__file__), "..", "data", "my_topic.json"
    )
 
-   def _descriptor(fact: dict) -> tuple[dict, str]:
-       head = fact.get("headline", "")
-       notes = " ".join((fact.get("context_notes") or [])[:2])
-       return (fact, f"{head}. {notes}"[:300])
-
    def claim_mentions_my_topic_cached(claim: str) -> bool:
        if not claim:
            return False
        return bool(find_matching_items(
            STATIC_JSON_PATH, "facts",
            claim_lc=claim.lower(), full_claim=claim,
-           descriptor_fn=_descriptor,
+           descriptor_fn=None,  # exact-only, see §3.3
        ))
 
    async def fetch_my_topic(analysis: dict) -> dict:
-       claim = analysis.get("claim", "")
+       # Match the user's own wording, not the analyzer's paraphrase (§3.2).
+       claim = analysis.get("original_claim") or analysis.get("claim", "")
        items = find_matching_items(
            STATIC_JSON_PATH, "facts",
            claim_lc=claim.lower(), full_claim=claim,
-           descriptor_fn=_descriptor,
+           descriptor_fn=None,
        )
        results = [_format_result(it) for it in items]
        return {"source": "MyTopic", "results": results}
@@ -256,10 +291,15 @@ To add a new topic (`my_topic`):
    strategy (cron-job, mtime-driven, etc.).
 
 6. **Add to `tests/test_sources.py`** as a smoke test (one or two
-   matching claims).
+   matching claims), and register an exact-only pack in
+   `tests/test_konsens_exact_only.py` so its phrasings stay covered.
 
-7. **Run a 20-claim stress test** following the methodology in
-   `memory/stress_test_method.md`.
+7. **Write the phrasings the way people type.** Every entry in
+   `claim_phrasings_handled` must hit its own fact. Add colloquial
+   variants on purpose — everyday words, Austrian idiom, a worried
+   question — because those are where routing loses facts today (§3.3).
+
+8. **Run a 20-claim stress test** following §4.4.
 
 ---
 
@@ -274,10 +314,12 @@ cache (`services/cache.py`) includes `_data_version` in its cache
 key, so any JSON edit transparently invalidates all stale verdicts —
 no backend restart needed.
 
-This is the foundation of the prod-edit workflow: ssh into the
-server, edit `data/*.json` in-place, the next claim hits the new
-content. Verified in stress-test methodology step 4
-(`memory/stress_test_method.md`).
+This is why a data-only change needs no rebuild: commit it, run
+`deploy.sh`, and the next claim hits the new content. Do **not** edit
+`data/*.json` on the server by hand — the edit dirties the server
+worktree and `deploy.sh` refuses every following deploy until it is
+cleaned up (dirty guard; see §4.2 "No cron may write a git-tracked
+file"). The hot-reload itself is verified in stress-test step 4 (§4.4).
 
 > **Prerequisite (restored 2026-07-02):** hot-reload only works because
 > `docker-compose.yml` mounts `./backend/data` into the container. If
@@ -311,8 +353,10 @@ ssh <host> 'docker exec evidora-backend-1 ls /app/services/<new_file>.py'
 If the new file isn't there, the build was skipped and you're running
 the old image. `up -d --build` fixes it.
 
-> **On prod, don't decide by hand:** `website/deploy.sh` codifies this
-> table — it pulls, derives the right action from the changed files
+> **On prod, don't decide by hand:** `website/deploy.sh` is the only
+> way to deploy. Do not run `git pull` on the server first: the script
+> pulls itself and derives its action from what the pull brings — after a
+> manual pull it sees nothing new and skips the build. It derives the right action from the changed files
 > (build / recreate / hot-reload-nothing, incl. a mount sanity-check for
 > data-only changes), waits for healthy, and then *proves* the deploy:
 > container StartedAt must reset, changed backend files must be
@@ -321,7 +365,7 @@ the old image. `up -d --build` fixes it.
 
 ### 4.2 Cron-jobs on production
 
-Ten cron-jobs run on the Hetzner host. The canonical copy lives in
+Eleven cron-jobs run on the Hetzner host. The canonical copy lives in
 `website/crontab.prod` and is installed with `crontab crontab.prod` —
 before 2026-10-18 the list existed only on the server, and PR #249
 silently broke two of its lines (see below):
@@ -338,6 +382,7 @@ silently broke two of its lines (see below):
 | daily 05:00 | `tools/canary_check.py` | Fires one real claim through the whole pipeline against `http://backend:8000`; the 2026-07-29 outage went unnoticed for twelve hours because no cron touched `/api/check` |
 | daily 05:30 | `tools/quellen_lebenszeichen.py` | Probes every source for a sign of life; exit 2 = finding |
 | daily 06:00 | `tools/stichtag_check.py --strict` | Finds facts whose built-in cut-off date has passed — complements the freshness check, which only looks at file age |
+| daily 06:30 | `tools/modell_wachhund.py` | Checks that the answering model is still in Mistral's catalog and when it is retired (#289) — the API's `deprecation` field was `None` for all 64 models, so the e-mail of 2026-10-30 was the only warning; `mistral-medium-2604` retires 2027-04-30 |
 
 Tool jobs go through `run_evidora_tool.sh`, which runs the tool in a
 separate one-shot container (`--profile wartung`) with the prod env file
@@ -354,7 +399,7 @@ pipeline yields nothing) or 3 (backend unreachable at the configured
 address), `quellen_lebenszeichen.py` returns 2. A blanket `|| { … }`
 branch conflates both cases: it made the canary alert read
 "Backend-Container down?" for six days while the container was healthy.
-`tests/test_cron_aufrufe.py` gates this. See `memory/deployment_hetzner.md`.
+`tests/test_cron_aufrufe.py` gates this.
 
 **No cron may write a git-tracked file.** Since `data/` is host-mounted,
 an in-container write to a tracked file dirties the server worktree and
@@ -368,7 +413,7 @@ for exactly this reason (2026-07-06).
 ### 4.3 Bypass key for stress tests
 
 `EVIDORA_TEST_API_KEY` (env) + `X-Evidora-Test-Key` (HTTP header)
-disables the per-IP rate limit (default 10/min). Used by stress-test
+disables the per-client rate limit (default 10/min). Used by stress-test
 scripts to fire 4 claims in parallel without throttling.
 
 ### 4.4 Stress-test methodology
@@ -386,12 +431,34 @@ Standardized 20-claim battery, four measurement points:
    ssh + sed, fire the same claim, expect the new value in the
    response without docker restart.
 
-58+ structured stress-test PDFs have been run since the project started;
-cumulative **1100+ curated claims**, aggregate verdict-match consistently
-above 90 %. Latest systematic run: 100-claim stress test across 15
-vulnerability clusters, 96.9 % (93/96) after three fix-sprints.
+58+ structured stress-test PDFs were run up to July 2026; cumulative
+**1100+ curated claims**, aggregate verdict-match consistently above
+90 % (100-claim stress test across 15 vulnerability clusters: 96.9 % =
+93/96 after three fix-sprints).
 
-Full methodology in `memory/stress_test_method.md`.
+Since July the main instrument is the **transfer QA**: claims written the
+way users phrase them, expectations fixed and reviewed *before* the run,
+every miss re-run to separate bugs from model variance, a fresh cache for
+every claim. Latest: QA50I (2026-10-20), 87/98 = 88 % raw.
+
+Two rules from these runs:
+- **Measure first, with the decision rule written down before the
+  data exists.** A threshold chosen after seeing the numbers proves
+  nothing.
+- **A single run is not a finding.** Verdicts vary between runs; a
+  difference counts only once it repeats (three runs).
+
+**Phrasing-variant battery (since 2026-11-05).** It measures *routing*,
+not verdicts. The clean phrasing of 100 random curated facts and 30
+live-source claims is rewritten ten ways each, 1,300 variants in all:
+first person, worried question, hearsay, everyday word, Austrian
+colloquial, phone typing, keyword fragment, conspiracy framing, irony,
+and a longer text. The metric is how often the fact or source switch
+that the clean phrasing reaches is still reached. The analysis stage runs
+once in the one-shot container; the matching runs locally and costs
+nothing. Baseline: 67 % for facts, 53 % for live switches. The same
+battery is the yardstick for analyzer prompt changes and for the model
+switch before 2027-04-30.
 
 ### 4.5 Trigger-wordform audit
 
@@ -418,7 +485,8 @@ etappes:
 
 | Layer | File | What it prevents |
 |---|---|---|
-| Reranker-backup trigger | `_reranker_backup.py` | Lexically distant claims missing curated triggers |
+| Reranker-backup trigger | `_reranker_backup.py` | Lexically distant claims missing curated triggers — off for all packs since 2026-07-02, still on in 12 services (§3.3) |
+| Typo-tolerant + English trigger passes | `_tippfehler.py`, `_englisch.py` (#205/#206) | One typo or an English claim losing the curated fact; both run only when the exact pass is empty (§3.2) |
 | Hot-reload static cache | `_static_cache.py` | Restart-induced downtime on data edits |
 | Verdict-cache version-suffix | `cache.py` | Stale verdicts after JSON edits |
 | Hallucination URL filter | `synthesizer.py` (post-process) | Made-up evidence URLs passing through |
@@ -428,9 +496,12 @@ etappes:
 | Prompt-injection delimiters (analyzer) | `claim_analyzer.py` | User claims wrapped in `<claim>` XML to neutralize embedded instructions |
 | Prompt-injection hardening (synthesizer) | `synthesizer.py` (`_harden_claim_for_prompt` + `_CLAIM_GUARD`) | The claim also enters the *synthesizer* prompt; a `</claim>` breakout could inject a fake `STRUKTURELL FALSCH:` source block and force a verdict. Neutralizes claim tags / marker literals / `[PRIMARY]` blocks in the user claim + guard instruction. Tests: `tests/test_prompt_injection.py` |
 | Input hardening | `main.py` | Unicode tricks, control chars, OData injection |
-| Per-IP rate limit | `main.py` + `ratelimit.py` | Abuse (bypass-key for stress-testing). Keyed on `X-Real-IP` (set un-spoofably by the trusted host-nginx); the client-controlled leftmost `X-Forwarded-For` is deliberately ignored. Bounded store with eviction. Tests: `tests/test_ratelimit.py` |
+| Per-client rate limit | `main.py` + `ratelimit.py` | Abuse (bypass-key for stress-testing). Keyed on `X-Real-IP` (set un-spoofably by the trusted host-nginx); the client-controlled leftmost `X-Forwarded-For` is deliberately ignored. Since #310 the table holds an HMAC-SHA256 of the address with a per-process `os.urandom` key, never the address; a background loop drops every entry at most 90 s after the last request. Tests: `tests/test_ratelimit.py`, `tests/test_ratelimit_ohne_ip.py` |
+| Log redaction | `_log_redaktion.py` (+ `merke_anfrage` in `main.py`) | Claim text in logs (#306/#307). The words of the claim and of every field derived from it (entities, search queries) are registered per request and blacked out (`‹…›`) in every log line of every logger for 15 minutes — URLs decoded first, inflections checked both ways, field names before `=` and the `llm_usage` lines kept. Tests: `tests/test_log_redaktion.py` |
+| File log without IPs | `_log_datei.py`, `frontend/nginx.conf`, `host_logs_ohne_ip.sh` | Logs lost on every deploy and IPs in access logs (#308). Backend log rotates at midnight UTC, 30 days kept; nginx uses `log_format ohne_ip` and logs the path without query. Retention numbers are pinned to the privacy statement by `tests/test_datenschutz_exakt.py` |
+| STRUKTURELL shadow mode | `verdict_postprocess.py` (`STRUKTURELL_OVERRIDE`, default `schatten`) | The override never helped (0 of 69 myth runs needed it) and overturned correct verdicts five times (#305). It still decides: every time a marker meets a `true`/`mostly_true` verdict, one line goes to `data/_wartung/strukturell_schatten.jsonl` (date, tier decision incl. "would fire", verdict, confidence, topics — no claim text), and the verdict stays as the model set it. `aktiv` restores the old behavior. Tests: `tests/test_strukturell_schattenbetrieb.py` |
 | Atomic cache/JSON writes | `_atomic.py` (`atomic_write_json` via tempfile + `os.replace` + fsync) | No truncated files on a write abort — used by the generated caches (datacommons/cordis/mitre) and the curated refresh tools |
-| Verdict post-processing module | `verdict_postprocess.py` | The ~820-line override cascade (STRUKTURELL override + relevance guards, Wikipedia-normative-term, 4-tier consistency check, factual-content patterns, AMS/ILO + electoral-forecast guards) extracted out of `synthesize_results` so the execution order is explicit and each override is unit-testable (`tests/test_verdict_postprocess_golden.py`, `tests/test_unit.py::TestVerdictPostprocessing`) |
+| Verdict post-processing module | `verdict_postprocess.py` | The ~820-line override cascade (STRUKTURELL override — in shadow mode, see above — + relevance guards, Wikipedia-normative-term, 4-tier consistency check, factual-content patterns, AMS/ILO + electoral-forecast guards) extracted out of `synthesize_results` so the execution order is explicit and each override is unit-testable (`tests/test_verdict_postprocess_golden.py`, `tests/test_unit.py::TestVerdictPostprocessing`) |
 | STRUKTURELL provenance gate | `_topic_match.py` + `_struct_marker.py` + `reranker.py` | Off-topic cosine-contamination: packs matched only via the cosine backup (not an exact trigger) emit a resolvable `STRUKTURELL_COSINE_FALSCH:` marker; `resolve_struct_marker_provenance` (after rerank, before prompt) degrades it to plaintext when an exact anchor exists, else restores it. The categorical discriminator is match **provenance**, not a cosine threshold (which does not separate). Tests: `tests/test_struct_provenance.py` |
 | Semantic-cache negation guard | `verdict_cache.py` | Inverted cached verdicts: MiniLM is negation-blind (cos ≥ 0.92 for "X" vs "not X"), so `_polarity_mismatch` skips a semantic cache hit when negation appears on only one side or the claims cite disjoint numbers |
 | Degraded-analysis confidence cap | `verdict_postprocess.py` (`apply_analysis_fallback_cap`) | Silent high-confidence verdicts when the analyzer fell back to raw-claim-only analysis (`_fallback`): caps confidence + adds a transparency caveat |
@@ -444,13 +515,46 @@ reranker and the backup-trigger/verdict-cache path.
 
 ---
 
-## 6. Pointers
+## 6. Privacy and political invariants
+
+Two sets of rules hold for every change, whatever it touches.
+
+**Privacy.** The privacy statement on evidora.eu promises that claims and
+IP addresses are not stored. Code must keep that promise literally:
+
+- No claim text and no IP address goes into a file, a log or a protocol.
+  New log lines run through `_log_redaktion.py` automatically; anything
+  written outside the logging system must not contain either.
+- A change to what is logged or how long it is kept changes the privacy
+  statement (`frontend/i18n.js`, DE and EN). `tests/test_datenschutz_exakt.py`
+  binds every number in that text to its constant, so the two cannot drift
+  apart silently.
+- Before adding any persistent protocol, read the privacy statement
+  first.
+
+**Politics.** Evidora checks facts about politics; it does not rate
+politics:
+
+- no party scores or indices of its own;
+- no election forecasts;
+- no left/right classification of its own;
+- no `true`/`false` on a politically loaded label when Wikipedia or
+  Wikidata are the only sources.
+
+Established academic indices such as V-Dem and Freedom House are cited
+instead.
+
+## 7. Pointers
 
 | Topic | File / location |
 |---|---|
-| Detailed roadmap with all etappes | `memory/data_sources_roadmap.md` |
-| Stress-test methodology | `memory/stress_test_method.md` |
-| Deployment + cron docs | `memory/deployment_hetzner.md` |
-| Political guard-rails (no party rating, etc.) | `memory/project_political_guardrails.md` |
-| Sources tried and rejected | `memory/hard_to_implement.md` |
-| One-page synthesis (re-entry) | `memory/stand_2026_04_30_synthese.md` |
+| Deploy logic | `website/deploy.sh` (`--dry-run` shows the decision) |
+| Production crontab | `website/crontab.prod`, wrapper `website/run_evidora_tool.sh` |
+| Contributor workflow | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| CI checks | `.github/workflows/test.yml` (`light-unit-tests`, `check-new-urls`) |
+| Stress-test claim sets | `website/backend/tools/stress_tests/` |
+| Retrieval census (which source answered what) | `website/backend/tools/retrieval_census.py` |
+
+The maintainer keeps the sprint history, QA reports and roadmap notes
+outside the repository; the durable conclusions from them are folded into
+this document.

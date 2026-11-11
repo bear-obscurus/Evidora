@@ -35,16 +35,18 @@ We use a lightweight scope-prefixed style. The recent log shows the
 pattern:
 
 ```
-feat(esoterik-pack): 15 Skeptiker-Konsens-Topics als Static-First-Service
-fix(triggers): 16 Wortform-Lücken in 5 JSON-Trigger-Listen geschlossen
-test(topic_match): 36 unit-Tests + defensive lower-cased composite tokens
+fix(datenschutz): das Rate-Limit haelt keine IP mehr, und nichts laenger als 90 Sekunden (#310)
+fix(strukturell): der Override half nie und schadete fuenfmal — jetzt im Schatten (#305)
+feat(retrieval): tippfehler-toleranter Trigger-Pass — 45,8 % der verlorenen Treffer zurück (#205)
 docs(architecture): deploy decision table — restart vs --build vs nothing
-refactor(services): 10 Static-Topic-Services auf _topic_match-Helper umgestellt
 ```
 
-- **First line ≤ 80 chars**, present tense, scope in parentheses.
-- **Body** explains the *why* and any non-obvious *what* — concrete
-  numbers welcome (e.g. "−218 LOC", "16 gaps in 5 files").
+- **Scope in parentheses**, then a subject that says what is *true now*
+  ("the rate limit holds no IP any more"), not which function changed.
+  The PR number goes at the end.
+- **Body** explains the *why* and any non-obvious *what* — concrete,
+  measured numbers welcome (e.g. "45.8 % of lost hits recovered",
+  "16 gaps in 5 files"). Say what was measured and what was not.
 - German or English are both fine; pick one and stick with it for the
   whole commit.
 
@@ -58,6 +60,10 @@ files, OS junk, and `.claude/` (private memory). A few more that should
 - `website/backend/data/claimreview_index.json` — generated cache
   (~5 MB), rebuilt at backend startup
 - `website/backend/test_claims.py` — historical local debug script
+- `website/backend/data/_wartung/` — runtime protocols written by the
+  backend (already ignored)
+- anything with personal data: contracts, invoices, user e-mails, real
+  user claims
 
 If you see them as `untracked`, leave them alone.
 
@@ -65,16 +71,25 @@ If you see them as `untracked`, leave them alone.
 
 ### Unit tests (mandatory before PR)
 
-These have no network or LLM dependency and run in <10 s:
+CI runs `light-unit-tests`: an explicit list of 183 model-free test
+files in `.github/workflows/test.yml` — no SpaCy, no network, a few
+seconds. A red check blocks the merge. Run the same files locally before
+you push. The quickest check for trigger work:
 
 ```bash
 cd website/backend
-python3 -m pytest tests/test_unit.py tests/test_topic_match.py -v
+python3 -m pytest tests/test_topic_match.py tests/test_konsens_exact_only.py -v
 ```
 
+`tests/test_unit.py` needs the SpaCy models and therefore does not run in
+CI; run it locally if you touched the analyzer or the NER path. If you
+add a new test file, add it to the list in `test.yml`, otherwise CI never
+runs it.
+
 If you touched `services/_topic_match.py` or any static-first topic
-service, run the whole topic-match suite — it pins both substring,
-composite, `trigger_all`, backup-fallback, and hot-reload paths.
+service, run the whole topic-match suite — it pins the substring,
+composite, `trigger_all`, typo-tolerant, backup-fallback and hot-reload
+paths.
 
 ### Source API tests (recommended)
 
@@ -158,18 +173,44 @@ shape. The full anatomy is in
 [ARCHITECTURE.md §3.5](ARCHITECTURE.md), but the short version:
 
 1. Create `data/<your_topic>.json` with the schema in §3.1
-2. Create `services/<your_topic>.py` from the template in §3.5
+2. Create `services/<your_topic>.py` from the template in §3.5 — exact-only
+   (`descriptor_fn=None`), matching the user's `original_claim`
 3. Wire into `main.py` (add to imports + fan-out)
 4. Whitelist the `indicator` in `services/reranker.py`
-5. Smoke-test triggers locally
-6. Add a claim set under `tools/stress_tests/` and run the stress test
-7. Update this paragraph if your new source needs an API key
+5. Every phrasing in `claim_phrasings_handled` must hit its own fact —
+   and write some of them the way people actually type (everyday words,
+   Austrian idiom, a worried question). That is where routing loses facts
+   today ([ARCHITECTURE.md §3.3](ARCHITECTURE.md)).
+6. Check that your triggers do **not** fire on unrelated claims — a short
+   generic token in a composite rule ("ei", "sicher") is the classic
+   cause of a fact showing up where it does not belong
+7. Add a claim set under `tools/stress_tests/` and run the stress test
+8. Update this paragraph if your new source needs an API key
+
+## Rules that apply to every change
+
+**Privacy.** No claim text and no IP address may end up in a file, a log
+or a protocol — the privacy statement promises exactly that. Logging goes
+through the redaction filter automatically; if you change what is logged
+or how long it is kept, update the privacy statement in
+`frontend/i18n.js` (DE and EN) in the same PR. `tests/test_datenschutz_exakt.py`
+fails if a number in the text no longer matches the code.
+
+**Politics.** No party scores or indices of our own, no election
+forecasts, no left/right classification of our own, and no `true`/`false`
+on a politically loaded label when Wikipedia/Wikidata are the only
+sources. Details: [ARCHITECTURE.md §6](ARCHITECTURE.md).
+
+**Measure first.** For anything that changes verdicts or routing, write
+the expected result and the decision rule down *before* you run the
+measurement, and treat a single run as an observation, not a finding.
 
 ## Deploy considerations
 
-You typically don't deploy as a contributor — that happens when a PR is
-merged. But for local testing, the [decision table in
-ARCHITECTURE.md §4.1](ARCHITECTURE.md) is the rule of thumb:
+You typically don't deploy as a contributor — the maintainer deploys
+after the merge, exclusively with `website/deploy.sh`. For local
+testing, the [decision table in ARCHITECTURE.md §4.1](ARCHITECTURE.md)
+is the rule of thumb:
 
 | Change | What to run |
 |---|---|

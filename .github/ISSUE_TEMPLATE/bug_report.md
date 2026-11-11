@@ -17,6 +17,9 @@ The exact claim or steps:
 <the claim text, or a series of clicks>
 ```
 
+Issues are public. Please don't paste names or other personal data of
+third parties.
+
 ## Expected vs actual
 
 - **Expected**: <e.g. "verdict: false">
