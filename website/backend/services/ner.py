@@ -41,9 +41,19 @@ _EN_STOPWORDS = {
 
 
 def _load_models():
-    """Load SpaCy models once (lazy singleton). Falls back to sm if lg not available."""
+    """Load SpaCy models once (lazy singleton). Falls back to sm if lg not available.
+
+    Bis 11.11.2026 fehlte der Guard "schon geladen": Jeder Aufruf lud beide
+    Modelle neu. Der Container-Healthcheck ruft /api/health/full alle 30 s,
+    und der ruft diese Funktion — gemessen ~106 Neuladungen je Stunde, je
+    ~3,4 s, synchron in einem async-Endpunkt. Solange lud, wartete jede
+    andere Anfrage mit (/api/legal 3,0 s statt 0,003 s). Den Guard pinnt
+    tests/test_ner_einmal_laden.py.
+    """
     global _nlp_de, _nlp_en, _load_failed
     if _load_failed:
+        return
+    if _nlp_de is not None and _nlp_en is not None:
         return
     try:
         import spacy
