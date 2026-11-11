@@ -47,6 +47,9 @@ website/secrets/*.json
 # Generierte Laufzeit-Caches (von Services/Cron geschrieben, nie committen —
 # seit dem data/-Mount 2026-07-02 landen sie im Host-Git-Tree)
 website/backend/data/claimreview_index.json
+# Embedding-Zwischenspeicher von datacommons.py (11.11.2026) + seine Temp-Datei
+website/backend/data/claimreview_embeddings.npz
+website/backend/data/.claimreview_embeddings.*.npz.tmp
 website/backend/data/cordis_projects_slim.json
 # Maschinen-Gedaechtnis von check_urls.py (was war beim letzten Lauf
 # tot). Wird im Container in den rw-Mount geschrieben, weil /app/tools

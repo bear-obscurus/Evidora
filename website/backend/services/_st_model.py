@@ -15,8 +15,32 @@ no-op, Backup-Trigger/Verdict-Cache deaktivieren ihren semantischen Pfad).
 """
 
 import logging
+import threading
 
 logger = logging.getLogger("evidora")
+
+# Seit 11.11.2026 rechnet datacommons seine Embeddings in einem THREAD (vorher
+# blockierte es dafuer minutenlang die Event-Loop). Dieselbe Instanz nutzen
+# aber auch Reranker, Verdict-Cache, Backup-Trigger und die Feed-Dienste im
+# Haupt-Thread — und ein HF-Fast-Tokenizer, den zwei Threads gleichzeitig
+# benutzen, wirft "RuntimeError: Already borrowed". Deshalb laeuft jedes
+# encode() unter dieser Sperre. Reentrant, falls encode intern encode ruft.
+# Der Hintergrund rechnet in kleinen Stuecken; eine Anfrage wartet also
+# hoechstens ein Stueck lang.
+_encode_sperre = threading.RLock()
+
+
+def _mit_sperre(model):
+    """Ersetzt ``model.encode`` durch eine Fassung unter ``_encode_sperre``."""
+    roh = model.encode
+
+    def encode(*args, **kwargs):
+        with _encode_sperre:
+            return roh(*args, **kwargs)
+
+    encode.__wrapped__ = roh
+    model.encode = encode
+    return model
 
 _MODEL_NAME = "paraphrase-multilingual-MiniLM-L12-v2"
 # Revision MUSS mit dem Docker-Model-Bake übereinstimmen (Dockerfile +
@@ -42,7 +66,7 @@ def get_model():
     try:
         from sentence_transformers import SentenceTransformer
 
-        _model = SentenceTransformer(_MODEL_NAME, revision=_MODEL_REVISION)
+        _model = _mit_sperre(SentenceTransformer(_MODEL_NAME, revision=_MODEL_REVISION))
         logger.info(
             f"Shared SentenceTransformer loaded once "
             f"({_MODEL_NAME}@{_MODEL_REVISION[:8]})"
