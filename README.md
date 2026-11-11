@@ -2,13 +2,13 @@
 
 *Evid(ence) + ora(re) — Evidence speaks for itself*
 
-A European fact-checking service against misinformation — powered by a local LLM (Mistral 7B via Ollama) or optionally the Mistral Cloud API (EU servers).
+A European fact-checking service against misinformation — powered by the Mistral Cloud API (EU servers, Paris; production runs `mistral-medium-latest`) or, for local development, a local LLM (Mistral 7B via Ollama).
 
-Evidora automatically verifies claims against **191 scientific and institutional sources** — **107 live-API connectors** ([see quality benchmarks](#quality-benchmarks)) spanning science (PubMed, Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, Crossref, arXiv, **ERIC**, **AHRQ**, **USPSTF**, **NBER**), fact-checkers (GADMO, Snopes, Correctiv, Full Fact, Bellingcat, FactCheck.org), health authorities (WHO, EMA, EFSA, ECDC, NIH MedlinePlus, NCBI ClinVar, CDC×2, **openFDA**), climate (Copernicus, EEA, NASA GISS, Berkeley Earth, **CAMS**, **ERA5**, **NOAA**, **GeoSphere SPARTACUS**, **UBA-AT**, **Global Carbon Budget**, **EDGAR JRC**, **IRENA**), economy/finance (Eurostat, OECD, World Bank, ECB, OeNB, Statistik Austria, WIFO+IHS, UN Comtrade, **DBnomics** Meta-Hub, **IMF** WEO, **BIS**, **WITS**, **WGI**, **OECD SDMX**, **OeNB SDMX**, **CEPII** BACI, **EBA** Risk Dashboard, **ILOSTAT**, **FRED**, **WID.world**), democracy/rule-of-law (V-Dem, Freedom House, Transparency CPI, RSF, IDEA, SIPRI, **BTI**, **WJP Rule of Law**, **Constitute** + Bill-of-Rights-Enrichment, **Polity 5**, **ParlGov**), security/tech (**NIST NVD**, **MITRE ATT&CK**, **AI Incident Database**, **EDPB**, **Mozilla Observatory**), culture/geography (Wikipedia, Wikidata, **OSM Nominatim**, **GeoNames**, **DOAB** + DE-EN-Topic-Map, **Europeana**, **DPLA**, **UNECE** + City-Detection, **UNESCO World Heritage**, **UNESCO UIS**, **ÖAW EPUB**, **ESPON**, **Getty**), migration/displacement (UNHCR, Frontex, **UCDP** Uppsala Conflict Data, **IDMC**), wildlife (**IUCN Red List**, **CITES**), accessibility (**WCAG 2.2**, **WebAIM Million**), religion (**ARDA**, **CARA**), news (GDELT v2 GKG via BigQuery, Wayback Machine CDX) plus **78 static-first topic services** — including **40 curated `*_pack.json` packs** (~430 topics) — and **6 hybrid connectors** (static core + live refresh), covering Austria/DACH-specific domains: science consensus, energy, medicine, climate, mental health, oncology, addiction, digital family, finance/investments, everyday myths, traffic safety, animal welfare, cybersecurity, food safety, gender equality, religious communities, economic policy, housing, labor market, mobility, data protection, social state, democracy, agriculture, world trade, inclusion, and security policy.
+Evidora automatically verifies claims against **191 scientific and institutional sources** — **107 live-API connectors** ([see quality benchmarks](#quality-benchmarks)) spanning science (PubMed, Europe PMC, OpenAlex, Semantic Scholar, ClinicalTrials.gov, Crossref, arXiv, **ERIC**, **AHRQ**, **USPSTF**, **NBER**), fact-checkers (GADMO, Snopes, Correctiv, Full Fact, Bellingcat, FactCheck.org), health authorities (WHO, EMA, EFSA, ECDC, NIH MedlinePlus, NCBI ClinVar, CDC×2, **openFDA**), climate (Copernicus, EEA, NASA GISS, Berkeley Earth, **CAMS**, **ERA5**, **NOAA**, **GeoSphere SPARTACUS**, **UBA-AT**, **Global Carbon Budget**, **EDGAR JRC**, **IRENA**), economy/finance (Eurostat, OECD, World Bank, ECB, OeNB, Statistik Austria, WIFO+IHS, UN Comtrade, **DBnomics** Meta-Hub, **IMF** WEO, **BIS**, **WITS**, **WGI**, **OECD SDMX**, **OeNB SDMX**, **CEPII** BACI, **EBA** Risk Dashboard, **ILOSTAT**, **FRED**, **WID.world**), democracy/rule-of-law (V-Dem, Freedom House, Transparency CPI, RSF, IDEA, SIPRI, **BTI**, **WJP Rule of Law**, **Constitute** + Bill-of-Rights-Enrichment, **Polity 5**, **ParlGov**), security/tech (**NIST NVD**, **MITRE ATT&CK**, **AI Incident Database**, **EDPB**, **Mozilla Observatory**), culture/geography (Wikipedia, Wikidata, **OSM Nominatim**, **GeoNames**, **DOAB** + DE-EN-Topic-Map, **Europeana**, **DPLA**, **UNECE** + City-Detection, **UNESCO World Heritage**, **UNESCO UIS**, **ÖAW EPUB**, **ESPON**, **Getty**), migration/displacement (UNHCR, Frontex, **UCDP** Uppsala Conflict Data, **IDMC**), wildlife (**IUCN Red List**, **CITES**), accessibility (**WCAG 2.2**, **WebAIM Million**), religion (**ARDA**, **CARA**), news (GDELT v2 GKG via BigQuery, Wayback Machine CDX) plus **78 static-first topic services** — including **40 curated `*_pack.json` packs** (477 facts; 675 facts across all 63 curated data files) — and **6 hybrid connectors** (static core + live refresh), covering Austria/DACH-specific domains: science consensus, energy, medicine, climate, mental health, oncology, addiction, digital family, finance/investments, everyday myths, traffic safety, animal welfare, cybersecurity, food safety, gender equality, religious communities, economic policy, housing, labor market, mobility, data protection, social state, democracy, agriculture, world trade, inclusion, and security policy.
 
 **Live Demo:** [https://evidora.eu](https://evidora.eu)
 
-**Quality assurance:** 58+ structured stress-test PDFs since project start, **1100+ curated claims**. Latest systematic run: 100-Claim Transfer-QA (2026-07-26) across 22 problem classes — 70/100 raw, all 21 deterministic findings fixed and live-verified (PRs #89–#103). See [Quality benchmarks](#quality-benchmarks) and [ARCHITECTURE.md §4.4](ARCHITECTURE.md) for the methodology.
+**Quality assurance:** transfer-QA runs with expectations fixed *before* the run — latest: QA50I (2026-10-20), **87/98 = 88 % raw**. Since 2026-11-05 a 1,300-variant phrasing battery measures how robust source routing is against the way people actually type: today **67 %** of colloquial variants still reach the curated fact that the clean phrasing reaches (live-source switches: **53 %**). See [Quality benchmarks](#quality-benchmarks) and [ARCHITECTURE.md §4.4](ARCHITECTURE.md) for the methodology.
 
 > ⚠️ This project is under active development. The online version uses the Mistral Cloud API (EU servers, Paris) for AI analysis.
 
@@ -16,7 +16,7 @@ Evidora automatically verifies claims against **191 scientific and institutional
 
 - **Local or Cloud LLM** — Run locally via Ollama (Mistral 7B) or use the Mistral API (EU servers, Paris) for cloud deployment
 - **191 source connectors** — Scientific databases, systematic reviews, clinical trials, official EU/UN/OECD/Austrian statistics, climate data, disease surveillance, court rulings, parliamentary records, electoral data, disinformation databases, vulnerability databases (NVD + OSV), governance + economic aggregators (WGI/IMF/BIS/DBnomics), AI-incident reports, geocoding + cultural heritage, and curated topic packs (see table below)
-- **Static-first topic services** — Curated facts (`data/*.json`) with substring/composite triggers and a cosine-similarity backup, so well-known claims hit deterministic answers without an extra API roundtrip. **40 thematic packs (~430 topics)** — part of **78 static-first services** total — cover Austrian/DACH-specific questions across science, medicine, climate, economy, politics, justice, social state, agriculture, security policy, inclusion, and more. See [ARCHITECTURE.md §3](ARCHITECTURE.md)
+- **Static-first topic services** — Curated facts (`data/*.json`) with deterministic triggers (spelling-normalized, word-boundary aware, plus a typo-tolerant and an English-glossary pass), so well-known claims hit sourced answers without an extra API roundtrip. **40 thematic packs (477 facts)** — part of **78 static-first services** total — cover Austrian/DACH-specific questions across science, medicine, climate, economy, politics, justice, social state, agriculture, security policy, inclusion, and more. See [ARCHITECTURE.md §3](ARCHITECTURE.md)
 - **Hot-reload of static data** — Edits to `data/*.json` go live without a backend restart (mtime-aware cache + verdict-cache version-suffix)
 - **Cross-validation** — Primary sources (PubMed, WHO, Eurostat) are weighted higher than secondary sources (fact-checkers)
 - **Multi-country ranking** — Superlative claims ("highest", "most") automatically query all EU-27 countries for a full ranking
@@ -24,16 +24,16 @@ Evidora automatically verifies claims against **191 scientific and institutional
 - **Hallucination filtering** — Evidence URLs are verified against actual source results
 - **Input hardening** — Unicode normalization, control character stripping, OData injection prevention, 500-character claim limit
 - **Prompt injection defense** — User claims are wrapped in XML delimiters with explicit LLM instructions to ignore embedded commands
-- **GDPR-compliant** — No cookies, no tracking, anonymized logs
+- **Privacy by design** — No cookies, no tracking. Logs contain neither IP addresses nor claim text (claim words are redacted before anything is written); the exact retention periods are in the privacy statement on [evidora.eu](https://evidora.eu)
 - **Bilingual** — Full German/English interface (DE/EN toggle)
 - **Accessible** — ARIA labels, keyboard navigation, skip links, semantic landmarks
 - **SpaCy NER** — Named entity recognition enriches claim analysis with deterministic GPE/DATE/ORG entities (German lg + English sm models)
-- **Semantic reranking** — Sentence Transformers (multilingual MiniLM) rerank source results by relevance, plus a backup-trigger fallback when curated triggers miss a phrasing
+- **Semantic reranking** — Sentence Transformers (multilingual MiniLM) rerank source results by relevance. A cosine backup trigger remains in 12 services; for the curated packs it was switched off in July 2026 because it pulled in off-topic facts
 - **Search history** — Last 10 checks stored locally (localStorage), no server storage
 - **PDF export** — Save fact-check results as PDF
 - **Share button** — Copy result link to clipboard (with fallback for HTTP/older browsers)
 - **Claim writing tips** — Built-in guidance for formulating precise, checkable claims
-- **Background data updates** — Static datasets (PISA, OWID COVID, Statistik Austria) are automatically refreshed; two cron-jobs on production guard against phrasing drift and stale data
+- **Background data updates** — Static datasets (PISA, OWID COVID, Statistik Austria) are automatically refreshed; eleven cron jobs on production watch phrasing drift, data age, cut-off dates, dead links, source liveness, the end-to-end pipeline (canary), the answering model and the backups — see [ARCHITECTURE.md §4.2](ARCHITECTURE.md)
 
 ## Prerequisites
 
@@ -156,7 +156,12 @@ separate genuine bugs from model variance. The headline number is therefore the
 | 100-Claim Stress-Test | 2026-06-04 | 81.2% → **96.9%** after 3 fix sprints | 15 vulnerability clusters |
 | 50-Claim Transfer-QA (B) | 2026-07-11 | 34/50 → all 16 findings fixed | numeric comparison/threshold patterns |
 | 50-Claim Transfer-QA (C) | 2026-07-12 | 43/50 → all 7 findings fixed | cross-domain regression probes |
-| **100-Claim Transfer-QA** | **2026-07-26** | **70/100** → all 21 deterministic findings fixed (PRs #89–#103) | 22 problem classes, 44% regression probes |
+| 100-Claim Transfer-QA | 2026-07-26 | 70/100 → all 21 deterministic findings fixed (PRs #89–#103) | 22 problem classes, 44% regression probes |
+| 50-Claim Transfer-QA (F) | 2026-09-25 | 43/50 | first run after the prompt rebuild |
+| **98-Claim Transfer-QA (I)** | **2026-10-20** | **87/98 = 88 %** (8 genuine findings, 2 wrong expectations) | regression blocks A–E (46/50) + new work + fake-news block |
+| **Phrasing-variant battery** | **2026-11-05** | **67 %** fact recall · **53 %** live-source recall | 1,300 variants × 10 phrasing dimensions — routing only, no verdicts |
+
+The phrasing-variant battery takes the clean phrasing of 100 random curated facts and 30 live-source claims and rewrites each one ten ways: first person, worried question, hearsay, everyday word instead of the technical term, Austrian colloquial, phone typing, keyword fragment, conspiracy framing, irony, and embedded in a longer text. It then measures how often the source that the clean phrasing reaches is still reached. Robust today: longer texts (92 %) and typos (91 %). Weak: irony (29 %), everyday words (34 %) and Austrian colloquial (53 %; live sources 15 %). This is the baseline for the next round of routing work.
 
 The 2026-07-26 run was deliberately weighted toward domains with little prior test
 coverage, which is why the raw score is lower than earlier runs — that is where the
@@ -166,13 +171,13 @@ that were closed with curated, source-verified facts. Each run's full report liv
 in the project's document folder; durable engineering lessons are tracked in the
 repository history.
 
-**Inventory at a glance** (counted from the `main.py` fan-out dispatch, verified 2026-06-27, re-verified 2026-09-05):
+**Inventory at a glance** (counted from the `main.py` fan-out dispatch, verified 2026-06-27; live/static/hybrid split re-verified 2026-09-05; dispatch, file and fact counts re-verified 2026-11-11):
 
 | | Count |
 |---|---|
 | Distinct dispatched sources | **191** (191 dispatch points, 0 duplicates) |
 | Live-API connectors | **107** |
-| Static-first topic services | **78** (incl. 40 thematic `*_pack.json` packs, ~430 topics) |
+| Static-first topic services | **78** (incl. 40 thematic `*_pack.json` packs with 477 facts) |
 | Hybrid (static core + live refresh) | **6** |
 | Connector service files | **191** of 232 `services/*.py` (41 are pipeline/helper modules, incl. `ratelimit.py`, `_atomic.py`, `_fmt.py`, `_log_redaktion.py`, `_log_datei.py`, `_laender.py`, `_skala.py`, `_flexion.py`, `_satzgrenzen.py`, `_notizen.py`, `_zeitreihe.py`, `_tippfehler.py`, `_englisch.py`, `_wortformen.py`, `_umlaut_plural.py`, `_ausfall.py`, `_mengenfrage.py`, `_zaehlweise.py`, `_modell_katalog.py`) |
 
@@ -199,9 +204,9 @@ repository history.
 
 *Additional in-development / refinement-pending sources (currently in pipeline but selectively triggering): OSV.dev, FAOSTAT, Getty Vocabularies, IMF, ILOSTAT, FRED, GeoNames, DPLA, UCDP, Polity 5, ParlGov, WID.world, EBA Risk Dashboard, NBER, CARA, IDMC, OeNB SDMX, CEPII BACI. Refinement targets are tracked in the project's internal notes and in the connector round-trip audits (see the PR history for `test_worldbank_indicators`, `test_dbnomics_providers`, `test_oecd_pinned_keys`).*
 
-### Static-First Topic Packs (40 thematic packs, ~430 topics — part of 78 static-first services)
+### Static-First Topic Packs (40 thematic packs, 477 facts — part of 78 static-first services)
 
-Each pack is a `data/*.json` file with substring + composite triggers, plus a cosine-similarity backup-trigger. The pattern is documented in [ARCHITECTURE.md §3.5](ARCHITECTURE.md).
+Each pack is a `data/*.json` file with deterministic substring + composite triggers, matched against the user's original wording. Packs run exact-only: the cosine backup trigger is off for them since July 2026. The pattern is documented in [ARCHITECTURE.md §3](ARCHITECTURE.md).
 
 | Domain | Packs |
 |---|---|
@@ -220,9 +225,9 @@ To contribute a new topic, follow the anatomy in [ARCHITECTURE.md §3.5](ARCHITE
 - **Input sanitization** — Unicode NFC normalization, control character stripping, whitespace collapsing, 500-character limit
 - **OData injection prevention** — User input is sanitized before inclusion in OData filter queries (WHO API)
 - **Prompt injection defense** — Claims are wrapped in `<claim>` XML delimiters; LLM system prompts explicitly instruct to ignore embedded instructions
-- **Rate limiting** — Configurable per-IP rate limiting (default: 10 requests/60s), respects `X-Forwarded-For` behind reverse proxy
+- **Rate limiting** — Configurable per-client limit (default: 10 requests/60 s). It is keyed on `X-Real-IP`, set by the trusted host nginx; the client-controlled `X-Forwarded-For` is ignored. The table holds an HMAC of the address with a per-process key, never the address itself, and every entry is dropped at most 90 s after the last request
 - **No traceback leaking** — Error responses return generic messages; full tracebacks are logged server-side only
-- **GDPR-compliant** — No cookies, no tracking, no personal data stored
+- **Log redaction** — Every log line passes a redaction filter: words of the claim and of the search terms derived from it are blacked out, request URLs included. Web-server access logs carry no IP address. The privacy statement's numbers are pinned to the code by `tests/test_datenschutz_exakt.py`
 
 ## Project Structure
 
@@ -231,23 +236,31 @@ Evidora/
 ├── website/
 │   ├── .env                       # Your API keys (not committed!)
 │   ├── .env.example
-│   ├── docker-compose.yml
+│   ├── docker-compose.yml         # backend + frontend (+ one-shot "wartung" tool container)
+│   ├── deploy.sh                  # The only way to deploy to production
+│   ├── crontab.prod               # Canonical production crontab (11 jobs)
+│   ├── run_evidora_tool.sh        # Runs a tool in the one-shot container (used by cron)
 │   ├── backend/
 │   │   ├── main.py                # FastAPI entry point + SSE pipeline
 │   │   ├── Dockerfile
 │   │   ├── requirements.txt
 │   │   ├── pytest.ini
-│   │   ├── tests/                 # Unit, source API, integration tests
-│   │   ├── data/                  # Static datasets for static-first
-│   │   │   │                      #   topic services (~25 JSON packs)
+│   │   ├── tests/                 # 186 test files (CI runs the 183 model-free ones)
+│   │   ├── data/                  # Curated data for static-first services
+│   │   │   │                      #   (63 JSON files with facts, 40 of them *_pack.json)
 │   │   │   ├── pisa_2022.csv      # OECD PISA scores
 │   │   │   ├── housing_at.json    # OeNB + Statistik Austria wohnen
-│   │   │   ├── education_dach.json
-│   │   │   ├── eu_courts.json
-│   │   │   ├── …                  # +20 more topic packs
-│   │   ├── services/
-│   │   │   ├── _topic_match.py    # Shared trigger logic (10 services)
-│   │   │   ├── _reranker_backup.py # Cosine-similarity fallback trigger
+│   │   │   ├── …_pack.json        # 40 thematic packs
+│   │   ├── services/              # 232 modules: 191 sources + 41 pipeline helpers
+│   │   │   ├── _topic_match.py    # Shared trigger logic for all static-first facts
+│   │   │   ├── _tippfehler.py · _englisch.py  # Typo-tolerant + English-glossary trigger passes
+│   │   │   ├── _reranker_backup.py # Cosine fallback trigger (12 services only)
+│   │   │   ├── _struct_marker.py  # STRUKTURELL-FALSCH markers on curated myths
+│   │   │   ├── _log_redaktion.py  # Redacts claim words from every log line
+│   │   │   ├── _log_datei.py      # 30-day rotating backend log file
+│   │   │   ├── ratelimit.py       # HMAC-keyed rate limiter, no IPs held
+│   │   │   ├── verdict_postprocess.py # Override cascade after synthesis
+│   │   │   ├── verdict_cache.py   # Semantic verdict cache with negation guard
 │   │   │   ├── _static_cache.py   # mtime-aware hot-reload for data/*.json
 │   │   │   ├── _eurostat_live.py  # Generic Eurostat SDMX connector
 │   │   │   ├── claim_analyzer.py  # LLM claim analysis
@@ -276,13 +289,17 @@ Evidora/
 │   │   └── tools/
 │   │       ├── weekly_phrasing_check.py   # Cron: Sun 03:00
 │   │       ├── data_freshness_check.py    # Cron: Mon 04:00
-│   │       └── refresh_eurostat_crime.py  # Live-API refresh showcase
+│   │       ├── canary_check.py            # Cron: daily — one real claim end to end
+│   │       ├── modell_wachhund.py         # Cron: daily — is our model still in the catalog?
+│   │       ├── stress_test.py             # Claim-set runner (see below)
+│   │       └── retrieval_census.py        # Which sources answered which claim
 │   └── frontend/
-│       ├── nginx.conf
+│       ├── nginx.conf             # Access log without IP addresses
 │       ├── index.html · style.css · app.js
-│       ├── i18n.js                # DE/EN translations
+│       ├── i18n.js                # DE/EN translations incl. the privacy statement
 │       └── favicon.svg
 ├── ARCHITECTURE.md                # Developer-facing architecture doc
+├── CONTRIBUTING.md                # Workflow, tests, rules for new sources
 ├── README.md                      # This file
 ├── .gitignore
 └── LICENSE                        # MIT License
@@ -298,15 +315,15 @@ Evidora/
 6. **Synthesis** — The LLM evaluates all evidence and produces a verdict (true/mostly true/mixed/mostly false/false/unverifiable) with confidence score
 7. **Multi-Dimensional Context** — Data sources with one-metric bias risk (energy safety, PISA, CO₂, migration, GDP) automatically inject methodological caveats so the LLM cannot produce a misleading single-dimension verdict
 8. **Claim Guards** — Superlative claims ("highest", "most") require multi-country data; record claims ("all-time low") are checked against historical min/max; present-tense claims are compared to the latest data point
-9. **5-Layer Verdict Consistency** — L1 Prompt rules, L2 STRUKTURELL-FALSCH override, L3 Relevance guard (topic-mismatch prevention), L4 Factual-Content Consistency (4-tier verdict detection with 6 content patterns: superlative, record-year, competence-ruling, medical-denial, trend-"kaum", conspiracy-vocabulary), L5 Domain guards (election prediction, Wikipedia-normative-term, AMS/ILO dual-methodology)
+9. **5-Layer Verdict Consistency** — L1 Prompt rules, L2 STRUKTURELL-FALSCH override (in shadow mode since 2026-11-04: it still decides and logs, but no longer changes the verdict — it helped in none of 69 myth runs and overturned correct verdicts five times), L3 Relevance guard (topic-mismatch prevention), L4 Factual-Content Consistency (4-tier verdict detection with 6 content patterns: superlative, record-year, competence-ruling, medical-denial, trend-"kaum", conspiracy-vocabulary), L5 Domain guards (election prediction, Wikipedia-normative-term, AMS/ILO dual-methodology)
 10. **Hallucination Filter** — All evidence URLs are verified against actual source results; fabricated references are removed
-11. **Caching** — API responses are cached in-memory (30 min TTL) to reduce load and speed up repeated queries
+11. **Caching** — API responses are cached in-memory (30 min TTL); a semantic verdict cache with a negation guard short-circuits near-identical repeat claims
 
 ## Tech Stack
 
 - **Backend:** Python 3.12, FastAPI, SSE streaming
 - **Frontend:** Vanilla JS, CSS (no frameworks)
-- **LLM:** Mistral 7B via Ollama (local) or Mistral Cloud API (EU servers, Paris)
+- **LLM:** Mistral Cloud API (EU servers, Paris; production: `mistral-medium-latest`, code default `mistral-small-latest`) or Mistral 7B via Ollama for local development
 - **NLP:** SpaCy (de_core_news_lg + en_core_web_sm) for named entity recognition
 - **ML:** Sentence Transformers (multilingual MiniLM) for semantic reranking *and* a backup-trigger fallback for static-first topic services
 - **Deployment:** Docker Compose (backend + nginx) on a single Hetzner host
@@ -342,8 +359,8 @@ python3 tools/stress_test.py --claims tools/stress_tests/lehrer.json \
 Bundled claim sets live under `tools/stress_tests/`. Methodology
 (four measurement points: verdict-match, source-match, trigger gaps,
 hot-reload) is documented in [ARCHITECTURE.md §4.4](ARCHITECTURE.md).
-Cumulative result across 58+ stress-test PDFs, **1100+ curated claims**:
-aggregate verdict-match consistently above 90 % on the cluster-style tests (100-claim test 2026-06-04: 93/96 = 96.9 %); the tougher transfer-QA format scores lower on first run by design — see [Quality benchmarks](#quality-benchmarks). Per-pack stress-tests live in `tools/pdf_meta/`. The 100-claim test covers 15 vulnerability clusters: inversions, negation-blindness, temporal claims, category errors, political guardrails, reflexive-unverifiable, record claims, conditionals, AMS/ILO methodology, multi-dimensional comparisons, conspiracy theories, post-cutoff events, medical nuance, AT migration, and climate edge-cases.
+Cumulative result up to July 2026 across 58+ stress-test PDFs, **1100+ curated claims**:
+aggregate verdict-match consistently above 90 % on the cluster-style tests (100-claim test 2026-06-04: 93/96 = 96.9 %); the tougher transfer-QA format (QA50B–QA50I, July–October 2026) scores lower on first run by design — see [Quality benchmarks](#quality-benchmarks). Per-pack stress-tests live in `tools/pdf_meta/`. The 100-claim test covers 15 vulnerability clusters: inversions, negation-blindness, temporal claims, category errors, political guardrails, reflexive-unverifiable, record claims, conditionals, AMS/ILO methodology, multi-dimensional comparisons, conspiracy theories, post-cutoff events, medical nuance, AT migration, and climate edge-cases.
 
 A latency profiler complements this:
 
@@ -368,20 +385,16 @@ python3 -m pytest tests/test_sources.py -v --timeout=60
 # Integration tests (needs running backend + LLM)
 python3 -m pytest tests/test_integration.py -v --timeout=180
 
-# All tests except integration
+# All tests except integration (needs SpaCy + sentence-transformers)
 python3 -m pytest tests/ --ignore=tests/test_integration.py
 ```
 
-### Stress-test methodology
-
-In addition to unit/integration tests, Evidora uses **structured 20-claim
-stress-tests** to catch trigger gaps and verdict regressions. Each test
-measures verdict-match, expected-source coverage, trigger gaps, and live
-hot-reload behavior. The full methodology lives in
-[ARCHITECTURE.md §4.4](ARCHITECTURE.md);
-cumulative balance across 53+ tests: **1000+ claims**. Latest run:
-100-Claim Transfer-QA 2026-07-26, 70/100 raw across 22 problem classes,
-all 21 deterministic findings fixed (see [Quality benchmarks](#quality-benchmarks)).
+CI (`.github/workflows/test.yml`) runs two required checks on every pull
+request: `light-unit-tests` — an explicit list of 183 model-free test files
+(no SpaCy, no network, a few seconds) — and `check-new-urls`, which fails
+on newly added source links that return 404/410. Stress-test methodology:
+see [Stress-testing](#stress-testing) above and
+[ARCHITECTURE.md §4.4](ARCHITECTURE.md).
 
 ## Troubleshooting
 

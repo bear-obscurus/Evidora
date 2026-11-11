@@ -14,8 +14,9 @@ labels: enhancement, source-proposal
 
 ## Why this source
 
-What kind of claims would it help fact-check that the current ~50
-sources don't cover well? Concrete examples welcome.
+What kind of claims would it help fact-check that the current 191
+sources don't cover well? Concrete examples welcome — ideally phrased the
+way people actually ask them.
 
 ## Service pattern
 
