@@ -20,7 +20,6 @@ For trivial changes (typos, doc fixes), most sections can be omitted.
 
 - [ ] The `light-unit-tests` files pass locally (list in
       `.github/workflows/test.yml`); a new test file is added to that list
-- [ ] `pytest tests/test_unit.py` passes locally (if you have SpaCy installed)
 - [ ] If trigger logic changed: ran `tools/stress_test.py` against a local
       backend and verdict-match ≥ 18/20
 - [ ] If triggers were added: they do not fire on unrelated claims
