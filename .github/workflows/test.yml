@@ -638,6 +638,9 @@ jobs:
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
     # (Extended 2026-07-02 from topic_match-only, 36 → ~140 tests.)
+    # Vollstaendigkeit: tests/test_ci_liste_vollstaendig.py prueft, dass
+    # jede modellfreie Testdatei hier steht. Eine neue Datei, die hier
+    # fehlt, macht die CI rot (Kriterium und Ausschlussliste dort).
 
     steps:
       - uses: actions/checkout@v7
@@ -846,6 +849,8 @@ jobs:
             tests/test_tippfehler_echtwort.py \
             tests/test_wikidata_reliability.py \
             tests/test_unhcr_zaehlfelder_als_string.py \
+            tests/test_unit.py \
+            tests/test_ci_liste_vollstaendig.py \
             tests/test_analyse_heutiges_datum.py
 
   check-new-urls:
