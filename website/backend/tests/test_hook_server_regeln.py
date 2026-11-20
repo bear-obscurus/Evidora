@@ -2,6 +2,8 @@
 
 1. Kein ``git pull`` auf dem Server vor ``deploy.sh``.
 2. Kein Python im Prod-Backend-Container per ``docker exec``.
+3. Kein zweiter Backend-Container (``docker compose run backend``,
+   ``docker run evidora-backend``); nur der Dienst ``wartung`` ist frei.
 
 Der Test liest den Hook-Befehl aus ``.claude/settings.json`` und ruft ihn so
 auf, wie Claude Code es tut: Hook-JSON auf stdin, Exit 2 = gesperrt. Damit
@@ -123,6 +125,56 @@ def test_python_im_backend_gesperrt(befehl):
     code, meldung = _laeuft(befehl)
     assert code == 2, f"nicht gesperrt: {befehl!r}"
     assert "wartung" in meldung and "von Hand" in meldung
+
+
+GESPERRT_ZWEITES_BACKEND = [
+    # docker compose run backend -- mit jedem Befehl, nicht nur Python
+    "ssh burrito@evidora.eu 'cd /opt/Evidora/website && docker compose run --rm backend ls /app'",
+    "docker compose run --rm -T backend python3 -c 1",
+    "docker compose run -T --rm --entrypoint sh backend -c 'echo hallo'",
+    "docker compose run --entrypoint=/bin/sh -e X=1 -v /tmp/a:/tmp/a:ro backend",
+    "docker compose -f website/docker-compose.yml run --rm backend true",
+    "docker compose --file=docker-compose.yml -p evidora run -d backend",
+    "docker-compose run --rm backend echo hallo",
+    # --profile wartung allein macht backend nicht zur Wartung
+    "docker compose --profile wartung run --rm backend python3 x.py",
+    "ssh burrito@evidora.eu \"sh -c 'cd /opt/Evidora/website && docker compose run --rm -T backend sh'\"",
+    "sh -c 'docker compose run --no-deps backend uvicorn main:app'",
+    # docker run mit dem Backend-Image (website/docker-compose.yml: evidora-backend)
+    "docker run --rm evidora-backend:latest python3 -c 1",
+    "docker run --rm -it -m 3g --entrypoint sh evidora-backend",
+    "ssh burrito@evidora.eu 'docker run --rm -v /opt/Evidora/website/backend/data:/app/data evidora-backend:latest ls'",
+    "docker container run -d --name probe evidora-backend",
+    "docker run --rm docker.io/library/evidora_backend:latest true",
+    "false && docker compose run --rm backend true",
+]
+
+ERLAUBT_RUN = [
+    "docker compose --profile wartung run --rm -T wartung python3 /tmp/skript.py",
+    "docker compose -f docker-compose.yml --profile wartung run --rm -T -v /tmp/b.py:/tmp/b.py:ro wartung python3 /tmp/b.py",
+    ("ssh burrito@evidora.eu 'cd /opt/Evidora/website && flock -w 600 -E 75 "
+     "/home/burrito/evidora-logs/.wartung.lock docker compose --profile wartung run --rm -T "
+     "--entrypoint sh wartung -c \"ls /app\"'"),
+    "docker compose run --rm frontend ls",
+    "docker run --rm alpine echo hallo",
+    "docker run --rm python:3.12-slim python3 -V",
+    "docker compose up -d backend",
+    "docker compose logs --tail 40 backend",
+    "docker image ls evidora-backend",
+]
+
+
+@pytest.mark.parametrize("befehl", GESPERRT_ZWEITES_BACKEND)
+def test_zweites_backend_gesperrt(befehl):
+    code, meldung = _laeuft(befehl)
+    assert code == 2, f"nicht gesperrt: {befehl!r}"
+    assert "zweiter Backend-Container" in meldung and "wartung" in meldung
+
+
+@pytest.mark.parametrize("befehl", ERLAUBT_RUN)
+def test_run_erlaubt(befehl):
+    code, meldung = _laeuft(befehl)
+    assert code == 0, f"faelschlich gesperrt: {befehl!r}: {meldung}"
 
 
 @pytest.mark.parametrize("befehl", ERLAUBT)

@@ -9,6 +9,9 @@
    ``docker exec`` / ``docker compose exec`` in ``evidora-backend-1`` bzw. im
    Dienst ``backend`` ist gesperrt, auch hinter ``sh -c``. Am 08.08.2026 riss
    ein solcher Prozess den ganzen Host mit.
+3. Kein zweiter Backend-Container: ``docker compose run ... backend`` und
+   ``docker run`` mit dem Image ``evidora-backend`` starten einen zweiten
+   Container mit eigener 3-GB-Grenze. Nur der Dienst ``wartung`` (224m) ist frei.
 
 Der Hook liest das Hook-JSON von stdin. Gesperrt wird mit Exit 2 und einer
 Begruendung auf stderr; alles andere endet mit Exit 0.
@@ -52,6 +55,19 @@ MELDUNG_PYTHON = (
     "docker compose --profile wartung run --rm -T ... wartung python3 /tmp/skript.py"
 )
 
+MELDUNG_ZWEITES_BACKEND = (
+    "Gesperrt (Hook .claude/hooks/server_regeln.py, harte Regel aus CLAUDE.md): "
+    "kein zweiter Backend-Container. docker compose run ... backend und docker run "
+    "mit dem Image evidora-backend starten einen zweiten Container mit eigener "
+    "3-GB-Grenze neben dem laufenden Backend - dieselbe Fehlerklasse wie am "
+    "08.08.2026, als der Host mitgerissen wurde. Das gilt fuer jeden Befehl, auch "
+    "mit --rm, -T oder --entrypoint. Erlaubt ist nur der Wartungs-Container "
+    "(224m): cd /opt/Evidora/website && flock -w 600 -E 75 "
+    "/home/burrito/evidora-logs/.wartung.lock docker compose --profile wartung "
+    "run --rm -T ... wartung <befehl>. Braucht es wirklich ein zweites Backend, "
+    "fuehrt der Nutzer den Befehl selbst aus."
+)
+
 # --------------------------------------------------------------------------
 # Muster
 # --------------------------------------------------------------------------
@@ -81,6 +97,18 @@ COMPOSE_GLOBAL_MIT_ARG = {"-f", "--file", "-p", "--project-name", "--profile",
                           "--project-directory", "--env-file", "--ansi",
                           "--progress", "--parallel"}
 COMPOSE_EXEC_MIT_ARG = {"-e", "--env", "-u", "--user", "-w", "--workdir", "--index"}
+COMPOSE_RUN_MIT_ARG = {"-e", "--env", "--env-from-file", "-l", "--label", "-p",
+                       "--publish", "-u", "--user", "-v", "--volume", "-w",
+                       "--workdir", "--name", "--entrypoint", "--cap-add",
+                       "--cap-drop", "--pull", "--network", "--link"}
+# Image des Backends: Projekt "evidora" + Dienst "backend" mit build: ergibt
+# evidora-backend (website/docker-compose.yml; der Dienst wartung nennt es
+# ausdruecklich: image: evidora-backend:latest). evidora_backend ist die
+# Schreibweise von docker-compose v1.
+BACKEND_IMAGE = re.compile(
+    r"^(?:[\w.-]+(?::\d+)?/)*evidora[-_]backend(?::[\w.-]+)?(?:@sha256:[0-9a-f]+)?$",
+    re.I)
+WARTUNG_DIENST = "wartung"
 GIT_GLOBAL_MIT_ARG = {"-C", "-c", "--git-dir", "--work-tree", "--namespace",
                       "--exec-path", "--config-env"}
 
@@ -391,6 +419,37 @@ def docker_exec_ziel(w, p):
     return None
 
 
+def startet_zweites_backend(w, p):
+    """docker compose run ... backend / docker run <evidora-backend-Image>.
+
+    Der Dienst wartung bleibt erlaubt. Im Zweifel (ein Wort "backend" bzw.
+    das Backend-Image irgendwo hinter run) wird gesperrt.
+    """
+    name = os.path.basename(w[p])
+    i = p + 1
+    if name == "docker":
+        i = ueberspringe_opts(w, i, DOCKER_GLOBAL_MIT_ARG)
+        if i < len(w) and w[i] == "container":
+            i += 1
+        if i < len(w) and w[i] in ("run", "create"):
+            return any(BACKEND_IMAGE.match(x) for x in w[i + 1:])
+        if i < len(w) and w[i] == "compose":
+            i += 1
+        else:
+            return False
+    elif name != "docker-compose":
+        return False
+    i = ueberspringe_opts(w, i, COMPOSE_GLOBAL_MIT_ARG)
+    if i >= len(w) or w[i] != "run":
+        return False
+    rest = w[i + 1:]
+    k = ueberspringe_opts(rest, 0, COMPOSE_RUN_MIT_ARG)
+    dienst = rest[k] if k < len(rest) else ""
+    if dienst == WARTUNG_DIENST:
+        return False
+    return bool(BACKEND_CONTAINER.search(dienst)) or "backend" in rest
+
+
 def ssh_ziel(w, p):
     """Bei ssh: (host, entfernter_befehl), sonst None."""
     if os.path.basename(w[p]) != "ssh":
@@ -482,6 +541,10 @@ def pruefe(text, auf_server=False, tiefe=0):
                        or (pfad and SERVER_PFAD.search(pfad))):
             return MELDUNG_GIT
 
+        # docker compose run backend / docker run evidora-backend
+        if startet_zweites_backend(w, p):
+            return MELDUNG_ZWEITES_BACKEND
+
         # docker exec ... backend ... python
         dz = docker_exec_ziel(w, p)
         if dz:
@@ -520,6 +583,11 @@ def grobe_pruefung(text, auf_server):
     if (re.search(r"\bdocker(-compose|\s+compose)?\b[^;&|]*\bexec\b[^;&|]*backend", text)
             and re.search(r"\b(python[0-9.]*|pytest|pip[0-9.]*|uvicorn)\b", text)):
         return MELDUNG_PYTHON
+    if (re.search(r"\bdocker(-compose|\s+compose)?\b[^;&|]*\brun\b[^;&|]*\bbackend\b", text)
+            and not re.search(r"\brun\b[^;&|]*\bwartung\b", text)):
+        return MELDUNG_ZWEITES_BACKEND
+    if re.search(r"\bdocker\b[^;&|]*\b(run|create)\b[^;&|]*\bevidora[-_]backend\b", text):
+        return MELDUNG_ZWEITES_BACKEND
     return None
 
 

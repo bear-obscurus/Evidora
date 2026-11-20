@@ -634,6 +634,7 @@ jobs:
     #   - test_hook_server_regeln     (PreToolUse-Hook aus .claude/settings.json:
     #                                  kein git pull auf dem Server vor deploy.sh,
     #                                  kein Python per docker exec im Prod-Backend;
+    #                                  kein zweiter Backend-Container per run;
     #                                  Batterie gesperrt/erlaubt inkl. Quoting-Fallen)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
