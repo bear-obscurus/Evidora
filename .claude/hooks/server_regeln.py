@@ -38,8 +38,10 @@ MELDUNG_GIT = (
     "deploy.sh pullt selbst und leitet seine Aktion aus dem Pull ab; nach einem "
     "Pull von Hand baut es nichts. Richtig ist: "
     "ssh burrito@evidora.eu 'cd /opt/Evidora/website && ./deploy.sh' "
-    "(--dry-run zeigt nur die Entscheidung). Hat schon jemand von Hand gepullt: "
-    "./deploy.sh --force-build. Lesende git-Befehle (status, log, fetch) bleiben erlaubt."
+    "Achtung: auch --dry-run pullt schon (deploy.sh Zeile 76, Abbruch erst danach), "
+    "danach baut ein normaler Deploy nichts. Hat schon jemand gepullt (auch per "
+    "--dry-run): ./deploy.sh --force-build. Lesende git-Befehle (status, log, fetch) "
+    "bleiben erlaubt."
 )
 
 MELDUNG_PYTHON = (
