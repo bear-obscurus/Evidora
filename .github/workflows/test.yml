@@ -631,6 +631,9 @@ jobs:
     #                                  als "0"-String: `0 += "0"` warf und
     #                                  verwarf ALLE Bevoelkerungszahlen fuer
     #                                  Laender-Claims; gemockt, kein Netz)
+    #   - test_analyse_heutiges_datum (Analyse-Stufe kennt das heutige
+    #                                  Datum: in der Nutzernachricht, nicht
+    #                                  im System-Prompt; gemockt, kein Netz)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -842,7 +845,8 @@ jobs:
             tests/test_wortgrenzen_alle_fakten.py \
             tests/test_tippfehler_echtwort.py \
             tests/test_wikidata_reliability.py \
-            tests/test_unhcr_zaehlfelder_als_string.py
+            tests/test_unhcr_zaehlfelder_als_string.py \
+            tests/test_analyse_heutiges_datum.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
