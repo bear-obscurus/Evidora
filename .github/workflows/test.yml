@@ -631,6 +631,11 @@ jobs:
     #                                  als "0"-String: `0 += "0"` warf und
     #                                  verwarf ALLE Bevoelkerungszahlen fuer
     #                                  Laender-Claims; gemockt, kein Netz)
+    #   - test_hook_server_regeln     (PreToolUse-Hook aus .claude/settings.json:
+    #                                  kein git pull auf dem Server vor deploy.sh,
+    #                                  kein Python per docker exec im Prod-Backend;
+    #                                  kein zweiter Backend-Container per run;
+    #                                  Batterie gesperrt/erlaubt inkl. Quoting-Fallen)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -847,7 +852,8 @@ jobs:
             tests/test_wikidata_reliability.py \
             tests/test_unhcr_zaehlfelder_als_string.py \
             tests/test_unit.py \
-            tests/test_ci_liste_vollstaendig.py
+            tests/test_ci_liste_vollstaendig.py \
+            tests/test_hook_server_regeln.py
 
   check-new-urls:
     name: New URLs in data/*.json must work

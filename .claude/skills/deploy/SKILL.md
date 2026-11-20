@@ -65,7 +65,8 @@ ssh <server> 'docker inspect -f "{{.State.Health.Status}} {{.State.StartedAt}}" 
 - Ist der Dienst wirklich kaputt: sofort an den Nutzer melden, mit dem
   Logauszug.
 - `docker exec` nur mit Shell-Befehlen (`ls`, `grep`, `sha256sum`), **nie
-  mit `python` und Modell-Imports**.
+  mit `python`**. Der Hook `.claude/hooks/server_regeln.py` sperrt jeden
+  Python-Aufruf im Backend; eine leichte Prüfung führt der Nutzer selbst aus.
 
 ## 5. Live prüfen, was der PR ändert
 
