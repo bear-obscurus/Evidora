@@ -338,6 +338,9 @@ Evidora/
   style, testing requirements, how to add a new data source step by
   step, what NOT to commit
 - **[README.md](README.md)** — This file (installation + features)
+- **[CLAUDE.md](CLAUDE.md)** — Working rules for AI-assisted development in
+  this repo (German): hard rules, code rules, measurement standard. Skills
+  for deploy and measurement live in `.claude/skills/`
 
 ## Stress-testing
 
