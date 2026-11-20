@@ -7,8 +7,11 @@ website/.env
 # Private Notizen & Dokumentation
 mind/
 
-# Claude Code Workspace
-.claude/
+# Claude Code Workspace — privat bleiben Einstellungen, Worktrees und die
+# lokale Server-Datei; die Skills sind Teil des Repos (seit 20.11.2026).
+**/.claude/*
+!/.claude/skills/
+CLAUDE.local.md
 
 # Python
 __pycache__/
