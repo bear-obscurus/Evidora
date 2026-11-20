@@ -81,10 +81,12 @@ cd website/backend
 python3 -m pytest tests/test_topic_match.py tests/test_konsens_exact_only.py -v
 ```
 
-`tests/test_unit.py` needs the SpaCy models and therefore does not run in
-CI; run it locally if you touched the analyzer or the NER path. If you
+`tests/test_unit.py` runs in CI. Only its `test_enrich_adds_countries`
+needs the SpaCy models, and it skips itself when they are missing. If you
 add a new test file, add it to the list in `test.yml`, otherwise CI never
-runs it.
+runs it. `tests/test_ci_liste_vollstaendig.py` enforces this: every
+model-free test file must be in the list or on its documented exclusion
+list (`AUSSCHLUSS`).
 
 If you touched `services/_topic_match.py` or any static-first topic
 service, run the whole topic-match suite — it pins the substring,

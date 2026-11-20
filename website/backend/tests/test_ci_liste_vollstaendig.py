@@ -35,7 +35,8 @@ die CI selbst, weil dort keine Modellbibliothek installiert ist.
 
 Was das Kriterium nicht erkennt (etwa ein Dienst, der ohne eigenen Client
 eine Live-API ruft), kommt auf die Ausschlussliste ``AUSSCHLUSS``, mit
-Begründung. Sie soll klein bleiben.
+Begründung. Sie soll klein bleiben. Heute stehen dort ``test_sources.py``
+(Live-APIs) und ``test_integration.py`` (laufendes Backend mit LLM).
 
 Modellfrei: nur Standardbibliothek, liest zwei Dateien, kein Netz.
 """
@@ -57,9 +58,14 @@ APP_MODULE = {"main", "fastapi.testclient"}
 NETZ_MODULE = {"requests", "aiohttp", "urllib.request", "socket"}
 NETZ_MARKER = {"integration", "network"}
 
-# Dateien, die das Kriterium für modellfrei hält, die aber trotzdem nicht in
-# die CI gehören. Jeder Eintrag braucht eine Begründung.
+# Dateien, die bewusst nicht in der CI laufen, mit Begründung. Nötig ist ein
+# Eintrag nur, wenn das Kriterium die Datei für modellfrei hält
+# (test_sources); test_integration erkennt es selbst und steht zur
+# Klarheit trotzdem hier.
 AUSSCHLUSS = {
+    "test_integration.py": (
+        "braucht ein laufendes Backend mit LLM (POST /api/check gegen "
+        "EVIDORA_TEST_URL), Marker integration"),
     "test_sources.py": (
         "ruft die echten Dienste (Eurostat, EEA, EZB, Copernicus, UNHCR, "
         "PubMed, GADMO, ECDC, ClaimReview) gegen ihre Live-APIs; der "
@@ -162,9 +168,6 @@ def test_ausschlussliste_ist_aktuell():
     for name, grund in AUSSCHLUSS.items():
         assert name in dateien, f"{name} steht in AUSSCHLUSS, existiert aber nicht"
         assert name not in liste, f"{name} steht in AUSSCHLUSS und in der CI-Liste"
-        assert not dateien[name], (
-            f"{name} erkennt das Kriterium schon selbst "
-            f"({dateien[name]}) — der Eintrag in AUSSCHLUSS ist überflüssig")
         assert len(grund) >= 20, f"{name}: Begründung fehlt oder ist zu kurz"
 
 
