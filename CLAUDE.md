@@ -72,6 +72,11 @@ Diese Regeln gelten ohne Ausnahme.
   ist auf dem Host gemountet; eine Schreibung dort verschmutzt den
   Server-Worktree, und `deploy.sh` verweigert den nächsten Deploy.
   Generierte Caches gehören in `.gitignore`.
+- Die ersten beiden Regeln setzt ein PreToolUse-Hook durch
+  (`.claude/hooks/server_regeln.py`, verdrahtet in `.claude/settings.json`):
+  Er sperrt `git pull`/`merge`/`rebase`/`reset --hard origin/…` auf dem
+  Server und **jeden** Python-Aufruf per `docker exec` im Prod-Backend.
+  Eine leichte Prüfung führt der Nutzer selbst aus.
 
 ## Code-Regeln
 
