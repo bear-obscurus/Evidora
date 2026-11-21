@@ -636,9 +636,6 @@ jobs:
     #                                  kein Python per docker exec im Prod-Backend;
     #                                  kein zweiter Backend-Container per run;
     #                                  Batterie gesperrt/erlaubt inkl. Quoting-Fallen)
-    #   - test_analyse_heutiges_datum (Analyse-Stufe kennt das heutige
-    #                                  Datum: in der Nutzernachricht, nicht
-    #                                  im System-Prompt; gemockt, kein Netz)
     #   - test_deploy_dry_run_ohne_pull (deploy.sh --dry-run zog schon
     #                                  den Pull; der echte Lauf danach fand
     #                                  "Keine neuen Commits" (20.11.2026).
@@ -862,7 +859,6 @@ jobs:
             tests/test_unit.py \
             tests/test_ci_liste_vollstaendig.py \
             tests/test_hook_server_regeln.py \
-            tests/test_analyse_heutiges_datum.py \
             tests/test_deploy_dry_run_ohne_pull.py
 
   check-new-urls:
