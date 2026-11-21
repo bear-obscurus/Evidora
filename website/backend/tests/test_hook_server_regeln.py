@@ -120,6 +120,18 @@ def test_git_update_auf_server_gesperrt(befehl):
     assert "deploy.sh" in meldung
 
 
+def test_git_meldung_beschreibt_dry_run_richtig():
+    """Seit #319 zieht ``deploy.sh --dry-run`` nichts mehr (nur git fetch).
+    Die Meldung darf nicht mehr behaupten, er pulle, und ``--force-build``
+    nur noch fuer den Pull von Hand nennen."""
+    code, meldung = _laeuft("ssh burrito@evidora.eu 'cd /opt/Evidora && git pull'")
+    assert code == 2
+    assert "pullt schon" not in meldung
+    assert "auch per --dry-run" not in meldung
+    assert "--dry-run macht nur git fetch" in meldung
+    assert "von Hand gepullt" in meldung and "--force-build" in meldung
+
+
 @pytest.mark.parametrize("befehl", GESPERRT_PYTHON)
 def test_python_im_backend_gesperrt(befehl):
     code, meldung = _laeuft(befehl)

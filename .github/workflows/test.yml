@@ -639,6 +639,11 @@ jobs:
     #   - test_analyse_heutiges_datum (Analyse-Stufe kennt das heutige
     #                                  Datum: in der Nutzernachricht, nicht
     #                                  im System-Prompt; gemockt, kein Netz)
+    #   - test_deploy_dry_run_ohne_pull (deploy.sh --dry-run zog schon
+    #                                  den Pull; der echte Lauf danach fand
+    #                                  "Keine neuen Commits" (20.11.2026).
+    #                                  Wegwerf-Repo + Attrappen-docker,
+    #                                  nur bash und git)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -857,7 +862,8 @@ jobs:
             tests/test_unit.py \
             tests/test_ci_liste_vollstaendig.py \
             tests/test_hook_server_regeln.py \
-            tests/test_analyse_heutiges_datum.py
+            tests/test_analyse_heutiges_datum.py \
+            tests/test_deploy_dry_run_ohne_pull.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
