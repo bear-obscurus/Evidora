@@ -8,9 +8,12 @@ website/.env
 mind/
 
 # Claude Code Workspace — privat bleiben Einstellungen, Worktrees und die
-# lokale Server-Datei; die Skills sind Teil des Repos (seit 20.11.2026).
+# lokale Server-Datei; die Skills sind Teil des Repos (seit 20.11.2026),
+# ebenso die Projekt-Hooks und ihr settings.json.
 **/.claude/*
 !/.claude/skills/
+!/.claude/hooks/
+!/.claude/settings.json
 CLAUDE.local.md
 
 # Python
