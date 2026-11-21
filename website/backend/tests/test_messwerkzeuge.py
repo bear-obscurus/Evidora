@@ -139,6 +139,39 @@ async def _sofort():
     return None
 
 
+def test_analyse_lauf_schneidet_die_felder_vor_dem_jahresfilter_mit():
+    """vor_filter haelt die drei Suchfelder fest, wie sie VOR dem Filter waren,
+    je Eingabe, auch wenn die Analysen parallel laufen (Messung 21.11.2026)."""
+    import asyncio
+    import types
+
+    def filtern(claim, analysis, heute):
+        analysis["factcheck_queries"] = [q.replace(" 2026", "") for q in analysis["factcheck_queries"]]
+        return [2026]
+
+    modul = types.SimpleNamespace(jahre_nachfiltern=filtern)
+    assert al.filter_mitschneiden(modul) is True
+
+    async def analysieren(claim):
+        await asyncio.sleep(0.01 if claim == "a" else 0)
+        a = {"factcheck_queries": [f"{claim} 2026"], "entities": [claim], "pubmed_queries": []}
+        modul.jahre_nachfiltern(claim, a, None)
+        return a
+
+    async def notfall(claim):  # wie die Notfall-Antwort: der Filter laeuft nicht
+        return {"factcheck_queries": [claim], "_fallback": True}
+
+    zeilen = []
+    asyncio.run(al.lauf([{"id": "1", "claim": "a"}, {"id": "2", "claim": "b"}], analysieren, zeilen.append))
+    asyncio.run(al.lauf([{"id": "3", "claim": "c"}], notfall, zeilen.append))
+    erg = {json.loads(z)["id"]: json.loads(z) for z in zeilen}
+    assert erg["1"]["analysis"]["factcheck_queries"] == ["a"]
+    assert erg["1"]["vor_filter"] == {"factcheck_queries": ["a 2026"], "pubmed_queries": [], "entities": ["a"]}
+    assert erg["2"]["vor_filter"]["factcheck_queries"] == ["b 2026"]
+    assert erg["3"]["vor_filter"] is None
+    assert al.filter_mitschneiden(types.SimpleNamespace()) is False
+
+
 # --- latenz_auswerten --------------------------------------------------------
 
 PROBE = """18:39:38 legal 200 0.003231 health 200 0.003459
