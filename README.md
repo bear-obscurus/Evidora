@@ -179,7 +179,7 @@ repository history.
 | Live-API connectors | **107** |
 | Static-first topic services | **78** (incl. 40 thematic `*_pack.json` packs with 480 facts) |
 | Hybrid (static core + live refresh) | **6** |
-| Connector service files | **191** of 232 `services/*.py` (41 are pipeline/helper modules, incl. `ratelimit.py`, `_atomic.py`, `_fmt.py`, `_log_redaktion.py`, `_log_datei.py`, `_laender.py`, `_skala.py`, `_flexion.py`, `_satzgrenzen.py`, `_notizen.py`, `_zeitreihe.py`, `_tippfehler.py`, `_englisch.py`, `_wortformen.py`, `_umlaut_plural.py`, `_ausfall.py`, `_mengenfrage.py`, `_zaehlweise.py`, `_modell_katalog.py`) |
+| Connector service files | **191** of 233 `services/*.py` (42 are pipeline/helper modules, incl. `ratelimit.py`, `_atomic.py`, `_fmt.py`, `_log_redaktion.py`, `_jahresfilter.py`, `_log_datei.py`, `_laender.py`, `_skala.py`, `_flexion.py`, `_satzgrenzen.py`, `_notizen.py`, `_zeitreihe.py`, `_tippfehler.py`, `_englisch.py`, `_wortformen.py`, `_umlaut_plural.py`, `_ausfall.py`, `_mengenfrage.py`, `_zaehlweise.py`, `_modell_katalog.py`) |
 
 ### Live-API Connectors (107 wired into the fan-out)
 
@@ -251,7 +251,7 @@ Evidora/
 │   │   │   ├── pisa_2022.csv      # OECD PISA scores
 │   │   │   ├── housing_at.json    # OeNB + Statistik Austria wohnen
 │   │   │   ├── …_pack.json        # 40 thematic packs
-│   │   ├── services/              # 232 modules: 191 sources + 41 pipeline helpers
+│   │   ├── services/              # 233 modules: 191 sources + 42 pipeline helpers
 │   │   │   ├── _topic_match.py    # Shared trigger logic for all static-first facts
 │   │   │   ├── _tippfehler.py · _englisch.py  # Typo-tolerant + English-glossary trigger passes
 │   │   │   ├── _reranker_backup.py # Cosine fallback trigger (12 services only)

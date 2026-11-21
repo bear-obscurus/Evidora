@@ -646,6 +646,13 @@ jobs:
     #                                  bei Arbeitslosigkeit, Realloehne;
     #                                  Phrasing -> eigener Fakt, keine
     #                                  Fremdtreffer gegen alle Phrasings)
+    #   - test_analyse_jahresfilter   (Jahres-Nachfilter der Analyse-Stufe:
+    #                                  Jahr im Claim bleibt, relatives Jahr
+    #                                  bleibt, erfundenes Jahr fliegt raus,
+    #                                  MIPEX 2020 im Claim bleibt; reine Logik)
+    #   - test_analyse_heutiges_datum (Datum in der Nutzernachricht, nicht im
+    #                                  System-Prompt; Filter nach erster Antwort
+    #                                  und JSON-Wiederholung; gemockt, kein Netz)
     #   - test_arbeitsmarkt_zweiter_beleg (source_url_2 las kein Dienst;
     #                                  der EU-Beleg zur Reallohn-Frage trug
     #                                  live die WIFO-URL. Jetzt eigener
@@ -720,6 +727,7 @@ jobs:
             tests/test_verdict_cache_polarity.py \
             tests/test_verdict_cache_sprache.py \
             tests/test_cron_aufrufe.py \
+            tests/test_canary_langsamkeit.py \
             tests/test_stichtag_speicher.py \
             tests/test_url_pruefer_speicher.py \
             tests/test_stichtage_2026_10.py \
@@ -870,6 +878,8 @@ jobs:
             tests/test_hook_server_regeln.py \
             tests/test_deploy_dry_run_ohne_pull.py \
             tests/test_geringfuegig_realloehne_pack.py \
+            tests/test_analyse_jahresfilter.py \
+            tests/test_analyse_heutiges_datum.py \
             tests/test_arbeitsmarkt_zweiter_beleg.py
 
   check-new-urls:
