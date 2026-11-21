@@ -636,6 +636,11 @@ jobs:
     #                                  kein Python per docker exec im Prod-Backend;
     #                                  kein zweiter Backend-Container per run;
     #                                  Batterie gesperrt/erlaubt inkl. Quoting-Fallen)
+    #   - test_deploy_dry_run_ohne_pull (deploy.sh --dry-run zog schon
+    #                                  den Pull; der echte Lauf danach fand
+    #                                  "Keine neuen Commits" (20.11.2026).
+    #                                  Wegwerf-Repo + Attrappen-docker,
+    #                                  nur bash und git)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -853,7 +858,8 @@ jobs:
             tests/test_unhcr_zaehlfelder_als_string.py \
             tests/test_unit.py \
             tests/test_ci_liste_vollstaendig.py \
-            tests/test_hook_server_regeln.py
+            tests/test_hook_server_regeln.py \
+            tests/test_deploy_dry_run_ohne_pull.py
 
   check-new-urls:
     name: New URLs in data/*.json must work

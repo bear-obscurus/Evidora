@@ -16,6 +16,8 @@
 #
 # Nutzung (auf dem Server):
 #   /opt/Evidora/website/deploy.sh [--dry-run] [--force-build]
+#   --dry-run zieht nichts: nur git fetch, Entscheidung aus HEAD..@{u}.
+#   Danach findet der echte Lauf dieselben Commits und entscheidet gleich.
 #
 # Entscheidungslogik (aus git diff alt..neu):
 #   nur website/backend/data/*      -> nichts (Hot-Reload via Mount;
@@ -72,9 +74,29 @@ FE_STARTED_BEFORE=$(docker inspect -f '{{.State.StartedAt}}' "$FRONTEND_CONTAINE
 OLD_REV=$(git rev-parse --short HEAD)
 
 # --- 1) Pull ----------------------------------------------------------------
-log "git pull --ff-only (aktuell: $OLD_REV)…"
-git pull --ff-only || fail "git pull --ff-only fehlgeschlagen (divergente Historie?)"
-NEW_REV=$(git rev-parse --short HEAD)
+# --dry-run zieht NICHTS: nur fetch, und NEW_REV ist der Upstream-Stand.
+# Vorher führte der Dry-Run den Pull schon aus (20.11.2026, Deploy von
+# #317): Der echte Lauf danach fand "Keine neuen Commits", baute nichts,
+# und nach --force-build hatte Beleg 2 keine Änderungsliste mehr.
+# Die Änderungsliste kommt in beiden Fällen aus demselben
+# `git diff OLD..NEW`, also ist die Entscheidung dieselbe.
+if [ "$DRY_RUN" -eq 1 ]; then
+  log "git fetch (aktuell: $OLD_REV; --dry-run: kein Pull)…"
+  git fetch --quiet || fail "git fetch fehlgeschlagen"
+  UPSTREAM=$(git rev-parse --short '@{u}' 2>/dev/null) \
+    || fail "Kein Upstream-Branch konfiguriert — git pull hätte kein Ziel."
+  if git merge-base --is-ancestor HEAD '@{u}'; then
+    NEW_REV="$UPSTREAM"                     # Fast-Forward möglich (oder gleich)
+  elif git merge-base --is-ancestor '@{u}' HEAD; then
+    NEW_REV="$OLD_REV"                      # lokal voraus: Pull bringt nichts
+  else
+    fail "git pull --ff-only würde fehlschlagen (divergente Historie?)"
+  fi
+else
+  log "git pull --ff-only (aktuell: $OLD_REV)…"
+  git pull --ff-only || fail "git pull --ff-only fehlgeschlagen (divergente Historie?)"
+  NEW_REV=$(git rev-parse --short HEAD)
+fi
 
 CHANGED=""
 if [ "$OLD_REV" != "$NEW_REV" ]; then
@@ -211,7 +233,14 @@ if [ "$build_backend" -eq 1 ]; then
     fi
     checked=$((checked + 1)); [ "$checked" -ge 3 ] && break
   done <<< "$CHANGED"
-  [ "$checked" -gt 0 ] && log "Beleg 2: $checked geänderte Backend-Datei(en) im Container hash-identisch."
+  if [ "$checked" -gt 0 ]; then
+    log "Beleg 2: $checked geänderte Backend-Datei(en) im Container hash-identisch."
+  else
+    # Typisch nach --force-build ohne neue Commits: Es gibt keine
+    # Änderungsliste, also auch nichts zu vergleichen. Das sagen, statt
+    # still zu fehlen — sonst liest sich das Log wie ein bestandener Beleg.
+    log "Beleg 2: nichts zu prüfen — keine geänderten Backend-Dateien in $OLD_REV..$NEW_REV (Hash-Vergleich entfällt)."
+  fi
 fi
 
 # --- 6) Smoke -------------------------------------------------------------------
