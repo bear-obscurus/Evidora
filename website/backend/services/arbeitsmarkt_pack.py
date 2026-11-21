@@ -161,8 +161,55 @@ async def search_arbeitsmarkt(analysis: dict) -> dict:
             "source": label,
         })
 
+    results = stamp_provenance(results, matches)
+    results.extend(_zweite_belege(matches))
+
     return {
         "source": "Arbeitsmarkt-Konsens (AMS + WIFO + IHS + IAB + DESTATIS + Statistik Austria + AK Wien + DGB + OECD + Eurostat + peer-reviewed Forschung)",
         "type": "labor_market_consensus",
-        "results": stamp_provenance(results, matches),
+        "results": results,
     }
+
+
+def _zweite_belege(matches: list[dict]) -> list[dict]:
+    """Ein Fakt mit ``source_url_2`` UND ``source_label_2`` wird zu einem
+    zweiten Treffer mit eigener URL.
+
+    Der Synthesizer zeigt dem Modell pro Treffer nur ``url``, und nur diese
+    URLs ueberstehen seinen Halluzinations-Filter. Eine zweite Quelle, die
+    nur im Fliesstext steht, haengt das Modell sonst an die URL der ersten
+    (live 21.11.2026: „EU-Kommission“ mit WIFO-Link). Inhalt des Treffers ist
+    das Datenfeld ``source_2_feld``.
+
+    Die Treffer kommen ans Ende der Liste, hinter alle Fakten, damit sie im
+    Per-Source-Cap keinen Fakt verdraengen. Ohne ``source_label_2`` entsteht
+    kein Treffer (``scheinselbststaendigkeit_2026``: zweite URL ist nur die
+    BAG-Startseite).
+    """
+    extra: list[dict] = []
+    quellen: list[dict] = []
+    for fact in matches:
+        url2 = fact.get("source_url_2")
+        label2 = fact.get("source_label_2")
+        if not (url2 and label2):
+            continue
+        d = fact.get("data") or {}
+        inhalt = d.get(fact.get("source_2_feld") or "") or ""
+        if not inhalt:
+            continue
+        extra.append({
+            "indicator_name": f"{label2}: {inhalt[:120]}",
+            "indicator": "arbeitsmarkt_konsens_fact",
+            "country": "—",
+            "year": str(fact.get("year", "")),
+            "topic": fact.get("topic", ""),
+            "display_value": inhalt,
+            "description": d.get("context", ""),
+            "url": url2,
+            "secondary_url": "",
+            "source": label2,
+        })
+        quellen.append(fact)
+    # Zuordnung (exakt/tolerant) wie beim Fakt selbst, ueber denselben
+    # Helfer wie der Hauptpfad.
+    return stamp_provenance(extra, quellen)
