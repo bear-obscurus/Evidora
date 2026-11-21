@@ -1106,6 +1106,245 @@
           ]
         ]
       ]
+    },
+    {
+      "id": "geringfuegigkeitsgrenze_at_2026",
+      "topic": "geringfuegigkeitsgrenze_at",
+      "scope": "Geringfügigkeitsgrenze Österreich — Betrag 2022–2026, Versicherung, mehrere Jobs",
+      "year": 2026,
+      "source_url": "https://www.usp.gv.at/themen/mitarbeiter-und-gesundheit/einstellung-mitarbeiter-und-arten-der-beschaeftigung/geringfuegig-beschaeftigte.html",
+      "secondary_url": "https://www.ams.at/arbeitsuchende/topicliste/geringfuegigkeitsgrenze",
+      "source_label": "Unternehmensserviceportal USP (BMF), Seite 'Geringfügig Beschäftigte', letzte Aktualisierung 24.2.2026 + AMS 'Geringfügigkeitsgrenze', aktualisiert 22.4.2026",
+      "headline": "Geringfügigkeitsgrenze Österreich 2026: 551,10 Euro brutto im Monat — gleich hoch wie 2025, für 2026 nicht erhöht (USP/BMF Stand 24.2.2026; AMS Stand 22.4.2026). Vorher: 2022 485,85 €, 2023 500,91 €, 2024 518,44 €, 2025 551,10 €. Geringfügig Beschäftigte sind nur unfallversichert; Kranken- und Pensionsversicherung gibt es über die freiwillige Selbstversicherung (83,49 € im Monat, Wert 2026). Mehrere geringfügige Jobs über der Grenze zusammen: voll kranken- und pensionsversichert.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Die Geringfügigkeitsgrenze in Österreich beträgt 2026 monatlich 551,10 Euro brutto (USP/BMF, Stand 24.2.2026; AMS, Stand 22.4.2026). Sie wurde für 2026 nicht erhöht und ist damit gleich hoch wie 2025; laut AMS 'bleibt also gleich hoch wie die Geringfügigkeitsgrenze 2025'. In den Jahren davor stieg sie jährlich: 2022 485,85 €, 2023 500,91 €, 2024 518,44 €, 2025 551,10 € (USP-Tabelle). Eine tägliche Grenze gibt es seit 1.1.2017 nicht mehr, maßgeblich ist nur der Monat. Folgen: (1) Wer unter der Grenze verdient, ist nur UNFALLversichert. (2) Kranken- und Pensionsversicherung sind freiwillig über die Selbstversicherung möglich, die man selbst beim Krankenversicherungsträger beantragt; Beitrag 2026: 83,49 € im Monat (USP). (3) Mehrere geringfügige Jobs werden zusammengezählt: Liegt die Summe über 551,10 €, ist man auch kranken- und pensionsversichert und zahlt Beiträge auf das gesamte Entgelt. (4) Neben einer vollversicherten Beschäftigung ist auch ein geringfügiges Einkommen in allen drei Zweigen beitragspflichtig. Wer Arbeitslosengeld oder Notstandshilfe bezieht, darf seit 1.1.2026 nur noch in Ausnahmefällen geringfügig dazuverdienen — siehe den eigenen Fakt dazu.",
+        "betrag_2026": "551,10 € brutto pro Monat (USP Stand 24.2.2026; oesterreich.gv.at Stand 1.1.2026; AMS Stand 22.4.2026).",
+        "entwicklung_2022_2026": "2022: 485,85 € · 2023: 500,91 € · 2024: 518,44 € · 2025: 551,10 € · 2026: 551,10 € (nicht erhöht). Quelle: USP-Tabelle 'Geringfügigkeitsgrenze'.",
+        "tagesgrenze": "Die tägliche Geringfügigkeitsgrenze wurde mit 1. Jänner 2017 aufgehoben (USP).",
+        "versicherung": "Unter der Grenze: nur Unfallversicherung (Pflicht, Anmeldung durch den Dienstgeber). Kranken- und Pensionsversicherung: freiwillige Selbstversicherung, 83,49 € pro Monat (Wert 2026, USP).",
+        "mehrere_jobs": "Mehrere geringfügige Beschäftigungen, die zusammen über 551,10 € liegen: Pflichtversicherung auch in Kranken- und Pensionsversicherung, Beiträge vom gesamten Entgelt (USP).",
+        "neben_vollversicherung": "Neben einer vollversicherten Beschäftigung ist geringfügiges Entgelt in allen drei Zweigen beitragspflichtig (USP).",
+        "context": "Rein deskriptiv. Keine Bewertung, ob die Grenze zu hoch oder zu niedrig ist."
+      },
+      "context_notes": [
+        "2026 nicht erhöht: 551,10 € wie 2025 (AMS, Stand 22.4.2026). 2024 waren es 518,44 €.",
+        "Geringfügig = nur unfallversichert; Kranken- und Pensionsversicherung nur per Selbstversicherung (83,49 €/Monat 2026).",
+        "Mehrere geringfügige Jobs zählen zusammen — über 551,10 € wird man voll kranken- und pensionsversichert."
+      ],
+      "claim_phrasings_handled": [
+        "Wie viel darf ich geringfügig dazuverdienen?",
+        "Wie hoch ist die Geringfügigkeitsgrenze 2026?",
+        "Die Geringfügigkeitsgrenze wurde 2026 nicht erhöht",
+        "Die Geringfügigkeitsgrenze liegt bei 551 Euro im Monat",
+        "Bin ich als Geringfügige krankenversichert?",
+        "Geringfügig Beschäftigte sind nur unfallversichert",
+        "Mit zwei geringfügigen Jobs bleibt man sozialversicherungsfrei",
+        "Darf ich neben dem Studium geringfügig arbeiten?",
+        "Wie viel darf man geringfügig hackeln?"
+      ],
+      "trigger_keywords": [
+        "geringfuegigkeitsgrenze",
+        "geringfuegigkeits grenze",
+        "geringfuegig beschaeftig",
+        "geringfuegige beschaeftig",
+        "geringfuegigen beschaeftig",
+        "geringfuegig angestellt",
+        "geringfuegig angemeldet",
+        "geringfuegig arbeit",
+        "geringfuegig zu arbeit",
+        "geringfuegig hackel",
+        "geringfuegig dazuverdien",
+        "geringfuegig dazu verdien",
+        "geringfuegig verdien",
+        "geringfuegig job",
+        "geringfuegige job",
+        "geringfuegigen job",
+        "geringfuegiger job",
+        "geringfuegige dienstverh",
+        "geringfuegigen dienstverh",
+        "geringfuegiges dienstverh",
+        "als geringfuegige"
+      ],
+      "trigger_composite": []
+    },
+    {
+      "id": "geringfuegig_arbeitslos_zuverdienst_2026",
+      "topic": "geringfuegig_arbeitslos_zuverdienst_at",
+      "scope": "Geringfügiger Zuverdienst neben Arbeitslosengeld/Notstandshilfe — Neuregelung seit 1.1.2026",
+      "year": 2026,
+      "source_url": "https://www.ams.at/arbeitsuchende/arbeitslos-was-tun/arbeitslos-geringfuegig-beschaeftigt",
+      "secondary_url": "https://orf.at/stories/3408995/",
+      "source_label": "AMS 'Geld vom AMS und geringfügig arbeiten – Seit 01.01.2026', aktualisiert 4.3.2026 + AMS 'Geringfügigkeitsgrenze', aktualisiert 22.4.2026 + ORF.at 20.10.2025 'Zuverdienst für Arbeitslose ab Jänner nur noch Ausnahme'",
+      "headline": "Geringfügig dazuverdienen bei Arbeitslosigkeit: Seit 1.1.2026 nur noch in Ausnahmefällen (AMS, Stand 4.3.2026). Bis Ende 2025 durften Bezieher von Arbeitslosengeld oder Notstandshilfe bis zur Geringfügigkeitsgrenze (551,10 €) dazuverdienen; 2024 nutzten das laut ORF 28.120 Personen (9,5 %). Ausnahmen u. a.: Job lief schon mindestens 26 Wochen neben einer Vollbeschäftigung; 365 Tage AMS-Bezug plus 50+ oder 50 % Behinderung (unbefristet); AMS-Schulung ab 4 Monaten und 25 Wochenstunden; 26-Wochen-Fenster nach 365 Tagen Bezug. Alle anderen mussten den Job bis 31.1.2026 beenden.",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Seit 1. Jänner 2026 darf man in Österreich neben Arbeitslosengeld oder Notstandshilfe nur noch in Ausnahmefällen geringfügig dazuverdienen (AMS, Stand 4.3.2026; das AMS spricht von 'fünf Ausnahmefällen'). Bis 31.12.2025 war ein Zuverdienst bis zur Geringfügigkeitsgrenze (2025: 551,10 €) ohne Verlust des Anspruchs möglich (ORF.at 20.10.2025); 2024 nutzten das laut ORF 28.120 Personen, 9,5 % der Betroffenen. Ausnahmen laut AMS: (1) Die geringfügige Beschäftigung lief schon vor der Arbeitslosigkeit mindestens 182 Tage (26 Wochen) neben einer vollversicherten Beschäftigung oder Selbständigkeit — erlaubt bis zu einem neuen Anspruch. (2) Mindestens 365 Tage AMS-Bezug (Krankengeld zählt mit, nie länger als 62 Tage unterbrochen) UND 50 Jahre oder älter bzw. Behinderung ab 50 % — unbefristet. (3) 365 Tage Bezug ohne diese Voraussetzung: ein bestehender Job durfte nur bis inklusive 1.7.2026 weiterlaufen; ein neuer Job darf in einem Fenster von 26 Wochen (182 Tagen) angetreten werden. (4) Nach 52 Wochen Krankengeld, Rehabilitations- oder Umschulungsgeld gelten ähnliche Fristen. (5) Während einer AMS-Schulung von mindestens vier Monaten und 25 Wochenstunden, auch beim Pflegestipendium. Wer unter keine Ausnahme fällt, musste die geringfügige Beschäftigung spätestens bis 31.1.2026 beenden; sonst gibt es für die Beschäftigungstage kein Geld vom AMS. Die Höhe der Grenze selbst (551,10 €, 2026 nicht erhöht) steht im Fakt zur Geringfügigkeitsgrenze.",
+        "bis_2025": "Bis Ende 2025: Zuverdienst bis zur Geringfügigkeitsgrenze neben Arbeitslosengeld/Notstandshilfe erlaubt, ohne Anspruchsverlust (ORF.at 20.10.2025: 'bis zu 551,10 Euro monatlich dazuverdienen').",
+        "nutzung_2024": "2024: 28.120 Personen, 9,5 % der Betroffenen, hatten einen geringfügigen Zuverdienst (ORF.at 20.10.2025, Daten im Zusammenhang mit der AMS-Mitteilung).",
+        "ausnahme_vorbeschaeftigung": "Job lief schon mindestens 182 Tage (26 Wochen) parallel zu einer vollversicherten Beschäftigung oder pflichtversicherten Selbständigkeit, ohne Lücke: erlaubt bis zu einer neuen Anwartschaft (AMS).",
+        "ausnahme_50plus_behinderung": "Mindestens 365 Tage AMS-Bezug (Krankengeld zählt, nie länger als 62 zusammenhängende Tage unterbrochen) plus 50+ und/oder Behinderung ab 50 %: unbefristet erlaubt (AMS).",
+        "ausnahme_365_tage": "365 Tage Bezug ohne 50+/Behinderung: bestehender Job nur bis inklusive 1.7.2026; neuer Job nur in einem 26-Wochen-Fenster, das fix 182 Tage nach Beginn endet (AMS).",
+        "ausnahme_schulung": "AMS-Schulung von mindestens vier Monaten und mindestens 25 Wochenstunden, für die Dauer der Schulung; gilt auch für das Pflegestipendium (AMS).",
+        "frist": "Ohne Ausnahme: geringfügige Beschäftigung spätestens bis 31.1.2026 beenden (AMS; ORF.at 20.10.2025).",
+        "context": "Rein deskriptiv. Keine Bewertung der Neuregelung."
+      },
+      "context_notes": [
+        "Seit 1.1.2026 nur noch in Ausnahmefällen; bis Ende 2025 war Zuverdienst bis 551,10 € neben AMS-Geld erlaubt.",
+        "Unbefristete Ausnahme: 365 Tage AMS-Bezug plus 50+ oder Behinderung ab 50 %; außerdem Job, der schon 26 Wochen neben einer Vollbeschäftigung lief.",
+        "2024 hatten laut ORF 28.120 Arbeitslose (9,5 %) einen geringfügigen Zuverdienst."
+      ],
+      "claim_phrasings_handled": [
+        "Darf ich als Arbeitsloser geringfügig dazuverdienen?",
+        "Arbeitslose dürfen seit 2026 nichts mehr dazuverdienen",
+        "Ich bin beim AMS und will geringfügig arbeiten",
+        "Kann ich beim Stempeln einen Nebenjob haben?",
+        "Neben der Notstandshilfe ist ein Zuverdienst verboten",
+        "Ab 50 dürfen Arbeitslose weiter geringfügig arbeiten",
+        "Wer Arbeitslosengeld bekommt, darf bis zur Geringfügigkeitsgrenze dazuverdienen"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [
+        [
+          "geringfuegigkeitsgrenze",
+          "geringfuegigkeits grenze",
+          "geringfuegig beschaeftig",
+          "geringfuegige beschaeftig",
+          "geringfuegigen beschaeftig",
+          "geringfuegig angestellt",
+          "geringfuegig angemeldet",
+          "geringfuegig arbeit",
+          "geringfuegig zu arbeit",
+          "geringfuegig hackel",
+          "geringfuegig dazuverdien",
+          "geringfuegig dazu verdien",
+          "geringfuegig verdien",
+          "geringfuegig job",
+          "geringfuegige job",
+          "geringfuegigen job",
+          "geringfuegiger job",
+          "geringfuegige dienstverh",
+          "geringfuegigen dienstverh",
+          "geringfuegiges dienstverh",
+          "als geringfuegige",
+          "zuverdien",
+          "dazuverdien",
+          "dazu verdien",
+          "nebenjob",
+          "neben job",
+          "nebenbei arbeit",
+          "nebenbei verdien"
+        ],
+        [
+          "arbeitslos",
+          "notstandshilfe",
+          " ams ",
+          "arbeitssuchend",
+          "arbeitsuchend",
+          "stempeln",
+          "stempel geh"
+        ]
+      ]
+    },
+    {
+      "id": "realloehne_at_2020_2025",
+      "topic": "realloehne_at_eu",
+      "scope": "Reallöhne Österreich 2020–2025 mit Inflation und Lohnabschlüssen, EU-Vergleich",
+      "year": 2026,
+      "source_url": "https://www.wifo.ac.at/wp-content/uploads/wtabellen/d/15.6_d_out.pdf",
+      "secondary_url": "https://www.wifo.ac.at/wp-content/uploads/upload-2049/mb_2025_04_04_wirtschaftsentwicklung_2024.pdf",
+      "source_url_2": "https://op.europa.eu/webpub/empl/lmwd-annual-review-report-2025/chapter2/wage-developments-and-outlook.html",
+      "source_label": "WIFO-Tabelle 15.6 'Löhne und Gehälter', letzte Aktualisierung 2.10.2026 (Statistik Austria, WIFO) + WIFO-Monatsberichte 4/2023 und 4/2025 'Wirtschaftsentwicklung 2022' / '… 2024' + Statistik Austria VPI-Jahresmeldung 19.1.2026 + EU-Kommission DG EMPL 'Labour Market and Wage Developments in Europe 2025'",
+      "headline": "Reallöhne Österreich (brutto, pro Kopf, mit dem VPI bereinigt): 2020 +0,8 %, 2021 −0,3 %, 2022 −3,4 %, 2023 −0,6 %, 2024 +4,2 %, 2025 +0,1 % (WIFO; 2020/21 Stand 4/2023, 2022 Stand 4/2025, 2023–25 Stand 2.10.2026). Grund für den Einbruch 2022/23: Inflation 8,6 % (2022) und 7,8 % (2023), die Lohnabschlüsse folgen der Inflation der vergangenen 12 Monate. 2024 stiegen die Tariflöhne um 8,5 % bei 2,9 % Inflation. EU: 2024 Reallöhne +2,7 %, noch 0,7 % unter 2019; Österreich lag 2024 über seinem Niveau von 2019 (EU-Kommission 2025).",
+      "data": {
+        "kernsatz_fuer_synthesizer": "Reallöhne in Österreich seit 2020, gemessen als Bruttolöhne und -gehälter pro unselbständigem Beschäftigungsverhältnis, deflationiert mit dem Verbraucherpreisindex (WIFO auf Basis Statistik Austria): 2020 +0,8 %, 2021 −0,3 % (WIFO-Monatsbericht 4/2023), 2022 −3,4 % (WIFO-Monatsbericht 4/2025; die Erstschätzung von 2023 lag bei −3,9 %), 2023 −0,6 %, 2024 +4,2 %, 2025 +0,1 % (WIFO-Tabelle 15.6, Stand 2.10.2026). Netto real pro Kopf: 2020 +1,6 %, 2021 −1,1 %, 2022 −2,7 %, 2023 −0,2 %, 2024 +4,2 %, 2025 ±0,0 %. Ursache des Einbruchs: Die Inflation (VPI) lag 2022 bei 8,6 % und 2023 bei 7,8 %; die Lohnrunden nehmen laut WIFO üblicherweise die realisierte Inflation der vergangenen 12 Monate als Basis, deshalb laufen die Löhne der Inflation in Phasen steigender Teuerung hinterher und holen sie später auf. 2024 stieg der Tariflohnindex um 8,5 % (2023: +7,6 %) bei nur 2,9 % Inflation; die Metaller-Herbstlohnrunde 2023 brachte +10 % Ist-Löhne, höchstens 400 €, im Schnitt rund 8,6 %. 2025 lag die Inflation bei 3,6 % (Statistik Austria 19.1.2026), die Reallöhne stagnierten (+0,1 %). Pro geleisteter Arbeitsstunde sind laut WIFO (4/2025) die hohen Reallohnverluste der Jahre 2022 und 2023 im Jahr 2024 ausgeglichen worden. EU-Vergleich (EU-Kommission, Labour Market and Wage Developments in Europe 2025, eigene Messgröße): EU-Reallöhne 2024 +2,7 %, im Schnitt noch 0,7 % unter dem Niveau von 2019; Österreich gehört zu den Ländern, deren Reallöhne 2024 über dem Niveau von 2019 lagen, um weniger als 7 %. Rechnung aus den WIFO-Jahresraten (verschiedene Datenstände, kein amtlicher Wert): brutto real pro Kopf liegt 2025 ungefähr auf dem Niveau von 2021 — die Verluste 2022/23 wurden 2024 aufgeholt, 2025 kam kaum etwas dazu. Aussagen wie 'wir verdienen real weniger als vor der Teuerung' sind für den Durchschnitt 2025 damit nicht belegt; für 2022 und 2023 stimmen sie. Einzelne Gruppen können anders liegen; die Werte sind Durchschnitte und werden revidiert.",
+        "brutto_real_pro_kopf": "2020 +0,8 % · 2021 −0,3 % · 2022 −3,4 % · 2023 −0,6 % · 2024 +4,2 % · 2025 +0,1 % (Veränderung gegen Vorjahr, VPI-deflationiert; WIFO MB 4/2023, MB 4/2025, Tabelle 15.6 Stand 2.10.2026).",
+        "netto_real_pro_kopf": "2020 +1,6 % · 2021 −1,1 % · 2022 −2,7 % · 2023 −0,2 % · 2024 +4,2 % · 2025 ±0,0 % (gleiche Quellen).",
+        "revisionen": "Die Raten werden revidiert: 2022 brutto real −3,9 % (Stand 4/2023) → −3,4 % (Stand 4/2025); 2023 −0,9 % → −0,6 %; 2024 +5,3 % (Stand 4/2025) → +4,2 % (Stand 2.10.2026).",
+        "inflation_vpi": "VPI-Jahresinflation: 2022 8,6 % (WIFO MB 4/2023), 2023 7,8 %, 2024 2,9 %, 2025 3,6 % (Statistik Austria, 19.1.2026).",
+        "lohnabschluesse": "Tariflohnindex 2016: 2023 +7,6 %, 2024 +8,5 % (öffentlich Bedienstete +9,4 %, Industrie +7,4 %). Metaller Herbst 2023: Ist-Löhne +10 %, max. 400 €, Schnitt rund 8,6 % (WIFO MB 4/2025). Basis der Lohnrunden: Inflation der vergangenen 12 Monate ('rollierende Inflation').",
+        "eu_vergleich": "EU-Kommission (DG EMPL), LMWD 2025: EU-Reallöhne 2024 +2,7 %, 0,7 % unter 2019; Österreich 2024 über dem Niveau von 2019, um weniger als 7 %. Andere Messgröße als WIFO, Zahlen nicht direkt vergleichbar.",
+        "context": "Rein deskriptiv. Keine Bewertung von Lohnabschlüssen oder Sozialpartnern, keine Prognose."
+      },
+      "context_notes": [
+        "Einbruch 2022 (−3,4 %) und 2023 (−0,6 %) bei 8,6 % und 7,8 % Inflation; 2024 +4,2 %, 2025 +0,1 % (WIFO, brutto real pro Kopf).",
+        "Lohnrunden folgen der Inflation der letzten 12 Monate — deshalb erst Verlust, dann Aufholen (Tariflöhne 2024 +8,5 % bei 2,9 % Inflation).",
+        "EU 2024: Reallöhne +2,7 %, noch 0,7 % unter 2019; Österreich über dem Niveau von 2019 (EU-Kommission 2025)."
+      ],
+      "claim_phrasings_handled": [
+        "Verdienen wir heute weniger als vor der Teuerung?",
+        "Die Reallöhne in Österreich sind seit 2020 gesunken",
+        "2022 gab es in Österreich einen historischen Reallohnverlust",
+        "Die Teuerung hat unsere Löhne aufgefressen",
+        "Die Lohnabschlüsse haben die Inflation nicht ausgeglichen",
+        "Seit der Inflation kann man sich mit dem Gehalt weniger leisten",
+        "Kriegen wir real weniger Lohn als vor Corona?",
+        "Sind unsere Reallöhne besser als im Rest der EU?"
+      ],
+      "trigger_keywords": [],
+      "trigger_composite": [],
+      "trigger_all": [
+        [
+          [
+            "reallohn",
+            "realloehn",
+            "reale loehne",
+            "realen loehne",
+            "real weniger lohn",
+            "real weniger gehalt",
+            "real mehr lohn",
+            "real weniger verdien"
+          ],
+          [
+            "oesterreich",
+            " wir ",
+            "unsere",
+            " uns ",
+            " eu ",
+            "eu vergleich",
+            "europa",
+            "wifo",
+            "statistik austria"
+          ]
+        ],
+        [
+          [
+            "verdien",
+            "loehne",
+            "gehalt",
+            "gehaelter"
+          ],
+          [
+            "teuerung",
+            "inflation"
+          ],
+          [
+            "weniger",
+            "aufgefressen",
+            "auffressen",
+            "frisst",
+            "gefressen",
+            "hinterher",
+            "nicht mitgehalten",
+            "nicht ausgeglichen",
+            "ausgeglichen",
+            "verloren"
+          ]
+        ],
+        [
+          [
+            "lohnabschl",
+            "gehaltsabschl",
+            "kv abschl",
+            "kollektivvertragsabschl",
+            "lohnrunde",
+            "metaller"
+          ],
+          [
+            "inflation",
+            "teuerung",
+            "kaufkraft"
+          ]
+        ]
+      ]
     }
   ]
 }

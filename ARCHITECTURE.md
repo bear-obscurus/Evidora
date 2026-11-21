@@ -86,7 +86,7 @@ and rate limits.
 
 ### 2.2 Static-first topic services
 
-Curated facts shipped as `data/*.json` (675 facts in 63 files, 477 of
+Curated facts shipped as `data/*.json` (678 facts in 63 files, 480 of
 them in the 40 `*_pack.json` packs), queried via deterministic trigger
 logic. A semantic-similarity fallback exists but is switched off for all
 packs (§3.3). Examples:

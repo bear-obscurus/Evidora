@@ -10,7 +10,7 @@ KI-Job-Verdraengung, Migration-Lohn-Effekt, Karenz-Lohn-Verlust,
 Generation Z, AMS-Quote-Methodik, Gender Pay Gap, Pflege-Mangel,
 Scheinselbststaendigkeit Plattform-Arbeit).
 
-Topics (14):
+Topics (17):
   - mindestlohn_arbeitsplatzverlust_konsens (Card/Krueger 1994 AER +
     Cengiz et al. 2019 QJE — Mindestlohn-Erhoehungen ohne messbare
     Job-Verluste in low-wage sectors)
@@ -41,6 +41,12 @@ Topics (14):
     Statistik Austria + Bertelsmann 2022 + DGB)
   - scheinselbststaendigkeit_konsens (BAG 9 AZR 102/20 vom 1.12.2020
     + AT OGH 8 ObA 70/22f vom 24.5.2023 + EuGH Yodel C-692/19)
+  - geringfuegigkeitsgrenze_at (551,10 EUR 2026, nicht erhoeht;
+    2022-2025; nur unfallversichert, Selbstversicherung; USP/AMS)
+  - geringfuegig_arbeitslos_zuverdienst_at (seit 1.1.2026 Zuverdienst
+    neben AMS-Geld nur in Ausnahmefaellen; AMS Stand 4.3.2026)
+  - realloehne_at_eu (WIFO brutto/netto real pro Kopf 2020-2025,
+    VPI, Tariflohnindex, EU-Kommission LMWD 2025)
 
 Quellen-Mix: AMS + WIFO + IHS + IAB + DESTATIS + Statistik Austria
 + AK Wien + DGB + OECD Employment Outlook + Eurostat + Bundesagentur
