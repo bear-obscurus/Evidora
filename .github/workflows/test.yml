@@ -723,6 +723,7 @@ jobs:
             tests/test_verdict_cache_polarity.py \
             tests/test_verdict_cache_sprache.py \
             tests/test_cron_aufrufe.py \
+            tests/test_canary_langsamkeit.py \
             tests/test_stichtag_speicher.py \
             tests/test_url_pruefer_speicher.py \
             tests/test_stichtage_2026_10.py \
