@@ -657,6 +657,13 @@ jobs:
     #                                  der EU-Beleg zur Reallohn-Frage trug
     #                                  live die WIFO-URL. Jetzt eigener
     #                                  Treffer mit eigener url)
+    #   - test_lesende_freigaben      (Allowlist lesender Befehle in
+    #                                  .claude/settings.json: genau der
+    #                                  Katalog; kein ssh/scp/docker/deploy.sh,
+    #                                  kein git push/pull/merge/rebase/reset,
+    #                                  kein gh pr merge/rm/schreibendes curl,
+    #                                  auch nicht als Praefix; Hook bleibt
+    #                                  verdrahtet und sperrt weiter)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -880,7 +887,8 @@ jobs:
             tests/test_geringfuegig_realloehne_pack.py \
             tests/test_analyse_jahresfilter.py \
             tests/test_analyse_heutiges_datum.py \
-            tests/test_arbeitsmarkt_zweiter_beleg.py
+            tests/test_arbeitsmarkt_zweiter_beleg.py \
+            tests/test_lesende_freigaben.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
