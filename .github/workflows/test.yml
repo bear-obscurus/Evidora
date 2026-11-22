@@ -657,6 +657,10 @@ jobs:
     #                                  der EU-Beleg zur Reallohn-Frage trug
     #                                  live die WIFO-URL. Jetzt eigener
     #                                  Treffer mit eigener url)
+    #   - test_eu_netto_zahler_trigger (DE-Nettozahler-Fakt feuerte bei
+    #                                  fast jedem Claim mit Österreich + EU;
+    #                                  jede Regel verlangt jetzt Deutschland,
+    #                                  laenderlos nur die woertlichen Saetze)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -880,7 +884,8 @@ jobs:
             tests/test_geringfuegig_realloehne_pack.py \
             tests/test_analyse_jahresfilter.py \
             tests/test_analyse_heutiges_datum.py \
-            tests/test_arbeitsmarkt_zweiter_beleg.py
+            tests/test_arbeitsmarkt_zweiter_beleg.py \
+            tests/test_eu_netto_zahler_trigger.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
