@@ -657,6 +657,10 @@ jobs:
     #                                  der EU-Beleg zur Reallohn-Frage trug
     #                                  live die WIFO-URL. Jetzt eigener
     #                                  Treffer mit eigener url)
+    #   - test_eu_netto_zahler_trigger (DE-Nettozahler-Fakt feuerte bei
+    #                                  fast jedem Claim mit Österreich + EU;
+    #                                  jede Regel verlangt jetzt Deutschland,
+    #                                  laenderlos nur die woertlichen Saetze)
     #   - test_lesende_freigaben      (Allowlist lesender Befehle in
     #                                  .claude/settings.json: genau der
     #                                  Katalog; kein ssh/scp/docker/deploy.sh,
@@ -888,6 +892,7 @@ jobs:
             tests/test_analyse_jahresfilter.py \
             tests/test_analyse_heutiges_datum.py \
             tests/test_arbeitsmarkt_zweiter_beleg.py \
+            tests/test_eu_netto_zahler_trigger.py \
             tests/test_lesende_freigaben.py
 
   check-new-urls:

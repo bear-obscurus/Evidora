@@ -429,49 +429,284 @@
         "EU-Mitgliedschaft kostet uns Milliarden",
         "Wir sind nur Netto-Zahler in der EU",
         "Deutschland zahlt für andere EU-Länder",
-        "EU-Beitrag lohnt sich nicht"
+        "EU-Beitrag lohnt sich nicht",
+        "Zahlt Deutschland zu viel an die EU?",
+        "Deutschland ist der Zahlmeister der EU",
+        "Wir Deutschen überweisen jedes Jahr Milliarden nach Brüssel",
+        "Kriegen wir Deutschen von der EU weniger zurück, als wir einzahlen?",
+        "Lohnt sich die EU für Deutschland überhaupt?",
+        "Profitiert Deutschland überhaupt vom EU-Binnenmarkt?",
+        "Wie viel zahlt Deutschland netto an die EU?",
+        "Wir Deutschen blechen für die ganze EU"
       ],
       "trigger_keywords": [
-        "wir sind nur netto-zahler in der eu"
+        "wir sind nur netto-zahler in der eu",
+        "wir sind nur nettozahler in der eu",
+        "eu-mitgliedschaft kostet uns milliarden",
+        "eu-beitrag lohnt sich nicht"
       ],
       "trigger_composite": [
         [
-          " eu ",
-          " eu.",
-          " eu,",
-          "die eu",
-          "der eu",
-          "europa",
-          "europäische union",
-          "europaeische union",
-          "eu-mitgliedschaft",
-          "eu-beitrag",
-          "eu beitrag",
-          "europa-beitrag",
-          "europabeitrag",
-          "netto-zahler",
-          "nettozahler",
-          "binnenmarkt"
+          "deutschland",
+          "deutsche",
+          "bundesrepublik",
+          " brd "
         ],
         [
           "zahlt",
-          "zahlen",
-          "kostet",
-          "kosten",
-          "milliarden",
-          "milliard",
-          "mehr als",
-          "bekommt",
-          "lohnt",
-          "lohnen",
-          "gewinn",
-          "verlust",
-          "deutschland",
-          "österreich",
-          "oesterreich",
-          "beitrag",
-          "saldo",
-          "rechnen"
+          "zahlen wir",
+          "wir zahlen",
+          "zahlen die deutschen",
+          "deutschen zahlen",
+          "deutsche zahlen",
+          "einzahl",
+          "bezahl",
+          "zu zahlen",
+          "zahlen müss",
+          "zahlen muss",
+          "zahlen soll",
+          "an die eu zahlen",
+          "in die eu zahlen",
+          "nach brüssel zahlen",
+          "an brüssel zahlen",
+          "union zahlen",
+          "überweis",
+          "blechen",
+          "blecht"
+        ],
+        [
+          "an die eu",
+          " an eu ",
+          "in die eu",
+          "an europa",
+          "für die eu",
+          "für die ganze eu",
+          "für ganz europa",
+          "nach brüssel",
+          "an brüssel",
+          "in den eu-haushalt",
+          "zum eu-haushalt",
+          "in die eu-kasse",
+          "an die europäische union",
+          "into eu"
+        ]
+      ],
+      "trigger_all": [
+        [
+          [
+            "deutschland",
+            "deutsche",
+            "bundesrepublik",
+            " brd "
+          ],
+          [
+            "nettozahler",
+            "netto-zahler",
+            "nettobeitrag",
+            "netto-beitrag",
+            "nettosaldo",
+            "netto-saldo",
+            "zahlmeister",
+            "eu-beitrag",
+            "eu-beiträge",
+            "beitrag an die eu",
+            "beiträge an die eu",
+            "eu-haushalt",
+            "eu-budget",
+            "haushalt der eu",
+            "größte beitragszahler",
+            "netto an die eu",
+            "net contributor"
+          ]
+        ],
+        [
+          [
+            "deutschland",
+            "deutsche",
+            "bundesrepublik",
+            " brd "
+          ],
+          [
+            " eu ",
+            "europa",
+            "brüssel"
+          ],
+          [
+            "zahlt",
+            "zahlen wir",
+            "wir zahlen",
+            "zahlen die deutschen",
+            "deutschen zahlen",
+            "deutsche zahlen",
+            "einzahl",
+            "bezahl",
+            "zu zahlen",
+            "zahlen müss",
+            "zahlen muss",
+            "zahlen soll",
+            "an die eu zahlen",
+            "in die eu zahlen",
+            "nach brüssel zahlen",
+            "an brüssel zahlen",
+            "union zahlen",
+            "überweis",
+            "blechen",
+            "blecht"
+          ],
+          [
+            "zurück",
+            "rausbekomm",
+            "rauskrieg",
+            "rückfluss",
+            "rückflüsse",
+            "rückfließ",
+            "drauf",
+            "eu-gelder",
+            "eu-mittel",
+            "eu-förder",
+            "fördergelder",
+            "gets back",
+            "get back"
+          ]
+        ],
+        [
+          [
+            "deutschland",
+            "deutsche",
+            "bundesrepublik",
+            " brd "
+          ],
+          [
+            " eu ",
+            "europa",
+            "brüssel"
+          ],
+          [
+            "zahlt für andere",
+            "zahlen für andere",
+            "zahlt für die anderen",
+            "zahlen für die anderen",
+            "zahlt für ärmere",
+            "zahlen für ärmere",
+            "zahlt für den süden",
+            "zahlen für den süden",
+            "finanziert die eu",
+            "finanzieren die eu",
+            "finanziert die halbe eu",
+            "finanzieren die halbe eu",
+            "finanziert die ganze eu",
+            "finanzieren die ganze eu",
+            "finanziert europa",
+            "finanzieren europa",
+            "finanziert ganz europa",
+            "finanzieren ganz europa",
+            "alimentiert"
+          ]
+        ],
+        [
+          [
+            "deutschland",
+            "deutsche",
+            "bundesrepublik",
+            " brd "
+          ],
+          [
+            "kostet",
+            "kosten"
+          ],
+          [
+            "eu kostet",
+            "eu-kosten",
+            "kostet uns die eu",
+            "kostet deutschland die eu",
+            "kostet die deutschen die eu",
+            "eu-mitgliedschaft",
+            "mitgliedschaft in der eu",
+            "europa kostet"
+          ]
+        ],
+        [
+          [
+            "deutschland",
+            "deutsche",
+            "bundesrepublik",
+            " brd "
+          ],
+          [
+            "lohnt",
+            "lohnen",
+            "rentiert",
+            "profitiert",
+            "profitieren",
+            "rechnet sich",
+            "was hat",
+            "was haben"
+          ],
+          [
+            "von der eu",
+            "von europa",
+            "sich die eu",
+            "die eu für",
+            "eu-mitgliedschaft",
+            "mitgliedschaft in der eu",
+            "die eu überhaupt"
+          ]
+        ],
+        [
+          [
+            "deutschland",
+            "deutsche",
+            "bundesrepublik",
+            " brd "
+          ],
+          [
+            "bringt deutschland die eu",
+            "bringt uns die eu",
+            "bringt den deutschen die eu"
+          ]
+        ],
+        [
+          [
+            "deutschland",
+            "deutsche",
+            "bundesrepublik",
+            " brd "
+          ],
+          [
+            "binnenmarkt"
+          ],
+          [
+            " eu ",
+            "europa",
+            "brüssel",
+            "profitiert",
+            "profitieren",
+            "gewinn",
+            "nutzen",
+            "vorteil",
+            "wohlstand",
+            "bringt",
+            "einkommen",
+            "steigert"
+          ]
+        ],
+        [
+          [
+            "deutschland",
+            "deutsche",
+            "bundesrepublik",
+            " brd "
+          ],
+          [
+            "nach brüssel",
+            "an brüssel"
+          ],
+          [
+            "milliarden",
+            "geld",
+            " euro ",
+            "steuergeld"
+          ]
         ]
       ]
     },
