@@ -39,7 +39,7 @@ Jede Regel verlangt einen Anker aus dem Scope:
                    „kranke Mann Europas" …
     Deutschland  x Wachstum x Industriestaaten/-laender/-nationen, G7
     Weltwirtschaft, globale Wirtschaft, Weltkonjunktur, Welt-BIP x Lage
-    globales/weltweites Wachstum x negativ, schrumpft, Prognose …
+    globales Wachstum, Weltwachstum x negativ, schrumpft, Prognose …
     IMF/IWF/Waehrungsfonds x Prognose, Wachstum, Rezession …
     USA, China, Japan, Indien, Brasilien, FR, IT, UK, Eurozone
                  x Wirtschaftswort x Lage    (die Laender des Fakts)
@@ -66,7 +66,9 @@ GRENZEN
 =======
 Der Matcher ist monoton: Ein Wort mehr im Claim nimmt nie einen Treffer
 weg. Steht „wirtschaftlich" und „Schlusslicht" im selben Satz, trifft der
-Fakt, auch wenn es um Digitalisierung geht. Gepinnt als bekannter Rest.
+Fakt, auch wenn es um Digitalisierung geht; „Globales Wachstum" + „stagniert"
+trifft auch die Bevoelkerung. Beide Reste traf schon der alte Trigger;
+gepinnt als bekannte Reste.
 Der Preis: Zwei Claims im Scope, die der alte Trigger traf, treffen nicht
 mehr. „Europas Wirtschaft schrumpft" braucht [Wirtschaft] x [Europa], und
 das ist genau die Binnenmarkt-Fehlzuendung. „Deutschland hat das schwächste
@@ -335,6 +337,7 @@ FREMD_SONST = [
     "Chinas Einfluss in Afrika wächst",
     "In Italien ist die Mafia in der Krise",
     "Japan hat die älteste Bevölkerung, sie schrumpft",
+    "Das weltweite Wachstum der Bevölkerung verlangsamt sich",   # Entwurf traf das
     "Brexit kostet UK 4 % BIP",
     "Der Euro ist eine Weichwährung, die Eurozone zerfällt",
 ]
@@ -448,7 +451,7 @@ ANKER = {
     "welt": {"weltwirtschaft ", "globale wirtschaft", "weltweite wirtschaft", "wirtschaft weltweit",
              "weltkonjunktur", "globale konjunktur", "weltweite konjunktur", "welt bip", "weltbip",
              "globale bip", "weltweite bip", "world economy", "global economy"},
-    "welt_wachstum": {"globale wachstum", "weltweite wachstum", "weltwachstum"},
+    "welt_wachstum": {"globale wachstum", "weltwachstum"},
     "imf": {" imf ", " iwf ", "währungsfonds"},
     "land": {" usa ", " us ", "vereinigte staaten", "china", "chines", "japan", "indien",
              "indische", "brasilien", "frankreich", "französ", "italien", "großbritannien",
@@ -539,14 +542,17 @@ def test_andere_fakten_der_datei_unveraendert_erreichbar():
 def test_bekannter_rest_wirtschaftlich_und_schlusslicht():
     """Der Matcher ist monoton. „wirtschaftlich" + „Schlusslicht" + Deutschland
     ist genau die Phrasing des Fakts; geht es um Digitalisierung, trifft er
-    trotzdem. Wer das schliesst, dreht die Zeile um."""
+    trotzdem. Geerbt: Der alte Trigger traf das auch. Wer das schliesst,
+    dreht die Zeile um."""
     assert _trifft("Wirtschaftlich gesehen ist Deutschland Schlusslicht bei der Digitalisierung")
 
 
-def test_bekannter_rest_weltweites_wachstum_der_bevoelkerung():
-    """„weltweites Wachstum" + „verlangsamt" ist die Form von „Globales
-    Wachstum ist negativ" — auch wenn die Bevoelkerung gemeint ist."""
-    assert _trifft("Das weltweite Wachstum der Bevölkerung verlangsamt sich")
+def test_bekannter_rest_globales_wachstum_der_bevoelkerung():
+    """„Globales Wachstum" + „stagniert" ist die Form von „Globales Wachstum
+    ist negativ" — auch wenn die Bevoelkerung gemeint ist. Geerbt: Der alte
+    Trigger traf das auch („globales wachstum" stand in Gruppe 1 und
+    „wachstum" in Gruppe 2)."""
+    assert _trifft("Globales Wachstum der Bevölkerung stagniert")
 
 
 @pytest.mark.parametrize("claim,warum", [
