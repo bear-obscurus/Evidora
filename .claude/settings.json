@@ -1,4 +1,24 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(grep *)",
+      "Bash(head *)",
+      "Bash(echo *)",
+      "Bash(cat *)",
+      "Bash(tail *)",
+      "Bash(gh pr checks *)",
+      "Bash(cut *)",
+      "Bash(ls *)",
+      "Bash(gh run view *)",
+      "Bash(wc *)",
+      "Bash(gh pr view *)",
+      "Bash(gh run list *)",
+      "Bash(sleep *)",
+      "Bash(gh pr diff *)",
+      "Bash(tr *)",
+      "Bash(gh pr list *)"
+    ]
+  },
   "hooks": {
     "PreToolUse": [
       {

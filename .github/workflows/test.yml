@@ -661,6 +661,13 @@ jobs:
     #                                  fast jedem Claim mit Österreich + EU;
     #                                  jede Regel verlangt jetzt Deutschland,
     #                                  laenderlos nur die woertlichen Saetze)
+    #   - test_lesende_freigaben      (Allowlist lesender Befehle in
+    #                                  .claude/settings.json: genau der
+    #                                  Katalog; kein ssh/scp/docker/deploy.sh,
+    #                                  kein git push/pull/merge/rebase/reset,
+    #                                  kein gh pr merge/rm/schreibendes curl,
+    #                                  auch nicht als Praefix; Hook bleibt
+    #                                  verdrahtet und sperrt weiter)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -885,7 +892,8 @@ jobs:
             tests/test_analyse_jahresfilter.py \
             tests/test_analyse_heutiges_datum.py \
             tests/test_arbeitsmarkt_zweiter_beleg.py \
-            tests/test_eu_netto_zahler_trigger.py
+            tests/test_eu_netto_zahler_trigger.py \
+            tests/test_lesende_freigaben.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
