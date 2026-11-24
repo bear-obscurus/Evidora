@@ -102,17 +102,86 @@
       "claim_phrasings_handled": [
         "Die Weltwirtschaft kollabiert",
         "Deutschland ist wirtschaftliches Schlusslicht in Europa",
-        "Globales Wachstum ist negativ"
+        "Globales Wachstum ist negativ",
+        "Geht die Weltwirtschaft den Bach runter?",
+        "Ist Deutschland jetzt der kranke Mann Europas?",
+        "Steckt die deutsche Wirtschaft in der Rezession?",
+        "Kommt jetzt eine weltweite Rezession?",
+        "Wächst die deutsche Wirtschaft heuer überhaupt noch?",
+        "Der IWF sagt für Deutschland null Wachstum voraus",
+        "Die Weltwirtschaft wächst 2024 um 3,2 Prozent",
+        "Stimmt es, dass Deutschlands Wirtschaft schrumpft?"
       ],
       "trigger_keywords": [
         "imf weltwirtschaft",
         "imf welt wirtschaft", "imf prognose",
         "weltwirtschaft kollabiert",
-        "weltwirtschaft schrumpft"
+        "weltwirtschaft schrumpft",
+        "world economic outlook", "weltwirtschaftsausblick", "weltwirtschaftswachstum",
+        "globale wirtschaftswachstum", "weltweite wirtschaftswachstum", "globale rezession",
+        "weltweite rezession", "weltrezession", "rezession weltweit"
       ],
       "trigger_composite": [
-        ["imf", "iwf", "weltwirtschaft", "world economic", "globales wachstum", "globale wirtschaft", "deutschland", "deutsch", "wirtschaft"],
-        ["wachstum", "schrumpft", "kollabiert", "rezession", "stagniert", "schlusslicht", "krise", "prognose", "europa", "in europa"]
+        ["deutschland", "deutsche", "bundesrepublik", " brd "],
+        [" wirtschaft ", "wirtschaftlich", "wirtschaftsleistung", "wirtschaftslage", "wirtschaftskraft",
+         "volkswirtschaft", "konjunktur", " bip ", "bruttoinlandsprodukt"],
+        [" wachstum", "wirtschaftswachstum", " wächst", "schrumpf", "kollabiert", " kollaps",
+         "wirtschaftskollaps", "rezession", "stagn", "bricht ein", "brechen ein", "eingebrochen",
+         "konjunktureinbruch", "wirtschaftseinbruch", "einbruch der", "zusammenbruch",
+         "bricht zusammen", "abschwung", " flaute", "in der krise", "in die krise", "in einer krise",
+         "in eine krise", "schwächel", "lahmt", "talfahrt", "abwärts", "ist am ende", "bach runter",
+         "am boden", "erholung", "erholt", " prognose", "prognostiz", "wachstumsprognose",
+         "konjunkturprognose", "wirtschaftsprognose", "ausblick", "schlusslicht", "letzte platz"]
+      ],
+      "trigger_all": [
+        [
+          ["deutschland", "deutsche", "bundesrepublik", " brd "],
+          ["rezession", " wirtschaftskrise", "kranke mann europas", "wachstumsprognose",
+           "konjunkturprognose", "wirtschaftsprognose", "wirtschaftswachstum", "wachstumsschwäche",
+           "wirtschaftsschwäche"]
+        ],
+        [
+          ["deutschland", "deutsche", "bundesrepublik", " brd "],
+          [" wachstum", " wächst"],
+          ["industriestaaten", "industrieländer", "industrienationen", " g7 "]
+        ],
+        [
+          ["weltwirtschaft ", "globale wirtschaft", "weltweite wirtschaft", "wirtschaft weltweit",
+           "weltkonjunktur", "globale konjunktur", "weltweite konjunktur", "welt bip", "weltbip",
+           "globale bip", "weltweite bip", "world economy", "global economy"],
+          [" wachstum", "wirtschaftswachstum", " wächst", "schrumpf", "kollabiert", " kollaps",
+           "wirtschaftskollaps", "rezession", "stagn", "bricht ein", "brechen ein", "eingebrochen",
+           "konjunktureinbruch", "wirtschaftseinbruch", "einbruch der", "zusammenbruch",
+           "bricht zusammen", "abschwung", " flaute", "in der krise", "in die krise", "in einer krise",
+           "in eine krise", "schwächel", "lahmt", "talfahrt", "abwärts", "ist am ende", "bach runter",
+           "am boden", "erholung", "erholt", " prognose", "prognostiz", "wachstumsprognose",
+           "konjunkturprognose", "wirtschaftsprognose", "ausblick", "schlusslicht", "letzte platz",
+           " wachsen", "crash"]
+        ],
+        [
+          ["globale wachstum", "weltwachstum"],
+          ["negativ", "schrumpf", "kollabiert", "rezession", "stagn", "bricht ein", " prognose",
+           "prognostiz", "abschwung", " wirtschaft "]
+        ],
+        [
+          [" imf ", " iwf ", "währungsfonds"],
+          [" prognose", "prognostiz", "wachstumsprognose", "konjunkturprognose", "wirtschaftsprognose",
+           "ausblick", " wachstum", "wirtschaftswachstum", " wächst", " wachsen", "rezession",
+           "schrumpf", "stagn", "schlusslicht", "konjunktur", " bip ", "abschwung", "erholung"]
+        ],
+        [
+          [" usa ", " us ", "vereinigte staaten", "china", "chines", "japan", "indien", "indische",
+           "brasilien", "frankreich", "französ", "italien", "großbritannien", "britische", " uk ",
+           "eurozone", "euroraum"],
+          [" wirtschaft ", "wirtschaftsleistung", "wirtschaftswachstum", "volkswirtschaft",
+           "konjunktur", " bip ", "bruttoinlandsprodukt"],
+          [" wachstum", "wirtschaftswachstum", " wächst", "schrumpf", "kollabiert", " kollaps",
+           "wirtschaftskollaps", "rezession", "stagn", "bricht ein", "brechen ein", "eingebrochen",
+           "konjunktureinbruch", "wirtschaftseinbruch", "einbruch der", "zusammenbruch",
+           "bricht zusammen", "abschwung", " flaute", "in der krise", "in die krise", "in einer krise",
+           "in eine krise", "schwächel", "lahmt", "talfahrt", "abwärts", "ist am ende", "bach runter",
+           "am boden", "erholung", "erholt"]
+        ]
       ],
       "source_label": "IMF World Economic Outlook Oktober 2024",
       "source_url": "https://www.imf.org/en/Publications/WEO/Issues/2024/10/22/world-economic-outlook-october-2024",

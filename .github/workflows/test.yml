@@ -668,6 +668,12 @@ jobs:
     #                                  kein gh pr merge/rm/schreibendes curl,
     #                                  auch nicht als Praefix; Hook bleibt
     #                                  verdrahtet und sperrt weiter)
+    #   - test_imf_weltwirtschaft_trigger (IMF-Ausblick feuerte bei jedem
+    #                                  Claim mit Deutschland + Europa oder
+    #                                  Wirtschaft + Europa/Krise; jede Regel
+    #                                  verlangt jetzt einen Scope-Anker:
+    #                                  Welt, IWF, Deutschlands Wirtschaft,
+    #                                  die Laender des Fakts)
     # Together these pin the trigger logic AND the verdict pipeline —
     # a regression in either breaks many claims at once, so this is
     # the highest-value coverage a PR check can buy at this cost.
@@ -893,7 +899,8 @@ jobs:
             tests/test_analyse_heutiges_datum.py \
             tests/test_arbeitsmarkt_zweiter_beleg.py \
             tests/test_eu_netto_zahler_trigger.py \
-            tests/test_lesende_freigaben.py
+            tests/test_lesende_freigaben.py \
+            tests/test_imf_weltwirtschaft_trigger.py
 
   check-new-urls:
     name: New URLs in data/*.json must work
